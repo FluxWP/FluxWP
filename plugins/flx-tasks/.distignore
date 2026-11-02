@@ -1,0 +1,5 @@
+tools
+# GitHub tanitim dosyalari pakete girmez
+./docs
+./README.md
+./README.tr.md

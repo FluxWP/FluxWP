@@ -1,0 +1,1075 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Flux Speed\n"
+
+msgid "Performans"
+msgstr ""
+
+msgid "Özet"
+msgstr ""
+
+msgid "Kayıtlar"
+msgstr ""
+
+msgid "Sunucu"
+msgstr ""
+
+msgid "Veritabanı"
+msgstr ""
+
+msgid "Sistem Kontrolü"
+msgstr ""
+
+msgid "Ayarlar"
+msgstr ""
+
+msgid "Flux Speed"
+msgstr ""
+
+msgid "Ayarlar kaydedildi."
+msgstr ""
+
+msgid "Tüm kayıtlar silindi."
+msgstr ""
+
+msgid "Temizlik tamam: %s öğe."
+msgstr ""
+
+msgid "Bu sayfayı görme yetkiniz yok."
+msgstr ""
+
+msgid "Kayıt kapalı: yalnız anlık panel çalışıyor."
+msgstr ""
+
+msgid "Tüm zamanlar"
+msgstr ""
+
+msgid "Son 1 saat"
+msgstr ""
+
+msgid "Son 24 saat"
+msgstr ""
+
+msgid "Son 7 gün"
+msgstr ""
+
+msgid "Tüm durumlar"
+msgstr ""
+
+msgid "Tüm türler"
+msgstr ""
+
+msgid "En yeni"
+msgstr ""
+
+msgid "En yavaş"
+msgstr ""
+
+msgid "Adreste ara"
+msgstr ""
+
+msgid "Süz"
+msgstr ""
+
+msgid "Ölçülecek adres"
+msgstr ""
+
+msgid "Sayfayı ölç"
+msgstr ""
+
+msgid "\"Sayfayı ölç\" adresi ziyaretçi gibi açar (önbelleksiz) ve tüm ayrıntıyla kaydeder."
+msgstr ""
+
+msgid "Zaman"
+msgstr ""
+
+msgid "Adres"
+msgstr ""
+
+msgid "Durum"
+msgstr ""
+
+msgid "Süre"
+msgstr ""
+
+msgid "Bellek"
+msgstr ""
+
+msgid "Sorgu"
+msgstr ""
+
+msgid "Hata"
+msgstr ""
+
+msgid "İşaretler"
+msgstr ""
+
+msgid "Henüz kayıt yok. Yavaş ya da hatalı istekler ve örneklenen istekler burada görünür."
+msgstr ""
+
+msgid "Kayıt sayısı: %s"
+msgstr ""
+
+msgid "Tüm kayıtlar silinsin mi?"
+msgstr ""
+
+msgid "Tüm kayıtları sil"
+msgstr ""
+
+msgid "Kayıt bulunamadı."
+msgstr ""
+
+msgid "Kayıtlı istek"
+msgstr ""
+
+msgid "Ortalama süre"
+msgstr ""
+
+msgid "En uzun"
+msgstr ""
+
+msgid "Süreler kayıtlı isteklerden hesaplanır: örneklenen istekler + yavaş/hatalı istekler. Bu yüzden ortalama gerçek ortalamadan yüksek görünebilir."
+msgstr ""
+
+msgid "İstek türüne göre"
+msgstr ""
+
+msgid "Ziyaretçinin beklediği süre \"Ön yüz\" satırıdır. Cron, Ajax ve REST çoğunlukla arka plan işidir (yedek adımı, zamanlanmış görev, Heartbeat); uzun sürmeleri sayfaları doğrudan yavaşlatmaz ama sunucuyu meşgul eder."
+msgstr ""
+
+msgid "Tür"
+msgstr ""
+
+msgid "İstek"
+msgstr ""
+
+msgid "Ortalama"
+msgstr ""
+
+msgid "En yavaş adresler"
+msgstr ""
+
+msgid "Sorgu süresi: bileşenlere göre (istek başına)"
+msgstr ""
+
+msgid "Bileşen"
+msgstr ""
+
+msgid "İstek başına"
+msgstr ""
+
+msgid "Yavaş ve hatalı sorgular"
+msgstr ""
+
+msgid "Adet"
+msgstr ""
+
+msgid "PHP hataları"
+msgstr ""
+
+msgid "Seviye"
+msgstr ""
+
+msgid "Mesaj"
+msgstr ""
+
+msgid "Dış istekler"
+msgstr ""
+
+msgid "Uç"
+msgstr ""
+
+msgid "Başarısız"
+msgstr ""
+
+msgid "Son hata"
+msgstr ""
+
+msgid "Kayıt yok."
+msgstr ""
+
+msgid "Öneriler"
+msgstr ""
+
+msgid "Evet"
+msgstr ""
+
+msgid "Hayır"
+msgstr ""
+
+msgid "İşletim sistemi"
+msgstr ""
+
+msgid "Yazılım"
+msgstr ""
+
+msgid "Sunucu adı"
+msgstr ""
+
+msgid "IP adresi"
+msgstr ""
+
+msgid "Port"
+msgstr ""
+
+msgid "Belge kökü"
+msgstr ""
+
+msgid "Çekirdek sayısı"
+msgstr ""
+
+msgid "Sürüm"
+msgstr ""
+
+msgid "Bellek (bu istek)"
+msgstr ""
+
+msgid "tepe"
+msgstr ""
+
+msgid "Kapalı fonksiyonlar"
+msgstr ""
+
+msgid "Uzantılar"
+msgstr ""
+
+msgid "Açık"
+msgstr ""
+
+msgid "Kapalı"
+msgstr ""
+
+msgid "İsabet oranı"
+msgstr ""
+
+msgid "Önbellekteki dosya"
+msgstr ""
+
+msgid "Boşa giden"
+msgstr ""
+
+msgid "Yeniden başlama"
+msgstr ""
+
+msgid "Bilgi alınamadı (kapalı ya da sunucu izin vermiyor)."
+msgstr ""
+
+msgid "Önbellek"
+msgstr ""
+
+msgid "Nesne önbelleği"
+msgstr ""
+
+msgid "Harici"
+msgstr ""
+
+msgid "Yok"
+msgstr ""
+
+msgid "Sayfa önbelleği (WP_CACHE)"
+msgstr ""
+
+msgid "Dil"
+msgstr ""
+
+msgid "Saat dilimi"
+msgstr ""
+
+msgid "Kalıcı bağlantılar"
+msgstr ""
+
+msgid "Ortam türü"
+msgstr ""
+
+msgid "Tema"
+msgstr ""
+
+msgid "tanımsız"
+msgstr ""
+
+msgid "Etkin eklentiler"
+msgstr ""
+
+msgid "Veri"
+msgstr ""
+
+msgid "İndeks"
+msgstr ""
+
+msgid "Boş alan"
+msgstr ""
+
+msgid "Tablo"
+msgstr ""
+
+msgid "Satır (yaklaşık)"
+msgstr ""
+
+msgid "Açık bağlantı"
+msgstr ""
+
+msgid "Karakter seti"
+msgstr ""
+
+msgid "Çalışma süresi"
+msgstr ""
+
+msgid "Saniyede sorgu"
+msgstr ""
+
+msgid "Yavaş sorgu (sunucu)"
+msgstr ""
+
+msgid "En çok eş zamanlı bağlantı"
+msgstr ""
+
+msgid "Çalışan iş parçacığı"
+msgstr ""
+
+msgid "Buffer pool isabeti"
+msgstr ""
+
+msgid "Diske düşen geçici tablo"
+msgstr ""
+
+msgid "Reddedilen bağlantı"
+msgstr ""
+
+msgid "Temizlik"
+msgstr ""
+
+msgid "Yalnız güvenli işler: yazı, sayfa ve revizyonlar silinmez. Revizyon sayısını wp-config'te WP_POST_REVISIONS ile sınırlayın."
+msgstr ""
+
+msgid "devam edilsin mi?"
+msgstr ""
+
+msgid "Temizle"
+msgstr ""
+
+msgid "Revizyonlar"
+msgstr ""
+
+msgid "Çöpteki yazılar"
+msgstr ""
+
+msgid "Tüm geçici veriler"
+msgstr ""
+
+msgid "İş"
+msgstr ""
+
+msgid "Tablolar"
+msgstr ""
+
+msgid "Motor"
+msgstr ""
+
+msgid "Satır"
+msgstr ""
+
+msgid "Karşılaştırma"
+msgstr ""
+
+msgid "Autoload seçenek"
+msgstr ""
+
+msgid "Toplam boyut"
+msgstr ""
+
+msgid "Bu seçenekler her istekte veritabanından okunur. Toplam 800 KB üstü sayfaları yavaşlatır; büyük satırların sahibi eklentide ayarı ya da önbelleği küçültmek gerekir."
+msgstr ""
+
+msgid "Seçenek"
+msgstr ""
+
+msgid "Sahibi"
+msgstr ""
+
+msgid "Boyut"
+msgstr ""
+
+msgid "Görev"
+msgstr ""
+
+msgid "Gecikmiş"
+msgstr ""
+
+msgid "Son çalışma"
+msgstr ""
+
+msgid "%s önce"
+msgstr ""
+
+msgid "Görülmedi"
+msgstr ""
+
+msgid "WordPress cron kapalı: görevler yalnız sunucu cron'u wp-cron.php'yi çağırınca çalışır. Hostinger'da 5 dakikada bir çağıran bir cron işi tanımlı olmalı."
+msgstr ""
+
+msgid "Görev süreleri"
+msgstr ""
+
+msgid "wp-cron.php her çalıştığında görev başına ölçülür; toplam süreye göre sıralı. Bir günden eski özet, görev yeniden çalışınca sıfırlanır. \"Kesildi\": görev süre sınırına takılıp yarıda kaldı."
+msgstr ""
+
+msgid "Kanca"
+msgstr ""
+
+msgid "Çalışma"
+msgstr ""
+
+msgid "Son"
+msgstr ""
+
+msgid "Kesildi"
+msgstr ""
+
+msgid "Zamanlanmış görevler"
+msgstr ""
+
+msgid "Sonraki"
+msgstr ""
+
+msgid "Tekrar"
+msgstr ""
+
+msgid "Argüman"
+msgstr ""
+
+msgid "%s sonra"
+msgstr ""
+
+msgid "%s gecikti"
+msgstr ""
+
+msgid "bir kez"
+msgstr ""
+
+msgid "Son düzeltmeler (yapay zekâ / MCP)"
+msgstr ""
+
+msgid "Kullanıcı"
+msgstr ""
+
+msgid "Düzeltme"
+msgstr ""
+
+msgid "Önce → Sonra"
+msgstr ""
+
+msgid "Sonuç"
+msgstr ""
+
+msgid "Geliştirici paneli"
+msgstr ""
+
+msgid "Yetkili kullanıcıya yönetici çubuğunda özet ve alt panel göster"
+msgstr ""
+
+msgid "Ön yüzde de göster"
+msgstr ""
+
+msgid "Yetki kontrollerini topla"
+msgstr ""
+
+msgid "Panel; yöneticiye ve Flux Roles'den \"Performansı görüntüle\" yetkisi verilen personele görünür."
+msgstr ""
+
+msgid "Kayıt"
+msgstr ""
+
+msgid "Yavaş ve hatalı istekleri kaydet"
+msgstr ""
+
+msgid "Panel açıkken kendi isteklerimi de kaydet (yalnız sorun varsa)"
+msgstr ""
+
+msgid "Örnekleme"
+msgstr ""
+
+msgid "İsteklerin bu kadarı sorgu listesiyle ayrıntılı toplanır ve kaydedilir. Hostinger için 1-5 önerilir; 0 kapatır."
+msgstr ""
+
+msgid "Yavaş istek eşiği"
+msgstr ""
+
+msgid "Yavaş sorgu eşiği"
+msgstr ""
+
+msgid "Saklama"
+msgstr ""
+
+msgid "gün"
+msgstr ""
+
+msgid "en fazla"
+msgstr ""
+
+msgid "kayıt"
+msgstr ""
+
+msgid "Yapay zekâ (MCP)"
+msgstr ""
+
+msgid "Kayıtlar Flux SEO & MCP sunucusunda ve Flux AI sohbetinde salt okunur araçlarla okunur: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url."
+msgstr ""
+
+msgid "Flux SEO & MCP etkin: araçlar kayıtlı."
+msgstr ""
+
+msgid "Flux SEO & MCP etkin değil: araçlar yalnız Flux AI sohbetinde."
+msgstr ""
+
+msgid "%1$s sürümünden beri kullanımdan kalktı. Yerine: %2$s"
+msgstr ""
+
+msgid "%d dk"
+msgstr ""
+
+msgid "%1$d gün %2$d sa"
+msgstr ""
+
+msgid "%d sa"
+msgstr ""
+
+msgid "İşlemci yükü"
+msgstr ""
+
+msgid "%1$d çekirdek · yük %2$s"
+msgstr ""
+
+msgid "Bellek (RAM)"
+msgstr ""
+
+msgid "Disk"
+msgstr ""
+
+msgid "%s boş"
+msgstr ""
+
+msgid "PHP belleği (bu istek)"
+msgstr ""
+
+msgid "Sunucu açık"
+msgstr ""
+
+msgid "Paylaşımlı sunucuda işlemci ve bellek tüm sunucuya aittir; sitenin payı Hostinger panelindeki kaynak kullanımında görünür. Kutular 15 saniyede bir yenilenir."
+msgstr ""
+
+msgid "p95 süre (24 sa)"
+msgstr ""
+
+msgid "Hatalı istek (24 sa)"
+msgstr ""
+
+msgid "Yavaş istek (24 sa)"
+msgstr ""
+
+msgid "Ayrıntılar"
+msgstr ""
+
+msgid "Performans özeti"
+msgstr ""
+
+msgid "Kayıtlı istekleri listele"
+msgstr ""
+
+msgid "Kayıt ayrıntısı"
+msgstr ""
+
+msgid "Dış HTTP istekleri"
+msgstr ""
+
+msgid "Sunucu ve WordPress ortamı"
+msgstr ""
+
+msgid "Sunucu durumu"
+msgstr ""
+
+msgid "Veritabanı durumu"
+msgstr ""
+
+msgid "Autoload seçenekleri"
+msgstr ""
+
+msgid "Süresi dolmuş geçici veriler"
+msgstr ""
+
+msgid "7 günden eski otomatik taslaklar"
+msgstr ""
+
+msgid "İstenmeyen yorumlar"
+msgstr ""
+
+msgid "Çöpteki yorumlar"
+msgstr ""
+
+msgid "Boş alanı geri kazan (OPTIMIZE)"
+msgstr ""
+
+msgid "Bilinmeyen temizlik işi."
+msgstr ""
+
+msgid "Yavaş"
+msgstr ""
+
+msgid "PHP hatası"
+msgstr ""
+
+msgid "Ölümcül hata"
+msgstr ""
+
+msgid "Sunucu hatası (5xx)"
+msgstr ""
+
+msgid "Başarısız dış istek"
+msgstr ""
+
+msgid "Yavaş sorgu"
+msgstr ""
+
+msgid "Sorgu hatası"
+msgstr ""
+
+msgid "Hata logu"
+msgstr ""
+
+msgid "Örnek"
+msgstr ""
+
+msgid "Profil"
+msgstr ""
+
+msgid "Ön yüz"
+msgstr ""
+
+msgid "Yönetim"
+msgstr ""
+
+msgid "Yalnız bu sitenin adresleri ölçülebilir."
+msgstr ""
+
+msgid "Kayıt tablosu kurulmamış."
+msgstr ""
+
+msgid "Sayfa açıldı ama ölçüm kaydı oluşmadı. Sayfa önbellekten gelmiş ya da Flux Speed o istekte yüklenmemiş olabilir."
+msgstr ""
+
+msgid "Kayıt tablosu"
+msgstr ""
+
+msgid "Tablo kurulmamış. Eklentiyi devre dışı bırakıp yeniden etkinleştirin."
+msgstr ""
+
+msgid "İstek kaydı"
+msgstr ""
+
+msgid "Açık: isteklerin %%%1$d kadarı örnekleniyor, %2$d ms üstü ve hatalı istekler kaydediliyor."
+msgstr ""
+
+msgid "Kapalı: yalnız anlık panel çalışıyor, yapay zekâ geçmişi okuyamaz."
+msgstr ""
+
+msgid "Son 24 saatte hatalı istek"
+msgstr ""
+
+msgid "%1$d istekte PHP/sunucu hatası, %2$d ölümcül. Ayrıntı Kayıtlar'da."
+msgstr ""
+
+msgid "Kayıtlı hata yok."
+msgstr ""
+
+msgid "Son 24 saatte yavaş istek"
+msgstr ""
+
+msgid "%1$d istek %2$d ms eşiğini aştı."
+msgstr ""
+
+msgid "Son 24 saatte %d kayıtlı istekte dış servis hatası."
+msgstr ""
+
+msgid "Kayıtlı dış servis hatası yok."
+msgstr ""
+
+msgid "wp-config.php'de SAVEQUERIES açık: her istekte tüm sorgular bellekte tutuluyor. Flux Speed bunu gerektiğinde kendisi açar; wp-config'ten kaldırın."
+msgstr ""
+
+msgid "Yapay zekâ araçları (flxp_*)"
+msgstr ""
+
+msgid "MCP ve Flux AI sohbeti kayıtları okuyabilir."
+msgstr ""
+
+msgid "Flux SEO & MCP etkin değil ya da MCP kapalı; araçlar görünmüyor."
+msgstr ""
+
+msgid "Her istekte %1$d KB (%2$d seçenek) yükleniyor."
+msgstr ""
+
+msgid "800 KB altı önerilir; en büyük satırlara bakın."
+msgstr ""
+
+msgid "Son çalışma %s önce."
+msgstr ""
+
+msgid "Cron'un çalıştığı henüz görülmedi."
+msgstr ""
+
+msgid "%d görev gecikmiş."
+msgstr ""
+
+msgid "Zamanlanmış görevler çalışıyor"
+msgstr ""
+
+msgid "Disk alanı"
+msgstr ""
+
+msgid "%%%1$d dolu, %2$s boş."
+msgstr ""
+
+msgid "Son 1 dakikada %%%1$d (%2$d çekirdek). Paylaşımlı sunucuda yük tüm sunucuya aittir."
+msgstr ""
+
+msgid "Açık: PHP dosyaları derlenmiş halde bellekte."
+msgstr ""
+
+msgid "Açık görünüyor ama durum okunamıyor (sunucu kısıtlı)."
+msgstr ""
+
+msgid "Kapalı: her istekte PHP dosyaları yeniden derleniyor. Hostinger › PHP yapılandırmasından açın."
+msgstr ""
+
+msgid "%d süresi dolmuş geçici veri tabloda duruyor."
+msgstr ""
+
+msgid "Yok."
+msgstr ""
+
+msgid "Süresi dolmuş geçici verileri sil"
+msgstr ""
+
+msgid "%d geçici veri silindi."
+msgstr ""
+
+msgid "Her satır sitenin ihtiyaç duyduğu bir şeyi ve yerinde olup olmadığını gösterir. Önce hataları düzeltin; uyarılara da göz atın."
+msgstr ""
+
+msgid "Tamam"
+msgstr ""
+
+msgid "Uyarı"
+msgstr ""
+
+msgid "Bilgi"
+msgstr ""
+
+msgid "%1$d tamam · %2$d uyarı · %3$d hata"
+msgstr ""
+
+msgid "Yeniden kontrol et"
+msgstr ""
+
+msgid "Yalnız bunları göster (tekrar tıklayınca hepsi)"
+msgstr ""
+
+msgid "Kontrol: %s"
+msgstr ""
+
+msgid "Kontrol"
+msgstr ""
+
+msgid "Ayrıntı"
+msgstr ""
+
+msgid "Kaynak"
+msgstr ""
+
+msgid "İşlem"
+msgstr ""
+
+msgid "Kayıtlı kontrol yok."
+msgstr ""
+
+msgid "Sistem Kontrolü bağışları ya da otomasyonları durdurabilecek %d sorun buldu."
+msgstr ""
+
+msgid "Sistem Kontrolü'nü aç"
+msgstr ""
+
+msgid "Sonraki güncellemeye kadar gizle"
+msgstr ""
+
+msgid "Sistem: %d hata"
+msgstr ""
+
+msgid "Bu kontrol çalışamadı: %s"
+msgstr ""
+
+msgid "Zamanlanmış görevler (cron)"
+msgstr ""
+
+msgid "Ödemeler"
+msgstr ""
+
+msgid "Eklentiler"
+msgstr ""
+
+msgid "Site ayarları"
+msgstr ""
+
+msgid "E-posta"
+msgstr ""
+
+msgid "Güvenlik"
+msgstr ""
+
+msgid "Formlar"
+msgstr ""
+
+msgid "Diğer"
+msgstr ""
+
+msgid "Eklenti: %s"
+msgstr ""
+
+msgid "MU eklenti: %s"
+msgstr ""
+
+msgid "Tema: %s"
+msgstr ""
+
+msgid "Drop-in: %s"
+msgstr ""
+
+msgid "WordPress çekirdeği"
+msgstr ""
+
+msgid "Ara…"
+msgstr ""
+
+msgid "Tümü"
+msgstr ""
+
+msgid "İlk 1500 satır gösteriliyor; aramayla daraltın."
+msgstr ""
+
+msgid "Çağrı yığını"
+msgstr ""
+
+msgid "Ölümcül"
+msgstr ""
+
+msgid "Bildirim"
+msgstr ""
+
+msgid "Eskimiş"
+msgstr ""
+
+msgid "Genel bakış"
+msgstr ""
+
+msgid "Sorgular"
+msgstr ""
+
+msgid "Tekrar eden sorgular"
+msgstr ""
+
+msgid "Bileşenlere göre"
+msgstr ""
+
+msgid "Yanlış kullanım"
+msgstr ""
+
+msgid "Cron görevleri"
+msgstr ""
+
+msgid "Loglar"
+msgstr ""
+
+msgid "Şablon"
+msgstr ""
+
+msgid "Yetki kontrolleri"
+msgstr ""
+
+msgid "Script ve stiller"
+msgstr ""
+
+msgid "Diller"
+msgstr ""
+
+msgid "Transient güncellemeleri"
+msgstr ""
+
+msgid "Hook'lar"
+msgstr ""
+
+msgid "En yüksek bellek"
+msgstr ""
+
+msgid "Sınır"
+msgstr ""
+
+msgid "Süre ölçülmedi"
+msgstr ""
+
+msgid "Toplam"
+msgstr ""
+
+msgid "Yanıt"
+msgstr ""
+
+msgid "Bu istekte sorgu ayrıntısı toplanmadı (örneklenmeyen istek). Sorgu listesi için sayfayı yönetici girişiyle açın ya da örnekleme oranını artırın."
+msgstr ""
+
+msgid "Zaman çizelgesi"
+msgstr ""
+
+msgid "Ziyaretçi"
+msgstr ""
+
+msgid "Toplama kipi"
+msgstr ""
+
+msgid "Ayrıntılı"
+msgstr ""
+
+msgid "Hafif"
+msgstr ""
+
+msgid "Hatalı"
+msgstr ""
+
+msgid "Tekrar eden"
+msgstr ""
+
+msgid "Kayıtta yalnız en yavaş sorgular saklandı."
+msgstr ""
+
+msgid "Çağıran"
+msgstr ""
+
+msgid "Çağıranlar"
+msgstr ""
+
+msgid "Sorgu türleri"
+msgstr ""
+
+msgid "Dosya"
+msgstr ""
+
+msgid "Konu"
+msgstr ""
+
+msgid "Yöntem"
+msgstr ""
+
+msgid "Bu istekte log yok."
+msgstr ""
+
+msgid "Paketler do_action( 'flx_log', 'warning', 'mesaj' ) ile buraya yazabilir."
+msgstr ""
+
+msgid "Zamanlayıcılar"
+msgstr ""
+
+msgid "Durdurulmadı"
+msgstr ""
+
+msgid "Şablon dosyası"
+msgstr ""
+
+msgid "Ana tema"
+msgstr ""
+
+msgid "Blok teması"
+msgstr ""
+
+msgid "Blok şablonu"
+msgstr ""
+
+msgid "Body sınıfları"
+msgstr ""
+
+msgid "Şablon parçaları"
+msgstr ""
+
+msgid "Bulunamadı"
+msgstr ""
+
+msgid "İstek yolu"
+msgstr ""
+
+msgid "Eşleşen kural"
+msgstr ""
+
+msgid "Eşleşen sorgu"
+msgstr ""
+
+msgid "Sorgulanan nesne"
+msgstr ""
+
+msgid "Sorgu değişkenleri"
+msgstr ""
+
+msgid "Koşullar"
+msgstr ""
+
+msgid "Yetki"
+msgstr ""
+
+msgid "Var"
+msgstr ""
+
+msgid "Reddedildi"
+msgstr ""
+
+msgid "Scriptler"
+msgstr ""
+
+msgid "Stiller"
+msgstr ""
+
+msgid "Bağımlılıklar"
+msgstr ""
+
+msgid "Eksik"
+msgstr ""
+
+msgid "Konum"
+msgstr ""
+
+msgid "Alt"
+msgstr ""
+
+msgid "Üst"
+msgstr ""
+
+msgid "Yüklendi"
+msgstr ""
+
+msgid "Dosya yok"
+msgstr ""
+
+msgid "Ad"
+msgstr ""
+
+msgid "Süresiz"
+msgstr ""
+
+msgid "Bu istekte çalışan farklı action sayısı"
+msgstr ""
+
+msgid "En çok çalışanlar:"
+msgstr ""
+
+msgid "sorgu"
+msgstr ""
+
+msgid "Boyutlandır"
+msgstr ""
+
+msgid "Kapat"
+msgstr ""

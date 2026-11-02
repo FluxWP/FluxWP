@@ -1,0 +1,12 @@
+{
+  "schema": "flxb-report/1",
+  "id": "donations-by-month",
+  "title": { "tr": "Aylara göre bağışlar", "en": "Donations by month" },
+  "source": "donations",
+  "filter": { "paid": true },
+  "group": ["month"],
+  "metrics": ["count", "amount", "average", "donors"],
+  "period": "last_12_months",
+  "chart": "bar",
+  "order": 20
+}

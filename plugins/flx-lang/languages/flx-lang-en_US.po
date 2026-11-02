@@ -1,0 +1,330 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Flux Lang\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Diller"
+msgstr "Languages"
+
+msgid "Ortak sayfa: her dilde aynı, arayüz ziyaretçinin dilinde."
+msgstr "Shared page: the same in every language, interface in the visitor's language."
+
+msgid "Ortak"
+msgstr "Shared"
+
+msgid "%1$s çevirisi (%2$s)"
+msgstr "%1$s translation (%2$s)"
+
+msgid "%s çevirisi oluştur"
+msgstr "Create %s translation"
+
+msgid "Bu işlem için yetkiniz yok."
+msgstr "You are not allowed to do this."
+
+msgid "Dile göre süz"
+msgstr "Filter by language"
+
+msgid "Tüm diller"
+msgstr "All languages"
+
+msgid "Dil"
+msgstr "Language"
+
+msgid "Bu içeriğin dili"
+msgstr "Language of this content"
+
+msgid "Kaydettikten sonra diğer dillere çeviri oluşturabilirsiniz."
+msgstr "After saving you can create translations in other languages."
+
+msgid "AI ile yeniden çevir"
+msgstr "Re-translate with AI"
+
+msgid "Kopyala ve çevir"
+msgstr "Copy and translate"
+
+msgid "AI ile çevir"
+msgstr "Translate with AI"
+
+msgid "Flux AI kurulursa tek tıkla çeviri yapılır; MCP ile bağlı AI ajanları da flxl_save_translation aracıyla çevirebilir."
+msgstr "With Flux AI installed, translation is one click; AI agents connected over MCP can also translate with the flxl_save_translation tool."
+
+msgid "Çeviri hazırlanıyor…"
+msgstr "Preparing translation…"
+
+msgid "AI çeviriyor: %1$d / %2$d"
+msgstr "AI is translating: %1$d / %2$d"
+
+msgid "Çeviri hazır, düzenleyici açılıyor…"
+msgstr "Translation ready, opening the editor…"
+
+msgid "Bazı bölümler çevrilemedi, Türkçe kaldı. Düzenleyicide kontrol edin."
+msgstr "Some sections could not be translated and stayed in Turkish. Check them in the editor."
+
+msgid "Çeviri durdu:"
+msgstr "Translation stopped:"
+
+msgid "Var olan çevirinin başlığı, özeti ve gövdesi AI çevirisiyle değiştirilsin mi?"
+msgstr "Replace the title, excerpt and body of the existing translation with an AI translation?"
+
+msgid "AI ile çevrilsin mi? Hayır derseniz kopya taslak oluşturulur, kendiniz çevirirsiniz."
+msgstr "Translate with AI? If you choose No, a draft copy is created for you to translate yourself."
+
+msgid "Ayarlar"
+msgstr "Settings"
+
+msgid "Kaydedildi."
+msgstr "Saved."
+
+msgid "Varsayılan dil adreste önek almaz (example.org/hakkimizda/); diğer diller /en/ gibi önekle açılır. Her içeriğin dil sürümü ayrı bir sayfa/yazıdır: listede dil rozetinden ya da düzenleme ekranındaki Dil kutusundan oluşturulur. Tema ve eklenti arayüz metinleri kendi çevirileriyle gösterilir."
+msgstr "The default language has no prefix in the address (example.org/hakkimizda/); other languages open with a prefix such as /en/. Each language version of a content is a separate page/post: create it from the language badge in the list or from the Language box in the editor. Theme and plugin interface texts use their own translations."
+
+msgid "Etkin"
+msgstr "Active"
+
+msgid "Kod / adres"
+msgstr "Code / address"
+
+msgid "Ad"
+msgstr "Name"
+
+msgid "Bayrak"
+msgstr "Flag"
+
+msgid "WordPress dili"
+msgstr "WordPress locale"
+
+msgid "Varsayılan"
+msgstr "Default"
+
+msgid "Kaldır"
+msgstr "Remove"
+
+msgid "Dil ekle"
+msgstr "Add language"
+
+msgid "— seçin —"
+msgstr "— choose —"
+
+msgid "Yeni dil pasif eklenir: içeriği hazırlayıp sonra etkinleştirin. İngilizce dışındaki dillerde WordPress dil paketi de gerekir (Sistem kontrolü uyarır)."
+msgstr "A new language is added inactive: prepare its content, then activate it. Languages other than English also need the WordPress language pack (System check warns)."
+
+msgid "İçerik"
+msgstr "Content"
+
+msgid "Çevrilen içerik türleri"
+msgstr "Translated content types"
+
+msgid "Sepet, ödeme ve hesabım sayfaları her dilde ortaktır. Kategoriler ortaktır; adları kategori düzenleme ekranında dil başına çevrilir. Görsellerin dile özgü alt metni ve farklı görseli medya düzenleme ekranında."
+msgstr "Cart, checkout and my account pages are shared by all languages. Categories are shared; their names are translated per language on the category edit screen. Language-specific alt text and replacement images are on the media edit screen."
+
+msgid "Çevirisi olmayan içerik"
+msgstr "Content without a translation"
+
+msgid "Diğer dillerde Türkçesini göster (menü ve arayüz o dilde kalır; arama motoruna kanonik Türkçe adres bildirilir)"
+msgstr "Show the Turkish version in other languages (menu and interface stay in that language; search engines get the Turkish canonical address)"
+
+msgid "Kapalıysa İngilizce sitede yalnız İngilizcesi olan içerik listelenir."
+msgstr "When off, the English site lists only content that has an English version."
+
+msgid "Dil seçici"
+msgstr "Language switcher"
+
+msgid "Başka yere: \"Flux Lang Seçici\" bloğu ya da [flx_dil_secici] kısa kodu."
+msgstr "Elsewhere: the \"Flux Language Switcher\" block or the [flx_dil_secici] shortcode."
+
+msgid "Dil seçicinin yeri"
+msgstr "Switcher position"
+
+msgid "Alt bilgi (footer)"
+msgstr "Footer"
+
+msgid "Başlık (header) ve mobil menü"
+msgstr "Header and mobile menu"
+
+msgid "İkisi de"
+msgstr "Both"
+
+msgid "Ziyaretçiye dil önerisi"
+msgstr "Language suggestion for visitors"
+
+msgid "Türkiye dışından gelene"
+msgstr "Visitors from outside Türkiye"
+
+msgid "Direkt kendi dilinde aç (önerilen)"
+msgstr "Open directly in their language (recommended)"
+
+msgid "Sayfanın üstünde öneri bandı göster"
+msgstr "Show a suggestion bar at the top of the page"
+
+msgid "Kapalı"
+msgstr "Off"
+
+msgid "Türkiye dışından gelen ziyaretçi sayfa çizilmeden kendi dilindeki (yoksa İngilizce) sürüme açılır ve sonraki girişlerde de o dilde kalır. Dil seçicide başka dil seçen o dilde kalır. Arama motoru botları hiçbir zaman yönlendirilmez. Ülke Türkiye ya da saat dilimi Türkiye ise Türkçe kalır. Giriş yapmış kullanıcıya uygulanmaz; denemek için gizli pencere kullanın."
+msgstr "Visitors from outside Türkiye open the version in their language (English if none) before the page renders, and stay in it on later visits. A visitor who picks another language in the switcher stays in it. Search engine bots are never redirected. If the country or time zone is Türkiye, the visitor stays in Turkish. Not applied to logged-in users; use a private window to test."
+
+msgid "Önerilen dil"
+msgstr "Suggested language"
+
+msgid "Tarayıcı dili etkin dillerden biriyse (ör. Almanca eklendiğinde Almanca) o önerilir, değilse bu."
+msgstr "If the browser language is one of the active languages (e.g. German once added), that one is suggested; otherwise this one."
+
+msgid "Türkçe gösterilen ülkeler"
+msgstr "Countries that see Turkish"
+
+msgid "İki harfli ülke kodları (TR, CY…)."
+msgstr "Two-letter country codes (TR, CY…)."
+
+msgid "Ülke bilgisi"
+msgstr "Country information"
+
+msgid "Sizin isteğinizde ülke: %1$s (%2$s başlığı). Ülkeye göre öneri çalışır."
+msgstr "Country in your request: %1$s (%2$s header). Country-based suggestion works."
+
+msgid "Sunucu ülke bilgisi göndermiyor; tarayıcının saat dilimi kullanılır (Türkiye saati = Türkçe). Daha kesin sonuç için alan adını Cloudflare'e bağlayın (ücretsiz plan, CF-IPCountry başlığı kendiliğinden kullanılır) ya da hosting'in GeoIP başlığını açın."
+msgstr "The server sends no country information; the browser's time zone is used (Türkiye time = Turkish). For more accurate results, put the domain behind Cloudflare (free plan, the CF-IPCountry header is used automatically) or enable your host's GeoIP header."
+
+msgid "Dile göre site metinleri"
+msgstr "Site texts per language"
+
+msgid "Boş bırakılan alan Türkçesiyle gösterilir."
+msgstr "Empty fields are shown in Turkish."
+
+msgid "Kaydet"
+msgstr "Save"
+
+msgid "Yapay zekâ ile çeviri"
+msgstr "Translation with AI"
+
+msgid "Flux AI kuruluysa listede ve düzenleme ekranında \"AI ile çevir\" düğmesi çıkar. MCP ile bağlı AI ajanları (Claude vb.) ve Flux AI sohbeti şu araçları kullanır: flxl_languages, flxl_untranslated, flxl_translations, flxl_save_translation, flxl_set_language, flxl_image_language, flxl_term_translation, flxl_site_texts. Flux SEO araçlarında (list_content, create_content, update_content) lang parametresi var."
+msgstr "With Flux AI installed, a \"Translate with AI\" button appears in the list and the editor. AI agents connected over MCP (Claude etc.) and the Flux AI chat use these tools: flxl_languages, flxl_untranslated, flxl_translations, flxl_save_translation, flxl_set_language, flxl_image_language, flxl_term_translation, flxl_site_texts. Flux SEO tools (list_content, create_content, update_content) have a lang parameter."
+
+msgid "Kaynak içerik bulunamadı ya da bu tür çevrilmiyor."
+msgstr "Source content not found or this type is not translated."
+
+msgid "Dil etkin değil."
+msgstr "Language is not active."
+
+msgid "İçerik zaten bu dilde."
+msgstr "The content is already in this language."
+
+msgid "Flux Lang (çeviri)"
+msgstr "Flux Language (translation)"
+
+msgid "Flux Lang"
+msgstr "Flux Language"
+
+msgid "Flux AI kurulu ya da hazır değil."
+msgstr "Flux AI is not installed or not ready."
+
+msgid "AI boş cevap döndü."
+msgstr "AI returned an empty answer."
+
+msgid "AI cevabı yarıda kesildi."
+msgstr "The AI answer was cut off."
+
+msgid "Çeviri işi bulunamadı ya da süresi doldu."
+msgstr "Translation job not found or expired."
+
+msgid "Alternatif metin (%s)"
+msgstr "Alternative text (%s)"
+
+msgid "Görsel (%s)"
+msgstr "Image (%s)"
+
+msgid "Bu dilde bu görselin yerine gösterilecek görselin ID'si (ör. üzerinde yazı olan afişin çevirisi). Boş: aynı görsel."
+msgstr "ID of the image shown instead of this one in this language (e.g. the translated version of a poster with text). Empty: same image."
+
+msgid "Bu sayfanın %s sürümü var."
+msgstr "This page is available in %s."
+
+msgid "%s sürümüne geç"
+msgstr "Switch to %s"
+
+msgid "Bu sürümde kal"
+msgstr "Stay on this version"
+
+msgid "Kapat"
+msgstr "Close"
+
+msgid "Dil seçimi"
+msgstr "Language selection"
+
+msgid "Flux Lang Seçici"
+msgstr "Flux Language Switcher"
+
+msgid "Site adı"
+msgstr "Site title"
+
+msgid "Slogan"
+msgstr "Tagline"
+
+msgid "Flux SEO: site adı"
+msgstr "Flux SEO: site name"
+
+msgid "Flux SEO: alternatif ad"
+msgstr "Flux SEO: alternate name"
+
+msgid "Flux SEO: ana sayfa başlığı"
+msgstr "Flux SEO: home page title"
+
+msgid "Flux SEO: ana sayfa açıklaması"
+msgstr "Flux SEO: home page description"
+
+msgid "Yalnız varsayılan dil etkin; site tek dilli."
+msgstr "Only the default language is active; the site is single-language."
+
+msgid "WordPress dil paketleri"
+msgstr "WordPress language packs"
+
+msgid "Kurulu değil: %s. Ayarlar › Genel › Site dili listesinden bir kez seçip kaydedin (paket iner), sonra eski dile dönün."
+msgstr "Not installed: %s. Pick it once in Settings › General › Site Language and save (the pack downloads), then switch back."
+
+msgid "Etkin dillerin hepsinin WordPress çevirisi var."
+msgstr "All active languages have WordPress translations."
+
+msgid "Genel ayarlar"
+msgstr "General settings"
+
+msgid "Sayfa çevirileri: %s"
+msgstr "Page translations: %s"
+
+msgid "%1$d / %2$d sayfa çevrildi. %3$s"
+msgstr "%1$d / %2$d pages translated. %3$s"
+
+msgid "Çevrilmeyenler Türkçe gösteriliyor (kanonik adres Türkçe)."
+msgstr "Untranslated ones are shown in Turkish (canonical address is Turkish)."
+
+msgid "Çevrilmeyenler bu dilde gizli."
+msgstr "Untranslated ones are hidden in this language."
+
+msgid "Sayfalar"
+msgstr "Pages"
+
+msgid "Ziyaretçi ülkesi"
+msgstr "Visitor country"
+
+msgid "Henüz yabancı dil önerisi için ziyaretçi kontrolü yapılmadı."
+msgstr "No visitor has been checked for a language suggestion yet."
+
+msgid "Sunucu ülke bilgisi göndermiyor; tarayıcı saat dilimi kullanılıyor (Türkiye saati = Türkçe). Cloudflare açılırsa ülke kodu kendiliğinden kullanılır."
+msgstr "The server sends no country information; the browser time zone is used (Türkiye time = Turkish). If Cloudflare is enabled, the country code is used automatically."
+
+msgid "Ülke bilgisi %s başlığından geliyor."
+msgstr "Country information comes from the %s header."
+
+msgid "Kalıcı bağlantılar"
+msgstr "Permalinks"
+
+msgid "Düz (?p=) bağlantılar kullanılıyor; dil adresleri için \"Yazı adı\" yapısını seçin."
+msgstr "Plain (?p=) links are in use; choose the \"Post name\" structure for language addresses."
+
+msgid "Ad (%s)"
+msgstr "Name (%s)"
+
+msgid "Açıklama (%s)"
+msgstr "Description (%s)"
+
+msgid "Boş bırakılırsa Türkçe ad ve açıklama gösterilir."
+msgstr "If left empty, the Turkish name and description are shown."

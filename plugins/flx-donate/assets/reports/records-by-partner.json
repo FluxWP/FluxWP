@@ -1,0 +1,12 @@
+{
+  "schema": "flxb-report/1",
+  "id": "records-by-partner",
+  "title": { "tr": "İş ortağına göre kayıtlar", "en": "Records by partner" },
+  "source": "items",
+  "group": ["partner", "type"],
+  "metrics": ["count", "done", "open", "cost"],
+  "date": "created",
+  "period": "this_year",
+  "chart": "bar",
+  "order": 60
+}

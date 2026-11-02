@@ -1,0 +1,150 @@
+{
+ "seed": [
+  "seed-sosyal.php"
+ ],
+ "slug": "flx-social",
+ "css": ".flx-cookie{display:none!important}#wp-admin-bar-woocommerce-site-visibility-badge{display:none!important}#flxai-host{display:none!important}",
+ "shots": [
+  {
+   "name": "dashboard",
+   "url": "admin.php?page=flx-social&r=s0#/dashboard",
+   "vh": 1100,
+   "after": 2500
+  },
+  {
+   "name": "posts",
+   "url": "admin.php?page=flx-social&r=s1#/posts",
+   "vh": 900,
+   "after": 2000
+  },
+  {
+   "name": "compose",
+   "url": "admin.php?page=flx-social&r=s2#/compose/13",
+   "vh": 1000,
+   "after": 2500
+  },
+  {
+   "name": "approvals",
+   "url": "admin.php?page=flx-social&r=s3#/approvals",
+   "vh": 800,
+   "after": 2000
+  },
+  {
+   "name": "calendar",
+   "url": "admin.php?page=flx-social&r=s4#/calendar",
+   "vh": 1000,
+   "after": 2000
+  },
+  {
+   "name": "accounts",
+   "url": "admin.php?page=flx-social&r=s5#/accounts",
+   "vh": 900,
+   "after": 2000
+  },
+  {
+   "name": "settings",
+   "url": "admin.php?page=flx-social&r=s6#/settings",
+   "vh": 900,
+   "after": 2000
+  }
+ ],
+ "dark": [
+  {
+   "name": "dark",
+   "url": "admin.php?page=flx-social&r=d0#/dashboard",
+   "vh": 1000,
+   "after": 2500
+  }
+ ],
+ "mobile": [
+  {
+   "name": "mobile",
+   "url": "admin.php?page=flx-social&r=m0#/dashboard",
+   "after": 2500
+  },
+  {
+   "name": "mobile-posts",
+   "url": "admin.php?page=flx-social&r=m1#/posts",
+   "after": 2500
+  }
+ ],
+ "gif": [
+  {
+   "goto": "admin.php?page=flx-social&g=1#/dashboard",
+   "wait": 3000
+  },
+  {
+   "move": [
+    600,
+    300
+   ],
+   "wait": 500
+  },
+  {
+   "move": [
+    900,
+    330
+   ],
+   "wait": 900
+  },
+  {
+   "scroll": 350,
+   "wait": 1200
+  },
+  {
+   "goto": "admin.php?page=flx-social&g=2#/posts",
+   "wait": 2500
+  },
+  {
+   "move": [
+    800,
+    300
+   ],
+   "wait": 800
+  },
+  {
+   "goto": "admin.php?page=flx-social&g=3#/compose/13",
+   "wait": 3000
+  },
+  {
+   "move": [
+    500,
+    350
+   ],
+   "wait": 800
+  },
+  {
+   "move": [
+    1000,
+    400
+   ],
+   "wait": 1200
+  },
+  {
+   "key": "Escape",
+   "wait": 800
+  },
+  {
+   "goto": "admin.php?page=flx-social&g=4#/calendar",
+   "wait": 2500
+  },
+  {
+   "move": [
+    700,
+    400
+   ],
+   "wait": 1200
+  },
+  {
+   "goto": "admin.php?page=flx-social&g=5#/accounts",
+   "wait": 2200
+  },
+  {
+   "move": [
+    400,
+    350
+   ],
+   "wait": 1500
+  }
+ ]
+}

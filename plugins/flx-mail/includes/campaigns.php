@@ -1,0 +1,420 @@
+<?php
+/**
+ * Tekil ve toplu gönderim (e-posta, WhatsApp, SMS): alıcı listesi, kuyruk, abonelikten çıkma.
+ *
+ * @package flx-mail
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+/** Alıcı kaynakları (gönderim ekranındaki seçimler). */
+function flxi_recipient_sources() {
+	$out = array();
+	foreach ( wp_roles()->get_names() as $role => $name ) {
+		$count = count_users()['avail_roles'][ $role ] ?? 0;
+		if ( $count ) {
+			/* translators: 1: rol adı, 2: kişi sayısı */
+			$out[ 'role:' . $role ] = sprintf( __( 'Üyeler: %1$s (%2$s)', 'flx-mail' ), translate_user_role( $name ), number_format_i18n( $count ) );
+		}
+	}
+	if ( function_exists( 'flxs_table' ) ) {
+		global $wpdb;
+		$t = flxs_table( 'people' );
+		if ( $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $t ) ) === $t ) { // phpcs:ignore
+			$n = (int) $wpdb->get_var( "SELECT COUNT(*) FROM $t" ); // phpcs:ignore
+			/* translators: %s: kişi sayısı */
+			$out['flxs_people'] = sprintf( __( 'Flux Certificates kişileri (%s)', 'flx-mail' ), number_format_i18n( $n ) );
+		}
+	}
+	return apply_filters( 'flxi_recipient_sources', $out );
+}
+
+/**
+ * Alıcı listesini çıkarır.
+ *
+ * @param array  $sources Kaynak anahtarları.
+ * @param string $manual  Elle yazılan liste: her satırda "e-posta", "telefon", "Ad Soyad <e-posta>" ya da "Ad Soyad, e-posta, telefon".
+ * @param string $channel email|whatsapp|sms
+ * @return array [ ['to' => …, 'name' => …], … ] (tekrarsız, abonelikten çıkanlar hariç)
+ */
+function flxi_collect_recipients( array $sources, $manual, $channel ) {
+	$list = array();
+	$add  = function ( $name, $email, $phone ) use ( &$list, $channel ) {
+		$to = 'email' === $channel ? strtolower( trim( (string) $email ) ) : flxi_normalize_phone( $phone );
+		if ( ! $to || ( 'email' === $channel && ! is_email( $to ) ) ) {
+			return;
+		}
+		if ( ! isset( $list[ $to ] ) ) {
+			$list[ $to ] = array( 'to' => $to, 'name' => trim( (string) $name ) );
+		}
+	};
+	foreach ( preg_split( '/\r\n|\r|\n/', (string) $manual ) as $line ) {
+		$line = trim( $line );
+		if ( '' === $line ) {
+			continue;
+		}
+		$name  = '';
+		$email = '';
+		$phone = '';
+		if ( preg_match( '/^(.*)<([^>]+)>\s*$/', $line, $m ) ) {
+			$name  = trim( $m[1], " \t\"'," );
+			$email = trim( $m[2] );
+		} else {
+			foreach ( preg_split( '/[,;\t]/', $line ) as $part ) {
+				$part = trim( $part );
+				if ( is_email( $part ) ) {
+					$email = $part;
+				} elseif ( preg_match( '/^[+\d][\d\s().-]{8,}$/', $part ) ) {
+					$phone = $part;
+				} elseif ( '' !== $part && '' === $name ) {
+					$name = $part;
+				}
+			}
+		}
+		$add( $name, $email, $phone );
+	}
+	foreach ( $sources as $src ) {
+		if ( 0 === strpos( $src, 'role:' ) ) {
+			$users = get_users( array( 'role' => substr( $src, 5 ), 'number' => 20000, 'fields' => array( 'ID', 'user_email', 'display_name' ) ) );
+			foreach ( $users as $u ) {
+				$phone = get_user_meta( $u->ID, 'billing_phone', true );
+				$first = trim( get_user_meta( $u->ID, 'first_name', true ) . ' ' . get_user_meta( $u->ID, 'last_name', true ) );
+				$add( $first ? $first : $u->display_name, $u->user_email, $phone );
+			}
+		} elseif ( 'flxs_people' === $src && function_exists( 'flxs_table' ) ) {
+			global $wpdb;
+			$rows = $wpdb->get_results( 'SELECT name, email, phone FROM ' . flxs_table( 'people' ) . ' LIMIT 50000', ARRAY_A ); // phpcs:ignore
+			foreach ( (array) $rows as $r ) {
+				$add( $r['name'], $r['email'], $r['phone'] );
+			}
+		} else {
+			foreach ( (array) apply_filters( 'flxi_recipients_from_source', array(), $src, $channel ) as $r ) {
+				$add( $r['name'] ?? '', $r['email'] ?? '', $r['phone'] ?? '' );
+			}
+		}
+	}
+	if ( 'email' === $channel ) {
+		$unsub = flxi_unsubscribed();
+		$list  = array_diff_key( $list, array_flip( $unsub ) );
+	}
+	return array_values( $list );
+}
+
+/**
+ * Gönderim oluşturur ve kuyruğa ekler.
+ *
+ * @param array $data name, channel, subject, heading, body, button_text, button_url, sender, text, connection_id, unsubscribe
+ * @param array $recipients flxi_collect_recipients() sonucu
+ * @return int|WP_Error
+ */
+function flxi_create_campaign( array $data, array $recipients ) {
+	global $wpdb;
+	if ( ! $recipients ) {
+		return new WP_Error( 'flxi_empty', __( 'Gönderilecek alıcı yok.', 'flx-mail' ) );
+	}
+	$channel = in_array( $data['channel'] ?? 'email', array( 'email', 'whatsapp', 'sms' ), true ) ? $data['channel'] : 'email';
+	if ( 'email' === $channel && '' === trim( (string) ( $data['subject'] ?? '' ) ) ) {
+		return new WP_Error( 'flxi_subject', __( 'Konu gerekli.', 'flx-mail' ) );
+	}
+	if ( 'email' !== $channel ) {
+		if ( '' === trim( (string) ( $data['text'] ?? '' ) ) ) {
+			return new WP_Error( 'flxi_text', __( 'Mesaj metni gerekli.', 'flx-mail' ) );
+		}
+		if ( ! flxi_resolve_connection( $channel, (int) ( $data['connection_id'] ?? 0 ) ) ) {
+			return new WP_Error( 'flxi_conn', __( 'Bu kanal için etkin bağlantı yok. İletişim › Bağlantılar\'dan ekleyin.', 'flx-mail' ) );
+		}
+	}
+	$name = sanitize_text_field( $data['name'] ?? '' );
+	if ( '' === $name ) {
+		$name = 'email' === $channel ? sanitize_text_field( $data['subject'] ) : mb_substr( sanitize_text_field( $data['text'] ), 0, 60 );
+	}
+	$wpdb->insert(
+		flxi_table( 'campaigns' ),
+		array(
+			'name'       => mb_substr( $name, 0, 190 ),
+			'channel'    => $channel,
+			'data'       => flxi_json(
+				array(
+					'subject'       => sanitize_text_field( $data['subject'] ?? '' ),
+					'heading'       => sanitize_text_field( $data['heading'] ?? '' ),
+					'body'          => wp_kses_post( $data['body'] ?? '' ),
+					'button_text'   => sanitize_text_field( $data['button_text'] ?? '' ),
+					'button_url'    => esc_url_raw( $data['button_url'] ?? '' ),
+					'sender'        => 'noreply' === ( $data['sender'] ?? '' ) ? 'noreply' : 'info',
+					'text'          => sanitize_textarea_field( $data['text'] ?? '' ),
+					'connection_id' => (int) ( $data['connection_id'] ?? 0 ),
+					'unsubscribe'   => ! empty( $data['unsubscribe'] ),
+				)
+			),
+			'status'     => 'queued',
+			'total'      => count( $recipients ),
+			'created_by' => get_current_user_id(),
+			'created_at' => flxi_now(),
+		)
+	);
+	$cid = (int) $wpdb->insert_id;
+
+	// Mesajlar arası bekleme (WhatsApp numarası engellenmesin).
+	$delay = 0;
+	if ( 'email' !== $channel ) {
+		$conn  = flxi_resolve_connection( $channel, (int) ( $data['connection_id'] ?? 0 ) );
+		$delay = max( 0, (float) ( $conn['config']['delay'] ?? 0 ) );
+	}
+	$t     = time();
+	$rows  = array();
+	$table = flxi_table( 'queue' );
+	foreach ( $recipients as $i => $r ) {
+		$at     = gmdate( 'Y-m-d H:i:s', $t + (int) ceil( $i * $delay ) );
+		$rows[] = $wpdb->prepare( '(%d,%s,%s,%s,%s,%s)', $cid, $channel, $r['to'], mb_substr( (string) $r['name'], 0, 190 ), 'queued', $at );
+		if ( count( $rows ) >= 200 ) {
+			$wpdb->query( "INSERT INTO $table (campaign_id,channel,recipient,name,status,scheduled_at) VALUES " . implode( ',', $rows ) ); // phpcs:ignore
+			$rows = array();
+		}
+	}
+	if ( $rows ) {
+		$wpdb->query( "INSERT INTO $table (campaign_id,channel,recipient,name,status,scheduled_at) VALUES " . implode( ',', $rows ) ); // phpcs:ignore
+	}
+	flxi_kick_queue();
+	return $cid;
+}
+
+function flxi_get_campaign( $id ) {
+	global $wpdb;
+	$row = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . flxi_table( 'campaigns' ) . ' WHERE id = %d', (int) $id ), ARRAY_A ); // phpcs:ignore
+	if ( $row ) {
+		$row['data'] = (array) json_decode( (string) $row['data'], true );
+	}
+	return $row;
+}
+
+function flxi_cancel_campaign( $id ) {
+	global $wpdb;
+	$wpdb->query( $wpdb->prepare( 'UPDATE ' . flxi_table( 'queue' ) . " SET status = 'cancelled' WHERE campaign_id = %d AND status = 'queued'", (int) $id ) ); // phpcs:ignore
+	$wpdb->update( flxi_table( 'campaigns' ), array( 'status' => 'cancelled', 'finished_at' => flxi_now() ), array( 'id' => (int) $id ) );
+}
+
+/** Kuyruk işleyicisini planlar (WP-Cron; kuyruk sayfası açıksa tarayıcı da tetikler). */
+function flxi_kick_queue() {
+	if ( ! wp_next_scheduled( 'flxi_run_queue' ) ) {
+		wp_schedule_single_event( time() + 5, 'flxi_run_queue' );
+	}
+}
+
+add_action(
+	'flxi_run_queue',
+	function () {
+		flxi_run_queue( 40 );
+	}
+);
+
+/**
+ * Kuyruğu işler.
+ *
+ * @return array processed, sent, failed, left
+ */
+function flxi_run_queue( $budget = 20 ) {
+	global $wpdb;
+	$now = time();
+	if ( ! add_option( 'flxi_queue_lock', $now + $budget + 30, '', false ) ) {
+		if ( (int) get_option( 'flxi_queue_lock' ) > $now ) {
+			return array( 'locked' => true, 'processed' => 0 );
+		}
+		update_option( 'flxi_queue_lock', $now + $budget + 30, false );
+	}
+	$t      = flxi_table( 'queue' );
+	$start  = microtime( true );
+	$limit  = max( 1, (int) flxi_setting( 'bulk_per_run' ) );
+	$stats  = array( 'processed' => 0, 'sent' => 0, 'failed' => 0 );
+	$camps  = array();
+	$emails = 0;
+	while ( microtime( true ) - $start < $budget - 3 ) {
+		$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $t WHERE status = 'queued' AND scheduled_at <= %s ORDER BY scheduled_at ASC, id ASC LIMIT 1", flxi_now() ), ARRAY_A ); // phpcs:ignore
+		if ( ! $row ) {
+			break;
+		}
+		if ( 'email' === $row['channel'] && $emails >= $limit ) {
+			break;
+		}
+		$cid = (int) $row['campaign_id'];
+		if ( ! isset( $camps[ $cid ] ) ) {
+			$camps[ $cid ] = flxi_get_campaign( $cid );
+			if ( $camps[ $cid ] && 'queued' === $camps[ $cid ]['status'] ) {
+				$wpdb->update( flxi_table( 'campaigns' ), array( 'status' => 'running' ), array( 'id' => $cid ) );
+			}
+		}
+		// Posta kutusu günlük sınırı: toplu e-posta yedek payı tekil e-postalara bırakır, hak açılınca devam eder.
+		if ( 'email' === $row['channel'] ) {
+			$snd = ( $camps[ $cid ]['data']['sender'] ?? 'info' ) === 'noreply' ? 'noreply' : 'info';
+			if ( ! flxi_quota_bulk_allowed( $snd ) ) {
+				$when = gmdate( 'Y-m-d H:i:s', flxi_quota_next_free( flxi_quota_mailbox( $snd ) ) + 60 );
+				$wpdb->query( $wpdb->prepare( "UPDATE $t SET scheduled_at = %s WHERE status = 'queued' AND channel = 'email' AND scheduled_at < %s", $when, $when ) ); // phpcs:ignore
+				update_option( 'flxi_quota_paused', strtotime( $when . ' UTC' ), false );
+				$stats['paused_until'] = strtotime( $when . ' UTC' );
+				break;
+			}
+		}
+		$wpdb->update( $t, array( 'status' => 'processing', 'attempts' => (int) $row['attempts'] + 1 ), array( 'id' => $row['id'] ) );
+		$res = flxi_send_queue_item( $row, $camps[ $cid ] );
+		$stats['processed']++;
+		if ( 'email' === $row['channel'] ) {
+			$emails++;
+		}
+		if ( $res['ok'] ) {
+			$stats['sent']++;
+			$wpdb->update( $t, array( 'status' => 'sent', 'sent_at' => flxi_now(), 'error' => '' ), array( 'id' => $row['id'] ) );
+		} elseif ( ! empty( $res['skip'] ) ) {
+			$wpdb->update( $t, array( 'status' => 'skipped', 'error' => mb_substr( (string) $res['error'], 0, 500 ) ), array( 'id' => $row['id'] ) );
+		} elseif ( ! empty( $res['retry'] ) && (int) $row['attempts'] < 2 ) {
+			$wpdb->update( $t, array( 'status' => 'queued', 'error' => mb_substr( (string) $res['error'], 0, 500 ), 'scheduled_at' => gmdate( 'Y-m-d H:i:s', time() + 120 ) ), array( 'id' => $row['id'] ) );
+		} else {
+			$stats['failed']++;
+			$wpdb->update( $t, array( 'status' => 'failed', 'error' => mb_substr( (string) $res['error'], 0, 500 ) ), array( 'id' => $row['id'] ) );
+		}
+	}
+	foreach ( array_keys( $camps ) as $cid ) {
+		flxi_refresh_campaign( $cid );
+	}
+	delete_option( 'flxi_queue_lock' );
+	$stats['left'] = (int) $wpdb->get_var( "SELECT COUNT(*) FROM $t WHERE status = 'queued'" ); // phpcs:ignore
+	if ( $stats['left'] ) {
+		$next = $wpdb->get_var( "SELECT MIN(scheduled_at) FROM $t WHERE status = 'queued'" ); // phpcs:ignore
+		$when = max( time() + 30, $next ? strtotime( $next . ' UTC' ) : time() + 60 );
+		if ( ! wp_next_scheduled( 'flxi_run_queue' ) ) {
+			wp_schedule_single_event( $when, 'flxi_run_queue' );
+		}
+	}
+	return $stats;
+}
+
+function flxi_refresh_campaign( $cid ) {
+	global $wpdb;
+	$t   = flxi_table( 'queue' );
+	$cnt = $wpdb->get_results( $wpdb->prepare( "SELECT status, COUNT(*) n FROM $t WHERE campaign_id = %d GROUP BY status", $cid ), ARRAY_A ); // phpcs:ignore
+	$by  = array();
+	foreach ( (array) $cnt as $r ) {
+		$by[ $r['status'] ] = (int) $r['n'];
+	}
+	$open = ( $by['queued'] ?? 0 ) + ( $by['processing'] ?? 0 );
+	$data = array(
+		'sent'    => $by['sent'] ?? 0,
+		'failed'  => $by['failed'] ?? 0,
+		'skipped' => $by['skipped'] ?? 0,
+	);
+	$c = flxi_get_campaign( $cid );
+	if ( ! $open && $c && in_array( $c['status'], array( 'queued', 'running' ), true ) ) {
+		$data['status']      = 'done';
+		$data['finished_at'] = flxi_now();
+	}
+	$wpdb->update( flxi_table( 'campaigns' ), $data, array( 'id' => (int) $cid ) );
+}
+
+/** Tek kuyruk satırını gönderir. */
+function flxi_send_queue_item( $row, $camp ) {
+	if ( ! $camp || 'cancelled' === $camp['status'] ) {
+		return array( 'ok' => false, 'error' => __( 'Gönderim iptal edildi.', 'flx-mail' ), 'retry' => false );
+	}
+	$d    = $camp['data'];
+	$name = (string) $row['name'];
+	$vars = array(
+		'ad'       => $name ? preg_split( '/\s+/u', trim( $name ) )[0] : '',
+		'ad_soyad' => $name,
+		'eposta'   => 'email' === $row['channel'] ? $row['recipient'] : '',
+		'telefon'  => 'email' !== $row['channel'] ? $row['recipient'] : '',
+	);
+	if ( flxi_contact_blocked( 'email' === $row['channel'] ? '' : $row['recipient'], 'email' === $row['channel'] ? $row['recipient'] : '', $row['channel'] ) ) {
+		return array( 'ok' => false, 'error' => __( 'Kara listede: gönderilmedi', 'flx-mail' ), 'retry' => false, 'skip' => true );
+	}
+	if ( 'email' === $row['channel'] ) {
+		if ( in_array( $row['recipient'], flxi_unsubscribed(), true ) ) {
+			return array( 'ok' => false, 'error' => __( 'Abonelikten çıkmış.', 'flx-mail' ), 'retry' => false );
+		}
+		$unsub   = ! empty( $d['unsubscribe'] ) && flxi_setting( 'bulk_unsubscribe' ) ? flxi_unsubscribe_url( $row['recipient'] ) : '';
+		$headers = array();
+		if ( $unsub ) {
+			$headers[] = 'List-Unsubscribe: <' . $unsub . '>';
+			$headers[] = 'List-Unsubscribe-Post: List-Unsubscribe=One-Click';
+		}
+		$error = '';
+		$catch = function ( $e ) use ( &$error ) {
+			$error = $e->get_error_message();
+		};
+		add_action( 'wp_mail_failed', $catch );
+		$ok = flxi_send_email(
+			array(
+				'to'              => $row['recipient'],
+				'template'        => 'flx-mail/campaign',
+				'vars'            => $vars,
+				'subject'         => $d['subject'],
+				'heading'         => $d['heading'],
+				'body'            => $d['body'],
+				'button_text'     => $d['button_text'],
+				'button_url'      => $d['button_url'],
+				'sender'          => $d['sender'],
+				'campaign_id'     => (int) $camp['id'],
+				'unsubscribe_url' => $unsub,
+				'headers'         => $headers,
+			)
+		);
+		remove_action( 'wp_mail_failed', $catch );
+		return array( 'ok' => (bool) $ok, 'error' => $error, 'retry' => ! $ok );
+	}
+	return flxi_send_message(
+		$row['channel'],
+		$row['recipient'],
+		flxi_fill( (string) $d['text'], $vars ),
+		array(
+			'connection_id' => (int) $d['connection_id'],
+			'campaign_id'   => (int) $camp['id'],
+			'source'        => 'flx-mail',
+			'template'      => 'flx-mail/campaign',
+		)
+	);
+}
+
+/* ------------------------------------------------------------------ */
+/* Abonelikten çıkma                                                   */
+/* ------------------------------------------------------------------ */
+
+function flxi_unsubscribed() {
+	$l = get_option( 'flxi_unsubscribed', array() );
+	return is_array( $l ) ? $l : array();
+}
+
+function flxi_unsubscribe_token( $email ) {
+	return substr( hash_hmac( 'sha256', strtolower( $email ), wp_salt( 'auth' ) . 'flxi-unsub' ), 0, 20 );
+}
+
+function flxi_unsubscribe_url( $email ) {
+	$e = rtrim( strtr( base64_encode( strtolower( $email ) ), '+/', '-_' ), '=' );
+	return add_query_arg( array( 'flxi_unsub' => $e, 'k' => flxi_unsubscribe_token( $email ) ), home_url( '/' ) );
+}
+
+add_action(
+	'init',
+	function () {
+		if ( empty( $_GET['flxi_unsub'] ) || empty( $_GET['k'] ) ) { // phpcs:ignore
+			return;
+		}
+		$email = strtolower( (string) base64_decode( strtr( sanitize_text_field( wp_unslash( $_GET['flxi_unsub'] ) ), '-_', '+/' ) ) ); // phpcs:ignore
+		$key   = sanitize_text_field( wp_unslash( $_GET['k'] ) ); // phpcs:ignore
+		if ( ! is_email( $email ) || ! hash_equals( flxi_unsubscribe_token( $email ), $key ) ) {
+			wp_die( esc_html__( 'Bağlantı geçersiz.', 'flx-mail' ), '', array( 'response' => 400 ) );
+		}
+		$post = 'POST' === ( $_SERVER['REQUEST_METHOD'] ?? '' ); // phpcs:ignore
+		if ( $post ) {
+			$list = flxi_unsubscribed();
+			if ( ! in_array( $email, $list, true ) ) {
+				$list[] = $email;
+				update_option( 'flxi_unsubscribed', $list, false );
+			}
+			// Tek tıkla çıkma (RFC 8058): e-posta istemcisi gövdesiz yanıt bekler.
+			if ( isset( $_POST['List-Unsubscribe'] ) ) { // phpcs:ignore
+				status_header( 200 );
+				exit;
+			}
+			wp_die( '<h1>' . esc_html__( 'Listeden çıkarıldınız', 'flx-mail' ) . '</h1><p>' . esc_html( sprintf( /* translators: %s: e-posta */ __( '%s adresine artık toplu e-posta göndermeyeceğiz. Bağış ve sertifika gibi işlem e-postaları gitmeye devam eder.', 'flx-mail' ), $email ) ) . '</p>', esc_html__( 'Listeden çıkarıldınız', 'flx-mail' ), array( 'response' => 200 ) );
+		}
+		$form = '<h1>' . esc_html__( 'Toplu e-postalardan çıkmak istiyor musunuz?', 'flx-mail' ) . '</h1><p>' . esc_html( $email ) . '</p><form method="post"><button type="submit" class="button button-primary" style="padding:10px 20px;font-size:15px">' . esc_html__( 'Evet, listeden çıkar', 'flx-mail' ) . '</button></form>';
+		wp_die( $form, esc_html__( 'Abonelikten çık', 'flx-mail' ), array( 'response' => 200 ) ); // phpcs:ignore
+	}
+);

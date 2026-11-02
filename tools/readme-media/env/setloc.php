@@ -1,0 +1,1 @@
+<?php require ( getenv( 'WPENV' ) ?: '/tmp/wpenv' ) . '/site/wp-load.php'; update_user_meta(1,'locale',$argv[1]); delete_user_meta(1,'flxa_mode'); update_option('demo_front_locale',$argv[1]); echo "ok\n";

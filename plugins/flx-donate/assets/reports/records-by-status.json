@@ -1,0 +1,10 @@
+{
+  "schema": "flxb-report/1",
+  "id": "records-by-status",
+  "title": { "tr": "Duruma göre kayıtlar", "en": "Records by status" },
+  "source": "items",
+  "group": ["type", "status"],
+  "metrics": ["count"],
+  "period": "all",
+  "order": 80
+}

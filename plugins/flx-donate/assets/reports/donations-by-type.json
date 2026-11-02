@@ -1,0 +1,12 @@
+{
+  "schema": "flxb-report/1",
+  "id": "donations-by-type",
+  "title": { "tr": "Türe göre bağışlar", "en": "Donations by type" },
+  "source": "donations",
+  "filter": { "paid": true },
+  "group": ["type"],
+  "metrics": ["count", "quantity", "amount", "donors"],
+  "period": "this_year",
+  "chart": "bar",
+  "order": 10
+}

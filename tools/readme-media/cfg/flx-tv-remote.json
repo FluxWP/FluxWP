@@ -1,0 +1,82 @@
+{
+ "seed": [
+  "seed-tv.php"
+ ],
+ "slug": "flx-tv-remote",
+ "css": ".flx-cookie{display:none!important}#wp-admin-bar-woocommerce-site-visibility-badge{display:none!important}#flxai-host{display:none!important}",
+ "shots": [
+  {
+   "name": "remote",
+   "url": "admin.php?page=flx-tv-remote",
+   "vh": 1000,
+   "wait": 3500
+  },
+  {
+   "name": "settings",
+   "url": "admin.php?page=flx-tv-remote-ayarlar",
+   "vh": 1000,
+   "wait": 2000
+  }
+ ],
+ "dark": [
+  {
+   "name": "dark",
+   "url": "admin.php?page=flx-tv-remote",
+   "vh": 900,
+   "wait": 3500
+  }
+ ],
+ "mobile": [
+  {
+   "name": "mobile",
+   "url": "admin.php?page=flx-tv-remote",
+   "wait": 3500
+  }
+ ],
+ "gif": [
+  {
+   "goto": "admin.php?page=flx-tv-remote",
+   "wait": 3500
+  },
+  {
+   "move": [
+    900,
+    450
+   ],
+   "wait": 600
+  },
+  {
+   "move": [
+    1000,
+    520
+   ],
+   "wait": 800
+  },
+  {
+   "goto": "admin.php?page=flx-tv-remote-ayarlar",
+   "wait": 2200
+  },
+  {
+   "move": [
+    800,
+    400
+   ],
+   "wait": 900
+  },
+  {
+   "scroll": 500,
+   "wait": 1200
+  },
+  {
+   "goto": "admin.php?page=flx-tv-remote",
+   "wait": 3000
+  },
+  {
+   "move": [
+    950,
+    600
+   ],
+   "wait": 1200
+  }
+ ]
+}

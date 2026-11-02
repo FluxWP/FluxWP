@@ -1,0 +1,105 @@
+{
+ "seed": [
+  "seed-posts.php",
+  "seed-dil.php"
+ ],
+ "slug": "flx-lang",
+ "css": ".flx-cookie{display:none!important}#wp-admin-bar-woocommerce-site-visibility-badge{display:none!important}#flxai-host{display:none!important}.components-modal__screen-overlay{display:none!important}.editor-post-summary,.editor-post-trash{display:none!important}.flxseo-panel{display:none!important}",
+ "shots": [
+  {
+   "name": "settings",
+   "url": "options-general.php?page=flx-lang",
+   "vh": 1000,
+   "after": 800
+  },
+  {
+   "name": "posts",
+   "url": "edit.php",
+   "vh": 900,
+   "after": 800
+  },
+  {
+   "name": "editor",
+   "url": "post.php?post=12&action=edit",
+   "wait": 5000,
+   "vh": 1000,
+   "css": ".flxseo-panel{display:none!important}"
+  },
+  {
+   "name": "front-en",
+   "url": "/en/",
+   "vh": 900,
+   "wait": 3000
+  },
+  {
+   "name": "switcher",
+   "url": "/en/",
+   "wait": 3000,
+   "sel": [
+    "footer"
+   ],
+   "full": true
+  }
+ ],
+ "dark": [
+  {
+   "name": "dark",
+   "url": "options-general.php?page=flx-lang",
+   "vh": 900
+  }
+ ],
+ "mobile": [
+  {
+   "name": "mobile",
+   "url": "/en/",
+   "wait": 3000
+  }
+ ],
+ "gif": [
+  {
+   "goto": "options-general.php?page=flx-lang",
+   "wait": 2200
+  },
+  {
+   "move": [
+    700,
+    350
+   ],
+   "wait": 700
+  },
+  {
+   "scroll": 400,
+   "wait": 1000
+  },
+  {
+   "goto": "edit.php",
+   "wait": 2200
+  },
+  {
+   "move": [
+    900,
+    300
+   ],
+   "wait": 900
+  },
+  {
+   "goto": "post.php?post=12&action=edit",
+   "wait": 5000
+  },
+  {
+   "move": [
+    1250,
+    300
+   ],
+   "wait": 1200
+  },
+  {
+   "goto": "/en/",
+   "wait": 700
+  },
+  {
+   "scroll": "footer",
+   "wait": 2200
+  }
+ ]
+}

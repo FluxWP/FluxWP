@@ -1,0 +1,122 @@
+{
+ "seed": [
+  "seed-tv-pano.php"
+ ],
+ "slug": "flx-tv-board",
+ "css": ".flx-cookie{display:none!important}#wp-admin-bar-woocommerce-site-visibility-badge{display:none!important}#flxai-host{display:none!important}",
+ "shots": [
+  {
+   "name": "editor",
+   "url": "admin.php?page=flx-tv-board",
+   "vh": 1000,
+   "wait": 4000
+  },
+  {
+   "name": "tv-home",
+   "url": "admin.php?page=flx-tv-board",
+   "wait": 4000,
+   "sel": [
+    ".flxtp-stagebox"
+   ],
+   "pad": 0
+  },
+  {
+   "name": "tv-feed",
+   "url": "admin.php?page=flx-tv-board",
+   "wait": 4000,
+   "click": [
+    ".flxtp-pagebar .flxtp-pill >> nth=1"
+   ],
+   "after": 1500,
+   "sel": [
+    ".flxtp-stagebox"
+   ],
+   "pad": 0
+  },
+  {
+   "name": "tv-tasks",
+   "url": "admin.php?page=flx-tv-board",
+   "wait": 4000,
+   "click": [
+    ".flxtp-pagebar .flxtp-pill >> nth=2"
+   ],
+   "after": 1500,
+   "sel": [
+    ".flxtp-stagebox"
+   ],
+   "pad": 0
+  },
+  {
+   "name": "tv-calendar",
+   "url": "admin.php?page=flx-tv-board",
+   "wait": 4000,
+   "click": [
+    ".flxtp-pagebar .flxtp-plus",
+    ".flxtp-main button >> text=/Namaz|Prayer/",
+    ".flxtp-main button >> text=/hicri|Hijri/i",
+    ".flxtp-main button >> text=/Ayet|Verse/"
+   ],
+   "after": 3000,
+   "sel": [
+    ".flxtp-stagebox"
+   ],
+   "pad": 0
+  }
+ ],
+ "dark": [
+  {
+   "name": "dark",
+   "url": "admin.php?page=flx-tv-board",
+   "vh": 900,
+   "wait": 4000
+  }
+ ],
+ "mobile": [],
+ "gif": [
+  {
+   "goto": "admin.php?page=flx-tv-board",
+   "wait": 4000
+  },
+  {
+   "move": [
+    700,
+    400
+   ],
+   "wait": 700
+  },
+  {
+   "click": ".flxtp-pagebar .flxtp-pill >> nth=1",
+   "css": true,
+   "wait": 1800
+  },
+  {
+   "click": ".flxtp-pagebar .flxtp-pill >> nth=2",
+   "css": true,
+   "wait": 1800
+  },
+  {
+   "click": ".flxtp-pagebar .flxtp-pill >> nth=0",
+   "css": true,
+   "wait": 1200
+  },
+  {
+   "move": [
+    1600,
+    500
+   ],
+   "wait": 800
+  },
+  {
+   "click": ".flxtp-tabs .flxtp-tab >> nth=2",
+   "css": true,
+   "wait": 1500
+  },
+  {
+   "move": [
+    1200,
+    700
+   ],
+   "wait": 1200
+  }
+ ]
+}

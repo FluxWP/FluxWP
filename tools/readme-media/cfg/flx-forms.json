@@ -1,0 +1,175 @@
+{
+ "seed": [
+  "seed-form.php"
+ ],
+ "slug": "flx-forms",
+ "css": ".flx-cookie{display:none!important}#wp-admin-bar-woocommerce-site-visibility-badge{display:none!important}",
+ "shots": [
+  {
+   "name": "dashboard",
+   "url": "admin.php?page=flxf-dashboard",
+   "vh": 1100
+  },
+  {
+   "name": "forms",
+   "url": "admin.php?page=Emsfb",
+   "vh": 700
+  },
+  {
+   "name": "responses",
+   "url": "admin.php?page=Emsfb",
+   "click": ".efb-act-msg[data-id='2']",
+   "wait": 2500,
+   "vh": 900
+  },
+  {
+   "name": "builder",
+   "url": "admin.php?page=Emsfb",
+   "click": ".efb-act-edit[data-id='2']",
+   "vh": 900
+  },
+  {
+   "name": "templates",
+   "url": "admin.php?page=Emsfb_create",
+   "vh": 900
+  },
+  {
+   "name": "automations",
+   "url": "admin.php?page=flxf_automations",
+   "vh": 700
+  },
+  {
+   "name": "public",
+   "url": "/fidan-formu/",
+   "vh": 1000,
+   "css": "#wpadminbar{display:none!important}html{margin-top:0!important}"
+  }
+ ],
+ "dark": [
+  {
+   "name": "dark",
+   "url": "admin.php?page=flxf-dashboard",
+   "vh": 900
+  }
+ ],
+ "mobile": [
+  {
+   "name": "mobile",
+   "url": "admin.php?page=flxf-dashboard"
+  },
+  {
+   "name": "mobile-public",
+   "url": "/fidan-formu/",
+   "css": "#wpadminbar{display:none!important}html{margin-top:0!important}"
+  }
+ ],
+ "gif": [
+  {
+   "goto": "admin.php?page=flxf-dashboard",
+   "wait": 2800
+  },
+  {
+   "move": [
+    500,
+    250
+   ]
+  },
+  {
+   "move": [
+    700,
+    420
+   ],
+   "wait": 900
+  },
+  {
+   "move": [
+    1000,
+    450
+   ],
+   "wait": 700
+  },
+  {
+   "scroll": 500,
+   "wait": 1400
+  },
+  {
+   "move": [
+    800,
+    450
+   ],
+   "wait": 900
+  },
+  {
+   "goto": "admin.php?page=Emsfb",
+   "wait": 2500
+  },
+  {
+   "move": [
+    700,
+    300
+   ],
+   "wait": 500
+  },
+  {
+   "click": ".efb-act-msg[data-id='2']",
+   "css": true,
+   "wait": 2500
+  },
+  {
+   "move": [
+    800,
+    400
+   ],
+   "wait": 1000
+  },
+  {
+   "goto": "admin.php?page=Emsfb",
+   "wait": 2200
+  },
+  {
+   "click": ".efb-act-edit[data-id='2']",
+   "css": true,
+   "wait": 3000
+  },
+  {
+   "move": [
+    900,
+    450
+   ],
+   "wait": 1200
+  },
+  {
+   "goto": "admin.php?page=flxf_automations",
+   "wait": 2200
+  },
+  {
+   "move": [
+    700,
+    330
+   ],
+   "wait": 1200
+  },
+  {
+   "goto": "/fidan-formu/",
+   "wait": 2500
+  },
+  {
+   "move": [
+    640,
+    420
+   ],
+   "wait": 600
+  },
+  {
+   "scroll": 300,
+   "wait": 1500
+  },
+  {
+   "move": [
+    600,
+    500
+   ],
+   "wait": 1200
+  }
+ ]
+}

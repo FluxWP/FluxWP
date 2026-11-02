@@ -1,0 +1,29 @@
+{
+  "name": "fluxwp",
+  "private": true,
+  "version": "0.2.0",
+  "packageManager": "bun@1.4.4",
+  "engines": {
+    "bun": ">=1.4"
+  },
+  "scripts": {
+    "postinstall": "bun tools/fluxapp/brand.mjs",
+    "brand": "bun tools/fluxapp/brand.mjs",
+    "dev": "bun run brand && turbo run dev --filter=@fluxwp/panel",
+    "build": "bun run brand && turbo run build",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "desktop:dev": "bun run brand && bun run --filter @fluxwp/desktop icons && cd apps/desktop && bun run tauri dev --config src-tauri/tauri.brand.conf.json",
+    "desktop:build": "bun run brand && bun run --filter @fluxwp/desktop icons && cd apps/desktop && bun run tauri build --config src-tauri/tauri.brand.conf.json"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "turbo": "^2.11.10",
+    "typescript": "^5.9.3"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "description": "FluxWP (React panel + Tauri) ve paylaşılan TS kütüphaneleri. WordPress eklentileri plugins/, temalar themes/ altında."
+}

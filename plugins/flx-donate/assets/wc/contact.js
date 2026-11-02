@@ -1,0 +1,147 @@
+/* Flux Donate 2.0.4: one contact section on a donation-only checkout, e-mail or phone (at least one). GPL v2 or later. */
+(function () {
+	'use strict';
+	var C = window.FLXBContact;
+	if (!C) { return; }
+	var reEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+	var digits = function (v) { return String(v || '').replace(/\D+/g, ''); };
+	var phoneOk = function (v) { return digits(v).length >= 10; };
+	var isPh = function (e) { e = String(e || ''); return /@telefon\.invalid$/i.test(e) || new RegExp('^bagisci-[0-9a-z]+@' + C.domain.replace(/\./g, '\\.') + '$', 'i').test(e); };
+	var placeholder = function (p) { return 'bagisci-' + digits(p) + '@' + C.domain; };
+	var store = function () { return window.wp && wp.data && wp.data.select('wc/store/cart') ? wp.data : null; };
+	var ui = null, timer = 0;
+
+	function field(id, type, label, val, extra) {
+		var w = document.createElement('div');
+		w.className = 'flxb-ct__field';
+		var l = document.createElement('label'); l.htmlFor = id; l.textContent = label;
+		var i = document.createElement('input'); i.id = id; i.type = type; i.value = val || '';
+		Object.keys(extra || {}).forEach(function (k) { i.setAttribute(k, extra[k]); });
+		w.appendChild(l); w.appendChild(i);
+		return { w: w, i: i };
+	}
+
+	function push() {
+		var d = store(); if (!d || !ui) { return; }
+		var e = ui.email.i.value.trim(), p = ui.phone.i.value.trim();
+		var cur = d.select('wc/store/cart').getCustomerData().billingAddress || {};
+		var next = Object.assign({}, cur, { phone: p, email: reEmail.test(e) ? e : (phoneOk(p) ? placeholder(p) : e) });
+		if (next.email !== cur.email || next.phone !== cur.phone) { d.dispatch('wc/store/cart').setBillingAddress(next); }
+	}
+
+	function check() {
+		var e = ui.email.i.value.trim(), p = ui.phone.i.value.trim(), msg = '';
+		if (!e && !p) { msg = C.need; }
+		else if (e && !reEmail.test(e)) { msg = C.badEmail; }
+		else if (p && !phoneOk(p)) { msg = C.badPhone; }
+		else if (!e && !phoneOk(p)) { msg = C.need; }
+		ui.err.textContent = msg; ui.err.hidden = !msg;
+		ui.box.classList.toggle('has-error', !!msg);
+		return !msg;
+	}
+
+	function mount() {
+		var host = document.querySelector('.wc-block-checkout__contact-fields .wc-block-components-checkout-step__content');
+		var emailInput = document.getElementById('email');
+		if (!host || !emailInput) { return; }
+		var wcEmail = emailInput.closest('.wc-block-components-text-input');
+		if (wcEmail) { wcEmail.classList.add('flxb-ct-hide'); }
+		if (host.querySelector('.flxb-ct')) { return; }
+		var d = store(), b = d ? (d.select('wc/store/cart').getCustomerData().billingAddress || {}) : {};
+		var box = document.createElement('div'); box.className = 'flxb-ct';
+		var email = field('flxb-ct-email', 'email', C.email, isPh(b.email) ? '' : (b.email || emailInput.value), { autocomplete: 'email', inputmode: 'email' });
+		var phone = field('flxb-ct-phone', 'tel', C.phone, b.phone || '', { autocomplete: 'tel', inputmode: 'tel', placeholder: C.phoneHolder });
+		var help = document.createElement('p'); help.className = 'flxb-ct__help'; help.textContent = C.help;
+		var err = document.createElement('p'); err.className = 'flxb-ct__err'; err.setAttribute('role', 'alert'); err.hidden = true;
+		var row = document.createElement('div'); row.className = 'flxb-ct__row';
+		row.appendChild(phone.w); row.appendChild(email.w);
+		box.appendChild(row); box.appendChild(help); box.appendChild(err);
+		host.insertBefore(box, host.firstChild);
+		ui = { box: box, email: email, phone: phone, err: err };
+		/* 2.0.6: what the donor typed on the donation form wins (it was lost on some setups). */
+		try {
+			var carry = JSON.parse(window.sessionStorage.getItem('flxb_contact') || 'null');
+			if (carry) {
+				if (carry.p) { phone.i.value = carry.p; }
+				if (carry.e) { email.i.value = carry.e; }
+				window.sessionStorage.removeItem('flxb_contact');
+			}
+		} catch (x) {}
+		[email.i, phone.i].forEach(function (i) {
+			i.addEventListener('input', function () { clearTimeout(timer); timer = setTimeout(push, 250); if (!err.hidden) { check(); } });
+			i.addEventListener('blur', function () { push(); });
+		});
+		push();
+	}
+
+	document.addEventListener('click', function (ev) {
+		var btn = ev.target.closest && ev.target.closest('.wc-block-components-checkout-place-order-button');
+		if (!btn || !ui) { return; }
+		push();
+		if (!check()) { ev.preventDefault(); ev.stopImmediatePropagation(); ui.box.scrollIntoView({ block: 'center', behavior: 'smooth' }); (ui.email.i.value ? ui.phone.i : ui.email.i).focus(); }
+	}, true);
+
+	/* Support line (WhatsApp) above the place order bar. */
+	function support() {
+		if (!C.support || document.querySelector('.flxb-ct-support')) { return; }
+		var actions = document.querySelector('.wc-block-checkout__actions');
+		if (!actions || !actions.parentNode) { return; }
+		var w = document.createElement('div'); w.className = 'flxb-ct-support'; w.innerHTML = C.support;
+		actions.parentNode.insertBefore(w, actions);
+	}
+
+	/* 2.0.5: header fixed at the top (the theme's sticky one did not hold on every setup). */
+	function fixHead() {
+		var h = document.querySelector('.flx-checkout-header');
+		h = h ? (h.closest('header') || h) : null;
+		if (!h) { return; }
+		h.classList.add('flxb-fixhead');
+		var pad = function () { document.body.style.paddingTop = h.offsetHeight + 'px'; };
+		pad(); window.addEventListener('resize', pad);
+	}
+
+	/* 2.0.5: slim bar at the bottom: total + button; it clicks WooCommerce's own place order button
+	   (which then shows what is missing). Hidden while that button itself is on screen. */
+	var bar = null;
+	function fmt(t) {
+		var u = +t.currency_minor_unit || 0, n = (parseInt(t.total_price, 10) || 0) / Math.pow(10, u);
+		var parts = n.toFixed(u).split('.');
+		parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, t.currency_thousand_separator || '');
+		return (t.currency_prefix || '') + parts.join(t.currency_decimal_separator || ',') + (t.currency_suffix || '');
+	}
+	function paybar() {
+		var real = document.querySelector('.wc-block-components-checkout-place-order-button');
+		if (!real) { return; }
+		if (!bar) {
+			bar = document.createElement('div'); bar.className = 'flxb-paybar';
+			bar.innerHTML = '<div class="flxb-paybar__in"><div class="flxb-paybar__sum"><span></span><strong></strong></div><button type="button" class="flxb-paybar__btn"></button></div>';
+			bar.querySelector('span').textContent = C.total; bar.querySelector('button').textContent = C.pay;
+			document.body.appendChild(bar);
+			document.body.style.paddingBottom = '84px';
+			bar.querySelector('button').addEventListener('click', function () {
+				var r = document.querySelector('.wc-block-components-checkout-place-order-button');
+				if (r) { r.click(); }
+			});
+			var d = store();
+			var paint = function () {
+				var r = document.querySelector('.wc-block-components-checkout-place-order-button');
+				if (d) { bar.querySelector('strong').textContent = fmt(d.select('wc/store/cart').getCartTotals() || {}); }
+				bar.querySelector('button').disabled = !!(r && r.disabled);
+			};
+			paint();
+			if (d) { d.subscribe(paint); }
+		}
+		if (!real.__flxbSeen && 'IntersectionObserver' in window) {
+			real.__flxbSeen = true;
+			new IntersectionObserver(function (es) { es.forEach(function (e) { bar.classList.toggle('is-off', e.isIntersecting); }); }).observe(real);
+		}
+	}
+
+	function start() {
+		if (!document.querySelector('.wp-block-woocommerce-checkout, .wc-block-checkout')) { return; }
+		document.body.classList.add('flxb-ct-on');
+		mount(); support(); fixHead(); paybar();
+		new MutationObserver(function () { mount(); support(); paybar(); }).observe(document.body, { childList: true, subtree: true });
+	}
+	if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start); } else { start(); }
+})();

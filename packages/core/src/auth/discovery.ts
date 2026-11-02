@@ -1,0 +1,59 @@
+import { platform } from '../platform';
+import { restBase } from '../api/client';
+
+export interface SiteInfo {
+  url: string;
+  name: string;
+  description: string;
+  icon: string;
+  /** Flux App kurulu mu (OAuth + /me). */
+  hasYtApp: boolean;
+  namespaces: string[];
+}
+
+export class DiscoveryError extends Error {
+  constructor(public reason: 'invalid_url' | 'unreachable' | 'not_wordpress') {
+    super(reason);
+  }
+}
+
+/** Kullanıcının yazdığı adresi kök site adresine çevirir: "ornek.org/" → "https://ornek.org". */
+export function normalizeSiteUrl(input: string): string {
+  let s = input.trim();
+  if (!s) throw new DiscoveryError('invalid_url');
+  if (!/^https?:\/\//i.test(s)) s = 'https://' + s;
+  let u: URL;
+  try {
+    u = new URL(s);
+  } catch {
+    throw new DiscoveryError('invalid_url');
+  }
+  const path = u.pathname.replace(/\/(wp-admin|wp-json|wp-login\.php).*$/, '').replace(/\/+$/, '');
+  return `${u.protocol}//${u.host}${path}`;
+}
+
+export async function discoverSite(input: string): Promise<SiteInfo> {
+  const url = normalizeSiteUrl(input);
+  let res: Response;
+  try {
+    res = await platform().fetch(restBase(url), { headers: { Accept: 'application/json' } });
+  } catch {
+    throw new DiscoveryError('unreachable');
+  }
+  if (!res.ok) throw new DiscoveryError(res.status === 404 ? 'not_wordpress' : 'unreachable');
+  let j: { name?: string; description?: string; home?: string; url?: string; namespaces?: string[]; site_icon_url?: string };
+  try {
+    j = await res.json();
+  } catch {
+    throw new DiscoveryError('not_wordpress');
+  }
+  if (!Array.isArray(j.namespaces)) throw new DiscoveryError('not_wordpress');
+  return {
+    url: (j.url || url).replace(/\/+$/, ''),
+    name: j.name || new URL(url).host,
+    description: j.description || '',
+    icon: j.site_icon_url || '',
+    hasYtApp: j.namespaces.includes('flxapp/v1'),
+    namespaces: j.namespaces,
+  };
+}

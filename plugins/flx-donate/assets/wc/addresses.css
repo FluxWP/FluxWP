@@ -1,0 +1,31 @@
+/* Flux Donate 2.0.3: address book (My Account) and saved address list (checkout). */
+.flxb-addr { margin: 0 0 18px; display: flex; flex-direction: column; gap: 6px; }
+.flxb-addr__head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.flxb-addr__head label { font-weight: 700; font-size: .95rem; }
+.flxb-addr__manage { font-size: .85rem; white-space: nowrap; }
+.flxb-addr__select {
+	width: 100%; max-width: 100%; min-height: 52px; padding: 12px 44px 12px 14px; font: inherit; font-size: 1rem; line-height: 1.35;
+	border: 1.5px solid var(--flx-line, #d6e2da); border-radius: 12px; background-color: var(--flx-surface, #fff); color: inherit;
+	appearance: none; -webkit-appearance: none; cursor: pointer; text-overflow: ellipsis;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23347a5a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+	background-repeat: no-repeat; background-position: right 14px center;
+}
+.flxb-addr__select:focus { outline: 0; border-color: var(--flx-primary, #347a5a); box-shadow: 0 0 0 3px color-mix(in srgb, var(--flx-primary, #347a5a) 18%, transparent); }
+.flxb-addr__help { margin: 0; font-size: .85rem; opacity: .8; }
+
+.flxb-ab { margin-top: 32px; }
+.flxb-ab__title { margin: 0 0 4px; font-size: 1.25rem; }
+.flxb-ab__help { margin: 0 0 16px; font-size: .9rem; opacity: .8; }
+.flxb-ab__list { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.flxb-ab__item { display: flex; flex-direction: column; justify-content: space-between; gap: 12px; padding: 16px; border: 1.5px solid var(--flx-line, #d6e2da); border-radius: 14px; background: var(--flx-surface, #fff); }
+.flxb-ab__item.is-default { border-color: var(--flx-primary, #347a5a); }
+.flxb-ab__text address { font-style: normal; margin-top: 6px; font-size: .92rem; line-height: 1.5; }
+.flxb-ab__badge { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 99px; font-size: .72rem; font-weight: 700; background: var(--flx-mint, #e6f2ea); color: var(--flx-primary, #347a5a); vertical-align: middle; }
+.flxb-ab__actions form { display: flex; flex-wrap: wrap; gap: 8px; }
+.flxb-ab__btn { font-size: .85rem !important; }
+.flxb-ab__btn--del { background: transparent !important; color: #b42318 !important; }
+.flxb-ab__new > summary { list-style: none; cursor: pointer; display: inline-block; }
+.flxb-ab__new > summary::-webkit-details-marker { display: none; }
+.flxb-ab__form { margin-top: 16px; max-width: 640px; }
+body.flx-dark .flxb-addr__select, body.flx-dark .flxb-ab__item { background-color: var(--flx-surface, #17221c); border-color: var(--flx-line, #2c3b33); }
+@media (max-width: 600px) { .flxb-addr__select { font-size: 16px; } }

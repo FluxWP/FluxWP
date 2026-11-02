@@ -1,0 +1,150 @@
+{
+ "seed": [
+  "seed-ai.php"
+ ],
+ "slug": "flx-ai",
+ "css": ".flx-cookie{display:none!important}#wp-admin-bar-woocommerce-site-visibility-badge{display:none!important}#flxai-host{display:none!important}",
+ "shots": [
+  {
+   "name": "overview",
+   "url": "admin.php?page=flx-ai",
+   "vh": 1000,
+   "after": 1500
+  },
+  {
+   "name": "chat",
+   "url": "admin.php?page=flx-ai",
+   "vh": 900,
+   "click": [
+    "#flxai-host .bubble"
+   ],
+   "after": 2000,
+   "css": "html body #flxai-host{display:block!important}"
+  },
+  {
+   "name": "systems",
+   "url": "admin.php?page=flx-ai-systems",
+   "vh": 900,
+   "after": 1000
+  },
+  {
+   "name": "tools",
+   "url": "admin.php?page=flx-ai-tools",
+   "vh": 900,
+   "after": 1000
+  },
+  {
+   "name": "log",
+   "url": "admin.php?page=flx-ai-log",
+   "vh": 900,
+   "after": 1000
+  },
+  {
+   "name": "billing",
+   "url": "admin.php?page=flx-ai-billing",
+   "vh": 900,
+   "after": 1000
+  },
+  {
+   "name": "settings",
+   "url": "admin.php?page=flx-ai-settings",
+   "vh": 900,
+   "after": 1000
+  }
+ ],
+ "dark": [
+  {
+   "name": "dark",
+   "url": "admin.php?page=flx-ai",
+   "vh": 900,
+   "after": 1500
+  }
+ ],
+ "mobile": [
+  {
+   "name": "mobile",
+   "url": "admin.php?page=flx-ai",
+   "after": 1500
+  }
+ ],
+ "gif": [
+  {
+   "goto": "admin.php?page=flx-ai",
+   "wait": 2500
+  },
+  {
+   "move": [
+    500,
+    300
+   ],
+   "wait": 400
+  },
+  {
+   "move": [
+    700,
+    420
+   ],
+   "wait": 700
+  },
+  {
+   "move": [
+    950,
+    430
+   ],
+   "wait": 900
+  },
+  {
+   "click": "text=90",
+   "css": true,
+   "wait": 1500
+  },
+  {
+   "scroll": 350,
+   "wait": 1200
+  },
+  {
+   "goto": "admin.php?page=flx-ai-systems",
+   "wait": 2200
+  },
+  {
+   "move": [
+    800,
+    250
+   ],
+   "wait": 1000
+  },
+  {
+   "goto": "admin.php?page=flx-ai-log",
+   "wait": 2200
+  },
+  {
+   "move": [
+    700,
+    300
+   ],
+   "wait": 1000
+  },
+  {
+   "goto": "admin.php?page=flx-ai-billing",
+   "wait": 2200
+  },
+  {
+   "move": [
+    600,
+    350
+   ],
+   "wait": 1200
+  },
+  {
+   "goto": "admin.php?page=flx-ai-tools",
+   "wait": 2200
+  },
+  {
+   "move": [
+    600,
+    300
+   ],
+   "wait": 1300
+  }
+ ]
+}

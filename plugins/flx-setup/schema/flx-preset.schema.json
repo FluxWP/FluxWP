@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/FluxWP/fluxwp/plugins/flx-setup/schema/flx-preset.schema.json",
+  "title": "flx-preset/1",
+  "description": "WordPress site ön ayarı ya da yaması. Ön ayarda id ve name zorunlu; yamada yalnız değişecek alanlar bulunur. Herhangi bir yerde { \"$file\": \"yol\" } o dosyanın içeriğiyle değişir (yalnız disk üzerindeki ön ayarlarda).",
+  "type": "object",
+  "required": ["format"],
+  "properties": {
+    "format": { "const": "flx-preset/1" },
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{1,40}$" },
+    "name": { "type": "string" },
+    "version": { "type": "integer", "minimum": 1 },
+    "description": { "type": "string" },
+    "license": { "type": "string" },
+    "requires": {
+      "type": "object",
+      "properties": {
+        "theme": { "type": "string" },
+        "plugins": { "type": "array", "items": { "type": "string", "description": "slug, isteğe bağlı >=sürüm: \"flx-donate>=2.9\"" } }
+      }
+    },
+    "profile": {
+      "type": "object",
+      "description": "Kurum kimliği (option flx_profile). Paketler flx_profile('alan') ile okur.",
+      "properties": {
+        "name": { "type": "string" }, "legal_name": { "type": "string" }, "tagline": { "type": "string" },
+        "about": { "type": "string" }, "signature": { "type": "string" }, "phone": { "type": "string" },
+        "whatsapp": { "type": "string" }, "email": { "type": "string" }, "address": { "type": "string" },
+        "map_url": { "type": "string" }, "iban": { "type": "string" }, "bank_name": { "type": "string" },
+        "bank_holder": { "type": "string" }, "tax_office": { "type": "string" }, "tax_no": { "type": "string" },
+        "founded": { "type": ["string", "integer"] },
+        "logo": { "type": ["string", "integer"], "description": "\"@media:logo\" ya da medya ID" },
+        "logo_light": { "type": ["string", "integer"] },
+        "colors": { "type": "object", "additionalProperties": { "type": "string" } },
+        "social": { "type": "object", "additionalProperties": { "type": "string" } }
+      },
+      "additionalProperties": true
+    },
+    "wp": {
+      "type": "object",
+      "description": "WordPress çekirdek option'ları: blogname, blogdescription, timezone_string, WPLANG, show_on_front, page_on_front (\"@page:key\"), page_for_posts, posts_per_page…",
+      "additionalProperties": true
+    },
+    "settings": {
+      "type": "object",
+      "description": "option adı => alanlar. Mevcut ayarla derin birleşir; \"key\" alanlı listeler key ile birleşir. Gizli alanlar (şifre, anahtar, token) yazılamaz.",
+      "additionalProperties": { "type": "object" }
+    },
+    "theme": {
+      "type": "object",
+      "properties": {
+        "styles": { "type": "object", "description": "theme.json biçimi (settings, styles). Kullanıcı global stiline birleşir." },
+        "templates": { "type": "object", "description": "şablon slug'ı => gövde (front-page, page, single, archive, single-product…)", "additionalProperties": { "$ref": "#/$defs/bodyOrDef" } },
+        "parts": { "type": "object", "description": "parça slug'ı => gövde ya da { title, area, body } (header, footer…)", "additionalProperties": { "$ref": "#/$defs/bodyOrDef" } },
+        "patterns": { "type": "object", "description": "pattern slug'ı => { title, categories, body }. Ön ayar uygulandıkça editörde görünür.", "additionalProperties": { "$ref": "#/$defs/bodyOrDef" } }
+      }
+    },
+    "content": {
+      "type": "array",
+      "description": "type + key ile tanımlanan kayıtlar. key ile idempotent: ikinci uygulamada kopya oluşmaz. Türler: page, post, term, navigation, template, part, styles, product ve paketlerin kaydettikleri (flxb_type, flxb_partner, flxb_report, flxb_detail_tab, flxs_template…).",
+      "items": {
+        "type": "object",
+        "required": ["type", "key"],
+        "properties": {
+          "type": { "type": "string" },
+          "key": { "type": "string" },
+          "title": { "type": "string" },
+          "slug": { "type": "string" },
+          "body": { "$ref": "#/$defs/body" },
+          "status": { "type": "string" },
+          "template": { "type": "string" },
+          "parent": { "type": ["string", "integer"] },
+          "image": { "type": ["string", "integer"] },
+          "items": { "type": "array", "description": "navigation: [{ label, url | page: \"@page:key\", children }]" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "media": {
+      "type": "object",
+      "description": "key => dosya yolu ya da { file | url, alt, title }. \"@media:key\" ile başvurulur.",
+      "additionalProperties": {
+        "oneOf": [
+          { "type": "string" },
+          { "type": "object", "properties": { "file": { "type": "string" }, "url": { "type": "string" }, "alt": { "type": "string" }, "title": { "type": "string" } } }
+        ]
+      }
+    },
+    "migrations": {
+      "type": "array",
+      "description": "Sonraki sürümlerde gelen değişiklikler. Panelde tek tek Önizle / Uygula / Atla. auto: true olanlar kendiliğinden uygulanır. İlk kurulumda hepsi sırayla uygulanır.",
+      "items": {
+        "type": "object",
+        "required": ["id", "title"],
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "desc": { "type": "string" },
+          "auto": { "type": "boolean" },
+          "profile": { "type": "object" },
+          "wp": { "type": "object" },
+          "settings": { "type": "object" },
+          "theme": { "type": "object" },
+          "content": { "type": "array" },
+          "media": { "type": "object" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "node": {
+      "oneOf": [
+        { "type": "string", "description": "markup parçası" },
+        {
+          "type": "object",
+          "required": ["name"],
+          "properties": {
+            "name": { "type": "string", "description": "blok adı, ör. core/paragraph" },
+            "attrs": { "type": "object" },
+            "html": { "type": "string", "description": "bloğun kaydedilmiş HTML'i; iç bloklar için {{inner}}" },
+            "inner": { "type": "array", "items": { "$ref": "#/$defs/node" } }
+          }
+        }
+      ]
+    },
+    "body": {
+      "oneOf": [
+        { "type": "string", "description": "blok markup'ı" },
+        { "type": "array", "items": { "$ref": "#/$defs/node" } },
+        { "type": "object", "properties": { "$file": { "type": "string" } }, "required": ["$file"] }
+      ]
+    },
+    "bodyOrDef": {
+      "oneOf": [
+        { "$ref": "#/$defs/body" },
+        { "type": "object", "properties": { "title": { "type": "string" }, "area": { "type": "string" }, "categories": { "type": "array" }, "body": { "$ref": "#/$defs/body" } } }
+      ]
+    }
+  }
+}

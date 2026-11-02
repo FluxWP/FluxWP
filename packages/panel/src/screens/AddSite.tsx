@@ -1,0 +1,147 @@
+import { useEffect, useState, type FormEvent } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ArrowLeft, KeyRound, LogIn, Loader2 } from 'lucide-react';
+import {
+  ApiError, brand, discoverSite, DiscoveryError, loginApiKey, loginDemo, loginOAuth, OAuthError, platform, type SiteInfo,
+} from '@fluxwp/core';
+import { Avatar } from '@fluxwp/ui';
+import { BrandLogo } from '../components/BrandLogo';
+
+function errorKey(e: unknown): string {
+  if (e instanceof DiscoveryError) return `errors.${e.reason}`;
+  if (e instanceof OAuthError) return e.code === 'access_denied' ? 'errors.access_denied' : 'errors.oauth_failed';
+  if (e instanceof ApiError) return e.status === 401 || e.status === 403 ? 'errors.bad_credentials' : 'errors.server';
+  if (e instanceof Error && e.message === 'oauth_unsupported') return 'errors.oauth_unsupported';
+  return 'errors.unknown';
+}
+
+export function AddSite({ onCancel }: { onCancel?: () => void }) {
+  const { t } = useTranslation();
+  const [url, setUrl] = useState(brand.defaultSite ?? '');
+  const [site, setSite] = useState<SiteInfo | null>(null);
+  const [busy, setBusy] = useState<null | 'discover' | 'oauth' | 'key' | 'demo'>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [keyMode, setKeyMode] = useState(!brand.loginMethods.includes('oauth'));
+  const [key, setKey] = useState('');
+
+  const run = async (kind: NonNullable<typeof busy>, fn: () => Promise<unknown>) => {
+    setBusy(kind);
+    setError(null);
+    try {
+      await fn();
+    } catch (e) {
+      setError(errorKey(e));
+    } finally {
+      setBusy(null);
+    }
+  };
+
+  const discover = (e?: FormEvent) => {
+    e?.preventDefault();
+    void run('discover', async () => setSite(await discoverSite(url)));
+  };
+
+  useEffect(() => {
+    if (brand.lockSite && brand.defaultSite) discover();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const canOAuth = platform().kind !== 'web';
+  const allowKey = brand.loginMethods.includes('apikey');
+  const allowOAuth = brand.loginMethods.includes('oauth');
+
+  return (
+    <div className="auth">
+      <div className="auth-card">
+        {onCancel && (
+          <button className="btn-ghost auth-back" onClick={onCancel}>
+            <ArrowLeft size={16} /> {t('common.back')}
+          </button>
+        )}
+        <BrandLogo className="auth-logo" />
+        {!site ? (
+          <>
+            <h1>{brand.lockSite ? t('auth.welcome', { name: brand.name }) : t('auth.addSiteTitle')}</h1>
+            <p className="muted">{brand.lockSite ? t('auth.connecting') : t('auth.addSiteHint')}</p>
+            {!brand.lockSite && (
+              <form onSubmit={discover} className="stack">
+                <label className="field">
+                  <span>{t('auth.siteUrl')}</span>
+                  <input autoFocus value={url} onChange={(e) => setUrl(e.target.value)} placeholder={t('auth.siteUrlPlaceholder')} inputMode="url" autoCapitalize="off" spellCheck={false} />
+                </label>
+                <button className="btn-primary" disabled={!url.trim() || busy !== null}>
+                  {busy === 'discover' ? <Loader2 className="spin" size={16} /> : null}
+                  {t('auth.continue')}
+                </button>
+              </form>
+            )}
+            {brand.lockSite && busy === 'discover' && <Loader2 className="spin center" size={22} />}
+            {brand.lockSite && error && (
+              <button className="btn-primary" onClick={() => discover()}>
+                {t('common.retry')}
+              </button>
+            )}
+          </>
+        ) : (
+          <>
+            <div className="site-chip">
+              <Avatar src={site.icon} name={site.name} size={40} square />
+              <div>
+                <strong>{site.name}</strong>
+                <span className="muted">{site.url.replace(/^https?:\/\//, '')}</span>
+              </div>
+              {!brand.lockSite && (
+                <button className="btn-link" onClick={() => (setSite(null), setError(null))}>
+                  {t('auth.change')}
+                </button>
+              )}
+            </div>
+            {!site.hasYtApp && <p className="notice">{t('auth.noYtApp')}</p>}
+            {site.hasYtApp && !keyMode && (
+              <div className="stack">
+                {allowOAuth && (
+                  <button className="btn-primary" disabled={!canOAuth || busy !== null} onClick={() => run('oauth', () => loginOAuth(site))}>
+                    {busy === 'oauth' ? <Loader2 className="spin" size={16} /> : <LogIn size={16} />}
+                    {busy === 'oauth' ? t('auth.waitingBrowser') : t('auth.loginBrowser')}
+                  </button>
+                )}
+                {allowOAuth && !canOAuth && <p className="muted small">{t('errors.oauth_unsupported')}</p>}
+                {allowKey && (
+                  <button className={allowOAuth ? 'btn-ghost' : 'btn-primary'} onClick={() => setKeyMode(true)}>
+                    <KeyRound size={16} /> {t('auth.useApiKey')}
+                  </button>
+                )}
+              </div>
+            )}
+            {site.hasYtApp && keyMode && (
+              <form className="stack" onSubmit={(e) => (e.preventDefault(), void run('key', () => loginApiKey(site, key)))}>
+                <label className="field">
+                  <span>{t('auth.apiKey')}</span>
+                  <input autoFocus value={key} onChange={(e) => setKey(e.target.value)} placeholder="flxak_…" spellCheck={false} autoCapitalize="off" />
+                  <small className="muted">{t('auth.apiKeyHint')}</small>
+                </label>
+                <button className="btn-primary" disabled={!key.trim() || busy !== null}>
+                  {busy === 'key' ? <Loader2 className="spin" size={16} /> : null}
+                  {t('auth.login')}
+                </button>
+                {allowOAuth && (
+                  <button type="button" className="btn-ghost" onClick={() => setKeyMode(false)}>
+                    {t('auth.loginBrowser')}
+                  </button>
+                )}
+              </form>
+            )}
+          </>
+        )}
+        {error && <p className="error" role="alert">{t(error)}</p>}
+        {!brand.lockSite && (
+          <button className="btn-link demo-link" disabled={busy !== null} onClick={() => run('demo', loginDemo)}>
+            {busy === 'demo' ? <Loader2 className="spin" size={14} /> : null}
+            {t('auth.tryDemo')}
+          </button>
+        )}
+      </div>
+      <p className="auth-foot muted small">{t('auth.footer', { name: brand.name })}</p>
+    </div>
+  );
+}

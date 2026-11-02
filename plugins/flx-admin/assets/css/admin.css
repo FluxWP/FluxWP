@@ -1,0 +1,1425 @@
+/* Flux Admin · yönetim teması
+ * Renkler değişkenlerde (--flxa-*). Koyu tema html.flxa-dark ile (cihaz ayarı veya kullanıcı tercihi).
+ * Diğer eklentiler bu değişkenleri kullanabilir; koyu temayı html.flxa-dark sınıfından anlar.
+ */
+
+@font-face { font-family: "FLXA Figtree"; font-style: normal; font-display: swap; font-weight: 300 900; src: url(../fonts/figtree-latin-ext-wght-normal.woff2) format("woff2"); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: "FLXA Figtree"; font-style: normal; font-display: swap; font-weight: 300 900; src: url(../fonts/figtree-latin-wght-normal.woff2) format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+
+html.flxa-html {
+	--flxa-side-w: 264px;
+	--flxa-rail-w: 64px;
+	--flxa-font: "FLXA Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	--flxa-bg: #F3F5F1;
+	--flxa-side: #FFFFFF;
+	--flxa-surface: #FFFFFF;
+	--flxa-surface-2: #EDF1EB;
+	--flxa-surface-3: #E3E9E0;
+	--flxa-border: #DFE5DB;
+	--flxa-border-strong: #C9D3C5;
+	--flxa-text: #14201A;
+	--flxa-muted: #56665C;
+	--flxa-accent-soft: color-mix(in srgb, var(--flxa-accent) 13%, #fff);
+	--flxa-accent-strong: color-mix(in srgb, var(--flxa-accent) 78%, #000);
+	--flxa-accent-hover: color-mix(in srgb, var(--flxa-accent) 88%, #000);
+	--flxa-on-accent: #FFFFFF;
+	--flxa-warn: #A04A06;
+	--flxa-warn-soft: #FBEADB;
+	--flxa-error: #B42318;
+	--flxa-error-soft: #FDE7E5;
+	--flxa-info: #1D5FA8;
+	--flxa-info-soft: #E3EEFB;
+	--flxa-focus: color-mix(in srgb, var(--flxa-accent) 45%, transparent);
+	--flxa-shadow: 0 1px 2px rgba(16, 24, 20, .05), 0 2px 10px rgba(16, 24, 20, .04);
+	--flxa-shadow-lg: 0 10px 40px rgba(10, 20, 14, .18), 0 2px 6px rgba(10, 20, 14, .08);
+	--flxa-radius: 14px;
+	--flxa-scrim: rgba(4, 10, 7, .5);
+	color-scheme: light;
+	background: var(--flxa-bg);
+}
+
+html.flxa-html.flxa-dark {
+	--flxa-bg: #0D1310;
+	--flxa-side: #111814;
+	--flxa-surface: #151D18;
+	--flxa-surface-2: #1D2721;
+	--flxa-surface-3: #25312A;
+	--flxa-border: #27332C;
+	--flxa-border-strong: #364539;
+	--flxa-text: #E6EEE8;
+	--flxa-muted: #97A79D;
+	--flxa-accent-l: color-mix(in srgb, var(--flxa-accent) 55%, #9FF0C6);
+	--flxa-accent-soft: color-mix(in srgb, var(--flxa-accent) 30%, #0D1310);
+	--flxa-accent-strong: color-mix(in srgb, var(--flxa-accent) 45%, #CFF5E0);
+	--flxa-accent-hover: color-mix(in srgb, var(--flxa-accent) 80%, #fff);
+	--flxa-warn: #F0A35E;
+	--flxa-warn-soft: #3A2716;
+	--flxa-error: #FF8A80;
+	--flxa-error-soft: #3D1B19;
+	--flxa-info: #8DBBF2;
+	--flxa-info-soft: #172A40;
+	--flxa-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+	--flxa-shadow-lg: 0 12px 40px rgba(0, 0, 0, .55);
+	--flxa-scrim: rgba(0, 0, 0, .6);
+	color-scheme: dark;
+}
+
+/* ───────────────────────── Temel ───────────────────────── */
+
+body.flxa:not(.flxa-appmode),
+body.flxa:not(.flxa-appmode) #wpwrap,
+body.flxa:not(.flxa-appmode) #wpcontent,
+body.flxa:not(.flxa-appmode) #wpbody-content { background: var(--flxa-bg); }
+body.flxa:not(.flxa-appmode) { color: var(--flxa-text); font-family: var(--flxa-font); -webkit-font-smoothing: antialiased; }
+body.flxa:not(.flxa-appmode),
+body.flxa:not(.flxa-appmode) p,
+body.flxa:not(.flxa-appmode) .wrap,
+body.flxa:not(.flxa-appmode) td,
+body.flxa:not(.flxa-appmode) th,
+body.flxa:not(.flxa-appmode) label { font-family: var(--flxa-font); }
+body.flxa:not(.flxa-appmode) #wpcontent { padding-left: 28px; }
+body.flxa:not(.flxa-appmode) .wrap { margin: 14px 28px 0 0; color: var(--flxa-text); }
+body.flxa:not(.flxa-appmode) .wrap h1,
+body.flxa:not(.flxa-appmode) .wrap > h2:first-child { font-size: 26px; font-weight: 800; letter-spacing: -.02em; line-height: 1.25; color: var(--flxa-text); }
+body.flxa:not(.flxa-appmode) h1, body.flxa:not(.flxa-appmode) h2, body.flxa:not(.flxa-appmode) h3, body.flxa:not(.flxa-appmode) h4 { color: var(--flxa-text); }
+body.flxa:not(.flxa-appmode) a { color: var(--flxa-accent-strong); }
+body.flxa:not(.flxa-appmode) a:hover, body.flxa:not(.flxa-appmode) a:active { color: var(--flxa-accent-hover); }
+body.flxa:not(.flxa-appmode) a:focus,
+body.flxa:not(.flxa-appmode) .button:focus { box-shadow: none; outline: none; }
+body.flxa:not(.flxa-appmode) a:focus-visible,
+body.flxa:not(.flxa-appmode) .button:focus-visible { box-shadow: 0 0 0 2px var(--flxa-focus) !important; outline: none; }
+/* Form alanında odak: yalnız kenar çizgisi vurgu rengine döner, dış halka yok. */
+body.flxa:not(.flxa-appmode) input:focus,
+body.flxa:not(.flxa-appmode) select:focus,
+body.flxa:not(.flxa-appmode) textarea:focus { box-shadow: none !important; outline: none; border-color: var(--flxa-accent) !important; }
+body.flxa:not(.flxa-appmode) input[type=checkbox]:focus-visible, body.flxa:not(.flxa-appmode) input[type=radio]:focus-visible { box-shadow: 0 0 0 2px var(--flxa-focus) !important; }
+body.flxa:not(.flxa-appmode) .description,
+body.flxa:not(.flxa-appmode) p.description,
+body.flxa:not(.flxa-appmode) .form-table td .description { color: var(--flxa-muted); }
+body.flxa:not(.flxa-appmode) code, body.flxa:not(.flxa-appmode) kbd { background: var(--flxa-surface-2); color: var(--flxa-text); border-radius: 6px; }
+body.flxa:not(.flxa-appmode) hr { border-color: var(--flxa-border); }
+body.flxa:not(.flxa-appmode) .page-title-action,
+body.flxa:not(.flxa-appmode) .wrap .page-title-action { border-radius: var(--flxa-r, 10px); border: 1px solid var(--flxa-border); background: var(--flxa-surface); color: var(--flxa-text); padding: 6px 12px; top: -2px; font-weight: 600; }
+body.flxa:not(.flxa-appmode) .wrap .page-title-action:hover { background: var(--flxa-surface-2); border-color: var(--flxa-border-strong); color: var(--flxa-text); }
+
+/* Düğmeler */
+body.flxa:not(.flxa-appmode) .button,
+body.flxa:not(.flxa-appmode) .button-secondary { border-radius: var(--flxa-r, 10px); border-color: var(--flxa-border-strong); background: var(--flxa-surface); color: var(--flxa-text); min-height: 34px; line-height: 32px; padding: 0 14px; font-weight: 600; }
+body.flxa:not(.flxa-appmode) .button:hover,
+body.flxa:not(.flxa-appmode) .button-secondary:hover { background: var(--flxa-surface-2); border-color: var(--flxa-border-strong); color: var(--flxa-text); }
+body.flxa:not(.flxa-appmode) .button-primary,
+body.flxa:not(.flxa-appmode) .button.button-primary { background: var(--flxa-accent); border-color: var(--flxa-accent); color: var(--flxa-on-accent); }
+body.flxa:not(.flxa-appmode) .button-primary:hover,
+body.flxa:not(.flxa-appmode) .button.button-primary:hover,
+body.flxa:not(.flxa-appmode) .button-primary:focus { background: var(--flxa-accent-hover); border-color: var(--flxa-accent-hover); color: var(--flxa-on-accent); }
+body.flxa:not(.flxa-appmode) .button-link { color: var(--flxa-accent-strong); }
+body.flxa:not(.flxa-appmode) .button-link-delete, body.flxa:not(.flxa-appmode) a.submitdelete { color: var(--flxa-error); }
+body.flxa:not(.flxa-appmode) .button.button-small { min-height: 28px; line-height: 26px; padding: 0 10px; }
+body.flxa:not(.flxa-appmode) .button.button-hero { border-radius: calc(var(--flxa-radius, 14px) + 12px - 14px); }
+
+/* Form alanları */
+body.flxa:not(.flxa-appmode) input[type=text], body.flxa:not(.flxa-appmode) input[type=search], body.flxa:not(.flxa-appmode) input[type=email], body.flxa:not(.flxa-appmode) input[type=url],
+body.flxa:not(.flxa-appmode) input[type=password], body.flxa:not(.flxa-appmode) input[type=number], body.flxa:not(.flxa-appmode) input[type=tel], body.flxa:not(.flxa-appmode) input[type=date],
+body.flxa:not(.flxa-appmode) input[type=datetime-local], body.flxa:not(.flxa-appmode) input[type=time], body.flxa:not(.flxa-appmode) input[type=month], body.flxa:not(.flxa-appmode) input[type=week],
+body.flxa:not(.flxa-appmode) textarea, body.flxa:not(.flxa-appmode) select {
+	border-radius: var(--flxa-r, 10px); border: 1px solid var(--flxa-border-strong); background-color: var(--flxa-surface); color: var(--flxa-text);
+}
+body.flxa:not(.flxa-appmode) select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2397A79D' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-size: 16px 16px; background-position: right 8px top 55%; background-repeat: no-repeat !important; padding-right: 30px; }
+/* Çoklu seçim / liste kutusunda ok yok */
+body.flxa:not(.flxa-appmode) select[multiple], body.flxa:not(.flxa-appmode) select[size]:not([size="1"]) { background-image: none; padding-right: 8px; }
+body.flxa:not(.flxa-appmode) input[type=checkbox], body.flxa:not(.flxa-appmode) input[type=radio] { border-color: var(--flxa-border-strong); background: var(--flxa-surface); }
+body.flxa:not(.flxa-appmode) input[type=checkbox]:checked::before { content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M14.83 4.89l1.34.94-5.81 8.38H9.02L5.78 9.67l1.34-1.25 2.57 2.4z' fill='%231E7A4C'/%3E%3C/svg%3E"); }
+body.flxa:not(.flxa-appmode) input[type=radio]:checked::before { background-color: var(--flxa-accent); }
+body.flxa:not(.flxa-appmode) input::placeholder, body.flxa:not(.flxa-appmode) textarea::placeholder { color: var(--flxa-muted); opacity: .8; }
+
+/* Kartlar, kutular */
+body.flxa:not(.flxa-appmode) .postbox,
+body.flxa:not(.flxa-appmode) .card,
+body.flxa:not(.flxa-appmode) .stuffbox,
+body.flxa:not(.flxa-appmode) .welcome-panel,
+body.flxa:not(.flxa-appmode) .notice,
+body.flxa:not(.flxa-appmode) div.updated,
+body.flxa:not(.flxa-appmode) div.error,
+body.flxa:not(.flxa-appmode) .update-nag { border-radius: var(--flxa-radius); border: 1px solid var(--flxa-border); background: var(--flxa-surface); color: var(--flxa-text); box-shadow: var(--flxa-shadow); }
+body.flxa:not(.flxa-appmode) .welcome-panel { overflow: hidden; }
+body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-header { background: linear-gradient(135deg, #123F35, var(--flxa-accent)); }
+body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-header-image { opacity: .35; }
+body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-header h2, body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-header p, body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-header a, body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-close { color: #fff; }
+body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-close::before { color: #fff; }
+body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-column-container { background: var(--flxa-surface); color: var(--flxa-text); }
+body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-column h3, body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-column p { color: var(--flxa-text); }
+body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-column > svg rect { fill: var(--flxa-accent); }
+body.flxa:not(.flxa-appmode) .card { max-width: 760px; padding: 18px 22px; }
+body.flxa:not(.flxa-appmode) .postbox .postbox-header { border-bottom-color: var(--flxa-border); }
+body.flxa:not(.flxa-appmode) .postbox .hndle, body.flxa:not(.flxa-appmode) .stuffbox .hndle { color: var(--flxa-text); font-size: 15px; font-weight: 700; }
+body.flxa:not(.flxa-appmode) .postbox .inside { color: var(--flxa-text); }
+body.flxa:not(.flxa-appmode) .postbox .handle-order-higher,
+body.flxa:not(.flxa-appmode) .postbox .handle-order-lower,
+body.flxa:not(.flxa-appmode) .postbox .handlediv { color: var(--flxa-muted); border-radius: var(--flxa-r-sm, 8px); }
+body.flxa:not(.flxa-appmode) .notice, body.flxa:not(.flxa-appmode) div.updated, body.flxa:not(.flxa-appmode) div.error { border-left-width: 4px; }
+body.flxa:not(.flxa-appmode) .notice-success, body.flxa:not(.flxa-appmode) div.updated { border-left-color: var(--flxa-accent); }
+body.flxa:not(.flxa-appmode) .notice-warning { border-left-color: var(--flxa-warn); }
+body.flxa:not(.flxa-appmode) .notice-error, body.flxa:not(.flxa-appmode) div.error { border-left-color: var(--flxa-error); }
+body.flxa:not(.flxa-appmode) .notice-info { border-left-color: var(--flxa-info); }
+body.flxa:not(.flxa-appmode) .notice-dismiss::before { color: var(--flxa-muted); }
+
+/* Tablolar */
+body.flxa:not(.flxa-appmode) .widefat,
+body.flxa:not(.flxa-appmode) .wp-list-table { border: 1px solid var(--flxa-border); border-radius: var(--flxa-radius); background: var(--flxa-surface); box-shadow: var(--flxa-shadow); border-collapse: separate; border-spacing: 0; overflow: hidden; }
+body.flxa:not(.flxa-appmode) .widefat thead th, body.flxa:not(.flxa-appmode) .widefat thead td,
+body.flxa:not(.flxa-appmode) .widefat tfoot th, body.flxa:not(.flxa-appmode) .widefat tfoot td { color: var(--flxa-muted); font-weight: 700; border-color: var(--flxa-border); background: var(--flxa-surface); }
+body.flxa:not(.flxa-appmode) .widefat td, body.flxa:not(.flxa-appmode) .widefat th { color: var(--flxa-text); }
+body.flxa:not(.flxa-appmode) .widefat td, body.flxa:not(.flxa-appmode) .widefat tbody th { border-top: 1px solid var(--flxa-border); }
+body.flxa:not(.flxa-appmode) .widefat thead + tbody tr:first-child > * { border-top-color: var(--flxa-border); }
+body.flxa:not(.flxa-appmode) .striped > tbody > :nth-child(odd),
+body.flxa:not(.flxa-appmode) ul.striped > :nth-child(odd),
+body.flxa:not(.flxa-appmode) .alternate { background: var(--flxa-surface); }
+body.flxa:not(.flxa-appmode) .striped > tbody > :nth-child(even) { background: color-mix(in srgb, var(--flxa-surface-2) 45%, var(--flxa-surface)); }
+body.flxa:not(.flxa-appmode) .wp-list-table tbody tr:hover { background: color-mix(in srgb, var(--flxa-surface-2) 70%, var(--flxa-surface)); }
+body.flxa:not(.flxa-appmode) .wp-list-table .row-actions span a { color: var(--flxa-accent-strong); }
+body.flxa:not(.flxa-appmode) .widefat .check-column { border-top-color: var(--flxa-border); }
+body.flxa:not(.flxa-appmode) .wp-list-table .column-primary strong a, body.flxa:not(.flxa-appmode) .row-title { color: var(--flxa-text); font-weight: 700; }
+body.flxa:not(.flxa-appmode) .subsubsub, body.flxa:not(.flxa-appmode) .subsubsub a { color: var(--flxa-muted); }
+body.flxa:not(.flxa-appmode) .subsubsub a.current { color: var(--flxa-text); font-weight: 700; }
+body.flxa:not(.flxa-appmode) .tablenav .tablenav-pages a, body.flxa:not(.flxa-appmode) .tablenav-pages-navspan { border-radius: var(--flxa-r-sm, 8px); border-color: var(--flxa-border-strong); background: var(--flxa-surface); color: var(--flxa-text); }
+body.flxa:not(.flxa-appmode) .form-table th, body.flxa:not(.flxa-appmode) .form-wrap label { color: var(--flxa-text); }
+body.flxa:not(.flxa-appmode) .form-table { border-radius: var(--flxa-radius); }
+
+/* Sekmeler */
+body.flxa:not(.flxa-appmode) .nav-tab-wrapper, body.flxa:not(.flxa-appmode) .wrap h2.nav-tab-wrapper { border-bottom: 1px solid var(--flxa-border); }
+body.flxa:not(.flxa-appmode) .nav-tab { border: 0; background: transparent; color: var(--flxa-muted); font-weight: 600; margin-left: 0; margin-right: 4px; padding: 8px 14px; border-radius: var(--flxa-r, 10px) 10px 0 0; border-bottom: 2px solid transparent; }
+body.flxa:not(.flxa-appmode) .nav-tab:hover { background: var(--flxa-surface-2); color: var(--flxa-text); }
+body.flxa:not(.flxa-appmode) .nav-tab-active, body.flxa:not(.flxa-appmode) .nav-tab-active:hover, body.flxa:not(.flxa-appmode) .nav-tab-active:focus { background: transparent; color: var(--flxa-text); border-bottom-color: var(--flxa-accent); margin-bottom: -1px; }
+
+/* Ekran seçenekleri / yardım */
+body.flxa:not(.flxa-appmode) #screen-meta { background: var(--flxa-surface); border: 1px solid var(--flxa-border); border-radius: var(--flxa-radius); margin: 10px 28px 0 0; box-shadow: var(--flxa-shadow); }
+body.flxa:not(.flxa-appmode) #screen-meta-links .show-settings { border-radius: 0 0 10px 10px; border-color: var(--flxa-border); background: var(--flxa-surface); color: var(--flxa-muted); }
+body.flxa:not(.flxa-appmode) #screen-options-wrap legend, body.flxa:not(.flxa-appmode) .metabox-prefs label { color: var(--flxa-text); }
+
+/* Altbilgi */
+body.flxa:not(.flxa-appmode) #wpfooter { color: var(--flxa-muted); }
+body.flxa:not(.flxa-appmode) #wpfooter a { color: var(--flxa-muted); }
+
+/* ───────────────────────── Üst çubuk ───────────────────────── */
+
+body.flxa #wpadminbar { background: var(--flxa-side); border-bottom: 1px solid var(--flxa-border); box-sizing: border-box; color: var(--flxa-text); }
+body.flxa #wpadminbar .ab-item,
+body.flxa #wpadminbar a.ab-item,
+body.flxa #wpadminbar > #wp-toolbar span.ab-label,
+body.flxa #wpadminbar > #wp-toolbar span.noticon { color: var(--flxa-text); }
+body.flxa #wpadminbar .ab-icon::before,
+body.flxa #wpadminbar .ab-item::before,
+body.flxa #wpadminbar #adminbarsearch::before { color: var(--flxa-muted); }
+body.flxa #wpadminbar .ab-top-menu > li:hover > .ab-item,
+body.flxa #wpadminbar .ab-top-menu > li.hover > .ab-item,
+body.flxa #wpadminbar:not(.mobile) .ab-top-menu > li > .ab-item:focus,
+body.flxa #wpadminbar .ab-top-menu > li > .ab-item:focus { background: var(--flxa-surface-2); color: var(--flxa-text); }
+body.flxa #wpadminbar:not(.mobile) > #wp-toolbar li:hover span.ab-label,
+body.flxa #wpadminbar:not(.mobile) li:hover .ab-icon::before,
+body.flxa #wpadminbar:not(.mobile) li:hover .ab-item::before { color: var(--flxa-text); }
+body.flxa #wpadminbar .menupop .ab-sub-wrapper,
+body.flxa #wpadminbar .shortlink-input { background: var(--flxa-surface); border: 1px solid var(--flxa-border); border-radius: calc(var(--flxa-radius, 14px) + 12px - 14px); box-shadow: var(--flxa-shadow-lg); overflow: hidden; }
+body.flxa #wpadminbar .ab-submenu .ab-item,
+body.flxa #wpadminbar .quicklinks .menupop ul li a,
+body.flxa #wpadminbar .quicklinks .menupop ul li .ab-item { color: var(--flxa-text); }
+body.flxa #wpadminbar .quicklinks .menupop ul li a:hover,
+body.flxa #wpadminbar .quicklinks .menupop ul li a:focus { color: var(--flxa-accent-strong); background: var(--flxa-surface-2); }
+body.flxa #wpadminbar .quicklinks .menupop ul.ab-sub-secondary,
+body.flxa #wpadminbar .quicklinks .menupop ul.ab-sub-secondary .ab-submenu { background: var(--flxa-surface-2); }
+body.flxa #wpadminbar #wp-admin-bar-user-info .display-name, body.flxa #wpadminbar #wp-admin-bar-user-info .username { color: var(--flxa-text); }
+body.flxa #wpadminbar .ab-label.awaiting-mod, body.flxa #wpadminbar .update-plugins .ab-label { display: inline-block; min-width: 18px; height: 18px; padding: 0 6px; margin-left: 4px; border-radius: 9px; line-height: 18px !important; font-size: 11px; font-weight: 700; text-align: center; vertical-align: middle; background: var(--flxa-accent); color: var(--flxa-on-accent); }
+body.flxa #wpadminbar .ab-label.awaiting-mod.count-0 { display: none; }
+body.flxa #wpadminbar #wp-admin-bar-my-account.with-avatar > a img { border-radius: 50%; border: 0; background: none; }
+body.flxa #wpadminbar .flxa-ab-btn > .ab-item { display: flex !important; align-items: center; justify-content: center; min-width: 36px; padding: 0 8px !important; }
+body.flxa #wpadminbar .flxa-ab-btn .flxa-ico { display: block; color: var(--flxa-muted); }
+body.flxa #wpadminbar .flxa-ab-btn:hover .flxa-ico { color: var(--flxa-text); }
+
+/* ───────────────────────── Sol menü ───────────────────────── */
+
+@media screen and (min-width: 783px) {
+	body.flxa #adminmenuback { display: none; }
+	body.flxa #adminmenuwrap {
+		position: fixed !important; top: var(--wp-admin--admin-bar--height, 32px); bottom: 0; left: 0;
+		width: var(--flxa-side-w); background: var(--flxa-side); border-right: 1px solid var(--flxa-border);
+		overflow-x: hidden; overflow-y: auto; z-index: 9990; scrollbar-width: thin; scrollbar-color: var(--flxa-border-strong) transparent;
+	}
+	body.flxa #wpcontent, body.flxa #wpfooter { margin-left: var(--flxa-side-w); }
+}
+
+body.flxa #adminmenu,
+body.flxa #adminmenu .wp-submenu,
+body.flxa #adminmenuback,
+body.flxa #adminmenuwrap { background: var(--flxa-side); }
+body.flxa #adminmenu { width: 100%; margin: 0; padding: 14px 12px 12px; box-sizing: border-box; display: flex; flex-direction: column; min-height: 100%; }
+body.flxa #adminmenu > li { order: 0; }
+body.flxa #adminmenu > li.flxa-side-head { order: -1; }
+body.flxa #adminmenu > li.flxa-side-foot { order: 90; }
+body.flxa #adminmenu > li#collapse-menu { order: 100; }
+
+body.flxa #adminmenu li.menu-top { position: relative; margin: 1px 0; border: 0; min-height: 0; border-radius: var(--flxa-r, 10px); }
+body.flxa #adminmenu a.menu-top,
+body.flxa #adminmenu .wp-submenu-head { font-size: 14px; }
+body.flxa #adminmenu a.menu-top {
+	display: flex; align-items: center; gap: 10px; min-height: var(--flxa-item-h, 38px); padding: var(--flxa-item-py, 8px) 10px; box-sizing: border-box;
+	border-radius: var(--flxa-r, 10px); color: var(--flxa-text); font-weight: 500; line-height: 20px;
+}
+body.flxa #adminmenu div.wp-menu-image { float: none; flex: none; width: 20px; height: 20px; position: relative; background-size: 20px 20px !important; }
+body.flxa #adminmenu div.wp-menu-image::before { padding: 0; width: 20px; height: 20px; font-size: 20px; line-height: 20px; color: var(--flxa-muted); opacity: 1; transition: color .15s; }
+body.flxa #adminmenu div.wp-menu-image.svg { background-position: center; }
+body.flxa #adminmenu div.wp-menu-image img { padding: 0; width: 20px; height: 20px; opacity: .85; }
+body.flxa #adminmenu div.wp-menu-name { padding: 0; flex: 1; min-width: 0; overflow-wrap: anywhere; }
+body.flxa #adminmenu .wp-menu-arrow,
+body.flxa ul#adminmenu a.wp-has-current-submenu::after,
+body.flxa ul#adminmenu > li.current > a.current::after { display: none; }
+
+/* Çizgi simgeler (WordPress / WooCommerce menüleri) */
+body.flxa #adminmenu li.flxa-lic div.wp-menu-image { background-image: none !important; }
+body.flxa #adminmenu li.flxa-lic div.wp-menu-image::before {
+	content: "" !important; display: block; font-family: inherit !important; background-color: currentColor;
+	-webkit-mask: var(--flxa-i) center / 20px 20px no-repeat; mask: var(--flxa-i) center / 20px 20px no-repeat;
+}
+body.flxa #adminmenu li.flxa-lic div.wp-menu-image img { display: none; }
+
+body.flxa #adminmenu li.menu-top:hover > a.menu-top,
+body.flxa #adminmenu li.opensub > a.menu-top,
+body.flxa #adminmenu li > a.menu-top:focus { background: var(--flxa-surface-2); color: var(--flxa-text); }
+body.flxa #adminmenu li.menu-top:hover div.wp-menu-image::before,
+body.flxa #adminmenu li.opensub div.wp-menu-image::before { color: var(--flxa-text); }
+body.flxa #adminmenu li.current a.menu-top,
+body.flxa #adminmenu li.wp-has-current-submenu a.wp-has-current-submenu,
+body.flxa #adminmenu li.wp-has-current-submenu .wp-submenu .wp-submenu-head,
+body.flxa .folded #adminmenu li.current.menu-top { background: var(--flxa-accent-soft); color: var(--flxa-accent-strong); font-weight: 700; }
+body.flxa #adminmenu li.current div.wp-menu-image::before,
+body.flxa #adminmenu li.wp-has-current-submenu div.wp-menu-image::before,
+body.flxa #adminmenu a.current:hover div.wp-menu-image::before,
+body.flxa #adminmenu li.wp-has-current-submenu a:focus div.wp-menu-image::before,
+body.flxa #adminmenu li.wp-has-current-submenu.opensub div.wp-menu-image::before { color: var(--flxa-accent-strong); }
+
+/* Alt menüler: açılır akordeon (geniş menüde) */
+body.flxa:not(.folded) #adminmenu .wp-submenu {
+	position: static !important; top: auto !important; left: auto !important; margin: 0 !important; display: none;
+	width: auto !important; min-width: 0 !important; padding: 2px 0 6px 30px !important; box-shadow: none !important; background: transparent !important; border: 0;
+}
+body.flxa:not(.folded) #adminmenu li.wp-has-current-submenu > .wp-submenu,
+body.flxa:not(.folded) #adminmenu li.flxa-open > .wp-submenu { display: block; }
+body.flxa:not(.folded) #adminmenu .wp-submenu-head,
+body.flxa:not(.folded) #adminmenu .wp-submenu .wp-first-item.wp-submenu-head { display: none; }
+body.flxa #adminmenu .wp-submenu a { color: var(--flxa-muted); font-size: 13px; line-height: 18px; padding: 6px 10px !important; border-radius: var(--flxa-r-sm, 8px); margin: 1px 0; }
+body.flxa #adminmenu .wp-submenu a:hover,
+body.flxa #adminmenu .wp-submenu a:focus { color: var(--flxa-text); background: var(--flxa-surface-2); box-shadow: none; }
+body.flxa #adminmenu .wp-submenu li.current a,
+body.flxa #adminmenu .wp-submenu li.current a:hover,
+body.flxa #adminmenu .wp-submenu li.current a:focus { color: var(--flxa-accent-strong); font-weight: 700; }
+body.flxa #adminmenu .flxa-subtoggle {
+	position: absolute; right: 6px; top: 7px; width: 26px; height: 26px; border: 0; border-radius: var(--flxa-r-sm, 8px); padding: 0;
+	background: transparent; color: var(--flxa-muted); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: transform .15s;
+}
+body.flxa #adminmenu .flxa-subtoggle:hover { background: var(--flxa-surface-3); color: var(--flxa-text); }
+body.flxa #adminmenu li.flxa-open > .flxa-subtoggle { transform: rotate(90deg); }
+body.flxa #adminmenu li.flxa-has-toggle > a.menu-top { padding-right: 36px; }
+body.flxa.folded #adminmenu .flxa-subtoggle { display: none; }
+
+/* Rozetler */
+body.flxa #adminmenu .awaiting-mod,
+body.flxa #adminmenu .update-plugins,
+body.flxa #adminmenu .menu-counter { background: var(--flxa-accent); color: var(--flxa-on-accent); min-width: 18px; height: 18px; line-height: 18px; border-radius: 9px; padding: 0 6px; font-size: 11px; font-weight: 700; box-sizing: border-box; }
+body.flxa #adminmenu li.current a .awaiting-mod,
+body.flxa #adminmenu li a.wp-has-current-submenu .update-plugins { background: var(--flxa-accent); color: var(--flxa-on-accent); }
+
+/* Grup başlıkları */
+body.flxa #adminmenu li.wp-menu-separator { height: auto; margin: 14px 0 4px; padding: 0 10px; cursor: default; background: transparent; }
+body.flxa #adminmenu li.wp-menu-separator .separator { height: auto; padding: 0; border: 0; background: none; }
+body.flxa #adminmenu li.flxa-group .separator::after { display: block; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--flxa-muted); line-height: 16px; }
+body.flxa #adminmenu > li.flxa-group:first-of-type { margin-top: 2px; }
+
+/* Menü başı */
+body.flxa #adminmenu li.flxa-side-head { display: flex; flex-direction: column; gap: 12px; padding: 0 0 8px; margin: 0 0 4px; list-style: none; }
+.flxa-brand { display: flex; align-items: center; gap: 10px; padding: 2px 4px; text-decoration: none; color: var(--flxa-text) !important; border-radius: calc(var(--flxa-radius, 14px) + 12px - 14px); }
+.flxa-brand:focus { box-shadow: none; }
+.flxa-brand:focus-visible { box-shadow: 0 0 0 2px var(--flxa-focus); }
+.flxa-brand-logo { width: 36px; height: 36px; border-radius: var(--flxa-r, 10px); object-fit: cover; flex: none; }
+.flxa-brand-text { display: flex; flex-direction: column; min-width: 0; line-height: 1.2; }
+.flxa-brand-text strong { font-size: 15px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.flxa-brand-text small { font-size: 12px; color: var(--flxa-muted); }
+.flxa-apps { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 4px; padding: 4px; border-radius: calc(var(--flxa-radius, 14px) + 12px - 14px); background: var(--flxa-surface-2); }
+.flxa-app { position: relative; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 4px; border-radius: 9px; font-size: 12px; font-weight: 600; color: var(--flxa-muted) !important; text-decoration: none; white-space: nowrap; min-width: 0; }
+.flxa-app span { overflow: hidden; text-overflow: ellipsis; }
+.flxa-apps .flxa-ico { display: none; }
+.flxa-app:hover { color: var(--flxa-text) !important; background: color-mix(in srgb, var(--flxa-surface) 60%, transparent); }
+.flxa-app.is-current { background: var(--flxa-surface); color: var(--flxa-text) !important; font-weight: 700; box-shadow: 0 1px 2px rgba(0, 0, 0, .08); }
+.flxa-app .flxa-badge { position: absolute; top: -5px; right: -3px; }
+.flxa-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 17px; height: 17px; padding: 0 5px; box-sizing: border-box; border-radius: 9px; background: var(--flxa-accent); color: var(--flxa-on-accent); font-size: 10px; font-weight: 800; line-height: 1; font-style: normal; }
+.flxa-badge[hidden] { display: none; }
+.flxa-search { display: flex; align-items: center; gap: 8px; width: 100%; height: 38px; padding: 0 10px; border: 1px solid var(--flxa-border); border-radius: var(--flxa-r, 10px); background: var(--flxa-surface); color: var(--flxa-muted); font: inherit; font-size: 13px; text-align: left; cursor: pointer; }
+.flxa-search:hover { border-color: var(--flxa-border-strong); color: var(--flxa-text); }
+.flxa-search span { flex: 1; }
+.flxa-search kbd { font: inherit; font-size: 11px; padding: 1px 6px; border-radius: 6px; border: 1px solid var(--flxa-border); background: transparent; color: var(--flxa-muted); }
+
+/* Menü sonu */
+body.flxa #adminmenu li.flxa-side-foot { margin-top: auto; padding-top: 10px; border-top: 1px solid var(--flxa-border); display: flex; flex-direction: column; gap: 4px; list-style: none; }
+.flxa-side-link { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: var(--flxa-r, 10px); color: var(--flxa-muted) !important; font-size: 13px; font-weight: 600; text-decoration: none; }
+.flxa-side-link:hover { background: var(--flxa-surface-2); color: var(--flxa-text) !important; }
+.flxa-user { display: flex; align-items: center; gap: 6px; }
+.flxa-user-link { flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; padding: 6px; border-radius: var(--flxa-r, 10px); color: var(--flxa-text) !important; text-decoration: none; }
+.flxa-user-link:hover { background: var(--flxa-surface-2); }
+.flxa-avatar { width: 32px; height: 32px; border-radius: 50%; flex: none; }
+.flxa-user-text { display: flex; flex-direction: column; min-width: 0; line-height: 1.25; }
+.flxa-user-text strong { font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.flxa-user-text small { font-size: 11px; color: var(--flxa-muted); }
+.flxa-icon-btn { width: 38px; height: 38px; flex: none; border-radius: var(--flxa-r, 10px); border: 1px solid var(--flxa-border); background: transparent; color: var(--flxa-text); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; }
+.flxa-icon-btn:hover { background: var(--flxa-surface-2); }
+body.flxa #collapse-button { color: var(--flxa-muted); font-size: 13px; padding: 8px 10px; border-radius: var(--flxa-r, 10px); width: 100%; display: flex; align-items: center; gap: 8px; height: auto; }
+body.flxa #collapse-button:hover { background: var(--flxa-surface-2); color: var(--flxa-text); }
+body.flxa #collapse-button .collapse-button-icon { width: 20px; height: 20px; }
+body.flxa #collapse-button .collapse-button-label { top: 0; padding: 0; }
+body.flxa #collapse-menu { margin: 4px 0 0; }
+
+/* ───────── Daraltılmış menü (Daralt düğmesi veya 783–960 px) ───────── */
+
+@media screen and (min-width: 783px) {
+	body.flxa.folded #adminmenuwrap { width: var(--flxa-rail-w); scrollbar-width: none; }
+	body.flxa.folded #adminmenuwrap::-webkit-scrollbar { display: none; }
+	body.flxa.folded #adminmenu .wp-submenu { position: fixed !important; margin-top: 0 !important; }
+	body.flxa.folded #adminmenu li.menu-top:hover .wp-submenu, body.flxa.folded #adminmenu li.opensub .wp-submenu { top: var(--flxa-sub-top, -1000em) !important; }
+	body.flxa.folded #wpcontent, body.flxa.folded #wpfooter { margin-left: var(--flxa-rail-w); }
+	body.flxa.folded #adminmenu { padding: 12px 8px; width: var(--flxa-rail-w); }
+	body.flxa.folded #adminmenu li.menu-top { width: auto; }
+	body.flxa.folded #adminmenu li.menu-top > a.menu-top { justify-content: center; padding: 9px 0; }
+	body.flxa.folded #adminmenu div.wp-menu-name { position: absolute; left: -999em; }
+	body.flxa.folded .flxa-brand { justify-content: center; padding: 2px 0; }
+	body.flxa.folded .flxa-brand-text, body.flxa.folded .flxa-apps, body.flxa.folded .flxa-search span, body.flxa.folded .flxa-search kbd,
+	body.flxa.folded .flxa-side-link span, body.flxa.folded .flxa-user-text, body.flxa.folded #collapse-button .collapse-button-label { display: none; }
+	body.flxa.folded .flxa-search, body.flxa.folded .flxa-side-link, body.flxa.folded #collapse-button { justify-content: center; padding-left: 0; padding-right: 0; }
+	body.flxa.folded .flxa-user { flex-direction: column; }
+	body.flxa.folded .flxa-user-link { padding: 4px; }
+	body.flxa.folded #adminmenu li.wp-menu-separator { margin: 10px 6px 6px; padding: 0; }
+	body.flxa.folded #adminmenu li.flxa-group .separator::after { content: "" !important; height: 1px; background: var(--flxa-border); }
+	body.flxa.folded #adminmenu .wp-submenu { left: calc(var(--flxa-rail-w) - 10px) !important; background: var(--flxa-surface) !important; border: 1px solid var(--flxa-border); border-radius: calc(var(--flxa-radius, 14px) + 12px - 14px); box-shadow: var(--flxa-shadow-lg) !important; padding: 6px !important; min-width: 200px !important; }
+	body.flxa.folded #adminmenu .wp-submenu-head { display: block; padding: 6px 10px; font-weight: 700; color: var(--flxa-text); border-radius: var(--flxa-r-sm, 8px); }
+}
+
+@media screen and (min-width: 783px) and (max-width: 960px) {
+	body.flxa.auto-fold #adminmenuwrap { width: var(--flxa-rail-w); scrollbar-width: none; }
+	body.flxa.auto-fold #adminmenuwrap::-webkit-scrollbar { display: none; }
+	body.flxa.auto-fold #adminmenu .wp-submenu { position: fixed !important; margin-top: 0 !important; }
+	body.flxa.auto-fold #adminmenu li.menu-top:hover .wp-submenu, body.flxa.auto-fold #adminmenu li.opensub .wp-submenu { top: var(--flxa-sub-top, -1000em) !important; }
+	body.flxa.auto-fold #wpcontent, body.flxa.auto-fold #wpfooter { margin-left: var(--flxa-rail-w); }
+	body.flxa.auto-fold #adminmenu { padding: 12px 8px; width: var(--flxa-rail-w); }
+	body.flxa.auto-fold #adminmenu li.menu-top { width: auto; }
+	body.flxa.auto-fold #adminmenu li.menu-top > a.menu-top { justify-content: center; padding: 9px 0; }
+	body.flxa.auto-fold #adminmenu div.wp-menu-name { position: absolute; left: -999em; }
+	body.flxa.auto-fold .flxa-brand { justify-content: center; padding: 2px 0; }
+	body.flxa.auto-fold .flxa-brand-text, body.flxa.auto-fold .flxa-apps, body.flxa.auto-fold .flxa-search span, body.flxa.auto-fold .flxa-search kbd,
+	body.flxa.auto-fold .flxa-side-link span, body.flxa.auto-fold .flxa-user-text, body.flxa.auto-fold #collapse-button .collapse-button-label { display: none; }
+	body.flxa.auto-fold .flxa-search, body.flxa.auto-fold .flxa-side-link, body.flxa.auto-fold #collapse-button { justify-content: center; padding-left: 0; padding-right: 0; }
+	body.flxa.auto-fold .flxa-user { flex-direction: column; }
+	body.flxa.auto-fold #adminmenu li.wp-menu-separator { margin: 10px 6px 6px; padding: 0; }
+	body.flxa.auto-fold #adminmenu li.flxa-group .separator::after { content: "" !important; height: 1px; background: var(--flxa-border); }
+	body.flxa.auto-fold #adminmenu .wp-submenu { display: block; margin: 0 !important; left: calc(var(--flxa-rail-w) - 10px) !important; background: var(--flxa-surface) !important; border: 1px solid var(--flxa-border); border-radius: calc(var(--flxa-radius, 14px) + 12px - 14px); box-shadow: var(--flxa-shadow-lg) !important; padding: 6px !important; min-width: 200px !important; }
+		body.flxa.auto-fold #adminmenu .wp-submenu-head { display: block; padding: 6px 10px; font-weight: 700; color: var(--flxa-text); }
+	body.flxa.auto-fold #adminmenu .flxa-subtoggle { display: none; }
+}
+
+/* ───────────────────────── Mobil ───────────────────────── */
+
+#flxa-scrim, #flxa-bottom { display: none; }
+
+@media screen and (max-width: 782px) {
+	body.flxa #wpcontent { padding-left: 14px; margin-left: 0; }
+	body.flxa .wrap { margin: 10px 14px 0 0; }
+	body.flxa .wrap h1 { font-size: 22px; }
+	body.flxa #wpbody-content { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+	body.flxa #wpfooter { display: none; }
+
+	/* Üst çubuk: menü, ad, ara, tema, hesap */
+	body.flxa #wpadminbar { border-bottom: 1px solid var(--flxa-border); }
+	body.flxa #wpadminbar li#wp-admin-bar-comments,
+	body.flxa #wpadminbar li#wp-admin-bar-updates { display: none; }
+	body.flxa #wpadminbar li#wp-admin-bar-flxa-search,
+	body.flxa #wpadminbar li#wp-admin-bar-flxa-mode { display: block; }
+	body.flxa #wpadminbar .flxa-ab-btn > .ab-item { min-width: 46px; height: 46px; }
+	body.flxa #wpadminbar .flxa-ab-btn .flxa-ico { width: 22px; height: 22px; }
+
+	/* Yan panel */
+	body.flxa #adminmenuback { display: none !important; }
+	body.flxa #adminmenuwrap {
+		display: block !important; position: fixed !important; top: 0 !important; bottom: 0; left: 0; z-index: 100001;
+		width: min(320px, 86vw); background: var(--flxa-side); overflow-y: auto; overscroll-behavior: contain;
+		border-radius: 0 22px 22px 0; box-shadow: var(--flxa-shadow-lg);
+		transform: translateX(-105%); transition: transform .34s cubic-bezier(.32, .72, 0, 1), visibility 0s linear .34s; visibility: hidden;
+	}
+	body.flxa #wpwrap.wp-responsive-open #adminmenuwrap,
+	body.flxa .wp-responsive-open #adminmenuwrap { transform: none; visibility: visible; transition: transform .38s cubic-bezier(.32, .72, 0, 1), visibility 0s; }
+	/* Açılırken menü öğeleri hafifçe kayarak gelir */
+	body.flxa #adminmenu > li { transition: opacity .3s ease, transform .38s cubic-bezier(.32, .72, 0, 1); }
+	body.flxa #wpwrap:not(.wp-responsive-open) #adminmenu > li { opacity: 0; transform: translateX(-14px); transition: none; }
+	body.flxa #wpwrap.wp-responsive-open #adminmenu > li:nth-child(-n+4) { transition-delay: .04s; }
+	body.flxa #wpwrap.wp-responsive-open #adminmenu > li:nth-child(n+5) { transition-delay: .08s; }
+	body.flxa #adminmenu { width: 100% !important; padding: 18px 14px 18px; position: static !important; }
+	body.flxa.auto-fold #adminmenu, body.flxa.auto-fold #adminmenu li.menu-top { width: auto; }
+	body.flxa #adminmenu a.menu-top { min-height: 46px; font-size: 15px; }
+	body.flxa.auto-fold #adminmenu div.wp-menu-name { position: static; }
+	body.flxa #adminmenu .wp-submenu { position: static !important; display: none; padding: 2px 0 6px 30px !important; box-shadow: none !important; background: transparent !important; border: 0; width: auto !important; }
+	body.flxa #adminmenu li.wp-has-current-submenu > .wp-submenu,
+	body.flxa #adminmenu li.flxa-open > .wp-submenu,
+	body.flxa #adminmenu li.opensub > .wp-submenu { display: block; top: auto !important; }
+	body.flxa #adminmenu .wp-submenu a { font-size: 14px; padding: 9px 10px !important; }
+	body.flxa #adminmenu .wp-submenu-head { display: none; }
+	body.flxa .flxa-apps .flxa-ico { display: block; }
+	body.flxa .flxa-apps { grid-auto-flow: column; }
+	body.flxa .flxa-app { flex-direction: column; gap: 4px; padding: 10px 4px; font-size: 12px; }
+	body.flxa .flxa-app .flxa-badge { top: 4px; right: 10%; }
+	body.flxa .flxa-search { height: 44px; }
+	body.flxa .flxa-search kbd { display: none; }
+	body.flxa #collapse-menu { display: none; }
+	body.flxa #adminmenu .flxa-subtoggle { width: 48px; height: 44px; top: 1px; right: 0; }
+
+	#flxa-scrim { display: block; position: fixed; inset: 0; z-index: 100000; background: var(--flxa-scrim); opacity: 0; pointer-events: none; transition: opacity .3s ease; -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); touch-action: none; }
+	body.flxa:has(#wpwrap.wp-responsive-open) #flxa-scrim { opacity: 1; pointer-events: auto; }
+	body.flxa:has(#wpwrap.wp-responsive-open) { overflow: hidden; }
+
+	/* Alt bar */
+	body.flxa.flxa-has-bottom #flxa-bottom {
+		display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr);
+		position: fixed; left: 0; right: 0; bottom: 0; z-index: 99990;
+		padding: 6px 6px calc(8px + env(safe-area-inset-bottom)); background: var(--flxa-side); border-top: 1px solid var(--flxa-border);
+		box-shadow: 0 -6px 20px rgba(0, 0, 0, .05);
+	}
+	.flxa-tab { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; min-height: 52px; padding: 0; border: 0; background: transparent; font: inherit; font-size: 11px; font-weight: 600; color: var(--flxa-muted) !important; text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+	.flxa-tab-ico { position: relative; width: 56px; height: 30px; border-radius: 15px; display: flex; align-items: center; justify-content: center; transition: background .15s; }
+	.flxa-tab .flxa-badge { position: absolute; top: -2px; left: 34px; }
+	.flxa-tab-label { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+	.flxa-tab.is-current { color: var(--flxa-accent-strong) !important; font-weight: 800; }
+	.flxa-tab.is-current .flxa-tab-ico { background: var(--flxa-accent-soft); }
+	.flxa-tab:active .flxa-tab-ico { background: var(--flxa-surface-2); }
+
+	body.flxa .wp-list-table { border-radius: calc(var(--flxa-radius, 14px) + 12px - 14px); }
+	body.flxa #screen-meta { margin-right: 14px; }
+}
+
+/* ───────────────────────── Başlangıç ───────────────────────── */
+
+body.flxa.index-php #wpbody-content > .wrap > h1:first-child { display: none; }
+.flxa-hero { margin: 18px 28px 6px 0; display: flex; flex-direction: column; gap: 16px; }
+.flxa-hero-top { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 14px; }
+.flxa-hero-title { flex: 1 1 280px; min-width: 0; }
+.flxa-date { margin: 0 0 2px; font-size: 13px; color: var(--flxa-muted); }
+.flxa-hero h1 { margin: 0; padding: 0; font-size: 28px; font-weight: 800; letter-spacing: -.02em; line-height: 1.2; color: var(--flxa-text); }
+.flxa-hero-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.flxa-btn { display: inline-flex; align-items: center; gap: 7px; height: 40px; padding: 0 14px; border-radius: var(--flxa-r, 10px); border: 1px solid var(--flxa-border); background: var(--flxa-surface); color: var(--flxa-text) !important; font: inherit; font-size: 14px; font-weight: 600; text-decoration: none; cursor: pointer; }
+.flxa-btn:hover { background: var(--flxa-surface-2); }
+.flxa-btn-primary { background: var(--flxa-accent); border-color: var(--flxa-accent); color: var(--flxa-on-accent) !important; font-weight: 700; }
+.flxa-btn-primary:hover { background: var(--flxa-accent-hover); }
+.flxa-btn[aria-expanded="true"] { background: var(--flxa-accent-soft); border-color: transparent; color: var(--flxa-accent-strong) !important; }
+.flxa-stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+.flxa-stat { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; border-radius: calc(var(--flxa-radius, 14px) + 16px - 14px); border: 1px solid var(--flxa-border); background: var(--flxa-surface); color: var(--flxa-text) !important; text-decoration: none; box-shadow: var(--flxa-shadow); transition: border-color .15s, transform .15s; }
+a.flxa-stat:hover { border-color: var(--flxa-border-strong); transform: translateY(-1px); }
+.flxa-stat-label { font-size: 13px; font-weight: 600; color: var(--flxa-muted); }
+.flxa-stat-value { font-size: 26px; font-weight: 800; letter-spacing: -.02em; line-height: 1.15; }
+.flxa-stat-meta { font-size: 12px; color: var(--flxa-muted); }
+.flxa-stat.is-warn .flxa-stat-value { color: var(--flxa-warn); }
+.flxa-stat.is-error .flxa-stat-value { color: var(--flxa-error); }
+.flxa-stat.is-ok .flxa-stat-meta { color: var(--flxa-accent-strong); font-weight: 600; }
+.flxa-install { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: calc(var(--flxa-radius, 14px) + 16px - 14px); background: var(--flxa-accent-soft); color: var(--flxa-accent-strong); }
+.flxa-install[hidden] { display: none; }
+.flxa-install-ico { width: 40px; height: 40px; flex: none; border-radius: calc(var(--flxa-radius, 14px) + 12px - 14px); background: var(--flxa-accent); color: var(--flxa-on-accent); display: flex; align-items: center; justify-content: center; }
+.flxa-install-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.flxa-install-text small { font-size: 12px; opacity: .9; }
+.flxa-install .flxa-icon-btn { border-color: transparent; color: inherit; }
+
+body.flxa #dashboard-widgets-wrap { margin: 0 -8px; }
+body.flxa #dashboard-widgets .postbox { border-radius: calc(var(--flxa-radius, 14px) + 16px - 14px); }
+body.flxa #dashboard-widgets .postbox-header { padding: 4px 6px 4px 4px; border-bottom: 0; }
+body.flxa #dashboard-widgets .postbox .hndle { font-size: 15px; padding: 9px 14px; }
+body.flxa #dashboard-widgets .postbox .inside { margin: 0; padding: 4px 18px 16px; }
+body.flxa #dashboard-widgets .meta-box-sortables { min-height: 0; }
+body.flxa.flxa-editing #dashboard-widgets .postbox { outline: 2px dashed var(--flxa-border-strong); outline-offset: 2px; cursor: move; }
+body.flxa.flxa-editing #dashboard-widgets .meta-box-sortables { min-height: 120px; outline: 2px dashed var(--flxa-border); border-radius: calc(var(--flxa-radius, 14px) + 16px - 14px); }
+body.flxa #dashboard-widgets .postbox .handle-actions { opacity: .5; transition: opacity .15s; }
+body.flxa #dashboard-widgets .postbox:hover .handle-actions, body.flxa.flxa-editing #dashboard-widgets .postbox .handle-actions { opacity: 1; }
+
+.flxa-chart { display: flex; align-items: flex-end; gap: 4px; height: 150px; padding-top: 8px; border-bottom: 1px solid var(--flxa-border); }
+.flxa-bar { flex: 1; height: var(--h); min-height: 3px; border-radius: 4px 4px 0 0; background: color-mix(in srgb, var(--flxa-accent) 35%, var(--flxa-surface)); transition: background .15s; }
+.flxa-bar:hover, .flxa-bar.is-today { background: var(--flxa-accent); }
+.flxa-chart-axis { display: flex; justify-content: space-between; font-size: 11px; color: var(--flxa-muted); margin: 6px 0 4px; }
+.flxa-list { margin: 6px 0 0; padding: 0; list-style: none; }
+.flxa-list li { margin: 0; border-top: 1px solid var(--flxa-border); }
+.flxa-list li > a, .flxa-sys-list li { display: flex; align-items: center; gap: 12px; padding: 10px 0; color: var(--flxa-text) !important; text-decoration: none; font-size: 14px; }
+.flxa-list li > a:hover strong { color: var(--flxa-accent-strong); }
+.flxa-ava { width: 34px; height: 34px; flex: none; border-radius: 50%; background: var(--flxa-surface-2); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: var(--flxa-text); }
+.flxa-li-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.flxa-li-main strong { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.flxa-li-main small { font-size: 12px; color: var(--flxa-muted); }
+.flxa-li-main small.is-warn { color: var(--flxa-warn); font-weight: 600; }
+.flxa-li-action { font-size: 12px; font-weight: 700; margin-top: 2px; }
+.flxa-pill { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: var(--flxa-r-sm, 8px); background: var(--flxa-surface-2); color: var(--flxa-muted); white-space: nowrap; }
+.flxa-pill.is-ok { background: var(--flxa-accent-soft); color: var(--flxa-accent-strong); }
+.flxa-pill.is-warn { background: var(--flxa-warn-soft); color: var(--flxa-warn); }
+.flxa-list b { min-width: 64px; text-align: right; font-weight: 700; }
+.flxa-check { width: 18px; height: 18px; flex: none; border: 2px solid var(--flxa-border-strong); border-radius: 6px; box-sizing: border-box; }
+.flxa-empty { color: var(--flxa-muted); margin: 8px 0; }
+.flxa-widget-foot { margin: 10px 0 0; font-size: 13px; font-weight: 700; }
+.flxa-widget-foot a { text-decoration: none; }
+.flxa-sys { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 6px; }
+.flxa-sys-n { display: flex; flex-direction: column; padding: 10px 12px; border-radius: calc(var(--flxa-radius, 14px) + 12px - 14px); background: var(--flxa-surface-2); }
+.flxa-sys-n strong { font-size: 22px; font-weight: 800; line-height: 1.2; }
+.flxa-sys-n small { font-size: 12px; color: var(--flxa-muted); }
+.flxa-sys-n.is-ok { background: var(--flxa-accent-soft); color: var(--flxa-accent-strong); }
+.flxa-sys-n.is-ok small { color: inherit; }
+.flxa-sys-n.is-warning { background: var(--flxa-warn-soft); color: var(--flxa-warn); }
+.flxa-sys-n.is-warning small { color: inherit; }
+.flxa-sys-n.is-error strong { color: var(--flxa-error); }
+.flxa-sys-list li { align-items: flex-start; }
+.flxa-dot { width: 8px; height: 8px; margin-top: 6px; border-radius: 50%; flex: none; background: var(--flxa-muted); }
+.flxa-dot.is-warning { background: var(--flxa-warn); }
+.flxa-dot.is-error { background: var(--flxa-error); }
+.flxa-quick { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin-top: 6px; }
+.flxa-quick-item { display: flex; align-items: center; gap: 8px; padding: 11px 12px; border-radius: calc(var(--flxa-radius, 14px) + 12px - 14px); border: 1px solid var(--flxa-border); color: var(--flxa-text) !important; text-decoration: none; font-size: 14px; font-weight: 600; }
+.flxa-quick-item:hover { border-color: var(--flxa-accent); background: var(--flxa-accent-soft); }
+.flxa-quick-item .flxa-ico { color: var(--flxa-accent-strong); flex: none; }
+.flxa-quick-item.is-add { border-style: dashed; color: var(--flxa-muted) !important; }
+
+@media screen and (max-width: 782px) {
+	.flxa-hero { margin: 12px 14px 4px 0; }
+	.flxa-hero h1 { font-size: 23px; }
+	.flxa-hero-actions .flxa-btn span { display: none; }
+	.flxa-hero-actions .flxa-btn { width: 44px; justify-content: center; padding: 0; }
+	.flxa-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+	.flxa-stat { padding: 12px 14px; }
+	.flxa-stat-value { font-size: 21px; }
+	body.flxa #dashboard-widgets-wrap { margin: 0; }
+}
+
+/* ───────────────────────── Komut paleti ───────────────────────── */
+
+.flxa-pal { position: fixed; inset: 0; z-index: 100100; display: flex; align-items: flex-start; justify-content: center; padding: 12vh 16px 16px; background: var(--flxa-scrim); }
+.flxa-pal[hidden] { display: none; }
+.flxa-pal-box { width: min(640px, 100%); max-height: 70vh; display: flex; flex-direction: column; background: var(--flxa-surface); color: var(--flxa-text); border: 1px solid var(--flxa-border); border-radius: calc(var(--flxa-radius, 14px) + 18px - 14px); box-shadow: var(--flxa-shadow-lg); overflow: hidden; font-family: var(--flxa-font); }
+.flxa-pal-in { display: flex; align-items: center; gap: 10px; padding: 0 16px; border-bottom: 1px solid var(--flxa-border); color: var(--flxa-muted); }
+.flxa-pal-in input[type=search] { flex: 1; height: 56px; border: 0 !important; background: transparent !important; box-shadow: none !important; font-size: 17px; color: var(--flxa-text); padding: 0; border-radius: 0; }
+.flxa-pal-in input[type=search]:focus { outline: none !important; border: 0 !important; box-shadow: none !important; }
+.flxa-pal-in input[type=search]::-webkit-search-cancel-button { -webkit-appearance: none; display: none; }
+.flxa-pal-list { overflow-y: auto; padding: 6px; margin: 0; list-style: none; }
+.flxa-pal-h { padding: 10px 10px 4px; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--flxa-muted); }
+.flxa-pal-item { display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: var(--flxa-r, 10px); cursor: pointer; color: var(--flxa-text); text-decoration: none; }
+.flxa-pal-item .flxa-ico { color: var(--flxa-muted); flex: none; }
+.flxa-pal-item small { margin-left: auto; color: var(--flxa-muted); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 45%; }
+.flxa-pal-item[aria-selected="true"] { background: var(--flxa-accent-soft); color: var(--flxa-accent-strong); }
+.flxa-pal-item[aria-selected="true"] .flxa-ico { color: var(--flxa-accent-strong); }
+.flxa-pal-empty { padding: 18px; text-align: center; color: var(--flxa-muted); }
+.flxa-pal-foot { padding: 8px 14px; border-top: 1px solid var(--flxa-border); font-size: 12px; color: var(--flxa-muted); }
+@media screen and (max-width: 782px) {
+	.flxa-pal { padding: 0; align-items: stretch; }
+	.flxa-pal-box { width: 100%; max-height: none; border-radius: 0; border: 0; }
+	.flxa-pal-foot { display: none; }
+}
+
+/* Bildirim */
+#flxa-toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 100200; padding: 10px 16px; border-radius: calc(var(--flxa-radius, 14px) + 12px - 14px); background: var(--flxa-text); color: var(--flxa-bg); font-size: 14px; font-weight: 600; box-shadow: var(--flxa-shadow-lg); font-family: var(--flxa-font); }
+#flxa-toast[hidden] { display: none; }
+@media screen and (max-width: 782px) { #flxa-toast { bottom: calc(84px + env(safe-area-inset-bottom)); } }
+
+/* ───────────────────────── Koyu tema: WordPress bileşenleri ───────────────────────── */
+
+html.flxa-dark body.flxa:not(.flxa-appmode) { color: var(--flxa-text); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .wp-core-ui .button-secondary:disabled,
+html.flxa-dark body.flxa:not(.flxa-appmode) .button[disabled],
+html.flxa-dark body.flxa:not(.flxa-appmode) .button:disabled { background: var(--flxa-surface-2) !important; color: var(--flxa-muted) !important; border-color: var(--flxa-border) !important; }
+html.flxa-dark body.flxa:not(.flxa-appmode) input:disabled, html.flxa-dark body.flxa:not(.flxa-appmode) select:disabled, html.flxa-dark body.flxa:not(.flxa-appmode) textarea:disabled,
+html.flxa-dark body.flxa:not(.flxa-appmode) input[readonly] { background: var(--flxa-surface-2); color: var(--flxa-muted); border-color: var(--flxa-border); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .widefat .plugin-update-tr .update-message,
+html.flxa-dark body.flxa:not(.flxa-appmode) .plugins .active td, html.flxa-dark body.flxa:not(.flxa-appmode) .plugins .active th,
+html.flxa-dark body.flxa:not(.flxa-appmode) .plugins .inactive td, html.flxa-dark body.flxa:not(.flxa-appmode) .plugins .inactive th,
+html.flxa-dark body.flxa:not(.flxa-appmode) .plugins tr.active + tr.inactive td { background: var(--flxa-surface); color: var(--flxa-text); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .plugins .active th.check-column, html.flxa-dark body.flxa:not(.flxa-appmode) .plugin-update-tr.active td { border-left-color: var(--flxa-accent); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .plugins .plugin-title strong, html.flxa-dark body.flxa:not(.flxa-appmode) .plugin-description p { color: var(--flxa-text); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .update-message p, html.flxa-dark body.flxa:not(.flxa-appmode) .notice-warning.notice-alt { background: var(--flxa-warn-soft); color: var(--flxa-text); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .notice-alt.notice-success { background: var(--flxa-accent-soft); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .notice-alt.notice-error { background: var(--flxa-error-soft); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .theme-browser .theme { background: var(--flxa-surface); border-color: var(--flxa-border); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .theme-browser .theme .theme-name { background: var(--flxa-surface); color: var(--flxa-text); box-shadow: none; }
+html.flxa-dark body.flxa:not(.flxa-appmode) .theme-browser .theme.active .theme-name { background: var(--flxa-surface-2); color: var(--flxa-text); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .wp-filter, html.flxa-dark body.flxa:not(.flxa-appmode) .filter-links li > a { background: var(--flxa-surface); color: var(--flxa-text); border-color: var(--flxa-border); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .filter-links .current { border-bottom-color: var(--flxa-accent); color: var(--flxa-text); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .wp-editor-container, html.flxa-dark body.flxa:not(.flxa-appmode) .quicktags-toolbar { background: var(--flxa-surface); border-color: var(--flxa-border); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .wp-switch-editor { background: var(--flxa-surface-2); color: var(--flxa-muted); border-color: var(--flxa-border); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .html-active .switch-html, html.flxa-dark body.flxa:not(.flxa-appmode) .tmce-active .switch-tmce { background: var(--flxa-surface); color: var(--flxa-text); }
+html.flxa-dark body.flxa:not(.flxa-appmode) #titlediv #title { background: var(--flxa-surface); color: var(--flxa-text); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .categorydiv div.tabs-panel, html.flxa-dark body.flxa:not(.flxa-appmode) .customlinkdiv div.tabs-panel,
+html.flxa-dark body.flxa:not(.flxa-appmode) .posttypediv div.tabs-panel, html.flxa-dark body.flxa:not(.flxa-appmode) .taxonomydiv div.tabs-panel,
+html.flxa-dark body.flxa:not(.flxa-appmode) .wp-tab-panel { background: var(--flxa-surface); border-color: var(--flxa-border); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .wp-tab-active, html.flxa-dark body.flxa:not(.flxa-appmode) ul.category-tabs li.tabs { background: var(--flxa-surface); border-color: var(--flxa-border); }
+html.flxa-dark body.flxa:not(.flxa-appmode) #major-publishing-actions, html.flxa-dark body.flxa:not(.flxa-appmode) .misc-pub-section { background: var(--flxa-surface-2); border-color: var(--flxa-border); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .community-events-footer, html.flxa-dark body.flxa:not(.flxa-appmode) #dashboard_activity .subsubsub, html.flxa-dark body.flxa:not(.flxa-appmode) .activity-block { border-color: var(--flxa-border); }
+html.flxa-dark body.flxa:not(.flxa-appmode) #dashboard_activity .no-activity, html.flxa-dark body.flxa:not(.flxa-appmode) #activity-widget #the-comment-list .comment-item { background: var(--flxa-surface); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .ui-sortable-placeholder, html.flxa-dark body.flxa:not(.flxa-appmode) .sortable-placeholder { border-color: var(--flxa-border-strong); background: transparent; }
+html.flxa-dark body.flxa:not(.flxa-appmode) .media-frame, html.flxa-dark body.flxa:not(.flxa-appmode) .attachments-browser .media-toolbar { color-scheme: light; }
+html.flxa-dark body.flxa:not(.flxa-appmode) .wp-pointer-content { background: var(--flxa-surface); color: var(--flxa-text); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .wp-pointer-buttons { background: var(--flxa-surface-2); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .site-health .health-check-body, html.flxa-dark body.flxa:not(.flxa-appmode) .health-check-header { background: var(--flxa-surface); color: var(--flxa-text); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .health-check-accordion, html.flxa-dark body.flxa:not(.flxa-appmode) .health-check-accordion-trigger { background: var(--flxa-surface); color: var(--flxa-text); border-color: var(--flxa-border); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .privacy-settings-header, html.flxa-dark body.flxa:not(.flxa-appmode) .privacy-settings-body { background: var(--flxa-surface); color: var(--flxa-text); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .form-table td code, html.flxa-dark body.flxa:not(.flxa-appmode) pre { background: var(--flxa-surface-2); color: var(--flxa-text); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .wp-color-result-text { background: var(--flxa-surface); color: var(--flxa-text); border-color: var(--flxa-border); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .ui-datepicker { background: var(--flxa-surface); color: var(--flxa-text); }
+html.flxa-dark body.flxa:not(.flxa-appmode) img.emoji { filter: none; }
+html.flxa-dark body.flxa:not(.flxa-appmode) .wp-list-table .is-expanded td:not(.hidden) { background: inherit; }
+html.flxa-dark body.flxa:not(.flxa-appmode) #wp-auth-check-wrap #wp-auth-check { background: var(--flxa-surface); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .postbox .inside .count, html.flxa-dark body.flxa:not(.flxa-appmode) .main { color: var(--flxa-text); }
+html.flxa-dark body.flxa:not(.flxa-appmode) #dashboard_right_now li a::before, html.flxa-dark body.flxa:not(.flxa-appmode) #dashboard_right_now li span::before { color: var(--flxa-muted); }
+
+/* Hareket azaltma */
+@media (prefers-reduced-motion: reduce) {
+	body.flxa *, .flxa-pal * { transition: none !important; }
+}
+
+/* Telefon: üst bar sabit, panel başlığı bar altında kalmasın */
+body.flxa #wpcontent { display: flow-root; }
+body.flxa #adminmenu li.current a.menu-top::after,
+body.flxa #adminmenu li.wp-has-current-submenu a.wp-has-current-submenu::after,
+body.flxa #adminmenu .wp-menu-arrow { display: none; }
+@media screen and (max-width: 600px) {
+	html.wp-toolbar.flxa-html { padding-top: 46px; }
+	body.flxa #wpadminbar { position: fixed; }
+	body.flxa #wpbody { padding-top: 0; }
+}
+body.flxa #adminmenu a.flxa-user-link,
+body.flxa #adminmenu a.flxa-side-link { display: flex; line-height: 1.25; }
+body.flxa #adminmenu a.flxa-user-link { padding: 6px; }
+body.flxa #adminmenu a.flxa-side-link { padding: 8px 10px; }
+body.flxa #adminmenu li.flxa-side-foot img.flxa-avatar { display: block; background: var(--flxa-surface-2); }
+body.flxa #adminmenu li.flxa-group:not(:has(+ li.menu-top)) { display: none; }
+body.flxa #collapse-button .collapse-button-icon, body.flxa #collapse-button .collapse-button-label { position: static; }
+body.flxa #collapse-button .collapse-button-icon { display: inline-flex; align-items: center; justify-content: center; }
+.flxa-pal-mi { display: block; width: 18px; height: 18px; flex: none; }
+.flxa-pal-mi::before { content: ""; display: block; width: 18px; height: 18px; background: currentColor; -webkit-mask: var(--flxa-i) center / contain no-repeat; mask: var(--flxa-i) center / contain no-repeat; }
+
+/* ═════════════════════════ v1.1 ═════════════════════════ */
+
+/* Yazı boyutu (Görünüm ayarı) */
+body.flxa:not(.flxa-appmode) #wpbody-content,
+body.flxa:not(.flxa-appmode) #wpbody-content p,
+body.flxa:not(.flxa-appmode) #wpbody-content td,
+body.flxa:not(.flxa-appmode) #wpbody-content th,
+body.flxa:not(.flxa-appmode) #wpbody-content label,
+body.flxa:not(.flxa-appmode) #wpbody-content li { font-size: var(--flxa-fs, 13px); }
+body.flxa #adminmenu a.menu-top { font-size: calc(var(--flxa-fs, 13px) + 1px); }
+
+/* Marka: logo ve ad yan yana, yanında daralt düğmesi */
+body.flxa #adminmenu li.flxa-side-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px 6px; }
+body.flxa #adminmenu li.flxa-side-head .flxa-search { grid-column: 1 / -1; }
+body.flxa #adminmenu a.flxa-brand { display: flex; flex-direction: row; align-items: center; gap: 10px; min-width: 0; line-height: 1.2; padding: 2px 4px; }
+body.flxa #adminmenu a.flxa-brand .flxa-brand-text { display: flex; flex-direction: column; align-items: flex-start; }
+.flxa-fold-btn { width: 32px; height: 32px; border: 0; border-radius: var(--flxa-r-sm, 8px); background: transparent; color: var(--flxa-muted); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; }
+.flxa-fold-btn:hover { background: var(--flxa-surface-2); color: var(--flxa-text); }
+body.flxa #collapse-menu { display: none !important; }
+@media screen and (min-width: 783px) {
+	body.flxa.folded #adminmenu li.flxa-side-head { grid-template-columns: 1fr; justify-items: center; }
+	body.flxa.folded .flxa-fold-btn { transform: scaleX(-1); }
+	body.flxa.folded #adminmenu a.flxa-brand .flxa-brand-text { display: none; }
+	body.flxa.folded #adminmenu a.flxa-brand { justify-content: center; padding: 2px 0; }
+}
+@media screen and (min-width: 783px) and (max-width: 960px) {
+	body.flxa.auto-fold #adminmenu li.flxa-side-head { grid-template-columns: 1fr; justify-items: center; }
+	body.flxa.auto-fold .flxa-fold-btn { display: none; }
+	body.flxa.auto-fold #adminmenu a.flxa-brand .flxa-brand-text { display: none; }
+	body.flxa.auto-fold #adminmenu a.flxa-brand { justify-content: center; padding: 2px 0; }
+}
+@media screen and (max-width: 782px) { .flxa-fold-btn { display: none; } }
+
+/* Genişlik tutamacı */
+.flxa-resizer { position: fixed; top: var(--wp-admin--admin-bar--height, 32px); bottom: 0; left: calc(var(--flxa-side-w) - 3px); width: 7px; cursor: col-resize; z-index: 9991; touch-action: none; }
+.flxa-resizer::after { content: ""; position: absolute; top: 0; bottom: 0; left: 3px; width: 1px; background: transparent; transition: background .15s; }
+.flxa-resizer:hover::after, html.flxa-resizing .flxa-resizer::after { background: var(--flxa-accent); width: 2px; }
+html.flxa-resizing, html.flxa-resizing * { cursor: col-resize !important; user-select: none !important; }
+html.flxa-resizing #adminmenuwrap, html.flxa-resizing #wpcontent { transition: none !important; }
+body.flxa.folded .flxa-resizer { display: none; }
+@media screen and (max-width: 960px) { .flxa-resizer { display: none; } }
+
+/* Grup başlıkları: tıkla aç/kapat */
+body.flxa #adminmenu li.flxa-gh { display: flex; align-items: center; gap: 6px; padding: 5px 10px; margin: 10px 0 2px; border-radius: var(--flxa-r-sm, 8px); cursor: pointer; user-select: none; }
+body.flxa #adminmenu li.flxa-gh .separator { flex: 1; min-width: 0; }
+body.flxa #adminmenu li.flxa-gh:hover { background: var(--flxa-surface-2); }
+body.flxa #adminmenu li.flxa-gh:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--flxa-focus); }
+.flxa-gchev { display: inline-flex; color: var(--flxa-muted); transform: rotate(90deg); transition: transform .15s; }
+.flxa-gchev .flxa-ico { width: 14px; height: 14px; }
+li.flxa-gh.is-closed .flxa-gchev { transform: none; }
+.flxa-gcount { font-size: 11px; font-weight: 700; color: var(--flxa-muted); }
+body.flxa #adminmenu li.menu-top.flxa-gc-hide { display: none; }
+body.flxa.folded #adminmenu li.flxa-gh .flxa-gchev, body.flxa.folded #adminmenu li.flxa-gh .flxa-gcount { display: none; }
+body.flxa.folded #adminmenu li.flxa-gh { padding: 0; margin: 10px 6px 6px; cursor: default; background: none; }
+@media screen and (min-width: 783px) and (max-width: 960px) {
+	body.flxa.auto-fold #adminmenu li.flxa-gh .flxa-gchev, body.flxa.auto-fold #adminmenu li.flxa-gh .flxa-gcount { display: none; }
+}
+body.flxa #adminmenu li#flxa-g-pinned .separator::after { color: var(--flxa-accent-strong); }
+body.flxa #adminmenu li.menu-top.flxa-flash > a.menu-top { animation: flxa-flash .9s ease; }
+@keyframes flxa-flash { 0%, 40% { background: var(--flxa-accent-soft); } 100% { background: transparent; } }
+body.flxa #adminmenu li.menu-top.is-drag { opacity: .4; }
+body.flxa #adminmenu a.menu-top[draggable="true"] { cursor: grab; }
+
+/* Sağ tık menüsü */
+.flxa-ctx { position: fixed; z-index: 100150; min-width: 210px; margin: 0; padding: 5px; list-style: none; background: var(--flxa-surface); color: var(--flxa-text); border: 1px solid var(--flxa-border); border-radius: var(--flxa-r, 10px); box-shadow: var(--flxa-shadow-lg); font-family: var(--flxa-font); }
+.flxa-ctx li { margin: 0; }
+.flxa-ctx button { display: flex; align-items: center; gap: 9px; width: 100%; padding: 8px 10px; border: 0; border-radius: var(--flxa-r-sm, 8px); background: transparent; color: inherit; font: inherit; font-size: 13px; font-weight: 500; text-align: left; cursor: pointer; }
+.flxa-ctx button:hover, .flxa-ctx button:focus { background: var(--flxa-surface-2); outline: none; }
+.flxa-ctx button .flxa-ico { color: var(--flxa-muted); flex: none; }
+.flxa-ctx-sep { height: 1px; margin: 4px 6px !important; background: var(--flxa-border); }
+
+/* Hızlı işlemler çubuğu */
+.flxa-qa { display: flex; flex-wrap: wrap; gap: 8px; position: relative; }
+.flxa-qa-item { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px 0 6px; border-radius: var(--flxa-r, 10px); border: 1px solid var(--flxa-border); background: var(--flxa-surface); color: var(--flxa-text) !important; font-size: 14px; font-weight: 600; text-decoration: none; box-shadow: var(--flxa-shadow); transition: border-color .15s, background .15s; }
+.flxa-qa-item:hover { border-color: var(--flxa-accent); background: var(--flxa-accent-soft); }
+.flxa-qa-ico { width: 28px; height: 28px; border-radius: var(--flxa-r-sm, 8px); background: var(--flxa-accent-soft); color: var(--flxa-accent-strong); display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.flxa-qa-item:hover .flxa-qa-ico { background: var(--flxa-accent); color: var(--flxa-on-accent); }
+.flxa-qa-item.is-add { border-style: dashed; box-shadow: none; color: var(--flxa-muted) !important; }
+.flxa-qa-item.is-add .flxa-qa-ico { background: transparent; color: inherit; }
+@media screen and (max-width: 782px) {
+	.flxa-qa { flex-wrap: nowrap; overflow-x: auto; margin-right: -14px; padding: 2px 14px 4px 0; scrollbar-width: none; }
+	.flxa-qa::-webkit-scrollbar { display: none; }
+	.flxa-qa-item { flex: none; }
+}
+
+/* Modül filtreleri, KPI, halka grafik */
+.flxa-wbody { position: relative; transition: opacity .15s; }
+.flxa-wbody.is-loading { opacity: .5; pointer-events: none; }
+.flxa-wf { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
+.flxa-wf-f select { min-height: 30px !important; height: 30px; font-size: 12px !important; font-weight: 600; padding: 0 26px 0 10px !important; border-radius: 15px !important; background-color: var(--flxa-surface-2) !important; border-color: transparent !important; }
+.flxa-kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 0 0 12px; }
+.flxa-kpi { display: flex; flex-direction: column; padding: 10px 12px; border-radius: var(--flxa-r, 10px); background: var(--flxa-surface-2); color: var(--flxa-text) !important; text-decoration: none; min-width: 0; }
+.flxa-kpi strong { font-size: 22px; font-weight: 800; line-height: 1.2; }
+.flxa-kpi small { font-size: 12px; color: var(--flxa-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.flxa-kpi.is-warn { background: var(--flxa-warn-soft); color: var(--flxa-warn) !important; }
+.flxa-kpi.is-warn small { color: inherit; }
+.flxa-kpi.is-ok { background: var(--flxa-accent-soft); color: var(--flxa-accent-strong) !important; }
+.flxa-kpi.is-ok small { color: inherit; }
+a.flxa-kpi:hover { filter: brightness(.97); }
+.flxa-donut-wrap { display: flex; align-items: center; gap: 18px; margin: 4px 0 8px; }
+.flxa-donut { position: relative; width: 128px; height: 128px; flex: none; border-radius: 50%; background: var(--g, var(--flxa-surface-2)); }
+.flxa-donut::after { content: ""; position: absolute; inset: 18px; border-radius: 50%; background: var(--flxa-surface); }
+.flxa-donut > span { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; line-height: 1.15; }
+.flxa-donut > span strong { font-size: 20px; font-weight: 800; }
+.flxa-donut > span small { font-size: 11px; color: var(--flxa-muted); }
+.flxa-legend { flex: 1; min-width: 0; margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.flxa-legend li { display: flex; align-items: center; gap: 8px; font-size: 13px; margin: 0; }
+.flxa-legend i { width: 10px; height: 10px; border-radius: 3px; flex: none; background: var(--c); }
+.flxa-legend span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.flxa-legend b { font-weight: 700; }
+.flxa-legend small { min-width: 34px; text-align: right; font-size: 11px; color: var(--flxa-muted); }
+.flxa-dsum { display: flex; align-items: baseline; gap: 8px; margin: 0 0 6px; }
+.flxa-dsum strong { font-size: 24px; font-weight: 800; letter-spacing: -.02em; }
+.flxa-dsum small { color: var(--flxa-muted); font-size: 12px; }
+.flxa-chart .flxa-bar { flex: 1 1 calc(100% / var(--n, 14)); }
+.flxa-widget-foot { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+@media screen and (max-width: 782px) {
+	.flxa-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.flxa-donut { width: 108px; height: 108px; }
+	.flxa-donut::after { inset: 15px; }
+}
+
+/* Pencere (hızlı görev) */
+.flxa-modal { position: fixed; inset: 0; z-index: 100120; display: flex; align-items: flex-start; justify-content: center; padding: 12vh 16px 16px; background: var(--flxa-scrim); font-family: var(--flxa-font); }
+.flxa-modal[hidden] { display: none; }
+.flxa-modal-box { width: min(560px, 100%); background: var(--flxa-surface); color: var(--flxa-text); border: 1px solid var(--flxa-border); border-radius: calc(var(--flxa-radius, 14px) + 4px); box-shadow: var(--flxa-shadow-lg); padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; }
+.flxa-modal-box h2 { margin: 0; font-size: 18px; font-weight: 800; }
+.flxa-field { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
+.flxa-field > span { font-size: 12px; font-weight: 700; color: var(--flxa-muted); }
+.flxa-field input, .flxa-field select { width: 100%; max-width: none; }
+.flxa-field-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.flxa-field-row .flxa-field { flex: 1 1 140px; }
+.flxa-check-l { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; }
+.flxa-modal-err { margin: 0; color: var(--flxa-error); font-weight: 600; }
+.flxa-modal-actions { display: flex; justify-content: flex-end; gap: 8px; }
+@media screen and (max-width: 782px) {
+	.flxa-modal { align-items: flex-end; padding: 0; }
+	.flxa-modal-box { border-radius: 20px 20px 0 0; padding-bottom: calc(18px + env(safe-area-inset-bottom)); }
+}
+#flxa-toast a { color: inherit; font-weight: 800; text-decoration: underline; margin-left: 6px; }
+
+/* Modern form alanları (uyumluluğu bozmadan: yalnız görünüm) */
+body.flxa:not(.flxa-appmode) #wpbody-content input[type=text], body.flxa:not(.flxa-appmode) #wpbody-content input[type=search],
+body.flxa:not(.flxa-appmode) #wpbody-content input[type=email], body.flxa:not(.flxa-appmode) #wpbody-content input[type=url],
+body.flxa:not(.flxa-appmode) #wpbody-content input[type=password], body.flxa:not(.flxa-appmode) #wpbody-content input[type=number],
+body.flxa:not(.flxa-appmode) #wpbody-content input[type=tel], body.flxa:not(.flxa-appmode) #wpbody-content input[type=date],
+body.flxa:not(.flxa-appmode) #wpbody-content input[type=datetime-local], body.flxa:not(.flxa-appmode) #wpbody-content input[type=time],
+body.flxa:not(.flxa-appmode) #wpbody-content select, body.flxa:not(.flxa-appmode) #wpbody-content textarea {
+	border-radius: var(--flxa-r-sm, 8px); padding-left: 10px; transition: border-color .15s, box-shadow .15s, background-color .15s;
+}
+body.flxa:not(.flxa-appmode) #wpbody-content input[type=text], body.flxa:not(.flxa-appmode) #wpbody-content input[type=search],
+body.flxa:not(.flxa-appmode) #wpbody-content input[type=email], body.flxa:not(.flxa-appmode) #wpbody-content input[type=url],
+body.flxa:not(.flxa-appmode) #wpbody-content input[type=password], body.flxa:not(.flxa-appmode) #wpbody-content input[type=number],
+body.flxa:not(.flxa-appmode) #wpbody-content input[type=tel], body.flxa:not(.flxa-appmode) #wpbody-content input[type=date],
+body.flxa:not(.flxa-appmode) #wpbody-content input[type=datetime-local], body.flxa:not(.flxa-appmode) #wpbody-content input[type=time],
+body.flxa:not(.flxa-appmode) #wpbody-content select:not([multiple]) { min-height: 36px; }
+body.flxa #wpbody-content input[type=text]:hover, body.flxa #wpbody-content input[type=search]:hover, body.flxa #wpbody-content input[type=email]:hover,
+body.flxa #wpbody-content input[type=url]:hover, body.flxa #wpbody-content input[type=password]:hover, body.flxa #wpbody-content input[type=number]:hover,
+body.flxa #wpbody-content input[type=tel]:hover, body.flxa #wpbody-content input[type=date]:hover, body.flxa #wpbody-content select:hover, body.flxa #wpbody-content textarea:hover { border-color: color-mix(in srgb, var(--flxa-accent) 45%, var(--flxa-border-strong)); }
+body.flxa #wpbody-content input:focus, body.flxa #wpbody-content select:focus, body.flxa #wpbody-content textarea:focus { border-color: var(--flxa-accent) !important; }
+body.flxa:not(.flxa-appmode) input[type=checkbox], body.flxa:not(.flxa-appmode) input[type=radio] { width: 18px; height: 18px; min-width: 18px; border-radius: 5px; transition: background-color .12s, border-color .12s; }
+body.flxa:not(.flxa-appmode) input[type=radio] { border-radius: 50%; }
+body.flxa:not(.flxa-appmode) input[type=checkbox]:checked { background: var(--flxa-accent); border-color: var(--flxa-accent); }
+body.flxa:not(.flxa-appmode) input[type=checkbox]:checked::before { content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M14.83 4.89l1.34.94-5.81 8.38H9.02L5.78 9.67l1.34-1.25 2.57 2.4z' fill='%23fff'/%3E%3C/svg%3E"); margin: -1px 0 0 -1px; width: 18px; height: 18px; }
+body.flxa:not(.flxa-appmode) input[type=radio]:checked { border-color: var(--flxa-accent); }
+body.flxa:not(.flxa-appmode) input[type=radio]:checked::before { width: 8px; height: 8px; margin: 4px; }
+body.flxa:not(.flxa-appmode) input[type=checkbox]:disabled, body.flxa:not(.flxa-appmode) input[type=radio]:disabled { opacity: .5; }
+@media screen and (max-width: 782px) {
+	body.flxa:not(.flxa-appmode) input[type=checkbox], body.flxa:not(.flxa-appmode) input[type=radio] { width: 22px; height: 22px; min-width: 22px; }
+	body.flxa:not(.flxa-appmode) input[type=checkbox]:checked::before { width: 22px; height: 22px; }
+	body.flxa:not(.flxa-appmode) input[type=radio]:checked::before { width: 10px; height: 10px; margin: 5px; }
+}
+
+/* ───────── Uygulama modu: WhatsApp / Görevler menünün hemen sağında ───────── */
+@media screen and (min-width: 783px) {
+	html body.flxa-appmode { --flxa-app-w: var(--flxa-rail-w); }
+	html.flxa-app-open body.flxa-appmode:not(.folded) { --flxa-app-w: var(--flxa-side-w); }
+	html body.flxa-appmode #adminmenuwrap, html body.flxa-appmode #flxc-app, html body.flxa-appmode #flxg-app { transition: width .22s ease, left .22s ease; }
+	html body.flxa-appmode #adminmenumain { display: block !important; }
+	html body.flxa-appmode #adminmenuwrap { position: fixed !important; top: var(--wp-admin--admin-bar--height, 32px) !important; bottom: 0 !important; left: 0; min-height: 0; width: var(--flxa-app-w); z-index: 100060 !important; display: block !important; }
+	html body.flxa-appmode #wpadminbar, html.flxg-lock body.flxa-appmode #wpadminbar { display: block !important; z-index: 100070; }
+	html body.flxa-appmode #flxc-app, html body.flxa-appmode #flxg-app { top: var(--wp-admin--admin-bar--height, 32px) !important; bottom: 0 !important; height: auto !important; left: var(--flxa-app-w) !important; width: auto !important; }
+	html body.flxa-appmode #wpcontent, html body.flxa-appmode #wpfooter { margin-left: var(--flxa-app-w); }
+	html body.flxa-appmode .flxa-resizer, html body.flxa-appmode #flxa-bottom, html body.flxa-appmode .flxa-sw { display: none !important; }
+	html body.flxa-appmode #adminmenu .wp-submenu { z-index: 100061; }
+}
+@media screen and (max-width: 782px) {
+	/* Telefonda WhatsApp / Görevler: panelin alt barı hep görünür, uygulama onun üstünde; "Daha" yan paneli açar. */
+	html body.flxa-appmode #adminmenumain, html.flxg-lock body.flxa-appmode #adminmenumain { display: block !important; }
+	html body.flxa-appmode.flxa-has-bottom #flxa-bottom { z-index: 100010; }
+	/* Klavye açıkken (html.flxa-kb) uygulamanın kendi görünür alan ayarı (inline top/height) geçerli kalır */
+	html:not(.flxa-kb) body.flxa-appmode.flxa-has-bottom #flxc-app, html:not(.flxa-kb) body.flxa-appmode.flxa-has-bottom #flxg-app { bottom: calc(67px + env(safe-area-inset-bottom)) !important; height: auto !important; }
+	html body.flxa-appmode #flxa-scrim { z-index: 100080; }
+	html body.flxa-appmode.flxa-has-bottom .flxg-add-task { bottom: calc(85px + env(safe-area-inset-bottom)) !important; }
+	html body.flxa-appmode.flxa-has-bottom .flxg-toasts { bottom: calc(87px + env(safe-area-inset-bottom)) !important; }
+	html body.flxa-appmode.flxa-has-bottom .flxa-sw { display: none !important; }
+	/* Çağrı uygulaması kendine 100050 veriyor: yan panel ve perde her zaman onun önünde */
+	html body.flxa-appmode #adminmenuwrap { z-index: 100090 !important; }
+}
+
+/* Hızlı ve yumuşak sayfa geçişi (destekleyen tarayıcılarda) */
+@view-transition { navigation: auto; }
+body.flxa #adminmenuwrap { view-transition-name: flxa-side; }
+body.flxa #wpadminbar { view-transition-name: flxa-bar; }
+body.flxa.flxa-has-bottom #flxa-bottom { view-transition-name: flxa-bottom; }
+::view-transition-old(flxa-bottom), ::view-transition-new(flxa-bottom) { animation: none; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .12s; }
+::view-transition-old(flxa-side), ::view-transition-new(flxa-side), ::view-transition-old(flxa-bar), ::view-transition-new(flxa-bar) { animation: none; }
+@media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
+
+/* Her menüde simge: FluxWP paketlerine ortak renkli logo, simgesizlere tahmini çizgi simge veya baş harf */
+body.flxa #adminmenu li.flxa-logo div.wp-menu-image::before { content: none !important; }
+body.flxa #adminmenu li.flxa-logo div.wp-menu-image img { display: none; }
+body.flxa #adminmenu li.flxa-letter div.wp-menu-image { background-image: none !important; }
+body.flxa #adminmenu li.flxa-letter div.wp-menu-image img { display: none; }
+body.flxa #adminmenu li.flxa-letter div.wp-menu-image::before {
+	font-family: var(--flxa-font) !important; font-size: 11px !important; font-weight: 800; line-height: 20px !important; text-align: center;
+	border-radius: 6px; background: var(--flxa-surface-3); color: var(--flxa-text) !important;
+}
+
+/* ───────── 1.1.1 ───────── */
+/* Menü kaydırılır, alt kısım (kullanıcı, menüyü düzenle) hep görünür. */
+body.flxa #adminmenu li.flxa-side-head { position: sticky; top: 0; z-index: 30; background: var(--flxa-side); margin-top: -14px; padding-top: 14px; }
+@media screen and (min-width: 783px) {
+	body.flxa.folded #adminmenu li.flxa-side-head, body.flxa-appmode #adminmenu li.flxa-side-head { margin-top: -12px; padding-top: 12px; }
+}
+@media screen and (min-width: 783px) and (max-width: 960px) {
+	body.flxa.auto-fold #adminmenu li.flxa-side-head { margin-top: -12px; padding-top: 12px; }
+}
+body.flxa #adminmenu li.flxa-side-foot { position: sticky; bottom: 0; z-index: 30; background: var(--flxa-side); margin-bottom: -12px; padding-bottom: 12px; }
+/* Daraltılmış menüde ad ipucu */
+#flxa-tip { position: fixed; z-index: 100090; left: 0; top: 0; padding: 5px 10px; border-radius: 8px; background: var(--flxa-text); color: var(--flxa-bg); font: 600 12px/1.4 var(--flxa-font); white-space: nowrap; pointer-events: none; opacity: 0; transform: translateX(-4px); transition: opacity .12s, transform .12s; box-shadow: var(--flxa-shadow-lg); }
+#flxa-tip.is-on { opacity: 1; transform: none; }
+#flxa-tip::before { content: ""; position: absolute; left: -4px; top: 50%; margin-top: -4px; border: 4px solid transparent; border-left: 0; border-right-color: var(--flxa-text); }
+/* Menü daralma / genişleme animasyonu (Daralt düğmesi ve WhatsApp / Görevler geçişi) */
+@media screen and (min-width: 783px) {
+	html.flxa-side-from body.flxa #adminmenuwrap { width: var(--flxa-from-w) !important; }
+	html.flxa-side-from body.flxa #wpcontent, html.flxa-side-from body.flxa #wpfooter { margin-left: var(--flxa-from-w) !important; }
+	html.flxa-side-from body.flxa-appmode #flxc-app, html.flxa-side-from body.flxa-appmode #flxg-app { left: var(--flxa-from-w) !important; }
+	html.flxa-side-anim body.flxa #adminmenuwrap { transition: width .22s cubic-bezier(.2, .8, .2, 1); }
+	html.flxa-side-anim body.flxa #wpcontent, html.flxa-side-anim body.flxa #wpfooter { transition: margin-left .22s cubic-bezier(.2, .8, .2, 1); }
+	html.flxa-side-anim body.flxa-appmode #flxc-app, html.flxa-side-anim body.flxa-appmode #flxg-app { transition: left .22s cubic-bezier(.2, .8, .2, 1); }
+	html.flxa-side-from body.flxa #adminmenuwrap, html.flxa-side-anim body.flxa #adminmenuwrap { overflow-x: hidden; }
+	html.flxa-side-from body.flxa #adminmenu, html.flxa-side-anim body.flxa #adminmenu { white-space: nowrap; }
+}
+@media (prefers-reduced-motion: reduce) { html.flxa-side-anim body.flxa * { transition: none !important; } }
+/* Üst bar: sığmayanlar "…" altında */
+body.flxa #wpadminbar #wp-admin-bar-flxa-more > .ab-item { display: flex !important; align-items: center; justify-content: center; min-width: 36px; padding: 0 8px !important; cursor: pointer; }
+body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-sub-wrapper { overflow: visible; min-width: 220px; }
+body.flxa #wpadminbar #wp-admin-bar-flxa-more.is-open > .ab-sub-wrapper { display: block; }
+body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu > li { float: none; display: block; position: relative; }
+body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu > li > .ab-item { display: flex !important; align-items: center; gap: 6px; height: auto; min-height: 32px; line-height: 1.3 !important; padding: 4px 12px !important; white-space: nowrap; }
+body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu > li > .ab-item .ab-icon { float: none; margin: 0; padding: 0; }
+body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu > li.menupop > .ab-sub-wrapper { left: 100%; top: 0; margin: 0 !important; }
+body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu > li.menupop > .ab-item::after { content: "›"; margin-left: auto; padding-left: 12px; color: var(--flxa-muted); }
+/* Koyu tema: WooCommerce ve React (wp-components) ekranları */
+html.flxa-dark body.flxa:not(.flxa-appmode) .woocommerce-layout__header,
+html.flxa-dark body.flxa:not(.flxa-appmode) .woocommerce-layout__header-wrapper,
+html.flxa-dark body.flxa:not(.flxa-appmode) .components-card,
+html.flxa-dark body.flxa:not(.flxa-appmode) .components-card__header,
+html.flxa-dark body.flxa:not(.flxa-appmode) .components-card__body,
+html.flxa-dark body.flxa:not(.flxa-appmode) .components-card__footer,
+html.flxa-dark body.flxa:not(.flxa-appmode) .components-panel,
+html.flxa-dark body.flxa:not(.flxa-appmode) .components-panel__body,
+html.flxa-dark body.flxa:not(.flxa-appmode) .components-popover__content,
+html.flxa-dark body.flxa:not(.flxa-appmode) .components-modal__frame,
+html.flxa-dark body.flxa:not(.flxa-appmode) .components-modal__header,
+html.flxa-dark body.flxa:not(.flxa-appmode) .woocommerce-card,
+html.flxa-dark body.flxa:not(.flxa-appmode) .woocommerce-table,
+html.flxa-dark body.flxa:not(.flxa-appmode) .woocommerce-summary__item,
+html.flxa-dark body.flxa:not(.flxa-appmode) .woocommerce-list__item,
+html.flxa-dark body.flxa:not(.flxa-appmode) .woocommerce-activity-panel,
+html.flxa-dark body.flxa:not(.flxa-appmode) .woocommerce-layout__activity-panel-wrapper { background-color: var(--flxa-surface) !important; color: var(--flxa-text); border-color: var(--flxa-border) !important; }
+html.flxa-dark body.flxa:not(.flxa-appmode) .woocommerce-layout,
+html.flxa-dark body.flxa:not(.flxa-appmode) .woocommerce-layout__main,
+html.flxa-dark body.flxa:not(.flxa-appmode) #wpbody-content .woocommerce-embed-page { background: transparent; }
+html.flxa-dark body.flxa:not(.flxa-appmode) .woocommerce-layout__header-heading,
+html.flxa-dark body.flxa:not(.flxa-appmode) .components-card h1, html.flxa-dark body.flxa:not(.flxa-appmode) .components-card h2,
+html.flxa-dark body.flxa:not(.flxa-appmode) .components-card h3, html.flxa-dark body.flxa:not(.flxa-appmode) .components-card h4,
+html.flxa-dark body.flxa:not(.flxa-appmode) .components-base-control__label, html.flxa-dark body.flxa:not(.flxa-appmode) .components-toggle-control__label,
+html.flxa-dark body.flxa:not(.flxa-appmode) .components-button.is-tertiary, html.flxa-dark body.flxa:not(.flxa-appmode) .components-button.is-secondary { color: var(--flxa-text); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .components-text-control__input,
+html.flxa-dark body.flxa:not(.flxa-appmode) .components-select-control__input,
+html.flxa-dark body.flxa:not(.flxa-appmode) .components-input-control__container { background: var(--flxa-surface-2) !important; color: var(--flxa-text) !important; }
+/* Alt menü arka planı WordPress renk şemasından (Modern, Mavi…) bağımsız */
+body.flxa #adminmenu { --flxa-sub-bg: var(--flxa-side); }
+body.flxa #adminmenu li.menu-top .wp-submenu,
+body.flxa #adminmenu li.wp-has-current-submenu .wp-submenu,
+body.flxa #adminmenu li.wp-has-current-submenu.opensub .wp-submenu,
+body.flxa #adminmenu a.wp-has-current-submenu:focus + .wp-submenu { background: var(--flxa-sub-bg) !important; }
+@media screen and (min-width: 783px) {
+	body.flxa.folded #adminmenu { --flxa-sub-bg: var(--flxa-surface); }
+}
+@media screen and (min-width: 783px) and (max-width: 960px) {
+	body.flxa.auto-fold #adminmenu { --flxa-sub-bg: var(--flxa-surface); }
+}
+@media screen and (max-width: 782px) {
+	body.flxa #adminmenu { --flxa-sub-bg: transparent; }
+}
+@media screen and (max-width: 782px) {
+	body.flxa #adminmenu li.flxa-side-head { margin-top: -18px; padding-top: calc(18px + env(safe-area-inset-top)); }
+	body.flxa #adminmenu li.flxa-side-foot { margin-bottom: -18px; padding-bottom: calc(18px + env(safe-area-inset-bottom)); }
+}
+/* Ekran ayarları / Yardım: başlık satırının sağında normal düğme */
+@media screen and (min-width: 783px) {
+	body.flxa:not(.flxa-appmode) #screen-meta-links { margin: 14px 28px 0 0; display: flex; gap: 8px; float: right; position: relative; z-index: 5; }
+	body.flxa:not(.flxa-appmode) #screen-meta-links .screen-meta-toggle { margin: 0; float: none; top: 0; }
+	body.flxa:not(.flxa-appmode) #screen-meta-links .show-settings { border: 1px solid var(--flxa-border); border-radius: var(--flxa-r, 10px); height: 34px; line-height: 32px; padding: 0 10px 0 14px; font-size: 13px; font-weight: 600; }
+	body.flxa:not(.flxa-appmode) #screen-meta-links .show-settings:hover, body.flxa:not(.flxa-appmode) #screen-meta-links .show-settings:focus { background: var(--flxa-surface-2); color: var(--flxa-text); }
+	body.flxa:not(.flxa-appmode) #screen-meta-links .show-settings::after { top: 0; line-height: 32px; }
+}
+@media screen and (min-width: 783px) {
+	body.flxa:not(.flxa-appmode) .flxa-hero-actions #screen-meta-links { margin: 0; float: none; align-items: center; }
+	body.flxa:not(.flxa-appmode) .flxa-hero-actions #screen-meta-links .show-settings { height: 40px; line-height: 38px; }
+}
+@media screen and (max-width: 782px) {
+	body.flxa .flxa-hero-actions #screen-meta-links { display: none; }
+}
+/* WordPress renk şemalarının (Modern, Mavi, Okyanus…) hover/odak renklerini sıfırla */
+body.flxa #adminmenu li.menu-top,
+body.flxa #adminmenu li.menu-top:hover,
+body.flxa #adminmenu li.opensub,
+body.flxa #adminmenu li.wp-has-current-submenu,
+body.flxa #adminmenu li.current,
+body.flxa #adminmenu li.flxa-side-head, body.flxa #adminmenu li.flxa-side-head:hover,
+body.flxa #adminmenu li.flxa-side-foot, body.flxa #adminmenu li.flxa-side-foot:hover { background-color: var(--flxa-side) !important; }
+body.flxa #adminmenu li.menu-top:hover, body.flxa #adminmenu li.opensub, body.flxa #adminmenu li.wp-has-current-submenu, body.flxa #adminmenu li.current { background-color: transparent !important; }
+body.flxa #adminmenu li.flxa-side-head a, body.flxa #adminmenu li.flxa-side-head button,
+body.flxa #adminmenu li.flxa-side-foot a, body.flxa #adminmenu li.flxa-side-foot button { box-shadow: none; }
+body.flxa #adminmenu li.flxa-side-head a.flxa-brand, body.flxa #adminmenu li.flxa-side-head a.flxa-brand:hover, body.flxa #adminmenu li.flxa-side-head a.flxa-brand:focus { background: transparent !important; color: var(--flxa-text) !important; }
+body.flxa #adminmenu li.flxa-side-foot a, body.flxa #adminmenu li.flxa-side-foot a:focus { background-color: transparent; }
+body.flxa #adminmenu li.flxa-side-foot a:hover { background-color: var(--flxa-surface-2) !important; color: var(--flxa-text) !important; }
+body.flxa #adminmenu li.flxa-side-head a:focus-visible, body.flxa #adminmenu li.flxa-side-foot a:focus-visible, body.flxa #adminmenu a.menu-top:focus-visible { box-shadow: 0 0 0 2px var(--flxa-focus) !important; outline: none; }
+/* Alt menüde "Diğer" */
+body.flxa #adminmenu .wp-submenu:not(.flxa-sub-open) > li.flxa-sub-rare { display: none; }
+body.flxa #adminmenu .wp-submenu > li.flxa-sub-more > a { display: flex !important; align-items: center; gap: 6px; color: var(--flxa-muted); font-size: 12px; font-weight: 600; }
+body.flxa #adminmenu .wp-submenu > li.flxa-sub-more .flxa-sub-n { min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--flxa-surface-2); font-size: 11px; line-height: 18px; text-align: center; }
+body.flxa #adminmenu .wp-submenu > li.flxa-sub-more .flxa-sub-chev { display: inline-flex; margin-left: auto; transition: transform .15s; }
+body.flxa #adminmenu .wp-submenu > li.flxa-sub-more .flxa-sub-chev svg { width: 14px; height: 14px; }
+body.flxa #adminmenu .wp-submenu.flxa-sub-open > li.flxa-sub-more .flxa-sub-chev { transform: rotate(90deg); }
+body.flxa #adminmenu .wp-submenu.flxa-sub-open > li.flxa-sub-rare > a { padding-left: 18px !important; }
+/* Komut paleti arama kutusu: çerçeve ve odak halkası yok */
+html body .flxa-pal .flxa-pal-in input[type=search], html body .flxa-pal .flxa-pal-in input[type=search]:focus { border: 0 !important; box-shadow: none !important; outline: none !important; background: transparent !important; border-radius: 0 !important; padding-left: 0 !important; }
+/* ───────── Mobil düzen (1.1.1) ───────── */
+@media screen and (max-width: 782px) {
+	/* Sağ ve sol boşluk eşit: 12 px */
+	html body.flxa:not(.flxa-appmode) #wpcontent { padding-left: 12px; margin-left: 0; }
+	html body.flxa:not(.flxa-appmode) .wrap { margin: 10px 12px 0 0; }
+	html body.flxa .flxa-hero { margin: 12px 12px 4px 0; }
+	html body.flxa #dashboard-widgets-wrap { margin: 0 12px 0 0; }
+	html body.flxa #dashboard-widgets .postbox-container { width: 100%; }
+	/* Hızlı işlemler: kaydırma yok, dar kartlar, yazı iki satıra iner */
+	.flxa-qa { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; overflow: visible; margin-right: 0; padding: 0; }
+	.flxa-qa-item { flex: initial; height: auto; min-height: 50px; padding: 7px 8px 7px 6px; font-size: 13px; line-height: 1.25; white-space: normal; overflow-wrap: anywhere; }
+	.flxa-qa-item > span:not(.flxa-qa-ico) { min-width: 0; }
+	.flxa-qa-ico { width: 30px; height: 30px; }
+	/* Ekran ayarları / Yardım mobilde yok (sayfanın altına düşüyordu) */
+	html body.flxa #screen-meta-links, html body.flxa #screen-meta { display: none !important; }
+	/* Üst bar simgeleri: eklentilerin açık renkli simgeleri dahil okunur */
+	html body.flxa #wpadminbar #wp-toolbar > ul > li > .ab-item,
+	html body.flxa #wpadminbar #wp-toolbar > ul > li > .ab-item::before,
+	html body.flxa #wpadminbar #wp-toolbar > ul > li > .ab-item .ab-icon::before,
+	html body.flxa #wpadminbar #wp-toolbar > ul > li > .ab-item .ab-icon { color: var(--flxa-text) !important; fill: currentColor; }
+	html body.flxa #wpadminbar #wp-toolbar > ul > li > .ab-item img, html body.flxa #wpadminbar #wp-toolbar > ul > li > .ab-item svg { opacity: 1; }
+	html body.flxa #wpadminbar #wp-admin-bar-root-default { white-space: nowrap; }
+	/* "…" menüsü */
+	html body.flxa #wpadminbar #wp-admin-bar-flxa-more { display: block !important; position: static; }
+	html body.flxa #wpadminbar #wp-admin-bar-flxa-more > .ab-item { width: 52px; height: 46px; min-width: 0; padding: 0 !important; }
+	html body.flxa #wpadminbar #wp-admin-bar-flxa-more > .ab-item svg { width: 22px; height: 22px; }
+	html body.flxa #wpadminbar #wp-admin-bar-flxa-more > .ab-sub-wrapper { position: fixed; left: 8px; right: 8px; top: 50px; min-width: 0; width: auto !important; max-height: calc(100vh - 140px); overflow-y: auto; }
+	html body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu > li { display: block !important; }
+	html body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu > li > .ab-item { width: auto !important; height: auto !important; min-height: 44px; font-size: 15px; text-indent: 0 !important; }
+	html body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu > li > .ab-item .ab-label { display: inline !important; }
+	html body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu > li > .ab-item[data-flxa-l]::after { content: attr(data-flxa-l); margin-left: 4px; padding: 0; color: var(--flxa-text); }
+	html body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu > li.menupop > .ab-sub-wrapper { position: static; box-shadow: none; border: 0; margin: 0 0 0 28px !important; }
+}
+@media screen and (max-width: 782px) {
+	html body.flxa #wpadminbar #wp-admin-bar-top-secondary .flxa-ab-btn > .ab-item { min-width: 44px; width: 44px; padding: 0 !important; }
+	html body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu > li { float: none !important; width: auto !important; }
+	html body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu > li > .ab-item { display: flex !important; align-items: center; gap: 10px; padding: 6px 14px !important; line-height: 1.3 !important; }
+	html body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu > li > .ab-item .ab-icon { width: 22px !important; height: 22px !important; margin: 0 !important; padding: 0 !important; }
+	html body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu > li > .ab-item .ab-icon::before { font-size: 20px !important; width: 22px; line-height: 22px !important; top: 0 !important; margin: 0 !important; }
+	html body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu > li > .ab-item::before { font-size: 20px !important; width: 22px; margin: 0 !important; padding: 0 !important; top: 0 !important; line-height: 22px !important; }
+	html body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu > li > .ab-item .ab-label { font-size: 15px !important; color: var(--flxa-text) !important; }
+	html body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu > li.menupop > .ab-item::after { display: none; }
+	html body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu > li.menupop > .ab-sub-wrapper { display: block; }
+	html body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu .ab-submenu > li > .ab-item { min-height: 36px; font-size: 14px; }
+}
+@media screen and (max-width: 782px) {
+	.flxa-qa-item { overflow-wrap: normal; word-break: normal; hyphens: auto; }
+}
+@media screen and (max-width: 360px) {
+	.flxa-qa { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media screen and (max-width: 782px) {
+	html body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu > li > .ab-item .ab-label { position: static !important; width: auto !important; height: auto !important; clip: auto !important; clip-path: none !important; margin: 0 !important; overflow: visible !important; line-height: 1.3 !important; }
+	html body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu > li > .ab-item:has(.ab-icon)::before { display: none !important; }
+}
+@media screen and (max-width: 782px) {
+	/* "…" listesi telefonda yalnız yazı (eklenti simgeleri farklı konumlanıyor) */
+	html body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu .ab-icon { display: none !important; }
+	html body.flxa #wpadminbar #wp-admin-bar-flxa-more .ab-submenu > li > .ab-item::before { display: none !important; }
+}
+body.flxa #adminmenu a.menu-top:focus:not(:focus-visible), body.flxa #adminmenu .wp-submenu a:focus:not(:focus-visible) { box-shadow: none !important; }
+
+/* Daraltılmış menü: kapalı grup tek "•••" simgesi, üzerine gelince sağda liste */
+.flxa-gmore { display: none; }
+@media screen and (min-width: 783px) {
+	body.flxa.folded #adminmenu li.flxa-gh.is-closed { margin: 6px 0; padding: 0; cursor: pointer; }
+	body.flxa.folded #adminmenu li.flxa-gh.is-closed .separator { display: none; }
+	body.flxa.folded #adminmenu li.flxa-gh.is-closed .flxa-gmore { display: flex; align-items: center; justify-content: center; width: 100%; height: 38px; border-radius: var(--flxa-r-sm, 8px); color: var(--flxa-muted); }
+	body.flxa.folded #adminmenu li.flxa-gh.is-closed:hover .flxa-gmore, body.flxa.folded #adminmenu li.flxa-gh.is-open .flxa-gmore { background: var(--flxa-surface-2); color: var(--flxa-text); }
+}
+@media screen and (min-width: 783px) and (max-width: 960px) {
+	body.flxa.auto-fold #adminmenu li.flxa-gh.is-closed { margin: 6px 0; padding: 0; cursor: pointer; background: none; }
+	body.flxa.auto-fold #adminmenu li.flxa-gh.is-closed .separator { display: none; }
+	body.flxa.auto-fold #adminmenu li.flxa-gh.is-closed .flxa-gmore { display: flex; align-items: center; justify-content: center; width: 100%; height: 38px; border-radius: var(--flxa-r-sm, 8px); color: var(--flxa-muted); }
+	body.flxa.auto-fold #adminmenu li.flxa-gh.is-closed:hover .flxa-gmore, body.flxa.auto-fold #adminmenu li.flxa-gh.is-open .flxa-gmore { background: var(--flxa-surface-2); color: var(--flxa-text); }
+}
+.flxa-gmore .flxa-ico { width: 20px; height: 20px; }
+#flxa-gfly { position: fixed; z-index: 100080; display: none; min-width: 210px; max-width: 280px; max-height: calc(100vh - 16px); overflow-y: auto; padding: 6px; background: var(--flxa-surface); border: 1px solid var(--flxa-border); border-radius: calc(var(--flxa-radius, 14px) + 12px - 14px); box-shadow: var(--flxa-shadow-lg); font-family: var(--flxa-font); }
+#flxa-gfly.is-on { display: block; }
+#flxa-gfly .flxa-gfly-head { padding: 6px 10px; font-weight: 700; font-size: 13px; color: var(--flxa-text); }
+#flxa-gfly a.flxa-gfly-item { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: var(--flxa-r-sm, 8px); color: var(--flxa-text); text-decoration: none; font-size: 13px; line-height: 1.3; box-shadow: none; }
+#flxa-gfly a.flxa-gfly-item:hover, #flxa-gfly a.flxa-gfly-item:focus-visible { background: var(--flxa-surface-2); color: var(--flxa-text); outline: none; }
+#flxa-gfly .flxa-gfly-ico { flex: 0 0 20px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; float: none; padding: 0; margin: 0; color: var(--flxa-muted); background-size: 20px auto; background-repeat: no-repeat; background-position: center; }
+#flxa-gfly .flxa-gfly-ico::before { padding: 0; font-size: 20px; width: 20px; height: 20px; line-height: 20px; color: inherit; }
+#flxa-gfly .flxa-gfly-ico img, #flxa-gfly .flxa-gfly-ico svg { width: 20px; height: 20px; padding: 0; opacity: 1; }
+#flxa-gfly .flxa-gfly-ch { border-radius: 6px; background: var(--flxa-surface-2); color: var(--flxa-text); font: 700 11px/20px var(--flxa-font); }
+#flxa-gfly .flxa-gfly-mask::before { content: ""; display: block; width: 20px; height: 20px; background-color: currentColor; -webkit-mask: var(--flxa-i) center / 20px 20px no-repeat; mask: var(--flxa-i) center / 20px 20px no-repeat; }
+#flxa-gfly .flxa-gfly-logo { background-size: contain; border-radius: 5px; }
+#flxa-gfly .flxa-gfly-logo::before { content: none; }
+#flxa-gfly a.flxa-gfly-item:hover .flxa-gfly-ico { color: var(--flxa-text); }
+
+/* Arama paleti: kapat düğmesi */
+.flxa-pal-x { flex: none; width: 36px; height: 36px; margin-right: -6px; border: 0; border-radius: var(--flxa-r-sm, 8px); background: transparent; color: var(--flxa-muted); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; }
+.flxa-pal-x:hover, .flxa-pal-x:focus-visible { background: var(--flxa-surface-2); color: var(--flxa-text); outline: none; }
+.flxa-pal-x .flxa-ico { width: 20px; height: 20px; }
+@media screen and (max-width: 782px) {
+	/* Mobil: yanlışlıkla yakınlaştırma yok (çift dokunma), arama tam ekran ve çentik alanını korur */
+	html, body.flxa { touch-action: manipulation; }
+	.flxa-pal-in { padding-top: env(safe-area-inset-top); }
+	.flxa-pal-x { width: 44px; height: 44px; }
+	.flxa-pal-list { padding-bottom: calc(6px + env(safe-area-inset-bottom)); }
+}
+
+/* Güvenli alan varsayılanları (JS ölçünce gerçek değerle değişir) */
+html { --flxa-safe-top: var(--wp-admin--admin-bar--height, 0px); --flxa-safe-right: 0px; --flxa-safe-bottom: 0px; --flxa-safe-left: 0px; }
+
+/* Modal açıkken onu örtmeyen sol menü ve üst çubuk da kararır (kenarlıklarıyla birlikte), tıklanamaz */
+html.flxa-dim-side body.flxa #adminmenuwrap, html.flxa-dim-bar body.flxa #wpadminbar { filter: brightness(.45) saturate(.8); pointer-events: none; }
+
+/* Modal / alt sayfa açıkken mobil alt bar arkada kalır; modal (Kaydet düğmesiyle) önde açılır */
+@media screen and (max-width: 782px) {
+	html.flxa-modal-open body.flxa.flxa-has-bottom #flxa-bottom { z-index: 1 !important; }
+}
+
+/* Sayfa yükleniyor çubuğu */
+#flxa-progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 1000000; pointer-events: none; background: var(--flxa-accent); box-shadow: 0 0 8px color-mix(in srgb, var(--flxa-accent) 60%, transparent); transform-origin: 0 50%; transform: scaleX(0); opacity: 0; transition: opacity .25s ease .1s; }
+html.flxa-loading #flxa-progress { opacity: 1; transition: none; animation: flxa-progress 10s cubic-bezier(.08,.75,.2,1) forwards; }
+@keyframes flxa-progress { 0% { transform: scaleX(0); } 6% { transform: scaleX(.28); } 30% { transform: scaleX(.62); } 100% { transform: scaleX(.94); } }
+@media (prefers-reduced-motion: reduce) { html.flxa-loading #flxa-progress { animation: none; transform: scaleX(.6); } }
+
+/* WhatsApp / Görevler ekranında da panel kabuğu (menü, alt bar, palet) aynı yazı tipiyle: alt bar her ekranda birebir aynı */
+body.flxa-appmode #adminmenumain, body.flxa-appmode #flxa-bottom, body.flxa-appmode #flxa-gfly, body.flxa-appmode .flxa-pal, body.flxa-appmode .flxa-ctx { font-family: var(--flxa-font); -webkit-font-smoothing: antialiased; }
+
+/* Mobil: klavye açıkken alt bar yok */
+@media screen and (max-width: 782px) {
+	html.flxa-kb body.flxa.flxa-has-bottom #flxa-bottom { display: none !important; }
+	html.flxa-kb body.flxa-appmode.flxa-has-bottom .flxg-add-task { bottom: calc(18px + env(safe-area-inset-bottom)) !important; }
+}
+
+/* Geniş tablolar kendi kutusunda yatay kayar; sayfa yana kaymaz */
+body.flxa .flxa-tscroll { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
+body.flxa .flxa-tscroll > table { margin-top: 0; margin-bottom: 0; }
+@media screen and (max-width: 782px) {
+	html.flxa-html, body.flxa:not(.flxa-appmode) { overflow-x: clip; }
+	body.flxa:not(.flxa-appmode) #wpbody-content { max-width: 100vw; }
+}
+
+/* Menü düzenleyicide "Web" kapalı öğe: yalnız uygulamada görünür (Flux App menüsü için menüde kalır). */
+body.flxa #adminmenu li.flxa-noweb { display: none !important; }
+
+/* ═════════ 1.4.0 Sol menü: sabit kutucuklar + grup kartları ═════════
+ * Menü zemini hafif gri; her grup beyaz bir kart. Sabitlenenler (varsayılan: Başlangıç, Çağrı Merkezi, Görevler, Bağışlar)
+ * üstte 2 sütun kutucuk. Kapalı gruplar tek satır (ad + öğe sayısı). Altta kişi kartı ve tema seçici. */
+html.flxa-html { --flxa-side: #F1F4EF; --flxa-card: #FFFFFF; --flxa-card-b: #E4E9E2; }
+html.flxa-html.flxa-dark { --flxa-side: #0F1612; --flxa-card: color-mix(in srgb, var(--flxa-surface) 55%, var(--flxa-surface-2)); --flxa-card-b: #222D27; }
+body.flxa #adminmenuwrap { border-right-color: var(--flxa-card-b); }
+
+/* Öğe simgesi: renkli küçük kutu */
+body.flxa #adminmenu li.menu-top { --flxa-t: var(--flxa-muted); }
+body.flxa #adminmenu li.flxa-lic-grid, body.flxa #adminmenu li.flxa-lic-chat, body.flxa #adminmenu li.flxa-lic-heart, body.flxa #adminmenu li.flxa-lic-refresh { --flxa-t: #16A34A; }
+body.flxa #adminmenu li.flxa-lic-leaf { --flxa-t: #15803D; }
+body.flxa #adminmenu li.flxa-lic-check { --flxa-t: #7C3AED; }
+body.flxa #adminmenu li.flxa-lic-medal { --flxa-t: #CA8A04; }
+body.flxa #adminmenu li.flxa-lic-form { --flxa-t: #0891B2; }
+body.flxa #adminmenu li.flxa-lic-bag, body.flxa #adminmenu li.flxa-lic-box { --flxa-t: #9333EA; }
+body.flxa #adminmenu li.flxa-lic-calendar { --flxa-t: #C2410C; }
+body.flxa #adminmenu li.flxa-lic-image { --flxa-t: #0E7490; }
+body.flxa #adminmenu li.flxa-lic-bolt, body.flxa #adminmenu li.flxa-lic-search { --flxa-t: #EA580C; }
+body.flxa #adminmenu li.flxa-lic-chart { --flxa-t: #0D9488; }
+body.flxa #adminmenu li.flxa-lic-mail, body.flxa #adminmenu li.flxa-lic-inbox, body.flxa #adminmenu li.flxa-lic-archive { --flxa-t: #2563EB; }
+html.flxa-dark body.flxa #adminmenu li.menu-top { --flxa-t-mix: 22%; }
+body.flxa #adminmenu li.menu-top div.wp-menu-image {
+	width: 26px; height: 26px; border-radius: 8px; display: flex; align-items: center; justify-content: center;
+	background-color: color-mix(in srgb, var(--flxa-t) var(--flxa-t-mix, 12%), transparent); --flxa-logo-s: 26px;
+}
+body.flxa #adminmenu li.menu-top div.wp-menu-image::before { width: 16px; height: 16px; font-size: 16px; line-height: 16px; color: var(--flxa-t) !important; }
+body.flxa #adminmenu li.flxa-lic div.wp-menu-image::before { -webkit-mask-size: 16px 16px; mask-size: 16px 16px; background-color: var(--flxa-t); }
+body.flxa #adminmenu li.menu-top div.wp-menu-image img { width: 16px; height: 16px; }
+body.flxa #adminmenu li.flxa-logo div.wp-menu-image { background-color: transparent; }
+body.flxa #adminmenu li.flxa-letter div.wp-menu-image::before { width: 26px; height: 26px; line-height: 26px !important; border-radius: 8px; }
+
+/* Geniş menü (ve telefondaki çekmece): ızgara; kutucuklar yarım, geri kalanı tam satır. Alt kısım hep en altta. */
+@media screen and (min-width: 961px), screen and (max-width: 782px) {
+	body.flxa:not(.folded) #adminmenu, body.flxa.flxa-drawer #adminmenu {
+		display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 8px; row-gap: 0;
+		grid-template-rows: repeat(997, max-content) 1fr max-content; align-content: stretch;
+	}
+	body.flxa:not(.folded) #adminmenu > li { grid-column: 1 / -1; min-width: 0; }
+	body.flxa:not(.folded) #adminmenu > li.flxa-side-foot { grid-row: 999; }
+	body.flxa:not(.folded) #adminmenu > li.flxa-pin:not(.flxa-pin-wide) { grid-column: auto / span 1; }
+}
+@media screen and (max-width: 782px) {
+	body.flxa #adminmenu { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 8px; row-gap: 0; grid-template-rows: repeat(997, max-content) 1fr max-content; }
+	body.flxa #adminmenu > li { grid-column: 1 / -1; min-width: 0; }
+	body.flxa #adminmenu > li.flxa-side-foot { grid-row: 999; }
+	body.flxa #adminmenu > li.flxa-pin:not(.flxa-pin-wide) { grid-column: auto / span 1; }
+}
+
+/* Grup kartı: başlık (ayraç) kartın üstü, son öğe kartın altı */
+html body.flxa #adminmenu li.flxa-gh {
+	margin: 10px 0 0; padding: 10px 12px 4px 14px; border-radius: 12px 12px 0 0; gap: 6px;
+	background: var(--flxa-card) !important; border: 1px solid var(--flxa-card-b); border-bottom: 0;
+}
+html body.flxa #adminmenu li.flxa-gh:hover { background: var(--flxa-card) !important; }
+html body.flxa #adminmenu li.flxa-gh:hover .separator::after { color: var(--flxa-text); }
+html body.flxa #adminmenu li.flxa-group .separator::after { font-size: 10.5px; letter-spacing: .07em; }
+html body.flxa #adminmenu > li.menu-top:not(.flxa-pin) {
+	margin: 0; padding: 0 6px; border-radius: 0; background-color: var(--flxa-card) !important;
+	border-left: 1px solid var(--flxa-card-b); border-right: 1px solid var(--flxa-card-b);
+}
+html body.flxa #adminmenu > li.menu-top.flxa-glast:not(.flxa-pin) { padding-bottom: 6px; border-radius: 0 0 12px 12px; border-bottom: 1px solid var(--flxa-card-b); }
+html body.flxa #adminmenu > li.menu-top:not(.flxa-pin) > a.menu-top { min-height: 34px; padding: 4px 8px; gap: 10px; font-weight: 500; }
+html body.flxa #adminmenu > li.menu-top:not(.flxa-pin).flxa-has-toggle > a.menu-top { padding-right: 34px; }
+html body.flxa #adminmenu > li.menu-top:not(.flxa-pin) > .flxa-subtoggle { top: 4px; right: 10px; }
+html body.flxa #adminmenu > li.menu-top:not(.flxa-pin) .wp-submenu { padding-left: 38px !important; }
+/* Kapalı grup: tek satır, solda ok, sağda sayı */
+html body.flxa #adminmenu li.flxa-gh.is-closed { border-radius: 12px; border-bottom: 1px solid var(--flxa-card-b); padding: 9px 12px; margin-top: 8px; }
+html body.flxa #adminmenu li.flxa-gh.is-closed .separator::after { font-size: 13.5px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--flxa-text); }
+html body.flxa #adminmenu li.flxa-gh.is-closed .flxa-gchev { order: -1; }
+html body.flxa #adminmenu li.flxa-gh.is-closed .flxa-gcount { font-weight: 600; }
+html body.flxa #adminmenu li.flxa-gh.is-closed:hover { border-color: var(--flxa-border-strong); }
+html body.flxa #adminmenu li.flxa-gh:not(.is-closed) .flxa-gchev { transform: rotate(90deg); }
+
+/* Sabitlenenler: başlık yok, kutucuk */
+html body.flxa #adminmenu li.flxa-gh.flxa-gpins { display: none; }
+html body.flxa #adminmenu > li.flxa-pin { margin: 0 0 8px; padding: 0; border: 0; background: transparent !important; }
+html body.flxa #adminmenu > li.flxa-pin > a.menu-top {
+	position: relative; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 10px;
+	min-height: 78px; height: 100%; padding: 10px 10px 9px 12px; border-radius: 12px; font-size: 13px; font-weight: 650; line-height: 1.25;
+	background: var(--flxa-card); border: 1px solid var(--flxa-card-b); box-sizing: border-box;
+}
+html body.flxa #adminmenu > li.flxa-pin > a.menu-top:hover { background: var(--flxa-card); border-color: var(--flxa-border-strong); }
+html body.flxa #adminmenu > li.flxa-pin div.wp-menu-image { width: 30px; height: 30px; border-radius: 9px; --flxa-logo-s: 30px; }
+html body.flxa #adminmenu > li.flxa-pin div.wp-menu-image::before { width: 18px; height: 18px; font-size: 18px; line-height: 18px; }
+html body.flxa #adminmenu > li.flxa-pin.flxa-lic div.wp-menu-image::before { -webkit-mask-size: 18px 18px; mask-size: 18px 18px; }
+html body.flxa #adminmenu > li.flxa-pin div.wp-menu-name { flex: none; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+html body.flxa #adminmenu > li.flxa-pin div.wp-menu-name .awaiting-mod, html body.flxa #adminmenu > li.flxa-pin div.wp-menu-name .update-plugins, html body.flxa #adminmenu > li.flxa-pin div.wp-menu-name .menu-counter { position: absolute; top: 10px; right: 10px; }
+html body.flxa #adminmenu > li.flxa-pin:not(.flxa-pin-wide) > .flxa-subtoggle { display: none !important; }
+@media screen and (min-width: 961px) { html body.flxa:not(.folded) #adminmenu > li.flxa-pin:not(.flxa-pin-wide) > .wp-submenu { display: none !important; } }
+@media screen and (max-width: 782px) { html body.flxa #adminmenu > li.flxa-pin:not(.flxa-pin-wide) > .wp-submenu { display: none !important; } }
+html body.flxa #adminmenu > li.flxa-pin.current > a.menu-top, html body.flxa #adminmenu > li.flxa-pin.wp-has-current-submenu > a.menu-top {
+	background: var(--flxa-card); color: var(--flxa-text); border-color: color-mix(in srgb, var(--flxa-accent) 45%, var(--flxa-card-b)); box-shadow: 0 0 0 1px color-mix(in srgb, var(--flxa-accent) 35%, transparent);
+}
+/* Açık sayfanın alt menüsü olan kutucuk: tam satır kart */
+html body.flxa #adminmenu > li.flxa-pin.flxa-pin-wide { background: var(--flxa-card) !important; border: 1px solid color-mix(in srgb, var(--flxa-accent) 45%, var(--flxa-card-b)); border-radius: 12px; padding: 4px 6px 6px; }
+html body.flxa #adminmenu > li.flxa-pin.flxa-pin-wide > a.menu-top { height: auto; flex-direction: row; align-items: center; justify-content: flex-start; min-height: 40px; padding: 5px 8px; border: 0; box-shadow: none; background: transparent; }
+html body.flxa #adminmenu > li.flxa-pin.flxa-pin-wide div.wp-menu-name .awaiting-mod, html body.flxa #adminmenu > li.flxa-pin.flxa-pin-wide div.wp-menu-name .update-plugins { position: static; }
+html body.flxa #adminmenu > li.flxa-pin.flxa-pin-wide div.wp-menu-name { width: auto; flex: 1; }
+html body.flxa #adminmenu > li.flxa-pin.flxa-pin-wide .wp-submenu { padding-left: 42px !important; }
+
+/* Arama: kart gibi */
+html body.flxa #adminmenu li.flxa-side-head .flxa-search { background: var(--flxa-card); border-color: var(--flxa-card-b); border-radius: 11px; }
+html body.flxa #adminmenu li.flxa-side-head .flxa-fold-btn { width: 32px; height: 32px; border-radius: 9px; background: var(--flxa-card); border: 1px solid var(--flxa-card-b); color: var(--flxa-muted); }
+html body.flxa #adminmenu li.flxa-side-head .flxa-fold-btn:hover { color: var(--flxa-text); border-color: var(--flxa-border-strong); }
+
+/* Alt kısım: kişi kartı + tema seçici */
+html body.flxa #adminmenu li.flxa-side-foot { border-top: 0; padding-top: 10px; }
+html body.flxa #adminmenu li.flxa-side-foot .flxa-side-link { padding: 6px 10px; font-size: 12.5px; }
+html body.flxa .flxa-user { background: var(--flxa-card); border: 1px solid var(--flxa-card-b); border-radius: 12px; padding: 6px 8px 6px 6px; gap: 8px; }
+html body.flxa .flxa-user-link { padding: 2px; }
+html body.flxa #adminmenu li.flxa-side-foot a.flxa-user-link:hover { background: transparent !important; }
+html body.flxa .flxa-user-link:hover .flxa-user-text strong { color: var(--flxa-accent-strong); }
+html body.flxa .flxa-avatar { width: 34px; height: 34px; }
+
+
+/* Daraltılmış menü: sabitlenenler simge, her grup tek simge (üstüne gelince öğeleri yanda) */
+@media screen and (min-width: 783px) {
+	body.flxa.folded #adminmenu li.flxa-gh, body.flxa.folded #adminmenu li.flxa-gh.is-closed { background: transparent !important; border: 0; border-radius: 0; padding: 0; margin: 2px 0; }
+	body.flxa.folded #adminmenu > li.menu-top:not(.flxa-pin), body.flxa.folded #adminmenu > li.flxa-pin, body.flxa.folded #adminmenu > li.flxa-pin.flxa-pin-wide { background: transparent !important; border: 0; padding: 0; margin: 1px 0; border-radius: 0; }
+	body.flxa.folded #adminmenu > li.flxa-pin > a.menu-top { flex-direction: row; align-items: center; justify-content: center; min-height: 0; height: auto; padding: 6px 0; border: 0; box-shadow: none; background: transparent; }
+	body.flxa.folded #adminmenu > li.flxa-pin.current > a.menu-top, body.flxa.folded #adminmenu > li.flxa-pin.wp-has-current-submenu > a.menu-top { background: var(--flxa-card); box-shadow: 0 0 0 1px color-mix(in srgb, var(--flxa-accent) 40%, transparent); }
+	body.flxa.folded #adminmenu > li.flxa-pin div.wp-menu-image { width: 30px; height: 30px; }
+	body.flxa.folded #adminmenu > li.flxa-pin div.wp-menu-name .awaiting-mod, body.flxa.folded #adminmenu > li.flxa-pin div.wp-menu-name .update-plugins { position: absolute; left: auto; top: 0; right: 4px; }
+	body.flxa.folded #adminmenu li.flxa-gh.flxa-gpins { display: block; height: 1px; margin: 6px 12px; background: var(--flxa-card-b) !important; }
+	body.flxa.folded #adminmenu li.flxa-gh.flxa-gpins > * { display: none; }
+	body.flxa.folded #adminmenu li.flxa-gh.is-closed .flxa-gmore { height: 40px; border-radius: 11px; }
+	body.flxa.folded #adminmenu li.flxa-gh.is-closed:hover .flxa-gmore, body.flxa.folded #adminmenu li.flxa-gh.is-open .flxa-gmore { background: var(--flxa-card); color: var(--flxa-accent-strong); box-shadow: 0 2px 8px rgba(0, 0, 0, .08); }
+	body.flxa.folded #adminmenu li.flxa-gh.has-current .flxa-gmore { color: var(--flxa-accent-strong); background: color-mix(in srgb, var(--flxa-accent) 12%, transparent); }
+	body.flxa.folded .flxa-user { background: transparent; border: 0; padding: 0; }
+	body.flxa.folded #adminmenu li.flxa-side-head .flxa-search { border: 0; background: transparent; }
+}
+@media screen and (min-width: 783px) and (max-width: 960px) {
+	body.flxa.auto-fold #adminmenu li.flxa-gh, body.flxa.auto-fold #adminmenu li.flxa-gh.is-closed { background: transparent !important; border: 0; border-radius: 0; padding: 0; margin: 2px 0; }
+	body.flxa.auto-fold #adminmenu > li.menu-top:not(.flxa-pin), body.flxa.auto-fold #adminmenu > li.flxa-pin { background: transparent !important; border: 0; padding: 0; margin: 1px 0; border-radius: 0; }
+	body.flxa.auto-fold #adminmenu > li.flxa-pin > a.menu-top { flex-direction: row; align-items: center; justify-content: center; min-height: 0; height: auto; padding: 6px 0; border: 0; box-shadow: none; background: transparent; }
+	body.flxa.auto-fold #adminmenu > li.flxa-pin div.wp-menu-image { width: 30px; height: 30px; }
+	body.flxa.auto-fold #adminmenu li.flxa-gh.flxa-gpins { display: block; height: 1px; margin: 6px 12px; background: var(--flxa-card-b) !important; }
+	body.flxa.auto-fold #adminmenu li.flxa-gh.flxa-gpins > * { display: none; }
+	body.flxa.auto-fold #adminmenu li.flxa-gh.has-current .flxa-gmore { color: var(--flxa-accent-strong); background: color-mix(in srgb, var(--flxa-accent) 12%, transparent); }
+	body.flxa.auto-fold .flxa-user { background: transparent; border: 0; padding: 0; }
+}
+/* Daraltılmış menüdeki grup listesinde de renkli simge kutusu */
+#flxa-gfly .flxa-gfly-ico { width: 26px; height: 26px; flex-basis: 26px; border-radius: 8px; background-color: color-mix(in srgb, var(--flxa-t, var(--flxa-muted)) 12%, transparent); color: var(--flxa-t, var(--flxa-muted)); }
+#flxa-gfly .flxa-gfly-mask::before { width: 16px; height: 16px; -webkit-mask-size: 16px 16px; mask-size: 16px 16px; }
+#flxa-gfly .flxa-gfly-logo { background-color: transparent; background-size: 26px 26px; }
+#flxa-gfly .flxa-gfly-head { font-size: 10.5px; letter-spacing: .07em; text-transform: uppercase; color: var(--flxa-muted); }
+/* Daraltılmış menüde açılan liste, simgesine okla bağlanır; arada fare boşluğa düşmesin diye görünmez köprü */
+#flxa-gfly { overflow: visible; }
+#flxa-gfly::before { content: ""; position: absolute; left: -7px; top: calc(var(--flxa-fly-y, 22px) - 7px); width: 12px; height: 12px; background: var(--flxa-surface); border-left: 1px solid var(--flxa-border); border-bottom: 1px solid var(--flxa-border); transform: rotate(45deg); border-radius: 0 0 0 3px; }
+#flxa-gfly::after { content: ""; position: absolute; left: -22px; top: calc(var(--flxa-fly-y, 22px) - 22px); width: 22px; height: 44px; }
+@media screen and (min-width: 783px) {
+	body.flxa.folded #adminmenu .wp-submenu { overflow: visible; margin-left: 14px !important; }
+	body.flxa.folded #adminmenu .wp-submenu::before { content: ""; position: absolute; left: -7px; top: 17px; width: 12px; height: 12px; background: var(--flxa-surface); border-left: 1px solid var(--flxa-border); border-bottom: 1px solid var(--flxa-border); transform: rotate(45deg); border-radius: 0 0 0 3px; }
+	/* Alt menüsü olmayan öğede (yalnız başlık) açılır kart yok: adı ipucu olarak çıkar */
+	body.flxa.folded #adminmenu li.menu-top:not(.wp-has-submenu) > .wp-submenu { display: none !important; }
+	body.flxa.folded #adminmenu li.menu-top.opensub > a.menu-top, body.flxa.folded #adminmenu li.menu-top:hover > a.menu-top { background: var(--flxa-card); box-shadow: 0 2px 8px rgba(0, 0, 0, .08); }
+}
+@media screen and (max-width: 782px) {
+	html body.flxa #adminmenu > li.menu-top:not(.flxa-pin) > a.menu-top { min-height: 44px; }
+	html body.flxa #adminmenu > li.menu-top:not(.flxa-pin) > .flxa-subtoggle { top: 2px; right: 8px; width: 40px; height: 40px; }
+}
+@media screen and (min-width: 961px), screen and (max-width: 782px) {
+	html body.flxa:not(.folded) #adminmenu > li.menu-top > .wp-submenu, html body.flxa:not(.folded) #adminmenu > li.menu-top > .wp-submenu li { background: transparent !important; }
+}
+
+/* ═════════ 1.4.1 ═════════ */
+:root { --flxa-hover: color-mix(in srgb, var(--flxa-accent) 6%, var(--flxa-card, #fff)); --flxa-sel: color-mix(in srgb, var(--flxa-accent) 10%, var(--flxa-card, #fff)); }
+html.flxa-dark { --flxa-hover: color-mix(in srgb, var(--flxa-accent) 10%, var(--flxa-card)); --flxa-sel: color-mix(in srgb, var(--flxa-accent) 18%, var(--flxa-card)); }
+/* Hafif üzerine gelme: koyu gri yerine çok açık yeşil, yumuşak geçiş */
+html body.flxa #adminmenu a.menu-top, html body.flxa #adminmenu .wp-submenu a, #flxa-gfly a.flxa-gfly-item { transition: background-color .15s ease, color .15s ease; }
+html body.flxa #adminmenu > li.menu-top:not(.flxa-pin):hover > a.menu-top,
+html body.flxa #adminmenu > li.menu-top:not(.flxa-pin).opensub > a.menu-top,
+html body.flxa #adminmenu > li.menu-top:not(.flxa-pin) > a.menu-top:focus { background: var(--flxa-hover); color: var(--flxa-text); }
+html body.flxa #adminmenu .wp-submenu a:hover, html body.flxa #adminmenu .wp-submenu a:focus { background: var(--flxa-hover); color: var(--flxa-text); }
+#flxa-gfly a.flxa-gfly-item:hover, #flxa-gfly a.flxa-gfly-item:focus-visible { background: var(--flxa-hover); }
+html body.flxa #adminmenu > li.flxa-pin:not(.flxa-pin-wide) > a.menu-top:hover { background: var(--flxa-hover); border-color: color-mix(in srgb, var(--flxa-accent) 25%, var(--flxa-card-b)); }
+html body.flxa #adminmenu li.flxa-gh.is-closed:hover { background: var(--flxa-hover) !important; border-color: var(--flxa-card-b); }
+@media screen and (min-width: 783px) {
+	body.flxa.folded #adminmenu li.menu-top.opensub > a.menu-top, body.flxa.folded #adminmenu li.menu-top:hover > a.menu-top { background: var(--flxa-hover); box-shadow: none; }
+	body.flxa.folded #adminmenu li.flxa-gh.is-closed:hover .flxa-gmore, body.flxa.folded #adminmenu li.flxa-gh.is-open .flxa-gmore { background: var(--flxa-hover); box-shadow: none; }
+}
+/* Seçili öğe: zemin + › işareti */
+html body.flxa #adminmenu > li.menu-top:not(.flxa-pin).current > a.menu-top,
+html body.flxa #adminmenu > li.menu-top:not(.flxa-pin).wp-has-current-submenu > a.menu-top { background: var(--flxa-sel); color: var(--flxa-accent-strong); font-weight: 600; }
+html body.flxa #adminmenu .wp-submenu li.current > a, html body.flxa #adminmenu .wp-submenu li.current > a:hover {
+	display: flex; align-items: center; gap: 6px; background: var(--flxa-sel); color: var(--flxa-accent-strong); font-weight: 600;
+}
+html body.flxa #adminmenu .wp-submenu li.current > a::after {
+	content: ""; margin-left: auto; flex: none; width: 14px; height: 14px; background-color: currentColor;
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 6 6 6-6 6'/%3E%3C/svg%3E") center / 14px 14px no-repeat;
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 6 6 6-6 6'/%3E%3C/svg%3E") center / 14px 14px no-repeat;
+}
+/* Grup başlıkları kalın değil */
+html body.flxa #adminmenu li.flxa-group .separator::after { font-weight: 500; }
+html body.flxa #adminmenu li.flxa-gh.is-closed .separator::after { font-weight: 500; }
+html body.flxa #adminmenu li.flxa-gh.is-closed .flxa-gcount { font-weight: 500; }
+/* "Menüyü düzenle" menünün en sonunda (sabit değil) */
+body.flxa #adminmenu > li.flxa-side-edit { order: 89; list-style: none; margin: 10px 0 6px; padding: 0; background-color: var(--flxa-side) !important; }
+html body.flxa #adminmenu li.flxa-side-edit .flxa-side-link { padding: 8px 12px; font-size: 12.5px; border-radius: 10px; }
+html body.flxa #adminmenu li.flxa-side-edit .flxa-side-link:hover { background: var(--flxa-hover) !important; color: var(--flxa-text) !important; }
+@media screen and (min-width: 783px) {
+	body.flxa.folded #adminmenu li.flxa-side-edit .flxa-side-link { justify-content: center; padding: 10px 0; }
+}
+/* Altta çıkış düğmesi */
+.flxa-logout-btn.flxa-icon-btn { width: 34px; height: 34px; border-radius: 9px; border: 0; background: transparent; color: var(--flxa-muted) !important; text-decoration: none; }
+.flxa-logout-btn.flxa-icon-btn:hover { background: color-mix(in srgb, var(--flxa-error) 10%, transparent) !important; color: var(--flxa-error) !important; }
+.flxa-logout-btn .flxa-ico { width: 17px; height: 17px; }
+/* WordPress'in üzerine gelince soldaki koyu çizgisi yok */
+html body.flxa #adminmenu li.menu-top:hover > a.menu-top, html body.flxa #adminmenu li.opensub > a.menu-top, html body.flxa #adminmenu li > a.menu-top:focus:not(:focus-visible),
+html body.flxa #adminmenu .wp-submenu a:hover, html body.flxa #adminmenu .wp-submenu a:focus:not(:focus-visible) { box-shadow: none !important; }
+#flxa-gfly .flxa-gfly-bg { background-size: 18px 18px; background-color: var(--flxa-surface-2); }
+html body.flxa #adminmenu .flxa-user .flxa-logout-btn { display: inline-flex !important; align-self: center; align-items: center; justify-content: center; }
+/* Dar ekranda (otomatik daralma) ve daraltılmış menüde alt menü kartı yalnız üzerine gelinen öğede açılır.
+ * Önceden sabitlenen kutucukların alt menüleri kendi satırlarında üst üste açık duruyordu. */
+@media screen and (min-width: 783px) {
+	body.flxa.folded #adminmenu > li.menu-top > .wp-submenu { top: -1000em !important; }
+	body.flxa.folded #adminmenu > li.menu-top:hover > .wp-submenu, body.flxa.folded #adminmenu > li.menu-top.opensub > .wp-submenu { top: var(--flxa-sub-top, -1000em) !important; }
+}
+@media screen and (min-width: 783px) and (max-width: 960px) {
+	body.flxa.auto-fold #adminmenu > li.menu-top > .wp-submenu { top: -1000em !important; }
+	body.flxa.auto-fold #adminmenu > li.menu-top:hover > .wp-submenu, body.flxa.auto-fold #adminmenu > li.menu-top.opensub > .wp-submenu { top: var(--flxa-sub-top, -1000em) !important; }
+	body.flxa.auto-fold #adminmenu li.menu-top:not(.wp-has-submenu) > .wp-submenu { display: none !important; }
+	body.flxa.auto-fold #adminmenu .wp-submenu { overflow: visible; margin-left: 14px !important; }
+	body.flxa.auto-fold #adminmenu .wp-submenu::before { content: ""; position: absolute; left: -7px; top: 17px; width: 12px; height: 12px; background: var(--flxa-surface); border-left: 1px solid var(--flxa-border); border-bottom: 1px solid var(--flxa-border); transform: rotate(45deg); border-radius: 0 0 0 3px; }
+	body.flxa.auto-fold #adminmenu li.menu-top.opensub > a.menu-top, body.flxa.auto-fold #adminmenu li.menu-top:hover > a.menu-top { background: var(--flxa-hover); box-shadow: none; }
+	body.flxa.auto-fold #adminmenu li.flxa-gh.is-closed .flxa-gmore { height: 40px; border-radius: 11px; }
+	body.flxa.auto-fold #adminmenu li.flxa-gh.is-closed:hover .flxa-gmore, body.flxa.auto-fold #adminmenu li.flxa-gh.is-open .flxa-gmore { background: var(--flxa-hover); color: var(--flxa-accent-strong); }
+	body.flxa.auto-fold #adminmenu li.flxa-side-edit .flxa-side-link { justify-content: center; padding: 10px 0; }
+}
+
+/* Açık sayfanın alt menüsü elle kapatılabilir */
+@media screen and (min-width: 961px), screen and (max-width: 782px) {
+	html body.flxa:not(.folded) #adminmenu li.wp-has-current-submenu.flxa-sub-shut > .wp-submenu { display: none !important; }
+}
+html body.flxa #adminmenu li.wp-has-current-submenu:not(.flxa-sub-shut) > .flxa-subtoggle { transform: rotate(90deg); }
+html body.flxa #adminmenu > li.flxa-pin.flxa-pin-wide > .flxa-subtoggle { top: 10px; right: 10px; }
+html body.flxa #adminmenu > li.flxa-pin.flxa-pin-wide.flxa-has-toggle > a.menu-top { padding-right: 36px; }
+
+/* 1.4.1: sayfa açılırken üst bar JS sığdırmadan önce iki satıra taşmasın (göz kırpma) */
+@media screen and (min-width: 783px) {
+	html:not(.flxa-abfit) body.flxa #wpadminbar .quicklinks { display: flex; }
+	html:not(.flxa-abfit) body.flxa #wp-admin-bar-root-default { flex: 1 1 auto; min-width: 0; height: 32px; overflow: hidden; }
+	html:not(.flxa-abfit) body.flxa #wp-admin-bar-top-secondary { flex: none; order: 2; float: none; }
+}
+/* 1.4.1: marka yalnız ikon; arka plan karosu yok */
+.flxa-brand-logo { object-fit: contain; border-radius: 0; background: none; }

@@ -1,0 +1,318 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Flux Roles\n"
+
+msgid "Roller ve erişim"
+msgstr ""
+
+msgid "Otomatik (ilk erişebildiği: Görevler, Sertifikalar, Bağışlar)"
+msgstr ""
+
+msgid "Görevler"
+msgstr ""
+
+msgid "Sertifikalar"
+msgstr ""
+
+msgid "Bağışlar"
+msgstr ""
+
+msgid "Başlangıç (panel ana sayfası)"
+msgstr ""
+
+msgid "Profil"
+msgstr ""
+
+msgid "%s kişi"
+msgid_plural "%s kişi"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Bu işlem için yetkiniz yok."
+msgstr ""
+
+msgid "Kaydedildi. Yetki değişikliği hemen geçerli."
+msgstr ""
+
+msgid "Rol varsayılan yetkilerine döndü."
+msgstr ""
+
+msgid "Kişi role eklendi."
+msgstr ""
+
+msgid "Kişi rolden çıkarıldı."
+msgstr ""
+
+msgid "Bu kullanıcı adı ya da e-posta ile kayıtlı kullanıcı yok. Önce kullanıcıyı oluşturun."
+msgstr ""
+
+msgid "Yöneticiye bu rol verilmez; yönetici zaten her şeyi görür."
+msgstr ""
+
+msgid "İşlem yapılamadı."
+msgstr ""
+
+msgid "Rol eklendi; yalnız panele girme yetkisiyle başlar. Tablodan yetkilerini açın."
+msgstr ""
+
+msgid "Rol silindi; kişileri varsayılan role geçti."
+msgstr ""
+
+msgid "Rol adı 1-40 karakter olmalı."
+msgstr ""
+
+msgid "Rollerin neye erişeceğini buradan açıp kapatın. Kapatılan işlem menüden kalkar, adresle girilse de yapılamaz. WordPress yöneticisi (Administrator) her şeyi görür."
+msgstr ""
+
+msgid "Bu rol silinsin mi? Kişileri varsayılan role geçer."
+msgstr ""
+
+msgid "Rolü sil"
+msgstr ""
+
+msgid "Yeni rol"
+msgstr ""
+
+msgid "Örneğin Gönüllü ya da Muhasebe. Yalnız panele girme yetkisiyle başlar."
+msgstr ""
+
+msgid "Rol adı"
+msgstr ""
+
+msgid "Rol ekle"
+msgstr ""
+
+msgid "Erişim"
+msgstr ""
+
+msgid "%s kurulu değil"
+msgstr ""
+
+msgid "Ayar kaydedilir; eklenti bu yetkiyi uygulayan sürüme güncellenince geçerli olur."
+msgstr ""
+
+msgid "%s güncellemesi bekleniyor"
+msgstr ""
+
+msgid "geniş yetki"
+msgstr ""
+
+msgid "Ayarlar"
+msgstr ""
+
+msgid "%s girişte açılan ekran"
+msgstr ""
+
+msgid "Referans linki geçerlilik süresi"
+msgstr ""
+
+msgid "gün"
+msgstr ""
+
+msgid "Referans linkiyle gelen ziyaretçi bu süre içinde bağış yaparsa bağış o kişiye bağlanır. Başka bir referans linkiyle gelirse son link geçerli olur."
+msgstr ""
+
+msgid "Kaydet"
+msgstr ""
+
+msgid "Bu rolün yetkileri varsayılana dönsün mü?"
+msgstr ""
+
+msgid "%s: varsayılana döndür"
+msgstr ""
+
+msgid "Kişiler"
+msgstr ""
+
+msgid "WhatsApp numarası ekle"
+msgstr ""
+
+msgid "Referans linki"
+msgstr ""
+
+msgid "Kopyala"
+msgstr ""
+
+msgid "Bu kişi rolden çıkarılsın mı?"
+msgstr ""
+
+msgid "Rolden çıkar"
+msgstr ""
+
+msgid "Henüz kimse yok."
+msgstr ""
+
+msgid "Kullanıcı adı ya da e-posta"
+msgstr ""
+
+msgid "Ekle"
+msgstr ""
+
+msgid "Yeni kişi için önce <a href=\"%s\">kullanıcı oluşturun</a>, Rol alanından bu rollerden birini seçin."
+msgstr ""
+
+msgid "Tüm rollerin tüm yetkileri için <a href=\"%s\">Yönetim teması › Yetkiler</a>."
+msgstr ""
+
+msgid "Kopyalandı"
+msgstr ""
+
+msgid "Yönetici"
+msgstr ""
+
+msgid "Bu sayfadaki her yetkiye sahip: tüm bağışlar, sertifika ve görev yönetimi, raporlar. WordPress yöneticisi gibi eklenti kurup site ayarlarını değiştiremez."
+msgstr ""
+
+msgid "İdareci"
+msgstr ""
+
+msgid "Personelin yapabildiği her şey, ek olarak bağış ve sertifika dashboard'larını (genel toplamlar) ve raporları görür, rapor zamanlamalarını ayarlar."
+msgstr ""
+
+msgid "Personel"
+msgstr ""
+
+msgid "Görevlerde normal kullanıcı, sertifika oluşturur, başkası adına bağış açar, kendi referans olduğu bağışları, bağışçıları ve sertifikaları görür."
+msgstr ""
+
+msgid "Panelden eklenen rol."
+msgstr ""
+
+msgid "Genel"
+msgstr ""
+
+msgid "Yönetim paneline girer"
+msgstr ""
+
+msgid "Referans olabilir (kişisel referans linki alır, sertifika ve bağışlarda referans seçilebilir)"
+msgstr ""
+
+msgid "Görevleri kullanır; erişimi olduğu proje ve listeleri görür"
+msgstr ""
+
+msgid "Proje, klasör ve liste oluşturur"
+msgstr ""
+
+msgid "Görevlerde AI özelliklerini kullanır"
+msgstr ""
+
+msgid "Görevleri yönetir (her projeyi görür, kullanım panosu, ayarlar)"
+msgstr ""
+
+msgid "Sertifika oluşturur"
+msgstr ""
+
+msgid "Yalnız kendi oluşturduğu ve referansı olduğu sertifikaları görür"
+msgstr ""
+
+msgid "Toplu gönderim yapar"
+msgstr ""
+
+msgid "Sertifika dashboard'unu görür"
+msgstr ""
+
+msgid "Sertifikaları yönetir (tümü, şablonlar, etkinlikler, ayarlar)"
+msgstr ""
+
+msgid "Referansı olduğu bağışları görür"
+msgstr ""
+
+msgid "Kendi bağışçılarını listeler (referansı olduğu bağışların bağışçıları)"
+msgstr ""
+
+msgid "Başkası adına bağış oluşturur, referans kendisi olur (panelden ya da WhatsApp asistanından)"
+msgstr ""
+
+msgid "Referansı olduğu bağış ödenince ya da iptal olunca haber alır"
+msgstr ""
+
+msgid "Bağış dashboard'unu görür (genel toplamlar)"
+msgstr ""
+
+msgid "Tüm bağışları ve bağışçıları görür"
+msgstr ""
+
+msgid "Çağrı Merkezi"
+msgstr ""
+
+msgid "WhatsApp sohbetlerini kullanır"
+msgstr ""
+
+msgid "WhatsApp asistanında rolüne göre personel araçlarını kullanır (numarası profilde kayıtlıysa)"
+msgstr ""
+
+msgid "Çağrı Merkezini yönetir (AI asistan, ayarlar)"
+msgstr ""
+
+msgid "Stüdyo"
+msgstr ""
+
+msgid "Stüdyo'yu kullanır (kendi galerisi ve paylaşılan klasörler)"
+msgstr ""
+
+msgid "Stüdyo'yu yönetir (herkesin galerisi, ayarlar)"
+msgstr ""
+
+msgid "Raporlar"
+msgstr ""
+
+msgid "Kendisine günlük/dönemsel rapor gönderilebilir"
+msgstr ""
+
+msgid "Genel raporları görür (tüm personel, toplamlar)"
+msgstr ""
+
+msgid "Personel ve idareci rapor zamanlamalarını ve motivasyon metinlerini ayarlar"
+msgstr ""
+
+msgid "Telefon numarası geçersiz. Ülke koduyla ya da 05xx ile yazın."
+msgstr ""
+
+msgid "Bu numara başka bir kullanıcıda kayıtlı: %s."
+msgstr ""
+
+msgid "WhatsApp numarası"
+msgstr ""
+
+msgid "Telefon"
+msgstr ""
+
+msgid "WhatsApp asistanı bu numaradan yazan kişiyi bu kullanıcı olarak tanır ve rolünün izin verdiği işlemleri (ör. başkası adına bağış, kendi bağışçıları) açar. Numarayı yalnız yönetici değiştirebilir."
+msgstr ""
+
+msgid "Kişisel link"
+msgstr ""
+
+msgid "Bu linkle siteye gelenlerin bağışlarında referans olarak siz görünürsünüz."
+msgstr ""
+
+msgid "Başka bir sayfayı paylaşacaksanız adresin sonuna %s ekleyin."
+msgstr ""
+
+msgid "Flux Roles"
+msgstr ""
+
+msgid "FluxWP rolleri"
+msgstr ""
+
+msgid "Rol eksik: %s. Eklentiyi kapatıp açın."
+msgstr ""
+
+msgid "Personel WhatsApp numaraları"
+msgstr ""
+
+msgid "%s kişinin profilinde WhatsApp numarası yok; asistan bu kişileri tanımaz."
+msgstr ""
+
+msgid "Rollerdeki herkesin numarası kayıtlı."
+msgstr ""
+
+msgid "Rol yetkilerini uygulayan eklentiler"
+msgstr ""
+
+msgid "Açık ama henüz uygulanmayan yetkiler var; şu eklentilerin güncellemesi bekleniyor: %s. O zamana kadar bu kişiler ilgili ekranı göremez."
+msgstr ""
+
+msgid "Açık yetkilerin hepsi uygulanıyor."
+msgstr ""

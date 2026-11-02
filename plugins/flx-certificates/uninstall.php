@@ -1,0 +1,44 @@
+<?php
+/**
+ * Eklenti silinirken çalışır. Veriler yalnızca Ayarlar > "Silerken verileri de sil" açıksa silinir.
+ */
+defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
+
+$flxs_settings = get_option( 'flxs_settings', array() );
+if ( empty( $flxs_settings['delete_on_uninstall'] ) ) {
+	return;
+}
+
+global $wpdb;
+foreach ( array( 'people', 'templates', 'certificates', 'batches', 'messages', 'providers', 'logs', 'events' ) as $flxs_t ) {
+	$wpdb->query( 'DROP TABLE IF EXISTS ' . $wpdb->prefix . 'flxs_' . $flxs_t ); // phpcs:ignore
+}
+foreach ( array( 'flxs_settings', 'flxs_custom_fonts', 'flxs_db_version', 'flxs_defaults_installed', 'flxs_flush_rewrite', 'flxs_queue_lock', 'flxs_recipients', 'flxs_tpl_migration', 'flxs_site', 'flxs_caps_dashboard' ) as $flxs_o ) {
+	delete_option( $flxs_o );
+}
+$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE 'flxs\_slot\_%' OR option_name LIKE '\_transient\_flxs\_%' OR option_name LIKE '\_transient\_timeout\_flxs\_%'" ); // phpcs:ignore
+
+wp_clear_scheduled_hook( 'flxs_queue_tick' );
+wp_clear_scheduled_hook( 'flxs_daily' );
+if ( function_exists( 'as_unschedule_all_actions' ) ) {
+	as_unschedule_all_actions( 'flxs_run_queue' );
+}
+remove_role( 'flxs_personel' );
+foreach ( array( 'administrator' ) as $flxs_r ) {
+	$flxs_role = get_role( $flxs_r );
+	if ( $flxs_role ) {
+		$flxs_role->remove_cap( 'flxs_use' );
+		$flxs_role->remove_cap( 'flxs_manage' );
+		$flxs_role->remove_cap( 'flxs_bulk' );
+	}
+}
+
+$flxs_up = wp_upload_dir();
+$flxs_dir = trailingslashit( $flxs_up['basedir'] ) . 'flx-certificates';
+if ( is_dir( $flxs_dir ) ) {
+	$flxs_it = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $flxs_dir, FilesystemIterator::SKIP_DOTS ), RecursiveIteratorIterator::CHILD_FIRST );
+	foreach ( $flxs_it as $flxs_f ) {
+		$flxs_f->isDir() ? rmdir( $flxs_f->getPathname() ) : unlink( $flxs_f->getPathname() ); // phpcs:ignore
+	}
+	rmdir( $flxs_dir ); // phpcs:ignore
+}

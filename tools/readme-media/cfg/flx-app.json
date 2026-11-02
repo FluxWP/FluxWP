@@ -1,0 +1,120 @@
+{
+ "seed": [
+  "seed-uygulama.php"
+ ],
+ "slug": "flx-app",
+ "css": ".flx-cookie{display:none!important}#wp-admin-bar-woocommerce-site-visibility-badge{display:none!important}#flxai-host{display:none!important}",
+ "shots": [
+  {
+   "name": "general",
+   "url": "admin.php?page=flxapp-settings",
+   "vh": 1000,
+   "after": 800
+  },
+  {
+   "name": "modules",
+   "url": "admin.php?page=flxapp-settings&tab=modules",
+   "vh": 1000,
+   "after": 800
+  },
+  {
+   "name": "menu",
+   "url": "admin.php?page=flxapp-settings&tab=menu",
+   "vh": 1000,
+   "after": 800
+  },
+  {
+   "name": "apps",
+   "url": "admin.php?page=flxapp-settings&tab=apps",
+   "vh": 900,
+   "after": 800
+  },
+  {
+   "name": "access",
+   "url": "admin.php?page=flxapp-settings&tab=all",
+   "vh": 900,
+   "after": 800
+  },
+  {
+   "name": "consent",
+   "url": "/wp-login.php?action=flxapp_authorize&response_type=code&client_id=flx-masaustu&redirect_uri=flxmasaustu%3A%2F%2Foauth%2Fcallback&state=demo&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM0&code_challenge_method=S256",
+   "vh": 900,
+   "wait": 2500
+  }
+ ],
+ "dark": [
+  {
+   "name": "dark",
+   "url": "admin.php?page=flxapp-settings&tab=modules",
+   "vh": 900
+  }
+ ],
+ "mobile": [
+  {
+   "name": "mobile",
+   "url": "/wp-login.php?action=flxapp_authorize&response_type=code&client_id=flx-masaustu&redirect_uri=flxmasaustu%3A%2F%2Foauth%2Fcallback&state=demo&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM0&code_challenge_method=S256",
+   "wait": 2500
+  }
+ ],
+ "gif": [
+  {
+   "goto": "admin.php?page=flxapp-settings",
+   "wait": 2200
+  },
+  {
+   "move": [
+    700,
+    350
+   ],
+   "wait": 700
+  },
+  {
+   "scroll": 350,
+   "wait": 900
+  },
+  {
+   "goto": "admin.php?page=flxapp-settings&tab=modules",
+   "wait": 2200
+  },
+  {
+   "move": [
+    800,
+    330
+   ],
+   "wait": 900
+  },
+  {
+   "goto": "admin.php?page=flxapp-settings&tab=menu",
+   "wait": 2200
+  },
+  {
+   "move": [
+    800,
+    400
+   ],
+   "wait": 900
+  },
+  {
+   "goto": "admin.php?page=flxapp-settings&tab=all",
+   "wait": 2200
+  },
+  {
+   "move": [
+    900,
+    300
+   ],
+   "wait": 900
+  },
+  {
+   "goto": "/wp-login.php?action=flxapp_authorize&response_type=code&client_id=flx-masaustu&redirect_uri=flxmasaustu%3A%2F%2Foauth%2Fcallback&state=demo&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM0&code_challenge_method=S256",
+   "wait": 2500
+  },
+  {
+   "move": [
+    720,
+    520
+   ],
+   "wait": 1500
+  }
+ ]
+}

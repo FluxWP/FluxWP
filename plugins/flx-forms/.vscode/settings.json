@@ -1,0 +1,57 @@
+{
+    "codegraphy.connectionType": "Interaction",
+    "codegraphy.nodeSize": "Lines",
+    "codegraphy.showNodeModules": false,
+    "codegraphy.showOrphans": false,
+    "codegraphy.showLabels": false,
+    "codegraphy.showOutlines": true,
+    "codegraphy.showArrows": false,
+    "codegraphy.doCollisions": true,
+    "codegraphy.chargeForce": -100,
+    "codegraphy.linkDistance": 100,
+    "codegraphy.nodeColor": "D3",
+    "codegraphy.selectedD3Color": "Spectral",
+    "codegraphy.selectedNodeColor": "#fff",
+    "codegraphy.favoriteNodeColor": "#ffd700",
+    "codegraphy.outlineColor": "#ffd700",
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#28693c",
+        "activityBar.background": "#28693c",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#35235c",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "commandCenter.border": "#e7e7e799",
+        "sash.hoverBorder": "#28693c",
+        "statusBar.background": "#1a4427",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#28693c",
+        "statusBarItem.remoteBackground": "#1a4427",
+        "statusBarItem.remoteForeground": "#e7e7e7",
+        "titleBar.activeBackground": "#1a4427",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#1a442799",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#1a4427",
+    "[php]": {
+        "files.encoding": "utf8",
+        "files.insertFinalNewline": true,
+        "files.trimFinalNewlines": true,
+        "files.trimTrailingWhitespace": true,
+        "editor.formatOnSave": false
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": null
+    },
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "editor.formatOnSave": false,
+    "chat.tools.terminal.autoApprove": {
+        "ForEach-Object": true
+    },
+    "git.scanRepositories": [
+        "vendor"
+    ],
+    "git.repositoryScanMaxDepth": 2
+}

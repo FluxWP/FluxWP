@@ -1,0 +1,55 @@
+{
+	"format": "flx-preset/1",
+	"id": "flux-demo",
+	"name": "FluxWP: demo mağaza",
+	"version": "0.1.0",
+	"license": "CC-BY-4.0",
+	"description": "Boş bir siteyi örnek bir mağazaya çevirir: dört ürün, Hakkımızda, İletişim ve Blog sayfaları, bir örnek yazı. Kuruma özel hiçbir bilgi içermez; sonra panelden değiştirin ya da kaldırın.",
+	"requires": {
+		"theme": "fluxwp",
+		"plugins": [ "woocommerce" ]
+	},
+	"profile": {
+		"name": "Flux Mağaza",
+		"tagline": "Günlük hayat için sade ürünler",
+		"email": "merhaba@{domain}"
+	},
+	"media": {
+		"urun-1": { "file": "assets/urun-1.webp", "title": "Kanvas çanta", "alt": "Lacivert kanvas çanta" },
+		"urun-2": { "file": "assets/urun-2.webp", "title": "Seramik kupa", "alt": "Turuncu seramik kupa" },
+		"urun-3": { "file": "assets/urun-3.webp", "title": "Not defteri", "alt": "Yeşil kapaklı not defteri" },
+		"urun-4": { "file": "assets/urun-4.webp", "title": "Termos", "alt": "Koyu gri termos" }
+	},
+	"wp": {
+		"blogname": "{profile.name}",
+		"blogdescription": "{profile.tagline}",
+		"show_on_front": "page",
+		"page_on_front": "@page:ana-sayfa",
+		"page_for_posts": "@page:blog"
+	},
+	"settings": {
+		"flx_ayarlar": { "site_mod": "shop" }
+	},
+	"content": [
+		{ "type": "page", "key": "ana-sayfa", "title": "Ana Sayfa", "body": "" },
+		{ "type": "page", "key": "blog", "title": "Blog", "body": "" },
+		{
+			"type": "page", "key": "hakkimizda", "title": "Hakkımızda",
+			"body": "<!-- wp:paragraph -->\n<p>Günlük hayatı kolaylaştıran, uzun ömürlü ve sade ürünler seçiyoruz. Bu metin bir örnektir; kendi hikâyenizle değiştirin.</p>\n<!-- /wp:paragraph -->"
+		},
+		{
+			"type": "page", "key": "iletisim", "title": "İletişim",
+			"body": "<!-- wp:paragraph -->\n<p>Bize {profile.email} adresinden ulaşabilirsiniz.</p>\n<!-- /wp:paragraph -->"
+		},
+		{
+			"type": "post", "key": "hos-geldiniz", "title": "Mağazamıza hoş geldiniz",
+			"excerpt": "Yeni mağazamız açıldı. İlk ürünlerimizi keşfedin.",
+			"body": "<!-- wp:paragraph -->\n<p>Yeni mağazamız açıldı. İlk ürünlerimizi keşfedin, sorularınız için bize yazın.</p>\n<!-- /wp:paragraph -->"
+		},
+		{ "type": "product", "key": "kanvas-canta", "name": "Kanvas çanta", "price": "450", "sku": "DEMO-001", "short": "Dayanıklı, yıkanabilir pamuk kanvas.", "image": "@media:urun-1" },
+		{ "type": "product", "key": "seramik-kupa", "name": "Seramik kupa", "price": "220", "sku": "DEMO-002", "short": "El yapımı, 350 ml.", "image": "@media:urun-2" },
+		{ "type": "product", "key": "not-defteri", "name": "Not defteri", "price": "160", "sku": "DEMO-003", "short": "A5, 120 sayfa, noktalı.", "image": "@media:urun-3" },
+		{ "type": "product", "key": "termos", "name": "Termos", "price": "690", "sku": "DEMO-004", "short": "Çelik, 12 saat sıcak tutar.", "image": "@media:urun-4" }
+	],
+	"migrations": []
+}

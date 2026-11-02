@@ -1,0 +1,6 @@
+/* WP admin içinde: kök eleman tam alanı kaplar, panelin yazı tipini ve rengini sıfırlar. */
+.flux-root{position:relative;height:100%;min-height:480px;font-family:var(--flux-font-family);font-size:var(--flux-font-md);color:var(--flux-text);background:var(--flux-bg);line-height:1.4;box-sizing:border-box}
+.flux-root *,.flux-root *::before,.flux-root *::after{box-sizing:border-box}
+.flux-root h1,.flux-root h2,.flux-root h3{color:var(--flux-text);padding:0}
+.flux-root input[type=checkbox]{margin:0}
+.flux-root input,.flux-root textarea{box-shadow:none;min-height:0;line-height:inherit}

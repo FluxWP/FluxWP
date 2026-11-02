@@ -1,0 +1,143 @@
+name: Paket release
+
+# main'e push edilen her pakette sürüm (Version:) değiştiyse:
+#   zip üret → <slug>-v<sürüm> tag'i + GitHub Release → güncelleme sunucusunun önbelleğini boşalt.
+# Sürüm değişmediyse hiçbir şey yapılmaz. Sürümde "-" varsa (1.2.0-beta.1) pre-release olur.
+# Yayından önce güncelleme testi (bin/test-update.sh): önceki sürüm kurulu temiz bir WordPress'te
+# yeni sürüme geçilir, sayfalar açılır; PHP fatal / HTTP 500 olursa o paket yayınlanmaz.
+# üretilir; sunucu webhook'u ve README commit'i yalnız asıl repoda (FluxWP) yapılır.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'plugins/**'
+      - 'themes/**'
+  workflow_dispatch:
+    inputs:
+      package:
+        description: 'Tek paket (ör. plugins/flx-forms). Boşsa hepsi kontrol edilir.'
+        required: false
+      skip_tests:
+        description: 'Güncelleme testini atla (yalnız acil durumda)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Paketleri bul
+        id: find
+        run: |
+          if [ -n "${{ github.event.inputs.package }}" ]; then
+            echo "dirs=${{ github.event.inputs.package }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "dirs=$(ls -d plugins/*/ themes/*/ 2>/dev/null | sed 's#/$##' | tr '\n' ' ')" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Test ortamı (PHP, MySQL, WP-CLI)
+        run: |
+          sudo systemctl start mysql.service
+          curl -fsSL -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+          chmod +x /usr/local/bin/wp
+          php -v | head -1
+
+      - name: Sürümü değişenleri test et ve yayınla
+        env:
+          GH_TOKEN: ${{ github.token }}
+          UPDATE_SERVER: ${{ vars.UPDATE_SERVER || 'https://update.yesilturkiyeist.org' }}
+          WEBHOOK_SECRET: ${{ secrets.UPDATE_WEBHOOK_SECRET }}
+        run: |
+          set -euo pipefail
+          released=0
+          failed=""
+          mkdir -p prev
+          for dir in ${{ steps.find.outputs.dirs }}; do
+            [ -d "$dir" ] || continue
+            eval "$(bin/package-info.sh "$dir")"
+            if [ -z "$VERSION" ]; then
+              echo "::warning::$dir: Version başlığı yok, atlandı"; continue
+            fi
+            tag="$SLUG-v$VERSION"
+            if git rev-parse -q --verify "refs/tags/$tag" >/dev/null; then
+              echo "$tag zaten var"; continue
+            fi
+
+            # Sürüm geri gitmesin.
+            last="$(git tag -l "$SLUG-v*" | sed "s/^$SLUG-v//" | sort -V | tail -1)"
+            if [ -n "$last" ] && [ "$(printf '%s\n%s\n' "$last" "$VERSION" | sort -V | tail -1)" != "$VERSION" ]; then
+              echo "::error::$SLUG: $VERSION, son yayınlanan $last sürümünden küçük"; exit 1
+            fi
+
+            bin/build.sh "$dir"
+
+            if [ "${{ github.event.inputs.skip_tests }}" != "true" ]; then
+              prev_zip=""
+              if [ -n "$last" ] && gh release download "$SLUG-v$last" -p "$SLUG.zip" -D "prev/$SLUG" --clobber >/dev/null 2>&1; then
+                prev_zip="prev/$SLUG/$SLUG.zip"
+              fi
+              echo "::group::$SLUG $VERSION güncelleme testi (önceki: ${last:-yok})"
+              if ! DB_MODE=mysql DB_USER=root DB_PASS=root bin/test-update.sh "$dir" "dist/$SLUG.zip" "$prev_zip"; then
+                echo "::endgroup::"
+                echo "::error::$SLUG $VERSION testten geçmedi, yayınlanmadı"
+                failed="$failed $SLUG"
+                continue
+              fi
+              echo "::endgroup::"
+            fi
+
+            bin/release-notes.sh "$dir" > "dist/$SLUG-notes.md"
+            pre=""
+            case "$VERSION" in *-*) pre="--prerelease" ;; esac
+            gh release create "$tag" "dist/$SLUG.zip" \
+              --target "$GITHUB_SHA" \
+              --title "$NAME $VERSION" \
+              --notes-file "dist/$SLUG-notes.md" $pre
+            echo "::notice::$tag yayınlandı"
+            released=1
+          done
+
+          if [ "$released" = 1 ] && [ -n "${WEBHOOK_SECRET:-}" ] && [ "$GITHUB_REPOSITORY_OWNER" = "FluxWP" ]; then
+            body='{"source":"github-actions"}'
+            sig="sha256=$(printf '%s' "$body" | openssl dgst -sha256 -hmac "$WEBHOOK_SECRET" | sed 's/^.* //')"
+            curl -fsS -X POST "$UPDATE_SERVER/v1/webhook" \
+              -H 'Content-Type: application/json' -H 'X-GitHub-Event: release' \
+              -H "X-Hub-Signature-256: $sig" --data "$body" || echo "::warning::Sunucu önbelleği boşaltılamadı (5 dk içinde kendisi yenilenir)"
+          fi
+
+          if [ -n "$failed" ]; then
+            echo "::error::Yayınlanmayan paketler:$failed"
+            exit 1
+          fi
+
+      - name: README paket tablosunu güncelle
+        # Kopya repoda da yazılırsa iki tarafta farklı README commit'i oluşur, main ayrışır.
+        if: always() && github.repository_owner == 'FluxWP'
+        run: |
+          set -euo pipefail
+          git fetch -q --tags --force origin
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3; do
+            git fetch -q origin main && git reset -q --hard origin/main
+            bin/readme-table.sh README.md
+            [ -f README.tr.md ] && bin/readme-table.sh README.tr.md
+            if git diff --quiet -- README.md README.tr.md; then echo "README güncel"; exit 0; fi
+            git add README.md README.tr.md 2>/dev/null || git add README.md
+            git commit -q -m "README: paket sürümleri"
+            if git push -q origin HEAD:main; then echo "README güncellendi"; exit 0; fi
+            sleep $((i * 5))
+          done
+          echo "::warning::README tablosu push edilemedi"

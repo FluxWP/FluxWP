@@ -1,0 +1,31 @@
+{
+  "slug": "flux",
+  "name": "FluxWP",
+  "shortName": "FluxWP",
+  "bundleId": "app.fluxapp.desktop",
+  "scheme": "fluxapp",
+  "icon": "icon.svg",
+  "logo": "logo.svg",
+  "logoDark": "logo-dark.svg",
+  "colors": {
+    "primary": "#4338CA",
+    "primaryContrast": "#FFFFFF",
+    "accent": "#F59E0B"
+  },
+  "defaultSite": null,
+  "lockSite": false,
+  "loginMethods": [
+    "oauth",
+    "apikey"
+  ],
+  "defaultLocale": "tr",
+  "locales": [
+    "tr",
+    "en"
+  ],
+  "supportUrl": null,
+  "appIcon": {
+    "background": null
+  },
+  "updateUrl": "https://update.yesilturkiyeist.org"
+}

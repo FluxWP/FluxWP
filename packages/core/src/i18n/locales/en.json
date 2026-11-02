@@ -1,0 +1,308 @@
+{
+  "common": {
+    "back": "Back",
+    "done": "Done",
+    "empty": "Nothing here yet.",
+    "refresh": "Refresh",
+    "retry": "Try again",
+    "cancel": "Cancel",
+    "close": "Close",
+    "send": "Send"
+  },
+  "languages": {
+    "tr": "Türkçe",
+    "en": "English"
+  },
+  "auth": {
+    "welcome": "{{name}}",
+    "connecting": "Connecting to your account…",
+    "addSiteTitle": "Connect your site",
+    "addSiteHint": "Enter your WordPress site address. You can add more than one site.",
+    "siteUrl": "Site address",
+    "siteUrlPlaceholder": "example.org",
+    "continue": "Continue",
+    "change": "Change",
+    "loginBrowser": "Sign in with browser",
+    "waitingBrowser": "Waiting for approval in browser…",
+    "useApiKey": "Connect with an API key",
+    "apiKey": "API key",
+    "apiKeyHint": "In the dashboard: Users › App access › Create key.",
+    "login": "Sign in",
+    "noYtApp": "The Flux App plugin is not installed on this site. Install it to sign in from the app.",
+    "tryDemo": "Try the demo",
+    "footer": "{{name}} · secure connection, your password is never stored in the app"
+  },
+  "errors": {
+    "invalid_url": "This address is not valid.",
+    "unreachable": "Could not reach the site. Check the address and your connection.",
+    "not_wordpress": "No WordPress REST API found at this address.",
+    "access_denied": "Sign-in was not approved.",
+    "oauth_failed": "Sign-in could not be completed. Please try again.",
+    "oauth_unsupported": "This sign-in method is not available in the browser yet; use the desktop app.",
+    "bad_credentials": "The key or session is invalid.",
+    "server": "No response from the server.",
+    "unknown": "Something went wrong."
+  },
+  "accounts": {
+    "title": "Accounts",
+    "add": "Add site or account",
+    "active": "Active",
+    "logout": "Sign out",
+    "relogin": "Sign in again",
+    "needsLogin": "Your session expired, please sign in again.",
+    "kind": {
+      "oauth": "Browser sign-in",
+      "apikey": "API key",
+      "demo": "Demo"
+    }
+  },
+  "nav": {
+    "menu": "Main menu",
+    "search": "Search or jump to",
+    "edit": "Edit menu",
+    "reset": "Reset",
+    "show": "Show",
+    "hide": "Hide",
+    "webView": "Opens in dashboard view",
+    "collapse": "Hide sidebar",
+    "expand": "Show sidebar",
+    "back": "Back",
+    "forward": "Forward",
+    "resize": "Sidebar width",
+    "submenu": "Toggle submenu",
+    "groups": {
+      "general": "General",
+      "comms": "Communication",
+      "donate": "Donations",
+      "content": "Content",
+      "growth": "Growth",
+      "screens": "Screens",
+      "system": "System",
+      "other": "Other",
+      "apps": "Apps"
+    }
+  },
+  "palette": {
+    "placeholder": "Search screens or commands…",
+    "empty": "No results."
+  },
+  "dashboard": {
+    "morning": "Good morning {{name}}",
+    "afternoon": "Good afternoon {{name}}",
+    "evening": "Good evening {{name}}",
+    "customize": "Customize"
+  },
+  "web": {
+    "title": "This screen opens in dashboard view",
+    "body": "Its native version is not ready yet. You can open the dashboard page, already signed in, in a separate window.",
+    "open": "Open in dashboard",
+    "openBrowser": "Open in browser"
+  },
+  "settings": {
+    "title": "Settings",
+    "appearance": "Appearance",
+    "theme": "Theme",
+    "themes": {
+      "system": "System",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "language": "Language",
+    "about": "About",
+    "app": "App",
+    "support": "Support",
+    "contact": "Contact us",
+    "logoutConfirm": "Sign out of {{site}}?"
+  },
+  "oauth": {
+    "doneTitle": "Signed in",
+    "doneBody": "You can close this tab and return to the app."
+  },
+  "review": {
+    "title": "Awaiting approval",
+    "count_one": "{{count}} donation",
+    "count_other": "{{count}} donations",
+    "noReceipt": "No receipt",
+    "noReceiptBody": "No receipt has arrived for this donation yet.",
+    "emptyTitle": "No pending donations",
+    "emptyBody": "New receipts will show up here.",
+    "allDone": "All done",
+    "ref": "Referral",
+    "receipt": "Receipt",
+    "approve": "Approve",
+    "reject": "Cancel donation",
+    "approveConfirm": "Approve the {{amount}} donation from {{name}}? Certificates will be sent.",
+    "approved": "Donation approved.",
+    "approvedCert_one": "Donation approved, {{count}} certificate sent.",
+    "approvedCert_other": "Donation approved, {{count}} certificates sent.",
+    "rejected": "Donation cancelled.",
+    "rejectTitle": "Cancel {{name}}'s donation",
+    "reason": "Reason",
+    "reasonPlaceholder": "e.g. receipt amount does not match",
+    "notify": "Notify the donor"
+  },
+  "tasks": {
+    "title": "Tasks",
+    "views": {
+      "mine": "Assigned to me",
+      "today": "Today",
+      "overdue": "Overdue"
+    },
+    "projects": "Projects",
+    "search": "Search tasks",
+    "quickAdd": "Add a task, press Enter",
+    "empty": "No tasks",
+    "complete": "Complete",
+    "reopen": "Reopen",
+    "unassigned": "Unassigned",
+    "checklist": "Checklist",
+    "comments": "Comments",
+    "noComments": "No comments yet.",
+    "addComment": "Write a comment"
+  },
+  "inbox": {
+    "title": "WhatsApp",
+    "search": "Search name or number",
+    "filters": {
+      "open": "Open",
+      "unread": "Unread",
+      "mine": "Mine",
+      "all": "All"
+    },
+    "empty": "No chats",
+    "pick": "Select a chat",
+    "assigned": "Handled by {{name}}",
+    "donations_one": "{{count}} donation",
+    "donations_other": "{{count}} donations",
+    "botOn": "Assistant on",
+    "botOff": "Assistant off",
+    "botHint": "Turn the AI assistant on/off for this chat",
+    "assistant": "Assistant",
+    "write": "Type a message, Enter to send",
+    "blocked": "This contact is blocked, messages cannot be sent."
+  },
+  "wa": {
+    "search": "Search name, number, note or message",
+    "filters": {
+      "all": "Open",
+      "unread": "Unread",
+      "mine": "Assigned to me",
+      "unassigned": "Unassigned",
+      "closed": "Closed"
+    },
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "reply": "Reply",
+    "copy": "Copy",
+    "retry": "Retry",
+    "deleteNote": "Delete note",
+    "menu": "Message menu",
+    "react": "React",
+    "src": {
+      "bot": "Assistant",
+      "ai": "AI suggestion",
+      "phone": "From phone",
+      "auto": "Automatic",
+      "api": "API",
+      "cert": "Certificate"
+    },
+    "message": "Send message",
+    "deletedMsg": "This message was deleted",
+    "deletedBadge": "Deleted by sender",
+    "poll": "Poll (view in WhatsApp)",
+    "unsupported": "Unsupported message",
+    "note": "Internal note",
+    "customer": "Customer",
+    "you": "You",
+    "edited": "edited",
+    "failed": "Not sent",
+    "types": {
+      "text": "Message",
+      "note": "Note",
+      "image": "Photo",
+      "video": "Video",
+      "audio": "Voice message",
+      "document": "Document",
+      "sticker": "Sticker",
+      "location": "Location",
+      "contact": "Contact card",
+      "poll": "Poll",
+      "deleted": "Deleted message",
+      "unknown": "Message"
+    },
+    "noteHint": "Internal note: only your team sees it, not the customer.",
+    "attach": "Attach file",
+    "noteMode": "Internal note",
+    "quickReplies": "Quick replies",
+    "aiSuggest": "AI suggestion",
+    "notePlaceholder": "Write a note for the team",
+    "caption": "Add a caption (optional)",
+    "write": "Type a message, Enter to send",
+    "sessionExpired": "Session expired. Please sign in again.",
+    "offline": "Can't reach the server, retrying…",
+    "connDown": "{{name}} connection is down",
+    "typing": "typing…",
+    "recording": "recording audio…",
+    "botTyping": "Assistant is typing…",
+    "bootError": "Couldn't load WhatsApp",
+    "quoteNotLoaded": "The quoted message isn't loaded yet, scroll up.",
+    "closed": "Closed",
+    "bot": {
+      "on": "Assistant on",
+      "off": "Assistant off",
+      "paused": "Assistant paused"
+    },
+    "assign": "Assign chat",
+    "unassigned": "Unassigned",
+    "pin": "Pin",
+    "unpin": "Unpin",
+    "close": "Close chat",
+    "reopen": "Reopen chat",
+    "emoji": "Emoji",
+    "voice": {
+      "start": "Record voice message",
+      "recording": "Recording",
+      "denied": "Microphone permission denied."
+    },
+    "info": {
+      "title": "Contact info",
+      "labels": "Labels",
+      "notes": "Notes",
+      "notesHint": "Only your team sees this",
+      "saved": "saved",
+      "insert": "Insert",
+      "copied": "Number copied",
+      "firstSeen": "First message: {{date}}"
+    },
+    "new": {
+      "title": "New chat",
+      "phone": "Phone number",
+      "name": "Name (optional)",
+      "line": "Line",
+      "invalid": "Invalid number",
+      "exists": "A chat with this number exists: {{name}}",
+      "hasWa": "Uses WhatsApp",
+      "noWa": "No WhatsApp on this number",
+      "go": "Go to chat",
+      "start": "Start chat"
+    }
+  },
+  "account": {
+    "menu": "Account",
+    "profile": "My profile",
+    "switch": "Switch account",
+    "web": "Open site"
+  },
+  "update": {
+    "title": "Updates",
+    "check": "Check",
+    "checking": "Checking…",
+    "upToDate": "Up to date",
+    "newVersion": "New version {{version}}",
+    "downloading": "Downloading {{version}} {{pct}}",
+    "restart": "Restart to update",
+    "download": "Download",
+    "installing": "Installing…",
+    "failed": "Could not check"
+  }
+}

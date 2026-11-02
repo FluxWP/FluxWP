@@ -1,0 +1,22 @@
+name: FluxWP CI
+on:
+  pull_request:
+    paths: ['packages/**', 'apps/**', 'brands/**', 'tools/fluxapp/**', 'package.json', 'bun.lock', '.github/workflows/fluxapp-*.yml']
+  push:
+    branches: [main]
+    paths: ['packages/**', 'apps/**', 'brands/**', 'tools/fluxapp/**', 'package.json', 'bun.lock', '.github/workflows/fluxapp-*.yml']
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: oven-sh/setup-bun@v2
+        with: { bun-version: 1.4.4 }
+      - uses: actions/setup-node@v5
+        with: { node-version: 22 }
+      - run: bun install --frozen-lockfile
+      - run: bun run typecheck
+      - run: bun run test
+      - run: bun run --filter @fluxwp/panel build
+      - name: White-label build (flux)
+        run: FLUX_BRAND=flux bun tools/fluxapp/brand.mjs && bun run --filter @fluxwp/panel build

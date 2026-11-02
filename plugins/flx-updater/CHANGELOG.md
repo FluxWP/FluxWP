@@ -1,0 +1,62 @@
+# Changelog
+
+## 1.5.0
+- Birden çok güncelleme kaynağı. Ana sunucunun yanında Ayarlar › Diğer kaynaklar: public GitHub deposu (release'te `<slug>.zip`, notta `flx-meta`) ya da Flux Updater sunucusu (anahtar isteğe bağlı). Eklemeden önce test edilir; aç/kapat, Yukarı (öncelik), Sil. Varsayılan ek kaynak FluxWP Extras (github.com/FluxWP/wp-extras).
+- Paketler tüm açık kaynaklardan toplanır; tabloda "Kaynak: …" ve "2 kaynakta var". Aynı paket birden çok kaynaktaysa kurulu olduğu kaynaktan güncellenir, kurulu değilse üstteki kaynak kazanır.
+- Her anahtar yalnız kendi sunucusunun host'una gider; indirme adresi kaynağın host'unda değilse paket alınmaz.
+- Ulaşılamayan kaynağın paketleri son bilinen veriden gösterilir; Güncellemeler'de ve sistem kontrolünde uyarı çıkar.
+
+## 1.4.1
+- Gerekli eklentiler temalarda da denetlenir (style.css "Requires Plugins", ör. fluxwp → Flux Setup): tema satırında "Gerekli: …", seçince "onu da ekle", kurulumda önce eklenti kurulup etkinleştirilir. Tema kendisi etkinleştirilmez.
+
+## 1.4.0
+- Bağlıyken üstteki "Bağlı" kartı gösterilmez; kart yalnız bağlantı hatası / anahtar yoksa çıkar.
+- "Güncellemeleri kontrol et" düğmesi paket tablosunun başında; sayfa yenilenmeden sunucuya sorar, tabloyu ve menü sayısını tazeler. Yanında son kontrol tarihi ve sonuç ("3 güncelleme var" / "Hepsi güncel ✓"). Alttaki "Şimdi kontrol et" kalktı.
+- "Her güncellemeden önce yedek alınır" şeridi Geçmiş'in hemen üstüne taşındı.
+
+## 1.3.1
+- Başarılı güncelleme/kurulum satırı yalnız "… güncellendi (1.1.0 → 1.2.1) · Başarılı ✓" yazar. Site kontrolü notu (ör. görünmez moddaki tema anonim isteğe 404 döner) artık gösterilmez; mesaj yalnız sorun olunca çıkar.
+
+## 1.3.0
+- Kurma ve güncelleme sayfadan çıkmadan: her paket satırında ilerleme ve sonuç, üstte canlı kayıt (saat, adım, sonuç; hata da burada). İşlem bitince tablo ve geçmiş kendiliğinden tazelenir. Sürüm değiştirme de aynı şekilde.
+- Gerekli eklentiler (`Requires Plugins`): kurmadan önce denetlenir; eksikse "onu da ekle" uyarısı, gerekli eklenti seçimden çıkarılınca ona bağlı paketlerin seçimi de kalkar. Önce gerekli eklentiler kurulur ve etkinleştirilir (FluxWP paketi sunucudan, diğerleri wordpress.org'dan), sonra paket. Gerekli eklentisi etkin değilse paket etkinleştirilmez ve nedeni panelde yazar (WordPress'in "Hata: … gereklidir" sayfası çıkmaz).
+- Toplu kurma: kurulu olmayan paketler de seçilebilir; "Seçilenleri kur / güncelle", "Kurulanları etkinleştir".
+- Kurulumlar geçmişe yazılır. Güncelleme sunucusu 1.5.0 gerekli eklentileri bildirir; eski sunucuda yalnız kurulu paketlerin başlığı okunur.
+
+## 1.2.1
+- Flux AI ve Flux Admin logoları eklendi.
+- Burada logosu olmayan bir FluxWP eklentisinin kendi `assets/icon.svg` dosyası kullanılır (yeni paketler için güncelleyici sürümü beklemeye gerek yok).
+
+## 1.2.0
+- Geçmiş sayfalı (sayfada 20 kayıt); 1000 kayda kadar saklanır.
+- Geçmişte her güncellemenin yedeği: boyutu, ne zaman silineceği, Aç ve Sil. Seçerek veya tümünü silme (kilitli yedekler silinmez). Toplu güncellemede paketler tek yedeği paylaştığı için seçim kutusu ilk satırda.
+- Güncelleme yedeklerinin otomatik silinme süresi (1–90 gün) Geçmiş'in üstünden seçilir; Flux Backup 1.2.0 ile mevcut yedeklere de uygulanır. Temizliği Flux Backup yapar.
+
+## 1.1.1
+- Düzeltme: bir eklenti kendi kaydını WordPress güncelleme verisinden silse bile (ör. Flux Forms 2.0.8) FluxWP güncellemesi kurulur; önceden "Güncelle" bir şey yapmıyor, paket listede kalıyordu.
+
+## 1.1.0
+- Sol menüde "Güncellemeler" (Başlangıç'ın altında), bekleyen güncelleme sayısı rozetiyle. Ayarlar ayrı alt menüde.
+- Seçerek ve toplu güncelleme (WordPress'in kendi toplu güncelleyicisiyle).
+- Sürüm değiştirme: sunucudaki son 20 sürümden birine geçiş (geri alma). Önce Flux Backup ile yedek alınır.
+- Güncelleme sonrası site kontrolü: ön yüz veya admin HTTP 500 verirse paket otomatik olarak önceki sürüme döner.
+- Geçmiş: kim, ne zaman, hangi sürümden hangisine, sonuç ve yedek bağlantısı.
+- Flux Backup entegrasyonu (flxy_* API).
+
+## 1.0.4
+- Logolar yenilendi: derinlikli degrade, gölge ve daha net semboller.
+
+## 1.0.3
+- FluxWP eklentilerinin logoları (assets/icons/<slug>.svg): Güncellemeler ekranında ve Flux Updater paket tablosunda görünür. Filtre: `flxu_package_icons`.
+
+## 1.0.2
+- Varsayılan sunucu adresi düzeltildi (eski adres kayıtlıysa otomatik yenisine geçer).
+- Bağlı değilken sunucu adresi ve site anahtarı formu sayfanın en üstünde; ikisi de panelden bir kez girilir, wp-config sabitleri isteğe bağlı.
+
+## 1.0.1
+- Ayarlar › Flux Updater üstünde bağlantı kartı: Bağlı / Bağlantı hatası / Bağlı değil, sunucudaki site adı, paket ve güncelleme sayısı
+- "Bağlantıyı test et" düğmesi
+- Eklentiler listesinde bağlantı durumu
+
+## 1.0.0
+- İlk sürüm

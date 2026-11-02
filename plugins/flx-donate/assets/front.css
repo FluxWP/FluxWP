@@ -1,0 +1,57 @@
+/* Flux Donate · donation type progress ([flx_bagis_kampanya]). Brand colour from settings (else theme.json),
+ * surfaces from the FluxWP theme tokens (--flx-*), else the block theme's palette (--wp--preset--color--*).
+ * Dark mode (filter flxb_front_dark_mode), only while the device is in dark mode: 'class' (default)
+ * when the theme allows it with body.flx-dark; 'auto' without the class too (override the built-in
+ * palette with --flxb-dark-* variables; body.flx-light keeps it light); 'off' never. */
+.flxb-camp {
+	--flxb-primary: var(--flxb-brand, var(--flx-primary, var(--wp--preset--color--primary, #0E7A56)));
+	--flxb-primary-dark: var(--flxb-brand-dark, var(--flx-primary-dark, var(--wp--preset--color--primary-dark, #0A5A40)));
+	--flxb-ink: var(--flx-ink, var(--wp--preset--color--ink, #14324A));
+	--flxb-text: var(--flx-text, var(--wp--preset--color--text, #4A5B66));
+	--flxb-surface: var(--flx-surface, var(--wp--preset--color--surface, #FFFFFF));
+	--flxb-mint: var(--flx-mint, var(--wp--preset--color--primary-soft, #EAF5EE));
+	--flxb-line: var(--flx-line, var(--wp--preset--color--line, #DCE9E0));
+	box-sizing: border-box;
+	margin: 1.5rem 0;
+	padding: 20px 22px;
+	border: 1px solid var(--flxb-line);
+	border-radius: 16px;
+	background: var(--flxb-surface);
+	color: var(--flxb-text);
+	box-shadow: var(--flx-shadow, 0 1px 2px rgba(20, 50, 74, .05));
+	font-family: var(--wp--preset--font-family--body, 'Nunito Sans', system-ui, sans-serif);
+}
+.flxb-camp *, .flxb-camp *::before, .flxb-camp *::after { box-sizing: border-box; }
+.flxb-camp .flxb-camp__title { margin: 0 0 4px; color: var(--flxb-ink); font-family: var(--wp--preset--font-family--heading, Nunito, system-ui, sans-serif); font-size: 1.25rem; font-weight: 800; line-height: 1.3; }
+.flxb-camp__desc { margin: 0 0 12px; }
+.flxb-camp__nums { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; margin: 6px 0 10px; }
+.flxb-camp__raised { color: var(--flxb-ink); font-size: 1.75rem; font-weight: 800; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.flxb-camp__goal { font-size: .95rem; }
+.flxb-camp__bar { position: relative; height: 12px; border-radius: 99px; background: var(--flxb-mint); overflow: hidden; }
+.flxb-camp__bar > span { display: block; height: 100%; min-width: 6px; border-radius: 99px; background: linear-gradient(90deg, var(--flxb-primary), var(--flxb-primary-dark)); transition: width .6s ease; }
+.flxb-camp__meta { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 12px 0 0; padding: 0; list-style: none; font-size: .95rem; }
+.flxb-camp__meta li { margin: 0; }
+.flxb-camp__meta strong { color: var(--flxb-ink); font-variant-numeric: tabular-nums; }
+@media (prefers-color-scheme: dark) {
+	body.flxb-dark-auto:not(.flx-light):not(.flx-dark) .flxb-camp {
+		--flxb-primary: var(--flxb-brand, var(--flxb-dark-primary, #1F9A6C));
+		--flxb-primary-dark: var(--flxb-brand-dark, var(--flxb-dark-primary-dark, #17805A));
+		--flxb-ink: var(--flxb-dark-ink, #E8F2EC);
+		--flxb-text: var(--flxb-dark-text, #AFC3B8);
+		--flxb-surface: var(--flxb-dark-surface, #13251F);
+		--flxb-mint: var(--flxb-dark-mint, #17302A);
+		--flxb-line: var(--flxb-dark-line, #26453C);
+	}
+	body.flx-dark:not(.flxb-dark-off) .flxb-camp,
+	body.flxb-dark-auto:not(.flx-light) .flxb-camp { box-shadow: none; }
+	body.flx-dark:not(.flxb-dark-off) .flxb-camp__bar,
+	body.flxb-dark-auto:not(.flx-light) .flxb-camp__bar { background: color-mix(in srgb, var(--flxb-primary) 22%, transparent); }
+	body.flx-dark.flxb-dark-off .flxb-camp {
+		--flxb-ink: #14324A; --flxb-text: #4A5B66; --flxb-surface: #FFFFFF; --flxb-mint: #EAF5EE; --flxb-line: #DCE9E0;
+	}
+}
+@media (max-width: 480px) {
+	.flxb-camp { padding: 16px; }
+	.flxb-camp__raised { font-size: 1.5rem; }
+}
+@media (prefers-reduced-motion: reduce) { .flxb-camp__bar > span { transition: none; } }

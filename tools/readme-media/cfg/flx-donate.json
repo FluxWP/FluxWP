@@ -1,0 +1,162 @@
+{
+ "seed": [
+  "seed-bagis.php"
+ ],
+ "slug": "flx-donate",
+ "css": ".flx-cookie{display:none!important}#wp-admin-bar-woocommerce-site-visibility-badge{display:none!important}",
+ "shots": [
+  {
+   "name": "dashboard",
+   "url": "admin.php?page=flxb-dashboard",
+   "vh": 1100
+  },
+  {
+   "name": "donations",
+   "url": "admin.php?page=flxb-donations",
+   "vh": 900
+  },
+  {
+   "name": "donation",
+   "url": "admin.php?page=flxb-donations&donation=324",
+   "vh": 900
+  },
+  {
+   "name": "donor",
+   "url": "admin.php?page=flxb-donors&donor=2",
+   "vh": 900
+  },
+  {
+   "name": "types",
+   "url": "admin.php?page=flxb-types",
+   "vh": 800
+  },
+  {
+   "name": "recurring",
+   "url": "admin.php?page=flxb-subscriptions",
+   "vh": 800
+  },
+  {
+   "name": "form",
+   "url": "/bagis-yap/",
+   "vh": 1100,
+   "css": "#wpadminbar{display:none!important}html{margin-top:0!important}",
+   "eval": "window.scrollTo(0,200)"
+  },
+  {
+   "name": "checkout",
+   "url": "/bagis-yap/",
+   "click": [
+    "label.flxwb-pkg >> nth=1",
+    "button.flxwb-btn--primary[type=submit]"
+   ],
+   "after": 3500,
+   "vh": 1000,
+   "css": "#wpadminbar{display:none!important}html{margin-top:0!important}"
+  }
+ ],
+ "dark": [
+  {
+   "name": "dark",
+   "url": "admin.php?page=flxb-dashboard",
+   "vh": 900
+  }
+ ],
+ "mobile": [
+  {
+   "name": "mobile",
+   "url": "admin.php?page=flxb-dashboard"
+  },
+  {
+   "name": "mobile-form",
+   "url": "/bagis-yap/",
+   "css": "#wpadminbar{display:none!important}html{margin-top:0!important}"
+  }
+ ],
+ "gif": [
+  {
+   "goto": "admin.php?page=flxb-dashboard",
+   "wait": 2800
+  },
+  {
+   "move": [
+    450,
+    250
+   ]
+  },
+  {
+   "move": [
+    750,
+    280
+   ],
+   "wait": 800
+  },
+  {
+   "move": [
+    900,
+    450
+   ],
+   "wait": 900
+  },
+  {
+   "goto": "admin.php?page=flxb-donations",
+   "wait": 2200
+  },
+  {
+   "move": [
+    700,
+    350
+   ],
+   "wait": 600
+  },
+  {
+   "click": "a.flxb-row-go",
+   "css": true,
+   "nav": true,
+   "wait": 1500
+  },
+  {
+   "move": [
+    800,
+    420
+   ],
+   "wait": 1200
+  },
+  {
+   "goto": "admin.php?page=flxb-types",
+   "wait": 2200
+  },
+  {
+   "move": [
+    650,
+    330
+   ],
+   "wait": 1000
+  },
+  {
+   "goto": "/bagis-yap/",
+   "wait": 2500
+  },
+  {
+   "scroll": 250,
+   "wait": 900
+  },
+  {
+   "click": "label.flxwb-pkg >> nth=1",
+   "css": true,
+   "wait": 800
+  },
+  {
+   "click": "button.flxwb-btn--primary[type=submit]",
+   "css": true,
+   "nav": true,
+   "wait": 2500
+  },
+  {
+   "move": [
+    700,
+    450
+   ],
+   "wait": 1500
+  }
+ ]
+}

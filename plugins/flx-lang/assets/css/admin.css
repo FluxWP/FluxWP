@@ -1,0 +1,123 @@
+.column-flxl_lang {
+	width: 96px;
+}
+.flxl-badge {
+	display: inline-block;
+	min-width: 22px;
+	margin: 0 3px 3px 0;
+	padding: 1px 5px;
+	border-radius: 4px;
+	font-size: 11px;
+	font-weight: 600;
+	line-height: 18px;
+	text-align: center;
+	text-decoration: none;
+	border: 1px solid #c3c4c7;
+	color: #50575e;
+	background: #f6f7f7;
+}
+.flxl-badge.is-self {
+	background: #1d2327;
+	border-color: #1d2327;
+	color: #fff;
+}
+.flxl-badge.is-done {
+	background: #e7f5ec;
+	border-color: #68b984;
+	color: #145c2e;
+}
+.flxl-badge.is-done.is-draft {
+	background: #fcf9e8;
+	border-color: #dba617;
+	color: #6b4f00;
+}
+.flxl-badge.is-missing {
+	border-style: dashed;
+	background: transparent;
+	color: #2271b1;
+}
+.flxl-badge.is-missing:hover,
+.flxl-badge.is-missing:focus {
+	background: #f0f6fc;
+}
+.flxl-badge.is-shared {
+	background: #f0f6fc;
+	border-color: #72aee6;
+	color: #135e96;
+}
+.flxl-box-list {
+	margin: 8px 0 0;
+}
+.flxl-box-list li {
+	padding: 8px 0;
+	border-top: 1px solid #f0f0f1;
+}
+.flxl-box-name {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 4px;
+}
+.flxl-st {
+	color: #646970;
+}
+.flxl-toast {
+	position: fixed;
+	z-index: 100000;
+	right: 20px;
+	bottom: 20px;
+	max-width: min(420px, calc(100vw - 40px));
+	padding: 12px 16px;
+	border-radius: 8px;
+	background: #1d2327;
+	color: #fff;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
+	font-size: 13px;
+	opacity: 0;
+	transform: translateY(12px);
+	transition: opacity .2s, transform .2s;
+	pointer-events: none;
+}
+.flxl-toast.is-open {
+	opacity: 1;
+	transform: none;
+}
+.flxl-toast.is-ok {
+	background: #145c2e;
+}
+.flxl-toast.is-warn {
+	background: #6b4f00;
+}
+.flxl-toast.is-error {
+	background: #8a2424;
+}
+.flxl-settings .flxl-langs td,
+.flxl-settings .flxl-langs th {
+	vertical-align: middle;
+}
+.flxl-settings .flxl-langs input[type=text].flxl-small {
+	width: 90px;
+}
+.flxl-settings .flxl-texts textarea {
+	width: 100%;
+}
+@media (max-width: 782px) {
+	.flxl-settings .flxl-langs thead {
+		display: none;
+	}
+	.flxl-settings .flxl-langs tr {
+		display: block;
+		padding: 8px 0;
+		border-bottom: 1px solid #dcdcde;
+	}
+	.flxl-settings .flxl-langs td {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 4px 8px;
+	}
+	.flxl-settings .flxl-langs td::before {
+		content: attr(data-label);
+		min-width: 90px;
+		font-weight: 600;
+	}
+}

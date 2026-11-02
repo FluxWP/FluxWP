@@ -1,0 +1,14 @@
+dist/
+.DS_Store
+# FluxWP
+node_modules/
+.turbo/
+target/
+*.log
+# tools/fluxapp/brand.mjs çıktıları
+packages/core/src/brand/current.json
+packages/panel/public/brand/
+apps/desktop/src-tauri/icons/
+apps/desktop/src-tauri/tauri.brand.conf.json
+apps/desktop/src-tauri/gen/
+apps/desktop/src-tauri/app-icon.svg

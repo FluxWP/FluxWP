@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>FluxModules gömme testi</title>
+    <style>
+      /* WP admin taklidi: sol menü + üst bar, gömülen alan geri kalanı */
+      body{margin:0;font:13px -apple-system,sans-serif;background:#f0f0f1}
+      #wpadminbar{height:32px;background:#1d2327}
+      #adminmenu{position:fixed;top:32px;bottom:0;left:0;width:160px;background:#1d2327}
+      #wpcontent{position:fixed;top:32px;left:160px;right:0;bottom:0}
+      #app{height:100%}
+      button{font-size:13px}
+    </style>
+  </head>
+  <body>
+    <div id="wpadminbar"></div><div id="adminmenu"></div>
+    <div id="wpcontent"><div id="app"></div></div>
+    <script type="module">
+      import { mount } from '/src/index.tsx';
+      import { demoFetchForEmbed } from '/src/dev.ts';
+      const mod = new URLSearchParams(location.search).get('m') || 'flxc-inbox';
+      mount(document.getElementById('app'), { module: mod, rest: 'https://demo.fluxapp.local/wp-json/', nonce: 'x', fetchImpl: demoFetchForEmbed });
+    </script>
+  </body>
+</html>

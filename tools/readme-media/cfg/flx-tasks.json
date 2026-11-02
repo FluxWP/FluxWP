@@ -1,0 +1,137 @@
+{
+ "seed": [
+  "seed-gorev.php"
+ ],
+ "slug": "flx-tasks",
+ "css": ".flx-cookie{display:none!important}#wp-admin-bar-woocommerce-site-visibility-badge{display:none!important}#flxai-host{display:none!important}",
+ "shots": [
+  {
+   "name": "list",
+   "url": "admin.php?page=flx-tasks&r=1#/list/1/v/1",
+   "vh": 1000,
+   "wait": 3500
+  },
+  {
+   "name": "board",
+   "url": "admin.php?page=flx-tasks&r=2#/list/1/v/2",
+   "vh": 1000,
+   "wait": 3500
+  },
+  {
+   "name": "task",
+   "url": "admin.php?page=flx-tasks&r=3#/list/1/t/3",
+   "vh": 1000,
+   "wait": 4000
+  },
+  {
+   "name": "calendar",
+   "url": "admin.php?page=flx-tasks&r=4#/list/1/v/3",
+   "vh": 1000,
+   "wait": 3500
+  },
+  {
+   "name": "home",
+   "url": "admin.php?page=flx-tasks&r=5#/home",
+   "vh": 1000,
+   "wait": 3500
+  },
+  {
+   "name": "meeting",
+   "url": "admin.php?page=flx-tasks&r=6#/list/5",
+   "vh": 900,
+   "wait": 3500
+  },
+  {
+   "name": "dashboard",
+   "url": "admin.php?page=flx-tasks-pano",
+   "vh": 1000,
+   "wait": 3000
+  }
+ ],
+ "dark": [
+  {
+   "name": "dark",
+   "url": "admin.php?page=flx-tasks&r=7#/list/1/v/2",
+   "vh": 900,
+   "wait": 3500
+  }
+ ],
+ "mobile": [
+  {
+   "name": "mobile",
+   "url": "admin.php?page=flx-tasks&r=8#/list/1/v/1",
+   "wait": 3500
+  }
+ ],
+ "gif": [
+  {
+   "goto": "admin.php?page=flx-tasks&r=g1#/list/1/v/1",
+   "wait": 3500
+  },
+  {
+   "move": [
+    700,
+    300
+   ],
+   "wait": 600
+  },
+  {
+   "move": [
+    420,
+    505
+   ],
+   "wait": 700
+  },
+  {
+   "goto": "admin.php?page=flx-tasks&r=g2#/list/1/t/3",
+   "wait": 3500
+  },
+  {
+   "move": [
+    900,
+    400
+   ],
+   "wait": 800
+  },
+  {
+   "move": [
+    1250,
+    250
+   ],
+   "wait": 1200
+  },
+  {
+   "goto": "admin.php?page=flx-tasks&r=g3#/list/1/v/2",
+   "wait": 3200
+  },
+  {
+   "move": [
+    800,
+    260
+   ],
+   "wait": 1000
+  },
+  {
+   "goto": "admin.php?page=flx-tasks&r=g4#/list/1/v/3",
+   "wait": 3200
+  },
+  {
+   "move": [
+    700,
+    500
+   ],
+   "wait": 1000
+  },
+  {
+   "goto": "admin.php?page=flx-tasks-pano",
+   "wait": 2800
+  },
+  {
+   "move": [
+    900,
+    400
+   ],
+   "wait": 1200
+  }
+ ]
+}

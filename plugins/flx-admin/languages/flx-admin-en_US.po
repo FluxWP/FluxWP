@@ -1,0 +1,1068 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Flux Admin 1.1.1\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: flx-admin\n"
+
+
+msgid "İçerik"
+msgstr "Content"
+
+msgid "Panele girebilir"
+msgstr "Can access the dashboard"
+
+msgid "Yazı yazabilir"
+msgstr "Can write posts"
+
+msgid "Yazı yayımlayabilir"
+msgstr "Can publish posts"
+
+msgid "Başkasının yazısını düzenleyebilir"
+msgstr "Can edit others' posts"
+
+msgid "Yazı silebilir"
+msgstr "Can delete posts"
+
+msgid "Başkasının yazısını silebilir"
+msgstr "Can delete others' posts"
+
+msgid "Sayfa düzenleyebilir"
+msgstr "Can edit pages"
+
+msgid "Sayfa yayımlayabilir"
+msgstr "Can publish pages"
+
+msgid "Başkasının sayfasını düzenleyebilir"
+msgstr "Can edit others' pages"
+
+msgid "Sayfa silebilir"
+msgstr "Can delete pages"
+
+msgid "Dosya yükleyebilir"
+msgstr "Can upload files"
+
+msgid "Kategorileri yönetebilir"
+msgstr "Can manage categories"
+
+msgid "Yorumları onaylayabilir"
+msgstr "Can moderate comments"
+
+msgid "Filtresiz HTML yazabilir"
+msgstr "Can post unfiltered HTML"
+
+msgid "Site"
+msgstr "Site"
+
+msgid "Site ayarlarını değiştirebilir"
+msgstr "Can change site settings"
+
+msgid "Menü ve görünümü düzenleyebilir"
+msgstr "Can edit menus and appearance"
+
+msgid "Kullanıcıları görebilir"
+msgstr "Can see users"
+
+msgid "Kullanıcı ekleyebilir"
+msgstr "Can add users"
+
+msgid "Kullanıcı düzenleyebilir"
+msgstr "Can edit users"
+
+msgid "Kullanıcı silebilir"
+msgstr "Can delete users"
+
+msgid "Rol değiştirebilir"
+msgstr "Can change roles"
+
+msgid "Eklenti açıp kapatabilir"
+msgstr "Can activate/deactivate plugins"
+
+msgid "Eklenti kurabilir"
+msgstr "Can install plugins"
+
+msgid "Eklenti güncelleyebilir"
+msgstr "Can update plugins"
+
+msgid "WordPress'i güncelleyebilir"
+msgstr "Can update WordPress"
+
+msgid "Dışa aktarabilir"
+msgstr "Can export"
+
+msgid "İçe aktarabilir"
+msgstr "Can import"
+
+msgid "WooCommerce'i yönetebilir"
+msgstr "Can manage WooCommerce"
+
+msgid "Raporları görebilir"
+msgstr "Can see reports"
+
+msgid "Siparişleri düzenleyebilir"
+msgstr "Can edit orders"
+
+msgid "Ürünleri düzenleyebilir"
+msgstr "Can edit products"
+
+msgid "FluxWP eklentileri"
+msgstr "FluxWP plugins"
+
+msgid "Burada yapılan değişiklik gerçek yetkidir: kapatılan işlem menüden gizlenmekle kalmaz, adresle girilse de yapılamaz. Yönetici rolü değiştirilemez."
+msgstr "Changes here are real permissions: a disabled action is not just hidden from the menu, it can't be done even by URL. The Administrator role can't be changed."
+
+msgid "İlk değişiklikten önceki yetkiler yedekli (%s)."
+msgstr "Permissions before the first change are backed up (%s)."
+
+msgid "Tüm roller yedekteki hâline dönsün mü?"
+msgstr "Restore all roles to the backup?"
+
+msgid "Yedeği geri yükle"
+msgstr "Restore backup"
+
+msgid "Yetki ara…"
+msgstr "Search permissions…"
+
+msgid "kişi"
+msgstr "users"
+
+msgid "Yetkiniz yok."
+msgstr "You do not have permission."
+
+msgid "Ara veya komut yaz…"
+msgstr "Search or type a command…"
+
+msgid "Sonuç yok"
+msgstr "No results"
+
+msgid "Sayfalar"
+msgstr "Pages"
+
+msgid "Uygulamalar"
+msgstr "Apps"
+
+msgid "İşlemler"
+msgstr "Actions"
+
+msgid "Yeni yazı"
+msgstr "New post"
+
+msgid "Yeni sayfa"
+msgstr "New page"
+
+msgid "Tema: otomatik (cihaza göre)"
+msgstr "Theme: auto (follows device)"
+
+msgid "Tema: açık"
+msgstr "Theme: light"
+
+msgid "Tema: koyu"
+msgstr "Theme: dark"
+
+msgid "Alt menüyü aç/kapat"
+msgstr "Toggle submenu"
+
+msgid "Kapat"
+msgstr "Close"
+
+msgid "↑↓ seç · Enter aç · Esc kapat"
+msgstr "↑↓ select · Enter open · Esc close"
+
+msgid "Paylaş düğmesine dokunup \"Ana Ekrana Ekle\"yi seçin."
+msgstr "Tap the Share button and choose \"Add to Home Screen\"."
+
+msgid "Uygulama yüklendi."
+msgstr "App installed."
+
+msgid "Bağlantı yok. Değişiklikler kaydedilmeyebilir."
+msgstr "No connection. Changes may not be saved."
+
+msgid "Bağlantı geri geldi."
+msgstr "Connection is back."
+
+msgid "Üste sabitle"
+msgstr "Pin to top"
+
+msgid "Sabitlemeyi kaldır"
+msgstr "Unpin"
+
+msgid "Diğer'e taşı"
+msgstr "Move to Other"
+
+msgid "Yerine geri al"
+msgstr "Put back"
+
+msgid "Yukarı taşı"
+msgstr "Move up"
+
+msgid "Aşağı taşı"
+msgstr "Move down"
+
+msgid "Yeni sekmede aç"
+msgstr "Open in new tab"
+
+msgid "Rol menülerini düzenle"
+msgstr "Edit role menus"
+
+msgid "Sabitlenenler"
+msgstr "Pinned"
+
+msgid "Diğer"
+msgstr "Other"
+
+msgid "Grubu aç/kapat"
+msgstr "Expand/collapse group"
+
+msgid "Genişliği sürükleyin (çift tık: varsayılan)"
+msgstr "Drag to resize (double-click: default)"
+
+msgid "Kaydedildi."
+msgstr "Saved."
+
+msgid "Kaydedilemedi. Tekrar deneyin."
+msgstr "Couldn't save. Please try again."
+
+msgid "İpucu: menüde sağ tıklayıp sabitleyebilirsiniz."
+msgstr "Tip: right-click a menu item to pin it."
+
+msgid "Yeni görev"
+msgstr "New task"
+
+msgid "Görev adı"
+msgstr "Task name"
+
+msgid "Liste"
+msgstr "List"
+
+msgid "Son tarih"
+msgstr "Due date"
+
+msgid "Öncelik"
+msgstr "Priority"
+
+msgid "Bana ata"
+msgstr "Assign to me"
+
+msgid "Oluştur"
+msgstr "Create"
+
+msgid "Vazgeç"
+msgstr "Cancel"
+
+msgid "Görev oluşturuldu."
+msgstr "Task created."
+
+msgid "Aç"
+msgstr "Open"
+
+msgid "Yok"
+msgstr "None"
+
+msgid "Uygulama değiştir"
+msgstr "Switch app"
+
+msgid "Menüyü daralt / genişlet"
+msgstr "Collapse / expand menu"
+
+msgid "Ara veya komut…"
+msgstr "Search or command…"
+
+msgid "Menüyü düzenle"
+msgstr "Edit menu"
+
+msgid "Tema"
+msgstr "Theme"
+
+msgid "Alt menü"
+msgstr "Submenu"
+
+msgid "Daha"
+msgstr "More"
+
+msgid "Ara"
+msgstr "Search"
+
+msgid "Ara (Ctrl+K)"
+msgstr "Search (Ctrl+K)"
+
+msgid "Tema: otomatik / açık / koyu"
+msgstr "Theme: auto / light / dark"
+
+msgid "Flux Admin"
+msgstr "Flux Admin"
+
+msgid "Günaydın"
+msgstr "Good morning"
+
+msgid "İyi günler"
+msgstr "Good afternoon"
+
+msgid "İyi akşamlar"
+msgstr "Good evening"
+
+msgid "İyi geceler"
+msgstr "Good night"
+
+msgid "Özet"
+msgstr "Summary"
+
+msgid "j F Y, l"
+msgstr "l, F j, Y"
+
+msgid "%1$s, %2$s"
+msgstr "%1$s, %2$s"
+
+msgid "Modülleri düzenle"
+msgstr "Edit modules"
+
+msgid "Paneli ana ekrana ekle"
+msgstr "Add the dashboard to your home screen"
+
+msgid "Uygulama gibi tam ekran açılır, rozetle okunmamışları gösterir."
+msgstr "Opens full screen like an app and shows unread counts on its badge."
+
+msgid "Yükle"
+msgstr "Install"
+
+msgid "Bugünkü bağış"
+msgstr "Donations today"
+
+msgid "%s bağış"
+msgstr "%s donations"
+
+msgid "Bu ay"
+msgstr "This month"
+
+msgid "%1$s bağış · %2$s bağışçı"
+msgstr "%1$s donations · %2$s donors"
+
+msgid "Onay bekleyen"
+msgstr "Awaiting approval"
+
+msgid "Havale / dekont"
+msgstr "Bank transfer / receipt"
+
+msgid "Okunmamış WhatsApp"
+msgstr "Unread WhatsApp"
+
+msgid "Çağrı Merkezi'ni aç →"
+msgstr "Open Call Center →"
+
+msgid "Açık görevlerim"
+msgstr "My open tasks"
+
+msgid "Flux Tasks →"
+msgstr "Flux Tasks →"
+
+msgid "Sistem kontrolü"
+msgstr "System check"
+
+msgid "%s hata"
+msgstr "%s errors"
+
+msgid "%s uyarı"
+msgstr "%s warnings"
+
+msgid "Sorun yok"
+msgstr "No problems"
+
+msgid "%s kontrol iyi"
+msgstr "%s checks OK"
+
+msgid "Bağışlar"
+msgstr "Donations"
+
+msgid "Görevler"
+msgstr "Tasks"
+
+msgid "Hızlı işlemler"
+msgstr "Quick actions"
+
+msgid "İyi"
+msgstr "OK"
+
+msgid "Uyarı"
+msgstr "Warning"
+
+msgid "Hata"
+msgstr "Error"
+
+msgid "Düzelt"
+msgstr "Fix"
+
+msgid "Tüm kontroller"
+msgstr "All checks"
+
+msgid "Bağış ekle"
+msgstr "Add donation"
+
+msgid "Sertifika oluştur"
+msgstr "Create certificate"
+
+msgid "Görev oluştur"
+msgstr "Create task"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "Sayfa ekle"
+msgstr "Add page"
+
+msgid "Yazı yaz"
+msgstr "Write a post"
+
+msgid "Medya yükle"
+msgstr "Upload media"
+
+msgid "E-posta gönder"
+msgstr "Send email"
+
+msgid "Kısayol ekle"
+msgstr "Add shortcut"
+
+msgid "Yönetim"
+msgstr "Admin"
+
+msgid "Panel"
+msgstr "Dashboard"
+
+msgid "Genel"
+msgstr "General"
+
+msgid "Bağış"
+msgstr "Donations"
+
+msgid "Bu sayfaya erişiminiz kapatıldı. Gerekirse site yöneticisine başvurun."
+msgstr "Your access to this page is turned off. Contact the site administrator if needed."
+
+msgid "Erişim kapalı"
+msgstr "Access blocked"
+
+msgid "Yönetim paneli"
+msgstr "Admin dashboard"
+
+msgid "Bağlantı yok"
+msgstr "No connection"
+
+msgid "İnternet bağlantısı gelince panel kaldığı yerden açılır."
+msgstr "The dashboard reopens where you left off when the connection is back."
+
+msgid "Yeniden dene"
+msgstr "Try again"
+
+msgid "Yönetim teması"
+msgstr "Admin theme"
+
+msgid "Görünüm"
+msgstr "Appearance"
+
+msgid "Menü ve alt bar"
+msgstr "Menu and bottom bar"
+
+msgid "Yetkiler"
+msgstr "Permissions"
+
+msgid "Başlangıç"
+msgstr "Dashboard"
+
+msgid "Uygulama (PWA)"
+msgstr "App (PWA)"
+
+msgid "Logo seç"
+msgstr "Choose logo"
+
+msgid "Diğer tüm roller"
+msgstr "All other roles"
+
+msgid "Özel düzen"
+msgstr "Custom layout"
+
+msgid "Varsayılan düzen"
+msgstr "Default layout"
+
+msgid "Grup"
+msgstr "Group"
+
+msgid "Grup adı"
+msgstr "Group name"
+
+msgid "Yeni grup"
+msgstr "New group"
+
+msgid "+ Grup ekle"
+msgstr "+ Add group"
+
+msgid "Grubu kaldır"
+msgstr "Remove group"
+
+msgid "Menü adı (boş = özgün ad)"
+msgstr "Menu name (empty = original name)"
+
+msgid "Görünür"
+msgstr "Visible"
+
+msgid "Gizli"
+msgstr "Hidden"
+
+msgid "Bu rol erişemez"
+msgstr "This role has no access"
+
+msgid "Alt menüler"
+msgstr "Submenus"
+
+msgid "Bu rolü varsayılana döndür"
+msgstr "Reset this role to default"
+
+msgid "Başka rolden kopyala…"
+msgstr "Copy from another role…"
+
+msgid "Önizleme"
+msgstr "Preview"
+
+msgid "Mobil alt bar"
+msgstr "Mobile bottom bar"
+
+msgid "En fazla 4 kısayol; beşinci düğme \"Daha\" yan paneli açar."
+msgstr "Up to 4 shortcuts; the fifth button \"More\" opens the side panel."
+
+msgid "— boş —"
+msgstr "— empty —"
+
+msgid "Yeni kurulan eklentilerin menüleri otomatik \"Diğer\" grubuna düşer."
+msgstr "Menus of newly installed plugins automatically land in the \"Other\" group."
+
+msgid "Kaydedilmemiş değişiklik var."
+msgstr "You have unsaved changes."
+
+msgid "Erişimi engelle"
+msgstr "Block access"
+
+msgid "Erişim engelli: menüde yok, adresle açılırsa \"yetkiniz yok\" görür"
+msgstr "Access blocked: not in the menu, opening by URL shows \"no permission\""
+
+msgid "Kapalı başlasın"
+msgstr "Start collapsed"
+
+msgid "Yetkilerin tamamı: Yetkiler sekmesi"
+msgstr "All permissions: Permissions tab"
+
+msgid "Yönetici rolünde erişim engellenemez."
+msgstr "Access can't be blocked for the Administrator role."
+
+msgid "Marka"
+msgstr "Brand"
+
+msgid "Açık (kapatınca WordPress'in standart paneli döner)"
+msgstr "On (turning it off restores the standard WordPress dashboard)"
+
+msgid "Ad"
+msgstr "Name"
+
+msgid "Alt satır"
+msgstr "Subtitle"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Kaldır"
+msgstr "Remove"
+
+msgid "Boşsa site simgesi, o da yoksa Flux Admin simgesi kullanılır."
+msgstr "If empty, the site icon is used; if there is none, the Flux Admin icon."
+
+msgid "Seçenekler"
+msgstr "Options"
+
+msgid "Özellikler"
+msgstr "Features"
+
+msgid "Mobilde alt bar"
+msgstr "Bottom bar on mobile"
+
+msgid "WhatsApp ve Görevler sol menünün hemen sağında açılsın (menü simgelere daralır)"
+msgstr "Open WhatsApp and Tasks right next to the side menu (menu shrinks to icons)"
+
+msgid "Telefonda WhatsApp ve Görevler ekranlarında uygulama geçiş düğmesi"
+msgstr "Show the app switcher on WhatsApp and Tasks screens on phones"
+
+msgid "Hızlı geçiş: tıklanan menü sayfası önden hazırlanır, geçiş yumuşak olur"
+msgstr "Fast navigation: the clicked menu page is prepared in advance, transitions are smooth"
+
+msgid "Komut paleti (Ctrl+K / ⌘K)"
+msgstr "Command palette (Ctrl+K / ⌘K)"
+
+msgid "Giriş ekranını da tasarla"
+msgstr "Style the login screen too"
+
+msgid "Canlı sayaç aralığı"
+msgstr "Live counter interval"
+
+msgid "%d sn"
+msgstr "%d s"
+
+msgid "Rozetler (WhatsApp, görev, bekleyen bağış, güncelleme) WordPress Heartbeat isteğine eklenir; ayrı istek açılmaz. Hostinger için 60 sn önerilir."
+msgstr "Badges (WhatsApp, tasks, pending donations, updates) ride on the WordPress Heartbeat request; no extra requests. 60 s is recommended for Hostinger."
+
+msgid "Her rol kendi sol menüsünü ve mobil alt barını görür. Sürükleyip sırala, yeniden adlandır, gizle, grupla. Gizlemek yetkiyi değiştirmez; yalnız menüden kaldırır."
+msgstr "Each role sees its own side menu and mobile bottom bar. Drag to reorder, rename, hide, group. Hiding does not change permissions; it only removes the item from the menu."
+
+msgid "Menü listesi bir sonraki sayfa açılışında oluşur. Sayfayı yenileyin."
+msgstr "The menu list is built on the next page load. Reload the page."
+
+msgid "\"Erişimi engelle\" o menüyü bu rol için gerçekten kapatır: menüde görünmez, adresle açılırsa \"yetkiniz yok\" sayfası çıkar. Ayrıntılı yetkiler için Yetkiler sekmesi."
+msgstr "\"Block access\" really closes that menu for this role: it isn't shown, and opening it by URL shows a \"no permission\" page. See the Permissions tab for detailed permissions."
+
+msgid "Onay bekleyen bağış"
+msgstr "Donation awaiting approval"
+
+msgid "Karşılama ve özet"
+msgstr "Welcome and summary"
+
+msgid "Üst bölüm"
+msgstr "Top section"
+
+msgid "Karşılama, tarih ve özet kutucukları"
+msgstr "Greeting, date and summary tiles"
+
+msgid "Özet kutucukları"
+msgstr "Summary tiles"
+
+msgid "Kişi yalnız yetkisi olan kutucukları görür. Eklentiler `flxa_dashboard_stats` filtresiyle kutucuk ekleyebilir."
+msgstr "People only see tiles they have permission for. Plugins can add tiles with the `flxa_dashboard_stats` filter."
+
+msgid "Ek hızlı işlemler"
+msgstr "Extra quick actions"
+
+msgid "Satır başına \"Etiket|Adres\". Adres wp-admin'e göre veya tam https:// olabilir."
+msgstr "One \"Label|URL\" per line. The URL can be relative to wp-admin or a full https:// address."
+
+msgid "Modüllerin sırası ve görünürlüğü kişiye özeldir: Başlangıç'ta \"Modülleri düzenle\" ile açılır, kutular sürüklenerek taşınır."
+msgstr "Module order and visibility are per person: open \"Edit modules\" on the Dashboard and drag the boxes."
+
+msgid "Uygulama olarak yükleme"
+msgstr "Install as an app"
+
+msgid "Site HTTPS değil; tarayıcılar yüklemeye izin vermez."
+msgstr "The site is not HTTPS; browsers will not allow installing."
+
+msgid "PWA"
+msgstr "PWA"
+
+msgid "Panel telefona / bilgisayara uygulama gibi yüklenebilsin"
+msgstr "Allow installing the dashboard as an app on phones and computers"
+
+msgid "Tam ekran açılır, uygulama simgesinde okunmamış sayısı görünür, bağlantı kopunca çevrimdışı ekranı çıkar. Panel sayfaları önbelleğe alınmaz."
+msgstr "Opens full screen, shows the unread count on the app icon, and shows an offline screen when the connection drops. Admin pages are never cached."
+
+msgid "Uygulama adı"
+msgstr "App name"
+
+msgid "Kısa ad (simge altı)"
+msgstr "Short name (under the icon)"
+
+msgid "Simge"
+msgstr "Icon"
+
+msgid "Site simgesi (Görünüm › Özelleştir › Site kimliği) varsa o kullanılır."
+msgstr "The site icon (Appearance › Customize › Site Identity) is used if set."
+
+msgid "Nasıl yüklenir?"
+msgstr "How to install?"
+
+msgid "Başlangıç'taki \"Yükle\" düğmesi veya menü › Uygulamayı yükle."
+msgstr "The \"Install\" button on the Dashboard or menu › Install app."
+
+msgid "Paylaş › Ana Ekrana Ekle."
+msgstr "Share › Add to Home Screen."
+
+msgid "Bilgisayar"
+msgstr "Computer"
+
+msgid "Adres çubuğundaki yükle simgesi."
+msgstr "The install icon in the address bar."
+
+msgid "Kaydet"
+msgstr "Save"
+
+msgid "Kontrol"
+msgstr "Check"
+
+msgid "Durum"
+msgstr "Status"
+
+msgid "Açıklama"
+msgstr "Description"
+
+msgid "Açık. Rol bazlı menü, alt bar ve açık/koyu tema çalışıyor."
+msgstr "On. Role-based menu, bottom bar and light/dark theme are active."
+
+msgid "Kapalı; WordPress'in standart paneli görünüyor."
+msgstr "Off; the standard WordPress dashboard is shown."
+
+msgid "Ayarlar"
+msgstr "Settings"
+
+msgid "Uygulama olarak yükleme (PWA)"
+msgstr "Install as an app (PWA)"
+
+msgid "HTTPS açık; panel telefona ve bilgisayara uygulama gibi yüklenebilir."
+msgstr "HTTPS is on; the dashboard can be installed as an app on phones and computers."
+
+msgid "Site HTTPS değil; tarayıcılar PWA yüklemeye izin vermez. Ayarlar › Genel'de adresleri https:// yapın."
+msgstr "The site is not HTTPS; browsers do not allow installing a PWA. Set the addresses to https:// in Settings › General."
+
+msgid "Genel ayarlar"
+msgstr "General settings"
+
+msgid "Uygulama simgesi"
+msgstr "App icon"
+
+msgid "Site simgesi kullanılıyor."
+msgstr "Using the site icon."
+
+msgid "Site simgesi yok; Flux Admin simgesi kullanılıyor. Görünüm › Özelleştir › Site kimliği'nden değiştirilebilir."
+msgstr "No site icon; using the Flux Admin icon. You can change it in Appearance › Customize › Site Identity."
+
+msgid "Rol bazlı menü"
+msgstr "Role-based menu"
+
+msgid "%s rol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür."
+msgid_plural "%s rol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür."
+msgstr[0] "%s role has a custom menu layout; other roles see the default grouped menu."
+msgstr[1] "%s roles have a custom menu layout; other roles see the default grouped menu."
+
+msgid "Tüm roller varsayılan gruplu menüyü görüyor."
+msgstr "All roles see the default grouped menu."
+
+msgid "Menü listesi"
+msgstr "Menu list"
+
+msgid "Menü düzenleyicinin listesi bir yönetici paneli açınca oluşur."
+msgstr "The menu editor's list is built when an administrator opens the dashboard."
+
+msgid "Canlı sayaçlar"
+msgstr "Live counters"
+
+msgid "Heartbeat %s sn; Hostinger yoğun istekte IP'yi geçici kesebilir. 60 sn önerilir."
+msgstr "Heartbeat is %s s; Hostinger may temporarily block the IP under heavy load. 60 s is recommended."
+
+msgid "Rozetler WordPress Heartbeat ile %s sn'de bir yenilenir (ek istek yok)."
+msgstr "Badges refresh every %s s via WordPress Heartbeat (no extra requests)."
+
+msgid "Yönetim temasını aç/kapat"
+msgstr "Turn the admin theme on/off"
+
+msgid "1 = açık, 0 = WordPress standart paneli."
+msgstr "1 = on, 0 = standard WordPress dashboard."
+
+msgid "Yönetim teması açıldı."
+msgstr "Admin theme turned on."
+
+msgid "Yönetim teması kapatıldı."
+msgstr "Admin theme turned off."
+
+msgid "Saniye (30, 60 veya 120)."
+msgstr "Seconds (30, 60 or 120)."
+
+msgid "Aralık %s sn yapıldı."
+msgstr "Interval set to %s s."
+
+msgid "PWA (uygulama olarak yükleme)"
+msgstr "PWA (install as an app)"
+
+msgid "1 = açık, 0 = kapalı (kayıtlı service worker kendini kaldırır)."
+msgstr "1 = on, 0 = off (the registered service worker removes itself)."
+
+msgid "PWA açıldı."
+msgstr "PWA turned on."
+
+msgid "PWA kapatıldı."
+msgstr "PWA turned off."
+
+msgid "Bir rolün menüsünü varsayılana döndür"
+msgstr "Reset a role's menu to default"
+
+msgid "Rol anahtarı (ör. editor)."
+msgstr "Role key (e.g. editor)."
+
+msgid "%s menüsü varsayılana döndü."
+msgstr "%s menu reset to default."
+
+msgid "Arka plan"
+msgstr "Background"
+
+msgid "Sol menü"
+msgstr "Side menu"
+
+msgid "Kartlar"
+msgstr "Cards"
+
+msgid "Yazı"
+msgstr "Text"
+
+msgid "Varsayılan tema"
+msgstr "Default theme"
+
+msgid "Otomatik (cihazın ayarı)"
+msgstr "Automatic (device setting)"
+
+msgid "Açık"
+msgstr "Light"
+
+msgid "Koyu"
+msgstr "Dark"
+
+msgid "Herkes kendi tercihini sol alttaki ay/güneş düğmesinden değiştirebilir."
+msgstr "Everyone can change their own preference with the moon/sun button at the bottom left."
+
+msgid "Vurgu rengi"
+msgstr "Accent color"
+
+msgid "Renkler"
+msgstr "Colors"
+
+msgid "Renkleri varsayılana döndür"
+msgstr "Reset colors to default"
+
+msgid "Yazı tipi"
+msgstr "Font"
+
+msgid "Sistem yazı tipi"
+msgstr "System font"
+
+msgid "Özel…"
+msgstr "Custom…"
+
+msgid "Özel: bilgisayarda kurulu ya da sitede yüklü bir yazı tipinin adı."
+msgstr "Custom: the name of a font installed on the computer or loaded on the site."
+
+msgid "Yazı boyutu"
+msgstr "Font size"
+
+msgid "Normal"
+msgstr "Normal"
+
+msgid "Büyük"
+msgstr "Large"
+
+msgid "Daha büyük"
+msgstr "Larger"
+
+msgid "Köşeler"
+msgstr "Corners"
+
+msgid "Keskin"
+msgstr "Sharp"
+
+msgid "Az yuvarlak"
+msgstr "Slightly rounded"
+
+msgid "Yuvarlak"
+msgstr "Rounded"
+
+msgid "Çok yuvarlak"
+msgstr "Very rounded"
+
+msgid "Yoğunluk"
+msgstr "Density"
+
+msgid "Rahat"
+msgstr "Comfortable"
+
+msgid "Sıkı (menüde daha çok satır)"
+msgstr "Compact (more rows in the menu)"
+
+msgid "Simgeler"
+msgstr "Icons"
+
+msgid "WordPress menülerinde çizgi simgeler (FluxWP logoları renkli kalır)"
+msgstr "Line icons in WordPress menus (FluxWP logos stay in color)"
+
+msgid "Koyu tema kapalı ekranlar"
+msgstr "Screens without dark theme"
+
+msgid "Satır başına bir ekran kimliği veya gövde sınıfı (sonunda * olabilir). Kendi koyu teması olmayan karmaşık ekranlar burada açık kalır."
+msgstr "One screen ID or body class per line (may end with *). Complex screens without their own dark theme stay light here."
+
+msgid "Tüm listeler"
+msgstr "All lists"
+
+msgid "Kapsam"
+msgstr "Scope"
+
+msgid "Bana atanan"
+msgstr "Assigned to me"
+
+msgid "Oluşturduğum"
+msgstr "Created by me"
+
+msgid "Tüm görevler"
+msgstr "All tasks"
+
+msgid "Grafik"
+msgstr "Chart"
+
+msgid "Duruma göre"
+msgstr "By status"
+
+msgid "Önceliğe göre"
+msgstr "By priority"
+
+msgid "Listeye göre"
+msgstr "By list"
+
+msgid "Kişiye göre"
+msgstr "By person"
+
+msgid "Görebildiğiniz görev listesi yok."
+msgstr "No task lists you can see."
+
+msgid "Önceliksiz"
+msgstr "No priority"
+
+msgid "Atanmamış"
+msgstr "Unassigned"
+
+msgid "Geciken"
+msgstr "Overdue"
+
+msgid "Bugün"
+msgstr "Today"
+
+msgid "Son 7 günde biten"
+msgstr "Done in the last 7 days"
+
+msgid "açık görev"
+msgstr "open tasks"
+
+msgid "Açık görev yok."
+msgstr "No open tasks."
+
+msgid "+ Görev oluştur"
+msgstr "+ Create task"
+
+msgid "Flux Tasks'i aç"
+msgstr "Open Flux Tasks"
+
+msgid "Dönem"
+msgstr "Period"
+
+msgid "Son 7 gün"
+msgstr "Last 7 days"
+
+msgid "Son 14 gün"
+msgstr "Last 14 days"
+
+msgid "Son 30 gün"
+msgstr "Last 30 days"
+
+msgid "Dağılım"
+msgstr "Breakdown"
+
+msgid "Bağış türüne göre"
+msgstr "By donation type"
+
+msgid "Ödeme yöntemine göre"
+msgstr "By payment method"
+
+msgid "Dağılım yok"
+msgstr "No breakdown"
+
+msgid "son %d gün"
+msgstr "last %d days"
+
+msgid "Günlük bağış toplamları"
+msgstr "Daily donation totals"
+
+msgid "Türsüz"
+msgstr "No type"
+
+msgid "türlere göre"
+msgstr "by type"
+
+msgid "yöntemlere göre"
+msgstr "by method"
+
+msgid "Anonim"
+msgstr "Anonymous"
+
+msgid "%d kalem"
+msgstr "%d items"
+
+msgid "Henüz bağış yok."
+msgstr "No donations yet."
+
+msgid "Tüm bağışlar"
+msgstr "All donations"
+
+msgid "Flux Tasks kullanılamıyor."
+msgstr "Flux Tasks isn't available."
+
+msgid "Bu listeye görev ekleme yetkiniz yok."
+msgstr "You can't add tasks to this list."
+
+msgid "Etkinlikler|edit.php?post_type=etkinlik\nCanlı site|https://"
+msgstr "Events|edit.php?post_type=etkinlik\nLive site|https://"
+
+msgid "Yönetim panelini baştan tasarlar: rol bazlı düzenlenebilir sol menü, mobil alt bar ve yan panel, WhatsApp / Görevler geçişi, düzenlenebilir Başlangıç modülleri, otomatik açık/koyu tema, komut paleti (Ctrl+K), canlı sayaçlar ve PWA (ana ekrana ekle)."
+msgstr "Redesigns the admin: editable role-based side menu, mobile bottom bar and side panel, WhatsApp / Tasks switcher, editable Dashboard modules, automatic light/dark theme, command palette (Ctrl+K), live counters and PWA (add to home screen)."
+
+msgid "Daha fazla"
+msgstr "More"
+
+msgid "Filtreler"
+msgstr "Filters"
+
+msgid "Temizle"
+msgstr "Clear"
+
+msgid "Sayfalama"
+msgstr "Pagination"
+
+msgid "%1$s–%2$s / %3$s"
+msgstr "%1$s–%2$s of %3$s"
+
+msgid "Önceki sayfa"
+msgstr "Previous page"
+
+msgid "Sonraki sayfa"
+msgstr "Next page"
+
+msgid "Sayfa başı"
+msgstr "Per page"
+
+msgid "Uygula"
+msgstr "Apply"
+
+msgid "Nerede görünsün"
+msgstr "Where to show"
+
+msgid "%s: gösterilmez"
+msgstr "%s: hidden"
+
+msgid "İletişim"
+msgstr "Communication"
+
+msgid "Büyüme"
+msgstr "Growth"
+
+msgid "Ekranlar"
+msgstr "Screens"
+
+msgid "Sistem"
+msgstr "System"
+
+msgid "WordPress güncellemeleri"
+msgstr "WordPress updates"
+
+msgid "Mağaza: %s"
+msgstr "Store: %s"
+
+msgid "Menüyü daralt / genişlet ([)"
+msgstr "Collapse / expand menu ([)"
+
+msgid "Çıkış yap"
+msgstr "Log out"

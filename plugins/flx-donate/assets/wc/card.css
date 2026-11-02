@@ -1,0 +1,32 @@
+/* Flux Donate 2.1.0 · card fields (iyzico). Colours follow the theme tokens when present. */
+.flxb-cardpay{--c-line:var(--flx-line,#cfdcd4);--c-bg:var(--flx-surface,#fff);--c-ink:var(--flx-ink,#14324a);--c-mut:var(--flx-text,#4a5b66);--c-pri:var(--flx-primary,#1f7a4d);display:grid;gap:.85rem;margin:.5rem 0 0;color:var(--c-ink)}
+.flxb-cardpay [hidden]{display:none!important}
+.flxb-cardpay fieldset{margin:0;padding:0;border:0;min-width:0}
+.flxb-cardpay legend{margin:0 0 .45rem;padding:0;font-weight:700;font-size:.92rem}
+.flxb-card__new{display:grid;gap:.75rem}
+.flxb-card__row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.flxb-card__f label{display:block;margin:0 0 .3rem;font-size:.85rem;font-weight:600;color:var(--c-mut)}
+.flxb-card__in{position:relative}
+.flxb-card__in input{box-sizing:border-box;width:100%;min-height:50px;padding:.7rem .9rem;border:1.5px solid var(--c-line);border-radius:12px;background:var(--c-bg);color:var(--c-ink);font:inherit;font-size:1.05rem;letter-spacing:.02em;outline:0}
+#flxb-cc-number{padding-right:6.5rem;font-variant-numeric:tabular-nums;letter-spacing:.06em}
+.flxb-card__in input:focus{border-color:var(--c-pri);box-shadow:0 0 0 4px color-mix(in srgb,var(--c-pri) 16%,transparent)}
+.flxb-card__in input[aria-invalid=true]{border-color:#d63638}
+.flxb-card__brand{position:absolute;right:.9rem;top:50%;transform:translateY(-50%);font-size:.8rem;font-weight:800;letter-spacing:.04em;color:var(--c-pri);pointer-events:none}
+.flxb-card__err{margin:.3rem 0 0;font-size:.82rem;color:#d63638}
+.flxb-card__err:empty{display:none}
+.flxb-cardpay .flxb-card__opt{display:flex!important;align-items:center;gap:.75rem;min-height:50px;margin:0 0 .45rem;padding:.55rem .9rem;border:1.5px solid var(--c-line);border-radius:12px;background:var(--c-bg);cursor:pointer;font-weight:600}
+.flxb-card__opt:has(input:checked){border-color:var(--c-pri);background:color-mix(in srgb,var(--c-pri) 8%,var(--c-bg))}
+.flxb-card__opt input{width:22px;height:22px;margin:0;flex:0 0 22px;accent-color:var(--c-pri)}
+.flxb-card__inst-list{display:grid;gap:0}
+.flxb-cardpay .flxb-card__save{display:flex!important;align-items:flex-start;gap:.75rem;min-height:44px;cursor:pointer}
+.flxb-card__save input{width:24px;height:24px;margin:.1rem 0 0;flex:0 0 24px;accent-color:var(--c-pri)}
+.flxb-card__save b{display:block;font-weight:600}
+.flxb-card__save small{display:block;margin-top:.15rem;color:var(--c-mut);font-size:.82rem}
+.flxb-card__note,.flxb-card__secure,.flxb-card__test{margin:0;font-size:.85rem;color:var(--c-mut)}
+.flxb-card__secure::before{content:"🔒 "}
+.flxb-card__test{padding:.5rem .75rem;border-radius:10px;background:color-mix(in srgb,#f0b849 22%,transparent);color:var(--c-ink)}
+@media (max-width:420px){.flxb-card__row{gap:.6rem}}
+/* 2.2.3: test card hint with a fill button */
+.flxb-card__test{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem .75rem}
+.flxb-card__test span{flex:1 1 14rem}
+.flxb-card__fill{flex:none;min-height:36px;padding:.35rem .9rem;border:1.5px solid currentColor;border-radius:999px;background:transparent;color:inherit;font:inherit;font-weight:700;cursor:pointer}

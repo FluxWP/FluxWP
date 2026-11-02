@@ -1,0 +1,8 @@
+(()=>{const add=()=>{ if(document.getElementById('zz-cur'))return; const c=document.createElement('div'); c.id='zz-cur';
+c.innerHTML='<svg width="26" height="26" viewBox="0 0 24 24"><path d="M4 2l16 9.5-7 1.6-3.6 6.9z" fill="#111" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>';
+c.style.cssText='position:fixed;left:0;top:0;z-index:2147483647;pointer-events:none;transform:translate(-4px,-2px);transition:none';
+document.documentElement.appendChild(c); const st=document.createElement('style'); st.textContent='.zz-rip{position:fixed;z-index:2147483646;pointer-events:none;width:36px;height:36px;margin:-18px 0 0 -18px;border-radius:50%;background:rgba(34,160,90,.35);animation:zzr .5s ease-out forwards}@keyframes zzr{from{transform:scale(.3);opacity:1}to{transform:scale(1.4);opacity:0}}'; document.documentElement.appendChild(st);
+const pos=JSON.parse(sessionStorage.getItem('zzpos')||'[640,400]'); c.style.left=pos[0]+'px'; c.style.top=pos[1]+'px';
+addEventListener('mousemove',e=>{c.style.left=e.clientX+'px';c.style.top=e.clientY+'px';sessionStorage.setItem('zzpos',JSON.stringify([e.clientX,e.clientY]))},true);
+addEventListener('mousedown',e=>{const r=document.createElement('div');r.className='zz-rip';r.style.left=e.clientX+'px';r.style.top=e.clientY+'px';document.documentElement.appendChild(r);setTimeout(()=>r.remove(),600)},true);};
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',add);else add();})()

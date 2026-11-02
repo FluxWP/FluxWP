@@ -1,0 +1,135 @@
+<?php
+/**
+ * Tablolar: flxai_log (her model ve araç çağrısı), flxai_chats (ortak sohbetler), flxai_media (görsel/video işleri).
+ *
+ * @package FLX_AI
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+function flxai_table( $name ) {
+	global $wpdb;
+	return $wpdb->prefix . 'flxai_' . $name;
+}
+
+function flxai_install() {
+	global $wpdb;
+	require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+	$cs  = $wpdb->get_charset_collate();
+	$log = flxai_table( 'log' );
+	$cht = flxai_table( 'chats' );
+	$bdy = flxai_table( 'log_body' );
+	$med = flxai_table( 'media' );
+	dbDelta(
+		"CREATE TABLE {$bdy} (
+			log_id bigint(20) unsigned NOT NULL DEFAULT 0,
+			ts int(10) unsigned NOT NULL DEFAULT 0,
+			req mediumtext NOT NULL,
+			res mediumtext NOT NULL,
+			PRIMARY KEY  (log_id),
+			KEY ts (ts)
+		) {$cs};"
+	);
+	dbDelta(
+		"CREATE TABLE {$log} (
+			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+			ts int(10) unsigned NOT NULL DEFAULT 0,
+			kind varchar(10) NOT NULL DEFAULT 'model',
+			source varchar(60) NOT NULL DEFAULT '',
+			purpose varchar(60) NOT NULL DEFAULT '',
+			user_id bigint(20) unsigned NOT NULL DEFAULT 0,
+			chat_id bigint(20) unsigned NOT NULL DEFAULT 0,
+			provider varchar(20) NOT NULL DEFAULT '',
+			model varchar(120) NOT NULL DEFAULT '',
+			tool varchar(80) NOT NULL DEFAULT '',
+			in_tok int(10) unsigned NOT NULL DEFAULT 0,
+			out_tok int(10) unsigned NOT NULL DEFAULT 0,
+			cache_read int(10) unsigned NOT NULL DEFAULT 0,
+			cache_write int(10) unsigned NOT NULL DEFAULT 0,
+			cost decimal(14,8) NOT NULL DEFAULT 0,
+			full_cost decimal(14,8) NOT NULL DEFAULT 0,
+			est tinyint(1) NOT NULL DEFAULT 0,
+			ms int(10) unsigned NOT NULL DEFAULT 0,
+			ok tinyint(1) NOT NULL DEFAULT 1,
+			error varchar(255) NOT NULL DEFAULT '',
+			PRIMARY KEY  (id),
+			KEY ts (ts),
+			KEY source_ts (source,ts),
+			KEY kind_ts (kind,ts)
+		) {$cs};"
+	);
+	dbDelta(
+		"CREATE TABLE {$cht} (
+			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+			user_id bigint(20) unsigned NOT NULL DEFAULT 0,
+			title varchar(190) NOT NULL DEFAULT '',
+			archived tinyint(1) NOT NULL DEFAULT 0,
+			status varchar(20) NOT NULL DEFAULT 'idle',
+			model varchar(120) NOT NULL DEFAULT '',
+			created int(10) unsigned NOT NULL DEFAULT 0,
+			updated int(10) unsigned NOT NULL DEFAULT 0,
+			messages longtext NOT NULL,
+			state longtext NOT NULL,
+			PRIMARY KEY  (id),
+			KEY user_upd (user_id,archived,updated)
+		) {$cs};"
+	);
+	dbDelta(
+		"CREATE TABLE {$med} (
+			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+			job varchar(32) NOT NULL DEFAULT '',
+			ts int(10) unsigned NOT NULL DEFAULT 0,
+			updated int(10) unsigned NOT NULL DEFAULT 0,
+			user_id bigint(20) unsigned NOT NULL DEFAULT 0,
+			source varchar(60) NOT NULL DEFAULT '',
+			purpose varchar(60) NOT NULL DEFAULT '',
+			kind varchar(10) NOT NULL DEFAULT 'image',
+			model varchar(80) NOT NULL DEFAULT '',
+			provider varchar(20) NOT NULL DEFAULT '',
+			state varchar(12) NOT NULL DEFAULT 'queued',
+			progress decimal(5,4) NOT NULL DEFAULT 0,
+			req longtext NOT NULL,
+			outputs longtext NOT NULL,
+			meta longtext NOT NULL,
+			cost decimal(14,8) NOT NULL DEFAULT 0,
+			est tinyint(1) NOT NULL DEFAULT 1,
+			log_id bigint(20) unsigned NOT NULL DEFAULT 0,
+			error varchar(255) NOT NULL DEFAULT '',
+			PRIMARY KEY  (id),
+			UNIQUE KEY job (job),
+			KEY source_ts (source,ts),
+			KEY user_ts (user_id,ts)
+		) {$cs};"
+	);
+	$role = get_role( 'administrator' );
+	if ( $role ) {
+		$role->add_cap( 'flxai_chat' );
+	}
+	update_option( 'flxai_db_version', FLXAI_DB_VERSION, true );
+}
+
+/** Aktivasyon güncellemede çalışmaz; şema sürümü değişince kurulum burada yapılır. */
+function flxai_maybe_upgrade() {
+	if ( FLXAI_DB_VERSION !== get_option( 'flxai_db_version' ) ) {
+		flxai_install();
+	}
+}
+
+/** Eski kayıtlar günde bir kez silinir (cron'a bağlı değil). */
+add_action(
+	'admin_init',
+	function () {
+		if ( get_transient( 'flxai_prune' ) ) {
+			return;
+		}
+		set_transient( 'flxai_prune', 1, DAY_IN_SECONDS );
+		global $wpdb;
+		$days = max( 30, (int) flxai_setting( 'log_days', 365 ) );
+		$wpdb->query( $wpdb->prepare( 'DELETE FROM ' . flxai_table( 'log' ) . ' WHERE ts < %d', time() - $days * DAY_IN_SECONDS ) ); // phpcs:ignore
+		$bdays = max( 1, min( 365, (int) flxai_setting( 'log_body_days', 30 ) ) );
+		$wpdb->query( $wpdb->prepare( 'DELETE FROM ' . flxai_table( 'log_body' ) . ' WHERE ts < %d', time() - $bdays * DAY_IN_SECONDS ) ); // phpcs:ignore
+		// Görsel/video iş kayıtları; üretilen dosyalar uploads/flxai-media'da kalır.
+		$mdays = max( 7, (int) flxai_setting( 'media_days', 90 ) );
+		$wpdb->query( $wpdb->prepare( 'DELETE FROM ' . flxai_table( 'media' ) . ' WHERE ts < %d', time() - $mdays * DAY_IN_SECONDS ) ); // phpcs:ignore
+	}
+);

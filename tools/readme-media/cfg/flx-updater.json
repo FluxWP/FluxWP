@@ -1,0 +1,96 @@
+{
+ "slug": "flx-updater",
+ "shots": [
+  {
+   "name": "packages",
+   "url": "admin.php?page=flx-updater",
+   "vh": 1000
+  },
+  {
+   "name": "settings",
+   "url": "admin.php?page=flx-updater-ayarlar",
+   "vh": 900
+  },
+  {
+   "name": "wp-updates",
+   "url": "update-core.php",
+   "vh": 900
+  }
+ ],
+ "mobile": [
+  {
+   "name": "mobile",
+   "url": "admin.php?page=flx-updater"
+  }
+ ],
+ "gif": [
+  {
+   "goto": "admin.php?page=flx-updater",
+   "wait": 2200
+  },
+  {
+   "move": [
+    700,
+    250
+   ]
+  },
+  {
+   "move": [
+    1150,
+    95
+   ],
+   "wait": 600
+  },
+  {
+   "click": "button:has-text('test'), a:has-text('test'), button:has-text('Test')",
+   "css": true,
+   "wait": 2500
+  },
+  {
+   "move": [
+    1100,
+    250
+   ],
+   "wait": 800
+  },
+  {
+   "scroll": 500,
+   "wait": 1500
+  },
+  {
+   "move": [
+    1150,
+    420
+   ],
+   "wait": 900
+  },
+  {
+   "scroll": 0,
+   "wait": 900
+  },
+  {
+   "click": "a[href*='page=flx-updater-ayarlar']",
+   "css": true,
+   "in": "#wpbody-content, #adminmenu",
+   "nav": true
+  },
+  {
+   "move": [
+    700,
+    400
+   ],
+   "wait": 1500
+  },
+  {
+   "goto": "update-core.php",
+   "wait": 2000
+  },
+  {
+   "move": [
+    700,
+    500
+   ],
+   "wait": 1200
+  }
+ ]
+}

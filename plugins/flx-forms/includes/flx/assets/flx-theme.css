@@ -1,0 +1,676 @@
+/*
+ * Flux Forms: public form skin.
+ * Maps Easy Form Builder's Bootstrap-based markup to the site theme's design tokens
+ * (--flx-* variables of the FluxWP theme), else the block theme's palette
+ * (--wp--preset--color--*), else a built-in light palette.
+ * Dark mode (filter flxf_front_dark_mode, default 'class'), always only when the visitor's
+ * device is in dark mode (prefers-color-scheme: dark):
+ *   'class' only when the theme allows it with body.flx-dark (the FluxWP theme then redefines the
+ *           same variables);
+ *   'auto'  without the theme class too (built-in dark palette, override with --flxf-dark-*
+ *           variables); a body.flx-light class keeps it light;
+ *   'off'   always light.
+ * Disable with: add_filter( 'flxf_theme_style', '__return_false' );
+ */
+.body_efb,
+#alert_efb,
+.efb-confirmation-finder {
+	--flxf-primary: var(--flx-primary, var(--wp--preset--color--primary, #0E7A56));
+	--flxf-primary-dark: var(--flx-primary-dark, var(--wp--preset--color--primary-dark, #0A5A40));
+	--flxf-ink: var(--flx-ink, var(--wp--preset--color--ink, #14324A));
+	--flxf-text: var(--flx-text, var(--wp--preset--color--text, #4A5B66));
+	--flxf-muted: color-mix(in srgb, var(--flxf-text) 70%, transparent);
+	--flxf-surface: var(--flx-surface, var(--wp--preset--color--surface, #FFFFFF));
+	--flxf-soft: var(--flx-mint-soft, var(--wp--preset--color--mint-soft, #F5FAF6));
+	--flxf-mint: var(--flx-mint, var(--wp--preset--color--mint, #EAF5EE));
+	--flxf-line: var(--flx-line, var(--wp--preset--color--line, #DCE9E0));
+	--flxf-radius: 12px;
+	--flxf-ring: 0 0 0 4px color-mix(in srgb, var(--flxf-primary) 20%, transparent);
+	--flxf-font: var(--wp--preset--font-family--body, 'Nunito Sans', system-ui, sans-serif);
+	--flxf-font-heading: var(--wp--preset--font-family--heading, Nunito, system-ui, sans-serif);
+	font-family: var(--flxf-font);
+	color: var(--flxf-text);
+}
+
+/* Typography ------------------------------------------------------------- */
+.body_efb .efb,
+.body_efb .efb.fs-6,
+.body_efb .efb.fs-5,
+.body_efb .efb.fs-7 { font-family: var(--flxf-font) !important; }
+.body_efb h1.efb, .body_efb h2.efb, .body_efb h3.efb, .body_efb h4.efb,
+.body_efb .efb[data-tag="heading"] .efb { font-family: var(--flxf-font-heading) !important; color: var(--flxf-ink) !important; }
+
+.body_efb .efb.col-form-label,
+.body_efb .efb.col-form-label .efb,
+.body_efb label.efb.text-labelEfb,
+.body_efb .efb.text-labelEfb:not(input):not(textarea):not(select) {
+	color: var(--flxf-ink) !important;
+	font-weight: 600 !important;
+	font-size: .95rem !important;
+}
+.body_efb .efb.text-muted,
+.body_efb .efb.form-text,
+.body_efb small.efb { color: var(--flxf-muted) !important; }
+.body_efb .efb.text-danger,
+.body_efb .efb.col-form-label .efb.text-danger { color: #D64545 !important; font-weight: 700 !important; }
+.body_efb a.efb:not(.btn), .body_efb .efb a:not(.btn):not(.nav-link),
+.body_efb .efb.text-primary { color: var(--flxf-primary) !important; }
+
+/* Inputs ----------------------------------------------------------------- */
+.body_efb .efb.form-control,
+.body_efb .efb.input-efb,
+.body_efb .efb.form-select,
+.body_efb select.efb,
+.body_efb .efb .dropdown-toggle.btn,
+.body_efb .efb.dropdown-toggle,
+.body_efb .efb .efblist.inplist,
+.body_efb .efb .iti input,
+.body_efb .efb .input-group-text {
+	background-color: var(--flxf-surface) !important;
+	color: var(--flxf-ink) !important;
+	border: 1.5px solid var(--flxf-line) !important;
+	border-radius: var(--flxf-radius) !important;
+	box-shadow: none !important;
+	font-size: 1rem !important;
+	transition: border-color .15s ease, box-shadow .15s ease !important;
+}
+.body_efb .efb.form-control:not(textarea),
+.body_efb .efb.input-efb:not(textarea):not([type="range"]):not([type="color"]),
+.body_efb select.efb,
+.body_efb .efb .efblist.inplist { min-height: 48px !important; height: auto !important; padding: .6rem .95rem !important; line-height: 1.5 !important; }
+.body_efb textarea.efb { padding: .75rem .9rem !important; min-height: 120px; }
+.body_efb .efb .input-group-text { background-color: var(--flxf-soft) !important; color: var(--flxf-text) !important; }
+.body_efb .efb.input-group-text,
+.body_efb .efb .input-group > .input-group-text:first-child { border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important; }
+.body_efb .efb .input-group > .input-group-text + .form-control { border-top-left-radius: 0 !important; border-bottom-left-radius: 0 !important; }
+
+.body_efb .efb.form-control:hover,
+.body_efb .efb.input-efb:hover,
+.body_efb select.efb:hover { border-color: color-mix(in srgb, var(--flxf-primary) 45%, var(--flxf-line)) !important; }
+.body_efb .efb.form-control:focus,
+.body_efb .efb.input-efb:focus,
+.body_efb select.efb:focus,
+.body_efb .efb .iti input:focus {
+	border-color: var(--flxf-primary) !important;
+	box-shadow: var(--flxf-ring) !important;
+	outline: none !important;
+}
+.body_efb .efb.form-control::placeholder,
+.body_efb .efb.input-efb::placeholder,
+.body_efb textarea.efb::placeholder { color: var(--flxf-muted) !important; opacity: 1; }
+
+/* Invalid state */
+.body_efb .efb.form-control.border-danger,
+.body_efb .efb.input-efb.border-danger,
+.body_efb .efb.is-invalid { border-color: #D64545 !important; }
+.body_efb .efb.ttiptext { color: #D64545 !important; background: transparent !important; }
+
+/* Date/time pickers, colour picker */
+.body_efb input[type="date"].efb,
+.body_efb input[type="time"].efb,
+.body_efb input[type="datetime-local"].efb { color-scheme: light; }
+.body_efb input[type="color"].efb { padding: .3rem !important; min-height: 48px !important; }
+
+/* File input button */
+.body_efb input[type="file"].efb::file-selector-button {
+	background: var(--flxf-mint); color: var(--flxf-ink); border: 0; border-right: 1.5px solid var(--flxf-line);
+	padding: .6rem 1rem; margin: -.55rem 1rem -.55rem -.9rem; font-weight: 600; cursor: pointer;
+}
+
+/* Check boxes, radios, switches ------------------------------------------ */
+/* Own drawing instead of the browser/Bootstrap one: fixed px box (EFB sizes these in em
+ * with fs-* !important rules, which made radios slightly oval), no shrinking in flex rows. */
+.body_efb .efb.form-check:not(.form-switch) > input.efb.form-check-input[type="radio"],
+.body_efb .efb.form-check:not(.form-switch) > input.efb.form-check-input[type="checkbox"] {
+	-webkit-appearance: none !important;
+	appearance: none !important;
+	box-sizing: border-box !important;
+	width: 22px !important; height: 22px !important;
+	min-width: 22px !important; min-height: 22px !important;
+	max-width: 22px !important; max-height: 22px !important;
+	aspect-ratio: 1 / 1;
+	flex: 0 0 22px !important;
+	flex-shrink: 0 !important;
+	align-self: center;
+	margin: 0 !important; padding: 0 !important; float: none !important;
+	position: relative !important; top: 0 !important; left: 0 !important;
+	font-size: 16px !important; line-height: 1 !important;
+	vertical-align: middle;
+	background-color: var(--flxf-surface) !important;
+	background-image: none !important;
+	border: 2px solid color-mix(in srgb, var(--flxf-text) 42%, var(--flxf-line)) !important;
+	box-shadow: none !important;
+	cursor: pointer;
+	transition: border-color .15s ease, background-color .15s ease, box-shadow .15s ease !important;
+}
+.body_efb .efb.form-check:not(.form-switch) > input.efb.form-check-input[type="radio"] { border-radius: 50% !important; }
+.body_efb .efb.form-check:not(.form-switch) > input.efb.form-check-input[type="checkbox"] { border-radius: 7px !important; }
+.body_efb .efb.form-check:not(.form-switch) > input.efb.form-check-input:hover { border-color: var(--flxf-primary) !important; }
+/* Radio: primary ring + centred dot (inset shadow paints the gap, so the dot is always concentric). */
+.body_efb .efb.form-check:not(.form-switch) > input.efb.form-check-input[type="radio"]:checked {
+	border-color: var(--flxf-primary) !important;
+	background-color: var(--flxf-primary) !important;
+	box-shadow: inset 0 0 0 4px var(--flxf-surface) !important;
+}
+/* Checkbox: filled rounded square with a crisp vector tick. */
+.body_efb .efb.form-check:not(.form-switch) > input.efb.form-check-input[type="checkbox"]:checked {
+	border-color: var(--flxf-primary) !important;
+	background-color: var(--flxf-primary) !important;
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.4' d='M3.6 8.4l2.9 2.9 5.9-6.4'/%3e%3c/svg%3e") !important;
+	background-size: 15px 15px !important;
+	background-position: center !important;
+	background-repeat: no-repeat !important;
+}
+.body_efb .efb.form-check:not(.form-switch) > input.efb.form-check-input:focus-visible { outline: none !important; box-shadow: var(--flxf-ring) !important; }
+.body_efb .efb.form-check:not(.form-switch) > input.efb.form-check-input[type="radio"]:checked:focus-visible { box-shadow: inset 0 0 0 4px var(--flxf-surface), var(--flxf-ring) !important; }
+.body_efb .efb.form-check:not(.form-switch) > input.efb.form-check-input:disabled { opacity: .55 !important; cursor: default; }
+
+/* Option rows (radio, checkbox, payment radio/checkbox, checklists): a single flex line, box
+ * vertically centred on the label text. */
+.body_efb .efb.form-check:not(.form-switch):not(.imgRadio) {
+	display: flex !important;
+	align-items: center !important;
+	gap: 12px;
+	padding-left: 0 !important;
+	min-height: 0;
+}
+.body_efb .efb.form-check:not(.form-switch):not(.imgRadio) > label.efb,
+.body_efb .efb.form-check:not(.form-switch):not(.imgRadio) > .hStyleOpEfb {
+	display: block !important;
+	height: auto !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	line-height: 1.45 !important;
+	font-size: 1rem !important;
+}
+.body_efb .efb.form-check:not(.form-switch):not(.imgRadio) > label.efb { flex: 1 1 auto; min-width: 0; color: var(--flxf-ink) !important; }
+/* price on the right */
+.body_efb .efb.form-check:not(.form-switch):not(.imgRadio) > span.efb.col {
+	flex: 0 0 auto !important; width: auto !important; max-width: none !important;
+	margin-left: auto !important;
+	font-family: var(--flxf-font-heading) !important;
+	font-weight: 800 !important;
+	color: var(--flxf-ink) !important;
+	white-space: nowrap;
+}
+.body_efb .efb.form-check:not(.form-switch):not(.imgRadio) > span.efb.col .efb { color: inherit !important; }
+
+/* Choice lists render as selectable cards. The label's ::after covers the whole card, so
+ * the full row is clickable (label `for` toggles the input). */
+.body_efb .efb[id$="_options"]:has(> .efb.form-check:not(.trmCheckbox):not(.imgRadio)) {
+	display: flex !important;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+.body_efb .efb[id$="_options"] > .efb.form-check:not(.form-switch):not(.imgRadio):not(.trmCheckbox) {
+	position: relative;
+	width: 100%;
+	margin: 0 !important;
+	padding: 13px 16px !important;
+	min-height: 54px;
+	background: var(--flxf-surface) !important;
+	border: 1.5px solid var(--flxf-line) !important;
+	border-radius: var(--flxf-radius) !important;
+	cursor: pointer;
+	transition: border-color .15s ease, background-color .15s ease, box-shadow .15s ease;
+}
+@media (min-width: 768px) {
+	.body_efb .efb[id$="_options"] > .efb.form-check.col-md-6:not(.imgRadio) { width: calc(50% - 4px) !important; flex: 0 0 calc(50% - 4px) !important; max-width: calc(50% - 4px) !important; }
+	.body_efb .efb[id$="_options"] > .efb.form-check.col-md-4:not(.imgRadio) { width: calc(33.333% - 5.34px) !important; flex: 0 0 calc(33.333% - 5.34px) !important; max-width: calc(33.333% - 5.34px) !important; }
+	.body_efb .efb[id$="_options"] > .efb.form-check.col-md-3:not(.imgRadio) { width: calc(25% - 6px) !important; flex: 0 0 calc(25% - 6px) !important; max-width: calc(25% - 6px) !important; }
+}
+.body_efb .efb[id$="_options"] > .efb.form-check:not(.form-switch):not(.imgRadio):not(.trmCheckbox) > label.efb::after {
+	content: ""; position: absolute; inset: 0; border-radius: inherit; cursor: pointer;
+}
+.body_efb .efb[id$="_options"] > .efb.form-check > input.efb.form-check-input,
+.body_efb .efb[id$="_options"] > .efb.form-check:not(.trmCheckbox) > label.efb a,
+.body_efb .efb[id$="_options"] > .efb.form-check .checklist { position: relative; z-index: 1; }
+.body_efb .efb[id$="_options"] > .efb.form-check:not(.form-switch):not(.imgRadio):not(.trmCheckbox):hover {
+	border-color: color-mix(in srgb, var(--flxf-primary) 45%, var(--flxf-line)) !important;
+	background: var(--flxf-soft) !important;
+}
+.body_efb .efb[id$="_options"] > .efb.form-check:not(.form-switch):not(.imgRadio):not(.trmCheckbox):has(> input:checked) {
+	border-color: var(--flxf-primary) !important;
+	background: var(--flxf-mint) !important;
+	box-shadow: 0 0 0 1px var(--flxf-primary) inset;
+}
+.body_efb .efb[id$="_options"] > .efb.form-check:not(.form-switch):not(.imgRadio):not(.trmCheckbox):has(> input:focus-visible) {
+	box-shadow: var(--flxf-ring) !important;
+}
+.body_efb .efb[id$="_options"] > .efb.form-check:not(.form-switch):not(.imgRadio):has(> input:checked) > span.efb.col { color: var(--flxf-primary) !important; }
+.body_efb .efb[id$="_options"] > .efb.form-check:not(.form-switch):not(.imgRadio):has(> input:disabled) { cursor: default; opacity: .75; }
+.body_efb .efb[id$="_options"] > .efb.form-check:not(.form-switch):not(.imgRadio):has(> input:disabled) > label.efb::after { cursor: default; }
+/* Terms / consent checkbox: plain row, no card */
+.body_efb .efb.form-check.trmCheckbox { margin-top: 2px !important; }
+.body_efb .efb.form-check.trmCheckbox > label.efb { color: var(--flxf-text) !important; }
+/* Checklist ("chl") inputs inside a card */
+.body_efb .efb.form-check .efb.checklist { min-height: 40px !important; height: auto !important; border-radius: 10px !important; }
+
+.body_efb .efb.form-check-label,
+.body_efb .efb.form-check .efb.text-labelEfb { font-weight: 400 !important; cursor: pointer; }
+.body_efb .efb.form-switch .form-check-input { width: 2.6em !important; border-radius: 2em !important; }
+.body_efb input[type="range"].efb { accent-color: var(--flxf-primary); }
+.body_efb input[type="range"].efb::-webkit-slider-thumb { background: var(--flxf-primary) !important; }
+.body_efb input[type="range"].efb::-moz-range-thumb { background: var(--flxf-primary) !important; }
+.body_efb .efb .efb-range-value, .body_efb .efb[id$="_rv"] { color: var(--flxf-primary) !important; font-weight: 700; }
+
+/* Buttons ---------------------------------------------------------------- */
+.body_efb .efb.btn-primary,
+.body_efb .efb.btn.btn-primary,
+.body_efb .efb.bg-primary,
+.body_efb .efb.btn-darkb,
+.body_efb .efb.btn_send_efb,
+.body_efb .efb#next_efb,
+.body_efb .efb#prev_efb {
+	background: var(--flxf-primary) !important;
+	border-color: var(--flxf-primary) !important;
+	color: #fff !important;
+}
+.body_efb .efb.btn-primary:hover,
+.body_efb .efb.btn_send_efb:hover,
+.body_efb .efb#next_efb:hover,
+.body_efb .efb#prev_efb:hover { background: var(--flxf-primary-dark) !important; border-color: var(--flxf-primary-dark) !important; }
+.body_efb .efb.btn-primary,
+.body_efb .efb.btn-primary *,
+.body_efb .efb.btn_send_efb * { color: #fff !important; }
+.body_efb .efb.btn_send_efb,
+.body_efb .efb#next_efb,
+.body_efb .efb#prev_efb {
+	border-radius: 999px !important;
+	font-family: var(--flxf-font-heading) !important;
+	font-weight: 700 !important;
+	font-size: 1.05rem !important;
+	padding: .8rem 1.8rem !important;
+	min-height: 52px;
+	box-shadow: 0 8px 20px color-mix(in srgb, var(--flxf-primary) 25%, transparent) !important;
+}
+.body_efb .efb.btn_send_efb:focus-visible,
+.body_efb .efb.btn:focus-visible { outline: none !important; box-shadow: var(--flxf-ring) !important; }
+.body_efb .efb.btn-secondary,
+.body_efb .efb.btn-outline-primary {
+	background: var(--flxf-soft) !important; color: var(--flxf-ink) !important; border: 1.5px solid var(--flxf-line) !important;
+}
+
+/* Yes / No */
+.body_efb .efb-yesno-group .efb.yesno-efb {
+	background: var(--flxf-soft) !important; color: var(--flxf-ink) !important;
+	border: 1.5px solid var(--flxf-line) !important; box-shadow: none !important;
+}
+.body_efb .efb-yesno-group .efb.yesno-efb span { color: inherit !important; }
+.body_efb .efb-yesno-group .efb.yesno-efb.active,
+.body_efb .efb-yesno-group .efb.yesno-efb.btn-set { background: var(--flxf-primary) !important; border-color: var(--flxf-primary) !important; color: #fff !important; }
+
+/* NPS / 5 point / matrix */
+.body_efb .efb[data-tag="pointr10"] .btn,
+.body_efb .efb[data-tag="pointr5"] .btn,
+.body_efb .efb[data-tag="table_matrix"] .btn,
+.body_efb .efb.efb-pointr .btn {
+	background: var(--flxf-surface) !important; color: var(--flxf-ink) !important;
+	border: 1.5px solid var(--flxf-line) !important; border-radius: 10px !important;
+}
+.body_efb .efb[data-tag="pointr10"] .btn .efb,
+.body_efb .efb[data-tag="pointr5"] .btn .efb,
+.body_efb .efb[data-tag="table_matrix"] .btn .efb { color: inherit !important; }
+.body_efb .efb[data-tag="pointr10"] .btn:hover,
+.body_efb .efb[data-tag="pointr5"] .btn:hover,
+.body_efb .efb[data-tag="table_matrix"] .btn:hover { border-color: var(--flxf-primary) !important; }
+.body_efb .efb[data-tag="pointr10"] .btn.active,
+.body_efb .efb[data-tag="pointr5"] .btn.active,
+.body_efb .efb[data-tag="table_matrix"] .btn.active,
+.body_efb .efb[data-tag="pointr10"] .btn.btn-set,
+.body_efb .efb[data-tag="pointr5"] .btn.btn-set,
+.body_efb .efb[data-tag="table_matrix"] .btn.btn-set { background: var(--flxf-primary) !important; border-color: var(--flxf-primary) !important; color: #fff !important; }
+.body_efb .efb[data-tag="table_matrix"] .efb.border-bottom,
+.body_efb .efb[data-tag="table_matrix"] hr { border-color: var(--flxf-line) !important; }
+
+/* Rating stars keep their gold, unchecked stars follow the line colour */
+.body_efb .efb.star-efb:not(:checked) > label { color: color-mix(in srgb, var(--flxf-text) 30%, var(--flxf-line)) !important; }
+.body_efb .efb.star-efb > input:checked ~ label { color: #F2B705 !important; }
+
+/* Drag & drop upload */
+.body_efb .efb[data-tag="dadfile"] .efb.dropZoneEFB,
+.body_efb .efb.efb-dadfile,
+.body_efb .efb[id$="_box"].efb-dad,
+.body_efb .efb[data-tag="dadfile"] [id$="_box"] {
+	background: var(--flxf-soft) !important;
+	border: 2px dashed color-mix(in srgb, var(--flxf-primary) 35%, var(--flxf-line)) !important;
+	border-radius: var(--flxf-radius) !important;
+}
+.body_efb .efb[data-tag="dadfile"] .efb.text-labelEfb,
+.body_efb .efb[data-tag="dadfile"] .efb.fs-5,
+.body_efb .efb[data-tag="dadfile"] .efb.fs-6 { color: var(--flxf-ink) !important; }
+.body_efb .efb[data-tag="dadfile"] .bi-cloud-arrow-up-fill,
+.body_efb .efb[data-tag="dadfile"] i.efb { color: var(--flxf-primary) !important; }
+
+/* Image picker cards */
+.body_efb .efb[data-tag="imgRadio"] .card,
+.body_efb .efb.card {
+	background: var(--flxf-surface) !important; border: 1.5px solid var(--flxf-line) !important;
+	border-radius: var(--flxf-radius) !important; box-shadow: none !important;
+}
+.body_efb .efb[data-tag="imgRadio"] input:checked + label .card,
+.body_efb .efb[data-tag="imgRadio"] .card.active { border-color: var(--flxf-primary) !important; box-shadow: var(--flxf-ring) !important; }
+.body_efb .efb.card .efb { color: var(--flxf-ink) !important; }
+.body_efb .efb.card .efb.text-muted { color: var(--flxf-muted) !important; }
+
+/* Signature pad: stays white so the ink is visible and the saved image is the same in both modes */
+.body_efb canvas.efb, .body_efb .efb.sign-efb { background: #fff !important; border: 1.5px solid var(--flxf-line) !important; border-radius: var(--flxf-radius) !important; }
+
+/* Switch */
+.body_efb .efb.btn-toggle { background: color-mix(in srgb, var(--flxf-text) 35%, var(--flxf-line)) !important; border: 0 !important; }
+.body_efb .efb.btn-toggle.active,
+.body_efb .efb.btn-toggle[aria-pressed="true"],
+.body_efb .efb.btn-toggle[data-state="on"] { background: var(--flxf-primary) !important; }
+.body_efb .efb.btn-toggle .handle { background: #fff !important; }
+
+/* Map */
+.body_efb .efb.maps-efb, .body_efb .efb .leaflet-container { border-radius: var(--flxf-radius) !important; overflow: hidden; }
+.body_efb .leaflet-container .custom-control { background: var(--flxf-surface) !important; color: var(--flxf-ink) !important; }
+
+/* bootstrap-select dropdowns, intl-tel-input */
+.body_efb .efb .dropdown-menu,
+.body_efb .efb .efblist:not(.inplist),
+.body_efb .iti__country-list {
+	background: var(--flxf-surface) !important; color: var(--flxf-ink) !important;
+	border: 1px solid var(--flxf-line) !important; border-radius: var(--flxf-radius) !important;
+	box-shadow: var(--flx-shadow, 0 10px 30px rgba(20,50,74,.12)) !important;
+}
+.body_efb .efb .dropdown-item, .body_efb .efb .efblist .efb, .body_efb .iti__country { color: var(--flxf-ink) !important; }
+.body_efb .efb .dropdown-item:hover, .body_efb .efb .dropdown-item.active,
+.body_efb .efb .efblist tr:hover, .body_efb .iti__country.iti__highlight { background: var(--flxf-mint) !important; color: var(--flxf-ink) !important; }
+
+/* Payment rows / totals */
+.body_efb .efb[data-tag="ttlprc"] .efb.totalpayEfb,
+.body_efb .efb.totalpayEfb { color: var(--flxf-primary) !important; font-family: var(--flxf-font-heading) !important; font-weight: 800 !important; font-size: 1.5rem !important; }
+
+/* Steps header & progress bar -------------------------------------------- */
+.body_efb {
+	--efb-sp-accent: var(--flxf-primary); --efb-sp-accent-dark: var(--flxf-primary-dark);
+	--efb-sp-soft: color-mix(in srgb, var(--flxf-primary) 16%, transparent);
+	--efb-sp-track: var(--flxf-mint); --efb-sp-line: var(--flxf-line); --efb-sp-muted: var(--flxf-muted);
+}
+.body_efb .efb .progress, .body_efb .progress.efb { background: var(--flxf-mint) !important; border-radius: 999px !important; height: 8px !important; }
+.body_efb .efb .progress-bar, .body_efb .efb.progress-bar { background: var(--flxf-primary) !important; }
+.body_efb #steps-efb:not(.efb-sp__steps) li,
+.body_efb #steps-efb:not(.efb-sp__steps) li .efb { color: var(--flxf-muted) !important; }
+.body_efb #steps-efb:not(.efb-sp__steps) li.active,
+.body_efb #steps-efb:not(.efb-sp__steps) li.active .efb { color: var(--flxf-ink) !important; }
+.body_efb #steps-efb:not(.efb-sp__steps) li:before { background: var(--flxf-mint) !important; color: var(--flxf-primary) !important; }
+.body_efb #steps-efb:not(.efb-sp__steps) li:after { background: var(--flxf-line) !important; }
+.body_efb #steps-efb:not(.efb-sp__steps) li.active:before { background: var(--flxf-primary) !important; color: #fff !important; }
+.body_efb #steps-efb:not(.efb-sp__steps) li.active:after { background: var(--flxf-primary) !important; }
+.body_efb #steps-efb strong.efb { font-family: var(--flxf-font-heading) !important; font-weight: 700 !important; font-size: 1rem !important; }
+.body_efb .efb.text-darkb, .body_efb h4.efb, .body_efb .efb#title_efb { color: var(--flxf-ink) !important; font-family: var(--flxf-font-heading) !important; }
+
+/* Messages ------------------------------------------------------------------ */
+.body_efb #efb-final-step .efb,
+.body_efb #efb-final-step h2.efb { color: var(--flxf-ink) !important; }
+.body_efb #efb-final-step .bi-check-circle-fill,
+.body_efb #efb-final-step .text-success,
+.body_efb .efb.text-success { color: var(--flxf-primary) !important; }
+#alert_efb .alert, .body_efb .efb.alert {
+	border-radius: var(--flxf-radius) !important; border: 1px solid var(--flxf-line) !important;
+	background: var(--flxf-soft) !important; color: var(--flxf-ink) !important;
+}
+#alert_efb .alert-danger, .body_efb .efb.alert-danger { background: color-mix(in srgb, #D64545 10%, var(--flxf-surface)) !important; border-color: color-mix(in srgb, #D64545 35%, transparent) !important; }
+
+/* Containers: no foreign card chrome inside theme content */
+.body_efb.efb, .body_efb .efb.card-public, .body_efb .efb.efb-form-card { background: transparent !important; box-shadow: none !important; }
+
+/* Mobile -------------------------------------------------------------------- */
+@media (max-width: 600px) {
+	.body_efb { padding-left: 0 !important; padding-right: 0 !important; }
+	.body_efb .efb.btn_send_efb { width: 100% !important; }
+	.body_efb .efb.form-control, .body_efb .efb.input-efb, .body_efb select.efb { font-size: 16px !important; } /* stops iOS zoom */
+}
+@media (max-width: 600px) {
+	.body_efb > form > .view-efb > .efb.px-2,
+	.body_efb > form > .view-efb { padding-left: 0 !important; padding-right: 0 !important; }
+}
+
+/* intl-tel-input: leave room for the flag / dial-code button */
+.body_efb .efb .iti--allow-dropdown input.efb,
+.body_efb .efb .iti--separate-dial-code input.efb,
+.body_efb .efb .iti input.efb.input-efb { padding-left: 52px !important; }
+.body_efb .efb .iti--separate-dial-code input.efb { padding-left: 92px !important; }
+
+/* Selects: own chevron (follows light/dark) ------------------------------------ */
+.body_efb select.efb:not([multiple]):not([size]),
+.body_efb select.efb.form-select:not([multiple]) {
+	-webkit-appearance: none !important;
+	appearance: none !important;
+	padding-right: 2.6rem !important;
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%234A5B66' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8' d='M4 6l4 4 4-4'/%3e%3c/svg%3e") !important;
+	background-repeat: no-repeat !important;
+	background-position: right .9rem center !important;
+	background-size: 16px 16px !important;
+	cursor: pointer;
+}
+
+/* Labels & help text ------------------------------------------------------------ */
+.body_efb .efb.col-form-label { padding-top: .35rem !important; padding-bottom: .4rem !important; line-height: 1.35 !important; }
+.body_efb .efb.col-form-label .efb.text-danger { margin-left: .2rem !important; margin-right: 0 !important; }
+.body_efb .efb-field-description small.efb.form-text:not(:empty) {
+	margin: .4rem 0 0 !important; padding: 0 !important;
+	font-size: .85rem !important; line-height: 1.45 !important;
+}
+.body_efb .efb-field-description small.efb.form-text:empty { display: none !important; }
+.body_efb .efb.ttiptext { font-size: .85rem !important; padding-left: 0 !important; }
+
+/* intl-tel-input: full width, flag button aligned with the field ------------------ */
+.body_efb .efb .iti { display: block !important; width: 100% !important; }
+.body_efb .efb .iti .iti__flag-container { top: 1.5px; bottom: 1.5px; left: 1.5px; }
+.body_efb .efb .iti .iti__selected-flag {
+	height: 100%; padding: 0 8px 0 14px !important;
+	border-radius: calc(var(--flxf-radius) - 1.5px) 0 0 calc(var(--flxf-radius) - 1.5px);
+	background: transparent !important;
+}
+.body_efb .efb .iti .iti__selected-flag:hover,
+.body_efb .efb .iti .iti__selected-flag:focus { background: var(--flxf-soft) !important; }
+.body_efb .efb .iti .iti__arrow { border-top-color: var(--flxf-text); }
+.body_efb .efb .iti .iti__arrow--up { border-bottom-color: var(--flxf-text); border-top-color: transparent; }
+.body_efb .iti__country-list .iti__dial-code { color: var(--flxf-muted) !important; }
+
+/* Stripe payment box ------------------------------------------------------------ */
+.body_efb .efb.efbField[data-tag="stripe"] { margin-left: 0 !important; margin-right: 0 !important; }
+.body_efb .efb.efbField[data-tag="stripe"] > .efb.stripe { padding-left: 0 !important; padding-right: 0 !important; width: 100% !important; max-width: 100% !important; }
+.body_efb .efb.stripe #cardnoEfb > *, .body_efb .efb.stripe #cardexpEfb > *, .body_efb .efb.stripe #cardcvcEfb > * { max-width: 100%; }
+.body_efb .efb.stripe > .efb.stripe-bg.card {
+	background: var(--flxf-surface) !important;
+	border: 1.5px solid var(--flxf-line) !important;
+	border-radius: 16px !important;
+	box-shadow: var(--flx-shadow, 0 10px 30px rgba(20,50,74,.08)) !important;
+	padding: 20px !important;
+}
+.body_efb .efb.stripe .efb.headpay {
+	display: flex !important; flex-wrap: wrap; align-items: center; justify-content: space-between;
+	gap: 8px 16px;
+	width: auto !important; margin: 0 0 18px !important; padding: 0 0 16px !important;
+	border: 0 !important; border-bottom: 1.5px solid var(--flxf-line) !important;
+}
+.body_efb .efb.stripe .efb.headpay > .efb.h3 {
+	flex: 1 1 auto !important; width: auto !important; max-width: none !important;
+	margin: 0 !important; padding: 0 !important; font-size: 1rem !important;
+}
+.body_efb .efb.stripe .efb.headpay > .efb.h3:first-child > .efb.col-12 {
+	padding: 0 !important; color: var(--flxf-ink) !important;
+	font-family: var(--flxf-font-heading) !important; font-weight: 700 !important; font-size: 1.05rem !important;
+}
+.body_efb .efb.stripe .efb.headpay > .efb.h3:first-child > .efb.text-labelEfb {
+	display: flex; align-items: center; gap: 4px;
+	margin: 4px 0 0 !important; font-size: .8rem !important; color: var(--flxf-muted) !important;
+}
+.body_efb .efb.stripe .efb.headpay > .efb.h3:first-child > .efb.text-labelEfb i.efb { margin: 0 !important; color: var(--flxf-primary) !important; }
+.body_efb .efb.stripe .efb.headpay > .efb.payPriceEfb,
+.body_efb .efb.stripe .efb.headpay > #payPriceEfb {
+	flex: 0 0 auto !important; align-items: baseline; gap: 6px;
+	background: transparent !important; color: var(--flxf-ink) !important;
+	padding: 0 !important; margin: 0 !important; max-height: none !important; border-radius: 0 !important;
+}
+.body_efb .efb.stripe .efb.totalpayEfb { margin: 0 !important; font-size: 1.75rem !important; line-height: 1.1 !important; }
+.body_efb .efb.stripe #chargeEfb {
+	margin: 0 !important; padding: 3px 10px !important; border-radius: 999px;
+	background: var(--flxf-mint) !important; color: var(--flxf-primary) !important;
+	font-size: .8rem !important; font-weight: 700 !important; line-height: 1.3 !important;
+}
+.body_efb .efb.stripe #chargeEfb:empty { display: none !important; }
+.body_efb .efb.stripe #stripeCardSectionEfb > .efb { width: auto !important; max-width: none !important; margin: 0 0 12px !important; padding: 0 !important; }
+.body_efb .efb.stripe #stripeCardSectionEfb > .efb.row {
+	display: grid !important; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px;
+	--bs-gutter-x: 0;
+}
+.body_efb .efb.stripe #stripeCardSectionEfb > .efb.row > .efb {
+	display: flex; flex-direction: column; justify-content: flex-end; /* fields line up even when a label wraps */
+	width: auto !important; max-width: none !important; margin: 0 !important; padding: 0 !important;
+}
+.body_efb .efb.stripe #stripeCardSectionEfb label.efb {
+	display: block; margin: 0 0 6px !important;
+	color: var(--flxf-ink) !important; font-weight: 600 !important; font-size: .95rem !important;
+}
+.body_efb .efb.stripe #cardnoEfb.efb,
+.body_efb .efb.stripe #cardexpEfb.efb,
+.body_efb .efb.stripe #cardcvcEfb.efb {
+	height: auto !important; min-height: 48px !important;
+	padding: 13px 14px !important;
+	font-size: 16px !important; line-height: 1.4 !important;
+	color: var(--flxf-ink) !important;
+}
+.body_efb .efb.stripe .StripeElement--focus { border-color: var(--flxf-primary) !important; box-shadow: var(--flxf-ring) !important; }
+.body_efb .efb.stripe .StripeElement--invalid { border-color: #D64545 !important; }
+.body_efb .efb.stripe .efb.efb-slot { clear: both; }
+.body_efb .efb.stripe #btnStripeEfb.efb {
+	display: flex !important; align-items: center; justify-content: center; gap: 8px;
+	float: none !important; width: 100% !important;
+	min-height: 52px; margin: 6px 0 0 !important; padding: .8rem 1.6rem !important;
+	background: var(--flxf-primary) !important; border: 0 !important; border-radius: 999px !important;
+	color: #fff !important;
+	font-family: var(--flxf-font-heading) !important; font-weight: 700 !important;
+	font-size: 1.05rem !important; line-height: 1.2 !important;
+	box-shadow: 0 8px 20px color-mix(in srgb, var(--flxf-primary) 25%, transparent) !important;
+	transition: background-color .15s ease, opacity .15s ease, box-shadow .15s ease !important;
+	opacity: 1 !important;
+}
+.body_efb .efb.stripe #btnStripeEfb.efb * { color: #fff !important; }
+.body_efb .efb.stripe #btnStripeEfb.efb:hover { background: var(--flxf-primary-dark) !important; }
+.body_efb .efb.stripe #btnStripeEfb.efb:focus-visible { outline: none !important; box-shadow: var(--flxf-ring) !important; }
+.body_efb .efb.stripe #btnStripeEfb.efb.disabled,
+.body_efb .efb.stripe #btnStripeEfb.efb[aria-disabled="true"] {
+	opacity: .45 !important; box-shadow: none !important; cursor: not-allowed; pointer-events: none;
+}
+.body_efb .efb.stripe #statusStripEfb.efb {
+	margin-top: 14px; padding: 16px !important;
+	background: var(--flxf-mint) !important; border: 1.5px solid var(--flxf-line) !important;
+	border-radius: var(--flxf-radius) !important; color: var(--flxf-ink) !important;
+}
+.body_efb .efb.stripe #statusStripEfb .efb.text-muted { color: var(--flxf-text) !important; }
+.body_efb .efb.stripe #statusStripEfb h3.efb { font-size: 1.15rem !important; color: var(--flxf-primary) !important; }
+
+/* Server price quote state (see stripe_pay-efb.js) */
+.body_efb .efb.totalpayEfb { transition: opacity .15s ease; }
+.body_efb .efb.totalpayEfb.flxf-quote-pending,
+.body_efb .efb.totalpayEfb.flxf-quote-error { opacity: .5; }
+.body_efb .flxf-quote-status {
+	display: flex; align-items: center; gap: 8px;
+	flex: 1 0 100%; margin: 0 !important; padding: 0 !important; font-size: .85rem; line-height: 1.4; color: var(--flxf-muted) !important;
+}
+.body_efb .flxf-quote-status[hidden] { display: none !important; }
+.body_efb .flxf-quote-status.is-error { color: #D64545 !important; font-weight: 600; }
+.body_efb .flxf-quote-status.is-pending::before {
+	content: ""; flex: 0 0 14px; width: 14px; height: 14px; border-radius: 50%;
+	border: 2px solid color-mix(in srgb, var(--flxf-primary) 25%, transparent);
+	border-top-color: var(--flxf-primary);
+	animation: flxf-spin .7s linear infinite;
+}
+@keyframes flxf-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .body_efb .flxf-quote-status.is-pending::before { animation: none; } }
+
+@media (max-width: 600px) {
+	.body_efb .efb.stripe > .efb.stripe-bg.card { padding: 16px !important; border-radius: 14px !important; }
+	.body_efb .efb.stripe .efb.totalpayEfb { font-size: 1.5rem !important; }
+	.body_efb .efb[id$="_options"] > .efb.form-check:not(.form-switch):not(.imgRadio):not(.trmCheckbox) { padding: 12px 14px !important; }
+}
+
+/* Loading indicator (same as admin) */
+.flxf-loader { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; min-height: 180px; padding: 32px 16px; width: 100%; text-align: center; animation: flxfLoaderIn .25s ease .12s both; }
+.flxf-loader--sm { min-height: 110px; padding: 20px 12px; gap: 10px; }
+.flxf-loader__ring { width: 40px; height: 40px; border-radius: 50%; border: 3px solid color-mix(in srgb, var(--flx-primary, #0E7A56) 16%, transparent); border-top-color: var(--flx-primary, #0E7A56); animation: flxfSpin .8s linear infinite; }
+.flxf-loader--sm .flxf-loader__ring { width: 28px; height: 28px; border-width: 2.5px; }
+.flxf-loader__text { color: var(--flx-text, #4A5B66); font: 600 14px/1.4 var(--wp--preset--font-family--body, 'Nunito Sans', system-ui, sans-serif); letter-spacing: .01em; }
+.flxf-spin { display: inline-block; width: 1em; height: 1em; vertical-align: -.15em; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: flxfSpin .7s linear infinite; }
+@keyframes flxfSpin { to { transform: rotate(360deg); } }
+@keyframes flxfLoaderIn { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .flxf-loader__ring, .flxf-spin { animation-duration: 1.6s; } .flxf-loader { animation: none; } }
+/* EFB's "please wait" overlay on a form (dots SVG) → the same ring */
+.body_efb[class*="efb-waiting-"] > *, .body_efb [class*="efb-waiting-"] > * { opacity: .45 !important; transition: opacity .2s; }
+.body_efb[class*="efb-waiting-"]::after, .body_efb [class*="efb-waiting-"]::after { background: none !important; width: 38px !important; height: 38px !important; top: 50% !important; left: 50% !important; margin: -19px 0 0 -19px; transform: none !important; border-radius: 50%; border: 3px solid color-mix(in srgb, var(--flx-primary, #0E7A56) 18%, transparent); border-top-color: var(--flx-primary, #0E7A56); animation: flxfSpin .8s linear infinite; }
+
+/* Card fields (2.0.4): the Stripe frame fills the box and sits centred, labels without the colon. */
+.body_efb .efb.stripe #cardnoEfb.efb,
+.body_efb .efb.stripe #cardexpEfb.efb,
+.body_efb .efb.stripe #cardcvcEfb.efb {
+	display: flex !important; align-items: center !important;
+	min-height: 50px !important; padding: 0 14px !important;
+	background: var(--flxf-surface, #fff) !important;
+	border: 1.5px solid var(--flxf-line, #DCE9E0) !important; border-radius: 12px !important;
+	box-shadow: none !important; cursor: text;
+	transition: border-color .15s ease, box-shadow .15s ease;
+}
+.body_efb .efb.stripe #cardnoEfb.efb > *,
+.body_efb .efb.stripe #cardexpEfb.efb > *,
+.body_efb .efb.stripe #cardcvcEfb.efb > * { flex: 1 1 auto; width: 100% !important; }
+.body_efb .efb.stripe #cardnoEfb.efb:hover,
+.body_efb .efb.stripe #cardexpEfb.efb:hover,
+.body_efb .efb.stripe #cardcvcEfb.efb:hover { border-color: color-mix(in srgb, var(--flxf-primary) 45%, var(--flxf-line, #DCE9E0)) !important; }
+.body_efb .efb.stripe .StripeElement--focus.efb { border-color: var(--flxf-primary) !important; box-shadow: var(--flxf-ring) !important; }
+.body_efb .efb.stripe .StripeElement--invalid.efb { border-color: #D64545 !important; }
+.body_efb .efb.stripe .StripeElement--disabled.efb { background: var(--flxf-mint-soft, #F5FAF6) !important; }
+.body_efb .efb.stripe #stripeCardSectionEfb label.efb { font-size: .9rem !important; line-height: 1.3 !important; }
+.body_efb .efb.stripe #stripeCardSectionEfb > .efb.row { margin-top: 4px !important; }
+
+
+/* Dark mode (device in dark mode + theme class, or 'auto') -------------------------- */
+@media (prefers-color-scheme: dark) {
+	/* built-in palette only where the theme brings none of its own (body.flx-dark does) */
+	body.flxf-dark-auto:not(.flx-light):not(.flx-dark) .body_efb,
+	body.flxf-dark-auto:not(.flx-light):not(.flx-dark) #alert_efb,
+	body.flxf-dark-auto:not(.flx-light):not(.flx-dark) .efb-confirmation-finder {
+		--flxf-primary: var(--flxf-dark-primary, #1F9A6C);
+		--flxf-primary-dark: var(--flxf-dark-primary-dark, #17805A);
+		--flxf-ink: var(--flxf-dark-ink, #E8F2EC);
+		--flxf-text: var(--flxf-dark-text, #AFC3B8);
+		--flxf-surface: var(--flxf-dark-surface, #13251F);
+		--flxf-soft: var(--flxf-dark-soft, #10221D);
+		--flxf-mint: var(--flxf-dark-mint, #17302A);
+		--flxf-line: var(--flxf-dark-line, #26453C);
+	}
+	body.flx-dark:not(.flxf-dark-off) .body_efb input[type="date"].efb,
+	body.flx-dark:not(.flxf-dark-off) .body_efb input[type="time"].efb,
+	body.flx-dark:not(.flxf-dark-off) .body_efb input[type="datetime-local"].efb,
+	body.flxf-dark-auto:not(.flx-light) .body_efb input[type="date"].efb,
+	body.flxf-dark-auto:not(.flx-light) .body_efb input[type="time"].efb,
+	body.flxf-dark-auto:not(.flx-light) .body_efb input[type="datetime-local"].efb { color-scheme: dark; }
+	body.flx-dark:not(.flxf-dark-off) .body_efb select.efb:not([multiple]):not([size]),
+	body.flx-dark:not(.flxf-dark-off) .body_efb select.efb.form-select:not([multiple]),
+	body.flxf-dark-auto:not(.flx-light) .body_efb select.efb:not([multiple]):not([size]),
+	body.flxf-dark-auto:not(.flx-light) .body_efb select.efb.form-select:not([multiple]) {
+		background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23AFC3B8' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8' d='M4 6l4 4 4-4'/%3e%3c/svg%3e") !important;
+	}
+	body.flx-dark:not(.flxf-dark-off) .body_efb select.efb option,
+	body.flxf-dark-auto:not(.flx-light) .body_efb select.efb option { background: var(--flxf-surface); color: var(--flxf-ink); }
+	body.flx-dark:not(.flxf-dark-off) .body_efb .flxf-quote-status.is-error,
+	body.flxf-dark-auto:not(.flx-light) .body_efb .flxf-quote-status.is-error { color: #F08080 !important; }
+	body.flx-dark:not(.flxf-dark-off) .flxf-pay-unavailable,
+	body.flxf-dark-auto:not(.flx-light) .flxf-pay-unavailable { --flxf-warn-bg: #2B2410; --flxf-warn-line: #5C4A1C; --flxf-warn-ink: #F2D58A; }
+}
+/* 'off': the FluxWP theme's dark variables do not reach the form */
+@media (prefers-color-scheme: dark) {
+	body.flx-dark.flxf-dark-off .body_efb,
+	body.flx-dark.flxf-dark-off #alert_efb,
+	body.flx-dark.flxf-dark-off .efb-confirmation-finder {
+		--flxf-primary: #0E7A56; --flxf-primary-dark: #0A5A40; --flxf-ink: #14324A; --flxf-text: #4A5B66;
+		--flxf-surface: #FFFFFF; --flxf-soft: #F5FAF6; --flxf-mint: #EAF5EE; --flxf-line: #DCE9E0;
+	}
+}
+/* The "online payment is not available" box (flxf-pay.js) */
+body .body_efb div.flxf-pay-unavailable,
+body .body_efb div.efb.flxf-pay-unavailable, body .body_efb .efb div.efb.flxf-pay-unavailable { color: var(--flxf-warn-ink, #6B4E00) !important; background: var(--flxf-warn-bg, #FFF8E6) !important; border-color: var(--flxf-warn-line, #EBD9A8) !important; }

@@ -1,0 +1,43 @@
+/* Flux Analiz: Başlangıç ekranı widget'ları. */
+.flxan-dw { --c: #1f8a5b; --c2: #9fd8bb; --soft: #e7f5ee; --line: #e2e4e7; --mut: #646970; }
+html.flxa-dark .flxan-dw, body.flx-dark .flxan-dw { --c: #4cc38a; --c2: #2a5f45; --soft: #233a2e; --line: #323935; --mut: #9aa39e; }
+.flxan-dw h4 { margin: 12px 0 4px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .03em; color: var(--mut); }
+.flxan-dw__sub { margin: 0 0 6px; color: var(--mut); font-size: 12px; }
+.flxan-dw__now, .flxan-dw__nums { display: flex; gap: 18px; align-items: flex-end; flex-wrap: wrap; margin: 2px 0 8px; }
+.flxan-dw__nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.flxan-dw__now > div, .flxan-dw__nums > div { display: flex; flex-direction: column; }
+.flxan-dw__nums b { font-size: 22px; line-height: 1.2; }
+.flxan-dw span { color: var(--mut); font-size: 12px; }
+.flxan-dw__big { font-size: 38px; line-height: 1; color: var(--c); font-variant-numeric: tabular-nums; }
+.flxan-dw__mid { font-size: 22px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.flxan-dw__dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--c); margin-bottom: 4px; animation: flxan-dwp 2s infinite; }
+@keyframes flxan-dwp { 0% { box-shadow: 0 0 0 0 rgba(31, 138, 91, .5); } 70% { box-shadow: 0 0 0 7px rgba(31, 138, 91, 0); } 100% { box-shadow: 0 0 0 0 rgba(31, 138, 91, 0); } }
+@media (prefers-reduced-motion: reduce) { .flxan-dw__dot { animation: none; } }
+.flxan-dw__bars { width: 100%; height: 44px; display: block; }
+.flxan-dw__bars rect { fill: var(--c); }
+.flxan-dw__bars rect.z { fill: var(--line); }
+.flxan-dw .flxan-mini { width: 100%; height: 90px; display: block; }
+.flxan-dw .flxan-mini__pv { fill: var(--c2); }
+.flxan-dw .flxan-mini__v { fill: var(--c); }
+.flxan-dw__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 600px) { .flxan-dw__cols { grid-template-columns: 1fr; } }
+.flxan-dw__list { margin: 0; padding: 0; list-style: none; }
+.flxan-dw__list li { position: relative; display: flex; justify-content: space-between; gap: 8px; padding: 3px 6px; margin: 0; font-size: 13px; }
+.flxan-dw__list .bar { position: absolute; left: 0; top: 1px; bottom: 1px; background: var(--soft); border-radius: 5px; }
+.flxan-dw__list .txt { position: relative; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: inherit; font-size: 13px; }
+.flxan-dw__list .txt a { text-decoration: none; }
+.flxan-dw__list b { position: relative; font-variant-numeric: tabular-nums; }
+.flxan-dw__split { display: flex; height: 8px; border-radius: 99px; overflow: hidden; background: var(--line); margin: 4px 0; }
+.flxan-dw__split span:first-child { background: var(--c); }
+.flxan-dw__split span:last-child { background: var(--c2); }
+.flxan-dw__funnel { margin: 0; padding: 0; list-style: none; counter-reset: s; }
+.flxan-dw__funnel li { margin: 0 0 8px; display: grid; grid-template-columns: 1fr auto; gap: 2px 8px; align-items: center; }
+.flxan-dw__frow { display: flex; justify-content: space-between; gap: 8px; grid-column: 1 / -1; font-size: 13px; }
+.flxan-dw__frow span { color: inherit; font-size: 13px; }
+.flxan-dw__fbar { height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; }
+.flxan-dw__fbar span { display: block; height: 100%; background: linear-gradient(90deg, var(--c), var(--c2)); border-radius: 99px; transition: width .4s; }
+.flxan-dw__funnel small { color: var(--mut); font-variant-numeric: tabular-nums; }
+.flxan-dw__empty { color: var(--mut); margin: 8px 0; }
+.flxan-dw__more { margin: 10px 0 0; text-align: right; }
+.flxan-dw.flxan-dw--fresh { animation: flxan-dwf .6s ease; }
+@keyframes flxan-dwf { 0% { opacity: .55; } 100% { opacity: 1; } }

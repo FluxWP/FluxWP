@@ -1,0 +1,1171 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Flux AI\n"
+
+msgid "Genel bakış"
+msgstr ""
+
+msgid "Kayıtlar"
+msgstr ""
+
+msgid "Bağlı sistemler"
+msgstr ""
+
+msgid "Faturalandırma"
+msgstr ""
+
+msgid "Araçlar"
+msgstr ""
+
+msgid "Ayarlar"
+msgstr ""
+
+msgid "Sınır %1$s · %2$s yenilenir"
+msgstr ""
+
+msgid "Sınır yok"
+msgstr ""
+
+msgid "Tüm eklentilerin yapay zekâ kullanımı: maliyet, süre, önbellek ve araçlar."
+msgstr ""
+
+msgid "Henüz API anahtarı girilmedi."
+msgstr ""
+
+msgid "%d gün"
+msgstr ""
+
+msgid "Kaynak"
+msgstr ""
+
+msgid "Tüm eklentiler"
+msgstr ""
+
+msgid "Maliyet"
+msgstr ""
+
+msgid "Önbellek tasarrufu %s"
+msgstr ""
+
+msgid "Model istekleri"
+msgstr ""
+
+msgid "%s araç çağrısı"
+msgstr ""
+
+msgid "Token"
+msgstr ""
+
+msgid "Giriş %1$s · çıkış %2$s · önbellekten %3$s"
+msgstr ""
+
+msgid "Toplam süre"
+msgstr ""
+
+msgid "Model/düşünme %%%1$s · araçlar %%%2$s"
+msgstr ""
+
+msgid "Hata"
+msgstr ""
+
+msgid "İsteklerin %%%s"
+msgstr ""
+
+msgid "Günlük maliyet (USD)"
+msgstr ""
+
+msgid "Süre nereye gidiyor: model/düşünme ve araçlar"
+msgstr ""
+
+msgid "Günlük token"
+msgstr ""
+
+msgid "Araç başına ortalama süre"
+msgstr ""
+
+msgid "Eklentiye göre"
+msgstr ""
+
+msgid "Modele göre"
+msgstr ""
+
+msgid "Amaca göre"
+msgstr ""
+
+msgid "Bu aralıkta kayıt yok."
+msgstr ""
+
+msgid "Ad"
+msgstr ""
+
+msgid "İstek"
+msgstr ""
+
+msgid "Model süresi"
+msgstr ""
+
+msgid "Araç süresi"
+msgstr ""
+
+msgid "%s hata"
+msgstr ""
+
+msgid "Her model isteği ve araç çağrısı: hangi sistemden, kim için, hangi model, token, süre, maliyet. İçerik kişisel veriler maskelenerek saklanır."
+msgstr ""
+
+msgid "Tümü"
+msgstr ""
+
+msgid "Araç çağrıları"
+msgstr ""
+
+msgid "Tüm sistemler"
+msgstr ""
+
+msgid "Yalnız hatalar"
+msgstr ""
+
+msgid "24 saat"
+msgstr ""
+
+msgid "Filtrele"
+msgstr ""
+
+msgid "%s kayıt"
+msgstr ""
+
+msgid "Kayıt yok."
+msgstr ""
+
+msgid "Zaman"
+msgstr ""
+
+msgid "Nerede"
+msgstr ""
+
+msgid "Kim"
+msgstr ""
+
+msgid "Model / araç"
+msgstr ""
+
+msgid "Giriş"
+msgstr ""
+
+msgid "Çıkış"
+msgstr ""
+
+msgid "Önbellek"
+msgstr ""
+
+msgid "Süre"
+msgstr ""
+
+msgid "araç"
+msgstr ""
+
+msgid "Harcama sınırı doldu"
+msgstr ""
+
+msgid "Kapalı (Bağlı sistemler)"
+msgstr ""
+
+msgid "Sistem"
+msgstr ""
+
+msgid "İçerik"
+msgstr ""
+
+msgid "Sayfa %1$s / %2$s"
+msgstr ""
+
+msgid "Önbellek sütunu: okunan / yazılan token. \"~\" fiyat listesinden tahmin. İçerik: giden son mesajlar ve gelen cevap, kısaltılmış; e-posta, telefon, IBAN ve anahtarlar maskeli."
+msgstr ""
+
+msgid "Flux AI'yı kullanan eklentiler. Buradan kapatılan sistem yapay zekâ isteği gönderemez; kendi ayarları da olduğu gibi kalır."
+msgstr ""
+
+msgid "Kaydedildi."
+msgstr ""
+
+msgid "Açık"
+msgstr ""
+
+msgid "Durum"
+msgstr ""
+
+msgid "Model"
+msgstr ""
+
+msgid "İstek (30 gün)"
+msgstr ""
+
+msgid "Son kullanım"
+msgstr ""
+
+msgid "kurulu değil"
+msgstr ""
+
+msgid "eklenti pasif"
+msgstr ""
+
+msgid "AI kapalı"
+msgstr ""
+
+msgid "çalışıyor"
+msgstr ""
+
+msgid "Ayarları"
+msgstr ""
+
+msgid "Model sütunu: o sistemin kullandığı model. Değiştirmek için Ayarlar › Eklentiye özel model. Kapalı sistemin istekleri reddedilir ve Kayıtlar'da \"Kapalı\" olarak görünür."
+msgstr ""
+
+msgid "Kaydet"
+msgstr ""
+
+msgid "Aylık döküm, harcama sınırları ve sağlayıcı kredisi. Tutarlar USD; OpenRouter gerçek maliyeti, Anthropic fiyat listesinden hesaplanır."
+msgstr ""
+
+msgid "Aylar"
+msgstr ""
+
+msgid "CSV indir"
+msgstr ""
+
+msgid "Toplam"
+msgstr ""
+
+msgid "Önbelleksiz olsaydı %s"
+msgstr ""
+
+msgid "Önbellek tasarrufu"
+msgstr ""
+
+msgid "%%%s daha az"
+msgstr ""
+
+msgid "Sağlayıcıya göre"
+msgstr ""
+
+msgid "Sağlayıcı"
+msgstr ""
+
+msgid "Önbelleksiz"
+msgstr ""
+
+msgid "Tutar"
+msgstr ""
+
+msgid "kısmen tahmini"
+msgstr ""
+
+msgid "Bu ay kayıt yok."
+msgstr ""
+
+msgid "OpenRouter hesabı"
+msgstr ""
+
+msgid "Yenile"
+msgstr ""
+
+msgid "Kalan kredi"
+msgstr ""
+
+msgid "Bu anahtarın toplam kullanımı"
+msgstr ""
+
+msgid "Anahtar sınırı / kalan"
+msgstr ""
+
+msgid "Kontrol"
+msgstr ""
+
+msgid "Kalan krediyi görmek için Yenile'ye basın. (Anthropic bakiye API'si sunmuyor; console.anthropic.com › Billing.)"
+msgstr ""
+
+msgid "Ortak sohbetin kullanabildiği araçlar. Değişiklik yapan araçlar her seferinde kullanıcı onayı ister; kullanıcı yalnız yetkisi olan araçları görür."
+msgstr ""
+
+msgid "Araç"
+msgstr ""
+
+msgid "Tür"
+msgstr ""
+
+msgid "Yetki"
+msgstr ""
+
+msgid "30 gün"
+msgstr ""
+
+msgid "Ort. süre"
+msgstr ""
+
+msgid "değiştirir · onaylı"
+msgstr ""
+
+msgid "okur"
+msgstr ""
+
+msgid "Kayıtlı araç yok."
+msgstr ""
+
+msgid "Eklentiler araç eklemek için flxai_tools filtresini kullanır (API.md). Flux SEO & MCP araçları otomatik gelir."
+msgstr ""
+
+msgid "Flux AI ayarları"
+msgstr ""
+
+msgid "Anahtarlar burada bir kez girilir; tüm FluxWP eklentileri bu bağlantıyı kullanır."
+msgstr ""
+
+msgid "Ayarlar kaydedildi."
+msgstr ""
+
+msgid "Sağlayıcılar"
+msgstr ""
+
+msgid "OpenRouter API anahtarı"
+msgstr ""
+
+msgid "Sil"
+msgstr ""
+
+msgid "openrouter.ai › Keys. Yüzlerce model tek anahtarla; gerçek maliyet her istekte bildirilir."
+msgstr ""
+
+msgid "Anthropic (Claude) API anahtarı"
+msgstr ""
+
+msgid "console.anthropic.com › API Keys. Claude modelleri \"claude:\" önekiyle listelenir."
+msgstr ""
+
+msgid "Anthropic workspace ID"
+msgstr ""
+
+msgid "Yalnız anahtar bir workspace'e bağlı değilse gerekir (hata mesajı \"anthropic-workspace-id\" isterse)."
+msgstr ""
+
+msgid "Modeller"
+msgstr ""
+
+msgid "Varsayılan model"
+msgstr ""
+
+msgid "Test et"
+msgstr ""
+
+msgid "Eklentiler kendi modelini vermezse bu kullanılır."
+msgstr ""
+
+msgid "Ortak sohbet modeli"
+msgstr ""
+
+msgid "Varsayılan"
+msgstr ""
+
+msgid "Araç kullanabilen bir model seçin."
+msgstr ""
+
+msgid "Sohbet adı modeli"
+msgstr ""
+
+msgid "Sohbet modeli"
+msgstr ""
+
+msgid "Sohbete otomatik isim vermek için ucuz bir model yeterli."
+msgstr ""
+
+msgid "Eklentiye özel model"
+msgstr ""
+
+msgid "Eklenti istekte model belirtmezse buradaki model kullanılır; boşsa varsayılan."
+msgstr ""
+
+msgid "Önbellek ve düşünme"
+msgstr ""
+
+msgid "Claude prompt önbelleği"
+msgstr ""
+
+msgid "Kapalı"
+msgstr ""
+
+msgid "Açık, 5 dakika"
+msgstr ""
+
+msgid "Açık, 1 saat"
+msgstr ""
+
+msgid "Aynı talimat ve araçlar tekrar gönderilince giriş ücretinin çoğu düşer (okuma 0,1x; yazma 5 dk 1,25x, 1 saat 2x). Eklentiler istek başına değiştirebilir. OpenRouter önbelleği sağlayıcıda otomatik."
+msgstr ""
+
+msgid "Claude çaba (effort)"
+msgstr ""
+
+msgid "Düşük: hızlı ve ucuz"
+msgstr ""
+
+msgid "Orta"
+msgstr ""
+
+msgid "Yüksek: daha derin düşünür"
+msgstr ""
+
+msgid "Düşünme adımları"
+msgstr ""
+
+msgid "Sohbette modelin düşünme özetini göster"
+msgstr ""
+
+msgid "Harcama sınırı"
+msgstr ""
+
+msgid "Günlük (her gün 00:00'da yenilenir)"
+msgstr ""
+
+msgid "Haftalık (Pazartesi yenilenir)"
+msgstr ""
+
+msgid "Aylık (ayın 1'inde yenilenir)"
+msgstr ""
+
+msgid "0 = sınırsız"
+msgstr ""
+
+msgid "Sınır dolunca"
+msgstr ""
+
+msgid "İstekleri durdur (eklentiler kendi yedek davranışına geçer)"
+msgstr ""
+
+msgid "Yalnız uyar"
+msgstr ""
+
+msgid "Uyarı eşiği"
+msgstr ""
+
+msgid "Eşikte ve dolunca yöneticiye e-posta"
+msgstr ""
+
+msgid "Ortak sohbet"
+msgstr ""
+
+msgid "Kimler kullanır"
+msgstr ""
+
+msgid "Herkes yalnız kendi yetkisinin izin verdiği araçları kullanır. Tek tek kullanıcıya \"flxai_chat\" yetkisi de verilebilir."
+msgstr ""
+
+msgid "Nerede görünsün"
+msgstr ""
+
+msgid "Yönetim paneli"
+msgstr ""
+
+msgid "Site (giriş yapmış yetkili kullanıcıya)"
+msgstr ""
+
+msgid "Varsayılan görünüm"
+msgstr ""
+
+msgid "Yüzen pencere"
+msgstr ""
+
+msgid "Sağa yerleşik (sayfayı iter)"
+msgstr ""
+
+msgid "Kullanıcı panelden değiştirebilir; seçimi kendi tarayıcısında kalır."
+msgstr ""
+
+msgid "Tur başına en fazla adım"
+msgstr ""
+
+msgid "Modele giden en fazla mesaj"
+msgstr ""
+
+msgid "Ek talimatlar"
+msgstr ""
+
+msgid "Ör. Kurum dili resmi olsun; yeni sayfaları her zaman taslak aç."
+msgstr ""
+
+msgid "Görsel ve video üretimi"
+msgstr ""
+
+msgid "Görsel ve video üreten eklentiler (Flux Studio vb.) bu anahtarları kullanır. Otomatik seçimde model için anahtarı girilmiş ilk sağlayıcı kullanılır; ücretli olabilecek bir istek başka sağlayıcıya tekrar gönderilmez. Harcama sınırı ve Kayıtlar burada da geçerlidir."
+msgstr ""
+
+msgid "%s API anahtarı"
+msgstr ""
+
+msgid "OpenRouter"
+msgstr ""
+
+msgid "Sağlayıcılar bölümündeki OpenRouter anahtarı görsel ve video için de kullanılır."
+msgstr ""
+
+msgid "Varsayılan görsel modeli"
+msgstr ""
+
+msgid "Varsayılan video modeli"
+msgstr ""
+
+msgid "Model › sağlayıcı"
+msgstr ""
+
+msgid "Sıra"
+msgstr ""
+
+msgid "Otomatik"
+msgstr ""
+
+msgid "video"
+msgstr ""
+
+msgid "Anahtar yok"
+msgstr ""
+
+msgid "İş kayıtları"
+msgstr ""
+
+msgid "gün saklanır (üretilen dosyalar silinmez)"
+msgstr ""
+
+msgid "Görseller"
+msgstr ""
+
+msgid "Sohbette görsel"
+msgstr ""
+
+msgid "Model tablo, kart, şema ve grafikleri görsel olarak çizebilsin (```widget ve ```mermaid)"
+msgstr ""
+
+msgid "Her model ile çalışır. Görseller ayrı, izole bir çerçevede çizilir; dış bağlantı, form ve siteye erişim yoktur."
+msgstr ""
+
+msgid "Sunucuda görsel çevirici"
+msgstr ""
+
+msgid "Gotenberg: HTML ve SVG görseller PNG olarak gönderilebilir."
+msgstr ""
+
+msgid "Imagick: yalnız SVG görseller PNG olarak gönderilebilir."
+msgstr ""
+
+msgid "Yok: WhatsApp gibi kanallarda görsel yerine metin gider."
+msgstr ""
+
+msgid "İsteğe bağlı. WhatsApp ve e-posta gibi kanallar HTML gösteremez; görseller PNG'ye çevrilir. Paylaşımlı sunucuda tarayıcı olmadığı için HTML görseller Docker sunucusundaki Gotenberg ile çevrilir (gotenberg/gotenberg:8)."
+msgstr ""
+
+msgid "Gotenberg kullanıcı / şifre"
+msgstr ""
+
+msgid "Gotenberg temel kimlik doğrulama ile korunuyorsa."
+msgstr ""
+
+msgid "Kullanım kayıtlarını sakla"
+msgstr ""
+
+msgid "gün"
+msgstr ""
+
+msgid "İçerik kaydı"
+msgstr ""
+
+msgid "Giden/gelen içeriği de sakla (kısaltılmış; e-posta, telefon, IBAN ve anahtarlar maskeli)"
+msgstr ""
+
+msgid "gün sakla"
+msgstr ""
+
+msgid "Kaldırınca"
+msgstr ""
+
+msgid "Eklenti silinirken kayıtları ve sohbetleri de sil"
+msgstr ""
+
+msgid "Mesaj boş."
+msgstr ""
+
+msgid "Kullanıcı yeni mesaj yazdı; bu işlem yapılmadı."
+msgstr ""
+
+msgid "Bu tur için adım sınırına ulaştım. Devam etmemi isterseniz \"devam\" yazın."
+msgstr ""
+
+msgid "Cevap uzunluk sınırına takıldı. Daha kısa bir soru deneyin."
+msgstr ""
+
+msgid "Bir cevap üretemedim, tekrar dener misiniz?"
+msgstr ""
+
+msgid "Araç yok ya da yetkiniz yok: %s"
+msgstr ""
+
+msgid "Kullanıcı durdurdu; yapılmadı."
+msgstr ""
+
+msgid "Asistan şu an çalışıyor; önce durdurun."
+msgstr ""
+
+msgid "Mesaj bulunamadı."
+msgstr ""
+
+msgid "%s için yapay zekâ kapalı (Flux AI › Bağlı sistemler)."
+msgstr ""
+
+msgid "Yapay zekâ modeli seçilmemiş (Flux AI › Ayarlar)."
+msgstr ""
+
+msgid "Günlük"
+msgstr ""
+
+msgid "Haftalık"
+msgstr ""
+
+msgid "Aylık"
+msgstr ""
+
+msgid "%1$s yapay zekâ harcama sınırı (%2$s) doldu. %3$s yenilenir; sınırı Flux AI › Ayarlar'dan değiştirebilirsiniz."
+msgstr ""
+
+msgid "Flux AI: %1$s harcama sınırının %2$s%%'i kullanıldı"
+msgstr ""
+
+msgid "%1$s harcama: %2$s / %3$s (%%%4$s)."
+msgstr ""
+
+msgid "Yapay zekâ istekleri durduruldu."
+msgstr ""
+
+msgid "Yapay zekâ anahtarları"
+msgstr ""
+
+msgid "Bağlı sağlayıcılar: %s."
+msgstr ""
+
+msgid "OpenRouter ya da Anthropic anahtarı girilmemiş; yapay zekâ özellikleri çalışmaz."
+msgstr ""
+
+msgid "%s kullanılıyor."
+msgstr ""
+
+msgid "Seçili modelin sağlayıcısının anahtarı yok ya da model seçilmemiş."
+msgstr ""
+
+msgid "Günlük/haftalık/aylık harcama sınırı tanımlı değil."
+msgstr ""
+
+msgid "Sınır koy"
+msgstr ""
+
+msgid "%1$s: %2$s / %3$s."
+msgstr ""
+
+msgid "Sınır doldu, yapay zekâ istekleri durdu."
+msgstr ""
+
+msgid "Son 24 saat hata oranı"
+msgstr ""
+
+msgid "%1$s / %2$s istek hatalı."
+msgstr ""
+
+msgid "Son 24 saatte istek yok."
+msgstr ""
+
+msgid "Sohbet araçları"
+msgstr ""
+
+msgid "Flux SEO & MCP araçları ortak sohbette kullanılabilir; değişiklik yapanlar onay ister."
+msgstr ""
+
+msgid "Flux SEO & MCP kurulu değil; sohbet yalnız Flux AI ve diğer eklentilerin kaydettiği araçları kullanır."
+msgstr ""
+
+msgid "Görsel çevirici (WhatsApp/e-posta)"
+msgstr ""
+
+msgid "%s yapay zekâ harcama sınırı (USD)"
+msgstr ""
+
+msgid "0 = sınırsız. Dolunca yapay zekâ istekleri durur (ayara göre yalnız uyarı)."
+msgstr ""
+
+msgid "Geçerli bir tutar girin (0 veya pozitif sayı)."
+msgstr ""
+
+msgid "Sınır %s olarak kaydedildi."
+msgstr ""
+
+msgid "Bu sayfada neler yapabilirim?"
+msgstr ""
+
+msgid "Sitedeki sistem kontrolü uyarılarını özetle"
+msgstr ""
+
+msgid "Son eklenen taslak içerikleri listele"
+msgstr ""
+
+msgid "Bu ay yapay zekâya ne kadar harcadık?"
+msgstr ""
+
+msgid "Bu sayfayı özetle"
+msgstr ""
+
+msgid "Bu sayfanın SEO eksiklerini göster"
+msgstr ""
+
+msgid "Bu sayfadaki yazım hatalarını bul"
+msgstr ""
+
+msgid "kayıtlı (…%s)"
+msgstr ""
+
+msgid "%s ms"
+msgstr ""
+
+msgid "%s sn"
+msgstr ""
+
+msgid "sohbet"
+msgstr ""
+
+msgid "başlık"
+msgstr ""
+
+msgid "test"
+msgstr ""
+
+msgid "Flux AI sohbet"
+msgstr ""
+
+msgid "Belirtilmemiş"
+msgstr ""
+
+msgid "Desteklenmeyen model."
+msgstr ""
+
+msgid "Bu sağlayıcı seçilen modeli sunmuyor."
+msgstr ""
+
+msgid "%s anahtarı girilmemiş (Flux AI › Ayarlar › Görsel ve video)."
+msgstr ""
+
+msgid "Bu model için şu anahtarlardan biri gerekli: %s (Flux AI › Ayarlar › Görsel ve video)."
+msgstr ""
+
+msgid "İstem gerekli (en çok 20.000 karakter)."
+msgstr ""
+
+msgid "Bu model en çok %d referans görsel alır."
+msgstr ""
+
+msgid "Bu model bu en-boy oranını desteklemiyor."
+msgstr ""
+
+msgid "Süre %1$d–%2$d saniye olmalı."
+msgstr ""
+
+msgid "İlk/son kare için 1 ya da 2 görsel seçin."
+msgstr ""
+
+msgid "Referans modu için görsel ya da video gerekli."
+msgstr ""
+
+msgid "Bu model alan düzenlemeyi desteklemiyor."
+msgstr ""
+
+msgid "Alan düzenleme için düzenlenecek görsel (refs[0]) gerekli."
+msgstr ""
+
+msgid "Referans okunamadı."
+msgstr ""
+
+msgid "Referans indirilemedi."
+msgstr ""
+
+msgid "%1$s cevabı alınamadı (%2$s). İstek ücretlendirilmiş olabilir; tekrar göndermeden önce sağlayıcı geçmişine bakın."
+msgstr ""
+
+msgid "Desteklenmeyen sağlayıcı."
+msgstr ""
+
+msgid "iş kimliği yok"
+msgstr ""
+
+msgid "EvoLink yalnız herkese açık http(s) adreslerini kabul eder; referansı siteye yükleyin."
+msgstr ""
+
+msgid "görev kimliği yok"
+msgstr ""
+
+msgid "OpenRouter video/ses referansı almaz; fal.ai ya da EvoLink seçin."
+msgstr ""
+
+msgid "OpenRouter için en-boy oranı seçin."
+msgstr ""
+
+msgid "OpenRouter'da Seedance 2.5 en çok 720p; 1080p için fal.ai ya da EvoLink seçin."
+msgstr ""
+
+msgid "OpenAI görsel döndürmedi. Tekrar göndermeden önce kullanım geçmişine bakın."
+msgstr ""
+
+msgid "OpenRouter görsel döndürmedi. Tekrar göndermeden önce kullanım geçmişine bakın."
+msgstr ""
+
+msgid "Gemini görsel döndürmedi (içerik filtresi olabilir)."
+msgstr ""
+
+msgid "İş bulunamadı."
+msgstr ""
+
+msgid "Sağlayıcı anahtarı silinmiş; iş korunuyor. Anahtarı geri girince devam eder."
+msgstr ""
+
+msgid "İş yarıda kaldı."
+msgstr ""
+
+msgid "fal.ai çıktı döndürmedi (içerik filtresi olabilir)."
+msgstr ""
+
+msgid "EvoLink görevi bitti ama sonuç adresi henüz yok."
+msgstr ""
+
+msgid "Sağlayıcı iptali onaylamadı; iş tamamlanırsa ücretlendirilebilir."
+msgstr ""
+
+msgid "Yerel olarak iptal edildi; sağlayıcıda başlamış iş ücretlendirilebilir."
+msgstr ""
+
+msgid "Çıktı türü desteklenmiyor."
+msgstr ""
+
+msgid "Çıktı kaydedilemedi."
+msgstr ""
+
+msgid "Çıktı indirilemedi; sağlayıcı adresi geçici olarak kullanılıyor."
+msgstr ""
+
+msgid "Model listesi alınamadı."
+msgstr ""
+
+msgid "→ Flux AI › Ayarlar › \"Anthropic workspace ID\" alanına console.anthropic.com › Settings › Workspaces'teki kimliği (wrkspc_…) girin."
+msgstr ""
+
+msgid "Yapay zekâ hatası (%1$d): %2$s"
+msgstr ""
+
+msgid "bilinmeyen hata"
+msgstr ""
+
+msgid "Kullanıcı durdurdu."
+msgstr ""
+
+msgid "OpenRouter API anahtarı girilmemiş (Flux AI › Ayarlar)."
+msgstr ""
+
+msgid "Yapay zekâ servisine ulaşılamadı: %s"
+msgstr ""
+
+msgid "Yapay zekâ boş cevap verdi."
+msgstr ""
+
+msgid "Anthropic (Claude) API anahtarı girilmemiş (Flux AI › Ayarlar)."
+msgstr ""
+
+msgid "OpenRouter anahtarı girilmemiş."
+msgstr ""
+
+msgid "Yetkiniz yok."
+msgstr ""
+
+msgid "Sohbet bulunamadı."
+msgstr ""
+
+msgid "Flux AI henüz ayarlanmadı: Flux AI › Ayarlar'dan bir API anahtarı ve model girin."
+msgstr ""
+
+msgid "Görsel çevirici çalışıyor"
+msgstr ""
+
+msgid "Önce Gotenberg adresini girin."
+msgstr ""
+
+msgid "Bu kaydın içeriği saklanmamış."
+msgstr ""
+
+msgid "%s karakter sistem talimatı"
+msgstr ""
+
+msgid "Yapay zekâ kullanımı"
+msgstr ""
+
+msgid "Tarih ve saat"
+msgstr ""
+
+msgid "Görsel kodu boş."
+msgstr ""
+
+msgid "Bu görsel HTML içeriyor; sunucuda yalnız SVG çevrilebiliyor. HTML için Flux AI › Ayarlar › Görseller'e Gotenberg adresi girin."
+msgstr ""
+
+msgid "Sunucuda görsel çevirici yok (Imagick SVG desteği ya da Gotenberg adresi gerekli)."
+msgstr ""
+
+msgid "Görsel çeviriciye ulaşılamadı: %s"
+msgstr ""
+
+msgid "Görsel çevirici kullanıcı adı veya şifreyi kabul etmedi."
+msgstr ""
+
+msgid "Görsel çevrilemedi (HTTP %d)."
+msgstr ""
+
+msgid "SVG çevrilemedi: %s"
+msgstr ""
+
+msgid "%1$s dk %2$s sn"
+msgstr ""
+
+msgid "Bu aralıkta veri yok."
+msgstr ""
+
+msgid "Tablo olarak göster"
+msgstr ""
+
+msgid "%1$s istek · %2$s araç"
+msgstr ""
+
+msgid "Model / düşünme"
+msgstr ""
+
+msgid "Ortalama süre"
+msgstr ""
+
+msgid "%1$s çağrı · en uzun %2$s"
+msgstr ""
+
+msgid "Deneniyor…"
+msgstr ""
+
+msgid "%s KB"
+msgstr ""
+
+msgid "Giden · kullanıcı"
+msgstr ""
+
+msgid "Giden · asistan"
+msgstr ""
+
+msgid "Giden · araç sonucu"
+msgstr ""
+
+msgid "Gelen · hata"
+msgstr ""
+
+msgid "Gelen · cevap"
+msgstr ""
+
+msgid "Görsel hazırlanıyor…"
+msgstr ""
+
+msgid "Görsel çizilemedi; kodu:"
+msgstr ""
+
+msgid "Görsel"
+msgstr ""
+
+msgid "Bağlantı kurulamadı. İnternet bağlantınızı kontrol edip tekrar deneyin."
+msgstr ""
+
+msgid "Yeni sohbet"
+msgstr ""
+
+msgid "AI'ya sor"
+msgstr ""
+
+msgid "Yapay zekâ asistanı"
+msgstr ""
+
+msgid "Durdur"
+msgstr ""
+
+msgid "Genişliği değiştir"
+msgstr ""
+
+msgid "Boyutu değiştir"
+msgstr ""
+
+msgid "Sohbetlerde ara"
+msgstr ""
+
+msgid "Kapat"
+msgstr ""
+
+msgid "Bir şey sorun ya da bir iş verin…"
+msgstr ""
+
+msgid "Gönder"
+msgstr ""
+
+msgid "Sağa yerleştir"
+msgstr ""
+
+msgid "Onayınız gerekiyor: %s"
+msgstr ""
+
+msgid "%s çalışıyor…"
+msgstr ""
+
+msgid "Düşünüyor…"
+msgstr ""
+
+msgid "Size nasıl yardımcı olabilirim?"
+msgstr ""
+
+msgid "İçerik, ayarlar, raporlar: yetkinizin açtığı her şey. Değişiklik yapmadan önce onayınızı isterim."
+msgstr ""
+
+msgid "Bu sayfa ve site hakkında sorabilir, iş verebilirsiniz."
+msgstr ""
+
+msgid "Düşünüyor"
+msgstr ""
+
+msgid "Tekrar dene"
+msgstr ""
+
+msgid "Mesajı düzenle"
+msgstr ""
+
+msgid "Bu mesaj ve sonrası yeniden yazılır."
+msgstr ""
+
+msgid "İptal"
+msgstr ""
+
+msgid "Düzenle"
+msgstr ""
+
+msgid "Bu noktaya geri dön"
+msgstr ""
+
+msgid "Çalışıyor"
+msgstr ""
+
+msgid "%s düşündü"
+msgstr ""
+
+msgid "Model cevap hazırlıyor…"
+msgstr ""
+
+msgid "reddedildi"
+msgstr ""
+
+msgid "onay bekliyor"
+msgstr ""
+
+msgid "Girdi"
+msgstr ""
+
+msgid "Sonuç"
+msgstr ""
+
+msgid "Sonuç yok"
+msgstr ""
+
+msgid "Onayınız gerekiyor"
+msgstr ""
+
+msgid "Asistan aşağıdaki değişiklikleri yapmak istiyor. Siz onaylamadan hiçbiri çalışmaz."
+msgstr ""
+
+msgid "Reddet"
+msgstr ""
+
+msgid "Onayla"
+msgstr ""
+
+msgid "Gönderilecek veri"
+msgstr ""
+
+msgid "%1$s / %2$s karar verildi"
+msgstr ""
+
+msgid "Tümünü reddet"
+msgstr ""
+
+msgid "Tümünü onayla"
+msgstr ""
+
+msgid "Devam et"
+msgstr ""
+
+msgid "Bu mesajdan sonraki konuşma silinecek. Devam edilsin mi?"
+msgstr ""
+
+msgid "Model seç"
+msgstr ""
+
+msgid "Enter gönderir, Shift+Enter yeni satır"
+msgstr ""
+
+msgid "Flux AI henüz ayarlanmadı: bir API anahtarı ve model girilmeli."
+msgstr ""
+
+msgid "Başlıkta ya da içerikte ara…"
+msgstr ""
+
+msgid "Arşivdekileri de göster"
+msgstr ""
+
+msgid "Enter ilk sonucu açar, Esc kapatır."
+msgstr ""
+
+msgid "Sonuç yok."
+msgstr ""
+
+msgid "Henüz sohbet yok."
+msgstr ""
+
+msgid "Adsız sohbet"
+msgstr ""
+
+msgid "Arşiv"
+msgstr ""
+
+msgid "Onay bekliyor"
+msgstr ""
+
+msgid "Seçenekler"
+msgstr ""
+
+msgid "Yeniden adlandır"
+msgstr ""
+
+msgid "Arşivden çıkar"
+msgstr ""
+
+msgid "Arşive al"
+msgstr ""
+
+msgid "Bu sohbet kalıcı olarak silinsin mi?"
+msgstr ""
+
+msgid "Model ara…"
+msgstr ""
+
+msgid "Eşleşen model yok; kimliği elle yazabilirsiniz."
+msgstr ""
+
+msgid "araç yok"
+msgstr ""
+
+msgid "Modeller yükleniyor…"
+msgstr ""

@@ -1,0 +1,135 @@
+/* Flux Forms · Automations: certificate card on the form's thank-you screen.
+   Follows the site theme through --flx-* variables (with fallbacks) and body.flx-dark. */
+.flxf-cert-card {
+	--flxfc-primary: var(--flx-primary, #0E7A56);
+	--flxfc-dark: var(--flx-primary-dark, var(--flx-dark, #0A5A40));
+	--flxfc-ink: var(--flx-ink, #14324A);
+	--flxfc-text: var(--flx-text, #4A5B66);
+	--flxfc-mint: var(--flx-mint, #EAF5EE);
+	--flxfc-line: var(--flx-line, #DCE9E0);
+	--flxfc-surface: var(--flx-surface, #FFFFFF);
+	--flxfc-on-primary: #FFFFFF;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	max-width: 560px;
+	margin: 22px auto 6px;
+	padding: 18px 20px;
+	border: 1px solid var(--flxfc-line);
+	border-left: 4px solid var(--flxfc-primary);
+	border-radius: 16px;
+	background: var(--flxfc-surface);
+	color: var(--flxfc-ink);
+	text-align: left;
+	box-shadow: 0 10px 30px -18px rgba(20, 50, 74, .35);
+	font-family: inherit;
+	box-sizing: border-box;
+	animation: flxfc-in .35s ease-out both;
+}
+[dir="rtl"] .flxf-cert-card, .rtl .flxf-cert-card { text-align: right; border-left-width: 1px; border-right: 4px solid var(--flxfc-primary); }
+.flxf-cert-card *, .flxf-cert-card *::before, .flxf-cert-card *::after { box-sizing: border-box; }
+.flxf-cert-card__head { display: flex; gap: 16px; align-items: flex-start; }
+.flxf-cert-card__icon {
+	flex: none;
+	width: 52px;
+	height: 52px;
+	border-radius: 14px;
+	display: grid;
+	place-items: center;
+	background: var(--flxfc-mint);
+	color: var(--flxfc-primary);
+}
+.flxf-cert-card__icon svg { display: block; }
+.flxf-cert-card__body { flex: 1 1 auto; min-width: 0; }
+.flxf-cert-card .flxf-cert-card__title { margin: 0 0 4px; padding: 0; font-size: 1.15rem; line-height: 1.3; font-weight: 800; color: var(--flxfc-ink); }
+.flxf-cert-card .flxf-cert-card__msg { margin: 0; padding: 0; font-size: 1rem; line-height: 1.55; color: var(--flxfc-text); overflow-wrap: anywhere; }
+.flxf-cert-card .flxf-cert-card__no { margin: 0; padding: 0; font-size: .85rem; color: var(--flxfc-text); opacity: .85; font-variant-numeric: tabular-nums; }
+.flxf-cert-card__actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.flxf-cert-card a.flxf-cert-btn,
+.flxf-cert-card .flxf-cert-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 42px;
+	padding: 9px 16px;
+	border-radius: 11px;
+	border: 1.5px solid var(--flxfc-primary);
+	background: transparent;
+	color: var(--flxfc-primary);
+	font-weight: 700;
+	font-size: .95rem;
+	line-height: 1.2;
+	text-decoration: none;
+	transition: background-color .15s, color .15s, border-color .15s;
+}
+.flxf-cert-card a.flxf-cert-btn:hover,
+.flxf-cert-card a.flxf-cert-btn:focus-visible { background: var(--flxfc-mint); color: var(--flxfc-dark); border-color: var(--flxfc-dark); }
+.flxf-cert-card a.flxf-cert-btn--primary,
+.flxf-cert-card .flxf-cert-btn--primary { background: var(--flxfc-primary); color: var(--flxfc-on-primary); }
+.flxf-cert-card a.flxf-cert-btn--primary:hover,
+.flxf-cert-card a.flxf-cert-btn--primary:focus-visible { background: var(--flxfc-dark); color: var(--flxfc-on-primary); }
+.flxf-cert-card a.flxf-cert-btn:focus-visible { outline: 2px solid var(--flxfc-primary); outline-offset: 2px; }
+.flxf-cert-card .flxf-cert-card__note { margin: 10px 0 0; font-size: .85rem; color: var(--flxfc-text); }
+
+/* The theme redefines --flx-* under body.flx-dark (dark device setting); only tune what it does not. */
+/* EFB/theme skins colour every link in the form box with !important; out-rank them for the buttons. */
+body .flxf-cert-card .flxf-cert-card__actions a.flxf-cert-btn { color: var(--flxfc-primary) !important; text-decoration: none !important; }
+body .flxf-cert-card .flxf-cert-card__actions a.flxf-cert-btn:hover,
+body .flxf-cert-card .flxf-cert-card__actions a.flxf-cert-btn:focus-visible { color: var(--flxfc-dark) !important; }
+body .flxf-cert-card .flxf-cert-card__actions a.flxf-cert-btn.flxf-cert-btn--primary,
+body .flxf-cert-card .flxf-cert-card__actions a.flxf-cert-btn.flxf-cert-btn--primary:hover,
+body .flxf-cert-card .flxf-cert-card__actions a.flxf-cert-btn.flxf-cert-btn--primary:focus-visible { color: var(--flxfc-on-primary) !important; }
+
+@media (prefers-color-scheme: dark) {
+	body.flx-dark .flxf-cert-card {
+		--flxfc-dark: #7FD9B2;
+		--flxfc-surface: var(--flx-surface, #13251F);
+		box-shadow: 0 10px 30px -18px rgba(0, 0, 0, .7);
+	}
+	body.flx-dark .flxf-cert-card a.flxf-cert-btn--primary:hover,
+	body.flx-dark .flxf-cert-card a.flxf-cert-btn--primary:focus-visible { background: var(--flx-primary-dark, #0A5A40); }
+}
+
+@media (max-width: 520px) {
+	.flxf-cert-card { flex-direction: column; gap: 12px; padding: 16px; margin-top: 18px; }
+	.flxf-cert-card__actions { flex-direction: column; }
+	.flxf-cert-card a.flxf-cert-btn, .flxf-cert-card .flxf-cert-btn { width: 100%; }
+}
+@keyframes flxfc-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .flxf-cert-card { animation: none; } }
+
+/* The certificate itself (stored image, or drawn in the browser right after payment). */
+.flxf-cert-card__figure {
+	position: relative;
+	margin: 0 auto;
+	width: 100%;
+	border-radius: 12px;
+	overflow: hidden;
+	border: 1px solid var(--flxfc-line);
+	background: #fff;
+	box-shadow: 0 12px 28px -20px rgba(20, 50, 74, .45);
+}
+.flxf-cert-card__figure img,
+.flxf-cert-card__figure canvas { display: block; width: 100% !important; height: 100% !important; object-fit: contain; max-width: none; margin: 0; border: 0; border-radius: 0; }
+.flxf-cert-card__figure.is-loading { background: linear-gradient(100deg, var(--flxfc-mint) 30%, #fff 50%, var(--flxfc-mint) 70%) 0 0 / 300% 100%; animation: flxfc-shimmer 1.4s linear infinite; }
+.flxf-cert-card__figure.is-loading canvas { opacity: 0; }
+.flxf-cert-card__spinner { display: none; }
+.flxf-cert-card__figure.is-loading .flxf-cert-card__spinner {
+	display: block; position: absolute; top: 50%; left: 50%; width: 34px; height: 34px; margin: -17px 0 0 -17px;
+	border: 3px solid var(--flxfc-line); border-top-color: var(--flxfc-primary); border-radius: 50%; animation: flxfc-spin .8s linear infinite;
+}
+.flxf-cert-card a.flxf-cert-btn svg, .flxf-cert-card .flxf-cert-btn svg { flex: none; margin-inline-end: 8px; }
+.flxf-cert-card--preview .flxf-cert-card__actions .flxf-cert-btn { flex: 1 1 0; min-width: 140px; }
+.flxf-cert-card .flxf-cert-card__link { color: var(--flxfc-primary) !important; font-weight: 700; text-decoration: underline !important; text-underline-offset: 3px; }
+.flxf-cert-card .flxf-cert-card__err { margin: 0; padding: 12px 14px; border-radius: 10px; background: var(--flxfc-mint); color: var(--flxfc-text); font-size: .95rem; }
+.flxf-cert-card { position: relative; }
+.flxf-cert-toast { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); padding: 8px 14px; border-radius: 999px; background: var(--flxfc-ink); color: #fff; font-size: .9rem; white-space: nowrap; box-shadow: 0 6px 20px -8px rgba(0,0,0,.5); }
+@keyframes flxfc-spin { to { transform: rotate(360deg); } }
+@keyframes flxfc-shimmer { to { background-position: -300% 0; } }
+@media (max-width: 520px) {
+	.flxf-cert-card { padding: 14px; gap: 12px; border-left-width: 1px; border-top: 4px solid var(--flxfc-primary); }
+	.flxf-cert-card__icon { width: 44px; height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.flxf-cert-card__figure.is-loading, .flxf-cert-card__spinner { animation: none !important; }
+}

@@ -1,0 +1,47 @@
+/* Flux Admin kuruluysa onun renkleri (açık/koyu) kullanılır. */
+.flxr{--flxr-bd:var(--flxa-border,#dcdcde);--flxr-mut:var(--flxa-muted,#646970);--flxr-ac:var(--flxa-accent,#2c7a64);--flxr-card:var(--flxa-surface,#fff);max-width:1100px}
+.flxr .flxr-lead{font-size:14px;color:var(--flxr-mut);max-width:760px}
+.flxr .flxr-card{background:var(--flxr-card);border:1px solid var(--flxr-bd);border-radius:10px;padding:16px 18px;margin:0 0 16px}
+.flxr .flxr-card h2,.flxr .flxr-card h3{margin:0 0 6px}
+.flxr .flxr-roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:0 0 16px}
+.flxr .flxr-roles>.flxr-card{margin:0}
+.flxr .flxr-role p{margin:0;color:var(--flxr-mut)}
+.flxr .flxr-count{font-size:12px;font-weight:400;color:var(--flxr-mut);margin-left:6px}
+.flxr .flxr-matrix-wrap{padding:0;overflow:auto}
+.flxr .flxr-matrix{width:100%;border-collapse:collapse}
+.flxr .flxr-matrix th,.flxr .flxr-matrix td{padding:10px 14px;border-bottom:1px solid var(--flxr-bd);text-align:left;vertical-align:middle;font-weight:400}
+.flxr .flxr-matrix thead th{font-weight:600;background:rgba(0,0,0,.02)}
+.flxr .flxr-matrix .flxr-col{text-align:center;width:110px}
+.flxr .flxr-matrix .flxr-group th{font-weight:600;background:rgba(44,122,100,.07);font-size:13px}
+.flxr .flxr-matrix tbody.is-off tr:not(.flxr-group){opacity:.5}
+.flxr .flxr-matrix code{display:block;width:max-content;margin-top:2px;font-size:11px;background:none !important;border:0 !important;padding:0 !important;color:var(--flxr-mut)}
+.flxr .flxr-badge{display:inline-block;font-size:11px;line-height:1.6;padding:0 8px;border-radius:99px;background:var(--flxa-surface-2,#f0f0f1);color:var(--flxr-mut);font-weight:400;vertical-align:middle}
+.flxr .flxr-badge.is-wait{background:var(--flxa-warn-soft,#fcf0d0);color:var(--flxa-warn,#7a5600)}
+.flxr .flxr-badge.is-warn{background:var(--flxa-error-soft,#fbe5e5);color:var(--flxa-error,#8a2424)}
+.flxr .flxr-switch{position:relative;display:inline-block;width:40px;height:22px;cursor:pointer}
+.flxr .flxr-switch input{position:absolute;inset:0;opacity:0 !important;width:100%;height:100%;margin:0;cursor:pointer;-webkit-appearance:none;appearance:none}
+.flxr .flxr-switch input:before,.flxr .flxr-switch input:after{content:none !important}
+.flxr .flxr-switch span[aria-hidden]{position:absolute;inset:0;border-radius:99px;background:var(--flxa-border-strong,#c3c4c7);transition:background .15s}
+.flxr .flxr-switch span[aria-hidden]:after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .15s;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+.flxr .flxr-switch input:checked+span{background:var(--flxr-ac)}
+.flxr .flxr-switch input:checked+span:after{transform:translateX(18px)}
+.flxr .flxr-switch input:focus-visible+span{outline:2px solid var(--flxr-ac);outline-offset:2px}
+.flxr .flxr-switch input:disabled{cursor:not-allowed}
+.flxr .flxr-switch input:disabled+span{cursor:not-allowed;opacity:.6}
+.flxr .flxr-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.flxr .flxr-h2{margin-top:28px}
+.flxr .flxr-people{margin:8px 0 12px;padding:0;list-style:none}
+.flxr .flxr-people li{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--flxr-bd);margin:0}
+.flxr .flxr-person{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.flxr .flxr-person>span{color:var(--flxr-mut);font-size:12px;overflow-wrap:anywhere}
+.flxr .flxr-ref{display:flex !important;gap:6px;margin-top:4px}
+.flxr .flxr-ref input{flex:1;min-width:0;font-size:12px}
+.flxr .flxr-remove{color:var(--flxa-error,#b32d2e);white-space:nowrap}
+.flxr .flxr-add{display:flex;gap:6px}
+.flxr .flxr-add input{flex:1;min-width:0}
+.flxr .flxr-muted{color:var(--flxr-mut)}
+@media (max-width:782px){
+.flxr .flxr-matrix th,.flxr .flxr-matrix td{padding:10px 8px}
+.flxr .flxr-matrix .flxr-col{width:72px}
+.flxr .flxr-people li{flex-direction:column}
+}

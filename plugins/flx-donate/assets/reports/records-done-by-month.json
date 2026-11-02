@@ -1,0 +1,12 @@
+{
+  "schema": "flxb-report/1",
+  "id": "records-done-by-month",
+  "title": { "tr": "Aylara göre tamamlananlar", "en": "Completed by month" },
+  "source": "items",
+  "group": ["month"],
+  "metrics": ["count", "cost"],
+  "date": "done",
+  "period": "last_12_months",
+  "chart": "bar",
+  "order": 90
+}

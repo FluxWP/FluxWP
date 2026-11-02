@@ -1,0 +1,242 @@
+/* Flux Admin ortak liste: filtre çubuğu + sayfalama. Token'lar Flux Admin kabuğundan; kabuk kapalıysa yedek değerler. */
+.flxa-list {
+	--yl-border: var(--flxa-border-strong, #c3c4c7);
+	--yl-surface: var(--flxa-surface, #fff);
+	--yl-surface-2: var(--flxa-surface-2, #f0f0f1);
+	--yl-text: var(--flxa-text, #1d2327);
+	--yl-muted: var(--flxa-muted, #646970);
+	--yl-accent: var(--flxa-accent, #2271b1);
+	--yl-on-accent: var(--flxa-on-accent, #fff);
+	--yl-r: 10px;
+	--yl-h: 40px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin: 12px 0 14px;
+	max-width: 100%;
+}
+.flxa-list > *,
+.flxa-list__row > *,
+.flxa-list__more > * {
+	margin: 0 !important;
+	min-width: 0;
+}
+.flxa-list select,
+.flxa-list input[type=search],
+.flxa-list input[type=text],
+.flxa-list input[type=date],
+.flxa-list input[type=number] {
+	width: 100%;
+	max-width: none;
+	min-height: var(--yl-h);
+	box-sizing: border-box;
+}
+.flxa-list__top {
+	display: flex;
+	gap: 8px;
+	align-items: stretch;
+}
+.flxa-list__search {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+.flxa-list__search input[type=search],
+input[type=search].flxa-list__search {
+	border-radius: var(--yl-r);
+	padding-inline: 12px;
+}
+.flxa-list .flxa-list__toggle {
+	flex: 0 0 auto;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	min-height: var(--yl-h);
+	padding: 0 12px;
+	border-radius: var(--yl-r);
+	white-space: nowrap;
+}
+.flxa-list .flxa-list__toggle.is-open {
+	background: var(--yl-surface-2);
+}
+.flxa-list__n {
+	min-width: 18px;
+	height: 18px;
+	padding: 0 5px;
+	border-radius: 9px;
+	background: var(--yl-accent);
+	color: var(--yl-on-accent);
+	font-size: 11px;
+	line-height: 18px;
+	text-align: center;
+	box-sizing: border-box;
+}
+.flxa-list__row,
+.flxa-list__more {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 8px;
+	align-items: end;
+}
+.flxa-list__more {
+	box-sizing: border-box;
+	padding: 10px;
+	border: 1px solid var(--flxa-border, #dcdcde);
+	border-radius: var(--yl-r);
+	background: var(--yl-surface);
+}
+.flxa-list__more[hidden] {
+	display: none;
+}
+.flxa-list__more label,
+.flxa-list__row label {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+	font-size: 12px;
+	color: var(--yl-muted);
+}
+.flxa-list__clear {
+	align-self: center;
+	justify-self: start;
+	font-size: 13px;
+	color: var(--yl-muted);
+	text-decoration: underline;
+}
+.flxa-list__row > .flxa-list__clear:nth-child(odd) {
+	grid-column: 1 / -1;
+}
+.flxa-list__hidden {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+@media (max-width: 380px) {
+	.flxa-list__tl {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+	}
+}
+@media (min-width: 783px) {
+	.flxa-list {
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: stretch;
+	}
+	.flxa-list__top {
+		display: contents;
+	}
+	.flxa-list .flxa-list__search {
+		flex: 1 1 280px;
+		max-width: 440px;
+	}
+	.flxa-list__row {
+		order: 1;
+		flex: 0 1 auto;
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.flxa-list__row select {
+		width: auto;
+		min-width: 160px;
+		max-width: 260px;
+	}
+	.flxa-list .flxa-list__toggle {
+		order: 2;
+	}
+	.flxa-list > .flxa-list__clear {
+		order: 2;
+	}
+	.flxa-list__more {
+		order: 3;
+		flex: 1 0 100%;
+		grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+	}
+}
+
+/* Sayfalama */
+.flxa-pages .screen-reader-text {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+.flxa-pages {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px 14px;
+	margin: 14px 0;
+	color: var(--flxa-muted, #646970);
+	font-size: 13px;
+}
+.flxa-pages__links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	order: 2;
+}
+.flxa-pages__info {
+	order: 1;
+}
+.flxa-pages__per {
+	order: 3;
+	margin: 0;
+}
+.flxa-pages__links .page-numbers {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 36px;
+	height: 36px;
+	padding: 0 8px;
+	box-sizing: border-box;
+	border: 1px solid var(--flxa-border, #dcdcde);
+	border-radius: 9px;
+	background: var(--flxa-surface, #fff);
+	color: var(--flxa-text, #1d2327);
+	text-decoration: none;
+	font-weight: 600;
+}
+.flxa-pages__links .page-numbers.current {
+	background: var(--flxa-accent, #2271b1);
+	border-color: var(--flxa-accent, #2271b1);
+	color: var(--flxa-on-accent, #fff);
+}
+.flxa-pages__links .page-numbers.dots {
+	border-color: transparent;
+	background: none;
+	min-width: 20px;
+	padding: 0;
+}
+.flxa-pages__per label {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	white-space: nowrap;
+}
+.flxa-pages__per select {
+	min-height: 36px;
+	width: auto;
+}
+@media (max-width: 600px) {
+	.flxa-pages {
+		justify-content: center;
+	}
+	.flxa-pages__links {
+		order: 1;
+		width: 100%;
+		justify-content: center;
+	}
+	.flxa-pages__info {
+		order: 2;
+	}
+}

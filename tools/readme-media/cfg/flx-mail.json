@@ -1,0 +1,160 @@
+{
+ "seed": [
+  "seed-iletisim.php",
+  "mbx.php",
+  "mbx2.php"
+ ],
+ "slug": "flx-mail",
+ "css": ".flx-cookie{display:none!important}#wp-admin-bar-woocommerce-site-visibility-badge{display:none!important}.flxm-sync__text.is-error{visibility:hidden!important}",
+ "shots": [
+  {
+   "name": "emails",
+   "url": "admin.php?page=flxi",
+   "vh": 900
+  },
+  {
+   "name": "mailbox",
+   "url": "admin.php?page=flxi-posta",
+   "vh": 900,
+   "click": [
+    ".flxm-item >> nth=1"
+   ],
+   "after": 2000
+  },
+  {
+   "name": "send",
+   "url": "admin.php?page=flxi-gonder",
+   "vh": 1000
+  },
+  {
+   "name": "connections",
+   "url": "admin.php?page=flxi-baglantilar",
+   "vh": 800
+  },
+  {
+   "name": "logs",
+   "url": "admin.php?page=flxi-kayitlar",
+   "vh": 900
+  },
+  {
+   "name": "settings",
+   "url": "admin.php?page=flxi-ayarlar",
+   "vh": 900
+  }
+ ],
+ "dark": [
+  {
+   "name": "dark",
+   "url": "admin.php?page=flxi-posta",
+   "vh": 900,
+   "click": [
+    ".flxm-item >> nth=0"
+   ],
+   "after": 2000
+  }
+ ],
+ "mobile": [
+  {
+   "name": "mobile",
+   "url": "admin.php?page=flxi-posta",
+   "after": 2500
+  },
+  {
+   "name": "mobile-log",
+   "url": "admin.php?page=flxi-kayitlar"
+  }
+ ],
+ "gif": [
+  {
+   "goto": "admin.php?page=flxi",
+   "wait": 2500
+  },
+  {
+   "move": [
+    700,
+    300
+   ]
+  },
+  {
+   "move": [
+    1300,
+    330
+   ],
+   "wait": 800
+  },
+  {
+   "scroll": 300,
+   "wait": 900
+  },
+  {
+   "goto": "admin.php?page=flxi-posta",
+   "wait": 2800
+  },
+  {
+   "move": [
+    650,
+    350
+   ],
+   "wait": 500
+  },
+  {
+   "click": ".flxm-item >> nth=1",
+   "css": true,
+   "wait": 1800
+  },
+  {
+   "move": [
+    1100,
+    420
+   ],
+   "wait": 900
+  },
+  {
+   "click": ".flxm-item >> nth=0",
+   "css": true,
+   "wait": 1800
+  },
+  {
+   "goto": "admin.php?page=flxi-kayitlar",
+   "wait": 2200
+  },
+  {
+   "move": [
+    700,
+    330
+   ],
+   "wait": 500
+  },
+  {
+   "click": ".flxi-logrow >> nth=1",
+   "css": true,
+   "wait": 1800
+  },
+  {
+   "key": "Escape",
+   "wait": 600
+  },
+  {
+   "goto": "admin.php?page=flxi-baglantilar",
+   "wait": 2200
+  },
+  {
+   "move": [
+    900,
+    300
+   ],
+   "wait": 1200
+  },
+  {
+   "goto": "admin.php?page=flxi-gonder",
+   "wait": 2500
+  },
+  {
+   "move": [
+    1000,
+    400
+   ],
+   "wait": 1500
+  }
+ ]
+}

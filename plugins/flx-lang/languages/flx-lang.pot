@@ -1,0 +1,328 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Flux Lang\n"
+
+msgid "Diller"
+msgstr ""
+
+msgid "Ortak sayfa: her dilde aynı, arayüz ziyaretçinin dilinde."
+msgstr ""
+
+msgid "Ortak"
+msgstr ""
+
+msgid "%1$s çevirisi (%2$s)"
+msgstr ""
+
+msgid "%s çevirisi oluştur"
+msgstr ""
+
+msgid "Bu işlem için yetkiniz yok."
+msgstr ""
+
+msgid "Dile göre süz"
+msgstr ""
+
+msgid "Tüm diller"
+msgstr ""
+
+msgid "Dil"
+msgstr ""
+
+msgid "Bu içeriğin dili"
+msgstr ""
+
+msgid "Kaydettikten sonra diğer dillere çeviri oluşturabilirsiniz."
+msgstr ""
+
+msgid "AI ile yeniden çevir"
+msgstr ""
+
+msgid "Kopyala ve çevir"
+msgstr ""
+
+msgid "AI ile çevir"
+msgstr ""
+
+msgid "Flux AI kurulursa tek tıkla çeviri yapılır; MCP ile bağlı AI ajanları da flxl_save_translation aracıyla çevirebilir."
+msgstr ""
+
+msgid "Çeviri hazırlanıyor…"
+msgstr ""
+
+msgid "AI çeviriyor: %1$d / %2$d"
+msgstr ""
+
+msgid "Çeviri hazır, düzenleyici açılıyor…"
+msgstr ""
+
+msgid "Bazı bölümler çevrilemedi, Türkçe kaldı. Düzenleyicide kontrol edin."
+msgstr ""
+
+msgid "Çeviri durdu:"
+msgstr ""
+
+msgid "Var olan çevirinin başlığı, özeti ve gövdesi AI çevirisiyle değiştirilsin mi?"
+msgstr ""
+
+msgid "AI ile çevrilsin mi? Hayır derseniz kopya taslak oluşturulur, kendiniz çevirirsiniz."
+msgstr ""
+
+msgid "Ayarlar"
+msgstr ""
+
+msgid "Kaydedildi."
+msgstr ""
+
+msgid "Varsayılan dil adreste önek almaz (example.org/hakkimizda/); diğer diller /en/ gibi önekle açılır. Her içeriğin dil sürümü ayrı bir sayfa/yazıdır: listede dil rozetinden ya da düzenleme ekranındaki Dil kutusundan oluşturulur. Tema ve eklenti arayüz metinleri kendi çevirileriyle gösterilir."
+msgstr ""
+
+msgid "Etkin"
+msgstr ""
+
+msgid "Kod / adres"
+msgstr ""
+
+msgid "Ad"
+msgstr ""
+
+msgid "Bayrak"
+msgstr ""
+
+msgid "WordPress dili"
+msgstr ""
+
+msgid "Varsayılan"
+msgstr ""
+
+msgid "Kaldır"
+msgstr ""
+
+msgid "Dil ekle"
+msgstr ""
+
+msgid "— seçin —"
+msgstr ""
+
+msgid "Yeni dil pasif eklenir: içeriği hazırlayıp sonra etkinleştirin. İngilizce dışındaki dillerde WordPress dil paketi de gerekir (Sistem kontrolü uyarır)."
+msgstr ""
+
+msgid "İçerik"
+msgstr ""
+
+msgid "Çevrilen içerik türleri"
+msgstr ""
+
+msgid "Sepet, ödeme ve hesabım sayfaları her dilde ortaktır. Kategoriler ortaktır; adları kategori düzenleme ekranında dil başına çevrilir. Görsellerin dile özgü alt metni ve farklı görseli medya düzenleme ekranında."
+msgstr ""
+
+msgid "Çevirisi olmayan içerik"
+msgstr ""
+
+msgid "Diğer dillerde Türkçesini göster (menü ve arayüz o dilde kalır; arama motoruna kanonik Türkçe adres bildirilir)"
+msgstr ""
+
+msgid "Kapalıysa İngilizce sitede yalnız İngilizcesi olan içerik listelenir."
+msgstr ""
+
+msgid "Dil seçici"
+msgstr ""
+
+msgid "Başka yere: \"Flux Lang Seçici\" bloğu ya da [flx_dil_secici] kısa kodu."
+msgstr ""
+
+msgid "Dil seçicinin yeri"
+msgstr ""
+
+msgid "Alt bilgi (footer)"
+msgstr ""
+
+msgid "Başlık (header) ve mobil menü"
+msgstr ""
+
+msgid "İkisi de"
+msgstr ""
+
+msgid "Ziyaretçiye dil önerisi"
+msgstr ""
+
+msgid "Türkiye dışından gelene"
+msgstr ""
+
+msgid "Direkt kendi dilinde aç (önerilen)"
+msgstr ""
+
+msgid "Sayfanın üstünde öneri bandı göster"
+msgstr ""
+
+msgid "Kapalı"
+msgstr ""
+
+msgid "Türkiye dışından gelen ziyaretçi sayfa çizilmeden kendi dilindeki (yoksa İngilizce) sürüme açılır ve sonraki girişlerde de o dilde kalır. Dil seçicide başka dil seçen o dilde kalır. Arama motoru botları hiçbir zaman yönlendirilmez. Ülke Türkiye ya da saat dilimi Türkiye ise Türkçe kalır. Giriş yapmış kullanıcıya uygulanmaz; denemek için gizli pencere kullanın."
+msgstr ""
+
+msgid "Önerilen dil"
+msgstr ""
+
+msgid "Tarayıcı dili etkin dillerden biriyse (ör. Almanca eklendiğinde Almanca) o önerilir, değilse bu."
+msgstr ""
+
+msgid "Türkçe gösterilen ülkeler"
+msgstr ""
+
+msgid "İki harfli ülke kodları (TR, CY…)."
+msgstr ""
+
+msgid "Ülke bilgisi"
+msgstr ""
+
+msgid "Sizin isteğinizde ülke: %1$s (%2$s başlığı). Ülkeye göre öneri çalışır."
+msgstr ""
+
+msgid "Sunucu ülke bilgisi göndermiyor; tarayıcının saat dilimi kullanılır (Türkiye saati = Türkçe). Daha kesin sonuç için alan adını Cloudflare'e bağlayın (ücretsiz plan, CF-IPCountry başlığı kendiliğinden kullanılır) ya da hosting'in GeoIP başlığını açın."
+msgstr ""
+
+msgid "Dile göre site metinleri"
+msgstr ""
+
+msgid "Boş bırakılan alan Türkçesiyle gösterilir."
+msgstr ""
+
+msgid "Kaydet"
+msgstr ""
+
+msgid "Yapay zekâ ile çeviri"
+msgstr ""
+
+msgid "Flux AI kuruluysa listede ve düzenleme ekranında \"AI ile çevir\" düğmesi çıkar. MCP ile bağlı AI ajanları (Claude vb.) ve Flux AI sohbeti şu araçları kullanır: flxl_languages, flxl_untranslated, flxl_translations, flxl_save_translation, flxl_set_language, flxl_image_language, flxl_term_translation, flxl_site_texts. Flux SEO araçlarında (list_content, create_content, update_content) lang parametresi var."
+msgstr ""
+
+msgid "Kaynak içerik bulunamadı ya da bu tür çevrilmiyor."
+msgstr ""
+
+msgid "Dil etkin değil."
+msgstr ""
+
+msgid "İçerik zaten bu dilde."
+msgstr ""
+
+msgid "Flux Lang (çeviri)"
+msgstr ""
+
+msgid "Flux Lang"
+msgstr ""
+
+msgid "Flux AI kurulu ya da hazır değil."
+msgstr ""
+
+msgid "AI boş cevap döndü."
+msgstr ""
+
+msgid "AI cevabı yarıda kesildi."
+msgstr ""
+
+msgid "Çeviri işi bulunamadı ya da süresi doldu."
+msgstr ""
+
+msgid "Alternatif metin (%s)"
+msgstr ""
+
+msgid "Görsel (%s)"
+msgstr ""
+
+msgid "Bu dilde bu görselin yerine gösterilecek görselin ID'si (ör. üzerinde yazı olan afişin çevirisi). Boş: aynı görsel."
+msgstr ""
+
+msgid "Bu sayfanın %s sürümü var."
+msgstr ""
+
+msgid "%s sürümüne geç"
+msgstr ""
+
+msgid "Bu sürümde kal"
+msgstr ""
+
+msgid "Kapat"
+msgstr ""
+
+msgid "Dil seçimi"
+msgstr ""
+
+msgid "Flux Lang Seçici"
+msgstr ""
+
+msgid "Site adı"
+msgstr ""
+
+msgid "Slogan"
+msgstr ""
+
+msgid "Flux SEO: site adı"
+msgstr ""
+
+msgid "Flux SEO: alternatif ad"
+msgstr ""
+
+msgid "Flux SEO: ana sayfa başlığı"
+msgstr ""
+
+msgid "Flux SEO: ana sayfa açıklaması"
+msgstr ""
+
+msgid "Yalnız varsayılan dil etkin; site tek dilli."
+msgstr ""
+
+msgid "WordPress dil paketleri"
+msgstr ""
+
+msgid "Kurulu değil: %s. Ayarlar › Genel › Site dili listesinden bir kez seçip kaydedin (paket iner), sonra eski dile dönün."
+msgstr ""
+
+msgid "Etkin dillerin hepsinin WordPress çevirisi var."
+msgstr ""
+
+msgid "Genel ayarlar"
+msgstr ""
+
+msgid "Sayfa çevirileri: %s"
+msgstr ""
+
+msgid "%1$d / %2$d sayfa çevrildi. %3$s"
+msgstr ""
+
+msgid "Çevrilmeyenler Türkçe gösteriliyor (kanonik adres Türkçe)."
+msgstr ""
+
+msgid "Çevrilmeyenler bu dilde gizli."
+msgstr ""
+
+msgid "Sayfalar"
+msgstr ""
+
+msgid "Ziyaretçi ülkesi"
+msgstr ""
+
+msgid "Henüz yabancı dil önerisi için ziyaretçi kontrolü yapılmadı."
+msgstr ""
+
+msgid "Sunucu ülke bilgisi göndermiyor; tarayıcı saat dilimi kullanılıyor (Türkiye saati = Türkçe). Cloudflare açılırsa ülke kodu kendiliğinden kullanılır."
+msgstr ""
+
+msgid "Ülke bilgisi %s başlığından geliyor."
+msgstr ""
+
+msgid "Kalıcı bağlantılar"
+msgstr ""
+
+msgid "Düz (?p=) bağlantılar kullanılıyor; dil adresleri için \"Yazı adı\" yapısını seçin."
+msgstr ""
+
+msgid "Ad (%s)"
+msgstr ""
+
+msgid "Açıklama (%s)"
+msgstr ""
+
+msgid "Boş bırakılırsa Türkçe ad ve açıklama gösterilir."
+msgstr ""

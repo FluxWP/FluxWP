@@ -1,0 +1,38 @@
+<!-- wp:template-part {"slug":"header","tagName":"header","className":"flx-header-part"} /-->
+
+<!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"0"},"blockGap":"0"}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group" style="margin-top:0"><!-- wp:group {"align":"full","className":"flx-band","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"clamp(7rem, 14vw, 11rem)"},"blockGap":"var:preset|spacing|30"}},"layout":{"type":"constrained","contentSize":"880px"}} -->
+<div class="wp-block-group alignfull flx-band" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:clamp(7rem, 14vw, 11rem)">
+<!-- wp:post-terms {"term":"category","textAlign":"center","className":"flx-band-pill"} /-->
+
+<!-- wp:post-title {"textAlign":"center","level":1} /-->
+
+<!-- wp:group {"className":"flx-meta","style":{"spacing":{"blockGap":"0.4rem 1.4rem"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"}} -->
+<div class="wp-block-group flx-meta"><!-- wp:post-author-name {"className":"is-style-icon-users"} /-->
+
+<!-- wp:post-date {"className":"is-style-icon-calendar"} /--></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:post-featured-image {"align":"wide","className":"flx-single-image"} /-->
+
+<!-- wp:columns {"align":"wide","className":"flx-single-cols","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|60"},"blockGap":{"left":"var:preset|spacing|60","top":"var:preset|spacing|50"}}}} -->
+<div class="wp-block-columns alignwide flx-single-cols" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--60)"><!-- wp:column {"width":"68%","className":"flx-article"} -->
+<div class="wp-block-column flx-article" style="flex-basis:68%"><!-- wp:post-content {"layout":{"type":"default"}} /-->
+
+<!-- wp:post-terms {"term":"post_tag","className":"flx-tags"} /-->
+
+<!-- wp:group {"className":"flx-post-nav","style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}}},"layout":{"type":"grid","columnCount":2,"minimumColumnWidth":"14rem"}} -->
+<div class="wp-block-group flx-post-nav" style="margin-top:var(--wp--preset--spacing--50)"><!-- wp:post-navigation-link {"type":"previous","label":"Önceki","showTitle":true,"linkLabel":true,"arrow":"arrow"} /-->
+
+<!-- wp:post-navigation-link {"textAlign":"right","label":"Sonraki","showTitle":true,"linkLabel":true,"arrow":"arrow"} /--></div>
+<!-- /wp:group --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"width":"32%","className":"flx-sidebar"} -->
+<div class="wp-block-column flx-sidebar" style="flex-basis:32%"><!-- wp:pattern {"slug":"fluxwp/sidebar"} /--></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

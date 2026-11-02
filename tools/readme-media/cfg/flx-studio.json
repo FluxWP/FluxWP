@@ -1,0 +1,148 @@
+{
+ "seed": [
+  "seed-studio.php"
+ ],
+ "slug": "flx-studio",
+ "css": ".flx-cookie{display:none!important}#wp-admin-bar-woocommerce-site-visibility-badge{display:none!important}#flxai-host{display:none!important}",
+ "shots": [
+  {
+   "name": "gallery",
+   "url": "admin.php?page=flx-studio",
+   "vh": 1000,
+   "wait": 3500,
+   "click": [
+    ".flxst-prompt"
+   ],
+   "type": {
+    "en": "Volunteers planting oak saplings at sunrise on a hillside above the Bosphorus, cinematic, 16:9",
+    "tr": "Boğaz'a bakan yamaçta gün doğumunda meşe fidanı diken gönüllüler, sinematik, 16:9"
+   }
+  },
+  {
+   "name": "viewer",
+   "url": "admin.php?page=flx-studio&r=v",
+   "vh": 1000,
+   "wait": 3500,
+   "click": [
+    ".flxst-card"
+   ],
+   "after": 1500
+  },
+  {
+   "name": "models",
+   "url": "admin.php?page=flx-studio&r=m",
+   "vh": 1000,
+   "wait": 3500,
+   "click": [
+    ".flxst-mpick"
+   ],
+   "after": 800
+  },
+  {
+   "name": "brainstorm",
+   "url": "admin.php?page=flx-studio&r=b",
+   "vh": 1000,
+   "wait": 3500,
+   "click": [
+    ".flxst-btn.is-ghost:not(.flxst-enh)",
+    ".flxst-scrim textarea, [role=dialog] textarea"
+   ],
+   "after": 1000,
+   "type": {
+    "en": "Instagram post for the 11 November tree planting day",
+    "tr": "11 Kasım ağaç dikme günü için Instagram gönderisi"
+   }
+  },
+  {
+   "name": "dashboard",
+   "url": "admin.php?page=flx-studio&r=d",
+   "vh": 1000,
+   "wait": 3500,
+   "click": [
+    ".flxst-navs >> text=/^(Dashboard|Pano)$/"
+   ],
+   "after": 2000
+  }
+ ],
+ "dark": [
+  {
+   "name": "dark",
+   "url": "admin.php?page=flx-studio",
+   "vh": 900,
+   "wait": 3500
+  }
+ ],
+ "mobile": [
+  {
+   "name": "mobile",
+   "url": "admin.php?page=flx-studio",
+   "wait": 3500
+  }
+ ],
+ "gif": [
+  {
+   "goto": "admin.php?page=flx-studio",
+   "wait": 3000
+  },
+  {
+   "move": [
+    600,
+    300
+   ],
+   "wait": 500
+  },
+  {
+   "click": ".flxst-prompt",
+   "css": true,
+   "wait": 400
+  },
+  {
+   "type": {
+    "en": "Volunteers planting oak saplings at sunrise above the Bosphorus",
+    "tr": "Boğaz'a bakan yamaçta gün doğumunda fidan diken gönüllüler"
+   },
+   "wait": 600
+  },
+  {
+   "click": ".flxst-mpick",
+   "css": true,
+   "wait": 1200
+  },
+  {
+   "key": "Escape",
+   "wait": 500
+  },
+  {
+   "click": ".flxst-card",
+   "css": true,
+   "wait": 1600
+  },
+  {
+   "click": ".flxst-view-next",
+   "css": true,
+   "wait": 1200
+  },
+  {
+   "click": ".flxst-view-next",
+   "css": true,
+   "wait": 1200
+  },
+  {
+   "click": ".flxst-view-close",
+   "css": true,
+   "wait": 800
+  },
+  {
+   "click": ".flxst-navs >> text=/^(Dashboard|Pano)$/",
+   "css": true,
+   "wait": 2200
+  },
+  {
+   "move": [
+    900,
+    500
+   ],
+   "wait": 1200
+  }
+ ]
+}

@@ -1,0 +1,2501 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Flux Mail 1.12.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: flx-mail\n"
+
+msgid "Örnek e-posta"
+msgstr ""
+
+msgid "Kurumsal e-posta görünümü"
+msgstr ""
+
+msgid "<p>Merhaba Ayşe,</p><p>Sitemizden giden bütün e-postalar bu düzende görünür: üstte logomuz, ortada içerik, altta kurum bilgilerimiz ve sosyal medya hesaplarımız.</p>"
+msgstr ""
+
+msgid "Siteyi ziyaret et"
+msgstr ""
+
+msgid "Test"
+msgstr ""
+
+msgid "Test e-postası"
+msgstr ""
+
+msgid "E-posta ayarlarınız çalışıyor 🎉"
+msgstr ""
+
+msgid "<p>Bu e-postayı görüyorsanız sitenin e-posta gönderimi çalışıyor.</p><table class=\"flxi-kv\"><tr><td>Gönderen</td><td><strong>%1$s</strong></td></tr><tr><td>Yöntem</td><td>%2$s</td></tr></table>"
+msgstr ""
+
+msgid "Sunucunun PHP mail()"
+msgstr ""
+
+msgid "Siteye git"
+msgstr ""
+
+msgid "Gönder"
+msgstr ""
+
+msgid "Bir kişiye ya da bir listeye kurumsal şablonla e-posta, WhatsApp veya SMS gönderin. Toplu gönderim arka planda sırayla gider."
+msgstr ""
+
+msgid "%1$s / %2$s gönderildi · %3$s hatalı"
+msgstr ""
+
+msgid "Bu sayfa açıkken gönderim hızlanır; kapatırsanız arka planda devam eder."
+msgstr ""
+
+msgid "Durdur"
+msgstr ""
+
+msgid "Kayıtları gör"
+msgstr ""
+
+msgid "Kanal"
+msgstr ""
+
+msgid "bağlantı yok"
+msgstr ""
+
+msgid "Alıcılar"
+msgstr ""
+
+msgid "ayse@ornek.com\nMehmet Demir <mehmet@ornek.com>\nZeynep Kaya, 0532 123 45 67"
+msgstr ""
+
+msgid "Her satıra bir kişi: e-posta, telefon ya da \"Ad Soyad <e-posta>\" / \"Ad Soyad, e-posta, telefon\"."
+msgstr ""
+
+msgid "Konu"
+msgstr ""
+
+msgid "Başlık"
+msgstr ""
+
+msgid "Merhaba {ad}"
+msgstr ""
+
+msgid "İçerik"
+msgstr ""
+
+msgid "Düğme yazısı"
+msgstr ""
+
+msgid "Bağış yap"
+msgstr ""
+
+msgid "Düğme bağlantısı"
+msgstr ""
+
+msgid "Kimden"
+msgstr ""
+
+msgid "\"Listeden çık\" bağlantısı ekle (toplu gönderimde önerilir)"
+msgstr ""
+
+msgid "Değişkenler"
+msgstr ""
+
+msgid "Ad"
+msgstr ""
+
+msgid "Ad soyad"
+msgstr ""
+
+msgid "E-posta"
+msgstr ""
+
+msgid "Site adı"
+msgstr ""
+
+msgid "Mesaj"
+msgstr ""
+
+msgid "Merhaba {ad} 🌱 …"
+msgstr ""
+
+msgid "Değişkenler: {ad}, {ad_soyad}, {telefon}. WhatsApp'ta *kalın* ve _italik_ çalışır."
+msgstr ""
+
+msgid "Bağlantı"
+msgstr ""
+
+msgid "Gönderim adı (yalnız sizin için)"
+msgstr ""
+
+msgid "Ör. Kasım fidan dikimi daveti"
+msgstr ""
+
+msgid "Gönderim başlasın mı?"
+msgstr ""
+
+msgid "Bana test gönder"
+msgstr ""
+
+msgid "Konu:"
+msgstr ""
+
+msgid "Önizleme boyutu"
+msgstr ""
+
+msgid "Masaüstü"
+msgstr ""
+
+msgid "Telefon"
+msgstr ""
+
+msgid "Koyu mod"
+msgstr ""
+
+msgid "E-posta önizlemesi"
+msgstr ""
+
+msgid "Sırada"
+msgstr ""
+
+msgid "Gönderiliyor"
+msgstr ""
+
+msgid "Bitti"
+msgstr ""
+
+msgid "Durduruldu"
+msgstr ""
+
+msgid "Son gönderimler"
+msgstr ""
+
+msgid "Durum"
+msgstr ""
+
+msgid "Gönderilen"
+msgstr ""
+
+msgid "Hatalı"
+msgstr ""
+
+msgid "Tarih"
+msgstr ""
+
+msgid "%s alıcı için gönderim başladı."
+msgstr ""
+
+msgid "Gönderim durduruldu."
+msgstr ""
+
+msgid "Gönderildi"
+msgstr ""
+
+msgid "Başarısız"
+msgstr ""
+
+msgid "Kapalı, gitmedi"
+msgstr ""
+
+msgid "Kayıtlar"
+msgstr ""
+
+msgid "Siteden giden her e-posta, WhatsApp ve SMS. Satıra tıklayınca içeriği görürsünüz."
+msgstr ""
+
+msgid "Tüm durumlar"
+msgstr ""
+
+msgid "Tüm kanallar"
+msgstr ""
+
+msgid "Alıcı ya da konu"
+msgstr ""
+
+msgid "Filtrele"
+msgstr ""
+
+msgid "Temizle"
+msgstr ""
+
+msgid "%s kayıt"
+msgstr ""
+
+msgid "Zaman"
+msgstr ""
+
+msgid "Alıcı"
+msgstr ""
+
+msgid "Konu / e-posta"
+msgstr ""
+
+msgid "Kayıt yok."
+msgstr ""
+
+msgid "Toplu gönderim"
+msgstr ""
+
+msgid "Kapat"
+msgstr ""
+
+msgid "E-postalar"
+msgstr ""
+
+msgid "Sitenin gönderdiği bütün e-postalar. Açıp kapatabilir, içeriği düzenleyebilir, kimden gideceğini seçebilirsiniz."
+msgstr ""
+
+msgid "PHP mail() (önerilmez)"
+msgstr ""
+
+msgid "gönderildi (7 gün)"
+msgstr ""
+
+msgid "başarısız"
+msgstr ""
+
+msgid "kapalı olduğu için gitmedi"
+msgstr ""
+
+msgid "Gönderen"
+msgstr ""
+
+msgid "Yöneticiye"
+msgstr ""
+
+msgid "Kişiye"
+msgstr ""
+
+msgid "%1$s kez gönderildi, son: %2$s. İçeriği gönderen eklenti üretir; burada açıp kapatabilir, gönderen adresini ve kurumsal çerçeveyi seçebilirsiniz."
+msgstr ""
+
+msgid "E-posta ara…"
+msgstr ""
+
+msgid "E-posta ara"
+msgstr ""
+
+msgid "Kapatılamaz"
+msgstr ""
+
+msgid "%s açık"
+msgstr ""
+
+msgid "Kapalı"
+msgstr ""
+
+msgid "WooCommerce'te düzenle"
+msgstr ""
+
+msgid "Düzenle"
+msgstr ""
+
+msgid "Ayarlar"
+msgstr ""
+
+msgid "WooCommerce e-postaları yüklenemedi."
+msgstr ""
+
+msgid "Listede olmayan bir eklentinin e-postası ilk gönderildiğinde buraya kendiliğinden eklenir."
+msgstr ""
+
+msgid "E-posta bulunamadı"
+msgstr ""
+
+msgid "Tüm e-postalar"
+msgstr ""
+
+msgid "Gönderen: %1$s (%2$s). İçeriği o eklenti üretir."
+msgstr ""
+
+msgid "Son konu: %s"
+msgstr ""
+
+msgid "Bu e-posta gönderilsin"
+msgstr ""
+
+msgid "Her zaman gönderilir"
+msgstr ""
+
+msgid "Kimden gitsin"
+msgstr ""
+
+msgid "yanıt beklenmez"
+msgstr ""
+
+msgid "E-postanın içindeki büyük başlık."
+msgstr ""
+
+msgid "Boşsa düğme gösterilmez."
+msgstr ""
+
+msgid "Değişkenler (tıklayınca imlecin olduğu yere eklenir)"
+msgstr ""
+
+msgid "Kurum adı"
+msgstr ""
+
+msgid "Kurum e-postası"
+msgstr ""
+
+msgid "Kurum telefonu"
+msgstr ""
+
+msgid "Kurumsal şablonla sar (logo, kurum bilgileri). Kendi tasarımı olan HTML e-postalara dokunulmaz."
+msgstr ""
+
+msgid "Kaydet"
+msgstr ""
+
+msgid "İçerik varsayılana dönsün mü?"
+msgstr ""
+
+msgid "Varsayılana dön"
+msgstr ""
+
+msgid "Önizlemede örnek değerler kullanılır."
+msgstr ""
+
+msgid "E-posta açıldı."
+msgstr ""
+
+msgid "E-posta kapatıldı; gönderilmeyecek."
+msgstr ""
+
+msgid "Varsayılan içerik geri yüklendi."
+msgstr ""
+
+msgid "Kaydedildi."
+msgstr ""
+
+msgid "Gönderen adı ve adresleri, gönderim yöntemi, e-postaların görünümü."
+msgstr ""
+
+msgid "Bölümler"
+msgstr ""
+
+msgid "Gönderim yöntemi"
+msgstr ""
+
+msgid "Görünüm"
+msgstr ""
+
+msgid "Google ile giriş"
+msgstr ""
+
+msgid "Kayıt ve toplu gönderim"
+msgstr ""
+
+msgid "Gelen kutusunda \"WordPress <wordpress@…>\" yerine kurumunuzun adı ve adresi görünür. Yanıt beklenen e-postalar bilgi@ adresinden, parola ve bildirim gibi yanıt beklenmeyenler no-reply@ adresinden gider. Hangisinin kullanılacağını her e-postada ayrı seçebilirsiniz."
+msgstr ""
+
+msgid "Gönderen adı"
+msgstr ""
+
+msgid "Gönderen adresi"
+msgstr ""
+
+msgid "No-reply adı"
+msgstr ""
+
+msgid "No-reply adresi"
+msgstr ""
+
+msgid "Yanıt adresi (isteğe bağlı)"
+msgstr ""
+
+msgid "Boşsa yanıtlar gönderen adrese gider."
+msgstr ""
+
+msgid "Diğer eklentilerin gönderen adresini de bununla değiştir (önerilir; SPF/DKIM için tüm e-postalar aynı alan adından gitmeli)"
+msgstr ""
+
+msgid "%s etkin; e-postaları o gönderiyor ve buradaki SMTP ayarı kullanılmıyor. İkisini aynı anda kullanmayın: birini kapatın."
+msgstr ""
+
+msgid "SMTP (önerilen)"
+msgstr ""
+
+msgid "PHP mail() ile giden e-postalarda Gmail \"via srv….main-hosting.eu\" yazar ve spama düşme riski yüksektir."
+msgstr ""
+
+msgid "hPanel › E-postalar › E-posta hesapları'ndan bilgi@ hesabını oluşturun (no-reply@ için ayrı hesap ya da takma ad). Sunucu smtp.hostinger.com, port 465, SSL; kullanıcı adı e-posta adresinin tamamı."
+msgstr ""
+
+msgid "Hostinger ayarlarını doldur"
+msgstr ""
+
+msgid "SMTP sunucusu"
+msgstr ""
+
+msgid "Port"
+msgstr ""
+
+msgid "Şifreleme"
+msgstr ""
+
+msgid "Yok"
+msgstr ""
+
+msgid "Kimlik doğrulama"
+msgstr ""
+
+msgid "Kullanıcı adı (bilgi@)"
+msgstr ""
+
+msgid "Şifre"
+msgstr ""
+
+msgid "wp-config.php'de tanımlı"
+msgstr ""
+
+msgid "değiştirmek için yazın"
+msgstr ""
+
+msgid "Şifreli saklanır, panelde gösterilmez."
+msgstr ""
+
+msgid "No-reply için ayrı kullanıcı (isteğe bağlı)"
+msgstr ""
+
+msgid "no-reply@ ayrı bir hesapsa. Boşsa no-reply e-postaları da yukarıdaki hesapla gider (no-reply@, bilgi@ hesabının takma adı olmalı)."
+msgstr ""
+
+msgid "No-reply şifresi"
+msgstr ""
+
+msgid "Return-Path'i gönderen adresi yap (SPF uyumu için önerilir)"
+msgstr ""
+
+msgid "Ayarları kaydet"
+msgstr ""
+
+msgid "Önce ayarları kaydedin, sonra test edin."
+msgstr ""
+
+msgid "Test adresi"
+msgstr ""
+
+msgid "Test e-postası gönder"
+msgstr ""
+
+msgid "Son test: %1$s · %2$s"
+msgstr ""
+
+msgid "gönderildi"
+msgstr ""
+
+msgid "Alan adı kayıtları (SPF / DMARC)"
+msgstr ""
+
+msgid "E-postaların spama düşmemesi için alan adının DNS'inde SPF, DKIM ve DMARC kayıtları olmalı. Hostinger'da e-posta hesabı açınca SPF ve DKIM genelde kendiliğinden eklenir."
+msgstr ""
+
+msgid "DNS'i kontrol et"
+msgstr ""
+
+msgid "yok"
+msgstr ""
+
+msgid "Logo"
+msgstr ""
+
+msgid "Değiştir"
+msgstr ""
+
+msgid "Varsayılan"
+msgstr ""
+
+msgid "PNG ya da JPG (e-posta programları SVG göstermez). Varsayılan: temanın logosu."
+msgstr ""
+
+msgid "Koyu zemin logosu"
+msgstr ""
+
+msgid "Koyu modda (Apple Mail, iOS) görünür."
+msgstr ""
+
+msgid "Logo genişliği (px)"
+msgstr ""
+
+msgid "Ana renk"
+msgstr ""
+
+msgid "Koyu renk"
+msgstr ""
+
+msgid "Arka plan"
+msgstr ""
+
+msgid "Başlık rengi"
+msgstr ""
+
+msgid "Alt bilgi (kurum)"
+msgstr ""
+
+msgid "Boş alanlar SEO & MCP › Kurum ve sosyal ayarlarından gelir."
+msgstr ""
+
+msgid "Slogan"
+msgstr ""
+
+msgid "Adres"
+msgstr ""
+
+msgid "İletişim e-postası"
+msgstr ""
+
+msgid "Web sitesi"
+msgstr ""
+
+msgid "Alt not (isteğe bağlı)"
+msgstr ""
+
+msgid "Ör. dernek kütük numarası ya da KVKK notu. Bütün e-postaların en altında küçük yazıyla görünür."
+msgstr ""
+
+msgid "Diğer eklentilerin e-postaları"
+msgstr ""
+
+msgid "Düz metin e-postaları kurumsal şablona sar"
+msgstr ""
+
+msgid "Basit HTML e-postaları da sar (kendi tam tasarımı olanlara dokunulmaz)"
+msgstr ""
+
+msgid "Önizleme"
+msgstr ""
+
+msgid "Görünüm değişiklikleri kaydedince bütün e-postalara uygulanır."
+msgstr ""
+
+msgid "Google e-posta adresini zaten doğruladığı için Google ile kayıt olan kişiye \"parolanızı belirleyin / oturum açma bilgileri\" e-postası gitmez ve hesabı doğrulanmış sayılır."
+msgstr ""
+
+msgid "Algılanan eklenti: %s"
+msgstr ""
+
+msgid "Bilinen bir Google giriş eklentisi algılanmadı; Google dönüşü istekten de anlaşılır."
+msgstr ""
+
+msgid "WordPress \"oturum açma bilgileri / parola belirleme\" e-postasını gönderme"
+msgstr ""
+
+msgid "WooCommerce \"hesabınız oluşturuldu\" e-postasını gönderme"
+msgstr ""
+
+msgid "E-postayı doğrulanmış olarak işaretle (doğrulama eklentileri için)"
+msgstr ""
+
+msgid "WooCommerce e-postaları kendi şablonunu kullanır. Logomuzu, renklerimizi, gönderen adını ve kurumsal alt bilgiyi WooCommerce › Ayarlar › E-postalar'a tek tıkla uygulayabilirsiniz."
+msgstr ""
+
+msgid "Son uygulama: %s"
+msgstr ""
+
+msgid "Görünümü WooCommerce'e uygula"
+msgstr ""
+
+msgid "WooCommerce etkin değil."
+msgstr ""
+
+msgid "Giden e-posta ve mesajları kaydet"
+msgstr ""
+
+msgid "İçeriği de sakla (kayıtta e-postayı görmek için)"
+msgstr ""
+
+msgid "Kayıtları kaç gün sakla"
+msgstr ""
+
+msgid "Toplu e-postada her turda gönderilecek sayı"
+msgstr ""
+
+msgid "Hostinger paylaşımlı hostingte saatlik gönderim sınırı vardır; varsayılan 20 (dakikada bir tur)."
+msgstr ""
+
+msgid "Toplu e-postalara \"listeden çık\" bağlantısı ekle"
+msgstr ""
+
+msgid "Listeden çıkan: %s kişi"
+msgstr ""
+
+msgid "Ayarlar kaydedildi."
+msgstr ""
+
+msgid "Logo, renkler, gönderen ve alt bilgi WooCommerce e-postalarına uygulandı."
+msgstr ""
+
+msgid "Bağlantılar"
+msgstr ""
+
+msgid "WhatsApp ve SMS hesapları tek yerde. Flux Certificates, Flux Chat ve diğer eklentiler bu bağlantıları kullanır. E-posta ayarları Ayarlar sekmesinde."
+msgstr ""
+
+msgid "Etkin"
+msgstr ""
+
+msgid "Vazgeç"
+msgstr ""
+
+msgid "Henüz bağlantı yok."
+msgstr ""
+
+msgid "Test başarılı"
+msgstr ""
+
+msgid "Flux Certificates'dan taşındı"
+msgstr ""
+
+msgid "Test numarası (boşsa yalnız bağlantı)"
+msgstr ""
+
+msgid "Test numarası"
+msgstr ""
+
+msgid "Test et"
+msgstr ""
+
+msgid "Diğer işlemler"
+msgstr ""
+
+msgid "Varsayılan yap"
+msgstr ""
+
+msgid "Sil"
+msgstr ""
+
+msgid "Bağlantı silinsin mi?"
+msgstr ""
+
+msgid "Sağlayıcılar %s tarihinde taşındı. Flux Certificates artık WhatsApp ve SMS'i buradaki bağlantılarla gönderiyor; e-postalar kurumsal şablonla gidiyor."
+msgstr ""
+
+msgid "Eski sağlayıcı kayıtları silinmedi, yalnız kapatıldı (Flux Chat o kayıttan okumaya devam eder)."
+msgstr ""
+
+msgid "Taşımayı geri al"
+msgstr ""
+
+msgid "Flux Certificates eski sağlayıcılarına dönsün mü?"
+msgstr ""
+
+msgid "Flux Certificates'daki WhatsApp (Evolution) ve SMS (Netgsm) ayarlarını buraya kopyalar, Flux Certificates'yı bu bağlantılara bağlar. Bir şey silinmez; istediğiniz an geri alabilirsiniz."
+msgstr ""
+
+msgid "kapalı"
+msgstr ""
+
+msgid "Flux Certificates'dan taşı"
+msgstr ""
+
+msgid "Bağlantı kaydedildi. \"Test et\" ile deneyin."
+msgstr ""
+
+msgid "Bağlantı silindi."
+msgstr ""
+
+msgid "Varsayılan bağlantı değişti."
+msgstr ""
+
+msgid "Taşındı: %s bağlantı. Flux Certificates artık bu bağlantıları kullanıyor."
+msgstr ""
+
+msgid "Geri alındı: Flux Certificates eski sağlayıcılarını kullanıyor."
+msgstr ""
+
+msgid "İletişim"
+msgstr ""
+
+msgid "E-posta şablonları"
+msgstr ""
+
+msgid "WhatsApp ve SMS bağlantıları"
+msgstr ""
+
+msgid "İletişim ayarları"
+msgstr ""
+
+msgid "Sistem kontrolü"
+msgstr ""
+
+msgid "Gönderiliyor…"
+msgstr ""
+
+msgid "%s adresine gönderildi. Gelen kutusunu (ve spam klasörünü) kontrol edin."
+msgstr ""
+
+msgid "Gönderilemedi"
+msgstr ""
+
+msgid "Deneniyor…"
+msgstr ""
+
+msgid "Başarılı"
+msgstr ""
+
+msgid "Hata"
+msgstr ""
+
+msgid "%s alıcı"
+msgstr ""
+
+msgid "Alıcı yok"
+msgstr ""
+
+msgid "Logo seç"
+msgstr ""
+
+msgid "Kullan"
+msgstr ""
+
+msgid "Kontrol ediliyor…"
+msgstr ""
+
+msgid "Kopyalandı"
+msgstr ""
+
+msgid "Yetkiniz yok."
+msgstr ""
+
+msgid "E-posta, WhatsApp ve SMS ile ilgili satırlar. Tüm eklentilerin kontrolleri Görünüm › Sistem Kontrolü ekranında."
+msgstr ""
+
+msgid "WhatsApp · Evolution API"
+msgstr ""
+
+msgid "Kendi sunucunuzdaki Evolution API. Adres örn. https://wa.alanadiniz.com; instance, Evolution panelindeki bağlantı adı; API key, global AUTHENTICATION_API_KEY ya da instance token."
+msgstr ""
+
+msgid "API adresi"
+msgstr ""
+
+msgid "API key (apikey)"
+msgstr ""
+
+msgid "Instance adı"
+msgstr ""
+
+msgid "API sürümü"
+msgstr ""
+
+msgid "Link önizlemesi göster"
+msgstr ""
+
+msgid "Toplu gönderimde mesajlar arası bekleme (sn)"
+msgstr ""
+
+msgid "Numara engellenmesin diye toplu gönderimde mesajlar aralıklı gider."
+msgstr ""
+
+msgid "\"Yazıyor…\" süresi (ms)"
+msgstr ""
+
+msgid "Geçersiz telefon: %s"
+msgstr ""
+
+msgid "Bağlantı hatası:"
+msgstr ""
+
+msgid "Bu numarada WhatsApp yok."
+msgstr ""
+
+msgid "Instance bağlı değil (durum: %s). Evolution panelinden QR okutun."
+msgstr ""
+
+msgid "Test mesajı · %s 🌱"
+msgstr ""
+
+msgid "SMS · Netgsm"
+msgstr ""
+
+msgid "Netgsm REST v2. Kullanıcı adı genelde 850/312… ile başlayan abone numarasıdır. Mesaj başlığı Netgsm panelinde onaylı olmalı."
+msgstr ""
+
+msgid "Kullanıcı adı (usercode)"
+msgstr ""
+
+msgid "Şifre (API alt kullanıcı şifresi)"
+msgstr ""
+
+msgid "Mesaj başlığı (msgheader)"
+msgstr ""
+
+msgid "İYS filtresi"
+msgstr ""
+
+msgid "0 · Bilgilendirme (ticari değil)"
+msgstr ""
+
+msgid "11 · Ticari, bireysel alıcı (İYS kontrollü)"
+msgstr ""
+
+msgid "12 · Ticari, tacir alıcı (İYS kontrollü)"
+msgstr ""
+
+msgid "Türkçe karakter"
+msgstr ""
+
+msgid "Açık (ş, ğ, ı…) · SMS boyu 155"
+msgstr ""
+
+msgid "Kapalı (ASCII) · SMS boyu 160"
+msgstr ""
+
+msgid "Partner kodu (isteğe bağlı)"
+msgstr ""
+
+msgid "Mesaj metni hatalı ya da çok uzun"
+msgstr ""
+
+msgid "Geçersiz kullanıcı adı/şifre, API yetkisi yok ya da IP kısıtı"
+msgstr ""
+
+msgid "Mesaj başlığı (msgheader) sistemde tanımlı değil"
+msgstr ""
+
+msgid "Abone hesabıyla İYS kontrollü gönderim yapılamaz"
+msgstr ""
+
+msgid "Aboneliğe ait İYS marka bilgisi yok"
+msgstr ""
+
+msgid "Hatalı sorgu / eksik parametre"
+msgstr ""
+
+msgid "Gönderim hız limiti aşıldı"
+msgstr ""
+
+msgid "Aynı numaraya 1 dakikada 20'den fazla görev"
+msgstr ""
+
+msgid "Netgsm sistem hatası"
+msgstr ""
+
+msgid "Tanımsız hata"
+msgstr ""
+
+msgid "Test SMS · %s"
+msgstr ""
+
+msgid "Bakiye sorgusu başarısız:"
+msgstr ""
+
+msgid "Fidan dikim etkinliğimiz tamamlandı"
+msgstr ""
+
+msgid "Yazının başlığı"
+msgstr ""
+
+msgid "Yazının adresi"
+msgstr ""
+
+msgid "Yorumu yazan"
+msgstr ""
+
+msgid "Yorumu yazanın e-postası"
+msgstr ""
+
+msgid "Yorum metni"
+msgstr ""
+
+msgid "Yorumun adresi"
+msgstr ""
+
+msgid "Onaylama bağlantısı"
+msgstr ""
+
+msgid "Çöpe atma bağlantısı"
+msgstr ""
+
+msgid "İstenmeyen olarak işaretleme bağlantısı"
+msgstr ""
+
+msgid "Onay bekleyen yorum sayısı"
+msgstr ""
+
+msgid "Emeği geçen herkese teşekkürler, bir sonraki dikime ailece katılacağız!"
+msgstr ""
+
+msgid "Kişinin adı"
+msgstr ""
+
+msgid "Kullanıcı adı"
+msgstr ""
+
+msgid "E-posta adresi"
+msgstr ""
+
+msgid "Yeni üyelik: parola belirleme"
+msgstr ""
+
+msgid "Biri üye olduğunda ya da yönetici kullanıcı eklediğinde kişiye gider. Google ile kayıt olanlara gönderilmez (Ayarlar › Google ile giriş)."
+msgstr ""
+
+msgid "Parola belirleme bağlantısı"
+msgstr ""
+
+msgid "Giriş sayfası"
+msgstr ""
+
+msgid "Hesabınız hazır, parolanızı belirleyin"
+msgstr ""
+
+msgid "Aramıza hoş geldiniz, {ad}"
+msgstr ""
+
+msgid "<p>{site} hesabınız oluşturuldu. Kullanıcı adınız: <strong>{kullanici_adi}</strong></p><p>Aşağıdaki düğmeyle parolanızı belirleyip hesabınıza giriş yapabilirsiniz. Bu bağlantı güvenliğiniz için kısa bir süre sonra geçersiz olur.</p>"
+msgstr ""
+
+msgid "Parolamı belirle"
+msgstr ""
+
+msgid "Yeni üyelik (yöneticiye)"
+msgstr ""
+
+msgid "Kullanıcı profili (panel)"
+msgstr ""
+
+msgid "Yeni üye: {kullanici_adi}"
+msgstr ""
+
+msgid "Sitede yeni bir üye var"
+msgstr ""
+
+msgid "<table class=\"flxi-kv\"><tr><td>Kullanıcı adı</td><td><strong>{kullanici_adi}</strong></td></tr><tr><td>E-posta</td><td>{eposta}</td></tr></table>"
+msgstr ""
+
+msgid "Profili aç"
+msgstr ""
+
+msgid "Parola sıfırlama"
+msgstr ""
+
+msgid "Yeni parola bağlantısı"
+msgstr ""
+
+msgid "İsteğin geldiği IP"
+msgstr ""
+
+msgid "Parola sıfırlama isteği"
+msgstr ""
+
+msgid "Parolanızı yenileyin"
+msgstr ""
+
+msgid "<p>Merhaba {ad},</p><p><strong>{kullanici_adi}</strong> hesabınız için parola sıfırlama istendi. Yeni parolanızı aşağıdaki düğmeyle belirleyebilirsiniz.</p><p>Bu isteği siz yapmadıysanız e-postayı yok sayabilirsiniz; hesabınızda hiçbir şey değişmez.</p>"
+msgstr ""
+
+msgid "Yeni parola belirle"
+msgstr ""
+
+msgid "Parola değişti"
+msgstr ""
+
+msgid "Parolanız değiştirildi"
+msgstr ""
+
+msgid "<p>Merhaba {ad},</p><p>{site} hesabınızın parolası az önce değiştirildi.</p><p>Bu değişikliği siz yapmadıysanız hemen {kurum_eposta} adresine yazın.</p>"
+msgstr ""
+
+msgid "Giriş yap"
+msgstr ""
+
+msgid "E-posta adresi değişti"
+msgstr ""
+
+msgid "Yeni e-posta adresi"
+msgstr ""
+
+msgid "E-posta adresiniz değiştirildi"
+msgstr ""
+
+msgid "E-posta adresiniz değişti"
+msgstr ""
+
+msgid "<p>Merhaba {ad},</p><p>{site} hesabınızın e-posta adresi <strong>{yeni_eposta}</strong> olarak değiştirildi. Bundan sonra bildirimler bu adrese gidecek.</p><p>Bu değişikliği siz yapmadıysanız hemen {kurum_eposta} adresine yazın.</p>"
+msgstr ""
+
+msgid "Bir üye parolasını değiştirdi (yöneticiye)"
+msgstr ""
+
+msgid "{kullanici_adi} parolasını değiştirdi"
+msgstr ""
+
+msgid "Parola değişikliği"
+msgstr ""
+
+msgid "<p><strong>{kullanici_adi}</strong> ({eposta}) parolasını değiştirdi.</p>"
+msgstr ""
+
+msgid "Yazıya yeni yorum (yazara)"
+msgstr ""
+
+msgid "Yazının yazarına yeni yorum bildirimi."
+msgstr ""
+
+msgid "Yeni yorum: {yazi}"
+msgstr ""
+
+msgid "“{yazi}” yazısına yeni yorum"
+msgstr ""
+
+msgid "<p><strong>{yorum_yazari}</strong> yazdı:</p><blockquote>{yorum}</blockquote>"
+msgstr ""
+
+msgid "Yorumu görüntüle"
+msgstr ""
+
+msgid "Onay bekleyen yorum"
+msgstr ""
+
+msgid "Yorum onay beklerken site yöneticisine gider."
+msgstr ""
+
+msgid "Onay bekleyen yorum: {yazi}"
+msgstr ""
+
+msgid "Bir yorum onayınızı bekliyor"
+msgstr ""
+
+msgid "<p><strong>{yorum_yazari}</strong> ({yorum_eposta}), <a href=\"{yazi_linki}\">{yazi}</a> yazısına yorum yaptı:</p><blockquote>{yorum}</blockquote><p><a href=\"{cop_linki}\">Çöpe at</a> &nbsp;·&nbsp; <a href=\"{spam_linki}\">İstenmeyen olarak işaretle</a></p><p>Onay bekleyen toplam yorum: {bekleyen_sayisi}</p>"
+msgstr ""
+
+msgid "Yorumu onayla"
+msgstr ""
+
+msgid "Otomatik güncelleme raporu"
+msgstr ""
+
+msgid "Yönetici e-postası değişikliği onayı"
+msgstr ""
+
+msgid "Yönetici e-postası değişti"
+msgstr ""
+
+msgid "Yeni e-posta adresini onaylama"
+msgstr ""
+
+msgid "Kişisel veri isteği onayı"
+msgstr ""
+
+msgid "Kişisel veri dışa aktarımı hazır"
+msgstr ""
+
+msgid "Kişisel veriler silindi"
+msgstr ""
+
+msgid "Site hatası: kurtarma modu"
+msgstr ""
+
+msgid "İçeriği WordPress üretir; burada açıp kapatabilir ve kurumsal çerçeveyi seçebilirsiniz."
+msgstr ""
+
+msgid "Güvenlik için kapatılamaz. İçeriği WordPress üretir, kurumsal çerçeveyle gider."
+msgstr ""
+
+msgid "Anonim"
+msgstr ""
+
+msgid "Gönderen e-posta adresi geçersiz. İletişim › Ayarlar'dan bilgi@ adresinizi girin."
+msgstr ""
+
+msgid "%1$s sitenin alan adında (%2$s) değil. Gmail gibi servisler başka alan adından gelen e-postayı spama atabilir."
+msgstr ""
+
+msgid "%1$s <%2$s>; yanıt beklenmeyen e-postalar %3$s adresinden."
+msgstr ""
+
+msgid "E-postaları %s eklentisi gönderiyor; buradaki SMTP ayarı kullanılmaz. Şablon, gönderen adı ve kayıt yine Flux Mail'den."
+msgstr ""
+
+msgid "SMTP seçili ama sunucu, kullanıcı adı ya da şifre eksik. E-postalar gönderilemeyebilir."
+msgstr ""
+
+msgid "SMTP ayarları"
+msgstr ""
+
+msgid "SMTP: %1$s:%2$s"
+msgstr ""
+
+msgid "E-postalar sunucunun PHP mail() fonksiyonuyla gidiyor. Gmail gönderenin yanında \"via srv….main-hosting.eu\" gösterir ve spama düşme riski yüksektir. Hostinger'da bilgi@ e-posta hesabı açıp SMTP'yi seçin."
+msgstr ""
+
+msgid "%1$s adresine gönderildi (%2$s). Gelen kutusuna düştüğünü kontrol edin."
+msgstr ""
+
+msgid "Yeniden test et"
+msgstr ""
+
+msgid "Gönderilemedi (%1$s): %2$s"
+msgstr ""
+
+msgid "Henüz test edilmedi."
+msgstr ""
+
+msgid "Son 24 saat"
+msgstr ""
+
+msgid "%1$s gönderim başarısız, %2$s gönderildi. Son hata: %3$s"
+msgstr ""
+
+msgid "%s gönderim, hata yok."
+msgstr ""
+
+msgid "Toplu gönderim kuyruğu"
+msgstr ""
+
+msgid "%s mesaj 30 dakikadan uzun süredir bekliyor. WP-Cron çalışmıyor olabilir; Gönderim sayfasını açık tutmak kuyruğu ilerletir. Hostinger'da gerçek cron önerilir."
+msgstr ""
+
+msgid "Gönderimler"
+msgstr ""
+
+msgid "Veritabanı tabloları"
+msgstr ""
+
+msgid "Kayıt tabloları yok. Eklentiyi kapatıp açın."
+msgstr ""
+
+msgid "%s için SPF kaydı bulunamadı. Hostinger'da e-posta açınca DNS'e otomatik eklenir; alan adı başka yerdeyse \"v=spf1 include:_spf.mail.hostinger.com ~all\" ekleyin."
+msgstr ""
+
+msgid "Yeniden kontrol et"
+msgstr ""
+
+msgid "SPF kaydı Hostinger'ı içermiyor: "
+msgstr ""
+
+msgid "DMARC kaydı yok. Toplu gönderimde Gmail ve Yahoo DMARC ister; DNS'e \"_dmarc\" TXT kaydı olarak \"v=DMARC1; p=none; rua=mailto:bilgi@…\" ekleyin."
+msgstr ""
+
+msgid "SPF / DMARC (DNS)"
+msgstr ""
+
+msgid "Kontrol edilmedi."
+msgstr ""
+
+msgid "Google ile giriş eklentisi: %s."
+msgstr ""
+
+msgid "Google ile kayıt olanlara parola belirleme e-postası gitmiyor, e-postaları doğrulanmış sayılıyor."
+msgstr ""
+
+msgid "Google ile kayıt olanlara parola belirleme e-postası gidiyor (ayar kapalı)."
+msgstr ""
+
+msgid "Ayar"
+msgstr ""
+
+msgid "Bilinen bir Google giriş eklentisi etkin değil. Başka bir eklenti kullanılıyorsa da Google dönüşü algılanır ve parola e-postası durdurulur."
+msgstr ""
+
+msgid "%s bağlantısı yok."
+msgstr ""
+
+msgid "Ayarlar girilmiş, henüz test edilmedi."
+msgstr ""
+
+msgid "Test başarılı (%s)."
+msgstr ""
+
+msgid "Test başarısız (%1$s): %2$s"
+msgstr ""
+
+msgid "Flux Certificates sağlayıcıları"
+msgstr ""
+
+msgid "WhatsApp/SMS ayarları hâlâ Flux Certificates'da. Tek yerden yönetmek için İletişim › Bağlantılar'daki \"Flux Certificates'dan taşı\" düğmesini kullanın (geri alınabilir)."
+msgstr ""
+
+msgid "Taşı"
+msgstr ""
+
+msgid "Flux Certificates"
+msgstr ""
+
+msgid "Sertifika e-postaları kurumsal şablonla, WhatsApp/SMS buradaki bağlantılarla gidiyor."
+msgstr ""
+
+msgid "%1$s: \"%2$s\" → \"%3$s\""
+msgstr ""
+
+msgid "Geçerli bir e-posta adresi girin."
+msgstr ""
+
+msgid "Boş olamaz."
+msgstr ""
+
+msgid "Gönderen e-posta adresi"
+msgstr ""
+
+msgid "Yanıt beklenen e-postaların adresi (ör. bilgi@alanadi)."
+msgstr ""
+
+msgid "Gelen kutusunda görünen ad."
+msgstr ""
+
+msgid "Yanıt beklenmeyen e-postaların adresi (parola, bildirim)."
+msgstr ""
+
+msgid "Yanıt adresi (Reply-To)"
+msgstr ""
+
+msgid "Boş: yanıtlar gönderen adrese gider."
+msgstr ""
+
+msgid "SMTP sunucusu (şifre hariç)"
+msgstr ""
+
+msgid "Değer \"sunucu:port:ssl|tls|yok:kullanıcı\" biçiminde, ör. \"smtp.hostinger.com:465:ssl:bilgi@alanadi\". Şifreyi yönetici panelden girer."
+msgstr ""
+
+msgid "Biçim: sunucu:port:ssl|tls|yok:kullanıcı"
+msgstr ""
+
+msgid "SMTP sunucu bilgisi kaydedildi. Yöntem değişmedi; şifre girildikten sonra yönetici \"SMTP\" seçmeli."
+msgstr ""
+
+msgid "php: sunucunun mail() fonksiyonu; smtp: SMTP hesabı (sunucu ve şifre girilmiş olmalı)."
+msgstr ""
+
+msgid "SMTP sunucusu ya da şifresi eksik; önce yönetici panelden girmeli."
+msgstr ""
+
+msgid "SMTP seçildi."
+msgstr ""
+
+msgid "PHP mail() seçildi."
+msgstr ""
+
+msgid "Google ile kayıtta parola e-postasını durdur"
+msgstr ""
+
+msgid "Açıldı."
+msgstr ""
+
+msgid "Kapatıldı."
+msgstr ""
+
+msgid "Değer alıcı adresi; boşsa site yöneticisinin adresi."
+msgstr ""
+
+msgid "Gönderilemedi: "
+msgstr ""
+
+msgid "%s adresine gönderildi."
+msgstr ""
+
+msgid "SPF / DMARC kayıtlarını yeniden kontrol et"
+msgstr ""
+
+msgid "Her satır sitenin ihtiyaç duyduğu bir şeyi ve yerinde olup olmadığını gösterir. Önce hataları düzeltin; uyarılara da göz atın."
+msgstr ""
+
+msgid "Tamam"
+msgstr ""
+
+msgid "Uyarı"
+msgstr ""
+
+msgid "Bilgi"
+msgstr ""
+
+msgid "%1$d tamam · %2$d uyarı · %3$d hata"
+msgstr ""
+
+msgid "Yalnız bunları göster (tekrar tıklayınca hepsi)"
+msgstr ""
+
+msgid "Kontrol: %s"
+msgstr ""
+
+msgid "Üyeler: %1$s (%2$s)"
+msgstr ""
+
+msgid "Flux Certificates kişileri (%s)"
+msgstr ""
+
+msgid "Gönderilecek alıcı yok."
+msgstr ""
+
+msgid "Konu gerekli."
+msgstr ""
+
+msgid "Mesaj metni gerekli."
+msgstr ""
+
+msgid "Bu kanal için etkin bağlantı yok. İletişim › Bağlantılar'dan ekleyin."
+msgstr ""
+
+msgid "Gönderim iptal edildi."
+msgstr ""
+
+msgid "Abonelikten çıkmış."
+msgstr ""
+
+msgid "Bağlantı geçersiz."
+msgstr ""
+
+msgid "Listeden çıkarıldınız"
+msgstr ""
+
+msgid "%s adresine artık toplu e-posta göndermeyeceğiz. Bağış ve sertifika gibi işlem e-postaları gitmeye devam eder."
+msgstr ""
+
+msgid "Toplu e-postalardan çıkmak istiyor musunuz?"
+msgstr ""
+
+msgid "Evet, listeden çıkar"
+msgstr ""
+
+msgid "Abonelikten çık"
+msgstr ""
+
+msgid "Google tarafından doğrulandı. Bu hesaba parola belirleme e-postası gönderilmez."
+msgstr ""
+
+msgid "Bu e-posta otomatik gönderildi, lütfen yanıtlamayın. Sorularınız için %s adresine yazabilirsiniz."
+msgstr ""
+
+msgid "Bu tür e-postaları almak istemiyorum"
+msgstr ""
+
+msgid "Diğer"
+msgstr ""
+
+msgid "Tema"
+msgstr ""
+
+msgid "Sertifika e-postası"
+msgstr ""
+
+msgid "Dekont yüklendi (yöneticiye)"
+msgstr ""
+
+msgid "Yazıya yeni yorum"
+msgstr ""
+
+msgid "Sertifika hazır"
+msgstr ""
+
+msgid "Sertifika e-postayla gönderilince kişiye gider. Sertifikanın görseli e-postada görünür, tıklayınca sertifika sayfası açılır (indirme ve paylaşma orada). {mesaj_html}, Flux Certificates › Ayarlar'daki ya da şablondaki e-posta metnidir."
+msgstr ""
+
+msgid "Sertifika adı"
+msgstr ""
+
+msgid "Sertifika numarası"
+msgstr ""
+
+msgid "Fidan sayısı (fidan sertifikalarında)"
+msgstr ""
+
+msgid "Sertifika tarihi"
+msgstr ""
+
+msgid "Sertifika sayfası"
+msgstr ""
+
+msgid "Flux Certificates'daki e-posta konusu"
+msgstr ""
+
+msgid "Flux Certificates'daki e-posta metni"
+msgstr ""
+
+msgid "Fidan Bağış Sertifikası"
+msgstr ""
+
+msgid "Fidan Bağışı Sertifikanız hazır 🌱"
+msgstr ""
+
+msgid "Merhaba Ahmet,\n\nFidan Bağış Sertifikanız hazırlandı. Desteğiniz için çok teşekkür ederiz."
+msgstr ""
+
+msgid "Sertifikanız hazır 🌱"
+msgstr ""
+
+msgid "Sertifikamı görüntüle"
+msgstr ""
+
+msgid "Sertifikanızı açmak için görsele dokunun"
+msgstr ""
+
+msgid "Fidan"
+msgstr ""
+
+msgid "%s adet"
+msgstr ""
+
+msgid "Sertifika no"
+msgstr ""
+
+msgid "Sertifika sayfasından PDF olarak indirebilir, WhatsApp ve sosyal medyada paylaşabilirsiniz."
+msgstr ""
+
+msgid "Flux Mail etkin: e-posta kurumsal şablonla ve İletişim › Ayarlar'daki gönderen adresiyle gider."
+msgstr ""
+
+msgid "Varsayılan bağlantı"
+msgstr ""
+
+msgid "Flux Mail bağlantısı"
+msgstr ""
+
+msgid "PDF'i ayrıca belge olarak gönder"
+msgstr ""
+
+msgid "WhatsApp · Flux Mail"
+msgstr ""
+
+msgid "SMS · Flux Mail"
+msgstr ""
+
+msgid "Bağlantı ayarları (Evolution / Netgsm) İletişim › Bağlantılar'da tutulur; burada yalnız hangisinin kullanılacağı seçilir."
+msgstr ""
+
+msgid "Flux Mail'de bu kanal için etkin bağlantı yok."
+msgstr ""
+
+msgid "Geçersiz e-posta: %s"
+msgstr ""
+
+msgid "wp_mail false döndü (sunucu e-posta gönderemiyor olabilir)."
+msgstr ""
+
+msgid "Flux Certificates etkin değil."
+msgstr ""
+
+msgid "Geri alınacak taşıma yok."
+msgstr ""
+
+msgid "Bilinmeyen bağlantı tipi."
+msgstr ""
+
+msgid "%s gerekli."
+msgstr ""
+
+msgid "%s için etkin bağlantı yok. İletişim › Bağlantılar'dan ekleyin."
+msgstr ""
+
+msgid "Bağlantı bulunamadı."
+msgstr ""
+
+msgid "Bu tip test edilemiyor."
+msgstr ""
+
+msgid "Google ile kayıt: gönderilmedi"
+msgstr ""
+
+msgid "Şablon kapalı: gönderilmedi"
+msgstr ""
+
+msgid "Başka bir e-posta eklentisi gönderemedi."
+msgstr ""
+
+msgid "Flux Certificates WhatsApp ve SMS'i buradaki etkin bağlantılarla gönderir; sertifika e-postaları kurumsal şablonla gider."
+msgstr ""
+
+msgid "Posta kutusunun günlük gönderim sınırı doldu. Gönderim %s civarında kendiliğinden devam edecek."
+msgstr ""
+
+msgid "Günlük e-posta hakkı"
+msgstr ""
+
+msgid "Posta kutusu sınırları"
+msgstr ""
+
+msgid "Hostinger e-posta paketinizin sınırları. Gönderim sayacı bunlara göre çalışır; toplu gönderim günlük sınırı aşmaz, kalanlar hak açıldıkça sırayla gider. Sınırlar sık doluyorsa Hostinger'da üst e-posta paketine geçin ve buradaki değerleri güncelleyin."
+msgstr ""
+
+msgid "Günlük gönderim (24 saatte, posta kutusu başına)"
+msgstr ""
+
+msgid "Kime + Bilgi + Gizli alıcıların her biri bir sayılır. 0 = sınır yok."
+msgstr ""
+
+msgid "Tekil e-postalara ayrılan pay"
+msgstr ""
+
+msgid "Toplu gönderim bu kadar hakkı parola sıfırlama, bağış ve sertifika e-postalarına bırakır."
+msgstr ""
+
+msgid "İleti başına alıcı (Kime, Bilgi, Gizli)"
+msgstr ""
+
+msgid "Giden e-posta boyutu (MB)"
+msgstr ""
+
+msgid "E-posta eki boyutu (MB)"
+msgstr ""
+
+msgid "Posta kutusu başına depolama (GB)"
+msgstr ""
+
+msgid "Posta kutusu başına e-posta"
+msgstr ""
+
+msgid "Posta kutusu başına takma ad"
+msgstr ""
+
+msgid "Posta kutusu yönlendiricileri"
+msgstr ""
+
+msgid "Son 24 saat: %1$s / %2$s"
+msgstr ""
+
+msgid "Sonraki hak açılışı: %s"
+msgstr ""
+
+msgid "%1$s: son 24 saatte %2$s / %3$s alıcı."
+msgstr ""
+
+msgid "Günlük gönderim sınırı"
+msgstr ""
+
+msgid "Sınır doldu; bu adresten e-posta %s civarına kadar gitmeyebilir. Sık oluyorsa Hostinger'da üst e-posta paketine geçin."
+msgstr ""
+
+msgid "Sınırlar"
+msgstr ""
+
+msgid "Sınıra yaklaşıldı; toplu gönderim tekil e-postalara pay bırakıp duraklar."
+msgstr ""
+
+msgid "Son 30 günde %s gün sınıra dayanıldı; Hostinger'da üst e-posta paketine geçmeyi düşünün."
+msgstr ""
+
+msgid "Günlük %1$s gönderim sınırı nedeniyle tamamı yaklaşık %2$s günde gider."
+msgid_plural "Günlük %1$s gönderim sınırı nedeniyle tamamı yaklaşık %2$s günde gider."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Son 30 günde %s gün günlük sınıra dayanıldı."
+msgid_plural "Son 30 günde %s gün günlük sınıra dayanıldı."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Kara listede: gönderilmedi"
+msgstr ""
+
+msgid "Kara liste"
+msgstr ""
+
+msgid "Etkin: kara listedeki kişilere e-posta, WhatsApp ve SMS gitmez (parola sıfırlama gibi hesap güvenliği e-postaları hariç)."
+msgstr ""
+
+msgid "No-reply hesabı"
+msgstr ""
+
+msgid "SMTP hesabı"
+msgstr ""
+
+msgid "bilgi@ ile yeniden gönderildi."
+msgstr ""
+
+msgid "%1$s hesabına giriş yapılamadı (%2$s): %3$s Kullanıcı adını ve şifreyi kontrol edin; hPanel'de şifre değiştiyse buraya da yazın."
+msgstr ""
+
+msgid "%1$s: giriş başarılı (son gönderim %2$s)."
+msgstr ""
+
+msgid "%1$s için şifre girilmemiş; no-reply e-postaları şimdilik %2$s ile gidiyor. Şifreyi girin ya da no-reply@ bilgi@ hesabının takma adıysa kullanıcı alanını boşaltın."
+msgstr ""
+
+msgid "%1$s hesabına giriş yapılamadı (%2$s): %3$s no-reply e-postaları şimdilik %4$s ile gidiyor. Şifreyi düzeltip kaydedin (hesap yoksa hPanel'de açın ya da kullanıcı alanını boşaltın); sonra no-reply@ ile test e-postası gönderin."
+msgstr ""
+
+msgid "%1$s hesabına giriş yapılamadığı için %2$s ile gönderildi."
+msgstr ""
+
+msgid "Görseller"
+msgstr ""
+
+msgid "Görselleri her e-posta programına uygun hale getir (WebP/AVIF → JPG/PNG, tam adres)"
+msgstr ""
+
+msgid "Sitenin görsellerini e-postaya göm (alıcı \"görselleri göster\" demeden görür)"
+msgstr ""
+
+msgid "Orman"
+msgstr ""
+
+msgid "Tepeler"
+msgstr ""
+
+msgid "Çizgi"
+msgstr ""
+
+msgid "Alt kısım çizimi"
+msgstr ""
+
+msgid "Bütün e-postaların en altında ağaç silüeti. Koyu modda koyu renkli çizim görünür."
+msgstr ""
+
+msgid "Gelen kutusu"
+msgstr ""
+
+msgid "Onay bekleyen"
+msgstr ""
+
+msgid "Taslaklar"
+msgstr ""
+
+msgid "Şablonlar"
+msgstr ""
+
+msgid "Yeni e-posta"
+msgstr ""
+
+msgid "Ara: kişi, konu…"
+msgstr ""
+
+msgid "Sistem e-postaları"
+msgstr ""
+
+msgid "Okunmamış"
+msgstr ""
+
+msgid "Daha fazla"
+msgstr ""
+
+msgid "Burada e-posta yok."
+msgstr ""
+
+msgid "Taslak yok."
+msgstr ""
+
+msgid "Okumak için soldan bir e-posta seçin."
+msgstr ""
+
+msgid "Eşitle"
+msgstr ""
+
+msgid "Eşitleniyor…"
+msgstr ""
+
+msgid "Son eşitleme: %s önce"
+msgstr ""
+
+msgid "Eski e-postalar alınıyor…"
+msgstr ""
+
+msgid "Posta kutusu kapalı ya da IMAP bilgisi eksik. Gelen e-postaları görmek için Ayarlar › Posta kutusu'nu doldurun. Taslak yazıp göndermek yine çalışır."
+msgstr ""
+
+msgid "Ayarları aç"
+msgstr ""
+
+msgid "Cevapla"
+msgstr ""
+
+msgid "Tümünü cevapla"
+msgstr ""
+
+msgid "İlet"
+msgstr ""
+
+msgid "AI ile cevap yaz"
+msgstr ""
+
+msgid "AI ile yaz"
+msgstr ""
+
+msgid "AI ile düzelt"
+msgstr ""
+
+msgid "İsteğe bağlı talimat: \"teşekkür et, 11 Kasım etkinliğine davet et\""
+msgstr ""
+
+msgid "Ne yazılsın? Ör. \"Firma X'e fidan dikim işbirliği teklifi, kısa ve sıcak\""
+msgstr ""
+
+msgid "AI yazıyor…"
+msgstr ""
+
+msgid "AI için Flux AI eklentisi ve anahtarı gerekir."
+msgstr ""
+
+msgid "AI taslağı: kontrol edip düzenleyin, sonra gönderin. Siz göndermeden gitmez."
+msgstr ""
+
+msgid "Okunmadı yap"
+msgstr ""
+
+msgid "Yıldızla"
+msgstr ""
+
+msgid "Kime"
+msgstr ""
+
+msgid "Bilgi (Cc)"
+msgstr ""
+
+msgid "Şablon"
+msgstr ""
+
+msgid "Kaydedildi"
+msgstr ""
+
+msgid "Önizle"
+msgstr ""
+
+msgid "Silinsin mi?"
+msgstr ""
+
+msgid "Bu e-posta şimdi gönderilsin mi? Kime: %s"
+msgstr ""
+
+msgid "Cevaplanan"
+msgstr ""
+
+msgid "Eski yazışma e-postanın altına otomatik eklenir."
+msgstr ""
+
+msgid "Dış görselleri göster"
+msgstr ""
+
+msgid "Gizlilik için dış görseller gösterilmedi."
+msgstr ""
+
+msgid "Bu yazışma"
+msgstr ""
+
+msgid "Ekler"
+msgstr ""
+
+msgid "Geri"
+msgstr ""
+
+msgid "(konu yok)"
+msgstr ""
+
+msgid "ben"
+msgstr ""
+
+msgid "Sistem"
+msgstr ""
+
+msgid "Cevaplandı"
+msgstr ""
+
+msgid "Kalın"
+msgstr ""
+
+msgid "İtalik"
+msgstr ""
+
+msgid "Bağlantı adresi:"
+msgstr ""
+
+msgid "Liste"
+msgstr ""
+
+msgid "Biçimi temizle"
+msgstr ""
+
+msgid "Kayıtlarda aç"
+msgstr ""
+
+msgid "Posta kutusundan gönderirken seçilen şablonlar. \"Örnek Vakfı × Firma\" gibi alt şablonlarda firmanın logosu üstte görünür; hazır konu ve içerik yeni e-postaya dolar."
+msgstr ""
+
+msgid "Yeni alt şablon"
+msgstr ""
+
+msgid "Hazır şablon (değiştirilemez)"
+msgstr ""
+
+msgid "Şablon adı"
+msgstr ""
+
+msgid "Kısa açıklama"
+msgstr ""
+
+msgid "Kurumsal (kart)"
+msgstr ""
+
+msgid "Sade (mektup)"
+msgstr ""
+
+msgid "Firma adı"
+msgstr ""
+
+msgid "Firma logosu"
+msgstr ""
+
+msgid "Firma web sitesi"
+msgstr ""
+
+msgid "Vurgu rengi"
+msgstr ""
+
+msgid "Başlık (kurumsalda büyük başlık)"
+msgstr ""
+
+msgid "Hazır konu"
+msgstr ""
+
+msgid "Hazır içerik"
+msgstr ""
+
+msgid "Bu şablonla yeni e-posta"
+msgstr ""
+
+msgid "Posta kutusu"
+msgstr ""
+
+msgid "bilgi@ adresine gelen ve giden e-postalar, taslaklar ve AI cevapları."
+msgstr ""
+
+msgid "Yükleniyor…"
+msgstr ""
+
+msgid "Koyu"
+msgstr ""
+
+msgid "bilgi@ adresine gelen e-postalar ve web postadan gönderilenler sol menüdeki Posta kutusu ekranında görünür; oradan cevap yazılır. Sunucuya IMAP ile bağlanılır, birkaç dakikada bir az sayıda e-posta alınır (paylaşımlı sunucuyu yormaz). Ekler sitede saklanmaz, açınca sunucudan okunur."
+msgstr ""
+
+msgid "Posta kutusunu aç"
+msgstr ""
+
+msgid "IMAP sunucusu"
+msgstr ""
+
+msgid "Boşsa SMTP kullanıcısı (bilgi@) kullanılır."
+msgstr ""
+
+msgid "Boşsa SMTP şifresi kullanılır"
+msgstr ""
+
+msgid "İlk kurulumda kaç günlük e-posta alınsın"
+msgstr ""
+
+msgid "Sitede kaç gün saklansın"
+msgstr ""
+
+msgid "Sunucudaki e-postalar silinmez; yalnız sitedeki kopya."
+msgstr ""
+
+msgid "İmza (isteğe bağlı)"
+msgstr ""
+
+msgid "Saygılarımızla,\n{ad_soyad}"
+msgstr ""
+
+msgid "Posta kutusundan yazılan e-postaların sonuna eklenir; altına logolu kurum bilgisi gelir. {ad_soyad} yazan kişinin adı olur. Boşsa \"Saygılarımızla,\"."
+msgstr ""
+
+msgid "Bağlantıyı dene"
+msgstr ""
+
+msgid "Önce kaydedin, sonra deneyin."
+msgstr ""
+
+msgid "Açık ama IMAP sunucusu, kullanıcı ya da şifre eksik (İletişim › Ayarlar › Posta kutusu)."
+msgstr ""
+
+msgid "Son eşitleme %s önce. Zamanlanmış görevler (WP-Cron) çalışmıyor olabilir; Posta kutusu ekranı açıkken eşitleme yine yapılır."
+msgstr ""
+
+msgid "Eşitleniyor; son eşitleme %s önce."
+msgstr ""
+
+msgid "Gönderilmiş klasörü bulunamadı: web postadan gönderilenler görünmez."
+msgstr ""
+
+msgid "E-posta bulunamadı."
+msgstr ""
+
+msgid "İçerik kaydedilmemiş (Ayarlar › Kayıt › içerik kaydı kapalı)."
+msgstr ""
+
+msgid "İşlem yapılamadı."
+msgstr ""
+
+msgid "Bağlantı başarılı. Gelen kutusunda %1$s e-posta var. Gönderilmiş klasörü: %2$s"
+msgstr ""
+
+msgid "bulunamadı"
+msgstr ""
+
+msgid "Taslak bulunamadı."
+msgstr ""
+
+msgid "Taslak bulunamadı ya da gönderilmiş."
+msgstr ""
+
+msgid "İletilen e-posta"
+msgstr ""
+
+msgid "%1$s tarihinde %2$s şunu yazdı:"
+msgstr ""
+
+msgid "Bu taslak zaten gönderildi."
+msgstr ""
+
+msgid "Alıcı (Kime) yok ya da adres geçersiz."
+msgstr ""
+
+msgid "Konu boş."
+msgstr ""
+
+msgid "Bir e-postada en çok %s alıcı olabilir."
+msgstr ""
+
+msgid "Alıcı kara listede: e-posta gönderilmedi."
+msgstr ""
+
+msgid "E-posta gönderilmedi (şablon kapalı)."
+msgstr ""
+
+msgid "Gönderilemedi. Ayrıntı Kayıtlar ekranında."
+msgstr ""
+
+msgid "Taslak"
+msgstr ""
+
+msgid "Onay bekliyor"
+msgstr ""
+
+msgid "IMAP sunucusu, kullanıcı ya da şifre eksik (Ayarlar › Posta kutusu)."
+msgstr ""
+
+msgid "Posta kutusu kapalı."
+msgstr ""
+
+msgid "Ek bulunamadı."
+msgstr ""
+
+msgid "İleti sunucuda bulunamadı (silinmiş ya da taşınmış olabilir)."
+msgstr ""
+
+msgid "Kurumsal"
+msgstr ""
+
+msgid "Logolu kart, düğme, kurumsal alt bilgi. Duyuru ve yeni e-postalar için."
+msgstr ""
+
+msgid "Sade"
+msgstr ""
+
+msgid "Kişisel mektup görünümü, altta küçük logolu imza. Cevaplar için."
+msgstr ""
+
+msgid "Adsız şablon"
+msgstr ""
+
+msgid "Saygılarımızla,"
+msgstr ""
+
+msgid "%1$s sunucusuna bağlanılamadı: %2$s"
+msgstr ""
+
+msgid "Sunucu IMAP karşılaması göndermedi."
+msgstr ""
+
+msgid "STARTTLS başarısız."
+msgstr ""
+
+msgid "IMAP girişi başarısız: kullanıcı adı ya da şifre yanlış."
+msgstr ""
+
+msgid "%s klasörü açılamadı."
+msgstr ""
+
+msgid "IMAP bağlantısı koptu."
+msgstr ""
+
+msgid "IMAP sunucusu cevap vermedi (zaman aşımı)."
+msgstr ""
+
+msgid "Flux AI kurulu değil ya da anahtarı girilmemiş (Flux AI › Ayarlar)."
+msgstr ""
+
+msgid "E-postaları listele"
+msgstr ""
+
+msgid "E-postayı oku"
+msgstr ""
+
+msgid "E-posta şablonlarını listele"
+msgstr ""
+
+msgid "E-posta taslağı yaz"
+msgstr ""
+
+msgid "Taslağı gönder"
+msgstr ""
+
+msgid "İletişim (posta kutusu)"
+msgstr ""
+
+msgid "Flux Mail"
+msgstr ""
+
+msgid "E-posta cevabı"
+msgstr ""
+
+msgid "E-posta taslağı"
+msgstr ""
+
+msgid "Sunucuda PDF çevirici yok (Flux AI › Ayarlar › Görseller › Gotenberg)."
+msgstr ""
+
+msgid "PDF çeviriciye ulaşılamadı: %s"
+msgstr ""
+
+msgid "PDF oluşturulamadı (HTTP %d)."
+msgstr ""
+
+msgid "PDF indir"
+msgstr ""
+
+msgid "PDF hazırlanıyor…"
+msgstr ""
+
+msgid "E-posta ayrıştırıcı"
+msgstr ""
+
+msgid "PHP mailparse uzantısı açık: gelen e-postaların başlık ve adresleri onunla okunuyor."
+msgstr ""
+
+msgid "PHP mailparse uzantısı yok; eklentinin kendi ayrıştırıcısı kullanılıyor (çalışır). İsterseniz hPanel › PHP Yapılandırması › PHP Uzantıları'ndan \"mailparse\" açılabilir."
+msgstr ""
+
+msgid "Hazır"
+msgstr ""
+
+msgid "AI"
+msgstr ""
+
+msgid "Kaydedilmemiş değişiklik var. Yine de kapatılsın mı?"
+msgstr ""
+
+msgid "Taslak boş."
+msgstr ""
+
+msgid "Posta kutusundan yazılan e-postaların sonuna eklenir; altına logolu kurum bilgisi gelir. {ad_soyad} yazan kişinin adı olur. Boşsa hiçbir şey eklenmez."
+msgstr ""
+
+msgid "Sunucu"
+msgstr ""
+
+msgid "Yeni sunucu bilgisi gireceğim"
+msgstr ""
+
+msgid "Aynı sunucu: %1$s (%2$s)"
+msgstr ""
+
+msgid "Aynı sunucuya ikinci bir numara eklerken adres ve API key yeniden girilmez; yalnız yeni instance adını yazın."
+msgstr ""
+
+msgid "Her satır bir numara. Numarayı bağlamak, durumunu görmek ya da yeniden bağlamak için \"Bağlan\"a basın; ayrı bir panele girmeniz gerekmez."
+msgstr ""
+
+msgid "Bağlan"
+msgstr ""
+
+msgid "Yeniden başlat"
+msgstr ""
+
+msgid "Numaranın oturumunu kapat"
+msgstr ""
+
+msgid "Sunucu ayarları"
+msgstr ""
+
+msgid "Sil (numara sunucuda kalır)"
+msgstr ""
+
+msgid "Sunucudan da sil"
+msgstr ""
+
+msgid "Numara sunucudan da silinsin mi? Oturum, mesaj geçmişi ve kişiler sunucudan silinir; yeniden eklemek için QR gerekir."
+msgstr ""
+
+msgid "Bağlantı kaydedildi. Telefonda WhatsApp › Bağlı cihazlar › Cihaz bağla ile QR'ı okutun."
+msgstr ""
+
+msgid "Bağlı"
+msgstr ""
+
+msgid "QR bekliyor"
+msgstr ""
+
+msgid "Bağlı değil"
+msgstr ""
+
+msgid "Sunucuda yok"
+msgstr ""
+
+msgid "Sunucuya ulaşılamadı"
+msgstr ""
+
+msgid "Durum bilinmiyor"
+msgstr ""
+
+msgid "WhatsApp QR kodu"
+msgstr ""
+
+msgid "Telefonda WhatsApp'ı açın."
+msgstr ""
+
+msgid "Ayarlar › Bağlı cihazlar › Cihaz bağla."
+msgstr ""
+
+msgid "Bu QR'ı okutun. Kod kendiliğinden yenilenir."
+msgstr ""
+
+msgid "QR okutamıyorum: telefon numarasıyla kod al"
+msgstr ""
+
+msgid "Telefon numarası"
+msgstr ""
+
+msgid "Kod al"
+msgstr ""
+
+msgid "WhatsApp › Bağlı cihazlar › Cihaz bağla › \"Bunun yerine telefon numarasıyla bağla\" ekranına bu kodu yazın."
+msgstr ""
+
+msgid "Flux WPAPI sunucusu"
+msgstr ""
+
+msgid "Bekleyin…"
+msgstr ""
+
+msgid "QR'ı telefonla okutun."
+msgstr ""
+
+msgid "Bu kodu telefondaki WhatsApp'a yazın."
+msgstr ""
+
+msgid "Bağlandı."
+msgstr ""
+
+msgid "Numaranın oturumu kapatılsın mı? Mesaj gelmez; yeniden bağlamak için QR okutmak gerekir."
+msgstr ""
+
+msgid "Sürüm"
+msgstr ""
+
+msgid "Veri deposu"
+msgstr ""
+
+msgid "Dosya"
+msgstr ""
+
+msgid "Son uyanık tutma"
+msgstr ""
+
+msgid "henüz yok"
+msgstr ""
+
+msgid "Sesli mesaj çevirici"
+msgstr ""
+
+msgid "Var"
+msgstr ""
+
+msgid "Köprünün dış adresi"
+msgstr ""
+
+msgid "Uyanık tutma bu adrese istek atar. Ör. https://example.org"
+msgstr ""
+
+msgid "Uyanık tut (Hostinger uygulamayı uyutmasın)"
+msgstr ""
+
+msgid "Veritabanı"
+msgstr ""
+
+msgid "Veritabanı köprünün ortam değişkenlerinden geliyor; buradan değiştirilemez."
+msgstr ""
+
+msgid "Depo"
+msgstr ""
+
+msgid "Veritabanı adı"
+msgstr ""
+
+msgid "Kullanıcı"
+msgstr ""
+
+msgid "Parola"
+msgstr ""
+
+msgid "Kayıtlı · değiştirmek için yazın"
+msgstr ""
+
+msgid "Tablo öneki"
+msgstr ""
+
+msgid "Parola yalnız köprüye gönderilir, WordPress'te saklanmaz."
+msgstr ""
+
+msgid "Depo değişince numaraların bağlantısı kapanır ve yeniden QR okutmak gerekir. Devam edilsin mi?"
+msgstr ""
+
+msgid "Veritabanını dene"
+msgstr ""
+
+msgid "WhatsApp bağlantısı bulunamadı."
+msgstr ""
+
+msgid "Sunucuya ulaşılamadı:"
+msgstr ""
+
+msgid "API key kabul edilmedi."
+msgstr ""
+
+msgid "Sunucu ayarları yalnız Flux WPAPI bağlantısında var."
+msgstr ""
+
+msgid "Bu Flux WPAPI sürümü sunucu ayarlarını WordPress'ten değiştirmeyi desteklemiyor. Köprüyü güncelleyin."
+msgstr ""
+
+msgid "WhatsApp · Flux WPAPI"
+msgstr ""
+
+msgid "Hostinger'da Node.js uygulaması olarak kurulan Flux WPAPI köprüsü. Adres örn. https://wa.alanadiniz.com; API key, köprü panelindeki genel API key; instance, bu numaraya vereceğiniz ad (yoksa \"Bağlan\"da oluşturulur)."
+msgstr ""
+
+msgid "Numara bağlı değil (durum: %s). \"Bağlan\" ile QR okutun."
+msgstr ""
+
+msgid "Kurulum"
+msgstr ""
+
+msgid "Bağlantı kaydedildi. Şimdi webhook adresini Meta uygulamasına girin."
+msgstr ""
+
+msgid "Cloud API'de farklı olanlar"
+msgstr ""
+
+msgid "24 saat kuralı: kişi son 24 saatte yazmadıysa yalnız Meta'nın onayladığı şablon gönderilebilir."
+msgstr ""
+
+msgid "Grup mesajı yok: Çağrı Merkezi'nin ekip grubu aynası bu hatta çalışmaz."
+msgstr ""
+
+msgid "Gönderilen mesaj düzenlenemez; geçmiş sohbetler içe aktarılamaz."
+msgstr ""
+
+msgid "\"Yazıyor…\" yalnız gelen mesaja cevap verirken görünür."
+msgstr ""
+
+msgid "Ücret: şablon mesajları ve ayda 1000'i aşan cevap mesajları Meta tarafından ücretlendirilir."
+msgstr ""
+
+msgid "Ban riski yok; numara telefondaki WhatsApp Business uygulamasında da kalabilir (coexistence)."
+msgstr ""
+
+msgid "Kopyala"
+msgstr ""
+
+msgid "Numara kalitesi"
+msgstr ""
+
+msgid "Yüksek"
+msgstr ""
+
+msgid "Orta"
+msgstr ""
+
+msgid "Düşük"
+msgstr ""
+
+msgid "Webhook (gelen mesajlar)"
+msgstr ""
+
+msgid "Meta for Developers › uygulamanız › WhatsApp › Yapılandırma › Webhook: aşağıdaki adresi ve doğrulama anahtarını girip \"Doğrula ve kaydet\"e basın, sonra \"messages\" alanına abone olun."
+msgstr ""
+
+msgid "Geri çağırma adresi (Callback URL)"
+msgstr ""
+
+msgid "Doğrulama anahtarı (Verify token)"
+msgstr ""
+
+msgid "Meta doğrulaması"
+msgstr ""
+
+msgid "Son gelen olay"
+msgstr ""
+
+msgid "İmzası tutmayan istek"
+msgstr ""
+
+msgid "Açık 24 saat penceresi"
+msgstr ""
+
+msgid "App Secret girilmedi: gelen isteklerin Meta'dan geldiği doğrulanmıyor. Düzenle'den ekleyin."
+msgstr ""
+
+msgid "Onaylı şablonlar"
+msgstr ""
+
+msgid "Şablonlar için WABA ID gerekli."
+msgstr ""
+
+msgid "Şablon yok. WhatsApp Manager › Mesaj şablonları'ndan ekleyin."
+msgstr ""
+
+msgid "WhatsApp · Cloud API (Meta)"
+msgstr ""
+
+msgid "Meta'nın resmi WhatsApp Cloud API'si; ek sunucu gerekmez. Meta Business › WhatsApp Manager'dan Phone Number ID ve WhatsApp Business hesap (WABA) ID'yi, Business ayarları › Sistem kullanıcıları'ndan kalıcı erişim anahtarını alın. Kaydettikten sonra \"Kurulum\"daki webhook adresini Meta uygulamasına yapıştırın."
+msgstr ""
+
+msgid "Phone Number ID"
+msgstr ""
+
+msgid "WhatsApp Business hesap ID (WABA)"
+msgstr ""
+
+msgid "Şablon listesi için gerekli."
+msgstr ""
+
+msgid "Kalıcı erişim anahtarı (System User token)"
+msgstr ""
+
+msgid "Uygulama gizli anahtarı (App Secret)"
+msgstr ""
+
+msgid "Gelen webhook'ların Meta'dan geldiğini doğrular. Boşsa imza denetlenmez (önerilmez)."
+msgstr ""
+
+msgid "Graph API sürümü"
+msgstr ""
+
+msgid "Meta'ya ulaşılamadı:"
+msgstr ""
+
+msgid "24 saat penceresi kapalı: kişi son 24 saatte yazmadı. Yalnız onaylı şablon gönderilebilir."
+msgstr ""
+
+msgid "Mesaj iletilemedi: numarada WhatsApp yok ya da kişi engellemiş."
+msgstr ""
+
+msgid "Erişim anahtarı geçersiz ya da süresi dolmuş."
+msgstr ""
+
+msgid "Bu numara test listesinde değil (Meta test hesabı)."
+msgstr ""
+
+msgid "Aynı kişiye çok hızlı mesaj gönderildi; biraz bekleyin."
+msgstr ""
+
+msgid "Şablon bulunamadı ya da bu dilde onaylı değil."
+msgstr ""
+
+msgid "Cloud API bağlantısı eksik."
+msgstr ""
+
+msgid "Denemek için önce o numaradan bu hatta bir mesaj atın."
+msgstr ""
+
+msgid "Cloud API bağlantısı bulunamadı."
+msgstr ""
+
+msgid "Durum / yeniden bağla (QR)"
+msgstr ""
+
+msgid "Bağlantıyı kontrol et"
+msgstr ""
+
+msgid "Mesaj göndermez; yalnız bağlantıya bakar."
+msgstr ""
+
+msgid "Alıcı numara"
+msgstr ""
+
+msgid "Ülke koduyla, ör. 905301234567. Mesajlar bu numaraya gider."
+msgstr ""
+
+msgid "Ne gönderilsin?"
+msgstr ""
+
+msgid "Metin"
+msgstr ""
+
+msgid "Resim"
+msgstr ""
+
+msgid "Sesli mesaj"
+msgstr ""
+
+msgid "Belge (PDF)"
+msgstr ""
+
+msgid "Mesaj metni"
+msgstr ""
+
+msgid "Resim / belge açıklaması"
+msgstr ""
+
+msgid "Merhaba, bu %s test mesajıdır. 🌱"
+msgstr ""
+
+msgid "Test görseli · %s"
+msgstr ""
+
+msgid "%d mesaj gönder"
+msgstr ""
+
+msgid "Önce alıcı numarayı yazın."
+msgstr ""
+
+msgid "En az bir senaryo seçin."
+msgstr ""
+
+msgid "Numara bağlı değil; mesajlar gitmez. Önce \"Bağlan\" ile QR okutun."
+msgstr ""
+
+msgid "24 saat kuralı: kişi son 24 saatte bu hatta yazmadıysa metin, resim, ses ve belge gitmez; yalnız onaylı şablon gider. Önce o numaradan bu hatta bir mesaj atın."
+msgstr ""
+
+msgid "Şablon seçin"
+msgstr ""
+
+msgid "Şablonlar yükleniyor…"
+msgstr ""
+
+msgid "Onaylı şablon yok."
+msgstr ""
+
+msgid "Değişken {{%d}}"
+msgstr ""
+
+msgid "SMS ücretlidir; her gönderim bakiyeden düşer."
+msgstr ""
+
+msgid "1 sayfa · PDF"
+msgstr ""
+
+msgid "%1$d / %2$d gönderildi."
+msgstr ""
+
+msgid "Telefonda kontrol edin."
+msgstr ""
+
+msgid "SMS"
+msgstr ""
+
+msgid "Bu bağlantı bu senaryoyu desteklemiyor."
+msgstr ""
+
+msgid "Geçerli bir alıcı numarası girin."
+msgstr ""
+
+msgid "Şablon seçin."
+msgstr ""
+
+msgid "Denemek için önce o numaradan bu hatta bir mesaj atın ya da şablon gönderin."
+msgstr ""
+
+msgid "Dosya okunamadı."
+msgstr ""
+
+msgid "Dosya Meta'ya yüklenemedi:"
+msgstr ""
+

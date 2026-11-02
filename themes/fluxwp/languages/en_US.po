@@ -1,0 +1,1806 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Örnek Vakfı\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-31 07:36+0000\n"
+"PO-Revision-Date: 2026-10-31 07:36+0000\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: fluxwp\n"
+
+#: patterns/bulten.php
+msgid "Bültenimize Katılın"
+msgstr "Join Our Newsletter"
+
+#: patterns/bulten.php
+msgid ""
+"Etkinliklerden, yeni projelerimizden ve yeşil yarınlardan haberdar olun."
+msgstr "Stay up to date on our events, new projects and a greener future."
+
+#: parts/footer.html parts/header.html patterns/calismalar.php
+msgid "Çalışmalarımız"
+msgstr "Our Work"
+
+#: patterns/calismalar.php
+msgid "Tüm Çalışmalarımız"
+msgstr "All Our Work"
+
+#: patterns/calismalar.php
+msgid "Projeler menüsünden proje ekleyin; burada otomatik listelenir."
+msgstr ""
+"Add projects from the Projects menu; they are listed here automatically."
+
+#: parts/header.html patterns/haberler-topluluk.php
+msgid "Bizden Haberler"
+msgstr "News From Us"
+
+#: patterns/haberler-topluluk.php
+msgid "Tüm Haberler"
+msgstr "All News"
+
+#: patterns/haberler-topluluk.php
+msgid "Yazılar menüsünden haber ekleyin; burada otomatik listelenir."
+msgstr "Add news from the Posts menu; they are listed here automatically."
+
+#: patterns/haberler-topluluk.php
+msgid "Topluluğumuzdan"
+msgstr "From Our Community"
+
+#: patterns/haberler-topluluk.php
+msgid ""
+"İlk fidan dikim etkinliğime arkadaşlarımla katıldım. Hem çok şey öğrendik "
+"hem de diktiğimiz fidanların büyüdüğünü görmek inanılmaz bir duygu."
+msgstr ""
+"I joined my first tree planting event with my friends. We learned a lot, and"
+" watching the saplings we planted grow is an incredible feeling."
+
+#: patterns/hero.php
+msgid "Öne Çıkan"
+msgstr "Featured"
+
+#: patterns/hero.php
+msgid "Türkiye için"
+msgstr "For Türkiye,"
+
+#: patterns/hero.php
+msgid "daha yeşil"
+msgstr "a greener"
+
+#: patterns/hero.php
+msgid "bir gelecek"
+msgstr "future"
+
+#: patterns/hero.php
+msgid ""
+"Daha temiz hava, daha yaşanabilir şehirler ve daha dirençli ormanlar için "
+"doğayı birlikte koruyor, yeşil alanları çoğaltıyoruz."
+msgstr ""
+"For cleaner air, more liveable cities and more resilient forests, we protect"
+" nature together and grow green spaces."
+
+#: patterns/hero.php
+msgid "Projelerimiz"
+msgstr "Our Projects"
+
+#: parts/header.html patterns/hero.php patterns/katki.php
+#: patterns/sayfa-hakkimizda.php patterns/sidebar.php
+msgid "Bağış Yap"
+msgstr "Donate"
+
+#: patterns/hero.php
+msgid "Kampanya"
+msgstr "Campaign"
+
+#: patterns/hero.php
+msgid "Ailen için"
+msgstr "A sapling"
+
+#: patterns/hero.php
+msgid "bir fidan"
+msgstr "for your family"
+
+#: patterns/hero.php
+msgid ""
+"Doğum, düğün, mezuniyet ya da bir anma. Sevdiklerinizin adına dikilen her "
+"fidan, ormanlarımızda büyür."
+msgstr ""
+"A birth, a wedding, a graduation or a remembrance. Every sapling planted in "
+"your loved ones’ name grows in our forests."
+
+#: inc/dil.php patterns/hero.php templates/single-etkinlik.html
+msgid "Etkinlik"
+msgstr "Event"
+
+#: patterns/hero.php
+msgid "Sonbahar"
+msgstr "Autumn"
+
+#: patterns/hero.php
+msgid "dikim dönemi"
+msgstr "planting season"
+
+#: patterns/hero.php
+msgid "başladı"
+msgstr "has begun"
+
+#: patterns/hero.php
+msgid ""
+"Gönüllülerimizle birlikte Türkiye’nin dört bir yanında fidan dikim "
+"etkinlikleri düzenliyoruz. Takvimi inceleyin, yerinizi ayırın."
+msgstr ""
+"Together with our volunteers we organise tree planting events across "
+"Türkiye. Check the calendar and save your spot."
+
+#: inc/dil.php patterns/hero.php
+msgid "Eğitim"
+msgstr "Education"
+
+#: patterns/hero.php
+msgid "Çocuklarla"
+msgstr "Exploring"
+
+#: patterns/hero.php
+msgid "doğayı"
+msgstr "nature"
+
+#: patterns/hero.php
+msgid "keşfediyoruz"
+msgstr "with children"
+
+#: patterns/hero.php
+msgid ""
+"Okullar ve ailelerle düzenlediğimiz etkinliklerde çocuklar fidanı toprakla "
+"buluşturmayı ve ormanı korumayı öğreniyor."
+msgstr ""
+"At events with schools and families, children learn how to plant a sapling "
+"and protect the forest."
+
+#: patterns/hero.php
+msgid "Gönüllülük"
+msgstr "Volunteering"
+
+#: patterns/hero.php
+msgid "Birlikte"
+msgstr "Together"
+
+#: patterns/hero.php
+msgid "dikiyor, birlikte büyütüyoruz"
+msgstr "we plant and grow"
+
+#: patterns/hero.php
+msgid ""
+"Okullar, kurumlar ve gönüllülerle aynı sahada buluşuyor, her dikim gününü "
+"bir şenliğe dönüştürüyoruz."
+msgstr ""
+"We meet schools, organisations and volunteers in the field and turn every "
+"planting day into a festival."
+
+#: patterns/hero.php
+msgid "Derneğimiz"
+msgstr "Our Association"
+
+#: patterns/hero.php
+msgid "ormanların"
+msgstr "standing"
+
+#: patterns/hero.php
+msgid "yanındayız"
+msgstr "by our forests"
+
+#: parts/footer.html patterns/hero.php
+msgid "Daha yeşil bir Türkiye mümkün"
+msgstr "A greener Türkiye is possible"
+
+#: patterns/istatistik.php
+msgid "Birlikte Daha Büyük Bir Etki Yaratıyoruz"
+msgstr "Together We Make a Bigger Impact"
+
+#: patterns/istatistik.php
+msgid "Ağaç Dikildi"
+msgstr "Trees Planted"
+
+#: patterns/istatistik.php
+msgid "Gönüllü"
+msgstr "Volunteers"
+
+#: patterns/istatistik.php
+msgid "Etkinlik Düzenlendi"
+msgstr "Events Held"
+
+#: patterns/istatistik.php
+msgid "Temizlik Çalışması"
+msgstr "Clean-up Drives"
+
+#: patterns/istatistik.php
+msgid "Kişiye Eğitim Verildi"
+msgstr "People Trained"
+
+#: patterns/katki.php
+msgid "Nasıl Katkı Sağlayabilirsiniz?"
+msgstr "How Can You Contribute?"
+
+#: patterns/katki.php
+msgid ""
+"Doğal mirasımızı korumak ve daha yaşanabilir bir gelecek için "
+"çalışmalarımıza sen de katılabilirsin."
+msgstr ""
+"You too can join our work to protect our natural heritage and build a more "
+"liveable future."
+
+#: patterns/katki.php
+msgid "Tüm Katkı Yolları"
+msgstr "All Ways to Contribute"
+
+#: patterns/katki.php
+msgid "Fidanlarıyla poz veren dede ve torunları"
+msgstr "A grandfather and his grandchildren posing with their saplings"
+
+#: patterns/katki.php patterns/sayfa-ailen-icin-fidan-dik.php
+msgid "Ailen İçin Fidan Dik"
+msgstr "Plant a Sapling for Your Family"
+
+#: patterns/katki.php
+msgid ""
+"Sevdiklerin adına bir fidan dik, geleceğe birlikte nefes olalım. Projemizin "
+"tanıtım videosunu izle."
+msgstr ""
+"Plant a sapling in the name of your loved ones and let’s give the future "
+"room to breathe. Watch our project video."
+
+#: patterns/katki.php
+msgid "Çocuklarla birlikte toprağa fidan dikimi"
+msgstr "Planting a sapling together with children"
+
+#: patterns/katki.php
+msgid ""
+"Desteklerinle daha fazla ağaç, daha temiz yaşam alanları ve daha güçlü "
+"projelere katkı sağla."
+msgstr ""
+"With your support, help us plant more trees, create cleaner living spaces "
+"and build stronger projects."
+
+#: patterns/katki.php
+msgid "Ormanda ağaca kuş yuvası asan görevli ve çocuklar"
+msgstr "A ranger hanging a birdhouse on a tree with children"
+
+#: patterns/katki.php
+msgid "Etkinliğe Katıl"
+msgstr "Join an Event"
+
+#: patterns/katki.php
+msgid ""
+"Ağaç dikimlerinden atölyelere, temizlik hareketlerinden çevre bilincine "
+"kadar birçok etkinliğe birlikte katılalım."
+msgstr ""
+"From tree planting to workshops, from clean-up drives to environmental "
+"awareness, let’s take part in many events together."
+
+#: patterns/ornek-calismalar.php
+msgid "Öne Çıkan Projeler"
+msgstr "Featured Projects"
+
+#: patterns/ornek-calismalar.php
+msgid "Tüm Projeler"
+msgstr "All Projects"
+
+#: patterns/ornek-calismalar.php
+msgid "Projeyi incele"
+msgstr "View project"
+
+#: patterns/sayfa-ailen-icin-fidan-dik.php
+#: patterns/sayfa-fidan-nasil-dikilir.php
+msgid "Video"
+msgstr "Video"
+
+#: patterns/sayfa-ailen-icin-fidan-dik.php
+msgid "Sevdiklerin adına bir fidan dik, geleceğe birlikte nefes olalım."
+msgstr ""
+"Plant a sapling in the name of your loved ones and let’s give the future "
+"room to breathe."
+
+#: patterns/sayfa-ailen-icin-fidan-dik.php
+#: patterns/sayfa-fidan-nasil-dikilir.php
+msgid "Fidan Dikim Videomuz"
+msgstr "Our Tree Planting Video"
+
+#: patterns/sayfa-ailen-icin-fidan-dik.php
+#: patterns/sayfa-fidan-nasil-dikilir.php
+msgid ""
+"Ailen İçin Fidan Dik: sevdiklerin adına bir fidan dik, geleceğe birlikte "
+"nefes olalım."
+msgstr ""
+"Plant a Sapling for Your Family: plant a sapling in the name of your loved "
+"ones and let’s give the future room to breathe."
+
+#: patterns/sayfa-ailen-icin-fidan-dik.php
+#: patterns/sayfa-fidan-nasil-dikilir.php
+msgid "Kısa video"
+msgstr "Short video"
+
+#: patterns/sayfa-ailen-icin-fidan-dik.php
+#: patterns/sayfa-fidan-nasil-dikilir.php
+msgid "Fidan Nasıl Dikilir?"
+msgstr "How to Plant a Sapling"
+
+#: patterns/sayfa-ailen-icin-fidan-dik.php
+#: patterns/sayfa-fidan-nasil-dikilir.php
+msgid ""
+"Doğru dikilen fidan yıllarca yaşar. Videoda adım adım izleyin, kısaca şöyle:"
+msgstr ""
+"A properly planted sapling lives for years. Watch the video step by step; in"
+" short:"
+
+#: patterns/sayfa-ailen-icin-fidan-dik.php
+#: patterns/sayfa-fidan-nasil-dikilir.php
+msgid "Kök topundan iki kat geniş ve derin bir çukur açın."
+msgstr "Dig a hole twice as wide and deep as the root ball."
+
+#: patterns/sayfa-ailen-icin-fidan-dik.php
+#: patterns/sayfa-fidan-nasil-dikilir.php
+msgid "Fidanı, kök boğazı toprak seviyesinde kalacak şekilde dik yerleştirin."
+msgstr "Place the sapling upright, with the root collar level with the soil."
+
+#: patterns/sayfa-ailen-icin-fidan-dik.php
+#: patterns/sayfa-fidan-nasil-dikilir.php
+msgid ""
+"Çukuru toprakla doldurun, hava boşluğu kalmaması için hafifçe bastırın."
+msgstr "Fill the hole with soil and press gently so no air pockets remain."
+
+#: patterns/sayfa-ailen-icin-fidan-dik.php
+#: patterns/sayfa-fidan-nasil-dikilir.php
+msgid "Bol can suyu verin; gerekiyorsa bir destek kazığına gevşekçe bağlayın."
+msgstr "Water generously; if needed, tie it loosely to a support stake."
+
+#: patterns/sayfa-ailen-icin-fidan-dik.php
+#: patterns/sayfa-fidan-nasil-dikilir.php
+msgid "Fidan Bağışı Yap"
+msgstr "Donate a Sapling"
+
+#: patterns/sayfa-bagis.php
+msgid "Fidan Bağışı"
+msgstr "Sapling Donation"
+
+#: patterns/sayfa-bagis.php
+msgid "Fidan bağışı yap, bir fidan da senden olsun"
+msgstr "Donate a sapling, let one be yours"
+
+#: patterns/sayfa-bagis.php
+msgid ""
+"Fidan bağışlarınızla yeni fidanlar dikiyor, yeşil alanları koruyor ve çevre "
+"eğitimlerini büyütüyoruz."
+msgstr ""
+"With your sapling donations we plant new saplings, protect green spaces and "
+"grow our environmental education."
+
+#: patterns/sayfa-bagis.php
+msgid "Havale / EFT ile Bağış"
+msgstr "Donate by Bank Transfer"
+
+#: patterns/sayfa-bagis.php
+msgid ""
+"Aşağıdaki bilgileri tek tıkla kopyalayıp bankanızın uygulamasına "
+"yapıştırabilirsiniz."
+msgstr ""
+"Copy the details below with one click and paste them into your banking app."
+
+#: patterns/sayfa-bagis.php
+msgid "Alıcı adı"
+msgstr "Recipient name"
+
+#: patterns/sayfa-bagis.php
+msgid "TL IBAN"
+msgstr "TRY IBAN"
+
+#: patterns/sayfa-bagis.php
+msgid "TR00 0000 0000 0000 0000 0000 00"
+msgstr "TR00 0000 0000 0000 0000 0000 00"
+
+#: patterns/sayfa-bagis.php
+msgid "Açıklama"
+msgstr "Reference"
+
+#: patterns/sayfa-bagis.php
+msgid "Fidan bağışı"
+msgstr "Sapling donation"
+
+#: patterns/sayfa-bagis.php
+msgid ""
+"Bir fidan 150 TL. Açıklama kısmına “fidan bağışı” ve adınızı yazmanız "
+"yeterli. 🌿"
+msgstr ""
+"One sapling is 150 TL. Just write “fidan bağışı” and your name in the "
+"description. 🌿"
+
+#: patterns/sayfa-bagis.php
+msgid "Yakında"
+msgstr "Coming soon"
+
+#: patterns/sayfa-bagis.php
+msgid "Kart ile Ödeme"
+msgstr "Pay by Card"
+
+#: patterns/sayfa-bagis.php
+msgid ""
+"Online kredi ve banka kartı ile bağış altyapımız çok yakında hizmetinizde. "
+"Şimdilik Havale/EFT ile bağış yapabilirsiniz."
+msgstr ""
+"Online credit and debit card donations are coming very soon. For now you can"
+" donate by bank transfer."
+
+#: patterns/sayfa-bagis.php
+msgid "Kart ile ödeme yakında"
+msgstr "Card payments coming soon"
+
+#: patterns/sayfa-bagis.php
+msgid "Fidan bağışı nasıl yapılır?"
+msgstr "How do I donate a sapling?"
+
+#: patterns/sayfa-bagis.php
+msgid ""
+"Üç adımda doğaya bir fidan kazandır. Bağışların fidan dikim "
+"etkinliklerimizde fidana dönüşür."
+msgstr ""
+"Give nature a sapling in three steps. Your donations become saplings at our "
+"tree planting events."
+
+#: patterns/sayfa-bagis.php
+msgid "1. Bağışını gönder"
+msgstr "1. Send your donation"
+
+#: patterns/sayfa-bagis.php
+msgid ""
+"Bir fidan 150 TL. Yukarıdaki IBAN’a Havale/EFT ile dilediğin kadar fidan "
+"için bağış yap. Açıklamaya “fidan bağışı” ve adını yaz."
+msgstr ""
+"One sapling is 150 TL. Send a bank transfer to the IBAN above for as many "
+"saplings as you like. Write “fidan bağışı” and your name in the description."
+
+#: patterns/sayfa-bagis.php
+msgid "2. Fidanın toprakla buluşsun"
+msgstr "2. Your sapling is planted"
+
+#: patterns/sayfa-bagis.php
+msgid "Bağışın, gönüllülerimizle birlikte gerçekleştirdiğimiz"
+msgstr "Your donation becomes a sapling at the"
+
+#: patterns/sayfa-bagis.php
+msgid "fidan dikim etkinliklerinde"
+msgstr "tree planting events"
+
+#: patterns/sayfa-bagis.php
+msgid "fidana dönüşür."
+msgstr "we hold with our volunteers."
+
+#: patterns/sayfa-bagis.php
+msgid "3. Sertifikanı al"
+msgstr "3. Get your certificate"
+
+#: patterns/sayfa-bagis.php
+msgid ""
+"Her fidan, adına ya da sevdiğin birinin adına düzenlenen bir fidan "
+"sertifikasıyla kayıt altına alınır."
+msgstr ""
+"Every sapling is recorded with a certificate issued in your name or in the "
+"name of someone you love."
+
+#: patterns/sayfa-bagis.php
+msgid "Fidanlar nerede dikiliyor?"
+msgstr "Where are the saplings planted?"
+
+#: patterns/sayfa-bagis.php
+msgid ""
+"Fidan bağışları, Türkiye’nin farklı şehirlerinde düzenlediğimiz fidan dikim "
+"etkinliklerinde gönüllülerimizle birlikte toprakla buluşur. Her etkinliğin "
+"tarihi, konumu ve toplanan fidan sayısı"
+msgstr ""
+"Donated saplings are planted with our volunteers at the tree planting events"
+" we organise in cities across Türkiye. The date, location and number of "
+"saplings for each event are published on"
+
+#: patterns/sayfa-bagis.php
+msgid "etkinlikler sayfamızda"
+msgstr "our events page"
+
+#: patterns/sayfa-bagis.php
+msgid "yayınlanır."
+msgstr "."
+
+#: patterns/sayfa-bagis.php
+msgid "Bir fidanın nasıl dikildiğini merak ediyorsan"
+msgstr "Curious how a sapling is planted? See our"
+
+#: patterns/sayfa-bagis.php
+msgid "fidan nasıl dikilir"
+msgstr "how to plant a sapling"
+
+#: patterns/sayfa-bagis.php
+msgid "rehberimize ve"
+msgstr "guide and our"
+
+#: patterns/sayfa-bagis.php
+msgid "fidan dikim videomuza"
+msgstr "tree planting video"
+
+#: patterns/sayfa-bagis.php
+msgid "göz at."
+msgstr "."
+
+#: patterns/sayfa-bagis.php
+msgid "Sevdiklerin adına fidan bağışı"
+msgstr "Donate a sapling for a loved one"
+
+#: patterns/sayfa-bagis.php
+msgid ""
+"Doğum günü, yeni doğan bir bebek, mezuniyet ya da bir yakının anısı… "
+"Sevdiklerin adına fidan bağışlayarak yıllarca yaşayacak bir hediye "
+"verebilirsin. Havale açıklamasına fidanın kimin adına dikileceğini yazman "
+"yeterli."
+msgstr ""
+"A birthday, a newborn, a graduation or the memory of a loved one… Donate a "
+"sapling in someone’s name and give a gift that lives for years. Just write "
+"the person’s name in the transfer description."
+
+#: patterns/sayfa-bagis.php
+msgid ""
+"Kurumlar ve okullar için toplu fidan bağışı ve ortak dikim etkinlikleri için"
+msgstr ""
+"For bulk sapling donations and joint planting events for companies and "
+"schools,"
+
+#: patterns/sayfa-bagis.php
+msgid "bize ulaşın"
+msgstr "contact us"
+
+#: patterns/sayfa-bagis.php
+msgid "Fidan bağışı hakkında sık sorulan sorular"
+msgstr "Sapling donation FAQ"
+
+#: patterns/sayfa-bagis.php
+msgid ""
+"Bu sayfadaki IBAN’a Havale/EFT ile bağış gönderin, açıklamaya “fidan bağışı”"
+" ve adınızı yazın."
+msgstr ""
+"Send a bank transfer to the IBAN on this page and write “fidan bağışı” and "
+"your name in the description."
+
+#: patterns/sayfa-bagis.php
+msgid ""
+"Kartla bağış için bu sayfadaki bağış seçeneklerinden fidan paketini ya da "
+"tutarı seçip ödemeyi tamamlayın."
+msgstr ""
+"To donate by card, choose a sapling package or an amount in the donation "
+"options on this page and complete the payment."
+
+#: patterns/sayfa-bagis.php
+msgid "Kart ile online fidan bağışı çok yakında açılacak."
+msgstr "Online card donations for saplings are coming soon."
+
+#: patterns/sayfa-bagis.php
+msgid "Bir fidan bağışı kaç TL?"
+msgstr "How much is one sapling donation?"
+
+#: patterns/sayfa-bagis.php
+msgid ""
+"Bir fidan bağışı 150 TL’dir. Dilediğiniz sayıda fidan için bağış "
+"yapabilirsiniz; örneğin 5 fidan 750 TL, 10 fidan 1.500 TL."
+msgstr ""
+"One sapling donation is 150 TL. You can donate for as many saplings as you "
+"like; for example 5 saplings are 750 TL and 10 saplings are 1,500 TL."
+
+#: patterns/sayfa-bagis.php
+msgid "Bağışladığım fidanlar nereye dikiliyor?"
+msgstr "Where are my donated saplings planted?"
+
+#: patterns/sayfa-bagis.php
+msgid ""
+"Fidanlar, Türkiye’nin farklı şehirlerinde düzenlediğimiz fidan dikim "
+"etkinliklerinde dikilir. Etkinliklerin konumu ve tarihi etkinlikler "
+"sayfamızda duyurulur."
+msgstr ""
+"Saplings are planted at the tree planting events we organise in cities "
+"across Türkiye. Event locations and dates are announced on our events page."
+
+#: patterns/sayfa-bagis.php
+msgid "Fidan bağışı için sertifika alabilir miyim?"
+msgstr "Can I get a certificate for my sapling donation?"
+
+#: patterns/sayfa-bagis.php
+msgid ""
+"Evet. Bağışladığınız fidanlar, adınıza ya da belirttiğiniz kişinin adına "
+"düzenlenen bir fidan sertifikasıyla kayıt altına alınır."
+msgstr ""
+"Yes. Your donated saplings are recorded with a certificate issued in your "
+"name or the name of the person you specify."
+
+#: patterns/sayfa-bagis.php
+msgid "Başkası adına fidan bağışlayabilir miyim?"
+msgstr "Can I donate a sapling on behalf of someone else?"
+
+#: patterns/sayfa-bagis.php
+msgid ""
+"Evet. Havale/EFT açıklamasına “fidan bağışı” ile birlikte fidanın adına "
+"dikileceği kişinin adını yazmanız yeterli. Doğum günü, anma ya da hediye "
+"için güzel bir seçenek."
+msgstr ""
+"Yes. Write “fidan bağışı” together with the person’s name in the transfer "
+"description. A lovely option for birthdays, memorials or gifts."
+
+#: patterns/sayfa-bagis.php
+msgid "Kurum ya da okul olarak toplu fidan bağışı yapabilir miyiz?"
+msgstr "Can our company or school make a bulk sapling donation?"
+
+#: patterns/sayfa-bagis.php
+msgid ""
+"Evet. Kurumlar, okullar ve şirketler için toplu fidan bağışı ve birlikte "
+"fidan dikim etkinliği düzenliyoruz. Detaylar için iletişim sayfamızdan bize "
+"ulaşın."
+msgstr ""
+"Yes. We organise bulk sapling donations and joint tree planting events for "
+"institutions, schools and companies. Contact us through our contact page for"
+" details."
+
+#: patterns/sayfa-fidan-nasil-dikilir.php
+msgid "Doğru dikilen fidan yıllarca yaşar. Kısa videoda adım adım izleyin."
+msgstr ""
+"A properly planted sapling lives for years. Watch the short video step by "
+"step."
+
+#: inc/sistem.php parts/footer.html patterns/sayfa-gizlilik.php
+#: patterns/sayfa-mesafeli-satis.php
+msgid "KVKK Aydınlatma Metni"
+msgstr "KVKK Privacy Notice"
+
+#: inc/sistem.php parts/footer.html patterns/sayfa-gizlilik.php
+msgid "Çerez Politikası"
+msgstr "Cookie Policy"
+
+#: parts/footer.html parts/header.html patterns/sayfa-hakkimizda.php
+msgid "Hakkımızda"
+msgstr "About Us"
+
+#: patterns/sayfa-hakkimizda.php
+msgid "Biz kimiz"
+msgstr "Who we are"
+
+#: patterns/sayfa-hakkimizda.php
+msgid "Ağaç ve orman sevgisini yaymak için çalışıyoruz"
+msgstr "We work to spread the love of trees and forests"
+
+#: patterns/sayfa-hakkimizda.php
+msgid "Orman koruma"
+msgstr "Forest protection"
+
+#: patterns/sayfa-hakkimizda.php
+msgid "Ekosistem koruma"
+msgstr "Ecosystem protection"
+
+#: patterns/sayfa-hakkimizda.php
+msgid "Çevre eğitimi"
+msgstr "Environmental education"
+
+#: parts/footer.html parts/header.html patterns/sayfa-iletisim.php
+msgid "İletişim"
+msgstr "Contact"
+
+#: patterns/sayfa-iletisim.php
+msgid "Bize ulaşın"
+msgstr "Get in touch"
+
+#: patterns/sayfa-iletisim.php
+msgid ""
+"Gönüllülük, bağış, kurumsal iş birlikleri ve tüm sorularınız için buradayız."
+msgstr ""
+"We are here for volunteering, donations, corporate partnerships and all your"
+" questions."
+
+#: patterns/sayfa-iletisim.php
+msgid "İstanbul Şubesi"
+msgstr "Istanbul Branch"
+
+#: patterns/sayfa-iletisim.php
+msgid "E-posta ve telefon"
+msgstr "Email and phone"
+
+#: patterns/sayfa-iletisim.php
+msgid "Genel Merkez"
+msgstr "Head Office"
+
+#: patterns/sayfa-katki.php
+msgid "Katkı Yolları"
+msgstr "Ways to Contribute"
+
+#: patterns/sayfa-katki.php
+msgid "Doğaya katkının birçok yolu var"
+msgstr "There are many ways to give back to nature"
+
+#: patterns/sayfa-katki.php
+msgid ""
+"Fidan dikebilir, bağış yapabilir ya da etkinliklerimize katılabilirsin."
+msgstr "You can plant a sapling, make a donation or join our events."
+
+#: parts/footer.html patterns/sayfa-mesafeli-satis.php
+msgid "Teslimat ve İade Şartları"
+msgstr "Delivery and Refund Policy"
+
+#: parts/footer.html patterns/sayfa-mesafeli-satis.php
+msgid "Gizlilik Sözleşmesi"
+msgstr "Privacy Agreement"
+
+#: patterns/sayfa-yasal.php
+msgid "Bu sayfanın metni derneğin onaylı politika metniyle değiştirilecektir."
+msgstr ""
+"The text of this page will be replaced with the association’s approved "
+"policy text."
+
+#: patterns/sayfa-yasal.php
+msgid "1. Kapsam"
+msgstr "1. Scope"
+
+#: patterns/sayfa-yasal.php
+msgid "Politika metnini buraya yazın."
+msgstr "Write the policy text here."
+
+#: patterns/sehir.php
+msgid "Daha yaşanabilir şehirler için"
+msgstr "For more liveable cities"
+
+#: patterns/sehir.php
+msgid "Doğayla uyumlu bir şehir mümkün"
+msgstr "A city in harmony with nature is possible"
+
+#: patterns/sehir.php
+msgid ""
+"Daha fazla yeşil alan, daha temiz hava ve daha güçlü topluluklarla doğayla "
+"uyumlu, sağlıklı ve yaşanabilir şehirler mümkün. Bugünden başlayarak, "
+"yarınlar için birlikte çalışıyoruz."
+msgstr ""
+"With more green space, cleaner air and stronger communities, healthy and "
+"liveable cities in harmony with nature are possible. Starting today, we work"
+" together for tomorrow."
+
+#: patterns/sehir.php
+msgid "Daha çok yeşil alan"
+msgstr "More green space"
+
+#: patterns/sehir.php
+msgid "Daha temiz hava"
+msgstr "Cleaner air"
+
+#: patterns/sehir.php
+msgid "Daha güçlü topluluk"
+msgstr "Stronger community"
+
+#: patterns/sehir.php
+msgid "Projelerimizi Keşfet"
+msgstr "Explore Our Projects"
+
+#: patterns/sehir.php
+msgid "Fidan dikim alanında el sallayan çocuklar"
+msgstr "Children waving at a tree planting site"
+
+#: patterns/sidebar.php
+msgid "Aktif Projeler"
+msgstr "Active Projects"
+
+#: patterns/sidebar.php
+msgid "Henüz içerik yok."
+msgstr "No content yet."
+
+#: patterns/sidebar.php
+msgid "Son Haberler"
+msgstr "Latest News"
+
+#: inc/woocommerce.php patterns/sidebar.php
+msgid "Bir fidan da senden olsun"
+msgstr "Let one sapling be yours"
+
+#: patterns/sidebar.php
+msgid "Bağışınızla yeni fidanlar dikiyor, yeşil alanları koruyoruz."
+msgstr "With your donation we plant new saplings and protect green spaces."
+
+#: templates/404.html
+msgid "Bu sayfa bulunamadı"
+msgstr "Page not found"
+
+#: templates/404.html
+msgid ""
+"Aradığınız sayfa taşınmış ya da kaldırılmış olabilir. Arama yapabilir veya "
+"ana sayfaya dönebilirsiniz."
+msgstr ""
+"The page you are looking for may have been moved or removed. You can search "
+"or return to the home page."
+
+#: inc/erisim.php parts/header.html templates/404.html templates/search.html
+msgid "Ara"
+msgstr "Search"
+
+#: inc/dil.php templates/archive.html templates/home.html templates/index.html
+#: templates/search.html templates/single-etkinlik.html
+#: templates/single-proje.html templates/single.html
+msgid "Önceki"
+msgstr "Previous"
+
+#: inc/dil.php templates/archive.html templates/home.html templates/index.html
+#: templates/search.html templates/single-etkinlik.html
+#: templates/single-proje.html templates/single.html
+msgid "Sonraki"
+msgstr "Next"
+
+#: templates/archive.html templates/home.html templates/index.html
+#: templates/search.html
+msgid "Henüz içerik bulunamadı."
+msgstr "No content found yet."
+
+#: parts/footer.html templates/home.html templates/index.html
+msgid "Haberler"
+msgstr "News"
+
+#: templates/home.html templates/index.html
+msgid "Derneğimizden haberler, duyurular ve makaleler."
+msgstr "News, announcements and articles from our association."
+
+#: templates/single-proje.html
+msgid "Proje ·"
+msgstr "Project ·"
+
+#: parts/checkout-header.html
+msgid "Güvenli ödeme · iyzico"
+msgstr "Secure payment · iyzico"
+
+#: parts/footer.html
+msgid "Hızlı Bağlantılar"
+msgstr "Quick Links"
+
+#: parts/footer.html
+msgid "Tek Seferlik ve Düzenli Bağış"
+msgstr "One-time and Regular Donations"
+
+#: parts/footer.html
+msgid "Mesafeli Satış Sözleşmesi"
+msgstr "Distance Sales Agreement"
+
+#: parts/footer.html
+msgid "Bizi Takip Edin"
+msgstr "Follow Us"
+
+#: parts/footer.html
+msgid "iyzico ile Öde, Mastercard, Visa, American Express, Troy"
+msgstr "Pay with iyzico, Mastercard, Visa, American Express, Troy"
+
+#: parts/header.html
+msgid "Biz Kimiz"
+msgstr "Who We Are"
+
+#: parts/header.html
+msgid "Temel Hedeflerimiz"
+msgstr "Our Core Goals"
+
+#: parts/header.html
+msgid "Dernek Tüzüğümüz"
+msgstr "Our Bylaws"
+
+#: parts/header.html
+msgid "Organizasyon Yapımız"
+msgstr "Our Organization"
+
+#: parts/header.html
+msgid "Alanya Ömer Özen Eğitim ve Araştırma İstasyonu (Orman Kampı)"
+msgstr "Alanya Ömer Özen Education and Research Station (Forest Camp)"
+
+#: parts/header.html
+msgid "İstanbul Şubemiz ve İl Temsilciliği"
+msgstr "Our Istanbul Branch and Provincial Office"
+
+#: parts/header.html
+msgid "Mali Tablolar"
+msgstr "Financial Statements"
+
+#: parts/header.html
+msgid "Vergi Muafiyeti"
+msgstr "Tax Exemption"
+
+#: parts/header.html
+msgid "Fidan Dikim Etkinliklerimiz"
+msgstr "Our Tree Planting Events"
+
+#: parts/header.html
+msgid "Eğitim Etkinliklerimiz"
+msgstr "Our Education Events"
+
+#: parts/header.html
+msgid "Devam Eden Projelerimiz"
+msgstr "Ongoing Projects"
+
+#: parts/header.html
+msgid "Tamamlanan Projelerimiz"
+msgstr "Completed Projects"
+
+#: parts/header.html
+msgid "Proje İş Birlikleri"
+msgstr "Project Partnerships"
+
+#: parts/header.html
+msgid "Basında Biz"
+msgstr "In the Press"
+
+#: parts/header.html
+msgid "Yeşil Kütüphane"
+msgstr "Green Library"
+
+#: parts/header.html
+msgid "Makaleler"
+msgstr "Articles"
+
+#: parts/header.html
+msgid "Yayınlar"
+msgstr "Publications"
+
+#: parts/header.html
+msgid "Kitaplığımız"
+msgstr "Our Library"
+
+#: parts/header.html
+msgid "Basın Bültenleri"
+msgstr "Press Releases"
+
+#: parts/header.html
+msgid "Bize Ulaşın"
+msgstr "Contact Us"
+
+#: parts/header.html
+msgid "KVKK"
+msgstr "Privacy Notice"
+
+#: parts/header.html
+msgid "Çocuk Koruma Politikası"
+msgstr "Child Protection Policy"
+
+#: parts/header.html
+msgid "Duyurular"
+msgstr "Announcements"
+
+#: parts/header.html
+msgid "Üye Aidatı ve Bağış"
+msgstr "Membership Fee and Donation"
+
+#: parts/header.html
+msgid "Gönüllü Ol"
+msgstr "Volunteer"
+
+#: parts/header.html
+msgid "Marka İş Birlikleri"
+msgstr "Brand Partnerships"
+
+#: assets/js/bloklar.js inc/dil.php
+msgid "Dil Seçici"
+msgstr "Language Switcher"
+
+#: assets/js/bloklar.js
+msgid ""
+"TranslatePress, Polylang veya WPML ile eklenen dilleri gösterir. Tek dil "
+"varsa görünmez."
+msgstr ""
+"Shows the languages added with TranslatePress, Polylang or WPML. Hidden when"
+" there is only one language."
+
+#: assets/js/bloklar.js inc/dil.php
+msgid "Hesap ve Sepet"
+msgstr "Account and Cart"
+
+#: assets/js/bloklar.js
+msgid ""
+"WooCommerce hesap simgesi ve mini sepet. WooCommerce kapalıysa görünmez."
+msgstr ""
+"WooCommerce account icon and mini cart. Hidden when WooCommerce is inactive."
+
+#: inc/ayarlar.php
+msgid "Videoyu oynat"
+msgstr "Play video"
+
+#: inc/ayarlar.php
+msgid "YouTube'da izle"
+msgstr "Watch on YouTube"
+
+#: inc/dil.php
+msgid "Kopyala"
+msgstr "Copy"
+
+#: inc/dil.php
+msgid "Kopyalandı ✓"
+msgstr "Copied ✓"
+
+#: inc/dil.php
+msgid "Sitede ara"
+msgstr "Search the site"
+
+#: inc/dil.php
+msgid "Kapat"
+msgstr "Close"
+
+#: inc/dil.php
+msgid "Ne aramıştınız?"
+msgstr "What are you looking for?"
+
+#: inc/dil.php
+msgid "Proje, haber, etkinlik ara…"
+msgstr "Search projects, news, events…"
+
+#: inc/dil.php
+msgid "Popüler:"
+msgstr "Popular:"
+
+#: inc/dil.php
+msgid "Fidan"
+msgstr "Sapling"
+
+#: inc/dil.php
+msgid "Orman"
+msgstr "Forest"
+
+#: inc/dil.php inc/woocommerce.php
+msgid "Bağış"
+msgstr "Donation"
+
+#: inc/dil.php
+msgid "Dil seçimi"
+msgstr "Language selection"
+
+#: inc/hesap.php inc/sistem.php inc/woocommerce.php
+msgid "Hesabım"
+msgstr "My account"
+
+#: inc/sistem.php inc/woocommerce.php
+msgid "Sepet"
+msgstr "Cart"
+
+#: inc/sistem.php inc/woocommerce.php
+msgid "Ödeme"
+msgstr "Checkout"
+
+#: inc/woocommerce.php
+msgid "Mağaza"
+msgstr "Shop"
+
+#: inc/woocommerce.php
+msgid "Hoş geldiniz"
+msgstr "Welcome"
+
+#: inc/woocommerce.php
+msgid ""
+"Bağışlarınızı, adreslerinizi ve hesap bilgilerinizi yönetmek için giriş "
+"yapın ya da birkaç saniyede hesap oluşturun."
+msgstr ""
+"Log in to manage your donations, addresses and account details, or create an"
+" account in seconds."
+
+#: inc/woocommerce.php
+#, php-format
+msgid "Merhaba, %s"
+msgstr "Hello, %s"
+
+#: inc/woocommerce.php
+msgid ""
+"Bağışlarınızı takip edin, adreslerinizi ve hesap bilgilerinizi tek yerden "
+"yönetin."
+msgstr ""
+"Track your donations and manage your addresses and account details in one "
+"place."
+
+#: inc/woocommerce.php
+msgid "Onay"
+msgstr "Confirmation"
+
+#: inc/woocommerce.php
+msgid "Sipariş adımları"
+msgstr "Order steps"
+
+#: inc/woocommerce.php
+msgid "Teşekkürler, bağışınız alındı"
+msgstr "Thank you, your donation has been received"
+
+#: inc/woocommerce.php
+msgid "Bağış özetiniz aşağıda. Ayrıntılar e-posta adresinize de gönderildi."
+msgstr ""
+"Your donation summary is below. The details have also been sent to your "
+"email address."
+
+#: inc/woocommerce.php
+msgid "Bilgilerinizi girin, siparişinizi güvenle tamamlayın."
+msgstr "Enter your details and complete your order securely."
+
+#: inc/woocommerce.php
+msgid "Sepetinizi gözden geçirin; her alışveriş doğaya bir katkı."
+msgstr "Review your cart; every purchase is a contribution to nature."
+
+#: inc/woocommerce.php
+msgid "Fidan bağışı yap"
+msgstr "Donate a sapling"
+
+#: inc/woocommerce.php
+msgid "Bağışlarınızı ve durumlarını görün."
+msgstr "See your donations and their status."
+
+#: inc/woocommerce.php
+msgid "Satın aldığınız dosyaları indirin."
+msgstr "Download the files you purchased."
+
+#: inc/woocommerce.php
+msgid "Fatura ve teslimat adreslerinizi düzenleyin."
+msgstr "Edit your billing and shipping addresses."
+
+#: inc/woocommerce.php
+msgid "Kayıtlı ödeme yöntemlerinizi yönetin."
+msgstr "Manage your saved payment methods."
+
+#: inc/woocommerce.php
+msgid "Ad, e-posta ve şifrenizi güncelleyin."
+msgstr "Update your name, email and password."
+
+#: inc/woocommerce.php
+msgid "Bağışlar"
+msgstr "Donations"
+
+#: woocommerce/myaccount/dashboard.php
+msgid "Son bağışlar"
+msgstr "Recent donations"
+
+#: woocommerce/myaccount/dashboard.php
+msgid "Tümünü gör"
+msgstr "View all"
+
+#: inc/logo.php
+msgid "Ana sayfa"
+msgstr "Home"
+
+#: inc/etkinlik-arsiv.php
+msgid "Diğer etkinlikler"
+msgstr "Other events"
+
+#: inc/etkinlik-arsiv.php
+msgid "Devam Eden Etkinlikler"
+msgstr "Ongoing Events"
+
+#: inc/hesap.php
+#, php-format
+msgid "Merhaba %s, bağışların hesabına kaydedilir."
+msgstr "Hi %s, your donations are saved to your account."
+
+#: inc/hesap.php
+msgid "Çıkış yap"
+msgstr "Log out"
+
+#: inc/hesap.php
+msgid ""
+"Hesabın var mı? Giriş yaparak bağışlarını hesabından takip edebilirsin."
+msgstr "Have an account? Log in to track your donations from your account."
+
+#: inc/hesap.php
+msgid "Giriş yap"
+msgstr "Log in"
+
+#: inc/hesap.php
+msgid "Kayıt ol"
+msgstr "Sign up"
+
+#: inc/hesap.php
+msgid "Bağışlar Sayfasına dön"
+msgstr "Back to Donations"
+
+#: inc/hesap.php
+msgid "Giriş Yap"
+msgstr "Log In"
+
+#: inc/hesap.php
+msgid "Kayıt Ol"
+msgstr "Sign Up"
+
+#: inc/hesap.php
+msgid "veya"
+msgstr "or"
+
+#: inc/hesap.php
+msgid "Telefon"
+msgstr "Phone"
+
+#: inc/hesap.php
+msgid "(isteğe bağlı)"
+msgstr "(optional)"
+
+#: inc/hesap.php
+msgid "Fidan sertifikanı WhatsApp’tan da gönderebilmemiz için."
+msgstr "So we can also send your sapling certificate via WhatsApp."
+
+#: inc/hesap.php
+msgid "Telefon numarası geçersiz görünüyor. Örnek: 0532 123 45 67"
+msgstr "The phone number looks invalid. Example: +90 532 123 45 67"
+
+#: inc/hesap.php
+msgid "Telefon numaranı ekle, fidan sertifikanı WhatsApp’tan da alabilirsin."
+msgstr ""
+"Add your phone number to also receive your sapling certificate via WhatsApp."
+
+#: inc/hesap.php
+msgid "Telefon ekle"
+msgstr "Add phone"
+
+#: inc/sistem.php
+msgid "Hesabım, sepet ve ödeme sayfaları"
+msgstr "My Account, cart and checkout pages"
+
+#: inc/sistem.php
+msgid "Bağış türleri, fidan paketleri, kartla bağış ve bağışçılar"
+msgstr "Donation types, sapling packages, card donations and donors"
+
+#: inc/sistem.php
+msgid "Bağış ve iletişim formları"
+msgstr "Donation and contact forms"
+
+#: inc/sistem.php
+msgid "Fidan sertifikaları ve etkinlikler"
+msgstr "Sapling certificates and events"
+
+#: inc/sistem.php
+msgid "SEO, sitemap, schema ve tarayıcı önbelleği"
+msgstr "SEO, sitemap, schema and browser cache"
+
+#: inc/sistem.php
+msgid "Telefonla bağış ve arama kayıtları"
+msgstr "Phone donations and call logs"
+
+#: inc/sistem.php
+msgid "Ekip görev takibi"
+msgstr "Team task tracking"
+
+#: inc/sistem.php
+msgid "Aç"
+msgstr "Open"
+
+#: inc/sistem.php
+msgid "Eklentiler"
+msgstr "Plugins"
+
+#: inc/sistem.php
+msgid "Gerekli"
+msgstr "Required"
+
+#: inc/sistem.php
+msgid "İsteğe bağlı"
+msgstr "Optional"
+
+#: inc/sistem.php
+msgid "Kurulu değil."
+msgstr "Not installed."
+
+#: inc/sistem.php
+msgid "Eklenti yükle"
+msgstr "Upload plugin"
+
+#: inc/sistem.php
+#, php-format
+msgid "Kurulu (v%s) ama etkin değil."
+msgstr "Installed (v%s) but not active."
+
+#: inc/sistem.php
+msgid "Etkin, v%1$s. Bu tema en az v%2$s ile test edildi; güncelleyin."
+msgstr ""
+"Active, v%1$s. This theme was tested with v%2$s or later; please update."
+
+#: inc/sistem.php
+msgid "Güncelle"
+msgstr "Update"
+
+#: inc/sistem.php
+#, php-format
+msgid "Etkin, v%s."
+msgstr "Active, v%s."
+
+#: inc/sistem.php
+#, php-format
+msgid "v%s ve sonrası kendi kontrollerini bu ekrana ekler."
+msgstr "v%s and later add their own checks to this screen."
+
+#: inc/sistem.php
+msgid ""
+"iyzico eklentisi kurulu değil. Sorun değil: Flux Donate iyzico anahtarlarını"
+" kendi Ödemeler ayarından okur."
+msgstr ""
+"No iyzico plugin installed. That is fine: Flux Donate reads the iyzico keys "
+"from its own Payments settings."
+
+#: inc/sistem.php
+#, php-format
+msgid ""
+"%s kurulu ama etkin değil. Flux Donate anahtarları kendi Ödemeler ayarından "
+"okur."
+msgstr ""
+"%s is installed but not active. Flux Donate reads the keys from its own "
+"Payments settings."
+
+#: inc/sistem.php
+msgid "%1$s etkin, v%2$s. Flux Donate anahtarları buradan okur."
+msgstr "%1$s is active, v%2$s. Flux Donate reads the keys from it."
+
+#: inc/sistem.php
+msgid "Zamanlanmış görevler (cron)"
+msgstr "Scheduled tasks (cron)"
+
+#: inc/sistem.php
+msgid "Gerçek cron"
+msgstr "Server cron"
+
+#: inc/sistem.php
+msgid ""
+"DISABLE_WP_CRON açık: görevleri sunucu cron'u çalıştırıyor, ziyaretçi "
+"isteklerini yavaşlatmıyor."
+msgstr ""
+"DISABLE_WP_CRON is on: tasks run from the server cron and do not slow down "
+"visitor requests."
+
+#: inc/sistem.php
+#, php-format
+msgid ""
+"Görevler ziyaretçi geldikçe çalışıyor (WP-Cron). Ziyaret azken sertifika "
+"kuyruğu ve düzenli bağış yenilemeleri gecikir. Hostinger › Gelişmiş › Cron "
+"Jobs'a 5 dakikada bir şu komutu ekleyin: %s Sonra wp-config.php'ye define( "
+"'DISABLE_WP_CRON', true ); yazın."
+msgstr ""
+"Tasks only run when visitors arrive (WP-Cron). With little traffic the "
+"certificate queue and recurring donation renewals are delayed. Add this "
+"command under Hostinger › Advanced › Cron Jobs, every 5 minutes: %s Then add"
+" define( 'DISABLE_WP_CRON', true ); to wp-config.php."
+
+#: inc/sistem.php
+msgid "Son çalışma"
+msgstr "Last run"
+
+#: inc/sistem.php
+msgid ""
+"Henüz kayıt yok. Tema güncellemesinden sonraki ilk cron çalışmasında "
+"görünür; birkaç dakika sonra bu sayfayı yenileyin."
+msgstr ""
+"No record yet. It appears after the first cron run following the theme "
+"update; reload this page in a few minutes."
+
+#: inc/sistem.php
+msgid "%1$s önce (%2$s)."
+msgstr "%1$s ago (%2$s)."
+
+#: inc/sistem.php
+msgid ""
+"Cron saatlerdir çalışmıyor. Hostinger'daki cron işini ve komut yolunu "
+"kontrol edin."
+msgstr ""
+"Cron has not run for hours. Check the cron job and command path in "
+"Hostinger."
+
+#: inc/sistem.php
+msgid "Beklenenden uzun süredir çalışmadı (5 dakikada bir olmalı)."
+msgstr "Has not run for longer than expected (should run every 5 minutes)."
+
+#: inc/sistem.php
+msgid "Ziyaret az olduğu için uzun süredir çalışmadı."
+msgstr "Has not run for a while because traffic is low."
+
+#: inc/sistem.php
+msgid "Geciken görev"
+msgstr "Overdue tasks"
+
+#: inc/sistem.php
+msgid "Vakti geçmiş görev yok."
+msgstr "No overdue tasks."
+
+#: inc/sistem.php
+msgid "Vakti 15 dakikadan fazla geçmiş %1$d görev var: %2$s"
+msgstr "%1$d tasks are more than 15 minutes overdue: %2$s"
+
+#: inc/sistem.php
+msgid "Site ayarları"
+msgstr "Site settings"
+
+#: inc/sistem.php
+msgid "Arama motorları"
+msgstr "Search engines"
+
+#: inc/sistem.php
+msgid "Site Google'a açık."
+msgstr "The site is visible to Google."
+
+#: inc/sistem.php
+msgid ""
+"\"Arama motorlarının bu siteyi dizine eklemesini engelle\" işaretli. "
+"Yayındaki sitede kaldırın."
+msgstr ""
+"\"Discourage search engines from indexing this site\" is checked. Uncheck it"
+" on the live site."
+
+#: inc/sistem.php
+msgid "Okuma ayarları"
+msgstr "Reading settings"
+
+#: inc/sistem.php
+msgid "Site adresi https."
+msgstr "Site address uses https."
+
+#: inc/sistem.php
+msgid "Site adresi http. Ödeme ve giriş için SSL açıp adresi https yapın."
+msgstr ""
+"Site address uses http. Enable SSL and switch the address to https for "
+"payments and login."
+
+#: inc/sistem.php
+msgid "Genel ayarlar"
+msgstr "General settings"
+
+#: inc/sistem.php
+msgid "Kalıcı bağlantılar"
+msgstr "Permalinks"
+
+#: inc/sistem.php
+msgid "Düz (?p=123) adres kullanılıyor. \"Yazı adı\" seçin."
+msgstr "Plain (?p=123) addresses are used. Choose \"Post name\"."
+
+#: inc/sistem.php
+msgid "Yazı adı yapısı; /projeler/ ve /etkinlikler/ adresleri tanımlı."
+msgstr ""
+"Post name structure; /projeler/ and /etkinlikler/ addresses are registered."
+
+#: inc/sistem.php
+msgid "/projeler/ adres kuralı yok, 404 verebilir."
+msgstr "The /projeler/ rewrite rule is missing and may return 404."
+
+#: inc/sistem.php
+msgid "Kuralları yenile"
+msgstr "Refresh rules"
+
+#: inc/sistem.php
+msgid "Saat dilimi"
+msgstr "Timezone"
+
+#: inc/sistem.php
+#, php-format
+msgid "%s. Sertifika ve bağış tarihleri için İstanbul seçin."
+msgstr "%s. Choose Istanbul so certificate and donation dates are correct."
+
+#: inc/sistem.php
+msgid "E-posta gönderimi"
+msgstr "Email delivery"
+
+#: inc/sistem.php
+#, php-format
+msgid "%s etkin."
+msgstr "%s is active."
+
+#: inc/sistem.php
+msgid ""
+"SMTP eklentisi yok. Sertifika ve bağış e-postaları spam'e düşebilir; WP Mail"
+" SMTP veya FluentSMTP ile dernek e-postasını bağlayın."
+msgstr ""
+"No SMTP plugin. Certificate and donation emails may land in spam; connect "
+"the association mailbox with WP Mail SMTP or FluentSMTP."
+
+#: inc/sistem.php
+msgid "Eklenti ara"
+msgstr "Search plugins"
+
+#: inc/sistem.php
+msgid "Sayfa önbelleği"
+msgstr "Page cache"
+
+#: inc/sistem.php
+msgid ""
+"LiteSpeed Cache etkin, ama görsel lazy load açık. Tema görselleri zaten "
+"geciktiriyor; açık kalırsa görseller her yenilemede boş görünüp sonradan "
+"gelir. LiteSpeed Cache › Sayfa Optimizasyonu › Medya › Lazy Load: Kapalı."
+msgstr ""
+"LiteSpeed Cache is active, but image lazy load is on. The theme already "
+"lazy-loads images; with both on, images appear blank on every reload. "
+"LiteSpeed Cache › Page Optimization › Media › Lazy Load: Off."
+
+#: inc/sistem.php
+msgid "LiteSpeed Cache etkin."
+msgstr "LiteSpeed Cache is active."
+
+#: inc/sistem.php
+msgid "Bir sayfa önbelleği etkin (WP_CACHE)."
+msgstr "A page cache is active (WP_CACHE)."
+
+#: inc/sistem.php
+msgid ""
+"Sayfa önbelleği yok. Hostinger'da LiteSpeed Cache eklentisini kurup açın; "
+"site belirgin hızlanır."
+msgstr ""
+"No page cache. Install and enable LiteSpeed Cache on Hostinger; the site "
+"gets noticeably faster."
+
+#: inc/sistem.php
+#, php-format
+msgid "%s. Hostinger › PHP Yapılandırması'ndan 8.1 veya üstünü seçin."
+msgstr "%s. Choose 8.1 or later under Hostinger › PHP Configuration."
+
+#: inc/sistem.php
+msgid "Sayfalar ve tema"
+msgstr "Pages and theme"
+
+#: inc/sistem.php
+msgid "Site kurulumu"
+msgstr "Site setup"
+
+#: inc/sistem.php
+msgid "Temel kurulum çalıştırıldı."
+msgstr "Basic setup has been run."
+
+#: inc/sistem.php
+msgid "Temel kurulum hiç çalıştırılmadı; sayfalar ve menü eksik olabilir."
+msgstr "Basic setup was never run; pages and menu may be missing."
+
+#: inc/sistem.php
+msgid "Site Kurulumu"
+msgstr "Site Setup"
+
+#: inc/sistem.php
+msgid "Bağış sayfası"
+msgstr "Donation page"
+
+#: inc/sistem.php
+msgid "Gerekli sayfalar"
+msgstr "Required pages"
+
+#: inc/sistem.php
+#, php-format
+msgid "Eksik ya da yayında değil: %s."
+msgstr "Missing or not published: %s."
+
+#: inc/sistem.php
+msgid "Bağış, KVKK, Çerez Politikası, Hesabım, Sepet ve Ödeme yayında."
+msgstr ""
+"Donation, KVKK, Cookie Policy, My Account, Cart and Checkout are published."
+
+#: inc/sistem.php
+msgid "Para birimi"
+msgstr "Currency"
+
+#: inc/sistem.php
+#, php-format
+msgid "WooCommerce para birimi %s. Türk lirası seçin."
+msgstr "WooCommerce currency is %s. Choose Turkish lira."
+
+#: inc/sistem.php
+msgid "Hesap oluşturma"
+msgstr "Account registration"
+
+#: inc/sistem.php
+msgid "Hesabım sayfasında Kayıt ol açık."
+msgstr "Registration is enabled on My Account."
+
+#: inc/sistem.php
+msgid "Hesabım sayfasında kayıt kapalı; yalnızca Giriş sekmesi görünür."
+msgstr "Registration is disabled on My Account; only the Login tab is shown."
+
+#: inc/sistem.php
+msgid "Kaydı aç"
+msgstr "Enable registration"
+
+#: inc/sistem.php
+msgid "GA4 ölçüm kimliği girilmemiş."
+msgstr "No GA4 measurement ID entered."
+
+#: inc/sistem.php
+msgid "Tema Ayarları"
+msgstr "Theme Settings"
+
+#: inc/sistem.php
+msgid "Çerez banner'ı"
+msgstr "Cookie banner"
+
+#: inc/sistem.php
+msgid "Açık, Çerez Politikası sayfasına bağlı."
+msgstr "On, linked to the Cookie Policy page."
+
+#: inc/sistem.php
+msgid "Açık ama bağlı bir Çerez Politikası sayfası yok."
+msgstr "On, but no Cookie Policy page is linked."
+
+#: inc/sistem.php
+msgid "Kapalı. Analiz çerezi kullanılıyorsa KVKK gereği açık olmalı."
+msgstr "Off. If analytics cookies are used, KVKK requires it to be on."
+
+#: inc/sistem.php
+msgid "Hazır güncellemeler"
+msgstr "Ready-made updates"
+
+#: inc/sistem.php
+msgid ""
+"Hiç uygulanmamış %1$d güncelleme var. Yeni kurulumda gerekmeyebilir; sitede "
+"ilgili sayfa eski görünüyorsa uygulayın. Liste: %2$s"
+msgstr ""
+"%1$d updates have never been applied. A fresh install may not need them; "
+"apply one if the related page looks outdated. List: %2$s"
+
+#: inc/sistem.php
+msgid "Hepsi en az bir kez uygulandı."
+msgstr "All have been applied at least once."
+
+#: inc/sistem.php
+msgid "Diğer"
+msgstr "Other"
+
+#: inc/sistem.php
+msgid "Tema"
+msgstr "Theme"
+
+#: inc/sistem.php
+msgid "Sistem Kontrolü"
+msgstr "System Check"
+
+#: inc/sistem.php
+msgid "Hata"
+msgstr "Error"
+
+#: inc/sistem.php
+msgid "Uyarı"
+msgstr "Warning"
+
+#: inc/sistem.php
+msgid "Tamam"
+msgstr "OK"
+
+#: inc/sistem.php
+msgid "Bilgi"
+msgstr "Info"
+
+#: inc/sistem.php
+msgid ""
+"Eklentiler, zamanlanmış görevler ve temel ayarlar. Kırmızı satırlar sitenin "
+"bir bölümünün çalışmadığını, sarılar önerilen düzeltmeleri gösterir. Sayfa "
+"her açılışta yeniden kontrol eder."
+msgstr ""
+"Plugins, scheduled tasks and key settings. Red rows mean part of the site is"
+" not working; yellow rows are recommended fixes. The page re-checks every "
+"time it opens."
+
+#: inc/sistem.php
+msgid "Yeniden kontrol et"
+msgstr "Check again"
+
+#: inc/sistem.php
+msgid "%d sorun"
+msgstr "%d issues"
+
+#: inc/sistem.php
+msgid "Her şey yerinde"
+msgstr "All good"
+
+#: inc/sistem.php
+msgid "%1$d kritik sorun var: %2$s"
+msgstr "%1$d critical issues: %2$s"
+
+#: inc/sistem.php
+#, php-format
+msgid ""
+"Eklentilerin, cron'un ve ayarların durumunu %s ekranından görebilirsiniz."
+msgstr "See the status of plugins, cron and settings on the %s screen."
+
+#: inc/sistem.php
+msgid "Ödemeler"
+msgstr "Payments"
+
+#: inc/sistem.php
+msgid "E-posta"
+msgstr "Email"
+
+#: inc/sistem.php
+msgid "Güvenlik"
+msgstr "Security"
+
+#: inc/sistem.php
+msgid "Formlar"
+msgstr "Forms"
+
+#: inc/sistem.php
+msgid "Bağış sayfasında fidan paketleri ve kartla bağış"
+msgstr "Sapling packages and card donations on the donation page"
+
+#: inc/sistem.php
+msgid "Yalnızca bunları göster (tekrar tıklayınca hepsi)"
+msgstr "Show only these (click again for all)"
+
+#: inc/sistem.php
+#, php-format
+msgid "Kontrol: %s"
+msgstr "Checked: %s"
+
+#: inc/sistem.php
+msgid "Son düzeltmeler (yapay zekâ / MCP)"
+msgstr "Recent fixes (AI / MCP)"
+
+#: inc/sistem.php
+msgid "Henüz MCP ile yapılmış bir düzeltme yok."
+msgstr "No fixes have been made through MCP yet."
+
+#: inc/sistem.php
+msgid "Zaman"
+msgstr "Time"
+
+#: inc/sistem.php
+msgid "Kullanıcı"
+msgstr "User"
+
+#: inc/sistem.php
+msgid "Düzeltme"
+msgstr "Fix"
+
+#: inc/sistem.php
+msgid "Önce → Sonra"
+msgstr "Before → After"
+
+#: inc/sistem.php
+msgid "Sonuç"
+msgstr "Result"
+
+#: inc/ayarlar.php
+msgid "Aktif proje"
+msgstr "Active project"
+
+#: inc/ayarlar.php
+msgid "Aktif Proje"
+msgstr "Active Project"
+
+#: inc/ayarlar.php
+msgid "Çerez tercihlerini değiştir"
+msgstr "Change cookie preferences"
+
+#: inc/ayarlar.php
+msgid "Çerez banner'ı başlığı"
+msgstr "Cookie banner title"
+
+#: inc/ayarlar.php
+msgid "Çerez banner'ı metni"
+msgstr "Cookie banner text"
+
+#: inc/ayarlar.php
+msgid "Çerez banner'ı: kabul düğmesi"
+msgstr "Cookie banner: accept button"
+
+#: inc/ayarlar.php
+msgid "Çerez banner'ı: yalnızca zorunlu düğmesi"
+msgstr "Cookie banner: necessary only button"
+
+#: inc/ayarlar.php
+msgid "Çerez banner'ı: politika bağlantısı"
+msgstr "Cookie banner: policy link"
+
+#: inc/ayarlar.php
+msgid "Çerezleri kullanıyoruz"
+msgstr "We use cookies"
+
+#: inc/ayarlar.php
+msgid ""
+"Sitemizin düzgün çalışması için zorunlu çerezler, ziyaretleri anlamak için "
+"ise yalnızca onay verirseniz analiz çerezleri kullanıyoruz."
+msgstr ""
+"We use essential cookies to make our site work, and analytics cookies to "
+"understand visits only if you consent."
+
+#: inc/ayarlar.php
+msgid "Kabul et"
+msgstr "Accept"
+
+#: inc/ayarlar.php
+msgid "Yalnızca zorunlu"
+msgstr "Essential only"
+
+#: inc/ayarlar.php
+msgid "Daha fazla göster"
+msgstr "Show more"
+
+#: inc/ayarlar.php
+msgid "Yükleniyor…"
+msgstr "Loading…"
+
+#: inc/ayarlar.php
+msgid "Devamını oku"
+msgstr "Read more"

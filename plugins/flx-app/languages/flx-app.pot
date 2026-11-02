@@ -1,0 +1,427 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Flux App\n"
+
+msgid "Genel"
+msgstr ""
+
+msgid "Modüller"
+msgstr ""
+
+msgid "Menü"
+msgstr ""
+
+msgid "Bağlı uygulamalar"
+msgstr ""
+
+msgid "Tüm erişimler"
+msgstr ""
+
+msgid "Uygulama erişimi"
+msgstr ""
+
+msgid "Uygulama"
+msgstr ""
+
+msgid "Bu işlem için yetkiniz yok."
+msgstr ""
+
+msgid "Tüm kullanıcılar"
+msgstr ""
+
+msgid "İçerik düzenleyebilenler"
+msgstr ""
+
+msgid "Yalnız yöneticiler"
+msgstr ""
+
+msgid "Kayıt yok."
+msgstr ""
+
+msgid "Kullanıcı"
+msgstr ""
+
+msgid "Ad"
+msgstr ""
+
+msgid "Tür"
+msgstr ""
+
+msgid "Oluşturma"
+msgstr ""
+
+msgid "Son kullanım"
+msgstr ""
+
+msgid "Bitiş"
+msgstr ""
+
+msgid "API anahtarı"
+msgstr ""
+
+msgid "Uygulama oturumu"
+msgstr ""
+
+msgid "Süresiz"
+msgstr ""
+
+msgid "Erişim kaldırılsın mı?"
+msgstr ""
+
+msgid "Kaldır"
+msgstr ""
+
+msgid "Şimdi kopyalayın; bir daha gösterilmeyecek."
+msgstr ""
+
+msgid "Kaydedildi."
+msgstr ""
+
+msgid "Anahtara bir ad verin."
+msgstr ""
+
+msgid "Kaydedilemedi."
+msgstr ""
+
+msgid "Uygulama ayarları"
+msgstr ""
+
+msgid "Flux Masaüstü uygulamasında \"Giriş yap\"a basınca tarayıcıda bu siteye girer, izin verirsiniz; uygulama sizin yetkilerinizle çalışır. Başka araçlar (MCP istemcileri, betikler) için kişisel API anahtarı oluşturabilirsiniz."
+msgstr ""
+
+msgid "API anahtarları"
+msgstr ""
+
+msgid "ör. Claude MCP"
+msgstr ""
+
+msgid "Geçerlilik"
+msgstr ""
+
+msgid "%d gün"
+msgstr ""
+
+msgid "Anahtar oluştur"
+msgstr ""
+
+msgid "Kullanım: Authorization: Bearer flxak_… başlığı ile her REST ucu ve MCP (/wp-json/flx-mcp/v1/mcp). Anahtar sizin yetkilerinizle çalışır."
+msgstr ""
+
+msgid "Masaüstü (macOS, Windows) ve mobil (iOS, Android) uygulamanın giriş, oturum ve panel ayarları."
+msgstr ""
+
+msgid "Erişim belirteci süresi"
+msgstr ""
+
+msgid "dakika"
+msgstr ""
+
+msgid "Oturum süresi (kullanılmazsa)"
+msgstr ""
+
+msgid "gün"
+msgstr ""
+
+msgid "Uygulama açıldıkça süre yenilenir; bu kadar gün hiç açılmazsa yeniden giriş istenir."
+msgstr ""
+
+msgid "MCP istemcileri"
+msgstr ""
+
+msgid "Kendini kaydetmesine izin ver (Claude gibi MCP istemcileri OAuth ile bağlanır; her bağlantı yine sizin onayınızı ister)"
+msgstr ""
+
+msgid "Panel oturumu"
+msgstr ""
+
+msgid "Uygulama, yerel ekranı olmayan menüleri panel sayfası olarak açabilsin (tek seferlik giriş bağlantısı)"
+msgstr ""
+
+msgid "Kodla giriş"
+msgstr ""
+
+msgid "Bağışçılar uygulamaya e-posta ya da telefona gelen kodla girebilsin"
+msgstr ""
+
+msgid "Hesabı yoksa ama bu bilgiyle bağışı varsa müşteri hesabı aç"
+msgstr ""
+
+msgid "Personel de kodla girebilsin (önerilmez; personel tarayıcıyla OAuth kullanır)"
+msgstr ""
+
+msgid "Telefona kod Flux Chat (WhatsApp) üzerinden gider; yoksa yalnız e-posta."
+msgstr ""
+
+msgid "API anahtarı oluşturabilir"
+msgstr ""
+
+msgid "Kaydet"
+msgstr ""
+
+msgid "Yönlendirme adresleri"
+msgstr ""
+
+msgid "Yerleşik"
+msgstr ""
+
+msgid "Kendini kaydetti (MCP)"
+msgstr ""
+
+msgid "Elle eklendi"
+msgstr ""
+
+msgid "gizli anahtarlı"
+msgstr ""
+
+msgid "Uygulama ve tüm oturumları silinsin mi?"
+msgstr ""
+
+msgid "Sil"
+msgstr ""
+
+msgid "Uygulama ekle"
+msgstr ""
+
+msgid "Yönlendirme adresleri (satır başına bir)"
+msgstr ""
+
+msgid "Gizli anahtar üret (sunucuda çalışan uygulamalar için; masaüstü/mobil için gerekmez)"
+msgstr ""
+
+msgid "Ekle"
+msgstr ""
+
+msgid "Bağlantı bilgileri"
+msgstr ""
+
+msgid "Eklentilerin uygulamadaki kendi (yerel) ekranları. Kapatılan modülün menüsü uygulamada panel sayfası olarak açılır. Kimin göreceği yetkiye ve rol menüsüne göre belirlenir."
+msgstr ""
+
+msgid "Kayıtlı modül yok."
+msgstr ""
+
+msgid "Açık"
+msgstr ""
+
+msgid "Modül"
+msgstr ""
+
+msgid "Yetki"
+msgstr ""
+
+msgid "Sürüm"
+msgstr ""
+
+msgid "Ayrı öğe"
+msgstr ""
+
+msgid "Uygulamadaki sol menü, kullanıcının rolüne göre paneldeki menünün aynısıdır (sıra, gruplar, adlar, gizlenenler). Her öğenin web, mobil ya da masaüstünde görünüp görünmeyeceği menü düzenleyicide seçilir. Web kapalı öğe yalnız uygulamada görünür."
+msgstr ""
+
+msgid "Platform seçimi için Flux Admin 1.3.0 ya da üstü gerekli."
+msgstr ""
+
+msgid "Menü düzenleyiciyi aç"
+msgstr ""
+
+msgid "Varsayılan"
+msgstr ""
+
+msgid "Platforma göre gizlenen öğeler"
+msgstr ""
+
+msgid "Yok: tüm öğeler her yerde görünüyor."
+msgstr ""
+
+msgid "Rol"
+msgstr ""
+
+msgid "Görünür"
+msgstr ""
+
+msgid "Gizli"
+msgstr ""
+
+msgid "Flux Masaüstü"
+msgstr ""
+
+msgid "Ad ve en az bir yönlendirme adresi gerekli (en çok 10)."
+msgstr ""
+
+msgid "Yönlendirme adresi kabul edilmedi: %s (https, 127.0.0.1 ya da uygulama şeması olmalı)."
+msgstr ""
+
+msgid "Dinamik istemci sınırı doldu; eskileri silin."
+msgstr ""
+
+msgid "Yazılar"
+msgstr ""
+
+msgid "%s taslak"
+msgstr ""
+
+msgid "Taslaklarım"
+msgstr ""
+
+msgid "(başlıksız)"
+msgstr ""
+
+msgid "Sayfalar"
+msgstr ""
+
+msgid "Onay bekleyen yorum"
+msgstr ""
+
+msgid "%s onaylı"
+msgstr ""
+
+msgid "Son yorumlar"
+msgstr ""
+
+msgid "Bekliyor"
+msgstr ""
+
+msgid "Ortam"
+msgstr ""
+
+msgid "Kullanıcılar"
+msgstr ""
+
+msgid "Güncelleme"
+msgstr ""
+
+msgid "Bugünkü siparişler"
+msgstr ""
+
+msgid "%s sipariş"
+msgstr ""
+
+msgid "Ödeme bekleyen"
+msgstr ""
+
+msgid "Son siparişler"
+msgstr ""
+
+msgid "Web"
+msgstr ""
+
+msgid "Mobil"
+msgstr ""
+
+msgid "Masaüstü"
+msgstr ""
+
+msgid "Uygulama bağlantısı"
+msgstr ""
+
+msgid "← Siteye dön"
+msgstr ""
+
+msgid "Tanınmayan uygulama (client_id)."
+msgstr ""
+
+msgid "Yönlendirme adresi bu uygulama için kayıtlı değil."
+msgstr ""
+
+msgid "Oturum süresi doldu. Uygulamadan yeniden deneyin."
+msgstr ""
+
+msgid "%s hesabınıza erişmek istiyor"
+msgstr ""
+
+msgid "Değiştir"
+msgstr ""
+
+msgid "Uygulama sizin yetkilerinizle çalışır: rolünüzün gördüğü menü ve işlemler."
+msgstr ""
+
+msgid "Erişimi istediğiniz zaman Kullanıcılar › Uygulama erişimi sayfasından kaldırabilirsiniz."
+msgstr ""
+
+msgid "Onaydan sonra %s adresine dönülecek."
+msgstr ""
+
+msgid "Reddet"
+msgstr ""
+
+msgid "İzin ver"
+msgstr ""
+
+msgid "Siteye dön"
+msgstr ""
+
+msgid "Bağlantının süresi doldu. Uygulamadan yeniden açın."
+msgstr ""
+
+msgid "%1$s, %2$s uygulamasına giriş kodunuz. 10 dakika geçerli. Bu kodu kimseyle paylaşmayın."
+msgstr ""
+
+msgid "%s giriş kodu"
+msgstr ""
+
+msgid "Uygulamaya giriş kodunuz:"
+msgstr ""
+
+msgid "Kod 10 dakika geçerli. Siz istemediyseniz bu e-postayı yok sayın."
+msgstr ""
+
+msgid "E-posta"
+msgstr ""
+
+msgid "Kodla giriş kapalı."
+msgstr ""
+
+msgid "Geçerli bir e-posta ya da telefon yazın."
+msgstr ""
+
+msgid "Çok fazla deneme. Biraz sonra tekrar deneyin."
+msgstr ""
+
+msgid "Kod yanlış ya da süresi dolmuş."
+msgstr ""
+
+msgid "Giriş gerekli."
+msgstr ""
+
+msgid "Diğer"
+msgstr ""
+
+msgid "Panel oturumu ayarlardan kapalı."
+msgstr ""
+
+msgid "Çok fazla istek. Biraz bekleyin."
+msgstr ""
+
+msgid "Geçersiz panel yolu."
+msgstr ""
+
+msgid "Flux App"
+msgstr ""
+
+msgid "Belirteç tablosu"
+msgstr ""
+
+msgid "Hazır."
+msgstr ""
+
+msgid "Tablo yok. Eklentiyi kapatıp açın."
+msgstr ""
+
+msgid "HTTPS"
+msgstr ""
+
+msgid "Site adresi https; uygulama girişi güvenli."
+msgstr ""
+
+msgid "Site adresi https değil; OAuth belirteçleri şifresiz gider. Canlıda https kullanın."
+msgstr ""
+
+msgid "Etkin erişimler"
+msgstr ""
+
+msgid "Uygulama oturumu: %1$s · API anahtarı: %2$s"
+msgstr ""
+
+msgid "Belirteç geçersiz ya da süresi dolmuş."
+msgstr ""

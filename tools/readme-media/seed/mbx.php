@@ -1,0 +1,1 @@
+<?php require ( getenv( 'WPENV' ) ?: '/tmp/wpenv' ) . '/site/wp-load.php'; $s=get_option('flxi_settings',[]); $s['mailbox_enabled']=1; $s['imap_host']='127.0.0.1'; $s['imap_port']=9; $s['imap_user']='bilgi@example.org'; $s['imap_pass']=function_exists('flxi_encrypt')?flxi_encrypt('demo'):'demo'; update_option('flxi_settings',$s); var_dump(flxi_mailbox_enabled());

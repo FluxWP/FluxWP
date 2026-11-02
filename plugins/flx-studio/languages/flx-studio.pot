@@ -1,0 +1,922 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Flux Studio\n"
+
+msgid "Genel"
+msgstr ""
+
+msgid "Kişi (yüz/kimlik)"
+msgstr ""
+
+msgid "Stil"
+msgstr ""
+
+msgid "Ürün"
+msgstr ""
+
+msgid "Arka plan"
+msgstr ""
+
+msgid "Kompozisyon"
+msgstr ""
+
+msgid "İlk kare"
+msgstr ""
+
+msgid "Son kare"
+msgstr ""
+
+msgid "Otomatik"
+msgstr ""
+
+msgid "Düşük"
+msgstr ""
+
+msgid "Orta"
+msgstr ""
+
+msgid "Yüksek"
+msgstr ""
+
+msgid "Tema: sistem"
+msgstr ""
+
+msgid "Tema: açık"
+msgstr ""
+
+msgid "Tema: koyu"
+msgstr ""
+
+msgid "Stüdyo açılıyor…"
+msgstr ""
+
+msgid "Yeniden dene"
+msgstr ""
+
+msgid "İstem, başlık ya da model ara"
+msgstr ""
+
+msgid "Ara"
+msgstr ""
+
+msgid "Menü"
+msgstr ""
+
+msgid "Seç"
+msgstr ""
+
+msgid "Görsel ve video üretimi için Flux AI › Ayarlar › Görsel ve video bölümünden en az bir anahtar (fal.ai, EvoLink…) girin."
+msgstr ""
+
+msgid "Flux AI (0.6.0+) kurulu değil. Üretim Flux AI üzerinden yapılır."
+msgstr ""
+
+msgid "Flux AI ayarları"
+msgstr ""
+
+msgid "Benim"
+msgstr ""
+
+msgid "Herkes"
+msgstr ""
+
+msgid "Stüdyo"
+msgstr ""
+
+msgid "Tümü"
+msgstr ""
+
+msgid "Favoriler"
+msgstr ""
+
+msgid "Görseller"
+msgstr ""
+
+msgid "Videolar"
+msgstr ""
+
+msgid "Pano"
+msgstr ""
+
+msgid "Klasörler"
+msgstr ""
+
+msgid "Yeni klasör"
+msgstr ""
+
+msgid "Klasörsüz"
+msgstr ""
+
+msgid "Ekiple paylaşılıyor"
+msgstr ""
+
+msgid "Klasör işlemleri"
+msgstr ""
+
+msgid "Kişiler"
+msgstr ""
+
+msgid "Kişi ekle"
+msgstr ""
+
+msgid "{name} — üretime ekle"
+msgstr ""
+
+msgid "Yüz referansı için kişi ekleyin; istemde @ad yazarak kullanın."
+msgstr ""
+
+msgid "Kişileri yönet"
+msgstr ""
+
+msgid "Panele dön"
+msgstr ""
+
+msgid "Tema"
+msgstr ""
+
+msgid "Stüdyo ayarları"
+msgstr ""
+
+msgid "Flux AI harcama sınırı"
+msgstr ""
+
+msgid "Klasör"
+msgstr ""
+
+msgid "Alt klasör"
+msgstr ""
+
+msgid "Oluştur"
+msgstr ""
+
+msgid "Klasör oluşturuldu"
+msgstr ""
+
+msgid "Yeniden adlandır"
+msgstr ""
+
+msgid "Klasör adı"
+msgstr ""
+
+msgid "Paylaşımı kapat"
+msgstr ""
+
+msgid "Ekiple paylaş"
+msgstr ""
+
+msgid "Klasör ekiple paylaşılıyor"
+msgstr ""
+
+msgid "Klasör yalnız sizin"
+msgstr ""
+
+msgid "Klasörü sil"
+msgstr ""
+
+msgid "Klasör silinsin mi?"
+msgstr ""
+
+msgid "İçindeki üretimler ve alt klasörler bir üst klasöre taşınır; hiçbir dosya silinmez."
+msgstr ""
+
+msgid "Sil"
+msgstr ""
+
+msgid "{n} üretim taşındı"
+msgstr ""
+
+msgid "Burada üretim yok"
+msgstr ""
+
+msgid "İlk görselinizi üretin"
+msgstr ""
+
+msgid "Filtreyi değiştirin ya da aşağıdan yeni bir üretim başlatın."
+msgstr ""
+
+msgid "Aşağıya ne istediğinizi yazın. Referans görsel sürükleyip bırakabilir, @ ile kişi ekleyebilirsiniz."
+msgstr ""
+
+msgid "Favoriden çıkar"
+msgstr ""
+
+msgid "Favorilere ekle"
+msgstr ""
+
+msgid "Sırada"
+msgstr ""
+
+msgid "Üretiliyor"
+msgstr ""
+
+msgid "İptal"
+msgstr ""
+
+msgid "İptal edildi"
+msgstr ""
+
+msgid "Üretilemedi"
+msgstr ""
+
+msgid "Ayarları kullan"
+msgstr ""
+
+msgid "{n} seçili"
+msgstr ""
+
+msgid "Üretimlere dokunarak seçin"
+msgstr ""
+
+msgid "Referans yap"
+msgstr ""
+
+msgid "Taşı"
+msgstr ""
+
+msgid "Seçimi kapat"
+msgstr ""
+
+msgid "Yeni klasör…"
+msgstr ""
+
+msgid "{n} üretim silinsin mi?"
+msgstr ""
+
+msgid "Üretim silinsin mi?"
+msgstr ""
+
+msgid "Dosyalar sunucudan silinir. Medya kitaplığına eklenmiş kopyalar kalır."
+msgstr ""
+
+msgid "{n} üretim hazır"
+msgstr ""
+
+msgid "Üretim hazır"
+msgstr ""
+
+msgid "Bir üretim başarısız oldu"
+msgstr ""
+
+msgid "Kaldır"
+msgstr ""
+
+msgid "Referans ekle"
+msgstr ""
+
+msgid "Videoda ne olsun? Konu, hareket, kamera… (@ ile kişi ekleyin)"
+msgstr ""
+
+msgid "Ne üretmek istiyorsunuz? (@ ile kişi ekleyin, görsel sürükleyip bırakın)"
+msgstr ""
+
+msgid "Görsel"
+msgstr ""
+
+msgid "Video"
+msgstr ""
+
+msgid "En-boy oranı"
+msgstr ""
+
+msgid "Uyarlanır"
+msgstr ""
+
+msgid "Çözünürlük"
+msgstr ""
+
+msgid "Kalite"
+msgstr ""
+
+msgid "Adet"
+msgstr ""
+
+msgid "Süre"
+msgstr ""
+
+msgid "Ses"
+msgstr ""
+
+msgid "Sağlayıcı ve model"
+msgstr ""
+
+msgid "Model seç"
+msgstr ""
+
+msgid "Model yok"
+msgstr ""
+
+msgid "Üret (Ctrl/⌘+Enter)"
+msgstr ""
+
+msgid "Üret"
+msgstr ""
+
+msgid "Şablonlar"
+msgstr ""
+
+msgid "Bir fikirden birden çok farklı istem"
+msgstr ""
+
+msgid "Flux AI metin modeli hazır değil"
+msgstr ""
+
+msgid "Beyin fırtınası"
+msgstr ""
+
+msgid "Taslağı modele uygun ayrıntılı isteme çevir"
+msgstr ""
+
+msgid "Geliştir"
+msgstr ""
+
+msgid "Sağlayıcı"
+msgstr ""
+
+msgid "{n} model"
+msgstr ""
+
+msgid "anahtar yok"
+msgstr ""
+
+msgid "{p} anahtarı girilmemiş (Flux AI › Ayarlar › Görsel ve video)."
+msgstr ""
+
+msgid "Bu referans zaten ekli"
+msgstr ""
+
+msgid "Bu model en çok {n} referans alır"
+msgstr ""
+
+msgid "Kayıtlı referanslara ekle"
+msgstr ""
+
+msgid "Kaydedildi"
+msgstr ""
+
+msgid "Dosyadan yükle"
+msgstr ""
+
+msgid "Galeriden seç"
+msgstr ""
+
+msgid "{n} foto"
+msgstr ""
+
+msgid "foto yok"
+msgstr ""
+
+msgid "Kayıtlı referanslar"
+msgstr ""
+
+msgid "Referans"
+msgstr ""
+
+msgid "Yalnız PNG, JPEG, WebP ya da GIF eklenebilir."
+msgstr ""
+
+msgid "Galeriden referans seç"
+msgstr ""
+
+msgid "Vazgeç"
+msgstr ""
+
+msgid "Ekle"
+msgstr ""
+
+msgid "Henüz görsel yok."
+msgstr ""
+
+msgid "{name} için fotoğraf yok; Kişileri yönet’ten ekleyin"
+msgstr ""
+
+msgid "Önce kısa bir taslak yazın."
+msgstr ""
+
+msgid "İstem geliştirildi"
+msgstr ""
+
+msgid "Taslağa dön"
+msgstr ""
+
+msgid "Ne üretileceğini yazın."
+msgstr ""
+
+msgid "Referanslar yükleniyor, bir saniye…"
+msgstr ""
+
+msgid "ekip"
+msgstr ""
+
+msgid "Henüz şablon yok"
+msgstr ""
+
+msgid "Şu anki ayarları kaydet"
+msgstr ""
+
+msgid "Şablon sil…"
+msgstr ""
+
+msgid "Örn: Etkinlik afişi 4:5"
+msgstr ""
+
+msgid "Şablon olarak kaydet"
+msgstr ""
+
+msgid "Ad"
+msgstr ""
+
+msgid "İstem, model, oran, çözünürlük ve referanslar kaydedilir."
+msgstr ""
+
+msgid "Şablon kaydedildi"
+msgstr ""
+
+msgid "Kaydet"
+msgstr ""
+
+msgid "Önceki"
+msgstr ""
+
+msgid "Sonraki"
+msgstr ""
+
+msgid "Kapat"
+msgstr ""
+
+msgid "Model"
+msgstr ""
+
+msgid "Boyut"
+msgstr ""
+
+msgid "Maliyet"
+msgstr ""
+
+msgid "Tarih"
+msgstr ""
+
+msgid "Üreten"
+msgstr ""
+
+msgid "Favoride"
+msgstr ""
+
+msgid "Favori"
+msgstr ""
+
+msgid "İndir"
+msgstr ""
+
+msgid "Referanslara eklendi"
+msgstr ""
+
+msgid "Alanı düzenle"
+msgstr ""
+
+msgid "Bu model alan düzenlemeyi desteklemiyor"
+msgstr ""
+
+msgid "Karşılaştırmayı kapat"
+msgstr ""
+
+msgid "Önceki ile karşılaştır"
+msgstr ""
+
+msgid "Kitaplıkta"
+msgstr ""
+
+msgid "Medya kitaplığına ekle"
+msgstr ""
+
+msgid "Başlık ekle"
+msgstr ""
+
+msgid "Başlık"
+msgstr ""
+
+msgid "İstemi kopyala"
+msgstr ""
+
+msgid "İlk taslak"
+msgstr ""
+
+msgid "Zaten medya kitaplığında"
+msgstr ""
+
+msgid "Medya kitaplığına eklendi"
+msgstr ""
+
+msgid "Alan düzenlemeyi destekleyen ve anahtarı girilmiş model yok."
+msgstr ""
+
+msgid "Düzenleme başladı; sonuç galeride görünecek"
+msgstr ""
+
+msgid "Fikri anlatın: Örn. 11 Kasım fidan dikim etkinliği için Instagram görseli"
+msgstr ""
+
+msgid "Fikir sayısı"
+msgstr ""
+
+msgid "{n} fikir"
+msgstr ""
+
+msgid "Tarz"
+msgstr ""
+
+msgid "YouTube küçük resmi"
+msgstr ""
+
+msgid "Fikir üret"
+msgstr ""
+
+msgid "Fikirler hazırlanıyor…"
+msgstr ""
+
+msgid "Seçilenleri üret ({n})"
+msgstr ""
+
+msgid "{n} üretim başladı"
+msgstr ""
+
+msgid "Gönderiliyor {i}/{n}"
+msgstr ""
+
+msgid "Bir fikirden birbirinden farklı istemler üretir. Beğendiklerinizi seçip tek seferde üretin. Model ve oran üretim çubuğundaki ayarlardan alınır."
+msgstr ""
+
+msgid "Fikir"
+msgstr ""
+
+msgid "Henüz kişi yok. Kişi ekleyip 1-4 net yüz fotoğrafı yükleyin; istemde @ad yazınca bu fotoğraflar kimlik referansı olarak gider."
+msgstr ""
+
+msgid "Fotoğrafı sil"
+msgstr ""
+
+msgid "Fotoğraf ekle"
+msgstr ""
+
+msgid "Kişi adı"
+msgstr ""
+
+msgid "Kişiyi sil"
+msgstr ""
+
+msgid "{name} silinsin mi?"
+msgstr ""
+
+msgid "Kişi ve fotoğrafları silinir. Önceki üretimler kalır."
+msgstr ""
+
+msgid "Yeni kişi"
+msgstr ""
+
+msgid "Varsayılan görsel modeli"
+msgstr ""
+
+msgid "Varsayılan video modeli"
+msgstr ""
+
+msgid "Boş: Flux AI varsayılanı"
+msgstr ""
+
+msgid "Geliştir / Beyin fırtınası metin modeli"
+msgstr ""
+
+msgid "Bir seferde en çok görsel"
+msgstr ""
+
+msgid "Beyin fırtınasında en çok fikir"
+msgstr ""
+
+msgid "Kişiler tüm Stüdyo kullanıcılarıyla paylaşılsın"
+msgstr ""
+
+msgid "Anahtarlar, sağlayıcılar ve harcama sınırı Flux AI › Ayarlar’dadır."
+msgstr ""
+
+msgid "Ayarlar kaydedildi"
+msgstr ""
+
+msgid "az önce"
+msgstr ""
+
+msgid "{n} dk önce"
+msgstr ""
+
+msgid "{n} sa önce"
+msgstr ""
+
+msgid "Sunucu hatası ({n})."
+msgstr ""
+
+msgid "Sunucudan beklenmeyen cevap geldi."
+msgstr ""
+
+msgid "Bir hata oluştu."
+msgstr ""
+
+msgid "Tamam"
+msgstr ""
+
+msgid "Kopyalandı"
+msgstr ""
+
+msgid "7 gün"
+msgstr ""
+
+msgid "30 gün"
+msgstr ""
+
+msgid "90 gün"
+msgstr ""
+
+msgid "Harcama Flux AI kayıtlarından"
+msgstr ""
+
+msgid "Flux AI kayıtları okunamadı; Stüdyo tutarları"
+msgstr ""
+
+msgid "Yenile"
+msgstr ""
+
+msgid "(tahmini)"
+msgstr ""
+
+msgid "Üretim"
+msgstr ""
+
+msgid "{i} görsel · {v} video"
+msgstr ""
+
+msgid "Harcama"
+msgstr ""
+
+msgid "Görsel/video {m} · metin {x}"
+msgstr ""
+
+msgid "Ortalama"
+msgstr ""
+
+msgid "üretim başına"
+msgstr ""
+
+msgid "Başarısız"
+msgstr ""
+
+msgid "%{p} hata oranı"
+msgstr ""
+
+msgid "henüz deneme yok"
+msgstr ""
+
+msgid "Depolama {b}"
+msgstr ""
+
+msgid "Günlük üretim"
+msgstr ""
+
+msgid "Bu dönemde üretim yok."
+msgstr ""
+
+msgid "Günlük harcama"
+msgstr ""
+
+msgid "Bu dönemde harcama yok."
+msgstr ""
+
+msgid "Flux AI kayıtları"
+msgstr ""
+
+msgid "Modeller"
+msgstr ""
+
+msgid "Hata"
+msgstr ""
+
+msgid "Tutar"
+msgstr ""
+
+msgid "Kayıt yok."
+msgstr ""
+
+msgid "Sağlayıcılar"
+msgstr ""
+
+msgid "Kişi"
+msgstr ""
+
+msgid "Son hatalar"
+msgstr ""
+
+msgid "Fırça"
+msgstr ""
+
+msgid "Dikdörtgen"
+msgstr ""
+
+msgid "Silgi"
+msgstr ""
+
+msgid "Fırça boyutu"
+msgstr ""
+
+msgid "Geri al"
+msgstr ""
+
+msgid "Temizle"
+msgstr ""
+
+msgid "Seçili alanda ne değişsin? Örn: tişörtü yeşil yap, yazıyı \"Fidan Dik\" olarak değiştir"
+msgstr ""
+
+msgid "Düzenle"
+msgstr ""
+
+msgid "Ne değişeceğini yazın."
+msgstr ""
+
+msgid "Araç"
+msgstr ""
+
+msgid "Değişecek alanı boyayın. Boyanmayan yerler korunur."
+msgstr ""
+
+msgid "Değişiklik"
+msgstr ""
+
+msgid "Önce"
+msgstr ""
+
+msgid "Sonra"
+msgstr ""
+
+msgid "Stüdyo için JavaScript gerekli."
+msgstr ""
+
+msgid "Flux AI (0.6.0+) kurulu değil ya da görsel üretimi kapalı."
+msgstr ""
+
+msgid "Model bulunamadı. Flux AI › Ayarlar › Görsel ve video anahtarlarını kontrol edin."
+msgstr ""
+
+msgid "Düzenlenecek görsel bulunamadı."
+msgstr ""
+
+msgid "Bu model alan düzenlemeyi desteklemiyor."
+msgstr ""
+
+msgid "Maske PNG olmalı."
+msgstr ""
+
+msgid "İstek sağlayıcıya ulaşmış olabilir; tekrar göndermeden önce sağlayıcı geçmişine bakın."
+msgstr ""
+
+msgid "Gönderim tamamlanamadı, yeniden deneyin."
+msgstr ""
+
+msgid "Sağlayıcı istenenden az sonuç döndürdü."
+msgstr ""
+
+msgid "Dosya sağlayıcıda duruyor ve geçici; Medya kitaplığına ekleyin ya da indirin."
+msgstr ""
+
+msgid "İptal edildi."
+msgstr ""
+
+msgid "Üretim başarısız."
+msgstr ""
+
+msgid "Flux AI metin modeli hazır değil (Flux AI › Ayarlar)."
+msgstr ""
+
+msgid "Önce fikri kısaca yazın."
+msgstr ""
+
+msgid "Model geçerli fikir listesi döndürmedi. Tekrar deneyin."
+msgstr ""
+
+msgid "Aç"
+msgstr ""
+
+msgid "Veritabanı tabloları"
+msgstr ""
+
+msgid "Eksik tablo: %s. Eklentiyi devre dışı bırakıp yeniden etkinleştirin."
+msgstr ""
+
+msgid "Tablolar hazır."
+msgstr ""
+
+msgid "Dosya klasörü"
+msgstr ""
+
+msgid "wp-content/uploads/flx-studio yazılabilir."
+msgstr ""
+
+msgid "wp-content/uploads/flx-studio oluşturulamadı ya da yazılamıyor; referans ve küçük resimler kaydedilemez."
+msgstr ""
+
+msgid "Görsel ve video altyapısı"
+msgstr ""
+
+msgid "Flux AI 0.6.0 veya üstü gerekli (görsel/video üretimi Flux AI üzerinden yapılır)."
+msgstr ""
+
+msgid "Eklentiler"
+msgstr ""
+
+msgid "Hiçbir model için anahtar yok. Flux AI › Ayarlar › Görsel ve video bölümünden fal.ai, EvoLink ya da başka bir anahtar girin."
+msgstr ""
+
+msgid "Flux AI"
+msgstr ""
+
+msgid "%1$d model kullanılabilir (%2$s)."
+msgstr ""
+
+msgid "Geliştir ve Beyin fırtınası"
+msgstr ""
+
+msgid "Flux AI metin modeli hazır."
+msgstr ""
+
+msgid "Flux AI metin modeli hazır değil; istem geliştirme ve fikir üretme çalışmaz, üretim çalışır."
+msgstr ""
+
+msgid "Referans görselleri"
+msgstr ""
+
+msgid "Referanslar sağlayıcıya site adresiyle gönderilir."
+msgstr ""
+
+msgid "Site HTTPS değil; referanslar dosya içeriğiyle (base64) gönderilir, istek büyür."
+msgstr ""
+
+msgid "Stüdyo: görsel/video üret"
+msgstr ""
+
+msgid "Stüdyo: tüm galeriler ve ayarlar"
+msgstr ""
+
+msgid "Dosya boş."
+msgstr ""
+
+msgid "Dosya %d MB sınırını aşıyor."
+msgstr ""
+
+msgid "Bu dosya türü desteklenmiyor."
+msgstr ""
+
+msgid "Dosya kaydedilemedi."
+msgstr ""
+
+msgid "Referans görsel bulunamadı."
+msgstr ""
+
+msgid "Kişi bulunamadı."
+msgstr ""
+
+msgid "En çok %d referans görsel kullanılabilir."
+msgstr ""
+
+msgid "Dosya sunucuda yok."
+msgstr ""
+
+msgid "Giriş gerekli."
+msgstr ""
+
+msgid "Stüdyo için yetkiniz yok."
+msgstr ""
+
+msgid "Bu işlem için yetkiniz yok."
+msgstr ""
+
+msgid "Kayıt bulunamadı."
+msgstr ""
+
+msgid "Dosya yüklenemedi."
+msgstr ""
+
+msgid "Dosya gelmedi."
+msgstr ""
+
+msgid "Bu klasöre taşıyamazsınız."
+msgstr ""
+
+msgid "Medya kitaplığına ekleme yetkiniz yok."
+msgstr ""
+
+msgid "Klasör adı gerekli."
+msgstr ""
+
+msgid "Kişi adı gerekli."
+msgstr ""
+
+msgid "Şablon adı gerekli."
+msgstr ""
+
+msgid "Silinmiş kullanıcı"
+msgstr ""

@@ -1,0 +1,308 @@
+{
+  "common": {
+    "back": "Geri",
+    "done": "Bitti",
+    "empty": "Henüz bir şey yok.",
+    "refresh": "Yenile",
+    "retry": "Tekrar dene",
+    "cancel": "Vazgeç",
+    "close": "Kapat",
+    "send": "Gönder"
+  },
+  "languages": {
+    "tr": "Türkçe",
+    "en": "English"
+  },
+  "auth": {
+    "welcome": "{{name}}",
+    "connecting": "Hesabınıza bağlanılıyor…",
+    "addSiteTitle": "Sitenizi bağlayın",
+    "addSiteHint": "WordPress sitenizin adresini yazın. Birden fazla site ekleyebilirsiniz.",
+    "siteUrl": "Site adresi",
+    "siteUrlPlaceholder": "ornek.org",
+    "continue": "Devam",
+    "change": "Değiştir",
+    "loginBrowser": "Tarayıcıda giriş yap",
+    "waitingBrowser": "Tarayıcıda onay bekleniyor…",
+    "useApiKey": "API anahtarı ile bağlan",
+    "apiKey": "API anahtarı",
+    "apiKeyHint": "Panelde Kullanıcılar › Uygulama erişimi › Anahtar oluştur.",
+    "login": "Giriş yap",
+    "noYtApp": "Bu sitede Flux App eklentisi kurulu değil. Uygulama girişi için eklentiyi kurun.",
+    "tryDemo": "Demo ile dene",
+    "footer": "{{name}} · güvenli bağlantı, şifreniz uygulamada saklanmaz"
+  },
+  "errors": {
+    "invalid_url": "Adres geçerli değil.",
+    "unreachable": "Siteye ulaşılamadı. Adresi ve internet bağlantınızı kontrol edin.",
+    "not_wordpress": "Bu adreste WordPress REST API bulunamadı.",
+    "access_denied": "Giriş onaylanmadı.",
+    "oauth_failed": "Giriş tamamlanamadı. Tekrar deneyin.",
+    "oauth_unsupported": "Tarayıcı sürümünde bu giriş yolu henüz yok; masaüstü uygulamasını kullanın.",
+    "bad_credentials": "Anahtar ya da oturum geçersiz.",
+    "server": "Sunucudan cevap alınamadı.",
+    "unknown": "Beklenmeyen bir hata oluştu."
+  },
+  "accounts": {
+    "title": "Hesaplar",
+    "add": "Site ya da hesap ekle",
+    "active": "Etkin",
+    "logout": "Çıkış",
+    "relogin": "Yeniden giriş",
+    "needsLogin": "Oturumun süresi doldu, yeniden giriş yapın.",
+    "kind": {
+      "oauth": "Tarayıcı girişi",
+      "apikey": "API anahtarı",
+      "demo": "Demo"
+    }
+  },
+  "nav": {
+    "menu": "Ana menü",
+    "search": "Ara ya da git",
+    "edit": "Menüyü düzenle",
+    "reset": "Sıfırla",
+    "show": "Göster",
+    "hide": "Gizle",
+    "webView": "Panel görünümünde açılır",
+    "collapse": "Menüyü gizle",
+    "expand": "Menüyü göster",
+    "back": "Geri",
+    "forward": "İleri",
+    "resize": "Menü genişliği",
+    "submenu": "Alt menüyü aç/kapat",
+    "groups": {
+      "general": "Genel",
+      "comms": "İletişim",
+      "donate": "Bağış",
+      "content": "İçerik",
+      "growth": "Büyüme",
+      "screens": "Ekranlar",
+      "system": "Sistem",
+      "other": "Diğer",
+      "apps": "Uygulamalar"
+    }
+  },
+  "palette": {
+    "placeholder": "Ekran ya da komut ara…",
+    "empty": "Sonuç yok."
+  },
+  "dashboard": {
+    "morning": "Günaydın {{name}}",
+    "afternoon": "İyi günler {{name}}",
+    "evening": "İyi akşamlar {{name}}",
+    "customize": "Özelleştir"
+  },
+  "web": {
+    "title": "Bu ekran panel görünümünde açılır",
+    "body": "Uygulamadaki yerel sürümü henüz hazır değil. Panel sayfasını giriş yapmış olarak ayrı pencerede açabilirsiniz.",
+    "open": "Panelde aç",
+    "openBrowser": "Tarayıcıda aç"
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "appearance": "Görünüm",
+    "theme": "Tema",
+    "themes": {
+      "system": "Sistem",
+      "light": "Açık",
+      "dark": "Koyu"
+    },
+    "language": "Dil",
+    "about": "Hakkında",
+    "app": "Uygulama",
+    "support": "Destek",
+    "contact": "İletişime geç",
+    "logoutConfirm": "{{site}} hesabından çıkılsın mı?"
+  },
+  "oauth": {
+    "doneTitle": "Giriş tamamlandı",
+    "doneBody": "Bu sekmeyi kapatıp uygulamaya dönebilirsiniz."
+  },
+  "review": {
+    "title": "Onay bekleyenler",
+    "count_one": "{{count}} bağış",
+    "count_other": "{{count}} bağış",
+    "noReceipt": "Dekont yok",
+    "noReceiptBody": "Bu bağış için henüz dekont gelmedi.",
+    "emptyTitle": "Bekleyen bağış yok",
+    "emptyBody": "Yeni dekont geldiğinde burada görünür.",
+    "allDone": "Hepsi tamam",
+    "ref": "Referans",
+    "receipt": "Dekont",
+    "approve": "Onayla",
+    "reject": "İptal et",
+    "approveConfirm": "{{name}} adına {{amount}} bağış onaylansın mı? Sertifikalar gönderilecek.",
+    "approved": "Bağış onaylandı.",
+    "approvedCert_one": "Bağış onaylandı, {{count}} sertifika gönderildi.",
+    "approvedCert_other": "Bağış onaylandı, {{count}} sertifika gönderildi.",
+    "rejected": "Bağış iptal edildi.",
+    "rejectTitle": "{{name}} bağışını iptal et",
+    "reason": "Neden",
+    "reasonPlaceholder": "Ör. dekont tutarı uyuşmuyor",
+    "notify": "Bağışçıya bildir"
+  },
+  "tasks": {
+    "title": "Görevler",
+    "views": {
+      "mine": "Bana atanan",
+      "today": "Bugün",
+      "overdue": "Gecikmiş"
+    },
+    "projects": "Projeler",
+    "search": "Görev ara",
+    "quickAdd": "Yeni görev ekle, Enter",
+    "empty": "Görev yok",
+    "complete": "Tamamla",
+    "reopen": "Yeniden aç",
+    "unassigned": "Atanmamış",
+    "checklist": "Kontrol listesi",
+    "comments": "Yorumlar",
+    "noComments": "Henüz yorum yok.",
+    "addComment": "Yorum yaz"
+  },
+  "inbox": {
+    "title": "WhatsApp",
+    "search": "Ad ya da numara ara",
+    "filters": {
+      "open": "Açık",
+      "unread": "Okunmamış",
+      "mine": "Bana atanan",
+      "all": "Tümü"
+    },
+    "empty": "Sohbet yok",
+    "pick": "Bir sohbet seçin",
+    "assigned": "{{name}} ilgileniyor",
+    "donations_one": "{{count}} bağış",
+    "donations_other": "{{count}} bağış",
+    "botOn": "Asistan açık",
+    "botOff": "Asistan kapalı",
+    "botHint": "Bu sohbette yapay zekâ asistanını aç/kapat",
+    "assistant": "Asistan",
+    "write": "Mesaj yazın, Enter ile gönderin",
+    "blocked": "Bu kişi engelli, mesaj gönderilemez."
+  },
+  "wa": {
+    "search": "Ad, numara, not ya da mesaj ara",
+    "filters": {
+      "all": "Açık",
+      "unread": "Okunmamış",
+      "mine": "Bana atanan",
+      "unassigned": "Atanmamış",
+      "closed": "Kapalı"
+    },
+    "today": "Bugün",
+    "yesterday": "Dün",
+    "reply": "Yanıtla",
+    "copy": "Kopyala",
+    "retry": "Tekrar dene",
+    "deleteNote": "Notu sil",
+    "menu": "Mesaj menüsü",
+    "react": "Tepki ver",
+    "src": {
+      "bot": "Asistan",
+      "ai": "Yapay zekâ önerisi",
+      "phone": "Telefondan",
+      "auto": "Otomatik",
+      "api": "API",
+      "cert": "Sertifika"
+    },
+    "message": "Mesaj gönder",
+    "deletedMsg": "Bu mesaj silindi",
+    "deletedBadge": "Karşı taraf sildi",
+    "poll": "Anket (WhatsApp'ta görüntüleyin)",
+    "unsupported": "Desteklenmeyen mesaj",
+    "note": "Dahili not",
+    "customer": "Müşteri",
+    "you": "Siz",
+    "edited": "düzenlendi",
+    "failed": "Gönderilemedi",
+    "types": {
+      "text": "Mesaj",
+      "note": "Not",
+      "image": "Fotoğraf",
+      "video": "Video",
+      "audio": "Sesli mesaj",
+      "document": "Belge",
+      "sticker": "Çıkartma",
+      "location": "Konum",
+      "contact": "Kişi kartı",
+      "poll": "Anket",
+      "deleted": "Silinen mesaj",
+      "unknown": "Mesaj"
+    },
+    "noteHint": "Dahili not: yalnız ekip görür, müşteriye gitmez.",
+    "attach": "Dosya ekle",
+    "noteMode": "Dahili not",
+    "quickReplies": "Hazır cevaplar",
+    "aiSuggest": "Yapay zekâ önerisi",
+    "notePlaceholder": "Ekip için not yazın",
+    "caption": "Açıklama ekleyin (isteğe bağlı)",
+    "write": "Mesaj yazın, Enter ile gönderin",
+    "sessionExpired": "Oturum süresi doldu. Yeniden giriş yapın.",
+    "offline": "Sunucuya ulaşılamıyor, yeniden deneniyor…",
+    "connDown": "{{name}} bağlantısı kopuk",
+    "typing": "yazıyor…",
+    "recording": "ses kaydediyor…",
+    "botTyping": "Asistan yazıyor…",
+    "bootError": "WhatsApp yüklenemedi",
+    "quoteNotLoaded": "Alıntılanan mesaj henüz yüklenmedi, yukarı kaydırın.",
+    "closed": "Kapalı",
+    "bot": {
+      "on": "Asistan açık",
+      "off": "Asistan kapalı",
+      "paused": "Asistan duraklatıldı"
+    },
+    "assign": "Sohbeti ata",
+    "unassigned": "Atanmamış",
+    "pin": "Sabitle",
+    "unpin": "Sabitlemeyi kaldır",
+    "close": "Sohbeti kapat",
+    "reopen": "Sohbeti yeniden aç",
+    "emoji": "Emoji",
+    "voice": {
+      "start": "Sesli mesaj kaydet",
+      "recording": "Kaydediliyor",
+      "denied": "Mikrofon izni verilmedi."
+    },
+    "info": {
+      "title": "Kişi bilgisi",
+      "labels": "Etiketler",
+      "notes": "Notlar",
+      "notesHint": "Yalnız ekip görür",
+      "saved": "kaydedildi",
+      "insert": "Ekle",
+      "copied": "Numara kopyalandı",
+      "firstSeen": "İlk mesaj: {{date}}"
+    },
+    "new": {
+      "title": "Yeni sohbet",
+      "phone": "Telefon numarası",
+      "name": "Ad (isteğe bağlı)",
+      "line": "Hat",
+      "invalid": "Geçersiz numara",
+      "exists": "Bu numarayla sohbet var: {{name}}",
+      "hasWa": "WhatsApp kullanıyor",
+      "noWa": "Bu numarada WhatsApp yok",
+      "go": "Sohbete git",
+      "start": "Sohbet başlat"
+    }
+  },
+  "account": {
+    "menu": "Hesap",
+    "profile": "Profilim",
+    "switch": "Hesap değiştir",
+    "web": "Siteyi aç"
+  },
+  "update": {
+    "title": "Güncellemeler",
+    "check": "Denetle",
+    "checking": "Denetleniyor…",
+    "upToDate": "Güncel",
+    "newVersion": "Yeni sürüm {{version}}",
+    "downloading": "{{version}} indiriliyor {{pct}}",
+    "restart": "Yeniden başlat ve güncelle",
+    "download": "İndir",
+    "installing": "Kuruluyor…",
+    "failed": "Denetlenemedi"
+  }
+}

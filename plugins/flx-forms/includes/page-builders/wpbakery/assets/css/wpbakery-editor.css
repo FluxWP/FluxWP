@@ -1,0 +1,19 @@
+
+.efb-wpbakery-placeholder {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.efb-wpbakery-placeholder:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(32, 42, 141, 0.3);
+}
+
+.efb-wpbakery-form-wrapper {
+    margin: 10px 0;
+}
+
+.efb-wpbakery-form-title {
+    margin-bottom: 20px;
+    color: #202a8d;
+    font-weight: 600;
+}

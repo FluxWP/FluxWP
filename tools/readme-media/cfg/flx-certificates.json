@@ -1,0 +1,151 @@
+{
+ "seed": [
+  "seed-cert.php"
+ ],
+ "slug": "flx-certificates",
+ "css": ".flx-cookie{display:none!important}#wp-admin-bar-woocommerce-site-visibility-badge{display:none!important}",
+ "shots": [
+  {
+   "name": "dashboard",
+   "url": "admin.php?page=flxs-dashboard",
+   "vh": 1000
+  },
+  {
+   "name": "certificates",
+   "url": "admin.php?page=flxs",
+   "vh": 900
+  },
+  {
+   "name": "new",
+   "url": "admin.php?page=flxs-yeni",
+   "vh": 900
+  },
+  {
+   "name": "templates",
+   "url": "admin.php?page=flxs-sablonlar",
+   "vh": 1000
+  },
+  {
+   "name": "events",
+   "url": "admin.php?page=flxs-etkinlikler",
+   "vh": 900
+  },
+  {
+   "name": "public",
+   "url": "/sertifika/mnmm7zhwr27gdm/",
+   "vh": 900,
+   "css": "#wpadminbar{display:none!important}html{margin-top:0!important}"
+  }
+ ],
+ "dark": [
+  {
+   "name": "dark",
+   "url": "admin.php?page=flxs-dashboard",
+   "vh": 900
+  }
+ ],
+ "mobile": [
+  {
+   "name": "mobile",
+   "url": "admin.php?page=flxs-dashboard"
+  },
+  {
+   "name": "mobile-public",
+   "url": "/sertifika/mnmm7zhwr27gdm/",
+   "css": "#wpadminbar{display:none!important}html{margin-top:0!important}"
+  }
+ ],
+ "gif": [
+  {
+   "goto": "admin.php?page=flxs-dashboard",
+   "wait": 2500
+  },
+  {
+   "move": [
+    500,
+    300
+   ]
+  },
+  {
+   "move": [
+    800,
+    520
+   ],
+   "wait": 900
+  },
+  {
+   "move": [
+    1050,
+    640
+   ],
+   "wait": 700
+  },
+  {
+   "click": "#adminmenu a[href$='page=flxs'], .flxa-nav a[href$='page=flxs'], a[href$='admin.php?page=flxs']",
+   "css": true,
+   "nav": true
+  },
+  {
+   "move": [
+    700,
+    400
+   ],
+   "wait": 900
+  },
+  {
+   "click": "a[href$='page=flxs-yeni']",
+   "css": true,
+   "in": "#wpbody-content",
+   "nav": true
+  },
+  {
+   "click": "input[placeholder='Seyfullah Doğan']",
+   "css": true,
+   "wait": 400
+  },
+  {
+   "type": "Ayşe Yılmaz",
+   "wait": 1500
+  },
+  {
+   "move": [
+    1100,
+    450
+   ],
+   "wait": 1200
+  },
+  {
+   "goto": "admin.php?page=flxs-sablonlar",
+   "wait": 2200
+  },
+  {
+   "move": [
+    600,
+    400
+   ],
+   "wait": 800
+  },
+  {
+   "scroll": 500,
+   "wait": 1500
+  },
+  {
+   "move": [
+    900,
+    500
+   ],
+   "wait": 800
+  },
+  {
+   "goto": "/sertifika/mnmm7zhwr27gdm/",
+   "wait": 2500
+  },
+  {
+   "move": [
+    1050,
+    470
+   ],
+   "wait": 1500
+  }
+ ]
+}

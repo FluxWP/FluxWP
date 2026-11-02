@@ -1,0 +1,52 @@
+/* Flux Chat — model seçici (1.17.0) */
+.flxmp {
+	--mp-bg: #fff; --mp-bg2: #f5f6f6; --mp-ink: #111b21; --mp-mu: #667781; --mp-ln: #dfe3e6; --mp-a: #00a884; --mp-a-ink: #008069; --mp-a-soft: #e7fce3; --mp-free: #1a7f37;
+	position: relative; display: block; min-width: 0; max-width: 100%; color: var(--mp-ink); font-size: 14px;
+}
+html.flxa-dark .flxmp {
+	--mp-bg: #1b262d; --mp-bg2: #111b21; --mp-ink: #e9edef; --mp-mu: #8696a0; --mp-ln: #2f3f49; --mp-a-ink: #21c99f; --mp-a-soft: #0a332c; --mp-free: #6fd38c;
+	color-scheme: dark;
+}
+.flxmp * { box-sizing: border-box; }
+.flxmp-row { display: flex; gap: 6px; min-width: 0; }
+.flxmp .flxmp-row select.flxmp-prov { width: auto; margin: 0; flex: 0 0 auto; max-width: 42%; min-height: 36px; border: 1px solid var(--mp-ln); border-radius: 8px; background: var(--mp-bg); color: var(--mp-ink); padding: 0 26px 0 10px; font: inherit; }
+.flxmp .flxmp-row button.flxmp-trig { width: auto; margin: 0; flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: 8px; min-height: 36px; padding: 6px 10px; border: 1px solid var(--mp-ln); border-radius: 8px; background: var(--mp-bg); color: var(--mp-ink); font: inherit; text-align: left; cursor: pointer; }
+.flxmp button.flxmp-trig:hover, .flxmp.is-open button.flxmp-trig { border-color: var(--mp-a); }
+.flxmp-tn { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.flxmp-tb { flex: 0 0 auto; font-size: 12px; color: var(--mp-mu); font-variant-numeric: tabular-nums; }
+.flxmp-tb.is-free { color: var(--mp-free); font-weight: 600; }
+.flxmp-ta { flex: 0 0 auto; color: var(--mp-mu); font-size: 11px; }
+
+.flxmp-pop { position: absolute; z-index: 100; top: calc(100% + 6px); left: 0; width: min(460px, calc(100vw - 32px)); display: flex; flex-direction: column; max-height: min(520px, 70vh); background: var(--mp-bg); border: 1px solid var(--mp-ln); border-radius: 12px; box-shadow: 0 12px 32px rgba(0, 0, 0, .18); overflow: hidden; }
+.flxmp-pop[hidden] { display: none; }
+.flxmp-head { display: flex; align-items: center; gap: 6px; padding: 10px 10px 6px; }
+.flxmp .flxmp-head input.flxmp-q { width: auto; margin: 0; flex: 1 1 auto; min-width: 0; min-height: 36px; padding: 6px 10px; border: 1px solid var(--mp-ln); border-radius: 8px; background: var(--mp-bg2); color: var(--mp-ink); font: inherit; }
+.flxmp-q:focus, .flxmp-pn:focus { outline: 2px solid color-mix(in srgb, var(--mp-a) 50%, transparent); outline-offset: 0; border-color: var(--mp-a); }
+.flxmp-x { flex: 0 0 auto; width: 32px; height: 32px; border: 0; border-radius: 8px; background: none; color: var(--mp-mu); font-size: 20px; line-height: 1; cursor: pointer; }
+.flxmp-x:hover { background: var(--mp-bg2); color: var(--mp-ink); }
+.flxmp-tabs { display: flex; gap: 4px; padding: 0 10px 6px; overflow-x: auto; scrollbar-width: none; flex: 0 0 auto; }
+.flxmp-tabs[hidden] { display: none; }
+.flxmp-tabs::-webkit-scrollbar { display: none; }
+.flxmp-tab { flex: 0 0 auto; padding: 4px 10px; border: 1px solid var(--mp-ln); border-radius: 999px; background: none; color: var(--mp-mu); font: 500 12.5px/1.4 inherit; white-space: nowrap; cursor: pointer; }
+.flxmp-tab:hover { color: var(--mp-ink); }
+.flxmp-tab.is-on { background: var(--mp-a-soft); border-color: var(--mp-a); color: var(--mp-a-ink); }
+.flxmp-pr { display: flex; align-items: center; gap: 6px; padding: 0 10px 8px; font-size: 12.5px; color: var(--mp-mu); flex-wrap: wrap; flex: 0 0 auto; }
+.flxmp .flxmp-pr input.flxmp-pn { flex: 0 0 auto; margin: 0; width: 76px; min-height: 30px; padding: 4px 8px; border: 1px solid var(--mp-ln); border-radius: 6px; background: var(--mp-bg2); color: var(--mp-ink); font: inherit; }
+.flxmp-clr { border: 0; background: none; color: var(--mp-a-ink); font: inherit; cursor: pointer; padding: 2px 4px; }
+.flxmp-list { flex: 1 1 auto; overflow-y: auto; border-top: 1px solid var(--mp-ln); padding: 4px; overscroll-behavior: contain; }
+.flxmp-opt { display: flex; align-items: center; gap: 10px; width: 100%; padding: 8px 10px; border: 0; border-radius: 8px; background: none; color: var(--mp-ink); font: inherit; text-align: left; cursor: pointer; }
+.flxmp-opt:hover, .flxmp-opt.is-act { background: var(--mp-bg2); }
+.flxmp-opt.is-on { background: var(--mp-a-soft); }
+.flxmp-opt.is-on .flxmp-on::after { content: " ✓"; color: var(--mp-a-ink); }
+.flxmp-ol { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
+.flxmp-on { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.flxmp-os { font-size: 12px; color: var(--mp-mu); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.flxmp-op { flex: 0 0 auto; font-size: 12.5px; color: var(--mp-mu); font-variant-numeric: tabular-nums; }
+.flxmp-op.is-free { color: var(--mp-free); font-weight: 600; }
+.flxmp-more { margin: 0; padding: 12px; color: var(--mp-mu); font-size: 13px; text-align: center; }
+.flxmp-foot { flex: 0 0 auto; padding: 8px 12px; border-top: 1px solid var(--mp-ln); color: var(--mp-mu); font-size: 12px; background: var(--mp-bg2); }
+
+@media (max-width: 600px) {
+	.flxmp-pop { position: fixed; left: 8px; right: 8px; top: auto; bottom: 8px; width: auto; max-height: 75vh; z-index: 100100; }
+	.flxmp .flxmp-row select.flxmp-prov { max-width: 46%; }
+}

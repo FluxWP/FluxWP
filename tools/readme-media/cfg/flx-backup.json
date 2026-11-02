@@ -1,0 +1,100 @@
+{
+ "slug": "flx-backup",
+ "shots": [
+  {
+   "name": "dashboard",
+   "url": "admin.php?page=flx-backup",
+   "vh": 900
+  },
+  {
+   "name": "backups",
+   "url": "admin.php?page=flx-backup-list",
+   "vh": 900
+  },
+  {
+   "name": "settings",
+   "url": "admin.php?page=flx-backup-settings",
+   "vh": 1000
+  },
+  {
+   "name": "restore",
+   "url": "admin.php?page=flx-backup-list",
+   "click": "table tbody tr a, .flxy-row a",
+   "vh": 900
+  }
+ ],
+ "dark": [
+  {
+   "name": "dark",
+   "url": "admin.php?page=flx-backup",
+   "vh": 900
+  }
+ ],
+ "mobile": [
+  {
+   "name": "mobile",
+   "url": "admin.php?page=flx-backup"
+  }
+ ],
+ "gif": [
+  {
+   "goto": "admin.php?page=flx-backup",
+   "wait": 2500
+  },
+  {
+   "move": [
+    500,
+    450
+   ]
+  },
+  {
+   "move": [
+    900,
+    520
+   ],
+   "wait": 700
+  },
+  {
+   "move": [
+    1150,
+    480
+   ],
+   "wait": 700
+  },
+  {
+   "click": "a[href*='page=flx-backup-list']",
+   "css": true,
+   "in": "#wpbody-content",
+   "nav": true
+  },
+  {
+   "click": "table tbody tr a, .flxy-row a",
+   "css": true,
+   "wait": 2200
+  },
+  {
+   "move": [
+    700,
+    500
+   ],
+   "wait": 1200
+  },
+  {
+   "click": "a[href*='page=flx-backup-settings']",
+   "css": true,
+   "in": "#wpbody-content",
+   "nav": true
+  },
+  {
+   "scroll": 400,
+   "wait": 1500
+  },
+  {
+   "move": [
+    700,
+    500
+   ],
+   "wait": 900
+  }
+ ]
+}

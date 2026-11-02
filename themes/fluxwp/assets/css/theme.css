@@ -1,0 +1,1482 @@
+:root{
+  --flx-i-leaf:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 19c0-9 6-14 15-14 0 9-5 15-14 15z'/%3E%3Cpath d='M5 19l8-8'/%3E%3C/svg%3E");
+  --flx-i-sprout:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21v-9'/%3E%3Cpath d='M12 12C7 12 5 9 5 5c5 0 7 3 7 7z'/%3E%3Cpath d='M12 10c4 0 7-2 7-6-4 0-7 2-7 6z'/%3E%3C/svg%3E");
+  --flx-i-tree:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22v-5'/%3E%3Cpath d='M12 2l6 8h-3l4 6H5l4-6H6z'/%3E%3C/svg%3E");
+  --flx-i-users:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='7.5' r='3'/%3E%3Cpath d='M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5'/%3E%3Ccircle cx='17' cy='8.5' r='2.4'/%3E%3Cpath d='M15.5 14.6c3 0 5.5 1.7 5.5 4.9'/%3E%3C/svg%3E");
+  --flx-i-heart:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.3a4.2 4.2 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z'/%3E%3C/svg%3E");
+  --flx-i-calendar:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3.5' y='5' width='17' height='15.5' rx='2.5'/%3E%3Cpath d='M3.5 10h17M8 3v4M16 3v4'/%3E%3C/svg%3E");
+  --flx-i-recycle:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 12a8 8 0 1 1-2.4-5.7'/%3E%3Cpath d='M20 4v4.5h-4.5'/%3E%3Cpath d='M9 12.5l2 2 4-4.5'/%3E%3C/svg%3E");
+  --flx-i-cap:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 9.5l10-5 10 5-10 5z'/%3E%3Cpath d='M6 11.5v5c3.5 2.3 8.5 2.3 12 0v-5'/%3E%3Cpath d='M22 9.5v5'/%3E%3C/svg%3E");
+  --flx-i-wind:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8h11a3 3 0 1 0-3-3'/%3E%3Cpath d='M3 12h16a3 3 0 1 1-3 3'/%3E%3Cpath d='M3 16h7'/%3E%3C/svg%3E");
+  --flx-i-pin:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21s-7-6-7-11.2a7 7 0 0 1 14 0C19 15 12 21 12 21z'/%3E%3Ccircle cx='12' cy='9.8' r='2.4'/%3E%3C/svg%3E");
+  --flx-i-city:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 21h18M5 21V9h5v12M10 21V4h6v17M16 21v-9h3v9'/%3E%3C/svg%3E");
+  --flx-i-water:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z'/%3E%3C/svg%3E");
+  --flx-i-mail:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='14' rx='2.5'/%3E%3Cpath d='M3.5 7l8.5 6 8.5-6'/%3E%3C/svg%3E");
+  --flx-i-arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E");
+  --flx-i-chev-l:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 5l-7 7 7 7'/%3E%3C/svg%3E");
+  --flx-i-chev-r:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 5l7 7-7 7'/%3E%3C/svg%3E");
+  --flx-i-star:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z' fill='black'/%3E%3C/svg%3E");
+}
+.is-style-icon-leaf{--flx-icon:var(--flx-i-leaf)}
+.is-style-icon-sprout{--flx-icon:var(--flx-i-sprout)}
+.is-style-icon-tree{--flx-icon:var(--flx-i-tree)}
+.is-style-icon-users{--flx-icon:var(--flx-i-users)}
+.is-style-icon-heart{--flx-icon:var(--flx-i-heart)}
+.is-style-icon-calendar{--flx-icon:var(--flx-i-calendar)}
+.is-style-icon-recycle{--flx-icon:var(--flx-i-recycle)}
+.is-style-icon-cap{--flx-icon:var(--flx-i-cap)}
+.is-style-icon-wind{--flx-icon:var(--flx-i-wind)}
+.is-style-icon-pin{--flx-icon:var(--flx-i-pin)}
+.is-style-icon-city{--flx-icon:var(--flx-i-city)}
+.is-style-icon-water{--flx-icon:var(--flx-i-water)}
+.is-style-icon-mail{--flx-icon:var(--flx-i-mail)}
+/* ==========================================================================
+   Örnek Vakfı: tema stilleri
+   Renk/yazı tipi değerleri theme.json preset'lerinden gelir (var(--wp--preset--...)).
+   ========================================================================== */
+
+:root{
+  --flx-primary:var(--wp--preset--color--primary);
+  --flx-primary-dark:var(--wp--preset--color--primary-dark);
+  --flx-leaf:var(--wp--preset--color--leaf);
+  --flx-ink:var(--wp--preset--color--ink);
+  --flx-text:var(--wp--preset--color--text);
+  --flx-mint:var(--wp--preset--color--mint);
+  --flx-mint-soft:var(--wp--preset--color--mint-soft);
+  --flx-line:var(--wp--preset--color--line);
+  --flx-radius:var(--wp--custom--radius--card,16px);
+  --flx-radius-media:var(--wp--custom--radius--media,24px);
+  --flx-shadow:var(--wp--custom--shadow--card,0 10px 30px rgba(20,50,74,.08));
+  --flx-surface:#fff;
+  --flx-surface-glass:rgba(255,255,255,.92);
+}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+:where(a,button,input):focus-visible{outline:3px solid var(--flx-leaf);outline-offset:2px}
+
+/* ---------- Simge (block style) ---------- */
+[class*="is-style-icon-"]::before{
+  content:"";display:inline-block;flex:none;width:1.15em;height:1.15em;margin-right:.45em;vertical-align:-.18em;
+  background:currentColor;-webkit-mask:var(--flx-icon) center/contain no-repeat;mask:var(--flx-icon) center/contain no-repeat;
+}
+
+/* ---------- Yardımcılar ---------- */
+.flx-eyebrow{font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:var(--wp--preset--font-size--x-small);letter-spacing:.14em;text-transform:uppercase;color:var(--flx-primary)}
+.flx-link-arrow a,.flx-link-arrow{font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:var(--wp--preset--font-size--small);color:var(--flx-primary);text-decoration:none}
+.flx-link-arrow a::after,.flx-btn-arrow .wp-block-button__link::after{content:"";display:inline-block;width:1em;height:1em;margin-left:.45em;vertical-align:-.15em;background:currentColor;-webkit-mask:var(--flx-i-arrow) center/contain no-repeat;mask:var(--flx-i-arrow) center/contain no-repeat;transition:transform .15s}
+.flx-link-arrow a:hover::after,.flx-btn-arrow .wp-block-button__link:hover::after{transform:translateX(3px)}
+.flx-btn-heart .wp-block-button__link::before{content:"";display:inline-block;width:1.1em;height:1.1em;margin-right:.5em;vertical-align:-.2em;background:currentColor;-webkit-mask:var(--flx-i-heart) center/contain no-repeat;mask:var(--flx-i-heart) center/contain no-repeat}
+.wp-block-button.is-style-outline .wp-block-button__link{border-width:1.5px}
+.wp-block-button__link{transition:background-color .15s,color .15s,transform .15s}
+.wp-block-button__link:hover{transform:translateY(-1px)}
+.flx-pill{display:inline-flex!important;align-items:center;width:max-content;max-width:100%;padding:.3em .9em;border-radius:999px;font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:var(--wp--preset--font-size--x-small);line-height:1.5}
+.flx-hand{font-family:var(--wp--preset--font-family--hand);font-weight:600;line-height:1.05}
+
+/* ---------- Header ---------- */
+.flx-header{background:var(--flx-surface);box-shadow:0 1px 0 var(--flx-line)}
+.flx-brand .wp-block-site-title{line-height:1}
+.flx-brand .wp-block-site-title a{display:inline-flex;align-items:center;gap:.4rem;color:var(--flx-ink);text-decoration:none}
+.flx-brand .wp-block-site-title a::before{content:"";width:2.1rem;height:2.1rem;background:var(--flx-primary);-webkit-mask:var(--flx-i-leaf) center/contain no-repeat;mask:var(--flx-i-leaf) center/contain no-repeat}
+.flx-brand .wp-block-site-tagline{margin:0;padding-left:2.5rem;font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--flx-primary);line-height:1.2}
+.flx-header .wp-block-navigation a{text-decoration:none}
+.flx-header .wp-block-navigation a:hover{color:var(--flx-primary)}
+.flx-header .wp-block-search__button{background:transparent;color:var(--flx-ink);border:0}
+
+/* ---------- Hero slider (Swiper, tam genişlik, alt köşeler radius) ---------- */
+.flx-hero-wrap{position:relative;margin-top:0!important}
+.flx-hero{position:relative;overflow:hidden;border-radius:0 0 clamp(28px,4vw,56px) clamp(28px,4vw,56px);isolation:isolate}
+.flx-hero .wp-block-cover{min-height:clamp(460px,56vw,640px);border-radius:0;align-items:center;margin:0}
+.flx-hero .wp-block-cover__inner-container{max-width:1240px;margin-inline:auto;width:100%;position:relative;z-index:2}
+.flx-hero .wp-block-cover__image-background{z-index:0}
+.flx-hero .wp-block-cover__background{z-index:1}
+.flx-stamp{font-family:var(--wp--preset--font-family--hand);font-weight:600;font-size:clamp(1.4rem,1rem + 1vw,1.9rem);line-height:1.1;transform:rotate(-6deg)}
+.flx-hero-wrap>.flx-stamp{position:absolute;z-index:6;margin:0!important;pointer-events:none}
+.flx-hero .swiper-slide{display:flex}
+.flx-hero h1,.flx-hero h2{color:#fff;max-width:13ch;margin-block:.6rem .4rem}
+.flx-hero h1 mark,.flx-hero h2 mark{background:transparent;color:var(--flx-leaf)}
+.flx-hero p{color:#fff;max-width:44ch}
+.flx-hero .flx-pill{background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.85);color:#fff;backdrop-filter:blur(6px)}
+.flx-hero .flx-stamp{color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.25)}
+/* Slayt içeriği giriş animasyonu */
+.flx-hero.swiper .wp-block-cover__inner-container>*{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.flx-hero.swiper .swiper-slide-active .wp-block-cover__inner-container>*{opacity:1;transform:none}
+.flx-hero.swiper .swiper-slide-active .wp-block-cover__inner-container>:nth-child(2){transition-delay:.12s}
+.flx-hero.swiper .swiper-slide-active .wp-block-cover__inner-container>:nth-child(3){transition-delay:.24s}
+.flx-hero.swiper .swiper-slide-active .wp-block-cover__inner-container>:nth-child(4){transition-delay:.36s}
+.flx-hero .swiper-slide-active .wp-block-cover__image-background{animation:flx-kenburns 9s ease-out both}
+@keyframes flx-kenburns{from{transform:scale(1.08)}to{transform:scale(1)}}
+/* Ok butonları */
+.flx-swiper-prev,.flx-swiper-next{position:absolute;top:50%;z-index:5;width:52px;height:52px;margin-top:-26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.7);background:rgba(255,255,255,.12);backdrop-filter:blur(8px);cursor:pointer;transition:background .2s,transform .2s,border-color .2s}
+.flx-swiper-prev{left:clamp(.75rem,2vw,1.75rem)}
+.flx-swiper-next{right:clamp(.75rem,2vw,1.75rem)}
+.flx-swiper-prev::after,.flx-swiper-next::after{content:"";position:absolute;inset:14px;background:#fff;-webkit-mask:var(--flx-i-chev-l) center/contain no-repeat;mask:var(--flx-i-chev-l) center/contain no-repeat}
+.flx-swiper-next::after{-webkit-mask-image:var(--flx-i-chev-r);mask-image:var(--flx-i-chev-r)}
+.flx-swiper-prev:hover,.flx-swiper-next:hover{background:var(--flx-leaf);border-color:var(--flx-leaf);transform:scale(1.06)}
+/* Sayfalama */
+.flx-hero .swiper-pagination{bottom:clamp(1.4rem,3vw,2.2rem)!important;z-index:5}
+.flx-slider .swiper-pagination-bullet{width:10px;height:10px;opacity:1;background:rgba(255,255,255,.55);transition:width .25s,background .25s;border-radius:99px}
+.flx-slider .swiper-pagination-bullet-active{width:30px;background:#fff}
+/* 0.5.27: hero'da aktif nokta gri, slayt süresi boyunca içi beyazla dolar (--flx-fill slider.js'den) */
+.flx-hero .swiper-pagination-bullet{position:relative;overflow:hidden}
+.flx-hero .swiper-pagination-bullet-active{width:36px;background:rgba(255,255,255,.35)}
+.flx-hero .swiper-pagination-bullet-active::after{content:"";position:absolute;inset:0;background:#fff;border-radius:inherit;transform-origin:left;transform:scaleX(var(--flx-fill,0))}
+@media (prefers-reduced-motion:reduce){.flx-hero .swiper-pagination-bullet-active::after{transform:none}}
+/* Otomatik geçiş çubuğu */
+.flx-swiper-progress{position:absolute;left:0;right:0;bottom:0;height:4px;z-index:6;background:rgba(255,255,255,.18)}
+.flx-swiper-progress span{display:block;height:100%;background:var(--flx-leaf);transform-origin:left;transform:scaleX(0)}
+@media (max-width:700px){.flx-hero .flx-swiper-prev,.flx-hero .flx-swiper-next{display:none}}
+
+/* ---------- Bölüm başlık satırı ---------- */
+.flx-section-head{gap:1rem 2rem}
+.flx-section-head h2{margin:0}
+.flx-section-head>p:not(.flx-link-arrow){max-width:44ch;font-size:var(--wp--preset--font-size--small);margin:0}
+
+/* ---------- Kart ---------- */
+.is-style-flx-card,.flx-card{background:var(--flx-surface);border-radius:var(--flx-radius);box-shadow:var(--flx-shadow);overflow:hidden;height:100%;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.is-style-flx-card:hover,.flx-card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(20,50,74,.12)}
+.flx-card .wp-block-image,.flx-card .wp-block-post-featured-image{margin:0}
+.flx-card .wp-block-image img,.flx-card .wp-block-post-featured-image img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
+.flx-card__body{position:relative;padding:2rem 1.4rem 1.4rem;flex:1;display:flex;flex-direction:column;gap:.5rem}
+.flx-card__body>*{margin:0!important}
+.flx-card__body h3,.flx-card__body .wp-block-post-title{font-size:var(--wp--preset--font-size--large)}
+.flx-card__body h3 a,.flx-card__body .wp-block-post-title a{color:inherit;text-decoration:none}
+.flx-card__body h3 a::after,.flx-card__body .wp-block-post-title a::after{content:"";position:absolute;inset:0}
+.flx-card__body p{font-size:var(--wp--preset--font-size--small);padding-right:2rem}
+.flx-card{position:relative}
+.flx-card__body::after{content:"";position:absolute;right:1.3rem;bottom:1.4rem;width:1.1rem;height:1.1rem;background:var(--flx-ink);-webkit-mask:var(--flx-i-arrow) center/contain no-repeat;mask:var(--flx-i-arrow) center/contain no-repeat;transition:transform .2s}
+.flx-card:hover .flx-card__body::after{transform:translateX(3px);background:var(--flx-primary)}
+/* Kart başlığındaki simge: görselin kenarına oturan rozet */
+.flx-card__body [class*="is-style-icon-"]::before{position:absolute;top:-26px;left:1.3rem;width:52px;height:52px;margin:0;border-radius:50%;background:var(--flx-surface);box-shadow:0 4px 14px rgba(20,50,74,.12);-webkit-mask:none;mask:none;background-image:none}
+.flx-card__body [class*="is-style-icon-"]::after{content:"";position:absolute;top:-12px;left:calc(1.3rem + 14px);width:24px;height:24px;background:var(--flx-primary);-webkit-mask:var(--flx-icon) center/contain no-repeat;mask:var(--flx-icon) center/contain no-repeat}
+.flx-card--compact .flx-card__body{padding:1.9rem 1.1rem 1.1rem}
+.flx-card--compact .flx-card__body h3,.flx-card--compact .wp-block-post-title{font-size:var(--wp--preset--font-size--medium)}
+.flx-card--compact .wp-block-post-excerpt{font-size:var(--wp--preset--font-size--x-small)}
+.flx-card--compact .wp-block-post-excerpt__excerpt{margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.flx-card--compact .wp-block-post-excerpt__more-text{display:none}
+/* Query Loop kartları için sabit fidan rozeti */
+.flx-works .flx-card__body::before{content:"";position:absolute;top:-24px;left:1.1rem;width:48px;height:48px;border-radius:50%;background:var(--flx-surface);box-shadow:0 4px 14px rgba(20,50,74,.12)}
+.flx-works .flx-card__body>.wp-block-post-title::before{content:"";position:absolute;top:-12px;left:calc(1.1rem + 13px);width:22px;height:22px;background:var(--flx-primary);-webkit-mask:var(--flx-i-sprout) center/contain no-repeat;mask:var(--flx-i-sprout) center/contain no-repeat}
+.flx-works .wp-block-post-featured-image img{aspect-ratio:4/3}
+.flx-noimg .wp-block-post-featured-image:empty,.wp-block-post-template .flx-card:not(:has(.wp-block-post-featured-image)) .flx-card__body{padding-top:2.4rem}
+
+/* ---------- İstatistik bandı ---------- */
+.flx-stats{position:relative;overflow:hidden}
+.flx-stats::before,.flx-stats::after{content:"";position:absolute;width:120px;height:120px;background:var(--flx-leaf);opacity:.35;-webkit-mask:var(--flx-i-leaf) center/contain no-repeat;mask:var(--flx-i-leaf) center/contain no-repeat;pointer-events:none}
+.flx-stats::before{left:-20px;bottom:-10px;transform:rotate(-20deg)}
+.flx-stats::after{right:-24px;top:-14px;transform:rotate(150deg)}
+.flx-stats h2{font-size:var(--wp--preset--font-size--x-large);margin:0;max-width:14ch}
+.flx-stat{text-align:center;min-width:120px;flex:1}
+.flx-stat>*{margin:0!important}
+.flx-stat h3{font-size:clamp(1.6rem,2.6vw,2rem);font-weight:900;color:var(--flx-ink);display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.flx-stat h3::before{width:2.2rem;height:2.2rem;margin:0;color:var(--flx-primary)}
+.flx-stat p{font-size:var(--wp--preset--font-size--small);color:var(--flx-text)}
+
+/* ---------- Şehir (split) ---------- */
+.flx-city{position:relative;overflow:hidden}
+.flx-city h2{font-size:var(--wp--preset--font-size--xx-large);max-width:14ch}
+.flx-city .wp-block-image img{border-radius:var(--flx-radius-media);width:100%;aspect-ratio:4/3;object-fit:cover;box-shadow:var(--flx-shadow)}
+.flx-features{gap:1rem 1.6rem}
+.flx-features p{display:flex;align-items:center;margin:0;font-family:var(--wp--preset--font-family--heading);font-weight:800;color:var(--flx-ink);font-size:var(--wp--preset--font-size--small);line-height:1.25;max-width:9rem}
+.flx-features p::before{width:2.1rem;height:2.1rem;margin-right:.6rem;color:var(--flx-primary)}
+
+/* ---------- Örnek çalışmalar ---------- */
+.flx-feature-project{background:var(--flx-surface);border-radius:var(--flx-radius);box-shadow:var(--flx-shadow);overflow:hidden}
+.flx-feature-project .wp-block-image{margin:0;height:100%}
+.flx-feature-project .wp-block-image img{width:100%;height:100%;min-height:240px;object-fit:cover;display:block}
+.flx-feature-project .flx-pill{background:var(--flx-primary);color:#fff}
+.flx-mini-stats{gap:1.2rem}
+.flx-mini-stats p{margin:0;font-size:var(--wp--preset--font-size--x-small);line-height:1.3}
+.flx-mini-stats strong{display:block;font-family:var(--wp--preset--font-family--heading);font-size:1rem;color:var(--flx-ink)}
+.flx-mini-stats p::before{width:1.5rem;height:1.5rem;color:var(--flx-primary);float:left;margin:.1rem .45rem 0 0}
+.flx-side-item{background:var(--flx-surface);border-radius:var(--flx-radius);box-shadow:var(--flx-shadow);overflow:hidden;position:relative}
+.flx-side-item .wp-block-image{margin:0;height:100%}
+.flx-side-item .wp-block-image img{width:100%;height:100%;min-height:120px;object-fit:cover;display:block}
+.flx-side-item h3{font-size:var(--wp--preset--font-size--medium)}
+.flx-side-item h3 a{color:inherit;text-decoration:none}
+.flx-side-item h3 a::after{content:"";position:absolute;inset:0}
+.flx-side-item p{font-size:var(--wp--preset--font-size--x-small)}
+
+/* ---------- Haberler ---------- */
+.flx-news .wp-block-post-featured-image img{aspect-ratio:16/10}
+.flx-news .flx-card__body{padding:1rem 1rem 1.1rem;gap:.3rem}
+.flx-news .wp-block-post-date{color:var(--flx-text)}
+.flx-news .wp-block-post-title{font-size:var(--wp--preset--font-size--small)!important;line-height:1.35;padding-right:1.6rem}
+
+/* ---------- Topluluk yorumları ---------- */
+.flx-quotes{position:relative;background:var(--flx-surface);border-radius:var(--flx-radius);box-shadow:var(--flx-shadow);padding:1.4rem 1.4rem 3.4rem}
+.flx-quotes .swiper-pagination{left:1.4rem!important;bottom:1.15rem!important;width:auto!important;text-align:left}
+.flx-quotes .swiper-pagination-bullet{background:var(--flx-line);width:8px;height:8px}
+.flx-quotes .swiper-pagination-bullet-active{background:var(--flx-primary);width:22px}
+.flx-quotes .flx-swiper-prev,.flx-quotes .flx-swiper-next{top:auto;bottom:.8rem;margin:0;width:34px;height:34px;background:#fff;border-color:var(--flx-line);backdrop-filter:none}
+.flx-quotes .flx-swiper-prev{left:auto;right:3.4rem}.flx-quotes .flx-swiper-next{right:1rem}
+.flx-quotes .flx-swiper-prev::after,.flx-quotes .flx-swiper-next::after{inset:9px;background:var(--flx-ink)}
+.flx-quotes .flx-swiper-prev:hover::after,.flx-quotes .flx-swiper-next:hover::after{background:#fff}
+.flx-quotes.swiper{overflow:hidden}
+.flx-quote .wp-block-image img{width:64px;height:64px;border-radius:50%;object-fit:cover}
+.flx-quote .wp-block-image{margin:0;flex:none}
+.flx-stars{color:#F2B300;letter-spacing:.1em;font-size:.95rem;margin:.1rem 0 0!important}
+.flx-quote .wp-block-quote{margin:0;padding:0;font-size:var(--wp--preset--font-size--small);font-style:italic}
+.flx-quote .wp-block-quote p{margin:0}
+
+/* ---------- Bülten ---------- */
+.flx-newsletter{gap:1rem 2rem}
+.flx-newsletter h3{font-size:var(--wp--preset--font-size--medium);margin:0}
+.flx-newsletter h3::before{width:2.6rem;height:2.6rem;color:var(--flx-primary);vertical-align:middle;margin-right:.8rem}
+.flx-newsletter-form{display:flex;gap:.5rem;flex-wrap:wrap;background:var(--flx-surface);border-radius:999px;padding:.35rem;box-shadow:var(--flx-shadow);max-width:460px;width:100%}
+.flx-newsletter-form input{flex:1 1 180px;min-width:0;border:0;background:transparent;padding:.6rem 1rem;font:inherit;font-size:var(--wp--preset--font-size--small);color:var(--flx-ink)}
+.flx-newsletter-form button{border:0;border-radius:999px;background:var(--flx-primary);color:#fff;padding:.7rem 1.4rem;font-family:var(--wp--preset--font-family--heading);font-weight:800;cursor:pointer}
+.flx-newsletter-form button:hover{background:var(--flx-primary-dark)}
+
+/* ---------- Footer ---------- */
+.flx-footer{color:rgba(255,255,255,.82)}
+.flx-footer a{color:#fff;text-decoration:none}
+.flx-footer a:hover{text-decoration:underline}
+.flx-footer h4{color:#fff;font-size:var(--wp--preset--font-size--small)}
+.flx-footer .flx-brand .wp-block-site-title a,.flx-footer .flx-brand .wp-block-site-tagline{color:#fff}
+.flx-footer .flx-brand .wp-block-site-title a::before{background:#fff}
+.flx-footer .wp-block-navigation{font-size:var(--wp--preset--font-size--small);font-weight:600}
+.flx-footer .flx-stamp{position:static;color:#fff;transform:rotate(-6deg)}
+.flx-footer .wp-block-social-links .wp-social-link{background:transparent!important;color:#fff!important}
+
+/* ---------- İçerik sayfaları ---------- */
+.flx-page-hero{border-radius:var(--flx-radius-media)}
+.wp-block-post-template.is-layout-grid .wp-block-post{height:100%}
+.wp-block-query-pagination{font-family:var(--wp--preset--font-family--heading);font-weight:800}
+.flx-header-part{position:sticky;top:0;z-index:50}
+.admin-bar .flx-header-part{top:var(--wp-admin--admin-bar--height,32px)}
+@media (max-width:600px){.admin-bar .flx-header-part{top:0}}
+.flx-hero-wrap>.flx-stamp{z-index:3;top:1.8rem;right:clamp(2rem,5vw,4.5rem);color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.3)}
+
+/* ---------- Erişilebilirlik ve düzeltmeler ---------- */
+.screen-reader-text{border:0;clip:rect(1px,1px,1px,1px);clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute!important;width:1px;word-wrap:normal!important}
+.screen-reader-text:focus{background:#fff;clip:auto!important;clip-path:none;color:var(--flx-ink);display:block;height:auto;left:5px;padding:12px 20px;top:5px;width:auto;z-index:100000}
+.flx-footer .wp-block-navigation,.flx-footer .wp-block-navigation a{color:rgba(255,255,255,.85)}
+.flx-footer .wp-block-navigation a:hover{color:#fff}
+.flx-footer .flx-stamp{font-size:1.5rem;max-width:none;margin-top:1rem!important}
+.flx-mini-stats p{display:grid;grid-template-columns:auto auto;column-gap:.45rem;align-items:center}
+.flx-mini-stats p::before{float:none;margin:0;grid-row:span 2}
+.flx-mini-stats strong{white-space:nowrap}
+@media (max-width:600px){
+  .flx-header .wp-block-site-title{font-size:1.15rem!important;white-space:nowrap}
+  .flx-header .wp-block-button__link{padding:.6em 1em;font-size:.8rem;white-space:nowrap}
+  .flx-header .flx-btn-heart .wp-block-button__link::before{display:none}
+}
+@media (max-width:700px){
+  .flx-hero .wp-block-cover__background{background:linear-gradient(180deg,rgba(6,38,28,.55),rgba(6,38,28,.8))!important}
+}
+@media (max-width:600px){
+  .flx-header .alignwide{gap:.6rem!important}
+  .flx-header .wp-block-search{display:none}
+  .flx-header .flx-brand{min-width:0}
+  .flx-brand .wp-block-site-tagline{padding-left:2.1rem;letter-spacing:.14em}
+  .flx-header .flx-brand .wp-block-site-title a::before{width:1.7rem;height:1.7rem}
+}
+
+/* ---------- Footer'ı kısa sayfalarda en alta it ---------- */
+.wp-site-blocks{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
+.admin-bar .wp-site-blocks{min-height:calc(100dvh - var(--wp-admin--admin-bar--height,32px))}
+.wp-site-blocks>footer{margin-top:auto!important}
+.wp-site-blocks>main{width:100%}
+
+/* ---------- Sayfa başlığı ---------- */
+.flx-page-head h1{color:#fff;max-width:18ch;margin-block:.5rem}
+.flx-page-head p{color:#fff;max-width:52ch}
+.flx-page-head .flx-pill{background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.85);color:#fff}
+.flx-rounded img{border-radius:var(--flx-radius-media)}
+.flx-step{background:var(--flx-surface);border-radius:var(--flx-radius);box-shadow:var(--flx-shadow);padding:1.5rem;height:100%}
+.flx-step h3{display:flex;align-items:center;margin:0 0 .5rem}
+.flx-step h3::before{width:1.6rem;height:1.6rem;color:var(--flx-primary)}
+
+/* ---------- Bağış ---------- */
+.flx-pay-card{background:var(--flx-surface);border-radius:var(--flx-radius);box-shadow:var(--flx-shadow);height:100%;position:relative}
+.flx-pay-card h2{display:flex;align-items:center;margin:0 0 .4rem}
+.flx-pay-card h2::before{width:1.5rem;height:1.5rem;color:var(--flx-primary)}
+.flx-pay-card--soon{background:var(--flx-mint-soft)}
+.flx-pill--soon{background:#FFF1C9;color:#7A5A00;margin-bottom:.6rem!important}
+.flx-soon-btn{display:block;text-align:center;padding:.85em 1.5em;border-radius:999px;background:var(--flx-line);color:var(--flx-text);font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:var(--wp--preset--font-size--small);cursor:not-allowed;user-select:none}
+.flx-bank-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:.35rem 1rem;padding:.9rem 1rem;margin-top:.7rem!important;border:1.5px solid var(--flx-line);border-radius:12px;background:var(--flx-mint-soft)}
+.flx-bank-row>*{margin:0!important}
+.flx-bank-label{grid-column:1;grid-row:1;align-self:center;font-size:var(--wp--preset--font-size--x-small);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--flx-primary)}
+.flx-copy{grid-column:1/-1;grid-row:2;font-family:var(--wp--preset--font-family--heading);font-weight:800;color:var(--flx-ink);font-size:1.02rem;min-width:0;overflow-wrap:anywhere}
+.flx-copy--iban{font-variant-numeric:tabular-nums;letter-spacing:.03em}
+.flx-bank-row .flx-copy-btn{grid-column:2;grid-row:1;justify-self:end;align-self:center;padding:.3em .85em;font-size:.75rem}
+.flx-copy-btn{border:1.5px solid var(--flx-primary);background:var(--flx-surface);color:var(--flx-primary);border-radius:999px;padding:.45em 1em;font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:.8rem;cursor:pointer;white-space:nowrap;transition:background .15s,color .15s}
+.flx-copy-btn:hover,.flx-copy-btn.is-done{background:var(--flx-primary);color:#fff}
+.flx-note{font-size:var(--wp--preset--font-size--small);color:var(--flx-text);margin-top:1rem!important;padding:.8rem 1rem;border-radius:12px;background:var(--flx-mint)}
+.flx-page-head .wp-block-cover__inner-container{max-width:1240px;margin-inline:auto}
+.flx-page-head .wp-block-cover__inner-container>*{margin-left:0!important;margin-right:auto!important}
+
+/* ==========================================================================
+   v0.3: detay sayfaları, kenar çubuğu, yazı gezinmesi, arama modalı
+   ========================================================================== */
+
+/* ---------- Desenli şerit (detay ve liste başlığı) ---------- */
+.flx-band{
+  --flx-band-pattern:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120' fill='none' stroke='white' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 44c0-14 9-22 23-22 0 14-8 23-22 23z'/%3E%3Cpath d='M18 44l12-12'/%3E%3Cpath d='M86 104V90M86 90c-7 0-10-4-10-10 7 0 10 4 10 10zM86 87c6 0 10-3 10-9-6 0-10 3-10 9z'/%3E%3Ccircle cx='96' cy='26' r='2.2'/%3E%3Ccircle cx='34' cy='92' r='1.6'/%3E%3C/svg%3E");
+  position:relative;isolation:isolate;overflow:hidden;color:#fff;text-align:center;
+  background:
+    radial-gradient(1200px 380px at 15% -10%,rgba(109,190,69,.35),transparent 60%),
+    radial-gradient(900px 340px at 100% 120%,rgba(14,122,86,.9),transparent 60%),
+    linear-gradient(135deg,var(--flx-primary-dark) 0%,#0B4A36 55%,#08382A 100%);
+}
+.flx-band::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.11;background:var(--flx-band-pattern) 0 0/120px 120px repeat}
+.flx-band::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:48px;z-index:-1;background:linear-gradient(to bottom,transparent,rgba(0,0,0,.12))}
+.flx-band :where(h1,h2,.wp-block-post-title,.wp-block-query-title){color:#fff;max-width:22ch;margin-inline:auto!important;line-height:1.15;font-size:clamp(1.9rem,1.2rem + 2.6vw,3.2rem)}
+.flx-band .wp-block-term-description,.flx-band>p{color:rgba(255,255,255,.85);max-width:60ch;margin-inline:auto}
+.flx-band-pill,.flx-band .flx-pill{display:inline-flex!important;justify-content:center;width:auto;margin-inline:auto!important;padding:.35rem .95rem;border-radius:99px;font-size:var(--wp--preset--font-size--x-small);font-weight:600;letter-spacing:.02em;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.55);color:#fff}
+.flx-band-pill a{color:#fff;text-decoration:none}
+.flx-band>.flx-band-pill{display:table!important}
+.flx-meta{color:rgba(255,255,255,.85);font-size:var(--wp--preset--font-size--small)}
+.flx-meta>*{margin:0!important;display:inline-flex;align-items:center}
+.flx-meta a{color:inherit}
+.flx-meta [class*="is-style-icon-"]::before{color:var(--flx-leaf)}
+.flx-band--list{padding-bottom:var(--wp--preset--spacing--60)!important}
+
+/* ---------- Ana görsel: şeridin üzerine binen, köşeleri yuvarlak ---------- */
+.flx-single-image{position:relative;z-index:2;margin-top:calc(-1 * clamp(6rem,12vw,9.5rem))!important;border-radius:var(--flx-radius-media);overflow:hidden;box-shadow:0 30px 60px -20px rgba(8,40,30,.45)}
+.flx-single-image img{display:block;width:100%;aspect-ratio:16/8;object-fit:cover;border-radius:inherit}
+/* Görseli olmayan yazılarda şerit altı boşluğu */
+.flx-band:has(+ .flx-single-cols){padding-bottom:var(--wp--preset--spacing--60)!important}
+
+/* ---------- İçerik + kenar çubuğu ---------- */
+.flx-single-cols{align-items:flex-start!important}
+.flx-article .wp-block-post-content{font-size:1.06rem;line-height:1.8}
+.flx-article .wp-block-post-content>*+*{margin-top:1.15em}
+.flx-article .wp-block-post-content img{border-radius:var(--flx-radius);height:auto;max-width:100%}
+.flx-article .wp-block-post-content :where(h2,h3){margin-top:1.8em}
+.flx-tags{margin-top:var(--wp--preset--spacing--40);display:flex;flex-wrap:wrap;gap:.4rem}
+.flx-tags a{display:inline-block;padding:.3rem .8rem;border-radius:99px;background:var(--flx-mint);color:var(--flx-primary-dark);text-decoration:none;font-size:var(--wp--preset--font-size--x-small);font-weight:600}
+.flx-tags .wp-block-post-terms__separator{display:none}
+.flx-sidebar{position:sticky;top:1.5rem}
+.flx-side-box{background:var(--flx-surface);border:1px solid var(--flx-line);border-radius:var(--flx-radius);padding:1.3rem 1.3rem 1rem;box-shadow:var(--flx-shadow)}
+.flx-side-box>h3{font-size:var(--wp--preset--font-size--medium);margin:0 0 .9rem;padding-bottom:.7rem;border-bottom:2px solid var(--flx-mint);color:var(--flx-ink)}
+.flx-side-box>h3::before{color:var(--flx-primary)}
+.flx-mini-list .wp-block-post-template{margin:0;padding:0;display:flex;flex-direction:column;gap:.9rem}
+.flx-mini-list .wp-block-post-template>li{margin:0!important}
+.flx-article .wp-block-post-content figure{margin-inline:0}
+.flx-mini{gap:.85rem!important}
+.flx-mini .wp-block-post-featured-image{flex:none;margin:0;width:72px;height:72px;border-radius:12px;overflow:hidden}
+.flx-mini .wp-block-post-featured-image img{width:72px;height:72px;object-fit:cover;transition:transform .35s}
+.flx-mini:hover .wp-block-post-featured-image img{transform:scale(1.08)}
+.flx-mini .wp-block-post-featured-image:not(:has(img)){background:var(--flx-mint) var(--flx-i-sprout)}
+.flx-mini h4{font-size:.95rem!important;line-height:1.35;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.flx-mini h4 a{color:var(--flx-ink);text-decoration:none}
+.flx-mini h4 a:hover{color:var(--flx-primary)}
+.flx-mini .wp-block-post-date{color:var(--flx-text);margin:0}
+.flx-side-cta{position:relative;overflow:hidden;border-radius:var(--flx-radius);padding:1.5rem;color:#fff;background:linear-gradient(140deg,var(--flx-primary) 0%,var(--flx-primary-dark) 100%)}
+.flx-side-cta::after{content:"";position:absolute;right:-18px;bottom:-18px;width:120px;height:120px;background:rgba(255,255,255,.12);-webkit-mask:var(--flx-i-tree) center/contain no-repeat;mask:var(--flx-i-tree) center/contain no-repeat}
+.flx-side-cta :where(h3,p){color:#fff;margin:0 0 .5rem}
+.flx-side-cta .wp-block-button__link{background:#fff;color:var(--flx-primary-dark)}
+@media (max-width:781px){.flx-sidebar{position:static}}
+
+/* ---------- Önceki / sonraki yazı kartları ---------- */
+.flx-post-nav{gap:1rem!important}
+.flx-post-nav .wp-block-post-navigation-link{margin:0;display:flex;align-items:stretch;min-width:0}
+.flx-post-nav .wp-block-post-navigation-link:empty{display:none}
+.flx-post-nav .wp-block-post-navigation-link a{
+  position:relative;display:flex;flex-direction:column;justify-content:center;gap:.3rem;width:100%;box-sizing:border-box;
+  padding:1.1rem 1.25rem 1.1rem 3.9rem;border:1.5px solid var(--flx-line);border-radius:var(--flx-radius);
+  background:var(--flx-surface);color:var(--flx-ink);text-decoration:none;font-weight:600;line-height:1.35;
+  transition:border-color .2s,box-shadow .2s,transform .2s;
+}
+.flx-post-nav .post-navigation-link-next a{padding:1.1rem 3.9rem 1.1rem 1.25rem;text-align:right;align-items:flex-end}
+.flx-post-nav .wp-block-post-navigation-link a::before{content:"";position:absolute;top:50%;left:1rem;width:2.2rem;height:2.2rem;margin-top:-1.1rem;border-radius:50%;background:var(--flx-mint);transition:background .2s}
+.flx-post-nav .wp-block-post-navigation-link a::after{content:"";position:absolute;top:50%;left:1.55rem;width:1.1rem;height:1.1rem;margin-top:-.55rem;background:var(--flx-primary);-webkit-mask:var(--flx-i-chev-l) center/contain no-repeat;mask:var(--flx-i-chev-l) center/contain no-repeat;transition:background .2s}
+.flx-post-nav .post-navigation-link-next a::before{left:auto;right:1rem}
+.flx-post-nav .post-navigation-link-next a::after{left:auto;right:1.55rem;-webkit-mask-image:var(--flx-i-chev-r);mask-image:var(--flx-i-chev-r)}
+.flx-post-nav .wp-block-post-navigation-link a:hover{border-color:var(--flx-primary);box-shadow:var(--flx-shadow);transform:translateY(-2px)}
+.flx-post-nav .wp-block-post-navigation-link a:hover::before{background:var(--flx-primary)}
+.flx-post-nav .wp-block-post-navigation-link a:hover::after{background:#fff}
+.flx-post-nav .post-navigation-link__label{display:block;font-size:var(--wp--preset--font-size--x-small);font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--flx-primary)}
+.flx-post-nav .post-navigation-link__title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.flx-post-nav .wp-block-post-navigation-link__arrow-previous,.flx-post-nav .wp-block-post-navigation-link__arrow-next{display:none}
+
+/* ---------- Öne çıkan proje ---------- */
+.flx-feature-project{gap:0!important}
+.flx-feature-project .wp-block-post-featured-image{margin:0;height:100%}
+.flx-feature-project .wp-block-post-featured-image :where(a,img){display:block;width:100%;height:100%;min-height:280px;object-fit:cover}
+.flx-feature-project__body{padding:clamp(1.3rem,3vw,2.2rem)}
+.flx-feature-project__body .flx-pill{display:inline-flex;width:auto}
+.flx-feature-project__body .flx-pill a{color:#fff;text-decoration:none}
+.flx-feature-project__body .wp-block-post-title a{color:var(--flx-ink);text-decoration:none}
+.flx-side-item{gap:0!important}
+.flx-side-item .wp-block-post-featured-image{margin:0;height:100%}
+.flx-side-item .wp-block-post-featured-image :where(a,img){display:block;width:100%;height:100%;min-height:150px;object-fit:cover}
+.flx-side-item>.wp-block-group{padding:1rem 1.1rem}
+.flx-side-item .wp-block-post-title{font-size:var(--wp--preset--font-size--medium)}
+.flx-side-item .wp-block-post-title a{color:inherit;text-decoration:none}
+.flx-side-item .wp-block-post-title a::after{content:"";position:absolute;inset:0}
+
+/* ---------- Arama modalı ---------- */
+.flx-search-modal{border:0;padding:0;margin:0;max-width:none;max-height:none;width:100%;height:100%;background:transparent;color:var(--flx-ink)}
+.flx-search-modal::backdrop{background:rgba(6,30,22,.6);backdrop-filter:blur(8px)}
+.flx-search-modal[open]{display:flex;align-items:flex-start;justify-content:center;padding:clamp(4rem,14vh,9rem) 16px 2rem}
+.flx-search-modal__inner{position:relative;width:min(680px,100%);background:var(--flx-surface);border-radius:var(--flx-radius-media);padding:clamp(1.5rem,4vw,2.4rem);box-shadow:0 40px 80px -20px rgba(0,0,0,.4);animation:flx-modal-in .35s cubic-bezier(.2,.7,.2,1)}
+@keyframes flx-modal-in{from{opacity:0;transform:translateY(-16px) scale(.98)}to{opacity:1;transform:none}}
+.flx-search-modal__title{margin:0 0 1rem;font-family:var(--wp--preset--font-family--heading);font-size:clamp(1.4rem,1rem + 1.5vw,2rem);color:var(--flx-ink)}
+.flx-search-modal__form{display:flex;gap:.5rem;padding:.4rem;border:2px solid var(--flx-line);border-radius:99px;transition:border-color .2s}
+.flx-search-modal__form:focus-within{border-color:var(--flx-primary)}
+.flx-search-modal__form input{flex:1;min-width:0;border:0;outline:0;padding:.6rem 1rem;font:inherit;font-size:1.05rem;background:transparent}
+.flx-search-modal__form button{border:0;border-radius:99px;padding:.65rem 1.3rem;background:var(--flx-primary);color:#fff;font:inherit;font-weight:600;cursor:pointer}
+.flx-search-modal__form button:hover{background:var(--flx-primary-dark)}
+.flx-search-modal__chips{display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;margin-top:1.1rem;font-size:var(--wp--preset--font-size--x-small);color:var(--flx-text)}
+.flx-search-modal__chips a{padding:.3rem .8rem;border-radius:99px;background:var(--flx-mint);color:var(--flx-primary-dark);text-decoration:none;font-weight:600}
+.flx-search-modal__chips a:hover{background:var(--flx-primary);color:#fff}
+.flx-search-modal__close{position:absolute;top:1rem;right:1rem;width:40px;height:40px;border:0;border-radius:50%;background:var(--flx-mint-soft);cursor:pointer;font-size:1.4rem;line-height:1;color:var(--flx-ink)}
+.flx-search-modal__close:hover{background:var(--flx-mint)}
+html.flx-modal-open{overflow:hidden}
+.flx-search-modal__close::before{content:"\00d7"}
+.flx-quotes.swiper{padding:1.4rem 1.4rem 3.4rem}
+@media (max-width:600px){.flx-post-nav{grid-template-columns:1fr!important}.flx-single-image{margin-top:calc(-1 * clamp(4rem,12vw,9.5rem))!important}}
+
+/* ---------- Logo ---------- */
+.flx-logo{margin:0;line-height:0;flex:none}
+.flx-logo a{display:inline-block}
+.flx-logo img{height:54px!important;width:auto!important;max-width:none}
+.flx-footer .flx-logo img{height:62px!important}
+@media (max-width:600px){.flx-header .flx-logo img{height:40px!important}}
+@media (max-width:700px){.flx-hero-wrap>.flx-stamp{display:none}}
+
+/* ==========================================================================
+   Mobil menü: belirgin "Menü" butonu + fidan temalı kart menü
+   ========================================================================== */
+:root{
+  --flx-i-menu:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M4 7h16M4 12h11M4 17h16'/%3E%3C/svg%3E");
+  --flx-i-close:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6L6 18'/%3E%3C/svg%3E");
+}
+/* Aç butonu */
+.flx-header .wp-block-navigation__responsive-container-open{
+  display:none;align-items:center;gap:.45rem;height:44px;padding:0 .95rem 0 .8rem;border-radius:14px;
+  background:var(--flx-primary);color:#fff;font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:.85rem;
+  box-shadow:0 6px 16px -6px rgba(14,122,86,.6);transition:background .2s,transform .15s
+}
+.flx-header .wp-block-navigation__responsive-container-open svg{display:none}
+.flx-header .wp-block-navigation__responsive-container-open::before{content:"";width:1.3rem;height:1.3rem;background:#fff;-webkit-mask:var(--flx-i-menu) center/contain no-repeat;mask:var(--flx-i-menu) center/contain no-repeat}
+.flx-header .wp-block-navigation__responsive-container-open::after{content:"Menü"}
+.flx-header .wp-block-navigation__responsive-container-open:hover{background:var(--flx-primary-dark)}
+.flx-header .wp-block-navigation__responsive-container-open:active{transform:scale(.96)}
+@media (max-width:599px){
+  .flx-header .wp-block-navigation__responsive-container-open:not(.always-shown){display:inline-flex}
+  .flx-header .wp-block-navigation{order:3}
+}
+
+/* Açılan panel */
+.flx-header .wp-block-navigation__responsive-container.is-menu-open{
+  --flx-menu-pattern:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120' fill='none' stroke='%230E7A56' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 44c0-14 9-22 23-22 0 14-8 23-22 23z'/%3E%3Cpath d='M18 44l12-12'/%3E%3Cpath d='M86 104V90M86 90c-7 0-10-4-10-10 7 0 10 4 10 10zM86 87c6 0 10-3 10-9-6 0-10 3-10 9z'/%3E%3Ccircle cx='96' cy='26' r='2.2'/%3E%3Ccircle cx='34' cy='92' r='1.6'/%3E%3C/svg%3E");
+  padding:0!important;color:var(--flx-ink)!important;
+  background:
+    radial-gradient(600px 300px at 110% -10%,rgba(109,190,69,.28),transparent 60%),
+    radial-gradient(500px 300px at -20% 110%,rgba(14,122,86,.18),transparent 60%),
+    var(--flx-mint-soft)!important;
+  animation:flx-menu-in .3s ease both
+}
+.flx-header .wp-block-navigation__responsive-container.is-menu-open::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.08;background:var(--flx-menu-pattern) 0 0/120px 120px repeat}
+@keyframes flx-menu-in{from{opacity:0}to{opacity:1}}
+.flx-header .is-menu-open .wp-block-navigation__responsive-close,
+.flx-header .is-menu-open .wp-block-navigation__responsive-dialog{position:relative;min-height:100%;max-width:none!important}
+.flx-header .is-menu-open .wp-block-navigation__responsive-dialog{padding:1.1rem 16px 2rem;display:flex;flex-direction:column}
+.flx-header .is-menu-open .wp-block-navigation__responsive-dialog::before{
+  content:"";display:block;height:44px;width:200px;margin:0 0 1.4rem;
+  background:url("../images/logo/logo-yatay.svg") left center/contain no-repeat
+}
+/* Kapat */
+.flx-header .is-menu-open .wp-block-navigation__responsive-container-close{
+  top:1.1rem!important;right:16px!important;width:44px;height:44px;border-radius:14px;
+  background:var(--flx-surface)!important;border:1.5px solid var(--flx-line)!important;display:grid;place-items:center;color:var(--flx-ink)
+}
+.flx-header .is-menu-open .wp-block-navigation__responsive-container-close svg{display:none}
+.flx-header .is-menu-open .wp-block-navigation__responsive-container-close::before{content:"";width:1.2rem;height:1.2rem;background:var(--flx-ink);-webkit-mask:var(--flx-i-close) center/contain no-repeat;mask:var(--flx-i-close) center/contain no-repeat}
+/* Kart menü */
+.flx-header .is-menu-open .wp-block-navigation__responsive-container-content{padding-top:0!important;align-items:stretch!important}
+.flx-header .is-menu-open .wp-block-navigation__container{display:grid!important;grid-template-columns:1fr;gap:.65rem!important;width:100%}
+.flx-header .is-menu-open .wp-block-navigation-item{width:100%;opacity:0;animation:flx-menu-card .45s cubic-bezier(.2,.7,.2,1) forwards}
+.flx-header .is-menu-open .wp-block-navigation-item:nth-child(1){animation-delay:.05s}
+.flx-header .is-menu-open .wp-block-navigation-item:nth-child(2){animation-delay:.1s}
+.flx-header .is-menu-open .wp-block-navigation-item:nth-child(3){animation-delay:.15s}
+.flx-header .is-menu-open .wp-block-navigation-item:nth-child(4){animation-delay:.2s}
+.flx-header .is-menu-open .wp-block-navigation-item:nth-child(5){animation-delay:.25s}
+.flx-header .is-menu-open .wp-block-navigation-item:nth-child(n+6){animation-delay:.3s}
+@keyframes flx-menu-card{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.flx-header .is-menu-open .wp-block-navigation-item__content{
+  position:relative;box-sizing:border-box;display:flex!important;align-items:center;gap:.85rem;width:100%;
+  padding:1rem 3rem 1rem 1rem!important;border-radius:18px;background:var(--flx-surface-glass);
+  border:1.5px solid var(--flx-line);box-shadow:0 4px 14px -8px rgba(20,50,74,.18);
+  font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:1.12rem;color:var(--flx-ink)!important;
+  transition:border-color .2s,transform .15s,background .2s
+}
+.flx-header .is-menu-open .wp-block-navigation-item__content::before{
+  content:"";flex:none;width:2.4rem;height:2.4rem;border-radius:12px;
+  background:var(--flx-mint) center/1.25rem no-repeat;
+  -webkit-mask:none;mask:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230E7A56' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21v-9'/%3E%3Cpath d='M12 12C7 12 5 9 5 5c5 0 7 3 7 7z'/%3E%3Cpath d='M12 10c4 0 7-2 7-6-4 0-7 2-7 6z'/%3E%3C/svg%3E")
+}
+.flx-header .is-menu-open .wp-block-navigation-item__content::after{
+  content:"";position:absolute;right:1.1rem;top:50%;width:1.1rem;height:1.1rem;margin-top:-.55rem;background:var(--flx-primary);
+  -webkit-mask:var(--flx-i-chev-r) center/contain no-repeat;mask:var(--flx-i-chev-r) center/contain no-repeat
+}
+.flx-header .is-menu-open .wp-block-navigation-item__content:hover,
+.flx-header .is-menu-open .wp-block-navigation-item__content:focus-visible{border-color:var(--flx-primary);background:var(--flx-surface)}
+.flx-header .is-menu-open .wp-block-navigation-item__content:active{transform:scale(.98)}
+.flx-header .is-menu-open .current-menu-item>.wp-block-navigation-item__content,
+.flx-header .is-menu-open [aria-current="page"]{border-color:var(--flx-primary);background:var(--flx-surface)}
+/* Alt bilgi: slogan */
+.flx-header .is-menu-open .wp-block-navigation__responsive-container-content::after{
+  content:"Daha yeşil bir Türkiye mümkün";order:10;display:block;margin:1.8rem auto 0;text-align:center;
+  font-family:var(--wp--preset--font-family--hand);font-weight:600;font-size:1.6rem;color:var(--flx-primary);transform:rotate(-3deg)
+}
+/* 0.5.28: menü altında Hesabım, Sepet, Bağış Yap */
+.flx-mnav-actions{display:none}
+.flx-header .is-menu-open .flx-mnav-actions{order:5;display:grid;grid-template-columns:1fr 1fr;gap:.65rem;width:100%;margin-top:1.1rem;padding-top:1.1rem;border-top:1.5px dashed var(--flx-line);opacity:0;animation:flx-menu-card .45s cubic-bezier(.2,.7,.2,1) .3s forwards}
+.flx-mnav-btn{position:relative;display:flex;align-items:center;justify-content:center;gap:.55rem;min-height:52px;padding:.8rem 1rem;border-radius:16px;box-sizing:border-box;
+  background:var(--flx-surface);border:1.5px solid var(--flx-line);color:var(--flx-ink)!important;text-decoration:none!important;
+  font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:1rem;transition:border-color .2s,transform .15s,background .2s}
+.flx-mnav-btn .flx-ic{width:1.3rem;height:1.3rem;color:var(--flx-primary);flex:none}
+.flx-mnav-btn:hover,.flx-mnav-btn:focus-visible{border-color:var(--flx-primary)}
+.flx-mnav-btn:active{transform:scale(.97)}
+.flx-mnav-count{min-width:1.35rem;height:1.35rem;padding:0 .35rem;border-radius:99px;background:var(--flx-leaf);color:#fff;font-size:.75rem;line-height:1.35rem;text-align:center;box-sizing:border-box}
+.flx-mnav-count[hidden]{display:none}
+.flx-mnav-donate{grid-column:1/-1;min-height:56px;background:var(--flx-primary);border-color:var(--flx-primary);color:#fff!important;font-size:1.08rem;box-shadow:0 10px 22px -10px rgba(14,122,86,.7)}
+.flx-mnav-donate .flx-ic{color:#fff}
+.flx-mnav-donate:hover,.flx-mnav-donate:focus-visible{background:var(--flx-primary-dark);border-color:var(--flx-primary-dark)}
+html.has-modal-open .flx-header-part{z-index:100000}
+@media (max-width:440px){
+  .flx-header .wp-block-navigation__responsive-container-open{width:46px;height:46px;padding:0;justify-content:center;border-radius:14px}
+  .flx-header .wp-block-navigation__responsive-container-open::after{content:none}
+  .flx-header .wp-block-navigation__responsive-container-open::before{width:1.45rem;height:1.45rem}
+  .flx-header .flx-logo img{height:36px!important}
+}
+
+/* ---------- v0.3.6: Öne Çıkan Projeler eşit boy ---------- */
+.flx-works-cols,.wp-block-columns:has(> .wp-block-column > .wp-block-query .flx-feature-project){align-items:stretch!important}
+.wp-block-column:has(.flx-feature-project){display:flex;flex-direction:column}
+.wp-block-column:has(.flx-feature-project)>.wp-block-query,
+.wp-block-column:has(.flx-feature-project) .wp-block-post-template,
+.wp-block-column:has(.flx-feature-project) .wp-block-post-template>li{flex:1;display:flex;flex-direction:column;margin:0}
+.wp-block-column:has(.flx-feature-project) .flx-feature-project{flex:1;align-items:stretch;height:100%}
+.flx-feature-project__body{display:flex;flex-direction:column;justify-content:center}
+.wp-block-column:has(.flx-side-item){display:flex;flex-direction:column}
+.wp-block-column:has(.flx-side-item)>.wp-block-query,
+.wp-block-column:has(.flx-side-item) .wp-block-post-template{flex:1;display:flex;flex-direction:column}
+.wp-block-column:has(.flx-side-item) .wp-block-post-template>li{flex:1;display:flex;margin-block:0}
+.wp-block-column:has(.flx-side-item) .wp-block-post-template>li+li{margin-top:var(--wp--preset--spacing--30)}
+.wp-block-column:has(.flx-side-item) .flx-side-item{flex:1}
+@media (max-width:781px){.wp-block-column:has(.flx-feature-project) .flx-feature-project .wp-block-post-featured-image :where(a,img){min-height:220px;aspect-ratio:16/10}}
+
+/* ---------- v0.3.6: Kart hover animasyonları ---------- */
+.flx-card,.is-style-flx-card,.flx-feature-project,.flx-side-item,.flx-step,.flx-pay-card,.flx-stat,.flx-mini,.flx-side-box{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s}
+.flx-card,.flx-feature-project,.flx-side-item,.flx-step,.flx-pay-card{position:relative;isolation:isolate}
+.flx-card :where(.wp-block-image,.wp-block-post-featured-image),.flx-feature-project .wp-block-post-featured-image,.flx-side-item .wp-block-post-featured-image{overflow:hidden}
+.flx-card :where(.wp-block-image,.wp-block-post-featured-image) img,.flx-feature-project .wp-block-post-featured-image img,.flx-side-item .wp-block-post-featured-image img{transition:transform .7s cubic-bezier(.2,.8,.2,1),filter .5s}
+/* Alttan yeşil şerit dolar */
+.flx-card::before,.flx-feature-project::before,.flx-side-item::before,.flx-step::before{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,var(--flx-primary),var(--flx-leaf));transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.8,.2,1);z-index:3;pointer-events:none}
+@media (hover:hover){
+  .flx-card:hover,.is-style-flx-card:hover,.flx-feature-project:hover,.flx-side-item:hover,.flx-step:hover,.flx-pay-card:not(.flx-pay-card--soon):hover{transform:translateY(-6px);box-shadow:0 22px 48px rgba(14,122,86,.16)}
+  .flx-card:hover::before,.flx-feature-project:hover::before,.flx-side-item:hover::before,.flx-step:hover::before{transform:scaleX(1)}
+  .flx-card:hover :where(.wp-block-image,.wp-block-post-featured-image) img,.flx-feature-project:hover .wp-block-post-featured-image img,.flx-side-item:hover .wp-block-post-featured-image img{transform:scale(1.06);filter:saturate(1.1)}
+  .flx-card:hover .wp-block-post-title a,.flx-feature-project:hover .wp-block-post-title a,.flx-side-item:hover .wp-block-post-title a{color:var(--flx-primary)}
+  .flx-step:hover h3::before{animation:flx-sway .8s ease-in-out}
+  .flx-stat:hover{transform:translateY(-4px)}
+  .flx-side-box:hover{border-color:#bfe0cc}
+}
+.flx-feature-project__body .wp-block-post-excerpt__more-link{display:inline-flex;align-items:center;gap:.35rem;font-weight:700;text-decoration:none}
+.flx-feature-project__body .wp-block-post-excerpt__more-link::after{content:"→";transition:transform .3s}
+.flx-feature-project:hover .wp-block-post-excerpt__more-link::after{transform:translateX(5px)}
+@keyframes flx-sway{0%,100%{transform:rotate(0)}30%{transform:rotate(-12deg)}65%{transform:rotate(8deg)}}
+
+/* ---------- v0.3.6: Header menü hover ---------- */
+.flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation-item__content{position:relative;padding-block:.35rem;transition:color .25s}
+.flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation-item__content::after{content:"";position:absolute;left:50%;bottom:-2px;width:100%;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--flx-primary),var(--flx-leaf));transform:translateX(-50%) scaleX(0);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation-item__content::before{content:"";position:absolute;left:50%;top:-.95rem;width:.9rem;height:.9rem;margin-left:-.45rem;background:var(--flx-leaf);-webkit-mask:var(--flx-i-sprout) center/contain no-repeat;mask:var(--flx-i-sprout) center/contain no-repeat;opacity:0;transform:translateY(6px) scale(.4) rotate(-20deg);transition:opacity .3s,transform .4s cubic-bezier(.3,1.6,.5,1)}
+.flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation-item__content:is(:hover,:focus-visible)::after,
+.flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .current-menu-item>.wp-block-navigation-item__content::after{transform:translateX(-50%) scaleX(1)}
+.flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation-item__content:is(:hover,:focus-visible)::before{opacity:1;transform:none}
+.flx-header .wp-block-search__button{border-radius:50%;transition:background .25s,color .25s,transform .35s cubic-bezier(.3,1.6,.5,1)}
+.flx-header .wp-block-search__button:hover{background:var(--flx-mint);color:var(--flx-primary);transform:rotate(-12deg) scale(1.08)}
+.flx-header .flx-btn-heart .wp-block-button__link{transition:transform .25s,box-shadow .25s,background .25s}
+.flx-header .flx-btn-heart .wp-block-button__link:hover{box-shadow:0 10px 24px rgba(14,122,86,.28)}
+.flx-header .flx-btn-heart .wp-block-button__link:hover::before{animation:flx-beat .9s ease-in-out infinite}
+@keyframes flx-beat{0%,100%{transform:scale(1)}25%{transform:scale(1.25)}45%{transform:scale(.95)}60%{transform:scale(1.15)}}
+.flx-footer .wp-block-social-link{transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.flx-footer .wp-block-social-link:hover{transform:translateY(-3px) scale(1.12)}
+.flx-footer .wp-block-navigation-item__content{transition:transform .25s,color .25s}
+.flx-footer .wp-block-navigation-item__content:hover{transform:translateX(4px)}
+
+/* ---------- v0.3.6: Yasal sayfalar ---------- */
+.flx-legal{font-size:var(--wp--preset--font-size--small)}
+.flx-legal>*{max-width:820px}
+.flx-legal h2{font-size:var(--wp--preset--font-size--large);margin-top:2.4rem;padding-top:1.4rem;border-top:1px solid var(--flx-line)}
+.flx-legal h3{font-size:var(--wp--preset--font-size--medium);margin-top:1.8rem;display:flex;align-items:center;gap:.5rem}
+.flx-legal h3::before{content:"";width:1.1rem;height:1.1rem;background:var(--flx-leaf);-webkit-mask:var(--flx-i-sprout) center/contain no-repeat;mask:var(--flx-i-sprout) center/contain no-repeat;flex:none}
+.flx-legal-lead{box-sizing:border-box;font-family:var(--wp--preset--font-family--heading);color:var(--flx-ink);background:var(--flx-mint);border-left:4px solid var(--flx-primary);border-radius:12px;padding:1rem 1.2rem;line-height:1.5}
+.flx-legal-date{color:var(--flx-primary)}
+.flx-legal-list{counter-reset:flx;list-style:none;padding:0}
+.flx-legal-list li{counter-increment:flx;position:relative;padding:.55rem 0 .55rem 2.6rem;border-bottom:1px dashed var(--flx-line)}
+.flx-legal-list li::before{content:counter(flx);position:absolute;left:0;top:.45rem;width:1.8rem;height:1.8rem;border-radius:50%;background:var(--flx-mint);color:var(--flx-primary);font-weight:800;display:grid;place-items:center;font-size:.85rem}
+.flx-legal-table{margin:1rem 0 1.4rem;overflow-x:auto}
+.flx-legal-table table{border-collapse:separate;border-spacing:0;width:100%;border:1px solid var(--flx-line);border-radius:14px;overflow:hidden;font-size:var(--wp--preset--font-size--x-small)}
+.flx-legal-table th{background:var(--flx-primary);color:#fff;text-align:left;padding:.7rem .9rem;border:0}
+.flx-legal-table td{padding:.65rem .9rem;border:0;border-top:1px solid var(--flx-line);vertical-align:top}
+.flx-legal-table td:first-child{font-weight:700;color:var(--flx-ink);white-space:nowrap;width:1%}
+.flx-legal-table.is-style-stripes tbody tr:nth-child(odd){background:var(--flx-mint-soft)}
+@media (max-width:600px){.flx-legal-table td:first-child{white-space:normal}}
+
+/* ---------- v0.3.6: Çerez banner'ı ---------- */
+.flx-cookie-open{display:none}
+.flx-cookie-on .flx-cookie-open{display:block}
+.flx-cookie{position:fixed;z-index:9990;display:flex;gap:1rem;align-items:center;background:var(--flx-surface);color:var(--flx-text);border:1.5px solid var(--flx-line);box-shadow:0 24px 60px rgba(20,50,74,.22);font-size:var(--wp--preset--font-size--x-small);opacity:0;transform:translateY(24px);transition:opacity .35s,transform .45s cubic-bezier(.2,.8,.2,1)}
+.flx-cookie.is-visible{opacity:1;transform:none}
+.flx-cookie[hidden]{display:none}
+.flx-cookie--card{left:1.2rem;bottom:1.2rem;max-width:420px;border-radius:22px;padding:1.2rem 1.2rem 1.1rem;flex-wrap:wrap;align-items:flex-start}
+.flx-cookie--bar{left:0;right:0;bottom:0;border-radius:22px 22px 0 0;padding:1rem clamp(1rem,4vw,3rem);border-width:1.5px 0 0}
+.flx-cookie::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:.06;background:var(--flx-menu-pattern) 0 0/90px 90px repeat}
+.flx-cookie{--flx-menu-pattern:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120' fill='none' stroke='%230E7A56' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 44c0-14 9-22 23-22 0 14-8 23-22 23z'/%3E%3Cpath d='M18 44l12-12'/%3E%3Cpath d='M86 104V90M86 90c-7 0-10-4-10-10 7 0 10 4 10 10zM86 87c6 0 10-3 10-9-6 0-10 3-10 9z'/%3E%3Ccircle cx='96' cy='26' r='2.2'/%3E%3Ccircle cx='34' cy='92' r='1.6'/%3E%3C/svg%3E")}
+.flx-cookie__icon{flex:none;width:2.6rem;height:2.6rem;border-radius:14px;background:var(--flx-mint);position:relative}
+.flx-cookie__icon::before{content:"";position:absolute;inset:.55rem;background:var(--flx-primary);-webkit-mask:var(--flx-i-sprout) center/contain no-repeat;mask:var(--flx-i-sprout) center/contain no-repeat}
+.flx-cookie__body{flex:1;min-width:0}
+.flx-cookie--card .flx-cookie__body{flex-basis:calc(100% - 3.8rem)}
+.flx-cookie__title{margin:0 0 .25rem;font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:1rem;color:var(--flx-ink)}
+.flx-cookie__text{margin:0;line-height:1.55}
+.flx-cookie__text a{color:var(--flx-primary);font-weight:700}
+.flx-cookie__actions{display:flex;gap:.5rem;flex:none}
+.flx-cookie--card .flx-cookie__actions{width:100%;justify-content:flex-end}
+.flx-cookie__btn{font:inherit;font-weight:800;cursor:pointer;border-radius:999px;padding:.65rem 1.2rem;border:1.5px solid var(--flx-primary);background:var(--flx-primary);color:#fff;transition:transform .2s,background .2s,box-shadow .2s}
+.flx-cookie__btn:hover{background:var(--flx-primary-dark);border-color:var(--flx-primary-dark);transform:translateY(-1px);box-shadow:0 8px 18px rgba(14,122,86,.25)}
+.flx-cookie__btn--ghost{background:var(--flx-surface);color:var(--flx-primary)}
+.flx-cookie__btn--ghost:hover{background:var(--flx-mint);color:var(--flx-primary-dark)}
+@media (max-width:600px){
+  .flx-cookie--card{left:.6rem;right:.6rem;bottom:.6rem;max-width:none}
+  .flx-cookie--bar{flex-wrap:wrap}
+  .flx-cookie__actions{width:100%}
+  .flx-cookie__btn{flex:1}
+}
+.flx-feature-project__body>.flx-pill{align-self:flex-start}
+
+/* ---------- v0.3.8: Video sayfaları ---------- */
+.flx-video{max-width:960px;margin-inline:auto!important}
+.flx-video .wp-block-embed__wrapper{border-radius:var(--flx-radius);overflow:hidden;box-shadow:0 24px 60px rgba(20,50,74,.18);background:#0a1f17}
+.flx-video--dikey{max-width:380px}
+.flx-video--dikey .wp-block-embed__wrapper{aspect-ratio:9/16}
+.flx-video--dikey .wp-block-embed__wrapper iframe{width:100%;height:100%}
+.flx-player{position:relative;aspect-ratio:16/9}
+.flx-video--dikey .flx-player{aspect-ratio:9/16}
+.flx-player::before{display:none!important}
+.flx-player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.flx-player__btn{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;background:#0a1f17;cursor:pointer;display:block}
+.flx-player__btn img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1),filter .4s}
+.flx-player__btn:hover img{transform:scale(1.04);filter:brightness(.85)}
+.flx-player__play{position:absolute;left:50%;top:50%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:var(--flx-primary);box-shadow:0 0 0 10px rgba(255,255,255,.25),0 14px 30px rgba(0,0,0,.35);transition:transform .3s cubic-bezier(.3,1.6,.5,1),background .3s}
+.flx-player__play::after{content:"";position:absolute;left:34px;top:26px;border-style:solid;border-width:16px 0 16px 26px;border-color:transparent transparent transparent #fff}
+.flx-player__btn:hover .flx-player__play{transform:scale(1.1);background:var(--flx-leaf)}
+.flx-player__alt{text-align:center;margin-top:.8rem;font-size:var(--wp--preset--font-size--x-small)}
+.flx-player__alt a{color:var(--flx-primary);font-weight:700}
+
+/* v0.4.3: mobilde Önceki/Sonraki kartları arası ve altı boşluk (Safari'de üst üste binmesin) */
+@media (max-width:781px){.flx-post-nav{display:flex!important;flex-direction:column;gap:1rem!important;margin-bottom:var(--wp--preset--spacing--50)!important}.flx-post-nav>*{flex:none}}
+
+/* ---------- v0.4.3: Dark mode (cihaz koyu moddaysa; Tema Ayarları'ndan kapatılabilir) ---------- */
+@media (prefers-color-scheme:dark){
+  html:has(body.flx-dark){background:#0C1814;color-scheme:dark}
+  body.flx-dark{
+    --wp--preset--color--ink:#E8F2EC;
+    --wp--preset--color--text:#AFC3B8;
+    --wp--preset--color--primary:#1F9A6C;
+    --wp--preset--color--mint:#17302A;
+    --wp--preset--color--mint-soft:#10221D;
+    --wp--preset--color--line:#26453C;
+    --flx-primary:#1F9A6C;
+    --flx-ink:#E8F2EC;
+    --flx-text:#AFC3B8;
+    --flx-mint:#17302A;
+    --flx-mint-soft:#10221D;
+    --flx-line:#26453C;
+    --flx-surface:#13251F;
+    --flx-surface-glass:rgba(19,37,31,.94);
+    --flx-shadow:0 10px 30px rgba(0,0,0,.35);
+    background-color:#0C1814!important;color:var(--wp--preset--color--text)
+  }
+  body.flx-dark .flx-header{box-shadow:0 1px 0 var(--flx-line)}
+  body.flx-dark .flx-logo img[src*="logo-yatay.svg"],
+  body.flx-dark .flx-header .wp-block-site-logo img[src*="logo-yatay.svg"]{content:url("../images/logo/logo-yatay-beyaz.svg")}
+  body.flx-dark .flx-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-dialog::before{background-image:url("../images/logo/logo-yatay-beyaz.svg")!important}
+  body.flx-dark .flx-header .wp-block-navigation__responsive-container.is-menu-open{
+    background:radial-gradient(600px 300px at 110% -10%,rgba(109,190,69,.16),transparent 60%),radial-gradient(500px 300px at -20% 110%,rgba(31,154,108,.18),transparent 60%),#0C1814!important}
+  body.flx-dark .flx-header .wp-block-navigation__responsive-container.is-menu-open::before{opacity:.12}
+  body.flx-dark .flx-header .wp-block-search__button,body.flx-dark .flx-header .wp-block-navigation a{color:var(--flx-ink)}
+  body.flx-dark .flx-card:hover,body.flx-dark .flx-feature-project:hover,body.flx-dark .flx-side-item:hover,body.flx-dark .flx-step:hover,body.flx-dark .flx-pay-card:hover{box-shadow:0 22px 48px rgba(0,0,0,.45)}
+  body.flx-dark .wp-block-separator:not(.flx-footer *){border-color:var(--flx-line)}
+  body.flx-dark :where(input,textarea,select){background:var(--flx-surface);color:var(--flx-ink);border-color:var(--flx-line)}
+  body.flx-dark .wp-block-image img[src*="turkiye-harita"]{filter:brightness(.92);border-radius:var(--flx-radius-media)}
+  body.flx-dark .flx-legal-table.is-style-stripes tbody tr:nth-child(odd){background:var(--flx-mint-soft)}
+  body.flx-dark .flx-legal-table.is-style-stripes tbody tr:nth-child(even){background:transparent}
+  body.flx-dark .flx-cookie{border-color:var(--flx-line);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  body.flx-dark .wp-block-button__link.has-white-background-color,body.flx-dark .flx-side-cta .wp-block-button__link{color:#0A5A40!important}
+  body.flx-dark .flx-tags a,body.flx-dark .flx-search-modal__chips a,body.flx-dark .flx-cookie__btn--ghost:hover{color:#8FD6B0}
+  body.flx-dark .flx-copy-btn{color:#8FD6B0}
+  body.flx-dark .flx-newsletter-form{box-shadow:none;border:1.5px solid var(--flx-line)}
+}
+:root{
+  --flx-wc-i-dashboard:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='7.5' height='9' rx='2'/%3E%3Crect x='13.5' y='3' width='7.5' height='5.5' rx='2'/%3E%3Crect x='13.5' y='11.5' width='7.5' height='9.5' rx='2'/%3E%3Crect x='3' y='15' width='7.5' height='6' rx='2'/%3E%3C/svg%3E");
+  --flx-wc-i-orders:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 8 12 3 3 8v8l9 5 9-5z'/%3E%3Cpath d='m3 8 9 5 9-5M12 13v8'/%3E%3C/svg%3E");
+  --flx-wc-i-downloads:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3v12m0 0-4.5-4.5M12 15l4.5-4.5'/%3E%3Cpath d='M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2'/%3E%3C/svg%3E");
+  --flx-wc-i-edit-address:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21z'/%3E%3Ccircle cx='12' cy='9.5' r='2.5'/%3E%3C/svg%3E");
+  --flx-wc-i-payment-methods:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='14' rx='2.5'/%3E%3Cpath d='M3 10h18M7 15h4'/%3E%3C/svg%3E");
+  --flx-wc-i-edit-account:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4 21c0-4 3.6-7 8-7s8 3 8 7'/%3E%3C/svg%3E");
+  --flx-wc-i-customer-logout:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 16l-4-4 4-4M6 12h10'/%3E%3C/svg%3E");
+  --flx-wc-i-default:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21v-9'/%3E%3Cpath d='M12 12c0-4-3-7-8-7 0 4.5 3 7 8 7zM12 10c0-3.5 2.6-6 7-6 0 4-2.6 6-7 6z'/%3E%3C/svg%3E");
+  --flx-wc-i-check:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12.5 4.5 4.5L19 7.5'/%3E%3C/svg%3E");
+  --flx-wc-i-info:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 11v5M12 7.5v.01'/%3E%3C/svg%3E");
+  --flx-wc-i-alert:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3 2 20h20z'/%3E%3Cpath d='M12 10v4M12 17v.01'/%3E%3C/svg%3E");
+  --flx-wc-i-lock:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4.5' y='10.5' width='15' height='10' rx='2.5'/%3E%3Cpath d='M8 10.5V7.5a4 4 0 0 1 8 0v3'/%3E%3C/svg%3E");
+  --flx-wc-i-userplus:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='8' r='4'/%3E%3Cpath d='M3 21c0-4 3.1-7 7-7 1.6 0 3 .4 4.2 1.2M18 14v6M15 17h6'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   v0.5.0: WooCommerce (Hesabım, sepet, ödeme) + dil seçici + header hesap/sepet
+   ========================================================================== */
+
+/* ---------- Header: dil seçici, hesap ve sepet ---------- */
+.flx-lang{display:inline-flex;align-items:center;padding:3px;border:1.5px solid var(--flx-line);border-radius:999px;font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:.72rem;letter-spacing:.06em;line-height:1}
+.flx-lang a{display:block;padding:.42rem .55rem;border-radius:999px;color:var(--flx-text);text-decoration:none;transition:background .15s,color .15s}
+.flx-lang a:hover{color:var(--flx-primary)}
+.flx-lang a.is-current{background:var(--flx-primary);color:#fff}
+.flx-hs{display:inline-flex;align-items:center;gap:.15rem}
+.flx-hs__btn,.flx-hs .wc-block-mini-cart__button{position:relative;display:inline-grid;place-items:center;width:42px;height:42px;padding:0!important;border:0;border-radius:50%;background:transparent;color:var(--flx-ink);text-decoration:none;cursor:pointer;transition:background .15s,color .15s}
+.flx-hs__btn:hover,.flx-hs .wc-block-mini-cart__button:hover{background:var(--flx-mint);color:var(--flx-primary)}
+.flx-hs__btn .flx-ic,.flx-hs .wc-block-mini-cart__icon{width:23px;height:23px}
+.flx-hs__account.is-logged-in::after{content:"";position:absolute;right:9px;bottom:9px;width:8px;height:8px;border-radius:50%;background:var(--flx-leaf);box-shadow:0 0 0 2px var(--flx-surface)}
+.flx-hs .wc-block-mini-cart{display:inline-flex!important;margin:0}
+.flx-hs .wc-block-mini-cart__amount{display:none}
+.flx-hs .wc-block-mini-cart__quantity-badge{position:relative;display:inline-grid;place-items:center}
+.flx-hs .wc-block-mini-cart__badge{position:absolute;top:-6px;right:-9px;min-width:18px;height:18px;padding:0 4px;border-radius:999px;background:var(--flx-leaf)!important;color:#fff!important;font:800 .66rem/18px var(--wp--preset--font-family--heading);border:2px solid var(--flx-surface)}
+@media (max-width:600px){.flx-lang{display:none}.flx-hs__btn,.flx-hs .wc-block-mini-cart__button{width:34px;height:34px}.flx-hs__btn .flx-ic,.flx-hs .wc-block-mini-cart__icon{width:21px;height:21px}.flx-header .alignwide{gap:.6rem!important}.flx-header .alignwide>.wp-block-group{gap:.3rem!important}.flx-hs__account.is-logged-in::after{right:5px;bottom:5px}}
+/* Orta genişlik (tablet / küçük laptop): menü ve buton tek satırda kalsın, dar aralıkta hamburger. */
+.flx-header .wp-block-navigation-item__content,.flx-header .flx-btn-heart .wp-block-button__link{white-space:nowrap}
+@media (max-width:1240px){.flx-header .alignwide{gap:1rem!important}.flx-header .wp-block-navigation{--navigation-layout-gap:1.1rem;gap:1.1rem!important}.flx-header .flx-logo img{width:200px!important;height:auto!important}}
+@media (min-width:601px) and (max-width:1079px){
+  .flx-header .wp-block-navigation{margin-left:auto}
+  .flx-header .wp-block-navigation__responsive-container-open:not(.always-shown){display:flex}
+  .flx-header .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open){display:none}
+}
+@media (min-width:601px) and (max-width:900px){.flx-header .alignwide{gap:.6rem!important}.flx-header .flx-logo img{width:170px!important}.flx-header .flx-btn-heart .wp-block-button__link{padding-inline:1.1em!important}}
+@media (min-width:601px) and (max-width:720px){.flx-lang{display:none}.flx-header .flx-logo img{width:150px!important}.flx-header .wp-block-navigation__responsive-container-open{padding-inline:.7rem!important}}
+@media (max-width:430px){.flx-header .flx-logo img{width:136px!important;height:auto!important}.flx-header .flx-btn-heart .wp-block-button__link{padding-inline:.85em!important}.flx-header .flx-btn-heart .wp-block-button__link::before{display:none}}
+@media (max-width:389px){.flx-header .flx-logo img{width:120px!important}}
+@media (max-width:370px){.flx-header .flx-logo img{width:104px!important}.flx-header .flx-btn-heart .wp-block-button__link{font-size:.8rem!important}}
+
+/* Mini sepet çekmecesi */
+.wc-block-mini-cart__drawer .components-modal__content,.wc-block-mini-cart__drawer{background:var(--flx-surface)}
+.wc-block-mini-cart__title{font-family:var(--wp--preset--font-family--heading);font-weight:800;color:var(--flx-ink)}
+.wc-block-mini-cart__footer{background:var(--flx-mint-soft)!important;border-top:1px solid var(--flx-line)}
+.wc-block-mini-cart__footer-actions .wc-block-components-button{border-radius:999px!important}
+
+/* ---------- Ortak WooCommerce öğeleri ---------- */
+.flx-wc .wp-block-post-content>.woocommerce,.flx-wc main .woocommerce:not(.wp-block-group){max-width:var(--wp--style--global--wide-size)!important;margin-inline:auto}
+.woocommerce :where(.button,button.button,a.button,input.button),.woocommerce-page :where(.button,button.button,a.button){
+  display:inline-flex;align-items:center;justify-content:center;gap:.45em;padding:.8em 1.6em;border:0;border-radius:999px;background:var(--flx-primary);color:#fff;
+  font-family:var(--wp--preset--font-family--heading);font-weight:700;font-size:var(--wp--preset--font-size--small);line-height:1.3;text-decoration:none;cursor:pointer;transition:background .15s,transform .15s}
+.woocommerce :where(.button,button.button,a.button):hover{background:var(--flx-primary-dark);color:#fff;transform:translateY(-1px)}
+.woocommerce form .form-row{margin:0 0 1.1rem;padding:0}
+.woocommerce form .form-row label,.woocommerce-page form label{display:block;margin-bottom:.4rem;font-family:var(--wp--preset--font-family--heading);font-weight:700;font-size:var(--wp--preset--font-size--x-small);color:var(--flx-ink)}
+.woocommerce form .form-row label.woocommerce-form__label-for-checkbox,.woocommerce form .form-row label.checkbox{display:inline-flex;align-items:center;gap:.5rem;font-weight:600}
+.woocommerce form .required{color:#C0392B;text-decoration:none;border:0}
+.woocommerce :where(input.input-text,input[type=text],input[type=email],input[type=tel],input[type=password],input[type=number],textarea,select),.woocommerce .select2-container .select2-selection{
+  width:100%;box-sizing:border-box;min-height:50px;padding:.75rem 1rem;border:1.5px solid var(--flx-line);border-radius:12px;background:var(--flx-surface);color:var(--flx-ink);
+  font:inherit;font-size:1rem;transition:border-color .15s,box-shadow .15s}
+.woocommerce textarea{min-height:110px}
+.woocommerce :where(input.input-text,input[type=text],input[type=email],input[type=tel],input[type=password],textarea,select):focus{outline:0;border-color:var(--flx-primary);box-shadow:0 0 0 4px color-mix(in srgb,var(--flx-primary) 16%,transparent)}
+.woocommerce input[type=checkbox]{width:18px;height:18px;accent-color:var(--flx-primary)}
+.woocommerce .select2-container .select2-selection--single{display:flex;align-items:center}
+.woocommerce .select2-container .select2-selection--single .select2-selection__arrow{top:50%;transform:translateY(-50%);right:10px}
+.woocommerce .password-input{display:block;position:relative}
+.woocommerce .show-password-input{position:absolute!important;top:50%!important;right:.6rem!important;width:34px;height:34px;margin:0;padding:0;transform:translateY(-50%);border:0;border-radius:8px;background:transparent;color:var(--flx-text);cursor:pointer}.woocommerce .show-password-input::after{content:""!important;position:absolute;inset:7px;font-family:inherit!important;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E") center/contain no-repeat}.woocommerce .show-password-input.display-password::after{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3Cpath d='M3 3l18 18'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3Cpath d='M3 3l18 18'/%3E%3C/svg%3E")}.woocommerce .show-password-input:hover{color:var(--flx-primary);background:var(--flx-mint-soft)}.woocommerce .password-input input{padding-right:3rem}
+.woocommerce form .form-row-first,.woocommerce form .form-row-last{width:calc(50% - .6rem)}.woocommerce form .form-row-first{float:left}.woocommerce form .form-row-last{float:right}.woocommerce form .clear,.woocommerce form .form-row-wide{clear:both}
+@media (max-width:600px){.woocommerce form .form-row-first,.woocommerce form .form-row-last{float:none;width:100%}}
+.woocommerce fieldset{margin:1.5rem 0;padding:1.25rem 1.25rem .25rem;border:1.5px solid var(--flx-line);border-radius:var(--flx-radius)}
+.woocommerce fieldset legend{padding:0 .5rem;font-family:var(--wp--preset--font-family--heading);font-weight:800;color:var(--flx-ink)}
+.woocommerce em,.woocommerce .description{font-size:var(--wp--preset--font-size--x-small);color:var(--flx-text)}
+
+/* Bildirimler (klasik + blok) */
+.woocommerce-notices-wrapper:empty{display:none}
+.woocommerce :where(.woocommerce-message,.woocommerce-info,.woocommerce-error),.woocommerce-page :where(.woocommerce-message,.woocommerce-info,.woocommerce-error){
+  position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem;margin:0 0 1.5rem;padding:1rem 1.2rem 1rem 3.4rem;list-style:none;border:0;border-radius:14px;
+  background:var(--flx-mint);color:var(--flx-ink);font-size:var(--wp--preset--font-size--small)}
+.woocommerce :where(.woocommerce-message,.woocommerce-info,.woocommerce-error)::before{content:"";position:absolute;top:1rem;left:1.1rem;width:22px;height:22px;background:var(--flx-primary);-webkit-mask:var(--flx-wc-i-check) center/contain no-repeat;mask:var(--flx-wc-i-check) center/contain no-repeat;color:inherit}
+.woocommerce .woocommerce-info::before{-webkit-mask-image:var(--flx-wc-i-info);mask-image:var(--flx-wc-i-info)}
+.woocommerce .woocommerce-error{background:#FDECEA;color:#7A1F17}
+.woocommerce .woocommerce-error::before{background:#C0392B;-webkit-mask-image:var(--flx-wc-i-alert);mask-image:var(--flx-wc-i-alert)}
+.woocommerce :where(.woocommerce-message,.woocommerce-info) .button{order:2;margin-left:auto;padding:.55em 1.2em;font-size:var(--wp--preset--font-size--x-small)}
+.woocommerce .woocommerce-error li{margin:0;width:100%}
+.wc-block-components-notice-banner{border-radius:14px!important;border-width:0!important;padding:1rem 1.2rem!important;font-size:var(--wp--preset--font-size--small)!important}
+.wc-block-components-notice-banner.is-success,.wc-block-components-notice-banner.is-info{background:var(--flx-mint)!important;color:var(--flx-ink)!important}
+.wc-block-components-notice-banner.is-success>svg,.wc-block-components-notice-banner.is-info>svg{background:var(--flx-primary)!important}
+
+/* ---------- Sayfa başlık alanı (Hesabım / Sepet / Ödeme) ---------- */
+.flx-shop-hero{position:relative;box-sizing:border-box;display:flex;align-items:center;gap:1.25rem 1.5rem;flex-wrap:wrap;margin-block:0 var(--wp--preset--spacing--50)!important;padding:clamp(1.4rem,3vw,2.2rem) clamp(1.3rem,3vw,2.4rem);overflow:hidden;
+  border-radius:var(--flx-radius-media);background:radial-gradient(520px 260px at 100% 0,color-mix(in srgb,var(--flx-leaf) 22%,transparent),transparent 70%),linear-gradient(135deg,var(--flx-mint) 0%,var(--flx-mint-soft) 100%);border:1px solid var(--flx-line)}
+.flx-shop-hero::after{content:"";position:absolute;right:-30px;bottom:-40px;width:200px;height:200px;background:var(--flx-primary);opacity:.06;-webkit-mask:var(--flx-i-leaf) center/contain no-repeat;mask:var(--flx-i-leaf) center/contain no-repeat;transform:rotate(-15deg);pointer-events:none}
+.flx-shop-hero__icon{flex:none;display:grid;place-items:center;width:64px;height:64px;border-radius:20px;background:var(--flx-primary);color:#fff;box-shadow:0 12px 26px color-mix(in srgb,var(--flx-primary) 32%,transparent)}
+.flx-shop-hero__icon .flx-ic{width:30px;height:30px}
+.flx-shop-hero__text{flex:1 1 280px;min-width:0}
+.flx-shop-hero__eyebrow{margin:0 0 .2rem;font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:var(--wp--preset--font-size--x-small);letter-spacing:.14em;text-transform:uppercase;color:var(--flx-primary)}
+.flx-shop-hero__title{margin:0;font-size:clamp(1.7rem,1.2rem + 1.8vw,2.5rem);line-height:1.15;color:var(--flx-ink)}
+.flx-shop-hero__lead{margin:.45rem 0 0;max-width:60ch;color:var(--flx-text);font-size:var(--wp--preset--font-size--small)}
+.flx-wc--received .flx-shop-hero__icon{background:var(--flx-leaf)}
+/* Adımlar */
+.flx-steps{position:relative;z-index:1;display:flex;align-items:center;gap:0;margin:0;padding:0;list-style:none;font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:var(--wp--preset--font-size--x-small);color:var(--flx-text)}
+.flx-steps li{display:flex;align-items:center;gap:.5rem}
+.flx-steps li+li::before{content:"";width:clamp(18px,4vw,42px);height:2px;margin:0 .6rem;background:var(--flx-line);border-radius:2px}
+.flx-steps li.is-done+li::before,.flx-steps li.is-done::before{background:var(--flx-primary)}
+.flx-steps__dot{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--flx-surface);border:2px solid var(--flx-line);color:var(--flx-text)}
+.flx-steps__dot .flx-ic{width:16px;height:16px;stroke-width:2.6}
+.flx-steps .is-current{color:var(--flx-ink)}
+.flx-steps .is-current .flx-steps__dot{background:var(--flx-primary);border-color:var(--flx-primary);color:#fff;box-shadow:0 0 0 5px color-mix(in srgb,var(--flx-primary) 18%,transparent)}
+.flx-steps .is-done .flx-steps__dot{background:var(--flx-mint);border-color:var(--flx-primary);color:var(--flx-primary)}
+@media (max-width:600px){.flx-shop-hero__icon{width:52px;height:52px;border-radius:16px}.flx-steps{width:100%}.flx-steps li:not(.is-current) .flx-steps__label{display:none}}
+
+/* ---------- Hesabım: iki kolon ---------- */
+.woocommerce:has(>.flx-account-side){display:grid;grid-template-columns:minmax(240px,290px) minmax(0,1fr);gap:clamp(1.25rem,3vw,2.5rem);align-items:start}
+.woocommerce:has(>.flx-account-side)>.woocommerce-notices-wrapper{grid-column:1/-1}
+/* WooCommerce'in clearfix ::before/::after'ı grid hücresi kaplıyor; kaldır ve kolonları sabitle. */
+.woocommerce:has(>.flx-account-side)::before,.woocommerce:has(>.flx-account-side)::after,#customer_login::before,#customer_login::after{display:none!important;content:none!important}
+.woocommerce:has(>.flx-account-side)>*{grid-column:1/-1}
+.woocommerce:has(>.flx-account-side)>.flx-account-side{grid-column:1}
+.woocommerce:has(>.flx-account-side)>.woocommerce-MyAccount-content{grid-column:2}
+/* WooCommerce blok tema CSS'i (li padding 1em, aktif link altı çizili) */
+.woocommerce-account .woocommerce .woocommerce-MyAccount-navigation ul{margin:0;padding:0}
+.woocommerce-account .woocommerce .woocommerce-MyAccount-navigation li,.woocommerce-account .woocommerce .woocommerce-MyAccount-navigation li:first-child{padding:0;list-style:none}
+.woocommerce-account .woocommerce .woocommerce-MyAccount-navigation li a,.woocommerce-account .woocommerce .woocommerce-MyAccount-navigation li a:hover,.woocommerce-account .woocommerce .woocommerce-MyAccount-navigation li.is-active a{text-decoration:none}
+.woocommerce-account .woocommerce-MyAccount-navigation,.woocommerce-account .woocommerce-MyAccount-content{float:none!important;width:auto!important;margin:0}
+.flx-account-side{position:sticky;top:1.5rem;display:flex;flex-direction:column;gap:1rem}
+.admin-bar .flx-account-side{top:calc(32px + 1.5rem)}
+.flx-account-user{display:flex;align-items:center;gap:.85rem;padding:1.1rem 1.2rem;border-radius:var(--flx-radius);background:var(--flx-surface);box-shadow:var(--flx-shadow);border:1px solid var(--flx-line)}
+.flx-account-user__avatar{flex:none;display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--flx-primary),var(--flx-leaf));color:#fff;font:800 1.2rem/1 var(--wp--preset--font-family--heading)}
+.flx-account-user__meta{display:flex;flex-direction:column;min-width:0}
+.flx-account-user__meta strong{color:var(--flx-ink);font-family:var(--wp--preset--font-family--heading);font-weight:800;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.flx-account-user__meta small{color:var(--flx-text);font-size:.8rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.woocommerce-MyAccount-navigation{padding:.5rem;border-radius:var(--flx-radius);background:var(--flx-surface);box-shadow:var(--flx-shadow);border:1px solid var(--flx-line)}
+.woocommerce-MyAccount-navigation ul{display:flex;flex-direction:column;gap:2px;margin:0;padding:0;list-style:none}
+.woocommerce-MyAccount-navigation li{margin:0;padding:0;border:0}
+.woocommerce-MyAccount-navigation a{--i:var(--flx-wc-i-default);display:flex;align-items:center;gap:.75rem;padding:.75rem .9rem;border-radius:12px;color:var(--flx-ink);font-family:var(--wp--preset--font-family--heading);font-weight:700;font-size:var(--wp--preset--font-size--small);text-decoration:none;transition:background .15s,color .15s}
+.woocommerce-MyAccount-navigation a::before{content:"";flex:none;width:20px;height:20px;background:currentColor;-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat;opacity:.85}
+.woocommerce-MyAccount-navigation a::after{content:"";margin-left:auto;width:16px;height:16px;background:currentColor;-webkit-mask:var(--flx-i-chev-r) center/contain no-repeat;mask:var(--flx-i-chev-r) center/contain no-repeat;opacity:0;transform:translateX(-4px);transition:opacity .15s,transform .15s}
+.woocommerce-MyAccount-navigation a:hover{background:var(--flx-mint-soft);color:var(--flx-primary)}
+.woocommerce-MyAccount-navigation a:hover::after{opacity:.6;transform:none}
+.woocommerce-MyAccount-navigation li.is-active a{background:var(--flx-primary);color:#fff}
+.woocommerce-MyAccount-navigation li.is-active a::after{opacity:.9;transform:none}
+.woocommerce-MyAccount-navigation-link--dashboard a{--i:var(--flx-wc-i-dashboard)}
+.woocommerce-MyAccount-navigation-link--orders a{--i:var(--flx-wc-i-orders)}
+.woocommerce-MyAccount-navigation-link--downloads a{--i:var(--flx-wc-i-downloads)}
+.woocommerce-MyAccount-navigation-link--edit-address a{--i:var(--flx-wc-i-edit-address)}
+.woocommerce-MyAccount-navigation-link--payment-methods a{--i:var(--flx-wc-i-payment-methods)}
+.woocommerce-MyAccount-navigation-link--edit-account a{--i:var(--flx-wc-i-edit-account)}
+.woocommerce-MyAccount-navigation-link--customer-logout{margin-top:.35rem!important;padding-top:.35rem!important;border-top:1px solid var(--flx-line)!important}
+.woocommerce-MyAccount-navigation-link--customer-logout a{--i:var(--flx-wc-i-customer-logout);color:#B23A2E}
+.woocommerce-MyAccount-navigation-link--customer-logout a:hover{background:#FDECEA;color:#B23A2E}
+.flx-account-donate{position:relative;display:flex;align-items:center;gap:.8rem;padding:1rem 1.1rem;overflow:hidden;border-radius:var(--flx-radius);background:linear-gradient(135deg,var(--flx-primary),var(--flx-primary-dark));color:#fff;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.flx-account-donate:hover{transform:translateY(-2px);box-shadow:0 14px 30px color-mix(in srgb,var(--flx-primary) 35%,transparent);color:#fff}
+.flx-account-donate .flx-ic{flex:none;width:40px;height:40px;padding:8px;border-radius:12px;background:rgba(255,255,255,.16)}
+.flx-account-donate span{display:flex;flex-direction:column}
+.flx-account-donate strong{font-family:var(--wp--preset--font-family--heading);font-weight:800;line-height:1.25}
+.flx-account-donate small{opacity:.85;font-size:.8rem}
+.woocommerce-MyAccount-content{min-width:0;padding:clamp(1.25rem,3vw,2rem);border-radius:var(--flx-radius);background:var(--flx-surface);box-shadow:var(--flx-shadow);border:1px solid var(--flx-line)}
+.woocommerce-MyAccount-content>:first-child,.woocommerce-MyAccount-content>.woocommerce-notices-wrapper:first-child+*{margin-top:0}
+.woocommerce-MyAccount-content>p{color:var(--flx-text)}
+.woocommerce-MyAccount-content h2,.woocommerce-MyAccount-content h3{font-size:clamp(1.2rem,1rem + .6vw,1.45rem);color:var(--flx-ink)}
+.woocommerce-MyAccount-content a:not(.button):not(.flx-dash__card):not([class*=flx-dash]){color:var(--flx-primary);font-weight:700}
+@media (max-width:860px){
+  .woocommerce:has(>.flx-account-side){grid-template-columns:minmax(0,1fr)}
+  .woocommerce:has(>.flx-account-side)>.flx-account-side,.woocommerce:has(>.flx-account-side)>.woocommerce-MyAccount-content{grid-column:1}
+  .flx-account-side{position:static}
+  .flx-account-donate{display:none}
+  .woocommerce-MyAccount-navigation{padding:.4rem;overflow-x:auto;scrollbar-width:none}
+  .woocommerce-MyAccount-navigation::-webkit-scrollbar{display:none}
+  .woocommerce-MyAccount-navigation ul{flex-direction:row;gap:.3rem;width:max-content}
+  .woocommerce-MyAccount-navigation a{padding:.6rem .9rem;white-space:nowrap}
+  .woocommerce-MyAccount-navigation a::after{display:none}
+  .woocommerce-MyAccount-navigation-link--customer-logout{margin:0!important;padding:0!important;border:0!important}
+}
+
+/* Pano */
+.flx-dash__hello{margin:0 0 1.5rem;padding:.9rem 1.1rem;border-radius:12px;background:var(--flx-mint-soft);font-size:var(--wp--preset--font-size--small)}
+.flx-dash__hello strong{color:var(--flx-ink)}
+.flx-dash__cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
+.flx-dash__card{display:flex;flex-direction:column;gap:.3rem;padding:1.2rem;border-radius:var(--flx-radius);border:1.5px solid var(--flx-line);background:var(--flx-surface);color:var(--flx-text);text-decoration:none;transition:border-color .15s,transform .15s,box-shadow .15s}
+.flx-dash__card:hover{border-color:var(--flx-primary);transform:translateY(-3px);box-shadow:var(--flx-shadow)}
+.flx-dash__card-icon{display:grid;place-items:center;width:46px;height:46px;margin-bottom:.5rem;border-radius:14px;background:var(--flx-mint);color:var(--flx-primary);transition:background .15s,color .15s}
+.flx-dash__card:hover .flx-dash__card-icon{background:var(--flx-primary);color:#fff}
+.flx-dash__card strong{font-family:var(--wp--preset--font-family--heading);font-weight:800;color:var(--flx-ink)}
+.flx-dash__card small{font-size:.82rem;line-height:1.45}
+.flx-dash__recent{margin-top:2rem}
+.flx-dash__recent-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.75rem}
+.flx-dash__recent-head h2{margin:0;font-size:1.15rem!important}
+.flx-dash__recent-head a{font-family:var(--wp--preset--font-family--heading);font-size:var(--wp--preset--font-size--x-small);text-decoration:none}
+.flx-dash__orders{margin:0;padding:0;list-style:none;border:1.5px solid var(--flx-line);border-radius:var(--flx-radius);overflow:hidden}
+.flx-dash__orders li+li{border-top:1px solid var(--flx-line)}
+.flx-dash__orders a{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:.5rem 1rem;padding:.9rem 1.1rem;color:var(--flx-text);text-decoration:none;font-weight:400!important;transition:background .15s}
+.flx-dash__orders a:hover{background:var(--flx-mint-soft)}
+.flx-dash__order-no{font-family:var(--wp--preset--font-family--heading);font-weight:800;color:var(--flx-ink)}
+.flx-dash__order-date{font-size:.85rem}
+.flx-dash__order-total{font-weight:800;color:var(--flx-ink)}
+@media (max-width:520px){.flx-dash__orders a{grid-template-columns:1fr auto}.flx-dash__order-date{order:3}}
+
+/* Durum etiketleri */
+.flx-status{display:inline-flex;align-items:center;gap:.35em;padding:.25em .75em;border-radius:999px;background:var(--flx-mint);color:var(--flx-primary);font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:.72rem;white-space:nowrap}
+.flx-status::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.flx-status--processing,.flx-status--on-hold,.flx-status--pending{background:#FFF4DE;color:#9A6200}
+.flx-status--cancelled,.flx-status--failed,.flx-status--refunded{background:#FDECEA;color:#B23A2E}
+
+/* Tablolar (siparişler, sipariş detayı, indirmeler) */
+.woocommerce table.shop_table{width:100%;margin:0 0 1.5rem;border:1.5px solid var(--flx-line);border-radius:var(--flx-radius);border-collapse:separate;border-spacing:0;overflow:hidden;font-size:var(--wp--preset--font-size--small)}
+.woocommerce table.shop_table :where(th,td){padding:.9rem 1rem;border:0;border-top:1px solid var(--flx-line);text-align:left;vertical-align:middle}
+.woocommerce table.shop_table thead th{border-top:0;background:var(--flx-mint-soft);font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--flx-text)}
+.woocommerce table.shop_table tbody tr:hover>*{background:color-mix(in srgb,var(--flx-mint-soft) 60%,transparent)}
+.woocommerce table.shop_table tfoot :where(th,td){background:var(--flx-mint-soft)}
+.woocommerce table.shop_table tfoot tr:last-child :where(th,td){font-weight:800;color:var(--flx-ink)}
+.woocommerce-orders-table__cell-order-number a{font-family:var(--wp--preset--font-family--heading);font-weight:800;color:var(--flx-ink)!important;text-decoration:none}
+.woocommerce-orders-table__cell-order-actions{text-align:right!important}
+.woocommerce-orders-table .button,.woocommerce-table--order-downloads .button{padding:.5em 1.1em!important;font-size:.78rem!important;background:var(--flx-mint)!important;color:var(--flx-primary)!important;margin:.15rem 0 .15rem .25rem}
+.woocommerce-orders-table .button:hover{background:var(--flx-primary)!important;color:#fff!important}
+@media (max-width:768px){
+  .woocommerce table.shop_table_responsive thead{display:none}
+  .woocommerce table.shop_table_responsive tbody tr{display:block;border-top:1px solid var(--flx-line)}
+  .woocommerce table.shop_table_responsive tbody tr:first-child{border-top:0}
+  .woocommerce table.shop_table_responsive tbody :where(th,td){display:flex;justify-content:space-between;gap:1rem;border:0;padding:.5rem 1rem;text-align:right!important}
+  .woocommerce table.shop_table_responsive tbody :where(th,td)::before{content:attr(data-title);font-weight:700;color:var(--flx-ink);text-align:left}
+  .woocommerce table.shop_table_responsive tbody tr>:first-child{padding-top:1rem}
+  .woocommerce table.shop_table_responsive tbody tr>:last-child{padding-bottom:1rem}
+  .woocommerce table.shop_table_responsive .woocommerce-orders-table__cell-order-actions::before{display:none}
+}
+.woocommerce-pagination{display:flex;justify-content:space-between;gap:1rem}
+/* Sipariş detayı */
+.woocommerce-order-details,.woocommerce-customer-details{margin-top:1.5rem}
+.woocommerce-order-details__title,.woocommerce-column__title{font-size:1.15rem!important}
+mark.order-number,mark.order-date,mark.order-status{background:transparent;color:var(--flx-ink);font-weight:800}
+
+/* Adresler */
+.woocommerce-Addresses{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1rem}
+.woocommerce-Addresses::before,.woocommerce-Addresses::after{display:none!important}
+.woocommerce-Address{float:none!important;width:auto!important;padding:1.2rem 1.3rem;border-radius:var(--flx-radius);border:1.5px solid var(--flx-line);background:var(--flx-mint-soft)}
+.woocommerce-Address-title{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:.6rem}
+.woocommerce-Address-title::before,.woocommerce-Address-title::after{display:none!important}
+.woocommerce-Address-title h2,.woocommerce-Address-title h3{display:flex;align-items:center;gap:.5rem;margin:0;font-size:1.05rem!important}
+.woocommerce-Address-title h2::before,.woocommerce-Address-title h3::before{content:"";width:20px;height:20px;background:var(--flx-primary);-webkit-mask:var(--flx-wc-i-edit-address) center/contain no-repeat;mask:var(--flx-wc-i-edit-address) center/contain no-repeat}
+.woocommerce-Address-title .edit{float:none!important;padding:.35em .9em;border-radius:999px;background:var(--flx-surface);border:1.5px solid var(--flx-line);font-family:var(--wp--preset--font-family--heading);font-size:.75rem;text-decoration:none;white-space:nowrap}
+.woocommerce-Address-title .edit:hover{border-color:var(--flx-primary)}
+.woocommerce-Address address{font-style:normal;line-height:1.7;color:var(--flx-text)}
+.woocommerce-customer-details address{padding:1.1rem 1.2rem;border:1.5px solid var(--flx-line)!important;border-radius:var(--flx-radius);font-style:normal;line-height:1.7}
+
+/* ---------- Giriş / kayıt ---------- */
+.woocommerce-account:not(.logged-in) .woocommerce{max-width:980px!important}
+#customer_login{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(1rem,3vw,2rem)}
+#customer_login::before,#customer_login::after{display:none!important}
+#customer_login>.u-column1,#customer_login>.u-column2{float:none!important;width:auto!important;max-width:none!important;padding:clamp(1.3rem,3vw,2rem);border-radius:var(--flx-radius);background:var(--flx-surface);box-shadow:var(--flx-shadow);border:1px solid var(--flx-line)}
+#customer_login>.u-column2{background:linear-gradient(160deg,var(--flx-mint) 0%,var(--flx-surface) 55%)}
+#customer_login h2,.woocommerce-account:not(.logged-in) .woocommerce>h2{display:flex;align-items:center;gap:.6rem;margin:0 0 1.25rem;font-size:1.35rem!important;color:var(--flx-ink)}
+#customer_login h2::before,.woocommerce-account:not(.logged-in) .woocommerce>h2::before{content:"";display:inline-block;flex:none;width:40px;height:40px;border-radius:12px;background:var(--flx-mint) var(--flx-wc-i-lock) center/22px no-repeat;
+  -webkit-mask:none;mask:none;background-image:none;box-shadow:inset 0 0 0 40px var(--flx-mint)}
+#customer_login h2{position:relative}
+#customer_login h2::after{content:"";position:absolute;left:9px;top:50%;width:22px;height:22px;margin-top:-11px;background:var(--flx-primary);-webkit-mask:var(--flx-wc-i-lock) center/contain no-repeat;mask:var(--flx-wc-i-lock) center/contain no-repeat}
+#customer_login .u-column2 h2::after{-webkit-mask-image:var(--flx-wc-i-userplus);mask-image:var(--flx-wc-i-userplus)}
+#customer_login .u-column2 h2::before{background:var(--flx-surface);box-shadow:none}
+.woocommerce form.login,.woocommerce form.register,.woocommerce form.lost_reset_password{margin:0;padding:0;border:0;border-radius:0}
+.woocommerce form.login .form-row:has(.woocommerce-form-login__rememberme){display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem}
+.woocommerce .woocommerce-form-login__submit,.woocommerce .woocommerce-form-register__submit{width:100%;padding-block:.95em!important;font-size:1rem!important}
+.woocommerce .woocommerce-form-login__submit{order:3}
+.woocommerce .woocommerce-form-login__rememberme{margin:0!important}
+.woocommerce-LostPassword{margin:.25rem 0 0;font-size:var(--wp--preset--font-size--x-small)}
+.woocommerce-LostPassword a{color:var(--flx-primary);font-weight:700}
+.woocommerce-privacy-policy-text{font-size:.8rem;color:var(--flx-text)}
+.woocommerce-account:not(.logged-in) form.lost_reset_password{max-width:520px;padding:clamp(1.3rem,3vw,2rem);border-radius:var(--flx-radius);background:var(--flx-surface);box-shadow:var(--flx-shadow);border:1px solid var(--flx-line)}
+
+/* ---------- Sepet ve ödeme (blok) ---------- */
+.wp-block-woocommerce-cart,.wp-block-woocommerce-checkout{margin-top:0!important}
+.wc-block-components-sidebar-layout{gap:0}
+.wc-block-components-sidebar-layout .wc-block-components-main{padding-right:clamp(0px,3%,2.5rem)!important}
+.wc-block-components-sidebar{padding:clamp(1.2rem,2.5vw,1.6rem)!important;border-radius:var(--flx-radius);background:var(--flx-surface);box-shadow:var(--flx-shadow);border:1px solid var(--flx-line);align-self:flex-start}
+.wc-block-cart .wc-block-cart__totals-title,.wc-block-components-checkout-order-summary__title-text,.wc-block-components-title.wc-block-components-title{font-family:var(--wp--preset--font-family--heading)!important;font-weight:800!important;color:var(--flx-ink)!important;text-transform:none!important;letter-spacing:0!important;font-size:1.25rem!important;margin:0 0 .75rem!important}
+.wc-block-cart-items{border-collapse:separate!important}
+.wc-block-cart-items__header{font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:.75rem!important;letter-spacing:.06em;color:var(--flx-text)}
+.wc-block-cart-items td,.wc-block-cart-items th{border-color:var(--flx-line)!important}
+.wc-block-cart-item__image img,.wc-block-components-order-summary-item__image img{border-radius:12px}
+.wc-block-components-product-name{font-family:var(--wp--preset--font-family--heading);font-weight:800;color:var(--flx-ink)!important;text-decoration:none!important}
+.wc-block-components-product-price,.wc-block-components-totals-item__value{font-weight:800;color:var(--flx-ink)}
+.wc-block-components-totals-footer-item .wc-block-components-totals-item__value,.wc-block-components-totals-footer-item .wc-block-components-totals-item__label{font-size:1.2rem!important;color:var(--flx-primary)!important}
+.wc-block-components-totals-wrapper{border-color:var(--flx-line)!important}
+.wc-block-components-quantity-selector{border-radius:999px!important;border-color:var(--flx-line)!important;overflow:hidden}
+.wc-block-components-quantity-selector::after{border:0!important}
+.wc-block-components-quantity-selector__button{color:var(--flx-primary)!important}
+.wc-block-cart-item__remove-link{color:var(--flx-text)!important;font-size:.8rem!important}
+.wc-block-components-button:not(.is-link),.wc-block-cart__submit-button,.wc-block-components-checkout-place-order-button{
+  min-height:52px;border:0!important;border-radius:999px!important;background:var(--flx-primary)!important;color:#fff!important;font-family:var(--wp--preset--font-family--heading)!important;font-weight:800!important;transition:background .15s,transform .15s}
+.wc-block-components-button:not(.is-link):hover,.wc-block-cart__submit-button:hover,.wc-block-components-checkout-place-order-button:hover{background:var(--flx-primary-dark)!important;transform:translateY(-1px)}
+.wc-block-components-button.outlined,.wc-block-mini-cart__footer-cart.wc-block-components-button{background:transparent!important;color:var(--flx-primary)!important;box-shadow:inset 0 0 0 1.5px var(--flx-primary)!important}
+.wc-block-components-text-input input,.wc-block-components-text-input textarea,.wc-blocks-components-select__select,.wc-block-components-combobox .wc-block-components-combobox-control input,.wc-block-components-form .wc-block-components-text-input input{
+  border-radius:12px!important;border:1.5px solid var(--flx-line)!important;background:var(--flx-surface)!important;color:var(--flx-ink)!important}
+.wc-block-components-text-input input:focus,.wc-blocks-components-select__select:focus,.wc-block-components-combobox .wc-block-components-combobox-control input:focus{border-color:var(--flx-primary)!important;box-shadow:0 0 0 4px color-mix(in srgb,var(--flx-primary) 16%,transparent)!important;outline:0!important}
+.wc-blocks-components-select .wc-blocks-components-select__container{border-radius:12px!important;background:var(--flx-surface)!important}
+.wc-block-components-text-input.is-active label,.wc-block-components-text-input label{color:var(--flx-text)!important}
+.wc-block-components-checkbox .wc-block-components-checkbox__input[type=checkbox]{border-radius:6px!important;border-color:var(--flx-line)!important}
+.wc-block-components-checkbox .wc-block-components-checkbox__input[type=checkbox]:checked{background:var(--flx-primary)!important;border-color:var(--flx-primary)!important}
+.wc-block-components-checkbox .wc-block-components-checkbox__mark{fill:#fff!important}
+/* 0.5.25: big, aligned checkboxes (the 18px rule above pushed the tick outside the box) */
+.wc-block-components-checkbox{margin-top:.75rem}
+.wc-block-components-checkbox label{display:flex!important;align-items:center;gap:.8rem;min-height:44px;position:relative;cursor:pointer;line-height:1.4}
+.wc-block-components-checkbox .wc-block-components-checkbox__input[type=checkbox]{position:relative!important;flex:0 0 26px;width:26px!important;height:26px!important;min-width:26px!important;margin:0!important;cursor:pointer;border-width:2px!important}
+.wc-block-components-checkbox .wc-block-components-checkbox__mark{position:absolute!important;left:3px!important;top:50%!important;width:20px!important;height:20px!important;margin:-10px 0 0!important;pointer-events:none}
+.wc-block-components-checkbox .wc-block-components-checkbox__label{font-weight:600}
+.wc-block-checkout__terms .wc-block-components-checkbox{margin:0;padding:0;border:1.5px solid var(--flx-line);border-radius:14px;background:var(--flx-surface)}
+.wc-block-checkout__terms .wc-block-components-checkbox:has(input:checked){border-color:var(--flx-primary);background:color-mix(in srgb,var(--flx-primary) 8%,var(--flx-surface))}
+.wc-block-checkout__terms .wc-block-components-checkbox.has-error{border-color:#d63638}
+.wc-block-checkout__terms .wc-block-components-checkbox label{min-height:56px;padding:.75rem 1rem}
+.wc-block-checkout__terms .wc-block-components-checkbox .wc-block-components-checkbox__mark{left:calc(1rem + 3px)!important}
+.wc-block-checkout__terms .wc-block-components-checkbox__label{font-weight:500;font-size:.95rem}
+.wc-block-checkout__terms a{color:var(--flx-primary);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.wc-block-components-checkout-step{position:relative;margin-bottom:1.5rem!important;padding:clamp(1.1rem,2.5vw,1.5rem)!important;border-radius:var(--flx-radius);border:1.5px solid var(--flx-line);background:var(--flx-surface)}
+.wc-block-components-checkout-step::after{display:none!important}
+.wc-block-components-checkout-step__heading{margin-top:0!important}
+.wc-block-components-checkout-step__title{font-size:1.15rem!important}
+.wc-block-checkout__form .wc-block-components-checkout-step__container::after{display:none!important}
+.wc-block-components-radio-control--highlight-checked,.wc-block-components-radio-control-accordion-option{border-radius:12px!important}
+.wc-block-components-radio-control--highlight-checked::after{border-color:var(--flx-line)!important;border-radius:12px!important}
+.wc-block-components-radio-control--highlight-checked .wc-block-components-radio-control-accordion-option--checked-option-highlighted,.wc-block-components-radio-control--highlight-checked label.wc-block-components-radio-control__option--checked-option-highlighted{box-shadow:inset 0 0 0 2px var(--flx-primary)!important;border-radius:12px!important;background:var(--flx-mint-soft)}
+.wc-block-components-radio-control__input:checked{border-color:var(--flx-primary)!important}
+.wc-block-components-radio-control__input:checked::before{background:var(--flx-primary)!important}
+.wc-block-components-panel__button,.wc-block-components-totals-coupon-link{color:var(--flx-primary)!important;font-weight:700}
+.wc-block-checkout__terms{font-size:.85rem}
+.wc-block-cart__empty-cart__title{font-family:var(--wp--preset--font-family--heading);color:var(--flx-ink)}
+.wc-block-cart__empty-cart__title.with-empty-cart-icon::before{background:var(--flx-primary)!important;opacity:.85}
+.wp-block-woocommerce-empty-cart-block{padding:clamp(1.5rem,4vw,3rem);border-radius:var(--flx-radius);background:var(--flx-mint-soft);border:1px solid var(--flx-line)}
+.wc-block-components-sale-badge,.wc-block-components-product-sale-badge,.woocommerce span.onsale{border-radius:999px!important;border:0!important;background:var(--flx-leaf)!important;color:#fff!important;font-weight:800}
+/* Sipariş onayı (blok) */
+.wc-block-order-confirmation-status{padding:clamp(1.2rem,3vw,2rem);border-radius:var(--flx-radius);background:var(--flx-mint);border:1px solid var(--flx-line)}
+.wc-block-order-confirmation-summary-list{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;padding:1.2rem!important;border:1.5px solid var(--flx-line);border-radius:var(--flx-radius)}
+.wc-block-order-confirmation-summary-list-item{margin:0!important;padding:0!important;border:0!important}
+.wc-block-order-confirmation-summary-list-item__key{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--flx-text)}
+.wc-block-order-confirmation-summary-list-item__value{font-weight:800;color:var(--flx-ink)}
+.wc-block-order-confirmation-totals table,.wc-block-order-confirmation-downloads table{border-radius:var(--flx-radius);overflow:hidden}
+.wc-block-order-confirmation-billing-address,.wc-block-order-confirmation-shipping-address{border-radius:var(--flx-radius)!important;border-color:var(--flx-line)!important}
+
+/* ---------- Mağaza ve ürün ---------- */
+.wc-block-product-template .wc-block-product,.woocommerce ul.products li.product{position:relative;padding:.75rem .75rem 1.2rem!important;border-radius:var(--flx-radius);background:var(--flx-surface);box-shadow:var(--flx-shadow);transition:transform .2s,box-shadow .2s}
+.wc-block-product-template .wc-block-product:hover,.woocommerce ul.products li.product:hover{transform:translateY(-4px);box-shadow:0 22px 44px rgba(20,50,74,.14)}
+.wc-block-components-product-image img,.woocommerce ul.products li.product img{border-radius:12px}
+.wc-block-product .wp-block-post-title a,.woocommerce-loop-product__title{color:var(--flx-ink);text-decoration:none;font-family:var(--wp--preset--font-family--heading);font-weight:800}
+.wp-block-woocommerce-product-price,.woocommerce ul.products li.product .price,.woocommerce div.product p.price{color:var(--flx-primary)!important;font-weight:800}
+.wc-block-components-product-button__button,.wp-block-button.wc-block-components-product-button .wp-block-button__link{border-radius:999px!important}
+.woocommerce div.product .single_add_to_cart_button{min-height:52px}
+.woocommerce .quantity .qty{width:5rem;min-height:52px;text-align:center;border-radius:999px}
+.wp-block-woocommerce-product-details .wc-tabs,.woocommerce-tabs ul.tabs{display:flex;flex-wrap:wrap;gap:.4rem;padding:0!important;border:0!important}
+.wp-block-woocommerce-product-details .wc-tabs li,.woocommerce-tabs ul.tabs li{margin:0!important;border:0!important;border-radius:999px!important;background:var(--flx-mint)!important}
+.wp-block-woocommerce-product-details .wc-tabs li::before,.wp-block-woocommerce-product-details .wc-tabs li::after,.woocommerce-tabs ul.tabs li::before,.woocommerce-tabs ul.tabs li::after,.woocommerce-tabs ul.tabs::before{display:none!important}
+.wp-block-woocommerce-product-details .wc-tabs li a,.woocommerce-tabs ul.tabs li a{padding:.55rem 1.1rem!important;color:var(--flx-primary)!important;font-family:var(--wp--preset--font-family--heading)}
+.wp-block-woocommerce-product-details .wc-tabs li.active,.woocommerce-tabs ul.tabs li.active{background:var(--flx-primary)!important}
+.wp-block-woocommerce-product-details .wc-tabs li.active a,.woocommerce-tabs ul.tabs li.active a{color:#fff!important}
+.woocommerce-breadcrumb,.wc-block-breadcrumbs{font-size:var(--wp--preset--font-size--x-small);color:var(--flx-text)}
+.woocommerce-breadcrumb a,.wc-block-breadcrumbs a{color:var(--flx-primary);text-decoration:none}
+
+/* ---------- Dark mode ---------- */
+@media (prefers-color-scheme:dark){
+  body.flx-dark .woocommerce .woocommerce-error{background:#3A1A17;color:#F6C9C3}
+  body.flx-dark .woocommerce-MyAccount-navigation-link--customer-logout a{color:#F09A8F}
+  body.flx-dark .woocommerce-MyAccount-navigation-link--customer-logout a:hover{background:#3A1A17;color:#F6C9C3}
+  body.flx-dark .flx-status--processing,body.flx-dark .flx-status--on-hold,body.flx-dark .flx-status--pending{background:#3A2E12;color:#F2C46B}
+  body.flx-dark .flx-status--cancelled,body.flx-dark .flx-status--failed,body.flx-dark .flx-status--refunded{background:#3A1A17;color:#F09A8F}
+  body.flx-dark .flx-status{color:#8FD6B0}
+  body.flx-dark .woocommerce-orders-table .button{color:#8FD6B0!important}
+  body.flx-dark .woocommerce-orders-table .button:hover{color:#fff!important}
+  body.flx-dark .woocommerce-MyAccount-content a:not(.button):not(.flx-dash__card):not([class*=flx-dash]),body.flx-dark .woocommerce-LostPassword a,body.flx-dark .flx-dash__recent-head a{color:#8FD6B0}
+  body.flx-dark .wc-block-components-product-price,body.flx-dark .wc-block-components-totals-footer-item .wc-block-components-totals-item__value,body.flx-dark .wc-block-components-totals-footer-item .wc-block-components-totals-item__label{color:#8FD6B0!important}
+  body.flx-dark .wc-block-mini-cart__drawer,body.flx-dark .wc-block-mini-cart__drawer .components-modal__content{background:#13251F;color:var(--flx-text)}
+  body.flx-dark .flx-shop-hero::after{opacity:.1;background:var(--flx-leaf)}
+}
+
+/* Video sayfaları: yatay video + "Fidan Nasıl Dikilir" bölümü */
+.flx-video-title{margin-bottom:.4rem;text-align:center!important}
+.flx-video-lead{max-width:640px;margin:0 auto 2rem!important;color:var(--flx-text)}
+.flx-video-section--nasil{background:var(--flx-mint-soft)}
+.flx-video-nasil{max-width:960px;margin-inline:auto!important}
+.flx-video-nasil .flx-video--dikey{max-width:340px;margin-inline:auto!important}
+.flx-steps-list{display:grid;gap:.7rem;margin:1.25rem 0 0;padding:0;list-style:none;counter-reset:flx-step}
+.flx-steps-list li{position:relative;padding-left:2.6rem;counter-increment:flx-step;line-height:1.55}
+.flx-steps-list li::before{content:counter(flx-step);position:absolute;left:0;top:-.1rem;display:grid;place-items:center;width:1.85rem;height:1.85rem;border-radius:50%;background:var(--flx-primary);color:#fff;font:800 .85rem/1 var(--wp--preset--font-family--heading)}
+.flx-video-section--nasil .flx-pill{display:inline-flex;padding:.3rem .8rem;border-radius:999px;background:var(--flx-mint);color:var(--flx-primary);border:0}
+@media (max-width:781px){.flx-video-nasil .flx-video--dikey{max-width:300px}}
+
+/* Sayfa geçişi: header yerinde kalır, içerik yumuşak geçer (Chrome/Edge/Safari 18.2+). */
+@view-transition{navigation:auto}
+.flx-header-part{view-transition-name:flx-header}
+::view-transition-group(flx-header){animation:none}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.18s}
+@media (prefers-reduced-motion:reduce){@view-transition{navigation:none}}
+
+/* Yorum kartı: isim (H3, H4 boyutunda) */
+.flx-quote-name{font-size:var(--wp--preset--font-size--medium)!important;margin:0}
+
+/* Slider: Swiper başlamadan önce yalnızca ilk slayt görünür (alt alta dizilme/zıplama olmaz). Editörde hepsi görünür. */
+body:not(.editor-styles-wrapper) .flx-slider:not(.swiper)>:not(:first-child){display:none!important}
+body:not(.editor-styles-wrapper) .flx-slider:not(.swiper){overflow:hidden}
+
+/* Etkinlikler arşivi: eklentinin aktif etkinlikler bölümü */
+.flx-etkinlik-aktif .flxs-ev-link{display:none}
+.flx-etkinlik-aktif .flxs-ev-section{margin-top:0}
+.flx-etkinlik-gecmis{text-align:center;font-size:var(--wp--preset--font-size--x-large);margin:var(--wp--preset--spacing--60) auto 0}
+
+/* Kaydırma animasyonları (assets/js/main.js) */
+.flx-rv{opacity:0;transform:translate3d(0,28px,0);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1);will-change:opacity,transform}
+.flx-rv.flx-rv-in{opacity:1;transform:none}
+.flx-rv.wp-block-image,.flx-rv.flx-player,.flx-rv.wp-block-embed{transform:translate3d(0,28px,0) scale(.97)}
+.flx-rv.wp-block-image.flx-rv-in,.flx-rv.flx-player.flx-rv-in,.flx-rv.wp-block-embed.flx-rv-in{transform:none}
+@media (prefers-reduced-motion:reduce){.flx-rv{opacity:1!important;transform:none!important}}
+@media print{.flx-rv{opacity:1!important;transform:none!important}}
+
+/* Bağış sayfası: nasıl yapılır kartları + SSS */
+.flx-donate-steps>.wp-block-column.flx-pay-card{padding:var(--wp--preset--spacing--40)}
+.flx-donate-steps h3{margin-top:0}
+.flx-donate-why a,.flx-donate-steps a{color:var(--flx-primary);font-weight:700}
+.flx-faq .wp-block-details{border:1.5px solid var(--flx-line);border-radius:var(--flx-radius);background:var(--flx-surface);padding:0;margin-top:.8rem;transition:border-color .2s}
+.flx-faq .wp-block-details[open]{border-color:var(--flx-leaf)}
+.flx-faq .wp-block-details summary{cursor:pointer;list-style:none;padding:1.05rem 3.2rem 1.05rem 1.25rem;font-weight:800;color:var(--flx-ink);position:relative}
+.flx-faq .wp-block-details summary::-webkit-details-marker{display:none}
+.flx-faq .wp-block-details summary::after{content:"";position:absolute;right:1.2rem;top:50%;width:14px;height:14px;margin-top:-7px;background:currentColor;-webkit-mask:var(--flx-i-chev-r) center/contain no-repeat;mask:var(--flx-i-chev-r) center/contain no-repeat;transform:rotate(90deg);transition:transform .2s}
+.flx-faq .wp-block-details[open] summary::after{transform:rotate(-90deg)}
+.flx-faq .wp-block-details>:not(summary){padding:0 1.25rem 1.1rem;margin:0}
+.flx-donate-info .has-text-align-center{text-align:center!important}
+.flx-donate-steps>.wp-block-column.flx-pay-card{height:auto}
+
+/* ---------- Hesap satırı (bağış sayfası) ---------- */
+.flx-hesap-satiri-wrap{padding:var(--wp--preset--spacing--40) clamp(1rem,4vw,2rem) 0;margin:0!important}
+.flx-hesap-satiri{display:flex;align-items:center;gap:.9rem 1rem;flex-wrap:wrap;max-width:var(--wp--style--global--wide-size,1200px);margin:0 auto;padding:.8rem 1rem .8rem .8rem;border:1.5px solid var(--flx-line);border-radius:var(--flx-radius);background:var(--flx-mint)}
+.flx-hesap-satiri__ic{flex:none;display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--flx-surface);color:var(--flx-primary)}
+.flx-hesap-satiri__ic .flx-ic{width:22px;height:22px}
+.flx-hesap-satiri__txt{flex:1 1 260px;margin:0;font-size:var(--wp--preset--font-size--small);color:var(--flx-ink)}
+.flx-hesap-satiri__acts{display:flex;align-items:center;gap:.4rem 1rem;flex-wrap:wrap}
+.flx-hesap-satiri__btn{display:inline-flex;align-items:center;padding:.55em 1.2em;border-radius:999px;background:var(--flx-primary);color:#fff!important;font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:.9rem;text-decoration:none!important;transition:filter .15s}
+.flx-hesap-satiri__btn:hover{filter:brightness(1.1)}
+.flx-hesap-satiri__link{color:var(--flx-primary)!important;font-weight:800;font-size:.9rem}
+@media (max-width:600px){.flx-hesap-satiri__acts{width:100%}.flx-hesap-satiri__btn{flex:1;justify-content:center}}
+
+/* ---------- Hesabım: Giriş / Kayıt sekmeleri ---------- */
+.flx-auth-tabs{display:flex;gap:.35rem;max-width:480px;margin:0 auto 1rem;padding:.35rem;border-radius:999px;background:var(--flx-mint);border:1.5px solid var(--flx-line)}
+.flx-auth-tabs button{flex:1;padding:.7em 1em;border:0;border-radius:999px;background:transparent;color:var(--flx-ink);font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:1rem;cursor:pointer;transition:background .2s,color .2s,box-shadow .2s}
+.flx-auth-tabs button[aria-selected="true"]{background:var(--flx-surface);color:var(--flx-primary);box-shadow:0 4px 14px rgba(20,50,74,.1)}
+#customer_login.flx-tabbed{display:block;max-width:480px;margin:0 auto}
+#customer_login.flx-tabbed>.u-column2{display:none;background:var(--flx-surface)}
+#customer_login.flx-tabbed.is-register>.u-column1{display:none}
+#customer_login.flx-tabbed.is-register>.u-column2{display:block}
+#customer_login.flx-tabbed h2{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);margin:0}
+/* Kayıt kapalıyken (tek form) ve kayıp parola: dar kart */
+.woocommerce-account:not(.logged-in) .woocommerce>form.woocommerce-form-login{max-width:480px;margin:0 auto;padding:clamp(1.3rem,3vw,2rem);border-radius:var(--flx-radius);background:var(--flx-surface);box-shadow:var(--flx-shadow);border:1px solid var(--flx-line)}
+.woocommerce-account:not(.logged-in) .woocommerce>h2{max-width:480px;margin-left:auto!important;margin-right:auto!important;position:relative}
+.woocommerce-account:not(.logged-in) .woocommerce>h2::after{content:"";position:absolute;left:9px;top:50%;width:22px;height:22px;margin-top:-11px;background:var(--flx-primary);-webkit-mask:var(--flx-wc-i-lock) center/contain no-repeat;mask:var(--flx-wc-i-lock) center/contain no-repeat}
+.woocommerce-account:not(.logged-in) form.lost_reset_password{margin:0 auto}
+/* Sosyal giriş (Google) */
+.flx-social-login{display:flex;flex-direction:column;align-items:center;gap:.7rem;margin-top:1.1rem;order:9}
+.flx-social-login>*:not(.flx-or){margin:0!important;max-width:100%}
+.flx-or{display:flex;align-items:center;gap:.8rem;width:100%;color:var(--flx-text);font-size:.8rem;text-transform:uppercase;letter-spacing:.08em}
+.flx-or::before,.flx-or::after{content:"";flex:1;height:1px;background:var(--flx-line)}
+
+/* ---------- Telefon alanı ---------- */
+.flx-tel-row .optional{font-weight:400;color:var(--flx-text);font-size:.85em}
+.flx-tel-hint{display:block;margin-top:.35rem;font-size:.8rem;color:var(--flx-text)}
+.flx-tel-nudge{display:flex;align-items:center;gap:.8rem 1rem;flex-wrap:wrap;margin:0 0 1.25rem;padding:.8rem 1rem .8rem .8rem;border:1.5px solid var(--flx-line);border-radius:var(--flx-radius);background:var(--flx-mint)}
+.flx-tel-nudge p{flex:1 1 240px;margin:0;font-size:var(--wp--preset--font-size--small);color:var(--flx-ink)}
+.flx-tel-nudge__ic{flex:none;display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--flx-surface);color:var(--flx-primary)}
+.flx-tel-nudge__ic .flx-ic{width:22px;height:22px}
+.woocommerce-EditAccountForm{max-width:640px}
+
+/* Bağış sayfası (v0.5.22): alt alta; önce kartla bağış seçenekleri (760px, ortalı), sonra Havale/EFT, en sonda (eklenti kapalıysa) "yakında" kartı. */
+.flx-donate-main>*{margin-left:auto!important;margin-right:auto!important}
+.flx-donate-main>.flxwb{margin-top:0;max-width:760px}
+.flx-donate-main>.flx-pay-card{height:auto;padding:clamp(1.25rem,3.5vw,2rem)!important;border:1px solid var(--flx-line)}
+
+/* Ödeme sayfası header'ı: logo + güvenli ödeme rozeti, menü/sepet yok. */
+.flx-checkout-header .flx-logo{flex:none}
+.flx-secure-badge{display:inline-flex;align-items:center;gap:.45rem;margin:0;padding:.45rem .9rem;border:1px solid var(--flx-line);border-radius:999px;background:var(--flx-mint-soft);color:var(--flx-primary);font-size:var(--wp--preset--font-size--small);font-weight:600;line-height:1.2;white-space:nowrap}
+.flx-secure-badge::before{content:"";flex:none;width:1.05rem;height:1.05rem;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4.5' y='10.5' width='15' height='10' rx='2.5'/%3E%3Cpath d='M8 10.5V7.5a4 4 0 0 1 8 0v3'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4.5' y='10.5' width='15' height='10' rx='2.5'/%3E%3Cpath d='M8 10.5V7.5a4 4 0 0 1 8 0v3'/%3E%3C/svg%3E") center/contain no-repeat}
+@media (max-width:600px){.flx-checkout-header .flx-logo{max-width:150px}.flx-checkout-header .flx-logo img{width:150px!important;height:auto}.flx-secure-badge{padding:.35rem .7rem;font-size:.8rem}}
+/* 0.5.25: order-pay page (card form after "Place order"): tidy summary card; wide screens: form left, summary right and sticky */
+.woocommerce-order-pay ul.order_details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem 1.2rem;margin:0 0 1.5rem!important;padding:1.1rem 1.25rem!important;list-style:none;border:1.5px solid var(--flx-line);border-radius:var(--flx-radius);background:var(--flx-surface)}
+.woocommerce-order-pay ul.order_details::before,.woocommerce-order-pay ul.order_details::after{display:none!important}
+.woocommerce-order-pay ul.order_details li{float:none!important;margin:0!important;padding:0!important;border:0!important;font-size:.78rem!important;line-height:1.3;text-transform:uppercase;letter-spacing:.04em;color:var(--flx-text);min-width:0}
+.woocommerce-order-pay ul.order_details li strong{display:block;margin-top:.3rem;font-size:1rem;text-transform:none;letter-spacing:0;color:var(--flx-ink);overflow-wrap:anywhere}
+.woocommerce-order-pay ul.order_details li.total strong{font-size:1.2rem;color:var(--flx-primary)}
+.woocommerce-order-pay ul.order_details li.method{grid-column:1/-1}
+.woocommerce-order-pay .woocommerce>.clear{display:none}
+@media (min-width:900px){
+.woocommerce-order-pay [data-block-name="woocommerce/checkout"].woocommerce{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,340px);gap:0 2.5rem;align-items:start}
+.woocommerce-order-pay [data-block-name="woocommerce/checkout"].woocommerce>*{grid-column:1;min-width:0}
+.woocommerce-order-pay [data-block-name="woocommerce/checkout"].woocommerce>ul.order_details{grid-column:2;grid-row:1/span 30;position:sticky;top:6.5rem;grid-template-columns:1fr;gap:1rem}
+.woocommerce-order-pay ul.order_details li{display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
+.woocommerce-order-pay ul.order_details li strong{margin:0;text-align:right}
+.woocommerce-order-pay ul.order_details li.total{order:9;padding-top:1rem!important;border-top:1px solid var(--flx-line)!important}
+}
+
+/* 0.5.29: classic payment box (order-pay retry page): method rows as cards, radio beside its label, theme colors */
+.woocommerce #payment,.woocommerce-page #payment{background:var(--flx-surface);border:1.5px solid var(--flx-line);border-radius:var(--flx-radius)}
+#payment ul.payment_methods{padding:1rem!important;border-bottom:1px solid var(--flx-line)!important;display:grid;gap:.6rem}
+#payment ul.payment_methods::before,#payment ul.payment_methods::after{display:none!important}
+#payment ul.payment_methods li.wc_payment_method{display:flex;flex-wrap:wrap;align-items:center;gap:.65rem;margin:0!important;padding:.85rem 1rem!important;border:1.5px solid var(--flx-line);border-radius:calc(var(--flx-radius) - 4px);background:transparent;line-height:1.3}
+#payment ul.payment_methods li.wc_payment_method:has(>input:checked){border-color:var(--flx-primary);background:var(--flx-mint-soft)}
+#payment ul.payment_methods li.wc_payment_method>input.input-radio{width:20px;height:20px;margin:0!important;flex:none;accent-color:var(--flx-primary);cursor:pointer}
+#payment ul.payment_methods li.wc_payment_method>label{display:inline!important;flex:1;margin:0!important;font-weight:600;cursor:pointer}
+#payment ul.payment_methods li.wc_payment_method>.payment_box{flex-basis:100%;margin:.4rem 0 0!important;padding:.9rem 0 0!important;background:transparent!important;border-top:1px solid var(--flx-line);border-radius:0;color:inherit}
+#payment ul.payment_methods li.wc_payment_method>.payment_box::before{display:none!important}
+#payment div.form-row{padding:1rem!important}
+
+/* 0.5.31: order-pay page: one big terms box and a "Make payment" button fixed at the bottom of the screen */
+.woocommerce-order-pay .woocommerce-terms-and-conditions-wrapper{margin:0}
+.woocommerce-order-pay .woocommerce-terms-and-conditions-wrapper .form-row{padding:0!important;margin:0!important}
+.woocommerce-order-pay .woocommerce-form__label-for-checkbox{display:flex!important;align-items:flex-start;gap:.75rem;padding:.9rem 1rem;border:1.5px solid var(--flx-line);border-radius:calc(var(--flx-radius) - 4px);font-size:1rem;line-height:1.45;cursor:pointer}
+.woocommerce-order-pay .woocommerce-form__label-for-checkbox:has(input:checked){border-color:var(--flx-primary);background:var(--flx-mint-soft)}
+.woocommerce-order-pay .woocommerce-form__label-for-checkbox input#terms{flex:none;width:24px;height:24px;margin:0!important;accent-color:var(--flx-primary)}
+.woocommerce-order-pay .woocommerce-form__label-for-checkbox abbr.required{display:none}
+.woocommerce-order-pay .flxb-terms-err{margin:.5rem 0 0;color:#b42318;font-size:.95rem;font-weight:600}
+body.woocommerce-order-pay{padding-bottom:calc(5.5rem + env(safe-area-inset-bottom))}
+body.woocommerce-order-pay::after{content:"";position:fixed;left:0;right:0;bottom:0;z-index:59;height:calc(5rem + env(safe-area-inset-bottom));background:var(--flx-surface);border-top:1px solid var(--flx-line);box-shadow:0 -6px 20px rgba(20,50,74,.06)}
+.woocommerce-order-pay #payment #place_order{position:fixed;z-index:60;left:50%;bottom:calc(.9rem + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(560px,calc(100% - 2rem))!important;margin:0!important;min-height:3.2rem;font-size:1.05rem}
+
+/* 0.5.32: sonsuz kaydırma (Tema Ayarları › Liste sayfaları) */
+.flx-inf .wp-block-query-pagination{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.flx-inf-foot{display:flex;justify-content:center;margin-top:var(--wp--preset--spacing--50)}
+.flx-inf-more{display:inline-flex;align-items:center;gap:.6rem;min-height:48px;padding:.75rem 1.5rem;border-radius:99px;border:1.5px solid var(--flx-line);background:var(--flx-surface);color:var(--flx-ink);font:inherit;font-family:var(--wp--preset--font-family--heading);font-weight:800;cursor:pointer;transition:border-color .2s,background .2s}
+.flx-inf-more:hover,.flx-inf-more:focus-visible{border-color:var(--flx-primary)}
+.flx-inf-foot.is-loading .flx-inf-more{pointer-events:none;color:var(--flx-muted,var(--flx-ink))}
+.flx-inf-foot.is-loading .flx-inf-more::before{content:"";width:1.05rem;height:1.05rem;border-radius:50%;border:2.5px solid var(--flx-line);border-top-color:var(--flx-primary);animation:flx-spin .8s linear infinite}
+@keyframes flx-spin{to{transform:rotate(360deg)}}
+.flx-inf-new{animation:flx-menu-card .5s cubic-bezier(.2,.7,.2,1) both}
+@media (prefers-reduced-motion:reduce){.flx-inf-new{animation:none}.flx-inf-foot.is-loading .flx-inf-more::before{animation-duration:2s}}
+
+/* ---------- v0.5.33: Haber kartları — önce başlık, sonra tarih; üzerine gelince görsel kartı kaplar ---------- */
+.flx-news .flx-card{container-type:inline-size;border:1px solid var(--flx-line);box-shadow:none}
+.flx-news .flx-card__body{padding:1.15rem 1.2rem 1rem;gap:.45rem}
+.flx-news .flx-card__body .wp-block-post-title{order:1;font-size:1.08rem!important;line-height:1.35;padding-right:0}
+.flx-news .flx-card__body .wp-block-post-date{order:2;display:flex;align-items:center;gap:.4rem;font-size:.8rem;color:var(--flx-text)}
+.flx-news .flx-card__body .wp-block-post-date::before{content:"";flex:none;width:.95rem;height:.95rem;background:var(--flx-primary);-webkit-mask:var(--flx-i-calendar) center/contain no-repeat;mask:var(--flx-i-calendar) center/contain no-repeat}
+.flx-news .flx-card__body .wp-block-post-excerpt{order:3}
+.flx-news .wp-block-post-excerpt p{padding-right:0;color:var(--flx-text)}
+.flx-news .wp-block-post-excerpt__excerpt{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.flx-news .wp-block-post-excerpt__more-text{display:none}
+.flx-news .flx-card__body::before{content:var(--flx-t-read,"");order:4;margin-top:auto!important;padding-top:.8rem;border-top:1px solid var(--flx-line);font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:.85rem;color:var(--flx-primary);transition:color .35s,border-color .35s}
+.flx-news .flx-card__body::after{bottom:1rem;right:1.2rem;width:1rem;height:1rem;background:var(--flx-primary)}
+.flx-news .flx-card::before{z-index:4}
+@media (hover:hover){
+  /* Görsel kartın üst kısmında durur; hover'da yüksekliği kartın tamamına uzar, metinler altta yerinde kalır */
+  .flx-news .flx-card:has(.wp-block-post-featured-image img) .wp-block-post-featured-image{position:static;aspect-ratio:16/10;overflow:visible}
+  .flx-news .flx-card:has(.wp-block-post-featured-image img) .wp-block-post-featured-image img{position:absolute;top:0;left:0;z-index:0;height:calc(100cqw * .625);aspect-ratio:auto;transition:height .5s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1),filter .5s}
+  .flx-news .flx-card:has(.wp-block-post-featured-image img) .wp-block-post-featured-image::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(6,38,28,.05) 0%,rgba(6,38,28,.5) 42%,rgba(6,38,28,.95) 100%);opacity:0;transition:opacity .45s}
+  .flx-news .flx-card:has(.wp-block-post-featured-image img) .flx-card__body{z-index:2}
+  .flx-news .flx-card:has(.wp-block-post-featured-image img):hover{border-color:transparent}
+  /* Kart yerinden kalkmaz: alttan yavaş girişte imleç kenarda girip çıkıp animasyonu titretiyordu */
+  .flx-news .flx-card:hover{transform:none}
+  .flx-news .flx-card:has(.wp-block-post-featured-image img):hover .wp-block-post-featured-image img{height:100%;transform:none}
+  .flx-news .flx-card:has(.wp-block-post-featured-image img):hover .wp-block-post-featured-image::after{opacity:1}
+  .flx-news .flx-card:has(.wp-block-post-featured-image img) :where(.wp-block-post-title a,.wp-block-post-date,.wp-block-post-excerpt p){transition:color .35s}
+  .flx-news .flx-card:has(.wp-block-post-featured-image img):hover .wp-block-post-title a{color:#fff}
+  .flx-news .flx-card:has(.wp-block-post-featured-image img):hover .wp-block-post-date{color:#C9E7D4}
+  .flx-news .flx-card:has(.wp-block-post-featured-image img):hover .wp-block-post-date::before{background:#C9E7D4}
+  .flx-news .flx-card:has(.wp-block-post-featured-image img):hover .wp-block-post-excerpt p{color:rgba(255,255,255,.85)}
+  .flx-news .flx-card:has(.wp-block-post-featured-image img):hover .flx-card__body::before{color:#fff;border-color:rgba(255,255,255,.25)}
+  .flx-news .flx-card:has(.wp-block-post-featured-image img):hover .flx-card__body::after{background:#fff}
+}
+
+/* ---------- v0.5.35: açılır menü — alt başlıklar ---------- */
+:root{
+  --flx-i-plus:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E");
+  --flx-i-minus:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round'%3E%3Cpath d='M5 12h14'/%3E%3C/svg%3E");
+}
+/* Masaüstü: 6 başlık 1320px'ten itibaren; 1080–1319 arası Gönüllü Ol ve Marka İş Birlikleri gizlenir (menü panelinde durur); 1080 altı menü butonu */
+@media (min-width:600px) and (max-width:1079px){
+  .flx-header .wp-block-navigation__responsive-container-open:not(.always-shown){display:inline-flex}
+  .flx-header .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open){display:none}
+  .flx-header .wp-block-navigation{order:3}
+  .flx-header .alignwide>.wp-block-navigation~.wp-block-group{margin-left:auto}
+  .flx-header .alignwide{justify-content:flex-start!important}
+  .flx-header .alignwide>.wp-block-navigation{margin-left:0}
+}
+.flx-header .flx-mainnav{font-size:.95rem}
+.flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .flx-mnav-social{display:none}
+/* Masaüstü açılır menü */
+.flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation-submenu__toggle{margin-left:.15rem}
+.flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation__submenu-container{
+  min-width:270px!important;padding:.5rem!important;margin-top:.4rem;border:1px solid var(--flx-line)!important;border-radius:16px;
+  background:var(--flx-surface)!important;color:var(--flx-ink)!important;box-shadow:0 22px 48px -18px rgba(6,38,28,.35);
+  opacity:0;transform:translateY(6px);transition:opacity .2s,transform .2s,visibility .2s
+}
+.flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .has-child:is(:hover,:focus-within)>.wp-block-navigation__submenu-container{opacity:1;transform:none}
+/* Üst başlıkla alt menü arasında boşluk kalınca hover kopmasın */
+.flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation__submenu-container::before{content:"";position:absolute;left:0;right:0;top:-.8rem;height:.8rem}
+.flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation__submenu-container .wp-block-navigation-item__content{
+  display:block;padding:.6rem .85rem!important;border-radius:10px;font-weight:600;font-size:.92rem;line-height:1.35;white-space:normal;transition:background .2s,color .2s
+}
+.flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation__submenu-container .wp-block-navigation-item__content::before,
+.flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation__submenu-container .wp-block-navigation-item__content::after{display:none}
+.flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation__submenu-container .wp-block-navigation-item__content:is(:hover,:focus-visible){background:var(--flx-mint-soft);color:var(--flx-primary)}
+/* Mobil panel: alt başlıklar akordeon */
+.flx-header .is-menu-open .wp-block-navigation__submenu-icon{display:none!important}
+.flx-header .is-menu-open .has-child:not(.flx-open)>.wp-block-navigation__submenu-container{display:none!important}
+.flx-header .is-menu-open .has-child>.wp-block-navigation-item__content::after{-webkit-mask-image:var(--flx-i-plus);mask-image:var(--flx-i-plus)}
+.flx-header .is-menu-open .has-child.flx-open>.wp-block-navigation-item__content::after{-webkit-mask-image:var(--flx-i-minus);mask-image:var(--flx-i-minus)}
+.flx-header .is-menu-open .has-child.flx-open>.wp-block-navigation-item__content{border-color:var(--flx-primary);background:var(--flx-surface)}
+.flx-header .is-menu-open .wp-block-navigation__submenu-container{
+  display:grid!important;gap:.15rem;width:auto!important;margin:.45rem 0 .2rem 1.6rem!important;padding:.15rem 0 .15rem .9rem!important;
+  border-left:2px solid var(--flx-mint)!important;background:none!important
+}
+.flx-header .is-menu-open .wp-block-navigation__submenu-container .wp-block-navigation-item{opacity:1;animation:flx-menu-card .3s cubic-bezier(.2,.7,.2,1) both}
+.flx-header .is-menu-open .wp-block-navigation__submenu-container .wp-block-navigation-item__content{
+  padding:.7rem 2.2rem .7rem .8rem!important;border:0;border-radius:12px;background:none;box-shadow:none;
+  font-family:inherit;font-weight:600;font-size:1rem;line-height:1.35
+}
+.flx-header .is-menu-open .wp-block-navigation__submenu-container .wp-block-navigation-item__content::before{display:none}
+.flx-header .is-menu-open .wp-block-navigation__submenu-container .wp-block-navigation-item__content::after{right:.6rem;width:.9rem;height:.9rem;margin-top:-.45rem;opacity:.6}
+.flx-header .is-menu-open .wp-block-navigation__submenu-container .wp-block-navigation-item__content:is(:hover,:focus-visible){background:var(--flx-surface)}
+/* Menü altı: sosyal ikonlar */
+.flx-header .is-menu-open .flx-mnav-social{order:6;display:flex!important;justify-content:center;gap:1.1rem;width:100%;margin:1.3rem 0 0!important;padding:0!important;opacity:0;animation:flx-menu-card .45s cubic-bezier(.2,.7,.2,1) .35s forwards}
+.flx-header .is-menu-open .flx-mnav-social .wp-social-link{width:auto;opacity:1;animation:none;color:var(--flx-primary)}
+.flx-header .is-menu-open .flx-mnav-social .wp-social-link a{display:grid!important;place-items:center;width:48px;height:48px;padding:0!important;border-radius:14px;border:1.5px solid var(--flx-line);background:var(--flx-surface-glass);box-shadow:none}
+.flx-header .is-menu-open .flx-mnav-social .wp-social-link a::before,.flx-header .is-menu-open .flx-mnav-social .wp-social-link a::after{display:none}
+.flx-header .is-menu-open .flx-mnav-social .wp-social-link svg{width:22px;height:22px;fill:currentColor}
+.flx-header .is-menu-open .wp-block-navigation__container{grid-template-columns:minmax(0,1fr)}
+.flx-header .is-menu-open .wp-block-navigation-item{min-width:0}
+.flx-header .is-menu-open .wp-block-navigation__submenu-container .wp-block-navigation-item__content{white-space:normal;min-width:0}
+@media (min-width:1080px){
+  .flx-header .flx-mainnav .wp-block-navigation__container{flex-wrap:nowrap;gap:1.15rem}
+  .flx-header .flx-mainnav .wp-block-navigation-item__content{white-space:nowrap}
+}
+@media (min-width:1320px) and (max-width:1439px){
+  .flx-header .flx-mainnav{font-size:.88rem}
+  .flx-header .flx-mainnav .wp-block-navigation__container{gap:.95rem}
+}
+@media (min-width:1080px) and (max-width:1319px){
+  .flx-header .flx-mainnav .wp-block-navigation__container{gap:.95rem}
+  .flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation-item:is(.flx-nav-extra,:has(>a[href*="gonullu-ol"]),:has(>a[href*="marka-is-birlikleri"])){display:none}
+}
+
+/* ---------- v0.5.36: iyzico — footer sözleşme linkleri ve ödeme logoları ---------- */
+.flx-footer-legal{margin-top:var(--wp--preset--spacing--50)!important;gap:1rem 2rem}
+.flx-pay-logos{width:min(100%,342px);aspect-ratio:456/32;margin:0!important;color:transparent!important;font-size:0;overflow:hidden;background:url("../images/odeme/iyzico-logo-band-white.svg") left center/contain no-repeat}
+/* Yasal sayfalarda belge görselleri ve PDF */
+.flx-legal .wp-block-image.flx-rounded img{max-width:min(100%,560px);height:auto;border:1px solid var(--flx-line);border-radius:12px}
+.flx-legal .wp-block-file{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem 1rem}
+.flx-legal .wp-block-file__embed{border:1px solid var(--flx-line);border-radius:12px;margin-bottom:.4rem}
+.flx-legal .wp-block-file__button{border-radius:999px;background:var(--flx-primary);color:#fff;padding:.6rem 1.2rem;text-decoration:none}
+
+/* ---------- v0.5.40: mobil menüde dil seçici (Flux Lang) ---------- */
+.flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .flx-mnav-lang{display:none}
+.flx-header .is-menu-open .flx-mnav-lang{display:flex;justify-content:center;width:100%;margin:1.3rem 0 0;opacity:0;animation:flx-menu-card .45s cubic-bezier(.2,.7,.2,1) .3s forwards}
+.flx-header .is-menu-open .flx-mnav-lang .flx-lang{display:inline-flex;font-size:.85rem}
+.flx-header .is-menu-open .flx-mnav-lang .flx-lang a{padding:.6rem .9rem}
+
+/* ---------- v0.5.42: yasal linkler İletişim sütununda; Çerez Politikası'nda tercih düğmesi ---------- */
+.flx-footer .flx-footer-legal-links{margin-top:1rem;font-size:var(--wp--preset--font-size--small);font-weight:400}
+.flx-cookie-on .flx-cookie-open.flx-cookie-change{display:flex;margin:0 0 var(--wp--preset--spacing--40)}
+/* ---------- v0.5.35: Hakkımızda — derneğin kendi fotoğraflarıyla ---------- */
+.flx-about-soft{background:var(--flx-mint-soft)}
+.flx-about-head2{text-align:center;margin-bottom:var(--wp--preset--spacing--50)!important}
+.flx-about-head2>*{margin-inline:auto!important}
+.flx-about-head2 p:not(.flx-eyebrow){color:var(--flx-text)}
+/* Kolaj: büyük dikey görsel + iki küçük, köşede yıl rozeti */
+.flx-about-collage{position:relative;display:grid;grid-template-columns:1.15fr 1fr;grid-template-rows:1fr 1fr;gap:.9rem;min-height:26rem}
+.flx-about-collage>*{margin:0!important}
+.flx-about-collage .wp-block-image{border-radius:var(--flx-radius-media,18px);overflow:hidden;box-shadow:0 18px 40px -22px rgba(6,38,28,.45)}
+.flx-about-collage .wp-block-image img{width:100%;height:100%;object-fit:cover;display:block}
+.flx-about-collage .wp-block-image:first-child{grid-row:1/3}
+.flx-about-badge{position:absolute;left:-1rem;bottom:1.4rem;z-index:2;padding:.8rem 1.1rem;border-radius:16px;background:var(--flx-primary);color:#fff;font-size:.85rem;line-height:1.2;box-shadow:0 12px 30px -12px rgba(6,38,28,.6)}
+.flx-about-badge strong{display:block;font-family:var(--wp--preset--font-family--heading);font-size:1.7rem;font-weight:800}
+@media (max-width:781px){.flx-about-collage{min-height:20rem}.flx-about-badge{left:.6rem}}
+/* Neler yapıyoruz kartları */
+.flx-about-cards{gap:1.4rem}
+.flx-about-card .wp-block-image{margin:0}
+.flx-about-card .wp-block-image img{aspect-ratio:7/5}
+.flx-about-card .flx-card__body{padding:1.3rem 1.3rem 1.4rem}
+.flx-about-card .flx-card__body::after{display:none}
+.flx-about-card h3{display:flex;align-items:center;gap:.55rem;font-size:var(--wp--preset--font-size--medium)!important}
+.flx-about-card h3::before{flex:none;width:1.6rem;height:1.6rem;margin:0;color:var(--flx-primary)}
+.flx-about-card p{padding-right:0;color:var(--flx-text)}
+/* Yolculuğumuz: yıl rozetli adımlar, aralarında çizgi */
+.flx-about-steps{gap:1.4rem;position:relative}
+.flx-about-step{position:relative;padding:1.6rem 1.5rem;border:1px solid var(--flx-line);border-radius:var(--flx-radius);background:var(--flx-surface)}
+.flx-about-step>*{margin:0!important}
+.flx-about-step h3{margin-top:.8rem!important;font-size:var(--wp--preset--font-size--medium)}
+.flx-about-step p:not(.flx-about-year){margin-top:.4rem!important;color:var(--flx-text);font-size:var(--wp--preset--font-size--small)}
+.flx-about-year{display:inline-block;padding:.3rem .85rem;border-radius:99px;background:var(--flx-mint);color:var(--flx-primary);font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:1.05rem}
+/* Galeri: mozaik */
+.wp-block-gallery.flx-about-gallery{gap:.8rem!important}
+.flx-about-gallery.wp-block-gallery.has-nested-images figure.wp-block-image{border-radius:14px;overflow:hidden}
+.flx-about-gallery.wp-block-gallery.has-nested-images figure.wp-block-image img{transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+@media (min-width:782px){
+  .flx-about-gallery.wp-block-gallery.has-nested-images{display:grid!important;grid-template-columns:repeat(4,1fr);grid-auto-rows:13rem}
+  .flx-about-gallery.wp-block-gallery.has-nested-images figure.wp-block-image{width:auto!important;height:100%}
+  .flx-about-gallery.wp-block-gallery.has-nested-images figure.wp-block-image:nth-child(1){grid-column:span 2;grid-row:span 2}
+  .flx-about-gallery.wp-block-gallery.has-nested-images figure.wp-block-image:nth-child(6){grid-column:span 2}
+  .flx-about-gallery.wp-block-gallery.has-nested-images figure.wp-block-image img{height:100%!important;object-fit:cover}
+}
+@media (hover:hover){.flx-about-gallery figure.wp-block-image:hover img{transform:scale(1.05)}}
+/* Ekip */
+.flx-about-team .wp-block-image{margin:0}
+.flx-about-team .wp-block-image img{width:100%;aspect-ratio:7/5;object-fit:cover;border-radius:var(--flx-radius-media,18px)}
+.flx-about-team .wp-block-buttons{gap:.7rem;margin-top:1.2rem}
+.flx-about-head .wp-block-cover__inner-container{max-width:44rem}
+
+/* ---------- 0.5.45: Ana sayfa aktif proje kartı + mobil hero + ferah boşluklar ---------- */
+.flx-active-card{position:relative;z-index:7;display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr) auto;align-items:center;gap:clamp(1.25rem,3vw,2.5rem);margin:calc(-1 * clamp(3rem,5vw,4.5rem)) auto 0!important;padding:clamp(1rem,2vw,1.5rem);background:var(--flx-surface);border:1px solid var(--flx-line);border-radius:28px;box-shadow:0 24px 60px -24px rgba(6,38,28,.35)}
+.flx-active-card__media{display:block;aspect-ratio:4/3;border-radius:20px;overflow:hidden}
+.flx-active-card__img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.flx-active-card__media:hover .flx-active-card__img{transform:scale(1.04)}
+.flx-active-card__body{min-width:0;display:flex;flex-direction:column;gap:.6rem}
+.flx-active-card__body>*{margin:0!important}
+.flx-active-card .flx-pill{background:var(--flx-primary);color:#fff}
+.flx-active-card__title{font-size:var(--wp--preset--font-size--large);line-height:1.2}
+.flx-active-card__title a{color:inherit;text-decoration:none}
+.flx-active-card__title a:hover{color:var(--flx-primary)}
+.flx-active-card__text{color:var(--flx-muted,inherit);opacity:.85;max-width:60ch}
+.flx-active-card__actions{display:flex;flex-direction:column;align-items:stretch;gap:.75rem;padding-right:clamp(0rem,1vw,.75rem)}
+.flx-active-card__actions .wp-block-button__link{width:100%;text-align:center;white-space:nowrap}
+.flx-active-card__actions .is-style-outline .wp-block-button__link{background:transparent;color:var(--flx-primary);border:1.5px solid currentColor}
+.flx-active-card__actions .is-style-outline .wp-block-button__link:hover{background:var(--flx-primary);color:#fff}
+@media (max-width:1079px){
+  .flx-active-card{grid-template-columns:minmax(0,240px) minmax(0,1fr)}
+  .flx-active-card__actions{grid-column:1/-1;flex-direction:row}
+  .flx-active-card__actions .wp-block-button{flex:1}
+}
+@media (max-width:600px){
+  .flx-active-card{grid-template-columns:1fr;margin-top:-2.5rem!important;border-radius:24px;gap:1rem}
+  .flx-active-card__media{aspect-ratio:16/9;order:3}
+  .flx-active-card__body{order:1}
+  .flx-active-card__actions{order:2}
+  .flx-active-card__actions{flex-direction:column}
+  .flx-hero .wp-block-cover{min-height:min(400px,62vh);padding-top:2.25rem!important;padding-bottom:3.75rem!important}
+  .flx-hero h1,.flx-hero h2{font-size:clamp(1.9rem,8.5vw,2.4rem)!important;max-width:14ch}
+  .flx-hero p{font-size:.95rem}
+  .flx-hero .wp-block-buttons{gap:.6rem}
+  .flx-hero .wp-block-button__link{padding:.7em 1.3em}
+  .flx-hero .swiper-pagination{bottom:3.1rem!important}
+}
+/* Bölümler arası ferah ritim */
+:where(.wp-block-columns){gap:clamp(1.5rem,3vw,2.5rem)}
+:where(.wp-block-group.has-background){padding-inline:clamp(1.25rem,3vw,2.5rem)}
+.flx-hero-wrap:has(+.flx-active-card) .flx-hero .swiper-pagination{bottom:calc(clamp(3rem,5vw,4.5rem) + 1rem)!important}
+.flx-hero-wrap:has(+.flx-active-card) .flx-hero .wp-block-cover{padding-bottom:calc(clamp(3rem,5vw,4.5rem) + 2.5rem)!important}
+@media (max-width:600px){.flx-hero-wrap:has(+.flx-active-card) .flx-hero .swiper-pagination{bottom:3.6rem!important}.flx-hero-wrap:has(+.flx-active-card) .flx-hero .wp-block-cover{padding-bottom:5rem!important}}
+/* Mobil footer: her şey ortalı */
+@media (max-width:781px){
+  .flx-footer .wp-block-columns,.flx-footer .wp-block-column{text-align:center}
+  .flx-footer .wp-block-site-logo,.flx-footer .flx-logo{margin-inline:auto!important;display:flex;justify-content:center}
+  .flx-footer .wp-block-column>p{margin-inline:auto;max-width:42ch}
+  .flx-footer .wp-block-navigation,.flx-footer .wp-block-navigation__container{justify-content:center!important;align-items:center!important}
+  .flx-footer .wp-block-social-links{justify-content:center!important}
+  .flx-footer .flx-stamp{text-align:center;margin-inline:auto!important}
+  .flx-footer .flx-footer-legal,.flx-footer .alignwide.is-layout-flex{justify-content:center!important;text-align:center}
+  .flx-footer .wp-block-navigation-item__content:hover{transform:none}
+}
+/* Bülten formu: mobilde de tek satır, giriş alanı büyük */
+.flx-newsletter-form{flex-wrap:nowrap;box-sizing:border-box}
+.flx-newsletter-form input{flex:1 1 0}
+.flx-newsletter-form button{flex:0 0 auto;white-space:nowrap}
+@media (max-width:600px){
+  .flx-newsletter-form{max-width:none;padding:.4rem}
+  .flx-newsletter-form input{padding:.85rem 1rem;font-size:1rem}
+  .flx-newsletter-form button{padding:.85rem 1.2rem}
+}
+
+/* [products] kısa kodu: ızgara */
+.woocommerce ul.products{display:grid!important;grid-template-columns:repeat(var(--flx-cols,4),minmax(0,1fr));gap:1.4rem;margin:0;padding:0;list-style:none}.woocommerce ul.products::before,.woocommerce ul.products::after{display:none!important}.woocommerce ul.products.columns-3{--flx-cols:3}.woocommerce ul.products.columns-2{--flx-cols:2}.woocommerce ul.products li.product{width:auto!important;margin:0!important;float:none!important}@media (max-width:900px){.woocommerce ul.products{--flx-cols:2!important}}@media (max-width:420px){.woocommerce ul.products{gap:.8rem}}

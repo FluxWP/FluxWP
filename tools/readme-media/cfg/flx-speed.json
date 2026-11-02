@@ -1,0 +1,124 @@
+{
+ "slug": "flx-speed",
+ "shots": [
+  {
+   "name": "overview",
+   "url": "admin.php?page=flx-speed",
+   "vh": 1000
+  },
+  {
+   "name": "records",
+   "url": "admin.php?page=flx-speed&tab=records",
+   "vh": 900
+  },
+  {
+   "name": "server",
+   "url": "admin.php?page=flx-speed&tab=server",
+   "vh": 1000
+  },
+  {
+   "name": "system-check",
+   "url": "admin.php?page=flx-speed&tab=system",
+   "vh": 1000
+  },
+  {
+   "name": "dev-panel",
+   "url": "/projeler/",
+   "click": "#wp-admin-bar-flxp a, #wp-admin-bar-flxp-bar a, li[id*='flxp'] > a",
+   "vh": 900
+  }
+ ],
+ "dark": [
+  {
+   "name": "dark",
+   "url": "admin.php?page=flx-speed",
+   "vh": 1000
+  }
+ ],
+ "mobile": [
+  {
+   "name": "mobile",
+   "url": "admin.php?page=flx-speed"
+  }
+ ],
+ "gif": [
+  {
+   "goto": "admin.php?page=flx-speed",
+   "wait": 2500
+  },
+  {
+   "move": [
+    600,
+    250
+   ]
+  },
+  {
+   "move": [
+    900,
+    600
+   ],
+   "wait": 800
+  },
+  {
+   "scroll": 600,
+   "wait": 1500
+  },
+  {
+   "click": "a[href*='tab=records']",
+   "css": true,
+   "nav": true
+  },
+  {
+   "click": "table tbody tr td a, table tbody tr",
+   "css": true,
+   "wait": 2500
+  },
+  {
+   "scroll": 400,
+   "wait": 1400
+  },
+  {
+   "goto": "admin.php?page=flx-speed&tab=server",
+   "wait": 2000
+  },
+  {
+   "move": [
+    700,
+    400
+   ],
+   "wait": 800
+  },
+  {
+   "scroll": 700,
+   "wait": 1300
+  },
+  {
+   "click": "a[href*='tab=system']",
+   "css": true,
+   "nav": true
+  },
+  {
+   "move": [
+    700,
+    500
+   ],
+   "wait": 1500
+  },
+  {
+   "goto": "/projeler/",
+   "wait": 2500
+  },
+  {
+   "click": "#wp-admin-bar-flxp a, li[id*='flxp'] > a",
+   "css": true,
+   "wait": 2500
+  },
+  {
+   "move": [
+    700,
+    600
+   ],
+   "wait": 1500
+  }
+ ]
+}

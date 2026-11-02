@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "slugs": {
+    "yt-cagri-merkezi": "flx-chat",
+    "yt-cagri": "flx-chat",
+    "yt-on-ayarlar": "flx-presets",
+    "yt-on-ayar": "flx-preset",
+    "yt-admin": "flx-admin",
+    "yt-ai": "flx-ai",
+    "yt-analiz": "flx-analytics",
+    "yt-bagis": "flx-donate",
+    "yt-dil": "flx-lang",
+    "yt-form": "flx-forms",
+    "yt-gorev": "flx-tasks",
+    "yt-guncelleyici": "flx-updater",
+    "yt-iletisim": "flx-mail",
+    "yt-kurulum": "flx-setup",
+    "yt-performans": "flx-speed",
+    "yt-qr-menu": "flx-qr-menu",
+    "yt-roller": "flx-roles",
+    "yt-seo": "flx-seo",
+    "yt-sertifika": "flx-certificates",
+    "yt-sosyal": "flx-social",
+    "yt-studio": "flx-studio",
+    "yt-uygulama": "flx-app",
+    "yt-yedek": "flx-backup",
+    "yt-tv-kumanda": "flx-tv-remote",
+    "yt-tv-pano": "flx-tv-board",
+    "flux-ecommerce": "fluxwp",
+    "yesil-fun": "flx-menu-theme"
+  },
+  "themes": {
+    "yesilturkiye": "fluxwp",
+    "flux-ecommerce": "fluxwp",
+    "yesil-fun": "flx-menu-theme"
+  },
+  "rules": {
+    "shared_lower": [
+      "yt",
+      "flx"
+    ],
+    "shared_upper": [
+      "YT",
+      "FLX"
+    ],
+    "lower": [
+      "yt",
+      "flx"
+    ],
+    "upper": [
+      "YT",
+      "FLX"
+    ],
+    "cap": [
+      "Yt",
+      "Flx"
+    ]
+  },
+  "blocks": {
+    "yesilturkiye/dil-secici": "fluxwp/dil-secici",
+    "yesilturkiye/hesap-sepet": "fluxwp/hesap-sepet"
+  },
+  "protect": [
+    "yt-app"
+  ]
+}

@@ -1,0 +1,19 @@
+/* Flux Donate · WooCommerce admin screens (ported from Flux WooCommerce Bağış). GPL v2 or later. */
+.flxwb-admin .flxwb-card { background: #fff; border: 1px solid #dcdcde; border-radius: 10px; padding: 6px 20px 12px; margin: 16px 0; max-width: 980px; }
+.flxwb-admin .flxwb-card h2 { margin: 14px 0 6px; }
+.flxwb-admin .form-table th { width: 210px; }
+.flxwb-pkgs-table { max-width: 640px; margin-top: 10px; }
+.flxwb-pkgs-table td, .flxwb-pkgs-table th { vertical-align: middle; }
+.flxwb-check { margin-right: 6px; }
+.flxwb-checklist { background: #fff; border: 1px solid #dcdcde; border-radius: 10px; padding: 4px 20px 10px; max-width: 980px; margin-top: 14px; }
+.flxwb-checklist h2 { margin: 12px 0 6px; font-size: 1.1em; }
+.flxwb-checklist ul { margin: 0; }
+.flxwb-checklist li { padding-left: 24px; position: relative; margin: 6px 0; }
+.flxwb-checklist li::before { position: absolute; left: 0; top: 0; font-weight: 700; }
+.flxwb-checklist li.ok::before { content: "✓"; color: #0E7A56; }
+.flxwb-checklist li.warn::before { content: "!"; color: #b26200; left: 5px; }
+.flxwb-box code { white-space: normal; word-break: break-word; display: inline-block; margin-top: 4px; }
+.flxwb-box__files { margin: 0 0 8px; }
+.flxwb-box__files li { margin-bottom: 6px; }
+.flxwb-feed__row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.flxwb-feed__row input{flex:1 1 420px;max-width:560px}

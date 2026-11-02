@@ -1,0 +1,10 @@
+{
+  "schema": "flxb-report/1",
+  "id": "donations-by-payment",
+  "title": { "tr": "Ödeme yöntemine göre", "en": "By payment method" },
+  "source": "donations",
+  "group": ["payment", "status"],
+  "metrics": ["count", "amount"],
+  "period": "this_month",
+  "order": 30
+}

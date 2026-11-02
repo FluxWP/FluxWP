@@ -1,0 +1,1059 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Flux Admin 1.1.1\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: flx-admin\n"
+
+
+msgid "İçerik"
+msgstr ""
+
+msgid "Panele girebilir"
+msgstr ""
+
+msgid "Yazı yazabilir"
+msgstr ""
+
+msgid "Yazı yayımlayabilir"
+msgstr ""
+
+msgid "Başkasının yazısını düzenleyebilir"
+msgstr ""
+
+msgid "Yazı silebilir"
+msgstr ""
+
+msgid "Başkasının yazısını silebilir"
+msgstr ""
+
+msgid "Sayfa düzenleyebilir"
+msgstr ""
+
+msgid "Sayfa yayımlayabilir"
+msgstr ""
+
+msgid "Başkasının sayfasını düzenleyebilir"
+msgstr ""
+
+msgid "Sayfa silebilir"
+msgstr ""
+
+msgid "Dosya yükleyebilir"
+msgstr ""
+
+msgid "Kategorileri yönetebilir"
+msgstr ""
+
+msgid "Yorumları onaylayabilir"
+msgstr ""
+
+msgid "Filtresiz HTML yazabilir"
+msgstr ""
+
+msgid "Site"
+msgstr ""
+
+msgid "Site ayarlarını değiştirebilir"
+msgstr ""
+
+msgid "Menü ve görünümü düzenleyebilir"
+msgstr ""
+
+msgid "Kullanıcıları görebilir"
+msgstr ""
+
+msgid "Kullanıcı ekleyebilir"
+msgstr ""
+
+msgid "Kullanıcı düzenleyebilir"
+msgstr ""
+
+msgid "Kullanıcı silebilir"
+msgstr ""
+
+msgid "Rol değiştirebilir"
+msgstr ""
+
+msgid "Eklenti açıp kapatabilir"
+msgstr ""
+
+msgid "Eklenti kurabilir"
+msgstr ""
+
+msgid "Eklenti güncelleyebilir"
+msgstr ""
+
+msgid "WordPress'i güncelleyebilir"
+msgstr ""
+
+msgid "Dışa aktarabilir"
+msgstr ""
+
+msgid "İçe aktarabilir"
+msgstr ""
+
+msgid "WooCommerce'i yönetebilir"
+msgstr ""
+
+msgid "Raporları görebilir"
+msgstr ""
+
+msgid "Siparişleri düzenleyebilir"
+msgstr ""
+
+msgid "Ürünleri düzenleyebilir"
+msgstr ""
+
+msgid "FluxWP eklentileri"
+msgstr ""
+
+msgid "Burada yapılan değişiklik gerçek yetkidir: kapatılan işlem menüden gizlenmekle kalmaz, adresle girilse de yapılamaz. Yönetici rolü değiştirilemez."
+msgstr ""
+
+msgid "İlk değişiklikten önceki yetkiler yedekli (%s)."
+msgstr ""
+
+msgid "Tüm roller yedekteki hâline dönsün mü?"
+msgstr ""
+
+msgid "Yedeği geri yükle"
+msgstr ""
+
+msgid "Yetki ara…"
+msgstr ""
+
+msgid "kişi"
+msgstr ""
+
+msgid "Yetkiniz yok."
+msgstr ""
+
+msgid "Ara veya komut yaz…"
+msgstr ""
+
+msgid "Sonuç yok"
+msgstr ""
+
+msgid "Sayfalar"
+msgstr ""
+
+msgid "Uygulamalar"
+msgstr ""
+
+msgid "İşlemler"
+msgstr ""
+
+msgid "Yeni yazı"
+msgstr ""
+
+msgid "Yeni sayfa"
+msgstr ""
+
+msgid "Tema: otomatik (cihaza göre)"
+msgstr ""
+
+msgid "Tema: açık"
+msgstr ""
+
+msgid "Tema: koyu"
+msgstr ""
+
+msgid "Alt menüyü aç/kapat"
+msgstr ""
+
+msgid "Kapat"
+msgstr ""
+
+msgid "↑↓ seç · Enter aç · Esc kapat"
+msgstr ""
+
+msgid "Paylaş düğmesine dokunup \"Ana Ekrana Ekle\"yi seçin."
+msgstr ""
+
+msgid "Uygulama yüklendi."
+msgstr ""
+
+msgid "Bağlantı yok. Değişiklikler kaydedilmeyebilir."
+msgstr ""
+
+msgid "Bağlantı geri geldi."
+msgstr ""
+
+msgid "Üste sabitle"
+msgstr ""
+
+msgid "Sabitlemeyi kaldır"
+msgstr ""
+
+msgid "Diğer'e taşı"
+msgstr ""
+
+msgid "Yerine geri al"
+msgstr ""
+
+msgid "Yukarı taşı"
+msgstr ""
+
+msgid "Aşağı taşı"
+msgstr ""
+
+msgid "Yeni sekmede aç"
+msgstr ""
+
+msgid "Rol menülerini düzenle"
+msgstr ""
+
+msgid "Sabitlenenler"
+msgstr ""
+
+msgid "Diğer"
+msgstr ""
+
+msgid "Grubu aç/kapat"
+msgstr ""
+
+msgid "Genişliği sürükleyin (çift tık: varsayılan)"
+msgstr ""
+
+msgid "Kaydedildi."
+msgstr ""
+
+msgid "Kaydedilemedi. Tekrar deneyin."
+msgstr ""
+
+msgid "İpucu: menüde sağ tıklayıp sabitleyebilirsiniz."
+msgstr ""
+
+msgid "Yeni görev"
+msgstr ""
+
+msgid "Görev adı"
+msgstr ""
+
+msgid "Liste"
+msgstr ""
+
+msgid "Son tarih"
+msgstr ""
+
+msgid "Öncelik"
+msgstr ""
+
+msgid "Bana ata"
+msgstr ""
+
+msgid "Oluştur"
+msgstr ""
+
+msgid "Vazgeç"
+msgstr ""
+
+msgid "Görev oluşturuldu."
+msgstr ""
+
+msgid "Aç"
+msgstr ""
+
+msgid "Yok"
+msgstr ""
+
+msgid "Uygulama değiştir"
+msgstr ""
+
+msgid "Menüyü daralt / genişlet"
+msgstr ""
+
+msgid "Ara veya komut…"
+msgstr ""
+
+msgid "Menüyü düzenle"
+msgstr ""
+
+msgid "Tema"
+msgstr ""
+
+msgid "Alt menü"
+msgstr ""
+
+msgid "Daha"
+msgstr ""
+
+msgid "Ara"
+msgstr ""
+
+msgid "Ara (Ctrl+K)"
+msgstr ""
+
+msgid "Tema: otomatik / açık / koyu"
+msgstr ""
+
+msgid "Flux Admin"
+msgstr ""
+
+msgid "Günaydın"
+msgstr ""
+
+msgid "İyi günler"
+msgstr ""
+
+msgid "İyi akşamlar"
+msgstr ""
+
+msgid "İyi geceler"
+msgstr ""
+
+msgid "Özet"
+msgstr ""
+
+msgid "j F Y, l"
+msgstr ""
+
+msgid "%1$s, %2$s"
+msgstr ""
+
+msgid "Modülleri düzenle"
+msgstr ""
+
+msgid "Paneli ana ekrana ekle"
+msgstr ""
+
+msgid "Uygulama gibi tam ekran açılır, rozetle okunmamışları gösterir."
+msgstr ""
+
+msgid "Yükle"
+msgstr ""
+
+msgid "Bugünkü bağış"
+msgstr ""
+
+msgid "%s bağış"
+msgstr ""
+
+msgid "Bu ay"
+msgstr ""
+
+msgid "%1$s bağış · %2$s bağışçı"
+msgstr ""
+
+msgid "Onay bekleyen"
+msgstr ""
+
+msgid "Havale / dekont"
+msgstr ""
+
+msgid "Okunmamış WhatsApp"
+msgstr ""
+
+msgid "Çağrı Merkezi'ni aç →"
+msgstr ""
+
+msgid "Açık görevlerim"
+msgstr ""
+
+msgid "Flux Tasks →"
+msgstr ""
+
+msgid "Sistem kontrolü"
+msgstr ""
+
+msgid "%s hata"
+msgstr ""
+
+msgid "%s uyarı"
+msgstr ""
+
+msgid "Sorun yok"
+msgstr ""
+
+msgid "%s kontrol iyi"
+msgstr ""
+
+msgid "Bağışlar"
+msgstr ""
+
+msgid "Görevler"
+msgstr ""
+
+msgid "Hızlı işlemler"
+msgstr ""
+
+msgid "İyi"
+msgstr ""
+
+msgid "Uyarı"
+msgstr ""
+
+msgid "Hata"
+msgstr ""
+
+msgid "Düzelt"
+msgstr ""
+
+msgid "Tüm kontroller"
+msgstr ""
+
+msgid "Bağış ekle"
+msgstr ""
+
+msgid "Sertifika oluştur"
+msgstr ""
+
+msgid "Görev oluştur"
+msgstr ""
+
+msgid "WhatsApp"
+msgstr ""
+
+msgid "Sayfa ekle"
+msgstr ""
+
+msgid "Yazı yaz"
+msgstr ""
+
+msgid "Medya yükle"
+msgstr ""
+
+msgid "E-posta gönder"
+msgstr ""
+
+msgid "Kısayol ekle"
+msgstr ""
+
+msgid "Yönetim"
+msgstr ""
+
+msgid "Panel"
+msgstr ""
+
+msgid "Genel"
+msgstr ""
+
+msgid "Bağış"
+msgstr ""
+
+msgid "Bu sayfaya erişiminiz kapatıldı. Gerekirse site yöneticisine başvurun."
+msgstr ""
+
+msgid "Erişim kapalı"
+msgstr ""
+
+msgid "Yönetim paneli"
+msgstr ""
+
+msgid "Bağlantı yok"
+msgstr ""
+
+msgid "İnternet bağlantısı gelince panel kaldığı yerden açılır."
+msgstr ""
+
+msgid "Yeniden dene"
+msgstr ""
+
+msgid "Yönetim teması"
+msgstr ""
+
+msgid "Görünüm"
+msgstr ""
+
+msgid "Menü ve alt bar"
+msgstr ""
+
+msgid "Yetkiler"
+msgstr ""
+
+msgid "Başlangıç"
+msgstr ""
+
+msgid "Uygulama (PWA)"
+msgstr ""
+
+msgid "Logo seç"
+msgstr ""
+
+msgid "Diğer tüm roller"
+msgstr ""
+
+msgid "Özel düzen"
+msgstr ""
+
+msgid "Varsayılan düzen"
+msgstr ""
+
+msgid "Grup"
+msgstr ""
+
+msgid "Grup adı"
+msgstr ""
+
+msgid "Yeni grup"
+msgstr ""
+
+msgid "+ Grup ekle"
+msgstr ""
+
+msgid "Grubu kaldır"
+msgstr ""
+
+msgid "Menü adı (boş = özgün ad)"
+msgstr ""
+
+msgid "Görünür"
+msgstr ""
+
+msgid "Gizli"
+msgstr ""
+
+msgid "Bu rol erişemez"
+msgstr ""
+
+msgid "Alt menüler"
+msgstr ""
+
+msgid "Bu rolü varsayılana döndür"
+msgstr ""
+
+msgid "Başka rolden kopyala…"
+msgstr ""
+
+msgid "Önizleme"
+msgstr ""
+
+msgid "Mobil alt bar"
+msgstr ""
+
+msgid "En fazla 4 kısayol; beşinci düğme \"Daha\" yan paneli açar."
+msgstr ""
+
+msgid "— boş —"
+msgstr ""
+
+msgid "Yeni kurulan eklentilerin menüleri otomatik \"Diğer\" grubuna düşer."
+msgstr ""
+
+msgid "Kaydedilmemiş değişiklik var."
+msgstr ""
+
+msgid "Erişimi engelle"
+msgstr ""
+
+msgid "Erişim engelli: menüde yok, adresle açılırsa \"yetkiniz yok\" görür"
+msgstr ""
+
+msgid "Kapalı başlasın"
+msgstr ""
+
+msgid "Yetkilerin tamamı: Yetkiler sekmesi"
+msgstr ""
+
+msgid "Yönetici rolünde erişim engellenemez."
+msgstr ""
+
+msgid "Marka"
+msgstr ""
+
+msgid "Açık (kapatınca WordPress'in standart paneli döner)"
+msgstr ""
+
+msgid "Ad"
+msgstr ""
+
+msgid "Alt satır"
+msgstr ""
+
+msgid "Logo"
+msgstr ""
+
+msgid "Kaldır"
+msgstr ""
+
+msgid "Boşsa site simgesi, o da yoksa Flux Admin simgesi kullanılır."
+msgstr ""
+
+msgid "Seçenekler"
+msgstr ""
+
+msgid "Özellikler"
+msgstr ""
+
+msgid "Mobilde alt bar"
+msgstr ""
+
+msgid "WhatsApp ve Görevler sol menünün hemen sağında açılsın (menü simgelere daralır)"
+msgstr ""
+
+msgid "Telefonda WhatsApp ve Görevler ekranlarında uygulama geçiş düğmesi"
+msgstr ""
+
+msgid "Hızlı geçiş: tıklanan menü sayfası önden hazırlanır, geçiş yumuşak olur"
+msgstr ""
+
+msgid "Komut paleti (Ctrl+K / ⌘K)"
+msgstr ""
+
+msgid "Giriş ekranını da tasarla"
+msgstr ""
+
+msgid "Canlı sayaç aralığı"
+msgstr ""
+
+msgid "%d sn"
+msgstr ""
+
+msgid "Rozetler (WhatsApp, görev, bekleyen bağış, güncelleme) WordPress Heartbeat isteğine eklenir; ayrı istek açılmaz. Hostinger için 60 sn önerilir."
+msgstr ""
+
+msgid "Her rol kendi sol menüsünü ve mobil alt barını görür. Sürükleyip sırala, yeniden adlandır, gizle, grupla. Gizlemek yetkiyi değiştirmez; yalnız menüden kaldırır."
+msgstr ""
+
+msgid "Menü listesi bir sonraki sayfa açılışında oluşur. Sayfayı yenileyin."
+msgstr ""
+
+msgid "\"Erişimi engelle\" o menüyü bu rol için gerçekten kapatır: menüde görünmez, adresle açılırsa \"yetkiniz yok\" sayfası çıkar. Ayrıntılı yetkiler için Yetkiler sekmesi."
+msgstr ""
+
+msgid "Onay bekleyen bağış"
+msgstr ""
+
+msgid "Karşılama ve özet"
+msgstr ""
+
+msgid "Üst bölüm"
+msgstr ""
+
+msgid "Karşılama, tarih ve özet kutucukları"
+msgstr ""
+
+msgid "Özet kutucukları"
+msgstr ""
+
+msgid "Kişi yalnız yetkisi olan kutucukları görür. Eklentiler `flxa_dashboard_stats` filtresiyle kutucuk ekleyebilir."
+msgstr ""
+
+msgid "Ek hızlı işlemler"
+msgstr ""
+
+msgid "Satır başına \"Etiket|Adres\". Adres wp-admin'e göre veya tam https:// olabilir."
+msgstr ""
+
+msgid "Modüllerin sırası ve görünürlüğü kişiye özeldir: Başlangıç'ta \"Modülleri düzenle\" ile açılır, kutular sürüklenerek taşınır."
+msgstr ""
+
+msgid "Uygulama olarak yükleme"
+msgstr ""
+
+msgid "Site HTTPS değil; tarayıcılar yüklemeye izin vermez."
+msgstr ""
+
+msgid "PWA"
+msgstr ""
+
+msgid "Panel telefona / bilgisayara uygulama gibi yüklenebilsin"
+msgstr ""
+
+msgid "Tam ekran açılır, uygulama simgesinde okunmamış sayısı görünür, bağlantı kopunca çevrimdışı ekranı çıkar. Panel sayfaları önbelleğe alınmaz."
+msgstr ""
+
+msgid "Uygulama adı"
+msgstr ""
+
+msgid "Kısa ad (simge altı)"
+msgstr ""
+
+msgid "Simge"
+msgstr ""
+
+msgid "Site simgesi (Görünüm › Özelleştir › Site kimliği) varsa o kullanılır."
+msgstr ""
+
+msgid "Nasıl yüklenir?"
+msgstr ""
+
+msgid "Başlangıç'taki \"Yükle\" düğmesi veya menü › Uygulamayı yükle."
+msgstr ""
+
+msgid "Paylaş › Ana Ekrana Ekle."
+msgstr ""
+
+msgid "Bilgisayar"
+msgstr ""
+
+msgid "Adres çubuğundaki yükle simgesi."
+msgstr ""
+
+msgid "Kaydet"
+msgstr ""
+
+msgid "Kontrol"
+msgstr ""
+
+msgid "Durum"
+msgstr ""
+
+msgid "Açıklama"
+msgstr ""
+
+msgid "Açık. Rol bazlı menü, alt bar ve açık/koyu tema çalışıyor."
+msgstr ""
+
+msgid "Kapalı; WordPress'in standart paneli görünüyor."
+msgstr ""
+
+msgid "Ayarlar"
+msgstr ""
+
+msgid "Uygulama olarak yükleme (PWA)"
+msgstr ""
+
+msgid "HTTPS açık; panel telefona ve bilgisayara uygulama gibi yüklenebilir."
+msgstr ""
+
+msgid "Site HTTPS değil; tarayıcılar PWA yüklemeye izin vermez. Ayarlar › Genel'de adresleri https:// yapın."
+msgstr ""
+
+msgid "Genel ayarlar"
+msgstr ""
+
+msgid "Uygulama simgesi"
+msgstr ""
+
+msgid "Site simgesi kullanılıyor."
+msgstr ""
+
+msgid "Site simgesi yok; Flux Admin simgesi kullanılıyor. Görünüm › Özelleştir › Site kimliği'nden değiştirilebilir."
+msgstr ""
+
+msgid "Rol bazlı menü"
+msgstr ""
+
+msgid "%s rol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür."
+msgid_plural "%s rol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Tüm roller varsayılan gruplu menüyü görüyor."
+msgstr ""
+
+msgid "Menü listesi"
+msgstr ""
+
+msgid "Menü düzenleyicinin listesi bir yönetici paneli açınca oluşur."
+msgstr ""
+
+msgid "Canlı sayaçlar"
+msgstr ""
+
+msgid "Heartbeat %s sn; Hostinger yoğun istekte IP'yi geçici kesebilir. 60 sn önerilir."
+msgstr ""
+
+msgid "Rozetler WordPress Heartbeat ile %s sn'de bir yenilenir (ek istek yok)."
+msgstr ""
+
+msgid "Yönetim temasını aç/kapat"
+msgstr ""
+
+msgid "1 = açık, 0 = WordPress standart paneli."
+msgstr ""
+
+msgid "Yönetim teması açıldı."
+msgstr ""
+
+msgid "Yönetim teması kapatıldı."
+msgstr ""
+
+msgid "Saniye (30, 60 veya 120)."
+msgstr ""
+
+msgid "Aralık %s sn yapıldı."
+msgstr ""
+
+msgid "PWA (uygulama olarak yükleme)"
+msgstr ""
+
+msgid "1 = açık, 0 = kapalı (kayıtlı service worker kendini kaldırır)."
+msgstr ""
+
+msgid "PWA açıldı."
+msgstr ""
+
+msgid "PWA kapatıldı."
+msgstr ""
+
+msgid "Bir rolün menüsünü varsayılana döndür"
+msgstr ""
+
+msgid "Rol anahtarı (ör. editor)."
+msgstr ""
+
+msgid "%s menüsü varsayılana döndü."
+msgstr ""
+
+msgid "Arka plan"
+msgstr ""
+
+msgid "Sol menü"
+msgstr ""
+
+msgid "Kartlar"
+msgstr ""
+
+msgid "Yazı"
+msgstr ""
+
+msgid "Varsayılan tema"
+msgstr ""
+
+msgid "Otomatik (cihazın ayarı)"
+msgstr ""
+
+msgid "Açık"
+msgstr ""
+
+msgid "Koyu"
+msgstr ""
+
+msgid "Herkes kendi tercihini sol alttaki ay/güneş düğmesinden değiştirebilir."
+msgstr ""
+
+msgid "Vurgu rengi"
+msgstr ""
+
+msgid "Renkler"
+msgstr ""
+
+msgid "Renkleri varsayılana döndür"
+msgstr ""
+
+msgid "Yazı tipi"
+msgstr ""
+
+msgid "Sistem yazı tipi"
+msgstr ""
+
+msgid "Özel…"
+msgstr ""
+
+msgid "Özel: bilgisayarda kurulu ya da sitede yüklü bir yazı tipinin adı."
+msgstr ""
+
+msgid "Yazı boyutu"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Büyük"
+msgstr ""
+
+msgid "Daha büyük"
+msgstr ""
+
+msgid "Köşeler"
+msgstr ""
+
+msgid "Keskin"
+msgstr ""
+
+msgid "Az yuvarlak"
+msgstr ""
+
+msgid "Yuvarlak"
+msgstr ""
+
+msgid "Çok yuvarlak"
+msgstr ""
+
+msgid "Yoğunluk"
+msgstr ""
+
+msgid "Rahat"
+msgstr ""
+
+msgid "Sıkı (menüde daha çok satır)"
+msgstr ""
+
+msgid "Simgeler"
+msgstr ""
+
+msgid "WordPress menülerinde çizgi simgeler (FluxWP logoları renkli kalır)"
+msgstr ""
+
+msgid "Koyu tema kapalı ekranlar"
+msgstr ""
+
+msgid "Satır başına bir ekran kimliği veya gövde sınıfı (sonunda * olabilir). Kendi koyu teması olmayan karmaşık ekranlar burada açık kalır."
+msgstr ""
+
+msgid "Tüm listeler"
+msgstr ""
+
+msgid "Kapsam"
+msgstr ""
+
+msgid "Bana atanan"
+msgstr ""
+
+msgid "Oluşturduğum"
+msgstr ""
+
+msgid "Tüm görevler"
+msgstr ""
+
+msgid "Grafik"
+msgstr ""
+
+msgid "Duruma göre"
+msgstr ""
+
+msgid "Önceliğe göre"
+msgstr ""
+
+msgid "Listeye göre"
+msgstr ""
+
+msgid "Kişiye göre"
+msgstr ""
+
+msgid "Görebildiğiniz görev listesi yok."
+msgstr ""
+
+msgid "Önceliksiz"
+msgstr ""
+
+msgid "Atanmamış"
+msgstr ""
+
+msgid "Geciken"
+msgstr ""
+
+msgid "Bugün"
+msgstr ""
+
+msgid "Son 7 günde biten"
+msgstr ""
+
+msgid "açık görev"
+msgstr ""
+
+msgid "Açık görev yok."
+msgstr ""
+
+msgid "+ Görev oluştur"
+msgstr ""
+
+msgid "Flux Tasks'i aç"
+msgstr ""
+
+msgid "Dönem"
+msgstr ""
+
+msgid "Son 7 gün"
+msgstr ""
+
+msgid "Son 14 gün"
+msgstr ""
+
+msgid "Son 30 gün"
+msgstr ""
+
+msgid "Dağılım"
+msgstr ""
+
+msgid "Bağış türüne göre"
+msgstr ""
+
+msgid "Ödeme yöntemine göre"
+msgstr ""
+
+msgid "Dağılım yok"
+msgstr ""
+
+msgid "son %d gün"
+msgstr ""
+
+msgid "Günlük bağış toplamları"
+msgstr ""
+
+msgid "Türsüz"
+msgstr ""
+
+msgid "türlere göre"
+msgstr ""
+
+msgid "yöntemlere göre"
+msgstr ""
+
+msgid "Anonim"
+msgstr ""
+
+msgid "Henüz bağış yok."
+msgstr ""
+
+msgid "Tüm bağışlar"
+msgstr ""
+
+msgid "Flux Tasks kullanılamıyor."
+msgstr ""
+
+msgid "Bu listeye görev ekleme yetkiniz yok."
+msgstr ""
+
+msgid "Etkinlikler|edit.php?post_type=etkinlik\nCanlı site|https://"
+msgstr ""
+
+msgid "Yönetim panelini baştan tasarlar: rol bazlı düzenlenebilir sol menü, mobil alt bar ve yan panel, WhatsApp / Görevler geçişi, düzenlenebilir Başlangıç modülleri, otomatik açık/koyu tema, komut paleti (Ctrl+K), canlı sayaçlar ve PWA (ana ekrana ekle)."
+msgstr ""
+
+msgid "Daha fazla"
+msgstr ""
+
+msgid "Filtreler"
+msgstr ""
+
+msgid "Temizle"
+msgstr ""
+
+msgid "Sayfalama"
+msgstr ""
+
+msgid "%1$s–%2$s / %3$s"
+msgstr ""
+
+msgid "Önceki sayfa"
+msgstr ""
+
+msgid "Sonraki sayfa"
+msgstr ""
+
+msgid "Sayfa başı"
+msgstr ""
+
+msgid "Uygula"
+msgstr ""
+
+msgid "İletişim"
+msgstr ""
+
+msgid "Büyüme"
+msgstr ""
+
+msgid "Ekranlar"
+msgstr ""
+
+msgid "Sistem"
+msgstr ""
+
+msgid "WordPress güncellemeleri"
+msgstr ""
+
+msgid "Mağaza: %s"
+msgstr ""
+
+msgid "Menüyü daralt / genişlet ([)"
+msgstr ""
+
+msgid "Çıkış yap"
+msgstr ""

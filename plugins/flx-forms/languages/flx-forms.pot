@@ -1,0 +1,9087 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Flux Forms 2.0.0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: flx-forms\n"
+
+msgid "File"
+msgstr ""
+
+msgid "Built with %sYT Form%s by %sWordPress form plugin by whitestudio.team%s"
+msgstr ""
+
+msgid "Flux Forms"
+msgstr ""
+
+msgid "Free WordPress form plugin"
+msgstr ""
+
+msgid "Powered by %1$sYT Form%2$s . %3$sbest Form plugin for Wordpress%4$s."
+msgstr ""
+
+msgid "Flux Forms WordPress Plugin"
+msgstr ""
+
+msgid "This form requires a payment method. Please add one or change the form type."
+msgstr ""
+
+msgid "Error Monitor"
+msgstr ""
+
+msgid "Plugin"
+msgstr ""
+
+msgid "Theme"
+msgstr ""
+
+msgid "WordPress Core"
+msgstr ""
+
+msgid "External"
+msgstr ""
+
+msgid "Unknown"
+msgstr ""
+
+msgid "Notice"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Dismiss"
+msgstr ""
+
+msgid "Dismiss All"
+msgstr ""
+
+msgid "Dismiss %s"
+msgstr ""
+
+msgid "No errors detected"
+msgstr ""
+
+msgid "These errors may interfere with forms built using Flux Forms."
+msgstr ""
+
+msgid "This panel is only visible to site administrators."
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+msgid "jQuery Dependency Issue"
+msgstr ""
+
+msgid "jQuery is not properly loaded or available. AJAX and interactive form features may not work correctly."
+msgstr ""
+
+msgid "WhiteStudio.team"
+msgstr ""
+
+msgid "EFB"
+msgstr ""
+
+msgid "Flux Forms is a free and powerful WordPress form builder plugin for creating contact forms, payment forms, surveys, registration forms, multi-step forms, file upload forms, electronic signature forms, and audio, video, and screen recording forms, with conditional logic, email notifications, integrations, entry management, and advanced spam protection."
+msgstr ""
+
+msgid "WordPress Form Builder Plugin"
+msgstr ""
+
+msgid "WordPress 5.0 or later; PHP 7.0 or later"
+msgstr ""
+
+msgid "Flux Forms Documentation"
+msgstr ""
+
+msgid "Drag-and-Drop WordPress Form Builder"
+msgstr ""
+
+msgid "Unlimited Forms and Form Entries"
+msgstr ""
+
+msgid "Responsive and RTL-Friendly Forms"
+msgstr ""
+
+msgid "Contact and Inquiry Forms"
+msgstr ""
+
+msgid "Support and Feedback Forms with Message Tracking"
+msgstr ""
+
+msgid "Survey and Poll Forms with Visual Results"
+msgstr ""
+
+msgid "Stripe and PayPal Payment Forms"
+msgstr ""
+
+msgid "WordPress Login and Registration Forms"
+msgstr ""
+
+msgid "File Upload Forms"
+msgstr ""
+
+msgid "Audio Recording Forms"
+msgstr ""
+
+msgid "Video Recording Forms"
+msgstr ""
+
+msgid "Screen Recording Forms with Optional Microphone Audio"
+msgstr ""
+
+msgid "Private and Restricted-Access Forms"
+msgstr ""
+
+msgid "Multi-Step Forms"
+msgstr ""
+
+msgid "Smart Forms with Conditional Logic"
+msgstr ""
+
+msgid "Electronic Signature Forms"
+msgstr ""
+
+msgid "Location Picker Forms with OpenStreetMap and Leaflet"
+msgstr ""
+
+msgid "Job Application Forms"
+msgstr ""
+
+msgid "Event Registration Forms"
+msgstr ""
+
+msgid "Order Forms with Recurring and Subscription Billing"
+msgstr ""
+
+msgid "Drag-and-Drop File Upload Fields"
+msgstr ""
+
+msgid "Audio, Video and Screen Recording Fields"
+msgstr ""
+
+msgid "Electronic Signature and Location Picker Fields"
+msgstr ""
+
+msgid "Country, State, Province and City Fields"
+msgstr ""
+
+msgid "Multiple-Select Dropdowns and Range Sliders"
+msgstr ""
+
+msgid "Rating Stars, 5-Point Scale, NPS and Yes-No Questions"
+msgstr ""
+
+msgid "Switch and Toggle Fields"
+msgstr ""
+
+msgid "Gregorian, Hijri and Jalali Date Pickers"
+msgstr ""
+
+msgid "Telephone, Mobile and Color Picker Fields"
+msgstr ""
+
+msgid "Matrix and Table Fields for Structured Data"
+msgstr ""
+
+msgid "Automatic Email Notifications"
+msgstr ""
+
+msgid "Custom Email Templates with Visual Editor"
+msgstr ""
+
+msgid "Conditional Email Notifications and Recipient Routing"
+msgstr ""
+
+msgid "Email Delivery Status Checking"
+msgstr ""
+
+msgid "Email Error Logging"
+msgstr ""
+
+msgid "Email Deliverability Reports with Spam Score, SPF, DKIM and DMARC Checks"
+msgstr ""
+
+msgid "SMS and Telegram Submission Notifications"
+msgstr ""
+
+msgid "WordPress Form Entry and Message Management Dashboard"
+msgstr ""
+
+msgid "Read and Reply to Form Submissions with File Attachments"
+msgstr ""
+
+msgid "Open and Closed Message Status"
+msgstr ""
+
+msgid "Search Submissions by Form or Confirmation Code"
+msgstr ""
+
+msgid "Unique Submission Confirmation and Tracking Codes"
+msgstr ""
+
+msgid "PDF Downloads and CSV Exports"
+msgstr ""
+
+msgid "Survey and Poll Result Charts"
+msgstr ""
+
+msgid "Google Sheets Form Submission Sync"
+msgstr ""
+
+msgid "Stripe and PayPal Payment Workflows"
+msgstr ""
+
+msgid "External API Auto-Populate and Autofill"
+msgstr ""
+
+msgid "Offline Form Data Collection"
+msgstr ""
+
+msgid "Shield Security silentCAPTCHA Integration"
+msgstr ""
+
+msgid "Gutenberg, Elementor, Divi and WPBakery Integration"
+msgstr ""
+
+msgid "Form Submissions Stored in the WordPress Database"
+msgstr ""
+
+msgid "No Third-Party Form Submission Servers Required"
+msgstr ""
+
+msgid "Client-Side and Server-Side Form Validation"
+msgstr ""
+
+msgid "Google reCAPTCHA v2 Spam Protection"
+msgstr ""
+
+msgid "CAPTCHA-Free Spam Protection with Honeypot and Signed Single-Use Tokens"
+msgstr ""
+
+msgid "Rate Limiting and Abuse Protection"
+msgstr ""
+
+msgid "Protection Against Email, SMS, Telegram and Google Sheets Quota Abuse"
+msgstr ""
+
+msgid "IP Allowlist and Blocklist Security Controls"
+msgstr ""
+
+msgid "Monitor-Only Security Mode"
+msgstr ""
+
+msgid "WordPress form builder"
+msgstr ""
+
+msgid "free WordPress form plugin"
+msgstr ""
+
+msgid "WordPress form plugin"
+msgstr ""
+
+msgid "drag and drop form builder"
+msgstr ""
+
+msgid "contact form plugin"
+msgstr ""
+
+msgid "WordPress contact form"
+msgstr ""
+
+msgid "survey form plugin"
+msgstr ""
+
+msgid "WordPress survey plugin"
+msgstr ""
+
+msgid "WordPress poll plugin"
+msgstr ""
+
+msgid "payment form plugin"
+msgstr ""
+
+msgid "WordPress payment forms"
+msgstr ""
+
+msgid "Stripe payment forms"
+msgstr ""
+
+msgid "PayPal payment forms"
+msgstr ""
+
+msgid "subscription payment forms"
+msgstr ""
+
+msgid "recurring payment forms"
+msgstr ""
+
+msgid "WordPress registration form"
+msgstr ""
+
+msgid "WordPress login form"
+msgstr ""
+
+msgid "multi-step form plugin"
+msgstr ""
+
+msgid "conditional logic forms"
+msgstr ""
+
+msgid "smart forms WordPress"
+msgstr ""
+
+msgid "file upload form plugin"
+msgstr ""
+
+msgid "electronic signature forms"
+msgstr ""
+
+msgid "e-signature form plugin"
+msgstr ""
+
+msgid "location picker form"
+msgstr ""
+
+msgid "WordPress audio recorder form"
+msgstr ""
+
+msgid "WordPress video recorder form"
+msgstr ""
+
+msgid "WordPress screen recorder form"
+msgstr ""
+
+msgid "job application forms"
+msgstr ""
+
+msgid "WordPress job application form"
+msgstr ""
+
+msgid "event registration forms"
+msgstr ""
+
+msgid "WordPress event registration form"
+msgstr ""
+
+msgid "email notification forms"
+msgstr ""
+
+msgid "WordPress email notifications"
+msgstr ""
+
+msgid "conditional email notifications"
+msgstr ""
+
+msgid "form email deliverability"
+msgstr ""
+
+msgid "SPF DKIM DMARC WordPress forms"
+msgstr ""
+
+msgid "WordPress form entries"
+msgstr ""
+
+msgid "form submission management"
+msgstr ""
+
+msgid "WordPress form message management"
+msgstr ""
+
+msgid "form submissions PDF export"
+msgstr ""
+
+msgid "form submissions CSV export"
+msgstr ""
+
+msgid "Google Sheets form integration"
+msgstr ""
+
+msgid "WordPress forms API integration"
+msgstr ""
+
+msgid "form autofill API"
+msgstr ""
+
+msgid "offline WordPress forms"
+msgstr ""
+
+msgid "secure WordPress forms"
+msgstr ""
+
+msgid "WordPress form spam protection"
+msgstr ""
+
+msgid "CAPTCHA-free form spam protection"
+msgstr ""
+
+msgid "honeypot spam protection WordPress"
+msgstr ""
+
+msgid "WordPress form rate limiting"
+msgstr ""
+
+msgid "self-hosted WordPress forms"
+msgstr ""
+
+msgid "WordPress forms stored locally"
+msgstr ""
+
+msgid "Gutenberg form builder"
+msgstr ""
+
+msgid "Elementor form plugin"
+msgstr ""
+
+msgid "Divi form plugin"
+msgstr ""
+
+msgid "WPBakery form plugin"
+msgstr ""
+
+msgid "📍 Confirmation Code Finder (Tracking Form)"
+msgstr ""
+
+msgid "— Select a Form —"
+msgstr ""
+
+msgid "Please select a form to display."
+msgstr ""
+
+msgid "Selected Form:"
+msgstr ""
+
+msgid "X-WP-Nonce header is missing"
+msgstr ""
+
+msgid "Invalid or expired nonce"
+msgstr ""
+
+msgid "Too many requests. Please try again shortly."
+msgstr ""
+
+msgid "Your form session has expired. Please reload the page."
+msgstr ""
+
+msgid "Form ID:"
+msgstr ""
+
+msgid "The form will be displayed on the frontend."
+msgstr ""
+
+msgid "This link uses an older format. For improved security, new email notifications include updated links."
+msgstr ""
+
+msgid "It seems that you are the admin of this form. Please log in and try again."
+msgstr ""
+
+msgid "Form does not exist !!"
+msgstr ""
+
+msgid "Flux Forms couldn't locate the form settings. Please check your settings or contact support for assistance."
+msgstr ""
+
+msgid "The form is not shown because Google reCAPTCHA has not been added to the Flux Forms plugin settings."
+msgstr ""
+
+msgid "Error Code"
+msgstr ""
+
+msgid "Password recovery"
+msgstr ""
+
+msgid "Y/m/d \\a\\t g:ia"
+msgstr ""
+
+msgid "Payment Form"
+msgstr ""
+
+msgid "Too many attempts. Please wait a few minutes and try again."
+msgstr ""
+
+msgid "No file was received. Please choose a file and try again."
+msgstr ""
+
+msgid "The recording upload could not be verified. Please record it again and retry."
+msgstr ""
+
+msgid "This recording format is not supported. Please record it again."
+msgstr ""
+
+msgid "The recording is larger than the allowed file size."
+msgstr ""
+
+msgid "The server could not verify the recording format. Please contact the site administrator."
+msgstr ""
+
+msgid "The recording format could not be verified. Please record it again."
+msgstr ""
+
+msgid "The recording is longer than the allowed duration."
+msgstr ""
+
+msgid "The server could not verify the recording duration. Please record it again and try uploading."
+msgstr ""
+
+msgid "The server could not store the recording. Please try again or contact the site administrator."
+msgstr ""
+
+msgid "The recording request could not be verified. Please retry."
+msgstr ""
+
+msgid "The upload request could not be verified. Please try again."
+msgstr ""
+
+msgid "The upload field could not be verified. Please refresh the form and try again."
+msgstr ""
+
+msgid "The response box could not be verified. Reopen the conversation and try again."
+msgstr ""
+
+msgid "The response attachment could not be secured. Please try again."
+msgstr ""
+
+msgid "Not allowed to respond to this message."
+msgstr ""
+
+msgid "The response attachment could not be verified. Please attach the file again."
+msgstr ""
+
+msgid "New user registration"
+msgstr ""
+
+msgid "Guest"
+msgstr ""
+
+msgid "Stripe"
+msgstr ""
+
+msgid "error"
+msgstr ""
+
+msgid "We have made some updates. Please wait a few minutes before trying again."
+msgstr ""
+
+msgid "Payment"
+msgstr ""
+
+msgid "No payment amount detected. Please review your selected items and try again. If the problem persists, contact support."
+msgstr ""
+
+msgid "Payment Intent ID is missing"
+msgstr ""
+
+msgid "persiaPayment"
+msgstr ""
+
+msgid "The Email Address Is Not Valid"
+msgstr ""
+
+msgid "The Username Must Contain Only Letters, Numbers And Lowercase letters"
+msgstr ""
+
+msgid "The Username Must Contain At Least 3 Characters."
+msgstr ""
+
+msgid "The Password Must Contain At Least 8 Characters!"
+msgstr ""
+
+msgid "The Password Must Contain At Least 1 Number!"
+msgstr ""
+
+msgid "The Password Must Contain At Least 1 Capital Letter!"
+msgstr ""
+
+msgid "The Password Must Contain At Least 1 Lowercase Letter!"
+msgstr ""
+
+msgid "Audio recording"
+msgstr ""
+
+msgid "Video recording"
+msgstr ""
+
+msgid "Screen recording"
+msgstr ""
+
+msgid "Download"
+msgstr ""
+
+msgid "You are not allowed to do this."
+msgstr ""
+
+msgid "Form Preview"
+msgstr ""
+
+msgid "Please Wait"
+msgstr ""
+
+msgid "Create New Password"
+msgstr ""
+
+msgid "Create a secure password for your account"
+msgstr ""
+
+msgid "New Password"
+msgstr ""
+
+msgid "Enter your new password"
+msgstr ""
+
+msgid "Set Password"
+msgstr ""
+
+msgid "Error! Please try again later."
+msgstr ""
+
+msgid "Password has been changed successfully!"
+msgstr ""
+
+msgid "Invalid payment selection. Please review your choices and try again. If the problem persists, contact the site administrator."
+msgstr ""
+
+msgid "Add-ons"
+msgstr ""
+
+msgid "Addon Installation Issue"
+msgstr ""
+
+msgid "Technical Details"
+msgstr ""
+
+msgid "Checked %s ago"
+msgstr ""
+
+msgid "System Ready"
+msgstr ""
+
+msgid "Checking add-on installation capabilities&hellip;"
+msgstr ""
+
+msgid "This check runs once after plugin activation. Please refresh the page in a few moments."
+msgstr ""
+
+msgid "Some add-ons need a PHP server change"
+msgstr ""
+
+msgid "Flux Forms has safely paused each affected active add-on, so the rest of the plugin can continue working."
+msgstr ""
+
+msgid "(currently enabled and paused)"
+msgstr ""
+
+msgid "(not enabled)"
+msgstr ""
+
+msgid "disabled in php.ini:"
+msgstr ""
+
+msgid "not provided by PHP or its required extension:"
+msgstr ""
+
+msgid "This usually means the needed PHP extension is not installed, or the function is listed in disable_functions in php.ini. Please ask your hosting provider to enable it, then refresh this page."
+msgstr ""
+
+msgid "Create"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "If you are seeing this message, it is likely for one of these reasons: If you have a caching plugin installed, its settings may need to be reviewed."
+msgstr ""
+
+msgid "Please also ensure that you have a stable internet connection and try again."
+msgstr ""
+
+msgid "Forms"
+msgstr ""
+
+msgid "Panel"
+msgstr ""
+
+msgid "This add-on is not included in Flux Forms."
+msgstr ""
+
+msgid "File access status not checked yet. Please wait."
+msgstr ""
+
+msgid "Error: server (%s) responded with an invalid request. responded code : %s "
+msgstr ""
+
+msgid "Cannot install add-ons of Flux Forms because the plugin is not able to connect to the %s server"
+msgstr ""
+
+msgid "Your Easy Form Builder Pro subscription has expired, so this add-on cannot be downloaded."
+msgstr ""
+
+msgid "Renew Subscription"
+msgstr ""
+
+msgid "Something went wrong, please refresh the page."
+msgstr ""
+
+msgid "You do not have permission to update these settings."
+msgstr ""
+
+msgid "Please enter a valid admin email address."
+msgstr ""
+
+msgid "You do not have permission to complete setup."
+msgstr ""
+
+msgid "Invalid email address"
+msgstr ""
+
+msgid "Please enter a valid email address."
+msgstr ""
+
+msgid "Invalid sender email"
+msgstr ""
+
+msgid "The sender email address is not valid."
+msgstr ""
+
+msgid "Email tester service error"
+msgstr ""
+
+msgid "Could not start email test."
+msgstr ""
+
+msgid "Invalid service response"
+msgstr ""
+
+msgid "The email tester service returned an invalid response."
+msgstr ""
+
+msgid "WordPress could not send the email"
+msgstr ""
+
+msgid "The message never left your website: WordPress reported an error while trying to send it. This is the one case where the fix really is on the WordPress or hosting side - usually an SMTP plugin, or PHP mail disabled by the host."
+msgstr ""
+
+msgid "WordPress could not send the test email. The message never left your website, so nothing was delivered."
+msgstr ""
+
+msgid "Email test is waiting for delivery confirmation"
+msgstr ""
+
+msgid "WordPress sent the test email. Flux Forms is waiting for the delivery result before marking email as ready."
+msgstr ""
+
+msgid "WordPress accepted and sent the test email. Waiting for it to arrive."
+msgstr ""
+
+msgid "The email tester service returned an invalid JSON response."
+msgstr ""
+
+msgid "The email tester service could not start the test."
+msgstr ""
+
+msgid "Invalid test hash"
+msgstr ""
+
+msgid "The email test hash is not valid."
+msgstr ""
+
+msgid "Your site could not connect"
+msgstr ""
+
+msgid "No connection could be opened from your site to our mail testing service. This is usually outbound traffic blocked by your server or its network - some hosts block connections to other countries - rather than a problem with the service. Your hosting provider can confirm it."
+msgstr ""
+
+msgid "Service error"
+msgstr ""
+
+msgid "The email tester service could not return the result."
+msgstr ""
+
+msgid "The message never left your website. WordPress reported an error while sending, so nothing could be delivered."
+msgstr ""
+
+msgid "The email was sent, but it never arrived"
+msgstr ""
+
+msgid "WordPress sent the message successfully, so your site and this plugin did their part. It was lost, delayed or rejected after leaving WordPress - usually the receiving side treated it as spam, or your host never delivered it from the outbound queue."
+msgstr ""
+
+msgid "Email test failed"
+msgstr ""
+
+msgid "The email server test could not verify email capability."
+msgstr ""
+
+msgid "Email capability verified"
+msgstr ""
+
+msgid "Server confirmed ability to send emails."
+msgstr ""
+
+msgid "Your emails are being delivered to spam"
+msgstr ""
+
+msgid "WordPress sent the test email, but delivery has not been confirmed yet."
+msgstr ""
+
+msgid "Email delivery failed: %s"
+msgstr ""
+
+msgid "Cannot install add-ons of Flux Forms because the plugin is not able to download files"
+msgstr ""
+
+msgid "Cannot install add-ons because this server has disabled the PHP filesystem functions needed to prepare the download. Please ask your hosting provider to enable mkdir and rename, or configure the WordPress filesystem."
+msgstr ""
+
+msgid "Cannot install add-ons of Flux Forms because the plugin is not able to move the downloaded file"
+msgstr ""
+
+msgid "Cannot install add-ons of Flux Forms because the plugin is not able to unzip files"
+msgstr ""
+
+msgid "The file could not be read. Please try attaching it again."
+msgstr ""
+
+msgid "Enable the Email Notification Feature"
+msgstr ""
+
+msgid "To receive email notifications from your forms, verify your email server by following these steps:"
+msgstr ""
+
+msgid "Go to the <a href=\"%s\" style=\"font-weight:600;\">Flux Forms Panel</a>"
+msgstr ""
+
+msgid "Click Settings from the top menu"
+msgstr ""
+
+msgid "Select the Email Settings tab"
+msgstr ""
+
+msgid "Click \"Check Email Server\" and wait for the test to finish"
+msgstr ""
+
+msgid "If the score is above 70 — enable the \"This site can send emails\" switch and save"
+msgstr ""
+
+msgid "Otherwise, follow the instructions shown in the test results"
+msgstr ""
+
+msgid "%s notification"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "Disabling this feature may affect the proper functionality of Flux Forms. If you plan to use the %s feature, please ensure it is enabled."
+msgstr ""
+
+msgid "Email system is working properly."
+msgstr ""
+
+msgid "Your server is able to send emails using the default PHP mail system."
+msgstr ""
+
+msgid "Email system is not available."
+msgstr ""
+
+msgid "The PHP mail() function is missing. Your server cannot send emails."
+msgstr ""
+
+msgid "Email sending is blocked by server settings."
+msgstr ""
+
+msgid "The mail() function is disabled in your server PHP configuration (php.ini)."
+msgstr ""
+
+msgid "WordPress mail function not found."
+msgstr ""
+
+msgid "The wp_mail() function is missing or not available. WordPress email features may be broken."
+msgstr ""
+
+msgid "No email handler configured."
+msgstr ""
+
+msgid "Your server has no SMTP host or sendmail path set. Emails may not be delivered."
+msgstr ""
+
+msgid "Test email could not be sent."
+msgstr ""
+
+msgid "It seems that your WordPress site could not send a test email. To manually test your email system, go to Flux Forms > Settings > Email Settings tab and click the \"Check Email Server\" button."
+msgstr ""
+
+msgid "Invalid email address."
+msgstr ""
+
+msgid "Please enter a valid admin email address before testing email delivery."
+msgstr ""
+
+msgid "Invalid sender email."
+msgstr ""
+
+msgid "The sender email address is not valid. Please check your email settings."
+msgstr ""
+
+msgid "Email tester service error."
+msgstr ""
+
+msgid "Flux Forms could not start the email delivery test. Please try again later."
+msgstr ""
+
+msgid "Invalid email tester response."
+msgstr ""
+
+msgid "Invalid email test."
+msgstr ""
+
+msgid "The email test identifier is invalid. Please start a new test."
+msgstr ""
+
+msgid "Email tester connection error."
+msgstr ""
+
+msgid "Flux Forms could not connect to the email tester service."
+msgstr ""
+
+msgid "Email delivery test failed."
+msgstr ""
+
+msgid "Your emails are arriving in the spam folder."
+msgstr ""
+
+msgid "The test message was delivered, but its deliverability score is too low to rely on. Sending through SMTP and adding SPF and DKIM records for your domain is what fixes this."
+msgstr ""
+
+msgid "Email delivery test is pending."
+msgstr ""
+
+msgid "Click here for more details"
+msgstr ""
+
+msgid "Email Issue"
+msgstr ""
+
+msgid "Flux Forms Email Warning:"
+msgstr ""
+
+msgid "Plan data is missing."
+msgstr ""
+
+msgid "Invalid plan data format."
+msgstr ""
+
+msgid "Invalid plan type."
+msgstr ""
+
+msgid "Please confirm this plan downgrade before continuing."
+msgstr ""
+
+msgid "Free plan activated - no additional features."
+msgstr ""
+
+msgid "Free Plus plan activated with enhanced features."
+msgstr ""
+
+msgid "Pro plan activated with existing activation code."
+msgstr ""
+
+msgid "Redirecting to Pro plan purchase page."
+msgstr ""
+
+msgid "Plan \"%s\" has been successfully processed."
+msgstr ""
+
+msgid "You can attach up to %1$d file here. Please wait about %2$d minutes before trying again."
+msgid_plural "You can attach up to %1$d files here. Please wait about %2$d minutes before trying again."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "This file is too large. The maximum size for this field is %s."
+msgstr ""
+
+msgid "This file type is not accepted here. Please attach one of the file types listed on the field."
+msgstr ""
+
+msgid "This file appears to be empty. Please choose a different file."
+msgstr ""
+
+msgid "The uploaded file could not be verified. Please attach it again."
+msgstr ""
+
+msgid "Updating amount…"
+msgstr ""
+
+msgid "The amount could not be verified. Please check your selections and try again."
+msgstr ""
+
+msgid "Subject made by Flux Forms (with the tracking code)"
+msgstr ""
+
+msgid "Message: tracking code and submitted values (HTML)"
+msgstr ""
+
+msgid "Tracking code"
+msgstr ""
+
+msgid "Link to the message / response page"
+msgstr ""
+
+msgid "User name (registration, password recovery)"
+msgstr ""
+
+msgid "We have received your message"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "New form message"
+msgstr ""
+
+msgid "Sent to the form's notification addresses when a form is filled in or a message gets a new reply."
+msgstr ""
+
+msgid "New message"
+msgstr ""
+
+msgid "View message"
+msgstr ""
+
+msgid "Form received (to the visitor)"
+msgstr ""
+
+msgid "Sent to the visitor after they fill in a form (with the tracking code when the form gives one)."
+msgstr ""
+
+msgid "Track your message"
+msgstr ""
+
+msgid "Reply to a message"
+msgstr ""
+
+msgid "Sent when a message gets a reply."
+msgstr ""
+
+msgid "You have a reply"
+msgstr ""
+
+msgid "View reply"
+msgstr ""
+
+msgid "Subscription confirmed"
+msgstr ""
+
+msgid "Sent to the visitor after a subscription form."
+msgstr ""
+
+msgid "Thank you for subscribing"
+msgstr ""
+
+msgid "Survey answered"
+msgstr ""
+
+msgid "Sent to the visitor after a survey form."
+msgstr ""
+
+msgid "Thank you for taking part"
+msgstr ""
+
+msgid "Registration (to the new user)"
+msgstr ""
+
+msgid "Sent to a visitor who registered with a registration form; contains the confirmation link."
+msgstr ""
+
+msgid "Welcome!"
+msgstr ""
+
+msgid "New user registered"
+msgstr ""
+
+msgid "Sent to the site administrator when someone registers with a form."
+msgstr ""
+
+msgid "Sent when a visitor asks for a new password with a login form; contains the reset link."
+msgstr ""
+
+msgid "Password Reset"
+msgstr ""
+
+msgid "Automation e-mail"
+msgstr ""
+
+msgid "The \"Send e-mail\" step of Forms › Automations. Subject and text are written in each flow; this template is the frame around them."
+msgstr ""
+
+msgid "System check"
+msgstr ""
+
+msgid "Sorry, you are not allowed to access this page."
+msgstr ""
+
+msgid "Each line shows something the site needs and whether it is in place. Fix the errors first; warnings are worth a look."
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Info"
+msgstr ""
+
+msgid "%1$d OK · %2$d warnings · %3$d errors"
+msgstr ""
+
+msgid "Check again"
+msgstr ""
+
+msgid "Show only these (click again to show all)"
+msgstr ""
+
+msgid "Checked: %s"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Check"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid "Source"
+msgstr ""
+
+msgid "Action"
+msgstr ""
+
+msgid "No checks are registered."
+msgstr ""
+
+msgid "System check found %d problem(s) that can stop donations or automations."
+msgstr ""
+
+msgid "Open system check"
+msgstr ""
+
+msgid "Hide until the next update"
+msgstr ""
+
+msgid "System: %d error(s)"
+msgstr ""
+
+msgid "This check could not run: %s"
+msgstr ""
+
+msgid "Scheduled tasks (cron)"
+msgstr ""
+
+msgid "Payments"
+msgstr ""
+
+msgid "Plugins"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "E-mail"
+msgstr ""
+
+msgid "Security"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Payment hand-off"
+msgstr ""
+
+msgid "Flux Donate handles payments (providers, keys, webhooks): Donations › Payments."
+msgstr ""
+
+msgid "Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms uses its own Stripe settings."
+msgstr ""
+
+msgid "Flux Donate is not active; Flux Forms takes payments itself with %s."
+msgstr ""
+
+msgid "Flux Donate is not active and the Stripe keys are missing: %d payment form shows \"Online payment is unavailable\"."
+msgid_plural "Flux Donate is not active and the Stripe keys are missing: %d payment forms show \"Online payment is unavailable\"."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Flux Donate is not active and no Stripe keys are set. No payment form exists, so nothing is affected."
+msgstr ""
+
+msgid "Panel › Settings › Payment"
+msgstr ""
+
+msgid "Not active. Forms work; donations are not tracked and recurring iyzico payments are not available."
+msgstr ""
+
+msgid "Flux Certificates (automations)"
+msgstr ""
+
+msgid "Version %s is active; certificate automations can run."
+msgstr ""
+
+msgid "Version %1$s is active; certificate automations need %2$s or later."
+msgstr ""
+
+msgid "Not active, but %d active automation creates or sends certificates; it will fail."
+msgid_plural "Not active, but %d active automations create or send certificates; they will fail."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Not active. Needed only for certificate automations."
+msgstr ""
+
+msgid "Automations"
+msgstr ""
+
+msgid "No automation is on. After a form or payment nothing runs automatically (certificate, e-mail, webhook)."
+msgstr ""
+
+msgid "%d automation is on."
+msgid_plural "%d automations are on."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%d run failed in the last 7 days; see the run log."
+msgid_plural "%d runs failed in the last 7 days; see the run log."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Keys are set; %d form uses reCAPTCHA."
+msgid_plural "Keys are set; %d forms use reCAPTCHA."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%d form has reCAPTCHA on but the site key or secret key is missing; the form is not shown."
+msgid_plural "%d forms have reCAPTCHA on but the site key or secret key is missing; they are not shown."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Uploads folder"
+msgstr ""
+
+msgid "The uploads folder is not available: %s"
+msgstr ""
+
+msgid "Writable; files sent with forms can be saved."
+msgstr ""
+
+msgid "Not writable: %s. File fields in forms cannot save uploads; ask the host to fix the folder permissions."
+msgstr ""
+
+msgid "Search elements…"
+msgstr ""
+
+msgid "No element matches your search."
+msgstr ""
+
+msgid "Field settings"
+msgstr ""
+
+msgid "Form settings"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+msgid "Elements"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Notifications"
+msgstr ""
+
+msgid "Conditional logic"
+msgstr ""
+
+msgid "Thank-you & advanced"
+msgstr ""
+
+msgid "SMS"
+msgstr ""
+
+msgid "Click a field to edit it"
+msgstr ""
+
+msgid "Publishable key"
+msgstr ""
+
+msgid "Secret key"
+msgstr ""
+
+msgid "Stripe is not configured on this site. Please contact the site administrator."
+msgstr ""
+
+msgid "The payment method of this form is not supported."
+msgstr ""
+
+msgid "The payment could not be started. Please try again."
+msgstr ""
+
+msgid "The payment could not be verified yet."
+msgstr ""
+
+msgid "Optional but recommended: in the Stripe Dashboard add a webhook endpoint with this URL and the events payment_intent.succeeded, payment_intent.payment_failed, payment_intent.canceled, charge.refunded, customer.subscription.updated and customer.subscription.deleted, then paste its signing secret below."
+msgstr ""
+
+msgid "Webhook signing secret"
+msgstr ""
+
+msgid "Saved - leave empty to keep it"
+msgstr ""
+
+msgid "Remove the saved secret"
+msgstr ""
+
+msgid "Test provider (development only)"
+msgstr ""
+
+msgid "Test outcome"
+msgstr ""
+
+msgid "Approve every payment"
+msgstr ""
+
+msgid "Decline every payment"
+msgstr ""
+
+msgid "No money is taken. Development only."
+msgstr ""
+
+msgid "TEST MODE: no card is charged."
+msgstr ""
+
+msgid "Test provider: the payment was declined."
+msgstr ""
+
+msgid "Completed"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Trial"
+msgstr ""
+
+msgid "Pending"
+msgstr ""
+
+msgid "Processing"
+msgstr ""
+
+msgid "Failed"
+msgstr ""
+
+msgid "Canceled"
+msgstr ""
+
+msgid "Amount mismatch"
+msgstr ""
+
+msgid "Past due"
+msgstr ""
+
+msgid "Unpaid"
+msgstr ""
+
+msgid "Incomplete"
+msgstr ""
+
+msgid "Expired"
+msgstr ""
+
+msgid "Refunded"
+msgstr ""
+
+msgid "Partly refunded"
+msgstr ""
+
+msgid "Payments taken through your forms, from every payment provider. API keys and the active provider are set on the plugin Settings page, Payment tab."
+msgstr ""
+
+msgid "Settings saved."
+msgstr ""
+
+msgid "A Stripe webhook signing secret starts with \"whsec_\"."
+msgstr ""
+
+msgid "Providers and webhooks"
+msgstr ""
+
+msgid "Configured"
+msgstr ""
+
+msgid "Not configured"
+msgstr ""
+
+msgid "Webhook URL for this provider (if it sends payment notifications):"
+msgstr ""
+
+msgid "Recent payments"
+msgstr ""
+
+msgid "No payments yet."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Form"
+msgstr ""
+
+msgid "Confirmation code"
+msgstr ""
+
+msgid "Provider"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Amount"
+msgstr ""
+
+msgid "Transaction ID"
+msgstr ""
+
+msgid "Subscription"
+msgstr ""
+
+msgid "One-time"
+msgstr ""
+
+msgid "The latest %d payments are shown."
+msgstr ""
+
+msgid "No payment provider is available on this site. Please contact the site administrator."
+msgstr ""
+
+msgid "Too many payment attempts. Please wait a few minutes and try again."
+msgstr ""
+
+msgid "Invalid payment data. Please refresh the page and try again."
+msgstr ""
+
+msgid "The payment provider is not configured on this site. Please contact the site administrator."
+msgstr ""
+
+msgid "Too many requests. Please wait a moment and try again."
+msgstr ""
+
+msgid "Payment not found."
+msgstr ""
+
+msgid "Your payment has not been confirmed yet. Please wait a moment and try again. If the problem persists, contact the site administrator."
+msgstr ""
+
+msgid "Online payment is not available at the moment. Please try again later or contact us."
+msgstr ""
+
+msgid "Active payment provider"
+msgstr ""
+
+msgid "Payment forms take card payments through this provider. Only installed providers are listed."
+msgstr ""
+
+msgid "Saved — leave empty to keep"
+msgstr ""
+
+msgid "%s settings"
+msgstr ""
+
+msgid "This payment provider does not support refunds from the site."
+msgstr ""
+
+msgid "Dashboard"
+msgstr ""
+
+msgid "7 days"
+msgstr ""
+
+msgid "30 days"
+msgstr ""
+
+msgid "90 days"
+msgstr ""
+
+msgid "Custom"
+msgstr ""
+
+msgid "Date range"
+msgstr ""
+
+msgid "From"
+msgstr ""
+
+msgid "To"
+msgstr ""
+
+msgid "Apply"
+msgstr ""
+
+msgid "All forms"
+msgstr ""
+
+msgid "Export CSV"
+msgstr ""
+
+msgid "Download the responses in the selected range and form as a spreadsheet file."
+msgstr ""
+
+msgid "Responses"
+msgstr ""
+
+msgid "Unread"
+msgstr ""
+
+msgid "%s unread in total"
+msgstr ""
+
+msgid "Form views"
+msgstr ""
+
+msgid "No view data"
+msgstr ""
+
+msgid "Recorded since %s"
+msgstr ""
+
+msgid "View data is kept for about 8 days"
+msgstr ""
+
+msgid "Conversion rate"
+msgstr ""
+
+msgid "Responses per form view"
+msgstr ""
+
+msgid "Responses per view since %s"
+msgstr ""
+
+msgid "Payments received"
+msgstr ""
+
+msgid "%s paid"
+msgstr ""
+
+msgid "Also %s"
+msgstr ""
+
+msgid "No payments in this range"
+msgstr ""
+
+msgid "vs previous %d days"
+msgstr ""
+
+msgid "new"
+msgstr ""
+
+msgid "no change"
+msgstr ""
+
+msgid "up"
+msgstr ""
+
+msgid "down"
+msgstr ""
+
+msgid "Daily responses"
+msgstr ""
+
+msgid "Selected period"
+msgstr ""
+
+msgid "Previous period"
+msgstr ""
+
+msgid "Responses by form"
+msgstr ""
+
+msgid "Payment status"
+msgstr ""
+
+msgid "When responses arrive"
+msgstr ""
+
+msgid "Day of week and hour of day"
+msgstr ""
+
+msgid "Less"
+msgstr ""
+
+msgid "More"
+msgstr ""
+
+msgid "Recent responses"
+msgstr ""
+
+msgid "Top forms"
+msgstr ""
+
+msgid "Preview"
+msgstr ""
+
+msgid "All time"
+msgstr ""
+
+msgid "Views"
+msgstr ""
+
+msgid "Conversion"
+msgstr ""
+
+msgid "Last response"
+msgstr ""
+
+msgid "Share"
+msgstr ""
+
+msgid "New"
+msgstr ""
+
+msgid "Read"
+msgstr ""
+
+msgid "Open"
+msgstr ""
+
+msgid "View responses"
+msgstr ""
+
+msgid "Open panel"
+msgstr ""
+
+msgid "Paid"
+msgstr ""
+
+msgid "Failed or canceled"
+msgstr ""
+
+msgid "%s payments"
+msgstr ""
+
+msgid "No responses in this range yet."
+msgstr ""
+
+msgid "You have not created a form yet."
+msgstr ""
+
+msgid "Create a form"
+msgstr ""
+
+msgid "Loading…"
+msgstr ""
+
+msgid "The dashboard data could not be loaded."
+msgstr ""
+
+msgid "Try again"
+msgstr ""
+
+msgid "Never"
+msgstr ""
+
+msgid "(empty response)"
+msgstr ""
+
+msgid "Total"
+msgstr ""
+
+msgid "responses"
+msgstr ""
+
+msgid "Show as table"
+msgstr ""
+
+msgid "Show as chart"
+msgstr ""
+
+msgid "Deleted form"
+msgstr ""
+
+msgid "%s other forms"
+msgstr ""
+
+msgid "Responses, form views, conversion and payments at a glance."
+msgstr ""
+
+msgid "New form"
+msgstr ""
+
+msgid "The dashboard needs JavaScript."
+msgstr ""
+
+msgid "Your session has expired. Reload the page."
+msgstr ""
+
+msgid "Sorry, you are not allowed to do that."
+msgstr ""
+
+msgid "Signature"
+msgstr ""
+
+msgid "Page URL"
+msgstr ""
+
+msgid "Payment ID"
+msgstr ""
+
+msgid "Payment amount"
+msgstr ""
+
+msgid "Payment method"
+msgstr ""
+
+msgid "Field"
+msgstr ""
+
+msgid "Response ID"
+msgstr ""
+
+msgid "Donation form with sapling packages, card payment and a certificate automation."
+msgstr ""
+
+msgid "Trigger"
+msgstr ""
+
+msgid "When"
+msgstr ""
+
+msgid "A form is submitted"
+msgstr ""
+
+msgid "A payment is completed"
+msgstr ""
+
+msgid "Runs only after the payment gateway has confirmed the payment."
+msgstr ""
+
+msgid "Any form"
+msgstr ""
+
+msgid "Conditions"
+msgstr ""
+
+msgid "No conditions: runs for every submission."
+msgstr ""
+
+msgid "Add condition"
+msgstr ""
+
+msgid "All conditions must match"
+msgstr ""
+
+msgid "Any condition may match"
+msgstr ""
+
+msgid "Choose a form to use its fields."
+msgstr ""
+
+msgid "Value"
+msgstr ""
+
+msgid "equals"
+msgstr ""
+
+msgid "does not equal"
+msgstr ""
+
+msgid "contains"
+msgstr ""
+
+msgid "is greater than"
+msgstr ""
+
+msgid "is less than"
+msgstr ""
+
+msgid "is filled"
+msgstr ""
+
+msgid "is empty"
+msgstr ""
+
+msgid "Add step"
+msgstr ""
+
+msgid "Insert a step here"
+msgstr ""
+
+msgid "Step"
+msgstr ""
+
+msgid "Move up"
+msgstr ""
+
+msgid "Move down"
+msgstr ""
+
+msgid "Delete step"
+msgstr ""
+
+msgid "Show / hide settings"
+msgstr ""
+
+msgid "Delete this step?"
+msgstr ""
+
+msgid "No steps yet. Add the first one below."
+msgstr ""
+
+msgid "End"
+msgstr ""
+
+msgid "Automation name"
+msgstr ""
+
+msgid "Enabled"
+msgstr ""
+
+msgid "Saving…"
+msgstr ""
+
+msgid "Saved."
+msgstr ""
+
+msgid "Could not save. Please try again."
+msgstr ""
+
+msgid "You have unsaved changes."
+msgstr ""
+
+msgid "All automations"
+msgstr ""
+
+msgid "— none —"
+msgstr ""
+
+msgid "Flux Certificates is not active: certificate steps are disabled."
+msgstr ""
+
+msgid "Needs a \"Create certificate\" step before it."
+msgstr ""
+
+msgid "Create certificate"
+msgstr ""
+
+msgid "Creates a certificate from a Flux Certificates template."
+msgstr ""
+
+msgid "Send certificate"
+msgstr ""
+
+msgid "Sends the certificate link by e-mail, SMS or WhatsApp."
+msgstr ""
+
+msgid "Show on thank-you screen"
+msgstr ""
+
+msgid "Shows a certificate card right after the submission."
+msgstr ""
+
+msgid "Send e-mail"
+msgstr ""
+
+msgid "Sends a notification e-mail."
+msgstr ""
+
+msgid "Webhook"
+msgstr ""
+
+msgid "POSTs the submission as JSON to a URL."
+msgstr ""
+
+msgid "Certificate template"
+msgstr ""
+
+msgid "Choose a template"
+msgstr ""
+
+msgid "Certificate owner"
+msgstr ""
+
+msgid "Name field"
+msgstr ""
+
+msgid "Surname field (optional)"
+msgstr ""
+
+msgid "Phone field"
+msgstr ""
+
+msgid "E-mail field"
+msgstr ""
+
+msgid "Template variables"
+msgstr ""
+
+msgid "Filled from the owner name above."
+msgstr ""
+
+msgid "Template default"
+msgstr ""
+
+msgid "Form field"
+msgstr ""
+
+msgid "Fixed value"
+msgstr ""
+
+msgid "Payment amount ÷ unit price"
+msgstr ""
+
+msgid "Number in the selected option (e.g. “5 saplings” → 5)"
+msgstr ""
+
+msgid "Unit price"
+msgstr ""
+
+msgid "Verified paid amount divided by the unit price, rounded down, at least 1."
+msgstr ""
+
+msgid "Event (optional)"
+msgstr ""
+
+msgid "No event"
+msgstr ""
+
+msgid "default:"
+msgstr ""
+
+msgid "auto-detected"
+msgstr ""
+
+msgid "Channels"
+msgstr ""
+
+msgid "Default provider"
+msgstr ""
+
+msgid "No active provider for this channel yet (Flux Certificates › Providers)."
+msgstr ""
+
+msgid "Card title"
+msgstr ""
+
+msgid "Message"
+msgstr ""
+
+msgid "Tags"
+msgstr ""
+
+msgid "Show the certificate itself on the screen"
+msgstr ""
+
+msgid "“Share” button"
+msgstr ""
+
+msgid "“View certificate” link"
+msgstr ""
+
+msgid "“Download PDF” button"
+msgstr ""
+
+msgid "Label"
+msgstr ""
+
+msgid "Open the certificate page automatically after (seconds, 0 = off)"
+msgstr ""
+
+msgid "View certificate"
+msgstr ""
+
+msgid "Download PDF"
+msgstr ""
+
+msgid "Your certificate is ready"
+msgstr ""
+
+msgid "Site administrator"
+msgstr ""
+
+msgid "E-mail from a form field"
+msgstr ""
+
+msgid "Custom addresses"
+msgstr ""
+
+msgid "Subject"
+msgstr ""
+
+msgid "Body"
+msgstr ""
+
+msgid "URL (https only)"
+msgstr ""
+
+msgid "Signing secret (optional)"
+msgstr ""
+
+msgid "Adds an X-FLXF-Signature: sha256=HMAC header."
+msgstr ""
+
+msgid "Only https:// URLs to public hosts are allowed."
+msgstr ""
+
+msgid "The flow editor needs JavaScript."
+msgstr ""
+
+msgid "Run steps automatically after a form is submitted or a payment is completed: create and send certificates, show them on the thank-you screen, e-mail, webhook."
+msgstr ""
+
+msgid "New automation"
+msgstr ""
+
+msgid "Flux Certificates is not active."
+msgstr ""
+
+msgid "Certificate steps are disabled until the Flux Certificates plugin is activated. E-mail and webhook steps keep working."
+msgstr ""
+
+msgid "Flows"
+msgstr ""
+
+msgid "Run log"
+msgstr ""
+
+msgid "No automations yet."
+msgstr ""
+
+msgid "Automation"
+msgstr ""
+
+msgid "Last run"
+msgstr ""
+
+msgid "Runs"
+msgstr ""
+
+msgid "Actions"
+msgstr ""
+
+msgid "Enable %s"
+msgstr ""
+
+msgid "Payment completed"
+msgstr ""
+
+msgid "Form submitted"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Duplicate"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Delete this automation? This cannot be undone."
+msgstr ""
+
+msgid "Ready-made: sapling donation certificate"
+msgstr ""
+
+msgid "After a verified payment on the donation form: create a “Fidan Bağış Sertifikası” (sapling count = amount ÷ unit price), send it by WhatsApp and e-mail, and show it on the thank-you screen."
+msgstr ""
+
+msgid "Create default flow"
+msgstr ""
+
+msgid "Donation form: %s"
+msgstr ""
+
+msgid "Create the “Sapling Donation” form"
+msgstr ""
+
+msgid "Partly done"
+msgstr ""
+
+msgid "Skipped"
+msgstr ""
+
+msgid "Running"
+msgstr ""
+
+msgid "No runs yet. Runs appear here after a matching submission."
+msgstr ""
+
+msgid "The latest %d runs are kept."
+msgstr ""
+
+msgid "Clear the run log?"
+msgstr ""
+
+msgid "Clear log"
+msgstr ""
+
+msgid "Time"
+msgstr ""
+
+msgid "Steps"
+msgstr ""
+
+msgid "The link has expired. Reload the page and try again."
+msgstr ""
+
+msgid "Invalid data."
+msgstr ""
+
+msgid "Automation not found."
+msgstr ""
+
+msgid "%s (copy)"
+msgstr ""
+
+msgid "The form could not be created."
+msgstr ""
+
+msgid "(untitled flow)"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "Previous"
+msgstr ""
+
+msgid "Confirmation Code"
+msgstr ""
+
+msgid "Link copied"
+msgstr ""
+
+msgid "The certificate preview could not be loaded. You can still open it from the link below."
+msgstr ""
+
+msgid "Preparing your certificate…"
+msgstr ""
+
+msgid "No verified payment amount for this submission."
+msgstr ""
+
+msgid "Certificate template not found."
+msgstr ""
+
+msgid "Certificate %1$s for %2$s (%3$s)"
+msgstr ""
+
+msgid "No certificate was created in an earlier step."
+msgstr ""
+
+msgid "No channel selected."
+msgstr ""
+
+msgid "Queued: %s"
+msgstr ""
+
+msgid "No valid recipient address."
+msgstr ""
+
+msgid "New submission: %s"
+msgstr ""
+
+msgid "wp_mail() could not send the e-mail."
+msgstr ""
+
+msgid "Webhook URL must start with https://"
+msgstr ""
+
+msgid "Webhook URL points to a private or invalid address."
+msgstr ""
+
+msgid "Content"
+msgstr ""
+
+msgid "Display an Flux Forms form"
+msgstr ""
+
+msgid "Select Form"
+msgstr ""
+
+msgid "Choose a form to display. The tracking form allows users to find submissions by confirmation code."
+msgstr ""
+
+msgid "Form Settings"
+msgstr ""
+
+msgid "Show Form Title"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "Display the form name as a heading above the form."
+msgstr ""
+
+msgid "Extra Class Name"
+msgstr ""
+
+msgid "Add custom CSS classes for styling."
+msgstr ""
+
+msgid "Design"
+msgstr ""
+
+msgid "CSS"
+msgstr ""
+
+msgid "Select a form from the element settings."
+msgstr ""
+
+msgid "✏️ Click to edit and choose a form"
+msgstr ""
+
+msgid "Select a form to display from the dropdown below."
+msgstr ""
+
+msgid "Form will be displayed here on the frontend."
+msgstr ""
+
+msgid "Loading forms&hellip;"
+msgstr ""
+
+msgid "No"
+msgstr ""
+
+msgid "Container"
+msgstr ""
+
+msgid "Padding"
+msgstr ""
+
+msgid "Background Color"
+msgstr ""
+
+msgid "Border"
+msgstr ""
+
+msgid "Border Radius"
+msgstr ""
+
+msgid "Box Shadow"
+msgstr ""
+
+msgid "Select a form from the widget settings panel."
+msgstr ""
+
+msgid "👈 Use the sidebar to choose a form"
+msgstr ""
+
+msgid "Selected Form ID:"
+msgstr ""
+
+msgid "The form will appear here on the frontend."
+msgstr ""
+
+msgid "Add forms created with Flux Forms"
+msgstr ""
+
+msgid "Display Flux Forms forms on your page"
+msgstr ""
+
+msgid "Choose the form you want to display"
+msgstr ""
+
+msgid "Please select a form from element settings"
+msgstr ""
+
+msgid "Form: %s (ID: %s)"
+msgstr ""
+
+msgid "📍 Confirmation Code Finder (Tracking)"
+msgstr ""
+
+msgid "Confirmation Code Finder"
+msgstr ""
+
+msgid "🎨 Flux Forms"
+msgstr ""
+
+msgid "Add Flux Forms forms to your page"
+msgstr ""
+
+msgid "Select Form:"
+msgstr ""
+
+msgid "Custom Title (optional):"
+msgstr ""
+
+msgid "Shortcode:"
+msgstr ""
+
+msgid "Some plugin files are missing, so the plugin stopped loading to keep your site running. Please reinstall Flux Forms from the Plugins page — your forms, messages, and settings are kept."
+msgstr ""
+
+msgid "Missing files:"
+msgstr ""
+
+msgid "This email was sent automatically. Please do not reply directly."
+msgstr ""
+
+msgid "Test Message"
+msgstr ""
+
+msgid "Activity Log"
+msgstr ""
+
+msgid "Telegram Settings"
+msgstr ""
+
+msgid "Telegram Integration"
+msgstr ""
+
+msgid "Real-time Form Notifications"
+msgstr ""
+
+msgid "Notifications are active"
+msgstr ""
+
+msgid "Configure settings to enable"
+msgstr ""
+
+msgid "Enable Telegram Notifications"
+msgstr ""
+
+msgid "Bot Token"
+msgstr ""
+
+msgid "Enter your bot token"
+msgstr ""
+
+msgid "Get your bot token from @BotFather on Telegram"
+msgstr ""
+
+msgid "Chat ID"
+msgstr ""
+
+msgid "Enter chat ID"
+msgstr ""
+
+msgid "Use @username for channels or numeric ID for private chats"
+msgstr ""
+
+msgid "Test"
+msgstr ""
+
+msgid "Save Settings"
+msgstr ""
+
+msgid "Refresh"
+msgstr ""
+
+msgid "Send Test Message"
+msgstr ""
+
+msgid "Quick Tips"
+msgstr ""
+
+msgid "Create a bot using %s"
+msgstr ""
+
+msgid "Add your bot to the target chat"
+msgstr ""
+
+msgid "Use the test feature to verify setup"
+msgstr ""
+
+msgid "Monitor activity for troubleshooting"
+msgstr ""
+
+msgid "Find your Chat ID using %s"
+msgstr ""
+
+msgid "Enter your test message here&hellip;"
+msgstr ""
+
+msgid "Test Message\n\nThis is a test message from Flux Forms.\n\nIf you receive this message, your Telegram integration is working correctly!"
+msgstr ""
+
+msgid "Test Information"
+msgstr ""
+
+msgid "Use this tab to send test messages and verify your Telegram bot configuration."
+msgstr ""
+
+msgid "Make sure to save your settings before testing!"
+msgstr ""
+
+msgid "No activity found"
+msgstr ""
+
+msgid "Setting Up Your Bot"
+msgstr ""
+
+msgid "Create a Bot"
+msgstr ""
+
+msgid "Message @BotFather on Telegram and use /newbot command"
+msgstr ""
+
+msgid "Get Bot Token"
+msgstr ""
+
+msgid "Copy the bot token provided by BotFather"
+msgstr ""
+
+msgid "Get Chat ID"
+msgstr ""
+
+msgid "For groups: Add bot and use @username. For private: Use numeric ID"
+msgstr ""
+
+msgid "Test Connection"
+msgstr ""
+
+msgid "Use the test feature to verify everything works"
+msgstr ""
+
+msgid "Getting Chat ID"
+msgstr ""
+
+msgid "For Groups/Channels:"
+msgstr ""
+
+msgid "Add your bot to the group"
+msgstr ""
+
+msgid "Use @your_bot_username"
+msgstr ""
+
+msgid "For channels, use @channel_username"
+msgstr ""
+
+msgid "For Private Chats:"
+msgstr ""
+
+msgid "Message @userinfobot"
+msgstr ""
+
+msgid "Copy your numeric user ID"
+msgstr ""
+
+msgid "Use the numeric ID in settings"
+msgstr ""
+
+msgid "Important!"
+msgstr ""
+
+msgid "Make sure your bot has permission to send messages to the target chat."
+msgstr ""
+
+msgid "Are you sure you want to reset all settings?"
+msgstr ""
+
+msgid "Are you sure you want to clear all activity logs?"
+msgstr ""
+
+msgid "An error occurred"
+msgstr ""
+
+msgid "Please fill in all required fields"
+msgstr ""
+
+msgid "Connection test failed"
+msgstr ""
+
+msgid "Please fill in all fields"
+msgstr ""
+
+msgid "Failed to send message"
+msgstr ""
+
+msgid "Failed to load activity"
+msgstr ""
+
+msgid "Bot token is empty"
+msgstr ""
+
+msgid "Invalid token"
+msgstr ""
+
+msgid "Unknown error"
+msgstr ""
+
+msgid "Error connecting to Telegram server"
+msgstr ""
+
+msgid "Telegram configuration error"
+msgstr ""
+
+msgid "Message sent"
+msgstr ""
+
+msgid "Telegram bot is not configured"
+msgstr ""
+
+msgid "Invalid response from Telegram server"
+msgstr ""
+
+msgid "Telegram user not found for this phone number"
+msgstr ""
+
+msgid "Telegram user account is not verified"
+msgstr ""
+
+msgid "Error occurred while sending Telegram message"
+msgstr ""
+
+msgid "Invalid security nonce"
+msgstr ""
+
+msgid "Invalid form ID"
+msgstr ""
+
+msgid "Telegram notifications activated successfully"
+msgstr ""
+
+msgid "Send & Manage Messages"
+msgstr ""
+
+msgid "Send SMS messages directly from your dashboard and track all sent messages."
+msgstr ""
+
+msgid "Quick Send"
+msgstr ""
+
+msgid "Message History"
+msgstr ""
+
+msgid "Total Sent"
+msgstr ""
+
+msgid "Messages sent from your dashboard"
+msgstr ""
+
+msgid "Send Message"
+msgstr ""
+
+msgid "Compose and send an SMS message"
+msgstr ""
+
+msgid "Type your message here&hellip;"
+msgstr ""
+
+msgid "Phone Number"
+msgstr ""
+
+msgid "Write the message you want to send via SMS"
+msgstr ""
+
+msgid "Enter phone number with country code (e.g. +11234567890)"
+msgstr ""
+
+msgid "Use international format: +[country code][number]"
+msgstr ""
+
+msgid "Messages are sent via your configured SMS provider"
+msgstr ""
+
+msgid "All sent messages are logged in the History tab"
+msgstr ""
+
+msgid "No messages sent yet"
+msgstr ""
+
+msgid "sent"
+msgstr ""
+
+msgid "Learn how to use the SMS feature"
+msgstr ""
+
+msgid "Important Notes"
+msgstr ""
+
+msgid "Phone numbers must include country code (e.g. +1 for US, +44 for UK)"
+msgstr ""
+
+msgid "An SMS provider plugin must be installed and configured"
+msgstr ""
+
+msgid "SMS notifications for forms can be set up in each form's settings"
+msgstr ""
+
+msgid "All sent messages are recorded in the Message History tab"
+msgstr ""
+
+msgid "Supported SMS Providers"
+msgstr ""
+
+msgid "Form Security & Spam Protection is disabled."
+msgstr ""
+
+msgid "The security service is not available right now. Your form still works."
+msgstr ""
+
+msgid "Please refresh the form and try again."
+msgstr ""
+
+msgid "Missing challenge."
+msgstr ""
+
+msgid "Expired challenge."
+msgstr ""
+
+msgid "Challenge already used."
+msgstr ""
+
+msgid "Form mismatch."
+msgstr ""
+
+msgid "The security service is temporarily unavailable."
+msgstr ""
+
+msgid "The form was open for too long or could not be verified. Please refresh the page and submit again."
+msgstr ""
+
+msgid "Your request looked too fast or unusual. Please try again in a few minutes."
+msgstr ""
+
+msgid "Your request looked unusual. Please wait a moment and try again."
+msgstr ""
+
+msgid "The security service is temporarily unavailable. Please try again later."
+msgstr ""
+
+msgid "Form Security & Spam Protection"
+msgstr ""
+
+msgid "Behavior-based anti-spam and cost protection"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid "Protection"
+msgstr ""
+
+msgid "Paid Limits"
+msgstr ""
+
+msgid "Logs"
+msgstr ""
+
+msgid "System"
+msgstr ""
+
+msgid "Request failed."
+msgstr ""
+
+msgid "Mode"
+msgstr ""
+
+msgid "Monitor only"
+msgstr ""
+
+msgid "Soft block"
+msgstr ""
+
+msgid "Strict"
+msgstr ""
+
+msgid "Clear Logs"
+msgstr ""
+
+msgid "The Security & Spam Protection admin data could not be loaded. Another plugin may be blocking the script settings, or the page was cached. Reload the page; if it persists, disable admin script optimization for this page."
+msgstr ""
+
+msgid "The Security & Spam Protection panel failed to render. Reload the page or check the browser console."
+msgstr ""
+
+msgid "Protection is paused: required PHP functions are disabled on this server: %s. Ask your host to remove them from the disable_functions line in php.ini. Your forms keep working without protection until then."
+msgstr ""
+
+msgid "Protection is paused: the add-on database tables could not be created. Check that the database user can CREATE tables, then reload this page."
+msgstr ""
+
+msgid "Protection is paused: the WordPress REST API is not available on this site."
+msgstr ""
+
+msgid "Behavior scoring"
+msgstr ""
+
+msgid "Rate limits"
+msgstr ""
+
+msgid "Cost guard"
+msgstr ""
+
+msgid "Ready to enable"
+msgstr ""
+
+msgid "Save settings to start protection."
+msgstr ""
+
+msgid "Ready to disable"
+msgstr ""
+
+msgid "Save settings to pause protection."
+msgstr ""
+
+msgid "Disabled"
+msgstr ""
+
+msgid "Protection is paused."
+msgstr ""
+
+msgid "Needs attention"
+msgstr ""
+
+msgid "Fix system requirements before protection can run."
+msgstr ""
+
+msgid "Behavior checks and rate limits are running."
+msgstr ""
+
+msgid "Allowed"
+msgstr ""
+
+msgid "Blocked"
+msgstr ""
+
+msgid "Quarantined"
+msgstr ""
+
+msgid "Cost Suppressed"
+msgstr ""
+
+msgid "Protection summary"
+msgstr ""
+
+msgid "Current operating mode and the most important thresholds."
+msgstr ""
+
+msgid "Submit score"
+msgstr ""
+
+msgid "Paid notification score"
+msgstr ""
+
+msgid "Token TTL"
+msgstr ""
+
+msgid "IP submit/min"
+msgstr ""
+
+msgid "Response add/min"
+msgstr ""
+
+msgid "Request protection"
+msgstr ""
+
+msgid "Controls that run before EFB REST callbacks."
+msgstr ""
+
+msgid "Enable Human Shield"
+msgstr ""
+
+msgid "Activate behavior tokens and rate limits."
+msgstr ""
+
+msgid "Monitor logs only; soft block is recommended for production rollout."
+msgstr ""
+
+msgid "Minimum submit score"
+msgstr ""
+
+msgid "Requests below this score are suspicious."
+msgstr ""
+
+msgid "Block score below"
+msgstr ""
+
+msgid "Hard block threshold."
+msgstr ""
+
+msgid "Quarantine score below"
+msgstr ""
+
+msgid "Soft rejection threshold."
+msgstr ""
+
+msgid "Minimum fill time"
+msgstr ""
+
+msgid "Base minimum seconds before submit."
+msgstr ""
+
+msgid "Token TTL seconds"
+msgstr ""
+
+msgid "Short-lived single-use human token."
+msgstr ""
+
+msgid "Challenge TTL seconds"
+msgstr ""
+
+msgid "How long a browser challenge can stay open."
+msgstr ""
+
+msgid "All API requests per IP/min"
+msgstr ""
+
+msgid "Global application-layer backstop."
+msgstr ""
+
+msgid "Submits per IP/min"
+msgstr ""
+
+msgid "Per-IP submit limit."
+msgstr ""
+
+msgid "Submits per IP/hour"
+msgstr ""
+
+msgid "Longer per-IP submit limit."
+msgstr ""
+
+msgid "Form global/min"
+msgstr ""
+
+msgid "Total submit pressure per form."
+msgstr ""
+
+msgid "Tracking lookups per IP/min"
+msgstr ""
+
+msgid "Protects confirmation-code lookup."
+msgstr ""
+
+msgid "Responses per IP/min"
+msgstr ""
+
+msgid "Protects public reply box."
+msgstr ""
+
+msgid "Replies per tracking code/hour"
+msgstr ""
+
+msgid "Caps replies to one tracked conversation (across IPs). 0 disables."
+msgstr ""
+
+msgid "Uploads per IP/min"
+msgstr ""
+
+msgid "Protects upload endpoint."
+msgstr ""
+
+msgid "Payment starts per IP/min"
+msgstr ""
+
+msgid "Protects payment REST routes."
+msgstr ""
+
+msgid "File upload budget"
+msgstr ""
+
+msgid "Flux Forms already limits uploads on its own: each visitor may upload three files per file field on the form, and the response box allows three. Leave a box at 0 to keep that automatic behaviour, or enter a number to set it yourself."
+msgstr ""
+
+msgid "Uploads allowed per file field"
+msgstr ""
+
+msgid "Default 3, so a two-field form allows six uploads. 0 keeps the default."
+msgstr ""
+
+msgid "Total uploads per visitor"
+msgstr ""
+
+msgid "A fixed total that ignores how many fields the form has. 0 keeps the automatic per-field calculation."
+msgstr ""
+
+msgid "Budget resets after (seconds)"
+msgstr ""
+
+msgid "Default 3600 (one hour). 0 keeps the default."
+msgstr ""
+
+msgid "Maximum file size (MB)"
+msgstr ""
+
+msgid "A site-wide ceiling. It can only tighten a per-field limit, never widen it. 0 keeps the field setting."
+msgstr ""
+
+msgid "Protect response lookup"
+msgstr ""
+
+msgid "Rate-limit tracking-code searches by request count (no human-token check)."
+msgstr ""
+
+msgid "Manual access lists"
+msgstr ""
+
+msgid "One entry per line: an exact IP or a wildcard prefix such as 203.0.113.* — allowlist bypasses all checks, blocklist blocks in every mode."
+msgstr ""
+
+msgid "IP allowlist"
+msgstr ""
+
+msgid "Trusted IPs that skip the shield completely (your office, monitoring bots)."
+msgstr ""
+
+msgid "IP blocklist"
+msgstr ""
+
+msgid "IPs that are always blocked on protected form routes."
+msgstr ""
+
+msgid "Minimum paid notification score"
+msgstr ""
+
+msgid "Suppress costly notifications below this score."
+msgstr ""
+
+msgid "SMS daily stop-loss"
+msgstr ""
+
+msgid "Global SMS budget per day, across all recipients."
+msgstr ""
+
+msgid "Telegram daily stop-loss"
+msgstr ""
+
+msgid "Global Telegram budget per day, across all recipients."
+msgstr ""
+
+msgid "Webhook/Email daily stop-loss"
+msgstr ""
+
+msgid "Global webhook/email/sheet budget per day."
+msgstr ""
+
+msgid "Per-recipient daily cap"
+msgstr ""
+
+msgid "Maximum notifications per single recipient per day (0 disables)."
+msgstr ""
+
+msgid "These limits become active for paid services after the core integration filter is added."
+msgstr ""
+
+msgid "Decisions — last 24 hours"
+msgstr ""
+
+msgid "Stacked per hour: allowed, blocked, quarantined and monitored requests."
+msgstr ""
+
+msgid "No decisions recorded in the last 24 hours."
+msgstr ""
+
+msgid "Security logs"
+msgstr ""
+
+msgid "Recent decisions without storing raw IP addresses."
+msgstr ""
+
+msgid "Clear Human Shield logs?"
+msgstr ""
+
+msgid "Logs cleared."
+msgstr ""
+
+msgid "Recent activity"
+msgstr ""
+
+msgid "Latest security decisions."
+msgstr ""
+
+msgid "No logs yet."
+msgstr ""
+
+msgid "Route"
+msgstr ""
+
+msgid "Decision"
+msgstr ""
+
+msgid "Score"
+msgstr ""
+
+msgid "Reasons"
+msgstr ""
+
+msgid "System readiness"
+msgstr ""
+
+msgid "Human Shield checks these functions before enforcing security rules."
+msgstr ""
+
+msgid "PHP requirements are ready."
+msgstr ""
+
+msgid "Some required PHP functions are unavailable."
+msgstr ""
+
+msgid "REST API:"
+msgstr ""
+
+msgid "available"
+msgstr ""
+
+msgid "missing"
+msgstr ""
+
+msgid "Tables:"
+msgstr ""
+
+msgid "ready"
+msgstr ""
+
+msgid "not ready yet"
+msgstr ""
+
+msgid "Recommended only after you verify PHP functions and tables are ready."
+msgstr ""
+
+msgid "Trust proxy IP headers"
+msgstr ""
+
+msgid "Use forwarding headers only when the immediate peer matches the trusted proxy list below."
+msgstr ""
+
+msgid "Trusted proxy IPs"
+msgstr ""
+
+msgid "One exact IP or wildcard prefix per line. Add only your load balancer/CDN egress addresses; keep this empty when the origin is directly reachable."
+msgstr ""
+
+msgid "Store raw behavior metrics"
+msgstr ""
+
+msgid "Keep off for privacy unless debugging a rollout."
+msgstr ""
+
+msgid "Log retention days"
+msgstr ""
+
+msgid "How long events should be retained."
+msgstr ""
+
+msgid "Client attestation timeout"
+msgstr ""
+
+msgid "Milliseconds before the browser falls back to the normal request."
+msgstr ""
+
+msgid "If a required PHP function is disabled, enable it in php.ini disable_functions or ask the host to allow it. Cache and security plugins must not cache or rewrite POST responses from /wp-json/EmsfbShield/v1/*."
+msgstr ""
+
+msgid "Required"
+msgstr ""
+
+msgid "Recommended"
+msgstr ""
+
+msgid "Security & Spam Protection tabs"
+msgstr ""
+
+msgid "Security log export is unavailable because this server has disabled a required PHP function: %s. Ask your hosting provider to enable it."
+msgstr ""
+
+msgid "Security log export is unavailable because this server has disabled required PHP functions: %s. Ask your hosting provider to enable them."
+msgstr ""
+
+msgid "Auto-Populate Dataset"
+msgstr ""
+
+msgid "Manage & Upload Datasets"
+msgstr ""
+
+msgid "Upload CSV"
+msgstr ""
+
+msgid "Manage Datasets"
+msgstr ""
+
+msgid "Easy Edit"
+msgstr ""
+
+msgid "Total Datasets"
+msgstr ""
+
+msgid "Datasets"
+msgstr ""
+
+msgid "Datasets available for auto-populate"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "No datasets yet. Upload a CSV file to get started."
+msgstr ""
+
+msgid "How to use Auto-Populate Datasets"
+msgstr ""
+
+msgid "Prepare a CSV file with column headers in the first row."
+msgstr ""
+
+msgid "Prepare CSV"
+msgstr ""
+
+msgid "Upload the CSV file using the upload button."
+msgstr ""
+
+msgid "Upload Dataset"
+msgstr ""
+
+msgid "In Form Builder, open Form Settings and enable \"Auto-Populate\". Choose your dataset, then map elements to dataset fields as search conditions."
+msgstr ""
+
+msgid "Enable Auto-Populate"
+msgstr ""
+
+msgid "For each target field, enable \"Auto-Populate to automatically populate this field\" and select the dataset column to auto-populate."
+msgstr ""
+
+msgid "Map Fields"
+msgstr ""
+
+msgid "You can edit dataset values inline by clicking on them."
+msgstr ""
+
+msgid "Follow these steps to set up auto-populate for your forms"
+msgstr ""
+
+msgid "Quick Start Guide"
+msgstr ""
+
+msgid "Tips & Notes"
+msgstr ""
+
+msgid "Editing Data"
+msgstr ""
+
+msgid "Supported format: CSV with UTF-8 encoding."
+msgstr ""
+
+msgid "Form Builder Tips"
+msgstr ""
+
+msgid "Use conditions to filter dataset rows based on user input."
+msgstr ""
+
+msgid "Multiple fields can auto-populate from the same dataset."
+msgstr ""
+
+msgid "Good to know"
+msgstr ""
+
+msgid "Changes to the dataset take effect immediately for new form submissions."
+msgstr ""
+
+msgid "Connect & Manage API Integrations"
+msgstr ""
+
+msgid "Real-time Data"
+msgstr ""
+
+msgid "Field Mapping"
+msgstr ""
+
+msgid "Smart Cache"
+msgstr ""
+
+msgid "Total Connections"
+msgstr ""
+
+msgid "Connections"
+msgstr ""
+
+msgid "API connections configured"
+msgstr ""
+
+msgid "How to use API Integrations"
+msgstr ""
+
+msgid "Follow these steps to connect your external API"
+msgstr ""
+
+msgid "Click \"Add API Connection\" to create a new connection and enter your API endpoint URL."
+msgstr ""
+
+msgid "Add Connection"
+msgstr ""
+
+msgid "Configure authentication (API Key, Bearer Token, or Basic Auth) if your API requires it."
+msgstr ""
+
+msgid "Authentication"
+msgstr ""
+
+msgid "Select a form and map API response fields to your form fields for auto-populate."
+msgstr ""
+
+msgid "Use the Test button to verify the API returns expected data, then save your connection."
+msgstr ""
+
+msgid "Test & Save"
+msgstr ""
+
+msgid "Use cache settings to reduce API calls and improve performance."
+msgstr ""
+
+msgid "Performance"
+msgstr ""
+
+msgid "Set a reasonable timeout to prevent slow form loading."
+msgstr ""
+
+msgid "Always use HTTPS endpoints for secure data transfer."
+msgstr ""
+
+msgid "Keep API keys confidential — they are stored securely in WordPress."
+msgstr ""
+
+msgid "API responses are fetched in real-time when the form loads. Enable caching for frequently accessed data."
+msgstr ""
+
+msgid "External API Connections"
+msgstr ""
+
+msgid "Add New API Connection"
+msgstr ""
+
+msgid "Edit API Connection"
+msgstr ""
+
+msgid "Connection Name"
+msgstr ""
+
+msgid "e.g., Customer Lookup API"
+msgstr ""
+
+msgid "HTTP Method"
+msgstr ""
+
+msgid "API Endpoint URL"
+msgstr ""
+
+msgid "Use {{field_id}} placeholders for dynamic values from form fields"
+msgstr ""
+
+msgid "Authentication Type"
+msgstr ""
+
+msgid "No Authentication"
+msgstr ""
+
+msgid "Custom Header"
+msgstr ""
+
+msgid "Authentication Value"
+msgstr ""
+
+msgid "Enter token or credentials"
+msgstr ""
+
+msgid "Enter your Bearer token without \"Bearer \" prefix"
+msgstr ""
+
+msgid "Enter as username:password"
+msgstr ""
+
+msgid "Enter your API key"
+msgstr ""
+
+msgid "Enter as Header-Name: value"
+msgstr ""
+
+msgid "Custom Headers"
+msgstr ""
+
+msgid "No custom headers"
+msgstr ""
+
+msgid "Query Parameters"
+msgstr ""
+
+msgid "No query parameters"
+msgstr ""
+
+msgid "Request Body Template (JSON)"
+msgstr ""
+
+msgid "JSON template for POST/PUT/PATCH requests. Use {{field_id}} for dynamic values."
+msgstr ""
+
+msgid "Response Mapping"
+msgstr ""
+
+msgid "Response Data Path"
+msgstr ""
+
+msgid "Dot notation path to the data array in response. e.g., data.results or items"
+msgstr ""
+
+msgid "Field Mappings"
+msgstr ""
+
+msgid "No field mappings"
+msgstr ""
+
+msgid "Map API response fields to form field IDs"
+msgstr ""
+
+msgid "Cache Settings"
+msgstr ""
+
+msgid "Cache Duration (minutes)"
+msgstr ""
+
+msgid "0 = no caching"
+msgstr ""
+
+msgid "Basic Information"
+msgstr ""
+
+msgid "Test Result"
+msgstr ""
+
+msgid "Testing connection&hellip;"
+msgstr ""
+
+msgid "Endpoint"
+msgstr ""
+
+msgid "Saving&hellip;"
+msgstr ""
+
+msgid "No API connections yet. Click \"Add New API Connection\" to create one."
+msgstr ""
+
+msgid "Are you sure you want to delete"
+msgstr ""
+
+msgid "Security check failed"
+msgstr ""
+
+msgid "Permission denied"
+msgstr ""
+
+msgid "Connection name is required"
+msgstr ""
+
+msgid "API endpoint URL is required"
+msgstr ""
+
+msgid "Connection ID is required"
+msgstr ""
+
+msgid "Connection not found"
+msgstr ""
+
+msgid "API connection not found or disabled"
+msgstr ""
+
+msgid "Rate limit exceeded. Please try again later."
+msgstr ""
+
+msgid "Invalid request format"
+msgstr ""
+
+msgid "Failed to parse API response"
+msgstr ""
+
+msgid "API connection saved successfully"
+msgstr ""
+
+msgid "Connection test successful"
+msgstr ""
+
+msgid "API connection deleted successfully"
+msgstr ""
+
+msgid "Connection enabled"
+msgstr ""
+
+msgid "Connection disabled"
+msgstr ""
+
+msgid "API connection ID is required"
+msgstr ""
+
+msgid "Form ID is required"
+msgstr ""
+
+msgid "Form not found"
+msgstr ""
+
+msgid "Invalid form structure"
+msgstr ""
+
+msgid "No matching data found"
+msgstr ""
+
+msgid "API returned error: %d"
+msgstr ""
+
+msgid "Failed to update form"
+msgstr ""
+
+msgid "Form updated successfully"
+msgstr ""
+
+msgid "Click the button above to create your first API connection"
+msgstr ""
+
+msgid "Basic Info"
+msgstr ""
+
+msgid "Basic API Information"
+msgstr ""
+
+msgid "A friendly name to identify this API connection"
+msgstr ""
+
+msgid "Fetch data"
+msgstr ""
+
+msgid "Send data"
+msgstr ""
+
+msgid "JSON body for POST requests. Use {{field_id}} for dynamic values."
+msgstr ""
+
+msgid "Authentication Settings"
+msgstr ""
+
+msgid "If your API requires authentication, select the type below. Otherwise, leave it as \"No Authentication\"."
+msgstr ""
+
+msgid "API is public"
+msgstr ""
+
+msgid "JWT or OAuth tokens"
+msgstr ""
+
+msgid "X-API-Key header"
+msgstr ""
+
+msgid "Username:Password"
+msgstr ""
+
+msgid "Add Header"
+msgstr ""
+
+msgid "Optional"
+msgstr ""
+
+msgid "Select the form that will receive data from the API"
+msgstr ""
+
+msgid "Target Form"
+msgstr ""
+
+msgid "Search Fields (Trigger Fields)"
+msgstr ""
+
+msgid "Select fields that trigger the API search"
+msgstr ""
+
+msgid "Form Field"
+msgstr ""
+
+msgid "API Parameter"
+msgstr ""
+
+msgid "Please select a form first"
+msgstr ""
+
+msgid "API Parameter is what will be sent to the API (e.g., \"q\" for ?q=value)"
+msgstr ""
+
+msgid "Target Fields (Auto-Populate)"
+msgstr ""
+
+msgid "Map API response to form fields"
+msgstr ""
+
+msgid "API Response Field"
+msgstr ""
+
+msgid "Form Field to Fill"
+msgstr ""
+
+msgid "Add Mapping"
+msgstr ""
+
+msgid "— Select Field —"
+msgstr ""
+
+msgid "selected"
+msgstr ""
+
+msgid "Cache API responses to improve performance"
+msgstr ""
+
+msgid "No caching"
+msgstr ""
+
+msgid "minutes"
+msgstr ""
+
+msgid "hour"
+msgstr ""
+
+msgid "Test Connection & Save"
+msgstr ""
+
+msgid "Connection Summary"
+msgstr ""
+
+msgid "Method"
+msgstr ""
+
+msgid "Run Test"
+msgstr ""
+
+msgid "Click \"Run Test\" to test your API connection"
+msgstr ""
+
+msgid "Enable this connection"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Inactive"
+msgstr ""
+
+msgid "Please enter a connection name"
+msgstr ""
+
+msgid "Please enter an API endpoint URL"
+msgstr ""
+
+msgid "Please enter a valid URL starting with http:// or https://"
+msgstr ""
+
+msgid "Please fill all required fields"
+msgstr ""
+
+msgid "Loading&hellip;"
+msgstr ""
+
+msgid "Connection saved successfully!"
+msgstr ""
+
+msgid "Failed to save connection"
+msgstr ""
+
+msgid "Connection successful!"
+msgstr ""
+
+msgid "Connection failed"
+msgstr ""
+
+msgid "Test failed. Please check the URL and try again."
+msgstr ""
+
+msgid "Connection deleted"
+msgstr ""
+
+msgid "Form data not found. Please refresh the page."
+msgstr ""
+
+msgid "No fillable fields found in this form"
+msgstr ""
+
+msgid "API Auto-Populate Integration is Active"
+msgstr ""
+
+msgid "This form uses External API Auto-Populate. To configure settings, go to"
+msgstr ""
+
+msgid "Auto-Populate Integrations"
+msgstr ""
+
+msgid "Auto-filled via External API"
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Disable"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "PayPal %s"
+msgstr ""
+
+msgid "Stripe %s"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "You do not have permission to access this page."
+msgstr ""
+
+msgid "All Statuses"
+msgstr ""
+
+msgid "All Forms"
+msgstr ""
+
+msgid "Cancelled"
+msgstr ""
+
+msgid "No payments found."
+msgstr ""
+
+msgid "View Details"
+msgstr ""
+
+msgid "Refund"
+msgstr ""
+
+msgid "Cancel Subscription"
+msgstr ""
+
+msgid "Suspend Subscription"
+msgstr ""
+
+msgid "Reactivate Subscription"
+msgstr ""
+
+msgid "Are you sure you want to refund this payment?"
+msgstr ""
+
+msgid "Are you sure you want to cancel this subscription?"
+msgstr ""
+
+msgid "Are you sure you want to suspend this subscription?"
+msgstr ""
+
+msgid "Are you sure you want to reactivate this subscription?"
+msgstr ""
+
+msgid "Success"
+msgstr ""
+
+msgid "Payment refunded successfully."
+msgstr ""
+
+msgid "Subscription cancelled successfully."
+msgstr ""
+
+msgid "Copied"
+msgstr ""
+
+msgid "Subscription ID"
+msgstr ""
+
+msgid "Plan ID"
+msgstr ""
+
+msgid "Capture ID"
+msgstr ""
+
+msgid "Currency"
+msgstr ""
+
+msgid "Payment Type"
+msgstr ""
+
+msgid "Interval"
+msgstr ""
+
+msgid "Payer Email"
+msgstr ""
+
+msgid "Payer Name"
+msgstr ""
+
+msgid "Tracking Code"
+msgstr ""
+
+msgid "User"
+msgstr ""
+
+msgid "Daily"
+msgstr ""
+
+msgid "Weekly"
+msgstr ""
+
+msgid "Monthly"
+msgstr ""
+
+msgid "Yearly"
+msgstr ""
+
+msgid "Payment Details"
+msgstr ""
+
+msgid "Subscription Details"
+msgstr ""
+
+msgid "Next Billing Date"
+msgstr ""
+
+msgid "Export"
+msgstr ""
+
+msgid "of"
+msgstr ""
+
+msgid "Page"
+msgstr ""
+
+msgid "Rows per page"
+msgstr ""
+
+msgid "Suspended"
+msgstr ""
+
+msgid "Subscription suspended successfully."
+msgstr ""
+
+msgid "Subscription reactivated successfully."
+msgstr ""
+
+msgid "Payment Management Dashboard"
+msgstr ""
+
+msgid "Manage and track all %s transactions. View payment details, process refunds, and export records."
+msgstr ""
+
+msgid "Secure"
+msgstr ""
+
+msgid "Download payment records"
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "Last Payment"
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
+msgid "Powered by"
+msgstr ""
+
+msgid "and Bootstrap Icon. Created by"
+msgstr ""
+
+msgid "Google Sheet"
+msgstr ""
+
+msgid "Sync Form Responses to Google Sheets"
+msgstr ""
+
+msgid "Automatically send form submissions to your Google Sheets. Connect one or more service accounts, link a sheet to each form, and let data flow in real time — no webhook or browser login required."
+msgstr ""
+
+msgid "Connected"
+msgstr ""
+
+msgid "Not Connected"
+msgstr ""
+
+msgid "Auto Sync"
+msgstr ""
+
+msgid "Auto Header"
+msgstr ""
+
+msgid "Sync Logs"
+msgstr ""
+
+msgid "Google Sheet Settings"
+msgstr ""
+
+msgid "Active Bindings"
+msgstr ""
+
+msgid "%d service account connected"
+msgid_plural "%d service accounts connected"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "No service account connected yet"
+msgstr ""
+
+msgid "Form Bindings"
+msgstr ""
+
+msgid "Help & Guide"
+msgstr ""
+
+msgid "Something went wrong."
+msgstr ""
+
+msgid "Saved successfully."
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Open in Google Sheets"
+msgstr ""
+
+msgid "Service Accounts"
+msgstr ""
+
+msgid "Connect one or more Google service accounts — no browser login required"
+msgstr ""
+
+msgid "Your server is missing the PHP OpenSSL extension."
+msgstr ""
+
+msgid "Google Sheet sync cannot work until it is enabled. Please ask your host to enable the %s PHP extension, then reload this page."
+msgstr ""
+
+msgid "Not tested"
+msgstr ""
+
+msgid "Default"
+msgstr ""
+
+msgid "Copy this email"
+msgstr ""
+
+msgid "Copy email"
+msgstr ""
+
+msgid "To sync an <strong>existing</strong> sheet: open it in Google Sheets &rarr; <strong>Share</strong> &rarr; paste the email above &rarr; set role to <strong>Editor</strong>. To create a <strong>new</strong> sheet, just use Form Bindings — no sharing needed."
+msgstr ""
+
+msgid "Set Default"
+msgstr ""
+
+msgid "Retest"
+msgstr ""
+
+msgid "Let’s connect Google Sheets — about 3 minutes, one time"
+msgstr ""
+
+msgid "Follow the numbered steps on the right to download a free service account key from Google, then drop the file below. You only do this once. After that, creating a sheet for any form is a couple of clicks."
+msgstr ""
+
+msgid "Your Google email"
+msgstr ""
+
+msgid "(recommended)"
+msgstr ""
+
+msgid "Any sheet the plugin <strong>creates</strong> is automatically shared to this address, so it appears in your own Google Drive under “Shared with me.” Without it, new sheets stay hidden inside the service account."
+msgstr ""
+
+msgid "Enable Google Sheet Integration"
+msgstr ""
+
+msgid "Sync form submissions to your spreadsheets automatically"
+msgstr ""
+
+msgid "Drag & drop service account JSON file(s) here"
+msgstr ""
+
+msgid "or click to browse — you can add multiple service accounts at once"
+msgstr ""
+
+msgid "Connected service accounts"
+msgstr ""
+
+msgid "One-time setup (≈3 min)"
+msgstr ""
+
+msgid "Go to <a href=\"https://console.cloud.google.com/\" target=\"_blank\" rel=\"noopener noreferrer\">console.cloud.google.com</a> &rarr; Project dropdown (top-left) &rarr; New Project &rarr; name it &rarr; Create"
+msgstr ""
+
+msgid "APIs &amp; Services &rarr; Library &rarr; enable <strong>Google Sheets API</strong> <em>and</em> <strong>Google Drive API</strong>"
+msgstr ""
+
+msgid "APIs &amp; Services &rarr; Credentials &rarr; Create Credentials &rarr; Service Account &rarr; name it &rarr; Done"
+msgstr ""
+
+msgid "Open the service account &rarr; Keys tab &rarr; Add Key &rarr; Create New Key &rarr; JSON (downloads automatically)"
+msgstr ""
+
+msgid "Drag that downloaded file into the box on the left — it is tested automatically"
+msgstr ""
+
+msgid "Add <strong>Your Google email</strong> above so created sheets land in your Drive"
+msgstr ""
+
+msgid "Please choose a valid .json key file."
+msgstr ""
+
+msgid "Could not read file: %s"
+msgstr ""
+
+msgid "Connecting service account…"
+msgstr ""
+
+msgid "Service account added."
+msgstr ""
+
+msgid "Saved. New sheets created by the plugin will be shared to %s automatically."
+msgstr ""
+
+msgid "Email cleared. New sheets will stay inside the service account until you share them."
+msgstr ""
+
+msgid "Remove this service account?"
+msgstr ""
+
+msgid "Testing connection…"
+msgstr ""
+
+msgid "Connect each form to a specific Google Sheet tab"
+msgstr ""
+
+msgid "Connect each form to a specific Google Sheet tab — step by step"
+msgstr ""
+
+msgid "No service account connected."
+msgstr ""
+
+msgid "Go to the Connections tab and drop a service account JSON key first."
+msgstr ""
+
+msgid "Paused"
+msgstr ""
+
+msgid "Last sync OK"
+msgstr ""
+
+msgid "Last sync failed"
+msgstr ""
+
+msgid "Remove sync? The sheet stays safe."
+msgstr ""
+
+msgid "Yes, remove"
+msgstr ""
+
+msgid "Remove this sync (your Google Sheet is not deleted)"
+msgstr ""
+
+msgid "Existing Bindings"
+msgstr ""
+
+msgid "Delete All"
+msgstr ""
+
+msgid "New Binding"
+msgstr ""
+
+msgid "Spreadsheet ID"
+msgstr ""
+
+msgid "Tab"
+msgstr ""
+
+msgid "Choose Sheet"
+msgstr ""
+
+msgid "Columns & Fields"
+msgstr ""
+
+msgid "Style & Save"
+msgstr ""
+
+msgid "Which form should send data to Google Sheets?"
+msgstr ""
+
+msgid "Please select a form first."
+msgstr ""
+
+msgid "Service Account"
+msgstr ""
+
+msgid "Loading your spreadsheets…"
+msgstr ""
+
+msgid "Click <strong>“Browse My Sheets”</strong> to list spreadsheets this service account can already access, or <strong>“Create New Sheet”</strong> to make a fresh one."
+msgstr ""
+
+msgid "<strong>No spreadsheets are accessible to this service account yet.</strong> You have two options:"
+msgstr ""
+
+msgid "<strong>Easiest:</strong> click <em>“Create New Sheet”</em> above — it is made for you and shared to your email automatically."
+msgstr ""
+
+msgid "<strong>Use an existing sheet:</strong> open it in Google Sheets &rarr; Share &rarr; paste"
+msgstr ""
+
+msgid "&rarr; Editor, then click <em>Browse My Sheets</em> again."
+msgstr ""
+
+msgid "the service account email"
+msgstr ""
+
+msgid "Create a new spreadsheet"
+msgstr ""
+
+msgid "New spreadsheet title (e.g. Contact form responses)"
+msgstr ""
+
+msgid "Your Google email — the sheet is shared here so you can open it"
+msgstr ""
+
+msgid "Pre-filled from your saved email."
+msgstr ""
+
+msgid "Leave empty only if you don’t need to open the sheet yourself."
+msgstr ""
+
+msgid "Create Sheet"
+msgstr ""
+
+msgid "Creating…"
+msgstr ""
+
+msgid "Creating spreadsheet…"
+msgstr ""
+
+msgid "Sheet created and shared with your email. It’s selected below — click Next to finish."
+msgstr ""
+
+msgid "Sheet created. Tip: add “Your Google email” on the Connections tab so new sheets are shared to you automatically."
+msgstr ""
+
+msgid "Open the new sheet"
+msgstr ""
+
+msgid "Selected:"
+msgstr ""
+
+msgid "Loading worksheet tabs…"
+msgstr ""
+
+msgid "Worksheet Tab"
+msgstr ""
+
+msgid "Or type a new tab name (created automatically)"
+msgstr ""
+
+msgid "Browse My Sheets"
+msgstr ""
+
+msgid "Create New Sheet"
+msgstr ""
+
+msgid "Choose or create a spreadsheet first"
+msgstr ""
+
+msgid "Please select a service account."
+msgstr ""
+
+msgid "Please choose or create a spreadsheet first."
+msgstr ""
+
+msgid "Enable Sync for this Form"
+msgstr ""
+
+msgid "Disable to pause without deleting the binding"
+msgstr ""
+
+msgid "Reading this form’s fields…"
+msgstr ""
+
+msgid "We couldn’t read this form’s fields automatically, so column mapping isn’t available. Don’t worry — <strong>every submitted field will still be synced automatically</strong>, each in its own column, in submission order. The header row is created and kept up to date for you."
+msgstr ""
+
+msgid "Drag rows (or use ▲▼) to set the <strong>column order</strong>. Rename any <strong>header</strong>. Turn a field off to skip its column. The letter (A, B, C…) shows where each field lands."
+msgstr ""
+
+msgid "Col"
+msgstr ""
+
+msgid "Spreadsheet header"
+msgstr ""
+
+msgid "Order / On"
+msgstr ""
+
+msgid "Refresh fields from form"
+msgstr ""
+
+msgid "Columns & Field Mapping"
+msgstr ""
+
+msgid "Submitted time"
+msgstr ""
+
+msgid "built-in"
+msgstr ""
+
+msgid "Submitted At"
+msgstr ""
+
+msgid "Column header"
+msgstr ""
+
+msgid "Drag to reorder"
+msgstr ""
+
+msgid "Include this field"
+msgstr ""
+
+msgid "%d column will be written to the sheet."
+msgid_plural "%d columns will be written to the sheet."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Sheet Style"
+msgstr ""
+
+msgid "(Google theme)"
+msgstr ""
+
+msgid "Pick a look for the sheet — colored header, frozen top row and alternating row colors (Google Sheets’ own styling). It’s applied automatically on the first sync, or apply it now."
+msgstr ""
+
+msgid "Apply style now"
+msgstr ""
+
+msgid "Applying…"
+msgstr ""
+
+msgid "Optional — it also applies on the first submission."
+msgstr ""
+
+msgid "Spreadsheet:"
+msgstr ""
+
+msgid "Tab:"
+msgstr ""
+
+msgid "Columns:"
+msgstr ""
+
+msgid "%d mapped"
+msgstr ""
+
+msgid "all submitted fields (auto)"
+msgstr ""
+
+msgid "Style:"
+msgstr ""
+
+msgid "After saving, submit the form once to create the header row and confirm the first sync."
+msgstr ""
+
+msgid "Save Binding"
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Please choose a spreadsheet first."
+msgstr ""
+
+msgid "Pick a style first — “None” leaves the sheet unstyled."
+msgstr ""
+
+msgid "Style applied."
+msgstr ""
+
+msgid "Please select a form."
+msgstr ""
+
+msgid "Please choose a spreadsheet."
+msgstr ""
+
+msgid "Binding saved."
+msgstr ""
+
+msgid "Remove this binding? Syncing stops for this form. Your Google Sheet and its data are not deleted."
+msgstr ""
+
+msgid "Sync removed — your Google Sheet and its data are untouched."
+msgstr ""
+
+msgid "Remove ALL %d binding? Syncing stops for every form. Your Google Sheets are not deleted."
+msgid_plural "Remove ALL %d bindings? Syncing stops for every form. Your Google Sheets are not deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "All bindings removed. Your Google Sheets are untouched."
+msgstr ""
+
+msgid "Help & Setup Guide"
+msgstr ""
+
+msgid "Everything you need to connect forms to Google Sheets"
+msgstr ""
+
+msgid "Step-by-Step Setup"
+msgstr ""
+
+msgid "Create or Select a Project"
+msgstr ""
+
+msgid "Open console.cloud.google.com and log in &rarr; click the Project dropdown (top-left) &rarr; New Project (or pick an existing one) &rarr; enter a name &rarr; Create"
+msgstr ""
+
+msgid "Enable both Google APIs"
+msgstr ""
+
+msgid "APIs &amp; Services &rarr; Library &rarr; enable <strong>Google Sheets API</strong> and <strong>Google Drive API</strong> (both are required — Drive lists and creates the files)"
+msgstr ""
+
+msgid "Create a Service Account"
+msgstr ""
+
+msgid "APIs &amp; Services &rarr; Credentials &rarr; Create Credentials &rarr; Service Account &rarr; enter a name &rarr; Done"
+msgstr ""
+
+msgid "Create a JSON Key"
+msgstr ""
+
+msgid "Open the service account &rarr; Keys tab &rarr; Add Key &rarr; Create New Key &rarr; choose JSON (file downloads automatically)"
+msgstr ""
+
+msgid "Drop the Key File"
+msgstr ""
+
+msgid "Drag the downloaded file into the Connections tab — it is verified automatically and you’ll see a green “Connected” badge"
+msgstr ""
+
+msgid "Add Your Google Email"
+msgstr ""
+
+msgid "On the Connections tab, fill in “Your Google email” and Save — sheets the plugin creates are then shared to you so they appear in your own Drive"
+msgstr ""
+
+msgid "Bind a Form (create a sheet)"
+msgstr ""
+
+msgid "Form Bindings &rarr; pick a form &rarr; <strong>Create New Sheet</strong> &rarr; Save. No manual sharing needed — this is the easiest path"
+msgstr ""
+
+msgid "…or use an existing sheet"
+msgstr ""
+
+msgid "Prefer your own sheet? Open it &rarr; Share &rarr; paste the service account email (copy button on its card) &rarr; Editor &rarr; then Browse My Sheets in the wizard"
+msgstr ""
+
+msgid "FAQ"
+msgstr ""
+
+msgid "I created a sheet — where did it go?"
+msgstr ""
+
+msgid "Service accounts create files in their own hidden Drive. Add “Your Google email” on the Connections tab and the plugin shares every new sheet to you automatically — it then appears under “Shared with me” in your Google Drive. Each sheet also has an “Open” link right in this dashboard."
+msgstr ""
+
+msgid "Why don’t I see my existing sheet in the picker?"
+msgstr ""
+
+msgid "It must be shared with the service account’s email first: open the sheet &rarr; Share &rarr; paste the email (use the copy button on the connection card) &rarr; set Editor &rarr; Share. Then click “Browse My Sheets” again."
+msgstr ""
+
+msgid "Test result: Google API is not enabled."
+msgstr ""
+
+msgid "Open Google Cloud Console for the same project &rarr; APIs &amp; Services &rarr; Library, and enable BOTH “Google Sheets API” and “Google Drive API”. Wait a minute, then retest."
+msgstr ""
+
+msgid "Test result: Access/Permission denied"
+msgstr ""
+
+msgid "The service account can authenticate but can’t reach that specific spreadsheet. Re-share the sheet with the service account email as Editor, or create a new sheet instead."
+msgstr ""
+
+msgid "OpenSSL is required."
+msgstr ""
+
+msgid "The server is missing the PHP OpenSSL extension used to sign the secure Google request. Ask your host to enable it — no plugin setting can replace it."
+msgstr ""
+
+msgid "Can I connect more than one service account?"
+msgstr ""
+
+msgid "Yes — drop as many JSON keys as you like in the Connections tab and pick which one each form binding should use."
+msgstr ""
+
+msgid "Does the connection expire?"
+msgstr ""
+
+msgid "No. The integration runs entirely on the server using your JSON key — there’s no browser session or login to expire."
+msgstr ""
+
+msgid "Can I choose which field goes to which column?"
+msgstr ""
+
+msgid "Yes. In the binding wizard’s <strong>Columns &amp; Fields</strong> step, drag rows (or use ▲▼) to set the order, rename each column header, and toggle any field off to skip it. The A/B/C badge shows exactly where each field lands."
+msgstr ""
+
+msgid "Can I style the sheet automatically?"
+msgstr ""
+
+msgid "Yes. The <strong>Style &amp; Save</strong> step offers Google-Sheets themes (colored header, frozen top row, alternating row colors). Pick one and it’s applied on the first sync, or click “Apply style now”."
+msgstr ""
+
+msgid "What if my form fields change later?"
+msgstr ""
+
+msgid "New fields are added automatically. In mapped mode, open the Columns step and click “Refresh fields from form” to pull them into the mapping; in “All Form Fields” mode they appear as new columns on the next submission."
+msgstr ""
+
+msgid "What if the tab doesn’t exist yet?"
+msgstr ""
+
+msgid "It is created automatically the first time a submission is synced."
+msgstr ""
+
+msgid "Google Sheet Sync Logs"
+msgstr ""
+
+msgid "Latest submissions sent to Google Sheets, success or failure"
+msgstr ""
+
+msgid "Log cleared."
+msgstr ""
+
+msgid "Clear Log"
+msgstr ""
+
+msgid "Clear all logs?"
+msgstr ""
+
+msgid "No sync activity yet."
+msgstr ""
+
+msgid "Event"
+msgstr ""
+
+msgid "Spreadsheet"
+msgstr ""
+
+msgid "Detail"
+msgstr ""
+
+msgid "Synced"
+msgstr ""
+
+msgid "None (plain)"
+msgstr ""
+
+msgid "Minimal"
+msgstr ""
+
+msgid "Green"
+msgstr ""
+
+msgid "Blue"
+msgstr ""
+
+msgid "Slate"
+msgstr ""
+
+msgid "Sunset"
+msgstr ""
+
+msgid "Grape"
+msgstr ""
+
+msgid "%s is currently unavailable."
+msgstr ""
+
+msgid "disabled in php.ini: %s"
+msgstr ""
+
+msgid "not provided by PHP or its required extension: %s"
+msgstr ""
+
+msgid "%1$s cannot run because required PHP functions are unavailable (%2$s). Ask your hosting provider to enable the required PHP extension or remove the listed functions from disable_functions in php.ini."
+msgstr ""
+
+msgid "Run the email check"
+msgstr ""
+
+msgid "The last delivery check scored %s out of 100. Your messages do leave the site, but most mailboxes will file them as spam, so the people filling in your forms will not see them. Sending through an SMTP service, and adding SPF and DKIM records for your domain, is what fixes this."
+msgstr ""
+
+msgid "The last delivery check found that your messages do leave the site, but mailboxes file them as spam. Sending through an SMTP service, and adding SPF and DKIM records for your domain, is what fixes this."
+msgstr ""
+
+msgid "Your form emails are going to the spam folder"
+msgstr ""
+
+msgid "Your form emails are sent, but they are not arriving"
+msgstr ""
+
+msgid "WordPress sent the last test message successfully, so your site and this plugin did their part - it was lost, delayed or rejected after leaving WordPress. Usually the receiving mailbox treated it as spam, or your host never delivered it from the outbound queue. Sending through an SMTP service, with SPF and DKIM records for your domain, is what fixes this."
+msgstr ""
+
+msgid "WordPress cannot send your form emails"
+msgstr ""
+
+msgid "The last check could not even hand a message to your mail server: WordPress reported an error while sending, so nothing left the site. An SMTP plugin, or asking your host whether PHP mail is disabled, is where to start."
+msgstr ""
+
+msgid "Your form emails are not being delivered"
+msgstr ""
+
+msgid "The last delivery check could not get a message through, so nothing your forms send is reaching anybody. A hosting server usually sends mail without a trusted signature; sending through an SMTP service is the standard fix."
+msgstr ""
+
+msgid "Once Weekly (Flux Forms)"
+msgstr ""
+
+msgid "The weekly email delivery test completed successfully."
+msgstr ""
+
+msgid "The weekly email delivery test found an email delivery problem."
+msgstr ""
+
+msgid "The main WordPress administrator email address is not valid."
+msgstr ""
+
+msgid "Could not start the email delivery test."
+msgstr ""
+
+msgid "WordPress sent the automated test email and is waiting for it to arrive."
+msgstr ""
+
+msgid "WordPress could not send the automated test email. The message never left this website."
+msgstr ""
+
+msgid "The email delivery test timed out before confirmation was received."
+msgstr ""
+
+msgid "Weekly Flux Forms report for %s"
+msgstr ""
+
+msgid "Here is your weekly snapshot for %s."
+msgstr ""
+
+msgid "Report generated %s"
+msgstr ""
+
+msgid "Detailed analysis"
+msgstr ""
+
+msgid "This week"
+msgstr ""
+
+msgid "Submissions"
+msgstr ""
+
+msgid "Emails sent"
+msgstr ""
+
+msgid "Emails failed"
+msgstr ""
+
+msgid "You can turn these reports off in Flux Forms settings."
+msgstr ""
+
+msgid "The test email was delivered, but its deliverability score is only %1$s out of 100 (below %2$s), so the emails your forms send are very likely to be rejected or filtered as spam."
+msgstr ""
+
+msgid "Run the email check so you can be sure the messages your forms send are actually reaching people. The check sends a real message through the new WhiteStudio delivery service and reports back what arrived."
+msgstr ""
+
+msgid "Read the guide to sending email through SMTP"
+msgstr ""
+
+msgid "Delivery has not been scored yet"
+msgstr ""
+
+msgid "WordPress sent your email, but it never arrived"
+msgstr ""
+
+msgid "WordPress could not send your email"
+msgstr ""
+
+msgid "We could not confirm your emails are being delivered"
+msgstr ""
+
+msgid "out of 100"
+msgstr ""
+
+msgid "Your email delivery is healthy"
+msgstr ""
+
+msgid "Your emails are likely going to spam"
+msgstr ""
+
+msgid "Your emails are not reaching anybody"
+msgstr ""
+
+msgid "grade %s"
+msgstr ""
+
+msgid "What you should do"
+msgstr ""
+
+msgid "A hosting server usually sends mail without a trusted signature, which is what pushes your form emails into the spam folder or stops them arriving at all. The standard fix is to send through an SMTP service."
+msgstr ""
+
+msgid "Install an SMTP plugin and enter the details of your email service."
+msgstr ""
+
+msgid "Add the SPF and DKIM records to your domain settings."
+msgstr ""
+
+msgid "Run the email check again until the score is above %s."
+msgstr ""
+
+msgid "You have %1$s forms: %2$s active and %3$s inactive."
+msgstr ""
+
+msgid "Renew Flux Forms Pro"
+msgstr ""
+
+msgid "Get more from Flux Forms Pro"
+msgstr ""
+
+msgid "Renew your subscription to restore all Pro features and add-ons."
+msgstr ""
+
+msgid "Unlock premium add-ons, unlimited features and priority support for your forms."
+msgstr ""
+
+msgid "Renew Pro"
+msgstr ""
+
+msgid "Upgrade to Pro"
+msgstr ""
+
+msgid "Email delivery is working"
+msgstr ""
+
+msgid "The automated Flux Forms email delivery test completed successfully."
+msgstr ""
+
+msgid "Step %1$s of %2$s"
+msgstr ""
+
+msgid "%s complete"
+msgstr ""
+
+msgid "Copy and paste this shortcode to add the confirmation code finder to any page or post."
+msgstr ""
+
+msgid "Please check the box of I am Not robot"
+msgstr ""
+
+msgid "Activate Pro version for more features and unlimited access to all plugin services."
+msgstr ""
+
+msgid "Use this test to check if your server can send emails properly."
+msgstr ""
+
+msgid "Desktop Preview"
+msgstr ""
+
+msgid "This feature is only available in the Pro version of Flux Forms."
+msgstr ""
+
+msgid "Enter email address to receive notifications."
+msgstr ""
+
+msgid "How to Add Location Picker(maps) to Easy form Builder WordPress Plugin"
+msgstr ""
+
+msgid "Browse the file"
+msgstr ""
+
+msgid "Email notifications are included."
+msgstr ""
+
+msgid "(Video or Audio)"
+msgstr ""
+
+msgid "Localization"
+msgstr ""
+
+msgid "Help us speak your language! Translate Flux Forms on the %1$sWordPress.org translation portal%2$s and make it accessible to your community."
+msgstr ""
+
+msgid "You can translate Flux Forms into your preferred language by translating the following sentences. WARNING: If your WordPress site is multilingual, do not change the values below."
+msgstr ""
+
+msgid "Define"
+msgstr ""
+
+msgid "Form Name"
+msgstr ""
+
+msgid "Create Date"
+msgstr ""
+
+msgid "By"
+msgstr ""
+
+msgid "IP"
+msgstr ""
+
+msgid "Response"
+msgstr ""
+
+msgid "Date Picker"
+msgstr ""
+
+msgid "Video Download"
+msgstr ""
+
+msgid "Download Video"
+msgstr ""
+
+msgid "Please avoid using HTML tags and ensure that your message is not blank."
+msgstr ""
+
+msgid "Reply"
+msgstr ""
+
+msgid "Type your reply&hellip;"
+msgstr ""
+
+msgid "Messages"
+msgstr ""
+
+msgid "Loading"
+msgstr ""
+
+msgid "Remove!"
+msgstr ""
+
+msgid "Are you sure you want to delete this?"
+msgstr ""
+
+msgid "NO"
+msgstr ""
+
+msgid "Pro Version"
+msgstr ""
+
+msgid "Activate Pro version"
+msgstr ""
+
+msgid "reCAPTCHA"
+msgstr ""
+
+msgid "Alert Email"
+msgstr ""
+
+msgid "Enter the admin email address to receive email notifications."
+msgstr ""
+
+msgid "Waiting"
+msgstr ""
+
+msgid "Saved"
+msgstr ""
+
+msgid "Step Name"
+msgstr ""
+
+msgid "Elements:"
+msgstr ""
+
+msgid "New option"
+msgstr ""
+
+msgid "Text"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Number"
+msgstr ""
+
+msgid "File upload"
+msgstr ""
+
+msgid "Tel"
+msgstr ""
+
+msgid "Longer Text"
+msgstr ""
+
+msgid "Check Box"
+msgstr ""
+
+msgid "Radio Button"
+msgstr ""
+
+msgid "Radio"
+msgstr ""
+
+msgid "URL"
+msgstr ""
+
+msgid "Range"
+msgstr ""
+
+msgid "Color Picker"
+msgstr ""
+
+msgid "File Type"
+msgstr ""
+
+msgid "Labels"
+msgstr ""
+
+msgid "Class"
+msgstr ""
+
+msgid "ID"
+msgstr ""
+
+msgid "Tooltip"
+msgstr ""
+
+msgid "Good Job"
+msgstr ""
+
+msgid "The form has been successfully updated"
+msgstr ""
+
+msgid "The form is successfully built"
+msgstr ""
+
+msgid "Form Code"
+msgstr ""
+
+msgid "Please fill in all required fields."
+msgstr ""
+
+msgid "This option is only available in the Pro version."
+msgstr ""
+
+msgid "If you need to create more than 2 steps, you can activate the pro version of Flux Forms, which allows for unlimited steps."
+msgstr ""
+
+msgid "Something went wrong. Please refresh the page and try again."
+msgstr ""
+
+msgid "Choose an option (not available in test view)"
+msgstr ""
+
+msgid "Please enter the Confirmation Code"
+msgstr ""
+
+msgid "Form not found."
+msgstr ""
+
+msgid "Oops, V01 Error occurred."
+msgstr ""
+
+msgid "Password should be at least 8 characters long."
+msgstr ""
+
+msgid "Registered"
+msgstr ""
+
+msgid "Your information is successfully registered"
+msgstr ""
+
+msgid "You do not have permission to upload this file:"
+msgstr ""
+
+msgid "Please upload NN file"
+msgstr ""
+
+msgid "Please"
+msgstr ""
+
+msgid "Tracking Form"
+msgstr ""
+
+msgid "The confirmation Code is not valid."
+msgstr ""
+
+msgid "How to configure Flux Forms"
+msgstr ""
+
+msgid "How to get Google reCAPTCHA and implement it into Flux Forms"
+msgstr ""
+
+msgid "How to activate the alert email for new form submission"
+msgstr ""
+
+msgid "How to create and add a form with Flux Forms"
+msgstr ""
+
+msgid "How to activate a Confirmation Code in Flux Forms"
+msgstr ""
+
+msgid "How to work with panels in Flux Forms"
+msgstr ""
+
+msgid "points"
+msgstr ""
+
+msgid "How to add The Confirmation Code Finder to a post, page, or custom post type"
+msgstr ""
+
+msgid "How to find a specific submission using the Confirmation Code"
+msgstr ""
+
+msgid "Please enter a valid value"
+msgstr ""
+
+msgid "Please enter a valid date"
+msgstr ""
+
+msgid "or click here"
+msgstr ""
+
+msgid "Download CSV file"
+msgstr ""
+
+msgid "Download subscriptions CSV."
+msgstr ""
+
+msgid "Login"
+msgstr ""
+
+msgid "Send"
+msgstr ""
+
+msgid "Contact us"
+msgstr ""
+
+msgid "Support"
+msgstr ""
+
+msgid "Subscribe"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+msgid "Survey"
+msgstr ""
+
+msgid "Chart"
+msgstr ""
+
+msgid "No comment"
+msgstr ""
+
+msgid "FluxWP form builder"
+msgstr ""
+
+msgid "Create Forms"
+msgstr ""
+
+msgid "Tutorial"
+msgstr ""
+
+msgid "Flux Forms is an intuitive and user-friendly tool that lets you create custom, multi-step forms in just minutes, without requiring any coding skills."
+msgstr ""
+
+msgid "You do not have to be a coding expert to use Flux Forms. Simply drag and drop the fields to create customized multistep forms easily. Plus, you can connect each submission to a unique request using the Confirmation Code feature."
+msgstr ""
+
+msgid "New Response"
+msgstr ""
+
+msgid "Drag & Drop Fields Here"
+msgstr ""
+
+msgid "Setting"
+msgstr ""
+
+msgid "Maps"
+msgstr ""
+
+msgid "Find video tutorials in the adjacent box and click the document button for tutorials and articles."
+msgstr ""
+
+msgid "API KEY"
+msgstr ""
+
+msgid "Your form needs an API key for Google Maps to work properly."
+msgstr ""
+
+msgid "Copied to Clipboard"
+msgstr ""
+
+msgid "No Response"
+msgstr ""
+
+msgid "Submitted responses will appear here."
+msgstr ""
+
+msgid "Click here"
+msgstr ""
+
+msgid "Captchas"
+msgstr ""
+
+msgid "Email server"
+msgstr ""
+
+msgid "Email Settings"
+msgstr ""
+
+msgid "Check Email Server"
+msgstr ""
+
+msgid "D&D File Upload"
+msgstr ""
+
+msgid "Audio Recorder"
+msgstr ""
+
+msgid "Video Recorder"
+msgstr ""
+
+msgid "Screen Recorder"
+msgstr ""
+
+msgid "Advanced"
+msgstr ""
+
+msgid "Switch"
+msgstr ""
+
+msgid "Location Picker"
+msgstr ""
+
+msgid "Rating"
+msgstr ""
+
+msgid "Yes/No"
+msgstr ""
+
+msgid "HTML Code"
+msgstr ""
+
+msgid "You have not added any fields."
+msgstr ""
+
+msgid "Copy Shortcode"
+msgstr ""
+
+msgid "ShortCode"
+msgstr ""
+
+msgid "Copy Confirmation Code"
+msgstr ""
+
+msgid "Preview Form"
+msgstr ""
+
+msgid "It seems that some of the steps in your form are empty. Please add a field to all steps before saving."
+msgstr ""
+
+msgid "You are using the pro field in the form. To save and use the form including pro fields, activate Pro."
+msgstr ""
+
+msgid "Sample description"
+msgstr ""
+
+msgid "Edit Field"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Descriptions"
+msgstr ""
+
+msgid "Enable email notifications"
+msgstr ""
+
+msgid "Show Confirmation Code"
+msgstr ""
+
+msgid "Add Google reCAPTCHA to the form"
+msgstr ""
+
+msgid "Hide icons and step names."
+msgstr ""
+
+msgid "Hide progress bar"
+msgstr ""
+
+msgid "Steps style"
+msgstr ""
+
+msgid "Classic"
+msgstr ""
+
+msgid "The original look. Adds no extra CSS or JavaScript to your page."
+msgstr ""
+
+msgid "Adds a small amount of CSS to the page, built from your own colours."
+msgstr ""
+
+msgid "Progress bar style"
+msgstr ""
+
+msgid "Circles"
+msgstr ""
+
+msgid "Pills"
+msgstr ""
+
+msgid "Ribbon"
+msgstr ""
+
+msgid "Single bar"
+msgstr ""
+
+msgid "Segments"
+msgstr ""
+
+msgid "Ring"
+msgstr ""
+
+msgid "Private form"
+msgstr ""
+
+msgid "Label size"
+msgstr ""
+
+msgid "Small"
+msgstr ""
+
+msgid "Large"
+msgstr ""
+
+msgid "XLarge"
+msgstr ""
+
+msgid "XXLarge"
+msgstr ""
+
+msgid "XXXLarge"
+msgstr ""
+
+msgid "Label Position"
+msgstr ""
+
+msgid "Align"
+msgstr ""
+
+msgid "Left"
+msgstr ""
+
+msgid "Center"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "%s width"
+msgstr ""
+
+msgid "%s Label Position"
+msgstr ""
+
+msgid "%s Label size"
+msgstr ""
+
+msgid "%s Label | Align"
+msgstr ""
+
+msgid "%s Description | Align"
+msgstr ""
+
+msgid "%s Buttons | Align"
+msgstr ""
+
+msgid "Desktop"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "CSS Classes"
+msgstr ""
+
+msgid "Default value"
+msgstr ""
+
+msgid "Placeholder"
+msgstr ""
+
+msgid "Corners"
+msgstr ""
+
+msgid "Rounded"
+msgstr ""
+
+msgid "Square"
+msgstr ""
+
+msgid "Icon"
+msgstr ""
+
+msgid "Icons"
+msgstr ""
+
+msgid "Button color"
+msgstr ""
+
+msgid "Pink"
+msgstr ""
+
+msgid "Yellow"
+msgstr ""
+
+msgid "Light"
+msgstr ""
+
+msgid "red"
+msgstr ""
+
+msgid "White"
+msgstr ""
+
+msgid "Color"
+msgstr ""
+
+msgid "%s Checked Color"
+msgstr ""
+
+msgid "Slider Button"
+msgstr ""
+
+msgid "Value Text"
+msgstr ""
+
+msgid "Switch %s"
+msgstr ""
+
+msgid "Handle"
+msgstr ""
+
+msgid "%s color"
+msgstr ""
+
+msgid "Border Color"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Latitude"
+msgstr ""
+
+msgid "Longitude"
+msgstr ""
+
+msgid "e.g."
+msgstr ""
+
+msgid "(Avoid adding JavaScript or jQuery codes to HTML for security reasons.)"
+msgstr ""
+
+msgid "Button 1 value"
+msgstr ""
+
+msgid "Button 2 value"
+msgstr ""
+
+msgid "The code has not yet been added. Click on"
+msgstr ""
+
+msgid "and adding HTML code."
+msgstr ""
+
+msgid "Essential Features"
+msgstr ""
+
+msgid "Perfect for getting started with simple forms."
+msgstr ""
+
+msgid "Core form fields"
+msgstr ""
+
+msgid "Email notifications"
+msgstr ""
+
+msgid "Advanced form fields"
+msgstr ""
+
+msgid "Built-in advanced features"
+msgstr ""
+
+msgid "Add-ons & extensions"
+msgstr ""
+
+msgid "Start with Free"
+msgstr ""
+
+msgid "Free Plus"
+msgstr ""
+
+msgid "Pro Pending"
+msgstr ""
+
+msgid "Unlock advanced features - supported by a credit line."
+msgstr ""
+
+msgid "Core & advanced form fields"
+msgstr ""
+
+msgid "Lightweight “Powered by Flux Forms” credit & link"
+msgstr ""
+
+msgid "Continue with Free Plus"
+msgstr ""
+
+msgid "Pro"
+msgstr ""
+
+msgid "Free"
+msgstr ""
+
+msgid "For professionals who want the complete, clean experience."
+msgstr ""
+
+msgid "Everything in Free Plus"
+msgstr ""
+
+msgid "Advanced integrations"
+msgstr ""
+
+msgid "Add-ons included"
+msgstr ""
+
+msgid "No credits or promotional messages"
+msgstr ""
+
+msgid "premium experience"
+msgstr ""
+
+msgid "Most Popular"
+msgstr ""
+
+msgid "You can change this at any time from the panel settings menu. No data is lost when you upgrade."
+msgstr ""
+
+msgid "Maybe later"
+msgstr ""
+
+msgid "Build professional WordPress forms in minutes. Choose how you'd like to get started."
+msgstr ""
+
+msgid "Switch to Free Plus?"
+msgstr ""
+
+msgid "Your Pro activation code will be removed from this site. Pro add-ons will be unavailable until you upgrade again. Your forms, entries and settings will not be deleted."
+msgstr ""
+
+msgid "Switch to Free?"
+msgstr ""
+
+msgid "Advanced features and advanced fields used in your forms will be disabled. Your forms, entries and settings will not be deleted, and will be available again if you upgrade."
+msgstr ""
+
+msgid "Your Pro activation code will be removed from this site. Advanced features, Pro fields and add-ons will be unavailable until you upgrade again. Your forms, entries and settings will not be deleted."
+msgstr ""
+
+msgid "Keep Pro"
+msgstr ""
+
+msgid "Keep Free Plus"
+msgstr ""
+
+msgid "Switch to Free Plus"
+msgstr ""
+
+msgid "Switch to Free"
+msgstr ""
+
+msgid "Plan change"
+msgstr ""
+
+msgid "Your data stays untouched; only access to the features is limited."
+msgstr ""
+
+msgid "An error occurred. Please try again."
+msgstr ""
+
+msgid "Unable to change the plan. Please try again."
+msgstr ""
+
+msgid "Plan selected"
+msgstr ""
+
+msgid "Set up form notifications"
+msgstr ""
+
+msgid "Check whether your server can send emails, so you know you will receive form notifications."
+msgstr ""
+
+msgid "Form notification email"
+msgstr ""
+
+msgid "This is saved in General Settings and can be changed later."
+msgstr ""
+
+msgid "Your default settings"
+msgstr ""
+
+msgid "Notifications stay off until delivery is verified"
+msgstr ""
+
+msgid "Sender"
+msgstr ""
+
+msgid "Your forms and submissions are ready to use"
+msgstr ""
+
+msgid "Save and test email delivery"
+msgstr ""
+
+msgid "Checking email delivery…"
+msgstr ""
+
+msgid "A test email was sent. Waiting for delivery confirmation…"
+msgstr ""
+
+msgid "Email delivery is ready. Form notifications can be sent."
+msgstr ""
+
+msgid "Your test email was sent, but delivery is not confirmed yet. Check the inbox or spam folder for the address below; you can finish setup and try again later from General Settings."
+msgstr ""
+
+msgid "We could not verify delivery. Your email address was saved; please check your mail configuration in General Settings."
+msgstr ""
+
+msgid "Your test email was delivered, but its deliverability score is only %1$s out of 100 (below %2$s). The emails your forms send will most likely be filtered as spam. Set up SMTP and run the check again."
+msgstr ""
+
+msgid "Finish setup"
+msgstr ""
+
+msgid "You can access setup from plugin settings anytime."
+msgstr ""
+
+msgid "Delete markers"
+msgstr ""
+
+msgid "update your browser"
+msgstr ""
+
+msgid "Stars"
+msgstr ""
+
+msgid "Nothing selected"
+msgstr ""
+
+msgid "Available in the Pro version"
+msgstr ""
+
+msgid "Mobile Preview"
+msgstr ""
+
+msgid "Thanks for filling out the form."
+msgstr ""
+
+msgid "Finish"
+msgstr ""
+
+msgid "Last step title"
+msgstr ""
+
+msgid "Drag & Drop the"
+msgstr ""
+
+msgid "Remove the file"
+msgstr ""
+
+msgid "Enter API KEY"
+msgstr ""
+
+msgid "Select"
+msgstr ""
+
+msgid "Up"
+msgstr ""
+
+msgid "Sending"
+msgstr ""
+
+msgid "Please enter your message"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Code"
+msgstr ""
+
+msgid "Star"
+msgstr ""
+
+msgid "Black"
+msgstr ""
+
+msgid "Please kindly report the following issue to the Flux Forms team."
+msgstr ""
+
+msgid "Report problem"
+msgstr ""
+
+msgid "Your server is capable of sending emails"
+msgstr ""
+
+msgid "SMTP Error: The host is unable to send an email. Please contact the host support team for assistance."
+msgstr ""
+
+msgid "There was an error loading Maps."
+msgstr ""
+
+msgid "The uploaded file is not in the correct file format."
+msgstr ""
+
+msgid "The selected field is not available in this type of form."
+msgstr ""
+
+msgid "Get your activation code now and unlock exclusive features ! Click here."
+msgstr ""
+
+msgid "Multiple Select"
+msgstr ""
+
+msgid "New Form"
+msgstr ""
+
+msgid "Register Form"
+msgstr ""
+
+msgid "Login Form"
+msgstr ""
+
+msgid "Subscription Form"
+msgstr ""
+
+msgid "Support Form"
+msgstr ""
+
+msgid "Start a form from scratch with one or multiple steps."
+msgstr ""
+
+msgid "Create a Contact us form."
+msgstr ""
+
+msgid "Create a user registration form for your WordPress site."
+msgstr ""
+
+msgid "Create a login form for your WordPress site"
+msgstr ""
+
+msgid "Create a newsletter subscription form"
+msgstr ""
+
+msgid "Create a support contact form."
+msgstr ""
+
+msgid "Request a Quote"
+msgstr ""
+
+msgid "Collect project details and budget info from clients."
+msgstr ""
+
+msgid "Custom Order Form"
+msgstr ""
+
+msgid "Accept custom orders with product selection and payment."
+msgstr ""
+
+msgid "Job Application"
+msgstr ""
+
+msgid "Collect resumes and applicant information."
+msgstr ""
+
+msgid "Rent a Car"
+msgstr ""
+
+msgid "Car rental booking form with vehicle and date selection."
+msgstr ""
+
+msgid "Salon Consultation"
+msgstr ""
+
+msgid "Book salon consultations with service preferences."
+msgstr ""
+
+msgid "Graphic Design Order"
+msgstr ""
+
+msgid "Collect graphic design project requirements."
+msgstr ""
+
+msgid "CV Application"
+msgstr ""
+
+msgid "Collect CV and resume details from applicants."
+msgstr ""
+
+msgid "Videography Brief"
+msgstr ""
+
+msgid "Gather creative brief details for video projects."
+msgstr ""
+
+msgid "Party Invitation"
+msgstr ""
+
+msgid "Create party invitation RSVP forms."
+msgstr ""
+
+msgid "Event Registration"
+msgstr ""
+
+msgid "Register attendees for events with custom fields."
+msgstr ""
+
+msgid "Store Experience Survey"
+msgstr ""
+
+msgid "Collect customer feedback about in-store experience."
+msgstr ""
+
+msgid "Voter Behavior Survey"
+msgstr ""
+
+msgid "Survey template for voter behavior research."
+msgstr ""
+
+msgid "Signup Form"
+msgstr ""
+
+msgid "Multi-step signup form with payment integration."
+msgstr ""
+
+msgid "Sports League Signup"
+msgstr ""
+
+msgid "Register players for recreational sports leagues."
+msgstr ""
+
+msgid "Summer Reading Program"
+msgstr ""
+
+msgid "Sign up participants for summer reading programs."
+msgstr ""
+
+msgid "Children Library Card"
+msgstr ""
+
+msgid "Application form for children’s library cards."
+msgstr ""
+
+msgid "Employee Suggestion"
+msgstr ""
+
+msgid "Collect employee suggestions and feedback."
+msgstr ""
+
+msgid "Book Club Suggestion"
+msgstr ""
+
+msgid "Collect book suggestions from club members."
+msgstr ""
+
+msgid "Reservation"
+msgstr ""
+
+msgid "Create survey, poll, or questionnaire forms."
+msgstr ""
+
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
+
+msgid "Phone"
+msgstr ""
+
+msgid "Register"
+msgstr ""
+
+msgid "Username"
+msgstr ""
+
+msgid "Beside"
+msgstr ""
+
+msgid "Invalid Email address"
+msgstr ""
+
+msgid "Delete unnecessary files"
+msgstr ""
+
+msgid "Remove leftover files from incomplete form submissions. These are uploads that were never finalized."
+msgstr ""
+
+msgid "When a new message is received through an Flux Forms form, an alert email is sent to the site administrator."
+msgstr ""
+
+msgid "reCAPTCHA v2"
+msgstr ""
+
+msgid "silentCAPTCHA Spam Protection"
+msgstr ""
+
+msgid "Enable silentCAPTCHA (Shield Security) to protect against spam and bots."
+msgstr ""
+
+msgid "Shield Security is not detected, but it can be installed to enhance security."
+msgstr ""
+
+msgid "Click here to watch a video tutorial."
+msgstr ""
+
+msgid "Site Key"
+msgstr ""
+
+msgid "Secret Key"
+msgstr ""
+
+msgid "Clear Files"
+msgstr ""
+
+msgid "Enter your activation code"
+msgstr ""
+
+msgid "Something went wrong. Please try again."
+msgstr ""
+
+msgid "Something unexpected happened. Please try again by refreshing the page."
+msgstr ""
+
+msgid "Please enter a valid phone number."
+msgstr ""
+
+msgid "Please ensure that all fields are filled correctly."
+msgstr ""
+
+msgid "Please enter an email address."
+msgstr ""
+
+msgid "The file size exceeds the maximum allowed limit of NN MB"
+msgstr ""
+
+msgid "Documents"
+msgstr ""
+
+msgid "Document"
+msgstr ""
+
+msgid "Image"
+msgstr ""
+
+msgid "Media"
+msgstr ""
+
+msgid "Zip"
+msgstr ""
+
+msgid "Alert!"
+msgstr ""
+
+msgid "We recommend watching this tutorial for assistance."
+msgstr ""
+
+msgid "Please try again, Captcha Verification Failed."
+msgstr ""
+
+msgid "Password must be at least 8 characters long and include a number and an uppercase letter."
+msgstr ""
+
+msgid "Please complete the form."
+msgstr ""
+
+msgid "Choose options"
+msgstr ""
+
+msgid "Selected"
+msgstr ""
+
+msgid "Select All"
+msgstr ""
+
+msgid "Sent successfully"
+msgstr ""
+
+msgid "Sync"
+msgstr ""
+
+msgid "This field is required."
+msgstr ""
+
+msgid "Custom %s Message"
+msgstr ""
+
+msgid "Leave empty to use default %s"
+msgstr ""
+
+msgid "Thank you"
+msgstr ""
+
+msgid "You are subscribed"
+msgstr ""
+
+msgid "information"
+msgstr ""
+
+msgid "Wait for loading reCaptcha"
+msgstr ""
+
+msgid "On"
+msgstr ""
+
+msgid "Off"
+msgstr ""
+
+msgid "Settings not found"
+msgstr ""
+
+msgid "Red"
+msgstr ""
+
+msgid "Please navigate to the Flux Forms Panel, then go to Settings and click on Google Keys to configure the keys for Google reCAPTCHA."
+msgstr ""
+
+msgid "If your language translation is not available yet, translate it and get a %3$s lifetime discount! Contribute via the %1$sWordPress.org translation portal%2$s."
+msgstr ""
+
+msgid "OFF"
+msgstr ""
+
+msgid "Please enter a valid URL. Protocol is required (http://, https://)"
+msgstr ""
+
+msgid "Email or Username"
+msgstr ""
+
+msgid "Contact Us Form"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid "Enter the Confirmation Code"
+msgstr ""
+
+msgid "Enter The Phone No"
+msgstr ""
+
+msgid "Countries Drop-down"
+msgstr ""
+
+msgid "State/Prov Drop-down"
+msgstr ""
+
+msgid "Thank you message"
+msgstr ""
+
+msgid "New message!"
+msgstr ""
+
+msgid "A New Message has been Received."
+msgstr ""
+
+msgid "Created by"
+msgstr ""
+
+msgid "Hi dear user"
+msgstr ""
+
+msgid "Sent by:"
+msgstr ""
+
+msgid "You have a new message."
+msgstr ""
+
+msgid "Your security session has expired or is invalid. Please refresh the page. E403"
+msgstr ""
+
+msgid "Your security session has expired or is invalid. Please refresh the page. E400"
+msgstr ""
+
+msgid "This is a private form. Please log in to access it."
+msgstr ""
+
+msgid "Please check the site key and secret key on Flux Forms panel > Settings > Google Keys to resolve the error."
+msgstr ""
+
+msgid "There seems to be a problem with the Captcha. Please try again."
+msgstr ""
+
+msgid "Your account has been successfully created! You will receive an email containing your information"
+msgstr ""
+
+msgid "This username or password combination is incorrect."
+msgstr ""
+
+msgid "If your email is valid, a new password will send to your email."
+msgstr ""
+
+msgid "The survey has been successfully completed."
+msgstr ""
+
+msgid "Survey Results Display"
+msgstr ""
+
+msgid "Do not show results"
+msgstr ""
+
+msgid "Show results with bar chart"
+msgstr ""
+
+msgid "Show results with pie chart"
+msgstr ""
+
+msgid "After submission, visitors can see aggregate survey results"
+msgstr ""
+
+msgid "Show this field in public survey results"
+msgstr ""
+
+msgid "Survey Results"
+msgstr ""
+
+msgid "We are sorry, but there seems to be a security error (405) with your request."
+msgstr ""
+
+msgid "Error, Setting not Found"
+msgstr ""
+
+msgid "Sorry, there seems to be an error. Please verify that you are human and try again."
+msgstr ""
+
+msgid "Please enter valid values"
+msgstr ""
+
+msgid "Invalid Confirmation Code."
+msgstr ""
+
+msgid "There seems to be an error with the file permissions."
+msgstr ""
+
+msgid "Oops! Something went wrong. Please try refreshing the page and try again."
+msgstr ""
+
+msgid "HTML tags are not allowed."
+msgstr ""
+
+msgid "Your message has been sent."
+msgstr ""
+
+msgid "We have received your message."
+msgstr ""
+
+msgid "The form has been submitted successfully"
+msgstr ""
+
+msgid "Your registration is successful."
+msgstr ""
+
+msgid "Welcome"
+msgstr ""
+
+msgid "You have successfully subscribed. Thank you!"
+msgstr ""
+
+msgid "Thank You for taking the time to complete this survey."
+msgstr ""
+
+msgid "Please go to Panel > Settings > Email Settings, click \"Check Email Server\", then click \"Save\"."
+msgstr ""
+
+msgid "Uh oh, looks like there is a problem with the form. Please make sure all of the input is correct."
+msgstr ""
+
+msgid "The form was not created"
+msgstr ""
+
+msgid "Scripts tags are not allowed."
+msgstr ""
+
+msgid "Bootstrap Template"
+msgstr ""
+
+msgid "Warning: If your theme uses Bootstrap, make sure the option below is enabled."
+msgstr ""
+
+msgid "My theme is based on Bootstrap"
+msgstr ""
+
+msgid "Uh oh, it looks like there is a problem with your request. Please review everything and try again."
+msgstr ""
+
+msgid "updated"
+msgstr ""
+
+msgid "Please type in your message"
+msgstr ""
+
+msgid "The files have been deleted."
+msgstr ""
+
+msgid "The activation code you entered is incorrect. Please double-check and try again."
+msgstr ""
+
+msgid "We are sorry, but the message was not sent due to a settings error. Please contact the admin for assistance."
+msgstr ""
+
+msgid "OR"
+msgstr ""
+
+msgid "Email Template"
+msgstr ""
+
+msgid "reset"
+msgstr ""
+
+msgid "Not Found"
+msgstr ""
+
+msgid "Editor"
+msgstr ""
+
+msgid "Please add the shortcode_message shortcode to the email template."
+msgstr ""
+
+msgid "Your Email Template cannot exceed 10,000 characters."
+msgstr ""
+
+msgid "Please use HTML tags to create your email template."
+msgstr ""
+
+msgid "Add this shortcode inside a tag to display the title of the email."
+msgstr ""
+
+msgid "Add this shortcode inside an HTML tag to display the message content of an email."
+msgstr ""
+
+msgid "To display the website name, add this shortcode inside an HTML tag."
+msgstr ""
+
+msgid "Add this shortcode within an HTML tag to display the Website URL."
+msgstr ""
+
+msgid "You can display the Admin Email address of your WordPress site by adding this shortcode within an HTML tag."
+msgstr ""
+
+msgid "Templates"
+msgstr ""
+
+msgid "Max selection"
+msgstr ""
+
+msgid "Min selection"
+msgstr ""
+
+msgid "Do not show the background."
+msgstr ""
+
+msgid "Contact us Template"
+msgstr ""
+
+msgid "Curved"
+msgstr ""
+
+msgid "Multi-Step"
+msgstr ""
+
+msgid "No Coding"
+msgstr ""
+
+msgid "Drag & Drop"
+msgstr ""
+
+msgid "Customer Feedback"
+msgstr ""
+
+msgid "Support Ticket Form"
+msgstr ""
+
+msgid "Address"
+msgstr ""
+
+msgid "Payment Gateway"
+msgstr ""
+
+msgid "one time"
+msgstr ""
+
+msgid "Method payment"
+msgstr ""
+
+msgid "Heading"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "product"
+msgstr ""
+
+msgid "value"
+msgstr ""
+
+msgid "terms"
+msgstr ""
+
+msgid "Card Number"
+msgstr ""
+
+msgid "Reference Code"
+msgstr ""
+
+msgid "Card Expiry"
+msgstr ""
+
+msgid "Card CVC"
+msgstr ""
+
+msgid "Pay Now"
+msgstr ""
+
+msgid "Pay amount"
+msgstr ""
+
+msgid "Success payment"
+msgstr ""
+
+msgid "Transaction Id"
+msgstr ""
+
+msgid "Error: No payment gateway has been added to the form."
+msgstr ""
+
+msgid "Your cart is currently empty. Please add items to continue."
+msgstr ""
+
+msgid "Payment Multi choose"
+msgstr ""
+
+msgid "Payment Single choose"
+msgstr ""
+
+msgid "Payment Selection choose"
+msgstr ""
+
+msgid "Payment dropdown list"
+msgstr ""
+
+msgid "Public Key"
+msgstr ""
+
+msgid "Price"
+msgstr ""
+
+msgid "title"
+msgstr ""
+
+msgid "Medium"
+msgstr ""
+
+msgid "XSmall"
+msgstr ""
+
+msgid "XXSmall"
+msgstr ""
+
+msgid "Create a payment form to collect online payments."
+msgstr ""
+
+msgid "Submit"
+msgstr ""
+
+msgid "Purchase Order"
+msgstr ""
+
+msgid "It is not possible to include reCAPTCHA on payment forms."
+msgstr ""
+
+msgid "This site can send emails"
+msgstr ""
+
+msgid "Weekly email health and form activity report"
+msgstr ""
+
+msgid "Adds your form activity totals &ndash; forms, views and submissions &ndash; to the weekly email your site sends the main administrator. These totals are read on your own site and are never sent to WhiteStudio."
+msgstr ""
+
+msgid "Last check: %s"
+msgstr ""
+
+msgid "No automated email check has run yet."
+msgstr ""
+
+msgid "Collect email delivery statistics"
+msgstr ""
+
+msgid "Counts how many emails were sent or failed, shows them in the dashboard widget, and adds the email delivery status section to the weekly email. Once a week your site runs a delivery test and reports the result. Only Pro users can turn this off."
+msgstr ""
+
+msgid "How to activate the Pro version of Flux Forms"
+msgstr ""
+
+msgid "Uploaded File"
+msgstr ""
+
+msgid "Your internet connection has been lost, but do not worry, we have saved the information you entered on this form. Once you are reconnected to the internet, you can easily send your information by clicking the submit button."
+msgstr ""
+
+msgid "Please ensure that you have a stable internet connection and try again."
+msgstr ""
+
+msgid "There was a problem uploading the file and the form was not submitted. Please check that your internet connection is stable and try again."
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "You are experiencing issues with jQuery. Please contact the administrator for assistance. (Error code: JQ-500)"
+msgstr ""
+
+msgid "Your session has expired. Please refresh the page and try again."
+msgstr ""
+
+msgid "Basic"
+msgstr ""
+
+msgid "Blank"
+msgstr ""
+
+msgid "Sign-In|Up"
+msgstr ""
+
+msgid "Advance"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "Thank you Page"
+msgstr ""
+
+msgid "Redirect page"
+msgstr ""
+
+msgid "Please wait, you will be redirected shortly."
+msgstr ""
+
+msgid "Persia payment"
+msgstr ""
+
+msgid "Unlock Pro Features Today"
+msgstr ""
+
+msgid "Upgrade to Pro for just %1$s%2$s%3$s/year and get access to powerful features, including advanced form fields, payment integrations, conditional logic, multi-step forms, file uploads, Security & Spam Protection, and priority support.%4$sView Pro Features%5$s"
+msgstr ""
+
+msgid "Add-on"
+msgstr ""
+
+msgid "Stripe Payment Add-on"
+msgstr ""
+
+msgid "The Stripe add-on for Flux Forms enables you to integrate your WordPress site with Stripe for payment processing, donations, and online orders."
+msgstr ""
+
+msgid "Offline Forms Add-on"
+msgstr ""
+
+msgid "The Offline Forms add-on for Flux Forms allows users to save their progress when filling out forms in offline situations."
+msgstr ""
+
+msgid "Install"
+msgstr ""
+
+msgid "Please update Flux Forms before trying again."
+msgstr ""
+
+msgid "Activation of offline form mode."
+msgstr ""
+
+msgid "Before activating this option, install"
+msgstr ""
+
+msgid "To create a payment form to collect online payments, you must first install a payment add-on such as the Stripe Add-on."
+msgstr ""
+
+msgid "All formats"
+msgstr ""
+
+msgid "EFB SMS Add-on"
+msgstr ""
+
+msgid "Enable SMS functionality in your forms with the EFB SMS add-on, allowing you to validate mobile numbers and send confirmation codes via SMS, as well as receive notifications through SMS service."
+msgstr ""
+
+msgid "Advanced confirmation code Add-on"
+msgstr ""
+
+msgid "Send a confirmation code via email or SMS to users and/or admins, allowing them to quickly access new responses."
+msgstr ""
+
+msgid "Box Checklist"
+msgstr ""
+
+msgid "Radio Checklist"
+msgstr ""
+
+msgid "Qty"
+msgstr ""
+
+msgid "This is a warning for WPBakery users. For more information, please click here."
+msgstr ""
+
+msgid "Are you sure you want to close replies to this message?"
+msgstr ""
+
+msgid "Are you sure you want to open the responses to this message?"
+msgstr ""
+
+msgid "The response has been closed by Admin."
+msgstr ""
+
+msgid "The response has been opened by Admin."
+msgstr ""
+
+msgid "$NN/year"
+msgstr ""
+
+msgid "columns"
+msgstr ""
+
+msgid "column"
+msgstr ""
+
+msgid "I would like to localize Flux Forms."
+msgstr ""
+
+msgid "Max length"
+msgstr ""
+
+msgid "Min length"
+msgstr ""
+
+msgid "The maximum number of characters allowed in the input element is 524288"
+msgstr ""
+
+msgid "Please enter a value that is at least NN characters long."
+msgstr ""
+
+msgid "Please enter a number that is greater than or equal to NN."
+msgstr ""
+
+msgid "Please Enter a maximum of NN Characters For this field"
+msgstr ""
+
+msgid "Please enter a number that is less than or equal to NN"
+msgstr ""
+
+msgid "Max"
+msgstr ""
+
+msgid "Min"
+msgstr ""
+
+msgid "Minimum entry must be lower than the maximum entry"
+msgstr ""
+
+msgid "Hide the label"
+msgstr ""
+
+msgid "Hide label on mobile"
+msgstr ""
+
+msgid "Hide description on mobile"
+msgstr ""
+
+msgid "Hide all labels on mobile"
+msgstr ""
+
+msgid "Label of the ON status"
+msgstr ""
+
+msgid "Label of the OFF status"
+msgstr ""
+
+msgid "5 Point Scale"
+msgstr ""
+
+msgid "Net Promoter Score"
+msgstr ""
+
+msgid "NPS Table Matrix"
+msgstr ""
+
+msgid "Jalali Date"
+msgstr ""
+
+msgid "Hijri Date"
+msgstr ""
+
+msgid "Install the add-on"
+msgstr ""
+
+msgid "Please go to the Add-ons Page of Flux Forms plugin and install the Jalili date addons"
+msgstr ""
+
+msgid "Please go to the Add-ons Page of Flux Forms plugin and install the Hijri date addons"
+msgstr ""
+
+msgid "warning"
+msgstr ""
+
+msgid "date & time"
+msgstr ""
+
+msgid "Enable file upload in the response box"
+msgstr ""
+
+msgid "Enable Google reCAPTCHA in the response box"
+msgstr ""
+
+msgid "Enable download button in the response box"
+msgstr ""
+
+msgid "Display the IP addresses of users in the response box."
+msgstr ""
+
+msgid "Persia Payment Add-on"
+msgstr ""
+
+msgid "The Persia payment add-on for Flux Forms enables you to connect your website with Persia payment to process payments, donations, and online orders."
+msgstr ""
+
+msgid "Jalali Date Add-on"
+msgstr ""
+
+msgid "The Jalali Date add-on allows you to add a Jalali date field to your forms and create any type of form that includes this Shamsi date field."
+msgstr ""
+
+msgid "Hijri Date Add-on"
+msgstr ""
+
+msgid "The Hijri Date add-on allows you to add a Hijri date field to your forms and create any type of form that includes this field."
+msgstr ""
+
+msgid "SMS service Add-on"
+msgstr ""
+
+msgid "The SMS service add-on enables you to receive notification SMS messages when you or your customers receive new messages or responses."
+msgstr ""
+
+msgid "Please install either the Hijri or Jalali date add-on. You cannot install both add-ons simultaneously."
+msgstr ""
+
+msgid "Response box"
+msgstr ""
+
+msgid "Regions Drop-Down"
+msgstr ""
+
+msgid "You are seeing this message because your required add-ons are being installed. Please wait a few minutes and then visit this page again. If it has been more than five minutes and nothing has happened, please contact the support team of Flux Forms at Whitestudio.team."
+msgstr ""
+
+msgid "The cell phone number is incorrect"
+msgstr ""
+
+msgid "Invalid country code"
+msgstr ""
+
+msgid "The cell phone number is too short"
+msgstr ""
+
+msgid "The cell phone number is too long"
+msgstr ""
+
+msgid "Please select the number of countries to display within an acceptable range."
+msgstr ""
+
+msgid "Disabled Field"
+msgstr ""
+
+msgid "Hidden Field"
+msgstr ""
+
+msgid "Select a country to display a list of states/provinces."
+msgstr ""
+
+msgid "Select a state/province to display a list of cities."
+msgstr ""
+
+msgid "SMS Service Add-on"
+msgstr ""
+
+msgid "This field is currently unavailable. Please contact the site administrator."
+msgstr ""
+
+msgid "Would you like to customize the form using the colors of the active template?"
+msgstr ""
+
+msgid "Flux Forms has utilized the colors of the active template. Please choose a color for each option below to customize the form you are creating based on the colors of your template. By selecting a color for each option below, the color of all form fields associated with that feature will change accordingly."
+msgstr ""
+
+msgid "Buttons text colors"
+msgstr ""
+
+msgid "attached files"
+msgstr ""
+
+msgid "Default selected"
+msgstr ""
+
+msgid "Show attributes"
+msgstr ""
+
+msgid "Hide attributes"
+msgstr ""
+
+msgid "The ID length should be at least 3 characters long."
+msgstr ""
+
+msgid "The ID value must be unique, as it is already being used in this field. Please try a new, unique value."
+msgstr ""
+
+msgid "Image picker"
+msgstr ""
+
+msgid "Insert an image url"
+msgstr ""
+
+msgid "New Booking Form"
+msgstr ""
+
+msgid "Conditional Logic Add-on"
+msgstr ""
+
+msgid "Conditional logic Add-on"
+msgstr ""
+
+msgid "The Conditional Logic Add-on enables dynamic and interactive forms based on specific user inputs or conditional rules. It allows for highly personalized forms tailored to meet users’ unique needs."
+msgstr ""
+
+msgid "The Conditional Logic module failed to load. Please refresh the page; if the problem continues, deactivate and reactivate the Conditional Logic add-on."
+msgstr ""
+
+msgid "Stop after this rule matches"
+msgstr ""
+
+msgid "IF"
+msgstr ""
+
+msgid "THEN"
+msgstr ""
+
+msgid "Test Mode"
+msgstr ""
+
+msgid "Matched"
+msgstr ""
+
+msgid "Not matched"
+msgstr ""
+
+msgid "No fields found."
+msgstr ""
+
+msgid "You can create up to %1$s %2$s on your current plan. Upgrade to Pro for unlimited access."
+msgstr ""
+
+msgid "Inspector"
+msgstr ""
+
+msgid "Rule trace"
+msgstr ""
+
+msgid "Final values"
+msgstr ""
+
+msgid "Effects"
+msgstr ""
+
+msgid "Conflicts"
+msgstr ""
+
+msgid "A value is written to this field while another rule hides or disables it &mdash; hidden and disabled fields are not saved with the entry."
+msgstr ""
+
+msgid "Blocked by stop processing"
+msgstr ""
+
+msgid "Calculate"
+msgstr ""
+
+msgid "Formula"
+msgstr ""
+
+msgid "Decimals"
+msgstr ""
+
+msgid "Insert field"
+msgstr ""
+
+msgid "Formula could not be calculated. Check field tokens and division by zero."
+msgstr ""
+
+msgid "Set Value"
+msgstr ""
+
+msgid "Clear Value"
+msgstr ""
+
+msgid "Show Message"
+msgstr ""
+
+msgid "Jump to Step"
+msgstr ""
+
+msgid "Static"
+msgstr ""
+
+msgid "Confirmation"
+msgstr ""
+
+msgid "Fields"
+msgstr ""
+
+msgid "Redirect"
+msgstr ""
+
+msgid "Shown"
+msgstr ""
+
+msgid "Hidden"
+msgstr ""
+
+msgid "Message&hellip;"
+msgstr ""
+
+msgid "Stable"
+msgstr ""
+
+msgid "Copy value from field"
+msgstr ""
+
+msgid "Set placeholder"
+msgstr ""
+
+msgid "Set help text"
+msgstr ""
+
+msgid "Set label"
+msgstr ""
+
+msgid "Focus field"
+msgstr ""
+
+msgid "Scroll to field"
+msgstr ""
+
+msgid "Block submit"
+msgstr ""
+
+msgid "Custom submission message"
+msgstr ""
+
+msgid "URL parameter"
+msgstr ""
+
+msgid "Current step"
+msgstr ""
+
+msgid "Logged in"
+msgstr ""
+
+msgid "Logged out"
+msgstr ""
+
+msgid "Role"
+msgstr ""
+
+msgid "before"
+msgstr ""
+
+msgid "after"
+msgstr ""
+
+msgid "between dates"
+msgstr ""
+
+msgid "NOT"
+msgstr ""
+
+msgid "NOT — invert this group (NAND/NOR)"
+msgstr ""
+
+msgid "Import"
+msgstr ""
+
+msgid "Rules imported. Review and save the form."
+msgstr ""
+
+msgid "This file is not a valid EFB logic-rules export."
+msgstr ""
+
+msgid "Payload fields (empty = all)"
+msgstr ""
+
+msgid "Trigger webhook"
+msgstr ""
+
+msgid "Stop webhook"
+msgstr ""
+
+msgid "empty = stop all"
+msgstr ""
+
+msgid "Submission is not allowed for the current answers."
+msgstr ""
+
+msgid "This form is closed for your answers."
+msgstr ""
+
+msgid "Rules did not stabilize (possible loop)"
+msgstr ""
+
+msgid "Add your first rule to start building smart forms."
+msgstr ""
+
+msgid "Enable Conditional"
+msgstr ""
+
+msgid "Show"
+msgstr ""
+
+msgid "Hide"
+msgstr ""
+
+msgid "Contains"
+msgstr ""
+
+msgid "Not contain"
+msgstr ""
+
+msgid "starts with"
+msgstr ""
+
+msgid "ends with"
+msgstr ""
+
+msgid "greater than"
+msgstr ""
+
+msgid "less than"
+msgstr ""
+
+msgid "greater than or equal to"
+msgstr ""
+
+msgid "less than or equal to"
+msgstr ""
+
+msgid "between"
+msgstr ""
+
+msgid "not between"
+msgstr ""
+
+msgid "Is"
+msgstr ""
+
+msgid "Is not"
+msgstr ""
+
+msgid "Empty"
+msgstr ""
+
+msgid "Not empty"
+msgstr ""
+
+msgid "or"
+msgstr ""
+
+msgid "and"
+msgstr ""
+
+msgid "Condition"
+msgstr ""
+
+msgid "Group"
+msgstr ""
+
+msgid "Add a condition or a group."
+msgstr ""
+
+msgid "Done title"
+msgstr ""
+
+msgid "Confirmation code label"
+msgstr ""
+
+msgid "Icon color"
+msgstr ""
+
+msgid "Title color"
+msgstr ""
+
+msgid "Message color"
+msgstr ""
+
+msgid "Progress bar"
+msgstr ""
+
+msgid "cities"
+msgstr ""
+
+msgid "XXX list"
+msgstr ""
+
+msgid "SMS Configuration"
+msgstr ""
+
+msgid "To enable SMS notifications in your forms, choose a delivery method."
+msgstr ""
+
+msgid "Select an SMS delivery method"
+msgstr ""
+
+msgid "Enter administrators’ mobile numbers"
+msgstr ""
+
+msgid "Flux Forms SMS service"
+msgstr ""
+
+msgid "Format: +12345678900 or +1 (234) 567-8900"
+msgstr ""
+
+msgid "WSMS plugin by VeronaLabs"
+msgstr ""
+
+msgid "WSMS plugin by VeronaLabs is not installed or activated. Please select another option, or install and configure WSMS."
+msgstr ""
+
+msgid "To use this option, please install the NN add-ons from the Flux Forms plugin's add-ons page."
+msgstr ""
+
+msgid "SMS Notifications"
+msgstr ""
+
+msgid "Enter the administrators’ mobile numbers to receive SMS notifications, such as alerts or new messages."
+msgstr ""
+
+msgid "All SMS notifications sent by Flux Forms will be delivered to the numbers entered here."
+msgstr ""
+
+msgid "Choose Email notification content"
+msgstr ""
+
+msgid "Send email with confirmation code and link"
+msgstr ""
+
+msgid "Send email with submitted form content and link"
+msgstr ""
+
+msgid "To view the map and selected points, simply click here to navigate to the received message page"
+msgstr ""
+
+msgid "Documentation"
+msgstr ""
+
+msgid "Click on the Settings button on the panel page of Flux Forms Plugin and configure the SMS sending method. Then, try again."
+msgstr ""
+
+msgid "Enable SMS notifications"
+msgstr ""
+
+msgid "Enable Telegram notifications"
+msgstr ""
+
+msgid "Telegram"
+msgstr ""
+
+msgid "PayPal Payment Add-on"
+msgstr ""
+
+msgid "The PayPal add-on for Flux Forms enables you to integrate your WordPress site with PayPal for payment processing, donations, and online orders."
+msgstr ""
+
+msgid "Acceptable file types"
+msgstr ""
+
+msgid "Customized Ordering"
+msgstr ""
+
+msgid "Max File Size"
+msgstr ""
+
+msgid "Start Recording"
+msgstr ""
+
+msgid "Stop"
+msgstr ""
+
+msgid "Pause"
+msgstr ""
+
+msgid "Resume"
+msgstr ""
+
+msgid "Re-record"
+msgstr ""
+
+msgid "Play"
+msgstr ""
+
+msgid "Ready to record"
+msgstr ""
+
+msgid "Recording…"
+msgstr ""
+
+msgid "Recording ready."
+msgstr ""
+
+msgid "Upload"
+msgstr ""
+
+msgid "Uploading recording…"
+msgstr ""
+
+msgid "Recording uploaded."
+msgstr ""
+
+msgid "The recording could not be uploaded. Please try again."
+msgstr ""
+
+msgid "You are offline. Please reconnect and upload the recording again."
+msgstr ""
+
+msgid "Uploading is not available right now. Please try again."
+msgstr ""
+
+msgid "No recording is ready to upload."
+msgstr ""
+
+msgid "This recording format is not allowed."
+msgstr ""
+
+msgid "Recording Quality"
+msgstr ""
+
+msgid "Max Duration (seconds)"
+msgstr ""
+
+msgid "Low"
+msgstr ""
+
+msgid "Standard"
+msgstr ""
+
+msgid "High"
+msgstr ""
+
+msgid "480p"
+msgstr ""
+
+msgid "720p (HD)"
+msgstr ""
+
+msgid "1080p (Full HD)"
+msgstr ""
+
+msgid "Permission to access your microphone/camera/screen was denied."
+msgstr ""
+
+msgid "Your browser does not support this recording feature."
+msgstr ""
+
+msgid "Maximum recording duration reached."
+msgstr ""
+
+msgid "Made by Flux Forms"
+msgstr ""
+
+msgid "Tap to start recording"
+msgstr ""
+
+msgid "Download recording"
+msgstr ""
+
+msgid "Recording requires a secure (HTTPS) connection. Please ask the site administrator to enable HTTPS on this host."
+msgstr ""
+
+msgid "Screen recording is not supported on this device or browser (most mobile browsers do not allow it). Please open the form in a desktop browser such as Chrome, Edge or Firefox."
+msgstr ""
+
+msgid "Countdown before recording"
+msgstr ""
+
+msgid "Default camera (mobile)"
+msgstr ""
+
+msgid "Front (selfie)"
+msgstr ""
+
+msgid "Back (environment)"
+msgstr ""
+
+msgid "Mirror the live preview"
+msgstr ""
+
+msgid "Noise suppression & echo cancellation"
+msgstr ""
+
+msgid "Show watermark on the preview"
+msgstr ""
+
+msgid "Let the user download a copy of the recording"
+msgstr ""
+
+msgid "Your hosting accepts uploads up to %s MB."
+msgstr ""
+
+msgid "This is larger than the hosting upload limit (%s MB); uploads will fail."
+msgstr ""
+
+msgid "Cities Drop-Down"
+msgstr ""
+
+msgid "English language"
+msgstr ""
+
+msgid "National language"
+msgstr ""
+
+msgid "Select display language"
+msgstr ""
+
+msgid "Rename the file name"
+msgstr ""
+
+msgid "Form is loading"
+msgstr ""
+
+msgid "Submitting the form"
+msgstr ""
+
+msgid "Postal Code"
+msgstr ""
+
+msgid "View message and reply"
+msgstr ""
+
+msgid "Price field"
+msgstr ""
+
+msgid "Total price"
+msgstr ""
+
+msgid "Email Subject"
+msgstr ""
+
+msgid "Form type"
+msgstr ""
+
+msgid "Loading Animation"
+msgstr ""
+
+msgid "Loading Color"
+msgstr ""
+
+msgid "Dots"
+msgstr ""
+
+msgid "Spinner"
+msgstr ""
+
+msgid "Pulse"
+msgstr ""
+
+msgid "Bars"
+msgstr ""
+
+msgid "Ripple"
+msgstr ""
+
+msgid "Bounce"
+msgstr ""
+
+msgid "Orbit"
+msgstr ""
+
+msgid "Wave"
+msgstr ""
+
+msgid "Hourglass"
+msgstr ""
+
+msgid "%s views"
+msgstr ""
+
+msgid "%s Failures"
+msgstr ""
+
+msgid "%s Error Log"
+msgstr ""
+
+msgid "Recipient"
+msgstr ""
+
+msgid "%s Details"
+msgstr ""
+
+msgid "No data available for this period"
+msgstr ""
+
+msgid "The entered data does not match the form type. If you are an admin, please review the form type."
+msgstr ""
+
+msgid "Error: Please ensure there is only one form per page."
+msgstr ""
+
+msgid "Your activation code has been verified. Enjoy all Pro features of Flux Forms."
+msgstr ""
+
+msgid "The confirmation code for this message is %s. By clicking the button below, you will be able to track messages and view received responses. If needed, you can also send a new reply."
+msgstr ""
+
+msgid "To explore the full functionality and settings of Flux Forms, including email configurations, form creation options, and other features, simply delve into our %1$s documentation %2$s ."
+msgstr ""
+
+msgid "Responses & Confirmation"
+msgstr ""
+
+msgid "Test emails may land in your spam folder. If emails are not delivered, this is usually related to your hosting or email server configuration.server settings %1$sLearn how to fix email delivery issues%2$s or %3$scontact Flux Forms support%4$s."
+msgstr ""
+
+msgid "From Address"
+msgstr ""
+
+msgid "Make sure this email address matches the one configured in your SMTP settings to prevent email delivery issues."
+msgstr ""
+
+msgid "To preview the form, you need to save the built form and try again."
+msgstr ""
+
+msgid "No selected rows found."
+msgstr ""
+
+msgid "Mark as Read"
+msgstr ""
+
+msgid "Require admin login to view responses"
+msgstr ""
+
+msgid "Development Mode (Sandbox)"
+msgstr ""
+
+msgid "When enabled, uses sandbox/demo servers for PayPal and other services. Disable for production."
+msgstr ""
+
+msgid "After changing the Development Mode (Sandbox) option, save the settings, then deactivate and reactivate Flux Forms plugin from the Plugins page for the changes to take effect."
+msgstr ""
+
+msgid "I have read and agree to %1$sthe terms and conditions%2$s"
+msgstr ""
+
+msgid "Terms"
+msgstr ""
+
+msgid "Preview in new tab"
+msgstr ""
+
+msgid "Maximum date"
+msgstr ""
+
+msgid "Minimum date"
+msgstr ""
+
+msgid "Valid formats: %s"
+msgstr ""
+
+msgid "Zoom"
+msgstr ""
+
+msgid "The map library (OpenStreetMap and Leaflet) loads only on pages that contain a location picker field."
+msgstr ""
+
+msgid "Enable Location Picker in Flux Forms"
+msgstr ""
+
+msgid "Flux Forms cannot display the form because jQuery is not properly loaded. This issue might be due to incorrect jQuery invocation by another plugin or the current website theme."
+msgstr ""
+
+msgid "Telegram Notification Add-on"
+msgstr ""
+
+msgid "The Telegram notification add-on lets you get notifications on your Telegram app whenever you receive new messages or responses"
+msgstr ""
+
+msgid "Enter a location name"
+msgstr ""
+
+msgid "The %1$s pages are currently unavailable. It looks like another plugin is causing a conflict with %1$s . To fix this issue, %2$s contact %1$s support %3$s for assistance or try disabling your plugins one at a time to identify the one causing the conflict."
+msgstr ""
+
+msgid "Send email with submitted form content only"
+msgstr ""
+
+msgid "%s copied!"
+msgstr ""
+
+msgid "The website is not responding; please refresh and try again—saving or submitting is not available until it is restored."
+msgstr ""
+
+msgid "Your session has expired or is no longer valid. Please refresh the page to continue."
+msgstr ""
+
+msgid "Your account has been successfully activated. You can now log in and get started!"
+msgstr ""
+
+msgid "You're all done"
+msgstr ""
+
+msgid "Enter your email to reset your password"
+msgstr ""
+
+msgid "If your email is valid, a password reset link has been sent to your email address."
+msgstr ""
+
+msgid "Auto-Populate"
+msgstr ""
+
+msgid "Auto-populate from previously submitted forms"
+msgstr ""
+
+msgid "Enable Auto-Populate to automatically populate this field"
+msgstr ""
+
+msgid "Select a Form"
+msgstr ""
+
+msgid "Target Fields (Fields to Fill)"
+msgstr ""
+
+msgid "Map API response fields to form fields. The API data will automatically fill these fields."
+msgstr ""
+
+msgid "field"
+msgid_plural "fields"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "API Field Name"
+msgstr ""
+
+msgid "Select Field"
+msgstr ""
+
+msgid "Add API Connection"
+msgstr ""
+
+msgid "Upload the %s file"
+msgstr ""
+
+msgid "CSV"
+msgstr ""
+
+msgid "Dataset"
+msgstr ""
+
+msgid "The %s has been successfully completed"
+msgstr ""
+
+msgid "Rename"
+msgstr ""
+
+msgid "%s not found"
+msgstr ""
+
+msgid "%s Location"
+msgstr ""
+
+msgid "installation"
+msgstr ""
+
+msgid "The %s have been deleted."
+msgstr ""
+
+msgid "The %s field must be correctly filled out to proceed."
+msgstr ""
+
+msgid "Submitted Form"
+msgstr ""
+
+msgid "You can't add reCAPTCHA to payment forms."
+msgstr ""
+
+msgid "Learn more about %s or watch the video tutorial."
+msgstr ""
+
+msgid "Learn more %s"
+msgstr ""
+
+msgid "Google reCAPTCHA"
+msgstr ""
+
+msgid "The connection was interrupted, but don't worry—your edits are safely stored in your browser. Refresh the page to continue working."
+msgstr ""
+
+msgid "There is an auto-saved version of the form available. Do you want to restore it?"
+msgstr ""
+
+msgid "SMS notification could not be sent. Check if the SMS plugin is installed and configured properly."
+msgstr ""
+
+msgid "Your request was completed successfully. %1$s %2$s"
+msgstr ""
+
+msgid "PayPal"
+msgstr ""
+
+msgid "To use %1$s features in your forms, you need to get your %2$s keys."
+msgstr ""
+
+msgid "Go to the add-ons page in the Flux Forms plugin, install the %s add-on, and try again."
+msgstr ""
+
+msgid "To create a payment form to collect online payments, install a payment add-on such as the %s Add-on first."
+msgstr ""
+
+msgid "Activated"
+msgstr ""
+
+msgid "Thank"
+msgstr ""
+
+msgid "The %s plugin may interfere with Flux Forms form functionality. If you encounter any issues with the forms, disable caching for the Flux Forms plugin in the %s settings."
+msgstr ""
+
+msgid "Remind me later"
+msgstr ""
+
+msgid "Got it, don't show again"
+msgstr ""
+
+msgid "The value of the %1$s field does not match the pattern and must be at least %2$s characters."
+msgstr ""
+
+msgid "The value of the %1$s field does not match the pattern and must be at most %2$s characters."
+msgstr ""
+
+msgid "Please enter valid value for the %s field."
+msgstr ""
+
+msgid "%s list"
+msgstr ""
+
+msgid "The uploaded file exceeds the allowable limit of %s MB."
+msgstr ""
+
+msgid "The uploaded file is below the required minimum size of %s MB."
+msgstr ""
+
+msgid "Review the entered values in the %s tab. This message appeared because an error was detected."
+msgstr ""
+
+msgid "Are you sure you want to duplicate the \"%s\" ?"
+msgstr ""
+
+msgid "We are sorry, the booking time for the %s option has expired. Please choose from the other available options."
+msgstr ""
+
+msgid "We are sorry, the %s option is currently at full capacity. Please choose from the other available options."
+msgstr ""
+
+msgid "%s Payment Add-on"
+msgstr ""
+
+msgid "The %s add-on for Flux Forms enables you to integrate your WordPress site with %s for payment processing, donations, and online orders."
+msgstr ""
+
+msgid "Activation Code"
+msgstr ""
+
+msgid "Want to use this feature? It is included in Free Plus and Pro plans."
+msgstr ""
+
+msgid "Free Plus Guide"
+msgstr ""
+
+msgid "A Pro version feature"
+msgstr ""
+
+msgid "Free Plus unlocks this too"
+msgstr ""
+
+msgid "Unlocked by a free activation, which is enough for this feature."
+msgstr ""
+
+msgid "Every feature, with no limits, and support included."
+msgstr ""
+
+msgid "Search Results"
+msgstr ""
+
+msgid "Found %s %s for: \"%s\""
+msgstr ""
+
+msgid "result"
+msgstr ""
+
+msgid "results"
+msgstr ""
+
+msgid "No results found for:"
+msgstr ""
+
+msgid "Found %1$s %2$s for"
+msgstr ""
+
+msgid "Session Duration"
+msgstr ""
+
+msgid "Set how long form security tokens remain valid. Longer durations provide better user experience but may reduce security."
+msgstr ""
+
+msgid "%s Day"
+msgstr ""
+
+msgid "%s Days"
+msgstr ""
+
+msgid "Select Duration"
+msgstr ""
+
+msgid "Choose the style for the %s."
+msgstr ""
+
+msgid "%1$s + %2$s"
+msgstr ""
+
+msgid "%1$s %2$s & %3$s"
+msgstr ""
+
+msgid "Letters"
+msgstr ""
+
+msgid "Unique Number (date-based)"
+msgstr ""
+
+msgid "Colors & Fonts"
+msgstr ""
+
+msgid "Customize colors and fonts of the response viewer to match your brand."
+msgstr ""
+
+msgid "Primary"
+msgstr ""
+
+msgid "Primary Dark"
+msgstr ""
+
+msgid "Accent"
+msgstr ""
+
+msgid "Muted Text"
+msgstr ""
+
+msgid "Card Background"
+msgstr ""
+
+msgid "Meta Background"
+msgstr ""
+
+msgid "Reset to Defaults"
+msgstr ""
+
+msgid "Customize Colors"
+msgstr ""
+
+msgid "Live Preview"
+msgstr ""
+
+msgid "Tracker Background"
+msgstr ""
+
+msgid "Response Area Background"
+msgstr ""
+
+msgid "Editor Background"
+msgstr ""
+
+msgid "Editor Text"
+msgstr ""
+
+msgid "Button Text"
+msgstr ""
+
+msgid "Font Family"
+msgstr ""
+
+msgid "Default (Inherit)"
+msgstr ""
+
+msgid "Font Size"
+msgstr ""
+
+msgid "Custom Font"
+msgstr ""
+
+msgid "Font Name"
+msgstr ""
+
+msgid "Font URL (CSS/Google Fonts)"
+msgstr ""
+
+msgid "Add your own font by entering the font name and its CSS URL (e.g. Google Fonts link)."
+msgstr ""
+
+msgid "Click any part of the preview to edit the colors of that part."
+msgstr ""
+
+msgid "Click the preview to select a part"
+msgstr ""
+
+msgid "Presets"
+msgstr ""
+
+msgid "Parts"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Brand"
+msgstr ""
+
+msgid "Your brand color"
+msgstr ""
+
+msgid "Primary and primary dark are derived from it"
+msgstr ""
+
+msgid "Brand & buttons"
+msgstr ""
+
+msgid "Message card"
+msgstr ""
+
+msgid "Response area"
+msgstr ""
+
+msgid "Code finder"
+msgstr ""
+
+msgid "Font"
+msgstr ""
+
+msgid "Reset this part"
+msgstr ""
+
+msgid "Reset all"
+msgstr ""
+
+msgid "Conversation"
+msgstr ""
+
+msgid "Reply form"
+msgstr ""
+
+msgid "These settings apply to the public response box only; the admin panel always keeps the default palette."
+msgstr ""
+
+msgid "Save changes"
+msgstr ""
+
+msgid "Your color changes have not been saved yet. Close and lose them?"
+msgstr ""
+
+msgid "Everything is saved"
+msgstr ""
+
+msgid "1 unsaved change"
+msgstr ""
+
+msgid "%s unsaved changes"
+msgstr ""
+
+msgid "Buttons, icons, field labels"
+msgstr ""
+
+msgid "End of button gradients"
+msgstr ""
+
+msgid "Rating stars and payment totals"
+msgstr ""
+
+msgid "Label and icon on colored buttons"
+msgstr ""
+
+msgid "Field values and message body"
+msgstr ""
+
+msgid "Dates, hints, secondary titles"
+msgstr ""
+
+msgid "The message card surface"
+msgstr ""
+
+msgid "Date bar and editor toolbar"
+msgstr ""
+
+msgid "Behind all cards"
+msgstr ""
+
+msgid "The code lookup card"
+msgstr ""
+
+msgid "Reply box and code input"
+msgstr ""
+
+msgid "What the user types"
+msgstr ""
+
+msgid "Field placeholder text"
+msgstr ""
+
+msgid "Your reply"
+msgstr ""
+
+msgid "Order follow-up"
+msgstr ""
+
+msgid "Hi, I placed my order last week and still have no tracking code. Could you check it?"
+msgstr ""
+
+msgid "Attach"
+msgstr ""
+
+msgid "Plan Management"
+msgstr ""
+
+msgid "Choose a plan or upgrade to unlock advanced features."
+msgstr ""
+
+msgid "Change Plan"
+msgstr ""
+
+msgid "Click to view and choose from Free, Free Plus, or Pro plans."
+msgstr ""
+
+msgid "Current Plan"
+msgstr ""
+
+msgid "Header"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Text Block"
+msgstr ""
+
+msgid "Message Content"
+msgstr ""
+
+msgid "Button"
+msgstr ""
+
+msgid "Divider"
+msgstr ""
+
+msgid "Spacer"
+msgstr ""
+
+msgid "Two Columns"
+msgstr ""
+
+msgid "Social Links"
+msgstr ""
+
+msgid "Footer"
+msgstr ""
+
+msgid "Custom HTML"
+msgstr ""
+
+msgid "Professional"
+msgstr ""
+
+msgid "Modern Dark"
+msgstr ""
+
+msgid "Minimal Clean"
+msgstr ""
+
+msgid "Elegant"
+msgstr ""
+
+msgid "Colorful"
+msgstr ""
+
+msgid "Layout"
+msgstr ""
+
+msgid "Shortcodes"
+msgstr ""
+
+msgid "Drag blocks here to build your email template"
+msgstr ""
+
+msgid "or choose a template from the Templates panel"
+msgstr ""
+
+msgid "Select a block to edit its properties"
+msgstr ""
+
+msgid "Move Up"
+msgstr ""
+
+msgid "Move Down"
+msgstr ""
+
+msgid "Background (CSS)"
+msgstr ""
+
+msgid "Image URL"
+msgstr ""
+
+msgid "Width (px)"
+msgstr ""
+
+msgid "Alt Text"
+msgstr ""
+
+msgid "Font Size (px)"
+msgstr ""
+
+msgid "Title Text"
+msgstr ""
+
+msgid "Weight"
+msgstr ""
+
+msgid "Line Height"
+msgstr ""
+
+msgid "Link URL"
+msgstr ""
+
+msgid "Background"
+msgstr ""
+
+msgid "Text Color"
+msgstr ""
+
+msgid "Border Radius (px)"
+msgstr ""
+
+msgid "Inner Padding"
+msgstr ""
+
+msgid "Outer Padding"
+msgstr ""
+
+msgid "Thickness (px)"
+msgstr ""
+
+msgid "Width (%)"
+msgstr ""
+
+msgid "Height (px)"
+msgstr ""
+
+msgid "Width Unit"
+msgstr ""
+
+msgid "Left Column"
+msgstr ""
+
+msgid "Right Column"
+msgstr ""
+
+msgid "Left Text Color"
+msgstr ""
+
+msgid "Right Text Color"
+msgstr ""
+
+msgid "Gap (px)"
+msgstr ""
+
+msgid "Add Link"
+msgstr ""
+
+msgid "Footer Text"
+msgstr ""
+
+msgid "Header Children"
+msgstr ""
+
+msgid "Links"
+msgstr ""
+
+msgid "Insert shortcode:"
+msgstr ""
+
+msgid "Message *"
+msgstr ""
+
+msgid "Site Name"
+msgstr ""
+
+msgid "Site URL"
+msgstr ""
+
+msgid "Admin Email"
+msgstr ""
+
+msgid "Form data"
+msgstr ""
+
+msgid "Form name"
+msgstr ""
+
+msgid "Blog name"
+msgstr ""
+
+msgid "Home URL"
+msgstr ""
+
+msgid "Admin email"
+msgstr ""
+
+msgid "shortcode_message is required!"
+msgstr ""
+
+msgid "Template must contain shortcode_message!"
+msgstr ""
+
+msgid "Template exported!"
+msgstr ""
+
+msgid "HTML code applied!"
+msgstr ""
+
+msgid "Are you sure you want to reset the email template? This cannot be undone."
+msgstr ""
+
+msgid "Template reset to default!"
+msgstr ""
+
+msgid "Form content appears here"
+msgstr ""
+
+msgid "Add image URL"
+msgstr ""
+
+msgid "Unknown block"
+msgstr ""
+
+msgid "Undo"
+msgstr ""
+
+msgid "Redo"
+msgstr ""
+
+msgid "Blocks"
+msgstr ""
+
+msgid "Properties"
+msgstr ""
+
+msgid "HTML Source Code"
+msgstr ""
+
+msgid "Email Background"
+msgstr ""
+
+msgid "Content Background"
+msgstr ""
+
+msgid "Content Width (px)"
+msgstr ""
+
+msgid "Direction"
+msgstr ""
+
+msgid "This block outputs shortcode_message — the submitted form data."
+msgstr ""
+
+msgid "Use email-safe HTML only. No script tags."
+msgstr ""
+
+msgid "blocks"
+msgstr ""
+
+msgid "Copy shortcode"
+msgstr ""
+
+msgid "Copied!"
+msgstr ""
+
+msgid "Shortcode Reference"
+msgstr ""
+
+msgid "Shortcode inserted!"
+msgstr ""
+
+msgid "Select a text block first, or shortcode copied to clipboard."
+msgstr ""
+
+msgid "View Website"
+msgstr ""
+
+msgid "Logo"
+msgstr ""
+
+msgid "Block"
+msgstr ""
+
+msgid "Block actions"
+msgstr ""
+
+msgid "Email template blocks"
+msgstr ""
+
+msgid "Default Font"
+msgstr ""
+
+msgid "— Default —"
+msgstr ""
+
+msgid "Button Background"
+msgstr ""
+
+msgid "Button Text Color"
+msgstr ""
+
+msgid "Icon Color"
+msgstr ""
+
+msgid "Icon Size (px)"
+msgstr ""
+
+msgid "Custom SVG"
+msgstr ""
+
+msgid "Custom SVG Code"
+msgstr ""
+
+msgid "Website"
+msgstr ""
+
+msgid "Link all sides"
+msgstr ""
+
+msgid "Form Title"
+msgstr ""
+
+msgid "Your text here…"
+msgstr ""
+
+msgid "Visit Website"
+msgstr ""
+
+msgid "Left column content"
+msgstr ""
+
+msgid "Right column content"
+msgstr ""
+
+msgid "Sent by shortcode_website_name"
+msgstr ""
+
+msgid "Custom HTML content"
+msgstr ""
+
+msgid "John Doe"
+msgstr ""
+
+msgid "This is a sample form submission."
+msgstr ""
+
+msgid "My Website"
+msgstr ""
+
+msgid "Bold"
+msgstr ""
+
+msgid "Italic"
+msgstr ""
+
+msgid "Underline"
+msgstr ""
+
+msgid "Clear formatting"
+msgstr ""
+
+msgid "Toggle navigation"
+msgstr ""
+
+msgid "View toggle"
+msgstr ""
+
+msgid "Locate Me"
+msgstr ""
+
+msgid "Error fetching address"
+msgstr ""
+
+msgid "Geolocation is not supported by this browser."
+msgstr ""
+
+msgid "verify"
+msgstr ""
+
+msgid "The form cannot be submitted because it requires a payment method, which is currently missing. If you are the Admin, please add a payment method to the form or change the form type to \"Form\" or \"Survey\"."
+msgstr ""
+
+msgid "Cache Plugin Detected"
+msgstr ""
+
+msgid "The following cache plugins may interfere with form functionality. If you experience issues, please review the documentation."
+msgstr ""
+
+msgid "Version"
+msgstr ""
+
+msgid "Read more about cache compatibility"
+msgstr ""
+
+msgid "Security Plugin Detected"
+msgstr ""
+
+msgid "The following security plugin may block form submissions with 403 errors. It may block the REST API, remove the X-WP-Nonce header, or apply firewall rules to form requests."
+msgstr ""
+
+msgid "Read more about security plugin compatibility"
+msgstr ""
+
+msgid "Auto-Populate Add-on"
+msgstr ""
+
+msgid "The Auto-Populate add-on enables you to automatically populate form fields from datasets, previously submitted forms, or external APIs."
+msgstr ""
+
+msgid "Behavior-based anti-spam and API abuse protection with rate limits and a stop-loss for paid notifications such as SMS, Telegram, email and webhooks."
+msgstr ""
+
+msgid "Google Sheet Add-on"
+msgstr ""
+
+msgid "Automatically send form submissions to your Google Sheets in real time. Connect a service account, map fields to columns, and keep a live, styled spreadsheet of every response — no webhook or browser login required."
+msgstr ""
+
+msgid "Email Server Status"
+msgstr ""
+
+msgid "The test email never arrived"
+msgstr ""
+
+msgid "Your WordPress site cannot send emails reliably. This is a very common hosting issue — the default PHP mail function is often blocked or ends up in spam. Installing an SMTP plugin routes your emails through a verified mail service and fixes this in minutes."
+msgstr ""
+
+msgid "WordPress sent the email - it just never arrived"
+msgstr ""
+
+msgid "Your site handed the message to your mail server successfully, so WordPress and this plugin did their part. It was lost, delayed or rejected afterwards - most often the receiving mailbox filed it as spam, or your host never delivered it from the outbound queue. Sending through an SMTP service, with SPF and DKIM records for your domain, is what fixes this."
+msgstr ""
+
+msgid "The message never left your website: WordPress returned an error while sending it. Install and configure an SMTP plugin, or ask your host whether PHP mail is disabled."
+msgstr ""
+
+msgid "Your emails arrive, but will most likely land in spam"
+msgstr ""
+
+msgid "Delivery itself works - the test message reached us. What is missing is trust: sending through an SMTP service and adding SPF and DKIM records for your domain is what moves your emails from the spam folder to the inbox."
+msgstr ""
+
+msgid "The test email was delivered with a deliverability score of %1$s out of 100. Under %2$s, most mailboxes file messages in the spam folder, so the people filling in your forms may never see them."
+msgstr ""
+
+msgid "Step-by-step SMTP setup guide"
+msgstr ""
+
+msgid "Your email server is working. A detailed HTML report has been sent to %s."
+msgstr ""
+
+msgid "your admin email address"
+msgstr ""
+
+msgid "Spam Score Report on the Way!"
+msgstr ""
+
+msgid "A complete email health report — including your spam score, deliverability details, and recommendations — will be sent to %s within the next few minutes."
+msgstr ""
+
+msgid "Email notifications may not be delivered"
+msgstr ""
+
+msgid "This form's email notification feature is enabled, but email delivery has not been verified and the latest spam score is %s/100. The form was saved, but admin notification emails may not reach you until SMTP/email delivery is fixed."
+msgstr ""
+
+msgid "Notification emails are turned off"
+msgstr ""
+
+msgid "Flux Forms will not send any email — neither to you nor to the person who submits this form — until \"This site can send emails\" is enabled in Email Settings."
+msgstr ""
+
+msgid "Enable email sending"
+msgstr ""
+
+msgid "Click \"Check Email Server\" to test delivery, turn this switch on, then press Save."
+msgstr ""
+
+msgid "Delivery is taking longer than expected"
+msgstr ""
+
+msgid "WordPress sent the test email, but our server has not received it yet. This may be a temporary delay. Check the diagnostics below to troubleshoot."
+msgstr ""
+
+msgid "Prepare Test"
+msgstr ""
+
+msgid "Connecting to WhiteStudio to generate a unique test email address."
+msgstr ""
+
+msgid "WordPress Sends the Email"
+msgstr ""
+
+msgid "WordPress hands a real message to your mail server. A tick here means WordPress sent it, not yet that it arrived."
+msgstr ""
+
+msgid "Waiting for Delivery"
+msgstr ""
+
+msgid "Checking whether the test email arrived at our server (usually takes a few seconds)."
+msgstr ""
+
+msgid "Quick Result"
+msgstr ""
+
+msgid "Showing the first delivery result — you will see right away if email is working."
+msgstr ""
+
+msgid "Full Report"
+msgstr ""
+
+msgid "A detailed HTML report with full diagnostics is being prepared and emailed to you."
+msgstr ""
+
+msgid "Finished"
+msgstr ""
+
+msgid "%s of 5 steps done"
+msgstr ""
+
+msgid "Step %s of 5"
+msgstr ""
+
+msgid "/ 100"
+msgstr ""
+
+msgid "Test started"
+msgstr ""
+
+msgid "A unique address is being generated for this test."
+msgstr ""
+
+msgid "Waiting for the email to arrive"
+msgstr ""
+
+msgid "We check our server every few seconds. Please keep this page open."
+msgstr ""
+
+msgid "Your email server is healthy"
+msgstr ""
+
+msgid "The test email arrived, and the subject and unique-code checks both passed."
+msgstr ""
+
+msgid "Delivered, but likely to be filtered as spam"
+msgstr ""
+
+msgid "Delivered, but deliverability is weak"
+msgstr ""
+
+msgid "No email arrived"
+msgstr ""
+
+msgid "Nothing was received during the test window, so your server most likely cannot send email."
+msgstr ""
+
+msgid "The test timed out"
+msgstr ""
+
+msgid "The test reached its time limit. Your server may be slow, or may block outbound email."
+msgstr ""
+
+msgid "The test email could not be sent"
+msgstr ""
+
+msgid "WordPress returned an error while sending. See the message below."
+msgstr ""
+
+msgid "The connection was lost"
+msgstr ""
+
+msgid "No answer came back from the server. Refresh the page and try again."
+msgstr ""
+
+msgid "This test needs a higher plan"
+msgstr ""
+
+msgid "Upgrade your plan to run the full delivery test."
+msgstr ""
+
+msgid "Your email server is working. A detailed HTML report has been sent to"
+msgstr ""
+
+msgid "A complete email health report — including your spam score, deliverability details, and recommendations — will be sent within the next few minutes to"
+msgstr ""
+
+msgid "Upgrade required"
+msgstr ""
+
+msgid "An auto-saved version exists"
+msgstr ""
+
+msgid "Restore it"
+msgstr ""
+
+msgid "Start fresh"
+msgstr ""
+
+msgid "Last saved"
+msgstr ""
+
+msgid "Delivery Details"
+msgstr ""
+
+msgid "Test sent to"
+msgstr ""
+
+msgid "Email subject"
+msgstr ""
+
+msgid "Sender address"
+msgstr ""
+
+msgid "Email received"
+msgstr ""
+
+msgid "Subject matched"
+msgstr ""
+
+msgid "Unique code verified"
+msgstr ""
+
+msgid "Time waited"
+msgstr ""
+
+msgid "Max wait time"
+msgstr ""
+
+msgid "Failure reason"
+msgstr ""
+
+msgid "Diagnosis & Troubleshooting"
+msgstr ""
+
+msgid "Possible causes"
+msgstr ""
+
+msgid "What to check next"
+msgstr ""
+
+msgid "Recommendations"
+msgstr ""
+
+msgid "Score: %s"
+msgstr ""
+
+msgid "Upgrade"
+msgstr ""
+
+msgid "The test timed out. Please try again — your server may be slow or blocking outgoing mail."
+msgstr ""
+
+msgid "Waiting for the test email to arrive…"
+msgstr ""
+
+msgid "Email is on its way — still waiting for delivery confirmation."
+msgstr ""
+
+msgid "No email arrived during the test window."
+msgstr ""
+
+msgid "Still checking — please wait a moment…"
+msgstr ""
+
+msgid "Starting email delivery test…"
+msgstr ""
+
+msgid "WordPress accepted and sent the message. Waiting for it to arrive…"
+msgstr ""
+
+msgid "Connection error. Please refresh the page and try again. (Code: %s)"
+msgstr ""
+
+msgid "Full Name"
+msgstr ""
+
+msgid "Email Address"
+msgstr ""
+
+msgid "Area Code"
+msgstr ""
+
+msgid "City"
+msgstr ""
+
+msgid "Comment"
+msgstr ""
+
+msgid "Personal Information"
+msgstr ""
+
+msgid "Street Address"
+msgstr ""
+
+msgid "Street Address Line 2"
+msgstr ""
+
+msgid "State / Province"
+msgstr ""
+
+msgid "Select a Vehicle"
+msgstr ""
+
+msgid "Pickup Date"
+msgstr ""
+
+msgid "Pickup Address"
+msgstr ""
+
+msgid "Pickup City"
+msgstr ""
+
+msgid "Pickup State / Province"
+msgstr ""
+
+msgid "Dropoff Date"
+msgstr ""
+
+msgid "Dropoff Address"
+msgstr ""
+
+msgid "Dropoff City"
+msgstr ""
+
+msgid "Dropoff State / Province"
+msgstr ""
+
+msgid "Select a Date"
+msgstr ""
+
+msgid "ex: example@mail.com"
+msgstr ""
+
+msgid "How can we help you?"
+msgstr ""
+
+msgid "Somewhat"
+msgstr ""
+
+msgid "Not Observed"
+msgstr ""
+
+msgid "Male"
+msgstr ""
+
+msgid "Female"
+msgstr ""
+
+msgid "English"
+msgstr ""
+
+msgid "French"
+msgstr ""
+
+msgid "German"
+msgstr ""
+
+msgid "Russian"
+msgstr ""
+
+msgid "Portuguese"
+msgstr ""
+
+msgid "Hindi"
+msgstr ""
+
+msgid "Pasta"
+msgstr ""
+
+msgid "Pizza"
+msgstr ""
+
+msgid "Fish and seafood"
+msgstr ""
+
+msgid "Vegetables"
+msgstr ""
+
+msgid "General question"
+msgstr ""
+
+msgid "Feature request"
+msgstr ""
+
+msgid "Bug report"
+msgstr ""
+
+msgid "My account"
+msgstr ""
+
+msgid "Comments"
+msgstr ""
+
+msgid "Questions"
+msgstr ""
+
+msgid "Bug Reports"
+msgstr ""
+
+msgid "Feature Request"
+msgstr ""
+
+msgid "Vegetarian"
+msgstr ""
+
+msgid "Vegan"
+msgstr ""
+
+msgid "Kosher"
+msgstr ""
+
+msgid "Gluten-free"
+msgstr ""
+
+msgid "Limousine"
+msgstr ""
+
+msgid "Executive Limousine"
+msgstr ""
+
+msgid "SUV Limousine"
+msgstr ""
+
+msgid "COUPE"
+msgstr ""
+
+msgid "SPORTS CAR"
+msgstr ""
+
+msgid "CONVERTIBLE"
+msgstr ""
+
+msgid "Cut - Shape"
+msgstr ""
+
+msgid "Curly Cut"
+msgstr ""
+
+msgid "Hair Color"
+msgstr ""
+
+msgid "Any special instructions?"
+msgstr ""
+
+msgid "Additional Information"
+msgstr ""
+
+msgid "Position Applying For"
+msgstr ""
+
+msgid "Your Name"
+msgstr ""
+
+msgid "Not Sure"
+msgstr ""
+
+msgid "Accounting & Sell question"
+msgstr ""
+
+msgid "Technical & support question"
+msgstr ""
+
+msgid "Highlights"
+msgstr ""
+
+msgid "Twist-Out"
+msgstr ""
+
+msgid "Trim"
+msgstr ""
+
+msgid "Two-Strand Twists"
+msgstr ""
+
+msgid "Nail Polish"
+msgstr ""
+
+msgid "Nail Care"
+msgstr ""
+
+msgid "Make-up"
+msgstr ""
+
+msgid "Iron/Curling"
+msgstr ""
+
+msgid "Treatments"
+msgstr ""
+
+msgid "Shampoo & Blowdry"
+msgstr ""
+
+msgid "Straightening and Perming"
+msgstr ""
+
+msgid "Wash & Go"
+msgstr ""
+
+msgid "Waxing"
+msgstr ""
+
+msgid "Flyer"
+msgstr ""
+
+msgid "Business Card"
+msgstr ""
+
+msgid "Post Card"
+msgstr ""
+
+msgid "Brochure (trifold)"
+msgstr ""
+
+msgid "Banner"
+msgstr ""
+
+msgid "Mains"
+msgstr ""
+
+msgid "Salad"
+msgstr ""
+
+msgid "Dessert"
+msgstr ""
+
+msgid "Drinks"
+msgstr ""
+
+msgid "Sides/Appetizers"
+msgstr ""
+
+msgid "Average"
+msgstr ""
+
+msgid "Avg Length"
+msgstr ""
+
+msgid "Offline Forms"
+msgstr ""
+
+msgid "Persia Payment"
+msgstr ""
+
+msgid "Persian Date Picker"
+msgstr ""
+
+msgid "Arabic Date Picker"
+msgstr ""
+
+msgid "Google Sheets"
+msgstr ""
+
+msgid "Conditional Logic"
+msgstr ""
+
+msgid "Your subscription needs renewing before the missing add-ons can be restored."
+msgstr ""
+
+msgid "The missing add-on files could not be restored. Check the server connection and file permissions, then try again."
+msgstr ""
+
+msgid "You do not have permission to do this."
+msgstr ""
+
+msgid "All required add-ons were restored."
+msgstr ""
+
+msgid "Finish updating Flux Forms"
+msgstr ""
+
+msgid "Some add-on files are missing"
+msgstr ""
+
+msgid "The plugin was updated, so its add-ons must be reinstalled before this page can load. Click the button below to install them."
+msgstr ""
+
+msgid "One or more add-on files are missing. Click the button below to reinstall them."
+msgstr ""
+
+msgid "Automatic recovery was attempted but did not finish. Review the reason below, fix it if necessary, then try again."
+msgstr ""
+
+msgid "Recover add-ons"
+msgstr ""
+
+msgid "Installing add-ons…"
+msgstr ""
+
+msgid "Installation complete."
+msgstr ""
+
+msgid "Click to activate the add-ons."
+msgstr ""
+
+msgid "Activate add-ons"
+msgstr ""
+
+msgid "Installation failed. Please try again."
+msgstr ""
+
+msgid "Missing add-ons:"
+msgstr ""
+
+msgid "Why the recovery failed"
+msgstr ""
+
+msgid "Preparing your form"
+msgstr ""
+
+msgid "Add-ons restored successfully"
+msgstr ""
+
+msgid "The form is being prepared. This page will reload automatically."
+msgstr ""
+
+msgid "The page will reload automatically so the restored add-ons can be activated."
+msgstr ""
+
+msgid "Reload now"
+msgstr ""
+
+msgid "This form is temporarily unavailable."
+msgstr ""
+
+msgid "We could not restore a required form component automatically. Please try again shortly; the site administrator can view the exact recovery error in Flux Forms."
+msgstr ""
+
+msgid "The add-on is already installed."
+msgstr ""
+
+msgid "Error: server (%s) responded with an invalid request. responded code: %s"
+msgstr ""
+
+msgid "Your Easy Form Builder Pro subscription has expired, so the Pro add-ons could not be downloaded. The plugin keeps working without them. Renew your subscription to restore all Pro features:"
+msgstr ""
+
+msgid "The version of the add-on is not compatible with the version of the Flux Forms plugin."
+msgstr ""
+
+msgid "To fix this, sign in to your %s, download the Add-ons Handler plugin from the Downloads section, then install and activate it. After that, activate the add-ons you need from the Add-ons Handler plugin."
+msgstr ""
+
+msgid "WhiteStudio dashboard"
+msgstr ""
+
+msgid "This bundled add-on is missing from the plugin files."
+msgstr ""
+
+msgid "The add-on server returned an unexpected response."
+msgstr ""
+
+msgid "The add-on could not be installed."
+msgstr ""
+
+msgid "The add-on server did not provide a download URL."
+msgstr ""
+
+msgid "The add-on download URL is not an approved Flux Forms source."
+msgstr ""
+
+msgid "Your server could not reach %1$s, so the add-on could not be downloaded. This is almost always a firewall on your hosting blocking the outgoing request, not a problem with your licence. To install add-ons without any download at all, sign in at %2$s and download the Flux Forms Add-ons Handler plugin, then install it like any other plugin. It contains every add-on your licence covers."
+msgstr ""
+
+msgid "If you would rather fix the connection, ask your hosting provider why outgoing requests from %s are being blocked."
+msgstr ""
+
+msgid "Flux Forms: add-on downloads are being blocked"
+msgstr ""
+
+msgid "Add-on affected: %s"
+msgstr ""
+
+msgid "No response was recorded for this add-on."
+msgstr ""
+
+msgid "Writable"
+msgstr ""
+
+msgid "Not writable — the add-on folder cannot be created or extracted into."
+msgstr ""
+
+msgid "Blocked by WP_HTTP_BLOCK_EXTERNAL — outgoing requests are disabled on this site."
+msgstr ""
+
+msgid "DISABLE_WP_CRON is on — background retries only run if a server cron task calls wp-cron.php."
+msgstr ""
+
+msgid "Site"
+msgstr ""
+
+msgid "Page that needed it"
+msgstr ""
+
+msgid "Plugin version"
+msgstr ""
+
+msgid "WordPress"
+msgstr ""
+
+msgid "Add-on folder"
+msgstr ""
+
+msgid "Outgoing requests"
+msgstr ""
+
+msgid "WP-Cron"
+msgstr ""
+
+msgid "Attempts made"
+msgstr ""
+
+msgid "Flux Forms could not reinstall its add-on files automatically. Forms that rely on those add-ons are showing a temporary message to visitors until this is resolved."
+msgstr ""
+
+msgid "What is missing"
+msgstr ""
+
+msgid "Diagnostics"
+msgstr ""
+
+msgid "What to do next"
+msgstr ""
+
+msgid "Open Flux Forms in your dashboard and use the Recover add-ons button."
+msgstr ""
+
+msgid "If the add-on folder is not writable, ask your host to allow writing to the plugin folder."
+msgstr ""
+
+msgid "If outgoing requests are blocked, ask your host to allow connections to the Flux Forms update server."
+msgstr ""
+
+msgid "If your Pro subscription has expired, renew it to restore the Pro add-ons."
+msgstr ""
+
+msgid "Cannot install add-ons of Flux Forms because the plugin is not able to connect to the whitestudio.team server"
+msgstr ""
+
+msgid "One of the free features"
+msgstr ""
+
+msgid "Important: Caching Plugin May Affect Flux Forms"
+msgstr ""
+
+msgid "The following caching plugins are active on your site:"
+msgstr ""
+
+msgid "Plugin Name"
+msgstr ""
+
+msgid "Slug"
+msgstr ""
+
+msgid "Please note that these plugins may affect the functionality of Flux Forms."
+msgstr ""
+
+msgid "If you experience any issues, please exclude the page where your form is published from caching or disable these plugins. For detailed guidance on how to set up this exclusion, please refer to the documentation of the respective caching plugin."
+msgstr ""
+
+msgid "Sent by"
+msgstr ""
+
+msgid "Action needed: Flux Forms Pro is paused on %s"
+msgstr ""
+
+msgid "Flux Forms could not confirm your Pro licence for %1$s days in a row, so the Pro features on %2$s are paused for now."
+msgstr ""
+
+msgid "Your forms, entries and settings are untouched, every free feature keeps working, and your activation code is still stored &mdash; nothing was deleted."
+msgstr ""
+
+msgid "Open %1$sYT Form &rarr; Settings%2$s and press %1$sSave%2$s. That checks the licence again straight away; if the connection is back, Pro switches on within a minute."
+msgstr ""
+
+msgid "Still paused? Ask your hosting provider to allow outgoing HTTPS connections to %s &mdash; a firewall, proxy or regional block is the usual cause &mdash; then repeat step 1."
+msgstr ""
+
+msgid "If your subscription has expired, or you moved this website to a new domain, %1$srenew or re-activate your licence%2$s and paste the new code into Settings."
+msgstr ""
+
+msgid "Reason"
+msgstr ""
+
+msgid "First failed check"
+msgstr ""
+
+msgid "Grace period"
+msgstr ""
+
+msgid "%s days"
+msgstr ""
+
+msgid "Activation code"
+msgstr ""
+
+msgid "Error code"
+msgstr ""
+
+msgid "How to bring Pro back"
+msgstr ""
+
+msgid "Check my licence now"
+msgstr ""
+
+msgid "Still stuck? Send the details above to %1$sour support team%2$s and we will take it from there."
+msgstr ""
+
+msgid "The licence server answered with an error and could not confirm your licence."
+msgstr ""
+
+msgid "Your website could not reach the licence server &mdash; almost always a network, firewall or DNS restriction on the hosting side."
+msgstr ""
+
+msgid "The licence server&rsquo;s answer arrived damaged, usually because a security plugin, proxy or CDN changed it on the way."
+msgstr ""
+
+msgid "The licence check could not be completed."
+msgstr ""
+
+msgid "Your activation code has expired!"
+msgstr ""
+
+msgid "Your Easy Form Builder Pro subscription has expired. To continue using the %s add-on and all Pro features, please renew your subscription."
+msgstr ""
+
+msgid "Pro Version Required"
+msgstr ""
+
+msgid "The %s add-on is a Pro feature. Please upgrade to Flux Forms Pro to access this functionality."
+msgstr ""
+
+msgid "Your Easy Form Builder Pro subscription has expired. To continue enjoying all Pro features and keep your forms running, %1$sRenew your subscription now.%2$s"
+msgstr ""
+
+msgid "If your emails are not being delivered, try using an SMTP plugin. For more information, %1$s click here %2$s or contact our %3$s support team %4$s."
+msgstr ""
+
+msgid "View Messages"
+msgstr ""
+
+msgid "Hello!"
+msgstr ""
+
+msgid "New Message"
+msgstr ""
+
+msgid "New message received"
+msgstr ""
+
+msgid "We received your message"
+msgstr ""
+
+msgid "This email was sent automatically. Please do not reply."
+msgstr ""
+
+msgid "Built with %1$sYT Form%2$s by %3$sWhiteStudio.team%4$s"
+msgstr ""
+
+msgid "Weekly Flux Forms report"
+msgstr ""
+
+msgid "Pro features are paused"
+msgstr ""
+
+msgid "Congratulations! Email System Working"
+msgstr ""
+
+msgid "Your server has successfully sent this test email. The email delivery system is properly configured and functioning."
+msgstr ""
+
+msgid "Email Delivery Tips"
+msgstr ""
+
+msgid "Form submitted successfully without tracking."
+msgstr ""
+
+msgid "Your message has been received and recorded successfully."
+msgstr ""
+
+msgid "Reset Password"
+msgstr ""
+
+msgid "Or copy and paste this link:"
+msgstr ""
+
+msgid "If you did not request this, you can safely ignore it."
+msgstr ""
+
+msgid "Hi"
+msgstr ""
+
+msgid "You have requested to reset your password."
+msgstr ""
+
+msgid "Click the button below to set a new password. This link will be valid for 24 hours."
+msgstr ""
+
+msgid "Verify Email"
+msgstr ""
+
+msgid "Your account has been successfully created!"
+msgstr ""
+
+msgid "Please verify your email address by clicking the button below. This activation link will be valid for 24 hours."
+msgstr ""
+
+msgid "A new user has registered on your website."
+msgstr ""
+
+msgid "The user has been sent a verification email to confirm their account."
+msgstr ""
+
+msgid "This is an alert message regarding a SID validation error. This issue may have occurred due to a plugin conflict or an unauthorized attempt to access the website."
+msgstr ""
+
+msgid "If you receive this email multiple times, it could indicate a recurring issue."
+msgstr ""
+
+msgid "Please contact our support team for assistance."
+msgstr ""
+
+msgid "One or more of the plugins listed below—typically related to caching or security—might be triggering this issue. For troubleshooting, temporarily deactivate them and test your site."
+msgstr ""
+
+msgid "SID Validation Error"
+msgstr ""
+
+msgid "This form does not accept Stripe payments."
+msgstr ""
+
+msgid "This form does not accept online payments."
+msgstr ""
+
+msgid "The currency of this form is not supported."
+msgstr ""
+
+msgid "The payment amount is too large."
+msgstr ""
+
+msgid "Your payment has not been confirmed by Stripe yet. Please wait a moment and try again. If the problem persists, contact the site administrator."
+msgstr ""
+
+msgid "Stripe Payments"
+msgstr ""
+
+msgid "The publishable and secret API keys are set on the plugin Settings page, Payment tab."
+msgstr ""
+
+msgid "Date (UTC)"
+msgstr ""
+
+msgid "Stripe ID"
+msgstr ""
+
+msgid "The Stripe secret key is not configured."
+msgstr ""
+
+msgid "Could not connect to Stripe: %s"
+msgstr ""
+
+msgid "Stripe API error (HTTP %d)."
+msgstr ""
+
+msgid "Show or hide fields and steps based on the answers to other fields. Rules run from the lowest priority number to the highest; when two rules change the same field, the later one wins. A field targeted by a \"Show field\" action stays hidden until its rule matches. Hidden fields are skipped by validation and their values are discarded on the server."
+msgstr ""
+
+msgid "No rules yet. Click \"Add rule\" to create your first IF / THEN rule."
+msgstr ""
+
+msgid "Add some fields to the form first; rules read and change form fields."
+msgstr ""
+
+msgid "Add rule"
+msgstr ""
+
+msgid "Rule"
+msgstr ""
+
+msgid "Rule name"
+msgstr ""
+
+msgid "Priority"
+msgstr ""
+
+msgid "All of these are true (AND)"
+msgstr ""
+
+msgid "Any of these is true (OR)"
+msgstr ""
+
+msgid "Add group"
+msgstr ""
+
+msgid "Add action"
+msgstr ""
+
+msgid "Select a field"
+msgstr ""
+
+msgid "Select a step"
+msgstr ""
+
+msgid "Select a value"
+msgstr ""
+
+msgid "min,max"
+msgstr ""
+
+msgid "YYYY-MM-DD"
+msgstr ""
+
+msgid "Message shown to the visitor"
+msgstr ""
+
+msgid "Visitor is logged in"
+msgstr ""
+
+msgid "Visitor role"
+msgstr ""
+
+msgid "Parameter name"
+msgstr ""
+
+msgid "is"
+msgstr ""
+
+msgid "is not"
+msgstr ""
+
+msgid "does not contain"
+msgstr ""
+
+msgid "is not empty"
+msgstr ""
+
+msgid "is greater than or equal to"
+msgstr ""
+
+msgid "is less than or equal to"
+msgstr ""
+
+msgid "is between"
+msgstr ""
+
+msgid "is not between"
+msgstr ""
+
+msgid "is before"
+msgstr ""
+
+msgid "is after"
+msgstr ""
+
+msgid "is between dates"
+msgstr ""
+
+msgid "Show field"
+msgstr ""
+
+msgid "Hide field"
+msgstr ""
+
+msgid "Show step"
+msgstr ""
+
+msgid "Hide step"
+msgstr ""
+
+msgid "Make field required"
+msgstr ""
+
+msgid "Make field optional"
+msgstr ""
+
+msgid "Enable field"
+msgstr ""
+
+msgid "Disable field"
+msgstr ""
+
+msgid "Block submission"
+msgstr ""
+
+msgid "Conditional logic rules updated. Save the form to keep them."
+msgstr ""
+
+msgid "Incomplete conditions or actions were removed."
+msgstr ""
+
+msgid "A rule hides or shows a field it also reads. That field can never become visible again once hidden."
+msgstr ""
+
+msgid "(deleted field)"
+msgstr ""
+
+msgid "Add-on directory is ready for file operations"
+msgstr ""
+
+msgid "Cannot install addons: %s"
+msgstr ""
+

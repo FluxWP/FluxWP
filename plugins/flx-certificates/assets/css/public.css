@@ -1,0 +1,56 @@
+/* Flux Certificates · herkese açık sertifika sayfası (temanın renkleriyle; dark mode uyumlu) */
+.wp-site-blocks>main.flxs-page,main.flxs-page{margin-block-start:0!important;margin-top:0!important}
+.flxs-page{--g:var(--flx-primary,#0e7a56);--gd:var(--flx-primary-dark,#0a5a40);--ink:var(--flx-ink,#14324a);--tx:var(--flx-text,#4a5b66);--line:var(--flx-line,#dce9e0);--mint:var(--flx-mint,#eaf5ee);--surface:var(--flx-surface,#fff);--leaf:var(--flx-leaf,#6dbe45)}
+.flxs-band{position:relative;isolation:isolate;background:linear-gradient(160deg,var(--g),var(--gd));color:#fff;padding:clamp(34px,6vw,64px) 16px clamp(80px,10vw,120px);text-align:center;overflow:hidden}
+.flxs-band::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.11;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120' fill='none' stroke='white' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 44c0-14 9-22 23-22 0 14-8 23-22 23z'/%3E%3Cpath d='M18 44l12-12'/%3E%3Cpath d='M86 104V90M86 90c-7 0-10-4-10-10 7 0 10 4 10 10zM86 87c6 0 10-3 10-9-6 0-10 3-10 9z'/%3E%3Ccircle cx='96' cy='26' r='2.2'/%3E%3Ccircle cx='34' cy='92' r='1.6'/%3E%3C/svg%3E") 0 0/120px 120px repeat}
+.flxs-band--revoked{background:linear-gradient(160deg,#7a2e2e,#4d1c1c)}
+.flxs-band__in{max-width:860px;margin:0 auto}
+.flxs-band h1{color:#fff;margin:14px 0 6px;font-size:clamp(1.8rem,1.2rem + 2.4vw,3rem);line-height:1.15}
+.flxs-band__name{font-size:clamp(1.1rem,1rem + .6vw,1.5rem);margin:0;opacity:.95;font-weight:600}
+.flxs-band p{color:rgba(255,255,255,.92)}
+.flxs-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);padding:6px 14px;border-radius:99px;font-weight:700;font-size:.85rem;backdrop-filter:blur(4px)}
+.flxs-badge--danger{background:#fff;color:#a32020}
+.flxs-badge--warn{background:rgba(255,255,255,.2)}
+.flxs-wrap{max-width:1180px;margin:clamp(-90px,-8vw,-60px) auto 60px;padding:0 16px;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(280px,1fr);gap:24px;align-items:start;position:relative}
+.flxs-wrap--narrow{display:block;max-width:640px}
+.flxs-cert{margin:0;background:var(--surface);border-radius:18px;padding:clamp(8px,1.4vw,16px);box-shadow:0 20px 60px rgba(10,40,30,.22);position:relative;overflow:hidden}
+.flxs-cert img,.flxs-cert canvas{display:block;width:100%;height:auto;border-radius:10px}
+.flxs-cert.is-revoked img{filter:grayscale(1) opacity(.55)}
+.flxs-cert__stamp{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-14deg);border:6px solid #b32d2e;color:#b32d2e;font-weight:900;font-size:clamp(2rem,6vw,4.5rem);padding:6px 26px;border-radius:12px;letter-spacing:.1em;background:rgba(255,255,255,.8)}
+.flxs-side{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 10px 40px rgba(10,40,30,.08);position:sticky;top:90px}
+.flxs-facts{margin:0 0 16px;display:grid;gap:0}
+.flxs-facts>div{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.flxs-facts dt{color:var(--tx);font-size:.88rem}
+.flxs-facts dd{margin:0;color:var(--ink);font-weight:700;text-align:right;word-break:break-word}
+.flxs-facts code{font-size:.85rem;background:var(--mint);padding:2px 6px;border-radius:6px}
+.flxs-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 10px}
+.flxs-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 14px;border-radius:99px;border:2px solid var(--g);background:transparent;color:var(--g);font-weight:800;font-size:.95rem;cursor:pointer;text-decoration:none;font-family:inherit;transition:transform .15s,background .15s}
+.flxs-btn:hover{transform:translateY(-1px);background:var(--mint)}
+.flxs-btn--primary{background:var(--g);color:#fff}
+.flxs-btn--primary:hover{background:var(--gd);color:#fff}
+.flxs-share{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+.flxs-share a,.flxs-share button{flex:1 1 auto;text-align:center;font-size:.82rem;font-weight:700;padding:8px 10px;border-radius:10px;background:var(--mint);color:var(--ink);text-decoration:none;border:0;cursor:pointer;font-family:inherit}
+.flxs-share .flxs-share__wa{background:#25d366;color:#fff}
+.flxs-share .flxs-share__li{background:#0a66c2;color:#fff}
+.flxs-small{font-size:.8rem;color:var(--tx);margin:0}
+.flxs-note{color:#a32020;font-weight:600}
+/* sorgulama formu */
+.flxs-lookup{background:var(--surface,#fff);border:1px solid var(--line,#dce9e0);border-radius:18px;padding:22px;box-shadow:0 10px 40px rgba(10,40,30,.08)}
+.flxs-wrap--narrow .flxs-lookup{margin-top:0}
+.flxs-lookup label{font-weight:800;font-size:1.2rem;color:var(--ink,#14324a);display:block}
+.flxs-lookup__hint{color:var(--tx,#4a5b66);margin:6px 0 12px;font-size:.92rem}
+.flxs-lookup__row{display:flex;gap:8px;flex-wrap:wrap}
+.flxs-lookup input[type=text]{flex:1 1 220px;padding:12px 14px;border-radius:12px;border:1px solid var(--line,#dce9e0);font:inherit;background:transparent;color:inherit}
+.flxs-lookup button{padding:12px 22px;border-radius:99px;border:0;background:var(--flx-primary,#0e7a56);color:#fff;font-weight:800;cursor:pointer;font:inherit;font-weight:800}
+.flxs-lookup__result{margin:10px 0 0;font-weight:600;color:var(--flx-primary,#0e7a56)}
+.flxs-lookup__result.is-err{color:#b32d2e}
+.flxs-hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}
+.flxs-toast-pub{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#14324a;color:#fff;padding:10px 16px;border-radius:10px;z-index:9999;font-weight:600}
+@media (max-width:900px){
+	.flxs-wrap{grid-template-columns:1fr}
+	.flxs-side{position:static}
+}
+.flxs-cert.is-loading{min-height:240px;background:linear-gradient(90deg,var(--mint) 0,var(--surface) 50%,var(--mint) 100%) 0 0/200% 100%;animation:flxs-sh 1.4s linear infinite}@keyframes flxs-sh{to{background-position:-200% 0}}
+
+/* v1.2.3 */
+.flxs-btn.is-busy{opacity:.65;cursor:progress;pointer-events:none}

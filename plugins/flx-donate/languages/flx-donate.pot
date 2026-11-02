@@ -1,0 +1,4011 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Flux Bagis 1.0.0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: flx-donate\n"
+
+msgid "The payment could not be verified yet."
+msgstr ""
+
+msgid "This payment provider does not support refunds from the site."
+msgstr ""
+
+msgid "The Stripe secret key is not configured."
+msgstr ""
+
+msgid "Could not connect to Stripe: %s"
+msgstr ""
+
+msgid "Stripe API error (HTTP %d)."
+msgstr ""
+
+msgid "No stored card for this recurring donation."
+msgstr ""
+
+msgid "Recurring donation"
+msgstr ""
+
+msgid "The card was not charged."
+msgstr ""
+
+msgid "Link not valid"
+msgstr ""
+
+msgid "This link is not valid. Please contact us to cancel your recurring donation."
+msgstr ""
+
+msgid "%1$s · %2$s"
+msgstr ""
+
+msgid "Recurring donation canceled"
+msgstr ""
+
+msgid "This recurring donation is canceled. No further payments will be taken."
+msgstr ""
+
+msgid "Your recurring donation has been canceled. No further payments will be taken. Thank you for your support."
+msgstr ""
+
+msgid "Do you want to cancel this recurring donation? No further payments will be taken."
+msgstr ""
+
+msgid "Cancel my recurring donation"
+msgstr ""
+
+msgid "Cancel recurring donation"
+msgstr ""
+
+msgid "%s recurring donation could not be charged through iyzico after all attempts and is now past due. The donor was e-mailed."
+msgid_plural "%s recurring donations could not be charged through iyzico after all attempts and are now past due. The donors were e-mailed."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Show them"
+msgstr ""
+
+msgid "Dismiss"
+msgstr ""
+
+msgid "You are not allowed to do this."
+msgstr ""
+
+msgid "API key"
+msgstr ""
+
+msgid "iyzico merchant panel › Settings › Merchant settings. Sandbox keys start with \"sandbox-\"."
+msgstr ""
+
+msgid "Secret key"
+msgstr ""
+
+msgid "Sandbox (test) mode"
+msgstr ""
+
+msgid "Uses sandbox-api.iyzipay.com; no real money is taken. Turn off with live keys."
+msgstr ""
+
+msgid "Payment page"
+msgstr ""
+
+msgid "Popup window (recommended: the form stays open)"
+msgstr ""
+
+msgid "Same tab (redirect to iyzico and back)"
+msgstr ""
+
+msgid "With \"popup\" the donor returns to the open form and the form is sent as usual. When the browser blocks the popup, the same tab is used."
+msgstr ""
+
+msgid "Other currencies"
+msgstr ""
+
+msgid "TRY is always accepted. Add others your iyzico account accepts, comma separated (e.g. USD,EUR)."
+msgstr ""
+
+msgid "Recurring gift without a saved card"
+msgstr ""
+
+msgid "Keep the payment as a one-time donation"
+msgstr ""
+
+msgid "Cancel the payment (like the iyzico Subscription plugin)"
+msgstr ""
+
+msgid "If iyzico does not return a stored card for the first payment of a recurring gift, it cannot be charged again."
+msgstr ""
+
+msgid "Read from the iyzico WooCommerce plugin (WooCommerce › Settings › Payments › iyzico). Values here are used only when that plugin has no keys."
+msgstr ""
+
+msgid "Read from the iyzico WooCommerce Subscription plugin. Values here are used only when it has no keys."
+msgstr ""
+
+msgid "You will enter your card on iyzico's secure payment page. It opens in a new window when you press Pay."
+msgstr ""
+
+msgid "You will enter your card on iyzico's secure payment page and then come back here."
+msgstr ""
+
+msgid "For a recurring donation, keep \"Save my card\" ticked on the iyzico page so the next payments can be taken automatically."
+msgstr ""
+
+msgid "TEST MODE (iyzico sandbox): no real money is taken."
+msgstr ""
+
+msgid "Complete the payment in the iyzico window…"
+msgstr ""
+
+msgid "Show the payment window"
+msgstr ""
+
+msgid "Opening the secure payment page…"
+msgstr ""
+
+msgid "The payment was not completed. You can try again."
+msgstr ""
+
+msgid "Thank you! Your donation has been received."
+msgstr ""
+
+msgid "Confirmation code"
+msgstr ""
+
+msgid "Make another donation"
+msgstr ""
+
+msgid "The payment could not be completed. Please try again or use another card."
+msgstr ""
+
+msgid "iyzico is not configured on this site. Please contact the site administrator."
+msgstr ""
+
+msgid "The currency of this form is not supported."
+msgstr ""
+
+msgid "Donation"
+msgstr ""
+
+msgid "The payment could not be started. Please try again."
+msgstr ""
+
+msgid "Payment not found."
+msgstr ""
+
+msgid "The payment could not be verified. Please contact the site administrator."
+msgstr ""
+
+msgid "Your card could not be saved for the recurring donation, so the payment was canceled and no money was taken. Please try again and keep \"Save my card\" ticked."
+msgstr ""
+
+msgid "Your card could not be saved for the recurring donation. Please contact us; the payment will be refunded."
+msgstr ""
+
+msgid "Your donation was received, but your card was not saved, so it will not repeat automatically."
+msgstr ""
+
+msgid "Too many requests. Please wait a moment and try again."
+msgstr ""
+
+msgid "Back to the form"
+msgstr ""
+
+msgid "Payment received"
+msgstr ""
+
+msgid "Payment not completed"
+msgstr ""
+
+msgid "iyzico is not configured on this site."
+msgstr ""
+
+msgid "This payment cannot be refunded from the site."
+msgstr ""
+
+msgid "This payment has already been refunded."
+msgstr ""
+
+msgid "Enter an amount up to %s."
+msgstr ""
+
+msgid "%1$s was refunded, then iyzico stopped: %2$s"
+msgstr ""
+
+msgid "Recurring donation not found."
+msgstr ""
+
+msgid "Invalid or expired nonce"
+msgstr ""
+
+msgid "No payment provider is available on this site. Please contact the site administrator."
+msgstr ""
+
+msgid "Too many payment attempts. Please wait a few minutes and try again."
+msgstr ""
+
+msgid "Invalid payment data. Please refresh the page and try again."
+msgstr ""
+
+msgid "The payment provider is not configured on this site. Please contact the site administrator."
+msgstr ""
+
+msgid "No payment amount detected. Please review your selected items and try again. If the problem persists, contact support."
+msgstr ""
+
+msgid "Guest"
+msgstr ""
+
+msgid "Payment"
+msgstr ""
+
+msgid "Payment Intent ID is missing"
+msgstr ""
+
+msgid "Your payment has not been confirmed yet. Please wait a moment and try again. If the problem persists, contact the site administrator."
+msgstr ""
+
+msgid "Online payment is not available at the moment. Please try again later or contact us."
+msgstr ""
+
+msgid "Test provider (development only)"
+msgstr ""
+
+msgid "Test outcome"
+msgstr ""
+
+msgid "Approve every payment"
+msgstr ""
+
+msgid "Decline every payment"
+msgstr ""
+
+msgid "No money is taken. Development only."
+msgstr ""
+
+msgid "TEST MODE: no card is charged."
+msgstr ""
+
+msgid "Test provider: the payment was declined."
+msgstr ""
+
+msgid "Publishable key"
+msgstr ""
+
+msgid "Starts with pk_live_ or pk_test_."
+msgstr ""
+
+msgid "Starts with sk_live_, sk_test_ or rk_ (restricted key)."
+msgstr ""
+
+msgid "Webhook signing secret"
+msgstr ""
+
+msgid "Starts with whsec_. Needed for refunds and renewals of recurring gifts to show up here."
+msgstr ""
+
+msgid "Stripe is not configured on this site. Please contact the site administrator."
+msgstr ""
+
+msgid "Your card could not be charged for the recurring donation. Please try another card."
+msgstr ""
+
+msgid "Stripe did not accept the refund."
+msgstr ""
+
+msgid "Stripe is not configured on this site."
+msgstr ""
+
+msgid "Stripe did not cancel the subscription."
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Donor"
+msgstr ""
+
+msgid "Istanbul"
+msgstr ""
+
+msgid "Turkey"
+msgstr ""
+
+msgid "iyzico could not be reached. Please try again."
+msgstr ""
+
+msgid "iyzico gave an unexpected answer (HTTP %d)."
+msgstr ""
+
+msgid "iyzico panel addresses"
+msgstr ""
+
+msgid "In the iyzico merchant panel, open the notification settings, switch payment notifications on and paste this address. iyzico allows one address per merchant; Flux Donate passes WooCommerce notifications on to the iyzico WooCommerce plugin, so the same address serves both."
+msgstr ""
+
+msgid "Merchant notifications URL (İşyeri Bildirimleri Url)"
+msgstr ""
+
+msgid "Subscription notification URLs (Başarılı / Başarısız Abonelik Bildirimleri Url): not needed, leave them off."
+msgstr ""
+
+msgid "They belong to iyzico's own subscription product; Flux Donate renews recurring donations with the saved card and its own scheduled task."
+msgstr ""
+
+msgid "Callback URL (sent automatically with every payment, nothing to paste):"
+msgstr ""
+
+msgid "The iyzico WooCommerce plugin has a webhook key on this site: notifications that are not for Flux Donate are forwarded to it."
+msgstr ""
+
+msgid "Completed"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Trial"
+msgstr ""
+
+msgid "Pending"
+msgstr ""
+
+msgid "Processing"
+msgstr ""
+
+msgid "Amount mismatch"
+msgstr ""
+
+msgid "Past due"
+msgstr ""
+
+msgid "Canceled"
+msgstr ""
+
+msgid "Failed"
+msgstr ""
+
+msgid "Incomplete"
+msgstr ""
+
+msgid "Refunded"
+msgstr ""
+
+msgid "Partly refunded"
+msgstr ""
+
+msgid "Payments"
+msgstr ""
+
+msgid "Payment providers that take the money on your forms, and every payment they recorded."
+msgstr ""
+
+msgid "Configured"
+msgstr ""
+
+msgid "Not configured"
+msgstr ""
+
+msgid "Saved, leave empty to keep it"
+msgstr ""
+
+msgid "Remove the saved value"
+msgstr ""
+
+msgid "Using the value saved in Flux Forms's settings. Enter a value here to replace it."
+msgstr ""
+
+msgid "Take payments with this provider"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Environment"
+msgstr ""
+
+msgid "No keys"
+msgstr ""
+
+msgid "Sandbox (test)"
+msgstr ""
+
+msgid "Live"
+msgstr ""
+
+msgid "Recurring charges"
+msgstr ""
+
+msgid "Charged by Flux Donate's hourly WP-Cron job. Next run: %1$s. Last charge run: %2$s."
+msgstr ""
+
+msgid "Webhook URL"
+msgstr ""
+
+msgid "In the Stripe Dashboard add a webhook endpoint with this URL and the events payment_intent.succeeded, payment_intent.payment_failed, payment_intent.canceled, charge.refunded, customer.subscription.created, customer.subscription.updated, customer.subscription.deleted, invoice.paid and invoice.payment_failed, then save its signing secret above. An endpoint set up earlier for Flux Forms keeps working."
+msgstr ""
+
+msgid "Payment records"
+msgstr ""
+
+msgid "Every payment started on a form, including unfinished ones. Completed ones are also listed under Donations."
+msgstr ""
+
+msgid "No payments yet."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Form"
+msgstr ""
+
+msgid "Provider"
+msgstr ""
+
+msgid "Amount"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Provider reference"
+msgstr ""
+
+msgid "%s record"
+msgid_plural "%s records"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "A Stripe publishable key starts with pk_live_ or pk_test_."
+msgstr ""
+
+msgid "A Stripe secret key starts with sk_live_, sk_test_ or rk_."
+msgstr ""
+
+msgid "A Stripe webhook signing secret starts with whsec_."
+msgstr ""
+
+msgid "Refund / cancel"
+msgstr ""
+
+msgid "Refund this amount to the donor through the payment provider?"
+msgstr ""
+
+msgid "Amount (up to %s)"
+msgstr ""
+
+msgid "Refund"
+msgstr ""
+
+msgid "Cancel this payment at iyzico? This works only on the day of the payment, before it is settled; the whole amount is released to the donor."
+msgstr ""
+
+msgid "Same day only: cancel the payment instead of refunding it."
+msgstr ""
+
+msgid "Cancel payment"
+msgstr ""
+
+msgid "Donation dashboard"
+msgstr ""
+
+msgid "Donations, donors and recurring gifts at a glance."
+msgstr ""
+
+msgid "All donations"
+msgstr ""
+
+msgid "Donors"
+msgstr ""
+
+msgid "My referrals"
+msgstr ""
+
+msgid "Period"
+msgstr ""
+
+msgid "7 days"
+msgstr ""
+
+msgid "30 days"
+msgstr ""
+
+msgid "90 days"
+msgstr ""
+
+msgid "Custom"
+msgstr ""
+
+msgid "From"
+msgstr ""
+
+msgid "To"
+msgstr ""
+
+msgid "Apply"
+msgstr ""
+
+msgid "Export CSV"
+msgstr ""
+
+msgid "Loading…"
+msgstr ""
+
+msgid "The dashboard needs JavaScript."
+msgstr ""
+
+msgid "Sorry, you are not allowed to do that."
+msgstr ""
+
+msgid "Bank transfer"
+msgstr ""
+
+msgid "Cash"
+msgstr ""
+
+msgid "Add donation"
+msgstr ""
+
+msgid "Record a gift received by bank transfer, in cash or another way."
+msgstr ""
+
+msgid "Donations"
+msgstr ""
+
+msgid "Donation type"
+msgstr ""
+
+msgid "No donation type"
+msgstr ""
+
+msgid "Option"
+msgstr ""
+
+msgid "Free amount"
+msgstr ""
+
+msgid "Quantity"
+msgstr ""
+
+msgid "Unit price"
+msgstr ""
+
+msgid "from the donation type"
+msgstr ""
+
+msgid "Leave empty to use the price of the type. A different price needs a reason."
+msgstr ""
+
+msgid "Reason for a different price"
+msgstr ""
+
+msgid "For a free amount. With an option the amount is quantity × unit price."
+msgstr ""
+
+msgid "Currency"
+msgstr ""
+
+msgid "On behalf of"
+msgstr ""
+
+msgid "One name per line, one per unit. Units without a name are given on behalf of the donor."
+msgstr ""
+
+msgid "The donor accepted the proxy (vekâlet) text, version %s"
+msgstr ""
+
+msgid "No proxy (vekâlet) text is saved yet (Settings › Kurban)."
+msgstr ""
+
+msgid "Matched to an existing donor card on phone number or e-mail address."
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Phone"
+msgstr ""
+
+msgid "E-mail"
+msgstr ""
+
+msgid "Privacy notice (KVKK) accepted"
+msgstr ""
+
+msgid "May be contacted by e-mail"
+msgstr ""
+
+msgid "May be contacted by SMS"
+msgstr ""
+
+msgid "Payment method"
+msgstr ""
+
+msgid "Account"
+msgstr ""
+
+msgid "Receipt or transaction no."
+msgstr ""
+
+msgid "Referral"
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "The staff member who brought this donation. They see it under their referrals."
+msgstr ""
+
+msgid "Notes"
+msgstr ""
+
+msgid "Save donation"
+msgstr ""
+
+msgid "Please choose an option of the selected donation type."
+msgstr ""
+
+msgid "Please give a reason for the different unit price."
+msgstr ""
+
+msgid "This option has no price yet. Enter the unit price and a reason."
+msgstr ""
+
+msgid "Please enter an amount."
+msgstr ""
+
+msgid "This donation type needs the donor's proxy (vekâlet) consent."
+msgstr ""
+
+msgid "Something went wrong. Please check the form and try again."
+msgstr ""
+
+msgid "New donation request"
+msgstr ""
+
+msgid "Open a donation on behalf of a donor. The donor gets a payment link and you are the referral."
+msgstr ""
+
+msgid "There is no open donation type yet."
+msgstr ""
+
+msgid "Only for a free amount."
+msgstr ""
+
+msgid "One name per line, one per unit; this name goes on the certificate. Empty = the donor's name."
+msgstr ""
+
+msgid "Phone or e-mail is required: the payment link goes there."
+msgstr ""
+
+msgid "E-mail the payment link to the donor"
+msgstr ""
+
+msgid "The donor pays by card or bank transfer on the payment page. You are told when the donation is paid or cancelled."
+msgstr ""
+
+msgid "Create request"
+msgstr ""
+
+msgid "Hello %1$s, we have received your donation request (%2$s). You can pay here: %3$s"
+msgstr ""
+
+msgid "Request created"
+msgstr ""
+
+msgid "Payment link"
+msgstr ""
+
+msgid "Copied"
+msgstr ""
+
+msgid "Copy link"
+msgstr ""
+
+msgid "Send on WhatsApp"
+msgstr ""
+
+msgid "The payment link was also e-mailed to the donor."
+msgstr ""
+
+msgid "Recurring donations"
+msgstr ""
+
+msgid "Monthly, weekly or yearly gifts charged automatically by the payment provider."
+msgstr ""
+
+msgid "Recurring (monthly)"
+msgstr ""
+
+msgid "monthly value of active ones"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "Name, e-mail, phone, reference…"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "No recurring donations yet"
+msgstr ""
+
+msgid "A recurring donation is created when a payment form is set to charge every day, week, month or year."
+msgstr ""
+
+msgid "%s recurring donation"
+msgid_plural "%s recurring donations"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Interval"
+msgstr ""
+
+msgid "Started"
+msgstr ""
+
+msgid "Next charge"
+msgstr ""
+
+msgid "Gifts"
+msgstr ""
+
+msgid "Actions"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Attempt %1$s of %2$s failed: %3$s"
+msgstr ""
+
+msgid "canceled %s"
+msgstr ""
+
+msgid "Cancel this recurring donation at the payment provider? No further charges will be made."
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "My donors"
+msgstr ""
+
+msgid "People who gave through you. Totals count only the gifts you referred."
+msgstr ""
+
+msgid "One card per person, matched on phone number or e-mail address."
+msgstr ""
+
+msgid "Recurring"
+msgstr ""
+
+msgid "Contact allowed"
+msgstr ""
+
+msgid "Latest gift"
+msgstr ""
+
+msgid "Total given"
+msgstr ""
+
+msgid "Number of gifts"
+msgstr ""
+
+msgid "First gift"
+msgstr ""
+
+msgid "Name, e-mail or phone…"
+msgstr ""
+
+msgid "Show"
+msgstr ""
+
+msgid "Sort by"
+msgstr ""
+
+msgid "No donors found"
+msgstr ""
+
+msgid "Open card"
+msgstr ""
+
+msgid "%s donor"
+msgid_plural "%s donors"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Donor not found"
+msgstr ""
+
+msgid "Donor card"
+msgstr ""
+
+msgid "Donor since %s"
+msgstr ""
+
+msgid "Average gift"
+msgstr ""
+
+msgid "All gifts"
+msgstr ""
+
+msgid "See all %s gifts"
+msgstr ""
+
+msgid "No gifts yet."
+msgstr ""
+
+msgid "No recurring donation."
+msgstr ""
+
+msgid "Certificates"
+msgstr ""
+
+msgid "View"
+msgstr ""
+
+msgid "and %s more"
+msgid_plural "and %s more"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "No certificate yet."
+msgstr ""
+
+msgid "Consent and notes"
+msgstr ""
+
+msgid "Open"
+msgstr ""
+
+msgid "Closed"
+msgstr ""
+
+msgid "Archived"
+msgstr ""
+
+msgid "Upcoming (%s)"
+msgstr ""
+
+msgid "Ended"
+msgstr ""
+
+msgid "New donation type"
+msgstr ""
+
+msgid "Donation types and campaigns"
+msgstr ""
+
+msgid "What people can give for: each type has its own prices and options, dates, goal and linked forms."
+msgstr ""
+
+msgid "Open and closed"
+msgstr ""
+
+msgid "Archive"
+msgstr ""
+
+msgid "The archive is empty"
+msgstr ""
+
+msgid "No donation types yet"
+msgstr ""
+
+msgid "Create a type such as a general donation, a sapling or a kurban share, set its prices, and link the forms that collect for it."
+msgstr ""
+
+msgid "Order"
+msgstr ""
+
+msgid "Prices"
+msgstr ""
+
+msgid "Progress"
+msgstr ""
+
+msgid "Dates"
+msgstr ""
+
+msgid "Forms"
+msgstr ""
+
+msgid "Move up"
+msgstr ""
+
+msgid "Move down"
+msgstr ""
+
+msgid "No category"
+msgstr ""
+
+msgid "(inactive)"
+msgstr ""
+
+msgid "(price not set)"
+msgstr ""
+
+msgid "free amount (min. %s)"
+msgstr ""
+
+msgid "free amount"
+msgstr ""
+
+msgid "quantity"
+msgstr ""
+
+msgid "recurring"
+msgstr ""
+
+msgid "%1$s of %2$s (%3$s%%)"
+msgstr ""
+
+msgid "Open-ended"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Load sample types"
+msgstr ""
+
+msgid "Adds ready-made types and categories that you can edit. Types whose sample price is 0 start closed until you set their prices."
+msgstr ""
+
+msgid "Sample set"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Donation types"
+msgstr ""
+
+msgid "Donation type not found"
+msgstr ""
+
+msgid "Edit donation type"
+msgstr ""
+
+msgid "Basics"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Category"
+msgstr ""
+
+msgid "Edit categories"
+msgstr ""
+
+msgid "Slug"
+msgstr ""
+
+msgid "Optional; created from the title."
+msgstr ""
+
+msgid "Turkish lira (₺)"
+msgstr ""
+
+msgid "Euro (€)"
+msgstr ""
+
+msgid "US dollar ($)"
+msgstr ""
+
+msgid "Pound sterling (£)"
+msgstr ""
+
+msgid "Prices and the goal are in this currency. A linked form must charge in the same currency, otherwise its payments are stopped."
+msgstr ""
+
+msgid "Short description"
+msgstr ""
+
+msgid "Image"
+msgstr ""
+
+msgid "Choose an image"
+msgstr ""
+
+msgid "Choose image"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Prices and options"
+msgstr ""
+
+msgid "One option is a fixed price per unit (e.g. one sapling). Several options give the donor a choice (e.g. adak, akika, şifa). The amount charged is always computed on the server from these prices."
+msgstr ""
+
+msgid "A price of 0 means the price is not announced yet: the option is shown but cannot be paid. An inactive option is hidden and cannot be paid."
+msgstr ""
+
+msgid "Add option"
+msgstr ""
+
+msgid "Free amount allowed"
+msgstr ""
+
+msgid "Minimum amount"
+msgstr ""
+
+msgid "Quantity allowed"
+msgstr ""
+
+msgid "Maximum quantity"
+msgstr ""
+
+msgid "Empty = no limit."
+msgstr ""
+
+msgid "Recurring giving allowed"
+msgstr ""
+
+msgid "Linked forms"
+msgstr ""
+
+msgid "Gifts through these Flux Forms forms count for this type. Map each priced choice of the form to an option: the form then charges the price set here."
+msgstr ""
+
+msgid "No payment form found in Flux Forms yet."
+msgstr ""
+
+msgid "also linked to: %s"
+msgstr ""
+
+msgid "Save after choosing a form to map its choices."
+msgstr ""
+
+msgid "Hide the choice in the form when it was preselected"
+msgstr ""
+
+msgid "When the page passes a choice (flxb_opt in the address or FLXB.preselect()), the form shows a short summary with a \"Change\" link instead of the choice list."
+msgstr ""
+
+msgid "Publishing"
+msgstr ""
+
+msgid "A closed type keeps its history but its forms no longer take payments."
+msgstr ""
+
+msgid "Start date"
+msgstr ""
+
+msgid "End date"
+msgstr ""
+
+msgid "Goal amount"
+msgstr ""
+
+msgid "Optional. Shown as a progress bar."
+msgstr ""
+
+msgid "Show it on the site"
+msgstr ""
+
+msgid "Add baslik=\"hayir\" to hide the title and description."
+msgstr ""
+
+msgid "Delete this donation type"
+msgstr ""
+
+msgid "Delete this donation type?"
+msgstr ""
+
+msgid "This type has gifts, so it can be archived but not deleted."
+msgstr ""
+
+msgid "Option name"
+msgstr ""
+
+msgid "e.g. Sapling, Adak, Iftar"
+msgstr ""
+
+msgid "Key"
+msgstr ""
+
+msgid "from the name"
+msgstr ""
+
+msgid "Price"
+msgstr ""
+
+msgid "Remove option"
+msgstr ""
+
+msgid "Unit"
+msgstr ""
+
+msgid "— not set"
+msgstr ""
+
+msgid "Units per choice"
+msgstr ""
+
+msgid "e.g. a whole animal = 7 shares"
+msgstr ""
+
+msgid "Badge"
+msgstr ""
+
+msgid "Kurban"
+msgstr ""
+
+msgid "For types given on behalf of a named person: each unit becomes its own item with that person's name, and the donor must accept the proxy (vekâlet) text."
+msgstr ""
+
+msgid "Proxy (vekâlet) required"
+msgstr ""
+
+msgid "Intention"
+msgstr ""
+
+msgid "Animal"
+msgstr ""
+
+msgid "Cattle (7 shares)"
+msgstr ""
+
+msgid "Sheep or goat"
+msgstr ""
+
+msgid "All of the meat goes to people in need"
+msgstr ""
+
+msgid "Mapping for “%s”"
+msgstr ""
+
+msgid "This form charges in %1$s but the donation type is in %2$s: its payments are stopped until both use the same currency."
+msgstr ""
+
+msgid "This form has no priced choices to map."
+msgstr ""
+
+msgid "Form choice"
+msgstr ""
+
+msgid "Units"
+msgstr ""
+
+msgid "form price: %s"
+msgstr ""
+
+msgid "Not mapped (form price)"
+msgstr ""
+
+msgid "Quantity field"
+msgstr ""
+
+msgid "Free amount field"
+msgstr ""
+
+msgid "On behalf of (names field)"
+msgstr ""
+
+msgid "One name per line. Units without a name are given on behalf of the donor."
+msgstr ""
+
+msgid "Proxy consent field"
+msgstr ""
+
+msgid "Site"
+msgstr ""
+
+msgid "Receipt"
+msgstr ""
+
+msgid "order #%s"
+msgstr ""
+
+msgid "Payment awaiting approval"
+msgstr ""
+
+msgid "Has the payment reached the bank? When you confirm, the certificate is made and sent to the donor."
+msgstr ""
+
+msgid "Approve"
+msgstr ""
+
+msgid "Reject"
+msgstr ""
+
+msgid "Preview"
+msgstr ""
+
+msgid "No receipt uploaded yet. Check the bank account before approving."
+msgstr ""
+
+msgid "Open in new tab"
+msgstr ""
+
+msgid "e-mail"
+msgstr ""
+
+msgid "Reject the payment"
+msgstr ""
+
+msgid "Reason (sent to the donor)"
+msgstr ""
+
+msgid "e.g. The recipient name on the receipt does not match our account."
+msgstr ""
+
+msgid "Tell the donor (%s)"
+msgstr ""
+
+msgid "The donor has no phone or e-mail; the reason is only kept on the order."
+msgstr ""
+
+msgid "The donation is canceled. The donor can make a new one."
+msgstr ""
+
+msgid "This donation is no longer awaiting approval."
+msgstr ""
+
+msgid "Bank transfer confirmed (%s)."
+msgstr ""
+
+msgid "Please write a reason."
+msgstr ""
+
+msgid "Payment rejected; the donor was told by %s."
+msgstr ""
+
+msgid "Payment rejected."
+msgstr ""
+
+msgid "Payment rejected by %1$s. Reason: %2$s"
+msgstr ""
+
+msgid "Rejection sent to the donor: %s"
+msgstr ""
+
+msgid "Hello %s,"
+msgstr ""
+
+msgid "Hello,"
+msgstr ""
+
+msgid "We could not confirm the payment of your %s donation."
+msgstr ""
+
+msgid "Reason: %s"
+msgstr ""
+
+msgid "If you think this is a mistake, please reply to this message. Thank you."
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Organisation"
+msgstr ""
+
+msgid "Categories"
+msgstr ""
+
+msgid "Import"
+msgstr ""
+
+msgid "System check"
+msgstr ""
+
+msgid "Donation settings"
+msgstr ""
+
+msgid "Settings sections"
+msgstr ""
+
+msgid "Default currency"
+msgstr ""
+
+msgid "Dashboard totals are in this currency; gifts in other currencies are listed but not added to the totals."
+msgstr ""
+
+msgid "Kurban module"
+msgstr ""
+
+msgid "Adds proxy (vekâlet) consent, intentions and one item per share with the name of the person it is given for. Leave it off if you do not collect kurban donations."
+msgstr ""
+
+msgid "Which payments are donations?"
+msgstr ""
+
+msgid "Every payment taken through a Flux Forms form"
+msgstr ""
+
+msgid "Only payments through the forms selected below (and forms linked to a donation type)"
+msgstr ""
+
+msgid "Save settings"
+msgstr ""
+
+msgid "How donations are recorded"
+msgstr ""
+
+msgid "A donation is stored when a Flux Forms payment is completed: at the final form submission (with name, phone and e-mail from the form), from the payment provider's notifications (refunds, renewals of recurring gifts) and by an hourly check that catches payments whose form was not submitted."
+msgstr ""
+
+msgid "Donors are matched on phone number or e-mail address, never on name alone."
+msgstr ""
+
+msgid "Shown on receipts, donation pages and in exports. Empty fields fall back to the site name, the theme logo and the theme colours."
+msgstr ""
+
+msgid "Organisation name"
+msgstr ""
+
+msgid "Logo"
+msgstr ""
+
+msgid "Choose a logo"
+msgstr ""
+
+msgid "Choose logo"
+msgstr ""
+
+msgid "Brand colour"
+msgstr ""
+
+msgid "Hex colour such as #0E7A56. Empty = the theme's primary colour."
+msgstr ""
+
+msgid "Receipt text"
+msgstr ""
+
+msgid "A thank-you note printed on the donation receipt."
+msgstr ""
+
+msgid "Footer text"
+msgstr ""
+
+msgid "Address, registration number, bank details and similar; printed at the bottom of receipts."
+msgstr ""
+
+msgid "Donation type categories"
+msgstr ""
+
+msgid "Group donation types, e.g. Kurban, Ramazan, General. The key is stored on the types; a category that is in use cannot be removed."
+msgstr ""
+
+msgid "Add category"
+msgstr ""
+
+msgid "Save categories"
+msgstr ""
+
+msgid "Used by %s type"
+msgid_plural "Used by %s types"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Remove category"
+msgstr ""
+
+msgid "Proxy (vekâlet) text"
+msgstr ""
+
+msgid "The text a donor accepts to authorise the organisation to give on their behalf. Every change is saved as a new version; each donation keeps the version that was accepted."
+msgstr ""
+
+msgid "Text"
+msgstr ""
+
+msgid "Versions"
+msgstr ""
+
+msgid "No text yet. Donations of types that require a proxy cannot be paid until a text is saved."
+msgstr ""
+
+msgid "Version %1$s · %2$s"
+msgstr ""
+
+msgid "Import existing payments"
+msgstr ""
+
+msgid "Reads completed payments stored by Flux Forms and adds the missing ones as donations. Safe to run more than once: a payment is never imported twice."
+msgstr ""
+
+msgid "Flux Forms's payment table was not found. Is Flux Forms installed?"
+msgstr ""
+
+msgid "Importing…"
+msgstr ""
+
+msgid "Import now"
+msgstr ""
+
+msgid "Last run %1$s: %2$s payments checked, %3$s imported."
+msgstr ""
+
+msgid "Dashboard"
+msgstr ""
+
+msgid "New request"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "%s selected"
+msgstr ""
+
+msgid "Delete %s donations permanently? Their WooCommerce orders are deleted too. This cannot be undone."
+msgstr ""
+
+msgid "Move %s donations to the trash? Their WooCommerce orders go to the trash too."
+msgstr ""
+
+msgid "The data could not be loaded."
+msgstr ""
+
+msgid "Try again"
+msgstr ""
+
+msgid "Total donations"
+msgstr ""
+
+msgid "New donors"
+msgstr ""
+
+msgid "Active recurring donations"
+msgstr ""
+
+msgid "gifts"
+msgstr ""
+
+msgid "gift"
+msgstr ""
+
+msgid "vs previous period"
+msgstr ""
+
+msgid "no gifts in the previous period"
+msgstr ""
+
+msgid "all time: %s donors"
+msgstr ""
+
+msgid "first gift in this period"
+msgstr ""
+
+msgid "per gift"
+msgstr ""
+
+msgid "%s past due"
+msgstr ""
+
+msgid "Donations per day"
+msgstr ""
+
+msgid "Received amount, one-time and recurring"
+msgstr ""
+
+msgid "One-time"
+msgstr ""
+
+msgid "One-time vs recurring"
+msgstr ""
+
+msgid "By donation type"
+msgstr ""
+
+msgid "By form"
+msgstr ""
+
+msgid "Top donors"
+msgstr ""
+
+msgid "No donations in this period."
+msgstr ""
+
+msgid "No donations yet"
+msgstr ""
+
+msgid "Donations appear here as soon as someone pays through a Flux Forms payment form. Payments taken before Flux Donate was installed can be imported on the Settings page."
+msgstr ""
+
+msgid "Total"
+msgstr ""
+
+msgid "View all"
+msgstr ""
+
+msgid "Custom range"
+msgstr ""
+
+msgid "Copied."
+msgstr ""
+
+msgid "Could not copy. The address is selected: press Ctrl+C (or long-press and Copy)."
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
+msgid "Set up a payment provider"
+msgstr ""
+
+msgid "No payment provider is set up, so forms cannot take online payments. Visitors see \"Online payment is not available at the moment.\""
+msgstr ""
+
+msgid "Saved."
+msgstr ""
+
+msgid "Deleted."
+msgstr ""
+
+msgid "The refund was sent to the payment provider."
+msgstr ""
+
+msgid "The recurring donation was canceled at the payment provider."
+msgstr ""
+
+msgid "The payment was canceled at the payment provider."
+msgstr ""
+
+msgid "Payment approved. The certificate is made and sent to the donor."
+msgstr ""
+
+msgid "Import finished: %1$s payments checked, %2$s imported, %3$s already known."
+msgstr ""
+
+msgid "Pages"
+msgstr ""
+
+msgid "Sorry, you are not allowed to access this page."
+msgstr ""
+
+msgid "Donations made through your referral link or recorded with you as the referral."
+msgstr ""
+
+msgid "Every gift received through your forms, one-time and recurring."
+msgstr ""
+
+msgid "No donations found"
+msgstr ""
+
+msgid "Try a wider date range or clear the filters."
+msgstr ""
+
+msgid "Bulk action"
+msgstr ""
+
+msgid "Clear selection"
+msgstr ""
+
+msgid "%1$s donation · %2$s received"
+msgid_plural "%1$s donations · %2$s received"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Trash (%s)"
+msgstr ""
+
+msgid "Name, e-mail, phone, code…"
+msgstr ""
+
+msgid "All statuses"
+msgstr ""
+
+msgid "All donation types"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "All types"
+msgstr ""
+
+msgid "All forms"
+msgstr ""
+
+msgid "All referrals"
+msgstr ""
+
+msgid "No referral"
+msgstr ""
+
+msgid "Filter"
+msgstr ""
+
+msgid "Detailed filter"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid "Select all"
+msgstr ""
+
+msgid "Donation type / form"
+msgstr ""
+
+msgid "Select the donation of %s"
+msgstr ""
+
+msgid "%s item"
+msgid_plural "%s items"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Details"
+msgstr ""
+
+msgid "Restore"
+msgstr ""
+
+msgid "Move to trash"
+msgstr ""
+
+msgid "Delete permanently"
+msgstr ""
+
+msgid "%s donation moved to the trash."
+msgid_plural "%s donations moved to the trash."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s donation restored."
+msgid_plural "%s donations restored."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s donation deleted permanently."
+msgid_plural "%s donations deleted permanently."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Donation not found."
+msgstr ""
+
+msgid "Receipt no."
+msgstr ""
+
+msgid "Kind"
+msgstr ""
+
+msgid "Donation receipt · %s"
+msgstr ""
+
+msgid "Donation receipt"
+msgstr ""
+
+msgid "Print"
+msgstr ""
+
+msgid "System"
+msgstr ""
+
+msgid "Contacts of the people on whose behalf"
+msgstr ""
+
+msgid "Given to the call center so they can be told when the donation is carried out."
+msgstr ""
+
+msgid "Receipts"
+msgstr ""
+
+msgid "History"
+msgstr ""
+
+msgid "call center"
+msgstr ""
+
+msgid "Receipt linked"
+msgstr ""
+
+msgid "Payment rejected: %s"
+msgstr ""
+
+msgid "Status changed: %1$s → %2$s"
+msgstr ""
+
+msgid "Refunded %s"
+msgstr ""
+
+msgid "Payment canceled at the provider"
+msgstr ""
+
+msgid "Names on whose behalf changed"
+msgstr ""
+
+msgid "Referral changed: %1$s → %2$s"
+msgstr ""
+
+msgid "Donation not found"
+msgstr ""
+
+msgid "Donation of %s"
+msgstr ""
+
+msgid "Print receipt"
+msgstr ""
+
+msgid "This item"
+msgstr ""
+
+msgid "Payment provider"
+msgstr ""
+
+msgid "Recorded from"
+msgstr ""
+
+msgid "revoked"
+msgstr ""
+
+msgid "Certificate"
+msgstr ""
+
+msgid "Different price"
+msgstr ""
+
+msgid "type price %1$s · %2$s"
+msgstr ""
+
+msgid "Proxy consent"
+msgstr ""
+
+msgid "version %1$s · %2$s"
+msgstr ""
+
+msgid "Entered by"
+msgstr ""
+
+msgid "Call center · WhatsApp assistant"
+msgstr ""
+
+msgid "Call center · agent"
+msgstr ""
+
+msgid "Payment reference"
+msgstr ""
+
+msgid "Card payment"
+msgstr ""
+
+msgid "%1$s paid gift · %2$s"
+msgid_plural "%1$s paid gifts · %2$s"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s waiting"
+msgid_plural "%s waiting"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "No contact details were given with this gift."
+msgstr ""
+
+msgid "Basket"
+msgstr ""
+
+msgid "WooCommerce order #%s"
+msgstr ""
+
+msgid "Confirm payment"
+msgstr ""
+
+msgid "No receipt uploaded yet."
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Make the certificates again"
+msgstr ""
+
+msgid "The current certificates are revoked and new ones are made, one for each name. They are not sent until you press \"Send the certificates\"."
+msgstr ""
+
+msgid "Send the certificates"
+msgstr ""
+
+msgid "Send the certificates to the donor now?"
+msgstr ""
+
+msgid "Certificates sent: %s"
+msgstr ""
+
+msgid "There is no certificate to send."
+msgstr ""
+
+msgid "%d certificate made. Check it, then press \"Send the certificates\"."
+msgid_plural "%d certificates made. Check them, then press \"Send the certificates\"."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "No certificate could be made; see the order notes."
+msgstr ""
+
+msgid "Items"
+msgstr ""
+
+msgid "Save names"
+msgstr ""
+
+msgid "Change"
+msgstr ""
+
+msgid "This person cannot be a referral."
+msgstr ""
+
+msgid "Form submission"
+msgstr ""
+
+msgid "Payment provider notification"
+msgstr ""
+
+msgid "Automatic sync"
+msgstr ""
+
+msgid "Import of earlier payments"
+msgstr ""
+
+msgid "Manual entry"
+msgstr ""
+
+msgid "Return from the payment page"
+msgstr ""
+
+msgid "Automatic renewal"
+msgstr ""
+
+msgid "Call center"
+msgstr ""
+
+msgid "Staff request"
+msgstr ""
+
+msgid "Donation ID"
+msgstr ""
+
+msgid "Proxy consent version"
+msgstr ""
+
+msgid "Manual"
+msgstr ""
+
+msgid "My donations"
+msgstr ""
+
+msgid "My certificates"
+msgstr ""
+
+msgid "Please sign in."
+msgstr ""
+
+msgid "Your choice"
+msgstr ""
+
+msgid "This form and its donation type use different currencies, so the payment was stopped. Please contact the site administrator."
+msgstr ""
+
+msgid "Set the organisation name"
+msgstr ""
+
+msgid "The name shown on receipts and donor e-mails (max. 190 characters)."
+msgstr ""
+
+msgid "The organisation name cannot be empty."
+msgstr ""
+
+msgid "Organisation name saved: %s"
+msgstr ""
+
+msgid "Set the default currency"
+msgstr ""
+
+msgid "Used for new donation types and manual entries."
+msgstr ""
+
+msgid "Unsupported currency."
+msgstr ""
+
+msgid "Default currency: %s"
+msgstr ""
+
+msgid "Open a donation type"
+msgstr ""
+
+msgid "Sets a closed donation type that already has a price (or a free amount) to active. Value: the type slug."
+msgstr ""
+
+msgid "This type has no option with a price and no free amount; set a price first."
+msgstr ""
+
+msgid "Donation type opened: %s"
+msgstr ""
+
+msgid "Set a donation type's unit price"
+msgstr ""
+
+msgid "Value \"slug=price\", e.g. \"fidan=150\". Every active option gets price × its units (1 sapling 150, 5 saplings 750). Linked forms update automatically."
+msgstr ""
+
+msgid "The price must be greater than 0."
+msgstr ""
+
+msgid "This type has no active option; add one on the Donation types page."
+msgstr ""
+
+msgid "Unit price of %1$s set to %2$s %3$s."
+msgstr ""
+
+msgid "Link a form to a donation type"
+msgstr ""
+
+msgid "Value \"slug=form id\", e.g. \"fidan=3\". Forms: %s"
+msgstr ""
+
+msgid "No form with this id."
+msgstr ""
+
+msgid "The form is already linked."
+msgstr ""
+
+msgid "The form could not be linked."
+msgstr ""
+
+msgid "Form \"%1$s\" linked to %2$s."
+msgstr ""
+
+msgid "Use the form \"slug=value\"."
+msgstr ""
+
+msgid "No donation type with this slug."
+msgstr ""
+
+msgid "Donation type not found."
+msgstr ""
+
+msgid "Pending donations"
+msgstr ""
+
+msgid "You have no pending donations."
+msgstr ""
+
+msgid "Donations made by bank transfer appear here until the payment is confirmed."
+msgstr ""
+
+msgid "Donate"
+msgstr ""
+
+msgid "Your bank transfer donations. If you have made the payment, upload your receipt; your certificate is sent once it is confirmed."
+msgstr ""
+
+msgid "Donation #%s"
+msgstr ""
+
+msgid "Receipt under review"
+msgstr ""
+
+msgid "Awaiting payment"
+msgstr ""
+
+msgid "%s donation is awaiting payment"
+msgid_plural "%s donations are awaiting payment"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "If you have made the transfer, upload your receipt."
+msgstr ""
+
+msgid "This certificate design cannot be chosen any more. Please pick another one."
+msgstr ""
+
+msgid "Please fill in \"%s\" for the certificate."
+msgstr ""
+
+msgid "Pick the design of your certificate. The donation amount does not change."
+msgstr ""
+
+msgid "Standard"
+msgstr ""
+
+msgid "— Choose —"
+msgstr ""
+
+msgid "I have read and accept the [terms] and the [privacy_policy]."
+msgstr ""
+
+msgid "Make payment"
+msgstr ""
+
+msgid "Please read and accept the terms to continue."
+msgstr ""
+
+msgid "Donation terms"
+msgstr ""
+
+msgid "Privacy policy"
+msgstr ""
+
+msgid "These terms apply to donations made on this site to %s."
+msgstr ""
+
+msgid "Your donation"
+msgstr ""
+
+msgid "A donation is a gift without anything in return. It is used for the purpose chosen on the donation form (for example sapling planting). When a purpose is fully funded, the association may use the donation for a similar purpose."
+msgstr ""
+
+msgid "Card payments are processed by the licensed payment institution iyzico with 3D Secure. Card details are not stored on this site. For bank transfers, the donation is confirmed when the money reaches the association account."
+msgstr ""
+
+msgid "Monthly donations"
+msgstr ""
+
+msgid "A monthly donation is charged to the same card every month until you cancel it. You can cancel it at any time from your account page or by writing to us."
+msgstr ""
+
+msgid "The online certificate is sent to the e-mail address or phone number you give after the payment is confirmed. Please check the names you write on the certificate."
+msgstr ""
+
+msgid "Cancellation and refunds"
+msgstr ""
+
+msgid "If a donation was made by mistake (wrong amount or a double payment), write to us within 14 days and it is refunded to the same card or account."
+msgstr ""
+
+msgid "Personal data"
+msgstr ""
+
+msgid "Your name and contact details are used to record the donation, send the receipt and certificate, and contact you about your donation. See the privacy policy for details."
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "For any question about your donation, write to us on WhatsApp: %s"
+msgstr ""
+
+msgid "For any question about your donation, write to us through the contact page."
+msgstr ""
+
+msgid "%s processes your personal data under the Turkish Personal Data Protection Law (KVKK)."
+msgstr ""
+
+msgid "What we collect"
+msgstr ""
+
+msgid "Name, e-mail address, phone number and the details of your donation. Card details are entered on the payment institution and are not stored by us."
+msgstr ""
+
+msgid "Why"
+msgstr ""
+
+msgid "To record donations, send receipts and certificates, meet legal obligations and answer your questions."
+msgstr ""
+
+msgid "Your rights"
+msgstr ""
+
+msgid "You can ask what data we hold about you, have it corrected or deleted, by writing to us."
+msgstr ""
+
+msgid "WooCommerce checks"
+msgstr ""
+
+msgid "This check could not run: %s"
+msgstr ""
+
+msgid "Version %1$s is active. Flux Donate was checked up to %2$s; it uses only stable public WooCommerce functions, but test a donation after big WooCommerce updates."
+msgstr ""
+
+msgid "Active, version %s. Donations are paid through the WooCommerce cart and checkout."
+msgstr ""
+
+msgid "One-time card payments are taken by the official iyzico WooCommerce plugin."
+msgstr ""
+
+msgid "Card payments use our own card fields on the checkout (iyzico 3D Secure, installments, saved cards)."
+msgstr ""
+
+msgid "One-time card payments are taken by Flux Donate iyzico (the official iyzico plugin is not enabled)."
+msgstr ""
+
+msgid "No card method is enabled; donations can only be paid by bank transfer."
+msgstr ""
+
+msgid "Card payments (WooCommerce)"
+msgstr ""
+
+msgid "Flux Donate iyzico stores the card at the first payment; a renewal order is opened and charged every month."
+msgstr ""
+
+msgid "Monthly donations are off: enable \"Card (iyzico) - Flux Donate\" in WooCommerce › Settings › Payments and enter iyzico keys."
+msgstr ""
+
+msgid "Bank transfer (donations)"
+msgstr ""
+
+msgid "No IBAN entered."
+msgstr ""
+
+msgid "The payment method is disabled."
+msgstr ""
+
+msgid "Bank transfer settings"
+msgstr ""
+
+msgid "Two bank transfer methods"
+msgstr ""
+
+msgid "WooCommerce's own \"Direct bank transfer\" is enabled next to the donation bank transfer. Donors see two similar choices and the receipt upload works only with the donation one; disable \"Direct bank transfer\"."
+msgstr ""
+
+msgid "The shop currency is %1$s; these types use another currency and are charged in %1$s at the same number: %2$s"
+msgstr ""
+
+msgid "WooCommerce settings"
+msgstr ""
+
+msgid "Donation types and the shop use %s."
+msgstr ""
+
+msgid "Donation products"
+msgstr ""
+
+msgid "These types get their hidden WooCommerce product the first time they are donated to or saved: %s"
+msgstr ""
+
+msgid "%d active type has its hidden WooCommerce product."
+msgid_plural "%d active types have their hidden WooCommerce products."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Donation page"
+msgstr ""
+
+msgid "No page with the donation options block is selected."
+msgstr ""
+
+msgid "Certificates after payment"
+msgstr ""
+
+msgid "Flux Certificates makes the certificates of paid donation lines."
+msgstr ""
+
+msgid "Flux Certificates has no active template."
+msgstr ""
+
+msgid "Flux Certificates is not active: no certificate is made after payment."
+msgstr ""
+
+msgid "Product XML"
+msgstr ""
+
+msgid "%1$s lists %2$d donation packages (Google Merchant format, e.g. for iyzico)."
+msgstr ""
+
+msgid "Payment forms on the checkout"
+msgstr ""
+
+msgid "Donation forms send their choice to the WooCommerce cart; \"Payment completed\" automations run when the order is paid."
+msgstr ""
+
+msgid "Flux Forms %s is active. Forms are paid on the checkout, but their \"Payment completed\" automations need Flux Forms 2.1.0 or later."
+msgstr ""
+
+msgid "Plugins"
+msgstr ""
+
+msgid "Donation e-mails"
+msgstr ""
+
+msgid "Sent by Flux Mail; the templates (group \"Flux Donate\") can be edited there. WooCommerce order e-mails stay in WooCommerce › Settings › Emails."
+msgstr ""
+
+msgid "E-mail templates"
+msgstr ""
+
+msgid "Flux Mail is not active: the donation e-mails are sent as plain text with their default wording."
+msgstr ""
+
+msgid "Default address"
+msgstr ""
+
+msgid "The page has expired. Please try again."
+msgstr ""
+
+msgid "Please fill in the name, address and city."
+msgstr ""
+
+msgid "Address saved."
+msgstr ""
+
+msgid "Address deleted."
+msgstr ""
+
+msgid "Default address changed."
+msgstr ""
+
+msgid "Address book"
+msgstr ""
+
+msgid "Saved addresses are offered in a list at the checkout. The default one is filled in automatically."
+msgstr ""
+
+msgid "Default"
+msgstr ""
+
+msgid "Make default"
+msgstr ""
+
+msgid "Delete this address?"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "+ Add a new address"
+msgstr ""
+
+msgid "Address name"
+msgstr ""
+
+msgid "e.g. Home, Office"
+msgstr ""
+
+msgid "Save address"
+msgstr ""
+
+msgid "Saved address"
+msgstr ""
+
+msgid "Write the new address below; it is saved to your address book with the order."
+msgstr ""
+
+msgid "Manage addresses"
+msgstr ""
+
+msgid "WooCommerce"
+msgstr ""
+
+msgid "Card payments: the official iyzico plugin is enabled."
+msgstr ""
+
+msgid "Card payments: Flux Donate iyzico (the official iyzico plugin is not enabled)."
+msgstr ""
+
+msgid "No card method is enabled (WooCommerce › Settings › Payments)."
+msgstr ""
+
+msgid "Monthly donations: Flux Donate iyzico is ready."
+msgstr ""
+
+msgid "Monthly donations are off: enable \"Card (iyzico) - Flux Donate\" and enter iyzico keys."
+msgstr ""
+
+msgid "Bank transfer (donations) is enabled."
+msgstr ""
+
+msgid "Bank transfer (donations) is disabled."
+msgstr ""
+
+msgid "Flux Certificates is connected."
+msgstr ""
+
+msgid "Flux Certificates is active but has no active template."
+msgstr ""
+
+msgid "Donation page:"
+msgstr ""
+
+msgid "The donation options are not on a page yet."
+msgstr ""
+
+msgid "WooCommerce is not active. Donations are paid through WooCommerce from version 2.0: install and activate WooCommerce."
+msgstr ""
+
+msgid "Sapling packages, prices and badges are edited on the donation type (Donations › Donation types). Which types give a certificate is set there too."
+msgstr ""
+
+msgid "Template"
+msgstr ""
+
+msgid "Automatic (\"Fidan Bağış Sertifikası\")"
+msgstr ""
+
+msgid "Event"
+msgstr ""
+
+msgid "When chosen, online donation certificates count for this open event."
+msgstr ""
+
+msgid "Send by"
+msgstr ""
+
+msgid "When the payment is confirmed the certificate link goes out on these channels. With a WhatsApp route no SMS is sent."
+msgstr ""
+
+msgid "\"Online + printed certificate\""
+msgstr ""
+
+msgid "Shown as \"Coming soon\" (cannot be chosen)"
+msgstr ""
+
+msgid "Can be chosen"
+msgstr ""
+
+msgid "Hidden"
+msgstr ""
+
+msgid "Printed certificate fee (per line)"
+msgstr ""
+
+msgid "0 = free. Orders with a printed certificate stay \"Processing\"; set them to \"Completed\" when sent."
+msgstr ""
+
+msgid "Complete paid orders with an online certificate automatically"
+msgstr ""
+
+msgid "IBAN, recipient and reference code: WooCommerce › Settings › Payments › Bank transfer (donations). The transfer details and the receipt link are added to WooCommerce's \"on hold\" e-mail."
+msgstr ""
+
+msgid "Short notification"
+msgstr ""
+
+msgid "A short message to the donor's phone when a transfer is registered (through Flux Mail, or Flux Certificates's providers). With both ticked, SMS only goes out when there is no WhatsApp route."
+msgstr ""
+
+msgid "WhatsApp text"
+msgstr ""
+
+msgid "Placeholders: {ad} {tutar} {siparis} {alici} {iban} {aciklama} {link} {site}"
+msgstr ""
+
+msgid "SMS text"
+msgstr ""
+
+msgid "Largest receipt file (MB)"
+msgstr ""
+
+msgid "Tell this address when a receipt is uploaded"
+msgstr ""
+
+msgid "Cart and checkout"
+msgstr ""
+
+msgid "After \"Donate\""
+msgstr ""
+
+msgid "Go straight to the checkout"
+msgstr ""
+
+msgid "Go to the cart"
+msgstr ""
+
+msgid "Stay on the page"
+msgstr ""
+
+msgid "Do not ask for an address at the checkout when the cart holds only donations"
+msgstr ""
+
+msgid "Support WhatsApp number"
+msgstr ""
+
+msgid "Shown at the checkout and with the bank transfer details as \"Any trouble? Write to us on WhatsApp\". Leave empty to hide."
+msgstr ""
+
+msgid "\"Donate\" links and the hidden product pages go here."
+msgstr ""
+
+msgid "Flux Forms payment forms continue on the WooCommerce checkout"
+msgstr ""
+
+msgid "The donor picks card or bank transfer there; the form entry, the certificate automation and the donation record are completed when the order is paid."
+msgstr ""
+
+msgid "Card payment screen"
+msgstr ""
+
+msgid "Our own card fields on the checkout (3D Secure, installments, saved cards)"
+msgstr ""
+
+msgid "iyzico payment page (as before)"
+msgstr ""
+
+msgid "Official iyzico plugin for one-time donations"
+msgstr ""
+
+msgid "Card numbers go straight to iyzico and are never stored on this site. Monthly donations always use Flux Donate iyzico (it stores the card)."
+msgstr ""
+
+msgid "Most installments"
+msgstr ""
+
+msgid "Single payment only"
+msgstr ""
+
+msgid "With our own card fields. The options and any interest come from iyzico for each card."
+msgstr ""
+
+msgid "Add the \"Donation options\" block to any page, or create a ready page:"
+msgstr ""
+
+msgid "Create the online donation page"
+msgstr ""
+
+msgid "Product list (XML)"
+msgstr ""
+
+msgid "For iyzico \"upload your products with XML\" and Google Merchant Center. Every fixed-price option on sale is one product; free amounts are left out. Updating daily is enough."
+msgstr ""
+
+msgid "Address"
+msgstr ""
+
+msgid "Shortcode and block"
+msgstr ""
+
+msgid "Without attributes it shows the donation types marked \"Show in the Donation options block\". tur=\"slug1,slug2\" shows only those types; sekme=\"slug\" opens that type's tab first. In the editor: \"Donation options\" block."
+msgstr ""
+
+msgid "Online donation"
+msgstr ""
+
+msgid "Choose a sapling package or give any amount you like. You can pay by card or bank transfer; a certificate is made in your name."
+msgstr ""
+
+msgid "Online donation page"
+msgstr ""
+
+msgid "How this type appears in the \"Donation options\" block and the WooCommerce cart. Its hidden WooCommerce product is kept in step automatically."
+msgstr ""
+
+msgid "Show in the \"Donation options\" block (donation page) and the product XML"
+msgstr ""
+
+msgid "Give a certificate (Flux Certificates)"
+msgstr ""
+
+msgid "Certificate template"
+msgstr ""
+
+msgid "Same as the WooCommerce settings"
+msgstr ""
+
+msgid "Option with a − / + quantity"
+msgstr ""
+
+msgid "This option's card gets − / + buttons (e.g. \"1 sapling\"); price = number × this option's price, checked again on the server. The other options stay fixed packages. Use \"Maximum quantity\" above for the limit."
+msgstr ""
+
+msgid "Preset amounts (free amount)"
+msgstr ""
+
+msgid "Separated by spaces, e.g. 250 500 1000."
+msgstr ""
+
+msgid "Page address"
+msgstr ""
+
+msgid "Optional: where its product page and the product XML link go. Empty = the donation page in the WooCommerce settings."
+msgstr ""
+
+msgid "WooCommerce product #%d (hidden from the shop)."
+msgstr ""
+
+msgid "This order has no donation line."
+msgstr ""
+
+msgid "Donation records:"
+msgstr ""
+
+msgid "Reference code:"
+msgstr ""
+
+msgid "Make the certificate"
+msgstr ""
+
+msgid "Check"
+msgstr ""
+
+msgid "Waiting"
+msgstr ""
+
+msgid "Refund this amount to the donor's card?"
+msgstr ""
+
+msgid "Record this refund? The money is not sent back automatically for this payment method."
+msgstr ""
+
+msgid "Record refund"
+msgstr ""
+
+msgid "Refunded through WooCommerce and the payment method; the record follows."
+msgstr ""
+
+msgid "Recorded in WooCommerce only: send the money back yourself (e.g. by bank transfer)."
+msgstr ""
+
+msgid "Order not found."
+msgstr ""
+
+msgid "Order line not found."
+msgstr ""
+
+msgid "Enter an amount up to what is left to refund."
+msgstr ""
+
+msgid "Refunded from Flux Donate by %s"
+msgstr ""
+
+msgid "Please choose what you would like to donate for."
+msgstr ""
+
+msgid "Donations for this cause are closed at the moment."
+msgstr ""
+
+msgid "This option cannot be donated online at the moment."
+msgstr ""
+
+msgid "The number must be between 1 and %s."
+msgstr ""
+
+msgid "The amount must be at least %s."
+msgstr ""
+
+msgid "For this amount please get in touch with us."
+msgstr ""
+
+msgid "Please choose an option."
+msgstr ""
+
+msgid "Printed certificates are not available yet. Please choose the online certificate."
+msgstr ""
+
+msgid "Please write the postal address for the printed certificate."
+msgstr ""
+
+msgid "Please write the name of the person you are donating for."
+msgstr ""
+
+msgid "This donation needs a proxy (vekâlet) consent, but it is not set up yet. Please contact the site administrator."
+msgstr ""
+
+msgid "Please accept the proxy (vekâlet) text to continue."
+msgstr ""
+
+msgid "The proxy (vekâlet) text has been updated. Please read it again and accept it."
+msgstr ""
+
+msgid "Please write at most %s name (one per share)."
+msgid_plural "Please write at most %s names (one per share)."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "The phone number does not look right. Example: 0532 123 45 67"
+msgstr ""
+
+msgid "The e-mail address does not look right."
+msgstr ""
+
+msgid "This cause does not take monthly donations."
+msgstr ""
+
+msgid "Monthly donations are not available at the moment."
+msgstr ""
+
+msgid "The donation product could not be found."
+msgstr ""
+
+msgid "It could not be added to the cart."
+msgstr ""
+
+msgid "A donation in your cart is no longer available and was removed."
+msgstr ""
+
+msgid "Printed certificate delivery"
+msgstr ""
+
+msgid "Repeats"
+msgstr ""
+
+msgid "Every month"
+msgstr ""
+
+msgid "Names (one per share)"
+msgstr ""
+
+msgid "Design"
+msgstr ""
+
+msgid "Name on the certificate"
+msgstr ""
+
+msgid "Sent to"
+msgstr ""
+
+msgid "copy to me"
+msgstr ""
+
+msgid "Postal address"
+msgstr ""
+
+msgid "accepted (text version %s)"
+msgstr ""
+
+msgid "Online + printed"
+msgstr ""
+
+msgid "Online"
+msgstr ""
+
+msgid "%s Sapling Donation"
+msgstr ""
+
+msgid "Saplings"
+msgstr ""
+
+msgid "Certificate no"
+msgstr ""
+
+msgid "Pending transfer notification sent: %s."
+msgstr ""
+
+msgid "\"%s\" was paid once: the card was not stored, so it will not repeat monthly."
+msgstr ""
+
+msgid "\"%1$s\" repeats monthly (recurring donation #%2$d); the card is stored at iyzico."
+msgstr ""
+
+msgid "Card (iyzico), monthly"
+msgstr ""
+
+msgid "Monthly renewal of recurring donation #%1$d (first order #%2$s)."
+msgstr ""
+
+msgid "Monthly charge accepted by iyzico: %1$s, payment id %2$s."
+msgstr ""
+
+msgid "Monthly charge failed after the last attempt: %s"
+msgstr ""
+
+msgid "Monthly charge failed, it will be retried: %s"
+msgstr ""
+
+msgid "No receipt is expected for this donation."
+msgstr ""
+
+msgid "At most 5 receipts can be uploaded for a donation."
+msgstr ""
+
+msgid "The file is too large."
+msgstr ""
+
+msgid "The file could not be uploaded. Please try again."
+msgstr ""
+
+msgid "The file can be at most %s MB."
+msgstr ""
+
+msgid "Only PDF, JPG, PNG, WEBP or HEIC files can be uploaded."
+msgstr ""
+
+msgid "The file could not be saved."
+msgstr ""
+
+msgid "The donor uploaded a receipt: %1$s (%2$s). Check the payment and confirm it."
+msgstr ""
+
+msgid "WhatsApp"
+msgstr ""
+
+msgid "the site"
+msgstr ""
+
+msgid "Warning: this receipt was uploaded before (%1$d time, via %2$s). Check it before confirming the payment."
+msgid_plural "Warning: this receipt was uploaded before (%1$d times, via %2$s). Check it before confirming the payment."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Earlier donation: #%d."
+msgstr ""
+
+msgid "We have your receipt. We will let you know once the payment is confirmed."
+msgstr ""
+
+msgid "Add another receipt"
+msgstr ""
+
+msgid "Choose a receipt or drop it here"
+msgstr ""
+
+msgid "PDF, JPG or PNG · up to %s MB"
+msgstr ""
+
+msgid "Send receipt"
+msgstr ""
+
+msgid "Please choose a file."
+msgstr ""
+
+msgid "We have your receipt. Thank you!"
+msgstr ""
+
+msgid "Any trouble? Write to us on WhatsApp:"
+msgstr ""
+
+msgid "No badge"
+msgstr ""
+
+msgid "Best value"
+msgstr ""
+
+msgid "Most popular"
+msgstr ""
+
+msgid "Family pack"
+msgstr ""
+
+msgid "Hello {ad}, your donation of {tutar} is registered. IBAN: {iban} Reference: {aciklama} Upload your receipt: {link}"
+msgstr ""
+
+msgid "Hello {ad} 🌱\n\nYour donation of *{tutar}* is registered (No: {siparis}).\n\nBank transfer details:\nRecipient: {alici}\nIBAN: {iban}\nReference: *{aciklama}*\n\nAfter the transfer you can upload your receipt here:\n{link}\n\nThank you,\n{site}"
+msgstr ""
+
+msgid "Credit / debit card (iyzico)"
+msgstr ""
+
+msgid "You will pay on iyzico's secure page. For monthly donations your card is stored by iyzico and charged once a month; you can cancel at any time."
+msgstr ""
+
+msgid "Bank transfer (donation)"
+msgstr ""
+
+msgid "The donor transfers the money with an order-specific reference and uploads the receipt on the site. The certificate is issued when you confirm the payment."
+msgstr ""
+
+msgid "Enabled"
+msgstr ""
+
+msgid "Take donations by bank transfer"
+msgstr ""
+
+msgid "Empty = \"Bank transfer\" in the site language."
+msgstr ""
+
+msgid "Text on the checkout page"
+msgstr ""
+
+msgid "Empty = the default text in the site language."
+msgstr ""
+
+msgid "Recipient (account holder)"
+msgstr ""
+
+msgid "Empty = the holder of the bank account below or, without an IBAN here, of WooCommerce's \"Direct bank transfer\" account (else the theme settings)."
+msgstr ""
+
+msgid "The account shown everywhere (donation page, checkout, call center). Empty = the first account of WooCommerce's \"Direct bank transfer\", else the theme settings; recipient and bank then come from that account too."
+msgstr ""
+
+msgid "Bank (optional)"
+msgstr ""
+
+msgid "Reference"
+msgstr ""
+
+msgid "What the donor writes in the transfer description. Placeholders: {tur} (sapling donation / donation), {kod} (prefix + order no), {siparis}, {ad}. Empty: {tur} {kod} {ad}"
+msgstr ""
+
+msgid "Code prefix"
+msgstr ""
+
+msgid "Bank transfer pre-registration: waiting for the payment."
+msgstr ""
+
+msgid "Card (iyzico) - Flux Donate"
+msgstr ""
+
+msgid "Card payments on iyzico's secure page. Required for monthly donations (the card is stored by iyzico and charged each month); also used for one-time donations when the official iyzico plugin is not active."
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Card payments through Flux Donate (iyzico)"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "API keys"
+msgstr ""
+
+msgid "Keys are read from the iyzico WooCommerce plugin settings."
+msgstr ""
+
+msgid "Keys are read from Donations › Settings › Payments › iyzico."
+msgstr ""
+
+msgid "No iyzico keys found. Enter them in the iyzico WooCommerce plugin or in Donations › Settings › Payments › iyzico."
+msgstr ""
+
+msgid "Environment: sandbox (test)."
+msgstr ""
+
+msgid "Environment: live."
+msgstr ""
+
+msgid "Card payments are not configured on this site. Please choose another payment method."
+msgstr ""
+
+msgid "The amount must be greater than zero."
+msgstr ""
+
+msgid "iyzico: the payment was not completed (%s)."
+msgstr ""
+
+msgid "iyzico reported a payment (%s) that does not match this order (amount, currency or basket). Check it in the iyzico panel before doing anything."
+msgstr ""
+
+msgid "iyzico payment received: %1$s, payment id %2$s (%3$s)."
+msgstr ""
+
+msgid "Enter an amount to refund."
+msgstr ""
+
+msgid "This order has no iyzico transaction to refund."
+msgstr ""
+
+msgid "The amount is more than what is left to refund at iyzico."
+msgstr ""
+
+msgid "iyzico refused the refund: %s"
+msgstr ""
+
+msgid "Refunded at iyzico: %1$s. %2$s"
+msgstr ""
+
+msgid "Donation options"
+msgstr ""
+
+msgid "Sapling packages, causes and free-amount donations; added to the cart and paid with WooCommerce."
+msgstr ""
+
+msgid "Tab shown first"
+msgstr ""
+
+msgid "The first one"
+msgstr ""
+
+msgid "None chosen = the types marked \"Show in the Donation options block\"."
+msgstr ""
+
+msgid "Prices and options: Donations › Donation types. Certificates and cart: Donations › Settings › WooCommerce."
+msgstr ""
+
+msgid "Could not copy, please select it by hand."
+msgstr ""
+
+msgid "Uploading…"
+msgstr ""
+
+msgid "We have your receipt. Thank you! We will let you know once the payment is confirmed."
+msgstr ""
+
+msgid "Something went wrong. Please try again."
+msgstr ""
+
+msgid "Please write a WhatsApp number or an e-mail address (at least one)."
+msgstr ""
+
+msgid "Please enter a valid e-mail address."
+msgstr ""
+
+msgid "Please enter a valid phone number."
+msgstr ""
+
+msgid "Please write at most one name per share."
+msgstr ""
+
+msgid "/ month"
+msgstr ""
+
+msgid "%s Sapling"
+msgid_plural "%s Saplings"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Your donation was added to the cart."
+msgstr ""
+
+msgid "Go to cart"
+msgstr ""
+
+msgid "Who is this donation for?"
+msgstr ""
+
+msgid "For myself"
+msgstr ""
+
+msgid "On behalf of someone else"
+msgstr ""
+
+msgid "Their name"
+msgstr ""
+
+msgid "e.g. Ayşe Yılmaz or the Yılmaz family"
+msgstr ""
+
+msgid "Optional. If you leave it empty, the name from the checkout is used."
+msgstr ""
+
+msgid "Written on the certificate and the donation record."
+msgstr ""
+
+msgid "Written on the donation record."
+msgstr ""
+
+msgid "Where should the certificate go?"
+msgstr ""
+
+msgid "Empty fields use the phone and e-mail of your account or the checkout."
+msgstr ""
+
+msgid "Their phone and e-mail. Empty fields use yours."
+msgstr ""
+
+msgid "Send me a copy too"
+msgstr ""
+
+msgid "Online certificate"
+msgstr ""
+
+msgid "Sent by WhatsApp and e-mail once the payment is confirmed, ready to download."
+msgstr ""
+
+msgid "Online + printed certificate"
+msgstr ""
+
+msgid "A printed certificate is also posted to your address."
+msgstr ""
+
+msgid "Free"
+msgstr ""
+
+msgid "Coming soon"
+msgstr ""
+
+msgid "Postal address for the printed certificate"
+msgstr ""
+
+msgid "Name, full address, district / city, phone"
+msgstr ""
+
+msgid "Repeat every month"
+msgstr ""
+
+msgid "By card, stop any time."
+msgstr ""
+
+msgid "Continue"
+msgstr ""
+
+msgid "Add to cart"
+msgstr ""
+
+msgid "Payments are taken securely by iyzico."
+msgstr ""
+
+msgid "Pay safely by card or bank transfer."
+msgstr ""
+
+msgid "Your card details are never stored on our site."
+msgstr ""
+
+msgid "How many saplings would you like to donate?"
+msgstr ""
+
+msgid "Choose an option"
+msgstr ""
+
+msgid "Fewer"
+msgstr ""
+
+msgid "Number of saplings"
+msgstr ""
+
+msgid "More"
+msgstr ""
+
+msgid "Another amount"
+msgstr ""
+
+msgid "Donation amount"
+msgstr ""
+
+msgid "Or write another amount"
+msgstr ""
+
+msgid "At least %s"
+msgstr ""
+
+msgid "On whose behalf?"
+msgstr ""
+
+msgid "Names, one per share"
+msgstr ""
+
+msgid "e.g. Ali Yılmaz"
+msgstr ""
+
+msgid "Write each name on its own line, in share order. Shares without a name are given in the name from the checkout."
+msgstr ""
+
+msgid "Read the proxy (vekâlet) text (version %s)"
+msgstr ""
+
+msgid "I give my proxy (vekâlet) for the sacrifice according to this text."
+msgstr ""
+
+msgid "No donation lines."
+msgstr ""
+
+msgid "Unknown donation type."
+msgstr ""
+
+msgid "The donation product could not be created."
+msgstr ""
+
+msgid "Enter an amount."
+msgstr ""
+
+msgid "Recorded in Flux Chat (donation #%d)."
+msgstr ""
+
+msgid "Canceled in Flux Donate."
+msgstr ""
+
+msgid "Marked as failed in Flux Donate."
+msgstr ""
+
+msgid "Donation of %1$s sapling. %2$s plants it for you and sends an online certificate in your name. Pay by card or bank transfer."
+msgid_plural "Donation of %1$s saplings. %2$s plants them for you and sends an online certificate in your name. Pay by card or bank transfer."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Donation packages"
+msgstr ""
+
+msgid "Donation > %s"
+msgstr ""
+
+msgid "This payment link has expired. Please fill in the form again."
+msgstr ""
+
+msgid "Flux Forms entry %s completed by this payment."
+msgstr ""
+
+msgid "The certificate could not be made: no Flux Certificates template was found (Donations › Settings › WooCommerce)."
+msgstr ""
+
+msgid "The certificate could not be made: %s"
+msgstr ""
+
+msgid "Not sent yet."
+msgstr ""
+
+msgid "Certificate made: %1$s (%2$s). %3$s"
+msgstr ""
+
+msgid "Certificates made again (%d); the old ones were revoked."
+msgstr ""
+
+msgid "No delivery channel is chosen."
+msgstr ""
+
+msgid "Queued: %s."
+msgstr ""
+
+msgid "Copy to the donor: %s."
+msgstr ""
+
+msgid "Link copied"
+msgstr ""
+
+msgid "The preview could not be drawn. You can open it with \"View certificate\"."
+msgstr ""
+
+msgid "Your certificate is ready"
+msgid_plural "Your certificates are ready"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "No: %s"
+msgstr ""
+
+msgid "Download PDF"
+msgstr ""
+
+msgid "View certificate"
+msgstr ""
+
+msgid "Share"
+msgstr ""
+
+msgid "Your certificate is being prepared. It will be sent by WhatsApp and e-mail in a few minutes; you can also refresh this page to see it."
+msgstr ""
+
+msgid "WooCommerce checkout"
+msgstr ""
+
+msgid "You will choose how to pay (card or bank transfer) on the next page."
+msgstr ""
+
+msgid "Monthly donations are paid by card; the card is stored by iyzico and charged once a month."
+msgstr ""
+
+msgid "This form is not linked to a donation type. Please contact the site administrator."
+msgstr ""
+
+msgid "The donation type of this form was not found."
+msgstr ""
+
+msgid "The amount could not be calculated. Please review your choices and try again."
+msgstr ""
+
+msgid "Please write your e-mail or phone number (at least one)."
+msgstr ""
+
+msgid "Donation summary"
+msgstr ""
+
+msgid "Write at least one. We send your receipt and certificate there."
+msgstr ""
+
+msgid "Continue to payment"
+msgstr ""
+
+msgid "Card number"
+msgstr ""
+
+msgid "Name on the card"
+msgstr ""
+
+msgid "Expiry (MM/YY)"
+msgstr ""
+
+msgctxt "card expiry placeholder"
+msgid "MM/YY"
+msgstr ""
+
+msgid "CVC"
+msgstr ""
+
+msgid "Save my card for next time"
+msgstr ""
+
+msgid "iyzico keeps the card; this site never stores card numbers."
+msgstr ""
+
+msgid "For the monthly donation iyzico keeps your card and charges it once a month. You can cancel at any time."
+msgstr ""
+
+msgid "Use another card"
+msgstr ""
+
+msgid "Your saved cards"
+msgstr ""
+
+msgid "Installments"
+msgstr ""
+
+msgid "Single payment"
+msgstr ""
+
+msgid "%1$s installments × %2$s (total %3$s)"
+msgstr ""
+
+msgid "Installment options appear after the card number."
+msgstr ""
+
+msgid "Please check the card number."
+msgstr ""
+
+msgid "Please write the name on the card."
+msgstr ""
+
+msgid "Please check the expiry date."
+msgstr ""
+
+msgid "Please check the security code (CVC)."
+msgstr ""
+
+msgid "Paid with 3D Secure through iyzico. Your bank may send you a code."
+msgstr ""
+
+msgid "Test mode: use an iyzico test card, e.g. 5528 7900 0000 0008, 12/30, 123."
+msgstr ""
+
+msgid "Fill in the test card"
+msgstr ""
+
+msgid "Test mode accepts only iyzico test cards. Use \"Fill in the test card\"."
+msgstr ""
+
+msgid "This saved card cannot be used any more. Please enter the card."
+msgstr ""
+
+msgid "This installment option is not available for the card. Please choose another."
+msgstr ""
+
+msgid "Card payment could not start: %1$s (card %2$s, %3$s)."
+msgstr ""
+
+msgid "test mode"
+msgstr ""
+
+msgid "live"
+msgstr ""
+
+msgid "Card payment started: %1$s installments, %2$s charged by the bank."
+msgstr ""
+
+msgid "iyzico 3D Secure: %s"
+msgstr ""
+
+msgid "The bank did not confirm the 3D Secure code. Please try again."
+msgstr ""
+
+msgid "This card is not enrolled for 3D Secure. Please call your bank or use another card."
+msgstr ""
+
+msgid "The bank could not check the card. Please try again or use another card."
+msgstr ""
+
+msgid "After you place the order you will see the IBAN and your own reference code. Once you have paid you can upload the receipt on the site; your certificate is sent when the payment is confirmed."
+msgstr ""
+
+msgid "Sapling donation"
+msgstr ""
+
+msgid "Recipient"
+msgstr ""
+
+msgid "Bank"
+msgstr ""
+
+msgid "Your pre-registration is in"
+msgstr ""
+
+msgid "To complete your donation, make a bank transfer to the account below. Please write your own reference code in the description."
+msgstr ""
+
+msgid "Make the bank transfer"
+msgstr ""
+
+msgid "The reference code lets us match your payment to your donation."
+msgstr ""
+
+msgid "Upload your receipt"
+msgstr ""
+
+msgid "Receive your certificate"
+msgstr ""
+
+msgid "Once the payment is confirmed your certificate is sent by WhatsApp and e-mail; it also appears under My account › Orders."
+msgstr ""
+
+msgid "We confirm your donation"
+msgstr ""
+
+msgid "Once the payment is confirmed the order is completed and you get an e-mail; it also appears under My account › Orders."
+msgstr ""
+
+msgid "My pending donations"
+msgstr ""
+
+msgid "Bank transfer details"
+msgstr ""
+
+msgid "After paying, upload your receipt:"
+msgstr ""
+
+msgid "Please write the reference above in the transfer description. After paying, upload your receipt:"
+msgstr ""
+
+msgid "Upload receipt"
+msgstr ""
+
+msgid "Awaiting approval"
+msgstr ""
+
+msgid "waiting for %s"
+msgstr ""
+
+msgid "piece"
+msgstr ""
+
+msgid "pieces"
+msgstr ""
+
+msgid "share"
+msgstr ""
+
+msgid "shares"
+msgstr ""
+
+msgid "person"
+msgstr ""
+
+msgid "people"
+msgstr ""
+
+msgid "sapling"
+msgstr ""
+
+msgid "saplings"
+msgstr ""
+
+msgid "package"
+msgstr ""
+
+msgid "packages"
+msgstr ""
+
+msgid "In the trash"
+msgstr ""
+
+msgid "Daily"
+msgstr ""
+
+msgid "Weekly"
+msgstr ""
+
+msgid "Monthly"
+msgstr ""
+
+msgid "Yearly"
+msgstr ""
+
+msgid "Test provider"
+msgstr ""
+
+msgid "Each line shows something the site needs and whether it is in place. Fix the errors first; warnings are worth a look."
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Info"
+msgstr ""
+
+msgid "%1$d OK · %2$d warnings · %3$d errors"
+msgstr ""
+
+msgid "Check again"
+msgstr ""
+
+msgid "Show only these (click again to show all)"
+msgstr ""
+
+msgid "Checked: %s"
+msgstr ""
+
+msgid "Source"
+msgstr ""
+
+msgid "Action"
+msgstr ""
+
+msgid "No checks are registered."
+msgstr ""
+
+msgid "System check found %d problem(s) that can stop donations or automations."
+msgstr ""
+
+msgid "Open system check"
+msgstr ""
+
+msgid "Hide until the next update"
+msgstr ""
+
+msgid "System: %d error(s)"
+msgstr ""
+
+msgid "Scheduled tasks (cron)"
+msgstr ""
+
+msgid "Security"
+msgstr ""
+
+msgid "%1$s (%2$s ago)"
+msgstr ""
+
+msgid "Last test %1$s: %2$s"
+msgstr ""
+
+msgid "WP-Cron mode"
+msgstr ""
+
+msgid "WP-Cron is turned off in wp-config.php (DISABLE_WP_CRON). That is fine only if a server cron job calls %s every 5–15 minutes; without it recurring charges, retries and other scheduled tasks never run."
+msgstr ""
+
+msgid "Scheduled tasks are running, so a server cron is in place."
+msgstr ""
+
+msgid "Scheduled tasks have not run recently: check the server cron job (Hostinger: hPanel › Advanced › Cron Jobs)."
+msgstr ""
+
+msgid "WP-Cron runs when someone visits the site. On a quiet site tasks can run late; for reliable recurring charges add a server cron job that calls wp-cron.php every 15 minutes and set DISABLE_WP_CRON to true (see KURULUM.md)."
+msgstr ""
+
+msgid "ALTERNATE_WP_CRON is on."
+msgstr ""
+
+msgid "Flux Donate hourly task"
+msgstr ""
+
+msgid "Last run: %s. Recurring iyzico charges are checked every hour."
+msgstr ""
+
+msgid "Not run yet; the first run is scheduled for %s."
+msgstr ""
+
+msgid "Last run: %s, more than 2 hours ago."
+msgstr ""
+
+msgid "It has never run."
+msgstr ""
+
+msgid "WP-Cron is off, so a server cron job must call wp-cron.php. It seems to be missing or failing."
+msgstr ""
+
+msgid "WP-Cron only runs on visits and may be blocked by the host or a security plugin. Use \"Test cron\" or add a server cron job."
+msgstr ""
+
+msgid "Next scheduled: %s."
+msgstr ""
+
+msgid "The task is not scheduled; it is added again on the next page load."
+msgstr ""
+
+msgid "Test cron"
+msgstr ""
+
+msgid "Overdue scheduled tasks"
+msgstr ""
+
+msgid "%1$d task is more than 15 minutes late: %2$s."
+msgid_plural "%1$d tasks are more than 15 minutes late: %2$s."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "A few late tasks right after a quiet period are normal; many mean cron is not running."
+msgstr ""
+
+msgid "No task is late."
+msgstr ""
+
+msgid "Cron test"
+msgstr ""
+
+msgid "Not tested. The test asks this server to call wp-cron.php once, as WordPress does after a visit."
+msgstr ""
+
+msgid "Card payment provider"
+msgstr ""
+
+msgid "No payment provider is available."
+msgstr ""
+
+msgid "Payment settings"
+msgstr ""
+
+msgid "Card payments are taken with %s."
+msgstr ""
+
+msgid "%s is the active provider but its keys are missing, so donation forms show \"Online payment is unavailable\"."
+msgstr ""
+
+msgid "Enter keys"
+msgstr ""
+
+msgid "Keys are read from the iyzico Subscription plugin settings."
+msgstr ""
+
+msgid "Keys are entered in Donations › Payments › iyzico."
+msgstr ""
+
+msgid "No iyzico API key and secret key found (neither in the iyzico WooCommerce plugin nor in Flux Donate)."
+msgstr ""
+
+msgid "Mode: sandbox (test). No real money is collected; switch to live keys before launch."
+msgstr ""
+
+msgid "Mode: live. Real payments are taken."
+msgstr ""
+
+msgid "Use \"Test connection\" to check the keys with iyzico."
+msgstr ""
+
+msgid "iyzico keys"
+msgstr ""
+
+msgid "Test connection"
+msgstr ""
+
+msgid "Paste into iyzico panel › Merchant notifications URL (İşyeri Bildirimleri Url): %s. Subscription notification URLs are not needed."
+msgstr ""
+
+msgid "Last notification received: %s."
+msgstr ""
+
+msgid "No notification received in the last 30 days (normal until the address is saved in the iyzico panel and a payment is made)."
+msgstr ""
+
+msgid "Notifications for WooCommerce orders are forwarded to the iyzico WooCommerce plugin."
+msgstr ""
+
+msgid "iyzico notification URL"
+msgstr ""
+
+msgid "Show addresses"
+msgstr ""
+
+msgid "Failed recurring charges"
+msgstr ""
+
+msgid "%d recurring donation stopped after its card was declined 3 times."
+msgid_plural "%d recurring donations stopped after their cards were declined 3 times."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Stripe keys"
+msgstr ""
+
+msgid "The Stripe publishable key and secret key are missing."
+msgstr ""
+
+msgid "Mode: live."
+msgstr ""
+
+msgid "Mode: test (pk_test_). No real money is collected."
+msgstr ""
+
+msgid "Webhook signing secret is set."
+msgstr ""
+
+msgid "Webhook signing secret is missing: refunds and renewals made in Stripe will not show up in Flux Donate."
+msgstr ""
+
+msgid "Flux Forms is not active. Donation forms and card payments need it."
+msgstr ""
+
+msgid "Active, version %s."
+msgstr ""
+
+msgid "Version %1$s is active; Flux Donate needs %2$s or later for payments and prices to work together."
+msgstr ""
+
+msgid "Active, version %s. Certificates can be sent after donations."
+msgstr ""
+
+msgid "Version %1$s is active; %2$s or later is recommended."
+msgstr ""
+
+msgid "Not active. Donations are recorded, but no certificate is created or sent."
+msgstr ""
+
+msgid "WooCommerce is older than %s. Flux Donate 2.0 takes donations through WooCommerce; update it."
+msgstr ""
+
+msgid "WooCommerce is not active. Flux Donate 2.0 takes donations through the WooCommerce cart and checkout; until it is active, only the older Flux Forms payment layer works."
+msgstr ""
+
+msgid "The old Flux WooCommerce Bağış plugin is still active. Flux Donate 2.0 replaces it: deactivate and delete it, otherwise orders get two certificates and two messages."
+msgstr ""
+
+msgid "WooCommerce is active."
+msgstr ""
+
+msgid "WooCommerce is not active."
+msgstr ""
+
+msgid "The iyzico WooCommerce plugin is active: it takes one-time card payments, and Flux Donate reads its iyzico keys for monthly donations."
+msgstr ""
+
+msgid "The iyzico WooCommerce plugin is not active, but its saved keys are still used."
+msgstr ""
+
+msgid "The iyzico WooCommerce plugin is not active; Flux Donate uses its own iyzico keys."
+msgstr ""
+
+msgid "The iyzico Subscription plugin is active; it renews WooCommerce subscriptions only. Flux Donate recurring donations use their own hourly task."
+msgstr ""
+
+msgid "WooCommerce and iyzico plugins"
+msgstr ""
+
+msgid "Open donation types"
+msgstr ""
+
+msgid "%d donation type is open and priced."
+msgid_plural "%d donation types are open and priced."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "No donation type is open with a price (or free amount), so forms cannot take donations."
+msgstr ""
+
+msgid "Forms of open donation types"
+msgstr ""
+
+msgid "No (existing) form is linked to: %s. Visitors cannot give to these types online."
+msgstr ""
+
+msgid "Every open donation type has a form."
+msgstr ""
+
+msgid "Default currency: %s."
+msgstr ""
+
+msgid "iyzico is not set up for this currency (Donations › Payments › iyzico › currencies)."
+msgstr ""
+
+msgid "Bank accounts (transfer)"
+msgstr ""
+
+msgid "%d bank account is listed for bank transfer gifts."
+msgid_plural "%d bank accounts are listed for bank transfer gifts."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "No bank account is listed. They come from the theme (filter flxb_bank_accounts) and are used when recording bank transfer gifts."
+msgstr ""
+
+msgid "Receipts and e-mails show \"%s\"."
+msgstr ""
+
+msgid "Not set; receipts and e-mails use the site title \"%s\"."
+msgstr ""
+
+msgid "E-mail sending"
+msgstr ""
+
+msgid "Not tested. Donor e-mails (recurring donation started, card declined) go out with wp_mail. The test sends one message to %s."
+msgstr ""
+
+msgid "Send test e-mail"
+msgstr ""
+
+msgid "Permalinks"
+msgstr ""
+
+msgid "Plain permalinks are in use. Payment callbacks still work through ?rest_route=, but some hosts and security plugins block that; choose \"Post name\"."
+msgstr ""
+
+msgid "Pretty permalinks are on; REST callbacks use /wp-json/."
+msgstr ""
+
+msgid "The site runs on HTTPS."
+msgstr ""
+
+msgid "Local test site without HTTPS. The live site must use HTTPS; payment providers refuse plain HTTP."
+msgstr ""
+
+msgid "The site address is not HTTPS. Card payments and payment callbacks need HTTPS (Settings › General, and an SSL certificate from the host)."
+msgstr ""
+
+msgid "General settings"
+msgstr ""
+
+msgid "WordPress security keys (salts)"
+msgstr ""
+
+msgid "Missing or weak in wp-config.php: %s. Saved iyzico cards are encrypted with these keys; set unique values once (https://api.wordpress.org/secret-key/1.1/salt/) and do not change them afterwards, or saved cards stop working."
+msgstr ""
+
+msgid "Set in wp-config.php. Saved iyzico cards are encrypted with them: do not change them, or saved cards stop working."
+msgstr ""
+
+msgid "Database tables"
+msgstr ""
+
+msgid "Up to date (%s)."
+msgstr ""
+
+msgid "Tables are at version %1$s, expected %2$s. Deactivate and activate Flux Donate to update them."
+msgstr ""
+
+msgid "No iyzico keys to test."
+msgstr ""
+
+msgid "sandbox"
+msgstr ""
+
+msgid "Connected; iyzico accepted the keys (%s)."
+msgstr ""
+
+msgid "iyzico refused the keys (%1$s): %2$s. Check that the keys belong to this environment."
+msgstr ""
+
+msgid "This server could not reach its own wp-cron.php (%s). WP-Cron cannot start from visits; add a server cron job."
+msgstr ""
+
+msgid "wp-cron.php answered; WP-Cron can start."
+msgstr ""
+
+msgid "wp-cron.php answered with HTTP %d (blocked by the host or a security plugin?). Add a server cron job."
+msgstr ""
+
+msgid "[%s] Test e-mail from Flux Donate"
+msgstr ""
+
+msgid "This is a test from Donations › Settings › System check. If you can read it, donor e-mails can be sent."
+msgstr ""
+
+msgid "Sent to %s. Check that it arrived (and not in spam)."
+msgstr ""
+
+msgid "Sending failed: %s. Set up SMTP (e.g. an SMTP plugin with your mail account)."
+msgstr ""
+
+msgid "unknown error"
+msgstr ""
+
+msgid "of %s goal"
+msgstr ""
+
+msgid "Goal progress"
+msgstr ""
+
+msgid "reached"
+msgstr ""
+
+msgid "donor"
+msgid_plural "donors"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "day left"
+msgid_plural "days left"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Donations for this cause open on %s."
+msgstr ""
+
+msgid "Donations for this cause have ended."
+msgstr ""
+
+msgid "The form “%1$s” is already linked to the open donation type “%2$s” for the same dates, so it was not linked here. Close that type, change the dates, or use another form."
+msgstr ""
+
+msgid "Please enter a title."
+msgstr ""
+
+msgid "The end date must be after the start date."
+msgstr ""
+
+msgid "Add at least one option with a price, or allow a free amount."
+msgstr ""
+
+msgid "Vacip"
+msgstr ""
+
+msgid "Adak"
+msgstr ""
+
+msgid "Akika"
+msgstr ""
+
+msgid "Şifa"
+msgstr ""
+
+msgid "Nafile"
+msgstr ""
+
+msgid "You can choose at most %s."
+msgstr ""
+
+msgid "This option is not open for donations at the moment."
+msgstr ""
+
+msgid "The minimum donation is %s."
+msgstr ""
+
+msgid "This donation needs a proxy (vekâlet) consent, but the form is not set up for it yet. Please contact the site administrator."
+msgstr ""
+
+msgid "Tree planting (sapling donations)"
+msgstr ""
+
+msgid "Sapling"
+msgstr ""
+
+msgid "Charity (kurban, ramazan, general)"
+msgstr ""
+
+msgid "Ramazan"
+msgstr ""
+
+msgid "Kurban share (cattle)"
+msgstr ""
+
+msgid "One share (1/7)"
+msgstr ""
+
+msgid "Whole animal (7 shares)"
+msgstr ""
+
+msgid "Kurban (sheep or goat)"
+msgstr ""
+
+msgid "Iftar"
+msgstr ""
+
+msgid "Sahur"
+msgstr ""
+
+msgid "Fitre"
+msgstr ""
+
+msgid "General donation"
+msgstr ""
+
+msgid "This person may not open donation requests."
+msgstr ""
+
+msgid "Please choose an open donation type."
+msgstr ""
+
+msgid "Please write the donor's name."
+msgstr ""
+
+msgid "Please give the donor's phone number or e-mail address."
+msgstr ""
+
+msgid "Donation request opened by %s."
+msgstr ""
+
+msgid "Recurring donation started"
+msgstr ""
+
+msgid "Sent to the donor when a monthly (card) donation is set up."
+msgstr ""
+
+msgid "Donor name"
+msgstr ""
+
+msgid "Interval (monthly…)"
+msgstr ""
+
+msgid "Date of the next payment"
+msgstr ""
+
+msgid "Cancel link"
+msgstr ""
+
+msgid "monthly"
+msgstr ""
+
+msgid "Your recurring donation to {kurum}"
+msgstr ""
+
+msgid "Thank you, {ad}"
+msgstr ""
+
+msgid "Your {aralik} donation of {tutar} is set up. The next payment will be taken on {sonraki}."
+msgstr ""
+
+msgid "You can cancel your recurring donation at any time with the button below."
+msgstr ""
+
+msgid "Recurring donation could not be charged"
+msgstr ""
+
+msgid "Sent to the donor when the card was declined on every attempt and the recurring donation is paused."
+msgstr ""
+
+msgid "Number of attempts"
+msgstr ""
+
+msgid "We could not take your donation to {kurum}"
+msgstr ""
+
+msgid "Your recurring donation is paused"
+msgstr ""
+
+msgid "Dear {ad},"
+msgstr ""
+
+msgid "We tried {deneme} times but could not charge your card for your {aralik} donation of {tutar}, so it is paused. If you would like to continue, please make a new donation on our website or contact us."
+msgstr ""
+
+msgid "Donate again"
+msgstr ""
+
+msgid "Bank transfer receipt uploaded"
+msgstr ""
+
+msgid "Sent to the donations manager when a donor uploads a transfer receipt (dekont)."
+msgstr ""
+
+msgid "Order number"
+msgstr ""
+
+msgid "Transfer reference"
+msgstr ""
+
+msgid "File name"
+msgstr ""
+
+msgid "Order link (admin)"
+msgstr ""
+
+msgid "Receipt uploaded: donation #{siparis} ({ad})"
+msgstr ""
+
+msgid "A transfer receipt was uploaded"
+msgstr ""
+
+msgid "Amount: {tutar}"
+msgstr ""
+
+msgid "Reference: {aciklama}"
+msgstr ""
+
+msgid "File: {dosya}"
+msgstr ""
+
+msgid "Check the payment at the bank and press \"Confirm payment\" on the order; the certificate is then issued and sent automatically."
+msgstr ""
+
+msgid "Open the order"
+msgstr ""
+
+msgid "Payment rejected"
+msgstr ""
+
+msgid "Sent to the donor when a manager rejects a bank transfer, with the reason."
+msgstr ""
+
+msgid "Reason"
+msgstr ""
+
+msgid "We could not confirm your donation payment"
+msgstr ""
+
+msgid "We could not confirm your payment"
+msgstr ""
+
+msgid "Hello {ad},"
+msgstr ""
+
+msgid "We could not confirm the payment of your {tutar} donation."
+msgstr ""
+
+msgid "Reason: {aciklama}"
+msgstr ""
+
+msgid "If you think this is a mistake, please reply to this e-mail. Thank you."
+msgstr ""
+
+
+msgid "Decrease"
+msgstr ""
+
+msgid "Increase"
+msgstr ""

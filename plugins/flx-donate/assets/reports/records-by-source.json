@@ -1,0 +1,12 @@
+{
+  "schema": "flxb-report/1",
+  "id": "records-by-source",
+  "title": { "tr": "Getirene göre kayıtlar", "en": "Records by who brought them in" },
+  "source": "items",
+  "filter": { "paid": true },
+  "group": ["source"],
+  "metrics": ["count", "amount", "cost", "margin"],
+  "period": "this_year",
+  "chart": "bar",
+  "order": 70
+}

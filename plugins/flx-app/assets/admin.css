@@ -1,0 +1,28 @@
+.flxapp .flxapp-lead{max-width:760px;font-size:14px}
+.flxapp .flxapp-empty,.flxapp .flxapp-muted{color:#646970}
+.flxapp .flxapp-table{max-width:1100px;margin-bottom:16px}
+.flxapp .flxapp-card{background:#fff;border:1px solid #dcdcde;border-radius:8px;padding:12px 16px;max-width:1100px;box-sizing:border-box}
+.flxapp .flxapp-row{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+.flxapp .flxapp-row label{display:flex;flex-direction:column;gap:4px}
+.flxapp .flxapp-secret textarea{width:100%;max-width:760px;font-family:ui-monospace,Menlo,Consolas,monospace}
+.flxapp .flxapp-meta code{word-break:break-all}
+@media (max-width:782px){
+	.flxapp .flxapp-table thead{display:none}
+	.flxapp .flxapp-table tr{display:block;border-bottom:1px solid #dcdcde;padding:8px 0}
+	.flxapp .flxapp-table td{display:flex;gap:8px;padding:4px 10px}
+	.flxapp .flxapp-table td[data-label]::before{content:attr(data-label);min-width:110px;color:#646970}
+}
+body.flx-dark .flxapp .flxapp-card{background:#1d2327;border-color:#3c434a}
+.flxapp .flxapp-title{display:flex;align-items:center;gap:10px}
+.flxapp .flxapp-title small{font-size:13px;font-weight:400;color:#646970}
+.flxapp .flxapp-switch{position:relative;display:inline-block;width:36px;height:20px}
+.flxapp .flxapp-switch input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer;z-index:1}
+.flxapp .flxapp-switch span{position:absolute;inset:0;border-radius:20px;background:#c3c4c7;transition:background .15s}
+.flxapp .flxapp-switch span::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .15s}
+.flxapp .flxapp-switch input:checked+span{background:var(--flxa-accent,#2271b1)}
+.flxapp .flxapp-switch input:checked+span::after{transform:translateX(16px)}
+.flxapp .flxapp-switch input:focus-visible+span{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--flxa-accent,#2271b1)}
+.flxapp .flxapp-pf{display:inline-block;padding:1px 8px;border-radius:20px;font-size:12px;background:#f0f0f1;color:#646970;text-decoration:line-through}
+.flxapp .flxapp-pf.is-on{background:#e7f5ec;color:#1d6b3a;text-decoration:none}
+body.flx-dark .flxapp .flxapp-pf{background:#2c3338;color:#a7aaad}
+body.flx-dark .flxapp .flxapp-pf.is-on{background:#173527;color:#6fd7a3}

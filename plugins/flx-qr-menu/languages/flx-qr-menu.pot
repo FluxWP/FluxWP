@@ -1,0 +1,1141 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Flux QR Menu\n"
+
+msgid "QR Menüler"
+msgstr ""
+
+msgid "Menü açabilir"
+msgstr ""
+
+msgid "Adres/alt alan adı değiştirebilir"
+msgstr ""
+
+msgid "QR Menülerim"
+msgstr ""
+
+msgid "Size atanmış menü yok."
+msgstr ""
+
+msgid "QR Menü yetkileri"
+msgstr ""
+
+msgid "Menü yöneticisi"
+msgstr ""
+
+msgid "Menü yöneticisi yalnız kendi açtığı ve kendisine atanan menüleri görür. Menüye atama, menünün Paylaş sekmesinden yapılır."
+msgstr ""
+
+msgid "Adres yalnız küçük harf (a-z), rakam ve tire içerebilir; tireyle başlayıp bitemez."
+msgstr ""
+
+msgid "\"%s\" WordPress tarafından kullanılıyor, başka bir adres seçin."
+msgstr ""
+
+msgid "/%1$s/ adresi \"%2$s\" menüsünde kullanılıyor."
+msgstr ""
+
+msgid "/%1$s/ adresinde \"%2$s\" sayfası da var. Bu adreste artık menü açılır; sayfaya ulaşmak için sayfanın adresini değiştirin."
+msgstr ""
+
+msgid "Alt alan adı geçerli değil (ör. menu1.menu.example.org)."
+msgstr ""
+
+msgid "Sitenin kendi alan adı menüye verilemez. Ana sayfada menü göstermek için QR Menüler › Ayarlar › Ana sayfa seçeneğini kullanın."
+msgstr ""
+
+msgid "%1$s \"%2$s\" menüsünde kullanılıyor."
+msgstr ""
+
+msgid "Bu alan adı %s altında değil. Alan adının bu siteyle aynı klasöre yönlendiğinden ve SSL sertifikasının onu da kapsadığından emin olun."
+msgstr ""
+
+msgid "Adres kaldırıldı"
+msgstr ""
+
+msgid "Adres: %s"
+msgstr ""
+
+msgid "Alt alan adı kaldırıldı"
+msgstr ""
+
+msgid "Alt alan adı: %s"
+msgstr ""
+
+msgid "Düzenleyen eklendi: %s"
+msgstr ""
+
+msgid "Düzenleyen çıkarıldı: %s"
+msgstr ""
+
+msgid "Tüm menüler"
+msgstr ""
+
+msgid "QR Menü ayarları"
+msgstr ""
+
+msgid "Ayarlar"
+msgstr ""
+
+msgid "Bu sayfaya erişim yetkiniz yok."
+msgstr ""
+
+msgid "Bu menüye erişim yetkiniz yok."
+msgstr ""
+
+msgid "Menü oluşturuldu."
+msgstr ""
+
+msgid "Menü kopyalandı."
+msgstr ""
+
+msgid "Menü çöp kutusuna taşındı. Bağlı siteler artık veri alamaz."
+msgstr ""
+
+msgid "Menü geri alındı."
+msgstr ""
+
+msgid "Menü ve geçmişi kalıcı olarak silindi."
+msgstr ""
+
+msgid "Menü durumu değişti."
+msgstr ""
+
+msgid "Ayarlar kaydedildi."
+msgstr ""
+
+msgid "Ana sayfa için bir menü seçin."
+msgstr ""
+
+msgid "%s önce"
+msgstr ""
+
+msgid "Yeni menü"
+msgstr ""
+
+msgid "Henüz menü yok."
+msgstr ""
+
+msgid "Bir menü oluşturun ve Paylaş sekmesinden bu sitedeki adresini (ör. /menu/) belirleyin. Ayrı bir menü sitesi bağlamak için Bağlantı sekmesinden anahtar alın."
+msgstr ""
+
+msgid "İlk menüyü oluştur"
+msgstr ""
+
+msgid "Size atanmış bir menü yok. Site yöneticisinden bir menüye atanmayı ya da menü açma yetkisi isteyin."
+msgstr ""
+
+msgid "Yayında"
+msgstr ""
+
+msgid "Kapalı"
+msgstr ""
+
+msgid "Sürüm"
+msgstr ""
+
+msgid "Ürün"
+msgstr ""
+
+msgid "%s tükendi"
+msgstr ""
+
+msgid "Son değişiklik"
+msgstr ""
+
+msgid "Adres"
+msgstr ""
+
+msgid "Yok"
+msgstr ""
+
+msgid "Siteler"
+msgstr ""
+
+msgid "Anahtar yok"
+msgstr ""
+
+msgid "Bağlı site yok"
+msgstr ""
+
+msgid "%1$s · son %2$s"
+msgstr ""
+
+msgid "Düzenle"
+msgstr ""
+
+msgid "Yayından kaldır"
+msgstr ""
+
+msgid "Yayına al"
+msgstr ""
+
+msgid "Kopyala"
+msgstr ""
+
+msgid "Çöpe at"
+msgstr ""
+
+msgid "Menü çöp kutusuna taşınsın mı? Adresi kapanır ve bağlı menü siteleri veri alamaz."
+msgstr ""
+
+msgid "Çöp kutusu (%s)"
+msgstr ""
+
+msgid "Geri al"
+msgstr ""
+
+msgid "Kalıcı sil"
+msgstr ""
+
+msgid "Menü ve tüm geçmişi kalıcı olarak silinsin mi?"
+msgstr ""
+
+msgid "Menülere dön"
+msgstr ""
+
+msgid "Menü adı"
+msgstr ""
+
+msgid "ör. Yenikapı Tanıtım Günleri"
+msgstr ""
+
+msgid "Başlangıç"
+msgstr ""
+
+msgid "Boş menü"
+msgstr ""
+
+msgid "Örnek menü (Yenikapı Tanıtım Günleri)"
+msgstr ""
+
+msgid "JSON içe aktar"
+msgstr ""
+
+msgid "Menü JSON'u"
+msgstr ""
+
+msgid "Menü sitesinin JSON'unu, eski index.html dosyasının tamamını (içindeki menu-data bölümü alınır) ya da veri ucunun yanıtını yapıştırabilirsiniz."
+msgstr ""
+
+msgid "Menüyü oluştur"
+msgstr ""
+
+msgid "Canlı önizleme"
+msgstr ""
+
+msgid "Yeni sekmede aç"
+msgstr ""
+
+msgid "Önizlemeyi kapat"
+msgstr ""
+
+msgid "Kaydedilmemiş değişiklikler de görünür. Ziyaretçiler kaydettikten sonra görür."
+msgstr ""
+
+msgid "Önizleme"
+msgstr ""
+
+msgid "Bu menü çöp kutusunda. Menü listesinden geri alın."
+msgstr ""
+
+msgid "Menü"
+msgstr ""
+
+msgid "Paylaş"
+msgstr ""
+
+msgid "Bağlantı"
+msgstr ""
+
+msgid "Geçmiş"
+msgstr ""
+
+msgid "Vazgeç"
+msgstr ""
+
+msgid "Kaydet"
+msgstr ""
+
+msgid "Menü düzenleyicisi için JavaScript gerekli."
+msgstr ""
+
+msgid "Bu işlem için yetkiniz yok."
+msgstr ""
+
+msgid "Menü bulunamadı."
+msgstr ""
+
+msgid "JSON okunamadı: %s"
+msgstr ""
+
+msgid "Ana Yemekler"
+msgstr ""
+
+msgid "Flux QR Menu"
+msgstr ""
+
+msgid "QR Menü"
+msgstr ""
+
+msgid "Değişiklik geçmişi tablosu"
+msgstr ""
+
+msgid "Geçmiş tablosu kurulu."
+msgstr ""
+
+msgid "Geçmiş tablosu yok. Eklentiyi devre dışı bırakıp yeniden etkinleştirin."
+msgstr ""
+
+msgid "Menüler"
+msgstr ""
+
+msgid "Menü adresleri"
+msgstr ""
+
+msgid "Kalıcı bağlantılar \"Düz\" ayarında; /menu/ gibi adresler sunucuda 404 verebilir. Ayarlar › Kalıcı bağlantılar › \"Yazı adı\" seçip kaydedin."
+msgstr ""
+
+msgid "Bağlantı anahtarı"
+msgstr ""
+
+msgid "Anahtarı olmayan yayındaki menüler: %s. Menü › Bağlantı sekmesinden anahtar oluşturun."
+msgstr ""
+
+msgid "Yayındaki tüm menülerin anahtarı var."
+msgstr ""
+
+msgid "Hiç bağlanmamış: %s."
+msgstr ""
+
+msgid "24 saattir görülmeyen: %s."
+msgstr ""
+
+msgid "Menü siteleri"
+msgstr ""
+
+msgid "Anahtarlı menülerin siteleri son 24 saatte veri çekti."
+msgstr ""
+
+msgid "%d menü var."
+msgstr ""
+
+msgid "Bu sitede %d menü adresi açık."
+msgstr ""
+
+msgid "açıklama"
+msgstr ""
+
+msgid "birim"
+msgstr ""
+
+msgid "görsel"
+msgstr ""
+
+msgid "rozet"
+msgstr ""
+
+msgid "bağlantı"
+msgstr ""
+
+msgid "büyük görsel"
+msgstr ""
+
+msgid "tükendi notu"
+msgstr ""
+
+msgid "\"%s\" ara başlığı"
+msgstr ""
+
+msgid "(adsız ürün)"
+msgstr ""
+
+msgid "%s: tükendi"
+msgstr ""
+
+msgid "%s: tekrar satışta"
+msgstr ""
+
+msgid "%s: gizlendi"
+msgstr ""
+
+msgid "%s: gösterildi"
+msgstr ""
+
+msgid "%1$s: fiyat %2$s → %3$s"
+msgstr ""
+
+msgid "%1$s: eski fiyat %2$s → %3$s"
+msgstr ""
+
+msgid "%1$s: %2$s değişti"
+msgstr ""
+
+msgid "Etkinlik başlığı değişti"
+msgstr ""
+
+msgid "Slogan değişti"
+msgstr ""
+
+msgid "Etkinlik günleri değişti"
+msgstr ""
+
+msgid "Site adresi değişti"
+msgstr ""
+
+msgid "Menü kapatıldı (teşekkür sayfası)"
+msgstr ""
+
+msgid "Menü aktif edildi"
+msgstr ""
+
+msgid "Etkinlik bilgisi değişti"
+msgstr ""
+
+msgid "Genel bilgiler değişti"
+msgstr ""
+
+msgid "Menü verisi değişti"
+msgstr ""
+
+msgid "Kategori sırası değişti"
+msgstr ""
+
+msgid "Kategori \"%s\" silindi"
+msgstr ""
+
+msgid "Kategori \"%s\" eklendi"
+msgstr ""
+
+msgid "Kategori \"%1$s\" adı \"%2$s\" oldu"
+msgstr ""
+
+msgid "not"
+msgstr ""
+
+msgid "ikon"
+msgstr ""
+
+msgid "sekme"
+msgstr ""
+
+msgid "Kategori \"%1$s\": %2$s değişti"
+msgstr ""
+
+msgid "%1$s adı \"%2$s\" oldu"
+msgstr ""
+
+msgid "\"%s\" sıralaması değişti"
+msgstr ""
+
+msgid "%1$s, \"%2$s\" kategorisine taşındı"
+msgstr ""
+
+msgid "%s silindi"
+msgstr ""
+
+msgid "%s eklendi"
+msgstr ""
+
+msgid "%d değişiklik daha"
+msgstr ""
+
+msgid "Çok fazla hatalı anahtar denemesi. Biraz sonra tekrar deneyin."
+msgstr ""
+
+msgid "Bağlantı anahtarı geçersiz."
+msgstr ""
+
+msgid "Menü yayından kaldırılmış."
+msgstr ""
+
+msgid "QR menüleri listele"
+msgstr ""
+
+msgid "QR menüleri: kimlik, ad, sürüm, yayında mı, ürün ve tükenen sayısı, bağlı siteler."
+msgstr ""
+
+msgid "QR menüyü oku"
+msgstr ""
+
+msgid "Bir QR menünün tüm verisi (kategoriler, ürünler, etkinlik)."
+msgstr ""
+
+msgid "QR menüde ürün güncelle"
+msgstr ""
+
+msgid "Kategori kimliği ve ürün adıyla bulunan ürünün fiyatını, tükendi ya da gizli durumunu değiştirir. Geçmişe yazılır, menü sitelerine bildirim gider."
+msgstr ""
+
+msgid "Kategori kimliği (ör. \"ana\")"
+msgstr ""
+
+msgid "Ürün adı (büyük/küçük harf duyarsız)"
+msgstr ""
+
+msgid "Ürün bulunamadı (kategori kimliği ve ürün adını kontrol edin)."
+msgstr ""
+
+msgid "Örnek görsel dosyası bulunamadı."
+msgstr ""
+
+msgid "Örnek görsel geçici klasöre kopyalanamadı."
+msgstr ""
+
+msgid "Sunucu %d yanıtı verdi."
+msgstr ""
+
+msgid "Dosya bir görsel değil ya da 8 MB'tan büyük."
+msgstr ""
+
+msgid "Görsellerin indirileceği menü sitesi bilinmiyor. Menü sitesi bu menüye bağlanıp en az bir kez veri aldıktan sonra tekrar deneyin."
+msgstr ""
+
+msgid "Menü sitesi bağlı değil."
+msgstr ""
+
+msgid "%d görsel medya kütüphanesine aktarıldı"
+msgstr ""
+
+msgid "Menü yayında değil"
+msgstr ""
+
+msgid "Bu menü şu anda yayında değil. Menü yeniden açıldığında bu sayfa kendiliğinden yenilenir."
+msgstr ""
+
+msgid "Menü yayında değil."
+msgstr ""
+
+msgid "Menü verisi geçerli JSON değil."
+msgstr ""
+
+msgid "Kayıt bulunamadı."
+msgstr ""
+
+msgid "Adres değiştirme yetkiniz yok."
+msgstr ""
+
+msgid "Dosya yükleme yetkiniz yok."
+msgstr ""
+
+msgid "Temanın ana sayfası"
+msgstr ""
+
+msgid "Flux Menu Theme temasında boş beyaz sayfa."
+msgstr ""
+
+msgid "Seçili menüye yönlendir"
+msgstr ""
+
+msgid "Ana sayfayı açan, menünün adresine (ör. /menu/) geçici yönlendirmeyle (302) gider."
+msgstr ""
+
+msgid "Seçili menüyü ana sayfada göster"
+msgstr ""
+
+msgid "Menü doğrudan ana sayfada açılır; teşekkür sayfası /tesekkur/ olur."
+msgstr ""
+
+msgid "Ana sayfa"
+msgstr ""
+
+msgid "— Seçin —"
+msgstr ""
+
+msgid "Yönlendirme için menünün bir adresi (Paylaş sekmesi) olmalı; yoksa temanın ana sayfası açılır."
+msgstr ""
+
+msgid "Yetkiler"
+msgstr ""
+
+msgid "Menü yöneticisi rolündeki kullanıcılar /wp-admin üzerinden giriş yapar ve yalnız kendi açtığı ya da kendisine atanan menüleri görür. Menüye atama, menünün Paylaş sekmesinden yapılır."
+msgstr ""
+
+msgid "Henüz menü yöneticisi yok."
+msgstr ""
+
+msgid "Kullanıcı"
+msgstr ""
+
+msgid "Yeni kullanıcı ekle (rol: Menü yöneticisi)"
+msgstr ""
+
+msgid "Kaldırma"
+msgstr ""
+
+msgid "Eklenti silinince menüleri ve geçmişi de sil"
+msgstr ""
+
+msgid "Menü verisi bir JSON nesnesi olmalı."
+msgstr ""
+
+msgid "\"kategoriler\" listesi bulunamadı."
+msgstr ""
+
+msgid "Menü verisi çok büyük (en fazla 1 MB)."
+msgstr ""
+
+msgid "Adsız menü"
+msgstr ""
+
+msgid "JSON'dan içe aktarıldı"
+msgstr ""
+
+msgid "Menü oluşturuldu"
+msgstr ""
+
+msgid "Bu menü siz düzenlerken başka bir yerden kaydedildi."
+msgstr ""
+
+msgid "Menü adı: %s"
+msgstr ""
+
+msgid "Menü yayına alındı"
+msgstr ""
+
+msgid "Menü yayından kaldırıldı"
+msgstr ""
+
+msgid "Bu kayıtta menü verisi yok."
+msgstr ""
+
+msgid "v%d sürümüne dönüldü"
+msgstr ""
+
+msgid "%s (kopya)"
+msgstr ""
+
+msgid "\"%s\" menüsünden kopyalandı"
+msgstr ""
+
+msgid "Yeni bağlantı anahtarı oluşturuldu (…%s)"
+msgstr ""
+
+msgid "Kopyalandı"
+msgstr ""
+
+msgid "Kaydedilmemiş değişiklikler"
+msgstr ""
+
+msgid "Kaydedildi · v%s"
+msgstr ""
+
+msgid "Kaydediliyor…"
+msgstr ""
+
+msgid "Değişiklik yok."
+msgstr ""
+
+msgid "Kaydedilemedi: %s"
+msgstr ""
+
+msgid "Sunucudaki sürüm: v%s."
+msgstr ""
+
+msgid "Değişikliklerimi JSON olarak kopyala"
+msgstr ""
+
+msgid "Sunucudakini yükle (değişikliklerim silinir)"
+msgstr ""
+
+msgid "Kaydedilmemiş değişiklikleriniz silinecek. Devam edilsin mi?"
+msgstr ""
+
+msgid "Benimkini yine de kaydet"
+msgstr ""
+
+msgid "Sunucudaki yeni değişikliklerin üzerine yazılacak. Emin misiniz?"
+msgstr ""
+
+msgid "Sunucudaki sürüm yüklendi · v%s"
+msgstr ""
+
+msgid "Kaydedilmemiş değişiklikler geri alınsın mı?"
+msgstr ""
+
+msgid "%s ürün"
+msgstr ""
+
+msgid "%s gizli"
+msgstr ""
+
+msgid "%1$s ürün · %2$s tükendi · %3$s gizli"
+msgstr ""
+
+msgid "Ürün ara…"
+msgstr ""
+
+msgid "Tümünü daralt"
+msgstr ""
+
+msgid "Tümünü aç"
+msgstr ""
+
+msgid "Kategori ekle"
+msgstr ""
+
+msgid "Yeni kategori"
+msgstr ""
+
+msgid "%s ürün görseli menü sitesindeki dosyalara (img/…) bağlı. Bu sitede yayınlanan menüde görünmeleri için medya kütüphanesine aktarın."
+msgstr ""
+
+msgid "%s ürün görseli eklentiyle gelen örnek görsellere (img/…) bağlı. Medya kütüphanesine aktarırsanız ortam kütüphanesinde görünür ve oradan değiştirilebilir."
+msgstr ""
+
+msgid "Görselleri medya kütüphanesine aktar"
+msgstr ""
+
+msgid "Görsellerin indirileceği menü sitesi bilinmiyor: menü sitesi bu menüye bağlanıp en az bir kez veri almalı."
+msgstr ""
+
+msgid "Önce değişiklikleri kaydedin."
+msgstr ""
+
+msgid "Aktarılıyor… %s görsel aktarıldı"
+msgstr ""
+
+msgid "%1$s görsel aktarıldı, %2$s görsel aktarılamadı."
+msgstr ""
+
+msgid "%s görsel aktarıldı."
+msgstr ""
+
+msgid "Yemek"
+msgstr ""
+
+msgid "Salata"
+msgstr ""
+
+msgid "İçecek"
+msgstr ""
+
+msgid "Tatlı"
+msgstr ""
+
+msgid "Fidan"
+msgstr ""
+
+msgid "Sürükleyerek taşı"
+msgstr ""
+
+msgid "Yukarı taşı"
+msgstr ""
+
+msgid "Aşağı taşı"
+msgstr ""
+
+msgid "Kategoriyi sil"
+msgstr ""
+
+msgid "\"%1$s\" kategorisi ve içindeki %2$s ürün silinsin mi?"
+msgstr ""
+
+msgid "Kategori ayarları"
+msgstr ""
+
+msgid "Başlık"
+msgstr ""
+
+msgid "Not"
+msgstr ""
+
+msgid "İkon"
+msgstr ""
+
+msgid "Kimlik"
+msgstr ""
+
+msgid "Alt çubukta sekmesi olsun"
+msgstr ""
+
+msgid "Ürün ekle"
+msgstr ""
+
+msgid "Ara başlık ekle"
+msgstr ""
+
+msgid "Yeni ara başlık"
+msgstr ""
+
+msgid "Gizli"
+msgstr ""
+
+msgid "\"%s\" silinsin mi?"
+msgstr ""
+
+msgid "Ara başlık"
+msgstr ""
+
+msgid "Sil"
+msgstr ""
+
+msgid "Tükendi"
+msgstr ""
+
+msgid "Fiyat"
+msgstr ""
+
+msgid "Ürün adı"
+msgstr ""
+
+msgid "Tüm alanlar"
+msgstr ""
+
+msgid "Ortam kütüphanesi yüklenemedi."
+msgstr ""
+
+msgid "Görselin adresi (https://…)"
+msgstr ""
+
+msgid "Görsel seç"
+msgstr ""
+
+msgid "Seç"
+msgstr ""
+
+msgid "Görseli kaldır"
+msgstr ""
+
+msgid "Görseli değiştir"
+msgstr ""
+
+msgid "Görsel ekle"
+msgstr ""
+
+msgid "ya da"
+msgstr ""
+
+msgid "Adres gir"
+msgstr ""
+
+msgid "Ortamdan seç"
+msgstr ""
+
+msgid "ör. Yeni"
+msgstr ""
+
+msgid "Yeni"
+msgstr ""
+
+msgid "Varsayılan rozet"
+msgstr ""
+
+msgid "Özel metin"
+msgstr ""
+
+msgid "Kategoriye taşı"
+msgstr ""
+
+msgid "Kategoriye taşı…"
+msgstr ""
+
+msgid "Açıklama"
+msgstr ""
+
+msgid "Eski fiyat"
+msgstr ""
+
+msgid "üstü çizili gösterilir"
+msgstr ""
+
+msgid "Birim"
+msgstr ""
+
+msgid "ör. 1 adet"
+msgstr ""
+
+msgid "Görsel"
+msgstr ""
+
+msgid "Rozet"
+msgstr ""
+
+msgid "Tükendi notu"
+msgstr ""
+
+msgid "ör. Yoğun ilgiden dolayı tükendi."
+msgstr ""
+
+msgid "Büyük görsel"
+msgstr ""
+
+msgid "Diğer alanlar korunur: %s"
+msgstr ""
+
+msgid "Menü aktif"
+msgstr ""
+
+msgid "Kapalıyken ziyaretçiler menü yerine teşekkür sayfasını görür. Menü tarihe göre kendiliğinden kapanmaz."
+msgstr ""
+
+msgid "Etkinlik"
+msgstr ""
+
+msgid "Slogan"
+msgstr ""
+
+msgid "Site"
+msgstr ""
+
+msgid "Durum"
+msgstr ""
+
+msgid "ör. 9 Ekim"
+msgstr ""
+
+msgid "Etiket"
+msgstr ""
+
+msgid "Tarih"
+msgstr ""
+
+msgid "Günler"
+msgstr ""
+
+msgid "Menü sitesi bugünü ve son günü bu tarihlere göre gösterir."
+msgstr ""
+
+msgid "Gün ekle"
+msgstr ""
+
+msgid "Genel bilgi"
+msgstr ""
+
+msgid "Menünün altında görünür. Her satır ayrı bir madde."
+msgstr ""
+
+msgid "Menü siteleri veriyi alabiliyor."
+msgstr ""
+
+msgid "Menü siteleri \"yayından kaldırıldı\" yanıtı alır."
+msgstr ""
+
+msgid "Yeni anahtar: bu anahtar yalnız şimdi gösterilir. Kopyalayıp menü sitesinin paneline girin."
+msgstr ""
+
+msgid "Bağlantı bilgileri"
+msgstr ""
+
+msgid "Bağlantı adresi"
+msgstr ""
+
+msgid "Anahtar"
+msgstr ""
+
+msgid "oluşturuldu: %s"
+msgstr ""
+
+msgid "Yeni anahtar oluştur"
+msgstr ""
+
+msgid "Yeni anahtar oluşturulunca eski anahtar hemen geçersiz olur ve bağlı menü siteleri yeni anahtar girilene kadar veri alamaz. Devam edilsin mi?"
+msgstr ""
+
+msgid "İstemci"
+msgstr ""
+
+msgid "Son görülme"
+msgstr ""
+
+msgid "Anlık bildirim"
+msgstr ""
+
+msgid "Var"
+msgstr ""
+
+msgid "Kaldır"
+msgstr ""
+
+msgid "Site listeden kaldırılsın mı? Anahtar geçerli kaldıkça bir sonraki istekte yeniden görünür; erişimi kesmek için yeni anahtar oluşturun."
+msgstr ""
+
+msgid "Henüz bağlanan site yok. Menü sitesi ilk veri isteğinde burada görünür."
+msgstr ""
+
+msgid "Önce bir anahtar oluşturun."
+msgstr ""
+
+msgid "Bağlı siteler"
+msgstr ""
+
+msgid "Yenile"
+msgstr ""
+
+msgid "Menü sitesini bağlama"
+msgstr ""
+
+msgid "Menü sitesini (qr-menu) istediğiniz alan adına kurun ve ilk açılışta yönetici anahtarını belirleyin."
+msgstr ""
+
+msgid "Menü sitesinde /admin/ sayfasını açın."
+msgstr ""
+
+msgid "Bağlantı adresi olarak yukarıdaki adresi, anahtar olarak bu menünün anahtarını girin ve kaydedin."
+msgstr ""
+
+msgid "Site bu listede görünür. Kaydettiğiniz her değişiklik anlık bildirimle menü sitesine iletilir; bildirim ulaşmazsa site yaklaşık bir dakika içinde kendisi kontrol eder."
+msgstr ""
+
+msgid "Alt alan adı"
+msgstr ""
+
+msgid "Aç"
+msgstr ""
+
+msgid "Bu menünün henüz bu sitede bir adresi yok. Aşağıdan bir adres verin."
+msgstr ""
+
+msgid "Bu menünün henüz bu sitede bir adresi yok. Adres vermesi için site yöneticisine başvurun."
+msgstr ""
+
+msgid "Menünün adresi"
+msgstr ""
+
+msgid "Menü yayında değil: adreste \"Menü yayında değil\" sayfası açılır."
+msgstr ""
+
+msgid "QR kodun adresi"
+msgstr ""
+
+msgid "QR kod"
+msgstr ""
+
+msgid "SVG indir"
+msgstr ""
+
+msgid "PNG indir"
+msgstr ""
+
+msgid "Baskı için SVG önerilir (her boyutta net). Kodun etrafındaki beyaz boşluğu kesmeyin."
+msgstr ""
+
+msgid "Adres ayarı"
+msgstr ""
+
+msgid "Küçük harf, rakam ve tire. Boş bırakılırsa bu yolda menü açılmaz."
+msgstr ""
+
+msgid "İsteğe bağlı. Alt alan adının hostingde bu siteyle aynı klasöre yönlenmesi (ör. *.alanadi.com joker alt alan adı) ve SSL sertifikasının onu da kapsaması gerekir."
+msgstr ""
+
+msgid "Adresi kaydet"
+msgstr ""
+
+msgid "Adres kaydedildi."
+msgstr ""
+
+msgid "menüyü açan"
+msgstr ""
+
+msgid "Düzenleyenler"
+msgstr ""
+
+msgid "Menüyü açan: %s. Seçili menü yöneticileri bu menüyü görüp düzenleyebilir; diğer menüleri göremez."
+msgstr ""
+
+msgid "Kullanıcı ekleyin (rol: Menü yöneticisi)."
+msgstr ""
+
+msgid "Düzenleyenleri kaydet"
+msgstr ""
+
+msgid "Düzenleyenler kaydedildi."
+msgstr ""
+
+msgid "Oluşturuldu"
+msgstr ""
+
+msgid "Kaydedildi"
+msgstr ""
+
+msgid "Geri dönüldü"
+msgstr ""
+
+msgid "İçe aktarıldı"
+msgstr ""
+
+msgid "Yapay zekâ (MCP)"
+msgstr ""
+
+msgid "Görseller"
+msgstr ""
+
+msgid "Yükleniyor…"
+msgstr ""
+
+msgid "Değişiklik geçmişi"
+msgstr ""
+
+msgid "%s kayıt · menü başına son 300 kayıt tutulur"
+msgstr ""
+
+msgid "Şu anki sürüm"
+msgstr ""
+
+msgid "Görüntüle"
+msgstr ""
+
+msgid "JSON'u göster"
+msgstr ""
+
+msgid "JSON'u kopyala"
+msgstr ""
+
+msgid "Bu sürüme dön"
+msgstr ""
+
+msgid "Kaydedilmemiş değişiklikleriniz silinecek ve menü bu sürüme döndürülecek (yeni sürüm olarak kaydedilir). Devam edilsin mi?"
+msgstr ""
+
+msgid "Menü v%s sürümüne döndürülsün mü? Yeni sürüm olarak kaydedilir ve menü sitelerine bildirilir."
+msgstr ""
+
+msgid "v%1$s sürümüne dönüldü · yeni sürüm v%2$s"
+msgstr ""
+
+msgid "Henüz kayıt yok."
+msgstr ""
+
+msgid "Daha yeni"
+msgstr ""
+
+msgid "Sayfa %1$s / %2$s"
+msgstr ""
+
+msgid "Daha eski"
+msgstr ""
+
+msgid "Geçersiz JSON: %s"
+msgstr ""
+
+msgid "%s. kategori geçersiz."
+msgstr ""
+
+msgid "Menünün ham verisi. Değiştirip \"Uygula\" deyince düzenleyiciye aktarılır; kalıcı olması için ayrıca kaydedin."
+msgstr ""
+
+msgid "Doğrula"
+msgstr ""
+
+msgid "Geçerli: %1$s kategori, %2$s ürün."
+msgstr ""
+
+msgid "Uygula"
+msgstr ""
+
+msgid "Uygulandı. Kaydetmeyi unutmayın."
+msgstr ""
+
+msgid "Sıfırla"
+msgstr ""
+
+msgid "Güncelleniyor…"
+msgstr ""
+
+msgid "Önizleme güncellenemedi"
+msgstr ""
+
+msgid "Menü önizlemesi"
+msgstr ""

@@ -1,0 +1,37 @@
+/* Flux Lang: alt bilgideki dil seçici. Tema ≤720px'te .flx-lang'ı gizler; alt bilgide her ekranda görünür. */
+.flxl-footer-lang {
+	display: flex;
+	justify-content: flex-start;
+	margin-top: 1.25rem;
+}
+.flxl-footer-lang--row {
+	margin-top: 0;
+}
+.flxl-footer-lang .flx-lang {
+	display: inline-flex !important;
+	align-items: center;
+	padding: 3px;
+	border: 1.5px solid currentColor;
+	border-color: color-mix(in srgb, currentColor 35%, transparent);
+	border-radius: 999px;
+	font-weight: 800;
+	font-size: .75rem;
+	letter-spacing: .06em;
+	line-height: 1;
+}
+.flxl-footer-lang .flx-lang a {
+	display: block;
+	padding: .45rem .7rem;
+	border-radius: 999px;
+	color: inherit;
+	text-decoration: none;
+	opacity: .85;
+}
+.flxl-footer-lang .flx-lang a:hover,
+.flxl-footer-lang .flx-lang a:focus-visible {
+	opacity: 1;
+}
+.flxl-footer-lang .flx-lang a.is-current {
+	background: color-mix(in srgb, currentColor 18%, transparent);
+	opacity: 1;
+}

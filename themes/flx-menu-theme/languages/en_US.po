@@ -1,0 +1,455 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Yesil Fun\n"
+"Language: en_US\n"
+
+msgid "Flux Menu Theme"
+msgstr "Yesil Fun"
+
+msgid "Sayfa bulunamadı"
+msgstr "Page not found"
+
+msgid "Aradığınız sayfa yok ya da taşınmış olabilir."
+msgstr "The page you are looking for does not exist or may have moved."
+
+msgid "Ana sayfaya dön"
+msgstr "Back to the home page"
+
+msgid "Henüz içerik yok."
+msgstr "Nothing here yet."
+
+msgid "Yazılar kapalı"
+msgstr "Posts off"
+
+msgid "Yazılar menüsü ve \"+ Yeni › Yazı\" gizlenir; tek yazı, kategori, etiket, tarih ve yazar arşivleri 404 olur; site haritasından yazılar, kategoriler ve kullanıcılar çıkar."
+msgstr "Hides the Posts menu and \"+ New › Post\"; single posts and category, tag, date and author archives return 404; posts, categories and users are removed from the sitemap."
+
+msgid "Yorumlar kapalı"
+msgstr "Comments off"
+
+msgid "Yorum ve geri bildirimler her yerde kapanır; Yorumlar menüsü ve pano kutusu gizlenir; yorum gönderme ve yorum beslemeleri engellenir."
+msgstr "Comments and pings are closed everywhere; the Comments menu and dashboard box are hidden; posting comments and comment feeds are blocked."
+
+msgid "RSS beslemeleri kapalı"
+msgstr "RSS feeds off"
+
+msgid "/feed/ ve diğer beslemeler 404 olur, sayfa başlığındaki besleme bağlantıları kalkar."
+msgstr "/feed/ and other feeds return 404; feed links are removed from the page head."
+
+msgid "Arama kapalı"
+msgstr "Search off"
+
+msgid "?s= ile arama 404 olur."
+msgstr "Searching with ?s= returns 404."
+
+msgid "Ek sayfaları kapalı"
+msgstr "Attachment pages off"
+
+msgid "Ortam dosyalarının ayrı sayfası açılmaz; dosyanın kendisine yönlenir."
+msgstr "Media files get no page of their own; links go to the file itself."
+
+msgid "XML-RPC kapalı"
+msgstr "XML-RPC off"
+
+msgid "xmlrpc.php 403 döner (pingback ve eski uygulamalar). Jetpack gibi XML-RPC kullanan eklenti varsa açın."
+msgstr "xmlrpc.php returns 403 (pingbacks and old apps). Turn it back on if a plugin such as Jetpack needs XML-RPC."
+
+msgid "Emoji betiği kapalı"
+msgstr "Emoji script off"
+
+msgid "WordPress'in emoji betiği ve stili yüklenmez (emojiler cihazın kendi yazı tipiyle görünür)."
+msgstr "WordPress's emoji script and style are not loaded (emoji show in the device's own font)."
+
+msgid "oEmbed kapalı"
+msgstr "oEmbed off"
+
+msgid "Sayfaların başka sitelere gömülme bağlantıları ve /embed/ adresleri kapanır."
+msgstr "Embed discovery links and /embed/ addresses are turned off."
+
+msgid "Kullanıcı listesi gizli"
+msgstr "User list hidden"
+
+msgid "Giriş yapmamış ziyaretçiye REST API'de /wp/v2/users kapalı (kullanıcı adları görünmez)."
+msgstr "/wp/v2/users in the REST API is closed to logged-out visitors (usernames are not exposed)."
+
+msgid "Tema Ayarları"
+msgstr "Theme Settings"
+
+msgid "Flux Menu Theme: Tema Ayarları"
+msgstr "Flux Menu Theme: Theme Settings"
+
+msgid "menu.example.org yalnız QR menüler için kullanılır. İşaretli özellikler kapalıdır; işareti kaldırınca WordPress'in varsayılan davranışı geri gelir."
+msgstr "menu.example.org is used only for QR menus. Checked features are off; uncheck one to restore the WordPress default."
+
+msgid "Kapalı WordPress özellikleri"
+msgstr "WordPress features turned off"
+
+msgid "Kaydet"
+msgstr "Save"
+
+msgid "Kurulum adımları ve hazır güncellemeler:"
+msgstr "Setup steps and ready-made updates:"
+
+msgid "Görünüm › Site Kurulumu"
+msgstr "Appearance › Site Setup"
+
+msgid ".htaccess: dizin listesi kapalı; readme, changelog, .md ve .log dosyalarına ve kurulum betiklerine erişim yok."
+msgstr ".htaccess: directory listing is off; readme, changelog, .md and .log files and the install scripts cannot be accessed."
+
+msgid ".htaccess yazılamadı; dizin listesi ve dosya engelleri uygulanmadı (Sistem Kontrolü'ne bakın)."
+msgstr ".htaccess could not be written; directory listing and file blocks were not applied (see System Check)."
+
+msgid "Sunucu .htaccess okumuyor (Apache/LiteSpeed değil); dizin listesini, readme/.md/.log dosyalarını ve wp-admin/install.php erişimini sunucu ayarından kapatın."
+msgstr "The server does not read .htaccess (not Apache/LiteSpeed); turn off directory listing and access to readme/.md/.log files and wp-admin/install.php in the server configuration."
+
+msgid "Görünmez mod"
+msgstr "Hidden mode"
+
+msgid "Site dışarıdan görünmez: arama motorları ve botlar dizine eklemez, site haritası ve REST API kapalıdır, adresler gezilemez. Giriş yapmış kullanıcılar (yönetici, menü yöneticisi) siteyi normal görür."
+msgstr "The site is invisible from outside: search engines and bots do not index it, the sitemap and REST API are closed and addresses cannot be browsed. Logged-in users (administrator, menu manager) see the site normally."
+
+msgid "Görünmez mod açık"
+msgstr "Hidden mode on"
+
+msgid "robots.txt bütün botlara \"Disallow: /\", her yanıtta noindex (X-Robots-Tag ve meta), Ayarlar › Okuma \"arama motorlarını engelle\" işaretlenir (kapatınca önceki hâline döner). Bütün site haritaları (sitemap.xml, wp-sitemap.xml, sitemap_index.xml…) 404. REST API yalnız aşağıdaki ad alanlarında açık; /wp-json/ ve ad alanı dizinleri, JSONP gizli. admin-ajax.php, admin-post.php, xmlrpc.php, geri izleme, beslemeler, /embed/, arama, yazar/tarih arşivleri ve bulunamayan adresler sade 404. Sayfalarda WordPress/WooCommerce sürümü görünmez; giriş ve parola sıfırlama hataları kullanıcının var olup olmadığını söylemez, kayıt kapalı. WooCommerce kuruluysa mağaza, ürün, sepet, ödeme ve hesap sayfaları, Store API, wc-ajax, wc-api, sepete ekle ve indirme bağlantıları kapalı."
+msgstr "robots.txt tells every bot \"Disallow: /\", every response is noindex (X-Robots-Tag and meta), Settings › Reading \"discourage search engines\" is checked (restored when turned off). All sitemaps (sitemap.xml, wp-sitemap.xml, sitemap_index.xml…) return 404. The REST API is open only in the namespaces below; /wp-json/ and namespace indexes and JSONP are hidden. admin-ajax.php, admin-post.php, xmlrpc.php, trackbacks, feeds, /embed/, search, author/date archives and not-found addresses return a plain 404. Pages do not show the WordPress/WooCommerce version; login and password reset errors do not reveal whether a user exists, registration is off. With WooCommerce: shop, product, cart, checkout and account pages, the Store API, wc-ajax, wc-api, add-to-cart and download links are closed."
+
+msgid "Yalnız menüler açık"
+msgstr "Only menus open"
+
+msgid "Giriş yapmamış ziyaretçiye yalnız ana sayfa, QR menüler (/menu/, /menu/tesekkur/, alt alan adları), giriş sayfası ve aşağıdaki açık yollar açılır; diğer bütün adresler (sayfalar, arşivler, arama…) 404."
+msgstr "Logged-out visitors can open only the home page, QR menus (/menu/, /menu/tesekkur/, subdomains), the login page and the open paths below; every other address (pages, archives, search…) returns 404."
+
+msgid "Açık REST ad alanları"
+msgstr "Open REST namespaces"
+
+msgid "Satır başına bir önek; giriş yapmamış istekler yalnız bunlara ulaşır. flx-qr-menu/v1 menülerin canlı yenilenmesi ve menü sitelerinin beslemesi için gerekli. Örnek: flx-chat/v1, wc/store. Uygulama parolası ya da Flux MCP anahtarıyla gelen istekler giriş yapmış sayılır, listeye gerek yok."
+msgstr "One prefix per line; logged-out requests can reach only these. flx-qr-menu/v1 is needed for live menu refresh and the menu sites' feed. Example: flx-chat/v1, wc/store. Requests with an application password or a Flux MCP key count as logged in and need no entry."
+
+msgid "Bu sitedeki REST ad alanları"
+msgstr "REST namespaces on this site"
+
+msgid "Açık kalacak yollar"
+msgstr "Paths that stay open"
+
+msgid "Satır başına bir adres öneki (/ ile başlar); giriş yapmamış ziyaretçiye bu adresler açık kalır. Ödeme geri dönüşleri için: /wc-api/<ad> (?wc-api=<ad> de açılır), /wc-ajax/<eylem> (?wc-ajax=<eylem>); bir eklentinin admin-ajax eylemi için admin-ajax:<eylem> (admin-post:<eylem>); XML-RPC (Jetpack) için /xmlrpc.php (XML-RPC anahtarı da açık olmalı); bir sayfa için /sayfa-adresi/."
+msgstr "One address prefix per line (starting with /); these stay open to logged-out visitors. Payment callbacks: /wc-api/<name> (also opens ?wc-api=<name>), /wc-ajax/<action> (?wc-ajax=<action>); a plugin's admin-ajax action: admin-ajax:<action> (admin-post:<action>); XML-RPC (Jetpack): /xmlrpc.php (the XML-RPC switch must be on too); a page: /page-address/."
+
+msgid "Hata:"
+msgstr "Error:"
+
+msgid "Kullanıcı adı, e-posta ya da parola hatalı."
+msgstr "The username, email or password is incorrect."
+
+msgid "Bu sitede yorumlar kapalı."
+msgstr "Comments are closed on this site."
+
+msgid "XML-RPC bu sitede kapalı."
+msgstr "XML-RPC is disabled on this site."
+
+msgid "Site Kurulumu"
+msgstr "Site Setup"
+
+msgid "Kalıcı bağlantılar: Yazı adı (/%postname%/)"
+msgstr "Permalinks: Post name (/%postname%/)"
+
+msgid "Menü adresleri (/menu/) için gerekli. Kurallar yenilenir."
+msgstr "Required for menu addresses (/menu/). Rewrite rules are flushed."
+
+msgid "Saat dilimi: İstanbul"
+msgstr "Timezone: Istanbul"
+
+msgid "Europe/Istanbul."
+msgstr "Europe/Istanbul."
+
+msgid "Tarih biçimi: 24.10.2026, saat 14:30"
+msgstr "Date format: 24.10.2026, time 14:30"
+
+msgid "d.m.Y ve H:i."
+msgstr "d.m.Y and H:i."
+
+msgid "Site dili: Türkçe"
+msgstr "Site language: Turkish"
+
+msgid "Türkçe dil paketi yüklüyse seçilir (indirme yapılmaz)."
+msgstr "Selected if the Turkish language pack is installed (nothing is downloaded)."
+
+msgid "Varsayılan içerikleri temizle"
+msgstr "Clean up default content"
+
+msgid "\"Merhaba dünya!\" yazısı ve yorumu, \"Örnek sayfa\" ve taslak Gizlilik Politikası, yalnız hiç değiştirilmemişlerse silinir."
+msgstr "The \"Hello world!\" post and its comment, \"Sample Page\" and the draft Privacy Policy are deleted, only if never edited."
+
+msgid "Yorumları kapat"
+msgstr "Close comments"
+
+msgid "Yeni içerikte yorum ve geri bildirim kapalı; var olan içeriklerde de kapatılır."
+msgstr "Comments and pings are closed for new content and closed on existing content too."
+
+msgid "Görünmez modu aç"
+msgstr "Turn on hidden mode"
+
+msgid "Arama motorları ve botlar siteyi görmez; site haritası, REST API ve diğer adresler giriş yapmamış ziyaretçiye kapalı, QR menüler açık (Tema Ayarları › Görünmez mod)."
+msgstr "Search engines and bots do not see the site; the sitemap, REST API and other addresses are closed to logged-out visitors, QR menus stay open (Theme Settings › Hidden mode)."
+
+msgid "Ana sayfayı kontrol et"
+msgstr "Check the front page"
+
+msgid "Okuma ayarına dokunulmaz; ana sayfanın temanın boş beyaz şablonuyla açıldığı denetlenir."
+msgstr "Reading settings are left alone; checks that the front page uses the theme's blank white template."
+
+msgid "Kalıcı bağlantılar /%postname%/ yapıldı, kurallar yenilendi."
+msgstr "Permalinks set to /%postname%/, rewrite rules flushed."
+
+msgid "Saat dilimi Europe/Istanbul."
+msgstr "Timezone Europe/Istanbul."
+
+msgid "Tarih biçimi d.m.Y, saat H:i."
+msgstr "Date format d.m.Y, time H:i."
+
+msgid "Site dili Türkçe."
+msgstr "Site language Turkish."
+
+msgid "Türkçe dil paketi yüklü değil; Ayarlar › Genel › Site dili'nden Türkçe seçip kaydedin (paket orada indirilir)."
+msgstr "The Turkish language pack is not installed; choose Turkish under Settings › General › Site Language and save (the pack is downloaded there)."
+
+msgid "\"%s\" değiştirildiği için silinmedi."
+msgstr "\"%s\" was edited, so it was not deleted."
+
+msgid "\"%s\" silindi."
+msgstr "\"%s\" deleted."
+
+msgid "Silinecek varsayılan içerik yok."
+msgstr "No default content to delete."
+
+msgid "Yorumlar varsayılan olarak kapalı; %d içerikte kapatıldı."
+msgstr "Comments are closed by default; closed on %d items."
+
+msgid "Görünmez mod açık: robots.txt Disallow, noindex, site haritası ve REST kapalı, .htaccess bloğu eklendi."
+msgstr "Hidden mode on: robots.txt Disallow, noindex, sitemap and REST closed, .htaccess block added."
+
+msgid "Görünmez mod açık: robots.txt Disallow, noindex, site haritası ve REST kapalı (.htaccess bloğu eklenemedi, Sistem Kontrolü'ne bakın)."
+msgstr "Hidden mode on: robots.txt Disallow, noindex, sitemap and REST closed (the .htaccess block could not be added, see System Check)."
+
+msgid "Ana sayfa şablonu Site Düzenleyici'de değiştirilmiş; boş sayfaya dönmek için Görünüm › Düzenleyici › Şablonlar › Ana sayfa › Özelleştirmeleri temizle."
+msgstr "The front page template was changed in the Site Editor; to return to the blank page use Appearance › Editor › Templates › Front page › Clear customizations."
+
+msgid "Ana sayfa temanın boş beyaz şablonuyla açılıyor (yazı listesi yok)."
+msgstr "The front page uses the theme's blank white template (no post list)."
+
+msgid "Okuma ayarı \"Sabit sayfa\"; tema yine boş ana sayfayı gösterir (sayfa içeriği görünmez)."
+msgstr "Reading is set to \"A static page\"; the theme still shows the blank front page (the page content is not shown)."
+
+msgid "temanın boş sayfası"
+msgstr "the theme's blank page"
+
+msgid "seçili menüye yönlendirme"
+msgstr "redirect to the selected menu"
+
+msgid "seçili menü"
+msgstr "the selected menu"
+
+msgid "Flux QR Menu ana sayfa ayarı: %s."
+msgstr "Flux QR Menu front page setting: %s."
+
+msgid "flx-menu-theme 1.2.0: görünmez modu aç"
+msgstr "flx-menu-theme 1.2.0: turn on hidden mode"
+
+msgid "Görünmez modu ve \"yalnız menüler açık\"ı açar: robots.txt Disallow, noindex, site haritaları ve REST API (flx-qr-menu/v1 hariç) kapalı, .htaccess bloğu, Okuma › arama motorlarını engelle. Tema Ayarları'ndan kapatılabilir."
+msgstr "Turns on hidden mode and \"only menus open\": robots.txt Disallow, noindex, sitemaps and REST API (except flx-qr-menu/v1) closed, .htaccess block, Reading › discourage search engines. Can be turned off in Theme Settings."
+
+msgid "flx-menu-theme 1.1.0: yazı/yorum varsayılanlarını kapat"
+msgstr "flx-menu-theme 1.1.0: turn off post/comment defaults"
+
+msgid "Yorum ve geri bildirim varsayılanlarını kapatır, var olan içeriklerde kapatır, Tema Ayarları'ndaki tüm \"kapalı\" anahtarlarını kaydeder."
+msgstr "Closes comment and ping defaults, closes them on existing content and saves every \"off\" switch in Theme Settings."
+
+msgid "Kalıcı bağlantıları yenile"
+msgstr "Flush permalinks"
+
+msgid "Bakım: yeniden yazma kurallarını yeniler (adres 404 verirse)."
+msgstr "Maintenance: flushes rewrite rules (if an address returns 404)."
+
+msgid "Kalıcı bağlantılar yenilendi."
+msgstr "Permalinks flushed."
+
+msgid "Flux Menu Theme: Site Kurulumu"
+msgstr "Flux Menu Theme: Site Setup"
+
+msgid "Seçili adımlar çalıştı."
+msgstr "The selected steps ran."
+
+msgid "1. Temel kurulum"
+msgstr "1. Basic setup"
+
+msgid "İstemediğiniz adımın işaretini kaldırın; yalnız seçilenler çalışır. Tekrar çalıştırmak güvenlidir. Arama motorlarına görünürlük ayarını Görünmez mod yönetir."
+msgstr "Untick any step you do not want; only the selected ones run. Running again is safe. Search engine visibility is managed by hidden mode."
+
+msgid "Seçili adımları çalıştır"
+msgstr "Run selected steps"
+
+msgid "Son çalıştırma: %s"
+msgstr "Last run: %s"
+
+msgid "2. QR menüler"
+msgstr "2. QR menus"
+
+msgid "Ana sayfanın boş mu kalacağı, bir menüye mi yönleneceği ya da menüyü mü göstereceği Flux QR Menu ayarlarındadır."
+msgstr "Whether the front page stays blank, redirects to a menu or shows a menu is set in the Flux QR Menu settings."
+
+msgid "QR Menüler › Ayarlar"
+msgstr "QR Menus › Settings"
+
+msgid "QR Menüler"
+msgstr "QR Menus"
+
+msgid "Flux QR Menu eklentisi etkin değil. Menüler bu eklentiyle yayınlanır."
+msgstr "The Flux QR Menu plugin is not active. Menus are published with this plugin."
+
+msgid "Flux Updater › Paketler'den kurun."
+msgstr "Install it from Flux Updater › Packages."
+
+msgid "Önce Flux Updater'yi (Eklentiler › Yeni ekle › Eklenti yükle) kurup oradan Flux QR Menu'yü kurun."
+msgstr "First install Flux Updater (Plugins › Add New › Upload Plugin), then install Flux QR Menu from there."
+
+msgid "3. Hazır güncellemeler"
+msgstr "3. Ready-made updates"
+
+msgid "Tema güncellemesinden sonra canlı sitede tek tıkla uygulanır; tekrar uygulamak güvenlidir."
+msgstr "Applied with one click on the live site after a theme update; applying again is safe."
+
+msgid "Uygulandı: %s"
+msgstr "Applied: %s"
+
+msgid "Uygula"
+msgstr "Apply"
+
+msgid "Tekrar uygula"
+msgstr "Apply again"
+
+msgid "Yazılar, yorumlar, beslemeler ve diğer kapatılan özellikler:"
+msgstr "Posts, comments, feeds and the other features turned off:"
+
+msgid "Görünüm › Tema Ayarları"
+msgstr "Appearance › Theme Settings"
+
+msgid "Flux Menu Theme teması:"
+msgstr "Flux Menu Theme theme:"
+
+msgid "sayfasından temel ayarları yapın."
+msgstr "page to apply the basic settings."
+
+msgid "Uygulanmayı bekleyen hazır güncelleme: %d."
+msgstr "Ready-made updates waiting to be applied: %d."
+
+msgid "Flux Menu Theme teması"
+msgstr "Flux Menu Theme theme"
+
+msgid "Tema"
+msgstr "Theme"
+
+msgid "%1$d / %2$d kapalı: %3$s"
+msgstr "%1$d / %2$d off: %3$s"
+
+msgid "Yazılar"
+msgstr "Posts"
+
+msgid "Yazılar kapalı ama %d yayında yazı var; ziyaretçi göremez (404). Gerekmiyorsa silin."
+msgstr "Posts are off but %d published posts exist; visitors cannot see them (404). Delete them if not needed."
+
+msgid "Yayında yazı yok."
+msgstr "No published posts."
+
+msgid "Yorum varsayılanları"
+msgstr "Comment defaults"
+
+msgid "Yorumlar kapalı ama yeni içerikte yorum/geri bildirim varsayılanı açık. Site Kurulumu › Yorumları kapat adımını çalıştırın."
+msgstr "Comments are off but new content still defaults to open comments/pings. Run Site Setup › Close comments."
+
+msgid "Yorum ve geri bildirim varsayılanları kapalı."
+msgstr "Comment and ping defaults are closed."
+
+msgid "Kalıcı bağlantılar"
+msgstr "Permalinks"
+
+msgid "Kalıcı bağlantılar \"Düz\" (?p=). QR menü adresleri çalışmaz; Site Kurulumu ile /%postname%/ yapın."
+msgstr "Permalinks are \"Plain\" (?p=). QR menu addresses will not work; set /%postname%/ with Site Setup."
+
+msgid "Hazır güncellemeler"
+msgstr "Ready-made updates"
+
+msgid "Bütün hazır güncellemeler uygulandı."
+msgstr "All ready-made updates are applied."
+
+msgid "Flux QR Menu"
+msgstr "Flux QR Menu"
+
+msgid "Flux QR Menu eklentisi etkin değil; menu.example.org ana sayfası boş kalır ve menü yayınlanmaz."
+msgstr "The Flux QR Menu plugin is not active; the menu.example.org front page stays blank and no menu is published."
+
+msgid "Flux Updater"
+msgstr "Flux Updater"
+
+msgid "Eklentiler"
+msgstr "Plugins"
+
+msgid "Kapalı: site arama motorlarına ve botlara açık, site haritası ve REST API çalışıyor."
+msgstr "Off: the site is open to search engines and bots, the sitemap and REST API work."
+
+msgid "Açık: robots.txt Disallow, noindex, site haritaları 404; admin-ajax, XML-RPC, beslemeler ve sürüm bilgisi kapalı. Açık REST: %1$s. Açık yol: %2$d."
+msgstr "On: robots.txt Disallow, noindex, sitemaps 404; admin-ajax, XML-RPC, feeds and version info closed. Open REST: %1$s. Open paths: %2$d."
+
+msgid "Görünmez mod: .htaccess"
+msgstr "Hidden mode: .htaccess"
+
+msgid ".htaccess yazılamadı; dizin listesi ve dosya engelleri (readme, changelog, .md, .log, kurulum betikleri) uygulanmadı. Dosya iznini düzeltip Tema Ayarları'nı yeniden kaydedin ya da \"Yesil Fun\" bloğunu elle ekleyin."
+msgstr ".htaccess could not be written; directory listing and file blocks (readme, changelog, .md, .log, install scripts) were not applied. Fix the file permission and save Theme Settings again, or add the \"Yesil Fun\" block by hand."
+
+msgid "Dizin listesi kapalı; readme, changelog, .md ve .log dosyalarına ve kurulum betiklerine erişim yok."
+msgstr "Directory listing is off; readme, changelog, .md and .log files and the install scripts cannot be accessed."
+
+msgid "Görünmez mod: robots.txt dosyası"
+msgstr "Hidden mode: robots.txt file"
+
+msgid "Sitede gerçek bir robots.txt dosyası var ve botları engelliyor; tema ayarı yerine o kullanılır."
+msgstr "The site has a real robots.txt file and it blocks bots; it is used instead of the theme setting."
+
+msgid "Sitede gerçek bir robots.txt dosyası var; WordPress'in \"Disallow: /\" çıktısı yerine o gösteriliyor. Dosyayı (Dosya Yöneticisi'nden) silin."
+msgstr "The site has a real robots.txt file; it is served instead of WordPress's \"Disallow: /\" output. Delete the file (in the File Manager)."
+
+msgid "Görünmez mod: site haritası dosyası"
+msgstr "Hidden mode: sitemap file"
+
+msgid "Sitenin kökünde site haritası dosyası var (%s); sunucu bunu doğrudan verir. Silin."
+msgstr "There is a sitemap file in the site root (%s); the server serves it directly. Delete it."
+
+msgid "Görünmez mod: Okuma ayarı"
+msgstr "Hidden mode: Reading setting"
+
+msgid "Ayarlar › Okuma'da \"Arama motorlarının siteyi dizine eklemesini engelle\" işaretli değil. Tema Ayarları'nı yeniden kaydedin."
+msgstr "\"Discourage search engines from indexing this site\" is not ticked in Settings › Reading. Save Theme Settings again."
+
+msgid "Okuma ayarları"
+msgstr "Reading settings"
+
+msgid "Görünmez mod: QR menü REST"
+msgstr "Hidden mode: QR menu REST"
+
+msgid "flx-qr-menu/v1 açık REST listesinde değil; açık menüler kendini yenilemez ve menü siteleri beslemeyi çekemez."
+msgstr "flx-qr-menu/v1 is not in the open REST list; open menus do not refresh themselves and menu sites cannot fetch the feed."
+
+msgid "Görünmez mod: LiteSpeed / QUIC.cloud"
+msgstr "Hidden mode: LiteSpeed / QUIC.cloud"
+
+msgid "QUIC.cloud hizmetleri (görsel optimizasyonu, CCSS) kullanıyorsanız açık REST listesine litespeed/v1 ve litespeed/v3 ekleyin; sayfa önbelleği için gerekmez."
+msgstr "If you use QUIC.cloud services (image optimization, CCSS), add litespeed/v1 and litespeed/v3 to the open REST list; not needed for page cache."
+
+msgid "Görünmez mod: WooCommerce"
+msgstr "Hidden mode: WooCommerce"
+
+msgid "WooCommerce sayfaları, Store API, wc-ajax ve wc-api giriş yapmamış ziyaretçiye kapalı. Ödeme yöntemi geri dönüş adresi (ör. /wc-api/iyzico) kullanıyorsa \"Açık kalacak yollar\"a ekleyin."
+msgstr "WooCommerce pages, the Store API, wc-ajax and wc-api are closed to logged-out visitors. If a payment method uses a callback address (e.g. /wc-api/iyzico), add it to \"Paths that stay open\"."
+
+msgid "menu.example.org için en sade block theme: ana sayfa tamamen boş ve beyaz (üst/alt bilgi yok, açık ve koyu temada beyaz). QR menüler Flux QR Menu eklentisiyle /menu gibi adreslerde ve alt alan adlarında açılır; tema onlara karışmaz. Diğer sayfalar ortalanmış, sistem yazı tipiyle sade içerik."
+msgstr "The simplest block theme for menu.example.org: the home page is completely blank and white (no header or footer, white in light and dark mode). QR menus are served by the Flux QR Menu plugin at addresses like /menu and on subdomains; the theme stays out of their way. Other pages show plain, centered content in the system font."

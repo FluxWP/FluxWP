@@ -1,0 +1,184 @@
+/* Flux Speed paneli. Kapsayıcı #flxp-panel; açık/koyu tema prefers-color-scheme + body.flx-dark. */
+#flxp-panel {
+	--z-bg: #fff;
+	--z-bg2: #f6f7f7;
+	--z-bg3: #eef1f0;
+	--z-fg: #1d2327;
+	--z-mut: #646970;
+	--z-line: #dcdcde;
+	--z-acc: #1f8a5b;
+	--z-err: #d63638;
+	--z-err-bg: #fcf0f1;
+	--z-warn: #996800;
+	--z-warn-bg: #fcf9e8;
+	--z-code: #3c434a;
+	box-sizing: border-box;
+	font: 13px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	color: var(--z-fg);
+	background: var(--z-bg);
+	text-align: left;
+	direction: ltr;
+}
+@media (prefers-color-scheme: dark) {
+	#flxp-panel { --z-bg: #1b1f1d; --z-bg2: #222724; --z-bg3: #2a302c; --z-fg: #e6e9e7; --z-mut: #9aa39e; --z-line: #333a36; --z-acc: #4cc38a; --z-err: #ff6b6b; --z-err-bg: #3a1f22; --z-warn: #f0c050; --z-warn-bg: #3a321b; --z-code: #cfd6d2; }
+}
+body.flx-dark #flxp-panel { --z-bg: #1b1f1d; --z-bg2: #222724; --z-bg3: #2a302c; --z-fg: #e6e9e7; --z-mut: #9aa39e; --z-line: #333a36; --z-acc: #4cc38a; --z-err: #ff6b6b; --z-err-bg: #3a1f22; --z-warn: #f0c050; --z-warn-bg: #3a321b; --z-code: #cfd6d2; }
+#flxp-panel *, #flxp-panel *::before, #flxp-panel *::after { box-sizing: border-box; }
+#flxp-panel[hidden] { display: none !important; }
+
+#flxp-panel.flxp-bar {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 45vh;
+	min-height: 160px;
+	z-index: 99998;
+	display: flex;
+	flex-direction: column;
+	border-top: 1px solid var(--z-line);
+	box-shadow: 0 -8px 30px rgba(0, 0, 0, .18);
+}
+html.flxp-open body { padding-bottom: 45vh; }
+#flxp-panel.flxp-embed {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	height: calc(100vh - 200px);
+	min-height: 480px;
+	border: 1px solid var(--z-line);
+	border-radius: 10px;
+	overflow: hidden;
+}
+#flxp-panel .flxp-resize { height: 6px; cursor: ns-resize; background: var(--z-bg2); flex: none; }
+#flxp-panel .flxp-resize:hover { background: var(--z-acc); }
+#flxp-panel .flxp-head {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 6px 12px;
+	background: var(--z-bg2);
+	border-bottom: 1px solid var(--z-line);
+	flex: none;
+}
+#flxp-panel .flxp-head strong { color: var(--z-acc); }
+#flxp-panel .flxp-sum { color: var(--z-mut); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#flxp-panel .flxp-link { color: var(--z-acc); text-decoration: none; }
+#flxp-panel .flxp-close { border: 0; background: none; font-size: 22px; line-height: 1; color: var(--z-mut); cursor: pointer; padding: 0 4px; }
+#flxp-panel .flxp-body { display: flex; flex: 1; min-height: 0; }
+#flxp-panel .flxp-nav {
+	width: 200px;
+	flex: none;
+	overflow-y: auto;
+	border-right: 1px solid var(--z-line);
+	background: var(--z-bg2);
+	padding: 4px 0;
+}
+#flxp-panel .flxp-nav button {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+	gap: 6px;
+	padding: 7px 12px;
+	border: 0;
+	background: none;
+	color: var(--z-fg);
+	font: inherit;
+	text-align: left;
+	cursor: pointer;
+	border-left: 3px solid transparent;
+}
+#flxp-panel .flxp-nav button:hover { background: var(--z-bg3); }
+#flxp-panel .flxp-nav button[aria-selected="true"] { border-left-color: var(--z-acc); background: var(--z-bg); font-weight: 600; }
+#flxp-panel .flxp-nav em { font-style: normal; font-size: 11px; padding: 0 6px; border-radius: 9px; background: var(--z-bg3); color: var(--z-mut); }
+#flxp-panel .flxp-nav em.err { background: var(--z-err); color: #fff; }
+#flxp-panel .flxp-nav em.warn { background: var(--z-warn); color: #fff; }
+#flxp-panel .flxp-main { flex: 1; overflow: auto; padding: 10px 14px 24px; min-width: 0; }
+#flxp-panel h2, #flxp-panel h3 { font-family: inherit; letter-spacing: normal; text-transform: none; line-height: 1.3; font-weight: 600; }
+#flxp-panel h2 { font-size: 15px; margin: 2px 0 10px; color: var(--z-fg); padding: 0; }
+#flxp-panel h3 { font-size: 13px; margin: 16px 0 6px; color: var(--z-fg); padding: 0; }
+
+#flxp-panel .flxp-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin-bottom: 10px; }
+#flxp-panel .flxp-card { padding: 8px 10px; border: 1px solid var(--z-line); border-radius: 8px; background: var(--z-bg2); display: flex; flex-direction: column; }
+#flxp-panel .flxp-card span { color: var(--z-mut); font-size: 12px; }
+#flxp-panel .flxp-card b { font-size: 18px; }
+#flxp-panel .flxp-card small { color: var(--z-mut); }
+#flxp-panel .flxp-card.err { border-color: var(--z-err); background: var(--z-err-bg); }
+#flxp-panel .flxp-card.err b { color: var(--z-err); }
+#flxp-panel .flxp-card.warn { border-color: var(--z-warn); background: var(--z-warn-bg); }
+
+#flxp-panel .flxp-tools { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 4px 0 8px; }
+#flxp-panel .flxp-tools input, #flxp-panel .flxp-tools select {
+	font: inherit;
+	min-height: 28px;
+	padding: 2px 8px;
+	border: 1px solid var(--z-line);
+	border-radius: 6px;
+	background: var(--z-bg);
+	color: var(--z-fg);
+	max-width: 260px;
+	box-shadow: none;
+	line-height: 1.4;
+}
+#flxp-panel .flxp-tools .flxp-count { color: var(--z-mut); margin-left: auto; }
+#flxp-panel .flxp-tw { overflow-x: auto; }
+#flxp-panel .flxp-t { width: 100%; border-collapse: collapse; background: var(--z-bg); }
+#flxp-panel .flxp-t th, #flxp-panel .flxp-t td { padding: 5px 8px; border-bottom: 1px solid var(--z-line); vertical-align: top; text-align: left; color: var(--z-fg); font-size: 12.5px; }
+#flxp-panel .flxp-t th { position: sticky; top: -10px; background: var(--z-bg2); font-weight: 600; white-space: nowrap; z-index: 1; }
+#flxp-panel .flxp-t th[role=button] { cursor: pointer; }
+#flxp-panel .flxp-t .n { text-align: right; white-space: nowrap; }
+#flxp-panel .flxp-t tr.err td { background: var(--z-err-bg); }
+#flxp-panel .flxp-t tr.warn td { background: var(--z-warn-bg); }
+#flxp-panel .flxp-t tr.muted td { color: var(--z-mut); }
+#flxp-panel .flxp-kv th { width: 200px; position: static; font-weight: 500; color: var(--z-mut); background: none; white-space: normal; }
+#flxp-panel .flxp-kv td { word-break: break-word; }
+#flxp-panel code { font: 12px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: var(--z-code); background: none; padding: 0; }
+#flxp-panel .flxp-sql { white-space: pre-wrap; word-break: break-word; display: block; max-width: 900px; }
+#flxp-panel .flxp-pre { white-space: pre-wrap; word-break: break-word; margin: 0; font: inherit; }
+#flxp-panel .flxp-errmsg { color: var(--z-err); margin-top: 3px; }
+#flxp-panel .flxp-note { color: var(--z-mut); margin: 6px 0; }
+#flxp-panel .flxp-empty { color: var(--z-mut); text-align: center; padding: 16px; }
+#flxp-panel .flxp-toggle { display: block; border: 0; background: none; color: var(--z-acc); padding: 2px 0; cursor: pointer; font: inherit; font-size: 12px; }
+#flxp-panel .flxp-stack { margin: 2px 0 0 18px; padding: 0; font: 11.5px/1.5 ui-monospace, Menlo, Consolas, monospace; color: var(--z-mut); }
+#flxp-panel .flxp-bar { display: inline-block; width: 80px; height: 6px; background: var(--z-bg3); border-radius: 3px; margin-right: 6px; vertical-align: middle; overflow: hidden; }
+#flxp-panel .flxp-bar i, #flxp-panel .flxp-tl-b i { display: block; height: 100%; background: var(--z-acc); border-radius: 3px; }
+#flxp-panel .flxp-tl { display: grid; gap: 3px; max-width: 900px; }
+#flxp-panel .flxp-tl-r { display: grid; grid-template-columns: 150px 1fr 150px; gap: 8px; align-items: center; font-size: 12px; }
+#flxp-panel .flxp-tl-n { font-family: ui-monospace, Menlo, Consolas, monospace; }
+#flxp-panel .flxp-tl-b { height: 8px; background: var(--z-bg3); border-radius: 4px; overflow: hidden; }
+#flxp-panel .flxp-tl-v { color: var(--z-mut); text-align: right; }
+#flxp-panel .flxp-conds { display: flex; flex-wrap: wrap; gap: 4px; }
+#flxp-panel .flxp-conds code { padding: 2px 6px; border-radius: 4px; border: 1px solid var(--z-line); }
+#flxp-panel .flxp-conds code.on { border-color: var(--z-acc); color: var(--z-acc); font-weight: 600; }
+#flxp-panel .flxp-conds code.off { opacity: .55; }
+
+/* Yönetici çubuğu düğümü */
+#wpadminbar #wp-admin-bar-flxp .ab-icon::before { content: "\f239"; top: 2px; }
+#wpadminbar #wp-admin-bar-flxp.flxp-ab-err > .ab-item { background: #d63638; }
+#wpadminbar #wp-admin-bar-flxp.flxp-ab-warn > .ab-item { background: #996800; }
+#wpadminbar #wp-admin-bar-flxp.flxp-ab-err > .ab-item, #wpadminbar #wp-admin-bar-flxp.flxp-ab-warn > .ab-item, #wpadminbar #wp-admin-bar-flxp.flxp-ab-err .ab-label, #wpadminbar #wp-admin-bar-flxp.flxp-ab-warn .ab-label, #wpadminbar #wp-admin-bar-flxp.flxp-ab-err .ab-icon::before, #wpadminbar #wp-admin-bar-flxp.flxp-ab-warn .ab-icon::before { color: #fff !important; }
+
+@media (max-width: 782px) {
+	#flxp-panel.flxp-bar { height: 70vh; }
+	html.flxp-open body { padding-bottom: 70vh; }
+	#flxp-panel .flxp-body { flex-direction: column; }
+	#flxp-panel .flxp-nav { width: 100%; display: flex; overflow-x: auto; overflow-y: hidden; border-right: 0; border-bottom: 1px solid var(--z-line); padding: 0; flex: none; }
+	#flxp-panel .flxp-nav button { width: auto; white-space: nowrap; border-left: 0; border-bottom: 3px solid transparent; padding: 8px 10px; }
+	#flxp-panel .flxp-nav button[aria-selected="true"] { border-bottom-color: var(--z-acc); }
+	#flxp-panel .flxp-main { padding: 8px 10px 24px; }
+	#flxp-panel .flxp-t thead { display: none; }
+	#flxp-panel .flxp-t:not(.flxp-kv) tr { display: block; border-bottom: 1px solid var(--z-line); padding: 4px 0; }
+	#flxp-panel .flxp-t:not(.flxp-kv) td { display: flex; gap: 8px; border: 0; padding: 2px 4px; text-align: left; }
+	#flxp-panel .flxp-t:not(.flxp-kv) td::before { content: attr(data-l); color: var(--z-mut); min-width: 80px; flex: none; font-size: 11.5px; }
+	#flxp-panel .flxp-t:not(.flxp-kv) td.n { text-align: left; }
+	#flxp-panel .flxp-t:not(.flxp-kv) td > * { min-width: 0; }
+	#flxp-panel .flxp-kv th { width: 40%; }
+	#flxp-panel .flxp-tl-r { grid-template-columns: 110px 1fr; }
+	#flxp-panel .flxp-tl-v { grid-column: 2; text-align: left; }
+	#flxp-panel .flxp-tools .flxp-count { margin-left: 0; }
+	#flxp-panel.flxp-embed { height: auto; min-height: 0; }
+	#wpadminbar #wp-admin-bar-flxp { display: block; }
+	#wpadminbar #wp-admin-bar-flxp .ab-label { display: none; }
+	#wpadminbar #wp-admin-bar-flxp .ab-icon::before { font-size: 26px; top: 0; }
+}

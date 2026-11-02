@@ -1,0 +1,12 @@
+{
+  "schema": "flxb-report/1",
+  "id": "donations-by-referral",
+  "title": { "tr": "Referansa göre", "en": "By referral" },
+  "source": "donations",
+  "filter": { "paid": true },
+  "group": ["ref_user"],
+  "metrics": ["count", "amount", "donors"],
+  "period": "this_year",
+  "chart": "bar",
+  "order": 40
+}

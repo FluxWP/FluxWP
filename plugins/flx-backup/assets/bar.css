@@ -1,0 +1,130 @@
+/* Flux Backup yönetim çubuğu göstergesi */
+#wpadminbar li#wp-admin-bar-flxy-job.is-idle { display: none; }
+#wpadminbar li#wp-admin-bar-flxy-job { position: relative; }
+#wpadminbar #wp-admin-bar-flxy-job > .ab-item {
+	display: flex;
+	align-items: center;
+	gap: 7px;
+	position: relative;
+	padding: 0 10px;
+	cursor: pointer;
+	transition: background-color .2s;
+}
+#wpadminbar #wp-admin-bar-flxy-job .flxy-ab-ring { position: relative; width: 20px; height: 20px; flex: none; display: block; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-ab-ring svg { display: block; position: absolute; inset: 0; transform: rotate(-90deg); }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-ab-ring circle { fill: none; stroke-width: 2.5; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-ab-track { stroke: rgba(240, 246, 252, .22); }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-ab-val { stroke: #72aee6; stroke-linecap: round; transition: stroke-dasharray .6s ease; }
+#wpadminbar #wp-admin-bar-flxy-job svg.flxy-ab-glyph { inset: 5px; width: 10px; height: 10px; transform: none; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+#wpadminbar #wp-admin-bar-flxy-job svg.flxy-ab-glyph path { fill: none; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-ab-text { white-space: nowrap; font-variant-numeric: tabular-nums; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-ab-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: rgba(240, 246, 252, .12); overflow: hidden; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-ab-bar span {
+	display: block;
+	height: 100%;
+	background: linear-gradient(90deg, #2271b1 0%, #72aee6 50%, #2271b1 100%);
+	background-size: 200% 100%;
+	animation: flxy-ab-flow 1.6s linear infinite;
+	transition: width .6s ease;
+}
+#wpadminbar #wp-admin-bar-flxy-job.is-running svg.flxy-ab-glyph { animation: flxy-ab-bob 1.6s ease-in-out infinite; }
+@keyframes flxy-ab-flow { from { background-position: 200% 0; } to { background-position: 0 0; } }
+@keyframes flxy-ab-bob { 0%, 100% { transform: translateY(-1px); } 50% { transform: translateY(1.5px); } }
+
+#wpadminbar #wp-admin-bar-flxy-job.is-done > .ab-item,
+#wpadminbar #wp-admin-bar-flxy-job.is-done > .ab-item:focus,
+#wpadminbar #wp-admin-bar-flxy-job.is-done:hover > .ab-item { background: #00a32a; color: #fff; }
+#wpadminbar #wp-admin-bar-flxy-job.is-failed > .ab-item,
+#wpadminbar #wp-admin-bar-flxy-job.is-failed > .ab-item:focus,
+#wpadminbar #wp-admin-bar-flxy-job.is-failed:hover > .ab-item { background: #d63638; color: #fff; }
+#wpadminbar #wp-admin-bar-flxy-job.is-done .flxy-ab-bar,
+#wpadminbar #wp-admin-bar-flxy-job.is-failed .flxy-ab-bar { display: none; }
+#wpadminbar #wp-admin-bar-flxy-job.is-done .flxy-ab-track,
+#wpadminbar #wp-admin-bar-flxy-job.is-failed .flxy-ab-track { stroke: rgba(255, 255, 255, .35); }
+#wpadminbar #wp-admin-bar-flxy-job.is-done .flxy-ab-val,
+#wpadminbar #wp-admin-bar-flxy-job.is-failed .flxy-ab-val { stroke: #fff; }
+#wpadminbar #wp-admin-bar-flxy-job.is-cancelling .flxy-ab-val { stroke: #dba617; }
+
+/* Açılır panel */
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop {
+	position: absolute;
+	top: 100%;
+	right: 0;
+	width: 360px;
+	box-sizing: border-box;
+	padding: 14px 16px 12px;
+	background: #fff;
+	color: #1d2327;
+	border: 1px solid #dcdcde;
+	border-top: 0;
+	border-radius: 0 0 8px 8px;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, .18);
+	font: 400 13px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	text-align: left;
+	white-space: normal;
+	z-index: 99999;
+	cursor: default;
+}
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop[hidden] { display: none; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop * { font: inherit; color: inherit; line-height: inherit; float: none; height: auto; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-head { display: flex; flex-direction: column; gap: 1px; margin: 0 0 8px; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-head strong { font-weight: 600; font-size: 14px; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-title { color: #50575e; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-text { margin: 0 0 8px; color: #1d2327; font-variant-numeric: tabular-nums; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-text.is-error { color: #b32d2e; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-row { display: flex; align-items: center; gap: 10px; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-bar { flex: 1; height: 8px; border-radius: 4px; background: #f0f0f1; overflow: hidden; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-bar span {
+	display: block;
+	height: 100%;
+	border-radius: 4px;
+	background: linear-gradient(90deg, #2271b1 0%, #4f94d4 50%, #2271b1 100%);
+	background-size: 200% 100%;
+	animation: flxy-ab-flow 1.6s linear infinite;
+	transition: width .6s ease;
+}
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-bar.is-done span { background: #00a32a; animation: none; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-bar.is-failed span { background: #d63638; animation: none; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-pct { font-weight: 600; min-width: 40px; text-align: right; font-variant-numeric: tabular-nums; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-meta { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 8px 0 0; color: #50575e; font-size: 12px; font-variant-numeric: tabular-nums; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-note { margin: 8px 0 0; color: #646970; font-size: 12px; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-actions { display: flex; justify-content: flex-end; gap: 8px; margin: 12px 0 0; padding: 10px 0 0; border-top: 1px solid #f0f0f1; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-btn {
+	display: inline-block;
+	box-sizing: border-box;
+	min-height: 30px;
+	margin: 0;
+	padding: 0 12px;
+	border: 1px solid #2271b1;
+	border-radius: 3px;
+	background: #f6f7f7;
+	color: #2271b1;
+	font-size: 13px;
+	line-height: 28px;
+	text-decoration: none;
+	cursor: pointer;
+	white-space: nowrap;
+}
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-btn:hover { background: #f0f0f1; color: #135e96; border-color: #135e96; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-btn:focus { outline: 2px solid #2271b1; outline-offset: 1px; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-btn.is-primary { background: #2271b1; color: #fff; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-btn.is-primary:hover { background: #135e96; color: #fff; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-btn.is-danger { border-color: #d63638; color: #b32d2e; background: #fff; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-btn.is-danger:hover { background: #fcf0f1; }
+#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-btn[disabled] { opacity: .55; cursor: default; }
+
+@media screen and (max-width: 782px) {
+	#wpadminbar li#wp-admin-bar-flxy-job { display: block; }
+	#wpadminbar li#wp-admin-bar-flxy-job.is-idle { display: none; }
+	#wpadminbar #wp-admin-bar-flxy-job > .ab-item { height: 46px; padding: 0 8px; font-size: 13px; }
+	#wpadminbar #wp-admin-bar-flxy-job .flxy-ab-ring { width: 26px; height: 26px; }
+	#wpadminbar #wp-admin-bar-flxy-job .flxy-ab-ring svg:first-child { width: 26px; height: 26px; }
+	#wpadminbar #wp-admin-bar-flxy-job svg.flxy-ab-glyph { inset: 7px; width: 12px; height: 12px; }
+	#wpadminbar #wp-admin-bar-flxy-job .flxy-ab-text { max-width: 34vw; overflow: hidden; text-overflow: ellipsis; }
+	#wpadminbar #wp-admin-bar-flxy-job .flxy-pop { position: fixed; top: 46px; left: 8px; right: 8px; width: auto; border-radius: 0 0 8px 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+	#wpadminbar #wp-admin-bar-flxy-job .flxy-ab-bar span,
+	#wpadminbar #wp-admin-bar-flxy-job .flxy-pop-bar span,
+	#wpadminbar #wp-admin-bar-flxy-job svg.flxy-ab-glyph { animation: none; }
+}

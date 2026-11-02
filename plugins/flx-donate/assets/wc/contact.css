@@ -1,0 +1,54 @@
+/* Flux Donate 2.0.4: one contact section on a donation-only checkout. */
+.flxb-ct-hide { display: none !important; }
+.flxb-ct-on .wc-block-checkout__billing-fields .wc-block-components-checkout-step__heading,
+.flxb-ct-on .wc-block-checkout__billing-fields .wc-block-components-checkout-step__description,
+.flxb-ct-on .wc-block-checkout__billing-fields .wc-block-components-address-form__country,
+.flxb-ct-on .wc-block-checkout__billing-fields .wc-block-components-country-input,
+.flxb-ct-on .wc-block-checkout__billing-fields .wc-block-components-address-form__phone { display: none !important; }
+.flxb-ct-on .wc-block-checkout__billing-fields { margin-top: -12px !important; padding-top: 0 !important; }
+.flxb-ct-on .wc-block-checkout__billing-fields::before { display: none !important; }
+.flxb-ct { margin: 0 0 4px; }
+.flxb-ct__row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.flxb-ct__field { position: relative; display: flex; flex-direction: column; gap: 4px; }
+.flxb-ct__field label { font-size: .85rem; font-weight: 600; }
+.flxb-ct__field input {
+	width: 100%; min-height: 50px; padding: 12px 14px; font: inherit; font-size: 1rem; box-sizing: border-box;
+	border: 1px solid var(--flx-line, #c3cec7); border-radius: 12px; background: var(--flx-surface, #fff); color: inherit;
+}
+.flxb-ct__field input:focus { outline: 0; border-color: var(--flx-primary, #347a5a); box-shadow: 0 0 0 3px color-mix(in srgb, var(--flx-primary, #347a5a) 18%, transparent); }
+.flxb-ct.has-error .flxb-ct__field input { border-color: #cc1818; }
+.flxb-ct__help { margin: 8px 0 0; font-size: .85rem; opacity: .8; }
+.flxb-ct__err { margin: 6px 0 0; font-size: .9rem; color: #cc1818; font-weight: 600; }
+body.flx-dark .flxb-ct__field input { background: var(--flx-surface, #17221c); border-color: var(--flx-line, #2c3b33); }
+@media (max-width: 600px) { .flxb-ct__row { grid-template-columns: 1fr; } .flxb-ct__field input { font-size: 16px; } }
+
+/* Mobile: the summary sits above the place order button already; no second, collapsible one at the top. */
+.flxb-ct-on .wc-block-checkout.is-mobile .wc-block-checkout__sidebar { display: none !important; }
+.flxb-ct-on .wc-block-checkout__contact-fields .wc-block-components-checkout-step__description { display: none !important; }
+.flxb-ct-on .wc-block-components-checkout-place-order-button { width: 100%; min-height: 54px; }
+.flxb-ct-support .flxwb-support { display: flex; align-items: center; gap: 8px; margin: 12px 0 0; font-size: .92rem; }
+.flxb-ct-support .flxwb-support .flxwb-ic { flex: none; width: 20px; height: 20px; color: #1e9e57; }
+.flxb-ct-support .flxwb-support a { font-weight: 700; white-space: nowrap; }
+
+/* 2.0.5: header fixed at the top; a slim bar with the total and the button fixed at the bottom
+   (2.0.4 made WooCommerce's whole actions block sticky, and newer WooCommerce puts the summary inside it). */
+.flxb-fixhead { position: fixed !important; top: var(--wp-admin--admin-bar--height, 0px); left: 0; right: 0; z-index: 90; }
+@media (max-width: 600px) { .admin-bar .flxb-fixhead { top: 0; } }
+.flxb-paybar {
+	position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
+	padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+	background: var(--flx-surface, #fff); border-top: 1px solid var(--flx-line, #dce9e0);
+	box-shadow: 0 -8px 24px -12px rgba(20, 50, 74, .3);
+	transition: transform .2s ease;
+}
+.flxb-paybar.is-off { transform: translateY(110%); }
+.flxb-paybar__in { display: flex; align-items: center; gap: 14px; max-width: 1100px; margin: 0 auto; }
+.flxb-paybar__sum { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
+.flxb-paybar__sum span { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; opacity: .75; }
+.flxb-paybar__sum strong { font-size: 1.3rem; font-variant-numeric: tabular-nums; color: var(--flx-ink, inherit); }
+.flxb-paybar__btn {
+	margin-left: auto; min-height: 50px; padding: 10px 26px; border: 0; border-radius: 999px; cursor: pointer;
+	background: var(--flx-primary, #0e7a56); color: #fff; font: inherit; font-weight: 800; font-size: 1rem;
+}
+.flxb-paybar__btn[disabled] { opacity: .6; cursor: progress; }
+@media (prefers-color-scheme: dark) { body.flx-dark .flxb-paybar { background: var(--flx-surface, #13251f); box-shadow: 0 -8px 24px -12px rgba(0, 0, 0, .8); } }

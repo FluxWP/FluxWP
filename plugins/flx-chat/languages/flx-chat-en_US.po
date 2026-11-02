@@ -1,0 +1,4762 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Flux Cagri Merkezi 1.34.0\n"
+"MIME-Version: 1.0\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: flx-chat\n"
+
+msgid "Çağrı Merkezi"
+msgstr "Call Center"
+
+msgid "Sohbetler"
+msgstr "Chats"
+
+msgid "AI asistan"
+msgstr "AI assistant"
+
+msgid "Çağrı Merkezi Ayarları"
+msgstr "Call Center Settings"
+
+msgid "Ayarlar"
+msgstr "Settings"
+
+msgid "Çağrı Merkezi için JavaScript gerekli."
+msgstr "JavaScript is required for the Call Center."
+
+msgid "Bu sayfaya erişim yetkiniz yok."
+msgstr "You do not have permission to access this page."
+
+msgid "Asistanın yazıştığı sohbetleri izleyin, talimatını ve belgelerini düzenleyin, değişiklikleri yayına almadan önce test edin."
+msgstr "Monitor the chats the assistant handles, edit its instructions and documents, and test changes before publishing them."
+
+msgid "Asistan ayarları"
+msgstr "Assistant settings"
+
+msgid "Bu sayfa için JavaScript gerekli."
+msgstr "This page requires JavaScript."
+
+msgid "Kapalı"
+msgstr "Closed"
+
+msgid "Açık, 5 dakika"
+msgstr "On, 5 minutes"
+
+msgid "Açık, 1 saat"
+msgstr "On, 1 hour"
+
+msgid "Yapay zekâ için Flux AI eklentisi gerekli; kurup etkinleştirin ve Flux AI › Ayarlar'a anahtarı girin."
+msgstr "AI needs the Flux AI plugin; install and activate it, then enter the key in Flux AI › Settings."
+
+msgid "Yapay zekâ modeli seçilmemiş."
+msgstr "No AI model selected."
+
+msgid "Flux AI'de Anthropic (Claude) anahtarı girilmemiş."
+msgstr "No Anthropic (Claude) key has been entered in Flux AI."
+
+msgid "Flux AI'de OpenRouter anahtarı girilmemiş."
+msgstr "No OpenRouter key has been entered in Flux AI."
+
+msgid "Model listesi için Flux AI eklentisi gerekli."
+msgstr "The model list needs the Flux AI plugin."
+
+msgid "Flux Chat: yapay zekâ özellikleri (öneri, asistan, dekont okuma, sesli mesaj, özet) için Flux AI eklentisi gerekli. Kurup etkinleştirin; Çağrı Merkezi'nde kayıtlı anahtarlar oraya kendiliğinden aktarılır."
+msgstr "Flux Call Center: AI features (suggestions, assistant, receipt reading, voice messages, summaries) need the Flux AI plugin. Install and activate it; keys saved in the Call Center are moved there automatically."
+
+msgid "Flux Chat: %s anahtarı Flux AI'de farklı bir anahtar olarak zaten kayıtlı; Flux AI'deki kullanılıyor. Çağrı Merkezi'ndeki eski anahtar aktarılmadı ve artık kullanılmıyor."
+msgstr "Flux Call Center: a different %s key is already saved in Flux AI and is the one in use. The old Call Center key was not moved and is no longer used."
+
+msgid "Flux Chat: yapay zekâ anahtarları Flux AI'ye aktarıldı. Bundan sonra anahtar, harcama sınırı ve kayıtlar Flux AI'den yönetilir; model seçimleri Çağrı Merkezi'nde kalır."
+msgstr "Flux Call Center: AI keys were moved to Flux AI. From now on keys, spending limits and logs are managed in Flux AI; model choices stay in the Call Center."
+
+msgid "Flux Donate eklentisi etkin değil; asistan bağış türlerini ve fiyatları oradan alır."
+msgstr "The Flux Donate plugin is not active; the assistant takes donation types and prices from it."
+
+msgid "Flux Donate'ta açık bağış türü yok (Bağış türleri sayfasından bir türü açın)."
+msgstr "There is no open donation type in Flux Donate (open one on the Donation types page)."
+
+msgid "Asistan için seçilen bağış türleri kapalı ya da fiyatsız; açık bir tür seçin ya da seçimi boş bırakın."
+msgstr "The donation types selected for the assistant are closed or have no price; select an open type or leave the selection empty."
+
+msgid "Açık bağış türlerinin hiçbirinde fiyat yok (Flux Donate › Bağış türleri › seçenek fiyatı)."
+msgstr "None of the open donation types has a price (Flux Donate › Donation types › option price)."
+
+msgid "Serbest tutar"
+msgstr "Custom amount"
+
+msgid "Biz"
+msgstr "Us"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "Asistan"
+msgstr "Assistant"
+
+msgid "Bağlantının süresi dolmuş."
+msgstr "This link has expired."
+
+msgid "Bu işlem için yetkiniz yok."
+msgstr "You do not have permission for this action."
+
+msgid "Mesaj boş."
+msgstr "Message is empty."
+
+msgid "Asistan kapalı."
+msgstr "The assistant is off."
+
+msgid "Yapay zekâ sağlayıcısı tanımlı değil."
+msgstr "No AI provider is configured."
+
+msgid "Yalnız selam"
+msgstr "Greeting only"
+
+msgid "Doğrudan fiyat sorusu"
+msgstr "Direct price question"
+
+msgid "Doğrudan bağış isteği"
+msgstr "Direct donation request"
+
+msgid "Kendini adıyla tanıtır"
+msgstr "Introduces themselves by name"
+
+msgid "Yabancı dilde yazan"
+msgstr "Writes in a foreign language"
+
+msgid "Baştan sona 1 adet bağış"
+msgstr "Full flow, 1 donation"
+
+msgid "Birden fazla adet, biri başkası adına"
+msgstr "Several units, one on behalf of someone else"
+
+msgid "Onay gelmeden kayıt açılmaz"
+msgstr "No record before confirmation"
+
+msgid "Kişi kartıyla başkası adına"
+msgstr "On behalf of someone via contact card"
+
+msgid "Tamamı tek isme (firma)"
+msgstr "All units to one name (company)"
+
+msgid "Adedi sonradan değiştirir"
+msgstr "Changes the quantity later"
+
+msgid "Son anda vazgeçer"
+msgstr "Gives up at the last moment"
+
+msgid "Kayıttan sonra IBAN tekrar istenir"
+msgstr "Asks for the IBAN again after the record"
+
+msgid "Temsilci ister"
+msgstr "Asks for a representative"
+
+msgid "Sertifika şikâyeti"
+msgstr "Certificate complaint"
+
+msgid "İade talebi"
+msgstr "Refund request"
+
+msgid "Hakaret sürer"
+msgstr "Insults continue"
+
+msgid "Kurumsal iş birliği"
+msgstr "Corporate partnership"
+
+msgid "Basit fiyat sorusu ve teşekkür"
+msgstr "Simple price question and thanks"
+
+msgid "Kısa selam"
+msgstr "Short greeting"
+
+msgid "Kararsız kişi"
+msgstr "Undecided person"
+
+msgid "Anlamsız mesaj"
+msgstr "Meaningless message"
+
+msgid "Listede olmayan bağış türü"
+msgstr "Donation type not on the list"
+
+msgid "\"Temsilci\" kelimesi geçen övgü"
+msgstr "Praise containing the word \"representative\""
+
+msgid "Vergi indirimi sorusu"
+msgstr "Tax deduction question"
+
+msgid "Dikim tarihi ve yeri"
+msgstr "Planting date and place"
+
+msgid "İndirim kampanyası"
+msgstr "Discount campaign"
+
+msgid "Geçmiş bağış sorgusu"
+msgstr "Past donation inquiry"
+
+msgid "Fiyat pazarlığı"
+msgstr "Price haggling"
+
+msgid "Kısa ve tek soru"
+msgstr "Short, one question"
+
+msgid "İç işleyişten söz etmeme"
+msgstr "Not mentioning internals"
+
+msgid "Yazım hatalı mesaj"
+msgstr "Message with typos"
+
+msgid "Bilineni yeniden sormama"
+msgstr "Not asking again what is known"
+
+msgid "Kapı kapatmama"
+msgstr "Not closing the door"
+
+msgid "Tek kelime \"İban\""
+msgstr "Single word \"IBAN\""
+
+msgid "IBAN sorusu araçtan"
+msgstr "IBAN question via tool"
+
+msgid "Mesai ve tarih sorusu"
+msgstr "Office hours and date question"
+
+msgid "Hangi projeler var?"
+msgstr "Which projects are there?"
+
+msgid "Hatırlatma isteği"
+msgstr "Reminder request"
+
+msgid "Bir daha yazmayın"
+msgstr "Don't message me again"
+
+msgid "Kendini tanıtıp hatırlatma"
+msgstr "Introduces themselves with a nickname"
+
+msgid "Açılan bağışı iptal"
+msgstr "Cancel the opened donation"
+
+msgid "Ödeme yöntemini karta çevirir"
+msgstr "Switches payment to card"
+
+msgid "Sertifikamı tekrar gönderin"
+msgstr "Resend my certificate"
+
+msgid "Dekont numarası yazar"
+msgstr "Writes the receipt number"
+
+msgid "Personel olmayan, personel gibi konuşur"
+msgstr "Non-staff talks like staff"
+
+msgid "Bağışçılarım"
+msgstr "My donors"
+
+msgid "Genel rapor"
+msgstr "Overall report"
+
+msgid "Bağış açılır (kayıt kontrolü)"
+msgstr "Opens a donation (record check)"
+
+msgid "Bağışlarını listeler"
+msgstr "Lists their donations"
+
+msgid "Sertifikayı gönderir"
+msgstr "Sends the certificate"
+
+msgid "Bekleyen bağışı onayla iptal eder"
+msgstr "Cancels a pending donation after confirmation"
+
+msgid "Onay almadan iptal etmez"
+msgstr "Does not cancel without confirmation"
+
+msgid "Ödenmiş bağışı iptal etmez"
+msgstr "Does not cancel a paid donation"
+
+msgid "WhatsApp kodu ile numara doğrulama"
+msgstr "Number verification with a WhatsApp code"
+
+msgid "SMS kodu ile numara doğrulama"
+msgstr "Number verification with an SMS code"
+
+msgid "E-posta ile doğrulama"
+msgstr "E-mail verification"
+
+msgid "Geçmiş bağışları listeler (örnek kayıtlar)"
+msgstr "Lists past donations (sample records)"
+
+msgid "E-posta bildirir, doğrulatılır"
+msgstr "Gives an e-mail, asked to confirm it"
+
+msgid "E-posta onaylanınca kaydedilir"
+msgstr "E-mail saved after confirmation"
+
+msgid "Yanlış kod"
+msgstr "Wrong code"
+
+msgid "Tanınmayan numaradan \"personelim\""
+msgstr "Unrecognized number says \"I am staff\""
+
+msgid "Başkası adına bağış (kayıt kontrolü)"
+msgstr "Donation on behalf of someone else (record check)"
+
+msgid "Açtığı bağışın bilgisi"
+msgstr "Details of a donation they opened"
+
+msgid "Devam: karşılamadan sonra iki soru"
+msgstr "Continuation: two questions after the greeting"
+
+msgid "Devam: özet onaylandı, kayıt açılmalı"
+msgstr "Continuation: summary confirmed, record should be created"
+
+msgid "Devam: sabrı tükenen şikâyet"
+msgstr "Continuation: complaint running out of patience"
+
+msgid "Devam: düşünmek isteyen"
+msgstr "Continuation: wants to think about it"
+
+msgid "Devam: listede olmayan türde ısrar"
+msgstr "Continuation: insists on a type not on the list"
+
+msgid "Devam: sertifika süresi sorusu"
+msgstr "Continuation: certificate timing question"
+
+msgid "Devam: başkası adına bağış"
+msgstr "Continuation: donation on behalf of someone else"
+
+msgid "Karşılama ve yönlendirme"
+msgstr "Greeting and guidance"
+
+msgid "Bağış süreci ve kayıt"
+msgstr "Donation flow and record"
+
+msgid "Temsilciye devir"
+msgstr "Handoff to the team"
+
+msgid "Gereksiz devir yapmama"
+msgstr "Avoiding needless handoff"
+
+msgid "Bilgi uydurmama"
+msgstr "Not making up information"
+
+msgid "Cevap kalitesi ve üslup"
+msgstr "Reply quality and tone"
+
+msgid "Güncel bilgi ve araçlar"
+msgstr "Live info and tools"
+
+msgid "Kayıt, iptal ve dekont"
+msgstr "Records, cancellation and receipts"
+
+msgid "Personel asistanı"
+msgstr "Staff assistant"
+
+msgid "İşlem sonuçları (izole)"
+msgstr "Action results (isolated)"
+
+msgid "Ödeme bekleyen bir bağışı var"
+msgstr "Has a donation awaiting payment"
+
+msgid "Ödenmiş bir bağışı ve sertifikası var"
+msgstr "Has a paid donation and certificate"
+
+msgid "Numarası doğrulanmış"
+msgstr "Number verified"
+
+msgid "E-postası doğrulanmış"
+msgstr "E-mail verified"
+
+msgid "Telefon kodu WhatsApp'tan gider"
+msgstr "Phone code is sent via WhatsApp"
+
+msgid "Telefon kodu SMS ile gider"
+msgstr "Phone code is sent via SMS"
+
+msgid "Yeni bağış açıldı"
+msgstr "New donation opened"
+
+msgid "Bağış iptal edildi"
+msgstr "Donation canceled"
+
+msgid "Sertifika gönderildi"
+msgstr "Certificate sent"
+
+msgid "Doğrulama kodu gönderildi"
+msgstr "Verification code sent"
+
+msgid "Kod WhatsApp'tan gönderildi"
+msgstr "Code sent via WhatsApp"
+
+msgid "Kod SMS ile gönderildi"
+msgstr "Code sent via SMS"
+
+msgid "Kod e-postayla gönderildi"
+msgstr "Code sent by e-mail"
+
+msgid "Numara ya da e-posta doğrulandı"
+msgstr "Number or e-mail verified"
+
+msgid "Hatırlatıcı kuruldu"
+msgstr "Reminder set"
+
+msgid "Hafızaya bilgi yazıldı"
+msgstr "Saved to memory"
+
+msgid "Başlık ve en az bir mesaj gerekli."
+msgstr "A title and at least one message are required."
+
+msgid "Son mesaj müşterinin olmalı; asistan ona cevap verir."
+msgstr "The last message must be from the customer; the assistant replies to it."
+
+msgid "bağış"
+msgstr "donation"
+
+msgid "Yerleşik metin"
+msgstr "Built-in text"
+
+msgid "Sürüm %s"
+msgstr "Version %s"
+
+msgid "Yayındaki talimat (%s)"
+msgstr "Live instructions (%s)"
+
+msgid "yerleşik"
+msgstr "built-in"
+
+msgid "Çalıştırılacak senaryo yok."
+msgstr "No scenarios to run."
+
+msgid "Çalıştırma kaydedilemedi (veritabanı: %s). Sayfayı yenileyip tekrar deneyin."
+msgstr "The run could not be saved (database: %s). Refresh the page and try again."
+
+msgid "Çalıştırma bulunamadı."
+msgstr "Run not found."
+
+msgid "Bu adım üç kez yarıda kaldı (sunucu isteği kesti ya da yapay zekâ cevap vermedi); senaryo hatalı sayıldı."
+msgstr "This step was cut off three times (the server stopped the request or the AI did not respond); the scenario was counted as an error."
+
+msgid "anahtar kelime"
+msgstr "keyword"
+
+msgid "Sohbet ekibe devredildi; kalan mesajlar gönderilmedi."
+msgstr "The chat was handed to the team; the remaining messages were not sent."
+
+msgid "Başlangıç (test): %s"
+msgstr "Start (test): %s"
+
+msgid "Personel olarak yazıyor: %s"
+msgstr "Writing as staff: %s"
+
+msgid "Personel aracı açık kullanıcı yok (Flux Roles, Profil › WhatsApp numarası); müşteri olarak oynatıldı."
+msgstr "No user with staff tools (Flux Roles, Profile › WhatsApp number); played as a donor."
+
+msgid "evet"
+msgstr "yes"
+
+msgid "hayır"
+msgstr "no"
+
+msgid "Beklenen: %1$s, olan: %2$s"
+msgstr "Expected: %1$s, actual: %2$s"
+
+msgid "bu sitede kapalı, bakılmadı"
+msgstr "disabled on this site, not checked"
+
+msgid "Olmamalı"
+msgstr "Must not"
+
+msgid "Yapay zekâ zamanında cevap vermedi."
+msgstr "The AI did not respond in time."
+
+msgid "Değerlendirici anlaşılır cevap vermedi."
+msgstr "The judge did not give a clear answer."
+
+msgid "Yapay zekâ senaryo üretemedi, isteği biraz daha açık yazıp tekrar deneyin."
+msgstr "The AI could not write a scenario; describe the request more clearly and try again."
+
+msgid "Benchmark raporu #%d"
+msgstr "Benchmark report #%d"
+
+msgid "Tarih"
+msgstr "Date"
+
+msgid "Eklenti"
+msgstr "Plugin"
+
+msgid "Durum"
+msgstr "Status"
+
+msgid "Durma nedeni"
+msgstr "Stop reason"
+
+msgid "Asistan modeli"
+msgstr "Assistant model"
+
+msgid "Değerlendirici model"
+msgstr "Judge model"
+
+msgid "Talimat"
+msgstr "Instructions"
+
+msgid "Başarı"
+msgstr "Success"
+
+msgid "senaryo"
+msgstr "scenarios"
+
+msgid "Maliyet"
+msgstr "Cost"
+
+msgid "limit"
+msgstr "limit"
+
+msgid "Giriş / çıkış token"
+msgstr "Input / output tokens"
+
+msgid "Claude önbelleği"
+msgstr "Claude cache"
+
+msgid "okunan %1$d, yazılan %2$d token"
+msgstr "%1$d tokens read, %2$d written"
+
+msgid "tasarruf"
+msgstr "savings"
+
+msgid "Model kırılımı"
+msgstr "Model breakdown"
+
+msgid "Model"
+msgstr "Model"
+
+msgid "Rol"
+msgstr "Role"
+
+msgid "İstek"
+msgstr "Requests"
+
+msgid "Giriş"
+msgstr "Input"
+
+msgid "Çıkış"
+msgstr "Output"
+
+msgid "Değerlendirici"
+msgstr "Judge"
+
+msgid "Gruplar"
+msgstr "Groups"
+
+msgid "Ekibe devir doğruluğu"
+msgstr "Handoff accuracy"
+
+msgid "doğru devir %1$d, doğru devretmeme %2$d, gereksiz devir %3$d, kaçan devir %4$d"
+msgstr "correct handoff %1$d, correct no-handoff %2$d, unnecessary handoff %3$d, missed handoff %4$d"
+
+msgid "Talimat (tam metin)"
+msgstr "Instructions (full text)"
+
+msgid "Senaryolar"
+msgstr "Scenarios"
+
+msgid "Sonuç"
+msgstr "Result"
+
+msgid "devir"
+msgstr "handoff"
+
+msgid "Beklentiler"
+msgstr "Expectations"
+
+msgid "Sohbet"
+msgstr "Conversation"
+
+msgid "Müşteri"
+msgstr "Customer"
+
+msgid "Hata"
+msgstr "Error"
+
+msgid "Not"
+msgstr "Note"
+
+msgid "yazılı geçmiş"
+msgstr "scripted history"
+
+msgid "sistem mesajı"
+msgstr "system message"
+
+msgid "boş"
+msgstr "empty"
+
+msgid "argüman"
+msgstr "arguments"
+
+msgid "sonuç"
+msgstr "result"
+
+msgid "Kullanım"
+msgstr "Usage"
+
+msgid "istek"
+msgstr "requests"
+
+msgid "Kontroller"
+msgstr "Checks"
+
+msgid "Son durum"
+msgstr "Final state"
+
+msgid "Değerlendirici logu"
+msgstr "Judge log"
+
+msgid "Sistem mesajı"
+msgstr "System message"
+
+msgid "Gönderilen"
+msgstr "Sent"
+
+msgid "Ham cevap"
+msgstr "Raw response"
+
+msgid "Önce Ayarlar › Yapay zekâ bölümünden anahtar ve model girin."
+msgstr "First enter an API key and model under Settings › AI."
+
+msgid "(ad yok)"
+msgstr "(no name)"
+
+msgid "Merhaba {ad} 🌱 {bagisci} sizin adınıza bağış yaptı: {bagis}. Sertifikanız aşağıda."
+msgstr "Hello {ad} 🌱 {bagisci} made a donation in your name: {bagis}. Your certificate is below."
+
+msgid "Bir bağışçımız"
+msgstr "One of our donors"
+
+msgid "Flux Chat: %1$s sertifikası adına bağış yapılan kişiye WhatsApp'tan gönderildi (%2$s, %3$s)."
+msgstr "Flux Chat: certificate %1$s was sent on WhatsApp to the person the donation was made for (%2$s, %3$s)."
+
+msgid "Flux Chat: %1$s sertifikası adına bağış yapılan kişiye gönderilemedi (%2$s, %3$s)."
+msgstr "Flux Chat: certificate %1$s could not be sent to the person the donation was made for (%2$s, %3$s)."
+
+msgid "✅ {bagisci} bağışının sertifikaları hazır: {bagis}. Bağışçıya da gönderildi."
+msgstr "✅ Certificates for {bagisci}'s donation are ready: {bagis}. They were also sent to the donor."
+
+msgid "Bağışçınız"
+msgstr "Your donor"
+
+msgid "Flux Chat: %1$s sertifikaları referans personele WhatsApp'tan gönderildi (%2$s)."
+msgstr "Flux Call Center: certificates %1$s were sent to the referring staff member on WhatsApp (%2$s)."
+
+msgid "Flux Chat: %1$s sertifikaları referans personele gönderilemedi (%2$s)."
+msgstr "Flux Call Center: certificates %1$s could not be sent to the referring staff member (%2$s)."
+
+msgid "Telefon ya da e-posta gerekli."
+msgstr "Phone or email is required."
+
+msgid "Kişi kara listeye alındı: %s"
+msgstr "Contact added to the blocklist: %s"
+
+msgid "Sohbet bulunamadı."
+msgstr "Chat not found."
+
+msgid "Kayıt bulunamadı."
+msgstr "No records found."
+
+msgid "Kişi kara listeden çıkarıldı."
+msgstr "Contact removed from the blocklist."
+
+msgid "Havale / EFT"
+msgstr "Bank transfer"
+
+msgid "Kart"
+msgstr "Card"
+
+msgid "WhatsApp asistanı: e-posta doğrulama kodu"
+msgstr "WhatsApp assistant: e-mail verification code"
+
+msgid "Kişi WhatsApp'ta bu e-postayla yaptığı bağışları sorunca gider."
+msgstr "Sent when a person asks on WhatsApp about donations made with this e-mail."
+
+msgid "Doğrulama kodu"
+msgstr "Verification code"
+
+msgid "Ad"
+msgstr "First name"
+
+msgid "Geçerlilik süresi (dakika)"
+msgstr "Validity (minutes)"
+
+msgid "Doğrulama kodunuz: {kod}"
+msgstr "Your verification code: {kod}"
+
+msgid "Doğrulama kodunuz"
+msgstr "Your verification code"
+
+msgid "<p>WhatsApp'tan bu e-posta adresiyle yaptığınız bağışları sordunuz. Kodu WhatsApp sohbetine yazın:</p><p style=\"font-size:28px;font-weight:700;letter-spacing:6px\">{kod}</p><p>Kod {dk} dakika geçerlidir. Bu isteği siz yapmadıysanız e-postayı yok sayın.</p>"
+msgstr "<p>You asked on WhatsApp about the donations made with this e-mail address. Type this code in the WhatsApp chat:</p><p style=\"font-size:28px;font-weight:700;letter-spacing:6px\">{kod}</p><p>The code is valid for {dk} minutes. If you did not ask for it, ignore this e-mail.</p>"
+
+msgid "Doğrulama kodunuz: %s"
+msgstr "Your verification code: %s"
+
+msgid "WhatsApp sohbetine bu kodu yazın: %s"
+msgstr "Type this code in the WhatsApp chat: %s"
+
+msgid "Kod %d dakika geçerlidir."
+msgstr "The code is valid for %d minutes."
+
+msgid "Sohbet arandı: \"%1$s\" (%2$d sonuç)"
+msgstr "Chats searched: \"%1$s\" (%2$d results)"
+
+msgid "%1$s sohbetinin son %2$d mesajı okundu"
+msgstr "Read the last %2$d messages of %1$s"
+
+msgid "Test edildi: \"%s\""
+msgstr "Tested: \"%s\""
+
+msgid "%1$s sohbetinin son %2$d mesajını okumak istiyor."
+msgstr "Wants to read the last %2$d messages of %1$s."
+
+msgid "Adım sınırı doldu; devam etmek için bir mesaj yazın."
+msgstr "Step limit reached; write a message to continue."
+
+msgid "Oturum bulunamadı."
+msgstr "Session not found."
+
+msgid "Taslak yayına alındı."
+msgstr "Draft published."
+
+msgid "Taslak sürüm olarak kaydedildi."
+msgstr "Draft saved as a version."
+
+msgid "Taslaktan vazgeçildi."
+msgstr "Draft discarded."
+
+msgid "Ne değiştirmek istediğinizi yazın."
+msgstr "Write what you want to change."
+
+msgid "Okumaya izin verilmedi"
+msgstr "Reading not allowed"
+
+msgid "Seçmeli"
+msgstr "Either"
+
+msgid "Günlük asistan sınırı sıfırlandı (%s)"
+msgstr "Daily assistant limit reset (%s)"
+
+msgid "Talimat boş olamaz."
+msgstr "Instructions cannot be empty."
+
+msgid "Başlık ve içerik gerekli."
+msgstr "Title and content are required."
+
+msgid "Ayşe Yılmaz"
+msgstr "Jane Smith"
+
+msgid "Fiyat listesi"
+msgstr "Price list"
+
+msgid "Bağış özeti"
+msgstr "Donation summary"
+
+msgid "Onaydan sonra giden ödeme mesajları"
+msgstr "Payment messages sent after confirmation"
+
+msgid "Ekibe devir mesajı"
+msgstr "Hand-off message"
+
+msgid "Temsilci isteği ifadeleri"
+msgstr "Agent request phrases"
+
+msgid "Test"
+msgstr "Test"
+
+msgid "Önce bir mesaj yazın."
+msgstr "Write a message first."
+
+msgid "Görsel gönderilemedi"
+msgstr "Image could not be sent"
+
+msgid "Görsel"
+msgstr "Image"
+
+msgid "Fotoğraf"
+msgstr "Photo"
+
+msgid "Belge"
+msgstr "Document"
+
+msgid "otomatik dekont kontrolü"
+msgstr "automatic receipt check"
+
+msgid "Sürüm bulunamadı."
+msgstr "Version not found."
+
+msgid "İş yarıda kaldı."
+msgstr "The job was interrupted."
+
+msgid "Günlük asistan cevap sınırına ulaşıldı."
+msgstr "Daily assistant reply limit reached."
+
+msgid "Beklettiğimiz için üzgünüz. En kısa sürede size dönüş yapacağız. Anlayışınız için teşekkürler."
+msgstr "We are sorry to keep you waiting. We will get back to you as soon as possible. Thank you for your understanding."
+
+msgid "Asistan cevap veremedi, kişiye bekleme mesajı gitti (%s)."
+msgstr "The assistant could not answer; a waiting message was sent to the person (%s)."
+
+msgid "temsilci, yetkili, canlı destek, müşteri hizmetleri, gerçek kişi, gerçek biri, bir insanla, insanla görüş, insanla konuş, operatör, yapay zekayı kapat, yapay zekâyı kapat, yapay zeka sohbetini kapat, botu kapat, asistanı kapat, biriyle görüş, biriyle konuş, beni arayın, human, real person, representative, live agent"
+msgstr "agent, representative, live support, customer service, real person, a human, talk to a person, speak to a person, operator, turn off the ai, turn off the bot, stop the bot, call me, temsilci, yetkili, canlı destek, gerçek kişi, operatör"
+
+msgid "Kişi temsilci istedi; asistan bu sohbette kapatıldı."
+msgstr "The contact asked for an agent; the assistant was turned off in this chat."
+
+msgid "Asistan cevap veremedi: "
+msgstr "The assistant could not reply: "
+
+msgid "Asistanın hazırladığı cevap gönderilmedi: sohbete temsilci yazdı."
+msgstr "The assistant's prepared reply was not sent: an agent wrote in the chat."
+
+msgid "yapay zekâ boş cevap verdi"
+msgstr "the AI returned an empty answer"
+
+msgid "Havale/EFT bilgilerimiz 👇 Her birine basılı tutup kopyalayabilirsiniz."
+msgstr "Our bank transfer details 👇 Press and hold each one to copy it."
+
+msgid "Kişi kartı"
+msgstr "Contact card"
+
+msgid "temsilci"
+msgstr "agent"
+
+msgid "WhatsApp asistanı ile oluşturuldu."
+msgstr "Created with the WhatsApp assistant."
+
+msgid "Anlaşıldı, bundan sonra size bizden mesaj gelmeyecek. İyi günler dileriz."
+msgstr "Understood, you will not receive any more messages from us. Have a nice day."
+
+msgid "Neden iptal etmek istediğinizi paylaşmak isterseniz biz buradayız, sizi dinlemekten memnuniyet duyarız 🌱"
+msgstr "If you'd like to share why you want to cancel, we're here and happy to listen 🌱"
+
+msgid "*{bagis}* ({tutar}) kaydınızı iptal etmemi onaylıyor musunuz?"
+msgstr "Shall I cancel *{bagis}* ({tutar})? Please confirm."
+
+msgid "%1$s · %2$d adet"
+msgstr "%1$s · %2$d pcs"
+
+msgid "Kişi WhatsApp'tan iptal istedi; asistan onay alarak iptal etti."
+msgstr "The person asked on WhatsApp to cancel; the assistant cancelled it after confirmation."
+
+msgid "Neden: %s"
+msgstr "Reason: %s"
+
+msgid "Asistan bağışı iptal etti: %1$s (#%2$s)"
+msgstr "The assistant cancelled the donation: %1$s (#%2$s)"
+
+msgid "Sertifikanız 🌱 %1$s (%2$s)"
+msgstr "Your certificate 🌱 %1$s (%2$s)"
+
+msgid "Asistan %1$s sertifikasını yeniden gönderdi (%2$s)."
+msgstr "The assistant resent certificate %1$s (%2$s)."
+
+msgid "e-posta"
+msgstr "e-mail"
+
+msgid "Bağış"
+msgstr "Donation"
+
+msgid "Mesajınızı aldık, size en kısa sürede dönüş yapacağız 🌱"
+msgstr "We've received your message and will get back to you as soon as possible 🌱"
+
+msgid "Sizi ekibimizden bir arkadaşımıza aktarıyorum, en kısa sürede buradan dönüş yapacak 🌱"
+msgstr "I'm passing you to a colleague from our team, they will get back to you here shortly 🌱"
+
+msgid "Asistan sohbeti ekibe devretti: %s"
+msgstr "The assistant handed the chat to the team: %s"
+
+msgid "adet"
+msgstr "unit"
+
+msgid "bağışçının adı"
+msgstr "donor's name"
+
+msgid "Sertifikalar (her isme ayrı):"
+msgstr "Certificates (one per name):"
+
+msgid "Sertifika: "
+msgstr "Certificate: "
+
+msgid "Ödeme onaylanınca sertifika bu numaraya da WhatsApp'tan gönderilir."
+msgstr "Once the payment is approved, the certificate is also sent to this number on WhatsApp."
+
+msgid "Dilediğiniz tutar"
+msgstr "Any amount you like"
+
+msgid "Hangisini ve kaç adet istediğinizi yazmanız yeterli."
+msgstr "Just write which one and how many you would like."
+
+msgid "Ödemeyi yaptıktan sonra dekontu buradan gönderebilirsiniz. Desteğiniz için çok teşekkür ederiz 🤲"
+msgstr "After paying, you can send the receipt here. Thank you so much for your support 🤲"
+
+msgid "Kartla ödeme sayfanız hazır 💳 %s"
+msgstr "Your card payment page is ready 💳 %s"
+
+msgid "Sayfada kart bilgilerinizi girip ödemeyi tamamlayabilirsiniz; ödeme 3D Secure ile korunur."
+msgstr "Enter your card details on the page to complete the payment; it is protected by 3D Secure."
+
+msgid "Ödeme tamamlanınca bağışınız kendiliğinden onaylanır. Desteğiniz için çok teşekkür ederiz 🤲"
+msgstr "Your donation is confirmed automatically once the payment goes through. Thank you so much for your support 🤲"
+
+msgid "Ödeme sayfanız hazır: %s"
+msgstr "Your payment page is ready: %s"
+
+msgid "Bu sayfada kartla ödeyebilir ya da havale/EFT seçebilirsiniz. Havale ile ödemek isterseniz bilgiler aşağıda; her birine basılı tutup kopyalayabilirsiniz 👇"
+msgstr "On this page you can pay by card or choose bank transfer. If you prefer a bank transfer, the details are below; press and hold each one to copy 👇"
+
+msgid "Bağışınızın havale bilgileri bu sayfada: %s"
+msgstr "The bank transfer details of your donation are on this page: %s"
+
+msgid "Bilgiler aşağıda da var; her birine basılı tutup kopyalayabilirsiniz 👇"
+msgstr "They are also below; press and hold each one to copy 👇"
+
+msgid "Havale/EFT ile ödeyebilirsiniz."
+msgstr "You can pay by bank transfer."
+
+msgid "Bağış sayfamız: %s"
+msgstr "Our donation page: %s"
+
+msgid "Havale bilgileri aşağıda; her birine basılı tutup kopyalayabilirsiniz 👇"
+msgstr "Bank details are below; long-press each one to copy 👇"
+
+msgid "Asistan açıldı (%s)"
+msgstr "Assistant turned on (%s)"
+
+msgid "Asistan kapatıldı (%s)"
+msgstr "Assistant turned off (%s)"
+
+msgid "WhatsApp bağlantısı bulunamadı. Ayarlar › Bağlantılar bölümünden ekleyin."
+msgstr "WhatsApp connection not found. Add one under Settings › Connections."
+
+msgid "Bu bağlantı Flux Mail eklentisinin ayarını kullanıyor ama eklenti etkin değil."
+msgstr "This connection uses the Flux Mail plugin's settings but the plugin is not active."
+
+msgid "Flux Mail'deki WhatsApp bağlantısı bulunamadı ya da kapalı (İletişim › Bağlantılar)."
+msgstr "The WhatsApp connection in Flux Mail was not found or is disabled (Communication › Connections)."
+
+msgid "Bu bağlantı Flux Certificates eklentisinin ayarını kullanıyor ama eklenti etkin değil."
+msgstr "This connection uses the Flux Certificates plugin's settings, but that plugin is not active."
+
+msgid "Flux Certificates'daki Evolution sağlayıcısı bulunamadı."
+msgstr "The Evolution provider in Flux Certificates was not found."
+
+msgid "Bağlantının API adresi, API key veya instance adı eksik."
+msgstr "The connection's API URL, API key or instance name is missing."
+
+msgid "WhatsApp'tan"
+msgstr "via WhatsApp"
+
+msgid "siteden"
+msgstr "via the website"
+
+msgid "%1$s tarihinde %2$s yüklenmiş"
+msgstr "uploaded %2$s on %1$s"
+
+msgid "Bu numarada WhatsApp yok."
+msgstr "This number is not on WhatsApp."
+
+msgid "Evolution API key hatalı."
+msgstr "Evolution API key is invalid."
+
+msgid "Evolution instance bulunamadı ya da kapalı."
+msgstr "Evolution instance not found or offline."
+
+msgid "Kişi"
+msgstr "Contact"
+
+msgid "Sistem"
+msgstr "System"
+
+msgid "Temsilci (%s)"
+msgstr "Agent (%s)"
+
+msgid "Temsilci"
+msgstr "Agent"
+
+msgid "Dahili not (%s)"
+msgstr "Internal note (%s)"
+
+msgid "Dahili not"
+msgstr "Internal note"
+
+msgid "Otomatik yanıt"
+msgstr "Auto reply"
+
+msgid "Telefondan"
+msgstr "From phone"
+
+msgid "Otomatik"
+msgstr "Automatic"
+
+msgid "Telefon"
+msgstr "Phone"
+
+msgid "Asistan yazdı"
+msgstr "Assistant wrote"
+
+msgid "Evet"
+msgstr "Yes"
+
+msgid "Hayır"
+msgstr "No"
+
+msgid "Mesaj"
+msgstr "Message"
+
+msgid "kişi sildi"
+msgstr "contact deleted"
+
+msgid "düzenlendi"
+msgstr "edited"
+
+msgid "gönderilemedi"
+msgstr "not sent"
+
+msgid "Dekont kontrolü"
+msgstr "Receipt check"
+
+msgid "WhatsApp sohbetleri"
+msgstr "WhatsApp chats"
+
+msgid "Dışa aktarma: %1$s · %2$d sohbet"
+msgstr "Export: %1$s · %2$d chats"
+
+msgid "telefon ve e-postalar maskeli"
+msgstr "phones and emails masked"
+
+msgid "Sohbet geçmişi temizlendi (%1$d mesaj, %2$s)."
+msgstr "Chat history cleared (%1$d messages, %2$s)."
+
+msgid "Onay metni yanlış."
+msgstr "Confirmation text is wrong."
+
+msgid "Kişi temsilci istedi"
+msgstr "Contact asked for an agent"
+
+msgid "Asistan bir sohbeti ekibe devretti"
+msgstr "The assistant handed a chat over to the team"
+
+msgid "Gizli numara (WhatsApp)"
+msgstr "Hidden number (WhatsApp)"
+
+msgid "Neden"
+msgstr "Reason"
+
+msgid "Son mesajlar"
+msgstr "Last messages"
+
+msgid "Lütfen sohbeti devralın"
+msgstr "Please take over the chat"
+
+msgid "Ekip grubuna bildirim gönderilemedi: %s"
+msgstr "Could not send the notification to the team group: %s"
+
+msgid "Ekip grubuna devir bildirimi gönderildi."
+msgstr "Handoff notification sent to the team group."
+
+msgid "Ekibe WhatsApp bildirimi gönderildi: %s"
+msgstr "WhatsApp notification sent to the team: %s"
+
+msgid "Ekip bildirimi gönderilemedi: %s"
+msgstr "Team notification could not be sent: %s"
+
+msgid "Yeni"
+msgstr "New"
+
+msgid "Önemli"
+msgstr "Important"
+
+msgid "Takip"
+msgstr "Follow-up"
+
+msgid "Çağrı Merkezi Temsilcisi"
+msgstr "Call Center Agent"
+
+msgid "Merhaba! Mesajınız %s ekibine ulaştı. Temsilcimiz en kısa sürede size dönecek."
+msgstr "Hello! Your message has reached the %s team. An agent will get back to you shortly."
+
+msgid "Merhaba, şu an mesai saatleri dışındayız. Mesajınızı aldık; ilk iş gününde size dönüş yapacağız."
+msgstr "Hello, we are currently outside business hours. We received your message and will reply on the next business day."
+
+msgid "Karşılama"
+msgstr "Greeting"
+
+msgid "Merhaba {first_name}, ben {agent}. Size nasıl yardımcı olabilirim?"
+msgstr "Hello {first_name}, this is {agent}. How can I help you?"
+
+msgid "Genel"
+msgstr "General"
+
+msgid "Kontrol ediyorum"
+msgstr "Checking"
+
+msgid "Hemen kontrol edip size dönüyorum, lütfen birkaç dakika bekleyin."
+msgstr "I'll check and get right back to you, please wait a few minutes."
+
+msgid "Talep alındı"
+msgstr "Request received"
+
+msgid "Talebinizi aldık, en kısa sürede size dönüş yapacağız. 🙏"
+msgstr "We received your request and will get back to you shortly. 🙏"
+
+msgid "Mesai saatleri"
+msgstr "Business hours"
+
+msgid "Mesai saatlerimiz hafta içi 09:00 – 18:00 arasıdır."
+msgstr "Our business hours are weekdays 09:00 – 18:00."
+
+msgid "Bilgi"
+msgstr "Info"
+
+msgid "Web sitesi"
+msgstr "Website"
+
+msgid "Tüm detaylara web sitemizden ulaşabilirsiniz: {site}"
+msgstr "You can find all the details on our website: {site}"
+
+msgid "Teşekkür"
+msgstr "Thanks"
+
+msgid "Bize ulaştığınız için teşekkür ederiz {first_name}, iyi günler dileriz! 🌱"
+msgstr "Thank you for reaching out {first_name}, have a nice day! 🌱"
+
+msgid "Kapanış"
+msgstr "Closing"
+
+msgid "Nakit"
+msgstr "Cash"
+
+msgid "Diğer"
+msgstr "Other"
+
+msgid "Dekontunuz bize ulaştı, bağışınız onaylandı ({donation}, {amount}). Teşekkür ederiz."
+msgstr "Your receipt has reached us and your donation is confirmed ({donation}, {amount}). Thank you."
+
+msgid "İptal"
+msgstr "Cancel"
+
+msgid "Bağış kaydı oluşturma yetkiniz yok."
+msgstr "You are not allowed to create donation records."
+
+msgid "Seçilen bağış türünün bir seçeneğini seçin."
+msgstr "Choose an option of the selected donation type."
+
+msgid "Bu seçeneğin fiyatı yok. Bağışlar › Bağış türleri sayfasından fiyat girin ya da serbest tutar seçin."
+msgstr "This option has no price. Enter a price under Donations › Donation types, or choose a custom amount."
+
+msgid "Tutar girin."
+msgstr "Enter an amount."
+
+msgid "Bu bağış türü için bağışçının vekâlet onayı gerekli."
+msgstr "This donation type requires the donor's proxy consent."
+
+msgid "Bağış kaydedilemedi."
+msgstr "The donation could not be saved."
+
+msgid "Bağış kaydı oluşturuldu: %1$s · %2$s"
+msgstr "Donation record created: %1$s · %2$s"
+
+msgid "Yetkiniz yok."
+msgstr "You are not allowed to do this."
+
+msgid "Bağış bulunamadı."
+msgstr "Donation not found."
+
+msgid "Sertifika şablonu bulunamadı."
+msgstr "Certificate template not found."
+
+msgid "Sertifika için ad soyad gerekli."
+msgstr "A full name is required for the certificate."
+
+msgid "Sertifika oluşturma yetkiniz yok."
+msgstr "You are not allowed to create certificates."
+
+msgid "Sertifika oluşturuldu: %s"
+msgstr "Certificate created: %s"
+
+msgid "Sertifika bulunamadı."
+msgstr "Certificate not found."
+
+msgid "Dekont olarak yalnız fotoğraf veya belge seçilebilir."
+msgstr "Only a photo or a document can be matched as a receipt."
+
+msgid "Bu dekont daha önce"
+msgstr "This receipt was"
+
+msgid "Dekont eşleştirildi: %s"
+msgstr "Receipt matched: %s"
+
+msgid "Bu dosyayı görme yetkiniz yok."
+msgstr "You are not allowed to view this file."
+
+msgid "Bağışlar"
+msgstr "Donations"
+
+msgid "Sırada çok bekledi."
+msgstr "Waited too long in the queue."
+
+msgid "sırada çok bekledi"
+msgstr "waited too long in the queue"
+
+msgid "cevap yarıda kaldı"
+msgstr "the answer was cut off"
+
+msgid "sıradan alındı"
+msgstr "taken from the queue"
+
+msgid "Gönderiliyor"
+msgstr "Sending"
+
+msgid "Gönderildi"
+msgstr "Sent"
+
+msgid "İletildi"
+msgstr "Delivered"
+
+msgid "Okundu"
+msgstr "Read"
+
+msgid "Dinlendi"
+msgstr "Played"
+
+msgid "Gönderilemedi"
+msgstr "Not sent"
+
+msgid "Dün"
+msgstr "Yesterday"
+
+msgid "Bugün"
+msgstr "Today"
+
+msgid "Bağlantı hatası"
+msgstr "Connection error"
+
+msgid "Kayıtlar"
+msgstr "Records"
+
+msgid "Yeni sohbet"
+msgstr "New chat"
+
+msgid "Hazır cevaplar"
+msgstr "Quick replies"
+
+msgid "Menü"
+msgstr "Menu"
+
+msgid "Ara veya yeni sohbet başlat"
+msgstr "Search or start a new chat"
+
+msgid "Ara"
+msgstr "Search"
+
+msgid "Bağlantı yok"
+msgstr "No connection"
+
+msgid "{n} hat bağlı"
+msgstr "{n} lines connected"
+
+msgid "WhatsApp bağlı"
+msgstr "WhatsApp connected"
+
+msgid "{n}/{m} hat bağlı"
+msgstr "{n}/{m} lines connected"
+
+msgid "WhatsApp bağlı değil"
+msgstr "WhatsApp not connected"
+
+msgid "Durum bilinmiyor"
+msgstr "Status unknown"
+
+msgid "WhatsApp bağlantısı kurulmadı"
+msgstr "WhatsApp connection not set up"
+
+msgid "WhatsApp bağlantısı koptu"
+msgstr "WhatsApp connection lost"
+
+msgid "Mesaj almak için bağlantı ekleyin."
+msgstr "Add a connection to receive messages."
+
+msgid "Telefon çevrimdışı olabilir ya da QR yeniden okutulmalı."
+msgstr "The phone may be offline or the QR code needs to be scanned again."
+
+msgid "Ayarlara git"
+msgstr "Go to settings"
+
+msgid "Gelen WhatsApp mesajları burada canlı görünür. Soldan bir sohbet seçin ya da yeni bir sohbet başlatın."
+msgstr "Incoming WhatsApp messages appear here live. Pick a chat on the left or start a new one."
+
+msgid "Mesajlar yalnız yetkili temsilcilere görünür."
+msgstr "Messages are visible only to authorized agents."
+
+msgid "Sonuç bulunamadı."
+msgstr "No results."
+
+msgid "Okunmamış mesaj yok. 🎉"
+msgstr "No unread messages. 🎉"
+
+msgid "Henüz sohbet yok."
+msgstr "No chats yet."
+
+msgid "{p} ile sohbet başlat"
+msgstr "Start a chat with {p}"
+
+msgid "ses kaydediyor…"
+msgstr "recording audio…"
+
+msgid "yazıyor…"
+msgstr "typing…"
+
+msgid "Asistan yazıyor…"
+msgstr "Assistant is typing…"
+
+msgid "Atanan: {n}"
+msgstr "Assigned: {n}"
+
+msgid "Sohbet menüsü"
+msgstr "Chat menu"
+
+msgid "Hazır cevap baloncuklarını göster"
+msgstr "Show quick reply bubbles"
+
+msgid "Hazır cevap baloncuklarını gizle"
+msgstr "Hide quick reply bubbles"
+
+msgid "Tema: Otomatik"
+msgstr "Theme: Auto"
+
+msgid "Tema: Açık"
+msgstr "Theme: Light"
+
+msgid "Tema: Koyu"
+msgstr "Theme: Dark"
+
+msgid "Masaüstü bildirimlerini aç"
+msgstr "Enable desktop notifications"
+
+msgid "Bildirim sesini kapat"
+msgstr "Mute notification sound"
+
+msgid "Bildirim sesini aç"
+msgstr "Unmute notification sound"
+
+msgid "Bildirim sesi açık"
+msgstr "Notification sound on"
+
+msgid "Bildirim sesi kapalı"
+msgstr "Notification sound off"
+
+msgid "Sohbetleri dışa aktar"
+msgstr "Export chats"
+
+msgid "Hatırlatıcılar"
+msgstr "Reminders"
+
+msgid "Kara liste"
+msgstr "Blocklist"
+
+msgid "WordPress paneline dön"
+msgstr "Back to WordPress dashboard"
+
+msgid "Kişi bilgisi"
+msgstr "Contact info"
+
+msgid "Sabitlemeyi kaldır"
+msgstr "Unpin"
+
+msgid "Sabitle"
+msgstr "Pin"
+
+msgid "Okunmadı olarak işaretle"
+msgstr "Mark as unread"
+
+msgid "Atamamı kaldır"
+msgstr "Unassign me"
+
+msgid "Bana ata"
+msgstr "Assign to me"
+
+msgid "Bağış kaydı oluştur"
+msgstr "Create donation record"
+
+msgid "Bağışlar ve sertifikalar"
+msgstr "Donations and certificates"
+
+msgid "Sohbeti dışa aktar"
+msgstr "Export chat"
+
+msgid "Sohbeti yeniden aç"
+msgstr "Reopen chat"
+
+msgid "Sohbeti kapat"
+msgstr "Close chat"
+
+msgid "Asistan kullanımı"
+msgstr "Assistant usage"
+
+msgid "Kişi hafızası"
+msgstr "Contact memory"
+
+msgid "Kara listeden çıkar"
+msgstr "Remove from blocklist"
+
+msgid "Kara listeye al (mesaj gönderme)"
+msgstr "Add to blocklist (do not message)"
+
+msgid "Sohbet geçmişini temizle"
+msgstr "Clear chat history"
+
+msgid "Metin (.md)"
+msgstr "Text (.md)"
+
+msgid "Son 7 gün"
+msgstr "Last 7 days"
+
+msgid "Son 30 gün"
+msgstr "Last 30 days"
+
+msgid "Son 90 gün"
+msgstr "Last 90 days"
+
+msgid "Tümü"
+msgstr "All"
+
+msgid "Tüm sohbetler"
+msgstr "All chats"
+
+msgid "Asistanın yazdığı sohbetler"
+msgstr "Chats the assistant wrote in"
+
+msgid "Temsilcinin yazdığı sohbetler"
+msgstr "Chats an agent wrote in"
+
+msgid "Telefon ve e-postaları maskele"
+msgstr "Mask phones and emails"
+
+msgid "Dahili notları ekle"
+msgstr "Include internal notes"
+
+msgid "İndir"
+msgstr "Download"
+
+msgid "İndirme başladı"
+msgstr "Download started"
+
+msgid "Son mesajı şu aralıkta olanlar"
+msgstr "Last message within"
+
+msgid "Hangi sohbetler?"
+msgstr "Which chats?"
+
+msgid "Biçim"
+msgstr "Format"
+
+msgid "Mesajlar saat ve yazanla (kişi, asistan, temsilci, otomatik) iner; dekont kontrol sonucu da eklenir."
+msgstr "Messages are downloaded with time and author (contact, assistant, agent, automatic); the receipt check result is included."
+
+msgid "En yeni 1000 sohbet iner, gruplar hariç. Mesajlar saat ve yazanla (kişi, asistan, temsilci, otomatik) yer alır."
+msgstr "The newest 1000 chats are downloaded, groups excluded. Messages include time and author (contact, assistant, agent, automatic)."
+
+msgid "TEMİZLE"
+msgstr "CLEAR"
+
+msgid "Bağış kayıtlarına eklenmiş dekontları sakla"
+msgstr "Keep receipts attached to donation records"
+
+msgid "Kişi hafızasını da sil"
+msgstr "Also delete the contact memory"
+
+msgid "Geçmişi kalıcı olarak sil"
+msgstr "Delete history permanently"
+
+msgid "{n} mesaj silindi"
+msgstr "{n} messages deleted"
+
+msgid "{c} sohbetindeki tüm mesajlar ve dosyalar bu panelden kalıcı olarak silinir. Kişinin telefonundaki ve bağlı WhatsApp telefonundaki mesajlar silinmez. Geri alınamaz."
+msgstr "All messages and files in the {c} chat are permanently deleted from this panel. Messages on the contact's phone and on the connected WhatsApp phone are not deleted. This cannot be undone."
+
+msgid "Evolution sunucusundaki kopya bir daha içe aktarılmaz; asistan bu sohbette sıfırdan başlar. İsterseniz önce sohbeti dışa aktarın."
+msgstr "The copy on the Evolution server will not be imported again; the assistant starts fresh in this chat. You may want to export the chat first."
+
+msgid "Onaylamak için {w} yazın"
+msgstr "Type {w} to confirm"
+
+msgid "asistan"
+msgstr "assistant"
+
+msgid "özet"
+msgstr "summary"
+
+msgid "ekip"
+msgstr "team"
+
+msgid "Anahtar (ör. eşinin adı)"
+msgstr "Key (e.g. spouse's name)"
+
+msgid "Değer"
+msgstr "Value"
+
+msgid "Ekle"
+msgstr "Attach"
+
+msgid "{n} kayıt · yaklaşık {t} token · asistan her cevapta okur"
+msgstr "{n} items · about {t} tokens · the assistant reads them on every reply"
+
+msgid "Kişi hafızası ayarlardan kapalı; kayıtlar asistana gitmiyor."
+msgstr "Contact memory is turned off in settings; items are not sent to the assistant."
+
+msgid "Son özet: {s}"
+msgstr "Last summary: {s}"
+
+msgid "sırada"
+msgstr "queued"
+
+msgid "Bu kişi için kayıt yok."
+msgstr "No items for this contact."
+
+msgid "Konuşma özeti"
+msgstr "Conversation summary"
+
+msgid "Kaydet"
+msgstr "Save"
+
+msgid "Düzenle"
+msgstr "Edit"
+
+msgid "Silindi"
+msgstr "Deleted"
+
+msgid "Sil"
+msgstr "Delete"
+
+msgid "Şimdi özetle"
+msgstr "Summarize now"
+
+msgid "Özet sıraya alındı"
+msgstr "Summary queued"
+
+msgid "Tümünü sil"
+msgstr "Delete all"
+
+msgid "{c} için tüm hafıza kayıtları silinsin mi?"
+msgstr "Delete all memory items for {c}?"
+
+msgid "Kişi isterse asistan bilgileri kendisi siler. Sohbet {h} saat sessiz kalınca konuşma özetlenir, önemli bilgiler tarih ve saatle buraya yazılır."
+msgstr "If the contact asks, the assistant deletes the items itself. When the chat has been quiet for {h} hours, the conversation is summarized and important details are written here with date and time."
+
+msgid "Yükleniyor…"
+msgstr "Loading…"
+
+msgid "Neden (ör. kişi mesaj istemedi)"
+msgstr "Reason (e.g. the contact asked not to be messaged)"
+
+msgid "Kara listeye al"
+msgstr "Add to blocklist"
+
+msgid "Kara listeye alındı"
+msgstr "Added to blocklist"
+
+msgid "{c} kişisine bundan sonra WhatsApp, e-posta ve SMS gitmez; asistan bu kişiyle konuşmaz. Kişinin yazdıkları yine panele düşer."
+msgstr "From now on no WhatsApp, email or SMS will be sent to {c}, and the assistant will not talk to them. Their messages still arrive in the panel."
+
+msgid "Kara listeden çıkarıldı"
+msgstr "Removed from blocklist"
+
+msgid "Telefon, e-posta ya da neden ara"
+msgstr "Search phone, email or reason"
+
+msgid "E-posta"
+msgstr "Email"
+
+msgid "Kara liste boş."
+msgstr "The blocklist is empty."
+
+msgid "Listeden çıkar"
+msgstr "Remove"
+
+msgid "Toplam {n} kişi"
+msgstr "{n} contacts in total"
+
+msgid "Elle eklendi"
+msgstr "Added manually"
+
+msgid "Bu kişilere WhatsApp, e-posta ve SMS gitmez, asistan konuşmaz. \"Bana mesaj atmayın\" diyen kişiyi asistan kendisi ekler. Listeden çıkarınca her şey yeniden çalışır."
+msgstr "No WhatsApp, email or SMS is sent to these contacts and the assistant does not talk to them. The assistant adds anyone who says \"don't message me\". Removing someone from the list turns everything back on."
+
+msgid "Etkin"
+msgstr "Active"
+
+msgid "Durduruldu"
+msgstr "Stopped"
+
+msgid "Bitti"
+msgstr "Finished"
+
+msgid "{n} hatırlatıcı"
+msgstr "{n} reminders"
+
+msgid "Hatırlatıcılar ayarlardan kapalı; zamanı gelenler gönderilmez."
+msgstr "Reminders are turned off in the settings; due ones are not sent."
+
+msgid "Hatırlatıcı yok. Kişi asistana \"her ay bana hatırlat\" gibi bir şey yazınca burada görünür."
+msgstr "No reminders. They show up here when a person asks the assistant something like \"remind me every month\"."
+
+msgid "Sonraki: {d}"
+msgstr "Next: {d}"
+
+msgid "{n} kez gönderildi"
+msgstr "sent {n} times"
+
+msgid "Sohbete git"
+msgstr "Go to chat"
+
+msgid "Durdur"
+msgstr "Stop"
+
+msgid "Yeniden başlat"
+msgstr "Resume"
+
+msgid "Kişi isteyince asistan özet gösterip onay alarak kurar; zamanı gelince asistan mesajı yazıp gönderir. Kişi \"hatırlatıcıyı durdur\" yazarak kapatabilir."
+msgstr "When a person asks, the assistant shows a summary and sets it up after approval; when it is due, the assistant writes and sends the message. The person can stop it by writing \"stop the reminder\"."
+
+msgid "Bugünkü cevap sınırı doldu, sohbet ekipte."
+msgstr "Today's reply limit is reached; the chat is with the team."
+
+msgid "Asistanın bugünkü cevapları"
+msgstr "Assistant replies today"
+
+msgid "Günlük sınır sıfırlandı"
+msgstr "Daily limit reset"
+
+msgid "Günlük sınırı sıfırla"
+msgstr "Reset daily limit"
+
+msgid "Toplam"
+msgstr "Total"
+
+msgid "Giriş token"
+msgstr "Input tokens"
+
+msgid "Çıkış token"
+msgstr "Output tokens"
+
+msgid "{n} istek"
+msgstr "{n} requests"
+
+msgid "Sohbet başına günlük cevap sınırı"
+msgstr "Daily reply limit per chat"
+
+msgid "Tüm sohbetler için geçerli (5-500). Sınır dolunca kişiye \"mesajınızı aldık\" gider, sohbet ekibe devredilir."
+msgstr "Applies to all chats (5-500). When reached, the person gets a \"we received your message\" reply and the chat is handed to the team."
+
+msgid "Kaydedildi"
+msgstr "Saved"
+
+msgid "Gün"
+msgstr "Day"
+
+msgid "Asistan cevapları, konuşma özetleri, hatırlatıcılar ve dekont kontrolü sayılır; test sohbeti ve benchmark sayılmaz. Maliyet sağlayıcı fiyatıyla (USD)."
+msgstr "Counts assistant replies, conversation summaries, reminders and receipt checks; test chat and benchmark are not counted. Cost at the provider's price (USD)."
+
+msgid "En alta in"
+msgstr "Scroll to bottom"
+
+msgid "Kara listede: mesaj gönderilmez"
+msgstr "Blocklisted: no messages are sent"
+
+msgid "kişi bilgisi için dokunun"
+msgstr "tap for contact info"
+
+msgid "Geri"
+msgstr "Back"
+
+msgid "Bağış kaydı"
+msgstr "Donation record"
+
+msgid "Bekleyen bağış"
+msgstr "Pending donation"
+
+msgid "Ata"
+msgstr "Assign"
+
+msgid "Sohbet kapatıldı"
+msgstr "Chat closed"
+
+msgid "{n} (ben)"
+msgstr "{n} (me)"
+
+msgid "Atamayı kaldır"
+msgstr "Remove assignment"
+
+msgid "Eski mesajlar WhatsApp hattından alınamadı: {e}"
+msgstr "Older messages could not be fetched from the WhatsApp line: {e}"
+
+msgid "Bu sohbetteki mesajlar yalnız yetkili temsilcilere görünür. Dahili notları müşteri görmez."
+msgstr "Messages in this chat are visible only to authorized agents. Customers never see internal notes."
+
+msgid "Sertifika"
+msgstr "Certificate"
+
+msgid "Kayıt"
+msgstr "Record"
+
+msgid "Yapay zekâ önerisi"
+msgstr "AI suggestion"
+
+msgid "Yapay zekâ bu mesajı okumaz."
+msgstr "AI does not read this message."
+
+msgid "Kişi bu mesajı sildi"
+msgstr "The contact deleted this message"
+
+msgid "Telefondan silindi"
+msgstr "Deleted from the phone"
+
+msgid "Dahili not · {n}"
+msgstr "Internal note · {n}"
+
+msgid "Siz"
+msgstr "You"
+
+msgid "Mesaj menüsü"
+msgstr "Message menu"
+
+msgid "Tekrar dene"
+msgstr "Retry"
+
+msgid "Bu mesaj silindi"
+msgstr "This message was deleted"
+
+msgid "Görsel yüklenemedi"
+msgstr "Image could not be loaded"
+
+msgid "Konum"
+msgstr "Location"
+
+msgid "Mesaj gönder"
+msgstr "Send message"
+
+msgid "Bu mesaj türü burada gösterilemiyor. Telefondan bakın."
+msgstr "This message type can't be shown here. Check the phone."
+
+msgid "Oynat"
+msgstr "Play"
+
+msgid "Ses oynatılamadı"
+msgstr "Audio could not be played"
+
+msgid "Alıntılanan mesaj yukarıda, daha eski mesajları yükleyin."
+msgstr "The quoted message is further up; load older messages."
+
+msgid "Başka emoji"
+msgstr "Other emoji"
+
+msgid "Yanıtla"
+msgstr "Reply"
+
+msgid "Kopyala"
+msgstr "Copy"
+
+msgid "Tekrar gönder"
+msgstr "Resend"
+
+msgid "Dekont olarak eşleştir"
+msgstr "Match as receipt"
+
+msgid "Notu sil"
+msgstr "Delete note"
+
+msgid "Kopyalandı"
+msgstr "Copied"
+
+msgid "Önizleme yükleniyor…"
+msgstr "Loading preview…"
+
+msgid "Önizlemeyi kaldır"
+msgstr "Remove preview"
+
+msgid "Gönder"
+msgstr "Send"
+
+msgid "Emoji"
+msgstr "Emoji"
+
+msgid "Sesli mesaj kaydet"
+msgstr "Record voice message"
+
+msgid "Notu iptal et"
+msgstr "Cancel note"
+
+msgid "Mesaj yazın — hazır cevap için /"
+msgstr "Type a message — / for quick replies"
+
+msgid "Yalnız temsilcilerin göreceği notu yazın"
+msgstr "Write a note only agents will see"
+
+msgid "Video"
+msgstr "Video"
+
+msgid "Sesli mesaj"
+msgstr "Voice message"
+
+msgid "Yanıtı iptal et"
+msgstr "Cancel reply"
+
+msgid "Fotoğraf ve video"
+msgstr "Photos & videos"
+
+msgid "Hazır cevap"
+msgstr "Quick reply"
+
+msgid "Bu kişi kara listede; mesaj gönderilmez."
+msgstr "This contact is blocklisted; no messages are sent."
+
+msgid "Öneri hazırlanıyor…"
+msgstr "Preparing a suggestion…"
+
+msgid "Kapat"
+msgstr "Close"
+
+msgid "İstek yazın: daha kısa, fiyatı da söyle…"
+msgstr "Add a request: shorter, mention the price…"
+
+msgid "Öneri için istek"
+msgstr "Request for the suggestion"
+
+msgid "Önerilen cevap"
+msgstr "Suggested reply"
+
+msgid "Başka öneri"
+msgstr "Another suggestion"
+
+msgid "Yenile"
+msgstr "Reload"
+
+msgid "Asistan açık"
+msgstr "Assistant on"
+
+msgid "Asistan beklemede"
+msgstr "Assistant waiting"
+
+msgid "Asistan kapalı"
+msgstr "Assistant off"
+
+msgid "Asistan bu sohbete otomatik cevap veriyor. Kapatmak için tıklayın."
+msgstr "The assistant replies to this chat automatically. Click to turn it off."
+
+msgid "Bir temsilci yazdığı için asistan bir süre susuyor. Hemen açmak için tıklayın."
+msgstr "An agent wrote here, so the assistant is quiet for a while. Click to turn it on now."
+
+msgid "Bu sohbette asistan kapalı. Açmak için tıklayın."
+msgstr "The assistant is off in this chat. Click to turn it on."
+
+msgid "Asistan açıldı"
+msgstr "Assistant turned on"
+
+msgid "Asistan kapatıldı"
+msgstr "Assistant turned off"
+
+msgid "Göndermek için dosyayı bırakın"
+msgstr "Drop the file to send"
+
+msgid "Açıklama ekleyin…"
+msgstr "Add a caption…"
+
+msgid "Açıklama"
+msgstr "Caption"
+
+msgid "{n} dosya gönder"
+msgstr "Send {n} files"
+
+msgid "Bu tarayıcı ses kaydını desteklemiyor."
+msgstr "This browser does not support audio recording."
+
+msgid "Mikrofona erişilemedi."
+msgstr "Could not access the microphone."
+
+msgid "Kaydı sil"
+msgstr "Delete recording"
+
+msgid "Kaydediliyor…"
+msgstr "Recording…"
+
+msgid "Son kullanılan emoji yok."
+msgstr "No recently used emoji."
+
+msgid "Son kullanılanlar"
+msgstr "Recently used"
+
+msgid "Sertifika mesajını ekle"
+msgstr "Add certificate message"
+
+msgid "Yalnız linki ekle"
+msgstr "Add link only"
+
+msgid "Eşleşen hazır cevap yok."
+msgstr "No matching quick reply."
+
+msgid "Henüz hazır cevap yok. \"Düzenle\" ile ekleyin."
+msgstr "No quick replies yet. Add one with \"Edit\"."
+
+msgid "Hazır cevaplarda ara"
+msgstr "Search quick replies"
+
+msgid "{n} kez kullanıldı"
+msgstr "Used {n} times"
+
+msgid "Hazır cevap bulunamadı."
+msgstr "No quick replies found."
+
+msgid "Örn. Bağış bilgisi"
+msgstr "e.g. Donation info"
+
+msgid "ornek"
+msgstr "example"
+
+msgid "Mesaj metni"
+msgstr "Message text"
+
+msgid "Değişken ekle:"
+msgstr "Insert variable:"
+
+msgid "Listeye dön"
+msgstr "Back to list"
+
+msgid "Hazır cevabı düzenle"
+msgstr "Edit quick reply"
+
+msgid "Yeni hazır cevap"
+msgstr "New quick reply"
+
+msgid "Başlık"
+msgstr "Title"
+
+msgid "Kısayol"
+msgstr "Shortcut"
+
+msgid "Kategori"
+msgstr "Category"
+
+msgid "Mesaj kutusuna / yazıp kısayolu yazınca bu cevap çıkar. Değişkenler gönderirken kişinin bilgisiyle dolar."
+msgstr "Type / and the shortcut in the message box to bring up this reply. Variables are filled with the contact's details when sending."
+
+msgid "Bu hazır cevap silinsin mi?"
+msgstr "Delete this quick reply?"
+
+msgid "+90 5xx xxx xx xx"
+msgstr "+1 555 000 0000"
+
+msgid "İsteğe bağlı"
+msgstr "Optional"
+
+msgid "Sohbeti başlat"
+msgstr "Start chat"
+
+msgid "Kontrol ediliyor…"
+msgstr "Checking…"
+
+msgid "Geçersiz numara"
+msgstr "Invalid number"
+
+msgid "{p} WhatsApp kullanıyor"
+msgstr "{p} uses WhatsApp"
+
+msgid "{p} numarasında WhatsApp yok"
+msgstr "{p} is not on WhatsApp"
+
+msgid "{p} — WhatsApp kontrol edilemedi, yine de deneyebilirsiniz."
+msgstr "{p} — WhatsApp could not be checked, you can still try."
+
+msgid "Bu kişiyle sohbet zaten var: {n}"
+msgstr "A chat with this contact already exists: {n}"
+
+msgid "Telefon numarası"
+msgstr "Phone number"
+
+msgid "Kişi adı"
+msgstr "Contact name"
+
+msgid "Hangi hattan?"
+msgstr "From which line?"
+
+msgid "Numarayı 0 ile, +90 ile ya da ülke koduyla yazabilirsiniz."
+msgstr "You can type the number with a leading 0, with +90 or with any country code."
+
+msgid "Not kaydedildi"
+msgstr "Note saved"
+
+msgid "Bu kişi hakkında yalnız temsilcilerin göreceği notlar"
+msgstr "Notes about this contact, visible only to agents"
+
+msgid "Etiketler Ayarlar sayfasından tanımlanır."
+msgstr "Labels are defined on the Settings page."
+
+msgid "— Atanmadı —"
+msgstr "— Unassigned —"
+
+msgid "Aç"
+msgstr "Open"
+
+msgid "Mesaja ekle"
+msgstr "Insert into message"
+
+msgid "WhatsApp adı: {n}"
+msgstr "WhatsApp name: {n}"
+
+msgid "Numarayı kopyala"
+msgstr "Copy number"
+
+msgid "Etiketler"
+msgstr "Labels"
+
+msgid "Atanan temsilci"
+msgstr "Assigned agent"
+
+msgid "Kişi notları"
+msgstr "Contact notes"
+
+msgid "Sertifika oluştur"
+msgstr "Create certificate"
+
+msgid "Sohbeti sabitle"
+msgstr "Pin chat"
+
+msgid "İlk kayıt: {d}"
+msgstr "First contact: {d}"
+
+msgid "Yapay zekâ ön kontrolü. Son kontrol ekipte."
+msgstr "AI pre-check. The team makes the final check."
+
+msgid "Dekont · {r}"
+msgstr "Receipt · {r}"
+
+msgid "Açık bağış türü yok. Bağışlar › Bağış türleri sayfasından açın."
+msgstr "No open donation type. Open one under Donations › Donation types."
+
+msgid "Tutar"
+msgstr "Amount"
+
+msgid "Yalnız panelde görünür"
+msgstr "Visible in the panel only"
+
+msgid "Her satıra bir isim"
+msgstr "One name per line"
+
+msgid "Bağışçı vekâlet metnini onayladı"
+msgstr "The donor approved the proxy text"
+
+msgid "Kimin adına"
+msgstr "On behalf of"
+
+msgid "Her adet için bir isim. Boş kalanlar bağışçı adına sayılır."
+msgstr "One name per unit. Empty ones count as the donor."
+
+msgid "Kişiye WhatsApp'tan bilgi gönder"
+msgstr "Send the person a WhatsApp message"
+
+msgid "Ödeme bekleniyor"
+msgstr "Awaiting payment"
+
+msgid "Ödendi"
+msgstr "Paid"
+
+msgid "Sertifika da oluştur ve gönder"
+msgstr "Also create and send a certificate"
+
+msgid "Sertifika şablonu"
+msgstr "Certificate template"
+
+msgid "Ad soyad ve adet bağıştan alınır."
+msgstr "Full name and quantity are taken from the donation."
+
+msgid "Seçenek"
+msgstr "Option"
+
+msgid "Adet"
+msgstr "Quantity"
+
+msgid "Toplam: {a}"
+msgstr "Total: {a}"
+
+msgid "Bu seçeneğin fiyatı yok."
+msgstr "This option has no price."
+
+msgid "Bağış kaydedildi: {d}"
+msgstr "Donation saved: {d}"
+
+msgid "Dekonttan bağış kaydı"
+msgstr "Donation record from receipt"
+
+msgid "Bağış türü"
+msgstr "Donation type"
+
+msgid "Ödeme"
+msgstr "Payment"
+
+msgid "Ödeme yolu"
+msgstr "Payment method"
+
+msgid "Dekont / işlem no"
+msgstr "Receipt / transaction no"
+
+msgid "Bağışçı"
+msgstr "Donor"
+
+msgid "Ad soyad"
+msgstr "Full name"
+
+msgid "{donation}, {amount}, {bank} gibi değişkenler gönderirken doldurulur."
+msgstr "Variables such as {donation}, {amount} and {bank} are filled in when sending."
+
+msgid "Aktif sertifika şablonu yok."
+msgstr "No active certificate template."
+
+msgid "Etkinlik yok"
+msgstr "No event"
+
+msgid "Kişiye WhatsApp'tan gönder"
+msgstr "Send to the person on WhatsApp"
+
+msgid "Oluştur"
+msgstr "Create"
+
+msgid "Ad soyad gerekli."
+msgstr "Full name is required."
+
+msgid "Sertifika oluşturuldu: {n}"
+msgstr "Certificate created: {n}"
+
+msgid "Şablon"
+msgstr "Template"
+
+msgid "Etkinlik"
+msgstr "Event"
+
+msgid "Mesaj metni Flux Certificates'daki WhatsApp şablonundan gelir."
+msgstr "The message text comes from the WhatsApp template in Flux Certificates."
+
+msgid "Sertifika hazırlanıyor…"
+msgstr "Preparing certificate…"
+
+msgid "Bekleyen bağışı \"Ödendi\" yap"
+msgstr "Mark the pending donation as \"Paid\""
+
+msgid "Kişiye onay mesajı gönder"
+msgstr "Send the person a confirmation message"
+
+msgid "Başka kayıtta ara: ad, telefon, sertifika no"
+msgstr "Search other records: name, phone, certificate no"
+
+msgid "Eşleştir"
+msgstr "Match"
+
+msgid "{n} dekont"
+msgstr "{n} receipts"
+
+msgid "Bekleyen bağışlar"
+msgstr "Pending donations"
+
+msgid "Bu kişinin bağışları"
+msgstr "This person's donations"
+
+msgid "Bu kişinin sertifikaları"
+msgstr "This person's certificates"
+
+msgid "Bu kişiye ait kayıt yok. Aşağıdan arayın ya da yeni bağış kaydı oluşturun."
+msgstr "No records for this person. Search below or create a new donation record."
+
+msgid "Sertifikalar"
+msgstr "Certificates"
+
+msgid "Dekont kayda eklendi"
+msgstr "Receipt added to the record"
+
+msgid "Yeni bağış kaydı"
+msgstr "New donation record"
+
+msgid "Dekontu kayıtla eşleştir"
+msgstr "Match receipt with a record"
+
+msgid "Ad, telefon, sertifika no ile ara"
+msgstr "Search by name, phone, certificate no"
+
+msgid "Bekleyen"
+msgstr "Pending"
+
+msgid "Tamamlanan"
+msgstr "Completed"
+
+msgid "Henüz kayıt yok."
+msgstr "No records yet."
+
+msgid "{n} adet"
+msgstr "{n} pcs"
+
+msgid "Dekont"
+msgstr "Receipt"
+
+msgid "Bu kişinin bağış kaydı yok."
+msgstr "This person has no donations."
+
+msgid "Bu kişinin sertifikası yok."
+msgstr "This person has no certificates."
+
+msgid "{n}: bağışlar ve sertifikalar"
+msgstr "{n}: donations and certificates"
+
+msgid "Sohbeti aç"
+msgstr "Open chat"
+
+msgid "Sertifikayı aç"
+msgstr "Open certificate"
+
+msgid "Ödendi olarak işaretle"
+msgstr "Mark as paid"
+
+msgid "Bağış onaylandı"
+msgstr "Donation confirmed"
+
+msgid "Bağış kaydını aç"
+msgstr "Open donation record"
+
+msgid "Sertifika listesinde aç"
+msgstr "Open in certificate list"
+
+msgid "Hazır cevapları düzenle"
+msgstr "Edit quick replies"
+
+msgid "Bildirimler açıldı"
+msgstr "Notifications enabled"
+
+msgid "Bildirim izni verilmedi"
+msgstr "Notification permission denied"
+
+msgid "Oturum süresi doldu. Sayfayı yenileyin."
+msgstr "Session expired. Please reload the page."
+
+msgid "Sunucuya ulaşılamıyor, yeniden deneniyor…"
+msgstr "Can't reach the server, retrying…"
+
+msgid "Okunmamış"
+msgstr "Unread"
+
+msgid "Bana atanan"
+msgstr "Assigned to me"
+
+msgid "Atanmamış"
+msgstr "Unassigned"
+
+msgid "Kurum"
+msgstr "Organization"
+
+msgid "Geçersiz adres."
+msgstr "Invalid address."
+
+msgid "bağış yapılan kişi"
+msgstr "donated for"
+
+msgid "Özetlenecek yeni mesaj yok."
+msgstr "No new messages to summarize."
+
+msgid "Yapay zekâ özeti okunamadı."
+msgstr "The AI summary could not be read."
+
+msgid "%1$d gelen mesaj özetlendi, %2$d bilgi yazıldı."
+msgstr "%1$d incoming messages summarized, %2$d items written."
+
+msgid "Anahtar ve değer gerekli."
+msgstr "Key and value are required."
+
+msgid "AI Chat"
+msgstr "AI Chat"
+
+msgid "Ekip (%s)"
+msgstr "Team (%s)"
+
+msgid "Ekip (telefon)"
+msgstr "Team (phone)"
+
+msgid "Ücretsiz"
+msgstr "Free"
+
+msgid "Sağlayıcı"
+msgstr "Provider"
+
+msgid "en az"
+msgstr "min"
+
+msgid "en çok"
+msgstr "max"
+
+msgid "Giriş fiyatı $"
+msgstr "Input price $"
+
+msgid "Temizle"
+msgstr "Clear"
+
+msgid "Fiyat: 1M token giriş / çıkış"
+msgstr "Price: 1M tokens input / output"
+
+msgid "Model seçin"
+msgstr "Choose a model"
+
+msgid "{n} model içinde ara…"
+msgstr "Search {n} models…"
+
+msgid "Varsayılan"
+msgstr "Default"
+
+msgid "{n} bağlam"
+msgstr "{n} context"
+
+msgid "araç"
+msgstr "tools"
+
+msgid "görsel"
+msgstr "vision"
+
+msgid "{n} model daha; aramayı daraltın."
+msgstr "{n} more models; narrow your search."
+
+msgid "Kullan: {id}"
+msgstr "Use: {id}"
+
+msgid "Listede yok, kimliği elle girilir"
+msgstr "Not in the list, ID entered manually"
+
+msgid "Model listesi alınamadı:"
+msgstr "Could not load the model list:"
+
+msgid "Eşleşen model yok."
+msgstr "No matching model."
+
+msgid "Modeller yükleniyor…"
+msgstr "Loading models…"
+
+msgid "Yapay zekâ ön kontrolü"
+msgstr "AI pre-check"
+
+msgid "Yapay zekâ onayı"
+msgstr "AI approval"
+
+msgid "Dekont ön kontrolü (yapay zekâ): "
+msgstr "Receipt pre-check (AI): "
+
+msgid "Yetkili onayı bekliyor"
+msgstr "Awaiting staff approval"
+
+msgid "Dekont geldi, son kontrol ekipte"
+msgstr "Receipt received, final check by the team"
+
+msgid "Dosya okunamadı."
+msgstr "File could not be read."
+
+msgid "Fotoğraf ya da PDF değil."
+msgstr "Not a photo or PDF."
+
+msgid "Model dosyayı okuyamadı."
+msgstr "The model could not read the file."
+
+msgid "Tutar %1$s (beklenen %2$s)"
+msgstr "Amount %1$s (expected %2$s)"
+
+msgid "Alıcı"
+msgstr "Recipient"
+
+msgid "Gönderen"
+msgstr "Sender"
+
+msgid "Dekont no"
+msgstr "Receipt no"
+
+msgid "Bağışla uyumlu"
+msgstr "Matches the donation"
+
+msgid "Bağışla uyuşmuyor"
+msgstr "Does not match the donation"
+
+msgid "Daha önce yüklenmiş dekont"
+msgstr "Previously uploaded receipt"
+
+msgid "Dekont, eşleşecek bağış yok"
+msgstr "Receipt, no donation to match"
+
+msgid "Dekont değil"
+msgstr "Not a receipt"
+
+msgid "Okunamadı"
+msgstr "Could not read"
+
+msgid "Bakılmadı"
+msgstr "Not checked"
+
+msgid "Dekontunuzu aldık, teşekkür ederiz 🌱 Ödemenizle ilgili size en kısa zamanda dönüş yapacağız."
+msgstr "We received your receipt, thank you 🌱 We'll get back to you about your payment as soon as possible."
+
+msgid "Dekontunuzu aldık, teşekkür ederiz 🌱 Bağışınız onaylandı."
+msgstr "We received your receipt, thank you 🌱 Your donation is confirmed."
+
+msgid "Bu dekontu daha önce almıştık, teşekkür ederiz 🌱 Ödemenizle ilgili size en kısa zamanda dönüş yapacağız."
+msgstr "We had already received this receipt, thank you 🌱 We'll get back to you about your payment as soon as possible."
+
+msgid "Bu dekont daha önce sistemimize yüklenmiş görünüyor. Aynı dekont ikinci bir bağış için kullanılamaz. Farklı bir ödeme yaptıysanız o ödemenin dekontunu gönderebilirsiniz; ekibimiz de ayrıca kontrol edecek."
+msgstr "This receipt seems to have been uploaded to our system before. The same receipt cannot be used for a second donation. If you made a different payment, please send that receipt; our team will also check."
+
+msgid "Dekontunuzu aldık. Dekonttaki tutar (%1$s) bağışınızın tutarıyla (%2$s) uyuşmuyor gibi görünüyor. Kontrol edebilir misiniz? Farklı bir ödeme yaptıysanız buradan yazabilirsiniz, ekibimiz de ayrıca bakacak."
+msgstr "We received your receipt. The amount on it (%1$s) does not seem to match your donation amount (%2$s). Could you check it? If you made a different payment, you can write here; our team will also take a look."
+
+msgid "Dekontunuzu aldık, ancak dekonttaki alıcı derneğimiz değil gibi görünüyor. Bağışlarımız yalnız \"%s\" adına açılmış hesabımıza yapılır. Kontrol edebilir misiniz? Ekibimiz de ayrıca bakacak."
+msgstr "We received your receipt, but the recipient on it does not seem to be our association. Donations are only made to our account in the name of \"%s\". Could you check? Our team will also take a look."
+
+msgid "Dekontunuzu aldık, ancak dekonttaki alıcı bilgisi bizim hesabımızla eşleşmiyor gibi görünüyor. Kontrol edebilir misiniz? Ekibimiz de ayrıca bakacak."
+msgstr "We received your receipt, but the recipient on it does not seem to match our account. Could you check? Our team will also take a look."
+
+msgid "Gönderdiğiniz dosya bir ödeme dekontuna benzemiyor. Ödemeyi yaptıysanız dekontu ya da ödeme ekranının görüntüsünü buradan gönderebilirsiniz."
+msgstr "The file you sent does not look like a payment receipt. If you have paid, you can send the receipt or a screenshot of the payment screen here."
+
+msgid "Her gün"
+msgstr "Every day"
+
+msgid "Her hafta"
+msgstr "Every week"
+
+msgid "Her ay"
+msgstr "Every month"
+
+msgid "Her yıl"
+msgstr "Every year"
+
+msgid "Bir kez"
+msgstr "Once"
+
+msgid "Her gün %s"
+msgstr "Every day at %s"
+
+msgid "Her hafta %1$s %2$s"
+msgstr "Every week on %1$s at %2$s"
+
+msgid "Her ay %1$d. gün %2$s"
+msgstr "Every month on day %1$d at %2$s"
+
+msgid "Her yıl %1$s %2$s"
+msgstr "Every year on %1$s at %2$s"
+
+msgid "%1$s: %2$s"
+msgstr "%1$s: %2$s"
+
+msgid "İlk: %s"
+msgstr "First: %s"
+
+msgid "Kişi hatırlatıcıyı durdurdu: %s"
+msgstr "The person stopped the reminder: %s"
+
+msgid "Asistan hatırlatıcı kurdu: %1$s (%2$s)"
+msgstr "The assistant set a reminder: %1$s (%2$s)"
+
+msgid "Zamanında çalışmadı, atlandı."
+msgstr "Did not run on time, skipped."
+
+msgid "Hatırlatıcı ya da sohbet yok."
+msgstr "No reminder or chat."
+
+msgid "Kişi kara listede."
+msgstr "The person is on the blocklist."
+
+msgid "hatırlatıcı zamanı"
+msgstr "reminder time"
+
+msgid "Mesaj gönderilemedi."
+msgstr "The message could not be sent."
+
+msgid "Hatırlatıcı gönderildi: %s"
+msgstr "Reminder sent: %s"
+
+msgid "Hatırlatıcı güncellenemedi."
+msgstr "The reminder could not be updated."
+
+msgid "Personel günlük raporu"
+msgstr "Staff daily report"
+
+msgid "Bugünkü emeğin için teşekkürler, her fidan bir umut 🌱"
+msgstr "Thanks for your work today, every sapling is a hope 🌱"
+
+msgid "Yarın da birlikte daha çok fidan dikelim 💪"
+msgstr "Let's plant even more saplings together tomorrow 💪"
+
+msgid "Küçük adımlar büyük ormanlar büyütür 🌳"
+msgstr "Small steps grow great forests 🌳"
+
+msgid "İdareci haftalık genel rapor"
+msgstr "Manager weekly overall report"
+
+msgid "Bu ay"
+msgstr "This month"
+
+msgid "Bağış raporu"
+msgstr "Donation report"
+
+msgid "Merhaba %s,"
+msgstr "Hello %s,"
+
+msgid "✅ Ödenen: %1$d bağış · %2$s (%3$d adet)"
+msgstr "✅ Paid: %1$d donations · %2$s (%3$d units)"
+
+msgid "⏳ Ödeme bekleyen: %1$d · %2$s"
+msgstr "⏳ Awaiting payment: %1$d · %2$s"
+
+msgid "❌ İptal: %d"
+msgstr "❌ Cancelled: %d"
+
+msgid "• %1$s: %2$d ödenen (%3$s), %4$d bekleyen"
+msgstr "• %1$s: %2$d paid (%3$s), %4$d pending"
+
+msgid "Personel"
+msgstr "Staff"
+
+msgid "Bu dönemde size bağlı bağış yok."
+msgstr "No donations linked to you in this period."
+
+msgid "📅 Bu ay toplam: %1$d bağış · %2$s"
+msgstr "📅 This month: %1$d donations · %2$s"
+
+msgid "WhatsApp raporları"
+msgstr "WhatsApp reports"
+
+msgid "Raporlar"
+msgstr "Reports"
+
+msgid "Yeni rapor"
+msgstr "New report"
+
+msgid "Profilinizde WhatsApp numarası yok (Kullanıcılar › Profil)."
+msgstr "Your profile has no WhatsApp number (Users › Profile)."
+
+msgid "Personel ve idarecilere zamanlanmış bağış raporu; sonuna kısa motivasyon metni eklenebilir."
+msgstr "Scheduled donation reports for staff and managers; a short motivational line can be added at the end."
+
+msgid "Kaydedildi."
+msgstr "Saved."
+
+msgid "%d mesaj gönderildi."
+msgstr "%d messages sent."
+
+msgid "Raporlar için Flux Roles 1.1.0 ve Flux Donate gerekli."
+msgstr "Reports need Flux Roles 1.1.0 and Flux Donations."
+
+msgid "Rapor adı"
+msgstr "Report name"
+
+msgid "Kime"
+msgstr "To"
+
+msgid "Rapor alabilen herkes"
+msgstr "Everyone who can receive reports"
+
+msgid "Genel raporu görebilenler (idareci)"
+msgstr "Those who can see the overall report (managers)"
+
+msgid "Seçilen kişiler"
+msgstr "Selected people"
+
+msgid "İçerik"
+msgstr "Content"
+
+msgid "Kişinin kendi bağışları"
+msgstr "The person's own donations"
+
+msgid "Genel toplam + personel bazında"
+msgstr "Overall totals + per staff"
+
+msgid "Dönem"
+msgstr "Period"
+
+msgid "Sıklık"
+msgstr "Frequency"
+
+msgid "Haftanın günü"
+msgstr "Day of week"
+
+msgid "Ayın günü"
+msgstr "Day of month"
+
+msgid "Saat"
+msgstr "Time"
+
+msgid "numara yok"
+msgstr "no number"
+
+msgid "Motivasyon metinleri (her satır bir metin; her raporda biri rastgele eklenir)"
+msgstr "Motivational lines (one per line; one is added at random to each report)"
+
+msgid "%d alıcı (numarası kayıtlı ve yetkili)."
+msgstr "%d recipients (with a registered number and permission)."
+
+msgid "Son gönderim: %s."
+msgstr "Last sent: %s."
+
+msgid "Önizleme (sizin için)"
+msgstr "Preview (for you)"
+
+msgid "Bana test gönder"
+msgstr "Send me a test"
+
+msgid "Rapor şimdi tüm alıcılara gönderilsin mi?"
+msgstr "Send the report to all recipients now?"
+
+msgid "Şimdi herkese gönder"
+msgstr "Send to everyone now"
+
+msgid "Bu rapor silinsin mi?"
+msgstr "Delete this report?"
+
+msgid "+ Yeni rapor"
+msgstr "+ New report"
+
+msgid "Alıcının numarası Kullanıcılar › Profil › WhatsApp numarası alanından gelir; yetkiler Kullanıcılar › Roller ve erişim sayfasından (rapor alabilir, genel raporu görebilir, raporları yönetir). Rapor seçilen saatte gider; sunucu zamanlayıcısı yoksa sitenin ilk ziyaretinde ya da sohbet panelinde gönderilir."
+msgstr "The recipient's number comes from Users › Profile › WhatsApp number; permissions from Users › Roles and access (receive reports, view overall report, manage reports). Reports go out at the chosen time; without a server scheduler they are sent on the next site visit or chat panel use."
+
+msgid "Geçersiz telefon numarası."
+msgstr "Invalid phone number."
+
+msgid "Önce Ayarlar › Bağlantılar bölümünden bir WhatsApp bağlantısı ekleyin."
+msgstr "First add a WhatsApp connection under Settings › Connections."
+
+msgid "%1$s sohbeti %2$s kişisine atadı"
+msgstr "%1$s assigned the chat to %2$s"
+
+msgid "%s sohbetin atamasını kaldırdı"
+msgstr "%s removed the chat assignment"
+
+msgid "%s sohbeti kapattı"
+msgstr "%s closed the chat"
+
+msgid "%s sohbeti yeniden açtı"
+msgstr "%s reopened the chat"
+
+msgid "Dosya çok büyük (en fazla %s)."
+msgstr "File is too large (max %s)."
+
+msgid "Bu dosya türü gönderilemez."
+msgstr "This file type cannot be sent."
+
+msgid "Dosya yüklenemedi."
+msgstr "File could not be uploaded."
+
+msgid "Bu mesaj yeniden gönderilemez."
+msgstr "This message cannot be resent."
+
+msgid "Bu mesaja tepki verilemez."
+msgstr "Can't react to this message."
+
+msgid "Yalnız kendi notlarınızı silebilirsiniz."
+msgstr "You can only delete your own notes."
+
+msgid "Cevap metni boş olamaz."
+msgstr "Reply text cannot be empty."
+
+msgid "Bağlantı bulunamadı. Önce ayarları kaydedin."
+msgstr "Connection not found. Save the settings first."
+
+msgid "Mesaj yalnız görsel kodundan oluşuyordu; gönderilmedi."
+msgstr "The message was only image code; it was not sent."
+
+msgid "Bu kişi kara listede; mesaj gönderilmez. Kara listeden çıkarınca yeniden yazabilirsiniz."
+msgstr "This contact is blocklisted; no messages are sent. Remove them from the blocklist to write again."
+
+msgid "Mesaj kaydedilemedi."
+msgstr "Message could not be saved."
+
+msgid "Bu kişi WhatsApp gizli numarasıyla (@lid) yazıyor ve Evolution API (sürüm %s) bu adrese gönderemedi. Evolution API sunucusunu 2.3 veya üstüne güncelleyin; kişinin gerçek numarası gelirse eklenti oraya gönderir."
+msgstr "This contact writes from a hidden WhatsApp number (@lid) and Evolution API (version %s) could not send to this address. Update the Evolution API server to 2.3 or later; if the contact's real number arrives, the plugin sends there."
+
+msgid "Bu kişi WhatsApp gizli numarasıyla (@lid) yazıyor ve Evolution API bu adrese gönderemedi. Evolution API sunucusunu 2.3 veya üstüne güncelleyin; kişinin gerçek numarası gelirse eklenti oraya gönderir."
+msgstr "This contact writes from a hidden WhatsApp number (@lid) and Evolution API could not send to this address. Update the Evolution API server to 2.3 or later; if the contact's real number arrives, the plugin sends there."
+
+msgid "WhatsApp bağlantısı yok."
+msgstr "No WhatsApp connection."
+
+msgid "Bağlı ✓"
+msgstr "Connected ✓"
+
+msgid "Bağlı değil (durum: %s). QR ile bağlayın."
+msgstr "Not connected (state: %s). Connect with QR."
+
+msgid "Webhook bu siteye ayarlı ✓"
+msgstr "Webhook points to this site ✓"
+
+msgid "Evolution API sürümü: %s"
+msgstr "Evolution API version: %s"
+
+msgid "(eski: gizli numaralı (@lid) kişilere cevap gidemeyebilir, 2.3 veya üstüne güncelleyin)"
+msgstr "(old: replies to hidden-number (@lid) contacts may fail, update to 2.3 or later)"
+
+msgid "Webhook bu siteye ayarlı değil. \"Webhook'u kur\" düğmesine basın."
+msgstr "Webhook does not point to this site. Press \"Set up webhook\"."
+
+msgid "Webhook kuruldu ✓ Artık gelen mesajlar buraya düşer."
+msgstr "Webhook set up ✓ Incoming messages will now arrive here."
+
+msgid "Son sohbetler içe aktarılıyor, bu biraz sürebilir…"
+msgstr "Importing recent chats, this may take a while…"
+
+msgid "Evolution'da kayıtlı mesaj: %s"
+msgstr "Messages stored in Evolution: %s"
+
+msgid "Evolution mesajları kaydetmiyor, bu yüzden eski mesajlar gelemez. Evolution sunucusunda DATABASE_SAVE_DATA_NEW_MESSAGE ve DATABASE_SAVE_DATA_HISTORIC değerlerini true yapın; eski konuşmalar için hattı QR ile yeniden bağlarken instance ayarında \"Sync full history\" açık olsun."
+msgstr "Evolution does not store messages, so older messages cannot be loaded. On the Evolution server set DATABASE_SAVE_DATA_NEW_MESSAGE and DATABASE_SAVE_DATA_HISTORIC to true; for older conversations, keep \"Sync full history\" on in the instance settings when you reconnect the line with QR."
+
+msgid "%1$s sohbet, %2$s mesaj içe aktarıldı ✓"
+msgstr "%1$s chats, %2$s messages imported ✓"
+
+msgid "WhatsApp › Bağlı cihazlar › Cihaz bağla ile bu kodu okutun."
+msgstr "Scan this code via WhatsApp › Linked devices › Link a device."
+
+msgid "Eşleştirme kodu:"
+msgstr "Pairing code:"
+
+msgid "Bu hat zaten bağlı ✓"
+msgstr "This line is already connected ✓"
+
+msgid "Önce ayarları kaydedin."
+msgstr "Save the settings first."
+
+msgid "Hata:"
+msgstr "Error:"
+
+msgid "Bu bağlantı silinsin mi? Sohbet geçmişi silinmez."
+msgstr "Delete this connection? Chat history is kept."
+
+msgid "Yapay zekâya soruluyor…"
+msgstr "Asking the AI…"
+
+msgid "Çalışıyor ✓ (%2$s ms): %1$s"
+msgstr "Working ✓ (%2$s ms): %1$s"
+
+msgid "Önce anahtarı ve modeli kaydedin."
+msgstr "Save the key and model first."
+
+msgid "Bağlantılar"
+msgstr "Connections"
+
+msgid "Otomatik yanıtlar"
+msgstr "Auto replies"
+
+msgid "Yapay zekâ ve asistan"
+msgstr "AI and assistant"
+
+msgid "Sistem kontrolü"
+msgstr "System check"
+
+msgid "WhatsApp hattınızı bağlayın, otomatik yanıtları ve etiketleri yönetin."
+msgstr "Connect your WhatsApp line, manage auto replies and labels."
+
+msgid "Sohbetleri aç"
+msgstr "Open chats"
+
+msgid "Ayarlar kaydedildi."
+msgstr "Settings saved."
+
+msgid "Çağrı Merkezi'nin çalışması için gereken bağlantılar ve ayarlar. Kayıtlı durumlar gösterilir; canlı deneme için ilgili sekmedeki \"test et\" düğmelerini kullanın. Aynı kontroller temanın sistem kontrolü ekranında diğer eklentilerle birlikte de görünür."
+msgstr "Connections and settings Call Center needs to work. Saved states are shown; use the \"test\" buttons on the related tabs for a live check. The same checks also appear with the other plugins on the theme's system check screen."
+
+msgid "WhatsApp hatları"
+msgstr "WhatsApp lines"
+
+msgid "Mesajlar Evolution API üzerinden gönderilir ve alınır. WhatsApp bağlantıları Flux Mail'de yönetilir; burada hangisinin kullanılacağını seçin. Adres ve API key orada kalır, değişince burada ayrıca güncellemek gerekmez."
+msgstr "Messages are sent and received through Evolution API. WhatsApp connections are managed in Flux Mail; choose which one to use here. The URL and API key stay there, so you do not need to update them here when they change."
+
+msgid "İletişim › Bağlantılar"
+msgstr "Communication › Connections"
+
+msgid "Mesajlar Evolution API üzerinden gönderilir ve alınır. Flux Certificates eklentisinde Evolution sağlayıcısı tanımlıysa aynı bağlantıyı seçebilirsiniz; adres ve API key orada kalır."
+msgstr "Messages are sent and received via Evolution API. If an Evolution provider is set up in Flux Certificates, you can pick the same connection; the URL and API key stay there."
+
+msgid "Hat ekle"
+msgstr "Add line"
+
+msgid "Kurulum adımları"
+msgstr "Setup steps"
+
+msgid "Hattı ekleyip kaydedin."
+msgstr "Add the line and save."
+
+msgid "\"Bağlantıyı test et\" ile Evolution'a ulaşıldığını görün. Hat bağlı değilse \"QR ile bağla\" deyip telefondan okutun."
+msgstr "Use \"Test connection\" to check Evolution is reachable. If the line is not connected, press \"Connect with QR\" and scan it with the phone."
+
+msgid "\"Webhook'u kur\" düğmesine basın. Gelen mesajlar, telefondan ve Flux Certificates'dan gönderilenler canlı olarak buraya düşer."
+msgstr "Press \"Set up webhook\". Incoming messages, and messages sent from the phone or Flux Certificates, will appear here live."
+
+msgid "İsterseniz \"Son sohbetleri içe aktar\" ile geçmiş mesajları getirin."
+msgstr "Optionally bring in past messages with \"Import recent chats\"."
+
+msgid "bağlı"
+msgstr "connected"
+
+msgid "bağlanıyor"
+msgstr "connecting"
+
+msgid "bağlı değil"
+msgstr "not connected"
+
+msgid "sunucuda yok"
+msgstr "not on server"
+
+msgid "ulaşılamıyor"
+msgstr "unreachable"
+
+msgid "Flux Mail bağlantısı: %s"
+msgstr "Flux Mail connection: %s"
+
+msgid "Flux Mail bağlantısı #%d (bulunamadı ya da kapalı)"
+msgstr "Flux Mail connection #%d (not found or disabled)"
+
+msgid "Flux Certificates sağlayıcısını kullan: %s"
+msgstr "Use Flux Certificates provider: %s"
+
+msgid "Ayrı Evolution API bilgisi gir"
+msgstr "Enter separate Evolution API details"
+
+msgid "Hat adı (ör. Ana hat)"
+msgstr "Line name (e.g. Main line)"
+
+msgid "Bağlantı bilgisi"
+msgstr "Connection details"
+
+msgid "API adresi"
+msgstr "API URL"
+
+msgid "Instance adı"
+msgstr "Instance name"
+
+msgid "API key (apikey)"
+msgstr "API key (apikey)"
+
+msgid "•••••••• (kayıtlı; değiştirmek için yazın)"
+msgstr "•••••••• (saved; type to change)"
+
+msgid "Webhook adresi"
+msgstr "Webhook URL"
+
+msgid "Gizli anahtarı yenile"
+msgstr "Regenerate secret key"
+
+msgid "Son webhook: %s önce"
+msgstr "Last webhook: %s ago"
+
+msgid "Henüz webhook gelmedi."
+msgstr "No webhook received yet."
+
+msgid "Bağlantıyı test et"
+msgstr "Test connection"
+
+msgid "QR ile bağla"
+msgstr "Connect with QR"
+
+msgid "QR, durum ve hesaplar: İletişim › Bağlantılar"
+msgstr "QR, status and accounts: Communication › Connections"
+
+msgid "Webhook'u kur"
+msgstr "Set up webhook"
+
+msgid "Son sohbetleri içe aktar"
+msgstr "Import recent chats"
+
+msgid "Kaydettikten sonra webhook adresi ve test düğmeleri görünür."
+msgstr "The webhook URL and test buttons appear after saving."
+
+msgid "Görünüm"
+msgstr "Appearance"
+
+msgid "Panel başlığı"
+msgstr "Panel title"
+
+msgid "Boş bırakılırsa site adı. {brand} değişkeni de bunu kullanır."
+msgstr "Site name if empty. The {brand} variable uses this too."
+
+msgid "Vurgu rengi"
+msgstr "Accent color"
+
+msgid "Çalışma şekli"
+msgstr "Behavior"
+
+msgid "Sohbet açılınca karşı tarafa okundu bilgisi (mavi tik) gönder"
+msgstr "Send read receipts (blue ticks) when a chat is opened"
+
+msgid "Mesajın başına temsilci adını ekle (*Ad:*)"
+msgstr "Prefix messages with the agent's name (*Name:*)"
+
+msgid "Temsilciler yalnız kendine atanan ve atanmamış sohbetleri görsün (yöneticiler hepsini görür)"
+msgstr "Agents see only chats assigned to them and unassigned chats (admins see all)"
+
+msgid "WhatsApp grup mesajlarını da göster"
+msgstr "Also show WhatsApp group messages"
+
+msgid "Yeni arayüz (deneysel): Sohbetler sayfası masaüstü ve mobil uygulamayla aynı ekranla açılır"
+msgstr "New interface (experimental): the Chats page opens with the same screen as the desktop and mobile app"
+
+msgid "Canlı güncelleme sıklığı (sn)"
+msgstr "Live update interval (sec)"
+
+msgid "Açık sekmede bu aralıkla yeni mesaj kontrol edilir (önerilen 10). Sekme arka plandayken dakikada bir, hata olursa giderek seyrekleşir."
+msgstr "The open tab checks for new messages at this interval (10 recommended). In a background tab it checks once a minute, and less often after errors."
+
+msgid "Temsilciler"
+msgstr "Agents"
+
+msgid "Bir kullanıcıya %s rolü verin; yalnız sohbet ekranını görür, ayarlara giremez. Yöneticiler her zaman erişir."
+msgstr "Give a user the %s role; they see only the chat screen and cannot open settings. Administrators always have access."
+
+msgid "Yeni kullanıcı ekle"
+msgstr "Add new user"
+
+msgid "Veri"
+msgstr "Data"
+
+msgid "Eklenti silinirken tüm sohbetleri, mesajları ve medya dosyalarını da sil"
+msgstr "Also delete all chats, messages and media files when the plugin is deleted"
+
+msgid "Medya dosyaları wp-content/uploads/flx-chat klasöründe, dışarıdan erişime kapalı tutulur. Site taşınırken uploads ile birlikte gider."
+msgstr "Media files are kept in wp-content/uploads/flx-chat, closed to outside access. They move with uploads when the site is migrated."
+
+msgid "Pzt"
+msgstr "Mon"
+
+msgid "Sal"
+msgstr "Tue"
+
+msgid "Çar"
+msgstr "Wed"
+
+msgid "Per"
+msgstr "Thu"
+
+msgid "Cum"
+msgstr "Fri"
+
+msgid "Cmt"
+msgstr "Sat"
+
+msgid "Paz"
+msgstr "Sun"
+
+msgid "Karşılama mesajı"
+msgstr "Welcome message"
+
+msgid "Bize ilk kez yazan kişiye otomatik gönder"
+msgstr "Send automatically to people who write to us for the first time"
+
+msgid "Mesai dışı yanıtı"
+msgstr "Away message"
+
+msgid "Mesai saatleri dışında gelen mesajlara otomatik yanıt ver"
+msgstr "Auto reply to messages received outside business hours"
+
+msgid "Mesai günleri"
+msgstr "Business days"
+
+msgid "Başlangıç"
+msgstr "Start"
+
+msgid "Bitiş"
+msgstr "End"
+
+msgid "Aynı kişiye en fazla (saatte bir)"
+msgstr "At most once per contact every (hours)"
+
+msgid "Saat dilimi: %1$s. Şu an: %2$s."
+msgstr "Timezone: %1$s. Now: %2$s."
+
+msgid "mesai içi"
+msgstr "within business hours"
+
+msgid "mesai dışı"
+msgstr "outside business hours"
+
+msgid "Metinlerde {first_name}, {name}, {brand}, {site}, {date} değişkenleri kullanılabilir."
+msgstr "The {first_name}, {name}, {brand}, {site}, {date} variables can be used in the texts."
+
+msgid "Sohbet etiketleri"
+msgstr "Chat labels"
+
+msgid "Sohbetleri etiketleyip listede filtreleyin (ör. Bağış, Şikâyet, Takip)."
+msgstr "Label chats and filter the list (e.g. Donation, Complaint, Follow-up)."
+
+msgid "Etiket ekle"
+msgstr "Add label"
+
+msgid "Etiket adı"
+msgstr "Label name"
+
+msgid "Sohbetten kayıt oluşturma"
+msgstr "Creating records from chats"
+
+msgid "Sohbet başlığındaki düğmelerle bağış kaydı (Flux Donate) ve sertifika (Flux Certificates) oluşturulur, gelen dekont kayıtla eşleştirilir. Eklenti kurulu değilse ilgili düğme görünmez."
+msgstr "Buttons in the chat header create a donation record (Flux Donate) and a certificate (Flux Certificates), and an incoming receipt is matched with a record. If a plugin is not installed, its button is hidden."
+
+msgid "Temsilciler bağış kaydı oluşturabilsin ve dekont eşleştirebilsin"
+msgstr "Agents can create donation records and match receipts"
+
+msgid "Temsilciler sertifika oluşturup gönderebilsin"
+msgstr "Agents can create and send certificates"
+
+msgid "Mesaj kutusunun üstünde hazır cevap baloncuklarını göster"
+msgstr "Show quick reply bubbles above the message box"
+
+msgid "Bağış mesajları"
+msgstr "Donation messages"
+
+msgid "Kayıt oluşturulunca kişiye gönderilecek hazır metinler (gönderimden önce düzenlenebilir). Boş bırakılırsa varsayılan metin kullanılır."
+msgstr "Ready texts sent to the person when a record is created (editable before sending). If left empty, the default text is used."
+
+msgid "Ödeme bekleniyor (havale sözü)"
+msgstr "Awaiting payment (promised transfer)"
+
+msgid "Bağış alındı"
+msgstr "Donation received"
+
+msgid "Dekont onaylandı"
+msgstr "Receipt confirmed"
+
+msgid "Banka bilgisi ({bank})"
+msgstr "Bank details ({bank})"
+
+msgid "Alıcı adı, banka, IBAN"
+msgstr "Recipient name, bank, IBAN"
+
+msgid "Boşsa WooCommerce › Ödemeler › Havale / EFT ayarındaki hesap kullanılır."
+msgstr "If empty, the account in WooCommerce › Payments › Bank transfer is used."
+
+msgid "Değişkenler: {first_name}, {name}, {donation}, {amount}, {quantity}, {bank}, {certificate_link}, {agent}, {brand}, {date}."
+msgstr "Variables: {first_name}, {name}, {donation}, {amount}, {quantity}, {bank}, {certificate_link}, {agent}, {brand}, {date}."
+
+msgid "Yapay zekâ bağlantısı"
+msgstr "AI connection"
+
+msgid "Anahtarlar, prompt önbelleği, harcama sınırı ve kullanım kayıtları Flux AI eklentisinden gelir; Çağrı Merkezi'nin tüm yapay zekâ istekleri oradan geçer. Model seçimleri burada kalır; alanlar boşsa Flux AI'de bu eklentiye seçilen model (ya da varsayılan) kullanılır."
+msgstr "Keys, prompt caching, spending limits and usage logs come from the Flux AI plugin; all of the Call Center's AI requests go through it. Model choices stay here; if a field is empty, the model chosen for this plugin in Flux AI (or the default) is used."
+
+msgid "Flux AI ayarlarını aç"
+msgstr "Open Flux AI settings"
+
+msgid "Yapay zekâ için Flux AI eklentisi gerekli. Kurup etkinleştirin ve Flux AI › Ayarlar'a OpenRouter ve/veya Anthropic anahtarını girin. O zamana kadar öneri, asistan, dekont okuma, sesli mesaj ve özet kapalıdır."
+msgstr "AI needs the Flux AI plugin. Install and activate it, then enter the OpenRouter and/or Anthropic key in Flux AI › Settings. Until then suggestions, the assistant, receipt reading, voice messages and summaries are off."
+
+msgid "Yaratıcılık (0–1)"
+msgstr "Creativity (0–1)"
+
+msgid "Düşük değer daha tutarlı, yüksek değer daha serbest cevap verir. Önerilen 0,4."
+msgstr "Lower values give more consistent replies, higher values freer ones. 0.4 recommended."
+
+msgid "Model (öneriler için)"
+msgstr "Model (for suggestions)"
+
+msgid "Asistan modeli (isteğe bağlı)"
+msgstr "Assistant model (optional)"
+
+msgid "Yukarıdaki model"
+msgstr "Model above"
+
+msgid "Yalnız araç (tools) destekleyen modeller listelenir."
+msgstr "Only models that support tools are listed."
+
+msgid "Dekont okuma modeli (isteğe bağlı)"
+msgstr "Receipt reading model (optional)"
+
+msgid "Seçilen model görsel okuyamıyorsa görsel okuyan ucuz bir modele kendiliğinden geçilir."
+msgstr "If the selected model cannot read images, a cheap vision model is used automatically."
+
+msgid "Bu ay (%1$s): %2$s istek, %3$s token, yaklaşık $%4$s."
+msgstr "This month (%1$s): %2$s requests, %3$s tokens, about $%4$s."
+
+msgid "Cevap önerisi"
+msgstr "Reply suggestions"
+
+msgid "Mesaj kutusunun üstünde, konuşmaya göre sıradaki mesaj önerilir. Temsilci \"Gönder\" der ya da \"Düzenle\" ile kutuya alıp değiştirir. Öneri asla kendiliğinden gönderilmez."
+msgstr "Above the message box, the next message is suggested from the conversation. The agent clicks \"Send\" or takes it into the box with \"Edit\". A suggestion is never sent on its own."
+
+msgid "Son mesaj kişiden geldiyse öneri kendiliğinden hazırlansın (kapalıysa ✨ düğmesiyle istenir)"
+msgstr "Prepare a suggestion automatically when the last message came from the person (if off, ask with the ✨ button)"
+
+msgid "Kurum bilgisi ve üslup"
+msgstr "Organization info and tone"
+
+msgid "Ör. Derneğimiz İstanbul'da fidan dikimi yapar. Dikimler her yıl Kasım–Mart arasında yapılır. Sertifika bağıştan sonra WhatsApp'tan gönderilir. Samimi ama resmi bir dil kullan."
+msgstr "E.g. Our association plants saplings in Istanbul. Planting is done every year between November and March. The certificate is sent on WhatsApp after the donation. Use a warm but formal tone."
+
+msgid "Öneri ve asistan bu bilgileri kullanır. Bağış türleri, fiyatlar, banka bilgisi ve hazır cevaplar ayrıca otomatik eklenir."
+msgstr "Suggestions and the assistant use this. Donation types, prices, bank details and quick replies are added automatically."
+
+msgid "Öneri sağlayıcısı"
+msgstr "Suggestion provider"
+
+msgid "Bağış asistanı (otomatik cevap)"
+msgstr "Donation assistant (automatic replies)"
+
+msgid "Açıkken asistan gelen mesajlara kendisi cevap verir: karşılar, hitap için adını sorar, bağış seçeneklerini ve fiyatları gönderir, isteğe bağlı e-posta ve \"kimin adına\" bilgilerini alır, her değişiklikte özet gösterip onay ister. Onaydan sonra Flux Donate'ta \"ödeme bekleniyor\" kaydı açar ve bağış linki ile alıcı adı, IBAN, açıklamayı ayrı mesajlar hâlinde gönderir. Konu bağış dışına çıkarsa sohbeti ekibe devreder."
+msgstr "When on, the assistant replies to incoming messages itself: it greets, asks how to address the person, sends donation options and prices, takes an optional email and \"on behalf of\" details, and shows a summary after every change and asks for approval. After approval it opens an \"awaiting payment\" record in Flux Donate and sends the donation link plus recipient name, IBAN and description as separate messages. If the topic goes beyond donations, it hands the chat to the team."
+
+msgid "Flux Donate eklentisi etkin değil; asistan bağış kaydı açamaz."
+msgstr "The Flux Donate plugin is not active; the assistant cannot create donation records."
+
+msgid "Talimat, belgeler, AI sohbetleri ve test sohbeti"
+msgstr "Instructions, documents, AI chats and test chat"
+
+msgid "Bağış asistanını aç (tümünü kapatmak için işareti kaldırın)"
+msgstr "Turn on the donation assistant (untick to turn it off everywhere)"
+
+msgid "Hangi sohbetlerde cevap versin"
+msgstr "Which chats should it reply to"
+
+msgid "Tüm sohbetlerde (önerilen)"
+msgstr "In all chats (recommended)"
+
+msgid "Temsilciye atanmamış sohbetlerde"
+msgstr "In chats not assigned to an agent"
+
+msgid "Yalnız mesai saatleri dışında"
+msgstr "Only outside working hours"
+
+msgid "Bir temsilci sohbete yazdığında (panelden ya da telefondan) asistan o sohbette aşağıdaki süre kadar susar. Sohbet başlığındaki asistan düğmesiyle sohbet bazında açılıp kapatılır."
+msgstr "When an agent writes in a chat (from the panel or the phone), the assistant stays quiet there for the time below. Use the assistant button in the chat header to turn it on or off per chat."
+
+msgid "Test modu: yalnız aşağıdaki numaralarda cevap ver"
+msgstr "Test mode: reply only to the numbers below"
+
+msgid "Test numaraları"
+msgstr "Test numbers"
+
+msgid "Virgül ya da satır ile ayırın. Test modu kapalıyken kullanılmaz."
+msgstr "Separate with commas or new lines. Not used when test mode is off."
+
+msgid "Temsilci yazınca susma (saat)"
+msgstr "Quiet after an agent writes (hours)"
+
+msgid "Fiyat listesindeki adetler"
+msgstr "Quantities in the price list"
+
+msgid "Konuşma geçmişi (saat)"
+msgstr "Conversation history (hours)"
+
+msgid "Asistan cevaptan önce bu süredeki tüm mesajları okur."
+msgstr "Before replying, the assistant reads all messages from this period."
+
+msgid "Asistanın sunduğu bağış türleri"
+msgstr "Donation types the assistant offers"
+
+msgid "Hiçbiri seçilmezse açık olan tüm türler sunulur. Yeni tür Flux Donate'ta açıldığında asistan onu da bilir."
+msgstr "If none is selected, all open types are offered. When a new type is opened in Flux Donate, the assistant knows it too."
+
+msgid "Dekont ön kontrolü: kişi dekont gönderince yapay zekâ tutarı, alıcıyı ve IBAN'ı bağışla karşılaştırır, sonucu kişiye söyler, dosyayı bağış kaydına ekler ve son onay için sohbeti ekibe devreder (ödendi işaretlemez)"
+msgstr "Receipt pre-check: when the contact sends a receipt, AI compares the amount, recipient and IBAN with the donation, tells the contact the result, attaches the file to the donation record and hands the chat to the team for final approval (does not mark it paid)"
+
+msgid "Fiyat listesinin son satırı"
+msgstr "Last line of the price list"
+
+msgid "Ödeme bilgileri"
+msgstr "Payment details"
+
+msgid "Alıcı adı ve IBAN boşsa WooCommerce › Ödemeler › Havale / EFT ayarındakiler kullanılır (siparişlerde görünen hesap). Yalnız asistan için farklı hesap istiyorsanız doldurun."
+msgstr "If the recipient and IBAN are empty, those in WooCommerce › Payments › Bank transfer are used (the account shown on orders). Fill them in only if the assistant should use a different account."
+
+msgid "Alıcı adı"
+msgstr "Recipient name"
+
+msgid "Havale açıklaması"
+msgstr "Transfer description"
+
+msgid "Değişkenler: {type}, {name}, {amount}, {quantity}"
+msgstr "Variables: {type}, {name}, {amount}, {quantity}"
+
+msgid "Bağış sayfası adresi"
+msgstr "Donation page URL"
+
+msgid "Linke seçilen tür ve adet eklenir (?flxb_opt=…&flxb_qty=…)."
+msgstr "The selected type and quantity are added to the link (?flxb_opt=…&flxb_qty=…)."
+
+msgid "Ödeme bilgilerinden sonraki mesaj"
+msgstr "Message after the payment details"
+
+msgid "Bağış iptali onay sorusu"
+msgstr "Donation cancellation question"
+
+msgid "Asistan yalnız ödenmemiş bağışları, kişinin onayıyla iptal eder. Boşsa varsayılan metin. Değişkenler: {bagis}, {tutar}."
+msgstr "The assistant cancels only unpaid donations, with the person's confirmation. Empty = default text. Variables: {bagis}, {tutar}."
+
+msgid "Günlük sınır dolunca gönderilen mesaj"
+msgstr "Message sent when the daily limit is reached"
+
+msgid "Sohbet o günkü cevap sınırına ulaşınca bir kez gider, sohbet ekibe devredilir. Sınır sohbetin ⋮ menüsü › Asistan kullanımı ekranından sıfırlanır."
+msgstr "Sent once when a chat reaches the day's reply limit; the chat is handed to the team. Reset it from the chat's ⋮ menu › Assistant usage."
+
+msgid "Ekibe devrederken gönderilen mesaj"
+msgstr "Message sent when handing over to the team"
+
+msgid "Asistan cevap veremezse giden mesaj"
+msgstr "Message sent when the assistant cannot answer"
+
+msgid "Yapay zekâ hata verir, süre aşılır ya da yoğunlukta sıra çok uzarsa kişiye bu mesaj gider ve sohbet ekibe devredilir; kişi hiçbir durumda cevapsız kalmaz."
+msgstr "If the AI fails, the time limit is hit or the queue gets too long, this message is sent and the chat is handed to the team; the person is never left without an answer."
+
+msgid "Bekleme mesajından önce en az (sn)"
+msgstr "Minimum wait before the holding message (s)"
+
+msgid "Kişinin mesajından bu kadar saniye geçmeden bekleme mesajı gitmez; bu arada asistan yeniden dener."
+msgstr "The holding message is not sent until this many seconds after the person's message; meanwhile the assistant retries."
+
+msgid "Bir cevabın en uzun süresi (sn)"
+msgstr "Longest time for one answer (s)"
+
+msgid "Hostinger istekleri ~60 sn'de kesebilir; 50 önerilir."
+msgstr "Hostinger can cut requests at ~60 s; 50 is recommended."
+
+msgid "Devirde bildirim gidecek numaralar"
+msgstr "Numbers notified on handoff"
+
+msgid "Asistan bir sohbeti ekibe devredince bu numaralara aynı hattan WhatsApp mesajı gider: kişinin adı, telefonu, nedeni, son mesajları ve panel linki. Virgül ya da satır ile ayırın. Bu numaralarla asistan konuşmaz."
+msgstr "When the assistant hands a chat over to the team, a WhatsApp message is sent to these numbers from the same line: the contact's name, phone, reason, last messages and panel link. Separate with commas or new lines. The assistant does not talk to these numbers."
+
+msgid "Kişi bunlardan birini yazınca asistan beklemeden yukarıdaki devir mesajını gönderir ve o sohbette kapanır. Boş bırakılırsa örnekteki liste kullanılır."
+msgstr "When the contact writes one of these, the assistant immediately sends the hand-off message above and turns off in that chat. If left empty, the example list is used."
+
+msgid "Asistana ek talimatlar"
+msgstr "Extra instructions for the assistant"
+
+msgid "Ör. Fidanların dikileceği yer: Kocaeli. Sertifikalar bağış onaylanınca gönderilir."
+msgstr "E.g. Saplings are planted in Kocaeli. Certificates are sent once the donation is confirmed."
+
+msgid "Kişi mesaj istemeyince gönderilen son mesaj"
+msgstr "Last message when a contact opts out"
+
+msgid "Kişi \"bana mesaj atmayın\" gibi bir şey yazınca asistan bu mesajı gönderir ve kişiyi kara listeye alır. Kara listedeki kişiye WhatsApp, e-posta ve SMS gitmez; listeyi Sohbetler › ☰ › Kara liste'den yönetirsiniz."
+msgstr "When a contact writes something like \"don't message me\", the assistant sends this message and adds them to the blocklist. Blocklisted contacts get no WhatsApp, email or SMS; manage the list in Chats › ☰ › Blocklist."
+
+msgid "Kişi hafızası ve arka plan işleri"
+msgstr "Contact memory and background jobs"
+
+msgid "Kişi hafızası: asistan kişinin kalıcı bilgilerini (hitap, yakınlarının adı, numaralar, tercihler) hatırlar; süresi dolan sohbetler özetlenir"
+msgstr "Contact memory: the assistant remembers lasting details (form of address, relatives' names, numbers, preferences); expired chats are summarized"
+
+msgid "Sohbet kaç saat sessiz kalınca özetlensin"
+msgstr "Summarize a chat after it has been quiet for (hours)"
+
+msgid "Aynı anda en fazla iş"
+msgstr "Maximum jobs at the same time"
+
+msgid "Aynı anda cevap yazılabilecek kişi sayısı. Asistan cevapları her zaman önce gelir; cevap yazılan ya da sırada bekleyen kişi varken özet başlamaz. Her iş bir PHP işçisi kullanır: paylaşımlı hostingde sitelerin toplam işçi sınırının yarısını geçmeyin (ör. 60 işçide 20-30)."
+msgstr "How many people can be answered at the same time. Assistant replies always come first; summaries do not start while someone is being answered or waiting. Each job uses one PHP worker: on shared hosting, stay under half of the total worker limit of your sites (e.g. 20-30 of 60 workers)."
+
+msgid "Yalnız cevaplara ayrılan işçi"
+msgstr "Workers reserved for replies"
+
+msgid "Bu kadar işçi hiçbir zaman özet ya da hatırlatıcı almaz."
+msgstr "This many workers never take summaries or reminders."
+
+msgid "Özet saatleri"
+msgstr "Summary hours"
+
+msgid "Özetler yalnız bu saatler arasında yapılır (elle \"Şimdi özetle\" hariç). İkisi aynıysa her saat."
+msgstr "Summaries run only between these hours (except a manual \"Summarize now\"). If both are the same, any time."
+
+msgid "Kişi sesli mesaj gönderirse asistan sesi metne çevirip cevap versin (metin panelde sistem satırı olarak da görünür)"
+msgstr "When someone sends a voice message, the assistant turns it into text and replies (the text also appears in the panel as a system line)"
+
+msgid "En uzun ses (sn)"
+msgstr "Longest voice message (sec)"
+
+msgid "Daha uzun seslerde asistan \"ses çok uzun olduğu için dinleyemedik\" der."
+msgstr "For longer messages the assistant says \"the voice message was too long for us to listen to\"."
+
+msgid "Sesli mesaj modeli (isteğe bağlı)"
+msgstr "Voice message model (optional)"
+
+msgid "Ses okuyan ucuz model (Gemini Flash Lite)"
+msgstr "Cheap audio model (Gemini Flash Lite)"
+
+msgid "Ses okuyan bir OpenRouter modeli olmalı (Claude ses okumaz). OpenRouter anahtarı gerekir."
+msgstr "Must be an OpenRouter model that accepts audio (Claude does not). An OpenRouter key is required."
+
+msgid "Görseller"
+msgstr "Images"
+
+msgid "Gerekince asistan görsel (tablo, rapor, şema) çizsin; WhatsApp'a resim olarak gider, metin ayrıca gider"
+msgstr "Let the assistant draw an image when useful (table, report, diagram); it goes to WhatsApp as a picture, the text is sent separately"
+
+msgid "Flux AI görsel çeviricisi kullanılır (Flux AI › Ayarlar › Görseller)."
+msgstr "The Flux AI image renderer is used (Flux AI › Settings › Images)."
+
+msgid "Sunucuda görsel çevirici yok: Flux AI › Ayarlar › Görseller'e Gotenberg adresi girin ya da Imagick (SVG) kurulsun. O zamana kadar asistan görsel çizmez."
+msgstr "No image renderer on the server: enter a Gotenberg address in Flux AI › Settings › Images or install Imagick (SVG). Until then the assistant does not draw images."
+
+msgid "Flux AI 0.2.0 ya da sonrası kurulunca çalışır."
+msgstr "Works once Flux AI 0.2.0 or later is installed."
+
+msgid "Başkası adına bağış"
+msgstr "Donation on behalf of someone"
+
+msgid "Bağış başkası adınaysa ve o kişinin numarası verildiyse (kişi kartı ya da yazılı numara), ödeme onaylanınca sertifika o numaraya da WhatsApp'tan gitsin"
+msgstr "If the donation is in someone else's name and their number was given (contact card or typed number), also send the certificate to that number on WhatsApp once the payment is approved"
+
+msgid "Sertifikadan önce giden mesaj"
+msgstr "Message sent before the certificate"
+
+msgid "Ardından Flux Certificates'daki WhatsApp sertifika mesajı gider. Değişkenler: {ad}, {bagisci}, {bagis}, {brand}."
+msgstr "Then the WhatsApp certificate message from Flux Certificates is sent. Variables: {ad}, {bagisci}, {bagis}, {brand}."
+
+msgid "Kişi isterse asistan hatırlatıcı kurar (ör. \"her ay fidan dikimini hatırlat\", \"her ay son projelerinizi gönderin\", \"her ay benden bir fidan iste\"); zamanı gelince asistan mesajı yazıp gönderir"
+msgstr "If a person asks, the assistant sets up a reminder (e.g. \"remind me of sapling planting every month\", \"send me your latest projects every month\", \"ask me for a sapling every month\"); when it is due, the assistant writes and sends the message"
+
+msgid "Saat söylenmezse"
+msgstr "When no time is given"
+
+msgid "Kişi başına en fazla"
+msgstr "At most per person"
+
+msgid "Personel (Flux Roles)"
+msgstr "Staff (Flux Roles)"
+
+msgid "Flux Roles 1.1.0 kurulunca çalışır: numarası Profil › WhatsApp numarası alanına yazılmış kullanıcılar asistanda yetkilerine göre ek araçlar kullanır."
+msgstr "Works once Flux Roles 1.1.0 is installed: users whose number is set in Profile › WhatsApp number get extra assistant tools based on their permissions."
+
+msgid "Personel numarasından yazana asistan yetkisine göre ek araçlar açsın (başkası adına bağış ve ödeme linki, bağışçılarım, genel rapor)"
+msgstr "Give staff numbers extra assistant tools by permission (donation on behalf of someone with payment link, my donors, general report)"
+
+msgid "Referansı olduğu bağış ödenince ya da iptal olunca personele WhatsApp bildirimi gitsin"
+msgstr "Notify staff on WhatsApp when a donation they referred is paid or cancelled"
+
+msgid "Personel adına açılan bağışta bağışçıya ilk mesaj"
+msgstr "First message to the donor for a donation opened by staff"
+
+msgid "Merhaba {ad} 🌱 {personel} aracılığıyla {bagis} bağış talebiniz alındı. Ödemeyi aşağıdaki bilgilerle yapabilirsiniz."
+msgstr "Hello {ad} 🌱 Your {bagis} donation request via {personel} has been received. You can pay with the details below."
+
+msgid "Ardından ödeme linki ve havale bilgileri gider. Değişkenler: {ad}, {adsoyad}, {personel}, {bagis}."
+msgstr "The payment link and bank details follow. Variables: {ad}, {adsoyad}, {personel}, {bagis}."
+
+msgid "Personelin referansı olduğu bağış ödenip sertifika oluşunca sertifika personele de WhatsApp'tan gitsin (bağışçıya gittiği gibi)"
+msgstr "When a donation referred by a staff member is paid and its certificates are made, send them to the staff member on WhatsApp too (just like the donor)"
+
+msgid "Personele sertifikadan önce giden mesaj"
+msgstr "Message sent to the staff member before the certificate"
+
+msgid "Değişkenler: {ad}, {bagisci}, {bagis}, {no}, {brand}."
+msgstr "Variables: {ad}, {bagisci}, {bagis}, {no}, {brand}."
+
+msgid "Personel bir bağışın sertifikasını en fazla kaç kez yeniden gönderebilir"
+msgstr "How many times staff can resend a donation's certificate"
+
+msgid "Asistan göndermeden önce kime gideceğini yazıp onay ister. 0: kapalı."
+msgstr "The assistant lists the recipients and asks for confirmation before sending. 0: off."
+
+msgid "Kayıt sorgusunda kod doğrulama"
+msgstr "Code verification for record lookups"
+
+msgid "Kişi kayıtlarını sorar ve numarası gizliyse (ya da başka numara/e-postayla bağış yaptıysa) verdiği numaraya ya da e-postaya kod gönder; kod doğrulanınca onun kayıtları da gösterilir"
+msgstr "When a person asks for their records and their number is hidden (or they donated with another number/e-mail), send a code to the number or e-mail they give; once verified, its records are shown too"
+
+msgid "Kod geçerliliği (dk)"
+msgstr "Code validity (min)"
+
+msgid "En fazla başarısız deneme"
+msgstr "Maximum failed attempts"
+
+msgid "Gönderilemeyen, yanlış ya da süresi dolan kodlar sayılır. Sınırda kişiye aşağıdaki mesaj gider, ekibe haber verilir; asistan diğer sorulara cevap verir ama 24 saat kayıt bilgisi vermez."
+msgstr "Codes that could not be sent, wrong codes and expired codes count. At the limit the person gets the message below and the team is notified; the assistant keeps answering other questions but shares no record details for 24 hours."
+
+msgid "Telefona kod"
+msgstr "Code to phone"
+
+msgid "WhatsApp, gitmezse SMS"
+msgstr "WhatsApp, SMS if it fails"
+
+msgid "Yalnız WhatsApp"
+msgstr "WhatsApp only"
+
+msgid "Yalnız SMS"
+msgstr "SMS only"
+
+msgid "SMS, Flux Mail'te SMS bağlantısı (ör. Netgsm) varsa kullanılır."
+msgstr "SMS is used if Flux Mail has an SMS connection (e.g. Netgsm)."
+
+msgid "Doğrulama yapılamazsa giden mesaj"
+msgstr "Message when verification fails"
+
+msgid "WhatsApp/SMS kod mesajı"
+msgstr "WhatsApp/SMS code message"
+
+msgid "Boşsa varsayılan metin. Değişkenler: {kod}, {dk}, {marka}. E-posta metni Flux Mail › E-posta şablonları'ndan değişir."
+msgstr "Default text if empty. Variables: {kod}, {dk}, {marka}. The e-mail text is edited in Flux Mail › E-mail templates."
+
+msgid "Sitedeki içerikler"
+msgstr "Site content"
+
+msgid "Asistan sitede yayında olan içeriklerde arama yapabilsin (ör. \"fidan dikimi geçen bir gönderiniz var mı\")"
+msgstr "Let the assistant search published site content (e.g. \"do you have a post about tree planting\")"
+
+msgid "Aranacak içerik türleri"
+msgstr "Content types to search"
+
+msgid "Yalnız yayında ve şifresiz içerikler döner. Taslak, özel ve şifreli içerik hiçbir zaman gösterilmez."
+msgstr "Only published content without a password is returned. Drafts, private and password-protected content are never shown."
+
+msgid "Hiç paylaşılmayacak kategori ve etiketler"
+msgstr "Categories and tags never to share"
+
+msgid "ör. kurumsal-teklifler, ic-duyuru"
+msgstr "e.g. corporate-offers, internal-notice"
+
+msgid "Ad ya da kısa ad, virgülle. Tek bir içeriği gizlemek için düzenleme ekranındaki \"Asistan bu içeriği kişilerle paylaşmasın\" kutusunu işaretleyin."
+msgstr "Name or slug, comma separated. To hide a single item, tick \"Do not let the assistant share this content\" on its edit screen."
+
+msgid "Ekip grubu"
+msgstr "Team group"
+
+msgid "WhatsApp grubu"
+msgstr "WhatsApp group"
+
+msgid "— Seçilmedi —"
+msgstr "— Not selected —"
+
+msgid "Hattın üye olduğu gruplar. Yeni açtığınız grup görünmüyorsa"
+msgstr "Groups the line is a member of. If a group you just created is missing,"
+
+msgid "listeyi yenileyin"
+msgstr "refresh the list"
+
+msgid "Kişilerden gelen mesajları ve verilen cevapları (asistan, ekip, otomatik) bu gruba yaz"
+msgstr "Post incoming messages and replies (assistant, team, automatic) to this group"
+
+msgid "Devir bildirimini numaralara ayrı ayrı değil bu gruba gönder; yukarıdaki numaralar mesajda etiketlenir"
+msgstr "Send handoff notifications to this group instead of each number; the numbers above are mentioned in the message"
+
+msgid "Gruba son gönderim başarısız: "
+msgstr "Last post to the group failed: "
+
+msgid "Fiyat listesi önizlemesi"
+msgstr "Price list preview"
+
+msgid "Asistanın çalışması için önce yapay zekâ anahtarı ve model girin."
+msgstr "Enter an AI key and model first so the assistant can work."
+
+msgid "Asistan şu an konuşmaz: "
+msgstr "The assistant will not reply right now: "
+
+msgid "WhatsApp asistanı"
+msgstr "WhatsApp assistant"
+
+msgid "Asistan bu içeriği kişilerle paylaşmasın"
+msgstr "Do not let the assistant share this content"
+
+msgid "Personel %1$s düzeltti; yerine #%2$d açıldı."
+msgstr "Corrected by staff member %1$s; #%2$d was opened instead."
+
+msgid "Bağış #%1$d iptal edildi, yerine #%2$d açıldı."
+msgstr "Donation #%1$d was cancelled and #%2$d opened instead."
+
+msgid "Personel %s WhatsApp asistanıyla oluşturdu."
+msgstr "Created by staff member %s via the WhatsApp assistant."
+
+msgid "Personel %1$s aracılığıyla bağış kaydı açıldı: %2$s (#%3$d)"
+msgstr "Donation opened via staff member %1$s: %2$s (#%3$d)"
+
+msgid "Sertifikanız 🌱"
+msgstr "Your certificate 🌱"
+
+msgid "Personel %1$s sertifikayı WhatsApp'tan yeniden gönderdi: %2$s"
+msgstr "Staff member %1$s resent the certificate on WhatsApp: %2$s"
+
+msgid "✅ Bağışçınız ödedi: *%1$s* · %2$s #%3$d"
+msgstr "✅ Your donor paid: *%1$s* · %2$s #%3$d"
+
+msgid "❌ Bağış iptal edildi: *%1$s* · %2$s #%3$d"
+msgstr "❌ Donation cancelled: *%1$s* · %2$s #%3$d"
+
+msgid "Çıkartma"
+msgstr "Sticker"
+
+msgid "Anket"
+msgstr "Poll"
+
+msgid "Desteklenmeyen mesaj"
+msgstr "Unsupported message"
+
+msgid "{a} satır eklendi, {d} satır çıkarıldı"
+msgstr "{a} lines added, {d} lines removed"
+
+msgid "Yapay zekâ anahtarı ya da modeli girilmemiş."
+msgstr "No AI key or model has been entered."
+
+msgid "Asistan kapalı; gelen mesajlara cevap vermiyor."
+msgstr "The assistant is off and does not reply to incoming messages."
+
+msgid "Test modu açık: asistan yalnız test numaralarına cevap veriyor."
+msgstr "Test mode is on: the assistant only replies to test numbers."
+
+msgid "Asistanın çalışma özeti"
+msgstr "Assistant activity summary"
+
+msgid "Detayı gizle"
+msgstr "Hide details"
+
+msgid "Detay"
+msgstr "Details"
+
+msgid "Harcama (USD)"
+msgstr "Spend (USD)"
+
+msgid "Cevaplanan soru"
+msgstr "Questions answered"
+
+msgid "Cevap verilen kişi"
+msgstr "People answered"
+
+msgid "Bağışa yönlendirilen kişi"
+msgstr "People directed to donate"
+
+msgid "Açılan bağış kaydı"
+msgstr "Donation records created"
+
+msgid "Onaylanan bağış · {a}"
+msgstr "Confirmed donations · {a}"
+
+msgid "Okunan dekont · ✓{a} ✕{b}"
+msgstr "Receipts read · ✓{a} ✕{b}"
+
+msgid "Ekibe devir"
+msgstr "Handoff to the team"
+
+msgid "Hafıza token · {p} kişi"
+msgstr "Memory tokens · {p} contacts"
+
+msgid "Mesaj istemedi (kara liste)"
+msgstr "Opted out (blocklist)"
+
+msgid "Gönderilen hatırlatıcı"
+msgstr "Reminders sent"
+
+msgid "Gönderilen kod · e-posta {e} · WhatsApp {w} · SMS {s}"
+msgstr "Codes sent · e-mail {e} · WhatsApp {w} · SMS {s}"
+
+msgid "Doğrulanan · telefon {p} · e-posta {e}"
+msgstr "Verified · phone {p} · e-mail {e}"
+
+msgid "Kod sorunu · yanlış {w} · süresi doldu {x} · gitmedi {f}"
+msgstr "Code issues · wrong {w} · expired {x} · not delivered {f}"
+
+msgid "Doğrulanamadı, ekibe bildirildi"
+msgstr "Not verified, team notified"
+
+msgid "Yeniden gönderilen sertifika"
+msgstr "Certificates resent"
+
+msgid "Asistanın iptal ettiği bağış"
+msgstr "Donations cancelled by the assistant"
+
+msgid "Yeniden gönderilen ödeme linki"
+msgstr "Payment links resent"
+
+msgid "Token: {i} giriş / {o} çıkış · {c} istek · {m} mesaj gönderildi"
+msgstr "Tokens: {i} input / {o} output · {c} requests · {m} messages sent"
+
+msgid "{n} bağış ödeme bekliyor"
+msgstr "{n} donations awaiting payment"
+
+msgid "{n} hata"
+msgstr "{n} errors"
+
+msgid "{n} sohbet özetlendi"
+msgstr "{n} chats summarized"
+
+msgid "Sayaçlar {d} tarihinden beri"
+msgstr "Counters since {d}"
+
+msgid "30 sn'de bir yenilenir"
+msgstr "Refreshes every 30 s"
+
+msgid "Modeller"
+msgstr "Models"
+
+msgid "En çok hafızası olan kişiler"
+msgstr "Contacts with the most memory"
+
+msgid "Token"
+msgstr "Tokens"
+
+msgid "Günlük"
+msgstr "Daily"
+
+msgid "Bu aralıkta kayıt yok."
+msgstr "No records in this range."
+
+msgid "Cevap"
+msgstr "Replies"
+
+msgid "Devir"
+msgstr "Handoff"
+
+msgid "Yalnız gerçek sohbetler sayılır; test sohbeti ve benchmark hariç. \"Onaylanan\" asistanın açtığı ve ödendi işaretlenen bağışlardır."
+msgstr "Only real chats are counted; test chat and benchmark are excluded. \"Confirmed\" means donations created by the assistant and marked paid."
+
+msgid "Asistanın yazdığı sohbet"
+msgstr "Chats the assistant wrote in"
+
+msgid "Ekipte / beklemede"
+msgstr "With the team / paused"
+
+msgid "Bağış kaydı açılan"
+msgstr "Donation record created"
+
+msgid "Asistan henüz bir sohbete cevap vermedi."
+msgstr "The assistant has not replied to any chat yet."
+
+msgid "Daha fazla"
+msgstr "Load more"
+
+msgid "Sohbet kapalı"
+msgstr "Chat closed"
+
+msgid "Hitap: {h}"
+msgstr "Address: {h}"
+
+msgid "{n} asistan mesajı"
+msgstr "{n} assistant messages"
+
+msgid "Bağış #{id}"
+msgstr "Donation #{id}"
+
+msgid "Sürüm {id}"
+msgstr "Version {id}"
+
+msgid "Değişiklik notu (ör. Kurban sorusu eklendi)"
+msgstr "Change note (e.g. Added sacrifice question)"
+
+msgid "Asistan talimatı"
+msgstr "Assistant instructions"
+
+msgid "Asistanın nasıl konuşacağını ve akışı anlatan ana metin. Fiyatlar, bağış türleri, banka bilgisi ve kişinin bilinen bilgileri her cevapta otomatik eklenir. {brand} kurum adına, {{belge:kisa-ad}} o belgenin içeriğine dönüşür."
+msgstr "The main text describing how the assistant talks and the flow. Prices, donation types, bank details and what is known about the contact are added automatically on every reply. {brand} becomes the organisation name and {{belge:kisa-ad}} becomes that document's content."
+
+msgid "Hemen yayına al"
+msgstr "Publish now"
+
+msgid "Yeni sürüm kaydedildi"
+msgstr "New version saved"
+
+msgid "Yeni sürüm olarak kaydet"
+msgstr "Save as new version"
+
+msgid "Modele giden tam metni gör"
+msgstr "Show the full text sent to the model"
+
+msgid "Kaydedilmemiş metin"
+msgstr "Unsaved text"
+
+msgid "Bu metinle test et"
+msgstr "Test with this text"
+
+msgid "Sürümler"
+msgstr "Versions"
+
+msgid "Yayında"
+msgstr "Live"
+
+msgid "Eklentiyle gelen metin"
+msgstr "Text that ships with the plugin"
+
+msgid "Fark: yayındaki → {v}"
+msgstr "Diff: live → {v}"
+
+msgid "Farkı gör"
+msgstr "Show diff"
+
+msgid "Test et"
+msgstr "Test"
+
+msgid "Yayına alındı"
+msgstr "Published"
+
+msgid "Yayına al"
+msgstr "Publish"
+
+msgid "Sunucunun gönderdiği hazır mesajlar"
+msgstr "Ready-made messages sent by the server"
+
+msgid "Bu mesajları model yazmaz; ayarlardaki bilgilerden üretilir."
+msgstr "The model does not write these; they are generated from your settings."
+
+msgid "Ayarlarda değiştir"
+msgstr "Change in settings"
+
+msgid "(boş)"
+msgstr "(empty)"
+
+msgid "Modele giden tam metin (örnek sohbet)"
+msgstr "Full text sent to the model (sample chat)"
+
+msgid "Ek belgeler"
+msgstr "Extra documents"
+
+msgid "Sık sorulan sorular, kampanya, dikim yerleri gibi bilgileri ayrı belgeler olarak ekleyin. Talimatta {{belge:kisa-ad}} yazarsanız belge oraya konur. \"Gerektiğinde okur\" seçilen belgeyi asistan yalnız konu açılınca okur; uzun belgeler için daha az maliyetlidir."
+msgstr "Add FAQs, campaigns, planting locations and similar information as separate documents. If you write {{belge:kisa-ad}} in the instructions, the document is placed there. A document set to \"read when needed\" is only read when the topic comes up, which costs less for long documents."
+
+msgid "Yeni belge"
+msgstr "New document"
+
+msgid "Henüz belge yok."
+msgstr "No documents yet."
+
+msgid "Talimatta kullanmak için kopyalayın"
+msgstr "Copy to use in the instructions"
+
+msgid "“{t}” belgesi silinsin mi?"
+msgstr "Delete the document “{t}”?"
+
+msgid "otomatik"
+msgstr "automatic"
+
+msgid "Belgeyi düzenle"
+msgstr "Edit document"
+
+msgid "Kısa ad"
+msgstr "Short name"
+
+msgid "İçerik (Markdown)"
+msgstr "Content (Markdown)"
+
+msgid "Belge kaydedildi"
+msgstr "Document saved"
+
+msgid "giriş"
+msgstr "in"
+
+msgid "çıkış"
+msgstr "out"
+
+msgid "önbellek {r} okundu, {w} yazıldı"
+msgstr "cache {r} read, {w} written"
+
+msgid "tasarruf {c}"
+msgstr "saved {c}"
+
+msgid "ilk yazma +{c}"
+msgstr "first write +{c}"
+
+msgid "Claude prompt önbelleği (yalnız Anthropic anahtarıyla Claude modellerinde)"
+msgstr "Claude prompt caching (only for Claude models with the Anthropic key)"
+
+msgid "Önbellek: ayardaki ({m})"
+msgstr "Cache: from settings ({m})"
+
+msgid "Önbellek: {m}"
+msgstr "Cache: {m}"
+
+msgid "Önbellek tasarrufu"
+msgstr "Cache savings"
+
+msgid "Bu ay toplam (tüm AI)"
+msgstr "This month total (all AI)"
+
+msgid "Ana model"
+msgstr "Main model"
+
+msgid "Sıfırla"
+msgstr "Reset"
+
+msgid "Fiyatlar 1M token başına giriş / çıkış (USD). Seçilen model yalnız burada kullanılır."
+msgstr "Prices are input / output per 1M tokens (USD). The selected model is used only here."
+
+msgid "Ör. Ahmet'in sohbetine bak, fiyat sorusuna daha kısa cevap versin. / Kurban bağışı sorulursa ekibe devretsin."
+msgstr "E.g. Look at Ahmet's chat and make the price answer shorter. / Hand over to the team when asked about Qurban donations."
+
+msgid "Oturum ara…"
+msgstr "Search sessions…"
+
+msgid "+ Yeni oturum"
+msgstr "+ New session"
+
+msgid "Eşleşen oturum yok."
+msgstr "No matching session."
+
+msgid "Henüz kayıtlı oturum yok. İlk mesajınızla oturum kendiliğinden kaydedilir."
+msgstr "No saved sessions yet. A session is saved automatically with your first message."
+
+msgid "Adsız oturum"
+msgstr "Untitled session"
+
+msgid "Taslak"
+msgstr "Draft"
+
+msgid "Arşiv"
+msgstr "Archive"
+
+msgid "Yeni oturum"
+msgstr "New session"
+
+msgid "Oturum adı"
+msgstr "Session name"
+
+msgid "Yeniden adlandır"
+msgstr "Rename"
+
+msgid "Arşivden çıkarıldı"
+msgstr "Unarchived"
+
+msgid "Arşive alındı"
+msgstr "Archived"
+
+msgid "Arşivden çıkar"
+msgstr "Unarchive"
+
+msgid "Arşive al"
+msgstr "Archive"
+
+msgid "Bu oturum silinsin mi? Geri alınamaz."
+msgstr "Delete this session? This cannot be undone."
+
+msgid "Bu oturumdan sonra yayındaki talimat değişti; yeni bir oturum açmanız önerilir."
+msgstr "The live instructions changed after this session; starting a new session is recommended."
+
+msgid "Neyi değiştirmek istediğinizi yazın. Bir kişinin ya da numaranın sohbetinden bahsederseniz yapay zekâ sohbeti bulur, okumak için sizden izin ister, talimatı günceller ve sağdaki test sohbetinde kendisi dener. Yayına almak sizin onayınızla olur."
+msgstr "Write what you want to change. If you mention a person's or a number's chat, the AI finds it, asks your permission to read it, updates the instructions and tries them itself in the test chat on the right. Publishing needs your approval."
+
+msgid "Taslak güncellendi"
+msgstr "Draft updated"
+
+msgid "Sohbet okuma izni"
+msgstr "Permission to read a chat"
+
+msgid "İzin ver"
+msgstr "Allow"
+
+msgid "Bu oturumda hep izin ver"
+msgstr "Always allow in this session"
+
+msgid "İzin verme"
+msgstr "Don't allow"
+
+msgid "Onayınızı bekleyen taslak"
+msgstr "Draft awaiting your approval"
+
+msgid "Onayla ve yayına al"
+msgstr "Approve and publish"
+
+msgid "Taslak sürüm kaydet"
+msgstr "Save as draft version"
+
+msgid "Önerilen değişiklik"
+msgstr "Proposed change"
+
+msgid "Test sohbetinde aç"
+msgstr "Open in test chat"
+
+msgid "Vazgeç"
+msgstr "Cancel"
+
+msgid "Çalışıyor…"
+msgstr "Running…"
+
+msgid "Yapay zekâ taslağı burada kendisi dener: kişi gibi mesaj yazar, asistanın cevabını görür. WhatsApp'a bir şey gitmez."
+msgstr "The AI tries the draft here itself: it writes like a person and sees the assistant's answer. Nothing is sent to WhatsApp."
+
+msgid "Yeni sürüm yayına alındı ✓"
+msgstr "New version published ✓"
+
+msgid "Taslak sürüm kaydedildi ✓ (Talimat sekmesinden yayına alabilirsiniz)"
+msgstr "Draft version saved ✓ (you can publish it from the Instructions tab)"
+
+msgid "Yapay zekânın testi"
+msgstr "AI's test"
+
+msgid "Taslakla yapılan deneme; yalnız okunur."
+msgstr "A trial with the draft; read only."
+
+msgid "Hitap"
+msgstr "Address"
+
+msgid "Seçili bağış"
+msgstr "Selected donation"
+
+msgid "test"
+msgstr "test"
+
+msgid "Doğrulama kodu (gönderilmedi, yalnız burada)"
+msgstr "Verification code (not sent, shown only here)"
+
+msgid "{h} saatine kadar"
+msgstr "until {h}"
+
+msgid "Test bağışları"
+msgstr "Test donations"
+
+msgid "Örnek geçmiş bağış"
+msgstr "Sample past donation"
+
+msgid "Ödendi say"
+msgstr "Mark as paid"
+
+msgid "Beklemeye al"
+msgstr "Set to pending"
+
+msgid "İptal et"
+msgstr "Cancel"
+
+msgid "Bu testte bağış açılmadı."
+msgstr "No donation in this test."
+
+msgid "Hafıza"
+msgstr "Memory"
+
+msgid "Henüz bir şey hatırlamadı."
+msgstr "Nothing remembered yet."
+
+msgid "Sıradaki: {d}"
+msgstr "Next: {d}"
+
+msgid "Onay bekleyen hatırlatıcı"
+msgstr "Reminder awaiting approval"
+
+msgid "Zamanlanmış"
+msgstr "Scheduled"
+
+msgid "Kurulu hatırlatıcı yok."
+msgstr "No reminders set."
+
+msgid "Kod doğrulaması 24 saat kilitli"
+msgstr "Code verification locked for 24 hours"
+
+msgid "Doğrulananlar"
+msgstr "Verified"
+
+msgid "Doğrulanmış numara ya da e-posta yok."
+msgstr "No verified number or e-mail."
+
+msgid "Yayındaki talimat"
+msgstr "Live instructions"
+
+msgid "Bağışçı gibi yazın…"
+msgstr "Write like a donor…"
+
+msgid "Bağışçı (müşteri)"
+msgstr "Donor (customer)"
+
+msgid "Personel gibi yazın…"
+msgstr "Write as the staff member…"
+
+msgid "Burada yazdıklarınız WhatsApp'a gitmez, kayıt açılmaz. Asistan gerçek modelle ve seçilen talimatla cevap verir."
+msgstr "Nothing you write here goes to WhatsApp and no records are created. The assistant replies with the real model and the selected instructions."
+
+msgid "Ayrıntı"
+msgstr "Details"
+
+msgid "Dosyalar hazırlanıyor, bir saniye…"
+msgstr "Preparing files, one moment…"
+
+msgid "(cevap yok)"
+msgstr "(no reply)"
+
+msgid "— Sohbet ekibe devredildi; gerçekte asistan burada susar. —"
+msgstr "— Chat handed over to the team; in a real chat the assistant stops here. —"
+
+msgid "Dosya ekle (fotoğraf, PDF, belge)"
+msgstr "Attach file (photo, PDF, document)"
+
+msgid "Dosya ekle"
+msgstr "Attach file"
+
+msgid "En fazla 5 dosya eklenebilir."
+msgstr "Up to 5 files can be attached."
+
+msgid "{f} çok büyük (en fazla {n} MB)."
+msgstr "{f} is too large (max {n} MB)."
+
+msgid "Kaldır"
+msgstr "Remove"
+
+msgid "dekont ön kontrolü"
+msgstr "receipt pre-check"
+
+msgid "{n}. tur · {t}"
+msgstr "Turn {n} · {t}"
+
+msgid "Okunan dosya"
+msgstr "File read"
+
+msgid "Yapay zekânın gönderdiği (argümanlar)"
+msgstr "Sent by the AI (arguments)"
+
+msgid "Ön kontrol sonucu"
+msgstr "Pre-check result"
+
+msgid "Sistemin döndürdüğü (sonuç)"
+msgstr "Returned by the system (result)"
+
+msgid "Araç çağrıları"
+msgstr "Tool calls"
+
+msgid "Henüz araç çağrılmadı. Çağrılınca burada listelenir; tıklayınca ne gönderildiği ve ne döndüğü görünür."
+msgstr "No tools called yet. Calls are listed here; click one to see what was sent and what came back."
+
+msgid "Test sohbeti"
+msgstr "Test chat"
+
+msgid "Kim gibi yazıyorsunuz?"
+msgstr "Who are you writing as?"
+
+msgid "Tam metni gör"
+msgstr "Show full text"
+
+msgid "Asistanın bildikleri"
+msgstr "What the assistant knows"
+
+msgid "Arka plan"
+msgstr "Background"
+
+msgid "Dosyaları buraya bırakın"
+msgstr "Drop files here"
+
+msgid "Hafızası olan kişi"
+msgstr "Contacts with memory"
+
+msgid "Kalıcı bilgi"
+msgstr "Lasting details"
+
+msgid "Toplam token (yaklaşık)"
+msgstr "Total tokens (approx.)"
+
+msgid "Token, asistanın her cevapta bu kişi için okuduğu hafıza boyutudur (yaklaşık; 3,5 karakter = 1 token)."
+msgstr "Tokens are the memory size the assistant reads for this contact on every reply (approx.; 3.5 characters = 1 token)."
+
+msgid "Henüz hafıza kaydı yok."
+msgstr "No memory items yet."
+
+msgid "Gör"
+msgstr "View"
+
+msgid "Özet"
+msgstr "Summary"
+
+msgid "Son güncelleme"
+msgstr "Last update"
+
+msgid "Kişi hafızası: {c}"
+msgstr "Contact memory: {c}"
+
+msgid "{n} kayıt · yaklaşık {t} token"
+msgstr "{n} items · about {t} tokens"
+
+msgid "Düzenlemek ve silmek için sohbette ⋮ › Kişi hafızası."
+msgstr "To edit or delete, open the chat and use ⋮ › Contact memory."
+
+msgid "{n} sohbet sıraya alındı"
+msgstr "{n} chats queued"
+
+msgid "Kişi hafızası kapalı; özet işi çalışmaz."
+msgstr "Contact memory is off; summary jobs do not run."
+
+msgid "Özetler 30 dakika durduruldu: {r}"
+msgstr "Summaries paused for 30 minutes: {r}"
+
+msgid "Çalışan işçi"
+msgstr "Running workers"
+
+msgid "Cevap yazılan sohbet"
+msgstr "Chats being answered"
+
+msgid "Özetlenen sohbet"
+msgstr "Chats being summarized"
+
+msgid "Sırada bekleyen"
+msgstr "Queued"
+
+msgid "Süresi dolmamış sohbet"
+msgstr "Chats not yet expired"
+
+msgid "Bugün özet · USD"
+msgstr "Summaries today · USD"
+
+msgid "Son işler"
+msgstr "Recent jobs"
+
+msgid "Şimdi tara"
+msgstr "Scan now"
+
+msgid "Önce yazan kişilere cevap verilir; cevap yazılan ya da sırada bekleyen kişi varken özet başlamaz. {h} saat sessiz kalan sohbetler yalnız {w} arasında özetlenir. Aynı anda en fazla {m} iş çalışır, {r} işçi yalnız cevaplara ayrılır (benchmark bir iş sayılır). 5 sn'de bir yenilenir."
+msgstr "People who are writing are answered first; no summary starts while someone is being answered or waiting. Chats quiet for {h} hours are summarized only between {w}. At most {m} jobs run at once, {r} workers are reserved for replies (a benchmark counts as one). Refreshes every 5 s."
+
+msgid "Henüz iş yok."
+msgstr "No jobs yet."
+
+msgid "Hatırlatıcı"
+msgstr "Reminder"
+
+msgid "elle"
+msgstr "manual"
+
+msgid "{n}. deneme"
+msgstr "attempt {n}"
+
+msgid "İş"
+msgstr "Job"
+
+msgid "Başladı"
+msgstr "Started"
+
+msgid "Süre"
+msgstr "Duration"
+
+msgid "Çalışıyor"
+msgstr "Running"
+
+msgid "Ücret limiti doldu"
+msgstr "Cost limit reached"
+
+msgid "Durdu: yapay zekâ hesabı"
+msgstr "Stopped: AI account"
+
+msgid "Grupsuz"
+msgstr "No group"
+
+msgid "Çalıştırmalar"
+msgstr "Runs"
+
+msgid "Tüm benchmark'lar"
+msgstr "All benchmarks"
+
+msgid "Canlı · {n} çalışıyor"
+msgstr "Live · {n} running"
+
+msgid "Toplam harcama"
+msgstr "Total spend"
+
+msgid "Çalıştırma"
+msgstr "Runs"
+
+msgid "{n} senaryo sonucu"
+msgstr "{n} scenario results"
+
+msgid "Henüz çalıştırma yok."
+msgstr "No runs yet."
+
+msgid "Asistan + değerlendirici"
+msgstr "Assistant + judge"
+
+msgid "Senaryo başına"
+msgstr "Per scenario"
+
+msgid "Başarı asistan modeline yazılır. 1.6.3 öncesi çalıştırmalarda asistan ve değerlendirici ayrılmadığı için \"Asistan + değerlendirici\" görünür."
+msgstr "Success is attributed to the assistant model. Runs before 1.6.3 did not separate assistant and judge, so they show as \"Assistant + judge\"."
+
+msgid "{n} senaryoyu çalıştır"
+msgstr "Run {n} scenarios"
+
+msgid "Ücret tahmini için model fiyatları yükleniyor…"
+msgstr "Loading model prices for the cost estimate…"
+
+msgid "Seçilen modelin fiyatı bilinmiyor; tahmin yapılamadı."
+msgstr "The selected model's price is unknown; no estimate."
+
+msgid "Tahmini ücret: ~{c}"
+msgstr "Estimated cost: ~{c}"
+
+msgid "asistan {a} + değerlendirici {j}"
+msgstr "assistant {a} + judge {j}"
+
+msgid "Geçmiş {n} senaryo sonucunun ortalama token kullanımına göre; senaryo başına gerçek değer değişebilir."
+msgstr "Based on average token usage of {n} past scenario results; actual cost per scenario may vary."
+
+msgid "Henüz çalıştırma yok; varsayılan tahmin: müşteri mesajı başına ~{i} giriş / {o} çıkış token."
+msgstr "No runs yet; default estimate: ~{i} input / {o} output tokens per donor message."
+
+msgid "Tahmin ücret limitini aşıyor; limit dolunca çalıştırma durur."
+msgstr "The estimate exceeds the cost limit; the run stops when the limit is reached."
+
+msgid "Yeni çalıştırma"
+msgstr "New run"
+
+msgid "Senaryolar test sohbetindeki gibi oynatılır: WhatsApp'a mesaj gitmez, kayıt açılmaz. Model gerçekten çağrılır; ücret yapay zekâ hesabınızdan (OpenRouter ya da Anthropic) düşer ve limit dolunca çalıştırma durur."
+msgstr "Scenarios are played like in the test chat: no WhatsApp message is sent and no record is created. The model is really called; the cost is charged to your AI account (OpenRouter or Anthropic) and the run stops when the limit is reached."
+
+msgid "Ücret limiti (USD)"
+msgstr "Cost limit (USD)"
+
+msgid "Geçmiş çalıştırmalar"
+msgstr "Past runs"
+
+msgid "Devam et"
+msgstr "Resume"
+
+msgid "Tüm sohbetler, araç çağrıları ve değerlendirici logu"
+msgstr "All chats, tool calls and judge log"
+
+msgid "Rapor"
+msgstr "Report"
+
+msgid "Bu çalıştırma ve sonuçları silinsin mi?"
+msgstr "Delete this run and its results?"
+
+msgid "Sunucuda arka planda çalışıyor; sayfayı kapatsanız da devam eder."
+msgstr "Running in the background on the server; it continues even if you close the page."
+
+msgid "Sonuçları canlı izle"
+msgstr "Watch results live"
+
+msgid "Rapor indir (.md)"
+msgstr "Download report (.md)"
+
+msgid "{n} senaryodan"
+msgstr "of {n} scenarios"
+
+msgid "{r} okundu, {w} yazıldı"
+msgstr "{r} read, {w} written"
+
+msgid "Yapay zekâ servisi istekleri reddetti; benchmark durdu."
+msgstr "The AI service rejected requests; the benchmark stopped."
+
+msgid "Kalan senaryolar hatalı sayılmadı. Sağlayıcı bütçesini, kredisini ya da anahtarını kontrol edip Devam et ile kaldığı yerden sürdürün."
+msgstr "The remaining scenarios were not counted as failed. Check the provider budget, credit or key, then use Continue to resume where it stopped."
+
+msgid "Devretmesi gerekirken devretti"
+msgstr "Handed off when it should"
+
+msgid "Doğru devir"
+msgstr "Correct handoff"
+
+msgid "Devretmemesi gerekirken devretmedi"
+msgstr "Did not hand off when it should not"
+
+msgid "Doğru devretmeme"
+msgstr "Correct no-handoff"
+
+msgid "Devretmemesi gerekirken devretti"
+msgstr "Handed off when it should not"
+
+msgid "Gereksiz devir"
+msgstr "Needless handoff"
+
+msgid "Devretmesi gerekirken devretmedi"
+msgstr "Did not hand off when it should"
+
+msgid "Kaçan devir"
+msgstr "Missed handoff"
+
+msgid "Yalnız kalanlar"
+msgstr "Failed only"
+
+msgid "Soldan bir senaryo seçin."
+msgstr "Pick a scenario on the left."
+
+msgid "Senaryoda yazılı geçmiş"
+msgstr "Scripted history in the scenario"
+
+msgid "Yazılı geçmiş"
+msgstr "Scripted history"
+
+msgid "Geçti"
+msgstr "Passed"
+
+msgid "Kaldı"
+msgstr "Failed"
+
+msgid "Ölçüt"
+msgstr "Criterion"
+
+msgid "Yeni senaryo"
+msgstr "New scenario"
+
+msgid "AI ile senaryo yaz"
+msgstr "Write a scenario with AI"
+
+msgid "Hazır senaryolar ilk hâline dönsün mü? Sizin eklediğiniz senaryolar kalır."
+msgstr "Reset the built-in scenarios? Scenarios you added are kept."
+
+msgid "Hazır senaryoları geri yükle"
+msgstr "Restore built-in scenarios"
+
+msgid "Mesajlarda {tur} = \"{a}\", {birim} = \"{b}\", {brand} = \"{c}\" olur."
+msgstr "In messages {tur} = \"{a}\", {birim} = \"{b}\", {brand} = \"{c}\"."
+
+msgid "İçermeli"
+msgstr "Must contain"
+
+msgid "İçermemeli"
+msgstr "Must not contain"
+
+msgid "Araç çağrılmalı"
+msgstr "Tool must be called"
+
+msgid "Araç çağrılmamalı"
+msgstr "Tool must not be called"
+
+msgid "Olmalı"
+msgstr "Must"
+
+msgid "Hazır"
+msgstr "Built-in"
+
+msgid "Yazılı geçmişten sonra asistanın cevabı ölçülür."
+msgstr "The assistant's reply after the scripted history is measured."
+
+msgid "Devam"
+msgstr "Continuation"
+
+msgid "Flux Roles'de personel aracı açık ilk kullanıcı olarak yazar."
+msgstr "Writes as the first Flux Roles user with staff tools."
+
+msgid "Personel yazar"
+msgstr "Staff writes"
+
+msgid "Başlangıç: {n}"
+msgstr "Start: {n}"
+
+msgid "{n} mesaj"
+msgstr "{n} messages"
+
+msgid "AI ile düzenle"
+msgstr "Edit with AI"
+
+msgid "Yalnız bunu çalıştır"
+msgstr "Run only this"
+
+msgid "Senaryo silinsin mi?"
+msgstr "Delete this scenario?"
+
+msgid "Bakılmaz"
+msgstr "Not checked"
+
+msgid "Her satıra bir ifade; seçenek için a|b"
+msgstr "One phrase per line; alternatives as a|b"
+
+msgid "Her satıra bir ifade"
+msgstr "One phrase per line"
+
+msgid "Ör. İsim sormamalı, kısa ve sıcak karşılamalı."
+msgstr "E.g. Should not ask for a name; short and warm greeting."
+
+msgid "Her satıra bir araç adı; seçenek için a|b"
+msgstr "One tool name per line; a|b for alternatives"
+
+msgid "Her satıra bir araç adı"
+msgstr "One tool name per line"
+
+msgid "Grup"
+msgstr "Group"
+
+msgid "Mesajlar (sırayla)"
+msgstr "Messages (in order)"
+
+msgid "{tur}, {birim} ve {brand} kullanılabilir. Yalnız müşteri mesajı varsa asistan her birine sırayla cevap verir. Asistan mesajı eklerseniz devam senaryosu olur: yazılan geçmiş hazır verilir, asistan yalnız en sondaki müşteri mesajına cevap verir."
+msgstr "{tur}, {birim} and {brand} can be used. If there are only customer messages, the assistant replies to each in turn. If you add assistant messages it becomes a continuation scenario: the written history is given as-is and the assistant replies only to the last customer message."
+
+msgid "Ör. payment_info, cancel_donation, receipt_check. Bu sitede kapalı araç bakılmaz."
+msgstr "E.g. payment_info, cancel_donation, receipt_check. Tools disabled on this site are not checked."
+
+msgid "Kim yazıyor?"
+msgstr "Who is writing?"
+
+msgid "Başlangıç durumu (test)"
+msgstr "Starting state (test)"
+
+msgid "Senaryo test sohbetindeki gibi izole oynar; burada seçilenler yalnız bu testte vardır. Müşteri mesajında {kod} test panelindeki doğrulama kodu olur."
+msgstr "The scenario runs isolated like the test chat; what you select here exists only in this test. In a customer message, {kod} becomes the verification code from the test panel."
+
+msgid "Sonda durum"
+msgstr "End state"
+
+msgid "Konuşma bitince test durumuna bakılır (bağış açıldı mı, iptal edildi mi, kod gitti mi…). Bu sitede kapalı araç bakılmaz."
+msgstr "When the conversation ends, the test state is checked (was a donation opened, canceled, a code sent…). Tools disabled on this site are not checked."
+
+msgid "Değerlendirici ölçütü"
+msgstr "Judge criterion"
+
+msgid "Boşsa değerlendirici çağrılmaz. Kurala dökülemeyen kalite beklentileri buraya."
+msgstr "If empty, the judge is not called. Put quality expectations that cannot be written as rules here."
+
+msgid "Asistanın yazdığı mesaj"
+msgstr "Message written by the assistant"
+
+msgid "Müşterinin yazdığı mesaj"
+msgstr "Message written by the customer"
+
+msgid "Sürükleyip sırala"
+msgstr "Drag to reorder"
+
+msgid "Yazanı değiştir"
+msgstr "Change author"
+
+msgid "Mesajı sil"
+msgstr "Delete message"
+
+msgid "Müşteri mesajı"
+msgstr "Customer message"
+
+msgid "Asistan mesajı"
+msgstr "Assistant message"
+
+msgid "Senaryo kaydedildi ✓"
+msgstr "Scenario saved ✓"
+
+msgid "Senaryoyu düzenle"
+msgstr "Edit scenario"
+
+msgid "Ör. Bir mesaj daha ekle: kişi e-postasını vermek istemesin."
+msgstr "E.g. Add one more message: the person does not want to give an email."
+
+msgid "Ör. Kişi kurban bağışı sorsun, asistan bilgi uydurmadan ekibe devretsin."
+msgstr "E.g. The person asks about a sacrifice donation; the assistant hands off to the team without making anything up."
+
+msgid "Yaz"
+msgstr "Write"
+
+msgid "Senaryoyu AI ile düzenle"
+msgstr "Edit scenario with AI"
+
+msgid "Ne test edilsin?"
+msgstr "What should be tested?"
+
+msgid "Önce senaryoyu yazdırın."
+msgstr "Have the scenario written first."
+
+msgid "Yazıyor…"
+msgstr "Writing…"
+
+msgid "Yeniden yaz"
+msgstr "Rewrite"
+
+msgid "Belgeler"
+msgstr "Documents"
+
+msgid "Benchmark"
+msgstr "Benchmark"
+
+msgid "7 gün"
+msgstr "7 days"
+
+msgid "30 gün"
+msgstr "30 days"
+
+msgid "Her cevapta talimata eklenir"
+msgstr "Added to the instructions on every reply"
+
+msgid "Asistan gerektiğinde okur"
+msgstr "Assistant reads it when needed"
+
+msgid "1h"
+msgstr "1h"
+
+msgid "Aktif"
+msgstr "Active"
+
+msgid "Açık"
+msgstr "On"
+
+msgid "Beklemede"
+msgstr "Paused"
+
+msgid "Kapsam dışı"
+msgstr "Out of scope"
+
+msgid "Onaylandı"
+msgstr "Approved"
+
+msgid "Sırada"
+msgstr "Queued"
+
+msgid "Atlandı"
+msgstr "Skipped"
+
+msgid "Yarıda kaldı"
+msgstr "Interrupted"
+
+msgid "%s önce"
+msgstr "%s ago"
+
+msgid "Ayarları aç"
+msgstr "Open settings"
+
+msgid "Çağrı Merkezi · Kurulum"
+msgstr "Call Center · Setup"
+
+msgid "Çağrı Merkezi · WhatsApp"
+msgstr "Call Center · WhatsApp"
+
+msgid "Çağrı Merkezi · Yapay zekâ"
+msgstr "Call Center · AI"
+
+msgid "Veritabanı tabloları"
+msgstr "Database tables"
+
+msgid "Eksik tablo: %s. Eklentiyi devre dışı bırakıp yeniden etkinleştirin."
+msgstr "Missing table: %s. Deactivate and reactivate the plugin."
+
+msgid "Tablolar hazır (şema %s)."
+msgstr "Tables ready (schema %s)."
+
+msgid "Şema güncellemesi bekliyor; yönetim panelinde bir sayfa açınca tamamlanır."
+msgstr "Schema update pending; it completes when you open a page in the admin panel."
+
+msgid "Medya klasörü"
+msgstr "Media folder"
+
+msgid "uploads/flx-chat klasörüne yazılamıyor; gelen fotoğraf, ses ve belgeler kaydedilemez. Klasör izinlerini kontrol edin."
+msgstr "Cannot write to uploads/flx-chat; incoming photos, voice notes and documents cannot be saved. Check folder permissions."
+
+msgid "Klasör koruması (.htaccess) yok; ilk medya kaydında oluşturulur."
+msgstr "Folder protection (.htaccess) missing; it is created with the first saved media."
+
+msgid "Yazılabilir ve dışarıya kapalı."
+msgstr "Writable and closed to the public."
+
+msgid "PHP cURL"
+msgstr "PHP cURL"
+
+msgid "Var."
+msgstr "Available."
+
+msgid "Yok; asistan cevap hazırlarken \"yazıyor…\" göstergesi yalnız kısa süre görünür."
+msgstr "Missing; while the assistant prepares a reply the \"typing…\" indicator shows only briefly."
+
+msgid "Temsilci rolündeki kullanıcı sayısı: %d."
+msgstr "Users with the agent role: %d."
+
+msgid "Temsilci rolünde kullanıcı yok; şimdilik yalnız yöneticiler kullanabilir."
+msgstr "No user has the agent role; only administrators can use it for now."
+
+msgid "Panelin canlı güncellemesi"
+msgstr "Live panel updates"
+
+msgid "Son güncelleme isteği %1$s. Panel açıkken %2$d sn'de bir yeni mesaj sorulur (arka plandaki sekmede 60 sn)."
+msgstr "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (60 s in a background tab)."
+
+msgid "Sohbet ekranı henüz hiç açılmadı."
+msgstr "The chat screen has not been opened yet."
+
+msgid "WhatsApp hattı"
+msgstr "WhatsApp line"
+
+msgid "Hiç hat eklenmemiş."
+msgstr "No line added."
+
+msgid "%s: bağlantı bilgisi"
+msgstr "%s: connection details"
+
+msgid "Flux Mail bağlantısı kullanılıyor: %s."
+msgstr "Using Flux Mail connection: %s."
+
+msgid "Hâlâ Flux Certificates'daki eski sağlayıcı kullanılıyor; bağlantıyı Flux Mail'e taşıyıp burada seçin."
+msgstr "Still using the old provider in Flux Certificates; move the connection to Flux Mail and select it here."
+
+msgid "Flux Certificates'daki Evolution sağlayıcısı kullanılıyor."
+msgstr "Using the Evolution provider from Flux Certificates."
+
+msgid "API adresi, key ve instance bu eklentide girilmiş."
+msgstr "API URL, key and instance are entered in this plugin."
+
+msgid "%s: hat durumu"
+msgstr "%s: line status"
+
+msgid "Telefon bağlı (son bilgi %s)."
+msgstr "Phone connected (last seen %s)."
+
+msgid "Henüz denenmedi. \"Bağlantıyı test et\" düğmesine basın."
+msgstr "Not tested yet. Press \"Test connection\"."
+
+msgid "Telefon bağlı değil (durum: %1$s, %2$s). \"QR ile bağla\" ile yeniden bağlayın."
+msgstr "Phone not connected (state: %1$s, %2$s). Reconnect with \"Connect with QR\"."
+
+msgid "%s: Evolution API sürümü"
+msgstr "%s: Evolution API version"
+
+msgid "Evolution API %s kullanılıyor. Gizli numaralı (@lid) kişilere cevap gitmeyebilir; sunucuyu 2.3 veya üstüne güncelleyin."
+msgstr "Evolution API %s is in use. Replies to hidden-number (@lid) contacts may fail; update the server to 2.3 or later."
+
+msgid "%s: webhook (gelen mesajlar)"
+msgstr "%s: webhook (incoming messages)"
+
+msgid "Evolution'dan hiç olay gelmedi; gelen mesajlar panele düşmez. \"Webhook'u kur\" düğmesine basın."
+msgstr "No event has arrived from Evolution; incoming messages will not reach the panel. Press \"Set up webhook\"."
+
+msgid "Son olay %s geldi. Hat sessiz olabilir; emin olmak için kendinize mesaj atın ya da webhook'u yeniden kurun."
+msgstr "Last event arrived %s. The line may just be quiet; send yourself a message or set up the webhook again to be sure."
+
+msgid "Son olay %s geldi."
+msgstr "Last event arrived %s."
+
+msgid "Flux Mail entegrasyonu"
+msgstr "Flux Mail integration"
+
+msgid "Etkin: WhatsApp bağlantıları İletişim › Bağlantılar'dan alınır."
+msgstr "Active: WhatsApp connections are taken from Communication › Connections."
+
+msgid "Flux Mail etkin değil; bağlantılar Flux Certificates'dan ya da bu eklentiden alınır."
+msgstr "Flux Mail is not active; connections are taken from Flux Certificates or from this plugin."
+
+msgid "Flux Certificates entegrasyonu"
+msgstr "Flux Certificates integration"
+
+msgid "Etkin: sohbetten sertifika oluşturulup gönderilebilir."
+msgstr "Active: certificates can be created and sent from chats."
+
+msgid "Flux Certificates etkin değil; sohbetten sertifika işlemleri kapalı."
+msgstr "Flux Certificates is not active; certificate actions in chats are off."
+
+msgid "Flux Donate entegrasyonu"
+msgstr "Flux Donate integration"
+
+msgid "Etkin: sohbetten bağış kaydı, dekont eşleştirme ve asistan kullanılabilir."
+msgstr "Active: donation records, receipt matching and the assistant are available from chats."
+
+msgid "Flux Donate etkin değil; bağış kaydı, dekont eşleştirme ve bağış asistanı kapalı."
+msgstr "Flux Donate is not active; donation records, receipt matching and the donation assistant are off."
+
+msgid "Flux AI eklentisi kurulu değil; yapay zekâ özellikleri (öneri, asistan, dekont okuma, sesli mesaj, özet) kapalı. Flux AI'yi kurup anahtarı oraya girin."
+msgstr "The Flux AI plugin is not installed; AI features (suggestions, assistant, receipt reading, voice messages, summaries) are off. Install Flux AI and enter the key there."
+
+msgid "Flux AI'de anahtar girilmemiş; mesaj önerisi ve asistan kapalı."
+msgstr "No key has been entered in Flux AI; message suggestions and the assistant are off."
+
+msgid "Anahtar var ama model seçilmemiş."
+msgstr "Key saved but no model selected."
+
+msgid "Seçili model (%s) için Flux AI'de sağlayıcının anahtarı girilmemiş."
+msgstr "No provider key has been entered in Flux AI for the selected model (%s)."
+
+msgid "Anahtar kayıtlı, model: %s. Canlı deneme için \"Bağlantıyı test et\"."
+msgstr "Key saved, model: %s. Use \"Test connection\" for a live check."
+
+msgid "Bağış asistanı"
+msgstr "Donation assistant"
+
+msgid "Kapalı."
+msgstr "Off."
+
+msgid "Yapay zekâ anahtarı veya modeli eksik."
+msgstr "AI key or model is missing."
+
+msgid "Açık ama konuşmuyor: "
+msgstr "On but not replying: "
+
+msgid "Açık. Sunulan bağış türleri: %s."
+msgstr "On. Donation types offered: %s."
+
+msgid "%s araç (tools) desteklemiyor; asistan için araç destekli bir model seçin."
+msgstr "%s does not support tools; choose a tool-capable model for the assistant."
+
+msgid "Dekont okuma modeli"
+msgstr "Receipt reading model"
+
+msgid "%s görsel okuyamıyor; dekont ön kontrolü çalışmaz. Görsel destekli bir dekont okuma modeli seçin."
+msgstr "%s cannot read images; the receipt pre-check will not work. Choose an image-capable receipt reading model."
+
+msgid "Asistanın ödeme bilgileri"
+msgstr "Assistant payment details"
+
+msgid "Alıcı adı ve IBAN tanımlı."
+msgstr "Recipient name and IBAN set."
+
+msgid "Alıcı adı veya IBAN eksik; onaydan sonra havale bilgisi gönderilemez."
+msgstr "Recipient name or IBAN missing; bank details cannot be sent after confirmation."
+
+msgid "Bağış sayfası linki"
+msgstr "Donation page link"
+
+msgid "Bağış sayfası bulunamadı; asistan link göndermez."
+msgstr "Donation page not found; the assistant will not send a link."
+
+msgid "Arka plan istekleri"
+msgstr "Background requests"
+
+msgid "Site kendine arka plan isteği atamadı (%1$s: %2$s). Sıradaki cevaplar ve benchmark yavaş ilerleyebilir; güvenlik eklentisi ya da sunucu güvenlik duvarı /wp-json/flx-chat/ isteklerini engelliyor olabilir."
+msgstr "The site could not send a background request to itself (%1$s: %2$s). Queued replies and the benchmark may move slowly; a security plugin or the server firewall may be blocking /wp-json/flx-chat/ requests."
+
+msgid "hata"
+msgstr "error"
+
+msgid "uyarı"
+msgstr "warning"
+
+msgid "tamam"
+msgstr "ok"
+
+msgid "{marka} doğrulama kodunuz: {kod}"
+msgstr "Your {marka} verification code: {kod}"
+
+msgid "Kod {dk} dakika geçerlidir. Bu kodu WhatsApp'ta bizimle olan sohbete yazın. Bu isteği siz yapmadıysanız dikkate almayın."
+msgstr "The code is valid for {dk} minutes. Type it in your WhatsApp chat with us. If you did not ask for it, ignore this message."
+
+msgid "Bir sıkıntı oldu, ekibimiz en kısa sürede sizinle iletişime geçecek 🌱 Bu arada başka bir sorunuz olursa yazabilirsiniz."
+msgstr "Something went wrong; our team will contact you as soon as possible 🌱 Meanwhile, feel free to ask anything else."
+
+msgid "Doğrulama denemesi başarısız (%1$d/%2$d): %3$s"
+msgstr "Verification attempt failed (%1$d/%2$d): %3$s"
+
+msgid "Kişi kayıtlarını görmek istedi, doğrulama yapılamadı; ekipten biri iletişime geçmeli"
+msgstr "The person wanted to see their records but could not be verified; someone from the team should get in touch"
+
+msgid "e-posta gönderilemedi (Flux Mail › SMTP ayarlarını kontrol edin)"
+msgstr "e-mail could not be sent (check Flux Mail › SMTP settings)"
+
+msgid "Asistan %1$s için doğrulama kodu gönderdi (%2$s)."
+msgstr "The assistant sent a verification code for %1$s (%2$s)."
+
+msgid "kodun süresi doldu"
+msgstr "code expired"
+
+msgid "yanlış kod"
+msgstr "wrong code"
+
+msgid "Kişi %s için kodu doğruladı; kayıt sorgusuna eklendi."
+msgstr "The person verified the code for %s; it is added to their record lookups."
+
+msgid "Claude modelleri ses okuyamaz; Ayarlar › Yapay zekâ › Sesli mesaj modelinden ses okuyan bir OpenRouter modeli seçin."
+msgstr "Claude models cannot read audio; choose an audio-capable OpenRouter model in Settings › AI › Voice message model."
+
+msgid "Ses metne çevrilemedi."
+msgstr "The audio could not be transcribed."
+
+msgid "Ses dosyası okunamadı."
+msgstr "The audio file could not be read."
+
+msgid "Sesli mesaj (%1$s) metne çevrildi: %2$s"
+msgstr "Voice message (%1$s) transcribed: %2$s"
+
+msgid "Sesli mesaj (%1$s) dinlenemedi: %2$s"
+msgstr "Voice message (%1$s) could not be processed: %2$s"
+
+msgid "Resmi WhatsApp Cloud API hattında bu işlem yok."
+msgstr "This action is not available on an official WhatsApp Cloud API line."
+
+msgid "WhatsApp 24 saat kuralı: kişi son 24 saatte yazmadığı için Cloud API serbest mesaj göndermiyor; yalnız onaylı şablon gider. Kişi yazınca yeniden deneyin."
+msgstr "WhatsApp 24-hour rule: the contact has not written in the last 24 hours, so the Cloud API will not send a free-form message; only an approved template can be sent. Try again once they write."
+
+msgid "Cloud API hattı için Flux Mail 1.10.0 veya üstü gerekli."
+msgstr "A Cloud API line needs Flux Mail 1.10.0 or later."
+
+msgid "Cloud API bu adrese (gizli numara ya da grup) gönderemez."
+msgstr "The Cloud API cannot send to this address (hidden number or group)."
+
+msgid "Cloud API hesabına ulaşılamadı (İletişim › Bağlantılar)."
+msgstr "Could not reach the Cloud API account (İletişim › Connections)."
+
+msgid "Cloud API hattında QR yok; hesap İletişim › Bağlantılar'da kurulur."
+msgstr "A Cloud API line has no QR code; the account is set up in İletişim › Connections."
+
+msgid "Dosya hazırlanamadı."
+msgstr "The file could not be prepared."
+
+msgid "Flux AI görsel desteği yok."
+msgstr "Flux AI has no image support."
+
+msgid "Görsel çevrilemedi."
+msgstr "The image could not be rendered."
+
+msgid "Asistanın görseli gönderilemedi: "
+msgstr "The assistant's image could not be sent: "
+
+msgid "Merhaba {first_name}, bağış kaydınızı oluşturduk: {donation}, toplam {amount}.\n\n{bank}\n\nÖdemeyi yaptıktan sonra dekontu buradan gönderebilirsiniz. Teşekkür ederiz."
+msgstr "Hello {first_name}, we have created your donation record: {donation}, total {amount}.\n\n{bank}\n\nAfter paying, you can send the receipt here. Thank you."
+
+msgid "Merhaba {first_name}, bağışınız kaydedildi: {donation}, toplam {amount}.\n\nDesteğiniz için teşekkür ederiz."
+msgstr "Hello {first_name}, your donation has been recorded: {donation}, total {amount}.\n\nThank you for your support."
+

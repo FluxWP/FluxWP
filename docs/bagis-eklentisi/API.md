@@ -1,0 +1,351 @@
+# Flux Donate 2.0.1 · API (api 2.0) (tema ve eklenti ekipleri için)
+
+Var mı kontrolü: `function_exists( 'flxb_api_version' )`. 1.x'teki okuma fonksiyonları ve dönen yapılar 2.0'da aynen duruyor (yalnızca büyüdü). 2.0'ın WooCommerce katmanı aşağıda, "WooCommerce (2.0)" bölümünde.
+
+## PHP
+
+| Fonksiyon | Dönüş |
+|---|---|
+| `flxb_api_version()` | `'2.0'` |
+| `flxb_get_types( array $args )` | `array[]`. Args: `status` = `'visible'` (varsayılan) \| `'open'` \| `'all'`; `category` (string veya dizi); `slugs`, `ids` (dizi); `progress` (bool, varsayılan true) |
+| `flxb_get_type( int\|string $id_or_slug )` | `?array` |
+| `flxb_type_state( array\|int\|string $t )` | `'open'` \| `'upcoming'` \| `'ended'` \| `'closed'` \| `'archived'` |
+| `flxb_type_meta( $t, $key, $default = null )` | mixed |
+| `flxb_form_element_for_option( int $type_id, int $form_id, string $key, int $qty = 1 )` | Flux Forms eleman id'si veya `''` |
+| `flxb_split_names( string $raw )` | `string[]` |
+| `flxb_proxy_text( int $version = 0 )` | `?array {version, text, created_at, user}` |
+| `flxb_bank_accounts()` | `array` — 2.2.2: önce WooCommerce "Doğrudan banka havalesi" (BACS) hesapları (`id` `wc0`, `wc1`…, `source` `woocommerce`), sonra `flxb_bank_accounts` filtresiyle gelenler (tema); aynı IBAN bir kez |
+| `flxb_bank_account()` | 2.2.2: `?array {holder, iban, iban_display, bank}` — her yerde gösterilecek **tek** havale hesabı. Sıra: Flux Donate Havale yöntemindeki IBAN → WooCommerce BACS ilk hesap → Tema Ayarları > Banka hesabı. Bağış sayfası, ödeme/teşekkür sayfası ve Çağrı Merkezi bunu kullanmalı |
+| `flxb_create_ref_request( array $args )` | 2.3.0: personel adına bağış talebi (`flxb_create_ref`). Args: `type_id, option, units, amount` (serbest tutar), `names` (adına isimler), `cert`, `donor {name, phone, email}` (telefon ya da e-posta zorunlu), `ref_user_id` (varsayılan giriş yapan), `send_email`, `note`. Bekleyen WooCommerce siparişi açar (`created_via` `flxb-ref`, kaynak `staff`), sipariş meta `_flx_ref_user`. Dönüş `{order_id, donation_id, pay_url, amount, currency, emailed}` ya da `WP_Error`. Kanca: `flxb_ref_request_created( $out, $ref_user_id, $contact )` |
+
+### Tür yapısı (filtre `flxb_type_public`)
+
+- Kimlik ve içerik: `id, slug, title, category, category_label, description, image_id, image_url, currency`
+- Durum ve tarih: `state, state_message, start_date, end_date`
+- `options[]`: `{key, label, price (float; null = fiyat açıklanmadı), unit (null = belirtilmedi), unit_set (bool), unit_label, unit_label_plural, units_per, active}`. Pasif veya fiyatsız seçenek bağlı formda gizlenir ve seçilemez.
+- Kurallar ve formlar: `allow_free, min_amount, allow_quantity, max_quantity, allow_recurring, form_id, form_ids, requires_proxy`
+- `progress`: `{raised, gifts, donors, goal, percent, days_left, currency, other}`; hedef yoksa `null`
+- `meta`: nesne
+
+## REST
+
+- `GET /wp-json/flxb/v1/types?status=visible|open&category=…`
+- `GET /wp-json/flxb/v1/types/<id|slug>` (arşivlenmişse 404)
+
+## JS (bağlı formun olduğu sayfada)
+
+- `FLXB.preselect({ form?, option, qty?, beneficiaries?: string[], lock?: bool })` → `Promise<boolean>` (sayfa yenilenmez; `lock` seçim adımını "Seçiminiz … · Değiştir" özetiyle gizler)
+- `FLXB.unlock()`, olay `flxb:unlock`
+- `window.flxbForms[formId] = { form, type, slug, currency, opts, prices, qty, maxQty, beneficiaries }`
+- Olaylar: `flxb:ready`, `flxb:change` → `detail { form, option, qty, total }`
+- URL: `?flxb_opt=<seçenek anahtarı>&flxb_qty=<adet>&flxb_form=<form id>`
+
+## Hook'lar
+
+- Filtreler: `flxb_units`, `flxb_bank_accounts`, `flxb_type_meta_clean`, `flxb_kurban_enabled`, `flxb_type_public`
+- Aksiyonlar (2.3.0): `flxb_ref_notify( string $kind, int $user_id, array $gift )` — referansı olan bağış ödenince (`paid`), iptal/başarısız olunca (`cancelled`), iade olunca (`refunded`); bağış (sipariş) ve olay başına bir kez, yalnız `flxb_ref_notify` yetkili referansa. `$gift`: `donation_id, order_id, amount, currency, donor_name, donor_phone, items[{title, option, quantity, amount}], admin_url`. (Çağrı Merkezi WhatsApp bildirimini kendi `flxb_donation_updated` dinleyicisiyle yapıyor; bu kanca e-posta vb. için.) `flxb_ref_request_created`.
+- Aksiyonlar: `flxb_type_fields`, `flxb_type_saved( $id, $old )`, `flxb_form_prices_synced( $form_id, $type_id )`, `flxb_donation_updated`
+
+## Ödeme: iyzico (1.2.0)
+
+2.0'da kart ödemeleri WooCommerce yöntemleriyle alınır (yukarıda). Aşağıdaki iyzico adresleri, filtreler ve cron Flux Donate iyzico (`flxb_iyzico`) ve aylık yenilemeler için geçerli olmaya devam eder; 1.x'in WooCommerce'siz form ödemesi yalnızca "Flux Forms ödeme formları WooCommerce ödeme sayfasında devam eder" ayarı kapatılırsa kullanılır.
+
+### REST
+
+- `POST|GET /wp-json/flxb/v1/iyzico/callback` — iyzico Checkout Form dönüş adresi (`token`). Ödeme `checkoutform/auth/ecom/detail` ile doğrulanmadan bağış kaydedilmez; tekrar çağrı güvenlidir (idempotent).
+- `GET|POST /wp-json/flxb/v1/iyzico/cancel?s=<id>&k=<imza>` — bağışçının düzenli bağış iptal bağlantısı (e-postada gelir; GET onay sorar, POST iptal eder).
+- `POST /wp-json/flxb/v1/iyzico/notify` (1.2.4) — iyzico **İşyeri Bildirimleri Url** (işyeri başına tek adres). Gövde JSON `{iyziEventType, token, paymentConversationId, …}`, başlık `X-IYZ-SIGNATURE` = `base64(sha1(secretKey . iyziEventType . token, raw))`.
+  - Flux Donate ödemesi (`paymentConversationId` `flxb_…` / `flxbr-…` ya da kayıtlı token): imza gelirse doğrulanır (yanlışsa **400** `{error: signature_not_valid}`), ödeme token ile iyzico'dan tekrar sorgulanır, bekleyen kayıt kesinleşir; yanıt 200 `{received, handled_by: "flxb", paid}` (yenileme: `flxb_renewal`). İdempotent.
+  - Değilse ve iyzico WooCommerce eklentisinin `iyzicoWebhookUrlKey` rotası kayıtlıysa: `rest_do_request` ile `/iyzico/v1/webhook/{key}` adresine aynı gövde ve `X-IYZ-SIGNATURE` başlığıyla iletilir (çağrı süresince `$_SERVER['HTTP_X_IYZ_SIGNATURE']` da ayarlanır); onun durum kodu ve gövdesi döner.
+  - iyzico Subscription API bildirimi (`subscriptionReferenceCode` ya da `iyziEventType` `subscription…`): 200 `{handled_by: "subscription_ignored"}`.
+  - Diğerleri: 200 `{handled_by: "ignored"}`.
+  - Son bildirim: seçenek `flxb_iyzico_notify_last` `{at, kind}`; aksiyon `flxb_iyzico_notification( $kind )`.
+- `POST /wp-json/Emsfb/v1/forms/payment/webhook/iyzico` — eski adres, `flxb/v1/iyzico/notify` ile aynı davranır.
+
+### Filtreler
+
+| Filtre | Ne için |
+|---|---|
+| `flxb_iyzico_credentials( array $c )` | `{api_key, secret_key, base, sandbox, source}`; kaynak `woocommerce` \| `woocommerce-subscription` \| `own` |
+| `flxb_iyzico_api_client( FLXB_Iyzico_Api $api )` | HTTP istemcisini değiştirmek (test) |
+| `flxb_iyzico_buyer( array $buyer, array $contact )` | iyzico `buyer` alanları (TC kimlik yer tutucu `11111111111`, şehir/ülke varsayılanları) |
+| `flxb_iyzico_checkout_request( array $body, array $meta )` | Checkout Form başlatma isteği |
+| `flxb_iyzico_renewal_request( array $body, array $sub )` | Yenileme ödemesi (`/payment/auth`, `paymentGroup` SUBSCRIPTION) |
+| `flxb_iyzico_retry_delays( int[] $seconds )` | Başarısız yenilemede bekleme süreleri; varsayılan 1 gün, 2 gün (toplam 3 deneme) |
+| `flxb_iyzico_donor_emails( bool $send, string $what, array $sub )` | `started` / `failed` e-postalarını kapatmak |
+| `flxb_iyzico_timeout( int $seconds )` | HTTP zaman aşımı (30) |
+
+### Aksiyonlar
+
+- `flxb_iyzico_paid( object $pay_row, array $iyzico_response )` — tek seferlik veya ilk ödeme doğrulandı.
+- `flxb_iyzico_renewal_paid( int $sub_id, int $donation_id, array $response )`
+- `flxb_iyzico_renewal_failed( int $sub_id, string $error, bool $past_due )`
+- `flxb_iyzico_subscription_canceled( int $sub_id, string $by )` — `admin` \| `donor`.
+
+### Cron
+
+- `flxb_iyzico_renewals` (saatlik, WP-Cron). iyzico Subscription eklentisinin `iyzico_subscription_renewal_check` / `iyzico_subscription_retry_failed` kancalarıyla ve meta alanlarıyla ortak hiçbir şey kullanmaz.
+- Kart referansları (`cardUserKey`, `cardToken`) `wp_flxb_subscriptions.meta` içinde şifreli tutulur (anahtar `wp_salt('auth')`'tan türetilir; salt değişirse kayıtlı kartlar kullanılamaz). Hiçbir API'de dönmez.
+
+## WooCommerce (2.0)
+
+Bağışlar WooCommerce sepeti ve ödeme sayfasıyla alınır. WooCommerce katmanı çalışıyor mu: `flxb_wc_active()` (aksiyon `flxb_wc_loaded` de bu anda tetiklenir).
+
+### PHP fonksiyonları
+
+| Fonksiyon | Dönüş |
+|---|---|
+| `flxb_wc_active()` | `bool` |
+| `flxb_wc_form_available()` | `bool`: "Bağış seçenekleri" bloğunun gösterecek türü var mı (temadaki "kart ile bağış" bloklarını açıp kapatmak için) |
+| `flxb_create_order( array $args )` | `WC_Order\|WP_Error`. Çağrı merkezi, içe aktarma ve diğer eklentiler için sipariş açar; aşağıya bakın |
+| `flxb_donation_order_id( int $donation_id )` | Bağış kaydının WooCommerce siparişi (`0` = WooCommerce'le ödenmemiş) |
+| `flxb_order_donation_ids( WC_Order\|int $order )` | `array( order_item_id => donation_id )` |
+| `flxb_donate_url( int\|string $type, string $option = '' )` | Bağış sayfası adresi, tür sekmesi ve seçenek seçili: `…/bagis/?sekme=<slug>&flxb_opt=<anahtar>` |
+
+`flxb_create_order( $args )`:
+
+- `lines` (zorunlu): `[ { type_id, option, units, amount, cert ('' | 'online' | 'print'), name, for_other, ben_name, ben_phone, ben_email, donation_id, beneficiaries, proxy_consent } ]`. 2.0.1: vekâlet isteyen türde `beneficiaries` (adlar dizisi ya da satır satır metin; hisse başına bir ad, fazlası atılır) ve `proxy_consent` (`{ version, accepted_at, source }`) verilir; kayıt defterinde her hisse kendi adıyla ayrı kalem olur, onay `meta.proxy_consent`'e yazılır. Fiyat türden hesaplanır; serbest tutarlı satırda `amount`. `donation_id` verilirse yeni kayıt açılmaz, o kayda bağlanır. `cert = 'print'` basılı sertifika ayarı "Seçilebilir" değilse hata döner.
+- `billing`: `{ first_name, last_name, email, phone }`; `customer_id` (boşsa e-postadan bulunur).
+- `payment_method`: `'flxb_havale'` (açıklama kodu üretilir) ya da herhangi bir yöntem kimliği; `payment_title`; `status`: `pending` (varsayılan) \| `on-hold` \| `completed`; `created_via` (varsayılan `flxb-api`); `note`; `emails` (WooCommerce e-postaları, varsayılan `false`).
+- Her satır bağış kaydına yazılır (kayıt defteri).
+
+### Blok, kısa kod, ön seçim
+
+- Blok `flx-wc-bagis/secenekler` (sunucuda çizilir). Öznitelikler: `types` (slug/id, virgülle; boş = "Bağış seçenekleri bloğunda göster" işaretli türler), `tab` (ilk açılacak türün slug'ı ya da id'si), `align`. `general` özniteliği 2.0'da kullanılmıyor, kayıtlı bloklar bozulmasın diye kabul ediliyor.
+- Kısa kod `[flx_bagis_secenekleri tur="slug1,slug2" sekme="slug"]`.
+- Adres parametreleri: `?sekme=<tür slug>`, `?flxb_opt=<seçenek>` (`?paket=<seçenek>` da kabul edilir), `?flxb_qty=<adet>`.
+- Ön yüz sınıfları `.flxwb`, `.flxwb-*` (temanın CSS'i bunlara dayanıyor, değişmedi). − / + adetli kart: `.flxwb-pkg--qty`, canlı tutar `[data-flxwb-line]`, adet `[data-flxwb-count]`.
+- 2.0.1, vekâlet isteyen tür (`requires_proxy`): panelde `.flxwb-proxy` alanı çıkar. Alanlar: adlar `owners[<tür id>]` (her satıra bir ad, en fazla hisse sayısı kadar), vekâlet metni (`flxb_proxy_text()`, sürüm numarasıyla) ve onay kutusu `proxy[<tür id>]` (değeri metnin sürümü). "Bu bağış kimin için?" bölümü bu türde gizlenir. Sunucu onaysız, eski sürümle ya da hisseden fazla adla gelen isteği reddeder (`FLXB_WC_Cart::build_line`, girdi `beneficiaries`, `proxy_consent`).
+- 2.0.1, sertifikası olmayan tür: sertifika seçimi, WhatsApp/e-posta teslim kartları ve "Bana da gönder" gösterilmez, sunucu bu türde teslim telefonu ve e-postasını saklamaz. "Başkası adına" isteğe bağlı kalır (ad yalnız bağış kaydına yazılır).
+
+### Tür meta anahtarları (tür düzenleme › "Online bağış sayfası")
+
+| Anahtar | Değer |
+|---|---|
+| `in_form` | bool: blokta ve ürün XML'inde gösterilir |
+| `certificate` | bool: ödenen satır için Flux Certificates sertifikası |
+| `cert_template` | int: şablon (0 = WooCommerce ayarındaki) |
+| `custom_option` | seçenek anahtarı: kartında − / + olan seçenek; fiyat = adet × seçenek fiyatı |
+| `presets` | float[]: serbest tutarın hazır tutarları (en çok 8) |
+| `page_url` | Ürün sayfası ve XML bağlantısının gideceği yer. 2.0.1: sitedeki adres göreli yol olarak saklanır (`/kurban/`), başka site mutlak kalır. Okumak için `FLXB_WC::type_page_url( $type )` (filtre `flxb_type_page_url`) |
+| `page_id` | int: `page_url` kaydedilirken WordPress sayfayı tanırsa yazılır; okurken önce bu sayfanın kalıcı bağlantısı kullanılır (site taşınsa da doğru adres) |
+| `wc_product_id` | int: gizli ürün (Flux Donate yazar) |
+
+Seçeneklerde `badge`: `''` \| `populer` \| `avantajli` \| `aile` (filtre `flxb_option_badges`).
+
+### Sipariş ve satır meta'sı
+
+- Sipariş: `_flxb_donation_ids` (satır → bağış), `_flxb_ref` (havale açıklaması), `_flxb_code` (kod), `_flxb_state` (`awaiting` \| `uploaded` \| `approved`), `_flxb_receipts` (dekontlar), `_flxb_notified`, `_flxb_pay_id` (Flux Forms ödeme kaydı), `_flxb_subscription_id` ve `_flxb_renewal_period` (yenileme siparişi), `_flxb_callcenter_ref`.
+- Satır (gizli): `_flxb` (satırın tamamı), `_flxb_type_id`, `_flxb_donation_id`, `_flxb_cert_id`. Görünen: `flxb_fidan`, `flxb_units` (`adet|birim`), `flxb_monthly`, `flxb_on_behalf`, `flxb_names` (2.0.1, vekâlet türü: "1. Ali · 2. Ayşe"), `flxb_proxy` (2.0.1, kabul edilen vekâlet metni sürümü), `flxb_cert`, `flxb_cert_name`, `flxb_cert_address`, `flxb_cert_no`. `_flxb` içinde 2.0.1'den itibaren `beneficiaries` (hisse sırasıyla adlar) ve `proxy_consent` (`{ version, accepted_at, source: cart | form | … }`) de bulunur; kayıt defteri satırının `meta.proxy_consent` alanına aynen yazılır.
+- Bağış kaydı: `uniq = wc:<sipariş>:<satır>`, `provider = woocommerce`, `wc_order_id` sütunu; yenilemelerde `source = renewal`.
+
+### Ödeme yöntemleri
+
+- `flxb_havale`: Havale (bağış). Ayarlar `woocommerce_flxb_havale_settings`. Sipariş "Beklemede" açılır; yönetici "Ödemeyi onayla" deyince tamamlanır.
+- `flxb_iyzico`: Kart (iyzico) - Flux Donate. Aylık bağışların tek yöntemi; resmî `iyzico` eklentisi yoksa tek seferlik kart ödemesi de. İkisi birlikte gösterilmez (ayar `card_gateway` = `auto` \| `flxb`).
+- Resmî iyzico WooCommerce eklentisi (`iyzico`): tek seferlik kart.
+- Stripe: WooCommerce yöntemi olarak taşınmadı (gerekirse resmî "WooCommerce Stripe" eklentisi; aylık bağış onunla olmaz). 1.x'in Flux Forms Stripe sağlayıcısı (`providers/`) kodda duruyor, WooCommerce akışında kullanılmaz.
+
+### REST ve adresler
+
+- `POST /wp-json/flxb-wc/v1/receipt`: dekont yükleme, alanlar `order`, `key` (sipariş anahtarı = yetki; önbellekli sayfalarda çalışır), dosya `dekont` (PDF/JPG/PNG/WEBP/HEIC, en büyük boyut ayarda). Yanlış anahtar **404**. Siparişte en çok 5 dekont.
+- Dekontu açma: `/?flxb_dekont=<sipariş>&i=<sıra>&key=<sipariş anahtarı>` (ya da yönetici nonce'u). Dosyalar `uploads/flxb-dekont/` altında, rastgele adla ve doğrudan erişime kapalı (`.htaccess`; Nginx'te bu klasörü kapatın).
+- Hesabım uç noktası: `bekleyen-bagislar`.
+- Ürün XML'i: `/bagis-urunleri.xml` (kalıcı bağlantı yoksa `/?flxb_feed=google`); ürün kimliği `flxb-<tür>-<seçenek>`.
+- Flux Forms el değiştirme: `/?flxb_wc_handoff=<token>` (tek kullanımlık; satırları sepete koyup ödeme sayfasına yönlendirir).
+
+### Filtreler
+
+| Filtre | Ne için |
+|---|---|
+| `flxb_wc_line( array $line, array $in, array $type )` | Sepet satırı oluşturulurken |
+| `flxb_type_page_url( string $url, array $type )` | 2.0.1: türün sayfa adresi (çözümlenmiş) |
+| `flxb_havale_account( array\|null $account, string $iban )` | 2.0.1: Havale yönteminde IBAN boşken kullanılacak hesap `{ holder, iban, bank }` (varsayılan: `flxb_bank_accounts` içinde mağaza para birimindeki ilk hesap; para birimi yazılmamış hesap TRY sayılır) |
+| `flxb_wc_simple_checkout( bool )` | Yalnız bağışlı sepette adres alanlarını kısaltmak |
+| `flxb_wc_ledger_row( array $row, WC_Order $order, $item )` | Kayıt defterine yazılan satır |
+| `flxb_wc_certificate_values( array $values, $item, WC_Order $order, array $template, array $line )` | Sertifika değişkenleri |
+| `flxb_wc_feed_type( bool $listed, array $type )`, `flxb_wc_feed_items( array $items )` | Ürün XML'i |
+| `flxb_wc_forms_checkout( bool )` | Flux Forms ödemelerini WooCommerce'e yönlendirmek |
+| `flxb_wc_form_fallback_type( int $type_id )` | Türe bağlı olmayan formun yazılacağı tür |
+| `flxb_wc_iyzico_checkout_request( array $body, WC_Order $order )` | Flux Donate iyzico Checkout Form isteği |
+| `flxb_create_order()` 2.3.0 | `ref_user_id` argümanı: siparişe `_flx_ref_user` yazar |
+| `flxb_wc_mirror_callcenter( bool, int $donation_id, array $data )` | Çağrı merkezi kaydına sipariş açılsın mı |
+| `flxb_wc_callcenter_emails( bool, int $donation_id )` | O siparişte WooCommerce e-postaları |
+| `flxb_option_badges( array )` | Rozet listesi |
+| `flxb_email_types( array )`, `flxb_use_iletisim( bool )` | E-posta şablonları / Flux Mail kullanımı |
+| `flxb_menu_icon_url( string )` | Yönetim menüsü simgesi |
+
+### Aksiyonlar
+
+- `flxb_wc_loaded`
+- `flxb_wc_preregistered( WC_Order $order )`: havale ön kaydı açıldı.
+- `flxb_wc_receipt_uploaded( WC_Order $order, array $receipt )`. 2.3.2: yükleme önce `flx_dekont_register` (Flux Chat dekont defteri) ile kaydedilir; `$receipt['ledger']` defter kaydı, tekrar ise `$receipt['dup']` (count, source, donation_id, payer, created_at) ve sipariş meta `_flxb_dekont_dup` = 1.
+- `flxb_wc_certificates_issued( WC_Order $order, array $made )`
+- `flxb_wc_iyzico_paid( WC_Order $order, array $iyzico_response )`
+- `flxb_wc_recurring_started( int $subscription_id, WC_Order $order, $item )`
+- `flxb_wc_form_paid( string $track, WC_Order $order, object $pay_row )`
+
+### Flux Forms'a ödeme bildirimi: `flxf_external_payment`
+
+Ödeme formundan gelen sipariş ödenince Flux Donate `do_action( 'flxf_external_payment', $ctx )` çağırır; Flux Forms 2.1.0 bununla "Ödeme tamamlandı" otomasyonlarını çalıştırır. `$ctx`:
+
+`event_type` (`payment`), `track_code`, `form_id`, `form_fields`, `submitted_values`, `enriched_submitted_values`, `page_url`, `wc_order_id`, `verified_payment { amount (o form satırlarının toplamı), currency, reference (sipariş no), source ('woocommerce') }`.
+
+Formun sertifika akışı varsa (`flxf_automations_form_issues_certificate( $form_id )`) Flux Donate o satırlar için ayrıca sertifika üretmez.
+
+### E-posta şablonları (Flux Mail)
+
+`flxi_email_types` filtresine "Flux Donate" grubuyla kaydedilir, `flxi_send_email()` ile gönderilir; Flux Mail yoksa `wp_mail` (düz metin). Gönderme: `FLXB_Mail::send( 'flx-donate/<anahtar>', $to, $vars )`.
+
+| Şablon | Kime | Değişkenler |
+|---|---|---|
+| `flx-donate/recurring-started` | bağışçı | `ad, tutar, aralik, sonraki, iptal_link` |
+| `flx-donate/recurring-failed` | bağışçı | `ad, tutar, aralik, deneme, bagis_link, iptal_link` |
+| `flx-donate/receipt-uploaded` | bağış sorumlusu | `siparis, ad, tutar, aciklama, dosya, link` (yönetim sipariş linki) |
+
+Kısa WhatsApp/SMS: `FLXB_Mail::message( $channel, $phone, $text )`: önce Flux Mail (`flxi_send_message`, kanal bağlıysa), sonra Flux Certificates kuyruğu (`flxs_enqueue`).
+
+### Ayarlar (seçenek `flxb_wc`)
+
+`template_id, event_id, cert_channels, print_mode ('soon' varsayılan | 'on' | 'off'), print_fee, auto_complete, simple_address, after_add ('cart' | 'checkout' | 'stay'), page_id, notify_channels, notify_wa, notify_sms, receipt_max_mb, receipt_notify, forms_checkout, card_gateway`.
+
+### Sürüme duyarlı yerler (WooCommerce güncellemesinden sonra deneyin)
+
+Hepsi herkese açık API, ama blok tarafı WooCommerce'te en hızlı değişen kısım:
+
+- Blok ödeme yöntemleri: `Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType`, `woocommerce_blocks_payment_method_type_registration`, ön yüzde `wc.wcBlocksRegistry.registerPaymentMethod` ve `wc.wcSettings.getSetting` (Havale ve Flux Donate iyzico).
+- Uyumluluk bildirimi: `FeaturesUtil::declare_compatibility( 'custom_order_tables' | 'cart_checkout_blocks' )`.
+- Alan kısaltma: `woocommerce_get_country_locale` / `_default` (klasik ve blok ödeme sayfasında ortak).
+- Teşekkür sayfası kartları `woocommerce_thankyou` aksiyonuyla eklenir (blok temalı "Sipariş onayı" şablonunda da çalışıyor; şablon özelleştirilirse kontrol edin).
+- Tutar her hesaplamada `woocommerce_before_calculate_totals` ile türden yazılır.
+- Sipariş işlemleri yalnızca `wc_get_order()`, `$order->get_meta()/update_meta_data()`, `wc_get_orders()`, `wc_create_refund()` ile (HPOS açık/kapalı fark etmez).
+
+## Referans ve roller (2.2.0, Flux Roles)
+
+- Sütun `ref_user_id` (bağışlar ve düzenli bağışlar). Kaynak sırası: siparişte `_flx_ref_user` (Flux Roles) → düzenli bağışın referansı (aylık tahsilatlar) → Çağrı Merkezi'nde bağışı kaydeden temsilci (`meta.created_by`, `flx_referans` yetkisi varsa) → "Bağış ekle"de seçilen kişi. `FLXB_Donations::record()` `ref_user_id` alır; dolu referans ezilmez.
+- `FLXB_Refs::set( $donation_id, $user_id )`: siparişin tüm kalemleri, düzenli bağış, sipariş meta'sı ve bu bağışlardan yapılmış sertifikalar (`flxs_set_certificate_ref`) birlikte değişir; geçmişe yazılır. Aksiyon `flxb_donation_ref_changed( $id, $new, $old )`.
+- `FLXB_Donations::query( array( 'ref_user_id' => '5' ) )` filtreler (`'0'` = referanssız).
+- Yetkiler: `flxb_view_own` (Bağışlar menüsü; liste, ayrıntı, CSV ve makbuz yalnız `ref_user_id = ben`; bağışçılar, türler, düzenli bağışlar, ayarlar kapalı), `flxb_dashboard` (Dashboard, genel toplamlar; en çok bağış yapanlarda iletişim ve bağlantı yok). `flx_role_caps_supported` ile Flux Roles'e bildirilir.
+- Bağıştan sertifika oluşurken `flxs_create_certificate()`'e referans olarak bağışın `ref_user_id`'si geçer (2.2.0 öncesi müşteri ID'si geçiyordu).
+
+## Sistem kontrolü: ortak sözleşme (1.2.1)
+
+FluxWP eklentileri ve tema aynı ekrana satır ekler. Kayıt filtresi `flx_system_checks` ( array $checks ), her eleman:
+
+| Alan | Değer |
+|---|---|
+| `id` | benzersiz, `<eklenti>.<konu>` (ör. `flxb.cron.heartbeat`, `flxf.recaptcha`, `flxs_…`) |
+| `source` | görünen kaynak adı (`Flux Donate`, `Flux Forms`, `Flux Certificates`, tema adı) |
+| `group` | `Cron` \| `Payments` \| `Plugins` \| `Config` \| `Email` \| `Security` \| `Forms` \| başka bir metin (bilinen gruplar çevrilmiş başlıkla, diğerleri olduğu gibi gösterilir; boşsa `Other`) |
+| `label` | ne kontrol edildiği (boşsa satır atlanır) |
+| `status` | `ok` \| `warning` \| `error` \| `info` (başka değer → `info`) |
+| `message` | kişiye yönelik düz metin: ne bulundu, ne yapmalı |
+| `action_url` | isteğe bağlı yönetim bağlantısı (ayar sayfası veya nonce'lu "Test" adresi) |
+| `action_label` | isteğe bağlı bağlantı metni |
+
+Kurallar: kontroller ucuz olmalı (seçenek, sabit, birkaç sorgu). Dış HTTP isteği yalnızca yönetici bir "Test" bağlantısına tıklayınca yapılır; sonuç saklanıp ilgili satırda gösterilir. Gizli anahtar hiçbir satırda yazılmaz.
+
+```php
+add_filter( 'flx_system_checks', function ( $checks ) {
+	$checks[] = array( 'id' => 'tema.logo', 'source' => 'Tema', 'group' => 'Config', 'label' => 'Logo',
+		'status' => 'ok', 'message' => 'Logo yüklü.' );
+	return $checks;
+} );
+```
+
+Fonksiyonlar (Flux Donate ve Flux Forms'da aynı dosya, `includes/flx-system-checks.php` / `includes/flx/system-checks/flx-system-checks.php`; her biri `function_exists` korumalı, hangisi önce yüklenirse sonuç aynı):
+
+- `flx_system_checks_run()`: argümansız. `apply_filters( 'flx_system_checks', array() )` sonucundaki her diziyi `wp_parse_args` ile varsayılanlara (`id, source, group, label, status='info', message, action_url, action_label` hepsi `''`) tamamlar; dizi olmayan veya `label`'ı boş olanı atlar; geçersiz `status` → `'info'`. Sıralama yapmaz, dizi döner. Flux Certificates 1.2.4'teki tanımla birebir aynıdır.
+- `flx_system_checks_sorted()`: `flx_system_checks_run()` sonucunu gösterim için sıralar (grup sırası Cron, Payments, Plugins, Config, Email, Security, Forms, sonra diğerleri A–Z; grup içinde önce hatalar). Bir filtre geri çağrısı hata fırlatırsa tek bir `error` satırı döner. Hata kimliklerini `flx_system_checks_last` seçeneğine yazar (üst çubuk için).
+- `flx_system_checks_summary( array $checks )`: `array( 'ok' => n, 'warning' => n, 'error' => n, 'info' => n )`.
+- `flx_system_checks_render( array $args = array() )`: ekranı yazdırır (özet, gruplu tablo, durum simgesi + yazı, işlem bağlantıları, "Yeniden kontrol et"). `$args`: `recheck_url` (düğme adresi, varsayılan geçerli sayfa), `checks` (hazır liste; yoksa `flx_system_checks_sorted()`), `heading` (bool, başlık yazdır). Stil kendi içindedir (`.flxsc-*`), 782 px altında kart görünümüne geçer. 1.2.2: özet rozetleri `button.flxsc-chip[data-filter][aria-pressed]`; tıklayınca yalnız o durumdaki satırlar (`tr[data-status]`) görünür, boş grup kartları gizlenir, tekrar tıklayınca hepsi; `#ok|#warning|#error|#info` ile filtreli açılır (temanın ekranıyla aynı davranış). Saat Türkçe yerelde `H:i`.
+- `flx_system_checks_boot()`: hata varken Başlangıç ekranında uyarı ve üst çubukta "Sistem: N hata" (yalnız `manage_options`). Kullanıcı gizleyebilir; gizleme, hata listesi ve `flx_system_checks_versions` değişince sıfırlanır.
+- `flx_system_checks_labels()`: ekran metinleri.
+
+Yardımcı filtreler: `flx_system_checks_labels` (ekran metinlerinin çevirisi), `flx_system_checks_page_url` (uyarının bağlandığı ekran; Flux Donate varsa `Bağışlar › Ayarlar › Sistem kontrolü`, yoksa Flux Forms `Formlar › Sistem kontrolü`), `flx_system_checks_versions` (`slug => sürüm`; sürüm değişince gizlenen uyarı tekrar çıkar).
+
+Flux Donate'ın satırları `flxb.*`, Flux Forms'unkiler `flxf.*` kimlikli. Flux Donate saatlik görevin her çalışmasında `flxb_cron_heartbeat` seçeneğine zaman yazar; test sonuçları `flxb_syscheck_tests` seçeneğindedir (anahtar değil, yalnızca parmak izi saklanır).
+
+## Bağış meta anahtarları (ayrıntı ekranında gösterilir)
+
+| Anahtar | Yapı | Yazan |
+|---|---|---|
+| `iyzico` | `{paymentId, paidPrice, currency, items[{item, tx, paid, refunded}], card, at}` | iyzico sağlayıcısı |
+| `source_detail` | `'flx-chat-bot'` → "Çağrı merkezi · WhatsApp asistanı", `'flx-chat'` → "Çağrı merkezi" | Flux Chat |
+| `beneficiary_contacts` | `[{name, phone, email}]` (telefon/e-posta tıklanabilir) | Flux Chat |
+| `receipts` | `[{url, file?, at?, user?, source?}]` (`source` `whatsapp` → "WhatsApp"; yalnızca http/https bağlantılar link olur) | Flux Chat |
+| `audit` | `[{at, user, what, changes?}]`; `what`: `receipt`, `status` (`changes.status=[eski, yeni]`), `refund` (`changes.amount`), `cancel`, `beneficiaries`; `changes.via` = kaynak (`flx-chat` → "çağrı merkezi"). "Geçmiş" kutusunda yeniden eskiye listelenir; iade/iptal kendi kaydını ekler | herkes |
+
+## Koyu mod
+
+Filtreler `flxb_front_dark_mode` ve `flxf_front_dark_mode`: `'class'` (varsayılan; tema `body.flx-dark` + cihaz koyu), `'auto'` (cihaz ayarı; renkler `--flxb-dark-*` / `--flxf-dark-*`), `'off'`. Renkler `--flx-*` yoksa `--wp--preset--color--*` değişkenlerine düşer.
+
+## Sağlayıcı yoksa
+
+Ödeme kutusu "Online ödeme şu anda kullanılamıyor…" gösterir, düğme kapalı kalır; yönetim sayfalarında uyarı çıkar.
+
+## Bilinen sınırlar
+
+- Bir sayfada yalnızca bir Flux Forms ödeme formu çalışır (iki form JS çakışmasıyla takılır). Hub sayfaları tür sayfalarına link vermeli.
+- Flux Forms'un eski `iefb/sefb/vefb` URL ön-doldurması çalışmıyor; `flxb_opt/flxb_qty` kullanın.
+- Kurban modülü varsayılan kapalı (Bağışlar › Ayarlar › Kurban).
+
+## Sistem düzeltmeleri (`flx_system_fixes`, 1.2.3)
+
+SEO & MCP'nin `system_fix` aracı için kayıtlı düzeltmeler (sözleşme: /mnt/project-files/seo-mcp/MCP-API.md). Hepsi girdiyi kendi doğrular; tür değişiklikleri `FLXB_Types::save()` üzerinden gider (form fiyat senkronu ve form çakışma kontrolü aynen çalışır).
+
+| Kimlik | Değer | Çözdüğü satır |
+|---|---|---|
+| `flxb.org_name` | metin (≤190) | `flxb.cfg.org` |
+| `flxb.currency` | `TRY` \| `USD` \| `EUR` \| `GBP` | `flxb.cfg.currency` |
+| `flxb.type_open` | kapalı ve fiyatlı (veya serbest tutarlı) türün slug'ı (enum; yoksa düzeltme listelenmez) | `flxb.cfg.types` |
+| `flxb.type_unit_price` | `slug=fiyat` (etkin her seçenek: fiyat × units_per) | `flxb.cfg.types` |
+| `flxb.type_link_form` | `slug=form_id` (başka açık türe bağlı form reddedilir) | `flxb.cfg.type_forms` |
+
+## Ödeme onayı (2.4.0)
+- `flxb_payment_approved( int $donation_id, WC_Order|null $order )` (action): yönetici havaleyi onayladı.
+- `flxb_payment_rejected( int $donation_id, string $reason, WC_Order|null $order, string[] $sent )` (action): reddetti; `$sent` bildirimin gittiği kanallar.
+- `flxb_payment_rejected_text( $text, $donation, $reason, $order )` (filter): bağışçıya giden WhatsApp metni.
+- E-posta şablonu `flx-donate/payment-rejected` (ad, tutar, aciklama, siparis).
+- Bağış meta `receipts[]` (Çağrı Merkezi yazar): `url, file, at, user, source`; isteğe bağlı `mime` (önizleme türü) ve `warn` (kartta gösterilecek uyarı, ör. dekont defteri tekrarı). Reddedilen bağışta meta `rejected` = { reason, by, at }, siparişte `_flxb_reject_reason`.
+
+## Kişi başına sertifika (2.4.1)
+- Satırdaki `beneficiaries` (ya da virgülle ayrılmış `ben_name`) her isim için ayrı sertifika üretir; tek sipariş, tek ödeme. Sipariş satırı meta `_flxb_cert_ids` (dizi; `_flxb_cert_id` ilki), bağış meta `certificates` (kodlar), `certificate_code` ilki.
+- `FLXB_WC_Certificates::recipients( $line, $item, $billing, $total )` → [ { name, count } ]; `remake( WC_Order )` iptal edip yeniden üretir (göndermez); `send_all( WC_Order )`.
+- Çağrı Merkezi: flxb_create_order satırında `units` = adet, `beneficiaries` = isimler (en fazla adet kadar). Ayrı bağış açmaya gerek yok.
+
+## Çöp ve silme (2.5.0)
+- Yeni durum `trash` (listede varsayılan gizli; `status=trash` ile görülür). Önceki durum meta `pre_trash`.
+- `FLXB_Donations::trash_rows( $ids )`, `restore_rows( $ids )`, `delete_rows( $ids )`, `ids_of_order( $order_id )`, `trash_count()`.
+- Eylemler: `flxb_donation_trashed( $id, $row )`, `flxb_donation_restored( $id, $status )`, `flxb_donation_deleted( $id, $row )`. Çağrı Merkezi gibi bağış id'si tutan eklentiler `flxb_donation_deleted` ile bağlantıyı temizleyebilir.
+- WooCommerce: `woocommerce_trash_order`, `woocommerce_untrash_order`, `woocommerce_delete_order` ve eski ekran için `trashed_post` / `untrashed_post` / `deleted_post` (shop_order). `FLXB_WC_Ledger::reconcile( $force )` yetim kayıtları temizler.
+
+## Mobil uygulama: Bağışlarım / Sertifikalarım (2.7.0)
+Flux App `flxapp_modules` ile iki yerel modül kaydolur: `flxb-donations` ("Bağışlarım", ikon `heart`) ve `flxb-certificates` ("Sertifikalarım", ikon `award`); `cap: read`, `menu: ''` (müşterinin wp-admin menüsü boş). Uçlar yalnız giriş yapan kullanıcının verisini döner (giriş yoksa 401):
+
+| Uç | Cevap |
+|---|---|
+| `GET /wp-json/flxb/v1/me` | `{name, donations, paid, pending, total, total_label, certificates, donate_url}` |
+| `GET /wp-json/flxb/v1/me/donations?page=1&per_page=20` (≤50) | `{items: [bağış], total, page, pages}`; başlık `X-WP-Total` |
+| `GET /wp-json/flxb/v1/me/donations/<id>` | bağış + `certificates: [sertifika]`; başkasınınki 404 |
+| `GET /wp-json/flxb/v1/me/certificates` | `{items: [sertifika]}` (iptal edilenler hariç) |
+
+- Bağış (bir sipariş = bir bağış): `id, order_id, date (ISO), date_label, title, amount, currency, amount_label, type, type_label, status, status_label, status_tone (ok|pending|failed|muted), lines[{id,title,quantity,amount,amount_label}], certificates (adet), web_url`; havale bekliyorsa `pay_url` (dekont yükleme sayfası, web görünümünde açılır). Filtre `flxb_app_gift( $out, $rows )`.
+- Sertifika: `id, code, number, name, title, date, date_label, donation_id, url, pdf_url, image_url`.
+- Hangi bağışlar kullanıcının: kendi WooCommerce siparişleri + hesaba bağlı bağışçı kartları (usermeta `flxb_donor_ids`) + hesabın e-postasıyla eşleşen bağışçı kartı. Kart bağlama: `flxapp_otp_customer_created` (siparişin bağışçısı) ve telefonla kodla girişte `flxapp_otp_login` (hesapta tek telefon varsa o numaranın kartı). Fatura bilgisine yazılmış telefon tek başına yetmez. Filtre `flxb_app_donor_ids( $ids, $user )`; PHP `FLXB_App::link( $user_id, $donor_ids )`.
+
+## Mobil uygulama: Onay bekleyenler (2.8.0)
+Personelin havale/EFT dekontlarını telefondan onaylaması için. Sözleşme: docs/fluxapp/MODUL-API.md › Bağış onayı.
+
+Modül `flxb-review` → `{title: "Onay bekleyenler", cap: edit_shop_orders (filtre flxb_app_review_capability), menu: '', api: rest_url('flxb/v1/app'), icon: heart, order: 5}`.
+
+| Uç | Cevap |
+|---|---|
+| `GET /wp-json/flxb/v1/app/pending?page=&per_page=` (≤50) | `{items:[pending], total, page, pages}`, eskiden yeniye |
+| `POST /wp-json/flxb/v1/app/donations/<id>/approve` | `{ok, status_label, certificates}`; artık beklemiyorsa 409 |
+| `POST /wp-json/flxb/v1/app/donations/<id>/reject` `{reason, notify?=true}` | `{ok, status_label, sent:[kanallar]}`; boş gerekçe 400 |
+
+- `pending`: `id, order_id, title, amount, amount_label, at, date_label, waiting_label ("2 gün bekliyor"), donor{name,phone,email}, ref{name}|null, lines[{title,quantity,amount_label}], receipt{url,type(image|pdf),name,at_label,warn,count}|null, note, web_url`. Filtre `flxb_app_review_item`.
+- Kurallar paneldeki "Ödeme onayı bekliyor" kartıyla aynı (`FLXB_Approval::pending/can/do_approve/do_reject`): onay `payment_complete` → sertifikalar mevcut akışla gider; ret siparişi iptal eder, `notify` ise bağışçıya WhatsApp + e-posta (kara liste uyulur).
+- `receipt.url`: sitede yüklenen dekont için 15 dk geçerli imzalı adres (`?flxb_dekont=&i=&exp=&sig=`, giriş gerekmez); WhatsApp'tan gelen dekont kendi adresiyle.
+- Yetki: WooCommerce bağışı `edit_shop_orders`, sipariş dışı bağış yönetici yetkisi (`flxb_manage_capability`).

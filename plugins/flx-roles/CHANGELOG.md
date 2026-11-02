@@ -1,0 +1,19 @@
+# Değişiklikler
+
+## 1.2.0
+- Roller ve erişim sayfasına Flux Studio yetkileri: Stüdyo'yu kullanır (`flxst_use`), Stüdyo'yu yönetir (`flxst_manage`).
+- Yönetici rolü bu iki yetkiyi bir kez alır; Personel ve İdareci için sayfadan açılır.
+
+## 1.1.0
+- Yeni rol: Yönetici (bu sayfadaki her yetki; WordPress yöneticisi değil).
+- Panelden yeni rol ekleme ve silme (ör. Gönüllü); yeni rol yalnız panele girme yetkisiyle başlar.
+- Kullanıcıya WhatsApp numarası (yalnız yönetici yazar, bir numara tek kişide); asistan için numaradan kişi ve yetki bulma.
+- Yeni yetkiler: başkası adına bağış (referans kendisi), kendi bağışçıları, referans bildirimi, WhatsApp asistanında personel araçları, raporlar (alır / görür / zamanlar), Görev/Sertifika/Çağrı yönetimi.
+- Personel ve İdareci'ye yeni varsayılan yetkiler bir kez eklenir.
+
+## 1.0.0
+- Yeni roller: Personel ve İdareci.
+- Kullanıcılar › Roller ve erişim: iki rolün Görev, Sertifika, Bağış ve Çağrı Merkezi erişimini aç/kapat; kişileri ekle/çıkar; girişte açılan ekran.
+- Kişisel referans linki (?ref=): linkle gelen ziyaretçinin bağış siparişine referans kişi yazılır. Profil ve Roller sayfasında kopyalanabilir link.
+- Görev yetkileri Flux Tasks'in rol ayarıyla eşitlenir; Personel görevlerde atanabilir kişi olur.
+- Sistem kontrolü: roller ve henüz uygulanmayan yetkiler.

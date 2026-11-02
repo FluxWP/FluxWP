@@ -1,0 +1,111 @@
+name: Flux Desktop (macOS)
+# İlk sürümler yalnız macOS. fluxapp-v* tag'i release taslağı açar; elle de çalıştırılabilir (marka seçerek).
+on:
+  push:
+    tags: ['fluxapp-v*']
+  workflow_dispatch:
+    inputs:
+      brand:
+        description: Marka (brands/<slug>); boşsa flux
+        default: ''
+      release:
+        description: Pre-release tag'i (ör. fluxapp-v0.2.0); boşsa yalnız artifact
+        default: ''
+permissions:
+  contents: write
+jobs:
+  macos:
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Tag'de iki marka birden; elle çalıştırmada seçilen marka.
+        brand: ${{ fromJSON(inputs.brand && format('["{0}"]', inputs.brand) || '["flux"]') }}
+    env:
+      FLUX_BRAND: ${{ matrix.brand }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: oven-sh/setup-bun@v2
+        with: { bun-version: 1.4.4 }
+      - uses: actions/setup-node@v5
+        with: { node-version: 22 }
+      - uses: dtolnay/rust-toolchain@stable
+        with: { targets: 'aarch64-apple-darwin,x86_64-apple-darwin' }
+      - uses: swatinem/rust-cache@v2
+        with: { workspaces: apps/desktop/src-tauri }
+      - run: bun install --frozen-lockfile
+      # Otomatik güncelleme imzası (tauri signer). Secret yoksa güncelleme paketi üretilmez; uygulama dmg indirme sayfasına yönlendirir.
+      - run: bun tools/fluxapp/brand.mjs && bun run --filter @fluxwp/desktop icons
+        env:
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+      # İmza: Secret'lar yoksa imzasız derlenir.
+      # APPLE_CERTIFICATE: "Developer ID Application" .p12 (base64), APPLE_CERTIFICATE_PASSWORD, APPLE_SIGNING_IDENTITY (isteğe bağlı).
+      # Notarize: App Store Connect API anahtarı (APPLE_API_ISSUER, APPLE_API_KEY, APPLE_API_KEY_P8 = .p8 içeriği)
+      # ya da Apple ID (APPLE_ID, APPLE_PASSWORD = uygulamaya özel şifre, APPLE_TEAM_ID).
+      - name: İmza ayarı
+        env:
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          APPLE_API_KEY_P8: ${{ secrets.APPLE_API_KEY_P8 }}
+        run: |
+          if [ -n "$APPLE_CERTIFICATE" ]; then echo "FLUX_SIGNED=1" >> "$GITHUB_ENV"; echo "İmzalı derleme"; else echo "::warning::APPLE_CERTIFICATE yok, imzasız derleniyor"; fi
+          if [ -n "$APPLE_API_KEY_P8" ]; then
+            mkdir -p "$RUNNER_TEMP/keys" && printf '%s' "$APPLE_API_KEY_P8" > "$RUNNER_TEMP/keys/AuthKey.p8"
+            echo "APPLE_API_KEY_PATH=$RUNNER_TEMP/keys/AuthKey.p8" >> "$GITHUB_ENV"
+          fi
+      - name: Build (universal)
+        working-directory: apps/desktop
+        env:
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        run: |
+          # Boş secret'lar Tauri'yi şaşırtmasın: tanımsız bırak.
+          for v in APPLE_CERTIFICATE APPLE_CERTIFICATE_PASSWORD APPLE_SIGNING_IDENTITY APPLE_API_ISSUER APPLE_API_KEY APPLE_ID APPLE_PASSWORD APPLE_TEAM_ID TAURI_SIGNING_PRIVATE_KEY; do
+            [ -z "${!v}" ] && unset "$v"
+          done
+          if [ -z "${APPLE_SIGNING_IDENTITY:-}" ] && [ -n "${APPLE_CERTIFICATE:-}" ]; then export APPLE_SIGNING_IDENTITY="Developer ID Application"; fi
+          bun run tauri build --target universal-apple-darwin --config src-tauri/tauri.brand.conf.json
+      - name: İmzayı doğrula
+        if: env.FLUX_SIGNED == '1'
+        run: |
+          app=$(ls -d apps/desktop/src-tauri/target/universal-apple-darwin/release/bundle/macos/*.app | head -1)
+          codesign --verify --deep --strict --verbose=2 "$app"
+          spctl -a -vv "$app" || echo "::warning::Gatekeeper onayı yok (notarize secret'ları eksik olabilir)"
+      # Dosya adları markayı taşır; güncelleme sunucusu fluxapp-<marka>-* ile eşler.
+      - name: Dosyaları topla
+        run: |
+          v=$(node -p "require('./apps/desktop/package.json').version")
+          b=apps/desktop/src-tauri/target/universal-apple-darwin/release/bundle
+          n="fluxapp-$FLUX_BRAND-$v-macos-universal"
+          mkdir -p out
+          cp "$(ls "$b"/dmg/*.dmg | head -1)" "out/$n.dmg"
+          tgz=$(ls "$b"/macos/*.app.tar.gz 2>/dev/null | head -1 || true)
+          if [ -n "$tgz" ]; then
+            cp "$tgz" "out/$n.app.tar.gz"
+            cp "$tgz.sig" "out/$n.app.tar.gz.sig"
+          else
+            echo "::warning::TAURI_SIGNING_PRIVATE_KEY yok, otomatik güncelleme paketi üretilmedi"
+          fi
+          ls -la out
+          # Sürüm notu: CHANGELOG'daki ## <sürüm> bölümü (uygulamadaki güncelleme kartında görünür).
+          awk -v v="$v" '$0 ~ "^## "v"( |$)" {f=1; next} /^## / {f=0} f' apps/desktop/CHANGELOG.md > "$RUNNER_TEMP/notes.md"
+      - uses: actions/upload-artifact@v5
+        with:
+          name: ${{ env.FLUX_BRAND }}-macos
+          path: out/*
+      - if: startsWith(github.ref, 'refs/tags/fluxapp-v') || inputs.release != ''
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.release || github.ref_name }}
+          target_commitish: ${{ github.sha }}
+          name: FluxWP ${{ inputs.release || github.ref_name }}
+          prerelease: true
+          body_path: ${{ runner.temp }}/notes.md
+          files: out/*
