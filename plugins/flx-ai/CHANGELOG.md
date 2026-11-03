@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.6.8
+- Sohbet paneli ön yüzde sitenin Açık / Koyu / Sistem seçicisini izler (sistem temasına değil). Sayfa geçişinde önceki sayfanın görüntüsü güncel temayla çizilir (eski tema bir an görünmez).
+
 ## 0.6.7
 - "AI'ya sor" düğmesinin sağ boşluğu `--flxai-edge` CSS değişkeniyle ayarlanabilir (Flux Admin telefon yatayda sağdaki menünün soluna alır).
 

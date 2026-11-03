@@ -69,6 +69,8 @@ add_action(
 function flxsm_render_app() {
 	echo '<script>document.documentElement.classList.add("flxsm-lock");</script>';
 	echo '<div id="flxsm-app" class="flxsm"><noscript>' . esc_html__( 'Sosyal Medya için JavaScript gerekli.', 'flx-social' ) . '</noscript></div>';
+	// Tema div'in hemen ardından, ilk boyamadan önce (app.js yüklenene kadar açık tema görünmesin).
+	printf( "<script>(function(d,w){var m=null;try{m=JSON.parse(localStorage.getItem('flxsm.theme')||'null')}catch(e){}m=m||%s;d.getElementById('flxsm-app').setAttribute('data-theme',m==='dark'||(m==='auto'&&!!w.matchMedia&&w.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light')})(document,window)</script>", wp_json_encode( function_exists( 'flxa_user_mode' ) ? flxa_user_mode() : 'auto' ) ); // phpcs:ignore WordPress.Security.EscapeOutput
 }
 
 add_action(

@@ -70,6 +70,8 @@ body.flxa:not(.flxa-appmode),
 body.flxa:not(.flxa-appmode) #wpwrap,
 body.flxa:not(.flxa-appmode) #wpcontent,
 body.flxa:not(.flxa-appmode) #wpbody-content { background: var(--flxa-bg); }
+/* Uygulama ekranları (Görevler, Çağrı Merkezi, Stüdyo...) JS yüklenene kadar açık zemin göstermesin; uygulamanın kendi zemini (daha özgül) üstüne yazar. */
+:where(html.flxa-dark) body.flxa-appmode { background: var(--flxa-bg); }
 body.flxa:not(.flxa-appmode) { color: var(--flxa-text); font-family: var(--flxa-font); -webkit-font-smoothing: antialiased; }
 body.flxa:not(.flxa-appmode),
 body.flxa:not(.flxa-appmode) p,

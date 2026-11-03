@@ -139,6 +139,8 @@ function flxc_render_app() {
 	}
 	echo '<script>document.documentElement.classList.add("flxc-lock");</script>';
 	echo '<div id="flxc-app" class="flxc" data-theme="auto"><noscript>' . esc_html__( 'Çağrı Merkezi için JavaScript gerekli.', 'flx-chat' ) . '</noscript></div>';
+	// Kayıtlı tema (açık / koyu / otomatik) ilk boyamadan önce; app.js yüklenene kadar yanlış tema görünmesin.
+	echo "<script>(function(d,w){var m;try{m=localStorage.getItem('flxc_theme')}catch(e){}m=m||'auto';d.getElementById('flxc-app').setAttribute('data-theme',m);d.documentElement.classList.toggle('flxc-dark-doc',m==='dark'||(m==='auto'&&!!w.matchMedia&&w.matchMedia('(prefers-color-scheme: dark)').matches))})(document,window)</script>";
 }
 
 /* Uygulama ekranında tarayıcı çubuğu rengi ve ana ekrana ekleme. */

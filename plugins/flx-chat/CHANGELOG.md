@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.35.4
+- Koyu modda yenilemede açık tema yanıp sönmesi giderildi: kayıtlı tema, uygulama kabı çizilir çizilmez (app.js beklenmeden) uygulanır.
+
 ## 1.35.3
 - Görevler modülünün varsayılan rengi yeşil yerine tema vurgusu.
 
