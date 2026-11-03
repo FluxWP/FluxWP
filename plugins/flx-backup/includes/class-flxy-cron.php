@@ -174,6 +174,13 @@ final class FLXY_Cron {
 				FLXY_Storage::rrmdir( $d );
 			}
 		}
+		// ZipArchive'in yarıda kalmış geçici kopyaları (flxy-….zip.XXXXXX; 1.3.0 öncesi takılan yedeklerden).
+		$temps = glob( FLXY_Storage::dir() . '/*.zip.*' );
+		foreach ( $temps ? $temps : array() as $f ) {
+			if ( is_file( $f ) && filemtime( $f ) < $now - HOUR_IN_SECONDS && ! FLXY_Runner::busy() ) {
+				wp_delete_file( $f );
+			}
+		}
 		// Geri yüklemeden kalan kenara alınmış paket klasörleri (yarıda kesilen geri yükleme).
 		foreach ( array( WP_PLUGIN_DIR, get_theme_root() ) as $root ) {
 			$old = glob( $root . '/*.flxy-old-*', GLOB_ONLYDIR );
