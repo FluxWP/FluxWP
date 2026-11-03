@@ -15,7 +15,9 @@ Flux Updater özel FluxWP tema ve eklentilerimizi (özel bir GitHub deposunun re
 ![Özel güncelleme](https://img.shields.io/badge/güncelleme-özel%20GitHub%20release-2fbf8f)
 ![Arayüz](https://img.shields.io/badge/arayüz-Türkçe%20%7C%20English-e30a17)
 
-[Özellikler](#özellikler) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+[Özellikler](#özellikler) · [Ekran görüntüleri](#ekran-görüntüleri) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+
+<img src="docs/demo-tr.gif" alt="Flux Updater turu: bağlantı durumu, bağlantı testi, güncellemesi olan FluxWP paketleri listesi, ayarlar ve WordPress Güncellemeler ekranı" width="900">
 
 </div>
 
@@ -54,6 +56,14 @@ Paketlerimiz özel bir GitHub deposunda duruyor, WordPress.org'da yok. Flux Upda
 - Ayarlar › Diğer kaynaklar: ekle (eklemeden önce test edilir), aç/kapat, öncelik (Yukarı), sil. Paket tablosunda "Kaynak: …" etiketi.
 - Aynı paket birden çok kaynakta varsa kurulu olduğu kaynaktan güncellenir; kurulu değilse listede üstteki kaynak kazanır ("2 kaynakta var").
 - Her anahtar yalnız kendi sunucusunun adresine gider; indirme adresi kaynağın host'unda değilse paket alınmaz. Ulaşılamayan kaynağın paketleri son bilinen veriden gösterilir, üstte uyarı çıkar.
+
+## Ekran görüntüleri
+
+| FluxWP paketleri | Bağlantı ayarları |
+|---|---|
+| <img src="docs/images/packages-tr.jpg" alt="FluxWP paketleri" width="440"> | <img src="docs/images/settings-tr.jpg" alt="Bağlantı ayarları" width="440"> |
+| **WordPress Güncellemeler ekranında** | **Mobil** |
+| <img src="docs/images/wp-updates-tr.jpg" alt="WordPress Güncellemeler ekranında" width="440"> | <img src="docs/images/mobile-tr.jpg" alt="Mobil" width="260"> |
 
 ## Kurulum
 

@@ -16,7 +16,9 @@ Flux Admin redesigns the WordPress dashboard: a grouped sidebar you can edit per
 ![Dark mode](https://img.shields.io/badge/theme-light%20%7C%20dark%20%7C%20auto-333)
 ![UI](https://img.shields.io/badge/UI-English%20%7C%20Türkçe-e30a17)
 
-[Features](#features) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+[Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+
+<img src="docs/demo.gif" alt="Flux Admin tour: dashboard modules, the Ctrl+K command palette, moving between screens without a white flash, switching to dark mode and the menu editor" width="900">
 
 </div>
 
@@ -54,6 +56,18 @@ Our volunteers and staff use WordPress mostly from their phones, and the stock a
 ### App (PWA)
 - "Add to Home Screen" on phones and the install icon on desktop browsers. Only CSS, JS, fonts and images are cached, never admin pages.
 - Logins made inside the app stay signed in; browser logins behave as usual.
+
+## Screenshots
+
+| Dashboard | Dark mode |
+|---|---|
+| <img src="docs/images/dashboard-en.jpg" alt="Dashboard" width="440"> | <img src="docs/images/dark-en.jpg" alt="Dark mode" width="440"> |
+| **Command palette (Ctrl+K)** | **Menu editor per role** |
+| <img src="docs/images/command-palette-en.jpg" alt="Command palette (Ctrl+K)" width="440"> | <img src="docs/images/menu-editor-en.jpg" alt="Menu editor per role" width="440"> |
+| **Settings** | **Mobile: bottom bar** |
+| <img src="docs/images/settings-en.jpg" alt="Settings" width="440"> | <img src="docs/images/mobile-en.jpg" alt="Mobile: bottom bar" width="260"> |
+| **Mobile: side panel** |   |
+| <img src="docs/images/mobile-menu-en.jpg" alt="Mobile: side panel" width="260"> |   |
 
 ## Installation
 

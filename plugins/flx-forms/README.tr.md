@@ -16,7 +16,9 @@ Flux Forms, Easy Form Builder'ın tüm özellikleri açık ve dışarıya hiçbi
 ![Telemetri yok](https://img.shields.io/badge/telemetri-yok-333)
 ![Arayüz](https://img.shields.io/badge/arayüz-Türkçe%20%7C%20English-e30a17)
 
-[Özellikler](#özellikler) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+[Özellikler](#özellikler) · [Ekran görüntüleri](#ekran-görüntüleri) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+
+<img src="docs/demo-tr.gif" alt="Flux Forms turu: yanıt ve dönüşümlü Dashboard, fidan bağışı formunun yanıtları, sürükle-bırak builder, sertifika otomasyonu ve sitedeki form" width="900">
 
 </div>
 
@@ -52,6 +54,20 @@ Form eklentileri genelde işe yarayan kısımları (ödeme, koşullu mantık, do
 ### Ödeme ve otomasyonlar
 - Flux Donate varsa **Öde** adımı seçilen tutarı WooCommerce ödeme sayfasına taşır (kart, havale, aylık bağış); yoksa sunucuda tutar doğrulamalı ve webhook'lu yerleşik Stripe.
 - **Otomasyonlar:** form gönderilince ya da ödeme tamamlanınca *Sertifika oluştur*, *Sertifika gönder*, *Teşekkür ekranında göster*, *E-posta gönder*, *Webhook* gibi adımlar çalışır. Hazır "Fidan bağışı → Sertifika" akışı tek tıkla kurulur.
+
+## Ekran görüntüleri
+
+| Dashboard | Sürükle-bırak builder |
+|---|---|
+| <img src="docs/images/dashboard-tr.jpg" alt="Dashboard" width="440"> | <img src="docs/images/builder-tr.jpg" alt="Sürükle-bırak builder" width="440"> |
+| **Yanıtlar** | **Otomasyonlar** |
+| <img src="docs/images/responses-tr.jpg" alt="Yanıtlar" width="440"> | <img src="docs/images/automations-tr.jpg" alt="Otomasyonlar" width="440"> |
+| **Form şablonları** | **Sitedeki form** |
+| <img src="docs/images/templates-tr.jpg" alt="Form şablonları" width="440"> | <img src="docs/images/public-tr.jpg" alt="Sitedeki form" width="440"> |
+| **Flux Admin ile koyu tema** | **Mobil: Dashboard** |
+| <img src="docs/images/dark-tr.jpg" alt="Flux Admin ile koyu tema" width="440"> | <img src="docs/images/mobile-tr.jpg" alt="Mobil: Dashboard" width="260"> |
+| **Mobil: form** |   |
+| <img src="docs/images/mobile-public-tr.jpg" alt="Mobil: form" width="260"> |   |
 
 ## Kurulum
 

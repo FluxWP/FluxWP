@@ -16,7 +16,9 @@ Flux App, FluxWP masaüstü ve mobil uygulamasının (ve Claude gibi MCP istemci
 ![Platformlar](https://img.shields.io/badge/uygulama-macOS%20%C2%B7%20Windows%20%C2%B7%20iOS%20%C2%B7%20Android-2fbf8f)
 ![Arayüz](https://img.shields.io/badge/arayüz-Türkçe%20%7C%20English-e30a17)
 
-[Özellikler](#özellikler) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+[Özellikler](#özellikler) · [Ekran görüntüleri](#ekran-görüntüleri) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+
+<img src="docs/demo-tr.gif" alt="Flux App turu: genel ayarlar, yerel modüller, platforma göre menü, tüm oturumlar ve izin ekranı" width="900">
 
 </div>
 
@@ -48,6 +50,18 @@ Bir WordPress sitesi için telefon ya da masaüstü uygulaması genelde elle yap
 
 ### Uygulama sayfası
 - Sekmeler: Genel, Modüller, Menü, Bağlı uygulamalar, Tüm erişimler; kişiler kendi oturum ve anahtarlarını Kullanıcılar › Uygulama erişimi'nde görür ve kaldırır.
+
+## Ekran görüntüleri
+
+| Genel ayarlar | Yerel modüller |
+|---|---|
+| <img src="docs/images/general-tr.jpg" alt="Genel ayarlar" width="440"> | <img src="docs/images/modules-tr.jpg" alt="Yerel modüller" width="440"> |
+| **Rol ve platforma göre menü** | **Bağlı uygulamalar** |
+| <img src="docs/images/menu-tr.jpg" alt="Rol ve platforma göre menü" width="440"> | <img src="docs/images/apps-tr.jpg" alt="Bağlı uygulamalar" width="440"> |
+| **Tüm oturumlar ve anahtarlar** | **İzin ekranı** |
+| <img src="docs/images/access-tr.jpg" alt="Tüm oturumlar ve anahtarlar" width="440"> | <img src="docs/images/consent-tr.jpg" alt="İzin ekranı" width="440"> |
+| **Flux Admin ile koyu tema** | **Telefonda izin ekranı** |
+| <img src="docs/images/dark-tr.jpg" alt="Flux Admin ile koyu tema" width="440"> | <img src="docs/images/mobile-tr.jpg" alt="Telefonda izin ekranı" width="260"> |
 
 ## Kurulum
 

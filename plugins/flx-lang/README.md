@@ -17,7 +17,9 @@ Flux Language makes the site multilingual without a heavy plugin. Each post, pag
 ![AI](https://img.shields.io/badge/AI-one--click%20translation-7d64ff)
 ![UI](https://img.shields.io/badge/UI-English%20%7C%20Türkçe-e30a17)
 
-[Features](#features) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+[Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+
+<img src="docs/demo.gif" alt="Flux Language tour: the Languages settings, language badges in the post list, the language box in the editor and the English front page with the footer switcher" width="900">
 
 </div>
 
@@ -51,6 +53,18 @@ Multilingual plugins tend to be the heaviest thing on a WordPress site: extra ta
 - `hreflang` + `x-default`, `og:locale:alternate`, canonical, all languages in the sitemap; fallback pages point canonical to Turkish.
 - Tools for Flux AI and MCP: `flxl_languages`, `flxl_untranslated`, `flxl_save_translation`, `flxl_set_language`, `flxl_image_language`, `flxl_term_translation`, `flxl_site_texts`; `lang` on Flux SEO content tools.
 - REST: `lang` and `translations` fields, `?lang=en` filter.
+
+## Screenshots
+
+| Languages settings | Language badges in the post list |
+|---|---|
+| <img src="docs/images/settings-en.jpg" alt="Languages settings" width="440"> | <img src="docs/images/posts-en.jpg" alt="Language badges in the post list" width="440"> |
+| **Language box in the editor** | **English front page** |
+| <img src="docs/images/editor-en.jpg" alt="Language box in the editor" width="440"> | <img src="docs/images/front-en-en.jpg" alt="English front page" width="440"> |
+| **Footer language switcher** | **Dark mode with Flux Admin** |
+| <img src="docs/images/switcher-en.jpg" alt="Footer language switcher" width="440"> | <img src="docs/images/dark-en.jpg" alt="Dark mode with Flux Admin" width="440"> |
+| **Mobile, English** |   |
+| <img src="docs/images/mobile-en.jpg" alt="Mobile, English" width="260"> |   |
 
 ## Installation
 

@@ -16,7 +16,9 @@ Flux Mail "WordPress <wordpress@…>" yerine kurumunuzu koyar: gönderen adı ve
 ![MCP](https://img.shields.io/badge/yapay%20zekâ-MCP%20araçları-7d64ff)
 ![Arayüz](https://img.shields.io/badge/arayüz-Türkçe%20%7C%20English-e30a17)
 
-[Özellikler](#özellikler) · [Kurulum](#kurulum) · [Yapay zekâ asistanlarıyla kullanım (MCP)](#yapay-zekâ-asistanlarıyla-kullanım-mcp) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+[Özellikler](#özellikler) · [Ekran görüntüleri](#ekran-görüntüleri) · [Kurulum](#kurulum) · [Yapay zekâ asistanlarıyla kullanım (MCP)](#yapay-zekâ-asistanlarıyla-kullanım-mcp) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+
+<img src="docs/demo-tr.gif" alt="Flux Mail turu: aç/kapa anahtarlı e-posta listesi, açık bir iletiyle posta kutusu, gönderim kayıtları, WhatsApp ve SMS bağlantıları, canlı önizlemeli gönderim ekranı" width="900">
 
 </div>
 
@@ -49,6 +51,20 @@ WordPress kendi hâlinde `wordpress@sunucu` adresinden düz metin gönderir; her
 ### WhatsApp ve SMS
 - **Bağlantılar:** WhatsApp için Evolution API, Flux WPAPI ya da Cloud API (Meta), SMS için Netgsm; birden çok numara, kanal başına varsayılan, QR ya da eşleştirme koduyla bağlanma, durum, yeniden başlatma, oturum kapatma.
 - Bir bağlantıyı metin, resim, sesli mesaj, belge ya da (Cloud API) şablonla **test edin**.
+
+## Ekran görüntüleri
+
+| Aç/kapa ve düzenleyicili e-postalar | Açık bir iletiyle posta kutusu |
+|---|---|
+| <img src="docs/images/emails-tr.jpg" alt="Aç/kapa ve düzenleyicili e-postalar" width="440"> | <img src="docs/images/mailbox-tr.jpg" alt="Açık bir iletiyle posta kutusu" width="440"> |
+| **Canlı önizlemeli gönderim** | **WhatsApp ve SMS bağlantıları** |
+| <img src="docs/images/send-tr.jpg" alt="Canlı önizlemeli gönderim" width="440"> | <img src="docs/images/connections-tr.jpg" alt="WhatsApp ve SMS bağlantıları" width="440"> |
+| **Gönderim kayıtları** | **Ayarlar: gönderen ve SMTP** |
+| <img src="docs/images/logs-tr.jpg" alt="Gönderim kayıtları" width="440"> | <img src="docs/images/settings-tr.jpg" alt="Ayarlar: gönderen ve SMTP" width="440"> |
+| **Flux Admin ile koyu tema** | **Mobil: posta kutusu** |
+| <img src="docs/images/dark-tr.jpg" alt="Flux Admin ile koyu tema" width="440"> | <img src="docs/images/mobile-tr.jpg" alt="Mobil: posta kutusu" width="260"> |
+| **Mobil: kayıtlar** |   |
+| <img src="docs/images/mobile-log-tr.jpg" alt="Mobil: kayıtlar" width="260"> |   |
 
 ## Kurulum
 

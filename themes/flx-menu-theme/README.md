@@ -17,7 +17,9 @@ Flux Menu Theme is the theme of menu.example.org, the domain behind our event QR
 ![QR](https://img.shields.io/badge/works%20with-FluxWP%20QR%20Menu-0a7cff)
 ![UI](https://img.shields.io/badge/UI-English%20%7C%20Türkçe-e30a17)
 
-[Features](#features) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+[Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+
+<img src="docs/demo.gif" alt="Flux Menu Theme tour: Site Setup, Theme Settings with the feature switches and a QR menu served on the same domain" width="900">
 
 </div>
 
@@ -68,6 +70,16 @@ Still open: the home page, QR menus (path, subdomain, `/tesekkur/`), `flx-qr-men
 - Selectable steps: permalinks, İstanbul time zone, `d.m.Y` dates, Turkish language if installed, clean-up of untouched default content, comments off, blank home page check.
 - Ready-made updates with dates; a notice when one is pending.
 - System checks: features off, published posts while posts are off, permalinks, pending updates, Flux QR Menu inactive.
+
+## Screenshots
+
+| Site Setup | Theme Settings |
+|---|---|
+| <img src="docs/images/setup-en.jpg" alt="Site Setup" width="440"> | <img src="docs/images/settings-en.jpg" alt="Theme Settings" width="440"> |
+| **A QR menu on the same domain** | **Dark mode with Flux Admin** |
+| <img src="docs/images/menu-en.jpg" alt="A QR menu on the same domain" width="440"> | <img src="docs/images/dark-en.jpg" alt="Dark mode with Flux Admin" width="440"> |
+| **Mobile: QR menu** | **Mobile: the blank home page** |
+| <img src="docs/images/mobile-en.jpg" alt="Mobile: QR menu" width="260"> | <img src="docs/images/mobile-home-en.jpg" alt="Mobile: the blank home page" width="260"> |
 
 ## Installation
 

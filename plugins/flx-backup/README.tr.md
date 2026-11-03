@@ -16,7 +16,9 @@ Flux Backup her eklenti ya da tema güncellemesinden önce veritabanını ve pak
 ![Geri yükleme](https://img.shields.io/badge/geri%20yükleme-seçerek-333)
 ![Arayüz](https://img.shields.io/badge/arayüz-Türkçe%20%7C%20English-e30a17)
 
-[Özellikler](#özellikler) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+[Özellikler](#özellikler) · [Ekran görüntüleri](#ekran-görüntüleri) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+
+<img src="docs/demo-tr.gif" alt="Flux Backup turu: geçmiş grafiği ve türleriyle depolama paneli, yedek listesi, boyut dağılımıyla bir tam yedek ve ayarlar" width="900">
 
 </div>
 
@@ -52,6 +54,16 @@ Hosting yedekleri en iyi ihtimalle günlüktür ve geri yüklemek her şeyi, bug
 
 ### Depolama
 - Yedekler `wp-content/wp-snapshots/flx-backup/` klasöründe, web'e kapalı ve rastgele adlarla durur; indirme yalnız yöneticiye açık.
+
+## Ekran görüntüleri
+
+| Panel | Yedekler |
+|---|---|
+| <img src="docs/images/dashboard-tr.jpg" alt="Panel" width="440"> | <img src="docs/images/backups-tr.jpg" alt="Yedekler" width="440"> |
+| **Yedek ayrıntısı ve geri yükleme** | **Ayarlar** |
+| <img src="docs/images/restore-tr.jpg" alt="Yedek ayrıntısı ve geri yükleme" width="440"> | <img src="docs/images/settings-tr.jpg" alt="Ayarlar" width="440"> |
+| **Flux Admin ile koyu tema** | **Mobil** |
+| <img src="docs/images/dark-tr.jpg" alt="Flux Admin ile koyu tema" width="440"> | <img src="docs/images/mobile-tr.jpg" alt="Mobil" width="260"> |
 
 ## Kurulum
 

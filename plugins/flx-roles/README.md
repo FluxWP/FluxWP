@@ -15,7 +15,9 @@ Flux Roles adds Staff, Manager and Director roles (and any role you create in th
 ![Roles](https://img.shields.io/badge/roles-Staff%20%C2%B7%20Manager%20%C2%B7%20Director-2fbf8f)
 ![UI](https://img.shields.io/badge/UI-English%20%7C%20Türkçe-e30a17)
 
-[Features](#features) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+[Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+
+<img src="docs/demo.gif" alt="Flux Roles tour: role cards, the access table with toggles for each FluxWP package, and the people section with referral links" width="900">
 
 </div>
 
@@ -47,6 +49,14 @@ WordPress roles are built for blogs: Editor, Author, Contributor. A foundation n
 - Add or remove people per role by username or e-mail.
 - Personal referral link (`?ref=code`) with a copy button on the profile and in the people list; the last clicked link wins and lasts 30 days (configurable). The referrer is written to the WooCommerce order.
 - Phone number per user (admins only) for the WhatsApp assistant in Flux Call Center.
+
+## Screenshots
+
+| Roles and the access table | Access per package |
+|---|---|
+| <img src="docs/images/roles-en.jpg" alt="Roles and the access table" width="440"> | <img src="docs/images/capabilities-en.jpg" alt="Access per package" width="440"> |
+| **People and referral links** | **Mobile** |
+| <img src="docs/images/people-en.jpg" alt="People and referral links" width="440"> | <img src="docs/images/mobile-en.jpg" alt="Mobile" width="260"> |
 
 ## Installation
 

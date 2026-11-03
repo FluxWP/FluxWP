@@ -16,7 +16,9 @@ Flux Admin WordPress yönetim panelini baştan tasarlar: role göre düzenlenebi
 ![Tema](https://img.shields.io/badge/tema-açık%20%7C%20koyu%20%7C%20otomatik-333)
 ![Arayüz](https://img.shields.io/badge/arayüz-Türkçe%20%7C%20English-e30a17)
 
-[Özellikler](#özellikler) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+[Özellikler](#özellikler) · [Ekran görüntüleri](#ekran-görüntüleri) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+
+<img src="docs/demo-tr.gif" alt="Flux Admin turu: Başlangıç modülleri, Ctrl+K komut paleti, beyaz ekran olmadan sayfa geçişi, koyu temaya geçiş ve menü düzenleyicisi" width="900">
 
 </div>
 
@@ -54,6 +56,18 @@ Gönüllülerimiz ve personelimiz WordPress'i çoğunlukla telefondan kullanıyo
 ### Uygulama (PWA)
 - Telefonda "Ana Ekrana Ekle", bilgisayarda tarayıcının yükle simgesi. Yalnız CSS, JS, yazı tipi ve görseller önbelleğe alınır; panel sayfaları alınmaz.
 - Uygulama içinden yapılan girişler açık kalır; tarayıcı girişleri her zamanki gibi davranır.
+
+## Ekran görüntüleri
+
+| Başlangıç | Koyu tema |
+|---|---|
+| <img src="docs/images/dashboard-tr.jpg" alt="Başlangıç" width="440"> | <img src="docs/images/dark-tr.jpg" alt="Koyu tema" width="440"> |
+| **Komut paleti (Ctrl+K)** | **Role göre menü düzenleyicisi** |
+| <img src="docs/images/command-palette-tr.jpg" alt="Komut paleti (Ctrl+K)" width="440"> | <img src="docs/images/menu-editor-tr.jpg" alt="Role göre menü düzenleyicisi" width="440"> |
+| **Ayarlar** | **Mobil: alt bar** |
+| <img src="docs/images/settings-tr.jpg" alt="Ayarlar" width="440"> | <img src="docs/images/mobile-tr.jpg" alt="Mobil: alt bar" width="260"> |
+| **Mobil: yan panel** |   |
+| <img src="docs/images/mobile-menu-tr.jpg" alt="Mobil: yan panel" width="260"> |   |
 
 ## Kurulum
 

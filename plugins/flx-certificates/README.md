@@ -16,7 +16,9 @@ Flux Certificate creates sapling donation certificates, e-cards and participatio
 ![Channels](https://img.shields.io/badge/send-WhatsApp%20%C2%B7%20SMS%20%C2%B7%20e--mail-333)
 ![UI](https://img.shields.io/badge/UI-English%20%7C%20Türkçe-e30a17)
 
-[Features](#features) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+[Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+
+<img src="docs/demo.gif" alt="Flux Certificate tour: the dashboard, the certificate list, typing a name on New certificate with a live PDF preview, the template gallery and the public certificate page" width="900">
 
 </div>
 
@@ -58,6 +60,20 @@ A thank-you certificate is often the only thing a donor keeps, and the one thing
 - Events with date, target, extra (certificate-less) saplings, location and a page on the site with a live counter; close and archive when done.
 - Dashboard: total saplings gifted, period figures compared with the previous period, daily/weekday charts, deliveries, referral staff and templates, top donors, CSV export. Excel export of the certificate list.
 - Staff role that lands straight on **New certificate**; with Flux Roles, staff see only their own records.
+
+## Screenshots
+
+| Public certificate page | New certificate with live preview |
+|---|---|
+| <img src="docs/images/public-en.jpg" alt="Public certificate page" width="440"> | <img src="docs/images/new-en.jpg" alt="New certificate with live preview" width="440"> |
+| **Dashboard** | **All certificates** |
+| <img src="docs/images/dashboard-en.jpg" alt="Dashboard" width="440"> | <img src="docs/images/certificates-en.jpg" alt="All certificates" width="440"> |
+| **Templates and e-cards** | **Events** |
+| <img src="docs/images/templates-en.jpg" alt="Templates and e-cards" width="440"> | <img src="docs/images/events-en.jpg" alt="Events" width="440"> |
+| **Dark mode with Flux Admin** | **Mobile: dashboard** |
+| <img src="docs/images/dark-en.jpg" alt="Dark mode with Flux Admin" width="440"> | <img src="docs/images/mobile-en.jpg" alt="Mobile: dashboard" width="260"> |
+| **Mobile: certificate page** |   |
+| <img src="docs/images/mobile-public-en.jpg" alt="Mobile: certificate page" width="260"> |   |
 
 ## Installation
 

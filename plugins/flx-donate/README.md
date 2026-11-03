@@ -16,7 +16,9 @@ Flux Donation turns WooCommerce into a donation system: donation types and campa
 ![Payments](https://img.shields.io/badge/pay-iyzico%20%C2%B7%20bank%20transfer%20%C2%B7%20monthly-2fbf8f)
 ![UI](https://img.shields.io/badge/UI-English%20%7C%20Türkçe-e30a17)
 
-[Features](#features) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+[Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+
+<img src="docs/demo.gif" alt="Flux Donation tour: the donation dashboard, the donation list and one donation in detail, donation types and campaigns, and the donation form on the site going on to the checkout" width="900">
 
 </div>
 
@@ -48,6 +50,22 @@ A shop checkout is built for parcels: shipping address, company, postcode, "Plac
 - **Donation types and campaigns:** categories, options and prices, free amounts, quantities, recurring, dates, target with progress, open/closed/archived; sample sets to start from. Each type has a hidden WooCommerce product.
 - **Add donation** for cash or transfers received elsewhere; **referrals** per donation with Flux Roles, staff see only their own.
 - Product feed `bagis-urunleri.xml` for iyzico and Google Merchant Center; optional Qurbani module.
+
+## Screenshots
+
+| Donation dashboard | Donation form on the site |
+|---|---|
+| <img src="docs/images/dashboard-en.jpg" alt="Donation dashboard" width="440"> | <img src="docs/images/form-en.jpg" alt="Donation form on the site" width="440"> |
+| **Donations** | **Donation details** |
+| <img src="docs/images/donations-en.jpg" alt="Donations" width="440"> | <img src="docs/images/donation-en.jpg" alt="Donation details" width="440"> |
+| **Donation types and campaigns** | **Donor card** |
+| <img src="docs/images/types-en.jpg" alt="Donation types and campaigns" width="440"> | <img src="docs/images/donor-en.jpg" alt="Donor card" width="440"> |
+| **Recurring donations** | **Short checkout** |
+| <img src="docs/images/recurring-en.jpg" alt="Recurring donations" width="440"> | <img src="docs/images/checkout-en.jpg" alt="Short checkout" width="440"> |
+| **Dark mode with Flux Admin** | **Mobile: dashboard** |
+| <img src="docs/images/dark-en.jpg" alt="Dark mode with Flux Admin" width="440"> | <img src="docs/images/mobile-en.jpg" alt="Mobile: dashboard" width="260"> |
+| **Mobile: donation form** |   |
+| <img src="docs/images/mobile-form-en.jpg" alt="Mobile: donation form" width="260"> |   |
 
 ## Installation
 

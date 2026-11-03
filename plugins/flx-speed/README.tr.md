@@ -16,7 +16,9 @@ Her istek için geliştirici paneli (sorgular, PHP hataları, HTTP istekleri, ka
 ![MCP](https://img.shields.io/badge/yapay%20zekâ-MCP%20araçları-7d64ff)
 ![Arayüz](https://img.shields.io/badge/arayüz-Türkçe%20%7C%20English-e30a17)
 
-[Özellikler](#özellikler) · [Kurulum](#kurulum) · [Yapay zekâ asistanlarıyla kullanım (MCP)](#yapay-zekâ-asistanlarıyla-kullanım-mcp) · [Yol haritası](#yol-haritası)
+[Özellikler](#özellikler) · [Ekran görüntüleri](#ekran-görüntüleri) · [Kurulum](#kurulum) · [Yapay zekâ asistanlarıyla kullanım (MCP)](#yapay-zekâ-asistanlarıyla-kullanım-mcp) · [Yol haritası](#yol-haritası)
+
+<img src="docs/demo-tr.gif" alt="Flux Speed turu: canlı sunucu kutuları ve öneriler, istek kayıtları ve tek bir kayıt, sunucu ekranı, Sistem Kontrolü ve ön yüzde geliştirici paneli" width="900">
 
 </div>
 
@@ -54,6 +56,18 @@ Query Monitor baktığınız sayfada ne olduğunu söyler, gerisini unutur. Payl
 ### Paylaşımlı sunucuda hafif
 - Ziyaretçide yalnız ucuz kancalar çalışır (hata, HTTP çağrısı, süre). Sorgu listesi yalnız örneklenen isteklerde, giriş yapmış personelde ve "Sayfayı ölç"te toplanır.
 - İstek sonunda tek INSERT; eski kayıtlar ara sıra temizlenir. E-posta, telefon, IBAN, token ve gizli değerler kaydedilmeden önce maskelenir.
+
+## Ekran görüntüleri
+
+| Özet | İstek kayıtları |
+|---|---|
+| <img src="docs/images/overview-tr.jpg" alt="Özet" width="440"> | <img src="docs/images/records-tr.jpg" alt="İstek kayıtları" width="440"> |
+| **Sayfada geliştirici paneli** | **Sistem Kontrolü** |
+| <img src="docs/images/dev-panel-tr.jpg" alt="Sayfada geliştirici paneli" width="440"> | <img src="docs/images/system-check-tr.jpg" alt="Sistem Kontrolü" width="440"> |
+| **Sunucu** | **Flux Admin ile koyu tema** |
+| <img src="docs/images/server-tr.jpg" alt="Sunucu" width="440"> | <img src="docs/images/dark-tr.jpg" alt="Flux Admin ile koyu tema" width="440"> |
+| **Mobil** |   |
+| <img src="docs/images/mobile-tr.jpg" alt="Mobil" width="260"> |   |
 
 ## Kurulum
 

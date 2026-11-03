@@ -17,7 +17,9 @@ Flux Social is a social media planner that runs inside the site: connect Faceboo
 ![Inspired by Mixpost](https://img.shields.io/badge/inspired%20by-Mixpost%20(MIT)-lightgrey)
 ![UI](https://img.shields.io/badge/UI-English%20%7C%20Türkçe-e30a17)
 
-[Features](#features) · [Installation](#installation) · [Use it with AI assistants (MCP)](#use-it-with-ai-assistants-mcp) · [Roadmap](#roadmap)
+[Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [Use it with AI assistants (MCP)](#use-it-with-ai-assistants-mcp) · [Roadmap](#roadmap)
+
+<img src="docs/demo.gif" alt="Flux Social tour: the dashboard with daily posts, networks and followers, the post list, a post in the composer with live previews, the calendar and connected accounts" width="900">
 
 </div>
 
@@ -52,6 +54,20 @@ Self-hosted planners like Mixpost and Postiz need their own server, Redis and qu
 
 ### Settings
 - App keys per network (stored encrypted), X tier and monthly limit, auto-sharing when a site post is published, external trigger URL, log.
+
+## Screenshots
+
+| Dashboard | Posts |
+|---|---|
+| <img src="docs/images/dashboard-en.jpg" alt="Dashboard" width="440"> | <img src="docs/images/posts-en.jpg" alt="Posts" width="440"> |
+| **Composer with live preview** | **Calendar** |
+| <img src="docs/images/compose-en.jpg" alt="Composer with live preview" width="440"> | <img src="docs/images/calendar-en.jpg" alt="Calendar" width="440"> |
+| **Awaiting approval** | **Connected accounts** |
+| <img src="docs/images/approvals-en.jpg" alt="Awaiting approval" width="440"> | <img src="docs/images/accounts-en.jpg" alt="Connected accounts" width="440"> |
+| **Settings and external trigger** | **Dark mode** |
+| <img src="docs/images/settings-en.jpg" alt="Settings and external trigger" width="440"> | <img src="docs/images/dark-en.jpg" alt="Dark mode" width="440"> |
+| **Mobile: dashboard** | **Mobile: posts** |
+| <img src="docs/images/mobile-en.jpg" alt="Mobile: dashboard" width="260"> | <img src="docs/images/mobile-posts-en.jpg" alt="Mobile: posts" width="260"> |
 
 ## Installation
 

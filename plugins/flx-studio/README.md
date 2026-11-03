@@ -16,7 +16,9 @@ Flux Studio lets your team create images and videos with AI from the admin: writ
 ![Video](https://img.shields.io/badge/video-yes-2fbf8f)
 ![UI](https://img.shields.io/badge/UI-English%20%7C%20Türkçe-e30a17)
 
-[Features](#features) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+[Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+
+<img src="docs/demo.gif" alt="Flux Studio tour: writing a prompt, the model picker, the image viewer and the dashboard with spend per model" width="900">
 
 </div>
 
@@ -49,6 +51,18 @@ Posters for an event, a header for a news post, a thumbnail for a video: a small
 ### Manage
 - **Dashboard:** generations, spend (image/video and text), average per generation, error rate, people and storage; daily charts; tables per model, provider and person; Flux AI limit and recent errors.
 - Capabilities `flxst_use` and `flxst_manage`, listed in Flux Roles; light and dark theme with Flux Admin; works on phones and as a native screen in the Flux App.
+
+## Screenshots
+
+| Gallery and composer | Image viewer |
+|---|---|
+| <img src="docs/images/gallery-en.jpg" alt="Gallery and composer" width="440"> | <img src="docs/images/viewer-en.jpg" alt="Image viewer" width="440"> |
+| **Model picker** | **Brainstorm** |
+| <img src="docs/images/models-en.jpg" alt="Model picker" width="440"> | <img src="docs/images/brainstorm-en.jpg" alt="Brainstorm" width="440"> |
+| **Dashboard** | **Dark mode with Flux Admin** |
+| <img src="docs/images/dashboard-en.jpg" alt="Dashboard" width="440"> | <img src="docs/images/dark-en.jpg" alt="Dark mode with Flux Admin" width="440"> |
+| **Mobile gallery** |   |
+| <img src="docs/images/mobile-en.jpg" alt="Mobile gallery" width="260"> |   |
 
 ## Installation
 

@@ -16,7 +16,9 @@ Flux Tasks gives the team one place to plan work without another subscription: p
 ![AI](https://img.shields.io/badge/AI-assistant%20%C2%B7%20MCP-7d64ff)
 ![UI](https://img.shields.io/badge/UI-English%20%7C%20Türkçe-e30a17)
 
-[Features](#features) · [Installation](#installation) · [Roadmap](#roadmap)
+[Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [Roadmap](#roadmap)
+
+<img src="docs/demo.gif" alt="Flux Tasks tour: a list grouped by status, a task with subtasks and comments, the board, the calendar and the usage dashboard" width="900">
 
 </div>
 
@@ -50,6 +52,20 @@ Volunteer projects live in WhatsApp groups, spreadsheets and memory. A paid proj
 - **Usage dashboard:** open, overdue and completed tasks, comments, structure, storage per list and per person.
 - AI assistant and quick actions through Flux AI; all tools available to the shared Flux AI chat and over MCP.
 - Native screen in the Flux App (`flx-tasks/v1/app/*`); system checks.
+
+## Screenshots
+
+| List view grouped by status | Board |
+|---|---|
+| <img src="docs/images/list-en.jpg" alt="List view grouped by status" width="440"> | <img src="docs/images/board-en.jpg" alt="Board" width="440"> |
+| **Task with subtasks and comments** | **Calendar** |
+| <img src="docs/images/task-en.jpg" alt="Task with subtasks and comments" width="440"> | <img src="docs/images/calendar-en.jpg" alt="Calendar" width="440"> |
+| **My tasks** | **Meeting list** |
+| <img src="docs/images/home-en.jpg" alt="My tasks" width="440"> | <img src="docs/images/meeting-en.jpg" alt="Meeting list" width="440"> |
+| **Usage dashboard** | **Dark mode with Flux Admin** |
+| <img src="docs/images/dashboard-en.jpg" alt="Usage dashboard" width="440"> | <img src="docs/images/dark-en.jpg" alt="Dark mode with Flux Admin" width="440"> |
+| **Mobile list** |   |
+| <img src="docs/images/mobile-en.jpg" alt="Mobile list" width="260"> |   |
 
 ## Installation
 
