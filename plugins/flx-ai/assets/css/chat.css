@@ -51,7 +51,7 @@ svg { width: 18px; height: 18px; flex: none; display: block; }
 [hidden] { display: none !important; }
 
 /* Baloncuk: yalnız simge, sağ kenara yapışık; modalların (100000+) altında kalır. Çalışırken simge döner (durdur panelde). */
-.bwrap { position: fixed; right: 0; bottom: calc(20px + env(safe-area-inset-bottom)); z-index: 99990; display: flex; }
+.bwrap { position: fixed; right: var(--flxai-edge, 0px); bottom: calc(20px + env(safe-area-inset-bottom)); z-index: 99990; display: flex; }
 @media (max-width: 782px) { :host(.has-bottom-bar) .bwrap { bottom: calc(86px + env(safe-area-inset-bottom)); } }
 .bubble {
 	position: relative; display: grid; place-items: center; width: 46px; height: 48px; padding: 0 0 0 4px; border-radius: 24px 0 0 24px;

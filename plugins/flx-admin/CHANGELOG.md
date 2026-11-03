@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.6.12
+- Telefon yatayken dar menü sağda (iPhone'da çentik/kamera çoğu zaman solda kalır). Çentik hangi taraftaysa safe-area boşluğu bırakılır; alt menü kartları ve ipuçları sola açılır; "AI'ya sor" düğmesi menünün soluna kayar.
+
 ## 1.6.11
 - Ortak sayfa başlığı (telefon): tek düğmeli sayfalarda başlık solda, düğme sağda aynı satırda (%50 / %50); düğme yazısı ve altındaki durum metni sağa hizalı, gerekirse alt satıra kayar.
 - Ön ayar paketlerinin yeni logoları (menü ve sayfa başlığı için).
