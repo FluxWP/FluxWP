@@ -290,7 +290,7 @@ function flxa_menu_early_paint() {
 	function sp(cl,h){var x=d.createElement('span');x.className=cl;x.innerHTML=h;return x;}
 	Object.keys(G).forEach(function(id){var s=d.getElementById(id);if(!s)return;var k=G[id][0],cl=k in c?!!c[k]:!!G[id][1],it=[],hc=false,n=s.nextElementSibling;
 		while(n&&!n.classList.contains('flxa-group')&&!n.classList.contains('flxa-side-foot')&&!n.classList.contains('flxa-side-edit')&&n.id!=='collapse-menu'){if(n.classList.contains('menu-top')){if(cur(n)){hc=true;if(c[k]!==2)cl=false;}it.push(n);}n=n.nextElementSibling;}
-		if(F)cl=k!=='pinned';
+		if(F)cl=k!=='pinned'&&k!=='solo';
 		if(G[id][2]&&!s.querySelector('.flxa-gchev')){s.classList.add('flxa-gh');s.appendChild(sp('flxa-gcount',''));s.appendChild(sp('flxa-gchev',CH));s.appendChild(sp('flxa-gmore',G[id][3]));}
 		s.classList.toggle('has-current',hc);
 		if(k==='pinned'){s.classList.add('flxa-gpins');var wide=null;it.forEach(function(li){li.classList.add('flxa-pin');if(cur(li)&&li.querySelector('.wp-submenu li:not(.wp-submenu-head)')){li.classList.add('flxa-pin-wide');wide=li;}});if(wide&&it.length>1&&it[it.length-1]!==wide){it[it.length-1].parentNode.insertBefore(wide,it[it.length-1].nextSibling);}}

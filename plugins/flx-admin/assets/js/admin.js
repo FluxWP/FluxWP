@@ -505,7 +505,7 @@
 		if (!g) return false;
 		var key = g.key;
 		// Daraltılmış menüde her grup tek simgeye iner (sabitlenenler hariç); üstüne gelince öğeleri yanda açılır.
-		if (isFolded() && window.innerWidth > 782) return key !== 'pinned';
+		if (isFolded() && window.innerWidth > 782) return key !== 'pinned' && key !== 'solo';
 		// Açık sayfanın grubu açık gelir; kişi onu açık sayfadayken kapattıysa (2) kapalı kalır.
 		if (groupItems(sep).some(isCur) && gc[key] !== 2) return false;
 		return key in gc ? !!gc[key] : !!g.collapsed;

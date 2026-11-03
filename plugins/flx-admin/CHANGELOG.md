@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.6.5
+- Güncellemeler (Flux Updater) sol menüde artık hızlı erişim kutucuklarının hemen altında, grupsuz ve başlıksız kendi kartında duruyor (Sistem grubundan çıktı). Daraltılmış menüde de kutucukların altında tek simge. Kişi öğeyi sabitler ya da "Diğer"e taşırsa o tercih geçerli. Filtre `flxa_standalone_items` (varsayılan `flx-updater`).
+
 ## 1.6.4
 - Ortak sayfa başlığı düzeni: logo + başlık + açıklama solda, aksiyon butonları sağda sabit; butonun yanındaki durum metni (ör. "Son kontrol") butonun altına alınır. Dar ekranda aksiyonlar alta iner.
 
