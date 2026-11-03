@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.7.1
+- Footer alt satırında `flx/credit` bloğu (logo + "Altyapı: FluxWP", fluxwp.com). Blok Düzenleyici'de silinirse footer'ın en altına ince bir imza şeridi eklenir (`add_theme_support( 'flx-credit' )`).
+- FluxWP imzası: Flux ekranlarının alt satırında küçük FluxWP logosu ve fluxwp.com bağlantısı. Ortak modül `inc/flx-brand` (kaynak FluxWP/fluxwp `tools/brand`); kurulu Flux paketlerinden en yeni sürümü bir kez yüklenir, `flx_brand_show` filtresiyle gizlenir.
+
 ## 0.7.0
 - Yeni varsayılan renkler: antrasit düğmeler, mavi vurgu, açık bej sayfa zemini (yeşil yerine). Yeni palet rengi `base` (Sayfa zemini).
 - Stil varyasyonları: Antrasit, Mavi, Petrol, İndigo, Orman (eski yeşil) (Görünüm › Düzenleyici › Stiller). Renkler aynı yerden tek tek de değiştirilebilir.

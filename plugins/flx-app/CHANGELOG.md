@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.3.6
+- FluxWP imzası: Flux ekranlarının alt satırında küçük FluxWP logosu ve fluxwp.com bağlantısı. Ortak modül `includes/flx-brand` (kaynak FluxWP/fluxwp `tools/brand`); kurulu Flux paketlerinden en yeni sürümü bir kez yüklenir, `flx_brand_show` filtresiyle gizlenir.
+
 ## 0.3.5
 - Menü logoları Flux Admin'deki logo stiline (Degrade / Pastel) uyar.
 
