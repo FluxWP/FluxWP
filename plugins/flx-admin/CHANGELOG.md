@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.6.6
+- Güncellemeler (Flux Updater) sol menüde artık hızlı erişim kutucuklarının hemen altında, grupsuz ve başlıksız kendi kartında duruyor (Sistem grubundan çıktı). Daraltılmış menüde de kutucukların altında tek simge. Kişi öğeyi sabitler ya da "Diğer"e taşırsa o tercih geçerli. Filtre `flxa_standalone_items` (varsayılan `flx-updater`).
+
 ## 1.6.5
 - Düzeltme: genel bağlantı rengi artık eklentilerin bağlantı-düğmelerini ("Yeni menü" gibi `<a>` düğmeler, sekmeler) ezmiyor; koyu düğmede koyu yazı sorunu giderildi. Düğme yazı rengi (`--flxa-on-accent`) vurgu rengine göre otomatik (açık vurguda koyu yazı), `flxa_on_color()`. Koyu tema koruması açık rozet/düğme üstündeki koyu yazıyı artık açık renge çevirmiyor.
 
