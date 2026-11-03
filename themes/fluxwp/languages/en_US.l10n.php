@@ -455,5 +455,11 @@ return array (
     'Style variation nameOrman' => 'Forest',
     'Style variation namePetrol' => 'Petrol',
     'Color nameSayfa zemini' => 'Page background',
+    'Mağaza paneli, müşteriler, satış raporu ve dekontlu Havale/EFT' => 'Store dashboard, customers, sales report and bank transfer with receipt',
+    'İletişim formları' => 'Contact forms',
+    'WhatsApp sohbetleri ve arama kayıtları' => 'WhatsApp chats and call logs',
+    'Görevler ziyaretçi geldikçe çalışıyor (WP-Cron). Ziyaret azken e-postalar ve zamanlanmış işler gecikir. Hostinger › Gelişmiş › Cron Jobs\'a 5 dakikada bir şu komutu ekleyin: %s Sonra wp-config.php\'ye define( \'DISABLE_WP_CRON\', true ); yazın.' => 'Tasks run only when visitors arrive (WP-Cron). With low traffic, emails and scheduled jobs are delayed. Add this command every 5 minutes under Hostinger › Advanced › Cron Jobs: %s Then add define( \'DISABLE_WP_CRON\', true ); to wp-config.php.',
+    '%s. Sipariş, form ve e-posta saatleri için İstanbul seçin.' => '%s. Choose Istanbul so order, form and email times are correct.',
+    'SMTP eklentisi yok. Site e-postaları spam\'e düşebilir; WP Mail SMTP veya FluentSMTP ile kurum e-postanızı bağlayın.' => 'No SMTP plugin. Site emails may land in spam; connect your organization\'s email with WP Mail SMTP or FluentSMTP.',
   ),
 );
