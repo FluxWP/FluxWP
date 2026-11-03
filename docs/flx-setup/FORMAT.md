@@ -78,6 +78,14 @@ Motor her hedefe son yazdığı değerin hash'ini tutar; sitedeki değer farklı
 
 **İlk kurulum**: boş sitede ön ayar eklentisi etkinleşince kendiliğinden uygulanır. İçerikli sitede panelde önizlenir; "Yalnız boşları doldur" mevcut değerlere dokunmaz.
 
+## Ön ayar güncellenince ayarlar
+Ön ayarın `version` alanı değişince (eklenti güncellemesi) Flux Setup bir sonraki yönetim isteğinde ayar bölümlerini (`profile`, `wp`, `settings`) siteyle **eşitler**: ön ayarın yazdığı ve kullanıcının değiştirmediği değerler yeni haline gelir, yeni alanlar eklenir, elle değiştirilenler (`manual`) atlanır. "Yalnız boşları doldur" ile kurulan sitede dolu ve sahipsiz değerler yine korunur. Geçmişte **Eşitleme** kaydı olur, geri alınabilir. İçerik, şablon ve parçalar eşitlenmez: onlar migration'la gelir. Mevcut bir değeri (sahipsiz ya da "doldur" modunda korunan) bilerek değiştirmek için de migration yazın; migration her zaman uygular.
+
+Ön ayar bir option'ın yalnız bildirdiği alanlarını değiştirir. Eklentinin sanitize callback'i bildirilmeyen alanları bozarsa (ör. formda olmayan onay kutusunu kapalı sayarsa) motor onları eski haline getirir.
+
+## Ayar şeması
+Hangi option'da hangi alanın olduğu, türü ve varsayılanı `flx_settings_schema` filtresinden gelir (bkz. plugins/flx-setup/API.md). AI `preset_schema` çıktısındaki `settings` ile okur. Şemada olmayan alan yazılırsa önizlemede uyarı çıkar.
+
 ## Migration'lar
 ```json
 "migrations": [

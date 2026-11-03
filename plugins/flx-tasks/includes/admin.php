@@ -74,6 +74,8 @@ function flxg_admin_assets() {
 function flxg_render_app() {
 	echo '<script>document.documentElement.classList.add("flxg-lock");</script>';
 	echo '<div id="flxg-app" class="flxg"><noscript>' . esc_html__( 'Görevler için JavaScript gerekli.', 'flx-tasks' ) . '</noscript></div>';
+	// Tema div'in hemen ardından, ilk boyamadan önce uygulanır (pages.js yüklenene kadar açık tema görünmesin).
+	echo "<script>(function(d,w){var m;try{m=localStorage.getItem('flxg-theme')}catch(e){}m=m||'auto';var k=m==='dark'||(m==='auto'&&!!w.matchMedia&&w.matchMedia('(prefers-color-scheme: dark)').matches);d.getElementById('flxg-app').dataset.theme=k?'dark':'light';d.documentElement.classList.toggle('flxg-dark',k)})(document,window)</script>";
 }
 
 // Menü ikonu: ortak FluxWP logosu (renkli; WP menü ikonunu tek renge boyadığı için CSS ile).

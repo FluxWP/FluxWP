@@ -342,7 +342,10 @@
 		renderBubble();
 	}
 	function theme() {
-		var dark = C.admin ? document.documentElement.classList.contains('flxa-dark')
+		var de = document.documentElement;
+		// Ön yüzde sitenin kendi Açık / Koyu / Sistem seçicisi varsa (ön ayar: data-flxfw-theme) onu izle; yoksa sistem teması.
+		var dark = C.admin ? de.classList.contains('flxa-dark')
+			: de.hasAttribute('data-flxfw-theme') ? de.classList.contains('flxfw-dark')
 			: (!C.lightOnly && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
 		var changed = host.classList.contains('dark') !== !!dark;
 		host.classList.toggle('dark', !!dark);

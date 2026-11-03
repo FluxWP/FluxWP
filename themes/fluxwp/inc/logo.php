@@ -136,12 +136,39 @@ function flx_site_logo_fallback( $content, $block ) {
 add_filter( 'render_block', 'flx_site_logo_fallback', 10, 2 );
 
 /**
- * Site simgesi ayarlanmamışsa kurum profilindeki simge favicon olur.
+ * Favicon sırası: WordPress site simgesi > kurum profilindeki simge > FluxWP simgesi.
+ * Flux SEO ya da Flux Admin kuruluysa FluxWP simgesini onlar yazar; tema yalnız ikisi de yoksa yazar.
+ * Filtre `flx_theme_favicon` (svg, png, apple adresleri) ile değiştirilebilir; boş dizi kapatır.
  */
 function flx_favicon() {
+	if ( has_site_icon() ) {
+		return;
+	}
 	$icon = flx_logo_files()['icon'];
-	if ( ! has_site_icon() && '' !== $icon ) {
+	if ( '' !== $icon ) {
 		echo '<link rel="icon" href="' . esc_url( $icon ) . '">' . "\n";
+		return;
+	}
+	if ( defined( 'FLXSEO_VERSION' ) || defined( 'FLXA_VERSION' ) ) {
+		return;
+	}
+	$v = '?v=' . wp_get_theme( get_template() )->get( 'Version' );
+	$f = (array) apply_filters(
+		'flx_theme_favicon',
+		array(
+			'svg'   => get_theme_file_uri( 'assets/images/favicon/favicon.svg' ) . $v,
+			'png'   => get_theme_file_uri( 'assets/images/favicon/favicon-32.png' ) . $v,
+			'apple' => get_theme_file_uri( 'assets/images/favicon/apple-touch-icon.png' ) . $v,
+		)
+	);
+	if ( ! empty( $f['svg'] ) ) {
+		echo '<link rel="icon" type="image/svg+xml" href="' . esc_url( $f['svg'] ) . '">' . "\n";
+	}
+	if ( ! empty( $f['png'] ) ) {
+		echo '<link rel="icon" type="image/png" sizes="32x32" href="' . esc_url( $f['png'] ) . '">' . "\n";
+	}
+	if ( ! empty( $f['apple'] ) ) {
+		echo '<link rel="apple-touch-icon" href="' . esc_url( $f['apple'] ) . '">' . "\n";
 	}
 }
 add_action( 'wp_head', 'flx_favicon', 2 );

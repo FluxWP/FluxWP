@@ -1,7 +1,11 @@
 # Changelog
 
-## 1.7.1
+## 1.7.2
 - Sol menü: üst (logo + arama) ve alt (kullanıcı) yerinde sabit, yalnız orta kayar. 1.7.0'daki geçiş efekti kaldırıldı; kayan kartlar arama kutusunun altında yarı saydam görünmüyor, net kesiliyor. Menünün sonuna gelince kaydırma sayfaya geçmiyor ve Mac/iOS esnemesi yok.
+
+## 1.7.1
+- Koyu modda sayfa yenilenince eklenti kutularının önce beyaz görünüp sonra koyulaşması giderildi: koyu tema koruması artık sayfa yüklendikten sonra değil, ilk boyamadan önce çalışır (`<head>` içeriği koruma bitene kadar gizler). JS ile sonradan çizilen veya açılan kutular da bir sonraki boyamadan önce koyulaşır.
+- Uygulama ekranlarında (Görevler, Çağrı Merkezi, Stüdyo, Sosyal) JS yüklenene kadar zemin açık görünmez.
 
 ## 1.7.0
 - Tema düğmesi: tıklama artık her seferinde açık ↔ koyu geçer. Eski otomatik → açık → koyu döngüsünde cihaz koyu temadayken üç tıklamanın ikisi görünürde hiçbir şey değiştirmiyordu. "Sistem (cihaza göre)" düğmenin menüsünden seçilir (Açık / Koyu / Sistem, seçili olan işaretli). Dokunmatik ekranda ilk dokunuş menüyü açar.
