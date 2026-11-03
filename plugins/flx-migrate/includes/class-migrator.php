@@ -398,12 +398,44 @@ final class Flx_Migrate_Migrator {
 	}
 
 	private function step_finish( int $cursor ): array {
+		$notes   = array();
+		$changed = $this->reset_update_server( $notes );
 		if ( ! $this->dry ) {
 			delete_option( 'flx_migrate_tables' );
 			delete_option( 'rewrite_rules' );
 			wp_cache_flush();
 			update_option( 'flx_migrate_done', time(), false );
 		}
-		return $this->res( true, 0, 0 );
+		return $this->res( true, 0, $changed, $notes );
+	}
+
+	/**
+	 * The old updater's settings (server address + site key) are carried into
+	 * Flux Setup by the options step, but they point at the retired update
+	 * server, whose key is not valid on the new one. Clear both so Flux Setup
+	 * falls back to its default server and asks for a new key; drop the old
+	 * catalog caches too.
+	 */
+	private function reset_update_server( array &$notes ): int {
+		$s = get_site_option( 'flxu_settings', array() );
+		if ( ! is_array( $s ) || empty( $s['server'] ) ) {
+			return 0;
+		}
+		$host = (string) wp_parse_url( (string) $s['server'], PHP_URL_HOST );
+		$old  = (array) apply_filters( 'flx_migrate_old_update_hosts', array( 'update.yesilturkiyeist.org', 'update.ustageliyor.org' ) );
+		if ( ! in_array( strtolower( $host ), $old, true ) ) {
+			return 0;
+		}
+		$notes[] = __( 'Eski güncelleme sunucusu adresi ve site anahtarı silindi. FluxWP Panel › Ayarlar\'da yeni sunucunun anahtarını girin.', 'flx-migrate' );
+		if ( $this->dry ) {
+			return 1;
+		}
+		$s['server'] = '';
+		$s['key']    = '';
+		update_site_option( 'flxu_settings', $s );
+		foreach ( array( 'flxu_status', 'flxu_catalog_last', 'flxu_known_slugs' ) as $o ) {
+			delete_site_option( $o );
+		}
+		return 1;
 	}
 }

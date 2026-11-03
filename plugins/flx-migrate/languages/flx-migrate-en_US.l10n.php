@@ -8,6 +8,7 @@ return array(
 		'%1$s atlandı: %2$s dolu.' => '%1$s skipped: %2$s is not empty.',
 		'%s zaten var, klasör taşınmadı.' => '%s already exists, folder not moved.',
 		'Adım' => 'Step',
+		'Eski güncelleme sunucusu adresi ve site anahtarı silindi. FluxWP Panel › Ayarlar\'da yeni sunucunun anahtarını girin.' => 'The old update server address and site key were removed. Enter the key for the new server in FluxWP Panel › Settings.',
 		'Aktar' => 'Migrate',
 		'Aktarım %s tarihinde tamamlandı. Bu eklentiyi artık silebilirsiniz.' => 'Migration finished on %s. You can delete this plugin now.',
 		'Aktarım bitti. Yeni eklentileri etkin listesinde kontrol edin, önbelleği temizleyin.' => 'Migration finished. Check that the new plugins are active and clear the cache.',
