@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.2.11
+- MCP ayarları: "(yalnız okuma)" etiketi açık zeminde okunur.
+
 ## 1.2.10
 - Ana sayfada og:title artık site adı değil, sayfa başlığıyla aynı (sayfanın SEO başlığı ya da Ana sayfa başlığı ayarı, çevirisiyle). Yeni filtre `flxseo_og` (Open Graph etiketleri dizisi).
 

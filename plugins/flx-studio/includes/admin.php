@@ -56,6 +56,7 @@ add_action(
 				'adminUrl' => admin_url(),
 				'mode'     => function_exists( 'flxa_user_mode' ) ? flxa_user_mode() : 'auto',
 				'library'  => current_user_can( 'upload_files' ),
+				'logo'     => FLXST_URL . 'assets/icon.svg',
 				'i18n'     => flxst_js_strings(),
 			)
 		);

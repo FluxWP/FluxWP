@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.3.2
+- Panel yalnız Flux Admin / tema koyu modunu izler; admin açıkken cihaz ayarından koyulaşmıyor.
+
 ## 0.3.1
 - Koyu mod Flux Admin koyu temasında da çalışıyor (önceden yalnız tema sınıfında); ara bilgi metinleri ve rozetler okunur; panelde yeşilimsi koyu tonlar nötr.
 

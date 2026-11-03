@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.0.14
+- Açık tema: cihaz koyu moddayken admin açık olsa bile ön ayar kartları koyu görünmüyor; Flux Setup renkleri (kart, rozet, uyarı, fark durumları, paket listesi) Flux Admin değişkenlerinden. Koyu tema: paket listesinde seçili satır artık beyazlaşmıyor. Kurulum sihirbazı: soluk metinler daha okunur.
+
 ## 1.0.13
 - Ön ayar güncellenince ayarlar da güncellenir: `version` değişince profil, WordPress ve eklenti ayarları siteyle eşitlenir. Ön ayarın yazdığı ve sizin değiştirmediğiniz değerler yenilenir, yeni alanlar eklenir, elle değiştirdikleriniz korunur. Geçmişte "Eşitleme" kaydı, geri alınabilir. Kapatmak: `flxk_auto_sync` filtresi.
 - Ön ayar bir ayarın yalnız bildirdiği alanlarını değiştirir. Önceden tema ayarına `site_mod` yazmak, temanın sanitize'ı yüzünden çerez banner'ını kapatıyordu ("İlk ziyarette çerez banner'ını göster" kapalı kalıyordu). Motor artık bildirilmeyen alanları yazdıktan sonra eski haline getirir (`flxk_option_guard`).

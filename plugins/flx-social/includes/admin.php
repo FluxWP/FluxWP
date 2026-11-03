@@ -60,6 +60,7 @@ add_action(
 				'adminUrl' => admin_url(),
 				'mode'     => function_exists( 'flxa_user_mode' ) ? flxa_user_mode() : 'auto',
 				'icons'    => FLXSM_URL . 'assets/net/',
+				'logo'     => FLXSM_URL . 'assets/icon.svg',
 				'i18n'     => flxsm_js_strings(),
 			)
 		);

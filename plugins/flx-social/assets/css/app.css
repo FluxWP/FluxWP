@@ -23,6 +23,7 @@ html body.flxa-appmode #flxsm-app { top: var(--flxa-safe-top, 0px); left: var(--
 	--acc: var(--flxa-accent, #1F2937); --acc-ink: var(--flxa-on-accent, #ffffff); --acc-soft: color-mix(in srgb, var(--acc) 12%, transparent);
 	--c-img: #2e9e62; --c-vid: #4a72d9; --c-cost: #a8801f;
 	--shadow: 0 12px 36px rgba(17, 19, 27, .14);
+	--warn: #8A5A00; --err: #B42318; --blue: #1F5FC4;
 	color-scheme: light;
 }
 .flxsm *, .flxsm *::before, .flxsm *::after { box-sizing: border-box; }
@@ -89,6 +90,7 @@ textarea.flxsm-input { resize: vertical; }
 .flxsm-side { width: 248px; flex: none; display: flex; flex-direction: column; background: var(--panel); border-right: 1px solid var(--line); padding: 14px 10px 10px; overflow-y: auto; }
 .flxsm-brand { display: flex; align-items: center; gap: 9px; padding: 2px 8px 14px; font-size: 16px; }
 .flxsm-logo { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 9px; background: var(--acc-soft); color: var(--acc); }
+.flxsm-logo.is-img { background: none; padding: 0; object-fit: contain; }
 .flxsm-ver { margin-left: auto; font-size: 11px; color: var(--faint); }
 .flxsm-navs { display: flex; flex-direction: column; gap: 1px; margin-bottom: 8px; }
 .flxsm-nav { display: flex; align-items: center; gap: 10px; min-height: 34px; padding: 0 6px 0 10px; border-radius: var(--r-s); color: var(--muted); cursor: pointer; user-select: none; outline: 0; }

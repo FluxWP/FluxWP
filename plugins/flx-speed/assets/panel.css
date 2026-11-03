@@ -1,4 +1,4 @@
-/* Flux Speed paneli. Kapsayıcı #flxp-panel; açık/koyu tema prefers-color-scheme + body.flx-dark. */
+/* Flux Speed paneli. Kapsayıcı #flxp-panel; açık/koyu tema body.flx-dark / html.flxa-dark. */
 #flxp-panel {
 	--z-bg: #fff;
 	--z-bg2: #f6f7f7;
@@ -18,9 +18,6 @@
 	background: var(--z-bg);
 	text-align: left;
 	direction: ltr;
-}
-@media (prefers-color-scheme: dark) {
-	#flxp-panel { --z-bg: #16171D; --z-bg2: #1C1F27; --z-bg3: #252833; --z-fg: #E8E9EF; --z-mut: #9A9EAE; --z-line: #363A47; --z-acc: color-mix(in srgb, var(--flxa-accent, #1F2937) 70%, #fff); --z-err: #ff6b6b; --z-err-bg: #3a1f22; --z-warn: #f0c050; --z-warn-bg: #3a321b; --z-code: #cfd6d2; }
 }
 :is(body.flx-dark, html.flxa-dark) #flxp-panel { --z-bg: #16171D; --z-bg2: #1C1F27; --z-bg3: #252833; --z-fg: #E8E9EF; --z-mut: #9A9EAE; --z-line: #363A47; --z-acc: color-mix(in srgb, var(--flxa-accent, #1F2937) 70%, #fff); --z-err: #ff6b6b; --z-err-bg: #3a1f22; --z-warn: #f0c050; --z-warn-bg: #3a321b; --z-code: #cfd6d2; }
 #flxp-panel *, #flxp-panel *::before, #flxp-panel *::after { box-sizing: border-box; }

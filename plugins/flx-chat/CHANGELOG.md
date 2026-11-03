@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.35.5
+- Ayarlar: etkin sekme açık zeminde okunur koyu WhatsApp yeşili.
+
 ## 1.35.4
 - Koyu modda yenilemede açık tema yanıp sönmesi giderildi: kayıtlı tema, uygulama kabı çizilir çizilmez (app.js beklenmeden) uygulanır.
 
