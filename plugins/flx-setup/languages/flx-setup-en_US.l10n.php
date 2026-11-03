@@ -147,13 +147,11 @@ return array(
 		'%s: gizli alanlar (şifre, anahtar, token) şablonda olamaz.' => '%s: secret fields (password, key, token) cannot be in a preset.',
 		'"%s" ayarı ön ayarla yazılamaz.' => 'The "%s" option cannot be written by a preset.',
 		'Ön ayar motoru: bir ön ayar şablonuyla (preset.json) siteyi tek adımda kurar ya da onaylı yamalarla değiştirir. Kurum profili, eklenti ayarları, global stil, şablonlar, header/footer, sayfalar, menüler ve medya. Önizle, uygula, geri al, migration\'lar, bu siteden şablon çıkar; Flux AI sohbetinden ve Flux MCP\'den onaylı düzenleme.' => 'Preset engine: sets up the site in one step from a preset file (preset.json) or changes it through approved patches. Organisation profile, plugin settings, global styles, templates, header/footer, pages, menus and media. Preview, apply, undo, migrations, export this site as a preset; approved edits from the Flux AI chat and Flux MCP.',
-		// Updater (eski Flux Updater)
-		'Flux Updater' => 'Flux Updater',
+		// Updater
 		'Ayarlar' => 'Settings',
 		'Yetkiniz yok.' => 'You are not allowed to do this.',
 		'Paket bulunamadı.' => 'Package not found.',
 		'%s kuruluyor' => 'Installing %s',
-		'Flux Updater\'ye dön' => 'Back to Flux Updater',
 		'FluxWP tema ve eklentileri wordpress.org yerine kendi güncelleme sunucunuzdan güncellenir. Yeni sürümler Başlangıç › Güncellemeler ekranında her zamanki gibi görünür.' => 'FluxWP themes and plugins are updated from your own update server instead of wordpress.org. New versions appear on Dashboard › Updates as usual.',
 		'Ayarlar kaydedildi ve kontrol yapıldı.' => 'Settings saved and updates checked.',
 		'Güncellemeler kontrol edildi.' => 'Updates checked.',
@@ -376,7 +374,7 @@ return array(
 		'Kapat' => 'Turn off',
 		'Kaynağı aç' => 'Turn on',
 		'Kaynak ekle' => 'Add source',
-		'Public GitHub deposu (release\'lerinde <slug>.zip olan) ya da Flux Updater sunucusu adresi. Yalnız https.' => 'A public GitHub repository (with <slug>.zip in its releases) or a Flux Updater server address. https only.',
+		'Public GitHub deposu (release\'lerinde <slug>.zip olan) ya da FluxWP güncelleme sunucusu adresi. Yalnız https.' => 'A public GitHub repository (with <slug>.zip in its releases) or a FluxWP update server address. https only.',
 		'Boşsa adresten alınır' => 'Taken from the address if empty',
 		'İsteğe bağlı' => 'Optional',
 		'Yalnız anahtar isteyen sunucularda. Anahtar sadece o sunucunun adresine gönderilir.' => 'Only for servers that require a key. The key is sent only to that server\'s address.',
@@ -408,7 +406,7 @@ return array(
 		'%d paket etkinleştirildi.' => '%d package activated.' . "\0" . '%d packages activated.',
 		'%d paket devre dışı bırakıldı.' => '%d package deactivated.' . "\0" . '%d packages deactivated.',
 		'%d paket kaldırıldı.' => '%d package deleted.' . "\0" . '%d packages deleted.',
-		'Atlananlar (zaten bu durumda, etkin tema ya da Flux Updater): %s.' => 'Skipped (already in that state, active theme or Flux Updater): %s.',
+		'Atlananlar (zaten bu durumda, etkin tema ya da FluxWP Panel): %s.' => 'Skipped (already in that state, active theme or FluxWP Panel): %s.',
 		'Yapılamayanlar: %s.' => 'Failed: %s.',
 		'Şu paketler siteden kaldırılsın mı? Dosyaları silinir. %s' => 'Delete these packages from the site? Their files will be removed. %s',
 		// Kurulum sihirbazı, menü, eski eklenti

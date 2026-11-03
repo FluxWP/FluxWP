@@ -44,7 +44,7 @@ function flxa_default_groups() {
 			'content' => array( __( 'İçerik', 'flx-admin' ), array( 'edit.php?post_type=page', 'edit.php', 'edit.php?post_type=proje', 'edit.php?post_type=etkinlik', 'upload.php', 'edit-comments.php', 'flx-studio' ), false ),
 			'growth'  => array( __( 'Büyüme', 'flx-admin' ), array( 'woocommerce-marketing', 'flx-social', 'flxseo', 'flx-analytics', 'wc-admin&path=/analytics/overview', 'googlesitekit-dashboard' ), true ),
 			'screens' => array( __( 'Ekranlar', 'flx-admin' ), array( 'flx-tv-board', 'flx-tv-remote', 'flxapp-settings' ), true ),
-			'system'  => array( __( 'Sistem', 'flx-admin' ), array( 'flx-setup', 'flx-updater', 'flx-backup', 'flx-speed', 'flx-ai', 'flx-roles', 'plugins.php', 'themes.php', 'users.php', 'options-general.php', 'tools.php', 'hostinger', 'litespeed' ), true ),
+			'system'  => array( __( 'Sistem', 'flx-admin' ), array( 'flx-setup', 'flx-backup', 'flx-speed', 'flx-ai', 'flx-roles', 'plugins.php', 'themes.php', 'users.php', 'options-general.php', 'tools.php', 'hostinger', 'litespeed' ), true ),
 		)
 	);
 }
@@ -54,7 +54,7 @@ function flxa_default_groups() {
  * Kişi öğeyi sabitler ya da "Diğer"e taşırsa o tercih geçerli olur.
  */
 function flxa_standalone_items() {
-	return array_map( 'strval', (array) apply_filters( 'flxa_standalone_items', array( 'flx-setup', 'flx-updater' ) ) );
+	return array_map( 'strval', (array) apply_filters( 'flxa_standalone_items', array( 'flx-setup' ) ) );
 }
 
 /** Kişi henüz bir şey sabitlemediyse üstte kutucuk olarak gelenler. Filtre `flxa_default_pins`. */
@@ -495,7 +495,7 @@ function flxa_menu_apply() {
 
 /**
  * Aynı işi gören iki ana menüyü teke indirir (filtre `flxa_merge_duplicates` ile kapatılabilir):
- * - Flux Updater varsa Başlangıç altındaki WordPress "Güncellemeler" onun altına taşınır.
+ * - FluxWP Panel (flx-setup) varsa Başlangıç altındaki WordPress "Güncellemeler" onun altına taşınır.
  * - Site Analitik varsa WooCommerce "Analiz" ana menüsü kalkar, raporları Site Analitik altına girer.
  */
 function flxa_menu_merge_duplicates() {
@@ -510,8 +510,7 @@ function flxa_menu_merge_duplicates() {
 		}
 	}
 	/* Hedefin kendi alt menüsü olmalı; yoksa ana bağlantı taşınan sayfaya gider. */
-	/* Flux Setup (1.0+) ya da eski Flux Updater. */
-	$upd = isset( $top['flx-setup'] ) ? 'flx-setup' : 'flx-updater';
+	$upd = 'flx-setup';
 	if ( isset( $top[ $upd ] ) && ! empty( $submenu[ $upd ] ) && ! empty( $submenu['index.php'] ) ) {
 		foreach ( $submenu['index.php'] as $i => $s ) {
 			if ( 'update-core.php' === ( $s[2] ?? '' ) ) {
@@ -758,7 +757,6 @@ function flxa_bottom_items() {
 		'flx-tasks'        => 'tasks',
 		'flxb-dashboard'   => 'pending',
 		'flx-setup'       => 'updates',
-		'flx-updater'      => 'updates',
 	);
 	$short = array(
 		'index.php'     => __( 'Panel', 'flx-admin' ),

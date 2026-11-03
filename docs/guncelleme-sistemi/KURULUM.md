@@ -102,7 +102,7 @@ yalnız anahtarla çalışır. Bir depo okunamazsa yalnız o deponun paketleri s
 ### Gerekli eklentiler (1.5.0)
 
 `/v1/check` her paket için `requires_plugins` da döndürür (paketin `Requires Plugins:` başlığı, release notundaki
-`flx-meta` satırından). Flux Updater (şimdi Flux Setup) 1.3.0 bununla kurmadan önce eksik eklentileri gösterir ve birlikte kurar.
+`flx-meta` satırından). FluxWP Panel bununla kurmadan önce eksik eklentileri gösterir ve birlikte kurar.
 1.5.0'a geçerken yalnız `lib/server.php` değişir.
 
 ### Uygulama güncellemeleri (1.3.0)

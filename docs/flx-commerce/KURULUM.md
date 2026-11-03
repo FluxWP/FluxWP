@@ -9,7 +9,7 @@ Flux Donate ile aynı sitede çakışmadan çalışır.
 - İsteğe bağlı: **Flux Mail** + WhatsApp bağlantısı (WhatsApp bildirimleri), **Flux Admin** (tasarım ve menü).
 
 ## Kurulum
-1. `flx-commerce.zip`'i **Eklentiler › Yeni ekle › Eklenti yükle** ile kurun ya da Flux Updater'dan **Kur**.
+1. `flx-commerce.zip`'i **Eklentiler › Yeni ekle › Eklenti yükle** ile kurun ya da FluxWP Panel'den **Kur**.
 2. Sol menüde **Mağaza** açılır (Flux Admin'de "Bağış" grubunun başında). Ödeme bekleyen sipariş sayısı rozet olarak görünür.
 3. **Mağaza › Müşteriler › Yeniden oluştur**: eski siparişler 100'lük parçalarla taranır (bir kez). Sonrası kendiliğinden.
 

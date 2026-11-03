@@ -1,6 +1,6 @@
 <?php
 /**
- * Genel API: başka eklentiler (ör. Flux Updater) function_exists ile kontrol edip çağırır.
+ * Genel API: başka eklentiler (ör. FluxWP Panel) function_exists ile kontrol edip çağırır.
  * Belge: API.md.
  */
 

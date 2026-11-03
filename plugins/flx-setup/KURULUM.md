@@ -1,6 +1,6 @@
 # FluxWP Panel: kurulum
 
-1. Flux Updater'den **FluxWP Panel**'i kurup etkinleştirin. Ekran: Görünüm › Tema Ayarları › Ön ayarlar (tema desteklemiyorsa Görünüm › Ön ayarlar).
+1. Güncelleme sunucusundan ya da zip ile **FluxWP Panel**'i kurup etkinleştirin. Ekran: Görünüm › Tema Ayarları › Ön ayarlar (tema desteklemiyorsa Görünüm › Ön ayarlar).
 2. Bir ön ayar eklentisi kurun (ör. **Örnek Preset**). Boş sitede kendiliğinden uygulanır. İçerikli sitede Ön ayarlar ekranında bildirim çıkar.
 3. **Önizle**: her satırda şu anki değer, ön ayarın değeri ve durum görünür. Uygula'ya basınca yalnız "Eklenecek" ve "Değişecek" satırlar yazılır.
    - **Yalnız boşları doldur**: dolu değerlere hiç dokunmaz. Var olan (canlı) sitede bunu kullanın.

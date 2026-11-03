@@ -12,7 +12,7 @@
 - Yeni yetkiler: başkası adına bağış, kendi bağışçıları, referans bildirimi, asistanda personel araçları, raporlar.
 
 ## Kurulum
-1. Sitede **Güncellemeler** (Flux Updater) › Flux Roles › **Kur**, ya da Eklentiler › Yeni ekle › `flx-roles.zip` yükle, etkinleştir.
+1. Sitede **Güncellemeler** (FluxWP Panel) › Flux Roles › **Kur**, ya da Eklentiler › Yeni ekle › `flx-roles.zip` yükle, etkinleştir.
 2. **Kullanıcılar › Roller ve erişim** sayfası açılır. Roller varsayılan yetkilerle hazır gelir.
 3. Kişi eklemek: kullanıcı yoksa Kullanıcılar › Yeni ekle'de oluşturup Rol'den Personel/İdareci seçin; varsa Roller ve erişim › Kişiler'de kullanıcı adı ya da e-postayı yazıp **Ekle**.
 

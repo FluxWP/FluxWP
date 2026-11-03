@@ -313,7 +313,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 	<?php
 }
 
-/** Flux Updater'nin Güncellemeler ekranında logo. */
+/** FluxWP Panel'in Güncellemeler ekranında logo. */
 function flxa_package_icon( $icons, $slug ) {
 	if ( 'flx-admin' === $slug && empty( $icons ) ) {
 		$u     = FLXA_URL . 'assets/icon.svg?ver=' . FLXA_VERSION;

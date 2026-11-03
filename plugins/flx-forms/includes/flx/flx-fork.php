@@ -63,7 +63,7 @@ add_action(
 );
 
 /* ---------- WordPress.org güncellemesi fork'u ezmesin ---------- */
-/* Yalnız wordpress.org'dan gelen kayıt silinir; Flux Updater'nin kaydı kalır. */
+/* Yalnız wordpress.org'dan gelen kayıt silinir; FluxWP Panel'in kaydı kalır. */
 add_filter(
 	'site_transient_update_plugins',
 	function ( $value ) {

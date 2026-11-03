@@ -4,7 +4,7 @@ Yönetim panelini baştan tasarlayan eklenti. Kapatınca WordPress'in standart p
 
 ## Kurulum
 1. **Eklentiler › Yeni ekle › Eklenti yükle** → `flx-admin.zip` → Etkinleştir.
-   (Repo'ya `main` push'u sonrası Flux Updater'den de gelir.)
+   (Repo'ya `main` push'u sonrası FluxWP Panel'den de gelir.)
 2. **Ayarlar › Yönetim teması** açılır. Varsayılanlar hazır; bir şey girmeniz gerekmez.
 
 ## İlk ayarlar (isteğe bağlı)

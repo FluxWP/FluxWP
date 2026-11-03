@@ -3,7 +3,7 @@
 **Sürüm 0.5.2.** Tüm FluxWP eklentilerinin ortak yapay zekâ eklentisi: anahtarlar, modeller, prompt önbelleği, harcama sınırı, raporlar/faturalandırma ve herkese (yetkisine göre) açık ortak AI sohbeti.
 
 ## Kurulum
-1. **Güncellemeler** (Flux Updater) › Flux AI › **Kur**, ya da Eklentiler › Yeni ekle › `flx-ai.zip` yükle, etkinleştir.
+1. **Güncellemeler** (FluxWP Panel) › Flux AI › **Kur**, ya da Eklentiler › Yeni ekle › `flx-ai.zip` yükle, etkinleştir.
 2. Sol menü **Flux AI › Ayarlar**:
    - **OpenRouter API anahtarı** ve/veya **Anthropic (Claude) API anahtarı** girin. Anahtar bir kez yazılır; sonra yalnız son 4 hanesi görünür. "Sil" kutusu anahtarı kaldırır.
    - Claude hata mesajı "anthropic-workspace-id" isterse **Anthropic workspace ID** (console.anthropic.com › Settings › Workspaces, `wrkspc_…`).

@@ -14,7 +14,7 @@ Ortak tarz: 256×256 SVG, yuvarlatılmış kare, eklentiye özel degrade ve beya
 | flx-chat.svg | Flux Chat | kulaklık + mesaj |
 | flx-mail.svg | Flux Mail | zarf + mesaj |
 
-## Zaten yapılan (Flux Updater (şimdi Flux Setup) 1.0.3)
+## Zaten yapılan (FluxWP Panel)
 
 Başlangıç › Güncellemeler ekranında ve Setup › Paketler paket tablosunda logolar görünür.
 Eklentide değişiklik gerekmez. Bir paket logoyu kendisi vermek isterse:

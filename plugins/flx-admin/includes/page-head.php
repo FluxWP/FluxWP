@@ -27,7 +27,6 @@ function flxa_page_head_map() {
 			'flx-app'         => 'flx-app',
 			'flx-analytics'   => 'flx-analytics',
 			'flx-setup'       => 'flx-setup',
-			'flx-updater'     => 'flx-setup',
 			'flx-backup'      => 'flx-backup',
 			'flx-speed'       => 'flx-speed',
 			'flx-ai'          => 'flx-ai',
@@ -73,7 +72,6 @@ function flxa_package_heads() {
 			'flx-qurban'       => array( 'Flux Qurban', __( 'Kurban bağışları, hisseler ve vekâlet', 'flx-admin' ) ),
 			'flx-tv-board'     => array( 'Flux TV Board', __( 'Ekranlarda gösterilecek pano ve slaytlar', 'flx-admin' ) ),
 			'flx-tv-remote'    => array( 'Flux TV Remote', __( 'Televizyonları ve panoları uzaktan yönet', 'flx-admin' ) ),
-			'flx-updater'      => array( 'Flux Updater', __( 'FluxWP tema ve eklentilerini güncelleme sunucusundan güncelle', 'flx-admin' ) ),
 			'fluxwp'           => array( 'FluxWP', __( 'Tema ayarları ve ön ayarlar', 'flx-admin' ) ),
 		)
 	);
