@@ -180,9 +180,10 @@ final class FLXK_Onboarding {
 		return 'other';
 	}
 
-	/** Sihirbazda gösterilmeyen katalog paketleri (kendisi, ön ayarlar, geçiş araçları). */
+	/** Sihirbazda gösterilmeyen katalog paketleri (kendisi, ön ayarlar, geçiş araçları, özel paketler). Filtre: flxk_onboarding_hidden. */
 	private static function hidden( string $slug ): bool {
-		return in_array( $slug, array( 'flx-setup', 'flx-updater', 'flx-migrate' ), true ) || 0 === strpos( $slug, 'flx-preset-' );
+		$list = (array) apply_filters( 'flxk_onboarding_hidden', array( 'flx-setup', 'flx-updater', 'flx-migrate', 'flx-qr-menu' ) );
+		return in_array( $slug, $list, true ) || 0 === strpos( $slug, 'flx-preset-' );
 	}
 
 	private static function plugins( array $catalog, array $rows ): array {
