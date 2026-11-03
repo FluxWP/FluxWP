@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Admin
  * Description:       Yönetim panelini baştan tasarlar: rol bazlı düzenlenebilir sol menü, mobil alt bar ve yan panel, WhatsApp / Görevler geçişi, düzenlenebilir Başlangıç modülleri, otomatik açık/koyu tema, komut paleti (Ctrl+K), canlı sayaçlar ve PWA (ana ekrana ekle).
- * Version:           1.6.2
+ * Version:           1.6.3
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit;
 
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLXA_VERSION', '1.6.2' );
+define( 'FLXA_VERSION', '1.6.3' );
 define( 'FLXA_FILE', __FILE__ );
 define( 'FLXA_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXA_URL', plugin_dir_url( __FILE__ ) );
@@ -33,6 +33,7 @@ require_once FLXA_DIR . 'includes/pwa.php';
 require_once FLXA_DIR . 'includes/login.php';
 require_once FLXA_DIR . 'includes/system-checks.php';
 require_once FLXA_DIR . 'includes/list.php';
+require_once FLXA_DIR . 'includes/page-head.php';
 
 if ( is_admin() ) {
 	require_once FLXA_DIR . 'includes/settings-page.php';
