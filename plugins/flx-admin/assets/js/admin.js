@@ -1321,14 +1321,21 @@
 			}
 		}
 	}
-	function dgScan() {
-		if (!html.classList.contains('flxa-dark') || d.body.classList.contains('flxa-appmode')) return;
-		var root = d.getElementById('wpbody');
-		if (!root) return;
-		var all = root.getElementsByTagName('*');
-		var n = Math.min(all.length, 6000), todo = [], darkBg = [];
+	// Koruma sayfa çizilmeden uygulanır: <head> koyu modda #wpbody-content'i gizler (html.flxa-dg),
+	// ilk tarama burada, script çalışır çalışmaz yapılır ve içerik açılır. Sonradan eklenen (JS ile çizilen)
+	// kutular MutationObserver geri çağrısında, yani bir sonraki boyamadan önce taranır: açık kutu önce
+	// beyaz görünüp sonra koyulaşmaz.
+	function dgOn() { return html.classList.contains('flxa-dark') && !d.body.classList.contains('flxa-appmode'); }
+	function dgScan(list) {
+		if (!dgOn()) return;
+		if (!list) {
+			var root = d.getElementById('wpbody');
+			if (!root) return;
+			list = root.getElementsByTagName('*');
+		}
+		var n = Math.min(list.length, 6000), todo = [], darkBg = [];
 		for (var i = 0; i < n; i++) {
-			var e = all[i];
+			var e = list[i];
 			if (DG_SKIP.test(e.tagName.toUpperCase()) || e instanceof SVGElement) continue;
 			var cs = getComputedStyle(e);
 			if (cs.display === 'none') continue;
@@ -1354,8 +1361,35 @@
 			}
 			dgBorders(e, cs, darkBg, todo);
 		}
-		dgSvg(root, darkBg, todo);
+		var svgRoot = root || (Array.prototype.some.call(list, function (x) { return x.tagName && x.tagName.toLowerCase() === 'svg'; }) ? d.getElementById('wpbody') : null);
+		if (svgRoot) dgSvg(svgRoot, darkBg, todo);
+		if (!todo.length) return;
+		// Kutuların kendi transition'ı varsa beyazdan koyuya geçiş canlandırılır (yine yanıp söner): yazım anında kapalı.
+		html.classList.add('flxa-dg-now');
 		todo.forEach(function (t) { dgSet(t[0], t[1], t[2]); });
+		void html.offsetWidth;
+		html.classList.remove('flxa-dg-now');
+	}
+	/**
+	 * Değişen düğümler: eklenenler ve alt ağaçları, içi dolan kapsayıcı (boşken 0 px olduğu için atlanmıştı),
+	 * görünür olan (class / style / hidden) öğenin alt ağacı. Üst sınır: büyük değişimde tam tarama ertelenir.
+	 */
+	function dgPush(list, x, deep) {
+		if (!x || x.nodeType !== 1 || !x.isConnected || list.length >= 3000) return;
+		list.push(x);
+		if (!deep) return;
+		var sub = x.getElementsByTagName('*');
+		for (var k = 0; k < sub.length && list.length < 3000; k++) list.push(sub[k]);
+	}
+	function dgChanged(muts) {
+		var list = [];
+		for (var i = 0; i < muts.length && list.length < 3000; i++) {
+			var m = muts[i];
+			if (m.type === 'attributes') { dgPush(list, m.target, true); continue; }
+			dgPush(list, m.target, false);
+			for (var j = 0; j < m.addedNodes.length; j++) dgPush(list, m.addedNodes[j], true);
+		}
+		if (list.length) dgScan(list);
 	}
 	var dgT;
 	function dgLater() { clearTimeout(dgT); dgT = setTimeout(dgScan, 250); }
@@ -1364,9 +1398,18 @@
 			if (html.classList.contains('flxa-dark')) dgLater(); else if (dgDone.length) dgClear();
 		}).observe(html, { attributes: true, attributeFilter: ['class'] });
 		var wpb = d.getElementById('wpbody');
-		if (wpb) new MutationObserver(function () { if (html.classList.contains('flxa-dark')) dgLater(); }).observe(wpb, { childList: true, subtree: true });
+		if (wpb) {
+			var dgMo = new MutationObserver(function (muts) {
+				if (!dgOn()) return;
+				dgChanged(muts);
+				dgMo.takeRecords(); // korumanın kendi style yazımları yeniden tarama tetiklemesin
+				dgLater();
+			});
+			dgMo.observe(wpb, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'hidden', 'open'] });
+		}
 	}
-	if (d.readyState === 'complete') dgScan(); else window.addEventListener('load', dgScan);
+	try { dgScan(); } finally { html.classList.remove('flxa-dg'); }
+	if (d.readyState !== 'complete') window.addEventListener('load', function () { dgScan(); });
 
 	/* Başlangıç: Ekran ayarları / Yardım başlık satırındaki düğmelerin yanında */
 	var heroAct = $('.flxa-hero-actions'), sml = d.getElementById('screen-meta-links');

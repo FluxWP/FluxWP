@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.8.6
+- Koyu modda yenilemede açık tema yanıp sönmesi giderildi: tema, uygulama kabı çizilir çizilmez (pages.js beklenmeden) uygulanır.
+
 ## 0.8.5
 - Varsayılan vurgu rengi yeşil yerine Flux Admin / tema rengi (ayarlarda renk seçilmediyse).
 

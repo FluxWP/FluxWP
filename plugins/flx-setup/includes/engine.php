@@ -380,6 +380,10 @@ function flxk_plan( $preset_id, array $p, array $opts = array() ) {
 			if ( flxk_path_is_secret( $path ) ) {
 				continue;
 			}
+			$w = flxk_settings_path_warning( $opt, $path );
+			if ( $w ) {
+				$warn[] = $w;
+			}
 			$cur   = flxk_path_get( $stored, $path, FLXK_ABSENT );
 			$new   = flxk_resolve( $v, $ctx );
 			$new   = flxk_is_keyed_list( $new ) && FLXK_ABSENT !== $cur ? flxk_merge( $cur, $new ) : $new;
@@ -455,7 +459,7 @@ function flxk_execute( $preset_id, array $p, array $opts = array(), array $meta 
 	$st['applied_at'] = $st['applied_at'] ?? current_time( 'mysql' );
 	$st['updated_at'] = current_time( 'mysql' );
 	if ( ! empty( $p['version'] ) ) {
-		$st['ver'] = (int) $p['version'];
+		$st['ver'] = (string) $p['version'];
 	}
 	if ( 'migration' === $run['kind'] && ! empty( $meta['migration'] ) ) {
 		$st['migrations'][ $meta['migration'] ] = array(
@@ -577,8 +581,10 @@ function flxk_execute_ops( array $ops, array $p, array &$ctx, array &$run, array
 		update_option( 'flx_profile', $profile );
 	}
 	foreach ( $options as $opt => $val ) {
+		$before = get_option( $opt, array() );
 		update_option( $opt, $val );
-		do_action( 'flxk_option_written', $opt, $val );
+		flxk_guard_option( $opt, is_array( $before ) ? $before : array(), $run['written'] );
+		do_action( 'flxk_option_written', $opt, get_option( $opt ) );
 	}
 	foreach ( $run['written'] as $t => $h ) {
 		if ( 0 === strpos( $t, 'option:' ) || 0 === strpos( $t, 'profile:' ) ) {
@@ -701,6 +707,125 @@ function flxk_auto_migrations() {
 				flxk_apply_migration( $id, $m['id'] );
 			}
 		}
+	}
+}
+
+/* ---------- Yalnız bildirilen alanlar ---------- */
+
+/**
+ * Ön ayar bir option'ın yalnız bildirdiği yollarını değiştirir. Bazı eklentilerin sanitize callback'i formdan
+ * gelmeyen onay kutularını "kapalı" sayar (ör. tema çerez banner'ı): ön ayar `site_mod` yazınca `cookie_enabled`
+ * 0 oluyordu. Yazdıktan sonra bildirilmeyen üst anahtarlar eski haline döner (yoksa silinir, eklentinin varsayılanı
+ * geçerli olur). Kapatmak için: `flxk_option_guard` filtresi false.
+ *
+ * @param string $opt     option adı
+ * @param array  $before  yazmadan önceki değer
+ * @param array  $written bu çalıştırmada yazılan hedefler (target => hash)
+ */
+function flxk_guard_option( $opt, array $before, array $written ) {
+	if ( ! apply_filters( 'flxk_option_guard', true, $opt ) ) {
+		return;
+	}
+	$after = get_option( $opt, array() );
+	if ( ! is_array( $after ) ) {
+		return;
+	}
+	$declared = array();
+	$prefix   = 'option:' . $opt . ':';
+	foreach ( array_keys( $written ) as $t ) {
+		if ( 0 === strpos( $t, $prefix ) ) {
+			$declared[ strtok( substr( $t, strlen( $prefix ) ), '.' ) ] = true;
+		}
+	}
+	$fixed = $after;
+	foreach ( $after as $k => $v ) {
+		if ( isset( $declared[ (string) $k ] ) ) {
+			continue;
+		}
+		if ( ! array_key_exists( $k, $before ) ) {
+			unset( $fixed[ $k ] );
+		} elseif ( flxk_hash( $before[ $k ] ) !== flxk_hash( $v ) ) {
+			$fixed[ $k ] = $before[ $k ];
+		}
+	}
+	foreach ( $before as $k => $v ) {
+		if ( ! isset( $declared[ (string) $k ] ) && ! array_key_exists( $k, $fixed ) ) {
+			$fixed[ $k ] = $v; // Sanitize bildirilmeyen anahtarı silmiş.
+		}
+	}
+	if ( flxk_hash( $fixed ) === flxk_hash( $after ) ) {
+		return;
+	}
+	// Ham yazım: düzeltmeyi eklentinin sanitize'ı yeniden bozmasın.
+	global $wp_filter;
+	$hook  = 'sanitize_option_' . $opt;
+	$saved = $wp_filter[ $hook ] ?? null;
+	unset( $wp_filter[ $hook ] );
+	update_option( $opt, $fixed );
+	if ( null !== $saved ) {
+		$wp_filter[ $hook ] = $saved; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
+	}
+}
+
+/* ---------- Ön ayar güncellenince eşitle ---------- */
+
+/** Ön ayarın ayar bölümleri (profil, WordPress ayarları, eklenti ayarları). */
+function flxk_settings_part( array $p ) {
+	return array_intersect_key( $p, array_flip( array( 'format', 'id', 'name', 'version', 'profile', 'wp', 'settings', 'dir' ) ) );
+}
+
+/**
+ * Ön ayarın sürümü değiştiyse ayar bölümlerini (profile, wp, settings) siteyle eşitler. Motorun sahiplik kuralı
+ * geçerlidir: ön ayarın daha önce yazdığı ve kullanıcının değiştirmediği değerler yenilenir, elle değiştirilenler
+ * ("manual") atlanır, yeni alanlar eklenir. İçerik ve şablonlar migration'larla güncellenir.
+ *
+ * @param bool $force sürüm aynı olsa da eşitle
+ * @return array|null run özeti (bir şey yazıldıysa)
+ */
+function flxk_sync_preset( $id, $force = false ) {
+	$p  = flxk_get_preset( $id );
+	$st = flxk_state( $id );
+	if ( ! $p || ! $st || ! empty( $p['error'] ) ) {
+		return null;
+	}
+	$ver = (string) ( $p['version'] ?? '' );
+	if ( ! $force && (string) ( $st['ver'] ?? '' ) === $ver ) {
+		return null;
+	}
+	$part = flxk_settings_part( $p );
+	$opts = array( 'mode' => (string) ( $st['mode'] ?? 'apply' ) );
+	$plan = flxk_plan( $id, $part, $opts );
+	$todo = array_filter(
+		$plan['ops'],
+		static function ( $op ) {
+			return ! empty( $op['apply'] );
+		}
+	);
+	if ( ! $todo ) {
+		$st['ver'] = $ver;
+		flxk_save_state( $id, $st );
+		return null;
+	}
+	return flxk_execute(
+		$id,
+		$part,
+		$opts,
+		array(
+			'kind'  => 'sync',
+			/* translators: %s: ön ayar sürümü */
+			'title' => sprintf( __( 'Ayarlar eşitlendi (%s)', 'flx-setup' ), $ver ),
+		)
+	);
+}
+
+/** Eklenti güncellemesinden sonra: ayarları eşitle, sonra "auto" migration'lar (aşağıda) çalışır. */
+add_action( 'admin_init', 'flxk_sync_presets', 9 );
+function flxk_sync_presets() {
+	if ( wp_doing_ajax() || ! current_user_can( flxk_cap() ) || ! apply_filters( 'flxk_auto_sync', true ) ) {
+		return;
+	}
+	foreach ( array_keys( flxk_state() ) as $id ) {
+		flxk_sync_preset( $id );
 	}
 }
 

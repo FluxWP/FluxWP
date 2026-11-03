@@ -1,7 +1,11 @@
 # Değişiklikler
 
-## 0.7.4
+## 0.7.5
 - Varsayılan favicon: site simgesi ve kurum profili simgesi yoksa tema da yeni FluxWP favicon'unu (zeminsiz, beyaz konturlu işaret) gösterir; Flux SEO ya da Flux Admin kuruluysa onlarınki kullanılır, çift yazılmaz. Filtre `flx_theme_favicon`.
+
+## 0.7.4
+- Tema Ayarları kısmi yazımda diğer alanları korur: ön ayar, AI ya da sistem aracı yalnız bir alanı yazınca çerez banner'ı, animasyon ve kampanya kartı artık kapanmıyor (önceden formda olmayan onay kutusu "kapalı" sayılıyordu).
+- Ayar şeması (`flx_settings_schema`): `flx_ayarlar` alanları ön ayar ve AI için tanımlı.
 
 ## 0.7.3
 - Sistem Kontrolü: Flux SEO artık isteğe bağlı. Kurulu ya da etkin değilse hata yerine uyarı gösterilir.
