@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.6.8
+- Favicon: site simgesi seçilmemişse yönetim paneli, giriş ekranı ve (Flux SEO yoksa) ön yüz yeni FluxWP simgesini gösterir (SVG, açık/koyu uyumlu + PNG). Site simgesi (Görünüm › Özelleştir › Site kimliği) seçildiyse o kullanılır. PWA simgeleri FluxWP simgesiyle yenilendi. Filtre `flxa_favicon`.
+
 ## 1.6.7
 - Flux Setup 1.0 (Flux Updater ile birleşti) için: `flx-setup` menüsü Güncellemeler'in yerini alır (tek başına kart, rozet, WordPress güncellemeleri alt menüsü, logo, sayfa başlığı). Eski `flx-updater` menüsü de tanınmaya devam eder. `flxa_standalone_items` varsayılanı `flx-setup`, `flx-updater`.
 

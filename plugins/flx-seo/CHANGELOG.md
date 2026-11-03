@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.2.6
+- Varsayılan favicon.ico eski yaprak simgesiydi; FluxWP simgesiyle değişti, SVG favicon eklendi. Kök dizindeki eski kopya güncellenir (sitenin kendi favicon.ico'suna dokunulmaz). Site simgesi seçildiyse o kullanılır.
+
 ## 1.2.5
 - Kontrol listesindeki uyarı/hata renkleri koyu modda okunur.
 
