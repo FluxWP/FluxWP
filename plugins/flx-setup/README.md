@@ -37,7 +37,8 @@ Our packages live in a private GitHub repository and are not on WordPress.org. W
 ## Features
 
 ### Setup wizard
-- Presentation-style: every step fits one landscape screen, no scrolling; steps slide sideways. Steps: intro › theme and store › plugins › appearance › install › done. **Skip** at any time; open it again from **Setup › Setup wizard**.
+- Presentation-style: every step fits one landscape screen, no scrolling; steps slide sideways. Steps: intro › theme and site type (store or nonprofit, pick one) › plugins by category, one screen each › appearance › install › done. **Skip** at any time; open it again from **Setup › Setup wizard**.
+- Appearance step in tabs with a fixed live preview on the right: **Identity** (site name, tagline, logo upload), **Preset**, **Colour** (each style shown as a small site) and **Pages** (Blog, About us, Contact, FAQ).
 - **What should we start with?** The FluxWP theme and Flux Commerce on their own screen, both recommended, with a quiet **Continue without these**. Then the other plugins with a screenshot and one line each; recommended ones are ticked.
 - Appearance: preset (FluxWP demo, installed preset packages or Blank), one of the theme's colour styles with a live preview, and the site name.
 - Install: one row per package (finished rows sharp, upcoming ones blurred), a console log and progress. Required plugins such as WooCommerce come from WordPress.org. Failed steps are listed at the end.
@@ -64,9 +65,9 @@ Our packages live in a private GitHub repository and are not on WordPress.org. W
 
 ## Screenshots
 
-| Setup wizard: theme and store | Setup wizard: plugins |
+| Setup wizard: what to start with | Setup wizard: plugins |
 |---|---|
-| <img src="docs/images/wizard-base-en.jpg" alt="Setup wizard: theme and store" width="440"> | <img src="docs/images/wizard-plugins-en.jpg" alt="Setup wizard: plugins" width="440"> |
+| <img src="docs/images/wizard-base-en.jpg" alt="Setup wizard: what to start with" width="440"> | <img src="docs/images/wizard-plugins-en.jpg" alt="Setup wizard: plugins" width="440"> |
 | **Setup wizard: appearance** | **Setup wizard: install** |
 | <img src="docs/images/wizard-appearance-en.jpg" alt="Setup wizard: appearance" width="440"> | <img src="docs/images/wizard-install-en.jpg" alt="Setup wizard: install" width="440"> |
 | **FluxWP packages** | **Connection settings** |

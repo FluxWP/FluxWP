@@ -20,6 +20,48 @@ final class FLXK_Onboarding {
 		add_action( 'admin_menu', array( __CLASS__, 'menu' ), 20 );
 		add_action( 'admin_init', array( __CLASS__, 'maybe_redirect' ), 20 );
 		add_action( 'wp_ajax_flxk_onboarding_step', array( __CLASS__, 'ajax_step' ) );
+		add_action( 'wp_ajax_flxk_onboarding_logo', array( __CLASS__, 'ajax_logo' ) );
+	}
+
+	/** Sihirbazın "Sayfalar" sekmesindeki sayfalar: anahtar => [başlık, içerik]. */
+	private static function page_defs(): array {
+		$p = static function ( $text ) {
+			return '<!-- wp:paragraph --><p>' . esc_html( $text ) . '</p><!-- /wp:paragraph -->';
+		};
+		return (array) apply_filters(
+			'flxk_onboarding_pages',
+			array(
+				'blog'    => array( __( 'Blog', 'flx-setup' ), '' ),
+				'about'   => array( __( 'Hakkımızda', 'flx-setup' ), $p( __( 'Kim olduğunuzu ve ne yaptığınızı burada anlatın.', 'flx-setup' ) ) ),
+				'contact' => array( _x( 'İletişim', 'page title', 'flx-setup' ), $p( __( 'Adres, telefon ve e-posta bilgilerinizi buraya yazın.', 'flx-setup' ) ) ),
+				'faq'     => array( __( 'Sık sorulan sorular', 'flx-setup' ), $p( __( 'Sık gelen soruları ve cevaplarını buraya ekleyin.', 'flx-setup' ) ) ),
+			)
+		);
+	}
+
+	/** Logo yükleme: Medya'ya ekler, kurulumda tema logosu yapılır. */
+	public static function ajax_logo(): void {
+		check_ajax_referer( self::NONCE, 'nonce' );
+		if ( ! current_user_can( self::cap() ) || ! current_user_can( 'upload_files' ) ) {
+			wp_send_json_error( array( 'message' => __( 'Yetkiniz yok.', 'flx-setup' ) ), 403 );
+		}
+		$type = (string) ( $_FILES['logo']['type'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		if ( empty( $_FILES['logo'] ) || ! in_array( $type, array( 'image/png', 'image/jpeg', 'image/webp', 'image/gif' ), true ) ) {
+			wp_send_json_error( array( 'message' => __( 'PNG, JPG, WebP ya da GIF yükleyin.', 'flx-setup' ) ) );
+		}
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+		require_once ABSPATH . 'wp-admin/includes/media.php';
+		require_once ABSPATH . 'wp-admin/includes/image.php';
+		$id = media_handle_upload( 'logo', 0 );
+		if ( is_wp_error( $id ) ) {
+			wp_send_json_error( array( 'message' => $id->get_error_message() ) );
+		}
+		wp_send_json_success(
+			array(
+				'id'  => (int) $id,
+				'url' => (string) wp_get_attachment_image_url( $id, 'medium' ),
+			)
+		);
 	}
 
 	public static function cap(): string {
@@ -82,9 +124,60 @@ final class FLXK_Onboarding {
 		return (array) apply_filters( 'flxk_onboarding_intro', $d );
 	}
 
-	/** Tema ile birlikte en üstte "Temel" olarak gösterilen, varsayılan seçili paketler. */
+	/**
+	 * "Neyle başlayalım?" ekranında temanın yanındaki kartlar. Her kart bir ya da birkaç paketi birlikte seçer.
+	 * art: ekran görüntüsü yerine gösterilecek görsel (boşsa ilk paketin ekran görüntüsü).
+	 */
 	private static function core(): array {
-		return (array) apply_filters( 'flxk_onboarding_core', array( 'flx-commerce' ) );
+		$items = array(
+			array(
+				'key'   => 'store',
+				'slugs' => array( 'flx-commerce' ),
+				'name'  => __( 'Mağaza', 'flx-setup' ),
+				'desc'  => __( 'Flux Commerce: satış paneli, müşteriler, raporlar ve dekontlu Havale/EFT.', 'flx-setup' ),
+				'art'   => '',
+			),
+			array(
+				'key'   => 'charity',
+				'slugs' => array( 'flx-donate', 'flx-certificates' ),
+				'name'  => __( 'Dernek ve bağış', 'flx-setup' ),
+				'desc'  => __( 'Flux Donate ve Flux Certificates: bağış türleri, tek sayfalık ödeme ve her bağışçıya adına sertifika.', 'flx-setup' ),
+				'art'   => FLXK_URL . 'assets/onboarding/art/charity.svg',
+			),
+		);
+		return array_values( (array) apply_filters( 'flxk_onboarding_core', $items ) );
+	}
+
+	/** Başlangıç kartlarındaki tüm paketler. */
+	private static function core_slugs(): array {
+		$out = array();
+		foreach ( self::core() as $c ) {
+			$out = array_merge( $out, (array) ( $c['slugs'] ?? array() ) );
+		}
+		return $out;
+	}
+
+	/** Eklenti adımının kategorileri; her biri ayrı ekran. Listede olmayan paket "Diğer"e düşer. */
+	private static function groups(): array {
+		$g = array(
+			array( 'key' => 'manage', 'name' => __( 'Yönetim', 'flx-setup' ), 'lead' => __( 'Panel, ekip yetkileri, görevler ve masaüstü/mobil uygulama.', 'flx-setup' ), 'slugs' => array( 'flx-admin', 'flx-roles', 'flx-tasks', 'flx-app' ) ),
+			array( 'key' => 'contact', 'name' => __( 'İletişim', 'flx-setup' ), 'lead' => __( 'WhatsApp, e-posta ve formlar tek panelde.', 'flx-setup' ), 'slugs' => array( 'flx-chat', 'flx-mail', 'flx-forms' ) ),
+			array( 'key' => 'grow', 'name' => __( 'Büyüme', 'flx-setup' ), 'lead' => __( 'Arama motorları, ziyaretçi analizi, diller ve sosyal medya.', 'flx-setup' ), 'slugs' => array( 'flx-seo', 'flx-analytics', 'flx-lang', 'flx-social' ) ),
+			array( 'key' => 'ai', 'name' => __( 'Yapay zekâ', 'flx-setup' ), 'lead' => __( 'Tüm paketlerin kullandığı ortak AI ve görsel stüdyosu.', 'flx-setup' ), 'slugs' => array( 'flx-ai', 'flx-studio' ) ),
+			array( 'key' => 'system', 'name' => __( 'Sistem', 'flx-setup' ), 'lead' => __( 'Hız, yedek ve sistem kontrolü.', 'flx-setup' ), 'slugs' => array( 'flx-speed', 'flx-backup' ) ),
+		);
+		$g   = array_values( (array) apply_filters( 'flxk_onboarding_groups', $g ) );
+		$g[] = array( 'key' => 'other', 'name' => __( 'Diğer', 'flx-setup' ), 'lead' => __( 'Diğer FluxWP paketleri.', 'flx-setup' ), 'slugs' => array() );
+		return $g;
+	}
+
+	private static function group_of( string $slug, array $groups ): string {
+		foreach ( $groups as $g ) {
+			if ( in_array( $slug, (array) $g['slugs'], true ) ) {
+				return (string) $g['key'];
+			}
+		}
+		return 'other';
 	}
 
 	/** Sihirbazda gösterilmeyen katalog paketleri (kendisi, ön ayarlar, geçiş araçları). */
@@ -98,8 +191,10 @@ final class FLXK_Onboarding {
 		foreach ( $rows as $r ) {
 			$state[ $r['slug'] ] = $r;
 		}
-		$lang = self::lang();
-		$out  = array();
+		$lang   = self::lang();
+		$out    = array();
+		$core   = self::core_slugs();
+		$groups = self::groups();
 		foreach ( $catalog as $slug => $p ) {
 			if ( 'plugin' !== $p['type'] || self::hidden( $slug ) ) {
 				continue;
@@ -115,7 +210,8 @@ final class FLXK_Onboarding {
 				'icon'    => (string) ( $icons['svg'] ?? ( $icons['1x'] ?? '' ) ),
 				'thumb'   => is_readable( $thumb ) ? FLXK_URL . 'assets/onboarding/thumbs/' . $slug . '-' . $lang . '.jpg' : '',
 				'active'  => ! empty( $state[ $slug ]['active'] ),
-				'core'    => in_array( $slug, self::core(), true ),
+				'core'    => in_array( $slug, $core, true ),
+				'group'   => self::group_of( $slug, $groups ),
 				'order'   => isset( $intro[ $slug ] ) ? array_search( $slug, array_keys( $intro ), true ) : 99,
 			);
 		}
@@ -182,11 +278,11 @@ final class FLXK_Onboarding {
 	/** FluxWP temasının stil varyasyonları (tema kuruluysa dosyadan, değilse bilinen liste). */
 	private static function styles(): array {
 		$fallback = array(
-			array( 'antrasit', __( 'Antrasit', 'flx-setup' ), '#1F2937', '#111827', '#3B82F6', '#F2EEE7', '#F8F5F0', '#E6E0D6' ),
-			array( 'mavi', __( 'Mavi', 'flx-setup' ), '#2563EB', '#1D4ED8', '#F59E0B', '#EFF6FF', '#F8FAFC', '#E2E8F0' ),
-			array( 'petrol', __( 'Petrol', 'flx-setup' ), '#0F766E', '#115E59', '#F59E0B', '#ECFDF9', '#F7FAFA', '#E2E8F0' ),
-			array( 'indigo', __( 'İndigo', 'flx-setup' ), '#4338CA', '#3730A3', '#F59E0B', '#EEF2FF', '#F7F8FE', '#E0E7FF' ),
-			array( 'orman', __( 'Orman', 'flx-setup' ), '#0E7A56', '#0A5A40', '#6DBE45', '#EAF5EE', '#F5FAF6', '#DCE9E0' ),
+			array( 'antrasit', __( 'Antrasit', 'flx-setup' ), '#1F2937', '#111827', '#3B82F6', '#F2EEE7', '#F8F5F0', '#E6E0D6', '#111827' ),
+			array( 'mavi', __( 'Mavi', 'flx-setup' ), '#2563EB', '#1D4ED8', '#F59E0B', '#EFF6FF', '#F8FAFC', '#E2E8F0', '#0F172A' ),
+			array( 'petrol', __( 'Petrol', 'flx-setup' ), '#0F766E', '#115E59', '#F59E0B', '#ECFDF9', '#F7FAFA', '#E2E8F0', '#0B2F2C' ),
+			array( 'indigo', __( 'İndigo', 'flx-setup' ), '#4338CA', '#3730A3', '#F59E0B', '#EEF2FF', '#F7F8FE', '#E0E7FF', '#1E1B4B' ),
+			array( 'orman', __( 'Orman', 'flx-setup' ), '#0E7A56', '#0A5A40', '#6DBE45', '#EAF5EE', '#F5FAF6', '#DCE9E0', '#14324A' ),
 		);
 		$out   = array();
 		$theme = wp_get_theme( 'fluxwp' );
@@ -203,14 +299,23 @@ final class FLXK_Onboarding {
 					continue;
 				}
 				$key         = basename( $f, '.json' );
-				$out[ $key ] = array( $key, (string) ( $j['title'] ?? $key ), $c['primary'], $c['primary-dark'] ?? $c['primary'], $c['leaf'] ?? $c['primary'], $c['mint'] ?? '#F2EEE7', $c['mint-soft'] ?? '#F8F5F0', $c['line'] ?? '#E6E0D6' );
+				$out[ $key ] = array( $key, (string) ( $j['title'] ?? $key ), $c['primary'], $c['primary-dark'] ?? $c['primary'], $c['leaf'] ?? $c['primary'], $c['mint'] ?? '#F2EEE7', $c['mint-soft'] ?? '#F8F5F0', $c['line'] ?? '#E6E0D6', $c['ink'] ?? '#111827' );
 			}
 		}
 		$list = $out ? $out : $fallback;
-		$keys = array( 'key', 'name', 'p', 'pd', 'l', 'm', 'ms', 'sl' );
-		$res  = array();
+		$keys  = array( 'key', 'name', 'p', 'pd', 'l', 'm', 'ms', 'sl', 'ink' );
+		$moods = array(
+			'antrasit' => __( 'Sade ve ciddi, her işe uyar.', 'flx-setup' ),
+			'mavi'     => __( 'Güven veren, kurumsal.', 'flx-setup' ),
+			'petrol'   => __( 'Sakin ve modern.', 'flx-setup' ),
+			'indigo'   => __( 'Canlı, teknoloji ve eğitim.', 'flx-setup' ),
+			'orman'    => __( 'Doğa; dernek ve vakıflar için.', 'flx-setup' ),
+		);
+		$res   = array();
 		foreach ( $list as $row ) {
-			$res[] = array_combine( $keys, array_values( $row ) );
+			$r         = array_combine( $keys, array_values( $row ) );
+			$r['desc'] = $moods[ $r['key'] ] ?? '';
+			$res[]     = $r;
 		}
 		usort(
 			$res,
@@ -254,6 +359,24 @@ final class FLXK_Onboarding {
 			'flxuNonce' => wp_create_nonce( FLXU_Ajax::NONCE ),
 			'lang'      => self::lang(),
 			'plugins'   => self::plugins( $catalog, $rows ),
+			'core'      => array_map(
+				static function ( $c ) {
+					return array(
+						'key'   => (string) $c['key'],
+						'slugs' => array_values( (array) $c['slugs'] ),
+						'name'  => (string) $c['name'],
+						'desc'  => (string) $c['desc'],
+						'art'   => (string) ( $c['art'] ?? '' ),
+					);
+				},
+				self::core()
+			),
+			'groups'    => array_map(
+				static function ( $g ) {
+					return array( 'key' => (string) $g['key'], 'name' => (string) $g['name'], 'lead' => (string) $g['lead'] );
+				},
+				self::groups()
+			),
 			'presets'   => self::presets( $catalog ),
 			'styles'    => self::styles(),
 			'theme'     => isset( $catalog['fluxwp'] ) || wp_get_theme( 'fluxwp' )->exists() ? 'fluxwp' : '',
@@ -261,6 +384,15 @@ final class FLXK_Onboarding {
 			'themeIcon' => (string) ( FLXU_Updater::icons( 'fluxwp' )['svg'] ?? '' ),
 			'setupIcon' => FLXK_URL . 'assets/icons/flx-setup.svg',
 			'siteName'  => get_bloginfo( 'name' ),
+			'tagline'   => get_bloginfo( 'description' ),
+			'pageDefs'  => array_map(
+				static function ( $k, $d ) {
+					return array( 'key' => $k, 'title' => $d[0] );
+				},
+				array_keys( self::page_defs() ),
+				array_values( self::page_defs() )
+			),
+			'canUpload' => current_user_can( 'upload_files' ),
 			'host'      => wp_parse_url( home_url(), PHP_URL_HOST ),
 			'server'    => wp_parse_url( FLXU_Updater::server(), PHP_URL_HOST ),
 			'offline'   => ! $catalog,
@@ -338,6 +470,60 @@ final class FLXK_Onboarding {
 					update_option( 'blogname', $value );
 				}
 				return self::ok( sprintf( /* translators: %s: site name */ __( 'Site adı: %s', 'flx-setup' ), get_bloginfo( 'name' ) ) );
+
+			case 'tagline':
+				if ( current_user_can( 'manage_options' ) ) {
+					update_option( 'blogdescription', $value );
+				}
+				return self::ok( sprintf( /* translators: %s: tagline */ __( 'Slogan: %s', 'flx-setup' ), $value ) );
+
+			case 'logo':
+				$id = absint( $value );
+				if ( ! $id || 'attachment' !== get_post_type( $id ) || ! current_user_can( 'edit_theme_options' ) ) {
+					return self::fail( __( 'Logo ayarlanamadı.', 'flx-setup' ) );
+				}
+				set_theme_mod( 'custom_logo', $id );
+				if ( ! get_option( 'site_icon' ) ) {
+					update_option( 'site_icon', $id );
+				}
+				return self::ok( __( 'Logo ayarlandı.', 'flx-setup' ) );
+
+			case 'pages':
+				if ( ! current_user_can( 'publish_pages' ) ) {
+					return self::fail( __( 'Sayfa oluşturma yetkiniz yok.', 'flx-setup' ) );
+				}
+				$defs  = self::page_defs();
+				$made  = array();
+				$lines = array();
+				foreach ( array_filter( array_map( 'sanitize_key', explode( ',', $value ) ) ) as $key ) {
+					if ( ! isset( $defs[ $key ] ) ) {
+						continue;
+					}
+					list( $title, $content ) = $defs[ $key ];
+					$existing = get_page_by_path( sanitize_title( $title ) );
+					$id       = $existing ? (int) $existing->ID : (int) wp_insert_post(
+						array(
+							'post_type'    => 'page',
+							'post_status'  => 'publish',
+							'post_title'   => $title,
+							'post_content' => $content,
+						)
+					);
+					if ( ! $id ) {
+						$lines[] = array( 'ok' => false, 'text' => $title );
+						continue;
+					}
+					if ( 'blog' === $key && ! get_option( 'page_for_posts' ) ) {
+						update_option( 'page_for_posts', $id );
+					}
+					$made[]  = $title;
+					$lines[] = array( 'ok' => true, 'text' => sprintf( /* translators: %s: page title */ __( 'Sayfa: %s', 'flx-setup' ), $title ) );
+				}
+				return array(
+					'ok'    => true,
+					'lines' => $lines ? $lines : array( array( 'ok' => true, 'text' => __( 'Yeni sayfa yok.', 'flx-setup' ) ) ),
+					'pages' => self::count_pages(),
+				);
 
 			case 'theme':
 				$theme = wp_get_theme( 'fluxwp' );
@@ -481,27 +667,49 @@ final class FLXK_Onboarding {
 			'start'      => __( 'Başlayalım', 'flx-setup' ),
 			'skipSelf'   => __( 'Kendim kurarım', 'flx-setup' ),
 			'time'       => __( 'Yaklaşık 3 dakika', 'flx-setup' ),
-			'k1'         => __( 'Eklentiler', 'flx-setup' ),
-			'h1'         => __( 'Hangi eklentiler kurulsun?', 'flx-setup' ),
-			'lead1'      => __( 'Önerilenler işaretli. Seçmedikleriniz sonra Setup › Paketler\'den tek tıkla kurulur.', 'flx-setup' ),
+			/* translators: 1: category number, 2: category count */
+			'groupK'     => __( 'Eklentiler · %1$s / %2$s', 'flx-setup' ),
+			/* translators: %s: package count */
+			'wQueued'    => __( '%s paket sıraya alındı', 'flx-setup' ),
+			'activating' => __( 'etkinleştiriliyor', 'flx-setup' ),
 			'selAll'     => __( 'Tümünü seç', 'flx-setup' ),
 			'selNone'    => __( 'Seçimi temizle', 'flx-setup' ),
 			'coreK'      => __( 'Temel', 'flx-setup' ),
 			'hBase'      => __( 'Neyle başlayalım?', 'flx-setup' ),
-			'leadBase'   => __( 'Sitenin üzerine kurulduğu iki parça. İkisi de önerilir, sonra da eklenebilir.', 'flx-setup' ),
+			'leadBase'   => __( 'Tema ve sitenin türü: mağaza ya da dernek. Türlerden biri seçilir; diğerini sonra da kurabilirsiniz.', 'flx-setup' ),
 			'noneBtn'    => __( 'Seçmeden devam et', 'flx-setup' ),
 			'recB'       => __( 'Önerilen', 'flx-setup' ),
 			'themeDesc'  => __( 'Blok tabanlı tema: mağaza, bağış ve kurumsal sayfa şablonları.', 'flx-setup' ),
 			'installedB' => __( 'Kurulu', 'flx-setup' ),
 			'k2'         => __( 'Görünüm', 'flx-setup' ),
 			'h2'         => __( 'Siteniz nasıl görünsün?', 'flx-setup' ),
-			'lead2'      => __( 'Ön ayar sayfaları, menüleri ve örnek içeriği kurar.', 'flx-setup' ),
+			'lead2'      => __( 'Önce adınız ve logonuz, sonra ön ayar, renk ve sayfalar. Sağdaki önizleme hemen değişir.', 'flx-setup' ),
 			'preset'     => __( 'Ön ayar', 'flx-setup' ),
 			'presetHint' => __( 'Sayfalar ve menüler buna göre oluşur.', 'flx-setup' ),
 			'color'      => __( 'Renk', 'flx-setup' ),
 			'colorHint'  => __( 'Tema ve eklentiler aynı rengi kullanır.', 'flx-setup' ),
 			'siteName'   => __( 'Site adı', 'flx-setup' ),
 			'nameHint'   => __( 'E-postalarda ve sertifikalarda da görünür.', 'flx-setup' ),
+			'tabId'      => __( 'Kimlik', 'flx-setup' ),
+			'tabPreset'  => __( 'Ön ayar', 'flx-setup' ),
+			'tabColor'   => __( 'Renk', 'flx-setup' ),
+			'tabPages'   => __( 'Sayfalar', 'flx-setup' ),
+			'tagline'    => __( 'Slogan', 'flx-setup' ),
+			'taglineHint' => __( 'Ana sayfada ve arama sonuçlarında adın altında görünür.', 'flx-setup' ),
+			'logo'       => __( 'Logo', 'flx-setup' ),
+			'logoHint'   => __( 'Kare ya da yatay bir görsel (PNG, JPG, WebP). Sonra değiştirebilirsiniz.', 'flx-setup' ),
+			'logoBtn'    => __( 'Logo yükle', 'flx-setup' ),
+			'logoChange' => __( 'Değiştir', 'flx-setup' ),
+			'logoRemove' => __( 'Kaldır', 'flx-setup' ),
+			'uploading'  => __( 'Yükleniyor…', 'flx-setup' ),
+			'pagesHint'  => __( 'Seçtikleriniz boş sayfa olarak açılır, içini sonra doldurursunuz. Var olan sayfalar tekrar açılmaz.', 'flx-setup' ),
+			'logoStep'   => __( 'Logo', 'flx-setup' ),
+			'pagesStep'  => __( 'Sayfalar', 'flx-setup' ),
+			'tagStep'    => __( 'Slogan', 'flx-setup' ),
+			'shop'       => __( 'Mağaza', 'flx-setup' ),
+			'donate'     => __( 'Bağış yap', 'flx-setup' ),
+			'latest'     => __( 'Son yazılar', 'flx-setup' ),
+			'home'       => __( 'Ana sayfa', 'flx-setup' ),
 			'h4'         => __( 'Siteniz hazır', 'flx-setup' ),
 			'lead4'      => __( 'Eklentiler kuruldu, ön ayar ve renk uygulandı.', 'flx-setup' ),
 			'h4warn'     => __( 'Kurulum bitti, bazı adımlar tamamlanmadı', 'flx-setup' ),

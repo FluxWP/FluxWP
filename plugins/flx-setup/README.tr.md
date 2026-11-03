@@ -37,7 +37,8 @@ Paketlerimiz özel bir GitHub deposunda duruyor, WordPress.org'da yok. Flux Setu
 ## Özellikler
 
 ### Kurulum sihirbazı
-- Sunum düzeni: her adım tek yatay ekrana sığar, kaydırma yok; adımlar yana kayar. Adımlar: tanıtım › tema ve mağaza › eklentiler › görünüm › kurulum › bitti. İstediğiniz an **Atla**; sonra **Setup › Kurulum sihirbazı**'ndan yeniden açılır.
+- Sunum düzeni: her adım tek yatay ekrana sığar, kaydırma yok; adımlar yana kayar. Adımlar: tanıtım › tema ve site türü (mağaza ya da dernek, biri seçilir) › kategori kategori eklentiler, her biri ayrı ekran › görünüm › kurulum › bitti. İstediğiniz an **Atla**; sonra **Setup › Kurulum sihirbazı**'ndan yeniden açılır.
+- Görünüm adımı sekmeli, sağda sabit canlı önizleme: **Kimlik** (site adı, slogan, logo yükleme), **Ön ayar**, **Renk** (her stil küçük bir site olarak) ve **Sayfalar** (Blog, Hakkımızda, İletişim, SSS).
 - **Neyle başlayalım?** FluxWP teması ve Flux Commerce kendi ekranında, ikisi de önerilen; altta sade bir **Seçmeden devam et**. Sonra ekran görüntüsü ve tek satır açıklamalı diğer eklentiler; önerilenler işaretli.
 - Görünüm: ön ayar (FluxWP demo, kurulu ön ayar paketleri ya da Boş), canlı önizlemeli tema renk stili ve site adı.
 - Kurulum: paket başına bir satır (bitenler net, sıradakiler bulanık), konsol kaydı ve ilerleme. WooCommerce gibi gerekli eklentiler WordPress.org'dan gelir. Hatalı adımlar sonda listelenir.
@@ -64,9 +65,9 @@ Paketlerimiz özel bir GitHub deposunda duruyor, WordPress.org'da yok. Flux Setu
 
 ## Ekran görüntüleri
 
-| Kurulum sihirbazı: tema ve mağaza | Kurulum sihirbazı: eklentiler |
+| Kurulum sihirbazı: neyle başlayalım | Kurulum sihirbazı: eklentiler |
 |---|---|
-| <img src="docs/images/wizard-base-tr.jpg" alt="Kurulum sihirbazı: tema ve mağaza" width="440"> | <img src="docs/images/wizard-plugins-tr.jpg" alt="Kurulum sihirbazı: eklentiler" width="440"> |
+| <img src="docs/images/wizard-base-tr.jpg" alt="Kurulum sihirbazı: neyle başlayalım" width="440"> | <img src="docs/images/wizard-plugins-tr.jpg" alt="Kurulum sihirbazı: eklentiler" width="440"> |
 | **Kurulum sihirbazı: görünüm** | **Kurulum sihirbazı: kurulum** |
 | <img src="docs/images/wizard-appearance-tr.jpg" alt="Kurulum sihirbazı: görünüm" width="440"> | <img src="docs/images/wizard-install-tr.jpg" alt="Kurulum sihirbazı: kurulum" width="440"> |
 | **FluxWP paketleri** | **Bağlantı ayarları** |
