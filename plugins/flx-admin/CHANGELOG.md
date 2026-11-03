@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.11
+- Ortak sayfa başlığı (telefon): tek düğmeli sayfalarda başlık solda, düğme sağda aynı satırda (%50 / %50); düğme yazısı ve altındaki durum metni sağa hizalı, gerekirse alt satıra kayar.
+- Ön ayar paketlerinin yeni logoları (menü ve sayfa başlığı için).
+
 ## 1.6.10
 - Uygulama simgesi (iOS ana ekran, PWA): içteki FluxWP işareti büyütüldü. Simge adreslerine sürüm eklendi, cihazlar yenisini alır.
 

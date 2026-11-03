@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.0.10
+- Paketler (telefon): logosu olmayan pakette yer tutucu simge metnin üstüne binmiyordu; artık logo kutusunun yerinde.
+- Ön ayar paketlerinin kendi logoları: Yeşil Türkiye Preset (ağaçlar, yeşil), Hayır Kapısı Preset (açık kapı, turuncu), FluxWP Site Preset (sayfa şablonu, mor).
+
 ## 1.0.8
 - Kurulum sihirbazının ilk ekranında yasal onay: **Kullanım Şartları ve Gizlilik Politikası'nı kabul ediyorum; KVKK Aydınlatma Metni'ni okudum** (fluxwp.com linkleri, panel diline göre EN ya da /tr/). İşaretlenmeden "Başlayalım" açılmaz; "Kendim kurarım" yine çalışır.
 - İsteğe bağlı **Ürünü geliştirmemize yardımcı olun (kullanım verisi gönder)** kutusu, varsayılan kapalı. FluxWP Panel › Ayarlar'dan açılır ya da geri alınır.
