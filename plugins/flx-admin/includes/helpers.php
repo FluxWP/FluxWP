@@ -79,7 +79,9 @@ function flxa_accent() {
 function flxa_accent_dark() {
 	$acc = flxa_accent();
 	if ( '' === sanitize_hex_color( (string) flxa_setting( 'accent' ) ) && function_exists( 'wp_get_global_settings' ) ) {
-		$d = sanitize_hex_color( (string) wp_get_global_settings( array( 'custom', 'dark', 'primary' ) ) );
+		// Yol yoksa wp_get_global_settings() tüm ayar dizisini döndürür; yalnız metin değeri al.
+		$d = wp_get_global_settings( array( 'custom', 'dark', 'primary' ) );
+		$d = is_string( $d ) ? sanitize_hex_color( $d ) : '';
 		if ( $d ) {
 			return $d;
 		}

@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Roles
  * Description:       Personel, İdareci ve Yönetici rollerini ekler (panelden yeni rol de eklenir); rollerin Görev, Sertifika, Bağış, Çağrı Merkezi, Stüdyo ve rapor erişimini tek sayfadan açıp kapatırsınız. Kişisel referans linki ve kullanıcı telefonu (WhatsApp asistanı için) burada.
- * Version:           1.2.1
+ * Version:           1.2.2
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -14,11 +14,13 @@
 
 defined( 'ABSPATH' ) || exit;
 
+require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
+
 if ( defined( 'FLXR_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXR_VERSION', '1.2.1' );
+define( 'FLXR_VERSION', '1.2.2' );
 define( 'FLXR_DB_VERSION', 3 );
 define( 'FLXR_FILE', __FILE__ );
 define( 'FLXR_DIR', plugin_dir_path( __FILE__ ) );

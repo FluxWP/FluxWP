@@ -141,7 +141,7 @@ flowchart LR
 
 | Paket | Açıklama | Tür | Son sürüm | Tarih | İndir |
 |---|---|---|---|---|---|
-| [Flux Admin](plugins/flx-admin/README.tr.md) | Yönetim panelini baştan tasarlar: rol bazlı sol menü, mobil alt bar, komut paleti ve açık/koyu tema. PWA ile ana ekrana eklenir. | Eklenti | [1.6.0](https://github.com/FluxWP/FluxWP/releases/tag/flx-admin-v1.6.0) | 2026-11-03 | [flx-admin.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-admin-v1.6.0/flx-admin.zip) |
+| [Flux Admin](plugins/flx-admin/README.tr.md) | Yönetim panelini baştan tasarlar: rol bazlı sol menü, mobil alt bar, komut paleti ve açık/koyu tema. PWA ile ana ekrana eklenir. | Eklenti | [1.6.1](https://github.com/FluxWP/FluxWP/releases/tag/flx-admin-v1.6.1) | 2026-11-03 | [flx-admin.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-admin-v1.6.1/flx-admin.zip) |
 | [Flux AI](plugins/flx-ai/README.tr.md) | Tüm FluxWP eklentileri için ortak yapay zekâ merkezi. Anahtarlar, modeller, harcama sınırı ve ortak AI sohbeti burada. | Eklenti | [0.6.2](https://github.com/FluxWP/FluxWP/releases/tag/flx-ai-v0.6.2) | 2026-11-03 | [flx-ai.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-ai-v0.6.2/flx-ai.zip) |
 | [Flux Analytics](plugins/flx-analytics/README.tr.md) | Çerezsiz, kişisel veri tutmayan site istatistikleri. Ziyaretçiler, kaynaklar, bağış hunisi ve yolculuklar sitede kalır. | Eklenti | [0.3.3](https://github.com/FluxWP/FluxWP/releases/tag/flx-analytics-v0.3.3) | 2026-11-03 | [flx-analytics.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-analytics-v0.3.3/flx-analytics.zip) |
 | [Flux App](plugins/flx-app/README.tr.md) | Masaüstü ve mobil uygulama için giriş: OAuth 2.0 (PKCE), API anahtarları ve rol bazlı menü. | Eklenti | [0.3.5](https://github.com/FluxWP/FluxWP/releases/tag/flx-app-v0.3.5) | 2026-11-03 | [flx-app.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-app-v0.3.5/flx-app.zip) |
@@ -219,6 +219,16 @@ Sitelerde `plugins/flx-updater` kurulu olmalı; kurulum adımları o reponun REA
 ### flx-wc-bagis (kaldırıldı)
 
 Flux WooCommerce Bağış, Flux Donate 2.0 ile birleşti (2026-10-16) ve 2026-11-01'de repodan silindi. Tüm özellikleri (fidan paketleri, Havale/EFT + dekont, Bağış Seçenekleri bloğu `flx-wc-bagis/secenekler`, `/bagis-urunleri.xml`) `plugins/flx-donate` içinde. Eski release'ler (`flx-wc-bagis-v*`) GitHub'da durur; sitede kuruluysa kaldırılır.
+
+## Geliştirici
+
+FluxWP, **Ahmet Yılmaz** ([@sharkpaw](https://github.com/sharkpaw)) tarafından yürütülmekte ve geliştirilmektedir.
+
+<table><tr><td align="center"><a href="https://github.com/sharkpaw"><img src="https://github.com/sharkpaw.png?size=120" width="64" alt="Ahmet Yılmaz"><br><b>Ahmet Yılmaz</b></a><br><sub>Proje lideri · Maintainer</sub></td></tr></table>
+
+### Katkıda bulunanlar
+
+Issue ve pull request'ler açıktır. Katkıda bulunanlar burada listelenecek.
 
 ## Lisans
 
