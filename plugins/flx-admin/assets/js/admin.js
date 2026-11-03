@@ -40,36 +40,72 @@
 		toastTimer = setTimeout(function () { t.hidden = true; }, 2600);
 	}
 
-	/* ───────── Tema: otomatik → açık → koyu ───────── */
-	var modes = ['auto', 'light', 'dark'];
+	/* ───────── Tema: tıkla = açık ↔ koyu; menüden Açık / Koyu / Sistem ───────── */
+	/* Eski üçlü döngüde (otomatik → açık → koyu) sistem koyuyken iki tıklama görünürde hiçbir şey değiştirmiyordu. */
 	var mode = B.mode || 'auto';
+	var sysDark = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+	var modeBtn = '[data-flxa-mode], #wp-admin-bar-flxa-mode > .ab-item';
+	function effDark() { return mode === 'dark' || (mode === 'auto' && !!sysDark && sysDark.matches); }
 	function modeIcon() { return mode === 'dark' ? B.icons.moon : (mode === 'light' ? B.icons.sun : B.icons.auto); }
 	function modeLabel() { return mode === 'dark' ? T.modeDark : (mode === 'light' ? T.modeLight : T.modeAuto); }
 	function paintModeButtons() {
-		$$('[data-flxa-mode], #wp-admin-bar-flxa-mode > .ab-item').forEach(function (b) {
+		$$(modeBtn).forEach(function (b) {
 			var sr = b.querySelector('.screen-reader-text');
 			var svg = b.querySelector('svg');
 			if (svg) svg.outerHTML = modeIcon();
 			b.setAttribute('title', modeLabel());
 			if (sr) sr.textContent = modeLabel();
 		});
+		['auto', 'light', 'dark'].forEach(function (m) {
+			var o = d.getElementById('wp-admin-bar-flxa-mode-' + m);
+			if (!o) return;
+			o.classList.toggle('is-on', m === mode);
+			var a = o.querySelector('.ab-item');
+			if (a) { a.setAttribute('role', 'menuitemradio'); a.setAttribute('aria-checked', m === mode ? 'true' : 'false'); }
+		});
 	}
-	function setMode(m) {
+	function applyMode(m) {
 		mode = m;
 		if (window.FLXA_APPLY_MODE) window.FLXA_APPLY_MODE(m);
+		else html.classList.toggle('flxa-dark', effDark());
 		d.body.classList.remove('flxa-mode-auto', 'flxa-mode-light', 'flxa-mode-dark');
 		d.body.classList.add('flxa-mode-' + m);
 		paintModeButtons();
+	}
+	function setMode(m) {
+		applyMode(m);
 		toast(modeLabel());
-		post('flxa_mode', { mode: m });
+		// Diğer sekmeler ve geri tuşuyla dönülen (bfcache) sayfa da aynı temaya geçsin.
+		try { localStorage.setItem('flxa-mode-sync', JSON.stringify({ m: m, t: Date.now() })); } catch (e) {}
+		post('flxa_mode', { mode: m }).then(function (r) { if (!r.ok) toast(T.error); }, function () { toast(T.error); });
 	}
-	function cycleMode(e) {
-		if (e) e.preventDefault();
-		setMode(modes[(modes.indexOf(mode) + 1) % modes.length]);
+	function syncMode() {
+		try {
+			var s = JSON.parse(localStorage.getItem('flxa-mode-sync') || 'null');
+			if (s && s.m && s.m !== mode && /^(auto|light|dark)$/.test(s.m)) applyMode(s.m);
+		} catch (e) {}
 	}
+	window.addEventListener('storage', function (e) { if (e.key === 'flxa-mode-sync') syncMode(); });
+	window.addEventListener('pageshow', function (e) { if (e.persisted) syncMode(); });
+	paintModeButtons();
 	d.addEventListener('click', function (e) {
-		var t = e.target.closest('[data-flxa-mode], #wp-admin-bar-flxa-mode > .ab-item');
-		if (t) cycleMode(e);
+		var opt = e.target.closest('#wp-admin-bar-flxa-mode-auto, #wp-admin-bar-flxa-mode-light, #wp-admin-bar-flxa-mode-dark');
+		if (opt) {
+			e.preventDefault();
+			setMode(opt.id.replace('wp-admin-bar-flxa-mode-', ''));
+			var pop = d.getElementById('wp-admin-bar-flxa-mode');
+			if (pop) pop.classList.remove('hover');
+			if (d.activeElement && d.activeElement.blur) d.activeElement.blur();
+			return;
+		}
+		var t = e.target.closest(modeBtn);
+		if (!t) return;
+		e.preventDefault();
+		var want = t.getAttribute('data-flxa-mode');
+		if (want && /^(auto|light|dark)$/.test(want)) { setMode(want); return; }
+		// Dokunmatik ekranda WordPress ilk dokunuşta alt menüyü açar; seçim oradan yapılır.
+		if (t.closest('#wpadminbar') && 'ontouchstart' in window) return;
+		setMode(effDark() ? 'light' : 'dark');
 	});
 
 	/* ───────── Mobil yan panel ───────── */
@@ -1213,6 +1249,7 @@
 	function lum(c) { return (0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b) / 255; }
 	function sat(c) { return Math.max(c.r, c.g, c.b) - Math.min(c.r, c.g, c.b); }
 	var dgDone = [];
+	var DG_FIELD = /^(INPUT|TEXTAREA|SELECT)$/;
 	var DG_SKIP = /^(IMG|SVG|PATH|CANVAS|VIDEO|IFRAME|BR|SCRIPT|STYLE|OPTION|NOSCRIPT|PICTURE|SOURCE|HR)$/;
 	function hasText(n) {
 		for (var c = n.firstChild; c; c = c.nextSibling) if (c.nodeType === 3 && c.nodeValue.trim()) return true;
@@ -1225,6 +1262,64 @@
 	function dgClear() {
 		dgDone.forEach(function (x) { x[0].style.removeProperty(x[1]); if (x[2]) x[0].style.setProperty(x[1], x[2], x[3]); });
 		dgDone = [];
+	}
+	var SIDES = ['Top', 'Right', 'Bottom', 'Left'];
+	function inFlux(e) {
+		for (var x = e; x && x !== d.body; x = x.parentElement) {
+			if (typeof x.className === 'string' && /(^|\s)flx/.test(x.className)) return true;
+		}
+		return false;
+	}
+	// Kenarlıklar: açık zemin için yazılmış beyaz/açık gri çizgiler koyu zeminde parlar; siyah kenarlıklar
+	// (Material radyo/onay kutusu, çerçeveli alanlar) ise hiç görünmez.
+	function dgBorders(e, cs, darkBg, todo) {
+		var eb, ebDone = false, small = null;
+		for (var i = 0; i < 4; i++) {
+			var s = SIDES[i], w = parseFloat(cs['border' + s + 'Width']);
+			if (!w || cs['border' + s + 'Style'] === 'none' || cs['border' + s + 'Style'] === 'hidden') continue;
+			var bc = rgb(cs['border' + s + 'Color']);
+			if (!bc || bc.a < 0.15 || sat(bc) > 40) continue;
+			var L = lum(bc), light = L > 0.72, black = L < 0.1 && bc.a > 0.3;
+			if (!light && !black) continue;
+			if (!ebDone) { eb = effBg(e, darkBg); ebDone = true; }
+			if (eb && lum(eb) > 0.5) return; // açık bir kutunun içi: dokunma
+			if (light) { todo.push([e, 'border-' + s.toLowerCase() + '-color', 'var(--flxa-border)']); continue; }
+			if (inFlux(e)) return;
+			if (small === null) { var r = e.getBoundingClientRect(); small = r.width <= 48 && r.height <= 48; }
+			todo.push([e, 'border-' + s.toLowerCase() + '-color', small ? 'var(--flxa-muted)' : 'var(--flxa-border-strong)']);
+		}
+	}
+	// SVG: grafik zeminleri (beyaz dikdörtgen), ızgara çizgileri, koyu gri yazı/logo dolguları.
+	function dgSvg(root, darkBg, todo) {
+		var svgs = root.getElementsByTagName('svg'), n = Math.min(svgs.length, 400), budget = 4000;
+		for (var i = 0; i < n && budget > 0; i++) {
+			var sv = svgs[i];
+			if (sv.ownerSVGElement) continue; // iç içe svg, dıştaki ile taranır
+			var r = sv.getBoundingClientRect();
+			if (!r.width || !r.height) continue;
+			var eb = effBg(sv.parentElement || sv, darkBg);
+			if (eb && lum(eb) > 0.5) continue; // açık zemin üstündeki simge/logo zaten okunur
+			var big = r.width > 200 && r.height > 100, area = r.width * r.height;
+			var kids = sv.querySelectorAll('text, tspan, rect, path, circle, ellipse, polygon, line, polyline');
+			for (var k = 0; k < kids.length && budget > 0; k++, budget--) {
+				var e = kids[k], cs = getComputedStyle(e), tag = e.tagName.toLowerCase();
+				var f = rgb(cs.fill), st = rgb(cs.stroke);
+				if (tag === 'text' || tag === 'tspan') {
+					if (f && f.a > 0.3 && lum(f) < 0.45 && sat(f) < 40) todo.push([e, 'fill', big ? 'var(--flxa-muted)' : 'var(--flxa-text)']);
+					continue;
+				}
+				if (big) {
+					if (f && f.a > 0.5 && lum(f) > 0.85 && sat(f) < 20) {
+						var b = e.getBoundingClientRect();
+						todo.push([e, 'fill', b.width * b.height > area * 0.3 ? 'transparent' : 'var(--flxa-border)']);
+					}
+					if (st && st.a > 0.3 && lum(st) > 0.8 && sat(st) < 20) todo.push([e, 'stroke', 'var(--flxa-border)']);
+				} else if (r.width <= 320 && r.height <= 96 && f && f.a > 0.5 && lum(f) < 0.45 && sat(f) < 30) {
+					// Yazı biçimli logo (ör. "Site Kit") ve siyah simgeler: koyu zeminde görünmez, metin rengine çekilir.
+					todo.push([e, 'fill', 'var(--flxa-text)']);
+				}
+			}
+		}
 	}
 	function dgScan() {
 		if (!html.classList.contains('flxa-dark') || d.body.classList.contains('flxa-appmode')) return;
@@ -1252,8 +1347,14 @@
 			// Açık bir rozet/düğme üstündeki koyu yazı zaten okunur; dokunma (yoksa açık zeminde açık yazı olur).
 			if (c && lum(c) < 0.36 && hasText(e) && !(eb && lum(eb) > 0.5)) {
 				todo.push([e, 'color', sat(c) > 50 ? 'color-mix(in srgb, ' + cs.color + ' 45%, #fff)' : 'var(--flxa-text)']);
+			} else if (c && lum(c) < 0.36 && DG_FIELD.test(e.tagName) && !((eb = effBg(e, darkBg)) && lum(eb) > 0.5)) {
+				// Eklentilerin kendi giriş alanları (ör. Material): yazı koyu kalıp zeminde kayboluyor.
+				todo.push([e, 'color', 'var(--flxa-text)']);
+				todo.push([e, '-webkit-text-fill-color', 'var(--flxa-text)']);
 			}
+			dgBorders(e, cs, darkBg, todo);
 		}
+		dgSvg(root, darkBg, todo);
 		todo.forEach(function (t) { dgSet(t[0], t[1], t[2]); });
 	}
 	var dgT;

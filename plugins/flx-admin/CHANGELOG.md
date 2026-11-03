@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.7.0
+- Tema düğmesi: tıklama artık her seferinde açık ↔ koyu geçer. Eski otomatik → açık → koyu döngüsünde cihaz koyu temadayken üç tıklamanın ikisi görünürde hiçbir şey değiştirmiyordu. "Sistem (cihaza göre)" düğmenin menüsünden seçilir (Açık / Koyu / Sistem, seçili olan işaretli). Dokunmatik ekranda ilk dokunuş menüyü açar.
+- Tema seçimi diğer açık sekmelere ve geri tuşuyla dönülen sayfaya da uygulanır; kaydedilemezse uyarı çıkar.
+- Sol menü kaydırılınca öğeler arama kutusunun altında keskin kesilmiyor, yumuşak geçişle kayboluyor (alt kısımda da).
+- Koyu tema koruması (üçüncü taraf ekranlar): açık gri/beyaz ayırıcı çizgiler koyu çizgiye, siyah radyo/onay kutusu/çerçeve kenarlıkları görünür renge, eklenti giriş alanlarındaki koyu yazı açığa çevrilir. SVG grafiklerde beyaz zemin şeffaf, ızgara çizgileri ve koyu yazılar okunur; koyu gri yazı biçimli logolar (ör. Site Kit) metin rengine çekilir.
+- Google Site Kit: yazı tipi panelle aynı (Figtree); koyu temada Material radyo, onay kutusu, metin alanı, açılır liste ve menüler panel renklerinde.
+
 ## 1.6.13
 - Telefon yatayken dar menü sağda (iPhone'da çentik/kamera çoğu zaman solda kalır). Çentik hangi taraftaysa safe-area boşluğu bırakılır; alt menü kartları ve ipuçları sola açılır; "AI'ya sor" düğmesi menünün soluna kayar.
 
