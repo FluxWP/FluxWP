@@ -23,6 +23,7 @@ function flxan_defaults() {
 		'ev_donation'   => 1,                      // ödenen bağış/sipariş (WooCommerce)
 		'posts_column'  => 1,                      // yazı/sayfa listesinde görüntülenme sütunu
 		'adminbar'      => 1,                      // ön yüzde yönetim çubuğunda bu sayfanın sayısı
+		'tm_hub'        => 0,                      // telemetri merkezi: FluxWP Panel kurulumlarından anonim veri al (includes/telemetry-hub.php)
 	);
 }
 
@@ -46,7 +47,7 @@ function flxan_settings( $key = null ) {
 function flxan_sanitize_settings( $in ) {
 	$d   = flxan_defaults();
 	$out = array();
-	foreach ( array( 'on', 'dnt', 'ev_outbound', 'ev_download', 'ev_contact', 'ev_search', 'ev_donation', 'posts_column', 'adminbar' ) as $k ) {
+	foreach ( array( 'on', 'dnt', 'ev_outbound', 'ev_download', 'ev_contact', 'ev_search', 'ev_donation', 'posts_column', 'adminbar', 'tm_hub' ) as $k ) {
 		$out[ $k ] = empty( $in[ $k ] ) ? 0 : 1;
 	}
 	$out['method']        = in_array( $in['method'] ?? '', array( 'auto', 'fast', 'rest' ), true ) ? $in['method'] : $d['method'];

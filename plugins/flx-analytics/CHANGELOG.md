@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 0.3.6
+- **Telemetri merkezi** (Ayarlar › Telemetri merkezi, varsayılan kapalı). Açınca `POST /wp-json/flxan/v1/telemetry` herkese açılır ve FluxWP Panel 1.0.8+ kurulumlarının anonim kullanım verisini alır; sol menüde **Ürün telemetrisi** görünür. Kapalıyken uç 404 döner.
+- Ürün telemetrisi ekranı: Genel bakış (raporlayan site, eklenti kullanımı ve yaygın sürüm, birlikte kullanılan ikililer, en sık paket setleri, PHP / WordPress / dil), Hatalar (paket ve türe göre süzme, kaç sitede ve kaç kez görüldü, "Çözüldü" ile kaldırma), Kurulum sihirbazı (adımlara ulaşan, nerede bırakıldı, kart seçimleri ve vazgeçilenler, ön ayar ve renk stili, ortanca süre). 7 / 30 / 90 gün.
+- IP, site adresi, User-Agent saklanmaz; kurulumun rastgele kimliği bile özetle tutulur. Hata mesajları sunucuda bir kez daha temizlenir. Aynı kurulumdan saatte en fazla bir rapor işlenir; kayıtlar 90 gün sonra silinir.
+
 ## 0.3.5
 - Koyu mod Flux Admin tonlarını kullanıyor (yeşilimsi sabit zeminler kaldırıldı); harita ve ısı renkleri vurgu renginden; birincil düğme yazısı koyu modda okunur.
 
