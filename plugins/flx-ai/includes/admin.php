@@ -473,7 +473,7 @@ function flxai_page_tools() {
 	}
 	echo '<form method="post" class="flxai-card">';
 	wp_nonce_field( 'flxai_tools', 'flxai_tools_nonce' );
-	echo '<div class="flxai-tscroll"><table class="flxai-table"><thead><tr><th>' . esc_html__( 'Açık', 'flx-ai' ) . '</th><th>' . esc_html__( 'Araç', 'flx-ai' ) . '</th><th>' . esc_html__( 'Kaynak', 'flx-ai' ) . '</th><th>' . esc_html__( 'Tür', 'flx-ai' ) . '</th><th>' . esc_html__( 'Yetki', 'flx-ai' ) . '</th><th class="num">' . esc_html__( '30 gün', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Ort. süre', 'flx-ai' ) . '</th></tr></thead><tbody>';
+	echo '<div class="flxai-tscroll"><table class="flxai-table flxai-tools"><thead><tr><th>' . esc_html__( 'Açık', 'flx-ai' ) . '</th><th>' . esc_html__( 'Araç', 'flx-ai' ) . '</th><th>' . esc_html__( 'Kaynak', 'flx-ai' ) . '</th><th>' . esc_html__( 'Tür', 'flx-ai' ) . '</th><th>' . esc_html__( 'Yetki', 'flx-ai' ) . '</th><th class="num">' . esc_html__( '30 gün', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Ort. süre', 'flx-ai' ) . '</th></tr></thead><tbody>';
 	foreach ( $tools as $name => $t ) {
 		$s = $avg[ $name ] ?? null;
 		printf(

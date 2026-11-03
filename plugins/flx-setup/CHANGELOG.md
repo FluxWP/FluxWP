@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.0.5
+- Paketler ekranı telefonda kart düzeninde: logo, ad, sürüm ve durum tek satırda; tablo başlığı, tür sütunu, slug ve çıkış tarihi gizli. Araç çubuğu düğmeleri yan yana, toplu işlem tam satır.
+- Güncelleme ayarları › Diğer kaynaklar tablosu telefonda kart düzeninde.
+
 ## 1.0.4
 - Düzeltme: sihirbaz ve paket ekranı eklentileri sessiz etkinleştiriyordu; paketlerin etkinleştirme kancaları (tablolar, varsayılan ayarlar) çalışmıyordu. Artık normal etkinleştirme yapılır.
 - Bir kerelik onarım: güncellemeden sonra yönetim paneli ilk açılışta etkin Flux paketlerinin etkinleştirme kancalarını bir kez çalıştırır (ör. eksik Flux Forms tabloları oluşur). Filtre `flxk_repair_plugin`.
