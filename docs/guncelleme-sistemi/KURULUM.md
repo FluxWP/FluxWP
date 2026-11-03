@@ -80,8 +80,9 @@ panelde salt okunur görünür. Panelden girilen değerler `config.php`'yi ezer.
 | `GET /v1/download/<slug>/<sürüm>.zip` | public paket anahtarsız, private paket site anahtarıyla; zip'i GitHub'dan bir kez alıp `data/zips`'te saklar |
 | `GET /v1/app/latest?channel=stable\|beta` | herkese açık; uygulamanın son sürümü ve platform dosyaları |
 | `GET /v1/app/download/<tag>/<dosya>` | herkese açık; GitHub'ın kısa ömürlü indirme adresine 302 (dosya bu sunucuda tutulmaz) |
-| `GET /v1/fluxapp/<marka>/latest?channel=stable\|beta` | herkese açık; FluxWP masaüstü son sürümü (dmg + güncelleme paketi) |
-| `GET /v1/fluxapp/<marka>/tauri/<target>/<arch>/<sürüm>` | herkese açık; Tauri updater biçimi (imzalı `.app.tar.gz`), yeni sürüm yoksa 204 |
+| `GET /v1/fluxapp/<marka>/latest?channel=stable\|beta` | herkese açık; FluxWP masaüstü son sürümü (dmg, setup.exe, msi + güncelleme paketi) |
+| `GET /v1/fluxapp/<marka>/download/<macos\|windows\|windows-msi>` | herkese açık; son kurulum dosyasına 302 (kalıcı indirme bağlantısı, 1.9.7) |
+| `GET /v1/fluxapp/<marka>/tauri/<target>/<arch>/<sürüm>` | herkese açık; Tauri updater biçimi (macOS imzalı `.app.tar.gz`, Windows imzalı `setup.exe`), yeni sürüm yoksa 204 |
 | `GET /v1/fluxapp/download/<tag>/<dosya>` | herkese açık; GitHub indirme adresine 302 |
 | `POST /v1/webhook` | `X-Hub-Signature-256` imzalı; release önbelleğini boşaltır |
 | `GET /admin` | yönetim paneli (`/status` buraya yönlenir) |
@@ -111,8 +112,8 @@ Masaüstü/mobil uygulama `FluxWP/app` deposunun `v<sürüm>` release'lerinden g
 ### FluxWP masaüstü güncellemeleri (1.4.0)
 
 FluxWP, paket deposundaki (`repo`, ayrı depo için `FLX_UPDATE_FLUXAPP_REPO`) `fluxapp-v<sürüm>` release'lerinden
-güncellenir. Dosya adları markayı taşır: `fluxapp-<marka>-<sürüm>-macos-universal.dmg`, `.app.tar.gz`, `.app.tar.gz.sig`
-(FluxWP/fluxwp `fluxapp-desktop.yml` böyle yükler). Uygulama `tauri` ucunu sorar; imzalı paket varsa arka planda
+güncellenir. Dosya adları markayı taşır: `fluxapp-<marka>-<sürüm>-macos-universal.dmg`, `.app.tar.gz`, `.app.tar.gz.sig`,
+Windows için `fluxapp-<marka>-<sürüm>-windows-x64-setup.exe`, `-setup.exe.sig`, `.msi` (FluxWP/fluxwp `fluxapp-desktop.yml` böyle yükler). Uygulama `tauri` ucunu sorar; imzalı paket varsa arka planda
 indirip yeniden başlatınca kurar, yoksa `latest` ucundaki dmg adresini açar. Sürümünde `-` olan (beta) yalnız beta kanalında.
 Ek ayar gerekmez; mevcut token paket deposunu zaten okuyor.
 

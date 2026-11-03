@@ -12,6 +12,9 @@ import { UpdateBanner } from './UpdateBanner';
 import { useRoute, type Route } from '../state/route';
 import { useSidebar } from '../state/sidebar';
 
+// Kısayol tuşu adı: macOS'ta ⌘, Windows'ta Ctrl.
+const MOD_KEY = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/i.test(navigator.userAgent) ? '⌘' : 'Ctrl ';
+
 export function Sidebar({ account, nav, activeId, onSearch, editing = false, onEditDone }: {
   account: Account;
   nav: NavItem[];
@@ -73,7 +76,7 @@ export function Sidebar({ account, nav, activeId, onSearch, editing = false, onE
         <button className="search-btn" onClick={onSearch}>
           <Search size={15} />
           <span className="grow">{t('nav.search')}</span>
-          <kbd>⌘K</kbd>
+          <kbd>{MOD_KEY}K</kbd>
         </button>
       </div>
       <nav className="nav" aria-label={t('nav.menu')}>
