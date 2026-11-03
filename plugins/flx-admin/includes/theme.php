@@ -208,6 +208,15 @@ function flxa_settings_look( array $s ) {
 				</fieldset></td></tr>
 			<tr><th scope="row"><?php esc_html_e( 'Simgeler', 'flx-admin' ); ?></th>
 				<td><label><input type="checkbox" name="s[line_icons]" value="1" <?php checked( $s['line_icons'] ); ?>> <?php esc_html_e( 'WordPress menülerinde çizgi simgeler (FluxWP logoları renkli kalır)', 'flx-admin' ); ?></label></td></tr>
+			<tr><th scope="row"><?php esc_html_e( 'Paket logoları', 'flx-admin' ); ?></th>
+				<td><fieldset class="flxa-logo-styles"><style>.flxa-logo-styles .flxa-radio{display:inline-flex;align-items:center;gap:4px;margin-right:20px}.flxa-logo-styles img{border-radius:6px}</style>
+					<?php foreach ( array( 'gradient' => __( 'Degrade (varsayılan)', 'flx-admin' ), 'pastel' => __( 'Pastel', 'flx-admin' ) ) as $k => $l ) : ?>
+						<label class="flxa-radio"><input type="radio" name="s[logo_style]" value="<?php echo esc_attr( $k ); ?>" <?php checked( $s['logo_style'], $k ); ?>>
+							<img src="<?php echo esc_url( FLXA_URL . 'assets/logos/' . ( 'pastel' === $k ? 'pastel/' : '' ) . 'flx-donate.svg' ); ?>" alt="" width="24" height="24"><img src="<?php echo esc_url( FLXA_URL . 'assets/logos/' . ( 'pastel' === $k ? 'pastel/' : '' ) . 'flx-chat.svg' ); ?>" alt="" width="24" height="24"><img src="<?php echo esc_url( FLXA_URL . 'assets/logos/' . ( 'pastel' === $k ? 'pastel/' : '' ) . 'flx-seo.svg' ); ?>" alt="" width="24" height="24">
+							<?php echo esc_html( $l ); ?></label>
+					<?php endforeach; ?>
+				</fieldset>
+				<p class="description"><?php esc_html_e( 'Sol menüde, Flux Updater paket listesinde ve FluxWP App\'te kullanılır. Renkler paket grubunu gösterir: yönetim, bakım, iletişim, içerik, ticaret.', 'flx-admin' ); ?></p></td></tr>
 			<tr><th scope="row"><label for="flxa-dark-ex"><?php esc_html_e( 'Koyu tema kapalı ekranlar', 'flx-admin' ); ?></label></th>
 				<td><textarea id="flxa-dark-ex" name="s[dark_exclude]" rows="3" class="large-text code"><?php echo esc_textarea( $s['dark_exclude'] ); ?></textarea>
 				<p class="description"><?php esc_html_e( 'Satır başına bir ekran kimliği veya gövde sınıfı (sonunda * olabilir). Kendi koyu teması olmayan karmaşık ekranlar burada açık kalır.', 'flx-admin' ); ?></p></td></tr>

@@ -77,11 +77,18 @@ function flxapp_menu_with_icons( $menu ) {
 		$url  = '';
 		if ( function_exists( 'flxa_logo_for_slug' ) && defined( 'FLXA_URL' ) ) {
 			$file = flxa_logo_for_slug( $slug );
-			$url  = '' !== $file ? FLXA_URL . 'assets/logos/' . $file : '';
+			$url  = '' === $file ? '' : ( function_exists( 'flxa_logo_file_url' ) ? flxa_logo_file_url( $file ) : FLXA_URL . 'assets/logos/' . $file );
 		}
 		// Paket kendi logosunu taşıyorsa (plugins/<slug>/assets/icon.svg, ör. flx-analytics, flx-speed).
-		if ( '' === $url && 0 === strpos( $slug, 'flx-' ) && is_readable( WP_PLUGIN_DIR . '/' . sanitize_file_name( $slug ) . '/assets/icon.svg' ) ) {
-			$url = plugins_url( sanitize_file_name( $slug ) . '/assets/icon.svg' );
+		if ( '' === $url && 0 === strpos( $slug, 'flx-' ) ) {
+			$dir    = WP_PLUGIN_DIR . '/' . sanitize_file_name( $slug ) . '/assets/';
+			$pastel = function_exists( 'flxa_logo_style' ) && 'pastel' === flxa_logo_style();
+			foreach ( $pastel ? array( 'icon-pastel.svg', 'icon.svg' ) : array( 'icon.svg' ) as $f ) {
+				if ( is_readable( $dir . $f ) ) {
+					$url = plugins_url( sanitize_file_name( $slug ) . '/assets/' . $f );
+					break;
+				}
+			}
 		}
 		$url = (string) apply_filters( 'flxapp_menu_icon_url', $url, $slug );
 		if ( '' !== $url ) {

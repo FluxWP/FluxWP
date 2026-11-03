@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.0
+- Yeni paket logoları (FluxWP ikon seti): tutarlı çizgi ikonlar, 5 renk grubu (yönetim, bakım, iletişim, içerik, ticaret). Eksik olan Analytics, App, Lang, Migrate, QR Menu, Roles, Setup, Social, Speed, Studio, Staff, TV logoları eklendi.
+- Görünüm › Paket logoları: Degrade (varsayılan) ya da Pastel. Sol menü, Flux Updater ve FluxWP App bu seçimi izler. Filtre `flx_logo_style`, yardımcılar `flxa_logo_style()` ve `flxa_logo_file_url()`.
+
 ## 1.5.0
 - Vurgu rengi varsayılan olarak sitenin tema rengini alıyor (FluxWP temasında indigo; ön ayar ya da Görünüm › Düzenleyici › Stiller değiştirdiyse o). Ayarlarda temanın rengi seçilirse saklanmaz, tema değişince panel de değişir. Filtre `flxa_default_accent`.
 - Arka plan, kart, çizgi ve yazı tonları vurgu renginden türetiliyor (yeşilimsi sabit tonlar kaldırıldı); giriş ekranı, uygulama değiştirici ve PWA sayfaları da.

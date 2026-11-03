@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.13.1
+- Yeni logo (FluxWP ikon seti, grup rengi). `assets/icon-pastel.svg` Flux Admin › Görünüm › Paket logoları Pastel iken kullanılır.
+
 ## 1.13.0
 - E-posta renkleri (ana, koyu, arka plan, başlık) boşsa tema paletinden geliyor; temanın rengi seçilirse saklanmaz. Vurgu varsayılanı turuncu. Arayüz Flux Admin rengini kullanıyor.
 

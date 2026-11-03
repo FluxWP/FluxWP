@@ -367,18 +367,35 @@ final class FLXU_Updater {
 	}
 
 	/**
-	 * Paketin logosu (assets/icons/<slug>.svg). Güncellemeler ekranında görünür.
+	 * Paket logosu stili: `gradient` (varsayılan) ya da `pastel`. Flux Admin › Görünüm › Paket logoları,
+	 * Flux Admin yoksa `flx_logo_style` filtresi.
+	 */
+	public static function logo_style(): string {
+		$v = function_exists( 'flxa_logo_style' ) ? flxa_logo_style() : (string) apply_filters( 'flx_logo_style', 'gradient' );
+		return 'pastel' === $v ? 'pastel' : 'gradient';
+	}
+
+	/**
+	 * Paketin logosu (assets/icons/<slug>.svg, pastel stilde assets/icons/pastel/<slug>.svg). Güncellemeler ekranında görünür.
 	 * Başka bir paket kendi logosunu `flxu_package_icons` filtresiyle verebilir.
 	 */
 	public static function icons( string $slug ): array {
-		$icons = array();
-		$slug  = sanitize_key( $slug );
-		$url   = '';
-		if ( '' !== $slug && is_readable( FLXU_DIR . 'assets/icons/' . $slug . '.svg' ) ) {
+		$icons  = array();
+		$slug   = sanitize_key( $slug );
+		$url    = '';
+		$pastel = 'pastel' === self::logo_style();
+		if ( '' !== $slug && $pastel && is_readable( FLXU_DIR . 'assets/icons/pastel/' . $slug . '.svg' ) ) {
+			$url = plugins_url( 'assets/icons/pastel/' . $slug . '.svg', FLXU_FILE ) . '?ver=' . FLXU_VERSION;
+		} elseif ( '' !== $slug && is_readable( FLXU_DIR . 'assets/icons/' . $slug . '.svg' ) ) {
 			$url = plugins_url( 'assets/icons/' . $slug . '.svg', FLXU_FILE ) . '?ver=' . FLXU_VERSION;
-		} elseif ( '' !== $slug && is_readable( WP_PLUGIN_DIR . '/' . $slug . '/assets/icon.svg' ) ) {
-			// Burada logosu olmayan yeni paket: kurulu eklentinin kendi menü logosu (assets/icon.svg).
-			$url = plugins_url( $slug . '/assets/icon.svg' ) . '?ver=' . filemtime( WP_PLUGIN_DIR . '/' . $slug . '/assets/icon.svg' );
+		} elseif ( '' !== $slug ) {
+			// Burada logosu olmayan yeni paket: kurulu eklentinin kendi menü logosu (assets/icon.svg / icon-pastel.svg).
+			foreach ( $pastel ? array( 'icon-pastel.svg', 'icon.svg' ) : array( 'icon.svg' ) as $f ) {
+				if ( is_readable( WP_PLUGIN_DIR . '/' . $slug . '/assets/' . $f ) ) {
+					$url = plugins_url( $slug . '/assets/' . $f ) . '?ver=' . filemtime( WP_PLUGIN_DIR . '/' . $slug . '/assets/' . $f );
+					break;
+				}
+			}
 		}
 		if ( $url ) {
 			$icons = array(

@@ -327,6 +327,7 @@ function flxa_settings_save() {
 		$s['heartbeat']    = in_array( $hb, array( 30, 60, 120 ), true ) ? $hb : 60;
 	} elseif ( 'look' === $tab ) {
 		$s['line_icons']   = empty( $in['line_icons'] ) ? 0 : 1;
+		$s['logo_style']   = 'pastel' === ( $in['logo_style'] ?? '' ) ? 'pastel' : 'gradient';
 		$c                 = sanitize_hex_color( (string) ( $in['accent'] ?? '' ) );
 		// Temanın rengiyle aynıysa saklanmaz: tema/ön ayar rengi değişince yönetim paneli de değişir.
 		$s['accent']       = ( $c && strtolower( $c ) !== strtolower( flxa_theme_primary() ) ) ? $c : '';

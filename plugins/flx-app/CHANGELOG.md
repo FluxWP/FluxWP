@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.3.5
+- Menü logoları Flux Admin'deki logo stiline (Degrade / Pastel) uyar.
+
 ## 0.3.4
 - Vurgu rengi Flux Admin'den (varsayılan olarak tema rengi; FluxWP'de indigo), sabit yeşil kaldırıldı.
 

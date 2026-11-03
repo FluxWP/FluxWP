@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.2.2
+- Yeni logo (FluxWP ikon seti, grup rengi). `assets/icon-pastel.svg` Flux Admin › Görünüm › Paket logoları Pastel iken kullanılır.
+
 ## 0.2.1
 - Sistem kontrolü kartı nötr renkler (yeşilimsi tonlar kaldırıldı).
 

@@ -1,0 +1,8 @@
+{
+  "name": "@fluxwp/icons",
+  "private": true,
+  "description": "Build-time glyph source for FluxWP package icons (tools/icons/build.py).",
+  "devDependencies": {
+    "lucide-static": "0.460.0"
+  }
+}

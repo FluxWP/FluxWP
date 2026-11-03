@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.8.3
+- Yeni logo (FluxWP ikon seti, grup rengi). `assets/icon-pastel.svg` Flux Admin › Görünüm › Paket logoları Pastel iken kullanılır.
+
 ## 0.8.2
 - Toplantı raporu: kararların ve gündem maddelerinin altındaki maddeler (iç içe tüm kademeler) artık raporda. Kararlar tablosunda her kararın altında girintili, işaretli satırlar (sorumlu, son tarih, durum); gündem maddesinin altında işaretli liste.
 

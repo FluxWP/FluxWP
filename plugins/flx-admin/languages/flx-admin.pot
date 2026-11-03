@@ -1057,3 +1057,15 @@ msgstr ""
 
 msgid "Çıkış yap"
 msgstr ""
+
+msgid "Paket logoları"
+msgstr ""
+
+msgid "Degrade (varsayılan)"
+msgstr ""
+
+msgid "Pastel"
+msgstr ""
+
+msgid "Sol menüde, Flux Updater paket listesinde ve FluxWP App'te kullanılır. Renkler paket grubunu gösterir: yönetim, bakım, iletişim, içerik, ticaret."
+msgstr ""

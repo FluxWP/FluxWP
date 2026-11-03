@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.2.2
+- Yeni logo (FluxWP ikon seti, grup rengi). `assets/icon-pastel.svg` Flux Admin › Görünüm › Paket logoları Pastel iken kullanılır.
+
 ## 1.2.1
 - "Yalnız FluxWP paketleri" kapsamı yeni temaları da tanır: flx-menu-theme, fluxwp ve "Update URI" FluxWP güncelleme sunucusunu gösteren her tema.
 

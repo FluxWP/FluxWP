@@ -1,0 +1,15 @@
+{
+  "lockfileVersion": 2,
+  "configVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "@fluxwp/icons",
+      "devDependencies": {
+        "lucide-static": "0.460.0",
+      },
+    },
+  },
+  "packages": {
+    "lucide-static": ["lucide-static@0.460.0", "", {}, "sha512-X6pIdg7jVxv7YQ/uR241hwhNiztcAfmj181TbcX7HCxxk/3mGaRtAc6b2ftUvQBufbJE6ehgyzO2uVsa604tWg=="],
+  }
+}

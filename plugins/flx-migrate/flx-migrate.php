@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Migrate
  * Description:       Eski paket adlarıyla kaydedilmiş site verilerini (ayarlar, tablolar, meta, içerik, tema, yükleme klasörleri) FluxWP adlarına taşır. Ad eşlemesi map.json'dadır.
- * Version:           0.1.0
+ * Version:           0.1.1
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -15,7 +15,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'FLX_MIGRATE_VERSION', '0.1.0' );
+define( 'FLX_MIGRATE_VERSION', '0.1.1' );
 define( 'FLX_MIGRATE_DIR', __DIR__ );
 
 require_once __DIR__ . '/includes/class-mapper.php';
