@@ -1,5 +1,7 @@
-name: Flux Desktop (macOS)
-# İlk sürümler yalnız macOS. fluxapp-v* tag'i release taslağı açar; elle de çalıştırılabilir (marka seçerek).
+name: Flux Desktop (macOS + Windows)
+# macOS (universal dmg: Apple Silicon + Intel) ve Windows (x64 setup.exe + msi) derler, tek release'e koyar.
+# fluxapp-v* tag'i release açar; elle de çalıştırılabilir (marka ve release tag'i seçerek).
+# İmza secret'ları yoksa imzasız derlenir (uyarı düşer). Secret listesi: docs/fluxapp/IMZA.md
 on:
   push:
     tags: ['fluxapp-v*']
@@ -9,17 +11,22 @@ on:
         description: Marka (brands/<slug>); boşsa flux
         default: ''
       release:
-        description: Pre-release tag'i (ör. fluxapp-v0.2.0); boşsa yalnız artifact
+        description: Release tag'i (ör. fluxapp-v0.2.5); boşsa yalnız artifact
         default: ''
+      platforms:
+        description: Derlenecek platformlar
+        type: choice
+        default: all
+        options: [all, macos, windows]
 permissions:
   contents: write
 jobs:
   macos:
+    if: inputs.platforms != 'windows'
     runs-on: macos-latest
     strategy:
       fail-fast: false
       matrix:
-        # Tag'de iki marka birden; elle çalıştırmada seçilen marka.
         brand: ${{ fromJSON(inputs.brand && format('["{0}"]', inputs.brand) || '["flux"]') }}
     env:
       FLUX_BRAND: ${{ matrix.brand }}
@@ -32,14 +39,13 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with: { targets: 'aarch64-apple-darwin,x86_64-apple-darwin' }
       - uses: swatinem/rust-cache@v2
-        with: { workspaces: apps/desktop/src-tauri }
+        with: { workspaces: apps/desktop/src-tauri, key: macos }
       - run: bun install --frozen-lockfile
       # Otomatik güncelleme imzası (tauri signer). Secret yoksa güncelleme paketi üretilmez; uygulama dmg indirme sayfasına yönlendirir.
       - run: bun tools/fluxapp/brand.mjs && bun run --filter @fluxwp/desktop icons
         env:
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
-      # İmza: Secret'lar yoksa imzasız derlenir.
-      # APPLE_CERTIFICATE: "Developer ID Application" .p12 (base64), APPLE_CERTIFICATE_PASSWORD, APPLE_SIGNING_IDENTITY (isteğe bağlı).
+      # İmza: APPLE_CERTIFICATE ("Developer ID Application" .p12, base64) + APPLE_CERTIFICATE_PASSWORD, APPLE_SIGNING_IDENTITY (isteğe bağlı).
       # Notarize: App Store Connect API anahtarı (APPLE_API_ISSUER, APPLE_API_KEY, APPLE_API_KEY_P8 = .p8 içeriği)
       # ya da Apple ID (APPLE_ID, APPLE_PASSWORD = uygulamaya özel şifre, APPLE_TEAM_ID).
       - name: İmza ayarı
@@ -47,7 +53,7 @@ jobs:
           APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
           APPLE_API_KEY_P8: ${{ secrets.APPLE_API_KEY_P8 }}
         run: |
-          if [ -n "$APPLE_CERTIFICATE" ]; then echo "FLUX_SIGNED=1" >> "$GITHUB_ENV"; echo "İmzalı derleme"; else echo "::warning::APPLE_CERTIFICATE yok, imzasız derleniyor"; fi
+          if [ -n "$APPLE_CERTIFICATE" ]; then echo "FLUX_SIGNED=1" >> "$GITHUB_ENV"; echo "İmzalı derleme"; else echo "::warning::APPLE_CERTIFICATE yok, macOS imzasız derleniyor"; fi
           if [ -n "$APPLE_API_KEY_P8" ]; then
             mkdir -p "$RUNNER_TEMP/keys" && printf '%s' "$APPLE_API_KEY_P8" > "$RUNNER_TEMP/keys/AuthKey.p8"
             echo "APPLE_API_KEY_PATH=$RUNNER_TEMP/keys/AuthKey.p8" >> "$GITHUB_ENV"
@@ -67,7 +73,7 @@ jobs:
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
         run: |
           # Boş secret'lar Tauri'yi şaşırtmasın: tanımsız bırak.
-          for v in APPLE_CERTIFICATE APPLE_CERTIFICATE_PASSWORD APPLE_SIGNING_IDENTITY APPLE_API_ISSUER APPLE_API_KEY APPLE_ID APPLE_PASSWORD APPLE_TEAM_ID TAURI_SIGNING_PRIVATE_KEY; do
+          for v in APPLE_CERTIFICATE APPLE_CERTIFICATE_PASSWORD APPLE_SIGNING_IDENTITY APPLE_API_ISSUER APPLE_API_KEY APPLE_ID APPLE_PASSWORD APPLE_TEAM_ID TAURI_SIGNING_PRIVATE_KEY TAURI_SIGNING_PRIVATE_KEY_PASSWORD; do
             [ -z "${!v}" ] && unset "$v"
           done
           if [ -z "${APPLE_SIGNING_IDENTITY:-}" ] && [ -n "${APPLE_CERTIFICATE:-}" ]; then export APPLE_SIGNING_IDENTITY="Developer ID Application"; fi
@@ -91,17 +97,134 @@ jobs:
             cp "$tgz" "out/$n.app.tar.gz"
             cp "$tgz.sig" "out/$n.app.tar.gz.sig"
           else
-            echo "::warning::TAURI_SIGNING_PRIVATE_KEY yok, otomatik güncelleme paketi üretilmedi"
+            echo "::warning::TAURI_SIGNING_PRIVATE_KEY yok, macOS otomatik güncelleme paketi üretilmedi"
           fi
           ls -la out
-          # Sürüm notu: CHANGELOG'daki ## <sürüm> bölümü (uygulamadaki güncelleme kartında görünür).
-          awk -v v="$v" '$0 ~ "^## "v"( |$)" {f=1; next} /^## / {f=0} f' apps/desktop/CHANGELOG.md > "$RUNNER_TEMP/notes.md"
       - uses: actions/upload-artifact@v5
         with:
           name: ${{ env.FLUX_BRAND }}-macos
           path: out/*
-      - if: startsWith(github.ref, 'refs/tags/fluxapp-v') || inputs.release != ''
-        uses: softprops/action-gh-release@v2
+
+  windows:
+    if: inputs.platforms != 'macos'
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        brand: ${{ fromJSON(inputs.brand && format('["{0}"]', inputs.brand) || '["flux"]') }}
+    env:
+      FLUX_BRAND: ${{ matrix.brand }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v5
+      - uses: oven-sh/setup-bun@v2
+        with: { bun-version: 1.4.4 }
+      - uses: actions/setup-node@v5
+        with: { node-version: 22 }
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: swatinem/rust-cache@v2
+        with: { workspaces: apps/desktop/src-tauri, key: windows }
+      - run: bun install --frozen-lockfile
+      - run: bun tools/fluxapp/brand.mjs && bun run --filter @fluxwp/desktop icons
+        env:
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+      # Windows kod imzası (iki yoldan biri; ikisi de yoksa imzasız, SmartScreen "bilinmeyen yayımcı" der):
+      # 1) Azure Trusted Signing (önerilen): secrets AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET;
+      #    variables AZURE_SIGNING_ENDPOINT (ör. https://weu.codesigning.azure.net), AZURE_SIGNING_ACCOUNT, AZURE_SIGNING_PROFILE.
+      # 2) .pfx sertifika: secrets WINDOWS_CERTIFICATE (.pfx, base64) + WINDOWS_CERTIFICATE_PASSWORD.
+      - name: İmza ayarı
+        env:
+          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+          AZURE_SIGNING_ENDPOINT: ${{ vars.AZURE_SIGNING_ENDPOINT }}
+          AZURE_SIGNING_ACCOUNT: ${{ vars.AZURE_SIGNING_ACCOUNT }}
+          AZURE_SIGNING_PROFILE: ${{ vars.AZURE_SIGNING_PROFILE }}
+          WINDOWS_CERTIFICATE: ${{ secrets.WINDOWS_CERTIFICATE }}
+          WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+        run: |
+          conf=apps/desktop/src-tauri/tauri.brand.conf.json
+          if [ -n "$AZURE_CLIENT_SECRET" ] && [ -n "$AZURE_SIGNING_ENDPOINT" ]; then
+            cargo install trusted-signing-cli --locked
+            cmd="trusted-signing-cli -e $AZURE_SIGNING_ENDPOINT -a $AZURE_SIGNING_ACCOUNT -c $AZURE_SIGNING_PROFILE -d FluxWP %1"
+            node -e "const f=process.argv[1],c=JSON.parse(require('fs').readFileSync(f));c.bundle.windows={signCommand:process.argv[2]};require('fs').writeFileSync(f,JSON.stringify(c,null,2))" "$conf" "$cmd"
+            echo "FLUX_SIGNED=1" >> "$GITHUB_ENV"; echo "Azure Trusted Signing ile imzalı derleme"
+          elif [ -n "$WINDOWS_CERTIFICATE" ]; then
+            thumb=$(pwsh -NoProfile -Command '
+              $p = Join-Path $env:RUNNER_TEMP "cert.pfx"
+              [IO.File]::WriteAllBytes($p, [Convert]::FromBase64String($env:WINDOWS_CERTIFICATE))
+              $pw = ConvertTo-SecureString $env:WINDOWS_CERTIFICATE_PASSWORD -AsPlainText -Force
+              $c = Import-PfxCertificate -FilePath $p -CertStoreLocation Cert:\CurrentUser\My -Password $pw
+              Remove-Item $p
+              $c.Thumbprint')
+            node -e "const f=process.argv[1],c=JSON.parse(require('fs').readFileSync(f));c.bundle.windows={certificateThumbprint:process.argv[2],digestAlgorithm:'sha256',timestampUrl:'http://timestamp.digicert.com'};require('fs').writeFileSync(f,JSON.stringify(c,null,2))" "$conf" "$(echo "$thumb" | tr -d '\r\n ')"
+            echo "FLUX_SIGNED=1" >> "$GITHUB_ENV"; echo ".pfx ile imzalı derleme"
+          else
+            echo "::warning::Windows imza secret'ları yok, imzasız derleniyor"
+          fi
+      - name: Build (x64)
+        working-directory: apps/desktop
+        env:
+          AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        run: |
+          for v in AZURE_TENANT_ID AZURE_CLIENT_ID AZURE_CLIENT_SECRET TAURI_SIGNING_PRIVATE_KEY TAURI_SIGNING_PRIVATE_KEY_PASSWORD; do
+            [ -z "${!v}" ] && unset "$v"
+          done
+          # MSI yalnız sayısal sürüm kabul eder (0.3.0-beta.1 olmaz): ön sürümde yalnız setup.exe.
+          v=$(node -p "require('./package.json').version")
+          case "$v" in *-*) bundles=nsis ;; *) bundles=nsis,msi ;; esac
+          bun run tauri build --bundles "$bundles" --config src-tauri/tauri.brand.conf.json
+      - name: İmzayı doğrula
+        if: env.FLUX_SIGNED == '1'
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem apps/desktop/src-tauri/target/release/bundle/nsis/*-setup.exe | Select-Object -First 1
+          $s = Get-AuthenticodeSignature $exe.FullName
+          Write-Host "$($s.Status) $($s.SignerCertificate.Subject)"
+          if ($s.Status -ne 'Valid') { Write-Host "::warning::setup.exe imzası geçerli değil: $($s.Status)" }
+      - name: Dosyaları topla
+        run: |
+          v=$(node -p "require('./apps/desktop/package.json').version")
+          b=apps/desktop/src-tauri/target/release/bundle
+          n="fluxapp-$FLUX_BRAND-$v-windows-x64"
+          mkdir -p out
+          exe=$(ls "$b"/nsis/*-setup.exe | head -1)
+          cp "$exe" "out/$n-setup.exe"
+          if [ -f "$exe.sig" ]; then
+            cp "$exe.sig" "out/$n-setup.exe.sig"
+          else
+            echo "::warning::TAURI_SIGNING_PRIVATE_KEY yok, Windows otomatik güncelleme imzası üretilmedi"
+          fi
+          msi=$(ls "$b"/msi/*.msi 2>/dev/null | head -1 || true)
+          [ -n "$msi" ] && cp "$msi" "out/$n.msi"
+          ls -la out
+      - uses: actions/upload-artifact@v5
+        with:
+          name: ${{ env.FLUX_BRAND }}-windows
+          path: out/*
+
+  release:
+    needs: [macos, windows]
+    # Bir platform atlandıysa (platforms seçimi) diğeriyle yine yayımlanır; biri hata verdiyse yayımlanmaz.
+    if: ${{ !cancelled() && !contains(needs.*.result, 'failure') && (startsWith(github.ref, 'refs/tags/fluxapp-v') || inputs.release != '') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v5
+        with:
+          path: out
+          merge-multiple: true
+      # Sürüm notu: CHANGELOG'daki ## <sürüm> bölümü (uygulamadaki güncelleme kartında görünür).
+      - name: Sürüm notu
+        run: |
+          v=$(node -p "require('./apps/desktop/package.json').version")
+          awk -v v="$v" '$0 ~ "^## "v"( |$)" {f=1; next} /^## / {f=0} f' apps/desktop/CHANGELOG.md > "$RUNNER_TEMP/notes.md"
+          ls -la out
+      - uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ inputs.release || github.ref_name }}
           target_commitish: ${{ github.sha }}

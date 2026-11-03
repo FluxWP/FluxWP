@@ -84,6 +84,24 @@ msgstr ""
 msgid "Kaydedilemedi."
 msgstr ""
 
+msgid "Masaüstü uygulaması"
+msgstr ""
+
+msgid "Paneli Mac ve Windows bilgisayarınızda ayrı bir uygulama olarak kullanın. Yeni sürümler kendiliğinden kurulur."
+msgstr ""
+
+msgid "macOS için indir"
+msgstr ""
+
+msgid "Windows için indir"
+msgstr ""
+
+msgid "macOS 11 ve üstü (Apple Silicon ve Intel). Windows 10 ve 11 (64 bit)."
+msgstr ""
+
+msgid "Windows MSI paketi (kurumsal dağıtım)"
+msgstr ""
+
 msgid "Uygulama ayarları"
 msgstr ""
 

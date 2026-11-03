@@ -116,12 +116,12 @@ html,body,#root{overflow:hidden;overscroll-behavior:none}
 .palette-item.sel{background:var(--flux-sidebar-active)}
 .pad{padding:12px}
 
-/* masaüstü: macOS trafik ışıkları (sol üst, ~78 px) titlebar satırıyla aynı hizada */
-html.platform-desktop .sidebar-top{padding-top:9px}
-html.platform-desktop .titlebar{padding-left:70px;height:30px}
-html.platform-desktop .main-bar{padding-left:80px;height:46px}
-html.platform-desktop .main.with-bar .page{padding-top:24px}
-html.platform-desktop .page{padding-top:36px}
+/* masaüstü: macOS trafik ışıkları (sol üst, ~78 px) titlebar satırıyla aynı hizada. Windows'ta yerel başlık çubuğu var. */
+html.platform-desktop.os-macos .sidebar-top{padding-top:9px}
+html.platform-desktop.os-macos .titlebar{padding-left:70px;height:30px}
+html.platform-desktop.os-macos .main-bar{padding-left:80px;height:46px}
+html.platform-desktop.os-macos .main.with-bar .page{padding-top:24px}
+html.platform-desktop.os-macos .page{padding-top:36px}
 
 @media (max-width:760px){
   .page{padding:20px 16px 40px}
