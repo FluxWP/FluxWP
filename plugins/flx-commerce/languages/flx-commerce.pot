@@ -1,0 +1,709 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Flux Roles\n"
+
+msgid "Flux Commerce çalışmak için WooCommerce ister. WooCommerce'i kurup etkinleştirin."
+msgstr ""
+
+msgid "Ayarlar"
+msgstr ""
+
+msgid "Satış paneli, müşteriler, raporlar ve ödeme iyileştirmeleri"
+msgstr ""
+
+msgid "Siparişi verdikten sonra IBAN'ı ve size özel referans kodunu göreceksiniz. Ödemeyi yapınca dekontu sitede yükleyebilirsiniz; ödeme onaylanınca siparişiniz hazırlanır."
+msgstr ""
+
+msgid "Alıcı"
+msgstr ""
+
+msgid "Banka"
+msgstr ""
+
+msgid "Tutar"
+msgstr ""
+
+msgid "Açıklama"
+msgstr ""
+
+msgid "Kopyalandı"
+msgstr ""
+
+msgid "Yükleniyor…"
+msgstr ""
+
+msgid "Dekont yüklenemedi. Lütfen tekrar deneyin."
+msgstr ""
+
+msgid "Dekontunuz bize ulaştı. Ödeme onaylanınca size haber vereceğiz."
+msgstr ""
+
+msgid "Siparişiniz alındı, ödemenizi bekliyoruz"
+msgstr ""
+
+msgid "Aşağıdaki hesaba havale/EFT yapın ve açıklamaya size özel referans kodunu yazın."
+msgstr ""
+
+msgid "Havale/EFT yapın"
+msgstr ""
+
+msgid "%s kopyala"
+msgstr ""
+
+msgid "Kopyala"
+msgstr ""
+
+msgid "Referans kodu ödemenizi siparişinizle eşleştirmemizi sağlar."
+msgstr ""
+
+msgid "Dekontu yükleyin"
+msgstr ""
+
+msgid "Siparişinizi hazırlayalım"
+msgstr ""
+
+msgid "Ödeme onaylanınca e-posta alırsınız; siparişinizi Hesabım › Siparişler'den de izleyebilirsiniz."
+msgstr ""
+
+msgid "Havale/EFT bilgileri"
+msgstr ""
+
+msgid "Ödemeden sonra dekontu yükleyin:"
+msgstr ""
+
+msgid "Lütfen açıklamaya yukarıdaki referansı yazın. Ödemeden sonra dekontu yükleyin:"
+msgstr ""
+
+msgid "Dekont yükle"
+msgstr ""
+
+msgid "Havale/EFT"
+msgstr ""
+
+msgid "Bu sipariş Havale/EFT ile verilmedi."
+msgstr ""
+
+msgid "Henüz dekont yüklenmedi."
+msgstr ""
+
+msgid "Ödemeyi onayla"
+msgstr ""
+
+msgid "Ödeme onaylandı: %1$s · %2$s"
+msgstr ""
+
+msgid "Havale/EFT ödemesi onaylandı."
+msgstr ""
+
+msgid "Bu işlem için yetkiniz yok."
+msgstr ""
+
+msgid "Havale/EFT ödemesini onayla"
+msgstr ""
+
+msgid "Havale"
+msgstr ""
+
+msgid "Dekont geldi"
+msgstr ""
+
+msgid "Ödeme bekleniyor"
+msgstr ""
+
+msgid "Onaylandı"
+msgstr ""
+
+msgid "%d gün içinde ödeme gelmediği için iptal edildi."
+msgstr ""
+
+msgid "Ücretsiz kargo için %s daha ekleyin."
+msgstr ""
+
+msgid "Kargo bedava!"
+msgstr ""
+
+msgid "Ad"
+msgstr ""
+
+msgid "E-posta"
+msgstr ""
+
+msgid "Telefon"
+msgstr ""
+
+msgid "Şehir"
+msgstr ""
+
+msgid "Sipariş"
+msgstr ""
+
+msgid "Toplam harcama"
+msgstr ""
+
+msgid "İlk sipariş"
+msgstr ""
+
+msgid "Son sipariş"
+msgstr ""
+
+msgid "Not"
+msgstr ""
+
+msgid "Merhaba %1$s, %2$s siparişiniz (#%3$s) alındı.\n\nÖdeme: %4$s\nAlıcı: %5$s\nIBAN: %6$s\nAçıklama: %7$s\n\nÖdemeden sonra dekontu buradan yükleyebilirsiniz: %8$s"
+msgstr ""
+
+msgid "Havale bilgileri müşteriye WhatsApp ile gönderildi."
+msgstr ""
+
+msgid "Dekont geldi: sipariş #%1$s · %2$s"
+msgstr ""
+
+msgid "%1$s, #%2$s siparişi için dekont yükledi.\n\nTutar: %3$s\nAçıklama: %4$s\nDosya: %5$s\n\nKontrol edip onaylayın: %6$s"
+msgstr ""
+
+msgid "Merhaba %1$s, #%2$s siparişinizin ödemesi onaylandı. Siparişiniz hazırlanıyor. %3$s"
+msgstr ""
+
+msgid "Yeni sipariş #%1$s · %2$s\n%3$s\n%4$s\n%5$s"
+msgstr ""
+
+msgid "Bu sipariş için dekont beklenmiyor."
+msgstr ""
+
+msgid "Bir sipariş için en fazla 5 dekont yüklenebilir."
+msgstr ""
+
+msgid "Dosya çok büyük."
+msgstr ""
+
+msgid "Dosya yüklenemedi. Lütfen tekrar deneyin."
+msgstr ""
+
+msgid "Dosya en fazla %s MB olabilir."
+msgstr ""
+
+msgid "Yalnız PDF, JPG, PNG, WEBP ya da HEIC yüklenebilir."
+msgstr ""
+
+msgid "Dosya kaydedilemedi."
+msgstr ""
+
+msgid "Müşteri dekont yükledi: %1$s (%2$s). Ödemeyi kontrol edip onaylayın."
+msgstr ""
+
+msgid "Bir dekont daha ekle"
+msgstr ""
+
+msgid "Dekontu seçin ya da buraya bırakın"
+msgstr ""
+
+msgid "PDF, JPG ya da PNG · en fazla %s MB"
+msgstr ""
+
+msgid "Dekontu gönder"
+msgstr ""
+
+msgid "Sipariş bulunamadı."
+msgstr ""
+
+msgid "Lütfen bir dosya seçin."
+msgstr ""
+
+msgid "Dekontunuz bize ulaştı. Teşekkürler!"
+msgstr ""
+
+msgid "Ödemesiz"
+msgstr ""
+
+msgid "Kategorisiz"
+msgstr ""
+
+msgid "%s Mn"
+msgstr ""
+
+msgid "%s B"
+msgstr ""
+
+msgid "Flux Commerce"
+msgstr ""
+
+msgid "WooCommerce"
+msgstr ""
+
+msgid "Etkin, sürüm %s"
+msgstr ""
+
+msgid "WooCommerce kurulu ya da etkin değil; Flux Commerce çalışmaz."
+msgstr ""
+
+msgid "Eklentiler"
+msgstr ""
+
+msgid "Kapalı; Flux Donate'in havale yöntemi kullanılıyor."
+msgstr ""
+
+msgid "Kapalı."
+msgstr ""
+
+msgid "Açık ama IBAN yok; ödeme sayfasında görünmez."
+msgstr ""
+
+msgid "Ödeme yöntemi"
+msgstr ""
+
+msgid "Müşteri listesi"
+msgstr ""
+
+msgid "Son tam tarama: %s"
+msgstr ""
+
+msgid "Eski siparişler henüz taranmadı; Müşteriler sayfasında \"Yeniden oluştur\"."
+msgstr ""
+
+msgid "Müşteriler"
+msgstr ""
+
+msgid "Mağaza"
+msgstr ""
+
+msgid "Genel bakış"
+msgstr ""
+
+msgid "Satış raporu"
+msgstr ""
+
+msgid "Taranıyor: %1$s / %2$s sipariş"
+msgstr ""
+
+msgid "Bitti. Sayfa yenileniyor…"
+msgstr ""
+
+msgid "Bir şey ters gitti. Tekrar deneyin."
+msgstr ""
+
+msgid "Kaydedildi"
+msgstr ""
+
+msgid "Mağaza · bugün"
+msgstr ""
+
+msgid "Ciro"
+msgstr ""
+
+msgid "Ödeme bekleyen"
+msgstr ""
+
+msgid "Genel bakışı aç"
+msgstr ""
+
+msgid "Günlük ciro"
+msgstr ""
+
+msgid "%1$s · %2$s · %3$s sipariş"
+msgstr ""
+
+msgid "CSV indir"
+msgstr ""
+
+msgid "Yeniden oluştur"
+msgstr ""
+
+msgid "Üye ve misafir müşteriler, e-posta başına; sipariş sayısı ve toplam harcamayla."
+msgstr ""
+
+msgid "Eski siparişler henüz taranmadı."
+msgstr ""
+
+msgid "Liste yeni siparişlerle kendiliğinden dolar. Önceki siparişleri de eklemek için \"Yeniden oluştur\"a basın; tarama 100'lük parçalarla yapılır."
+msgstr ""
+
+msgid "Müşteri"
+msgstr ""
+
+msgid "Tekrar alan"
+msgstr ""
+
+msgid "%%%s"
+msgstr ""
+
+msgid "Müşteri başı harcama"
+msgstr ""
+
+msgid "90 gündür almayan"
+msgstr ""
+
+msgid "Tümü"
+msgstr ""
+
+msgid "Yeni (30 gün)"
+msgstr ""
+
+msgid "En çok harcayan %10"
+msgstr ""
+
+msgid "Uzaklaşan (90 gün)"
+msgstr ""
+
+msgid "Müşteri ara"
+msgstr ""
+
+msgid "Ad, e-posta, telefon, şehir"
+msgstr ""
+
+msgid "Aramaya uyan müşteri yok."
+msgstr ""
+
+msgid "Henüz müşteri yok."
+msgstr ""
+
+msgid "Toplam"
+msgstr ""
+
+msgid "Üye"
+msgstr ""
+
+msgid "Tekrar"
+msgstr ""
+
+msgid "Not ekle…"
+msgstr ""
+
+msgid "%s için not"
+msgstr ""
+
+msgid "Bugün"
+msgstr ""
+
+msgid "7 gün"
+msgstr ""
+
+msgid "30 gün"
+msgstr ""
+
+msgid "90 gün"
+msgstr ""
+
+msgid "Dönem"
+msgstr ""
+
+msgid "Satışlar, ödeme bekleyen siparişler ve stok bir bakışta."
+msgstr ""
+
+msgid "Net ciro"
+msgstr ""
+
+msgid "Ortalama sepet"
+msgstr ""
+
+msgid "%s yeni"
+msgstr ""
+
+msgid "%1$s – %2$s · karşılaştırma: %3$s – %4$s"
+msgstr ""
+
+msgid "Ayrıntılı rapor"
+msgstr ""
+
+msgid "Günlük grafik için 7 gün ya da daha uzun bir dönem seçin."
+msgstr ""
+
+msgid "Bu dönemde ödenmiş sipariş yok."
+msgstr ""
+
+msgid "En çok satanlar"
+msgstr ""
+
+msgid "adet"
+msgstr ""
+
+msgid "Bu dönemde satış yok."
+msgstr ""
+
+msgid "Ödeme yöntemleri"
+msgstr ""
+
+msgid "sipariş"
+msgstr ""
+
+msgid "Siparişler"
+msgstr ""
+
+msgid "Ürünler"
+msgstr ""
+
+msgid "Yeni ürün"
+msgstr ""
+
+msgid "Kuponlar"
+msgstr ""
+
+msgid "Kargo"
+msgstr ""
+
+msgid "Ödeme bekleyenler"
+msgstr ""
+
+msgid "Ödeme bekleyen sipariş yok."
+msgstr ""
+
+msgid "%1$s · %2$s önce"
+msgstr ""
+
+msgid "Stok azalanlar"
+msgstr ""
+
+msgid "eşik %s"
+msgstr ""
+
+msgid "Stoğu azalan ürün yok."
+msgstr ""
+
+msgid "Tükendi"
+msgstr ""
+
+msgid "%s kaldı"
+msgstr ""
+
+msgid "Seçtiğiniz dönemde ödenmiş siparişler; iadeler düşülmüş net tutarlar."
+msgstr ""
+
+msgid "Bu ay"
+msgstr ""
+
+msgid "Geçen ay"
+msgstr ""
+
+msgid "Bu yıl"
+msgstr ""
+
+msgid "Başlangıç"
+msgstr ""
+
+msgid "Bitiş"
+msgstr ""
+
+msgid "Göster"
+msgstr ""
+
+msgid "Satılan adet"
+msgstr ""
+
+msgid "İade"
+msgstr ""
+
+msgid "Kargo geliri"
+msgstr ""
+
+msgid "Ürün"
+msgstr ""
+
+msgid "Adet"
+msgstr ""
+
+msgid "Net satış"
+msgstr ""
+
+msgid "Pay"
+msgstr ""
+
+msgid "Kategoriler"
+msgstr ""
+
+msgid "Sayılan durumlar: %s. Ayarlar'dan değişir."
+msgstr ""
+
+msgid "Özet"
+msgstr ""
+
+msgid "Brüt ciro"
+msgstr ""
+
+msgid "Vergi"
+msgstr ""
+
+msgid "İndirim"
+msgstr ""
+
+msgid "Gün"
+msgstr ""
+
+msgid "Kategori"
+msgstr ""
+
+msgid "Panel, ödeme sayfası, Havale/EFT, ürün feed'i ve bildirimler."
+msgstr ""
+
+msgid "Ayarlar kaydedildi."
+msgstr ""
+
+msgid "Panel ve raporlar"
+msgstr ""
+
+msgid "Ciroya sayılan sipariş durumları"
+msgstr ""
+
+msgid "Beklemede (havale) siparişler ödeme onaylanınca sayılır."
+msgstr ""
+
+msgid "Bağış siparişlerini mağaza istatistiklerine katma"
+msgstr ""
+
+msgid "Flux Donate kurulu: yalnız bağış içeren siparişler Bağışlar panelinde kalır."
+msgstr ""
+
+msgid "Düşük stok eşiği"
+msgstr ""
+
+msgid "Stoğu bu sayı ya da altına inen ürünler Genel bakış'ta listelenir."
+msgstr ""
+
+msgid "Sepet ve ödeme sayfası"
+msgstr ""
+
+msgid "Şirket adı alanını gizle"
+msgstr ""
+
+msgid "Adres 2. satırını gizle"
+msgstr ""
+
+msgid "Yalnız sanal/indirilebilir ürün varsa adres sorma"
+msgstr ""
+
+msgid "Klasik ödeme sayfasında. Ülke, ad, e-posta ve telefon kalır."
+msgstr ""
+
+msgid "Sipariş notu alanı"
+msgstr ""
+
+msgid "Mobilde \"Siparişi ver\" düğmesi altta sabit"
+msgstr ""
+
+msgid "Ücretsiz kargo çubuğu"
+msgstr ""
+
+msgid "Sepette ve ödemede \"X ₺ daha ekleyin, kargo bedava\"."
+msgstr ""
+
+msgid "Ücretsiz kargo tutarı"
+msgstr ""
+
+msgid "Boş ya da 0 = WooCommerce \"Ücretsiz kargo\" yönteminin en az tutarı."
+msgstr ""
+
+msgid "Boş = WooCommerce \"Ücretsiz kargo\" yönteminden: %s"
+msgstr ""
+
+msgid "Yöntemi açmak, IBAN ve açıklama biçimi WooCommerce › Ayarlar › Ödemeler › Havale/EFT'de."
+msgstr ""
+
+msgid "Ödeme yöntemini aç"
+msgstr ""
+
+msgid "Flux Donate'in havale yöntemi açıksa bunu gösterme"
+msgstr ""
+
+msgid "Ödeme sayfasında iki ayrı \"Havale\" seçeneği görünmesin."
+msgstr ""
+
+msgid "En büyük dekont (MB)"
+msgstr ""
+
+msgid "Dekont bildirimi e-postası"
+msgstr ""
+
+msgid "Boş = site yöneticisinin e-postası."
+msgstr ""
+
+msgid "Ödenmeyen havaleyi iptal et (gün)"
+msgstr ""
+
+msgid "0 = iptal etme. Dekont yüklenmiş siparişler iptal edilmez; stok geri döner."
+msgstr ""
+
+msgid "Ürün feed'i (Google Merchant)"
+msgstr ""
+
+msgid "Feed açık"
+msgstr ""
+
+msgid "Google Merchant Center, Meta katalog ve benzerleri bu adresi okur."
+msgstr ""
+
+msgid "Feed adresi"
+msgstr ""
+
+msgid "Marka"
+msgstr ""
+
+msgid "Boş = site adı."
+msgstr ""
+
+msgid "Bildirimler"
+msgstr ""
+
+msgid "WhatsApp mesajları Flux Mail'in WhatsApp bağlantısıyla gider."
+msgstr ""
+
+msgid "WhatsApp için Flux Mail ve bir WhatsApp bağlantısı gerekir; şu an yalnız e-posta gider."
+msgstr ""
+
+msgid "Havale bilgilerini ve ödeme onayını müşteriye WhatsApp ile gönder"
+msgstr ""
+
+msgid "Yönetici WhatsApp numarası"
+msgstr ""
+
+msgid "Dekont geldiğinde (ve açıksa yeni siparişte) bu numaraya yazılır."
+msgstr ""
+
+msgid "Ödenmiş her yeni siparişte yöneticiye WhatsApp"
+msgstr ""
+
+msgid "Kaydet"
+msgstr ""
+
+msgid "Havale/EFT (dekont yüklemeli)"
+msgstr ""
+
+msgid "Müşteri siparişe özel referansla ödeme yapar ve dekontu sitede yükler. Ödemeyi onaylayınca sipariş hazırlanmaya geçer. Flux Commerce."
+msgstr ""
+
+msgid "Açık"
+msgstr ""
+
+msgid "Havale/EFT ile ödeme al"
+msgstr ""
+
+msgid "Başlık"
+msgstr ""
+
+msgid "Boş = site dilinde \"Havale/EFT\"."
+msgstr ""
+
+msgid "Ödeme sayfasındaki metin"
+msgstr ""
+
+msgid "Boş = site dilinde varsayılan metin."
+msgstr ""
+
+msgid "Alıcı (hesap sahibi)"
+msgstr ""
+
+msgid "Boş = WooCommerce \"Doğrudan banka havalesi\"nin ilk hesabı."
+msgstr ""
+
+msgid "Boş = WooCommerce \"Doğrudan banka havalesi\"nin ilk hesabı (alıcı ve banka da oradan gelir)."
+msgstr ""
+
+msgid "Banka (isteğe bağlı)"
+msgstr ""
+
+msgid "Müşterinin havale açıklamasına yazacağı metin. Yer tutucular: {kod} (önek + sipariş no), {siparis}, {ad}, {site}. Boş: {kod} {ad}"
+msgstr ""
+
+msgid "Kod öneki"
+msgstr ""
+
+msgid "Havale/EFT: ödeme bekleniyor."
+msgstr ""
