@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.0.3
+- Flux QR Menu (özel paket) kurulum sihirbazında listelenmez. Gizlenecek paketler için filtre `flxk_onboarding_hidden`.
+
 ## 1.0.2
 - Kurulum ekranında sol liste ve sağdaki çark dikeyde ortada.
 
