@@ -56,6 +56,12 @@
 .flxa-me-dirty { color: var(--flxa-warn, #8a4b00); font-weight: 700; }
 @media (max-width: 782px) {
 	.flxa-me-row.is-item { margin-left: 8px; }
+	/* Telefon: ad ilk satırda tam genişlik, düğmeler alt satırda */
+	.flxa-me-row { flex-wrap: wrap; row-gap: 6px; }
+	.flxa-me-name { flex: 1 1 calc(100% - 88px); }
+	.flxa-me-row > .flxa-me-move { margin-left: 32px; }
+	.flxa-me-row > .flxa-me-btn > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+	.flxa-me-pf { margin-left: auto; }
 	.flxa-me-src { display: none; }
 	.flxa-me-move { display: inline-flex; }
 	.flxa-me-subs { margin-left: 16px; }

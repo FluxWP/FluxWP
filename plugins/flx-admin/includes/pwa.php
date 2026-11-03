@@ -108,10 +108,10 @@ function flxa_pwa_icons() {
 		}
 	}
 	if ( ! $icons ) {
-		$icons[] = array( 'src' => FLXA_URL . 'assets/icons/icon-192.png', 'sizes' => '192x192', 'type' => 'image/png', 'purpose' => 'any' );
-		$icons[] = array( 'src' => FLXA_URL . 'assets/icons/icon-512.png', 'sizes' => '512x512', 'type' => 'image/png', 'purpose' => 'any' );
+		$icons[] = array( 'src' => FLXA_URL . 'assets/icons/icon-192.png?v=' . FLXA_VERSION, 'sizes' => '192x192', 'type' => 'image/png', 'purpose' => 'any' );
+		$icons[] = array( 'src' => FLXA_URL . 'assets/icons/icon-512.png?v=' . FLXA_VERSION, 'sizes' => '512x512', 'type' => 'image/png', 'purpose' => 'any' );
 	}
-	$icons[] = array( 'src' => FLXA_URL . 'assets/icons/maskable-512.png', 'sizes' => '512x512', 'type' => 'image/png', 'purpose' => 'maskable' );
+	$icons[] = array( 'src' => FLXA_URL . 'assets/icons/maskable-512.png?v=' . FLXA_VERSION, 'sizes' => '512x512', 'type' => 'image/png', 'purpose' => 'maskable' );
 	return $icons;
 }
 
@@ -181,7 +181,7 @@ function flxa_pwa_sw() {
 		'pre'     => array(
 			FLXA_URL . 'assets/css/admin.css?ver=' . FLXA_VERSION,
 			FLXA_URL . 'assets/js/admin.js?ver=' . FLXA_VERSION,
-			FLXA_URL . 'assets/icons/icon-192.png',
+			FLXA_URL . 'assets/icons/icon-192.png?v=' . FLXA_VERSION,
 		),
 		'static'  => array( '/wp-includes/', '/wp-admin/css/', '/wp-admin/js/', '/wp-content/plugins/', '/wp-content/themes/' ),
 	);
@@ -206,7 +206,7 @@ body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:c
 img{width:64px;height:64px;border-radius:16px}h1{font-size:22px;margin:16px 0 8px}p{margin:0 0 20px;opacity:.8}
 button{font:inherit;font-weight:700;border:0;border-radius:12px;padding:12px 20px;background:var(--a);color:#fff;cursor:pointer}
 </style></head>
-<body><div class="c"><img src="<?php echo esc_url( FLXA_URL . 'assets/icons/icon-192.png' ); ?>" alt="">
+<body><div class="c"><img src="<?php echo esc_url( FLXA_URL . 'assets/icons/icon-192.png?v=' . FLXA_VERSION ); ?>" alt="">
 <h1><?php esc_html_e( 'Bağlantı yok', 'flx-admin' ); ?></h1>
 <p><?php esc_html_e( 'İnternet bağlantısı gelince panel kaldığı yerden açılır.', 'flx-admin' ); ?></p>
 <button type="button" onclick="location.reload()"><?php esc_html_e( 'Yeniden dene', 'flx-admin' ); ?></button></div></body></html>
@@ -239,7 +239,7 @@ img{width:72px;height:72px;border-radius:18px;animation:p 1.6s ease-in-out infin
 .b{position:fixed;top:0;left:0;right:0;height:3px;background:var(--a);transform-origin:0 50%;animation:g 8s cubic-bezier(.08,.75,.2,1) forwards}
 @keyframes g{0%{transform:scaleX(0)}6%{transform:scaleX(.3)}100%{transform:scaleX(.94)}}
 </style></head>
-<body><div class="b"></div><img src="<?php echo esc_url( $icon ? $icon : FLXA_URL . 'assets/icons/icon-192.png' ); ?>" alt=""><div><?php echo esc_html( flxa_pwa_name() ); ?></div>
+<body><div class="b"></div><img src="<?php echo esc_url( $icon ? $icon : FLXA_URL . 'assets/icons/icon-192.png?v=' . FLXA_VERSION ); ?>" alt=""><div><?php echo esc_html( flxa_pwa_name() ); ?></div>
 <script>(function(){var u=new URL(location.href);u.searchParams.delete('flxa-start');location.replace(u.toString());})();</script></body></html>
 	<?php
 	exit;
@@ -259,7 +259,7 @@ function flxa_pwa_head() {
 	echo '<meta name="apple-mobile-web-app-title" content="' . esc_attr( flxa_pwa_short() ) . '">' . "\n";
 	$id = (int) get_option( 'site_icon' );
 	$ap = $id ? wp_get_attachment_image_url( $id, array( 180, 180 ) ) : '';
-	echo '<link rel="apple-touch-icon" href="' . esc_url( $ap ? $ap : FLXA_URL . 'assets/icons/apple-touch-icon.png' ) . '">' . "\n";
+	echo '<link rel="apple-touch-icon" href="' . esc_url( $ap ? $ap : FLXA_URL . 'assets/icons/apple-touch-icon.png?v=' . FLXA_VERSION ) . '">' . "\n";
 }
 
 /**

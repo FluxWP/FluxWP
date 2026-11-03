@@ -718,13 +718,13 @@ final class FLXU_Admin {
 									<?php endif; ?>
 								</span>
 							</td>
-							<td><?php echo 'theme' === $row['type'] ? esc_html__( 'Tema', 'flx-setup' ) : esc_html__( 'Eklenti', 'flx-setup' ); ?></td>
-							<td><?php echo $row['installed'] ? esc_html( $row['installed'] ) : '—'; ?>
+							<td class="flxu-c-type"><?php echo 'theme' === $row['type'] ? esc_html__( 'Tema', 'flx-setup' ) : esc_html__( 'Eklenti', 'flx-setup' ); ?></td>
+							<td class="flxu-c-inst"><?php echo $row['installed'] ? esc_html( $row['installed'] ) : '—'; ?>
 								<?php if ( $row['installed'] && ! $row['active'] && 'plugin' === $row['type'] ) : ?>
 									<br><small class="flxu-off"><?php esc_html_e( 'Devre dışı', 'flx-setup' ); ?></small>
 								<?php endif; ?>
 							</td>
-							<td><?php echo esc_html( $row['latest'] ); ?>
+							<td class="flxu-c-latest"><?php echo esc_html( $row['latest'] ); ?>
 								<?php if ( $row['released'] ) : ?>
 									<br><small><?php echo esc_html( date_i18n( get_option( 'date_format' ), strtotime( $row['released'] ) ) ); ?></small>
 								<?php endif; ?>
@@ -859,8 +859,8 @@ final class FLXU_Admin {
 			<tbody>
 				<tr class="is-main">
 					<td><strong><?php echo esc_html( $main['name'] ); ?></strong><br><small><?php esc_html_e( 'Ana sunucu', 'flx-setup' ); ?></small></td>
-					<td><code><?php echo esc_html( $main['url'] ); ?></code></td>
-					<td><?php esc_html_e( 'Sunucu', 'flx-setup' ); ?></td>
+					<td class="flxu-src-url"><code><?php echo esc_html( $main['url'] ); ?></code></td>
+					<td class="flxu-src-type"><?php esc_html_e( 'Sunucu', 'flx-setup' ); ?></td>
 					<td><?php echo $state_cell( $main ); // phpcs:ignore WordPress.Security.EscapeOutput ?></td>
 					<td class="flxu-src-act"><small><?php esc_html_e( 'Yukarıdaki Bağlantı ayarı', 'flx-setup' ); ?></small></td>
 				</tr>
@@ -869,8 +869,8 @@ final class FLXU_Admin {
 						<td><strong><?php echo esc_html( $s['name'] ); ?></strong>
 							<?php if ( 'server' === $s['type'] && '' !== $s['key'] ) : ?><br><small><?php esc_html_e( 'Anahtar kayıtlı', 'flx-setup' ); ?></small><?php endif; ?>
 						</td>
-						<td><a href="<?php echo esc_url( $s['url'] ); ?>" target="_blank" rel="noopener"><code><?php echo esc_html( $s['url'] ); ?></code></a></td>
-						<td><?php echo 'github' === $s['type'] ? esc_html__( 'GitHub (public)', 'flx-setup' ) : esc_html__( 'Sunucu', 'flx-setup' ); ?></td>
+						<td class="flxu-src-url"><a href="<?php echo esc_url( $s['url'] ); ?>" target="_blank" rel="noopener"><code><?php echo esc_html( $s['url'] ); ?></code></a></td>
+						<td class="flxu-src-type"><?php echo 'github' === $s['type'] ? esc_html__( 'GitHub (public)', 'flx-setup' ) : esc_html__( 'Sunucu', 'flx-setup' ); ?></td>
 						<td><?php echo $state_cell( $s ); // phpcs:ignore WordPress.Security.EscapeOutput ?></td>
 						<td class="flxu-src-act">
 							<?php
@@ -1376,7 +1376,53 @@ final class FLXU_Admin {
 			@keyframes flxu-slide{0%{left:-40%}100%{left:100%}}
 			@keyframes flxu-in{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:none}}
 			@media (prefers-reduced-motion:reduce){.flxu-run__spin,.flxu-log__spin,.flxu-run__bar span,.flxu-log__line.is-run .flxu-log__ico{animation:none}}
-			@media (max-width:782px){.flxu-card{flex-wrap:wrap}.flxu-actions{white-space:normal}.flxu-ver__box{left:0;right:auto}}
+			@media (max-width:782px){
+				.flxu-card{flex-wrap:wrap}
+				/* Araç çubuğu: başlık, iki ana düğme yan yana, toplu işlem tam satır */
+				.flxu-toolbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+				.flxu-toolbar h2{grid-column:1/-1}.flxu-toolbar__spacer{display:none}
+				#flxu-packages .flxu-toolbar .button{display:inline-flex;align-items:center;justify-content:center;min-height:40px;margin:0;padding:4px 10px;white-space:normal;line-height:1.25;text-align:center}
+				.flxu-toolbar>.button{order:1}
+				.flxu-bulk{order:2;grid-column:1/-1;margin:0;padding:0;border:0;display:flex;gap:8px}
+				.flxu-bulk select{flex:1;min-width:0;max-width:none}
+				.flxu-act{order:3;grid-column:1/-1;font-size:13px}
+				/* Paket tablosu: telefonda her satır bir kart (logo | ad + sürüm | durum) */
+				.flxu-table,.flxu-table tbody{display:block}
+				.flxu-table thead{display:none}
+				.flxu-table tr.flxu-row{display:grid;grid-template-columns:22px 36px auto auto 1fr auto;grid-template-rows:auto auto;align-items:center;column-gap:10px;row-gap:2px;padding:12px;border-top:1px solid var(--flxa-border,#dcdcde);position:relative}
+				.flxu-table tbody tr:first-child{border-top:0}
+				.flxu-table tr.flxu-row>*{display:block;padding:0;border:0!important;width:auto;min-width:0}
+				.flxu-table .check-column{grid-column:1;grid-row:1/3;margin:0}
+				.flxu-table .check-column input{margin:0}
+				.flxu-table tr.flxu-row>td.flxu-pkg{display:contents}
+				.flxu-pkg img,.flxu-pkg__ph{grid-column:2;grid-row:1/3;width:36px;height:36px}
+				.flxu-pkg>span{grid-column:3/6;grid-row:1;min-width:0;align-self:end;line-height:1.35}
+				.flxu-pkg code,.flxu-pkg>span>br:first-of-type,.flxu-c-type,.flxu-c-latest small,.flxu-c-latest br{display:none!important}
+				.flxu-table td.flxu-c-inst,.flxu-table td.flxu-c-latest{grid-row:2;align-self:start;font-size:12px;font-variant-numeric:tabular-nums;white-space:nowrap}
+				.flxu-table td.flxu-c-inst{grid-column:3;color:var(--flxa-muted,#646970)}
+				.flxu-table td.flxu-c-inst br{display:none}.flxu-c-inst .flxu-off{margin-left:4px}
+				.flxu-table tr.flxu-row>td.flxu-c-latest{grid-column:4;display:none;font-weight:600}
+				.flxu-table tr.flxu-row--update>td.flxu-c-latest{display:block}
+				.flxu-row--update td.flxu-c-inst::after{content:" →"}
+				.flxu-table td.flxu-actions{grid-column:6;grid-row:1/3;white-space:normal;text-align:right}
+				.flxu-idle{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+				#flxu-packages .flxu-idle>.button{min-height:30px;line-height:28px}
+				.flxu-badge{margin:0}
+				.flxu-ver{position:static;margin:0}
+				.flxu-ver__box{left:12px;right:12px;top:auto;min-width:0;text-align:left}
+				.flxu-run{min-width:0;max-width:150px}
+				.flxu-row--update{box-shadow:inset 3px 0 0 #dba617}
+				/* Diğer kaynaklar: kart */
+				.flxu-sources,.flxu-sources tbody{display:block}
+				.flxu-sources thead{display:none}
+				.flxu-sources tr{display:grid;grid-template-columns:1fr auto;gap:4px 10px;padding:12px;border-top:1px solid var(--flxa-border,#dcdcde)}
+				.flxu-sources tbody tr:first-child{border-top:0}
+				.flxu-sources tr>td{display:block;padding:0;border:0!important}
+				.flxu-sources .flxu-src-url{grid-column:1/-1;grid-row:2;min-width:0;overflow-wrap:anywhere}
+				.flxu-sources .flxu-src-url code{font-size:12px;background:none;padding:0;color:var(--flxa-muted,#646970)}
+				.flxu-sources .flxu-src-type{display:none}
+				.flxu-sources .flxu-src-act{grid-column:1/-1;text-align:left;white-space:normal}
+			}
 		</style>
 		<script>
 		(function(){

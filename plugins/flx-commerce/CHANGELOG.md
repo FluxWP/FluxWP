@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.1.1
+- Satış raporu: telefonda tarih aralığı ve "Göster" düğmesi ekrana sığıyor.
+
 ## 0.1.0
 - İlk sürüm. WooCommerce'e bağlı, her mağazanın kullanabileceği genel e-ticaret eklentisi (bağışa özgü bir şey yok).
 - **Mağaza › Genel bakış**: bugün / 7 / 30 / 90 gün net ciro, sipariş, ortalama sepet ve müşteri; önceki döneme göre değişim, günlük ciro grafiği, en çok satanlar, ödeme bekleyenler, stok azalanlar, ödeme yöntemleri. Başlangıç'ta "Mağaza · bugün" kartı.

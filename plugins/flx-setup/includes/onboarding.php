@@ -125,11 +125,21 @@ final class FLXK_Onboarding {
 	}
 
 	/**
-	 * "Neyle başlayalım?" ekranında temanın yanındaki kartlar. Her kart bir ya da birkaç paketi birlikte seçer.
+	 * "Neyle başlayalım?" ekranının kartları. Her kart bir ya da birkaç paketi birlikte seçer.
 	 * art: ekran görüntüsü yerine gösterilecek görsel (boşsa ilk paketin ekran görüntüsü).
+	 * solo: diğerlerinden bağımsız seçilir. Solo olmayan kartlardan (site türü) aynı anda yalnız biri seçilir.
+	 * FluxWP teması kart olarak gösterilmez, her kurulumda gelir (ön ayar, renk ve sayfalar ona bağlı).
 	 */
 	private static function core(): array {
 		$items = array(
+			array(
+				'key'   => 'admin',
+				'slugs' => array( 'flx-admin' ),
+				'name'  => __( 'Yönetim teması', 'flx-setup' ),
+				'desc'  => __( 'Flux Admin: yenilenmiş yönetim paneli, komut paleti, mobil menü ve açık/koyu tema.', 'flx-setup' ),
+				'art'   => '',
+				'solo'  => true,
+			),
 			array(
 				'key'   => 'store',
 				'slugs' => array( 'flx-commerce' ),
@@ -160,7 +170,7 @@ final class FLXK_Onboarding {
 	/** Eklenti adımının kategorileri; her biri ayrı ekran. Listede olmayan paket "Diğer"e düşer. */
 	private static function groups(): array {
 		$g = array(
-			array( 'key' => 'manage', 'name' => __( 'Yönetim', 'flx-setup' ), 'lead' => __( 'Panel, ekip yetkileri, görevler ve masaüstü/mobil uygulama.', 'flx-setup' ), 'slugs' => array( 'flx-admin', 'flx-roles', 'flx-tasks', 'flx-app' ) ),
+			array( 'key' => 'manage', 'name' => __( 'Yönetim', 'flx-setup' ), 'lead' => __( 'Ekip yetkileri, görevler ve masaüstü/mobil uygulama.', 'flx-setup' ), 'slugs' => array( 'flx-roles', 'flx-tasks', 'flx-app' ) ),
 			array( 'key' => 'contact', 'name' => __( 'İletişim', 'flx-setup' ), 'lead' => __( 'WhatsApp, e-posta ve formlar tek panelde.', 'flx-setup' ), 'slugs' => array( 'flx-chat', 'flx-mail', 'flx-forms' ) ),
 			array( 'key' => 'grow', 'name' => __( 'Büyüme', 'flx-setup' ), 'lead' => __( 'Arama motorları, ziyaretçi analizi, diller ve sosyal medya.', 'flx-setup' ), 'slugs' => array( 'flx-seo', 'flx-analytics', 'flx-lang', 'flx-social' ) ),
 			array( 'key' => 'ai', 'name' => __( 'Yapay zekâ', 'flx-setup' ), 'lead' => __( 'Tüm paketlerin kullandığı ortak AI ve görsel stüdyosu.', 'flx-setup' ), 'slugs' => array( 'flx-ai', 'flx-studio' ) ),
@@ -368,6 +378,7 @@ final class FLXK_Onboarding {
 						'name'  => (string) $c['name'],
 						'desc'  => (string) $c['desc'],
 						'art'   => (string) ( $c['art'] ?? '' ),
+						'solo'  => ! empty( $c['solo'] ),
 					);
 				},
 				self::core()
@@ -694,7 +705,7 @@ final class FLXK_Onboarding {
 			'selNone'    => __( 'Seçimi temizle', 'flx-setup' ),
 			'coreK'      => __( 'Temel', 'flx-setup' ),
 			'hBase'      => __( 'Neyle başlayalım?', 'flx-setup' ),
-			'leadBase'   => __( 'Tema ve sitenin türü: mağaza ya da dernek. Türlerden biri seçilir; diğerini sonra da kurabilirsiniz.', 'flx-setup' ),
+			'leadBase'   => __( 'Yönetim teması ve sitenin türü: mağaza ya da dernek. Türlerden biri seçilir; diğerini sonra da kurabilirsiniz.', 'flx-setup' ),
 			'noneBtn'    => __( 'Seçmeden devam et', 'flx-setup' ),
 			'recB'       => __( 'Önerilen', 'flx-setup' ),
 			'themeDesc'  => __( 'Blok tabanlı tema: mağaza, bağış ve kurumsal sayfa şablonları.', 'flx-setup' ),
