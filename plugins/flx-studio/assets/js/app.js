@@ -174,7 +174,7 @@
 	function drawSide() {
 		var f = st.f, b = st.boot;
 		S.clear(side);
-		side.appendChild(h('.flxst-brand', h('span.flxst-logo', S.icon('sparkle', 18)), h('strong', t('Stüdyo')), h('span.flxst-ver', 'v' + b.version)));
+		side.appendChild(h('.flxst-brand', ((window.FLXST_BOOT || {}).logo ? h('img.flxst-logo.is-img', { src: window.FLXST_BOOT.logo, alt: '' }) : h('span.flxst-logo', S.icon('sparkle', 18))), h('strong', 'Flux Studio'), h('span.flxst-ver', 'v' + b.version)));
 		var all = f.folder === 'all' && !f.fav && !st.dash;
 		f = st.dash ? {} : f;
 		side.appendChild(h('nav.flxst-navs',

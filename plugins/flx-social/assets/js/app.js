@@ -97,7 +97,7 @@
 		if (!side) return;
 		var b = st.boot, c = b.counts || {};
 		S.clear(side);
-		side.appendChild(h('.flxsm-brand', h('span.flxsm-logo', S.icon('share', 17)), h('strong', t('Sosyal Medya')), h('span.flxsm-ver', 'v' + b.version)));
+		side.appendChild(h('.flxsm-brand', ((window.FLXSM_BOOT || {}).logo ? h('img.flxsm-logo.is-img', { src: window.FLXSM_BOOT.logo, alt: '' }) : h('span.flxsm-logo', S.icon('share', 17))), h('strong', 'Flux Social'), h('span.flxsm-ver', 'v' + b.version)));
 		side.appendChild(h('button.flxsm-btn.is-primary.flxsm-new', { type: 'button', onclick: function () { root.classList.remove('is-nav'); S.compose(null); } }, S.icon('plus', 16), h('span', t('Yeni gönderi'))));
 		side.appendChild(h('nav.flxsm-navs',
 			navItem('chart', t('Pano'), 'dashboard'),

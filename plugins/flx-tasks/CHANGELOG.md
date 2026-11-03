@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.8.7
+- Açık tema: soluk metinler (KPI alt yazıları, ayar grup başlıkları, yol ayırıcıları) ve uyarı rengi daha okunur. Koyu tema: koyu marka renginde etkin menü öğesi ve vurgu metinleri okunur. Site ikonu yoksa başlıkta Flux Tasks paket ikonu.
+
 ## 0.8.6
 - Koyu modda yenilemede açık tema yanıp sönmesi giderildi: tema, uygulama kabı çizilir çizilmez (pages.js beklenmeden) uygulanır.
 

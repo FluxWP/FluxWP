@@ -64,7 +64,7 @@ function flxg_admin_assets() {
 			'adminUrl' => admin_url(),
 			'appUrl'   => admin_url( 'admin.php?page=flx-tasks' ),
 			'start'    => $start,
-			'icon'     => get_site_icon_url( 128 ),
+			'icon'     => get_site_icon_url( 128 ) ? get_site_icon_url( 128 ) : plugins_url( 'assets/icon.svg', FLXG_FILE ),
 			'i18n'     => flxg_js_strings(),
 		)
 	);

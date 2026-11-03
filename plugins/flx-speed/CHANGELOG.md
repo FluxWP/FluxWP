@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.3.4
+- Panel yalnız Flux Admin / tema koyu modunu izler; admin açıkken cihaz ayarından koyulaşmıyor.
+
 ## 0.3.3
 - Ayar önekleri listesinde `flxu_` artık "FluxWP Panel" olarak görünür (eski Flux Updater adı yerine).
 

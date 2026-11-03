@@ -20,10 +20,10 @@
 	--ink: #1f2937;
 	--ink-2: #4b5563;
 	--muted: #6b7280;
-	--faint: #9ca3af;
+	--faint: #7c8390;
 	--danger: #dc2626;
 	--danger-soft: rgba(220, 38, 38, .1);
-	--warn: #d97706;
+	--warn: #b45309;
 	--warn-soft: rgba(217, 119, 6, .12);
 	--ok: #16a34a;
 	--info: #2563eb;
@@ -49,8 +49,8 @@
 html.flxg-dark .flxg-sheet-shade,
 html.flxg-dark .flxg-toasts,
 html.flxg-dark .flxg-lightbox {
-	--accent: color-mix(in srgb, var(--brand, var(--flxa-accent, #1F2937)) 72%, #fff);
-	--accent-2: color-mix(in srgb, var(--brand, var(--flxa-accent, #1F2937)) 58%, #fff);
+	--accent: color-mix(in srgb, var(--brand, var(--flxa-accent, #1F2937)) 50%, #fff);
+	--accent-2: color-mix(in srgb, var(--brand, var(--flxa-accent, #1F2937)) 40%, #fff);
 	--accent-soft: color-mix(in srgb, var(--brand, var(--flxa-accent, #1F2937)) 22%, transparent);
 	--accent-ink: #0b1a0c;
 	--bg: #121417;

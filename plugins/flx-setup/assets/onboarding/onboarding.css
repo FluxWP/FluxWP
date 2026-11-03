@@ -1,6 +1,6 @@
 /* Layout: quiet monochrome shell, real package icons and screenshots carry the colour. */
 :root{
-  --bg:#F6F5F2; --surface:#FFFFFF; --ink:#0E1116; --text:#5B6170; --muted:#9A9FAA;
+  --bg:#F6F5F2; --surface:#FFFFFF; --ink:#0E1116; --text:#5B6170; --muted:#767B86;
   --line:#E3E1DB; --line-strong:#CFCCC4; --soft:#EEECE7; --ok:#15803D;
   --display:"Geist",-apple-system,BlinkMacSystemFont,"Segoe UI",ui-sans-serif,system-ui,sans-serif; --mono:"Geist Mono",ui-monospace,monospace;
   --r:14px;

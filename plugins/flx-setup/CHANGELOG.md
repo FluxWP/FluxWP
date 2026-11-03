@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.0.16
+- Açık tema: cihaz koyu moddayken admin açık olsa bile ön ayar kartları koyu görünmüyor; Flux Setup renkleri (kart, rozet, uyarı, fark durumları, paket listesi) Flux Admin değişkenlerinden. Koyu tema: paket listesinde seçili satır artık beyazlaşmıyor. Kurulum sihirbazı: soluk metinler daha okunur.
+
 ## 1.0.15
 - Eski Flux Updater adı arayüzden kalktı: kaynak etiketi, atlananlar notu ve sunucu adresi açıklaması artık "FluxWP Panel" / "FluxWP güncelleme sunucusu" der. Sihirbaz gizli listesinden `flx-updater` çıktı.
 - Eski flx-updater hâlâ etkin olan sitelerde davranış aynı: FluxWP Panel onu otomatik kapatır, ayarları (`flxu_*`) korur, "Eklentiler ekranından silebilirsiniz" notu gösterir.

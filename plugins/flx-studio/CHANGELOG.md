@@ -1,5 +1,8 @@
 # Flux Studio — Değişiklikler
 
+## 0.3.6
+- Açık tema: uyarı, hata ve mavi metinler yeterli kontrastta. Uygulama başlığında Flux Studio paket ikonu ve adı.
+
 ## 0.3.5
 - Koyu modda yenilemede açık tema yanıp sönmesi giderildi: tema, uygulama kabı çizilir çizilmez (app.js beklenmeden) uygulanır.
 

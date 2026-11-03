@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.35.6
+- Ayarlar: etkin sekme açık zeminde okunur koyu WhatsApp yeşili.
+
 ## 1.35.5
 - Ayarlar › Bağlantılar: Flux Mail veya Flux Certificates bağlantısı seçilince bağlantı kimliği yanlış okunuyordu (`flxi:`/`flxs:` önek uzunluğu), kaydetmede bağlantı boşa düşüyordu; düzeltildi.
 

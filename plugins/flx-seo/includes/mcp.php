@@ -1322,7 +1322,7 @@ function flxseo_mcp_page( $o ) {
 	$checks = '';
 	foreach ( flxseo_mcp_tools() as $name => $t ) {
 		$checks .= '<label style="display:block;margin:2px 0"><input type="checkbox" name="tools[]" value="' . esc_attr( $name ) . '"> <code>' . esc_html( $name ) . '</code> '
-			. esc_html( $t['title'] ) . ( empty( $t['readonly'] ) ? '' : ' <span style="color:#00a32a">(yalnız okuma)</span>' ) . '</label>';
+			. esc_html( $t['title'] ) . ( empty( $t['readonly'] ) ? '' : ' <span style="color:#007a1f">(yalnız okuma)</span>' ) . '</label>';
 	}
 	$scope = '<details style="margin:8px 0;max-width:820px"><summary>Araçları sınırla (isteğe bağlı)</summary>'
 		. '<p class="description">Hiçbiri seçilmezse anahtar, oluşturan kullanıcının bütün yetkileriyle çalışır. Seçilirse yalnız işaretli araçları görür ve çalıştırır (ör. TV sipariş paneli için yalnız <code>order_summary</code>).</p>'
