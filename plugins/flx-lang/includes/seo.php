@@ -80,7 +80,9 @@ function flxl_alternates( $real = true ) {
  * Arşivlerde hreflang yalnız gerçekten içerik varsa (boş İngilizce arşiv bildirilmesin).
  */
 function flxl_should_hreflang_archive() {
-	return (bool) apply_filters( 'flxl_hreflang_archive', is_front_page() || is_home() || is_post_type_archive() || is_category() || is_tax() || is_tag() );
+	$on = is_front_page() || is_home() || is_post_type_archive() || is_category() || is_tax() || is_tag()
+		|| ( is_singular() && flxl_is_shared( get_queried_object_id() ) ); // Paylaşılan sayfa (flxl_shared_post_ids) her dilde aynı içerik.
+	return (bool) apply_filters( 'flxl_hreflang_archive', $on );
 }
 
 add_action(

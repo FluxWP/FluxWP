@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.2.10
+- Ana sayfada og:title artık site adı değil, sayfa başlığıyla aynı (sayfanın SEO başlığı ya da Ana sayfa başlığı ayarı, çevirisiyle). Yeni filtre `flxseo_og` (Open Graph etiketleri dizisi).
+
 ## 1.2.9
 - Düzeltme: Flux Setup ön ayarı (ör. fluxwp.com) Flux SEO ayarlarından yalnız birkaçını yazınca kayıt filtresi yazılmayan tüm açık/kapalı ayarları 0 yapıyordu. SEO çıktısı, noindex kuralları, otomatik alt metin ve IndexNow birlikte kapanıyordu ("SEO çıktısı kapalı"). Artık gönderilmeyen alan eski değerini korur; ayar formu kapalı kutular için gizli 0 gönderir. Bu yüzden kapanmış sitelerde (hepsi 0) güncellemeden sonra ayarlar bir kez varsayılanlarına döner.
 - Varsayılanlar siteden bağımsız: site adı, kurum adı, ana sayfa başlığı ve açıklaması boş gelir ve boşken WordPress'in site adı ve sloganı kullanılır. Ayar sayfası hiç açılmasa da her sayfada başlık, açıklama, Open Graph ve schema dolu çıkar. Eski "Örnek Vakfı" örnek değerleri ve onları yazan eski geçişler kaldırıldı.

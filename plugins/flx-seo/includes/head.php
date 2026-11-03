@@ -251,7 +251,7 @@ function flxseo_head() {
 		'og:locale'      => flxseo_og_locale(),
 		'og:type'        => $type,
 		'og:site_name'   => flxseo_opt( 'site_name' ),
-		'og:title'       => is_front_page() ? flxseo_opt( 'site_name' ) : ( is_singular() ? single_post_title( '', false ) : $title ),
+		'og:title'       => is_front_page() ? $title : ( is_singular() ? single_post_title( '', false ) : $title ),
 		'og:description' => $desc,
 		'og:url'         => $canon ? $canon : home_url( add_query_arg( array() ) ),
 		'og:image'       => $img['url'],
@@ -273,6 +273,8 @@ function flxseo_head() {
 		$og['article:published_time'] = get_the_date( 'c', get_queried_object() );
 		$og['article:modified_time']  = get_the_modified_date( 'c', get_queried_object() );
 	}
+	/** Open Graph etiketleri: array( 'og:title' => '...', ... ). Boş değer yazılmaz. */
+	$og = (array) apply_filters( 'flxseo_og', $og );
 	foreach ( $og as $p => $c ) {
 		if ( '' !== (string) $c ) {
 			printf( '<meta property="%s" content="%s">' . "\n", esc_attr( $p ), esc_attr( $c ) );
