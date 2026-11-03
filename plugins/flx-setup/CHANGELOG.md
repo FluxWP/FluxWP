@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 1.0.12
+- Google önerileri (isteğe bağlı, Site Kit tarzı kart): Başlangıç, Sistem Kontrolü ve Paketler ekranının üstünde **Google'da bulunun** kartı Google Site Kit'i önerir. **Gerekli değil** kartı site genelinde kapatır; **Google Site Kit'i kur** wordpress.org'dan kurar, etkinleştirir ve Site Kit'in kendi kurulum ekranına yönlendirir. Google hesabını kullanıcı orada bağlar.
+- Site Kit Google hesabına bağlanınca ve WooCommerce etkinse ikinci kart: **Ürünlerinizi Google'da gösterin** (Google for WooCommerce, `google-listings-and-ads`). Kurulunca WooCommerce › Google ekranına gider.
+- Kapatılan kartlar `flxk_google_cards` seçeneğinde; kartlar aynı adlı filtreyle değiştirilir ya da yenileri eklenir.
+
 ## 1.0.11
 - Anonim kullanım verisi (telemetri). Yalnız "Ürünü geliştirmemize yardımcı olun" kutusu işaretliyse (`flxk_telemetry` = `'1'`, varsayılan kapalı) çalışır. Günde en fazla bir kez telemetri adresine gönderilir (varsayılan `https://fluxwp.com/wp-json/flxan/v1/telemetry`, Flux Analytics telemetri merkezi): rastgele kurulum kimliği (güncelleme anahtarıyla ilişkisiz), WordPress sürümü, PHP ana sürümü, site dili, etkin FluxWP eklentileri ve teması (sürümleriyle), FluxWP dosyalarından gelen PHP hata/uyarıları (tür, temizlenmiş mesaj, göreli dosya, satır, tekrar sayısı), kurulum sihirbazında hangi adıma kadar gelindiği, seçilen ve bırakılan kartlar, ön ayar ve renk stili, bitirildi/atlandı ve yaklaşık süre (sihirbaz verisi tarayıcıda tutulur, siteye yalnız kutu işaretliyse kaydedilir).
 - Gönderilmez: site adresi, IP, kullanıcı, e-posta, içerik, FluxWP dışı eklentiler, güncelleme anahtarı. İstek WordPress'in site adresini içeren User-Agent'ını ve anahtar başlığını taşımaz. Mesajlardan sunucu yolları, alan adı, URL, e-posta ve IP temizlenir.

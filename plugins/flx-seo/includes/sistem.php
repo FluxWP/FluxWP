@@ -28,9 +28,15 @@ add_filter(
 			return $c;
 		};
 
-		$checks[] = flxseo_opt( 'enabled' )
-			? $item( 'output', 'SEO çıktısı', 'ok', 'Meta, Open Graph ve schema ekleniyor.' )
-			: $item( 'output', 'SEO çıktısı', 'error', 'Kapalı: sayfalarda açıklama, Open Graph ve schema yok.', flxseo_admin_url(), 'SEO ayarları' );
+		// SEO isteğe bağlı: kapalıysa hata değil uyarı. Başka bir SEO eklentisi işi üstlendiyse bilgi.
+		$label = __( 'SEO çıktısı', 'flx-seo' );
+		if ( flxseo_other_seo_plugin() ) {
+			$checks[] = $item( 'output', $label, 'info', __( 'Başka bir SEO eklentisi etkin; meta, Open Graph ve schema onun üzerinden. Flux SEO çakışmasın diye kendi çıktısını kapattı.', 'flx-seo' ) );
+		} elseif ( flxseo_opt( 'enabled' ) ) {
+			$checks[] = $item( 'output', $label, 'ok', __( 'Meta açıklama, Open Graph ve schema her sayfada ekleniyor.', 'flx-seo' ) );
+		} else {
+			$checks[] = $item( 'output', $label, 'warning', __( 'Kapalı. Google ve sosyal paylaşımlarda sayfa açıklaması, görsel ve kurum bilgisi görünmez. Google\'da bulunmak istiyorsanız açın.', 'flx-seo' ), flxseo_admin_url(), __( 'SEO ayarları', 'flx-seo' ) );
+		}
 
 		$sitemaps = function_exists( 'wp_sitemaps_get_server' ) && wp_sitemaps_get_server()->sitemaps_enabled();
 		$checks[] = $sitemaps
@@ -59,7 +65,7 @@ add_filter(
 			}
 		}
 		$checks[] = $missing
-			? $item( 'org', 'Kurum bilgileri', 'warning', 'Eksik: ' . implode( ', ', $missing ) . '. Google\'daki kurum kartı ve yerel aramalar için doldurun.', flxseo_admin_url( 'kurum' ), 'Kurum ve sosyal' )
+			? $item( 'org', 'Kurum bilgileri', in_array( 'e-posta', $missing, true ) ? 'warning' : 'info', 'Eksik: ' . implode( ', ', $missing ) . '. Google\'daki kurum kartı ve yerel aramalar için doldurun.', flxseo_admin_url( 'kurum' ), 'Kurum ve sosyal' )
 			: $item( 'org', 'Kurum bilgileri', 'ok', 'Adres, telefon ve e-posta schema\'da.' );
 
 		$checks[] = flxseo_opt( 'verify_google' )
