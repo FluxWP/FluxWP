@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.2.8
+- Favicon yenilendi: FluxWP işareti tam kare zemin yerine kendi şekliyle, beyaz kontur ve ince gölge çizgisiyle (açık ve koyu sekmede okunur). SVG, favicon.ico (16/32/48) ve 32/48/96 PNG. Kökteki önceki FluxWP favicon.ico kopyası da yenilenir. Ana ekran simgeleri (180/192/512) değişmedi.
+
 ## 1.2.7
 - Site simgesi (apple-touch, 96/192/512): içteki FluxWP işareti büyütüldü; iOS simgesi köşesiz tam dolgu.
 
