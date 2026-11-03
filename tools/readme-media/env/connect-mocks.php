@@ -4,6 +4,8 @@ require ( getenv( 'WPENV' ) ?: '/tmp/wpenv' ) . '/site/wp-load.php';
 wp_set_current_user( 1 );
 // Flux Guncelleyici -> mock-update (127.0.0.1:8091)
 update_option( 'flxu_settings', array( 'server' => 'http://127.0.0.1:8091', 'key' => 'flxk_demo_0000000000000000', 'auto' => 0, 'health' => 1 ) );
+// FluxWP Extras kaynagi: GitHub yerine sahte sunucu (test sitesi dis istek yapamaz)
+update_site_option( 'flxu_sources', array( array( 'id' => 'wp-extras', 'name' => 'FluxWP Extras', 'type' => 'server', 'url' => 'http://127.0.0.1:8091/extras', 'key' => '', 'enabled' => 1 ) ) );
 // Flux AI: sahte anahtarlar (istek gitmez, ekranlar "bagli" gorunur)
 if ( function_exists( 'flxai_update_settings' ) ) {
 	flxai_update_settings( array( 'key_openrouter' => flxai_encrypt( 'sk-or-demo' ), 'key_fal' => flxai_encrypt( 'fal-demo' ), 'key_openai' => flxai_encrypt( 'sk-demo' ) ) );

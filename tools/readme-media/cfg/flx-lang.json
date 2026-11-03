@@ -20,7 +20,7 @@
   },
   {
    "name": "editor",
-   "url": "post.php?post=12&action=edit",
+   "url": "post.php?post={post:Hatıra Ormanı nedir?}&action=edit",
    "wait": 5000,
    "vh": 1000,
    "css": ".flxseo-panel{display:none!important}"
@@ -83,7 +83,7 @@
    "wait": 900
   },
   {
-   "goto": "post.php?post=12&action=edit",
+   "goto": "post.php?post={post:Hatıra Ormanı nedir?}&action=edit",
    "wait": 5000
   },
   {

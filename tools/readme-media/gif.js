@@ -1,5 +1,5 @@
 // node gif.js <config.json> <lang>  -> $WPENV/vid/<slug>-<lang>/*.webm
-const {chromium,B}=require(__dirname+'/lib.js'); const fs=require('fs'); const {execSync}=require('child_process');
+const {chromium,B,U}=require(__dirname+'/lib.js'); const fs=require('fs'); const {execSync}=require('child_process');
 const cfg=JSON.parse(fs.readFileSync(process.argv[2])); const lang=process.argv[3]; const L=(v)=>typeof v==='object'&&v&&!Array.isArray(v)?v[lang]:v;
 execSync(`php ${__dirname}/env/setloc.php ${lang==='en'?'en_US':'tr_TR'}`);
 const CURSOR=fs.readFileSync(__dirname+'/cursor.js','utf8');
@@ -14,7 +14,7 @@ const CURSOR=fs.readFileSync(__dirname+'/cursor.js','utf8');
    await move(bb.x+Math.min(bb.width/2,70),bb.y+bb.height/2); await p.waitForTimeout(250); await p.mouse.down(); await p.mouse.up(); await p.waitForTimeout(pause??900); };
  for(const s of cfg.gif){
   try{
-  if(s.goto){ await p.goto(B+(s.goto.startsWith('/')?s.goto:'/wp-admin/'+s.goto)); await p.waitForTimeout(s.wait||2000); await css(); }
+  if(s.goto){ await p.goto(B+U(s.goto.startsWith('/')?s.goto:'/wp-admin/'+s.goto)); await p.waitForTimeout(s.wait||2000); await css(); }
   if(s.move) { await move(s.move[0],s.move[1]); await p.waitForTimeout(s.wait||500); }
   if(s.click){ const scope=s.in?p.locator(s.in):p; const loc=s.css?scope.locator(L(s.click)):scope.getByText(L(s.click),{exact:!!s.exact}); await clickLoc(loc.locator('visible=true').first(),s.wait); if(s.nav){ await p.waitForLoadState('networkidle'); await p.waitForTimeout(1500); await css(); } }
   if(s.type){ await p.keyboard.type(L(s.type),{delay:60}); await p.waitForTimeout(s.wait||600); }

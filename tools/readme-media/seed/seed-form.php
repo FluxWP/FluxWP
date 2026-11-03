@@ -1,6 +1,16 @@
 <?php
 require ( getenv( 'WPENV' ) ?: '/tmp/wpenv' ) . '/site/wp-load.php';
 global $wpdb; mt_srand(7);
+// Formlar yoksa (temiz kurulum) 6 demo formu ekle: yapılar forms-tr.json, adlar aşağıdaki $titles ile aynı
+$F=$wpdb->prefix.'emsfb_form';
+if(!(int)$wpdb->get_var("SELECT COUNT(*) FROM $F")){
+  $types=[1=>'form',2=>'payment',3=>'form',4=>'survey',5=>'survey',6=>'form']; $ttl=[1=>'İletişim Formu',2=>'Fidan Bağışı',3=>'Destek Talebi',4=>'Gönüllü Anketi',5=>'Etkinlik Geri Bildirimi',6=>'Gönüllü Başvurusu'];
+  $all=json_decode(file_get_contents(__DIR__.'/forms-tr.json'),true); $fn=get_efbFunction();
+  foreach($all as $id=>$v){ $v=$fn->sanitize_obj_msg_efb($v); $val=str_replace('"','\\"',json_encode($v,JSON_UNESCAPED_UNICODE));
+    $wpdb->insert($F,['form_id'=>(int)$id,'form_name'=>$ttl[(int)$id],'form_structer'=>$val,'form_email'=>'','form_type'=>$types[(int)$id],'form_created_by'=>'1','form_access_by'=>'1','form_create_date'=>wp_date('Y-m-d H:i:s',strtotime('-70 days'))]); }
+  echo "forms ".count($all)."\n";
+}
+if(!get_page_by_path('fidan-formu')) wp_insert_post(['post_title'=>'Fidan Bağışı','post_name'=>'fidan-formu','post_type'=>'page','post_status'=>'publish','post_content'=>"<!-- wp:shortcode -->\n[EMS_Form_Builder id=2]\n<!-- /wp:shortcode -->"]);
 $m=$wpdb->prefix.'emsfb_msg_'; $s=$wpdb->prefix.'emsfb_stts_';
 $wpdb->query("DELETE FROM $m"); $wpdb->query("DELETE FROM $s");
 $names=['Ayşe Yılmaz','Mehmet Demir','Elif Arslan','Can Şahin','Zeynep Kaya','Burak Çelik','Merve Öztürk','Emre Koç','Selin Aydın','Oğuz Arslan','Fatma Yıldız','Deniz Aslan','Kerem Polat','Ezgi Özdemir','Yusuf Aslan'];

@@ -1,4 +1,7 @@
 {
+ "seed": [
+  "seed-backup.php"
+ ],
  "slug": "flx-backup",
  "shots": [
   {
