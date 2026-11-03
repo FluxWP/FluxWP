@@ -1069,3 +1069,75 @@ msgstr ""
 
 msgid "Sol menüde, Flux Updater paket listesinde ve FluxWP App'te kullanılır. Renkler paket grubunu gösterir: yönetim, bakım, iletişim, içerik, ticaret."
 msgstr ""
+
+msgid "Yönetim panelinin görünümü, menüsü ve yetkileri"
+msgstr ""
+
+msgid "Tüm eklentiler için ortak yapay zekâ merkezi"
+msgstr ""
+
+msgid "Çerezsiz site istatistikleri ve ziyaretçi yolculukları"
+msgstr ""
+
+msgid "Masaüstü ve mobil uygulama girişi, kişisel API anahtarları"
+msgstr ""
+
+msgid "Güncelleme öncesi otomatik yedek, zamanlanmış yedek ve geri yükleme"
+msgstr ""
+
+msgid "Sertifika şablonları, oluşturma, toplu gönderim ve doğrulama"
+msgstr ""
+
+msgid "WhatsApp çağrı merkezi, AI asistanı ve raporlar"
+msgstr ""
+
+msgid "WooCommerce üzerinde bağış türleri, bağışçılar ve ödemeler"
+msgstr ""
+
+msgid "Sürükle bırak form oluşturucu, yanıtlar ve otomasyonlar"
+msgstr ""
+
+msgid "Çok dilli site: dil adresleri ve içerik çevirileri"
+msgstr ""
+
+msgid "Sitenin tüm e-postaları, posta kutusu ve SMTP"
+msgstr ""
+
+msgid "Eski paket adlarıyla kaydedilmiş verileri yeni adlara taşır"
+msgstr ""
+
+msgid "QR menüleri bu siteden yönet ve yayınla"
+msgstr ""
+
+msgid "Personel, İdareci ve Yönetici rolleri ve erişimleri"
+msgstr ""
+
+msgid "Meta etiketler, schema, site haritası ve yapay zekâ (MCP) erişimi"
+msgstr ""
+
+msgid "Siteyi bir ön ayar şablonuyla tek adımda kur"
+msgstr ""
+
+msgid "Sorgular, PHP hataları, dış istekler ve cron tek yerde"
+msgstr ""
+
+msgid "Personel hediyeleri, kira, tahakkuk ve tahsilat"
+msgstr ""
+
+msgid "Projeler, listeler ve görev takibi"
+msgstr ""
+
+msgid "Kurban bağışları, hisseler ve vekâlet"
+msgstr ""
+
+msgid "Ekranlarda gösterilecek pano ve slaytlar"
+msgstr ""
+
+msgid "Televizyonları ve panoları uzaktan yönet"
+msgstr ""
+
+msgid "FluxWP tema ve eklentilerini güncelleme sunucusundan güncelle"
+msgstr ""
+
+msgid "Tema ayarları ve ön ayarlar"
+msgstr ""

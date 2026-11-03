@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.6.3
+- Flux Admin kuruluysa menü logosunu Flux Admin verir: boyutu diğer paketlerle aynı, Degrade/Pastel seçimine uyar.
+
 ## 0.6.2
 - Yeni logo (FluxWP ikon seti, grup rengi). `assets/icon-pastel.svg` Flux Admin › Görünüm › Paket logoları Pastel iken kullanılır.
 

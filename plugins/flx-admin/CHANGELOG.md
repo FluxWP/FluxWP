@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.1
+- FluxWP paket sayfalarında ortak başlık: başlıkta logo yoksa paketin logosu eklenir, açıklama satırı yoksa paketin kısa açıklaması yazılır (Flux Backup'taki gibi). Uygulama ekranları (WhatsApp, Görevler, Stüdyo, Sosyal, TV Kumandası) dokunulmaz. Filtreler `flxa_page_heads`, `flxa_package_heads`, `flxa_page_head_skip`.
+- Üçüncü parti eklentilerin beyaz SVG menü simgeleri (Hostinger, Ödemeler vb.) açık temada görünmüyordu; artık maske olarak çizgi simgeler gibi boyanır, iki temada da okunur.
+
 ## 1.6.0
 - Yeni paket logoları (FluxWP ikon seti): tutarlı çizgi ikonlar, 5 renk grubu (yönetim, bakım, iletişim, içerik, ticaret). Eksik olan Analytics, App, Lang, Migrate, QR Menu, Roles, Setup, Social, Speed, Studio, Staff, TV logoları eklendi.
 - Görünüm › Paket logoları: Degrade (varsayılan) ya da Pastel. Sol menü, Flux Updater ve FluxWP App bu seçimi izler. Filtre `flx_logo_style`, yardımcılar `flxa_logo_style()` ve `flxa_logo_file_url()`.
