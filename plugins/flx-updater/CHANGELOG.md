@@ -3,6 +3,11 @@
 ## 1.7.2
 - Ara bilgi metinleri Flux Admin tonunu izliyor (koyu modda okunur).
 
+## 1.7.1
+- Güncellemeler sayfasında toplu işlemler: kurulu paketleri seçip topluca Etkinleştir, Devre dışı bırak ya da Kaldır (dosyaları silinir, önce onay sorulur). Kurulu ve güncel paketler de artık seçilebilir; "Seçilenleri kur / güncelle" yalnız kurulmamış ve güncellemesi olanları alır.
+- Kurulu ama etkin olmayan eklentinin sürümünün altında "Devre dışı" yazar.
+- Flux Updater kendini kapatmaz/silmez; etkin tema silinmez.
+
 ## 1.7.0
 - Sunucu panelinden anahtar verilebilir: site her sunucuya özel rastgele bir kurulum kimliği gönderir; yönetici "Bağlı siteler"de "Anahtar ver" deyince anahtar bir sonraki kontrolde yalnız bu kimliği taşıyan siteye teslim edilir ve kendiliğinden kaydedilir. Elle anahtar girmek gerekmez.
 - Anahtar sunucuda pasife alınırsa kart bunu yazar; o sürede yalnız public paketler gelir.
