@@ -12,7 +12,6 @@ Bir paket güncellenince belgesi hem proje klasöründe hem burada güncellenir.
 | `iletisim/` | Flux Mail (`plugins/flx-mail`) | KURULUM, **API**, ENTEGRASYON |
 | `cagri-merkezi/` | Flux Chat (`plugins/flx-chat`) | KURULUM |
 | `gorev-takip/` | Flux Tasks (`plugins/flx-tasks`) | KURULUM |
-| `qr-menu/` | Flux QR Menu (`plugins/flx-qr-menu`) + ayrı alan adlı QR menü sitesi + menu.example.org teması (`themes/flx-menu-theme`) | README, KURULUM (menu.example.org kurulumu dahil), **API** |
 | `guncelleme-sistemi/` | Flux Updater + wp-update-server | KURULUM, logolar/KULLANIM |
 | `yedek-eklentisi/` | Flux Backup (`plugins/flx-backup`) | KURULUM, API |
 | `seo-mcp/` | Flux SEO & MCP (`plugins/flx-seo`) | KURULUM, **MCP-API** (`flxseo_mcp_tools`, `flx_system_fixes`), SEO raporu |
@@ -22,6 +21,5 @@ Bir paket güncellenince belgesi hem proje klasöründe hem burada güncellenir.
 | `flx-lang/` | Flux Lang (`plugins/flx-lang`) — çok dilli site: /en/ adresleri, içerik çevirileri, hreflang, dil önerisi, AI çeviri araçları | KURULUM, **API**, diğer sahipler için |
 | `flx-speed/` | Flux Speed (`plugins/flx-speed`) — geliştirici paneli, yavaş/hatalı istek kaydı, sunucu/veritabanı/autoload/cron, Sistem Kontrolü ekranı; MCP ile okunur | KURULUM, **API** (`flx_log`, `flxp_*` araçları) |
 | `flx-analytics/` | Flux Analytics (`plugins/flx-analytics`) — çerezsiz site istatistikleri (Koko Analytics yerine), olaylar, bağış dönüşümü; MCP ile okunur | KURULUM, **API** (`flxan_*` araçları, `flxan_track_event`) |
-| `flx-menu-theme/` | Tema `themes/flx-menu-theme` (QR menü alan adı) | KURULUM |
 
 Yeni paket yazarken önce `.claude/skills/` altındaki skill'lere bakın: `flx-wp-eklenti`, `flx-wp-tema`, `flx-paket-yayin`.

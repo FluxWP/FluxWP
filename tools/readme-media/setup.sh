@@ -26,7 +26,7 @@ python3 "$H/env/demo-certificates/gen.py" "$S/wp-content/uploads/demo-certs"
 cd "$H"
 php env/install.php || true
 bash "$H/serve.sh"
-php env/act.php woocommerce flx-admin flx-roles flx-ai flx-mail flx-donate flx-forms flx-certificates flx-chat flx-updater flx-backup flx-speed flx-analytics flx-social flx-seo flx-studio flx-lang flx-app flx-qr-menu flx-tasks || true
+php env/act.php woocommerce flx-admin flx-roles flx-ai flx-mail flx-donate flx-forms flx-certificates flx-chat flx-updater flx-backup flx-speed flx-analytics flx-social flx-seo flx-studio flx-lang flx-app flx-tasks || true
 php -r "require '$S/wp-load.php'; switch_theme('fluxwp');"
 php seed/users.php; php env/connect-mocks.php; php env/prep.php || true; php seed/seed-site.php; php seed/seed-sosyal.php  # sosyal gorselleri yazilara da kapak olur
 echo "Hazir: http://127.0.0.1:8080/wp-admin (admin / admin12345)"
