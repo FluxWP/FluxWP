@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 1.0.13
+- Ön ayar güncellenince ayarlar da güncellenir: `version` değişince profil, WordPress ve eklenti ayarları siteyle eşitlenir. Ön ayarın yazdığı ve sizin değiştirmediğiniz değerler yenilenir, yeni alanlar eklenir, elle değiştirdikleriniz korunur. Geçmişte "Eşitleme" kaydı, geri alınabilir. Kapatmak: `flxk_auto_sync` filtresi.
+- Ön ayar bir ayarın yalnız bildirdiği alanlarını değiştirir. Önceden tema ayarına `site_mod` yazmak, temanın sanitize'ı yüzünden çerez banner'ını kapatıyordu ("İlk ziyarette çerez banner'ını göster" kapalı kalıyordu). Motor artık bildirilmeyen alanları yazdıktan sonra eski haline getirir (`flxk_option_guard`).
+- Ortak ayar şeması: eklentiler ve tema `flx_settings_schema` filtresiyle ayar alanlarını (tür, varsayılan, açıklama) tanımlar. AI `preset_schema` çıktısında `settings` olarak görür, önizleme şemada olmayan alanı uyarır.
+- Ön ayar sürümü durumda metin olarak saklanır (önceden "0.1.10" sayıya çevrilip 0 oluyordu).
+
 ## 1.0.12
 - Google önerileri (isteğe bağlı, Site Kit tarzı kart): Başlangıç, Sistem Kontrolü ve Paketler ekranının üstünde **Google'da bulunun** kartı Google Site Kit'i önerir. **Gerekli değil** kartı site genelinde kapatır; **Google Site Kit'i kur** wordpress.org'dan kurar, etkinleştirir ve Site Kit'in kendi kurulum ekranına yönlendirir. Google hesabını kullanıcı orada bağlar.
 - Site Kit Google hesabına bağlanınca ve WooCommerce etkinse ikinci kart: **Ürünlerinizi Google'da gösterin** (Google for WooCommerce, `google-listings-and-ads`). Kurulunca WooCommerce › Google ekranına gider.

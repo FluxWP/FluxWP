@@ -174,8 +174,17 @@ function flx_ayar_sanitize( $in ) {
 	$in  = (array) $in;
 	$d   = flx_ayar_defaults();
 	$old = wp_parse_args( (array) get_option( 'flx_ayarlar', array() ), $d );
+	$on  = static function ( $v ) {
+		return ! ( empty( $v ) || 'off' === $v || '0' === $v || 'false' === $v );
+	};
+	if ( empty( $in['_form'] ) ) {
+		// Formdan gelmeyen yazım (ön ayar, AI, sistem aracı) kısmidir: gönderilmeyen alanlar olduğu gibi kalır.
+		// Önceden eksik onay kutuları "kapalı" sayılıyordu; ön ayar yalnız site_mod yazınca çerez banner'ı kapanıyordu.
+		$in = array_merge( $old, $in );
+	}
+	unset( $in['_form'] );
 	$out = array(
-		'cookie_enabled'  => empty( $in['cookie_enabled'] ) ? 0 : 1,
+		'cookie_enabled'  => $on( $in['cookie_enabled'] ?? 0 ) ? 1 : 0,
 		'cookie_title'    => sanitize_text_field( $in['cookie_title'] ?? $d['cookie_title'] ),
 		'cookie_text'     => wp_kses_post( $in['cookie_text'] ?? $d['cookie_text'] ),
 		'cookie_accept'   => sanitize_text_field( $in['cookie_accept'] ?? $d['cookie_accept'] ),
@@ -185,10 +194,10 @@ function flx_ayar_sanitize( $in ) {
 		'cookie_position' => in_array( $in['cookie_position'] ?? '', array( 'card', 'bar' ), true ) ? $in['cookie_position'] : 'card',
 		'cookie_rev'      => max( 1, absint( $old['cookie_rev'] ) ) + ( empty( $in['cookie_reset'] ) ? 0 : 1 ),
 		'dark_mode'       => 'off' === ( $in['dark_mode'] ?? '' ) ? 'off' : 'auto',
-		'animasyon'       => empty( $in['animasyon'] ) ? 'off' : 'on',
+		'animasyon'       => $on( $in['animasyon'] ?? 0 ) ? 'on' : 'off',
 		'sayfalama'       => 'numara' === ( $in['sayfalama'] ?? '' ) ? 'numara' : 'sonsuz',
 		'site_mod'        => 'donation' === ( $in['site_mod'] ?? '' ) ? 'donation' : 'shop',
-		'aktif_kart'      => empty( $in['aktif_kart'] ) ? 'off' : 'on',
+		'aktif_kart'      => $on( $in['aktif_kart'] ?? 0 ) ? 'on' : 'off',
 		'aktif_kampanya'  => absint( $in['aktif_kampanya'] ?? 0 ),
 		'ga_mode'         => 'after' === ( $in['ga_mode'] ?? '' ) ? 'after' : 'consent',
 		'ga4_id'          => preg_match( '/^G-[A-Z0-9]{4,}$/', strtoupper( trim( $in['ga4_id'] ?? '' ) ) ) ? strtoupper( trim( $in['ga4_id'] ) ) : '',
@@ -244,6 +253,7 @@ function flx_ayar_page() {
 		<?php settings_errors( 'flx_ayarlar' ); ?>
 		<form method="post" action="options.php">
 			<?php settings_fields( 'flx_ayarlar' ); ?>
+			<input type="hidden" name="flx_ayarlar[_form]" value="1">
 			<h2 class="title"><?php esc_html_e( 'Görünüm', 'fluxwp' ); ?></h2>
 			<table class="form-table" role="presentation">
 				<tr><th scope="row"><?php esc_html_e( 'Site türü', 'fluxwp' ); ?></th><td>
@@ -475,3 +485,47 @@ function flx_youtube_facade( $html, $block ) {
 	return ob_get_clean();
 }
 add_filter( 'render_block', 'flx_youtube_facade', 20, 2 );
+
+/**
+ * Ön ayar / AI için ayar şeması (Flux Setup `flx_settings_schema`). Açıklamalar makine içindir (AI, ön ayar yazarı).
+ */
+add_filter(
+	'flx_settings_schema',
+	function ( $s ) {
+		$d                = flx_ayar_defaults();
+		$f                = function ( $type, $desc, $extra = array() ) {
+			return array(
+				'type' => $type,
+				'desc' => $desc,
+			) + $extra;
+		};
+		$fields           = array(
+			'cookie_enabled'  => $f( 'bool', 'Show the cookie consent banner on the first visit.' ),
+			'cookie_title'    => $f( 'string', 'Banner title (Flux Lang: texts.<lang>.tema_cookie_title).' ),
+			'cookie_text'     => $f( 'html', 'Banner text; links allowed (Flux Lang: tema_cookie_text).' ),
+			'cookie_accept'   => $f( 'string', 'Accept button label.' ),
+			'cookie_reject'   => $f( 'string', 'Necessary-only button label.' ),
+			'cookie_more'     => $f( 'string', 'Policy link label; empty hides the link.' ),
+			'cookie_page'     => $f( 'page', 'Cookie/privacy policy page ("@page:<key>").' ),
+			'cookie_position' => $f( 'enum', 'Banner layout.', array( 'enum' => array( 'card', 'bar' ) ) ),
+			'ga4_id'          => $f( 'string', 'Google Analytics 4 measurement ID (G-XXXXXXX).' ),
+			'ga_mode'         => $f( 'enum', 'consent: GA loads in consent mode; after: only after accept.', array( 'enum' => array( 'consent', 'after' ) ) ),
+			'dark_mode'       => $f( 'enum', 'auto follows the visitor system setting.', array( 'enum' => array( 'auto', 'off' ) ) ),
+			'animasyon'       => $f( 'enum', 'Scroll reveal animations.', array( 'enum' => array( 'on', 'off' ) ) ),
+			'sayfalama'       => $f( 'enum', 'Archive pagination.', array( 'enum' => array( 'sonsuz', 'numara' ) ) ),
+			'site_mod'        => $f( 'enum', 'shop (WooCommerce store) or donation (Flux Donate).', array( 'enum' => array( 'shop', 'donation' ) ) ),
+			'aktif_kart'      => $f( 'enum', 'Active campaign card.', array( 'enum' => array( 'on', 'off' ) ) ),
+			'aktif_kampanya'  => $f( 'int', 'Active campaign ID.' ),
+			'bank_holder'     => $f( 'string', 'Bank account holder for Havale/EFT.' ),
+			'bank_iban'       => $f( 'string', 'IBAN (TR + 24 digits).' ),
+		);
+		foreach ( $fields as $k => $v ) {
+			$fields[ $k ]['default'] = $d[ $k ] ?? null;
+		}
+		$s['flx_ayarlar'] = array(
+			'label'  => 'FluxWP theme settings (Appearance > Theme Settings)',
+			'fields' => $fields,
+		);
+		return $s;
+	}
+);
