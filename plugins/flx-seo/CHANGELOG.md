@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.2.8
+- Ana sayfada og:title artık site adı değil, sayfa başlığıyla aynı (sayfanın SEO başlığı ya da Ana sayfa başlığı ayarı, çevirisiyle). Yeni filtre `flxseo_og` (Open Graph etiketleri dizisi).
+
 ## 1.2.7
 - Site simgesi (apple-touch, 96/192/512): içteki FluxWP işareti büyütüldü; iOS simgesi köşesiz tam dolgu.
 

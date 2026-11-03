@@ -1,5 +1,8 @@
 # Flux Lang
 
+## 0.1.5
+- Paylaşılan sayfalar (`flxl_shared_post_ids`, ör. sepet/ödeme) her dilde aynı adresle hreflang alır; `flxl_hreflang_archive` filtresi gerekmez.
+
 ## 0.1.4
 - Ara bilgi metinleri Flux Admin tonunu izliyor (koyu modda okunur).
 
