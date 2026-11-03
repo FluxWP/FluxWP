@@ -84,6 +84,10 @@
 		'<div class="acts"><button class="btn btn-ghost" id="skipNo">' + esc(T.stay) + '</button><button class="btn btn-primary" id="skipYes">' + esc(T.skipYes) + '</button></div></div></div>';
 
 	/* ---------- step 0: intro ---------- */
+	function legalLink(k, label) {
+		var u = (D.legal || {})[k];
+		return u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(label) + '</a>' : esc(label);
+	}
 	var mosaicSlugs = plugins.slice(0, 15).map(function (p) { return p.slug; });
 	if (D.theme) { mosaicSlugs.push('fluxwp'); }
 	$('#step0').innerHTML =
@@ -94,7 +98,11 @@
 		(plugins.length ? '<li><b>' + esc(fmt(T.f1b, plugins.length)) + '</b><span>' + esc(T.f1s) + '</span></li>' : '') +
 		'<li><b>' + esc(T.f2b) + '</b><span>' + esc(T.f2s) + '</span></li>' +
 		'<li><b>' + esc(T.f3b) + '</b><span>' + esc(T.f3s) + '</span></li></ul>' +
-		'<div class="acts"><button class="btn btn-primary" id="startBtn">' + esc(T.start) + ARROW + '</button>' +
+		'<div class="consent">' +
+		'<label class="chk"><input type="checkbox" id="cTerms"' + (D.terms ? ' checked' : '') + '><span>' + fmt(esc(T.cTerms), legalLink('terms', T.cTermsL), legalLink('privacy', T.cPrivL), legalLink('kvkk', T.cKvkkL)) + '</span></label>' +
+		'<label class="chk"><input type="checkbox" id="cUsage"' + (D.usage ? ' checked' : '') + '><span>' + esc(T.cUsage) + '<small>' + esc(T.cUsageS) + '</small></span></label>' +
+		'</div>' +
+		'<div class="acts"><button class="btn btn-primary" id="startBtn"' + (D.terms ? '' : ' disabled') + ' title="' + esc(D.terms ? '' : T.cNeed) + '">' + esc(T.start) + ARROW + '</button>' +
 		'<button class="btn btn-ghost" id="skip2">' + esc(T.skipSelf) + '</button><small>' + esc(T.time) + '</small></div>' +
 		'</div><div class="mosaic" aria-hidden="true">' +
 		mosaicSlugs.map(function (s) { return '<div><img src="' + esc(icon(s)) + '" alt=""></div>'; }).join('') +
@@ -103,13 +111,14 @@
 	/* ---------- step 1: base (theme + core packages) ---------- */
 	var core = (D.core || []).filter(function (c) { return c.slugs.some(function (sl) { return bySlug[sl]; }); });
 	var others = plugins.filter(function (p) { return !p.core; });
-	function hasBase() { return !!D.theme || core.length > 0; }
+	function hasBase() { return core.length > 0; }
 	function coreOn(c) { return c.slugs.every(function (sl) { return !bySlug[sl] || S.sel[sl]; }); }
-	// Mağaza ve Dernek tema gibi: aynı anda yalnız biri seçili (önce kurulu olan, yoksa ilk seçili olan).
+	// Site türü (Mağaza, Dernek) tema gibi: aynı anda yalnız biri seçili (önce kurulu olan, yoksa ilk seçili olan). Solo kart (Yönetim teması) bağımsız.
 	function setCore(c, on) { c.slugs.forEach(function (sl) { if (bySlug[sl]) { if (on) { S.sel[sl] = 1; } else { delete S.sel[sl]; } } }); }
-	var core0 = core.filter(function (c) { return c.slugs.some(function (sl) { return bySlug[sl] && bySlug[sl].active; }); })[0] ||
-		core.filter(function (c) { return c.slugs.some(function (sl) { return S.sel[sl]; }); })[0];
-	core.forEach(function (c) { setCore(c, c === core0); });
+	var kinds = core.filter(function (c) { return !c.solo; });
+	var core0 = kinds.filter(function (c) { return c.slugs.some(function (sl) { return bySlug[sl] && bySlug[sl].active; }); })[0] ||
+		kinds.filter(function (c) { return c.slugs.some(function (sl) { return S.sel[sl]; }); })[0];
+	kinds.forEach(function (c) { setCore(c, c === core0); });
 	function bigCard(k, on, shot, ic, name, desc, badge) {
 		return '<button type="button" class="big' + (on ? ' on' : '') + '" data-b="' + esc(k) + '" aria-pressed="' + on + '">' +
 			'<div class="shot' + (/\.svg(\?|$)/.test(shot || '') ? ' art' : '') + '">' + (shot ? '<img src="' + esc(shot) + '" alt="">' : '<div class="ph-shot"><img src="' + esc(ic) + '" alt=""></div>') + '</div>' +
@@ -118,28 +127,25 @@
 			'<div class="body"><img class="ic" src="' + esc(ic) + '" alt=""><div><h3>' + esc(name) + '</h3><p>' + esc(desc) + '</p></div></div></button>';
 	}
 	function renderBase() {
-		var cards = (D.theme ? bigCard('fluxwp', S.theme, D.themeThumb, icon('fluxwp'), T.theme, T.themeDesc, T.recB) : '') +
-			core.map(function (c) {
+		var cards = core.map(function (c) {
 				var main = bySlug[c.slugs.filter(function (sl) { return bySlug[sl]; })[0]];
 				var active = c.slugs.every(function (sl) { return !bySlug[sl] || bySlug[sl].active; });
 				return bigCard(c.key, coreOn(c), c.art || main.thumb, icon(main.slug), c.name, c.desc, active ? T.installedB : T.recB);
 			}).join('');
 		$('#step1').innerHTML =
 			'<div class="center-head"><p class="kicker">' + esc(T.coreK) + '</p><h1>' + esc(T.hBase) + '</h1><p class="lead">' + esc(T.leadBase) + '</p></div>' +
-			'<div class="bigs" style="--n:' + ((D.theme ? 1 : 0) + core.length) + '">' + cards + '</div>' +
+			'<div class="bigs" style="--n:' + core.length + '">' + cards + '</div>' +
 			'<div class="noneRow"><button type="button" class="link quiet" id="noneBtn">' + esc(T.noneBtn) + '</button></div>';
 		$$('.big', $('#step1')).forEach(function (c) {
 			c.addEventListener('click', function () {
 				var k = c.getAttribute('data-b');
 				var on;
-				if (k === 'fluxwp') { S.theme = !S.theme; on = S.theme; } else {
-					var c0 = core.filter(function (c) { return c.key === k; })[0];
-					on = !coreOn(c0);
-					core.forEach(function (x) { setCore(x, x === c0 && on); });
-				}
+				var c0 = core.filter(function (c) { return c.key === k; })[0];
+				on = !coreOn(c0);
+				if (c0.solo) { setCore(c0, on); } else { kinds.forEach(function (x) { setCore(x, x === c0 && on); }); }
 				$$('.big', $('#step1')).forEach(function (b) {
 					var bk = b.getAttribute('data-b');
-					var bo = bk === 'fluxwp' ? S.theme : coreOn(core.filter(function (x) { return x.key === bk; })[0]);
+					var bo = coreOn(core.filter(function (x) { return x.key === bk; })[0]);
 					b.classList.toggle('on', bo);
 					b.setAttribute('aria-pressed', bo);
 				});
@@ -148,7 +154,6 @@
 			});
 		});
 		$('#noneBtn').addEventListener('click', function () {
-			S.theme = false;
 			core.forEach(function (c) { c.slugs.forEach(function (sl) { delete S.sel[sl]; }); });
 			renderBase();
 			renderAppearance();
@@ -561,7 +566,16 @@
 	/* ---------- events ---------- */
 	function openSkip() { $('#skipModal').classList.add('on'); $('#skipNo').focus(); }
 	function closeSkip() { $('#skipModal').classList.remove('on'); }
-	$('#startBtn').addEventListener('click', function () { go(1); });
+	$('#cTerms').addEventListener('change', function (e) {
+		$('#startBtn').disabled = !e.target.checked;
+		$('#startBtn').title = e.target.checked ? '' : T.cNeed;
+	});
+	$('#startBtn').addEventListener('click', function () {
+		if (!$('#cTerms').checked) { return; }
+		// Şartlar onayı + kullanım verisi izni (varsayılan kapalı). Kayıt hatası kurulumu durdurmaz.
+		post({ action: 'flxk_onboarding_step', nonce: D.nonce, kind: 'consent', value: $('#cUsage').checked ? '1' : '0' }).catch(function () {});
+		go(1);
+	});
 	$('#skip2').addEventListener('click', openSkip);
 	$('#skipBtn').addEventListener('click', openSkip);
 	$('#skipNo').addEventListener('click', closeSkip);

@@ -218,18 +218,7 @@ final class FLXU_Updater {
 			array(
 				'timeout' => 15,
 				'headers' => $headers,
-				'body'    => wp_json_encode(
-					array(
-						'site'     => home_url( '/' ),
-						'wp'       => get_bloginfo( 'version' ),
-						'php'      => PHP_VERSION,
-						'updater'  => FLXU_VERSION,
-						'tz'       => (string) get_option( 'timezone_string' ),
-						'locale'   => get_locale(),
-						'install'  => self::install_id( $host ),
-						'packages' => $this->installed_versions(),
-					)
-				),
+				'body'    => wp_json_encode( $this->check_body( $host ) ),
 			)
 		);
 
@@ -292,6 +281,29 @@ final class FLXU_Updater {
 		}
 		$status( true, '', ! empty( $body['public'] ) ? '' : (string) ( $body['site'] ?? '' ), count( $out ) );
 		return $out;
+	}
+
+	/**
+	 * /v1/check gövdesi. Güncelleme için gereken: paketler, FluxWP Panel sürümü, kurulum kimliği.
+	 * Site adresi, WordPress/PHP sürümü, saat dilimi ve dil yalnız kullanım verisi izni varsa eklenir.
+	 */
+	private function check_body( string $host ): array {
+		$body = array(
+			'updater'  => FLXU_VERSION,
+			'install'  => self::install_id( $host ),
+			'packages' => $this->installed_versions(),
+			'usage'    => function_exists( 'flxk_telemetry_enabled' ) && flxk_telemetry_enabled(),
+		);
+		if ( $body['usage'] ) {
+			$body += array(
+				'site'   => home_url( '/' ),
+				'wp'     => get_bloginfo( 'version' ),
+				'php'    => PHP_VERSION,
+				'tz'     => (string) get_option( 'timezone_string' ),
+				'locale' => get_locale(),
+			);
+		}
+		return $body;
 	}
 
 	/** @param mixed $list Dizi ya da virgüllü metin ("Requires Plugins" biçimi). */
