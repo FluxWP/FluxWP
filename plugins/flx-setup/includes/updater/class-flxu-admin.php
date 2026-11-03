@@ -51,8 +51,8 @@ final class FLXU_Admin {
 		$badge = $n ? ' <span class="update-plugins count-' . $n . '"><span class="plugin-count">' . number_format_i18n( $n ) . '</span></span>' : '';
 		// Çağrı Merkezi (3) ve Görevler (4) üstünde, Başlangıç (2) altında.
 		add_menu_page(
-			'Flux Setup',
-			__( 'Setup', 'flx-setup' ) . $badge,
+			'FluxWP Panel',
+			'FluxWP Panel' . $badge,
 			'update_plugins',
 			self::SLUG,
 			array( $this, 'render' ),
@@ -73,7 +73,7 @@ final class FLXU_Admin {
 		echo '<style>#toplevel_page_' . esc_attr( self::SLUG ) . ' .wp-menu-image{background:url(' . esc_url( $url ) . ') center/20px 20px no-repeat}</style>';
 	}
 
-	/** Eski adresler: Ayarlar › Flux Updater (1.0.x), admin.php?page=flx-updater(-ayarlar), Setup › Ön ayarlar kısayolu. */
+	/** Eski adresler: Ayarlar › Flux Updater (1.0.x), admin.php?page=flx-updater(-ayarlar), FluxWP Panel › Ön ayarlar kısayolu. */
 	public function redirect_old_url(): void {
 		global $pagenow;
 		$page = sanitize_key( wp_unslash( $_GET['page'] ?? '' ) ); // phpcs:ignore WordPress.Security.NonceVerification

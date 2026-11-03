@@ -74,9 +74,9 @@ Gereksinimler: WordPress 6.4+, PHP 7.4+. PHP `zip` uzantısı.
 1. [Releases](https://github.com/FluxWP/fluxwp/releases) sayfasında en son `flx-backup-v*` sürümünden `flx-backup.zip`'i indirin.
 2. **Eklentiler › Yeni ekle › Eklenti yükle**, zip'i seçin, sonra **Etkinleştir**.
 
-**Flux Setup ile** (sitelerimizde önerilen)
+**FluxWP Panel ile** (sitelerimizde önerilen)
 
-**Setup › Paketler** tüm FluxWP paketlerini listeler; *Flux Backup* satırındaki **Kur**'a basın. Güncellemeler de buradan gelir.
+**FluxWP Panel › Paketler** tüm FluxWP paketlerini listeler; *Flux Backup* satırındaki **Kur**'a basın. Güncellemeler de buradan gelir.
 
 **İlk adımlar**
 
@@ -90,7 +90,7 @@ Ayrıntılı kurulum notları: [KURULUM.md](../../docs/yedek-eklentisi/KURULUM.m
 
 ## Geliştiriciler için
 
-Diğer paketler (ör. Flux Setup) PHP API'sini kullanır:
+Diğer paketler (ör. FluxWP Panel) PHP API'sini kullanır:
 
 ```php
 $backup = flxy_backup_create( array(

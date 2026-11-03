@@ -2,12 +2,12 @@
 
 [English](README.md) · **Türkçe**
 
-<img src="docs/logo.svg" alt="Flux Setup logosu" width="120">
+<img src="docs/logo.svg" alt="FluxWP Panel logosu" width="120">
 
-# Flux Setup
+# FluxWP Panel
 
 **FluxWP sitesini üç adımda kurun, sonra güncel tutun.**<br>
-Flux Setup ilk kurulan eklentidir. Kısa bir sihirbazla eklentileri, ön ayarı ve rengi seçersiniz, gerisini o kurar. Sonrasında FluxWP tema ve eklentilerini kendi güncelleme sunucumuz üzerinden WordPress'in normal güncelleme ekranlarına getirir; her değişiklikten önce yedek alınır.
+FluxWP Panel ilk kurulan eklentidir. Kısa bir sihirbazla eklentileri, ön ayarı ve rengi seçersiniz, gerisini o kurar. Sonrasında FluxWP tema ve eklentilerini kendi güncelleme sunucumuz üzerinden WordPress'in normal güncelleme ekranlarına getirir; her değişiklikten önce yedek alınır.
 
 [![WordPress 6.6+](https://img.shields.io/badge/WordPress-6.6%2B-21759b?logo=wordpress&logoColor=white)](https://wordpress.org)
 [![PHP 7.4+](https://img.shields.io/badge/PHP-7.4%2B-777bb4?logo=php&logoColor=white)](https://www.php.net)
@@ -17,15 +17,15 @@ Flux Setup ilk kurulan eklentidir. Kısa bir sihirbazla eklentileri, ön ayarı 
 
 [Özellikler](#özellikler) · [Ekran görüntüleri](#ekran-görüntüleri) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
 
-<img src="docs/demo-tr.gif" alt="Flux Setup turu: bağlantı durumu, bağlantı testi, güncellemesi olan FluxWP paketleri listesi, ayarlar ve WordPress Güncellemeler ekranı" width="900">
+<img src="docs/demo-tr.gif" alt="FluxWP Panel turu: bağlantı durumu, bağlantı testi, güncellemesi olan FluxWP paketleri listesi, ayarlar ve WordPress Güncellemeler ekranı" width="900">
 
 </div>
 
 ---
 
-## Neden Flux Setup?
+## Neden FluxWP Panel?
 
-Paketlerimiz özel bir GitHub deposunda duruyor, WordPress.org'da yok. Flux Setup olmadan yeni bir site düzinelerce zip'i elle yüklemek, her güncelleme de aynısını tekrar yapmak demek. Flux Setup ile:
+Paketlerimiz özel bir GitHub deposunda duruyor, WordPress.org'da yok. FluxWP Panel olmadan yeni bir site düzinelerce zip'i elle yüklemek, her güncelleme de aynısını tekrar yapmak demek. FluxWP Panel ile:
 
 - 🧭 **Üç adımlı kurulum sihirbazı.** Etkinleştirince açılır: tanıtım, ekran görüntülü eklenti kartları, ön ayar ve renk, sonra canlı kurulum kaydı. Atlanabilir, sonra yeniden açılır.
 - 🔄 **Normal WordPress güncellemesi.** FluxWP paketleri **Başlangıç › Güncellemeler**'de ve eklenti listesinde, sürüm notlarıyla, diğer eklentiler gibi görünür.
@@ -37,7 +37,7 @@ Paketlerimiz özel bir GitHub deposunda duruyor, WordPress.org'da yok. Flux Setu
 ## Özellikler
 
 ### Kurulum sihirbazı
-- Sunum düzeni: her adım tek yatay ekrana sığar, kaydırma yok; adımlar yana kayar. Adımlar: tanıtım › tema ve site türü (mağaza ya da dernek, biri seçilir) › kategori kategori eklentiler, her biri ayrı ekran › görünüm › kurulum › bitti. İstediğiniz an **Atla**; sonra **Setup › Kurulum sihirbazı**'ndan yeniden açılır.
+- Sunum düzeni: her adım tek yatay ekrana sığar, kaydırma yok; adımlar yana kayar. Adımlar: tanıtım › tema ve site türü (mağaza ya da dernek, biri seçilir) › kategori kategori eklentiler, her biri ayrı ekran › görünüm › kurulum › bitti. İstediğiniz an **Atla**; sonra **FluxWP Panel › Kurulum sihirbazı**'ndan yeniden açılır.
 - Görünüm adımı sekmeli, sağda sabit canlı önizleme: **Kimlik** (site adı, slogan, logo yükleme), **Ön ayar**, **Renk** (her stil küçük bir site olarak) ve **Sayfalar** (Blog, Hakkımızda, İletişim, SSS).
 - **Neyle başlayalım?** FluxWP teması ve Flux Commerce kendi ekranında, ikisi de önerilen; altta sade bir **Seçmeden devam et**. Sonra ekran görüntüsü ve tek satır açıklamalı diğer eklentiler; önerilenler işaretli.
 - Görünüm: ön ayar (FluxWP demo, kurulu ön ayar paketleri ya da Boş), canlı önizlemeli tema renk stili ve site adı.
@@ -84,15 +84,15 @@ Gereksinimler: WordPress 6.6+, PHP 7.4+.
 1. [Releases](https://github.com/FluxWP/fluxwp/releases) sayfasında en son `flx-setup-v*` sürümünden `flx-setup.zip`'i indirin.
 2. **Eklentiler › Yeni ekle › Eklenti yükle**, zip'i seçin, sonra **Etkinleştir**.
 
-**Flux Setup ile** (sitelerimizde önerilen)
+**FluxWP Panel ile** (sitelerimizde önerilen)
 
-**Setup › Paketler** tüm FluxWP paketlerini listeler; *Flux Setup* satırındaki **Kur**'a basın. Güncellemeler de buradan gelir.
+**FluxWP Panel › Paketler** tüm FluxWP paketlerini listeler; *FluxWP Panel* satırındaki **Kur**'a basın. Güncellemeler de buradan gelir.
 
 **İlk adımlar**
 
-1. Flux Setup'ı etkinleştirin; kurulum sihirbazı açılır. Eklentileri, ön ayarı ve rengi seçip **Kur**'a basın.
-2. Public paketler anahtar istemez. Özel paketler için güncelleme sunucusunun panelinde **Site ekle** deyin, anahtarı **Setup › Ayarlar**'a yapıştırın.
-3. FluxWP paketlerini istediğiniz zaman **Setup › Paketler**'den kurun ya da güncelleyin.
+1. FluxWP Panel'i etkinleştirin; kurulum sihirbazı açılır. Eklentileri, ön ayarı ve rengi seçip **Kur**'a basın.
+2. Public paketler anahtar istemez. Özel paketler için güncelleme sunucusunun panelinde **Site ekle** deyin, anahtarı **FluxWP Panel › Ayarlar**'a yapıştırın.
+3. FluxWP paketlerini istediğiniz zaman **FluxWP Panel › Paketler**'den kurun ya da güncelleyin.
 
 Ayrıntılı kurulum notları: [KURULUM.md](../../docs/guncelleme-sistemi/KURULUM.md) · Sürüm notları: [CHANGELOG.md](CHANGELOG.md)
 
@@ -106,7 +106,7 @@ FluxWP/fluxwp (push → GitHub Actions → <slug>-v<version> release + <slug>.zi
         ▼
 wp-update-server   /v1/check · /v1/download/<slug>/<version>.zip · /admin
         ▲ X-FluxWP-Site-Key (her siteye bir anahtar)
-WordPress siteleri (Flux Setup)
+WordPress siteleri (FluxWP Panel)
 ```
 
 - Güncelleme sunucusu ayrı bir depoda: [FluxWP/updater](https://github.com/FluxWP/updater).
@@ -129,6 +129,6 @@ WordPress siteleri (Flux Setup)
 
 ## Lisans
 
-Flux Setup, [GNU Genel Kamu Lisansı v2 veya üzeri](https://www.gnu.org/licenses/gpl-2.0.html) ile yayınlanır.
+FluxWP Panel, [GNU Genel Kamu Lisansı v2 veya üzeri](https://www.gnu.org/licenses/gpl-2.0.html) ile yayınlanır.
 
 FluxWP tarafından geliştirilmiştir.
