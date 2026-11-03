@@ -151,6 +151,9 @@ final class FLXK_Onboarding {
 				'package' => '',
 			);
 		}
+		if ( isset( $out['flux-demo'] ) ) {
+			$out['flux-demo']['theme'] = true; // FluxWP temasıyla gelir; tema seçilmezse gösterilmez.
+		}
 		foreach ( $catalog as $slug => $p ) {
 			if ( 0 !== strpos( $slug, 'flx-preset-' ) || 'plugin' !== $p['type'] ) {
 				continue;
@@ -484,10 +487,11 @@ final class FLXK_Onboarding {
 			'selAll'     => __( 'Tümünü seç', 'flx-setup' ),
 			'selNone'    => __( 'Seçimi temizle', 'flx-setup' ),
 			'coreK'      => __( 'Temel', 'flx-setup' ),
-			'coreHint'   => __( 'Sitenin üzerine kurulduğu iki parça.', 'flx-setup' ),
-			'othersK'    => __( 'Diğer eklentiler', 'flx-setup' ),
+			'hBase'      => __( 'Neyle başlayalım?', 'flx-setup' ),
+			'leadBase'   => __( 'Sitenin üzerine kurulduğu iki parça. İkisi de önerilir, sonra da eklenebilir.', 'flx-setup' ),
+			'noneBtn'    => __( 'Seçmeden devam et', 'flx-setup' ),
+			'recB'       => __( 'Önerilen', 'flx-setup' ),
 			'themeDesc'  => __( 'Blok tabanlı tema: mağaza, bağış ve kurumsal sayfa şablonları.', 'flx-setup' ),
-			'always'     => __( 'Her zaman', 'flx-setup' ),
 			'installedB' => __( 'Kurulu', 'flx-setup' ),
 			'k2'         => __( 'Görünüm', 'flx-setup' ),
 			'h2'         => __( 'Siteniz nasıl görünsün?', 'flx-setup' ),

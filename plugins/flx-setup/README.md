@@ -37,8 +37,8 @@ Our packages live in a private GitHub repository and are not on WordPress.org. W
 ## Features
 
 ### Setup wizard
-- Steps: intro › plugins › appearance › install › done. **Skip** at any time; open it again from **Setup › Setup wizard**.
-- **Essentials** first: the FluxWP theme (always installed) and Flux Commerce (ticked by default), then the other plugins with a screenshot and one line each. Recommended ones are ticked.
+- Presentation-style: every step fits one landscape screen, no scrolling; steps slide sideways. Steps: intro › theme and store › plugins › appearance › install › done. **Skip** at any time; open it again from **Setup › Setup wizard**.
+- **What should we start with?** The FluxWP theme and Flux Commerce on their own screen, both recommended, with a quiet **Continue without these**. Then the other plugins with a screenshot and one line each; recommended ones are ticked.
 - Appearance: preset (FluxWP demo, installed preset packages or Blank), one of the theme's colour styles with a live preview, and the site name.
 - Install: one row per package (finished rows sharp, upcoming ones blurred), a console log and progress. Required plugins such as WooCommerce come from WordPress.org. Failed steps are listed at the end.
 
@@ -64,15 +64,15 @@ Our packages live in a private GitHub repository and are not on WordPress.org. W
 
 ## Screenshots
 
-| Setup wizard: plugins | Setup wizard: appearance |
+| Setup wizard: theme and store | Setup wizard: plugins |
 |---|---|
-| <img src="docs/images/wizard-plugins-en.jpg" alt="Setup wizard: plugins" width="440"> | <img src="docs/images/wizard-appearance-en.jpg" alt="Setup wizard: appearance" width="440"> |
-| **Setup wizard: install** | **FluxWP packages** |
-| <img src="docs/images/wizard-install-en.jpg" alt="Setup wizard: install" width="440"> | <img src="docs/images/packages-en.jpg" alt="FluxWP packages" width="440"> |
-| **Connection settings** | **In the standard Updates screen** |
-| <img src="docs/images/settings-en.jpg" alt="Connection settings" width="440"> | <img src="docs/images/wp-updates-en.jpg" alt="In the standard Updates screen" width="440"> |
-| **Mobile** |   |
-| <img src="docs/images/mobile-en.jpg" alt="Mobile" width="260"> |   |
+| <img src="docs/images/wizard-base-en.jpg" alt="Setup wizard: theme and store" width="440"> | <img src="docs/images/wizard-plugins-en.jpg" alt="Setup wizard: plugins" width="440"> |
+| **Setup wizard: appearance** | **Setup wizard: install** |
+| <img src="docs/images/wizard-appearance-en.jpg" alt="Setup wizard: appearance" width="440"> | <img src="docs/images/wizard-install-en.jpg" alt="Setup wizard: install" width="440"> |
+| **FluxWP packages** | **Connection settings** |
+| <img src="docs/images/packages-en.jpg" alt="FluxWP packages" width="440"> | <img src="docs/images/settings-en.jpg" alt="Connection settings" width="440"> |
+| **In the standard Updates screen** | **Mobile** |
+| <img src="docs/images/wp-updates-en.jpg" alt="In the standard Updates screen" width="440"> | <img src="docs/images/mobile-en.jpg" alt="Mobile" width="260"> |
 
 ## Installation
 

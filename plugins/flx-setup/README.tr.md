@@ -37,8 +37,8 @@ Paketlerimiz özel bir GitHub deposunda duruyor, WordPress.org'da yok. Flux Setu
 ## Özellikler
 
 ### Kurulum sihirbazı
-- Adımlar: tanıtım › eklentiler › görünüm › kurulum › bitti. İstediğiniz an **Atla**; sonra **Setup › Kurulum sihirbazı**'ndan yeniden açılır.
-- En üstte **Temel**: FluxWP teması (her zaman kurulur) ve Flux Commerce (seçili gelir), altında ekran görüntüsü ve tek satır açıklamalı diğer eklentiler. Önerilenler işaretli.
+- Sunum düzeni: her adım tek yatay ekrana sığar, kaydırma yok; adımlar yana kayar. Adımlar: tanıtım › tema ve mağaza › eklentiler › görünüm › kurulum › bitti. İstediğiniz an **Atla**; sonra **Setup › Kurulum sihirbazı**'ndan yeniden açılır.
+- **Neyle başlayalım?** FluxWP teması ve Flux Commerce kendi ekranında, ikisi de önerilen; altta sade bir **Seçmeden devam et**. Sonra ekran görüntüsü ve tek satır açıklamalı diğer eklentiler; önerilenler işaretli.
 - Görünüm: ön ayar (FluxWP demo, kurulu ön ayar paketleri ya da Boş), canlı önizlemeli tema renk stili ve site adı.
 - Kurulum: paket başına bir satır (bitenler net, sıradakiler bulanık), konsol kaydı ve ilerleme. WooCommerce gibi gerekli eklentiler WordPress.org'dan gelir. Hatalı adımlar sonda listelenir.
 
@@ -64,15 +64,15 @@ Paketlerimiz özel bir GitHub deposunda duruyor, WordPress.org'da yok. Flux Setu
 
 ## Ekran görüntüleri
 
-| Kurulum sihirbazı: eklentiler | Kurulum sihirbazı: görünüm |
+| Kurulum sihirbazı: tema ve mağaza | Kurulum sihirbazı: eklentiler |
 |---|---|
-| <img src="docs/images/wizard-plugins-tr.jpg" alt="Kurulum sihirbazı: eklentiler" width="440"> | <img src="docs/images/wizard-appearance-tr.jpg" alt="Kurulum sihirbazı: görünüm" width="440"> |
-| **Kurulum sihirbazı: kurulum** | **FluxWP paketleri** |
-| <img src="docs/images/wizard-install-tr.jpg" alt="Kurulum sihirbazı: kurulum" width="440"> | <img src="docs/images/packages-tr.jpg" alt="FluxWP paketleri" width="440"> |
-| **Bağlantı ayarları** | **WordPress Güncellemeler ekranında** |
-| <img src="docs/images/settings-tr.jpg" alt="Bağlantı ayarları" width="440"> | <img src="docs/images/wp-updates-tr.jpg" alt="WordPress Güncellemeler ekranında" width="440"> |
-| **Mobil** |   |
-| <img src="docs/images/mobile-tr.jpg" alt="Mobil" width="260"> |   |
+| <img src="docs/images/wizard-base-tr.jpg" alt="Kurulum sihirbazı: tema ve mağaza" width="440"> | <img src="docs/images/wizard-plugins-tr.jpg" alt="Kurulum sihirbazı: eklentiler" width="440"> |
+| **Kurulum sihirbazı: görünüm** | **Kurulum sihirbazı: kurulum** |
+| <img src="docs/images/wizard-appearance-tr.jpg" alt="Kurulum sihirbazı: görünüm" width="440"> | <img src="docs/images/wizard-install-tr.jpg" alt="Kurulum sihirbazı: kurulum" width="440"> |
+| **FluxWP paketleri** | **Bağlantı ayarları** |
+| <img src="docs/images/packages-tr.jpg" alt="FluxWP paketleri" width="440"> | <img src="docs/images/settings-tr.jpg" alt="Bağlantı ayarları" width="440"> |
+| **WordPress Güncellemeler ekranında** | **Mobil** |
+| <img src="docs/images/wp-updates-tr.jpg" alt="WordPress Güncellemeler ekranında" width="440"> | <img src="docs/images/mobile-tr.jpg" alt="Mobil" width="260"> |
 
 ## Kurulum
 

@@ -22,8 +22,8 @@ C={
 - ⏪ **Switch versions.** Install any of the last 20 releases, for example to roll back.
 - 📦 **One list for everything:** what is installed, what is new and what can be installed with one click.''',
  features='''### Setup wizard
-- Steps: intro › plugins › appearance › install › done. **Skip** at any time; open it again from **Setup › Setup wizard**.
-- **Essentials** first: the FluxWP theme (always installed) and Flux Commerce (ticked by default), then the other plugins with a screenshot and one line each. Recommended ones are ticked.
+- Presentation-style: every step fits one landscape screen, no scrolling; steps slide sideways. Steps: intro › theme and store › plugins › appearance › install › done. **Skip** at any time; open it again from **Setup › Setup wizard**.
+- **What should we start with?** The FluxWP theme and Flux Commerce on their own screen, both recommended, with a quiet **Continue without these**. Then the other plugins with a screenshot and one line each; recommended ones are ticked.
 - Appearance: preset (FluxWP demo, installed preset packages or Blank), one of the theme's colour styles with a live preview, and the site name.
 - Install: one row per package (finished rows sharp, upcoming ones blurred), a console log and progress. Required plugins such as WooCommerce come from WordPress.org. Failed steps are listed at the end.
 
@@ -46,7 +46,7 @@ C={
 - Server address and site key are entered once in the panel (or with `FLX_UPDATE_SERVER` / `FLX_UPDATE_KEY` in `wp-config.php`).
 - Connection card: connected / error / not connected, the site's name on the server, package and update counts, and **Test connection**.
 - Pre-release versions (`1.3.0-beta.1`) reach only sites set to the beta channel on the server.''',
- shots=[('wizard-plugins','Setup wizard: plugins'),('wizard-appearance','Setup wizard: appearance'),('wizard-install','Setup wizard: install'),('packages','FluxWP packages'),('settings','Connection settings'),('wp-updates','In the standard Updates screen'),('mobile','Mobile',True)],
+ shots=[('wizard-base','Setup wizard: theme and store'),('wizard-plugins','Setup wizard: plugins'),('wizard-appearance','Setup wizard: appearance'),('wizard-install','Setup wizard: install'),('packages','FluxWP packages'),('settings','Connection settings'),('wp-updates','In the standard Updates screen'),('mobile','Mobile',True)],
  first='''1. Activate Flux Setup; the setup wizard opens. Pick the plugins, a preset and a colour, then **Install**.
 2. Public packages need no key. For private ones: on the update server's admin panel, **Add site**, copy the key, and paste it in **Setup › Settings**.
 3. Install or update FluxWP packages any time from **Setup › Packages**.''',
@@ -75,8 +75,8 @@ C={
 - ⏪ **Sürüm değiştirme.** Son 20 sürümden birini kurun; örneğin geri almak için.
 - 📦 **Hepsi tek listede:** kurulu olan, yenisi çıkan ve tek tıkla kurulabilen paketler.''',
  features='''### Kurulum sihirbazı
-- Adımlar: tanıtım › eklentiler › görünüm › kurulum › bitti. İstediğiniz an **Atla**; sonra **Setup › Kurulum sihirbazı**'ndan yeniden açılır.
-- En üstte **Temel**: FluxWP teması (her zaman kurulur) ve Flux Commerce (seçili gelir), altında ekran görüntüsü ve tek satır açıklamalı diğer eklentiler. Önerilenler işaretli.
+- Sunum düzeni: her adım tek yatay ekrana sığar, kaydırma yok; adımlar yana kayar. Adımlar: tanıtım › tema ve mağaza › eklentiler › görünüm › kurulum › bitti. İstediğiniz an **Atla**; sonra **Setup › Kurulum sihirbazı**'ndan yeniden açılır.
+- **Neyle başlayalım?** FluxWP teması ve Flux Commerce kendi ekranında, ikisi de önerilen; altta sade bir **Seçmeden devam et**. Sonra ekran görüntüsü ve tek satır açıklamalı diğer eklentiler; önerilenler işaretli.
 - Görünüm: ön ayar (FluxWP demo, kurulu ön ayar paketleri ya da Boş), canlı önizlemeli tema renk stili ve site adı.
 - Kurulum: paket başına bir satır (bitenler net, sıradakiler bulanık), konsol kaydı ve ilerleme. WooCommerce gibi gerekli eklentiler WordPress.org'dan gelir. Hatalı adımlar sonda listelenir.
 
@@ -99,7 +99,7 @@ C={
 - Sunucu adresi ve site anahtarı panelden bir kez girilir (ya da `wp-config.php`'de `FLX_UPDATE_SERVER` / `FLX_UPDATE_KEY`).
 - Bağlantı kartı: bağlı / hata / bağlı değil, sunucudaki site adı, paket ve güncelleme sayısı, **Bağlantıyı test et**.
 - Ön sürümler (`1.3.0-beta.1`) yalnız sunucuda beta kanalına alınmış sitelere gelir.''',
- shots=[('wizard-plugins','Kurulum sihirbazı: eklentiler'),('wizard-appearance','Kurulum sihirbazı: görünüm'),('wizard-install','Kurulum sihirbazı: kurulum'),('packages','FluxWP paketleri'),('settings','Bağlantı ayarları'),('wp-updates','WordPress Güncellemeler ekranında'),('mobile','Mobil',True)],
+ shots=[('wizard-base','Kurulum sihirbazı: tema ve mağaza'),('wizard-plugins','Kurulum sihirbazı: eklentiler'),('wizard-appearance','Kurulum sihirbazı: görünüm'),('wizard-install','Kurulum sihirbazı: kurulum'),('packages','FluxWP paketleri'),('settings','Bağlantı ayarları'),('wp-updates','WordPress Güncellemeler ekranında'),('mobile','Mobil',True)],
  first='''1. Flux Setup'ı etkinleştirin; kurulum sihirbazı açılır. Eklentileri, ön ayarı ve rengi seçip **Kur**'a basın.
 2. Public paketler anahtar istemez. Özel paketler için güncelleme sunucusunun panelinde **Site ekle** deyin, anahtarı **Setup › Ayarlar**'a yapıştırın.
 3. FluxWP paketlerini istediğiniz zaman **Setup › Paketler**'den kurun ya da güncelleyin.''',
