@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.1.3
+- Eski YT Güncelleyici artık Flux Setup'a aktarılır (Flux Updater ayrı paket olarak kalmadı).
+
 ## 0.1.2
 - FluxWP imzası: Flux ekranlarının alt satırında küçük FluxWP logosu ve fluxwp.com bağlantısı. Ortak modül `includes/flx-brand` (kaynak FluxWP/fluxwp `tools/brand`); kurulu Flux paketlerinden en yeni sürümü bir kez yüklenir, `flx_brand_show` filtresiyle gizlenir.
 
