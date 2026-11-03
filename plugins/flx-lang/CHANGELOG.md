@@ -1,5 +1,8 @@
 # Flux Lang
 
+## 0.1.1
+- Dil önerisi kutusu tema paletinin ana rengini kullanıyor; sabit yeşil kaldırıldı.
+
 ## 0.1.0
 
 - İlk sürüm: çok dilli site altyapısı (TR varsayılan, EN; panelden yeni dil).

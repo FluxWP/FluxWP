@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.3.2
+- Vurgu rengi Flux Admin'den (varsayılan olarak tema rengi; FluxWP'de indigo), sabit yeşil kaldırıldı.
+
 ## 0.3.1
 
 - İstatistikler grafiği: telefonda çubuklar daha geniş, sıfır olmayan değer en az 3 px (ziyaretçi çubuğu kaybolmuyordu).

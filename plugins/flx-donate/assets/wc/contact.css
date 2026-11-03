@@ -37,7 +37,7 @@ body.flx-dark .flxb-ct__field input { background: var(--flx-surface, #17221c); b
 .flxb-paybar {
 	position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
 	padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
-	background: var(--flx-surface, #fff); border-top: 1px solid var(--flx-line, #dce9e0);
+	background: var(--flx-surface, #fff); border-top: 1px solid var(--flx-line, #E6E0D6);
 	box-shadow: 0 -8px 24px -12px rgba(20, 50, 74, .3);
 	transition: transform .2s ease;
 }
@@ -48,7 +48,7 @@ body.flx-dark .flxb-ct__field input { background: var(--flx-surface, #17221c); b
 .flxb-paybar__sum strong { font-size: 1.3rem; font-variant-numeric: tabular-nums; color: var(--flx-ink, inherit); }
 .flxb-paybar__btn {
 	margin-left: auto; min-height: 50px; padding: 10px 26px; border: 0; border-radius: 999px; cursor: pointer;
-	background: var(--flx-primary, #0e7a56); color: #fff; font: inherit; font-weight: 800; font-size: 1rem;
+	background: var(--flx-primary, #1F2937); color: #fff; font: inherit; font-weight: 800; font-size: 1rem;
 }
 .flxb-paybar__btn[disabled] { opacity: .6; cursor: progress; }
 @media (prefers-color-scheme: dark) { body.flx-dark .flxb-paybar { background: var(--flx-surface, #13251f); box-shadow: 0 -8px 24px -12px rgba(0, 0, 0, .8); } }

@@ -1,0 +1,67 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.6/theme.json",
+	"version": 3,
+	"title": "Antrasit",
+	"settings": {
+		"color": {
+			"palette": [
+				{
+					"slug": "primary",
+					"name": "Ana renk",
+					"color": "#1F2937"
+				},
+				{
+					"slug": "primary-dark",
+					"name": "Koyu ana renk",
+					"color": "#111827"
+				},
+				{
+					"slug": "leaf",
+					"name": "Vurgu",
+					"color": "#3B82F6"
+				},
+				{
+					"slug": "ink",
+					"name": "Başlık",
+					"color": "#111827"
+				},
+				{
+					"slug": "text",
+					"name": "Metin",
+					"color": "#4B5563"
+				},
+				{
+					"slug": "mint",
+					"name": "Açık zemin",
+					"color": "#F2EEE7"
+				},
+				{
+					"slug": "mint-soft",
+					"name": "Çok açık zemin",
+					"color": "#F8F5F0"
+				},
+				{
+					"slug": "line",
+					"name": "Çizgi",
+					"color": "#E6E0D6"
+				},
+				{
+					"slug": "base",
+					"name": "Sayfa zemini",
+					"color": "#FBF9F6"
+				},
+				{
+					"slug": "white",
+					"name": "Beyaz",
+					"color": "#FFFFFF"
+				}
+			]
+		},
+		"custom": {
+			"dark": {
+				"primary": "#3B82F6",
+				"link": "#93C5FD"
+			}
+		}
+	}
+}

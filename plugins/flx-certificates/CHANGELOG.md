@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.8.1
+- Sabit yeşiller kaldırıldı: arayüz tema/Flux Admin rengini, e-posta şablonu tema paletini kullanıyor. Hazır şablonların varsayılan rengi FluxWP indigo.
+
 ## 1.8.0
 - Sertifikalar, Kişiler, Gönderim kuyruğu ve Kayıtlar listeleri Flux Admin 1.2.0+ ortak liste lib'ini kullanır: tek satır arama + Filtreler düğmesi, 2 temel filtre (Sertifikalar'da durum + etkinlik), diğerleri açılır panelde, otomatik filtreleme, sayfa başı adet (10/20/50/100) ve "1–20 / 160" bilgisi. Flux Admin yoksa eski görünüm.
 - Sertifikalar mobilde kompakt kart: etiket sütunu yok, boş satırlar gizli, durum ve İşlemler yan yana; toplu işlem çubuğu yalnız seçim varken.

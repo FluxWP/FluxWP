@@ -1,0 +1,81 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.6/theme.json",
+	"version": 3,
+	"title": "Orman",
+	"settings": {
+		"color": {
+			"palette": [
+				{
+					"slug": "primary",
+					"name": "Ana renk",
+					"color": "#0E7A56"
+				},
+				{
+					"slug": "primary-dark",
+					"name": "Koyu ana renk",
+					"color": "#0A5A40"
+				},
+				{
+					"slug": "leaf",
+					"name": "Vurgu",
+					"color": "#6DBE45"
+				},
+				{
+					"slug": "ink",
+					"name": "Başlık",
+					"color": "#14324A"
+				},
+				{
+					"slug": "text",
+					"name": "Metin",
+					"color": "#4A5B66"
+				},
+				{
+					"slug": "mint",
+					"name": "Açık zemin",
+					"color": "#EAF5EE"
+				},
+				{
+					"slug": "mint-soft",
+					"name": "Çok açık zemin",
+					"color": "#F5FAF6"
+				},
+				{
+					"slug": "line",
+					"name": "Çizgi",
+					"color": "#DCE9E0"
+				},
+				{
+					"slug": "base",
+					"name": "Sayfa zemini",
+					"color": "#FFFFFF"
+				},
+				{
+					"slug": "white",
+					"name": "Beyaz",
+					"color": "#FFFFFF"
+				}
+			]
+		},
+		"custom": {
+			"color": {
+				"deep": "#06261C",
+				"band-mid": "#0B4A36",
+				"band-end": "#08382A",
+				"media": "#0A1F17",
+				"tint": "#C9E7D4"
+			},
+			"dark": {
+				"bg": "#0C1814",
+				"surface": "#13251F",
+				"ink": "#E8F2EC",
+				"text": "#AFC3B8",
+				"primary": "#1F9A6C",
+				"mint": "#17302A",
+				"mint-soft": "#10221D",
+				"line": "#26453C",
+				"link": "#8FD6B0"
+			}
+		}
+	}
+}

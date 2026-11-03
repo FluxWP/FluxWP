@@ -1,0 +1,67 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.6/theme.json",
+	"version": 3,
+	"title": "Petrol",
+	"settings": {
+		"color": {
+			"palette": [
+				{
+					"slug": "primary",
+					"name": "Ana renk",
+					"color": "#0F766E"
+				},
+				{
+					"slug": "primary-dark",
+					"name": "Koyu ana renk",
+					"color": "#115E59"
+				},
+				{
+					"slug": "leaf",
+					"name": "Vurgu",
+					"color": "#F59E0B"
+				},
+				{
+					"slug": "ink",
+					"name": "Başlık",
+					"color": "#0F172A"
+				},
+				{
+					"slug": "text",
+					"name": "Metin",
+					"color": "#475569"
+				},
+				{
+					"slug": "mint",
+					"name": "Açık zemin",
+					"color": "#ECFDF9"
+				},
+				{
+					"slug": "mint-soft",
+					"name": "Çok açık zemin",
+					"color": "#F7FAFA"
+				},
+				{
+					"slug": "line",
+					"name": "Çizgi",
+					"color": "#E2E8F0"
+				},
+				{
+					"slug": "base",
+					"name": "Sayfa zemini",
+					"color": "#FFFFFF"
+				},
+				{
+					"slug": "white",
+					"name": "Beyaz",
+					"color": "#FFFFFF"
+				}
+			]
+		},
+		"custom": {
+			"dark": {
+				"primary": "#338B84",
+				"link": "#93C1BE"
+			}
+		}
+	}
+}

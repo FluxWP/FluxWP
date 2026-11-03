@@ -25,10 +25,10 @@ final class FLXB_Preselect {
 
 	/** The summary shown in place of a locked (preselected) choice. */
 	private static function lock_css() {
-		return '.flxb-locked{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:6px 0 12px;padding:12px 14px;border:1px solid var(--flxf-line,#DCE9E0);border-radius:var(--flxf-radius,12px);background:var(--flxf-soft,#F5FAF6);color:var(--flxf-ink,#14324A)}'
+		return '.flxb-locked{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:6px 0 12px;padding:12px 14px;border:1px solid var(--flxf-line,#E6E0D6);border-radius:var(--flxf-radius,12px);background:var(--flxf-soft,#F8F5F0);color:var(--flxf-ink,#111827)}'
 			. '.flxb-locked__text{flex:1 1 auto;min-width:0}.flxb-locked__text strong{font-weight:700}'
-			. '.flxb-locked__change{appearance:none;border:0;background:none;padding:2px 0;color:var(--flxf-primary,#0E7A56);font:inherit;font-weight:700;text-decoration:underline;cursor:pointer}'
-			. '.flxb-locked__change:focus-visible{outline:2px solid var(--flxf-primary,#0E7A56);outline-offset:2px;border-radius:4px}';
+			. '.flxb-locked__change{appearance:none;border:0;background:none;padding:2px 0;color:var(--flxf-primary,#1F2937);font:inherit;font-weight:700;text-decoration:underline;cursor:pointer}'
+			. '.flxb-locked__change:focus-visible{outline:2px solid var(--flxf-primary,#1F2937);outline-offset:2px;border-radius:4px}';
 	}
 
 	public static function init() {

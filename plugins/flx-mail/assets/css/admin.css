@@ -1,12 +1,12 @@
 /* Flux Mail – yönetim ekranları */
 .flxi-wrap {
-	--flxi-p: #0e7a56;
-	--flxi-pd: #0a5a40;
-	--flxi-leaf: #6dbe45;
-	--flxi-ink: #14324a;
-	--flxi-text: #4a5b66;
-	--flxi-mint: #eaf5ee;
-	--flxi-line: #dce9e0;
+	--flxi-p: var(--flxa-accent, #1F2937);
+	--flxi-pd: color-mix(in srgb, var(--flxa-accent, #1F2937) 78%, #000);
+	--flxi-leaf: #F59E0B;
+	--flxi-ink: #111827;
+	--flxi-text: #4B5563;
+	--flxi-mint: color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #fff);
+	--flxi-line: color-mix(in srgb, var(--flxa-accent, #1F2937) 16%, #fff);
 	--flxi-red: #b42318;
 	--flxi-amber: #b54708;
 	--flxi-r: 12px;
@@ -151,7 +151,7 @@
 .flxi-preview__frame { padding: 0; display: flex; justify-content: center; transition: background .2s; max-height: calc(100vh - 170px); overflow: auto; }
 .flxi-preview__frame iframe { width: 100%; min-height: 420px; border: 0; display: block; background: #f2f7f3; transition: width .25s; }
 .flxi-preview__frame.is-mobile { padding: 16px 0; background: #e4ebe7; }
-.flxi-preview__frame.is-mobile iframe { width: 375px; max-width: 100%; border-radius: 22px; box-shadow: 0 0 0 8px #14324a, 0 10px 30px rgba(0, 0, 0, .2); }
+.flxi-preview__frame.is-mobile iframe { width: 375px; max-width: 100%; border-radius: 22px; box-shadow: 0 0 0 8px #111827, 0 10px 30px rgba(0, 0, 0, .2); }
 .flxi-preview__frame.is-dark iframe { background: #0f1a14; }
 .flxi-preview.is-loading .flxi-preview__frame, .is-loading > .flxi-preview .flxi-preview__frame { opacity: .65; }
 .flxi-preview__note { padding: 8px 14px; margin: 0; font-size: 12px; }
@@ -164,7 +164,7 @@
 .flxi-sticky { position: sticky; bottom: 0; z-index: 5; margin: -6px 0 18px; padding: 12px 0; background: linear-gradient(rgba(240, 240, 241, 0), #f0f0f1 40%); }
 .flxi-media { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px; border: 1px dashed #c9d8cf; border-radius: 10px; background: #fff; }
 .flxi-media img { max-height: 46px; max-width: 220px; }
-.flxi-media--dark { background: #0a5a40; }
+.flxi-media--dark { background: color-mix(in srgb, var(--flxa-accent, #1F2937) 78%, #000); }
 .flxi-dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 14px; margin: 10px 0 0; }
 .flxi-dl dt { font-weight: 600; color: var(--flxi-ink); }
 .flxi-dl dd { margin: 0; word-break: break-word; }
@@ -252,7 +252,7 @@
 .flxi-arts{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
 .flxi-art{position:relative;display:flex;flex-direction:column;gap:6px;padding:8px;border:1px solid #DDE3E8;border-radius:12px;cursor:pointer;background:#F2F7F3;text-align:center;font-weight:600}
 .flxi-art input{position:absolute;opacity:0;pointer-events:none}
-.flxi-art:has(input:checked){border-color:#0E7A56;box-shadow:0 0 0 2px #0E7A56}
+.flxi-art:has(input:checked){border-color:var(--flxa-accent, #1F2937);box-shadow:0 0 0 2px var(--flxa-accent, #1F2937)}
 .flxi-art__img{display:flex;align-items:flex-end;justify-content:center;height:34px;overflow:hidden}
 .flxi-art__img img{width:100%;height:auto;display:block}
 

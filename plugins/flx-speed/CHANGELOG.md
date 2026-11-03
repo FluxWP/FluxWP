@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.2.1
+- Sistem kontrolü kartı nötr renkler (yeşilimsi tonlar kaldırıldı).
+
 ## 0.2.0
 
 - Cron görev süreleri: wp-cron.php her çalıştığında kanca başına süre ölçülür (hangi eklenti, kaç kez, ortalama/en uzun/son, süre sınırında kesildi mi). Cron sekmesinde "Görev süreleri" tablosu, istek ayrıntısında "Cron görevleri" bölümü, `flxp_cron` aracında `timings`.

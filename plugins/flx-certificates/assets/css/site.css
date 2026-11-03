@@ -1,5 +1,5 @@
 /* Flux Certificates · sitede etkinlik bölümü, kartlar ve etkinlik paneli. Temanın --flx-* renklerini kullanır (dark mode dahil). */
-.flxs-ev-section,.flxs-ev-panel,.flxs-ev-card,.flxs-ev-badge{--e-pri:var(--flx-primary,#0E7A56);--e-ink:var(--flx-ink,#14324A);--e-tx:var(--flx-text,#4A5B66);--e-mint:var(--flx-mint,#EAF5EE);--e-line:var(--flx-line,#DCE9E0);--e-surf:var(--flx-surface,#fff);--e-leaf:var(--flx-leaf,#6DBE45)}
+.flxs-ev-section,.flxs-ev-panel,.flxs-ev-card,.flxs-ev-badge{--e-pri:var(--flx-primary,#1F2937);--e-ink:var(--flx-ink,#111827);--e-tx:var(--flx-text,#4B5563);--e-mint:var(--flx-mint,#F2EEE7);--e-line:var(--flx-line,#E6E0D6);--e-surf:var(--flx-surface,#fff);--e-leaf:var(--flx-leaf,#F59E0B)}
 .flxs-ico{flex:none;vertical-align:-4px}
 .flxs-ev-section{padding:clamp(2.6rem,6vw,4.5rem) 1.25rem;margin:0!important;background:var(--e-surf)}
 .flxs-ev-section__in{max-width:var(--wp--style--global--wide-size,1200px);margin:0 auto}
@@ -21,8 +21,8 @@
 .flxs-ev-card:hover .flxs-ev-card__img img{transform:scale(1.04)}
 .flxs-ev-card__ph{position:absolute;inset:0;display:grid;place-items:center;color:var(--e-pri)}
 .flxs-ev-card__ph .flxs-ico{width:64px;height:64px;opacity:.5}
-.flxs-ev-card__date{position:absolute;right:14px;top:14px;background:#fff;color:#14324A;border-radius:14px;padding:.4rem .7rem;text-align:center;font-size:.75rem;font-weight:700;text-transform:uppercase;line-height:1.1;box-shadow:0 6px 18px rgba(0,0,0,.15)}
-.flxs-ev-card__date b{display:block;font-size:1.5rem;color:#0E7A56}
+.flxs-ev-card__date{position:absolute;right:14px;top:14px;background:#fff;color:var(--wp--preset--color--ink, #111827);border-radius:14px;padding:.4rem .7rem;text-align:center;font-size:.75rem;font-weight:700;text-transform:uppercase;line-height:1.1;box-shadow:0 6px 18px rgba(0,0,0,.15)}
+.flxs-ev-card__date b{display:block;font-size:1.5rem;color:var(--wp--preset--color--primary, #1F2937)}
 .flxs-ev-card__body{padding:1.25rem 1.4rem 1.4rem;display:flex;flex-direction:column;gap:.8rem;flex:1}
 .flxs-ev-card h3{margin:0;font-size:1.3rem;line-height:1.25}
 .flxs-ev-card h3 a{color:var(--e-ink);text-decoration:none}
@@ -54,7 +54,7 @@
 .flxs-ev-loc.is-pending{border:1px dashed var(--e-pri);background:transparent}
 .flxs-ev-map{grid-column:1/-1;border-radius:16px;overflow:hidden;aspect-ratio:16/7;min-height:220px;background:var(--e-mint)}
 .flxs-ev-map iframe{width:100%;height:100%;border:0;display:block}
-.flxs-ev-map__btn{width:100%;height:100%;border:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;color:var(--e-ink);font:inherit;font-weight:700;background:repeating-linear-gradient(45deg,transparent 0 14px,rgba(14,122,86,.06) 14px 28px),var(--e-mint)}
+.flxs-ev-map__btn{width:100%;height:100%;border:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;color:var(--e-ink);font:inherit;font-weight:700;background:repeating-linear-gradient(45deg,transparent 0 14px,color-mix(in srgb, var(--wp--preset--color--primary, #1F2937) 6%, transparent) 14px 28px),var(--e-mint)}
 .flxs-ev-map__btn .flxs-ico{width:34px;height:34px;color:var(--e-pri)}
 .flxs-ev-map__btn small{font-weight:500;color:var(--e-tx)}
 .flxs-ev-cta{display:flex;flex-wrap:wrap;gap:.6rem}

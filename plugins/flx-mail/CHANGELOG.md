@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.13.0
+- E-posta renkleri (ana, koyu, arka plan, başlık) boşsa tema paletinden geliyor; temanın rengi seçilirse saklanmaz. Vurgu varsayılanı turuncu. Arayüz Flux Admin rengini kullanıyor.
+
 ## 1.12.0
 
 - Bağlantılar: numara bağlıyken "Bağlan" düğmesi gizlenir (durum değişince kendiliğinden açılır/kapanır). QR ve durum ⋯ menüsünde "Durum / yeniden bağla (QR)".

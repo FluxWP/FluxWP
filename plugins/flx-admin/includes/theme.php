@@ -23,8 +23,8 @@ function flxa_theme_defaults() {
 /** Renk alanlarının varsayılanları (ayar ekranında gösterilir; boş = varsayılan). */
 function flxa_theme_color_defaults() {
 	return array(
-		'light' => array( 'bg' => '#F3F5F1', 'side' => '#FFFFFF', 'surface' => '#FFFFFF', 'text' => '#14201A' ),
-		'dark'  => array( 'bg' => '#0D1310', 'side' => '#111814', 'surface' => '#151D18', 'text' => '#E6EEE8' ),
+		'light' => array( 'bg' => '#F3F2EF', 'side' => '#FFFFFF', 'surface' => '#FFFFFF', 'text' => '#16181D' ),
+		'dark'  => array( 'bg' => '#101114', 'side' => '#14161A', 'surface' => '#191B20', 'text' => '#E8E8EA' ),
 	);
 }
 

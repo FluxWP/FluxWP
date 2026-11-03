@@ -1,13 +1,13 @@
 /* Flux Donate · WooCommerce front end (ported from Flux WooCommerce Bağış). Colours come from the theme's --flx-* variables (with defaults); body.flx-dark = dark mode. GPL v2 or later. */
 .flxwb, .flxwb-havale, .flxwb-certs, .flxwb-pending, .flxwb-remind, .flxwb-note {
-	--w-primary: var(--flx-primary, #0E7A56);
-	--w-primary-dark: var(--flx-primary-dark, #0A5A40);
-	--w-leaf: var(--flx-leaf, #6DBE45);
-	--w-ink: var(--flx-ink, #14324A);
-	--w-text: var(--flx-text, #4A5B66);
-	--w-mint: var(--flx-mint, #EAF5EE);
+	--w-primary: var(--flx-primary, #1F2937);
+	--w-primary-dark: var(--flx-primary-dark, #111827);
+	--w-leaf: var(--flx-leaf, #F59E0B);
+	--w-ink: var(--flx-ink, #111827);
+	--w-text: var(--flx-text, #4B5563);
+	--w-mint: var(--flx-mint, #F2EEE7);
 	--w-mint-soft: var(--flx-mint-soft, #F4FAF6);
-	--w-line: var(--flx-line, #DCE9E0);
+	--w-line: var(--flx-line, #E6E0D6);
 	--w-surface: var(--flx-surface, #FFFFFF);
 	--w-radius: var(--flx-radius, 16px);
 	--w-shadow: var(--flx-shadow, 0 10px 30px rgba(20, 50, 74, .08));
@@ -296,7 +296,7 @@
 @keyframes flxwb-spin { to { transform: rotate(360deg); } }
 .flxwb-cert__actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .flxwb-cert__err { margin: 0; font-size: .9rem; }
-.flxwb-toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 99999; padding: 10px 16px; border-radius: 10px; background: var(--w-ink, #14324A); color: #fff; font-weight: 700; box-shadow: 0 10px 30px rgba(0, 0, 0, .25); }
+.flxwb-toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 99999; padding: 10px 16px; border-radius: 10px; background: var(--w-ink, #111827); color: #fff; font-weight: 700; box-shadow: 0 10px 30px rgba(0, 0, 0, .25); }
 
 /* Ödeme bloğu: havale açıklaması */
 .flxwb-blocks-havale p { margin: 0 0 6px; }
@@ -309,7 +309,7 @@
 /* Koyu mod (FluxWP teması: cihaz koyu + body.flx-dark) */
 @media (prefers-color-scheme: dark) {
 	body.flx-dark .flxwb, body.flx-dark .flxwb-havale, body.flx-dark .flxwb-certs, body.flx-dark .flxwb-pending, body.flx-dark .flxwb-remind, body.flx-dark .flxwb-note {
-		--w-primary-dark: #8FD6B0;
+		--w-primary-dark: #93C5FD;
 		--w-warn: #F2C26B;
 		--w-warn-bg: #2E2614;
 		--w-err: #F4A49B;

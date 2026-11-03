@@ -38,12 +38,50 @@ add_filter(
 	}
 );
 
+/**
+ * E-posta renkleri: sitenin tema paleti (FluxWP temasında indigo; ön ayar ya da Site Editor değiştirdiyse o).
+ *
+ * @return array{primary:string,dark:string,ink:string,text:string,mint:string,soft:string,line:string}
+ */
+function flxs_email_colors() {
+	$c = array(
+		'primary'      => '#1F2937',
+		'primary-dark' => '#111827',
+		'ink'          => '#111827',
+		'text'         => '#4B5563',
+		'mint'         => '#F2EEE7',
+		'mint-soft'    => '#F8F5F0',
+		'line'         => '#E6E0D6',
+	);
+	if ( function_exists( 'wp_get_global_settings' ) ) {
+		$p = wp_get_global_settings( array( 'color', 'palette' ) );
+		foreach ( array( 'theme', 'custom' ) as $origin ) {
+			foreach ( (array) ( $p[ $origin ] ?? array() ) as $item ) {
+				$hex = sanitize_hex_color( $item['color'] ?? '' );
+				if ( $hex && isset( $c[ $item['slug'] ?? '' ] ) ) {
+					$c[ $item['slug'] ] = $hex;
+				}
+			}
+		}
+	}
+	return array(
+		'primary' => $c['primary'],
+		'dark'    => $c['primary-dark'],
+		'ink'     => $c['ink'],
+		'text'    => $c['text'],
+		'mint'    => $c['mint'],
+		'soft'    => $c['mint-soft'],
+		'line'    => $c['line'],
+	);
+}
+
 function flxs_email_html( $subject, $body_text, $link = '' ) {
+	$k    = flxs_email_colors();
 	$text = esc_html( $body_text );
-	$text = preg_replace( '~(https?://[^\s<]+)~', '<a href="$1" style="color:#0E7A56">$1</a>', $text );
+	$text = preg_replace( '~(https?://[^\s<]+)~', '<a href="$1" style="color:' . $k['primary'] . '">$1</a>', $text );
 	$button = '';
 	if ( $link ) {
-		$button = '<table role="presentation" cellspacing="0" cellpadding="0" style="margin:8px 0 8px"><tr><td style="border-radius:999px;background:#0E7A56">'
+		$button = '<table role="presentation" cellspacing="0" cellpadding="0" style="margin:8px 0 8px"><tr><td style="border-radius:999px;background:' . $k['primary'] . '">'
 			. '<a href="' . esc_url( $link ) . '" style="display:inline-block;padding:13px 26px;color:#ffffff;text-decoration:none;font-weight:700;font-size:15px;border-radius:999px">Sertifikayı görüntüle</a>'
 			. '</td></tr></table>';
 	}
@@ -52,12 +90,12 @@ function flxs_email_html( $subject, $body_text, $link = '' ) {
 	$site = esc_html( get_bloginfo( 'name' ) );
 	$home = esc_url( home_url( '/' ) );
 	return '<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>' . esc_html( $subject ) . '</title></head>'
-		. '<body style="margin:0;background:#F5FAF6;font-family:Segoe UI,Helvetica,Arial,sans-serif;color:#14324A">'
-		. '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#F5FAF6;padding:24px 12px"><tr><td align="center">'
-		. '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:560px;background:#ffffff;border-radius:18px;overflow:hidden;border:1px solid #DCE9E0">'
-		. '<tr><td style="background:#0E7A56;padding:18px 26px;color:#ffffff;font-size:17px;font-weight:800">🌱 ' . $site . '</td></tr>'
-		. '<tr><td style="padding:26px;font-size:15px;line-height:1.6;color:#14324A">' . $text . '</td></tr>'
-		. '<tr><td style="padding:14px 26px;background:#EAF5EE;font-size:12px;color:#4A5B66"><a href="' . $home . '" style="color:#0A5A40">' . esc_html( wp_parse_url( home_url(), PHP_URL_HOST ) ) . '</a></td></tr>'
+		. '<body style="margin:0;background:' . $k['soft'] . ';font-family:Segoe UI,Helvetica,Arial,sans-serif;color:' . $k['ink'] . '">'
+		. '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:' . $k['soft'] . ';padding:24px 12px"><tr><td align="center">'
+		. '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:560px;background:#ffffff;border-radius:18px;overflow:hidden;border:1px solid ' . $k['line'] . '">'
+		. '<tr><td style="background:' . $k['primary'] . ';padding:18px 26px;color:#ffffff;font-size:17px;font-weight:800">🌱 ' . $site . '</td></tr>'
+		. '<tr><td style="padding:26px;font-size:15px;line-height:1.6;color:' . $k['ink'] . '">' . $text . '</td></tr>'
+		. '<tr><td style="padding:14px 26px;background:' . $k['mint'] . ';font-size:12px;color:' . $k['text'] . '"><a href="' . $home . '" style="color:' . $k['dark'] . '">' . esc_html( wp_parse_url( home_url(), PHP_URL_HOST ) ) . '</a></td></tr>'
 		. '</table></td></tr></table></body></html>';
 }
 

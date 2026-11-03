@@ -1,13 +1,13 @@
 /* Flux Forms · Payments admin page (same pattern as Automations: site palette FluxWP) */
 .flxfp {
-	--flxfp-primary: #0E7A56;
-	--flxfp-dark: #0A5A40;
-	--flxfp-ink: #14324A;
-	--flxfp-text: #4A5B66;
+	--flxfp-primary: var(--flxa-accent, #1F2937);
+	--flxfp-dark: color-mix(in srgb, var(--flxa-accent, #1F2937) 78%, #000);
+	--flxfp-ink: #111827;
+	--flxfp-text: #4B5563;
 	--flxfp-muted: #6B7C86;
-	--flxfp-mint: #EAF5EE;
+	--flxfp-mint: color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #fff);
 	--flxfp-soft: #F5FAF7;
-	--flxfp-line: #DCE9E0;
+	--flxfp-line: color-mix(in srgb, var(--flxa-accent, #1F2937) 16%, #fff);
 	--flxfp-surface: #FFFFFF;
 	--flxfp-warn-bg: #FFF7E6;
 	--flxfp-warn-line: #F2D49B;

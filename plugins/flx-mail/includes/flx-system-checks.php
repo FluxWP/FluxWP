@@ -195,7 +195,7 @@ if ( ! function_exists( 'flx_system_checks_css' ) ) {
 		}
 		$done = true;
 		return '<style id="flx-system-checks-css">
-.flxsc{--flxsc-ink:#14324A;--flxsc-text:#4A5B66;--flxsc-muted:#6B7C86;--flxsc-line:#DCE9E0;--flxsc-surface:#fff;--flxsc-soft:#F5FAF7;--flxsc-ok:#0A6B46;--flxsc-ok-bg:#EAF5EE;--flxsc-warn:#7A4B00;--flxsc-warn-bg:#FFF7E6;--flxsc-err:#B32D2E;--flxsc-err-bg:#FCEDED;--flxsc-info:#234E73;--flxsc-info-bg:#E8F0F7;color:var(--flxsc-text);font-size:14px;max-width:1180px}
+.flxsc{--flxsc-ink:#111827;--flxsc-text:#4B5563;--flxsc-muted:#6B7280;--flxsc-line:#E5E7EB;--flxsc-surface:#fff;--flxsc-soft:#F8F9FB;--flxsc-ok:#0A6B46;--flxsc-ok-bg:#EAF5EE;--flxsc-warn:#7A4B00;--flxsc-warn-bg:#FFF7E6;--flxsc-err:#B32D2E;--flxsc-err-bg:#FCEDED;--flxsc-info:#234E73;--flxsc-info-bg:#E8F0F7;color:var(--flxsc-text);font-size:14px;max-width:1180px}
 .flxsc *{box-sizing:border-box}
 .flxsc-intro{margin:0 0 14px;color:var(--flxsc-muted);max-width:760px}
 .flxsc-top{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:0 0 18px}

@@ -328,7 +328,8 @@ function flxa_settings_save() {
 	} elseif ( 'look' === $tab ) {
 		$s['line_icons']   = empty( $in['line_icons'] ) ? 0 : 1;
 		$c                 = sanitize_hex_color( (string) ( $in['accent'] ?? '' ) );
-		$s['accent']       = $c ? $c : '#1E7A4C';
+		// Temanın rengiyle aynıysa saklanmaz: tema/ön ayar rengi değişince yönetim paneli de değişir.
+		$s['accent']       = ( $c && strtolower( $c ) !== strtolower( flxa_theme_primary() ) ) ? $c : '';
 		$m                 = (string) ( $in['mode'] ?? 'auto' );
 		$s['mode']         = in_array( $m, array( 'auto', 'light', 'dark' ), true ) ? $m : 'auto';
 		$s['dark_exclude'] = implode( "\n", array_filter( array_map( 'sanitize_text_field', preg_split( '/\r\n|\r|\n/', (string) ( $in['dark_exclude'] ?? '' ) ) ) ) );

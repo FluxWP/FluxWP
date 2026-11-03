@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Flux Mail
  * Description: Sitenin tüm e-postaları tek yerde: gönderen adı/adresi (bilgi@ / no-reply@), SMTP, logolu ve mobil uyumlu kurumsal şablonlar, WordPress + WooCommerce + FluxWP eklentilerinin e-postalarını görme, düzenleme, açma/kapama, gönderim kayıtları, tekil ve toplu gönderim. WhatsApp (Evolution API) ve SMS (Netgsm) bağlantıları da burada; diğer eklentiler ortak API ile kullanır.
- * Version: 1.12.0
+ * Version: 1.13.0
  * Requires at least: 6.2
  * Requires PHP: 7.4
  * Author: FluxWP
@@ -15,7 +15,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'FLXI_VERSION', '1.12.0' );
+define( 'FLXI_VERSION', '1.13.0' );
 define( 'FLXI_DB_VERSION', '2' );
 define( 'FLXI_FILE', __FILE__ );
 define( 'FLXI_DIR', plugin_dir_path( __FILE__ ) );

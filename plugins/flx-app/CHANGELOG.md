@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.3.4
+- Vurgu rengi Flux Admin'den (varsayılan olarak tema rengi; FluxWP'de indigo), sabit yeşil kaldırıldı.
+
 ## 0.3.3
 
 - /me `layout`: sol menü düzeni paneldeki gibi (Flux Admin): `{ pins: [slug], groups: [ { id, label, collapsed, items: [slug] } ] }`. Rolün menü düzeni (yoksa varsayılan gruplar), kişinin sabitledikleri ve "Diğer"e taşıdıkları. Flux Admin yoksa alan gönderilmez.

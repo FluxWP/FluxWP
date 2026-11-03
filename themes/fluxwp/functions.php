@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FLX_VERSION', '0.6.0' );
+define( 'FLX_VERSION', '0.7.0' );
 
 /**
  * Theme supports.
@@ -39,12 +39,36 @@ add_action( 'after_setup_theme', 'flx_setup' );
 function flx_assets() {
 	$css = file_exists( get_theme_file_path( 'assets/css/theme.min.css' ) ) ? 'assets/css/theme.min.css' : 'assets/css/theme.css';
 	wp_enqueue_style( 'fluxwp', get_theme_file_uri( $css ), array(), FLX_VERSION );
+	wp_add_inline_style( 'fluxwp', flx_palette_css() );
 	wp_enqueue_script( 'fluxwp', get_theme_file_uri( 'assets/js/main.js' ), array(), FLX_VERSION, array( 'strategy' => 'defer', 'in_footer' => true ) );
 
 	// Swiper yalnızca sayfada slider varsa yüklenir (bkz. flx_enqueue_slider).
 	wp_register_style( 'swiper', get_theme_file_uri( 'assets/vendor/swiper/swiper-bundle.min.css' ), array(), '11.2.10' );
 	wp_register_script( 'swiper', get_theme_file_uri( 'assets/vendor/swiper/swiper-bundle.min.js' ), array(), '11.2.10', array( 'strategy' => 'defer', 'in_footer' => true ) );
 	wp_register_script( 'fluxwp-slider', get_theme_file_uri( 'assets/js/slider.js' ), array( 'swiper' ), FLX_VERSION, array( 'strategy' => 'defer', 'in_footer' => true ) );
+}
+
+/**
+ * Renkli SVG simgeleri (CSS değişkeni alamayan data URI'ler) seçili paletin ana rengiyle üretir.
+ * Renk Site Editor › Stiller'den, stil varyasyonundan ya da bir ön ayardan değişse de simgeler uyar.
+ *
+ * @return string
+ */
+function flx_palette_css() {
+	$primary = '';
+	$palette = wp_get_global_settings( array( 'color', 'palette' ) );
+	foreach ( array( 'custom', 'theme' ) as $origin ) {
+		foreach ( (array) ( $palette[ $origin ] ?? array() ) as $c ) {
+			if ( ! $primary && 'primary' === ( $c['slug'] ?? '' ) ) {
+				$primary = sanitize_hex_color( $c['color'] ?? '' );
+			}
+		}
+	}
+	if ( ! $primary ) {
+		return '';
+	}
+	$svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='" . $primary . "' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 21v-9'/><path d='M12 12C7 12 5 9 5 5c5 0 7 3 7 7z'/><path d='M12 10c4 0 7-2 7-6-4 0-7 2-7 6z'/></svg>";
+	return ':root{--flx-menu-icon:url("data:image/svg+xml,' . rawurlencode( $svg ) . '")}';
 }
 
 /**

@@ -129,7 +129,7 @@
 		var f = {
 			id: uidf(), key: key, label: key === 'ad_soyad' ? 'Ad Soyad' : D.types[type], type: type,
 			default: type === 'static' ? 'Metin {ad_soyad}' : '', placeholder: '', options: '', required: false, draw: true,
-			x: cfg.page.w / 2 - 150, y: cfg.page.h / 2, w: type === 'qr' ? 70 : 300, size: 18, font: 'nunito', color: '#14324a',
+			x: cfg.page.w / 2 - 150, y: cfg.page.h / 2, w: type === 'qr' ? 70 : 300, size: 18, font: 'nunito', color: '#111827',
 			align: 'center', lines: type === 'textarea' || type === 'static' ? 3 : 1, lineHeight: 1.3, fit: true, upper: false, letter: 0, page: 0
 		};
 		if (type === 'qr') f.x = cfg.page.w / 2 - 35;

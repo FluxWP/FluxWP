@@ -5,8 +5,8 @@
  */
 
 .flxq {
-	--flxq-accent: var(--flxa-accent, #1f8a4c);
-	--flxq-accent-soft: var(--flxa-accent-soft, #e3f3e9);
+	--flxq-accent: var(--flxa-accent, #1F2937);
+	--flxq-accent-soft: var(--flxa-accent-soft, color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #fff));
 	--flxq-on-accent: var(--flxa-on-accent, #fff);
 	--flxq-bg: var(--flxa-bg, #f0f0f1);
 	--flxq-surface: var(--flxa-surface, #fff);
@@ -36,7 +36,7 @@ html.flxq-dark .flxq {
 	--flxq-border-strong: #3a4a40;
 	--flxq-text: #e6eee8;
 	--flxq-muted: #9aaba0;
-	--flxq-accent-soft: #173826;
+	--flxq-accent-soft: color-mix(in srgb, var(--flxa-accent, #1F2937) 25%, #0D0E13);
 	--flxq-warn: #f0a35e;
 	--flxq-warn-soft: #3a2716;
 	--flxq-danger: #ff8a80;
@@ -60,8 +60,8 @@ html.flxa-dark .flxq { --flxq-ok: #7fdca4; --flxq-ok-soft: #173826; }
 		--flxq-border-strong: #3a4a40;
 		--flxq-text: #e6eee8;
 		--flxq-muted: #9aaba0;
-		--flxq-accent: #34b26a;
-		--flxq-accent-soft: #173826;
+		--flxq-accent: color-mix(in srgb, var(--flxa-accent, #1F2937) 70%, #fff);
+		--flxq-accent-soft: color-mix(in srgb, var(--flxa-accent, #1F2937) 25%, #0D0E13);
 		--flxq-on-accent: #04130a;
 		--flxq-warn: #f0a35e;
 		--flxq-warn-soft: #3a2716;

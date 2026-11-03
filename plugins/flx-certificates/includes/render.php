@@ -703,7 +703,7 @@ function flxs_render_share_image( $page, $title, $name, $org ) {
 	$W  = 1200;
 	$H  = 630;
 	$im = imagecreatetruecolor( $W, $H );
-	// çapraz gradyan #0e7a56 → #0a4a35 (canvas createLinearGradient(0,0,W,H) gibi), şeritlerle
+	// çapraz gradyan #1F2937 → #0a4a35 (canvas createLinearGradient(0,0,W,H) gibi), şeritlerle
 	$len = $W * $W + $H * $H;
 	$n   = 240;
 	for ( $i = 0; $i < $n; $i++ ) {

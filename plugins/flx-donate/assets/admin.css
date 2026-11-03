@@ -1,14 +1,14 @@
 /* Flux Donate · admin pages. Same tokens and components as Flux Forms's Dashboard / Automations.
  * The primary colour comes from Settings › Organisation (else the theme.json palette). */
 .flxb {
-	--flxb-primary: var(--flxb-brand, #0E7A56);
-	--flxb-dark: var(--flxb-brand-dark, #0A5A40);
-	--flxb-ink: #14324A;
-	--flxb-text: #4A5B66;
+	--flxb-primary: var(--flxb-brand, #1F2937);
+	--flxb-dark: var(--flxb-brand-dark, #111827);
+	--flxb-ink: #111827;
+	--flxb-text: #4B5563;
 	--flxb-muted: #6B7C86;
-	--flxb-mint: #EAF5EE;
+	--flxb-mint: color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #fff);
 	--flxb-soft: #F5FAF7;
-	--flxb-line: #DCE9E0;
+	--flxb-line: color-mix(in srgb, var(--flxa-accent, #1F2937) 16%, #fff);
 	--flxb-grid: #E8EFEA;
 	--flxb-surface: #FFFFFF;
 	--flxb-cell0: #EEF3F0;
@@ -152,7 +152,7 @@
 .flxb-legend span { display: inline-flex; align-items: center; gap: 6px; }
 .flxb-sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; flex: 0 0 auto; }
 .flxb-colhit { fill: transparent; cursor: default; }
-.flxb-colhit:hover, .flxb-colhit.is-hover { fill: rgba(14, 122, 86, .06); }
+.flxb-colhit:hover, .flxb-colhit.is-hover { fill: color-mix(in srgb, var(--flxa-accent, #1F2937) 6%, transparent); }
 .flxb-bars { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
 .flxb-bars li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; align-items: baseline; }
 .flxb-bars__label { color: var(--flxb-ink); font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -175,7 +175,7 @@
 /* tooltip (appended to body) */
 .flxb-tip {
 	position: fixed; z-index: 100100; pointer-events: none; max-width: 300px;
-	background: #14324A; color: #fff; border-radius: 10px; padding: 9px 12px;
+	background: #111827; color: #fff; border-radius: 10px; padding: 9px 12px;
 	font: 12.5px/1.45 "Nunito Sans", "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 	box-shadow: 0 10px 30px rgba(10, 30, 45, .25);
 }
@@ -208,12 +208,12 @@
 .flxb-tablefoot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 20px; border-top: 1px solid var(--flxb-line); background: var(--flxb-soft); font-size: 13px; }
 
 /* pills */
-.flxb-pill { display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px; border-radius: 99px; font-size: 11.5px; font-weight: 700; white-space: nowrap; background: #EEF1F2; color: #4A5B66; }
+.flxb-pill { display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px; border-radius: 99px; font-size: 11.5px; font-weight: 700; white-space: nowrap; background: #EEF1F2; color: #4B5563; }
 .flxb-pill--ok { background: var(--flxb-mint); color: var(--flxb-dark); box-shadow: inset 0 0 0 1px #C5E3D1; }
 .flxb-pill--pending { background: var(--flxb-warn-bg); color: var(--flxb-warn-ink); box-shadow: inset 0 0 0 1px var(--flxb-warn-line); }
 .flxb-pill--failed { background: #FCEDED; color: var(--flxb-down); box-shadow: inset 0 0 0 1px #F2C9C9; }
 .flxb-pill--recurring { background: #E8F0F7; color: #234E73; box-shadow: inset 0 0 0 1px #CADCEB; }
-.flxb-pill--muted { background: #EEF1F2; color: #4A5B66; }
+.flxb-pill--muted { background: #EEF1F2; color: #4B5563; }
 
 /* pagination */
 .flxb-pages { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
@@ -284,8 +284,8 @@
 
 /* loader (same as Flux Forms's .flxf-loader) */
 .flxf-loader { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; min-height: 180px; padding: 32px 16px; width: 100%; text-align: center; animation: flxfLoaderIn .25s ease .12s both; }
-.flxf-loader__ring { width: 40px; height: 40px; border-radius: 50%; border: 3px solid color-mix(in srgb, var(--flxb-brand, var(--flx-primary, #0E7A56)) 16%, transparent); border-top-color: var(--flxb-brand, var(--flx-primary, #0E7A56)); animation: flxfSpin .8s linear infinite; }
-.flxf-loader__text { color: var(--flx-text, #4A5B66); font: 600 14px/1.4 'Nunito Sans', system-ui, sans-serif; letter-spacing: .01em; }
+.flxf-loader__ring { width: 40px; height: 40px; border-radius: 50%; border: 3px solid color-mix(in srgb, var(--flxb-brand, var(--flx-primary, #1F2937)) 16%, transparent); border-top-color: var(--flxb-brand, var(--flx-primary, #1F2937)); animation: flxfSpin .8s linear infinite; }
+.flxf-loader__text { color: var(--flx-text, #4B5563); font: 600 14px/1.4 'Nunito Sans', system-ui, sans-serif; letter-spacing: .01em; }
 .flxf-spin { display: inline-block; width: 1em; height: 1em; vertical-align: -.15em; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: flxfSpin .7s linear infinite; }
 @keyframes flxfSpin { to { transform: rotate(360deg); } }
 @keyframes flxfLoaderIn { from { opacity: 0; } }
@@ -428,7 +428,7 @@
 .flxb-money__label { display: block; margin: 0 0 4px; font-weight: 600; font-size: 13px; }
 .flxb-money__row { display: flex; gap: 6px; align-items: center; }
 .flxb-money__row .flxb-input { width: 120px; }
-.flxb-help--inherited { color: var(--flxb-primary, #0E7A56); font-weight: 600; }
+.flxb-help--inherited { color: var(--flxb-primary, #1F2937); font-weight: 600; }
 .flxb-receipts, .flxb-audit { margin-bottom: 12px; }
 
 /* iyzico panel addresses + copy fields (1.2.4) */
@@ -530,7 +530,7 @@
 .flxb-kseg { flex-wrap: wrap; margin: 0 0 14px; }
 .flxb-kseg b { font-weight: 700; opacity: .6; margin-left: 4px; }
 .flxb-kbulk { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; padding: 12px 14px; border-bottom: 1px solid var(--flxb-line); background: #F6F9F7; }
-.flxb-kbulk label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; font-weight: 600; color: #4A5B66; }
+.flxb-kbulk label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; font-weight: 600; color: #4B5563; }
 .flxb-kbulk__note { flex: 1 1 200px; }
 .flxb-kbulk input[type=text] { width: 100%; }
 .flxb-col-cb { width: 32px; }

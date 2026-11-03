@@ -271,7 +271,8 @@ function flxi_sanitize_setting( $k, $v ) {
 	}
 	if ( in_array( $k, array( 'color_primary', 'color_dark', 'color_bg', 'color_text' ), true ) ) {
 		$c = sanitize_hex_color( (string) $v );
-		return $c ? $c : $d[ $k ];
+		// Temanın rengiyle aynıysa saklanmaz: tema/ön ayar rengi değişince e-postalar da değişir.
+		return ( $c && strtolower( $c ) !== strtolower( flxi_theme_color( $k ) ) ) ? $c : '';
 	}
 	if ( in_array( $k, array( 'logo', 'logo_white', 'website' ), true ) ) {
 		return esc_url_raw( (string) $v );

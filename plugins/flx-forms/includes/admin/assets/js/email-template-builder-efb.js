@@ -40,7 +40,7 @@
   }
 
   const COLOR_PRESETS_efb = [
-    '#14324A', '#0E7A56', '#0ea5e9', '#10b981', '#f59e0b',
+    '#111827', '#1F2937', '#0ea5e9', '#10b981', '#f59e0b',
     '#ef4444', '#8b5cf6', '#ec4899', '#2D3445', '#1e3a8a',
     '#333333', '#666666', '#999999', '#ffffff', '#f8f9fa',
     '#f0f9ff', '#fefce8', '#fef2f2', '#f5f3ff', '#000000'
@@ -195,7 +195,7 @@
       icon: 'bi-card-heading',
       category: 'layout',
       defaultData: {
-        bgColor: '#14324A',
+        bgColor: '#111827',
         bgGradient: '',
         padding: '40px 30px 30px 30px',
         align: 'center'
@@ -308,7 +308,7 @@
       defaultData: {
         text: t_efb('ebVisitWebsite', 'Visit Website'),
         url: 'shortcode_website_url',
-        bgColor: '#14324A',
+        bgColor: '#111827',
         textColor: '#ffffff',
         borderRadius: '8',
         padding: '16px 32px',
@@ -427,7 +427,7 @@
       defaultData: {
         align: 'center',
         padding: '20px 30px',
-        color: '#0E7A56',
+        color: '#1F2937',
         iconSize: '24',
         links: [
           { icon: 'website', name: t_efb('ebWebsite', 'Website'), url: 'shortcode_website_url' }
@@ -504,7 +504,7 @@
       label: t_efb('ebProfessional', 'Professional'),
       icon: 'bi-briefcase',
       blocks: [
-        { type: 'header', data: { bgColor: '#0E7A56', padding: '40px 30px 30px 30px' },
+        { type: 'header', data: { bgColor: '#1F2937', padding: '40px 30px 30px 30px' },
           children: [
             { type: 'logo', data: { width: '120', align: 'center' } },
             { type: 'title', data: { text: 'shortcode_title', color: '#ffffff', fontSize: '28', fontWeight: '600', align: 'center' } }
@@ -602,7 +602,7 @@
       borderRadius: '8',
       fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, Arial, sans-serif",
       direction: isRtl_efb() ? 'rtl' : 'ltr',
-      btnBgColor: '#14324A',
+      btnBgColor: '#111827',
       btnTextColor: '#ffffff'
     },
     undoStack: [],
@@ -763,7 +763,7 @@ ${blocksHtml}
       const gs = builderState_efb.globalSettings;
       const btnBgEl = document.getElementById('emailBtnBgColor_emsFormBuilder');
       const btnTxtEl = document.getElementById('emailBtnTextColor_emsFormBuilder');
-      if (btnBgEl) btnBgEl.value = gs.btnBgColor || '#14324A';
+      if (btnBgEl) btnBgEl.value = gs.btnBgColor || '#111827';
       if (btnTxtEl) btnTxtEl.value = gs.btnTextColor || '#ffffff';
     } catch(e) {
       textarea.value = html;
@@ -1236,7 +1236,7 @@ ${blocksHtml}
           block.children.forEach((child, ci) => {
             const cd = Object.assign({}, BLOCK_TYPES_efb[child.type]?.defaultData || {}, child.data || {});
             html += `<div class="efb-child-props" data-child-id="${child.id}">
-              <small style="color:#0E7A56;font-weight:600;">${BLOCK_TYPES_efb[child.type]?.label || child.type}</small>`;
+              <small style="color:#1F2937;font-weight:600;">${BLOCK_TYPES_efb[child.type]?.label || child.type}</small>`;
             if (child.type === 'logo') {
               html += propInput_efb('src', t_efb('ebImageURL', 'Image URL'), cd.src, child.id);
               html += propInput_efb('width', t_efb('ebWidthPx', 'Width (px)'), cd.width, child.id);
@@ -2069,8 +2069,8 @@ ${blocksHtml}
         <div class="efb-prop-row efb-prop-color-row">
           <label class="efb-prop-label">${t_efb('ebBtnBgColor', 'Button Background')}</label>
           <div class="efb-color-picker-wrap">
-            <input type="color" class="efb-gs-color" data-gs="btnBgColor" value="${gs.btnBgColor || '#14324A'}" />
-            <input type="text" class="efb-prop-input efb-gs-text" data-gs="btnBgColor" value="${gs.btnBgColor || '#14324A'}" />
+            <input type="color" class="efb-gs-color" data-gs="btnBgColor" value="${gs.btnBgColor || '#111827'}" />
+            <input type="text" class="efb-prop-input efb-gs-text" data-gs="btnBgColor" value="${gs.btnBgColor || '#111827'}" />
           </div>
         </div>
         <div class="efb-prop-row efb-prop-color-row">
@@ -2547,8 +2547,8 @@ ${blocksHtml}
 
     const _btnBgInit = document.getElementById('emailBtnBgColor_emsFormBuilder');
     const _btnTxtInit = document.getElementById('emailBtnTextColor_emsFormBuilder');
-    if (!builderState_efb.globalSettings.btnBgColor || builderState_efb.globalSettings.btnBgColor === '#14324A') {
-      if (_btnBgInit && _btnBgInit.value && _btnBgInit.value !== '#14324A') builderState_efb.globalSettings.btnBgColor = _btnBgInit.value;
+    if (!builderState_efb.globalSettings.btnBgColor || builderState_efb.globalSettings.btnBgColor === '#111827') {
+      if (_btnBgInit && _btnBgInit.value && _btnBgInit.value !== '#111827') builderState_efb.globalSettings.btnBgColor = _btnBgInit.value;
     }
     if (!builderState_efb.globalSettings.btnTextColor || builderState_efb.globalSettings.btnTextColor === '#ffffff') {
       if (_btnTxtInit && _btnTxtInit.value && _btnTxtInit.value !== '#ffffff') builderState_efb.globalSettings.btnTextColor = _btnTxtInit.value;
@@ -2657,8 +2657,8 @@ ${blocksHtml}
       white-space: nowrap;
     }
     .efb-tb-btn:hover { background: #f1f5f9; border-color: #cbd5e1; }
-    .efb-tb-btn.efb-tb-primary { background: #0E7A56; color: #fff; border-color: #0E7A56; }
-    .efb-tb-btn.efb-tb-primary:hover { background: #0A5A40; }
+    .efb-tb-btn.efb-tb-primary { background: var(--flxa-accent, #1F2937); color: #fff; border-color: var(--flxa-accent, #1F2937); }
+    .efb-tb-btn.efb-tb-primary:hover { background: color-mix(in srgb, var(--flxa-accent, #1F2937) 78%, #000); }
     .efb-tb-btn.efb-tb-danger { color: #ef4444; }
     .efb-tb-btn.efb-tb-danger:hover { background: #fef2f2; border-color: #fca5a5; }
     .efb-tb-sep { width: 1px; height: 20px; background: #e2e8f0; margin: 0 4px; }
@@ -2698,7 +2698,7 @@ ${blocksHtml}
       transition: all .15s;
     }
     .efb-stab:hover { color: #334155; }
-    .efb-stab.active { color: #0E7A56; border-bottom-color: #0E7A56; }
+    .efb-stab.active { color: var(--flxa-accent, #1F2937); border-bottom-color: var(--flxa-accent, #1F2937); }
     .efb-sidebar-content { flex: 1; overflow-y: auto; min-height: 0; }
     .efb-stab-panel { display: none; padding: 8px; }
     .efb-stab-panel.active { display: block; }
@@ -2720,7 +2720,7 @@ ${blocksHtml}
       transition: all .15s;
       user-select: none;
     }
-    .efb-draggable-block:hover { background: #EAF5EE; border-color: #a5b4fc; color: #4338ca; }
+    .efb-draggable-block:hover { background: color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #fff); border-color: #a5b4fc; color: #4338ca; }
     .efb-draggable-block:active { cursor: grabbing; }
     .efb-draggable-block i { font-size: 14px; width: 16px; text-align: center; }
 
@@ -2734,8 +2734,8 @@ ${blocksHtml}
       cursor: pointer;
       transition: all .15s;
     }
-    .efb-template-card:hover { border-color: #0E7A56; background: #EAF5EE; transform: translateY(-1px); }
-    .efb-tpl-icon { margin-bottom: 4px; color: #0E7A56; }
+    .efb-template-card:hover { border-color: var(--flxa-accent, #1F2937); background: color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #fff); transform: translateY(-1px); }
+    .efb-tpl-icon { margin-bottom: 4px; color: var(--flxa-accent, #1F2937); }
     .efb-tpl-name { font-size: 11px; font-weight: 600; color: #334155; }
     .efb-tpl-count { font-size: 10px; color: #94a3b8; }
 
@@ -2777,7 +2777,7 @@ ${blocksHtml}
       to { opacity: 1; transform: translateY(0); }
     }
     .efb-canvas-block:hover { outline: 2px solid #BFE0CC; outline-offset: -2px; }
-    .efb-canvas-block.efb-block-selected { outline: 2px solid #0E7A56; outline-offset: -2px; box-shadow: 0 0 0 3px rgba(14,122,86,0.1); }
+    .efb-canvas-block.efb-block-selected { outline: 2px solid var(--flxa-accent, #1F2937); outline-offset: -2px; box-shadow: 0 0 0 3px color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, transparent); }
     .efb-canvas-block.efb-block-required { }
     .efb-block-label {
       display: none;
@@ -2810,8 +2810,8 @@ ${blocksHtml}
     .efb-block-preview { padding: 0; }
 
     .efb-canvas-block.efb-dragging { opacity: 0.4; }
-    .efb-canvas-block.efb-drop-above { outline: none; box-shadow: inset 0 3px 0 0 #0E7A56; }
-    .efb-canvas-block.efb-drop-below { outline: none; box-shadow: inset 0 -3px 0 0 #0E7A56; }
+    .efb-canvas-block.efb-drop-above { outline: none; box-shadow: inset 0 3px 0 0 var(--flxa-accent, #1F2937); }
+    .efb-canvas-block.efb-drop-below { outline: none; box-shadow: inset 0 -3px 0 0 var(--flxa-accent, #1F2937); }
 
     .efb-builder-sidebar-right {
       background: #ffffff;
@@ -2839,7 +2839,7 @@ ${blocksHtml}
     }
     .efb-props-header {
       padding: 10px 12px;
-      background: #EAF5EE;
+      background: color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #fff);
       color: #4338ca;
       font-weight: 600;
       font-size: 12px;
@@ -2881,13 +2881,13 @@ ${blocksHtml}
     }
     .efb-prop-input:focus, .efb-prop-textarea:focus, .efb-prop-select:focus {
       outline: none;
-      border-color: #0E7A56;
-      box-shadow: 0 0 0 3px rgba(14,122,86,0.1);
+      border-color: var(--flxa-accent, #1F2937);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, transparent);
     }
     .efb-prop-textarea { resize: vertical; min-height: 50px; font-family: monospace; font-size: 11px; }
     .efb-prop-select { cursor: pointer; }
     .efb-prop-font-select { font-size: 13px; }
-    .efb-prop-range { width: 100%; cursor: pointer; accent-color: #0E7A56; }
+    .efb-prop-range { width: 100%; cursor: pointer; accent-color: var(--flxa-accent, #1F2937); }
 
     .efb-prop-color-row { }
     .efb-color-picker-wrap { display: flex; gap: 6px; align-items: center; }
@@ -2902,7 +2902,7 @@ ${blocksHtml}
     .efb-sc-btn-wrap { display: flex; flex-wrap: wrap; gap: 3px; }
     .efb-sc-btn {
       padding: 3px 7px;
-      background: #EAF5EE;
+      background: color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #fff);
       border: 1px solid #BFE0CC;
       border-radius: 4px;
       color: #4338ca;
@@ -2932,8 +2932,8 @@ ${blocksHtml}
       white-space: pre-wrap;
     }
     .efb-chip-editor:focus {
-      border-color: #0E7A56;
-      box-shadow: 0 0 0 3px rgba(14,122,86,0.1);
+      border-color: var(--flxa-accent, #1F2937);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, transparent);
     }
     .efb-chip-editor:empty::before {
       content: attr(data-placeholder);
@@ -2954,7 +2954,7 @@ ${blocksHtml}
       gap: 2px;
       padding: 1px 5px 1px 6px;
       margin: 1px 2px;
-      background: linear-gradient(135deg, #EAF5EE 0%, #e0e7ff 100%);
+      background: linear-gradient(135deg, color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #fff) 0%, #e0e7ff 100%);
       border: 1px solid #BFE0CC;
       border-radius: 4px;
       font-size: 10.5px;
@@ -3031,8 +3031,8 @@ ${blocksHtml}
     .efb-pad-input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
     .efb-pad-input:focus {
       outline: none;
-      border-color: #0E7A56;
-      box-shadow: 0 0 0 2px rgba(14,122,86,0.12);
+      border-color: var(--flxa-accent, #1F2937);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--flxa-accent, #1F2937) 12%, transparent);
     }
     .efb-pad-link-btn {
       display: inline-flex;
@@ -3053,9 +3053,9 @@ ${blocksHtml}
     }
     .efb-pad-link-btn:hover { background: #f1f5f9; border-color: #cbd5e1; }
     .efb-pad-link-btn.active {
-      background: #EAF5EE;
+      background: color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #fff);
       border-color: #BFE0CC;
-      color: #0E7A56;
+      color: var(--flxa-accent, #1F2937);
     }
     .efb-pad-linked .efb-pad-input {
       border-color: #BFE0CC;
@@ -3184,7 +3184,7 @@ ${blocksHtml}
     .efb-sc-btn:focus-visible,
     .efb-draggable-block:focus-visible,
     .efb-template-card:focus-visible {
-      outline: 2px solid #0E7A56;
+      outline: 2px solid var(--flxa-accent, #1F2937);
       outline-offset: 2px;
     }
     .efb-prop-input:focus-visible,
@@ -3192,12 +3192,12 @@ ${blocksHtml}
     .efb-prop-select:focus-visible,
     .efb-chip-editor:focus-visible {
       outline: none;
-      border-color: #0E7A56;
-      box-shadow: 0 0 0 3px rgba(14,122,86,0.15);
+      border-color: var(--flxa-accent, #1F2937);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--flxa-accent, #1F2937) 15%, transparent);
     }
     .efb-canvas-block:focus-visible {
-      border-color: #0E7A56;
-      box-shadow: 0 0 0 3px rgba(14,122,86,0.15);
+      border-color: var(--flxa-accent, #1F2937);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--flxa-accent, #1F2937) 15%, transparent);
       outline: none;
     }
 
@@ -3234,7 +3234,7 @@ ${blocksHtml}
 
     .efb-sc-draggable-required {
       border-color: #a5b4fc !important;
-      background: #EAF5EE !important;
+      background: color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #fff) !important;
       position: relative;
     }
     .efb-sc-draggable-required:hover {
@@ -3280,11 +3280,11 @@ ${blocksHtml}
       box-shadow: 0 2px 8px rgba(59, 130, 246, 0.08);
     }
     .efb-sc-item.efb-sc-item-required {
-      border-left: 3px solid #0E7A56;
+      border-left: 3px solid var(--flxa-accent, #1F2937);
     }
     [dir="rtl"] .efb-sc-item.efb-sc-item-required {
       border-left: 1px solid #e2e8f0;
-      border-right: 3px solid #0E7A56;
+      border-right: 3px solid var(--flxa-accent, #1F2937);
     }
     .efb-sc-item-top {
       display: flex;
@@ -3309,7 +3309,7 @@ ${blocksHtml}
       gap: 4px;
     }
     .efb-sc-req-dot {
-      color: #0E7A56;
+      color: var(--flxa-accent, #1F2937);
       font-size: 8px;
       line-height: 1;
     }
@@ -3317,13 +3317,13 @@ ${blocksHtml}
       font-size: 9.5px;
       font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
       color: #6b7280;
-      background: rgba(14,122,86, 0.06);
+      background: color-mix(in srgb, var(--flxa-accent, #1F2937) 6%, transparent);
       padding: 2px 5px;
       border-radius: 3px;
       word-break: break-all;
       display: inline-block;
       max-width: 100%;
-      border: 1px solid rgba(14,122,86, 0.1);
+      border: 1px solid color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, transparent);
     }
     .efb-sc-item-actions {
       display: flex;
@@ -3349,9 +3349,9 @@ ${blocksHtml}
       border-color: #94a3b8;
     }
     .efb-sc-insert-btn:hover {
-      background: #EAF5EE;
+      background: color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #fff);
       border-color: #a5b4fc;
-      color: #0E7A56;
+      color: var(--flxa-accent, #1F2937);
     }
     .efb-sc-copy-btn:hover {
       background: #f0fdf4;

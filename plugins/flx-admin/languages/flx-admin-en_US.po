@@ -1066,3 +1066,6 @@ msgstr "Collapse / expand menu ([)"
 
 msgid "Çıkış yap"
 msgstr "Log out"
+
+msgid "Varsayılan: temanın ana rengi (Görünüm › Düzenleyici › Stiller). Temanın rengini seçerseniz tema değişince bu da değişir."
+msgstr "Default: the theme's primary colour (Appearance › Editor › Styles). If you pick the theme's colour, this follows the theme when it changes."

@@ -359,7 +359,7 @@ function flxb_theme_color( $slug ) {
 function flxb_brand() {
 	$s       = flxb_settings();
 	$primary = preg_match( '/^#[0-9a-fA-F]{6}$/', (string) ( $s['primary_color'] ?? '' ) ) ? $s['primary_color'] : flxb_theme_color( 'primary' );
-	$primary = '' !== $primary ? $primary : '#0E7A56';
+	$primary = '' !== $primary ? $primary : '#1F2937';
 	$dark    = flxb_theme_color( 'primary-dark' );
 	if ( '' === $dark || ! empty( $s['primary_color'] ) ) {
 		$dark = flxb_shade( $primary, -0.25 );

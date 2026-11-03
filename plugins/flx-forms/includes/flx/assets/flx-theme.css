@@ -15,15 +15,15 @@
 .body_efb,
 #alert_efb,
 .efb-confirmation-finder {
-	--flxf-primary: var(--flx-primary, var(--wp--preset--color--primary, #0E7A56));
-	--flxf-primary-dark: var(--flx-primary-dark, var(--wp--preset--color--primary-dark, #0A5A40));
-	--flxf-ink: var(--flx-ink, var(--wp--preset--color--ink, #14324A));
-	--flxf-text: var(--flx-text, var(--wp--preset--color--text, #4A5B66));
+	--flxf-primary: var(--flx-primary, var(--wp--preset--color--primary, #1F2937));
+	--flxf-primary-dark: var(--flx-primary-dark, var(--wp--preset--color--primary-dark, #111827));
+	--flxf-ink: var(--flx-ink, var(--wp--preset--color--ink, #111827));
+	--flxf-text: var(--flx-text, var(--wp--preset--color--text, #4B5563));
 	--flxf-muted: color-mix(in srgb, var(--flxf-text) 70%, transparent);
 	--flxf-surface: var(--flx-surface, var(--wp--preset--color--surface, #FFFFFF));
-	--flxf-soft: var(--flx-mint-soft, var(--wp--preset--color--mint-soft, #F5FAF6));
-	--flxf-mint: var(--flx-mint, var(--wp--preset--color--mint, #EAF5EE));
-	--flxf-line: var(--flx-line, var(--wp--preset--color--line, #DCE9E0));
+	--flxf-soft: var(--flx-mint-soft, var(--wp--preset--color--mint-soft, #F8F5F0));
+	--flxf-mint: var(--flx-mint, var(--wp--preset--color--mint, #F2EEE7));
+	--flxf-line: var(--flx-line, var(--wp--preset--color--line, #E6E0D6));
 	--flxf-radius: 12px;
 	--flxf-ring: 0 0 0 4px color-mix(in srgb, var(--flxf-primary) 20%, transparent);
 	--flxf-font: var(--wp--preset--font-family--body, 'Nunito Sans', system-ui, sans-serif);
@@ -593,16 +593,16 @@
 /* Loading indicator (same as admin) */
 .flxf-loader { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; min-height: 180px; padding: 32px 16px; width: 100%; text-align: center; animation: flxfLoaderIn .25s ease .12s both; }
 .flxf-loader--sm { min-height: 110px; padding: 20px 12px; gap: 10px; }
-.flxf-loader__ring { width: 40px; height: 40px; border-radius: 50%; border: 3px solid color-mix(in srgb, var(--flx-primary, #0E7A56) 16%, transparent); border-top-color: var(--flx-primary, #0E7A56); animation: flxfSpin .8s linear infinite; }
+.flxf-loader__ring { width: 40px; height: 40px; border-radius: 50%; border: 3px solid color-mix(in srgb, var(--flx-primary, #1F2937) 16%, transparent); border-top-color: var(--flx-primary, #1F2937); animation: flxfSpin .8s linear infinite; }
 .flxf-loader--sm .flxf-loader__ring { width: 28px; height: 28px; border-width: 2.5px; }
-.flxf-loader__text { color: var(--flx-text, #4A5B66); font: 600 14px/1.4 var(--wp--preset--font-family--body, 'Nunito Sans', system-ui, sans-serif); letter-spacing: .01em; }
+.flxf-loader__text { color: var(--flx-text, #4B5563); font: 600 14px/1.4 var(--wp--preset--font-family--body, 'Nunito Sans', system-ui, sans-serif); letter-spacing: .01em; }
 .flxf-spin { display: inline-block; width: 1em; height: 1em; vertical-align: -.15em; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: flxfSpin .7s linear infinite; }
 @keyframes flxfSpin { to { transform: rotate(360deg); } }
 @keyframes flxfLoaderIn { from { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .flxf-loader__ring, .flxf-spin { animation-duration: 1.6s; } .flxf-loader { animation: none; } }
 /* EFB's "please wait" overlay on a form (dots SVG) → the same ring */
 .body_efb[class*="efb-waiting-"] > *, .body_efb [class*="efb-waiting-"] > * { opacity: .45 !important; transition: opacity .2s; }
-.body_efb[class*="efb-waiting-"]::after, .body_efb [class*="efb-waiting-"]::after { background: none !important; width: 38px !important; height: 38px !important; top: 50% !important; left: 50% !important; margin: -19px 0 0 -19px; transform: none !important; border-radius: 50%; border: 3px solid color-mix(in srgb, var(--flx-primary, #0E7A56) 18%, transparent); border-top-color: var(--flx-primary, #0E7A56); animation: flxfSpin .8s linear infinite; }
+.body_efb[class*="efb-waiting-"]::after, .body_efb [class*="efb-waiting-"]::after { background: none !important; width: 38px !important; height: 38px !important; top: 50% !important; left: 50% !important; margin: -19px 0 0 -19px; transform: none !important; border-radius: 50%; border: 3px solid color-mix(in srgb, var(--flx-primary, #1F2937) 18%, transparent); border-top-color: var(--flx-primary, #1F2937); animation: flxfSpin .8s linear infinite; }
 
 /* Card fields (2.0.4): the Stripe frame fills the box and sits centred, labels without the colon. */
 .body_efb .efb.stripe #cardnoEfb.efb,
@@ -611,7 +611,7 @@
 	display: flex !important; align-items: center !important;
 	min-height: 50px !important; padding: 0 14px !important;
 	background: var(--flxf-surface, #fff) !important;
-	border: 1.5px solid var(--flxf-line, #DCE9E0) !important; border-radius: 12px !important;
+	border: 1.5px solid var(--flxf-line, #E6E0D6) !important; border-radius: 12px !important;
 	box-shadow: none !important; cursor: text;
 	transition: border-color .15s ease, box-shadow .15s ease;
 }
@@ -620,10 +620,10 @@
 .body_efb .efb.stripe #cardcvcEfb.efb > * { flex: 1 1 auto; width: 100% !important; }
 .body_efb .efb.stripe #cardnoEfb.efb:hover,
 .body_efb .efb.stripe #cardexpEfb.efb:hover,
-.body_efb .efb.stripe #cardcvcEfb.efb:hover { border-color: color-mix(in srgb, var(--flxf-primary) 45%, var(--flxf-line, #DCE9E0)) !important; }
+.body_efb .efb.stripe #cardcvcEfb.efb:hover { border-color: color-mix(in srgb, var(--flxf-primary) 45%, var(--flxf-line, #E6E0D6)) !important; }
 .body_efb .efb.stripe .StripeElement--focus.efb { border-color: var(--flxf-primary) !important; box-shadow: var(--flxf-ring) !important; }
 .body_efb .efb.stripe .StripeElement--invalid.efb { border-color: #D64545 !important; }
-.body_efb .efb.stripe .StripeElement--disabled.efb { background: var(--flxf-mint-soft, #F5FAF6) !important; }
+.body_efb .efb.stripe .StripeElement--disabled.efb { background: var(--flxf-mint-soft, #F8F5F0) !important; }
 .body_efb .efb.stripe #stripeCardSectionEfb label.efb { font-size: .9rem !important; line-height: 1.3 !important; }
 .body_efb .efb.stripe #stripeCardSectionEfb > .efb.row { margin-top: 4px !important; }
 
@@ -634,7 +634,7 @@
 	body.flxf-dark-auto:not(.flx-light):not(.flx-dark) .body_efb,
 	body.flxf-dark-auto:not(.flx-light):not(.flx-dark) #alert_efb,
 	body.flxf-dark-auto:not(.flx-light):not(.flx-dark) .efb-confirmation-finder {
-		--flxf-primary: var(--flxf-dark-primary, #1F9A6C);
+		--flxf-primary: var(--flxf-dark-primary, #3B82F6);
 		--flxf-primary-dark: var(--flxf-dark-primary-dark, #17805A);
 		--flxf-ink: var(--flxf-dark-ink, #E8F2EC);
 		--flxf-text: var(--flxf-dark-text, #AFC3B8);
@@ -667,8 +667,8 @@
 	body.flx-dark.flxf-dark-off .body_efb,
 	body.flx-dark.flxf-dark-off #alert_efb,
 	body.flx-dark.flxf-dark-off .efb-confirmation-finder {
-		--flxf-primary: #0E7A56; --flxf-primary-dark: #0A5A40; --flxf-ink: #14324A; --flxf-text: #4A5B66;
-		--flxf-surface: #FFFFFF; --flxf-soft: #F5FAF6; --flxf-mint: #EAF5EE; --flxf-line: #DCE9E0;
+		--flxf-primary: var(--wp--preset--color--primary, #1F2937); --flxf-primary-dark: var(--wp--preset--color--primary-dark, #111827); --flxf-ink: var(--wp--preset--color--ink, #111827); --flxf-text: var(--wp--preset--color--text, #4B5563);
+		--flxf-surface: #FFFFFF; --flxf-soft: var(--wp--preset--color--mint-soft, #F8F5F0); --flxf-mint: var(--wp--preset--color--mint, #F2EEE7); --flxf-line: var(--wp--preset--color--line, #E6E0D6);
 	}
 }
 /* The "online payment is not available" box (flxf-pay.js) */

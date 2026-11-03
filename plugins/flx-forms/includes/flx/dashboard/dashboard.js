@@ -12,11 +12,11 @@
 	try { new Intl.NumberFormat(LOC); } catch (e) { LOC = 'en-US'; }
 	var SVGNS = 'http://www.w3.org/2000/svg';
 	var COLORS = {
-		primary: '#0E7A56',
+		primary: '#1F2937',
 		prev: '#8A9AA3',
-		pay: { paid: '#0E7A56', pending: '#B7791F', failed: '#B83227', refunded: '#6B7C88' }
+		pay: { paid: '#1F2937', pending: '#B7791F', failed: '#B83227', refunded: '#6B7C88' }
 	};
-	var HEAT = ['#DCEFE3', '#A9D8BB', '#6DBE94', '#2E9A6D', '#0A5A40'];
+	var HEAT = ['#DCEFE3', '#A9D8BB', '#6DBE94', '#2E9A6D', '#111827'];
 
 	/* ---------------- helpers ---------------- */
 
@@ -302,7 +302,7 @@
 			kpi(T.responses, num(t.n), delta(t.n, p.n), COLORS.primary),
 			kpi(T.unread, num(t.unread), unreadSub, '#2F8F6A'),
 			kpi(T.views, t.views === null ? '—' : num(t.views), viewsSub, '#3A7CA5'),
-			kpi(T.conversion, t.conversion === null ? '—' : pct(t.conversion, 1), convSub, '#14324A'),
+			kpi(T.conversion, t.conversion === null ? '—' : pct(t.conversion, 1), convSub, '#111827'),
 			kpi(T.payments, money(main.amount, main.cur), paySub, '#B7791F')
 		]);
 	}

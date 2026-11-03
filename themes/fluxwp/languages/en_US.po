@@ -1804,3 +1804,78 @@ msgstr "Loading…"
 #: inc/ayarlar.php
 msgid "Devamını oku"
 msgstr "Read more"
+
+#: theme.json styles/*.json
+msgctxt "Color name"
+msgid "Ana renk"
+msgstr "Primary"
+
+#: theme.json styles/*.json
+msgctxt "Color name"
+msgid "Koyu ana renk"
+msgstr "Primary dark"
+
+#: theme.json styles/*.json
+msgctxt "Color name"
+msgid "Vurgu"
+msgstr "Accent"
+
+#: theme.json styles/*.json
+msgctxt "Color name"
+msgid "Başlık"
+msgstr "Heading"
+
+#: theme.json styles/*.json
+msgctxt "Color name"
+msgid "Metin"
+msgstr "Text"
+
+#: theme.json styles/*.json
+msgctxt "Color name"
+msgid "Açık zemin"
+msgstr "Light background"
+
+#: theme.json styles/*.json
+msgctxt "Color name"
+msgid "Çok açık zemin"
+msgstr "Lighter background"
+
+#: theme.json styles/*.json
+msgctxt "Color name"
+msgid "Çizgi"
+msgstr "Border"
+
+#: theme.json styles/*.json
+msgctxt "Color name"
+msgid "Beyaz"
+msgstr "White"
+
+#: styles/indigo.json
+msgctxt "Style variation name"
+msgid "İndigo"
+msgstr "Indigo"
+
+#: styles/antrasit.json
+msgctxt "Style variation name"
+msgid "Antrasit"
+msgstr "Charcoal"
+
+#: styles/mavi.json
+msgctxt "Style variation name"
+msgid "Mavi"
+msgstr "Blue"
+
+#: styles/orman.json
+msgctxt "Style variation name"
+msgid "Orman"
+msgstr "Forest"
+
+#: styles/petrol.json
+msgctxt "Style variation name"
+msgid "Petrol"
+msgstr "Petrol"
+
+#: theme.json styles/*.json
+msgctxt "Color name"
+msgid "Sayfa zemini"
+msgstr "Page background"

@@ -253,7 +253,7 @@
 	}
 
 	// --- Akış grafiği (sankey) ---
-	var PAL = ['#1f8a5b', '#2563eb', '#7c3aed', '#d97706', '#0d9488', '#e11d48', '#0891b2', '#65a30d', '#c026d3', '#ea580c'];
+	var PAL = ['#1f2937', '#2563eb', '#7c3aed', '#d97706', '#0d9488', '#e11d48', '#0891b2', '#65a30d', '#c026d3', '#ea580c'];
 	function renderFlow(d) {
 		var cols = d.flow.steps || [], links = d.flow.links || [];
 		var hint = flowPanel.querySelector('.flxan-flowhint');
