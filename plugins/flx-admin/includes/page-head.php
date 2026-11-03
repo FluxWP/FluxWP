@@ -66,7 +66,7 @@ function flxa_package_heads() {
 			'flx-qr-menu'      => array( 'Flux QR Menu', __( 'QR menüleri bu siteden yönet ve yayınla', 'flx-admin' ) ),
 			'flx-roles'        => array( 'Flux Roles', __( 'Personel, İdareci ve Yönetici rolleri ve erişimleri', 'flx-admin' ) ),
 			'flx-seo'          => array( 'Flux SEO', __( 'Meta etiketler, schema, site haritası ve yapay zekâ (MCP) erişimi', 'flx-admin' ) ),
-			'flx-setup'        => array( 'Flux Setup', __( 'Kurulum sihirbazı, ön ayarlar ve FluxWP paket güncellemeleri', 'flx-admin' ) ),
+			'flx-setup'        => array( 'FluxWP Panel', __( 'Kurulum sihirbazı, ön ayarlar ve FluxWP paket güncellemeleri', 'flx-admin' ) ),
 			'flx-speed'        => array( 'Flux Speed', __( 'Sorgular, PHP hataları, dış istekler ve cron tek yerde', 'flx-admin' ) ),
 			'flx-staff'        => array( 'Flux Staff', __( 'Personel hediyeleri, kira, tahakkuk ve tahsilat', 'flx-admin' ) ),
 			'flx-tasks'        => array( 'Flux Tasks', __( 'Projeler, listeler ve görev takibi', 'flx-admin' ) ),
@@ -130,7 +130,7 @@ add_action(
 		if ( ! $info ) {
 			return;
 		}
-		echo '<style id="flxa-ph-css">.flxa-ph{display:flex;align-items:center;gap:14px;min-width:0;width:100%;margin:0 0 12px}.flxa-ph__logo{width:44px;height:44px;border-radius:10px;flex:none}.flxa-ph__t{min-width:0;flex:1 1 auto}.flxa-ph__t>h1{margin:0!important;padding:0!important;display:block}.flxa-ph__t>p,.flxa-ph__t>.description{margin:2px 0 0!important;color:var(--flxa-muted,#646970)}.flxa-ph__a{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:6px;margin-left:auto;text-align:right}.flxa-ph__b{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px}.flxa-ph__b>.page-title-action{position:static!important;top:auto!important;margin:0!important}.flxa-ph__a>span{font-size:12px;line-height:1.4;margin:0!important}@media(max-width:782px){.flxa-ph{flex-wrap:wrap}.flxa-ph__a{width:100%;align-items:flex-start;text-align:left}.flxa-ph__b{justify-content:flex-start}}@media(max-width:600px){.flxa-ph__logo{width:36px;height:36px}}</style>' . "\n";
+		echo '<style id="flxa-ph-css">.flxa-ph{display:flex;align-items:center;gap:14px;min-width:0;width:100%;margin:0 0 12px}.flxa-ph__logo{width:44px;height:44px;border-radius:10px;flex:none}.flxa-ph__t{min-width:0;flex:1 1 auto}.flxa-ph__t>h1{margin:0!important;padding:0!important;display:block}.flxa-ph__t>p,.flxa-ph__t>.description{margin:2px 0 0!important;color:var(--flxa-muted,#646970)}.flxa-ph__a{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:6px;margin-left:auto;text-align:right}.flxa-ph__b{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px}.flxa-ph__b>.page-title-action{position:static!important;top:auto!important;margin:0!important}.flxa-ph__a>span{font-size:12px;line-height:1.4;margin:0!important}@media(max-width:782px){.flxa-ph{flex-wrap:wrap;gap:10px 12px}.flxa-ph__t{flex:1 1 0}.flxa-ph__a{flex-basis:100%;width:100%;align-items:flex-start;text-align:left}.flxa-ph__b{justify-content:flex-start}}@media(max-width:600px){.flxa-ph{align-items:flex-start}.flxa-ph__logo{width:36px;height:36px;margin-top:2px}.flxa-ph__t>h1{font-size:20px!important;line-height:1.25!important}.flxa-ph__t>p,.flxa-ph__t>.description{font-size:13px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}}</style>' . "\n";
 	}
 );
 
@@ -167,7 +167,8 @@ if(b.children.length||st.length){if(b.children.length)a.appendChild(b);for(var k
 if(n&&(n.tagName==='P'||n.classList.contains('description'))&&n.textContent.trim().length&&n.textContent.length<400&&!n.querySelector('input,select,textarea,button')){t.appendChild(n);}
 else{var p=d.createElement('p');p.textContent=C.desc;t.appendChild(p);}
 return true;}
-run();var o=new MutationObserver(function(){run();});o.observe(d.getElementById('wpbody-content')||d.body,{childList:true,subtree:true});setTimeout(function(){o.disconnect();},8000);
+function notes(){var w=d.querySelector('.flxa-ph');if(!w)return;var ns=w.querySelectorAll('.flxa-ph__t>.notice,.flxa-ph__t>.error,.flxa-ph__t>.updated,.flxa-ph__t>.update-nag');for(var i=ns.length-1;i>=0;i--){w.parentNode.insertBefore(ns[i],w.nextSibling);}}
+run();notes();var o=new MutationObserver(function(){run();notes();});o.observe(d.getElementById('wpbody-content')||d.body,{childList:true,subtree:true});setTimeout(function(){o.disconnect();},8000);
 })(document);
 </script>
 		<?php

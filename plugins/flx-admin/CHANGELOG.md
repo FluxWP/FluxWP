@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.9
+- Flux Setup'ın sayfa başlığındaki adı "FluxWP Panel".
+- Ortak sayfa başlığı telefonda: logo başlığın solunda kalır (ayrı satıra düşmez), açıklama en çok 2 satır. Başlığa taşınan uyarılar başlığın altına alınır.
+- Menü düzenleyici telefonda taşmıyor: ad ilk satırda, düğmeler alt satırda; "Görünür" düğmesi yalnız simge.
+- Telefonda yan menü: dokunulan öğede gri hover/odak rengi takılı kalmıyor (yalnız geçerli sayfa vurgulu); menü açıkken "AI'ya sor" düğmesi menünün üstüne binmiyor.
+
 ## 1.6.8
 - Favicon: site simgesi seçilmemişse yönetim paneli, giriş ekranı ve (Flux SEO yoksa) ön yüz yeni FluxWP simgesini gösterir (SVG, açık/koyu uyumlu + PNG). Site simgesi (Görünüm › Özelleştir › Site kimliği) seçildiyse o kullanılır. PWA simgeleri FluxWP simgesiyle yenilendi. Filtre `flxa_favicon`.
 
