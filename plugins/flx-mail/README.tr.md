@@ -75,9 +75,9 @@ Gereksinimler: WordPress 6.2+, PHP 7.4+. bilgi@ için bir e-posta hesabı (iste�
 1. [Releases](https://github.com/FluxWP/fluxwp/releases) sayfasında en son `flx-mail-v*` sürümünden `flx-mail.zip`'i indirin.
 2. **Eklentiler › Yeni ekle › Eklenti yükle**, zip'i seçin, sonra **Etkinleştir**.
 
-**Flux Setup ile** (sitelerimizde önerilen)
+**FluxWP Panel ile** (sitelerimizde önerilen)
 
-**Setup › Paketler** tüm FluxWP paketlerini listeler; *Flux Mail* satırındaki **Kur**'a basın. Güncellemeler de buradan gelir.
+**FluxWP Panel › Paketler** tüm FluxWP paketlerini listeler; *Flux Mail* satırındaki **Kur**'a basın. Güncellemeler de buradan gelir.
 
 **İlk adımlar**
 

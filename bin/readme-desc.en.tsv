@@ -18,5 +18,5 @@ flx-studio	Flux Studio	An AI image and video studio. Generation, references and 
 flx-app	Flux App	Sign-in for the desktop and mobile app: OAuth 2.0 (PKCE), API keys and a role-based menu.
 flx-backup	Flux Backup	Automatic backups before updates, scheduled full backups and selective restore.
 fluxwp	FluxWP	A simple, fast WooCommerce block theme. Hero, header, footer and home patterns are fully replaceable by presets.
-flx-setup	Flux Setup	Setup wizard, presets and updates: installs the theme and plugins in one pass, applies a preset (profile, header/footer, pages, menus) and brings FluxWP packages from your update server into the WordPress updates screen.
+flx-setup	FluxWP Panel	Setup wizard, presets and updates: installs the theme and plugins in one pass, applies a preset (profile, header/footer, pages, menus) and brings FluxWP packages from your update server into the WordPress updates screen.
 flx-migrate	Flux Migrate	Moves site data saved under the old package names (settings, tables, meta, content, theme, upload folders) to the FluxWP names.

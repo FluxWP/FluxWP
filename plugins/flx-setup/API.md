@@ -1,4 +1,4 @@
-# Flux Setup API
+# FluxWP Panel API
 
 Biçim: [docs/flx-setup/FORMAT.md](../../docs/flx-setup/FORMAT.md). Bu belge paket geliştiricileri içindir.
 

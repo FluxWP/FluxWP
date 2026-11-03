@@ -2,16 +2,16 @@
 /**
  * Eski "Flux Updater" (flx-updater) eklentisinden geçiş.
  *
- * Güncelleyici artık Flux Setup'ın parçası. Eski eklenti hâlâ etkinse aynı sınıflar iki kez
+ * Güncelleyici artık FluxWP Panel'in parçası. Eski eklenti hâlâ etkinse aynı sınıflar iki kez
  * yüklenmesin diye bu istekte güncelleyici modülü atlanır, eski eklenti kapatılır; sonraki istekte
- * Flux Setup devralır. Ayarlar (flxu_*) aynı adla kaldığı için kaybolmaz.
+ * FluxWP Panel devralır. Ayarlar (flxu_*) aynı adla kaldığı için kaybolmaz.
  */
 
 defined( 'ABSPATH' ) || exit;
 
 const FLXK_LEGACY_UPDATER = 'flx-updater/flx-updater.php';
 
-/** Yükleme anında: eski eklentinin sınıfları yüklendi ya da yüklenecek mi. Flux Setup kendi FLXU_* sabitlerini bundan sonra tanımlar. */
+/** Yükleme anında: eski eklentinin sınıfları yüklendi ya da yüklenecek mi. FluxWP Panel kendi FLXU_* sabitlerini bundan sonra tanımlar. */
 function flxk_legacy_updater_active() {
 	if ( defined( 'FLXU_VERSION' ) || class_exists( 'FLXU_Updater', false ) ) {
 		return true;
@@ -54,7 +54,7 @@ add_action(
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
 		deactivate_plugins( FLXK_LEGACY_UPDATER, true, is_plugin_active_for_network( FLXK_LEGACY_UPDATER ) );
-		set_transient( 'flxk_notice', array( 'ok', __( 'Flux Updater artık Flux Setup\'ın parçası; eski eklenti kapatıldı, ayarları korundu. Eklentiler ekranından silebilirsiniz.', 'flx-setup' ) ), 120 );
+		set_transient( 'flxk_notice', array( 'ok', __( 'Flux Updater artık FluxWP Panel\'in parçası; eski eklenti kapatıldı, ayarları korundu. Eklentiler ekranından silebilirsiniz.', 'flx-setup' ) ), 120 );
 	},
 	1
 );

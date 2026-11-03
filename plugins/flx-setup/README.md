@@ -2,12 +2,12 @@
 
 **English** · [Türkçe](README.tr.md)
 
-<img src="docs/logo.svg" alt="Flux Setup logo" width="120">
+<img src="docs/logo.svg" alt="FluxWP Panel logo" width="120">
 
-# Flux Setup
+# FluxWP Panel
 
 **Set up a FluxWP site in three steps, then keep it updated.**<br>
-Flux Setup is the first plugin you install. A short wizard picks the plugins, a preset and a colour and installs everything. After that it brings our FluxWP themes and plugins into the normal WordPress update screens through our own update server, with a backup before every change.
+FluxWP Panel is the first plugin you install. A short wizard picks the plugins, a preset and a colour and installs everything. After that it brings our FluxWP themes and plugins into the normal WordPress update screens through our own update server, with a backup before every change.
 
 [![WordPress 6.6+](https://img.shields.io/badge/WordPress-6.6%2B-21759b?logo=wordpress&logoColor=white)](https://wordpress.org)
 [![PHP 7.4+](https://img.shields.io/badge/PHP-7.4%2B-777bb4?logo=php&logoColor=white)](https://www.php.net)
@@ -17,15 +17,15 @@ Flux Setup is the first plugin you install. A short wizard picks the plugins, a 
 
 [Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
 
-<img src="docs/demo.gif" alt="Flux Setup tour: connection status, testing the connection, the FluxWP package list with available updates, settings and the standard WordPress Updates screen" width="900">
+<img src="docs/demo.gif" alt="FluxWP Panel tour: connection status, testing the connection, the FluxWP package list with available updates, settings and the standard WordPress Updates screen" width="900">
 
 </div>
 
 ---
 
-## Why Flux Setup?
+## Why FluxWP Panel?
 
-Our packages live in a private GitHub repository and are not on WordPress.org. Without Flux Setup, a new site means uploading a dozen zips by hand and every update means doing it again. With it:
+Our packages live in a private GitHub repository and are not on WordPress.org. Without FluxWP Panel, a new site means uploading a dozen zips by hand and every update means doing it again. With it:
 
 - 🧭 **A three-step setup wizard.** Opens after activation: intro, plugin cards with screenshots, preset and colour, then a live install log. It can be skipped and opened again later.
 - 🔄 **Normal WordPress updates.** FluxWP packages appear in **Dashboard › Updates** and the plugin list, with release notes, like any other plugin.
@@ -37,7 +37,7 @@ Our packages live in a private GitHub repository and are not on WordPress.org. W
 ## Features
 
 ### Setup wizard
-- Presentation-style: every step fits one landscape screen, no scrolling; steps slide sideways. Steps: intro › theme and site type (store or nonprofit, pick one) › plugins by category, one screen each › appearance › install › done. **Skip** at any time; open it again from **Setup › Setup wizard**.
+- Presentation-style: every step fits one landscape screen, no scrolling; steps slide sideways. Steps: intro › theme and site type (store or nonprofit, pick one) › plugins by category, one screen each › appearance › install › done. **Skip** at any time; open it again from **FluxWP Panel › Setup wizard**.
 - Appearance step in tabs with a fixed live preview on the right: **Identity** (site name, tagline, logo upload), **Preset**, **Colour** (each style shown as a small site) and **Pages** (Blog, About us, Contact, FAQ).
 - **What should we start with?** The FluxWP theme and Flux Commerce on their own screen, both recommended, with a quiet **Continue without these**. Then the other plugins with a screenshot and one line each; recommended ones are ticked.
 - Appearance: preset (FluxWP demo, installed preset packages or Blank), one of the theme's colour styles with a live preview, and the site name.
@@ -84,15 +84,15 @@ Requirements: WordPress 6.6+, PHP 7.4+.
 1. Download `flx-setup.zip` from the latest `flx-setup-v*` release on the [Releases](https://github.com/FluxWP/fluxwp/releases) page.
 2. **Plugins › Add New › Upload Plugin**, choose the zip, then **Activate**.
 
-**With Flux Setup** (recommended on our sites)
+**With FluxWP Panel** (recommended on our sites)
 
-**Setup › Packages** lists every FluxWP package; click **Install** next to *Flux Setup*. Updates arrive the same way.
+**FluxWP Panel › Packages** lists every FluxWP package; click **Install** next to *FluxWP Panel*. Updates arrive the same way.
 
 **First steps**
 
-1. Activate Flux Setup; the setup wizard opens. Pick the plugins, a preset and a colour, then **Install**.
-2. Public packages need no key. For private ones: on the update server's admin panel, **Add site**, copy the key, and paste it in **Setup › Settings**.
-3. Install or update FluxWP packages any time from **Setup › Packages**.
+1. Activate FluxWP Panel; the setup wizard opens. Pick the plugins, a preset and a colour, then **Install**.
+2. Public packages need no key. For private ones: on the update server's admin panel, **Add site**, copy the key, and paste it in **FluxWP Panel › Settings**.
+3. Install or update FluxWP packages any time from **FluxWP Panel › Packages**.
 
 Full setup notes (Turkish): [KURULUM.md](../../docs/guncelleme-sistemi/KURULUM.md) · Release notes: [CHANGELOG.md](CHANGELOG.md)
 
@@ -106,7 +106,7 @@ FluxWP/fluxwp (push → GitHub Actions → <slug>-v<version> release + <slug>.zi
         ▼
 wp-update-server   /v1/check · /v1/download/<slug>/<version>.zip · /admin
         ▲ X-FluxWP-Site-Key (one key per site)
-WordPress sites (Flux Setup)
+WordPress sites (FluxWP Panel)
 ```
 
 - The update server is a separate repository: [FluxWP/updater](https://github.com/FluxWP/updater).
@@ -129,6 +129,6 @@ WordPress sites (Flux Setup)
 
 ## License
 
-Flux Setup Released under the [GNU General Public License v2 or later](https://www.gnu.org/licenses/gpl-2.0.html).
+FluxWP Panel Released under the [GNU General Public License v2 or later](https://www.gnu.org/licenses/gpl-2.0.html).
 
 Made by FluxWP.

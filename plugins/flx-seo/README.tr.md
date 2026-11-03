@@ -74,9 +74,9 @@ Gereksinimler: WordPress 6.5+, PHP 7.4+. Yapay zekâ erişimi isterseniz bir MCP
 1. [Releases](https://github.com/FluxWP/fluxwp/releases) sayfasında en son `flx-seo-v*` sürümünden `flx-seo.zip`'i indirin.
 2. **Eklentiler › Yeni ekle › Eklenti yükle**, zip'i seçin, sonra **Etkinleştir**.
 
-**Flux Setup ile** (sitelerimizde önerilen)
+**FluxWP Panel ile** (sitelerimizde önerilen)
 
-**Setup › Paketler** tüm FluxWP paketlerini listeler; *Flux SEO* satırındaki **Kur**'a basın. Güncellemeler de buradan gelir.
+**FluxWP Panel › Paketler** tüm FluxWP paketlerini listeler; *Flux SEO* satırındaki **Kur**'a basın. Güncellemeler de buradan gelir.
 
 **İlk adımlar**
 

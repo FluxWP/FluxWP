@@ -27,7 +27,7 @@ GROUPS = {
 PKGS = [
   # slug, name, group, lucide glyph
   ('flx-admin', 'Flux Admin', 'platform', 'layout-dashboard'),
-  ('flx-setup', 'Flux Setup', 'platform', 'blocks'),
+  ('flx-setup', 'FluxWP Panel', 'platform', 'blocks'),
   ('flx-roles', 'Flux Roles', 'platform', 'user-round-cog'),
   ('flx-app', 'Flux App', 'platform', 'monitor-smartphone'),
   ('flx-ai', 'Flux AI', 'platform', 'sparkles'),

@@ -76,9 +76,9 @@ Requirements: WordPress 6.5+, PHP 7.4+. An OpenRouter or Anthropic API key. Opti
 1. Download `flx-ai.zip` from the latest `flx-ai-v*` release on the [Releases](https://github.com/FluxWP/fluxwp/releases) page.
 2. **Plugins › Add New › Upload Plugin**, choose the zip, then **Activate**.
 
-**With Flux Setup** (recommended on our sites)
+**With FluxWP Panel** (recommended on our sites)
 
-**Setup › Packages** lists every FluxWP package; click **Install** next to *Flux AI*. Updates arrive the same way.
+**FluxWP Panel › Packages** lists every FluxWP package; click **Install** next to *Flux AI*. Updates arrive the same way.
 
 **First steps**
 

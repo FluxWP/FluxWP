@@ -92,9 +92,9 @@ Requirements: WordPress 6.4+, PHP 7.4+. WooCommerce is optional (needed only for
 1. Download `flx-analytics.zip` from the latest `flx-analytics-v*` release on the [Releases](https://github.com/FluxWP/fluxwp/releases) page.
 2. **Plugins › Add New › Upload Plugin**, choose the zip, then **Activate**.
 
-**With Flux Setup** (recommended on our sites)
+**With FluxWP Panel** (recommended on our sites)
 
-**Setup › Packages** lists every FluxWP package; click **Install** next to *Flux Site Analytics*. Updates arrive the same way.
+**FluxWP Panel › Packages** lists every FluxWP package; click **Install** next to *Flux Site Analytics*. Updates arrive the same way.
 
 **First steps**
 
