@@ -12,7 +12,7 @@ Bağış, e-ticaret, iletişim, yapay zekâ, analitik ve ekip araçları: aynı 
 
 [![WordPress 6.4+](https://img.shields.io/badge/WordPress-6.4%2B-21759b?logo=wordpress&logoColor=white)](https://wordpress.org) [![PHP 7.4+](https://img.shields.io/badge/PHP-7.4%2B-777bb4?logo=php&logoColor=white)](https://www.php.net) [![WooCommerce](https://img.shields.io/badge/WooCommerce-ready-7f54b3?logo=woocommerce&logoColor=white)](https://woocommerce.com) ![MCP](https://img.shields.io/badge/AI-MCP%20ready-7d64ff) ![Paketler](https://img.shields.io/badge/paket-20%20eklenti%20%C2%B7%201%20tema-2fbf8f) [![GPL v2+](https://img.shields.io/badge/lisans-GPL--2.0--or--later-blue)](https://www.gnu.org/licenses/gpl-2.0.html)
 
-[Neden](#neden-fluxwp-suite) · [Çözümler](#çözümler) · [Nasıl birlikte çalışır](#nasıl-birlikte-çalışır) · [Paketler](#paketler-ve-son-sürümler) · [Başlarken](#başlarken) · [Geliştiriciler için](#geliştiriciler-için)
+[Neden](#neden-fluxwp-suite) · [Nasıl birlikte çalışır](#nasıl-birlikte-çalışır) · [Paketler](#paketler-ve-son-sürümler) · [Başlarken](#başlarken) · [Geliştiriciler için](#geliştiriciler-için)
 
 </div>
 
@@ -27,78 +27,6 @@ Bağış, e-ticaret, iletişim, yapay zekâ, analitik ve ekip araçları: aynı 
 - **Telefonda da sakin tek panel.** Flux Admin her pakete aynı görünümü, rol bazlı menüyü ve mobil alt barı verir.
 - **Veriniz sitenizde kalır.** Çerezsiz analitik, yerel yedek, temel işler için dış SaaS yok; GPL ve kendi sunucunuzda.
 - **Her yerde Türkçe ve İngilizce.** Her paket iki dille gelir; içerik Flux Lang ile çok dilli olur.
-
-## Çözümler
-
-### Bağış ve e-ticaret
-
-WooCommerce üzerinde bağış ve ödeme alın; sitenize benzeyen formlar ve her bağışçıya sertifika.
-
-| | |
-|---|---|
-| [**Flux Donate**](plugins/flx-donate/README.tr.md) | Fidan ve kampanya bağışları: kart, havale, aylık bağış, bağışçı hesabı. |
-| [**Flux Forms**](plugins/flx-forms/README.tr.md) | Ödemeli, koşullu ve otomasyonlu sürükle-bırak formlar. |
-| [**Flux Certificates**](plugins/flx-certificates/README.tr.md) | PDF, paylaşım linki ve doğrulamalı kişisel sertifikalar. |
-
-### İletişim
-
-Destekçilerinizin kullandığı her kanal, tek panelden.
-
-| | |
-|---|---|
-| [**Flux Chat**](plugins/flx-chat/README.tr.md) | Ekip için WhatsApp gelen kutusu; bağış kaydeden AI asistanı. |
-| [**Flux Mail**](plugins/flx-mail/README.tr.md) | E-posta şablonları, posta kutusu, gönderim kaydı; tüm paketlere WhatsApp ve SMS. |
-| [**Flux Social**](plugins/flx-social/README.tr.md) | Sosyal medya gönderilerini planla, onayla, yayınla; ortak takvim. |
-
-### Yapay zekâ ve otomasyon
-
-Tüm site için tek AI bütçesi ve Claude gibi asistanlar için bir kapı.
-
-| | |
-|---|---|
-| [**Flux AI**](plugins/flx-ai/README.tr.md) | Her paket için anahtarlar, modeller, harcama sınırı ve ortak sohbet. |
-| [**Flux SEO**](plugins/flx-seo/README.tr.md) | Hafif SEO ve içeriği yapay zekânın yönetmesi için MCP sunucusu. |
-| [**Flux Studio**](plugins/flx-studio/README.tr.md) | Referanslı, ortak galerili yapay zekâ görsel ve video stüdyosu. |
-
-### Ekip ve yönetim
-
-Telefonda da çalışan sakin bir panel; herkese doğru yetki.
-
-| | |
-|---|---|
-| [**Flux Admin**](plugins/flx-admin/README.tr.md) | Modern panel: rol bazlı menü, mobil alt bar, komut paleti, PWA. |
-| [**Flux Roles**](plugins/flx-roles/README.tr.md) | Personel ve idareci rolleri, tüm yetkiler tek sayfada, referans linkleri. |
-| [**Flux Tasks**](plugins/flx-tasks/README.tr.md) | AI asistanlı liste, pano, takvim, toplantı ve dokümanlar. |
-| [**Flux App**](plugins/flx-app/README.tr.md) | Masaüstü/mobil uygulama ve MCP istemcileri için OAuth giriş ve API. |
-
-### Büyüme ve içerik
-
-Neyin işe yaradığını görün, insanlara kendi dillerinde ulaşın.
-
-| | |
-|---|---|
-| [**Flux Analytics**](plugins/flx-analytics/README.tr.md) | Bağış hunisi, yolculuklar ve canlı widget'lı çerezsiz analitik. |
-| [**Flux Lang**](plugins/flx-lang/README.tr.md) | /en/ adresli, hreflang'li, tek tık AI çevirili çok dilli site. |
-
-### Operasyon
-
-Paylaşımlı sunucuda özel güncelleme, yedek ve performans.
-
-| | |
-|---|---|
-| [**Flux Updater**](plugins/flx-updater/README.tr.md) | Özel paketler WordPress'in güncelleme ekranında. |
-| [**Flux Backup**](plugins/flx-backup/README.tr.md) | Her güncellemeden önce yedek, zamanlı yedek, seçerek geri yükleme. |
-| [**Flux Speed**](plugins/flx-speed/README.tr.md) | Yavaş sorgular, hatalar, cron ve Sistem Kontrolü tek ekranda. |
-| [**Flux Migrate**](plugins/flx-migrate) | Eski paket adlarıyla kaydedilmiş site verisini bir kerelik FluxWP adlarına taşır. |
-
-### Tema ve ön ayarlar
-
-Tek blok tema ve onu hazır bir siteye çeviren ön ayar motoru.
-
-| | |
-|---|---|
-| [**FluxWP**](themes/fluxwp/README.tr.md) | Sade, hızlı WooCommerce block teması. Header, footer, ana sayfa ve renkler ön ayardan gelir. |
-| [**Flux Setup**](plugins/flx-setup/README.tr.md) | Ön ayarı (kurum profili, ayarlar, şablonlar, sayfalar, menüler) tek adımda uygular; önizleme ve geri alma var. |
 
 ## Nasıl birlikte çalışır
 

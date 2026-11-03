@@ -12,7 +12,7 @@ Donations, e-commerce, communication, AI, analytics and team tools: 20 plugins a
 
 [![WordPress 6.4+](https://img.shields.io/badge/WordPress-6.4%2B-21759b?logo=wordpress&logoColor=white)](https://wordpress.org) [![PHP 7.4+](https://img.shields.io/badge/PHP-7.4%2B-777bb4?logo=php&logoColor=white)](https://www.php.net) [![WooCommerce](https://img.shields.io/badge/WooCommerce-ready-7f54b3?logo=woocommerce&logoColor=white)](https://woocommerce.com) ![MCP](https://img.shields.io/badge/AI-MCP%20ready-7d64ff) ![Packages](https://img.shields.io/badge/packages-20%20plugins%20%C2%B7%201%20theme-2fbf8f) [![GPL v2+](https://img.shields.io/badge/license-GPL--2.0--or--later-blue)](https://www.gnu.org/licenses/gpl-2.0.html)
 
-[Why](#why-fluxwp-suite) · [Solutions](#solutions) · [How it fits together](#how-it-fits-together) · [Packages](#packages-and-latest-versions) · [Get started](#get-started) · [For developers](#for-developers)
+[Why](#why-fluxwp-suite) · [How it fits together](#how-it-fits-together) · [Packages](#packages-and-latest-versions) · [Get started](#get-started) · [For developers](#for-developers)
 
 </div>
 
@@ -27,78 +27,6 @@ Most WordPress sites end up as a patchwork: a donation plugin, a form plugin, an
 - **One calm admin, also on a phone.** Flux Admin gives every package the same look, a role-based menu and a mobile bottom bar.
 - **Your data stays on your site.** Cookie-free analytics, local backups, no external SaaS for the core work; GPL and self-hosted.
 - **Turkish and English everywhere.** Every package ships both languages; content goes multilingual with Flux Language.
-
-## Solutions
-
-### Donations & e-commerce
-
-Take gifts and payments on WooCommerce, with forms that look like your site and a certificate for every donor.
-
-| | |
-|---|---|
-| [**Flux Donation**](plugins/flx-donate) | Sapling and campaign donations: card, bank transfer, monthly giving, donor accounts. |
-| [**Flux Forms**](plugins/flx-forms) | Drag-and-drop forms with payments, conditions and automations. |
-| [**Flux Certificate**](plugins/flx-certificates) | Personal certificates with PDF, share link and verification. |
-
-### Communication
-
-Every channel your supporters use, answered from one admin.
-
-| | |
-|---|---|
-| [**Flux Call Center**](plugins/flx-chat) | WhatsApp inbox for the team, with an AI assistant that records donations. |
-| [**Flux Contact**](plugins/flx-mail) | E-mail templates, mailbox, delivery logs; WhatsApp and SMS lines for all packages. |
-| [**Flux Social**](plugins/flx-social) | Plan, approve and publish social posts with a shared calendar. |
-
-### AI & automation
-
-One AI budget for the whole site, and a door for assistants like Claude.
-
-| | |
-|---|---|
-| [**Flux AI**](plugins/flx-ai) | Keys, models, spending limits and a shared chat for every package. |
-| [**Flux SEO**](plugins/flx-seo) | Lightweight SEO plus an MCP server so AI can manage content. |
-| [**Flux Studio**](plugins/flx-studio) | AI image and video studio with references and a shared gallery. |
-
-### Team & admin
-
-A calm admin that works on a phone, with the right access for every person.
-
-| | |
-|---|---|
-| [**Flux Admin**](plugins/flx-admin) | Modern admin: role-based menu, mobile bottom bar, command palette, PWA. |
-| [**Flux Roles**](plugins/flx-roles) | Staff and manager roles, every capability on one page, referral links. |
-| [**Flux Tasks**](plugins/flx-tasks) | Lists, boards, calendars, meetings and docs with an AI assistant. |
-| [**Flux App**](plugins/flx-app) | OAuth sign-in and API for the desktop and mobile app and MCP clients. |
-
-### Growth & content
-
-Know what works and reach people in their language.
-
-| | |
-|---|---|
-| [**Flux Site Analytics**](plugins/flx-analytics) | Cookie-free analytics with donation funnel, journeys and live widgets. |
-| [**Flux Language**](plugins/flx-lang) | Multilingual site with /en/ URLs, hreflang and one-click AI translation. |
-
-### Operations
-
-Private updates, backups and performance on shared hosting.
-
-| | |
-|---|---|
-| [**Flux Updater**](plugins/flx-updater) | Private packages in the normal WordPress updates screen. |
-| [**Flux Backup**](plugins/flx-backup) | A backup before every update, scheduled backups, selective restore. |
-| [**Flux Performance**](plugins/flx-speed) | Slow queries, errors, cron and the System Check on one screen. |
-| [**Flux Migrate**](plugins/flx-migrate) | One-time move of site data saved under the old package names to the FluxWP names. |
-
-### Theme and presets
-
-One block theme, and a preset engine that turns it into a finished site.
-
-| | |
-|---|---|
-| [**FluxWP**](themes/fluxwp) | A simple, fast WooCommerce block theme. Header, footer, home and colours come from presets. |
-| [**Flux Setup**](plugins/flx-setup) | Applies a preset (organisation profile, settings, templates, pages, menus) in one step, with preview and undo. |
 
 ## How it fits together
 
