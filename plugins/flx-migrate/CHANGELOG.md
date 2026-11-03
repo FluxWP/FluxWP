@@ -2,6 +2,8 @@
 
 ## 0.1.5
 - Yeni eklenti aktarımdan önce etkinleştirilip kendi tablolarını doldurduysa (ör. Flux Tasks hoş geldin görevi) eski tablo artık atlanmıyor: yeni tablo `<ad>_bakAAGG` adıyla yedeklenir, eski veri onun yerine taşınır. Eski tablo boşsa yeni tabloya dokunulmaz. Aktarım yeniden çalıştırılınca önceden atlanan tablolar da taşınır.
+- Yeni adım **Şifreli ayarlar**: eski önekten türetilen anahtarla şifrelenmiş değerler (Flux Mail SMTP/IMAP parolaları ve WhatsApp/SMS bağlantı anahtarları, Flux AI anahtarları, Flux Social hesap jetonları, iyzico kart referansları) yeni anahtarla yeniden şifrelenir. Önceden ad eşlemesi şifreli metnin içini de değiştirebiliyordu; artık şifreli değerlere dokunmaz.
+- Yeni adımlar **WooCommerce siparişleri** (HPOS `wc_orders_meta` ve ödeme yöntemi, ör. `ytb_havale` → `flxb_havale`) ve **Sipariş kalemleri** (`woocommerce_order_itemmeta`).
 
 ## 0.1.4
 - Bitiş adımı eski güncelleme sunucusunun (update.yesilturkiyeist.org) adresini ve site anahtarını Flux Setup ayarlarından siler; site varsayılan sunucuya (updater.fluxwp.com) döner, yeni anahtar FluxWP Panel'den girilir. Liste `flx_migrate_old_update_hosts` filtresiyle değişir.

@@ -41,9 +41,12 @@ final class Flx_Migrate_Migrator {
 			'postmeta' => __( 'Yazı meta verileri', 'flx-migrate' ),
 			'usermeta' => __( 'Kullanıcı meta verileri', 'flx-migrate' ),
 			'termmeta' => __( 'Terim meta verileri', 'flx-migrate' ),
+			'orders'   => __( 'WooCommerce siparişleri', 'flx-migrate' ),
+			'itemmeta' => __( 'Sipariş kalemleri', 'flx-migrate' ),
 			'posts'    => __( 'Yazılar ve sayfalar', 'flx-migrate' ),
 			'terms'    => __( 'Taksonomiler', 'flx-migrate' ),
 			'uploads'  => __( 'Yükleme klasörleri', 'flx-migrate' ),
+			'secrets'  => __( 'Şifreli ayarlar (parolalar, anahtarlar)', 'flx-migrate' ),
 			'finish'   => __( 'Bitiş', 'flx-migrate' ),
 		);
 	}
@@ -321,6 +324,124 @@ final class Flx_Migrate_Migrator {
 	private function step_termmeta( int $c ): array {
 		global $wpdb;
 		return $this->meta( $wpdb->termmeta, 'meta_id', $c );
+	}
+
+	/**
+	 * WooCommerce HPOS: order meta and the payment method column
+	 * (gateway ids such as ytb_havale). Classic orders live in postmeta.
+	 */
+	private function step_orders( int $c ): array {
+		global $wpdb;
+		$t = $wpdb->prefix . 'wc_orders';
+		if ( ! $this->table_exists( $t . '_meta' ) ) {
+			return $this->res( true, 0, 0 );
+		}
+		$changed = 0;
+		if ( 0 === $c && $this->table_exists( $t ) ) {
+			$rows = $wpdb->get_col( "SELECT DISTINCT payment_method FROM `{$t}` WHERE " . $this->where_like( 'payment_method' ) ); // phpcs:ignore
+			foreach ( (array) $rows as $pm ) {
+				$n = $this->m->name( (string) $pm );
+				if ( $n === $pm ) {
+					continue;
+				}
+				$changed += (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM `{$t}` WHERE payment_method = %s", $pm ) ); // phpcs:ignore
+				if ( ! $this->dry ) {
+					$wpdb->update( $t, array( 'payment_method' => $n ), array( 'payment_method' => $pm ) );
+				}
+			}
+		}
+		$r             = $this->meta( $t . '_meta', 'id', $c );
+		$r['changed'] += $changed;
+		return $r;
+	}
+
+	private function step_itemmeta( int $c ): array {
+		global $wpdb;
+		$t = $wpdb->prefix . 'woocommerce_order_itemmeta';
+		if ( ! $this->table_exists( $t ) ) {
+			return $this->res( true, 0, 0 );
+		}
+		return $this->meta( $t, 'meta_id', $c );
+	}
+
+	private function table_exists( string $t ): bool {
+		global $wpdb;
+		return $t === $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $t ) ) );
+	}
+
+	/**
+	 * Secrets sealed with a key derived from the old prefix are re-sealed
+	 * with the new key. Runs after every rename step; safe to repeat.
+	 * Cursor = index of the source (options, meta tables, Flux tables).
+	 */
+	private function step_secrets( int $cursor ): array {
+		global $wpdb;
+		if ( ! Flx_Migrate_Secrets::available() ) {
+			return $this->res( true, 0, 0, array( __( 'Sodium yok: şifreli ayarlar taşınamadı, panelden yeniden girin.', 'flx-migrate' ) ) );
+		}
+		$like = array();
+		foreach ( array( 'yti0:', 'yti1:', 'flxi0:', 'flxi1:', 'enc1:', 's1:', 'o1:' ) as $p ) {
+			$like[] = '%' . $wpdb->esc_like( $p ) . '%';
+		}
+		$where = static function ( string $col ) use ( $wpdb, $like ): string {
+			$parts = array();
+			foreach ( $like as $l ) {
+				$parts[] = $wpdb->prepare( "{$col} LIKE BINARY %s", $l ); // phpcs:ignore
+			}
+			return '(' . implode( ' OR ', $parts ) . ')';
+		};
+		$sources = array(
+			array( $wpdb->options, 'option_id', 'option_value' ),
+			array( $wpdb->postmeta, 'meta_id', 'meta_value' ),
+			array( $wpdb->usermeta, 'umeta_id', 'meta_value' ),
+		);
+		if ( $this->table_exists( $wpdb->prefix . 'wc_orders_meta' ) ) {
+			$sources[] = array( $wpdb->prefix . 'wc_orders_meta', 'id', 'meta_value' );
+		}
+		$new = $this->map['rules']['lower'][1];
+		foreach ( (array) $wpdb->get_col( $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $wpdb->prefix . $new ) . '%' ) ) as $t ) {
+			$pk  = '';
+			$txt = array();
+			foreach ( (array) $wpdb->get_results( "SHOW COLUMNS FROM `{$t}`", ARRAY_A ) as $col ) { // phpcs:ignore
+				if ( 'PRI' === $col['Key'] && '' === $pk ) {
+					$pk = $col['Field'];
+				}
+				if ( preg_match( '/char|text|json/i', $col['Type'] ) ) {
+					$txt[] = $col['Field'];
+				}
+			}
+			foreach ( $pk ? $txt : array() as $col ) {
+				$sources[] = array( $t, $pk, $col );
+			}
+		}
+		$sec     = new Flx_Migrate_Secrets();
+		$changed = 0;
+		for ( $i = $cursor; $i < count( $sources ); $i++ ) {
+			list( $t, $pk, $col ) = $sources[ $i ];
+			$rows = $wpdb->get_results( "SELECT `{$pk}` AS id, `{$col}` AS v FROM `{$t}` WHERE " . $where( "`{$col}`" ), ARRAY_A ); // phpcs:ignore
+			foreach ( (array) $rows as $r ) {
+				$nv = $sec->convert( (string) $r['v'] );
+				if ( null === $nv ) {
+					continue;
+				}
+				$changed++;
+				if ( ! $this->dry ) {
+					$wpdb->update( $t, array( $col => $nv ), array( $pk => $r['id'] ) );
+				}
+			}
+			if ( $this->over_budget() ) {
+				return $this->res( false, $i + 1, $changed );
+			}
+		}
+		$notes = array();
+		if ( $sec->failed() ) {
+			/* translators: %d: sayı */
+			$notes[] = sprintf( __( '%d şifreli değer açılamadı (site anahtarları değişmiş olabilir); bunları panelden yeniden girin.', 'flx-migrate' ), $sec->failed() );
+		}
+		if ( ! $this->dry ) {
+			wp_cache_flush();
+		}
+		return $this->res( true, 0, $changed, $notes );
 	}
 
 	private function step_posts( int $cursor ): array {

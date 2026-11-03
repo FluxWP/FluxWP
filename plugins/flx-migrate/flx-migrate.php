@@ -22,6 +22,7 @@ define( 'FLX_MIGRATE_DIR', __DIR__ );
 
 require_once __DIR__ . '/includes/class-mapper.php';
 require_once __DIR__ . '/includes/class-migrator.php';
+require_once __DIR__ . '/includes/class-secrets.php';
 
 add_action(
 	'init',

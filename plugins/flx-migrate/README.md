@@ -25,6 +25,8 @@ WP-CLI: `wp flx-migrate scan` ve `wp flx-migrate run`.
 | Meta | post/user/term meta anahtarları ve değerleri |
 | Yazılar | Yazı türleri; içerikteki blok adları, kısa kodlar, class/id/data öznitelikleri, `wp-content/...` yolları |
 | Taksonomiler | Taksonomi adları, blok şablonlarının tema terimi |
+| WooCommerce | HPOS sipariş meta verileri, ödeme yöntemi, sipariş kalemi meta verileri |
 | Yükleme klasörleri | `uploads/<eski>` → `uploads/<yeni>` |
+| Şifreli ayarlar | Eski anahtarla şifrelenmiş parola ve jetonlar yeni anahtarla yeniden şifrelenir (Mail, AI, Social, iyzico) |
 
 Her adım tekrar çalıştırılabilir; ikinci çalıştırmada değişecek bir şey kalmaz.

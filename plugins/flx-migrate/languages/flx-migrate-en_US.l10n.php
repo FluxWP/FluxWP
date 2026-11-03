@@ -4,6 +4,11 @@ return array(
 	'language' => 'en_US',
 	'plural-forms' => 'nplurals=2; plural=(n != 1);',
 	'messages' => array(
+		'WooCommerce siparişleri' => 'WooCommerce orders',
+		'Sipariş kalemleri' => 'Order items',
+		'Şifreli ayarlar (parolalar, anahtarlar)' => 'Encrypted settings (passwords, keys)',
+		'Sodium yok: şifreli ayarlar taşınamadı, panelden yeniden girin.' => 'Sodium is missing: encrypted settings could not be moved, enter them again in the panel.',
+		'%d şifreli değer açılamadı (site anahtarları değişmiş olabilir); bunları panelden yeniden girin.' => '%d encrypted values could not be opened (the site keys may have changed); enter them again in the panel.',
 		'Eski paket adlarıyla kaydedilmiş site verilerini (ayarlar, tablolar, meta, içerik, tema, yükleme klasörleri) FluxWP adlarına taşır. Ad eşlemesi map.json\'dadır.' => 'Moves site data saved under the old package names (settings, tables, meta, content, theme, upload folders) to the FluxWP names. The name map is in map.json.',
 		'%1$s boş, %2$s olduğu gibi bırakıldı.' => '%1$s is empty, %2$s was left as it is.',
 		'%1$s doluydu: %2$s adıyla yedeklendi, yerine %3$s taşındı.' => '%1$s was not empty: it was backed up as %2$s and replaced by %3$s.',

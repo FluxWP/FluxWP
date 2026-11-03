@@ -124,6 +124,11 @@ final class Flx_Migrate_Mapper {
 		if ( ! is_string( $v ) || '' === $v ) {
 			return $v;
 		}
+		// Sealed secrets: renaming inside the ciphertext would corrupt it.
+		// Their prefix and key are handled by the secrets step.
+		if ( preg_match( '/^(?:[a-z]{2,4}[01]|enc1|s1|o1|b1|b64):[A-Za-z0-9+\/=]+$/', $v ) ) {
+			return $v;
+		}
 		if ( is_serialized( $v ) ) {
 			$u = @unserialize( $v, array( 'allowed_classes' => false ) ); // phpcs:ignore
 			if ( false !== $u || 'b:0;' === $v ) {
