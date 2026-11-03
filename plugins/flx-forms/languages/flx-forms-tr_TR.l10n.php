@@ -3032,5 +3032,6 @@ Bu mesajı aldıysanız Telegram entegrasyonunuz doğru çalışıyor demektir!'
     '(deleted field)' => '(silinmiş alan)',
     'Add-on directory is ready for file operations' => 'Eklenti dizini dosya işlemleri için hazır',
     'Cannot install addons: %s' => 'Eklentiler yüklenemiyor: %s',
+    'Flux Forms replaces %s, which has been deactivated. Your forms, entries and settings stay in place. You can delete the old plugin.' => 'Flux Forms, %s eklentisinin yerini aldı; eski eklenti devre dışı bırakıldı. Formlarınız, gelen yanıtlar ve ayarlarınız yerinde duruyor. Eski eklentiyi silebilirsiniz.',
   ),
 );
