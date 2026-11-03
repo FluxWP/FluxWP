@@ -1,5 +1,8 @@
 # Flux QR Menu — Değişiklikler
 
+## 1.3.3
+- Vurgu rengi Flux Admin'den (varsayılan olarak tema rengi; FluxWP'de indigo), sabit yeşil kaldırıldı.
+
 ## 1.3.2
 - **WooCommerce kuruluyken menü yöneticisi panele girebilir.** WooCommerce, yazı düzenleme yetkisi olmayan kullanıcıyı wp-admin'den "Hesabım" sayfasına gönderiyor ve yönetim çubuğunu gizliyordu; menü yöneticisi artık QR Menüler'e girer, yönetim çubuğu görünür, "Hesabım" girişinden de QR Menüler'e yönlenir.
 

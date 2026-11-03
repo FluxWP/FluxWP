@@ -1,5 +1,8 @@
 # Değişiklik günlüğü
 
+## 0.1.1
+- Vurgu rengi Flux Admin'den (varsayılan olarak tema rengi; FluxWP'de indigo), sabit yeşil kaldırıldı.
+
 ## 0.1.0
 - İlk sürüm (Faz 1). Mixpost/Postiz fikirleri sitede çalışan kendi eklentimize taşındı.
 - Ağlar: Facebook sayfası, Instagram (Facebook girişi ve Instagram girişi), YouTube, X (Free/Basic/Pro/Pay-as-you-go katmanı, Premium uzun metin), LinkedIn (profil + sayfa), TikTok (taslak/doğrudan mod), Pinterest (sandbox seçeneği), Google İşletme Profili, WhatsApp Durum/grup (Evolution, Flux Mail/Çağrı Merkezi bağlantısı).

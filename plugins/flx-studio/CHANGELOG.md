@@ -1,5 +1,8 @@
 # Flux Studio — Değişiklikler
 
+## 0.3.1
+- Vurgu rengi Flux Admin'den (varsayılan olarak tema rengi; FluxWP'de indigo), sabit yeşil kaldırıldı.
+
 ## 0.3.0 (2026-10-28)
 
 - **Model seçici:** ayrı sağlayıcı seçicisi kalktı. Model düğmesinde sağlayıcı ve model birlikte yazar ("fal.ai · Nano Banana 2.1"); açılınca önce sağlayıcı (anahtarı olanlar üstte, kaç model sunduğu yanında), sonra o sağlayıcının modelleri seçilir. Anahtarı girilmemiş sağlayıcı soluk görünür.

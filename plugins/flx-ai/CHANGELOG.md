@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.6.1
+- Vurgu rengi Flux Admin'den (varsayılan olarak tema rengi; FluxWP'de indigo), sabit yeşil kaldırıldı.
+
 ## 0.6.0
 - Görsel ve video üretim altyapısı: diğer eklentiler (Flux Studio) `flxai_media_submit` / `flxai_media_status` / `flxai_media_cancel` ile görsel ve video üretir (API.md). Sağlayıcılar fal.ai, EvoLink, OpenAI, Google Gemini, OpenRouter; modeller GPT Image 2.5, Nano Banana 2.1/Pro, Seedance 2.5/2.0, MiniMax H3.
 - Ayarlar › Görsel ve video: sağlayıcı anahtarları (şifreli), varsayılan görsel/video modeli, model › sağlayıcı sırası.

@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux QR Menu
  * Description:       QR menüleri bu siteden yönetir ve yayınlar: menüler bu sitede kendi adresinde (/menu, menu1.alanadi) ya da ayrı alan adlarındaki menü sitelerinde açılır; menü yöneticisi rolü, QR kod, anlık güncelleme ve tüm değişikliklerin geçmişi.
- * Version:           1.3.2
+ * Version:           1.3.3
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -18,7 +18,7 @@ if ( defined( 'FLXQ_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXQ_VERSION', '1.3.2' );
+define( 'FLXQ_VERSION', '1.3.3' );
 define( 'FLXQ_DB_VERSION', 2 );
 define( 'FLXQ_FILE', __FILE__ );
 define( 'FLXQ_DIR', plugin_dir_path( __FILE__ ) );
