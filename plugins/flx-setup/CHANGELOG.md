@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.0.7
+- Kurulum sihirbazı "Neyle başlayalım?": FluxWP teması kartı yerine **Yönetim teması** (Flux Admin) kartı. Mağaza/Dernek seçiminden bağımsız seçilir; Flux Admin artık Yönetim kategori ekranında tekrar listelenmez.
+- FluxWP teması kart olmadan her kurulumda gelir (ön ayar, renk ve sayfalar ona bağlı).
+
 ## 1.0.6
 - Görünen ad **FluxWP Panel** oldu (eklenti başlığı, yönetim menüsü, sihirbaz, bildirimler). Slug `flx-setup`, ayarlar ve güncelleme adresi aynı kalır.
 
