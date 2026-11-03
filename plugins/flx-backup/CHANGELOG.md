@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.3.0
+- Büyük tam yedeklerin %95 civarında takılıp kalması düzeltildi. Yeni yedekler yalnız ekleyerek yazılan zip ile alınır (ZipArchive her adımda arşivi baştan yazıyordu; 1 GB'lık arşivde tek adım sunucunun süre sınırını aşıp sonsuza dek tekrarlanıyordu). Her adımın süresi artık arşivin boyutundan bağımsız.
+- Kaldığı yerden devam: her adım; dosya listesini, SQL dökümünü ve zip'i son kaydedilen noktaya kadar kırparak başlar. Sunucunun yarıda kestiği adım iz bırakmaz; dosyalar iki kez sayılmaz ("26.631 / 25.721 dosya" gibi toplamı aşan sayaç görülmez), dökümde yinelenen satır olmaz.
+- Aynı noktadan art arda kesilen iş önce adımı kısaltır, 6 denemeden sonra anlaşılır bir hatayla biter (gösterge sonsuza dek "%95" kalmaz).
+- İlerleme: arşivleme yüzdesi bayt ve dosya sayısının ortalaması; sayaçlar toplamı aşmaz.
+- Yedek klasörü taramada gerçek yoluyla da atlanır (bağlantı veya farklı yoldan görünse bile).
+- Temizlik: iptal edilen/başarısız yedeğin ve 1.3.0 öncesinden kalan ZipArchive geçici dosyaları (`flxy-….zip.XXXXXX`) silinir; günlük temizlik bir saatten eski olanları kaldırır.
+- Biçim aynı (manifest.json, database.sql.gz, files/…); eski yedekler ve geri yükleme etkilenmez. 65.535'ten çok dosya veya 4 GB üstü arşiv için ZIP64 yazılır. Var olan yedeğe paket ekleme ZipArchive ile sürer.
+
 ## 1.2.4
 - Ara bilgi metinleri ve çizgiler Flux Admin tonlarını izliyor (koyu modda okunur).
 

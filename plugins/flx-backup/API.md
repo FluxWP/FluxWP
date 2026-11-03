@@ -146,7 +146,7 @@ if ( $b ) {
 | `flxy_db_tables` | önekli tablolar | Yedeklenecek tablolar |
 | `flxy_db_batch_rows` | `500` (bellek <128 MB ise 200) | Bir SELECT'teki satır sayısı |
 | `flxy_step_seconds` | `20` (tarayıcıdaki göstergenin sürdüğü adımda 8), `$interactive` | Bir adımın süresi; `max_execution_time` daha kısaysa ona göre kısalır |
-| `flxy_step_bytes` | ölçülen hıza göre | Bir dosya alt adımında zip'e eklenecek en çok bayt (1.1.0) |
+| `flxy_step_bytes` | sınırsız (süre bütçesi belirler) | Bir dosya alt adımında zip'e eklenecek en çok bayt (1.1.0; 1.3.0'dan beri yalnız üst sınır) |
 | `flxy_upload_chunk_size` | `min(8 MB, yükleme sınırı − 256 KB)` | Yedek yüklemede parça boyutu (1.1.0) |
 | `flxy_upload_max_ratio` | `200` | Yüklenen zip'in açılmış boyutunun zip boyutuna en fazla oranı (1.1.0) |
 | `flxy_use_loopback` | `true` | Arka plan işinin kendi kendine sürmesi (kapalıysa yalnız WP-Cron ve ekran) |
