@@ -1459,3 +1459,18 @@ body.flxa #adminmenu div.wp-menu-image.flxa-svgmask::before {
 @media screen and (max-width: 782px) {
 	body.flxa:has(#wpwrap.wp-responsive-open) #flxai-host { visibility: hidden; }
 }
+
+/* Telefon yatay: dar menü sağda. iPhone'da çentik/kamera çoğu zaman solda kalır; iki yönde de safe-area boşluğu bırakılır.
+   Açılır alt menü kartları sola açılır (konumları admin.js railRight()). */
+@media screen and (min-width: 783px) and (max-height: 540px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
+	body.flxa:not(.flxa-appmode) #adminmenuwrap { left: auto; right: 0; border-right: 0; border-left: 1px solid var(--flxa-border); padding-right: env(safe-area-inset-right); }
+	body.flxa:not(.flxa-appmode).folded #wpcontent, body.flxa:not(.flxa-appmode).folded #wpfooter,
+	body.flxa:not(.flxa-appmode).auto-fold #wpcontent, body.flxa:not(.flxa-appmode).auto-fold #wpfooter { margin-left: 0; margin-right: calc(var(--flxa-rail-w) + env(safe-area-inset-right)); }
+	body.flxa:not(.flxa-appmode) #wpcontent { padding-left: calc(20px + env(safe-area-inset-left)); padding-right: 12px; }
+	html body.flxa:not(.flxa-appmode).folded #adminmenu .wp-submenu,
+	html body.flxa:not(.flxa-appmode).auto-fold #adminmenu .wp-submenu { left: auto !important; right: calc(var(--flxa-rail-w) + env(safe-area-inset-right)) !important; margin-left: 0 !important; margin-right: 14px !important; }
+	html body.flxa:not(.flxa-appmode).folded #adminmenu .wp-submenu::before,
+	html body.flxa:not(.flxa-appmode).auto-fold #adminmenu .wp-submenu::before { left: auto; right: -7px; border-left: 0; border-bottom: 0; border-right: 1px solid var(--flxa-border); border-top: 1px solid var(--flxa-border); border-radius: 0 3px 0 0; }
+	/* Flux AI düğmesi menünün soluna kayar (chat.css --flxai-edge) */
+	body.flxa:not(.flxa-appmode) #flxai-host { --flxai-edge: calc(var(--flxa-rail-w) + env(safe-area-inset-right)); }
+}

@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.6.13
+- Telefon yatayken dar menü sağda (iPhone'da çentik/kamera çoğu zaman solda kalır). Çentik hangi taraftaysa safe-area boşluğu bırakılır; alt menü kartları ve ipuçları sola açılır; "AI'ya sor" düğmesi menünün soluna kayar.
+
 ## 1.6.12
 - Favicon yenilendi: FluxWP işareti beyaz kontur ve ince gölge çizgisiyle, tam kare zemin yok (SVG, favicon.ico, 32 px PNG). Uygulama simgeleri değişmedi.
 
