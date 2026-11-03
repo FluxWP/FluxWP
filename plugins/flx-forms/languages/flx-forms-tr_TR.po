@@ -9087,3 +9087,7 @@ msgstr "Eklenti dizini dosya işlemleri için hazır"
 msgid "Cannot install addons: %s"
 msgstr "Eklentiler yüklenemiyor: %s"
 
+
+#. translators: %s: plugin names, comma separated
+msgid "Flux Forms replaces %s, which has been deactivated. Your forms, entries and settings stay in place. You can delete the old plugin."
+msgstr "Flux Forms, %s eklentisinin yerini aldı; eski eklenti devre dışı bırakıldı. Formlarınız, gelen yanıtlar ve ayarlarınız yerinde duruyor. Eski eklentiyi silebilirsiniz."

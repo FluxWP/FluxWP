@@ -9085,3 +9085,8 @@ msgstr ""
 msgid "Cannot install addons: %s"
 msgstr ""
 
+
+#. translators: %s: plugin names, comma separated
+#: includes/flx/efb-conflict.php
+msgid "Flux Forms replaces %s, which has been deactivated. Your forms, entries and settings stay in place. You can delete the old plugin."
+msgstr ""
