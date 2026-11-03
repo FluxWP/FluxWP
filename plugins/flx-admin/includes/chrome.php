@@ -362,9 +362,26 @@ function flxa_admin_bar( $bar ) {
 			'parent' => 'top-secondary',
 			'title'  => flxa_icon( 'auto' === $mode ? 'auto' : ( 'dark' === $mode ? 'moon' : 'sun' ), 18 ) . '<span class="screen-reader-text">' . esc_html__( 'Tema', 'flx-admin' ) . '</span>',
 			'href'   => '#',
-			'meta'   => array( 'class' => 'flxa-ab-btn', 'title' => __( 'Tema: otomatik / açık / koyu', 'flx-admin' ) ),
+			'meta'   => array( 'class' => 'flxa-ab-btn flxa-mode-pop', 'title' => __( 'Tema: tıklayınca açık / koyu', 'flx-admin' ) ),
 		)
 	);
+	// Açık seçim: tıklama yalnız açık ↔ koyu yapar, "Sistem" buradan seçilir.
+	$opts = array(
+		'light' => array( 'sun', __( 'Açık', 'flx-admin' ) ),
+		'dark'  => array( 'moon', __( 'Koyu', 'flx-admin' ) ),
+		'auto'  => array( 'auto', __( 'Sistem (cihaza göre)', 'flx-admin' ) ),
+	);
+	foreach ( $opts as $k => $o ) {
+		$bar->add_node(
+			array(
+				'id'     => 'flxa-mode-' . $k,
+				'parent' => 'flxa-mode',
+				'title'  => flxa_icon( $o[0], 16 ) . '<span class="flxa-mode-l">' . esc_html( $o[1] ) . '</span>' . flxa_icon( 'tick', 16 ),
+				'href'   => '#',
+				'meta'   => array( 'class' => 'flxa-mode-opt' . ( $k === $mode ? ' is-on' : '' ) ),
+			)
+		);
+	}
 }
 
 function flxa_footer_text( $t ) {

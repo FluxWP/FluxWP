@@ -1459,3 +1459,35 @@ body.flxa #adminmenu div.wp-menu-image.flxa-svgmask::before {
 @media screen and (max-width: 782px) {
 	body.flxa:has(#wpwrap.wp-responsive-open) #flxai-host { visibility: hidden; }
 }
+
+/* 1.7.0: tema düğmesinin menüsü (Açık / Koyu / Sistem). Tıklama açık ↔ koyu yapar. */
+body.flxa #wpadminbar #wp-admin-bar-flxa-mode .ab-sub-wrapper { min-width: 200px; right: 0; left: auto; }
+body.flxa #wpadminbar #wp-admin-bar-flxa-mode .flxa-mode-opt > .ab-item { display: flex !important; align-items: center; gap: 10px; height: auto; min-height: 34px; line-height: 1.3 !important; padding: 4px 12px !important; }
+body.flxa #wpadminbar #wp-admin-bar-flxa-mode .flxa-mode-opt .flxa-ico { color: var(--flxa-muted); flex: none; }
+body.flxa #wpadminbar #wp-admin-bar-flxa-mode .flxa-mode-opt .flxa-mode-l { flex: 1; }
+body.flxa #wpadminbar #wp-admin-bar-flxa-mode .flxa-mode-opt .flxa-ico:last-child { visibility: hidden; color: var(--flxa-accent-strong, var(--flxa-accent)); }
+body.flxa #wpadminbar #wp-admin-bar-flxa-mode .flxa-mode-opt.is-on .flxa-ico:last-child { visibility: visible; }
+body.flxa #wpadminbar #wp-admin-bar-flxa-mode .flxa-mode-opt.is-on > .ab-item { font-weight: 600; }
+
+/* 1.7.0: sol menü kaydırılınca öğeler arama kutusunun altında keskin kesilmesin; yumuşak geçişle kaybolsun. */
+body.flxa #adminmenu li.flxa-side-head::after,
+body.flxa #adminmenu li.flxa-side-foot::before { content: ""; position: absolute; left: 0; right: 0; height: 16px; pointer-events: none; }
+body.flxa #adminmenu li.flxa-side-head::after { top: 100%; background: linear-gradient(var(--flxa-side), transparent); }
+body.flxa #adminmenu li.flxa-side-foot::before { bottom: 100%; background: linear-gradient(transparent, var(--flxa-side)); }
+
+/* 1.7.0: Google Site Kit (Material bileşenleri) · yazı tipi panelle aynı, koyu temada okunur form öğeleri. */
+body.flxa:not(.flxa-appmode) .googlesitekit-plugin,
+body.flxa:not(.flxa-appmode) .googlesitekit-plugin :is(h1, h2, h3, h4, h5, h6, p, a, span, div, li, label, button, input, select, textarea, td, th, .mdc-typography, [class*="mdc-typography--"]) { font-family: var(--flxa-font) !important; }
+html.flxa-dark body.flxa:not(.flxa-appmode) .googlesitekit-plugin { color: var(--flxa-text); }
+html.flxa-dark body.flxa:not(.flxa-appmode) :is(.googlesitekit-plugin, .googlesitekit-setup) .mdc-radio__outer-circle,
+html.flxa-dark body.flxa:not(.flxa-appmode) :is(.googlesitekit-plugin, .googlesitekit-setup) .mdc-checkbox__background { border-color: var(--flxa-muted) !important; }
+html.flxa-dark body.flxa:not(.flxa-appmode) :is(.googlesitekit-plugin, .googlesitekit-setup) .mdc-radio__native-control:checked + .mdc-radio__background .mdc-radio__outer-circle,
+html.flxa-dark body.flxa:not(.flxa-appmode) :is(.googlesitekit-plugin, .googlesitekit-setup) .mdc-radio__native-control:checked + .mdc-radio__background .mdc-radio__inner-circle { border-color: var(--flxa-accent) !important; }
+html.flxa-dark body.flxa:not(.flxa-appmode) :is(.googlesitekit-plugin, .googlesitekit-setup) :is(.mdc-text-field__input, .mdc-select__selected-text, .mdc-select__anchor) { color: var(--flxa-text) !important; -webkit-text-fill-color: var(--flxa-text); }
+html.flxa-dark body.flxa:not(.flxa-appmode) :is(.googlesitekit-plugin, .googlesitekit-setup) :is(.mdc-notched-outline__leading, .mdc-notched-outline__notch, .mdc-notched-outline__trailing) { border-color: var(--flxa-border-strong) !important; }
+html.flxa-dark body.flxa:not(.flxa-appmode) :is(.googlesitekit-plugin, .googlesitekit-setup) :is(.mdc-floating-label, .mdc-text-field-helper-text) { color: var(--flxa-muted) !important; }
+html.flxa-dark body.flxa:not(.flxa-appmode) :is(.googlesitekit-plugin, .googlesitekit-setup) .mdc-select__dropdown-icon { filter: invert(.8); }
+html.flxa-dark body.flxa:not(.flxa-appmode) .mdc-menu-surface { background: var(--flxa-surface) !important; color: var(--flxa-text) !important; }
+html.flxa-dark body.flxa:not(.flxa-appmode) .mdc-menu-surface .mdc-list-item { color: var(--flxa-text) !important; }
+html.flxa-dark body.flxa:not(.flxa-appmode) .googlesitekit-plugin hr { border-color: var(--flxa-border) !important; }
+html.flxa-dark body.flxa:not(.flxa-appmode) .googlesitekit-logo__logo-text :is(path, g) { fill: var(--flxa-text) !important; }

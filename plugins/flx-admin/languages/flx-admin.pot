@@ -288,7 +288,7 @@ msgstr ""
 msgid "Ara (Ctrl+K)"
 msgstr ""
 
-msgid "Tema: otomatik / açık / koyu"
+msgid "Tema: tıklayınca açık / koyu"
 msgstr ""
 
 msgid "Flux Admin"
@@ -1140,4 +1140,7 @@ msgid "FluxWP tema ve eklentilerini güncelleme sunucusundan güncelle"
 msgstr ""
 
 msgid "Tema ayarları ve ön ayarlar"
+msgstr ""
+
+msgid "Sistem (cihaza göre)"
 msgstr ""

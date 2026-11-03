@@ -52,6 +52,7 @@ function flxa_icon_paths() {
 		'download' => '<path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/>',
 		'logout'   => '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/>',
 		'external' => '<path d="M14 4h6v6M20 4l-9 9"/><path d="M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/>',
+		'tick'     => '<path d="M20 6 9 17l-5-5"/>',
 		'dot'      => '<circle cx="12" cy="12" r="4"/>',
 	);
 }

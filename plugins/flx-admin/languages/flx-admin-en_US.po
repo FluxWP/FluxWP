@@ -288,8 +288,8 @@ msgstr "Search"
 msgid "Ara (Ctrl+K)"
 msgstr "Search (Ctrl+K)"
 
-msgid "Tema: otomatik / açık / koyu"
-msgstr "Theme: auto / light / dark"
+msgid "Tema: tıklayınca açık / koyu"
+msgstr "Theme: click for light / dark"
 
 msgid "Flux Admin"
 msgstr "Flux Admin"
@@ -1153,3 +1153,6 @@ msgstr "Update FluxWP themes and plugins from the update server"
 
 msgid "Tema ayarları ve ön ayarlar"
 msgstr "Theme settings and presets"
+
+msgid "Sistem (cihaza göre)"
+msgstr "System (follow device)"
