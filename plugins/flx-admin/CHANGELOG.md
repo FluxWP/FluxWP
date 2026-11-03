@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.6.1
+- Düzeltme: koyu mod rengi tanımlamayan temalarda (theme.json `custom.dark.primary` yok) "Array to string conversion" uyarısı (includes/helpers.php). WordPress bu durumda tüm ayar dizisini döndürüyordu; artık yalnız metin değeri kullanılıyor.
+
 ## 1.6.0
 - Yeni paket logoları (FluxWP ikon seti): tutarlı çizgi ikonlar, 5 renk grubu (yönetim, bakım, iletişim, içerik, ticaret). Eksik olan Analytics, App, Lang, Migrate, QR Menu, Roles, Setup, Social, Speed, Studio, Staff, TV logoları eklendi.
 - Görünüm › Paket logoları: Degrade (varsayılan) ya da Pastel. Sol menü, Flux Updater ve FluxWP App bu seçimi izler. Filtre `flx_logo_style`, yardımcılar `flxa_logo_style()` ve `flxa_logo_file_url()`.
