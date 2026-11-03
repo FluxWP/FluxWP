@@ -328,7 +328,11 @@ final class FLXU_Installer {
 			$this->add( false, sprintf( __( '%1$s etkinleştirilmedi: önce %2$s kurulup etkinleştirilmeli.', 'flx-setup' ), $name, implode( ', ', $missing ) ) );
 			return false;
 		}
-		$res = activate_plugin( $file, '', false, true );
+		// silent = false: paketin etkinleştirme kancası (tablolar, varsayılan ayarlar) çalışmalı.
+		$res = activate_plugin( $file, '', false, false );
+		if ( is_wp_error( $res ) && 'unexpected_output' === $res->get_error_code() && is_plugin_active( $file ) ) {
+			$res = null; // Eklenti etkin; kanca yalnız beklenmedik çıktı üretti.
+		}
 		if ( is_wp_error( $res ) ) {
 			/* translators: 1: plugin, 2: error */
 			$this->add( false, sprintf( __( '%1$s etkinleştirilemedi: %2$s', 'flx-setup' ), $name, wp_strip_all_tags( $res->get_error_message() ) ) );

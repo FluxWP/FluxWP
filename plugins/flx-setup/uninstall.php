@@ -7,7 +7,7 @@
 defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
 
 global $wpdb;
-foreach ( array( 'flxk_state', 'flxk_history', 'flxk_patches', 'flxk_settings', 'flxk_install_queue', 'flxk_onboarding' ) as $flxk_opt ) {
+foreach ( array( 'flxk_state', 'flxk_history', 'flxk_patches', 'flxk_settings', 'flxk_install_queue', 'flxk_onboarding', 'flxk_activation_repaired', 'flxk_repair_version' ) as $flxk_opt ) {
 	delete_option( $flxk_opt );
 }
 $wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE 'flxk\\_run\\_%'" ); // phpcs:ignore WordPress.DB
