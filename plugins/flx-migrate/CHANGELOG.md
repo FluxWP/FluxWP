@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.1.5
+- Yeni eklenti aktarımdan önce etkinleştirilip kendi tablolarını doldurduysa (ör. Flux Tasks hoş geldin görevi) eski tablo artık atlanmıyor: yeni tablo `<ad>_bakAAGG` adıyla yedeklenir, eski veri onun yerine taşınır. Eski tablo boşsa yeni tabloya dokunulmaz. Aktarım yeniden çalıştırılınca önceden atlanan tablolar da taşınır.
+
 ## 0.1.4
 - Bitiş adımı eski güncelleme sunucusunun (update.yesilturkiyeist.org) adresini ve site anahtarını Flux Setup ayarlarından siler; site varsayılan sunucuya (updater.fluxwp.com) döner, yeni anahtar FluxWP Panel'den girilir. Liste `flx_migrate_old_update_hosts` filtresiyle değişir.
 

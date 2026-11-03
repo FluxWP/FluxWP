@@ -18,7 +18,7 @@ WP-CLI: `wp flx-migrate scan` ve `wp flx-migrate run`.
 
 | Adım | Ne yapar |
 |---|---|
-| Tablolar | `{prefix}<eski>` tablolarını yeni adla yeniden adlandırır (hedef boşsa önce siler) |
+| Tablolar | `{prefix}<eski>` tablolarını yeni adla yeniden adlandırır (hedef doluysa `<ad>_bakAAGG` adıyla yedekler) |
 | Tablo içerikleri | Bu tabloların metin sütunlarındaki eski tanımlayıcılar |
 | Ayarlar | Option adları ve değerleri (serileştirilmiş/JSON değerler içinde de), etkin eklentiler, roller ve yetkiler, cron kancaları; eski geçici veriler (transient) silinir |
 | Tema | `stylesheet`/`template` ve `theme_mods_*` |

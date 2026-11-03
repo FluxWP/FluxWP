@@ -124,12 +124,23 @@ final class Flx_Migrate_Migrator {
 			$target = $pfx . $new;
 			if ( in_array( $target, $tables, true ) ) {
 				$rows = (int) $wpdb->get_var( "SELECT COUNT(*) FROM `{$target}`" ); // phpcs:ignore
-				if ( $rows > 0 ) {
+				$old  = (int) $wpdb->get_var( "SELECT COUNT(*) FROM `{$t}`" ); // phpcs:ignore
+				if ( $rows > 0 && 0 === $old ) {
 					/* translators: 1: eski tablo, 2: yeni tablo */
-					$notes[] = sprintf( __( '%1$s atlandı: %2$s dolu.', 'flx-migrate' ), $t, $target );
+					$notes[] = sprintf( __( '%1$s boş, %2$s olduğu gibi bırakıldı.', 'flx-migrate' ), $t, $target );
 					continue;
 				}
-				if ( ! $this->dry ) {
+				if ( $rows > 0 ) {
+					// The new plugin was activated before the migration and wrote its
+					// own rows (e.g. a welcome task). The old data wins; the new
+					// table is kept under a backup name instead of being dropped.
+					$bak = $this->backup_name( $target, $tables );
+					/* translators: 1: yeni tablo, 2: yedek tablo, 3: eski tablo */
+					$notes[] = sprintf( __( '%1$s doluydu: %2$s adıyla yedeklendi, yerine %3$s taşındı.', 'flx-migrate' ), $target, $bak, $t );
+					if ( ! $this->dry ) {
+						$wpdb->query( "RENAME TABLE `{$target}` TO `{$bak}`" ); // phpcs:ignore
+					}
+				} elseif ( ! $this->dry ) {
 					$wpdb->query( "DROP TABLE `{$target}`" ); // phpcs:ignore
 				}
 			}
@@ -139,6 +150,16 @@ final class Flx_Migrate_Migrator {
 			$changed++;
 		}
 		return $this->res( true, 0, $changed, $notes );
+	}
+
+	/** Free backup table name (MySQL table names are limited to 64 characters). */
+	private function backup_name( string $target, array $tables ): string {
+		$base = substr( $target, 0, 52 ) . '_bak' . gmdate( 'md' );
+		$name = $base;
+		for ( $i = 2; in_array( $name, $tables, true ); $i++ ) {
+			$name = $base . '_' . $i;
+		}
+		return $name;
 	}
 
 	/** Yeni adlı tabloların metin sütunlarında eski tanımlayıcılar. */

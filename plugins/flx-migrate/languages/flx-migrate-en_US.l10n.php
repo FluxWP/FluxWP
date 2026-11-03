@@ -5,7 +5,8 @@ return array(
 	'plural-forms' => 'nplurals=2; plural=(n != 1);',
 	'messages' => array(
 		'Eski paket adlarıyla kaydedilmiş site verilerini (ayarlar, tablolar, meta, içerik, tema, yükleme klasörleri) FluxWP adlarına taşır. Ad eşlemesi map.json\'dadır.' => 'Moves site data saved under the old package names (settings, tables, meta, content, theme, upload folders) to the FluxWP names. The name map is in map.json.',
-		'%1$s atlandı: %2$s dolu.' => '%1$s skipped: %2$s is not empty.',
+		'%1$s boş, %2$s olduğu gibi bırakıldı.' => '%1$s is empty, %2$s was left as it is.',
+		'%1$s doluydu: %2$s adıyla yedeklendi, yerine %3$s taşındı.' => '%1$s was not empty: it was backed up as %2$s and replaced by %3$s.',
 		'%s zaten var, klasör taşınmadı.' => '%s already exists, folder not moved.',
 		'Adım' => 'Step',
 		'Eski güncelleme sunucusu adresi ve site anahtarı silindi. FluxWP Panel › Ayarlar\'da yeni sunucunun anahtarını girin.' => 'The old update server address and site key were removed. Enter the key for the new server in FluxWP Panel › Settings.',
