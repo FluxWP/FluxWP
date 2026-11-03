@@ -20,17 +20,8 @@ final class FLXU_Sources {
 	const CACHE  = 'flxu_source_catalogs';
 	const PINS   = 'flxu_pins';
 
-	/** İlk kurulumda eklenen public kaynak. */
-	const DEFAULT_EXTRAS = array(
-		array(
-			'id'      => 'wp-extras',
-			'name'    => 'FluxWP Extras',
-			'type'    => 'github',
-			'url'     => 'https://github.com/FluxWP/wp-extras',
-			'key'     => '',
-			'enabled' => 1,
-		),
-	);
+	/** Ek kaynak gelmez: FluxWP Extras (public) ana sunucudan anahtarsız gelir. */
+	const DEFAULT_EXTRAS = array();
 
 	/** Panelden eklenen kaynaklar (ana sunucu hariç). */
 	public static function extra(): array {

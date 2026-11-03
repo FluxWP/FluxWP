@@ -9,7 +9,7 @@
  * License:           GPL-2.0-or-later
  * Text Domain:       flx-roles
  * Domain Path:       /languages
- * Update URI:        https://update.yesilturkiyeist.org/flx-roles
+ * Update URI:        https://updater.fluxwp.com/flx-roles
  */
 
 defined( 'ABSPATH' ) || exit;

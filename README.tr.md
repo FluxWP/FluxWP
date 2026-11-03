@@ -217,7 +217,7 @@ release'den tanır, ayrıca ayar gerekmez. Siteye ilk kurulum: **Ayarlar › Flu
 
 ### Sunucu ve siteler
 
-Güncelleme sunucusu ayrı repoda: [FluxWP/updater](https://github.com/FluxWP/updater) (`update.yesilturkiyeist.org`).
+Güncelleme sunucusu ayrı repoda: [FluxWP/updater](https://github.com/FluxWP/updater) (`updater.fluxwp.com`).
 Sitelerde `plugins/flx-updater` kurulu olmalı; kurulum adımları o reponun README'sinde.
 
 ### flx-wc-bagis (kaldırıldı)

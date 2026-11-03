@@ -9,7 +9,7 @@
  * License:           GPL-2.0-or-later
  * Text Domain:       flx-setup
  * Domain Path:       /languages
- * Update URI:        https://update.yesilturkiyeist.org/flx-setup
+ * Update URI:        https://updater.fluxwp.com/flx-setup
  */
 
 defined( 'ABSPATH' ) || exit;

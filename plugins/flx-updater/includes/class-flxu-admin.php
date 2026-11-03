@@ -90,7 +90,6 @@ final class FLXU_Admin {
 		$labels = array(
 			'connected' => array( '#1e8e3e', __( 'Bağlı', 'flx-updater' ) . ( ! empty( $status['site'] ) ? ': ' . $status['site'] : '' ) ),
 			'error'     => array( '#d63638', __( 'Bağlantı hatası', 'flx-updater' ) ),
-			'no_key'    => array( '#dba617', __( 'Bağlı değil', 'flx-updater' ) ),
 			'unknown'   => array( '#dba617', __( 'Henüz kontrol edilmedi', 'flx-updater' ) ),
 		);
 		list( $color, $text ) = $labels[ $state ];
@@ -325,12 +324,9 @@ final class FLXU_Admin {
 	/* ------------------------------------------------------------------ */
 
 	/**
-	 * Bağlantı durumu: connected | error | no_key | unknown.
+	 * Bağlantı durumu: connected | error | unknown. Anahtarsız bağlantı da "connected" (public paketler).
 	 */
 	public static function connection_state( array $status ): string {
-		if ( '' === FLXU_Updater::key() ) {
-			return 'no_key';
-		}
 		if ( empty( $status['checked'] ) ) {
 			return 'unknown';
 		}
@@ -353,16 +349,17 @@ final class FLXU_Admin {
 		switch ( $state ) {
 			case 'connected':
 				$title = __( 'Bağlı', 'flx-updater' );
-				/* translators: 1: site name on server, 2: server host */
-				$line = sprintf( __( 'Sunucuda "%1$s" olarak tanınıyor (%2$s).', 'flx-updater' ), $status['site'], $host );
+				if ( '' === FLXU_Updater::key() ) {
+					/* translators: %s: server host */
+					$line = sprintf( __( 'Anahtarsız bağlı (%s): public paketler geliyor. Private paketler için site anahtarı girin.', 'flx-updater' ), $host );
+				} else {
+					/* translators: 1: site name on server, 2: server host */
+					$line = sprintf( __( 'Sunucuda "%1$s" olarak tanınıyor (%2$s).', 'flx-updater' ), $status['site'], $host );
+				}
 				break;
 			case 'error':
 				$title = __( 'Bağlantı hatası', 'flx-updater' );
 				$line  = (string) $status['error'];
-				break;
-			case 'no_key':
-				$title = __( 'Bağlı değil', 'flx-updater' );
-				$line  = __( 'Site anahtarı girilmemiş. Anahtarı güncelleme sunucusunun yönetim panelinden (/admin) alın.', 'flx-updater' );
 				break;
 			default:
 				$title = __( 'Henüz kontrol edilmedi', 'flx-updater' );
@@ -436,7 +433,7 @@ final class FLXU_Admin {
 								<?php if ( $settings['key'] ) : ?>
 									<label style="margin-left:8px"><input type="checkbox" name="clear_key" value="1"> <?php esc_html_e( 'Anahtarı sil', 'flx-updater' ); ?></label>
 								<?php endif; ?>
-								<p class="description"><?php esc_html_e( 'Güncelleme sunucusunun yönetim panelinde (/admin) "Site ekle" ile alınır. Her siteye ayrı anahtar verin.', 'flx-updater' ); ?></p>
+								<p class="description"><?php esc_html_e( 'İsteğe bağlı. Public paketler anahtarsız gelir; private paketler için güncelleme sunucusunun panelinde (/admin) "Site ekle" ile alınır. Her siteye ayrı anahtar verin.', 'flx-updater' ); ?></p>
 							<?php endif; ?>
 						</td>
 					</tr>
@@ -586,7 +583,7 @@ final class FLXU_Admin {
 					</tr></thead>
 					<tbody>
 					<?php if ( ! $rows ) : ?>
-						<tr><td></td><td colspan="5"><?php esc_html_e( 'Sunucudan paket listesi alınamadı. Ayarlar\'dan anahtarı girip "Bağlantıyı test et"e basın.', 'flx-updater' ); ?></td></tr>
+						<tr><td></td><td colspan="5"><?php esc_html_e( 'Sunucudan paket listesi alınamadı. Ayarlar\'dan sunucu adresini ve (varsa) anahtarı kontrol edip "Bağlantıyı test et"e basın.', 'flx-updater' ); ?></td></tr>
 					<?php endif; ?>
 					<?php foreach ( $rows as $row ) : ?>
 						<?php
@@ -1154,7 +1151,7 @@ final class FLXU_Admin {
 			.flxu-dot{width:12px;height:12px;border-radius:50%;background:#a7aaad;flex:none}
 			.flxu-card--connected{border-left-color:#1e8e3e}.flxu-card--connected .flxu-dot{background:#1e8e3e;box-shadow:0 0 0 4px #e6f4ea}
 			.flxu-card--error{border-left-color:#d63638}.flxu-card--error .flxu-dot{background:#d63638;box-shadow:0 0 0 4px #fcf0f1}
-			.flxu-card--no_key,.flxu-card--unknown{border-left-color:#dba617}.flxu-card--no_key .flxu-dot,.flxu-card--unknown .flxu-dot{background:#dba617}
+			.flxu-card--unknown{border-left-color:#dba617}.flxu-card--unknown .flxu-dot{background:#dba617}
 			.flxu-badge{display:inline-block;padding:2px 8px;border-radius:999px;background:#f0f0f1;color:#50575e;font-size:12px;margin-right:6px}
 			.flxu-badge--ok{background:#e6f4ea;color:#1e6b2e}
 			.flxu-badge--update{background:#fcf0e3;color:#9a4d00}

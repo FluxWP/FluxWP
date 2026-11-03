@@ -9,7 +9,7 @@
  * License:           GPL-2.0-or-later
  * Text Domain:       flx-social
  * Domain Path:       /languages
- * Update URI:        https://update.yesilturkiyeist.org/flx-social
+ * Update URI:        https://updater.fluxwp.com/flx-social
  */
 
 defined( 'ABSPATH' ) || exit;
