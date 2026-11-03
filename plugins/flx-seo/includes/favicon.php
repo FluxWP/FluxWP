@@ -35,7 +35,8 @@ add_action(
 		if ( has_site_icon() ) {
 			return;
 		}
-		// Temanın SVG favicon'u da kalır; Google PNG/ICO'yu daha güvenilir okur.
+		// SVG modern tarayıcılar için (açık/koyu uyumlu); Google PNG/ICO'yu daha güvenilir okur.
+		echo '<link rel="icon" type="image/svg+xml" href="' . esc_url( flxseo_icon( 'favicon.svg' ) ) . '">' . "\n";
 		echo '<link rel="icon" type="image/x-icon" sizes="48x48" href="' . esc_url( home_url( '/favicon.ico' ) ) . '">' . "\n";
 		echo '<link rel="icon" type="image/png" sizes="96x96" href="' . esc_url( flxseo_icon( 'icon-96.png' ) ) . '">' . "\n";
 		echo '<link rel="icon" type="image/png" sizes="192x192" href="' . esc_url( flxseo_icon( 'icon-192.png' ) ) . '">' . "\n";
@@ -104,7 +105,11 @@ function flxseo_root_favicon() {
 		return;
 	}
 	$target = ABSPATH . 'favicon.ico';
-	if ( ! file_exists( $target ) && wp_is_writable( ABSPATH ) ) {
+	// Eski sürümlerin kopyaladığı yaprak simgesi yenisiyle değişir; sitenin kendi dosyasına dokunulmaz.
+	$old = array( '0f51008ee404c8d60867988ea1fc2aba' );
+	if ( file_exists( $target ) && in_array( md5_file( $target ), $old, true ) && wp_is_writable( $target ) ) {
+		copy( FLXSEO_DIR . 'assets/icons/favicon.ico', $target ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+	} elseif ( ! file_exists( $target ) && wp_is_writable( ABSPATH ) ) {
 		copy( FLXSEO_DIR . 'assets/icons/favicon.ico', $target ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 	}
 	update_option( 'flxseo_root_favicon', FLXSEO_VERSION, false );
