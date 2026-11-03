@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.0.2
+- Kurulum ekranında sol liste ve sağdaki çark dikeyde ortada.
+
 ## 1.0.1
 - "Neyle başlayalım?" ekranına **Dernek ve bağış** kartı (Flux Donate + Flux Certificates) ve sade bir illüstrasyon. Mağaza ile Dernek tema gibi tek seçimli: biri seçilince diğeri kalkar.
 - Eklentiler kategorilere ayrıldı (Yönetim, İletişim, Büyüme, Yapay zekâ, Sistem); her kategori ayrı ekran, kare kartlar, tam açıklama. Filtre `flxk_onboarding_groups`; `flxk_onboarding_core` artık kart listesi alır.
