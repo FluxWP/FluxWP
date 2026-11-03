@@ -527,8 +527,19 @@ final class Flx_Migrate_Migrator {
 				continue;
 			}
 			if ( file_exists( $base . '/' . $n ) ) {
-				/* translators: %s: klasör */
-				$notes[] = sprintf( __( '%s zaten var, klasör taşınmadı.', 'flx-migrate' ), 'uploads/' . $n );
+				// The new plugin already created its folder (protection files,
+				// seed data): move the old files in, keep what is already there.
+				$kept  = 0;
+				$moved = $this->merge_dir( $base . '/' . $d, $base . '/' . $n, $kept );
+				if ( $moved ) {
+					$changed++;
+					/* translators: 1: eski klasör, 2: yeni klasör, 3: dosya sayısı */
+					$notes[] = sprintf( __( '%1$s içindeki %3$d öğe %2$s klasörüne taşındı.', 'flx-migrate' ), 'uploads/' . $d, 'uploads/' . $n, $moved );
+				}
+				if ( $kept ) {
+					/* translators: 1: eski klasör, 2: sayı */
+					$notes[] = sprintf( __( '%1$s içinde aynı adlı %2$d dosya yeni klasörde zaten vardı, eski kopyaları yerinde bırakıldı.', 'flx-migrate' ), 'uploads/' . $d, $kept );
+				}
 				continue;
 			}
 			$changed++;
@@ -537,6 +548,39 @@ final class Flx_Migrate_Migrator {
 			}
 		}
 		return $this->res( true, 0, $changed, $notes );
+	}
+
+	/**
+	 * Moves entries of $from into $to; existing files in $to win. Returns
+	 * the number of moved entries; $kept counts files left in $from.
+	 */
+	private function merge_dir( string $from, string $to, int &$kept ): int {
+		$moved = 0;
+		foreach ( (array) scandir( $from ) as $e ) {
+			if ( '.' === $e || '..' === $e ) {
+				continue;
+			}
+			$src = $from . '/' . $e;
+			$dst = $to . '/' . $e;
+			if ( ! file_exists( $dst ) ) {
+				$moved++;
+				if ( ! $this->dry ) {
+					rename( $src, $dst ); // phpcs:ignore
+				}
+			} elseif ( is_dir( $src ) && is_dir( $dst ) ) {
+				$moved += $this->merge_dir( $src, $dst, $kept );
+			} elseif ( is_file( $src ) && is_file( $dst ) && md5_file( $src ) === md5_file( $dst ) ) {
+				if ( ! $this->dry ) {
+					unlink( $src ); // phpcs:ignore
+				}
+			} else {
+				$kept++;
+			}
+		}
+		if ( ! $this->dry ) {
+			@rmdir( $from ); // phpcs:ignore -- only succeeds when empty.
+		}
+		return $moved;
 	}
 
 	private function step_finish( int $cursor ): array {
