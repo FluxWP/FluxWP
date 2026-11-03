@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 1.0.11
+- Anonim kullanım verisi (telemetri). Yalnız "Ürünü geliştirmemize yardımcı olun" kutusu işaretliyse (`flxk_telemetry` = `'1'`, varsayılan kapalı) çalışır. Günde en fazla bir kez telemetri adresine gönderilir (varsayılan `https://fluxwp.com/wp-json/flxan/v1/telemetry`, Flux Analytics telemetri merkezi): rastgele kurulum kimliği (güncelleme anahtarıyla ilişkisiz), WordPress sürümü, PHP ana sürümü, site dili, etkin FluxWP eklentileri ve teması (sürümleriyle), FluxWP dosyalarından gelen PHP hata/uyarıları (tür, temizlenmiş mesaj, göreli dosya, satır, tekrar sayısı), kurulum sihirbazında hangi adıma kadar gelindiği, seçilen ve bırakılan kartlar, ön ayar ve renk stili, bitirildi/atlandı ve yaklaşık süre (sihirbaz verisi tarayıcıda tutulur, siteye yalnız kutu işaretliyse kaydedilir).
+- Gönderilmez: site adresi, IP, kullanıcı, e-posta, içerik, FluxWP dışı eklentiler, güncelleme anahtarı. İstek WordPress'in site adresini içeren User-Agent'ını ve anahtar başlığını taşımaz. Mesajlardan sunucu yolları, alan adı, URL, e-posta ve IP temizlenir.
+- FluxWP Panel › Ayarlar'da **Anonim kullanım verisi** kartı: durum, son gönderim, telemetri adresi (boşsa FluxWP; başka bir Flux Analytics sitesini merkez yapmak için), gönderilecek verinin önizlemesi ve Şimdi gönder.
+- Kutu kapatılınca zamanlama, bekleyen hatalar ve rastgele kimlik silinir. Filtreler `flxk_telemetry_enabled`, `flxk_telemetry_url`, `flxk_telemetry_payload`; önizleme `FLXK_Telemetry::payload( false )`.
+
 ## 1.0.10
 - Paketler (telefon): logosu olmayan pakette yer tutucu simge metnin üstüne binmiyordu; artık logo kutusunun yerinde.
 - Ön ayar paketlerinin kendi logoları: Yeşil Türkiye Preset (ağaçlar, yeşil), Hayır Kapısı Preset (açık kapı, turuncu), FluxWP Site Preset (sayfa şablonu, mor).

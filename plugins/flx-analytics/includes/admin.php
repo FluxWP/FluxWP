@@ -259,6 +259,20 @@ class FLXAN_Admin {
 						</tr>
 					</table>
 				</div>
+				<div class="flxan-box" id="flxan-tm">
+					<h2><?php esc_html_e( 'Telemetri merkezi', 'flx-analytics' ); ?></h2>
+					<table class="form-table" role="presentation">
+						<tr>
+							<th scope="row"><?php esc_html_e( 'FluxWP kurulumlarından veri al', 'flx-analytics' ); ?></th>
+							<td><label><input type="checkbox" name="s[tm_hub]" value="1" <?php checked( $s['tm_hub'] ); ?>> <?php esc_html_e( 'Açık', 'flx-analytics' ); ?></label>
+								<p class="description"><?php esc_html_e( 'FluxWP Panel\'de "Ürünü geliştirmemize yardımcı olun" kutusunu işaretleyen siteler günde bir kez anonim kullanım verisi gönderir: hangi FluxWP eklentilerinin birlikte kullanıldığı, sürümler, FluxWP kaynaklı PHP hataları ve kurulum sihirbazında ilerleme. IP ve site adresi saklanmaz, kayıtlar 90 gün tutulur. Açınca sol menüde "Ürün telemetrisi" görünür.', 'flx-analytics' ); ?></p>
+								<?php if ( class_exists( 'FLXAN_Telemetry_Hub' ) ) : ?>
+									<p><?php esc_html_e( 'Toplama adresi (FluxWP Panel › Ayarlar › Telemetri adresi):', 'flx-analytics' ); ?> <code><?php echo esc_html( FLXAN_Telemetry_Hub::endpoint() ); ?></code></p>
+								<?php endif; ?>
+							</td>
+						</tr>
+					</table>
+				</div>
 				<?php submit_button(); ?>
 			</form>
 

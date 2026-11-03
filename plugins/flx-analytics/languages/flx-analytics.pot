@@ -141,6 +141,18 @@ msgstr ""
 msgid "Günlük özetler çok yer tutmaz; sınırsız bırakmak genelde sorun değildir."
 msgstr ""
 
+msgid "Telemetri merkezi"
+msgstr ""
+
+msgid "FluxWP kurulumlarından veri al"
+msgstr ""
+
+msgid "FluxWP Panel'de \"Ürünü geliştirmemize yardımcı olun\" kutusunu işaretleyen siteler günde bir kez anonim kullanım verisi gönderir: hangi FluxWP eklentilerinin birlikte kullanıldığı, sürümler, FluxWP kaynaklı PHP hataları ve kurulum sihirbazında ilerleme. IP ve site adresi saklanmaz, kayıtlar 90 gün tutulur. Açınca sol menüde \"Ürün telemetrisi\" görünür."
+msgstr ""
+
+msgid "Toplama adresi (FluxWP Panel › Ayarlar › Telemetri adresi):"
+msgstr ""
+
 msgid "Veri"
 msgstr ""
 
@@ -684,6 +696,234 @@ msgstr ""
 msgid "Tablolar güncellendi."
 msgstr ""
 
+msgid "Ürün telemetrisi"
+msgstr ""
+
+msgid "(tema)"
+msgstr ""
+
+msgid "Tanıtım"
+msgstr ""
+
+msgid "Neyle başlayalım?"
+msgstr ""
+
+msgid "Görünüm"
+msgstr ""
+
+msgid "Kurulum"
+msgstr ""
+
+msgid "Bitti"
+msgstr ""
+
+msgid "Eklentiler: %s"
+msgstr ""
+
+msgid "Bu aralıkta kayıt yok."
+msgstr ""
+
+msgid "Genel bakış"
+msgstr ""
+
+msgid "Hatalar"
+msgstr ""
+
+msgid "Kurulum sihirbazı"
+msgstr ""
+
+msgid "%d gün"
+msgstr ""
+
+msgid "FluxWP Panel'de \"Ürünü geliştirmemize yardımcı olun\" kutusunu işaretleyen sitelerden günde bir kez gelen anonim veri. IP ve site adresi saklanmaz; kayıtlar 90 gün tutulur."
+msgstr ""
+
+msgid "Raporlayan site"
+msgstr ""
+
+msgid "Tekil kurulum"
+msgstr ""
+
+msgid "Rapor"
+msgstr ""
+
+msgid "Günde en fazla bir / site"
+msgstr ""
+
+msgid "Farklı hata"
+msgstr ""
+
+msgid "%s ölümcül"
+msgstr ""
+
+msgid "Hata olayı"
+msgstr ""
+
+msgid "Toplam tekrar"
+msgstr ""
+
+msgid "Henüz rapor yok."
+msgstr ""
+
+msgid "Sitelerdeki FluxWP Panel bu adrese gönderir:"
+msgstr ""
+
+msgid "Eklenti kullanımı"
+msgstr ""
+
+msgid "Paket"
+msgstr ""
+
+msgid "Pay"
+msgstr ""
+
+msgid "Yaygın sürüm"
+msgstr ""
+
+msgid "Birlikte kullanılanlar"
+msgstr ""
+
+msgid "İkili"
+msgstr ""
+
+msgid "Yalnız FluxWP Panel"
+msgstr ""
+
+msgid "En sık paket setleri"
+msgstr ""
+
+msgid "Set (FluxWP Panel hariç)"
+msgstr ""
+
+msgid "Sürüm"
+msgstr ""
+
+msgid "Site dili"
+msgstr ""
+
+msgid "Dil"
+msgstr ""
+
+msgid "Hata kaydı silindi. Yeniden olursa tekrar görünür."
+msgstr ""
+
+msgid "Tüm paketler"
+msgstr ""
+
+msgid "Tüm türler"
+msgstr ""
+
+msgid "Yalnız ölümcül"
+msgstr ""
+
+msgid "Süz"
+msgstr ""
+
+msgid "%s kayıt"
+msgstr ""
+
+msgid "Bu aralıkta hata yok."
+msgstr ""
+
+msgid "Hata"
+msgstr ""
+
+msgid "Tekrar"
+msgstr ""
+
+msgid "Son"
+msgstr ""
+
+msgid "%s önce"
+msgstr ""
+
+msgid "Çözüldü olarak kaldır"
+msgstr ""
+
+msgid "Çözüldü"
+msgstr ""
+
+msgid "Tüm hata kayıtları silinsin mi?"
+msgstr ""
+
+msgid "Tüm hataları temizle"
+msgstr ""
+
+msgid "Mesajlardan sunucu yolları, alan adı, URL, e-posta ve IP silinmiş olarak gelir. Aynı paket, sürüm, dosya ve satırdaki aynı hata tek kayıttır; \"Site\" kaç farklı kurulumda görüldüğüdür."
+msgstr ""
+
+msgid "Sihirbaz açılışı"
+msgstr ""
+
+msgid "Kurulum başına son çalıştırma"
+msgstr ""
+
+msgid "Bitiren"
+msgstr ""
+
+msgid "site"
+msgstr ""
+
+msgid "Atlayan"
+msgstr ""
+
+msgid "Yarıda bırakan"
+msgstr ""
+
+msgid "Bitirenlerde ortanca süre %s dk"
+msgstr ""
+
+msgid "Henüz sihirbaz verisi yok."
+msgstr ""
+
+msgid "FluxWP Panel 1.0.11 ve üstü, sihirbaz bitince ya da kapatılınca son adımı ve seçimleri gönderir."
+msgstr ""
+
+msgid "Adımlara ulaşan"
+msgstr ""
+
+msgid "Adım"
+msgstr ""
+
+msgid "atladı"
+msgstr ""
+
+msgid "kapattı"
+msgstr ""
+
+msgid "Nerede bıraktılar"
+msgstr ""
+
+msgid "Son adım"
+msgstr ""
+
+msgid "Herkes bitirdi."
+msgstr ""
+
+msgid "Kart seçimleri"
+msgstr ""
+
+msgid "Kart"
+msgstr ""
+
+msgid "Seçen"
+msgstr ""
+
+msgid "Seçip vazgeçen"
+msgstr ""
+
+msgid "Öneriyi kaldıran"
+msgstr ""
+
+msgid "Ön ayar (bitirenler)"
+msgstr ""
+
+msgid "Renk stili (bitirenler)"
+msgstr ""
+
+msgid "Seçim"
+msgstr ""
+
 msgid "Hızlı uç çalışıyor"
 msgstr ""
 
@@ -1035,9 +1275,6 @@ msgstr ""
 msgid "Şurada biten"
 msgstr ""
 
-msgid "Adım"
-msgstr ""
-
 msgid "Adım azalt"
 msgstr ""
 
@@ -1135,9 +1372,6 @@ msgid "Gösterilecek yol yok."
 msgstr ""
 
 msgid "Yol"
-msgstr ""
-
-msgid "Pay"
 msgstr ""
 
 msgid "Öncekine göre"

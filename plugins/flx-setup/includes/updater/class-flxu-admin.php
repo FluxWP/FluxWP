@@ -803,6 +803,7 @@ final class FLXU_Admin {
 			<?php self::status_card( FLXU_Updater::status(), FLXU_Updater::instance()->catalog() ); ?>
 			<?php self::connection_form( FLXU_Updater::settings() ); ?>
 			<?php self::sources_section( $msg ); ?>
+			<?php do_action( 'flxu_settings_after' ); ?>
 		</div>
 		<?php
 		self::page_assets();

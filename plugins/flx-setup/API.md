@@ -60,6 +60,17 @@ add_filter( 'flx_preset_importers', function ( $t ) {
 | `flxk_legal_urls` (`$urls`) | sihirbaz ve Ayarlar'daki yasal metin linkleri (`terms`, `privacy`, `kvkk`) |
 | `flxk_telemetry_changed` (`$on`) | kullanım verisi izni verilince ya da geri alınınca |
 
+## Anonim telemetri
+
+`includes/telemetry.php`, sınıf `FLXK_Telemetry`. Açık rıza seçeneği `flxk_telemetry` (`'1'` = açık; yazan: sihirbaz ve Ayarlar). Kapalıyken hata işleyicisi kurulmaz, hiçbir şey gönderilmez.
+
+- Gönderim: günlük WP-Cron `flxk_telemetry_send`, `POST <telemetri adresi>` (option `flxk_telemetry_url`, boşsa `https://fluxwp.com/wp-json/flxan/v1/telemetry`; alıcı Flux Analytics telemetri merkezi). JSON, `v: 1`. Alanlar: `id` (32 hex, `flxk_telemetry_id`), `wp`, `php` (ana.alt), `locale`, `multisite`, `panel`, `plugins` ve `themes` (slug => sürüm, yalnız FluxWP), `errors` (`p` slug, `k` plugin|theme, `v` sürüm, `t` E_* türü, `m` temizlenmiş mesaj, `f` paket içi yol, `l` satır, `n` sayı), `onboarding` (son sihirbaz çalıştırması: `out` done|skip|left, `max`/`total` adım, `at` son adım, `path`, `picked`, `dropped`, `rec_off`, `preset`, `style`, `secs`, `runs`).
+- Sihirbaz: `assets/onboarding/telemetry.js` DOM'u izler, çıkışta `wp_ajax_flxk_tm_funnel` ile siteye yazar (yalnız kutu açıksa saklanır, option `flxk_telemetry_funnel`).
+- Ayarlar kartı `flxu_settings_after` kancasıyla basılır.
+- Yakalama: `set_error_handler` (önceki işleyici zincirlenir, `@` ile bastırılanlar alınmaz) + kapanışta `error_get_last()` ölümcül hataları; dosya `wp-content/plugins/flx-*` (ya da `flxu_known_slugs`) veya `themes/fluxwp*` altındaysa. Kuyruk `flxk_telemetry_queue` (en fazla 50 farklı hata, aynı hatanın sayacı 10 dakikada bir yazılır).
+- Filtreler: `flxk_telemetry_enabled` (bool), `flxk_telemetry_url`, `flxk_telemetry_payload` (array).
+- Önizleme: `FLXK_Telemetry::payload( false )` (kimlik üretmeden), temizleme kuralı `FLXK_Telemetry::scrub( $msg )`.
+
 ## PHP fonksiyonları
 `flxk_presets()`, `flxk_get_preset( $id )`, `flxk_plan( $id, $data, $opts )`, `flxk_apply_preset( $id, 'apply'|'fill' )`, `flxk_apply_migration( $id, $mig )`, `flxk_remove_preset( $id )`, `flxk_revert_run( $run )`, `flxk_export( $args )`, `flxk_patch_preview( $patch )`, `flxk_patch_submit( $patch, $source, $note )`, `flxk_patch_apply( $id_or_patch )`.
 

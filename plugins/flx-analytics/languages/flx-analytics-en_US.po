@@ -142,6 +142,18 @@ msgstr "months (0 = unlimited)"
 msgid "Günlük özetler çok yer tutmaz; sınırsız bırakmak genelde sorun değildir."
 msgstr "Daily summaries take little space; keeping them forever is usually fine."
 
+msgid "Telemetri merkezi"
+msgstr "Telemetry hub"
+
+msgid "FluxWP kurulumlarından veri al"
+msgstr "Receive data from FluxWP installs"
+
+msgid "FluxWP Panel'de \"Ürünü geliştirmemize yardımcı olun\" kutusunu işaretleyen siteler günde bir kez anonim kullanım verisi gönderir: hangi FluxWP eklentilerinin birlikte kullanıldığı, sürümler, FluxWP kaynaklı PHP hataları ve kurulum sihirbazında ilerleme. IP ve site adresi saklanmaz, kayıtlar 90 gün tutulur. Açınca sol menüde \"Ürün telemetrisi\" görünür."
+msgstr "Sites that tick \"Help us improve the product\" in FluxWP Panel send anonymous usage data once a day: which FluxWP plugins are used together, versions, PHP errors coming from FluxWP and progress in the setup wizard. IP and site address are not stored; records are kept for 90 days. When on, \"Product telemetry\" appears in the left menu."
+
+msgid "Toplama adresi (FluxWP Panel › Ayarlar › Telemetri adresi):"
+msgstr "Collection URL (FluxWP Panel › Settings › Telemetry URL):"
+
 msgid "Veri"
 msgstr "Data"
 
@@ -685,6 +697,234 @@ msgstr "Tables could not be updated. The database user needs the ALTER privilege
 msgid "Tablolar güncellendi."
 msgstr "Tables updated."
 
+msgid "Ürün telemetrisi"
+msgstr "Product telemetry"
+
+msgid "(tema)"
+msgstr "(theme)"
+
+msgid "Tanıtım"
+msgstr "Intro"
+
+msgid "Neyle başlayalım?"
+msgstr "Where to start?"
+
+msgid "Görünüm"
+msgstr "Appearance"
+
+msgid "Kurulum"
+msgstr "Install"
+
+msgid "Bitti"
+msgstr "Done"
+
+msgid "Eklentiler: %s"
+msgstr "Plugins: %s"
+
+msgid "Bu aralıkta kayıt yok."
+msgstr "No records in this range."
+
+msgid "Genel bakış"
+msgstr "Overview"
+
+msgid "Hatalar"
+msgstr "Errors"
+
+msgid "Kurulum sihirbazı"
+msgstr "Setup wizard"
+
+msgid "%d gün"
+msgstr "%d days"
+
+msgid "FluxWP Panel'de \"Ürünü geliştirmemize yardımcı olun\" kutusunu işaretleyen sitelerden günde bir kez gelen anonim veri. IP ve site adresi saklanmaz; kayıtlar 90 gün tutulur."
+msgstr "Anonymous data sent once a day by sites that tick \"Help us improve the product\" in FluxWP Panel. IP and site address are not stored; records are kept for 90 days."
+
+msgid "Raporlayan site"
+msgstr "Reporting sites"
+
+msgid "Tekil kurulum"
+msgstr "Unique installs"
+
+msgid "Rapor"
+msgstr "Reports"
+
+msgid "Günde en fazla bir / site"
+msgstr "At most one per site per day"
+
+msgid "Farklı hata"
+msgstr "Distinct errors"
+
+msgid "%s ölümcül"
+msgstr "%s fatal"
+
+msgid "Hata olayı"
+msgstr "Error events"
+
+msgid "Toplam tekrar"
+msgstr "Total occurrences"
+
+msgid "Henüz rapor yok."
+msgstr "No reports yet."
+
+msgid "Sitelerdeki FluxWP Panel bu adrese gönderir:"
+msgstr "FluxWP Panel on sites sends to this URL:"
+
+msgid "Eklenti kullanımı"
+msgstr "Plugin usage"
+
+msgid "Paket"
+msgstr "Package"
+
+msgid "Pay"
+msgstr "Share"
+
+msgid "Yaygın sürüm"
+msgstr "Common version"
+
+msgid "Birlikte kullanılanlar"
+msgstr "Used together"
+
+msgid "İkili"
+msgstr "Pair"
+
+msgid "Yalnız FluxWP Panel"
+msgstr "FluxWP Panel only"
+
+msgid "En sık paket setleri"
+msgstr "Most common package sets"
+
+msgid "Set (FluxWP Panel hariç)"
+msgstr "Set (excluding FluxWP Panel)"
+
+msgid "Sürüm"
+msgstr "Version"
+
+msgid "Site dili"
+msgstr "Site language"
+
+msgid "Dil"
+msgstr "Language"
+
+msgid "Hata kaydı silindi. Yeniden olursa tekrar görünür."
+msgstr "Error record removed. It will reappear if it happens again."
+
+msgid "Tüm paketler"
+msgstr "All packages"
+
+msgid "Tüm türler"
+msgstr "All types"
+
+msgid "Yalnız ölümcül"
+msgstr "Fatal only"
+
+msgid "Süz"
+msgstr "Filter"
+
+msgid "%s kayıt"
+msgstr "%s records"
+
+msgid "Bu aralıkta hata yok."
+msgstr "No errors in this range."
+
+msgid "Hata"
+msgstr "Error"
+
+msgid "Tekrar"
+msgstr "Count"
+
+msgid "Son"
+msgstr "Last"
+
+msgid "%s önce"
+msgstr "%s ago"
+
+msgid "Çözüldü olarak kaldır"
+msgstr "Remove as resolved"
+
+msgid "Çözüldü"
+msgstr "Resolved"
+
+msgid "Tüm hata kayıtları silinsin mi?"
+msgstr "Delete all error records?"
+
+msgid "Tüm hataları temizle"
+msgstr "Clear all errors"
+
+msgid "Mesajlardan sunucu yolları, alan adı, URL, e-posta ve IP silinmiş olarak gelir. Aynı paket, sürüm, dosya ve satırdaki aynı hata tek kayıttır; \"Site\" kaç farklı kurulumda görüldüğüdür."
+msgstr "Server paths, domain, URLs, emails and IPs are removed from messages. The same error in the same package, version, file and line is one record; \"Sites\" is how many different installs saw it."
+
+msgid "Sihirbaz açılışı"
+msgstr "Wizard runs"
+
+msgid "Kurulum başına son çalıştırma"
+msgstr "Latest run per install"
+
+msgid "Bitiren"
+msgstr "Finished"
+
+msgid "site"
+msgstr "sites"
+
+msgid "Atlayan"
+msgstr "Skipped"
+
+msgid "Yarıda bırakan"
+msgstr "Abandoned"
+
+msgid "Bitirenlerde ortanca süre %s dk"
+msgstr "Median time for finishers: %s min"
+
+msgid "Henüz sihirbaz verisi yok."
+msgstr "No wizard data yet."
+
+msgid "FluxWP Panel 1.0.11 ve üstü, sihirbaz bitince ya da kapatılınca son adımı ve seçimleri gönderir."
+msgstr "FluxWP Panel 1.0.11 and later sends the last step and choices when the wizard is finished or closed."
+
+msgid "Adımlara ulaşan"
+msgstr "Reached each step"
+
+msgid "Adım"
+msgstr "Steps"
+
+msgid "atladı"
+msgstr "skipped"
+
+msgid "kapattı"
+msgstr "closed"
+
+msgid "Nerede bıraktılar"
+msgstr "Where they stopped"
+
+msgid "Son adım"
+msgstr "Last step"
+
+msgid "Herkes bitirdi."
+msgstr "Everyone finished."
+
+msgid "Kart seçimleri"
+msgstr "Card choices"
+
+msgid "Kart"
+msgstr "Card"
+
+msgid "Seçen"
+msgstr "Picked"
+
+msgid "Seçip vazgeçen"
+msgstr "Picked then removed"
+
+msgid "Öneriyi kaldıran"
+msgstr "Removed suggestion"
+
+msgid "Ön ayar (bitirenler)"
+msgstr "Preset (finishers)"
+
+msgid "Renk stili (bitirenler)"
+msgstr "Colour style (finishers)"
+
+msgid "Seçim"
+msgstr "Choice"
+
 msgid "Hızlı uç çalışıyor"
 msgstr "Fast endpoint works"
 
@@ -1036,9 +1276,6 @@ msgstr "All pages"
 msgid "Şurada biten"
 msgstr "Ends at"
 
-msgid "Adım"
-msgstr "Steps"
-
 msgid "Adım azalt"
 msgstr "Fewer steps"
 
@@ -1137,9 +1374,6 @@ msgstr "No paths to show."
 
 msgid "Yol"
 msgstr "Path"
-
-msgid "Pay"
-msgstr "Share"
 
 msgid "Öncekine göre"
 msgstr "vs prev"

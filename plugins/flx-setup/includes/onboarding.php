@@ -454,6 +454,7 @@ final class FLXK_Onboarding {
 <noscript><p style="padding:32px"><?php esc_html_e( 'Kurulum sihirbazı JavaScript ister.', 'flx-setup' ); ?> <a href="<?php echo esc_url( FLXU_Admin::url() ); ?>"><?php esc_html_e( 'Paketler ekranına geçin.', 'flx-setup' ); ?></a></p></noscript>
 <script>window.FLXK_OB=<?php echo wp_json_encode( $data ); ?>;</script>
 <script src="<?php echo esc_url( $url . 'onboarding.js?ver=' . $ver ); ?>"></script>
+<?php if ( class_exists( 'FLXK_Telemetry' ) ) { FLXK_Telemetry::onboarding_script(); } ?>
 </body>
 </html>
 		<?php
