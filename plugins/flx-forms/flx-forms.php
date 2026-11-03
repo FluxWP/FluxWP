@@ -3,7 +3,7 @@
  * Plugin Name:         Flux Forms
  * Plugin URI:          https://example.org
  * Description:         Sürükle-bırak form oluşturucu: çok adımlı formlar, Stripe ödemeleri, koşullu mantık, dashboard, otomasyonlar ve Flux Certificates entegrasyonu. Easy Form Builder (WhiteStudio, GPL) tabanlı fork.
- * Version:             2.1.7
+ * Version:             2.1.8
  * Requires at least:   6.4
  * Requires PHP:        7.4
  * Author:              FluxWP
@@ -35,7 +35,8 @@ if (!defined("EMSFB_PLUGIN_VERSION")) {
 if (!defined("EMSFB_DB_VERSION")) {
     // 1.2 adds the emsfb_stts_ indexes (sid, lookup, date). Bumping this is what
     // triggers Install::upgrade_schema() on sites that already have the tables.
-    define("EMSFB_DB_VERSION", 1.2);
+    // 1.3 recreates missing tables (silent activation never ran the installer).
+    define("EMSFB_DB_VERSION", 1.3);
 }
 
 if (!defined("EFB_DEBUG")) {

@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.1.8
+- Eksik tablolar kendiliğinden oluşturuluyor. Flux Setup sihirbazı gibi sessiz etkinleştirmede activation hook çalışmadığı için `wp_emsfb_*` tabloları hiç oluşmuyor, her istekte "Table ... doesn't exist" hatası veriliyordu. Ayar tablosu yoksa ilk istekte kurulum tam olarak çalışır (varsayılan ayarlar dahil); DB sürümü 1.3 ile mevcut sitelerde eksik tablo kontrolü bir kez yapılır.
+
 ## 2.1.7
 - Pano ve otomasyonlarda koyu modda açık nane rozet/düğmeler düzeltildi; yeşilimsi sabit çizgiler tema tonunda.
 

@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FLXF_FORK_VERSION', '2.1.7' );
+define( 'FLXF_FORK_VERSION', '2.1.8' );
 
 /* Ülke/il/ilçe listeleri eklentinin içinden yüklenir (ziyaretçi tarayıcısı üçüncü taraf CDN'e gitmez). */
 if ( ! defined( 'CDN_ZONE_AREA' ) ) {
