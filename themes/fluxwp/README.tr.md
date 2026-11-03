@@ -21,7 +21,7 @@
 
 ## Ön ayarlar
 
-[Flux Setup](../../plugins/flx-setup/README.tr.md) etkinken **Görünüm › Tema Ayarları › Ön ayarlar** bir ön ayar (`flx-preset/1`) uygular: kurum profili, ayarlar, şablonlar, header, footer, desenler, sayfalar, ürünler ve menüler. Ön ayar tüm siteyi yeniden kurabilir; örneğin [FluxWP Extras](https://github.com/FluxWP/wp-extras) ön ayarları bu temayı dernek sitesine çevirir. Ön ayar güncellemeleri elle yaptığınız değişikliklerin üzerine yazmaz.
+[FluxWP Panel](../../plugins/flx-setup/README.tr.md) etkinken **Görünüm › Tema Ayarları › Ön ayarlar** bir ön ayar (`flx-preset/1`) uygular: kurum profili, ayarlar, şablonlar, header, footer, desenler, sayfalar, ürünler ve menüler. Ön ayar tüm siteyi yeniden kurabilir; örneğin [FluxWP Extras](https://github.com/FluxWP/wp-extras) ön ayarları bu temayı dernek sitesine çevirir. Ön ayar güncellemeleri elle yaptığınız değişikliklerin üzerine yazmaz.
 
 Ön ayar eklentileri için filtreler: `flx_presets`, `flx_img_dirs`, `flx_i18n_domains`, `flx_logo_files`, `flx_search_placeholder`, `flx_search_chips`, `flx_account_cta`, `flx_tasi_sources`.
 
@@ -31,4 +31,4 @@ Tema değişince Site Editor'de kaydedilmiş şablonlar, şablon parçaları, gl
 
 ## Gereksinimler
 
-WordPress 6.6+, PHP 7.4+, WooCommerce, Flux Setup (kurulum sihirbazı temayla birlikte kurar).
+WordPress 6.6+, PHP 7.4+, WooCommerce, FluxWP Panel (kurulum sihirbazı temayla birlikte kurar).

@@ -1,6 +1,6 @@
 <?php
 /**
- * Bir kerelik onarım: Flux Setup 1.0.4'ten önce sihirbaz ve paket ekranı eklentileri
+ * Bir kerelik onarım: FluxWP Panel 1.0.4'ten önce sihirbaz ve paket ekranı eklentileri
  * activate_plugin( ..., silent = true ) ile etkinleştiriyordu. Bu yüzden paketlerin
  * etkinleştirme kancaları (tablo oluşturma, varsayılan ayarlar) hiç çalışmadı.
  * Etkin her Flux paketinin etkinleştirme kancası bir kez çalıştırılır.

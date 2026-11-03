@@ -1,12 +1,12 @@
 <?php
 /**
- * Kurulum sihirbazı: Flux Setup ilk etkinleşince açılır, istenirse atlanır.
+ * Kurulum sihirbazı: FluxWP Panel ilk etkinleşince açılır, istenirse atlanır.
  *
  * Adımlar: tanıtım → eklenti seçimi → görünüm (ön ayar, renk, site adı) → kurulum → hazır.
  * Kurulum güncelleyicinin flxu_plan / flxu_step uçlarını kullanır (her paket ayrı istek; paylaşımlı
  * sunucuların süre sınırına takılmaz). Tema, renk, ön ayar ve site adı flxk_onboarding_step ile uygulanır.
  *
- * Durum: option flxk_onboarding = pending | done | skipped. Sihirbaz Setup › Kurulum sihirbazı'ndan her zaman açılır.
+ * Durum: option flxk_onboarding = pending | done | skipped. Sihirbaz FluxWP Panel › Kurulum sihirbazı'ndan her zaman açılır.
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -426,7 +426,7 @@ final class FLXK_Onboarding {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title><?php echo esc_html( 'Flux Setup · ' . get_bloginfo( 'name' ) ); ?></title>
+<title><?php echo esc_html( 'FluxWP Panel · ' . get_bloginfo( 'name' ) ); ?></title>
 <style>
 @font-face{font-family:"Geist";font-style:normal;font-weight:400 700;font-display:swap;src:url(<?php echo esc_url( $url . 'fonts/geist-latin-ext.woff2' ); ?>) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 @font-face{font-family:"Geist";font-style:normal;font-weight:400 700;font-display:swap;src:url(<?php echo esc_url( $url . 'fonts/geist-latin.woff2' ); ?>) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
@@ -657,7 +657,7 @@ final class FLXK_Onboarding {
 			/* translators: 1: step, 2: total */
 			'step'       => __( 'Adım %1$s / %2$s', 'flx-setup' ),
 			'i_h'        => __( 'FluxWP\'ye hoş geldiniz', 'flx-setup' ),
-			'i_p'        => __( 'Sitenizi üç adımda kuralım. Eklentileri seçin, görünümü belirleyin; kurulumu Flux Setup yapar.', 'flx-setup' ),
+			'i_p'        => __( 'Sitenizi üç adımda kuralım. Eklentileri seçin, görünümü belirleyin; kurulumu FluxWP Panel yapar.', 'flx-setup' ),
 			/* translators: %d: number of plugins */
 			'f1b'        => __( '%d eklenti', 'flx-setup' ),
 			'f1s'        => __( 'Bağış, form, WhatsApp, e-posta, SEO ve yedek aynı panelde çalışır.', 'flx-setup' ),
@@ -714,7 +714,7 @@ final class FLXK_Onboarding {
 			'h4'         => __( 'Siteniz hazır', 'flx-setup' ),
 			'lead4'      => __( 'Eklentiler kuruldu, ön ayar ve renk uygulandı.', 'flx-setup' ),
 			'h4warn'     => __( 'Kurulum bitti, bazı adımlar tamamlanmadı', 'flx-setup' ),
-			'lead4warn'  => __( 'Hatalı adımlar aşağıda. Setup › Paketler\'den yeniden deneyebilirsiniz.', 'flx-setup' ),
+			'lead4warn'  => __( 'Hatalı adımlar aşağıda. FluxWP Panel › Paketler\'den yeniden deneyebilirsiniz.', 'flx-setup' ),
 			'sumPk'      => __( 'eklenti', 'flx-setup' ),
 			'sumPg'      => __( 'sayfa', 'flx-setup' ),
 			'sumSt'      => __( 'renk', 'flx-setup' ),
@@ -724,7 +724,7 @@ final class FLXK_Onboarding {
 			'next'       => __( 'Devam', 'flx-setup' ),
 			'install'    => __( 'Kur', 'flx-setup' ),
 			'skipT'      => __( 'Kurulum atlansın mı?', 'flx-setup' ),
-			'skipP'      => __( 'Hiçbir şey kurulmaz. Sihirbazı sonra Setup › Kurulum sihirbazı\'ndan açabilirsiniz.', 'flx-setup' ),
+			'skipP'      => __( 'Hiçbir şey kurulmaz. Sihirbazı sonra FluxWP Panel › Kurulum sihirbazı\'ndan açabilirsiniz.', 'flx-setup' ),
 			'stay'       => __( 'Vazgeç', 'flx-setup' ),
 			'skipYes'    => __( 'Atla', 'flx-setup' ),
 			/* translators: %s: number of plugins */
@@ -753,7 +753,7 @@ final class FLXK_Onboarding {
 			'doneMsg'    => __( 'Hazır', 'flx-setup' ),
 			'doneSub'    => __( 'Son ekran açılıyor.', 'flx-setup' ),
 			'netErr'     => __( 'Sunucuya ulaşılamadı. Bağlantınızı kontrol edip yeniden deneyin.', 'flx-setup' ),
-			'offline'    => __( 'Güncelleme sunucusuna bağlanılamadı, paket listesi boş. Setup › Ayarlar\'dan sunucuyu kontrol edin; tema ve ön ayar yine de uygulanabilir.', 'flx-setup' ),
+			'offline'    => __( 'Güncelleme sunucusuna bağlanılamadı, paket listesi boş. FluxWP Panel › Ayarlar\'dan sunucuyu kontrol edin; tema ve ön ayar yine de uygulanabilir.', 'flx-setup' ),
 			'retry'      => __( 'Yeniden dene', 'flx-setup' ),
 		);
 	}

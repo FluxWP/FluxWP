@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.0.6
+- Görünen ad **FluxWP Panel** oldu (eklenti başlığı, yönetim menüsü, sihirbaz, bildirimler). Slug `flx-setup`, ayarlar ve güncelleme adresi aynı kalır.
+
 ## 1.0.5
 - Paketler ekranı telefonda kart düzeninde: logo, ad, sürüm ve durum tek satırda; tablo başlığı, tür sütunu, slug ve çıkış tarihi gizli. Araç çubuğu düğmeleri yan yana, toplu işlem tam satır.
 - Güncelleme ayarları › Diğer kaynaklar tablosu telefonda kart düzeninde.

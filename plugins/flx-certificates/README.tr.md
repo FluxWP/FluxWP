@@ -84,9 +84,9 @@ Gereksinimler: WordPress 6.4+, PHP 7.4+. Kalıcı bağlantılar açık. WhatsApp
 1. [Releases](https://github.com/FluxWP/fluxwp/releases) sayfasında en son `flx-certificates-v*` sürümünden `flx-certificates.zip`'i indirin.
 2. **Eklentiler › Yeni ekle › Eklenti yükle**, zip'i seçin, sonra **Etkinleştir**.
 
-**Flux Setup ile** (sitelerimizde önerilen)
+**FluxWP Panel ile** (sitelerimizde önerilen)
 
-**Setup › Paketler** tüm FluxWP paketlerini listeler; *Flux Certificates* satırındaki **Kur**'a basın. Güncellemeler de buradan gelir.
+**FluxWP Panel › Paketler** tüm FluxWP paketlerini listeler; *Flux Certificates* satırındaki **Kur**'a basın. Güncellemeler de buradan gelir.
 
 **İlk adımlar**
 

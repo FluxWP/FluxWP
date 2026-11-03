@@ -21,7 +21,7 @@
 
 ## Presets
 
-With [Flux Setup](../../plugins/flx-setup) active, **Appearance › Theme Settings › Presets** applies a preset (`flx-preset/1`): profile, settings, templates, header, footer, patterns, pages, products and menus. A preset can rebuild the whole site, for example a preset from [FluxWP Extras](https://github.com/FluxWP/wp-extras) turns this theme into an association site. Your own edits are never overwritten by preset updates.
+With [FluxWP Panel](../../plugins/flx-setup) active, **Appearance › Theme Settings › Presets** applies a preset (`flx-preset/1`): profile, settings, templates, header, footer, patterns, pages, products and menus. A preset can rebuild the whole site, for example a preset from [FluxWP Extras](https://github.com/FluxWP/wp-extras) turns this theme into an association site. Your own edits are never overwritten by preset updates.
 
 Filters for preset plugins: `flx_presets`, `flx_img_dirs`, `flx_i18n_domains`, `flx_logo_files`, `flx_search_placeholder`, `flx_search_chips`, `flx_account_cta`, `flx_tasi_sources`.
 
@@ -31,4 +31,4 @@ On switch, templates, template parts, global styles, theme mods and custom CSS s
 
 ## Requirements
 
-WordPress 6.6+, PHP 7.4+, WooCommerce, Flux Setup (the setup wizard installs it with the theme).
+WordPress 6.6+, PHP 7.4+, WooCommerce, FluxWP Panel (the setup wizard installs it with the theme).

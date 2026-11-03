@@ -1,4 +1,4 @@
-/* Flux Setup kurulum sihirbazı. Veri: window.FLXK_OB (includes/onboarding.php). */
+/* FluxWP Panel kurulum sihirbazı. Veri: window.FLXK_OB (includes/onboarding.php). */
 (function () {
 	'use strict';
 	var D = window.FLXK_OB || {};
@@ -88,7 +88,7 @@
 	if (D.theme) { mosaicSlugs.push('fluxwp'); }
 	$('#step0').innerHTML =
 		'<div class="intro"><div>' +
-		'<p class="kicker">Flux Setup</p><h1>' + esc(T.i_h) + '</h1><p class="lead">' + esc(T.i_p) + '</p>' +
+		'<p class="kicker">FluxWP Panel</p><h1>' + esc(T.i_h) + '</h1><p class="lead">' + esc(T.i_p) + '</p>' +
 		(D.offline ? '<p class="notice">' + esc(T.offline) + (D.connError ? ' (' + esc(D.connError) + ')' : '') + '</p>' : '') +
 		'<ul class="facts">' +
 		(plugins.length ? '<li><b>' + esc(fmt(T.f1b, plugins.length)) + '</b><span>' + esc(T.f1s) + '</span></li>' : '') +

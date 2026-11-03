@@ -1,5 +1,5 @@
 <?php
-// Flux Setup en_US çevirisi (kaynak dil Türkçe).
+// FluxWP Panel en_US çevirisi (kaynak dil Türkçe).
 return array(
 	'domain' => 'flx-setup',
 	'plural-forms' => 'nplurals=2; plural=(n != 1);',
@@ -409,7 +409,6 @@ return array(
 		'Yapılamayanlar: %s.' => 'Failed: %s.',
 		'Şu paketler siteden kaldırılsın mı? Dosyaları silinir. %s' => 'Delete these packages from the site? Their files will be removed. %s',
 		// Kurulum sihirbazı, menü, eski eklenti
-		'Setup' => 'Setup',
 		'Kurulum sihirbazı' => 'Setup wizard',
 		'WooCommerce mağazası: satış paneli, müşteriler, raporlar ve dekontlu Havale/EFT.' => 'WooCommerce store: sales dashboard, customers, reports and bank transfer with receipts.',
 		'Komut paleti, mobil menü ve düzenlenebilir panel.' => 'Command palette, mobile menu and a customisable dashboard.',
@@ -468,7 +467,7 @@ return array(
 		'Renk stili: %s' => 'Colour style: %s',
 		'Adım %1$s / %2$s' => 'Step %1$s of %2$s',
 		'FluxWP\'ye hoş geldiniz' => 'Welcome to FluxWP',
-		'Sitenizi üç adımda kuralım. Eklentileri seçin, görünümü belirleyin; kurulumu Flux Setup yapar.' => 'Let\'s set up your site in three steps. Pick the plugins, choose the look, and Flux Setup installs the rest.',
+		'Sitenizi üç adımda kuralım. Eklentileri seçin, görünümü belirleyin; kurulumu FluxWP Panel yapar.' => 'Let\'s set up your site in three steps. Pick the plugins, choose the look, and FluxWP Panel installs the rest.',
 		'%d eklenti' => '%d plugins',
 		'Bağış, form, WhatsApp, e-posta, SEO ve yedek aynı panelde çalışır.' => 'Donations, forms, WhatsApp, e-mail, SEO and backups work from one admin.',
 		'Yeni sürümler WordPress\'in Güncellemeler ekranına gelir.' => 'New versions arrive in the WordPress Updates screen.',
@@ -494,7 +493,7 @@ return array(
 		'Siteniz hazır' => 'Your site is ready',
 		'Eklentiler kuruldu, ön ayar ve renk uygulandı.' => 'Plugins installed, preset and colour applied.',
 		'Kurulum bitti, bazı adımlar tamamlanmadı' => 'Setup finished, some steps did not complete',
-		'Hatalı adımlar aşağıda. Setup › Paketler\'den yeniden deneyebilirsiniz.' => 'The failed steps are listed below. You can retry them from Setup › Packages.',
+		'Hatalı adımlar aşağıda. FluxWP Panel › Paketler\'den yeniden deneyebilirsiniz.' => 'The failed steps are listed below. You can retry them from FluxWP Panel › Packages.',
 		'eklenti' => 'plugins',
 		'sayfa' => 'pages',
 		'renk' => 'colour',
@@ -503,7 +502,7 @@ return array(
 		'Geri' => 'Back',
 		'Devam' => 'Continue',
 		'Kurulum atlansın mı?' => 'Skip setup?',
-		'Hiçbir şey kurulmaz. Sihirbazı sonra Setup › Kurulum sihirbazı\'ndan açabilirsiniz.' => 'Nothing will be installed. You can open the wizard later from Setup › Setup wizard.',
+		'Hiçbir şey kurulmaz. Sihirbazı sonra FluxWP Panel › Kurulum sihirbazı\'ndan açabilirsiniz.' => 'Nothing will be installed. You can open the wizard later from FluxWP Panel › Setup wizard.',
 		'Vazgeç' => 'Cancel',
 		'%s eklenti + FluxWP teması' => '%s plugins + FluxWP theme',
 		'%s eklenti' => '%s plugins',
@@ -524,9 +523,9 @@ return array(
 		'Hazır' => 'Ready',
 		'Son ekran açılıyor.' => 'Opening the final screen.',
 		'Sunucuya ulaşılamadı. Bağlantınızı kontrol edip yeniden deneyin.' => 'Could not reach the server. Check your connection and try again.',
-		'Güncelleme sunucusuna bağlanılamadı, paket listesi boş. Setup › Ayarlar\'dan sunucuyu kontrol edin; tema ve ön ayar yine de uygulanabilir.' => 'Could not connect to the update server, so the package list is empty. Check the server in Setup › Settings; the theme and preset can still be applied.',
+		'Güncelleme sunucusuna bağlanılamadı, paket listesi boş. FluxWP Panel › Ayarlar\'dan sunucuyu kontrol edin; tema ve ön ayar yine de uygulanabilir.' => 'Could not connect to the update server, so the package list is empty. Check the server in FluxWP Panel › Settings; the theme and preset can still be applied.',
 		'Yeniden dene' => 'Try again',
-		'Flux Updater artık Flux Setup\'ın parçası; eski eklenti kapatıldı, ayarları korundu. Eklentiler ekranından silebilirsiniz.' => 'Flux Updater is now part of Flux Setup. The old plugin was deactivated and its settings kept; you can delete it from the Plugins screen.',
+		'Flux Updater artık FluxWP Panel\'in parçası; eski eklenti kapatıldı, ayarları korundu. Eklentiler ekranından silebilirsiniz.' => 'Flux Updater is now part of FluxWP Panel. The old plugin was deactivated and its settings kept; you can delete it from the Plugins screen.',
 		'Mağaza' => 'Store',
 		'Flux Commerce: satış paneli, müşteriler, raporlar ve dekontlu Havale/EFT.' => 'Flux Commerce: sales dashboard, customers, reports and bank transfer with receipts.',
 		'Dernek ve bağış' => 'Nonprofit and donations',
