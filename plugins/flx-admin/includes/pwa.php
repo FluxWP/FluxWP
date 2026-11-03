@@ -150,7 +150,7 @@ function flxa_pwa_manifest() {
 		'display'          => 'standalone',
 		'display_override' => array( 'window-controls-overlay', 'standalone' ),
 		'orientation'      => 'any',
-		'background_color' => '#EFF0F8',
+		'background_color' => '#F3F2EF',
 		'theme_color'      => flxa_accent(),
 		'icons'            => flxa_pwa_icons(),
 		'shortcuts'        => (array) apply_filters( 'flxa_pwa_shortcuts', $short ),
@@ -200,9 +200,9 @@ function flxa_pwa_offline() {
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?php esc_html_e( 'Bağlantı yok', 'flx-admin' ); ?></title>
 <style>
 :root{color-scheme:light dark;--a:<?php echo esc_html( $accent ); ?>}
-body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;background:#EFF0F8;color:#171824;padding:24px;box-sizing:border-box}
-@media (prefers-color-scheme:dark){body{background:#110F21;color:#E3E3F1}.c{background:#1A182E!important;border-color:#2A2840!important}}
-.c{max-width:380px;text-align:center;background:#fff;border:1px solid #E0E2EE;border-radius:20px;padding:32px 24px}
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;background:#F3F2EF;color:#16181D;padding:24px;box-sizing:border-box}
+@media (prefers-color-scheme:dark){body{background:#101114;color:#E8E8EA}.c{background:#191B20!important;border-color:#2B2D33!important}}
+.c{max-width:380px;text-align:center;background:#fff;border:1px solid #E4E2DD;border-radius:20px;padding:32px 24px}
 img{width:64px;height:64px;border-radius:16px}h1{font-size:22px;margin:16px 0 8px}p{margin:0 0 20px;opacity:.8}
 button{font:inherit;font-weight:700;border:0;border-radius:12px;padding:12px 20px;background:var(--a);color:#fff;cursor:pointer}
 </style></head>
@@ -228,11 +228,11 @@ function flxa_pwa_splash() {
 <!doctype html>
 <html lang="<?php echo esc_attr( str_replace( '_', '-', get_locale() ) ); ?>">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title><?php echo esc_html( flxa_pwa_name() ); ?></title>
-<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#151427" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161A" media="(prefers-color-scheme: dark)">
 <style>
 :root{color-scheme:light dark;--a:<?php echo esc_html( $accent ); ?>}
-html,body{margin:0;height:100%;background:#EFF0F8;color:#171824;font:600 15px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
-@media (prefers-color-scheme:dark){html,body{background:#110F21;color:#E3E3F1}}
+html,body{margin:0;height:100%;background:#F3F2EF;color:#16181D;font:600 15px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
+@media (prefers-color-scheme:dark){html,body{background:#101114;color:#E8E8EA}}
 body{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
 img{width:72px;height:72px;border-radius:18px;animation:p 1.6s ease-in-out infinite}
 @keyframes p{50%{transform:scale(.94);opacity:.85}}
@@ -252,7 +252,7 @@ function flxa_pwa_head() {
 	$manifest = add_query_arg( 'action', 'flxa_manifest', admin_url( 'admin-ajax.php' ) );
 	echo '<link rel="manifest" href="' . esc_url( $manifest ) . '">' . "\n";
 	echo '<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">' . "\n";
-	echo '<meta name="theme-color" content="#151427" media="(prefers-color-scheme: dark)">' . "\n";
+	echo '<meta name="theme-color" content="#14161A" media="(prefers-color-scheme: dark)">' . "\n";
 	echo '<meta name="mobile-web-app-capable" content="yes">' . "\n";
 	echo '<meta name="apple-mobile-web-app-capable" content="yes">' . "\n";
 	echo '<meta name="apple-mobile-web-app-status-bar-style" content="default">' . "\n";

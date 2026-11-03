@@ -1,7 +1,7 @@
 /* Flux Forms · one loading indicator for every admin/public screen (replaces EFB's GIF cards and spinners). */
 .flxf-loader { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; min-height: 180px; padding: 32px 16px; width: 100%; text-align: center; animation: flxfLoaderIn .25s ease .12s both; }
 .flxf-loader--sm { min-height: 110px; padding: 20px 12px; gap: 10px; }
-.flxf-loader__ring { width: 40px; height: 40px; border-radius: 50%; border: 3px solid color-mix(in srgb, var(--flx-primary, #4338CA) 16%, transparent); border-top-color: var(--flx-primary, #4338CA); animation: flxfSpin .8s linear infinite; }
+.flxf-loader__ring { width: 40px; height: 40px; border-radius: 50%; border: 3px solid color-mix(in srgb, var(--flx-primary, #1F2937) 16%, transparent); border-top-color: var(--flx-primary, #1F2937); animation: flxfSpin .8s linear infinite; }
 .flxf-loader--sm .flxf-loader__ring { width: 28px; height: 28px; border-width: 2.5px; }
 .flxf-loader__text { color: var(--flx-text, #4B5563); font: 600 14px/1.4 var(--wp--preset--font-family--body, 'Nunito Sans', system-ui, sans-serif); letter-spacing: .01em; }
 .flxf-spin { display: inline-block; width: 1em; height: 1em; vertical-align: -.15em; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: flxfSpin .7s linear infinite; }

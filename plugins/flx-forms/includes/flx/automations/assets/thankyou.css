@@ -1,12 +1,12 @@
 /* Flux Forms · Automations: certificate card on the form's thank-you screen.
    Follows the site theme through --flx-* variables (with fallbacks) and body.flx-dark. */
 .flxf-cert-card {
-	--flxfc-primary: var(--flx-primary, #4338CA);
-	--flxfc-dark: var(--flx-primary-dark, var(--flx-dark, #3730A3));
-	--flxfc-ink: var(--flx-ink, #1E1B4B);
+	--flxfc-primary: var(--flx-primary, #1F2937);
+	--flxfc-dark: var(--flx-primary-dark, var(--flx-dark, #111827));
+	--flxfc-ink: var(--flx-ink, #111827);
 	--flxfc-text: var(--flx-text, #4B5563);
-	--flxfc-mint: var(--flx-mint, #EEF2FF);
-	--flxfc-line: var(--flx-line, #E0E7FF);
+	--flxfc-mint: var(--flx-mint, #F2EEE7);
+	--flxfc-line: var(--flx-line, #E6E0D6);
 	--flxfc-surface: var(--flx-surface, #FFFFFF);
 	--flxfc-on-primary: #FFFFFF;
 	display: flex;
@@ -87,7 +87,7 @@ body .flxf-cert-card .flxf-cert-card__actions a.flxf-cert-btn.flxf-cert-btn--pri
 		box-shadow: 0 10px 30px -18px rgba(0, 0, 0, .7);
 	}
 	body.flx-dark .flxf-cert-card a.flxf-cert-btn--primary:hover,
-	body.flx-dark .flxf-cert-card a.flxf-cert-btn--primary:focus-visible { background: var(--flx-primary-dark, #3730A3); }
+	body.flx-dark .flxf-cert-card a.flxf-cert-btn--primary:focus-visible { background: var(--flx-primary-dark, #111827); }
 }
 
 @media (max-width: 520px) {

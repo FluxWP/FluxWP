@@ -1,5 +1,5 @@
 /* Flux Donate 2.1.0 · card fields (iyzico). Colours follow the theme tokens when present. */
-.flxb-cardpay{--c-line:var(--flx-line,#cfdcd4);--c-bg:var(--flx-surface,#fff);--c-ink:var(--flx-ink,#1E1B4B);--c-mut:var(--flx-text,#4B5563);--c-pri:var(--flx-primary,#1f7a4d);display:grid;gap:.85rem;margin:.5rem 0 0;color:var(--c-ink)}
+.flxb-cardpay{--c-line:var(--flx-line,#cfdcd4);--c-bg:var(--flx-surface,#fff);--c-ink:var(--flx-ink,#111827);--c-mut:var(--flx-text,#4B5563);--c-pri:var(--flx-primary,#1f7a4d);display:grid;gap:.85rem;margin:.5rem 0 0;color:var(--c-ink)}
 .flxb-cardpay [hidden]{display:none!important}
 .flxb-cardpay fieldset{margin:0;padding:0;border:0;min-width:0}
 .flxb-cardpay legend{margin:0 0 .45rem;padding:0;font-weight:700;font-size:.92rem}

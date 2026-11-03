@@ -5,12 +5,12 @@
 	--flxan-line: #e2e4e7;
 	--flxan-text: #1d2327;
 	--flxan-muted: #646970;
-	--flxan-accent: var(--flxa-accent, #4338CA);
-	--flxan-accent-2: color-mix(in srgb, var(--flxa-accent, #4338CA) 40%, #fff);
-	--flxan-accent-soft: color-mix(in srgb, var(--flxa-accent, #4338CA) 10%, #fff);
+	--flxan-accent: var(--flxa-accent, #1F2937);
+	--flxan-accent-2: color-mix(in srgb, var(--flxa-accent, #1F2937) 40%, #fff);
+	--flxan-accent-soft: color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #fff);
 	--flxan-up: #137a43;
 	--flxan-down: #b32d2e;
-	--flxan-hover: color-mix(in srgb, var(--flxa-accent, #4338CA) 6%, #fff);
+	--flxan-hover: color-mix(in srgb, var(--flxa-accent, #1F2937) 6%, #fff);
 	--flxan-shadow: 0 1px 2px rgba(0, 0, 0, .04);
 	color: var(--flxan-text);
 }
@@ -21,9 +21,9 @@ body.flx-dark .flxan {
 	--flxan-line: #323935;
 	--flxan-text: #e6e9e7;
 	--flxan-muted: #9aa39e;
-	--flxan-accent: color-mix(in srgb, var(--flxa-accent, #4338CA) 70%, #fff);
-	--flxan-accent-2: color-mix(in srgb, var(--flxa-accent, #4338CA) 45%, #0D0E13);
-	--flxan-accent-soft: color-mix(in srgb, var(--flxa-accent, #4338CA) 25%, #0D0E13);
+	--flxan-accent: color-mix(in srgb, var(--flxa-accent, #1F2937) 70%, #fff);
+	--flxan-accent-2: color-mix(in srgb, var(--flxa-accent, #1F2937) 45%, #0D0E13);
+	--flxan-accent-soft: color-mix(in srgb, var(--flxa-accent, #1F2937) 25%, #0D0E13);
 	--flxan-up: #5fd39a;
 	--flxan-down: #ff8a8a;
 	--flxan-hover: #26302b;
@@ -191,11 +191,11 @@ body.flx-dark .flxan {
 .flxan-map__svg svg { width: 100%; height: auto; display: block; }
 .flxan-map path { fill: var(--flxan-line); stroke: var(--flxan-card); stroke-width: .4; transition: opacity .15s; }
 .flxan-map path:hover { opacity: .75; }
-.flxan-map .l1, .flxan-map__legend .l1 { fill: color-mix(in srgb, var(--flxa-accent, #4338CA) 20%, #fff); background: color-mix(in srgb, var(--flxa-accent, #4338CA) 20%, #fff); }
-.flxan-map .l2, .flxan-map__legend .l2 { fill: color-mix(in srgb, var(--flxa-accent, #4338CA) 40%, #fff); background: color-mix(in srgb, var(--flxa-accent, #4338CA) 40%, #fff); }
-.flxan-map .l3, .flxan-map__legend .l3 { fill: color-mix(in srgb, var(--flxa-accent, #4338CA) 65%, #fff); background: color-mix(in srgb, var(--flxa-accent, #4338CA) 65%, #fff); }
-.flxan-map .l4, .flxan-map__legend .l4 { fill: var(--flxa-accent, #4338CA); background: var(--flxa-accent, #4338CA); }
-.flxan-map .l5, .flxan-map__legend .l5 { fill: color-mix(in srgb, var(--flxa-accent, #4338CA) 70%, #000); background: color-mix(in srgb, var(--flxa-accent, #4338CA) 70%, #000); }
+.flxan-map .l1, .flxan-map__legend .l1 { fill: color-mix(in srgb, var(--flxa-accent, #1F2937) 20%, #fff); background: color-mix(in srgb, var(--flxa-accent, #1F2937) 20%, #fff); }
+.flxan-map .l2, .flxan-map__legend .l2 { fill: color-mix(in srgb, var(--flxa-accent, #1F2937) 40%, #fff); background: color-mix(in srgb, var(--flxa-accent, #1F2937) 40%, #fff); }
+.flxan-map .l3, .flxan-map__legend .l3 { fill: color-mix(in srgb, var(--flxa-accent, #1F2937) 65%, #fff); background: color-mix(in srgb, var(--flxa-accent, #1F2937) 65%, #fff); }
+.flxan-map .l4, .flxan-map__legend .l4 { fill: var(--flxa-accent, #1F2937); background: var(--flxa-accent, #1F2937); }
+.flxan-map .l5, .flxan-map__legend .l5 { fill: color-mix(in srgb, var(--flxa-accent, #1F2937) 70%, #000); background: color-mix(in srgb, var(--flxa-accent, #1F2937) 70%, #000); }
 html.flxa-dark .flxan-map .l1, body.flx-dark .flxan-map .l1 { fill: #24493a; }
 html.flxa-dark .flxan-map .l2, body.flx-dark .flxan-map .l2 { fill: #2b6a4d; }
 html.flxa-dark .flxan-map .l3, body.flx-dark .flxan-map .l3 { fill: #348d63; }
@@ -282,7 +282,7 @@ html.flxa-dark .flxan-sticky, body.flx-dark .flxan-sticky { background: var(--fl
 .flxan .flxan-kpis { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
 @container (max-width: 860px) { .flxan .flxan-kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @container (max-width: 480px) { .flxan .flxan-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.flxan-kpi { --k: var(--flxa-accent, #4338CA); --kbg: color-mix(in srgb, var(--flxa-accent, #4338CA) 10%, #fff); position: relative; overflow: hidden; padding: 12px 14px; min-height: 0; border-top: 3px solid var(--k); }
+.flxan-kpi { --k: var(--flxa-accent, #1F2937); --kbg: color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #fff); position: relative; overflow: hidden; padding: 12px 14px; min-height: 0; border-top: 3px solid var(--k); }
 .flxan-kpi::after { content: ""; position: absolute; right: -24px; top: -24px; width: 80px; height: 80px; border-radius: 50%; background: var(--kbg); opacity: .7; pointer-events: none; }
 .flxan-kpi--green { --k: #1f8a5b; --kbg: #e3f4ea; }
 .flxan-kpi--blue { --k: #2563eb; --kbg: #e6eefc; }

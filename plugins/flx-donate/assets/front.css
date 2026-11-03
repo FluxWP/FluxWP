@@ -4,13 +4,13 @@
  * when the theme allows it with body.flx-dark; 'auto' without the class too (override the built-in
  * palette with --flxb-dark-* variables; body.flx-light keeps it light); 'off' never. */
 .flxb-camp {
-	--flxb-primary: var(--flxb-brand, var(--flx-primary, var(--wp--preset--color--primary, #4338CA)));
-	--flxb-primary-dark: var(--flxb-brand-dark, var(--flx-primary-dark, var(--wp--preset--color--primary-dark, #3730A3)));
-	--flxb-ink: var(--flx-ink, var(--wp--preset--color--ink, #1E1B4B));
+	--flxb-primary: var(--flxb-brand, var(--flx-primary, var(--wp--preset--color--primary, #1F2937)));
+	--flxb-primary-dark: var(--flxb-brand-dark, var(--flx-primary-dark, var(--wp--preset--color--primary-dark, #111827)));
+	--flxb-ink: var(--flx-ink, var(--wp--preset--color--ink, #111827));
 	--flxb-text: var(--flx-text, var(--wp--preset--color--text, #4B5563));
 	--flxb-surface: var(--flx-surface, var(--wp--preset--color--surface, #FFFFFF));
-	--flxb-mint: var(--flx-mint, var(--wp--preset--color--primary-soft, #EEF2FF));
-	--flxb-line: var(--flx-line, var(--wp--preset--color--line, #E0E7FF));
+	--flxb-mint: var(--flx-mint, var(--wp--preset--color--primary-soft, #F2EEE7));
+	--flxb-line: var(--flx-line, var(--wp--preset--color--line, #E6E0D6));
 	box-sizing: border-box;
 	margin: 1.5rem 0;
 	padding: 20px 22px;
@@ -34,7 +34,7 @@
 .flxb-camp__meta strong { color: var(--flxb-ink); font-variant-numeric: tabular-nums; }
 @media (prefers-color-scheme: dark) {
 	body.flxb-dark-auto:not(.flx-light):not(.flx-dark) .flxb-camp {
-		--flxb-primary: var(--flxb-brand, var(--flxb-dark-primary, #6366F1));
+		--flxb-primary: var(--flxb-brand, var(--flxb-dark-primary, #3B82F6));
 		--flxb-primary-dark: var(--flxb-brand-dark, var(--flxb-dark-primary-dark, #17805A));
 		--flxb-ink: var(--flxb-dark-ink, #E8F2EC);
 		--flxb-text: var(--flxb-dark-text, #AFC3B8);
@@ -47,7 +47,7 @@
 	body.flx-dark:not(.flxb-dark-off) .flxb-camp__bar,
 	body.flxb-dark-auto:not(.flx-light) .flxb-camp__bar { background: color-mix(in srgb, var(--flxb-primary) 22%, transparent); }
 	body.flx-dark.flxb-dark-off .flxb-camp {
-		--flxb-ink: var(--wp--preset--color--ink, #1E1B4B); --flxb-text: var(--wp--preset--color--text, #4B5563); --flxb-surface: #FFFFFF; --flxb-mint: var(--wp--preset--color--mint, #EEF2FF); --flxb-line: var(--wp--preset--color--line, #E0E7FF);
+		--flxb-ink: var(--wp--preset--color--ink, #111827); --flxb-text: var(--wp--preset--color--text, #4B5563); --flxb-surface: #FFFFFF; --flxb-mint: var(--wp--preset--color--mint, #F2EEE7); --flxb-line: var(--wp--preset--color--line, #E6E0D6);
 	}
 }
 @media (max-width: 480px) {

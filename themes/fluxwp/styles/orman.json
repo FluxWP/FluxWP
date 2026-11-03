@@ -46,6 +46,11 @@
 					"color": "#DCE9E0"
 				},
 				{
+					"slug": "base",
+					"name": "Sayfa zemini",
+					"color": "#FFFFFF"
+				},
+				{
 					"slug": "white",
 					"name": "Beyaz",
 					"color": "#FFFFFF"

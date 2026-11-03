@@ -253,8 +253,8 @@
 	var app = document.getElementById('flxb-app');
 	if (!app) return;
 	/* Chart colours follow the brand colour from the settings (CSS custom property). */
-	var C1 = (getComputedStyle(app).getPropertyValue('--flxb-primary') || '').trim() || '#4338CA';
-	if (!/^#[0-9a-f]{3,8}$|^rgb/i.test(C1)) C1 = '#4338CA';
+	var C1 = (getComputedStyle(app).getPropertyValue('--flxb-primary') || '').trim() || '#1F2937';
+	if (!/^#[0-9a-f]{3,8}$|^rgb/i.test(C1)) C1 = '#1F2937';
 	var C2 = '#2F6FA3';
 	(function () { /* a blue brand colour would hide the recurring series: switch it to amber */
 		var m = C1.match(/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})/i);

@@ -26,7 +26,7 @@ function flxai_mix( $a, $b, $w ) {
 /** Tema renkleri: widget'lar yalnız bu değişkenleri kullanır (açık/koyu tema uyumu). */
 function flxai_widget_palette( $dark = false ) {
 	// Vurgu: Flux Admin'in rengi (o da varsayılan olarak tema rengini alır), yoksa FluxWP indigo.
-	$acc = function_exists( 'flxa_accent' ) ? flxa_accent() : '#4338CA';
+	$acc = function_exists( 'flxa_accent' ) ? flxa_accent() : '#1F2937';
 	$p   = $dark
 		? array( 'bg' => '#161b20', 'surface' => '#1e252c', 'text' => '#e8edf1', 'muted' => '#98a4af', 'accent' => flxai_mix( $acc, '#ffffff', .7 ), 'accent-soft' => flxai_mix( $acc, '#0d0e13', .25 ), 'border' => '#2e3842', 'warn' => '#e5b45a', 'danger' => '#f08080' )
 		: array( 'bg' => '#ffffff', 'surface' => '#f6f7f8', 'text' => '#14202b', 'muted' => '#66727e', 'accent' => $acc, 'accent-soft' => flxai_mix( $acc, '#ffffff', .1 ), 'border' => '#e3e6ea', 'warn' => '#b7791f', 'danger' => '#c53030' );

@@ -71,6 +71,34 @@ function flxa_accent() {
 	return $c ? $c : flxa_theme_primary();
 }
 
+/**
+ * Koyu temadaki vurgu: koyu bir vurgu (ör. antrasit) koyu zeminde kaybolur. Ayar boşsa temanın koyu mod rengi
+ * (theme.json settings.custom.dark.primary), değilse çok koyu renkler açılır.
+ */
+function flxa_accent_dark() {
+	$acc = flxa_accent();
+	if ( '' === sanitize_hex_color( (string) flxa_setting( 'accent' ) ) && function_exists( 'wp_get_global_settings' ) ) {
+		$d = sanitize_hex_color( (string) wp_get_global_settings( array( 'custom', 'dark', 'primary' ) ) );
+		if ( $d ) {
+			return $d;
+		}
+	}
+	$h = ltrim( $acc, '#' );
+	if ( 6 !== strlen( $h ) ) {
+		return $acc;
+	}
+	$rgb = array_map( 'hexdec', str_split( $h, 2 ) );
+	$lum = ( 0.2126 * $rgb[0] + 0.7152 * $rgb[1] + 0.0722 * $rgb[2] ) / 255;
+	if ( $lum >= 0.3 ) {
+		return $acc;
+	}
+	$out = '#';
+	foreach ( $rgb as $c ) {
+		$out .= str_pad( dechex( (int) round( $c * 0.45 + 255 * 0.55 ) ), 2, '0', STR_PAD_LEFT );
+	}
+	return $out;
+}
+
 /** Tema paletindeki "primary" rengi (Site Editor › Stiller'deki değişiklik dahil). */
 function flxa_theme_primary() {
 	static $c = null;
@@ -88,7 +116,7 @@ function flxa_theme_primary() {
 			}
 		}
 	}
-	$c = (string) apply_filters( 'flxa_default_accent', $c ? $c : '#4338CA' );
+	$c = (string) apply_filters( 'flxa_default_accent', $c ? $c : '#1F2937' );
 	return $c;
 }
 

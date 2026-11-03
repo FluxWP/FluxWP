@@ -16,11 +16,11 @@
 .flxp-wrap .flxp-flag-fatal, .flxp-wrap .flxp-flag-error, .flxp-wrap .flxp-flag-5xx, .flxp-wrap .flxp-flag-db_error, .flxp-wrap .flxp-flag-log_error { background: #d63638; color: #fff; }
 .flxp-wrap .flxp-flag-http_fail { background: #b32d2e; color: #fff; }
 .flxp-wrap .flxp-flag-slow, .flxp-wrap .flxp-flag-slow_query { background: #dba617; color: #1d2327; }
-.flxp-wrap .flxp-flag-profile { background: var(--flxa-accent, #4338CA); color: #fff; }
+.flxp-wrap .flxp-flag-profile { background: var(--flxa-accent, #1F2937); color: #fff; }
 .flxp-wrap .flxp-empty { text-align: center; color: #646970; padding: 20px; }
 .flxp-wrap .flxp-pager { display: flex; gap: 10px; align-items: center; margin: 10px 0; }
 .flxp-wrap .flxp-pager .page-numbers { padding: 2px 8px; border: 1px solid #c3c4c7; border-radius: 3px; text-decoration: none; }
-.flxp-wrap .flxp-pager .current { background: var(--flxa-accent, #4338CA); color: #fff; border-color: var(--flxa-accent, #4338CA); }
+.flxp-wrap .flxp-pager .current { background: var(--flxa-accent, #1F2937); color: #fff; border-color: var(--flxa-accent, #1F2937); }
 .flxp-wrap .flxp-clear { margin-top: 16px; }
 .flxp-wrap .flxp-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 12px 0; }
 .flxp-wrap .flxp-card { display: flex; flex-direction: column; padding: 10px 12px; background: #fff; border: 1px solid #dcdcde; border-radius: 8px; text-decoration: none; color: #1d2327; }
@@ -62,7 +62,7 @@ body.flx-dark .flxp-wrap .flxp-row-err td { background: #3a1f22 !important; }
 /* Canlı kutular, öneriler, pano widget'ı. */
 .flxp-live .flxp-card small, .flxp-dash .flxp-card small { color: #646970; font-size: 11px; margin-top: 4px; min-height: 14px; }
 .flxp-bar { display: block; height: 6px; background: #f0f0f1; border-radius: 3px; overflow: hidden; margin-top: 6px; }
-.flxp-bar em { display: block; height: 100%; background: var(--flxa-accent, #4338CA); border-radius: 3px; transition: width .4s; }
+.flxp-bar em { display: block; height: 100%; background: var(--flxa-accent, #1F2937); border-radius: 3px; transition: width .4s; }
 .flxp-card.warn .flxp-bar em { background: #dba617; }
 .flxp-card.err .flxp-bar em { background: #d63638; }
 .flxp-wrap .flxp-live-note { margin-top: -4px; }

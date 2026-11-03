@@ -22,7 +22,7 @@ function flxseo_theme_color() {
 			}
 		}
 	}
-	return '#4338CA';
+	return '#1F2937';
 }
 
 function flxseo_icon( $file ) {

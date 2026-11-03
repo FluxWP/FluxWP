@@ -45,13 +45,13 @@ add_filter(
  */
 function flxs_email_colors() {
 	$c = array(
-		'primary'      => '#4338CA',
-		'primary-dark' => '#3730A3',
-		'ink'          => '#1E1B4B',
+		'primary'      => '#1F2937',
+		'primary-dark' => '#111827',
+		'ink'          => '#111827',
 		'text'         => '#4B5563',
-		'mint'         => '#EEF2FF',
-		'mint-soft'    => '#F7F8FE',
-		'line'         => '#E0E7FF',
+		'mint'         => '#F2EEE7',
+		'mint-soft'    => '#F8F5F0',
+		'line'         => '#E6E0D6',
 	);
 	if ( function_exists( 'wp_get_global_settings' ) ) {
 		$p = wp_get_global_settings( array( 'color', 'palette' ) );

@@ -1,13 +1,13 @@
 /* Flux Forms · Dashboard (site palette: FluxWP) */
 .flxfd {
-	--flxfd-primary: var(--flxa-accent, #4338CA);
-	--flxfd-dark: color-mix(in srgb, var(--flxa-accent, #4338CA) 78%, #000);
-	--flxfd-ink: #1E1B4B;
+	--flxfd-primary: var(--flxa-accent, #1F2937);
+	--flxfd-dark: color-mix(in srgb, var(--flxa-accent, #1F2937) 78%, #000);
+	--flxfd-ink: #111827;
 	--flxfd-text: #4B5563;
 	--flxfd-muted: #6B7C86;
-	--flxfd-mint: color-mix(in srgb, var(--flxa-accent, #4338CA) 10%, #fff);
+	--flxfd-mint: color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #fff);
 	--flxfd-soft: #F5FAF7;
-	--flxfd-line: color-mix(in srgb, var(--flxa-accent, #4338CA) 16%, #fff);
+	--flxfd-line: color-mix(in srgb, var(--flxa-accent, #1F2937) 16%, #fff);
 	--flxfd-grid: #E8EFEA;
 	--flxfd-surface: #FFFFFF;
 	--flxfd-cell0: #EEF3F0;
@@ -154,7 +154,7 @@
 /* tooltip (appended to body) */
 .flxfd-tip {
 	position: fixed; z-index: 100100; pointer-events: none; max-width: 300px;
-	background: #1E1B4B; color: #fff; border-radius: 10px; padding: 9px 12px;
+	background: #111827; color: #fff; border-radius: 10px; padding: 9px 12px;
 	font: 12.5px/1.45 "Nunito Sans", "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 	box-shadow: 0 10px 30px rgba(10, 30, 45, .25);
 }
@@ -163,7 +163,7 @@
 .flxfd-tip__row { display: flex; align-items: center; gap: 8px; }
 .flxfd-tip__row b { margin-left: auto; padding-left: 12px; font-variant-numeric: tabular-nums; }
 .flxfd-tip .flxfd-sw { width: 10px; height: 10px; box-shadow: 0 0 0 1.5px rgba(255, 255, 255, .85); }
-.flxfd-tip .flxfd-sw.is-dashed { height: 3px; box-shadow: none; background-image: linear-gradient(90deg, transparent 50%, #1E1B4B 50%) !important; }
+.flxfd-tip .flxfd-sw.is-dashed { height: 3px; box-shadow: none; background-image: linear-gradient(90deg, transparent 50%, #111827 50%) !important; }
 
 /* tables */
 .flxfd-tablewrap { overflow-x: auto; margin: 0 -20px -18px; }

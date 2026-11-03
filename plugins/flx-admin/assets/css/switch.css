@@ -5,14 +5,14 @@
 .flxa-sw-tab svg { width: 12px; height: 12px; }
 .flxa-sw-menu { position: absolute; left: 28px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 4px; padding: 6px; border-radius: 16px; background: #fff; box-shadow: 0 12px 40px rgba(0, 0, 0, .22); min-width: 168px; }
 .flxa-sw-menu[hidden] { display: none; }
-.flxa-sw-menu a { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; color: #171824; text-decoration: none; font-size: 14px; font-weight: 600; }
-.flxa-sw-menu a:hover, .flxa-sw-menu a:focus { background: #EEEFF6; outline: none; }
-.flxa-sw-menu a.is-current { background: color-mix(in srgb, var(--flxa-accent, #4338CA) 13%, #fff); color: color-mix(in srgb, var(--flxa-accent, #4338CA) 78%, #000); }
+.flxa-sw-menu a { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; color: #16181D; text-decoration: none; font-size: 14px; font-weight: 600; }
+.flxa-sw-menu a:hover, .flxa-sw-menu a:focus { background: #F0EFEC; outline: none; }
+.flxa-sw-menu a.is-current { background: color-mix(in srgb, var(--flxa-accent, #1F2937) 13%, #fff); color: color-mix(in srgb, var(--flxa-accent, #1F2937) 78%, #000); }
 .flxa-sw-menu kbd { margin-left: auto; font: inherit; font-size: 11px; opacity: .55; }
 @media (prefers-color-scheme: dark) {
-	.flxa-sw-menu { background: #1A182E; }
-	.flxa-sw-menu a { color: #E3E3F1; }
-	.flxa-sw-menu a:hover, .flxa-sw-menu a:focus { background: #211F38; }
-	.flxa-sw-menu a.is-current { background: color-mix(in srgb, var(--flxa-accent, #4338CA) 30%, #0D0E13); color: color-mix(in srgb, var(--flxa-accent, #4338CA) 55%, #fff); }
+	.flxa-sw-menu { background: #191B20; }
+	.flxa-sw-menu a { color: #E8E8EA; }
+	.flxa-sw-menu a:hover, .flxa-sw-menu a:focus { background: #22242A; }
+	.flxa-sw-menu a.is-current { background: color-mix(in srgb, var(--flxa-accent, #1F2937) 30%, #0D0E13); color: color-mix(in srgb, var(--flxa-accent, #1F2937) 55%, #fff); }
 }
 @media (max-width: 782px) { .flxa-sw { top: auto; bottom: 120px; transform: none; } .flxa-sw-menu { top: auto; bottom: 0; transform: none; } }

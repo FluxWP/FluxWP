@@ -450,8 +450,10 @@ return array (
     'Color nameÇizgi' => 'Border',
     'Color nameBeyaz' => 'White',
     'Style variation nameİndigo' => 'Indigo',
-    'Style variation nameGece' => 'Midnight',
-    'Style variation nameMor' => 'Violet',
+    'Style variation nameAntrasit' => 'Charcoal',
+    'Style variation nameMavi' => 'Blue',
     'Style variation nameOrman' => 'Forest',
+    'Style variation namePetrol' => 'Petrol',
+    'Color nameSayfa zemini' => 'Page background',
   ),
 );

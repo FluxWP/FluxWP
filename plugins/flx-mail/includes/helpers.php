@@ -245,10 +245,10 @@ function flxi_brand() {
 function flxi_theme_color( $key ) {
 	static $palette = null;
 	$map = array(
-		'color_primary' => array( 'primary', '#4338CA' ),
-		'color_dark'    => array( 'primary-dark', '#3730A3' ),
-		'color_bg'      => array( 'mint-soft', '#F7F8FE' ),
-		'color_text'    => array( 'ink', '#1E1B4B' ),
+		'color_primary' => array( 'primary', '#1F2937' ),
+		'color_dark'    => array( 'primary-dark', '#111827' ),
+		'color_bg'      => array( 'mint-soft', '#F8F5F0' ),
+		'color_text'    => array( 'ink', '#111827' ),
 	);
 	if ( ! isset( $map[ $key ] ) ) {
 		return '';

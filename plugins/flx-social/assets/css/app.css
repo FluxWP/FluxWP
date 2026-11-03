@@ -8,7 +8,7 @@ html body.flxa-appmode #flxsm-app { top: var(--flxa-safe-top, 0px); left: var(--
 .flxsm {
 	--bg: #0b0e0c; --panel: #121714; --panel2: #171c19; --line: #252b27; --line2: #2e3631;
 	--text: #e6ece8; --muted: #93a098; --faint: #5f6b64;
-	--acc: color-mix(in srgb, var(--flxa-accent, #4338CA) 70%, #fff); --acc-ink: #06140c; --acc-soft: rgba(92, 201, 139, .14);
+	--acc: color-mix(in srgb, var(--flxa-accent, #1F2937) 70%, #fff); --acc-ink: #06140c; --acc-soft: rgba(92, 201, 139, .14);
 	--warn: #e9b949; --err: #e5675b; --blue: #6ea8ff;
 	--c-img: #34a866; --c-vid: #5f86e6; --c-cost: #c9a24a;
 	--r: 12px; --r-s: 8px; --shadow: 0 12px 40px rgba(0, 0, 0, .45);
@@ -20,7 +20,7 @@ html body.flxa-appmode #flxsm-app { top: var(--flxa-safe-top, 0px); left: var(--
 .flxsm[data-theme="light"] {
 	--bg: #f4f6f5; --panel: #ffffff; --panel2: #f0f3f1; --line: #e1e6e3; --line2: #d3dad6;
 	--text: #16201a; --muted: #5f6b64; --faint: #97a29b;
-	--acc: var(--flxa-accent, #4338CA); --acc-ink: #ffffff; --acc-soft: rgba(46, 158, 98, .12);
+	--acc: var(--flxa-accent, #1F2937); --acc-ink: #ffffff; --acc-soft: rgba(46, 158, 98, .12);
 	--c-img: #2e9e62; --c-vid: #4a72d9; --c-cost: #a8801f;
 	--shadow: 0 12px 36px rgba(20, 40, 30, .14);
 	color-scheme: light;
@@ -144,7 +144,7 @@ textarea.flxsm-input { resize: vertical; }
 .flxsm-menu-head { padding: 8px 10px 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--faint); }
 .flxsm-toasts { position: fixed; left: 50%; top: 18px; transform: translateX(-50%); z-index: 100130; display: flex; flex-direction: column; align-items: center; gap: 8px; pointer-events: none; }
 .flxsm-toast { display: flex; align-items: center; gap: 8px; max-width: min(520px, 92vw); padding: 9px 14px; border-radius: 10px; background: #1d2420; color: #e6ece8; box-shadow: 0 8px 30px rgba(0, 0, 0, .35); font: 13.5px/1.4 -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; animation: flxsm-in .2s; transition: opacity .3s, transform .3s; }
-.flxsm-toast .flxsm-i { color: color-mix(in srgb, var(--flxa-accent, #4338CA) 70%, #fff); }
+.flxsm-toast .flxsm-i { color: color-mix(in srgb, var(--flxa-accent, #1F2937) 70%, #fff); }
 .flxsm-toast.is-error .flxsm-i { color: #e5675b; }
 .flxsm-toast.is-out { opacity: 0; transform: translateY(-6px); }
 @keyframes flxsm-in { from { opacity: 0; transform: translateY(-6px); } }

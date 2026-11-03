@@ -1855,17 +1855,27 @@ msgctxt "Style variation name"
 msgid "İndigo"
 msgstr "Indigo"
 
-#: styles/gece.json
+#: styles/antrasit.json
 msgctxt "Style variation name"
-msgid "Gece"
-msgstr "Midnight"
+msgid "Antrasit"
+msgstr "Charcoal"
 
-#: styles/mor.json
+#: styles/mavi.json
 msgctxt "Style variation name"
-msgid "Mor"
-msgstr "Violet"
+msgid "Mavi"
+msgstr "Blue"
 
 #: styles/orman.json
 msgctxt "Style variation name"
 msgid "Orman"
 msgstr "Forest"
+
+#: styles/petrol.json
+msgctxt "Style variation name"
+msgid "Petrol"
+msgstr "Petrol"
+
+#: theme.json styles/*.json
+msgctxt "Color name"
+msgid "Sayfa zemini"
+msgstr "Page background"

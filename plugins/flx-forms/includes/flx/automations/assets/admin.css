@@ -1,13 +1,13 @@
 /* Flux Forms · Automations admin (site palette: FluxWP) */
 .flxfa {
-	--flxfa-primary: var(--flxa-accent, #4338CA);
-	--flxfa-dark: color-mix(in srgb, var(--flxa-accent, #4338CA) 78%, #000);
-	--flxfa-ink: #1E1B4B;
+	--flxfa-primary: var(--flxa-accent, #1F2937);
+	--flxfa-dark: color-mix(in srgb, var(--flxa-accent, #1F2937) 78%, #000);
+	--flxfa-ink: #111827;
 	--flxfa-text: #4B5563;
 	--flxfa-muted: #6B7C86;
-	--flxfa-mint: color-mix(in srgb, var(--flxa-accent, #4338CA) 10%, #fff);
+	--flxfa-mint: color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #fff);
 	--flxfa-soft: #F5FAF7;
-	--flxfa-line: color-mix(in srgb, var(--flxa-accent, #4338CA) 16%, #fff);
+	--flxfa-line: color-mix(in srgb, var(--flxa-accent, #1F2937) 16%, #fff);
 	--flxfa-surface: #FFFFFF;
 	--flxfa-warn-bg: #FFF7E6;
 	--flxfa-warn-line: #F2D49B;
@@ -126,7 +126,7 @@
 
 .flxfa-canvas { position: relative; max-width: 780px; margin: 0 auto 60px; padding: 8px 0; }
 .flxfa-node { position: relative; background: var(--flxfa-surface); border: 1px solid var(--flxfa-line); border-radius: var(--flxfa-radius); box-shadow: 0 1px 2px rgba(20,50,74,.04), 0 6px 18px -12px rgba(20,50,74,.18); transition: box-shadow .15s, border-color .15s; }
-.flxfa-node.is-open { border-color: #BFDCCB; box-shadow: 0 2px 4px rgba(20,50,74,.05), 0 14px 30px -18px color-mix(in srgb, var(--flxa-accent, #4338CA) 35%, transparent); }
+.flxfa-node.is-open { border-color: #BFDCCB; box-shadow: 0 2px 4px rgba(20,50,74,.05), 0 14px 30px -18px color-mix(in srgb, var(--flxa-accent, #1F2937) 35%, transparent); }
 .flxfa-node--trigger { border-top: 4px solid var(--flxfa-primary); }
 .flxfa-node.is-disabled { opacity: .7; }
 .flxfa-node.is-dragging { opacity: .45; }
@@ -135,11 +135,11 @@
 .flxfa-grip { color: #A9B8B0; cursor: grab; }
 .flxfa-node__icon { flex: 0 0 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: var(--flxfa-mint); color: var(--flxfa-dark); }
 .flxfa-node__icon--trigger { background: var(--flxfa-primary); color: #fff; }
-.flxfa-node__icon--create_certificate { background: color-mix(in srgb, var(--flxa-accent, #4338CA) 13%, #fff); color: color-mix(in srgb, var(--flxa-accent, #4338CA) 78%, #000); }
+.flxfa-node__icon--create_certificate { background: color-mix(in srgb, var(--flxa-accent, #1F2937) 13%, #fff); color: color-mix(in srgb, var(--flxa-accent, #1F2937) 78%, #000); }
 .flxfa-node__icon--send_certificate { background: #E7F1FB; color: #1C5D99; }
 .flxfa-node__icon--show_on_thankyou { background: #F1ECFB; color: #5B3BA8; }
 .flxfa-node__icon--send_email { background: #FFF4E5; color: #8A4B00; }
-.flxfa-node__icon--webhook { background: #EEF1F4; color: #1E1B4B; }
+.flxfa-node__icon--webhook { background: #EEF1F4; color: #111827; }
 .flxfa-node__toggle { flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: 8px; text-align: left; border: 0; background: none; padding: 0; cursor: pointer; color: inherit; font: inherit; }
 .flxfa-node__titles { display: flex; flex-direction: column; min-width: 0; flex: 1 1 auto; }
 .flxfa-node__kicker { font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--flxfa-muted); }
@@ -211,18 +211,18 @@
 .flxfa [hidden] { display: none !important; }
 
 /* certificate card (same look as the front end, used in the preview) */
-.flxfa .flxf-cert-card { display: flex; flex-direction: column; gap: 12px; padding: 14px; border-radius: 14px; border: 1px solid #CFE6D8; background: #fff; color: #1E1B4B; text-align: left; }
-.flxfa .flxf-cert-card__icon { flex: 0 0 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: color-mix(in srgb, var(--flxa-accent, #4338CA) 10%, #fff); color: var(--flxa-accent, #4338CA); }
+.flxfa .flxf-cert-card { display: flex; flex-direction: column; gap: 12px; padding: 14px; border-radius: 14px; border: 1px solid #CFE6D8; background: #fff; color: #111827; text-align: left; }
+.flxfa .flxf-cert-card__icon { flex: 0 0 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #fff); color: var(--flxa-accent, #1F2937); }
 .flxfa .flxf-cert-card__title { margin: 0 0 4px; font-weight: 800; font-size: 15px; }
 .flxfa .flxf-cert-card__head { display: flex; gap: 12px; align-items: flex-start; }
-.flxfa .flxf-cert-card__figure { margin: 0; max-height: 220px; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--flxa-accent, #4338CA) 16%, #fff); background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230E7A56' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='9' r='6'/%3E%3Cpath d='M8.5 13.9 7 22l5-3 5 3-1.5-8.1'/%3E%3C/svg%3E") center / 48px no-repeat; }
+.flxfa .flxf-cert-card__figure { margin: 0; max-height: 220px; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--flxa-accent, #1F2937) 16%, #fff); background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230E7A56' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='9' r='6'/%3E%3Cpath d='M8.5 13.9 7 22l5-3 5 3-1.5-8.1'/%3E%3C/svg%3E") center / 48px no-repeat; }
 .flxfa .flxf-cert-card--preview .flxf-cert-card__actions > * { flex: 1 1 120px; text-align: center; }
 .flxfa .flxf-cert-card__no { margin: 0; font-size: 12px; color: #4B5563; }
-.flxfa .flxf-cert-card__link { color: var(--flxa-accent, #4338CA); font-weight: 700; text-decoration: underline; }
+.flxfa .flxf-cert-card__link { color: var(--flxa-accent, #1F2937); font-weight: 700; text-decoration: underline; }
 .flxfa .flxf-cert-card__msg { margin: 0; font-size: 13px; color: #4B5563; }
 .flxfa .flxf-cert-card__actions { display: flex; flex-wrap: wrap; gap: 6px; }
-.flxfa .flxf-cert-btn { display: inline-flex; padding: 6px 10px; border-radius: 9px; border: 1px solid var(--flxa-accent, #4338CA); color: var(--flxa-accent, #4338CA); font-weight: 700; font-size: 12px; }
-.flxfa .flxf-cert-btn--primary { background: var(--flxa-accent, #4338CA); color: #fff; }
+.flxfa .flxf-cert-btn { display: inline-flex; padding: 6px 10px; border-radius: 9px; border: 1px solid var(--flxa-accent, #1F2937); color: var(--flxa-accent, #1F2937); font-weight: 700; font-size: 12px; }
+.flxfa .flxf-cert-btn--primary { background: var(--flxa-accent, #1F2937); color: #fff; }
 
 @media (max-width: 960px) {
 	.flxfa-show { grid-template-columns: 1fr; }

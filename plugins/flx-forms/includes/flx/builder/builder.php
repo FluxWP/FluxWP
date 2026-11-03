@@ -31,13 +31,13 @@ function flxf_builder_is_screen( $hook ) {
 /** Theme palette and fonts (theme.json presets), with the FluxWP defaults as fallback. */
 function flxf_builder_tokens_css() {
 	$p = array(
-		'primary'      => '#4338CA',
-		'primary-dark' => '#3730A3',
-		'ink'          => '#1E1B4B',
+		'primary'      => '#1F2937',
+		'primary-dark' => '#111827',
+		'ink'          => '#111827',
 		'text'         => '#4B5563',
-		'mint'         => '#EEF2FF',
-		'mint-soft'    => '#F7F8FE',
-		'line'         => '#E0E7FF',
+		'mint'         => '#F2EEE7',
+		'mint-soft'    => '#F8F5F0',
+		'line'         => '#E6E0D6',
 	);
 	$fonts = array(
 		'heading' => "Nunito, 'Segoe UI', system-ui, sans-serif",

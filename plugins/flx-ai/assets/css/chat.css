@@ -6,10 +6,10 @@
 	--line: #e3e6ea;
 	--text: #14202b;
 	--muted: #66727e;
-	--brand: var(--flxa-accent, #4338CA);
-	--brand-2: color-mix(in srgb, var(--flxa-accent, #4338CA) 78%, #000);
-	--brand-soft: color-mix(in srgb, var(--flxa-accent, #4338CA) 10%, #fff);
-	--user: var(--flxa-accent, #4338CA);
+	--brand: var(--flxa-accent, #1F2937);
+	--brand-2: color-mix(in srgb, var(--flxa-accent, #1F2937) 78%, #000);
+	--brand-soft: color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #fff);
+	--user: var(--flxa-accent, #1F2937);
 	--user-text: #ffffff;
 	--warn: #b7791f;
 	--warn-soft: #fff6e5;
@@ -31,9 +31,9 @@
 	--line: #2e3842;
 	--text: #e8edf1;
 	--muted: #98a4af;
-	--brand: color-mix(in srgb, var(--flxa-accent, #4338CA) 70%, #fff);
-	--brand-2: color-mix(in srgb, var(--flxa-accent, #4338CA) 45%, #fff);
-	--brand-soft: color-mix(in srgb, var(--flxa-accent, #4338CA) 25%, #0D0E13);
+	--brand: color-mix(in srgb, var(--flxa-accent, #1F2937) 70%, #fff);
+	--brand-2: color-mix(in srgb, var(--flxa-accent, #1F2937) 45%, #fff);
+	--brand-soft: color-mix(in srgb, var(--flxa-accent, #1F2937) 25%, #0D0E13);
 	--user: #1d7d63;
 	--warn: #e5b45a;
 	--warn-soft: #3a2f1a;
