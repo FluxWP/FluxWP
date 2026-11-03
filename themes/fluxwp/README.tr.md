@@ -31,4 +31,4 @@ Tema değişince Site Editor'de kaydedilmiş şablonlar, şablon parçaları, gl
 
 ## Gereksinimler
 
-WordPress 6.6+, PHP 7.4+, WooCommerce, Flux Setup (Flux Updater temayla birlikte kurar).
+WordPress 6.6+, PHP 7.4+, WooCommerce, Flux Setup (kurulum sihirbazı temayla birlikte kurar).

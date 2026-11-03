@@ -12,7 +12,7 @@ for (const [path, svg] of Object.entries(raw)) {
 /** Menü slug'ı → paket logosu. */
 const pkg: [RegExp, string][] = [
   [/^flx-chat/, 'flx-chat'], [/^flx-tasks/, 'flx-tasks'], [/^flxb|^flx-donate/, 'flx-donate'], [/^flxs$|^flx-certificates/, 'flx-certificates'],
-  [/^emsfb$|^flx-forms/i, 'flx-forms'], [/^flxi(-|$)|^flx-mail/, 'flx-mail'], [/^flx-updater/, 'flx-updater'], [/^flx-backup/, 'flx-backup'],
+  [/^emsfb$|^flx-forms/i, 'flx-forms'], [/^flxi(-|$)|^flx-mail/, 'flx-mail'], [/^flx-(setup|updater)/, 'flx-setup'], [/^flx-backup/, 'flx-backup'],
   [/^flx-speed/, 'flx-speed'], [/^flx-analytics/, 'flx-analytics'], [/^flx-social/, 'flx-social'], [/^flx-ai/, 'flx-ai'], [/^flx-studio/, 'flx-studio'],
   [/^flxseo|^flx-seo/, 'flx-seo'], [/^flx-qr/, 'flx-qr-menu'], [/^flx-tv-remote/, 'flx-tv-remote'], [/^flx-tv-board/, 'flx-tv-board'],
   [/^flxapp|^flx-app/, 'flx-app'], [/^flx-lang/, 'flx-lang'], [/^flx-roles|^flxr-/, 'flx-roles'], [/^flxa-|^flx-admin/, 'flx-admin'],

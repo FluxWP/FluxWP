@@ -4,7 +4,7 @@
 Glyphs come from Lucide (ISC, lucide-static). Run from the repo root:
   cd tools/icons && bun install && cd ../.. && python3 tools/icons/build.py
 Writes every package's assets/icon.svg (+ icon-pastel.svg), docs/logo.svg,
-flx-updater/assets/icons/{,pastel/}<slug>.svg and flx-admin/assets/logos/{,pastel/}<slug>.svg.
+flx-setup/assets/icons/{,pastel/}<slug>.svg and flx-admin/assets/logos/{,pastel/}<slug>.svg.
 Pass --extras <wp-extras checkout> to also write the wp-extras packages, --skip a,b to leave
 those packages' own copies alone.
 """
@@ -33,7 +33,6 @@ PKGS = [
   ('flx-ai', 'Flux AI', 'platform', 'sparkles'),
   ('flx-tasks', 'Flux Tasks', 'platform', 'list-checks'),
   ('fluxwp', 'FluxWP (tema)', 'platform', '@mark'),
-  ('flx-updater', 'Flux Updater', 'system', 'refresh-cw'),
   ('flx-backup', 'Flux Backup', 'system', 'database-backup'),
   ('flx-speed', 'Flux Speed', 'system', 'gauge'),
   ('flx-migrate', 'Flux Migrate', 'system', 'arrow-right-left'),
@@ -119,7 +118,7 @@ def put(path, data):
 for slug, nm, g, gl in PKGS:
     a, c = style_a(slug, g, gl), style_c(slug, g, gl)
     # central copies: updater (package list, Updates screen) and admin (menu, FluxApp)
-    for base in ('plugins/flx-updater/assets/icons', 'plugins/flx-admin/assets/logos'):
+    for base in ('plugins/flx-setup/assets/icons', 'plugins/flx-admin/assets/logos'):
         put(os.path.join(ROOT, base, slug + '.svg'), a)
         put(os.path.join(ROOT, base, 'pastel', slug + '.svg'), c)
     home = ''

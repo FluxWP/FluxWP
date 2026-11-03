@@ -6,7 +6,7 @@ güncelleme sunucusu. FluxWP'nin resmi sunucusu `https://updater.fluxwp.com`; ay
 - **Public depolar** (varsayılan `FluxWP/wp-extras`): paketleri herkese **anahtarsız** sunulur.
 - **Private depolar** (varsayılan `FluxWP/fluxwp`): paketleri yalnız **site anahtarıyla**, anahtara tanımlı paketler kadar görünür.
 
-GitHub token yalnız bu sunucuda durur; siteler Flux Updater eklentisiyle bağlanır.
+GitHub token yalnız bu sunucuda durur; siteler Flux Setup eklentisiyle bağlanır.
 
 ```
 GitHub depoları (push → Actions → <slug>-v<sürüm> release + <slug>.zip)
@@ -14,7 +14,7 @@ GitHub depoları (push → Actions → <slug>-v<sürüm> release + <slug>.zip)
         ▼
 update server   /admin (panel) · /v1/check · /v1/download/<slug>/<sürüm>.zip · /v1/app/* · /v1/webhook
         ▲ anahtarsız: public paketler · X-FluxWP-Site-Key: + anahtarın private paketleri
-WordPress siteleri (Flux Updater)
+WordPress siteleri (Flux Setup)
 ```
 
 Tüm ayarlar **/admin** panelinden girilir; `config.php` gerekmez.
@@ -31,7 +31,7 @@ Tüm ayarlar **/admin** panelinden girilir; `config.php` gerekmez.
    Repository permissions › **Contents: Read-only**. Yalnız public depo sunacaksanız token gerekmez.
 5. **Site ekle**: ad, private paketler (hepsi ya da seçili), kanal › *Anahtar üret*. Anahtar **bir kez** gösterilir;
    kopyalayın, *Bu anahtarı test et* ile deneyin.
-6. Sitede: `flx-updater.zip`'i bir kez kurun › **Ayarlar › Flux Updater** › anahtarı yapıştırın
+6. Sitede: `flx-setup.zip`'i bir kez kurun › **Setup › Paketler** › anahtarı yapıştırın
    › *Kaydet ve kontrol et* › **Bağlı**. Eklentinin varsayılan sunucusu `https://updater.fluxwp.com`; kendi sunucunuzu
    kullanıyorsanız adresini yazın. Anahtarsız site yalnız public paketleri görür.
 7. (İsteğe bağlı) **Anında yayın** › *Secret üret* › paket deposu › Settings › Secrets › Actions'a
@@ -101,7 +101,7 @@ yalnız anahtarla çalışır. Bir depo okunamazsa yalnız o deponun paketleri s
 ### Gerekli eklentiler (1.5.0)
 
 `/v1/check` her paket için `requires_plugins` da döndürür (paketin `Requires Plugins:` başlığı, release notundaki
-`flx-meta` satırından). Flux Updater 1.3.0 bununla kurmadan önce eksik eklentileri gösterir ve birlikte kurar.
+`flx-meta` satırından). Flux Updater (şimdi Flux Setup) 1.3.0 bununla kurmadan önce eksik eklentileri gösterir ve birlikte kurar.
 1.5.0'a geçerken yalnız `lib/server.php` değişir.
 
 ### Uygulama güncellemeleri (1.3.0)

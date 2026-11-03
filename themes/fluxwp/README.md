@@ -31,4 +31,4 @@ On switch, templates, template parts, global styles, theme mods and custom CSS s
 
 ## Requirements
 
-WordPress 6.6+, PHP 7.4+, WooCommerce, Flux Setup (Flux Updater installs it with the theme).
+WordPress 6.6+, PHP 7.4+, WooCommerce, Flux Setup (the setup wizard installs it with the theme).

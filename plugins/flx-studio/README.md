@@ -73,9 +73,9 @@ Requirements: WordPress 6.4+, PHP 7.4+. Flux AI 0.6.0+ with at least one image/v
 1. Download `flx-studio.zip` from the latest `flx-studio-v*` release on the [Releases](https://github.com/FluxWP/fluxwp/releases) page.
 2. **Plugins › Add New › Upload Plugin**, choose the zip, then **Activate**.
 
-**With Flux Updater** (recommended on our sites)
+**With Flux Setup** (recommended on our sites)
 
-**Dashboard › Updates** lists every FluxWP package; click **Install** next to *Flux Studio*. Updates arrive the same way.
+**Setup › Packages** lists every FluxWP package; click **Install** next to *Flux Studio*. Updates arrive the same way.
 
 **First steps**
 

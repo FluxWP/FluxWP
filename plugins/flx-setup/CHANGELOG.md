@@ -1,5 +1,13 @@
 # Değişiklikler
 
+## 1.0.0
+- Flux Updater ile birleşti: tek eklenti **Flux Setup** (slug `flx-setup`). Paket listesi, güncellemeler, sürüm değiştirme, güncelleme öncesi yedek ve geri alma Flux Updater 1.7.2'den aynen geldi; sınıflar `FLXU_*`, ayarlar `flxu_*` aynı kaldı.
+- Sol menüde tek **Setup** öğesi: Paketler, Kurulum sihirbazı, Ön ayarlar, Ayarlar. Eski `page=flx-updater` / `flx-updater-ayarlar` adresleri yeni sayfalara yönlenir.
+- Kurulum sihirbazı: etkinleştirmeden sonra bir kez açılır, atlanabilir. Sunum düzeni: her adım tek yatay ekrana sığar, sayfa kaymaz, adımlar yana kayar; zemin yumuşak renkli, kartlar buzlu cam. Adımlar: tanıtım › tema ve mağaza › eklenti kartları (ekran görüntüsü + tek satır) › ön ayar, renk stili ve site adı (canlı önizleme) › kurulum (paket başına satır, konsol kaydı, ilerleme) › bitti ekranı ve sonraki adımlar. Hatalı adımlar sonda listelenir.
+- "Neyle başlayalım?" adımı: FluxWP teması ve Flux Commerce ayrı ekranda, ikisi de önerilen; altta "Seçmeden devam et". Tema seçilmezse renk stilleri ve tema ön ayarı gösterilmez. Filtreler `flxk_onboarding_intro`, `flxk_onboarding_core`, `flxk_onboarding_presets`, `flxk_onboarding_cap`.
+- Flux Updater kuruluysa Flux Setup etkinleşince eski eklenti kapatılır, ayarları korunur; ikisi aynı anda yüklenmez.
+- Geist yazı tipi (OFL) eklentiyle gelir, dışarıdan yazı tipi yüklenmez.
+
 ## 0.2.4
 - Ara bilgi metinleri Flux Admin tonunu izliyor.
 

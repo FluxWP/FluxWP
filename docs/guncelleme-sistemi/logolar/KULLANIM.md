@@ -1,7 +1,7 @@
 # FluxWP eklenti logoları
 
 Ortak tarz: 256×256 SVG, yuvarlatılmış kare, eklentiye özel degrade ve beyaz sembol. Kaynak dosyalar
-`plugins/flx-updater/assets/icons/<slug>.svg` içinde.
+`plugins/flx-setup/assets/icons/<slug>.svg` içinde.
 
 | Dosya | Eklenti | Sembol |
 |---|---|---|
@@ -13,11 +13,10 @@ Ortak tarz: 256×256 SVG, yuvarlatılmış kare, eklentiye özel degrade ve beya
 | flx-certificates.svg | Flux Certificates | madalya + yıldız |
 | flx-chat.svg | Flux Chat | kulaklık + mesaj |
 | flx-mail.svg | Flux Mail | zarf + mesaj |
-| flx-updater.svg | Flux Updater | yenile + yukarı ok |
 
-## Zaten yapılan (Flux Updater 1.0.3)
+## Zaten yapılan (Flux Updater (şimdi Flux Setup) 1.0.3)
 
-Başlangıç › Güncellemeler ekranında ve Ayarlar › Flux Updater paket tablosunda logolar görünür.
+Başlangıç › Güncellemeler ekranında ve Setup › Paketler paket tablosunda logolar görünür.
 Eklentide değişiklik gerekmez. Bir paket logoyu kendisi vermek isterse:
 `add_filter( 'flxu_package_icons', fn( $icons, $slug ) => … , 10, 2 );` ile `['svg' => URL]` döndürür.
 

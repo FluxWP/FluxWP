@@ -9,7 +9,6 @@ flx-chat	WhatsApp çağrı merkezi: sohbetler, hazır cevaplar, etiketler ve ata
 flx-lang	Siteyi çok dilli yapar: /en/ adresleri, içerik başına çeviri, hreflang ve dil seçici.
 flx-forms	Sürükle-bırak form oluşturucu: çok adımlı formlar, ödemeler, koşullu mantık ve otomasyonlar. Gelen kayıtlar tek panelde.
 flx-tasks	Görev takibi: projeler, listeler, pano ve takvim görünümleri. Toplantı raporları, bildirimler ve MCP araçları.
-flx-updater	Özel FluxWP tema ve eklentilerini kendi güncelleme sunucusundan WordPress'in güncelleme ekranına getirir.
 flx-mail	Sitenin tüm e-postaları, posta kutusu ve gönderim kayıtları tek yerde. WhatsApp ve SMS bağlantıları diğer eklentilere ortak API ile açılır.
 flx-speed	Sorgular, PHP hataları, yavaş istekler, sunucu, veritabanı ve cron tek ekranda. Sistem Kontrolü burada.
 flx-roles	Personel, İdareci ve Yönetici rolleri; paketlerin yetkileri tek sayfadan açılıp kapanır. Kişisel referans linki burada.
@@ -20,4 +19,4 @@ flx-studio	Yapay zekâ ile görsel ve video stüdyosu. Üretim, referanslar ve k
 flx-app	Masaüstü ve mobil uygulama için giriş: OAuth 2.0 (PKCE), API anahtarları ve rol bazlı menü.
 flx-backup	Güncellemelerden önce otomatik yedek, zamanlanmış tam yedekler ve seçerek geri yükleme.
 fluxwp	Sade, hızlı WooCommerce block teması. Hero, header, footer ve ana sayfa desenleri ön ayarlarla tamamen değişir.
-flx-setup	Ön ayar motoru: tek şablon dosyasıyla kurum profili, ayarlar, header/footer, şablonlar, sayfalar ve menüleri kurar. AI sohbetinden ve MCP'den onaylı yamalarla siteyi düzenler.
+flx-setup	Kurulum sihirbazı, ön ayarlar ve güncellemeler: tema ve eklentileri tek seferde kurar, ön ayarı (profil, header/footer, sayfalar, menüler) uygular, FluxWP paketlerini güncelleme sunucusundan WordPress'in güncelleme ekranına getirir.

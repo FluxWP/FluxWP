@@ -5,11 +5,11 @@ REL='https://github.com/FluxWP/fluxwp/releases'
 T={
  'en':dict(other='[Türkçe](README.tr.md)',me='**English**',logo='logo',feat='Features',shots='Screenshots',inst='Installation',mcp='Use it with AI assistants (MCP)',dev='For developers',road='Roadmap',lic='License',why='Why',
    badge_lic='license',zip='**From a zip**',zip1=f'Download `{{slug}}.zip` from the latest `{{slug}}-v*` release on the [Releases]({REL}) page.',zip2='**Plugins › Add New › Upload Plugin**, choose the zip, then **Activate**.',zip2t='**Appearance › Themes › Add New › Upload Theme**, choose the zip, then **Activate**.',
-   upd='**With Flux Updater** (recommended on our sites)',upd1='**Dashboard › Updates** lists every FluxWP package; click **Install** next to *{name}*. Updates arrive the same way.',first='**First steps**',req='Requirements',
+   upd='**With Flux Setup** (recommended on our sites)',upd1='**Setup › Packages** lists every FluxWP package; click **Install** next to *{name}*. Updates arrive the same way.',first='**First steps**',req='Requirements',
    licbody='Released under the [GNU General Public License v2 or later](https://www.gnu.org/licenses/gpl-2.0.html).',made='Made by FluxWP.',docs='Full setup notes (Turkish)',api='API reference',chg='Release notes'),
  'tr':dict(other='[English](README.md)',me='**Türkçe**',logo='logosu',feat='Özellikler',shots='Ekran görüntüleri',inst='Kurulum',mcp='Yapay zekâ asistanlarıyla kullanım (MCP)',dev='Geliştiriciler için',road='Yol haritası',lic='Lisans',why='Neden',
    badge_lic='lisans',zip='**Zip ile**',zip1=f'[Releases]({REL}) sayfasında en son `{{slug}}-v*` sürümünden `{{slug}}.zip`\'i indirin.',zip2='**Eklentiler › Yeni ekle › Eklenti yükle**, zip\'i seçin, sonra **Etkinleştir**.',zip2t='**Görünüm › Temalar › Yeni ekle › Tema yükle**, zip\'i seçin, sonra **Etkinleştir**.',
-   upd='**Flux Updater ile** (sitelerimizde önerilen)',upd1='**Başlangıç › Güncellemeler** tüm FluxWP paketlerini listeler; *{name}* satırındaki **Kur**\'a basın. Güncellemeler de buradan gelir.',first='**İlk adımlar**',req='Gereksinimler',
+   upd='**Flux Setup ile** (sitelerimizde önerilen)',upd1='**Setup › Paketler** tüm FluxWP paketlerini listeler; *{name}* satırındaki **Kur**\'a basın. Güncellemeler de buradan gelir.',first='**İlk adımlar**',req='Gereksinimler',
    licbody='[GNU Genel Kamu Lisansı v2 veya üzeri](https://www.gnu.org/licenses/gpl-2.0.html) ile yayınlanır.',made='FluxWP tarafından geliştirilmiştir.',docs='Ayrıntılı kurulum notları',api='API başvurusu',chg='Sürüm notları'),
 }
 import re

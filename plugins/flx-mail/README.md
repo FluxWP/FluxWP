@@ -75,9 +75,9 @@ Requirements: WordPress 6.2+, PHP 7.4+. An e-mail account for bilgi@ (and option
 1. Download `flx-mail.zip` from the latest `flx-mail-v*` release on the [Releases](https://github.com/FluxWP/fluxwp/releases) page.
 2. **Plugins › Add New › Upload Plugin**, choose the zip, then **Activate**.
 
-**With Flux Updater** (recommended on our sites)
+**With Flux Setup** (recommended on our sites)
 
-**Dashboard › Updates** lists every FluxWP package; click **Install** next to *Flux Contact*. Updates arrive the same way.
+**Setup › Packages** lists every FluxWP package; click **Install** next to *Flux Contact*. Updates arrive the same way.
 
 **First steps**
 

@@ -8,7 +8,6 @@ flx-chat	Flux Call Center	A WhatsApp inbox with canned replies, tags and assignm
 flx-lang	Flux Language	Makes the site multilingual: /en/ addresses, per-post translations, hreflang and a language switcher.
 flx-forms	Flux Forms	Drag-and-drop form builder with multi-step forms, payments, conditional logic and automations.
 flx-tasks	Flux Tasks	Task tracking with projects, lists, boards and calendars. Meeting reports, notifications and MCP tools.
-flx-updater	Flux Updater	Brings private themes and plugins from your own update server into the WordPress updates screen.
 flx-mail	Flux Contact	Every e-mail the site sends, a mailbox and delivery logs in one place. WhatsApp and SMS lines shared with other packages.
 flx-speed	Flux Performance	Queries, PHP errors, slow requests, server, database and cron on one screen. Home of the System Check.
 flx-roles	Flux Roles	Staff, Manager and Admin roles; every package's capabilities on one page. Personal referral links.
@@ -19,5 +18,5 @@ flx-studio	Flux Studio	An AI image and video studio. Generation, references and 
 flx-app	Flux App	Sign-in for the desktop and mobile app: OAuth 2.0 (PKCE), API keys and a role-based menu.
 flx-backup	Flux Backup	Automatic backups before updates, scheduled full backups and selective restore.
 fluxwp	FluxWP	A simple, fast WooCommerce block theme. Hero, header, footer and home patterns are fully replaceable by presets.
-flx-setup	Flux Setup	Preset engine: one file sets up the organisation profile, settings, header/footer, templates, pages and menus. Edits the site through approved patches from AI chat and MCP.
+flx-setup	Flux Setup	Setup wizard, presets and updates: installs the theme and plugins in one pass, applies a preset (profile, header/footer, pages, menus) and brings FluxWP packages from your update server into the WordPress updates screen.
 flx-migrate	Flux Migrate	Moves site data saved under the old package names (settings, tables, meta, content, theme, upload folders) to the FluxWP names.

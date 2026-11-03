@@ -67,9 +67,9 @@ Gereksinimler: WordPress 6.4+, PHP 7.4+.
 1. [Releases](https://github.com/FluxWP/fluxwp/releases) sayfasında en son `flx-roles-v*` sürümünden `flx-roles.zip`'i indirin.
 2. **Eklentiler › Yeni ekle › Eklenti yükle**, zip'i seçin, sonra **Etkinleştir**.
 
-**Flux Updater ile** (sitelerimizde önerilen)
+**Flux Setup ile** (sitelerimizde önerilen)
 
-**Başlangıç › Güncellemeler** tüm FluxWP paketlerini listeler; *Flux Roles* satırındaki **Kur**'a basın. Güncellemeler de buradan gelir.
+**Setup › Paketler** tüm FluxWP paketlerini listeler; *Flux Roles* satırındaki **Kur**'a basın. Güncellemeler de buradan gelir.
 
 **İlk adımlar**
 
