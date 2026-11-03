@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.3
+- Kaldırılan Flux Updater (flx-updater) için menü grubu, ikon, rozet ve sayfa başlığı kayıtları silindi; güncelleme menüsü birleştirmesi yalnız FluxWP Panel'e (flx-setup) bakar.
+
 ## 1.7.2
 - Sol menü: üst (logo + arama) ve alt (kullanıcı) yerinde sabit, yalnız orta kayar. 1.7.0'daki geçiş efekti kaldırıldı; kayan kartlar arama kutusunun altında yarı saydam görünmüyor, net kesiliyor. Menünün sonuna gelince kaydırma sayfaya geçmiyor ve Mac/iOS esnemesi yok.
 

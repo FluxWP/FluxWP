@@ -84,7 +84,7 @@ Flutter'da portlanmış ekranlar (dashboard, WhatsApp, Görevler, Onay, Bağış
 - State: Zustand (oturum, hesap, düzen) + TanStack Query (sunucu verisi, poll 4/8/15 sn, sekme gizliyken durur).
 - Router: panel TanStack Router; mobil Expo Router.
 - Stil: panel CSS değişkenleri (token'lardan) + CSS modules; mobil token'lardan RN tema. Açık/koyu mod, Konsept B tasarım dili.
-- Tauri eklentileri: deep-link, keyring (secure store), updater (Flux Updater sunucusu), opener, window-state.
+- Tauri eklentileri: deep-link, keyring (secure store), updater (FluxWP güncelleme sunucusu), opener, window-state.
 - CI: GitHub Actions, macOS runner: `bun run build` + `tauri build` (imzasız, imza secret'ları gelince imzalı). Release `v*` tag.
 
 ## 9. Sunucu tarafında gerekenler (paket thread'lerine)

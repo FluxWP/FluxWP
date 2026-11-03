@@ -363,7 +363,7 @@ final class FLXY_Pre_Update {
 		}
 	}
 
-	/** Bu istekte alınan güncelleme öncesi yedeğin kimliği (ör. Flux Updater geri alma için). */
+	/** Bu istekte alınan güncelleme öncesi yedeğin kimliği (ör. FluxWP Panel geri alma için). */
 	public static function current_backup_id(): ?string {
 		return self::$backup_id;
 	}

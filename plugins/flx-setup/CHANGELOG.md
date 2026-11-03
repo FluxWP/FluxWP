@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.0.15
+- Eski Flux Updater adı arayüzden kalktı: kaynak etiketi, atlananlar notu ve sunucu adresi açıklaması artık "FluxWP Panel" / "FluxWP güncelleme sunucusu" der. Sihirbaz gizli listesinden `flx-updater` çıktı.
+- Eski flx-updater hâlâ etkin olan sitelerde davranış aynı: FluxWP Panel onu otomatik kapatır, ayarları (`flxu_*`) korur, "Eklentiler ekranından silebilirsiniz" notu gösterir.
+
 ## 1.0.13
 - Ön ayar güncellenince ayarlar da güncellenir: `version` değişince profil, WordPress ve eklenti ayarları siteyle eşitlenir. Ön ayarın yazdığı ve sizin değiştirmediğiniz değerler yenilenir, yeni alanlar eklenir, elle değiştirdikleriniz korunur. Geçmişte "Eşitleme" kaydı, geri alınabilir. Kapatmak: `flxk_auto_sync` filtresi.
 - Ön ayar bir ayarın yalnız bildirdiği alanlarını değiştirir. Önceden tema ayarına `site_mod` yazmak, temanın sanitize'ı yüzünden çerez banner'ını kapatıyordu ("İlk ziyarette çerez banner'ını göster" kapalı kalıyordu). Motor artık bildirilmeyen alanları yazdıktan sonra eski haline getirir (`flxk_option_guard`).

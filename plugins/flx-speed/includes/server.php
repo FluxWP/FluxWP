@@ -549,7 +549,7 @@ function flxp_option_owner( $name ) {
 		'flxi_'              => 'Flux Mail',
 		'flxc_'              => 'Flux Chat',
 		'flxg_'              => 'Flux Tasks',
-		'flxu_'              => 'Flux Updater',
+		'flxu_'              => 'FluxWP Panel',
 		'flxy_'              => 'Flux Backup',
 		'flxseo_'            => 'Flux SEO & MCP',
 		'flxa_'              => 'Flux Admin',

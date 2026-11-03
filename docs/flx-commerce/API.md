@@ -38,4 +38,4 @@
 Ürün meta `_flxcm_no_feed` = feed'e girmez.
 
 ## Paylaşılan kancalar
-`flx_system_checks`, `flxa_page_heads`, `flxa_package_heads`, `flxa_menu_logos`, `flxa_default_groups` (Flux Admin), `flxu_package_icons` (Flux Updater), Flux Mail `flxi_send_message`.
+`flx_system_checks`, `flxa_page_heads`, `flxa_package_heads`, `flxa_menu_logos`, `flxa_default_groups` (Flux Admin), `flxu_package_icons` (FluxWP Panel), Flux Mail `flxi_send_message`.

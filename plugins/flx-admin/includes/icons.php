@@ -106,7 +106,6 @@ function flxa_menu_icon_map() {
 			'flxi'                            => 'mail',
 			'flxseo'                          => 'search',
 			'flx-setup'                  => 'refresh',
-			'flx-updater'                => 'refresh',
 			'flx-backup'                       => 'archive',
 		)
 	);
@@ -119,7 +118,7 @@ function flxa_icon_for_slug( $slug ) {
 
 /** Bu menü öğesi bir FluxWP paketine mi ait (renkli logosu korunur). */
 function flxa_is_flx_slug( $slug ) {
-	return in_array( $slug, array( 'flxb-dashboard', 'flx-chat', 'flx-tasks', 'flxs', 'Emsfb', 'flxi', 'flxseo', 'flx-updater', 'flx-backup', 'flx-wc-bagis' ), true )
+	return in_array( $slug, array( 'flxb-dashboard', 'flx-chat', 'flx-tasks', 'flxs', 'Emsfb', 'flxi', 'flxseo', 'flx-backup', 'flx-wc-bagis' ), true )
 		|| 0 === strpos( $slug, 'flx-' ) || 0 === strpos( $slug, 'flx_' );
 }
 
@@ -136,7 +135,6 @@ function flxa_logo_for_slug( $slug ) {
 			'flxi'            => 'flx-mail.svg',
 			'flxseo'          => 'flx-seo.svg',
 			'flx-setup'       => 'flx-setup.svg',
-			'flx-updater'     => 'flx-setup.svg',
 			'flx-backup'      => 'flx-backup.svg',
 			'flx-ai'          => 'flx-ai.svg',
 			'flx-analytics'   => 'flx-analytics.svg',
@@ -155,7 +153,7 @@ function flxa_logo_for_slug( $slug ) {
 
 /**
  * Paket logosu stili: `gradient` (varsayılan) ya da `pastel`. Ayarlar › Yönetim teması › Görünüm.
- * Flux Updater ve Flux App de buna bakar. Filtre `flx_logo_style`.
+ * FluxWP Panel ve Flux App de buna bakar. Filtre `flx_logo_style`.
  */
 function flxa_logo_style() {
 	$v = (string) apply_filters( 'flx_logo_style', (string) flxa_setting( 'logo_style' ) );

@@ -12,7 +12,7 @@ Bir paket güncellenince belgesi hem proje klasöründe hem burada güncellenir.
 | `iletisim/` | Flux Mail (`plugins/flx-mail`) | KURULUM, **API**, ENTEGRASYON |
 | `cagri-merkezi/` | Flux Chat (`plugins/flx-chat`) | KURULUM |
 | `gorev-takip/` | Flux Tasks (`plugins/flx-tasks`) | KURULUM |
-| `guncelleme-sistemi/` | Flux Updater + wp-update-server | KURULUM, logolar/KULLANIM |
+| `guncelleme-sistemi/` | FluxWP Panel güncelleyicisi + FluxWP/updater | KURULUM, logolar/KULLANIM |
 | `yedek-eklentisi/` | Flux Backup (`plugins/flx-backup`) | KURULUM, API |
 | `seo-mcp/` | Flux SEO & MCP (`plugins/flx-seo`) | KURULUM, **MCP-API** (`flxseo_mcp_tools`, `flx_system_fixes`), SEO raporu |
 | `flx-admin/` | Flux Admin (`plugins/flx-admin`) | KURULUM |

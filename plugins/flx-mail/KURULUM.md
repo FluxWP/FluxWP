@@ -5,7 +5,7 @@ Sitenin bütün e-postalarını, WhatsApp ve SMS bağlantılarını tek yerden y
 ## 1. Eklentiyi kur
 
 Eklentiler › Yeni ekle › Eklenti yükle › `flx-mail.zip` › Etkinleştir.
-(Flux Updater kuruluysa Ayarlar › Flux Updater'de **Kur** de olur.)
+(FluxWP Panel kuruluysa Setup › Paketler'den **Kur** de olur.)
 
 Etkinleşir etkinleşmez:
 - `wordpress@…` adresi yerine **info@example.org** kullanılır; parola/üyelik/yorum bildirimleri **info@example.org** adresinden gider.

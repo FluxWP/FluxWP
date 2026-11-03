@@ -584,7 +584,7 @@ final class FLXU_Admin {
 				<div class="notice notice-<?php echo $mr['fail'] ? 'warning' : 'success'; ?> is-dismissible"><p>
 					<?php echo esc_html( sprintf( $labels[ $mr['op'] ] ?? '%d', (int) $mr['done'] ) ); ?>
 					<?php if ( $mr['skip'] ) : ?>
-						<?php /* translators: %s: package names */ echo esc_html( sprintf( __( 'Atlananlar (zaten bu durumda, etkin tema ya da Flux Updater): %s.', 'flx-setup' ), implode( ', ', $mr['skip'] ) ) ); ?>
+						<?php /* translators: %s: package names */ echo esc_html( sprintf( __( 'Atlananlar (zaten bu durumda, etkin tema ya da FluxWP Panel): %s.', 'flx-setup' ), implode( ', ', $mr['skip'] ) ) ); ?>
 					<?php endif; ?>
 					<?php if ( $mr['fail'] ) : ?>
 						<?php /* translators: %s: package names */ echo esc_html( sprintf( __( 'Yapılamayanlar: %s.', 'flx-setup' ), implode( ', ', $mr['fail'] ) ) ); ?>
@@ -896,7 +896,7 @@ final class FLXU_Admin {
 				<tr>
 					<th scope="row"><label for="flxu-src-url"><?php esc_html_e( 'Adres', 'flx-setup' ); ?></label></th>
 					<td><input type="url" id="flxu-src-url" name="url" class="regular-text" required placeholder="https://github.com/owner/repo">
-						<p class="description"><?php esc_html_e( 'Public GitHub deposu (release\'lerinde <slug>.zip olan) ya da Flux Updater sunucusu adresi. Yalnız https.', 'flx-setup' ); ?></p></td>
+						<p class="description"><?php esc_html_e( 'Public GitHub deposu (release\'lerinde <slug>.zip olan) ya da FluxWP güncelleme sunucusu adresi. Yalnız https.', 'flx-setup' ); ?></p></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="flxu-src-name"><?php esc_html_e( 'Ad', 'flx-setup' ); ?></label></th>
@@ -959,7 +959,7 @@ final class FLXU_Admin {
 
 	/**
 	 * Toplu işlem: seçilen kurulu paketleri etkinleştir, devre dışı bırak ya da kaldır.
-	 * Flux Updater kendini kapatmaz/silmez; etkin tema (ve üst teması) silinmez; temalar
+	 * FluxWP Panel kendini kapatmaz/silmez; etkin tema (ve üst teması) silinmez; temalar
 	 * etkinleştirilip kapatılmaz (Görünüm › Temalar'dan değiştirilir).
 	 */
 	public function manage_action(): void {
