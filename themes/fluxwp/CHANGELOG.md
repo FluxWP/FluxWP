@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.7.4
+- Varsayılan favicon: site simgesi ve kurum profili simgesi yoksa tema da yeni FluxWP favicon'unu (zeminsiz, beyaz konturlu işaret) gösterir; Flux SEO ya da Flux Admin kuruluysa onlarınki kullanılır, çift yazılmaz. Filtre `flx_theme_favicon`.
+
 ## 0.7.3
 - Sistem Kontrolü: Flux SEO artık isteğe bağlı. Kurulu ya da etkin değilse hata yerine uyarı gösterilir.
 
