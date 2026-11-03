@@ -1,0 +1,56 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.6/theme.json",
+	"version": 3,
+	"title": "İndigo",
+	"settings": {
+		"color": {
+			"palette": [
+				{
+					"slug": "primary",
+					"name": "Ana renk",
+					"color": "#4338CA"
+				},
+				{
+					"slug": "primary-dark",
+					"name": "Koyu ana renk",
+					"color": "#3730A3"
+				},
+				{
+					"slug": "leaf",
+					"name": "Vurgu",
+					"color": "#F59E0B"
+				},
+				{
+					"slug": "ink",
+					"name": "Başlık",
+					"color": "#1E1B4B"
+				},
+				{
+					"slug": "text",
+					"name": "Metin",
+					"color": "#4B5563"
+				},
+				{
+					"slug": "mint",
+					"name": "Açık zemin",
+					"color": "#EEF2FF"
+				},
+				{
+					"slug": "mint-soft",
+					"name": "Çok açık zemin",
+					"color": "#F7F8FE"
+				},
+				{
+					"slug": "line",
+					"name": "Çizgi",
+					"color": "#E0E7FF"
+				},
+				{
+					"slug": "white",
+					"name": "Beyaz",
+					"color": "#FFFFFF"
+				}
+			]
+		}
+	}
+}
