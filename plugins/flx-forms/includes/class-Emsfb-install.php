@@ -45,9 +45,20 @@ class Install {
 		dbDelta( $sql );
 	}
 
-	static function install() {
+	/**
+	 * Create every plugin table that is missing. Existing tables are left as
+	 * they are; schema changes to them go through upgrade_schema().
+	 *
+	 * Callable outside the activation hook: activate_plugin( $file, '', false, true )
+	 * (silent activation, used by bulk installers such as the Flux Setup
+	 * wizard) never fires register_activation_hook, so a site can have the
+	 * plugin active with no tables at all. maybe_upgrade_schema_efb() heals
+	 * that case through here.
+	 *
+	 * @return void
+	 */
+	static function create_tables() {
 		global $wpdb;
-		$state="gi";
 		$table_name_stng = $wpdb->prefix . "emsfb_setting";
 		$table_name = $wpdb->prefix . "emsfb_form";
 		$table_name_msg = $wpdb->prefix . "emsfb_msg_";
@@ -138,6 +149,26 @@ class Install {
 						) {$charset_collate};";
 
 						self::create_table_if_absent( $sql );
+
+	}
+
+	/**
+	 * Whether the settings table exists.
+	 *
+	 * @return bool
+	 */
+	static function settings_table_exists() {
+		global $wpdb;
+		$table = $wpdb->prefix . 'emsfb_setting';
+		return $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table ) ) === $table;
+	}
+
+	static function install() {
+		global $wpdb;
+		$state="gi";
+		$table_name_stng = $wpdb->prefix . "emsfb_setting";
+
+		self::create_tables();
 
 				$user_id = get_current_user_id();
 				$usr =get_user_by('id',$user_id);
@@ -256,6 +287,11 @@ class Install {
 
 		$applied = array();
 		$table   = $wpdb->prefix . 'emsfb_stts_';
+
+		// A table may be missing on an otherwise installed site (silent
+		// activation, partial migration, a table dropped by hand). Every read
+		// against it would then fail on each request, so recreate it first.
+		self::create_tables();
 
 		$exists = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table ) );
 		if ( ! $exists ) {

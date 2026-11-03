@@ -99,7 +99,29 @@ class Emsfb {
             return;
         }
 
-        \Emsfb\Install::upgrade_schema();
+        // One request at a time: two concurrent first visits must not both
+        // seed a settings row. add_option() is atomic on the unique option_name.
+        $lock = 'flxf_schema_lock';
+        if (!add_option($lock, time(), '', false)) {
+            if ((time() - (int) get_option($lock, 0)) < 5 * MINUTE_IN_SECONDS) {
+                return;
+            }
+            update_option($lock, time(), false);
+        }
+
+        try {
+            // Silent activation (activate_plugin(..., $silent = true), e.g. the
+            // Flux Setup wizard) skips the activation hook, leaving the plugin
+            // active with no tables and every settings read failing. Run the
+            // full installer then, so the default settings row is seeded too.
+            if (!\Emsfb\Install::settings_table_exists()) {
+                \Emsfb\Install::install();
+            } else {
+                \Emsfb\Install::upgrade_schema();
+            }
+        } finally {
+            delete_option($lock);
+        }
     }
 
     /**
