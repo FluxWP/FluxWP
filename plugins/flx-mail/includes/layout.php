@@ -112,7 +112,7 @@ function flxi_render_email( array $a ) {
 	// Kart
 	$o .= '<tr><td class="flxi-card" style="background:#ffffff;border:1px solid #DDE9E1;border-radius:20px;overflow:hidden;border-collapse:separate;">';
 	$o .= '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:separate;">';
-	$o .= '<tr><td style="height:6px;line-height:6px;font-size:0;background:' . $p . ';background-image:linear-gradient(90deg,' . $p . ',' . ( $a['accent'] ? esc_attr( $a['accent'] ) : '#6DBE45' ) . ');border-radius:19px 19px 0 0;">&nbsp;</td></tr>';
+	$o .= '<tr><td style="height:6px;line-height:6px;font-size:0;background:' . $p . ';background-image:linear-gradient(90deg,' . $p . ',' . ( $a['accent'] ? esc_attr( $a['accent'] ) : '#F59E0B' ) . ');border-radius:19px 19px 0 0;">&nbsp;</td></tr>';
 
 	if ( $a['heading'] ) {
 		$o .= '<tr><td class="flxi-pad" style="padding:34px 40px 4px;">'

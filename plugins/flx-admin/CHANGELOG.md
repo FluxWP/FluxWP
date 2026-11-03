@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.0
+- Vurgu rengi varsayılan olarak sitenin tema rengini alıyor (FluxWP temasında indigo; ön ayar ya da Görünüm › Düzenleyici › Stiller değiştirdiyse o). Ayarlarda temanın rengi seçilirse saklanmaz, tema değişince panel de değişir. Filtre `flxa_default_accent`.
+- Arka plan, kart, çizgi ve yazı tonları vurgu renginden türetiliyor (yeşilimsi sabit tonlar kaldırıldı); giriş ekranı, uygulama değiştirici ve PWA sayfaları da.
+
 ## 1.4.1
 - Daraltılmış menüde her grubun kendi simgesi var (İletişim zarf, Bağış kalp, İçerik sayfa, Büyüme grafik, Ekranlar kutu, Sistem dişli). Kayıtlı rol düzenlerinde de grup adından tahmin ediliyor, olmazsa ilk öğenin simgesi kullanılıyor (filtre `flxa_group_icon`). Önceden özel düzenlerde hepsi "•••" görünüyordu.
 - Açılan grup listesi, fare listenin ya da simgenin üstündeyken artık kapanmıyor.

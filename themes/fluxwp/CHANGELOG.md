@@ -6,6 +6,7 @@
 - CSS'teki sabit yeşil tonlar kaldırıldı: gölgeler, bantlar, video zemini, menü deseni ve koyu mod renkleri paletten türetilir. Paleti değiştiren her şey (stil, ön ayar, Site Editor) siteyi baştan sona boyar.
 - Ön ayarlar türetilmiş tonları `settings.custom.color` (deep, band-mid, band-end, media, tint) ve `settings.custom.dark` (bg, surface, ink, text, primary, mint, mint-soft, line, link) ile sabitleyebilir.
 - Palet adları genelleşti (Ana renk, Vurgu, Başlık…), slug'lar aynı.
+- Demo ön ayarı (flux-demo 0.2.0) FluxWP logosu, koyu zemin logosu ve site simgesiyle kurulur.
 
 ## 0.6.0
 - Tema `fluxwp` (FluxWP): genel, sade WooCommerce teması. Derneğe özel desenler, görseller, logolar, proje/etkinlik şablonları ve Site Kurulumu Örnek Preset ön ayar eklentisine taşındı.

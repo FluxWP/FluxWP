@@ -1,13 +1,13 @@
 /* Flux Forms · Builder skin. Scoped to body.flxf-builder-skin (EFB panel + create pages). */
 body.flxf-builder-skin {
-	--flxb-primary: var(--flx-primary, #0E7A56);
-	--flxb-primary-dark: var(--flx-primary-dark, #0A5A40);
-	--flxb-ink: var(--flx-ink, #14324A);
-	--flxb-text: var(--flx-text, #4A5B66);
+	--flxb-primary: var(--flx-primary, #4338CA);
+	--flxb-primary-dark: var(--flx-primary-dark, #3730A3);
+	--flxb-ink: var(--flx-ink, #1E1B4B);
+	--flxb-text: var(--flx-text, #4B5563);
 	--flxb-muted: #7A8A93;
-	--flxb-mint: var(--flx-mint, #EAF5EE);
-	--flxb-soft: var(--flx-mint-soft, #F5FAF6);
-	--flxb-line: var(--flx-line, #DCE9E0);
+	--flxb-mint: var(--flx-mint, #EEF2FF);
+	--flxb-soft: var(--flx-mint-soft, #F7F8FE);
+	--flxb-line: var(--flx-line, #E0E7FF);
 	--flxb-page: #F3F6F4;
 	--flxb-surface: #FFFFFF;
 	--flxb-ring: 0 0 0 3px color-mix(in srgb, var(--flxb-primary) 22%, transparent);

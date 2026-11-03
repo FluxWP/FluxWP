@@ -614,7 +614,7 @@ function flxk_render_profile() {
 			foreach ( (array) $v as $a => $b ) {
 				$lines[] = $a . '=' . $b;
 			}
-			echo '<textarea id="flxk-p-' . esc_attr( $k ) . '" name="profile[' . esc_attr( $k ) . ']" rows="3" class="large-text code" placeholder="' . esc_attr( 'colors' === $k ? 'primary=#1f7a3a' : 'instagram=https://instagram.com/…' ) . '">' . esc_textarea( implode( "\n", $lines ) ) . '</textarea>';
+			echo '<textarea id="flxk-p-' . esc_attr( $k ) . '" name="profile[' . esc_attr( $k ) . ']" rows="3" class="large-text code" placeholder="' . esc_attr( 'colors' === $k ? 'primary=#4338CA' : 'instagram=https://instagram.com/…' ) . '">' . esc_textarea( implode( "\n", $lines ) ) . '</textarea>';
 		} elseif ( in_array( $k, array( 'about', 'address' ), true ) ) {
 			echo '<textarea id="flxk-p-' . esc_attr( $k ) . '" name="profile[' . esc_attr( $k ) . ']" rows="2" class="large-text">' . esc_textarea( (string) $v ) . '</textarea>';
 		} else {

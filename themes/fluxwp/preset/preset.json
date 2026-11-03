@@ -2,7 +2,7 @@
 	"format": "flx-preset/1",
 	"id": "flux-demo",
 	"name": "FluxWP: demo mağaza",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"license": "CC-BY-4.0",
 	"description": "Boş bir siteyi örnek bir mağazaya çevirir: dört ürün, Hakkımızda, İletişim ve Blog sayfaları, bir örnek yazı. Kuruma özel hiçbir bilgi içermez; sonra panelden değiştirin ya da kaldırın.",
 	"requires": {
@@ -12,9 +12,15 @@
 	"profile": {
 		"name": "Flux Mağaza",
 		"tagline": "Günlük hayat için sade ürünler",
-		"email": "merhaba@{domain}"
+		"email": "merhaba@{domain}",
+		"logo": "@media:logo",
+		"logo_light": "@media:logo-beyaz",
+		"icon": "@media:ikon"
 	},
 	"media": {
+		"logo": { "file": "assets/logo.svg", "title": "FluxWP logosu", "alt": "FluxWP" },
+		"logo-beyaz": { "file": "assets/logo-beyaz.svg", "title": "FluxWP logosu (koyu zemin)", "alt": "FluxWP" },
+		"ikon": { "file": "assets/ikon.svg", "title": "FluxWP simgesi" },
 		"urun-1": { "file": "assets/urun-1.webp", "title": "Kanvas çanta", "alt": "Lacivert kanvas çanta" },
 		"urun-2": { "file": "assets/urun-2.webp", "title": "Seramik kupa", "alt": "Turuncu seramik kupa" },
 		"urun-3": { "file": "assets/urun-3.webp", "title": "Not defteri", "alt": "Yeşil kapaklı not defteri" },

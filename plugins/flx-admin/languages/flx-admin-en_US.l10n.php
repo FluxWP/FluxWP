@@ -357,5 +357,6 @@ return array(
 		'Sonraki sayfa' => 'Next page',
 		'Sayfa başı' => 'Per page',
 		'Uygula' => 'Apply',
+		'Varsayılan: temanın ana rengi (Görünüm › Düzenleyici › Stiller). Temanın rengini seçerseniz tema değişince bu da değişir.' => 'Default: the theme\'s primary colour (Appearance › Editor › Styles). If you pick the theme\'s colour, this follows the theme when it changes.',
 	),
 );

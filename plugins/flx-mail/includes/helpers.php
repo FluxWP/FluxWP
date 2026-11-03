@@ -53,10 +53,10 @@ function flxi_defaults() {
 		'logo'             => '',
 		'logo_white'       => '',
 		'logo_width'       => 210,
-		'color_primary'    => '#0E7A56',
-		'color_dark'       => '#0A5A40',
-		'color_bg'         => '#F2F7F3',
-		'color_text'       => '#14324A',
+		'color_primary'    => '',   // boş: tema paletinden (flxi_theme_color)
+		'color_dark'       => '',
+		'color_bg'         => '',
+		'color_text'       => '',
 		'org_name'         => '',
 		'tagline'          => 'Daha yeşil bir Türkiye mümkün',
 		'address'          => '',
@@ -224,15 +224,50 @@ function flxi_brand() {
 		'logo'       => $s['logo'] ? $s['logo'] : FLXI_URL . 'assets/img/logo.png',
 		'logo_white' => $s['logo_white'] ? $s['logo_white'] : FLXI_URL . 'assets/img/logo-beyaz.png',
 		'logo_width' => max( 80, min( 320, (int) $s['logo_width'] ) ),
-		'primary'    => flxi_hex( $s['color_primary'], '#0E7A56' ),
-		'dark'       => flxi_hex( $s['color_dark'], '#0A5A40' ),
-		'bg'         => flxi_hex( $s['color_bg'], '#F2F7F3' ),
-		'text'       => flxi_hex( $s['color_text'], '#14324A' ),
+		'primary'    => flxi_hex( $s['color_primary'], flxi_theme_color( 'color_primary' ) ),
+		'dark'       => flxi_hex( $s['color_dark'], flxi_theme_color( 'color_dark' ) ),
+		'bg'         => flxi_hex( $s['color_bg'], flxi_theme_color( 'color_bg' ) ),
+		'text'       => flxi_hex( $s['color_text'], flxi_theme_color( 'color_text' ) ),
 		'social'     => $social,
 		'note'       => $s['footer_note'],
 		'art'        => flxi_footer_art_urls( $s['footer_art'] ),
 	);
 	return apply_filters( 'flxi_brand', $brand );
+}
+
+/**
+ * E-posta renginin varsayılanı: sitenin tema paletindeki karşılığı (FluxWP temasında indigo; ön ayar ya da
+ * Site Editor değiştirdiyse o). Tema paleti yoksa FluxWP renkleri.
+ *
+ * @param string $key color_primary | color_dark | color_bg | color_text.
+ * @return string
+ */
+function flxi_theme_color( $key ) {
+	static $palette = null;
+	$map = array(
+		'color_primary' => array( 'primary', '#4338CA' ),
+		'color_dark'    => array( 'primary-dark', '#3730A3' ),
+		'color_bg'      => array( 'mint-soft', '#F7F8FE' ),
+		'color_text'    => array( 'ink', '#1E1B4B' ),
+	);
+	if ( ! isset( $map[ $key ] ) ) {
+		return '';
+	}
+	if ( null === $palette ) {
+		$palette = array();
+		if ( function_exists( 'wp_get_global_settings' ) ) {
+			$p = wp_get_global_settings( array( 'color', 'palette' ) );
+			foreach ( array( 'theme', 'custom' ) as $origin ) {
+				foreach ( (array) ( $p[ $origin ] ?? array() ) as $c ) {
+					$hex = sanitize_hex_color( $c['color'] ?? '' );
+					if ( $hex && ! empty( $c['slug'] ) ) {
+						$palette[ $c['slug'] ] = $hex;
+					}
+				}
+			}
+		}
+	}
+	return $palette[ $map[ $key ][0] ] ?? $map[ $key ][1];
 }
 
 function flxi_hex( $v, $fallback ) {

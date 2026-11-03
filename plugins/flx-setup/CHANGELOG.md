@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.2.1
+- Kurum profili renk örneği FluxWP indigo.
+
 ## 0.2.0
 - Tema `flx-setup-panel` desteği verirse Ön ayarlar ekranı Tema Ayarları içinde açılır; ayrı menü kalkar, eski adres oraya yönlenir.
 - Kurum profiline site simgesi (`icon`).

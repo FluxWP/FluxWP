@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.2.2
+- Web manifest `theme_color` tema paletinin ana rengi; `short_name` site adı (sabit metin kaldırıldı).
+
 ## 1.2.1
 
 - Paylaşım görseli (og:image) artık 1200×630 JPEG kopyası (uploads/flxseo-og/, en fazla ~290 KB). WhatsApp önizlemesi WebP ve büyük görsellerde bulanık çıkıyordu. Kopya ilk ziyarette bir kez üretilir, görsel değişince yenilenir.

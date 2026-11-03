@@ -1,8 +1,8 @@
 .flxl-oneri {
 	--flxl-bg: #ffffff;
-	--flxl-fg: #1d2a22;
-	--flxl-muted: #5b6b61;
-	--flxl-accent: #1f7a3f;
+	--flxl-fg: #1d1f2a;
+	--flxl-muted: #5b5f6e;
+	--flxl-accent: var(--wp--preset--color--primary, #4338CA);
 	--flxl-accent-fg: #ffffff;
 	--flxl-border: rgba(0, 0, 0, .08);
 	position: fixed;
@@ -82,11 +82,11 @@
 /* Koyu mod: tema koyu modu açıksa (FluxWP: body.flx-dark + cihaz koyu). */
 @media (prefers-color-scheme: dark) {
 	body.flx-dark .flxl-oneri {
-		--flxl-bg: #17211b;
-		--flxl-fg: #eef4ef;
-		--flxl-muted: #a7b6ac;
-		--flxl-accent: #3fb36a;
-		--flxl-accent-fg: #0c1510;
+		--flxl-bg: #15171e;
+		--flxl-fg: #eeeff4;
+		--flxl-muted: #a7aaba;
+		--flxl-accent: color-mix(in srgb, var(--wp--preset--color--primary, #4338CA) 70%, #fff);
+		--flxl-accent-fg: #0d0e13;
 		--flxl-border: rgba(255, 255, 255, .12);
 	}
 }

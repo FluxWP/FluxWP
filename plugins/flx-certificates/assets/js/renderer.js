@@ -381,7 +381,7 @@
 			c.width = W; c.height = H;
 			var x = c.getContext('2d');
 			var g = x.createLinearGradient(0, 0, W, H);
-			g.addColorStop(0, o.color1 || '#0e7a56');
+			g.addColorStop(0, o.color1 || '#4338CA');
 			g.addColorStop(1, o.color2 || '#0a4a35');
 			x.fillStyle = g;
 			x.fillRect(0, 0, W, H);

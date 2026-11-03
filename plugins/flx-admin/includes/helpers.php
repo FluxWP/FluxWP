@@ -8,7 +8,7 @@ function flxa_defaults() {
 		'brand'            => '',
 		'subtitle'         => '',
 		'logo_id'          => 0,
-		'accent'           => '#1E7A4C',
+		'accent'           => '',         // boş: sitenin tema paletindeki ana renk (flxa_theme_primary)
 		'mode'             => 'auto',   // auto | light | dark (kullanıcı kendi seçimini yapabilir)
 		'dark_exclude'     => 'block-editor-page',
 		'line_icons'       => 1,        // WordPress çekirdek menülerinde çizgi simgeler
@@ -62,9 +62,34 @@ function flxa_subtitle() {
 	return '' !== $s ? $s : __( 'Yönetim', 'flx-admin' );
 }
 
+/**
+ * Vurgu rengi: ayarlarda seçilen, yoksa sitenin tema paletindeki ana renk (FluxWP temasında indigo,
+ * ön ayar ya da Site Editor değiştirdiyse o), o da yoksa FluxWP indigo.
+ */
 function flxa_accent() {
 	$c = sanitize_hex_color( (string) flxa_setting( 'accent' ) );
-	return $c ? $c : '#1E7A4C';
+	return $c ? $c : flxa_theme_primary();
+}
+
+/** Tema paletindeki "primary" rengi (Site Editor › Stiller'deki değişiklik dahil). */
+function flxa_theme_primary() {
+	static $c = null;
+	if ( null !== $c ) {
+		return $c;
+	}
+	$c = '';
+	if ( function_exists( 'wp_get_global_settings' ) ) {
+		$palette = wp_get_global_settings( array( 'color', 'palette' ) );
+		foreach ( array( 'custom', 'theme' ) as $origin ) {
+			foreach ( (array) ( $palette[ $origin ] ?? array() ) as $item ) {
+				if ( '' === $c && 'primary' === ( $item['slug'] ?? '' ) ) {
+					$c = (string) sanitize_hex_color( $item['color'] ?? '' );
+				}
+			}
+		}
+	}
+	$c = (string) apply_filters( 'flxa_default_accent', $c ? $c : '#4338CA' );
+	return $c;
 }
 
 /**

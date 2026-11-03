@@ -5,8 +5,8 @@
 	--a-line: #e3e6ea;
 	--a-text: #14202b;
 	--a-muted: #5d6974;
-	--a-brand: #13906f;
-	--a-brand-soft: #e3f4ee;
+	--a-brand: var(--flxa-accent, #4338CA);
+	--a-brand-soft: color-mix(in srgb, var(--flxa-accent, #4338CA) 10%, #fff);
 	--a-warn: #a15c00;
 	--a-warn-soft: #fff4e0;
 	--a-err: #c53030;
@@ -23,8 +23,8 @@ html.flxa-dark .flxai {
 	--a-line: #2f3943;
 	--a-text: #e8edf1;
 	--a-muted: #a2adb7;
-	--a-brand: #34c49b;
-	--a-brand-soft: #173a31;
+	--a-brand: color-mix(in srgb, var(--flxa-accent, #4338CA) 70%, #fff);
+	--a-brand-soft: color-mix(in srgb, var(--flxa-accent, #4338CA) 25%, #0D0E13);
 	--a-warn: #e5b45a;
 	--a-warn-soft: #3a2f1a;
 	--a-err: #f08080;

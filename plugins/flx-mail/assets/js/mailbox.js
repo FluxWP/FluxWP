@@ -798,7 +798,7 @@
 	}
 
 	function openLayout( id ) {
-		var l = S.layouts.filter( function ( x ) { return x.id === id; } )[ 0 ] || { id: '', name: '', desc: '', base: 'kurumsal', partner_name: '', partner_logo: '', partner_url: '', accent: '#6DBE45', heading: '', subject: '', body: '', builtin: false };
+		var l = S.layouts.filter( function ( x ) { return x.id === id; } )[ 0 ] || { id: '', name: '', desc: '', base: 'kurumsal', partner_name: '', partner_logo: '', partner_url: '', accent: '#F59E0B', heading: '', subject: '', body: '', builtin: false };
 		S.current = { type: 'layout', id: id };
 		markActive();
 		root.classList.add( 'is-reading' );
@@ -827,7 +827,7 @@
 		var pname = inp( l.partner_name );
 		var plogo = inp( l.partner_logo, 'url' );
 		var purl = inp( l.partner_url, 'url' );
-		var accent = inp( l.accent || '#6DBE45', 'color' );
+		var accent = inp( l.accent || '#F59E0B', 'color' );
 		var heading = inp( l.heading );
 		var subj = inp( l.subject );
 		var E = editor( l.body );

@@ -9,11 +9,27 @@
 
 defined( 'ABSPATH' ) || exit;
 
+/** İki #rrggbb rengi karıştırır ($w: ilk rengin payı, 0–1). */
+function flxai_mix( $a, $b, $w ) {
+	$a = ltrim( (string) $a, '#' );
+	$b = ltrim( (string) $b, '#' );
+	if ( 6 !== strlen( $a ) || 6 !== strlen( $b ) ) {
+		return '#' . $a;
+	}
+	$o = '#';
+	for ( $i = 0; $i < 6; $i += 2 ) {
+		$o .= str_pad( dechex( (int) round( hexdec( substr( $a, $i, 2 ) ) * $w + hexdec( substr( $b, $i, 2 ) ) * ( 1 - $w ) ) ), 2, '0', STR_PAD_LEFT );
+	}
+	return $o;
+}
+
 /** Tema renkleri: widget'lar yalnız bu değişkenleri kullanır (açık/koyu tema uyumu). */
 function flxai_widget_palette( $dark = false ) {
-	$p = $dark
-		? array( 'bg' => '#161b20', 'surface' => '#1e252c', 'text' => '#e8edf1', 'muted' => '#98a4af', 'accent' => '#34c49b', 'accent-soft' => '#173a31', 'border' => '#2e3842', 'warn' => '#e5b45a', 'danger' => '#f08080' )
-		: array( 'bg' => '#ffffff', 'surface' => '#f6f7f8', 'text' => '#14202b', 'muted' => '#66727e', 'accent' => '#13906f', 'accent-soft' => '#e3f4ee', 'border' => '#e3e6ea', 'warn' => '#b7791f', 'danger' => '#c53030' );
+	// Vurgu: Flux Admin'in rengi (o da varsayılan olarak tema rengini alır), yoksa FluxWP indigo.
+	$acc = function_exists( 'flxa_accent' ) ? flxa_accent() : '#4338CA';
+	$p   = $dark
+		? array( 'bg' => '#161b20', 'surface' => '#1e252c', 'text' => '#e8edf1', 'muted' => '#98a4af', 'accent' => flxai_mix( $acc, '#ffffff', .7 ), 'accent-soft' => flxai_mix( $acc, '#0d0e13', .25 ), 'border' => '#2e3842', 'warn' => '#e5b45a', 'danger' => '#f08080' )
+		: array( 'bg' => '#ffffff', 'surface' => '#f6f7f8', 'text' => '#14202b', 'muted' => '#66727e', 'accent' => $acc, 'accent-soft' => flxai_mix( $acc, '#ffffff', .1 ), 'border' => '#e3e6ea', 'warn' => '#b7791f', 'danger' => '#c53030' );
 	return (array) apply_filters( 'flxai_widget_palette', $p, $dark );
 }
 

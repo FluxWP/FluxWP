@@ -93,7 +93,7 @@ function flxa_donut( array $seg, $center = '', $sub = '', $fmt = null ) {
 }
 
 function flxa_palette_colors() {
-	return array( '#1E7A4C', '#3B82F6', '#F59E0B', '#A855F7', '#EF4444', '#14B8A6', '#EC4899', '#84CC16', '#64748B' );
+	return array( '#4338CA', '#3B82F6', '#F59E0B', '#A855F7', '#EF4444', '#14B8A6', '#EC4899', '#84CC16', '#64748B' );
 }
 
 /* ───────────────────────── Hızlı işlem çubuğu ───────────────────────── */

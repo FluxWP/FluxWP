@@ -10,15 +10,15 @@ html.flxa-html {
 	--flxa-side-w: 264px;
 	--flxa-rail-w: 64px;
 	--flxa-font: "FLXA Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-	--flxa-bg: #F3F5F1;
+	--flxa-bg: color-mix(in srgb, var(--flxa-accent) 4%, #F3F4F7);
 	--flxa-side: #FFFFFF;
 	--flxa-surface: #FFFFFF;
-	--flxa-surface-2: #EDF1EB;
-	--flxa-surface-3: #E3E9E0;
-	--flxa-border: #DFE5DB;
-	--flxa-border-strong: #C9D3C5;
-	--flxa-text: #14201A;
-	--flxa-muted: #56665C;
+	--flxa-surface-2: color-mix(in srgb, var(--flxa-accent) 5%, #EEF0F4);
+	--flxa-surface-3: color-mix(in srgb, var(--flxa-accent) 7%, #E4E7EE);
+	--flxa-border: color-mix(in srgb, var(--flxa-accent) 7%, #E0E3EA);
+	--flxa-border-strong: color-mix(in srgb, var(--flxa-accent) 9%, #CBCFDA);
+	--flxa-text: color-mix(in srgb, var(--flxa-accent) 10%, #12141B);
+	--flxa-muted: color-mix(in srgb, var(--flxa-accent) 12%, #5A5F6E);
 	--flxa-accent-soft: color-mix(in srgb, var(--flxa-accent) 13%, #fff);
 	--flxa-accent-strong: color-mix(in srgb, var(--flxa-accent) 78%, #000);
 	--flxa-accent-hover: color-mix(in srgb, var(--flxa-accent) 88%, #000);
@@ -30,27 +30,27 @@ html.flxa-html {
 	--flxa-info: #1D5FA8;
 	--flxa-info-soft: #E3EEFB;
 	--flxa-focus: color-mix(in srgb, var(--flxa-accent) 45%, transparent);
-	--flxa-shadow: 0 1px 2px rgba(16, 24, 20, .05), 0 2px 10px rgba(16, 24, 20, .04);
-	--flxa-shadow-lg: 0 10px 40px rgba(10, 20, 14, .18), 0 2px 6px rgba(10, 20, 14, .08);
+	--flxa-shadow: 0 1px 2px rgba(17, 19, 27, .05), 0 2px 10px rgba(17, 19, 27, .04);
+	--flxa-shadow-lg: 0 10px 40px rgba(12, 13, 22, .18), 0 2px 6px rgba(12, 13, 22, .08);
 	--flxa-radius: 14px;
-	--flxa-scrim: rgba(4, 10, 7, .5);
+	--flxa-scrim: rgba(6, 7, 14, .5);
 	color-scheme: light;
 	background: var(--flxa-bg);
 }
 
 html.flxa-html.flxa-dark {
-	--flxa-bg: #0D1310;
-	--flxa-side: #111814;
-	--flxa-surface: #151D18;
-	--flxa-surface-2: #1D2721;
-	--flxa-surface-3: #25312A;
-	--flxa-border: #27332C;
-	--flxa-border-strong: #364539;
-	--flxa-text: #E6EEE8;
-	--flxa-muted: #97A79D;
-	--flxa-accent-l: color-mix(in srgb, var(--flxa-accent) 55%, #9FF0C6);
-	--flxa-accent-soft: color-mix(in srgb, var(--flxa-accent) 30%, #0D1310);
-	--flxa-accent-strong: color-mix(in srgb, var(--flxa-accent) 45%, #CFF5E0);
+	--flxa-bg: color-mix(in srgb, var(--flxa-accent) 6%, #0D0E13);
+	--flxa-side: color-mix(in srgb, var(--flxa-accent) 7%, #111218);
+	--flxa-surface: color-mix(in srgb, var(--flxa-accent) 8%, #15171E);
+	--flxa-surface-2: color-mix(in srgb, var(--flxa-accent) 10%, #1C1F27);
+	--flxa-surface-3: color-mix(in srgb, var(--flxa-accent) 12%, #252833);
+	--flxa-border: color-mix(in srgb, var(--flxa-accent) 12%, #272A34);
+	--flxa-border-strong: color-mix(in srgb, var(--flxa-accent) 15%, #363A47);
+	--flxa-text: color-mix(in srgb, var(--flxa-accent) 5%, #E8E9EF);
+	--flxa-muted: color-mix(in srgb, var(--flxa-accent) 14%, #9A9EAE);
+	--flxa-accent-l: color-mix(in srgb, var(--flxa-accent) 55%, #fff);
+	--flxa-accent-soft: color-mix(in srgb, var(--flxa-accent) 30%, #0D0E13);
+	--flxa-accent-strong: color-mix(in srgb, var(--flxa-accent) 45%, #fff);
 	--flxa-accent-hover: color-mix(in srgb, var(--flxa-accent) 80%, #fff);
 	--flxa-warn: #F0A35E;
 	--flxa-warn-soft: #3A2716;
@@ -128,7 +128,7 @@ body.flxa:not(.flxa-appmode) select { background-image: url("data:image/svg+xml,
 /* Çoklu seçim / liste kutusunda ok yok */
 body.flxa:not(.flxa-appmode) select[multiple], body.flxa:not(.flxa-appmode) select[size]:not([size="1"]) { background-image: none; padding-right: 8px; }
 body.flxa:not(.flxa-appmode) input[type=checkbox], body.flxa:not(.flxa-appmode) input[type=radio] { border-color: var(--flxa-border-strong); background: var(--flxa-surface); }
-body.flxa:not(.flxa-appmode) input[type=checkbox]:checked::before { content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M14.83 4.89l1.34.94-5.81 8.38H9.02L5.78 9.67l1.34-1.25 2.57 2.4z' fill='%231E7A4C'/%3E%3C/svg%3E"); }
+body.flxa:not(.flxa-appmode) input[type=checkbox]:checked::before { content: ""; display: block; background-color: var(--flxa-accent); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M14.83 4.89l1.34.94-5.81 8.38H9.02L5.78 9.67l1.34-1.25 2.57 2.4z' fill='black'/%3E%3C/svg%3E") center/contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M14.83 4.89l1.34.94-5.81 8.38H9.02L5.78 9.67l1.34-1.25 2.57 2.4z' fill='black'/%3E%3C/svg%3E") center/contain no-repeat; }
 body.flxa:not(.flxa-appmode) input[type=radio]:checked::before { background-color: var(--flxa-accent); }
 body.flxa:not(.flxa-appmode) input::placeholder, body.flxa:not(.flxa-appmode) textarea::placeholder { color: var(--flxa-muted); opacity: .8; }
 
@@ -142,7 +142,7 @@ body.flxa:not(.flxa-appmode) div.updated,
 body.flxa:not(.flxa-appmode) div.error,
 body.flxa:not(.flxa-appmode) .update-nag { border-radius: var(--flxa-radius); border: 1px solid var(--flxa-border); background: var(--flxa-surface); color: var(--flxa-text); box-shadow: var(--flxa-shadow); }
 body.flxa:not(.flxa-appmode) .welcome-panel { overflow: hidden; }
-body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-header { background: linear-gradient(135deg, #123F35, var(--flxa-accent)); }
+body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-header { background: linear-gradient(135deg, color-mix(in srgb, var(--flxa-accent) 45%, #0D0E13), var(--flxa-accent)); }
 body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-header-image { opacity: .35; }
 body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-header h2, body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-header p, body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-header a, body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-close { color: #fff; }
 body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-close::before { color: #fff; }
@@ -1180,8 +1180,8 @@ body.flxa #adminmenu li.flxa-noweb { display: none !important; }
 /* ═════════ 1.4.0 Sol menü: sabit kutucuklar + grup kartları ═════════
  * Menü zemini hafif gri; her grup beyaz bir kart. Sabitlenenler (varsayılan: Başlangıç, Çağrı Merkezi, Görevler, Bağışlar)
  * üstte 2 sütun kutucuk. Kapalı gruplar tek satır (ad + öğe sayısı). Altta kişi kartı ve tema seçici. */
-html.flxa-html { --flxa-side: #F1F4EF; --flxa-card: #FFFFFF; --flxa-card-b: #E4E9E2; }
-html.flxa-html.flxa-dark { --flxa-side: #0F1612; --flxa-card: color-mix(in srgb, var(--flxa-surface) 55%, var(--flxa-surface-2)); --flxa-card-b: #222D27; }
+html.flxa-html { --flxa-side: color-mix(in srgb, var(--flxa-accent) 4%, #F2F3F7); --flxa-card: #FFFFFF; --flxa-card-b: color-mix(in srgb, var(--flxa-accent) 7%, #E5E7EE); }
+html.flxa-html.flxa-dark { --flxa-side: color-mix(in srgb, var(--flxa-accent) 6%, #0F1016); --flxa-card: color-mix(in srgb, var(--flxa-surface) 55%, var(--flxa-surface-2)); --flxa-card-b: color-mix(in srgb, var(--flxa-accent) 10%, #22252E); }
 body.flxa #adminmenuwrap { border-right-color: var(--flxa-card-b); }
 
 /* Öğe simgesi: renkli küçük kutu */

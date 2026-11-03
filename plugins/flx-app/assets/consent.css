@@ -1,6 +1,6 @@
 /* Flux App · OAuth onay sayfası: her şey tek kartta. Flux Admin giriş renkleri (--card, --text...) varsa onları kullanır. */
 .login-action-flxapp_authorize {
-	--flxapp-acc: var(--flxa-accent, #2e7d4f);
+	--flxapp-acc: var(--flxa-accent, #4338CA);
 	--flxapp-card: var(--card, #fff);
 	--flxapp-text: var(--text, #14201a);
 	--flxapp-muted: var(--muted, #56665c);

@@ -23,6 +23,6 @@ body.flx-dark .flxapp .flxapp-card{background:#1d2327;border-color:#3c434a}
 .flxapp .flxapp-switch input:checked+span::after{transform:translateX(16px)}
 .flxapp .flxapp-switch input:focus-visible+span{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--flxa-accent,#2271b1)}
 .flxapp .flxapp-pf{display:inline-block;padding:1px 8px;border-radius:20px;font-size:12px;background:#f0f0f1;color:#646970;text-decoration:line-through}
-.flxapp .flxapp-pf.is-on{background:#e7f5ec;color:#1d6b3a;text-decoration:none}
+.flxapp .flxapp-pf.is-on{background:color-mix(in srgb, var(--flxa-accent, #4338CA) 12%, #fff);color:color-mix(in srgb, var(--flxa-accent, #4338CA) 78%, #000);text-decoration:none}
 body.flx-dark .flxapp .flxapp-pf{background:#2c3338;color:#a7aaad}
-body.flx-dark .flxapp .flxapp-pf.is-on{background:#173527;color:#6fd7a3}
+body.flx-dark .flxapp .flxapp-pf.is-on{background:color-mix(in srgb, var(--flxa-accent, #4338CA) 30%, #0D0E13);color:color-mix(in srgb, var(--flxa-accent, #4338CA) 55%, #fff)}

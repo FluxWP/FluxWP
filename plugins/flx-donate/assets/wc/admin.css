@@ -10,7 +10,7 @@
 .flxwb-checklist ul { margin: 0; }
 .flxwb-checklist li { padding-left: 24px; position: relative; margin: 6px 0; }
 .flxwb-checklist li::before { position: absolute; left: 0; top: 0; font-weight: 700; }
-.flxwb-checklist li.ok::before { content: "✓"; color: #0E7A56; }
+.flxwb-checklist li.ok::before { content: "✓"; color: var(--flxa-accent, #4338CA); }
 .flxwb-checklist li.warn::before { content: "!"; color: #b26200; left: 5px; }
 .flxwb-box code { white-space: normal; word-break: break-word; display: inline-block; margin-top: 4px; }
 .flxwb-box__files { margin: 0 0 8px; }

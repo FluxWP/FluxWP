@@ -10,6 +10,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/** Tarayıcı çubuğu rengi: tema paletinin ana rengi (FluxWP temasında indigo). */
+function flxseo_theme_color() {
+	if ( function_exists( 'wp_get_global_settings' ) ) {
+		$p = wp_get_global_settings( array( 'color', 'palette' ) );
+		foreach ( array( 'custom', 'theme' ) as $origin ) {
+			foreach ( (array) ( $p[ $origin ] ?? array() ) as $c ) {
+				if ( 'primary' === ( $c['slug'] ?? '' ) && sanitize_hex_color( $c['color'] ?? '' ) ) {
+					return $c['color'];
+				}
+			}
+		}
+	}
+	return '#4338CA';
+}
+
 function flxseo_icon( $file ) {
 	return FLXSEO_URL . 'assets/icons/' . $file . '?v=' . FLXSEO_VERSION;
 }
@@ -63,11 +78,11 @@ add_action(
 		echo wp_json_encode(
 			array(
 				'name'             => flxseo_opt( 'site_name' ),
-				'short_name'       => 'Örnek Vakfı',
+				'short_name'       => flxseo_opt( 'site_name' ),
 				'start_url'        => home_url( '/' ),
 				'display'          => 'browser',
 				'background_color' => '#ffffff',
-				'theme_color'      => '#0E7A56',
+				'theme_color'      => flxseo_theme_color(),
 				'icons'            => array(
 					array( 'src' => $icon[0], 'sizes' => '192x192', 'type' => 'image/png' ),
 					array( 'src' => $icon[1], 'sizes' => '512x512', 'type' => 'image/png' ),
