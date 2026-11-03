@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.6.10
+- Uygulama simgesi (iOS ana ekran, PWA): içteki FluxWP işareti büyütüldü. Simge adreslerine sürüm eklendi, cihazlar yenisini alır.
+
 ## 1.6.9
 - Flux Setup'ın sayfa başlığındaki adı "FluxWP Panel".
 - Ortak sayfa başlığı telefonda: logo başlığın solunda kalır (ayrı satıra düşmez), açıklama en çok 2 satır. Başlığa taşınan uyarılar başlığın altına alınır.
