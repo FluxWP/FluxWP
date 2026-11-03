@@ -1,12 +1,12 @@
 ---
 name: flx-paket-yayin
-description: FluxWP/fluxwp'deki bir FluxWP eklentisi ya da temasının yeni sürümünü test edip yayınlarken, test ortamı (WP + SQLite + Playwright) kurarken veya Flux Updater / güncelleme sunucusu sorunlarına bakarken kullan.
+description: FluxWP/fluxwp'deki bir FluxWP eklentisi ya da temasının yeni sürümünü test edip yayınlarken, test ortamı (WP + SQLite + Playwright) kurarken veya Flux Setup (updater) / güncelleme sunucusu sorunlarına bakarken kullan.
 ---
 
 # FluxWP paket testi ve yayını
 
 Akış: kod → sürüm artır → CHANGELOG → yerel test (`bin/test-update.sh`) → ekran görüntüleri → branch'e push →
-**Ahmet onayı** → `main` → GitHub Actions release → güncelleme sunucusu → sitelerde Flux Updater.
+**Ahmet onayı** → `main` → GitHub Actions release → güncelleme sunucusu → sitelerde Flux Setup.
 
 ## 1. Repo ve kurallar
 
@@ -67,19 +67,19 @@ Pakete girmemesi gerekenler: paket kökünde `.distignore` (varsayılan hariç: 
 
 Push sonrası Actions sonucunu kontrol et (GitHub MCP `actions_list`/`get_job_logs`); kırmızıysa düzelt, yeniden push.
 
-## 6. Güncelleme sunucusu ve Flux Updater
+## 6. Güncelleme sunucusu ve Flux Setup
 
 - Sunucu `FluxWP/updater`, `https://updater.fluxwp.com` (`/admin` panel, `/v1/check`,
   `/v1/download/<slug>/<sürüm>.zip`, `/v1/webhook`). GitHub token yalnız sunucuda; siteler `X-FluxWP-Site-Key` ile bağlanır,
   sunucuda anahtarın sha256'sı durur. Site başına paket listesi ve kanal (stable/beta).
-- Sitede Flux Updater (`plugins/flx-updater`, prefix `flxu_`): katalogu `update_plugins`/`update_themes` transient'ine ekler,
+- Sitede Flux Setup (`plugins/flx-setup`, updater modülü prefix `flxu_`): katalogu `update_plugins`/`update_themes` transient'ine ekler,
   FluxWP paketlerini wordpress.org isteğinden çıkarır, sol menü "Güncellemeler", sürüm değiştir (geri al), güncelleme sonrası
   self-check (ön yüz + admin-ajax ping) HTTP 500 → otomatik eski sürüme dönüş (sunucudaki eski zip ya da Flux Backup klasör yedeği).
   Flux Backup kuruluysa her güncellemeden önce DB + paket klasörü yedeği.
 - **Tuzak**: başka bir eklenti `site_transient_update_plugins` filtresinde `response`'tan kayıt silerse FluxWP güncellemesi kaybolur
   (Flux Forms fork'u kendi anahtarını sildi). Güncelleyici 1.1.1 `PHP_INT_MAX` öncelikle geri koyar; yine de paketlerde bunu yapma.
-- Yeni paket: klasörü açıp `Version:` ile push → sunucu release'den tanır; sitede Ayarlar › Flux Updater › **Kur**.
-  Logo: `plugins/flx-updater/assets/icons/<slug>.svg` (ortak tarz) ya da `flxu_package_icons` filtresi.
+- Yeni paket: klasörü açıp `Version:` ile push → sunucu release'den tanır; sitede Setup › Paketler › **Kur**.
+  Logo: `plugins/flx-setup/assets/icons/<slug>.svg` (ortak tarz) ya da `flxu_package_icons` filtresi.
 - "Güncelleme görünmüyor" teşhisi: release var mı (tag + `<slug>.zip` asset) → sunucu önbelleği (webhook/5 dk) →
   site anahtarının paket listesi/kanalı → sitede Güncellemeler › "Şimdi kontrol et" → başka eklenti `response`'u siliyor mu.
 

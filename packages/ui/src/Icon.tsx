@@ -60,7 +60,7 @@ const slugs: [RegExp, LucideIcon][] = [
   [/^flxi-posta/, Inbox], [/^flxi$|flx-mail/, Send], [/^emsfb|flx-forms/i, FormInput], [/^flx-analytics/, TrendingUp],
   [/^flx-speed/, Gauge], [/^flx-social/, Share2], [/^flx-ai/, Sparkles], [/^flx-studio/, Clapperboard], [/^flxseo|flx-seo/, Search],
   [/^flx-qr/, QrCode], [/^flx-tv-remote/, Gamepad2], [/^flx-tv-board/, Tv], [/^flxapp|flx-app/, Smartphone],
-  [/^flx-updater/, RefreshCw], [/^flx-backup/, Archive], [/^flx-lang/, Languages], [/^flx-roles|^flxr/, UserCog], [/^flx-admin|^flxa/, Settings],
+  [/^flx-(setup|updater)/, RefreshCw], [/^flx-backup/, Archive], [/^flx-lang/, Languages], [/^flx-roles|^flxr/, UserCog], [/^flx-admin|^flxa/, Settings],
 ];
 
 export function Icon({ name, slug, size = 18 }: { name?: string; slug?: string; size?: number }) {

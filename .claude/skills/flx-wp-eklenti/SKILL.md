@@ -148,7 +148,7 @@ paket içinde tutulmaz; Flux Mail'den okunur (`flxi_get_channel_connection`, `fl
 `FLXB_Donations::record()`; fiyatın tek kaynağı Flux Donate türü. Kendi ödeme sağlayıcını yazma. API: `docs/bagis-eklentisi/API.md`.
 
 ### Logo ve menü ikonu
-Ortak logo `plugins/flx-updater/assets/icons/<slug>.svg` (256×256, yuvarlak kare, degrade, beyaz sembol).
+Ortak logo `plugins/flx-setup/assets/icons/<slug>.svg` (256×256, yuvarlak kare, degrade, beyaz sembol).
 Yeni pakette aynı tarzda logo ekle (Güncelleyici'deki ikon listesine sahibi ekler ya da `flxu_package_icons` filtresi).
 Admin menüsünde renkli logo: SVG'yi `assets/icon.svg` yap, `add_menu_page( …, 'none', … )`, `admin_head`'de
 `#toplevel_page_<menu-slug> .wp-menu-image{background:url(...) center/20px 20px no-repeat}`. (WP data-URI SVG'yi tek renge boyar.)

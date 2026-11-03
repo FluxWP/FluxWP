@@ -104,6 +104,7 @@ function flxa_menu_icon_map() {
 			'Emsfb'                          => 'form',
 			'flxi'                            => 'mail',
 			'flxseo'                          => 'search',
+			'flx-setup'                  => 'refresh',
 			'flx-updater'                => 'refresh',
 			'flx-backup'                       => 'archive',
 		)
@@ -133,7 +134,8 @@ function flxa_logo_for_slug( $slug ) {
 			'Emsfb'           => 'flx-forms.svg',
 			'flxi'            => 'flx-mail.svg',
 			'flxseo'          => 'flx-seo.svg',
-			'flx-updater'     => 'flx-updater.svg',
+			'flx-setup'       => 'flx-setup.svg',
+			'flx-updater'     => 'flx-setup.svg',
 			'flx-backup'      => 'flx-backup.svg',
 			'flx-ai'          => 'flx-ai.svg',
 			'flx-analytics'   => 'flx-analytics.svg',

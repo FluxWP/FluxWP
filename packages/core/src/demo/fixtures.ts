@@ -28,7 +28,7 @@ export const demoMe: Me = {
   auth: { kind: 'demo' },
   menu: [
     { id: 'dashboard', slug: 'index.php', title: 'Başlangıç', url: A + 'index.php', icon: 'dashicons-dashboard', items: [] },
-    { id: 'flx-updater', slug: 'flx-updater', title: 'Güncellemeler', url: A + 'admin.php?page=flx-updater', icon: '', badge: 1, items: [] },
+    { id: 'flx-setup', slug: 'flx-setup', title: 'Setup', url: A + 'admin.php?page=flx-setup', icon: '', badge: 1, items: [] },
     { id: 'flx-chat', slug: 'flx-chat', title: 'Çağrı Merkezi', url: A + 'admin.php?page=flx-chat', icon: '', badge: 12,
       items: [
         { slug: 'flx-chat', title: 'Sohbetler', url: A + 'admin.php?page=flx-chat' },

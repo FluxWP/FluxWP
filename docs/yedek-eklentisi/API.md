@@ -1,13 +1,13 @@
 # Flux Backup API (1.1.0)
 
-Diğer eklentiler (ör. Flux Updater) Flux Backup'i `function_exists` ile kontrol edip çağırır. Hepsi `includes/api.php` içinde, `plugins_loaded`'dan önce tanımlıdır (eklenti dosyası yüklenince).
+Diğer eklentiler (ör. Flux Setup) Flux Backup'i `function_exists` ile kontrol edip çağırır. Hepsi `includes/api.php` içinde, `plugins_loaded`'dan önce tanımlıdır (eklenti dosyası yüklenince).
 
 ```php
 if ( function_exists( 'flxy_is_ready' ) && flxy_is_ready() ) {
 	$backup = flxy_backup_create( array(
 		'type'    => 'pre_update',
 		'paths'   => array( 'wp-content/plugins/flx-forms' ),
-		'context' => array( 'source' => 'flx-updater', 'packages' => array(
+		'context' => array( 'source' => 'flx-setup', 'packages' => array(
 			array( 'type' => 'plugin', 'slug' => 'flx-forms', 'name' => 'Flux Forms', 'from_version' => '2.0.8', 'to_version' => '2.0.9' ),
 		) ),
 		'keep_days' => 7,
@@ -132,7 +132,7 @@ if ( $b ) {
 
 | Filtre | Varsayılan | Açıklama |
 |---|---|---|
-| `flxy_pre_update_backup` | `true`, `$hook_extra` | false dönerse bu paket için güncelleme öncesi yedek alınmaz (Flux Updater kendi yedeğini alıyorsa kullanılır) |
+| `flxy_pre_update_backup` | `true`, `$hook_extra` | false dönerse bu paket için güncelleme öncesi yedek alınmaz (Flux Setup kendi yedeğini alıyorsa kullanılır) |
 | `flxy_pre_update_merge_window` | `180` | Eklentiler ekranındaki toplu güncelleme her paketi ayrı AJAX isteğinde kurar; bu kadar saniye içinde aynı kaynaktan alınmış güncelleme öncesi yedeğe eklenir. 0 = her istek ayrı yedek |
 | `flxy_flx_themes` | `[]` | "Yalnız FluxWP paketleri" kapsamındaki temalar (eklentilerde `flx-` öneki yeter) |
 | `flxy_storage_dir` | `wp-content/wp-snapshots/flx-backup` | Mutlak klasör yolu |

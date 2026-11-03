@@ -76,9 +76,9 @@ Requirements: WordPress 6.4+, PHP 7.4+. A WhatsApp line through Flux Contact (Ev
 1. Download `flx-chat.zip` from the latest `flx-chat-v*` release on the [Releases](https://github.com/FluxWP/fluxwp/releases) page.
 2. **Plugins › Add New › Upload Plugin**, choose the zip, then **Activate**.
 
-**With Flux Updater** (recommended on our sites)
+**With Flux Setup** (recommended on our sites)
 
-**Dashboard › Updates** lists every FluxWP package; click **Install** next to *Flux Call Center*. Updates arrive the same way.
+**Setup › Packages** lists every FluxWP package; click **Install** next to *Flux Call Center*. Updates arrive the same way.
 
 **First steps**
 
