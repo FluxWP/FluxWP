@@ -254,5 +254,6 @@ return array(
 		'Bu sunucu anahtarsız güncelleme vermiyor; site anahtarı girin.' => 'This server does not serve updates without a key; enter a site key.',
 		'Site anahtarı geçersiz. Güncelleme sunucusunun panelinde (/admin) "Var olan bir anahtarı test et" ile deneyin.' => 'Invalid site key. Try it with "Test an existing key" in the update server panel (/admin).',
 		'Anahtar yok: yalnız public paketler gelir.' => 'No key: only public packages are available.',
+		'Site anahtarı sunucuda pasif; yalnız public paketler geliyor.' => 'The site key is disabled on the server; only public packages are available.',
 	),
 );
