@@ -37,7 +37,7 @@ final class Flx_Migrate_Mapper {
 			. ( '' !== $alt ? '(?P<slug>' . $alt . ')(?![a-z0-9])|' : '' )
 			. '(?P<gl>' . $lo . ')(?=[-_])'
 			. '|(?P<gu>' . $up . ')(?=[-_])'
-			. '|(?P<lo>' . $lo . ')(?=[a-zA-Z0-9])'
+			. '|(?P<lo>' . $lo . ')(?=[a-zA-Z0-9])(?!ith)' // not YITH (yith_*, a third-party prefix)
 			. '|(?P<up>' . $up . ')(?=[A-Z])'
 			. '|(?P<cap>' . $cap . ')(?=[gcb][A-Z])'
 			. '|(?P<bl>' . $lo . ')(?![A-Za-z0-9])'
@@ -122,6 +122,11 @@ final class Flx_Migrate_Mapper {
 			return $v;
 		}
 		if ( ! is_string( $v ) || '' === $v ) {
+			return $v;
+		}
+		// Sealed secrets: renaming inside the ciphertext would corrupt it.
+		// Their prefix and key are handled by the secrets step.
+		if ( preg_match( '/^(?:[a-z]{2,4}[01]|enc1|s1|o1|b1|b64):[A-Za-z0-9+\/=]+$/', $v ) ) {
 			return $v;
 		}
 		if ( is_serialized( $v ) ) {

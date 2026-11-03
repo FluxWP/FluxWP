@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.35.5
+- Ayarlar › Bağlantılar: Flux Mail veya Flux Certificates bağlantısı seçilince bağlantı kimliği yanlış okunuyordu (`flxi:`/`flxs:` önek uzunluğu), kaydetmede bağlantı boşa düşüyordu; düzeltildi.
+
 ## 1.35.4
 - Koyu modda yenilemede açık tema yanıp sönmesi giderildi: kayıtlı tema, uygulama kabı çizilir çizilmez (app.js beklenmeden) uygulanır.
 
