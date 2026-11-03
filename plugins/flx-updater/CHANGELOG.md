@@ -4,6 +4,9 @@
 - Sunucu panelinden anahtar verilebilir: site her sunucuya özel rastgele bir kurulum kimliği gönderir; yönetici "Bağlı siteler"de "Anahtar ver" deyince anahtar bir sonraki kontrolde yalnız bu kimliği taşıyan siteye teslim edilir ve kendiliğinden kaydedilir. Elle anahtar girmek gerekmez.
 - Anahtar sunucuda pasife alınırsa kart bunu yazar; o sürede yalnız public paketler gelir.
 
+## 1.6.3
+- FluxWP imzası: Flux ekranlarının alt satırında küçük FluxWP logosu ve fluxwp.com bağlantısı. Ortak modül `includes/flx-brand` (kaynak FluxWP/fluxwp `tools/brand`); kurulu Flux paketlerinden en yeni sürümü bir kez yüklenir, `flx_brand_show` filtresiyle gizlenir.
+
 ## 1.6.2
 - Tüm FluxWP paketlerinin logoları (temalar ve FluxWP Extras dahil) yeni ikon setiyle; paket listesinde gri yer tutucu kalmadı.
 - Flux Admin'de Pastel seçiliyse paket logoları `assets/icons/pastel/` altından gelir.

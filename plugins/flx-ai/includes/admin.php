@@ -31,7 +31,10 @@ add_filter(
 add_action(
 	'admin_head',
 	function () {
-		// Flux Admin menü düzeninde de görünsün (harf rozetini ve simge gizlemeyi ezer).
+		// Flux Admin kuruluysa menü logosunu o verir (boyut ve Degrade/Pastel stili diğer paketlerle aynı).
+		if ( function_exists( 'flxa_logo_file_url' ) ) {
+			return;
+		}
 		$u = esc_url( FLXAI_URL . 'assets/icon.svg?ver=' . FLXAI_VERSION );
 		echo '<style>#adminmenu #toplevel_page_flx-ai div.wp-menu-image,body #adminmenu li#toplevel_page_flx-ai.flxa-letter div.wp-menu-image{background:url(' . $u . ') center/20px 20px no-repeat!important}#adminmenu #toplevel_page_flx-ai div.wp-menu-image::before{content:none!important}</style>';
 	}

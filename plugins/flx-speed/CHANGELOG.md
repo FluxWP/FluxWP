@@ -1,5 +1,16 @@
 # Değişiklikler
 
+## 0.3.0
+- Paylaşımlı hosting'de (Hostinger vb.) Özet, Sunucu ve Başlangıç widget'ı artık ana makinenin değerlerini (64 çekirdek, 503 GB RAM, TB'larca disk) sitenin değeri gibi göstermiyor.
+- Hesap sınırı cgroup v1/v2'den okunur (konteyner, VPS dilimi, hesap): işlemci yüzdesi sınıra göre, bellek kullanım / sınır. Okunamazsa İşlemci (hesap) ve Bellek (hesap) kutuları "Hesap sınırı okunamıyor" der; makinenin ortak değerleri Sunucu sekmesinde ayrı, "Makine geneli (paylaşımlı, tüm hesaplar)" başlığıyla durur.
+- Disk (hesap): hesap klasörü (ev klasörü, yoksa WordPress klasörü) dosyaları + sitenin veritabanı. Tarama parça parça (her istek en fazla 1-2 sn), 12 saatte bir yenilenir; dosya/inode sayısı Sunucu sekmesinde.
+- Ayarlar › Disk kotası (GB): girilirse Disk kutusu ve Sistem Kontrolü yüzde gösterir.
+- Sistem Kontrolü yük satırı paylaşımlı hosting'de makine yükünü raporlamaz. `flxp_server` aracında `live.scope`, `live.machine`, `live.disk_usage`.
+- Yeni filtreler: `flxp_shared_hosting`, `flxp_cgroup`, `flxp_account_root`.
+
+## 0.2.3
+- FluxWP imzası: Flux ekranlarının alt satırında küçük FluxWP logosu ve fluxwp.com bağlantısı. Ortak modül `includes/flx-brand` (kaynak FluxWP/fluxwp `tools/brand`); kurulu Flux paketlerinden en yeni sürümü bir kez yüklenir, `flx_brand_show` filtresiyle gizlenir.
+
 ## 0.2.2
 - Yeni logo (FluxWP ikon seti, grup rengi). `assets/icon-pastel.svg` Flux Admin › Görünüm › Paket logoları Pastel iken kullanılır.
 

@@ -10,7 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FLX_VERSION', '0.7.0' );
+require_once __DIR__ . '/inc/flx-brand/loader.php'; // FluxWP signature (tools/brand).
+
+define( 'FLX_VERSION', '0.7.1' );
 
 /**
  * Theme supports.
@@ -28,6 +30,8 @@ function flx_setup() {
 
 	// FluxWP altyapısı (flx_img, flx_ayar, kurum profili logosu): ön ayar eklentileri buna bakar.
 	add_theme_support( 'flx-theme' );
+	// FluxWP signature in the footer (inc/flx-brand): adds a bar if the flx/credit block was removed.
+	add_theme_support( 'flx-credit' );
 	// Flux Setup'un Ön ayarlar ekranı Görünüm › Tema Ayarları › Ön ayarlar sekmesinde.
 	add_theme_support( 'flx-setup-panel', array( 'page' => 'flx-ayarlar', 'arg' => 'bolum', 'value' => 'onayarlar' ) );
 }

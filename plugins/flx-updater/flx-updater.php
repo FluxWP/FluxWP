@@ -14,6 +14,8 @@
 
 defined( 'ABSPATH' ) || exit;
 
+require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
+
 define( 'FLXU_VERSION', '1.7.0' );
 define( 'FLXU_FILE', __FILE__ );
 define( 'FLXU_DIR', plugin_dir_path( __FILE__ ) );

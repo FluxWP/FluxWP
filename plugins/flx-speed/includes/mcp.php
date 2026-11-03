@@ -220,7 +220,7 @@ function flxp_tools() {
 
 	$tools['flxp_server'] = array(
 		'title'       => __( 'Sunucu durumu', 'flx-speed' ),
-		'description' => 'Anlık sunucu ölçüleri: işlemci yükü (1/5/15 dk, çekirdek sayısı, yüzde), RAM kullanımı, disk doluluğu, çalışma süresi; PHP limitleri, OPcache (isabet oranı, bellek), önbellekler (nesne önbelleği, LiteSpeed, APCu, Redis), sunucu yazılımı/IP/port. Paylaşımlı sunucuda CPU/RAM tüm sunucuya aittir.',
+		'description' => 'Anlık sunucu ölçüleri: işlemci yükü (1/5/15 dk, çekirdek sayısı, yüzde), RAM kullanımı, disk doluluğu, çalışma süresi; PHP limitleri, OPcache (isabet oranı, bellek), önbellekler (nesne önbelleği, LiteSpeed, APCu, Redis), sunucu yazılımı/IP/port. live.scope: account = değerler hesabın cgroup sınırına göre; shared = paylaşımlı hosting, hesap sınırı okunamadı (CPU/RAM null; live.machine tüm hesapların ortak makinesidir, sitenin kullanımı DEĞİL, öyle raporlama); machine = sunucu siteye ait. live.disk_usage: hesap klasörü dosyaları + veritabanı (bayt), kota Ayarlar\'dan.',
 		'readonly'    => true,
 		'cap'         => $cap,
 		'schema'      => array( 'type' => 'object', 'properties' => new stdClass() ),

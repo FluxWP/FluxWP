@@ -1,5 +1,11 @@
 # Flux AI — Değişiklikler
 
+## 0.6.4
+- Flux Admin kuruluysa menü logosunu Flux Admin verir: boyutu diğer paketlerle aynı, Degrade/Pastel seçimine uyar.
+
+## 0.6.3
+- FluxWP imzası: Flux ekranlarının alt satırında küçük FluxWP logosu ve fluxwp.com bağlantısı. Ortak modül `includes/flx-brand` (kaynak FluxWP/fluxwp `tools/brand`); kurulu Flux paketlerinden en yeni sürümü bir kez yüklenir, `flx_brand_show` filtresiyle gizlenir.
+
 ## 0.6.2
 - Yeni logo (FluxWP ikon seti, grup rengi). `assets/icon-pastel.svg` Flux Admin › Görünüm › Paket logoları Pastel iken kullanılır.
 

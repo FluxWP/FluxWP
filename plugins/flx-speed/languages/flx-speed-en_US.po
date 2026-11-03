@@ -193,6 +193,66 @@ msgstr "No records."
 msgid "Öneriler"
 msgstr "Suggestions"
 
+msgid "Hesap sınırı (cgroup)"
+msgstr "Account limit (cgroup)"
+
+msgid "Paylaşımlı hosting: hesap sınırı okunamıyor"
+msgstr "Shared hosting: account limit cannot be read"
+
+msgid "Sunucu bu siteye ait (VPS/dedicated)"
+msgstr "Server belongs to this site (VPS/dedicated)"
+
+msgid "Taranan klasör"
+msgstr "Scanned folder"
+
+msgid "Dosyalar"
+msgstr "Files"
+
+msgid "Hesaplanıyor…"
+msgstr "Calculating…"
+
+msgid "Dosya ve klasör sayısı (inode)"
+msgstr "Files and folders (inodes)"
+
+msgid "Disk kotası"
+msgstr "Disk quota"
+
+msgid "Girilmedi (Ayarlar)"
+msgstr "Not set (Settings)"
+
+msgid "Son ölçüm"
+msgstr "Last measured"
+
+msgid "%s önce"
+msgstr "%s ago"
+
+msgid "yenileniyor"
+msgstr "refreshing"
+
+msgid "Hesap diski"
+msgstr "Account disk"
+
+msgid "Makine geneli (paylaşımlı, tüm hesaplar)"
+msgstr "Whole machine (shared, all accounts)"
+
+msgid "Çekirdek sayısı"
+msgstr "CPU cores"
+
+msgid "Yük (1/5/15 dk)"
+msgstr "Load (1/5/15 min)"
+
+msgid "Disk"
+msgstr "Disk"
+
+msgid "%s boş"
+msgstr "%s free"
+
+msgid "Not"
+msgstr "Note"
+
+msgid "Bu değerler sunucudaki tüm hesaplarındır, sitenizin kullanımı veya sınırı değildir."
+msgstr "These values belong to every account on the machine; they are not your site's usage or limit."
+
 msgid "Evet"
 msgstr "Yes"
 
@@ -217,8 +277,8 @@ msgstr "Port"
 msgid "Belge kökü"
 msgstr "Document root"
 
-msgid "Çekirdek sayısı"
-msgstr "CPU cores"
+msgid "Kaynak bilgisi"
+msgstr "Resource values"
 
 msgid "Sürüm"
 msgstr "Version"
@@ -400,9 +460,6 @@ msgstr "Overdue"
 msgid "Son çalışma"
 msgstr "Last run"
 
-msgid "%s önce"
-msgstr "%s ago"
-
 msgid "Görülmedi"
 msgstr "Not seen"
 
@@ -511,6 +568,9 @@ msgstr "at most"
 msgid "kayıt"
 msgstr "records"
 
+msgid "Paylaşımlı hosting planınızın disk sınırı (Hostinger: hPanel › Hesap kaynakları). PHP bu sınırı okuyamaz; girilirse Disk kutusu hesap kullanımını yüzde olarak gösterir. Boş bırakılırsa yalnız kullanılan alan görünür."
+msgstr "Your shared hosting plan's disk limit (Hostinger: hPanel › Account resources). PHP cannot read it; when set, the Disk card shows account usage as a percentage. Leave empty to show used space only."
+
 msgid "Yapay zekâ (MCP)"
 msgstr "AI (MCP)"
 
@@ -535,20 +595,38 @@ msgstr "%1$d d %2$d h"
 msgid "%d sa"
 msgstr "%d h"
 
-msgid "İşlemci yükü"
-msgstr "CPU load"
+msgid "Hesap sınırı okunamıyor"
+msgstr "Account limit cannot be read"
+
+msgid "%s çekirdek, hesap sınırı yok"
+msgstr "%s cores, no account limit"
+
+msgid "Hesap sınırı %s çekirdek"
+msgstr "Account limit %s cores"
 
 msgid "%1$d çekirdek · yük %2$s"
 msgstr "%1$d cores · load %2$s"
 
+msgid "Disk (hesap)"
+msgstr "Disk (account)"
+
+msgid "Hesap klasörü taranıyor"
+msgstr "Scanning the account folder"
+
+msgid "dosyalar %1$s · veritabanı %2$s"
+msgstr "files %1$s · database %2$s"
+
+msgid "İşlemci yükü"
+msgstr "CPU load"
+
+msgid "İşlemci (hesap)"
+msgstr "CPU (account)"
+
 msgid "Bellek (RAM)"
 msgstr "Memory (RAM)"
 
-msgid "Disk"
-msgstr "Disk"
-
-msgid "%s boş"
-msgstr "%s free"
+msgid "Bellek (hesap)"
+msgstr "Memory (account)"
 
 msgid "PHP belleği (bu istek)"
 msgstr "PHP memory (this request)"
@@ -556,8 +634,20 @@ msgstr "PHP memory (this request)"
 msgid "Sunucu açık"
 msgstr "Server uptime"
 
-msgid "Paylaşımlı sunucuda işlemci ve bellek tüm sunucuya aittir; sitenin payı Hostinger panelindeki kaynak kullanımında görünür. Kutular 15 saniyede bir yenilenir."
-msgstr "On shared hosting, CPU and memory belong to the whole server; the site's own share is in the Hostinger panel's resource usage. The boxes refresh every 15 seconds."
+msgid "Makine açık"
+msgstr "Machine uptime"
+
+msgid "İşlemci ve bellek bu hesabın (konteyner/cgroup) sınırına göre."
+msgstr "CPU and memory are measured against this account's (container/cgroup) limit."
+
+msgid "Paylaşımlı hosting: PHP, sunucudaki tüm hesapların ortak işlemci/bellek/diskini görür, bunlar sizin değerleriniz değil ve gösterilmez. Hesabın işlemci ve bellek kullanımı hosting panelinde (Hostinger: hPanel › Hesap kaynakları)."
+msgstr "Shared hosting: PHP sees the CPU, memory and disk shared by every account on the machine; these are not your values and are not shown. Your account's CPU and memory usage is in the hosting panel (Hostinger: hPanel › Account resources)."
+
+msgid "Disk yüzdesi için Ayarlar'a hosting planınızın disk kotasını girin."
+msgstr "Enter your hosting plan's disk quota in Settings to see a disk percentage."
+
+msgid "Kutular 15 saniyede bir yenilenir."
+msgstr "Cards refresh every 15 seconds."
 
 msgid "p95 süre (24 sa)"
 msgstr "p95 time (24 h)"
@@ -730,8 +820,14 @@ msgstr "Disk space"
 msgid "%%%1$d dolu, %2$s boş."
 msgstr "%1$d%% used, %2$s free."
 
-msgid "Son 1 dakikada %%%1$d (%2$d çekirdek). Paylaşımlı sunucuda yük tüm sunucuya aittir."
-msgstr "%1$d%% over the last minute (%2$d cores). On shared hosting the load belongs to the whole server."
+msgid "(hesap kullanımı / Ayarlar'daki kota)"
+msgstr "(account usage / quota from Settings)"
+
+msgid "Hesap işlemci sınırının %%%1$d kadarı kullanılıyor (%2$s çekirdek)."
+msgstr "%1$d%% of the account CPU limit in use (%2$s cores)."
+
+msgid "Son 1 dakikada %%%1$d (%2$d çekirdek)."
+msgstr "%1$d%% over the last minute (%2$d cores)."
 
 msgid "Açık: PHP dosyaları derlenmiş halde bellekte."
 msgstr "On: compiled PHP files are kept in memory."
