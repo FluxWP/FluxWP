@@ -86,6 +86,24 @@ msgstr "Give the key a name."
 msgid "Kaydedilemedi."
 msgstr "Could not save."
 
+msgid "Masaüstü uygulaması"
+msgstr "Desktop app"
+
+msgid "Paneli Mac ve Windows bilgisayarınızda ayrı bir uygulama olarak kullanın. Yeni sürümler kendiliğinden kurulur."
+msgstr "Use the panel as a separate app on your Mac or Windows computer. New versions install themselves."
+
+msgid "macOS için indir"
+msgstr "Download for macOS"
+
+msgid "Windows için indir"
+msgstr "Download for Windows"
+
+msgid "macOS 11 ve üstü (Apple Silicon ve Intel). Windows 10 ve 11 (64 bit)."
+msgstr "macOS 11 or later (Apple Silicon and Intel). Windows 10 and 11 (64-bit)."
+
+msgid "Windows MSI paketi (kurumsal dağıtım)"
+msgstr "Windows MSI package (managed deployment)"
+
 msgid "Uygulama ayarları"
 msgstr "App settings"
 

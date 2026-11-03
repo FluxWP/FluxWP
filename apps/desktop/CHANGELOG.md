@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 0.2.5
+- Windows sürümü: GitHub Actions macOS'la birlikte Windows'ta da derler; release'te `…-windows-x64-setup.exe` (NSIS) ve `.msi`. İmzalı güncelleme paketi varsa Windows'ta da arka planda kurulur, yoksa setup.exe açılır.
+- Windows'ta yerel başlık çubuğu: macOS trafik ışıkları için bırakılan sol boşluk yalnız macOS'ta. Arama kısayolu Windows'ta "Ctrl K" yazar.
+- Uygulama ikonu: FluxWP#31'deki büyük iç işaret oranı (%72,5). Windows .ico ayrı üretilir, kare neredeyse tam dolar (görev çubuğunda küçük görünmez).
+- İmza secret'ları (macOS Developer ID + notarize, Windows Azure Trusted Signing ya da .pfx) varsa kullanılır, yoksa imzasız derlenir. Liste: `docs/fluxapp/README.md`.
+
 ## 0.2.4
 - Sol menüdeki sabit kutucuklar WordPress'teki Flux Admin menüsü gibi davranır: açık sayfanın alt menüsü varsa o kutucuk tam genişliğe çıkıp en alta kayar, alt menüsü aşağı doğru açılır. Başka kutucuğa geçince eskisi yerine döner, yenisi aşağı kayar (animasyonlu).
 - Yerel ekranların alt sayfaları (ör. Görevler › Ayarlar) web panelinde açılır.
