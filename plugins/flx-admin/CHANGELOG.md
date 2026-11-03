@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.6.12
+- Favicon yenilendi: FluxWP işareti beyaz kontur ve ince gölge çizgisiyle, tam kare zemin yok (SVG, favicon.ico, 32 px PNG). Uygulama simgeleri değişmedi.
+
 ## 1.6.11
 - Ortak sayfa başlığı (telefon): tek düğmeli sayfalarda başlık solda, düğme sağda aynı satırda (%50 / %50); düğme yazısı ve altındaki durum metni sağa hizalı, gerekirse alt satıra kayar.
 - Ön ayar paketlerinin yeni logoları (menü ve sayfa başlığı için).
