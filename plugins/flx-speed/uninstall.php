@@ -14,6 +14,8 @@ delete_option( 'flxp_db_version' );
 delete_option( 'flxp_last_cleanup' );
 delete_option( 'flxp_cron_seen' );
 delete_option( 'flxp_cron_stats' );
+delete_option( 'flxp_du' );
+delete_transient( 'flxp_cpu_sample' );
 $wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE '\\_transient\\_%flxp\\_prof\\_%'" ); // phpcs:ignore
 foreach ( wp_roles()->role_objects as $role ) {
 	$role->remove_cap( 'flxp_view' );

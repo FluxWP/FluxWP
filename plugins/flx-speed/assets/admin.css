@@ -62,6 +62,7 @@ body.flx-dark .flxp-wrap .flxp-row-err td { background: #3a1f22 !important; }
 /* Canlı kutular, öneriler, pano widget'ı. */
 .flxp-live .flxp-card small, .flxp-dash .flxp-card small { color: #646970; font-size: 11px; margin-top: 4px; min-height: 14px; }
 .flxp-bar { display: block; height: 6px; background: #f0f0f1; border-radius: 3px; overflow: hidden; margin-top: 6px; }
+.flxp-bar[hidden] { display: none; }
 .flxp-bar em { display: block; height: 100%; background: var(--flxa-accent, #1F2937); border-radius: 3px; transition: width .4s; }
 .flxp-card.warn .flxp-bar em { background: #dba617; }
 .flxp-card.err .flxp-bar em { background: #d63638; }

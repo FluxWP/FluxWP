@@ -192,6 +192,66 @@ msgstr ""
 msgid "Öneriler"
 msgstr ""
 
+msgid "Hesap sınırı (cgroup)"
+msgstr ""
+
+msgid "Paylaşımlı hosting: hesap sınırı okunamıyor"
+msgstr ""
+
+msgid "Sunucu bu siteye ait (VPS/dedicated)"
+msgstr ""
+
+msgid "Taranan klasör"
+msgstr ""
+
+msgid "Dosyalar"
+msgstr ""
+
+msgid "Hesaplanıyor…"
+msgstr ""
+
+msgid "Dosya ve klasör sayısı (inode)"
+msgstr ""
+
+msgid "Disk kotası"
+msgstr ""
+
+msgid "Girilmedi (Ayarlar)"
+msgstr ""
+
+msgid "Son ölçüm"
+msgstr ""
+
+msgid "%s önce"
+msgstr ""
+
+msgid "yenileniyor"
+msgstr ""
+
+msgid "Hesap diski"
+msgstr ""
+
+msgid "Makine geneli (paylaşımlı, tüm hesaplar)"
+msgstr ""
+
+msgid "Çekirdek sayısı"
+msgstr ""
+
+msgid "Yük (1/5/15 dk)"
+msgstr ""
+
+msgid "Disk"
+msgstr ""
+
+msgid "%s boş"
+msgstr ""
+
+msgid "Not"
+msgstr ""
+
+msgid "Bu değerler sunucudaki tüm hesaplarındır, sitenizin kullanımı veya sınırı değildir."
+msgstr ""
+
 msgid "Evet"
 msgstr ""
 
@@ -216,7 +276,7 @@ msgstr ""
 msgid "Belge kökü"
 msgstr ""
 
-msgid "Çekirdek sayısı"
+msgid "Kaynak bilgisi"
 msgstr ""
 
 msgid "Sürüm"
@@ -399,9 +459,6 @@ msgstr ""
 msgid "Son çalışma"
 msgstr ""
 
-msgid "%s önce"
-msgstr ""
-
 msgid "Görülmedi"
 msgstr ""
 
@@ -510,6 +567,9 @@ msgstr ""
 msgid "kayıt"
 msgstr ""
 
+msgid "Paylaşımlı hosting planınızın disk sınırı (Hostinger: hPanel › Hesap kaynakları). PHP bu sınırı okuyamaz; girilirse Disk kutusu hesap kullanımını yüzde olarak gösterir. Boş bırakılırsa yalnız kullanılan alan görünür."
+msgstr ""
+
 msgid "Yapay zekâ (MCP)"
 msgstr ""
 
@@ -534,19 +594,37 @@ msgstr ""
 msgid "%d sa"
 msgstr ""
 
-msgid "İşlemci yükü"
+msgid "Hesap sınırı okunamıyor"
+msgstr ""
+
+msgid "%s çekirdek, hesap sınırı yok"
+msgstr ""
+
+msgid "Hesap sınırı %s çekirdek"
 msgstr ""
 
 msgid "%1$d çekirdek · yük %2$s"
 msgstr ""
 
+msgid "Disk (hesap)"
+msgstr ""
+
+msgid "Hesap klasörü taranıyor"
+msgstr ""
+
+msgid "dosyalar %1$s · veritabanı %2$s"
+msgstr ""
+
+msgid "İşlemci yükü"
+msgstr ""
+
+msgid "İşlemci (hesap)"
+msgstr ""
+
 msgid "Bellek (RAM)"
 msgstr ""
 
-msgid "Disk"
-msgstr ""
-
-msgid "%s boş"
+msgid "Bellek (hesap)"
 msgstr ""
 
 msgid "PHP belleği (bu istek)"
@@ -555,7 +633,19 @@ msgstr ""
 msgid "Sunucu açık"
 msgstr ""
 
-msgid "Paylaşımlı sunucuda işlemci ve bellek tüm sunucuya aittir; sitenin payı Hostinger panelindeki kaynak kullanımında görünür. Kutular 15 saniyede bir yenilenir."
+msgid "Makine açık"
+msgstr ""
+
+msgid "İşlemci ve bellek bu hesabın (konteyner/cgroup) sınırına göre."
+msgstr ""
+
+msgid "Paylaşımlı hosting: PHP, sunucudaki tüm hesapların ortak işlemci/bellek/diskini görür, bunlar sizin değerleriniz değil ve gösterilmez. Hesabın işlemci ve bellek kullanımı hosting panelinde (Hostinger: hPanel › Hesap kaynakları)."
+msgstr ""
+
+msgid "Disk yüzdesi için Ayarlar'a hosting planınızın disk kotasını girin."
+msgstr ""
+
+msgid "Kutular 15 saniyede bir yenilenir."
 msgstr ""
 
 msgid "p95 süre (24 sa)"
@@ -729,7 +819,13 @@ msgstr ""
 msgid "%%%1$d dolu, %2$s boş."
 msgstr ""
 
-msgid "Son 1 dakikada %%%1$d (%2$d çekirdek). Paylaşımlı sunucuda yük tüm sunucuya aittir."
+msgid "(hesap kullanımı / Ayarlar'daki kota)"
+msgstr ""
+
+msgid "Hesap işlemci sınırının %%%1$d kadarı kullanılıyor (%2$s çekirdek)."
+msgstr ""
+
+msgid "Son 1 dakikada %%%1$d (%2$d çekirdek)."
 msgstr ""
 
 msgid "Açık: PHP dosyaları derlenmiş halde bellekte."
