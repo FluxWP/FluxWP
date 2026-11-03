@@ -129,7 +129,7 @@ add_action(
 		if ( ! $info ) {
 			return;
 		}
-		echo '<style id="flxa-ph-css">.flxa-ph{display:flex;align-items:center;gap:14px;min-width:0;flex:1 1 auto}.flxa-ph__logo{width:44px;height:44px;border-radius:10px;flex:none}.flxa-ph__t{min-width:0}.flxa-ph__t>h1{margin:0!important;padding:0!important;display:inline-block}.flxa-ph__t>.page-title-action{margin-left:10px;vertical-align:middle}.flxa-ph__t>p,.flxa-ph__t>.description{margin:2px 0 0!important;color:var(--flxa-muted,#646970)}@media(max-width:600px){.flxa-ph__logo{width:36px;height:36px}}</style>' . "\n";
+		echo '<style id="flxa-ph-css">.flxa-ph{display:flex;align-items:center;gap:14px;min-width:0;width:100%;margin:0 0 12px}.flxa-ph__logo{width:44px;height:44px;border-radius:10px;flex:none}.flxa-ph__t{min-width:0;flex:1 1 auto}.flxa-ph__t>h1{margin:0!important;padding:0!important;display:block}.flxa-ph__t>p,.flxa-ph__t>.description{margin:2px 0 0!important;color:var(--flxa-muted,#646970)}.flxa-ph__a{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:6px;margin-left:auto;text-align:right}.flxa-ph__b{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px}.flxa-ph__b>.page-title-action{position:static!important;top:auto!important;margin:0!important}.flxa-ph__a>span{font-size:12px;line-height:1.4;margin:0!important}@media(max-width:782px){.flxa-ph{flex-wrap:wrap}.flxa-ph__a{width:100%;align-items:flex-start;text-align:left}.flxa-ph__b{justify-content:flex-start}}@media(max-width:600px){.flxa-ph__logo{width:36px;height:36px}}</style>' . "\n";
 	}
 );
 
@@ -159,7 +159,10 @@ var hs=root.querySelectorAll('h1');var h=null;for(var i=0;i<hs.length;i++){if(!h
 if(!h)return false;if(hasLogo(h))return true;
 var w=d.createElement('div');w.className='flxa-ph';var img=d.createElement('img');img.className='flxa-ph__logo';img.src=C.logo;img.alt='';img.width=44;img.height=44;
 var t=d.createElement('div');t.className='flxa-ph__t';h.parentNode.insertBefore(w,h);w.appendChild(img);w.appendChild(t);t.appendChild(h);
-var n=w.nextElementSibling;while(n&&n.classList.contains('page-title-action')){var m=n.nextElementSibling;t.appendChild(n);n=m;}
+var a=d.createElement('div');a.className='flxa-ph__a';var b=d.createElement('div');b.className='flxa-ph__b';var st=[];
+var n=w.nextElementSibling;
+while(n&&(n.classList.contains('page-title-action')||(n.tagName==='SPAN'&&!n.querySelector('input,select,textarea')))){var m=n.nextElementSibling;if(n.classList.contains('page-title-action'))b.appendChild(n);else{n.classList.add('flxa-ph__s');st.push(n);}n=m;}
+if(b.children.length||st.length){if(b.children.length)a.appendChild(b);for(var k=0;k<st.length;k++)a.appendChild(st[k]);w.appendChild(a);}
 if(n&&(n.tagName==='P'||n.classList.contains('description'))&&n.textContent.trim().length&&n.textContent.length<400&&!n.querySelector('input,select,textarea,button')){t.appendChild(n);}
 else{var p=d.createElement('p');p.textContent=C.desc;t.appendChild(p);}
 return true;}
