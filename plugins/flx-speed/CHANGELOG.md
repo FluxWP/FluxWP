@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.2.3
+- Koyu mod Flux Admin koyu temasında da çalışıyor (önceden yalnız tema sınıfında); ara bilgi metinleri ve rozetler okunur; panelde yeşilimsi koyu tonlar nötr.
+
 ## 0.2.2
 - Yeni logo (FluxWP ikon seti, grup rengi). `assets/icon-pastel.svg` Flux Admin › Görünüm › Paket logoları Pastel iken kullanılır.
 

@@ -1,5 +1,8 @@
 # Flux Studio — Değişiklikler
 
+## 0.3.3
+- Yeşilimsi sabit palet yerine Flux Admin vurgu renginden türetilen tonlar; sönük (faint) metinler daha okunur.
+
 ## 0.3.2
 - Yeni logo (FluxWP ikon seti, grup rengi). `assets/icon-pastel.svg` Flux Admin › Görünüm › Paket logoları Pastel iken kullanılır.
 

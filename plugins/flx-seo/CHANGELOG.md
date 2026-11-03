@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.2.4
+- Kontrol listesindeki uyarı/hata renkleri koyu modda okunur.
+
 ## 1.2.3
 - Yeni logo (FluxWP ikon seti, grup rengi). `assets/icon-pastel.svg` Flux Admin › Görünüm › Paket logoları Pastel iken kullanılır.
 

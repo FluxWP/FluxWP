@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.3.4
+- Koyu mod Flux Admin tonlarını kullanıyor (yeşilimsi sabit zeminler kaldırıldı); harita ve ısı renkleri vurgu renginden; birincil düğme yazısı koyu modda okunur.
+
 ## 0.3.3
 - Yeni logo (FluxWP ikon seti, grup rengi). `assets/icon-pastel.svg` Flux Admin › Görünüm › Paket logoları Pastel iken kullanılır.
 

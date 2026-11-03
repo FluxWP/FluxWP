@@ -60,7 +60,7 @@ function flxg_admin_assets() {
 			'nonce'    => wp_create_nonce( 'wp_rest' ),
 			'locale'   => str_replace( '_', '-', get_user_locale() ),
 			'brand'    => flxg_brand_name(),
-			'accent'   => flxg_color( flxg_setting( 'accent' ), '#2e7d32' ),
+			'accent'   => flxg_color( flxg_setting( 'accent' ), function_exists( 'flxa_accent' ) ? flxa_accent() : '#1F2937' ),
 			'adminUrl' => admin_url(),
 			'appUrl'   => admin_url( 'admin.php?page=flx-tasks' ),
 			'start'    => $start,

@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.35.2
+- Görevler modülünün varsayılan rengi yeşil yerine tema vurgusu.
+
 ## 1.35.1
 - Yeni logo (FluxWP ikon seti, grup rengi). `assets/icon-pastel.svg` Flux Admin › Görünüm › Paket logoları Pastel iken kullanılır.
 

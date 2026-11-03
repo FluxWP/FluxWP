@@ -1,5 +1,5 @@
 /* Flux Backup yönetim ekranı */
-.flxy-wrap { --flxy-border: #dcdcde; --flxy-muted: #646970; --flxy-ink: #1d2327; --flxy-accent: #2271b1; max-width: 1400px; }
+.flxy-wrap { --flxy-border: var(--flxa-border, #dcdcde); --flxy-muted: var(--flxa-muted, #646970); --flxy-ink: var(--flxa-text, #1d2327); --flxy-accent: #2271b1; max-width: 1400px; }
 .flxy-wrap .flxy-head { display: flex; align-items: center; gap: 14px; margin: 18px 0 12px; }
 .flxy-wrap .flxy-logo { width: 44px; height: 44px; border-radius: 10px; flex: none; }
 .flxy-wrap .flxy-head-text { flex: 1; min-width: 0; }
@@ -252,6 +252,6 @@
 	.flxy-table tr { display: block; position: relative; padding: 10px 10px 10px 44px; border-bottom: 1px solid #f0f0f1; }
 	.flxy-table tbody th.check-column { position: absolute; left: 6px; top: 12px; padding: 0; width: auto; }
 	.flxy-table td { display: block; width: auto !important; min-width: 0 !important; white-space: normal !important; padding: 3px 0 !important; text-align: left !important; }
-	.flxy-table td:not(.col-title):not(.col-actions)::before { content: attr(data-colname); display: inline-block; min-width: 82px; font-weight: 600; color: #646970; }
+	.flxy-table td:not(.col-title):not(.col-actions)::before { content: attr(data-colname); display: inline-block; min-width: 82px; font-weight: 600; color: var(--flxa-muted, #646970); }
 	.flxy-table td.col-date br { display: none; }
 }

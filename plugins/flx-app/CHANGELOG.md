@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.3.6
+- Koyu mod Flux Admin koyu temasında da çalışıyor; ara bilgi metinleri tema tonunda.
+
 ## 0.3.5
 - Menü logoları Flux Admin'deki logo stiline (Degrade / Pastel) uyar.
 

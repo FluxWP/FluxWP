@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.6.2
+- Düzeltme: genel bağlantı rengi artık eklentilerin bağlantı-düğmelerini ("Yeni menü" gibi `<a>` düğmeler, sekmeler) ezmiyor; koyu düğmede koyu yazı sorunu giderildi. Düğme yazı rengi (`--flxa-on-accent`) vurgu rengine göre otomatik (açık vurguda koyu yazı), `flxa_on_color()`. Koyu tema koruması açık rozet/düğme üstündeki koyu yazıyı artık açık renge çevirmiyor.
+
 ## 1.6.1
 - Düzeltme: koyu mod rengi tanımlamayan temalarda (theme.json `custom.dark.primary` yok) "Array to string conversion" uyarısı (includes/helpers.php). WordPress bu durumda tüm ayar dizisini döndürüyordu; artık yalnız metin değeri kullanılıyor.
 

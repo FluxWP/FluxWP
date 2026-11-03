@@ -58,7 +58,7 @@
 	margin-bottom: 4px;
 }
 .flxl-st {
-	color: #646970;
+	color: var(--flxa-muted, #646970);
 }
 .flxl-toast {
 	position: fixed;

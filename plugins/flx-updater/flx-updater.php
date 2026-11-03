@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Updater
  * Description:       FluxWP tema ve eklentilerini güncelleme sunucusundan (varsayılan updater.fluxwp.com) WordPress'in normal güncelleme ekranına getirir. Public paketler anahtarsız, private paketler site anahtarıyla.
- * Version:           1.6.2
+ * Version:           1.6.3
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -14,7 +14,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'FLXU_VERSION', '1.6.2' );
+define( 'FLXU_VERSION', '1.6.3' );
 define( 'FLXU_FILE', __FILE__ );
 define( 'FLXU_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXU_DEFAULT_SERVER', 'https://updater.fluxwp.com' );

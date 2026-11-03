@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.8.4
+- Varsayılan vurgu rengi yeşil yerine Flux Admin / tema rengi (ayarlarda renk seçilmediyse).
+
 ## 0.8.3
 - Yeni logo (FluxWP ikon seti, grup rengi). `assets/icon-pastel.svg` Flux Admin › Görünüm › Paket logoları Pastel iken kullanılır.
 

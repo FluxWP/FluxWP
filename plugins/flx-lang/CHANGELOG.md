@@ -1,5 +1,8 @@
 # Flux Lang
 
+## 0.1.3
+- Ara bilgi metinleri Flux Admin tonunu izliyor (koyu modda okunur).
+
 ## 0.1.2
 - Yeni logo (FluxWP ikon seti, grup rengi). `assets/icon-pastel.svg` Flux Admin › Görünüm › Paket logoları Pastel iken kullanılır.
 

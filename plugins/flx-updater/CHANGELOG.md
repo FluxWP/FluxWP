@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.6.3
+- Ara bilgi metinleri Flux Admin tonunu izliyor (koyu modda okunur).
+
 ## 1.6.2
 - Tüm FluxWP paketlerinin logoları (temalar ve FluxWP Extras dahil) yeni ikon setiyle; paket listesinde gri yer tutucu kalmadı.
 - Flux Admin'de Pastel seçiliyse paket logoları `assets/icons/pastel/` altından gelir.
