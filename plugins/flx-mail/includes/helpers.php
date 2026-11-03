@@ -145,14 +145,14 @@ function flxi_encrypt( $plain ) {
 function flxi_decrypt( $stored ) {
 	$stored = (string) $stored;
 	if ( 0 === strpos( $stored, 'flxi1:' ) && function_exists( 'sodium_crypto_secretbox_open' ) ) {
-		$raw   = base64_decode( substr( $stored, 5 ) );
+		$raw   = base64_decode( substr( $stored, 6 ) );
 		$key   = substr( hash( 'sha256', wp_salt( 'secure_auth' ) . 'flxi', true ), 0, SODIUM_CRYPTO_SECRETBOX_KEYBYTES );
 		$nonce = substr( $raw, 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES );
 		$out   = sodium_crypto_secretbox_open( substr( $raw, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES ), $nonce, $key );
 		return false === $out ? '' : $out;
 	}
 	if ( 0 === strpos( $stored, 'flxi0:' ) ) {
-		return (string) base64_decode( substr( $stored, 5 ) );
+		return (string) base64_decode( substr( $stored, 6 ) );
 	}
 	return $stored;
 }

@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.3.9
+- Uygulama erişimi ekranındaki işlemler (anahtar oluşturma, iptal, istemci, ayarlar, modüller) yanlış işleyiciye bağlanıyordu (`flxapp_` önek uzunluğu), düzeltildi.
+
 ## 0.3.8
 - Kullanıcılar › Uygulama erişimi: "Masaüstü uygulaması" kartı. macOS ve Windows için indir düğmeleri (ziyaretçinin sistemi önde) ve kurumsal dağıtım için MSI bağlantısı. Bağlantılar güncelleme sunucusunun kalıcı adresine gider (`/v1/fluxapp/<marka>/download/<macos|windows|windows-msi>`, Flux Update Server 1.9.7), hep son sürümü verir. Filtreler: `flxapp_desktop_brand`, `flxapp_desktop_download_url`.
 

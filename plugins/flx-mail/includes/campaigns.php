@@ -392,12 +392,16 @@ function flxi_unsubscribe_url( $email ) {
 add_action(
 	'init',
 	function () {
-		if ( empty( $_GET['flxi_unsub'] ) || empty( $_GET['k'] ) ) { // phpcs:ignore
+		// Links in emails sent before the FluxWP rename use yti_unsub and the old key.
+		$legacy = empty( $_GET['flxi_unsub'] ) && ! empty( $_GET['yti_unsub'] ); // phpcs:ignore
+		$param  = $legacy ? 'yti_unsub' : 'flxi_unsub';
+		if ( empty( $_GET[ $param ] ) || empty( $_GET['k'] ) ) { // phpcs:ignore
 			return;
 		}
-		$email = strtolower( (string) base64_decode( strtr( sanitize_text_field( wp_unslash( $_GET['flxi_unsub'] ) ), '-_', '+/' ) ) ); // phpcs:ignore
+		$email = strtolower( (string) base64_decode( strtr( sanitize_text_field( wp_unslash( $_GET[ $param ] ) ), '-_', '+/' ) ) ); // phpcs:ignore
 		$key   = sanitize_text_field( wp_unslash( $_GET['k'] ) ); // phpcs:ignore
-		if ( ! is_email( $email ) || ! hash_equals( flxi_unsubscribe_token( $email ), $key ) ) {
+		$want  = $legacy ? substr( hash_hmac( 'sha256', $email, wp_salt( 'auth' ) . 'yti-unsub' ), 0, 20 ) : flxi_unsubscribe_token( $email );
+		if ( ! is_email( $email ) || ! hash_equals( $want, $key ) ) {
 			wp_die( esc_html__( 'Bağlantı geçersiz.', 'flx-mail' ), '', array( 'response' => 400 ) );
 		}
 		$post = 'POST' === ( $_SERVER['REQUEST_METHOD'] ?? '' ); // phpcs:ignore

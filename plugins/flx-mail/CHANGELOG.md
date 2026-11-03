@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.13.4
+- Yeniden adlandırma hataları: şifreli ayarlar (SMTP/IMAP parolası, bağlantı anahtarları) `flxi1:` önekinin uzunluğu yanlış okunduğu için açılamıyordu, düzeltildi. Ad değişiminden önce gönderilmiş e-postalardaki listeden çıkma bağlantıları (`yti_unsub`) yeniden çalışıyor.
+
 ## 1.13.3
 - Koyu modda açık nane çip/rozetler ve WhatsApp durum rozeti düzeltildi; posta kutusundaki ara metinler tema tonunda; koyu zemin logosu "Varsayılan" bağlantısı okunur.
 

@@ -687,7 +687,7 @@ function flxc_save_settings() {
 			$c    = $prev ? $prev : flxc_new_connection();
 			$src  = (string) ( $row['source'] ?? 'own' );
 			if ( 0 === strpos( $src, 'flxi:' ) ) {
-				$pid = (int) substr( $src, 4 );
+				$pid = (int) substr( $src, 5 );
 				if ( 'flxi' !== $c['source'] || (int) $c['provider_id'] !== $pid ) {
 					$c['flxs_id'] = 0; // başka bir bağlantı seçildi; eski Flux Certificates geri dönüşü geçersiz
 				}
@@ -695,7 +695,7 @@ function flxc_save_settings() {
 				$c['provider_id'] = $pid;
 			} elseif ( 0 === strpos( $src, 'flxs:' ) ) {
 				$c['source']      = 'flxs';
-				$c['provider_id'] = (int) substr( $src, 4 );
+				$c['provider_id'] = (int) substr( $src, 5 );
 			} else {
 				$c['source']      = 'own';
 				$c['provider_id'] = 0;

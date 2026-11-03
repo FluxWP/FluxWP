@@ -41,7 +41,7 @@ add_action(
 );
 
 foreach ( array( 'flxapp_key', 'flxapp_revoke', 'flxapp_client', 'flxapp_client_delete', 'flxapp_settings', 'flxapp_modules' ) as $flxapp_action ) {
-	add_action( 'admin_post_' . $flxapp_action, 'flxapp_handle_' . substr( $flxapp_action, 6 ) );
+	add_action( 'admin_post_' . $flxapp_action, 'flxapp_handle_' . substr( $flxapp_action, 7 ) );
 }
 
 function flxapp_deny() {

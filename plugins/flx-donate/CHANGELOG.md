@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.11.6
+- Adres defteri: yeni adres formunda girilen değerler hata sonrası yeniden doldurulmuyordu (`flxb_` önek uzunluğu), düzeltildi.
+
 ## 2.11.5
 - Koyu modda açık nane rozetler ("Aktif" vb.) koyu vurgu tonuna döner; yeşilimsi sabit çizgi/zeminler tema tonunda.
 
