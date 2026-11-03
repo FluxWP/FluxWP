@@ -294,7 +294,7 @@ return array(
 		'Yarıda bırakan' => 'Abandoned',
 		'Bitirenlerde ortanca süre %s dk' => 'Median time for finishers: %s min',
 		'Henüz sihirbaz verisi yok.' => 'No wizard data yet.',
-		'FluxWP Panel 1.0.8 ve üstü, sihirbaz bitince ya da kapatılınca son adımı ve seçimleri gönderir.' => 'FluxWP Panel 1.0.8 and later sends the last step and choices when the wizard is finished or closed.',
+		'FluxWP Panel 1.0.11 ve üstü, sihirbaz bitince ya da kapatılınca son adımı ve seçimleri gönderir.' => 'FluxWP Panel 1.0.11 and later sends the last step and choices when the wizard is finished or closed.',
 		'Adımlara ulaşan' => 'Reached each step',
 		'Adım' => 'Steps',
 		'atladı' => 'skipped',

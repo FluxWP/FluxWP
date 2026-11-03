@@ -59,19 +59,50 @@ function flx_sk_plugins() {
 }
 
 /**
- * Bizim eklenti kurgumuz. min = temanın beklediği en düşük sürüm; checks = kendi kontrollerini
- * Sistem Kontrolü'ne eklemeye başladığı sürüm.
+ * Sitenin türleri: 'donate' (bağış) ve/veya 'store' (mağaza). Hiçbiri değilse boş dizi (ör. kurumsal site).
+ * Kurulum sihirbazındaki "Neyle başlayalım?" seçimi ilgili paketi kurar; tür buradan anlaşılır:
+ * Flux Donate kuruluysa ya da Tema Ayarları › Site türü "Bağış" ise bağış, Flux Commerce kuruluysa mağaza.
+ */
+function flx_sk_site_kinds() {
+	$have  = flx_sk_plugins();
+	$kinds = array();
+	if ( ! empty( $have['flx-donate'] ) || ( function_exists( 'flx_donation_mode' ) && flx_donation_mode() ) ) {
+		$kinds[] = 'donate';
+	}
+	if ( ! empty( $have['flx-commerce'] ) ) {
+		$kinds[] = 'store';
+	}
+	/** Site türünü değiştir: array( 'donate', 'store' ) içinden. */
+	return array_values( array_intersect( array( 'donate', 'store' ), (array) apply_filters( 'flx_sk_site_kinds', $kinds ) ) );
+}
+
+/** Bağış sitesi mi? Kontrol metinleri buna göre bağış/sertifika dilini kullanır. */
+function flx_sk_is_donate() {
+	return in_array( 'donate', flx_sk_site_kinds(), true );
+}
+
+/**
+ * Bizim eklenti kurgumuz, site türüne göre. min = temanın beklediği en düşük sürüm; checks = kendi kontrollerini
+ * Sistem Kontrolü'ne eklemeye başladığı sürüm. Bağış paketleri yalnız bağış sitesinde, Flux Commerce yalnız mağazada.
  */
 function flx_sk_required_plugins() {
-	$list = array(
-		'woocommerce'      => array( 'name' => 'WooCommerce', 'min' => '8.0', 'required' => true, 'why' => __( 'Hesabım, sepet ve ödeme sayfaları', 'fluxwp' ) ),
-		'flx-donate'         => array( 'name' => 'Flux Donate', 'min' => '2.0.0', 'required' => true, 'checks' => '2.0.0', 'why' => __( 'Bağış türleri, fidan paketleri, kartla bağış ve bağışçılar', 'fluxwp' ) ),
-		'flx-forms'          => array( 'name' => 'Flux Forms', 'min' => '2.0.8', 'required' => true, 'checks' => '2.0.8', 'why' => __( 'Bağış ve iletişim formları', 'fluxwp' ) ),
-		'flx-certificates'     => array( 'name' => 'Flux Certificates', 'min' => '1.2.4', 'required' => true, 'checks' => '1.2.4', 'why' => __( 'Fidan sertifikaları ve etkinlikler', 'fluxwp' ) ),
-		'flx-seo'           => array( 'name' => 'Flux SEO', 'min' => '1.0.9', 'required' => true, 'checks' => '1.0.8', 'why' => __( 'SEO, sitemap, schema ve tarayıcı önbelleği', 'fluxwp' ) ),
-		'flx-chat' => array( 'name' => 'Flux Chat', 'min' => '1.3.0', 'required' => false, 'checks' => '1.3.0', 'why' => __( 'Telefonla bağış ve arama kayıtları', 'fluxwp' ) ),
-		'flx-tasks'         => array( 'name' => 'Flux Tasks', 'min' => '0.1.4', 'required' => false, 'checks' => '0.1.4', 'why' => __( 'Ekip görev takibi', 'fluxwp' ) ),
+	$kinds  = flx_sk_site_kinds();
+	$donate = in_array( 'donate', $kinds, true );
+	$store  = in_array( 'store', $kinds, true );
+	$list   = array(
+		'woocommerce' => array( 'name' => 'WooCommerce', 'min' => '8.0', 'required' => $donate || $store, 'why' => __( 'Hesabım, sepet ve ödeme sayfaları', 'fluxwp' ) ),
 	);
+	if ( $store ) {
+		$list['flx-commerce'] = array( 'name' => 'Flux Commerce', 'min' => '0.1.0', 'required' => true, 'why' => __( 'Mağaza paneli, müşteriler, satış raporu ve dekontlu Havale/EFT', 'fluxwp' ) );
+	}
+	if ( $donate ) {
+		$list['flx-donate']       = array( 'name' => 'Flux Donate', 'min' => '2.0.0', 'required' => true, 'checks' => '2.0.0', 'why' => __( 'Bağış türleri, fidan paketleri, kartla bağış ve bağışçılar', 'fluxwp' ) );
+		$list['flx-certificates'] = array( 'name' => 'Flux Certificates', 'min' => '1.2.4', 'required' => true, 'checks' => '1.2.4', 'why' => __( 'Fidan sertifikaları ve etkinlikler', 'fluxwp' ) );
+	}
+	$list['flx-forms'] = array( 'name' => 'Flux Forms', 'min' => '2.0.8', 'required' => true, 'checks' => '2.0.8', 'why' => $donate ? __( 'Bağış ve iletişim formları', 'fluxwp' ) : __( 'İletişim formları', 'fluxwp' ) );
+	$list['flx-seo']   = array( 'name' => 'Flux SEO', 'min' => '1.0.9', 'required' => true, 'checks' => '1.0.8', 'why' => __( 'SEO, sitemap, schema ve tarayıcı önbelleği', 'fluxwp' ) );
+	$list['flx-chat']  = array( 'name' => 'Flux Chat', 'min' => '1.3.0', 'required' => false, 'checks' => '1.3.0', 'why' => $donate ? __( 'Telefonla bağış ve arama kayıtları', 'fluxwp' ) : __( 'WhatsApp sohbetleri ve arama kayıtları', 'fluxwp' ) );
+	$list['flx-tasks'] = array( 'name' => 'Flux Tasks', 'min' => '0.1.4', 'required' => false, 'checks' => '0.1.4', 'why' => __( 'Ekip görev takibi', 'fluxwp' ) );
 	/** Başka bir site kurgusu listeyi değiştirebilir. */
 	return apply_filters( 'flx_sk_required_plugins', $list );
 }
@@ -131,7 +162,8 @@ function flx_sk_checks_plugins() {
 
 	// iyzico WooCommerce eklentisi isteğe bağlı: Flux Donate anahtarları ondan ya da kendi alanlarından okur.
 	// Flux Donate 1.2.1+ bunu kendi satırında gösterir; iki kez yazılmasın.
-	if ( class_exists( 'FLXB_System_Checks' ) ) {
+	// Bağış sitesi değilse iyzico satırı da gereksiz.
+	if ( class_exists( 'FLXB_System_Checks' ) || ! flx_sk_is_donate() ) {
 		return $out;
 	}
 	$iyzico = null;
@@ -168,7 +200,7 @@ function flx_sk_checks_cron() {
 		$out[] = flx_sk_item( 'theme.cron.mode', $g, __( 'Gerçek cron', 'fluxwp' ), 'ok', __( 'DISABLE_WP_CRON açık: görevleri sunucu cron\'u çalıştırıyor, ziyaretçi isteklerini yavaşlatmıyor.', 'fluxwp' ) );
 	} else {
 		/* translators: %s: cron command */
-		$out[] = flx_sk_item( 'theme.cron.mode', $g, __( 'Gerçek cron', 'fluxwp' ), 'warning', sprintf( __( 'Görevler ziyaretçi geldikçe çalışıyor (WP-Cron). Ziyaret azken sertifika kuyruğu ve düzenli bağış yenilemeleri gecikir. Hostinger › Gelişmiş › Cron Jobs\'a 5 dakikada bir şu komutu ekleyin: %s Sonra wp-config.php\'ye define( \'DISABLE_WP_CRON\', true ); yazın.', 'fluxwp' ), $cmd ) );
+		$out[] = flx_sk_item( 'theme.cron.mode', $g, __( 'Gerçek cron', 'fluxwp' ), 'warning', sprintf( flx_sk_is_donate() ? __( 'Görevler ziyaretçi geldikçe çalışıyor (WP-Cron). Ziyaret azken sertifika kuyruğu ve düzenli bağış yenilemeleri gecikir. Hostinger › Gelişmiş › Cron Jobs\'a 5 dakikada bir şu komutu ekleyin: %s Sonra wp-config.php\'ye define( \'DISABLE_WP_CRON\', true ); yazın.', 'fluxwp' ) : __( 'Görevler ziyaretçi geldikçe çalışıyor (WP-Cron). Ziyaret azken e-postalar ve zamanlanmış işler gecikir. Hostinger › Gelişmiş › Cron Jobs\'a 5 dakikada bir şu komutu ekleyin: %s Sonra wp-config.php\'ye define( \'DISABLE_WP_CRON\', true ); yazın.', 'fluxwp' ), $cmd ) );
 	}
 
 	if ( ! $last ) {
@@ -236,7 +268,7 @@ function flx_sk_checks_site() {
 	$off   = $tz->getOffset( new DateTime( 'now', $tz ) );
 	$out[] = 3 * HOUR_IN_SECONDS === $off
 		? flx_sk_item( 'theme.site.tz', $g, __( 'Saat dilimi', 'fluxwp' ), 'ok', wp_timezone_string() )
-		: flx_sk_item( 'theme.site.tz', $g, __( 'Saat dilimi', 'fluxwp' ), 'warning', sprintf( /* translators: %s: timezone */ __( '%s. Sertifika ve bağış tarihleri için İstanbul seçin.', 'fluxwp' ), wp_timezone_string() ), admin_url( 'options-general.php' ), __( 'Genel ayarlar', 'fluxwp' ) );
+		: flx_sk_item( 'theme.site.tz', $g, __( 'Saat dilimi', 'fluxwp' ), 'warning', sprintf( /* translators: %s: timezone */ flx_sk_is_donate() ? __( '%s. Sertifika ve bağış tarihleri için İstanbul seçin.', 'fluxwp' ) : __( '%s. Sipariş, form ve e-posta saatleri için İstanbul seçin.', 'fluxwp' ), wp_timezone_string() ), admin_url( 'options-general.php' ), __( 'Genel ayarlar', 'fluxwp' ) );
 
 	// E-posta: sertifika ve bağış e-postaları için SMTP önerilir.
 	// Flux Mail kendi SMTP durumunu 'flxi.mailer' satırında raporlar; çift uyarı olmasın.
@@ -250,7 +282,7 @@ function flx_sk_checks_site() {
 		}
 		$out[] = $smtp
 			? flx_sk_item( 'theme.site.smtp', $g, __( 'E-posta gönderimi', 'fluxwp' ), 'ok', sprintf( /* translators: %s: plugin name */ __( '%s etkin.', 'fluxwp' ), $smtp ) )
-			: flx_sk_item( 'theme.site.smtp', $g, __( 'E-posta gönderimi', 'fluxwp' ), 'warning', __( 'SMTP eklentisi yok. Sertifika ve bağış e-postaları spam\'e düşebilir; WP Mail SMTP veya FluentSMTP ile dernek e-postasını bağlayın.', 'fluxwp' ), admin_url( 'plugin-install.php?s=smtp&tab=search&type=term' ), __( 'Eklenti ara', 'fluxwp' ) );
+			: flx_sk_item( 'theme.site.smtp', $g, __( 'E-posta gönderimi', 'fluxwp' ), 'warning', ( flx_sk_is_donate() ? __( 'SMTP eklentisi yok. Sertifika ve bağış e-postaları spam\'e düşebilir; WP Mail SMTP veya FluentSMTP ile dernek e-postasını bağlayın.', 'fluxwp' ) : __( 'SMTP eklentisi yok. Site e-postaları spam\'e düşebilir; WP Mail SMTP veya FluentSMTP ile kurum e-postanızı bağlayın.', 'fluxwp' ) ), admin_url( 'plugin-install.php?s=smtp&tab=search&type=term' ), __( 'Eklenti ara', 'fluxwp' ) );
 	}
 
 	// Sayfa önbelleği.

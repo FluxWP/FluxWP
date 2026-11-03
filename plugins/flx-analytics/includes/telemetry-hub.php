@@ -1,6 +1,6 @@
 <?php
 /**
- * Telemetri merkezi: FluxWP Panel (flx-setup 1.0.8+) kurulumlarından gelen anonim kullanım verisini toplar.
+ * Telemetri merkezi: FluxWP Panel (flx-setup 1.0.11+) kurulumlarından gelen anonim kullanım verisini toplar.
  * Ayarlar › Telemetri merkezi açıkken POST /wp-json/flxan/v1/telemetry herkese açılır ve sol menüde
  * "Ürün telemetrisi" görünür. Kapalıyken uç 404 döner.
  *
@@ -777,7 +777,7 @@ class FLXAN_Telemetry_Hub {
 		echo self::kpi( __( 'Yarıda bırakan', 'flx-analytics' ), self::pct( $O['out']['left'], $runs ), $O['median'] ? sprintf( __( 'Bitirenlerde ortanca süre %s dk', 'flx-analytics' ), number_format_i18n( max( 1, round( $O['median'] / 60 ) ) ) ) : '—', 'rose' ); // phpcs:ignore
 		echo '</div>';
 		if ( ! $runs ) {
-			echo '<div class="flxan-panel flxan-empty--big"><b>' . esc_html__( 'Henüz sihirbaz verisi yok.', 'flx-analytics' ) . '</b><p>' . esc_html__( 'FluxWP Panel 1.0.8 ve üstü, sihirbaz bitince ya da kapatılınca son adımı ve seçimleri gönderir.', 'flx-analytics' ) . '</p></div>';
+			echo '<div class="flxan-panel flxan-empty--big"><b>' . esc_html__( 'Henüz sihirbaz verisi yok.', 'flx-analytics' ) . '</b><p>' . esc_html__( 'FluxWP Panel 1.0.11 ve üstü, sihirbaz bitince ya da kapatılınca son adımı ve seçimleri gönderir.', 'flx-analytics' ) . '</p></div>';
 			return;
 		}
 		echo '<div class="flxan-grid">';

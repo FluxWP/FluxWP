@@ -877,8 +877,8 @@ msgstr "Median time for finishers: %s min"
 msgid "Henüz sihirbaz verisi yok."
 msgstr "No wizard data yet."
 
-msgid "FluxWP Panel 1.0.8 ve üstü, sihirbaz bitince ya da kapatılınca son adımı ve seçimleri gönderir."
-msgstr "FluxWP Panel 1.0.8 and later sends the last step and choices when the wizard is finished or closed."
+msgid "FluxWP Panel 1.0.11 ve üstü, sihirbaz bitince ya da kapatılınca son adımı ve seçimleri gönderir."
+msgstr "FluxWP Panel 1.0.11 and later sends the last step and choices when the wizard is finished or closed."
 
 msgid "Adımlara ulaşan"
 msgstr "Reached each step"

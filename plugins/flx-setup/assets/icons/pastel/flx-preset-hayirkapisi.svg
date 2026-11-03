@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="flx-preset-hayirkapisi"><path d="M128 0C35 0 0 35 0 128s35 128 128 128 128-35 128-128S221 0 128 0Z" fill="#EEF2FF"/><path d="M128 0C35 0 0 35 0 128s35 128 128 128 128-35 128-128S221 0 128 0Z" fill="none" stroke="#818CF8" stroke-opacity=".55" stroke-width="5"/><g transform="translate(64.0 64.0) scale(5.333)" fill="none" stroke="#4338CA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" />
-  <path d="M12 22V12" />
-  <path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7" />
-  <path d="m7.5 4.27 9 5.15" /></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="flx-preset-hayirkapisi"><path d="M128 0C35 0 0 35 0 128s35 128 128 128 128-35 128-128S221 0 128 0Z" fill="#FFF7ED"/><path d="M128 0C35 0 0 35 0 128s35 128 128 128 128-35 128-128S221 0 128 0Z" fill="none" stroke="#FDBA74" stroke-opacity=".55" stroke-width="5"/><g transform="translate(64.0 64.0) scale(5.333)" fill="none" stroke="#C2410C" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M13 4h3a2 2 0 0 1 2 2v14" />
+  <path d="M2 20h3" />
+  <path d="M13 20h9" />
+  <path d="M10 12v.01" />
+  <path d="M13 4.562v16.157a1 1 0 0 1-1.242.97L5 20V5.562a2 2 0 0 1 1.515-1.94l4-1A2 2 0 0 1 13 4.561Z" /></g></svg>

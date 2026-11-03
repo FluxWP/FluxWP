@@ -876,7 +876,7 @@ msgstr ""
 msgid "Henüz sihirbaz verisi yok."
 msgstr ""
 
-msgid "FluxWP Panel 1.0.8 ve üstü, sihirbaz bitince ya da kapatılınca son adımı ve seçimleri gönderir."
+msgid "FluxWP Panel 1.0.11 ve üstü, sihirbaz bitince ya da kapatılınca son adımı ve seçimleri gönderir."
 msgstr ""
 
 msgid "Adımlara ulaşan"
