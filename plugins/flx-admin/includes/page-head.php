@@ -66,7 +66,7 @@ function flxa_package_heads() {
 			'flx-qr-menu'      => array( 'Flux QR Menu', __( 'QR menüleri bu siteden yönet ve yayınla', 'flx-admin' ) ),
 			'flx-roles'        => array( 'Flux Roles', __( 'Personel, İdareci ve Yönetici rolleri ve erişimleri', 'flx-admin' ) ),
 			'flx-seo'          => array( 'Flux SEO', __( 'Meta etiketler, schema, site haritası ve yapay zekâ (MCP) erişimi', 'flx-admin' ) ),
-			'flx-setup'        => array( 'Flux Setup', __( 'Kurulum sihirbazı, ön ayarlar ve FluxWP paket güncellemeleri', 'flx-admin' ) ),
+			'flx-setup'        => array( 'FluxWP Panel', __( 'Kurulum sihirbazı, ön ayarlar ve FluxWP paket güncellemeleri', 'flx-admin' ) ),
 			'flx-speed'        => array( 'Flux Speed', __( 'Sorgular, PHP hataları, dış istekler ve cron tek yerde', 'flx-admin' ) ),
 			'flx-staff'        => array( 'Flux Staff', __( 'Personel hediyeleri, kira, tahakkuk ve tahsilat', 'flx-admin' ) ),
 			'flx-tasks'        => array( 'Flux Tasks', __( 'Projeler, listeler ve görev takibi', 'flx-admin' ) ),
