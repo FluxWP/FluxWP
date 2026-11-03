@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.0.4
+- Düzeltme: sihirbaz ve paket ekranı eklentileri sessiz etkinleştiriyordu; paketlerin etkinleştirme kancaları (tablolar, varsayılan ayarlar) çalışmıyordu. Artık normal etkinleştirme yapılır.
+- Bir kerelik onarım: güncellemeden sonra yönetim paneli ilk açılışta etkin Flux paketlerinin etkinleştirme kancalarını bir kez çalıştırır (ör. eksik Flux Forms tabloları oluşur). Filtre `flxk_repair_plugin`.
+
 ## 1.0.3
 - Flux QR Menu (özel paket) kurulum sihirbazında listelenmez. Gizlenecek paketler için filtre `flxk_onboarding_hidden`.
 

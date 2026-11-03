@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Setup
  * Description:       FluxWP'nin kurulum ve güncelleme eklentisi. İlk açılışta kurulum sihirbazı (tanıtım, eklenti seçimi, görünüm, kurulum); FluxWP tema ve eklentilerini güncelleme sunucusundan (varsayılan updater.fluxwp.com) WordPress'in güncelleme ekranına getirir; ön ayar motoru (preset.json) siteyi tek adımda kurar, onaylı yamalarla değiştirir, geri alır.
- * Version:           1.0.3
+ * Version:           1.0.4
  * Requires at least: 6.6
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -20,7 +20,7 @@ if ( defined( 'FLXK_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXK_VERSION', '1.0.3' );
+define( 'FLXK_VERSION', '1.0.4' );
 define( 'FLXK_FORMAT', 'flx-preset/1' );
 define( 'FLXK_FILE', __FILE__ );
 define( 'FLXK_DIR', plugin_dir_path( __FILE__ ) );
@@ -56,6 +56,7 @@ if ( ! flxk_legacy_updater_active() ) {
 	require_once FLXK_DIR . 'includes/updater/class-flxu-admin.php';
 	require_once FLXK_DIR . 'includes/updater/class-flxu-installer.php';
 	require_once FLXK_DIR . 'includes/updater/class-flxu-ajax.php';
+	require_once FLXK_DIR . 'includes/repair.php';
 
 	FLXU_Updater::instance();
 	FLXU_Guard::instance();
