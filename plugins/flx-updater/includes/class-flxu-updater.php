@@ -153,11 +153,50 @@ final class FLXU_Updater {
 	}
 
 	/**
+	 * Bu sitenin sunucuya özel kurulum kimliği (rastgele, yalnız o sunucuya gider).
+	 * Sunucu panelden "Anahtar ver" denince anahtarı yalnız bu kimlikle gelen isteğe teslim eder.
+	 */
+	public static function install_id( string $host ): string {
+		$ids = get_site_option( 'flxu_install_ids', array() );
+		$ids = is_array( $ids ) ? $ids : array();
+		if ( empty( $ids[ $host ] ) || ! preg_match( '/^[a-f0-9]{40}$/', (string) $ids[ $host ] ) ) {
+			$ids[ $host ] = bin2hex( random_bytes( 20 ) );
+			update_site_option( 'flxu_install_ids', $ids );
+		}
+		return (string) $ids[ $host ];
+	}
+
+	/** Sunucunun teslim ettiği anahtarı kaynağa kaydeder (anahtarı boş olan kaynağa). */
+	private static function save_assigned_key( array $src, string $key ): bool {
+		if ( ! preg_match( '/^[A-Za-z0-9_-]{20,128}$/', $key ) ) {
+			return false;
+		}
+		if ( ! empty( $src['main'] ) ) {
+			if ( self::key_from_config() || '' !== self::key() ) {
+				return false;
+			}
+			$set        = self::settings();
+			$set['key'] = $key;
+			update_site_option( self::SETTINGS_OPTION, $set );
+			return true;
+		}
+		$list = get_site_option( FLXU_Sources::OPTION, array() );
+		foreach ( (array) $list as $i => $s ) {
+			if ( is_array( $s ) && ( $s['id'] ?? '' ) === $src['id'] && '' === (string) ( $s['key'] ?? '' ) ) {
+				$list[ $i ]['key'] = $key;
+				update_site_option( FLXU_Sources::OPTION, $list );
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Flux Updater protokolünü konuşan bir sunucunun kataloğu.
 	 *
 	 * @return array|null Başarısızsa null; durum kaynak durumuna (ana sunucuda flxu_status'a da) yazılır.
 	 */
-	public function fetch_server( array $src ): ?array {
+	public function fetch_server( array $src, bool $retry = true ): ?array {
 		$is_main = ! empty( $src['main'] );
 		$status  = function ( bool $ok, string $error, string $site = '', int $count = 0 ) use ( $src, $is_main ) {
 			if ( $is_main ) {
@@ -187,6 +226,7 @@ final class FLXU_Updater {
 						'updater'  => FLXU_VERSION,
 						'tz'       => (string) get_option( 'timezone_string' ),
 						'locale'   => get_locale(),
+						'install'  => self::install_id( $host ),
 						'packages' => $this->installed_versions(),
 					)
 				),
@@ -201,6 +241,12 @@ final class FLXU_Updater {
 
 		$code = (int) wp_remote_retrieve_response_code( $res );
 		$body = json_decode( (string) wp_remote_retrieve_body( $res ), true );
+
+		// Sunucu yöneticisi bu siteye anahtar verdiyse (anahtarsız erişim kapalıyken 401 ile de gelir): kaydet ve anahtarla yeniden sor.
+		if ( $retry && '' === $key && is_array( $body ) && ! empty( $body['assigned_key'] ) && self::save_assigned_key( $src, (string) $body['assigned_key'] ) ) {
+			$src['key'] = (string) $body['assigned_key'];
+			return $this->fetch_server( $src, false );
+		}
 
 		if ( 200 !== $code || ! is_array( $body ) || empty( $body['ok'] ) ) {
 			if ( 401 === $code && '' === $key ) {
@@ -240,6 +286,10 @@ final class FLXU_Updater {
 			);
 		}
 
+		if ( ! empty( $body['key_disabled'] ) ) {
+			$status( true, __( 'Site anahtarı sunucuda pasif; yalnız public paketler geliyor.', 'flx-updater' ), '', count( $out ) );
+			return $out;
+		}
 		$status( true, '', ! empty( $body['public'] ) ? '' : (string) ( $body['site'] ?? '' ), count( $out ) );
 		return $out;
 	}

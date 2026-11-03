@@ -349,7 +349,9 @@ final class FLXU_Admin {
 		switch ( $state ) {
 			case 'connected':
 				$title = __( 'Bağlı', 'flx-updater' );
-				if ( '' === FLXU_Updater::key() ) {
+				if ( '' !== (string) ( $status['error'] ?? '' ) ) {
+					$line = (string) $status['error'];
+				} elseif ( '' === FLXU_Updater::key() ) {
 					/* translators: %s: server host */
 					$line = sprintf( __( 'Anahtarsız bağlı (%s): public paketler geliyor. Private paketler için site anahtarı girin.', 'flx-updater' ), $host );
 				} else {

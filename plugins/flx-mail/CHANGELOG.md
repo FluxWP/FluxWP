@@ -1,7 +1,10 @@
 # Changelog
 
-## 1.13.2
+## 1.13.3
 - Koyu modda açık nane çip/rozetler ve WhatsApp durum rozeti düzeltildi; posta kutusundaki ara metinler tema tonunda; koyu zemin logosu "Varsayılan" bağlantısı okunur.
+
+## 1.13.2
+- FluxWP imzası: Flux ekranlarının alt satırında küçük FluxWP logosu ve fluxwp.com bağlantısı. Ortak modül `includes/flx-brand` (kaynak FluxWP/fluxwp `tools/brand`); kurulu Flux paketlerinden en yeni sürümü bir kez yüklenir, `flx_brand_show` filtresiyle gizlenir.
 
 ## 1.13.1
 - Yeni logo (FluxWP ikon seti, grup rengi). `assets/icon-pastel.svg` Flux Admin › Görünüm › Paket logoları Pastel iken kullanılır.

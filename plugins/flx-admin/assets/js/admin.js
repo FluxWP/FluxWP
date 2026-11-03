@@ -916,7 +916,7 @@
 		$$('#adminmenu > li.menu-top').forEach(function (li) {
 			if (/\b(flxa-logo|flxa-lic|flxa-letter)\b/.test(li.className)) return;
 			var box = $('.wp-menu-image', li);
-			if (!box) return;
+			if (!box || box.classList.contains('flxa-svgmask')) return;
 			var img = $('img', box);
 			if (img && img.getAttribute('src')) return;
 			var cs = getComputedStyle(box);
@@ -1391,6 +1391,19 @@
 			start();
 		});
 		window.addEventListener('pageshow', stop);
+	})();
+
+
+	/* Üçüncü parti menü simgeleri (data:image/svg, çoğu beyaz): açık temada görünmüyordu. Maske olarak
+	   kullanılıp çizgi simgeler gibi kutucuk rengine boyanır (açık ve koyu temada okunur). */
+	(function () {
+		var els = document.querySelectorAll('#adminmenu li.menu-top:not(.flxa-logo):not(.flxa-lic):not(.flxa-letter) div.wp-menu-image.svg');
+		for (var i = 0; i < els.length; i++) {
+			var bg = els[i].style.backgroundImage || '';
+			if (bg.indexOf('data:image/svg') === -1) { continue; }
+			els[i].style.setProperty('--flxa-svg', bg);
+			els[i].classList.add('flxa-svgmask');
+		}
 	})();
 
 })();

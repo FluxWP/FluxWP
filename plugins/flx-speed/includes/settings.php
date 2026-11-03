@@ -20,6 +20,7 @@ function flxp_defaults() {
 		'panel_front'   => 1,    // ön yüzde de göster
 		'caps'          => 1,    // panelde yetki kontrollerini topla
 		'record_admins' => 0,    // panel açıkken yöneticinin kendi isteklerini de kaydet (yalnız eşik/hata varsa)
+		'disk_quota_gb' => 0,    // paylaşımlı hosting disk kotası (GB); 0 = bilinmiyor, yüzde gösterilmez
 	);
 }
 
@@ -48,6 +49,7 @@ function flxp_sanitize_settings( $in ) {
 	$out['slow_query_ms'] = max( 1, min( 10000, (int) ( $in['slow_query_ms'] ?? $d['slow_query_ms'] ) ) );
 	$out['keep_days']     = max( 1, min( 90, (int) ( $in['keep_days'] ?? $d['keep_days'] ) ) );
 	$out['max_rows']      = max( 100, min( 50000, (int) ( $in['max_rows'] ?? $d['max_rows'] ) ) );
+	$out['disk_quota_gb'] = max( 0, min( 100000, round( (float) str_replace( ',', '.', (string) ( $in['disk_quota_gb'] ?? 0 ) ), 1 ) ) );
 	return $out;
 }
 

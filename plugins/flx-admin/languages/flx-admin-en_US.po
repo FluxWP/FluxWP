@@ -1081,3 +1081,75 @@ msgstr "Pastel"
 
 msgid "Sol menüde, Flux Updater paket listesinde ve FluxWP App'te kullanılır. Renkler paket grubunu gösterir: yönetim, bakım, iletişim, içerik, ticaret."
 msgstr "Used in the side menu, the Flux Updater package list and FluxWP App. Colours show the package group: platform, maintenance, communication, content, commerce."
+
+msgid "Yönetim panelinin görünümü, menüsü ve yetkileri"
+msgstr "Admin panel look, menu and permissions"
+
+msgid "Tüm eklentiler için ortak yapay zekâ merkezi"
+msgstr "Shared AI hub for all plugins"
+
+msgid "Çerezsiz site istatistikleri ve ziyaretçi yolculukları"
+msgstr "Cookieless site statistics and visitor journeys"
+
+msgid "Masaüstü ve mobil uygulama girişi, kişisel API anahtarları"
+msgstr "Desktop and mobile app sign-in, personal API keys"
+
+msgid "Güncelleme öncesi otomatik yedek, zamanlanmış yedek ve geri yükleme"
+msgstr "Automatic pre-update backups, scheduled backups and restore"
+
+msgid "Sertifika şablonları, oluşturma, toplu gönderim ve doğrulama"
+msgstr "Certificate templates, creation, bulk sending and verification"
+
+msgid "WhatsApp çağrı merkezi, AI asistanı ve raporlar"
+msgstr "WhatsApp call centre, AI assistant and reports"
+
+msgid "WooCommerce üzerinde bağış türleri, bağışçılar ve ödemeler"
+msgstr "Donation types, donors and payments on WooCommerce"
+
+msgid "Sürükle bırak form oluşturucu, yanıtlar ve otomasyonlar"
+msgstr "Drag-and-drop form builder, responses and automations"
+
+msgid "Çok dilli site: dil adresleri ve içerik çevirileri"
+msgstr "Multilingual site: language URLs and content translations"
+
+msgid "Sitenin tüm e-postaları, posta kutusu ve SMTP"
+msgstr "All site emails, mailbox and SMTP"
+
+msgid "Eski paket adlarıyla kaydedilmiş verileri yeni adlara taşır"
+msgstr "Moves data saved under old package names to the new ones"
+
+msgid "QR menüleri bu siteden yönet ve yayınla"
+msgstr "Manage and publish QR menus from this site"
+
+msgid "Personel, İdareci ve Yönetici rolleri ve erişimleri"
+msgstr "Staff, Manager and Director roles and access"
+
+msgid "Meta etiketler, schema, site haritası ve yapay zekâ (MCP) erişimi"
+msgstr "Meta tags, schema, sitemap and AI (MCP) access"
+
+msgid "Siteyi bir ön ayar şablonuyla tek adımda kur"
+msgstr "Set up the site in one step from a preset"
+
+msgid "Sorgular, PHP hataları, dış istekler ve cron tek yerde"
+msgstr "Queries, PHP errors, external requests and cron in one place"
+
+msgid "Personel hediyeleri, kira, tahakkuk ve tahsilat"
+msgstr "Staff gifts, rent, accruals and collections"
+
+msgid "Projeler, listeler ve görev takibi"
+msgstr "Projects, lists and task tracking"
+
+msgid "Kurban bağışları, hisseler ve vekâlet"
+msgstr "Qurban donations, shares and proxies"
+
+msgid "Ekranlarda gösterilecek pano ve slaytlar"
+msgstr "Boards and slides for your screens"
+
+msgid "Televizyonları ve panoları uzaktan yönet"
+msgstr "Control TVs and boards remotely"
+
+msgid "FluxWP tema ve eklentilerini güncelleme sunucusundan güncelle"
+msgstr "Update FluxWP themes and plugins from the update server"
+
+msgid "Tema ayarları ve ön ayarlar"
+msgstr "Theme settings and presets"

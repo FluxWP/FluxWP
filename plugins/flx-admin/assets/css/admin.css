@@ -1425,3 +1425,11 @@ html body.flxa #adminmenu > li.flxa-pin.flxa-pin-wide.flxa-has-toggle > a.menu-t
 }
 /* 1.4.1: marka yalnız ikon; arka plan karosu yok */
 .flxa-brand-logo { object-fit: contain; border-radius: 0; background: none; }
+
+/* Üçüncü parti SVG menü simgeleri: maske + kutucuk rengi (admin.js .flxa-svgmask ekler). */
+body.flxa #adminmenu div.wp-menu-image.flxa-svgmask { background-image: none !important; }
+body.flxa #adminmenu div.wp-menu-image.flxa-svgmask::before {
+	content: "" !important; display: block; width: 16px; height: 16px; padding: 0;
+	-webkit-mask: var(--flxa-svg) center / 16px 16px no-repeat; mask: var(--flxa-svg) center / 16px 16px no-repeat;
+	background-color: var(--flxa-t, var(--flxa-muted));
+}
