@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Setup
  * Description:       Ön ayar motoru: bir ön ayar şablonuyla (preset.json) siteyi tek adımda kurar ya da onaylı yamalarla değiştirir. Kurum profili, eklenti ayarları, global stil, şablonlar, header/footer, sayfalar, menüler ve medya. Önizle, uygula, geri al, migration'lar, bu siteden şablon çıkar; Flux AI sohbetinden ve Flux MCP'den onaylı düzenleme.
- * Version:           0.2.2
+ * Version:           0.2.3
  * Requires at least: 6.6
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -14,11 +14,13 @@
 
 defined( 'ABSPATH' ) || exit;
 
+require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
+
 if ( defined( 'FLXK_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXK_VERSION', '0.2.2' );
+define( 'FLXK_VERSION', '0.2.3' );
 define( 'FLXK_FORMAT', 'flx-preset/1' );
 define( 'FLXK_FILE', __FILE__ );
 define( 'FLXK_DIR', plugin_dir_path( __FILE__ ) );

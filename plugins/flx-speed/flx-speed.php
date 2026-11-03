@@ -14,6 +14,8 @@
 
 defined( 'ABSPATH' ) || exit;
 
+require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
+
 if ( defined( 'FLXP_VERSION' ) ) {
 	return;
 }
