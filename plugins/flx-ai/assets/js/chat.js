@@ -453,7 +453,55 @@
 		els.mode.innerHTML = ui.mode === 'dock' ? ic('float') : ic('dock');
 		els.mode.title = ui.mode === 'dock' ? t('Yüzen pencere') : t('Sağa yerleştir');
 		els.mode.hidden = !wide();
+		scrollLock(ui.open && window.innerWidth <= 782);
 		window.dispatchEvent(new CustomEvent('flxai:layout', { detail: { docked: docked, width: docked ? w : 0 } }));
+	}
+
+	/* ---------- Mobil: panel ekranı kaplarken arka plan kaymasın ---------- */
+	// overscroll-behavior iOS Safari'de kaydırılamayan alanda (boş sohbet, başlık, alt çubuk) işe yaramaz;
+	// sayfa body position:fixed ile sabitlenir, panel içinde de kaydırılacak yer kalmayan dokunuş sayfaya geçmez.
+	var lock = null;
+	function scrollLock(on) {
+		if (on === !!lock) return;
+		var de = document.documentElement, b = document.body;
+		if (on) {
+			var y = window.pageYOffset || de.scrollTop || 0;
+			lock = { y: y, html: de.style.cssText, body: b.style.cssText };
+			de.style.overflow = 'hidden';
+			b.style.position = 'fixed'; b.style.top = -y + 'px'; b.style.left = '0'; b.style.right = '0'; b.style.width = '100%'; b.style.overflow = 'hidden';
+			document.addEventListener('touchstart', touchStart, { passive: true });
+			document.addEventListener('touchmove', touchMove, { passive: false });
+		} else {
+			de.style.cssText = lock.html; b.style.cssText = lock.body;
+			var sb = de.style.scrollBehavior; de.style.scrollBehavior = 'auto';
+			window.scrollTo(0, lock.y);
+			de.style.scrollBehavior = sb;
+			lock = null;
+			document.removeEventListener('touchstart', touchStart);
+			document.removeEventListener('touchmove', touchMove);
+		}
+	}
+	var touch = null;
+	function touchStart(e) { touch = e.touches.length === 1 ? { x: e.touches[0].clientX, y: e.touches[0].clientY } : null; }
+	function touchMove(e) {
+		if (!touch || e.touches.length !== 1 || !e.cancelable) return;
+		var dx = touch.x - e.touches[0].clientX, dy = touch.y - e.touches[0].clientY;
+		var path = e.composedPath ? e.composedPath() : [e.target];
+		if (path.indexOf(host) < 0) { e.preventDefault(); return; } // panelin dışı (kaplanmış sayfa)
+		var vert = Math.abs(dy) >= Math.abs(dx);
+		for (var i = 0; i < path.length && path[i] !== host; i++) {
+			var el = path[i];
+			if (!el || el.nodeType !== 1) continue;
+			var cs = getComputedStyle(el);
+			if (vert) {
+				if (!/(auto|scroll)/.test(cs.overflowY) || el.scrollHeight <= el.clientHeight + 1) continue;
+				if (dy < 0 ? el.scrollTop > 0 : el.scrollTop + el.clientHeight < el.scrollHeight - 1) return;
+			} else {
+				if (!/(auto|scroll)/.test(cs.overflowX) || el.scrollWidth <= el.clientWidth + 1) continue;
+				if (dx < 0 ? el.scrollLeft > 0 : el.scrollLeft + el.clientWidth < el.scrollWidth - 1) return;
+			}
+		}
+		e.preventDefault();
 	}
 	function setupResize() {
 		var l = els.wrap.querySelector('.resize-l'), c = els.wrap.querySelector('.resize-c'), drag = null;

@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.6.6
+- Düzeltme: telefonda AI sohbeti açıkken yukarı aşağı kaydırınca arkadaki site de kayıyordu (özellikle iOS Safari, boş sohbette). Panel ekranı kapladığında sayfa yerinde sabitlenir, kapanınca kaldığı yere döner; panelin kendi kaydırması (mesajlar, sohbet listesi, yazı alanı, tablolar) aynen çalışır.
+
 ## 0.6.4
 - Flux Admin kuruluysa menü logosunu Flux Admin verir: boyutu diğer paketlerle aynı, Degrade/Pastel seçimine uyar.
 
