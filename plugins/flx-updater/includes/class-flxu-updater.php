@@ -185,6 +185,8 @@ final class FLXU_Updater {
 						'wp'       => get_bloginfo( 'version' ),
 						'php'      => PHP_VERSION,
 						'updater'  => FLXU_VERSION,
+						'tz'       => (string) get_option( 'timezone_string' ),
+						'locale'   => get_locale(),
 						'packages' => $this->installed_versions(),
 					)
 				),

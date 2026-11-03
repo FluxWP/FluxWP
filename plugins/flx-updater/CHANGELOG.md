@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.6.1
+- Güncelleme kontrolünde sitenin saat dilimi (Ayarlar › Genel) ve dili de gönderilir; sunucu panelindeki ülke haritası buradan dolar. IP ya da kişisel veri gönderilmez.
+
 ## 1.6.0
 - Varsayılan güncelleme sunucusu `https://updater.fluxwp.com`.
 - Site anahtarı isteğe bağlı: anahtarsız site public paketleri (FluxWP Extras) alır, anahtar girilince ona tanımlı private paketler de gelir. Kart "Anahtarsız bağlı" yazar; "anahtar girilmemiş" uyarısı kalktı.
