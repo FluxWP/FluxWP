@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.6.4
+- Ortak sayfa başlığı düzeni: logo + başlık + açıklama solda, aksiyon butonları sağda sabit; butonun yanındaki durum metni (ör. "Son kontrol") butonun altına alınır. Dar ekranda aksiyonlar alta iner.
+
 ## 1.6.3
 - FluxWP paket sayfalarında ortak başlık: başlıkta logo yoksa paketin logosu eklenir, açıklama satırı yoksa paketin kısa açıklaması yazılır (Flux Backup'taki gibi). Uygulama ekranları (WhatsApp, Görevler, Stüdyo, Sosyal, TV Kumandası) dokunulmaz. Filtreler `flxa_page_heads`, `flxa_package_heads`, `flxa_page_head_skip`.
 - Üçüncü parti eklentilerin beyaz SVG menü simgeleri (Hostinger, Ödemeler vb.) açık temada görünmüyordu; artık maske olarak çizgi simgeler gibi boyanır, iki temada da okunur.
