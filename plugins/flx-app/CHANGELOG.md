@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.3.8
+- Kullanıcılar › Uygulama erişimi: "Masaüstü uygulaması" kartı. macOS ve Windows için indir düğmeleri (ziyaretçinin sistemi önde) ve kurumsal dağıtım için MSI bağlantısı. Bağlantılar güncelleme sunucusunun kalıcı adresine gider (`/v1/fluxapp/<marka>/download/<macos|windows|windows-msi>`, Flux Update Server 1.9.7), hep son sürümü verir. Filtreler: `flxapp_desktop_brand`, `flxapp_desktop_download_url`.
+
 ## 0.3.7
 - Koyu mod Flux Admin koyu temasında da çalışıyor; ara bilgi metinleri tema tonunda.
 

@@ -145,5 +145,11 @@
 "İzin ver": "Allow",
 "İçerik düzenleyebilenler": "Users who can edit content",
 "Şimdi kopyalayın; bir daha gösterilmeyecek.": "Copy it now; it will not be shown again.",
-"← Siteye dön": "← Back to site"
+"← Siteye dön": "← Back to site",
+"Masaüstü uygulaması": "Desktop app",
+"Paneli Mac ve Windows bilgisayarınızda ayrı bir uygulama olarak kullanın. Yeni sürümler kendiliğinden kurulur.": "Use the panel as a separate app on your Mac or Windows computer. New versions install themselves.",
+"macOS için indir": "Download for macOS",
+"Windows için indir": "Download for Windows",
+"macOS 11 ve üstü (Apple Silicon ve Intel). Windows 10 ve 11 (64 bit).": "macOS 11 or later (Apple Silicon and Intel). Windows 10 and 11 (64-bit).",
+"Windows MSI paketi (kurumsal dağıtım)": "Windows MSI package (managed deployment)"
 }

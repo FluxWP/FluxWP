@@ -1,13 +1,13 @@
 {
   "name": "@fluxwp/desktop",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -p . && vite build",
     "typecheck": "tsc -p .",
-    "icons": "tauri icon src-tauri/app-icon.svg -o src-tauri/icons",
+    "icons": "tauri icon src-tauri/app-icon.svg -o src-tauri/icons && tauri icon src-tauri/app-icon-windows.svg -o src-tauri/icons-windows && node -e \"require('fs').copyFileSync('src-tauri/icons-windows/icon.ico','src-tauri/icons/icon.ico')\"",
     "tauri": "tauri"
   },
   "dependencies": {

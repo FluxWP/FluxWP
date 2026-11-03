@@ -116,10 +116,12 @@ async function checkUpdate(): Promise<AppUpdate | null> {
   }
   const r = await tauriFetch(`${brand.updateUrl.replace(/\/$/, '')}/v1/fluxapp/${brand.slug}/latest`);
   if (!r.ok) throw signedError ?? new Error(`HTTP ${r.status}`);
-  const d = (await r.json()) as { version: string | null; notes?: string; released?: string; assets?: { dmg?: { url: string } }; page?: string };
+  const d = (await r.json()) as { version: string | null; notes?: string; released?: string; assets?: Record<string, { url: string } | undefined>; page?: string };
   const cur = await getVersion();
   if (!d.version || !newerVersion(d.version, cur)) return null;
-  const url = d.assets?.dmg?.url ?? d.page ?? '';
+  // İmzalı paket yoksa kurulum dosyası açılır: Windows'ta setup.exe (yoksa msi), macOS'ta dmg.
+  const win = /Windows/i.test(navigator.userAgent);
+  const url = (win ? d.assets?.exe?.url ?? d.assets?.msi?.url : d.assets?.dmg?.url) ?? d.page ?? '';
   return {
     version: d.version,
     notes: d.notes,

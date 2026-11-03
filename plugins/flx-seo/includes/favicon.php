@@ -106,7 +106,7 @@ function flxseo_root_favicon() {
 	}
 	$target = ABSPATH . 'favicon.ico';
 	// Eski sürümlerin kopyaladığı yaprak simgesi yenisiyle değişir; sitenin kendi dosyasına dokunulmaz.
-	$old = array( '0f51008ee404c8d60867988ea1fc2aba' );
+	$old = array( '0f51008ee404c8d60867988ea1fc2aba', 'e245c5a9c1fc945c774d2a799aad08ea' );
 	if ( file_exists( $target ) && in_array( md5_file( $target ), $old, true ) && wp_is_writable( $target ) ) {
 		copy( FLXSEO_DIR . 'assets/icons/favicon.ico', $target ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 	} elseif ( ! file_exists( $target ) && wp_is_writable( ABSPATH ) ) {

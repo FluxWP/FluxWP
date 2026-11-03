@@ -112,6 +112,8 @@
 	/* WordPress'in kendi düğmesi uygulama ekranlarında ve iOS dokunuşlarında güvenilmez: aç / kapat tamamen bizde. */
 	var dWrap = d.getElementById('wpwrap');
 	function drawerOpen() { return !!dWrap && dWrap.classList.contains('wp-responsive-open'); }
+	/* Telefon yatay: dar menü sağda (bkz. admin.css "Telefon yatay"); açılır kartlar ve ipuçları sola açılır. */
+	function railRight() { var aw = d.getElementById('adminmenuwrap'); return !!aw && aw.getBoundingClientRect().left > window.innerWidth / 2; }
 	function setDrawer(on) {
 		if (!dWrap) return;
 		dWrap.classList.toggle('wp-responsive-open', on);
@@ -675,6 +677,7 @@
 		gfly.style.left = Math.round((aw ? aw.getBoundingClientRect().right : r.right) + 8) + 'px';
 		gfly.style.top = '0px';
 		gfly.classList.add('is-on');
+		if (railRight()) gfly.style.left = Math.max(8, Math.round(aw.getBoundingClientRect().left - 8 - gfly.offsetWidth)) + 'px';
 		var h = gfly.offsetHeight;
 		var top = Math.round(Math.max(8, Math.min(r.top - 6, window.innerHeight - h - 8)));
 		gfly.style.top = top + 'px';
@@ -1044,6 +1047,7 @@
 			tip.style.left = Math.round(rr.right + 10) + 'px';
 			tip.style.top = Math.round(rr.top + rr.height / 2 - 13) + 'px';
 			tip.classList.add('is-on');
+			if (railRight()) tip.style.left = Math.max(8, Math.round(rr.left - 10 - tip.offsetWidth)) + 'px';
 		});
 		amenu.addEventListener('mouseleave', function () { tipHide(); subReset(null); });
 		var aw = d.getElementById('adminmenuwrap');

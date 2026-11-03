@@ -238,7 +238,7 @@ function flxseo_head() {
 	$img   = flxseo_og_image( flxseo_image() );
 	$type  = is_singular( array( 'post', 'proje', 'etkinlik' ) ) ? 'article' : 'website';
 
-	echo "<!-- Örnek Vakfı SEO -->\n";
+	echo "<!-- Flux SEO -->\n";
 	if ( $desc && ! is_404() ) {
 		printf( '<meta name="description" content="%s">' . "\n", esc_attr( $desc ) );
 	}

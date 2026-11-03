@@ -7,6 +7,12 @@
 - Koyu tema koruması (üçüncü taraf ekranlar): açık gri/beyaz ayırıcı çizgiler koyu çizgiye, siyah radyo/onay kutusu/çerçeve kenarlıkları görünür renge, eklenti giriş alanlarındaki koyu yazı açığa çevrilir. SVG grafiklerde beyaz zemin şeffaf, ızgara çizgileri ve koyu yazılar okunur; koyu gri yazı biçimli logolar (ör. Site Kit) metin rengine çekilir.
 - Google Site Kit: yazı tipi panelle aynı (Figtree); koyu temada Material radyo, onay kutusu, metin alanı, açılır liste ve menüler panel renklerinde.
 
+## 1.6.13
+- Telefon yatayken dar menü sağda (iPhone'da çentik/kamera çoğu zaman solda kalır). Çentik hangi taraftaysa safe-area boşluğu bırakılır; alt menü kartları ve ipuçları sola açılır; "AI'ya sor" düğmesi menünün soluna kayar.
+
+## 1.6.12
+- Favicon yenilendi: FluxWP işareti beyaz kontur ve ince gölge çizgisiyle, tam kare zemin yok (SVG, favicon.ico, 32 px PNG). Uygulama simgeleri değişmedi.
+
 ## 1.6.11
 - Ortak sayfa başlığı (telefon): tek düğmeli sayfalarda başlık solda, düğme sağda aynı satırda (%50 / %50); düğme yazısı ve altındaki durum metni sağa hizalı, gerekirse alt satıra kayar.
 - Ön ayar paketlerinin yeni logoları (menü ve sayfa başlığı için).
