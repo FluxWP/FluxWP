@@ -220,6 +220,16 @@ Sitelerde `plugins/flx-updater` kurulu olmalı; kurulum adımları o reponun REA
 
 Flux WooCommerce Bağış, Flux Donate 2.0 ile birleşti (2026-10-16) ve 2026-11-01'de repodan silindi. Tüm özellikleri (fidan paketleri, Havale/EFT + dekont, Bağış Seçenekleri bloğu `flx-wc-bagis/secenekler`, `/bagis-urunleri.xml`) `plugins/flx-donate` içinde. Eski release'ler (`flx-wc-bagis-v*`) GitHub'da durur; sitede kuruluysa kaldırılır.
 
+## Geliştirici
+
+FluxWP, **Ahmet Yılmaz** ([@sharkpaw](https://github.com/sharkpaw)) tarafından yürütülmekte ve geliştirilmektedir.
+
+<table><tr><td align="center"><a href="https://github.com/sharkpaw"><img src="https://github.com/sharkpaw.png?size=120" width="64" alt="Ahmet Yılmaz"><br><b>Ahmet Yılmaz</b></a><br><sub>Proje lideri · Maintainer</sub></td></tr></table>
+
+### Katkıda bulunanlar
+
+Issue ve pull request'ler açıktır. Katkıda bulunanlar burada listelenecek.
+
 ## Lisans
 
 Tüm paketler [GNU Genel Kamu Lisansı v2 veya üzeri](https://www.gnu.org/licenses/gpl-2.0.html) ile yayınlanır.<br>FluxWP tarafından geliştirilmiştir.
