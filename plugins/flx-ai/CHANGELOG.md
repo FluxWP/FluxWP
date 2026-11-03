@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.6.5
+- Araçlar ve Bağlı sistemler tabloları telefonda kart düzeninde; açıklamalar kesilmiyor, sayı sütunları gizli.
+
 ## 0.6.4
 - Flux Admin kuruluysa menü logosunu Flux Admin verir: boyutu diğer paketlerle aynı, Degrade/Pastel seçimine uyar.
 

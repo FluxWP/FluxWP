@@ -135,7 +135,7 @@
 .flxcm-grid{grid-template-columns:1fr}.flxcm-span-2,.flxcm-span-3{grid-column:auto}
 .flxcm-head{align-items:flex-start}
 .flxcm-search,.flxcm-search__box{width:100%}.flxcm-search__box input{min-width:0;width:100%}
-.flxcm-range__dates{width:100%}.flxcm-range__dates label{flex:1}.flxcm-range__dates input{width:100%}
+.flxcm-range__dates{width:100%}.flxcm-range__dates label{flex:1 1 0;min-width:0}.flxcm-range__dates input{width:100%;min-width:0;padding-right:4px}
 .flxcm-chart svg{height:160px}
 .flxcm-table thead{display:none}
 .flxcm-table,.flxcm-table tbody,.flxcm-table tr,.flxcm-table td{display:block;width:100%}
