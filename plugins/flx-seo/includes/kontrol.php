@@ -145,7 +145,7 @@ function flxseo_audit_page() {
 				<td><?php echo esc_html( $row['type'] ); ?></td>
 				<td><ul style="margin:0">
 				<?php foreach ( $row['issues'] as $i ) : ?>
-					<li style="color:<?php echo 'error' === $i['level'] ? '#d63638' : '#8a6100'; ?>"><?php echo esc_html( $i['msg'] ); ?></li>
+					<li style="color:<?php echo 'error' === $i['level'] ? 'var(--flxa-error, #d63638)' : 'var(--flxa-warn, #8a6100)'; ?>"><?php echo esc_html( $i['msg'] ); ?></li>
 				<?php endforeach; ?>
 				</ul></td>
 			</tr>

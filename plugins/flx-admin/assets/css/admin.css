@@ -82,8 +82,10 @@ body.flxa:not(.flxa-appmode) .wrap { margin: 14px 28px 0 0; color: var(--flxa-te
 body.flxa:not(.flxa-appmode) .wrap h1,
 body.flxa:not(.flxa-appmode) .wrap > h2:first-child { font-size: 26px; font-weight: 800; letter-spacing: -.02em; line-height: 1.25; color: var(--flxa-text); }
 body.flxa:not(.flxa-appmode) h1, body.flxa:not(.flxa-appmode) h2, body.flxa:not(.flxa-appmode) h3, body.flxa:not(.flxa-appmode) h4 { color: var(--flxa-text); }
-body.flxa:not(.flxa-appmode) a { color: var(--flxa-accent-strong); }
-body.flxa:not(.flxa-appmode) a:hover, body.flxa:not(.flxa-appmode) a:active { color: var(--flxa-accent-hover); }
+/* Genel bağlantı rengi düşük özgüllükte (body.flxa a) ve düğme gibi görünen bağlantılar (.button, *-btn*, blok düğmeleri) hariç:
+ * eklentinin kendi düğme/sekme rengi (ör. ".x a.is-on", ".x .x-btn-primary") her zaman geçerli kalsın. */
+body.flxa:where(:not(.flxa-appmode)) a:where(:not(.button, [class*="btn"], .wp-element-button)) { color: var(--flxa-accent-strong); }
+body.flxa:where(:not(.flxa-appmode)) a:where(:not(.button, [class*="btn"], .wp-element-button)):where(:hover, :active) { color: var(--flxa-accent-hover); }
 body.flxa:not(.flxa-appmode) a:focus,
 body.flxa:not(.flxa-appmode) .button:focus { box-shadow: none; outline: none; }
 body.flxa:not(.flxa-appmode) a:focus-visible,

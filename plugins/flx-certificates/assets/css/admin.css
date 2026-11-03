@@ -1,5 +1,7 @@
 /* Flux Certificates · panel */
 .flxs-wrap{--g:var(--flxa-accent, #1F2937);--gd:color-mix(in srgb, var(--flxa-accent, #1F2937) 78%, #000);--leaf:#F59E0B;--ink:#111827;--tx:#4B5563;--mint:color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #fff);--line:color-mix(in srgb, var(--flxa-accent, #1F2937) 16%, #fff);--r:14px;max-width:1500px}
+/* Flux Admin koyu modu: açık nane zeminler ve çizgiler koyu tonlara döner. */
+html.flxa-dark .flxs-wrap{--gd:var(--flxa-accent-strong);--ink:var(--flxa-text);--tx:var(--flxa-text);--mint:var(--flxa-accent-soft);--line:var(--flxa-border)}
 .flxs-head{display:flex;gap:16px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;margin:10px 0 16px}
 .flxs-title{font-size:23px;font-weight:700;margin:0;padding:0;color:var(--ink)}
 .flxs-sub{margin:4px 0 0;color:var(--tx);max-width:760px}
@@ -67,8 +69,8 @@
 .flxs-tabs{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 10px;align-items:center}
 .flxs-tabs a{padding:6px 12px;border-radius:99px;text-decoration:none;color:var(--tx);background:#fff;border:1px solid var(--line)}
 .flxs-tabs a b{margin-left:4px;color:var(--ink)}
-.flxs-tabs a.is-on{background:var(--ink);color:#fff;border-color:var(--ink)}
-.flxs-tabs a.is-on b{color:#fff}
+.flxs-tabs a.is-on{background:var(--g);color:var(--flxa-on-accent,#fff);border-color:var(--g)}
+.flxs-tabs a.is-on b{color:inherit}
 .flxs-tabs__right{margin-left:auto}
 .flxs-batches{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;margin:0 0 14px}
 .flxs-batch{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-decoration:none;color:var(--ink)}
@@ -270,8 +272,8 @@
 @keyframes flxs-rot{to{transform:rotate(360deg)}}
 .flxs-job__bar{height:8px;background:#e8f2ec;border-radius:99px;overflow:hidden;margin:14px 0}
 .flxs-job__bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--flxa-accent, #1F2937),#F59E0B);border-radius:99px;transition:width .3s}
-.flxs-job__list{list-style:none;margin:0;padding:0;overflow:auto;flex:1 1 auto;border-top:1px solid #eef3f0}
-.flxs-job__list li{display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 2px;border-bottom:1px solid #eef3f0;font-size:13px}
+.flxs-job__list{list-style:none;margin:0;padding:0;overflow:auto;flex:1 1 auto;border-top:1px solid var(--flxa-surface-2, #EEF0F4)}
+.flxs-job__list li{display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 2px;border-bottom:1px solid var(--flxa-surface-2, #EEF0F4);font-size:13px}
 .flxs-job__list strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink)}
 .flxs-job__list em{font-style:normal;color:#6b7c75;text-align:right}
 .flxs-job__dot{width:10px;height:10px;border-radius:50%;background:#cfd8d3}
@@ -420,7 +422,7 @@
 .flxs-event__nums div{background:#f7faf8;border-radius:10px;padding:8px 10px}
 .flxs-event__nums b{display:block;font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums}
 .flxs-event__nums span{font-size:12px;color:var(--tx)}
-.flxs-event__bar{height:10px;background:#eef3f0;border-radius:99px;overflow:hidden}
+.flxs-event__bar{height:10px;background:var(--flxa-surface-2, #EEF0F4);border-radius:99px;overflow:hidden}
 .flxs-event__bar span{display:block;height:100%;background:var(--g);border-radius:99px}
 .flxs-event__goal small{color:var(--tx);font-size:12px}
 .flxs-event__note{margin:0;color:var(--tx);font-size:13px}
@@ -454,9 +456,9 @@
 .flxs-backdate summary small{font-weight:400;color:#8a9399}
 .flxs-backdate[open]{display:grid;gap:8px}
 .flxs-backdate input[type=date]{max-width:200px}
-.flxs-backdate small{color:#646970}
+.flxs-backdate small{color:var(--flxa-muted, #646970)}
 .flxs-backdate.is-on{border:2px solid #dba617;background:#fcf9e8}
-.flxs-backdate.is-on summary{color:#8a6100}
+.flxs-backdate.is-on summary{color:var(--flxa-warn,#8a6100)}
 
 /* v1.2.4 Sistem kontrolü */
 .flxs-sys__bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px}
@@ -468,5 +470,5 @@
 .flxs-sys__item:first-child{border-top:0}
 .flxs-sys__ico{flex:0 0 24px;height:24px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:12px;background:#eef1f2;color:#4B5563}
 .is-ok .flxs-sys__ico{background:#e3f4ea;color:#0a6b46}.is-warning .flxs-sys__ico{background:#fff4d6;color:#8a5a00}.is-error .flxs-sys__ico{background:#fde8e8;color:#a32020}.is-info .flxs-sys__ico{background:#e8f0fb;color:#24508a}
-.flxs-sys__body{flex:1;min-width:0}.flxs-sys__body p{margin:2px 0 0;color:#5b6b75}
+.flxs-sys__body{flex:1;min-width:0}.flxs-sys__body p{margin:2px 0 0;color:var(--flxa-muted,#5b6b75)}
 .flxs-sys__item .button{flex:none;align-self:center}

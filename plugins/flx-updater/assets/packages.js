@@ -31,8 +31,17 @@
 		data.pl = data.pl || {};
 	}
 	function box(slug) { return form().querySelector('.flxu-check[value="' + slug + '"]'); }
+	/** Kurulacak/güncellenecek seçim (kurulu ve güncel paketler hariç). */
 	function selected() {
-		return Array.prototype.map.call(form().querySelectorAll('.flxu-check:checked'), function (b) { return b.value; });
+		return Array.prototype.filter.call(form().querySelectorAll('.flxu-check:checked'), function (b) {
+			return b.getAttribute('data-state') !== 'current';
+		}).map(function (b) { return b.value; });
+	}
+	/** Toplu işlem (etkinleştir/kapat/kaldır) için kurulu seçim. */
+	function selectedInstalled() {
+		return Array.prototype.filter.call(form().querySelectorAll('.flxu-check:checked'), function (b) {
+			return b.getAttribute('data-state') !== 'missing';
+		});
 	}
 	function name(slug) {
 		return (data.pk[slug] && data.pk[slug].name) || (data.pl[slug] && data.pl[slug].name) || slug;
@@ -93,6 +102,8 @@
 		var sel = selected();
 		var btn = document.getElementById('flxu-do-selected');
 		if (btn) { btn.disabled = busy || !sel.length; }
+		var mb = document.getElementById('flxu-do-manage'), op = document.getElementById('flxu-bulk-op');
+		if (mb) { mb.disabled = busy || !op || !op.value || !selectedInstalled().length; }
 		var panel = document.getElementById('flxu-deps');
 		var html = '';
 		notes.forEach(function (n) { html += '<p class="flxu-deps__note">' + esc(n) + '</p>'; });
@@ -347,7 +358,16 @@
 			return;
 		}
 		var b = t.closest('button[name="flxu_do"]');
-		if (!b || !f.contains(b) || !window.fetch) { return; }
+		if (!b || !f.contains(b)) { return; }
+		if (b.value === 'manage') {
+			// Sayfa yenilenerek admin-post'ta çalışır; kurulu olmayan seçimler gönderilmez.
+			var op = document.getElementById('flxu-bulk-op').value, inst = selectedInstalled();
+			if (busy || !op || !inst.length) { e.preventDefault(); return; }
+			f.querySelectorAll('.flxu-check[data-state="missing"]:checked').forEach(function (x) { x.checked = false; });
+			if (op === 'delete' && !window.confirm(fmt(L.confirmDel, inst.map(function (x) { return name(x.value); }).join(', ')))) { e.preventDefault(); }
+			return;
+		}
+		if (!window.fetch) { return; }
 		e.preventDefault();
 		if (busy) { return; }
 		var activate = document.getElementById('flxu-activate');

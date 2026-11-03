@@ -1187,10 +1187,24 @@
 
 	/* ───────── Koyu tema koruması: eklentilerin sabit beyaz kutuları ve koyu yazıları ───────── */
 	function rgb(v) {
-		var m = v && v.match(/rgba?\(([^)]+)\)/);
+		var m = v && v.match(/rgba?\(([^)]+)\)/), k = 1;
+		if (!m) {
+			// color-mix() sonuçları "color(srgb r g b / a)" biçiminde (0-1 aralığı) gelir.
+			m = v && v.match(/color\(srgb ([^)]+)\)/);
+			k = 255;
+		}
 		if (!m) return null;
 		var p = m[1].split(/[\s,\/]+/).filter(Boolean).map(parseFloat);
-		return { r: p[0], g: p[1], b: p[2], a: p.length > 3 ? p[3] : 1 };
+		return { r: p[0] * k, g: p[1] * k, b: p[2] * k, a: p.length > 3 ? p[3] : 1 };
+	}
+	// Yazının gerçekte üstünde durduğu zemin: ilk opak arka plan. Koyulaştırılacaksa null (koyu sayılır).
+	function effBg(e, dark) {
+		for (var x = e; x && x !== d.body; x = x.parentElement) {
+			if (dark.indexOf(x) !== -1) return null;
+			var b = rgb(getComputedStyle(x).backgroundColor);
+			if (b && b.a > 0.5) return b;
+		}
+		return null;
 	}
 	function lum(c) { return (0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b) / 255; }
 	function sat(c) { return Math.max(c.r, c.g, c.b) - Math.min(c.r, c.g, c.b); }
@@ -1213,7 +1227,7 @@
 		var root = d.getElementById('wpbody');
 		if (!root) return;
 		var all = root.getElementsByTagName('*');
-		var n = Math.min(all.length, 6000), todo = [];
+		var n = Math.min(all.length, 6000), todo = [], darkBg = [];
 		for (var i = 0; i < n; i++) {
 			var e = all[i];
 			if (DG_SKIP.test(e.tagName.toUpperCase()) || e instanceof SVGElement) continue;
@@ -1224,12 +1238,15 @@
 				var r = e.getBoundingClientRect();
 				if (r.width * r.height > 900 || e.tagName === 'TD' || e.tagName === 'TR') {
 					todo.push([e, 'background-color', sat(bg) > 14 ? 'var(--flxa-surface-2)' : 'var(--flxa-surface)']);
+					darkBg.push(e);
 					var bc = rgb(cs.borderTopColor);
 					if (bc && lum(bc) > 0.7 && parseFloat(cs.borderTopWidth) > 0) todo.push([e, 'border-color', 'var(--flxa-border)']);
 				}
 			}
 			var c = rgb(cs.color);
-			if (c && lum(c) < 0.36 && hasText(e)) {
+			var eb = c && lum(c) < 0.36 && hasText(e) ? effBg(e, darkBg) : null;
+			// Açık bir rozet/düğme üstündeki koyu yazı zaten okunur; dokunma (yoksa açık zeminde açık yazı olur).
+			if (c && lum(c) < 0.36 && hasText(e) && !(eb && lum(eb) > 0.5)) {
 				todo.push([e, 'color', sat(c) > 50 ? 'color-mix(in srgb, ' + cs.color + ' 45%, #fff)' : 'var(--flxa-text)']);
 			}
 		}
