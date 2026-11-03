@@ -65,6 +65,8 @@ add_action(
 function flxst_render_app() {
 	echo '<script>document.documentElement.classList.add("flxst-lock");</script>';
 	echo '<div id="flxst-app" class="flxst"><noscript>' . esc_html__( 'Stüdyo için JavaScript gerekli.', 'flx-studio' ) . '</noscript></div>';
+	// Tema div'in hemen ardından, ilk boyamadan önce (app.js yüklenene kadar açık tema görünmesin).
+	printf( "<script>(function(d,w){var m=null;try{m=JSON.parse(localStorage.getItem('flxst.theme')||'null')}catch(e){}m=m||%s;d.getElementById('flxst-app').setAttribute('data-theme',m==='dark'||(m==='auto'&&!!w.matchMedia&&w.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light')})(document,window)</script>", wp_json_encode( function_exists( 'flxa_user_mode' ) ? flxa_user_mode() : 'auto' ) ); // phpcs:ignore WordPress.Security.EscapeOutput
 }
 
 add_action(

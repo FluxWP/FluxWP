@@ -1,5 +1,8 @@
 # Flux Studio — Değişiklikler
 
+## 0.3.5
+- Koyu modda yenilemede açık tema yanıp sönmesi giderildi: tema, uygulama kabı çizilir çizilmez (app.js beklenmeden) uygulanır.
+
 ## 0.3.4
 - Yeşilimsi sabit palet yerine Flux Admin vurgu renginden türetilen tonlar; sönük (faint) metinler daha okunur.
 

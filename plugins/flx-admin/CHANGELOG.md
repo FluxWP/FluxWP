@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.7.1
+- Koyu modda sayfa yenilenince eklenti kutularının önce beyaz görünüp sonra koyulaşması giderildi: koyu tema koruması artık sayfa yüklendikten sonra değil, ilk boyamadan önce çalışır (`<head>` içeriği koruma bitene kadar gizler). JS ile sonradan çizilen veya açılan kutular da bir sonraki boyamadan önce koyulaşır.
+- Uygulama ekranlarında (Görevler, Çağrı Merkezi, Stüdyo, Sosyal) JS yüklenene kadar zemin açık görünmez.
+
 ## 1.7.0
 - Tema düğmesi: tıklama artık her seferinde açık ↔ koyu geçer. Eski otomatik → açık → koyu döngüsünde cihaz koyu temadayken üç tıklamanın ikisi görünürde hiçbir şey değiştirmiyordu. "Sistem (cihaza göre)" düğmenin menüsünden seçilir (Açık / Koyu / Sistem, seçili olan işaretli). Dokunmatik ekranda ilk dokunuş menüyü açar.
 - Tema seçimi diğer açık sekmelere ve geri tuşuyla dönülen sayfaya da uygulanır; kaydedilemezse uyarı çıkar.
