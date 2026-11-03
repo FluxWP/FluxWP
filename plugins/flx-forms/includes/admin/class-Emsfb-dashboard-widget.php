@@ -41,17 +41,20 @@ class Dashboard_Widget {
         if ($hook !== 'index.php') { return; }
         if (!current_user_can('manage_options')) { return; }
 
+        // Fork sürümü de eklenir: EMSFB_PLUGIN_VERSION sabit kaldığı için tarayıcı eski dosyayı tutuyordu.
+        $ver = EMSFB_PLUGIN_VERSION . (defined('FLXF_FORK_VERSION') ? '.' . FLXF_FORK_VERSION : '');
+
         wp_enqueue_style(
             'efb-dashboard-widget',
             EMSFB_PLUGIN_URL . 'includes/admin/assets/css/dashboard-widget-efb.css',
             [],
-            EMSFB_PLUGIN_VERSION
+            $ver
         );
         wp_enqueue_script(
             'efb-dashboard-widget',
             EMSFB_PLUGIN_URL . 'includes/admin/assets/js/dashboard-widget-efb.js',
             ['jquery'],
-            EMSFB_PLUGIN_VERSION,
+            $ver,
             true
         );
 

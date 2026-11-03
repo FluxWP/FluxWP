@@ -43,6 +43,28 @@ add_filter( 'flx_preset_importers', function ( $t ) {
 - `find()` önce kendi anahtarınızla (ör. `_flxk_key` meta'sı ya da `code` sütunu), sonra doğal anahtarla (slug) bulsun: var olan sitedeki kayıt sahiplenilir, kopya açılmaz.
 - Türün şemasını kendi belgenizde yazın (ör. docs/flx-donate/ON-AYAR.md).
 
+## Ayar şeması (`flx_settings_schema`)
+Ön ayarla (ve AI ile) değiştirilebilen ayarlarınızı tanımlayın. AI `preset_schema` aracında `settings` olarak görür; önizleme şemada olmayan alanı uyarır.
+```php
+add_filter( 'flx_settings_schema', function ( $s ) {
+	$s['flxb_settings'] = array(
+		'label'  => 'Flux Donate',
+		'fields' => array(
+			'min_amount' => array( 'type' => 'int', 'default' => 50, 'desc' => 'Minimum donation (TRY).' ),
+			'layout'     => array( 'type' => 'enum', 'enum' => array( 'grid', 'list' ), 'default' => 'grid' ),
+			'texts'      => array( 'type' => 'object', 'desc' => 'Alt yolları serbest.' ),
+		),
+	);
+	return $s;
+} );
+```
+Türler: `bool`, `int`, `string`, `text`, `html`, `enum`, `color`, `url`, `page` (ön ayarda `"@page:<key>"`), `object`, `list`. Tanımlı olanlar: `flx_ayarlar` (FluxWP teması: çerez banner'ı, GA4, koyu mod, site modu, havale hesabı).
+
+Sanitize callback'iniz kısmi diziyle de çağrılabilir (ön ayar, AI, yama yalnız değişen alanları yazar). Formdan gelmeyen onay kutusunu "kapalı" saymayın; formu gizli bir alanla (`<option>[_form]=1`) ayırın. Motor yine de bildirilmeyen alanları yazdıktan sonra eski haline getirir (`flxk_option_guard`, `false` ile kapatılır).
+
+## Ön ayar sürümü değişince eşitleme
+`version` değişince `profile`, `wp`, `settings` bölümleri sahiplik kuralıyla eşitlenir (`flxk_sync_preset( $id, $force )`). Kapatmak: `add_filter( 'flxk_auto_sync', '__return_false' )`. Sahipsiz bir değeri değiştirmek için migration yazın.
+
 ## Dışa aktarım
 - `flx_preset_export_options`: "Bu siteden şablon çıkar"a dahil edilecek option adları.
 - `flx_preset_export_content` (`$content, $args`): kendi içerik türünüzü dışa aktarım listesine ekleyin.
@@ -55,6 +77,9 @@ add_filter( 'flx_preset_importers', function ( $t ) {
 | `flxk_applied` (`$preset_id, $summary`) | uygulama bitince |
 | `flxk_patch_submitted` (`$id, $patch`) | onay bekleyen yama oluşunca (bildirim için) |
 | `flxk_option_allowed` (`$allowed, $name`) | option'ın yazılabilirliği |
+| `flxk_option_guard` (`$on, $option`) | ön ayar yazarken bildirilmeyen alanları koru (varsayılan açık) |
+| `flxk_auto_sync` (`$on`) | ön ayar sürümü değişince ayarları eşitle (varsayılan açık) |
+| `flx_settings_schema` (`$schema`) | ayar şeması (yukarıda) |
 | `flxk_secret_key_regex` | gizli alan adı deseni |
 | `flxk_cap` | yönetim yetkisi (varsayılan `manage_options`) |
 | `flxk_legal_urls` (`$urls`) | sihirbaz ve Ayarlar'daki yasal metin linkleri (`terms`, `privacy`, `kvkk`) |
@@ -72,7 +97,7 @@ add_filter( 'flx_preset_importers', function ( $t ) {
 - Önizleme: `FLXK_Telemetry::payload( false )` (kimlik üretmeden), temizleme kuralı `FLXK_Telemetry::scrub( $msg )`.
 
 ## PHP fonksiyonları
-`flxk_presets()`, `flxk_get_preset( $id )`, `flxk_plan( $id, $data, $opts )`, `flxk_apply_preset( $id, 'apply'|'fill' )`, `flxk_apply_migration( $id, $mig )`, `flxk_remove_preset( $id )`, `flxk_revert_run( $run )`, `flxk_export( $args )`, `flxk_patch_preview( $patch )`, `flxk_patch_submit( $patch, $source, $note )`, `flxk_patch_apply( $id_or_patch )`.
+`flxk_presets()`, `flxk_get_preset( $id )`, `flxk_plan( $id, $data, $opts )`, `flxk_apply_preset( $id, 'apply'|'fill' )`, `flxk_apply_migration( $id, $mig )`, `flxk_sync_preset( $id, $force )`, `flxk_settings_schema()`, `flxk_remove_preset( $id )`, `flxk_revert_run( $run )`, `flxk_export( $args )`, `flxk_patch_preview( $patch )`, `flxk_patch_submit( $patch, $source, $note )`, `flxk_patch_apply( $id_or_patch )`.
 
 ## Yasal onay ve kullanım verisi
 - Sihirbazın ilk ekranında **Kullanım Şartları + Gizlilik Politikası** kabulü ve KVKK Aydınlatma Metni bilgisi zorunlu (Başlayalım ancak işaretlenince açılır). Kayıt `flxk_terms` = `{version, at, user}`; sürüm `FLXK_LEGAL_VERSION`. Sihirbaz atlanırsa onay kaydı olmaz, güncellemeler yine çalışır.

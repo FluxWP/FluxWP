@@ -136,6 +136,27 @@
     });
   }
 
+  /* ── Chart colors from the admin theme (Flux Admin tokens, light/dark) ── */
+  var colorProbe = null;
+  function themeColor(prop, fallback) {
+    var host = document.querySelector('.efb-dw');
+    if (!host) return fallback;
+    if (!colorProbe) {
+      colorProbe = document.createElement('span');
+      colorProbe.style.display = 'none';
+      host.appendChild(colorProbe);
+    }
+    colorProbe.style.color = '';
+    colorProbe.style.color = 'var(' + prop + ', ' + fallback + ')';
+    var c = getComputedStyle(colorProbe).color || fallback;
+    // color-mix() resolves to color(srgb r g b / a) in 0-1 range; canvas wants rgb().
+    var m = c.match(/^color\(srgb ([\d.]+) ([\d.]+) ([\d.]+)(?: \/ ([\d.]+))?\)$/);
+    if (m) {
+      c = 'rgba(' + Math.round(m[1] * 255) + ',' + Math.round(m[2] * 255) + ',' + Math.round(m[3] * 255) + ',' + (m[4] === undefined ? 1 : m[4]) + ')';
+    }
+    return c;
+  }
+
   /* ── Tiny Canvas Chart ──────────────────────────────────── */
   function drawChart() {
     var canvas = document.getElementById('efb-dw-chart');
@@ -180,9 +201,9 @@
     ctx.clearRect(0, 0, W, H);
 
     // Grid lines
-    ctx.strokeStyle = '#e8e8e8';
+    ctx.strokeStyle = themeColor('--efb-dw-grid', '#e8e8e8');
     ctx.lineWidth = 1;
-    ctx.fillStyle = '#999';
+    ctx.fillStyle = themeColor('--efb-dw-axis', '#999');
     ctx.font = '10px -apple-system, sans-serif';
     ctx.textAlign = isRTL ? 'left' : 'right';
     for (var g = 0; g <= gridSteps; g++) {
@@ -278,7 +299,7 @@
 
   function drawXAxisLabels(ctx, labels, indexes, pad, chartWidth, chartHeight, isRTL) {
     var lastIndex = labels.length - 1;
-    ctx.fillStyle = '#888';
+    ctx.fillStyle = themeColor('--efb-dw-axis', '#888');
     ctx.font = '9px -apple-system, sans-serif';
 
     indexes.forEach(function (index) {
@@ -301,12 +322,13 @@
     var legendY = 8;
     var itemGap = 20;
     var items = [
-      { color: '#2271b1', label: t.form || 'Visit' },
+      { color: '#2271b1', label: fmt(t.dwVisits, t.page || 'Page') || 'Page views' },
       { color: '#00a32a', label: t.dwSubmissions || 'Submissions' }
     ];
     var x = isRTL ? chartWidth - pad.right : pad.left;
 
     ctx.font = '10px -apple-system, sans-serif';
+    var legendText = themeColor('--efb-dw-legend', '#555');
 
     items.forEach(function (item) {
       var textWidth = ctx.measureText(item.label).width;
@@ -314,13 +336,13 @@
 
       if (isRTL) {
         ctx.fillRect(x - 10, legendY, 10, 10);
-        ctx.fillStyle = '#555';
+        ctx.fillStyle = legendText;
         ctx.textAlign = 'right';
         ctx.fillText(item.label, x - 14, legendY + 9);
         x -= textWidth + 14 + itemGap;
       } else {
         ctx.fillRect(x, legendY, 10, 10);
-        ctx.fillStyle = '#555';
+        ctx.fillStyle = legendText;
         ctx.textAlign = 'left';
         ctx.fillText(item.label, x + 14, legendY + 9);
         x += textWidth + 14 + itemGap;
@@ -377,6 +399,12 @@
     var el = document.createElement('span');
     el.textContent = str;
     return el.innerHTML;
+  }
+
+  // Redraw when the admin switches light/dark (Flux Admin toggles html.flxa-dark)
+  if (window.MutationObserver) {
+    new MutationObserver(function () { if (chartData) drawChart(); })
+      .observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
   }
 
   // Redraw chart on window resize

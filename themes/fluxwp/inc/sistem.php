@@ -100,7 +100,7 @@ function flx_sk_required_plugins() {
 		$list['flx-certificates'] = array( 'name' => 'Flux Certificates', 'min' => '1.2.4', 'required' => true, 'checks' => '1.2.4', 'why' => __( 'Fidan sertifikaları ve etkinlikler', 'fluxwp' ) );
 	}
 	$list['flx-forms'] = array( 'name' => 'Flux Forms', 'min' => '2.0.8', 'required' => true, 'checks' => '2.0.8', 'why' => $donate ? __( 'Bağış ve iletişim formları', 'fluxwp' ) : __( 'İletişim formları', 'fluxwp' ) );
-	$list['flx-seo']   = array( 'name' => 'Flux SEO', 'min' => '1.0.9', 'required' => true, 'checks' => '1.0.8', 'why' => __( 'SEO, sitemap, schema ve tarayıcı önbelleği', 'fluxwp' ) );
+	$list['flx-seo']   = array( 'name' => 'Flux SEO', 'min' => '1.0.9', 'required' => false, 'checks' => '1.0.8', 'why' => __( 'SEO, sitemap, schema ve tarayıcı önbelleği', 'fluxwp' ) );
 	$list['flx-chat']  = array( 'name' => 'Flux Chat', 'min' => '1.3.0', 'required' => false, 'checks' => '1.3.0', 'why' => $donate ? __( 'Telefonla bağış ve arama kayıtları', 'fluxwp' ) : __( 'WhatsApp sohbetleri ve arama kayıtları', 'fluxwp' ) );
 	$list['flx-tasks'] = array( 'name' => 'Flux Tasks', 'min' => '0.1.4', 'required' => false, 'checks' => '0.1.4', 'why' => __( 'Ekip görev takibi', 'fluxwp' ) );
 	/** Başka bir site kurgusu listeyi değiştirebilir. */

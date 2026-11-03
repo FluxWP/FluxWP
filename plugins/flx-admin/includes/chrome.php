@@ -209,8 +209,8 @@ function flxa_head() {
 	$accent = flxa_accent();
 	$off    = flxa_dark_excluded( flxa_screen_tokens() );
 	?>
-<script>(function(d,w){var m=<?php echo wp_json_encode( $mode ); ?>,o=<?php echo $off ? 'true' : 'false'; ?>,h=d.documentElement,q=w.matchMedia&&w.matchMedia('(prefers-color-scheme: dark)');function a(){var k=!o&&(m==='dark'||(m==='auto'&&q&&q.matches)),z=m==='dark'||(m==='auto'&&q&&q.matches);h.classList.toggle('flxa-dark',k);try{localStorage.setItem('flxg-theme',m);localStorage.setItem('flxc_theme',m);}catch(e){}var g=d.getElementById('flxg-app'),c=d.getElementById('flxc-app');if(g){g.dataset.theme=z?'dark':'light';h.classList.toggle('flxg-dark',z);}if(c){c.setAttribute('data-theme',m);h.classList.toggle('flxc-dark-doc',z);}}h.classList.add('flxa-html');a();try{var sw=+localStorage.getItem('flxa-side-w');if(sw>=200&&sw<=420)h.style.setProperty('--flxa-side-w',sw+'px');}catch(e){}if(q&&q.addEventListener){q.addEventListener('change',function(){m=w.FLXA_MODE||m;a();});}w.FLXA_APPLY_MODE=function(n){m=n;w.FLXA_MODE=n;a();};w.FLXA_DARK_OFF=o;try{var A=<?php echo flxa_app_rail() ? 'true' : 'false'; ?>,ao=A&&localStorage.getItem('flxa-app-open')==='1',R=A?!ao:<?php echo 'f' === get_user_setting( 'mfold' ) ? 'true' : 'false'; ?>;if(ao)h.classList.add('flxa-app-open');var pw=+sessionStorage.getItem('flxa-pw'),cs=getComputedStyle(h),tw=parseFloat(cs.getPropertyValue(R?'--flxa-rail-w':'--flxa-side-w'))||0;if(w.innerWidth>960&&pw>0&&tw>0&&Math.abs(pw-tw)>8){h.style.setProperty('--flxa-from-w',pw+'px');h.classList.add('flxa-side-from');w.addEventListener('pagereveal',function(e){if(e.viewTransition)e.viewTransition.skipTransition();});}}catch(e){}})(document,window);</script>
-<style id="flxa-vars">:root{--flxa-accent:<?php echo esc_html( $accent ); ?>}html.flxa-dark{--flxa-accent:<?php echo esc_html( flxa_accent_dark() ); ?>}html.flxa-html:root{--flxa-on-accent:<?php echo esc_html( flxa_on_color( $accent ) ); ?>}html.flxa-html.flxa-dark:root{--flxa-on-accent:<?php echo esc_html( flxa_on_color( flxa_accent_dark() ) ); ?>}<?php echo flxa_tokens_css(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo flxa_menu_inline_css(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></style>
+<script>(function(d,w){var m=<?php echo wp_json_encode( $mode ); ?>,o=<?php echo $off ? 'true' : 'false'; ?>,h=d.documentElement,q=w.matchMedia&&w.matchMedia('(prefers-color-scheme: dark)');function a(){var k=!o&&(m==='dark'||(m==='auto'&&q&&q.matches)),z=m==='dark'||(m==='auto'&&q&&q.matches);h.classList.toggle('flxa-dark',k);try{localStorage.setItem('flxg-theme',m);localStorage.setItem('flxc_theme',m);}catch(e){}var g=d.getElementById('flxg-app'),c=d.getElementById('flxc-app');if(g){g.dataset.theme=z?'dark':'light';h.classList.toggle('flxg-dark',z);}if(c){c.setAttribute('data-theme',m);h.classList.toggle('flxc-dark-doc',z);}}h.classList.add('flxa-html');a();if(h.classList.contains('flxa-dark')){h.classList.add('flxa-dg');var u=function(){h.classList.remove('flxa-dg')};d.addEventListener('DOMContentLoaded',u);setTimeout(u,4000);}try{var sw=+localStorage.getItem('flxa-side-w');if(sw>=200&&sw<=420)h.style.setProperty('--flxa-side-w',sw+'px');}catch(e){}if(q&&q.addEventListener){q.addEventListener('change',function(){m=w.FLXA_MODE||m;a();});}w.FLXA_APPLY_MODE=function(n){m=n;w.FLXA_MODE=n;a();};w.FLXA_DARK_OFF=o;try{var A=<?php echo flxa_app_rail() ? 'true' : 'false'; ?>,ao=A&&localStorage.getItem('flxa-app-open')==='1',R=A?!ao:<?php echo 'f' === get_user_setting( 'mfold' ) ? 'true' : 'false'; ?>;if(ao)h.classList.add('flxa-app-open');var pw=+sessionStorage.getItem('flxa-pw'),cs=getComputedStyle(h),tw=parseFloat(cs.getPropertyValue(R?'--flxa-rail-w':'--flxa-side-w'))||0;if(w.innerWidth>960&&pw>0&&tw>0&&Math.abs(pw-tw)>8){h.style.setProperty('--flxa-from-w',pw+'px');h.classList.add('flxa-side-from');w.addEventListener('pagereveal',function(e){if(e.viewTransition)e.viewTransition.skipTransition();});}}catch(e){}})(document,window);</script>
+<style id="flxa-vars">html.flxa-dg #wpbody-content{visibility:hidden}html.flxa-dg-now #wpbody *{transition:none!important}:root{--flxa-accent:<?php echo esc_html( $accent ); ?>}html.flxa-dark{--flxa-accent:<?php echo esc_html( flxa_accent_dark() ); ?>}html.flxa-html:root{--flxa-on-accent:<?php echo esc_html( flxa_on_color( $accent ) ); ?>}html.flxa-html.flxa-dark:root{--flxa-on-accent:<?php echo esc_html( flxa_on_color( flxa_accent_dark() ) ); ?>}<?php echo flxa_tokens_css(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo flxa_menu_inline_css(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></style>
 	<?php
 }
 
@@ -362,9 +362,26 @@ function flxa_admin_bar( $bar ) {
 			'parent' => 'top-secondary',
 			'title'  => flxa_icon( 'auto' === $mode ? 'auto' : ( 'dark' === $mode ? 'moon' : 'sun' ), 18 ) . '<span class="screen-reader-text">' . esc_html__( 'Tema', 'flx-admin' ) . '</span>',
 			'href'   => '#',
-			'meta'   => array( 'class' => 'flxa-ab-btn', 'title' => __( 'Tema: otomatik / açık / koyu', 'flx-admin' ) ),
+			'meta'   => array( 'class' => 'flxa-ab-btn flxa-mode-pop', 'title' => __( 'Tema: tıklayınca açık / koyu', 'flx-admin' ) ),
 		)
 	);
+	// Açık seçim: tıklama yalnız açık ↔ koyu yapar, "Sistem" buradan seçilir.
+	$opts = array(
+		'light' => array( 'sun', __( 'Açık', 'flx-admin' ) ),
+		'dark'  => array( 'moon', __( 'Koyu', 'flx-admin' ) ),
+		'auto'  => array( 'auto', __( 'Sistem (cihaza göre)', 'flx-admin' ) ),
+	);
+	foreach ( $opts as $k => $o ) {
+		$bar->add_node(
+			array(
+				'id'     => 'flxa-mode-' . $k,
+				'parent' => 'flxa-mode',
+				'title'  => flxa_icon( $o[0], 16 ) . '<span class="flxa-mode-l">' . esc_html( $o[1] ) . '</span>' . flxa_icon( 'tick', 16 ),
+				'href'   => '#',
+				'meta'   => array( 'class' => 'flxa-mode-opt' . ( $k === $mode ? ' is-on' : '' ) ),
+			)
+		);
+	}
 }
 
 function flxa_footer_text( $t ) {

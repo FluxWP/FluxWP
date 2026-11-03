@@ -1,5 +1,15 @@
 # Değişiklikler
 
+## 0.7.5
+- Varsayılan favicon: site simgesi ve kurum profili simgesi yoksa tema da yeni FluxWP favicon'unu (zeminsiz, beyaz konturlu işaret) gösterir; Flux SEO ya da Flux Admin kuruluysa onlarınki kullanılır, çift yazılmaz. Filtre `flx_theme_favicon`.
+
+## 0.7.4
+- Tema Ayarları kısmi yazımda diğer alanları korur: ön ayar, AI ya da sistem aracı yalnız bir alanı yazınca çerez banner'ı, animasyon ve kampanya kartı artık kapanmıyor (önceden formda olmayan onay kutusu "kapalı" sayılıyordu).
+- Ayar şeması (`flx_settings_schema`): `flx_ayarlar` alanları ön ayar ve AI için tanımlı.
+
+## 0.7.3
+- Sistem Kontrolü: Flux SEO artık isteğe bağlı. Kurulu ya da etkin değilse hata yerine uyarı gösterilir.
+
 ## 0.7.2
 - Sistem Kontrolü › Eklentiler artık site türüne göre: Flux Donate ve Flux Certificates yalnız bağış sitesinde (Flux Donate kurulu ya da Site türü "Bağış") gerekli; Flux Commerce kuruluysa mağaza sayılır ve Flux Commerce gerekli olur. İkisi de değilse (ör. fluxwp.com) bağış/mağaza paketleri istenmez, WooCommerce isteğe bağlıdır.
 - Bağış sitesi değilse iyzico satırı gösterilmez; cron, saat dilimi ve SMTP uyarıları sertifika/bağış yerine genel dille yazılır.

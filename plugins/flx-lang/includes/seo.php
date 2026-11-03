@@ -194,39 +194,47 @@ function flxl_text( $key, $code = '' ) {
 	return (string) ( flxl_settings()['texts'][ $code ][ $key ] ?? '' );
 }
 
-add_action(
-	'plugins_loaded',
-	function () {
-		$cur = flxl_current_language();
-		if ( $cur === flxl_default_language() ) {
-			return;
+/**
+ * Dile göre metinleri option filtreleriyle uygular. Eklentilerin alanları plugins_loaded'da, temanınkiler
+ * (ör. çerez banner'ı metinleri, tema_*) functions.php yüklendikten sonra eklenir; ikinci çağrı yalnız yeni
+ * alanları kaydeder.
+ */
+function flxl_register_text_filters() {
+	static $done = array();
+	$cur = flxl_current_language();
+	if ( $cur === flxl_default_language() ) {
+		return;
+	}
+	$by_option = array();
+	foreach ( flxl_text_targets() as $k => $f ) {
+		if ( isset( $done[ $k ] ) ) {
+			continue;
 		}
-		$by_option = array();
-		foreach ( flxl_text_targets() as $k => $f ) {
-			$v = flxl_text( $k, $cur );
-			if ( '' !== $v && ! empty( $f['option'] ) ) {
-				$by_option[ $f['option'] ][ $f['key'] ?? '' ] = $v;
-			}
+		$done[ $k ] = true;
+		$v          = flxl_text( $k, $cur );
+		if ( '' !== $v && ! empty( $f['option'] ) ) {
+			$by_option[ $f['option'] ][ $f['key'] ?? '' ] = $v;
 		}
-		foreach ( $by_option as $opt => $vals ) {
-			add_filter(
-				'option_' . $opt,
-				function ( $value ) use ( $vals ) {
-					if ( flxl_is_backend() || $GLOBALS['flxl_state']['raw'] > 0 ) {
-						return $value;
-					}
-					foreach ( $vals as $sub => $v ) {
-						if ( '' === $sub ) {
-							$value = $v;
-						} elseif ( is_array( $value ) ) {
-							$value[ $sub ] = $v;
-						}
-					}
+	}
+	foreach ( $by_option as $opt => $vals ) {
+		add_filter(
+			'option_' . $opt,
+			function ( $value ) use ( $vals ) {
+				if ( flxl_is_backend() || $GLOBALS['flxl_state']['raw'] > 0 ) {
 					return $value;
-				},
-				20
-			);
-		}
-	},
-	0
-);
+				}
+				foreach ( $vals as $sub => $v ) {
+					if ( '' === $sub ) {
+						$value = $v;
+					} elseif ( is_array( $value ) ) {
+						$value[ $sub ] = $v;
+					}
+				}
+				return $value;
+			},
+			20
+		);
+	}
+}
+add_action( 'plugins_loaded', 'flxl_register_text_filters', 0 );
+add_action( 'after_setup_theme', 'flxl_register_text_filters', 99 );

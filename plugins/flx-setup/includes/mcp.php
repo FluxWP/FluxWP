@@ -60,6 +60,7 @@ function flxk_mcp_tools( $tools ) {
 				'content_types'  => $types,
 				'profile_fields' => flxk_profile_fields(),
 				'options'        => flxk_export_options(),
+				'settings'       => flxk_settings_schema(),
 				'theme'          => get_stylesheet(),
 				'guide'          => flxk_ai_guide(),
 			);
@@ -207,6 +208,7 @@ function flxk_ai_guide() {
 			'Bölümler: profile (kurum kimliği), wp (çekirdek ayarlar), settings (option => alanlar, derin birleşir), theme.styles (theme.json), theme.templates / theme.parts (header, footer… blok markup), content (type+key ile sayfa, menü, ürün, paket türleri), media.',
 			'Sayfa gövdesi blok markup ya da blok ağacıdır: [{"name":"core/heading","attrs":{"level":2},"html":"<h2 class=\"wp-block-heading\">Başlık</h2>"}, {"name":"core/group","html":"<div class=\"wp-block-group\">{{inner}}</div>","inner":[...]}].',
 			'Yer tutucular: {profile.name}, {domain}, {home}, {year}, "@page:key" (ID), {url:@page:key}, {url:@media:logo}.',
+			'Ayar alanlarının adı, türü ve varsayılanı preset_schema çıktısındaki "settings" şemasında (option => fields). Ör. çerez banner\'ı: settings.flx_ayarlar.cookie_enabled = 1.',
 			'manual durumundaki değerleri kullanıcı elle değiştirmiştir; özellikle istemedikçe zorlamaya çalışma.',
 			'Şifre, API key ve token yazılamaz; kullanıcıya ilgili panelden girmesini söyle.',
 		)

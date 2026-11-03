@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.7.2
+- Sol menü: üst (logo + arama) ve alt (kullanıcı) yerinde sabit, yalnız orta kayar. 1.7.0'daki geçiş efekti kaldırıldı; kayan kartlar arama kutusunun altında yarı saydam görünmüyor, net kesiliyor. Menünün sonuna gelince kaydırma sayfaya geçmiyor ve Mac/iOS esnemesi yok.
+
+## 1.7.1
+- Koyu modda sayfa yenilenince eklenti kutularının önce beyaz görünüp sonra koyulaşması giderildi: koyu tema koruması artık sayfa yüklendikten sonra değil, ilk boyamadan önce çalışır (`<head>` içeriği koruma bitene kadar gizler). JS ile sonradan çizilen veya açılan kutular da bir sonraki boyamadan önce koyulaşır.
+- Uygulama ekranlarında (Görevler, Çağrı Merkezi, Stüdyo, Sosyal) JS yüklenene kadar zemin açık görünmez.
+
+## 1.7.0
+- Tema düğmesi: tıklama artık her seferinde açık ↔ koyu geçer. Eski otomatik → açık → koyu döngüsünde cihaz koyu temadayken üç tıklamanın ikisi görünürde hiçbir şey değiştirmiyordu. "Sistem (cihaza göre)" düğmenin menüsünden seçilir (Açık / Koyu / Sistem, seçili olan işaretli). Dokunmatik ekranda ilk dokunuş menüyü açar.
+- Tema seçimi diğer açık sekmelere ve geri tuşuyla dönülen sayfaya da uygulanır; kaydedilemezse uyarı çıkar.
+- Sol menü kaydırılınca öğeler arama kutusunun altında keskin kesilmiyor, yumuşak geçişle kayboluyor (alt kısımda da).
+- Koyu tema koruması (üçüncü taraf ekranlar): açık gri/beyaz ayırıcı çizgiler koyu çizgiye, siyah radyo/onay kutusu/çerçeve kenarlıkları görünür renge, eklenti giriş alanlarındaki koyu yazı açığa çevrilir. SVG grafiklerde beyaz zemin şeffaf, ızgara çizgileri ve koyu yazılar okunur; koyu gri yazı biçimli logolar (ör. Site Kit) metin rengine çekilir.
+- Google Site Kit: yazı tipi panelle aynı (Figtree); koyu temada Material radyo, onay kutusu, metin alanı, açılır liste ve menüler panel renklerinde.
+
+## 1.6.13
+- Telefon yatayken dar menü sağda (iPhone'da çentik/kamera çoğu zaman solda kalır). Çentik hangi taraftaysa safe-area boşluğu bırakılır; alt menü kartları ve ipuçları sola açılır; "AI'ya sor" düğmesi menünün soluna kayar.
+
+## 1.6.12
+- Favicon yenilendi: FluxWP işareti beyaz kontur ve ince gölge çizgisiyle, tam kare zemin yok (SVG, favicon.ico, 32 px PNG). Uygulama simgeleri değişmedi.
+
 ## 1.6.11
 - Ortak sayfa başlığı (telefon): tek düğmeli sayfalarda başlık solda, düğme sağda aynı satırda (%50 / %50); düğme yazısı ve altındaki durum metni sağa hizalı, gerekirse alt satıra kayar.
 - Ön ayar paketlerinin yeni logoları (menü ve sayfa başlığı için).

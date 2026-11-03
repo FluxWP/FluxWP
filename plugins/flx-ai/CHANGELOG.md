@@ -1,5 +1,11 @@
 # Flux AI — Değişiklikler
 
+## 0.6.8
+- Sohbet paneli ön yüzde sitenin Açık / Koyu / Sistem seçicisini izler (sistem temasına değil). Sayfa geçişinde önceki sayfanın görüntüsü güncel temayla çizilir (eski tema bir an görünmez).
+
+## 0.6.7
+- "AI'ya sor" düğmesinin sağ boşluğu `--flxai-edge` CSS değişkeniyle ayarlanabilir (Flux Admin telefon yatayda sağdaki menünün soluna alır).
+
 ## 0.6.6
 - Düzeltme: telefonda AI sohbeti açıkken yukarı aşağı kaydırınca arkadaki site de kayıyordu (özellikle iOS Safari, boş sohbette). Panel ekranı kapladığında sayfa yerinde sabitlenir, kapanınca kaldığı yere döner; panelin kendi kaydırması (mesajlar, sohbet listesi, yazı alanı, tablolar) aynen çalışır.
 

@@ -1085,7 +1085,7 @@ dependencies = [
 
 [[package]]
 name = "fluxapp"
-version = "0.2.4"
+version = "0.2.5"
 dependencies = [
  "keyring",
  "serde",

@@ -9,6 +9,8 @@ target/
 packages/core/src/brand/current.json
 packages/panel/public/brand/
 apps/desktop/src-tauri/icons/
+apps/desktop/src-tauri/icons-windows/
 apps/desktop/src-tauri/tauri.brand.conf.json
 apps/desktop/src-tauri/gen/
 apps/desktop/src-tauri/app-icon.svg
+apps/desktop/src-tauri/app-icon-windows.svg

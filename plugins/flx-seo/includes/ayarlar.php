@@ -10,20 +10,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function flxseo_defaults() {
+	// Metin alanları boş: site adı, başlık ve açıklama boşsa WordPress'in site adı ve sloganı kullanılır (flxseo_opt).
+	// Ön ayarlar (flx-preset-*) kendi değerlerini Flux Setup ile yazar.
 	return array(
 		'enabled'        => 1,
-		'site_name'      => 'Örnek Vakfı',
-		'alt_name'       => 'Örnek Vakfı',
+		'site_name'      => '',
+		'alt_name'       => '',
 		'sep'            => '–',
-		'home_title'     => 'Örnek Vakfı – Yeşil Dünya',
-		'home_desc'      => 'Örnek Vakfı: fidan dikim etkinlikleri, çevre eğitimleri ve fidan bağışıyla daha yeşil bir Türkiye için çalışıyoruz.',
-		'org_name'       => 'Örnek Vakfı',
-		'org_type'       => 'NGO',
-		'founding'       => '1950',
+		'home_title'     => '',
+		'home_desc'      => '',
+		'org_name'       => '',
+		'org_type'       => 'Organization',
+		'founding'       => '',
 		'logo'           => '',
 		'og_image'       => '',
-		'street'         => 'Maslak Mah. Büyükdere Cad. No: 208',
-		'locality'       => 'Sarıyer, İstanbul',
+		'street'         => '',
+		'locality'       => '',
 		'postal'         => '',
 		'phone'          => '',
 		'email'          => '',
@@ -43,39 +45,31 @@ function flxseo_defaults() {
 }
 
 /**
- * Sürüm geçişleri (bir kez çalışır).
- * 1.1.1: site adı "Örnek Vakfı" → "Örnek Vakfı".
- * 1.0.4: ana sayfa başlığı "Örnek Vakfı – Yeşil Dünya" (eski varsayılan ya da "… Ana Sayfa" başlıkları yerine).
+ * Sürüm geçişi (bir kez çalışır).
+ * 1.2.9: Flux Setup ön ayarı ayarları kısmi yazdığında eski sanitize tüm açık/kapalı ayarları 0 yapıyordu
+ * (SEO çıktısı, noindex, otomatik alt metin, IndexNow birlikte kapalı). Hepsi 0 ise varsayılanlarına döner.
  */
 add_action(
 	'init',
 	function () {
-		$db = (string) get_option( 'flxseo_db', '0' );
-		if ( version_compare( $db, '1.1.1', '>=' ) ) {
+		if ( version_compare( (string) get_option( 'flxseo_db', '0' ), '1.2.9', '>=' ) ) {
 			return;
 		}
-		if ( version_compare( $db, '1.0.4', '>=' ) ) {
-			// 1.1.1: Google'daki site adı kısa "Örnek Vakfı" (eski varsayılan değiştirilmediyse).
-			$o = (array) get_option( 'flxseo', array() );
-			if ( 'Örnek Vakfı' === ( $o['site_name'] ?? '' ) ) {
-				$o['site_name'] = 'Örnek Vakfı';
+		$o = get_option( 'flxseo' );
+		if ( is_array( $o ) ) {
+			$flags = array( 'enabled', 'noindex_shop', 'noindex_search', 'noindex_author', 'noindex_tags', 'auto_alt', 'indexnow' );
+			$on    = 0;
+			foreach ( $flags as $k ) {
+				$on += empty( $o[ $k ] ) ? 0 : 1;
+			}
+			if ( 0 === $on ) {
+				foreach ( $flags as $k ) {
+					$o[ $k ] = 1;
+				}
 				update_option( 'flxseo', $o );
 			}
-			update_option( 'flxseo_db', '1.1.1' );
-			return;
 		}
-		$o   = (array) get_option( 'flxseo', array() );
-		$old = $o['home_title'] ?? '';
-		if ( '' === $old || 'Örnek Vakfı' === $old || false !== mb_stripos( $old, 'Ana Sayfa' ) ) {
-			$o['home_title'] = 'Örnek Vakfı – Yeşil Dünya';
-			update_option( 'flxseo', $o );
-		}
-		$front = (int) get_option( 'page_on_front' );
-		if ( $front && false !== mb_stripos( (string) get_post_meta( $front, '_flxseo_title', true ), 'Ana Sayfa' ) ) {
-			delete_post_meta( $front, '_flxseo_title' );
-		}
-		update_option( 'flxseo_db', '1.0.4' );
-		// Bir sonraki yüklemede 1.1.1 geçişi çalışır.
+		update_option( 'flxseo_db', '1.2.9' );
 	},
 	1
 );
@@ -83,9 +77,37 @@ add_action(
 function flxseo_opt( $key ) {
 	static $o = null;
 	if ( null === $o || doing_action( 'update_option_flxseo' ) ) {
-		$o = wp_parse_args( (array) get_option( 'flxseo', array() ), flxseo_defaults() );
+		$o = flxseo_with_fallbacks( wp_parse_args( (array) get_option( 'flxseo', array() ), flxseo_defaults() ) );
 	}
 	return $o[ $key ] ?? null;
+}
+
+/**
+ * Boş metin alanlarına WordPress'in kendi değerleri: site adı (Ayarlar › Genel) ve slogan.
+ * Böylece ayar sayfası hiç açılmasa da her sayfada başlık, açıklama ve Organization/WebSite adı dolu gelir.
+ */
+function flxseo_with_fallbacks( array $o ) {
+	$blog = trim( wp_strip_all_tags( (string) get_bloginfo( 'name' ) ) );
+	$tag  = trim( wp_strip_all_tags( (string) get_bloginfo( 'description' ) ) );
+	foreach ( array( 'site_name', 'alt_name', 'org_name', 'home_title', 'home_desc' ) as $k ) {
+		$o[ $k ] = trim( (string) ( $o[ $k ] ?? '' ) );
+	}
+	if ( '' === $o['site_name'] ) {
+		$o['site_name'] = $blog;
+	}
+	if ( '' === $o['alt_name'] ) {
+		$o['alt_name'] = $o['site_name'];
+	}
+	if ( '' === $o['org_name'] ) {
+		$o['org_name'] = $o['site_name'];
+	}
+	if ( '' === $o['home_title'] ) {
+		$o['home_title'] = '' !== $tag ? $o['site_name'] . ' ' . $o['sep'] . ' ' . $tag : $o['site_name'];
+	}
+	if ( '' === $o['home_desc'] ) {
+		$o['home_desc'] = $tag;
+	}
+	return $o;
 }
 
 function flxseo_logo_url() {
@@ -178,7 +200,11 @@ add_action(
 );
 
 function flxseo_sanitize( $in ) {
+	$in  = (array) $in;
 	$d   = flxseo_defaults();
+	// Gelen dizide olmayan anahtar eski değerini korur (Flux Setup ön ayarı, MCP ve kod yalnız birkaç alan yazar).
+	// Ayar formu kapalı onay kutuları için gizli 0 gönderir.
+	$in  = array_merge( wp_parse_args( (array) get_option( 'flxseo', array() ), $d ), $in );
 	$out = array();
 	foreach ( $d as $k => $v ) {
 		if ( is_int( $v ) ) {
@@ -243,17 +269,20 @@ function flxseo_settings_page() {
 				: in_array( $k, array( 'org_name', 'org_type', 'founding', 'logo', 'street', 'locality', 'postal', 'phone', 'email', 'same_as', 'twitter' ), true );
 			if ( ! $here ) {
 				printf( '<input type="hidden" name="%s[%s]" value="%s">', esc_attr( $n ), esc_attr( $k ), esc_attr( $v ) );
+			} elseif ( is_int( flxseo_defaults()[ $k ] ) ) {
+				// Kapalı onay kutusu gönderilmez; gizli 0 kapalı olduğunu bildirir (onay kutusu sonra gelir, 1 kazanır).
+				printf( '<input type="hidden" name="%s[%s]" value="0">', esc_attr( $n ), esc_attr( $k ) );
 			}
 		}
 		?>
 		<table class="form-table" role="presentation">
 		<?php if ( 'genel' === $tab ) : ?>
 			<tr><th scope="row">SEO çıktısı</th><td><label><input type="checkbox" name="<?php echo esc_attr( $n ); ?>[enabled]" value="1" <?php checked( $o['enabled'] ); ?>> Meta etiketleri, Open Graph ve schema'yı ekle</label></td></tr>
-			<tr><th scope="row"><label for="ys-sn">Google'da görünen site adı</label></th><td><input id="ys-sn" class="regular-text" name="<?php echo esc_attr( $n ); ?>[site_name]" value="<?php echo esc_attr( $o['site_name'] ); ?>">
+			<tr><th scope="row"><label for="ys-sn">Google'da görünen site adı</label></th><td><input id="ys-sn" class="regular-text" name="<?php echo esc_attr( $n ); ?>[site_name]" value="<?php echo esc_attr( $o['site_name'] ); ?>" placeholder="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
 				<p class="description">Arama sonuçlarında alan adı yerine bu ad görünür (WebSite schema). Kısa ve tanınan bir ad seçin. Değişiklik Google'a yeniden taramadan sonra yansır. Alternatif: <input class="regular-text" name="<?php echo esc_attr( $n ); ?>[alt_name]" value="<?php echo esc_attr( $o['alt_name'] ); ?>"></p></td></tr>
 			<tr><th scope="row"><label for="ys-sep">Başlık ayıracı</label></th><td><input id="ys-sep" class="small-text" name="<?php echo esc_attr( $n ); ?>[sep]" value="<?php echo esc_attr( $o['sep'] ); ?>"> <span class="description">Örnek: Hakkımızda <?php echo esc_html( $o['sep'] ); ?> <?php echo esc_html( $o['alt_name'] ); ?></span></td></tr>
-			<tr><th scope="row"><label for="ys-ht">Ana sayfa başlığı</label></th><td><input id="ys-ht" class="large-text" maxlength="70" name="<?php echo esc_attr( $n ); ?>[home_title]" value="<?php echo esc_attr( $o['home_title'] ); ?>"></td></tr>
-			<tr><th scope="row"><label for="ys-hd">Ana sayfa açıklaması</label></th><td><textarea id="ys-hd" class="large-text" rows="3" maxlength="320" name="<?php echo esc_attr( $n ); ?>[home_desc]"><?php echo esc_textarea( $o['home_desc'] ); ?></textarea><p class="description">150–160 karakter ideal.</p></td></tr>
+			<tr><th scope="row"><label for="ys-ht">Ana sayfa başlığı</label></th><td><input id="ys-ht" class="large-text" maxlength="70" name="<?php echo esc_attr( $n ); ?>[home_title]" value="<?php echo esc_attr( $o['home_title'] ); ?>" placeholder="<?php echo esc_attr( flxseo_opt( 'home_title' ) ); ?>"></td></tr>
+			<tr><th scope="row"><label for="ys-hd">Ana sayfa açıklaması</label></th><td><textarea id="ys-hd" class="large-text" rows="3" maxlength="320" name="<?php echo esc_attr( $n ); ?>[home_desc]" placeholder="<?php echo esc_attr( flxseo_opt( 'home_desc' ) ); ?>"><?php echo esc_textarea( $o['home_desc'] ); ?></textarea><p class="description">150–160 karakter ideal. Boşsa site sloganı kullanılır.</p></td></tr>
 			<tr><th scope="row"><label for="ys-og">Varsayılan paylaşım görseli</label></th><td><input id="ys-og" class="large-text code" name="<?php echo esc_attr( $n ); ?>[og_image]" value="<?php echo esc_attr( $o['og_image'] ); ?>" placeholder="<?php echo esc_attr( FLXSEO_URL . 'assets/icons/og-varsayilan.jpg' ); ?>"><p class="description">Öne çıkan görseli olmayan sayfalarda kullanılır. 1200×630 JPG/PNG. Boşsa eklentinin görseli.</p></td></tr>
 			<tr><th scope="row">Arama motoru doğrulama</th><td>
 				<p><label>Google Search Console <input class="regular-text code" name="<?php echo esc_attr( $n ); ?>[verify_google]" value="<?php echo esc_attr( $o['verify_google'] ); ?>" placeholder="meta etiketini yapıştırın"></label></p>

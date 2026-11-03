@@ -79,6 +79,19 @@ ${opt.background ? `<rect x="${off}" y="${off}" width="${box}" height="${box}" r
 </svg>
 `;
   write(join(root, 'apps/desktop/src-tauri/app-icon.svg'), svg);
+
+  // Windows (.ico): macOS ızgarasındaki 100 px boşluk görev çubuğunda simgeyi küçültür. Kare neredeyse tam
+  // dolar (16 px kenar), köşe yarıçapı Windows 11 simgelerine yakın.
+  const wb = 992, wo = 16, wr = 150;
+  const wsize = opt.background ? Math.round(wb * opt.scale) : wb;
+  const wpos = wo + (wb - wsize) / 2;
+  const win = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+<defs><clipPath id="sq"><rect x="${wo}" y="${wo}" width="${wb}" height="${wb}" rx="${wr}"/></clipPath></defs>
+${opt.background ? `<rect x="${wo}" y="${wo}" width="${wb}" height="${wb}" rx="${wr}" fill="${opt.background}"/>` : ''}
+<g clip-path="url(#sq)"><svg x="${wpos}" y="${wpos}" width="${wsize}" height="${wsize}" viewBox="${vb}" preserveAspectRatio="xMidYMid meet">${inner}</svg></g>
+</svg>
+`;
+  write(join(root, 'apps/desktop/src-tauri/app-icon-windows.svg'), win);
 }
 
 console.log(`[brand] ${brand.name} (${slug}) uygulandı`);

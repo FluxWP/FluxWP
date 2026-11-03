@@ -232,6 +232,35 @@ function flxapp_render_notices( $uid ) {
 
 }
 
+/**
+ * Masaüstü uygulamasının indirme adresi. Güncelleme sunucusunun kalıcı bağlantısı son sürüme yönlendirir.
+ * Sunucu Flux Setup'tan (yoksa updater.fluxwp.com), marka `flxapp_desktop_brand` filtresinden.
+ *
+ * @param string $os macos | windows | windows-msi
+ */
+function flxapp_desktop_download_url( $os ) {
+	$server = class_exists( 'FLXU_Updater' ) ? FLXU_Updater::server() : 'https://updater.fluxwp.com';
+	$brand  = sanitize_key( (string) apply_filters( 'flxapp_desktop_brand', 'flux' ) );
+	$url    = untrailingslashit( $server ) . '/v1/fluxapp/' . $brand . '/download/' . $os;
+	return (string) apply_filters( 'flxapp_desktop_download_url', $url, $os, $brand );
+}
+
+/** "Masaüstü uygulaması" kartı: macOS ve Windows indirme düğmeleri, ziyaretçinin sistemi öne çıkar. */
+function flxapp_render_download() {
+	$ua  = isset( $_SERVER['HTTP_USER_AGENT'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) ) : '';
+	$win = false !== stripos( $ua, 'Windows' );
+	$btn = function ( $os, $label, $primary ) {
+		return '<a class="button' . ( $primary ? ' button-primary' : '' ) . '" href="' . esc_url( flxapp_desktop_download_url( $os ) ) . '">' . esc_html( $label ) . '</a>';
+	};
+	echo '<h2>' . esc_html__( 'Masaüstü uygulaması', 'flx-app' ) . '</h2>';
+	echo '<div class="flxapp-card flxapp-download"><p>' . esc_html__( 'Paneli Mac ve Windows bilgisayarınızda ayrı bir uygulama olarak kullanın. Yeni sürümler kendiliğinden kurulur.', 'flx-app' ) . '</p><p class="flxapp-row">';
+	$mac = $btn( 'macos', __( 'macOS için indir', 'flx-app' ), ! $win );
+	$exe = $btn( 'windows', __( 'Windows için indir', 'flx-app' ), $win );
+	echo $win ? $exe . $mac : $mac . $exe; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in $btn.
+	echo '</p><p class="description">' . esc_html__( 'macOS 11 ve üstü (Apple Silicon ve Intel). Windows 10 ve 11 (64 bit).', 'flx-app' );
+	echo ' <a href="' . esc_url( flxapp_desktop_download_url( 'windows-msi' ) ) . '">' . esc_html__( 'Windows MSI paketi (kurumsal dağıtım)', 'flx-app' ) . '</a></p></div>';
+}
+
 /** Kullanıcılar › Uygulama erişimi: kendi oturumları ve API anahtarları. */
 function flxapp_render_page() {
 	$uid = get_current_user_id();
@@ -242,6 +271,7 @@ function flxapp_render_page() {
 	}
 	flxapp_render_notices( $uid );
 	echo '<p class="flxapp-lead">' . esc_html__( 'Flux Masaüstü uygulamasında "Giriş yap"a basınca tarayıcıda bu siteye girer, izin verirsiniz; uygulama sizin yetkilerinizle çalışır. Başka araçlar (MCP istemcileri, betikler) için kişisel API anahtarı oluşturabilirsiniz.', 'flx-app' ) . '</p>';
+	flxapp_render_download();
 	echo '<h2>' . esc_html__( 'Bağlı uygulamalar', 'flx-app' ) . '</h2>';
 	flxapp_render_tokens( flxapp_user_tokens( $uid, array( 'refresh' ) ), false );
 	echo '<h2>' . esc_html__( 'API anahtarları', 'flx-app' ) . '</h2>';

@@ -1,7 +1,10 @@
 # Flux Lang
 
-## 0.1.5
+## 0.1.7
 - Paylaşılan sayfalar (`flxl_shared_post_ids`, ör. sepet/ödeme) her dilde aynı adresle hreflang alır; `flxl_hreflang_archive` filtresi gerekmez.
+
+## 0.1.6
+- Temanın dile göre metinleri (çerez banner'ı başlığı, metni, düğmeler) ikinci dilde uygulanıyor. Önceden metin filtreleri tema yüklenmeden kuruluyordu, `tema_*` alanları hiç devreye girmiyordu.
 
 ## 0.1.4
 - Ara bilgi metinleri Flux Admin tonunu izliyor (koyu modda okunur).

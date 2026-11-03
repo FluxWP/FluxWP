@@ -66,7 +66,12 @@ function flxai_dock_early() {
 		return;
 	}
 	$done = true;
-	echo "<script id=\"flxai-early\">(function(){try{var s=JSON.parse(sessionStorage.getItem('flxai-snap')||'null');if(!s||!s.html||!s.css||document.getElementById('flxai-host')||!document.body.attachShadow)return;var h=document.createElement('div');h.id='flxai-host';h.className=s.cls||'';h.setAttribute('data-nosnippet','');h.setAttribute('data-early','1');document.body.appendChild(h);var r=h.attachShadow({mode:'open'}),st=document.createElement('style');st.textContent=s.css;r.appendChild(st);var w=document.createElement('div');w.innerHTML=s.html;r.appendChild(w);var b=w.querySelector('.body');if(b)b.scrollTop=s.scroll||0;}catch(e){}})();</script>\n";
+	// Önceki sayfanın görüntüsündeki tema sınıfı eskimiş olabilir (tema bu arada değişti): <head>'de belirlenmiş olan güncel tema uygulanır.
+	$light = function_exists( 'flx_ayar' ) && 'off' === flx_ayar( 'dark_mode' );
+	$dark  = is_admin()
+		? "de.classList.contains('flxa-dark')"
+		: "de.hasAttribute('data-flxfw-theme')?de.classList.contains('flxfw-dark'):" . ( $light ? 'false' : "!!(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)" );
+	echo "<script id=\"flxai-early\">(function(){try{var de=document.documentElement;var s=JSON.parse(sessionStorage.getItem('flxai-snap')||'null');if(!s||!s.html||!s.css||document.getElementById('flxai-host')||!document.body.attachShadow)return;var h=document.createElement('div');h.id='flxai-host';h.className=s.cls||'';h.classList.toggle('dark',{$dark});h.setAttribute('data-nosnippet','');h.setAttribute('data-early','1');document.body.appendChild(h);var r=h.attachShadow({mode:'open'}),st=document.createElement('style');st.textContent=s.css;r.appendChild(st);var w=document.createElement('div');w.innerHTML=s.html;r.appendChild(w);var b=w.querySelector('.body');if(b)b.scrollTop=s.scroll||0;}catch(e){}})();</script>\n";
 }
 add_action( 'in_admin_header', 'flxai_dock_early', 0 );
 add_action( 'wp_body_open', 'flxai_dock_early', 0 );
