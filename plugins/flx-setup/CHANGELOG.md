@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.0.7
+- Paketler (telefon): logosu olmayan pakette yer tutucu simge metnin üstüne binmiyordu; artık logo kutusunun yerinde.
+- Ön ayar paketlerinin kendi logoları: Yeşil Türkiye Preset (ağaçlar, yeşil), Hayır Kapısı Preset (açık kapı, turuncu), FluxWP Site Preset (sayfa şablonu, mor).
+
 ## 1.0.6
 - Görünen ad **FluxWP Panel** oldu (eklenti başlığı, yönetim menüsü, sihirbaz, bildirimler). Slug `flx-setup`, ayarlar ve güncelleme adresi aynı kalır.
 

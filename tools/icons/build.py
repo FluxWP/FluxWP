@@ -54,8 +54,9 @@ PKGS = [
   ('flx-staff', 'Flux Staff', 'platform', 'users-round'),
   ('flx-tv-board', 'Flux TV Board', 'comms', 'tv-minimal'),
   ('flx-tv-remote', 'Flux TV Remote', 'comms', 'cast'),
-  ('flx-preset-yesilturkiye', 'Yeşil Türkiye Preset', 'platform', 'package'),
-  ('flx-preset-hayirkapisi', 'Hayır Kapısı Preset', 'platform', 'package'),
+  ('flx-preset-yesilturkiye', 'Yeşil Türkiye Preset', 'system', 'trees'),
+  ('flx-preset-hayirkapisi', 'Hayır Kapısı Preset', 'commerce', 'door-open'),
+  ('flx-preset-fluxwp', 'FluxWP Site Preset', 'platform', 'layout-template'),
 ]
 
 def glyph_inner(name):

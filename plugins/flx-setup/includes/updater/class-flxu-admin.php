@@ -1378,7 +1378,7 @@ final class FLXU_Admin {
 				.flxu-table .check-column{grid-column:1;grid-row:1/3;margin:0}
 				.flxu-table .check-column input{margin:0}
 				.flxu-table tr.flxu-row>td.flxu-pkg{display:contents}
-				.flxu-pkg img,.flxu-pkg__ph{grid-column:2;grid-row:1/3;width:36px;height:36px}
+				.flxu-pkg>img,.flxu-pkg>.flxu-pkg__ph{grid-column:2;grid-row:1/3;width:36px;height:36px;align-self:center}
 				.flxu-pkg>span{grid-column:3/6;grid-row:1;min-width:0;align-self:end;line-height:1.35}
 				.flxu-pkg code,.flxu-pkg>span>br:first-of-type,.flxu-c-type,.flxu-c-latest small,.flxu-c-latest br{display:none!important}
 				.flxu-table td.flxu-c-inst,.flxu-table td.flxu-c-latest{grid-row:2;align-self:start;font-size:12px;font-variant-numeric:tabular-nums;white-space:nowrap}
