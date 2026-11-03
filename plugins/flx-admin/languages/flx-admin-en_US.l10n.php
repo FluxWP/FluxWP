@@ -358,5 +358,9 @@ return array(
 		'Sayfa başı' => 'Per page',
 		'Uygula' => 'Apply',
 		'Varsayılan: temanın ana rengi (Görünüm › Düzenleyici › Stiller). Temanın rengini seçerseniz tema değişince bu da değişir.' => 'Default: the theme\'s primary colour (Appearance › Editor › Styles). If you pick the theme\'s colour, this follows the theme when it changes.',
+		'Paket logoları' => 'Package logos',
+		'Degrade (varsayılan)' => 'Gradient (default)',
+		'Pastel' => 'Pastel',
+		'Sol menüde, Flux Updater paket listesinde ve FluxWP App\'te kullanılır. Renkler paket grubunu gösterir: yönetim, bakım, iletişim, içerik, ticaret.' => 'Used in the side menu, the Flux Updater package list and FluxWP App. Colours show the package group: platform, maintenance, communication, content, commerce.',
 	),
 );

@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.8.2
+- Yeni logo (FluxWP ikon seti, grup rengi). `assets/icon-pastel.svg` Flux Admin › Görünüm › Paket logoları Pastel iken kullanılır.
+
 ## 1.8.1
 - Sabit yeşiller kaldırıldı: arayüz tema/Flux Admin rengini, e-posta şablonu tema paletini kullanıyor. Hazır şablonların varsayılan rengi FluxWP indigo.
 

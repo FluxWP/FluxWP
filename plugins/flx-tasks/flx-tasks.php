@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Tasks
  * Description:       ClickUp benzeri görev takibi: projeler, klasörler, listeler; liste, pano (kanban) ve takvim görünümleri, kayıtlı filtreli görünümler, özel alanlar, yorum ve dosya ekleri, bildirimler, liste yetkileri, yönetici panosu, MCP sunucusu ve OpenRouter ile yapay zekâ.
- * Version:           0.8.2
+ * Version:           0.8.3
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -13,7 +13,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'FLXG_VERSION', '0.8.2' );
+define( 'FLXG_VERSION', '0.8.3' );
 define( 'FLXG_DB_VERSION', '3' );
 define( 'FLXG_FILE', __FILE__ );
 define( 'FLXG_DIR', plugin_dir_path( __FILE__ ) );

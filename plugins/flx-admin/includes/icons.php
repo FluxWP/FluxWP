@@ -126,20 +126,47 @@ function flxa_logo_for_slug( $slug ) {
 	$m = (array) apply_filters(
 		'flxa_menu_logos',
 		array(
-			'flxb-dashboard'   => 'flx-donate.svg',
+			'flxb-dashboard'  => 'flx-donate.svg',
 			'flx-chat'        => 'flx-chat.svg',
-			'flx-tasks'        => 'flx-tasks.svg',
-			'flxs'             => 'flx-certificates.svg',
+			'flx-tasks'       => 'flx-tasks.svg',
+			'flxs'            => 'flx-certificates.svg',
 			'Emsfb'           => 'flx-forms.svg',
-			'flxi'             => 'flx-mail.svg',
-			'flxseo'           => 'flx-seo.svg',
-			'flx-updater' => 'flx-updater.svg',
-			'flx-backup'        => 'flx-backup.svg',
-			'flx-wc-bagis'     => 'flx-wc-bagis.svg',
-			'flx-ai'           => 'flx-ai.svg',
+			'flxi'            => 'flx-mail.svg',
+			'flxseo'          => 'flx-seo.svg',
+			'flx-updater'     => 'flx-updater.svg',
+			'flx-backup'      => 'flx-backup.svg',
+			'flx-ai'          => 'flx-ai.svg',
+			'flx-analytics'   => 'flx-analytics.svg',
+			'flxapp-settings' => 'flx-app.svg',
+			'flx-qr-menu'     => 'flx-qr-menu.svg',
+			'flx-social'      => 'flx-social.svg',
+			'flx-speed'       => 'flx-speed.svg',
+			'flx-studio'      => 'flx-studio.svg',
+			'flx-staff'       => 'flx-staff.svg',
+			'flx-tv-remote'   => 'flx-tv-remote.svg',
+			'flx-tv-board'    => 'flx-tv-board.svg',
 		)
 	);
 	return isset( $m[ $slug ] ) ? sanitize_file_name( (string) $m[ $slug ] ) : '';
+}
+
+/**
+ * Paket logosu stili: `gradient` (varsayılan) ya da `pastel`. Ayarlar › Yönetim teması › Görünüm.
+ * Flux Updater ve Flux App de buna bakar. Filtre `flx_logo_style`.
+ */
+function flxa_logo_style() {
+	$v = (string) apply_filters( 'flx_logo_style', (string) flxa_setting( 'logo_style' ) );
+	return 'pastel' === $v ? 'pastel' : 'gradient';
+}
+
+/** assets/logos/ içindeki bir logonun adresi, seçili stile göre (pastel/ alt klasörü). */
+function flxa_logo_file_url( $file ) {
+	$file = sanitize_file_name( (string) $file );
+	if ( '' === $file ) {
+		return '';
+	}
+	$dir = 'pastel' === flxa_logo_style() && is_readable( FLXA_DIR . 'assets/logos/pastel/' . $file ) ? 'assets/logos/pastel/' : 'assets/logos/';
+	return FLXA_URL . $dir . $file . '?ver=' . FLXA_VERSION;
 }
 
 /** Menü simgesi yok mu (boş, WordPress'in varsayılan dişlisi, 'none' / 'div' yer tutucusu). 'none' kendi CSS'iyle çizilebildiği için JS ayrıca bakar. */

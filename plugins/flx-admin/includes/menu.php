@@ -693,7 +693,7 @@ function flxa_menu_inline_css() {
 		$css .= '#' . $id . ' .separator::after{content:' . flxa_css_string( $g['label'] ) . '}';
 	}
 	foreach ( (array) flxa_menu_state( 'logos' ) as $dom => $file ) {
-		$css .= '#adminmenu #' . $dom . ' div.wp-menu-image{background-image:url("' . esc_url( FLXA_URL . 'assets/logos/' . $file ) . '")!important;background-position:center!important;background-size:var(--flxa-logo-s,20px) var(--flxa-logo-s,20px)!important;background-repeat:no-repeat!important}';
+		$css .= '#adminmenu #' . $dom . ' div.wp-menu-image{background-image:url("' . esc_url( flxa_logo_file_url( $file ) ) . '")!important;background-position:center!important;background-size:var(--flxa-logo-s,20px) var(--flxa-logo-s,20px)!important;background-repeat:no-repeat!important}';
 	}
 	foreach ( (array) flxa_menu_state( 'letters' ) as $dom => $l ) {
 		$css .= '#adminmenu #' . $dom . ' div.wp-menu-image::before{content:' . flxa_css_string( $l ) . '!important}';

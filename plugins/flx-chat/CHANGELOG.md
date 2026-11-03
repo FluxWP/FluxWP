@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.35.1
+- Yeni logo (FluxWP ikon seti, grup rengi). `assets/icon-pastel.svg` Flux Admin › Görünüm › Paket logoları Pastel iken kullanılır.
+
 ## Yayımlanmamış
 
 - Benchmark'a başka eklentinin senaryoları için filtreler: `flxc_bench_groups`, `flxc_bench_default_scenarios`, `flxc_bench_turn` (senaryoda `runner`). Filtreler boşken davranış aynı; Qurban, ön ayar açık sitede kendi WhatsApp grubu senaryolarını buradan çalıştırır.

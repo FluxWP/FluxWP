@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.2.1
+- Yeni logo (FluxWP ikon seti, grup rengi). `assets/icon-pastel.svg` Flux Admin › Görünüm › Paket logoları Pastel iken kullanılır.
+
 ## 1.2.0
 - Roller ve erişim sayfasına Flux Studio yetkileri: Stüdyo'yu kullanır (`flxst_use`), Stüdyo'yu yönetir (`flxst_manage`).
 - Yönetici rolü bu iki yetkiyi bir kez alır; Personel ve İdareci için sayfadan açılır.

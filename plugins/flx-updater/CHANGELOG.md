@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.2
+- Tüm FluxWP paketlerinin logoları (temalar ve FluxWP Extras dahil) yeni ikon setiyle; paket listesinde gri yer tutucu kalmadı.
+- Flux Admin'de Pastel seçiliyse paket logoları `assets/icons/pastel/` altından gelir.
+
 ## 1.6.1
 - Güncelleme kontrolünde sitenin saat dilimi (Ayarlar › Genel) ve dili de gönderilir; sunucu panelindeki ülke haritası buradan dolar. IP ya da kişisel veri gönderilmez.
 

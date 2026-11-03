@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.2.3
+- Yeni logo (FluxWP ikon seti, grup rengi). `assets/icon-pastel.svg` Flux Admin › Görünüm › Paket logoları Pastel iken kullanılır.
+
 ## 1.2.2
 - Web manifest `theme_color` tema paletinin ana rengi; `short_name` site adı (sabit metin kaldırıldı).
 

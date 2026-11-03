@@ -1069,3 +1069,15 @@ msgstr "Log out"
 
 msgid "Varsayılan: temanın ana rengi (Görünüm › Düzenleyici › Stiller). Temanın rengini seçerseniz tema değişince bu da değişir."
 msgstr "Default: the theme's primary colour (Appearance › Editor › Styles). If you pick the theme's colour, this follows the theme when it changes."
+
+msgid "Paket logoları"
+msgstr "Package logos"
+
+msgid "Degrade (varsayılan)"
+msgstr "Gradient (default)"
+
+msgid "Pastel"
+msgstr "Pastel"
+
+msgid "Sol menüde, Flux Updater paket listesinde ve FluxWP App'te kullanılır. Renkler paket grubunu gösterir: yönetim, bakım, iletişim, içerik, ticaret."
+msgstr "Used in the side menu, the Flux Updater package list and FluxWP App. Colours show the package group: platform, maintenance, communication, content, commerce."

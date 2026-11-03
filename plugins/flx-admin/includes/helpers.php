@@ -12,6 +12,7 @@ function flxa_defaults() {
 		'mode'             => 'auto',   // auto | light | dark (kullanıcı kendi seçimini yapabilir)
 		'dark_exclude'     => 'block-editor-page',
 		'line_icons'       => 1,        // WordPress çekirdek menülerinde çizgi simgeler
+		'logo_style'       => 'gradient', // FluxWP paket logoları: gradient | pastel
 		'bottom_bar'       => 1,
 		'app_switcher'     => 1,        // WhatsApp / Görevler ekranlarında küçük geçiş düğmesi (telefonda)
 		'app_rail'         => 1,        // WhatsApp / Görevler ekranında sol menü ikon şeridi olarak kalır

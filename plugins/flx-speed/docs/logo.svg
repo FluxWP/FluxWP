@@ -1,12 +1,2 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="flx-speed">
-<defs>
-<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7EE8B0"/><stop offset=".55" stop-color="#1F8A5B"/><stop offset="1" stop-color="#0B3B27"/></linearGradient>
-<radialGradient id="hl" cx=".25" cy=".15" r=".75"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
-</defs>
-<rect width="256" height="256" rx="56" fill="url(#bg)"/>
-<rect width="256" height="256" rx="56" fill="url(#hl)"/>
-<path d="M48 172 L84 172 L102 118 L128 196 L152 92 L170 150 L208 150" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="152" cy="92" r="12" fill="#fff"/>
-<rect x="48" y="56" width="70" height="12" rx="6" fill="#fff" fill-opacity=".75"/>
-<rect x="48" y="78" width="44" height="12" rx="6" fill="#fff" fill-opacity=".5"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="flx-speed"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2DD4BF"/><stop offset=".5" stop-color="#0D9488"/><stop offset="1" stop-color="#134E4A"/></linearGradient><radialGradient id="h" cx=".2" cy=".1" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs><path d="M128 0C35 0 0 35 0 128s35 128 128 128 128-35 128-128S221 0 128 0Z" fill="url(#g)"/><path d="M128 0C35 0 0 35 0 128s35 128 128 128 128-35 128-128S221 0 128 0Z" fill="url(#h)"/><g transform="translate(64.0 64.0) scale(5.333)" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4" />
+  <path d="M3.34 19a10 10 0 1 1 17.32 0" /></g></svg>

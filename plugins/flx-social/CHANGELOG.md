@@ -1,5 +1,8 @@
 # Değişiklik günlüğü
 
+## 0.1.2
+- Yeni logo (FluxWP ikon seti, grup rengi). `assets/icon-pastel.svg` Flux Admin › Görünüm › Paket logoları Pastel iken kullanılır.
+
 ## 0.1.1
 - Vurgu rengi Flux Admin'den (varsayılan olarak tema rengi; FluxWP'de indigo), sabit yeşil kaldırıldı.
 
