@@ -1685,3 +1685,21 @@ msgstr ""
 #: inc/ayarlar.php
 msgid "Devamını oku"
 msgstr ""
+
+msgid "Mağaza paneli, müşteriler, satış raporu ve dekontlu Havale/EFT"
+msgstr ""
+
+msgid "İletişim formları"
+msgstr ""
+
+msgid "WhatsApp sohbetleri ve arama kayıtları"
+msgstr ""
+
+msgid "Görevler ziyaretçi geldikçe çalışıyor (WP-Cron). Ziyaret azken e-postalar ve zamanlanmış işler gecikir. Hostinger › Gelişmiş › Cron Jobs'a 5 dakikada bir şu komutu ekleyin: %s Sonra wp-config.php'ye define( 'DISABLE_WP_CRON', true ); yazın."
+msgstr ""
+
+msgid "%s. Sipariş, form ve e-posta saatleri için İstanbul seçin."
+msgstr ""
+
+msgid "SMTP eklentisi yok. Site e-postaları spam'e düşebilir; WP Mail SMTP veya FluentSMTP ile kurum e-postanızı bağlayın."
+msgstr ""

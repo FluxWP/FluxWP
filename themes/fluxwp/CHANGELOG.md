@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 0.7.2
+- Sistem Kontrolü › Eklentiler artık site türüne göre: Flux Donate ve Flux Certificates yalnız bağış sitesinde (Flux Donate kurulu ya da Site türü "Bağış") gerekli; Flux Commerce kuruluysa mağaza sayılır ve Flux Commerce gerekli olur. İkisi de değilse (ör. fluxwp.com) bağış/mağaza paketleri istenmez, WooCommerce isteğe bağlıdır.
+- Bağış sitesi değilse iyzico satırı gösterilmez; cron, saat dilimi ve SMTP uyarıları sertifika/bağış yerine genel dille yazılır.
+- Yeni filtre `flx_sk_site_kinds` (array( 'donate', 'store' ) içinden).
+
 ## 0.7.1
 - Footer alt satırında `flx/credit` bloğu (logo + "Altyapı: FluxWP", fluxwp.com). Blok Düzenleyici'de silinirse footer'ın en altına ince bir imza şeridi eklenir (`add_theme_support( 'flx-credit' )`).
 - FluxWP imzası: Flux ekranlarının alt satırında küçük FluxWP logosu ve fluxwp.com bağlantısı. Ortak modül `inc/flx-brand` (kaynak FluxWP/fluxwp `tools/brand`); kurulu Flux paketlerinden en yeni sürümü bir kez yüklenir, `flx_brand_show` filtresiyle gizlenir.
