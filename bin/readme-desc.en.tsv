@@ -10,7 +10,6 @@ flx-tasks	Flux Tasks	Task tracking with projects, lists, boards and calendars. M
 flx-updater	Flux Updater	Brings private themes and plugins from your own update server into the WordPress updates screen.
 flx-mail	Flux Contact	Every e-mail the site sends, a mailbox and delivery logs in one place. WhatsApp and SMS lines shared with other packages.
 flx-speed	Flux Performance	Queries, PHP errors, slow requests, server, database and cron on one screen. Home of the System Check.
-flx-qr-menu	Flux QR Menu	Manage and publish QR menus from the site. Menu manager role, QR code and change history.
 flx-roles	Flux Roles	Staff, Manager and Admin roles; every package's capabilities on one page. Personal referral links.
 flx-seo	Flux SEO	Meta, Open Graph, schema, sitemap and SEO checks. An MCP server for AI assistants.
 flx-certificates	Flux Certificate	Certificate templates, live PDF preview and /certificate/{code} verification. Sent by e-mail, SMS and WhatsApp.
@@ -18,7 +17,6 @@ flx-social	Flux Social	Social media inside the site: accounts, scheduling, appro
 flx-studio	Flux Studio	An AI image and video studio. Generation, references and a foldered gallery through Flux AI.
 flx-app	Flux App	Sign-in for the desktop and mobile app: OAuth 2.0 (PKCE), API keys and a role-based menu.
 flx-backup	Flux Backup	Automatic backups before updates, scheduled full backups and selective restore.
-flx-menu-theme	Flux Menu Theme	The quietest theme for a QR menu domain. Menus are served by Flux QR Menu.
 fluxwp	FluxWP	A simple, fast WooCommerce block theme. Hero, header, footer and home patterns are fully replaceable by presets.
 qurban	Qurban	Qurbani management: collections from collectors and WhatsApp groups, monthly rent and gift tracking for beneficiaries, rule-based distribution with delivery confirmation, Flux AI chat tools and a one-click site preset.
 flx-setup	Flux Setup	Preset engine: one file sets up the organisation profile, settings, header/footer, templates, pages and menus. Edits the site through approved patches from AI chat and MCP.

@@ -11,7 +11,6 @@ flx-tasks	Görev takibi: projeler, listeler, pano ve takvim görünümleri. Topl
 flx-updater	Özel FluxWP tema ve eklentilerini kendi güncelleme sunucusundan WordPress'in güncelleme ekranına getirir.
 flx-mail	Sitenin tüm e-postaları, posta kutusu ve gönderim kayıtları tek yerde. WhatsApp ve SMS bağlantıları diğer eklentilere ortak API ile açılır.
 flx-speed	Sorgular, PHP hataları, yavaş istekler, sunucu, veritabanı ve cron tek ekranda. Sistem Kontrolü burada.
-flx-qr-menu	QR menüleri bu siteden yönetir ve yayınlar. Menü yöneticisi rolü, QR kod ve değişiklik geçmişi.
 flx-roles	Personel, İdareci ve Yönetici rolleri; paketlerin yetkileri tek sayfadan açılıp kapanır. Kişisel referans linki burada.
 flx-seo	Meta, Open Graph, schema, sitemap ve SEO kontrolü. Yapay zekâ asistanları için MCP sunucusu.
 flx-certificates	Sertifika şablonları, canlı PDF önizleme ve /sertifika/{kod} doğrulama. E-posta, SMS ve WhatsApp ile gönderim.
@@ -19,7 +18,6 @@ flx-social	Sosyal medya yönetimi sitenin içinde: hesaplar, zamanlama, onay ve 
 flx-studio	Yapay zekâ ile görsel ve video stüdyosu. Üretim, referanslar ve klasörlü galeri Flux AI üzerinden.
 flx-app	Masaüstü ve mobil uygulama için giriş: OAuth 2.0 (PKCE), API anahtarları ve rol bazlı menü.
 flx-backup	Güncellemelerden önce otomatik yedek, zamanlanmış tam yedekler ve seçerek geri yükleme.
-flx-menu-theme	menu.example.org için en sade tema. QR menüler Flux QR Menu ile açılır.
 fluxwp	Sade, hızlı WooCommerce block teması. Hero, header, footer ve ana sayfa desenleri ön ayarlarla tamamen değişir.
 qurban	Kurban yönetimi: toplayıcı ve WhatsApp grubundan tahsilat, hak sahiplerinin aylık kira ve hediye takibi, kurala göre dağıtım ve teslim onayı, Flux AI sohbet araçları, tek tuşla site ön ayarı.
 flx-setup	Ön ayar motoru: tek şablon dosyasıyla kurum profili, ayarlar, header/footer, şablonlar, sayfalar ve menüleri kurar. AI sohbetinden ve MCP'den onaylı yamalarla siteyi düzenler.
