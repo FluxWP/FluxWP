@@ -6,9 +6,9 @@ html.flxsm-lock #wpcontent, html.flxsm-lock #wpbody-content { margin: 0 !importa
 html body.flxa-appmode #flxsm-app { top: var(--flxa-safe-top, 0px); left: var(--flxa-safe-left, 0px); right: var(--flxa-safe-right, 0px); bottom: var(--flxa-safe-bottom, 0px); transition: left .22s ease; }
 
 .flxsm {
-	--bg: #0b0e0c; --panel: #121714; --panel2: #171c19; --line: #252b27; --line2: #2e3631;
-	--text: #e6ece8; --muted: #93a098; --faint: #5f6b64;
-	--acc: color-mix(in srgb, var(--flxa-accent, #1F2937) 70%, #fff); --acc-ink: #06140c; --acc-soft: rgba(92, 201, 139, .14);
+	--bg: color-mix(in srgb, var(--flxa-accent, #1F2937) 6%, #0D0E13); --panel: color-mix(in srgb, var(--flxa-accent, #1F2937) 8%, #15171E); --panel2: color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #1C1F27); --line: color-mix(in srgb, var(--flxa-accent, #1F2937) 12%, #272A34); --line2: color-mix(in srgb, var(--flxa-accent, #1F2937) 15%, #363A47);
+	--text: #E8E9EF; --muted: #9A9EAE; --faint: #767B8A;
+	--acc: color-mix(in srgb, var(--flxa-accent, #1F2937) 70%, #fff); --acc-ink: #12141B; --acc-soft: color-mix(in srgb, var(--acc) 14%, transparent);
 	--warn: #e9b949; --err: #e5675b; --blue: #6ea8ff;
 	--c-img: #34a866; --c-vid: #5f86e6; --c-cost: #c9a24a;
 	--r: 12px; --r-s: 8px; --shadow: 0 12px 40px rgba(0, 0, 0, .45);
@@ -18,11 +18,11 @@ html body.flxa-appmode #flxsm-app { top: var(--flxa-safe-top, 0px); left: var(--
 }
 .flxsm.flxsm-layer { position: static; inset: auto; z-index: auto; display: block; background: none; }
 .flxsm[data-theme="light"] {
-	--bg: #f4f6f5; --panel: #ffffff; --panel2: #f0f3f1; --line: #e1e6e3; --line2: #d3dad6;
-	--text: #16201a; --muted: #5f6b64; --faint: #97a29b;
-	--acc: var(--flxa-accent, #1F2937); --acc-ink: #ffffff; --acc-soft: rgba(46, 158, 98, .12);
+	--bg: color-mix(in srgb, var(--flxa-accent, #1F2937) 4%, #F3F4F7); --panel: #ffffff; --panel2: color-mix(in srgb, var(--flxa-accent, #1F2937) 5%, #EEF0F4); --line: color-mix(in srgb, var(--flxa-accent, #1F2937) 7%, #E0E3EA); --line2: color-mix(in srgb, var(--flxa-accent, #1F2937) 9%, #CBCFDA);
+	--text: #12141B; --muted: #5A5F6E; --faint: #7C8190;
+	--acc: var(--flxa-accent, #1F2937); --acc-ink: var(--flxa-on-accent, #ffffff); --acc-soft: color-mix(in srgb, var(--acc) 12%, transparent);
 	--c-img: #2e9e62; --c-vid: #4a72d9; --c-cost: #a8801f;
-	--shadow: 0 12px 36px rgba(20, 40, 30, .14);
+	--shadow: 0 12px 36px rgba(17, 19, 27, .14);
 	color-scheme: light;
 }
 .flxsm *, .flxsm *::before, .flxsm *::after { box-sizing: border-box; }

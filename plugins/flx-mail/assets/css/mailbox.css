@@ -6,7 +6,7 @@
 	--flxm-line: #e6ebe8;
 	--flxm-soft: #f6f8f7;
 	--flxm-ink: #17252e;
-	--flxm-text: #5d6b73;
+	--flxm-text: var(--flxa-muted, #5d6b73);
 	--flxm-red: #c43d32;
 	--flxm-ai: #6a4bd6;
 	--flxm-ai-bg: #f4f0ff;
@@ -129,7 +129,7 @@
 
 /* Sağ bölme */
 .flxm-pane { overflow-y: auto; min-width: 0; padding: 20px 26px 32px; container-type: inline-size; }
-.flxm-empty { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: #8a9c94; text-align: center; }
+.flxm-empty { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: var(--flxa-muted, #8a9c94); text-align: center; }
 .flxm-empty .flxm-i { width: 52px; height: 52px; stroke-width: 1.2; opacity: .6; }
 .flxm-empty p { margin: 0; }
 .flxm-back { display: none; margin-bottom: 10px; }
@@ -202,10 +202,10 @@
 .flxm-pv-toggle[aria-pressed="true"] { background: var(--flxm-mint); border-color: #bfe0cc; color: var(--flxm-gd); }
 
 /* Canlı önizleme */
-.flxm-pv { display: none; flex-direction: column; min-width: 0; background: #eef3f0; border-left: 1px solid var(--flxm-line); }
+.flxm-pv { display: none; flex-direction: column; min-width: 0; background: var(--flxa-surface-2, #EEF0F4); border-left: 1px solid var(--flxm-line); }
 .flxm.is-pv .flxm-pv { display: flex; }
 .flxm.is-pv .flxm-compose__form { display: none; }
-.flxm-pv__bar { position: sticky; top: 57px; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 14px; background: #eef3f0; border-bottom: 1px solid #e0e8e3; font-size: 12.5px; }
+.flxm-pv__bar { position: sticky; top: 57px; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 14px; background: var(--flxa-surface-2, #EEF0F4); border-bottom: 1px solid #e0e8e3; font-size: 12.5px; }
 .flxm-pv__bar strong { color: var(--flxm-text); font-weight: 650; }
 .flxm-seg { display: inline-flex; gap: 2px; padding: 3px; background: #fff; border: 1px solid var(--flxm-line); border-radius: 9px; }
 .flxm-seg button { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 26px; padding: 0; border: 0; border-radius: 6px; background: transparent; color: var(--flxm-text); cursor: pointer; }
@@ -243,7 +243,7 @@
 .flxm-logo-prev { height: 34px; width: auto; max-width: 120px; padding: 3px 6px; border: 1px solid var(--flxm-line); border-radius: 8px; background: #fff; }
 .flxm-del { color: var(--flxm-red) !important; }
 .flxm-lprev { position: sticky; top: 0; align-self: start; }
-.flxm-lpreview, .flxm-lform > iframe { width: 100%; min-height: 560px; margin-top: 12px; border: 1px solid var(--flxm-line); border-radius: 12px; background: #eef3f0; }
+.flxm-lpreview, .flxm-lform > iframe { width: 100%; min-height: 560px; margin-top: 12px; border: 1px solid var(--flxm-line); border-radius: 12px; background: var(--flxa-surface-2, #EEF0F4); }
 
 /* Bildirimler (ortada; sağ alttaki sohbet düğmesiyle çakışmaz) */
 .flxm-toasts { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); z-index: 100000; display: flex; flex-direction: column; align-items: center; gap: 8px; pointer-events: none; }

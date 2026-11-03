@@ -49,6 +49,14 @@ function flxa_default_groups() {
 	);
 }
 
+/**
+ * Hiçbir gruba girmeyen, sabitlenenlerin hemen altında tek başına duran öğeler. Filtre `flxa_standalone_items`.
+ * Kişi öğeyi sabitler ya da "Diğer"e taşırsa o tercih geçerli olur.
+ */
+function flxa_standalone_items() {
+	return array_map( 'strval', (array) apply_filters( 'flxa_standalone_items', array( 'flx-updater' ) ) );
+}
+
 /** Kişi henüz bir şey sabitlemediyse üstte kutucuk olarak gelenler. Filtre `flxa_default_pins`. */
 function flxa_default_pins() {
 	return array_map( 'strval', (array) apply_filters( 'flxa_default_pins', array( 'index.php', 'flx-chat', 'flx-tasks', 'flxb-dashboard' ) ) );
@@ -384,6 +392,23 @@ function flxa_menu_apply() {
 			$groups['other']['items'][ $slug ] = $e;
 		}
 	}
+	/* Grupsuz tek öğeler (ör. Güncellemeler): kutucukların hemen altında, başlıksız kendi kartında. */
+	$solo = array();
+	foreach ( flxa_standalone_items() as $slug ) {
+		if ( ! isset( $prev[ $slug ] ) || in_array( $slug, $pins, true ) || in_array( $slug, $away, true ) ) {
+			continue;
+		}
+		list( $gk, $e ) = $find( $slug );
+		if ( '' === $gk ) {
+			continue;
+		}
+		unset( $groups[ $gk ]['items'][ $slug ] );
+		$solo[ $slug ] = $e;
+	}
+	if ( $solo ) {
+		$groups = array( 'solo' => array( 'label' => '', 'collapsed' => false, 'items' => $solo ) ) + $groups;
+		array_unshift( $gorder, 'solo' );
+	}
 	if ( $pinned ) {
 		$groups = array( 'pinned' => array( 'label' => __( 'Sabitlenenler', 'flx-admin' ), 'collapsed' => false, 'items' => $pinned ) ) + $groups;
 		array_unshift( $gorder, 'pinned' );
@@ -446,6 +471,9 @@ function flxa_menu_apply() {
 					$menu[ $k ][4]   = trim( ( $menu[ $k ][4] ?? '' ) . ' flxa-letter' );
 					$letters[ $dom ] = flxa_initial( $plain );
 				}
+			}
+			if ( 'solo' === $gk ) {
+				$menu[ $k ][4] = trim( ( $menu[ $k ][4] ?? '' ) . ' flxa-solo' );
 			}
 			$ids[ $dom ] = $slug;
 			$order[] = $slug;

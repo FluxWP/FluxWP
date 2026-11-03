@@ -82,8 +82,10 @@ body.flxa:not(.flxa-appmode) .wrap { margin: 14px 28px 0 0; color: var(--flxa-te
 body.flxa:not(.flxa-appmode) .wrap h1,
 body.flxa:not(.flxa-appmode) .wrap > h2:first-child { font-size: 26px; font-weight: 800; letter-spacing: -.02em; line-height: 1.25; color: var(--flxa-text); }
 body.flxa:not(.flxa-appmode) h1, body.flxa:not(.flxa-appmode) h2, body.flxa:not(.flxa-appmode) h3, body.flxa:not(.flxa-appmode) h4 { color: var(--flxa-text); }
-body.flxa:not(.flxa-appmode) a { color: var(--flxa-accent-strong); }
-body.flxa:not(.flxa-appmode) a:hover, body.flxa:not(.flxa-appmode) a:active { color: var(--flxa-accent-hover); }
+/* Genel bağlantı rengi düşük özgüllükte (body.flxa a) ve düğme gibi görünen bağlantılar (.button, *-btn*, blok düğmeleri) hariç:
+ * eklentinin kendi düğme/sekme rengi (ör. ".x a.is-on", ".x .x-btn-primary") her zaman geçerli kalsın. */
+body.flxa:where(:not(.flxa-appmode)) a:where(:not(.button, [class*="btn"], .wp-element-button)) { color: var(--flxa-accent-strong); }
+body.flxa:where(:not(.flxa-appmode)) a:where(:not(.button, [class*="btn"], .wp-element-button)):where(:hover, :active) { color: var(--flxa-accent-hover); }
 body.flxa:not(.flxa-appmode) a:focus,
 body.flxa:not(.flxa-appmode) .button:focus { box-shadow: none; outline: none; }
 body.flxa:not(.flxa-appmode) a:focus-visible,
@@ -1250,8 +1252,22 @@ html body.flxa #adminmenu li.flxa-gh.is-closed .flxa-gcount { font-weight: 600; 
 html body.flxa #adminmenu li.flxa-gh.is-closed:hover { border-color: var(--flxa-border-strong); }
 html body.flxa #adminmenu li.flxa-gh:not(.is-closed) .flxa-gchev { transform: rotate(90deg); }
 
+/* Grupsuz tek öğe (ör. Güncellemeler): başlıksız, kendi kartı */
+body.flxa #adminmenu li#flxa-g-solo { display: none; }
+html body.flxa #adminmenu > li.menu-top.flxa-solo:not(.flxa-pin) { margin: 0 0 6px; padding: 6px; border: 1px solid var(--flxa-card-b); border-radius: 12px; }
+html body.flxa #adminmenu > li.menu-top.flxa-solo:not(.flxa-pin) > .flxa-subtoggle { top: 10px; }
+html body.flxa #adminmenu > li.menu-top.flxa-solo:not(.flxa-pin):hover { border-color: var(--flxa-border-strong); }
+
 /* Sabitlenenler: başlık yok, kutucuk */
 html body.flxa #adminmenu li.flxa-gh.flxa-gpins { display: none; }
+@media screen and (min-width: 783px) {
+	html body.flxa.folded #adminmenu > li.menu-top.flxa-solo:not(.flxa-pin) { border: 0; padding: 0; margin: 1px 0; border-radius: 0; }
+	html body.flxa.folded #adminmenu > li.menu-top.flxa-solo:not(.flxa-pin) > a.menu-top { justify-content: center; min-height: 0; padding: 6px 0; gap: 0; }
+}
+@media screen and (min-width: 783px) and (max-width: 960px) {
+	html body.flxa.auto-fold #adminmenu > li.menu-top.flxa-solo:not(.flxa-pin) { border: 0; padding: 0; margin: 1px 0; border-radius: 0; }
+	html body.flxa.auto-fold #adminmenu > li.menu-top.flxa-solo:not(.flxa-pin) > a.menu-top { justify-content: center; min-height: 0; padding: 6px 0; gap: 0; }
+}
 html body.flxa #adminmenu > li.flxa-pin { margin: 0 0 8px; padding: 0; border: 0; background: transparent !important; }
 html body.flxa #adminmenu > li.flxa-pin > a.menu-top {
 	position: relative; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 10px;

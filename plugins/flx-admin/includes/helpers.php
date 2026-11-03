@@ -76,6 +76,27 @@ function flxa_accent() {
  * Koyu temadaki vurgu: koyu bir vurgu (ör. antrasit) koyu zeminde kaybolur. Ayar boşsa temanın koyu mod rengi
  * (theme.json settings.custom.dark.primary), değilse çok koyu renkler açılır.
  */
+/**
+ * Verilen zemin renginin üstünde okunur yazı rengi (beyaz ya da koyu), WCAG kontrastına göre.
+ * Açık bir vurgu rengi seçilirse düğme yazısı beyaz kalıp kaybolmasın.
+ */
+function flxa_on_color( $hex ) {
+	$h = ltrim( (string) $hex, '#' );
+	if ( 3 === strlen( $h ) ) {
+		$h = $h[0] . $h[0] . $h[1] . $h[1] . $h[2] . $h[2];
+	}
+	if ( 6 !== strlen( $h ) || ! ctype_xdigit( $h ) ) {
+		return '#FFFFFF';
+	}
+	$l = 0;
+	foreach ( array( 0.2126, 0.7152, 0.0722 ) as $i => $w ) {
+		$c  = hexdec( substr( $h, $i * 2, 2 ) ) / 255;
+		$l += $w * ( $c <= 0.03928 ? $c / 12.92 : pow( ( $c + 0.055 ) / 1.055, 2.4 ) );
+	}
+	// Beyaz yazı 3:1 kontrastı (kalın düğme yazısı için WCAG alt sınırı) tutuyorsa beyaz kalır, yoksa koyu yazı.
+	return ( 1.05 / ( $l + 0.05 ) ) >= 3 ? '#FFFFFF' : '#12141B';
+}
+
 function flxa_accent_dark() {
 	$acc = flxa_accent();
 	if ( '' === sanitize_hex_color( (string) flxa_setting( 'accent' ) ) && function_exists( 'wp_get_global_settings' ) ) {

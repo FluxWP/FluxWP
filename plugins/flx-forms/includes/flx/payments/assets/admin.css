@@ -6,7 +6,7 @@
 	--flxfp-text: #4B5563;
 	--flxfp-muted: #6B7C86;
 	--flxfp-mint: color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #fff);
-	--flxfp-soft: #F5FAF7;
+	--flxfp-soft: var(--flxa-surface-2, #F6F7F9);
 	--flxfp-line: color-mix(in srgb, var(--flxa-accent, #1F2937) 16%, #fff);
 	--flxfp-surface: #FFFFFF;
 	--flxfp-warn-bg: #FFF7E6;

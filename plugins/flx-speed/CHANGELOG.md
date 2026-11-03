@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.3.1
+- Koyu mod Flux Admin koyu temasında da çalışıyor (önceden yalnız tema sınıfında); ara bilgi metinleri ve rozetler okunur; panelde yeşilimsi koyu tonlar nötr.
+
 ## 0.3.0
 - Paylaşımlı hosting'de (Hostinger vb.) Özet, Sunucu ve Başlangıç widget'ı artık ana makinenin değerlerini (64 çekirdek, 503 GB RAM, TB'larca disk) sitenin değeri gibi göstermiyor.
 - Hesap sınırı cgroup v1/v2'den okunur (konteyner, VPS dilimi, hesap): işlemci yüzdesi sınıra göre, bellek kullanım / sınır. Okunamazsa İşlemci (hesap) ve Bellek (hesap) kutuları "Hesap sınırı okunamıyor" der; makinenin ortak değerleri Sunucu sekmesinde ayrı, "Makine geneli (paylaşımlı, tüm hesaplar)" başlığıyla durur.

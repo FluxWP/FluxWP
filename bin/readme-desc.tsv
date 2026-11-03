@@ -20,5 +20,4 @@ flx-studio	Yapay zekâ ile görsel ve video stüdyosu. Üretim, referanslar ve k
 flx-app	Masaüstü ve mobil uygulama için giriş: OAuth 2.0 (PKCE), API anahtarları ve rol bazlı menü.
 flx-backup	Güncellemelerden önce otomatik yedek, zamanlanmış tam yedekler ve seçerek geri yükleme.
 fluxwp	Sade, hızlı WooCommerce block teması. Hero, header, footer ve ana sayfa desenleri ön ayarlarla tamamen değişir.
-qurban	Kurban yönetimi: toplayıcı ve WhatsApp grubundan tahsilat, hak sahiplerinin aylık kira ve hediye takibi, kurala göre dağıtım ve teslim onayı, Flux AI sohbet araçları, tek tuşla site ön ayarı.
 flx-setup	Ön ayar motoru: tek şablon dosyasıyla kurum profili, ayarlar, header/footer, şablonlar, sayfalar ve menüleri kurar. AI sohbetinden ve MCP'den onaylı yamalarla siteyi düzenler.

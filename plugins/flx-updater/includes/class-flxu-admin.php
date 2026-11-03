@@ -28,6 +28,7 @@ final class FLXU_Admin {
 		add_action( 'admin_post_flxu_check', array( $this, 'check' ) );
 		add_action( 'admin_post_flxu_source', array( $this, 'source_action' ) );
 		add_action( 'admin_post_flxu_backups', array( $this, 'backups_action' ) );
+		add_action( 'admin_post_flxu_manage', array( $this, 'manage_action' ) );
 		add_filter( 'plugin_action_links_' . plugin_basename( FLXU_FILE ), array( $this, 'action_links' ) );
 		add_filter( 'plugin_row_meta', array( $this, 'row_meta' ), 10, 2 );
 	}
@@ -283,12 +284,15 @@ final class FLXU_Admin {
 		$rows    = array();
 		foreach ( $catalog as $slug => $p ) {
 			$installed = '';
+			$active    = false;
 			if ( 'plugin' === $p['type'] && isset( $files[ $slug ] ) ) {
 				$installed = (string) ( $plugins[ $files[ $slug ] ]['Version'] ?? '' );
+				$active    = '' !== $installed && is_plugin_active( $files[ $slug ] );
 			} elseif ( 'theme' === $p['type'] ) {
 				$theme = wp_get_theme( $slug );
 				if ( $theme->exists() ) {
 					$installed = (string) $theme->get( 'Version' );
+					$active    = in_array( $slug, array( get_stylesheet(), get_template() ), true );
 				}
 			}
 			if ( '' === $installed ) {
@@ -303,6 +307,7 @@ final class FLXU_Admin {
 				'name'      => $p['name'],
 				'type'      => $p['type'],
 				'installed' => $installed,
+				'active'    => $active,
 				'latest'    => $p['version'],
 				'released'  => $p['released'],
 				'state'     => $state,
@@ -531,6 +536,27 @@ final class FLXU_Admin {
 
 			<?php if ( 'saved' === $msg ) : ?>
 				<div class="notice notice-success is-dismissible"><p><?php esc_html_e( 'Ayarlar kaydedildi ve kontrol yapıldı.', 'flx-updater' ); ?></p></div>
+			<?php elseif ( 'managed' === $msg && ( $mr = get_transient( 'flxu_manage_' . get_current_user_id() ) ) ) : ?>
+				<?php
+				delete_transient( 'flxu_manage_' . get_current_user_id() );
+				$labels = array(
+					/* translators: %d: number of packages */
+					'activate'   => _n( '%d paket etkinleştirildi.', '%d paket etkinleştirildi.', (int) $mr['done'], 'flx-updater' ),
+					/* translators: %d: number of packages */
+					'deactivate' => _n( '%d paket devre dışı bırakıldı.', '%d paket devre dışı bırakıldı.', (int) $mr['done'], 'flx-updater' ),
+					/* translators: %d: number of packages */
+					'delete'     => _n( '%d paket kaldırıldı.', '%d paket kaldırıldı.', (int) $mr['done'], 'flx-updater' ),
+				);
+				?>
+				<div class="notice notice-<?php echo $mr['fail'] ? 'warning' : 'success'; ?> is-dismissible"><p>
+					<?php echo esc_html( sprintf( $labels[ $mr['op'] ] ?? '%d', (int) $mr['done'] ) ); ?>
+					<?php if ( $mr['skip'] ) : ?>
+						<?php /* translators: %s: package names */ echo esc_html( sprintf( __( 'Atlananlar (zaten bu durumda, etkin tema ya da Flux Updater): %s.', 'flx-updater' ), implode( ', ', $mr['skip'] ) ) ); ?>
+					<?php endif; ?>
+					<?php if ( $mr['fail'] ) : ?>
+						<?php /* translators: %s: package names */ echo esc_html( sprintf( __( 'Yapılamayanlar: %s.', 'flx-updater' ), implode( ', ', $mr['fail'] ) ) ); ?>
+					<?php endif; ?>
+				</p></div>
 			<?php elseif ( 'checked' === $msg ) : ?>
 				<div class="notice notice-success is-dismissible"><p><?php esc_html_e( 'Güncellemeler kontrol edildi.', 'flx-updater' ); ?></p></div>
 			<?php elseif ( 'bk_deleted' === $msg ) : ?>
@@ -566,6 +592,16 @@ final class FLXU_Admin {
 					<span class="flxu-toolbar__spacer"></span>
 					<label class="flxu-act"><input type="checkbox" name="flxu_activate" value="1" id="flxu-activate" checked> <?php esc_html_e( 'Kurulanları etkinleştir', 'flx-updater' ); ?></label>
 					<button type="submit" class="button" name="flxu_do" value="selected" id="flxu-do-selected" disabled><?php esc_html_e( 'Seçilenleri kur / güncelle', 'flx-updater' ); ?></button>
+					<span class="flxu-bulk">
+						<label class="screen-reader-text" for="flxu-bulk-op"><?php esc_html_e( 'Toplu işlem', 'flx-updater' ); ?></label>
+						<select name="flxu_op" id="flxu-bulk-op">
+							<option value=""><?php esc_html_e( 'Toplu işlemler', 'flx-updater' ); ?></option>
+							<option value="activate"><?php esc_html_e( 'Etkinleştir', 'flx-updater' ); ?></option>
+							<option value="deactivate"><?php esc_html_e( 'Devre dışı bırak', 'flx-updater' ); ?></option>
+							<option value="delete"><?php esc_html_e( 'Kaldır', 'flx-updater' ); ?></option>
+						</select>
+						<button type="submit" class="button" name="flxu_do" value="manage" id="flxu-do-manage" formaction="<?php echo esc_url( admin_url( 'admin-post.php?action=flxu_manage' ) ); ?>" disabled><?php esc_html_e( 'Uygula', 'flx-updater' ); ?></button>
+					</span>
 					<button type="submit" class="button button-primary" name="flxu_do" value="all" <?php disabled( 0 === $pending ); ?>>
 						<?php
 						/* translators: %s: number of updates */
@@ -601,8 +637,8 @@ final class FLXU_Admin {
 						?>
 						<tr class="flxu-row flxu-row--<?php echo esc_attr( $row['state'] ); ?>" data-slug="<?php echo esc_attr( $row['slug'] ); ?>">
 							<th class="check-column" scope="row">
-								<?php if ( ( 'update' === $row['state'] && $can ) || ( 'missing' === $row['state'] && $can_ins ) ) : ?>
-									<input type="checkbox" name="flxu_slugs[]" value="<?php echo esc_attr( $row['slug'] ); ?>" class="flxu-check" aria-label="<?php echo esc_attr( $row['name'] ); ?>">
+								<?php if ( ( 'update' === $row['state'] && $can ) || ( 'missing' === $row['state'] && $can_ins ) || ( 'current' === $row['state'] && self::can_manage( $row['type'] ) ) ) : ?>
+									<input type="checkbox" name="flxu_slugs[]" value="<?php echo esc_attr( $row['slug'] ); ?>" class="flxu-check" data-state="<?php echo esc_attr( $row['state'] ); ?>" aria-label="<?php echo esc_attr( $row['name'] ); ?>">
 								<?php endif; ?>
 							</th>
 							<td class="flxu-pkg">
@@ -650,7 +686,11 @@ final class FLXU_Admin {
 								</span>
 							</td>
 							<td><?php echo 'theme' === $row['type'] ? esc_html__( 'Tema', 'flx-updater' ) : esc_html__( 'Eklenti', 'flx-updater' ); ?></td>
-							<td><?php echo $row['installed'] ? esc_html( $row['installed'] ) : '—'; ?></td>
+							<td><?php echo $row['installed'] ? esc_html( $row['installed'] ) : '—'; ?>
+								<?php if ( $row['installed'] && ! $row['active'] && 'plugin' === $row['type'] ) : ?>
+									<br><small class="flxu-off"><?php esc_html_e( 'Devre dışı', 'flx-updater' ); ?></small>
+								<?php endif; ?>
+							</td>
 							<td><?php echo esc_html( $row['latest'] ); ?>
 								<?php if ( $row['released'] ) : ?>
 									<br><small><?php echo esc_html( date_i18n( get_option( 'date_format' ), strtotime( $row['released'] ) ) ); ?></small>
@@ -878,6 +918,109 @@ final class FLXU_Admin {
 	}
 
 	/** Güncelleme yedeklerini sil / saklama süresini değiştir (Geçmiş bölümünden). */
+	/** Kurulu paket için toplu işlem (etkinleştir/devre dışı/kaldır) yetkisi. */
+	private static function can_manage( string $type ): bool {
+		return 'theme' === $type ? current_user_can( 'delete_themes' ) : ( current_user_can( 'activate_plugins' ) || current_user_can( 'delete_plugins' ) );
+	}
+
+	/**
+	 * Toplu işlem: seçilen kurulu paketleri etkinleştir, devre dışı bırak ya da kaldır.
+	 * Flux Updater kendini kapatmaz/silmez; etkin tema (ve üst teması) silinmez; temalar
+	 * etkinleştirilip kapatılmaz (Görünüm › Temalar'dan değiştirilir).
+	 */
+	public function manage_action(): void {
+		check_admin_referer( 'flxu_bulk' );
+		$op = sanitize_key( wp_unslash( $_POST['flxu_op'] ?? '' ) );
+		if ( ! in_array( $op, array( 'activate', 'deactivate', 'delete' ), true ) ) {
+			wp_safe_redirect( self::url() );
+			exit;
+		}
+		require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+		require_once ABSPATH . 'wp-admin/includes/theme.php';
+
+		$catalog = FLXU_Updater::instance()->catalog();
+		$files   = FLXU_Updater::plugin_files();
+		$slugs   = array_unique( array_map( 'sanitize_key', (array) wp_unslash( $_POST['flxu_slugs'] ?? array() ) ) );
+		$done    = 0;
+		$skip    = array();
+		$fail    = array();
+		$del_pl  = array();
+		foreach ( $slugs as $slug ) {
+			$p    = $catalog[ $slug ] ?? null;
+			$name = $p['name'] ?? $slug;
+			if ( ! $p ) {
+				continue;
+			}
+			if ( 'theme' === $p['type'] ) {
+				$theme = wp_get_theme( $slug );
+				if ( 'delete' !== $op || ! $theme->exists() || ! current_user_can( 'delete_themes' ) || in_array( $slug, array( get_stylesheet(), get_template() ), true ) ) {
+					$skip[] = $name;
+					continue;
+				}
+				$r = delete_theme( $slug );
+				if ( true === $r ) {
+					++$done;
+				} else {
+					$fail[] = $name;
+				}
+				continue;
+			}
+			$file = $files[ $slug ] ?? '';
+			if ( '' === $file || ( plugin_basename( FLXU_FILE ) === $file && 'activate' !== $op ) ) {
+				$skip[] = $name;
+				continue;
+			}
+			if ( 'activate' === $op ) {
+				if ( ! current_user_can( 'activate_plugins' ) || is_plugin_active( $file ) ) {
+					$skip[] = $name;
+					continue;
+				}
+				$r = activate_plugin( $file );
+				if ( is_wp_error( $r ) ) {
+					$fail[] = $name;
+				} else {
+					++$done;
+				}
+			} elseif ( 'deactivate' === $op ) {
+				if ( ! current_user_can( 'activate_plugins' ) || ! is_plugin_active( $file ) ) {
+					$skip[] = $name;
+					continue;
+				}
+				deactivate_plugins( $file );
+				++$done;
+			} else {
+				if ( ! current_user_can( 'delete_plugins' ) ) {
+					$skip[] = $name;
+					continue;
+				}
+				$del_pl[ $file ] = $name;
+			}
+		}
+		if ( $del_pl ) {
+			// Önce kapat, sonra sil (WordPress etkin eklentiyi silmez).
+			deactivate_plugins( array_keys( $del_pl ), true );
+			$r = delete_plugins( array_keys( $del_pl ) );
+			if ( true === $r ) {
+				$done += count( $del_pl );
+			} else {
+				$fail = array_merge( $fail, array_values( $del_pl ) );
+			}
+		}
+		set_transient(
+			'flxu_manage_' . get_current_user_id(),
+			array(
+				'op'   => $op,
+				'done' => $done,
+				'skip' => $skip,
+				'fail' => $fail,
+			),
+			300
+		);
+		wp_safe_redirect( add_query_arg( 'flxu_msg', 'managed', self::url() ) );
+		exit;
+	}
+
 	public function backups_action(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( esc_html__( 'Yetkiniz yok.', 'flx-updater' ), 403 );
@@ -1116,7 +1259,7 @@ final class FLXU_Admin {
 			#flxu-check{display:inline-flex;align-items:center;gap:6px}
 			.flxu-check__spin{display:none;width:12px;height:12px;border-radius:50%;border:2px solid #c3c4c7;border-top-color:#2271b1;animation:flxu-spin .8s linear infinite}
 			#flxu-check.is-busy{pointer-events:none;opacity:.8}#flxu-check.is-busy .flxu-check__spin{display:inline-block}
-			.flxu-checked{color:#646970;margin-left:8px;font-size:13px;vertical-align:middle}.flxu-checked.is-ok{color:#1e8e3e}.flxu-checked.is-err{color:#d63638}
+			.flxu-checked{color:var(--flxa-muted, #646970);margin-left:8px;font-size:13px;vertical-align:middle}.flxu-checked.is-ok{color:#1e8e3e}.flxu-checked.is-err{color:#d63638}
 			.flxu-table td,.flxu-table th{vertical-align:middle}
 			.flxu-table .check-column{width:2.2em;padding-left:10px}
 			.flxu-pkg{display:flex;align-items:center;gap:12px}
@@ -1132,11 +1275,11 @@ final class FLXU_Admin {
 			.flxu-ver__box select{flex:1;min-width:150px}.flxu-ver__box .description{margin:2px 0 0;width:100%;font-size:12px}
 			.flxu-strip{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:4px;margin:12px 0}
 			.flxu-strip--ok{background:#edfaef;color:#1e6b2e}.flxu-strip--warn{background:#fcf9e8;color:#7a5a00}.flxu-strip--err{background:#fcf0f1;color:#8a2424}
-			.flxu-src{display:inline-block;margin-top:2px;color:#646970}
+			.flxu-src{display:inline-block;margin-top:2px;color:var(--flxa-muted, #646970)}
 			.flxu-sources{max-width:960px;margin-top:8px}.flxu-sources td{vertical-align:middle}.flxu-sources tr.is-off td{opacity:.6}
 			.flxu-src-act{white-space:nowrap;text-align:right}.flxu-inline{display:inline;margin-left:10px}.flxu-src-del{color:#b32d2e}
 			.flxu-src-st.is-ok{color:#1e6b2e}.flxu-src-st.is-ok:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#1e8e3e;margin-right:6px}
-			.flxu-src-st.is-err{color:#b32d2e}.flxu-src-st.is-off{color:#646970}
+			.flxu-src-st.is-err{color:#b32d2e}.flxu-src-st.is-off{color:var(--flxa-muted, #646970)}
 			.flxu-src-warn{display:flex;align-items:center;gap:6px;color:#7a5a00;background:#fcf9e8;padding:8px 12px;border-radius:4px;max-width:760px}
 			.flxu-history td,.flxu-history th{vertical-align:top}
 			.flxu-history .check-column{width:2.2em;padding-left:10px}
@@ -1144,12 +1287,12 @@ final class FLXU_Admin {
 			.flxu-bk .button-link{font-size:13px}
 			.flxu-keep{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#fff;border:1px solid #dcdcde;border-radius:4px;padding:10px 14px;margin:8px 0 4px}
 			.flxu-keep__text{flex:1;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-			.flxu-keep__text small{color:#646970;width:100%}
+			.flxu-keep__text small{color:var(--flxa-muted, #646970);width:100%}
 			.flxu-keep .dashicons{color:#2271b1}
 			.flxu-card{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid #dcdcde;border-left-width:4px;border-radius:4px;padding:14px 16px;margin:16px 0}
 			.flxu-card__body{flex:1;display:flex;flex-direction:column;gap:2px}
 			.flxu-card__title{font-size:15px}
-			.flxu-card small{color:#646970}
+			.flxu-card small{color:var(--flxa-muted, #646970)}
 			.flxu-dot{width:12px;height:12px;border-radius:50%;background:#a7aaad;flex:none}
 			.flxu-card--connected{border-left-color:#1e8e3e}.flxu-card--connected .flxu-dot{background:#1e8e3e;box-shadow:0 0 0 4px #e6f4ea}
 			.flxu-card--error{border-left-color:#d63638}.flxu-card--error .flxu-dot{background:#d63638;box-shadow:0 0 0 4px #fcf0f1}
@@ -1160,13 +1303,14 @@ final class FLXU_Admin {
 			.flxu-badge--err{background:#fcf0f1;color:#a00}
 			.flxu-run[hidden],.flxu-done[hidden],.flxu-idle[hidden],.flxu-deps[hidden],.flxu-log[hidden]{display:none!important}
 			.flxu-act{display:inline-flex;align-items:center;gap:4px;color:#50575e}
-			.flxu-req{color:#646970}.flxu-req__item.is-ok{color:#1e6b2e}.flxu-req__item.is-missing{color:#b32d2e;font-weight:600}
+			.flxu-bulk{display:inline-flex;align-items:center;gap:4px;margin-left:8px;padding-left:12px;border-left:1px solid #dcdcde}.flxu-off{color:var(--flxa-error, #b32d2e)}
+			.flxu-req{color:var(--flxa-muted, #646970)}.flxu-req__item.is-ok{color:#1e6b2e}.flxu-req__item.is-missing{color:#b32d2e;font-weight:600}
 			.flxu-deps{background:#fff;border:1px solid #dcdcde;border-left:4px solid #dba617;border-radius:4px;padding:6px 14px;margin:0 0 10px}
 			.flxu-deps p{margin:6px 0;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 			.flxu-deps__miss .dashicons{color:#dba617}.flxu-deps__extra .dashicons{color:#2271b1}
 			.flxu-deps__note{color:#8a2424}
 			.flxu-chip{display:inline-flex;align-items:center;gap:4px;background:#f0f6fc;border:1px solid #c5d9ed;border-radius:999px;padding:1px 4px 1px 10px}
-			.flxu-chip small{color:#646970}.flxu-chip__x{border:0;background:none;cursor:pointer;font-size:16px;line-height:1;color:#646970;padding:0 4px}
+			.flxu-chip small{color:var(--flxa-muted, #646970)}.flxu-chip__x{border:0;background:none;cursor:pointer;font-size:16px;line-height:1;color:var(--flxa-muted, #646970);padding:0 4px}
 			.flxu-row--sel{background:#f0f6fc!important}
 			.flxu-row--busy{background:#fffbea!important}
 			.flxu-row--queued{opacity:.75}
@@ -1182,7 +1326,7 @@ final class FLXU_Admin {
 			.flxu-log.is-ok{border-left-color:#1e8e3e}.flxu-log.is-err{border-left-color:#d63638}
 			.flxu-log__head{display:flex;align-items:center;gap:10px;padding:10px 14px}
 			.flxu-log__spin{display:none}.flxu-log.is-busy .flxu-log__spin{display:block}
-			.flxu-log__count{color:#646970}
+			.flxu-log__count{color:var(--flxa-muted, #646970)}
 			.flxu-log__bar{height:3px;background:#f0f0f1}
 			.flxu-log__bar span{display:block;height:100%;width:0;background:#2271b1;transition:width .4s ease}
 			.flxu-log.is-ok .flxu-log__bar span{background:#1e8e3e}.flxu-log.is-err .flxu-log__bar span{background:#d63638}
@@ -1237,6 +1381,7 @@ final class FLXU_Admin {
 			'removed'      => __( '%1$s seçimden çıkarıldı: %2$s olmadan çalışmaz.', 'flx-updater' ),
 			'confirmDeps'  => __( '%1$s için şunlar da kurulup etkinleştirilecek: %2$s. Devam edilsin mi?', 'flx-updater' ),
 			'confirmVer'   => __( '%1$s için %2$s sürümü kurulsun mu?', 'flx-updater' ),
+			'confirmDel'   => __( 'Şu paketler siteden kaldırılsın mı? Dosyaları silinir. %s', 'flx-updater' ),
 			'preparing'    => __( 'Hazırlanıyor…', 'flx-updater' ),
 			'working'      => __( 'İşlem sürüyor, sayfadan ayrılmayın…', 'flx-updater' ),
 			'nothing'      => __( 'Yapılacak bir şey yok.', 'flx-updater' ),
