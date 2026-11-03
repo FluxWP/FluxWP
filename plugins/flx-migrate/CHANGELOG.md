@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.1.4
+- Bitiş adımı eski güncelleme sunucusunun (update.yesilturkiyeist.org) adresini ve site anahtarını Flux Setup ayarlarından siler; site varsayılan sunucuya (updater.fluxwp.com) döner, yeni anahtar FluxWP Panel'den girilir. Liste `flx_migrate_old_update_hosts` filtresiyle değişir.
+
 ## 0.1.3
 - Eski YT Güncelleyici artık Flux Setup'a aktarılır (Flux Updater ayrı paket olarak kalmadı).
 

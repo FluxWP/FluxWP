@@ -9,7 +9,8 @@ Eski paket adlarıyla kurulmuş bir siteyi FluxWP adlarına geçirir. Ad eşleme
 3. Bu eklentiyi kurup etkinleştirin: **Araçlar › Flux Migrate**.
 4. **Tara**: hiçbir şeyi değiştirmeden her adımda kaç kayıt değişeceğini gösterir.
 5. **Aktar**: verileri taşır. Etkin eklenti listesi ve tema da yeni adlara geçer.
-6. Eski eklentileri silin, önbelleği temizleyin (LiteSpeed › Purge All), bu eklentiyi silin.
+6. FluxWP Panel › Ayarlar'da yeni güncelleme sunucusunun site anahtarını girin (eski sunucunun adresi ve anahtarı aktarımda silinir).
+7. Eski eklentileri silin, önbelleği temizleyin (LiteSpeed › Purge All), bu eklentiyi silin.
 
 WP-CLI: `wp flx-migrate scan` ve `wp flx-migrate run`.
 
