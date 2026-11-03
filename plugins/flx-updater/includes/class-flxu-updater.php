@@ -69,8 +69,7 @@ final class FLXU_Updater {
 		}
 		$s      = self::settings();
 		$server = (string) $s['server'];
-		// 1.0.1 ve öncesinin yanlış varsayılan adresi kayıtlıysa yenisini kullan.
-		if ( '' === $server || 'update.ustageliyor.org' === strtolower( (string) wp_parse_url( $server, PHP_URL_HOST ) ) ) {
+		if ( '' === $server ) {
 			$server = FLXU_DEFAULT_SERVER;
 		}
 		return untrailingslashit( $server );
@@ -168,11 +167,6 @@ final class FLXU_Updater {
 		};
 		$key  = (string) $src['key'];
 		$host = FLXU_Sources::host( $src );
-		if ( '' === $key && $is_main ) {
-			$status( false, __( 'Site anahtarı girilmemiş.', 'flx-updater' ) );
-			return null;
-		}
-
 		$headers = array(
 			'Content-Type' => 'application/json',
 			'Accept'       => 'application/json',
@@ -207,8 +201,10 @@ final class FLXU_Updater {
 		$body = json_decode( (string) wp_remote_retrieve_body( $res ), true );
 
 		if ( 200 !== $code || ! is_array( $body ) || empty( $body['ok'] ) ) {
-			if ( 401 === $code || 403 === $code ) {
-				$msg = __( 'Site anahtarı geçersiz. Sunucudaki config.php ile karşılaştırın.', 'flx-updater' );
+			if ( 401 === $code && '' === $key ) {
+				$msg = __( 'Bu sunucu anahtarsız güncelleme vermiyor; site anahtarı girin.', 'flx-updater' );
+			} elseif ( 401 === $code || 403 === $code ) {
+				$msg = __( 'Site anahtarı geçersiz. Güncelleme sunucusunun panelinde (/admin) "Var olan bir anahtarı test et" ile deneyin.', 'flx-updater' );
 			} else {
 				/* translators: %d: HTTP status code */
 				$msg = sprintf( __( 'Sunucu beklenmeyen yanıt verdi (HTTP %d).', 'flx-updater' ), $code );
@@ -242,7 +238,7 @@ final class FLXU_Updater {
 			);
 		}
 
-		$status( true, '', (string) ( $body['site'] ?? '' ), count( $out ) );
+		$status( true, '', ! empty( $body['public'] ) ? '' : (string) ( $body['site'] ?? '' ), count( $out ) );
 		return $out;
 	}
 
@@ -675,20 +671,6 @@ final class FLXU_Updater {
 		$status   = self::status();
 		$source   = 'Flux Updater';
 
-		if ( '' === self::key() ) {
-			$checks[] = array(
-				'id'           => 'flxu.key',
-				'source'       => $source,
-				'group'        => 'Config',
-				'label'        => __( 'Güncelleme anahtarı', 'flx-updater' ),
-				'status'       => 'warning',
-				'message'      => __( 'Site anahtarı girilmemiş; FluxWP paketleri güncelleme almaz.', 'flx-updater' ),
-				'action_url'   => $page,
-				'action_label' => __( 'Ayarlar', 'flx-updater' ),
-			);
-			return $checks;
-		}
-
 		if ( empty( $status['checked'] ) ) {
 			$st  = 'info';
 			$msg = __( 'Henüz kontrol yapılmadı.', 'flx-updater' );
@@ -699,6 +681,9 @@ final class FLXU_Updater {
 			$st = 'ok';
 			/* translators: %s: human time diff */
 			$msg = sprintf( __( 'Sunucu bağlantısı çalışıyor. Son kontrol: %s önce.', 'flx-updater' ), human_time_diff( (int) $status['checked'] ) );
+			if ( '' === self::key() ) {
+				$msg .= ' ' . __( 'Anahtar yok: yalnız public paketler gelir.', 'flx-updater' );
+			}
 		}
 		$checks[] = array(
 			'id'           => 'flxu.server',

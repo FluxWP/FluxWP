@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.0
+- Varsayılan güncelleme sunucusu `https://updater.fluxwp.com`.
+- Site anahtarı isteğe bağlı: anahtarsız site public paketleri (FluxWP Extras) alır, anahtar girilince ona tanımlı private paketler de gelir. Kart "Anahtarsız bağlı" yazar; "anahtar girilmemiş" uyarısı kalktı.
+- FluxWP Extras artık ayrı GitHub kaynağı olarak eklenmez; ana sunucudan gelir. Diğer kaynaklar listesi boş başlar.
+- Anahtar hatası mesajları netleşti (sunucu anahtarsız güncelleme vermiyorsa ayrı mesaj).
+
 ## 1.5.0
 - Birden çok güncelleme kaynağı. Ana sunucunun yanında Ayarlar › Diğer kaynaklar: public GitHub deposu (release'te `<slug>.zip`, notta `flx-meta`) ya da Flux Updater sunucusu (anahtar isteğe bağlı). Eklemeden önce test edilir; aç/kapat, Yukarı (öncelik), Sil. Varsayılan ek kaynak FluxWP Extras (github.com/FluxWP/wp-extras).
 - Paketler tüm açık kaynaklardan toplanır; tabloda "Kaynak: …" ve "2 kaynakta var". Aynı paket birden çok kaynaktaysa kurulu olduğu kaynaktan güncellenir, kurulu değilse üstteki kaynak kazanır.

@@ -9,7 +9,7 @@
  * License:           GPL-2.0-or-later
  * Text Domain:       flx-qr-menu
  * Domain Path:       /languages
- * Update URI:        https://update.yesilturkiyeist.org/flx-qr-menu
+ * Update URI:        https://updater.fluxwp.com/flx-qr-menu
  */
 
 defined( 'ABSPATH' ) || exit;

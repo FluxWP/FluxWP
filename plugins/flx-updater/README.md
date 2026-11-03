@@ -47,12 +47,13 @@ Our packages live in a private GitHub repository and are not on WordPress.org. W
 - History: who updated what, from which version to which, the result and a link to the backup. Backups of updates are removed automatically after 1–90 days.
 
 ### Connection
+- Default server: `https://updater.fluxwp.com`. Public packages (FluxWP Extras) need no key; a site key adds the private packages allowed for it.
 - Server address and site key are entered once in the panel (or with `FLX_UPDATE_SERVER` / `FLX_UPDATE_KEY` in `wp-config.php`).
 - Connection card: connected / error / not connected, the site's name on the server, package and update counts, and **Test connection**.
 - Pre-release versions (`1.3.0-beta.1`) reach only sites set to the beta channel on the server.
 
 ### Other sources
-- Besides the main server: public GitHub repositories (`<slug>.zip` in each release, `flx-meta` in the notes) and other servers that speak the Flux Updater protocol (key optional). **FluxWP Extras** (`github.com/FluxWP/wp-extras`) is added by default.
+- Besides the main server: public GitHub repositories (`<slug>.zip` in each release, `flx-meta` in the notes) and other servers that speak the Flux Updater protocol (key optional).
 - Settings › Other sources: add (tested before saving), turn on/off, priority (Move up), remove. The packages table shows a "Source: …" label.
 - If a package is in more than one source, it updates from the source it was installed from; if it is not installed, the source higher in the list wins ("available from 2 sources").
 - Each key is sent only to its own server; a download URL outside the source's host is ignored. A source that can't be reached keeps showing its last known packages, with a warning on top.
@@ -79,6 +80,8 @@ Requirements: WordPress 6.5+, PHP 7.4+.
 **Dashboard › Updates** lists every FluxWP package; click **Install** next to *Flux Updater*. Updates arrive the same way.
 
 **First steps**
+
+Public packages work right after activation, with no key. For private packages:
 
 1. On the update server's admin panel, **Add site** and copy the key it shows once.
 2. On the site, **Updates › Settings**: paste the key (the server address is pre-filled) and **Save and check**. The card turns green: **Connected**.

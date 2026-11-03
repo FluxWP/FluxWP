@@ -57,7 +57,7 @@ jobs:
       - name: Sürümü değişenleri test et ve yayınla
         env:
           GH_TOKEN: ${{ github.token }}
-          UPDATE_SERVER: ${{ vars.UPDATE_SERVER || 'https://update.yesilturkiyeist.org' }}
+          UPDATE_SERVER: ${{ vars.UPDATE_SERVER || 'https://updater.fluxwp.com' }}
           WEBHOOK_SECRET: ${{ secrets.UPDATE_WEBHOOK_SECRET }}
         run: |
           set -euo pipefail

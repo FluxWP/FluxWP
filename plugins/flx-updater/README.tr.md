@@ -47,12 +47,13 @@ Paketlerimiz özel bir GitHub deposunda duruyor, WordPress.org'da yok. Flux Upda
 - Geçmiş: kim neyi hangi sürümden hangisine güncelledi, sonuç ve yedek bağlantısı. Güncelleme yedekleri 1–90 gün sonra kendiliğinden silinir.
 
 ### Bağlantı
+- Varsayılan sunucu: `https://updater.fluxwp.com`. Public paketler (FluxWP Extras) anahtarsız gelir; site anahtarı girilince ona tanımlı private paketler de gelir.
 - Sunucu adresi ve site anahtarı panelden bir kez girilir (ya da `wp-config.php`'de `FLX_UPDATE_SERVER` / `FLX_UPDATE_KEY`).
 - Bağlantı kartı: bağlı / hata / bağlı değil, sunucudaki site adı, paket ve güncelleme sayısı, **Bağlantıyı test et**.
 - Ön sürümler (`1.3.0-beta.1`) yalnız sunucuda beta kanalına alınmış sitelere gelir.
 
 ### Diğer kaynaklar
-- Ana sunucunun yanında başka kaynaklar: public GitHub depoları (release'inde `<slug>.zip`, notta `flx-meta`) ve Flux Updater protokolünü konuşan başka sunucular (anahtar isteğe bağlı). Varsayılan ek kaynak **FluxWP Extras** (`github.com/FluxWP/wp-extras`).
+- Ana sunucunun yanında başka kaynaklar: public GitHub depoları (release'inde `<slug>.zip`, notta `flx-meta`) ve Flux Updater protokolünü konuşan başka sunucular (anahtar isteğe bağlı).
 - Ayarlar › Diğer kaynaklar: ekle (eklemeden önce test edilir), aç/kapat, öncelik (Yukarı), sil. Paket tablosunda "Kaynak: …" etiketi.
 - Aynı paket birden çok kaynakta varsa kurulu olduğu kaynaktan güncellenir; kurulu değilse listede üstteki kaynak kazanır ("2 kaynakta var").
 - Her anahtar yalnız kendi sunucusunun adresine gider; indirme adresi kaynağın host'unda değilse paket alınmaz. Ulaşılamayan kaynağın paketleri son bilinen veriden gösterilir, üstte uyarı çıkar.
@@ -79,6 +80,8 @@ Gereksinimler: WordPress 6.5+, PHP 7.4+.
 **Başlangıç › Güncellemeler** tüm FluxWP paketlerini listeler; *Flux Updater* satırındaki **Kur**'a basın. Güncellemeler de buradan gelir.
 
 **İlk adımlar**
+
+Public paketler etkinleştirince anahtarsız gelir. Private paketler için:
 
 1. Güncelleme sunucusunun yönetim panelinde **Site ekle** deyin ve bir kez gösterilen anahtarı kopyalayın.
 2. Sitede **Güncellemeler › Ayarlar**: anahtarı yapıştırın (sunucu adresi hazır gelir) ve **Kaydet ve kontrol et**'e basın. Kart yeşile döner: **Bağlı**.

@@ -203,7 +203,7 @@ Create `plugins/<slug>/` or `themes/<slug>/` with a `Version:` header and push; 
 
 ### Update server
 
-The update server lives in [FluxWP/updater](https://github.com/FluxWP/updater) (`update.yesilturkiyeist.org`); sites need `plugins/flx-updater`.
+The update server lives in [FluxWP/updater](https://github.com/FluxWP/updater) (`updater.fluxwp.com`); sites need `plugins/flx-updater`.
 
 ### Promo media
 

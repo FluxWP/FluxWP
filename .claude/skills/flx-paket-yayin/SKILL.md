@@ -69,7 +69,7 @@ Push sonrası Actions sonucunu kontrol et (GitHub MCP `actions_list`/`get_job_lo
 
 ## 6. Güncelleme sunucusu ve Flux Updater
 
-- Sunucu `FluxWP/updater`, `https://update.yesilturkiyeist.org` (`/admin` panel, `/v1/check`,
+- Sunucu `FluxWP/updater`, `https://updater.fluxwp.com` (`/admin` panel, `/v1/check`,
   `/v1/download/<slug>/<sürüm>.zip`, `/v1/webhook`). GitHub token yalnız sunucuda; siteler `X-FluxWP-Site-Key` ile bağlanır,
   sunucuda anahtarın sha256'sı durur. Site başına paket listesi ve kanal (stable/beta).
 - Sitede Flux Updater (`plugins/flx-updater`, prefix `flxu_`): katalogu `update_plugins`/`update_themes` transient'ine ekler,

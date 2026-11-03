@@ -248,5 +248,11 @@ return array(
 		'Adres https:// ile başlamalı.' => 'The address must start with https://.',
 		'Bu kaynak zaten listede.' => 'This source is already in the list.',
 		'Kaynak test edilemedi.' => 'The source could not be tested.',
+		'Anahtarsız bağlı (%s): public paketler geliyor. Private paketler için site anahtarı girin.' => 'Connected without a key (%s): public packages are available. Enter a site key for private packages.',
+		'İsteğe bağlı. Public paketler anahtarsız gelir; private paketler için güncelleme sunucusunun panelinde (/admin) "Site ekle" ile alınır. Her siteye ayrı anahtar verin.' => 'Optional. Public packages need no key; for private packages, get one from the update server panel (/admin) with "Add site". Give each site its own key.',
+		'Sunucudan paket listesi alınamadı. Ayarlar\'dan sunucu adresini ve (varsa) anahtarı kontrol edip "Bağlantıyı test et"e basın.' => 'Could not get the package list from the server. Check the server address and key (if any) in Settings, then click "Test connection".',
+		'Bu sunucu anahtarsız güncelleme vermiyor; site anahtarı girin.' => 'This server does not serve updates without a key; enter a site key.',
+		'Site anahtarı geçersiz. Güncelleme sunucusunun panelinde (/admin) "Var olan bir anahtarı test et" ile deneyin.' => 'Invalid site key. Try it with "Test an existing key" in the update server panel (/admin).',
+		'Anahtar yok: yalnız public paketler gelir.' => 'No key: only public packages are available.',
 	),
 );

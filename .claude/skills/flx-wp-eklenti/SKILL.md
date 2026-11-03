@@ -34,7 +34,7 @@ SEO & MCP, Admin) yaşanan hatalardan çıktı. Ayrıntılı sözleşmeler repod
  * License:           GPL-2.0-or-later
  * Text Domain:       flx-ornek
  * Domain Path:       /languages
- * Update URI:        https://update.yesilturkiyeist.org/flx-ornek
+ * Update URI:        https://updater.fluxwp.com/flx-ornek
  */
 defined( 'ABSPATH' ) || exit;
 if ( defined( 'FLXO_VERSION' ) ) { return; }     // iki kopya yüklenirse fatal olmasın
