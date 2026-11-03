@@ -36,7 +36,7 @@ C={
 2. **Dashboard › Back up now** for the first full backup.
 3. From now on every plugin and theme update is preceded by a backup that is kept for 7 days.''',
  note='> ⚠️ Hostinger does not include the `wp-snapshots` folder in its own backups. Download important backups to your computer, and keep the hosting backups switched on: Flux Backup works next to them, not instead of them. If `DISABLE_WP_CRON` is set, call `wp-cron.php` from a real cron job every 5–15 minutes.',
- dev='''Other packages (for example Flux Updater) use the PHP API:
+ dev='''Other packages (for example FluxWP Panel) use the PHP API:
 
 ```php
 $backup = flxy_backup_create( array(
@@ -86,7 +86,7 @@ Full reference: [API.md](../../docs/yedek-eklentisi/API.md).''',
 2. İlk tam yedek için **Panel › Şimdi yedek al**.
 3. Bundan sonra her eklenti ve tema güncellemesinden önce yedek alınır ve 7 gün saklanır.''',
  note="> ⚠️ Hostinger `wp-snapshots` klasörünü kendi yedeklerine almaz. Önemli yedekleri bilgisayarınıza indirin ve hosting yedeklerini açık tutun: Flux Backup onların yerine değil, yanında çalışır. `DISABLE_WP_CRON` tanımlıysa `wp-cron.php`'yi gerçek bir cron ile 5–15 dakikada bir çağırın.",
- dev='''Diğer paketler (ör. Flux Updater) PHP API'sini kullanır:
+ dev='''Diğer paketler (ör. FluxWP Panel) PHP API'sini kullanır:
 
 ```php
 $backup = flxy_backup_create( array(

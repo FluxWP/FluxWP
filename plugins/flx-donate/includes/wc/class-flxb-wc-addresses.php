@@ -273,7 +273,7 @@ class FLXB_WC_Addresses {
 			$country = (string) ( $old['country'] ?? ( $c->get_base_country() ? $c->get_base_country() : 'TR' ) );
 			woocommerce_form_field( 'flxb_label', array( 'label' => __( 'Address name', 'flx-donate' ), 'placeholder' => __( 'e.g. Home, Office', 'flx-donate' ), 'class' => array( 'form-row-wide' ) ), (string) ( $old['label'] ?? '' ) );
 			foreach ( $c->get_address_fields( $country, 'flxb_' ) as $key => $field ) {
-				woocommerce_form_field( $key, $field, (string) ( $old[ substr( $key, 4 ) ] ?? ( 'flxb_country' === $key ? $country : '' ) ) );
+				woocommerce_form_field( $key, $field, (string) ( $old[ substr( $key, 5 ) ] ?? ( 'flxb_country' === $key ? $country : '' ) ) );
 			}
 			?>
 			<p><button type="submit" class="button flxb-ab__save"><?php esc_html_e( 'Save address', 'flx-donate' ); ?></button></p>

@@ -1,5 +1,5 @@
 /**
- * Flux Updater › Güncellemeler: gerekli eklenti uyarıları ve sayfadan çıkmadan kurma/güncelleme.
+ * FluxWP Panel › Güncellemeler: gerekli eklenti uyarıları ve sayfadan çıkmadan kurma/güncelleme.
  * Veri: #flxu-packages[data-deps] = {pk: {slug: {name, state, req[]}}, pl: {slug: {name, installed, active, flx}}}
  */
 (function () {

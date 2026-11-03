@@ -216,7 +216,7 @@ function flxa_settings_look( array $s ) {
 							<?php echo esc_html( $l ); ?></label>
 					<?php endforeach; ?>
 				</fieldset>
-				<p class="description"><?php esc_html_e( 'Sol menüde, Flux Updater paket listesinde ve FluxWP App\'te kullanılır. Renkler paket grubunu gösterir: yönetim, bakım, iletişim, içerik, ticaret.', 'flx-admin' ); ?></p></td></tr>
+				<p class="description"><?php esc_html_e( 'Sol menüde, FluxWP Panel paket listesinde ve FluxWP App\'te kullanılır. Renkler paket grubunu gösterir: yönetim, bakım, iletişim, içerik, ticaret.', 'flx-admin' ); ?></p></td></tr>
 			<tr><th scope="row"><label for="flxa-dark-ex"><?php esc_html_e( 'Koyu tema kapalı ekranlar', 'flx-admin' ); ?></label></th>
 				<td><textarea id="flxa-dark-ex" name="s[dark_exclude]" rows="3" class="large-text code"><?php echo esc_textarea( $s['dark_exclude'] ); ?></textarea>
 				<p class="description"><?php esc_html_e( 'Satır başına bir ekran kimliği veya gövde sınıfı (sonunda * olabilir). Kendi koyu teması olmayan karmaşık ekranlar burada açık kalır.', 'flx-admin' ); ?></p></td></tr>

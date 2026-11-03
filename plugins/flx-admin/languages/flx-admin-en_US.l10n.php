@@ -362,7 +362,7 @@ return array(
 		'Paket logoları' => 'Package logos',
 		'Degrade (varsayılan)' => 'Gradient (default)',
 		'Pastel' => 'Pastel',
-		'Sol menüde, Flux Updater paket listesinde ve FluxWP App\'te kullanılır. Renkler paket grubunu gösterir: yönetim, bakım, iletişim, içerik, ticaret.' => 'Used in the side menu, the Flux Updater package list and FluxWP App. Colours show the package group: platform, maintenance, communication, content, commerce.',
+		'Sol menüde, FluxWP Panel paket listesinde ve FluxWP App\'te kullanılır. Renkler paket grubunu gösterir: yönetim, bakım, iletişim, içerik, ticaret.' => 'Used in the side menu, the FluxWP Panel package list and FluxWP App. Colours show the package group: platform, maintenance, communication, content, commerce.',
 		'Yönetim panelinin görünümü, menüsü ve yetkileri' => 'Admin panel look, menu and permissions',
 		'Tüm eklentiler için ortak yapay zekâ merkezi' => 'Shared AI hub for all plugins',
 		'Çerezsiz site istatistikleri ve ziyaretçi yolculukları' => 'Cookieless site statistics and visitor journeys',

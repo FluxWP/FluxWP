@@ -10,7 +10,7 @@ const DEFAULT_GROUPS: { id: string; items: string[] }[] = [
   { id: 'content', items: ['edit.php?post_type=page', 'edit.php', 'edit.php?post_type=proje', 'edit.php?post_type=etkinlik', 'upload.php', 'edit-comments.php', 'flx-studio'] },
   { id: 'growth', items: ['woocommerce-marketing', 'flx-social', 'flxseo', 'flx-analytics', 'wc-admin&path=/analytics/overview', 'googlesitekit-dashboard'] },
   { id: 'screens', items: ['flx-tv-board', 'flx-tv-remote', 'flxapp-settings'] },
-  { id: 'system', items: ['flx-setup', 'flx-updater', 'flx-backup', 'flx-speed', 'flx-ai', 'flx-roles', 'plugins.php', 'themes.php', 'users.php', 'options-general.php', 'tools.php', 'hostinger', 'litespeed'] },
+  { id: 'system', items: ['flx-setup', 'flx-backup', 'flx-speed', 'flx-ai', 'flx-roles', 'plugins.php', 'themes.php', 'users.php', 'options-general.php', 'tools.php', 'hostinger', 'litespeed'] },
 ];
 const DEFAULT_PINS = ['index.php', 'flx-chat', 'flx-tasks', 'flxb-dashboard'];
 

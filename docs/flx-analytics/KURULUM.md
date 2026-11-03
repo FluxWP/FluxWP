@@ -4,7 +4,7 @@ Kişisel veri tutmayan site istatistikleri (çerez yalnız referans bağlantıs�
 
 ## Kurulum
 
-1. **Eklentiler › Yeni ekle › Yükle** → `flx-analytics.zip` → Etkinleştir. (Ya da Flux Updater'den.)
+1. **Eklentiler › Yeni ekle › Yükle** → `flx-analytics.zip` → Etkinleştir. (Ya da FluxWP Panel'den.)
 2. Sol menüde **Site Analitik** çıkar. **Site Analitik › Ayarlar**'ı bir kez açın: hızlı toplama ucu kendiliğinden test edilir
    ("Hızlı uç çalışıyor" yeşil olmalı). Olmazsa REST'e geçer, ayrıca bir şey yapmanız gerekmez.
 3. Siteyi giriş yapmadığınız bir tarayıcıda / telefonda açın; ziyaret birkaç dakika içinde **Site Analitik › İstatistikler**'de görünür.

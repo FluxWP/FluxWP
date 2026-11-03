@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FLXF_FORK_VERSION', '2.1.9' );
+define( 'FLXF_FORK_VERSION', '2.1.10' );
 
 /* Ülke/il/ilçe listeleri eklentinin içinden yüklenir (ziyaretçi tarayıcısı üçüncü taraf CDN'e gitmez). */
 if ( ! defined( 'CDN_ZONE_AREA' ) ) {
@@ -63,7 +63,7 @@ add_action(
 );
 
 /* ---------- WordPress.org güncellemesi fork'u ezmesin ---------- */
-/* Yalnız wordpress.org'dan gelen kayıt silinir; Flux Updater'nin kaydı kalır. */
+/* Yalnız wordpress.org'dan gelen kayıt silinir; FluxWP Panel'in kaydı kalır. */
 add_filter(
 	'site_transient_update_plugins',
 	function ( $value ) {

@@ -1,7 +1,10 @@
 # Değişiklikler
 
-## 0.3.2
+## 0.3.4
 - Panel yalnız Flux Admin / tema koyu modunu izler; admin açıkken cihaz ayarından koyulaşmıyor.
+
+## 0.3.3
+- Ayar önekleri listesinde `flxu_` artık "FluxWP Panel" olarak görünür (eski Flux Updater adı yerine).
 
 ## 0.3.1
 - Koyu mod Flux Admin koyu temasında da çalışıyor (önceden yalnız tema sınıfında); ara bilgi metinleri ve rozetler okunur; panelde yeşilimsi koyu tonlar nötr.

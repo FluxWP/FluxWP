@@ -3,7 +3,7 @@
  * Güncelleme kaynakları: ana sunucu + panelden eklenen diğer kaynaklar.
  *
  * Tür:
- * - server: Flux Updater protokolü (/v1/check, /v1/download), isteğe bağlı site anahtarı.
+ * - server: FluxWP güncelleme protokolü (/v1/check, /v1/download), isteğe bağlı site anahtarı.
  * - github: public GitHub deposu; release tag'i <slug>-v<sürüm>, asset <slug>.zip, notta flx-meta.
  *
  * Ana kaynak ("main") eski tek sunucu ayarından gelir (FLX_UPDATE_SERVER / FLX_UPDATE_KEY sabitleri dahil).

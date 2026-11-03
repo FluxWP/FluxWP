@@ -275,7 +275,7 @@ add_filter(
 	3
 );
 
-/** Flux Updater › Güncellemeler listesinde logo (güncelleyicide flx-ai.svg yoksa). */
+/** FluxWP Panel › Güncellemeler listesinde logo (güncelleyicide flx-ai.svg yoksa). */
 add_filter(
 	'flxu_package_icons',
 	function ( $icons, $slug ) {

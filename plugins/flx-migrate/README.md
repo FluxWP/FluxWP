@@ -10,7 +10,8 @@ Eski paket adlarıyla kurulmuş bir siteyi FluxWP adlarına geçirir. Ad eşleme
 4. **Tara**: hiçbir şeyi değiştirmeden her adımda kaç kayıt değişeceğini gösterir.
 5. **Aktar**: verileri taşır. Etkin eklenti listesi ve tema da yeni adlara geçer.
 6. FluxWP Panel › Ayarlar'da yeni güncelleme sunucusunun site anahtarını girin (eski sunucunun adresi ve anahtarı aktarımda silinir).
-7. Eski eklentileri silin, önbelleği temizleyin (LiteSpeed › Purge All), bu eklentiyi silin.
+7. Siteyi kontrol edin, sonra aynı ekrandaki **Eski kalıntılar** bölümünden eski tabloları, klasörleri, eklentileri ve ayarları seçip silin.
+8. Eski eklentileri silin, önbelleği temizleyin (LiteSpeed › Purge All), bu eklentiyi silin.
 
 WP-CLI: `wp flx-migrate scan` ve `wp flx-migrate run`.
 
@@ -18,13 +19,15 @@ WP-CLI: `wp flx-migrate scan` ve `wp flx-migrate run`.
 
 | Adım | Ne yapar |
 |---|---|
-| Tablolar | `{prefix}<eski>` tablolarını yeni adla yeniden adlandırır (hedef boşsa önce siler) |
+| Tablolar | `{prefix}<eski>` tablolarını yeni adla yeniden adlandırır (hedef doluysa `<ad>_bakAAGG` adıyla yedekler) |
 | Tablo içerikleri | Bu tabloların metin sütunlarındaki eski tanımlayıcılar |
 | Ayarlar | Option adları ve değerleri (serileştirilmiş/JSON değerler içinde de), etkin eklentiler, roller ve yetkiler, cron kancaları; eski geçici veriler (transient) silinir |
 | Tema | `stylesheet`/`template` ve `theme_mods_*` |
 | Meta | post/user/term meta anahtarları ve değerleri |
 | Yazılar | Yazı türleri; içerikteki blok adları, kısa kodlar, class/id/data öznitelikleri, `wp-content/...` yolları |
 | Taksonomiler | Taksonomi adları, blok şablonlarının tema terimi |
+| WooCommerce | HPOS sipariş meta verileri, ödeme yöntemi, sipariş kalemi meta verileri |
 | Yükleme klasörleri | `uploads/<eski>` → `uploads/<yeni>` |
+| Şifreli ayarlar | Eski anahtarla şifrelenmiş parola ve jetonlar yeni anahtarla yeniden şifrelenir (Mail, AI, Social, iyzico) |
 
 Her adım tekrar çalıştırılabilir; ikinci çalıştırmada değişecek bir şey kalmaz.

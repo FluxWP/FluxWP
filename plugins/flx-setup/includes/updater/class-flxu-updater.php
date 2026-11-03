@@ -192,7 +192,7 @@ final class FLXU_Updater {
 	}
 
 	/**
-	 * Flux Updater protokolünü konuşan bir sunucunun kataloğu.
+	 * FluxWP güncelleme protokolünü konuşan bir sunucunun kataloğu.
 	 *
 	 * @return array|null Başarısızsa null; durum kaynak durumuna (ana sunucuda flxu_status'a da) yazılır.
 	 */
@@ -750,7 +750,7 @@ final class FLXU_Updater {
 		$checks   = is_array( $checks ) ? $checks : array();
 		$page     = admin_url( 'admin.php?page=flx-setup-settings' );
 		$status   = self::status();
-		$source   = 'Flux Updater';
+		$source   = 'FluxWP Panel';
 
 		if ( empty( $status['checked'] ) ) {
 			$st  = 'info';
