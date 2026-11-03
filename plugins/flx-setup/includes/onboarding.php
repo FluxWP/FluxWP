@@ -384,6 +384,9 @@ final class FLXK_Onboarding {
 			'themeThumb' => is_readable( FLXK_DIR . 'assets/onboarding/thumbs/fluxwp.jpg' ) ? FLXK_URL . 'assets/onboarding/thumbs/fluxwp.jpg' : '',
 			'themeIcon' => (string) ( FLXU_Updater::icons( 'fluxwp' )['svg'] ?? '' ),
 			'setupIcon' => FLXK_URL . 'assets/icons/flx-setup.svg',
+			'legal'     => flxk_legal_urls(),
+			'usage'     => flxk_telemetry_enabled(),
+			'terms'     => ! empty( flxk_terms_accepted() ),
 			'siteName'  => get_bloginfo( 'name' ),
 			'tagline'   => get_bloginfo( 'description' ),
 			'pageDefs'  => array_map(
@@ -566,6 +569,12 @@ final class FLXK_Onboarding {
 				/* translators: %s: preset name */
 				return self::ok( sprintf( __( '%s ön ayarı uygulandı.', 'flx-setup' ), $p['name'] ), array( 'pages' => self::count_pages() ) );
 
+			case 'consent':
+				// value: "1" kullanım verisi izni, "0" yok. Şartlar onayı bu adımla kaydedilir.
+				flxk_accept_terms();
+				flxk_set_telemetry( '1' === $value );
+				return self::ok( '1' === $value ? __( 'Kullanım verisi izni kaydedildi.', 'flx-setup' ) : __( 'Kullanım verisi gönderilmeyecek.', 'flx-setup' ) );
+
 			case 'done':
 			case 'skip':
 				update_option( 'flxk_onboarding', 'done' === $kind ? 'done' : 'skipped', false );
@@ -666,6 +675,14 @@ final class FLXK_Onboarding {
 			'f3b'        => __( 'Geri dönüş', 'flx-setup' ),
 			'f3s'        => __( 'Ön ayarı ve rengi sonra Görünüm › Tema Ayarları\'ndan değiştirirsiniz.', 'flx-setup' ),
 			'start'      => __( 'Başlayalım', 'flx-setup' ),
+			/* translators: 1: Terms of Use link, 2: Privacy Policy link, 3: KVKK notice link */
+			'cTerms'     => __( '%1$s ve %2$s\'nı kabul ediyorum; %3$s\'ni okudum.', 'flx-setup' ),
+			'cTermsL'    => __( 'Kullanım Şartları', 'flx-setup' ),
+			'cPrivL'     => __( 'Gizlilik Politikası', 'flx-setup' ),
+			'cKvkkL'     => __( 'KVKK Aydınlatma Metni', 'flx-setup' ),
+			'cUsage'     => __( 'Ürünü geliştirmemize yardımcı olun (kullanım verisi gönder)', 'flx-setup' ),
+			'cUsageS'    => __( 'İsteğe bağlı. Site adresi, WordPress ve PHP sürümü, dil ve saat dilimi ile FluxWP eklentilerinin anonim sürüm ve hata bilgisi. Kapalıyken de güncellemeler çalışır; FluxWP Panel › Ayarlar\'dan değiştirebilirsiniz.', 'flx-setup' ),
+			'cNeed'      => __( 'Devam etmek için şartları onaylayın.', 'flx-setup' ),
 			'skipSelf'   => __( 'Kendim kurarım', 'flx-setup' ),
 			'time'       => __( 'Yaklaşık 3 dakika', 'flx-setup' ),
 			/* translators: 1: category number, 2: category count */

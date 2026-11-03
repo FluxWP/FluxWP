@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 1.0.7
+- Kurulum sihirbazının ilk ekranında yasal onay: **Kullanım Şartları ve Gizlilik Politikası'nı kabul ediyorum; KVKK Aydınlatma Metni'ni okudum** (fluxwp.com linkleri, panel diline göre EN ya da /tr/). İşaretlenmeden "Başlayalım" açılmaz; "Kendim kurarım" yine çalışır.
+- İsteğe bağlı **Ürünü geliştirmemize yardımcı olun (kullanım verisi gönder)** kutusu, varsayılan kapalı. FluxWP Panel › Ayarlar'dan açılır ya da geri alınır.
+- İzin yokken güncelleme denetimi yalnız paketleri, FluxWP Panel sürümünü ve kurulum kimliğini gönderir: site adresi, WordPress/PHP sürümü, saat dilimi ve dil gitmez; FluxWP sunucularına giden isteklerde site adresli User-Agent kaldırılır. Sunucu tarafı: updater 1.9.6.
+
 ## 1.0.6
 - Görünen ad **FluxWP Panel** oldu (eklenti başlığı, yönetim menüsü, sihirbaz, bildirimler). Slug `flx-setup`, ayarlar ve güncelleme adresi aynı kalır.
 

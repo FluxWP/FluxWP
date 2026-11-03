@@ -146,6 +146,9 @@ final class FLXU_Admin {
 			$new['key'] = '';
 		}
 		update_site_option( FLXU_Updater::SETTINGS_OPTION, $new );
+		if ( function_exists( 'flxk_set_telemetry' ) ) {
+			flxk_set_telemetry( ! empty( $_POST['usage'] ) );
+		}
 
 		FLXU_Updater::instance()->check_now();
 		$connected = 'connected' === self::connection_state( FLXU_Updater::status() );
@@ -472,6 +475,20 @@ final class FLXU_Admin {
 							<p class="description"><?php esc_html_e( 'Kapalıyken WordPress\'in eklenti başına "Otomatik güncellemeyi etkinleştir" ayarı geçerlidir.', 'flx-setup' ); ?></p>
 						</td>
 					</tr>
+					<?php if ( function_exists( 'flxk_telemetry_enabled' ) ) : ?>
+						<?php $legal = flxk_legal_urls(); ?>
+						<tr>
+							<th scope="row"><?php esc_html_e( 'Kullanım verisi', 'flx-setup' ); ?></th>
+							<td><label><input type="checkbox" name="usage" value="1" <?php checked( flxk_telemetry_enabled() ); ?>> <?php esc_html_e( 'Ürünü geliştirmemize yardımcı olun (kullanım verisi gönder)', 'flx-setup' ); ?></label>
+								<p class="description"><?php esc_html_e( 'Açıkken güncelleme denetimine site adresi, WordPress ve PHP sürümü, saat dilimi ve dil eklenir; FluxWP eklentilerinin sürümleri ve hataları anonim olarak gönderilir. Kapalıyken yalnız güncelleme için gereken bilgi gider, güncellemeler aynı çalışır. İzni istediğiniz zaman buradan geri alabilirsiniz.', 'flx-setup' ); ?></p>
+								<p class="description">
+									<a href="<?php echo esc_url( $legal['kvkk'] ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'KVKK Aydınlatma Metni', 'flx-setup' ); ?></a> ·
+									<a href="<?php echo esc_url( $legal['privacy'] ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Gizlilik Politikası', 'flx-setup' ); ?></a> ·
+									<a href="<?php echo esc_url( $legal['terms'] ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Kullanım Şartları', 'flx-setup' ); ?></a>
+								</p>
+							</td>
+						</tr>
+					<?php endif; ?>
 				</table>
 				<?php submit_button( __( 'Kaydet ve kontrol et', 'flx-setup' ) ); ?>
 			</form>
