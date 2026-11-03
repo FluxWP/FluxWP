@@ -37,7 +37,7 @@ final class Flx_Migrate_Mapper {
 			. ( '' !== $alt ? '(?P<slug>' . $alt . ')(?![a-z0-9])|' : '' )
 			. '(?P<gl>' . $lo . ')(?=[-_])'
 			. '|(?P<gu>' . $up . ')(?=[-_])'
-			. '|(?P<lo>' . $lo . ')(?=[a-zA-Z0-9])'
+			. '|(?P<lo>' . $lo . ')(?=[a-zA-Z0-9])(?!ith)' // not YITH (yith_*, a third-party prefix)
 			. '|(?P<up>' . $up . ')(?=[A-Z])'
 			. '|(?P<cap>' . $cap . ')(?=[gcb][A-Z])'
 			. '|(?P<bl>' . $lo . ')(?![A-Za-z0-9])'
