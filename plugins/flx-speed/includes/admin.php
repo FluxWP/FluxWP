@@ -484,6 +484,51 @@ class FLXP_Admin {
 
 	/* ------------------------------------------------------------ Sunucu */
 
+	/** Kaynak değerlerinin kime ait olduğu. */
+	private static function scope_label( $scope ) {
+		if ( 'account' === $scope ) {
+			return __( 'Hesap sınırı (cgroup)', 'flx-speed' );
+		}
+		if ( 'shared' === $scope ) {
+			return __( 'Paylaşımlı hosting: hesap sınırı okunamıyor', 'flx-speed' );
+		}
+		return __( 'Sunucu bu siteye ait (VPS/dedicated)', 'flx-speed' );
+	}
+
+	/** Hesap diski ve (paylaşımlıysa) makinenin ortak değerleri, açıkça etiketli. */
+	private static function resources( $l ) {
+		$fmt = function ( $b ) {
+			return ( null === $b || (float) $b <= 0 ) ? '—' : size_format( (float) $b, 1 );
+		};
+		$du  = $l['disk_usage'];
+		if ( $du ) {
+			$rows = array(
+				__( 'Taranan klasör', 'flx-speed' )        => $du['root'],
+				__( 'Dosyalar', 'flx-speed' )              => null === $du['bytes'] ? __( 'Hesaplanıyor…', 'flx-speed' ) : $fmt( $du['bytes'] ),
+				__( 'Dosya ve klasör sayısı (inode)', 'flx-speed' ) => null === $du['files'] ? '—' : number_format_i18n( $du['files'] ),
+				__( 'Veritabanı', 'flx-speed' )            => $fmt( $du['db'] ),
+				__( 'Disk kotası', 'flx-speed' )           => flxp_settings( 'disk_quota_gb' ) ? $fmt( flxp_settings( 'disk_quota_gb' ) * 1073741824 ) : __( 'Girilmedi (Ayarlar)', 'flx-speed' ),
+				__( 'Son ölçüm', 'flx-speed' )             => $du['time'] ? sprintf( /* translators: %s: süre */ __( '%s önce', 'flx-speed' ), human_time_diff( $du['time'] ) ) . ( $du['running'] ? ' · ' . __( 'yenileniyor', 'flx-speed' ) : '' ) : '—',
+			);
+			self::kv( __( 'Hesap diski', 'flx-speed' ), $rows );
+		}
+		if ( 'machine' === $l['scope'] && ! $l['disk_shared'] ) {
+			return;
+		}
+		$m  = $l['machine'];
+		$ld = $m['load'] ? implode( ' / ', $m['load'] ) . ( null === $m['load_pct'] ? '' : ' (%' . $m['load_pct'] . ')' ) : '—';
+		self::kv(
+			__( 'Makine geneli (paylaşımlı, tüm hesaplar)', 'flx-speed' ),
+			array(
+				__( 'Çekirdek sayısı', 'flx-speed' )      => $m['cores'] ? $m['cores'] : '—',
+				__( 'Yük (1/5/15 dk)', 'flx-speed' )      => $ld,
+				__( 'Bellek', 'flx-speed' )               => $m['ram_total_kb'] ? $fmt( $m['ram_used_kb'] * 1024 ) . ' / ' . $fmt( $m['ram_total_kb'] * 1024 ) : '—',
+				__( 'Disk', 'flx-speed' )                 => $m['disk_total'] ? sprintf( __( '%s boş', 'flx-speed' ), $fmt( $m['disk_free'] ) ) . ' / ' . $fmt( $m['disk_total'] ) : '—',
+				__( 'Not', 'flx-speed' )                  => __( 'Bu değerler sunucudaki tüm hesaplarındır, sitenizin kullanımı veya sınırı değildir.', 'flx-speed' ),
+			)
+		);
+	}
+
 	private static function server() {
 		$st  = flxp_server_stats();
 		$e   = flxp_environment();
@@ -503,12 +548,13 @@ class FLXP_Admin {
 				__( 'IP adresi', 'flx-speed' )       => $st['server']['ip'],
 				__( 'Port', 'flx-speed' )            => $st['server']['port'],
 				__( 'Belge kökü', 'flx-speed' )      => $st['server']['doc_root'],
-				__( 'Çekirdek sayısı', 'flx-speed' ) => $st['live']['cores'] ? $st['live']['cores'] : '—',
+				__( 'Kaynak bilgisi', 'flx-speed' )  => self::scope_label( $st['live']['scope'] ),
 				'CloudLinux'                            => $b( $st['server']['cloudlinux'] ),
 				'HTTPS'                                 => $b( $e['server']['https'] ),
 				'LiteSpeed'                             => $b( $e['server']['litespeed'] ),
 			)
 		);
+		self::resources( $st['live'] );
 		$p = $st['php'];
 		self::kv(
 			'PHP',
@@ -827,6 +873,10 @@ class FLXP_Admin {
 				<tr><th scope="row"><label for="flxp-keep"><?php esc_html_e( 'Saklama', 'flx-speed' ); ?></label></th><td>
 					<input id="flxp-keep" type="number" min="1" max="90" name="flxp[keep_days]" value="<?php echo (int) $s['keep_days']; ?>" class="small-text"> <?php esc_html_e( 'gün', 'flx-speed' ); ?>,
 					<?php esc_html_e( 'en fazla', 'flx-speed' ); ?> <input type="number" min="100" max="50000" step="100" name="flxp[max_rows]" value="<?php echo (int) $s['max_rows']; ?>" class="small-text"> <?php esc_html_e( 'kayıt', 'flx-speed' ); ?>
+				</td></tr>
+				<tr><th scope="row"><label for="flxp-quota"><?php esc_html_e( 'Disk kotası', 'flx-speed' ); ?></label></th><td>
+					<input id="flxp-quota" type="number" min="0" step="0.1" name="flxp[disk_quota_gb]" value="<?php echo esc_attr( $s['disk_quota_gb'] ? $s['disk_quota_gb'] : '' ); ?>" class="small-text"> GB
+					<p class="description"><?php esc_html_e( 'Paylaşımlı hosting planınızın disk sınırı (Hostinger: hPanel › Hesap kaynakları). PHP bu sınırı okuyamaz; girilirse Disk kutusu hesap kullanımını yüzde olarak gösterir. Boş bırakılırsa yalnız kullanılan alan görünür.', 'flx-speed' ); ?></p>
 				</td></tr>
 			</table>
 			<h2><?php esc_html_e( 'Yapay zekâ (MCP)', 'flx-speed' ); ?></h2>

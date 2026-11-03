@@ -27,11 +27,15 @@
 			if (!el) {
 				return;
 			}
+			el.querySelector('span').textContent = c.label;
 			el.querySelector('b').textContent = c.text;
 			el.querySelector('small').textContent = c.sub || '';
 			var bar = el.querySelector('.flxp-bar em');
-			if (bar && c.pct !== null) {
-				bar.style.width = Math.max(0, Math.min(100, c.pct)) + '%';
+			if (bar) {
+				bar.parentNode.hidden = c.pct === null;
+				if (c.pct !== null) {
+					bar.style.width = Math.max(0, Math.min(100, c.pct)) + '%';
+				}
 			}
 			el.classList.toggle('err', c.pct !== null && c.pct >= 90);
 			el.classList.toggle('warn', c.pct !== null && c.pct >= 70 && c.pct < 90);

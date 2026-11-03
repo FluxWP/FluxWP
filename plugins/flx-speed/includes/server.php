@@ -45,10 +45,258 @@ function flxp_meminfo() {
 	return $out;
 }
 
+/** Sayıyı okur; "max", boş veya sınırsız sayılan değer null döner. */
+function flxp_cg_num( $file ) {
+	$v = trim( flxp_read_proc( $file ) );
+	if ( '' === $v || 'max' === $v || ! is_numeric( $v ) ) {
+		return null;
+	}
+	$v = (float) $v;
+	// cgroup v1 "sınırsız" değeri 2^63'e yakındır; -1 de sınırsız demektir.
+	return ( $v < 0 || $v >= 4.0e18 ) ? null : $v;
+}
+
+/** memory.stat içinden tek alan. */
+function flxp_cg_stat( $file, $key ) {
+	if ( preg_match( '/^' . preg_quote( $key, '/' ) . '\s+(\d+)/m', flxp_read_proc( $file ), $m ) ) {
+		return (float) $m[1];
+	}
+	return null;
+}
+
+/**
+ * Bu PHP sürecinin bağlı olduğu cgroup'un (konteyner, VPS dilimi, hesap) bellek ve işlemci sınırı.
+ * Paylaşımlı hosting'de (CloudLinux LVE, CageFS) /sys/fs/cgroup çoğunlukla görünmez; o zaman boş döner.
+ *
+ * @param bool $fresh Önbelleği atla (CPU ikinci örneği).
+ * @return array{mem_max:?float,mem_used:?float,cpu_quota:?float,cpu_usec:?float}
+ */
+function flxp_cgroup( $fresh = false ) {
+	static $out = null;
+	if ( null !== $out && ! $fresh ) {
+		return $out;
+	}
+	$out  = array( 'mem_max' => null, 'mem_used' => null, 'cpu_quota' => null, 'cpu_usec' => null );
+	$base = '/sys/fs/cgroup';
+	$map  = array();
+	foreach ( explode( "\n", flxp_read_proc( '/proc/self/cgroup' ) ) as $line ) {
+		$p = explode( ':', trim( $line ), 3 );
+		if ( 3 === count( $p ) ) {
+			$map[ $p[1] ] = $p[2];
+		}
+	}
+	// Yolun kendisi ve üst klasörleri: sınır üstte tanımlanmış olabilir. Konteyner içinde yol "/" görünür.
+	$dirs = function ( $root, $path ) {
+		$list = array();
+		$path = '/' . trim( (string) $path, '/' );
+		while ( true ) {
+			$list[] = rtrim( $root . ( '/' === $path ? '' : $path ), '/' );
+			if ( '/' === $path ) {
+				break;
+			}
+			$path = dirname( $path );
+		}
+		if ( ! in_array( $root, $list, true ) ) {
+			$list[] = $root;
+		}
+		return array_values( array_unique( $list ) );
+	};
+
+	if ( isset( $map[''] ) && @is_readable( $base . '/cgroup.controllers' ) ) { // phpcs:ignore
+		// cgroup v2.
+		$leaf = null;
+		foreach ( $dirs( $base, $map[''] ) as $d ) {
+			if ( null === $leaf && @is_readable( $d . '/memory.current' ) ) { // phpcs:ignore
+				$leaf = $d;
+			}
+			if ( null === $out['mem_max'] && null !== ( $v = flxp_cg_num( $d . '/memory.max' ) ) ) { // phpcs:ignore
+				$out['mem_max'] = $v;
+				$cur            = flxp_cg_num( $d . '/memory.current' );
+				$inact          = flxp_cg_stat( $d . '/memory.stat', 'inactive_file' );
+				$out['mem_used'] = null === $cur ? null : max( 0, $cur - (float) $inact );
+			}
+			if ( null === $out['cpu_quota'] ) {
+				$cm = preg_split( '/\s+/', trim( flxp_read_proc( $d . '/cpu.max' ) ) );
+				if ( 2 === count( $cm ) && is_numeric( $cm[0] ) && (float) $cm[1] > 0 ) {
+					$out['cpu_quota'] = (float) $cm[0] / (float) $cm[1];
+				}
+			}
+		}
+		if ( $leaf ) {
+			$out['cpu_usec'] = flxp_cg_stat( $leaf . '/cpu.stat', 'usage_usec' );
+		}
+	} else {
+		// cgroup v1.
+		foreach ( $map as $ctl => $path ) {
+			$ctls = explode( ',', $ctl );
+			if ( in_array( 'memory', $ctls, true ) && null === $out['mem_max'] ) {
+				foreach ( $dirs( $base . '/memory', $path ) as $d ) {
+					if ( null !== ( $v = flxp_cg_num( $d . '/memory.limit_in_bytes' ) ) ) { // phpcs:ignore
+						$out['mem_max'] = $v;
+						$cur            = flxp_cg_num( $d . '/memory.usage_in_bytes' );
+						$inact          = flxp_cg_stat( $d . '/memory.stat', 'total_inactive_file' );
+						$out['mem_used'] = null === $cur ? null : max( 0, $cur - (float) $inact );
+						break;
+					}
+				}
+			}
+			if ( in_array( 'cpu', $ctls, true ) || in_array( 'cpuacct', $ctls, true ) ) {
+				foreach ( array( 'cpu,cpuacct', 'cpuacct,cpu', 'cpu', 'cpuacct' ) as $mount ) {
+					foreach ( $dirs( $base . '/' . $mount, $path ) as $i => $d ) {
+						if ( null === $out['cpu_quota'] ) {
+							$q   = flxp_cg_num( $d . '/cpu.cfs_quota_us' );
+							$per = flxp_cg_num( $d . '/cpu.cfs_period_us' );
+							if ( $q && $per ) {
+								$out['cpu_quota'] = $q / $per;
+							}
+						}
+						if ( 0 === $i && null === $out['cpu_usec'] && null !== ( $ns = flxp_cg_num( $d . '/cpuacct.usage' ) ) ) { // phpcs:ignore
+							$out['cpu_usec'] = $ns / 1000;
+						}
+					}
+				}
+			}
+		}
+	}
+	/** Okunan cgroup değerlerini değiştirir (test veya hosting'e özel kaynak). */
+	$out = (array) apply_filters( 'flxp_cgroup', $out );
+	return $out;
+}
+
+/**
+ * Paylaşımlı hosting mi: PHP'nin gördüğü CPU/RAM/disk tüm makineye (tüm hesaplara) ait.
+ * CloudLinux veya tek hesaba ait olamayacak kadar büyük makine (64 çekirdek, 500 GB RAM, TB'larca disk).
+ */
+function flxp_is_shared( $cores, $ram_kb, $disk ) {
+	$shared = @is_dir( '/proc/lve' ) || @file_exists( '/etc/cloudlinux-release' ) // phpcs:ignore
+		|| $disk > 2 * 1024 ** 4 || $ram_kb > 128 * 1024 * 1024 || $cores > 32;
+	/** Paylaşımlı hosting algısını değiştirir (true: makine değerleri hesap değeri gibi gösterilmez). */
+	return (bool) apply_filters( 'flxp_shared_hosting', $shared );
+}
+
+/**
+ * cgroup işlemci kullanımı yüzdesi (sınıra göre). İki ölçüm arası fark gerekir: önceki ölçüm transient'te.
+ */
+function flxp_cgroup_cpu_pct( $usec, $cores ) {
+	if ( null === $usec || $cores <= 0 ) {
+		return null;
+	}
+	$now  = microtime( true );
+	$prev = get_transient( 'flxp_cpu_sample' );
+	if ( is_array( $prev ) && $now - $prev['t'] < 5 && isset( $prev['pct'] ) ) {
+		return $prev['pct']; // Aynı istekte/çok yakın ikinci çağrı: yeniden ölçme.
+	}
+	if ( ! is_array( $prev ) || $now - $prev['t'] > 600 || $usec < $prev['u'] ) {
+		// İlk ölçüm: kısa bekleyip ikinci örnek.
+		$prev = array( 'u' => $usec, 't' => $now );
+		usleep( 250000 );
+		$now  = microtime( true );
+		$cg   = flxp_cgroup( true );
+		$usec = $cg['cpu_usec'];
+		if ( null === $usec ) {
+			return null;
+		}
+	}
+	$pct = (int) round( max( 0, $usec - $prev['u'] ) / ( ( $now - $prev['t'] ) * 1e6 * $cores ) * 100 );
+	set_transient( 'flxp_cpu_sample', array( 'u' => $usec, 't' => $now, 'pct' => $pct ), 900 );
+	return $pct;
+}
+
+/**
+ * Hesabın disk kullanımı: hesap klasörü (Hostinger: /home/uXXXX) dosyaları + bu sitenin veritabanı.
+ * Büyük klasör tek istekte taranmaz: her çağrıda $budget saniye çalışır, kaldığı yerden devam eder.
+ * Sonuç 12 saat geçerli; yenisi hesaplanırken eskisi gösterilir.
+ *
+ * @param float $budget Saniye; 0 yalnız okur.
+ * @return array{bytes:?float,files:?int,db:?float,root:string,time:int,running:bool}
+ */
+function flxp_disk_usage( $budget = 0 ) {
+	$st = get_option( 'flxp_du', array() );
+	$st = is_array( $st ) ? $st : array();
+	$res = isset( $st['result'] ) && is_array( $st['result'] ) ? $st['result'] : null;
+	$job = isset( $st['job'] ) && is_array( $st['job'] ) ? $st['job'] : null;
+
+	if ( $budget > 0 && ! $job && ( ! $res || $res['time'] < time() - 12 * HOUR_IN_SECONDS ) ) {
+		$root = flxp_account_root();
+		$job  = array( 'root' => $root, 'stack' => array( $root ), 'bytes' => 0, 'files' => 0, 'start' => time() );
+	}
+	if ( $budget > 0 && $job ) {
+		$until = microtime( true ) + $budget;
+		while ( $job['stack'] && microtime( true ) < $until ) {
+			$dir = array_pop( $job['stack'] );
+			$h   = @opendir( $dir ); // phpcs:ignore
+			if ( ! $h ) {
+				continue;
+			}
+			while ( false !== ( $f = readdir( $h ) ) ) { // phpcs:ignore
+				if ( '.' === $f || '..' === $f ) {
+					continue;
+				}
+				$p = $dir . '/' . $f;
+				$s = @lstat( $p ); // phpcs:ignore
+				if ( ! $s ) {
+					continue;
+				}
+				++$job['files'];
+				// Diskte kapladığı alan (blok); Windows'ta blok yok, boyut.
+				$job['bytes'] += ( isset( $s['blocks'] ) && $s['blocks'] > 0 ) ? $s['blocks'] * 512 : $s['size'];
+				if ( 0040000 === ( $s['mode'] & 0170000 ) ) {
+					$job['stack'][] = $p;
+				}
+			}
+			closedir( $h );
+		}
+		if ( ! $job['stack'] ) {
+			global $wpdb;
+			$db  = $wpdb->get_var( $wpdb->prepare( 'SELECT SUM(data_length + index_length) FROM information_schema.TABLES WHERE table_schema = %s', DB_NAME ) );
+			$res = array(
+				'bytes' => (float) $job['bytes'],
+				'files' => (int) $job['files'],
+				'db'    => null === $db ? null : (float) $db,
+				'root'  => $job['root'],
+				'time'  => time(),
+			);
+			$job = null;
+		}
+		update_option( 'flxp_du', array( 'result' => $res, 'job' => $job ), false );
+	}
+	return array(
+		'bytes'   => $res ? $res['bytes'] : null,
+		'files'   => $res ? $res['files'] : null,
+		'db'      => $res ? $res['db'] : null,
+		'root'    => $res ? $res['root'] : ( $job ? $job['root'] : flxp_account_root() ),
+		'time'    => $res ? (int) $res['time'] : 0,
+		'running' => (bool) $job,
+	);
+}
+
+/** Hesap klasörü: WordPress'i içeren ev klasörü (okunabiliyorsa), yoksa WordPress klasörü. */
+function flxp_account_root() {
+	$abs  = rtrim( str_replace( '\\', '/', ABSPATH ), '/' );
+	$home = (string) getenv( 'HOME' );
+	if ( ! $home && function_exists( 'posix_getpwuid' ) && function_exists( 'posix_geteuid' ) ) {
+		$pw   = @posix_getpwuid( posix_geteuid() ); // phpcs:ignore
+		$home = is_array( $pw ) ? (string) $pw['dir'] : '';
+	}
+	$home = rtrim( str_replace( '\\', '/', $home ), '/' );
+	if ( strlen( $home ) > 1 && 0 === strpos( $abs . '/', $home . '/' ) && @is_readable( $home ) ) { // phpcs:ignore
+		$root = $home;
+	} else {
+		$root = $abs;
+	}
+	return (string) apply_filters( 'flxp_account_root', $root );
+}
+
 /**
  * Anlık ve ucuz ölçüler (panodaki canlı kutu Heartbeat ile bunu ister).
+ *
+ * scope: "account" cgroup sınırı okundu (konteyner/VPS dilimi/hesap), "shared" paylaşımlı hosting'de
+ * sınır okunamadı (makine değerleri hesap değeri sayılmaz, null), "machine" sunucu bize ait (VPS/dedicated).
+ * Makinenin ham değerleri her durumda "machine" altında.
+ *
+ * @param float $du_budget Disk taraması için bu çağrıda harcanacak süre (sn).
  */
-function flxp_server_live() {
+function flxp_server_live( $du_budget = 0 ) {
 	$cores = flxp_cpu_cores();
 	$load  = function_exists( 'sys_getloadavg' ) ? @sys_getloadavg() : false; // phpcs:ignore
 	$mem   = flxp_meminfo();
@@ -57,24 +305,86 @@ function flxp_server_live() {
 	$up    = (float) strtok( flxp_read_proc( '/proc/uptime' ), ' ' );
 	$disk  = function_exists( 'disk_total_space' ) ? @disk_total_space( ABSPATH ) : false; // phpcs:ignore
 	$free  = function_exists( 'disk_free_space' ) ? @disk_free_space( ABSPATH ) : false; // phpcs:ignore
-	return array(
+	$load  = is_array( $load ) ? array_map(
+		function ( $v ) {
+			return round( (float) $v, 2 );
+		},
+		array_slice( $load, 0, 3 )
+	) : null;
+
+	$machine = array(
 		'cores'        => $cores,
-		'load'         => is_array( $load ) ? array_map(
-			function ( $v ) {
-				return round( (float) $v, 2 );
-			},
-			array_slice( $load, 0, 3 )
-		) : null,
-		'load_pct'     => ( is_array( $load ) && $cores ) ? (int) round( $load[0] / $cores * 100 ) : null,
+		'load'         => $load,
+		'load_pct'     => ( $load && $cores ) ? (int) round( $load[0] / $cores * 100 ) : null,
 		'ram_total_kb' => $total ? $total : null,
 		'ram_used_kb'  => $total ? max( 0, $total - $avail ) : null,
 		'ram_pct'      => $total ? (int) round( ( $total - $avail ) / $total * 100 ) : null,
-		'uptime_s'     => $up ? (int) $up : null,
 		'disk_total'   => $disk ? (float) $disk : null,
 		'disk_free'    => false !== $free ? (float) $free : null,
-		'disk_pct'     => ( $disk && false !== $free ) ? (int) round( ( $disk - $free ) / $disk * 100 ) : null,
-		'php_mem_kb'   => (int) round( memory_get_usage() / 1024 ),
-		'time'         => time(),
+	);
+
+	$cg     = flxp_cgroup();
+	$mem_ok = null !== $cg['mem_max'] && ( ! $total || $cg['mem_max'] < $total * 1024 );
+	$cpu_ok = null !== $cg['cpu_quota'] && $cg['cpu_quota'] < max( 1, $cores );
+	$shared = flxp_is_shared( $cores, $total, (float) $disk );
+	$scope  = ( $mem_ok || $cpu_ok ) ? 'account' : ( $shared ? 'shared' : 'machine' );
+
+	$out = array(
+		'scope'        => $scope,
+		'cores'        => null,
+		'load'         => null,
+		'load_pct'     => null,
+		'ram_total_kb' => null,
+		'ram_used_kb'  => null,
+		'ram_pct'      => null,
+	);
+	if ( 'machine' === $scope ) {
+		$out = array_merge( $out, array_intersect_key( $machine, $out ) );
+	} elseif ( 'account' === $scope ) {
+		$lim_cores    = $cpu_ok ? $cg['cpu_quota'] : $cores;
+		$out['cores'] = round( $lim_cores, 2 );
+		$out['cpu_limited'] = $cpu_ok;
+		$out['load_pct'] = flxp_cgroup_cpu_pct( $cg['cpu_usec'], $lim_cores );
+		if ( $mem_ok ) {
+			$out['ram_total_kb'] = (int) round( $cg['mem_max'] / 1024 );
+			$out['ram_used_kb']  = null === $cg['mem_used'] ? null : (int) round( $cg['mem_used'] / 1024 );
+			$out['ram_pct']      = null === $cg['mem_used'] ? null : (int) round( $cg['mem_used'] / $cg['mem_max'] * 100 );
+		} elseif ( ! $shared ) {
+			$out['ram_total_kb'] = $machine['ram_total_kb'];
+			$out['ram_used_kb']  = $machine['ram_used_kb'];
+			$out['ram_pct']      = $machine['ram_pct'];
+		}
+	}
+
+	// Disk: TB'larca disk veya paylaşımlı hosting'de PHP makinenin ortak diskini görür, hesabın kotasını değil.
+	$disk_shared = $shared || $disk > 2 * 1024 ** 4;
+	$quota       = (float) flxp_settings( 'disk_quota_gb' ) * 1073741824;
+	$du          = $disk_shared ? flxp_disk_usage( $du_budget ) : null;
+	if ( ! $disk_shared ) {
+		$d_total = $machine['disk_total'];
+		$d_free  = $machine['disk_free'];
+	} elseif ( $quota > 0 && null !== $du['bytes'] ) {
+		$used    = $du['bytes'] + (float) $du['db'];
+		$d_total = $quota;
+		$d_free  = max( 0, $quota - $used );
+	} else {
+		$d_total = null;
+		$d_free  = null;
+	}
+
+	return array_merge(
+		$out,
+		array(
+			'uptime_s'     => $up ? (int) $up : null,
+			'disk_shared'  => $disk_shared,
+			'disk_total'   => $d_total,
+			'disk_free'    => $d_free,
+			'disk_pct'     => ( $d_total && null !== $d_free ) ? (int) round( ( $d_total - $d_free ) / $d_total * 100 ) : null,
+			'disk_usage'   => $du,
+			'php_mem_kb'   => (int) round( memory_get_usage() / 1024 ),
+			'machine'      => $machine,
+			'time'         => time(),
+		)
 	);
 }
 

@@ -173,7 +173,7 @@ function flxp_server_checks() {
 			'label'        => __( 'Disk alanı', 'flx-speed' ),
 			'status'       => $live['disk_pct'] >= 95 ? 'error' : ( $live['disk_pct'] >= 90 ? 'warning' : 'ok' ),
 			/* translators: 1: yüzde, 2: boş alan */
-			'message'      => sprintf( __( '%%%1$d dolu, %2$s boş.', 'flx-speed' ), $live['disk_pct'], size_format( (float) $live['disk_free'], 1 ) ),
+			'message'      => sprintf( __( '%%%1$d dolu, %2$s boş.', 'flx-speed' ), $live['disk_pct'], size_format( (float) $live['disk_free'], 1 ) ) . ( $live['disk_shared'] ? ' ' . __( '(hesap kullanımı / Ayarlar\'daki kota)', 'flx-speed' ) : '' ),
 			'action_url'   => $url( 'server' ),
 			'action_label' => __( 'Sunucu', 'flx-speed' ),
 		);
@@ -186,8 +186,11 @@ function flxp_server_checks() {
 			'group'        => 'Performance',
 			'label'        => __( 'İşlemci yükü', 'flx-speed' ),
 			'status'       => $live['load_pct'] >= 150 ? 'warning' : ( $live['load_pct'] >= 100 ? 'info' : 'ok' ),
-			/* translators: 1: yüzde, 2: çekirdek sayısı */
-			'message'      => sprintf( __( 'Son 1 dakikada %%%1$d (%2$d çekirdek). Paylaşımlı sunucuda yük tüm sunucuya aittir.', 'flx-speed' ), $live['load_pct'], $live['cores'] ),
+			'message'      => 'account' === $live['scope']
+				/* translators: 1: yüzde, 2: çekirdek sınırı */
+				? sprintf( __( 'Hesap işlemci sınırının %%%1$d kadarı kullanılıyor (%2$s çekirdek).', 'flx-speed' ), $live['load_pct'], number_format_i18n( $live['cores'], 1 ) )
+				/* translators: 1: yüzde, 2: çekirdek sayısı */
+				: sprintf( __( 'Son 1 dakikada %%%1$d (%2$d çekirdek).', 'flx-speed' ), $live['load_pct'], $live['cores'] ),
 			'action_url'   => $url( 'server' ),
 			'action_label' => __( 'Sunucu', 'flx-speed' ),
 		);
