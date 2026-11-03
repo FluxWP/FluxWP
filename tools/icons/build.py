@@ -46,6 +46,7 @@ PKGS = [
   ('flx-lang', 'Flux Lang', 'growth', 'languages'),
   ('flx-studio', 'Flux Studio', 'growth', 'clapperboard'),
   ('flx-donate', 'Flux Donate', 'commerce', 'hand-heart'),
+  ('flx-commerce', 'Flux Commerce', 'commerce', 'shopping-bag'),
   ('flx-certificates', 'Flux Certificates', 'commerce', 'award'),
   ('flx-qr-menu', 'Flux QR Menu', 'commerce', 'qr-code'),
   ('flx-menu-theme', 'Flux Menu Theme', 'commerce', 'utensils-crossed'),
