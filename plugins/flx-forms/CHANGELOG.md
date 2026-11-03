@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 2.1.9
+- Pano widget'ı koyu temada okunur: kart yazıları, sekmeler, kartlar ve hata paneli Flux Admin renklerini izliyor (açık temada görünüm aynı). Grafikte ızgara çizgileri, eksen ve gösterge yazıları temadan alınır; açık/koyu değişince grafik yeniden çizilir.
+- Grafik göstergesinde "Visit" yerine çevrilmiş "Sayfa görüntüleme" yazıyor (kartla aynı metin).
+- Widget CSS/JS dosyalarına fork sürümü eklendi; güncellemeden sonra tarayıcı eski dosyayı tutmaz.
+
 ## 2.1.8
 - Eksik tablolar kendiliğinden oluşturuluyor. Flux Setup sihirbazı gibi sessiz etkinleştirmede activation hook çalışmadığı için `wp_emsfb_*` tabloları hiç oluşmuyor, her istekte "Table ... doesn't exist" hatası veriliyordu. Ayar tablosu yoksa ilk istekte kurulum tam olarak çalışır (varsayılan ayarlar dahil); DB sürümü 1.3 ile mevcut sitelerde eksik tablo kontrolü bir kez yapılır.
 

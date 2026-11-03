@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.1
+- Sol menü: üst (logo + arama) ve alt (kullanıcı) yerinde sabit, yalnız orta kayar. 1.7.0'daki geçiş efekti kaldırıldı; kayan kartlar arama kutusunun altında yarı saydam görünmüyor, net kesiliyor. Menünün sonuna gelince kaydırma sayfaya geçmiyor ve Mac/iOS esnemesi yok.
+
 ## 1.7.0
 - Tema düğmesi: tıklama artık her seferinde açık ↔ koyu geçer. Eski otomatik → açık → koyu döngüsünde cihaz koyu temadayken üç tıklamanın ikisi görünürde hiçbir şey değiştirmiyordu. "Sistem (cihaza göre)" düğmenin menüsünden seçilir (Açık / Koyu / Sistem, seçili olan işaretli). Dokunmatik ekranda ilk dokunuş menüyü açar.
 - Tema seçimi diğer açık sekmelere ve geri tuşuyla dönülen sayfaya da uygulanır; kaydedilemezse uyarı çıkar.
