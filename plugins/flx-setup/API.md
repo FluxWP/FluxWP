@@ -57,9 +57,17 @@ add_filter( 'flx_preset_importers', function ( $t ) {
 | `flxk_option_allowed` (`$allowed, $name`) | option'ın yazılabilirliği |
 | `flxk_secret_key_regex` | gizli alan adı deseni |
 | `flxk_cap` | yönetim yetkisi (varsayılan `manage_options`) |
+| `flxk_legal_urls` (`$urls`) | sihirbaz ve Ayarlar'daki yasal metin linkleri (`terms`, `privacy`, `kvkk`) |
+| `flxk_telemetry_changed` (`$on`) | kullanım verisi izni verilince ya da geri alınınca |
 
 ## PHP fonksiyonları
 `flxk_presets()`, `flxk_get_preset( $id )`, `flxk_plan( $id, $data, $opts )`, `flxk_apply_preset( $id, 'apply'|'fill' )`, `flxk_apply_migration( $id, $mig )`, `flxk_remove_preset( $id )`, `flxk_revert_run( $run )`, `flxk_export( $args )`, `flxk_patch_preview( $patch )`, `flxk_patch_submit( $patch, $source, $note )`, `flxk_patch_apply( $id_or_patch )`.
+
+## Yasal onay ve kullanım verisi
+- Sihirbazın ilk ekranında **Kullanım Şartları + Gizlilik Politikası** kabulü ve KVKK Aydınlatma Metni bilgisi zorunlu (Başlayalım ancak işaretlenince açılır). Kayıt `flxk_terms` = `{version, at, user}`; sürüm `FLXK_LEGAL_VERSION`. Sihirbaz atlanırsa onay kaydı olmaz, güncellemeler yine çalışır.
+- **Kullanım verisi** (isteğe bağlı, varsayılan kapalı): `flxk_telemetry` = `'1'` açık, `flxk_telemetry_at` son değişiklik zamanı. FluxWP Panel › Ayarlar'dan geri alınır. Okumak için `flxk_telemetry_enabled()`.
+- Kapalıyken `/v1/check` yalnız `packages`, `updater`, `install` ve `"usage": false` gönderir; `site`, `wp`, `php`, `tz`, `locale` gitmez. FluxWP sunucularına giden isteklerde WordPress'in site adresli User-Agent'ı `FluxWP-Panel/<sürüm>` olur.
+- Fonksiyonlar: `flxk_telemetry_enabled()`, `flxk_set_telemetry( bool )`, `flxk_accept_terms()`, `flxk_terms_accepted()`, `flxk_legal_urls()`.
 
 ## MCP / Flux AI araçları
 `preset_schema`, `preset_list`, `preset_export`, `preset_patch_preview`, `preset_patch_apply`, `preset_revert`, `preset_history` (Flux SEO'nun `flxseo_mcp_tools` filtresiyle; Flux AI sohbeti otomatik alır). Yetki: `flxk_cap`.

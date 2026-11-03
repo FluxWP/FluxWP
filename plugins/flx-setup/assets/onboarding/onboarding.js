@@ -84,6 +84,10 @@
 		'<div class="acts"><button class="btn btn-ghost" id="skipNo">' + esc(T.stay) + '</button><button class="btn btn-primary" id="skipYes">' + esc(T.skipYes) + '</button></div></div></div>';
 
 	/* ---------- step 0: intro ---------- */
+	function legalLink(k, label) {
+		var u = (D.legal || {})[k];
+		return u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(label) + '</a>' : esc(label);
+	}
 	var mosaicSlugs = plugins.slice(0, 15).map(function (p) { return p.slug; });
 	if (D.theme) { mosaicSlugs.push('fluxwp'); }
 	$('#step0').innerHTML =
@@ -94,7 +98,11 @@
 		(plugins.length ? '<li><b>' + esc(fmt(T.f1b, plugins.length)) + '</b><span>' + esc(T.f1s) + '</span></li>' : '') +
 		'<li><b>' + esc(T.f2b) + '</b><span>' + esc(T.f2s) + '</span></li>' +
 		'<li><b>' + esc(T.f3b) + '</b><span>' + esc(T.f3s) + '</span></li></ul>' +
-		'<div class="acts"><button class="btn btn-primary" id="startBtn">' + esc(T.start) + ARROW + '</button>' +
+		'<div class="consent">' +
+		'<label class="chk"><input type="checkbox" id="cTerms"' + (D.terms ? ' checked' : '') + '><span>' + fmt(esc(T.cTerms), legalLink('terms', T.cTermsL), legalLink('privacy', T.cPrivL), legalLink('kvkk', T.cKvkkL)) + '</span></label>' +
+		'<label class="chk"><input type="checkbox" id="cUsage"' + (D.usage ? ' checked' : '') + '><span>' + esc(T.cUsage) + '<small>' + esc(T.cUsageS) + '</small></span></label>' +
+		'</div>' +
+		'<div class="acts"><button class="btn btn-primary" id="startBtn"' + (D.terms ? '' : ' disabled') + ' title="' + esc(D.terms ? '' : T.cNeed) + '">' + esc(T.start) + ARROW + '</button>' +
 		'<button class="btn btn-ghost" id="skip2">' + esc(T.skipSelf) + '</button><small>' + esc(T.time) + '</small></div>' +
 		'</div><div class="mosaic" aria-hidden="true">' +
 		mosaicSlugs.map(function (s) { return '<div><img src="' + esc(icon(s)) + '" alt=""></div>'; }).join('') +
@@ -558,7 +566,16 @@
 	/* ---------- events ---------- */
 	function openSkip() { $('#skipModal').classList.add('on'); $('#skipNo').focus(); }
 	function closeSkip() { $('#skipModal').classList.remove('on'); }
-	$('#startBtn').addEventListener('click', function () { go(1); });
+	$('#cTerms').addEventListener('change', function (e) {
+		$('#startBtn').disabled = !e.target.checked;
+		$('#startBtn').title = e.target.checked ? '' : T.cNeed;
+	});
+	$('#startBtn').addEventListener('click', function () {
+		if (!$('#cTerms').checked) { return; }
+		// Şartlar onayı + kullanım verisi izni (varsayılan kapalı). Kayıt hatası kurulumu durdurmaz.
+		post({ action: 'flxk_onboarding_step', nonce: D.nonce, kind: 'consent', value: $('#cUsage').checked ? '1' : '0' }).catch(function () {});
+		go(1);
+	});
 	$('#skip2').addEventListener('click', openSkip);
 	$('#skipBtn').addEventListener('click', openSkip);
 	$('#skipNo').addEventListener('click', closeSkip);
