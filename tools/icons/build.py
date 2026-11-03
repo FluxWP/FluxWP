@@ -131,7 +131,8 @@ for slug, nm, g, gl in PKGS:
         home = ''
     if not home or not os.path.isdir(home):
         continue
-    put(os.path.join(home, 'docs', 'logo.svg'), a)
+    if slug != 'fluxwp':  # the theme's README uses the FluxWP brand mark
+        put(os.path.join(home, 'docs', 'logo.svg'), a)
     if os.path.isdir(os.path.join(home, 'assets')) and not slug.startswith('flx-preset-') and slug not in ('fluxwp', 'flx-menu-theme'):
         put(os.path.join(home, 'assets', 'icon.svg'), a)
         put(os.path.join(home, 'assets', 'icon-pastel.svg'), c)
