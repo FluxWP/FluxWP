@@ -13,7 +13,7 @@ function flxg_default_settings() {
 		'poll_interval'   => 45,
 		'email_notify'    => 0,
 		'max_upload_mb'   => 20,
-		'accent'          => '#2e7d32',
+		'accent'          => '', // boş = Flux Admin / tema vurgu rengi
 		'ai_temperature'  => 0.4,
 		'ai_instructions' => '',
 		'ai_roles'        => array( 'administrator', 'editor', 'author' ),

@@ -6,7 +6,7 @@
 .flxg-sheet-shade,
 .flxg-toasts,
 .flxg-lightbox {
-	--accent: var(--brand, #2e7d32);
+	--accent: var(--brand, var(--flxa-accent, #1F2937));
 	--accent-2: color-mix(in srgb, var(--accent) 85%, #fff);
 	--accent-soft: color-mix(in srgb, var(--accent) 12%, transparent);
 	--accent-ink: #fff;
@@ -49,15 +49,15 @@
 html.flxg-dark .flxg-sheet-shade,
 html.flxg-dark .flxg-toasts,
 html.flxg-dark .flxg-lightbox {
-	--accent: color-mix(in srgb, var(--brand, #2e7d32) 72%, #fff);
-	--accent-2: color-mix(in srgb, var(--brand, #2e7d32) 58%, #fff);
-	--accent-soft: color-mix(in srgb, var(--brand, #2e7d32) 22%, transparent);
+	--accent: color-mix(in srgb, var(--brand, var(--flxa-accent, #1F2937)) 72%, #fff);
+	--accent-2: color-mix(in srgb, var(--brand, var(--flxa-accent, #1F2937)) 58%, #fff);
+	--accent-soft: color-mix(in srgb, var(--brand, var(--flxa-accent, #1F2937)) 22%, transparent);
 	--accent-ink: #0b1a0c;
 	--bg: #121417;
 	--panel: #1a1d21;
 	--panel-2: #1f2226;
 	--hover: rgba(255, 255, 255, .05);
-	--active: color-mix(in srgb, var(--brand, #2e7d32) 20%, transparent);
+	--active: color-mix(in srgb, var(--brand, var(--flxa-accent, #1F2937)) 20%, transparent);
 	--line: #2c3036;
 	--line-2: #24282d;
 	--ink: #e6e8eb;

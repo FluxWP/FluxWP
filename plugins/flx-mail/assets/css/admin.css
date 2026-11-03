@@ -13,11 +13,13 @@
 	max-width: 1320px;
 	color: var(--flxi-text);
 }
+/* Flux Admin koyu modu: açık nane zeminler koyu vurgu tonuna döner, yazı açık vurgu. */
+html.flxa-dark .flxi-wrap { --flxi-mint: var(--flxa-accent-soft); --flxi-pd: var(--flxa-accent-strong); --flxi-line: var(--flxa-border); }
 .flxi-wrap h1, .flxi-wrap h2, .flxi-wrap h3 { color: var(--flxi-ink); }
 .flxi-wrap a { color: var(--flxi-p); }
 .flxi-wrap .button-primary { background: var(--flxi-p); border-color: var(--flxi-pd); }
 .flxi-wrap .button-primary:hover, .flxi-wrap .button-primary:focus { background: var(--flxi-pd); border-color: var(--flxi-pd); }
-.flxi-wrap .button:not(.button-primary) { color: var(--flxi-pd); border-color: #b8d3c3; }
+.flxi-wrap .button:not(.button-primary) { color: var(--flxi-pd); border-color: var(--flxa-border-strong, #CBCFDA); }
 .flxi-wrap [hidden] { display: none !important; }
 
 /* Başlık + sekmeler */
@@ -48,7 +50,7 @@
 .flxi-nowrap { white-space: nowrap; }
 .flxi-break { word-break: break-all; }
 .flxi-link-danger { color: var(--flxi-red) !important; }
-.flxi-callout { background: var(--flxi-mint); border: 1px solid #cfe6d7; border-radius: 10px; padding: 12px 14px; margin: 10px 0 14px; color: var(--flxi-ink); line-height: 1.55; }
+.flxi-callout { background: var(--flxi-mint); border: 1px solid var(--flxa-border-strong, #CBCFDA); border-radius: 10px; padding: 12px 14px; margin: 10px 0 14px; color: var(--flxi-ink); line-height: 1.55; }
 .flxi-callout--warn, .flxi-callout--warning { background: #fffaeb; border-color: #fedf89; }
 .flxi-callout--error { background: #fef3f2; border-color: #fecdca; color: var(--flxi-red); }
 .flxi-bullets { margin: 6px 0 0 18px; list-style: disc; }
@@ -134,8 +136,8 @@
 /* Değişken çipleri */
 .flxi-vars { margin: 4px 0 6px; }
 .flxi-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.flxi-chip { border: 1px solid #cfe6d7; background: var(--flxi-mint); color: var(--flxi-pd); border-radius: 999px; padding: 3px 10px; font: 12px/1.5 Menlo, Consolas, monospace; cursor: pointer; transition: background .15s, transform .15s; }
-.flxi-chip:hover { background: #d9efe1; }
+.flxi-chip { border: 1px solid var(--flxa-border-strong, #CBCFDA); background: var(--flxi-mint); color: var(--flxi-pd); border-radius: 999px; padding: 3px 10px; font: 12px/1.5 Menlo, Consolas, monospace; cursor: pointer; transition: background .15s, transform .15s; }
+.flxi-chip:hover { background: color-mix(in srgb, var(--flxa-accent, #1F2937) 18%, var(--flxa-surface, #fff)); }
 .flxi-chip.is-flash { background: var(--flxi-p); color: #fff; transform: scale(1.05); }
 
 /* Düzenleyici + önizleme */
@@ -165,6 +167,7 @@
 .flxi-media { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px; border: 1px dashed #c9d8cf; border-radius: 10px; background: #fff; }
 .flxi-media img { max-height: 46px; max-width: 220px; }
 .flxi-media--dark { background: color-mix(in srgb, var(--flxa-accent, #1F2937) 78%, #000); }
+.flxi-wrap .flxi-media.flxi-media--dark .button-link.button-link { color: #fff; }
 .flxi-dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 14px; margin: 10px 0 0; }
 .flxi-dl dt { font-weight: 600; color: var(--flxi-ink); }
 .flxi-dl dd { margin: 0; word-break: break-word; }
@@ -187,7 +190,7 @@
 .flxi-pager .page-numbers.current { background: var(--flxi-p); color: #fff; }
 
 /* Gönderim ilerlemesi */
-.flxi-progress { border-color: #cfe6d7; background: linear-gradient(180deg, #fff, #f6fbf8); }
+.flxi-progress { border-color: var(--flxa-border-strong, #CBCFDA); background: linear-gradient(180deg, #fff, #f6fbf8); }
 .flxi-progress p { margin: 0 0 10px; color: var(--flxi-ink); font-weight: 600; }
 .flxi-bar { height: 10px; background: #e4efe8; border-radius: 999px; overflow: hidden; }
 .flxi-bar span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--flxi-p), var(--flxi-leaf)); border-radius: 999px; transition: width .5s; }
@@ -370,3 +373,7 @@
 	.flxi-test-dialog { width: 96vw; max-width: 96vw; max-height: calc(100dvh - 96px); margin: 10px auto auto; }
 	.flxi-test-dialog[open] { max-height: calc(100dvh - 96px); }
 }
+html.flxa-dark .flxi-wa-state { background: var(--flxa-surface-2); color: var(--flxa-muted); }
+html.flxa-dark .flxi-wa-state[data-state="open"] { background: #173826; color: #7fdca4; }
+html.flxa-dark .flxi-wa-state[data-state="connecting"] { background: var(--flxa-warn-soft); color: var(--flxa-warn); }
+html.flxa-dark .flxi-wa-state[data-state="error"], html.flxa-dark .flxi-wa-state[data-state="missing"] { background: var(--flxa-error-soft); color: var(--flxa-error); }

@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.6.5
+- Düzeltme: genel bağlantı rengi artık eklentilerin bağlantı-düğmelerini ("Yeni menü" gibi `<a>` düğmeler, sekmeler) ezmiyor; koyu düğmede koyu yazı sorunu giderildi. Düğme yazı rengi (`--flxa-on-accent`) vurgu rengine göre otomatik (açık vurguda koyu yazı), `flxa_on_color()`. Koyu tema koruması açık rozet/düğme üstündeki koyu yazıyı artık açık renge çevirmiyor.
+
 ## 1.6.4
 - Ortak sayfa başlığı düzeni: logo + başlık + açıklama solda, aksiyon butonları sağda sabit; butonun yanındaki durum metni (ör. "Son kontrol") butonun altına alınır. Dar ekranda aksiyonlar alta iner.
 
