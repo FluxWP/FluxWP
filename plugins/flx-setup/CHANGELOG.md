@@ -2,7 +2,7 @@
 
 ## 1.0.1
 - "Neyle başlayalım?" ekranına **Dernek ve bağış** kartı (Flux Donate + Flux Certificates) ve sade bir illüstrasyon. Mağaza ile Dernek tema gibi tek seçimli: biri seçilince diğeri kalkar.
-- Eklentiler kategorilere ayrıldı (Yönetim, İletişim, Büyüme, Yapay zekâ, Sistem); her kategori ayrı ekran, büyük görsel ve tam açıklama. Filtre `flxk_onboarding_groups`; `flxk_onboarding_core` artık kart listesi alır.
+- Eklentiler kategorilere ayrıldı (Yönetim, İletişim, Büyüme, Yapay zekâ, Sistem); her kategori ayrı ekran, kare kartlar, tam açıklama. Filtre `flxk_onboarding_groups`; `flxk_onboarding_core` artık kart listesi alır.
 - Görünüm adımı sekmeli: Kimlik (site adı, slogan, logo yükleme), Ön ayar, Renk (her stil küçük site önizlemesiyle), Sayfalar (Blog, Hakkımızda, İletişim, SSS; filtre `flxk_onboarding_pages`). Sağdaki önizleme sabit; logo, menü, bağış/ürün kartları ve blog bölümü seçime göre değişir. Devam ve Geri önce sekmeler arasında gezer.
 - Kurulumda logo temanın logosu ve site simgesi olur, seçilen sayfalar açılır (Blog yazılar sayfası olur), slogan kaydedilir.
 - Kurulum ekranı: "Siteniz sizin için hazırlanıyor" başlığı görünür; koyu konsol yerine açık renkli, yarı boy dönen çark ve sade satırlar.

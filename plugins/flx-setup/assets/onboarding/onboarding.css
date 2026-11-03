@@ -455,3 +455,9 @@ section.step.on{display:flex}
 .wl{top:70%;transform-origin:50% 50% -60px;font-style:normal}
 .wheel-card{height:min(40vh,320px)}
 .s-cards,.s-sec{flex-shrink:1;min-height:0;overflow:hidden}
+
+/* kategori kartları kare */
+.grid.cat{grid-template-columns:repeat(var(--cols,4),minmax(0,290px));grid-template-rows:auto;justify-content:center;align-content:center;align-self:stretch;max-height:none;gap:16px}
+.grid.cat .card{aspect-ratio:1/1;min-height:0}
+.grid.cat .card p{-webkit-line-clamp:2}
+@media (max-width:900px),(max-height:560px){.grid.cat{grid-template-columns:minmax(0,1fr)}.grid.cat .card{aspect-ratio:auto}}
