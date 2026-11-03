@@ -3,6 +3,7 @@
 ## 1.6.8
 - Ortak sayfa başlığı telefonda: logo başlığın solunda kalır (ayrı satıra düşmez), açıklama en çok 2 satır. Başlığa taşınan uyarılar başlığın altına alınır.
 - Menü düzenleyici telefonda taşmıyor: ad ilk satırda, düğmeler alt satırda; "Görünür" düğmesi yalnız simge.
+- Telefonda yan menü: dokunulan öğede gri hover/odak rengi takılı kalmıyor (yalnız geçerli sayfa vurgulu); menü açıkken "AI'ya sor" düğmesi menünün üstüne binmiyor.
 
 ## 1.6.7
 - Flux Setup 1.0 (Flux Updater ile birleşti) için: `flx-setup` menüsü Güncellemeler'in yerini alır (tek başına kart, rozet, WordPress güncellemeleri alt menüsü, logo, sayfa başlığı). Eski `flx-updater` menüsü de tanınmaya devam eder. `flxa_standalone_items` varsayılanı `flx-setup`, `flx-updater`.

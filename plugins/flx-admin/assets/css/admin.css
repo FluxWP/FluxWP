@@ -1447,3 +1447,15 @@ body.flxa #adminmenu div.wp-menu-image.flxa-svgmask::before {
 	-webkit-mask: var(--flxa-svg) center / 16px 16px no-repeat; mask: var(--flxa-svg) center / 16px 16px no-repeat;
 	background-color: var(--flxa-t, var(--flxa-muted));
 }
+
+/* Dokunmatik ekranda yan menü: dokunulan öğede hover/odak rengi takılı kalmaz; yalnız geçerli sayfa vurgulu */
+@media (hover: none) {
+	html body.flxa #adminmenu > li.menu-top:not(.flxa-pin):not(.opensub):hover > a.menu-top,
+	html body.flxa #adminmenu > li.menu-top:not(.flxa-pin) > a.menu-top:focus:not(:focus-visible),
+	html body.flxa #adminmenu .wp-submenu li:not(.current) > a:hover,
+	html body.flxa #adminmenu .wp-submenu li:not(.current) > a:focus:not(:focus-visible) { background: transparent; }
+}
+/* Telefonda yan menü açıkken AI düğmesi menünün üstüne binmez */
+@media screen and (max-width: 782px) {
+	body.flxa:has(#wpwrap.wp-responsive-open) #flxai-host { visibility: hidden; }
+}
