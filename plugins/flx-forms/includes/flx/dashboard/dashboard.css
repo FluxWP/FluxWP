@@ -6,11 +6,11 @@
 	--flxfd-text: #4B5563;
 	--flxfd-muted: #6B7C86;
 	--flxfd-mint: color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #fff);
-	--flxfd-soft: #F5FAF7;
+	--flxfd-soft: var(--flxa-surface-2, #F6F7F9);
 	--flxfd-line: color-mix(in srgb, var(--flxa-accent, #1F2937) 16%, #fff);
-	--flxfd-grid: #E8EFEA;
+	--flxfd-grid: var(--flxa-border, #E5E7EB);
 	--flxfd-surface: #FFFFFF;
-	--flxfd-cell0: #EEF3F0;
+	--flxfd-cell0: var(--flxa-surface-2, #EEF0F4);
 	--flxfd-up: #0A6B46;
 	--flxfd-down: #B32D2E;
 	--flxfd-radius: 14px;
@@ -21,6 +21,7 @@
 	font-family: var(--flxfd-font);
 	font-size: 14px;
 }
+html.flxa-dark .flxfd { --flxfd-mint: var(--flxa-accent-soft); --flxfd-dark: var(--flxa-accent-strong); }
 .flxfd *,
 .flxfd *::before,
 .flxfd *::after { box-sizing: border-box; }
@@ -52,7 +53,7 @@
 .flxfd-btn:hover { border-color: var(--flxfd-primary); color: var(--flxfd-primary) !important; }
 .flxfd-btn--primary { background: var(--flxfd-primary); border-color: var(--flxfd-primary); color: #fff !important; }
 .flxfd-btn--primary:hover { background: var(--flxfd-dark); border-color: var(--flxfd-dark); color: #fff !important; }
-.flxfd-btn--ghost { background: var(--flxfd-mint); border-color: #CFE6D8; color: var(--flxfd-dark) !important; }
+.flxfd-btn--ghost { background: var(--flxfd-mint); border-color: var(--flxa-border-strong, #CBCFDA); color: var(--flxfd-dark) !important; }
 .flxfd-btn--ghost:hover { background: #DDF0E4; }
 .flxfd-btn svg { flex: 0 0 auto; }
 
@@ -193,7 +194,7 @@ tr.is-unread .flxfd-preview { color: var(--flxfd-ink) !important; font-weight: 7
 	display: inline-block; padding: 2px 9px; border-radius: 99px; font-size: 11.5px; font-weight: 700; white-space: nowrap;
 	background: #EEF1F2; color: #4B5563;
 }
-.flxfd-badge.is-new { background: var(--flxfd-mint); color: var(--flxfd-dark); box-shadow: inset 0 0 0 1px #C5E3D1; }
+.flxfd-badge.is-new { background: var(--flxfd-mint); color: var(--flxfd-dark); box-shadow: inset 0 0 0 1px var(--flxa-border-strong, #CBCFDA); }
 .flxfd-badge.is-new::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--flxfd-primary); margin-right: 5px; vertical-align: 1px; }
 .flxfd-sharecell { display: inline-flex; align-items: center; gap: 10px; justify-content: flex-end; }
 .flxfd-share { display: inline-block; width: 64px; height: 6px; border-radius: 4px; background: var(--flxfd-cell0); overflow: hidden; }

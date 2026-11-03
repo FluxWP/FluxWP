@@ -1144,7 +1144,7 @@ function flxg_rest_settings_save( WP_REST_Request $r ) {
 		$set['ai_instructions'] = sanitize_textarea_field( (string) $b['ai_instructions'] );
 	}
 	if ( isset( $b['accent'] ) ) {
-		$set['accent'] = flxg_color( $b['accent'], '#2e7d32' );
+		$set['accent'] = flxg_color( $b['accent'], '' );
 	}
 	flxg_update_settings( $set );
 	return flxg_public_settings();

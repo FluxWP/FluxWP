@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.8.4
+- Koyu modda açık zeminli seçimler (WhatsApp/e-posta kutuları) ve sönük ara bilgiler düzeltildi; seçili sekme vurgu renginde.
+
 ## 1.8.3
 - FluxWP imzası: Flux ekranlarının alt satırında küçük FluxWP logosu ve fluxwp.com bağlantısı. Ortak modül `includes/flx-brand` (kaynak FluxWP/fluxwp `tools/brand`); kurulu Flux paketlerinden en yeni sürümü bir kez yüklenir, `flx_brand_show` filtresiyle gizlenir.
 

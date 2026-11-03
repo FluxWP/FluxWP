@@ -1105,7 +1105,7 @@
 			COLORS.forEach(function (c) {
 				wrap.appendChild(h('button.flxg-color' + (c === cur ? '.is-on' : ''), { type: 'button', style: { background: c }, 'aria-label': c, onclick: function () { cur = c; onPick(c); draw(); } }));
 			});
-			var custom = h('input', { type: 'color', value: cur || '#2e7d32', onchange: function (e) { cur = e.target.value; onPick(cur); draw(); } });
+			var custom = h('input', { type: 'color', value: cur || '#1F2937', onchange: function (e) { cur = e.target.value; onPick(cur); draw(); } });
 			wrap.appendChild(h('label.flxg-color.is-custom', { title: t('Özel renk') }, custom));
 		}
 		draw();
@@ -1525,8 +1525,8 @@
 		app = Y.$('#flxg-app');
 		if (!app) return;
 		if (B.locale) app.setAttribute('lang', B.locale);
-		app.style.setProperty('--brand', B.accent || '#2e7d32');
-		document.documentElement.style.setProperty('--brand', B.accent || '#2e7d32');
+		app.style.setProperty('--brand', B.accent || '#1F2937');
+		document.documentElement.style.setProperty('--brand', B.accent || '#1F2937');
 		Y.applyTheme();
 		app.appendChild(h('.flxg-skel-app', h('.flxg-skel-nav', Y.sk('70%', 18), Y.sk('85%', 12), Y.sk('60%', 12), Y.sk('75%', 12), Y.sk('50%', 12)), Y.skeleton('list')));
 		Y.loadBoot().then(function () {

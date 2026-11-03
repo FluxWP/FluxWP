@@ -8,7 +8,7 @@
 .flxk-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0 0}
 .flxk-inline{display:inline}
 .flxk-danger{color:#b32d2e!important}
-.flxk-muted{color:#646970;font-size:12px}
+.flxk-muted{color:var(--flxa-muted, #646970);font-size:12px}
 .flxk-warn{background:#fcf9e8;border-left:3px solid #dba617;padding:6px 10px;margin:6px 0}
 .flxk-err{background:#fcf0f1;padding:8px;white-space:pre-wrap}
 .flxk-table td,.flxk-table th{vertical-align:top}
@@ -24,5 +24,5 @@
 .flxk-check{display:inline-block;margin:4px 12px 4px 0}
 .flxk-logo{max-height:32px;vertical-align:middle}
 .flxk-tabs{margin-bottom:0}
-@media (max-width:782px){.flxk-card{padding:12px}.flxk-diff thead{display:none}.flxk-diff td{display:block;max-width:none!important}.flxk-diff td[data-label]::before{content:attr(data-label);display:block;font-size:11px;color:#646970;text-transform:uppercase;letter-spacing:.03em}.flxk-right{text-align:left}}
+@media (max-width:782px){.flxk-card{padding:12px}.flxk-diff thead{display:none}.flxk-diff td{display:block;max-width:none!important}.flxk-diff td[data-label]::before{content:attr(data-label);display:block;font-size:11px;color:var(--flxa-muted, #646970);text-transform:uppercase;letter-spacing:.03em}.flxk-right{text-align:left}}
 @media (prefers-color-scheme:dark){body.admin-color-modern .flxk-card{background:#1e1e1e}}
