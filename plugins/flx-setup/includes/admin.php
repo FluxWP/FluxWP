@@ -638,6 +638,7 @@ function flxk_render_history() {
 	$kinds = array(
 		'base'      => __( 'Ön ayar', 'flx-setup' ),
 		'migration' => __( 'Güncelleme', 'flx-setup' ),
+		'sync'      => __( 'Eşitleme', 'flx-setup' ),
 		'patch'     => __( 'Yama', 'flx-setup' ),
 		'revert'    => __( 'Geri alma', 'flx-setup' ),
 		'remove'    => __( 'Kaldırma', 'flx-setup' ),
@@ -652,7 +653,7 @@ function flxk_render_history() {
 			$res .= flxk_status_label( $k ) . ' ' . (int) $n . ' · ';
 		}
 		echo '<tr><td>' . esc_html( $e['at'] ) . '</td><td><strong>' . esc_html( $kinds[ $e['kind'] ] ?? $e['kind'] ) . '</strong> ' . esc_html( $e['title'] ?? '' ) . '<br><span class="flxk-muted">' . esc_html( flxk_preset_label( $e['preset'] ?? '' ) ) . '</span></td><td>' . esc_html( strtoupper( $e['source'] ?? 'panel' ) . ( $u ? ' · ' . $u->display_name : '' ) ) . '</td><td>' . esc_html( rtrim( $res, ' ·' ) ) . '</td><td class="flxk-right">';
-		if ( ! empty( $e['run'] ) && in_array( $e['kind'], array( 'base', 'migration', 'patch' ), true ) && flxk_run( $e['run'] ) ) {
+		if ( ! empty( $e['run'] ) && in_array( $e['kind'], array( 'base', 'migration', 'sync', 'patch' ), true ) && flxk_run( $e['run'] ) ) {
 			flxk_form_open( 'revert', array( 'run' => $e['run'] ) );
 			echo '<button class="button button-small" onclick="return confirm(\'' . esc_js( __( 'Bu değişiklik geri alınsın mı?', 'flx-setup' ) ) . '\')">' . esc_html__( 'Geri al', 'flx-setup' ) . '</button></form>';
 		}
