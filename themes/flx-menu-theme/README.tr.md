@@ -17,7 +17,9 @@ Flux Menu Theme, etkinlik QR menülerimizin alan adı menu.example.org'un temas�
 ![QR](https://img.shields.io/badge/birlikte-FluxWP%20QR%20Menü-0a7cff)
 ![Arayüz](https://img.shields.io/badge/arayüz-Türkçe%20%7C%20English-e30a17)
 
-[Özellikler](#özellikler) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+[Özellikler](#özellikler) · [Ekran görüntüleri](#ekran-görüntüleri) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+
+<img src="docs/demo-tr.gif" alt="Flux Menu Theme turu: Site Kurulumu, özellik anahtarlı Tema Ayarları ve aynı alan adında sunulan bir QR menü" width="900">
 
 </div>
 
@@ -68,6 +70,16 @@ Açık kalanlar: ana sayfa, QR menüler (yol, alt alan adı, `/tesekkur/`), `flx
 - Seçilebilir adımlar: kalıcı bağlantılar, İstanbul saat dilimi, `d.m.Y` tarih, yüklüyse Türkçe dil, değiştirilmemiş varsayılan içeriğin temizlenmesi, yorumların kapatılması, boş ana sayfa denetimi.
 - Tarihli hazır güncellemeler; bekleyen varsa bildirim.
 - Sistem kontrolleri: kapalı özellikler, yazılar kapalıyken yayındaki yazılar, kalıcı bağlantılar, bekleyen güncellemeler, Flux QR Menu etkin değil.
+
+## Ekran görüntüleri
+
+| Site Kurulumu | Tema Ayarları |
+|---|---|
+| <img src="docs/images/setup-tr.jpg" alt="Site Kurulumu" width="440"> | <img src="docs/images/settings-tr.jpg" alt="Tema Ayarları" width="440"> |
+| **Aynı alan adında bir QR menü** | **Flux Admin ile koyu tema** |
+| <img src="docs/images/menu-tr.jpg" alt="Aynı alan adında bir QR menü" width="440"> | <img src="docs/images/dark-tr.jpg" alt="Flux Admin ile koyu tema" width="440"> |
+| **Mobil: QR menü** | **Mobil: boş ana sayfa** |
+| <img src="docs/images/mobile-tr.jpg" alt="Mobil: QR menü" width="260"> | <img src="docs/images/mobile-home-tr.jpg" alt="Mobil: boş ana sayfa" width="260"> |
 
 ## Kurulum
 

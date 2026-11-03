@@ -16,7 +16,9 @@ Flux Donate WooCommerce'i bir bağış sistemine çevirir: sabit paketli, adetli
 ![Ödeme](https://img.shields.io/badge/ödeme-iyzico%20%C2%B7%20havale%20%C2%B7%20aylık-2fbf8f)
 ![Arayüz](https://img.shields.io/badge/arayüz-Türkçe%20%7C%20English-e30a17)
 
-[Özellikler](#özellikler) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+[Özellikler](#özellikler) · [Ekran görüntüleri](#ekran-görüntüleri) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+
+<img src="docs/demo-tr.gif" alt="Flux Donate turu: bağış paneli, bağış listesi ve bir bağışın ayrıntısı, bağış türleri ve kampanyalar, sitedeki bağış formundan ödeme sayfasına geçiş" width="900">
 
 </div>
 
@@ -48,6 +50,22 @@ Mağaza ödeme sayfası kargo için tasarlanmıştır: teslimat adresi, şirket,
 - **Bağış türleri ve kampanyalar:** kategori, seçenek ve fiyat, serbest tutar, adet, düzenli bağış, tarihler, ilerlemeli hedef, açık/kapalı/arşiv; başlamak için örnek setler. Her türün gizli bir WooCommerce ürünü vardır.
 - Başka yolla gelen bağışlar için **Bağış ekle**; Flux Roles ile bağış başına **referans**, personel yalnız kendisininkileri görür.
 - iyzico ve Google Merchant Center için `bagis-urunleri.xml` ürün listesi; isteğe bağlı Kurban modülü.
+
+## Ekran görüntüleri
+
+| Bağış paneli | Sitedeki bağış formu |
+|---|---|
+| <img src="docs/images/dashboard-tr.jpg" alt="Bağış paneli" width="440"> | <img src="docs/images/form-tr.jpg" alt="Sitedeki bağış formu" width="440"> |
+| **Bağışlar** | **Bağış ayrıntısı** |
+| <img src="docs/images/donations-tr.jpg" alt="Bağışlar" width="440"> | <img src="docs/images/donation-tr.jpg" alt="Bağış ayrıntısı" width="440"> |
+| **Bağış türleri ve kampanyalar** | **Bağışçı kartı** |
+| <img src="docs/images/types-tr.jpg" alt="Bağış türleri ve kampanyalar" width="440"> | <img src="docs/images/donor-tr.jpg" alt="Bağışçı kartı" width="440"> |
+| **Düzenli bağışlar** | **Kısa ödeme sayfası** |
+| <img src="docs/images/recurring-tr.jpg" alt="Düzenli bağışlar" width="440"> | <img src="docs/images/checkout-tr.jpg" alt="Kısa ödeme sayfası" width="440"> |
+| **Flux Admin ile koyu tema** | **Mobil: panel** |
+| <img src="docs/images/dark-tr.jpg" alt="Flux Admin ile koyu tema" width="440"> | <img src="docs/images/mobile-tr.jpg" alt="Mobil: panel" width="260"> |
+| **Mobil: bağış formu** |   |
+| <img src="docs/images/mobile-form-tr.jpg" alt="Mobil: bağış formu" width="260"> |   |
 
 ## Kurulum
 

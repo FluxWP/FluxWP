@@ -16,7 +16,9 @@ Flux Call Center shows every chat of your WhatsApp line live in the admin: incom
 ![AI](https://img.shields.io/badge/AI-donation%20assistant-7d64ff)
 ![UI](https://img.shields.io/badge/UI-English%20%7C%20Türkçe-e30a17)
 
-[Features](#features) · [Installation](#installation) · [Roadmap](#roadmap)
+[Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [Roadmap](#roadmap)
+
+<img src="docs/demo.gif" alt="Flux Call Center tour: the chat list and three chats with assistant replies, the AI assistant summary, scheduled WhatsApp reports and the line settings" width="900">
 
 </div>
 
@@ -52,6 +54,18 @@ A charity's busiest channel is WhatsApp on one phone: "How do I donate?", "Here 
 
 ### Reports
 - **WhatsApp reports:** scheduled donation reports for staff (their own) and managers (totals per staff), daily, weekly or monthly, with a preview and "Send me a test".
+
+## Screenshots
+
+| Chat with assistant replies | Volunteer question |
+|---|---|
+| <img src="docs/images/chats-en.jpg" alt="Chat with assistant replies" width="440"> | <img src="docs/images/chat2-en.jpg" alt="Volunteer question" width="440"> |
+| **AI assistant: activity and chats** | **Scheduled WhatsApp reports** |
+| <img src="docs/images/assistant-en.jpg" alt="AI assistant: activity and chats" width="440"> | <img src="docs/images/reports-en.jpg" alt="Scheduled WhatsApp reports" width="440"> |
+| **Lines and webhook** | **Dark mode with Flux Admin** |
+| <img src="docs/images/settings-en.jpg" alt="Lines and webhook" width="440"> | <img src="docs/images/dark-en.jpg" alt="Dark mode with Flux Admin" width="440"> |
+| **Mobile: chat list** | **Mobile: chat** |
+| <img src="docs/images/mobile-en.jpg" alt="Mobile: chat list" width="260"> | <img src="docs/images/mobile-chat-en.jpg" alt="Mobile: chat" width="260"> |
 
 ## Installation
 

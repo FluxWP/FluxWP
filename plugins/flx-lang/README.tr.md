@@ -17,7 +17,9 @@ Flux Lang siteyi ağır bir eklenti olmadan çok dilli yapar. Her yazı, sayfa, 
 ![AI](https://img.shields.io/badge/AI-tek%20tık%20çeviri-7d64ff)
 ![Arayüz](https://img.shields.io/badge/arayüz-Türkçe%20%7C%20English-e30a17)
 
-[Özellikler](#özellikler) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+[Özellikler](#özellikler) · [Ekran görüntüleri](#ekran-görüntüleri) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+
+<img src="docs/demo-tr.gif" alt="Flux Lang turu: Diller ayarları, yazı listesinde dil rozetleri, editörde Dil kutusu ve alt bilgide dil seçicili İngilizce ana sayfa" width="900">
 
 </div>
 
@@ -51,6 +53,18 @@ Flux Lang siteyi ağır bir eklenti olmadan çok dilli yapar. Her yazı, sayfa, 
 - `hreflang` + `x-default`, `og:locale:alternate`, kanonik, sitemap'te tüm diller; çevirisiz sayfaların kanoniği Türkçe.
 - Flux AI ve MCP araçları: `flxl_languages`, `flxl_untranslated`, `flxl_save_translation`, `flxl_set_language`, `flxl_image_language`, `flxl_term_translation`, `flxl_site_texts`; Flux SEO içerik araçlarında `lang`.
 - REST: `lang` ve `translations` alanları, `?lang=en` süzgeci.
+
+## Ekran görüntüleri
+
+| Diller ayarları | Yazı listesinde dil rozetleri |
+|---|---|
+| <img src="docs/images/settings-tr.jpg" alt="Diller ayarları" width="440"> | <img src="docs/images/posts-tr.jpg" alt="Yazı listesinde dil rozetleri" width="440"> |
+| **Editörde Dil kutusu** | **İngilizce ana sayfa** |
+| <img src="docs/images/editor-tr.jpg" alt="Editörde Dil kutusu" width="440"> | <img src="docs/images/front-en-tr.jpg" alt="İngilizce ana sayfa" width="440"> |
+| **Alt bilgide dil seçici** | **Flux Admin ile koyu tema** |
+| <img src="docs/images/switcher-tr.jpg" alt="Alt bilgide dil seçici" width="440"> | <img src="docs/images/dark-tr.jpg" alt="Flux Admin ile koyu tema" width="440"> |
+| **Mobil, İngilizce** |   |
+| <img src="docs/images/mobile-tr.jpg" alt="Mobil, İngilizce" width="260"> |   |
 
 ## Kurulum
 

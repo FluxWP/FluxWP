@@ -16,7 +16,9 @@ Flux AI is the shared AI layer of the FluxWP packages. OpenRouter and Anthropic 
 ![Media](https://img.shields.io/badge/media-fal.ai%20%C2%B7%20OpenAI%20%C2%B7%20Gemini-2fbf8f)
 ![UI](https://img.shields.io/badge/UI-English%20%7C%20Türkçe-e30a17)
 
-[Features](#features) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+[Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+
+<img src="docs/demo.gif" alt="Flux AI tour: the overview with daily cost and time charts, connected systems, the request log, monthly billing and the tool registry" width="900">
 
 </div>
 
@@ -50,6 +52,20 @@ When every plugin brings its own AI connection, you end up with keys in five set
 - The AI button in the admin opens a docked or floating chat with chat history, search, model picker, suggestions for the current page and streaming answers.
 - Changes need the user's approval in the chat; stop at any time; edit a message or go back to an earlier point.
 - The chat keeps running across page loads.
+
+## Screenshots
+
+| Overview: spend, limits and time | Shared AI chat |
+|---|---|
+| <img src="docs/images/overview-en.jpg" alt="Overview: spend, limits and time" width="440"> | <img src="docs/images/chat-en.jpg" alt="Shared AI chat" width="440"> |
+| **Connected systems** | **Tool registry** |
+| <img src="docs/images/systems-en.jpg" alt="Connected systems" width="440"> | <img src="docs/images/tools-en.jpg" alt="Tool registry" width="440"> |
+| **Request log** | **Monthly billing** |
+| <img src="docs/images/log-en.jpg" alt="Request log" width="440"> | <img src="docs/images/billing-en.jpg" alt="Monthly billing" width="440"> |
+| **Keys and models** | **Dark mode with Flux Admin** |
+| <img src="docs/images/settings-en.jpg" alt="Keys and models" width="440"> | <img src="docs/images/dark-en.jpg" alt="Dark mode with Flux Admin" width="440"> |
+| **Mobile overview** |   |
+| <img src="docs/images/mobile-en.jpg" alt="Mobile overview" width="260"> |   |
 
 ## Installation
 

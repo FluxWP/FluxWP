@@ -1,0 +1,98 @@
+{
+ "ok": true,
+ "site": {
+  "name": "FluxWP Extras"
+ },
+ "packages": {
+  "flx-tv-board": {
+   "type": "plugin",
+   "name": "Flux TV Board",
+   "version": "0.4.0",
+   "package": "http://127.0.0.1:8091/extras/v1/download/flx-tv-board/0.4.0.zip",
+   "requires": "6.4",
+   "tested": "6.8",
+   "requires_php": "7.4",
+   "released": "2026-11-02",
+   "changelog": "<ul><li>First public release</li></ul>",
+   "versions": [
+    {
+     "version": "0.4.0",
+     "released": "2026-11-02",
+     "package": "http://127.0.0.1:8091/extras/v1/download/flx-tv-board/0.4.0.zip"
+    }
+   ]
+  },
+  "flx-tv-remote": {
+   "type": "plugin",
+   "name": "Flux TV Remote",
+   "version": "0.2.1",
+   "package": "http://127.0.0.1:8091/extras/v1/download/flx-tv-remote/0.2.1.zip",
+   "requires": "6.4",
+   "tested": "6.8",
+   "requires_php": "7.4",
+   "released": "2026-11-02",
+   "changelog": "<ul><li>First public release</li></ul>",
+   "versions": [
+    {
+     "version": "0.2.1",
+     "released": "2026-11-02",
+     "package": "http://127.0.0.1:8091/extras/v1/download/flx-tv-remote/0.2.1.zip"
+    }
+   ]
+  },
+  "flx-staff": {
+   "type": "plugin",
+   "name": "Flux Staff",
+   "version": "0.1.0",
+   "package": "http://127.0.0.1:8091/extras/v1/download/flx-staff/0.1.0.zip",
+   "requires": "6.4",
+   "tested": "6.8",
+   "requires_php": "7.4",
+   "released": "2026-11-02",
+   "changelog": "<ul><li>First public release</li></ul>",
+   "versions": [
+    {
+     "version": "0.1.0",
+     "released": "2026-11-02",
+     "package": "http://127.0.0.1:8091/extras/v1/download/flx-staff/0.1.0.zip"
+    }
+   ]
+  },
+  "flx-qurban": {
+   "type": "plugin",
+   "name": "Flux Qurban",
+   "version": "0.1.0",
+   "package": "http://127.0.0.1:8091/extras/v1/download/flx-qurban/0.1.0.zip",
+   "requires": "6.4",
+   "tested": "6.8",
+   "requires_php": "7.4",
+   "released": "2026-11-02",
+   "changelog": "<ul><li>First public release</li></ul>",
+   "versions": [
+    {
+     "version": "0.1.0",
+     "released": "2026-11-02",
+     "package": "http://127.0.0.1:8091/extras/v1/download/flx-qurban/0.1.0.zip"
+    }
+   ]
+  },
+  "flx-preset-hayirkapisi": {
+   "type": "plugin",
+   "name": "Hayır Kapısı Preset",
+   "version": "0.1.0",
+   "package": "http://127.0.0.1:8091/extras/v1/download/flx-preset-hayirkapisi/0.1.0.zip",
+   "requires": "6.4",
+   "tested": "6.8",
+   "requires_php": "7.4",
+   "released": "2026-11-02",
+   "changelog": "<ul><li>First public release</li></ul>",
+   "versions": [
+    {
+     "version": "0.1.0",
+     "released": "2026-11-02",
+     "package": "http://127.0.0.1:8091/extras/v1/download/flx-preset-hayirkapisi/0.1.0.zip"
+    }
+   ]
+  }
+ }
+}

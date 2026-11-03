@@ -16,7 +16,9 @@ Flux App lets the FluxWP desktop and mobile app (and MCP clients such as Claude)
 ![Platforms](https://img.shields.io/badge/app-macOS%20%C2%B7%20Windows%20%C2%B7%20iOS%20%C2%B7%20Android-2fbf8f)
 ![UI](https://img.shields.io/badge/UI-English%20%7C%20Türkçe-e30a17)
 
-[Features](#features) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+[Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+
+<img src="docs/demo.gif" alt="Flux App tour: general settings, native modules, the menu per platform, all active sessions and the consent screen" width="900">
 
 </div>
 
@@ -48,6 +50,18 @@ A phone or desktop app for a WordPress site usually means application passwords 
 
 ### Application page
 - Tabs: General, Modules, Menu, Connected apps, All access; people see and revoke their own sessions and keys under Users › App access.
+
+## Screenshots
+
+| General settings | Native modules |
+|---|---|
+| <img src="docs/images/general-en.jpg" alt="General settings" width="440"> | <img src="docs/images/modules-en.jpg" alt="Native modules" width="440"> |
+| **Menu per role and platform** | **Connected apps** |
+| <img src="docs/images/menu-en.jpg" alt="Menu per role and platform" width="440"> | <img src="docs/images/apps-en.jpg" alt="Connected apps" width="440"> |
+| **All sessions and keys** | **Consent screen** |
+| <img src="docs/images/access-en.jpg" alt="All sessions and keys" width="440"> | <img src="docs/images/consent-en.jpg" alt="Consent screen" width="440"> |
+| **Dark mode with Flux Admin** | **Consent on a phone** |
+| <img src="docs/images/dark-en.jpg" alt="Dark mode with Flux Admin" width="440"> | <img src="docs/images/mobile-en.jpg" alt="Consent on a phone" width="260"> |
 
 ## Installation
 

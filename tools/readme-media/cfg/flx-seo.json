@@ -14,7 +14,7 @@
   },
   {
    "name": "editor",
-   "url": "post.php?post=12&action=edit",
+   "url": "post.php?post={post:Hatıra Ormanı nedir?}&action=edit",
    "wait": 5000,
    "vh": 1000,
    "css": ".components-modal__screen-overlay{display:none!important}.editor-post-summary,.editor-post-panel__section:has(.editor-post-trash),.editor-post-trash{display:none!important}"
@@ -73,7 +73,7 @@
    "wait": 900
   },
   {
-   "goto": "post.php?post=12&action=edit",
+   "goto": "post.php?post={post:Hatıra Ormanı nedir?}&action=edit",
    "wait": 5000,
    "css": true
   },

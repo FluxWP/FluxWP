@@ -16,7 +16,9 @@ Flux QR Menu bir dernek yemek standı ya da etkinlik için menüyü WordPress pa
 ![QR](https://img.shields.io/badge/QR-SVG%20%C2%B7%20PNG-0a7cff)
 ![Arayüz](https://img.shields.io/badge/arayüz-Türkçe%20%7C%20English-e30a17)
 
-[Özellikler](#özellikler) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+[Özellikler](#özellikler) · [Ekran görüntüleri](#ekran-görüntüleri) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+
+<img src="docs/demo-tr.gif" alt="Flux QR Menu turu: menü listesi, canlı telefon önizlemeli düzenleyici, ürünü tükendi yapma, QR kodlu Paylaş sekmesi ve değişiklik geçmişi" width="900">
 
 </div>
 
@@ -50,6 +52,18 @@ Bir bağış standında menü saat saat değişir: bir yemek biter, fiyat deği�
 - **Geçmiş:** okunur fark özetli her değişiklik, herhangi bir sürümü görme, geri yükleme.
 - Menü başına erişimli **Menü yöneticisi** rolü; tüm menüler için `flxq_manage_menus` yetkisi.
 - REST veri ucu ve MCP araçları; sistem kontrolleri.
+
+## Ekran görüntüleri
+
+| Canlı telefon önizlemeli düzenleyici | Paylaş: adres ve QR kod |
+|---|---|
+| <img src="docs/images/editor-tr.jpg" alt="Canlı telefon önizlemeli düzenleyici" width="440"> | <img src="docs/images/share-tr.jpg" alt="Paylaş: adres ve QR kod" width="440"> |
+| **Değişiklik geçmişi** | **Etkinlik ayarları** |
+| <img src="docs/images/history-tr.jpg" alt="Değişiklik geçmişi" width="440"> | <img src="docs/images/settings-tr.jpg" alt="Etkinlik ayarları" width="440"> |
+| **Menüler** | **Flux Admin ile koyu tema** |
+| <img src="docs/images/list-tr.jpg" alt="Menüler" width="440"> | <img src="docs/images/dark-tr.jpg" alt="Flux Admin ile koyu tema" width="440"> |
+| **Telefonda menü** | **Telefonda menü** |
+| <img src="docs/images/mobile-tr.jpg" alt="Telefonda menü" width="260"> | <img src="docs/images/mobile-menu-tr.jpg" alt="Telefonda menü" width="260"> |
 
 ## Kurulum
 

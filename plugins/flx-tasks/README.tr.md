@@ -16,7 +16,9 @@ Flux Tasks ekibe ayrı bir abonelik olmadan işi planlayacağı tek bir yer veri
 ![AI](https://img.shields.io/badge/yapay%20zekâ-asistan%20%C2%B7%20MCP-7d64ff)
 ![Arayüz](https://img.shields.io/badge/arayüz-Türkçe%20%7C%20English-e30a17)
 
-[Özellikler](#özellikler) · [Kurulum](#kurulum) · [Yol haritası](#yol-haritası)
+[Özellikler](#özellikler) · [Ekran görüntüleri](#ekran-görüntüleri) · [Kurulum](#kurulum) · [Yol haritası](#yol-haritası)
+
+<img src="docs/demo-tr.gif" alt="Flux Tasks turu: duruma göre gruplu liste, alt görevli ve yorumlu bir görev, pano, takvim ve kullanım panosu" width="900">
 
 </div>
 
@@ -50,6 +52,20 @@ Gönüllü projeleri WhatsApp gruplarında, tablolarda ve akıllarda yaşar. Üc
 - **Kullanım panosu:** açık, geciken ve tamamlanan görevler, yorumlar, yapı, liste ve kişi başına depolama.
 - Flux AI üzerinden asistan ve hızlı işlemler; tüm araçlar ortak Flux AI sohbetinde ve MCP'de.
 - Flux App'da yerel ekran (`flx-tasks/v1/app/*`); sistem kontrolleri.
+
+## Ekran görüntüleri
+
+| Duruma göre gruplu liste | Pano |
+|---|---|
+| <img src="docs/images/list-tr.jpg" alt="Duruma göre gruplu liste" width="440"> | <img src="docs/images/board-tr.jpg" alt="Pano" width="440"> |
+| **Alt görevli ve yorumlu görev** | **Takvim** |
+| <img src="docs/images/task-tr.jpg" alt="Alt görevli ve yorumlu görev" width="440"> | <img src="docs/images/calendar-tr.jpg" alt="Takvim" width="440"> |
+| **Görevlerim** | **Toplantı listesi** |
+| <img src="docs/images/home-tr.jpg" alt="Görevlerim" width="440"> | <img src="docs/images/meeting-tr.jpg" alt="Toplantı listesi" width="440"> |
+| **Kullanım panosu** | **Flux Admin ile koyu tema** |
+| <img src="docs/images/dashboard-tr.jpg" alt="Kullanım panosu" width="440"> | <img src="docs/images/dark-tr.jpg" alt="Flux Admin ile koyu tema" width="440"> |
+| **Mobil liste** |   |
+| <img src="docs/images/mobile-tr.jpg" alt="Mobil liste" width="260"> |   |
 
 ## Kurulum
 

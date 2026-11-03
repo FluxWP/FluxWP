@@ -15,7 +15,9 @@ Flux Updater brings our private FluxWP themes and plugins (GitHub releases of a 
 ![Private updates](https://img.shields.io/badge/updates-private%20GitHub%20releases-2fbf8f)
 ![UI](https://img.shields.io/badge/UI-English%20%7C%20Türkçe-e30a17)
 
-[Features](#features) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+[Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+
+<img src="docs/demo.gif" alt="Flux Updater tour: connection status, testing the connection, the FluxWP package list with available updates, settings and the standard WordPress Updates screen" width="900">
 
 </div>
 
@@ -54,6 +56,14 @@ Our packages live in a private GitHub repository and are not on WordPress.org. W
 - Settings › Other sources: add (tested before saving), turn on/off, priority (Move up), remove. The packages table shows a "Source: …" label.
 - If a package is in more than one source, it updates from the source it was installed from; if it is not installed, the source higher in the list wins ("available from 2 sources").
 - Each key is sent only to its own server; a download URL outside the source's host is ignored. A source that can't be reached keeps showing its last known packages, with a warning on top.
+
+## Screenshots
+
+| FluxWP packages | Connection settings |
+|---|---|
+| <img src="docs/images/packages-en.jpg" alt="FluxWP packages" width="440"> | <img src="docs/images/settings-en.jpg" alt="Connection settings" width="440"> |
+| **In the standard Updates screen** | **Mobile** |
+| <img src="docs/images/wp-updates-en.jpg" alt="In the standard Updates screen" width="440"> | <img src="docs/images/mobile-en.jpg" alt="Mobile" width="260"> |
 
 ## Installation
 

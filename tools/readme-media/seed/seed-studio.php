@@ -2,7 +2,7 @@
 global $wpdb; flxst_install();
 foreach(['items','folders','people','refs','templates'] as $t) $wpdb->query('DELETE FROM '.flxst_table($t));
 $up=wp_upload_dir(); $dir=$up['basedir'].'/flxst-demo'; wp_mkdir_p($dir);
-$src=dirname( __DIR__, 3 ) . '/themes/fluxwp/assets/images/';
+$src=dirname( __DIR__ ) . '/env/demo-images/';
 $now=time();
 $wpdb->insert(flxst_table('folders'),['user_id'=>1,'parent_id'=>0,'name'=>'Kampanyalar','shared'=>1,'created'=>$now]); $f1=$wpdb->insert_id;
 $wpdb->insert(flxst_table('folders'),['user_id'=>1,'parent_id'=>$f1,'name'=>'11 Kasım','shared'=>1,'created'=>$now]); $f2=$wpdb->insert_id;
@@ -18,7 +18,6 @@ $P=[
 ['haber-kiyi','Volunteers in white T-shirts with a leaf logo collecting litter on a coastal path, sea view','google/nano-banana-2.1','fal',$f3,0],
 ['calisma-agaclandirma','Row of young seedlings sprouting from soil, macro, morning sun, hopeful mood','bytedance/seedream-4','fal',$f1,0],
 ['sayfa-iletisim','Lone oak tree on a green hill at sunset, valley and lake below, memory forest concept','google/imagen-4','gemini',$f2,1],
-['etkinlik-dikim','Volunteers with backpacks walking towards a pine forest in the mountains, team spirit','google/nano-banana-2.1','fal',$f3,0],
 ['calisma-kentsel','Looking up through a green forest canopy, sun star, fresh spring leaves','openai/gpt-image-1','openai',$f1,0],
 ['proje-3','Aerial top-down view of a dense young pine forest with a winding road','bytedance/seedream-4','fal',$f1,0],
 ['haber-atolye','Children running through a sunny meadow at the forest edge, joyful, golden hour','google/nano-banana-2.1','fal',0,0],

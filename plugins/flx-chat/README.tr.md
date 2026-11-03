@@ -16,7 +16,9 @@ Flux Chat WhatsApp hattınızın tüm sohbetlerini panelde canlı gösterir: gel
 ![AI](https://img.shields.io/badge/yapay%20zekâ-bağış%20asistanı-7d64ff)
 ![Arayüz](https://img.shields.io/badge/arayüz-Türkçe%20%7C%20English-e30a17)
 
-[Özellikler](#özellikler) · [Kurulum](#kurulum) · [Yol haritası](#yol-haritası)
+[Özellikler](#özellikler) · [Ekran görüntüleri](#ekran-görüntüleri) · [Kurulum](#kurulum) · [Yol haritası](#yol-haritası)
+
+<img src="docs/demo-tr.gif" alt="Flux Chat turu: sohbet listesi ve asistan cevaplı üç sohbet, AI asistan özeti, zamanlanmış WhatsApp raporları ve hat ayarları" width="900">
 
 </div>
 
@@ -52,6 +54,18 @@ Bir derneğin en yoğun kanalı tek bir telefondaki WhatsApp'tır: "Nasıl bağ�
 
 ### Raporlar
 - **WhatsApp raporları:** personele (kendi bağışları) ve yöneticilere (personel başına toplamlar) günlük, haftalık ya da aylık zamanlanmış bağış raporları; önizleme ve "Bana test gönder".
+
+## Ekran görüntüleri
+
+| Asistan cevaplı sohbet | Gönüllülük sorusu |
+|---|---|
+| <img src="docs/images/chats-tr.jpg" alt="Asistan cevaplı sohbet" width="440"> | <img src="docs/images/chat2-tr.jpg" alt="Gönüllülük sorusu" width="440"> |
+| **AI asistan: özet ve sohbetler** | **Zamanlanmış WhatsApp raporları** |
+| <img src="docs/images/assistant-tr.jpg" alt="AI asistan: özet ve sohbetler" width="440"> | <img src="docs/images/reports-tr.jpg" alt="Zamanlanmış WhatsApp raporları" width="440"> |
+| **Hatlar ve webhook** | **Flux Admin ile koyu tema** |
+| <img src="docs/images/settings-tr.jpg" alt="Hatlar ve webhook" width="440"> | <img src="docs/images/dark-tr.jpg" alt="Flux Admin ile koyu tema" width="440"> |
+| **Mobil: sohbet listesi** | **Mobil: sohbet** |
+| <img src="docs/images/mobile-tr.jpg" alt="Mobil: sohbet listesi" width="260"> | <img src="docs/images/mobile-chat-tr.jpg" alt="Mobil: sohbet" width="260"> |
 
 ## Kurulum
 

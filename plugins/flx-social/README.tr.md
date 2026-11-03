@@ -17,7 +17,9 @@ Flux Social sitenin içinde çalışan bir sosyal medya planlayıcıdır: Facebo
 ![Mixpost esinli](https://img.shields.io/badge/esin-Mixpost%20(MIT)-lightgrey)
 ![Arayüz](https://img.shields.io/badge/arayüz-Türkçe%20%7C%20English-e30a17)
 
-[Özellikler](#özellikler) · [Kurulum](#kurulum) · [Yapay zekâ asistanlarıyla kullanım (MCP)](#yapay-zekâ-asistanlarıyla-kullanım-mcp) · [Yol haritası](#yol-haritası)
+[Özellikler](#özellikler) · [Ekran görüntüleri](#ekran-görüntüleri) · [Kurulum](#kurulum) · [Yapay zekâ asistanlarıyla kullanım (MCP)](#yapay-zekâ-asistanlarıyla-kullanım-mcp) · [Yol haritası](#yol-haritası)
+
+<img src="docs/demo-tr.gif" alt="Flux Social turu: günlük paylaşım, ağlar ve takipçili pano, gönderi listesi, canlı önizlemeli düzenleyicide bir gönderi, takvim ve bağlı hesaplar" width="900">
 
 </div>
 
@@ -52,6 +54,20 @@ Mixpost ve Postiz gibi kendi sunucunuzda çalışan planlayıcılar ayrı sunucu
 
 ### Ayarlar
 - Ağ başına uygulama anahtarları (şifreli), X katmanı ve aylık sınır, sitede yazı yayınlanınca otomatik paylaşım, dış tetikleme adresi, günlük.
+
+## Ekran görüntüleri
+
+| Pano | Gönderiler |
+|---|---|
+| <img src="docs/images/dashboard-tr.jpg" alt="Pano" width="440"> | <img src="docs/images/posts-tr.jpg" alt="Gönderiler" width="440"> |
+| **Canlı önizlemeli düzenleyici** | **Takvim** |
+| <img src="docs/images/compose-tr.jpg" alt="Canlı önizlemeli düzenleyici" width="440"> | <img src="docs/images/calendar-tr.jpg" alt="Takvim" width="440"> |
+| **Onay bekleyenler** | **Bağlı hesaplar** |
+| <img src="docs/images/approvals-tr.jpg" alt="Onay bekleyenler" width="440"> | <img src="docs/images/accounts-tr.jpg" alt="Bağlı hesaplar" width="440"> |
+| **Ayarlar ve dış tetikleme** | **Koyu tema** |
+| <img src="docs/images/settings-tr.jpg" alt="Ayarlar ve dış tetikleme" width="440"> | <img src="docs/images/dark-tr.jpg" alt="Koyu tema" width="440"> |
+| **Mobil: pano** | **Mobil: gönderiler** |
+| <img src="docs/images/mobile-tr.jpg" alt="Mobil: pano" width="260"> | <img src="docs/images/mobile-posts-tr.jpg" alt="Mobil: gönderiler" width="260"> |
 
 ## Kurulum
 

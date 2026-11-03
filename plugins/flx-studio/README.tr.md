@@ -16,7 +16,9 @@ Flux Studio ekibinizin panelden yapay zekâyla görsel ve video üretmesini sağ
 ![Video](https://img.shields.io/badge/video-var-2fbf8f)
 ![Arayüz](https://img.shields.io/badge/arayüz-Türkçe%20%7C%20English-e30a17)
 
-[Özellikler](#özellikler) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+[Özellikler](#özellikler) · [Ekran görüntüleri](#ekran-görüntüleri) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+
+<img src="docs/demo-tr.gif" alt="Flux Studio turu: istem yazma, model seçici, görsel görüntüleyici ve model başına harcamalı pano" width="900">
 
 </div>
 
@@ -49,6 +51,18 @@ Etkinlik afişi, haber görseli, video küçük resmi: küçük bir ekibin her h
 ### Yönet
 - **Pano:** üretim, harcama (görsel/video ve metin), üretim başına ortalama, hata oranı, kişi ve depolama; günlük grafikler; model, sağlayıcı ve kişi tabloları; Flux AI sınırı ve son hatalar.
 - Flux Roles'de listelenen `flxst_use` ve `flxst_manage` yetkileri; Flux Admin ile açık ve koyu tema; telefonda ve Flux App'da yerel ekran olarak çalışır.
+
+## Ekran görüntüleri
+
+| Galeri ve üretim kutusu | Görsel görüntüleyici |
+|---|---|
+| <img src="docs/images/gallery-tr.jpg" alt="Galeri ve üretim kutusu" width="440"> | <img src="docs/images/viewer-tr.jpg" alt="Görsel görüntüleyici" width="440"> |
+| **Model seçici** | **Beyin fırtınası** |
+| <img src="docs/images/models-tr.jpg" alt="Model seçici" width="440"> | <img src="docs/images/brainstorm-tr.jpg" alt="Beyin fırtınası" width="440"> |
+| **Pano** | **Flux Admin ile koyu tema** |
+| <img src="docs/images/dashboard-tr.jpg" alt="Pano" width="440"> | <img src="docs/images/dark-tr.jpg" alt="Flux Admin ile koyu tema" width="440"> |
+| **Mobil galeri** |   |
+| <img src="docs/images/mobile-tr.jpg" alt="Mobil galeri" width="260"> |   |
 
 ## Kurulum
 

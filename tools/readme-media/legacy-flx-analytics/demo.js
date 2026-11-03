@@ -40,7 +40,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  await to(box,true,1800);
  await scroll(700,1400); await move(700,500); await p.waitForTimeout(1200);
  await scroll(0,900);
- await to(p.locator('#adminmenu').getByRole('link',{name:T.settings,exact:true}).first(),true,0);
+ { const st=p.locator('#adminmenu').getByRole('link',{name:T.settings,exact:true}).first(); if(await st.isVisible().catch(()=>false)) await to(st,true,0); else await p.goto('http://127.0.0.1:8080/wp-admin/admin.php?page=flx-analytics-settings'); } // Flux Admin menusunde alt oge gizli olabilir
  await p.waitForLoadState('networkidle'); await p.waitForTimeout(1500);
  const fy=await p.evaluate(()=>{const h=[...document.querySelectorAll('h2,h3')].find(h=>/Funnels|Huniler/.test(h.textContent)); return h.getBoundingClientRect().top+scrollY-30;});
  await scroll(fy,1500); await move(820,400); await p.waitForTimeout(600);

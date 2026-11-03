@@ -17,7 +17,9 @@ Flux SEO adds what a charity site needs to be found: meta titles and description
 ![IndexNow](https://img.shields.io/badge/IndexNow-Bing%20%C2%B7%20Yandex%20%C2%B7%20Naver-0a7cff)
 ![UI](https://img.shields.io/badge/UI-English%20%7C%20Türkçe-e30a17)
 
-[Features](#features) · [Installation](#installation) · [Use it with AI assistants (MCP)](#use-it-with-ai-assistants-mcp) · [Roadmap](#roadmap)
+[Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [Use it with AI assistants (MCP)](#use-it-with-ai-assistants-mcp) · [Roadmap](#roadmap)
+
+<img src="docs/demo.gif" alt="Flux SEO tour: general settings, the SEO panel in the editor with a Google preview, the site-wide SEO check and the MCP keys" width="900">
 
 </div>
 
@@ -50,6 +52,18 @@ Big SEO plugins bring dozens of screens, upsells and their own database tables; 
 - Tools: site info, list/get/create/update/delete content, set SEO, SEO audit, patterns, media upload and alt text, terms, site SEO settings; prompts for "fix SEO gaps", "write a news post" and "build a page".
 - Other FluxWP plugins add their own tools through `flxseo_mcp_tools` (orders, system checks and fixes are already there).
 - New content is created as a draft; delete only moves to trash. Every call is logged.
+
+## Screenshots
+
+| General settings | SEO panel in the editor |
+|---|---|
+| <img src="docs/images/general-en.jpg" alt="General settings" width="440"> | <img src="docs/images/editor-en.jpg" alt="SEO panel in the editor" width="440"> |
+| **Organisation and social profiles** | **SEO check** |
+| <img src="docs/images/org-en.jpg" alt="Organisation and social profiles" width="440"> | <img src="docs/images/audit-en.jpg" alt="SEO check" width="440"> |
+| **MCP server and keys** | **Dark mode with Flux Admin** |
+| <img src="docs/images/mcp-en.jpg" alt="MCP server and keys" width="440"> | <img src="docs/images/dark-en.jpg" alt="Dark mode with Flux Admin" width="440"> |
+| **Mobile SEO check** |   |
+| <img src="docs/images/mobile-en.jpg" alt="Mobile SEO check" width="260"> |   |
 
 ## Installation
 

@@ -17,7 +17,9 @@ Flux SEO bir dernek sitesinin bulunması için gerekenleri ekler: meta başlık 
 ![IndexNow](https://img.shields.io/badge/IndexNow-Bing%20%C2%B7%20Yandex%20%C2%B7%20Naver-0a7cff)
 ![Arayüz](https://img.shields.io/badge/arayüz-Türkçe%20%7C%20English-e30a17)
 
-[Özellikler](#özellikler) · [Kurulum](#kurulum) · [Yapay zekâ asistanlarıyla kullanım (MCP)](#yapay-zekâ-asistanlarıyla-kullanım-mcp) · [Yol haritası](#yol-haritası)
+[Özellikler](#özellikler) · [Ekran görüntüleri](#ekran-görüntüleri) · [Kurulum](#kurulum) · [Yapay zekâ asistanlarıyla kullanım (MCP)](#yapay-zekâ-asistanlarıyla-kullanım-mcp) · [Yol haritası](#yol-haritası)
+
+<img src="docs/demo-tr.gif" alt="Flux SEO turu: genel ayarlar, editörde Google önizlemeli SEO paneli, site geneli SEO kontrolü ve MCP anahtarları" width="900">
 
 </div>
 
@@ -50,6 +52,18 @@ Büyük SEO eklentileri onlarca ekran, satış teklifleri ve kendi veritabanı t
 - Araçlar: site bilgisi, içerik listele/getir/oluştur/güncelle/sil, SEO ayarla, SEO denetimi, desenler, medya yükleme ve alt metin, terimler, site SEO ayarları; "SEO eksiklerini düzelt", "haber yaz" ve "sayfa kur" istemleri.
 - Diğer FluxWP eklentileri kendi araçlarını `flxseo_mcp_tools` ile ekler (siparişler, sistem kontrolleri ve düzeltmeleri hazır).
 - Yeni içerik taslak açılır; silme yalnız çöpe taşır. Her çağrı kayda geçer.
+
+## Ekran görüntüleri
+
+| Genel ayarlar | Editörde SEO paneli |
+|---|---|
+| <img src="docs/images/general-tr.jpg" alt="Genel ayarlar" width="440"> | <img src="docs/images/editor-tr.jpg" alt="Editörde SEO paneli" width="440"> |
+| **Kurum ve sosyal profiller** | **SEO kontrolü** |
+| <img src="docs/images/org-tr.jpg" alt="Kurum ve sosyal profiller" width="440"> | <img src="docs/images/audit-tr.jpg" alt="SEO kontrolü" width="440"> |
+| **MCP sunucusu ve anahtarlar** | **Flux Admin ile koyu tema** |
+| <img src="docs/images/mcp-tr.jpg" alt="MCP sunucusu ve anahtarlar" width="440"> | <img src="docs/images/dark-tr.jpg" alt="Flux Admin ile koyu tema" width="440"> |
+| **Mobil SEO kontrolü** |   |
+| <img src="docs/images/mobile-tr.jpg" alt="Mobil SEO kontrolü" width="260"> |   |
 
 ## Kurulum
 

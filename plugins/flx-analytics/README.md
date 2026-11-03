@@ -16,7 +16,9 @@ A privacy-first analytics plugin for WordPress: visitors, pages, sources, a dona
 ![MCP](https://img.shields.io/badge/AI-MCP%20tools-7d64ff)
 ![Languages](https://img.shields.io/badge/UI-English%20%7C%20Türkçe-e30a17)
 
-[Features](#features) · [Installation](#installation) · [AI and MCP](#use-it-with-ai-assistants-mcp) · [For developers](#for-developers) · [Roadmap](#roadmap)
+[Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [AI and MCP](#use-it-with-ai-assistants-mcp) · [For developers](#for-developers) · [Roadmap](#roadmap)
+
+<img src="docs/demo.gif" alt="Flux Site Analytics tour: statistics overview, map, donation funnel by referral code, filtering by a referral link, the Journeys screen and the visual funnel editor" width="900">
 
 </div>
 
@@ -66,6 +68,20 @@ Google Analytics is heavy, needs a cookie banner and sends your visitors' data t
 - A "Views" column in the post and page lists, the page's view count in the admin bar, and two shortcodes: `[flx_analiz_populer]` (most read posts) and `[flx_analiz_sayac]` (view counter).
 - Imports historical data from Koko Analytics without touching its tables.
 - Registers its checks in **System Check** (Flux Performance) and its `flxan_view` capability in Flux Roles.
+
+## Screenshots
+
+| Overview | Journeys |
+|---|---|
+| <img src="docs/images/overview-en.jpg" alt="Statistics overview" width="440"> | <img src="docs/images/journeys-en.jpg" alt="Journeys" width="440"> |
+| **Donation funnel** | **Visual funnel editor** |
+| <img src="docs/images/funnel-en.jpg" alt="Donation funnel by channel" width="440"> | <img src="docs/images/funnel-editor-en.jpg" alt="Funnel editor" width="440"> |
+| **Referral links, sources and roles** | **Visitors by country** |
+| <img src="docs/images/referrals-en.jpg" alt="Referral links" width="440"> | <img src="docs/images/map-en.jpg" alt="World map" width="440"> |
+| **Pages and referring sites** | **Clicks and conversions** |
+| <img src="docs/images/pages-en.jpg" alt="Pages and referring sites" width="440"> | <img src="docs/images/events-en.jpg" alt="Events" width="440"> |
+| **Dashboard widgets** | **Mobile** |
+| <img src="docs/images/dashboard-widgets-en.jpg" alt="Dashboard widgets" width="440"> | <img src="docs/images/mobile-en.jpg" alt="Statistics on mobile" width="200"> <img src="docs/images/mobile-journeys-en.jpg" alt="Journeys on mobile" width="200"> |
 
 ## Installation
 

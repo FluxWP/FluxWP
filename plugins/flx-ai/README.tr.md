@@ -16,7 +16,9 @@ Flux AI, FluxWP paketlerinin ortak yapay zekâ katmanıdır. OpenRouter ve Anthr
 ![Medya](https://img.shields.io/badge/medya-fal.ai%20%C2%B7%20OpenAI%20%C2%B7%20Gemini-2fbf8f)
 ![Arayüz](https://img.shields.io/badge/arayüz-Türkçe%20%7C%20English-e30a17)
 
-[Özellikler](#özellikler) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+[Özellikler](#özellikler) · [Ekran görüntüleri](#ekran-görüntüleri) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+
+<img src="docs/demo-tr.gif" alt="Flux AI turu: günlük maliyet ve süre grafikli genel bakış, bağlı sistemler, istek kayıtları, aylık faturalandırma ve araç kaydı" width="900">
 
 </div>
 
@@ -50,6 +52,20 @@ Her eklenti kendi AI bağlantısını getirince anahtarlar beş ayar sayfasına 
 - Paneldeki AI düğmesi yanaşık ya da yüzen bir sohbet açar: sohbet geçmişi, arama, model seçici, sayfaya göre öneriler, akışlı cevaplar.
 - Değişiklikler sohbette kullanıcı onayı ister; her an durdurulur; mesaj düzenlenir ya da önceki bir noktaya dönülür.
 - Sohbet sayfa geçişlerinde kaldığı yerden sürer.
+
+## Ekran görüntüleri
+
+| Genel bakış: harcama, sınırlar ve süre | Ortak AI sohbeti |
+|---|---|
+| <img src="docs/images/overview-tr.jpg" alt="Genel bakış: harcama, sınırlar ve süre" width="440"> | <img src="docs/images/chat-tr.jpg" alt="Ortak AI sohbeti" width="440"> |
+| **Bağlı sistemler** | **Araç kaydı** |
+| <img src="docs/images/systems-tr.jpg" alt="Bağlı sistemler" width="440"> | <img src="docs/images/tools-tr.jpg" alt="Araç kaydı" width="440"> |
+| **İstek kayıtları** | **Aylık faturalandırma** |
+| <img src="docs/images/log-tr.jpg" alt="İstek kayıtları" width="440"> | <img src="docs/images/billing-tr.jpg" alt="Aylık faturalandırma" width="440"> |
+| **Anahtarlar ve modeller** | **Flux Admin ile koyu tema** |
+| <img src="docs/images/settings-tr.jpg" alt="Anahtarlar ve modeller" width="440"> | <img src="docs/images/dark-tr.jpg" alt="Flux Admin ile koyu tema" width="440"> |
+| **Mobil genel bakış** |   |
+| <img src="docs/images/mobile-tr.jpg" alt="Mobil genel bakış" width="260"> |   |
 
 ## Kurulum
 

@@ -16,7 +16,9 @@ A developer panel for every request (queries, PHP errors, HTTP calls, hooks), a 
 ![MCP](https://img.shields.io/badge/AI-MCP%20tools-7d64ff)
 ![UI](https://img.shields.io/badge/UI-English%20%7C%20Türkçe-e30a17)
 
-[Features](#features) · [Installation](#installation) · [Use it with AI assistants (MCP)](#use-it-with-ai-assistants-mcp) · [Roadmap](#roadmap)
+[Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [Use it with AI assistants (MCP)](#use-it-with-ai-assistants-mcp) · [Roadmap](#roadmap)
+
+<img src="docs/demo.gif" alt="Flux Performance tour: live server boxes and suggestions, the request log and one recorded request, the server screen, System Check and the developer panel on a front-end page" width="900">
 
 </div>
 
@@ -54,6 +56,18 @@ Query Monitor tells you what happened on the page you are looking at; it forgets
 ### Light on shared hosting
 - Visitors only trigger cheap hooks (errors, HTTP calls, timing). Query capture runs only on sampled requests, for logged-in staff and when profiling a page.
 - One INSERT at the end of a request; old rows are pruned on the fly. Emails, phone numbers, IBANs, tokens and secrets are masked before anything is stored.
+
+## Screenshots
+
+| Overview | Request log |
+|---|---|
+| <img src="docs/images/overview-en.jpg" alt="Overview" width="440"> | <img src="docs/images/records-en.jpg" alt="Request log" width="440"> |
+| **Developer panel on a page** | **System Check** |
+| <img src="docs/images/dev-panel-en.jpg" alt="Developer panel on a page" width="440"> | <img src="docs/images/system-check-en.jpg" alt="System Check" width="440"> |
+| **Server** | **Dark mode with Flux Admin** |
+| <img src="docs/images/server-en.jpg" alt="Server" width="440"> | <img src="docs/images/dark-en.jpg" alt="Dark mode with Flux Admin" width="440"> |
+| **Mobile** |   |
+| <img src="docs/images/mobile-en.jpg" alt="Mobile" width="260"> |   |
 
 ## Installation
 

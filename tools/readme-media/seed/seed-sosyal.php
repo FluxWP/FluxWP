@@ -1,7 +1,7 @@
 <?php require ( getenv( 'WPENV' ) ?: '/tmp/wpenv' ) . '/site/wp-load.php'; require_once ABSPATH.'wp-admin/includes/image.php'; global $wpdb; mt_srand(11);
 foreach(['accounts','posts','targets','metrics','log'] as $t) $wpdb->query('DELETE FROM '.flxsm_table($t));
-$img=[]; $src=dirname( __DIR__, 3 ) . '/themes/fluxwp/assets/images/';
-foreach(['etkinlik-dikim','calisma-agaclandirma','haber-fidan','calisma-egitim','etkinlik-yuruyus','haber-kiyi','hakkimizda-galeri-2','calisma-temizlik','hero-2'] as $f){
+$img=[]; $src=dirname( __DIR__ ) . '/env/demo-images/';
+foreach(['proje-1','calisma-agaclandirma','haber-fidan','calisma-egitim','etkinlik-yuruyus','haber-kiyi','sayfa-hakkimizda','calisma-temizlik','proje-2'] as $f){
  $ex=get_posts(['post_type'=>'attachment','name'=>'sm-'.$f,'numberposts'=>1]); if($ex){$img[]=$ex[0]->ID;continue;}
  $up=wp_upload_bits('sm-'.$f.'.webp',null,file_get_contents($src.$f.'.webp')); $id=wp_insert_attachment(['post_title'=>'sm-'.$f,'post_name'=>'sm-'.$f,'post_mime_type'=>'image/webp','post_status'=>'inherit'],$up['file']); wp_update_attachment_metadata($id,wp_generate_attachment_metadata($id,$up['file'])); $img[]=$id; }
 $logo=get_theme_file_uri('assets/images/avatar.webp'); $now=time();

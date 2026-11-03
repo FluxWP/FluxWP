@@ -16,7 +16,9 @@ Flux Backup takes an automatic backup of the database and the package before eve
 ![Restore](https://img.shields.io/badge/restore-selective-333)
 ![UI](https://img.shields.io/badge/UI-English%20%7C%20Türkçe-e30a17)
 
-[Features](#features) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+[Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+
+<img src="docs/demo.gif" alt="Flux Backup tour: storage dashboard with history chart and types, the backup list, one full backup with its size breakdown, and the settings" width="900">
 
 </div>
 
@@ -52,6 +54,16 @@ Hosting backups are daily at best, and restoring one rolls back everything, incl
 
 ### Storage
 - Backups are stored in `wp-content/wp-snapshots/flx-backup/`, closed to the web, with random file names; downloads are admin-only.
+
+## Screenshots
+
+| Dashboard | Backups |
+|---|---|
+| <img src="docs/images/dashboard-en.jpg" alt="Dashboard" width="440"> | <img src="docs/images/backups-en.jpg" alt="Backups" width="440"> |
+| **Backup details and restore** | **Settings** |
+| <img src="docs/images/restore-en.jpg" alt="Backup details and restore" width="440"> | <img src="docs/images/settings-en.jpg" alt="Settings" width="440"> |
+| **Dark mode with Flux Admin** | **Mobile** |
+| <img src="docs/images/dark-en.jpg" alt="Dark mode with Flux Admin" width="440"> | <img src="docs/images/mobile-en.jpg" alt="Mobile" width="260"> |
 
 ## Installation
 

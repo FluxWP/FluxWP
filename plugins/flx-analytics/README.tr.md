@@ -16,7 +16,9 @@ WordPress için gizlilik öncelikli istatistik eklentisi: ziyaretçiler, sayfala
 ![MCP](https://img.shields.io/badge/yapay%20zekâ-MCP%20araçları-7d64ff)
 ![Diller](https://img.shields.io/badge/arayüz-Türkçe%20%7C%20English-e30a17)
 
-[Özellikler](#özellikler) · [Kurulum](#kurulum) · [Yapay zekâ ve MCP](#yapay-zekâ-asistanlarıyla-kullanım-mcp) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+[Özellikler](#özellikler) · [Ekran görüntüleri](#ekran-görüntüleri) · [Kurulum](#kurulum) · [Yapay zekâ ve MCP](#yapay-zekâ-asistanlarıyla-kullanım-mcp) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+
+<img src="docs/demo-tr.gif" alt="Flux Analytics turu: istatistik özeti, harita, referans koduna göre bağış hunisi, referans bağlantısıyla süzme, Yolculuklar ekranı ve görsel huni düzenleyicisi" width="900">
 
 </div>
 
@@ -66,6 +68,20 @@ Google Analytics ağır, çerez uyarısı ister ve ziyaretçi verisini üçünc�
 - Yazı ve sayfa listelerinde "Görüntülenme" sütunu, yönetim çubuğunda sayfanın görüntülenmesi ve iki kısa kod: `[flx_analiz_populer]` (en çok okunanlar) ve `[flx_analiz_sayac]` (sayaç).
 - Koko Analytics'in geçmiş verisini, onun tablolarına dokunmadan aktarır.
 - Kontrollerini **Sistem Kontrolü**'ne (Flux Speed), `flxan_view` yetkisini Flux Roles'e kaydeder.
+
+## Ekran görüntüleri
+
+| Özet | Yolculuklar |
+|---|---|
+| <img src="docs/images/overview-tr.jpg" alt="İstatistik özeti" width="440"> | <img src="docs/images/journeys-tr.jpg" alt="Yolculuklar" width="440"> |
+| **Bağış hunisi** | **Görsel huni düzenleyicisi** |
+| <img src="docs/images/funnel-tr.jpg" alt="Kanala göre bağış hunisi" width="440"> | <img src="docs/images/funnel-editor-tr.jpg" alt="Huni düzenleyicisi" width="440"> |
+| **Referans bağlantıları, kaynaklar ve roller** | **Ülkelere göre ziyaretçi** |
+| <img src="docs/images/referrals-tr.jpg" alt="Referans bağlantıları" width="440"> | <img src="docs/images/map-tr.jpg" alt="Dünya haritası" width="440"> |
+| **Sayfalar ve yönlendiren siteler** | **Tıklamalar ve dönüşümler** |
+| <img src="docs/images/pages-tr.jpg" alt="Sayfalar ve yönlendiren siteler" width="440"> | <img src="docs/images/events-tr.jpg" alt="Olaylar" width="440"> |
+| **Başlangıç widget'ları** | **Mobil** |
+| <img src="docs/images/dashboard-widgets-tr.jpg" alt="Başlangıç widget'ları" width="440"> | <img src="docs/images/mobile-tr.jpg" alt="Mobilde istatistikler" width="200"> <img src="docs/images/mobile-journeys-tr.jpg" alt="Mobilde yolculuklar" width="200"> |
 
 ## Kurulum
 

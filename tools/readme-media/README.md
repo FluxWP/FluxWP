@@ -36,7 +36,9 @@ Gereken: php (sqlite3, gd/imagick), node + Playwright (Chromium), ffmpeg, python
 | `place.sh` | Logo (c2pa metadata silinir), görseller ve GIF'leri `docs/` altına koyar, `thumb.gif` üretir, `.distignore`'a ekler |
 | `gen.py` | `text/<slug>.py` → `README.md` + `README.tr.md` |
 | `sheet.py` | Önizleme için görselleri tek sayfada toplar |
-| `env/` | wp-config, mu-plugin'ler (SQLite uyumu, ön yüz dili, yapay yük), sahte sunucular, `connect-mocks.php` |
+| `env/` | wp-config, mu-plugin'ler (SQLite uyumu, ön yüz dili, yapay yük, harf avatar, WC uyarıları kapalı, demo sertifika arka planları), sahte sunucular (güncelleme + FluxWP Extras kaynağı, Evolution), `connect-mocks.php` |
+| `env/demo-images/` | Demo site görselleri (Sosyal, Stüdyo, yazı kapakları). Kurum logosu yok |
+| `env/demo-certificates/gen.py` | Flux Certificates hazır şablonları için logosuz "Örnek Vakfı" arka planları (setup üretir) |
 | `legacy-flx-analytics/` | Flux Analytics'in ilk (eski) çekim betikleri |
 
 ## cfg alanları
@@ -58,6 +60,8 @@ Gereken: php (sqlite3, gd/imagick), node + Playwright (Chromium), ffmpeg, python
 }
 ```
 
+Adreslerde `{post:Başlık}` o yazının/sayfanın kimliğine çevrilir (seed sonrası kimlikler değişir).
+
 Diğer çekim anahtarları: `eval` (sayfada JS), `keys`, `type` (`{"en":…, "tr":…}`), `hover`, `sel` (yalnız seçilen öğeler, `pad`), `clip`, `full` (tam sayfa).
 
 ## Bilinen tuzaklar
@@ -65,7 +69,8 @@ Diğer çekim anahtarları: `eval` (sayfada JS), `keys`, `type` (`{"en":…, "tr
 - 120 sn'den uzun işleri arka planda çalıştırın (GIF kaydı 2–4 dk).
 - SPA'larda (Sosyal) hash değişimi sayfayı yenilemez: URL'ye `&r=1` gibi sahte parametre ekleyin.
 - Flux AI sohbet düğmesi `#flxai-host` açık kalırsa sonraki çekimlere taşar: genelde gizli, yalnız sohbet çekiminde açık.
-- Seed sonrası kayıt kimlikleri değişebilir; cfg'deki `post=`/`id` değerlerini kontrol edin.
+- Seed sonrası kayıt kimlikleri değişebilir; cfg'de `post={post:Başlık}` kullanın, diğer `id` değerlerini kontrol edin.
+- Demo site genel "Örnek Vakfı" (example.org): sayfalar ve menü `seed/seed-site.php`, formlar `seed-form.php`, yedekler `seed-backup.php`. Kurum logosu/içeriği kullanmayın.
 - WP çekirdeğinin TR dil paketi yok: WP menüleri TR ekranlarda da İngilizce kalır.
 - `.distignore` yorumunda kesme işareti olmasın (`build.sh` xargs ile bozulur). Zip'te `docs/` ve README olmamalı.
 - Çekim sonrası ekran görüntülerini Ahmet'e göstermek için `/mnt/project-files/<paket>/` altına koyun.

@@ -16,7 +16,9 @@ Flux Forms is our fork of Easy Form Builder with every feature unlocked and noth
 ![No telemetry](https://img.shields.io/badge/telemetry-none-333)
 ![UI](https://img.shields.io/badge/UI-English%20%7C%20Türkçe-e30a17)
 
-[Features](#features) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+[Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+
+<img src="docs/demo.gif" alt="Flux Forms tour: the dashboard with responses and conversion, the response list of the sapling donation form, the drag-and-drop builder, the certificate automation and the form on the site" width="900">
 
 </div>
 
@@ -52,6 +54,20 @@ Form plugins usually lock the useful parts (payments, conditional logic, file up
 ### Payments and automations
 - With Flux Donation, the **Pay** step puts the chosen amount into the WooCommerce checkout (card, bank transfer, monthly donation); without it, built-in Stripe with server-side amount checks and webhooks.
 - **Automations**: when a form is submitted or a payment completes, run steps such as *Create certificate*, *Send certificate*, *Show on thank-you screen*, *Send e-mail* and *Webhook*. A ready-made "Sapling donation → Certificate" flow is one click away.
+
+## Screenshots
+
+| Dashboard | Drag-and-drop builder |
+|---|---|
+| <img src="docs/images/dashboard-en.jpg" alt="Dashboard" width="440"> | <img src="docs/images/builder-en.jpg" alt="Drag-and-drop builder" width="440"> |
+| **Responses** | **Automations** |
+| <img src="docs/images/responses-en.jpg" alt="Responses" width="440"> | <img src="docs/images/automations-en.jpg" alt="Automations" width="440"> |
+| **Form templates** | **The form on the site** |
+| <img src="docs/images/templates-en.jpg" alt="Form templates" width="440"> | <img src="docs/images/public-en.jpg" alt="The form on the site" width="440"> |
+| **Dark mode with Flux Admin** | **Mobile: dashboard** |
+| <img src="docs/images/dark-en.jpg" alt="Dark mode with Flux Admin" width="440"> | <img src="docs/images/mobile-en.jpg" alt="Mobile: dashboard" width="260"> |
+| **Mobile: form** |   |
+| <img src="docs/images/mobile-public-en.jpg" alt="Mobile: form" width="260"> |   |
 
 ## Installation
 

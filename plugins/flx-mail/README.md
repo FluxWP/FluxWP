@@ -16,7 +16,9 @@ Flux Contact replaces "WordPress <wordpress@…>" with your organisation: a send
 ![MCP](https://img.shields.io/badge/AI-MCP%20tools-7d64ff)
 ![UI](https://img.shields.io/badge/UI-English%20%7C%20Türkçe-e30a17)
 
-[Features](#features) · [Installation](#installation) · [Use it with AI assistants (MCP)](#use-it-with-ai-assistants-mcp) · [For developers](#for-developers) · [Roadmap](#roadmap)
+[Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [Use it with AI assistants (MCP)](#use-it-with-ai-assistants-mcp) · [For developers](#for-developers) · [Roadmap](#roadmap)
+
+<img src="docs/demo.gif" alt="Flux Contact tour: the e-mail list with on/off switches, the mailbox with an open message, the send log, WhatsApp and SMS connections and the send screen with a live preview" width="900">
 
 </div>
 
@@ -49,6 +51,20 @@ Out of the box, WordPress sends plain text from `wordpress@your-host`, every plu
 ### WhatsApp and SMS
 - **Connections:** WhatsApp via Evolution API, Flux WPAPI or Cloud API (Meta), SMS via Netgsm; several numbers, a default per channel, QR or pairing-code connect, status, restart, log out.
 - **Test** a connection with text, image, voice message, document or (Cloud API) a template.
+
+## Screenshots
+
+| E-mails with on/off and editor | Mailbox with an open e-mail |
+|---|---|
+| <img src="docs/images/emails-en.jpg" alt="E-mails with on/off and editor" width="440"> | <img src="docs/images/mailbox-en.jpg" alt="Mailbox with an open e-mail" width="440"> |
+| **Send with live preview** | **WhatsApp and SMS connections** |
+| <img src="docs/images/send-en.jpg" alt="Send with live preview" width="440"> | <img src="docs/images/connections-en.jpg" alt="WhatsApp and SMS connections" width="440"> |
+| **Send log** | **Settings: sender and SMTP** |
+| <img src="docs/images/logs-en.jpg" alt="Send log" width="440"> | <img src="docs/images/settings-en.jpg" alt="Settings: sender and SMTP" width="440"> |
+| **Dark mode with Flux Admin** | **Mobile: mailbox** |
+| <img src="docs/images/dark-en.jpg" alt="Dark mode with Flux Admin" width="440"> | <img src="docs/images/mobile-en.jpg" alt="Mobile: mailbox" width="260"> |
+| **Mobile: log** |   |
+| <img src="docs/images/mobile-log-en.jpg" alt="Mobile: log" width="260"> |   |
 
 ## Installation
 

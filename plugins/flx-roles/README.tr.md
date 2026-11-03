@@ -15,7 +15,9 @@ Flux Roles Personel, İdareci ve Yönetici rollerini (ve panelden ekleyeceğiniz
 ![Roller](https://img.shields.io/badge/roller-Personel%20%C2%B7%20İdareci%20%C2%B7%20Yönetici-2fbf8f)
 ![Arayüz](https://img.shields.io/badge/arayüz-Türkçe%20%7C%20English-e30a17)
 
-[Özellikler](#özellikler) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+[Özellikler](#özellikler) · [Ekran görüntüleri](#ekran-görüntüleri) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+
+<img src="docs/demo-tr.gif" alt="Flux Roles turu: rol kartları, her FluxWP paketi için düğmeli erişim tablosu ve referans bağlantılı kişiler bölümü" width="900">
 
 </div>
 
@@ -47,6 +49,14 @@ WordPress rolleri blog için düşünülmüş: Editör, Yazar, Katılımcı. Bir
 - Kullanıcı adı ya da e-postayla role kişi ekleme/çıkarma.
 - Profilde ve kişiler listesinde kopyala düğmeli kişisel referans bağlantısı (`?ref=kod`); son tıklanan bağlantı geçerli, 30 gün (ayarlanabilir). Referans WooCommerce siparişine yazılır.
 - Kullanıcı başına telefon numarası (yalnız yönetici yazar): Flux Chat'ndeki WhatsApp asistanı için.
+
+## Ekran görüntüleri
+
+| Roller ve erişim tablosu | Pakete göre erişim |
+|---|---|
+| <img src="docs/images/roles-tr.jpg" alt="Roller ve erişim tablosu" width="440"> | <img src="docs/images/capabilities-tr.jpg" alt="Pakete göre erişim" width="440"> |
+| **Kişiler ve referans bağlantıları** | **Mobil** |
+| <img src="docs/images/people-tr.jpg" alt="Kişiler ve referans bağlantıları" width="440"> | <img src="docs/images/mobile-tr.jpg" alt="Mobil" width="260"> |
 
 ## Kurulum
 

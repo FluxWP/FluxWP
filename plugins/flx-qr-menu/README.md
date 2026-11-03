@@ -16,7 +16,9 @@ Flux QR Menu lets you build menus for a charity food stand or event in the WordP
 ![QR](https://img.shields.io/badge/QR-SVG%20%C2%B7%20PNG-0a7cff)
 ![UI](https://img.shields.io/badge/UI-English%20%7C%20Türkçe-e30a17)
 
-[Features](#features) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+[Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
+
+<img src="docs/demo.gif" alt="Flux QR Menu tour: the menu list, the editor with live phone preview, marking an item sold out, the share tab with the QR code and the change history" width="900">
 
 </div>
 
@@ -50,6 +52,18 @@ At a fundraising stand the menu changes by the hour: a dish runs out, a price ch
 - **History:** every change with a readable diff summary, view any version, restore.
 - **Menu manager** role with per-menu access; capability `flxq_manage_menus` for all menus.
 - REST data endpoint and MCP tools; system checks.
+
+## Screenshots
+
+| Editor with live phone preview | Share: address and QR code |
+|---|---|
+| <img src="docs/images/editor-en.jpg" alt="Editor with live phone preview" width="440"> | <img src="docs/images/share-en.jpg" alt="Share: address and QR code" width="440"> |
+| **Change history** | **Event settings** |
+| <img src="docs/images/history-en.jpg" alt="Change history" width="440"> | <img src="docs/images/settings-en.jpg" alt="Event settings" width="440"> |
+| **Menus** | **Dark mode with Flux Admin** |
+| <img src="docs/images/list-en.jpg" alt="Menus" width="440"> | <img src="docs/images/dark-en.jpg" alt="Dark mode with Flux Admin" width="440"> |
+| **The menu on a phone** | **The menu on a phone** |
+| <img src="docs/images/mobile-en.jpg" alt="The menu on a phone" width="260"> | <img src="docs/images/mobile-menu-en.jpg" alt="The menu on a phone" width="260"> |
 
 ## Installation
 

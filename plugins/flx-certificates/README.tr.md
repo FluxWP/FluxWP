@@ -16,7 +16,9 @@ Flux Certificates kendi tasarımlarınızdan fidan bağış sertifikası, e-kart
 ![Kanallar](https://img.shields.io/badge/gönderim-WhatsApp%20%C2%B7%20SMS%20%C2%B7%20e--posta-333)
 ![Arayüz](https://img.shields.io/badge/arayüz-Türkçe%20%7C%20English-e30a17)
 
-[Özellikler](#özellikler) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+[Özellikler](#özellikler) · [Ekran görüntüleri](#ekran-görüntüleri) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
+
+<img src="docs/demo-tr.gif" alt="Flux Certificates turu: Dashboard, sertifika listesi, Yeni sertifika ekranında isim yazınca canlı PDF önizlemesi, şablon galerisi ve sitedeki sertifika sayfası" width="900">
 
 </div>
 
@@ -58,6 +60,20 @@ Teşekkür sertifikası çoğu zaman bağışçının sakladığı ve paylaştı
 - Tarih, hedef, ek (sertifikasız) fidan, konum ve sitede canlı sayaçlı sayfası olan etkinlikler; bitince kapat ve arşivle.
 - Dashboard: bugüne kadar hediye edilen fidan, önceki dönemle karşılaştırmalı rakamlar, günlük ve haftanın günü grafikleri, gönderimler, referans personel ve şablonlar, en çok fidan hediye edenler, CSV. Sertifika listesinin Excel'e aktarımı.
 - Girişte doğrudan **Yeni sertifika**'ya düşen personel rolü; Flux Roles ile personel yalnız kendi kayıtlarını görür.
+
+## Ekran görüntüleri
+
+| Sitedeki sertifika sayfası | Canlı önizlemeli yeni sertifika |
+|---|---|
+| <img src="docs/images/public-tr.jpg" alt="Sitedeki sertifika sayfası" width="440"> | <img src="docs/images/new-tr.jpg" alt="Canlı önizlemeli yeni sertifika" width="440"> |
+| **Dashboard** | **Tüm sertifikalar** |
+| <img src="docs/images/dashboard-tr.jpg" alt="Dashboard" width="440"> | <img src="docs/images/certificates-tr.jpg" alt="Tüm sertifikalar" width="440"> |
+| **Şablonlar ve e-kartlar** | **Etkinlikler** |
+| <img src="docs/images/templates-tr.jpg" alt="Şablonlar ve e-kartlar" width="440"> | <img src="docs/images/events-tr.jpg" alt="Etkinlikler" width="440"> |
+| **Flux Admin ile koyu tema** | **Mobil: Dashboard** |
+| <img src="docs/images/dark-tr.jpg" alt="Flux Admin ile koyu tema" width="440"> | <img src="docs/images/mobile-tr.jpg" alt="Mobil: Dashboard" width="260"> |
+| **Mobil: sertifika sayfası** |   |
+| <img src="docs/images/mobile-public-tr.jpg" alt="Mobil: sertifika sayfası" width="260"> |   |
 
 ## Kurulum
 
