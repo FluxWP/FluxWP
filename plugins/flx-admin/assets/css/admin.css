@@ -1471,11 +1471,10 @@ body.flxa #wpadminbar #wp-admin-bar-flxa-mode .flxa-mode-opt .flxa-ico:last-chil
 body.flxa #wpadminbar #wp-admin-bar-flxa-mode .flxa-mode-opt.is-on .flxa-ico:last-child { visibility: visible; }
 body.flxa #wpadminbar #wp-admin-bar-flxa-mode .flxa-mode-opt.is-on > .ab-item { font-weight: 600; }
 
-/* 1.7.0: sol menü kaydırılınca öğeler arama kutusunun altında keskin kesilmesin; yumuşak geçişle kaybolsun. */
-body.flxa #adminmenu li.flxa-side-head::after,
-body.flxa #adminmenu li.flxa-side-foot::before { content: ""; position: absolute; left: 0; right: 0; height: 16px; pointer-events: none; }
-body.flxa #adminmenu li.flxa-side-head::after { top: 100%; background: linear-gradient(var(--flxa-side), transparent); }
-body.flxa #adminmenu li.flxa-side-foot::before { bottom: 100%; background: linear-gradient(transparent, var(--flxa-side)); }
+/* 1.7.1: sol menüde üst (logo + arama) ve alt (kullanıcı) yerinde sabit; yalnız orta kayar. Kayan öğeler
+   başlığın altında net kesilir (1.7.0'daki geçiş efekti kartları yarı saydam gösteriyordu). Sona gelince
+   Mac/iOS esneme ve sayfaya geçen kaydırma yok, menü bir kez daha "kaymaz". */
+body.flxa #adminmenuwrap { overscroll-behavior: none; }
 
 /* 1.7.0: Google Site Kit (Material bileşenleri) · yazı tipi panelle aynı, koyu temada okunur form öğeleri. */
 body.flxa:not(.flxa-appmode) .googlesitekit-plugin,
