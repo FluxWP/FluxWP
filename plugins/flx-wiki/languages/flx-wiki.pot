@@ -105,13 +105,34 @@ msgstr ""
 msgid "Wiki ana sayfasında ve menüde küçük sayı önce gelir."
 msgstr ""
 
+msgid "Genel"
+msgstr ""
+
+msgid "Görünüm"
+msgstr ""
+
+msgid "AI"
+msgstr ""
+
+msgid "Yeni sayfa"
+msgstr ""
+
+msgid "Wiki ziyaretçilere kapalı; yalnız sayfa yazabilenler görüyor."
+msgstr ""
+
 msgid "Ayarlar kaydedildi."
 msgstr ""
 
 msgid "Rehberler aktarıldı: %1$d yeni, %2$d güncellendi, %3$d atlandı (elle değiştirilmiş ya da güncel)."
 msgstr ""
 
-msgid "Genel"
+msgid "Wiki"
+msgstr ""
+
+msgid "Wiki ziyaretçilere açık"
+msgstr ""
+
+msgid "Kapalıyken wiki adresleri, .md ve llms.txt ziyaretçilere 404 döner, site haritasından çıkar. Sayfa yazabilenler görmeye devam eder."
 msgstr ""
 
 msgid "Wiki adı"
@@ -126,6 +147,12 @@ msgstr ""
 msgid "Ana sayfada, arama motoru açıklamasında ve llms.txt'de kullanılır."
 msgstr ""
 
+msgid "Adres"
+msgstr ""
+
+msgid "Küçük harf, rakam ve tire. Değiştirince eski adresler çalışmaz."
+msgstr ""
+
 msgid "Sayfa düğmeleri"
 msgstr ""
 
@@ -135,7 +162,31 @@ msgstr ""
 msgid "Yetkililere \"Düzenle\" düğmesi"
 msgstr ""
 
-msgid "Wiki'ye sor (Flux AI)"
+msgid "Vurgu rengi"
+msgstr ""
+
+msgid "Temanın rengini kullan"
+msgstr ""
+
+msgid "Bağlantılar, seçili menü ve vurgulu düğmeler."
+msgstr ""
+
+msgid "Genişlik"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Geniş (uzun kod ve tablolar için)"
+msgstr ""
+
+msgid "Sayfa düzeni"
+msgstr ""
+
+msgid "Solda sayfa menüsü ve arama"
+msgstr ""
+
+msgid "Sağda \"Bu sayfada\" (içindekiler)"
 msgstr ""
 
 msgid "Flux AI kurulu değil. Kurulunca ziyaretçiler wiki içeriğinden cevap alan \"Wiki'ye sor\" penceresini kullanabilir."
@@ -169,9 +220,6 @@ msgid "Kaydet"
 msgstr ""
 
 msgid "Adresler"
-msgstr ""
-
-msgid "Wiki"
 msgstr ""
 
 msgid "Arama API"
@@ -327,9 +375,6 @@ msgstr ""
 msgid "Tüm sayfalar"
 msgstr ""
 
-msgid "Yeni sayfa"
-msgstr ""
-
 msgid "Yeni wiki sayfası"
 msgstr ""
 
@@ -352,6 +397,9 @@ msgid "Wiki sayfası bulunamadı."
 msgstr ""
 
 msgid "Başlık gerekli."
+msgstr ""
+
+msgid "Wiki bölümü"
 msgstr ""
 
 msgid "Soru çok kısa."

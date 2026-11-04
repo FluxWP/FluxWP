@@ -62,6 +62,12 @@ add_filter(
 				'ask_limit' => array( 'type' => 'int', 'default' => 20, 'desc' => 'Questions per person per hour.' ),
 				'ai_links'  => array( 'type' => 'bool', 'default' => true, 'desc' => 'Show "Open in ChatGPT / Claude / Perplexity".' ),
 				'edit_link' => array( 'type' => 'bool', 'default' => true, 'desc' => 'Show "Edit" to editors.' ),
+				'enabled'   => array( 'type' => 'bool', 'default' => true, 'desc' => 'Wiki open to visitors; off = 404 for everyone except editors.' ),
+				'base'      => array( 'type' => 'string', 'default' => 'wiki', 'desc' => 'URL base (lowercase, digits, hyphen).' ),
+				'accent'    => array( 'type' => 'string', 'default' => '', 'desc' => 'Accent colour (#hex); empty = theme colour.' ),
+				'width'     => array( 'type' => 'enum', 'enum' => array( 'normal', 'wide' ), 'default' => 'normal', 'desc' => 'Layout width.' ),
+				'nav'       => array( 'type' => 'bool', 'default' => true, 'desc' => 'Left page menu and search.' ),
+				'toc'       => array( 'type' => 'bool', 'default' => true, 'desc' => 'Right "On this page" table of contents.' ),
 			),
 		);
 		return $s;

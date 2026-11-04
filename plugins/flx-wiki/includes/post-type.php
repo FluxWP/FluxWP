@@ -93,6 +93,18 @@ function flxwk_register_types() {
 }
 
 /** /wiki/llms.txt, /wiki/llms-full.txt, /wiki/<yol>.md */
+/* Adres kökü değişince kurallar bir kez yenilenir. */
+add_action(
+	'init',
+	function () {
+		if ( get_option( 'flxwk_flush' ) ) {
+			delete_option( 'flxwk_flush' );
+			flush_rewrite_rules( false );
+		}
+	},
+	99
+);
+
 function flxwk_rewrite_rules() {
 	$b = preg_quote( flxwk_base(), '#' );
 	add_rewrite_rule( '^' . $b . '/llms\.txt$', 'index.php?flxwk_llms=index', 'top' );

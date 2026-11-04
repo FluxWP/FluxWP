@@ -16,6 +16,12 @@ function flxwk_defaults() {
 		'ask_limit' => 20,          // saatte kişi başı soru
 		'ai_links'  => 1,           // ChatGPT / Claude / Perplexity'de aç bağlantıları
 		'edit_link' => 1,           // yetkililere "Düzenle"
+		'enabled'   => 1,           // 0: wiki ziyaretçilere kapalı (404), yalnız editörler görür
+		'base'      => 'wiki',      // adres kökü
+		'accent'    => '',          // boş: tema rengi
+		'width'     => 'normal',    // normal | wide
+		'nav'       => 1,           // sol sayfa menüsü
+		'toc'       => 1,           // "Bu sayfada" (içindekiler)
 	);
 }
 
@@ -31,8 +37,19 @@ function flxwk_opt( $key ) {
 
 /** Wiki'nin adres kökü (varsayılan "wiki"). */
 function flxwk_base() {
-	$b = trim( (string) apply_filters( 'flxwk_base', 'wiki' ), '/' );
+	$o = sanitize_title( (string) flxwk_opt( 'base' ) );
+	$b = trim( (string) apply_filters( 'flxwk_base', '' === $o ? 'wiki' : $o ), '/' );
 	return '' === $b ? 'wiki' : $b;
+}
+
+/** Wiki ziyaretçilere açık mı (Ayarlar › Genel). */
+function flxwk_enabled() {
+	return (bool) flxwk_opt( 'enabled' );
+}
+
+/** Bu istek wiki'yi görebilir mi: açıksa herkes, kapalıysa yalnız düzenleyebilenler. */
+function flxwk_visible() {
+	return flxwk_enabled() || current_user_can( 'edit_posts' );
 }
 
 function flxwk_home_url( $path = '' ) {
@@ -243,7 +260,7 @@ function flxwk_first_paragraph( $md ) {
 /** "Wiki'ye sor" bu ziyaretçiye açık mı. */
 function flxwk_can_ask() {
 	$mode = (string) flxwk_opt( 'ask' );
-	if ( 'off' === $mode || ! flxwk_ai_ready() ) {
+	if ( 'off' === $mode || ! flxwk_visible() || ! flxwk_ai_ready() ) {
 		return false;
 	}
 	$ok = 'all' === $mode || is_user_logged_in();

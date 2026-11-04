@@ -13,6 +13,45 @@ function flxwk_is_view() {
 	return is_post_type_archive( FLXWK_PT ) || is_singular( FLXWK_PT ) || is_tax( FLXWK_TAX );
 }
 
+/* Wiki kapalıyken ziyaretçiye 404; sitemap ve llms.txt'den çıkar. */
+add_action(
+	'template_redirect',
+	function () {
+		if ( flxwk_visible() ) {
+			return;
+		}
+		if ( flxwk_is_view() || get_query_var( 'flxwk_llms' ) || '' !== (string) get_query_var( 'flxwk_raw' ) ) {
+			global $wp_query;
+			set_query_var( 'flxwk_llms', '' );
+			set_query_var( 'flxwk_raw', '' );
+			$wp_query->set_404();
+			status_header( 404 );
+			nocache_headers();
+		}
+	},
+	-10
+);
+add_filter(
+	'wp_sitemaps_post_types',
+	function ( $t ) {
+		if ( ! flxwk_enabled() ) {
+			unset( $t[ FLXWK_PT ] );
+		}
+		return $t;
+	},
+	20
+);
+add_filter(
+	'wp_sitemaps_taxonomies',
+	function ( $t ) {
+		if ( ! flxwk_enabled() ) {
+			unset( $t[ FLXWK_TAX ] );
+		}
+		return $t;
+	},
+	20
+);
+
 function flxwk_query() {
 	return isset( $_GET['q'] ) ? trim( sanitize_text_field( wp_unslash( $_GET['q'] ) ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 }
@@ -96,7 +135,7 @@ add_action(
 add_filter(
 	'wp_robots',
 	function ( $robots ) {
-		if ( is_post_type_archive( FLXWK_PT ) && '' !== flxwk_query() ) {
+		if ( ( is_post_type_archive( FLXWK_PT ) && '' !== flxwk_query() ) || ( ! flxwk_enabled() && flxwk_is_view() ) ) {
 			$robots['noindex'] = true;
 			$robots['follow']  = true;
 		}

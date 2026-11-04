@@ -107,14 +107,35 @@ msgstr "Order"
 msgid "Wiki ana sayfasında ve menüde küçük sayı önce gelir."
 msgstr "Lower numbers come first on the wiki home and in the menu."
 
+msgid "Genel"
+msgstr "General"
+
+msgid "Görünüm"
+msgstr "Appearance"
+
+msgid "AI"
+msgstr "AI"
+
+msgid "Yeni sayfa"
+msgstr "Add page"
+
+msgid "Wiki ziyaretçilere kapalı; yalnız sayfa yazabilenler görüyor."
+msgstr "The wiki is closed to visitors; only people who can write pages see it."
+
 msgid "Ayarlar kaydedildi."
 msgstr "Settings saved."
 
 msgid "Rehberler aktarıldı: %1$d yeni, %2$d güncellendi, %3$d atlandı (elle değiştirilmiş ya da güncel)."
 msgstr "Guides imported: %1$d new, %2$d updated, %3$d skipped (edited by hand or up to date)."
 
-msgid "Genel"
-msgstr "General"
+msgid "Wiki"
+msgstr "Wiki"
+
+msgid "Wiki ziyaretçilere açık"
+msgstr "Wiki open to visitors"
+
+msgid "Kapalıyken wiki adresleri, .md ve llms.txt ziyaretçilere 404 döner, site haritasından çıkar. Sayfa yazabilenler görmeye devam eder."
+msgstr "When closed, wiki addresses, .md and llms.txt return 404 to visitors and leave the sitemap. People who can write pages still see it."
 
 msgid "Wiki adı"
 msgstr "Wiki name"
@@ -128,6 +149,12 @@ msgstr "Intro"
 msgid "Ana sayfada, arama motoru açıklamasında ve llms.txt'de kullanılır."
 msgstr "Used on the wiki home, in the search engine description and in llms.txt."
 
+msgid "Adres"
+msgstr "Address"
+
+msgid "Küçük harf, rakam ve tire. Değiştirince eski adresler çalışmaz."
+msgstr "Lowercase letters, digits and hyphens. Old addresses stop working when you change it."
+
 msgid "Sayfa düğmeleri"
 msgstr "Page buttons"
 
@@ -137,8 +164,32 @@ msgstr "\"Open in AI\" links (ChatGPT, Claude, Perplexity)"
 msgid "Yetkililere \"Düzenle\" düğmesi"
 msgstr "\"Edit\" button for editors"
 
-msgid "Wiki'ye sor (Flux AI)"
-msgstr "Ask the wiki (Flux AI)"
+msgid "Vurgu rengi"
+msgstr "Accent colour"
+
+msgid "Temanın rengini kullan"
+msgstr "Use the theme colour"
+
+msgid "Bağlantılar, seçili menü ve vurgulu düğmeler."
+msgstr "Links, the selected menu item and accent buttons."
+
+msgid "Genişlik"
+msgstr "Width"
+
+msgid "Normal"
+msgstr "Normal"
+
+msgid "Geniş (uzun kod ve tablolar için)"
+msgstr "Wide (for long code and tables)"
+
+msgid "Sayfa düzeni"
+msgstr "Page layout"
+
+msgid "Solda sayfa menüsü ve arama"
+msgstr "Page menu and search on the left"
+
+msgid "Sağda \"Bu sayfada\" (içindekiler)"
+msgstr "\"On this page\" (contents) on the right"
 
 msgid "Flux AI kurulu değil. Kurulunca ziyaretçiler wiki içeriğinden cevap alan \"Wiki'ye sor\" penceresini kullanabilir."
 msgstr "Flux AI is not installed. Once installed, visitors can use \"Ask the wiki\", which answers from the wiki content."
@@ -172,9 +223,6 @@ msgstr "Save"
 
 msgid "Adresler"
 msgstr "Addresses"
-
-msgid "Wiki"
-msgstr "Wiki"
 
 msgid "Arama API"
 msgstr "Search API"
@@ -329,9 +377,6 @@ msgstr "Wiki page"
 msgid "Tüm sayfalar"
 msgstr "All pages"
 
-msgid "Yeni sayfa"
-msgstr "Add page"
-
 msgid "Yeni wiki sayfası"
 msgstr "New wiki page"
 
@@ -355,6 +400,9 @@ msgstr "Wiki page not found."
 
 msgid "Başlık gerekli."
 msgstr "A title is required."
+
+msgid "Wiki bölümü"
+msgstr "Wiki section"
 
 msgid "Soru çok kısa."
 msgstr "The question is too short."

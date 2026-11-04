@@ -32,3 +32,8 @@
 @media (max-width:1100px){.flxwk-admin__grid{grid-template-columns:1fr}}
 .flxwk-ed__preview pre code{background:none!important;color:inherit!important;padding:0!important;border:0!important;box-shadow:none!important}
 .flxwk-ed__preview h2{font-size:1.4em}.flxwk-ed__preview h3{font-size:1.15em}
+.flxwk-tabs{margin:12px -20px 4px;padding:0 20px;border-bottom:1px solid #dcdcde}
+.flxwk-tabs .nav-tab{margin-bottom:-1px}
+.flxwk-base{width:12em;margin:0 2px}
+.flxwk-switch{font-weight:600}
+@media (max-width:782px){.flxwk-tabs{margin-inline:-12px;padding-inline:12px}.flxwk-base{width:9em}.flxwk-panel{padding-inline:12px}}

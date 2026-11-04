@@ -123,6 +123,9 @@ function flxwk_full_markdown() {
 add_filter(
 	'flxseo_llms_txt',
 	function ( $text ) {
+		if ( ! flxwk_enabled() ) {
+			return $text;
+		}
 		$rows   = array();
 		$rows[] = '## ' . flxwk_title();
 		$rows[] = '';

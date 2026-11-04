@@ -31,7 +31,9 @@ function flxwk_icon( $name ) {
 /** Blok / klasik şablonun içeriği. */
 function flxwk_view_html() {
 	ob_start();
-	echo '<div class="flxwk" id="flxwk">';
+	$accent = sanitize_hex_color( (string) flxwk_opt( 'accent' ) );
+	$cls    = 'flxwk' . ( 'wide' === flxwk_opt( 'width' ) ? ' is-wide-layout' : '' ) . ( flxwk_opt( 'nav' ) ? '' : ' no-nav' ) . ( flxwk_opt( 'toc' ) ? '' : ' no-toc' );
+	echo '<div class="' . esc_attr( $cls ) . '" id="flxwk"' . ( $accent ? ' style="--wk-accent:' . esc_attr( $accent ) . '"' : '' ) . '>';
 	if ( is_singular( FLXWK_PT ) ) {
 		flxwk_view_page( get_queried_object() );
 	} elseif ( is_tax( FLXWK_TAX ) ) {
@@ -275,6 +277,7 @@ function flxwk_view_page( $post ) {
 			<?php flxwk_view_crumbs(); ?>
 			<article class="flxwk-article" data-flxwk-article>
 				<header class="flxwk-head">
+					<div class="flxwk-head__text">
 					<h1 class="flxwk-title"><?php echo esc_html( get_the_title( $post ) ); ?></h1>
 					<p class="flxwk-meta">
 						<span><?php echo flxwk_icon( 'clock' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
@@ -291,10 +294,11 @@ function flxwk_view_page( $post ) {
 						?>
 						</span>
 					</p>
+					</div>
 					<?php flxwk_view_actions( $post, $mdurl ); ?>
 				</header>
 
-				<?php if ( count( $toc ) > 1 ) : ?>
+				<?php if ( flxwk_opt( 'toc' ) && count( $toc ) > 1 ) : ?>
 					<details class="flxwk-toc-m">
 						<summary><?php echo flxwk_icon( 'list' ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <?php esc_html_e( 'Bu sayfada', 'flx-wiki' ); ?></summary>
 						<?php flxwk_toc_list( $toc ); ?>
@@ -329,6 +333,7 @@ function flxwk_view_page( $post ) {
 				</nav>
 			</article>
 		</main>
+		<?php if ( flxwk_opt( 'toc' ) ) : ?>
 		<aside class="flxwk-toc" aria-label="<?php esc_attr_e( 'Bu sayfada', 'flx-wiki' ); ?>">
 			<?php if ( $toc ) : ?>
 				<p class="flxwk-toc__t"><?php esc_html_e( 'Bu sayfada', 'flx-wiki' ); ?></p>
@@ -339,6 +344,7 @@ function flxwk_view_page( $post ) {
 				<a href="<?php echo esc_url( home_url( '/' . flxwk_base() . '/llms.txt' ) ); ?>"><?php echo flxwk_icon( 'bot' ); // phpcs:ignore WordPress.Security.EscapeOutput ?> llms.txt</a>
 			</div>
 		</aside>
+		<?php endif; ?>
 	</div>
 	<?php
 }
@@ -361,30 +367,40 @@ function flxwk_view_actions( $post, $mdurl ) {
 		'Perplexity' => 'https://www.perplexity.ai/search?q=' . rawurlencode( $prompt ),
 	);
 	$ai     = (array) apply_filters( 'flxwk_ai_links', $ai, $post, $mdurl );
+	$ico = function ( $n ) {
+		return flxwk_icon( $n ); // phpcs:ignore WordPress.Security.EscapeOutput
+	};
 	?>
 	<div class="flxwk-actions">
-		<button type="button" class="flxwk-btn" data-flxwk-copy-md="<?php echo esc_url( $mdurl ); ?>"><?php echo flxwk_icon( 'copy' ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <span><?php esc_html_e( 'Markdown\'u kopyala', 'flx-wiki' ); ?></span></button>
-		<a class="flxwk-btn" href="<?php echo esc_url( $mdurl ); ?>" target="_blank" rel="noopener"><?php echo flxwk_icon( 'md' ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <span><?php esc_html_e( '.md olarak aç', 'flx-wiki' ); ?></span></a>
-		<?php if ( flxwk_opt( 'ai_links' ) && $ai ) : ?>
+		<?php if ( $mdurl ) : ?>
+		<details class="flxwk-menu">
+			<summary class="flxwk-btn"><?php echo $ico( 'md' ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <span><?php esc_html_e( 'Markdown', 'flx-wiki' ); ?></span> <?php echo $ico( 'down' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></summary>
+			<div class="flxwk-menu__pop">
+				<button type="button" data-flxwk-copy-md="<?php echo esc_url( $mdurl ); ?>"><?php echo $ico( 'copy' ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <span><?php esc_html_e( 'Markdown\'u kopyala', 'flx-wiki' ); ?></span></button>
+				<a href="<?php echo esc_url( $mdurl ); ?>" target="_blank" rel="noopener"><?php echo $ico( 'ext' ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <span><?php esc_html_e( '.md olarak aç', 'flx-wiki' ); ?></span></a>
+			</div>
+		</details>
+		<?php endif; ?>
+		<?php if ( ( flxwk_opt( 'ai_links' ) && $ai ) || flxwk_can_ask() ) : ?>
 			<details class="flxwk-menu">
-				<summary class="flxwk-btn"><?php echo flxwk_icon( 'ext' ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <span><?php esc_html_e( 'AI ile aç', 'flx-wiki' ); ?></span> <?php echo flxwk_icon( 'down' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></summary>
+				<summary class="flxwk-btn"><?php echo $ico( 'spark' ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <span><?php esc_html_e( 'AI ile aç', 'flx-wiki' ); ?></span> <?php echo $ico( 'down' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></summary>
 				<div class="flxwk-menu__pop">
-					<?php foreach ( $ai as $label => $url ) : ?>
-						<a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener nofollow">
+					<?php if ( flxwk_can_ask() ) : ?>
+						<button type="button" class="is-accent" data-flxwk-ask><?php echo $ico( 'spark' ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <span><?php esc_html_e( 'Wiki\'ye sor', 'flx-wiki' ); ?></span></button>
+					<?php endif; ?>
+					<?php foreach ( flxwk_opt( 'ai_links' ) ? $ai : array() as $label => $url ) : ?>
+						<a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener nofollow"><?php echo $ico( 'ext' ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <span>
 							<?php
 							/* translators: %s: AI servisinin adı */
 							echo esc_html( sprintf( __( '%s ile aç', 'flx-wiki' ), $label ) );
 							?>
-						</a>
+						</span></a>
 					<?php endforeach; ?>
 				</div>
 			</details>
 		<?php endif; ?>
-		<?php if ( flxwk_can_ask() ) : ?>
-			<button type="button" class="flxwk-btn is-accent" data-flxwk-ask><?php echo flxwk_icon( 'spark' ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <span><?php esc_html_e( 'Wiki\'ye sor', 'flx-wiki' ); ?></span></button>
-		<?php endif; ?>
 		<?php if ( flxwk_opt( 'edit_link' ) && current_user_can( 'edit_post', $post->ID ) ) : ?>
-			<a class="flxwk-btn is-ghost" href="<?php echo esc_url( get_edit_post_link( $post->ID ) ); ?>"><?php echo flxwk_icon( 'edit' ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <span><?php esc_html_e( 'Düzenle', 'flx-wiki' ); ?></span></a>
+			<a class="flxwk-btn is-icon" href="<?php echo esc_url( get_edit_post_link( $post->ID ) ); ?>" title="<?php esc_attr_e( 'Düzenle', 'flx-wiki' ); ?>" aria-label="<?php esc_attr_e( 'Düzenle', 'flx-wiki' ); ?>"><?php echo $ico( 'edit' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></a>
 		<?php endif; ?>
 	</div>
 	<?php
@@ -406,6 +422,9 @@ function flxwk_view_crumbs() {
 
 /** Sol gezinme: arama + bölümler ve sayfa ağacı (geçerli dal açık). */
 function flxwk_view_nav( $current ) {
+	if ( ! flxwk_opt( 'nav' ) ) {
+		return;
+	}
 	$open = $current ? array_merge( array( $current->ID ), get_post_ancestors( $current ) ) : array();
 	$walk = function ( $nodes ) use ( &$walk, $current, $open ) {
 		echo '<ul>';

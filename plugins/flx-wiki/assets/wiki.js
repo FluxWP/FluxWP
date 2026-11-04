@@ -97,6 +97,10 @@
 				} )
 				.then( function () {
 					setTimeout( function () {
+						var menu = btn.closest( '.flxwk-menu' );
+						if ( menu ) {
+							menu.removeAttribute( 'open' );
+						}
 						btn.classList.remove( 'is-done' );
 						if ( label ) {
 							label.textContent = orig;
@@ -106,7 +110,30 @@
 		} );
 	} );
 
-	/* Açılır menüler dışarı tıklanınca kapanır. */
+	/* Açılır menüler: biri açılınca diğeri kapanır; bağlantıya, dışarı ya da Esc ile kapanır. */
+	$$( '.flxwk-menu' ).forEach( function ( d ) {
+		d.addEventListener( 'toggle', function () {
+			if ( d.open ) {
+				$$( '.flxwk-menu[open]' ).forEach( function ( o ) {
+					if ( o !== d ) {
+						o.removeAttribute( 'open' );
+					}
+				} );
+			}
+		} );
+		Array.prototype.forEach.call( d.querySelectorAll( '.flxwk-menu__pop a, .flxwk-menu__pop [data-flxwk-ask]' ), function ( a ) {
+			a.addEventListener( 'click', function () {
+				d.removeAttribute( 'open' );
+			} );
+		} );
+	} );
+	document.addEventListener( 'keydown', function ( e ) {
+		if ( 'Escape' === e.key ) {
+			$$( '.flxwk-menu[open]' ).forEach( function ( d ) {
+				d.removeAttribute( 'open' );
+			} );
+		}
+	} );
 	document.addEventListener( 'click', function ( e ) {
 		$$( '.flxwk-menu[open]' ).forEach( function ( d ) {
 			if ( ! d.contains( e.target ) ) {

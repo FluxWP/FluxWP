@@ -16,7 +16,7 @@ LLM'e olduğu gibi verilir.
 | Markdown kaynağı | meta `_flxwk_md` (revizyonlu). kses Markdown'u bozmasın diye `post_content`'te değil. |
 | İşlenmiş HTML | `post_content` (WP araması, RSS, SEO eklentileri) ve önbellek meta `_flxwk_html` (`key` = işleyici sürümü + `flxwk_gen` + md5) |
 | Bölüm sırası | terim meta `flxwk_order` |
-| Ayarlar | option `flxwk_settings`: `title`, `intro`, `ask` (`off`/`users`/`all`), `ask_limit`, `ai_links`, `edit_link` |
+| Ayarlar | option `flxwk_settings`: `enabled`, `title`, `intro`, `base`, `ai_links`, `edit_link`, `accent`, `width` (`normal`/`wide`), `nav`, `toc`, `ask` (`off`/`users`/`all`), `ask_limit` |
 | Arama dizini | transient `flxwk_index` (sayfa kaydedilince silinir) |
 | Rehber sürümü | meta `_flxwk_seed_hash` (elle değiştirilmemiş sayfalar güncellenir) |
 
@@ -54,7 +54,7 @@ Sayfa adresine `Accept: text/markdown` (ve `text/html` olmadan) istek gelirse Ma
 
 | Filtre | Ne |
 |---|---|
-| `flxwk_base` | Adres kökü (varsayılan `wiki`; değiştirince kalıcı bağlantıları kaydedin) |
+| `flxwk_base` | Adres kökü (varsayılan Ayarlar › Genel › Adres, `wiki`) |
 | `flxwk_can_ask` | `( bool )` Wiki'ye sor bu ziyaretçiye açık mı |
 | `flxwk_ai_links` | `( $links, $post, $md_url )` "AI ile aç" menüsü (`etiket => adres`) |
 | `flxwk_page_markdown` | `( $text, $post )` .md çıktısı |
@@ -77,6 +77,19 @@ Gövde. Başlığı tekrar yazmayın; ## ile başlayın.
 ```
 
 `content/sections.json`: `[ { slug, name, description, order } ]`.
+
+## Ön ayardan wiki içeriği (Flux Setup)
+
+Ön ayar eklentisi `preset.json` içinde (`content` ya da bir migration'ın `content` listesi) wiki yazabilir. Üst sayfalar alt sayfalardan önce gelmeli.
+
+```json
+{ "type": "wiki_section", "key": "kurulum", "slug": "kurulum", "name": "Kurulum", "description": "…", "order": -2 },
+{ "type": "wiki", "key": "hizli-baslangic", "slug": "hizli-baslangic", "title": "Hızlı başlangıç",
+  "section": "kurulum", "order": 1, "excerpt": "…", "md": { "$file": "wiki/kurulum/hizli-baslangic.md" } },
+{ "type": "wiki", "key": "guncelleme-sunucusu-docker", "slug": "docker", "parent": "guncelleme-sunucusu", "title": "…", "md": { "$file": "…" } }
+```
+
+Sayfa `_flxk_key` ile bulunur; elle değiştirilen sayfa Flux Setup'ın çakışma kuralıyla korunur. Ön ayar kaldırılınca sayfalar taslağa alınır.
 
 ## MCP (Flux AI)
 

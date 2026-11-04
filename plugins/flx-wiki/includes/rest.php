@@ -15,7 +15,7 @@ add_action(
 			'/search',
 			array(
 				'methods'             => 'GET',
-				'permission_callback' => '__return_true',
+				'permission_callback' => 'flxwk_visible',
 				'args'                => array(
 					'q'       => array( 'type' => 'string', 'required' => true ),
 					'section' => array( 'type' => 'string' ),

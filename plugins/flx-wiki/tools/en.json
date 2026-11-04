@@ -154,5 +154,22 @@
 "Kapat": "Close",
 "seç": "select",
 "aç": "open",
-"kapat": "close"
+"kapat": "close",
+"Görünüm": "Appearance",
+"AI": "AI",
+"Wiki ziyaretçilere kapalı; yalnız sayfa yazabilenler görüyor.": "The wiki is closed to visitors; only people who can write pages see it.",
+"Wiki ziyaretçilere açık": "Wiki open to visitors",
+"Kapalıyken wiki adresleri, .md ve llms.txt ziyaretçilere 404 döner, site haritasından çıkar. Sayfa yazabilenler görmeye devam eder.": "When closed, wiki addresses, .md and llms.txt return 404 to visitors and leave the sitemap. People who can write pages still see it.",
+"Adres": "Address",
+"Küçük harf, rakam ve tire. Değiştirince eski adresler çalışmaz.": "Lowercase letters, digits and hyphens. Old addresses stop working when you change it.",
+"Vurgu rengi": "Accent colour",
+"Temanın rengini kullan": "Use the theme colour",
+"Bağlantılar, seçili menü ve vurgulu düğmeler.": "Links, the selected menu item and accent buttons.",
+"Genişlik": "Width",
+"Normal": "Normal",
+"Geniş (uzun kod ve tablolar için)": "Wide (for long code and tables)",
+"Sayfa düzeni": "Page layout",
+"Solda sayfa menüsü ve arama": "Page menu and search on the left",
+"Sağda \"Bu sayfada\" (içindekiler)": "\"On this page\" (contents) on the right",
+"Wiki bölümü": "Wiki section"
 }

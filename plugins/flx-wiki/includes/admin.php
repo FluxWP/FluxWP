@@ -187,9 +187,20 @@ final class FLXWK_Admin {
 		$msg   = isset( $_GET['flxwk_msg'] ) ? sanitize_key( $_GET['flxwk_msg'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 		$ai    = function_exists( 'flxai_chat' );
 		$mcp   = function_exists( 'flxai_mcp_enabled' ) && flxai_mcp_enabled();
+		$tabs  = array(
+			'general' => __( 'Genel', 'flx-wiki' ),
+			'look'    => __( 'Görünüm', 'flx-wiki' ),
+			'ai'      => __( 'AI', 'flx-wiki' ),
+		);
+		$tab   = isset( $_GET['tab'] ) && isset( $tabs[ sanitize_key( $_GET['tab'] ) ] ) ? sanitize_key( $_GET['tab'] ) : 'general'; // phpcs:ignore WordPress.Security.NonceVerification
 		?>
 		<div class="wrap flxwk-admin">
-			<h1><?php esc_html_e( 'Wiki ayarları', 'flx-wiki' ); ?></h1>
+			<h1 class="wp-heading-inline"><?php esc_html_e( 'Wiki ayarları', 'flx-wiki' ); ?></h1>
+			<a class="page-title-action" href="<?php echo esc_url( admin_url( 'post-new.php?post_type=' . FLXWK_PT ) ); ?>"><?php esc_html_e( 'Yeni sayfa', 'flx-wiki' ); ?></a>
+			<a class="page-title-action" href="<?php echo esc_url( flxwk_home_url() ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Wiki\'yi aç', 'flx-wiki' ); ?></a>
+			<?php if ( ! $s['enabled'] ) : ?>
+				<div class="notice notice-warning"><p><?php esc_html_e( 'Wiki ziyaretçilere kapalı; yalnız sayfa yazabilenler görüyor.', 'flx-wiki' ); ?></p></div>
+			<?php endif; ?>
 			<?php if ( 'saved' === $msg ) : ?>
 				<div class="notice notice-success is-dismissible"><p><?php esc_html_e( 'Ayarlar kaydedildi.', 'flx-wiki' ); ?></p></div>
 			<?php elseif ( 'seeded' === $msg ) : ?>
@@ -205,9 +216,23 @@ final class FLXWK_Admin {
 			<div class="flxwk-admin__grid">
 				<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="flxwk-panel">
 					<input type="hidden" name="action" value="flxwk_save">
+					<input type="hidden" name="tab" value="<?php echo esc_attr( $tab ); ?>">
 					<?php wp_nonce_field( 'flxwk_save' ); ?>
-					<h2><?php esc_html_e( 'Genel', 'flx-wiki' ); ?></h2>
+					<nav class="nav-tab-wrapper flxwk-tabs">
+						<?php foreach ( $tabs as $k => $label ) : ?>
+							<a class="nav-tab<?php echo $k === $tab ? ' nav-tab-active' : ''; ?>" href="<?php echo esc_url( add_query_arg( 'tab', $k, flxwk_admin_url() ) ); ?>"><?php echo esc_html( $label ); ?></a>
+						<?php endforeach; ?>
+					</nav>
+
+					<?php if ( 'general' === $tab ) : ?>
 					<table class="form-table" role="presentation">
+						<tr>
+							<th scope="row"><?php esc_html_e( 'Wiki', 'flx-wiki' ); ?></th>
+							<td>
+								<label class="flxwk-switch"><input type="checkbox" name="enabled" value="1" <?php checked( $s['enabled'] ); ?>> <?php esc_html_e( 'Wiki ziyaretçilere açık', 'flx-wiki' ); ?></label>
+								<p class="description"><?php esc_html_e( 'Kapalıyken wiki adresleri, .md ve llms.txt ziyaretçilere 404 döner, site haritasından çıkar. Sayfa yazabilenler görmeye devam eder.', 'flx-wiki' ); ?></p>
+							</td>
+						</tr>
 						<tr>
 							<th scope="row"><label for="flxwk-title"><?php esc_html_e( 'Wiki adı', 'flx-wiki' ); ?></label></th>
 							<td><input id="flxwk-title" class="regular-text" name="title" value="<?php echo esc_attr( $s['title'] ); ?>" placeholder="<?php echo esc_attr( __( 'Geliştirici Wiki', 'flx-wiki' ) ); ?>"></td>
@@ -218,6 +243,11 @@ final class FLXWK_Admin {
 							<p class="description"><?php esc_html_e( 'Ana sayfada, arama motoru açıklamasında ve llms.txt\'de kullanılır.', 'flx-wiki' ); ?></p></td>
 						</tr>
 						<tr>
+							<th scope="row"><label for="flxwk-base"><?php esc_html_e( 'Adres', 'flx-wiki' ); ?></label></th>
+							<td><code><?php echo esc_html( home_url( '/' ) ); ?></code><input id="flxwk-base" class="regular-text flxwk-base" name="base" value="<?php echo esc_attr( $s['base'] ); ?>" placeholder="wiki" pattern="[a-z0-9\-]+"><code>/</code>
+							<p class="description"><?php esc_html_e( 'Küçük harf, rakam ve tire. Değiştirince eski adresler çalışmaz.', 'flx-wiki' ); ?></p></td>
+						</tr>
+						<tr>
 							<th scope="row"><?php esc_html_e( 'Sayfa düğmeleri', 'flx-wiki' ); ?></th>
 							<td>
 								<label><input type="checkbox" name="ai_links" value="1" <?php checked( $s['ai_links'] ); ?>> <?php esc_html_e( '"AI ile aç" (ChatGPT, Claude, Perplexity) bağlantıları', 'flx-wiki' ); ?></label><br>
@@ -226,7 +256,33 @@ final class FLXWK_Admin {
 						</tr>
 					</table>
 
-					<h2><?php esc_html_e( 'Wiki\'ye sor (Flux AI)', 'flx-wiki' ); ?></h2>
+					<?php elseif ( 'look' === $tab ) : ?>
+					<table class="form-table" role="presentation">
+						<tr>
+							<th scope="row"><label for="flxwk-accent"><?php esc_html_e( 'Vurgu rengi', 'flx-wiki' ); ?></label></th>
+							<td>
+								<label><input type="checkbox" name="accent_theme" value="1" <?php checked( '' === $s['accent'] ); ?> onchange="this.form.accent.disabled=this.checked"> <?php esc_html_e( 'Temanın rengini kullan', 'flx-wiki' ); ?></label><br>
+								<input id="flxwk-accent" type="color" name="accent" value="<?php echo esc_attr( $s['accent'] ? $s['accent'] : '#3b82f6' ); ?>" <?php disabled( '' === $s['accent'] ); ?>>
+								<p class="description"><?php esc_html_e( 'Bağlantılar, seçili menü ve vurgulu düğmeler.', 'flx-wiki' ); ?></p>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row"><?php esc_html_e( 'Genişlik', 'flx-wiki' ); ?></th>
+							<td>
+								<label class="flxwk-radio"><input type="radio" name="width" value="normal" <?php checked( $s['width'], 'normal' ); ?>> <?php esc_html_e( 'Normal', 'flx-wiki' ); ?></label>
+								<label class="flxwk-radio"><input type="radio" name="width" value="wide" <?php checked( $s['width'], 'wide' ); ?>> <?php esc_html_e( 'Geniş (uzun kod ve tablolar için)', 'flx-wiki' ); ?></label>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row"><?php esc_html_e( 'Sayfa düzeni', 'flx-wiki' ); ?></th>
+							<td>
+								<label><input type="checkbox" name="nav" value="1" <?php checked( $s['nav'] ); ?>> <?php esc_html_e( 'Solda sayfa menüsü ve arama', 'flx-wiki' ); ?></label><br>
+								<label><input type="checkbox" name="toc" value="1" <?php checked( $s['toc'] ); ?>> <?php esc_html_e( 'Sağda "Bu sayfada" (içindekiler)', 'flx-wiki' ); ?></label>
+							</td>
+						</tr>
+					</table>
+
+					<?php else : ?>
 					<?php if ( ! $ai ) : ?>
 						<p class="flxwk-note"><?php esc_html_e( 'Flux AI kurulu değil. Kurulunca ziyaretçiler wiki içeriğinden cevap alan "Wiki\'ye sor" penceresini kullanabilir.', 'flx-wiki' ); ?></p>
 					<?php elseif ( ! flxwk_ai_ready() ) : ?>
@@ -253,6 +309,7 @@ final class FLXWK_Admin {
 							<td><input id="flxwk-limit" type="number" min="1" max="500" class="small-text" name="ask_limit" value="<?php echo esc_attr( (int) $s['ask_limit'] ); ?>"> <?php esc_html_e( 'kişi başı (yöneticiler sınırsız)', 'flx-wiki' ); ?></td>
 						</tr>
 					</table>
+					<?php endif; ?>
 					<?php submit_button( __( 'Kaydet', 'flx-wiki' ) ); ?>
 				</form>
 
@@ -304,20 +361,48 @@ final class FLXWK_Admin {
 		}
 		check_admin_referer( 'flxwk_save' );
 		$p   = wp_unslash( $_POST );
-		$ask = isset( $p['ask'] ) && in_array( $p['ask'], array( 'off', 'users', 'all' ), true ) ? $p['ask'] : 'users';
-		update_option(
-			'flxwk_settings',
-			array(
-				'title'     => sanitize_text_field( $p['title'] ?? '' ),
-				'intro'     => sanitize_textarea_field( $p['intro'] ?? '' ),
-				'ask'       => $ask,
-				'ask_limit' => max( 1, min( 500, (int) ( $p['ask_limit'] ?? 20 ) ) ),
-				'ai_links'  => empty( $p['ai_links'] ) ? 0 : 1,
-				'edit_link' => empty( $p['edit_link'] ) ? 0 : 1,
-			)
-		);
+		$tab = sanitize_key( $p['tab'] ?? 'general' );
+		$cur = flxwk_settings();
+		$new = $cur;
+		if ( 'general' === $tab ) {
+			$base = sanitize_title( (string) ( $p['base'] ?? '' ) );
+			$new  = array_merge(
+				$new,
+				array(
+					'enabled'   => empty( $p['enabled'] ) ? 0 : 1,
+					'title'     => sanitize_text_field( $p['title'] ?? '' ),
+					'intro'     => sanitize_textarea_field( $p['intro'] ?? '' ),
+					'base'      => '' === $base ? 'wiki' : $base,
+					'ai_links'  => empty( $p['ai_links'] ) ? 0 : 1,
+					'edit_link' => empty( $p['edit_link'] ) ? 0 : 1,
+				)
+			);
+		} elseif ( 'look' === $tab ) {
+			$new = array_merge(
+				$new,
+				array(
+					'accent' => empty( $p['accent_theme'] ) ? (string) sanitize_hex_color( (string) ( $p['accent'] ?? '' ) ) : '',
+					'width'  => 'wide' === ( $p['width'] ?? '' ) ? 'wide' : 'normal',
+					'nav'    => empty( $p['nav'] ) ? 0 : 1,
+					'toc'    => empty( $p['toc'] ) ? 0 : 1,
+				)
+			);
+		} else {
+			$tab = 'ai';
+			$new = array_merge(
+				$new,
+				array(
+					'ask'       => isset( $p['ask'] ) && in_array( $p['ask'], array( 'off', 'users', 'all' ), true ) ? $p['ask'] : 'users',
+					'ask_limit' => max( 1, min( 500, (int) ( $p['ask_limit'] ?? 20 ) ) ),
+				)
+			);
+		}
+		update_option( 'flxwk_settings', $new );
+		if ( $new['base'] !== $cur['base'] ) {
+			update_option( 'flxwk_flush', 1, true );
+		}
 		flxwk_bump();
-		wp_safe_redirect( add_query_arg( 'flxwk_msg', 'saved', flxwk_admin_url() ) );
+		wp_safe_redirect( add_query_arg( array( 'flxwk_msg' => 'saved', 'tab' => $tab ), flxwk_admin_url() ) );
 		exit;
 	}
 

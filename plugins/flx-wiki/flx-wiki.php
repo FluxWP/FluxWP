@@ -40,6 +40,7 @@ require_once FLXWK_DIR . 'includes/rest.php';
 require_once FLXWK_DIR . 'includes/ai.php';
 require_once FLXWK_DIR . 'includes/mcp.php';
 require_once FLXWK_DIR . 'includes/seed.php';
+require_once FLXWK_DIR . 'includes/preset.php'; // Flux Setup ön ayarları wiki sayfası yazabilir.
 require_once FLXWK_DIR . 'includes/system-checks.php';
 if ( is_admin() ) {
 	require_once FLXWK_DIR . 'includes/admin.php';
