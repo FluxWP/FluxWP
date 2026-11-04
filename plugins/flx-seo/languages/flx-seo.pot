@@ -896,3 +896,6 @@ msgstr ""
 
 msgid "E-posta adresi (boşsa site yöneticisi)"
 msgstr ""
+
+msgid "Flux Speed (tek tık)"
+msgstr ""

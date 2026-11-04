@@ -1,5 +1,17 @@
 # Değişiklikler
 
+## 0.5.0
+- Yeni **Performans › PageSpeed** sekmesi: Lighthouse önerilerinin tema değiştirmeden yapılabilenleri, her biri aç/kapa.
+  - Yakınlaştırma kilidini kaldır (viewport `user-scalable=no`, `maximum-scale`) ve emoji betiğini kaldır: güvenli, varsayılan açık.
+  - Kullanılmayan CSS'i kırp + satır içine al (varsayılan kapalı): sayfanın sınıf/id envanteri (HTML + sayfadaki betiklerin kelimeleri) CSS dosyasının envanteriyle kesiştirilir, karşılığı olmayan kurallar atılır, kalan `<head>`'e yazılır. Aynı envanterli sayfalar aynı kopyayı kullanır; kaynak imzası (yol + mtime + boyut) değişince kopyalar yenilenir; dosya başına 40 kopyayı aşınca tam (sıkıştırılmış) dosyaya dönülür. `is-*`, `has-*`, `wp-*` ve panelden girilen sınıflar (joker `*`) hep korunur. Kapsam: yalnız tema ya da tüm wp-content.
+  - CSS ve JS sıkıştırma (kapalı): kaynaktan yeni `.min` kardeşi varsa o, yoksa `uploads/flx-speed/` altında üretilmiş kopya. JS sıkıştırma tutucu (yorum + satır boşlukları, satır sonları korunur, ayraç dengesi doğrulanır); webpack/import() paketleri ve çevirisi olan betikler atlanır.
+  - Head betiklerine defer (kapalı): WordPress strateji API'siyle; jQuery ve hariç tutulanlar engelleyen kalır.
+  - Yazı tipleri: sayfada kullanılmayan theme.json @font-face aileleri çıkarılır; en fazla iki ailenin 400 woff2 dosyası preload edilir (kapalı).
+  - Hariç dosyalar / sayfalar listesi; `?flxp_off=1` ile sayfa iyileştirmesiz açılır (karşılaştırma). Kaydedince önbellek ve LiteSpeed temizlenir.
+- GPU'da çalışmayan animasyonlar (Lighthouse non-composited): ön yüzde yüklenen CSS dosyalarındaki `@keyframes` transform/opacity dışı özellikleriyle listelenir; Sistem Kontrolü'nde "Animasyonlar (GPU)" satırı.
+- Flux SEO site denetimi bulgularına tek tık düzeltme (`flx_system_fixes`: `flxp_ps_css`, `flxp_ps_minify`, `flxp_ps_defer`, `flxp_ps_viewport`, `flxp_ps_fonts`, `flxp_ps_emoji`); MCP `system_fix` ile de açılır. Güvenlik başlıkları ve llms.txt Flux SEO'da kalır.
+- Yeni filtre `flxp_pagespeed_enabled` (tema/ön ayar bir özelliği kapatabilir); Flux Setup ön ayar şemasına `flxp_settings` › `ps_*` alanları.
+
 ## 0.4.2
 - Tarih ve "… önce" metinleri artık kullanıcının dilinde, tek ortak yardımcıdan (FluxWP `flx_date` / `flx_time_ago`, flx-brand 1.1.0): "31 minutes önce", "August 10" gibi Türkçe/İngilizce karışımı kalmadı; çekirdek dil paketi inmemiş olsa da TR ve EN ay/gün adları doğru.
 

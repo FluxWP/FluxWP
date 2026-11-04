@@ -51,6 +51,7 @@ Query Monitor baktığınız sayfada ne olduğunu söyler, gerisini unutur. Payl
 - **Veritabanı:** sürüm, önemli ayarlar, durum, tablo boyutları ve temizlik bölümü (yalnız yönetici, onay sorar).
 - **Autoload:** toplam boyut ve sahibiyle birlikte en büyük 40 seçenek. **Cron:** tüm zamanlanmış görevler, gecikenler ve cron'un son çalışması.
 - **Özel giriş adresi:** wp-login.php yerine `/fluxadmin` gibi kendi adresiniz; eski adresler 404 döner, kilitlenirseniz wp-config sabitiyle kapanır.
+- **PageSpeed ayarları:** kullanılmayan tema CSS'ini sayfaya göre kırpıp satır içine alma, CSS/JS sıkıştırma, head betiklerine defer, kullanılmayan theme.json yazı tiplerini çıkarma ve ilk ekran yazı tipini preload, viewport yakınlaştırma kilidini kaldırma, emoji betiğini kaldırma. Her biri aç/kapa; riskli olanlar kapalı başlar. Flux SEO site denetimi bunları tek tıkla önerir; GPU'da çalışmayan animasyonlar dosyasıyla listelenir.
 - **Sistem Kontrolü:** tüm FluxWP paketlerinin kontrolleri ve tek tık düzeltmeleri (`flx_system_checks`, `flx_system_fixes`).
 - Canlı kutular, p95, hatalı ve yavaş istekler ve ilk önerilerle Başlangıç widget'ı.
 

@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.4.1
+- Site denetimi başka paketlerin tek tık düzeltmelerini de çalıştırır (`flx_system_fixes` › `current` / `run`). Flux Speed 0.5.0 kuruluysa engelleyen CSS, kullanılmayan CSS, sıkıştırılmamış CSS/JS, viewport yakınlaştırma kilidi, yazı tipleri ve emoji bulgularında "Flux Speed (tek tık)" düğmesi çıkar.
+
 ## 1.4.0
 - **Rapor geçmişi**: her denetim (elle, otomatik, yapay zekâ, düzeltme sonrası) özetiyle saklanır (son 90). Panelde önceliğe göre yığılmış eğilim grafiği ve tablo: tarih, nasıl çalıştığı, öncelik sayıları, mobil PageSpeed puanları + LCP, önceki rapora göre yeni ve çözülen öneriler.
 - **Otomatik denetim**: her gün ya da haftada bir (gün ve saat seçilir, sitenin saat dilimi), isteğe bağlı PageSpeed mobil + masaüstü dahil. Arka planda adım adım çalışır (PHP süre sınırına takılmaz); WP-Cron çalışmasa da ilk istekte başlar.

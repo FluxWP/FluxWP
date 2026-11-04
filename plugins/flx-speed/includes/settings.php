@@ -23,7 +23,7 @@ function flxp_defaults() {
 		'disk_quota_gb' => 0,    // paylaşımlı hosting disk kotası (GB); 0 = bilinmiyor, yüzde gösterilmez
 		'login_slug'    => '',   // özel giriş adresi (örn. fluxadmin); boş = wp-login.php
 		'login_blocked' => '404', // wp-login.php / misafir wp-admin: 404 ya da home
-	);
+	) + FLXP_PageSpeed::defaults(); // PageSpeed sekmesi (includes/optimize.php)
 }
 
 /** Ayar(lar)ı okur. */
@@ -39,10 +39,19 @@ function flxp_settings( $key = null ) {
 	return isset( $cache[ $key ] ) ? $cache[ $key ] : null;
 }
 
-/** Formdan gelen ayarları temizler. */
-function flxp_sanitize_settings( $in ) {
+/**
+ * Formdan gelen ayarları temizler. Her sekme yalnız kendi alanlarını yazar; diğerleri korunur.
+ *
+ * @param array  $in   Form verisi.
+ * @param string $form general | pagespeed.
+ */
+function flxp_sanitize_settings( $in, $form = 'general' ) {
 	$d   = flxp_defaults();
-	$out = array();
+	$cur = get_option( 'flxp_settings', array() );
+	$out = array_merge( $d, is_array( $cur ) ? $cur : array() );
+	if ( 'pagespeed' === $form ) {
+		return FLXP_PageSpeed::sanitize( $in, $out );
+	}
 	foreach ( array( 'record', 'panel', 'panel_front', 'caps', 'record_admins' ) as $k ) {
 		$out[ $k ] = empty( $in[ $k ] ) ? 0 : 1;
 	}

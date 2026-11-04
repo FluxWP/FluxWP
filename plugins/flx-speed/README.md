@@ -51,6 +51,7 @@ Query Monitor tells you what happened on the page you are looking at; it forgets
 - **Database:** version, key settings, status, table sizes and a clean-up section (admin only, with confirmation).
 - **Autoload:** total size and the 40 largest options with their owner. **Cron:** every scheduled event, overdue ones and when cron last ran.
 - **Custom login URL:** your own address such as `/fluxadmin` instead of wp-login.php; old addresses return 404, and a wp-config constant turns it off if you get locked out.
+- **PageSpeed switches:** remove unused theme CSS and inline it per page, minify CSS/JS, defer head scripts, drop unused theme.json fonts and preload the first-screen font, unlock viewport zoom, remove the emoji script. Each one is a toggle; risky ones start off. Flux SEO's site audit suggests them with one click, and non-composited animations are listed by file.
 - **System Check:** checks and one-click fixes from every FluxWP package (`flx_system_checks`, `flx_system_fixes`).
 - Dashboard widget with live boxes, p95, failing and slow requests and the top suggestions.
 

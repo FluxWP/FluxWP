@@ -299,5 +299,6 @@ return array (
     'PageSpeed Insights (mobil + masaüstü) da çalışsın (API anahtarı gerekir)' => 'Also run PageSpeed Insights (mobile + desktop; needs the API key)',
     'Yeni kritik ya da yüksek öncelikli öneri çıkınca e-posta gönder' => 'Send an email when a new critical or high priority recommendation appears',
     'E-posta adresi (boşsa site yöneticisi)' => 'Email address (empty: site admin)',
+    'Flux Speed (tek tık)' => 'Flux Speed (one click)',
   ),
 );

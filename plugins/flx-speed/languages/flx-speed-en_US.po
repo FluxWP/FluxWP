@@ -7,6 +7,180 @@ msgstr ""
 msgid "Performans"
 msgstr "Performance"
 
+msgid "Güvenli"
+msgstr "Safe"
+
+msgid "Önce deneyin"
+msgstr "Test first"
+
+msgid "Tema ya da ön ayar bu özelliği kod ile değiştiriyor (flxp_pagespeed_enabled); ayar geçerli olmayabilir."
+msgstr "The theme or a preset overrides this feature in code (flxp_pagespeed_enabled); this setting may not take effect."
+
+msgid "Kaydedildi. Önbellek ve LiteSpeed sayfa önbelleği temizlendi; birkaç sayfayı gezip kontrol edin."
+msgstr "Saved. The cache and the LiteSpeed page cache were cleared; browse a few pages to check."
+
+msgid "PageSpeed önbelleği temizlendi."
+msgstr "PageSpeed cache cleared."
+
+msgid "Google PageSpeed / Lighthouse önerilerinin tema değiştirmeden yapılabilenleri. Her biri ayrı açılır; \"Önce deneyin\" olanları açtıktan sonra sitenin birkaç sayfasını (ana sayfa, yazı, bağış/ödeme) kontrol edin."
+msgstr "Google PageSpeed / Lighthouse suggestions that can be applied without changing the theme. Each one is switched on separately; after enabling a \"Test first\" item, check a few pages of the site (home, a post, donation/checkout)."
+
+msgid "Temel"
+msgstr "Basics"
+
+msgid "Yakınlaştırma kilidini kaldır"
+msgstr "Remove the zoom lock"
+
+msgid "Viewport etiketindeki user-scalable=no ve maximum-scale değerleri silinir; az gören kullanıcılar sayfayı büyütebilir. Erişilebilirlik puanını doğrudan etkiler."
+msgstr "user-scalable=no and maximum-scale are removed from the viewport tag so visitors with low vision can zoom in. Directly affects the Accessibility score."
+
+msgid "Emoji betiğini kaldır"
+msgstr "Remove the emoji script"
+
+msgid "WordPress'in emoji algılama betiği ve stili yüklenmez. Modern tarayıcılar emojiyi kendisi çizer."
+msgstr "WordPress's emoji detection script and style are not loaded. Modern browsers render emoji themselves."
+
+msgid "Kapsam"
+msgstr "Scope"
+
+msgid "Yalnız tema CSS'i (önerilen)"
+msgstr "Theme CSS only (recommended)"
+
+msgid "Tema + eklentiler (wp-content altındaki tüm CSS)"
+msgstr "Theme + plugins (all CSS under wp-content)"
+
+msgid "Satır içi sınırı"
+msgstr "Inline limit"
+
+msgid "Kırpılmış CSS bu boyuta kadar <head> içine yazılır; fazlası önbellekten ayrı dosya olarak yüklenir. 0 = hep dosya."
+msgstr "Trimmed CSS is written into <head> up to this size; anything beyond is loaded as a separate cached file. 0 = always a file."
+
+msgid "Her zaman korunan sınıflar"
+msgstr "Always keep these classes"
+
+msgid "Satır başına bir sınıf ya da id, * joker. JavaScript'in sonradan eklediği bir görünüm bozulursa sınıfını buraya yazın. is-*, has-*, wp-* her zaman korunur."
+msgstr "One class or id per line, * as wildcard. If a style added later by JavaScript breaks, add its class here. is-*, has-*, wp-* are always kept."
+
+msgid "Kullanılmayan CSS'i kırp ve satır içine al"
+msgstr "Remove unused CSS and inline it"
+
+msgid "Her sayfanın sınıf/id envanteri çıkarılır (HTML + sayfadaki betikler); CSS dosyasından o sayfada karşılığı olmayan kurallar atılır, kalan kısım <head> içine yazılır. Engelleyen CSS isteği kalkar, LCP ve FCP hızlanır. Aynı envanterli sayfalar aynı kopyayı paylaşır; dosya değişince kopyalar yenilenir, çok fazla farklı sayfa olursa tam dosyaya dönülür."
+msgstr "Each page's class/id inventory is collected (HTML + the page's scripts); rules with no match on that page are dropped from the CSS file and the rest is written into <head>. The render-blocking CSS request goes away and LCP/FCP improve. Pages with the same inventory share one copy; copies are rebuilt when the file changes, and the full file is used if there are too many different pages."
+
+msgid "CSS dosyalarını sıkıştır"
+msgstr "Minify CSS files"
+
+msgid "Sıkıştırılmamış (.min olmayan) yerel CSS dosyaları için güncel .min kardeşi ya da yorumları ve boşlukları atılmış kopya kullanılır."
+msgstr "For unminified (non-.min) local CSS files, an up-to-date .min sibling or a copy without comments and whitespace is used."
+
+msgid "JS dosyalarını sıkıştır"
+msgstr "Minify JS files"
+
+msgid "Tema ve eklenti betikleri için .min kardeşi kaynaktan yeniyse o kullanılır; değilse yorumları ve satır boşlukları atılmış kopya üretilir (satır sonları korunur). Kendi konumundan parça yükleyen paketlere ve çevirisi olan betiklere dokunulmaz."
+msgstr "For theme and plugin scripts, the .min sibling is used if it is newer than the source; otherwise a copy without comments and indentation is generated (line breaks are kept). Bundles that load chunks relative to their own location and scripts with translations are left alone."
+
+msgid "jQuery her zaman engelleyen kalır (sayfa içindeki eski betikler ona doğrudan bağlı olabilir). WordPress, sonradan çalışan satır içi betiği olan ya da engelleyen bir betiğin bağımlı olduğu betiklerde defer'i kendisi geri alır."
+msgstr "jQuery always stays blocking (older inline scripts on the page may call it directly). WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on."
+
+msgid "Head betiklerini ertele (defer)"
+msgstr "Defer head scripts"
+
+msgid "Sayfanın <head> bölümünde yüklenen ve çizimi bekleten betiklere defer verilir (ör. dil önerisi, analiz betikleri)."
+msgstr "Scripts loaded in the page <head> that hold up rendering get defer (e.g. language suggestion, analytics scripts)."
+
+msgid "Yazı tipleri"
+msgstr "Fonts"
+
+msgid "Kullanılmayan yazı tiplerini çıkar"
+msgstr "Remove unused fonts"
+
+msgid "theme.json'da tanımlı ama sayfanın CSS'inde geçmeyen yazı tipi aileleri (@font-face) sayfaya yazılmaz. Kullanım belirlenemezse hiçbiri çıkarılmaz."
+msgstr "Font families defined in theme.json but not referenced in the page's CSS (@font-face) are not printed. If usage cannot be determined, nothing is removed."
+
+msgid "İlk ekran yazı tipini önden yükle (preload)"
+msgstr "Preload the above-the-fold font"
+
+msgid "Kullanılan en fazla iki ailenin normal (400) woff2 dosyası <link rel=\"preload\"> ile istenir; metin daha erken çizilir. Yanlış ağırlık önden yüklenirse boşa indirme olur; PageSpeed'de \"kullanılmayan preload\" uyarısı çıkarsa kapatın."
+msgstr "The regular (400) woff2 file of up to two used families is requested with <link rel=\"preload\"> so text paints earlier. Preloading the wrong weight wastes a download; turn this off if PageSpeed reports an \"unused preload\"."
+
+msgid "Hariç tutma"
+msgstr "Exclusions"
+
+msgid "Dokunulmayacak dosyalar"
+msgstr "Files to leave alone"
+
+msgid "Satır başına tanıtıcı (handle) ya da adresin bir parçası. Kırpma, sıkıştırma ve defer bu dosyalara uygulanmaz."
+msgstr "One handle or part of a URL per line. Trimming, minifying and defer are not applied to these files."
+
+msgid "Dokunulmayacak sayfalar"
+msgstr "Pages to leave alone"
+
+msgid "Satır başına adres parçası. Bu sayfalarda hiçbir PageSpeed iyileştirmesi yapılmaz."
+msgstr "One URL part per line. No PageSpeed optimization runs on these pages."
+
+msgid "Kaydet ve önbelleği temizle"
+msgstr "Save and clear cache"
+
+msgid "Durum"
+msgstr "Status"
+
+msgid "Önbellek"
+msgstr "Cache"
+
+msgid "%1$d CSS, %2$d JS kopyası · %3$s"
+msgstr "%1$d CSS, %2$d JS copies · %3$s"
+
+msgid "Karşılaştır"
+msgstr "Compare"
+
+msgid "İyileştirilmiş"
+msgstr "Optimized"
+
+msgid "Kapalı (?flxp_off=1)"
+msgstr "Off (?flxp_off=1)"
+
+msgid "Adresin sonuna ?flxp_off=1 eklenince sayfa iyileştirmesiz açılır; bir görünüm farkı varsa sebebi buradadır."
+msgstr "Adding ?flxp_off=1 to a URL opens the page without optimizations; if the page looks different, the cause is here."
+
+msgid "Ölçüm"
+msgstr "Measure"
+
+msgid "Flux SEO › Site denetimi"
+msgstr "Flux SEO › Site audit"
+
+msgid "Site denetimi bu ayarları kendisi önerir ve tek tıkla açar."
+msgstr "The site audit suggests these settings itself and turns them on with one click."
+
+msgid "Önbelleği temizle"
+msgstr "Clear cache"
+
+msgid "GPU'da çalışmayan animasyonlar"
+msgstr "Animations not running on the GPU"
+
+msgid "Lighthouse \"bileşik olmayan animasyonlar\" uyarısı: transform ve opacity dışındaki özellikler (stroke-dashoffset, background, width…) her karede yeniden çizim yapar. Bunu ayar düzeltemez; tema ya da ön ayarda transform/opacity ile yeniden yazılmalı."
+msgstr "Lighthouse \"non-composited animations\": properties other than transform and opacity (stroke-dashoffset, background, width…) repaint every frame. A setting cannot fix this; the theme or preset must rewrite them with transform/opacity."
+
+msgid "Animasyon"
+msgstr "Animation"
+
+msgid "Özellikler"
+msgstr "Properties"
+
+msgid "Dosya"
+msgstr "File"
+
+msgid "prefers-reduced-motion yok"
+msgstr "no prefers-reduced-motion"
+
+msgid "Sorun yok: görülen CSS dosyalarındaki animasyonlar transform/opacity kullanıyor."
+msgstr "All good: animations in the CSS files seen use transform/opacity."
+
+msgid "Ön yüzde görülen %1$d CSS dosyası tarandı (%2$s)."
+msgstr "Scanned %1$d CSS files seen on the front end (%2$s)."
+
+msgid "Henüz ön yüz görülmedi; tema klasörü tarandı. Siteyi bir kez açınca sayfanın yüklediği dosyalar taranır."
+msgstr "The front end has not been seen yet, so the theme folder was scanned. Once the site is opened, the files the page loads are scanned."
+
 msgid "Özet"
 msgstr "Summary"
 
@@ -108,9 +282,6 @@ msgstr "Time"
 
 msgid "Adres"
 msgstr "URL"
-
-msgid "Durum"
-msgstr "Status"
 
 msgid "Süre"
 msgstr "Time"
@@ -333,9 +504,6 @@ msgstr "Restarts"
 
 msgid "Bilgi alınamadı (kapalı ya da sunucu izin vermiyor)."
 msgstr "No data (disabled or not allowed by the server)."
-
-msgid "Önbellek"
-msgstr "Cache"
 
 msgid "Nesne önbelleği"
 msgstr "Object cache"
@@ -760,6 +928,75 @@ msgstr "Database status"
 msgid "Autoload seçenekleri"
 msgstr "Autoloaded options"
 
+msgid "Flux Speed: kullanılmayan CSS'i kırp ve satır içine al"
+msgstr "Flux Speed: remove unused CSS and inline it"
+
+msgid "Tema CSS'inden sayfada kullanılmayan kuralları atar, kalanı <head> içine yazar; engelleyen CSS isteği kalkar. Önce birkaç sayfayı kontrol edin; sorun olursa kapatın ya da sınıfı güvenli listeye ekleyin."
+msgstr "Drops theme CSS rules the page does not use and writes the rest into <head>, removing the render-blocking CSS request. Check a few pages first; if something breaks, turn it off or add the class to the keep list."
+
+msgid "Flux Speed: CSS ve JS dosyalarını sıkıştır"
+msgstr "Flux Speed: minify CSS and JS files"
+
+msgid "Tema ve eklentilerin sıkıştırılmamış CSS/JS dosyaları için güncel .min sürümü ya da üretilmiş kopya kullanılır."
+msgstr "Unminified theme and plugin CSS/JS files are served from an up-to-date .min version or a generated copy."
+
+msgid "Flux Speed: head betiklerini ertele (defer)"
+msgstr "Flux Speed: defer head scripts"
+
+msgid "Sayfanın başındaki engelleyen betikler defer ile yüklenir. jQuery ve hariç tutulanlar dokunulmaz."
+msgstr "Blocking scripts at the top of the page are loaded with defer. jQuery and excluded scripts are left alone."
+
+msgid "Flux Speed: yakınlaştırma kilidini kaldır"
+msgstr "Flux Speed: remove the zoom lock"
+
+msgid "Viewport etiketinden user-scalable=no ve maximum-scale kaldırılır."
+msgstr "user-scalable=no and maximum-scale are removed from the viewport tag."
+
+msgid "Flux Speed: yazı tiplerini düzenle"
+msgstr "Flux Speed: optimize fonts"
+
+msgid "Sayfada kullanılmayan theme.json yazı tipleri çıkarılır, ilk ekran yazı tipi önden yüklenir (preload)."
+msgstr "theme.json fonts not used on the page are removed and the above-the-fold font is preloaded."
+
+msgid "Flux Speed: emoji betiğini kaldır"
+msgstr "Flux Speed: remove the emoji script"
+
+msgid "WordPress'in emoji algılama betiği ve stili yüklenmez; modern tarayıcılar emojiyi kendisi çizer."
+msgstr "WordPress's emoji detection script and style are not loaded; modern browsers render emoji themselves."
+
+msgid "Bilinmeyen düzeltme."
+msgstr "Unknown fix."
+
+msgid "Flux Speed › PageSpeed sekmesi hangi dosyada hangi animasyonun sorunlu olduğunu listeler."
+msgstr "Flux Speed › PageSpeed lists which animation in which file is the problem."
+
+msgid "Flux Speed'de ilgili ayar açık; önbelleği (LiteSpeed Purge All) temizleyip yeniden ölçün. Kalan kısım tema/ön ayarın işi."
+msgstr "The matching Flux Speed setting is on; clear the cache (LiteSpeed Purge All) and measure again. Whatever remains is up to the theme/preset."
+
+msgid "Açıldı. Sayfa önbelleği temizlendi; Site denetimini ya da PageSpeed ölçümünü yeniden çalıştırın."
+msgstr "Turned on. The page cache was cleared; run the site audit or PageSpeed test again."
+
+msgid "Animasyonlar (GPU)"
+msgstr "Animations (GPU)"
+
+msgid "GPU'da çalışmayan animasyon: %s. transform/opacity ile yeniden yazılmalı (tema/ön ayar)."
+msgstr "Animation not running on the GPU: %s. Should be rewritten with transform/opacity (theme/preset)."
+
+msgid "Görülen CSS dosyalarındaki animasyonlar transform/opacity kullanıyor."
+msgstr "Animations in the CSS files seen use transform/opacity."
+
+msgid "PageSpeed"
+msgstr "PageSpeed"
+
+msgid "PageSpeed önbelleği"
+msgstr "PageSpeed cache"
+
+msgid "uploads/flx-speed yazılabilir."
+msgstr "uploads/flx-speed is writable."
+
+msgid "uploads/flx-speed klasörü yazılamıyor: CSS kırpma ve sıkıştırma çalışmaz, sayfalar asıl dosyalarla açılır."
+msgstr "The uploads/flx-speed folder is not writable: CSS trimming and minifying will not work, pages load the original files."
+
 msgid "Süresi dolmuş geçici veriler"
 msgstr "Expired transients"
 
@@ -1128,9 +1365,6 @@ msgstr "Callers"
 
 msgid "Sorgu türleri"
 msgstr "Query types"
-
-msgid "Dosya"
-msgstr "File"
 
 msgid "Konu"
 msgstr "Subject"
