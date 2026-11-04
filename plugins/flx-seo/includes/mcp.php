@@ -1,11 +1,10 @@
 <?php
 /**
- * MCP sunucusu (Model Context Protocol, Streamable HTTP, durumsuz).
+ * Flux SEO'nun yapay zekâ (MCP) araçları: içerik, SEO alanları, medya, tema bölümleri ve istem şablonları.
  *
- * Adres: /wp-json/flx-mcp/v1/mcp
- * Kimlik: "Authorization: Bearer <anahtar>" (Ayarlar › SEO & MCP › Yapay zekâ) veya
- *         WordPress Uygulama Parolası (Basic). Araçlar anahtarı oluşturan kullanıcının yetkileriyle çalışır;
- *         anahtara araç listesi verildiyse yalnız o araçlar görünür ve çalışır.
+ * MCP sunucusu, anahtarlar ve ayarlar Flux AI'dadır (Flux AI › MCP, /wp-json/flx-mcp/v1/mcp). Flux SEO yalnız kendi
+ * araçlarını `flx_mcp_tools`, istemlerini `flx_mcp_prompts`, talimatlarını `flx_mcp_instructions` ile kaydeder.
+ * Aynı araçlar Flux AI sohbetinde de görünür.
  *
  * @package flx-seo
  */
@@ -14,320 +13,46 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const FLXSEO_MCP_PROTOCOLS = array( '2025-06-18', '2025-03-26', '2024-11-05' );
-
-function flxseo_mcp_url() {
-	return rest_url( 'flx-mcp/v1/mcp' );
-}
-
-/* ---------------------------------------------------------------------------
- * Anahtarlar
- * ------------------------------------------------------------------------- */
-
-function flxseo_mcp_keys() {
-	return (array) get_option( 'flxseo_mcp_keys', array() );
-}
-
-function flxseo_mcp_find_key( $key ) {
-	if ( ! $key || strlen( $key ) < 20 ) {
-		return null;
-	}
-	$hash = hash( 'sha256', $key );
-	foreach ( flxseo_mcp_keys() as $id => $k ) {
-		if ( hash_equals( $k['hash'], $hash ) ) {
-			return array( 'id' => $id ) + $k;
-		}
-	}
-	return null;
-}
-
-/**
- * Bu istekteki anahtarın araç listesi. null = sınırsız (anahtar kapsamsız ya da Uygulama Parolası).
- * Yalnız flxseo_mcp_permission() ayarlar.
- */
-function flxseo_mcp_scope( $set = false, $tools = null ) {
-	static $scope = null;
-	if ( $set ) {
-		$scope = $tools;
-	}
-	return $scope;
-}
-
-function flxseo_mcp_allowed( $name ) {
-	$scope = flxseo_mcp_scope();
-	return null === $scope || in_array( $name, $scope, true );
-}
-
-function flxseo_mcp_request_key( WP_REST_Request $req ) {
-	$auth = $req->get_header( 'authorization' );
-	if ( ! $auth && isset( $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ) ) {
-		$auth = sanitize_text_field( wp_unslash( $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ) );
-	}
-	if ( $auth && 0 === stripos( $auth, 'Bearer ' ) ) {
-		return trim( substr( $auth, 7 ) );
-	}
-	if ( $req->get_header( 'x_mcp_key' ) ) {
-		return trim( $req->get_header( 'x_mcp_key' ) );
-	}
-	// Başlık eklenemeyen istemciler (ör. bazı web bağlayıcıları) için gizli adres: ?key=...
-	return (string) $req->get_param( 'key' );
-}
-
-/**
- * Bearer anahtarı olan istekte WordPress'in Basic/çerez kimliğini aramasına gerek yok.
- */
 add_filter(
-	'determine_current_user',
-	function ( $user_id ) {
-		if ( $user_id || empty( $_SERVER['REQUEST_URI'] ) || false === strpos( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ), 'flx-mcp/v1' ) ) {
-			return $user_id;
+	'flx_mcp_tools',
+	function ( $tools ) {
+		$core = flxseo_mcp_tools_core();
+		foreach ( $core as $name => $t ) {
+			$core[ $name ]['source'] = 'flx-seo';
 		}
-		$auth = sanitize_text_field( wp_unslash( $_SERVER['HTTP_AUTHORIZATION'] ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? '' ) );
-		$key  = 0 === stripos( $auth, 'Bearer ' ) ? trim( substr( $auth, 7 ) ) : sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_MCP_KEY'] ?? $_GET['key'] ?? '' ) ); // phpcs:ignore WordPress.Security.NonceVerification
-		$k    = flxseo_mcp_find_key( $key );
-		return $k ? (int) $k['user'] : $user_id;
+		return array_merge( (array) $tools, $core );
 	},
-	30
+	1
 );
 
-add_action(
-	'rest_api_init',
-	function () {
-		register_rest_route(
-			'flx-mcp/v1',
-			'/mcp',
-			array(
-				array(
-					'methods'             => 'POST',
-					'callback'            => 'flxseo_mcp_handle',
-					'permission_callback' => 'flxseo_mcp_permission',
-				),
-				array(
-					'methods'             => array( 'GET', 'DELETE' ),
-					'callback'            => function () {
-						return new WP_REST_Response( null, 405 );
-					},
-					'permission_callback' => '__return_true',
-				),
-			)
-		);
+add_filter(
+	'flx_mcp_prompts',
+	function ( $prompts ) {
+		return array_merge( (array) $prompts, flxseo_mcp_prompts() );
 	}
 );
 
-function flxseo_mcp_permission( WP_REST_Request $req ) {
-	if ( ! flxseo_opt( 'mcp_enabled' ) ) {
-		return new WP_Error( 'mcp_disabled', 'MCP kapalı. Ayarlar › SEO & MCP › Yapay zekâ sekmesinden açın.', array( 'status' => 403 ) );
-	}
-	$k = flxseo_mcp_find_key( flxseo_mcp_request_key( $req ) );
-	flxseo_mcp_scope( true, $k && ! empty( $k['tools'] ) ? array_values( (array) $k['tools'] ) : null );
-	if ( $k ) {
-		wp_set_current_user( (int) $k['user'] );
-		$keys                          = flxseo_mcp_keys();
-		$keys[ $k['id'] ]['last_used'] = time();
-		update_option( 'flxseo_mcp_keys', $keys, false );
-	}
-	if ( ! is_user_logged_in() ) {
-		return new WP_Error( 'mcp_auth', 'Geçersiz veya eksik MCP anahtarı.', array( 'status' => 401 ) );
-	}
-	if ( ! current_user_can( 'edit_posts' ) ) {
-		return new WP_Error( 'mcp_cap', 'Bu kullanıcının içerik düzenleme yetkisi yok.', array( 'status' => 403 ) );
-	}
-	return true;
+add_filter( 'flx_mcp_instructions', 'flxseo_mcp_instructions' );
+
+/** MCP sunucusu (Flux AI) açık mı? */
+function flxseo_mcp_server_on() {
+	return function_exists( 'flxai_mcp_enabled' ) && flxai_mcp_enabled();
 }
 
-/* ---------------------------------------------------------------------------
- * JSON-RPC
- * ------------------------------------------------------------------------- */
-
-function flxseo_mcp_handle( WP_REST_Request $req ) {
-	$body = json_decode( $req->get_body(), true );
-	if ( null === $body ) {
-		return new WP_REST_Response( flxseo_rpc_error( null, -32700, 'Parse error' ), 400 );
-	}
-	$batch = is_array( $body ) && array_is_list( $body );
-	$msgs  = $batch ? $body : array( $body );
-	$out   = array();
-	foreach ( $msgs as $m ) {
-		$r = flxseo_mcp_dispatch( $m );
-		if ( null !== $r ) {
-			$out[] = $r;
-		}
-	}
-	if ( ! $out ) {
-		return new WP_REST_Response( null, 202 );
-	}
-	return new WP_REST_Response( $batch ? $out : $out[0], 200 );
+/** MCP ayar ekranı: Flux AI › MCP (Flux AI yoksa eklenti ekranı). */
+function flxseo_mcp_admin_url() {
+	return function_exists( 'flxai_mcp_admin_url' ) ? flxai_mcp_admin_url() : admin_url( 'plugin-install.php?s=Flux+AI&tab=search&type=term' );
 }
 
-function flxseo_rpc_error( $id, $code, $msg ) {
-	return array(
-		'jsonrpc' => '2.0',
-		'id'      => $id,
-		'error'   => array( 'code' => $code, 'message' => $msg ),
-	);
-}
-
-function flxseo_rpc_result( $id, $result ) {
-	return array(
-		'jsonrpc' => '2.0',
-		'id'      => $id,
-		'result'  => $result,
-	);
-}
-
-function flxseo_mcp_dispatch( $m ) {
-	if ( ! is_array( $m ) || ( $m['jsonrpc'] ?? '' ) !== '2.0' || empty( $m['method'] ) ) {
-		return flxseo_rpc_error( $m['id'] ?? null, -32600, 'Invalid Request' );
-	}
-	$id     = $m['id'] ?? null;
-	$params = (array) ( $m['params'] ?? array() );
-	if ( ! array_key_exists( 'id', $m ) ) {
-		return null; // Bildirim (notifications/initialized vb.): yanıt yok.
-	}
-	switch ( $m['method'] ) {
-		case 'initialize':
-			$want = $params['protocolVersion'] ?? '';
-			return flxseo_rpc_result(
-				$id,
-				array(
-					'protocolVersion' => in_array( $want, FLXSEO_MCP_PROTOCOLS, true ) ? $want : FLXSEO_MCP_PROTOCOLS[0],
-					'capabilities'    => array(
-						'tools'   => array( 'listChanged' => false ),
-						'prompts'   => array( 'listChanged' => false ),
-						'resources' => array( 'listChanged' => false ),
-					),
-					'serverInfo'      => array(
-						'name'    => 'yesil-turkiye-wordpress',
-						'title'   => get_bloginfo( 'name' ) . ' (WordPress)',
-						'version' => FLXSEO_VERSION,
-					),
-					'instructions'    => flxseo_mcp_instructions(),
-				)
-			);
-		case 'ping':
-			return flxseo_rpc_result( $id, new stdClass() );
-		case 'tools/list':
-			$tools = array();
-			foreach ( flxseo_mcp_tools() as $name => $t ) {
-				if ( ! flxseo_mcp_allowed( $name ) || ( ! empty( $t['cap'] ) && ! current_user_can( $t['cap'] ) ) ) {
-					continue;
-				}
-				$tools[] = array(
-					'name'        => $name,
-					'title'       => $t['title'],
-					'description' => $t['description'],
-					'inputSchema' => $t['schema'],
-					'annotations' => array( 'readOnlyHint' => ! empty( $t['readonly'] ) ),
-				);
-			}
-			return flxseo_rpc_result( $id, array( 'tools' => $tools ) );
-		case 'tools/call':
-			return flxseo_rpc_result( $id, flxseo_mcp_call( (string) ( $params['name'] ?? '' ), (array) ( $params['arguments'] ?? array() ) ) );
-		case 'prompts/list':
-			$list = array();
-			foreach ( flxseo_mcp_prompts() as $name => $p ) {
-				$list[] = array( 'name' => $name, 'title' => $p['title'], 'description' => $p['description'], 'arguments' => $p['arguments'] );
-			}
-			return flxseo_rpc_result( $id, array( 'prompts' => $list ) );
-		case 'prompts/get':
-			$p = flxseo_mcp_prompts()[ $params['name'] ?? '' ] ?? null;
-			if ( ! $p ) {
-				return flxseo_rpc_error( $id, -32602, 'Unknown prompt' );
-			}
-			return flxseo_rpc_result(
-				$id,
-				array(
-					'description' => $p['description'],
-					'messages'    => array(
-						array(
-							'role'    => 'user',
-							'content' => array( 'type' => 'text', 'text' => call_user_func( $p['text'], (array) ( $params['arguments'] ?? array() ) ) ),
-						),
-					),
-				)
-			);
-		case 'resources/list':
-			$list = array();
-			foreach ( flxseo_mcp_resources() as $uri => $r ) {
-				$list[] = array( 'uri' => $uri, 'name' => $r['name'], 'title' => $r['title'], 'description' => $r['description'], 'mimeType' => $r['mimeType'] );
-			}
-			return flxseo_rpc_result( $id, array( 'resources' => $list ) );
-		case 'resources/read':
-			$uri = (string) ( $params['uri'] ?? '' );
-			$r   = flxseo_mcp_resources()[ $uri ] ?? null;
-			if ( ! $r || ! current_user_can( 'edit_posts' ) ) {
-				return flxseo_rpc_error( $id, -32002, 'Resource not found' );
-			}
-			return flxseo_rpc_result( $id, array( 'contents' => array( array( 'uri' => $uri, 'mimeType' => $r['mimeType'], 'text' => (string) call_user_func( $r['read'] ) ) ) ) );
-		case 'resources/templates/list':
-			return flxseo_rpc_result( $id, array( 'resourceTemplates' => array() ) );
-	}
-	return flxseo_rpc_error( $id, -32601, 'Method not found: ' . $m['method'] );
-}
-
-function flxseo_mcp_call( $name, $args ) {
-	$tools = flxseo_mcp_tools();
-	$ok    = false;
-	try {
-		if ( ! isset( $tools[ $name ] ) ) {
-			throw new Exception( 'Bilinmeyen araç: ' . $name );
-		}
-		if ( ! flxseo_mcp_allowed( $name ) ) {
-			throw new Exception( 'Bu anahtar bu aracı kullanamaz: ' . $name );
-		}
-		$t = $tools[ $name ];
-		if ( ! empty( $t['cap'] ) && ! current_user_can( $t['cap'] ) ) {
-			throw new Exception( 'Bu işlem için yetkiniz yok.' );
-		}
-		$data = call_user_func( $t['run'], $args );
-		$ok   = true;
-	} catch ( Throwable $e ) {
-		$data = array( 'error' => $e->getMessage() );
-	}
-	// Sık yoklanan okuma araçları ('log' => false) başarılıysa Son işlemler'i doldurmasın.
-	if ( ! $ok || ! isset( $t ) || false !== ( $t['log'] ?? true ) ) {
-		flxseo_mcp_log( $name, $ok, $args );
-	}
-	$res = array(
-		'content' => array(
-			array(
-				'type' => 'text',
-				'text' => wp_json_encode( $data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ),
-			),
-		),
-		'isError' => ! $ok,
-	);
-	if ( $ok && is_array( $data ) && ! array_is_list( $data ) ) {
-		$res['structuredContent'] = $data;
-	}
-	return $res;
-}
-
-function flxseo_mcp_log( $tool, $ok, $args ) {
-	$log   = (array) get_option( 'flxseo_mcp_log', array() );
-	$target = $args['id'] ?? ( $args['title'] ?? ( $args['search'] ?? '' ) );
-	array_unshift(
-		$log,
-		array(
-			't'    => time(),
-			'u'    => get_current_user_id(),
-			'tool' => $tool,
-			'ok'   => $ok,
-			'on'   => is_scalar( $target ) ? mb_substr( (string) $target, 0, 80 ) : '',
-		)
-	);
-	update_option( 'flxseo_mcp_log', array_slice( $log, 0, 100 ), false );
-}
-
-function flxseo_mcp_instructions() {
-	return 'Bu sunucu "' . get_bloginfo( 'name' ) . '" WordPress sitesini yönetir (' . home_url( '/' ) . "). Site Türkçe; içerikleri Türkçe yazın.\n"
-		. "- İçerik gövdesi Gutenberg blok işaretlemesi, HTML veya Markdown olabilir (format alanı). Markdown/HTML otomatik bloğa çevrilir.\n"
-		. "- Yeni sayfa tasarlarken önce list_patterns ile temanın hazır bölümlerini görün; create_content'e patterns vererek sayfayı bu bölümlerle kurun, sonra metinleri güncelleyin. get_pattern ile bir bölümün blok kodunu alıp düzenleyebilirsiniz.\n"
-		. "- Yeni içerikler varsayılan olarak taslak (draft) oluşturulur; kullanıcı açıkça isterse publish yapın.\n"
-		. "- SEO: başlık en fazla ~60, meta açıklama 120–160 karakter. seo_audit eksikleri listeler; set_seo ile düzeltin. Görsellere anlamlı alt metin verin (set_image_alt).\n"
-		. "- Silme işlemi yalnızca çöpe taşır.\n"
-		. "- Yeni sayfa, desen, tema ya da ön ayar yapmadan önce site_build_guide ile FluxWP site yapım rehberini okuyun ve uygulayın. Değişiklikten sonra site_audit(refresh=true) çalıştırın; bulguları öncelik sırasıyla (critical, high, medium, low) düzeltin. fix_id olan bulgu system_fix ile tek adımda düzelir. Geçmiş raporlar ve eğilim: site_audit_history.\n"
-		. '- Site sağlığı: system_checks eklenti, cron ve ayar kontrollerini verir (status ile filtreleyin). Bir satırın "fixes" alanındaki düzeltme system_fix ile uygulanır; system_fixes izinli düzeltmeleri ve güncel değerlerini listeler. Ayar değiştirmeden önce kullanıcıya ne yapacağınızı söyleyin; her değişiklik system_fix_log\'a yazılır.';
+/** Sunucu talimatlarına SEO ve içerik satırları. */
+function flxseo_mcp_instructions( $lines ) {
+	$lines   = (array) $lines;
+	$lines[] = '- Content body can be Gutenberg block markup, HTML or Markdown (format field). Markdown/HTML is converted to blocks automatically.';
+	$lines[] = '- When designing a new page, first call list_patterns to see the theme sections; pass patterns to create_content to build the page from them, then update the texts. get_pattern returns a section\'s block markup for editing.';
+	$lines[] = '- SEO: title at most ~60 characters, meta description 120–160 characters. seo_audit lists gaps; fix them with set_seo. Give images meaningful alt text (set_image_alt).';
+	$lines[] = '- Before creating a page, pattern, theme or preset, read the FluxWP site build guide with site_build_guide and follow it. After changes run site_audit(refresh=true) and fix findings by priority (critical, high, medium, low). A finding with fix_id is fixed in one step with system_fix. Past reports and trend: site_audit_history.';
+	$lines[] = '- Site health: system_checks returns plugin, cron and setting checks (filter with status). A fix in a row\'s "fixes" field is applied with system_fix; system_fixes lists allowed fixes and current values. Every change is written to system_fix_log.';
+	return $lines;
 }
 
 /* ---------------------------------------------------------------------------
@@ -691,26 +416,10 @@ function flxseo_mcp_status( $status, $type ) {
 	return $status;
 }
 
-/* ---------------------------------------------------------------------------
- * Araçlar
- * ------------------------------------------------------------------------- */
 
-/**
- * Araç listesi. Diğer eklentiler ve tema `flxseo_mcp_tools` filtresiyle araç ekleyebilir:
- * 'ad' => array( title, description, schema, run( $args ), readonly?, cap?, log? ). Her çağrı flxseo_mcp_log'a yazılır;
- * 'log' => false olan aracın yalnız hatalı çağrıları yazılır (ör. TV panelinin dakikalık yoklaması).
- */
-function flxseo_mcp_tools() {
-	$tools = (array) apply_filters( 'flxseo_mcp_tools', flxseo_mcp_tools_core() );
-	foreach ( $tools as $name => $t ) {
-		if ( ! is_array( $t ) || empty( $t['run'] ) || ! is_callable( $t['run'] ) ) {
-			unset( $tools[ $name ] );
-			continue;
-		}
-		$tools[ $name ] += array( 'title' => $name, 'description' => '', 'schema' => array( 'type' => 'object', 'properties' => new stdClass() ) );
-	}
-	return $tools;
-}
+/* ---------------------------------------------------------------------------
+ * Araçlar ve istemler
+ * ------------------------------------------------------------------------- */
 
 function flxseo_mcp_tools_core() {
 	$types   = flxseo_post_types();
@@ -1260,123 +969,4 @@ function flxseo_mcp_prompts() {
 			},
 		),
 	);
-}
-
-/* ---------------------------------------------------------------------------
- * Yönetim: anahtarlar ve bağlantı talimatları
- * ------------------------------------------------------------------------- */
-
-add_action(
-	'admin_post_flxseo_mcp',
-	function () {
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( 'Yetkisiz.' );
-		}
-		check_admin_referer( 'flxseo_mcp' );
-		$do   = sanitize_key( $_POST['do'] ?? '' );
-		$keys = flxseo_mcp_keys();
-		if ( 'toggle' === $do ) {
-			$o                = wp_parse_args( (array) get_option( 'flxseo', array() ), flxseo_defaults() );
-			$o['mcp_enabled'] = empty( $_POST['mcp_enabled'] ) ? 0 : 1;
-			update_option( 'flxseo', $o );
-		} elseif ( 'create' === $do ) {
-			$key                      = 'flxmcp_' . wp_generate_password( 40, false, false );
-			$id                       = wp_generate_uuid4();
-			$keys[ $id ]              = array(
-				'name'      => sanitize_text_field( wp_unslash( $_POST['name'] ?? '' ) ) ?: 'Yapay zekâ',
-				'hash'      => hash( 'sha256', $key ),
-				'user'      => get_current_user_id(),
-				'created'   => time(),
-				'last_used' => 0,
-				'hint'      => substr( $key, -4 ),
-			);
-			// Araç seçildiyse anahtar yalnız onlarla sınırlı (ör. TV paneli için yalnız order_summary).
-			$tools = array_values( array_intersect( array_map( 'sanitize_key', (array) wp_unslash( $_POST['tools'] ?? array() ) ), array_keys( flxseo_mcp_tools() ) ) );
-			if ( $tools ) {
-				$keys[ $id ]['tools'] = $tools;
-			}
-			update_option( 'flxseo_mcp_keys', $keys, false );
-			set_transient( 'flxseo_new_key_' . get_current_user_id(), $key, 300 );
-		} elseif ( 'revoke' === $do ) {
-			unset( $keys[ sanitize_text_field( wp_unslash( $_POST['id'] ?? '' ) ) ] );
-			update_option( 'flxseo_mcp_keys', $keys, false );
-		}
-		wp_safe_redirect( flxseo_admin_url( 'mcp' ) );
-		exit;
-	}
-);
-
-function flxseo_mcp_page( $o ) {
-	$new  = get_transient( 'flxseo_new_key_' . get_current_user_id() );
-	delete_transient( 'flxseo_new_key_' . get_current_user_id() );
-	$url  = flxseo_mcp_url();
-	$keys = flxseo_mcp_keys();
-	$log  = array_slice( (array) get_option( 'flxseo_mcp_log', array() ), 0, 20 );
-	$form = function ( $do, $inner, $button, $class = 'button' ) {
-		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" style="display:inline">';
-		wp_nonce_field( 'flxseo_mcp' );
-		echo '<input type="hidden" name="action" value="flxseo_mcp"><input type="hidden" name="do" value="' . esc_attr( $do ) . '">' . $inner; // phpcs:ignore WordPress.Security.EscapeOutput
-		echo ' <button class="' . esc_attr( $class ) . '">' . esc_html( $button ) . '</button></form>';
-	};
-	$key_show = $new ? $new : 'ANAHTARINIZ';
-	$json     = wp_json_encode(
-		array(
-			'mcpServers' => array(
-				'yesil-turkiye' => array(
-					'command' => 'npx',
-					'args'    => array( '-y', 'mcp-remote', $url, '--header', 'Authorization:Bearer ' . $key_show ),
-				),
-			),
-		),
-		JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
-	);
-	?>
-	<style>.flxseo-code{background:#1d2327;color:#f0f0f1;padding:12px 14px;border-radius:6px;overflow:auto;font:12px/1.5 Menlo,Consolas,monospace;white-space:pre}.flxseo-key{font:600 14px Menlo,Consolas,monospace;background:#fff8e5;border:1px solid #dba617;padding:10px 12px;border-radius:6px;display:inline-block;user-select:all}</style>
-	<p>MCP (Model Context Protocol), Claude gibi yapay zekâ asistanlarının bu siteye bağlanıp içerik listelemesini, yazı ve sayfa oluşturmasını, SEO alanlarını doldurmasını ve görselleri yönetmesini sağlar. Asistan, anahtarı oluşturan kullanıcının yetkileriyle çalışır; yeni içerikler varsayılan olarak taslak açılır, silme yalnızca çöpe taşır.</p>
-	<h2>1. MCP'yi aç</h2>
-	<?php
-	$form( 'toggle', '<label><input type="checkbox" name="mcp_enabled" value="1" ' . checked( $o['mcp_enabled'], 1, false ) . '> MCP sunucusu etkin</label>', 'Kaydet', 'button button-primary' );
-	?>
-	<p>Sunucu adresi: <code><?php echo esc_html( $url ); ?></code></p>
-	<h2>2. Anahtar oluştur</h2>
-	<?php if ( $new ) : ?>
-		<div class="notice notice-success inline"><p><strong>Yeni anahtar (yalnızca şimdi gösterilir, kopyalayın):</strong></p><p><span class="flxseo-key"><?php echo esc_html( $new ); ?></span></p></div>
-	<?php endif; ?>
-	<?php
-	$checks = '';
-	foreach ( flxseo_mcp_tools() as $name => $t ) {
-		$checks .= '<label style="display:block;margin:2px 0"><input type="checkbox" name="tools[]" value="' . esc_attr( $name ) . '"> <code>' . esc_html( $name ) . '</code> '
-			. esc_html( $t['title'] ) . ( empty( $t['readonly'] ) ? '' : ' <span style="color:#007a1f">(yalnız okuma)</span>' ) . '</label>';
-	}
-	$scope = '<details style="margin:8px 0;max-width:820px"><summary>Araçları sınırla (isteğe bağlı)</summary>'
-		. '<p class="description">Hiçbiri seçilmezse anahtar, oluşturan kullanıcının bütün yetkileriyle çalışır. Seçilirse yalnız işaretli araçları görür ve çalıştırır (ör. TV sipariş paneli için yalnız <code>order_summary</code>).</p>'
-		. $checks . '</details>';
-	$form( 'create', '<input name="name" placeholder="Ör. Claude – Ahmet" class="regular-text">' . $scope, 'Yeni anahtar oluştur', 'button button-secondary' );
-	?>
-	<?php if ( $keys ) : ?>
-	<table class="widefat striped" style="max-width:820px;margin-top:12px"><thead><tr><th>Ad</th><th>Kullanıcı</th><th>Araçlar</th><th>Oluşturma</th><th>Son kullanım</th><th></th></tr></thead><tbody>
-		<?php foreach ( $keys as $id => $k ) : $u = get_userdata( $k['user'] ); ?>
-		<tr><td><?php echo esc_html( $k['name'] ); ?> <code>…<?php echo esc_html( $k['hint'] ?? '' ); ?></code></td><td><?php echo esc_html( $u ? $u->user_login : '?' ); ?></td><td><?php echo empty( $k['tools'] ) ? 'Tümü' : '<code>' . esc_html( implode( ', ', (array) $k['tools'] ) ) . '</code>'; ?></td><td><?php echo esc_html( wp_date( 'd.m.Y H:i', $k['created'] ) ); ?></td><td><?php echo $k['last_used'] ? esc_html( flx_time_ago( $k['last_used'] ) ) : '—'; ?></td>
-		<td><?php $form( 'revoke', '<input type="hidden" name="id" value="' . esc_attr( $id ) . '">', 'İptal et', 'button-link-delete button-link' ); ?></td></tr>
-		<?php endforeach; ?>
-	</tbody></table>
-	<?php endif; ?>
-	<h2>3. Asistana bağla</h2>
-	<p><strong>Claude Desktop / Claude Code / Cursor</strong> (claude_desktop_config.json → mcpServers):</p>
-	<div class="flxseo-code"><?php echo esc_html( $json ); ?></div>
-	<p><strong>Claude Code</strong> tek satır:</p>
-	<div class="flxseo-code">claude mcp add --transport http yesil-turkiye <?php echo esc_html( $url ); ?> --header "Authorization: Bearer <?php echo esc_html( $key_show ); ?>"</div>
-	<p><strong>Claude.ai › Ayarlar › Bağlayıcılar › Özel bağlayıcı ekle</strong> (başlık eklenemeyen yerler için anahtarlı adres; bu adresi kimseyle paylaşmayın):</p>
-	<div class="flxseo-code"><?php echo esc_html( add_query_arg( 'key', $key_show, $url ) ); ?></div>
-	<p class="description">Sunucu Apache ise ve "Geçersiz anahtar" hatası alırsanız .htaccess'e <code>SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1</code> ekleyin ya da anahtarlı adresi kullanın.</p>
-	<p>Örnek istekler: <em>"Sitedeki SEO eksiklerini bul ve düzelt"</em>, <em>"Yenikapı tanıtım günleri için haber taslağı yaz"</em>, <em>"Tema bölümleriyle Kurumsal İş Birlikleri sayfası kur"</em>.</p>
-	<?php if ( $log ) : ?>
-	<h2>Son işlemler</h2>
-	<table class="widefat striped" style="max-width:820px"><thead><tr><th>Zaman</th><th>Kullanıcı</th><th>Araç</th><th>Hedef</th><th>Sonuç</th></tr></thead><tbody>
-		<?php foreach ( $log as $l ) : $u = get_userdata( $l['u'] ); ?>
-		<tr><td><?php echo esc_html( wp_date( 'd.m H:i:s', $l['t'] ) ); ?></td><td><?php echo esc_html( $u ? $u->user_login : '?' ); ?></td><td><code><?php echo esc_html( $l['tool'] ); ?></code></td><td><?php echo esc_html( $l['on'] ); ?></td><td><?php echo $l['ok'] ? '✓' : '✗'; ?></td></tr>
-		<?php endforeach; ?>
-	</tbody></table>
-	<?php endif; ?>
-	<?php
 }

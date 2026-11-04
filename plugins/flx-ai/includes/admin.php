@@ -1,6 +1,6 @@
 <?php
 /**
- * Yönetim ekranları: Genel bakış (raporlar), Kayıtlar, Bağlı sistemler, Faturalandırma, Araçlar, Ayarlar.
+ * Yönetim ekranları: Genel bakış (raporlar), Kayıtlar, Bağlı sistemler, Faturalandırma, Araçlar, MCP, Ayarlar.
  *
  * @package FLX_AI
  */
@@ -16,6 +16,7 @@ function flxai_admin_menu() {
 	add_submenu_page( 'flx-ai', __( 'Bağlı sistemler', 'flx-ai' ), __( 'Bağlı sistemler', 'flx-ai' ), 'manage_options', 'flx-ai-systems', 'flxai_page_systems' );
 	add_submenu_page( 'flx-ai', __( 'Faturalandırma', 'flx-ai' ), __( 'Faturalandırma', 'flx-ai' ), 'manage_options', 'flx-ai-billing', 'flxai_page_billing' );
 	add_submenu_page( 'flx-ai', __( 'Araçlar', 'flx-ai' ), __( 'Araçlar', 'flx-ai' ), 'manage_options', 'flx-ai-tools', 'flxai_page_tools' );
+	add_submenu_page( 'flx-ai', 'MCP', 'MCP', 'manage_options', 'flx-ai-mcp', 'flxai_page_mcp' );
 	add_submenu_page( 'flx-ai', __( 'Ayarlar', 'flx-ai' ), __( 'Ayarlar', 'flx-ai' ), 'manage_options', 'flx-ai-settings', 'flxai_page_settings' );
 }
 
@@ -493,7 +494,7 @@ function flxai_page_tools() {
 		echo '<tr><td colspan="7" class="flxai-empty">' . esc_html__( 'Kayıtlı araç yok.', 'flx-ai' ) . '</td></tr>';
 	}
 	echo '</tbody></table></div><p><button class="button button-primary">' . esc_html__( 'Kaydet', 'flx-ai' ) . '</button></p></form>';
-	echo '<p class="flxai-note">' . esc_html__( 'Eklentiler araç eklemek için flxai_tools filtresini kullanır (API.md). Flux SEO & MCP araçları otomatik gelir.', 'flx-ai' ) . '</p></div>';
+	echo '<p class="flxai-note">' . esc_html__( 'Eklentiler araç eklemek için flx_mcp_tools (MCP + sohbet) ya da flxai_tools (yalnız sohbet) filtresini kullanır (API.md).', 'flx-ai' ) . '</p></div>';
 }
 
 /* ---------------------------------------------------------------------------

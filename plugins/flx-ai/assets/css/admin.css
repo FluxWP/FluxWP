@@ -165,3 +165,15 @@ html.flxa-dark .flxai .form-table th, html.flxa-dark .flxai label { color: var(-
 	.flxai-systems td:last-child { grid-column: 2 / 4; font-size: 12px; }
 	.flxai-systems .flxai-kpi-s { display: none; }
 }
+
+/* MCP */
+.flxai-mcp .flxai-table td code { white-space: nowrap; }
+.flxai-inline-form { margin: 0 0 8px; }
+.flxai-inline-form .regular-text { max-width: 100%; }
+.flxai-check { display: flex; gap: 6px; align-items: center; margin: 4px 0; flex-wrap: wrap; }
+.flxai-scope { margin: 8px 0; }
+.flxai-scope summary { cursor: pointer; color: var(--a-text); }
+.flxai-scope-list { max-height: 260px; overflow: auto; padding: 6px 8px; background: var(--a-surface-2); border-radius: 8px; }
+.flxai-key { display: inline-block; font-size: 13px; font-weight: 600; user-select: all; overflow-wrap: anywhere; }
+.flxai-code { background: #1d2327; color: #f0f0f1; padding: 12px 14px; border-radius: 8px; overflow: auto; font: 12px/1.5 Menlo, Consolas, monospace; white-space: pre; margin: 0 0 12px; }
+.flxai-mcp code, .flxai-card p code { overflow-wrap: anywhere; }

@@ -310,8 +310,8 @@ msgstr "The robots.txt in the web root must not have \"Disallow: /\" under \"Use
 msgid "Sayfa başlığı (<title>) yok"
 msgstr "Page has no <title>"
 
-msgid "Tema add_theme_support( 'title-tag' ) desteklemeli; SEO & MCP › Genel'de ana sayfa başlığını doldurun."
-msgstr "The theme must declare add_theme_support( 'title-tag' ); fill in the home title in SEO & MCP › General."
+msgid "Tema add_theme_support( 'title-tag' ) desteklemeli; SEO › Genel'de ana sayfa başlığını doldurun."
+msgstr "The theme must declare add_theme_support( 'title-tag' ); fill in the home title in SEO › General."
 
 msgid "Sayfa başlığı uzun"
 msgstr "Page title is long"
@@ -400,8 +400,8 @@ msgstr "<li> may only sit inside <ul>, <ol> or <menu>, and the parent list must 
 msgid "Görsellerde alt metin yok"
 msgstr "Images without alt text"
 
-msgid "Her anlamlı görsele içeriği anlatan alt metin yazın; süs görselleri alt=\"\" alsın. Medya kütüphanesinde alt metni doldurun ya da SEO & MCP › Genel › Görseller seçeneğini açın."
-msgstr "Give every meaningful image alt text that describes it; decorative images get alt=\"\". Fill in alt text in the media library or turn on SEO & MCP › General › Images."
+msgid "Her anlamlı görsele içeriği anlatan alt metin yazın; süs görselleri alt=\"\" alsın. Medya kütüphanesinde alt metni doldurun ya da SEO › Genel › Görseller seçeneğini açın."
+msgstr "Give every meaningful image alt text that describes it; decorative images get alt=\"\". Fill in alt text in the media library or turn on SEO › General › Images."
 
 msgid "Adı olmayan bağlantılar var"
 msgstr "Links without a name"
@@ -748,8 +748,8 @@ msgstr "no link list"
 msgid "PageSpeed Insights yalnız internetten erişilebilen adresleri ölçebilir."
 msgstr "PageSpeed Insights can only measure addresses reachable from the internet."
 
-msgid "PageSpeed günlük kotası doldu. SEO & MCP › Site denetimi › Ayarlar'a ücretsiz bir Google API anahtarı girin."
-msgstr "The PageSpeed daily quota is used up. Enter a free Google API key in SEO & MCP › Site audit › Settings."
+msgid "PageSpeed günlük kotası doldu. SEO › Ayarlar'a ücretsiz bir Google API anahtarı girin."
+msgstr "The PageSpeed daily quota is used up. Enter a free Google API key in SEO › Settings."
 
 msgid "Denetimi aç"
 msgstr "Open audit"
@@ -925,3 +925,6 @@ msgstr "%s PageSpeed scores over time"
 
 msgid "Site denetimi ve ajan uyumu"
 msgstr "Site audit and agent readiness"
+
+msgid "Flux SEO'nun yapay zekâ (MCP) araçları ortak MCP sunucusu üzerinden çalışır. Sunucu, anahtarlar ve ayarlar Flux AI › MCP ekranındadır; Flux AI 0.7.0 ve üstünü kurup etkinleştirin."
+msgstr "Flux SEO's AI (MCP) tools run through the shared MCP server. The server, keys and settings are in Flux AI › MCP; install and activate Flux AI 0.7.0 or later."

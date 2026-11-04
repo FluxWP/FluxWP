@@ -45,7 +45,7 @@ function flxseo_order_row( WC_Order $o ) {
 }
 
 add_filter(
-	'flxseo_mcp_tools',
+	'flx_mcp_tools',
 	function ( $tools ) {
 		if ( ! function_exists( 'wc_get_orders' ) ) {
 			return $tools;

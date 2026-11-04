@@ -1,13 +1,15 @@
-# Flux SEO & MCP: diğer eklentiler için MCP ve sistem düzeltme API'si (v1.1.0)
+# Flux SEO: MCP araçları ve sistem düzeltme API'si (v1.5.0)
 
-MCP sunucusu: `/wp-json/flx-mcp/v1/mcp` (SEO & MCP › Yapay zekâ (MCP) sekmesinde açılır, kullanıcı başına anahtar). Asistan, anahtarı oluşturan kullanıcının yetkileriyle çalışır.
+> **Flux SEO 1.5.0 / Flux AI 0.7.0:** MCP sunucusu, anahtarlar ve kayıt **Flux AI**'ya taşındı (Flux AI › MCP). Sunucu ve filtre belgesi: [docs/flx-ai/API.md › MCP sunucusu](../flx-ai/API.md#mcp-sunucusu-070). Bu dosya Flux SEO'nun kendi araçlarını ve `flx_system_fixes` API'sini anlatır.
 
-**Anahtar kapsamı (1.1.0):** anahtar oluşturulurken "Araçları sınırla" altından araç seçilirse anahtar yalnız o araçları görür (`tools/list`) ve çalıştırır (`tools/call` başka araçta "Bu anahtar bu aracı kullanamaz" hatası döner). Seçim yoksa eski davranış: kullanıcının bütün yetkileri. Kapsam `flxseo_mcp_keys` seçeneğinde anahtarın `tools` dizisidir. Ekran, TV gibi cihazlara konan anahtarlar için yalnız okuma araçlarıyla sınırlı anahtar açın.
+MCP sunucusu: `/wp-json/flx-mcp/v1/mcp` (Flux AI › MCP ekranında açılır, kullanıcı başına anahtar). Asistan, anahtarı oluşturan kullanıcının yetkileriyle çalışır.
 
-## 1. Araç eklemek: `flxseo_mcp_tools`
+**Anahtar kapsamı (1.1.0):** anahtar oluşturulurken "Araçları sınırla" altından araç seçilirse anahtar yalnız o araçları görür (`tools/list`) ve çalıştırır (`tools/call` başka araçta "Bu anahtar bu aracı kullanamaz" hatası döner). Seçim yoksa eski davranış: kullanıcının bütün yetkileri. Kapsam `flxai_mcp_keys` seçeneğinde anahtarın `tools` dizisidir (eski `flxseo_mcp_keys` ilk açılışta oraya kopyalanır). Ekran, TV gibi cihazlara konan anahtarlar için yalnız okuma araçlarıyla sınırlı anahtar açın.
+
+## 1. Araç eklemek: `flx_mcp_tools` (eski ad `flxseo_mcp_tools` de çalışır)
 
 ```php
-add_filter( 'flxseo_mcp_tools', function ( $tools ) {
+add_filter( 'flx_mcp_tools', function ( $tools ) {
 	$tools['mail_templates'] = array(
 		'title'       => 'E-posta şablonları',
 		'description' => 'Şablonları listeler.',

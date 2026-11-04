@@ -1,6 +1,6 @@
 # Flux AI — Geliştirici API'si
 
-**Sürüm 0.5.2.** Diğer FluxWP eklentileri yapay zekâyı kendi kodları yerine Flux AI üzerinden çağırır: anahtar, model, önbellek, harcama sınırı ve raporlar tek yerde. Flux AI yoksa eklenti eski koduna düşer.
+**Sürüm 0.7.0.** Diğer FluxWP eklentileri yapay zekâyı kendi kodları yerine Flux AI üzerinden çağırır: anahtar, model, önbellek, harcama sınırı ve raporlar tek yerde. Flux AI yoksa eklenti eski koduna düşer.
 
 ## Geçiş kalıbı (her paket)
 ```php
@@ -136,8 +136,48 @@ add_filter( 'flxai_tools', function ( $tools ) {
 ```
 - Araç adı `^[a-zA-Z0-9_-]{1,64}$`. Sonuç 30.000 karakterde kesilir.
 - `readonly => false` ya da `confirm => true` olan araç onay kartında bekler; kullanıcı onaylamadan `run` çağrılmaz.
-- Flux SEO & MCP araçları (`flxseo_mcp_tools`) otomatik gelir; MCP'deki `readonly` bilgisi aynen kullanılır.
+- MCP araçları (`flx_mcp_tools`, eski adı `flxseo_mcp_tools`) sohbete otomatik gelir; `readonly` bilgisi aynen kullanılır. Hem MCP'de hem sohbette görünecek araç için `flx_mcp_tools`, yalnız sohbet için `flxai_tools` kullanın.
 - Yönetici araçları Flux AI › Araçlar'dan kapatabilir.
+
+## MCP sunucusu (0.7.0)
+
+Ortak MCP sunucusu Flux AI'dadır (önceden Flux SEO içindeydi). Adres `/wp-json/flx-mcp/v1/mcp` (Streamable HTTP, durumsuz, JSON-RPC 2.0). Yönetim: **Flux AI › MCP** (`admin.php?page=flx-ai-mcp`): aç/kapa, kullanıcıya özel anahtarlar (isteğe bağlı araç kapsamı), son işlemler. Kimlik: `Authorization: Bearer <anahtar>`, `X-MCP-Key` başlığı, `?key=` ya da Uygulama Parolası. Araçlar anahtarı oluşturan kullanıcının yetkileriyle çalışır; Flux AI sohbeti aynı araçları kullanır (değişiklik yapanlar onay ister).
+
+### Araç kaydı: `flx_mcp_tools`
+```php
+add_filter( 'flx_mcp_tools', function ( $tools ) {
+	$tools['flxm_list_templates'] = array(
+		'title'       => 'E-posta şablonları',
+		'description' => 'Lists templates.',          // modele gider; İngilizce önerilir
+		'readonly'    => true,                         // false: değiştirir → sohbette onay
+		'cap'         => 'manage_options',             // yoksa edit_posts (MCP) / read (sohbet)
+		'schema'      => array( 'type' => 'object', 'properties' => new stdClass() ),
+		'log'         => true,                         // false: başarılı çağrı Son işlemler'e yazılmaz (yoklama araçları)
+		'source'      => 'flx-mail',                   // isteğe bağlı; yoksa aracı tanımlayan eklentinin klasörü
+		'run'         => function ( $args ) { return array( 'templates' => array() ); }, // hata: throw new Exception()
+	);
+	return $tools;
+} );
+```
+- Eski filtre **`flxseo_mcp_tools` aynen çalışır** (yeni filtreden sonra uygulanır); mevcut eklentilerin değişmesi gerekmez.
+- Araç adı benzersiz ve eklenti önekli olsun (`flxm_…`, `flxcrm_…`). Sonuç dizi ise `structuredContent` olarak da döner.
+
+### Diğer filtreler
+| Filtre | Ne |
+|---|---|
+| `flx_mcp_prompts` | `ad => [ title, description, arguments[], text( $args ) → string ]` (prompts/list, prompts/get). |
+| `flx_mcp_resources` | `uri => [ name, title, description, mimeType, read() → string, cap? ]` (resources/list, read). Eski `flxseo_mcp_resources` de uygulanır. |
+| `flx_mcp_instructions` | Sunucu talimat satırları (dizi); `initialize` yanıtındaki `instructions`. |
+
+### Fonksiyonlar
+| Fonksiyon | Ne |
+|---|---|
+| `flxai_mcp_tools()` | Kayıtlı tüm araçlar (yetki süzmeden). |
+| `flxai_mcp_call( $name, $args )` | Aracı çalıştırır; MCP sonucu `{ content[], isError, structuredContent? }`. |
+| `flxai_mcp_enabled()` | Sunucu açık mı. |
+| `flxai_mcp_url()` / `flxai_mcp_admin_url()` | Sunucu adresi / ayar ekranı. |
+
+Geriye uyum: Flux SEO kaldırıldı ya da güncellendiyse `flxseo_mcp_tools()`, `flxseo_mcp_call()`, `flxseo_mcp_url()` Flux AI'daki karşılıklarına yönlenir (`function_exists( 'flxseo_mcp_tools' )` denetimleri çalışmaya devam eder). Eski anahtarlar (`flxseo_mcp_keys`) ve aç/kapa (`flxseo[mcp_enabled]`) ilk okumada `flxai_mcp_keys` / `flxai_settings[mcp_enabled]`'a geçer. Flux SEO 1.4.x hâlâ kuruluysa sunucuyu o çalıştırır; Flux AI yalnız uyarı gösterir. Seçenekler: `flxai_mcp_keys`, `flxai_mcp_log` (son 100).
 
 ## Akış (0.5.0)
 `flxai_chat( $messages, array( 'stream' => function ( $ev ) { … } ) )`: `$ev['t']` = `text` | `think` (parça `$ev['d']`) ya da `tool` (`id`, `name`). Dönüş değeri akışsızla aynıdır. `stop_check` callable true dönerse istek kesilir: `WP_Error( 'flxai_stopped' )`, `get_error_data()['partial']` gelen metin. cURL yoksa ya da sunucu SSE dönmezse normal isteğe düşülür. Sohbetin `POST chats/{id}/step` ucu `stream: 1` ile NDJSON satırları döner: `{t:text|think|tool|model}`, kayıt değişince `{t:chat, chat}`, en sonda `{t:result, state, chat}`.
