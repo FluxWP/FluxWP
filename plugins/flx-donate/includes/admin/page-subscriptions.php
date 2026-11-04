@@ -104,8 +104,8 @@ final class FLXB_Page_Subscriptions {
 				}
 			}
 			echo '<td data-label="' . esc_attr__( 'Status', 'flx-donate' ) . '"><span>' . FLXB_Admin::pill( $s['status'] ) . ( '' !== $why ? '<span class="flxb-sub2">' . esc_html( $why ) . '</span>' : '' ) . '</span></td>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo '<td class="flxb-col-date" data-label="' . esc_attr__( 'Started', 'flx-donate' ) . '"><span>' . esc_html( flxb_date( $s['started_at'], get_option( 'date_format' ) ) ) . '</span></td>';
-			echo '<td class="flxb-col-date" data-label="' . esc_attr__( 'Next charge', 'flx-donate' ) . '"><span>' . esc_html( 'canceled' === $s['status'] ? ( $s['canceled_at'] ? sprintf( /* translators: %s: date */ __( 'canceled %s', 'flx-donate' ), flxb_date( $s['canceled_at'], get_option( 'date_format' ) ) ) : '—' ) : flxb_date( $s['next_charge_at'], get_option( 'date_format' ) ) ) . '</span></td>';
+			echo '<td class="flxb-col-date" data-label="' . esc_attr__( 'Started', 'flx-donate' ) . '"><span>' . esc_html( flxb_date( $s['started_at'], 'date' ) ) . '</span></td>';
+			echo '<td class="flxb-col-date" data-label="' . esc_attr__( 'Next charge', 'flx-donate' ) . '"><span>' . esc_html( 'canceled' === $s['status'] ? ( $s['canceled_at'] ? sprintf( /* translators: %s: date */ __( 'canceled %s', 'flx-donate' ), flxb_date( $s['canceled_at'], 'date' ) ) : '—' ) : flxb_date( $s['next_charge_at'], 'date' ) ) . '</span></td>';
 			echo '<td data-label="' . esc_attr__( 'Gifts', 'flx-donate' ) . '"><span><a href="' . esc_url( FLXB_Admin_Url::page( 'flxb-donations', array( 'donor_id' => (int) $s['donor_id'], 'type' => 'recurring' ) ) ) . '">' . esc_html( number_format_i18n( $n ) ) . '</a></span></td>';
 			if ( self::can_cancel() ) {
 				echo '<td class="flxb-col-act">';

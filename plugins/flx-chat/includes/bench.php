@@ -725,7 +725,7 @@ function flxc_bench_setup_state( array $setup ) {
 			'amount' => flxc_money( (float) $o['amount'], (string) $o['currency'] ),
 			'method' => 'havale',
 			'status' => $status,
-			'date'   => wp_date( 'j F Y H:i', time() - $days * DAY_IN_SECONDS ),
+			'date'   => flx_date( time() - $days * DAY_IN_SECONDS, 'datetime' ),
 		);
 		$st['tdons'] = $list;
 		return $id;

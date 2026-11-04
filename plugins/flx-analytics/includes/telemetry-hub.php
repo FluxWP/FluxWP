@@ -744,7 +744,7 @@ class FLXAN_Telemetry_Hub {
 						<td style="white-space:nowrap"><?php echo esc_html( self::name( $e['p'] ) ); ?><br><small class="flxan-muted"><?php echo esc_html( $e['v'] ); ?></small></td>
 						<td class="n"><?php echo esc_html( number_format_i18n( (int) $e['sites'] ) ); ?></td>
 						<td class="n"><?php echo esc_html( number_format_i18n( (int) $e['n'] ) ); ?></td>
-						<td class="n tm-hide-m"><?php /* translators: %s: süre */ echo esc_html( sprintf( __( '%s önce', 'flx-analytics' ), human_time_diff( (int) $e['last_ts'] ) ) ); ?></td>
+						<td class="n tm-hide-m"><?php /* translators: %s: süre */ echo esc_html( flx_time_ago( (int) $e['last_ts'] ) ); ?></td>
 						<td class="n">
 							<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 								<input type="hidden" name="action" value="flxan_tm_forget"><input type="hidden" name="h" value="<?php echo esc_attr( $e['h'] ); ?>">

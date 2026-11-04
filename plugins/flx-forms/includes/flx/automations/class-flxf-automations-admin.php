@@ -313,7 +313,7 @@ class FLXF_Automations_Admin {
 				echo '</div></td>';
 				echo '<td>' . ( 'payment_completed' === $f['trigger']['type'] ? self::icon( 'card' ) . esc_html__( 'Payment completed', 'flx-forms' ) : self::icon( 'form' ) . esc_html__( 'Form submitted', 'flx-forms' ) ) . '</td>';
 				echo '<td>' . esc_html( FLXF_Automations::form_title( $f['trigger']['form_id'] ) ) . '</td>';
-				echo '<td>' . ( $f['last_run'] ? '<time datetime="' . esc_attr( gmdate( 'c', $f['last_run'] ) ) . '">' . esc_html( wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $f['last_run'] ) ) . '</time>' : '<span class="flxfa-muted">—</span>' ) . '</td>';
+				echo '<td>' . ( $f['last_run'] ? '<time datetime="' . esc_attr( gmdate( 'c', $f['last_run'] ) ) . '">' . esc_html( flx_date( $f['last_run'], 'datetime' ) ) . '</time>' : '<span class="flxfa-muted">—</span>' ) . '</td>';
 				echo '<td class="num">' . esc_html( number_format_i18n( $f['runs'] ) ) . '</td>';
 				echo '<td class="flxfa-row-actions"><a class="flxfa-icon-btn" href="' . esc_url( $edit ) . '" title="' . esc_attr__( 'Edit', 'flx-forms' ) . '">' . self::icon( 'edit' ) . '<span class="screen-reader-text">' . esc_html__( 'Edit', 'flx-forms' ) . '</span></a>';
 				echo '<button type="button" class="flxfa-icon-btn flxfa-dup" title="' . esc_attr__( 'Duplicate', 'flx-forms' ) . '">' . self::icon( 'copy' ) . '<span class="screen-reader-text">' . esc_html__( 'Duplicate', 'flx-forms' ) . '</span></button>';
@@ -365,7 +365,7 @@ class FLXF_Automations_Admin {
 		foreach ( $runs as $r ) {
 			$st = $r['status'] ?? 'running';
 			echo '<tr>';
-			echo '<td><time datetime="' . esc_attr( gmdate( 'c', (int) $r['time'] ) ) . '">' . esc_html( wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), (int) $r['time'] ) ) . '</time></td>';
+			echo '<td><time datetime="' . esc_attr( gmdate( 'c', (int) $r['time'] ) ) . '">' . esc_html( flx_date( (int) $r['time'], 'datetime' ) ) . '</time></td>';
 			echo '<td><a href="' . esc_url( self::url( array( 'flow' => (int) $r['flow_id'] ) ) ) . '">' . esc_html( $r['flow_title'] ?? '' ) . '</a></td>';
 			echo '<td>' . esc_html( $r['form_title'] ?? '' ) . '</td>';
 			echo '<td><code>' . esc_html( $r['track'] ?? '' ) . '</code></td>';

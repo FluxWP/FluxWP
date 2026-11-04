@@ -371,7 +371,7 @@ function flxk_render_presets() {
 		}
 		if ( $st ) {
 			/* translators: %s: tarih */
-			echo '<span class="flxk-badge flxk-badge--ok">' . esc_html( sprintf( __( 'Uygulandı · %s', 'flx-setup' ), mysql2date( get_option( 'date_format' ), $st['applied_at'] ?? '' ) ) ) . '</span>';
+			echo '<span class="flxk-badge flxk-badge--ok">' . esc_html( sprintf( __( 'Uygulandı · %s', 'flx-setup' ), ( empty( $st['applied_at'] ) ? '' : flx_date( get_gmt_from_date( $st['applied_at'] ) ) ) ) ) . '</span>';
 		} else {
 			echo '<span class="flxk-badge">' . esc_html__( 'Uygulanmadı', 'flx-setup' ) . '</span>';
 		}

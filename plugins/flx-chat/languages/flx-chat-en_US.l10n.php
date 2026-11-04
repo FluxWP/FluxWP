@@ -956,7 +956,7 @@ return array (
     '•••••••• (kayıtlı; değiştirmek için yazın)' => '•••••••• (saved; type to change)',
     'Webhook adresi' => 'Webhook URL',
     'Gizli anahtarı yenile' => 'Regenerate secret key',
-    'Son webhook: %s önce' => 'Last webhook: %s ago',
+    'Son webhook: %s' => 'Last webhook: %s',
     'Henüz webhook gelmedi.' => 'No webhook received yet.',
     'Bağlantıyı test et' => 'Test connection',
     'QR ile bağla' => 'Connect with QR',

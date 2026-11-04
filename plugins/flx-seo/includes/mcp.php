@@ -1332,7 +1332,7 @@ function flxseo_mcp_page( $o ) {
 	<?php if ( $keys ) : ?>
 	<table class="widefat striped" style="max-width:820px;margin-top:12px"><thead><tr><th>Ad</th><th>Kullanıcı</th><th>Araçlar</th><th>Oluşturma</th><th>Son kullanım</th><th></th></tr></thead><tbody>
 		<?php foreach ( $keys as $id => $k ) : $u = get_userdata( $k['user'] ); ?>
-		<tr><td><?php echo esc_html( $k['name'] ); ?> <code>…<?php echo esc_html( $k['hint'] ?? '' ); ?></code></td><td><?php echo esc_html( $u ? $u->user_login : '?' ); ?></td><td><?php echo empty( $k['tools'] ) ? 'Tümü' : '<code>' . esc_html( implode( ', ', (array) $k['tools'] ) ) . '</code>'; ?></td><td><?php echo esc_html( wp_date( 'd.m.Y H:i', $k['created'] ) ); ?></td><td><?php echo $k['last_used'] ? esc_html( human_time_diff( $k['last_used'] ) . ' önce' ) : '—'; ?></td>
+		<tr><td><?php echo esc_html( $k['name'] ); ?> <code>…<?php echo esc_html( $k['hint'] ?? '' ); ?></code></td><td><?php echo esc_html( $u ? $u->user_login : '?' ); ?></td><td><?php echo empty( $k['tools'] ) ? 'Tümü' : '<code>' . esc_html( implode( ', ', (array) $k['tools'] ) ) . '</code>'; ?></td><td><?php echo esc_html( wp_date( 'd.m.Y H:i', $k['created'] ) ); ?></td><td><?php echo $k['last_used'] ? esc_html( flx_time_ago( $k['last_used'] ) ) : '—'; ?></td>
 		<td><?php $form( 'revoke', '<input type="hidden" name="id" value="' . esc_attr( $id ) . '">', 'İptal et', 'button-link-delete button-link' ); ?></td></tr>
 		<?php endforeach; ?>
 	</tbody></table>

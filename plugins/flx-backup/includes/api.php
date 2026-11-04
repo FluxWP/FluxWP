@@ -149,10 +149,7 @@ if ( ! function_exists( 'flxy_backup_restore' ) ) {
 if ( ! function_exists( 'flxy_date' ) ) {
 	/** Zaman damgasını site saat diliminde, WP biçimiyle yazar (date_i18n). */
 	function flxy_date( int $ts, string $format = '' ): string {
-		if ( '' === $format ) {
-			$format = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
-		}
-		$offset = wp_timezone()->getOffset( new DateTime( '@' . $ts ) );
-		return date_i18n( $format, $ts + $offset );
+		// Shared FluxWP helper: month/day names in the user's language (date | short | datetime | time | PHP format).
+		return flx_date( $ts, '' === $format ? 'datetime' : $format );
 	}
 }

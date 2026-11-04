@@ -275,7 +275,7 @@ final class FLXB_Detail_Tabs {
 			case 'select':
 				return FLXB_Reports::text( $f['options'][ $v ] ?? $v );
 			case 'date':
-				return date_i18n( get_option( 'date_format' ), strtotime( $v . ' 12:00' ) );
+				return flx_date( strtotime( $v . ' 12:00' ) );
 			case 'number':
 				return number_format_i18n( (float) $v, floor( (float) $v ) == $v ? 0 : 2 ); // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
 			default:

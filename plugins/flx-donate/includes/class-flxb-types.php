@@ -93,7 +93,7 @@ final class FLXB_Types {
 				return '';
 			case 'upcoming':
 				/* translators: %s: start date */
-				return sprintf( __( 'Donations for this cause open on %s.', 'flx-donate' ), wp_date( get_option( 'date_format' ), strtotime( $t['start_date'] . ' 12:00' ) ) );
+				return sprintf( __( 'Donations for this cause open on %s.', 'flx-donate' ), flx_date( strtotime( $t['start_date'] . ' 12:00' ) ) );
 			case 'ended':
 				return __( 'Donations for this cause have ended.', 'flx-donate' );
 			default:

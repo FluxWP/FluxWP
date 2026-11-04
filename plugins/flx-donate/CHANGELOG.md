@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.12.1
+- Tarih ve "… önce" metinleri artık kullanıcının dilinde, tek ortak yardımcıdan (FluxWP `flx_date` / `flx_time_ago`, flx-brand 1.1.0): "31 minutes önce", "August 10" gibi Türkçe/İngilizce karışımı kalmadı; çekirdek dil paketi inmemiş olsa da TR ve EN ay/gün adları doğru.
+
 ## 2.12.0
 - Bağışçı kartı Flux CRM ortak kişi kartını kullanır (Flux CRM kurulu ve kullanıcının CRM yetkisi varsa): başlık, özet kutuları, sekmeli zaman tüneli (Tümü/Ödemeler/Mesajlar/Formlar/Notlar), bilgiler, izinler, etiketler. Kişi tek yerde tutulur; bağışçı CRM kişisine `donate`/`donor:ID` bağlantısıyla bağlanır, yoksa açılırken oluşturulur.
 - Karta Flux Donate bölümleri eklenir: başlıkta "Bağışlar" ve "Bağış ekle", ana sütunda düzenli bağışlar, yan sütunda bağış özeti, sertifikalar, KVKK onayı ve bağış notu. E-posta/SMS izni CRM kartında; bu form onlara dokunmaz.

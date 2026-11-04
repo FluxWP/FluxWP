@@ -115,11 +115,11 @@ final class FLXB_App_Review {
 		return rest_ensure_response( array( 'items' => $items, 'total' => count( $all ), 'page' => $page, 'pages' => (int) ceil( count( $all ) / $per ) ) );
 	}
 
-	/** "2 days", "5 hours"… since the gift came in. */
+	/** "received 2 days ago" since the gift came in. */
 	private static function waiting( $utc ) {
 		$ts = strtotime( $utc . ' UTC' );
-		/* translators: %s: time span, e.g. "2 days" */
-		return $ts ? sprintf( __( 'waiting for %s', 'flx-donate' ), human_time_diff( $ts, time() ) ) : '';
+		/* translators: %s: relative time, e.g. "2 days ago" */
+		return $ts ? sprintf( __( 'received %s', 'flx-donate' ), flx_time_ago( $ts ) ) : '';
 	}
 
 	/** One gift in the app's shape. */

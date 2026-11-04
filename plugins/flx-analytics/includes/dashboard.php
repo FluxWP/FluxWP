@@ -109,7 +109,7 @@ function flxan_svg_bars( array $items, $w = 400, $h = 90 ) {
 		$x    = round( $i * $bw + $bw * 0.15, 1 );
 		$bwid = round( $bw * 0.7, 1 );
 		/* translators: 1: tarih, 2: ziyaretçi, 3: görüntülenme */
-		$tip  = sprintf( __( '%1$s: %2$s ziyaretçi, %3$s görüntülenme', 'flx-analytics' ), wp_date( 'j M', strtotime( $it['d'] ) ), number_format_i18n( $it['visitors'] ), number_format_i18n( $it['pageviews'] ) );
+		$tip  = sprintf( __( '%1$s: %2$s ziyaretçi, %3$s görüntülenme', 'flx-analytics' ), flx_date( strtotime( $it['d'] ), 'short' ), number_format_i18n( $it['visitors'] ), number_format_i18n( $it['pageviews'] ) );
 		$out .= '<g><title>' . esc_html( $tip ) . '</title>';
 		$out .= '<rect class="flxan-mini__pv" x="' . $x . '" y="' . ( $h - $ph ) . '" width="' . $bwid . '" height="' . $ph . '" rx="2"/>';
 		$out .= '<rect class="flxan-mini__v" x="' . $x . '" y="' . ( $h - $vh ) . '" width="' . $bwid . '" height="' . $vh . '" rx="2"/></g>';

@@ -177,7 +177,7 @@ function flxg_maybe_email( $uid, $type, $task_id, $data, $actor ) {
 		'liste'  => $list ? $list['name'] : '',
 		'mesaj'  => $line,
 		'alinti' => (string) ( $data['excerpt'] ?? '' ),
-		'tarih'  => $task['due_date'] ? wp_date( get_option( 'date_format' ), strtotime( $task['due_date'] ) ) : '',
+		'tarih'  => $task['due_date'] ? flx_date( strtotime( $task['due_date'] ) ) : '',
 		'link'   => flxg_app_url( $task_id ),
 	);
 	if ( $switched ) {
@@ -218,7 +218,7 @@ function flxg_email_types( $types ) {
 		'liste'  => __( 'İşler', 'flx-tasks' ),
 		'mesaj'  => __( 'Mehmet sizi bir göreve atadı', 'flx-tasks' ),
 		'alinti' => __( 'Cuma gününe kadar bakabilir misin?', 'flx-tasks' ),
-		'tarih'  => wp_date( get_option( 'date_format' ), time() + DAY_IN_SECONDS ),
+		'tarih'  => flx_date( time() + DAY_IN_SECONDS ),
 		'link'   => admin_url( 'admin.php?page=flx-tasks' ),
 	);
 	$foot   = '<p style="color:#6b7280;font-size:13px">' . __( 'E-posta bildirimlerini Flux Tasks › Profil bölümünden kapatabilirsiniz.', 'flx-tasks' ) . '</p>';

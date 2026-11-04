@@ -45,7 +45,7 @@ function flxi_mailbox_boot() {
 			'sync'         => __( 'Eşitle', 'flx-mail' ),
 			'syncing'      => __( 'Eşitleniyor…', 'flx-mail' ),
 			/* translators: %s: süre */
-			'lastSync'     => __( 'Son eşitleme: %s önce', 'flx-mail' ),
+			'lastSync'     => __( 'Son eşitleme: %s', 'flx-mail' ),
 			'syncMore'     => __( 'Eski e-postalar alınıyor…', 'flx-mail' ),
 			'off'          => __( 'Posta kutusu kapalı ya da IMAP bilgisi eksik. Gelen e-postaları görmek için Ayarlar › Posta kutusu\'nu doldurun. Taslak yazıp göndermek yine çalışır.', 'flx-mail' ),
 			'openSettings' => __( 'Ayarları aç', 'flx-mail' ),

@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.3.1
+- Tarih ve "… önce" metinleri artık kullanıcının dilinde, tek ortak yardımcıdan (FluxWP `flx_date` / `flx_time_ago`, flx-brand 1.1.0): "31 minutes önce", "August 10" gibi Türkçe/İngilizce karışımı kalmadı; çekirdek dil paketi inmemiş olsa da TR ve EN ay/gün adları doğru.
+
 ## 1.3.0
 - Büyük tam yedeklerin %95 civarında takılıp kalması düzeltildi. Yeni yedekler yalnız ekleyerek yazılan zip ile alınır (ZipArchive her adımda arşivi baştan yazıyordu; 1 GB'lık arşivde tek adım sunucunun süre sınırını aşıp sonsuza dek tekrarlanıyordu). Her adımın süresi artık arşivin boyutundan bağımsız.
 - Kaldığı yerden devam: her adım; dosya listesini, SQL dökümünü ve zip'i son kaydedilen noktaya kadar kırparak başlar. Sunucunun yarıda kestiği adım iz bırakmaz; dosyalar iki kez sayılmaz ("26.631 / 25.721 dosya" gibi toplamı aşan sayaç görülmez), dökümde yinelenen satır olmaz.

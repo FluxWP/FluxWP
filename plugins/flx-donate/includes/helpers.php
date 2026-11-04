@@ -210,10 +210,11 @@ function flxb_date( $utc, $format = '' ) {
 		return '';
 	}
 	if ( '' === $format ) {
-		// Turkish: 16.10.2026 14:24 (formats left from an English install would show "October 16, 2026 2:24 pm").
-		$format = 0 === strpos( determine_locale(), 'tr' ) ? 'd.m.Y H:i' : get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
+		// Turkish: 16.10.2026 14:24; English: Oct 16, 2026 14:24.
+		$format = 'tr' === flx_lang() ? 'd.m.Y H:i' : 'datetime';
 	}
-	return wp_date( $format, $ts );
+	// Shared FluxWP helper: month/day names in the user's language (date | short | datetime | time | PHP format).
+	return flx_date( $ts, $format );
 }
 
 function flxb_now() {

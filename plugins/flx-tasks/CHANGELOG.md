@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.8.8
+- Tarih ve "… önce" metinleri artık kullanıcının dilinde, tek ortak yardımcıdan (FluxWP `flx_date` / `flx_time_ago`, flx-brand 1.1.0): "31 minutes önce", "August 10" gibi Türkçe/İngilizce karışımı kalmadı; çekirdek dil paketi inmemiş olsa da TR ve EN ay/gün adları doğru.
+
 ## 0.8.7
 - Açık tema: soluk metinler (KPI alt yazıları, ayar grup başlıkları, yol ayırıcıları) ve uyarı rengi daha okunur. Koyu tema: koyu marka renginde etkin menü öğesi ve vurgu metinleri okunur. Site ikonu yoksa başlıkta Flux Tasks paket ikonu.
 

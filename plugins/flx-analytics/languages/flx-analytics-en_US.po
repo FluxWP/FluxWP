@@ -157,8 +157,8 @@ msgstr "Collection URL (FluxWP Panel › Settings › Telemetry URL):"
 msgid "Veri"
 msgstr "Data"
 
-msgid "Son işleme %1$s önce. Kuyrukta bekleyen: %2$s."
-msgstr "Last processed %1$s ago. Waiting in queue: %2$s."
+msgid "Son işleme %1$s. Kuyrukta bekleyen: %2$s."
+msgstr "Last processed %1$s. Waiting in queue: %2$s."
 
 msgid "Henüz işlenen ziyaret yok."
 msgstr "No visits processed yet."
@@ -655,8 +655,8 @@ msgstr "The REST endpoint is used. It works, but WordPress loads on every visit.
 msgid "İstatistik işleme"
 msgstr "Statistics processing"
 
-msgid "Son işleme %1$s önce. Bekleyen: %2$s."
-msgstr "Last processed %1$s ago. Waiting: %2$s."
+msgid "Son işleme %1$s. Bekleyen: %2$s."
+msgstr "Last processed %1$s. Waiting: %2$s."
 
 msgid "İşleme hatası"
 msgstr "Processing error"

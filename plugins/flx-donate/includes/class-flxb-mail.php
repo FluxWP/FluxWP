@@ -50,7 +50,7 @@ class FLXB_Mail {
 					'sonraki'    => __( 'Date of the next payment', 'flx-donate' ),
 					'iptal_link' => __( 'Cancel link', 'flx-donate' ),
 				),
-				'sample'      => array( 'ad' => 'Ayşe', 'tutar' => '150 ₺', 'aralik' => __( 'monthly', 'flx-donate' ), 'sonraki' => date_i18n( get_option( 'date_format' ), time() + MONTH_IN_SECONDS ), 'iptal_link' => home_url( '/' ) ),
+				'sample'      => array( 'ad' => 'Ayşe', 'tutar' => '150 ₺', 'aralik' => __( 'monthly', 'flx-donate' ), 'sonraki' => flx_date( time() + MONTH_IN_SECONDS ), 'iptal_link' => home_url( '/' ) ),
 				'defaults'    => array(
 					/* translators: {kurum} stays as is: it is replaced by the organisation name. */
 					'subject'     => __( 'Your recurring donation to {kurum}', 'flx-donate' ),
@@ -186,7 +186,7 @@ class FLXB_Mail {
 				'site'  => $site,
 				'kurum' => $b['name'],
 				'yil'   => gmdate( 'Y' ),
-				'tarih' => date_i18n( get_option( 'date_format' ) ),
+				'tarih' => flx_date( time() ),
 			),
 			$vars
 		);

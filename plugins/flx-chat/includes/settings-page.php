@@ -254,7 +254,7 @@ function flxc_settings_conn_row( $i, $c, $flxs ) {
 				<?php
 				if ( $last ) {
 					/* translators: %s: time ago */
-					printf( esc_html__( 'Son webhook: %s önce', 'flx-chat' ), esc_html( human_time_diff( $last ) ) );
+					printf( esc_html__( 'Son webhook: %s', 'flx-chat' ), esc_html( flx_time_ago( $last ) ) );
 				} else {
 					esc_html_e( 'Henüz webhook gelmedi.', 'flx-chat' );
 				}

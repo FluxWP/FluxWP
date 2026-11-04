@@ -117,7 +117,7 @@ function flxai_budget_check( array $opts = array() ) {
 			return new WP_Error(
 				'flxai_limit',
 				/* translators: 1: period (Günlük…), 2: limit, 3: reset date */
-				sprintf( __( '%1$s yapay zekâ harcama sınırı (%2$s) doldu. %3$s yenilenir; sınırı Flux AI › Ayarlar\'dan değiştirebilirsiniz.', 'flx-ai' ), $row['label'], flxai_usd( $row['limit'], 2 ), wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $row['resets'] ) ),
+				sprintf( __( '%1$s yapay zekâ harcama sınırı (%2$s) doldu. %3$s yenilenir; sınırı Flux AI › Ayarlar\'dan değiştirebilirsiniz.', 'flx-ai' ), $row['label'], flxai_usd( $row['limit'], 2 ), flx_date( $row['resets'], 'datetime' ) ),
 				array( 'status' => 402, 'http' => 402, 'period' => $p )
 			);
 		}
@@ -152,7 +152,7 @@ function flxai_budget_after_log() {
 			__( "Harcanan: %1\$s / Sınır: %2\$s\nYenilenme: %3\$s\n\nAyrıntı: %4\$s", 'flx-ai' ),
 			flxai_usd( $row['spent'], 2 ),
 			flxai_usd( $row['limit'], 2 ),
-			wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $row['resets'] ),
+			flx_date( $row['resets'], 'datetime' ),
 			admin_url( 'admin.php?page=flx-ai-billing' )
 		);
 		$to = get_option( 'admin_email' );

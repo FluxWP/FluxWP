@@ -151,7 +151,7 @@ final class FLXB_System_Checks {
 
 	private static function when( $ts ) {
 		/* translators: 1: date and time, 2: "5 minutes" */
-		return sprintf( __( '%1$s (%2$s ago)', 'flx-donate' ), flxb_date( gmdate( 'Y-m-d H:i:s', (int) $ts ) ), human_time_diff( (int) $ts, time() ) );
+		return sprintf( __( '%1$s (%2$s)', 'flx-donate' ), flxb_date( gmdate( 'Y-m-d H:i:s', (int) $ts ) ), flx_time_ago( (int) $ts ) );
 	}
 
 	/** Result of a "Test" button, or null. */

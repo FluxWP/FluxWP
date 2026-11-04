@@ -107,7 +107,7 @@ function flxg_ai_system_base() {
 	$extra = trim( (string) flxg_setting( 'ai_instructions' ) );
 	return 'You are the assistant of the task tracker "Flux Tasks" used by ' . flxg_brand_name() . '. '
 		. 'Answer in ' . flxg_ai_lang() . ' unless the user writes in another language. Be brief and practical. '
-		. 'Today is ' . wp_date( 'l, Y-m-d H:i' ) . ' (' . wp_timezone_string() . '). The user is ' . flxg_user_name( get_current_user_id() ) . ' (id ' . get_current_user_id() . ').'
+		. 'Today is ' . flx_date( time(), 'l, Y-m-d H:i' ) . ' (' . wp_timezone_string() . '). The user is ' . flxg_user_name( get_current_user_id() ) . ' (id ' . get_current_user_id() . ').'
 		. ( '' !== $extra ? "\n\nOrganization notes:\n" . $extra : '' );
 }
 

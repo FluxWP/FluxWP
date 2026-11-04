@@ -1864,7 +1864,7 @@ function flxc_bot_sandbox_donation( array &$state, $method ) {
 		'cur'    => (string) ( $o['currency'] ?? 'TRY' ),
 		'method' => $method,
 		'status' => 'pending',
-		'date'   => wp_date( 'j F Y H:i' ),
+		'date'   => flx_date( time(), 'datetime' ),
 	);
 	$state['tdons']    = array_slice( $list, -20 );
 	$state['donation'] = $id;
@@ -1901,7 +1901,7 @@ function flxc_bot_sandbox_seed( array &$state ) {
 			'cur'    => (string) $o['currency'],
 			'method' => $x[2],
 			'status' => 'completed',
-			'date'   => wp_date( 'j F Y H:i', time() - $x[1] * DAY_IN_SECONDS ),
+			'date'   => flx_date( time() - $x[1] * DAY_IN_SECONDS, 'datetime' ),
 			'seed'   => 1,
 		);
 	}

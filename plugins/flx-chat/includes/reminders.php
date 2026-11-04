@@ -114,10 +114,10 @@ function flxc_rem_when( array $r ) {
 			return sprintf( __( 'Her ay %1$d. gün %2$s', 'flx-chat' ), (int) $r['dom'], $time );
 		case 'yearly':
 			/* translators: 1: date, 2: time */
-			return sprintf( __( 'Her yıl %1$s %2$s', 'flx-chat' ), wp_date( 'j F', gmmktime( 12, 0, 0, (int) $r['mon'], (int) $r['dom'], 2026 ) ), $time );
+			return sprintf( __( 'Her yıl %1$s %2$s', 'flx-chat' ), flx_date( gmmktime( 12, 0, 0, (int) $r['mon'], (int) $r['dom'], 2026 ), 'j F' ), $time );
 		case 'once':
 			$t = flxc_rem_next( $r, 0 );
-			return $t ? wp_date( 'j F Y H:i', $t ) : (string) $r['once_date'];
+			return $t ? flx_date( $t, 'datetime' ) : (string) $r['once_date'];
 	}
 	return '';
 }
@@ -239,7 +239,7 @@ function flxc_rem_summary( array $r ) {
 		'*' . $r['title'] . '*',
 		flxc_rem_when( $r ),
 		/* translators: %s: date */
-		sprintf( __( 'İlk: %s', 'flx-chat' ), wp_date( 'j F Y H:i', (int) $r['next_at'] ) ),
+		sprintf( __( 'İlk: %s', 'flx-chat' ), flx_date( (int) $r['next_at'], 'datetime' ) ),
 	);
 	if ( $r['task'] !== $r['title'] ) {
 		$lines[] = $r['task'];
@@ -362,7 +362,7 @@ function flxc_rem_tool( $name, array $a, $chat, array &$state, $sandbox ) {
 		case 'reminder_list':
 			$out = array();
 			foreach ( $list as $r ) {
-				$out[] = array( 'id' => (int) $r['id'], 'title' => $r['title'], 'task' => $r['task'], 'when' => flxc_rem_when( $r ), 'next' => wp_date( 'j F Y H:i', (int) $r['next_at'] ) );
+				$out[] = array( 'id' => (int) $r['id'], 'title' => $r['title'], 'task' => $r['task'], 'when' => flxc_rem_when( $r ), 'next' => flx_date( (int) $r['next_at'], 'datetime' ) );
 			}
 			return array( 'ok' => true, 'reminders' => $out );
 

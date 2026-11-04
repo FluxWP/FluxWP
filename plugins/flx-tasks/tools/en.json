@@ -743,7 +743,7 @@
  "{n} uyarı var": "{n} warning(s)",
  "{n} yorum yazdı": "{n} wrote a comment",
  "{n} çok büyük (en fazla {s}).": "{n} is too large (up to {s}).",
- "Çalışması gereken iş %s gecikmiş. WP-Cron tetiklenmiyor olabilir (site az ziyaret alıyorsa hosting panelinden gerçek cron önerilir).": "The scheduled job is %s late. WP-Cron may not be triggering (if the site gets few visits, a real cron in the hosting panel is recommended).",
+ "Zamanlanmış iş gecikti (%s çalışmalıydı). WP-Cron tetiklenmiyor olabilir (site az ziyaret alıyorsa hosting panelinden gerçek cron önerilir).": "The scheduled job is late (due %s). WP-Cron may not be triggering (if the site gets few visits, a real cron in the hosting panel is recommended).",
  "Önceki": "Previous",
  "Öncelik": "Priority",
  "Öncelik yok": "No priority",

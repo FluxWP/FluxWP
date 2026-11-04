@@ -505,8 +505,8 @@ msgstr "Args"
 msgid "%s sonra"
 msgstr "in %s"
 
-msgid "%s gecikti"
-msgstr "%s late"
+msgid "Gecikti: %s çalışmalıydı"
+msgstr "Overdue: due %s"
 
 msgid "bir kez"
 msgstr "once"
@@ -865,8 +865,8 @@ msgstr "%1$d KB (%2$d options) is loaded on every request."
 msgid "800 KB altı önerilir; en büyük satırlara bakın."
 msgstr "Under 800 KB is recommended; check the largest rows."
 
-msgid "Son çalışma %s önce."
-msgstr "Last run %s ago."
+msgid "Son çalışma %s."
+msgstr "Last run %s."
 
 msgid "Cron'un çalıştığı henüz görülmedi."
 msgstr "Cron has not been seen running yet."

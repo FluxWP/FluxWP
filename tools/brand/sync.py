@@ -47,7 +47,9 @@ def sync(root):
         os.makedirs(dst, exist_ok=True)
         for f in FILES:
             shutil.copyfile(os.path.join(SRC, f), os.path.join(dst, f))
-        print(('+ ' if add_require(main, rel) else '= ') + os.path.relpath(pkg, root))
+        # Already required from another top-level file (e.g. flx-forms-load.php)?
+        done = any(MARK in open(f, encoding='utf-8').read() for f in glob.glob(os.path.join(pkg, '*.php')) if f != main)
+        print(('+ ' if not done and add_require(main, rel) else '= ') + os.path.relpath(pkg, root))
 
 
 if __name__ == '__main__':

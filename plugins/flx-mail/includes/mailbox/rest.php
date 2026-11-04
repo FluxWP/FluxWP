@@ -61,7 +61,7 @@ function flxi_mailbox_status() {
 		'unread'   => flxi_mailbox_unread_count(),
 		'review'   => flxi_drafts_count( 'review' ),
 		'drafts'   => flxi_drafts_count( 'draft' ) + flxi_drafts_count( 'failed' ),
-		'last_ok'  => $st['last_ok'] ? human_time_diff( $st['last_ok'] ) : '',
+		'last_ok'  => $st['last_ok'] ? flx_time_ago( $st['last_ok'] ) : '',
 		'error'    => $st['error'],
 		'sent_box' => $st['names']['sent'] ?? '',
 		'more'     => (bool) array_filter(
@@ -109,7 +109,7 @@ function flxi_mailbox_date( $gmt ) {
 		return wp_date( 'H:i', $ts );
 	}
 	if ( wp_date( 'Y', $ts ) === wp_date( 'Y', $now ) ) {
-		return wp_date( 'j M', $ts );
+		return flx_date( $ts, 'short' );
 	}
 	return wp_date( 'd.m.Y', $ts );
 }

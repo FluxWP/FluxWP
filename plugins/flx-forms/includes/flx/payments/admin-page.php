@@ -167,14 +167,13 @@ final class FLXF_Payments_Admin {
 				echo '<th scope="col"' . ( 5 === $i ? ' class="num"' : '' ) . '>' . esc_html( $h ) . '</th>';
 			}
 			echo '</tr></thead><tbody>';
-			$fmt = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
 			foreach ( $rows as $r ) {
 				$ts       = $r->created_at ? strtotime( $r->created_at . ' UTC' ) : 0;
 				$st       = self::status( $r->status );
 				$provider = flxf_payment_provider( $r->gateway );
 				$type     = 'subscription' === $r->payment_type ? __( 'Subscription', 'flx-forms' ) : __( 'One-time', 'flx-forms' );
 				echo '<tr>';
-				echo '<td>' . ( $ts ? '<time datetime="' . esc_attr( gmdate( 'c', $ts ) ) . '">' . esc_html( wp_date( $fmt, $ts ) ) . '</time>' : '' ) . '</td>';
+				echo '<td>' . ( $ts ? '<time datetime="' . esc_attr( gmdate( 'c', $ts ) ) . '">' . esc_html( flx_date( $ts, 'datetime' ) ) . '</time>' : '' ) . '</td>';
 				echo '<td><span class="flxfp-strong">' . esc_html( (string) $r->form_name ) . '</span> <span class="flxfp-muted">#' . (int) $r->form_id . '</span></td>';
 				echo '<td><code>' . esc_html( (string) $r->track ) . '</code></td>';
 				echo '<td>' . esc_html( $provider ? $provider->label() : (string) $r->gateway ) . '</td>';

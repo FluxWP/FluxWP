@@ -163,7 +163,7 @@ final class FLXB_Page_Partners {
 		if ( $pays ) {
 			echo '<div class="flxb-tablewrap flxb-tablewrap--mid"><table class="flxb-table flxb-table--compact"><thead><tr><th scope="col">' . esc_html__( 'Date', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Direction', 'flx-donate' ) . '</th><th scope="col" class="num">' . esc_html__( 'Amount', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Note', 'flx-donate' ) . '</th><th></th></tr></thead><tbody>';
 			foreach ( $pays as $py ) {
-				echo '<tr><td>' . esc_html( date_i18n( 'j M Y', strtotime( $py['paid_at'] ) ) ) . '</td><td>' . esc_html( 'in' === $py['direction'] ? __( 'Received', 'flx-donate' ) : __( 'Paid', 'flx-donate' ) ) . '</td><td class="num">' . esc_html( flxb_money( $py['amount'], $py['currency'] ) ) . '</td><td>' . esc_html( $py['note'] ) . '</td><td>';
+				echo '<tr><td>' . esc_html( flx_date( strtotime( $py['paid_at'] ), 'j M Y' ) ) . '</td><td>' . esc_html( 'in' === $py['direction'] ? __( 'Received', 'flx-donate' ) : __( 'Paid', 'flx-donate' ) ) . '</td><td class="num">' . esc_html( flxb_money( $py['amount'], $py['currency'] ) ) . '</td><td>' . esc_html( $py['note'] ) . '</td><td>';
 				if ( $can ) {
 					echo self::form( 'pay_delete', ' onsubmit="return confirm(' . esc_attr( wp_json_encode( __( 'Delete this payment?', 'flx-donate' ) ) ) . ')"' ) . '<input type="hidden" name="id" value="' . (int) $py['id'] . '"><input type="hidden" name="partner_id" value="' . (int) $id . '"><button class="flxb-linkbtn flxb-linkbtn--danger" type="submit">' . esc_html__( 'Delete', 'flx-donate' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
@@ -191,7 +191,7 @@ final class FLXB_Page_Partners {
 			foreach ( $prices as $a ) {
 				$t   = $tmap[ (int) $a['type_id'] ] ?? null;
 				$opt = $t && '' !== (string) $a['option_key'] ? FLXB_Types::option( $t, (string) $a['option_key'] ) : null;
-				echo '<tr><td>' . esc_html( $t ? $t['title'] : __( 'All', 'flx-donate' ) ) . '</td><td>' . esc_html( $opt ? $opt['label'] : ( '' !== (string) $a['option_key'] ? $a['option_key'] : __( 'All', 'flx-donate' ) ) ) . '</td><td class="num">' . esc_html( flxb_money( $a['price'], $a['currency'] ) ) . '</td><td>' . esc_html( date_i18n( 'j M Y', strtotime( $a['valid_from'] ) ) ) . '</td><td>';
+				echo '<tr><td>' . esc_html( $t ? $t['title'] : __( 'All', 'flx-donate' ) ) . '</td><td>' . esc_html( $opt ? $opt['label'] : ( '' !== (string) $a['option_key'] ? $a['option_key'] : __( 'All', 'flx-donate' ) ) ) . '</td><td class="num">' . esc_html( flxb_money( $a['price'], $a['currency'] ) ) . '</td><td>' . esc_html( flx_date( strtotime( $a['valid_from'] ), 'j M Y' ) ) . '</td><td>';
 				if ( $can ) {
 					echo self::form( 'price_save', ' style="display:inline"' ) . '<input type="hidden" name="id" value="' . (int) $a['id'] . '"><input type="hidden" name="toggle" value="1"><button class="flxb-linkbtn" type="submit">' . ( (int) $a['active'] ? '<span class="flxb-pill flxb-pill--ok">' . esc_html__( 'Active', 'flx-donate' ) . '</span>' : '<span class="flxb-pill flxb-pill--muted">' . esc_html__( 'Passive', 'flx-donate' ) . '</span>' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				} else {
@@ -252,7 +252,7 @@ final class FLXB_Page_Partners {
 		/* Month cards */
 		echo '<div class="flxb-months">';
 		foreach ( array_reverse( FLXB_Partners::month_stats( $kind, 12, $pid ), true ) as $m => $st ) {
-			echo '<a class="flxb-month' . ( $m === $period ? ' is-on' : '' ) . '" href="' . esc_url( self::url( $base + array( 'month' => $m, 'partner' => $pid ? $pid : '' ) ) ) . '"><b>' . esc_html( date_i18n( 'M Y', strtotime( $m . '-15' ) ) ) . '</b><span>' . esc_html( number_format_i18n( $st['n'] ) ) . '</span><small>' . esc_html( self::money_list( $st['sum'] ) ) . '</small></a>';
+			echo '<a class="flxb-month' . ( $m === $period ? ' is-on' : '' ) . '" href="' . esc_url( self::url( $base + array( 'month' => $m, 'partner' => $pid ? $pid : '' ) ) ) . '"><b>' . esc_html( flx_date( strtotime( $m . '-15' ), 'M Y' ) ) . '</b><span>' . esc_html( number_format_i18n( $st['n'] ) ) . '</span><small>' . esc_html( self::money_list( $st['sum'] ) ) . '</small></a>';
 		}
 		echo '</div>';
 

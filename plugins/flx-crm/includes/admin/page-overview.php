@@ -49,7 +49,7 @@ final class FLXCRM_Page_Overview {
 		/* RFM segmentleri */
 		echo '<section class="flxcrm-card flxcrm-span-2"><div class="flxcrm-card__head"><h2>' . flxcrm_icon( 'chart', 16 ) . esc_html__( 'RFM segmentleri', 'flx-crm' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		$scored = (int) get_option( 'flxcrm_scored_at' );
-		echo '<span class="flxcrm-muted">' . ( $scored ? esc_html( sprintf( /* translators: %s: time ago */ __( 'Hesaplandı: %s', 'flx-crm' ), human_time_diff( $scored ) ) ) : '' );
+		echo '<span class="flxcrm-muted">' . ( $scored ? esc_html( sprintf( /* translators: %s: time ago */ __( 'Hesaplandı: %s', 'flx-crm' ), flx_time_ago( $scored ) ) ) : '' );
 		if ( $can ) {
 			echo ' <button type="button" class="button-link" data-flxcrm-score>' . esc_html__( 'Yeniden hesapla', 'flx-crm' ) . '</button>';
 		}

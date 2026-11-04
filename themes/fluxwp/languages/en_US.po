@@ -1366,8 +1366,8 @@ msgstr ""
 "update; reload this page in a few minutes."
 
 #: inc/sistem.php
-msgid "%1$s önce (%2$s)."
-msgstr "%1$s ago (%2$s)."
+msgid "%1$s (%2$s)."
+msgstr "%1$s (%2$s)."
 
 #: inc/sistem.php
 msgid ""

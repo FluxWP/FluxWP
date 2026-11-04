@@ -37,7 +37,7 @@ function flxai_agent_system( $user_id, $at = 0 ) {
 	$fixed = (string) apply_filters( 'flxai_chat_system', $fixed, $user_id );
 	$dyn   = "## Oturum\n"
 		. '- Kullanıcı: ' . ( $user ? $user->display_name . ' (' . implode( ', ', (array) $user->roles ) . ')' : '-' ) . "\n"
-		. '- Tarih: ' . wp_date( 'l, j F Y H:i', $at ? (int) $at : null ) . ' (' . wp_timezone_string() . ")\n"
+		. '- Tarih: ' . flx_date( $at ? (int) $at : time(), 'l, j F Y H:i' ) . ' (' . wp_timezone_string() . ")\n"
 		. '- Arayüz dili: ' . ( $tr ? 'Türkçe' : determine_locale() );
 	return array(
 		'role'    => 'system',

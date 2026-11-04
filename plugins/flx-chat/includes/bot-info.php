@@ -139,12 +139,12 @@ function flxc_bot_info_time() {
 	$on   = array();
 	foreach ( $days as $n ) {
 		// Haftanın günü site dilinde (1 = Pazartesi); 5 Ocak 2026 Pazartesi.
-		$on[] = wp_date( 'l', gmmktime( 12, 0, 0, 1, 4 + max( 1, min( 7, $n ) ), 2026 ) );
+		$on[] = flx_date( gmmktime( 12, 0, 0, 1, 4 + max( 1, min( 7, $n ) ), 2026 ), 'l' );
 	}
 	return array(
 		'ok'         => true,
 		'now'        => wp_date( 'Y-m-d H:i', $now ),
-		'weekday'    => wp_date( 'l', $now ),
+		'weekday'    => flx_date( $now, 'l' ),
 		'timezone'   => wp_timezone_string(),
 		'open_now'   => flxc_is_open_hours( $now ),
 		'team_hours' => implode( ', ', $on ) . ' ' . flxc_setting( 'away_start' ) . '-' . flxc_setting( 'away_end' ),

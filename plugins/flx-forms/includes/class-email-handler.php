@@ -1038,7 +1038,7 @@ class EmsfbEmailHandler {
         }
 
         $username = is_string($m) ? esc_html($m) : '';
-        $registration_time = wp_date(get_option('date_format') . ' ' . get_option('time_format'));
+        $registration_time = flx_date( time(), 'datetime' );
 
         // Calculate lighter shade of btnBgColor for background
         $headerBgColor = $this->adjust_color_brightness($btnBgColor, 0.9);

@@ -157,7 +157,7 @@ function flxai_months( $n = 12 ) {
 		$r              = $wpdb->get_row( $wpdb->prepare( 'SELECT SUM(cost) AS cost, SUM(full_cost) AS full_cost, SUM(kind=\'model\') AS calls FROM ' . flxai_table( 'log' ) . ' WHERE ts >= %d AND ts < %d', $f, $to ), ARRAY_A ); // phpcs:ignore
 		$out[]          = array(
 			'ym'    => $m->format( 'Y-m' ),
-			'label' => wp_date( 'F Y', $f ),
+			'label' => flx_date( $f, 'F Y' ),
 			'cost'  => (float) ( $r['cost'] ?? 0 ),
 			'saved' => max( 0, (float) ( $r['full_cost'] ?? 0 ) - (float) ( $r['cost'] ?? 0 ) ),
 			'calls' => (int) ( $r['calls'] ?? 0 ),

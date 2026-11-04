@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.2.12
+- Tarih ve "… önce" metinleri artık kullanıcının dilinde, tek ortak yardımcıdan (FluxWP `flx_date` / `flx_time_ago`, flx-brand 1.1.0): "31 minutes önce", "August 10" gibi Türkçe/İngilizce karışımı kalmadı; çekirdek dil paketi inmemiş olsa da TR ve EN ay/gün adları doğru.
+
 ## 1.2.11
 - MCP ayarları: "(yalnız okuma)" etiketi açık zeminde okunur.
 

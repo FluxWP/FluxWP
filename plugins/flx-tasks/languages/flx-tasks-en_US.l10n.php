@@ -39,7 +39,7 @@ return array(
 		'Zamanlanmış işler' => 'Scheduled jobs',
 		'Günlük görev hatırlatmaları' => 'Daily task reminders',
 		'Zamanlanmamış: geciken/yaklaşan görev bildirimleri ve eski geçici dosya temizliği çalışmaz. Görevler sayfasını bir kez açmak yeniden zamanlar.' => 'Not scheduled: overdue/upcoming task notifications and old temporary file cleanup will not run. Opening the Tasks page once reschedules it.',
-		'Çalışması gereken iş %s gecikmiş. WP-Cron tetiklenmiyor olabilir (site az ziyaret alıyorsa hosting panelinden gerçek cron önerilir).' => 'The scheduled job is %s late. WP-Cron may not be triggering (if the site gets few visits, a real cron in the hosting panel is recommended).',
+		'Zamanlanmış iş gecikti (%s çalışmalıydı). WP-Cron tetiklenmiyor olabilir (site az ziyaret alıyorsa hosting panelinden gerçek cron önerilir).' => 'The scheduled job is late (due %s). WP-Cron may not be triggering (if the site gets few visits, a real cron in the hosting panel is recommended).',
 		'Sonraki çalışma: %s.' => 'Next run: %s.',
 		'WP-Cron modu' => 'WP-Cron mode',
 		'DISABLE_WP_CRON açık: zamanlanmış işler yalnız sunucu cron\'u wp-cron.php\'yi çağırırsa çalışır. Hosting panelinde bu cron tanımlı olmalı.' => 'DISABLE_WP_CRON is on: scheduled jobs only run if a server cron calls wp-cron.php. This cron must be set up in the hosting panel.',

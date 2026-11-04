@@ -71,8 +71,8 @@ final class FLXB_Page_Dashboard {
 		list( $from, $to ) = FLXB_Stats::range( $preset, $from, $to );
 		$data            = FLXB_Stats::collect( $from, $to );
 		$data['fmt']     = array(
-			'from' => wp_date( get_option( 'date_format' ), strtotime( $from . ' 12:00:00' ) ),
-			'to'   => wp_date( get_option( 'date_format' ), strtotime( $to . ' 12:00:00' ) ),
+			'from' => flx_date( strtotime( $from . ' 12:00:00' ) ),
+			'to'   => flx_date( strtotime( $to . ' 12:00:00' ) ),
 		);
 		$data['has_any'] = (bool) $GLOBALS['wpdb']->get_var( 'SELECT id FROM ' . flxb_table( 'donations' ) . ' LIMIT 1' ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		$data['symbol']  = flxb_currency_symbol( $data['currency'] );

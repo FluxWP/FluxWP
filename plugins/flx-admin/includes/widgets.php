@@ -266,7 +266,7 @@ function flxa_render_tasks( array $p ) {
 		foreach ( $rows as $r ) {
 			$due  = substr( (string) $r['due_date'], 0, 10 );
 			$late = $due && $due < $today;
-			$lbl  = $due ? ( $due === $today ? __( 'Bugün', 'flx-admin' ) : wp_date( 'j M', strtotime( $due . ' 12:00:00' ) ) ) : '';
+			$lbl  = $due ? ( $due === $today ? __( 'Bugün', 'flx-admin' ) : flx_date( strtotime( $due . ' 12:00:00' ), 'short' ) ) : '';
 			$url  = function_exists( 'flxg_app_url' ) ? flxg_app_url( (int) $r['id'] ) : $base . '#/task/' . (int) $r['id'];
 			$col  = $pr[ (int) $r['priority'] ]['color'] ?? '';
 			$h   .= '<li><a href="' . esc_url( $url ) . '"><span class="flxa-check"' . ( $col ? ' style="border-color:' . esc_attr( $col ) . '"' : '' ) . ' aria-hidden="true"></span><span class="flxa-li-main"><strong>' . esc_html( $r['title'] ) . '</strong><small>' . esc_html( $lists[ (int) $r['list_id'] ]['name'] ?? '' ) . '</small></span>' . ( $lbl ? '<span class="flxa-pill ' . ( $late ? 'is-error' : ( $due === $today ? 'is-warn' : 'is-neutral' ) ) . '">' . esc_html( $lbl ) . '</span>' : '' ) . '</a></li>';
@@ -345,7 +345,7 @@ function flxa_render_donations( array $p ) {
 		$v      = $by[ $k ] ?? 0;
 		$max    = max( $max, $v );
 		$total += $v;
-		$list[] = array( $k, $v, wp_date( 'j M', $ts ) );
+		$list[] = array( $k, $v, flx_date( $ts, 'short' ) );
 	}
 	$h .= '<div class="flxa-dsum"><strong>' . esc_html( flxa_money( $total, $cur ) ) . '</strong><small>' . esc_html( sprintf( /* translators: %d: days */ __( 'son %d gün', 'flx-admin' ), $days ) ) . '</small></div>';
 	$h .= '<div class="flxa-chart" style="--n:' . (int) $days . '" role="img" aria-label="' . esc_attr__( 'Günlük bağış toplamları', 'flx-admin' ) . '">';
@@ -384,7 +384,7 @@ function flxa_render_donations( array $p ) {
 			$st   = function_exists( 'flxb_status_label' ) ? flxb_status_label( $r['status'] ) : array( '', $r['status'] );
 			$tone = 'completed' === $r['status'] ? 'ok' : ( 'pending' === $r['status'] ? 'warn' : 'neutral' );
 			$url  = admin_url( 'admin.php?page=flxb-donations&donation=' . (int) $r['id'] );
-			$ago  = human_time_diff( strtotime( $r['created_at'] . ' UTC' ), time() );
+			$ago  = flx_time_ago( $r['created_at'] );
 			if ( (int) $r['line_n'] > 1 ) {
 				/* translators: %d: number of lines in one order */
 				$ago .= ' · ' . sprintf( __( '%d kalem', 'flx-admin' ), (int) $r['line_n'] );

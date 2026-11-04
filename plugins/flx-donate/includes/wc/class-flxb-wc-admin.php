@@ -334,7 +334,7 @@ class FLXB_WC_Admin {
 						'<li><a href="%1$s" target="_blank" rel="noopener">%2$s</a><br><small>%3$s · %4$s</small>%5$s</li>',
 						esc_url( FLXB_WC_Receipts::url( $order, $i, true ) ),
 						esc_html( $r['name'] ),
-						esc_html( wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), (int) $r['at'] ) ),
+						esc_html( flx_date( (int) $r['at'], 'datetime' ) ),
 						esc_html( size_format( (int) $r['size'] ) ),
 						empty( $r['dup'] ) ? '' : '<br><strong style="color:#b32d2e">' . esc_html( FLXB_WC_Receipts::dup_text( $r ) ) . '</strong>'
 					);

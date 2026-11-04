@@ -490,17 +490,16 @@ function flxi_smtp_account_notes() {
 	if ( ! flxi_smtp_ready() || ! $s['smtp_auth'] ) {
 		return $out;
 	}
-	$fmt  = get_option( 'date_format' ) . ' H:i';
 	$info = flxi_smtp_auth_status( 'info' );
 	if ( $info && ! $info['ok'] ) {
 		$out['info'] = array(
 			'level' => 'error',
 			/* translators: 1: account, 2: date, 3: error */
-			'text'  => sprintf( __( '%1$s hesabına giriş yapılamadı (%2$s): %3$s Kullanıcı adını ve şifreyi kontrol edin; hPanel\'de şifre değiştiyse buraya da yazın.', 'flx-mail' ), $s['smtp_user'], wp_date( $fmt, $info['at'] ), $info['error'] ),
+			'text'  => sprintf( __( '%1$s hesabına giriş yapılamadı (%2$s): %3$s Kullanıcı adını ve şifreyi kontrol edin; hPanel\'de şifre değiştiyse buraya da yazın.', 'flx-mail' ), $s['smtp_user'], flx_date( $info['at'], 'datetime' ), $info['error'] ),
 		);
 	} elseif ( $info ) {
 		/* translators: 1: account, 2: date */
-		$out['info'] = array( 'level' => 'ok', 'text' => sprintf( __( '%1$s: giriş başarılı (son gönderim %2$s).', 'flx-mail' ), $s['smtp_user'], wp_date( $fmt, $info['at'] ) ) );
+		$out['info'] = array( 'level' => 'ok', 'text' => sprintf( __( '%1$s: giriş başarılı (son gönderim %2$s).', 'flx-mail' ), $s['smtp_user'], flx_date( $info['at'], 'datetime' ) ) );
 	}
 	if ( '' !== trim( (string) $s['smtp_nr_user'] ) ) {
 		$why = flxi_nr_fallback_reason();
@@ -515,13 +514,13 @@ function flxi_smtp_account_notes() {
 			$out['noreply'] = array(
 				'level' => 'warning',
 				/* translators: 1: no-reply account, 2: date, 3: error, 4: info address */
-				'text'  => sprintf( __( '%1$s hesabına giriş yapılamadı (%2$s): %3$s no-reply e-postaları şimdilik %4$s ile gidiyor. Şifreyi düzeltip kaydedin (hesap yoksa hPanel\'de açın ya da kullanıcı alanını boşaltın); sonra no-reply@ ile test e-postası gönderin.', 'flx-mail' ), $s['smtp_nr_user'], wp_date( $fmt, $st['at'] ), $st['error'], $s['from_email'] ),
+				'text'  => sprintf( __( '%1$s hesabına giriş yapılamadı (%2$s): %3$s no-reply e-postaları şimdilik %4$s ile gidiyor. Şifreyi düzeltip kaydedin (hesap yoksa hPanel\'de açın ya da kullanıcı alanını boşaltın); sonra no-reply@ ile test e-postası gönderin.', 'flx-mail' ), $s['smtp_nr_user'], flx_date( $st['at'], 'datetime' ), $st['error'], $s['from_email'] ),
 			);
 		} else {
 			$st = flxi_smtp_auth_status( 'noreply' );
 			if ( $st ) {
 				/* translators: 1: account, 2: date */
-				$out['noreply'] = array( 'level' => 'ok', 'text' => sprintf( __( '%1$s: giriş başarılı (son gönderim %2$s).', 'flx-mail' ), $s['smtp_nr_user'], wp_date( $fmt, $st['at'] ) ) );
+				$out['noreply'] = array( 'level' => 'ok', 'text' => sprintf( __( '%1$s: giriş başarılı (son gönderim %2$s).', 'flx-mail' ), $s['smtp_nr_user'], flx_date( $st['at'], 'datetime' ) ) );
 			}
 		}
 	}

@@ -108,7 +108,7 @@ final class FLXB_Page_Import {
 					if ( 'created' === $mf && '' !== FLXB_Import::datetime( $ex ) ) {
 						$ex = flxb_date( get_gmt_from_date( FLXB_Import::datetime( $ex ) ) );
 					} elseif ( 'target' === $mf && '' !== flxb_parse_date( $ex ) ) {
-						$ex = date_i18n( get_option( 'date_format' ), strtotime( flxb_parse_date( $ex ) . ' 12:00' ) );
+						$ex = flx_date( strtotime( flxb_parse_date( $ex ) . ' 12:00' ) );
 					}
 					break;
 				}

@@ -283,7 +283,7 @@ class FLXAN_Admin {
 					echo esc_html(
 						$last
 							/* translators: 1: geçen süre, 2: bekleyen veri boyutu */
-							? sprintf( __( 'Son işleme %1$s önce. Kuyrukta bekleyen: %2$s.', 'flx-analytics' ), human_time_diff( $last ), size_format( FLXAN_Aggregator::pending_bytes() ) )
+							? sprintf( __( 'Son işleme %1$s. Kuyrukta bekleyen: %2$s.', 'flx-analytics' ), flx_time_ago( $last ), size_format( FLXAN_Aggregator::pending_bytes() ) )
 							: __( 'Henüz işlenen ziyaret yok.', 'flx-analytics' )
 					);
 					?>

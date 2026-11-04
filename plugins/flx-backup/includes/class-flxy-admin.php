@@ -315,7 +315,7 @@ final class FLXY_Admin {
 						<p class="flxy-big flxy-big-sm">
 							<?php
 							/* translators: %s: human time diff */
-							echo esc_html( sprintf( __( '%s önce', 'flx-backup' ), human_time_diff( $last['created'] ) ) );
+							echo esc_html( flx_time_ago( $last['created'] ) );
 							?>
 						</p>
 						<p class="flxy-sub"><?php echo esc_html( FLXY_Storage::title( $last ) . ' · ' . flxy_date( $last['created'] ) ); ?></p>
@@ -327,10 +327,10 @@ final class FLXY_Admin {
 				<section class="flxy-card">
 					<h2><?php esc_html_e( 'Sonraki zamanlanmış', 'flx-backup' ); ?></h2>
 					<?php if ( $next ) : ?>
-						<p class="flxy-big flxy-big-sm"><?php echo esc_html( flxy_date( $next, get_option( 'date_format' ) ) ); ?></p>
+						<p class="flxy-big flxy-big-sm"><?php echo esc_html( flxy_date( $next, 'date' ) ); ?></p>
 						<p class="flxy-sub">
 							<?php
-							echo esc_html( flxy_date( $next, get_option( 'time_format' ) ) . ' · ' . ( 'weekly' === FLXY_Settings::get( 'schedule' ) ? __( 'Haftalık tam yedek', 'flx-backup' ) : __( 'Günlük tam yedek', 'flx-backup' ) ) );
+							echo esc_html( flxy_date( $next, 'time' ) . ' · ' . ( 'weekly' === FLXY_Settings::get( 'schedule' ) ? __( 'Haftalık tam yedek', 'flx-backup' ) : __( 'Günlük tam yedek', 'flx-backup' ) ) );
 							?>
 						</p>
 					<?php else : ?>
@@ -455,8 +455,8 @@ final class FLXY_Admin {
 			}
 			$days[] = array(
 				'k'  => $key,
-				'x'  => date_i18n( 'j M', $ts + $tz->getOffset( $d ) ),
-				'd'  => date_i18n( get_option( 'date_format' ), $ts + $tz->getOffset( $d ) ),
+				'x'  => flx_date( $ts, 'short' ),
+				'd'  => flx_date( $ts ),
 				'v'  => $vals,
 				'vl' => $vlabel,
 				't'  => size_format( array_sum( $vals ), 1 ),
@@ -707,8 +707,8 @@ final class FLXY_Admin {
 		<tr data-id="<?php echo esc_attr( $r['id'] ); ?>" class="flxy-status-<?php echo esc_attr( $r['status'] ); ?>">
 			<th scope="row" class="check-column"><?php if ( 'running' !== $r['status'] ) : ?><input type="checkbox" name="ids[]" value="<?php echo esc_attr( $r['id'] ); ?>" aria-label="<?php esc_attr_e( 'Seç', 'flx-backup' ); ?>"><?php endif; ?></th>
 			<td class="col-date" data-colname="<?php esc_attr_e( 'Tarih', 'flx-backup' ); ?>">
-				<strong><?php echo esc_html( flxy_date( $r['created'], get_option( 'date_format' ) ) ); ?></strong><br>
-				<span class="flxy-muted"><?php echo esc_html( flxy_date( $r['created'], get_option( 'time_format' ) ) ); ?></span>
+				<strong><?php echo esc_html( flxy_date( $r['created'], 'date' ) ); ?></strong><br>
+				<span class="flxy-muted"><?php echo esc_html( flxy_date( $r['created'], 'time' ) ); ?></span>
 			</td>
 			<td class="col-type" data-colname="<?php esc_attr_e( 'Tür', 'flx-backup' ); ?>"><?php echo $this->type_badge( $r['type'] ); // phpcs:ignore WordPress.Security.EscapeOutput ?></td>
 			<td class="col-title" data-colname="<?php esc_attr_e( 'Açıklama', 'flx-backup' ); ?>">
@@ -763,7 +763,7 @@ final class FLXY_Admin {
 					esc_html_e( 'Kilitli', 'flx-backup' );
 				} elseif ( $r['keep_until'] ) {
 					/* translators: %s: date */
-					echo esc_html( sprintf( __( '%s tarihine kadar', 'flx-backup' ), flxy_date( $r['keep_until'], get_option( 'date_format' ) ) ) );
+					echo esc_html( sprintf( __( '%s tarihine kadar', 'flx-backup' ), flxy_date( $r['keep_until'], 'date' ) ) );
 				} elseif ( 'schedule' === $source ) {
 					/* translators: %s: number of backups kept */
 					echo esc_html( sprintf( __( 'Son %s zamanlanmış', 'flx-backup' ), number_format_i18n( (int) FLXY_Settings::get( 'schedule_keep' ) ) ) );
@@ -871,7 +871,7 @@ final class FLXY_Admin {
 				$meta[ __( 'Saklama', 'flx-backup' ) ] = __( 'Kilitli', 'flx-backup' );
 			} elseif ( $r['keep_until'] ) {
 				/* translators: %s: date */
-				$meta[ __( 'Saklama', 'flx-backup' ) ] = sprintf( __( '%s tarihine kadar', 'flx-backup' ), flxy_date( $r['keep_until'], get_option( 'date_format' ) ) );
+				$meta[ __( 'Saklama', 'flx-backup' ) ] = sprintf( __( '%s tarihine kadar', 'flx-backup' ), flxy_date( $r['keep_until'], 'date' ) );
 			} else {
 				$meta[ __( 'Saklama', 'flx-backup' ) ] = __( 'Kota dolana kadar', 'flx-backup' );
 			}
@@ -1233,7 +1233,7 @@ final class FLXY_Admin {
 								</span>
 								<select name="schedule_hour" aria-label="<?php esc_attr_e( 'Saat', 'flx-backup' ); ?>">
 									<?php for ( $h = 0; $h < 24; $h++ ) : ?>
-										<option value="<?php echo esc_attr( (string) $h ); ?>" <?php selected( $h, (int) $s['schedule_hour'] ); ?>><?php echo esc_html( date_i18n( get_option( 'time_format' ), $h * HOUR_IN_SECONDS, true ) ); ?></option>
+										<option value="<?php echo esc_attr( (string) $h ); ?>" <?php selected( $h, (int) $s['schedule_hour'] ); ?>><?php echo esc_html( sprintf( '%02d:00', $h ) ); ?></option>
 									<?php endfor; ?>
 								</select>
 								<p class="description"><?php esc_html_e( 'Site saat dilimine göre. Gece saatlerini seçin; WP-Cron ziyaretle tetiklendiği için birkaç dakika gecikebilir.', 'flx-backup' ); ?></p>
@@ -1396,7 +1396,7 @@ final class FLXY_Admin {
 			$text = __( 'Kilitli', 'flx-backup' );
 		} elseif ( $rec['keep_until'] ) {
 			/* translators: %s: date */
-			$text = sprintf( __( '%s tarihine kadar', 'flx-backup' ), flxy_date( $rec['keep_until'], get_option( 'date_format' ) ) );
+			$text = sprintf( __( '%s tarihine kadar', 'flx-backup' ), flxy_date( $rec['keep_until'], 'date' ) );
 		} else {
 			$text = __( 'Kota dolana kadar', 'flx-backup' );
 		}

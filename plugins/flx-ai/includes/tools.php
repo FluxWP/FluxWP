@@ -188,7 +188,7 @@ function flxai_core_tools() {
 			'run'         => function () {
 				return array(
 					'now'      => wp_date( 'c' ),
-					'text'     => wp_date( 'l, j F Y H:i' ),
+					'text'     => flx_date( time(), 'l, j F Y H:i' ),
 					'timezone' => wp_timezone_string(),
 				);
 			},

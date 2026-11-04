@@ -174,7 +174,7 @@ function flxc_money( $amount, $currency = '' ) {
 
 function flxc_local_date( $utc ) {
 	$ts = strtotime( (string) $utc . ' UTC' );
-	return $ts ? wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $ts ) : '';
+	return $ts ? flx_date( $ts, 'datetime' ) : '';
 }
 
 /** Bağış satırını arayüz için özetle. */

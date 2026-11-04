@@ -2841,7 +2841,7 @@ msgstr ""
 msgid "Gizli anahtarı yenile"
 msgstr ""
 
-msgid "Son webhook: %s önce"
+msgid "Son webhook: %s"
 msgstr ""
 
 msgid "Henüz webhook gelmedi."

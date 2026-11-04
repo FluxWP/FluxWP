@@ -40,7 +40,7 @@ function flxc_ago( $ts ) {
 		return '';
 	}
 	/* translators: %s: human time diff */
-	return sprintf( __( '%s önce', 'flx-chat' ), human_time_diff( $ts, time() ) );
+	return flx_time_ago( $ts );
 }
 
 /** Çağrı Merkezi'nin kontrolleri. */

@@ -28,7 +28,7 @@ final class FLXB_Page_Types {
 				return array( 'ok', __( 'Open', 'flx-donate' ) );
 			case 'upcoming':
 				/* translators: %s: start date */
-				return array( 'pending', sprintf( __( 'Upcoming (%s)', 'flx-donate' ), wp_date( get_option( 'date_format' ), strtotime( $t['start_date'] . ' 12:00' ) ) ) );
+				return array( 'pending', sprintf( __( 'Upcoming (%s)', 'flx-donate' ), flx_date( strtotime( $t['start_date'] . ' 12:00' ) ) ) );
 			case 'ended':
 				return array( 'muted', __( 'Ended', 'flx-donate' ) );
 			case 'archived':
@@ -128,7 +128,7 @@ final class FLXB_Page_Types {
 					echo '<strong>' . esc_html( flxb_money( $p['raised'], $t['currency'] ) ) . '</strong><small>' . esc_html( sprintf( _n( '%s donor', '%s donors', $p['donors'], 'flx-donate' ), number_format_i18n( $p['donors'] ) ) ) . '</small>';
 				}
 				echo '</div></td>';
-				$dates = $t['start_date'] || $t['end_date'] ? ( $t['start_date'] ? wp_date( get_option( 'date_format' ), strtotime( $t['start_date'] . ' 12:00' ) ) : '…' ) . ' – ' . ( $t['end_date'] ? wp_date( get_option( 'date_format' ), strtotime( $t['end_date'] . ' 12:00' ) ) : '…' ) : __( 'Open-ended', 'flx-donate' );
+				$dates = $t['start_date'] || $t['end_date'] ? ( $t['start_date'] ? flx_date( strtotime( $t['start_date'] . ' 12:00' ) ) : '…' ) . ' – ' . ( $t['end_date'] ? flx_date( strtotime( $t['end_date'] . ' 12:00' ) ) : '…' ) : __( 'Open-ended', 'flx-donate' );
 				echo '<td class="flxb-col-date" data-label="' . esc_attr__( 'Dates', 'flx-donate' ) . '"><span>' . esc_html( $dates ) . '</span></td>';
 				echo '<td data-label="' . esc_attr__( 'Forms', 'flx-donate' ) . '"><span>' . esc_html( $t['form_ids'] ? implode( ', ', array_map( 'flxb_form_title', $t['form_ids'] ) ) : '—' ) . '</span></td>';
 				echo '<td class="flxb-col-act"><div class="flxb-actions">';

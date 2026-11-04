@@ -3327,8 +3327,8 @@ msgstr "Dekont yükle"
 msgid "Awaiting approval"
 msgstr "Onay bekleyenler"
 
-msgid "waiting for %s"
-msgstr "%s bekliyor"
+msgid "received %s"
+msgstr "%s geldi"
 
 msgid "piece"
 msgstr "adet"
@@ -3432,8 +3432,8 @@ msgstr "Zamanlanmış görevler (cron)"
 msgid "Security"
 msgstr "Güvenlik"
 
-msgid "%1$s (%2$s ago)"
-msgstr "%1$s (%2$s önce)"
+msgid "%1$s (%2$s)"
+msgstr "%1$s (%2$s)"
 
 msgid "Last test %1$s: %2$s"
 msgstr "Son test %1$s: %2$s"

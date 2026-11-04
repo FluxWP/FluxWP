@@ -1371,12 +1371,11 @@ class Admin {
         }
         $table_name = $this->db->prefix . "emsfb_msg_";
         $value      = $this->db->get_results("SELECT * FROM `$table_name` WHERE form_id = '$id' ORDER BY `$table_name`.date DESC");
-        $date_format = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
         foreach ( $value as $row ) {
             if ( ! empty( $row->date ) ) {
                 $timestamp = strtotime( $row->date );
                 if ( $timestamp !== false ) {
-                    $row->date = wp_date( $date_format, $timestamp );
+                    $row->date = flx_date( $timestamp, 'datetime' );
                 }
             }
         }

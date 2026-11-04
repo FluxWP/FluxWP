@@ -156,7 +156,7 @@ msgstr ""
 msgid "Veri"
 msgstr ""
 
-msgid "Son işleme %1$s önce. Kuyrukta bekleyen: %2$s."
+msgid "Son işleme %1$s. Kuyrukta bekleyen: %2$s."
 msgstr ""
 
 msgid "Henüz işlenen ziyaret yok."
@@ -654,7 +654,7 @@ msgstr ""
 msgid "İstatistik işleme"
 msgstr ""
 
-msgid "Son işleme %1$s önce. Bekleyen: %2$s."
+msgid "Son işleme %1$s. Bekleyen: %2$s."
 msgstr ""
 
 msgid "İşleme hatası"

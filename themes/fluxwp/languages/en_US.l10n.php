@@ -8,7 +8,7 @@ return array (
     '"Arama motorlarının bu siteyi dizine eklemesini engelle" işaretli. Yayındaki sitede kaldırın.' => '"Discourage search engines from indexing this site" is checked. Uncheck it on the live site.',
     '%1$d kritik sorun var: %2$s' => '%1$d critical issues: %2$s',
     '%1$s etkin, v%2$s. Flux Donate anahtarları buradan okur.' => '%1$s is active, v%2$s. Flux Donate reads the keys from it.',
-    '%1$s önce (%2$s).' => '%1$s ago (%2$s).',
+    '%1$s (%2$s).' => '%1$s (%2$s).',
     '%d sorun' => '%d issues',
     '%s etkin.' => '%s is active.',
     '%s kurulu ama etkin değil. Flux Donate anahtarları kendi Ödemeler ayarından okur.' => '%s is installed but not active. Flux Donate reads the keys from its own Payments settings.',

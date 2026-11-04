@@ -91,7 +91,7 @@ final class FLXB_Page_Track {
 			'window' => array( 'pending', __( 'due', 'flx-donate' ) ),
 			'late'   => array( 'failed', __( 'late', 'flx-donate' ) ),
 		);
-		$h = esc_html( date_i18n( 'j M Y', strtotime( (string) $it['target_date'] ) ) );
+		$h = esc_html( flx_date( strtotime( (string) $it['target_date'] ), 'j M Y' ) );
 		if ( isset( $map[ $st ] ) ) {
 			$h .= ' <span class="flxb-pill flxb-pill--' . esc_attr( $map[ $st ][0] ) . '">' . esc_html( $map[ $st ][1] ) . '</span>';
 		}

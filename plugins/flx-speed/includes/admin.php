@@ -310,7 +310,7 @@ class FLXP_Admin {
 			echo '<div class="notice notice-error inline"><p>' . esc_html__( 'Kayıt bulunamadı.', 'flx-speed' ) . '</p></div>';
 			return;
 		}
-		echo '<p class="flxp-detail-head"><strong>#' . (int) $r['id'] . '</strong> · ' . esc_html( wp_date( get_option( 'date_format' ) . ' H:i:s', strtotime( $r['created'] ) ) ) . ' · ' . self::flag_html( $r['flags'] ) . '</p>'; // phpcs:ignore
+		echo '<p class="flxp-detail-head"><strong>#' . (int) $r['id'] . '</strong> · ' . esc_html( flx_date( strtotime( $r['created'] ) ) . ' ' . wp_date( 'H:i:s', strtotime( $r['created'] ) ) ) . ' · ' . self::flag_html( $r['flags'] ) . '</p>'; // phpcs:ignore
 		echo '<div id="flxp-panel" class="flxp" hidden></div>';
 		FLXP_Panel::print_data(
 			$r['data'],
@@ -513,7 +513,7 @@ class FLXP_Admin {
 				__( 'Dosya ve klasör sayısı (inode)', 'flx-speed' ) => null === $du['files'] ? '—' : number_format_i18n( $du['files'] ),
 				__( 'Veritabanı', 'flx-speed' )            => $fmt( $du['db'] ),
 				__( 'Disk kotası', 'flx-speed' )           => flxp_settings( 'disk_quota_gb' ) ? $fmt( flxp_settings( 'disk_quota_gb' ) * 1073741824 ) : __( 'Girilmedi (Ayarlar)', 'flx-speed' ),
-				__( 'Son ölçüm', 'flx-speed' )             => $du['time'] ? sprintf( /* translators: %s: süre */ __( '%s önce', 'flx-speed' ), human_time_diff( $du['time'] ) ) . ( $du['running'] ? ' · ' . __( 'yenileniyor', 'flx-speed' ) : '' ) : '—',
+				__( 'Son ölçüm', 'flx-speed' )             => $du['time'] ? flx_time_ago( $du['time'] ) . ( $du['running'] ? ' · ' . __( 'yenileniyor', 'flx-speed' ) : '' ) : '—',
 			);
 			self::kv( __( 'Hesap diski', 'flx-speed' ), $rows );
 		}
@@ -761,9 +761,8 @@ class FLXP_Admin {
 		echo '<div class="flxp-cards">';
 		self::card( __( 'Görev', 'flx-speed' ), number_format_i18n( $c['events'] ) );
 		self::card( __( 'Gecikmiş', 'flx-speed' ), number_format_i18n( $c['overdue'] ), $c['overdue'] ? 'warn' : '' );
-		$ago = $c['last_seen'] ? human_time_diff( $c['last_seen'] ) : '';
-		/* translators: %s: süre */
-		self::card( __( 'Son çalışma', 'flx-speed' ), $ago ? sprintf( __( '%s önce', 'flx-speed' ), $ago ) : __( 'Görülmedi', 'flx-speed' ), ( ! $c['last_seen'] || $c['last_seen'] < time() - HOUR_IN_SECONDS ) ? 'warn' : '' );
+		$ago = $c['last_seen'] ? flx_time_ago( $c['last_seen'] ) : '';
+		self::card( __( 'Son çalışma', 'flx-speed' ), $ago ? $ago : __( 'Görülmedi', 'flx-speed' ), ( ! $c['last_seen'] || $c['last_seen'] < time() - HOUR_IN_SECONDS ) ? 'warn' : '' );
 		self::card( 'DISABLE_WP_CRON', $c['disabled'] ? __( 'Açık', 'flx-speed' ) : __( 'Kapalı', 'flx-speed' ) );
 		echo '</div>';
 		if ( $c['disabled'] ) {
@@ -783,8 +782,7 @@ class FLXP_Admin {
 						$slow ? '<span class="flxp-err">' . esc_html( self::fmt_ms( $t['avg_ms'] ) ) . '</span>' : esc_html( self::fmt_ms( $t['avg_ms'] ) ),
 						esc_html( self::fmt_ms( $t['max_ms'] ) ),
 						esc_html( self::fmt_ms( $t['last_ms'] ) ),
-						/* translators: %s: süre */
-						esc_html( $t['last_at'] ? sprintf( __( '%s önce', 'flx-speed' ), human_time_diff( $t['last_at'] ) ) : '—' ),
+						esc_html( $t['last_at'] ? flx_time_ago( $t['last_at'] ) : '—' ),
 					);
 				},
 				FLXP_Cron_Timing::stats()
@@ -797,10 +795,9 @@ class FLXP_Admin {
 			array_map(
 				function ( $e ) use ( $now ) {
 					$when = wp_date( 'd.m H:i', $e['next'] ) . ' · ' . ( $e['next'] >= $now
-						/* translators: %s: süre */
-						? sprintf( __( '%s sonra', 'flx-speed' ), human_time_diff( $now, $e['next'] ) )
-						/* translators: %s: süre */
-						: sprintf( __( '%s gecikti', 'flx-speed' ), human_time_diff( $e['next'], $now ) ) );
+						? flx_time_ago( $e['next'], $now )
+						/* translators: %s: relative time, e.g. "3 saat önce" */
+						: sprintf( __( 'Gecikti: %s çalışmalıydı', 'flx-speed' ), flx_time_ago( $e['next'], $now ) ) );
 					return array( '<code>' . esc_html( $e['hook'] ) . '</code>', $e['overdue'] ? '<span class="flxp-err">' . esc_html( $when ) . '</span>' : esc_html( $when ), esc_html( $e['schedule'] ? $e['schedule'] : __( 'bir kez', 'flx-speed' ) ), (int) $e['args'] );
 				},
 				$c['items']

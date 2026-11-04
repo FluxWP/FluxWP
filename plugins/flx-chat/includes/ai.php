@@ -419,7 +419,7 @@ function flxc_ai_context_text() {
 	if ( '' !== $url ) {
 		$parts[] = "## Bağış sayfası\n" . $url;
 	}
-	$parts[] = '## Şu an' . "\n" . wp_date( 'l j F Y H:i' ) . ( flxc_is_open_hours() ? '' : ' (mesai dışı)' );
+	$parts[] = '## Şu an' . "\n" . flx_date( time(), 'l j F Y H:i' ) . ( flxc_is_open_hours() ? '' : ' (mesai dışı)' );
 	return implode( "\n\n", $parts );
 }
 
@@ -550,7 +550,7 @@ function flxc_ai_transcript( $chat, $limit = 30 ) {
 		if ( 'text' !== $m['type'] && '' !== trim( (string) $m['body'] ) && $text !== $m['body'] ) {
 			$text .= ': ' . $m['body'];
 		}
-		$lines[] = ( 'in' === $m['direction'] ? $who : __( 'Biz', 'flx-chat' ) ) . ' [' . wp_date( 'j M H:i', (int) ( $m['ts'] / 1000 ) ) . ']: ' . $text;
+		$lines[] = ( 'in' === $m['direction'] ? $who : __( 'Biz', 'flx-chat' ) ) . ' [' . flx_date( (int) ( $m['ts'] / 1000 ), 'j M H:i' ) . ']: ' . $text;
 	}
 	return implode( "\n", $lines );
 }

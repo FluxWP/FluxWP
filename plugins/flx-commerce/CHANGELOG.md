@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.2.1
+- Tarih ve "… önce" metinleri artık kullanıcının dilinde, tek ortak yardımcıdan (FluxWP `flx_date` / `flx_time_ago`, flx-brand 1.1.0): "31 minutes önce", "August 10" gibi Türkçe/İngilizce karışımı kalmadı; çekirdek dil paketi inmemiş olsa da TR ve EN ay/gün adları doğru.
+
 ## 0.2.0
 - **Müşteri sayfası** (Müşteriler listesinde ada tıklayın): siparişler, ödemeler, iadeler ve sipariş notları filtreli zaman tünelinde (Tümü / Siparişler / Ödemeler / Notlar), toplam harcama, sipariş, ortalama sepet, ilk/son sipariş ve sipariş sıklığı; bilgiler, mağaza notu, son siparişteki adresler, en çok aldığı ürünler.
 - **Flux CRM ile ortak kişi**: CRM kuruluysa (ve kullanıcının CRM yetkisi varsa) müşteri sayfası CRM'in ortak kişi kartını gösterir; kişi yoksa oluşturulur, siparişleri bir kez CRM zaman tüneline eklenir. Karta Siparişler, Mağaza (özet + not), Adresler ve Sık aldığı ürünler bölümleri eklenir; aynı bölümler CRM'in kendi kişi sayfasında da görünür.

@@ -2843,8 +2843,8 @@ msgstr "Webhook URL"
 msgid "Gizli anahtarı yenile"
 msgstr "Regenerate secret key"
 
-msgid "Son webhook: %s önce"
-msgstr "Last webhook: %s ago"
+msgid "Son webhook: %s"
+msgstr "Last webhook: %s"
 
 msgid "Henüz webhook gelmedi."
 msgstr "No webhook received yet."

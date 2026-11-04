@@ -364,7 +364,7 @@ final class FLXU_Admin {
 		}
 		$t = (int) $status['checked'];
 		/* translators: %s: date and time */
-		return sprintf( __( 'Son kontrol: %s', 'flx-setup' ), wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $t ) );
+		return sprintf( __( 'Son kontrol: %s', 'flx-setup' ), flx_date( $t, 'datetime' ) );
 	}
 
 	private static function status_card( array $status, array $catalog ): void {
@@ -407,7 +407,7 @@ final class FLXU_Admin {
 					<small>
 						<?php
 						/* translators: %s: human time diff */
-						echo esc_html( sprintf( __( 'Son kontrol: %s önce', 'flx-setup' ), human_time_diff( (int) $status['checked'] ) ) );
+						echo esc_html( sprintf( __( 'Son kontrol: %s', 'flx-setup' ), flx_time_ago( (int) $status['checked'] ) ) );
 						if ( 'connected' === $state ) {
 							echo ' · ';
 							/* translators: 1: package count, 2: update count */
@@ -726,7 +726,7 @@ final class FLXU_Admin {
 							</td>
 							<td class="flxu-c-latest"><?php echo esc_html( $row['latest'] ); ?>
 								<?php if ( $row['released'] ) : ?>
-									<br><small><?php echo esc_html( date_i18n( get_option( 'date_format' ), strtotime( $row['released'] ) ) ); ?></small>
+									<br><small><?php echo esc_html( flx_date( strtotime( $row['released'] ) ) ); ?></small>
 								<?php endif; ?>
 							</td>
 							<td class="flxu-actions">
@@ -756,7 +756,7 @@ final class FLXU_Admin {
 														<?php
 														echo esc_html( $v['version'] );
 														if ( $v['released'] ) {
-															echo ' · ' . esc_html( date_i18n( get_option( 'date_format' ), strtotime( $v['released'] ) ) );
+															echo ' · ' . esc_html( flx_date( strtotime( $v['released'] ) ) );
 														}
 														if ( version_compare( $v['version'], $row['installed'], '<' ) ) {
 															echo ' · ' . esc_html__( 'eski', 'flx-setup' );
@@ -1204,7 +1204,7 @@ final class FLXU_Admin {
 						<?php if ( $can_delete ) : ?>
 							<th scope="row" class="check-column"><?php if ( $deletable && $first ) : ?><input type="checkbox" class="flxu-hcheck" name="flxu_ids[]" value="<?php echo esc_attr( $bid ); ?>"><?php endif; ?></th>
 						<?php endif; ?>
-						<td><?php echo esc_html( date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), (int) $e['time'] + (int) ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS ) ) ); ?></td>
+						<td><?php echo esc_html( flx_date( (int) $e['time'], 'datetime' ) ); ?></td>
 						<td><strong><?php echo esc_html( $e['name'] ); ?></strong></td>
 						<td><?php echo esc_html( self::action_label( $e ) ); ?></td>
 						<td>
@@ -1222,7 +1222,7 @@ final class FLXU_Admin {
 								<?php if ( ! empty( $rec['locked'] ) ) : ?>
 									<span class="flxu-badge" title="<?php esc_attr_e( 'Kilitli yedekler otomatik silinmez.', 'flx-setup' ); ?>"><?php esc_html_e( 'Kilitli', 'flx-setup' ); ?></span>
 								<?php elseif ( ! empty( $rec['keep_until'] ) ) : ?>
-									<small class="flxu-muted"><?php echo esc_html( sprintf( __( '%s silinir', 'flx-setup' ), date_i18n( get_option( 'date_format' ), (int) $rec['keep_until'] + (int) ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS ) ) ) ); ?></small>
+									<small class="flxu-muted"><?php echo esc_html( sprintf( __( '%s silinir', 'flx-setup' ), flx_date( (int) $rec['keep_until'] ) ) ); ?></small>
 								<?php endif; ?>
 								<br>
 								<?php if ( $backup_page ) : ?><a href="<?php echo esc_url( add_query_arg( 'view', $bid, $backup_page ) ); ?>"><?php esc_html_e( 'Aç', 'flx-setup' ); ?></a><?php endif; ?>

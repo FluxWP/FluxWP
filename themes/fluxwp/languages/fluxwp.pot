@@ -1269,7 +1269,7 @@ msgid ""
 msgstr ""
 
 #: inc/sistem.php
-msgid "%1$s önce (%2$s)."
+msgid "%1$s (%2$s)."
 msgstr ""
 
 #: inc/sistem.php
