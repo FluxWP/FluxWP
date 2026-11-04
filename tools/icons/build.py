@@ -36,6 +36,7 @@ PKGS = [
   ('flx-backup', 'Flux Backup', 'system', 'database-backup'),
   ('flx-speed', 'Flux Speed', 'system', 'gauge'),
   ('flx-migrate', 'Flux Migrate', 'system', 'arrow-right-left'),
+  ('flx-recaptcha', 'Flux reCAPTCHA', 'system', 'shield-check'),
   ('flx-chat', 'Flux Chat', 'comms', 'message-circle-more'),
   ('flx-mail', 'Flux Mail', 'comms', 'mail'),
   ('flx-social', 'Flux Social', 'comms', 'share-2'),
