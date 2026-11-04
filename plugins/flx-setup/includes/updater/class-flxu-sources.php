@@ -92,13 +92,15 @@ final class FLXU_Sources {
 	/* Durum                                                               */
 	/* ------------------------------------------------------------------ */
 
-	public static function set_status( string $id, bool $ok, string $error, int $count = 0 ): void {
+	public static function set_status( string $id, bool $ok, string $error, int $count = 0, string $code = '', int $retry = 0 ): void {
 		$all        = get_site_option( self::STATUS, array() );
 		$all        = is_array( $all ) ? $all : array();
 		$all[ $id ] = array(
 			'ok'      => $ok,
 			'error'   => $error,
 			'count'   => $count,
+			'code'    => $code,
+			'retry'   => $retry,
 			'checked' => time(),
 		);
 		update_site_option( self::STATUS, $all );
@@ -117,7 +119,7 @@ final class FLXU_Sources {
 			if ( ! empty( $s['enabled'] ) && ! empty( $st['checked'] ) && empty( $st['ok'] ) ) {
 				$out[] = array(
 					'name'  => $s['name'],
-					'error' => (string) $st['error'],
+					'error' => FLXU_Updater::status_message( $st, '' !== (string) ( $s['key'] ?? '' ) ),
 				);
 			}
 		}

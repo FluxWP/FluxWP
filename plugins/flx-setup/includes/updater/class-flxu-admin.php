@@ -106,7 +106,7 @@ final class FLXU_Admin {
 		$state  = self::connection_state( $status );
 		$labels = array(
 			'connected' => array( '#1e8e3e', __( 'Bağlı', 'flx-setup' ) . ( ! empty( $status['site'] ) ? ': ' . $status['site'] : '' ) ),
-			'error'     => array( '#d63638', __( 'Bağlantı hatası', 'flx-setup' ) ),
+			'error'     => array( 'paused' === ( $status['code'] ?? '' ) ? '#dba617' : '#d63638', FLXU_Updater::block_title( $status ) ?: __( 'Bağlantı hatası', 'flx-setup' ) ),
 			'unknown'   => array( '#dba617', __( 'Henüz kontrol edilmedi', 'flx-setup' ) ),
 		);
 		list( $color, $text ) = $labels[ $state ];
@@ -384,8 +384,11 @@ final class FLXU_Admin {
 				}
 				break;
 			case 'error':
-				$title = __( 'Bağlantı hatası', 'flx-setup' );
-				$line  = (string) $status['error'];
+				$title = FLXU_Updater::block_title( $status ) ?: __( 'Bağlantı hatası', 'flx-setup' );
+				$line  = FLXU_Updater::status_message( $status, '' !== FLXU_Updater::key() );
+				if ( 'paused' === ( $status['code'] ?? '' ) ) {
+					$state = 'paused';
+				}
 				break;
 			default:
 				$title = __( 'Henüz kontrol edilmedi', 'flx-setup' );
@@ -832,7 +835,7 @@ final class FLXU_Admin {
 				return '<span class="flxu-src-st">' . esc_html__( 'Henüz kontrol edilmedi', 'flx-setup' ) . '</span>';
 			}
 			if ( empty( $st['ok'] ) ) {
-				return '<span class="flxu-src-st is-err">' . esc_html( (string) $st['error'] ) . '</span>';
+				return '<span class="flxu-src-st is-err">' . esc_html( FLXU_Updater::status_message( $st, '' !== (string) ( $s['key'] ?? '' ) ) ) . '</span>';
 			}
 			/* translators: %d: package count */
 			return '<span class="flxu-src-st is-ok">' . esc_html( sprintf( _n( 'Bağlı · %d paket', 'Bağlı · %d paket', (int) $st['count'], 'flx-setup' ), (int) $st['count'] ) ) . '</span>';
@@ -1330,7 +1333,7 @@ final class FLXU_Admin {
 			.flxu-dot{width:12px;height:12px;border-radius:50%;background:#a7aaad;flex:none}
 			.flxu-card--connected{border-left-color:color-mix(in srgb, #1e8e3e 80%, var(--flxa-text, #000))}.flxu-card--connected .flxu-dot{background:#1e8e3e;box-shadow:0 0 0 4px color-mix(in srgb, #1e8e3e 12%, var(--flxa-surface, #fff))}
 			.flxu-card--error{border-left-color:var(--flxa-error, #d63638)}.flxu-card--error .flxu-dot{background:#d63638;box-shadow:0 0 0 4px var(--flxa-error-soft, #fcf0f1)}
-			.flxu-card--unknown{border-left-color:#dba617}.flxu-card--unknown .flxu-dot{background:#dba617}
+			.flxu-card--unknown,.flxu-card--paused{border-left-color:#dba617}.flxu-card--unknown .flxu-dot,.flxu-card--paused .flxu-dot{background:#dba617}
 			.flxu-badge{display:inline-block;padding:2px 8px;border-radius:999px;background:var(--flxa-surface-2, #f0f0f1);color:var(--flxa-muted, #50575e);font-size:12px;margin-right:6px}
 			.flxu-badge--ok{background:color-mix(in srgb, #1e8e3e 12%, var(--flxa-surface, #fff));color:color-mix(in srgb, #1e8e3e 70%, var(--flxa-text, #000))}
 			.flxu-badge--update{background:#fcf0e3;color:#9a4d00}

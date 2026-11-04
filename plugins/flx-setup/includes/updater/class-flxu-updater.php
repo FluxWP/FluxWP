@@ -104,7 +104,7 @@ final class FLXU_Updater {
 			return $cached;
 		}
 
-		$fresh = $this->fetch_catalog();
+		$fresh = $this->fetch_catalog( $force );
 		if ( is_array( $fresh ) ) {
 			set_site_transient( self::CATALOG_TRANSIENT, $fresh, self::CATALOG_TTL );
 			update_site_option( self::SLUGS_OPTION, array_keys( $fresh ) );
@@ -125,7 +125,7 @@ final class FLXU_Updater {
 	 *
 	 * @return array|null Hiçbir kaynak yanıt vermediyse ve eldeki veri yoksa null.
 	 */
-	private function fetch_catalog(): ?array {
+	private function fetch_catalog( bool $force = false ): ?array {
 		$cache = get_site_option( FLXU_Sources::CACHE, array() );
 		$cache = is_array( $cache ) ? $cache : array();
 		$parts = array();
@@ -134,7 +134,10 @@ final class FLXU_Updater {
 			if ( empty( $src['enabled'] ) ) {
 				continue;
 			}
-			$cat = 'github' === $src['type'] ? FLXU_Sources::fetch_github( $src ) : $this->fetch_server( $src );
+			// Sunucu bizi geri çevirdiyse (durduruldu, bölge, anahtar) bildirdiği süre dolmadan yeniden sormayız; elle kontrol bekletmez.
+			$cat = ( 'github' !== $src['type'] && ! $force && self::backing_off( FLXU_Sources::status( $src['id'] ) ) )
+				? null
+				: ( 'github' === $src['type'] ? FLXU_Sources::fetch_github( $src ) : $this->fetch_server( $src ) );
 			if ( is_array( $cat ) ) {
 				$any                 = true;
 				$cache[ $src['id'] ] = $cat;
@@ -198,11 +201,11 @@ final class FLXU_Updater {
 	 */
 	public function fetch_server( array $src, bool $retry = true ): ?array {
 		$is_main = ! empty( $src['main'] );
-		$status  = function ( bool $ok, string $error, string $site = '', int $count = 0 ) use ( $src, $is_main ) {
+		$status  = function ( bool $ok, string $error, string $site = '', int $count = 0, string $reason = '', int $retry = 0 ) use ( $src, $is_main ) {
 			if ( $is_main ) {
-				$this->set_status( $ok, $error, $site );
+				$this->set_status( $ok, $error, $site, $reason, $retry );
 			}
-			FLXU_Sources::set_status( $src['id'], $ok, $error, $count );
+			FLXU_Sources::set_status( $src['id'], $ok, $error, $count, $reason, $retry );
 		};
 		$key  = (string) $src['key'];
 		$host = FLXU_Sources::host( $src );
@@ -238,15 +241,20 @@ final class FLXU_Updater {
 		}
 
 		if ( 200 !== $code || ! is_array( $body ) || empty( $body['ok'] ) ) {
-			if ( 401 === $code && '' === $key ) {
-				$msg = __( 'Bu sunucu anahtarsız güncelleme vermiyor; site anahtarı girin.', 'flx-setup' );
-			} elseif ( 401 === $code || 403 === $code ) {
-				$msg = __( 'Site anahtarı geçersiz. Güncelleme sunucusunun panelinde (/admin) "Var olan bir anahtarı test et" ile deneyin.', 'flx-setup' );
-			} else {
-				/* translators: %d: HTTP status code */
-				$msg = sprintf( __( 'Sunucu beklenmeyen yanıt verdi (HTTP %d).', 'flx-setup' ), $code );
+			$reason = is_array( $body ) ? sanitize_key( (string) ( $body['code'] ?? '' ) ) : '';
+			$retry  = self::retry_at( $res, $code, $reason );
+			$msg    = self::block_message( $reason, $code, '' !== $key, $retry );
+			if ( '' === $msg ) {
+				if ( 401 === $code && '' === $key ) {
+					$msg = __( 'Bu sunucu anahtarsız güncelleme vermiyor; site anahtarı girin.', 'flx-setup' );
+				} elseif ( 401 === $code || 403 === $code ) {
+					$msg = __( 'Site anahtarı geçersiz. Güncelleme sunucusunun panelinde (/admin) "Var olan bir anahtarı test et" ile deneyin.', 'flx-setup' );
+				} else {
+					/* translators: %d: HTTP status code */
+					$msg = sprintf( __( 'Sunucu beklenmeyen yanıt verdi (HTTP %d).', 'flx-setup' ), $code );
+				}
 			}
-			$status( false, $msg );
+			$status( false, $msg, '', 0, $reason, $retry );
 			return null;
 		}
 
@@ -363,13 +371,104 @@ final class FLXU_Updater {
 		return array_slice( $out, 0, 20 );
 	}
 
-	private function set_status( bool $ok, string $error, string $site = '' ): void {
+	/** Sunucunun geri çevirme nedenleri (FluxWP güncelleme sunucusu 1.10+ hata gövdesindeki `code`). */
+	const BLOCK_CODES = array( 'paused', 'region_blocked', 'public_disabled', 'key_disabled' );
+
+	/** Engelde yeniden deneme beklemesi (sunucu Retry-After vermediyse). */
+	const BLOCK_WAIT = HOUR_IN_SECONDS;
+
+	/**
+	 * Bir sonraki deneme zamanı (unix). 503/429 için Retry-After (saniye ya da HTTP tarihi, 1 dk–1 gün),
+	 * bilinen engellerde varsayılan bekleme; diğer hatalarda 0 (normal döngü).
+	 *
+	 * @param array|WP_Error $res wp_remote_* yanıtı.
+	 */
+	public static function retry_at( $res, int $code, string $reason ): int {
+		$wait = 0;
+		if ( 503 === $code || 429 === $code ) {
+			$h = trim( (string) wp_remote_retrieve_header( $res, 'retry-after' ) );
+			if ( '' !== $h && ctype_digit( $h ) ) {
+				$wait = (int) $h;
+			} elseif ( '' !== $h && false !== ( $t = strtotime( $h ) ) ) {
+				$wait = $t - time();
+			}
+			if ( $wait <= 0 ) {
+				$wait = self::BLOCK_WAIT;
+			}
+		} elseif ( in_array( $reason, self::BLOCK_CODES, true ) ) {
+			$wait = self::BLOCK_WAIT;
+		}
+		return $wait > 0 ? time() + max( MINUTE_IN_SECONDS, min( DAY_IN_SECONDS, $wait ) ) : 0;
+	}
+
+	/** Durum kaydı bir engel bildiriyor ve bekleme süresi dolmadıysa true. */
+	public static function backing_off( array $status ): bool {
+		return empty( $status['ok'] ) && ! empty( $status['retry'] ) && (int) $status['retry'] > time();
+	}
+
+	/**
+	 * Sunucunun bildirdiği engel için kullanıcıya gösterilecek açıklama. Bilinmeyen kod için boş metin.
+	 */
+	public static function block_message( string $reason, int $code, bool $has_key, int $retry = 0 ): string {
+		$when = $retry > time()
+			/* translators: %s: date and time */
+			? ' ' . sprintf( __( 'Sonraki deneme: %s.', 'flx-setup' ), wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $retry ) )
+			: '';
+		switch ( $reason ) {
+			case 'paused':
+				return __( 'Güncelleme dağıtımı sunucuda geçici olarak durduruldu. Siteniz bir sorun yaşamıyor; dağıtım açılınca güncellemeler yeniden gelir.', 'flx-setup' ) . $when;
+			case 'region_blocked':
+				return ( $has_key
+					? __( 'Güncelleme sunucusu bu sitenin bulunduğu ülkeden gelen isteklere kapalı. Erişim için sunucu yöneticisiyle görüşün.', 'flx-setup' )
+					: __( 'Güncelleme sunucusu bu sitenin bulunduğu ülkeden gelen anahtarsız isteklere kapalı. Site anahtarı girin ya da sunucu yöneticisiyle görüşün.', 'flx-setup' ) ) . $when;
+			case 'public_disabled':
+				return __( 'Bu sunucu anahtarsız güncellemeyi kapattı. Paketleri almaya devam etmek için site anahtarı girin.', 'flx-setup' ) . $when;
+			case 'key_disabled':
+				return __( 'Site anahtarı sunucuda pasif ve anahtarsız güncelleme kapalı; hiçbir paket gelmiyor. Sunucu yöneticisinden anahtarı yeniden etkinleştirmesini isteyin.', 'flx-setup' ) . $when;
+		}
+		if ( 503 === $code || 429 === $code ) {
+			/* translators: %d: HTTP status code */
+			return sprintf( __( 'Sunucu şu an yanıt veremiyor (HTTP %d).', 'flx-setup' ), $code ) . $when;
+		}
+		return '';
+	}
+
+	/**
+	 * Durumun gösterilecek metni. Engel nedeni biliniyorsa o anki dilde yeniden üretilir
+	 * (kontrol cron'da ya da başka dilde çalışmış olabilir), değilse kayıtlı hata.
+	 */
+	public static function status_message( array $status, bool $has_key ): string {
+		$reason = (string) ( $status['code'] ?? '' );
+		if ( in_array( $reason, self::BLOCK_CODES, true ) ) {
+			return self::block_message( $reason, 0, $has_key, (int) ( $status['retry'] ?? 0 ) );
+		}
+		return (string) ( $status['error'] ?? '' );
+	}
+
+	/** Durumdaki engel nedeninin kısa başlığı (kart, eklenti satırı). Engel yoksa boş. */
+	public static function block_title( array $status ): string {
+		switch ( (string) ( $status['code'] ?? '' ) ) {
+			case 'paused':
+				return __( 'Dağıtım durduruldu', 'flx-setup' );
+			case 'region_blocked':
+				return __( 'Bölge engeli', 'flx-setup' );
+			case 'public_disabled':
+				return __( 'Site anahtarı gerekli', 'flx-setup' );
+			case 'key_disabled':
+				return __( 'Site anahtarı pasif', 'flx-setup' );
+		}
+		return '';
+	}
+
+	private function set_status( bool $ok, string $error, string $site = '', string $code = '', int $retry = 0 ): void {
 		update_site_option(
 			self::STATUS_OPTION,
 			array(
 				'ok'      => $ok,
 				'error'   => $error,
 				'site'    => $site,
+				'code'    => $code,
+				'retry'   => $retry,
 				'checked' => time(),
 			)
 		);
@@ -756,8 +855,8 @@ final class FLXU_Updater {
 			$st  = 'info';
 			$msg = __( 'Henüz kontrol yapılmadı.', 'flx-setup' );
 		} elseif ( empty( $status['ok'] ) ) {
-			$st  = 'error';
-			$msg = (string) $status['error'];
+			$st  = 'paused' === ( $status['code'] ?? '' ) ? 'warning' : 'error';
+			$msg = self::status_message( $status, '' !== self::key() );
 		} else {
 			$st = 'ok';
 			/* translators: %s: human time diff */
