@@ -1,17 +1,17 @@
 # FluxWP site yapım rehberi: SEO, performans, erişilebilirlik, güvenlik ve ajan uyumu
 
-Bu rehber yeni bir WordPress sitesi, tema, ön ayar (flx-preset-*), blok deseni ya da sayfa yaparken uyulacak kuralları toplar. Hedef PageSpeed Insights'ta dört kategoride **100** ve Ajan uyumunda **tam puan**. Yapay zekâ ajanları bu rehberi Flux SEO MCP sunucusundan `site_build_guide` aracıyla (ya da `flxseo://guide/site-build` kaynağıyla) alır; Flux AI sohbeti aynı aracı kullanır.
+Bu rehber yeni bir WordPress sitesi, tema, ön ayar (flx-preset-*), blok deseni ya da sayfa yaparken uyulacak kuralları toplar. Hedef PageSpeed Insights'ta dört kategoride **100** ve Ajan uyumunda **tam puan**. Yapay zekâ ajanları bu rehberi Flux SEO MCP sunucusundan `flxseo_site_build_guide` aracıyla (ya da `flxseo://guide/site-build` kaynağıyla) alır; Flux AI sohbeti aynı aracı kullanır.
 
 <!-- topic:workflow -->
 ## 1. Çalışma akışı (ajanlar için)
 
-1. İşe başlamadan bu rehberi oku: `site_build_guide` (konu: `all` ya da ilgili başlık).
-2. `site_info` ile siteyi, `list_patterns` ile temanın hazır bölümlerini gör. Yeni bölüm yazmadan önce var olanı kullan.
+1. İşe başlamadan bu rehberi oku: `flxseo_site_build_guide` (konu: `all` ya da ilgili başlık).
+2. `flxseo_site_info` ile siteyi, `flxseo_list_patterns` ile temanın hazır bölümlerini gör. Yeni bölüm yazmadan önce var olanı kullan.
 3. Sayfayı/temayı bu rehberdeki kurallarla yap. İçerik taslak (draft) oluşturulur; yayın kullanıcının onayıyla.
-4. Bitince `site_audit` aracını `refresh: true` ile çalıştır. Bulgular **kritik → yüksek → orta → düşük** sırasıyla gelir; aynı sırayla düzelt.
-5. Kullanıcı isterse `site_audit` ile `pagespeed: "mobile"` (sonra `"desktop"`) çalıştırıp gerçek Lighthouse puanını al. Bir ölçüm 15–40 sn sürer.
-   Her çalıştırma saklanır; `site_audit_history` geçmiş raporları, eğilimi ve çözülenleri gösterir (düzeltmenin kalıcı olduğunu doğrulamak için).
-6. `fix_id` alanı dolu bulgular tek tıkla düzelir: `system_fix` aracına bu kimliği ver (önce kullanıcıya ne açılacağını söyle).
+4. Bitince `flxseo_site_audit` aracını `refresh: true` ile çalıştır. Bulgular **kritik → yüksek → orta → düşük** sırasıyla gelir; aynı sırayla düzelt.
+5. Kullanıcı isterse `flxseo_site_audit` ile `pagespeed: "mobile"` (sonra `"desktop"`) çalıştırıp gerçek Lighthouse puanını al. Bir ölçüm 15–40 sn sürer.
+   Her çalıştırma saklanır; `flxseo_site_audit_history` geçmiş raporları, eğilimi ve çözülenleri gösterir (düzeltmenin kalıcı olduğunu doğrulamak için).
+6. `fix_id` alanı dolu bulgular tek tıkla düzelir: `flxseo_system_fix` aracına bu kimliği ver (önce kullanıcıya ne açılacağını söyle).
 7. Düzeltmeden sonra önbelleği boşalt (LiteSpeed › Purge All) ve denetimi yeniden çalıştır.
 
 ### Öncelikler

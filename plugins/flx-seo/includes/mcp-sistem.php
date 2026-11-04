@@ -90,7 +90,7 @@ function flxseo_system_fix_run( $id, $value = null, $via = 'mcp' ) {
 	}
 	$fixes = flxseo_system_fixes();
 	if ( ! isset( $fixes[ $id ] ) ) {
-		throw new Exception( 'İzinli düzeltmeler arasında yok: ' . $id . '. system_fixes ile listeyi görün.' );
+		throw new Exception( 'İzinli düzeltmeler arasında yok: ' . $id . '. flxseo_system_fixes ile listeyi görün.' );
 	}
 	$f = $fixes[ $id ];
 	if ( $f['value'] && null === $value ) {
@@ -133,9 +133,11 @@ function flxseo_system_fix_run( $id, $value = null, $via = 'mcp' ) {
 add_filter(
 	'flx_mcp_tools',
 	function ( $tools ) {
-		$tools['system_checks'] = array(
+		$tools['flxseo_system_checks'] = array(
+			'aliases'     => array( 'system_checks' ), // Flux SEO 1.5.x ve öncesindeki ad.
+			'source'      => 'flx-seo',
 			'title'       => 'Sistem kontrolü',
-			'description' => 'Görünüm › Sistem Kontrolü ekranındaki tüm satırlar: eklentiler (kurulu/etkin/sürüm), cron, site ayarları, sayfalar, SEO ve eklentilerin kendi kontrolleri. Her satırda status (ok|warning|error|info), mesaj ve varsa "fixes" (system_fix ile uygulanabilecek düzeltme kimlikleri) bulunur.',
+			'description' => 'Görünüm › Sistem Kontrolü ekranındaki tüm satırlar: eklentiler (kurulu/etkin/sürüm), cron, site ayarları, sayfalar, SEO ve eklentilerin kendi kontrolleri. Her satırda status (ok|warning|error|info), mesaj ve varsa "fixes" (flxseo_system_fix ile uygulanabilecek düzeltme kimlikleri) bulunur.',
 			'readonly'    => true,
 			'cap'         => 'manage_options',
 			'schema'      => array(
@@ -195,9 +197,11 @@ add_filter(
 			},
 		);
 
-		$tools['system_fixes'] = array(
+		$tools['flxseo_system_fixes'] = array(
+			'aliases'     => array( 'system_fixes' ), // Flux SEO 1.5.x ve öncesindeki ad.
+			'source'      => 'flx-seo',
 			'title'       => 'İzinli sistem düzeltmeleri',
-			'description' => 'system_fix ile uygulanabilecek düzeltmeler: ne yaptığı, değer isteyip istemediği (value şeması), mevcut değer ve hangi kontrol satırlarını çözdüğü.',
+			'description' => 'flxseo_system_fix ile uygulanabilecek düzeltmeler: ne yaptığı, değer isteyip istemediği (value şeması), mevcut değer ve hangi kontrol satırlarını çözdüğü.',
 			'readonly'    => true,
 			'cap'         => 'manage_options',
 			'schema'      => array( 'type' => 'object', 'properties' => new stdClass() ),
@@ -224,16 +228,18 @@ add_filter(
 			},
 		);
 
-		$tools['system_fix'] = array(
+		$tools['flxseo_system_fix'] = array(
+			'aliases'     => array( 'system_fix' ), // Flux SEO 1.5.x ve öncesindeki ad.
+			'source'      => 'flx-seo',
 			'title'       => 'Sistem düzeltmesi uygula',
-			'description' => 'system_fixes listesindeki bir düzeltmeyi uygular (yalnızca izinli liste; yönetici anahtarı gerekir). Önceki ve sonraki değer kaydedilir. Uyguladıktan sonra system_checks ile sonucu doğrulayın.',
+			'description' => 'flxseo_system_fixes listesindeki bir düzeltmeyi uygular (yalnızca izinli liste; yönetici anahtarı gerekir). Önceki ve sonraki değer kaydedilir. Uyguladıktan sonra flxseo_system_checks ile sonucu doğrulayın.',
 			'cap'         => 'manage_options',
 			'schema'      => array(
 				'type'       => 'object',
 				'required'   => array( 'fix' ),
 				'properties' => array(
-					'fix'   => array( 'type' => 'string', 'description' => 'Düzeltme kimliği (system_fixes).' ),
-					'value' => array( 'description' => 'Düzeltme değer istiyorsa (system_fixes › value şeması).' ),
+					'fix'   => array( 'type' => 'string', 'description' => 'Düzeltme kimliği (flxseo_system_fixes).' ),
+					'value' => array( 'description' => 'Düzeltme değer istiyorsa (flxseo_system_fixes › value şeması).' ),
 				),
 			),
 			'run'         => function ( $a ) {
@@ -241,7 +247,9 @@ add_filter(
 			},
 		);
 
-		$tools['system_fix_log'] = array(
+		$tools['flxseo_system_fix_log'] = array(
+			'aliases'     => array( 'system_fix_log' ), // Flux SEO 1.5.x ve öncesindeki ad.
+			'source'      => 'flx-seo',
 			'title'       => 'Sistem düzeltme kaydı',
 			'description' => 'Son düzeltmeler: zaman, kullanıcı, düzeltme, önceki → sonraki değer, sonuç.',
 			'readonly'    => true,

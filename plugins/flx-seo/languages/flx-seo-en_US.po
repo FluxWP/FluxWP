@@ -217,8 +217,8 @@ msgstr "Save"
 msgid "Yeni site yapım rehberi"
 msgstr "New site build guide"
 
-msgid "Yeni sayfa, tema ya da ön ayar yaparken SEO, performans, erişilebilirlik, güvenlik ve ajan uyumu için kurallar ve kontrol listesi. Yapay zekâ ajanları aynı rehberi MCP aracı site_build_guide ile, Flux AI sohbeti de araç olarak alır."
-msgstr "Rules and a checklist for SEO, performance, accessibility, security and agent readiness when you build a new page, theme or preset. AI agents get the same guide with the MCP tool site_build_guide, and Flux AI chat gets it as a tool."
+msgid "Yeni sayfa, tema ya da ön ayar yaparken SEO, performans, erişilebilirlik, güvenlik ve ajan uyumu için kurallar ve kontrol listesi. Yapay zekâ ajanları aynı rehberi MCP aracı flxseo_site_build_guide ile, Flux AI sohbeti de araç olarak alır."
+msgstr "Rules and a checklist for SEO, performance, accessibility, security and agent readiness when you build a new page, theme or preset. AI agents get the same guide with the MCP tool flxseo_site_build_guide, and Flux AI chat gets it as a tool."
 
 msgid "Türkçe (.md) indir"
 msgstr "Download Turkish (.md)"

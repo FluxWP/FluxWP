@@ -2,7 +2,7 @@
 /**
  * MCP: WooCommerce sipariş özeti (yalnız okuma).
  *
- * order_summary: bugünkü ödenmiş sipariş sayısı, ciro (iadeler düşülmüş), ortalama, onay/ödeme bekleyenler
+ * flxseo_order_summary: bugünkü ödenmiş sipariş sayısı, ciro (iadeler düşülmüş), ortalama, onay/ödeme bekleyenler
  * ve son siparişler. Kişisel veri en az: müşteri için yalnız ad + soyadın baş harfi; adres, e-posta, telefon yok.
  * TV sipariş paneli dakikada bir çağırır; bu yüzden başarılı çağrılar Son işlemler'e yazılmaz ('log' => false).
  * Böyle bir istemci için anahtarı yalnız bu araçla sınırlayın (Yapay zekâ › Araçları sınırla).
@@ -50,7 +50,9 @@ add_filter(
 		if ( ! function_exists( 'wc_get_orders' ) ) {
 			return $tools;
 		}
-		$tools['order_summary'] = array(
+		$tools['flxseo_order_summary'] = array(
+			'aliases'     => array( 'order_summary' ), // Flux SEO 1.5.x ve öncesindeki ad.
+			'source'      => 'flx-seo',
 			'title'       => 'Sipariş özeti',
 			'description' => 'WooCommerce: bugünkü ödenmiş sipariş sayısı, ciro (iadeler düşülmüş), ortalama sepet, ödeme/onay bekleyenler ve son siparişler (numara, durum, tutar, saat, ürün adedi, müşteri adı + soyadın baş harfi). Adres, e-posta, telefon dönmez. "Bugün" sitenin saat diliminde ya da verilen timezone\'da.',
 			'readonly'    => true,

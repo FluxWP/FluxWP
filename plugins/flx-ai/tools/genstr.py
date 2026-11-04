@@ -13,6 +13,7 @@ js, php = [], []
 for d, _, fs in os.walk(ROOT):
     if '/tools' in d or '/vendor' in d: continue
     for f in sorted(fs):
+        if not (f.endswith('.js') or f.endswith('.php')): continue
         p = os.path.join(d, f); src = open(p, encoding='utf-8').read()
         if f.endswith('.js'):
             for m in JS_RE.finditer(src):

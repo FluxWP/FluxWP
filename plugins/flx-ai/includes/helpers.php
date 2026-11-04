@@ -44,7 +44,8 @@ function flxai_defaults() {
 		'media_image_model'   => 'gemini-nano-banana-2.1',
 		'media_video_model'   => 'seedance-2.5',
 		'media_days'          => 90,        // iş kayıtları (dosyalar silinmez)
-		'tools_off'           => array(),   // kapalı araçlar
+		'tools_off'           => array(),   // kapalı araçlar (sohbet + MCP)
+		'tool_pick'           => array(),   // ad çakışmasında açık olacak kaynak: ad => eklenti
 		'sources_off'         => array(),   // Flux AI › Bağlı sistemler'de kapatılan kaynaklar
 		'log_bodies'          => 1,         // istek/cevap içeriği (maskeli, kısaltılmış)
 		'log_body_days'       => 30,

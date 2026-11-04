@@ -1,6 +1,6 @@
 # Flux AI — Geliştirici API'si
 
-**Sürüm 0.7.0.** Diğer FluxWP eklentileri yapay zekâyı kendi kodları yerine Flux AI üzerinden çağırır: anahtar, model, önbellek, harcama sınırı ve raporlar tek yerde. Flux AI yoksa eklenti eski koduna düşer.
+**Sürüm 0.8.0.** Diğer FluxWP eklentileri yapay zekâyı kendi kodları yerine Flux AI üzerinden çağırır: anahtar, model, önbellek, harcama sınırı ve raporlar tek yerde. Flux AI yoksa eklenti eski koduna düşer.
 
 ## Geçiş kalıbı (her paket)
 ```php
@@ -138,6 +138,29 @@ add_filter( 'flxai_tools', function ( $tools ) {
 - `readonly => false` ya da `confirm => true` olan araç onay kartında bekler; kullanıcı onaylamadan `run` çağrılmaz.
 - MCP araçları (`flx_mcp_tools`, eski adı `flxseo_mcp_tools`) sohbete otomatik gelir; `readonly` bilgisi aynen kullanılır. Hem MCP'de hem sohbette görünecek araç için `flx_mcp_tools`, yalnız sohbet için `flxai_tools` kullanın.
 - Yönetici araçları Flux AI › Araçlar'dan kapatabilir.
+
+## Flux AI SDK (0.8.0)
+
+Eklentiler (FluxWP ya da üçüncü taraf) AI özelliklerini **Flux AI SDK** ile ekler: sürümlü küçük bir kütüphane, her eklenti `includes/flx-ai-sdk/` kopyasını taşır, yalnız en yeni sürüm yüklenir. Kaynak ve belge: `tools/ai-sdk/` (README). Kısaca:
+
+```php
+add_action( 'flx_ai_register', function () {
+	flx_ai_plugin( 'flx-x', array( 'label' => 'Flux X', 'prefix' => 'flxx' ) );
+	flx_ai_tool( 'flx-x', 'summary', array( 'title' => 'Özet', 'readonly' => true, 'run' => fn( $a, $ctx ) => array() ) ); // flxx_summary
+	flx_ai_feature( 'flx-x', 'auto_summary', 'Otomatik özet' );
+} );
+if ( flx_ai_enabled( 'flx-x', 'auto_summary' ) ) { $r = flx_ai_complete( 'flx-x', $prompt ); }
+```
+- SDK araçları MCP sunucusunda ve sohbette görünür (`mcp` / `chat` => false ile biri kapatılır). Ad eklenti önekini kendiliğinden alır.
+- Ayar alanları **Bağlı sistemler › AI ayarları** ekranında (`admin.php?page=flx-ai-systems&system=<slug>`) çizilir; değerler `flx_ai_plugin_settings` seçeneğinde, eklenti `flx_ai_get()` ile okur. SDK ile kaydolan eklenti Bağlı sistemler ve kaynak listesine kendiliğinden eklenir.
+- Flux AI yoksa hata olmaz: `flx_ai_chat()` `WP_Error( 'flx_ai_missing' )` döner.
+
+## Araç adları, çakışma ve eski adlar (0.8.0)
+- Araç adı eklenti önekiyle başlamalı (`flxseo_`, `flxcrm_`, `flxp_` …). Öneksiz adlar Araçlar ekranında "öneksiz" rozetiyle görünür.
+- **Çakışma**: aynı adı iki eklenti kaydederse ilk kaydeden açık kalır, ikincisi üzerine yazamaz ve kapalı bekler. Araçlar ekranında iki satır ve "Bunu kullan" düğmesi çıkar (ayar `tool_pick`: ad => eklenti). Aynı eklentinin aynı adı yeniden tanımlaması ya da başka eklentinin aracı `source` alanını koruyarak genişletmesi (ör. Flux Lang'ın `flxseo_list_content`'e dil eklemesi) çakışma sayılmaz. Filtrelerle gelen araçlarda `source` boşsa geri çağrının bulunduğu eklenti klasörü yazılır.
+- **Eski adlar**: araç tanımına `'aliases' => array( 'eski_ad' )`. MCP çağrıları, anahtar kapsamları ve kapalı araç listesi eski adla da çalışır; `tools/list` yalnız yeni adı gösterir. Yeniden adlandırılanlar: Flux SEO 1.6.0 `site_info` … `order_summary` → `flxseo_*`, Flux Setup 1.0.21 `preset_*` → `flxk_preset_*`, Flux TV Board 0.7.0 `tv_*` → `flxtp_tv_*`.
+- Flux AI › Araçlar'da kapatılan araç artık **hem sohbette hem MCP'de** kapalıdır.
+- Fonksiyonlar: `flxai_tool_resolve( $name )` (eski ad → yeni ad), `flxai_tool_is_off( $name )`, `flxai_mcp_registry()` / `flxai_chat_registry()` (`tools`, `dupes`, `aliases`).
 
 ## MCP sunucusu (0.7.0)
 
