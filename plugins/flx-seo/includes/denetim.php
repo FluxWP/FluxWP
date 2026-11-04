@@ -877,7 +877,14 @@ function flxseo_psi_run( $strategy = 'mobile', $url = '' ) {
 	if ( function_exists( 'set_time_limit' ) ) {
 		@set_time_limit( 120 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
 	}
-	$r = wp_remote_get( FLXSEO_PSI_ENDPOINT . '?' . $query, array( 'timeout' => 90 ) );
+	// Anahtar "Web siteleri" (HTTP referrer) kısıtlıysa Google boş Referer'ı reddeder; site adresini gönder.
+	$r = wp_remote_get(
+		FLXSEO_PSI_ENDPOINT . '?' . $query,
+		array(
+			'timeout' => 90,
+			'headers' => array( 'Referer' => home_url( '/' ) ),
+		)
+	);
 	if ( is_wp_error( $r ) ) {
 		return $r;
 	}

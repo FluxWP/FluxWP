@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.4.3
+- PageSpeed Insights isteği site adresini `Referer` olarak gönderir: "Web siteleri" (HTTP referrer) kısıtlı API anahtarları artık "Requests from referer <empty> are blocked" hatası vermez. Anahtarın izinli siteler listesinde sitenin adresi (ör. `example.com/*`) olmalı.
+
 ## 1.4.2
 - Rapor geçmişinde iki grafik: öneri sayısı (önceliğe göre yığılmış, eksen ve açıklamalı) ve PageSpeed puanları (Performans, Erişilebilirlik, En iyi uygulamalar, SEO çizgileri; Mobil / Masaüstü seçmeli).
 - Geçmiş tablosunda mobil ve masaüstü puanları + LCP birlikte.
