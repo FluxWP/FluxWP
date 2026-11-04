@@ -282,12 +282,6 @@ function flxwk_view_page( $post ) {
 					<p class="flxwk-meta">
 						<span><?php echo flxwk_icon( 'clock' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 						<?php
-						/* translators: %s: süre */
-						echo esc_html( sprintf( __( 'Güncellendi: %s', 'flx-wiki' ), flxwk_ago( get_post_modified_time( 'U', true, $post ) ) ) );
-						?>
-						</span>
-						<span>
-						<?php
 						$min = flxwk_read_minutes( $md );
 						/* translators: %s: dakika */
 						echo esc_html( sprintf( _n( '%s dk okuma', '%s dk okuma', $min, 'flx-wiki' ), number_format_i18n( $min ) ) );
@@ -322,6 +316,14 @@ function flxwk_view_page( $post ) {
 						</div>
 					</section>
 				<?php endif; ?>
+
+				<p class="flxwk-meta flxwk-updated">
+					<?php echo flxwk_icon( 'clock' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+					<?php
+					/* translators: %s: süre */
+					echo esc_html( sprintf( __( 'Güncellendi: %s', 'flx-wiki' ), flxwk_ago( get_post_modified_time( 'U', true, $post ) ) ) );
+					?>
+				</p>
 
 				<nav class="flxwk-pager" aria-label="<?php esc_attr_e( 'Önceki ve sonraki sayfa', 'flx-wiki' ); ?>">
 					<?php if ( $prev ) : ?>
@@ -406,12 +408,20 @@ function flxwk_view_actions( $post, $mdurl ) {
 	<?php
 }
 
-function flxwk_view_crumbs() {
+/**
+ * Konum satırı. $bar: mobilde "Sayfalar" düğmesinin yanında, wiki adı olmadan.
+ */
+function flxwk_view_crumbs( $bar = false ) {
 	$c = flxwk_breadcrumbs();
-	if ( count( $c ) < 2 && ! is_post_type_archive( FLXWK_PT ) ) {
+	if ( $bar ) {
+		$c = array_slice( array_slice( $c, 1 ), -2 );
+		if ( ! $c ) {
+			return;
+		}
+	} elseif ( count( $c ) < 2 && ! is_post_type_archive( FLXWK_PT ) ) {
 		return;
 	}
-	echo '<nav class="flxwk-crumbs" aria-label="' . esc_attr__( 'Konum', 'flx-wiki' ) . '"><ol>';
+	echo '<nav class="flxwk-crumbs' . ( $bar ? ' is-bar' : '' ) . '" aria-label="' . esc_attr__( 'Konum', 'flx-wiki' ) . '"' . '><ol>';
 	$last = count( $c ) - 1;
 	foreach ( $c as $i => $it ) {
 		$url = is_wp_error( $it[1] ) ? '' : $it[1];
@@ -443,6 +453,7 @@ function flxwk_view_nav( $current ) {
 	};
 	?>
 	<button type="button" class="flxwk-navbtn" data-flxwk-nav aria-controls="flxwk-nav" aria-expanded="false"><?php echo flxwk_icon( 'menu' ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <?php esc_html_e( 'Sayfalar', 'flx-wiki' ); ?></button>
+	<?php flxwk_view_crumbs( true ); ?>
 	<aside class="flxwk-nav" id="flxwk-nav" aria-label="<?php esc_attr_e( 'Wiki sayfaları', 'flx-wiki' ); ?>">
 		<a class="flxwk-nav__home" href="<?php echo esc_url( flxwk_home_url() ); ?>"><?php echo flxwk_icon( 'book' ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <?php echo esc_html( flxwk_title() ); ?></a>
 		<?php flxwk_search_form( false ); ?>
