@@ -85,12 +85,15 @@ final class FLXB_Page_Add {
 		}
 		echo '</div></div></section>';
 
-		/* Donor */
+		/* Donor (2.12.0: ?donor=ID prefills from the donor card) */
+		$pre = absint( FLXB_Admin::q( 'donor', '0' ) );
+		$pre = $pre ? FLXB_Donors::get( $pre ) : null;
+		$pre = is_array( $pre ) ? $pre : array( 'name' => '', 'phone' => '', 'email' => '', 'consent_kvkk' => 0, 'consent_email' => 0, 'consent_sms' => 0 );
 		echo '<section class="flxb-card"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Donor', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( 'Matched to an existing donor card on phone number or e-mail address.', 'flx-donate' ) . '</p></div></div><div class="flxb-form">';
-		echo '<div class="flxb-field"><label for="flxb-a-name">' . esc_html__( 'Name', 'flx-donate' ) . '</label><input type="text" id="flxb-a-name" name="donor_name" maxlength="190"></div>';
-		echo '<div class="flxb-fields-2"><div class="flxb-field"><label for="flxb-a-phone">' . esc_html__( 'Phone', 'flx-donate' ) . '</label><input type="tel" id="flxb-a-phone" name="donor_phone" maxlength="32"></div>';
-		echo '<div class="flxb-field"><label for="flxb-a-mail">' . esc_html__( 'E-mail', 'flx-donate' ) . '</label><input type="email" id="flxb-a-mail" name="donor_email" maxlength="190"></div></div>';
-		echo '<div class="flxb-checks"><label class="flxb-check"><input type="checkbox" name="consent_kvkk" value="1"> ' . esc_html__( 'Privacy notice (KVKK) accepted', 'flx-donate' ) . '</label><label class="flxb-check"><input type="checkbox" name="consent_email" value="1"> ' . esc_html__( 'May be contacted by e-mail', 'flx-donate' ) . '</label><label class="flxb-check"><input type="checkbox" name="consent_sms" value="1"> ' . esc_html__( 'May be contacted by SMS', 'flx-donate' ) . '</label></div>';
+		echo '<div class="flxb-field"><label for="flxb-a-name">' . esc_html__( 'Name', 'flx-donate' ) . '</label><input type="text" id="flxb-a-name" name="donor_name" maxlength="190" value="' . esc_attr( (string) $pre['name'] ) . '"></div>';
+		echo '<div class="flxb-fields-2"><div class="flxb-field"><label for="flxb-a-phone">' . esc_html__( 'Phone', 'flx-donate' ) . '</label><input type="tel" id="flxb-a-phone" name="donor_phone" maxlength="32" value="' . esc_attr( (string) $pre['phone'] ) . '"></div>';
+		echo '<div class="flxb-field"><label for="flxb-a-mail">' . esc_html__( 'E-mail', 'flx-donate' ) . '</label><input type="email" id="flxb-a-mail" name="donor_email" maxlength="190" value="' . esc_attr( (string) $pre['email'] ) . '"></div></div>';
+		echo '<div class="flxb-checks"><label class="flxb-check"><input type="checkbox" name="consent_kvkk" value="1"' . checked( (int) $pre['consent_kvkk'], 1, false ) . '> ' . esc_html__( 'Privacy notice (KVKK) accepted', 'flx-donate' ) . '</label><label class="flxb-check"><input type="checkbox" name="consent_email" value="1"' . checked( (int) $pre['consent_email'], 1, false ) . '> ' . esc_html__( 'May be contacted by e-mail', 'flx-donate' ) . '</label><label class="flxb-check"><input type="checkbox" name="consent_sms" value="1"' . checked( (int) $pre['consent_sms'], 1, false ) . '> ' . esc_html__( 'May be contacted by SMS', 'flx-donate' ) . '</label></div>';
 		echo '</div></section></div>';
 
 		/* Payment */

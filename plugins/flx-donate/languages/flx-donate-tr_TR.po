@@ -5007,3 +5007,9 @@ msgstr "Rapor"
 
 msgid "Extra tab"
 msgstr "Ek sekme"
+
+msgid "Privacy and donation note"
+msgstr "Gizlilik ve bağış notu"
+
+msgid "Donation note"
+msgstr "Bağış notu"

@@ -1675,5 +1675,7 @@ Teşekkürler,
     'Import %s row' . "\0" . 'Import %s rows' => '%s satırı yükle' . "\0" . '%s satırı yükle',
     'Report' => 'Rapor',
     'Extra tab' => 'Ek sekme',
+    'Privacy and donation note' => 'Gizlilik ve bağış notu',
+    'Donation note' => 'Bağış notu',
   ),
 );
