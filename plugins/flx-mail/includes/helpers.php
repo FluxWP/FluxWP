@@ -353,7 +353,7 @@ function flxi_global_vars() {
 		'site_url' => home_url( '/' ),
 		'kurum'    => $b['org'],
 		'yil'      => wp_date( 'Y' ),
-		'tarih'    => wp_date( get_option( 'date_format' ) ),
+		'tarih'    => flx_date( time() ),
 		'kurum_telefon' => $b['phone'],
 		'kurum_eposta'  => $b['email'],
 	);

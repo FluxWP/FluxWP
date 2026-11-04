@@ -4115,18 +4115,17 @@ public function check_nonce_permission_efb($request) {
 			$code =wp_create_nonce($code);
 			if($value!=null){
 				$r=true;
-				$date_format = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
 				if ( ! empty( $value[0]->date ) ) {
 					$ts = strtotime( $value[0]->date );
 					if ( $ts !== false ) {
-						$value[0]->date = wp_date( $date_format, $ts );
+						$value[0]->date = flx_date( $ts, 'datetime' );
 					}
 				}
 				foreach ( $content as $c ) {
 					if ( ! empty( $c->date ) ) {
 						$ts = strtotime( $c->date );
 						if ( $ts !== false ) {
-							$c->date = wp_date( $date_format, $ts );
+							$c->date = flx_date( $ts, 'datetime' );
 						}
 					}
 				}

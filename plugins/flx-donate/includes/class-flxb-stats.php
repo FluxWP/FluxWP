@@ -84,7 +84,7 @@ final class FLXB_Stats {
 			$day      = self::shift( $from, $i );
 			$series[] = array(
 				'day'       => $day,
-				'label'     => wp_date( 'j M', strtotime( $day . ' 12:00:00' ) ),
+				'label'     => flx_date( strtotime( $day . ' 12:00:00' ), 'short' ),
 				'one_time'  => round( $index[ $day ]['one_time'][0] ?? 0, 2 ),
 				'recurring' => round( $index[ $day ]['recurring'][0] ?? 0, 2 ),
 				'gifts'     => ( $index[ $day ]['one_time'][1] ?? 0 ) + ( $index[ $day ]['recurring'][1] ?? 0 ),

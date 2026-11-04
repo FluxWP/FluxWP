@@ -205,3 +205,152 @@ function flx_brand_footer_fallback( $html, $block ) {
 	$pos = strripos( $html, '</footer>' );
 	return false === $pos ? $html . $bar : substr( $html, 0, $pos ) . $bar . substr( $html, $pos );
 }
+
+/* ---------- Dil bazlı tarih ve "… önce" (her FluxWP paketi kullanır) ----------
+ *
+ * WordPress'in human_time_diff() ve wp_date() ay/gün adları çekirdek dil paketine bağlıdır; paket inmemişse
+ * ("31 minutes önce", "August 10, 2026") eklentinin Türkçe metniyle karışır. Bu işlevler TR ve EN'i kendi
+ * içinde taşır, diğer dillerde WordPress'e bırakır. Yönetimde kullanıcının dili (determine_locale) esas alınır.
+ */
+
+/** Görüntü dili: 'tr', 'en' ya da '' (başka dil: WordPress çevirisi kullanılır). */
+function flx_lang() {
+	$l = (string) ( function_exists( 'determine_locale' ) ? determine_locale() : get_locale() );
+	$l = (string) apply_filters( 'flx_lang_locale', $l );
+	if ( 0 === strpos( $l, 'tr' ) ) {
+		return 'tr';
+	}
+	return 0 === strpos( $l, 'en' ) ? 'en' : '';
+}
+
+/**
+ * Zaman damgasına çevirir: int (Unix), DateTimeInterface ya da GMT "Y-m-d H:i:s" (WordPress veritabanı biçimi).
+ *
+ * @return int 0 = geçersiz.
+ */
+function flx_ts( $time ) {
+	if ( $time instanceof DateTimeInterface ) {
+		return $time->getTimestamp();
+	}
+	if ( is_numeric( $time ) ) {
+		return (int) $time;
+	}
+	$time = trim( (string) $time );
+	if ( '' === $time || 0 === strpos( $time, '0000-00-00' ) ) {
+		return 0;
+	}
+	$ts = strtotime( preg_match( '/[zZ]|[+-]\d\d:?\d\d$/', $time ) ? $time : $time . ' UTC' );
+	return $ts ? (int) $ts : 0;
+}
+
+/**
+ * "31 dakika önce" / "31 minutes ago", "dün" / "yesterday", gelecek için "3 gün sonra" / "in 3 days".
+ *
+ * @param int|string|DateTimeInterface $time Bkz flx_ts().
+ * @param int|string|null              $now  Karşılaştırma anı (varsayılan şimdi).
+ */
+function flx_time_ago( $time, $now = null ) {
+	$ts = flx_ts( $time );
+	if ( ! $ts ) {
+		return '—';
+	}
+	$now  = null === $now ? time() : flx_ts( $now );
+	$diff = $now - $ts;
+	$fut  = $diff < 0;
+	$diff = abs( $diff );
+	$lang = flx_lang();
+	if ( '' === $lang ) {
+		/* translators: %s: time difference (WordPress core strings) */
+		return sprintf( $fut ? __( '%s from now' ) : __( '%s ago' ), human_time_diff( $ts, $now ) ); // phpcs:ignore WordPress.WP.I18n.MissingArgDomain
+	}
+	$tr = 'tr' === $lang;
+	if ( $diff < 60 ) {
+		return $tr ? ( $fut ? 'birazdan' : 'az önce' ) : ( $fut ? 'in a moment' : 'just now' );
+	}
+	$units = array(
+		array( YEAR_IN_SECONDS, 'yıl', 'year' ),
+		array( MONTH_IN_SECONDS, 'ay', 'month' ),
+		array( WEEK_IN_SECONDS, 'hafta', 'week' ),
+		array( DAY_IN_SECONDS, 'gün', 'day' ),
+		array( HOUR_IN_SECONDS, 'saat', 'hour' ),
+		array( MINUTE_IN_SECONDS, 'dakika', 'minute' ),
+	);
+	foreach ( $units as $u ) {
+		if ( $diff >= $u[0] ) {
+			$n = max( 1, (int) floor( $diff / $u[0] ) );
+			if ( DAY_IN_SECONDS === $u[0] && 1 === $n ) {
+				return $tr ? ( $fut ? 'yarın' : 'dün' ) : ( $fut ? 'tomorrow' : 'yesterday' );
+			}
+			$num = number_format_i18n( $n );
+			if ( $tr ) {
+				return $num . ' ' . $u[1] . ( $fut ? ' sonra' : ' önce' );
+			}
+			$w = $num . ' ' . $u[2] . ( 1 === $n ? '' : 's' );
+			return $fut ? 'in ' . $w : $w . ' ago';
+		}
+	}
+	return '';
+}
+
+/**
+ * Tarih, kullanıcının dilinde ay/gün adlarıyla. Saat dilimi sitenin saat dilimi (wp_date).
+ *
+ * @param int|string|DateTimeInterface $time   Bkz flx_ts().
+ * @param string                       $format 'date' (10 Ağustos 2026 / Aug 10, 2026), 'short' (10 Ağu / Aug 10),
+ *                                             'datetime' (tarih + saat) ya da PHP tarih biçimi.
+ */
+function flx_date( $time, $format = 'date' ) {
+	$ts = flx_ts( $time );
+	if ( ! $ts ) {
+		return '—';
+	}
+	$lang = flx_lang();
+	$tr   = 'tr' === $lang;
+	$presets = array(
+		'date'     => $tr ? 'j F Y' : 'M j, Y',
+		'short'    => $tr ? 'j M' : 'M j',
+		'datetime' => $tr ? 'j F Y H:i' : 'M j, Y H:i',
+		'time'     => 'H:i',
+	);
+	if ( '' === $lang ) {
+		$presets = array(
+			'date'     => get_option( 'date_format' ),
+			'short'    => 'j M',
+			'datetime' => get_option( 'date_format' ) . ' ' . get_option( 'time_format' ),
+			'time'     => get_option( 'time_format' ),
+		);
+	}
+	$fmt = isset( $presets[ $format ] ) ? $presets[ $format ] : (string) $format;
+	if ( '' === $lang ) {
+		return wp_date( $fmt, $ts );
+	}
+	$names = $tr ? array(
+		'F' => array( 'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık' ),
+		'M' => array( 'Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara' ),
+		'l' => array( 'Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi' ),
+		'D' => array( 'Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt' ),
+	) : array(
+		'F' => array( 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ),
+		'M' => array( 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ),
+		'l' => array( 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ),
+		'D' => array( 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ),
+	);
+	$month = (int) wp_date( 'n', $ts ) - 1;
+	$day   = (int) wp_date( 'w', $ts );
+	$out   = '';
+	$len   = strlen( $fmt );
+	for ( $i = 0; $i < $len; $i++ ) {
+		$c = $fmt[ $i ];
+		if ( '\\' === $c && $i + 1 < $len ) {
+			$out .= '\\' . $fmt[ ++$i ];
+			continue;
+		}
+		if ( isset( $names[ $c ] ) ) {
+			$word = $names[ $c ][ 'F' === $c || 'M' === $c ? $month : $day ];
+			$out .= preg_replace( '/(.)/u', '\\\\$1', $word );
+			continue;
+		}
+		$out .= $c;
+	}
+	return wp_date( $out, $ts );
+}

@@ -207,7 +207,7 @@ function flx_sk_checks_cron() {
 		$out[] = flx_sk_item( 'theme.cron.last', $g, __( 'Son çalışma', 'fluxwp' ), $disabled ? 'warning' : 'info', __( 'Henüz kayıt yok. Tema güncellemesinden sonraki ilk cron çalışmasında görünür; birkaç dakika sonra bu sayfayı yenileyin.', 'fluxwp' ) );
 	} else {
 		/* translators: 1: time ago, 2: date */
-		$msg    = sprintf( __( '%1$s önce (%2$s).', 'fluxwp' ), human_time_diff( $last ), wp_date( 'd.m.Y H:i', $last ) );
+		$msg    = sprintf( __( '%1$s (%2$s).', 'fluxwp' ), flx_time_ago( $last ), wp_date( 'd.m.Y H:i', $last ) );
 		$status = 'ok';
 		if ( $ago > 3 * HOUR_IN_SECONDS ) {
 			$status = 'error';

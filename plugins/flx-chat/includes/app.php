@@ -61,7 +61,7 @@ function flxc_app_time( $ms ) {
 		return array( '', '' );
 	}
 	$today = wp_date( 'Y-m-d' ) === wp_date( 'Y-m-d', $ts );
-	return array( wp_date( 'c', $ts ), $today ? wp_date( get_option( 'time_format' ), $ts ) : wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $ts ) );
+	return array( wp_date( 'c', $ts ), $today ? flx_date( $ts, 'time' ) : flx_date( $ts, 'datetime' ) );
 }
 
 /** Mesajı kim yazdı: customer | bot | staff. */

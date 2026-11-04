@@ -106,14 +106,14 @@ function flxs_ico( $name ) {
 	);
 	return '<svg class="flxs-ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . ( $p[ $name ] ?? '' ) . '</svg>';
 }
-/** Etkinlik tarihi, site diline göre (date_i18n). Biçim de çevrilebilir. */
+/** Etkinlik tarihi, ziyaretçinin dilinde (ortak flx_date). Biçim de çevrilebilir. */
 function flxs_tr_date( $ymd, $fmt = null ) {
 	if ( ! $ymd ) {
 		return '';
 	}
 	/* translators: tarih biçimi (PHP date), örn. 11 Kasım 2026, Çarşamba */
 	$fmt = $fmt ? $fmt : _x( 'j F Y, l', 'event date format', 'flx-certificates' );
-	return date_i18n( $fmt, strtotime( $ymd . ' 12:00:00' ) );
+	return flx_date( strtotime( $ymd . ' 12:00:00' ), $fmt );
 }
 function flxs_n( $n ) {
 	return number_format_i18n( (int) $n );
@@ -173,7 +173,7 @@ function flxs_event_panel_html( $e ) {
 		$ts   = strtotime( $p['date'] . ' 12:00:00' );
 		$sub  = flxs_tr_date( $p['date'], _x( 'j F Y', 'card date format', 'flx-certificates' ) );
 		$sub .= $p['time'] ? ' · ' . sprintf( /* translators: %s: saat */ __( 'Saat %s', 'flx-certificates' ), $p['time'] ) : '';
-		$h   .= '<div class="flxs-ev-fact flxs-ev-fact--date"><span class="flxs-ev-cal"><small>' . esc_html( date_i18n( 'M', $ts ) ) . '</small><b>' . esc_html( gmdate( 'j', $ts ) ) . '</b></span><div><strong>' . esc_html( date_i18n( 'l', $ts ) ) . '</strong><span>' . esc_html( $sub ) . '</span></div></div>';
+		$h   .= '<div class="flxs-ev-fact flxs-ev-fact--date"><span class="flxs-ev-cal"><small>' . esc_html( flx_date( $ts, 'M' ) ) . '</small><b>' . esc_html( gmdate( 'j', $ts ) ) . '</b></span><div><strong>' . esc_html( flx_date( $ts, 'l' ) ) . '</strong><span>' . esc_html( $sub ) . '</span></div></div>';
 	}
 	$h .= flxs_event_location_html( $p );
 	$h .= '</div>';
@@ -210,7 +210,7 @@ function flxs_event_card_html( $p ) {
 	$h    = '<article class="flxs-ev-card' . ( 'closed' === $p['status'] ? ' is-closed' : '' ) . ( $p['url'] ? ' has-link' : '' ) . '"><' . $tag . $href . ' class="flxs-ev-card__img" tabindex="-1" aria-hidden="true">';
 	$h   .= $p['img'] ? '<img src="' . esc_url( $p['img'] ) . '" alt="" loading="lazy">' : '<span class="flxs-ev-card__ph">' . flxs_ico( 'tree' ) . '</span>';
 	if ( $d ) {
-		$h .= '<span class="flxs-ev-card__date"><b>' . esc_html( gmdate( 'j', $d ) ) . '</b>' . esc_html( date_i18n( 'M', $d ) ) . '</span>';
+		$h .= '<span class="flxs-ev-card__date"><b>' . esc_html( gmdate( 'j', $d ) ) . '</b>' . esc_html( flx_date( $d, 'M' ) ) . '</span>';
 	}
 	$h .= '</' . $tag . '><div class="flxs-ev-card__body">';
 	$h .= '<span class="flxs-ev-pill">' . flxs_ico( 'tree' ) . ' ' . esc_html__( 'Fidan dikim etkinlikleri', 'flx-certificates' ) . '</span>';

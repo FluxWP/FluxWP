@@ -100,12 +100,12 @@ class Addon {
 						</ul>
 					</details>
 				<?php endif; ?>
-				<p><em><?php echo sprintf(esc_html__('Checked %s ago', 'flx-forms'), human_time_diff(strtotime($addon_status['checked_at']), current_time('timestamp'))); ?></em></p>
+				<p><em><?php echo sprintf(esc_html__('Checked %s', 'flx-forms'), esc_html(flx_time_ago(get_gmt_from_date($addon_status['checked_at'])))); ?></em></p>
 			</div>
 		<?php else: ?>
 			<div class="notice notice-success efb" style="margin: 20px 0;">
 				<p><strong><?php echo esc_html__('System Ready', 'flx-forms'); ?>:</strong> <?php echo esc_html($addon_status['current_message']); ?></p>
-				<p><em><?php echo sprintf(esc_html__('Checked %s ago', 'flx-forms'), human_time_diff(strtotime($addon_status['checked_at']), current_time('timestamp'))); ?></em></p>
+				<p><em><?php echo sprintf(esc_html__('Checked %s', 'flx-forms'), esc_html(flx_time_ago(get_gmt_from_date($addon_status['checked_at'])))); ?></em></p>
 			</div>
 		<?php endif; ?>
 	<?php elseif ($noti_pro !== 0 && !$addon_status): ?>

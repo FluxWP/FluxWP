@@ -83,11 +83,11 @@ function flxg_system_checks() {
 	if ( ! $next ) {
 		$add( 'cron', $g_cron, __( 'Günlük görev hatırlatmaları', 'flx-tasks' ), 'error', __( 'Zamanlanmamış: geciken/yaklaşan görev bildirimleri ve eski geçici dosya temizliği çalışmaz. Görevler sayfasını bir kez açmak yeniden zamanlar.', 'flx-tasks' ), admin_url( 'admin.php?page=flx-tasks' ), __( 'Görevler', 'flx-tasks' ) );
 	} elseif ( $next < time() - 2 * HOUR_IN_SECONDS ) {
-		/* translators: %s: human time diff */
-		$add( 'cron', $g_cron, __( 'Günlük görev hatırlatmaları', 'flx-tasks' ), 'warning', sprintf( __( 'Çalışması gereken iş %s gecikmiş. WP-Cron tetiklenmiyor olabilir (site az ziyaret alıyorsa hosting panelinden gerçek cron önerilir).', 'flx-tasks' ), human_time_diff( $next ) ) );
+		/* translators: %s: relative time, e.g. "3 saat önce" */
+		$add( 'cron', $g_cron, __( 'Günlük görev hatırlatmaları', 'flx-tasks' ), 'warning', sprintf( __( 'Zamanlanmış iş gecikti (%s çalışmalıydı). WP-Cron tetiklenmiyor olabilir (site az ziyaret alıyorsa hosting panelinden gerçek cron önerilir).', 'flx-tasks' ), flx_time_ago( $next ) ) );
 	} else {
 		/* translators: %s: date */
-		$add( 'cron', $g_cron, __( 'Günlük görev hatırlatmaları', 'flx-tasks' ), 'ok', sprintf( __( 'Sonraki çalışma: %s.', 'flx-tasks' ), wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $next ) ) );
+		$add( 'cron', $g_cron, __( 'Günlük görev hatırlatmaları', 'flx-tasks' ), 'ok', sprintf( __( 'Sonraki çalışma: %s.', 'flx-tasks' ), flx_date( $next, 'datetime' ) ) );
 	}
 	if ( defined( 'DISABLE_WP_CRON' ) && DISABLE_WP_CRON ) {
 		$add( 'cron_mode', $g_cron, __( 'WP-Cron modu', 'flx-tasks' ), 'info', __( 'DISABLE_WP_CRON açık: zamanlanmış işler yalnız sunucu cron\'u wp-cron.php\'yi çağırırsa çalışır. Hosting panelinde bu cron tanımlı olmalı.', 'flx-tasks' ) );

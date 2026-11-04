@@ -577,7 +577,7 @@ final class FLXK_Telemetry {
 					echo esc_html(
 						$last
 							/* translators: %s: süre, ör. "3 saat" */
-							? sprintf( __( 'Son gönderim %s önce. Günde en fazla bir kez gönderilir.', 'flx-setup' ), human_time_diff( $last ) )
+							? sprintf( __( 'Son gönderim %s. Günde en fazla bir kez gönderilir.', 'flx-setup' ), flx_time_ago( $last ) )
 							: __( 'Henüz gönderilmedi. Günde en fazla bir kez gönderilir.', 'flx-setup' )
 					);
 					?>

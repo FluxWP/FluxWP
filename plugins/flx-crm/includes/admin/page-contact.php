@@ -227,7 +227,7 @@ final class FLXCRM_Page_Contact {
 		foreach ( $events as $e ) {
 			$day = get_date_from_gmt( $e['at'], 'Y-m-d' );
 			if ( $day !== $last_day ) {
-				echo '<li class="flxcrm-timeline__day">' . esc_html( get_date_from_gmt( $e['at'], get_option( 'date_format' ) ) ) . '</li>';
+				echo '<li class="flxcrm-timeline__day">' . esc_html( flxcrm_date( $e['at'] ) ) . '</li>';
 				$last_day = $day;
 			}
 			$icon = $types[ $e['type'] ][1] ?? 'note';

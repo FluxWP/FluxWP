@@ -148,7 +148,7 @@ function flxp_server_checks() {
 	$stale = ! $cron['last_seen'] || $cron['last_seen'] < time() - HOUR_IN_SECONDS;
 	$msg   = $cron['last_seen']
 		/* translators: %s: süre */
-		? sprintf( __( 'Son çalışma %s önce.', 'flx-speed' ), human_time_diff( $cron['last_seen'] ) )
+		? sprintf( __( 'Son çalışma %s.', 'flx-speed' ), flx_time_ago( $cron['last_seen'] ) )
 		: __( 'Cron\'un çalıştığı henüz görülmedi.', 'flx-speed' );
 	if ( $cron['overdue'] ) {
 		/* translators: %d: adet */

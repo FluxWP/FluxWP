@@ -98,9 +98,9 @@ final class FLXY_Checks {
 				'status'       => $schedule && $age > $limit ? 'warning' : ( $age > 30 * DAY_IN_SECONDS ? 'warning' : 'ok' ),
 				'message'      => sprintf(
 					/* translators: 1: date, 2: human time diff, 3: backup title */
-					__( '%1$s (%2$s önce): %3$s', 'flx-backup' ),
+					__( '%1$s (%2$s): %3$s', 'flx-backup' ),
 					flxy_date( $last['created'] ),
-					human_time_diff( $last['created'] ),
+					flx_time_ago( $last['created'] ),
 					FLXY_Storage::title( $last )
 				),
 				'action_url'   => $panel,
@@ -135,7 +135,7 @@ final class FLXY_Checks {
 		if ( $beat && $beat > time() - 2 * DAY_IN_SECONDS ) {
 			$status = 'ok';
 			/* translators: %s: human time diff */
-			$msg = sprintf( __( 'Günlük temizlik görevi %s önce çalıştı.', 'flx-backup' ), human_time_diff( $beat ) );
+			$msg = sprintf( __( 'Günlük temizlik görevi %s çalıştı.', 'flx-backup' ), flx_time_ago( $beat ) );
 		} elseif ( ! $beat && $next && $next > time() - HOUR_IN_SECONDS ) {
 			$status = 'info';
 			$msg    = __( 'Günlük görev zamanlandı, henüz çalışmadı.', 'flx-backup' );

@@ -243,9 +243,6 @@ msgstr ""
 msgid "Son ölçüm"
 msgstr ""
 
-msgid "%s önce"
-msgstr ""
-
 msgid "yenileniyor"
 msgstr ""
 
@@ -516,10 +513,7 @@ msgstr ""
 msgid "Argüman"
 msgstr ""
 
-msgid "%s sonra"
-msgstr ""
-
-msgid "%s gecikti"
+msgid "Gecikti: %s çalışmalıydı"
 msgstr ""
 
 msgid "bir kez"
@@ -882,7 +876,7 @@ msgstr ""
 msgid "800 KB altı önerilir; en büyük satırlara bakın."
 msgstr ""
 
-msgid "Son çalışma %s önce."
+msgid "Son çalışma %s."
 msgstr ""
 
 msgid "Cron'un çalıştığı henüz görülmedi."

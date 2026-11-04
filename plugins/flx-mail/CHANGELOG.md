@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.13.5
+- Tarih ve "… önce" metinleri artık kullanıcının dilinde, tek ortak yardımcıdan (FluxWP `flx_date` / `flx_time_ago`, flx-brand 1.1.0): "31 minutes önce", "August 10" gibi Türkçe/İngilizce karışımı kalmadı; çekirdek dil paketi inmemiş olsa da TR ve EN ay/gün adları doğru.
+
 ## 1.13.4
 - Yeniden adlandırma hataları: şifreli ayarlar (SMTP/IMAP parolası, bağlantı anahtarları) `flxi1:` önekinin uzunluğu yanlış okunduğu için açılamıyordu, düzeltildi. Ad değişiminden önce gönderilmiş e-postalardaki listeden çıkma bağlantıları (`yti_unsub`) yeniden çalışıyor.
 

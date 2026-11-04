@@ -202,7 +202,7 @@ function flxi_rest_queue_run( WP_REST_Request $r ) {
 	if ( $paused > time() ) {
 		$stats['paused_until'] = $paused;
 		/* translators: %s: time */
-		$stats['paused_text'] = sprintf( __( 'Posta kutusunun günlük gönderim sınırı doldu. Gönderim %s civarında kendiliğinden devam edecek.', 'flx-mail' ), wp_date( get_option( 'time_format' ) . ', j M', $paused ) );
+		$stats['paused_text'] = sprintf( __( 'Posta kutusunun günlük gönderim sınırı doldu. Gönderim %s civarında kendiliğinden devam edecek.', 'flx-mail' ), flx_date( $paused, 'time' ) . ', ' . flx_date( $paused, 'short' ) );
 	}
 	return $stats;
 }

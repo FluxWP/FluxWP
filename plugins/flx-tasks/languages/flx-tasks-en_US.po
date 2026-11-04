@@ -112,8 +112,8 @@ msgstr "Daily task reminders"
 msgid "Zamanlanmamış: geciken/yaklaşan görev bildirimleri ve eski geçici dosya temizliği çalışmaz. Görevler sayfasını bir kez açmak yeniden zamanlar."
 msgstr "Not scheduled: overdue/upcoming task notifications and old temporary file cleanup will not run. Opening the Tasks page once reschedules it."
 
-msgid "Çalışması gereken iş %s gecikmiş. WP-Cron tetiklenmiyor olabilir (site az ziyaret alıyorsa hosting panelinden gerçek cron önerilir)."
-msgstr "The scheduled job is %s late. WP-Cron may not be triggering (if the site gets few visits, a real cron in the hosting panel is recommended)."
+msgid "Zamanlanmış iş gecikti (%s çalışmalıydı). WP-Cron tetiklenmiyor olabilir (site az ziyaret alıyorsa hosting panelinden gerçek cron önerilir)."
+msgstr "The scheduled job is late (due %s). WP-Cron may not be triggering (if the site gets few visits, a real cron in the hosting panel is recommended)."
 
 msgid "Sonraki çalışma: %s."
 msgstr "Next run: %s."

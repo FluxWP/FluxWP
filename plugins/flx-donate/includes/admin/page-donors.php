@@ -84,7 +84,7 @@ final class FLXB_Page_Donors {
 				echo '<td data-label="' . esc_attr__( 'Phone', 'flx-donate' ) . '"><span class="flxb-nowrap">' . esc_html( '' !== (string) $d['phone'] ? flxb_format_phone( $d['phone'] ) : '—' ) . '</span></td>';
 				echo '<td class="num" data-label="' . esc_attr__( 'Total given', 'flx-donate' ) . '"><span>' . esc_html( flxb_money( $d['total_amount'] ) ) . '</span></td>';
 				echo '<td class="num" data-label="' . esc_attr__( 'Gifts', 'flx-donate' ) . '"><span>' . esc_html( number_format_i18n( (int) $d['donation_count'] ) ) . '</span></td>';
-				echo '<td class="flxb-col-date" data-label="' . esc_attr__( 'Latest gift', 'flx-donate' ) . '"><span>' . esc_html( $d['last_donation_at'] ? flxb_date( $d['last_donation_at'], get_option( 'date_format' ) ) : '—' ) . '</span></td>';
+				echo '<td class="flxb-col-date" data-label="' . esc_attr__( 'Latest gift', 'flx-donate' ) . '"><span>' . esc_html( $d['last_donation_at'] ? flxb_date( $d['last_donation_at'], 'date' ) : '—' ) . '</span></td>';
 				echo '<td data-label="' . esc_attr__( 'Recurring', 'flx-donate' ) . '"><span>' . ( (int) $d['active_subs'] ? '<span class="flxb-pill flxb-pill--recurring">' . FLXB_Admin::icon( 'repeat', 12 ) . esc_html__( 'Active', 'flx-donate' ) . '</span>' : '<span class="flxb-muted">—</span>' ) . '</span></td>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo '<td class="flxb-col-act"><a class="flxb-btn flxb-btn--sm" href="' . esc_url( $url ) . '">' . esc_html__( 'Open card', 'flx-donate' ) . '</a></td></tr>';
 			}
@@ -131,14 +131,14 @@ final class FLXB_Page_Donors {
 			echo '<span>' . FLXB_Admin::icon( 'phone', 14 ) . '<a href="tel:' . esc_attr( $d['phone'] ) . '">' . esc_html( flxb_format_phone( $d['phone'] ) ) . '</a></span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		/* translators: %s: date */
-		echo '<span>' . esc_html( sprintf( __( 'Donor since %s', 'flx-donate' ), $d['first_donation_at'] ? flxb_date( $d['first_donation_at'], get_option( 'date_format' ) ) : flxb_date( $d['created_at'], get_option( 'date_format' ) ) ) ) . '</span>';
+		echo '<span>' . esc_html( sprintf( __( 'Donor since %s', 'flx-donate' ), $d['first_donation_at'] ? flxb_date( $d['first_donation_at'], 'date' ) : flxb_date( $d['created_at'], 'date' ) ) ) . '</span>';
 		echo '</div></div></div></section>';
 
 		echo '<div class="flxb-kpis">';
 		self::kpi( __( 'Total given', 'flx-donate' ), flxb_money( $d['total_amount'] ), '' );
 		self::kpi( __( 'Gifts', 'flx-donate' ), number_format_i18n( (int) $d['donation_count'] ), '#2F6FA3' );
 		self::kpi( __( 'Average gift', 'flx-donate' ), flxb_money( $avg ), '#E0A526' );
-		self::kpi( __( 'Latest gift', 'flx-donate' ), $d['last_donation_at'] ? flxb_date( $d['last_donation_at'], get_option( 'date_format' ) ) : '—', '#7A8C96' );
+		self::kpi( __( 'Latest gift', 'flx-donate' ), $d['last_donation_at'] ? flxb_date( $d['last_donation_at'], 'date' ) : '—', '#7A8C96' );
 		echo '</div>';
 
 		echo '<div class="flxb-grid flxb-grid--2-1"><div class="flxb-stack">';
@@ -173,7 +173,7 @@ final class FLXB_Page_Donors {
 				$more  = max( 0, count( $certs ) - 12 );
 				$certs = array_slice( $certs, 0, 12 );
 				foreach ( $certs as $c ) {
-					echo '<li><span>' . FLXB_Admin::icon( 'cert', 14 ) . ' <strong>' . esc_html( '' !== (string) $c['number'] ? $c['number'] : $c['code'] ) . '</strong> <span class="flxb-muted">' . esc_html( flxb_date( get_gmt_from_date( $c['created_at'] ), get_option( 'date_format' ) ) ) . '</span></span><a href="' . esc_url( flxs_certificate_url( $c ) ) . '" target="_blank" rel="noopener">' . esc_html__( 'View', 'flx-donate' ) . '</a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo '<li><span>' . FLXB_Admin::icon( 'cert', 14 ) . ' <strong>' . esc_html( '' !== (string) $c['number'] ? $c['number'] : $c['code'] ) . '</strong> <span class="flxb-muted">' . esc_html( flxb_date( get_gmt_from_date( $c['created_at'] ), 'date' ) ) . '</span></span><a href="' . esc_url( flxs_certificate_url( $c ) ) . '" target="_blank" rel="noopener">' . esc_html__( 'View', 'flx-donate' ) . '</a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
 				echo '</ul>';
 				if ( $more ) {
@@ -284,7 +284,7 @@ final class FLXB_Page_Donors {
 		}
 		$id  = (int) $d['id'];
 		$avg = (int) $d['donation_count'] ? (float) $d['total_amount'] / (int) $d['donation_count'] : 0;
-		$df  = get_option( 'date_format' );
+		$df  = 'date';
 
 		echo '<section class="flxcrm-card flxb-crm-sum"><div class="flxcrm-card__head"><h2>' . FLXB_Admin::icon( 'heart', 16 ) . esc_html__( 'Donations', 'flx-donate' ) . '</h2></div><dl class="flxb-crm-dl">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		$rows = array(

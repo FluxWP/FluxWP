@@ -653,8 +653,8 @@ msgstr "Eklenti Kurulum Sorunu"
 msgid "Technical Details"
 msgstr "Teknik Ayrıntılar"
 
-msgid "Checked %s ago"
-msgstr "%s önce kontrol edildi"
+msgid "Checked %s"
+msgstr "%s kontrol edildi"
 
 msgid "System Ready"
 msgstr "Sistem Hazır"

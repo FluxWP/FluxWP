@@ -223,7 +223,7 @@ function flxc_editor_find_chats( $q ) {
 			'chat_id' => (int) $c['id'],
 			'title'   => flxc_chat_title( $c ),
 			'phone'   => $c['phone'] ? flxc_format_phone( $c['phone'] ) : '',
-			'last'    => $c['last_ts'] ? wp_date( 'j F Y H:i', (int) floor( $c['last_ts'] / 1000 ) ) : '',
+			'last'    => $c['last_ts'] ? flx_date( (int) floor( $c['last_ts'] / 1000 ), 'datetime' ) : '',
 		);
 	}
 	return $out ? array( 'ok' => true, 'chats' => $out ) : array( 'ok' => true, 'chats' => array(), 'note' => 'Bulunamadı; yöneticiye başka ad ya da numara sor.' );
@@ -250,7 +250,7 @@ function flxc_editor_read_chat( $id, $limit ) {
 		}
 		$text = 'text' === $m['type'] ? (string) $m['body'] : '[' . flxc_preview_text( $m ) . ']' . ( '' !== trim( (string) $m['body'] ) ? ' ' . $m['body'] : '' );
 		$out[] = array(
-			'time' => wp_date( 'j M H:i', (int) floor( $m['ts'] / 1000 ) ),
+			'time' => flx_date( (int) floor( $m['ts'] / 1000 ), 'j M H:i' ),
 			'from' => $who,
 			'text' => mb_substr( $text, 0, 1500 ),
 		);
@@ -660,7 +660,7 @@ function flxc_bot_sandbox_bg( array $state ) {
 			'title' => (string) ( $r['title'] ?? '' ),
 			'task'  => (string) ( $r['task'] ?? '' ),
 			'when'  => function_exists( 'flxc_rem_when' ) ? flxc_rem_when( $r ) : '',
-			'next'  => ! empty( $r['next_at'] ) ? wp_date( 'j F Y H:i', (int) $r['next_at'] ) : '',
+			'next'  => ! empty( $r['next_at'] ) ? flx_date( (int) $r['next_at'], 'datetime' ) : '',
 		);
 	}
 	$draft = '';

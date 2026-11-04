@@ -161,7 +161,7 @@ function flxc_report_text( array $r, $user_id ) {
 	$m    = function ( $v ) use ( $cur ) {
 		return flxc_money( (float) $v, $cur );
 	};
-	$head = '📊 *' . ( '' !== $r['title'] ? $r['title'] : __( 'Bağış raporu', 'flx-chat' ) ) . '* · ' . flxc_report_period_label( $r['period'] ) . ( $from === $to ? ' (' . wp_date( 'j F', strtotime( $from . ' 12:00' ) ) . ')' : '' );
+	$head = '📊 *' . ( '' !== $r['title'] ? $r['title'] : __( 'Bağış raporu', 'flx-chat' ) ) . '* · ' . flxc_report_period_label( $r['period'] ) . ( $from === $to ? ' (' . flx_date( strtotime( $from . ' 12:00' ), 'j F' ) . ')' : '' );
 	$first = trim( strtok( (string) $u->display_name, ' ' ) );
 	/* translators: %s: first name */
 	$lines = array( $head, '', sprintf( __( 'Merhaba %s,', 'flx-chat' ), '' !== $first ? $first : $u->display_name ) );
@@ -428,7 +428,7 @@ function flxc_render_reports() {
 	$list  = flxc_reports();
 	$days  = array();
 	for ( $n = 1; $n <= 7; $n++ ) {
-		$days[ $n ] = wp_date( 'l', gmmktime( 12, 0, 0, 1, 4 + $n, 2026 ) ); // 5 Ocak 2026 Pazartesi
+		$days[ $n ] = flx_date( gmmktime( 12, 0, 0, 1, 4 + $n, 2026 ), 'l' ); // 5 Ocak 2026 Pazartesi
 	}
 	$people = function_exists( 'flxr_user_phone' ) ? get_users( array( 'capability__in' => array( 'flx_reports_receive', 'flx_reports_view' ), 'number' => 300, 'orderby' => 'display_name' ) ) : array();
 	$sel    = function ( $name, $opts, $cur ) {
@@ -498,7 +498,7 @@ function flxc_render_reports() {
 						echo esc_html( sprintf( __( '%d alıcı (numarası kayıtlı ve yetkili).', 'flx-chat' ), count( $rcp ) ) );
 						if ( $r['slot'] ) {
 							/* translators: %s: date */
-							echo ' ' . esc_html( sprintf( __( 'Son gönderim: %s.', 'flx-chat' ), wp_date( 'j F Y', strtotime( $r['slot'] . ' 12:00' ) ) ) );
+							echo ' ' . esc_html( sprintf( __( 'Son gönderim: %s.', 'flx-chat' ), flx_date( strtotime( $r['slot'] . ' 12:00' ) ) ) );
 						}
 						?>
 					</p>

@@ -44,7 +44,7 @@ function flxs_mark_queue_run() {
 
 function flxs_ago( $ts ) {
 	/* translators: %s: human readable time difference, e.g. "5 mins" */
-	return sprintf( __( '%s önce', 'flx-certificates' ), human_time_diff( (int) $ts, time() ) );
+	return flx_time_ago( (int) $ts );
 }
 
 /** Flux Certificates kontrolleri */

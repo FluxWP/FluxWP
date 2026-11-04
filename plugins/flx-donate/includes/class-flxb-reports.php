@@ -543,9 +543,9 @@ final class FLXB_Reports {
 				$u = (int) $v ? get_userdata( (int) $v ) : null;
 				return $u ? $u->display_name : '—';
 			case 'month':
-				return preg_match( '/^\d{4}-\d{2}$/', $v ) ? date_i18n( 'F Y', strtotime( $v . '-15' ) ) : '—';
+				return preg_match( '/^\d{4}-\d{2}$/', $v ) ? flx_date( strtotime( $v . '-15' ), 'F Y' ) : '—';
 			case 'day':
-				return preg_match( '/^\d{4}-\d{2}-\d{2}$/', $v ) ? date_i18n( get_option( 'date_format' ), strtotime( $v . ' 12:00' ) ) : '—';
+				return preg_match( '/^\d{4}-\d{2}-\d{2}$/', $v ) ? flx_date( strtotime( $v . ' 12:00' ) ) : '—';
 			default:
 				return '' !== $v ? $v : '—';
 		}

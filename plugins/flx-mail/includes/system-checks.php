@@ -66,7 +66,7 @@ function flxi_system_checks( $checks ) {
 	// Son test
 	$test = get_option( 'flxi_last_test' );
 	if ( is_array( $test ) ) {
-		$when = wp_date( get_option( 'date_format' ) . ' H:i', (int) $test['at'] );
+		$when = flx_date( (int) $test['at'], 'datetime' );
 		if ( $test['ok'] ) {
 			/* translators: 1: adres, 2: tarih */
 			$add( 'test', 'Email', __( 'Test e-postası', 'flx-mail' ), 'ok', sprintf( __( '%1$s adresine gönderildi (%2$s). Gelen kutusuna düştüğünü kontrol edin.', 'flx-mail' ), $test['to'], $when ), $set . '#test', __( 'Yeniden test et', 'flx-mail' ) );
@@ -115,10 +115,10 @@ function flxi_system_checks( $checks ) {
 			$add( 'mailbox', 'Email', __( 'Posta kutusu', 'flx-mail' ), 'error', $st['error'] );
 		} elseif ( $st['last_ok'] && $st['last_ok'] < time() - 6 * HOUR_IN_SECONDS ) {
 			/* translators: %s: süre */
-			$add( 'mailbox', 'Email', __( 'Posta kutusu', 'flx-mail' ), 'warning', sprintf( __( 'Son eşitleme %s önce. Zamanlanmış görevler (WP-Cron) çalışmıyor olabilir; Posta kutusu ekranı açıkken eşitleme yine yapılır.', 'flx-mail' ), human_time_diff( $st['last_ok'] ) ) );
+			$add( 'mailbox', 'Email', __( 'Posta kutusu', 'flx-mail' ), 'warning', sprintf( __( 'Son eşitleme %s. Zamanlanmış görevler (WP-Cron) çalışmıyor olabilir; Posta kutusu ekranı açıkken eşitleme yine yapılır.', 'flx-mail' ), flx_time_ago( $st['last_ok'] ) ) );
 		} elseif ( $st['last_ok'] ) {
 			/* translators: %s: süre */
-			$add( 'mailbox', 'Email', __( 'Posta kutusu', 'flx-mail' ), 'ok', sprintf( __( 'Eşitleniyor; son eşitleme %s önce.', 'flx-mail' ), human_time_diff( $st['last_ok'] ) ) . ( empty( $st['names']['sent'] ) ? ' ' . __( 'Gönderilmiş klasörü bulunamadı: web postadan gönderilenler görünmez.', 'flx-mail' ) : '' ) );
+			$add( 'mailbox', 'Email', __( 'Posta kutusu', 'flx-mail' ), 'ok', sprintf( __( 'Eşitleniyor; son eşitleme %s.', 'flx-mail' ), flx_time_ago( $st['last_ok'] ) ) . ( empty( $st['names']['sent'] ) ? ' ' . __( 'Gönderilmiş klasörü bulunamadı: web postadan gönderilenler görünmez.', 'flx-mail' ) : '' ) );
 		}
 		$add(
 			'mailparse',
@@ -143,7 +143,7 @@ function flxi_system_checks( $checks ) {
 			$msg = sprintf( __( '%1$s: son 24 saatte %2$s / %3$s alıcı.', 'flx-mail' ), $q['mailbox'], number_format_i18n( $q['used'] ), number_format_i18n( $q['limit'] ) );
 			if ( $q['percent'] >= 100 ) {
 				/* translators: %s: time */
-				$add( 'quota_' . $q['type'], 'Email', __( 'Günlük gönderim sınırı', 'flx-mail' ), 'error', $msg . ' ' . sprintf( __( 'Sınır doldu; bu adresten e-posta %s civarına kadar gitmeyebilir. Sık oluyorsa Hostinger\'da üst e-posta paketine geçin.', 'flx-mail' ), wp_date( get_option( 'time_format' ) . ', j M', $q['next'] ) ), $set . '#sinirlar', __( 'Sınırlar', 'flx-mail' ) );
+				$add( 'quota_' . $q['type'], 'Email', __( 'Günlük gönderim sınırı', 'flx-mail' ), 'error', $msg . ' ' . sprintf( __( 'Sınır doldu; bu adresten e-posta %s civarına kadar gitmeyebilir. Sık oluyorsa Hostinger\'da üst e-posta paketine geçin.', 'flx-mail' ), flx_date( $q['next'], 'time' ) . ', ' . flx_date( $q['next'], 'short' ) ), $set . '#sinirlar', __( 'Sınırlar', 'flx-mail' ) );
 			} elseif ( $q['percent'] >= 80 ) {
 				$add( 'quota_' . $q['type'], 'Email', __( 'Günlük gönderim sınırı', 'flx-mail' ), 'warning', $msg . ' ' . __( 'Sınıra yaklaşıldı; toplu gönderim tekil e-postalara pay bırakıp duraklar.', 'flx-mail' ), $set . '#sinirlar', __( 'Sınırlar', 'flx-mail' ) );
 			} elseif ( $full >= 3 ) {
@@ -198,7 +198,7 @@ function flxi_system_checks( $checks ) {
 			if ( ! $t ) {
 				$add( 'conn.' . $c['id'], 'Config', $label . ' · ' . $c['name'], 'info', __( 'Ayarlar girilmiş, henüz test edilmedi.', 'flx-mail' ), flxi_admin_url( 'flxi-baglantilar' ), __( 'Test et', 'flx-mail' ) );
 			} else {
-				$when = wp_date( get_option( 'date_format' ) . ' H:i', (int) $t['at'] );
+				$when = flx_date( (int) $t['at'], 'datetime' );
 				$add( 'conn.' . $c['id'], 'Config', $label . ' · ' . $c['name'], $t['ok'] ? 'ok' : 'error', $t['ok'] ? sprintf( /* translators: %s: tarih */ __( 'Test başarılı (%s).', 'flx-mail' ), $when ) : sprintf( /* translators: 1: tarih, 2: hata */ __( 'Test başarısız (%1$s): %2$s', 'flx-mail' ), $when, $t['error'] ), flxi_admin_url( 'flxi-baglantilar' ), __( 'Test et', 'flx-mail' ) );
 			}
 		}

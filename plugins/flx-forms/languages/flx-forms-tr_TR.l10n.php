@@ -220,7 +220,7 @@ return array (
     'Add-ons' => 'Eklentiler',
     'Addon Installation Issue' => 'Eklenti Kurulum Sorunu',
     'Technical Details' => 'Teknik Ayrıntılar',
-    'Checked %s ago' => '%s önce kontrol edildi',
+    'Checked %s' => '%s kontrol edildi',
     'System Ready' => 'Sistem Hazır',
     'Checking add-on installation capabilities&hellip;' => 'Eklenti kurulum yetenekleri denetleniyor&hellip;',
     'This check runs once after plugin activation. Please refresh the page in a few moments.' => 'Bu kontrol eklenti etkinleştirildikten sonra bir kez çalışır. Lütfen birkaç dakika sonra sayfayı yenileyin.',

@@ -1672,8 +1672,8 @@ msgstr "Sync"
 msgid "Eşitleniyor…"
 msgstr "Syncing…"
 
-msgid "Son eşitleme: %s önce"
-msgstr "Last sync: %s ago"
+msgid "Son eşitleme: %s"
+msgstr "Last sync: %s"
 
 msgid "Eski e-postalar alınıyor…"
 msgstr "Fetching older emails…"
@@ -1894,11 +1894,11 @@ msgstr "Save first, then test."
 msgid "Açık ama IMAP sunucusu, kullanıcı ya da şifre eksik (İletişim › Ayarlar › Posta kutusu)."
 msgstr "On, but the IMAP server, user or password is missing (Communication › Settings › Mailbox)."
 
-msgid "Son eşitleme %s önce. Zamanlanmış görevler (WP-Cron) çalışmıyor olabilir; Posta kutusu ekranı açıkken eşitleme yine yapılır."
-msgstr "Last sync %s ago. Scheduled tasks (WP-Cron) may not be running; syncing still happens while the Mailbox screen is open."
+msgid "Son eşitleme %s. Zamanlanmış görevler (WP-Cron) çalışmıyor olabilir; Posta kutusu ekranı açıkken eşitleme yine yapılır."
+msgstr "Last sync %s. Scheduled tasks (WP-Cron) may not be running; syncing still happens while the Mailbox screen is open."
 
-msgid "Eşitleniyor; son eşitleme %s önce."
-msgstr "Syncing; last sync %s ago."
+msgid "Eşitleniyor; son eşitleme %s."
+msgstr "Syncing; last sync %s."
 
 msgid "Gönderilmiş klasörü bulunamadı: web postadan gönderilenler görünmez."
 msgstr "Sent folder not found: email sent from webmail will not appear."

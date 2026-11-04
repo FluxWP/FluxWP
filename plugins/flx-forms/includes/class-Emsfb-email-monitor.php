@@ -1051,7 +1051,7 @@ class Email_Monitor {
         $direction = $is_rtl ? 'rtl' : 'ltr';
         $align = $is_rtl ? 'right' : 'left';
         $row_label_padding = $is_rtl ? '0 0 0 12px' : '0 12px 0 0';
-        $generated_at = wp_date(get_option('date_format', 'F j, Y') . ' ' . get_option('time_format', 'g:i a'));
+        $generated_at = flx_date( time(), 'datetime' );
         $intro = sprintf(
             /* translators: %s: site name. */
             __('Here is your weekly snapshot for %s.', 'flx-forms'),

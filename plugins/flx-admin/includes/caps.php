@@ -115,7 +115,7 @@ function flxa_caps_render() {
 			sprintf(
 				/* translators: %s: date */
 				__( 'İlk değişiklikten önceki yetkiler yedekli (%s).', 'flx-admin' ),
-				wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), (int) ( $backup['_time'] ?? 0 ) )
+				flx_date( (int) ( $backup['_time'] ?? 0 ), 'datetime' )
 			)
 		) . ' <a href="' . esc_url( $url ) . '" onclick="return confirm(this.dataset.c)" data-c="' . esc_attr__( 'Tüm roller yedekteki hâline dönsün mü?', 'flx-admin' ) . '">' . esc_html__( 'Yedeği geri yükle', 'flx-admin' ) . '</a></p></div>';
 	}

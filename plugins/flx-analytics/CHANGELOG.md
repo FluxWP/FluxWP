@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.3.7
+- Tarih ve "… önce" metinleri artık kullanıcının dilinde, tek ortak yardımcıdan (FluxWP `flx_date` / `flx_time_ago`, flx-brand 1.1.0): "31 minutes önce", "August 10" gibi Türkçe/İngilizce karışımı kalmadı; çekirdek dil paketi inmemiş olsa da TR ve EN ay/gün adları doğru.
+
 ## 0.3.6
 - **Telemetri merkezi** (Ayarlar › Telemetri merkezi, varsayılan kapalı). Açınca `POST /wp-json/flxan/v1/telemetry` herkese açılır ve FluxWP Panel 1.0.11+ kurulumlarının anonim kullanım verisini alır; sol menüde **Ürün telemetrisi** görünür. Kapalıyken uç 404 döner.
 - Ürün telemetrisi ekranı: Genel bakış (raporlayan site, eklenti kullanımı ve yaygın sürüm, birlikte kullanılan ikililer, en sık paket setleri, PHP / WordPress / dil), Hatalar (paket ve türe göre süzme, kaç sitede ve kaç kez görüldü, "Çözüldü" ile kaldırma), Kurulum sihirbazı (adımlara ulaşan, nerede bırakıldı, kart seçimleri ve vazgeçilenler, ön ayar ve renk stili, ortanca süre). 7 / 30 / 90 gün.

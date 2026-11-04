@@ -76,7 +76,7 @@ function flxi_page_templates() {
 			'key'      => $k,
 			'label'    => flxi_discovered_label( $k, $d ),
 			/* translators: 1: sayı, 2: tarih */
-			'desc'     => sprintf( __( '%1$s kez gönderildi, son: %2$s. İçeriği gönderen eklenti üretir; burada açıp kapatabilir, gönderen adresini ve kurumsal çerçeveyi seçebilirsiniz.', 'flx-mail' ), number_format_i18n( (int) $d['count'] ), wp_date( get_option( 'date_format' ), (int) $d['last'] ) ),
+			'desc'     => sprintf( __( '%1$s kez gönderildi, son: %2$s. İçeriği gönderen eklenti üretir; burada açıp kapatabilir, gönderen adresini ve kurumsal çerçeveyi seçebilirsiniz.', 'flx-mail' ), number_format_i18n( (int) $d['count'] ), flx_date( (int) $d['last'] ) ),
 			'to'       => '',
 			'enabled'  => $c['enabled'],
 			'sender'   => $c['sender'] ? $c['sender'] : flxi_default_sender( $k, $d['source'] ),

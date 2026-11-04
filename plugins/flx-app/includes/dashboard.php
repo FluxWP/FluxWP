@@ -55,7 +55,7 @@ function flxapp_dash_when( $gmt ) {
 	if ( ! $ts ) {
 		return '';
 	}
-	return wp_date( 'Y-m-d' ) === wp_date( 'Y-m-d', $ts ) ? wp_date( get_option( 'time_format' ), $ts ) : wp_date( 'j M', $ts );
+	return wp_date( 'Y-m-d' ) === wp_date( 'Y-m-d', $ts ) ? flx_date( $ts, 'time' ) : flx_date( $ts, 'short' );
 }
 
 /* ───────── WordPress çekirdeği ───────── */

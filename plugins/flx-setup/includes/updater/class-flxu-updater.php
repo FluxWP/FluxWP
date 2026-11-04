@@ -875,7 +875,7 @@ final class FLXU_Updater {
 		} else {
 			$st = 'ok';
 			/* translators: %s: human time diff */
-			$msg = sprintf( __( 'Sunucu bağlantısı çalışıyor. Son kontrol: %s önce.', 'flx-setup' ), human_time_diff( (int) $status['checked'] ) );
+			$msg = sprintf( __( 'Sunucu bağlantısı çalışıyor. Son kontrol: %s.', 'flx-setup' ), flx_time_ago( (int) $status['checked'] ) );
 			if ( '' === self::key() ) {
 				$msg .= ' ' . __( 'Anahtar yok: yalnız public paketler gelir.', 'flx-setup' );
 			}

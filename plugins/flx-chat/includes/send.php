@@ -24,7 +24,7 @@ function flxc_fill_vars( $text, $chat, $user_id = 0 ) {
 		'{agent}'      => flxc_user_name( $user_id ? $user_id : get_current_user_id() ),
 		'{site}'       => home_url( '/' ),
 		'{brand}'      => flxc_brand_name(),
-		'{date}'       => date_i18n( get_option( 'date_format' ) ),
+		'{date}'       => flx_date( time() ),
 	);
 	$vars = apply_filters( 'flxc_reply_vars', $vars, $chat, $user_id );
 	$out  = strtr( (string) $text, $vars );

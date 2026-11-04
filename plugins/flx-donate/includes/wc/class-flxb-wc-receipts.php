@@ -236,7 +236,7 @@ final class FLXB_WC_Receipts {
 	<ul class="flxwb-files" data-flxwb-files<?php echo $list ? '' : ' hidden'; ?>>
 		<?php foreach ( $list as $i => $r ) : ?>
 		<li><?php echo FLXB_WC::icon( 'file' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><a href="<?php echo esc_url( self::url( $order, $i ) ); ?>" target="_blank" rel="noopener"><?php echo esc_html( $r['name'] ); ?></a>
-			<small><?php echo esc_html( wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), (int) $r['at'] ) ); ?></small></li>
+			<small><?php echo esc_html( flx_date( (int) $r['at'], 'datetime' ) ); ?></small></li>
 		<?php endforeach; ?>
 	</ul>
 	<?php if ( $list ) : ?>
@@ -301,7 +301,7 @@ final class FLXB_WC_Receipts {
 			'ok'    => true,
 			'name'  => $rec['name'],
 			'url'   => self::url( $order, count( $list ) - 1 ),
-			'date'  => wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ) ),
+			'date'  => flx_date( time(), 'datetime' ),
 			'count' => count( $list ),
 			'full'  => count( $list ) >= self::MAX,
 		);

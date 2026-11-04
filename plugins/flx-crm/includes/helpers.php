@@ -289,28 +289,14 @@ function flxcrm_contact_url( $id ) {
 	return flxcrm_admin_url( 'contacts', array( 'id' => (int) $id ) );
 }
 
-/** Göreli zaman: "3 gün önce". GMT mysql tarihi alır. */
+/** Göreli zaman, kullanıcının dilinde ("3 gün önce" / "3 days ago"; ortak flx_time_ago). GMT mysql tarihi alır. */
 function flxcrm_ago( $gmt ) {
-	if ( ! $gmt ) {
-		return '—';
-	}
-	$ts = strtotime( $gmt . ' UTC' );
-	if ( ! $ts ) {
-		return '—';
-	}
-	$diff = time() - $ts;
-	if ( $diff < 60 ) {
-		return __( 'az önce', 'flx-crm' );
-	}
-	/* translators: %s: human time difference */
-	return sprintf( __( '%s önce', 'flx-crm' ), human_time_diff( $ts, time() ) );
+	return $gmt ? flx_time_ago( $gmt ) : '—';
 }
 
+/** Tarih, kullanıcının dilinde (ortak flx_date). $format: date | short | datetime | time | PHP biçimi. */
 function flxcrm_date( $gmt, $format = '' ) {
-	if ( ! $gmt ) {
-		return '—';
-	}
-	return get_date_from_gmt( $gmt, $format ? $format : get_option( 'date_format' ) );
+	return $gmt ? flx_date( $gmt, $format ? $format : 'date' ) : '—';
 }
 
 /** Kişinin baş harfleri (avatar). */

@@ -651,7 +651,7 @@ msgstr ""
 msgid "Technical Details"
 msgstr ""
 
-msgid "Checked %s ago"
+msgid "Checked %s"
 msgstr ""
 
 msgid "System Ready"

@@ -222,7 +222,7 @@ function flxi_quota_meter_html() {
 		$h .= '</span></div><div class="flxi-bar"><span style="width:' . (int) $q['percent'] . '%"></span></div>';
 		if ( $q['left'] < $q['limit'] && $q['next'] ) {
 			/* translators: %s: time */
-			$h .= '<small>' . esc_html( sprintf( __( 'Sonraki hak açılışı: %s', 'flx-mail' ), wp_date( get_option( 'time_format' ) . ', j M', $q['next'] ) ) ) . '</small>';
+			$h .= '<small>' . esc_html( sprintf( __( 'Sonraki hak açılışı: %s', 'flx-mail' ), flx_date( $q['next'], 'time' ) . ', ' . flx_date( $q['next'], 'short' ) ) ) . '</small>';
 		}
 		$h .= '</div>';
 	}

@@ -440,7 +440,7 @@ final class FLXB_Iyzico_Recurring {
 			'iptal_link' => self::cancel_url( $s ),
 		);
 		if ( 'started' === $what ) {
-			$vars['sonraki'] = flxb_date( $s['next_charge_at'], get_option( 'date_format' ) );
+			$vars['sonraki'] = flxb_date( $s['next_charge_at'], 'date' );
 			return FLXB_Mail::send( 'flx-donate/recurring-started', $email, $vars );
 		}
 		$vars['deneme']     = number_format_i18n( (int) ( $m['retry_count'] ?? self::max_attempts() ) );

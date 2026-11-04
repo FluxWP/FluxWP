@@ -188,7 +188,7 @@ final class FLXCM_Receipts {
 			'ok'    => true,
 			'name'  => $rec['name'],
 			'url'   => self::url( $order, count( $list ) - 1 ),
-			'date'  => wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ) ),
+			'date'  => flx_date( time(), 'datetime' ),
 			'count' => count( $list ),
 			'full'  => count( $list ) >= self::MAX,
 		);

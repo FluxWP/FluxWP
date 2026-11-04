@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       FluxWP Panel
  * Description:       FluxWP'nin kurulum ve güncelleme eklentisi. İlk açılışta kurulum sihirbazı (tanıtım, eklenti seçimi, görünüm, kurulum); FluxWP tema ve eklentilerini güncelleme sunucusundan (varsayılan updater.fluxwp.com) WordPress'in güncelleme ekranına getirir; ön ayar motoru (preset.json) siteyi tek adımda kurar, onaylı yamalarla değiştirir, geri alır.
- * Version:           1.0.17
+ * Version:           1.0.18
  * Requires at least: 6.6
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -20,7 +20,7 @@ if ( defined( 'FLXK_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXK_VERSION', '1.0.17' );
+define( 'FLXK_VERSION', '1.0.18' );
 define( 'FLXK_FORMAT', 'flx-preset/1' );
 define( 'FLXK_FILE', __FILE__ );
 define( 'FLXK_DIR', plugin_dir_path( __FILE__ ) );

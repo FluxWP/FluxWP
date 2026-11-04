@@ -1671,7 +1671,7 @@ msgstr ""
 msgid "Eşitleniyor…"
 msgstr ""
 
-msgid "Son eşitleme: %s önce"
+msgid "Son eşitleme: %s"
 msgstr ""
 
 msgid "Eski e-postalar alınıyor…"
@@ -1893,10 +1893,10 @@ msgstr ""
 msgid "Açık ama IMAP sunucusu, kullanıcı ya da şifre eksik (İletişim › Ayarlar › Posta kutusu)."
 msgstr ""
 
-msgid "Son eşitleme %s önce. Zamanlanmış görevler (WP-Cron) çalışmıyor olabilir; Posta kutusu ekranı açıkken eşitleme yine yapılır."
+msgid "Son eşitleme %s. Zamanlanmış görevler (WP-Cron) çalışmıyor olabilir; Posta kutusu ekranı açıkken eşitleme yine yapılır."
 msgstr ""
 
-msgid "Eşitleniyor; son eşitleme %s önce."
+msgid "Eşitleniyor; son eşitleme %s."
 msgstr ""
 
 msgid "Gönderilmiş klasörü bulunamadı: web postadan gönderilenler görünmez."

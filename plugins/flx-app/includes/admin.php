@@ -177,7 +177,7 @@ function flxapp_when( $ts ) {
 	if ( ! $ts ) {
 		return '—';
 	}
-	return wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), (int) $ts );
+	return flx_date( (int) $ts, 'datetime' );
 }
 
 /** Oturum (grant) ve anahtar satırlarını tablo olarak basar. */

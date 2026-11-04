@@ -67,7 +67,7 @@ function flxg_app_due_label( $due ) {
 		return $due;
 	}
 	$fmt = wp_date( 'Y' ) === $dt->format( 'Y' ) ? 'j M' : 'j M Y';
-	return wp_date( $fmt . ( $has ? ' H:i' : '' ), $dt->getTimestamp(), $tz );
+	return flx_date( $dt->getTimestamp(), $fmt . ( $has ? ' H:i' : '' ) );
 }
 
 /** Tarih/saat geçmiş mi (yalnız tarihse gün bitince gecikmiş sayılır). */
@@ -284,7 +284,7 @@ function flxg_app_comment_out( array $c ) {
 		'author'   => array( 'id' => $u['id'], 'name' => $u['name'], 'avatar' => $u['avatar'] ),
 		'text'     => $c['body'],
 		'at'       => $c['created'],
-		'at_label' => $c['created'] ? wp_date( 'j M H:i', strtotime( $c['created'] ) ) : '',
+		'at_label' => $c['created'] ? flx_date( strtotime( $c['created'] ), 'j M H:i' ) : '',
 	);
 }
 

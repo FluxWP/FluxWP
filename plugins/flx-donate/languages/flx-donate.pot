@@ -3325,7 +3325,7 @@ msgstr ""
 msgid "Awaiting approval"
 msgstr ""
 
-msgid "waiting for %s"
+msgid "received %s"
 msgstr ""
 
 msgid "piece"
@@ -3430,7 +3430,7 @@ msgstr ""
 msgid "Security"
 msgstr ""
 
-msgid "%1$s (%2$s ago)"
+msgid "%1$s (%2$s)"
 msgstr ""
 
 msgid "Last test %1$s: %2$s"

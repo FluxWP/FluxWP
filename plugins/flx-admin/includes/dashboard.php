@@ -41,7 +41,7 @@ function flxa_dash_header() {
 	<section class="flxa-hero" aria-label="<?php esc_attr_e( 'Özet', 'flx-admin' ); ?>">
 		<div class="flxa-hero-top">
 			<div class="flxa-hero-title">
-				<p class="flxa-date"><?php echo esc_html( wp_date( __( 'j F Y, l', 'flx-admin' ) ) ); ?></p>
+				<p class="flxa-date"><?php echo esc_html( flx_date( time(), __( 'j F Y, l', 'flx-admin' ) ) ); ?></p>
 				<h1><?php echo esc_html( sprintf( /* translators: 1: greeting, 2: name */ __( '%1$s, %2$s', 'flx-admin' ), flxa_greeting(), $name ) ); ?></h1>
 			</div>
 			<div class="flxa-hero-actions">

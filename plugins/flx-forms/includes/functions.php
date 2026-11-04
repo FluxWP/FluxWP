@@ -5760,12 +5760,11 @@ public function addon_add_efb($value) {
 
 		$table_name = $wpdb->prefix . "emsfb_form";
 		$value = $wpdb->get_results( "SELECT form_id,form_name,form_create_date,form_type FROM `$table_name`" );
-		$date_format = get_option( 'date_format' );
 		foreach ( $value as $row ) {
 			if ( ! empty( $row->form_create_date ) ) {
 				$timestamp = strtotime( $row->form_create_date );
 				if ( $timestamp !== false ) {
-					$row->form_create_date = wp_date( $date_format, $timestamp );
+					$row->form_create_date = flx_date( $timestamp );
 				}
 			}
 		}
@@ -6771,7 +6770,7 @@ public function addon_add_efb($value) {
 		$rows = array(
 			esc_html__('Website', 'flx-forms')            => esc_html(home_url()),
 			esc_html__('Reason', 'flx-forms')             => $this->license_failure_reason_text_efb($reason),
-			esc_html__('First failed check', 'flx-forms') => esc_html(wp_date(get_option('date_format', 'Y-m-d'), (int) $since)),
+			esc_html__('First failed check', 'flx-forms') => esc_html(flx_date( (int) $since )),
 			esc_html__('Grace period', 'flx-forms')       => sprintf(
 				/* translators: %s: number of days. */
 				esc_html__('%s days', 'flx-forms'),

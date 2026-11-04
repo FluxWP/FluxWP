@@ -206,7 +206,7 @@ function flxc_contact_sections( $chat ) {
 				$url = flxs_certificate_url( $c );
 				$items[] = array(
 					'label'  => (string) ( $c['title'] ? $c['title'] : $c['number'] ),
-					'sub'    => trim( $c['number'] . ' · ' . date_i18n( get_option( 'date_format' ), strtotime( $c['created_at'] . ' UTC' ) ), ' ·' ),
+					'sub'    => trim( $c['number'] . ' · ' . flx_date( strtotime( $c['created_at'] . ' UTC' ) ), ' ·' ),
 					'url'    => $url,
 					'insert' => $url,
 					'cert'   => array(

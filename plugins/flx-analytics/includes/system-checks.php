@@ -89,7 +89,7 @@ add_filter(
 			'status'  => $stale ? 'warning' : ( $last ? 'ok' : 'info' ),
 			'message' => $last
 				/* translators: 1: geçen süre, 2: bekleyen veri boyutu */
-				? sprintf( __( 'Son işleme %1$s önce. Bekleyen: %2$s.', 'flx-analytics' ), human_time_diff( $last ), size_format( $pending ) )
+				? sprintf( __( 'Son işleme %1$s. Bekleyen: %2$s.', 'flx-analytics' ), flx_time_ago( $last ), size_format( $pending ) )
 				: __( 'Henüz işlenen ziyaret yok.', 'flx-analytics' ),
 		);
 

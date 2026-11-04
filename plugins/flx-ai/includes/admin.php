@@ -90,7 +90,7 @@ function flxai_budget_cards() {
 	foreach ( flxai_budget_status() as $row ) {
 		$sub = $row['limit'] > 0
 			/* translators: 1: limit, 2: reset date */
-			? sprintf( __( 'Sınır %1$s · %2$s yenilenir', 'flx-ai' ), flxai_usd( $row['limit'], 2 ), wp_date( 'j M H:i', $row['resets'] ) )
+			? sprintf( __( 'Sınır %1$s · %2$s yenilenir', 'flx-ai' ), flxai_usd( $row['limit'], 2 ), flx_date( $row['resets'], 'j M H:i' ) )
 			: __( 'Sınır yok', 'flx-ai' );
 		flxai_kpi( $row['label'], flxai_usd( $row['spent'] ), $sub, $row['limit'] > 0 ? $row['pct'] : null, $row['over'] );
 	}
@@ -278,7 +278,7 @@ function flxai_page_log() {
 		$where_txt = ( $sources[ $r['source'] ] ?? flxai_source_label( $r['source'] ) ) . ( '' !== $r['purpose'] ? ' · ' . flxai_purpose_label( $r['purpose'] ) : '' ) . ( (int) $r['chat_id'] ? ' #' . (int) $r['chat_id'] : '' );
 		printf(
 			'<tr class="%10$s"><td>%1$s</td><td>%2$s</td><td>%3$s</td><td>%4$s</td><td class="num">%5$s</td><td class="num">%6$s</td><td class="num">%7$s</td><td class="num">%8$s</td><td class="num">%9$s</td><td>%11$s</td></tr>',
-			esc_html( wp_date( 'j M H:i:s', (int) $r['ts'] ) ),
+			esc_html( flx_date( (int) $r['ts'], 'j M H:i:s' ) ),
 			esc_html( $where_txt ),
 			esc_html( $uid ? $users[ $uid ] : __( 'Sistem', 'flx-ai' ) ),
 			$what, // phpcs:ignore -- escaped above
@@ -361,7 +361,7 @@ function flxai_page_systems() {
 			esc_html( number_format_i18n( $r['tok'] ) ),
 			esc_html( flxai_usd( $r['cost'] ) ),
 			esc_html( number_format_i18n( $r['errors'] ) ),
-			esc_html( $r['last'] ? wp_date( 'j M H:i', $r['last'] ) : '—' ),
+			esc_html( $r['last'] ? flx_date( $r['last'], 'j M H:i' ) : '—' ),
 			$links // phpcs:ignore -- escaped above
 		);
 	}
@@ -395,7 +395,7 @@ function flxai_page_billing() {
 	}
 	echo '</ul></section>';
 
-	echo '<section class="flxai-card flxai-span2"><div class="flxai-bill-head"><h2>' . esc_html( wp_date( 'F Y', $bill['from'] ) ) . '</h2>';
+	echo '<section class="flxai-card flxai-span2"><div class="flxai-bill-head"><h2>' . esc_html( flx_date( $bill['from'], 'F Y' ) ) . '</h2>';
 	echo '<a class="button" href="' . esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=flxai_csv&ym=' . $ym ), 'flxai_csv' ) ) . '">' . esc_html__( 'CSV indir', 'flx-ai' ) . '</a></div>';
 	echo '<div class="flxai-kpis">';
 	flxai_kpi( __( 'Toplam', 'flx-ai' ), flxai_usd( $t['cost'], 4 ), sprintf( /* translators: %s: amount */ __( 'Önbelleksiz olsaydı %s', 'flx-ai' ), flxai_usd( $t['full_cost'], 4 ) ) );
@@ -440,7 +440,7 @@ function flxai_page_billing() {
 		if ( null !== $cr['limit'] ) {
 			echo '<dt>' . esc_html__( 'Anahtar sınırı / kalan', 'flx-ai' ) . '</dt><dd>' . esc_html( flxai_usd( $cr['limit'], 2 ) . ' / ' . flxai_usd( (float) $cr['remaining'], 2 ) ) . '</dd>';
 		}
-		echo '<dt>' . esc_html__( 'Kontrol', 'flx-ai' ) . '</dt><dd>' . esc_html( wp_date( 'j M H:i', (int) $cr['checked'] ) ) . '</dd></dl>';
+		echo '<dt>' . esc_html__( 'Kontrol', 'flx-ai' ) . '</dt><dd>' . esc_html( flx_date( (int) $cr['checked'], 'j M H:i' ) ) . '</dd></dl>';
 	} else {
 		echo '<p class="flxai-empty">' . esc_html__( 'Kalan krediyi görmek için Yenile\'ye basın. (Anthropic bakiye API\'si sunmuyor; console.anthropic.com › Billing.)', 'flx-ai' ) . '</p>';
 	}

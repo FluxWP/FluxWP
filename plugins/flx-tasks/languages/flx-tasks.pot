@@ -111,7 +111,7 @@ msgstr ""
 msgid "Zamanlanmamış: geciken/yaklaşan görev bildirimleri ve eski geçici dosya temizliği çalışmaz. Görevler sayfasını bir kez açmak yeniden zamanlar."
 msgstr ""
 
-msgid "Çalışması gereken iş %s gecikmiş. WP-Cron tetiklenmiyor olabilir (site az ziyaret alıyorsa hosting panelinden gerçek cron önerilir)."
+msgid "Zamanlanmış iş gecikti (%s çalışmalıydı). WP-Cron tetiklenmiyor olabilir (site az ziyaret alıyorsa hosting panelinden gerçek cron önerilir)."
 msgstr ""
 
 msgid "Sonraki çalışma: %s."
