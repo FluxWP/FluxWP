@@ -1,0 +1,7 @@
+[
+  { "slug": "baslangic", "name": "Başlangıç", "description": "FluxWP nedir, repolar, adlandırma ve bu wiki'nin kullanımı.", "order": 1 },
+  { "slug": "eklenti", "name": "Eklenti geliştirme", "description": "Sıfırdan FluxWP eklentisi: dosya yapısı, ayarlar, çeviri, Flux Admin ve sistem kontrolü.", "order": 2 },
+  { "slug": "ai", "name": "AI ve MCP", "description": "Eklentileri Flux AI ile AI destekli yapmak, MCP aracı ve kaynak yazmak.", "order": 3 },
+  { "slug": "tema", "name": "Tema geliştirme", "description": "Blok tema yapısı, renkler, koyu mod ve ön ayar eklentileri.", "order": 4 },
+  { "slug": "yayin", "name": "Sürüm ve yayın", "description": "Sürüm numarası, CHANGELOG, otomatik release ve güncelleme sunucusu.", "order": 5 }
+]
