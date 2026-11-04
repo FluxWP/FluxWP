@@ -41,6 +41,15 @@ function flxseo_defaults() {
 		'auto_alt'       => 1,
 		'indexnow'       => 1,
 		'mcp_enabled'    => 0,
+		// Site denetimi: ajan uyumu ve güvenlik başlıkları.
+		'llms'           => 1,
+		'llms_intro'     => '',
+		'webmcp'         => 1,
+		'hdr_frame'      => 0,
+		'hdr_coop'       => 0,
+		'hdr_csp'        => 0,
+		'hsts_sub'       => 0,
+		'hsts_preload'   => 0,
 	);
 }
 
@@ -124,10 +133,11 @@ function flxseo_admin_url( $tab = '' ) {
 
 function flxseo_tabs() {
 	return array(
-		'genel'   => 'Genel',
-		'kurum'   => 'Kurum ve sosyal',
-		'kontrol' => 'SEO kontrolü',
-		'mcp'     => 'Yapay zekâ (MCP)',
+		'genel'   => __( 'Genel', 'flx-seo' ),
+		'kurum'   => __( 'Kurum ve sosyal', 'flx-seo' ),
+		'kontrol' => __( 'SEO kontrolü', 'flx-seo' ),
+		'denetim' => __( 'Site denetimi', 'flx-seo' ),
+		'mcp'     => __( 'Yapay zekâ (MCP)', 'flx-seo' ),
 	);
 }
 
@@ -140,6 +150,9 @@ add_action(
 		// Renkli FluxWP logosu (assets/icon.svg) CSS ile verilir; WordPress menü ikonunu tek renge boyar.
 		add_menu_page( 'SEO & MCP', 'SEO & MCP', 'manage_options', 'flxseo', 'flxseo_settings_page', 'none', 81 );
 		foreach ( flxseo_tabs() as $k => $label ) {
+			if ( 'denetim' === $k ) {
+				$label .= flxseo_audit_menu_badge();
+			}
 			add_submenu_page( 'flxseo', 'SEO & MCP – ' . $label, $label, 'manage_options', 'genel' === $k ? 'flxseo' : 'flxseo&tab=' . $k, 'genel' === $k ? 'flxseo_settings_page' : '__return_null' );
 		}
 	}
@@ -211,7 +224,7 @@ function flxseo_sanitize( $in ) {
 			$out[ $k ] = empty( $in[ $k ] ) ? 0 : 1;
 		} elseif ( in_array( $k, array( 'logo', 'og_image' ), true ) ) {
 			$out[ $k ] = esc_url_raw( $in[ $k ] ?? '' );
-		} elseif ( in_array( $k, array( 'home_desc', 'same_as' ), true ) ) {
+		} elseif ( in_array( $k, array( 'home_desc', 'same_as', 'llms_intro' ), true ) ) {
 			$out[ $k ] = sanitize_textarea_field( $in[ $k ] ?? '' );
 		} elseif ( 0 === strpos( $k, 'verify_' ) ) {
 			// Doğrulama: tam <meta> etiketi yapıştırılırsa yalnızca content değeri alınır.
@@ -250,6 +263,11 @@ function flxseo_settings_page() {
 	<?php
 	if ( 'kontrol' === $tab ) {
 		flxseo_audit_page();
+		echo '</div>';
+		return;
+	}
+	if ( 'denetim' === $tab ) {
+		flxseo_audit_admin_page();
 		echo '</div>';
 		return;
 	}

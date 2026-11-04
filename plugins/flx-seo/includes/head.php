@@ -346,7 +346,7 @@ add_action(
 			'referrer-policy'        => 'strict-origin-when-cross-origin',
 		);
 		if ( is_ssl() ) {
-			$add['strict-transport-security'] = 'max-age=31536000';
+			$add['strict-transport-security'] = flxseo_hsts_value();
 		}
 		foreach ( $add as $name => $value ) {
 			if ( ! in_array( $name, $sent, true ) ) {

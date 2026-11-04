@@ -193,7 +193,8 @@ function flxseo_mcp_dispatch( $m ) {
 					'protocolVersion' => in_array( $want, FLXSEO_MCP_PROTOCOLS, true ) ? $want : FLXSEO_MCP_PROTOCOLS[0],
 					'capabilities'    => array(
 						'tools'   => array( 'listChanged' => false ),
-						'prompts' => array( 'listChanged' => false ),
+						'prompts'   => array( 'listChanged' => false ),
+						'resources' => array( 'listChanged' => false ),
 					),
 					'serverInfo'      => array(
 						'name'    => 'yesil-turkiye-wordpress',
@@ -246,7 +247,18 @@ function flxseo_mcp_dispatch( $m ) {
 				)
 			);
 		case 'resources/list':
-			return flxseo_rpc_result( $id, array( 'resources' => array() ) );
+			$list = array();
+			foreach ( flxseo_mcp_resources() as $uri => $r ) {
+				$list[] = array( 'uri' => $uri, 'name' => $r['name'], 'title' => $r['title'], 'description' => $r['description'], 'mimeType' => $r['mimeType'] );
+			}
+			return flxseo_rpc_result( $id, array( 'resources' => $list ) );
+		case 'resources/read':
+			$uri = (string) ( $params['uri'] ?? '' );
+			$r   = flxseo_mcp_resources()[ $uri ] ?? null;
+			if ( ! $r || ! current_user_can( 'edit_posts' ) ) {
+				return flxseo_rpc_error( $id, -32002, 'Resource not found' );
+			}
+			return flxseo_rpc_result( $id, array( 'contents' => array( array( 'uri' => $uri, 'mimeType' => $r['mimeType'], 'text' => (string) call_user_func( $r['read'] ) ) ) ) );
 		case 'resources/templates/list':
 			return flxseo_rpc_result( $id, array( 'resourceTemplates' => array() ) );
 	}
@@ -314,6 +326,7 @@ function flxseo_mcp_instructions() {
 		. "- Yeni içerikler varsayılan olarak taslak (draft) oluşturulur; kullanıcı açıkça isterse publish yapın.\n"
 		. "- SEO: başlık en fazla ~60, meta açıklama 120–160 karakter. seo_audit eksikleri listeler; set_seo ile düzeltin. Görsellere anlamlı alt metin verin (set_image_alt).\n"
 		. "- Silme işlemi yalnızca çöpe taşır.\n"
+		. "- Yeni sayfa, desen, tema ya da ön ayar yapmadan önce site_build_guide ile FluxWP site yapım rehberini okuyun ve uygulayın. Değişiklikten sonra site_audit(refresh=true) çalıştırın; bulguları öncelik sırasıyla (critical, high, medium, low) düzeltin. fix_id olan bulgu system_fix ile tek adımda düzelir.\n"
 		. '- Site sağlığı: system_checks eklenti, cron ve ayar kontrollerini verir (status ile filtreleyin). Bir satırın "fixes" alanındaki düzeltme system_fix ile uygulanır; system_fixes izinli düzeltmeleri ve güncel değerlerini listeler. Ayar değiştirmeden önce kullanıcıya ne yapacağınızı söyleyin; her değişiklik system_fix_log\'a yazılır.';
 }
 
@@ -1223,6 +1236,17 @@ function flxseo_mcp_prompts() {
 			),
 			'text'        => function ( $a ) {
 				return 'Şu konuda derneğimiz için bir haber yaz: ' . ( $a['konu'] ?? '' ) . "\n\nTürkçe, samimi ama kurumsal bir dil kullan; 400–700 kelime, H2 ara başlıklar, sonda ilgili sayfalarımıza (bağış, projeler, iletişim) iç bağlantılar. site_info ile kategorileri gör ve uygun olanı seç. create_content ile taslak (draft) oluştur; SEO başlığı, meta açıklama ve odak kelimeyi de doldur. Bitince düzenleme bağlantısını ver.";
+			},
+		),
+		'site_audit_fix' => array(
+			'title'       => 'Site denetimini düzelt',
+			'description' => 'PageSpeed tarzı site denetimindeki bulguları öncelik sırasıyla düzeltir.',
+			'arguments'   => array(
+				array( 'name' => 'pagespeed', 'description' => 'mobile, desktop ya da none (varsayılan none)', 'required' => false ),
+			),
+			'text'        => function ( $a ) {
+				$ps = in_array( $a['pagespeed'] ?? '', array( 'mobile', 'desktop' ), true ) ? $a['pagespeed'] : 'none';
+				return "Önce site_build_guide(topic=checklist) oku. Sonra site_audit(refresh=true, pagespeed=$ps) çalıştır. Bulguları öncelik sırasıyla ele al: owner=flx-seo ve fix_id olanları bana söyleyip system_fix ile uygula; owner=content olanları (alt metin, kopya sayfa, meta açıklama) MCP içerik araçlarıyla düzelt; owner=theme/server olanlar için hangi dosyada neyin değişeceğini kısa bir liste olarak öner. Sonunda site_audit'i yeniden çalıştırıp önce/sonra sayılarını tablo yap.";
 			},
 		),
 		'sayfa_kur'   => array(

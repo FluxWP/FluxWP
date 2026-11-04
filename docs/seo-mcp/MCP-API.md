@@ -46,6 +46,8 @@ Kurallar: gizli anahtar/parola alanları düzeltme olarak açılmaz; `current` g
 ## Hazır araçlar
 
 - `order_summary` { recent (0–20, varsayılan 8), timezone (IANA, boşsa site) } (WooCommerce, `view_woocommerce_reports`): `today` = { orders, revenue, average (ödenmiş: `wc_get_is_paid_statuses()`), waiting, waiting_total (pending + on-hold), cancelled, truncated (>500 sipariş) }, `recent` = son siparişler { id, number, status, total (iade düşülmüş), currency, date_created_gmt, customer_name (ad + soyadın baş harfi), item_count }. Adres, e-posta, telefon dönmez. Başarılı çağrılar günlüğe yazılmaz (TV sipariş paneli dakikada bir çağırır).
+- `site_audit` { refresh, pagespeed (none|mobile|desktop), url, category, min_priority } (`manage_options`): PageSpeed tarzı denetim. `findings[]` = { id (Lighthouse kimliği), category, priority (critical|high|medium|low), title, detail, fix, owner (theme|content|server|flx-seo|setting), fix_id, items, sources }, `counts`, `pagespeed` (puanlar ve metrikler), `agentic` ("3/4").
+- `site_build_guide` { topic (all|workflow|performance|accessibility|seo|best-practices|agentic|wordpress|checklist), lang (tr|en) }: site yapım rehberi Markdown. Kaynak olarak da: `flxseo://guide/site-build`, `?lang=tr|en`, `flxseo://llms.txt`. Filtreler `flxseo_guide`, `flxseo_mcp_resources`, `flxseo_audit_findings`, `flxseo_audit_local_checks`, `flxseo_psi_categories`, `flxseo_llms_txt`, `flxseo_csp`.
 - `system_checks` (status, source, search filtreli): tüm satırlar + özet + `fixes`.
 - `system_fixes`: izinli düzeltmeler, değer şeması, mevcut değer.
 - `system_fix` { fix, value }: uygular, önceki/sonraki değeri döner.

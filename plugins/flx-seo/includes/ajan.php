@@ -1,0 +1,334 @@
+<?php
+/**
+ * Ajan uyumu ve güvenlik başlıkları:
+ *  - /llms.txt kendiliğinden üretilir (kökte gerçek dosya varsa sunucu onu verir, bu kod çalışmaz).
+ *  - WebMCP: arama formuna toolname/tooldescription (tarayıcıdaki ajanlar formu araç olarak görür).
+ *  - İsteğe bağlı başlıklar: X-Frame-Options + frame-ancestors, COOP, temel CSP, HSTS includeSubDomains/preload.
+ *  - Tek tık düzeltmeler `flx_system_fixes` (MCP system_fix ve Site denetimi düğmeleri).
+ *
+ * @package flx-seo
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/* ---------------------------------------------------------------------------
+ * llms.txt
+ * ------------------------------------------------------------------------- */
+
+/** llms.txt içeriği (12 saat önbellek; içerik ya da ayar değişince silinir). */
+function flxseo_llms_txt( $fresh = false ) {
+	$cached = $fresh ? false : get_transient( 'flxseo_llms' );
+	if ( is_string( $cached ) && '' !== $cached ) {
+		return $cached;
+	}
+	$skip  = array_filter( array( (int) get_option( 'woocommerce_cart_page_id' ), (int) get_option( 'woocommerce_checkout_page_id' ), (int) get_option( 'woocommerce_myaccount_page_id' ) ) );
+	$line  = function ( $title, $url, $desc = '' ) {
+		$title = trim( preg_replace( '/[\[\]\r\n]+/', ' ', wp_strip_all_tags( html_entity_decode( (string) $title, ENT_QUOTES ) ) ) );
+		$desc  = trim( preg_replace( '/\s+/u', ' ', wp_strip_all_tags( html_entity_decode( (string) $desc, ENT_QUOTES ) ) ) );
+		return '- [' . ( '' !== $title ? $title : $url ) . '](' . esc_url_raw( $url ) . ')' . ( '' !== $desc ? ': ' . mb_substr( $desc, 0, 160 ) : '' );
+	};
+	$usable = function ( $p ) use ( $skip ) {
+		return $p && 'publish' === $p->post_status && '' === $p->post_password && ! flxseo_get( $p->ID, 'noindex' ) && ! in_array( (int) $p->ID, $skip, true );
+	};
+
+	$out   = array( '# ' . flxseo_opt( 'site_name' ), '' );
+	$desc  = trim( (string) flxseo_opt( 'home_desc' ) );
+	$out[] = '> ' . ( '' !== $desc ? $desc : home_url( '/' ) );
+	$out[] = '';
+	$intro = trim( (string) flxseo_opt( 'llms_intro' ) );
+	if ( '' !== $intro ) {
+		$out[] = $intro;
+		$out[] = '';
+	}
+
+	// Ana sayfalar: önce menü, yoksa üst düzey sayfalar.
+	$pages = array();
+	$seen  = array( untrailingslashit( home_url( '/' ) ) => true );
+	foreach ( function_exists( 'flxseo_mcp_nav_links' ) ? flxseo_mcp_nav_links() : array() as $l ) {
+		$url = (string) ( $l['url'] ?? '' );
+		if ( '' === $url || '#' === $url[0] ) {
+			continue;
+		}
+		$abs = 0 === strpos( $url, '/' ) ? home_url( $url ) : $url;
+		$key = untrailingslashit( strtok( $abs, '#' ) );
+		if ( isset( $seen[ $key ] ) ) {
+			continue;
+		}
+		$seen[ $key ] = true;
+		$pid          = url_to_postid( $abs );
+		$p            = $pid ? get_post( $pid ) : null;
+		if ( $pid && ! $usable( $p ) ) {
+			continue;
+		}
+		$pages[] = $line( $l['label'] ?? '', $abs, $p ? flxseo_post_description( $p ) : '' );
+	}
+	if ( count( $pages ) < 3 ) {
+		foreach ( get_pages( array( 'parent' => 0, 'sort_column' => 'menu_order,post_title', 'number' => 30 ) ) as $p ) {
+			$key = untrailingslashit( get_permalink( $p ) );
+			if ( isset( $seen[ $key ] ) || ! $usable( $p ) ) {
+				continue;
+			}
+			$seen[ $key ] = true;
+			$pages[]      = $line( get_the_title( $p ), get_permalink( $p ), flxseo_post_description( $p ) );
+		}
+	}
+	if ( $pages ) {
+		$out[] = '## ' . __( 'Sayfalar', 'flx-seo' );
+		$out[] = '';
+		$out   = array_merge( $out, array_slice( $pages, 0, 30 ) );
+		$out[] = '';
+	}
+
+	$sections = array(
+		'post'    => __( 'Son yazılar', 'flx-seo' ),
+		'product' => __( 'Ürünler', 'flx-seo' ),
+	);
+	foreach ( flxseo_post_types() as $t ) {
+		if ( ! isset( $sections[ $t ] ) && 'page' !== $t ) {
+			$obj              = get_post_type_object( $t );
+			$sections[ $t ]   = $obj ? $obj->labels->name : $t;
+		}
+	}
+	foreach ( $sections as $type => $heading ) {
+		if ( ! post_type_exists( $type ) || ! in_array( $type, flxseo_post_types(), true ) ) {
+			continue;
+		}
+		$posts = get_posts(
+			array(
+				'post_type'      => $type,
+				'post_status'    => 'publish',
+				'posts_per_page' => 'post' === $type ? 15 : 10,
+				'has_password'   => false,
+				'no_found_rows'  => true,
+			)
+		);
+		$rows = array();
+		foreach ( $posts as $p ) {
+			if ( $usable( $p ) ) {
+				$rows[] = $line( get_the_title( $p ), get_permalink( $p ), flxseo_post_description( $p ) );
+			}
+		}
+		if ( $rows ) {
+			$out[] = '## ' . $heading;
+			$out[] = '';
+			$out   = array_merge( $out, $rows );
+			$out[] = '';
+		}
+	}
+
+	$out[] = '## ' . __( 'İsteğe bağlı', 'flx-seo' );
+	$out[] = '';
+	if ( function_exists( 'wp_sitemaps_get_server' ) && wp_sitemaps_get_server()->sitemaps_enabled() ) {
+		$out[] = $line( __( 'Site haritası', 'flx-seo' ), home_url( '/wp-sitemap.xml' ), __( 'Tüm herkese açık sayfaların listesi', 'flx-seo' ) );
+	}
+	$out[] = $line( __( 'RSS beslemesi', 'flx-seo' ), get_feed_link(), __( 'Son yazılar', 'flx-seo' ) );
+	$text  = (string) apply_filters( 'flxseo_llms_txt', implode( "\n", $out ) . "\n" );
+	set_transient( 'flxseo_llms', $text, 12 * HOUR_IN_SECONDS );
+	return $text;
+}
+
+function flxseo_llms_flush() {
+	delete_transient( 'flxseo_llms' );
+}
+add_action( 'save_post', 'flxseo_llms_flush' );
+add_action( 'deleted_post', 'flxseo_llms_flush' );
+add_action( 'wp_update_nav_menu', 'flxseo_llms_flush' );
+add_action( 'update_option_flxseo', 'flxseo_llms_flush' );
+
+add_action(
+	'parse_request',
+	function () {
+		$path = (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		$base = (string) wp_parse_url( home_url( '/' ), PHP_URL_PATH );
+		if ( untrailingslashit( $base ) . '/llms.txt' !== $path || ! flxseo_opt( 'llms' ) ) {
+			return;
+		}
+		if ( ! get_option( 'blog_public' ) ) {
+			status_header( 404 );
+			exit;
+		}
+		status_header( 200 );
+		header( 'Content-Type: text/plain; charset=utf-8' );
+		header( 'Cache-Control: public, max-age=3600' );
+		header( 'X-Robots-Tag: noindex' );
+		echo flxseo_llms_txt(); // phpcs:ignore WordPress.Security.EscapeOutput
+		exit;
+	},
+	0
+);
+
+/* ---------------------------------------------------------------------------
+ * WebMCP (bildirim tabanlı): arama formu tarayıcı ajanlarına araç olarak tanıtılır.
+ * ------------------------------------------------------------------------- */
+
+add_filter(
+	'get_search_form',
+	function ( $form ) {
+		if ( ! flxseo_opt( 'webmcp' ) || ! is_string( $form ) || false !== stripos( $form, 'toolname=' ) ) {
+			return $form;
+		}
+		$attrs = sprintf( ' toolname="search_site" tooldescription="%s"', esc_attr__( 'Sitede arama yapar ve sonuç sayfasını açar.', 'flx-seo' ) );
+		$form  = preg_replace( '/<form\b/i', '<form' . $attrs, $form, 1 );
+		return preg_replace( '/(<input\b[^>]*name=["\']s["\'])/i', '$1 toolparamdescription="' . esc_attr__( 'Aranacak kelimeler', 'flx-seo' ) . '"', $form, 1 );
+	},
+	20
+);
+
+/* Blok temalarındaki arama bloğu (core/search) get_search_form kullanmaz. */
+add_filter(
+	'render_block_core/search',
+	function ( $html ) {
+		if ( ! flxseo_opt( 'webmcp' ) || false !== stripos( $html, 'toolname=' ) ) {
+			return $html;
+		}
+		return preg_replace( '/<form\b/i', '<form toolname="search_site" tooldescription="' . esc_attr__( 'Sitede arama yapar ve sonuç sayfasını açar.', 'flx-seo' ) . '"', $html, 1 );
+	}
+);
+
+/* ---------------------------------------------------------------------------
+ * Güvenlik başlıkları
+ * ------------------------------------------------------------------------- */
+
+function flxseo_hsts_value() {
+	$v = 'max-age=31536000';
+	if ( flxseo_opt( 'hsts_sub' ) || flxseo_opt( 'hsts_preload' ) ) {
+		$v .= '; includeSubDomains';
+	}
+	if ( flxseo_opt( 'hsts_preload' ) ) {
+		$v .= '; preload';
+	}
+	return $v;
+}
+
+add_action(
+	'send_headers',
+	function () {
+		if ( headers_sent() || is_admin() || is_customize_preview() ) {
+			return;
+		}
+		$sent = array_map( 'strtolower', array_map( fn( $h ) => strtok( $h, ':' ), headers_list() ) );
+		$add  = array();
+		if ( flxseo_opt( 'hdr_frame' ) ) {
+			$add['x-frame-options'] = 'SAMEORIGIN';
+		}
+		if ( flxseo_opt( 'hdr_coop' ) ) {
+			$add['cross-origin-opener-policy'] = 'same-origin-allow-popups';
+		}
+		if ( flxseo_opt( 'hdr_csp' ) ) {
+			$csp = "object-src 'none'; base-uri 'self'";
+			if ( flxseo_opt( 'hdr_frame' ) ) {
+				$csp .= "; frame-ancestors 'self'";
+			}
+			if ( is_ssl() ) {
+				$csp .= '; upgrade-insecure-requests';
+			}
+			$add['content-security-policy'] = (string) apply_filters( 'flxseo_csp', $csp );
+		}
+		foreach ( $add as $name => $value ) {
+			if ( '' !== $value && ! in_array( $name, $sent, true ) ) {
+				header( ucwords( $name, '-' ) . ': ' . $value );
+			}
+		}
+	},
+	11
+);
+
+/* Güvenlik başlıkları açıkken WordPress sürümü sayfada gösterilmez. */
+add_action(
+	'init',
+	function () {
+		if ( flxseo_opt( 'hdr_csp' ) || flxseo_opt( 'hdr_frame' ) ) {
+			remove_action( 'wp_head', 'wp_generator' );
+			add_filter( 'the_generator', '__return_empty_string' );
+		}
+	}
+);
+
+/* ---------------------------------------------------------------------------
+ * Tek tık düzeltmeler (Site denetimi düğmeleri ve MCP system_fix)
+ * ------------------------------------------------------------------------- */
+
+/** Düzeltme kimliği → açtığı ayarlar. */
+function flxseo_fix_map() {
+	return array(
+		'flxseo_llms'    => array( 'llms' ),
+		'flxseo_webmcp'  => array( 'webmcp' ),
+		'flxseo_headers' => array( 'hdr_frame', 'hdr_coop', 'hdr_csp' ),
+		'flxseo_hsts'    => array( 'hsts_sub' ),
+	);
+}
+
+function flxseo_fix_is_on( $fix_id ) {
+	$keys = flxseo_fix_map()[ $fix_id ] ?? array();
+	if ( ! $keys ) {
+		return false;
+	}
+	foreach ( $keys as $k ) {
+		if ( ! flxseo_opt( $k ) ) {
+			return false;
+		}
+	}
+	return true;
+}
+
+/** Düzeltmeyi uygular; açılan ayarların listesini döner. */
+function flxseo_fix_apply( $fix_id ) {
+	$keys = flxseo_fix_map()[ $fix_id ] ?? null;
+	if ( ! $keys ) {
+		throw new Exception( __( 'Bilinmeyen düzeltme.', 'flx-seo' ) );
+	}
+	$o = (array) get_option( 'flxseo', array() );
+	foreach ( $keys as $k ) {
+		$o[ $k ] = 1;
+	}
+	update_option( 'flxseo', $o );
+	flxseo_llms_flush();
+	return $keys;
+}
+
+add_filter(
+	'flx_system_fixes',
+	function ( $fixes ) {
+		$labels = array(
+			'flxseo_llms'    => array( __( 'llms.txt\'i aç', 'flx-seo' ), __( 'Flux SEO /llms.txt dosyasını site adı, açıklama, menü ve son içeriklerden üretir.', 'flx-seo' ) ),
+			'flxseo_webmcp'  => array( __( 'WebMCP arama aracını aç', 'flx-seo' ), __( 'Arama formuna toolname/tooldescription eklenir; tarayıcıdaki ajanlar formu araç olarak görür.', 'flx-seo' ) ),
+			'flxseo_headers' => array( __( 'Güvenlik başlıklarını aç', 'flx-seo' ), __( 'X-Frame-Options: SAMEORIGIN, COOP same-origin-allow-popups ve temel CSP (object-src \'none\'; base-uri \'self\'; frame-ancestors \'self\'). Site başka sitelerde iframe ile gösteriliyorsa açmayın.', 'flx-seo' ) ),
+			'flxseo_hsts'    => array( __( 'HSTS includeSubDomains', 'flx-seo' ), __( 'Tüm alt alan adları HTTPS ise HSTS alt alan adlarını da kapsar.', 'flx-seo' ) ),
+		);
+		foreach ( $labels as $id => $l ) {
+			$fixes[ $id ] = array(
+				'label'       => $l[0],
+				'description' => $l[1],
+				'checks'      => array( 'flxseo.audit' ),
+				'source'      => 'SEO & MCP',
+				'value'       => null,
+				'current'     => fn() => flxseo_fix_is_on( $id ),
+				'run'         => function () use ( $id ) {
+					flxseo_fix_apply( $id );
+					return __( 'Açıldı. Site denetimini yeniden çalıştırın.', 'flx-seo' );
+				},
+			);
+		}
+		return $fixes;
+	}
+);
+
+/* Ön ayar şeması (Flux Setup): flxseo option alanları. */
+add_filter(
+	'flx_settings_schema',
+	function ( $s ) {
+		$fields = array();
+		foreach ( flxseo_defaults() as $k => $v ) {
+			$fields[ $k ] = is_int( $v ) ? array( 'type' => 'bool', 'default' => $v ) : array( 'type' => in_array( $k, array( 'home_desc', 'same_as', 'llms_intro' ), true ) ? 'text' : 'string', 'default' => $v );
+		}
+		$fields['org_type']['type'] = 'enum';
+		$fields['org_type']['enum'] = array( 'NGO', 'Organization' );
+		$s['flxseo'] = array(
+			'label'  => 'Flux SEO',
+			'fields' => $fields,
+		);
+		return $s;
+	}
+);

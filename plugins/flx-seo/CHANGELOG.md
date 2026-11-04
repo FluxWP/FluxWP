@@ -1,5 +1,16 @@
 # Değişiklikler
 
+## 1.3.0
+- Yeni **SEO & MCP › Site denetimi**: PageSpeed Insights'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre (kritik, yüksek, orta, düşük). Her öneride nasıl düzeltilir, sorunlu öğeler ve düzeltme yeri. Menüde kritik + yüksek sayısı, Sistem Kontrolü'nde "Site denetimi" satırı.
+- Site içi denetim anahtarsız ve günde bir kendiliğinden: viewport yakınlaştırma kilidi, ARIA rolleri (tablist › tab, gerekli üst öğe), liste dışı `<li>`, adsız bağlantı/düğme/alan, yinelenen id, aynı başlıklı yayınlar ve aynı metinli farklı bağlantılar, engelleyen CSS/JS, DOM boyutu, boyutsuz ve lazy ilk görsel, font-display, güvenlik başlıkları, robots.txt, llms.txt, WebMCP.
+- İsteğe bağlı PageSpeed Insights API ölçümü (mobil + masaüstü): Lighthouse puanları, Core Web Vitals ve tüm başarısız denetimler. API anahtarı panelden.
+- Ajan uyumu: `/llms.txt` site adı, açıklama, menü sayfaları ve son içeriklerden kendiliğinden üretilir (varsayılan açık); arama formuna WebMCP `toolname` (varsayılan açık).
+- İsteğe bağlı güvenlik başlıkları (varsayılan kapalı, tek tıkla açılır): X-Frame-Options + frame-ancestors, COOP same-origin-allow-popups, temel CSP, HSTS includeSubDomains/preload. Açıkken WordPress sürüm etiketi gizlenir.
+- **Site yapım rehberi** (TR + EN Markdown): yeni sayfa, tema ve ön ayarlar için SEO, performans, erişilebilirlik, güvenlik ve ajan uyumu kuralları + yayın öncesi kontrol listesi. Panelden indirilir; MCP aracı `site_build_guide`, kaynak `flxseo://guide/site-build`.
+- Yeni MCP araçları `site_audit` ve `site_build_guide`, istem `site_audit_fix`, MCP kaynakları (resources/list, resources/read). Flux AI sohbetine araç olarak kendiliğinden gelir; sohbet talimatı sayfa işinde önce rehberi okumasını söyler.
+- Tek tık düzeltmeler `flx_system_fixes` ile (`flxseo_llms`, `flxseo_webmcp`, `flxseo_headers`, `flxseo_hsts`); Flux Setup ayar şemasına `flxseo` alanları.
+- Çeviri: yeni metinler i18n (TR kaynak + `languages/flx-seo-en_US`).
+
 ## 1.2.12
 - Tarih ve "… önce" metinleri artık kullanıcının dilinde, tek ortak yardımcıdan (FluxWP `flx_date` / `flx_time_ago`, flx-brand 1.1.0): "31 minutes önce", "August 10" gibi Türkçe/İngilizce karışımı kalmadı; çekirdek dil paketi inmemiş olsa da TR ve EN ay/gün adları doğru.
 
