@@ -199,6 +199,48 @@
 		}
 	};
 
+	/* İşlem bitene kadar ekranın üstünde sabit kalan "sayfadan ayrılmayın" şeridi (kaydırınca kaybolmaz). */
+	var stay = {
+		el: function () {
+			var el = document.getElementById('flxu-stay');
+			if (!el) {
+				el = document.createElement('div');
+				el.id = 'flxu-stay';
+				el.className = 'flxu-stay';
+				el.setAttribute('role', 'status');
+				el.setAttribute('aria-live', 'polite');
+				el.hidden = true;
+				el.innerHTML = '<span class="flxu-stay__spin" aria-hidden="true"></span><span class="flxu-stay__body"><strong class="flxu-stay__title"></strong><span class="flxu-stay__step"></span></span><span class="flxu-stay__count"></span><span class="flxu-stay__bar"><span></span></span>';
+				document.body.appendChild(el);
+			}
+			return el;
+		},
+		show: function () {
+			var el = this.el();
+			clearTimeout(this.t);
+			el.classList.remove('is-ok', 'is-err');
+			el.querySelector('.flxu-stay__title').textContent = L.stay || L.working;
+			this.step('', 0, 0);
+			el.hidden = false;
+			document.body.classList.add('flxu-staying');
+		},
+		step: function (text, i, n) {
+			var el = this.el();
+			el.querySelector('.flxu-stay__step').textContent = text || '';
+			el.querySelector('.flxu-stay__count').textContent = n ? fmt(L.stepOf, Math.min(i + 1, n), n) : '';
+			el.querySelector('.flxu-stay__bar span').style.width = (n ? Math.round(i / n * 100) : 5) + '%';
+		},
+		done: function (okN, errN) {
+			var el = this.el();
+			el.classList.add(errN ? 'is-err' : 'is-ok');
+			el.querySelector('.flxu-stay__title').textContent = fmt(L.done, okN, errN);
+			el.querySelector('.flxu-stay__step').textContent = '';
+			el.querySelector('.flxu-stay__count').textContent = '';
+			el.querySelector('.flxu-stay__bar span').style.width = '100%';
+			this.t = setTimeout(function () { el.hidden = true; document.body.classList.remove('flxu-staying'); }, 4000);
+		}
+	};
+
 	function rowEl(slug) { return form().querySelector('.flxu-row[data-slug="' + slug + '"]'); }
 	function rowRun(slug, kind) {
 		var tr = rowEl(slug); if (!tr) { return; }
@@ -262,6 +304,7 @@
 		form().classList.add('is-busy');
 		draw();
 		log.start(title || L.preparing);
+		stay.show();
 		var okN = 0, errN = 0;
 		var planP = params.steps ? Promise.resolve({ steps: params.steps }) : post(params);
 		planP.then(function (res) {
@@ -275,6 +318,7 @@
 				var st = steps[i];
 				log.progress(i, steps.length);
 				var li = log.line(fmt((L.kind && L.kind[st.kind]) || '%s', st.name) + (st.why ? ' (' + st.why + ')' : ''), 'run');
+				stay.step(fmt((L.kind && L.kind[st.kind]) || '%s', st.name), i, steps.length);
 				rowRun(st.slug, st.kind);
 				return post({ action: 'flxu_step', kind: st.kind, slug: st.slug, version: st.version || '' }).then(function (r) {
 					(r.lines || []).forEach(function (l) { log.sub(li, l.text, l.ok); });
@@ -304,6 +348,7 @@
 			return refresh();
 		}).then(function () {
 			var f = form(); if (f) { f.classList.remove('is-busy'); }
+			stay.done(okN, errN);
 		});
 	}
 
