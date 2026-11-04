@@ -98,7 +98,13 @@
 .flxwk-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px 20px;padding-bottom:18px;margin-bottom:24px;border-bottom:1px solid var(--wk-line)}
 .flxwk-head__text{min-width:0;flex:1 1 auto}
 .flxwk-head .flxwk-meta{margin-bottom:0}
-.flxwk-head .flxwk-actions{flex:0 0 auto;margin-top:6px;justify-content:flex-end}
+.flxwk-head .flxwk-actions{flex:0 0 190px;flex-direction:column;align-items:stretch;gap:6px;margin-top:6px}
+.flxwk-head .flxwk-actions .flxwk-menu>summary{width:100%;justify-content:flex-start;box-sizing:border-box}
+.flxwk-head .flxwk-actions .flxwk-menu>summary svg:last-child{margin-left:auto}
+.flxwk-head .flxwk-actions .flxwk-btn.is-icon{position:absolute;top:0;right:calc(100% + 4px)}
+.flxwk-head .flxwk-actions{position:relative}
+.flxwk-head .flxwk-actions .flxwk-menu{position:static}
+.flxwk-head .flxwk-menu__pop{left:auto;right:0;min-width:240px}
 
 /* Düğmeler */
 .flxwk-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
@@ -252,10 +258,9 @@ html.flxwk-lock{overflow:hidden}
 .flxwk-card__list li.is-sub a{color:var(--wk-text)}
 @media (max-width:640px){
   .flxwk-head{flex-direction:column;gap:14px}
-  .flxwk-head .flxwk-actions{margin-top:0;justify-content:flex-start;width:100%}
-  .flxwk-head .flxwk-actions .flxwk-menu{flex:1 1 0}
-  .flxwk-head .flxwk-actions .flxwk-menu>summary{width:100%;justify-content:center;padding:10px 12px}
-  .flxwk-head .flxwk-menu__pop{left:0;right:auto;min-width:min(260px,calc(100vw - 32px))}
-  .flxwk-head .flxwk-menu+.flxwk-menu .flxwk-menu__pop{left:auto;right:0}
+  .flxwk-head .flxwk-actions{flex:none;margin-top:0;width:100%}
+  .flxwk-head .flxwk-actions .flxwk-menu>summary{padding:11px 12px}
+  .flxwk-head .flxwk-menu__pop{position:static;margin-top:6px;box-shadow:none;min-width:0}
+  .flxwk-head .flxwk-actions .flxwk-btn.is-icon{position:static;align-self:flex-end}
   .flxwk-menu__pop a,.flxwk-menu__pop button{padding:12px 10px;font-size:.95rem}
 }
