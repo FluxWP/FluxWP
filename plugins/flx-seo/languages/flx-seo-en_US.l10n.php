@@ -75,7 +75,7 @@ return array (
     'HSTS preload (geri alması aylar sürer; tüm alt alan adları HTTPS olmalı)' => 'HSTS preload (takes months to undo; every subdomain must be HTTPS)',
     'Kaydet' => 'Save',
     'Yeni site yapım rehberi' => 'New site build guide',
-    'Yeni sayfa, tema ya da ön ayar yaparken SEO, performans, erişilebilirlik, güvenlik ve ajan uyumu için kurallar ve kontrol listesi. Yapay zekâ ajanları aynı rehberi MCP aracı site_build_guide ile, Flux AI sohbeti de araç olarak alır.' => 'Rules and a checklist for SEO, performance, accessibility, security and agent readiness when you build a new page, theme or preset. AI agents get the same guide with the MCP tool site_build_guide, and Flux AI chat gets it as a tool.',
+    'Yeni sayfa, tema ya da ön ayar yaparken SEO, performans, erişilebilirlik, güvenlik ve ajan uyumu için kurallar ve kontrol listesi. Yapay zekâ ajanları aynı rehberi MCP aracı flxseo_site_build_guide ile, Flux AI sohbeti de araç olarak alır.' => 'Rules and a checklist for SEO, performance, accessibility, security and agent readiness when you build a new page, theme or preset. AI agents get the same guide with the MCP tool flxseo_site_build_guide, and Flux AI chat gets it as a tool.',
     'Türkçe (.md) indir' => 'Download Turkish (.md)',
     'İngilizce (.md) indir' => 'Download English (.md)',
     'Site içi denetim çalışıyor…' => 'On-site audit running…',

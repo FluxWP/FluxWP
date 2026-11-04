@@ -1,5 +1,13 @@
 # Flux AI — Değişiklikler
 
+## 0.8.0
+- **Flux AI SDK** (`includes/flx-ai-sdk`, kaynak `tools/ai-sdk`): eklentilerin (FluxWP ya da üçüncü taraf) AI özelliklerini kolayca bağladığı sürümlü kütüphane. `flx_ai_plugin()`, `flx_ai_tool()` (ada eklenti öneki kendiliğinden eklenir), `flx_ai_settings()` / `flx_ai_feature()`, `flx_ai_get()`, `flx_ai_chat()` / `flx_ai_complete()`. Birden çok kopya varsa yalnız en yeni sürüm yüklenir; Flux AI yoksa hata vermez.
+- **Bağlı sistemler › AI ayarları**: SDK ile tanımlanan ayarlar ve özellik anahtarları, eklentiye özel model, aç/kapa ve eklentinin araç sayısı tek ekranda.
+- **Araçlar ekranı yenilendi**: arama, eklenti / tür (okur, değiştirir) / durum (açık, kapalı, çakışma, öneksiz) süzgeçleri, eklenti bazlı sayı çipleri (açık/toplam), toplu seçip aç/kapat, "Nerede" sütunu (MCP · Sohbet), Kaynak sütununda üstte eklenti adı, altta id. Süzgeç adres çubuğunda kalır (`#src=flx-seo`). Telefonda kart düzeni.
+- **Ad çakışması**: aynı araç adını iki eklenti kaydederse ilk kaydeden açık kalır, diğeri üzerine yazamaz ve kapalı bekler; ekranda iki satır ve "Bunu kullan" ile seçim.
+- **Eski adlar (alias)**: araçlar `aliases` ile yeniden adlandırılabilir; MCP çağrıları, anahtar kapsamları ve kapalı araç listesi eski adla da çalışır. Flux SEO, Flux Setup ve Flux TV Board araçları önek aldı.
+- Araçlar ekranında kapatılan araç artık MCP sunucusunda da kapalı (önceden yalnız sohbette).
+
 ## 0.7.0
 - **Ortak MCP sunucusu Flux AI'ya taşındı** (önceden Flux SEO içindeydi). Yeni ekran **Flux AI › MCP**: sunucuyu aç/kapa, kullanıcıya özel anahtarlar (araçlarla sınırlanabilir), Claude Desktop / Claude Code / claude.ai bağlantı örnekleri ve son işlemler. Adres aynı: `/wp-json/flx-mcp/v1/mcp`.
 - Eklentiler araçlarını yeni `flx_mcp_tools` filtresiyle kaydeder; eski `flxseo_mcp_tools` aynen çalışır (CRM, Mail, Speed, Analytics, Social, Setup, Lang, TV Board, QR Menu değişmeden gelir). İstemler `flx_mcp_prompts`, kaynaklar `flx_mcp_resources` (eski `flxseo_mcp_resources` de), sunucu talimatları `flx_mcp_instructions`.

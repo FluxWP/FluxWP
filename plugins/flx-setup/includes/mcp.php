@@ -3,7 +3,7 @@
  * AI ve MCP araçları. Flux SEO'nun `flxseo_mcp_tools` filtresine eklenir; Flux AI sohbeti bu araçları
  * otomatik alır (yazan araçlar sohbette çalışmadan önce kullanıcı onayı ister).
  *
- * Dış MCP istemcisinden (flx-mcp/v1/mcp) gelen preset_patch_apply varsayılan olarak bekleyen yama oluşturur;
+ * Dış MCP istemcisinden (flx-mcp/v1/mcp) gelen flxk_preset_patch_apply varsayılan olarak bekleyen yama oluşturur;
  * yönetici Görünüm › Ön ayarlar'dan ya da sohbetten onaylar. Ayarlardan "MCP doğrudan uygulasın" açılabilir.
  */
 
@@ -40,11 +40,13 @@ add_filter( 'flxseo_mcp_tools', 'flxk_mcp_tools' );
 function flxk_mcp_tools( $tools ) {
 	$patch = array(
 		'type'        => 'object',
-		'description' => 'flx-preset/1 parçası: yalnız değişecek alanlar. Biçim için preset_schema.',
+		'description' => 'flx-preset/1 parçası: yalnız değişecek alanlar. Biçim için flxk_preset_schema.',
 	);
 	$cap   = flxk_cap();
 
-	$tools['preset_schema'] = array(
+	$tools['flxk_preset_schema'] = array(
+		'aliases'     => array( 'preset_schema' ), // Flux Setup 0.x öneksiz adı.
+		'source'      => 'flx-setup',
 		'title'       => 'Ön ayar biçimi',
 		'description' => 'Site ön ayarı / yama biçimini (flx-preset/1 JSON Schema), içerik türlerini, profil alanlarını ve yazılabilir ayarları döner. Siteyi değiştirmeden önce bir kez çağır.',
 		'readonly'    => true,
@@ -67,7 +69,9 @@ function flxk_mcp_tools( $tools ) {
 		},
 	);
 
-	$tools['preset_list'] = array(
+	$tools['flxk_preset_list'] = array(
+		'aliases'     => array( 'preset_list' ), // Flux Setup 0.x öneksiz adı.
+		'source'      => 'flx-setup',
 		'title'       => 'Ön ayarlar',
 		'description' => 'Kurulu ön ayarlar, uygulanma durumu, bekleyen migration ve yamalar.',
 		'readonly'    => true,
@@ -100,7 +104,9 @@ function flxk_mcp_tools( $tools ) {
 		},
 	);
 
-	$tools['preset_export'] = array(
+	$tools['flxk_preset_export'] = array(
+		'aliases'     => array( 'preset_export' ), // Flux Setup 0.x öneksiz adı.
+		'source'      => 'flx-setup',
 		'title'       => 'Siteyi ön ayar olarak oku',
 		'description' => 'Mevcut siteyi flx-preset/1 JSON\'u olarak döner (gizli alanlar hariç). sections: profile, wp, settings, theme, content, media. Değiştirmeden önce mevcut hali görmek için kullan.',
 		'readonly'    => true,
@@ -127,7 +133,9 @@ function flxk_mcp_tools( $tools ) {
 		},
 	);
 
-	$tools['preset_patch_preview'] = array(
+	$tools['flxk_preset_patch_preview'] = array(
+		'aliases'     => array( 'preset_patch_preview' ), // Flux Setup 0.x öneksiz adı.
+		'source'      => 'flx-setup',
 		'title'       => 'Yama önizle',
 		'description' => 'Bir yamanın siteye etkisini gösterir, hiçbir şey yazmaz. status: add, change, same, keep, manual (elle değiştirilmiş, atlanır).',
 		'readonly'    => true,
@@ -143,9 +151,11 @@ function flxk_mcp_tools( $tools ) {
 		},
 	);
 
-	$tools['preset_patch_apply'] = array(
+	$tools['flxk_preset_patch_apply'] = array(
+		'aliases'     => array( 'preset_patch_apply' ), // Flux Setup 0.x öneksiz adı.
+		'source'      => 'flx-setup',
 		'title'       => 'Yamayı uygula',
-		'description' => 'Yamayı uygular. Önce preset_patch_preview ile kullanıcıya özet göster. note: kısa açıklama (geçmişte görünür). Dış MCP\'den çağrılınca yönetici onayına düşer.',
+		'description' => 'Yamayı uygular. Önce flxk_preset_patch_preview ile kullanıcıya özet göster. note: kısa açıklama (geçmişte görünür). Dış MCP\'den çağrılınca yönetici onayına düşer.',
 		'cap'         => $cap,
 		'schema'      => array(
 			'type'       => 'object',
@@ -170,9 +180,11 @@ function flxk_mcp_tools( $tools ) {
 		},
 	);
 
-	$tools['preset_revert'] = array(
+	$tools['flxk_preset_revert'] = array(
+		'aliases'     => array( 'preset_revert' ), // Flux Setup 0.x öneksiz adı.
+		'source'      => 'flx-setup',
 		'title'       => 'Değişikliği geri al',
-		'description' => 'preset_history\'deki bir çalıştırmayı (run) geri alır. Sonradan elle değiştirilen değerlere dokunmaz.',
+		'description' => 'flxk_preset_history\'deki bir çalıştırmayı (run) geri alır. Sonradan elle değiştirilen değerlere dokunmaz.',
 		'cap'         => $cap,
 		'schema'      => array(
 			'type'       => 'object',
@@ -185,7 +197,9 @@ function flxk_mcp_tools( $tools ) {
 		},
 	);
 
-	$tools['preset_history'] = array(
+	$tools['flxk_preset_history'] = array(
+		'aliases'     => array( 'preset_history' ), // Flux Setup 0.x öneksiz adı.
+		'source'      => 'flx-setup',
 		'title'       => 'Ön ayar geçmişi',
 		'description' => 'Son uygulanan ön ayar, migration ve yamalar (run kimliğiyle).',
 		'readonly'    => true,
@@ -204,11 +218,11 @@ function flxk_ai_guide() {
 		"\n",
 		array(
 			'Siteyi değiştirmek için yama yaz: yalnız değişecek alanları içeren flx-preset/1 nesnesi ("format": "flx-preset/1").',
-			'Önce preset_export ile ilgili bölümü oku, sonra preset_patch_preview ile önizle, kullanıcıya kısa özet ver, onay alınca preset_patch_apply.',
+			'Önce flxk_preset_export ile ilgili bölümü oku, sonra flxk_preset_patch_preview ile önizle, kullanıcıya kısa özet ver, onay alınca flxk_preset_patch_apply.',
 			'Bölümler: profile (kurum kimliği), wp (çekirdek ayarlar), settings (option => alanlar, derin birleşir), theme.styles (theme.json), theme.templates / theme.parts (header, footer… blok markup), content (type+key ile sayfa, menü, ürün, paket türleri), media.',
 			'Sayfa gövdesi blok markup ya da blok ağacıdır: [{"name":"core/heading","attrs":{"level":2},"html":"<h2 class=\"wp-block-heading\">Başlık</h2>"}, {"name":"core/group","html":"<div class=\"wp-block-group\">{{inner}}</div>","inner":[...]}].',
 			'Yer tutucular: {profile.name}, {domain}, {home}, {year}, "@page:key" (ID), {url:@page:key}, {url:@media:logo}.',
-			'Ayar alanlarının adı, türü ve varsayılanı preset_schema çıktısındaki "settings" şemasında (option => fields). Ör. çerez banner\'ı: settings.flx_ayarlar.cookie_enabled = 1.',
+			'Ayar alanlarının adı, türü ve varsayılanı flxk_preset_schema çıktısındaki "settings" şemasında (option => fields). Ör. çerez banner\'ı: settings.flx_ayarlar.cookie_enabled = 1.',
 			'manual durumundaki değerleri kullanıcı elle değiştirmiştir; özellikle istemedikçe zorlamaya çalışma.',
 			'Şifre, API key ve token yazılamaz; kullanıcıya ilgili panelden girmesini söyle.',
 		)

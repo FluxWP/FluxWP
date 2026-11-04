@@ -30,6 +30,8 @@ function flxai_js_strings() {
 		'Giden · araç sonucu' => __( 'Giden · araç sonucu', 'flx-ai' ),
 		'Gelen · hata' => __( 'Gelen · hata', 'flx-ai' ),
 		'Gelen · cevap' => __( 'Gelen · cevap', 'flx-ai' ),
+		'%s araç gösteriliyor' => __( '%s araç gösteriliyor', 'flx-ai' ),
+		'%s seçili' => __( '%s seçili', 'flx-ai' ),
 		'Görsel hazırlanıyor…' => __( 'Görsel hazırlanıyor…', 'flx-ai' ),
 		'Görsel çizilemedi; kodu:' => __( 'Görsel çizilemedi; kodu:', 'flx-ai' ),
 		'Görsel' => __( 'Görsel', 'flx-ai' ),

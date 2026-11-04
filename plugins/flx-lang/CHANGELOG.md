@@ -1,5 +1,8 @@
 # Flux Lang
 
+## 0.1.8
+- Flux SEO 1.6.0'ın önekli araçlarına (`flxseo_list_content` …) dil alanı eklenir; eski öneksiz adlar da desteklenir.
+
 ## 0.1.7
 - Paylaşılan sayfalar (`flxl_shared_post_ids`, ör. sepet/ödeme) her dilde aynı adresle hreflang alır; `flxl_hreflang_archive` filtresi gerekmez.
 

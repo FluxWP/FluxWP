@@ -606,7 +606,9 @@ function flxseo_audit_title( $id, $fallback ) {
 add_filter(
 	'flx_mcp_tools',
 	function ( $tools ) {
-		$tools['site_audit_history'] = array(
+		$tools['flxseo_site_audit_history'] = array(
+			'aliases'     => array( 'site_audit_history' ), // Flux SEO 1.5.x ve öncesindeki ad.
+			'source'      => 'flx-seo',
 			'title'       => __( 'Site denetimi geçmişi', 'flx-seo' ),
 			'description' => 'Past site audit reports, newest first: time, trigger (auto|manual|mcp|fix), counts by priority, PageSpeed scores and Core Web Vitals per strategy, agentic x/y, new and fixed finding ids since the previous report. Also returns the automatic schedule (next_run). Use it to show trends or to check whether a fix stuck.',
 			'readonly'    => true,

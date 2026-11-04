@@ -4,8 +4,8 @@
  *
  * - Kendi araçları: flxl_languages, flxl_translations, flxl_save_translation, flxl_set_language,
  *   flxl_untranslated, flxl_image_language, flxl_term_translation, flxl_site_texts.
- * - Flux SEO çekirdek araçlarına "lang" eklenir: list_content (süzgeç), get_content (lang + translations),
- *   create_content (lang + translation_of), update_content (lang). Flux SEO koduna dokunulmaz.
+ * - Flux SEO çekirdek araçlarına "lang" eklenir: flxseo_list_content (süzgeç), flxseo_get_content (lang + translations),
+ *   flxseo_create_content (lang + translation_of), flxseo_update_content (lang); eski öneksiz adlar da desteklenir. Flux SEO koduna dokunulmaz.
  *
  * @package flx-lang
  */
@@ -407,16 +407,21 @@ add_filter(
 );
 
 function flxl_wrap_seo_tools( array $tools ) {
+	// Flux SEO 1.6.0+ araçları önekli (flxseo_list_content); eski sürümde öneksiz.
+	$seo = array();
+	foreach ( array( 'list_content', 'get_content', 'create_content', 'update_content' ) as $n ) {
+		$seo[ $n ] = isset( $tools[ 'flxseo_' . $n ] ) ? 'flxseo_' . $n : $n;
+	}
 	$lang = array(
 		'type'        => 'string',
 		'enum'        => array_merge( flxl_language_codes(), array( 'all' ) ),
 		'description' => 'Dil (Flux Lang). Varsayılan: ' . flxl_default_language() . '.',
 	);
-	if ( isset( $tools['list_content'] ) ) {
-		$run = $tools['list_content']['run'];
-		$tools['list_content']['schema']['properties']['lang'] = $lang + array( 'default' => 'all' );
-		$tools['list_content']['description']                .= ' lang ile dil süzülür (all = tüm diller); her satırda lang.';
-		$tools['list_content']['run']                          = function ( $a ) use ( $run ) {
+	if ( isset( $tools[ $seo['list_content'] ] ) ) {
+		$run = $tools[ $seo['list_content'] ]['run'];
+		$tools[ $seo['list_content'] ]['schema']['properties']['lang'] = $lang + array( 'default' => 'all' );
+		$tools[ $seo['list_content'] ]['description']                .= ' lang ile dil süzülür (all = tüm diller); her satırda lang.';
+		$tools[ $seo['list_content'] ]['run']                          = function ( $a ) use ( $run ) {
 			$l   = (string) ( $a['lang'] ?? 'all' );
 			$add = function ( $q ) use ( $l ) {
 				if ( ! $q->get( 'flxl_lang' ) ) {
@@ -440,10 +445,10 @@ function flxl_wrap_seo_tools( array $tools ) {
 			return $r;
 		};
 	}
-	if ( isset( $tools['get_content'] ) ) {
-		$run                                  = $tools['get_content']['run'];
-		$tools['get_content']['description'] .= ' Yanıtta lang ve translations (dil => ID).';
-		$tools['get_content']['run']          = function ( $a ) use ( $run ) {
+	if ( isset( $tools[ $seo['get_content'] ] ) ) {
+		$run                                  = $tools[ $seo['get_content'] ]['run'];
+		$tools[ $seo['get_content'] ]['description'] .= ' Yanıtta lang ve translations (dil => ID).';
+		$tools[ $seo['get_content'] ]['run']          = function ( $a ) use ( $run ) {
 			$r = $run( $a );
 			if ( is_array( $r ) && isset( $r['id'] ) ) {
 				$r['lang']         = flxl_post_language( $r['id'] );
@@ -452,12 +457,12 @@ function flxl_wrap_seo_tools( array $tools ) {
 			return $r;
 		};
 	}
-	if ( isset( $tools['create_content'] ) ) {
-		$run = $tools['create_content']['run'];
-		$tools['create_content']['schema']['properties']['lang']           = array_merge( $lang, array( 'enum' => flxl_language_codes() ) );
-		$tools['create_content']['schema']['properties']['translation_of'] = array( 'type' => 'integer', 'description' => 'Bu içerik şu ID\'nin çevirisi (Flux Lang). Kopyalayarak çeviri için flxl_save_translation daha uygun.' );
-		$tools['create_content']['description']                           .= ' lang ile dil seçilir (varsayılan ' . flxl_default_language() . '); translation_of ile başka içeriğin çevirisi olarak bağlanır.';
-		$tools['create_content']['run'] = function ( $a ) use ( $run ) {
+	if ( isset( $tools[ $seo['create_content'] ] ) ) {
+		$run = $tools[ $seo['create_content'] ]['run'];
+		$tools[ $seo['create_content'] ]['schema']['properties']['lang']           = array_merge( $lang, array( 'enum' => flxl_language_codes() ) );
+		$tools[ $seo['create_content'] ]['schema']['properties']['translation_of'] = array( 'type' => 'integer', 'description' => 'Bu içerik şu ID\'nin çevirisi (Flux Lang). Kopyalayarak çeviri için flxl_save_translation daha uygun.' );
+		$tools[ $seo['create_content'] ]['description']                           .= ' lang ile dil seçilir (varsayılan ' . flxl_default_language() . '); translation_of ile başka içeriğin çevirisi olarak bağlanır.';
+		$tools[ $seo['create_content'] ]['run'] = function ( $a ) use ( $run ) {
 			$l = (string) ( $a['lang'] ?? '' );
 			if ( '' !== $l && ! flxl_is_language( $l ) ) {
 				throw new Exception( 'Geçersiz dil: ' . $l );
@@ -469,7 +474,7 @@ function flxl_wrap_seo_tools( array $tools ) {
 				}
 				$have = flxl_get_translations( $o->ID );
 				if ( '' !== $l && isset( $have[ $l ] ) ) {
-					throw new Exception( 'Bu dilde çevirisi zaten var: ID ' . $have[ $l ] . '. update_content ya da flxl_save_translation kullanın.' );
+					throw new Exception( 'Bu dilde çevirisi zaten var: ID ' . $have[ $l ] . '. flxseo_update_content ya da flxl_save_translation kullanın.' );
 				}
 			}
 			$r = $run( $a );
@@ -491,11 +496,11 @@ function flxl_wrap_seo_tools( array $tools ) {
 			return $r;
 		};
 	}
-	if ( isset( $tools['update_content'] ) ) {
-		$run = $tools['update_content']['run'];
-		$tools['update_content']['schema']['properties']['lang'] = array_merge( $lang, array( 'enum' => flxl_language_codes() ) );
-		$tools['update_content']['description']                 .= ' lang ile içeriğin dili değiştirilir (Flux Lang).';
-		$tools['update_content']['run'] = function ( $a ) use ( $run ) {
+	if ( isset( $tools[ $seo['update_content'] ] ) ) {
+		$run = $tools[ $seo['update_content'] ]['run'];
+		$tools[ $seo['update_content'] ]['schema']['properties']['lang'] = array_merge( $lang, array( 'enum' => flxl_language_codes() ) );
+		$tools[ $seo['update_content'] ]['description']                 .= ' lang ile içeriğin dili değiştirilir (Flux Lang).';
+		$tools[ $seo['update_content'] ]['run'] = function ( $a ) use ( $run ) {
 			$r = $run( $a );
 			if ( is_array( $r ) && ! empty( $r['id'] ) ) {
 				if ( ! empty( $a['lang'] ) && flxl_is_language( $a['lang'] ) ) {
