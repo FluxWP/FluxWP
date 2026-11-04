@@ -319,6 +319,7 @@ return array(
 		'%1$s için şunlar da kurulup etkinleştirilecek: %2$s. Devam edilsin mi?' => 'For %1$s these will also be installed and activated: %2$s. Continue?',
 		'Hazırlanıyor…' => 'Preparing…',
 		'İşlem sürüyor, sayfadan ayrılmayın…' => 'Working, please stay on this page…',
+		'Bitene kadar bu sayfadan ayrılmayın' => 'Stay on this page until it finishes',
 		'Yapılacak bir şey yok.' => 'Nothing to do.',
 		'Bitti: %1$d başarılı, %2$d hatalı.' => 'Done: %1$d succeeded, %2$d failed.',
 		'Sunucu yanıt vermedi (%s). Geçmiş ve sistem kontrolüne bakın.' => 'The server did not respond (%s). Check the history and system checks.',

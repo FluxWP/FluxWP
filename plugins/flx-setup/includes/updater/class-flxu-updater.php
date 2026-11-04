@@ -100,12 +100,13 @@ final class FLXU_Updater {
 		}
 		$cached = get_site_transient( self::CATALOG_TRANSIENT );
 		if ( ! $force && is_array( $cached ) ) {
-			$this->catalog = $cached;
-			return $cached;
+			$this->catalog = self::without_retired( $cached );
+			return $this->catalog;
 		}
 
 		$fresh = $this->fetch_catalog( $force );
 		if ( is_array( $fresh ) ) {
+			$fresh = self::without_retired( $fresh );
 			set_site_transient( self::CATALOG_TRANSIENT, $fresh, self::CATALOG_TTL );
 			update_site_option( self::SLUGS_OPTION, array_keys( $fresh ) );
 			$this->catalog = $fresh;
@@ -114,10 +115,23 @@ final class FLXU_Updater {
 
 		// Sunucuya ulaşılamadı: kısa süre tekrar deneme, eldekiyle devam et.
 		$fallback = get_site_option( 'flxu_catalog_last', array() );
-		$fallback = is_array( $fallback ) ? $fallback : array();
+		$fallback = self::without_retired( is_array( $fallback ) ? $fallback : array() );
 		set_site_transient( self::CATALOG_TRANSIENT, $fallback, 10 * MINUTE_IN_SECONDS );
 		$this->catalog = $fallback;
 		return $fallback;
+	}
+
+	/**
+	 * Başka pakete katılan ya da emekli edilen paketler: sunucu eski release'leri hâlâ listelese de
+	 * katalogda görünmez, kurulmaz. `flx-updater` FluxWP Panel'e (flx-setup) katıldı.
+	 * Filtre: `flxk_retired_slugs`.
+	 */
+	public static function retired_slugs(): array {
+		return self::slug_list( (array) apply_filters( 'flxk_retired_slugs', array( 'flx-updater' ) ) );
+	}
+
+	private static function without_retired( array $catalog ): array {
+		return array_diff_key( $catalog, array_flip( self::retired_slugs() ) );
 	}
 
 	/**
@@ -643,6 +657,7 @@ final class FLXU_Updater {
 		if ( ! is_array( $catalog ) || ! $catalog ) {
 			return $value;
 		}
+		$catalog = self::without_retired( $catalog );
 		if ( ! isset( $value->response ) || ! is_array( $value->response ) ) {
 			$value->response = array();
 		}
