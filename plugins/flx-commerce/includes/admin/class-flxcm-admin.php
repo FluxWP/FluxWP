@@ -9,6 +9,7 @@ defined( 'ABSPATH' ) || exit;
 
 require_once FLXCM_DIR . 'includes/admin/page-dashboard.php';
 require_once FLXCM_DIR . 'includes/admin/page-customers.php';
+require_once FLXCM_DIR . 'includes/admin/page-customer.php';
 require_once FLXCM_DIR . 'includes/admin/page-reports.php';
 require_once FLXCM_DIR . 'includes/admin/page-settings.php';
 
@@ -26,6 +27,7 @@ final class FLXCM_Admin {
 		add_action( 'admin_post_flxcm_save', array( 'FLXCM_Page_Settings', 'save' ) );
 		add_action( 'admin_post_flxcm_report_csv', array( 'FLXCM_Page_Reports', 'csv' ) );
 		add_action( 'wp_dashboard_setup', array( __CLASS__, 'widget' ) );
+		FLXCM_Page_Customer::init();
 	}
 
 	public static function menu_icon() {
@@ -49,8 +51,18 @@ final class FLXCM_Admin {
 	}
 
 	public static function assets() {
+		$page = isset( $_GET['page'] ) ? sanitize_key( $_GET['page'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
+		// Flux CRM kişi kartındaki Mağaza bölümleri (CRM'in kendi sayfasında da gösterilir).
+		if ( self::is_screen() || 0 === strpos( $page, 'flx-crm' ) ) {
+			wp_enqueue_style( 'flxcm-card', FLXCM_URL . 'assets/person-card.css', array(), FLXCM_VERSION );
+		}
 		if ( ! self::is_screen() ) {
 			return;
+		}
+		if ( isset( $_GET['customer'] ) || isset( $_GET['email'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+			if ( function_exists( 'flxcrm_person_card_enqueue' ) ) {
+				flxcrm_person_card_enqueue();
+			}
 		}
 		wp_enqueue_style( 'flxcm-admin', FLXCM_URL . 'assets/admin.css', array(), FLXCM_VERSION );
 		wp_enqueue_script( 'flxcm-admin', FLXCM_URL . 'assets/admin.js', array(), FLXCM_VERSION, true );

@@ -257,6 +257,58 @@ final class FLXCM_Customers {
 		);
 	}
 
+	/** Tek müşteri satırı. */
+	public static function get( $id ) {
+		global $wpdb;
+		$t   = FLXCM_Install::table();
+		$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$t} WHERE id = %d", (int) $id ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		return $row ? $row : null;
+	}
+
+	/** E-postaya göre müşteri satırı. */
+	public static function by_email( $email ) {
+		global $wpdb;
+		$email = strtolower( trim( (string) $email ) );
+		if ( '' === $email ) {
+			return null;
+		}
+		$t   = FLXCM_Install::table();
+		$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$t} WHERE email = %s", $email ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		return $row ? $row : null;
+	}
+
+	/**
+	 * Müşterinin siparişleri, yeniden eskiye (tüm durumlar; mağaza istatistiğine girmeyen bağış siparişleri hariç).
+	 *
+	 * @return WC_Order[]
+	 */
+	public static function orders( array $row, $limit = 60 ) {
+		if ( ! flxcm_wc_ready() ) {
+			return array();
+		}
+		$who = array_values( array_filter( array( (string) $row['email'], (int) $row['user_id'] ) ) );
+		if ( ! $who ) {
+			return array();
+		}
+		$list = wc_get_orders(
+			array(
+				'customer' => $who,
+				'type'     => 'shop_order',
+				'limit'    => (int) $limit,
+				'orderby'  => 'date',
+				'order'    => 'DESC',
+			)
+		);
+		return array_values(
+			array_filter(
+				(array) $list,
+				static function ( $o ) {
+					return $o instanceof WC_Order && flxcm_count_order( $o );
+				}
+			)
+		);
+	}
+
 	/** VIP eşiği: harcaması en yüksek %10'un alt sınırı (en az 1). Filtre `flxcm_vip_threshold`. */
 	public static function vip_threshold() {
 		global $wpdb;

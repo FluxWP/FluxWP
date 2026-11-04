@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 0.2.0
+- **Müşteri sayfası** (Müşteriler listesinde ada tıklayın): siparişler, ödemeler, iadeler ve sipariş notları filtreli zaman tünelinde (Tümü / Siparişler / Ödemeler / Notlar), toplam harcama, sipariş, ortalama sepet, ilk/son sipariş ve sipariş sıklığı; bilgiler, mağaza notu, son siparişteki adresler, en çok aldığı ürünler.
+- **Flux CRM ile ortak kişi**: CRM kuruluysa (ve kullanıcının CRM yetkisi varsa) müşteri sayfası CRM'in ortak kişi kartını gösterir; kişi yoksa oluşturulur, siparişleri bir kez CRM zaman tüneline eklenir. Karta Siparişler, Mağaza (özet + not), Adresler ve Sık aldığı ürünler bölümleri eklenir; aynı bölümler CRM'in kendi kişi sayfasında da görünür.
+- `flx-commerce-customers&email=…` adresi e-postayla müşteri sayfasını açar.
+
 ## 0.1.1
 - Satış raporu: telefonda tarih aralığı ve "Göster" düğmesi ekrana sığıyor.
 

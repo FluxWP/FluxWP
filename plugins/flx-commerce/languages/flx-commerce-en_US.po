@@ -305,6 +305,152 @@ msgstr "Daily revenue"
 msgid "%1$s · %2$s · %3$s sipariş"
 msgstr "%1$s · %2$s · %3$s orders"
 
+msgid "%s adet"
+msgid_plural "%s adet"
+msgstr[0] "%s pc"
+msgstr[1] "%s pcs"
+
+msgid "Müşteri bulunamadı"
+msgstr "Customer not found"
+
+msgid "Müşterilere dön"
+msgstr "Back to customers"
+
+msgid "Siparişler"
+msgstr "Orders"
+
+msgid "WooCommerce'te aç"
+msgstr "Open in WooCommerce"
+
+msgid "Sipariş yok."
+msgstr "No orders."
+
+msgid "Tüm siparişler (%s)"
+msgstr "All orders (%s)"
+
+msgid "Müşteri sayfası"
+msgstr "Customer page"
+
+msgid "Tümü"
+msgstr "All"
+
+msgid "Ödemeler"
+msgstr "Payments"
+
+msgid "Notlar"
+msgstr "Notes"
+
+msgid "%s tarihinden beri müşteri"
+msgstr "Customer since %s"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "%s açık sipariş"
+msgstr "%s open orders"
+
+msgid "Ortalama sepet"
+msgstr "Average order"
+
+msgid "Sipariş sıklığı"
+msgstr "Order frequency"
+
+msgid "%s günde bir"
+msgstr "Every %s days"
+
+msgid "Bilgiler"
+msgstr "Details"
+
+msgid "Üye profili"
+msgstr "User profile"
+
+msgid "Hesap"
+msgstr "Account"
+
+msgid "Site üyesi"
+msgstr "Registered member"
+
+msgid "Misafir"
+msgstr "Guest"
+
+msgid "Zaman tüneli"
+msgstr "Timeline"
+
+msgid "Zaman tüneli filtresi"
+msgstr "Timeline filter"
+
+msgid "Bu filtrede kayıt yok."
+msgstr "Nothing in this filter."
+
+msgid "Daha eskileri göster"
+msgstr "Show older"
+
+msgid "%1$s / %2$s kayıt"
+msgstr "%1$s of %2$s entries"
+
+msgid "Sipariş #%s"
+msgstr "Order #%s"
+
+msgid "Yeni sipariş"
+msgstr "New order"
+
+msgid "Ödeme alındı"
+msgstr "Payment received"
+
+msgid "Sipariş #%1$s · %2$s"
+msgstr "Order #%1$s · %2$s"
+
+msgid "İade yapıldı"
+msgstr "Refund issued"
+
+msgid "Müşteriye not"
+msgstr "Note to customer"
+
+msgid "Sipariş notu"
+msgstr "Order note"
+
+msgid "Adresler"
+msgstr "Addresses"
+
+msgid "Fatura ve teslimat"
+msgstr "Billing and shipping"
+
+msgid "Fatura"
+msgstr "Billing"
+
+msgid "Teslimat"
+msgstr "Shipping"
+
+msgid "Son siparişten"
+msgstr "From the latest order"
+
+msgid "Sık aldığı ürünler"
+msgstr "Frequently bought"
+
+msgid "Mağaza notu"
+msgstr "Store note"
+
+msgid "Ör. hediye paketi ister, kapıda teslim…"
+msgstr "E.g. wants gift wrapping, leave at the door…"
+
+msgid "Alandan çıkınca kaydedilir."
+msgstr "Saved when you leave the field."
+
+msgid "Üye"
+msgstr "Member"
+
+msgid "Tekrar alan"
+msgstr "Repeat buyers"
+
+msgid "En çok harcayan %10"
+msgstr "Top 10% spenders"
+
+msgid "Uzaklaşan"
+msgstr "Lapsed"
+
+msgid "%s önce"
+msgstr "%s ago"
+
 msgid "CSV indir"
 msgstr "Download CSV"
 
@@ -323,9 +469,6 @@ msgstr "The list fills up with new orders on its own. To add earlier orders pres
 msgid "Müşteri"
 msgstr "Customers"
 
-msgid "Tekrar alan"
-msgstr "Repeat buyers"
-
 msgid "%%%s"
 msgstr "%s%%"
 
@@ -335,14 +478,8 @@ msgstr "Spend per customer"
 msgid "90 gündür almayan"
 msgstr "No order in 90 days"
 
-msgid "Tümü"
-msgstr "All"
-
 msgid "Yeni (30 gün)"
 msgstr "New (30 days)"
-
-msgid "En çok harcayan %10"
-msgstr "Top 10% spenders"
 
 msgid "Uzaklaşan (90 gün)"
 msgstr "Lapsed (90 days)"
@@ -361,9 +498,6 @@ msgstr "No customers yet."
 
 msgid "Toplam"
 msgstr "Total"
-
-msgid "Üye"
-msgstr "Member"
 
 msgid "Tekrar"
 msgstr "Repeat"
@@ -395,9 +529,6 @@ msgstr "Sales, orders awaiting payment and stock at a glance."
 msgid "Net ciro"
 msgstr "Net revenue"
 
-msgid "Ortalama sepet"
-msgstr "Average order"
-
 msgid "%s yeni"
 msgstr "%s new"
 
@@ -427,9 +558,6 @@ msgstr "Payment methods"
 
 msgid "sipariş"
 msgstr "orders"
-
-msgid "Siparişler"
-msgstr "Orders"
 
 msgid "Ürünler"
 msgstr "Products"

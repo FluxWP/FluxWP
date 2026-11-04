@@ -42,6 +42,7 @@ WooCommerce's own analytics are powerful but slow to read and need background jo
 
 ### Customers
 - One row per e-mail for members and guests: orders, total spent, first and last order, phone (WhatsApp link), city, an inline note.
+- Customer page: orders, payments, refunds and order notes on a timeline with filters, totals, addresses and most bought products. With Flux CRM it is the shared CRM person card with a Store section, so a person is the same record everywhere.
 - Segments: New (30 days), Repeat buyers, Top 10% spenders, Lapsed (90 days). Search, sort, CSV export.
 - Kept up to date on every order status change; older orders are scanned once in chunks of 100.
 
