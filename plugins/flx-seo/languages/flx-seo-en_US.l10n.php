@@ -300,5 +300,13 @@ return array (
     'Yeni kritik ya da yüksek öncelikli öneri çıkınca e-posta gönder' => 'Send an email when a new critical or high priority recommendation appears',
     'E-posta adresi (boşsa site yöneticisi)' => 'Email address (empty: site admin)',
     'Flux Speed (tek tık)' => 'Flux Speed (one click)',
+    'PageSpeed Insights\'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre. Site içi denetim anahtarsızdır; PageSpeed ölçümü Google\'ın gerçek Lighthouse sonucunu ekler. Otomatik denetim, API anahtarı ve güvenlik başlıkları Ayarlar sekmesinde.' => 'The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key; a PageSpeed run adds Google\'s real Lighthouse result. Automatic audit, API key and security headers are in the Settings tab.',
+    'PageSpeed puanları' => 'PageSpeed scores',
+    'PageSpeed çalışmadı' => 'PageSpeed not run',
+    'Öneri sayısı' => 'Recommendations',
+    'Cihaz' => 'Device',
+    'PageSpeed ölçümü olan rapor yok. API anahtarı girip otomatik denetimde PageSpeed\'i açın.' => 'No report with a PageSpeed run yet. Enter the API key and turn on PageSpeed in the automatic audit.',
+    '%s PageSpeed puanlarının zaman içindeki değişimi' => '%s PageSpeed scores over time',
+    'Site denetimi ve ajan uyumu' => 'Site audit and agent readiness',
   ),
 );

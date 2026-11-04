@@ -899,3 +899,27 @@ msgstr ""
 
 msgid "Flux Speed (tek tık)"
 msgstr ""
+
+msgid "PageSpeed Insights'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre. Site içi denetim anahtarsızdır; PageSpeed ölçümü Google'ın gerçek Lighthouse sonucunu ekler. Otomatik denetim, API anahtarı ve güvenlik başlıkları Ayarlar sekmesinde."
+msgstr ""
+
+msgid "PageSpeed puanları"
+msgstr ""
+
+msgid "PageSpeed çalışmadı"
+msgstr ""
+
+msgid "Öneri sayısı"
+msgstr ""
+
+msgid "Cihaz"
+msgstr ""
+
+msgid "PageSpeed ölçümü olan rapor yok. API anahtarı girip otomatik denetimde PageSpeed'i açın."
+msgstr ""
+
+msgid "%s PageSpeed puanlarının zaman içindeki değişimi"
+msgstr ""
+
+msgid "Site denetimi ve ajan uyumu"
+msgstr ""

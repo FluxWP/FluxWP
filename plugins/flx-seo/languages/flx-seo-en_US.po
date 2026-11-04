@@ -901,3 +901,27 @@ msgstr "Email address (empty: site admin)"
 
 msgid "Flux Speed (tek tık)"
 msgstr "Flux Speed (one click)"
+
+msgid "PageSpeed Insights'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre. Site içi denetim anahtarsızdır; PageSpeed ölçümü Google'ın gerçek Lighthouse sonucunu ekler. Otomatik denetim, API anahtarı ve güvenlik başlıkları Ayarlar sekmesinde."
+msgstr "The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key; a PageSpeed run adds Google's real Lighthouse result. Automatic audit, API key and security headers are in the Settings tab."
+
+msgid "PageSpeed puanları"
+msgstr "PageSpeed scores"
+
+msgid "PageSpeed çalışmadı"
+msgstr "PageSpeed not run"
+
+msgid "Öneri sayısı"
+msgstr "Recommendations"
+
+msgid "Cihaz"
+msgstr "Device"
+
+msgid "PageSpeed ölçümü olan rapor yok. API anahtarı girip otomatik denetimde PageSpeed'i açın."
+msgstr "No report with a PageSpeed run yet. Enter the API key and turn on PageSpeed in the automatic audit."
+
+msgid "%s PageSpeed puanlarının zaman içindeki değişimi"
+msgstr "%s PageSpeed scores over time"
+
+msgid "Site denetimi ve ajan uyumu"
+msgstr "Site audit and agent readiness"
