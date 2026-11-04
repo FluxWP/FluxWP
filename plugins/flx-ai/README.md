@@ -7,7 +7,7 @@
 # Flux AI
 
 **One AI hub for every FluxWP plugin: keys, models, costs, limits and a shared chat.**<br>
-Flux AI is the shared AI layer of the FluxWP packages. OpenRouter and Anthropic keys, the model catalogue and prices, prompt caching, a tool registry, usage logs, billing and spending limits live here once; Flux Call Center, Flux Contact, Flux Social, Flux Language, Flux Studio and the rest call it instead of talking to AI providers themselves. Authorised users also get a streaming AI chat in the admin that can use those tools.
+Flux AI is the shared AI layer of the FluxWP packages. OpenRouter and Anthropic keys, the model catalogue and prices, prompt caching, a tool registry, the shared MCP server, usage logs, billing and spending limits live here once; Flux Call Center, Flux Contact, Flux Social, Flux Language, Flux Studio and the rest call it instead of talking to AI providers themselves. Authorised users also get a streaming AI chat in the admin that can use those tools.
 
 [![WordPress 6.5+](https://img.shields.io/badge/WordPress-6.5%2B-21759b?logo=wordpress&logoColor=white)](https://wordpress.org)
 [![PHP 7.4+](https://img.shields.io/badge/PHP-7.4%2B-777bb4?logo=php&logoColor=white)](https://www.php.net)
@@ -38,7 +38,8 @@ When every plugin brings its own AI connection, you end up with keys in five set
 ### Hub for other plugins
 - `flxai_chat()` / `flxai_complete()` with tools, streaming, prompt caching (Claude) and model fallback; `flxai_ready()`, `flxai_model_for()`, `flxai_budget_status()`.
 - **Connected systems:** each plugin with status, model, 30-day requests, tokens, cost, errors and last use; on/off per system; per-plugin model in Settings.
-- **Tools:** every tool registered through `flxai_tools` or Flux SEO, with source, reads/writes, approval flag, capability, 30-day calls and average time; on/off per tool.
+- **MCP server:** `/wp-json/flx-mcp/v1/mcp` for Claude Desktop, Claude Code, Cursor and claude.ai; per-user keys that can be limited to chosen tools, last use and recent activity. Every FluxWP plugin (SEO, CRM, Mail, Speed, Analytics, Social…) registers its tools here with `flx_mcp_tools`.
+- **Tools:** every tool registered through `flx_mcp_tools` or `flxai_tools`, with source, reads/writes, approval flag, capability, 30-day calls and average time; on/off per tool.
 - Images in answers: ```widget / ```mermaid blocks rendered to PNG through Gotenberg or Imagick.
 - Image and video generation for Flux Studio through fal.ai, EvoLink, OpenAI, Gemini and OpenRouter (`flxai_media_submit`).
 
@@ -94,7 +95,7 @@ Full setup notes (Turkish): [KURULUM.md](../../docs/flx-ai/KURULUM.md) · API re
 ## For developers
 
 - `flxai_chat( $messages, [ 'source' => 'my-plugin', 'tools' => …, 'stream' => true ] )`, `flxai_complete( $prompt )`.
-- Register a system with `flxai_systems` and chat tools with `flxai_tools`; log your own calls with `flxai_log()`.
+- Register a system with `flxai_systems`, MCP + chat tools with `flx_mcp_tools` (chat-only: `flxai_tools`); log your own calls with `flxai_log()`.
 - Media: `flxai_media_submit()`, `flxai_media_status()`, `flxai_media_cancel()`; REST under `/wp-json/flx-ai/v1`.
 
 ## Roadmap
@@ -104,6 +105,7 @@ Full setup notes (Turkish): [KURULUM.md](../../docs/flx-ai/KURULUM.md) · API re
 | ✅ | One key store, model catalogue and prices |
 | ✅ | Usage logs, billing and spending limits |
 | ✅ | Connected systems and tool registry |
+| ✅ | Shared MCP server with scoped keys |
 | ✅ | Streaming shared chat with approvals |
 | ✅ | Image and video generation for Flux Studio |
 | ⬜ | Per-user and per-role budgets |

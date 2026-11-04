@@ -240,7 +240,7 @@ function flxai_sources() {
 		'flx-tasks'         => 'Flux Tasks',
 		'flx-certificates'     => 'Flux Certificates',
 		'flx-donate'         => 'Flux Donate',
-		'flx-seo'           => 'Flux SEO & MCP',
+		'flx-seo'           => 'Flux SEO',
 		'flx-mail'      => 'Flux Mail',
 		'flx-forms'          => 'Flux Forms',
 	);

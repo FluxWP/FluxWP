@@ -1,6 +1,6 @@
 <?php
 /**
- * Ortak Sistem Kontrolü ekranına (tema: Görünüm › Sistem Kontrolü) SEO & MCP kontrolleri.
+ * Ortak Sistem Kontrolü ekranına (tema: Görünüm › Sistem Kontrolü) Flux SEO kontrolleri.
  * Sözleşme: `flx_system_checks` filtresi; dış HTTP isteği yapılmaz.
  *
  * @package FLX_SEO
@@ -47,7 +47,7 @@ add_filter(
 		if ( flxseo_cache_active() ) {
 			$checks[] = $item( 'browser-cache', 'Tarayıcı önbelleği', 'ok', '.htaccess kuralları yazılı: görseller 30 gün, CSS/JS/font 1 yıl önbellekte.' );
 		} elseif ( 0 === strpos( $state, 'yazilamadi' ) ) {
-			$checks[] = $item( 'browser-cache', 'Tarayıcı önbelleği', 'warning', '.htaccess yazılamadı (dosya izni). Görseller her yenilemede yeniden indirilir. Dosyayı yazılabilir yapıp SEO & MCP ayarlarını bir kez kaydedin.' );
+			$checks[] = $item( 'browser-cache', 'Tarayıcı önbelleği', 'warning', '.htaccess yazılamadı (dosya izni). Görseller her yenilemede yeniden indirilir. Dosyayı yazılabilir yapıp SEO ayarlarını bir kez kaydedin.' );
 		} elseif ( empty( $GLOBALS['is_apache'] ) ) {
 			$checks[] = $item( 'browser-cache', 'Tarayıcı önbelleği', 'info', 'Sunucu Apache/LiteSpeed değil; önbellek başlıklarını sunucu ayarından verin.' );
 		} else {
@@ -72,7 +72,7 @@ add_filter(
 			? $item( 'gsc', 'Search Console', 'ok', 'Google doğrulama kodu girili.' )
 			: $item( 'gsc', 'Search Console', 'info', 'Doğrulama kodu girilmemiş. DNS ile doğruladıysanız sorun yok.', flxseo_admin_url(), 'SEO ayarları' );
 
-		$checks[] = $item( 'mcp', 'Yapay zekâ (MCP)', 'info', flxseo_opt( 'mcp_enabled' ) ? 'MCP sunucusu açık.' : 'MCP sunucusu kapalı.', flxseo_admin_url( 'mcp' ), 'MCP ayarları' );
+		$checks[] = $item( 'mcp', 'Yapay zekâ (MCP)', function_exists( 'flxai_mcp_tools' ) ? 'info' : 'warning', function_exists( 'flxai_mcp_tools' ) ? ( flxseo_mcp_server_on() ? 'MCP sunucusu (Flux AI) açık; Flux SEO araçları kayıtlı.' : 'MCP sunucusu (Flux AI) kapalı; Flux SEO araçları yalnız Flux AI sohbetinde.' ) : 'Flux AI 0.7.0+ kurulu değil; Flux SEO yapay zekâ araçları çalışmıyor.', flxseo_mcp_admin_url(), 'Flux AI › MCP' );
 
 		return $checks;
 	},

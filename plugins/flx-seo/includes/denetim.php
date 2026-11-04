@@ -64,7 +64,7 @@ function flxseo_audit_catalog() {
 		'http-status-code'             => array( 'seo', __( 'Ana sayfa başarılı durum kodu döndürmüyor', 'flx-seo' ), __( 'Sayfa 200 dönmeli. Bakım modu, yönlendirme döngüsü ya da PHP hatası olabilir; Sistem Kontrolü ve hata günlüğüne bakın.', 'flx-seo' ), 'server' ),
 		'is-crawlable'                 => array( 'seo', __( 'Sayfa arama motorlarına kapalı', 'flx-seo' ), __( 'Ayarlar › Okuma › "Arama motorlarının siteyi dizine eklemesini engelle" kutusunu kaldırın; sayfanın kendi SEO panelindeki noindex işaretini kapatın.', 'flx-seo' ), 'setting' ),
 		'robots-txt'                   => array( 'seo', __( 'robots.txt tüm siteyi engelliyor', 'flx-seo' ), __( 'Kökteki robots.txt dosyasında "User-agent: *" altında "Disallow: /" olmamalı. Dosyayı silin ya da düzeltin; WordPress kendi robots.txt\'sini üretir.', 'flx-seo' ), 'server' ),
-		'document-title'               => array( 'seo', __( 'Sayfa başlığı (<title>) yok', 'flx-seo' ), __( 'Tema add_theme_support( \'title-tag\' ) desteklemeli; SEO & MCP › Genel\'de ana sayfa başlığını doldurun.', 'flx-seo' ), 'theme', array( 'accessibility' ) ),
+		'document-title'               => array( 'seo', __( 'Sayfa başlığı (<title>) yok', 'flx-seo' ), __( 'Tema add_theme_support( \'title-tag\' ) desteklemeli; SEO › Genel\'de ana sayfa başlığını doldurun.', 'flx-seo' ), 'theme', array( 'accessibility' ) ),
 		'title-length'                 => array( 'seo', __( 'Sayfa başlığı uzun', 'flx-seo' ), __( 'Başlığı 60 karakter civarında tutun; Google sonrasını keser.', 'flx-seo' ), 'content' ),
 		'meta-description'             => array( 'seo', __( 'Meta açıklama yok', 'flx-seo' ), __( 'SEO çıktısını açın ve ana sayfa açıklamasını (150–160 karakter) yazın.', 'flx-seo' ), 'flx-seo' ),
 		'canonical'                    => array( 'seo', __( 'Canonical bağlantısı eksik ya da birden fazla', 'flx-seo' ), __( 'Her sayfada tek bir rel=canonical olmalı. Başka bir eklenti ya da tema da ekliyorsa birini kapatın.', 'flx-seo' ), 'theme' ),
@@ -81,7 +81,7 @@ function flxseo_audit_catalog() {
 		'aria-required-children'       => array( 'accessibility', __( 'ARIA rolü gerekli alt öğeleri içermiyor', 'flx-seo' ), __( 'Ör. role="tablist" yalnız role="tab" öğeleri içermeli. <ol role="tablist"><li><button role="tab"> yerine <div role="tablist"><button role="tab"> kullanın ya da li öğelerine role="presentation" verin. Erişilebilirlik ağacı bozulur; Lighthouse "Ajan uyumu" puanını da düşürür.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
 		'aria-required-parent'         => array( 'accessibility', __( 'ARIA rolü gerekli üst öğenin içinde değil', 'flx-seo' ), __( 'role="tab" doğrudan role="tablist" içinde, role="option" role="listbox" içinde olmalı. Aradaki li/div öğelerini kaldırın ya da role="presentation" verin.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
 		'listitem'                     => array( 'accessibility', __( 'Liste öğeleri (<li>) liste içinde değil', 'flx-seo' ), __( '<li> yalnız <ul>, <ol> ya da <menu> içinde olmalı ve üst listeye liste dışı bir role verilmemeli (ör. <ol role="tablist">).', 'flx-seo' ), 'theme' ),
-		'image-alt'                    => array( 'accessibility', __( 'Görsellerde alt metin yok', 'flx-seo' ), __( 'Her anlamlı görsele içeriği anlatan alt metin yazın; süs görselleri alt="" alsın. Medya kütüphanesinde alt metni doldurun ya da SEO & MCP › Genel › Görseller seçeneğini açın.', 'flx-seo' ), 'content', array( 'seo', 'agentic' ) ),
+		'image-alt'                    => array( 'accessibility', __( 'Görsellerde alt metin yok', 'flx-seo' ), __( 'Her anlamlı görsele içeriği anlatan alt metin yazın; süs görselleri alt="" alsın. Medya kütüphanesinde alt metni doldurun ya da SEO › Genel › Görseller seçeneğini açın.', 'flx-seo' ), 'content', array( 'seo', 'agentic' ) ),
 		'link-name'                    => array( 'accessibility', __( 'Adı olmayan bağlantılar var', 'flx-seo' ), __( 'Yalnız simge içeren bağlantılara aria-label ya da görünmez metin (screen-reader-text) ekleyin.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
 		'button-name'                  => array( 'accessibility', __( 'Adı olmayan düğmeler var', 'flx-seo' ), __( 'Simge düğmelerine aria-label verin (ör. "Menüyü aç"). Ajanlar ve ekran okuyucular düğmenin ne yaptığını bilemez.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
 		'label'                        => array( 'accessibility', __( 'Etiketi olmayan form alanları var', 'flx-seo' ), __( 'Her alanın <label for> ya da aria-label ile bir adı olmalı; placeholder etiket yerine geçmez.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
@@ -886,7 +886,7 @@ function flxseo_psi_run( $strategy = 'mobile', $url = '' ) {
 	if ( 200 !== $code || empty( $data['lighthouseResult'] ) ) {
 		$msg = $data['error']['message'] ?? ( 'HTTP ' . $code );
 		if ( 429 === $code ) {
-			$msg = __( 'PageSpeed günlük kotası doldu. SEO & MCP › Site denetimi › Ayarlar\'a ücretsiz bir Google API anahtarı girin.', 'flx-seo' );
+			$msg = __( 'PageSpeed günlük kotası doldu. SEO › Ayarlar\'a ücretsiz bir Google API anahtarı girin.', 'flx-seo' );
 		}
 		return new WP_Error( 'flxseo_psi', $msg );
 	}

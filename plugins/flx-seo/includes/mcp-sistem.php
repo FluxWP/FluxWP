@@ -8,7 +8,7 @@
  *   value    => null | JSON şeması (ör. array( 'type' => 'string', 'enum' => … )),
  *   current  => callable(): mevcut değer (isteğe bağlı),
  *   run      => callable( $value ): sonuç metni döner, hata için Exception atar,
- *   source   => 'Tema' / 'SEO & MCP' / eklenti adı,
+ *   source   => 'Tema' / 'Flux SEO' / eklenti adı,
  * ).
  * Yalnızca bu listedekiler çalışır; her çalıştırma `flxseo_system_fix_log`'a yazılır.
  *
@@ -131,7 +131,7 @@ function flxseo_system_fix_run( $id, $value = null, $via = 'mcp' ) {
 /* ---------- MCP araçları ---------- */
 
 add_filter(
-	'flxseo_mcp_tools',
+	'flx_mcp_tools',
 	function ( $tools ) {
 		$tools['system_checks'] = array(
 			'title'       => 'Sistem kontrolü',
@@ -274,7 +274,7 @@ add_filter(
 	}
 );
 
-/* ---------- SEO & MCP'nin kendi düzeltmeleri ---------- */
+/* ---------- Flux SEO'nun kendi düzeltmeleri ---------- */
 
 add_filter(
 	'flx_system_fixes',
@@ -293,7 +293,7 @@ add_filter(
 			'label'       => 'Tarayıcı önbelleği kurallarını .htaccess\'e yeniden yaz',
 			'description' => 'Görseller 30 gün, CSS/JS/font 1 yıl önbellek kuralı.',
 			'checks'      => array( 'flxseo.browser-cache' ),
-			'source'      => 'SEO & MCP',
+			'source'      => 'Flux SEO',
 			'current'     => function () {
 				return flxseo_cache_active();
 			},
@@ -308,7 +308,7 @@ add_filter(
 		$fixes['seo.output'] = array(
 			'label'   => 'SEO çıktısını aç',
 			'checks'  => array( 'flxseo.output' ),
-			'source'  => 'SEO & MCP',
+			'source'  => 'Flux SEO',
 			'current' => function () use ( $get ) {
 				return (bool) $get( 'enabled' );
 			},
@@ -329,10 +329,10 @@ add_filter(
 			'verify_bing'   => 'Bing doğrulama kodu',
 		);
 		$fixes['seo.setting'] = array(
-			'label'       => 'SEO & MCP kurum/doğrulama alanı',
+			'label'       => 'Flux SEO kurum/doğrulama alanı',
 			'description' => 'value: { "key": "' . implode( '|', array_keys( $fields ) ) . '", "value": "…" }',
 			'checks'      => array( 'flxseo.org', 'flxseo.gsc' ),
-			'source'      => 'SEO & MCP',
+			'source'      => 'Flux SEO',
 			'value'       => array(
 				'type'       => 'object',
 				'required'   => array( 'key', 'value' ),

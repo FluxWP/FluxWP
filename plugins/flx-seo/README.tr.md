@@ -6,8 +6,8 @@
 
 # Flux SEO
 
-**WordPress için hafif SEO, ayrıca Claude ve diğer yapay zekâ asistanlarının içeriği yönetebilmesi için MCP sunucusu.**<br>
-Flux SEO bir dernek sitesinin bulunması için gerekenleri ekler: meta başlık ve açıklama, canonical, keskin WhatsApp önizlemeli Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap düzenlemeleri, IndexNow, favicon ve tarayıcı önbelleği; her sayfa için SEO kontrolüyle. Ayrıca bir MCP sunucusu çalıştırır; Claude Desktop, Claude Code, Cursor ya da claude.ai kullanıcıya özel anahtarla içeriği listeler, yazar ve düzeltir.
+**WordPress için hafif SEO, ayrıca Claude ve diğer yapay zekâ asistanlarının MCP ile kullandığı içerik ve SEO araçları.**<br>
+Flux SEO bir dernek sitesinin bulunması için gerekenleri ekler: meta başlık ve açıklama, canonical, keskin WhatsApp önizlemeli Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap düzenlemeleri, IndexNow, favicon ve tarayıcı önbelleği; her sayfa için SEO kontrolüyle. Yapay zekâ araçları Flux AI'daki ortak FluxWP MCP sunucusuna bağlanır; Claude Desktop, Claude Code, Cursor ya da claude.ai kullanıcıya özel anahtarla içeriği listeler, yazar ve düzeltir.
 
 [![WordPress 6.5+](https://img.shields.io/badge/WordPress-6.5%2B-21759b?logo=wordpress&logoColor=white)](https://wordpress.org)
 [![PHP 7.4+](https://img.shields.io/badge/PHP-7.4%2B-777bb4?logo=php&logoColor=white)](https://www.php.net)
@@ -53,10 +53,10 @@ Büyük SEO eklentileri onlarca ekran, satış teklifleri ve kendi veritabanı t
 - Tek görselden favicon seti, otomatik görsel alt metni, Apache ve LiteSpeed için tarayıcı önbelleği kuralları.
 - **SEO kontrolü:** yayındaki her sayfa sorunları ve önerileriyle.
 
-### MCP sunucusu
-- Kullanıcıya özel anahtarlı `/wp-json/flx-mcp/v1/mcp`; anahtar seçilen araçlarla sınırlanabilir; son kullanım görünür.
+### Yapay zekâ araçları (MCP)
+- MCP sunucusu, anahtarlar ve kayıt **Flux AI › MCP** ekranında (`/wp-json/flx-mcp/v1/mcp`, Flux SEO 1.5.0 / Flux AI 0.7.0'dan beri). Flux SEO araçlarını oraya kaydeder; Flux AI sohbeti de aynı araçları kullanır.
 - Araçlar: site bilgisi, içerik listele/getir/oluştur/güncelle/sil, SEO ayarla, SEO denetimi, desenler, medya yükleme ve alt metin, terimler, site SEO ayarları; "SEO eksiklerini düzelt", "haber yaz" ve "sayfa kur" istemleri.
-- Diğer FluxWP eklentileri kendi araçlarını `flxseo_mcp_tools` ile ekler (siparişler, sistem kontrolleri ve düzeltmeleri hazır).
+- Diğer FluxWP eklentileri kendi araçlarını `flx_mcp_tools` ile ekler (eski ad `flxseo_mcp_tools` de çalışır).
 - Yeni içerik taslak açılır; silme yalnız çöpe taşır. Her çağrı kayda geçer.
 
 ## Ekran görüntüleri
@@ -86,7 +86,7 @@ Gereksinimler: WordPress 6.5+, PHP 7.4+. Yapay zekâ erişimi isterseniz bir MCP
 
 **İlk adımlar**
 
-1. Flux SEO'yu etkinleştirip **SEO & MCP › Genel**'i açın: site adını, ana sayfa başlığını ve açıklamasını kontrol edin.
+1. Flux SEO'yu etkinleştirip **SEO › Genel**'i açın: site adını, ana sayfa başlığını ve açıklamasını kontrol edin.
 2. Google bilgi paneli için **Kurum ve sosyal**'i doldurun.
 3. **SEO kontrolü**'nü açıp listeyi elle ya da asistanla bitirin.
 
@@ -94,16 +94,16 @@ Ayrıntılı kurulum notları: [KURULUM.md](../../docs/seo-mcp/KURULUM.md) · S�
 
 ## Yapay zekâ asistanlarıyla kullanım (MCP)
 
-1. **SEO & MCP › Yapay zekâ (MCP)**: MCP sunucusunu açın, bir anahtar oluşturun (isterseniz bazı araçlarla sınırlı).
+1. Flux AI 0.7.0+ kurun, **Flux AI › MCP**'yi açın: MCP sunucusunu açın, bir anahtar oluşturun (isterseniz bazı araçlarla sınırlı).
 2. İstemcinize ekleyin, örneğin Claude Code:
 
 ```bash
-claude mcp add --transport http yesil-turkiye https://example.org/wp-json/flx-mcp/v1/mcp --header "Authorization: Bearer ANAHTARINIZ"
+claude mcp add --transport http sitem https://example.org/wp-json/flx-mcp/v1/mcp --header "Authorization: Bearer ANAHTARINIZ"
 ```
 
 3. Sorun: *"SEO eksiği olan yazıları listele ve düzelt."* Asistan anahtarı oluşturan kullanıcının yetkileriyle çalışır.
 
-Kendi eklentinizden araç eklemek: [MCP-API.md](../../docs/seo-mcp/MCP-API.md).
+Kendi eklentinizden araç eklemek: [Flux AI API.md › MCP](../../docs/flx-ai/API.md#mcp-sunucusu-070) ve [MCP-API.md](../../docs/seo-mcp/MCP-API.md) (Flux SEO araçları ve sistem düzeltmeleri).
 
 ## Yol haritası
 
@@ -111,7 +111,7 @@ Kendi eklentinizden araç eklemek: [MCP-API.md](../../docs/seo-mcp/MCP-API.md).
 |---|---|
 | ✅ | Meta, Open Graph, schema ve sitemap |
 | ✅ | SEO kontrolü ve editör paneli |
-| ✅ | Kapsamlı anahtarlı MCP sunucusu |
+| ✅ | MCP ile yapay zekâ araçları (sunucu Flux AI'da) |
 | ✅ | IndexNow ve keskin WhatsApp önizlemesi |
 | ⬜ | İngilizce ayar ekranları |
 | ⬜ | Değişen adresler için yönlendirme yöneticisi |

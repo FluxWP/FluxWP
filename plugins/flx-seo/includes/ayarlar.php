@@ -1,6 +1,6 @@
 <?php
 /**
- * Ayarlar › SEO & MCP sayfası.
+ * SEO ayar sayfası (sol menü › SEO).
  *
  * @package flx-seo
  */
@@ -40,7 +40,6 @@ function flxseo_defaults() {
 		'noindex_tags'   => 1,
 		'auto_alt'       => 1,
 		'indexnow'       => 1,
-		'mcp_enabled'    => 0,
 		// Site denetimi: ajan uyumu ve güvenlik başlıkları.
 		'llms'           => 1,
 		'llms_intro'     => '',
@@ -95,6 +94,9 @@ function flxseo_opt( $key ) {
 	if ( null === $o || doing_action( 'update_option_flxseo' ) ) {
 		$o = flxseo_with_fallbacks( wp_parse_args( (array) get_option( 'flxseo', array() ), flxseo_defaults() ) );
 	}
+	if ( 'mcp_enabled' === $key ) {
+		return flxseo_mcp_server_on() ? 1 : 0; // Geriye uyum: MCP sunucusu Flux AI'da.
+	}
 	return $o[ $key ] ?? null;
 }
 
@@ -144,24 +146,23 @@ function flxseo_tabs() {
 		'kurum'   => __( 'Kurum ve sosyal', 'flx-seo' ),
 		'kontrol' => __( 'SEO kontrolü', 'flx-seo' ),
 		'denetim' => __( 'Site denetimi', 'flx-seo' ),
-		'mcp'     => __( 'Yapay zekâ (MCP)', 'flx-seo' ),
 		'ayarlar' => __( 'Ayarlar', 'flx-seo' ),
 	);
 }
 
 /**
- * Sol menüde ayrı "SEO & MCP" öğesi; sekmeler alt menü olarak da listelenir.
+ * Sol menüde ayrı "SEO" öğesi; sekmeler alt menü olarak da listelenir.
  */
 add_action(
 	'admin_menu',
 	function () {
 		// Renkli FluxWP logosu (assets/icon.svg) CSS ile verilir; WordPress menü ikonunu tek renge boyar.
-		add_menu_page( 'SEO & MCP', 'SEO & MCP', 'manage_options', 'flxseo', 'flxseo_settings_page', 'none', 81 );
+		add_menu_page( 'SEO', 'SEO', 'manage_options', 'flxseo', 'flxseo_settings_page', 'none', 81 );
 		foreach ( flxseo_tabs() as $k => $label ) {
 			if ( 'denetim' === $k ) {
 				$label .= flxseo_audit_menu_badge();
 			}
-			add_submenu_page( 'flxseo', 'SEO & MCP – ' . $label, $label, 'manage_options', 'genel' === $k ? 'flxseo' : 'flxseo&tab=' . $k, 'genel' === $k ? 'flxseo_settings_page' : '__return_null' );
+			add_submenu_page( 'flxseo', 'SEO – ' . $label, $label, 'manage_options', 'genel' === $k ? 'flxseo' : 'flxseo&tab=' . $k, 'genel' === $k ? 'flxseo_settings_page' : '__return_null' );
 		}
 	}
 );
@@ -186,11 +187,15 @@ add_filter(
 	2
 );
 
-// Eski adres (Ayarlar › SEO & MCP) yeni menüye yönlenir.
+// Eski adresler: Ayarlar › SEO yeni menüye, eski Yapay zekâ (MCP) sekmesi Flux AI › MCP'ye yönlenir.
 add_action(
 	'admin_init',
 	function () {
 		global $pagenow;
+		if ( 'admin.php' === $pagenow && isset( $_GET['page'], $_GET['tab'] ) && 'flxseo' === $_GET['page'] && 'mcp' === $_GET['tab'] ) { // phpcs:ignore WordPress.Security.NonceVerification
+			wp_safe_redirect( flxseo_mcp_admin_url() );
+			exit;
+		}
 		if ( 'options-general.php' === $pagenow && isset( $_GET['page'] ) && 'flxseo' === $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 			wp_safe_redirect( flxseo_admin_url( isset( $_GET['tab'] ) ? sanitize_key( $_GET['tab'] ) : '' ) ); // phpcs:ignore WordPress.Security.NonceVerification
 			exit;
@@ -262,10 +267,13 @@ function flxseo_settings_page() {
 	$tabs = flxseo_tabs();
 	?>
 <div class="wrap flxseo-wrap">
-	<h1>SEO &amp; MCP</h1>
+	<h1>SEO</h1>
 	<?php settings_errors(); ?>
 	<?php if ( flxseo_other_seo_plugin() ) : ?>
-		<div class="notice notice-warning"><p>Başka bir SEO eklentisi etkin. Çakışma olmaması için bu eklentinin meta ve schema çıktısı kapalı; favicon, SEO kontrolü ve MCP çalışmaya devam ediyor.</p></div>
+		<div class="notice notice-warning"><p>Başka bir SEO eklentisi etkin. Çakışma olmaması için bu eklentinin meta ve schema çıktısı kapalı; favicon, SEO kontrolü ve yapay zekâ araçları çalışmaya devam ediyor.</p></div>
+	<?php endif; ?>
+	<?php if ( ! function_exists( 'flxai_mcp_tools' ) ) : ?>
+		<div class="notice notice-info"><p><?php esc_html_e( 'Flux SEO\'nun yapay zekâ (MCP) araçları ortak MCP sunucusu üzerinden çalışır. Sunucu, anahtarlar ve ayarlar Flux AI › MCP ekranındadır; Flux AI 0.7.0 ve üstünü kurup etkinleştirin.', 'flx-seo' ); ?></p></div>
 	<?php endif; ?>
 	<nav class="nav-tab-wrapper">
 		<?php foreach ( $tabs as $k => $label ) : ?>
@@ -285,11 +293,6 @@ function flxseo_settings_page() {
 	}
 	if ( 'ayarlar' === $tab ) {
 		flxseo_audit_settings_page();
-		echo '</div>';
-		return;
-	}
-	if ( 'mcp' === $tab ) {
-		flxseo_mcp_page( $o );
 		echo '</div>';
 		return;
 	}

@@ -7,7 +7,7 @@
 # Flux AI
 
 **Tüm FluxWP eklentileri için tek yapay zekâ merkezi: anahtarlar, modeller, maliyet, sınır ve ortak sohbet.**<br>
-Flux AI, FluxWP paketlerinin ortak yapay zekâ katmanıdır. OpenRouter ve Anthropic anahtarları, model kataloğu ve fiyatlar, prompt önbelleği, araç kaydı, kullanım kayıtları, faturalandırma ve harcama sınırları tek yerde durur; Flux Chat, Flux Mail, Flux Social, Flux Lang, Flux Studio ve diğerleri AI sağlayıcılarıyla kendisi konuşmak yerine bunu çağırır. Yetkili kullanıcılar panelde bu araçları kullanabilen akışlı bir AI sohbeti de alır.
+Flux AI, FluxWP paketlerinin ortak yapay zekâ katmanıdır. OpenRouter ve Anthropic anahtarları, model kataloğu ve fiyatlar, prompt önbelleği, araç kaydı, ortak MCP sunucusu, kullanım kayıtları, faturalandırma ve harcama sınırları tek yerde durur; Flux Chat, Flux Mail, Flux Social, Flux Lang, Flux Studio ve diğerleri AI sağlayıcılarıyla kendisi konuşmak yerine bunu çağırır. Yetkili kullanıcılar panelde bu araçları kullanabilen akışlı bir AI sohbeti de alır.
 
 [![WordPress 6.5+](https://img.shields.io/badge/WordPress-6.5%2B-21759b?logo=wordpress&logoColor=white)](https://wordpress.org)
 [![PHP 7.4+](https://img.shields.io/badge/PHP-7.4%2B-777bb4?logo=php&logoColor=white)](https://www.php.net)
@@ -38,7 +38,8 @@ Her eklenti kendi AI bağlantısını getirince anahtarlar beş ayar sayfasına 
 ### Diğer eklentiler için merkez
 - Araçlı, akışlı, prompt önbellekli (Claude) ve yedek modelli `flxai_chat()` / `flxai_complete()`; `flxai_ready()`, `flxai_model_for()`, `flxai_budget_status()`.
 - **Bağlı sistemler:** her eklentinin durumu, modeli, 30 günlük isteği, token'ı, maliyeti, hatası ve son kullanımı; sistem başına aç/kapa; Ayarlar'da eklenti başına model.
-- **Araçlar:** `flxai_tools` ya da Flux SEO ile kaydedilen her araç; kaynak, okur/yazar, onay, yetki, 30 günlük çağrı ve ortalama süre; araç başına aç/kapa.
+- **MCP sunucusu:** Claude Desktop, Claude Code, Cursor ve claude.ai için `/wp-json/flx-mcp/v1/mcp`; araçlarla sınırlanabilen kullanıcıya özel anahtarlar, son kullanım ve son işlemler. Her FluxWP eklentisi (SEO, CRM, Mail, Speed, Analytics, Social…) araçlarını `flx_mcp_tools` ile buraya kaydeder.
+- **Araçlar:** `flx_mcp_tools` ya da `flxai_tools` ile kaydedilen her araç; kaynak, okur/yazar, onay, yetki, 30 günlük çağrı ve ortalama süre; araç başına aç/kapa.
 - Cevapta görsel: ```widget / ```mermaid blokları Gotenberg ya da Imagick ile PNG'ye çevrilir.
 - Flux Studio için fal.ai, EvoLink, OpenAI, Gemini ve OpenRouter ile görsel ve video üretimi (`flxai_media_submit`).
 
@@ -94,7 +95,7 @@ Ayrıntılı kurulum notları: [KURULUM.md](../../docs/flx-ai/KURULUM.md) · API
 ## Geliştiriciler için
 
 - `flxai_chat( $messages, [ 'source' => 'eklentim', 'tools' => …, 'stream' => true ] )`, `flxai_complete( $prompt )`.
-- Sistemi `flxai_systems` ile, sohbet araçlarını `flxai_tools` ile kaydedin; kendi çağrılarınızı `flxai_log()` ile yazın.
+- Sistemi `flxai_systems` ile, MCP + sohbet araçlarını `flx_mcp_tools` ile (yalnız sohbet: `flxai_tools`) kaydedin; kendi çağrılarınızı `flxai_log()` ile yazın.
 - Medya: `flxai_media_submit()`, `flxai_media_status()`, `flxai_media_cancel()`; REST `/wp-json/flx-ai/v1` altında.
 
 ## Yol haritası
@@ -104,6 +105,7 @@ Ayrıntılı kurulum notları: [KURULUM.md](../../docs/flx-ai/KURULUM.md) · API
 | ✅ | Tek anahtar deposu, model kataloğu ve fiyatlar |
 | ✅ | Kullanım kayıtları, faturalandırma ve harcama sınırları |
 | ✅ | Bağlı sistemler ve araç kaydı |
+| ✅ | Kapsamlı anahtarlı ortak MCP sunucusu |
 | ✅ | Onaylı, akışlı ortak sohbet |
 | ✅ | Flux Studio için görsel ve video üretimi |
 | ⬜ | Kullanıcı ve rol başına bütçe |

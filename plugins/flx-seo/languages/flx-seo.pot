@@ -308,7 +308,7 @@ msgstr ""
 msgid "Sayfa başlığı (<title>) yok"
 msgstr ""
 
-msgid "Tema add_theme_support( 'title-tag' ) desteklemeli; SEO & MCP › Genel'de ana sayfa başlığını doldurun."
+msgid "Tema add_theme_support( 'title-tag' ) desteklemeli; SEO › Genel'de ana sayfa başlığını doldurun."
 msgstr ""
 
 msgid "Sayfa başlığı uzun"
@@ -398,7 +398,7 @@ msgstr ""
 msgid "Görsellerde alt metin yok"
 msgstr ""
 
-msgid "Her anlamlı görsele içeriği anlatan alt metin yazın; süs görselleri alt=\"\" alsın. Medya kütüphanesinde alt metni doldurun ya da SEO & MCP › Genel › Görseller seçeneğini açın."
+msgid "Her anlamlı görsele içeriği anlatan alt metin yazın; süs görselleri alt=\"\" alsın. Medya kütüphanesinde alt metni doldurun ya da SEO › Genel › Görseller seçeneğini açın."
 msgstr ""
 
 msgid "Adı olmayan bağlantılar var"
@@ -746,7 +746,7 @@ msgstr ""
 msgid "PageSpeed Insights yalnız internetten erişilebilen adresleri ölçebilir."
 msgstr ""
 
-msgid "PageSpeed günlük kotası doldu. SEO & MCP › Site denetimi › Ayarlar'a ücretsiz bir Google API anahtarı girin."
+msgid "PageSpeed günlük kotası doldu. SEO › Ayarlar'a ücretsiz bir Google API anahtarı girin."
 msgstr ""
 
 msgid "Denetimi aç"
@@ -922,4 +922,7 @@ msgid "%s PageSpeed puanlarının zaman içindeki değişimi"
 msgstr ""
 
 msgid "Site denetimi ve ajan uyumu"
+msgstr ""
+
+msgid "Flux SEO'nun yapay zekâ (MCP) araçları ortak MCP sunucusu üzerinden çalışır. Sunucu, anahtarlar ve ayarlar Flux AI › MCP ekranındadır; Flux AI 0.7.0 ve üstünü kurup etkinleştirin."
 msgstr ""

@@ -1,5 +1,12 @@
 # Flux AI — Değişiklikler
 
+## 0.7.0
+- **Ortak MCP sunucusu Flux AI'ya taşındı** (önceden Flux SEO içindeydi). Yeni ekran **Flux AI › MCP**: sunucuyu aç/kapa, kullanıcıya özel anahtarlar (araçlarla sınırlanabilir), Claude Desktop / Claude Code / claude.ai bağlantı örnekleri ve son işlemler. Adres aynı: `/wp-json/flx-mcp/v1/mcp`.
+- Eklentiler araçlarını yeni `flx_mcp_tools` filtresiyle kaydeder; eski `flxseo_mcp_tools` aynen çalışır (CRM, Mail, Speed, Analytics, Social, Setup, Lang, TV Board, QR Menu değişmeden gelir). İstemler `flx_mcp_prompts`, kaynaklar `flx_mcp_resources` (eski `flxseo_mcp_resources` de), sunucu talimatları `flx_mcp_instructions`.
+- Flux SEO'daki eski anahtarlar ve aç/kapa ayarı ilk açılışta kendiliğinden devralınır; bağlı asistanlar yeniden bağlanmadan çalışmaya devam eder.
+- Araçlar ekranında "Kaynak" sütunu aracı kaydeden eklentiyi gösterir (önceden hepsi Flux SEO görünüyordu).
+- Eski Flux SEO (1.4.x) kuruluysa sunucuyu o çalıştırır, Flux AI uyarı gösterir; çakışma ya da hata olmaz.
+
 ## 0.6.9
 - Tarih ve "… önce" metinleri artık kullanıcının dilinde, tek ortak yardımcıdan (FluxWP `flx_date` / `flx_time_ago`, flx-brand 1.1.0): "31 minutes önce", "August 10" gibi Türkçe/İngilizce karışımı kalmadı; çekirdek dil paketi inmemiş olsa da TR ve EN ay/gün adları doğru.
 

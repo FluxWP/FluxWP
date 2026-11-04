@@ -1,6 +1,6 @@
 <?php
 /**
- * SEO & MCP › Site denetimi ekranı, ayarları ve AJAX uçları.
+ * SEO › Site denetimi ekranı, ayarları ve AJAX uçları.
  *
  * @package flx-seo
  */
@@ -115,7 +115,7 @@ function flxseo_audit_admin_page() {
 						<li class="<?php echo $c[1] ? 'is-ok' : 'is-bad'; ?>"><span aria-hidden="true"><?php echo $c[1] ? '✓' : '✕'; ?></span> <?php echo esc_html( $c[0] ); ?></li>
 					<?php endforeach; ?>
 				</ul>
-				<p class="au-meta"><a href="<?php echo esc_url( home_url( '/llms.txt' ) ); ?>" target="_blank" rel="noopener">/llms.txt</a> · <?php echo esc_html( flxseo_opt( 'mcp_enabled' ) ? __( 'MCP sunucusu açık', 'flx-seo' ) : __( 'MCP sunucusu kapalı', 'flx-seo' ) ); ?></p>
+				<p class="au-meta"><a href="<?php echo esc_url( home_url( '/llms.txt' ) ); ?>" target="_blank" rel="noopener">/llms.txt</a> · <?php echo esc_html( flxseo_mcp_server_on() ? __( 'MCP sunucusu açık', 'flx-seo' ) : __( 'MCP sunucusu kapalı', 'flx-seo' ) ); ?></p>
 			</div>
 		</section>
 
@@ -205,7 +205,7 @@ function flxseo_audit_flash() {
 }
 
 /**
- * SEO & MCP › Ayarlar: site denetimi ayarları (PageSpeed anahtarı, otomatik denetim, ajan uyumu, güvenlik başlıkları)
+ * SEO › Ayarlar: site denetimi ayarları (PageSpeed anahtarı, otomatik denetim, ajan uyumu, güvenlik başlıkları)
  * ve yeni site yapım rehberi.
  */
 function flxseo_audit_settings_page() {
