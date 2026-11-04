@@ -1,0 +1,979 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Flux CRM\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Ayarlar"
+msgstr "Settings"
+
+msgid "Kişiler, roller, segmentler ve pazarlama"
+msgstr "Contacts, roles, segments and marketing"
+
+msgid "Kaynak: %s"
+msgstr "Source: %s"
+
+msgid "Kişi bulunamadı."
+msgstr "Contact not found."
+
+msgid "E-posta adresi geçersiz."
+msgstr "The e-mail address is not valid."
+
+msgid "Telefon numarası geçersiz."
+msgstr "The phone number is not valid."
+
+msgid "açık"
+msgstr "on"
+
+msgid "kapalı"
+msgstr "off"
+
+msgid "E-posta"
+msgstr "E-mail"
+
+msgid "SMS"
+msgstr "SMS"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "Reklam kitleleri"
+msgstr "Ad audiences"
+
+msgid "E-posta ya da telefon gerekli."
+msgstr "An e-mail or phone number is required."
+
+msgid "Kişi kaydedilemedi."
+msgstr "The contact could not be saved."
+
+msgid "Metin boş olamaz."
+msgstr "Text cannot be empty."
+
+msgid "Etiket eklenemedi."
+msgstr "The tag could not be added."
+
+msgid "Segment bulunamadı."
+msgstr "Segment not found."
+
+msgid "Rol"
+msgstr "Role"
+
+msgid "Etiket"
+msgstr "Tag"
+
+msgid "RFM segmenti"
+msgstr "RFM segment"
+
+msgid "Toplam değer"
+msgstr "Total value"
+
+msgid "Ödeme yaptığı gün sayısı"
+msgstr "Days with a payment"
+
+msgid "Son ödeme"
+msgstr "Last payment"
+
+msgid "Son hareket"
+msgstr "Last activity"
+
+msgid "Eklenme"
+msgstr "Added"
+
+msgid "Kayıp riski (%)"
+msgstr "Churn risk (%)"
+
+msgid "İzin"
+msgstr "Consent"
+
+msgid "İlk kaynak"
+msgstr "First source"
+
+msgid "Şehir"
+msgstr "City"
+
+msgid "E-postası var"
+msgstr "Has an e-mail"
+
+msgid "Telefonu var"
+msgstr "Has a phone"
+
+msgid "var"
+msgstr "has"
+
+msgid "değil / yok"
+msgstr "is not / has not"
+
+msgid "eşittir"
+msgstr "is"
+
+msgid "en az"
+msgstr "at least"
+
+msgid "en çok"
+msgstr "at most"
+
+msgid "son … gün içinde"
+msgstr "in the last … days"
+
+msgid "… günden eski"
+msgstr "more than … days ago"
+
+msgid "evet"
+msgstr "yes"
+
+msgid "hayır"
+msgstr "no"
+
+msgid "içerir"
+msgstr "contains"
+
+msgid "%1$s: %2$s günden eski"
+msgstr "%1$s: more than %2$s days ago"
+
+msgid "%1$s: son %2$s gün içinde"
+msgstr "%1$s: in the last %2$s days"
+
+msgid "%s izni yok"
+msgstr "no %s consent"
+
+msgid "%s izni var"
+msgstr "has %s consent"
+
+msgid "ya da"
+msgstr "or"
+
+msgid "Segment adı gerekli."
+msgstr "A segment name is required."
+
+msgid "En az bir kural ekleyin."
+msgstr "Add at least one rule."
+
+msgid "Geri kazanılacak bağışçılar"
+msgstr "Donors to win back"
+
+msgid "Bağışçı ve kayıp riski yüksek. Hatır sorma ya da yeni proje duyurusu için."
+msgstr "Donors with a high churn risk. For a check-in or a new project announcement."
+
+msgid "Yeni gelenler (30 gün)"
+msgstr "New contacts (30 days)"
+
+msgid "Son 30 günde eklenen kişiler. Hoş geldin mesajı için."
+msgstr "Contacts added in the last 30 days. For a welcome message."
+
+msgid "Şampiyon ve sadıklar"
+msgstr "Champions and loyal supporters"
+
+msgid "En sık ve en yakın zamanda destek verenler."
+msgstr "The people who support most often and most recently."
+
+msgid "WhatsApp mesajları"
+msgstr "WhatsApp messages"
+
+msgid "Toplamlar"
+msgstr "Totals"
+
+msgid "RFM skoru"
+msgstr "RFM score"
+
+msgid "Bağışçı"
+msgstr "Donor"
+
+msgid "Müşteri"
+msgstr "Customer"
+
+msgid "Aday"
+msgstr "Lead"
+
+msgid "Gönüllü"
+msgstr "Volunteer"
+
+msgid "Üye"
+msgstr "Member"
+
+msgid "Kurumsal"
+msgstr "Partner"
+
+msgid "Yararlanıcı"
+msgstr "Beneficiary"
+
+msgid "Bağış"
+msgstr "Donation"
+
+msgid "Sipariş"
+msgstr "Order"
+
+msgid "Form"
+msgstr "Form"
+
+msgid "Gelen mesaj"
+msgstr "Incoming message"
+
+msgid "Giden mesaj"
+msgstr "Outgoing message"
+
+msgid "Sohbet başladı"
+msgstr "Chat started"
+
+msgid "Gelen e-posta"
+msgstr "Incoming e-mail"
+
+msgid "Not"
+msgstr "Note"
+
+msgid "Arama"
+msgstr "Call"
+
+msgid "Görüşme"
+msgstr "Meeting"
+
+msgid "Üyelik"
+msgstr "Sign-up"
+
+msgid "Kişi eklendi"
+msgstr "Contact added"
+
+msgid "Rol eklendi"
+msgstr "Role added"
+
+msgid "Segment değişti"
+msgstr "Segment changed"
+
+msgid "İzin değişti"
+msgstr "Consent changed"
+
+msgid "Yeni"
+msgstr "New"
+
+msgid "İlk kez yakın zamanda ödeme yaptı. Hoş geldin akışı için uygun."
+msgstr "Paid for the first time recently. A good fit for a welcome flow."
+
+msgid "Şampiyon"
+msgstr "Champion"
+
+msgid "Sık ve yakın zamanda ödeme yapıyor. Özel teşekkür ve ilgi."
+msgstr "Pays often and recently. Worth a personal thank-you and attention."
+
+msgid "Sadık"
+msgstr "Loyal"
+
+msgid "Düzenli destek veriyor. Yeni proje ve ürünler önce bunlara."
+msgstr "Gives regular support. Tell them first about new projects and products."
+
+msgid "Umut vadeden"
+msgstr "Promising"
+
+msgid "Yakın zamanda geldi, sıklığı henüz düşük."
+msgstr "Arrived recently; frequency is still low."
+
+msgid "Risk altında"
+msgstr "At risk"
+
+msgid "Eskiden sıktı, son zamanlarda uzaklaştı. Geri kazanım hedefi."
+msgstr "Used to be frequent, has drifted away lately. A win-back target."
+
+msgid "Uykuda"
+msgstr "Hibernating"
+
+msgid "Uzun süredir yok ve sıklığı düşük."
+msgstr "Away for a long time with low frequency."
+
+msgid "Kaybedilen"
+msgstr "Lost"
+
+msgid "En uzun süredir ödeme yapmayan dilim."
+msgstr "The slice that has gone longest without paying."
+
+msgid "Ödemesi yok"
+msgstr "No payments"
+
+msgid "Elle"
+msgstr "Manual"
+
+msgid "İçe aktarma"
+msgstr "Import"
+
+msgid "Site üyeliği"
+msgstr "Site account"
+
+msgid "%s Mn"
+msgstr "%s M"
+
+msgid "%s B"
+msgstr "%s K"
+
+msgid "az önce"
+msgstr "just now"
+
+msgid "%s önce"
+msgstr "%s ago"
+
+msgid "(adsız kişi)"
+msgstr "(unnamed contact)"
+
+msgid "CRM segmenti: %1$s (%2$s)"
+msgstr "CRM segment: %1$s (%2$s)"
+
+msgid "CRM rolü: %1$s (%2$s)"
+msgstr "CRM role: %1$s (%2$s)"
+
+msgid "CRM"
+msgstr "CRM"
+
+msgid "Kişileri, segmentleri ve zaman tünelini görür"
+msgstr "Sees contacts, segments and the timeline"
+
+msgid "Kişi ekler, düzenler, siler; segment ve CRM ayarlarını yönetir"
+msgstr "Adds, edits and deletes contacts; manages segments and CRM settings"
+
+msgid "CRM kişisi ara"
+msgstr "Search CRM contacts"
+
+msgid "CRM kişi kartı"
+msgstr "CRM contact card"
+
+msgid "CRM özeti"
+msgstr "CRM overview"
+
+msgid "CRM kişisine not ekle"
+msgstr "Add a note to a CRM contact"
+
+msgid "Flux CRM"
+msgstr "Flux CRM"
+
+msgid "Kişi kaynakları"
+msgstr "Contact sources"
+
+msgid "Kişi getiren kaynak yok (Flux Donate, WooCommerce, Flux Chat, Flux Forms kapalı ya da kurulu değil). Kişiler yalnız elle eklenir."
+msgstr "No source brings in contacts (Flux Donate, WooCommerce, Flux Chat and Flux Forms are off or not installed). Contacts can only be added by hand."
+
+msgid "İlk eşitleme"
+msgstr "First sync"
+
+msgid "Son tam eşitleme: %s"
+msgstr "Last full sync: %s"
+
+msgid "Geçmiş bağış, sipariş ve sohbetler henüz alınmadı. CRM › Ayarlar › \"Tümünü eşitle\"."
+msgstr "Past donations, orders and chats have not been imported yet. CRM › Settings › \"Sync everything\"."
+
+msgid "Eşitle"
+msgstr "Sync"
+
+msgid "RFM skorlama"
+msgstr "RFM scoring"
+
+msgid "Henüz hesaplanmadı."
+msgstr "Not calculated yet."
+
+msgid "Son hesaplama %s. Günlük iş (WP-Cron) çalışmıyor olabilir; sunucu cron'u ekleyin ya da elle hesaplayın."
+msgstr "Last calculated %s. The daily job (WP-Cron) may not be running; add a server cron or recalculate by hand."
+
+msgid "Son hesaplama: %s"
+msgstr "Last calculated: %s"
+
+msgid "Döviz ödemeleri"
+msgstr "Foreign currency payments"
+
+msgid "%1$s ödeme %2$s dışında bir para biriminde ve kur bulunamadı; sıklığa sayılıyor, toplam değere sayılmıyor. Kur için `flxcrm_fx_rate` filtresini kullanın."
+msgstr "%1$s payments are in a currency other than %2$s and have no exchange rate; they count towards frequency but not towards total value. Use the `flxcrm_fx_rate` filter to supply a rate."
+
+msgid "Genel bakış"
+msgstr "Overview"
+
+msgid "Kişiler"
+msgstr "Contacts"
+
+msgid "Segmentler"
+msgstr "Segments"
+
+msgid "CRM ayarları"
+msgstr "CRM settings"
+
+msgid "%1$s: %2$s / %3$s"
+msgstr "%1$s: %2$s / %3$s"
+
+msgid "Bitti. Sayfa yenileniyor…"
+msgstr "Done. Reloading the page…"
+
+msgid "Bir şey ters gitti. Tekrar deneyin."
+msgstr "Something went wrong. Please try again."
+
+msgid "Emin misiniz? Bu işlem geri alınamaz."
+msgstr "Are you sure? This cannot be undone."
+
+msgid "%s kişi uyuyor"
+msgstr "%s contacts match"
+
+msgid "Sayılıyor…"
+msgstr "Counting…"
+
+msgid "Hesaplanıyor…"
+msgstr "Calculating…"
+
+msgid "%s kişi skorlandı. Sayfa yenileniyor…"
+msgstr "%s contacts scored. Reloading the page…"
+
+msgid "%s kişi seçildi"
+msgstr "%s contacts selected"
+
+msgid "Kuralı kaldır"
+msgstr "Remove rule"
+
+msgid "ve"
+msgstr "and"
+
+msgid "veya"
+msgstr "or"
+
+msgid "gün"
+msgstr "days"
+
+msgid "Kural yok: tüm kişiler"
+msgstr "No rules: every contact"
+
+msgid "Uyan kişi yok."
+msgstr "No contacts match."
+
+msgid "Bu işlem için yetkiniz yok."
+msgstr "You are not allowed to do this."
+
+msgid "Ad"
+msgstr "Name"
+
+msgid "Telefon"
+msgstr "Phone"
+
+msgid "Roller"
+msgstr "Roles"
+
+msgid "Segment"
+msgstr "Segment"
+
+msgid "Kayıp riski"
+msgstr "Churn risk"
+
+msgid "E-posta izni"
+msgstr "E-mail consent"
+
+msgid "SMS izni"
+msgstr "SMS consent"
+
+msgid "WhatsApp izni"
+msgstr "WhatsApp consent"
+
+msgid "Etiketler"
+msgstr "Tags"
+
+msgid "Kaydedildi."
+msgstr "Saved."
+
+msgid "Kişi eklendi."
+msgstr "Contact added."
+
+msgid "Silindi."
+msgstr "Deleted."
+
+msgid "Zaman tüneline eklendi."
+msgstr "Added to the timeline."
+
+msgid "Bu e-posta ya da telefonla kayıtlı kişi zaten var; kartı açıldı."
+msgstr "A contact with this e-mail or phone already exists; their card is open."
+
+msgid "%s kişi güncellendi."
+msgstr "%s contacts updated."
+
+msgid "Kayıp riski %%%s"
+msgstr "Churn risk %s%%"
+
+msgid "Tümü"
+msgstr "All"
+
+msgid "Ödemeler"
+msgstr "Payments"
+
+msgid "Mesajlar"
+msgstr "Messages"
+
+msgid "Formlar"
+msgstr "Forms"
+
+msgid "Notlar"
+msgstr "Notes"
+
+msgid "Kişi bulunamadı"
+msgstr "Contact not found"
+
+msgid "Kişilere dön"
+msgstr "Back to contacts"
+
+msgid "Arşivde"
+msgstr "Archived"
+
+msgid "%1$s tarihinden beri · %2$s"
+msgstr "Since %1$s · %2$s"
+
+msgid "WhatsApp sohbeti"
+msgstr "WhatsApp chat"
+
+msgid "E-posta yaz"
+msgstr "Write an e-mail"
+
+msgid "CRM kartı"
+msgstr "CRM card"
+
+msgid "İlk ödeme"
+msgstr "First payment"
+
+msgid "ortalama %s günde bir"
+msgstr "once every %s days on average"
+
+msgid "RFM"
+msgstr "RFM"
+
+msgid "yenilik · sıklık · değer (1–5)"
+msgstr "recency · frequency · value (1–5)"
+
+msgid "Kişiyi sil"
+msgstr "Delete contact"
+
+msgid "Bağış ve siparişler kendi eklentisinde kalır; yalnız CRM kartı silinir."
+msgstr "Donations and orders stay in their own plugins; only the CRM card is deleted."
+
+msgid "Zaman tüneli"
+msgstr "Timeline"
+
+msgid "Not ekleyin: telefonda konuşuldu, kurban için tekrar aranacak…"
+msgstr "Add a note: talked on the phone, call again about the qurban…"
+
+msgid "Tür"
+msgstr "Type"
+
+msgid "Ekle"
+msgstr "Add"
+
+msgid "Bu filtrede olay yok."
+msgstr "No events for this filter."
+
+msgid "Yükleniyor…"
+msgstr "Loading…"
+
+msgid "Yanıtlar"
+msgstr "Answers"
+
+msgid "Sil"
+msgstr "Delete"
+
+msgid "Bekliyor"
+msgstr "Pending"
+
+msgid "Beklemede"
+msgstr "On hold"
+
+msgid "Başarısız"
+msgstr "Failed"
+
+msgid "İptal"
+msgstr "Cancelled"
+
+msgid "İade"
+msgstr "Refunded"
+
+msgid "Kısmi iade"
+msgstr "Partly refunded"
+
+msgid "Ad soyad"
+msgstr "Full name"
+
+msgid "Kurum"
+msgstr "Organisation"
+
+msgid "İletişim izinleri"
+msgstr "Contact consents"
+
+msgid "Son değişiklik: %s"
+msgstr "Last changed: %s"
+
+msgid "Sorumlu"
+msgstr "Owner"
+
+msgid "— yok —"
+msgstr "— none —"
+
+msgid "Kısa not"
+msgstr "Short note"
+
+msgid "Bilgiler"
+msgstr "Details"
+
+msgid "Kaydet"
+msgstr "Save"
+
+msgid "Etiket yok."
+msgstr "No tags."
+
+msgid "%s etiketini kaldır"
+msgstr "Remove the %s tag"
+
+msgid "Etiket ekle (virgülle birden çok)"
+msgstr "Add tags (comma for several)"
+
+msgid "Etiket ekle"
+msgstr "Add tag"
+
+msgid "Kaynaklar"
+msgstr "Sources"
+
+msgid "Elle eklendi."
+msgstr "Added by hand."
+
+msgid "İlk kampanya"
+msgstr "First campaign"
+
+msgid "Yeni kişi"
+msgstr "New contact"
+
+msgid "E-posta ya da telefondan biri yeter. Aynı e-posta/telefonla kişi varsa onun kartı açılır."
+msgstr "An e-mail or a phone number is enough. If a contact with the same e-mail or phone exists, their card opens."
+
+msgid "virgülle ayırın"
+msgstr "separate with commas"
+
+msgid "Kişiyi ekle"
+msgstr "Add contact"
+
+msgid "Vazgeç"
+msgstr "Cancel"
+
+msgid "%s bağış"
+msgid_plural "%s bağış"
+msgstr[0] "%s donation"
+msgstr[1] "%s donations"
+
+msgid "%s sipariş"
+msgid_plural "%s sipariş"
+msgstr[0] "%s order"
+msgstr[1] "%s orders"
+
+msgid "CSV"
+msgstr "CSV"
+
+msgid "Kişi ekle"
+msgstr "Add contact"
+
+msgid "Bağışçılar, müşteriler, adaylar: her kişi tek kart. Kaynaklardan kendiliğinden gelir, elle de eklenir."
+msgstr "Donors, customers, leads: one card per person. They arrive from your sources on their own, or you add them by hand."
+
+msgid "Ad, e-posta, telefon, kurum, şehir"
+msgstr "Name, e-mail, phone, organisation, city"
+
+msgid "Kişi ara"
+msgstr "Search contacts"
+
+msgid "Tüm RFM segmentleri"
+msgstr "All RFM segments"
+
+msgid "Kayıtlı segment"
+msgstr "Saved segment"
+
+msgid "Tüm etiketler"
+msgstr "All tags"
+
+msgid "İzin fark etmez"
+msgstr "Any consent"
+
+msgid "Yalnız kayıp riski yüksek"
+msgstr "Only high churn risk"
+
+msgid "Arşiv"
+msgstr "Archive"
+
+msgid "Filtrele"
+msgstr "Filter"
+
+msgid "Filtreye uyan kişi yok."
+msgstr "No contacts match the filter."
+
+msgid "Henüz kişi yok."
+msgstr "No contacts yet."
+
+msgid "Bağış, sipariş, form ya da WhatsApp sohbeti geldikçe kişiler kendiliğinden oluşur. Geçmiş kayıtlar için Ayarlar › Tümünü eşitle."
+msgstr "Contacts appear on their own as donations, orders, forms and WhatsApp chats come in. For older records: Settings › Sync everything."
+
+msgid "Toplu işlem"
+msgstr "Bulk action"
+
+msgid "Rol ekle"
+msgstr "Add role"
+
+msgid "Arşivden çıkar"
+msgstr "Unarchive"
+
+msgid "Arşivle"
+msgstr "Archive"
+
+msgid "Etiket adı"
+msgstr "Tag name"
+
+msgid "Uygula"
+msgstr "Apply"
+
+msgid "Tümünü seç"
+msgstr "Select all"
+
+msgid "Kişi"
+msgstr "Contact"
+
+msgid "Rol ve segment"
+msgstr "Role and segment"
+
+msgid "Değer"
+msgstr "Value"
+
+msgid "Bağışçı, müşteri, gönüllü ve adaylar tek yerde: kim ne yaptı, kim uzaklaşıyor, kime ne gönderilmeli."
+msgstr "Donors, customers, volunteers and leads in one place: who did what, who is drifting away, who should hear what."
+
+msgid "Geçmiş veriyi içe alın."
+msgstr "Import your past data."
+
+msgid "Yeni kayıtlar kendiliğinden geliyor. Önceki kayıtları da kişilere bağlamak için eşitleyin: %s."
+msgstr "New records arrive on their own. To link older ones to contacts too, sync: %s."
+
+msgid "Kişi getiren kaynak yok; kişileri elle ekleyebilirsiniz."
+msgstr "No source brings in contacts; you can add them by hand."
+
+msgid "Tümünü eşitle"
+msgstr "Sync everything"
+
+msgid "%s ödeme yapmış"
+msgstr "%s have paid"
+
+msgid "Son 30 gün yeni"
+msgstr "New in the last 30 days"
+
+msgid "önceki 30 güne göre %s"
+msgstr "%s against the previous 30 days"
+
+msgid "Aktif"
+msgstr "Active"
+
+msgid "son %s günde hareketi olan"
+msgstr "with activity in the last %s days"
+
+msgid "Kayıp riski yüksek"
+msgstr "High churn risk"
+
+msgid "risk %%%s ve üstü"
+msgstr "risk %s%% and above"
+
+msgid "kişi başı %s"
+msgstr "%s per contact"
+
+msgid "RFM segmentleri"
+msgstr "RFM segments"
+
+msgid "Hesaplandı: %s"
+msgstr "Calculated: %s"
+
+msgid "Yeniden hesapla"
+msgstr "Recalculate"
+
+msgid "Ödeme yapan kişi olunca bağışçı ve müşteriler burada sıklık, yenilik ve değerlerine göre gruplanır."
+msgstr "Once contacts have paid, donors and customers are grouped here by frequency, recency and value."
+
+msgid "Temas kurulmalı"
+msgstr "Reach out"
+
+msgid "Kayıp riski yüksek, değerli kişi yok."
+msgstr "No valuable contacts with a high churn risk."
+
+msgid "son ödeme %s"
+msgstr "last payment %s"
+
+msgid "Son hareketler"
+msgstr "Recent activity"
+
+msgid "Bağış, sipariş, form ve WhatsApp hareketleri burada görünür."
+msgstr "Donations, orders, forms and WhatsApp activity appear here."
+
+msgid "Nereden geldiler"
+msgstr "Where they came from"
+
+msgid "Kayıtlı segmentler"
+msgstr "Saved segments"
+
+msgid "Yeni segment"
+msgstr "New segment"
+
+msgid "Kurallarla tanımlanan canlı listeler: kişi kurala uyunca girer, uymayınca çıkar. Flux Mail'de toplu gönderimin alıcısı olur."
+msgstr "Live lists defined by rules: a contact joins when they match and leaves when they no longer do. Use them as recipients for bulk sends in Flux Mail."
+
+msgid "Henüz segment yok."
+msgstr "No segments yet."
+
+msgid "Örnek: \"Geçen yıl kurban bağışı yapıp bu yıl yapmayanlar\", \"İstanbul'daki gönüllüler\", \"3 aydır alışveriş yapmayan müşteriler\"."
+msgstr "For example: \"Gave a qurban donation last year but not this year\", \"Volunteers in Istanbul\", \"Customers who haven't bought in 3 months\"."
+
+msgid "kişi"
+msgstr "contacts"
+
+msgid "Kişileri gör"
+msgstr "View contacts"
+
+msgid "Düzenle"
+msgstr "Edit"
+
+msgid "Flux Mail › Gönder: Alıcılar altında bu segmenti seçin. Yalnız ilgili kanala izin verenler alıcı olur."
+msgstr "Flux Mail › Send: pick this segment under Recipients. Only people who allowed that channel receive it."
+
+msgid "Gönderim yap"
+msgstr "Send a campaign"
+
+msgid "Segmenti düzenle"
+msgstr "Edit segment"
+
+msgid "Kuralları ekleyin; sağda kaç kişinin uyduğunu anında görürsünüz."
+msgstr "Add rules; the number of matching contacts updates on the right as you go."
+
+msgid "Örn. Uzaklaşan bağışçılar"
+msgstr "E.g. Donors drifting away"
+
+msgid "Açıklama"
+msgstr "Description"
+
+msgid "Kurallar"
+msgstr "Rules"
+
+msgid "tüm kurallara"
+msgstr "all rules"
+
+msgid "en az birine"
+msgstr "at least one"
+
+msgid "uysun"
+msgstr "Contact matches"
+
+msgid "Kural ekle"
+msgstr "Add rule"
+
+msgid "Segmenti kaydet"
+msgstr "Save segment"
+
+msgid "Uyan kişi"
+msgstr "Matching contacts"
+
+msgid "Kişilerin nereden geleceği, hangi rolü alacağı ve skorlamanın nasıl çalışacağı."
+msgstr "Where contacts come from, which role they get and how scoring works."
+
+msgid "Eşitleme"
+msgstr "Sync"
+
+msgid "Henüz eşitlenmedi"
+msgstr "Not synced yet"
+
+msgid "Yeni bağış, sipariş, form ve sohbetler kişilere anında bağlanır. Geçmiş kayıtları almak ya da kaynak açıp kapattıktan sonra baştan bağlamak için tümünü eşitleyin. Var olan kişiler ve notlar korunur, aynı kayıt iki kez eklenmez."
+msgstr "New donations, orders, forms and chats are linked to contacts straight away. Sync everything to import past records, or to relink after switching a source on or off. Existing contacts and notes are kept, and nothing is added twice."
+
+msgid "Skorları yeniden hesapla"
+msgstr "Recalculate scores"
+
+msgid "Bağışçılar ve bağışlar"
+msgstr "Donors and donations"
+
+msgid "Müşteriler ve siparişler (bağış siparişleri hariç)"
+msgstr "Customers and orders (donation orders excluded)"
+
+msgid "WhatsApp sohbetleri ve her mesaj"
+msgstr "WhatsApp chats and every message"
+
+msgid "Form gönderimleri (e-posta ya da telefon alanı olan)"
+msgstr "Form submissions (with an e-mail or phone field)"
+
+msgid "Site üyeleri"
+msgstr "Site members"
+
+msgid "Müşteri ve abone rolündeki WordPress kullanıcıları"
+msgstr "WordPress users with the customer or subscriber role"
+
+msgid "Kişiye giden e-posta, SMS ve WhatsApp bildirimleri, gelen e-postalar (yalnız zaman tüneli, kişi oluşturmaz)"
+msgstr "E-mails, SMS and WhatsApp notifications sent to the contact, and incoming e-mails (timeline only, no new contacts)"
+
+msgid "Kaynak"
+msgstr "Source"
+
+msgid "Açık"
+msgstr "On"
+
+msgid "Yeni kişiye verilen rol"
+msgstr "Role for new contacts"
+
+msgid "kurulu değil"
+msgstr "not installed"
+
+msgid "— rol verme —"
+msgstr "— no role —"
+
+msgid "WhatsApp mesajlarını zaman tüneline yaz (her mesaj ayrı satır)"
+msgstr "Write WhatsApp messages to the timeline (one line per message)"
+
+msgid "Rol ödeme tamamlanınca verilir (bağışçı, müşteri). \"Aday\" rolü kişi başka bir rol alınca kendiliğinden düşer."
+msgstr "The role is given once a payment completes (donor, customer). The \"Lead\" role drops off by itself when the contact gets another role."
+
+msgid "Kişinin kurumla ilişkisi. Bir kişinin birden çok rolü olabilir: hem bağışçı hem gönüllü gibi."
+msgstr "The contact's relationship with you. A contact can have several roles, e.g. donor and volunteer."
+
+msgid "Renk"
+msgstr "Colour"
+
+msgid "Yeni rol: Sponsor, Hayırsever, Bayi…"
+msgstr "New role: Sponsor, Philanthropist, Dealer…"
+
+msgid "Yeni rol"
+msgstr "New role"
+
+msgid "Skorlama"
+msgstr "Scoring"
+
+msgid "Kayıp riski eşiği (%)"
+msgstr "Churn risk threshold (%)"
+
+msgid "Bu değerin üstü \"temas kurulmalı\" listesine girer. Risk kişinin kendi ritmine göre: ayda bir bağış yapan 45 gün gelmeyince riskli sayılır, yılda bir yapan sayılmaz."
+msgstr "Contacts above this value go to the \"Reach out\" list. Risk follows each person's own rhythm: a monthly donor is at risk after 45 days, a yearly one is not."
+
+msgid "Aktif sayılma (gün)"
+msgstr "Active window (days)"
+
+msgid "Bu kadar gün içinde herhangi bir hareketi olan kişi aktif sayılır."
+msgstr "A contact with any activity within this many days counts as active."
+
+msgid "Raporlama para birimi"
+msgstr "Reporting currency"
+
+msgid "Boşsa mağaza para birimi. Başka para birimindeki ödemeler kur verilmedikçe değere sayılmaz."
+msgstr "Empty means the store currency. Payments in other currencies don't count towards value unless a rate is given."
+
+msgid "Ayarları kaydet"
+msgstr "Save settings"
+
+msgid "WhatsApp sohbeti açıldı"
+msgstr "WhatsApp chat opened"
+
+msgid "WhatsApp yanıtı"
+msgstr "WhatsApp reply"
+
+msgid "WhatsApp mesajı"
+msgstr "WhatsApp message"
+
+msgid "Sipariş #%s"
+msgstr "Order #%s"
+
+msgid "Form #%d"
+msgstr "Form #%d"
+
+msgid "SMS gönderildi"
+msgstr "SMS sent"
+
+msgid "WhatsApp bildirimi"
+msgstr "WhatsApp notification"
+
+msgid "Sitede hesap açtı"
+msgstr "Created an account on the site"

@@ -1,0 +1,977 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Flux CRM\n"
+
+msgid "Ayarlar"
+msgstr ""
+
+msgid "Kişiler, roller, segmentler ve pazarlama"
+msgstr ""
+
+msgid "Kaynak: %s"
+msgstr ""
+
+msgid "Kişi bulunamadı."
+msgstr ""
+
+msgid "E-posta adresi geçersiz."
+msgstr ""
+
+msgid "Telefon numarası geçersiz."
+msgstr ""
+
+msgid "açık"
+msgstr ""
+
+msgid "kapalı"
+msgstr ""
+
+msgid "E-posta"
+msgstr ""
+
+msgid "SMS"
+msgstr ""
+
+msgid "WhatsApp"
+msgstr ""
+
+msgid "Reklam kitleleri"
+msgstr ""
+
+msgid "E-posta ya da telefon gerekli."
+msgstr ""
+
+msgid "Kişi kaydedilemedi."
+msgstr ""
+
+msgid "Metin boş olamaz."
+msgstr ""
+
+msgid "Etiket eklenemedi."
+msgstr ""
+
+msgid "Segment bulunamadı."
+msgstr ""
+
+msgid "Rol"
+msgstr ""
+
+msgid "Etiket"
+msgstr ""
+
+msgid "RFM segmenti"
+msgstr ""
+
+msgid "Toplam değer"
+msgstr ""
+
+msgid "Ödeme yaptığı gün sayısı"
+msgstr ""
+
+msgid "Son ödeme"
+msgstr ""
+
+msgid "Son hareket"
+msgstr ""
+
+msgid "Eklenme"
+msgstr ""
+
+msgid "Kayıp riski (%)"
+msgstr ""
+
+msgid "İzin"
+msgstr ""
+
+msgid "İlk kaynak"
+msgstr ""
+
+msgid "Şehir"
+msgstr ""
+
+msgid "E-postası var"
+msgstr ""
+
+msgid "Telefonu var"
+msgstr ""
+
+msgid "var"
+msgstr ""
+
+msgid "değil / yok"
+msgstr ""
+
+msgid "eşittir"
+msgstr ""
+
+msgid "en az"
+msgstr ""
+
+msgid "en çok"
+msgstr ""
+
+msgid "son … gün içinde"
+msgstr ""
+
+msgid "… günden eski"
+msgstr ""
+
+msgid "evet"
+msgstr ""
+
+msgid "hayır"
+msgstr ""
+
+msgid "içerir"
+msgstr ""
+
+msgid "%1$s: %2$s günden eski"
+msgstr ""
+
+msgid "%1$s: son %2$s gün içinde"
+msgstr ""
+
+msgid "%s izni yok"
+msgstr ""
+
+msgid "%s izni var"
+msgstr ""
+
+msgid "ya da"
+msgstr ""
+
+msgid "Segment adı gerekli."
+msgstr ""
+
+msgid "En az bir kural ekleyin."
+msgstr ""
+
+msgid "Geri kazanılacak bağışçılar"
+msgstr ""
+
+msgid "Bağışçı ve kayıp riski yüksek. Hatır sorma ya da yeni proje duyurusu için."
+msgstr ""
+
+msgid "Yeni gelenler (30 gün)"
+msgstr ""
+
+msgid "Son 30 günde eklenen kişiler. Hoş geldin mesajı için."
+msgstr ""
+
+msgid "Şampiyon ve sadıklar"
+msgstr ""
+
+msgid "En sık ve en yakın zamanda destek verenler."
+msgstr ""
+
+msgid "WhatsApp mesajları"
+msgstr ""
+
+msgid "Toplamlar"
+msgstr ""
+
+msgid "RFM skoru"
+msgstr ""
+
+msgid "Bağışçı"
+msgstr ""
+
+msgid "Müşteri"
+msgstr ""
+
+msgid "Aday"
+msgstr ""
+
+msgid "Gönüllü"
+msgstr ""
+
+msgid "Üye"
+msgstr ""
+
+msgid "Kurumsal"
+msgstr ""
+
+msgid "Yararlanıcı"
+msgstr ""
+
+msgid "Bağış"
+msgstr ""
+
+msgid "Sipariş"
+msgstr ""
+
+msgid "Form"
+msgstr ""
+
+msgid "Gelen mesaj"
+msgstr ""
+
+msgid "Giden mesaj"
+msgstr ""
+
+msgid "Sohbet başladı"
+msgstr ""
+
+msgid "Gelen e-posta"
+msgstr ""
+
+msgid "Not"
+msgstr ""
+
+msgid "Arama"
+msgstr ""
+
+msgid "Görüşme"
+msgstr ""
+
+msgid "Üyelik"
+msgstr ""
+
+msgid "Kişi eklendi"
+msgstr ""
+
+msgid "Rol eklendi"
+msgstr ""
+
+msgid "Segment değişti"
+msgstr ""
+
+msgid "İzin değişti"
+msgstr ""
+
+msgid "Yeni"
+msgstr ""
+
+msgid "İlk kez yakın zamanda ödeme yaptı. Hoş geldin akışı için uygun."
+msgstr ""
+
+msgid "Şampiyon"
+msgstr ""
+
+msgid "Sık ve yakın zamanda ödeme yapıyor. Özel teşekkür ve ilgi."
+msgstr ""
+
+msgid "Sadık"
+msgstr ""
+
+msgid "Düzenli destek veriyor. Yeni proje ve ürünler önce bunlara."
+msgstr ""
+
+msgid "Umut vadeden"
+msgstr ""
+
+msgid "Yakın zamanda geldi, sıklığı henüz düşük."
+msgstr ""
+
+msgid "Risk altında"
+msgstr ""
+
+msgid "Eskiden sıktı, son zamanlarda uzaklaştı. Geri kazanım hedefi."
+msgstr ""
+
+msgid "Uykuda"
+msgstr ""
+
+msgid "Uzun süredir yok ve sıklığı düşük."
+msgstr ""
+
+msgid "Kaybedilen"
+msgstr ""
+
+msgid "En uzun süredir ödeme yapmayan dilim."
+msgstr ""
+
+msgid "Ödemesi yok"
+msgstr ""
+
+msgid "Elle"
+msgstr ""
+
+msgid "İçe aktarma"
+msgstr ""
+
+msgid "Site üyeliği"
+msgstr ""
+
+msgid "%s Mn"
+msgstr ""
+
+msgid "%s B"
+msgstr ""
+
+msgid "az önce"
+msgstr ""
+
+msgid "%s önce"
+msgstr ""
+
+msgid "(adsız kişi)"
+msgstr ""
+
+msgid "CRM segmenti: %1$s (%2$s)"
+msgstr ""
+
+msgid "CRM rolü: %1$s (%2$s)"
+msgstr ""
+
+msgid "CRM"
+msgstr ""
+
+msgid "Kişileri, segmentleri ve zaman tünelini görür"
+msgstr ""
+
+msgid "Kişi ekler, düzenler, siler; segment ve CRM ayarlarını yönetir"
+msgstr ""
+
+msgid "CRM kişisi ara"
+msgstr ""
+
+msgid "CRM kişi kartı"
+msgstr ""
+
+msgid "CRM özeti"
+msgstr ""
+
+msgid "CRM kişisine not ekle"
+msgstr ""
+
+msgid "Flux CRM"
+msgstr ""
+
+msgid "Kişi kaynakları"
+msgstr ""
+
+msgid "Kişi getiren kaynak yok (Flux Donate, WooCommerce, Flux Chat, Flux Forms kapalı ya da kurulu değil). Kişiler yalnız elle eklenir."
+msgstr ""
+
+msgid "İlk eşitleme"
+msgstr ""
+
+msgid "Son tam eşitleme: %s"
+msgstr ""
+
+msgid "Geçmiş bağış, sipariş ve sohbetler henüz alınmadı. CRM › Ayarlar › \"Tümünü eşitle\"."
+msgstr ""
+
+msgid "Eşitle"
+msgstr ""
+
+msgid "RFM skorlama"
+msgstr ""
+
+msgid "Henüz hesaplanmadı."
+msgstr ""
+
+msgid "Son hesaplama %s. Günlük iş (WP-Cron) çalışmıyor olabilir; sunucu cron'u ekleyin ya da elle hesaplayın."
+msgstr ""
+
+msgid "Son hesaplama: %s"
+msgstr ""
+
+msgid "Döviz ödemeleri"
+msgstr ""
+
+msgid "%1$s ödeme %2$s dışında bir para biriminde ve kur bulunamadı; sıklığa sayılıyor, toplam değere sayılmıyor. Kur için `flxcrm_fx_rate` filtresini kullanın."
+msgstr ""
+
+msgid "Genel bakış"
+msgstr ""
+
+msgid "Kişiler"
+msgstr ""
+
+msgid "Segmentler"
+msgstr ""
+
+msgid "CRM ayarları"
+msgstr ""
+
+msgid "%1$s: %2$s / %3$s"
+msgstr ""
+
+msgid "Bitti. Sayfa yenileniyor…"
+msgstr ""
+
+msgid "Bir şey ters gitti. Tekrar deneyin."
+msgstr ""
+
+msgid "Emin misiniz? Bu işlem geri alınamaz."
+msgstr ""
+
+msgid "%s kişi uyuyor"
+msgstr ""
+
+msgid "Sayılıyor…"
+msgstr ""
+
+msgid "Hesaplanıyor…"
+msgstr ""
+
+msgid "%s kişi skorlandı. Sayfa yenileniyor…"
+msgstr ""
+
+msgid "%s kişi seçildi"
+msgstr ""
+
+msgid "Kuralı kaldır"
+msgstr ""
+
+msgid "ve"
+msgstr ""
+
+msgid "veya"
+msgstr ""
+
+msgid "gün"
+msgstr ""
+
+msgid "Kural yok: tüm kişiler"
+msgstr ""
+
+msgid "Uyan kişi yok."
+msgstr ""
+
+msgid "Bu işlem için yetkiniz yok."
+msgstr ""
+
+msgid "Ad"
+msgstr ""
+
+msgid "Telefon"
+msgstr ""
+
+msgid "Roller"
+msgstr ""
+
+msgid "Segment"
+msgstr ""
+
+msgid "Kayıp riski"
+msgstr ""
+
+msgid "E-posta izni"
+msgstr ""
+
+msgid "SMS izni"
+msgstr ""
+
+msgid "WhatsApp izni"
+msgstr ""
+
+msgid "Etiketler"
+msgstr ""
+
+msgid "Kaydedildi."
+msgstr ""
+
+msgid "Kişi eklendi."
+msgstr ""
+
+msgid "Silindi."
+msgstr ""
+
+msgid "Zaman tüneline eklendi."
+msgstr ""
+
+msgid "Bu e-posta ya da telefonla kayıtlı kişi zaten var; kartı açıldı."
+msgstr ""
+
+msgid "%s kişi güncellendi."
+msgstr ""
+
+msgid "Kayıp riski %%%s"
+msgstr ""
+
+msgid "Tümü"
+msgstr ""
+
+msgid "Ödemeler"
+msgstr ""
+
+msgid "Mesajlar"
+msgstr ""
+
+msgid "Formlar"
+msgstr ""
+
+msgid "Notlar"
+msgstr ""
+
+msgid "Kişi bulunamadı"
+msgstr ""
+
+msgid "Kişilere dön"
+msgstr ""
+
+msgid "Arşivde"
+msgstr ""
+
+msgid "%1$s tarihinden beri · %2$s"
+msgstr ""
+
+msgid "WhatsApp sohbeti"
+msgstr ""
+
+msgid "E-posta yaz"
+msgstr ""
+
+msgid "CRM kartı"
+msgstr ""
+
+msgid "İlk ödeme"
+msgstr ""
+
+msgid "ortalama %s günde bir"
+msgstr ""
+
+msgid "RFM"
+msgstr ""
+
+msgid "yenilik · sıklık · değer (1–5)"
+msgstr ""
+
+msgid "Kişiyi sil"
+msgstr ""
+
+msgid "Bağış ve siparişler kendi eklentisinde kalır; yalnız CRM kartı silinir."
+msgstr ""
+
+msgid "Zaman tüneli"
+msgstr ""
+
+msgid "Not ekleyin: telefonda konuşuldu, kurban için tekrar aranacak…"
+msgstr ""
+
+msgid "Tür"
+msgstr ""
+
+msgid "Ekle"
+msgstr ""
+
+msgid "Bu filtrede olay yok."
+msgstr ""
+
+msgid "Yükleniyor…"
+msgstr ""
+
+msgid "Yanıtlar"
+msgstr ""
+
+msgid "Sil"
+msgstr ""
+
+msgid "Bekliyor"
+msgstr ""
+
+msgid "Beklemede"
+msgstr ""
+
+msgid "Başarısız"
+msgstr ""
+
+msgid "İptal"
+msgstr ""
+
+msgid "İade"
+msgstr ""
+
+msgid "Kısmi iade"
+msgstr ""
+
+msgid "Ad soyad"
+msgstr ""
+
+msgid "Kurum"
+msgstr ""
+
+msgid "İletişim izinleri"
+msgstr ""
+
+msgid "Son değişiklik: %s"
+msgstr ""
+
+msgid "Sorumlu"
+msgstr ""
+
+msgid "— yok —"
+msgstr ""
+
+msgid "Kısa not"
+msgstr ""
+
+msgid "Bilgiler"
+msgstr ""
+
+msgid "Kaydet"
+msgstr ""
+
+msgid "Etiket yok."
+msgstr ""
+
+msgid "%s etiketini kaldır"
+msgstr ""
+
+msgid "Etiket ekle (virgülle birden çok)"
+msgstr ""
+
+msgid "Etiket ekle"
+msgstr ""
+
+msgid "Kaynaklar"
+msgstr ""
+
+msgid "Elle eklendi."
+msgstr ""
+
+msgid "İlk kampanya"
+msgstr ""
+
+msgid "Yeni kişi"
+msgstr ""
+
+msgid "E-posta ya da telefondan biri yeter. Aynı e-posta/telefonla kişi varsa onun kartı açılır."
+msgstr ""
+
+msgid "virgülle ayırın"
+msgstr ""
+
+msgid "Kişiyi ekle"
+msgstr ""
+
+msgid "Vazgeç"
+msgstr ""
+
+msgid "%s bağış"
+msgid_plural "%s bağış"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s sipariş"
+msgid_plural "%s sipariş"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "CSV"
+msgstr ""
+
+msgid "Kişi ekle"
+msgstr ""
+
+msgid "Bağışçılar, müşteriler, adaylar: her kişi tek kart. Kaynaklardan kendiliğinden gelir, elle de eklenir."
+msgstr ""
+
+msgid "Ad, e-posta, telefon, kurum, şehir"
+msgstr ""
+
+msgid "Kişi ara"
+msgstr ""
+
+msgid "Tüm RFM segmentleri"
+msgstr ""
+
+msgid "Kayıtlı segment"
+msgstr ""
+
+msgid "Tüm etiketler"
+msgstr ""
+
+msgid "İzin fark etmez"
+msgstr ""
+
+msgid "Yalnız kayıp riski yüksek"
+msgstr ""
+
+msgid "Arşiv"
+msgstr ""
+
+msgid "Filtrele"
+msgstr ""
+
+msgid "Filtreye uyan kişi yok."
+msgstr ""
+
+msgid "Henüz kişi yok."
+msgstr ""
+
+msgid "Bağış, sipariş, form ya da WhatsApp sohbeti geldikçe kişiler kendiliğinden oluşur. Geçmiş kayıtlar için Ayarlar › Tümünü eşitle."
+msgstr ""
+
+msgid "Toplu işlem"
+msgstr ""
+
+msgid "Rol ekle"
+msgstr ""
+
+msgid "Arşivden çıkar"
+msgstr ""
+
+msgid "Arşivle"
+msgstr ""
+
+msgid "Etiket adı"
+msgstr ""
+
+msgid "Uygula"
+msgstr ""
+
+msgid "Tümünü seç"
+msgstr ""
+
+msgid "Kişi"
+msgstr ""
+
+msgid "Rol ve segment"
+msgstr ""
+
+msgid "Değer"
+msgstr ""
+
+msgid "Bağışçı, müşteri, gönüllü ve adaylar tek yerde: kim ne yaptı, kim uzaklaşıyor, kime ne gönderilmeli."
+msgstr ""
+
+msgid "Geçmiş veriyi içe alın."
+msgstr ""
+
+msgid "Yeni kayıtlar kendiliğinden geliyor. Önceki kayıtları da kişilere bağlamak için eşitleyin: %s."
+msgstr ""
+
+msgid "Kişi getiren kaynak yok; kişileri elle ekleyebilirsiniz."
+msgstr ""
+
+msgid "Tümünü eşitle"
+msgstr ""
+
+msgid "%s ödeme yapmış"
+msgstr ""
+
+msgid "Son 30 gün yeni"
+msgstr ""
+
+msgid "önceki 30 güne göre %s"
+msgstr ""
+
+msgid "Aktif"
+msgstr ""
+
+msgid "son %s günde hareketi olan"
+msgstr ""
+
+msgid "Kayıp riski yüksek"
+msgstr ""
+
+msgid "risk %%%s ve üstü"
+msgstr ""
+
+msgid "kişi başı %s"
+msgstr ""
+
+msgid "RFM segmentleri"
+msgstr ""
+
+msgid "Hesaplandı: %s"
+msgstr ""
+
+msgid "Yeniden hesapla"
+msgstr ""
+
+msgid "Ödeme yapan kişi olunca bağışçı ve müşteriler burada sıklık, yenilik ve değerlerine göre gruplanır."
+msgstr ""
+
+msgid "Temas kurulmalı"
+msgstr ""
+
+msgid "Kayıp riski yüksek, değerli kişi yok."
+msgstr ""
+
+msgid "son ödeme %s"
+msgstr ""
+
+msgid "Son hareketler"
+msgstr ""
+
+msgid "Bağış, sipariş, form ve WhatsApp hareketleri burada görünür."
+msgstr ""
+
+msgid "Nereden geldiler"
+msgstr ""
+
+msgid "Kayıtlı segmentler"
+msgstr ""
+
+msgid "Yeni segment"
+msgstr ""
+
+msgid "Kurallarla tanımlanan canlı listeler: kişi kurala uyunca girer, uymayınca çıkar. Flux Mail'de toplu gönderimin alıcısı olur."
+msgstr ""
+
+msgid "Henüz segment yok."
+msgstr ""
+
+msgid "Örnek: \"Geçen yıl kurban bağışı yapıp bu yıl yapmayanlar\", \"İstanbul'daki gönüllüler\", \"3 aydır alışveriş yapmayan müşteriler\"."
+msgstr ""
+
+msgid "kişi"
+msgstr ""
+
+msgid "Kişileri gör"
+msgstr ""
+
+msgid "Düzenle"
+msgstr ""
+
+msgid "Flux Mail › Gönder: Alıcılar altında bu segmenti seçin. Yalnız ilgili kanala izin verenler alıcı olur."
+msgstr ""
+
+msgid "Gönderim yap"
+msgstr ""
+
+msgid "Segmenti düzenle"
+msgstr ""
+
+msgid "Kuralları ekleyin; sağda kaç kişinin uyduğunu anında görürsünüz."
+msgstr ""
+
+msgid "Örn. Uzaklaşan bağışçılar"
+msgstr ""
+
+msgid "Açıklama"
+msgstr ""
+
+msgid "Kurallar"
+msgstr ""
+
+msgid "tüm kurallara"
+msgstr ""
+
+msgid "en az birine"
+msgstr ""
+
+msgid "uysun"
+msgstr ""
+
+msgid "Kural ekle"
+msgstr ""
+
+msgid "Segmenti kaydet"
+msgstr ""
+
+msgid "Uyan kişi"
+msgstr ""
+
+msgid "Kişilerin nereden geleceği, hangi rolü alacağı ve skorlamanın nasıl çalışacağı."
+msgstr ""
+
+msgid "Eşitleme"
+msgstr ""
+
+msgid "Henüz eşitlenmedi"
+msgstr ""
+
+msgid "Yeni bağış, sipariş, form ve sohbetler kişilere anında bağlanır. Geçmiş kayıtları almak ya da kaynak açıp kapattıktan sonra baştan bağlamak için tümünü eşitleyin. Var olan kişiler ve notlar korunur, aynı kayıt iki kez eklenmez."
+msgstr ""
+
+msgid "Skorları yeniden hesapla"
+msgstr ""
+
+msgid "Bağışçılar ve bağışlar"
+msgstr ""
+
+msgid "Müşteriler ve siparişler (bağış siparişleri hariç)"
+msgstr ""
+
+msgid "WhatsApp sohbetleri ve her mesaj"
+msgstr ""
+
+msgid "Form gönderimleri (e-posta ya da telefon alanı olan)"
+msgstr ""
+
+msgid "Site üyeleri"
+msgstr ""
+
+msgid "Müşteri ve abone rolündeki WordPress kullanıcıları"
+msgstr ""
+
+msgid "Kişiye giden e-posta, SMS ve WhatsApp bildirimleri, gelen e-postalar (yalnız zaman tüneli, kişi oluşturmaz)"
+msgstr ""
+
+msgid "Kaynak"
+msgstr ""
+
+msgid "Açık"
+msgstr ""
+
+msgid "Yeni kişiye verilen rol"
+msgstr ""
+
+msgid "kurulu değil"
+msgstr ""
+
+msgid "— rol verme —"
+msgstr ""
+
+msgid "WhatsApp mesajlarını zaman tüneline yaz (her mesaj ayrı satır)"
+msgstr ""
+
+msgid "Rol ödeme tamamlanınca verilir (bağışçı, müşteri). \"Aday\" rolü kişi başka bir rol alınca kendiliğinden düşer."
+msgstr ""
+
+msgid "Kişinin kurumla ilişkisi. Bir kişinin birden çok rolü olabilir: hem bağışçı hem gönüllü gibi."
+msgstr ""
+
+msgid "Renk"
+msgstr ""
+
+msgid "Yeni rol: Sponsor, Hayırsever, Bayi…"
+msgstr ""
+
+msgid "Yeni rol"
+msgstr ""
+
+msgid "Skorlama"
+msgstr ""
+
+msgid "Kayıp riski eşiği (%)"
+msgstr ""
+
+msgid "Bu değerin üstü \"temas kurulmalı\" listesine girer. Risk kişinin kendi ritmine göre: ayda bir bağış yapan 45 gün gelmeyince riskli sayılır, yılda bir yapan sayılmaz."
+msgstr ""
+
+msgid "Aktif sayılma (gün)"
+msgstr ""
+
+msgid "Bu kadar gün içinde herhangi bir hareketi olan kişi aktif sayılır."
+msgstr ""
+
+msgid "Raporlama para birimi"
+msgstr ""
+
+msgid "Boşsa mağaza para birimi. Başka para birimindeki ödemeler kur verilmedikçe değere sayılmaz."
+msgstr ""
+
+msgid "Ayarları kaydet"
+msgstr ""
+
+msgid "WhatsApp sohbeti açıldı"
+msgstr ""
+
+msgid "WhatsApp yanıtı"
+msgstr ""
+
+msgid "WhatsApp mesajı"
+msgstr ""
+
+msgid "Sipariş #%s"
+msgstr ""
+
+msgid "Form #%d"
+msgstr ""
+
+msgid "SMS gönderildi"
+msgstr ""
+
+msgid "WhatsApp bildirimi"
+msgstr ""
+
+msgid "Sitede hesap açtı"
+msgstr ""
