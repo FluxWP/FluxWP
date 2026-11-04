@@ -44,6 +44,7 @@ require_once FLXCRM_DIR . 'includes/adapters/forms.php';
 require_once FLXCRM_DIR . 'includes/adapters/users.php';
 require_once FLXCRM_DIR . 'includes/class-flxcrm-rest.php';
 require_once FLXCRM_DIR . 'includes/integrations.php';
+require_once FLXCRM_DIR . 'includes/person-card.php';
 require_once FLXCRM_DIR . 'includes/system-checks.php';
 if ( is_admin() ) {
 	require_once FLXCRM_DIR . 'includes/admin/class-flxcrm-admin.php';

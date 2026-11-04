@@ -10,4 +10,5 @@
 - **Genel bakış**: kişi, yeni, aktif, kayıp riski, toplam değer; RFM segmentleri, roller, "Temas kurulmalı" listesi, son hareketler, kaynaklar.
 - Döviz: başka para birimindeki ödemeler `flxcrm_fx_rate` ile kur verilmedikçe değere sayılmaz; sistem kontrolü uyarır.
 - REST `flx-crm/v1` (kişiler, olaylar, etiketler, segmentler, önizleme, skor), Flux AI araçları (kişi ara, kişi kartı, özet, not ekle), Flux App modülü, Flux Roles yetkileri (`flxcrm_view`, `flxcrm_manage`), sistem kontrolleri.
+- **Ortak kişi kartı**: başka eklentiler kendi kişi sayfalarında aynı kartı gösterir (`flxcrm_contact_for()`, `flxcrm_ensure_contact()`, `flxcrm_person_card()`); kendi bölümlerini `flxcrm_person_card_*` eylemleriyle ekler, sekmeler ve formlar o sayfaya döner. CRM yoksa ya da yetki yoksa eklenti kendi sayfasını gösterir.
 - TR + EN, Flux Admin tasarım dili, açık/koyu tema, mobil uyumlu, İçerik & büyüme grubu ikonu, FluxWP imzası.

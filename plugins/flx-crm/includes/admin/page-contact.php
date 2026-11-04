@@ -9,6 +9,17 @@ defined( 'ABSPATH' ) || exit;
 
 final class FLXCRM_Page_Contact {
 
+	/** Kartın gösterildiği sayfa (sekmeler ve formlar buraya döner). */
+	private static $base = '';
+
+	/** Kartı gösteren paket; CRM'in kendi sayfasında boş. */
+	private static $context = '';
+
+	/** Formların dönüş alanı. */
+	private static function ret() {
+		return '<input type="hidden" name="_flxcrm_return" value="' . esc_attr( self::$base ) . '">';
+	}
+
 	/** Zaman tüneli filtreleri: anahtar => [ ad, türler ]. */
 	private static function tl_filters() {
 		return array(
@@ -39,6 +50,21 @@ final class FLXCRM_Page_Contact {
 			FLXCRM_Admin::close();
 			return;
 		}
+		self::card( $c );
+	}
+
+	/**
+	 * Kişi kartının gövdesi. CRM'in kendi sayfası ve başka eklentilerin kişi sayfaları (flxcrm_person_card) kullanır.
+	 *
+	 * @param array $c    Kişi satırı.
+	 * @param array $args base (sekme ve form dönüş adresi), back ([adres, ad] ya da false), context (çağıran paket).
+	 */
+	public static function card( array $c, array $args = array() ) {
+		$id      = (int) $c['id'];
+		$own     = flxcrm_contact_url( $id );
+		$args    = wp_parse_args( $args, array( 'base' => $own, 'back' => array( flxcrm_admin_url( 'contacts' ), __( 'Kişiler', 'flx-crm' ) ), 'context' => '' ) );
+		self::$base    = (string) $args['base'];
+		self::$context = (string) $args['context'];
 		$can   = flxcrm_can( true );
 		$name  = flxcrm_display_name( $c );
 		$links = FLXCRM_Contacts::links( $id );
@@ -49,8 +75,10 @@ final class FLXCRM_Page_Contact {
 			}
 		}
 
-		echo '<div class="wrap flxcrm flxcrm--contact">';
-		echo '<a class="flxcrm-back" href="' . esc_url( flxcrm_admin_url( 'contacts' ) ) . '">' . flxcrm_icon( 'back', 15 ) . esc_html__( 'Kişiler', 'flx-crm' ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<div class="' . ( '' === self::$context ? 'wrap ' : '' ) . 'flxcrm flxcrm--contact">';
+		if ( $args['back'] ) {
+			echo '<a class="flxcrm-back" href="' . esc_url( $args['back'][0] ) . '">' . flxcrm_icon( 'back', 15 ) . esc_html( $args['back'][1] ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		}
 		FLXCRM_Admin::open_notices_only();
 
 		/* Başlık kartı */
@@ -81,6 +109,11 @@ final class FLXCRM_Page_Contact {
 		if ( $c['email'] && function_exists( 'flxi_mailbox_new_draft' ) && $can ) {
 			echo '<a class="button" href="' . esc_url( admin_url( 'admin.php?page=flxi-posta&compose=1&to=' . rawurlencode( $c['email'] ) ) ) . '">' . flxcrm_icon( 'mail', 15 ) . ' ' . esc_html__( 'E-posta yaz', 'flx-crm' ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
+		if ( '' !== self::$context ) {
+			echo '<a class="button" href="' . esc_url( $own ) . '">' . flxcrm_icon( 'arrow', 15 ) . ' ' . esc_html__( 'CRM kartı', 'flx-crm' ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		}
+		/** Başlıktaki düğmeler: çağıran eklenti kendi işlemlerini ekler. */
+		do_action( 'flxcrm_person_card_actions', $c, self::$context );
 		echo '</div></header>';
 
 		/* Özet */
@@ -96,12 +129,17 @@ final class FLXCRM_Page_Contact {
 		echo '</div>';
 
 		echo '<div class="flxcrm-profile"><div class="flxcrm-profile__main">';
+		/** Ana sütun: zaman tünelinden önce/sonra eklentiye özel bölümler (düzenli bağışlar, siparişler…). */
+		do_action( 'flxcrm_person_card_main_before', $c, self::$context );
 		self::timeline( $c, $can );
+		do_action( 'flxcrm_person_card_main', $c, self::$context );
 		echo '</div><aside class="flxcrm-profile__side">';
 		self::details_form( $c, $can );
 		self::tags_card( $c, $can );
 		self::sources_card( $c, $links );
-		if ( $can ) {
+		/** Yan sütun: eklentiye özel kartlar (sertifikalar, kayıtlar…). */
+		do_action( 'flxcrm_person_card_side', $c, self::$context );
+		if ( $can && '' === self::$context ) {
 			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxcrm-danger" data-flxcrm-confirm>';
 			wp_nonce_field( 'flxcrm_contact_delete' );
 			echo '<input type="hidden" name="action" value="flxcrm_contact_delete"><input type="hidden" name="id" value="' . (int) $id . '">';
@@ -120,14 +158,14 @@ final class FLXCRM_Page_Contact {
 
 		echo '<section class="flxcrm-card" id="timeline"><div class="flxcrm-card__head"><h2>' . flxcrm_icon( 'clock', 16 ) . esc_html__( 'Zaman tüneli', 'flx-crm' ) . '</h2><div class="flxcrm-seg">'; // phpcs:ignore WordPress.Security.EscapeOutput
 		foreach ( $filters as $k => $fl ) {
-			echo '<a class="flxcrm-seg__btn' . ( $k === $tl ? ' is-on' : '' ) . '" href="' . esc_url( add_query_arg( 'tl', $k, flxcrm_contact_url( $c['id'] ) ) . '#timeline' ) . '">' . esc_html( $fl[0] ) . '</a>';
+			echo '<a class="flxcrm-seg__btn' . ( $k === $tl ? ' is-on' : '' ) . '" href="' . esc_url( add_query_arg( 'tl', $k, self::$base ) . '#timeline' ) . '">' . esc_html( $fl[0] ) . '</a>';
 		}
 		echo '</div></div>';
 
 		if ( $can ) {
 			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxcrm-composer">';
 			wp_nonce_field( 'flxcrm_event_add' );
-			echo '<input type="hidden" name="action" value="flxcrm_event_add"><input type="hidden" name="id" value="' . (int) $c['id'] . '">';
+			echo '<input type="hidden" name="action" value="flxcrm_event_add"><input type="hidden" name="id" value="' . (int) $c['id'] . '">' . self::ret();
 			echo '<label class="screen-reader-text" for="flxcrm-note">' . esc_html__( 'Not', 'flx-crm' ) . '</label><textarea id="flxcrm-note" name="body" rows="2" placeholder="' . esc_attr__( 'Not ekleyin: telefonda konuşuldu, kurban için tekrar aranacak…', 'flx-crm' ) . '" required></textarea>';
 			echo '<div class="flxcrm-composer__bar"><select name="type" aria-label="' . esc_attr__( 'Tür', 'flx-crm' ) . '">';
 			foreach ( flxcrm_manual_event_types() as $t ) {
@@ -180,7 +218,7 @@ final class FLXCRM_Page_Contact {
 					echo '<span class="flxcrm-muted">' . esc_html( $by->display_name ) . '</span>';
 				}
 				if ( $can && null === $e['uniq'] && in_array( $e['type'], flxcrm_manual_event_types(), true ) ) {
-					echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" data-flxcrm-confirm>' . wp_nonce_field( 'flxcrm_event_delete', '_wpnonce', true, false ) . '<input type="hidden" name="action" value="flxcrm_event_delete"><input type="hidden" name="id" value="' . (int) $c['id'] . '"><input type="hidden" name="event" value="' . (int) $e['id'] . '"><button class="button-link button-link-delete">' . esc_html__( 'Sil', 'flx-crm' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput
+					echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" data-flxcrm-confirm>' . wp_nonce_field( 'flxcrm_event_delete', '_wpnonce', true, false ) . '<input type="hidden" name="action" value="flxcrm_event_delete"><input type="hidden" name="id" value="' . (int) $c['id'] . '">' . self::ret() . '<input type="hidden" name="event" value="' . (int) $e['id'] . '"><button class="button-link button-link-delete">' . esc_html__( 'Sil', 'flx-crm' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput
 				}
 				echo '</div>';
 			}
@@ -246,7 +284,7 @@ final class FLXCRM_Page_Contact {
 		echo '<section class="flxcrm-card"><div class="flxcrm-card__head"><h2>' . flxcrm_icon( 'user', 16 ) . esc_html__( 'Bilgiler', 'flx-crm' ) . '</h2></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
 		wp_nonce_field( 'flxcrm_contact_save' );
-		echo '<input type="hidden" name="action" value="flxcrm_contact_save"><input type="hidden" name="id" value="' . (int) $c['id'] . '">';
+		echo '<input type="hidden" name="action" value="flxcrm_contact_save"><input type="hidden" name="id" value="' . (int) $c['id'] . '">' . self::ret();
 		self::fields( $c, $can );
 		if ( $can ) {
 			echo '<p class="flxcrm-actions"><button class="button button-primary">' . esc_html__( 'Kaydet', 'flx-crm' ) . '</button></p>';
@@ -263,7 +301,7 @@ final class FLXCRM_Page_Contact {
 		foreach ( $tags as $t ) {
 			echo '<span class="flxcrm-tag" style="--tc:' . esc_attr( $t['color'] ) . '"><a href="' . esc_url( flxcrm_admin_url( 'contacts', array( 'tag' => (int) $t['id'] ) ) ) . '">' . esc_html( $t['name'] ) . '</a>';
 			if ( $can ) {
-				echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">' . wp_nonce_field( 'flxcrm_tag_remove', '_wpnonce', true, false ) . '<input type="hidden" name="action" value="flxcrm_tag_remove"><input type="hidden" name="id" value="' . (int) $c['id'] . '"><input type="hidden" name="tag" value="' . (int) $t['id'] . '"><button aria-label="' . esc_attr( sprintf( /* translators: %s: tag */ __( '%s etiketini kaldır', 'flx-crm' ), $t['name'] ) ) . '">' . flxcrm_icon( 'x', 12 ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput
+				echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">' . wp_nonce_field( 'flxcrm_tag_remove', '_wpnonce', true, false ) . '<input type="hidden" name="action" value="flxcrm_tag_remove"><input type="hidden" name="id" value="' . (int) $c['id'] . '">' . self::ret() . '<input type="hidden" name="tag" value="' . (int) $t['id'] . '"><button aria-label="' . esc_attr( sprintf( /* translators: %s: tag */ __( '%s etiketini kaldır', 'flx-crm' ), $t['name'] ) ) . '">' . flxcrm_icon( 'x', 12 ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput
 			}
 			echo '</span>';
 		}
@@ -271,7 +309,7 @@ final class FLXCRM_Page_Contact {
 		if ( $can ) {
 			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxcrm-addtag">';
 			wp_nonce_field( 'flxcrm_tag_add' );
-			echo '<input type="hidden" name="action" value="flxcrm_tag_add"><input type="hidden" name="id" value="' . (int) $c['id'] . '">';
+			echo '<input type="hidden" name="action" value="flxcrm_tag_add"><input type="hidden" name="id" value="' . (int) $c['id'] . '">' . self::ret();
 			echo '<input type="text" name="tag" list="flxcrm-tag-list" placeholder="' . esc_attr__( 'Etiket ekle (virgülle birden çok)', 'flx-crm' ) . '" aria-label="' . esc_attr__( 'Etiket ekle', 'flx-crm' ) . '"><button class="button">' . esc_html__( 'Ekle', 'flx-crm' ) . '</button>';
 			echo '<datalist id="flxcrm-tag-list">';
 			foreach ( FLXCRM_Tags::all() as $t ) {

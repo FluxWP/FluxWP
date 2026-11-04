@@ -320,5 +320,6 @@
 "Sitede hesap açtı": "Created an account on the site",
 "%1$s: %2$s günden eski": "%1$s: more than %2$s days ago",
 "%1$s: son %2$s gün içinde": "%1$s: in the last %2$s days",
-"%s izni yok": "no %s consent"
+"%s izni yok": "no %s consent",
+"CRM kartı": "CRM card"
 }

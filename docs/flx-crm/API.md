@@ -24,6 +24,50 @@ FLXCRM_Contacts::ids( array( 'rules' => $segment['rules'] ) ); // segmentteki ki
 
 Kaynak veri yalnız boş alanları doldurur. İzinler kaynaktan yalnız açılır (kapatma elle ya da REST'le).
 
+## Ortak kişi kartı
+
+Kişi tek yerde (CRM) tutulur. Flux Donate bağışçı sayfası, Flux Commerce müşteri sayfası, Flux Chat gibi kişi gösteren
+her ekran CRM kartını gösterir; eklentinin kendi tablosu kişiye `link` ile bağlıdır. CRM yoksa ya da kullanıcının
+`flxcrm_view` yetkisi yoksa fonksiyon false döner, eklenti kendi sayfasını gösterir.
+
+```php
+// Bağışçı sayfası (Flux Donate)
+if ( function_exists( 'flxcrm_person_card' ) ) {
+	$cid = flxcrm_contact_for( array( 'link' => array( 'donate', 'donor:' . $donor_id ), 'email' => $email, 'phone' => $phone ) );
+	if ( ! $cid ) { // henüz eşitlenmemişse anında oluştur
+		$cid = flxcrm_ensure_contact( array( 'name' => $name, 'email' => $email, 'phone' => $phone, 'source' => 'donate', 'link' => array( 'donate', 'donor:' . $donor_id ) ) );
+	}
+	if ( $cid && flxcrm_person_card( $cid, array(
+		'context' => 'donate',                                   // kendi bölümlerinizi bu bağlamda ekleyin
+		'base'    => admin_url( 'admin.php?page=flxb-donors&donor=' . $donor_id ), // sekmeler/formlar buraya döner
+		'back'    => array( admin_url( 'admin.php?page=flxb-donors' ), __( 'Bağışçılar', 'flx-donate' ) ),
+	) ) ) {
+		return; // kart basıldı
+	}
+}
+// … eski sayfa
+```
+
+| Kaynak | `link` |
+|---|---|
+| Flux Donate bağışçı | `array( 'donate', 'donor:ID' )` |
+| WooCommerce müşteri | `array( 'commerce', 'email:adres' )` (yoksa `email` ile bulunur) |
+| Flux Chat sohbet | `array( 'chat', 'chat:ID' )` |
+| WP kullanıcı | `array( 'users', 'user:ID' )` ya da `user_id` |
+
+Eklentiye özel bölümler (hepsi `( array $contact, string $context )`):
+
+| Eylem | Yer |
+|---|---|
+| `flxcrm_person_card_actions` | Başlıktaki düğmeler (ör. "Bağış ekle") |
+| `flxcrm_person_card_main_before` | Zaman tünelinden önce (ör. düzenli bağışlar) |
+| `flxcrm_person_card_main` | Zaman tünelinden sonra |
+| `flxcrm_person_card_side` | Yan sütun (ör. sertifikalar, KVKK onayı) |
+
+Bölümlerde `.flxcrm-card`, `.flxcrm-card__head`, `.flxcrm-list` sınıflarını kullanın, ayrı CSS gerekmez. Stilin başta
+yüklenmesi için sayfanızın `admin_enqueue_scripts`'inde `flxcrm_person_card_enqueue()` çağırın (çağırmazsanız kart
+kendisi yükler). Kart dışarıda "CRM kartı" düğmesi gösterir; kişiyi silme yalnız CRM'de.
+
 ## Eylemler
 
 | Kanca | Argümanlar |

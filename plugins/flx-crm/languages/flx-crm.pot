@@ -510,6 +510,9 @@ msgstr ""
 msgid "E-posta yaz"
 msgstr ""
 
+msgid "CRM kartı"
+msgstr ""
+
 msgid "İlk ödeme"
 msgstr ""
 

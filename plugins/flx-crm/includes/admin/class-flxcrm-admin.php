@@ -61,7 +61,14 @@ final class FLXCRM_Admin {
 	}
 
 	public static function assets() {
-		if ( ! self::is_screen() ) {
+		if ( self::is_screen() ) {
+			self::enqueue();
+		}
+	}
+
+	/** Stil ve betik; başka eklentinin sayfasında kişi kartı gösterilirken de çağrılır. */
+	public static function enqueue() {
+		if ( wp_script_is( 'flxcrm-admin', 'enqueued' ) ) {
 			return;
 		}
 		wp_enqueue_style( 'flxcrm-admin', FLXCRM_URL . 'assets/admin.css', array(), FLXCRM_VERSION );
@@ -118,6 +125,15 @@ final class FLXCRM_Admin {
 		exit;
 	}
 
+	/** Kişi formlarının dönüş adresi: kartı gösteren sayfa (başka eklentinin kişi sayfası olabilir) ya da CRM kartı. */
+	private static function card_url( $id ) {
+		$ret = (string) self::post( '_flxcrm_return' );
+		if ( '' !== $ret && 0 === strpos( $ret, admin_url() ) ) {
+			return remove_query_arg( array( 'flxcrm_msg', 'flxcrm_err' ), wp_validate_redirect( $ret, flxcrm_contact_url( $id ) ) );
+		}
+		return flxcrm_contact_url( $id );
+	}
+
 	private static function post( $key, $default = '' ) {
 		return isset( $_POST[ $key ] ) ? wp_unslash( $_POST[ $key ] ) : $default; // phpcs:ignore WordPress.Security
 	}
@@ -162,7 +178,7 @@ final class FLXCRM_Admin {
 		}
 		$res = FLXCRM_Contacts::update( $id, $data );
 		FLXCRM_Contacts::flush_stats();
-		self::back( flxcrm_contact_url( $id ), is_wp_error( $res ) ? '' : 'saved', is_wp_error( $res ) ? $res->get_error_message() : '' );
+		self::back( self::card_url( $id ), is_wp_error( $res ) ? '' : 'saved', is_wp_error( $res ) ? $res->get_error_message() : '' );
 	}
 
 	public static function post_contact_delete() {
@@ -180,13 +196,13 @@ final class FLXCRM_Admin {
 		if ( FLXCRM_Contacts::get( $id ) && '' !== trim( $text ) ) {
 			FLXCRM_REST::manual_event( $id, in_array( $type, flxcrm_manual_event_types(), true ) ? $type : 'note', $text );
 		}
-		self::back( flxcrm_contact_url( $id ) . '#timeline', 'noted' );
+		self::back( self::card_url( $id ) . '#timeline', 'noted' );
 	}
 
 	public static function post_event_delete() {
 		self::guard( 'event_delete' );
 		FLXCRM_Events::delete( absint( self::post( 'event', 0 ) ) );
-		self::back( flxcrm_contact_url( absint( self::post( 'id', 0 ) ) ) . '#timeline' );
+		self::back( self::card_url( absint( self::post( 'id', 0 ) ) ) . '#timeline' );
 	}
 
 	public static function post_tag_add() {
@@ -197,14 +213,14 @@ final class FLXCRM_Admin {
 				FLXCRM_Tags::attach( $id, $tag );
 			}
 		}
-		self::back( flxcrm_contact_url( $id ) );
+		self::back( self::card_url( $id ) );
 	}
 
 	public static function post_tag_remove() {
 		self::guard( 'tag_remove' );
 		$id = absint( self::post( 'id', 0 ) );
 		FLXCRM_Tags::detach( $id, absint( self::post( 'tag', 0 ) ) );
-		self::back( flxcrm_contact_url( $id ) );
+		self::back( self::card_url( $id ) );
 	}
 
 	public static function post_segment_save() {

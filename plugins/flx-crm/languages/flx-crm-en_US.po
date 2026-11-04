@@ -512,6 +512,9 @@ msgstr "WhatsApp chat"
 msgid "E-posta yaz"
 msgstr "Write an e-mail"
 
+msgid "CRM kartı"
+msgstr "CRM card"
+
 msgid "İlk ödeme"
 msgstr "First payment"
 
