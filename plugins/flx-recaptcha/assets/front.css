@@ -1,0 +1,16 @@
+/* Flux reCAPTCHA · ön yüz. GPL-2.0-or-later. */
+.flxrc-field{margin:0 0 12px;clear:both}
+.flxrc-field:empty,.flxrc-field:not(:has(.flxrc-v2,.flxrc-terms,.flxrc-error,noscript)){margin:0}
+.flxrc-v2{min-height:78px;max-width:100%}
+.flxrc-v2:empty{min-height:0}
+.flxrc-terms{margin:6px 0 0;font-size:12px;line-height:1.5;opacity:.75}
+.flxrc-terms a{color:inherit;text-decoration:underline}
+.flxrc-error{margin:6px 0 0;padding:8px 10px;border-radius:8px;background:#fde7e5;color:#b42318;font-size:13px;line-height:1.4}
+.flxrc-noscript{margin:6px 0 0;font-size:13px;color:#b42318}
+html.flxrc-nobadge .grecaptcha-badge{visibility:hidden!important}
+/* wp-login.php formu 320 px: kutucuk taşmasın. */
+.login .flxrc-v2{transform:scale(.89);transform-origin:0 0;min-height:70px;margin-bottom:-6px}
+.login .flxrc-field{margin:0 0 16px}
+@media (max-width:360px){.flxrc-v2{transform:scale(.88);transform-origin:0 0}}
+/* Flux Forms: Bootstrap ızgarasında tam satır. */
+[id^="body_efb_"] .flxrc-field{width:100%;flex:0 0 100%;padding:0 12px}

@@ -21,3 +21,4 @@ flx-app	Masaüstü ve mobil uygulama için giriş: OAuth 2.0 (PKCE), API anahtar
 flx-backup	Güncellemelerden önce otomatik yedek, zamanlanmış tam yedekler ve seçerek geri yükleme.
 fluxwp	Sade, hızlı WooCommerce block teması. Hero, header, footer ve ana sayfa desenleri ön ayarlarla tamamen değişir.
 flx-setup	Kurulum sihirbazı, ön ayarlar ve güncellemeler: tema ve eklentileri tek seferde kurar, ön ayarı (profil, header/footer, sayfalar, menüler) uygular, FluxWP paketlerini güncelleme sunucusundan WordPress'in güncelleme ekranına getirir.
+flx-recaptcha	Giriş, kayıt, yorum, ödeme, bağış ve form gönderimlerini Google reCAPTCHA v3 ya da v2 ile botlara karşı korur. Hangi formun korunacağı panelden seçilir.
