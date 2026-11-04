@@ -105,8 +105,7 @@ class FLXP_Admin {
 			'login_off' => __( 'Özel giriş adresi kapatıldı; giriş yeniden wp-login.php üzerinden.', 'flx-speed' ),
 		);
 		if ( 'login_on' === $n && FLXP_Login_URL::slug() ) {
-			/* translators: %s: yeni giriş adresi */
-			$m['login_on'] = sprintf( __( 'Giriş adresi değişti: %s — yer imlerine ekleyin. wp-login.php artık açılmaz.', 'flx-speed' ), FLXP_Login_URL::url() );
+			self::login_moved_notice();
 		}
 		if ( isset( $m[ $n ] ) ) {
 			echo '<div class="notice notice-success is-dismissible"><p>' . esc_html( $m[ $n ] ) . '</p></div>';
@@ -118,6 +117,37 @@ class FLXP_Admin {
 		if ( $e ) {
 			echo '<div class="notice notice-error is-dismissible"><p>' . esc_html( $e ) . '</p></div>';
 		}
+	}
+
+	/**
+	 * Giriş adresi değişti: uyarı + 5 sn geri sayım, sonra çıkış yapılıp yeni giriş sayfası açılır.
+	 * Giriş yapılınca Ayarlar'a dönülür. "Oturumda kal" sayımı durdurur.
+	 */
+	private static function login_moved_notice() {
+		$new  = FLXP_Login_URL::url();
+		$back = self::url( array( 'tab' => 'settings' ) );
+		$go   = wp_logout_url( add_query_arg( array( 'flxp_moved' => 1, 'redirect_to' => rawurlencode( $back ) ), $new ) );
+		?>
+		<div class="notice notice-warning flxp-moved" id="flxp-moved" data-go="<?php echo esc_url( $go ); ?>" data-sec="5">
+			<p><strong><?php esc_html_e( 'Giriş adresi değişti.', 'flx-speed' ); ?></strong> <?php esc_html_e( 'Yeni adres:', 'flx-speed' ); ?> <code><?php echo esc_html( $new ); ?></code></p>
+			<p class="flxp-moved-count">
+				<?php
+				/* translators: %s: kalan saniye */
+				printf( esc_html__( 'Yeni adresin çalıştığını görmeniz için oturumunuz kapatılıyor; %s saniye içinde yeni giriş sayfasına yönlendirileceksiniz. Giriş yapınca bu ekrana dönersiniz.', 'flx-speed' ), '<b data-flxp-sec>5</b>' );
+				?>
+			</p>
+			<p class="flxp-moved-stopped" hidden><?php esc_html_e( 'Yönlendirme durduruldu. Oturumunuz açık; yeni adres bir sonraki girişte kullanılır.', 'flx-speed' ); ?></p>
+			<p>
+				<a class="button button-primary" href="<?php echo esc_url( $go ); ?>"><?php esc_html_e( 'Şimdi git', 'flx-speed' ); ?></a>
+				<button type="button" class="button" data-flxp-stay><?php esc_html_e( 'Oturumda kal', 'flx-speed' ); ?></button>
+			</p>
+		</div>
+		<script>
+		(function(){var b=document.getElementById('flxp-moved');if(!b)return;var n=+b.dataset.sec,el=b.querySelector('[data-flxp-sec]'),t=setInterval(function(){n--;if(el)el.textContent=n;if(n<=0){clearInterval(t);location.href=b.dataset.go;}},1000);
+		b.querySelector('[data-flxp-stay]').addEventListener('click',function(){clearInterval(t);b.querySelector('.flxp-moved-count').hidden=true;b.querySelector('.flxp-moved-stopped').hidden=false;this.hidden=true;});
+		try{var u=new URL(location.href);u.searchParams.delete('flxp_msg');history.replaceState(null,'',u);}catch(e){}})();
+		</script>
+		<?php
 	}
 
 	public static function page() {
