@@ -1116,33 +1116,7 @@ function flxseo_audit_report() {
 	);
 }
 
-/**
- * Günde bir kez, yönetici panelinde sayfa gönderildikten sonra yerel denetimi yeniler
- * (Hostinger'da WP-Cron tetiklenmeyebildiği için cron'a güvenilmez).
- */
-add_action(
-	'admin_init',
-	function () {
-		if ( wp_doing_ajax() || ! current_user_can( 'manage_options' ) || get_transient( 'flxseo_audit_auto' ) ) {
-			return;
-		}
-		set_transient( 'flxseo_audit_auto', 1, DAY_IN_SECONDS );
-		add_action(
-			'shutdown',
-			function () {
-				if ( function_exists( 'fastcgi_finish_request' ) ) {
-					fastcgi_finish_request();
-				} elseif ( function_exists( 'litespeed_finish_request' ) ) {
-					litespeed_finish_request();
-				} else {
-					return; // Yanıtı bekletmeyelim; denetim panelden elle çalışır.
-				}
-				flxseo_audit_run_local();
-			},
-			99
-		);
-	}
-);
+/* Zamanlanmış denetim ve geçmiş: includes/denetim-gecmis.php */
 
 /* Sistem Kontrolü satırı: kritik/yüksek bulgu varsa uyarı. */
 add_filter(

@@ -332,6 +332,9 @@ add_filter(
 		}
 		$fields['org_type']['type'] = 'enum';
 		$fields['org_type']['enum'] = array( 'NGO', 'Organization' );
+		$fields['audit_freq']       = array( 'type' => 'enum', 'enum' => array( 'daily', 'weekly', 'off' ), 'default' => 'daily' );
+		$fields['audit_day']        = array( 'type' => 'enum', 'enum' => array( '1', '2', '3', '4', '5', '6', '7' ), 'default' => '1' );
+		$fields['audit_hour']       = array( 'type' => 'enum', 'enum' => array_map( 'strval', range( 0, 23 ) ), 'default' => '3' );
 		$s['flxseo'] = array(
 			'label'  => 'Flux SEO',
 			'fields' => $fields,

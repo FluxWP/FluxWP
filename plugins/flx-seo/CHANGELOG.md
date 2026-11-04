@@ -1,7 +1,13 @@
 # Değişiklikler
 
-## 1.3.1
+## 1.4.1
 - Site denetimi başka paketlerin tek tık düzeltmelerini de çalıştırır (`flx_system_fixes` › `current` / `run`). Flux Speed 0.5.0 kuruluysa engelleyen CSS, kullanılmayan CSS, sıkıştırılmamış CSS/JS, viewport yakınlaştırma kilidi, yazı tipleri ve emoji bulgularında "Flux Speed (tek tık)" düğmesi çıkar.
+
+## 1.4.0
+- **Rapor geçmişi**: her denetim (elle, otomatik, yapay zekâ, düzeltme sonrası) özetiyle saklanır (son 90). Panelde önceliğe göre yığılmış eğilim grafiği ve tablo: tarih, nasıl çalıştığı, öncelik sayıları, mobil PageSpeed puanları + LCP, önceki rapora göre yeni ve çözülen öneriler.
+- **Otomatik denetim**: her gün ya da haftada bir (gün ve saat seçilir, sitenin saat dilimi), isteğe bağlı PageSpeed mobil + masaüstü dahil. Arka planda adım adım çalışır (PHP süre sınırına takılmaz); WP-Cron çalışmasa da ilk istekte başlar.
+- Yeni kritik ya da yüksek öncelikli öneri çıkınca e-posta (adres seçilebilir, boşsa site yöneticisi).
+- Yeni MCP aracı `site_audit_history` (geçmiş raporlar + takvim); Flux AI sohbetinde de var. `site_audit` her çalıştırmayı geçmişe yazar.
 
 ## 1.3.0
 - Yeni **SEO & MCP › Site denetimi**: PageSpeed Insights'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre (kritik, yüksek, orta, düşük). Her öneride nasıl düzeltilir, sorunlu öğeler ve düzeltme yeri. Menüde kritik + yüksek sayısı, Sistem Kontrolü'nde "Site denetimi" satırı.
