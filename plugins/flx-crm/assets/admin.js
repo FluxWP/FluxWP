@@ -416,3 +416,67 @@
 		preview();
 	} );
 } )();
+
+/* Zaman tüneli: 20'şer olay; aşağı kaydırınca devamı yüklenir (mobilde tünel kendi içinde kayar). */
+( function () {
+	'use strict';
+	var cfg = window.flxcrmAdmin || {};
+	document.querySelectorAll( '[data-flxcrm-tl]' ).forEach( function ( list ) {
+		var busy = false;
+		/* Mobilde tünel kendi içinde kayar: gözcünün kökü liste; masaüstünde sayfa. */
+		var own = /(auto|scroll)/.test( window.getComputedStyle( list ).overflowY );
+		var io = 'IntersectionObserver' in window ? new IntersectionObserver( function ( entries ) {
+			entries.forEach( function ( en ) {
+				if ( en.isIntersecting ) {
+					load( en.target );
+				}
+			} );
+		}, { root: own ? list : null, rootMargin: own ? '0px 0px 200px 0px' : '300px 0px' } ) : null;
+		function watch() {
+			var more = list.querySelector( '[data-flxcrm-more]' );
+			if ( ! more ) {
+				return;
+			}
+			if ( io ) {
+				io.observe( more );
+			} else {
+				load( more );
+			}
+		}
+		function load( more ) {
+			if ( busy || ! more.isConnected ) {
+				return;
+			}
+			busy = true;
+			if ( io ) {
+				io.unobserve( more );
+			}
+			var body = new FormData();
+			body.append( 'action', 'flxcrm_timeline' );
+			body.append( '_ajax_nonce', cfg.nonce );
+			body.append( 'id', list.getAttribute( 'data-id' ) );
+			body.append( 'tl', list.getAttribute( 'data-tl' ) || '' );
+			body.append( 'base', list.getAttribute( 'data-base' ) || '' );
+			body.append( 'offset', more.getAttribute( 'data-offset' ) );
+			body.append( 'day', more.getAttribute( 'data-day' ) || '' );
+			fetch( cfg.ajax, { method: 'POST', credentials: 'same-origin', body: body } )
+				.then( function ( r ) {
+					return r.json();
+				} )
+				.then( function ( j ) {
+					if ( ! j || ! j.success ) {
+						throw new Error( 'fail' );
+					}
+					more.insertAdjacentHTML( 'beforebegin', j.data.html );
+					more.remove();
+					busy = false;
+					watch();
+				} )
+				.catch( function () {
+					busy = false;
+					more.textContent = ( cfg.i18n && cfg.i18n.fail ) || '';
+				} );
+		}
+		watch();
+	} );
+} )();

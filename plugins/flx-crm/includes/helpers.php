@@ -31,6 +31,7 @@ function flxcrm_defaults() {
 			'src_chat'        => 1,
 			'src_forms'       => 1,
 			'src_users'       => 1,
+			'src_mail'        => 1,
 			// Kaynaktan gelen kişiye verilen rol.
 			'role_donate'     => 'donor',
 			'role_commerce'   => 'customer',
@@ -43,7 +44,7 @@ function flxcrm_defaults() {
 			'risk_threshold'  => 70,
 			'active_days'     => 90,
 			'base_currency'   => '',
-			// WhatsApp sohbet olayları: gün başına bir satır.
+			// WhatsApp mesajları zaman tünelinde (her mesaj bir satır).
 			'chat_events'     => 1,
 		)
 	);
@@ -148,6 +149,8 @@ function flxcrm_event_types() {
 			'message_out'     => array( __( 'Giden mesaj', 'flx-crm' ), 'send' ),
 			'chat_started'    => array( __( 'Sohbet başladı', 'flx-crm' ), 'message' ),
 			'email_sent'      => array( __( 'E-posta', 'flx-crm' ), 'mail' ),
+			'email_in'        => array( __( 'Gelen e-posta', 'flx-crm' ), 'mail' ),
+			'sms_sent'        => array( __( 'SMS', 'flx-crm' ), 'message' ),
 			'note'            => array( __( 'Not', 'flx-crm' ), 'note' ),
 			'call'            => array( __( 'Arama', 'flx-crm' ), 'phone' ),
 			'meeting'         => array( __( 'Görüşme', 'flx-crm' ), 'users' ),
@@ -204,6 +207,7 @@ function flxcrm_sources() {
 			'chat'     => 'WhatsApp',
 			'forms'    => 'Flux Forms',
 			'users'    => __( 'Site üyeliği', 'flx-crm' ),
+			'mail'     => 'Flux Mail',
 			'api'      => 'API',
 		)
 	);

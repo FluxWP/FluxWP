@@ -22,6 +22,7 @@ final class FLXCRM_Admin {
 			add_action( 'admin_post_flxcrm_' . $a, array( __CLASS__, 'post_' . $a ) );
 		}
 		add_action( 'wp_ajax_flxcrm_score', array( __CLASS__, 'ajax_score' ) );
+		add_action( 'wp_ajax_flxcrm_timeline', array( __CLASS__, 'ajax_timeline' ) );
 	}
 
 	public static function menu_icon() {
@@ -250,7 +251,7 @@ final class FLXCRM_Admin {
 	public static function post_settings_save() {
 		self::guard( 'settings_save' );
 		$v = array();
-		foreach ( array( 'src_donate', 'src_commerce', 'src_chat', 'src_forms', 'src_users', 'chat_events' ) as $k ) {
+		foreach ( array( 'src_donate', 'src_commerce', 'src_chat', 'src_forms', 'src_users', 'src_mail', 'chat_events' ) as $k ) {
 			$v[ $k ] = self::post( $k ) ? 1 : 0;
 		}
 		$known = flxcrm_roles();
@@ -385,6 +386,22 @@ final class FLXCRM_Admin {
 	private static function csv_safe( $v ) {
 		$v = (string) $v;
 		return '' !== $v && in_array( $v[0], array( '=', '+', '-', '@' ), true ) ? "'" . $v : $v;
+	}
+
+	/** Zaman tünelinin devamı (aşağı kaydırınca). */
+	public static function ajax_timeline() {
+		check_ajax_referer( 'flxcrm_admin' );
+		if ( ! flxcrm_can() ) {
+			wp_send_json_error( null, 403 );
+		}
+		$c = FLXCRM_Contacts::get( absint( $_POST['id'] ?? 0 ) );
+		if ( ! $c ) {
+			wp_send_json_error( null, 404 );
+		}
+		$base = esc_url_raw( wp_unslash( (string) ( $_POST['base'] ?? '' ) ) );
+		FLXCRM_Page_Contact::set_base( 0 === strpos( $base, admin_url() ) ? $base : flxcrm_contact_url( $c['id'] ), 'x' );
+		$day = preg_replace( '/[^0-9\-]/', '', (string) wp_unslash( $_POST['day'] ?? '' ) );
+		wp_send_json_success( FLXCRM_Page_Contact::page( $c, sanitize_key( wp_unslash( $_POST['tl'] ?? '' ) ), absint( $_POST['offset'] ?? 0 ), $day ) );
 	}
 
 	public static function ajax_score() {

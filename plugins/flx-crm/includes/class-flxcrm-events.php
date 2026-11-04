@@ -130,8 +130,9 @@ final class FLXCRM_Events {
 				$params = array_merge( $params, $types );
 			}
 		}
-		$sql     .= ' ORDER BY at DESC, id DESC LIMIT %d';
+		$sql     .= ' ORDER BY at DESC, id DESC LIMIT %d OFFSET %d';
 		$params[] = max( 1, min( 500, (int) ( $f['limit'] ?? 100 ) ) );
+		$params[] = max( 0, (int) ( $f['offset'] ?? 0 ) );
 		$rows     = (array) $wpdb->get_results( $wpdb->prepare( $sql, $params ), ARRAY_A ); // phpcs:ignore WordPress.DB
 		foreach ( $rows as &$r ) {
 			$r['data'] = $r['data'] ? json_decode( $r['data'], true ) : array();

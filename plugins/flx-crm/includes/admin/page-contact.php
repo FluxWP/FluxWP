@@ -9,6 +9,9 @@ defined( 'ABSPATH' ) || exit;
 
 final class FLXCRM_Page_Contact {
 
+	/** Zaman tünelinde bir seferde yüklenen olay. */
+	const PAGE = 20;
+
 	/** Kartın gösterildiği sayfa (sekmeler ve formlar buraya döner). */
 	private static $base = '';
 
@@ -25,7 +28,7 @@ final class FLXCRM_Page_Contact {
 		return array(
 			''         => array( __( 'Tümü', 'flx-crm' ), array() ),
 			'paid'     => array( __( 'Ödemeler', 'flx-crm' ), array( 'donation', 'order' ) ),
-			'messages' => array( __( 'Mesajlar', 'flx-crm' ), array( 'message_in', 'message_out', 'chat_started', 'email_sent' ) ),
+			'messages' => array( __( 'Mesajlar', 'flx-crm' ), array( 'message_in', 'message_out', 'chat_started', 'email_sent', 'email_in', 'sms_sent' ) ),
 			'forms'    => array( __( 'Formlar', 'flx-crm' ), array( 'form', 'signup' ) ),
 			'notes'    => array( __( 'Notlar', 'flx-crm' ), array( 'note', 'call', 'meeting' ) ),
 		);
@@ -153,8 +156,7 @@ final class FLXCRM_Page_Contact {
 		$tl      = isset( $_GET['tl'] ) ? sanitize_key( $_GET['tl'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 		$filters = self::tl_filters();
 		$tl      = isset( $filters[ $tl ] ) ? $tl : '';
-		$events  = FLXCRM_Events::timeline( $c['id'], array( 'type' => $filters[ $tl ][1], 'limit' => 150 ) );
-		$types   = flxcrm_event_types();
+		$events  = FLXCRM_Events::timeline( $c['id'], array( 'type' => $filters[ $tl ][1], 'limit' => self::PAGE + 1 ) );
 
 		echo '<section class="flxcrm-card" id="timeline"><div class="flxcrm-card__head"><h2>' . flxcrm_icon( 'clock', 16 ) . esc_html__( 'Zaman tüneli', 'flx-crm' ) . '</h2><div class="flxcrm-seg">'; // phpcs:ignore WordPress.Security.EscapeOutput
 		foreach ( $filters as $k => $fl ) {
@@ -178,8 +180,50 @@ final class FLXCRM_Page_Contact {
 			echo '<p class="flxcrm-empty">' . esc_html__( 'Bu filtrede olay yok.', 'flx-crm' ) . '</p></section>';
 			return;
 		}
-		echo '<ol class="flxcrm-timeline">';
-		$last_day = '';
+		$more   = count( $events ) > self::PAGE;
+		$events = array_slice( $events, 0, self::PAGE );
+		$res    = self::events_html( $events, $c, $can, '' );
+		echo '<ol class="flxcrm-timeline" data-flxcrm-tl data-id="' . (int) $c['id'] . '" data-tl="' . esc_attr( $tl ) . '" data-base="' . esc_attr( self::$base ) . '">';
+		echo $res[0]; // phpcs:ignore WordPress.Security.EscapeOutput
+		if ( $more ) {
+			echo self::more_li( self::PAGE, $res[1] ); // phpcs:ignore WordPress.Security.EscapeOutput
+		}
+		echo '</ol></section>';
+	}
+
+	/** Kartı gösteren sayfanın adresi (zaman tüneli devamı yüklenirken). */
+	public static function set_base( $base, $context = '' ) {
+		self::$base    = (string) $base;
+		self::$context = (string) $context;
+	}
+
+	/** Zaman tünelinin devamı için gözcü satır. */
+	private static function more_li( $offset, $last_day ) {
+		return '<li class="flxcrm-timeline__more" data-flxcrm-more data-offset="' . (int) $offset . '" data-day="' . esc_attr( $last_day ) . '"><span class="flxcrm-spin" aria-hidden="true"></span>' . esc_html__( 'Yükleniyor…', 'flx-crm' ) . '</li>';
+	}
+
+	/**
+	 * Zaman tünelinin bir parçası (AJAX devamı).
+	 *
+	 * @return array html, more, offset, day
+	 */
+	public static function page( array $c, $tl, $offset, $last_day ) {
+		$filters = self::tl_filters();
+		$tl      = isset( $filters[ $tl ] ) ? $tl : '';
+		$events  = FLXCRM_Events::timeline( $c['id'], array( 'type' => $filters[ $tl ][1], 'limit' => self::PAGE + 1, 'offset' => $offset ) );
+		$more    = count( $events ) > self::PAGE;
+		$res     = self::events_html( array_slice( $events, 0, self::PAGE ), $c, flxcrm_can( true ), $last_day );
+		return array( 'html' => $res[0] . ( $more ? self::more_li( $offset + self::PAGE, $res[1] ) : '' ), 'more' => $more );
+	}
+
+	/**
+	 * Olay satırları.
+	 *
+	 * @return array [ html, son gün ]
+	 */
+	private static function events_html( array $events, array $c, $can, $last_day ) {
+		$types = flxcrm_event_types();
+		ob_start();
 		foreach ( $events as $e ) {
 			$day = get_date_from_gmt( $e['at'], 'Y-m-d' );
 			if ( $day !== $last_day ) {
@@ -211,20 +255,21 @@ final class FLXCRM_Page_Contact {
 				}
 				echo '</dl></details>';
 			}
-			$by = (int) $e['user_id'] ? get_userdata( (int) $e['user_id'] ) : null;
-			if ( $by || ( $can && null === $e['uniq'] && in_array( $e['type'], flxcrm_manual_event_types(), true ) ) ) {
+			$manual = $can && null === $e['uniq'] && in_array( $e['type'], flxcrm_manual_event_types(), true );
+			$by     = (int) $e['user_id'] ? get_userdata( (int) $e['user_id'] ) : null;
+			if ( $by || $manual ) {
 				echo '<div class="flxcrm-ev__foot">';
 				if ( $by ) {
 					echo '<span class="flxcrm-muted">' . esc_html( $by->display_name ) . '</span>';
 				}
-				if ( $can && null === $e['uniq'] && in_array( $e['type'], flxcrm_manual_event_types(), true ) ) {
+				if ( $manual ) {
 					echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" data-flxcrm-confirm>' . wp_nonce_field( 'flxcrm_event_delete', '_wpnonce', true, false ) . '<input type="hidden" name="action" value="flxcrm_event_delete"><input type="hidden" name="id" value="' . (int) $c['id'] . '">' . self::ret() . '<input type="hidden" name="event" value="' . (int) $e['id'] . '"><button class="button-link button-link-delete">' . esc_html__( 'Sil', 'flx-crm' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput
 				}
 				echo '</div>';
 			}
 			echo '</div></li>';
 		}
-		echo '</ol></section>';
+		return array( (string) ob_get_clean(), $last_day );
 	}
 
 	private static function status_label( $st ) {
@@ -333,7 +378,7 @@ final class FLXCRM_Page_Contact {
 			} elseif ( 'users' === $l['source'] && 'user' === $kind ) {
 				$url = admin_url( 'user-edit.php?user_id=' . (int) $ref );
 			} elseif ( 'commerce' === $l['source'] ) {
-				$url = class_exists( 'FLXCM_Admin' ) ? admin_url( 'admin.php?page=flx-commerce-customers&s=' . rawurlencode( $ref ) ) : '';
+				$url = class_exists( 'FLXCM_Admin' ) ? admin_url( 'admin.php?page=flx-commerce-customers&email=' . rawurlencode( $ref ) ) : '';
 			}
 			$rows[] = array( flxcrm_source_label( $l['source'] ), $url, flxcrm_date( $l['created_at'] ) );
 		}

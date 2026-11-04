@@ -321,5 +321,15 @@
 "%1$s: %2$s günden eski": "%1$s: more than %2$s days ago",
 "%1$s: son %2$s gün içinde": "%1$s: in the last %2$s days",
 "%s izni yok": "no %s consent",
-"CRM kartı": "CRM card"
+"CRM kartı": "CRM card",
+"WhatsApp mesajları": "WhatsApp messages",
+"Gelen e-posta": "Incoming e-mail",
+"Yükleniyor…": "Loading…",
+"Kişiye giden e-posta, SMS ve WhatsApp bildirimleri, gelen e-postalar (yalnız zaman tüneli, kişi oluşturmaz)": "E-mails, SMS and WhatsApp notifications sent to the contact, and incoming e-mails (timeline only, no new contacts)",
+"WhatsApp mesajlarını zaman tüneline yaz (her mesaj ayrı satır)": "Write WhatsApp messages to the timeline (one line per message)",
+"WhatsApp yanıtı": "WhatsApp reply",
+"WhatsApp mesajı": "WhatsApp message",
+"SMS gönderildi": "SMS sent",
+"WhatsApp bildirimi": "WhatsApp notification",
+"WhatsApp sohbetleri ve her mesaj": "WhatsApp chats and every message"
 }

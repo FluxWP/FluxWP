@@ -64,6 +64,8 @@ Eklentiye özel bölümler (hepsi `( array $contact, string $context )`):
 | `flxcrm_person_card_main` | Zaman tünelinden sonra |
 | `flxcrm_person_card_side` | Yan sütun (ör. sertifikalar, KVKK onayı) |
 
+Zaman tüneli kartın içindedir: sekmeler, 20'şer yükleme (aşağı kaydırınca `wp_ajax_flxcrm_timeline`), mobilde kendi içinde kayma. Olay türleri: donation, order, form, message_in/out (her WhatsApp mesajı ve Flux Mail WhatsApp bildirimi), email_sent, email_in, sms_sent, chat_started, note, call, meeting, signup, created, role_added, segment_entered, consent. Kendi olayınızı `FLXCRM_Events::add()` ile yazın, kartta kendiliğinden görünür.
+
 Bölümlerde `.flxcrm-card`, `.flxcrm-card__head`, `.flxcrm-list` sınıflarını kullanın, ayrı CSS gerekmez. Stilin başta
 yüklenmesi için sayfanızın `admin_enqueue_scripts`'inde `flxcrm_person_card_enqueue()` çağırın (çağırmazsanız kart
 kendisi yükler). Kart dışarıda "CRM kartı" düğmesi gösterir; kişiyi silme yalnız CRM'de.

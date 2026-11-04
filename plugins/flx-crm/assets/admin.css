@@ -278,3 +278,10 @@ html.flxa-dark .flxcrm-avatar{background:hsl(var(--h) 35% 24%);color:hsl(var(--h
 .flxcrm-roles-edit__row input[type=text]{width:auto;flex:1;min-width:0}
 }
 .wrap.flxcrm [hidden],.flxcrm-bulk[hidden],.flxcrm-progress[hidden]{display:none!important}
+/* Zaman tüneli devamı */
+.flxcrm-timeline__more{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 0;color:var(--c-mut);font-size:12.5px;list-style:none}
+.flxcrm-spin{width:14px;height:14px;border-radius:50%;border:2px solid var(--c-bd2);border-top-color:var(--c-mut);animation:flxcrm-spin .8s linear infinite}
+@keyframes flxcrm-spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.flxcrm-spin{animation:none}}
+/* Mobil: tünel sınırlı yükseklikte, kendi içinde kayar */
+@media (max-width:782px){.flxcrm-timeline{max-height:70vh;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding-right:4px;margin-right:-4px}}

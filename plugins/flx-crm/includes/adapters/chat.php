@@ -1,8 +1,7 @@
 <?php
 /**
  * Flux Chat (WhatsApp) → kişi + mesaj olayları. Sohbetin kendisi Flux Chat'te kalır.
- * Gelen/giden mesaj başına satır yazılmaz: kişi başına günde bir "Gelen mesaj" ve bir "Giden mesaj" olayı.
- * Gruplar atlanır.
+ * Her gelen/giden mesaj zaman tünelinde ayrı satır (metnin başı, medya türü). Gruplar atlanır.
  *
  * @package FLX_CRM
  */
@@ -82,33 +81,53 @@ final class FLXCRM_Adapter_Chat {
 	}
 
 	public static function on_in( $msg_id, $chat ) {
-		self::daily( $chat, 'message_in', __( 'WhatsApp\'tan yazdı', 'flx-crm' ) );
+		self::message( $msg_id, $chat );
 	}
 
 	public static function on_out( $msg_id, $chat ) {
-		self::daily( $chat, 'message_out', __( 'WhatsApp\'tan yanıt verildi', 'flx-crm' ) );
+		self::message( $msg_id, $chat );
 	}
 
-	private static function daily( $chat, $type, $title ) {
-		if ( ! flxcrm_setting( 'chat_events' ) ) {
+	/** Mesaj satırının zamanı (ts ms ya da s; yoksa created_at). */
+	private static function msg_at( array $m ) {
+		$ts = (int) ( $m['ts'] ?? 0 );
+		if ( $ts > 0 ) {
+			return gmdate( 'Y-m-d H:i:s', $ts > 9999999999 ? (int) ( $ts / 1000 ) : $ts );
+		}
+		return ! empty( $m['created_at'] ) ? get_gmt_from_date( $m['created_at'] ) : flxcrm_now();
+	}
+
+	/** Tek mesajı olay olarak yazar (uniq chat:msg:ID). */
+	private static function message( $msg_id, $chat, $cid = 0 ) {
+		if ( ! flxcrm_setting( 'chat_events' ) || ! function_exists( 'flxc_get_message' ) ) {
 			return;
 		}
 		try {
 			$chat = (array) $chat;
-			$cid  = self::contact_for( $chat );
+			$m    = is_array( $msg_id ) ? $msg_id : flxc_get_message( (int) $msg_id );
+			if ( ! $m || self::is_group( $chat ) ) {
+				return;
+			}
+			$cid = $cid ? $cid : self::contact_for( $chat, 'in' === $m['direction'] );
 			if ( ! $cid ) {
 				return;
 			}
-			$day = wp_date( 'Y-m-d' );
+			$out  = 'in' !== $m['direction'];
+			$text = trim( wp_strip_all_tags( (string) $m['body'] ) );
+			if ( '' === $text ) {
+				$text = '' !== (string) $m['media_name'] ? (string) $m['media_name'] : '[' . sanitize_key( (string) $m['type'] ) . ']';
+			}
 			FLXCRM_Events::add(
 				$cid,
-				$type,
+				$out ? 'message_out' : 'message_in',
 				array(
-					'source' => self::KEY,
-					'uniq'   => 'chat:' . $type . ':' . (int) $chat['id'] . ':' . $day,
-					'title'  => $title,
-					'url'    => 'admin.php?page=flx-chat&chat=' . (int) $chat['id'],
-					'data'   => array( 'day' => $day ),
+					'source'  => self::KEY,
+					'uniq'    => 'chat:msg:' . (int) $m['id'],
+					'title'   => $out ? __( 'WhatsApp yanıtı', 'flx-crm' ) : __( 'WhatsApp mesajı', 'flx-crm' ),
+					'url'     => 'admin.php?page=flx-chat&chat=' . (int) $chat['id'],
+					'user_id' => $out ? (int) $m['user_id'] : 0,
+					'at'      => self::msg_at( $m ),
+					'data'    => array( 'body' => mb_substr( $text, 0, 600 ), 'kind' => (string) $m['type'], 'by' => (string) $m['source'] ),
 				)
 			);
 		} catch ( \Throwable $e ) {
@@ -116,7 +135,29 @@ final class FLXCRM_Adapter_Chat {
 		}
 	}
 
-	/** Geçmiş sohbetler (yalnız kişi kartı ve "sohbet açıldı"; geçmiş mesajlar günlük özetle alınmaz). */
+	/** Geçmiş mesajlar (sohbetlerden sonra; 500'lük parçalar). */
+	public static function backfill_messages( $page, $per ) {
+		global $wpdb;
+		$per   = $per * 5;
+		$m     = flxc_table( 'messages' );
+		$c     = flxc_table( 'chats' );
+		$total = (int) $wpdb->get_var( "SELECT COUNT(*) FROM $m" ); // phpcs:ignore WordPress.DB
+		$rows  = (array) $wpdb->get_results( $wpdb->prepare( "SELECT m.*, c.jid AS c_jid, c.phone AS c_phone, c.name AS c_name FROM $m m INNER JOIN $c c ON c.id = m.chat_id WHERE c.jid NOT LIKE %s ORDER BY m.id LIMIT %d OFFSET %d", '%@g.us', $per, ( $page - 1 ) * $per ), ARRAY_A ); // phpcs:ignore WordPress.DB
+		$cache = array();
+		foreach ( $rows as $r ) {
+			$chat_id = (int) $r['chat_id'];
+			if ( ! isset( $cache[ $chat_id ] ) ) {
+				$chat              = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $c WHERE id = %d", $chat_id ), ARRAY_A ); // phpcs:ignore WordPress.DB
+				$cache[ $chat_id ] = $chat ? array( $chat, self::contact_for( $chat, false ) ) : array( null, 0 );
+			}
+			if ( $cache[ $chat_id ][1] ) {
+				self::message( $r, $cache[ $chat_id ][0], $cache[ $chat_id ][1] );
+			}
+		}
+		return array( 'done' => count( $rows ) < $per, 'scanned' => min( $total, $page * $per ), 'total' => $total );
+	}
+
+	/** Geçmiş sohbetler: kişi kartı ve "sohbet açıldı". Mesajlar backfill_messages ile. */
 	public static function backfill( $page, $per ) {
 		global $wpdb;
 		$t     = flxc_table( 'chats' );
@@ -124,23 +165,6 @@ final class FLXCRM_Adapter_Chat {
 		$rows  = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $t WHERE jid NOT LIKE %s ORDER BY id LIMIT %d OFFSET %d", '%@g.us', $per, ( $page - 1 ) * $per ), ARRAY_A ); // phpcs:ignore WordPress.DB
 		foreach ( (array) $rows as $r ) {
 			self::on_chat( $r );
-			$last = (int) $r['last_in_ts'];
-			if ( $last > 0 ) {
-				$cid = self::contact_for( $r, false );
-				if ( $cid ) {
-					FLXCRM_Events::add(
-						$cid,
-						'message_in',
-						array(
-							'source' => self::KEY,
-							'uniq'   => 'chat:message_in:' . (int) $r['id'] . ':' . wp_date( 'Y-m-d', $last > 9999999999 ? (int) ( $last / 1000 ) : $last ),
-							'title'  => __( 'WhatsApp\'tan yazdı', 'flx-crm' ),
-							'url'    => 'admin.php?page=flx-chat&chat=' . (int) $r['id'],
-							'at'     => gmdate( 'Y-m-d H:i:s', $last > 9999999999 ? (int) ( $last / 1000 ) : $last ),
-						)
-					);
-				}
-			}
 		}
 		return array( 'done' => count( (array) $rows ) < $per, 'scanned' => min( $total, $page * $per ), 'total' => $total );
 	}

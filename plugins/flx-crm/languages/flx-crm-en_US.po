@@ -167,6 +167,9 @@ msgstr "Champions and loyal supporters"
 msgid "En sık ve en yakın zamanda destek verenler."
 msgstr "The people who support most often and most recently."
 
+msgid "WhatsApp mesajları"
+msgstr "WhatsApp messages"
+
 msgid "Toplamlar"
 msgstr "Totals"
 
@@ -211,6 +214,9 @@ msgstr "Outgoing message"
 
 msgid "Sohbet başladı"
 msgstr "Chat started"
+
+msgid "Gelen e-posta"
+msgstr "Incoming e-mail"
 
 msgid "Not"
 msgstr "Note"
@@ -548,6 +554,9 @@ msgstr "Add"
 msgid "Bu filtrede olay yok."
 msgstr "No events for this filter."
 
+msgid "Yükleniyor…"
+msgstr "Loading…"
+
 msgid "Yanıtlar"
 msgstr "Answers"
 
@@ -873,8 +882,8 @@ msgstr "Donors and donations"
 msgid "Müşteriler ve siparişler (bağış siparişleri hariç)"
 msgstr "Customers and orders (donation orders excluded)"
 
-msgid "WhatsApp sohbetleri; mesajlar kişi başına günde bir satır"
-msgstr "WhatsApp chats; messages as one line per contact per day"
+msgid "WhatsApp sohbetleri ve her mesaj"
+msgstr "WhatsApp chats and every message"
 
 msgid "Form gönderimleri (e-posta ya da telefon alanı olan)"
 msgstr "Form submissions (with an e-mail or phone field)"
@@ -884,6 +893,9 @@ msgstr "Site members"
 
 msgid "Müşteri ve abone rolündeki WordPress kullanıcıları"
 msgstr "WordPress users with the customer or subscriber role"
+
+msgid "Kişiye giden e-posta, SMS ve WhatsApp bildirimleri, gelen e-postalar (yalnız zaman tüneli, kişi oluşturmaz)"
+msgstr "E-mails, SMS and WhatsApp notifications sent to the contact, and incoming e-mails (timeline only, no new contacts)"
 
 msgid "Kaynak"
 msgstr "Source"
@@ -900,8 +912,8 @@ msgstr "not installed"
 msgid "— rol verme —"
 msgstr "— no role —"
 
-msgid "WhatsApp mesajlarını zaman tüneline yaz (günde bir satır)"
-msgstr "Write WhatsApp messages to the timeline (one line per day)"
+msgid "WhatsApp mesajlarını zaman tüneline yaz (her mesaj ayrı satır)"
+msgstr "Write WhatsApp messages to the timeline (one line per message)"
 
 msgid "Rol ödeme tamamlanınca verilir (bağışçı, müşteri). \"Aday\" rolü kişi başka bir rol alınca kendiliğinden düşer."
 msgstr "The role is given once a payment completes (donor, customer). The \"Lead\" role drops off by itself when the contact gets another role."
@@ -945,17 +957,23 @@ msgstr "Save settings"
 msgid "WhatsApp sohbeti açıldı"
 msgstr "WhatsApp chat opened"
 
-msgid "WhatsApp'tan yazdı"
-msgstr "Wrote on WhatsApp"
+msgid "WhatsApp yanıtı"
+msgstr "WhatsApp reply"
 
-msgid "WhatsApp'tan yanıt verildi"
-msgstr "Replied on WhatsApp"
+msgid "WhatsApp mesajı"
+msgstr "WhatsApp message"
 
 msgid "Sipariş #%s"
 msgstr "Order #%s"
 
 msgid "Form #%d"
 msgstr "Form #%d"
+
+msgid "SMS gönderildi"
+msgstr "SMS sent"
+
+msgid "WhatsApp bildirimi"
+msgstr "WhatsApp notification"
 
 msgid "Sitede hesap açtı"
 msgstr "Created an account on the site"

@@ -20,11 +20,15 @@ final class FLXCRM_Sync {
 	/**
 	 * Etkin kaynaklar: anahtar => [ ad, sınıf ].
 	 */
+	/** Etkin kaynaklar: anahtar => [ ad, sınıf, yöntem (varsayılan backfill) ]. */
 	public static function sources() {
 		$out = array();
-		foreach ( array( 'FLXCRM_Adapter_Donate', 'FLXCRM_Adapter_Commerce', 'FLXCRM_Adapter_Chat', 'FLXCRM_Adapter_Forms', 'FLXCRM_Adapter_Users' ) as $cls ) {
+		foreach ( array( 'FLXCRM_Adapter_Donate', 'FLXCRM_Adapter_Commerce', 'FLXCRM_Adapter_Chat', 'FLXCRM_Adapter_Forms', 'FLXCRM_Adapter_Users', 'FLXCRM_Adapter_Mail' ) as $cls ) {
 			if ( $cls::enabled() && method_exists( $cls, 'backfill' ) ) {
 				$out[ $cls::KEY ] = array( $cls::label(), $cls );
+				if ( 'FLXCRM_Adapter_Chat' === $cls && flxcrm_setting( 'chat_events' ) ) {
+					$out['chat_msgs'] = array( __( 'WhatsApp mesajları', 'flx-crm' ), $cls, 'backfill_messages' );
+				}
 			}
 		}
 		return (array) apply_filters( 'flxcrm_sync_sources', $out );
@@ -40,7 +44,7 @@ final class FLXCRM_Sync {
 		$page = max( 1, (int) $page );
 		if ( isset( $sources[ $step ] ) ) {
 			FLXCRM_Events::$defer_recalc = true;
-			$r = call_user_func( array( $sources[ $step ][1], 'backfill' ), $page, self::CHUNK );
+			$r = call_user_func( array( $sources[ $step ][1], $sources[ $step ][2] ?? 'backfill' ), $page, self::CHUNK );
 			FLXCRM_Events::$defer_recalc = false;
 			$label = $sources[ $step ][0];
 		} elseif ( 'recalc' === $step ) {

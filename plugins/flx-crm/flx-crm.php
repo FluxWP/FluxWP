@@ -40,6 +40,7 @@ require_once FLXCRM_DIR . 'includes/class-flxcrm-sync.php';
 require_once FLXCRM_DIR . 'includes/adapters/donate.php';
 require_once FLXCRM_DIR . 'includes/adapters/commerce.php';
 require_once FLXCRM_DIR . 'includes/adapters/chat.php';
+require_once FLXCRM_DIR . 'includes/adapters/mail.php';
 require_once FLXCRM_DIR . 'includes/adapters/forms.php';
 require_once FLXCRM_DIR . 'includes/adapters/users.php';
 require_once FLXCRM_DIR . 'includes/class-flxcrm-rest.php';
@@ -87,6 +88,7 @@ add_action(
 		FLXCRM_Adapter_Chat::init();
 		FLXCRM_Adapter_Forms::init();
 		FLXCRM_Adapter_Users::init();
+		FLXCRM_Adapter_Mail::init();
 		FLXCRM_REST::init();
 		if ( is_admin() ) {
 			FLXCRM_Admin::init();
