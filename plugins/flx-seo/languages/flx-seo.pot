@@ -896,3 +896,21 @@ msgstr ""
 
 msgid "E-posta adresi (boşsa site yöneticisi)"
 msgstr ""
+
+msgid "PageSpeed puanları"
+msgstr ""
+
+msgid "PageSpeed çalışmadı"
+msgstr ""
+
+msgid "Öneri sayısı"
+msgstr ""
+
+msgid "Cihaz"
+msgstr ""
+
+msgid "PageSpeed ölçümü olan rapor yok. API anahtarı girip otomatik denetimde PageSpeed'i açın."
+msgstr ""
+
+msgid "%s PageSpeed puanlarının zaman içindeki değişimi"
+msgstr ""

@@ -898,3 +898,21 @@ msgstr "Send an email when a new critical or high priority recommendation appear
 
 msgid "E-posta adresi (boşsa site yöneticisi)"
 msgstr "Email address (empty: site admin)"
+
+msgid "PageSpeed puanları"
+msgstr "PageSpeed scores"
+
+msgid "PageSpeed çalışmadı"
+msgstr "PageSpeed not run"
+
+msgid "Öneri sayısı"
+msgstr "Recommendations"
+
+msgid "Cihaz"
+msgstr "Device"
+
+msgid "PageSpeed ölçümü olan rapor yok. API anahtarı girip otomatik denetimde PageSpeed'i açın."
+msgstr "No report with a PageSpeed run yet. Enter the API key and turn on PageSpeed in the automatic audit."
+
+msgid "%s PageSpeed puanlarının zaman içindeki değişimi"
+msgstr "%s PageSpeed scores over time"

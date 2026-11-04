@@ -299,5 +299,11 @@ return array (
     'PageSpeed Insights (mobil + masaüstü) da çalışsın (API anahtarı gerekir)' => 'Also run PageSpeed Insights (mobile + desktop; needs the API key)',
     'Yeni kritik ya da yüksek öncelikli öneri çıkınca e-posta gönder' => 'Send an email when a new critical or high priority recommendation appears',
     'E-posta adresi (boşsa site yöneticisi)' => 'Email address (empty: site admin)',
+    'PageSpeed puanları' => 'PageSpeed scores',
+    'PageSpeed çalışmadı' => 'PageSpeed not run',
+    'Öneri sayısı' => 'Recommendations',
+    'Cihaz' => 'Device',
+    'PageSpeed ölçümü olan rapor yok. API anahtarı girip otomatik denetimde PageSpeed\'i açın.' => 'No report with a PageSpeed run yet. Enter the API key and turn on PageSpeed in the automatic audit.',
+    '%s PageSpeed puanlarının zaman içindeki değişimi' => '%s PageSpeed scores over time',
   ),
 );

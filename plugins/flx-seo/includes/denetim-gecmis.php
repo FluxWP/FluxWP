@@ -349,29 +349,10 @@ function flxseo_audit_history_card() {
 		<?php if ( ! $hist ) : ?>
 			<p class="au-empty"><?php esc_html_e( 'Henüz rapor yok. Her denetim (elle, otomatik ya da yapay zekâ ile) burada saklanır.', 'flx-seo' ); ?></p>
 		<?php else : ?>
-			<?php
-			// Eğilim: soldan sağa eskiden yeniye, yükseklik = öneri sayısı (önceliğe göre yığılmış).
-			$rev = array_reverse( $hist );
-			$max = max( 1, max( array_map( fn( $e ) => array_sum( (array) $e['counts'] ), $rev ) ) );
-			$bw  = 14;
-			$w   = count( $rev ) * ( $bw + 4 );
-			?>
-			<figure class="au-trend">
-				<svg viewBox="0 0 <?php echo (int) $w; ?> 60" width="<?php echo (int) $w; ?>" height="60" role="img" aria-label="<?php esc_attr_e( 'Öneri sayısının zaman içindeki değişimi', 'flx-seo' ); ?>">
-					<?php
-					foreach ( $rev as $i => $e ) {
-						$y = 60;
-						foreach ( array( 'low', 'medium', 'high', 'critical' ) as $pk ) {
-							$hgt = 56 * (int) ( $e['counts'][ $pk ] ?? 0 ) / $max;
-							if ( $hgt > 0 ) {
-								$y -= $hgt;
-								printf( '<rect x="%d" y="%.1f" width="%d" height="%.1f" class="au-bar-%s"><title>%s</title></rect>', (int) ( $i * ( $bw + 4 ) ), $y, (int) $bw, $hgt, esc_attr( $pk ), esc_html( flx_date( $e['t'], 'datetime' ) . ' · ' . $prios[ $pk ][1] . ' ' . (int) $e['counts'][ $pk ] ) );
-							}
-						}
-					}
-					?>
-				</svg>
-			</figure>
+			<div class="au-charts">
+				<?php flxseo_audit_chart_counts( $hist ); ?>
+				<?php flxseo_audit_chart_scores( $hist ); ?>
+			</div>
 			<div class="au-table-wrap">
 				<table class="au-table">
 					<thead>
@@ -379,7 +360,7 @@ function flxseo_audit_history_card() {
 							<th scope="col"><?php esc_html_e( 'Tarih', 'flx-seo' ); ?></th>
 							<th scope="col"><?php esc_html_e( 'Nasıl', 'flx-seo' ); ?></th>
 							<th scope="col"><?php esc_html_e( 'Öneriler', 'flx-seo' ); ?></th>
-							<th scope="col"><?php esc_html_e( 'Mobil puanlar', 'flx-seo' ); ?></th>
+							<th scope="col"><?php esc_html_e( 'PageSpeed puanları', 'flx-seo' ); ?></th>
 							<th scope="col"><?php esc_html_e( 'Değişim', 'flx-seo' ); ?></th>
 						</tr>
 					</thead>
@@ -390,7 +371,6 @@ function flxseo_audit_history_card() {
 						foreach ( (array) $e['items'] as $it ) {
 							$titles[ $it[0] ] = $it;
 						}
-						$sc = (array) ( $e['scores']['mobile'] ?? array() );
 						?>
 						<tr>
 							<td class="au-td-date"><?php echo esc_html( flx_date( $e['t'], 'datetime' ) ); ?><br><span class="au-meta"><?php echo esc_html( flx_time_ago( $e['t'] ) ); ?></span></td>
@@ -401,16 +381,7 @@ function flxseo_audit_history_card() {
 								<?php endforeach; ?>
 							</td>
 							<td class="au-scorecell">
-								<?php if ( $sc ) : ?>
-									<?php foreach ( $sc as $ck => $v ) : ?>
-										<span class="au-tone-<?php echo esc_attr( flxseo_audit_tone( $v ) ); ?>" title="<?php echo esc_attr( $cat[ $ck ] ?? $ck ); ?>"><?php echo null === $v ? '–' : (int) $v; ?></span>
-									<?php endforeach; ?>
-									<?php if ( ! empty( $e['metrics']['mobile']['lcp'] ) ) : ?>
-										<span class="au-meta">LCP <?php echo esc_html( $e['metrics']['mobile']['lcp'] ); ?></span>
-									<?php endif; ?>
-								<?php else : ?>
-									<span class="au-meta">–</span>
-								<?php endif; ?>
+								<?php flxseo_audit_score_rows( $e ); ?>
 							</td>
 							<td class="au-td-diff">
 								<?php if ( ! $e['new'] && ! $e['fixed'] ) : ?>
@@ -444,6 +415,182 @@ function flxseo_audit_history_card() {
 		<?php endif; ?>
 	</section>
 	<?php
+}
+
+/** Tablo hücresi: mobil ve masaüstü puanları + LCP. */
+function flxseo_audit_score_rows( array $e ) {
+	$cat    = flxseo_audit_categories();
+	$labels = flxseo_audit_strategies();
+	$any    = false;
+	foreach ( $labels as $st => $label ) {
+		$sc = (array) ( $e['scores'][ $st ] ?? array() );
+		if ( ! $sc ) {
+			continue;
+		}
+		$any = true;
+		echo '<span class="au-srow"><span class="au-srow__k">' . esc_html( $label ) . '</span>';
+		foreach ( $sc as $ck => $v ) {
+			printf( '<span class="au-tone-%s" title="%s">%s</span>', esc_attr( flxseo_audit_tone( $v ) ), esc_attr( $cat[ $ck ] ?? $ck ), null === $v ? '–' : (int) $v );
+		}
+		if ( ! empty( $e['metrics'][ $st ]['lcp'] ) ) {
+			echo '<span class="au-meta">LCP ' . esc_html( $e['metrics'][ $st ]['lcp'] ) . '</span>';
+		}
+		echo '</span>';
+	}
+	if ( ! $any ) {
+		echo '<span class="au-meta">' . esc_html__( 'PageSpeed çalışmadı', 'flx-seo' ) . '</span>';
+	}
+}
+
+function flxseo_audit_strategies() {
+	return array(
+		'mobile'  => __( 'Mobil', 'flx-seo' ),
+		'desktop' => __( 'Masaüstü', 'flx-seo' ),
+	);
+}
+
+/** Grafik x konumları: eskiden yeniye eşit aralık. */
+function flxseo_audit_chart_x( $i, $n, $w, $pad ) {
+	return $n < 2 ? $pad + ( $w - 2 * $pad ) / 2 : $pad + $i * ( $w - 2 * $pad ) / ( $n - 1 );
+}
+
+/** Öneri sayısı grafiği (önceliğe göre yığılmış sütunlar). */
+function flxseo_audit_chart_counts( array $hist ) {
+	$rev   = array_reverse( $hist );
+	$n     = count( $rev );
+	$prios = flxseo_audit_priorities();
+	$max   = max( 1, max( array_map( fn( $e ) => array_sum( (array) $e['counts'] ), $rev ) ) );
+	$w     = 600;
+	$h     = 180;
+	$top   = 10;
+	$bot   = 24;
+	$left  = 30;
+	$slot  = ( $w - $left - 6 ) / max( 1, $n );
+	$bw    = max( 4, min( 28, $slot * 0.7 ) );
+	$step  = $max > 20 ? 10 : ( $max > 8 ? 5 : 2 );
+	?>
+	<figure class="au-chart">
+		<figcaption><?php esc_html_e( 'Öneri sayısı', 'flx-seo' ); ?></figcaption>
+		<svg viewBox="0 0 <?php echo (int) $w; ?> <?php echo (int) $h; ?>" role="img" aria-label="<?php esc_attr_e( 'Öneri sayısının zaman içindeki değişimi', 'flx-seo' ); ?>">
+			<?php
+			for ( $g = 0; $g <= $max; $g += $step ) {
+				$y = $h - $bot - ( $h - $top - $bot ) * $g / $max;
+				printf( '<line x1="%d" x2="%d" y1="%.1f" y2="%.1f" class="au-grid"/><text x="%d" y="%.1f" class="au-axis" text-anchor="end">%d</text>', $left, $w, $y, $y, $left - 6, $y + 4, $g );
+			}
+			foreach ( $rev as $i => $e ) {
+				$x = $left + $i * $slot + ( $slot - $bw ) / 2;
+				$y = $h - $bot;
+				foreach ( array( 'low', 'medium', 'high', 'critical' ) as $pk ) {
+					$v = (int) ( $e['counts'][ $pk ] ?? 0 );
+					if ( $v ) {
+						$hh = ( $h - $top - $bot ) * $v / $max;
+						$y -= $hh;
+						printf( '<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" class="au-bar-%s"><title>%s</title></rect>', $x, $y, $bw, $hh, esc_attr( $pk ), esc_html( flx_date( $e['t'], 'datetime' ) . ' · ' . $prios[ $pk ][1] . ' ' . $v ) );
+					}
+				}
+			}
+			flxseo_audit_chart_dates( $rev, $w, $h, fn( $i ) => $left + $i * $slot + $slot / 2 );
+			?>
+		</svg>
+		<ul class="au-legend">
+			<?php foreach ( $prios as $pk => $pv ) : ?>
+				<li><i class="au-key au-bar-<?php echo esc_attr( $pk ); ?>"></i><?php echo esc_html( $pv[1] ); ?></li>
+			<?php endforeach; ?>
+		</ul>
+	</figure>
+	<?php
+}
+
+/** Puan grafiği: dört başlık, mobil / masaüstü seçmeli çizgiler. */
+function flxseo_audit_chart_scores( array $hist ) {
+	$rev  = array_reverse( $hist );
+	$cats = array_intersect_key( flxseo_audit_categories(), array_flip( array( 'performance', 'accessibility', 'best-practices', 'seo' ) ) );
+	$sts  = array_filter( flxseo_audit_strategies(), fn( $k ) => (bool) array_filter( $rev, fn( $e ) => ! empty( $e['scores'][ $k ] ) ), ARRAY_FILTER_USE_KEY );
+	?>
+	<figure class="au-chart au-chart--scores">
+		<figcaption>
+			<?php esc_html_e( 'PageSpeed puanları', 'flx-seo' ); ?>
+			<?php if ( count( $sts ) > 1 ) : ?>
+				<span class="au-seg" role="group" aria-label="<?php esc_attr_e( 'Cihaz', 'flx-seo' ); ?>">
+					<?php $first = true; foreach ( $sts as $sk => $sl ) : ?>
+						<button type="button" class="au-chip<?php echo $first ? ' is-on' : ''; ?>" data-strat="<?php echo esc_attr( $sk ); ?>" aria-pressed="<?php echo $first ? 'true' : 'false'; ?>"><?php echo esc_html( $sl ); ?></button>
+					<?php $first = false; endforeach; ?>
+				</span>
+			<?php endif; ?>
+		</figcaption>
+		<?php if ( ! $sts ) : ?>
+			<p class="au-empty"><?php esc_html_e( 'PageSpeed ölçümü olan rapor yok. API anahtarı girip otomatik denetimde PageSpeed\'i açın.', 'flx-seo' ); ?></p>
+		<?php endif; ?>
+		<?php
+		$first = true;
+		foreach ( $sts as $sk => $sl ) {
+			// Ölçeği veriye göre: en düşük puanın altındaki onluktan 100'e.
+			$vals = array();
+			foreach ( $rev as $e ) {
+				foreach ( (array) ( $e['scores'][ $sk ] ?? array() ) as $v ) {
+					if ( null !== $v ) {
+						$vals[] = (int) $v;
+					}
+				}
+			}
+			$min  = $vals ? max( 0, min( 90, (int) floor( ( min( $vals ) - 1 ) / 10 ) * 10 ) ) : 0;
+			$w    = 600;
+			$h    = 180;
+			$top  = 10;
+			$bot  = 24;
+			$left = 30;
+			$n    = count( $rev );
+			$sy   = fn( $v ) => $h - $bot - ( $h - $top - $bot ) * ( $v - $min ) / ( 100 - $min );
+			$sx   = fn( $i ) => flxseo_audit_chart_x( $i, $n, $w - $left, 10 ) + $left;
+			/* translators: %s: Mobil / Masaüstü */
+			$aria = sprintf( __( '%s PageSpeed puanlarının zaman içindeki değişimi', 'flx-seo' ), $sl );
+			printf( '<svg viewBox="0 0 %d %d" role="img" aria-label="%s" data-strat="%s"%s>', (int) $w, (int) $h, esc_attr( $aria ), esc_attr( $sk ), $first ? '' : ' hidden' );
+			$gstep = ( 100 - $min ) > 40 ? 20 : 10;
+			for ( $g = $min; $g <= 100; $g += $gstep ) {
+				$y = $sy( $g );
+				printf( '<line x1="%d" x2="%d" y1="%.1f" y2="%.1f" class="au-grid"/><text x="%d" y="%.1f" class="au-axis" text-anchor="end">%d</text>', $left, $w, $y, $y, $left - 6, $y + 4, $g );
+			}
+			foreach ( array_keys( $cats ) as $ci => $ck ) {
+				// Aynı puandaki çizgiler (ör. 100) üst üste binmesin: başlık başına küçük kaydırma.
+				$off  = ( $ci - 1.5 ) * 2.2;
+				$pts = array();
+				$dots = '';
+				foreach ( $rev as $i => $e ) {
+					$v = $e['scores'][ $sk ][ $ck ] ?? null;
+					if ( null === $v ) {
+						continue;
+					}
+					$pts[] = sprintf( '%.1f,%.1f', $sx( $i ), $sy( $v ) + $off );
+					$dots .= sprintf( '<circle cx="%.1f" cy="%.1f" r="3.5"><title>%s</title></circle>', $sx( $i ), $sy( $v ) + $off, esc_html( flx_date( $e['t'], 'datetime' ) . ' · ' . $cats[ $ck ] . ' ' . (int) $v ) );
+				}
+				if ( $pts ) {
+					printf( '<g class="au-l-%s"><polyline points="%s"/>%s</g>', esc_attr( $ck ), esc_attr( implode( ' ', $pts ) ), $dots ); // phpcs:ignore WordPress.Security.EscapeOutput
+				}
+			}
+			flxseo_audit_chart_dates( $rev, $w, $h, $sx );
+			echo '</svg>';
+			$first = false;
+		}
+		?>
+		<?php if ( $sts ) : ?>
+			<ul class="au-legend">
+				<?php foreach ( $cats as $ck => $cl ) : ?>
+					<li><i class="au-key au-l-<?php echo esc_attr( $ck ); ?>"></i><?php echo esc_html( $cl ); ?></li>
+				<?php endforeach; ?>
+			</ul>
+		<?php endif; ?>
+	</figure>
+	<?php
+}
+
+/** X ekseni: ilk, orta ve son tarih. */
+function flxseo_audit_chart_dates( array $rev, $w, $h, callable $x ) {
+	$n = count( $rev );
+	$idx = array_unique( $n > 2 ? array( 0, (int) floor( ( $n - 1 ) / 2 ), $n - 1 ) : range( 0, max( 0, $n - 1 ) ) );
+	foreach ( $idx as $k => $i ) {
+		$anchor = 0 === $k && $n > 1 ? 'start' : ( $i === $n - 1 && $n > 1 ? 'end' : 'middle' );
+		printf( '<text x="%.1f" y="%d" class="au-axis" text-anchor="%s">%s</text>', $x( $i ), $h - 6, $anchor, esc_html( flx_date( $rev[ $i ]['t'], 'short' ) ) );
+	}
 }
 
 /** Gösterilen dilde başlık (katalogda varsa). */
