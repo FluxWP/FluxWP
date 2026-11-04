@@ -1,17 +1,17 @@
 # FluxWP site build guide: SEO, performance, accessibility, security and agent readiness
 
-This guide collects the rules to follow when building a new WordPress site, theme, preset (flx-preset-*), block pattern or page. The target is **100** in all four PageSpeed Insights categories and a **full score** in Agentic Browsing. AI agents get this guide from the Flux SEO MCP server with the `site_build_guide` tool (or the `flxseo://guide/site-build` resource); Flux AI chat uses the same tool.
+This guide collects the rules to follow when building a new WordPress site, theme, preset (flx-preset-*), block pattern or page. The target is **100** in all four PageSpeed Insights categories and a **full score** in Agentic Browsing. AI agents get this guide from the Flux SEO MCP server with the `flxseo_site_build_guide` tool (or the `flxseo://guide/site-build` resource); Flux AI chat uses the same tool.
 
 <!-- topic:workflow -->
 ## 1. Workflow (for agents)
 
-1. Read this guide before you start: `site_build_guide` (topic: `all` or the relevant section).
-2. Use `site_info` to learn the site and `list_patterns` to see the theme's ready-made sections. Reuse before writing new ones.
+1. Read this guide before you start: `flxseo_site_build_guide` (topic: `all` or the relevant section).
+2. Use `flxseo_site_info` to learn the site and `flxseo_list_patterns` to see the theme's ready-made sections. Reuse before writing new ones.
 3. Build the page/theme with the rules below. Content is created as a draft; publishing needs the user's approval.
-4. When done, run `site_audit` with `refresh: true`. Findings come sorted **critical → high → medium → low**; fix them in that order.
-5. If the user wants, run `site_audit` with `pagespeed: "mobile"` (then `"desktop"`) for the real Lighthouse score. One run takes 15–40 s.
-   Every run is saved; `site_audit_history` shows past reports, the trend and what was resolved (useful to check that a fix stuck).
-6. Findings with a `fix_id` can be fixed in one step: pass that id to `system_fix` (tell the user what will be turned on first).
+4. When done, run `flxseo_site_audit` with `refresh: true`. Findings come sorted **critical → high → medium → low**; fix them in that order.
+5. If the user wants, run `flxseo_site_audit` with `pagespeed: "mobile"` (then `"desktop"`) for the real Lighthouse score. One run takes 15–40 s.
+   Every run is saved; `flxseo_site_audit_history` shows past reports, the trend and what was resolved (useful to check that a fix stuck).
+6. Findings with a `fix_id` can be fixed in one step: pass that id to `flxseo_system_fix` (tell the user what will be turned on first).
 7. After fixing, purge the page cache (LiteSpeed › Purge All) and run the audit again.
 
 ### Priorities
@@ -168,7 +168,7 @@ AI agents (browser agents, search assistants) understand a site through the acce
 - Patterns (`patterns/`): strings through `__()` / `esc_html__()`, Turkish default + English translation; no hard-coded text. Images with `width/height`.
 - Dates and "… ago" texts with `flx_date()` / `flx_time_ago()`.
 - Settings live in the admin panel, not wp-config; presets write them through `flx_settings_schema` fields (Flux SEO fields: `flxseo.*`).
-- All AI code goes through the shared Flux AI plugin.
+- All AI code goes through the shared Flux AI & MCP plugin.
 - Reuse existing patterns for new pages; new CSS goes only into that block's stylesheet.
 - Accessible component library: tabs, accordion (`<details>`), modal (`<dialog>`), slider (with buttons, no autoplay or pausable).
 

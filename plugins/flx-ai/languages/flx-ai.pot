@@ -105,13 +105,181 @@ msgstr ""
 msgid "%d araç kayıtlı."
 msgstr ""
 
+msgid "Bu eklentinin yapay zekâ ayarları. Değerler Flux AI'da saklanır, eklenti kendisi okur."
+msgstr ""
+
+msgid "Bağlı sistemler"
+msgstr ""
+
+msgid "Kaydedildi."
+msgstr ""
+
+msgid "Yapay zekâ"
+msgstr ""
+
+msgid "Bu eklenti yapay zekâ kullanabilir"
+msgstr ""
+
+msgid "Kapalıyken eklentinin model istekleri reddedilir; araçları ayrıca Araçlar ekranından kapatılır."
+msgstr ""
+
+msgid "Model"
+msgstr ""
+
+msgid "Boşsa varsayılan model kullanılır."
+msgstr ""
+
+msgid "Açık"
+msgstr ""
+
+msgid "%1$s / %2$s araç açık"
+msgstr ""
+
+msgid "Araçları yönet"
+msgstr ""
+
+msgid "Bu eklentinin aracı yok."
+msgstr ""
+
+msgid "Bu eklenti Flux AI SDK ile ayar tanımlamamış; yalnız aç/kapa ve model seçilebilir."
+msgstr ""
+
+msgid "Flux AI SDK %s yüklü."
+msgstr ""
+
+msgid "Eklentilerin yapay zekâya sunduğu araçlar: ortak sohbet ve MCP sunucusu. Kapatılan araç ikisinde de kullanılamaz; değişiklik yapan araçlar her seferinde onay ister."
+msgstr ""
+
+msgid "%s için kullanılacak eklenti değişti."
+msgstr ""
+
+msgid "%s kapalı"
+msgstr ""
+
+msgid "Ad çakışması"
+msgstr ""
+
+msgid "Her adda yalnız biri açık"
+msgstr ""
+
+msgid "Yok"
+msgstr ""
+
+msgid "Öneksiz ad"
+msgstr ""
+
+msgid "Eklenti öneki olmayan araç"
+msgstr ""
+
+msgid "Eklentiye göre"
+msgstr ""
+
+msgid "Araç ara"
+msgstr ""
+
+msgid "Ad, açıklama, eklenti ara…"
+msgstr ""
+
+msgid "Kaynak"
+msgstr ""
+
+msgid "Tüm eklentiler"
+msgstr ""
+
+msgid "Okur"
+msgstr ""
+
+msgid "Değiştirir"
+msgstr ""
+
+msgid "Kapalı"
+msgstr ""
+
+msgid "Çakışma"
+msgstr ""
+
+msgid "Öneksiz"
+msgstr ""
+
+msgid "Aç"
+msgstr ""
+
+msgid "Kapat"
+msgstr ""
+
+msgid "Seçimi kaldır"
+msgstr ""
+
+msgid "Görünenlerin hepsini seç"
+msgstr ""
+
+msgid "Tür"
+msgstr ""
+
+msgid "Nerede"
+msgstr ""
+
+msgid "Yetki"
+msgstr ""
+
+msgid "30 gün"
+msgstr ""
+
+msgid "Ort. süre"
+msgstr ""
+
+msgid "Çakışma: kapalı, %s kullanılıyor"
+msgstr ""
+
+msgid "Çakışma: bu açık, %s kapalı"
+msgstr ""
+
+msgid "Ad eklenti önekiyle başlamıyor; başka eklentinin aracıyla karışabilir."
+msgstr ""
+
+msgid "öneksiz"
+msgstr ""
+
+msgid "Eski ad: %s"
+msgstr ""
+
+msgid "Bunu kullan"
+msgstr ""
+
+msgid "%s açık"
+msgstr ""
+
+msgid "%s seç"
+msgstr ""
+
+msgid "Sohbet"
+msgstr ""
+
+msgid "değiştirir · onaylı"
+msgstr ""
+
+msgid "Kayıtlı araç yok."
+msgstr ""
+
+msgid "Süzgece uyan araç yok."
+msgstr ""
+
+msgid "Kaydedilmemiş değişiklik var."
+msgstr ""
+
+msgid "Eklentiler araçlarını Flux AI SDK (<code>flx_ai_tool</code>) ya da <code>flx_mcp_tools</code> / <code>flxai_tools</code> filtreleriyle ekler. Aynı adı iki eklenti kaydederse ilk kaydeden açık kalır, diğeri kapalı bekler; \"Bunu kullan\" ile değiştirebilirsiniz. Eklenti ayarları: %s."
+msgstr ""
+
+msgid "%s araç güncellendi."
+msgstr ""
+
+msgid "%s eklenti"
+msgstr ""
+
 msgid "Genel bakış"
 msgstr ""
 
 msgid "Kayıtlar"
-msgstr ""
-
-msgid "Bağlı sistemler"
 msgstr ""
 
 msgid "Faturalandırma"
@@ -133,12 +301,6 @@ msgid "Henüz API anahtarı girilmedi."
 msgstr ""
 
 msgid "%d gün"
-msgstr ""
-
-msgid "Kaynak"
-msgstr ""
-
-msgid "Tüm eklentiler"
 msgstr ""
 
 msgid "Maliyet"
@@ -181,9 +343,6 @@ msgid "Günlük token"
 msgstr ""
 
 msgid "Araç başına ortalama süre"
-msgstr ""
-
-msgid "Eklentiye göre"
 msgstr ""
 
 msgid "Modele göre"
@@ -231,9 +390,6 @@ msgstr ""
 msgid "Kayıt yok."
 msgstr ""
 
-msgid "Nerede"
-msgstr ""
-
 msgid "Kim"
 msgstr ""
 
@@ -276,16 +432,7 @@ msgstr ""
 msgid "Flux AI'yı kullanan eklentiler. Buradan kapatılan sistem yapay zekâ isteği gönderemez; kendi ayarları da olduğu gibi kalır."
 msgstr ""
 
-msgid "Kaydedildi."
-msgstr ""
-
-msgid "Açık"
-msgstr ""
-
 msgid "Durum"
-msgstr ""
-
-msgid "Model"
 msgstr ""
 
 msgid "İstek (30 gün)"
@@ -301,6 +448,9 @@ msgid "AI kapalı"
 msgstr ""
 
 msgid "çalışıyor"
+msgstr ""
+
+msgid "AI ayarları"
 msgstr ""
 
 msgid "Ayarları"
@@ -367,30 +517,6 @@ msgid "Kontrol"
 msgstr ""
 
 msgid "Kalan krediyi görmek için Yenile'ye basın. (Anthropic bakiye API'si sunmuyor; console.anthropic.com › Billing.)"
-msgstr ""
-
-msgid "Ortak sohbetin kullanabildiği araçlar. Değişiklik yapan araçlar her seferinde kullanıcı onayı ister; kullanıcı yalnız yetkisi olan araçları görür."
-msgstr ""
-
-msgid "Tür"
-msgstr ""
-
-msgid "Yetki"
-msgstr ""
-
-msgid "30 gün"
-msgstr ""
-
-msgid "Ort. süre"
-msgstr ""
-
-msgid "değiştirir · onaylı"
-msgstr ""
-
-msgid "Kayıtlı araç yok."
-msgstr ""
-
-msgid "Eklentiler araç eklemek için flx_mcp_tools (MCP + sohbet) ya da flxai_tools (yalnız sohbet) filtresini kullanır (API.md)."
 msgstr ""
 
 msgid "Flux AI ayarları"
@@ -466,9 +592,6 @@ msgid "Önbellek ve düşünme"
 msgstr ""
 
 msgid "Claude prompt önbelleği"
-msgstr ""
-
-msgid "Kapalı"
 msgstr ""
 
 msgid "Açık, 5 dakika"
@@ -840,6 +963,9 @@ msgstr ""
 msgid "Bilinmeyen araç: %s"
 msgstr ""
 
+msgid "Bu araç kapalı (Flux AI & MCP › Araçlar): %s"
+msgstr ""
+
 msgid "Bu anahtar bu aracı kullanamaz: %s"
 msgstr ""
 
@@ -847,9 +973,6 @@ msgid "Bu işlem için yetkiniz yok."
 msgstr ""
 
 msgid "Yetkisiz."
-msgstr ""
-
-msgid "Yapay zekâ"
 msgstr ""
 
 msgid "Desteklenmeyen model."
@@ -984,6 +1107,9 @@ msgstr ""
 msgid "Anthropic (Claude) API anahtarı girilmemiş (Flux AI & MCP › Ayarlar)."
 msgstr ""
 
+msgid "Bilinmiyor"
+msgstr ""
+
 msgid "OpenRouter anahtarı girilmemiş."
 msgstr ""
 
@@ -1077,6 +1203,12 @@ msgstr ""
 msgid "Gelen · cevap"
 msgstr ""
 
+msgid "%s araç gösteriliyor"
+msgstr ""
+
+msgid "%s seçili"
+msgstr ""
+
 msgid "Görsel hazırlanıyor…"
 msgstr ""
 
@@ -1108,9 +1240,6 @@ msgid "Boyutu değiştir"
 msgstr ""
 
 msgid "Sohbetlerde ara"
-msgstr ""
-
-msgid "Kapat"
 msgstr ""
 
 msgid "Bir şey sorun ya da bir iş verin…"

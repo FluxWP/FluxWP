@@ -278,7 +278,7 @@ function flxseo_audit_settings_page() {
 
 			<div class="au-card au-guide">
 				<h2><?php esc_html_e( 'Yeni site yapım rehberi', 'flx-seo' ); ?></h2>
-				<p><?php esc_html_e( 'Yeni sayfa, tema ya da ön ayar yaparken SEO, performans, erişilebilirlik, güvenlik ve ajan uyumu için kurallar ve kontrol listesi. Yapay zekâ ajanları aynı rehberi MCP aracı site_build_guide ile, Flux AI sohbeti de araç olarak alır.', 'flx-seo' ); ?></p>
+				<p><?php esc_html_e( 'Yeni sayfa, tema ya da ön ayar yaparken SEO, performans, erişilebilirlik, güvenlik ve ajan uyumu için kurallar ve kontrol listesi. Yapay zekâ ajanları aynı rehberi MCP aracı flxseo_site_build_guide ile, Flux AI sohbeti de araç olarak alır.', 'flx-seo' ); ?></p>
 				<p>
 					<a class="button" href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=flxseo_guide&lang=tr' ), 'flxseo_guide' ) ); ?>"><?php esc_html_e( 'Türkçe (.md) indir', 'flx-seo' ); ?></a>
 					<a class="button" href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=flxseo_guide&lang=en' ), 'flxseo_guide' ) ); ?>"><?php esc_html_e( 'İngilizce (.md) indir', 'flx-seo' ); ?></a>

@@ -4,7 +4,7 @@
  *  - /llms.txt kendiliğinden üretilir (kökte gerçek dosya varsa sunucu onu verir, bu kod çalışmaz).
  *  - WebMCP: arama formuna toolname/tooldescription (tarayıcıdaki ajanlar formu araç olarak görür).
  *  - İsteğe bağlı başlıklar: X-Frame-Options + frame-ancestors, COOP, temel CSP, HSTS includeSubDomains/preload.
- *  - Tek tık düzeltmeler `flx_system_fixes` (MCP system_fix ve Site denetimi düğmeleri).
+ *  - Tek tık düzeltmeler `flx_system_fixes` (MCP flxseo_system_fix ve Site denetimi düğmeleri).
  *
  * @package flx-seo
  */
@@ -247,7 +247,7 @@ add_action(
 );
 
 /* ---------------------------------------------------------------------------
- * Tek tık düzeltmeler (Site denetimi düğmeleri ve MCP system_fix)
+ * Tek tık düzeltmeler (Site denetimi düğmeleri ve MCP flxseo_system_fix)
  * ------------------------------------------------------------------------- */
 
 /** Düzeltme kimliği → açtığı ayarlar. */

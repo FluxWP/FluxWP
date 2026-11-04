@@ -1,8 +1,10 @@
 <?php
 /**
  * Araç kaydı. Kaynaklar:
- *  - flxai_tools filtresi (her eklenti kendi araçlarını ekler),
+ *  - Flux AI SDK: flx_ai_tool() (tools/ai-sdk; MCP + sohbet ya da yalnız biri),
+ *  - flxai_tools filtresi (yalnız sohbet),
  *  - MCP araçları (flx_mcp_tools, eski adı flxseo_mcp_tools; mcp.php) otomatik gelir.
+ * Toplama, kaynak tespiti, çakışma ve eski adlar: registry.php.
  *
  * Araç: name => array( title, description, schema (JSON Schema), readonly (bool), cap, run (callable $args, $ctx → array),
  *        source, confirm (bool: okuma aracı olsa da onay iste) ).
@@ -13,55 +15,15 @@
 
 defined( 'ABSPATH' ) || exit;
 
-/** Tüm kayıtlı araçlar (yetki ve kapalı listesi süzülmeden). */
+/** Tüm kayıtlı araçlar (yetki ve kapalı listesi süzülmeden; çakışan ikinci tanımlar hariç, bkz. registry.php). */
 function flxai_tools_all() {
-	static $cache = null;
-	if ( null !== $cache ) {
-		return $cache;
-	}
-	$tools = array();
-	if ( function_exists( 'flxai_mcp_tools' ) ) {
-		foreach ( (array) flxai_mcp_tools() as $name => $t ) {
-			if ( ! is_array( $t ) || empty( $t['run'] ) ) {
-				continue;
-			}
-			$tools[ $name ] = array(
-				'title'       => (string) ( $t['title'] ?? $name ),
-				'description' => (string) ( $t['description'] ?? '' ),
-				'schema'      => $t['schema'] ?? array( 'type' => 'object', 'properties' => new stdClass() ),
-				'readonly'    => ! empty( $t['readonly'] ),
-				'cap'         => (string) ( $t['cap'] ?? 'edit_posts' ),
-				'source'      => flxai_mcp_tool_source( $t ),
-				'mcp'         => true,
-				'run'         => null,
-			);
-		}
-	}
-	$tools = array_merge( $tools, flxai_core_tools() );
-	$tools = (array) apply_filters( 'flxai_tools', $tools );
-	foreach ( $tools as $name => $t ) {
-		if ( ! is_array( $t ) || ! preg_match( '/^[a-zA-Z0-9_-]{1,64}$/', (string) $name ) || ( empty( $t['mcp'] ) && ( empty( $t['run'] ) || ! is_callable( $t['run'] ) ) ) ) {
-			unset( $tools[ $name ] );
-			continue;
-		}
-		$tools[ $name ] += array(
-			'title'       => $name,
-			'description' => '',
-			'schema'      => array( 'type' => 'object', 'properties' => new stdClass() ),
-			'readonly'    => false,
-			'cap'         => 'read',
-			'source'      => '',
-			'confirm'     => false,
-		);
-	}
-	$cache = $tools;
-	return $tools;
+	return flxai_chat_registry()['tools'];
 }
 
 /** Kullanıcının kullanabileceği, açık araçlar. */
 function flxai_tools_for_user( $user_id = 0 ) {
 	$user_id = $user_id ? (int) $user_id : get_current_user_id();
-	$off     = (array) flxai_setting( 'tools_off', array() );
+	$off     = flxai_tools_off();
 	$out     = array();
 	foreach ( flxai_tools_all() as $name => $t ) {
 		if ( in_array( $name, $off, true ) ) {
@@ -113,6 +75,7 @@ function flxai_tool_defs( array $tools ) {
  * @return array array( ok bool, result string (JSON), ms int )
  */
 function flxai_run_tool( $name, $args, array $ctx = array() ) {
+	$name  = flxai_tool_resolve( $name );
 	$tools = flxai_tools_for_user( (int) ( $ctx['user_id'] ?? 0 ) );
 	$t0    = microtime( true );
 	$ok    = false;

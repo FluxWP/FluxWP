@@ -1,7 +1,7 @@
 <?php
 /**
  * Ayar şeması: eklentiler ve tema, ön ayarla yazılabilecek ayarlarını tek yerde tanımlar.
- * AI (preset_schema aracı) ve ön ayar yazarı hangi alanların olduğunu, türünü ve varsayılanını buradan öğrenir;
+ * AI (flxk_preset_schema aracı) ve ön ayar yazarı hangi alanların olduğunu, türünü ve varsayılanını buradan öğrenir;
  * motor bilinmeyen alanlar için uyarı verir.
  *
  *   add_filter( 'flx_settings_schema', function ( $s ) {

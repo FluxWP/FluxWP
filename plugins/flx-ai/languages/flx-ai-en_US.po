@@ -106,14 +106,182 @@ msgstr "Result"
 msgid "%d araç kayıtlı."
 msgstr "%d tools registered."
 
+msgid "Bu eklentinin yapay zekâ ayarları. Değerler Flux AI'da saklanır, eklenti kendisi okur."
+msgstr "AI settings of this plugin. Values are stored in Flux AI and read by the plugin."
+
+msgid "Bağlı sistemler"
+msgstr "Connected systems"
+
+msgid "Kaydedildi."
+msgstr "Saved."
+
+msgid "Yapay zekâ"
+msgstr "AI"
+
+msgid "Bu eklenti yapay zekâ kullanabilir"
+msgstr "This plugin may use AI"
+
+msgid "Kapalıyken eklentinin model istekleri reddedilir; araçları ayrıca Araçlar ekranından kapatılır."
+msgstr "When off, the plugin's model requests are rejected; its tools are turned off separately on the Tools screen."
+
+msgid "Model"
+msgstr "Model"
+
+msgid "Boşsa varsayılan model kullanılır."
+msgstr "Empty uses the default model."
+
+msgid "Açık"
+msgstr "On"
+
+msgid "%1$s / %2$s araç açık"
+msgstr "%1$s / %2$s tools on"
+
+msgid "Araçları yönet"
+msgstr "Manage tools"
+
+msgid "Bu eklentinin aracı yok."
+msgstr "This plugin has no tools."
+
+msgid "Bu eklenti Flux AI SDK ile ayar tanımlamamış; yalnız aç/kapa ve model seçilebilir."
+msgstr "This plugin declares no settings with the Flux AI SDK; only on/off and the model can be set."
+
+msgid "Flux AI SDK %s yüklü."
+msgstr "Flux AI SDK %s loaded."
+
+msgid "Eklentilerin yapay zekâya sunduğu araçlar: ortak sohbet ve MCP sunucusu. Kapatılan araç ikisinde de kullanılamaz; değişiklik yapan araçlar her seferinde onay ister."
+msgstr "Tools that plugins offer to AI: the shared chat and the MCP server. A tool turned off is unavailable in both; tools that change data ask for approval every time."
+
+msgid "%s için kullanılacak eklenti değişti."
+msgstr "The plugin used for %s was changed."
+
+msgid "%s kapalı"
+msgstr "%s off"
+
+msgid "Ad çakışması"
+msgstr "Name conflicts"
+
+msgid "Her adda yalnız biri açık"
+msgstr "Only one is on per name"
+
+msgid "Yok"
+msgstr "None"
+
+msgid "Öneksiz ad"
+msgstr "Unprefixed names"
+
+msgid "Eklenti öneki olmayan araç"
+msgstr "Tools without a plugin prefix"
+
+msgid "Eklentiye göre"
+msgstr "By plugin"
+
+msgid "Araç ara"
+msgstr "Search tools"
+
+msgid "Ad, açıklama, eklenti ara…"
+msgstr "Search name, description, plugin…"
+
+msgid "Kaynak"
+msgstr "Source"
+
+msgid "Tüm eklentiler"
+msgstr "All plugins"
+
+msgid "Okur"
+msgstr "Reads"
+
+msgid "Değiştirir"
+msgstr "Changes"
+
+msgid "Kapalı"
+msgstr "Off"
+
+msgid "Çakışma"
+msgstr "Conflict"
+
+msgid "Öneksiz"
+msgstr "Unprefixed"
+
+msgid "Aç"
+msgstr "Turn on"
+
+msgid "Kapat"
+msgstr "Close"
+
+msgid "Seçimi kaldır"
+msgstr "Clear selection"
+
+msgid "Görünenlerin hepsini seç"
+msgstr "Select all visible"
+
+msgid "Tür"
+msgstr "Type"
+
+msgid "Nerede"
+msgstr "Where"
+
+msgid "Yetki"
+msgstr "Capability"
+
+msgid "30 gün"
+msgstr "30 days"
+
+msgid "Ort. süre"
+msgstr "Avg. time"
+
+msgid "Çakışma: kapalı, %s kullanılıyor"
+msgstr "Conflict: off, %s is used"
+
+msgid "Çakışma: bu açık, %s kapalı"
+msgstr "Conflict: this one is on, %s is off"
+
+msgid "Ad eklenti önekiyle başlamıyor; başka eklentinin aracıyla karışabilir."
+msgstr "The name does not start with a plugin prefix; it may clash with another plugin's tool."
+
+msgid "öneksiz"
+msgstr "unprefixed"
+
+msgid "Eski ad: %s"
+msgstr "Old name: %s"
+
+msgid "Bunu kullan"
+msgstr "Use this one"
+
+msgid "%s açık"
+msgstr "%s on"
+
+msgid "%s seç"
+msgstr "Select %s"
+
+msgid "Sohbet"
+msgstr "Chat"
+
+msgid "değiştirir · onaylı"
+msgstr "writes · needs approval"
+
+msgid "Kayıtlı araç yok."
+msgstr "No tools registered."
+
+msgid "Süzgece uyan araç yok."
+msgstr "No tools match the filters."
+
+msgid "Kaydedilmemiş değişiklik var."
+msgstr "There are unsaved changes."
+
+msgid "Eklentiler araçlarını Flux AI SDK (<code>flx_ai_tool</code>) ya da <code>flx_mcp_tools</code> / <code>flxai_tools</code> filtreleriyle ekler. Aynı adı iki eklenti kaydederse ilk kaydeden açık kalır, diğeri kapalı bekler; \"Bunu kullan\" ile değiştirebilirsiniz. Eklenti ayarları: %s."
+msgstr "Plugins add tools with the Flux AI SDK (<code>flx_ai_tool</code>) or the <code>flx_mcp_tools</code> / <code>flxai_tools</code> filters. If two plugins register the same name, the first stays on and the other waits turned off; switch with \"Use this one\". Plugin settings: %s."
+
+msgid "%s araç güncellendi."
+msgstr "%s tools updated."
+
+msgid "%s eklenti"
+msgstr "%s plugins"
+
 msgid "Genel bakış"
 msgstr "Overview"
 
 msgid "Kayıtlar"
 msgstr "Logs"
-
-msgid "Bağlı sistemler"
-msgstr "Connected systems"
 
 msgid "Faturalandırma"
 msgstr "Billing"
@@ -135,12 +303,6 @@ msgstr "No API key entered yet."
 
 msgid "%d gün"
 msgstr "%d days"
-
-msgid "Kaynak"
-msgstr "Source"
-
-msgid "Tüm eklentiler"
-msgstr "All plugins"
 
 msgid "Maliyet"
 msgstr "Cost"
@@ -183,9 +345,6 @@ msgstr "Daily tokens"
 
 msgid "Araç başına ortalama süre"
 msgstr "Average time per tool"
-
-msgid "Eklentiye göre"
-msgstr "By plugin"
 
 msgid "Modele göre"
 msgstr "By model"
@@ -232,9 +391,6 @@ msgstr "%s records"
 msgid "Kayıt yok."
 msgstr "No records."
 
-msgid "Nerede"
-msgstr "Where"
-
 msgid "Kim"
 msgstr "Who"
 
@@ -277,17 +433,8 @@ msgstr "Cache column: tokens read / written. \"~\" is estimated from the price l
 msgid "Flux AI'yı kullanan eklentiler. Buradan kapatılan sistem yapay zekâ isteği gönderemez; kendi ayarları da olduğu gibi kalır."
 msgstr "Plugins that use Flux AI. A system switched off here cannot send AI requests; its own settings stay as they are."
 
-msgid "Kaydedildi."
-msgstr "Saved."
-
-msgid "Açık"
-msgstr "On"
-
 msgid "Durum"
 msgstr "Status"
-
-msgid "Model"
-msgstr "Model"
 
 msgid "İstek (30 gün)"
 msgstr "Requests (30 days)"
@@ -303,6 +450,9 @@ msgstr "AI off"
 
 msgid "çalışıyor"
 msgstr "working"
+
+msgid "AI ayarları"
+msgstr "AI settings"
 
 msgid "Ayarları"
 msgstr "Its settings"
@@ -369,30 +519,6 @@ msgstr "Checked"
 
 msgid "Kalan krediyi görmek için Yenile'ye basın. (Anthropic bakiye API'si sunmuyor; console.anthropic.com › Billing.)"
 msgstr "Press Refresh to see remaining credit. (Anthropic has no balance API; see console.anthropic.com › Billing.)"
-
-msgid "Ortak sohbetin kullanabildiği araçlar. Değişiklik yapan araçlar her seferinde kullanıcı onayı ister; kullanıcı yalnız yetkisi olan araçları görür."
-msgstr "Tools available to the shared chat. Tools that make changes ask for the user's approval every time; users only see tools they have permission for."
-
-msgid "Tür"
-msgstr "Type"
-
-msgid "Yetki"
-msgstr "Capability"
-
-msgid "30 gün"
-msgstr "30 days"
-
-msgid "Ort. süre"
-msgstr "Avg. time"
-
-msgid "değiştirir · onaylı"
-msgstr "writes · needs approval"
-
-msgid "Kayıtlı araç yok."
-msgstr "No tools registered."
-
-msgid "Eklentiler araç eklemek için flx_mcp_tools (MCP + sohbet) ya da flxai_tools (yalnız sohbet) filtresini kullanır (API.md)."
-msgstr "Plugins add tools with the flx_mcp_tools filter (MCP + chat) or flxai_tools (chat only) (API.md)."
 
 msgid "Flux AI ayarları"
 msgstr "Flux AI settings"
@@ -468,9 +594,6 @@ msgstr "Cache and thinking"
 
 msgid "Claude prompt önbelleği"
 msgstr "Claude prompt cache"
-
-msgid "Kapalı"
-msgstr "Off"
 
 msgid "Açık, 5 dakika"
 msgstr "On, 5 minutes"
@@ -841,6 +964,9 @@ msgstr "This user can't edit content."
 msgid "Bilinmeyen araç: %s"
 msgstr "Unknown tool: %s"
 
+msgid "Bu araç kapalı (Flux AI & MCP › Araçlar): %s"
+msgstr "This tool is turned off (Flux AI & MCP › Tools): %s"
+
 msgid "Bu anahtar bu aracı kullanamaz: %s"
 msgstr "This key can't use this tool: %s"
 
@@ -849,9 +975,6 @@ msgstr "You don't have permission for this."
 
 msgid "Yetkisiz."
 msgstr "Unauthorized."
-
-msgid "Yapay zekâ"
-msgstr "AI"
 
 msgid "Desteklenmeyen model."
 msgstr "Unsupported model."
@@ -985,6 +1108,9 @@ msgstr "The AI returned an empty answer."
 msgid "Anthropic (Claude) API anahtarı girilmemiş (Flux AI & MCP › Ayarlar)."
 msgstr "No Anthropic (Claude) API key entered (Flux AI & MCP › Settings)."
 
+msgid "Bilinmiyor"
+msgstr "Unknown"
+
 msgid "OpenRouter anahtarı girilmemiş."
 msgstr "No OpenRouter key entered."
 
@@ -1078,6 +1204,12 @@ msgstr "Incoming · error"
 msgid "Gelen · cevap"
 msgstr "Incoming · reply"
 
+msgid "%s araç gösteriliyor"
+msgstr "Showing %s tools"
+
+msgid "%s seçili"
+msgstr "%s selected"
+
 msgid "Görsel hazırlanıyor…"
 msgstr "Preparing visual…"
 
@@ -1110,9 +1242,6 @@ msgstr "Resize"
 
 msgid "Sohbetlerde ara"
 msgstr "Search chats"
-
-msgid "Kapat"
-msgstr "Close"
 
 msgid "Bir şey sorun ya da bir iş verin…"
 msgstr "Ask something or give a task…"

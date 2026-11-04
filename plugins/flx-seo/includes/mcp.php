@@ -18,7 +18,8 @@ add_filter(
 	function ( $tools ) {
 		$core = flxseo_mcp_tools_core();
 		foreach ( $core as $name => $t ) {
-			$core[ $name ]['source'] = 'flx-seo';
+			$core[ $name ]['source']  = 'flx-seo';
+			$core[ $name ]['aliases'] = array( substr( $name, 7 ) ); // Flux SEO 1.5.x ve öncesindeki ad (site_info …).
 		}
 		return array_merge( (array) $tools, $core );
 	},
@@ -48,10 +49,10 @@ function flxseo_mcp_admin_url() {
 function flxseo_mcp_instructions( $lines ) {
 	$lines   = (array) $lines;
 	$lines[] = '- Content body can be Gutenberg block markup, HTML or Markdown (format field). Markdown/HTML is converted to blocks automatically.';
-	$lines[] = '- When designing a new page, first call list_patterns to see the theme sections; pass patterns to create_content to build the page from them, then update the texts. get_pattern returns a section\'s block markup for editing.';
-	$lines[] = '- SEO: title at most ~60 characters, meta description 120–160 characters. seo_audit lists gaps; fix them with set_seo. Give images meaningful alt text (set_image_alt).';
-	$lines[] = '- Before creating a page, pattern, theme or preset, read the FluxWP site build guide with site_build_guide and follow it. After changes run site_audit(refresh=true) and fix findings by priority (critical, high, medium, low). A finding with fix_id is fixed in one step with system_fix. Past reports and trend: site_audit_history.';
-	$lines[] = '- Site health: system_checks returns plugin, cron and setting checks (filter with status). A fix in a row\'s "fixes" field is applied with system_fix; system_fixes lists allowed fixes and current values. Every change is written to system_fix_log.';
+	$lines[] = '- When designing a new page, first call flxseo_list_patterns to see the theme sections; pass patterns to flxseo_create_content to build the page from them, then update the texts. flxseo_get_pattern returns a section\'s block markup for editing.';
+	$lines[] = '- SEO: title at most ~60 characters, meta description 120–160 characters. flxseo_seo_audit lists gaps; fix them with flxseo_set_seo. Give images meaningful alt text (flxseo_set_image_alt).';
+	$lines[] = '- Before creating a page, pattern, theme or preset, read the FluxWP site build guide with flxseo_site_build_guide and follow it. After changes run flxseo_site_audit(refresh=true) and fix findings by priority (critical, high, medium, low). A finding with fix_id is fixed in one step with flxseo_system_fix. Past reports and trend: flxseo_site_audit_history.';
+	$lines[] = '- Site health: flxseo_system_checks returns plugin, cron and setting checks (filter with status). A fix in a row\'s "fixes" field is applied with flxseo_system_fix; flxseo_system_fixes lists allowed fixes and current values. Every change is written to flxseo_system_fix_log.';
 	return $lines;
 }
 
@@ -380,7 +381,7 @@ function flxseo_mcp_nav_links() {
 }
 
 /**
- * create_content ve update_content için ortak alanlar.
+ * flxseo_create_content ve flxseo_update_content için ortak alanlar.
  */
 function flxseo_mcp_apply( $id, $a, $is_new ) {
 	$post = get_post( $id );
@@ -453,7 +454,7 @@ function flxseo_mcp_tools_core() {
 	);
 
 	return array(
-		'site_info'          => array(
+		'flxseo_site_info'          => array(
 			'title'       => 'Site bilgisi',
 			'description' => 'Site adı, adres, dil, içerik türleri, kategoriler, menü bağlantıları, SEO ayarları ve içerik sayıları.',
 			'readonly'    => true,
@@ -487,7 +488,7 @@ function flxseo_mcp_tools_core() {
 				);
 			},
 		),
-		'list_content'       => array(
+		'flxseo_list_content'       => array(
 			'title'       => 'İçerikleri listele',
 			'description' => 'Yazı, sayfa, proje, etkinlik vb. listeler. Arama, kategori ve durum filtresi; her satırda SEO öneri sayısı.',
 			'readonly'    => true,
@@ -521,7 +522,7 @@ function flxseo_mcp_tools_core() {
 				);
 			},
 		),
-		'get_content'        => array(
+		'flxseo_get_content'        => array(
 			'title'       => 'İçeriği getir',
 			'description' => 'Bir içeriğin başlık, blok gövdesi, özet, kategoriler, görsel, SEO alanları ve SEO önerileri.',
 			'readonly'    => true,
@@ -544,7 +545,7 @@ function flxseo_mcp_tools_core() {
 				);
 			},
 		),
-		'create_content'     => array(
+		'flxseo_create_content'     => array(
 			'title'       => 'İçerik oluştur',
 			'description' => 'Yeni yazı/sayfa/proje/etkinlik oluşturur (varsayılan taslak). patterns ile temanın hazır bölümleri sayfaya eklenir (sırayla, gövdeden önce).',
 			'cap'         => 'edit_posts',
@@ -552,7 +553,7 @@ function flxseo_mcp_tools_core() {
 				'type'       => 'object',
 				'properties' => array(
 					'post_type' => array( 'type' => 'string', 'enum' => $types, 'default' => 'post' ),
-					'patterns'  => array( 'type' => 'array', 'items' => array( 'type' => 'string' ), 'description' => 'list_patterns\'taki adlar, ör. "fluxwp/hero".' ),
+					'patterns'  => array( 'type' => 'array', 'items' => array( 'type' => 'string' ), 'description' => 'flxseo_list_patterns\'taki adlar, ör. "fluxwp/hero".' ),
 				) + $content,
 				'required'   => array( 'title' ),
 			),
@@ -591,7 +592,7 @@ function flxseo_mcp_tools_core() {
 				return array( 'created' => true, 'edit_url' => get_edit_post_link( $id, 'raw' ) ) + flxseo_mcp_post_summary( get_post( $id ) );
 			},
 		),
-		'update_content'     => array(
+		'flxseo_update_content'     => array(
 			'title'       => 'İçeriği güncelle',
 			'description' => 'Var olan içeriğin yalnızca verilen alanlarını değiştirir (başlık, gövde, özet, durum, kategoriler, görsel, SEO).',
 			'cap'         => 'edit_posts',
@@ -635,7 +636,7 @@ function flxseo_mcp_tools_core() {
 				return array( 'updated' => true ) + flxseo_mcp_post_summary( get_post( $p->ID ) );
 			},
 		),
-		'delete_content'     => array(
+		'flxseo_delete_content'     => array(
 			'title'       => 'İçeriği çöpe taşı',
 			'description' => 'İçeriği çöp kutusuna taşır (kalıcı silmez; WordPress\'ten geri alınabilir).',
 			'cap'         => 'edit_posts',
@@ -650,7 +651,7 @@ function flxseo_mcp_tools_core() {
 				return array( 'trashed' => true, 'id' => $p->ID );
 			},
 		),
-		'set_seo'            => array(
+		'flxseo_set_seo'            => array(
 			'title'       => 'SEO alanlarını ayarla',
 			'description' => 'Bir içeriğin SEO başlığı, meta açıklaması, odak kelimesi, noindex ve paylaşım görseli.',
 			'cap'         => 'edit_posts',
@@ -665,7 +666,7 @@ function flxseo_mcp_tools_core() {
 				return array( 'id' => $p->ID, 'seo' => flxseo_mcp_seo_fields( $p->ID ), 'remaining_issues' => flxseo_audit_post( $p ) );
 			},
 		),
-		'seo_audit'          => array(
+		'flxseo_seo_audit'          => array(
 			'title'       => 'SEO kontrolü',
 			'description' => 'id verilirse o içeriğin SEO önerileri; verilmezse yayındaki içeriklerin eksik listesi (en çok sorunlu önce) ve özet.',
 			'readonly'    => true,
@@ -687,9 +688,9 @@ function flxseo_mcp_tools_core() {
 				return $r;
 			},
 		),
-		'list_patterns'      => array(
+		'flxseo_list_patterns'      => array(
 			'title'       => 'Tema bölümleri (pattern)',
-			'description' => 'Temanın hazır tasarım bölümleri: hero, istatistik, katkı kartları, bağış, iletişim vb. Sayfa kurarken create_content.patterns ile kullanın.',
+			'description' => 'Temanın hazır tasarım bölümleri: hero, istatistik, katkı kartları, bağış, iletişim vb. Sayfa kurarken flxseo_create_content.patterns ile kullanın.',
 			'readonly'    => true,
 			'schema'      => array( 'type' => 'object', 'properties' => new stdClass() ),
 			'run'         => function () {
@@ -705,7 +706,7 @@ function flxseo_mcp_tools_core() {
 				return array( 'patterns' => $out );
 			},
 		),
-		'get_pattern'        => array(
+		'flxseo_get_pattern'        => array(
 			'title'       => 'Bölüm kodunu getir',
 			'description' => 'Bir tema bölümünün blok işaretlemesi. Metinleri değiştirip content olarak kullanabilirsiniz.',
 			'readonly'    => true,
@@ -722,7 +723,7 @@ function flxseo_mcp_tools_core() {
 				return array( 'name' => $p['name'], 'title' => $p['title'], 'content' => $p['content'] );
 			},
 		),
-		'upload_media'       => array(
+		'flxseo_upload_media'       => array(
 			'title'       => 'Görsel yükle',
 			'description' => 'URL\'den (veya base64) medya kütüphanesine dosya yükler; alt metin verin.',
 			'cap'         => 'upload_files',
@@ -745,7 +746,7 @@ function flxseo_mcp_tools_core() {
 				return array( 'id' => $id, 'url' => wp_get_attachment_url( $id ), 'alt' => get_post_meta( $id, '_wp_attachment_image_alt', true ) );
 			},
 		),
-		'list_media'         => array(
+		'flxseo_list_media'         => array(
 			'title'       => 'Medyayı listele',
 			'description' => 'Medya kütüphanesi; missing_alt=true ile alt metni olmayan görseller.',
 			'readonly'    => true,
@@ -790,7 +791,7 @@ function flxseo_mcp_tools_core() {
 				);
 			},
 		),
-		'set_image_alt'      => array(
+		'flxseo_set_image_alt'      => array(
 			'title'       => 'Görsel alt metni',
 			'description' => 'Medya kütüphanesindeki görselin alt metnini (ve isteğe bağlı başlığını) ayarlar.',
 			'cap'         => 'upload_files',
@@ -815,7 +816,7 @@ function flxseo_mcp_tools_core() {
 				return array( 'id' => $p->ID, 'alt' => $a['alt'] );
 			},
 		),
-		'list_terms'         => array(
+		'flxseo_list_terms'         => array(
 			'title'       => 'Kategori ve etiketler',
 			'description' => 'Kategori/etiket listesi.',
 			'readonly'    => true,
@@ -844,7 +845,7 @@ function flxseo_mcp_tools_core() {
 				);
 			},
 		),
-		'update_term'        => array(
+		'flxseo_update_term'        => array(
 			'title'       => 'Kategori oluştur/güncelle',
 			'description' => 'Kategori veya etiket oluşturur ya da adını, açıklamasını ve SEO alanlarını günceller.',
 			'cap'         => 'manage_categories',
@@ -889,7 +890,7 @@ function flxseo_mcp_tools_core() {
 				return array( 'id' => $r['term_id'], 'url' => get_term_link( (int) $r['term_id'], $tax ) );
 			},
 		),
-		'update_site_seo'    => array(
+		'flxseo_update_site_seo'    => array(
 			'title'       => 'Site SEO ayarları',
 			'description' => 'Google\'daki site adı, ana sayfa başlığı/açıklaması, sosyal profiller, iletişim bilgileri.',
 			'cap'         => 'manage_options',
@@ -934,7 +935,7 @@ function flxseo_mcp_prompts() {
 			),
 			'text'        => function ( $a ) {
 				$n = max( 1, (int) ( $a['limit'] ?? 10 ) );
-				return "seo_audit ile sitedeki SEO eksiklerini listele. En çok sorunu olan $n içerik için sırayla: get_content ile oku, içeriğe uygun Türkçe SEO başlığı (≤60 karakter) ve meta açıklama (120–160 karakter) yaz, odak kelime belirle ve set_seo ile kaydet; alt metni olmayan görseller için list_media(missing_alt) ve set_image_alt kullan. Gövde metnini değiştirmen gerekiyorsa önce bana öner. Sonunda yaptıklarını tablo olarak özetle.";
+				return "flxseo_seo_audit ile sitedeki SEO eksiklerini listele. En çok sorunu olan $n içerik için sırayla: flxseo_get_content ile oku, içeriğe uygun Türkçe SEO başlığı (≤60 karakter) ve meta açıklama (120–160 karakter) yaz, odak kelime belirle ve flxseo_set_seo ile kaydet; alt metni olmayan görseller için flxseo_list_media(missing_alt) ve flxseo_set_image_alt kullan. Gövde metnini değiştirmen gerekiyorsa önce bana öner. Sonunda yaptıklarını tablo olarak özetle.";
 			},
 		),
 		'haber_yaz'   => array(
@@ -944,7 +945,7 @@ function flxseo_mcp_prompts() {
 				array( 'name' => 'konu', 'description' => 'Haberin konusu ve ayrıntıları', 'required' => true ),
 			),
 			'text'        => function ( $a ) {
-				return 'Şu konuda derneğimiz için bir haber yaz: ' . ( $a['konu'] ?? '' ) . "\n\nTürkçe, samimi ama kurumsal bir dil kullan; 400–700 kelime, H2 ara başlıklar, sonda ilgili sayfalarımıza (bağış, projeler, iletişim) iç bağlantılar. site_info ile kategorileri gör ve uygun olanı seç. create_content ile taslak (draft) oluştur; SEO başlığı, meta açıklama ve odak kelimeyi de doldur. Bitince düzenleme bağlantısını ver.";
+				return 'Şu konuda derneğimiz için bir haber yaz: ' . ( $a['konu'] ?? '' ) . "\n\nTürkçe, samimi ama kurumsal bir dil kullan; 400–700 kelime, H2 ara başlıklar, sonda ilgili sayfalarımıza (bağış, projeler, iletişim) iç bağlantılar. flxseo_site_info ile kategorileri gör ve uygun olanı seç. flxseo_create_content ile taslak (draft) oluştur; SEO başlığı, meta açıklama ve odak kelimeyi de doldur. Bitince düzenleme bağlantısını ver.";
 			},
 		),
 		'site_audit_fix' => array(
@@ -955,7 +956,7 @@ function flxseo_mcp_prompts() {
 			),
 			'text'        => function ( $a ) {
 				$ps = in_array( $a['pagespeed'] ?? '', array( 'mobile', 'desktop' ), true ) ? $a['pagespeed'] : 'none';
-				return "Önce site_build_guide(topic=checklist) oku. Sonra site_audit(refresh=true, pagespeed=$ps) çalıştır. Bulguları öncelik sırasıyla ele al: owner=flx-seo ve fix_id olanları bana söyleyip system_fix ile uygula; owner=content olanları (alt metin, kopya sayfa, meta açıklama) MCP içerik araçlarıyla düzelt; owner=theme/server olanlar için hangi dosyada neyin değişeceğini kısa bir liste olarak öner. Sonunda site_audit'i yeniden çalıştırıp önce/sonra sayılarını tablo yap.";
+				return "Önce flxseo_site_build_guide(topic=checklist) oku. Sonra flxseo_site_audit(refresh=true, pagespeed=$ps) çalıştır. Bulguları öncelik sırasıyla ele al: owner=flx-seo ve fix_id olanları bana söyleyip flxseo_system_fix ile uygula; owner=content olanları (alt metin, kopya sayfa, meta açıklama) MCP içerik araçlarıyla düzelt; owner=theme/server olanlar için hangi dosyada neyin değişeceğini kısa bir liste olarak öner. Sonunda flxseo_site_audit'i yeniden çalıştırıp önce/sonra sayılarını tablo yap.";
 			},
 		),
 		'sayfa_kur'   => array(
@@ -965,7 +966,7 @@ function flxseo_mcp_prompts() {
 				array( 'name' => 'sayfa', 'description' => 'Sayfanın amacı ve içeriği', 'required' => true ),
 			),
 			'text'        => function ( $a ) {
-				return 'Şu sayfayı oluştur: ' . ( $a['sayfa'] ?? '' ) . "\n\nlist_patterns ile temanın bölümlerine bak, uygun olanları get_pattern ile al, metinlerini bu sayfaya göre Türkçe yeniden yaz (blok yapısını ve sınıfları bozmadan) ve create_content(post_type=page, template=page-full, status=draft) ile kaydet. SEO alanlarını doldur ve önizleme bağlantısını ver.";
+				return 'Şu sayfayı oluştur: ' . ( $a['sayfa'] ?? '' ) . "\n\nlist_patterns ile temanın bölümlerine bak, uygun olanları flxseo_get_pattern ile al, metinlerini bu sayfaya göre Türkçe yeniden yaz (blok yapısını ve sınıfları bozmadan) ve flxseo_create_content(post_type=page, template=page-full, status=draft) ile kaydet. SEO alanlarını doldur ve önizleme bağlantısını ver.";
 			},
 		),
 	);

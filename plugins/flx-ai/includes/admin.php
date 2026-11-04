@@ -319,6 +319,10 @@ function flxai_page_log() {
  * ------------------------------------------------------------------------- */
 
 function flxai_page_systems() {
+	if ( ! empty( $_GET['system'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		flxai_page_system_settings( sanitize_key( wp_unslash( $_GET['system'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		return;
+	}
 	$saved = false;
 	if ( isset( $_POST['flxai_systems_nonce'] ) && wp_verify_nonce( sanitize_key( $_POST['flxai_systems_nonce'] ), 'flxai_systems' ) && flxai_can_manage() ) {
 		$all = array_map( 'sanitize_key', (array) wp_unslash( $_POST['sys'] ?? array() ) ); // phpcs:ignore
@@ -348,6 +352,9 @@ function flxai_page_systems() {
 			$state = '<span class="flxai-pill is-ok">' . esc_html__( 'çalışıyor', 'flx-ai' ) . '</span>';
 		}
 		$links = '<a href="' . esc_url( admin_url( 'admin.php?page=flx-ai-log&days=30&source=' . rawurlencode( $r['source'] ) ) ) . '">' . esc_html__( 'Kayıtlar', 'flx-ai' ) . '</a>';
+		if ( flxai_system_has_settings( $r['source'] ) ) {
+			$links .= ' · <a href="' . esc_url( admin_url( 'admin.php?page=flx-ai-systems&system=' . rawurlencode( $r['source'] ) ) ) . '">' . esc_html__( 'AI ayarları', 'flx-ai' ) . '</a>';
+		}
 		if ( '' !== $r['page'] && $r['active'] ) {
 			$links .= ' · <a href="' . esc_url( admin_url( $r['page'] ) ) . '">' . esc_html__( 'Ayarları', 'flx-ai' ) . '</a>';
 		}
@@ -446,55 +453,6 @@ function flxai_page_billing() {
 		echo '<p class="flxai-empty">' . esc_html__( 'Kalan krediyi görmek için Yenile\'ye basın. (Anthropic bakiye API\'si sunmuyor; console.anthropic.com › Billing.)', 'flx-ai' ) . '</p>';
 	}
 	echo '</div></section></div>';
-}
-
-/* ---------------------------------------------------------------------------
- * Araçlar
- * ------------------------------------------------------------------------- */
-
-function flxai_page_tools() {
-	if ( isset( $_POST['flxai_tools_nonce'] ) && wp_verify_nonce( sanitize_key( $_POST['flxai_tools_nonce'] ), 'flxai_tools' ) ) {
-		$on  = array_map( 'sanitize_key', (array) wp_unslash( $_POST['on'] ?? array() ) );
-		$off = array();
-		foreach ( array_keys( flxai_tools_all() ) as $name ) {
-			if ( ! in_array( sanitize_key( $name ), $on, true ) ) {
-				$off[] = $name;
-			}
-		}
-		flxai_update_settings( array( 'tools_off' => $off ) );
-		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Kaydedildi.', 'flx-ai' ) . '</p></div>';
-	}
-	flxai_page_head( __( 'Araçlar', 'flx-ai' ), __( 'Ortak sohbetin kullanabildiği araçlar. Değişiklik yapan araçlar her seferinde kullanıcı onayı ister; kullanıcı yalnız yetkisi olan araçları görür.', 'flx-ai' ) );
-	$off   = (array) flxai_setting( 'tools_off', array() );
-	$tools = flxai_tools_all();
-	$stats = flxai_report( 30 )['by_tool'];
-	$avg   = array();
-	foreach ( $stats as $s ) {
-		$avg[ $s['k'] ] = $s;
-	}
-	echo '<form method="post" class="flxai-card">';
-	wp_nonce_field( 'flxai_tools', 'flxai_tools_nonce' );
-	echo '<div class="flxai-tscroll"><table class="flxai-table flxai-tools"><thead><tr><th>' . esc_html__( 'Açık', 'flx-ai' ) . '</th><th>' . esc_html__( 'Araç', 'flx-ai' ) . '</th><th>' . esc_html__( 'Kaynak', 'flx-ai' ) . '</th><th>' . esc_html__( 'Tür', 'flx-ai' ) . '</th><th>' . esc_html__( 'Yetki', 'flx-ai' ) . '</th><th class="num">' . esc_html__( '30 gün', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Ort. süre', 'flx-ai' ) . '</th></tr></thead><tbody>';
-	foreach ( $tools as $name => $t ) {
-		$s = $avg[ $name ] ?? null;
-		printf(
-			'<tr><td><input type="checkbox" name="on[]" value="%1$s"%2$s aria-label="%3$s"></td><td><strong>%3$s</strong><br><code>%1$s</code><div class="flxai-desc">%4$s</div></td><td>%5$s</td><td>%6$s</td><td><code>%7$s</code></td><td class="num">%8$s</td><td class="num">%9$s</td></tr>',
-			esc_attr( $name ),
-			checked( ! in_array( $name, $off, true ), true, false ),
-			esc_html( $t['title'] ),
-			esc_html( wp_trim_words( $t['description'], 30 ) ),
-			esc_html( flxai_source_label( $t['source'] ) ),
-			flxai_tool_needs_approval( $t ) ? '<span class="flxai-pill is-warn">' . esc_html__( 'değiştirir · onaylı', 'flx-ai' ) . '</span>' : '<span class="flxai-pill">' . esc_html__( 'okur', 'flx-ai' ) . '</span>',
-			esc_html( $t['cap'] ),
-			esc_html( $s ? number_format_i18n( (int) $s['n'] ) : '—' ),
-			esc_html( $s ? flxai_ms( (int) $s['avg_ms'] ) : '—' )
-		);
-	}
-	if ( ! $tools ) {
-		echo '<tr><td colspan="7" class="flxai-empty">' . esc_html__( 'Kayıtlı araç yok.', 'flx-ai' ) . '</td></tr>';
-	}
-	echo '</tbody></table></div><p><button class="button button-primary">' . esc_html__( 'Kaydet', 'flx-ai' ) . '</button></p></form>';
-	echo '<p class="flxai-note">' . esc_html__( 'Eklentiler araç eklemek için flx_mcp_tools (MCP + sohbet) ya da flxai_tools (yalnız sohbet) filtresini kullanır (API.md).', 'flx-ai' ) . '</p></div>';
 }
 
 /* ---------------------------------------------------------------------------

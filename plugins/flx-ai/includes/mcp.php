@@ -84,7 +84,7 @@ function flxai_mcp_scope( $set = false, $tools = null ) {
 
 function flxai_mcp_allowed( $name ) {
 	$scope = flxai_mcp_scope();
-	return null === $scope || in_array( $name, $scope, true );
+	return null === $scope || in_array( flxai_tool_resolve( $name ), array_map( 'flxai_tool_resolve', $scope ), true );
 }
 
 function flxai_mcp_request_key( WP_REST_Request $req ) {
@@ -107,8 +107,9 @@ function flxai_mcp_request_key( WP_REST_Request $req ) {
  * ------------------------------------------------------------------------- */
 
 /**
- * Tüm MCP araçları. Biçim: 'ad' => array( title, description, schema, run( $args ), readonly?, cap?, log?, source? ).
- * `flx_mcp_tools` (yeni ad) ve `flxseo_mcp_tools` (eski ad, geriye uyum) filtreleri sırayla uygulanır.
+ * Tüm MCP araçları (yetki ve kapalı listesi süzülmeden). Biçim: 'ad' => array( title, description, schema, run( $args ),
+ * readonly?, cap?, log?, source?, aliases? ). Kaynaklar: Flux AI SDK (flx_ai_tool), `flx_mcp_tools` ve eski
+ * `flxseo_mcp_tools` filtreleri. Aynı adı ikinci bir eklenti kaydederse çakışan tanım ayrılır (registry.php).
  * 'log' => false olan aracın yalnız hatalı çağrıları Son işlemler'e yazılır (ör. TV panelinin dakikalık yoklaması).
  */
 function flxai_mcp_tools() {
@@ -116,20 +117,7 @@ function flxai_mcp_tools() {
 		$tools = (array) flxseo_mcp_tools();
 		return (array) apply_filters( 'flx_mcp_tools', $tools );
 	}
-	$tools = (array) apply_filters( 'flx_mcp_tools', array() );
-	$tools = (array) apply_filters( 'flxseo_mcp_tools', $tools );
-	foreach ( $tools as $name => $t ) {
-		if ( ! is_array( $t ) || empty( $t['run'] ) || ! is_callable( $t['run'] ) ) {
-			unset( $tools[ $name ] );
-			continue;
-		}
-		$tools[ $name ] += array(
-			'title'       => $name,
-			'description' => '',
-			'schema'      => array( 'type' => 'object', 'properties' => new stdClass() ),
-		);
-	}
-	return $tools;
+	return flxai_mcp_registry()['tools'];
 }
 
 /**
@@ -303,7 +291,7 @@ function flxai_mcp_dispatch( $m ) {
 		case 'tools/list':
 			$tools = array();
 			foreach ( flxai_mcp_tools() as $name => $t ) {
-				if ( ! flxai_mcp_allowed( $name ) || ( ! empty( $t['cap'] ) && ! current_user_can( $t['cap'] ) ) ) {
+				if ( ! flxai_mcp_allowed( $name ) || flxai_tool_is_off( $name ) || ( ! empty( $t['cap'] ) && ! current_user_can( $t['cap'] ) ) ) {
 					continue;
 				}
 				$tools[] = array(
@@ -377,6 +365,7 @@ function flxai_mcp_call( $name, $args ) {
 	if ( flxai_mcp_legacy() && function_exists( 'flxseo_mcp_call' ) ) {
 		return flxseo_mcp_call( $name, $args );
 	}
+	$name  = flxai_tool_resolve( $name ); // Eski adla gelen çağrı (ör. site_info → flxseo_site_info).
 	$tools = flxai_mcp_tools();
 	$ok    = false;
 	$t     = null;
@@ -384,6 +373,10 @@ function flxai_mcp_call( $name, $args ) {
 		if ( ! isset( $tools[ $name ] ) ) {
 			/* translators: %s: tool name */
 			throw new Exception( sprintf( __( 'Bilinmeyen araç: %s', 'flx-ai' ), $name ) );
+		}
+		if ( flxai_tool_is_off( $name ) ) {
+			/* translators: %s: tool name */
+			throw new Exception( sprintf( __( 'Bu araç kapalı (Flux AI & MCP › Araçlar): %s', 'flx-ai' ), $name ) );
 		}
 		if ( ! flxai_mcp_allowed( $name ) ) {
 			/* translators: %s: tool name */
@@ -438,30 +431,8 @@ function flxai_mcp_tool_source( array $t ) {
 	if ( ! empty( $t['source'] ) ) {
 		return (string) $t['source'];
 	}
-	try {
-		$run = $t['run'];
-		if ( is_array( $run ) ) {
-			$ref = new ReflectionMethod( $run[0], $run[1] );
-		} elseif ( is_string( $run ) && false !== strpos( $run, '::' ) ) {
-			$ref = new ReflectionMethod( $run );
-		} else {
-			$ref = new ReflectionFunction( $run );
-		}
-		$file = wp_normalize_path( (string) $ref->getFileName() );
-		$base = trailingslashit( wp_normalize_path( WP_PLUGIN_DIR ) );
-		if ( 0 === strpos( $file, $base ) ) {
-			return strtok( substr( $file, strlen( $base ) ), '/' );
-		}
-		if ( 0 === strpos( $file, wp_normalize_path( get_theme_root() ) ) ) {
-			return 'theme';
-		}
-		if ( preg_match( '#/plugins/([^/]+)/#', $file, $m ) ) {
-			return $m[1]; // Sembolik bağlı eklenti klasörü.
-		}
-	} catch ( Throwable $e ) {
-		unset( $e );
-	}
-	return 'mcp';
+	$src = flxai_callable_source( $t['run'] ?? null );
+	return '' !== $src ? $src : 'mcp';
 }
 
 /* ---------------------------------------------------------------------------

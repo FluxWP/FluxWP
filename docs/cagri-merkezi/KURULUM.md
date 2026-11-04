@@ -108,7 +108,7 @@ LiteSpeed Cache kullanıyorsanız `/wp-json/flx-chat/` yolu önbelleğe alınmam
 ## 10. Yapay zekâ (Flux AI üzerinden)
 **Ayarlar › Yapay zekâ ve asistan**
 
-**1.30.0'dan itibaren Flux AI zorunlu.** Çağrı Merkezi'nin kendi OpenRouter/Anthropic bağlantısı kaldırıldı; öneri, asistan, dekont okuma, sesli mesaj, özet, test sohbeti ve benchmark'ın tüm istekleri Flux AI eklentisinden geçer. Flux AI kurulu değilse bu özellikler kapalıdır (panelde uyarı çıkar), mesajlaşma ve diğer her şey çalışır.
+**1.30.0'dan itibaren Flux AI zorunlu.** Çağrı Merkezi'nin kendi OpenRouter/Anthropic bağlantısı kaldırıldı; öneri, asistan, dekont okuma, sesli mesaj, özet, test sohbeti ve benchmark'ın tüm istekleri Flux AI & MCP eklentisinden geçer. Flux AI kurulu değilse bu özellikler kapalıdır (panelde uyarı çıkar), mesajlaşma ve diğer her şey çalışır.
 
 1. Flux AI'yi kurun (Güncellemeler). Anahtarlar, Anthropic workspace ID, Claude prompt önbelleği, harcama sınırı (gün/hafta/ay) ve kullanım kayıtları **Flux AI & MCP › Ayarlar**'dadır (raporda kaynak "flx-chat").
    **Aktarım:** Çağrı Merkezi'nde eskiden girilmiş anahtarlar, workspace ID ve öneri modeli, Flux AI etkinken yönetici panele ilk girdiğinde Flux AI'ye kendiliğinden aktarılır (Flux AI'de o alan boşsa) ve Çağrı Merkezi'ndeki kopyası silinir. Flux AI'de aynı sağlayıcı için farklı bir anahtar zaten varsa Flux AI'deki kullanılır, panelde uyarı çıkar.
