@@ -200,7 +200,9 @@ function flxwk_search( $q, $args = array() ) {
 		}
 		if ( count( $tokens ) > 1 ) {
 			if ( false !== strpos( $title, $phrase ) ) {
-				$score += 20;
+				$score += 40;
+			} elseif ( count( array_filter( $tokens, fn( $t ) => false !== strpos( $title, $t ) || false !== strpos( $words['title'], ' ' . flxwk_stem( $t ) ) ) ) === count( $tokens ) ) {
+				$score += 30; // Tüm kelimeler başlıkta: o sayfa konunun kendisidir.
 			}
 			foreach ( $chunks as $c ) {
 				if ( false !== strpos( $c[1], $phrase ) ) {
