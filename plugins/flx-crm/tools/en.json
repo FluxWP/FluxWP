@@ -364,7 +364,7 @@
 "CRM'deki her şey (kişiler, alanlar, roller, etiketler, izinler, zaman tüneli, segmentler, ayarlar) Flux AI sohbetinden ve MCP bağlantısıyla (Claude, ChatGPT, Cursor…) okunup düzenlenebilir. Araçlar kullanıcının kendi CRM yetkisiyle çalışır.": "Everything in the CRM (contacts, fields, roles, tags, consents, timeline, segments, settings) can be read and edited from the Flux AI chat and over MCP (Claude, ChatGPT, Cursor…). Tools run with the user's own CRM permissions.",
 "bağlı": "connected",
 "Panel sohbetinde CRM araçları. Değişiklik yapan her araç onay kartında bekler.": "CRM tools in the admin chat. Every tool that changes something waits on an approval card.",
-"Flux SEO & MCP kurulu değil": "Flux SEO & MCP is not installed",
+"Flux AI & MCP kurulu değil": "Flux AI & MCP is not installed",
 "Silme, birleştirme, toplu işlem ve gönderim ilk çağrıda yalnız önizleme döner; onay anahtarıyla tekrar çağrılınca uygulanır.": "Delete, merge, bulk actions and sending return only a preview on the first call; they run when called again with the approval token.",
 "MCP anahtarları": "MCP keys",
 "Yapay zekâ ve MCP araçları açık": "AI and MCP tools on",

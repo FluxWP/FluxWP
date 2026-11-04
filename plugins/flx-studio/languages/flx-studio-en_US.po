@@ -68,8 +68,8 @@ msgstr "Menu"
 msgid "Seç"
 msgstr "Select"
 
-msgid "Görsel ve video üretimi için Flux AI › Ayarlar › Görsel ve video bölümünden en az bir anahtar (fal.ai, EvoLink…) girin."
-msgstr "To generate images and videos, enter at least one key (fal.ai, EvoLink…) in Flux AI › Settings › Images and video."
+msgid "Görsel ve video üretimi için Flux AI & MCP › Ayarlar › Görsel ve video bölümünden en az bir anahtar (fal.ai, EvoLink…) girin."
+msgstr "To generate images and videos, enter at least one key (fal.ai, EvoLink…) in Flux AI & MCP › Settings › Images and video."
 
 msgid "Flux AI (0.6.0+) kurulu değil. Üretim Flux AI üzerinden yapılır."
 msgstr "Flux AI (0.6.0+) is not installed. Generation runs through Flux AI."
@@ -341,8 +341,8 @@ msgstr "{n} models"
 msgid "anahtar yok"
 msgstr "no key"
 
-msgid "{p} anahtarı girilmemiş (Flux AI › Ayarlar › Görsel ve video)."
-msgstr "No {p} key (Flux AI › Settings › Images and video)."
+msgid "{p} anahtarı girilmemiş (Flux AI & MCP › Ayarlar › Görsel ve video)."
+msgstr "No {p} key (Flux AI & MCP › Settings › Images and video)."
 
 msgid "Bu referans zaten ekli"
 msgstr "This reference is already added"
@@ -596,8 +596,8 @@ msgstr "Max brainstorm ideas"
 msgid "Kişiler tüm Stüdyo kullanıcılarıyla paylaşılsın"
 msgstr "Share people with all Studio users"
 
-msgid "Anahtarlar, sağlayıcılar ve harcama sınırı Flux AI › Ayarlar’dadır."
-msgstr "Keys, providers and the spending limit are in Flux AI › Settings."
+msgid "Anahtarlar, sağlayıcılar ve harcama sınırı Flux AI & MCP › Ayarlar’dadır."
+msgstr "Keys, providers and the spending limit are in Flux AI & MCP › Settings."
 
 msgid "Ayarlar kaydedildi"
 msgstr "Settings saved"
@@ -761,8 +761,8 @@ msgstr "Studio requires JavaScript."
 msgid "Flux AI (0.6.0+) kurulu değil ya da görsel üretimi kapalı."
 msgstr "Flux AI (0.6.0+) is not installed or image generation is off."
 
-msgid "Model bulunamadı. Flux AI › Ayarlar › Görsel ve video anahtarlarını kontrol edin."
-msgstr "Model not found. Check the keys in Flux AI › Settings › Images and video."
+msgid "Model bulunamadı. Flux AI & MCP › Ayarlar › Görsel ve video anahtarlarını kontrol edin."
+msgstr "Model not found. Check the keys in Flux AI & MCP › Settings › Images and video."
 
 msgid "Düzenlenecek görsel bulunamadı."
 msgstr "Image to edit not found."
@@ -791,8 +791,8 @@ msgstr "Cancelled."
 msgid "Üretim başarısız."
 msgstr "Generation failed."
 
-msgid "Flux AI metin modeli hazır değil (Flux AI › Ayarlar)."
-msgstr "Flux AI text model is not ready (Flux AI › Settings)."
+msgid "Flux AI metin modeli hazır değil (Flux AI & MCP › Ayarlar)."
+msgstr "Flux AI text model is not ready (Flux AI & MCP › Settings)."
 
 msgid "Önce fikri kısaca yazın."
 msgstr "Briefly describe the idea first."
@@ -830,8 +830,8 @@ msgstr "Flux AI 0.6.0 or newer is required (image/video generation runs through 
 msgid "Eklentiler"
 msgstr "Plugins"
 
-msgid "Hiçbir model için anahtar yok. Flux AI › Ayarlar › Görsel ve video bölümünden fal.ai, EvoLink ya da başka bir anahtar girin."
-msgstr "No model has a key. Enter a fal.ai, EvoLink or other key in Flux AI › Settings › Images and video."
+msgid "Hiçbir model için anahtar yok. Flux AI & MCP › Ayarlar › Görsel ve video bölümünden fal.ai, EvoLink ya da başka bir anahtar girin."
+msgstr "No model has a key. Enter a fal.ai, EvoLink or other key in Flux AI & MCP › Settings › Images and video."
 
 msgid "Flux AI"
 msgstr "Flux AI"

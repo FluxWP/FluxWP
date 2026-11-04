@@ -4,7 +4,7 @@
  *
  * Bütün CRM araçları `flxcrm_tools()` kaydında tanımlanır ve `flxcrm_run_tool()` ile çalışır. Buradan:
  *  - Flux AI sohbetine (`flxai_tools`): değişiklik yapan araçlar Flux AI onay kartında bekler.
- *  - Flux SEO & MCP sunucusuna (`flxseo_mcp_tools`): yıkıcı araçlar (silme, birleştirme, toplu işlem, gönderim)
+ *  - Flux AI & MCP sunucusuna (`flxseo_mcp_tools`): yıkıcı araçlar (silme, birleştirme, toplu işlem, gönderim)
  *    ilk çağrıda yalnız önizleme ve `confirm_token` döner; kullanıcı onaylayınca aynı çağrı token ile tekrarlanır.
  *  - İleride otomasyonlar (`channel` = automation) aynı kaydı, aynı yetki ve kayıt düzeniyle kullanır.
  *
@@ -1312,7 +1312,7 @@ function flxcrm_tool_schema_for( array $t, $with_token ) {
 	return $schema;
 }
 
-/* Flux SEO & MCP sunucusu. */
+/* Flux AI & MCP sunucusu. */
 add_filter(
 	'flxseo_mcp_tools',
 	function ( $tools ) {

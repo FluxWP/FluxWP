@@ -308,6 +308,6 @@ return array (
     'PageSpeed ölçümü olan rapor yok. API anahtarı girip otomatik denetimde PageSpeed\'i açın.' => 'No report with a PageSpeed run yet. Enter the API key and turn on PageSpeed in the automatic audit.',
     '%s PageSpeed puanlarının zaman içindeki değişimi' => '%s PageSpeed scores over time',
     'Site denetimi ve ajan uyumu' => 'Site audit and agent readiness',
-    'Flux SEO\'nun yapay zekâ (MCP) araçları ortak MCP sunucusu üzerinden çalışır. Sunucu, anahtarlar ve ayarlar Flux AI › MCP ekranındadır; Flux AI 0.7.0 ve üstünü kurup etkinleştirin.' => 'Flux SEO\'s AI (MCP) tools run through the shared MCP server. The server, keys and settings are in Flux AI › MCP; install and activate Flux AI 0.7.0 or later.',
+    'Flux SEO\'nun yapay zekâ (MCP) araçları ortak MCP sunucusu üzerinden çalışır. Sunucu, anahtarlar ve ayarlar Flux AI & MCP › MCP ekranındadır; Flux AI 0.7.0 ve üstünü kurup etkinleştirin.' => 'Flux SEO\'s AI (MCP) tools run through the shared MCP server. The server, keys and settings are in Flux AI & MCP › MCP; install and activate Flux AI 0.7.0 or later.',
   ),
 );

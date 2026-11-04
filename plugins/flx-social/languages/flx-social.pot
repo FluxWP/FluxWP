@@ -1245,7 +1245,7 @@ msgstr ""
 msgid "Sosyal Medya için JavaScript gerekli."
 msgstr ""
 
-msgid "Flux AI kurulu değil ya da anahtar girilmemiş."
+msgid "Flux AI & MCP kurulu değil ya da anahtar girilmemiş."
 msgstr ""
 
 msgid "AI cevabı okunamadı, tekrar deneyin."
@@ -1341,7 +1341,7 @@ msgstr ""
 msgid "Flux AI hazır: metin yazma, kısaltma, ağlara uyarlama."
 msgstr ""
 
-msgid "Flux AI kurulu değil ya da anahtar yok; AI düğmeleri gizlenir, paylaşım çalışır."
+msgid "Flux AI & MCP kurulu değil ya da anahtar yok; AI düğmeleri gizlenir, paylaşım çalışır."
 msgstr ""
 
 msgid "Hesap ya da gönderi bulunamadı."

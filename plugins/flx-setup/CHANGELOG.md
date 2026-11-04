@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.0.22
+- Metinler: MCP sunucusu artık Flux AI & MCP eklentisinde; "Flux SEO & MCP" ve "Flux AI ›" adresleri "Flux AI & MCP" oldu.
+
 ## 1.0.21
 - MCP araç adları önek aldı: `preset_*` → `flxk_preset_*`. Eski adlar alias olarak çalışır (Flux AI 0.8.0+).
 

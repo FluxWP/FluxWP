@@ -1,6 +1,6 @@
 <?php
 /**
- * Flux SEO & MCP sunucusuna araçlar (flxseo_mcp_tools). Yapay zekâ e-posta kayıtlarını görür, şablonları ve ayarları yönetir.
+ * Flux AI & MCP sunucusuna araçlar (flxseo_mcp_tools). Yapay zekâ e-posta kayıtlarını görür, şablonları ve ayarları yönetir.
  * Gizli değerler (SMTP şifresi, API anahtarları) okunmaz ve yazılmaz.
  *
  * @package flx-mail

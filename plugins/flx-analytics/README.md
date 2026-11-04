@@ -108,7 +108,7 @@ Requirements: WordPress 6.4+, PHP 7.4+. WooCommerce is optional (needed only for
 
 ## Use it with AI assistants (MCP)
 
-Flux Site Analytics adds 15 tools to the site's MCP server (provided by **Flux SEO & MCP**) and to the **Flux AI** chat. Every tool accepts a date range, a visitor type (`seg`) and a referral code (`rc`).
+Flux Site Analytics adds 15 tools to the site's MCP server (provided by **Flux AI & MCP**) and to the **Flux AI** chat. Every tool accepts a date range, a visitor type (`seg`) and a referral code (`rc`).
 
 | Tool | What it answers |
 |---|---|
@@ -118,7 +118,7 @@ Flux Site Analytics adds 15 tools to the site's MCP server (provided by **Flux S
 | `flxan_funnel`, `flxan_journeys` | Funnel steps by source, visitor paths and goal rate |
 | `flxan_refs`, `flxan_segments`, `flxan_ref_save` | Referral link report, role breakdown, create or rename a referral link |
 
-Connect an MCP client to `https://your-site/wp-json/flx-mcp/v1/mcp`. With Flux App installed, clients sign in with OAuth; otherwise create a key under **SEO & MCP › AI (MCP)**:
+Connect an MCP client to `https://your-site/wp-json/flx-mcp/v1/mcp`. With Flux App installed, clients sign in with OAuth; otherwise create a key under **Flux AI & MCP › MCP**:
 
 ```bash
 claude mcp add --transport http my-site https://example.org/wp-json/flx-mcp/v1/mcp --header "Authorization: Bearer YOUR_KEY"

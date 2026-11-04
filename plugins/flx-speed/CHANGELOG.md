@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.5.1
+- Metinler: MCP sunucusu artık Flux AI & MCP eklentisinde; "Flux SEO & MCP" ve "Flux AI ›" adresleri "Flux AI & MCP" oldu.
+
 ## 0.5.0
 - Yeni **Performans › PageSpeed** sekmesi: Lighthouse önerilerinin tema değiştirmeden yapılabilenleri, her biri aç/kapa.
   - Yakınlaştırma kilidini kaldır (viewport `user-scalable=no`, `maximum-scale`) ve emoji betiğini kaldır: güvenli, varsayılan açık.

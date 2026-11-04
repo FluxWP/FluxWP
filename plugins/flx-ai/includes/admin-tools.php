@@ -1,6 +1,6 @@
 <?php
 /**
- * Flux AI › Araçlar: arama, süzgeçler, eklenti bazlı sayılar, toplu aç/kapat, ad çakışmaları.
+ * Flux AI & MCP › Araçlar: arama, süzgeçler, eklenti bazlı sayılar, toplu aç/kapat, ad çakışmaları.
  *
  * @package FLX_AI
  */

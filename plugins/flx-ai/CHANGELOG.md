@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.8.1
+- Eklentinin görünen adı **Flux AI & MCP** (eklenti listesi, sol menü, sistem kontrolü, metinlerdeki "Flux AI & MCP › …" adresleri). Klasör/slug (flx-ai), fonksiyonlar ve ayarlar aynı.
+
 ## 0.8.0
 - **Flux AI SDK** (`includes/flx-ai-sdk`, kaynak `tools/ai-sdk`): eklentilerin (FluxWP ya da üçüncü taraf) AI özelliklerini kolayca bağladığı sürümlü kütüphane. `flx_ai_plugin()`, `flx_ai_tool()` (ada eklenti öneki kendiliğinden eklenir), `flx_ai_settings()` / `flx_ai_feature()`, `flx_ai_get()`, `flx_ai_chat()` / `flx_ai_complete()`. Birden çok kopya varsa yalnız en yeni sürüm yüklenir; Flux AI yoksa hata vermez.
 - **Bağlı sistemler › AI ayarları**: SDK ile tanımlanan ayarlar ve özellik anahtarları, eklentiye özel model, aç/kapa ve eklentinin araç sayısı tek ekranda.

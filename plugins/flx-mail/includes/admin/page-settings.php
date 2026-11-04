@@ -136,7 +136,7 @@ function flxi_page_settings() {
 		echo '<label class="flxi-field flxi-color"><span>' . esc_html( $l ) . '</span><input type="color" name="' . esc_attr( $n( $k ) ) . '" value="' . esc_attr( flxi_hex( $s[ $k ], flxi_theme_color( $k ) ) ) . '" data-brand></label>';
 	}
 	echo '</div>';
-	echo '<h3>' . esc_html__( 'Alt bilgi (kurum)', 'flx-mail' ) . '</h3><p class="flxi-muted">' . esc_html__( 'Boş alanlar SEO & MCP › Kurum ve sosyal ayarlarından gelir.', 'flx-mail' ) . '</p>';
+	echo '<h3>' . esc_html__( 'Alt bilgi (kurum)', 'flx-mail' ) . '</h3><p class="flxi-muted">' . esc_html__( 'Boş alanlar SEO › Kurum ve sosyal ayarlarından gelir.', 'flx-mail' ) . '</p>';
 	$text( 'org_name', __( 'Kurum adı', 'flx-mail' ), '', 'text', $b['org'] );
 	$text( 'tagline', __( 'Slogan', 'flx-mail' ) );
 	$text( 'address', __( 'Adres', 'flx-mail' ), '', 'text', $b['address'] );

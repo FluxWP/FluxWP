@@ -377,7 +377,7 @@ return array(
 		'Eski paket adlarıyla kaydedilmiş verileri yeni adlara taşır' => 'Moves data saved under old package names to the new ones',
 		'QR menüleri bu siteden yönet ve yayınla' => 'Manage and publish QR menus from this site',
 		'Personel, İdareci ve Yönetici rolleri ve erişimleri' => 'Staff, Manager and Director roles and access',
-		'Meta etiketler, schema, site haritası ve yapay zekâ (MCP) erişimi' => 'Meta tags, schema, sitemap and AI (MCP) access',
+		'Meta etiketler, schema, site haritası ve SEO denetimi' => 'Meta tags, schema, sitemap and SEO audit',
 		'Siteyi bir ön ayar şablonuyla tek adımda kur' => 'Set up the site in one step from a preset',
 		'Sorgular, PHP hataları, dış istekler ve cron tek yerde' => 'Queries, PHP errors, external requests and cron in one place',
 		'Personel hediyeleri, kira, tahakkuk ve tahsilat' => 'Staff gifts, rent, accruals and collections',

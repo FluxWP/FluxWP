@@ -22,11 +22,11 @@ msgstr "JavaScript is required for Tasks."
 msgid "Görev bildirimleri"
 msgstr "Task notifications"
 
-msgid "Yapay zekâ için Flux AI eklentisi gerekli. Yönetici Flux AI'yi kurup anahtar girmeli."
-msgstr "AI needs the Flux AI plugin. An administrator must install Flux AI and enter a key."
+msgid "Yapay zekâ için Flux AI & MCP eklentisi gerekli. Yönetici Flux AI'yi kurup anahtar girmeli."
+msgstr "AI needs the Flux AI & MCP plugin. An administrator must install Flux AI and enter a key."
 
-msgid "Yapay zekâ ayarlanmamış. Yönetici Flux AI › Ayarlar'dan anahtar ve model seçmeli."
-msgstr "AI is not set up. An administrator must enter a key and choose a model in Flux AI › Settings."
+msgid "Yapay zekâ ayarlanmamış. Yönetici Flux AI & MCP › Ayarlar'dan anahtar ve model seçmeli."
+msgstr "AI is not set up. An administrator must enter a key and choose a model in Flux AI & MCP › Settings."
 
 msgid "İşlem çok uzun sürdü; isteği daha küçük adımlara bölün."
 msgstr "The operation took too long; split the request into smaller steps."
@@ -1732,8 +1732,8 @@ msgstr "Single file limit (MB)"
 msgid "Sunucunun PHP sınırı daha düşükse o geçerli olur."
 msgstr "If the server's PHP limit is lower, that limit applies."
 
-msgid "Anahtarlar, harcama sınırı ve raporlar Flux AI eklentisinden gelir. Model alanını boş bırakırsanız Flux AI varsayılanı kullanılır."
-msgstr "Keys, spending limit and reports come from the Flux AI plugin. Leave the model empty to use the Flux AI default."
+msgid "Anahtarlar, harcama sınırı ve raporlar Flux AI & MCP eklentisinden gelir. Model alanını boş bırakırsanız Flux AI varsayılanı kullanılır."
+msgstr "Keys, spending limit and reports come from the Flux AI & MCP plugin. Leave the model empty to use the Flux AI default."
 
 msgid "Flux AI ayarları"
 msgstr "Flux AI settings"
@@ -1741,8 +1741,8 @@ msgstr "Flux AI settings"
 msgid "Yapay zekâ kapalı: Flux AI'de anahtar ya da model eksik."
 msgstr "AI is off: a key or model is missing in Flux AI."
 
-msgid "Yapay zekâ kapalı: Flux AI eklentisi kurulu değil. Asistan ve hızlı işlemler Flux AI ile çalışır."
-msgstr "AI is off: the Flux AI plugin is not installed. The assistant and quick actions work through Flux AI."
+msgid "Yapay zekâ kapalı: Flux AI & MCP eklentisi kurulu değil. Asistan ve hızlı işlemler Flux AI ile çalışır."
+msgstr "AI is off: the Flux AI & MCP plugin is not installed. The assistant and quick actions work through Flux AI."
 
 msgid "Model (isteğe bağlı)"
 msgstr "Model (optional)"

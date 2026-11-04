@@ -110,7 +110,7 @@ Ayrıntılı kurulum notları: [KURULUM.md](../../docs/flx-analytics/KURULUM.md)
 
 ## Yapay zekâ asistanlarıyla kullanım (MCP)
 
-Flux Analytics, sitenin MCP sunucusuna (**Flux SEO & MCP** sağlar) ve **Flux AI** sohbetine 15 araç ekler. Her araç tarih aralığı, ziyaretçi türü (`seg`) ve referans kodu (`rc`) alır.
+Flux Analytics, sitenin MCP sunucusuna (**Flux AI & MCP** sağlar) ve **Flux AI** sohbetine 15 araç ekler. Her araç tarih aralığı, ziyaretçi türü (`seg`) ve referans kodu (`rc`) alır.
 
 | Araç | Neyi yanıtlar |
 |---|---|
@@ -120,7 +120,7 @@ Flux Analytics, sitenin MCP sunucusuna (**Flux SEO & MCP** sağlar) ve **Flux AI
 | `flxan_funnel`, `flxan_journeys` | Kaynağa göre huni adımları, ziyaretçi yolları ve hedefe ulaşma |
 | `flxan_refs`, `flxan_segments`, `flxan_ref_save` | Referans raporu, rollere göre dağılım, referans bağlantısı oluşturma/adlandırma |
 
-MCP istemcisine `https://siteniz/wp-json/flx-mcp/v1/mcp` adresini verin. Flux App kuruluysa istemci OAuth ile giriş yapar; değilse **SEO & MCP › Yapay zekâ (MCP)** altında anahtar oluşturun:
+MCP istemcisine `https://siteniz/wp-json/flx-mcp/v1/mcp` adresini verin. Flux App kuruluysa istemci OAuth ile giriş yapar; değilse **Flux AI & MCP › MCP** altında anahtar oluşturun:
 
 ```bash
 claude mcp add --transport http sitem https://example.org/wp-json/flx-mcp/v1/mcp --header "Authorization: Bearer ANAHTAR"

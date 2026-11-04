@@ -1041,8 +1041,8 @@ msgstr "connected"
 msgid "Panel sohbetinde CRM araçları. Değişiklik yapan her araç onay kartında bekler."
 msgstr "CRM tools in the admin chat. Every tool that changes something waits on an approval card."
 
-msgid "Flux SEO & MCP kurulu değil"
-msgstr "Flux SEO & MCP is not installed"
+msgid "Flux AI & MCP kurulu değil"
+msgstr "Flux AI & MCP is not installed"
 
 msgid "Silme, birleştirme, toplu işlem ve gönderim ilk çağrıda yalnız önizleme döner; onay anahtarıyla tekrar çağrılınca uygulanır."
 msgstr "Delete, merge, bulk actions and sending return only a preview on the first call; they run when called again with the approval token."

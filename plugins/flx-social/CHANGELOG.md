@@ -1,5 +1,8 @@
 # Değişiklik günlüğü
 
+## 0.1.7
+- Metinler: MCP sunucusu artık Flux AI & MCP eklentisinde; "Flux SEO & MCP" ve "Flux AI ›" adresleri "Flux AI & MCP" oldu.
+
 ## 0.1.6
 - Açık tema: uyarı, hata ve mavi metinler (ör. "Henüz hesap bağlı değil" bandı, yaklaşan gönderi saatleri) yeterli kontrastta. Uygulama başlığında Flux Social paket ikonu ve adı.
 

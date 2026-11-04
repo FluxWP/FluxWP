@@ -349,7 +349,7 @@ final class FLXK_Onboarding {
 		return array(
 			array( 'flx-mail', __( 'E-postayı bağlayın', 'flx-setup' ), __( 'SMTP olmadan bağış makbuzları ve bildirimler gitmez.', 'flx-setup' ), __( 'Flux Mail › Ayarlar', 'flx-setup' ), admin_url( 'admin.php?page=flxi-ayarlar' ) ),
 			array( 'flx-admin', __( 'Logonuzu yükleyin', 'flx-setup' ), __( 'Panelde ve e-postalarda kullanılır.', 'flx-setup' ), __( 'Ayarlar › Yönetim teması', 'flx-setup' ), admin_url( 'options-general.php?page=flx-admin' ) ),
-			array( 'flx-ai', __( 'AI anahtarı ekleyin', 'flx-setup' ), __( 'Asistanlar ve AI araçları için gerekli.', 'flx-setup' ), __( 'Flux AI › Ayarlar', 'flx-setup' ), admin_url( 'admin.php?page=flx-ai-settings' ) ),
+			array( 'flx-ai', __( 'AI anahtarı ekleyin', 'flx-setup' ), __( 'Asistanlar ve AI araçları için gerekli.', 'flx-setup' ), __( 'Flux AI & MCP › Ayarlar', 'flx-setup' ), admin_url( 'admin.php?page=flx-ai-settings' ) ),
 		);
 	}
 

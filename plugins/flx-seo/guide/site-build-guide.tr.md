@@ -168,7 +168,7 @@ Yapay zekâ ajanları (tarayıcı ajanları, arama asistanları) siteyi erişile
 - Desenler (`patterns/`): metinler `__()` / `esc_html__()` ile, TR varsayılan + EN çeviri; sabit Türkçe yok. Görseller `width/height` ile.
 - Tarih ve "… önce" metinleri `flx_date()` / `flx_time_ago()` ile.
 - Ayarlar wp-config yerine panelden; ön ayar `flx_settings_schema` alanlarıyla yazar (Flux SEO alanları: `flxseo.*`).
-- AI kullanan her kod ortak Flux AI eklentisi üzerinden.
+- AI kullanan her kod ortak Flux AI & MCP eklentisi üzerinden.
 - Yeni sayfa için önce mevcut desenleri kullan; yeni CSS yazarsan sadece o bloğun stil dosyasına.
 - Erişilebilir bileşen kütüphanesi: sekme, akordeon (`<details>`), modal (`<dialog>`), kaydırıcı (düğmeli, otomatik oynatmasız ya da duraklatılabilir).
 

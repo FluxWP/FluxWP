@@ -40,7 +40,7 @@ if ( function_exists( 'flxp_system_checks_url' ) ) { /* menü öğesini ekleme, 
 ```
 
 Satırlar: `flxp.table`, `flxp.record`, `flxp.errors_24h`, `flxp.slow_24h`, `flxp.http_24h`, `flxp.savequeries`, `flxp.mcp`, `flxp.autoload`, `flxp.cron`, `flxp.disk`, `flxp.load`, `flxp.opcache`, `flxp.transients`.
-Düzeltme (`flx_system_fixes`): `flxp_expired_transients` (Flux SEO & MCP `system_fix` ile yapay zekâ çalıştırabilir).
+Düzeltme (`flx_system_fixes`): `flxp_expired_transients` (Flux AI & MCP `system_fix` ile yapay zekâ çalıştırabilir).
 
 ## Canlı kutular
 Heartbeat: istekte `data.flxp_live = 1` → cevapta `flxp_live` (kutu başına `label, pct, text, sub`). Sunucu/Özet'te 15 sn, Başlangıç'ta 60 sn.

@@ -3,10 +3,10 @@
  * Flux AI SDK: the small, versioned API a plugin uses to plug its AI features into Flux AI & MCP.
  *
  *  - flx_ai_plugin()   describe the plugin once (label, tool prefix, screens).
- *  - flx_ai_tool()     add a tool: shown in Flux AI › Tools, offered to the shared chat and the MCP server.
+ *  - flx_ai_tool()     add a tool: shown in Flux AI & MCP › Tools, offered to the shared chat and the MCP server.
  *                      The name gets the plugin prefix automatically (summary → myp_summary).
  *  - flx_ai_settings() declare AI settings / feature switches; Flux AI draws and saves them
- *                      (Flux AI › Connected systems › Settings), the plugin reads them with flx_ai_get().
+ *                      (Flux AI & MCP › Connected systems › Settings), the plugin reads them with flx_ai_get().
  *  - flx_ai_chat() / flx_ai_complete() call the model through Flux AI (keys, budget, logs in one place).
  *
  * Everything degrades quietly: without Flux AI the registry is simply unused, flx_ai_available() is false,
@@ -28,7 +28,7 @@ function flx_ai_sdk_str( $key ) {
 	$tr     = 0 === strpos( (string) $locale, 'tr' );
 	$s      = array(
 		'missing'  => $tr ? 'Flux AI & MCP kurulu ya da etkin değil.' : 'Flux AI & MCP is not installed or not active.',
-		'disabled' => $tr ? 'Bu eklentinin yapay zekâ özellikleri kapalı (Flux AI › Bağlı sistemler).' : 'AI features of this plugin are turned off (Flux AI › Connected systems).',
+		'disabled' => $tr ? 'Bu eklentinin yapay zekâ özellikleri kapalı (Flux AI & MCP › Bağlı sistemler).' : 'AI features of this plugin are turned off (Flux AI & MCP › Connected systems).',
 	);
 	return $s[ $key ] ?? '';
 }
@@ -152,7 +152,7 @@ function flx_ai_tool( $slug, $name, array $def ) {
 }
 
 /**
- * Declares settings fields. Flux AI draws them under Flux AI › Connected systems › <plugin> and saves them.
+ * Declares settings fields. Flux AI draws them under Flux AI & MCP › Connected systems › <plugin> and saves them.
  *
  * @param string $slug   Plugin slug.
  * @param array  $fields key => array(

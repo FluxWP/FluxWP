@@ -235,7 +235,7 @@ function flxi_source_label( $slug ) {
 		'flx-wc-bagis'                    => 'Flux WooCommerce Bağış',
 		'flx-tasks'                       => 'Flux Tasks',
 		'flx-chat'               => 'Flux Chat',
-		'flx-seo'                         => 'Flux SEO & MCP',
+		'flx-seo'                         => 'Flux SEO',
 		'flx-mail'                    => 'Flux Mail',
 		'tema'                           => __( 'Tema', 'flx-mail' ),
 		'nextend-facebook-connect'       => 'Nextend Social Login',

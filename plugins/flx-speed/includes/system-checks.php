@@ -104,7 +104,7 @@ add_filter(
 			'status'  => isset( $tools['flxp_summary'] ) ? 'ok' : 'info',
 			'message' => isset( $tools['flxp_summary'] )
 				? __( 'MCP ve Flux AI sohbeti kayıtları okuyabilir.', 'flx-speed' )
-				: __( 'Flux SEO & MCP etkin değil ya da MCP kapalı; araçlar görünmüyor.', 'flx-speed' ),
+				: __( 'Flux AI & MCP etkin değil ya da MCP kapalı; araçlar görünmüyor.', 'flx-speed' ),
 		);
 		// Tema kendi cron satırlarını (theme.cron.*) veriyorsa aynı şeyi iki kez gösterme.
 		$own = array_filter(
@@ -226,7 +226,7 @@ function flxp_server_checks() {
 	return $out;
 }
 
-/** Yapay zekânın (Flux SEO & MCP system_fix) güvenle çalıştırabileceği temizlik. */
+/** Yapay zekânın (Flux AI & MCP system_fix) güvenle çalıştırabileceği temizlik. */
 add_filter(
 	'flx_system_fixes',
 	function ( $fixes ) {

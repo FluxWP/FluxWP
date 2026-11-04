@@ -1,6 +1,6 @@
 <?php
 /**
- * Yapay zekâ araçları (MCP: Flux SEO & MCP, sohbet: Flux AI; Flux AI MCP araçlarını kendiliğinden alır).
+ * Yapay zekâ araçları (MCP: Flux AI & MCP, sohbet: Flux AI; Flux AI MCP araçlarını kendiliğinden alır).
  *
  * - Kendi araçları: flxl_languages, flxl_translations, flxl_save_translation, flxl_set_language,
  *   flxl_untranslated, flxl_image_language, flxl_term_translation, flxl_site_texts.
@@ -290,7 +290,7 @@ function flxl_tools() {
 				$data = array_intersect_key( $a, array_flip( array( 'alt', 'caption', 'variant_id' ) ) );
 				if ( ! empty( $a['variant_url'] ) ) {
 					if ( ! function_exists( 'flxseo_mcp_sideload' ) ) {
-						throw new Exception( 'URL\'den görsel indirmek için Flux SEO & MCP gerekli; variant_id verin.' );
+						throw new Exception( 'URL\'den görsel indirmek için Flux SEO gerekli; variant_id verin.' );
 					}
 					$data['variant_id'] = (int) flxseo_mcp_sideload( (string) $a['variant_url'], 0, (string) ( $a['alt'] ?? '' ) );
 				}

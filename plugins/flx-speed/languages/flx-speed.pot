@@ -756,13 +756,13 @@ msgstr ""
 msgid "Yapay zekâ (MCP)"
 msgstr ""
 
-msgid "Kayıtlar Flux SEO & MCP sunucusunda ve Flux AI sohbetinde salt okunur araçlarla okunur: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url."
+msgid "Kayıtlar Flux AI & MCP sunucusunda ve Flux AI sohbetinde salt okunur araçlarla okunur: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url."
 msgstr ""
 
-msgid "Flux SEO & MCP etkin: araçlar kayıtlı."
+msgid "Flux AI & MCP etkin: araçlar kayıtlı."
 msgstr ""
 
-msgid "Flux SEO & MCP etkin değil: araçlar yalnız Flux AI sohbetinde."
+msgid "Flux AI & MCP etkin değil: araçlar yalnız Flux AI sohbetinde."
 msgstr ""
 
 msgid "Yönetim giriş adresi"
@@ -1104,7 +1104,7 @@ msgstr ""
 msgid "MCP ve Flux AI sohbeti kayıtları okuyabilir."
 msgstr ""
 
-msgid "Flux SEO & MCP etkin değil ya da MCP kapalı; araçlar görünmüyor."
+msgid "Flux AI & MCP etkin değil ya da MCP kapalı; araçlar görünmüyor."
 msgstr ""
 
 msgid "Her istekte %1$d KB (%2$d seçenek) yükleniyor."

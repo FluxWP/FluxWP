@@ -34,7 +34,7 @@ function flxai_known_systems() {
 	);
 }
 
-/** Bu sistem için yapay zekâ açık mı (Flux AI › Bağlı sistemler). */
+/** Bu sistem için yapay zekâ açık mı (Flux AI & MCP › Bağlı sistemler). */
 function flxai_source_enabled( $source ) {
 	return ! in_array( sanitize_key( (string) $source ), (array) flxai_setting( 'sources_off', array() ), true );
 }

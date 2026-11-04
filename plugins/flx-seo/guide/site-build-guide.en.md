@@ -168,7 +168,7 @@ AI agents (browser agents, search assistants) understand a site through the acce
 - Patterns (`patterns/`): strings through `__()` / `esc_html__()`, Turkish default + English translation; no hard-coded text. Images with `width/height`.
 - Dates and "… ago" texts with `flx_date()` / `flx_time_ago()`.
 - Settings live in the admin panel, not wp-config; presets write them through `flx_settings_schema` fields (Flux SEO fields: `flxseo.*`).
-- All AI code goes through the shared Flux AI plugin.
+- All AI code goes through the shared Flux AI & MCP plugin.
 - Reuse existing patterns for new pages; new CSS goes only into that block's stylesheet.
 - Accessible component library: tabs, accordion (`<details>`), modal (`<dialog>`), slider (with buttons, no autoplay or pausable).
 

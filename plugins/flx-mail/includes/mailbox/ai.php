@@ -84,7 +84,7 @@ function flxi_mailbox_thread_text( array $m ) {
  */
 function flxi_mailbox_ai_write( array $a ) {
 	if ( ! flxi_mailbox_ai_ready() ) {
-		return new WP_Error( 'flxi_ai', __( 'Flux AI kurulu değil ya da anahtarı girilmemiş (Flux AI › Ayarlar).', 'flx-mail' ) );
+		return new WP_Error( 'flxi_ai', __( 'Flux AI & MCP kurulu değil ya da anahtarı girilmemiş (Flux AI & MCP › Ayarlar).', 'flx-mail' ) );
 	}
 	$user = array();
 	$m    = ! empty( $a['mail_id'] ) ? flxi_mailbox_get( $a['mail_id'] ) : null;

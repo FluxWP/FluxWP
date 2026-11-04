@@ -68,7 +68,7 @@ Telefonda: sol üstteki menüden projeler, sağ alttaki yeşil düğmeden yeni g
 
 Yapay zekâ için **Flux AI** eklentisi zorunludur; anahtarlar, harcama sınırı ve raporlar orada. Flux AI yoksa asistan ve ✦ düğmeleri görünmez, Ayarlar'da uyarı çıkar.
 
-1. Flux AI'yi kurun, Flux AI › Ayarlar'dan anahtar girin. (0.4.0'dan önce Flux Tasks'e girilmiş OpenRouter anahtarı ve model, güncellemeden sonra ilk yönetici sayfasında Flux AI'ye otomatik aktarılır ve buradan silinir.)
+1. Flux AI'yi kurun, Flux AI & MCP › Ayarlar'dan anahtar girin. (0.4.0'dan önce Flux Tasks'e girilmiş OpenRouter anahtarı ve model, güncellemeden sonra ilk yönetici sayfasında Flux AI'ye otomatik aktarılır ve buradan silinir.)
 2. Görevler → Ayarlar → **Yapay zekâ**: **Model** isteğe bağlı (Flux AI'nin aranabilir listesi). Boşsa Flux AI varsayılanı kullanılır; seçim Flux AI'de "Eklentiye özel model" olarak saklanır.
 3. **Kurum notları**: asistanın her istekte bileceği kurallar (etiket kuralları, tarih biçimi vb.).
 
@@ -77,7 +77,7 @@ Kullanım:
 - Sol menü / üst çubukta ✦ **Yapay zekâ asistanı**: "Ayşe'ye cuma günü bitecek afiş görevi aç", "Bu listede geciken görevleri listele" gibi. Asistan kullanıcının kendi yetkisiyle çalışır, göremediği listeye dokunamaz. Belgeleri de okur ve düzenler; belge açıkken "bu sayfa" o sayfadır.
 - **Dokümanlarda**: üst çubuktaki ✦ **Yapay zekâ** düğmesi (Ctrl/⌘+J) ile serbest istekle yazdırın ya da sayfaya soru sorun; Devam et, Özetle, Yapılacakları çıkar, Taslak çıkar, Başlık öner. Metin seçince seçimin üstünde ✦ **Yapay zekâ** çıkar: iyileştir, yazımı düzelt, kısalt/uzat, sadeleştir, resmi/samimi, maddelere/tabloya çevir, İngilizce/Türkçe çevir, açıkla ya da kendi isteğiniz. Sonuç önce önizlenir; **Değiştir** / **Altına ekle** / **Sona ekle** / **Yeni sayfa olarak ekle**, yanlışsa bildirimdeki **Geri al**. Panel siz kapatana kadar açık kalır. **Yapılacakları çıkar** maddeleri düzenlenebilir liste olarak verir: düzeltin, silin, ekleyin, listeyi seçip **Görev olarak ekle**.
 - **Editör**: satır başında ya da boşluktan sonra "/" yazın (Notion gibi): başlık, liste, kontrol listesi, tablo, görsel, görev bağlantısı ve yapay zekâ komutları; /h1, /todo, /table gibi kısayollar. Metin seçince kalın, italik, altı çizili, üstü çizili, kod, bağlantı, başlık ve liste düğmeleri de çıkar.
-- **Ortak Flux AI sohbeti** (sağdaki baloncuk): Flux Tasks'in tüm araçları orada da var (adları "flxg_" ile başlar). Belgedeyken "bu sayfaya bir gündem ekle" ya da "ikinci paragrafı daha resmi yap" yazın; değiştiren araçlar önce onay kartı gösterir, onaylayınca açık sayfada değişiklik canlı görünür. Flux AI › Araçlar'dan tek tek kapatılabilir.
+- **Ortak Flux AI sohbeti** (sağdaki baloncuk): Flux Tasks'in tüm araçları orada da var (adları "flxg_" ile başlar). Belgedeyken "bu sayfaya bir gündem ekle" ya da "ikinci paragrafı daha resmi yap" yazın; değiştiren araçlar önce onay kartı gösterir, onaylayınca açık sayfada değişiklik canlı görünür. Flux AI & MCP › Araçlar'dan tek tek kapatılabilir.
 
 ## 6. MCP (Claude, ChatGPT, Cursor vb.)
 

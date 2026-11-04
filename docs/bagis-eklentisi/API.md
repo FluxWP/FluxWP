@@ -292,7 +292,7 @@ Filtreler `flxb_front_dark_mode` ve `flxf_front_dark_mode`: `'class'` (varsayıl
 
 ## Sistem düzeltmeleri (`flx_system_fixes`, 1.2.3)
 
-SEO & MCP'nin `system_fix` aracı için kayıtlı düzeltmeler (sözleşme: /mnt/project-files/seo-mcp/MCP-API.md). Hepsi girdiyi kendi doğrular; tür değişiklikleri `FLXB_Types::save()` üzerinden gider (form fiyat senkronu ve form çakışma kontrolü aynen çalışır).
+Flux SEO'nun `system_fix` aracı için kayıtlı düzeltmeler (sözleşme: /mnt/project-files/seo-mcp/MCP-API.md). Hepsi girdiyi kendi doğrular; tür değişiklikleri `FLXB_Types::save()` üzerinden gider (form fiyat senkronu ve form çakışma kontrolü aynen çalışır).
 
 | Kimlik | Değer | Çözdüğü satır |
 |---|---|---|

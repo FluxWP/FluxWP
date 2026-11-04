@@ -166,7 +166,7 @@ function flxai_render_widget( $code, array $args = array() ) {
 		return new WP_Error(
 			'flxai_render_unavailable',
 			'imagick' === $via
-				? __( 'Bu görsel HTML içeriyor; sunucuda yalnız SVG çevrilebiliyor. HTML için Flux AI › Ayarlar › Görseller\'e Gotenberg adresi girin.', 'flx-ai' )
+				? __( 'Bu görsel HTML içeriyor; sunucuda yalnız SVG çevrilebiliyor. HTML için Flux AI & MCP › Ayarlar › Görseller\'e Gotenberg adresi girin.', 'flx-ai' )
 				: __( 'Sunucuda görsel çevirici yok (Imagick SVG desteği ya da Gotenberg adresi gerekli).', 'flx-ai' )
 		);
 	}

@@ -217,7 +217,7 @@ function flxc_system_checks() {
 	/* --- Yapay zekâ --- */
 	$ai_label = 'Flux AI · ' . implode( ' + ', flxc_ai_provider_list() );
 	if ( ! flxc_ai_hub() ) {
-		$add( 'ai', $g_ai, __( 'Yapay zekâ bağlantısı', 'flx-chat' ), flxc_setting( 'bot_enabled' ) ? 'error' : 'warning', __( 'Flux AI eklentisi kurulu değil; yapay zekâ özellikleri (öneri, asistan, dekont okuma, sesli mesaj, özet) kapalı. Flux AI\'yi kurup anahtarı oraya girin.', 'flx-chat' ), 'ai' );
+		$add( 'ai', $g_ai, __( 'Yapay zekâ bağlantısı', 'flx-chat' ), flxc_setting( 'bot_enabled' ) ? 'error' : 'warning', __( 'Flux AI & MCP eklentisi kurulu değil; yapay zekâ özellikleri (öneri, asistan, dekont okuma, sesli mesaj, özet) kapalı. Flux AI\'yi kurup anahtarı oraya girin.', 'flx-chat' ), 'ai' );
 	} elseif ( ! flxc_ai_has_key() ) {
 		$add( 'ai', $g_ai, __( 'Yapay zekâ bağlantısı', 'flx-chat' ), 'info', __( 'Flux AI\'de anahtar girilmemiş; mesaj önerisi ve asistan kapalı.', 'flx-chat' ), 'ai' );
 	} elseif ( '' === flxc_ai_model() ) {

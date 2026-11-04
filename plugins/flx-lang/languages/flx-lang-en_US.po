@@ -216,7 +216,7 @@ msgid "Flux Lang"
 msgstr "Flux Language"
 
 msgid "Flux AI kurulu ya da hazır değil."
-msgstr "Flux AI is not installed or not ready."
+msgstr "Flux AI & MCP is not installed or not ready."
 
 msgid "AI boş cevap döndü."
 msgstr "AI returned an empty answer."

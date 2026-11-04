@@ -1039,7 +1039,7 @@ msgstr ""
 msgid "Panel sohbetinde CRM araçları. Değişiklik yapan her araç onay kartında bekler."
 msgstr ""
 
-msgid "Flux SEO & MCP kurulu değil"
+msgid "Flux AI & MCP kurulu değil"
 msgstr ""
 
 msgid "Silme, birleştirme, toplu işlem ve gönderim ilk çağrıda yalnız önizleme döner; onay anahtarıyla tekrar çağrılınca uygulanır."

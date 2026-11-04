@@ -30,7 +30,7 @@ function flxsm_ai_network_hint( $provider ) {
  */
 function flxsm_ai_write( $mode, array $args ) {
 	if ( ! flxsm_ai_ready() ) {
-		return new WP_Error( 'flxsm_ai', __( 'Flux AI kurulu değil ya da anahtar girilmemiş.', 'flx-social' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxsm_ai', __( 'Flux AI & MCP kurulu değil ya da anahtar girilmemiş.', 'flx-social' ), array( 'status' => 400 ) );
 	}
 	$org   = get_bloginfo( 'name' );
 	$lang  = ! empty( $args['lang'] ) ? (string) $args['lang'] : ( 0 === strpos( get_locale(), 'tr' ) ? 'Turkish' : 'English' );

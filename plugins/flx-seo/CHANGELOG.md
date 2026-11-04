@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.6.1
+- Metinler: MCP ekranı adresi "Flux AI & MCP › MCP".
+
 ## 1.6.0
 - MCP araç adları önek aldı: `site_info` → `flxseo_site_info`, `list_content` → `flxseo_list_content` … `order_summary` → `flxseo_order_summary` (24 araç). Eski adlar alias olarak çalışmaya devam eder (Flux AI 0.8.0+): bağlı asistanlar ve araçla sınırlı anahtarlar bozulmaz. Talimatlar, istemler ve site yapım rehberi yeni adları kullanır.
 

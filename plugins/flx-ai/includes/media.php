@@ -187,7 +187,7 @@ function flxai_media_route( $model, $choice = 'auto' ) {
 		}
 		if ( '' === flxai_media_key( $choice ) ) {
 			/* translators: %s: provider */
-			return new WP_Error( 'flxai_key', sprintf( __( '%s anahtarı girilmemiş (Flux AI › Ayarlar › Görsel ve video).', 'flx-ai' ), $labels[ $choice ] ?? $choice ) );
+			return new WP_Error( 'flxai_key', sprintf( __( '%s anahtarı girilmemiş (Flux AI & MCP › Ayarlar › Görsel ve video).', 'flx-ai' ), $labels[ $choice ] ?? $choice ) );
 		}
 		return $choice;
 	}
@@ -197,7 +197,7 @@ function flxai_media_route( $model, $choice = 'auto' ) {
 		}
 	}
 	/* translators: %s: providers */
-	return new WP_Error( 'flxai_key', sprintf( __( 'Bu model için şu anahtarlardan biri gerekli: %s (Flux AI › Ayarlar › Görsel ve video).', 'flx-ai' ), implode( ', ', array_map( fn( $p ) => $labels[ $p ] ?? $p, $routes ) ) ) );
+	return new WP_Error( 'flxai_key', sprintf( __( 'Bu model için şu anahtarlardan biri gerekli: %s (Flux AI & MCP › Ayarlar › Görsel ve video).', 'flx-ai' ), implode( ', ', array_map( fn( $p ) => $labels[ $p ] ?? $p, $routes ) ) ) );
 }
 
 /** Tahmini maliyet (USD). */
@@ -318,7 +318,7 @@ function flxai_media_submit( array $req ) {
 	$source = '' !== $source ? $source : 'unknown';
 	if ( ! flxai_source_enabled( $source ) ) {
 		/* translators: %s: plugin name */
-		return new WP_Error( 'flxai_source_off', sprintf( __( '%s için yapay zekâ kapalı (Flux AI › Bağlı sistemler).', 'flx-ai' ), flxai_source_label( $source ) ) );
+		return new WP_Error( 'flxai_source_off', sprintf( __( '%s için yapay zekâ kapalı (Flux AI & MCP › Bağlı sistemler).', 'flx-ai' ), flxai_source_label( $source ) ) );
 	}
 	$req = flxai_media_normalize( $req );
 	if ( is_wp_error( $req ) ) {

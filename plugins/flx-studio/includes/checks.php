@@ -54,7 +54,7 @@ function flxst_system_checks() {
 		$ready = array_keys( array_filter( (array) ( $cat['providers'] ?? array() ), fn( $p ) => ! empty( $p['ready'] ) ) );
 		$usable = array_filter( (array) ( $cat['models'] ?? array() ), fn( $m ) => ! empty( $m['providers'] ) );
 		if ( ! $usable ) {
-			$add( 'ai', __( 'Görsel ve video altyapısı', 'flx-studio' ), 'warning', __( 'Hiçbir model için anahtar yok. Flux AI › Ayarlar › Görsel ve video bölümünden fal.ai, EvoLink ya da başka bir anahtar girin.', 'flx-studio' ), $ai_url, __( 'Flux AI', 'flx-studio' ) );
+			$add( 'ai', __( 'Görsel ve video altyapısı', 'flx-studio' ), 'warning', __( 'Hiçbir model için anahtar yok. Flux AI & MCP › Ayarlar › Görsel ve video bölümünden fal.ai, EvoLink ya da başka bir anahtar girin.', 'flx-studio' ), $ai_url, __( 'Flux AI', 'flx-studio' ) );
 		} else {
 			/* translators: 1: model count, 2: providers */
 			$add( 'ai', __( 'Görsel ve video altyapısı', 'flx-studio' ), 'ok', sprintf( __( '%1$d model kullanılabilir (%2$s).', 'flx-studio' ), count( $usable ), implode( ', ', $ready ) ), $ai_url, __( 'Flux AI', 'flx-studio' ) );

@@ -47,7 +47,7 @@ if ( flx_ai_enabled( 'flx-x', 'auto_summary' ) ) {
 }
 ```
 
-Settings appear under **Flux AI › Connected systems › Flux X › AI settings** (`flx_ai_settings_url( 'flx-x' )`); values live in the option `flx_ai_plugin_settings`.
+Settings appear under **Flux AI & MCP › Connected systems › Flux X › AI settings** (`flx_ai_settings_url( 'flx-x' )`); values live in the option `flx_ai_plugin_settings`.
 
 | Function | What |
 |---|---|
@@ -60,4 +60,4 @@ Settings appear under **Flux AI › Connected systems › Flux X › AI settings
 | `flx_ai_chat( $slug, $messages, $opts )` / `flx_ai_complete( $slug, $prompt, $opts )` | model calls via `flxai_chat()` |
 | `flx_ai_settings_url( $slug )`, `flx_ai_host_version()`, `flx_ai_registry()` | helpers |
 
-Tool names must be unique. If two plugins register the same name, Flux AI keeps the first one on and the other off, and shows the conflict on Flux AI › Tools where the admin picks which one is used.
+Tool names must be unique. If two plugins register the same name, Flux AI keeps the first one on and the other off, and shows the conflict on Flux AI & MCP › Tools where the admin picks which one is used.

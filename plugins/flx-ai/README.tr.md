@@ -4,7 +4,7 @@
 
 <img src="docs/logo.svg" alt="Flux AI logosu" width="120">
 
-# Flux AI
+# Flux AI & MCP
 
 **Tüm FluxWP eklentileri için tek yapay zekâ merkezi: anahtarlar, modeller, maliyet, sınır ve ortak sohbet.**<br>
 Flux AI, FluxWP paketlerinin ortak yapay zekâ katmanıdır. OpenRouter ve Anthropic anahtarları, model kataloğu ve fiyatlar, prompt önbelleği, araç kaydı, ortak MCP sunucusu, kullanım kayıtları, faturalandırma ve harcama sınırları tek yerde durur; Flux Chat, Flux Mail, Flux Social, Flux Lang, Flux Studio ve diğerleri AI sağlayıcılarıyla kendisi konuşmak yerine bunu çağırır. Yetkili kullanıcılar panelde bu araçları kullanabilen akışlı bir AI sohbeti de alır.
@@ -83,7 +83,7 @@ Gereksinimler: WordPress 6.5+, PHP 7.4+. OpenRouter ya da Anthropic API anahtar�
 
 **İlk adımlar**
 
-1. Flux AI'yi etkinleştirip **Flux AI › Ayarlar**'ı açın.
+1. Flux AI'yi etkinleştirip **Flux AI & MCP › Ayarlar**'ı açın.
 2. OpenRouter anahtarını (ya da Anthropic anahtarını) girin, varsayılan modeli seçip **Test**'e basın.
 3. Günlük, haftalık ve aylık sınırları girin.
 4. **Bağlı sistemler**'de hangi eklentilerin Flux AI'yi kullandığını görün; isterseniz eklenti başına model seçin.

@@ -29,9 +29,9 @@
 - **Sitelinks** (sonuçların altındaki menü linkleri): Google bunları otomatik seçer, elle eklenemez. Eklentinin yaptığı: WebSite schema'da site adı, breadcrumb, temiz menü/sitemap. Site trafik ve yaş kazandıkça çıkar. Menüde net sayfa adları (Hakkımızda, Bağış Yap, Haberler, İletişim) tutmak yardımcı olur.
 
 ## MCP (yapay zekâ ile site yönetimi)
-Flux SEO 1.5.0'dan beri MCP sunucusu **Flux AI**'da (0.7.0+); Flux SEO araçlarını oraya kaydeder. Eski anahtarlar kendiliğinden taşınır, eski "Yapay zekâ (MCP)" sekmesi Flux AI › MCP'ye yönlenir.
+Flux SEO 1.5.0'dan beri MCP sunucusu **Flux AI**'da (0.7.0+); Flux SEO araçlarını oraya kaydeder. Eski anahtarlar kendiliğinden taşınır, eski "Yapay zekâ (MCP)" sekmesi Flux AI & MCP › MCP'ye yönlenir.
 
-1. **Flux AI › MCP** › "MCP sunucusu etkin" › Kaydet.
+1. **Flux AI & MCP › MCP** › "MCP sunucusu etkin" › Kaydet.
 2. Ad yazıp **Yeni anahtar oluştur**. Anahtar bir kez gösterilir; kopyalayın. Anahtar, oluşturan kullanıcının yetkileriyle çalışır.
 3. Bağlantı (sayfadaki hazır kodları kopyalayabilirsiniz):
    - **Claude Code**: `claude mcp add --transport http sitem https://example.org/wp-json/flx-mcp/v1/mcp --header "Authorization: Bearer ANAHTAR"`
@@ -47,4 +47,4 @@ Hazır komutlar: `seo_duzelt`, `haber_yaz`, `sayfa_kur`.
 - "Alt metni olmayan görsellere anlamlı alt metin yaz."
 - "Tema kalıplarıyla Kurumsal İş Birlikleri sayfası kur, taslak olarak bırak."
 
-Güvenlik: yeni içerikler varsayılan **taslak** açılır, silme yalnızca çöpe taşır, son işlemler Flux AI › MCP ekranında loglanır, anahtarlar hash'li saklanır ve tek tıkla iptal edilir.
+Güvenlik: yeni içerikler varsayılan **taslak** açılır, silme yalnızca çöpe taşır, son işlemler Flux AI & MCP › MCP ekranında loglanır, anahtarlar hash'li saklanır ve tek tıkla iptal edilir.

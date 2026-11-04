@@ -92,21 +92,21 @@ final class FLXCRM_Page_Settings {
 
 		/* Bağlantı durumu */
 		$ai_on  = function_exists( 'flxai_chat' );
-		$mcp_on = function_exists( 'flxseo_mcp_url' );
-		$mcp_ok = $mcp_on && function_exists( 'flxseo_opt' ) && flxseo_opt( 'mcp_enabled' );
+		$mcp_on = function_exists( 'flxai_mcp_url' );
+		$mcp_ok = $mcp_on && flxai_mcp_enabled();
 		echo '<ul class="flxcrm-ai__status">';
-		echo '<li><strong>Flux AI</strong> ' . ( $ai_on ? '<span class="flxcrm-badge is-ok">' . esc_html__( 'bağlı', 'flx-crm' ) . '</span>' : '<span class="flxcrm-badge">' . esc_html__( 'kurulu değil', 'flx-crm' ) . '</span>' ) . '<small class="flxcrm-muted">' . esc_html__( 'Panel sohbetinde CRM araçları. Değişiklik yapan her araç onay kartında bekler.', 'flx-crm' ) . '</small></li>';
+		echo '<li><strong>Flux AI & MCP</strong> ' . ( $ai_on ? '<span class="flxcrm-badge is-ok">' . esc_html__( 'bağlı', 'flx-crm' ) . '</span>' : '<span class="flxcrm-badge">' . esc_html__( 'kurulu değil', 'flx-crm' ) . '</span>' ) . '<small class="flxcrm-muted">' . esc_html__( 'Panel sohbetinde CRM araçları. Değişiklik yapan her araç onay kartında bekler.', 'flx-crm' ) . '</small></li>';
 		echo '<li><strong>MCP</strong> ';
 		if ( $mcp_ok ) {
-			echo '<span class="flxcrm-badge is-ok">' . esc_html__( 'açık', 'flx-crm' ) . '</span><code class="flxcrm-ai__url">' . esc_html( flxseo_mcp_url() ) . '</code>';
+			echo '<span class="flxcrm-badge is-ok">' . esc_html__( 'açık', 'flx-crm' ) . '</span><code class="flxcrm-ai__url">' . esc_html( flxai_mcp_url() ) . '</code>';
 		} elseif ( $mcp_on ) {
 			echo '<span class="flxcrm-badge is-warn">' . esc_html__( 'kapalı', 'flx-crm' ) . '</span>';
 		} else {
-			echo '<span class="flxcrm-badge">' . esc_html__( 'Flux SEO & MCP kurulu değil', 'flx-crm' ) . '</span>';
+			echo '<span class="flxcrm-badge">' . esc_html__( 'Flux AI & MCP kurulu değil', 'flx-crm' ) . '</span>';
 		}
 		echo '<small class="flxcrm-muted">' . esc_html__( 'Silme, birleştirme, toplu işlem ve gönderim ilk çağrıda yalnız önizleme döner; onay anahtarıyla tekrar çağrılınca uygulanır.', 'flx-crm' );
-		if ( $mcp_on && function_exists( 'flxseo_admin_url' ) && current_user_can( 'manage_options' ) ) {
-			echo ' <a href="' . esc_url( flxseo_admin_url( 'mcp' ) ) . '">' . esc_html__( 'MCP anahtarları', 'flx-crm' ) . '</a>';
+		if ( $mcp_on && current_user_can( 'manage_options' ) ) {
+			echo ' <a href="' . esc_url( flxai_mcp_admin_url() ) . '">' . esc_html__( 'MCP anahtarları', 'flx-crm' ) . '</a>';
 		}
 		echo '</small></li></ul>';
 

@@ -43,7 +43,7 @@ function flxst_generate( array $in, $user_id ) {
 	$model  = '' !== $model ? $model : (string) ( 'video' === $kind ? ( $s['video_model'] ? $s['video_model'] : ( $cat['default_video'] ?? '' ) ) : ( $s['image_model'] ? $s['image_model'] : ( $cat['default_image'] ?? '' ) ) );
 	$m      = $cat['models'][ $model ] ?? null;
 	if ( ! $m ) {
-		return new WP_Error( 'flxst_model', __( 'Model bulunamadı. Flux AI › Ayarlar › Görsel ve video anahtarlarını kontrol edin.', 'flx-studio' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxst_model', __( 'Model bulunamadı. Flux AI & MCP › Ayarlar › Görsel ve video anahtarlarını kontrol edin.', 'flx-studio' ), array( 'status' => 400 ) );
 	}
 	$kind   = ( $m['kind'] ?? 'image' ) === 'video' ? 'video' : 'image';
 	$prompt = trim( (string) ( $in['prompt'] ?? '' ) );
@@ -493,7 +493,7 @@ function flxst_refs_note( array $refs ) {
 
 function flxst_chat( array $messages, $purpose, $max = 1500 ) {
 	if ( ! flxst_text_ready() ) {
-		return new WP_Error( 'flxst_ai', __( 'Flux AI metin modeli hazır değil (Flux AI › Ayarlar).', 'flx-studio' ), array( 'status' => 503 ) );
+		return new WP_Error( 'flxst_ai', __( 'Flux AI metin modeli hazır değil (Flux AI & MCP › Ayarlar).', 'flx-studio' ), array( 'status' => 503 ) );
 	}
 	$opts = array(
 		'source'     => 'flx-studio',

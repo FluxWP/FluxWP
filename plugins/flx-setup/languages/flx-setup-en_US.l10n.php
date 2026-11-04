@@ -447,7 +447,7 @@ return array(
 		'Ayarlar › Yönetim teması' => 'Settings › Admin theme',
 		'AI anahtarı ekleyin' => 'Add an AI key',
 		'Asistanlar ve AI araçları için gerekli.' => 'Needed for assistants and AI tools.',
-		'Flux AI › Ayarlar' => 'Flux AI › Settings',
+		'Flux AI & MCP › Ayarlar' => 'Flux AI & MCP › Settings',
 		'Kurulum sihirbazı JavaScript ister.' => 'The setup wizard needs JavaScript.',
 		'Paketler ekranına geçin.' => 'Go to the Packages screen.',
 		'Site adı: %s' => 'Site name: %s',

@@ -1247,8 +1247,8 @@ msgstr "No entries."
 msgid "Sosyal Medya için JavaScript gerekli."
 msgstr "Social Media requires JavaScript."
 
-msgid "Flux AI kurulu değil ya da anahtar girilmemiş."
-msgstr "Flux AI is not installed or no key has been entered."
+msgid "Flux AI & MCP kurulu değil ya da anahtar girilmemiş."
+msgstr "Flux AI & MCP is not installed or no key has been entered."
 
 msgid "AI cevabı okunamadı, tekrar deneyin."
 msgstr "Could not read the AI response, please try again."
@@ -1343,8 +1343,8 @@ msgstr "AI writing help"
 msgid "Flux AI hazır: metin yazma, kısaltma, ağlara uyarlama."
 msgstr "Flux AI ready: writing, shortening, adapting to networks."
 
-msgid "Flux AI kurulu değil ya da anahtar yok; AI düğmeleri gizlenir, paylaşım çalışır."
-msgstr "Flux AI is not installed or has no key; AI buttons are hidden, sharing still works."
+msgid "Flux AI & MCP kurulu değil ya da anahtar yok; AI düğmeleri gizlenir, paylaşım çalışır."
+msgstr "Flux AI & MCP is not installed or has no key; AI buttons are hidden, sharing still works."
 
 msgid "Hesap ya da gönderi bulunamadı."
 msgstr "Account or post not found."

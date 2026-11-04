@@ -122,7 +122,7 @@ Otomasyonlar (0.2) bu eylemleri tetikleyici olarak kullanacak.
 
 ## Yapay zekâ ve MCP araçları (0.2.0)
 
-CRM'deki her şey Flux AI sohbetinden ve MCP'den (Flux SEO & MCP, `/wp-json/flx-mcp/v1/mcp`) okunur ve düzenlenir.
+CRM'deki her şey Flux AI sohbetinden ve MCP'den (Flux AI & MCP, `/wp-json/flx-mcp/v1/mcp`) okunur ve düzenlenir.
 Araçlar **tek kayıtta** (`flxcrm_tools()`, `includes/ai-tools.php`) tanımlanır, iki kanala da oradan gider. Kod
 `flxai_tools` ve `flxseo_mcp_tools` filtrelerine kendisi ekler; Flux AI sohbetinde MCP'den gelen aynı adlı araçların
 yerine doğrudan çalışan sürüm konur.

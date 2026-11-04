@@ -54,7 +54,7 @@ Kullanılacak model: verilen → kaynak modeli → varsayılan.
 Hesap düzeyinde hata mı (harcama sınırı, anahtar, kredi, 401/402/429, sistemin Flux AI'de kapatılması `flxai_source_off`). `true` ise toplu iş durmalı; sonraki istekler de reddedilir.
 
 ### `flxai_source_enabled( string $source ) : bool`
-Flux AI › Bağlı sistemler'de bu kaynak açık mı. Kapalıysa `flxai_chat` `flxai_source_off` hatası döner (kayda "Kapalı" düşer). `flxai_ready()` kapalı sistem için de `true` kalır; böylece eklenti kendi eski AI koduna geçmez, AI gerçekten kapalı olur. Arayüzde "AI kapalı" göstermek isterseniz bu fonksiyona bakın.
+Flux AI & MCP › Bağlı sistemler'de bu kaynak açık mı. Kapalıysa `flxai_chat` `flxai_source_off` hatası döner (kayda "Kapalı" düşer). `flxai_ready()` kapalı sistem için de `true` kalır; böylece eklenti kendi eski AI koduna geçmez, AI gerçekten kapalı olur. Arayüzde "AI kapalı" göstermek isterseniz bu fonksiyona bakın.
 
 ### `flxai_log( array $row ) : int`
 Kendi araç sürenizi rapora yazmak için: `flxai_log( [ 'kind' => 'tool', 'source' => 'flx-chat', 'tool' => 'donation_options', 'ms' => 120 ] )`. Model çağrıları `flxai_chat` içinde otomatik kaydedilir.
@@ -76,7 +76,7 @@ Sistem talimatınıza ekleyeceğiniz kurallar. `html`: tarayıcıda gösterilece
 
 ### `flxai_render_widget( string $code, array $args = [] ) : array|WP_Error`
 Widget'ı PNG'ye çevirir: `[ 'mime' => 'image/png', 'data' => ikili, 'via' => 'gotenberg'|'imagick'|… ]`. `$args`: `dark` (bool), `width` (px, varsayılan 720), `source` (rapor için).
-Sıra: `flxai_render_widget` filtresi (kendi çeviriciniz; `null` dışında bir şey dönerse o kullanılır) → Gotenberg (Flux AI › Ayarlar › Görseller; HTML ve SVG) → Imagick (yalnız SVG; CSS değişkenleri renge çevrilir).
+Sıra: `flxai_render_widget` filtresi (kendi çeviriciniz; `null` dışında bir şey dönerse o kullanılır) → Gotenberg (Flux AI & MCP › Ayarlar › Görseller; HTML ve SVG) → Imagick (yalnız SVG; CSS değişkenleri renge çevrilir).
 Hostinger paylaşımlı sunucuda tarayıcı yok: HTML widget'lar için Gotenberg (`docker run -p 3000:3000 gotenberg/gotenberg:8`, Evolution'ın Docker sunucusu kullanılabilir) gerekir. Çevirici yoksa `flxai_render_unavailable` döner; metinle devam edin.
 Mermaid sunucuda çevrilmez (tarayıcı gerekir); WhatsApp için `svg` kurallarını kullanın.
 
@@ -137,7 +137,7 @@ add_filter( 'flxai_tools', function ( $tools ) {
 - Araç adı `^[a-zA-Z0-9_-]{1,64}$`. Sonuç 30.000 karakterde kesilir.
 - `readonly => false` ya da `confirm => true` olan araç onay kartında bekler; kullanıcı onaylamadan `run` çağrılmaz.
 - MCP araçları (`flx_mcp_tools`, eski adı `flxseo_mcp_tools`) sohbete otomatik gelir; `readonly` bilgisi aynen kullanılır. Hem MCP'de hem sohbette görünecek araç için `flx_mcp_tools`, yalnız sohbet için `flxai_tools` kullanın.
-- Yönetici araçları Flux AI › Araçlar'dan kapatabilir.
+- Yönetici araçları Flux AI & MCP › Araçlar'dan kapatabilir.
 
 ## Flux AI SDK (0.8.0)
 
@@ -159,12 +159,12 @@ if ( flx_ai_enabled( 'flx-x', 'auto_summary' ) ) { $r = flx_ai_complete( 'flx-x'
 - Araç adı eklenti önekiyle başlamalı (`flxseo_`, `flxcrm_`, `flxp_` …). Öneksiz adlar Araçlar ekranında "öneksiz" rozetiyle görünür.
 - **Çakışma**: aynı adı iki eklenti kaydederse ilk kaydeden açık kalır, ikincisi üzerine yazamaz ve kapalı bekler. Araçlar ekranında iki satır ve "Bunu kullan" düğmesi çıkar (ayar `tool_pick`: ad => eklenti). Aynı eklentinin aynı adı yeniden tanımlaması ya da başka eklentinin aracı `source` alanını koruyarak genişletmesi (ör. Flux Lang'ın `flxseo_list_content`'e dil eklemesi) çakışma sayılmaz. Filtrelerle gelen araçlarda `source` boşsa geri çağrının bulunduğu eklenti klasörü yazılır.
 - **Eski adlar**: araç tanımına `'aliases' => array( 'eski_ad' )`. MCP çağrıları, anahtar kapsamları ve kapalı araç listesi eski adla da çalışır; `tools/list` yalnız yeni adı gösterir. Yeniden adlandırılanlar: Flux SEO 1.6.0 `site_info` … `order_summary` → `flxseo_*`, Flux Setup 1.0.21 `preset_*` → `flxk_preset_*`, Flux TV Board 0.7.0 `tv_*` → `flxtp_tv_*`.
-- Flux AI › Araçlar'da kapatılan araç artık **hem sohbette hem MCP'de** kapalıdır.
+- Flux AI & MCP › Araçlar'da kapatılan araç artık **hem sohbette hem MCP'de** kapalıdır.
 - Fonksiyonlar: `flxai_tool_resolve( $name )` (eski ad → yeni ad), `flxai_tool_is_off( $name )`, `flxai_mcp_registry()` / `flxai_chat_registry()` (`tools`, `dupes`, `aliases`).
 
 ## MCP sunucusu (0.7.0)
 
-Ortak MCP sunucusu Flux AI'dadır (önceden Flux SEO içindeydi). Adres `/wp-json/flx-mcp/v1/mcp` (Streamable HTTP, durumsuz, JSON-RPC 2.0). Yönetim: **Flux AI › MCP** (`admin.php?page=flx-ai-mcp`): aç/kapa, kullanıcıya özel anahtarlar (isteğe bağlı araç kapsamı), son işlemler. Kimlik: `Authorization: Bearer <anahtar>`, `X-MCP-Key` başlığı, `?key=` ya da Uygulama Parolası. Araçlar anahtarı oluşturan kullanıcının yetkileriyle çalışır; Flux AI sohbeti aynı araçları kullanır (değişiklik yapanlar onay ister).
+Ortak MCP sunucusu Flux AI'dadır (önceden Flux SEO içindeydi). Adres `/wp-json/flx-mcp/v1/mcp` (Streamable HTTP, durumsuz, JSON-RPC 2.0). Yönetim: **Flux AI & MCP › MCP** (`admin.php?page=flx-ai-mcp`): aç/kapa, kullanıcıya özel anahtarlar (isteğe bağlı araç kapsamı), son işlemler. Kimlik: `Authorization: Bearer <anahtar>`, `X-MCP-Key` başlığı, `?key=` ya da Uygulama Parolası. Araçlar anahtarı oluşturan kullanıcının yetkileriyle çalışır; Flux AI sohbeti aynı araçları kullanır (değişiklik yapanlar onay ister).
 
 ### Araç kaydı: `flx_mcp_tools`
 ```php
@@ -225,7 +225,7 @@ Anahtarlar Flux AI'de şifreli saklanır; aktarımdan sonra eklenti kendi kopyas
 Eklentinin kendi ayar ekranında model seçimi kalabilir: okuma `flxai_model_for( 'flx-chat' )`, yazma `flxai_set_source_model( 'flx-chat', $model )` (boş = Flux AI varsayılanı). Seçim listesi için `flxai_enqueue_model_picker()`.
 
 ## Görsel ve video üretimi (0.6.0)
-Anahtarlar Flux AI › Ayarlar › Görsel ve video'da: fal.ai, EvoLink, OpenAI, Google Gemini (+ Sağlayıcılar'daki OpenRouter). Higgsfield yok. Harcama sınırı geçerli; her istek Kayıtlar'a `model` = `<sağlayıcı>:<model>` ile yazılır. Cron yok: kuyruktaki iş `flxai_media_status` çağrıldıkça ilerler (tarayıcı 3–5 sn'de bir sorar).
+Anahtarlar Flux AI & MCP › Ayarlar › Görsel ve video'da: fal.ai, EvoLink, OpenAI, Google Gemini (+ Sağlayıcılar'daki OpenRouter). Higgsfield yok. Harcama sınırı geçerli; her istek Kayıtlar'a `model` = `<sağlayıcı>:<model>` ile yazılır. Cron yok: kuyruktaki iş `flxai_media_status` çağrıldıkça ilerler (tarayıcı 3–5 sn'de bir sorar).
 
 ### `flxai_media_providers() : array`
 Arayüz için, anahtar içermez: `providers{id: {label, ready}}`, `models{id: {label, kind image|video, routes[], providers[] (anahtarı olanlar), auto (otomatik seçilecek), aspects[], resolutions[], qualities[], duration [min,max,varsayılan]|null, max_refs, max_n, mask, price{çözünürlük: USD}, price_unit image|second}}`, `default_image`, `default_video`.

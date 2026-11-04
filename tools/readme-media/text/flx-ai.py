@@ -30,7 +30,7 @@ C={
 - The chat keeps running across page loads.''',
  shots=[('overview','Overview: spend, limits and time'),('chat','Shared AI chat'),('systems','Connected systems'),('tools','Tool registry'),('log','Request log'),('billing','Monthly billing'),('settings','Keys and models'),('dark','Dark mode with Flux Admin'),('mobile','Mobile overview',True)],
  req='An OpenRouter or Anthropic API key. Optional: Gotenberg or Imagick for images in answers, fal.ai / EvoLink / OpenAI / Gemini keys for Flux Studio.',
- first='''1. Activate Flux AI and open **Flux AI › Settings**.
+ first='''1. Activate Flux AI and open **Flux AI & MCP › Settings**.
 2. Enter an OpenRouter key (or an Anthropic key), choose the default model and press **Test**.
 3. Set daily, weekly and monthly limits.
 4. Open **Connected systems** to see which plugins use Flux AI and pick a model per plugin if you like.''',
@@ -69,7 +69,7 @@ C={
 - Sohbet sayfa geçişlerinde kaldığı yerden sürer.''',
  shots=[('overview','Genel bakış: harcama, sınırlar ve süre'),('chat','Ortak AI sohbeti'),('systems','Bağlı sistemler'),('tools','Araç kaydı'),('log','İstek kayıtları'),('billing','Aylık faturalandırma'),('settings','Anahtarlar ve modeller'),('dark','Flux Admin ile koyu tema'),('mobile','Mobil genel bakış',True)],
  req="OpenRouter ya da Anthropic API anahtarı. İsteğe bağlı: cevapta görsel için Gotenberg ya da Imagick, Flux Studio için fal.ai / EvoLink / OpenAI / Gemini anahtarları.",
- first='''1. Flux AI'yi etkinleştirip **Flux AI › Ayarlar**'ı açın.
+ first='''1. Flux AI'yi etkinleştirip **Flux AI & MCP › Ayarlar**'ı açın.
 2. OpenRouter anahtarını (ya da Anthropic anahtarını) girin, varsayılan modeli seçip **Test**'e basın.
 3. Günlük, haftalık ve aylık sınırları girin.
 4. **Bağlı sistemler**'de hangi eklentilerin Flux AI'yi kullandığını görün; isterseniz eklenti başına model seçin.''',

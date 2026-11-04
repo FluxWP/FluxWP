@@ -1,6 +1,6 @@
 <?php
 /**
- * Flux AI › Bağlı sistemler › <eklenti>: SDK ile tanımlanan AI ayarları (flx_ai_settings / flx_ai_feature),
+ * Flux AI & MCP › Bağlı sistemler › <eklenti>: SDK ile tanımlanan AI ayarları (flx_ai_settings / flx_ai_feature),
  * eklentiye özel model, aç/kapa ve eklentinin araçları tek ekranda.
  *
  * @package FLX_AI

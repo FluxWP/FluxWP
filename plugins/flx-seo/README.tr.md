@@ -54,7 +54,7 @@ Büyük SEO eklentileri onlarca ekran, satış teklifleri ve kendi veritabanı t
 - **SEO kontrolü:** yayındaki her sayfa sorunları ve önerileriyle.
 
 ### Yapay zekâ araçları (MCP)
-- MCP sunucusu, anahtarlar ve kayıt **Flux AI › MCP** ekranında (`/wp-json/flx-mcp/v1/mcp`, Flux SEO 1.5.0 / Flux AI 0.7.0'dan beri). Flux SEO araçlarını oraya kaydeder; Flux AI sohbeti de aynı araçları kullanır.
+- MCP sunucusu, anahtarlar ve kayıt **Flux AI & MCP › MCP** ekranında (`/wp-json/flx-mcp/v1/mcp`, Flux SEO 1.5.0 / Flux AI 0.7.0'dan beri). Flux SEO araçlarını oraya kaydeder; Flux AI sohbeti de aynı araçları kullanır.
 - Araçlar: site bilgisi, içerik listele/getir/oluştur/güncelle/sil, SEO ayarla, SEO denetimi, desenler, medya yükleme ve alt metin, terimler, site SEO ayarları; "SEO eksiklerini düzelt", "haber yaz" ve "sayfa kur" istemleri.
 - Diğer FluxWP eklentileri kendi araçlarını `flx_mcp_tools` ile ekler (eski ad `flxseo_mcp_tools` de çalışır).
 - Yeni içerik taslak açılır; silme yalnız çöpe taşır. Her çağrı kayda geçer.
@@ -94,7 +94,7 @@ Ayrıntılı kurulum notları: [KURULUM.md](../../docs/seo-mcp/KURULUM.md) · S�
 
 ## Yapay zekâ asistanlarıyla kullanım (MCP)
 
-1. Flux AI 0.7.0+ kurun, **Flux AI › MCP**'yi açın: MCP sunucusunu açın, bir anahtar oluşturun (isterseniz bazı araçlarla sınırlı).
+1. Flux AI 0.7.0+ kurun, **Flux AI & MCP › MCP**'yi açın: MCP sunucusunu açın, bir anahtar oluşturun (isterseniz bazı araçlarla sınırlı).
 2. İstemcinize ekleyin, örneğin Claude Code:
 
 ```bash

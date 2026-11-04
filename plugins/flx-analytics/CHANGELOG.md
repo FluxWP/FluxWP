@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.3.9
+- Metinler: MCP sunucusu artık Flux AI & MCP eklentisinde; "Flux SEO & MCP" ve "Flux AI ›" adresleri "Flux AI & MCP" oldu.
+
 ## 0.3.8
 - Ürün telemetrisi › Kurulum sihirbazı: adımlar ve ilk ekran kartları okunur adla görünür ("Eklentiler: İletişim", "Mağaza kartı"); önce ham anahtar (`contact`, `store`) yazıyordu.
 - Ürün telemetrisi ülkeye göre gruplanır: Genel bakışta "Ülke" tablosu, üstte ülke süzgeci (tüm sekmeler; Hatalar'da "Site" o ülkedeki kurulum sayısı). Ülke gönderen sitenin ayarlarından gelir (FluxWP Panel 1.0.20+ `cc`: WooCommerce mağaza ülkesi ya da saat dilimi); IP'ye bakılmaz, saklanmaz. Eski Panel sürümleri "Bilinmiyor" görünür. Tablo `flxan_tm_installs` `cc` sütunu alır (otomatik).

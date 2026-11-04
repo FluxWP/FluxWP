@@ -1,5 +1,8 @@
 # Flux Studio — Değişiklikler
 
+## 0.3.7
+- Metinler: MCP sunucusu artık Flux AI & MCP eklentisinde; "Flux SEO & MCP" ve "Flux AI ›" adresleri "Flux AI & MCP" oldu.
+
 ## 0.3.6
 - Açık tema: uyarı, hata ve mavi metinler yeterli kontrastta. Uygulama başlığında Flux Studio paket ikonu ve adı.
 

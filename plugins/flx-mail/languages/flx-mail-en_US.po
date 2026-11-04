@@ -531,8 +531,8 @@ msgstr "Heading color"
 msgid "Alt bilgi (kurum)"
 msgstr "Footer (organization)"
 
-msgid "Boş alanlar SEO & MCP › Kurum ve sosyal ayarlarından gelir."
-msgstr "Empty fields are taken from SEO & MCP › Organization and social settings."
+msgid "Boş alanlar SEO › Kurum ve sosyal ayarlarından gelir."
+msgstr "Empty fields are taken from SEO › Organization and social settings."
 
 msgid "Slogan"
 msgstr "Tagline"
@@ -1711,8 +1711,8 @@ msgstr "What should it say? E.g. \"tree-planting partnership offer to Company X,
 msgid "AI yazıyor…"
 msgstr "AI is writing…"
 
-msgid "AI için Flux AI eklentisi ve anahtarı gerekir."
-msgstr "AI needs the Flux AI plugin and its key."
+msgid "AI için Flux AI & MCP eklentisi ve anahtarı gerekir."
+msgstr "AI needs the Flux AI & MCP plugin and its key."
 
 msgid "AI taslağı: kontrol edip düzenleyin, sonra gönderin. Siz göndermeden gitmez."
 msgstr "AI draft: check and edit it, then send. Nothing goes out until you send it."
@@ -2008,8 +2008,8 @@ msgstr "IMAP connection lost."
 msgid "IMAP sunucusu cevap vermedi (zaman aşımı)."
 msgstr "IMAP server did not respond (timeout)."
 
-msgid "Flux AI kurulu değil ya da anahtarı girilmemiş (Flux AI › Ayarlar)."
-msgstr "Flux AI is not installed or has no key (Flux AI › Settings)."
+msgid "Flux AI & MCP kurulu değil ya da anahtarı girilmemiş (Flux AI & MCP › Ayarlar)."
+msgstr "Flux AI & MCP is not installed or has no key (Flux AI & MCP › Settings)."
 
 msgid "E-postaları listele"
 msgstr "List emails"
@@ -2038,8 +2038,8 @@ msgstr "Email reply"
 msgid "E-posta taslağı"
 msgstr "Email draft"
 
-msgid "Sunucuda PDF çevirici yok (Flux AI › Ayarlar › Görseller › Gotenberg)."
-msgstr "No PDF converter on the server (Flux AI › Settings › Images › Gotenberg)."
+msgid "Sunucuda PDF çevirici yok (Flux AI & MCP › Ayarlar › Görseller › Gotenberg)."
+msgstr "No PDF converter on the server (Flux AI & MCP › Settings › Images › Gotenberg)."
 
 msgid "PDF çeviriciye ulaşılamadı: %s"
 msgstr "Could not reach the PDF converter: %s"

@@ -2,7 +2,7 @@
 /**
  * Flux SEO'nun yapay zekâ (MCP) araçları: içerik, SEO alanları, medya, tema bölümleri ve istem şablonları.
  *
- * MCP sunucusu, anahtarlar ve ayarlar Flux AI'dadır (Flux AI › MCP, /wp-json/flx-mcp/v1/mcp). Flux SEO yalnız kendi
+ * MCP sunucusu, anahtarlar ve ayarlar Flux AI'dadır (Flux AI & MCP › MCP, /wp-json/flx-mcp/v1/mcp). Flux SEO yalnız kendi
  * araçlarını `flx_mcp_tools`, istemlerini `flx_mcp_prompts`, talimatlarını `flx_mcp_instructions` ile kaydeder.
  * Aynı araçlar Flux AI sohbetinde de görünür.
  *
@@ -40,7 +40,7 @@ function flxseo_mcp_server_on() {
 	return function_exists( 'flxai_mcp_enabled' ) && flxai_mcp_enabled();
 }
 
-/** MCP ayar ekranı: Flux AI › MCP (Flux AI yoksa eklenti ekranı). */
+/** MCP ayar ekranı: Flux AI & MCP › MCP (Flux AI yoksa eklenti ekranı). */
 function flxseo_mcp_admin_url() {
 	return function_exists( 'flxai_mcp_admin_url' ) ? flxai_mcp_admin_url() : admin_url( 'plugin-install.php?s=Flux+AI&tab=search&type=term' );
 }

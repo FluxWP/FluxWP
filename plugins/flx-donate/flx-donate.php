@@ -75,7 +75,7 @@ FLXB_Iyzico_Notify::init();
 require_once FLXB_DIR . 'includes/flx-system-checks.php';
 require_once FLXB_DIR . 'includes/class-flxb-system-checks.php';
 add_action( 'plugins_loaded', array( 'FLXB_System_Checks', 'init' ), 20 );
-/* Safe fixes for the SEO & MCP plugin's system_fix tool (filter flx_system_fixes). */
+/* Safe fixes for Flux SEO's system_fix tool (filter flx_system_fixes). */
 require_once FLXB_DIR . 'includes/class-flxb-system-fixes.php';
 FLXB_System_Fixes::init();
 

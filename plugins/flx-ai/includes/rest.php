@@ -124,7 +124,7 @@ function flxai_rest_chat_delete( WP_REST_Request $req ) {
 
 function flxai_rest_chat_send( WP_REST_Request $req ) {
 	if ( ! flxai_ready( 'flx-ai' ) ) {
-		return new WP_Error( 'flxai_not_ready', __( 'Flux AI henüz ayarlanmadı: Flux AI › Ayarlar\'dan bir API anahtarı ve model girin.', 'flx-ai' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxai_not_ready', __( 'Flux AI henüz ayarlanmadı: Flux AI & MCP › Ayarlar\'dan bir API anahtarı ve model girin.', 'flx-ai' ), array( 'status' => 400 ) );
 	}
 	$id = (int) $req['id'];
 	$c  = $id ? flxai_chat_get( $id ) : flxai_chat_create();

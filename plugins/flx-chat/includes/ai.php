@@ -1,7 +1,7 @@
 <?php
 /**
- * Yapay zekâ: 1.30.0 (Ahmet) itibarıyla tüm istekler ortak Flux AI eklentisi üzerinden gider (anahtarlar, model
- * kataloğu, harcama sınırı, kayıtlar tek yerde). Flux AI kurulu değilse yapay zekâ özellikleri kapalıdır; bu
+ * Yapay zekâ: 1.30.0 (Ahmet) itibarıyla tüm istekler ortak Flux AI & MCP eklentisi üzerinden gider (anahtarlar, model
+ * kataloğu, harcama sınırı, kayıtlar tek yerde). Flux AI & MCP kurulu değilse yapay zekâ özellikleri kapalıdır; bu
  * eklentinin kendi OpenRouter/Anthropic bağlantısı yoktur. Model seçimleri, öneri, asistan, raporlar burada kalır.
  *
  * Model kimlikleri Flux AI biçiminde: OpenRouter modelleri olduğu gibi (ör. google/gemini-2.5-flash), Anthropic
@@ -37,7 +37,7 @@ function flxc_ai_cache_label( $mode ) {
 	return $l[ $mode ] ?? (string) $mode;
 }
 
-/** Flux AI eklentisi yüklü mü (gerekli API'leriyle)? */
+/** Flux AI & MCP eklentisi yüklü mü (gerekli API'leriyle)? */
 function flxc_ai_hub() {
 	return function_exists( 'flxai_chat' ) && function_exists( 'flxai_provider_key' ) && function_exists( 'flxai_parse_model' ) && function_exists( 'flxai_models' );
 }
@@ -185,7 +185,7 @@ add_filter(
  */
 function flxc_ai_chat( array $messages, array $opts = array() ) {
 	if ( ! flxc_ai_hub() ) {
-		return new WP_Error( 'flxc_ai_key', __( 'Yapay zekâ için Flux AI eklentisi gerekli; kurup etkinleştirin ve Flux AI › Ayarlar\'a anahtarı girin.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_ai_key', __( 'Yapay zekâ için Flux AI & MCP eklentisi gerekli; kurup etkinleştirin ve Flux AI & MCP › Ayarlar\'a anahtarı girin.', 'flx-chat' ) );
 	}
 	$model = (string) ( $opts['model'] ?? flxc_ai_model( $opts['purpose'] ?? 'suggest' ) );
 	if ( '' === $model ) {
@@ -246,7 +246,7 @@ function flxc_ai_month_usage() {
  */
 function flxc_ai_models( $fresh = false ) {
 	if ( ! flxc_ai_hub() ) {
-		return new WP_Error( 'flxc_ai_models', __( 'Model listesi için Flux AI eklentisi gerekli.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_ai_models', __( 'Model listesi için Flux AI & MCP eklentisi gerekli.', 'flx-chat' ) );
 	}
 	$l = flxai_models( $fresh );
 	if ( is_array( $l ) && $l ) {
@@ -376,7 +376,7 @@ add_action(
 		$ours   = $screen && false !== strpos( (string) $screen->id, 'flx-chat' );
 		if ( ! flxc_ai_hub() ) {
 			if ( $ours ) {
-				echo '<div class="notice notice-warning"><p>' . esc_html__( 'Flux Chat: yapay zekâ özellikleri (öneri, asistan, dekont okuma, sesli mesaj, özet) için Flux AI eklentisi gerekli. Kurup etkinleştirin; Çağrı Merkezi\'nde kayıtlı anahtarlar oraya kendiliğinden aktarılır.', 'flx-chat' ) . '</p></div>';
+				echo '<div class="notice notice-warning"><p>' . esc_html__( 'Flux Chat: yapay zekâ özellikleri (öneri, asistan, dekont okuma, sesli mesaj, özet) için Flux AI & MCP eklentisi gerekli. Kurup etkinleştirin; Çağrı Merkezi\'nde kayıtlı anahtarlar oraya kendiliğinden aktarılır.', 'flx-chat' ) . '</p></div>';
 			}
 			return;
 		}

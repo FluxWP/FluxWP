@@ -35,7 +35,7 @@ Gizli alanlar şifreli saklanır, ekranda gösterilmez. Değiştirmek için yeni
 - **Takvim**: sürükle-bırak ile saat değiştir.
 - **Pano**: paylaşım, etkileşim, takipçi, en iyi gönderiler (metrikler günlük çekilir; X Free'de yok).
 - **Otomatik paylaşım** (Ayarlar): sitede yazı yayınlanınca şablonla gönderi hazırlar.
-- **MCP**: Flux SEO & MCP üzerinden AI ile gönderi oluştur/zamanla/gönder (bkz. API.md).
+- **MCP**: Flux AI & MCP üzerinden AI ile gönderi oluştur/zamanla/gönder (bkz. API.md).
 
 ## Test durumu
 0.1.0 yerel WordPress'te sahte verilerle denendi (arayüz, kuyruk, onay, MCP, otomatik paylaşım). **Gerçek ağ API'leri anahtarsız denenmedi**; ilk bağlantıda hata olursa Ayarlar › Günlük ekranını gönder.

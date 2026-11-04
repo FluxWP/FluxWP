@@ -816,10 +816,10 @@ msgstr ""
 msgid "Mesaj bulunamadı."
 msgstr ""
 
-msgid "%s için yapay zekâ kapalı (Flux AI › Bağlı sistemler)."
+msgid "%s için yapay zekâ kapalı (Flux AI & MCP › Bağlı sistemler)."
 msgstr ""
 
-msgid "Yapay zekâ modeli seçilmemiş (Flux AI › Ayarlar)."
+msgid "Yapay zekâ modeli seçilmemiş (Flux AI & MCP › Ayarlar)."
 msgstr ""
 
 msgid "Günlük"
@@ -831,7 +831,7 @@ msgstr ""
 msgid "Aylık"
 msgstr ""
 
-msgid "%1$s yapay zekâ harcama sınırı (%2$s) doldu. %3$s yenilenir; sınırı Flux AI › Ayarlar'dan değiştirebilirsiniz."
+msgid "%1$s yapay zekâ harcama sınırı (%2$s) doldu. %3$s yenilenir; sınırı Flux AI & MCP › Ayarlar'dan değiştirebilirsiniz."
 msgstr ""
 
 msgid "Flux AI: %1$s harcama sınırının %2$s%%'i kullanıldı"
@@ -951,7 +951,7 @@ msgstr ""
 msgid "Belirtilmemiş"
 msgstr ""
 
-msgid "MCP kapalı. Flux AI › MCP ekranından açın."
+msgid "MCP kapalı. Flux AI & MCP › MCP ekranından açın."
 msgstr ""
 
 msgid "Geçersiz veya eksik MCP anahtarı."
@@ -963,7 +963,7 @@ msgstr ""
 msgid "Bilinmeyen araç: %s"
 msgstr ""
 
-msgid "Bu araç kapalı (Flux AI › Araçlar): %s"
+msgid "Bu araç kapalı (Flux AI & MCP › Araçlar): %s"
 msgstr ""
 
 msgid "Bu anahtar bu aracı kullanamaz: %s"
@@ -981,10 +981,10 @@ msgstr ""
 msgid "Bu sağlayıcı seçilen modeli sunmuyor."
 msgstr ""
 
-msgid "%s anahtarı girilmemiş (Flux AI › Ayarlar › Görsel ve video)."
+msgid "%s anahtarı girilmemiş (Flux AI & MCP › Ayarlar › Görsel ve video)."
 msgstr ""
 
-msgid "Bu model için şu anahtarlardan biri gerekli: %s (Flux AI › Ayarlar › Görsel ve video)."
+msgid "Bu model için şu anahtarlardan biri gerekli: %s (Flux AI & MCP › Ayarlar › Görsel ve video)."
 msgstr ""
 
 msgid "İstem gerekli (en çok 20.000 karakter)."
@@ -1083,7 +1083,7 @@ msgstr ""
 msgid "Model listesi alınamadı."
 msgstr ""
 
-msgid "→ Flux AI › Ayarlar › \"Anthropic workspace ID\" alanına console.anthropic.com › Settings › Workspaces'teki kimliği (wrkspc_…) girin."
+msgid "→ Flux AI & MCP › Ayarlar › \"Anthropic workspace ID\" alanına console.anthropic.com › Settings › Workspaces'teki kimliği (wrkspc_…) girin."
 msgstr ""
 
 msgid "Yapay zekâ hatası (%1$d): %2$s"
@@ -1095,7 +1095,7 @@ msgstr ""
 msgid "Kullanıcı durdurdu."
 msgstr ""
 
-msgid "OpenRouter API anahtarı girilmemiş (Flux AI › Ayarlar)."
+msgid "OpenRouter API anahtarı girilmemiş (Flux AI & MCP › Ayarlar)."
 msgstr ""
 
 msgid "Yapay zekâ servisine ulaşılamadı: %s"
@@ -1104,7 +1104,7 @@ msgstr ""
 msgid "Yapay zekâ boş cevap verdi."
 msgstr ""
 
-msgid "Anthropic (Claude) API anahtarı girilmemiş (Flux AI › Ayarlar)."
+msgid "Anthropic (Claude) API anahtarı girilmemiş (Flux AI & MCP › Ayarlar)."
 msgstr ""
 
 msgid "Bilinmiyor"
@@ -1119,7 +1119,7 @@ msgstr ""
 msgid "Sohbet bulunamadı."
 msgstr ""
 
-msgid "Flux AI henüz ayarlanmadı: Flux AI › Ayarlar'dan bir API anahtarı ve model girin."
+msgid "Flux AI henüz ayarlanmadı: Flux AI & MCP › Ayarlar'dan bir API anahtarı ve model girin."
 msgstr ""
 
 msgid "Görsel çevirici çalışıyor"
@@ -1143,7 +1143,7 @@ msgstr ""
 msgid "Görsel kodu boş."
 msgstr ""
 
-msgid "Bu görsel HTML içeriyor; sunucuda yalnız SVG çevrilebiliyor. HTML için Flux AI › Ayarlar › Görseller'e Gotenberg adresi girin."
+msgid "Bu görsel HTML içeriyor; sunucuda yalnız SVG çevrilebiliyor. HTML için Flux AI & MCP › Ayarlar › Görseller'e Gotenberg adresi girin."
 msgstr ""
 
 msgid "Sunucuda görsel çevirici yok (Imagick SVG desteği ya da Gotenberg adresi gerekli)."

@@ -924,5 +924,5 @@ msgstr ""
 msgid "Site denetimi ve ajan uyumu"
 msgstr ""
 
-msgid "Flux SEO'nun yapay zekâ (MCP) araçları ortak MCP sunucusu üzerinden çalışır. Sunucu, anahtarlar ve ayarlar Flux AI › MCP ekranındadır; Flux AI 0.7.0 ve üstünü kurup etkinleştirin."
+msgid "Flux SEO'nun yapay zekâ (MCP) araçları ortak MCP sunucusu üzerinden çalışır. Sunucu, anahtarlar ve ayarlar Flux AI & MCP › MCP ekranındadır; Flux AI 0.7.0 ve üstünü kurup etkinleştirin."
 msgstr ""

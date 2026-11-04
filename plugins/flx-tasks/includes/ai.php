@@ -1,7 +1,7 @@
 <?php
 /**
  * Yapay zekâ: görev için hızlı işlemler ve araç kullanan sohbet asistanı.
- * Tüm model çağrıları Flux AI eklentisi üzerinden yapılır (anahtar, model, harcama sınırı ve raporlar orada).
+ * Tüm model çağrıları Flux AI & MCP eklentisi üzerinden yapılır (anahtar, model, harcama sınırı ve raporlar orada).
  * Flux AI kurulu ya da hazır değilse yapay zekâ özellikleri kapalıdır; panel ve sistem kontrolü uyarır.
  */
 
@@ -25,15 +25,15 @@ function flxg_ai_model() {
 /** Yapay zekâ kapalıyken kullanıcıya gösterilen neden. */
 function flxg_ai_off_message() {
 	if ( ! flxg_ai_hub() ) {
-		return __( 'Yapay zekâ için Flux AI eklentisi gerekli. Yönetici Flux AI\'yi kurup anahtar girmeli.', 'flx-tasks' );
+		return __( 'Yapay zekâ için Flux AI & MCP eklentisi gerekli. Yönetici Flux AI\'yi kurup anahtar girmeli.', 'flx-tasks' );
 	}
-	return __( 'Yapay zekâ ayarlanmamış. Yönetici Flux AI › Ayarlar\'dan anahtar ve model seçmeli.', 'flx-tasks' );
+	return __( 'Yapay zekâ ayarlanmamış. Yönetici Flux AI & MCP › Ayarlar\'dan anahtar ve model seçmeli.', 'flx-tasks' );
 }
 
 /**
  * Eski kurulumdan geçiş (bir kerelik): Flux Tasks'e girilmiş OpenRouter anahtarı ve model Flux AI'ye aktarılır,
  * Flux AI'de aynısı varsa buradaki kopya silinir. Flux AI'de farklı bir anahtar varsa ona dokunulmaz, buradaki silinir
- * (artık kullanılmıyor). Flux AI kurulu değilse ayar olduğu gibi bekler.
+ * (artık kullanılmıyor). Flux AI & MCP kurulu değilse ayar olduğu gibi bekler.
  */
 function flxg_ai_migrate() {
 	$raw = get_option( 'flxg_settings', array() );

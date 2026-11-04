@@ -54,7 +54,7 @@ WooCommerce varsa **Görünümü WooCommerce'e uygula** düğmesi logo/renk/alt 
 E-postaya eklediğiniz görseller (WebP dahil) gönderimde JPG/PNG'ye çevrilip e-postaya gömülür; alıcı her programda görür.
 Ayarlar › Görünüm › Görseller'den kapatılabilir.
 
-Önizlemelerdeki **PDF indir** düğmesi e-postayı PDF yapar. Flux AI › Ayarlar › Görseller'de Gotenberg adresi varsa dosya doğrudan iner; yoksa yazdırma penceresinde "PDF olarak kaydet" seçin.
+Önizlemelerdeki **PDF indir** düğmesi e-postayı PDF yapar. Flux AI & MCP › Ayarlar › Görseller'de Gotenberg adresi varsa dosya doğrudan iner; yoksa yazdırma penceresinde "PDF olarak kaydet" seçin.
 
 E-postaların en altındaki ağaç silüeti Ayarlar › Görünüm › Alt kısım çizimi'nden seçilir (Tepeler varsayılan; Orman, Çizgi, Yok). Koyu modu destekleyen programlarda (Apple Mail, iOS) koyu renkli çizim görünür.
 

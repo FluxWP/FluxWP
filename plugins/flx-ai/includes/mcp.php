@@ -3,7 +3,7 @@
  * Ortak MCP sunucusu (Model Context Protocol, Streamable HTTP, durumsuz).
  *
  * Adres: /wp-json/flx-mcp/v1/mcp
- * Kimlik: "Authorization: Bearer <anahtar>" (Flux AI › MCP), X-MCP-Key başlığı, ?key= ya da
+ * Kimlik: "Authorization: Bearer <anahtar>" (Flux AI & MCP › MCP), X-MCP-Key başlığı, ?key= ya da
  *         WordPress Uygulama Parolası (Basic). Araçlar anahtarı oluşturan kullanıcının yetkileriyle çalışır;
  *         anahtara araç listesi verildiyse yalnız o araçlar görünür ve çalışır.
  *
@@ -199,7 +199,7 @@ add_action(
 
 function flxai_mcp_permission( WP_REST_Request $req ) {
 	if ( ! flxai_mcp_enabled() ) {
-		return new WP_Error( 'mcp_disabled', __( 'MCP kapalı. Flux AI › MCP ekranından açın.', 'flx-ai' ), array( 'status' => 403 ) );
+		return new WP_Error( 'mcp_disabled', __( 'MCP kapalı. Flux AI & MCP › MCP ekranından açın.', 'flx-ai' ), array( 'status' => 403 ) );
 	}
 	$k = flxai_mcp_find_key( flxai_mcp_request_key( $req ) );
 	flxai_mcp_scope( true, $k && ! empty( $k['tools'] ) ? array_values( (array) $k['tools'] ) : null );
@@ -376,7 +376,7 @@ function flxai_mcp_call( $name, $args ) {
 		}
 		if ( flxai_tool_is_off( $name ) ) {
 			/* translators: %s: tool name */
-			throw new Exception( sprintf( __( 'Bu araç kapalı (Flux AI › Araçlar): %s', 'flx-ai' ), $name ) );
+			throw new Exception( sprintf( __( 'Bu araç kapalı (Flux AI & MCP › Araçlar): %s', 'flx-ai' ), $name ) );
 		}
 		if ( ! flxai_mcp_allowed( $name ) ) {
 			/* translators: %s: tool name */

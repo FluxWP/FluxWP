@@ -1,7 +1,7 @@
 <?php
 /**
- * Yapay zekâ araçları: Flux SEO & MCP (flxseo_mcp_tools) üzerinden kaydolur; Flux AI sohbeti bunları
- * kendiliğinden alır. Flux SEO & MCP yoksa doğrudan Flux AI'ye (flxai_tools). flxan_ref_save dışında hepsi salt okunur.
+ * Yapay zekâ araçları: Flux AI & MCP (flxseo_mcp_tools) üzerinden kaydolur; Flux AI sohbeti bunları
+ * kendiliğinden alır. Flux AI & MCP yoksa doğrudan Flux AI'ye (flxai_tools). flxan_ref_save dışında hepsi salt okunur.
  * Tüm okuma araçları seg (rol süzgeci) ve rc (referans kodu süzgeci) alır.
  *
  * @package flx-analytics
@@ -372,7 +372,7 @@ add_filter(
 	}
 );
 
-/** Flux SEO & MCP yoksa Flux AI sohbetine doğrudan. */
+/** Flux AI & MCP yoksa Flux AI sohbetine doğrudan. */
 add_filter(
 	'flxai_tools',
 	function ( $tools ) {

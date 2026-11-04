@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name:       Flux Speed
- * Description:       Site performansı tek yerde: istek başına sorgular, PHP hataları, dış HTTP istekleri (geliştirici paneli), yavaş/hatalı istek kayıtları, sunucu (CPU, RAM, disk, OPcache), veritabanı, autoload, cron ve Sistem Kontrolü. Yapay zekâ hepsini Flux SEO & MCP / Flux AI araçlarıyla okur.
- * Version:           0.5.0
+ * Description:       Site performansı tek yerde: istek başına sorgular, PHP hataları, dış HTTP istekleri (geliştirici paneli), yavaş/hatalı istek kayıtları, sunucu (CPU, RAM, disk, OPcache), veritabanı, autoload, cron ve Sistem Kontrolü. Yapay zekâ hepsini Flux AI & MCP / Flux AI araçlarıyla okur.
+ * Version:           0.5.1
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -20,7 +20,7 @@ if ( defined( 'FLXP_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXP_VERSION', '0.5.0' );
+define( 'FLXP_VERSION', '0.5.1' );
 define( 'FLXP_DB_VERSION', 1 );
 define( 'FLXP_FILE', __FILE__ );
 define( 'FLXP_DIR', plugin_dir_path( __FILE__ ) );

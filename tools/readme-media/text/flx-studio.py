@@ -29,7 +29,7 @@ C={
 - Capabilities `flxst_use` and `flxst_manage`, listed in Flux Roles; light and dark theme with Flux Admin; works on phones and as a native screen in the Flux App.''',
  shots=[('gallery','Gallery and composer'),('viewer','Image viewer'),('models','Model picker'),('brainstorm','Brainstorm'),('dashboard','Dashboard'),('dark','Dark mode with Flux Admin'),('mobile','Mobile gallery',True)],
  req='Flux AI 0.6.0+ with at least one image/video key (fal.ai or EvoLink recommended; OpenAI, Gemini or OpenRouter also work).',
- first='''1. In **Flux AI › Settings › Images and video** enter a provider key.
+ first='''1. In **Flux AI & MCP › Settings › Images and video** enter a provider key.
 2. Activate Flux Studio; **Studio** appears in the admin menu.
 3. Give staff the **Studio: generate** capability in Flux Roles if they should use it.
 4. Write a prompt and press **Generate** (Ctrl/⌘+Enter).''',
@@ -67,7 +67,7 @@ C={
 - Flux Roles'de listelenen `flxst_use` ve `flxst_manage` yetkileri; Flux Admin ile açık ve koyu tema; telefonda ve Flux App'da yerel ekran olarak çalışır.''',
  shots=[('gallery','Galeri ve üretim kutusu'),('viewer','Görsel görüntüleyici'),('models','Model seçici'),('brainstorm','Beyin fırtınası'),('dashboard','Pano'),('dark','Flux Admin ile koyu tema'),('mobile','Mobil galeri',True)],
  req="Flux AI 0.6.0+ ve en az bir görsel/video anahtarı (fal.ai ya da EvoLink önerilir; OpenAI, Gemini ya da OpenRouter da olur).",
- first='''1. **Flux AI › Ayarlar › Görsel ve video**'ya bir sağlayıcı anahtarı girin.
+ first='''1. **Flux AI & MCP › Ayarlar › Görsel ve video**'ya bir sağlayıcı anahtarı girin.
 2. Flux Studio'yu etkinleştirin; panel menüsünde **Stüdyo** çıkar.
 3. Personel kullanacaksa Flux Roles'de **Stüdyo: görsel/video üret** yetkisini verin.
 4. Bir istem yazıp **Üret**'e basın (Ctrl/⌘+Enter).''',

@@ -6,7 +6,7 @@
  * ve `flxai_tools` (yalnız sohbet). Filtreler geri çağrı geri çağrı uygulanır; böylece her aracı hangi eklentinin
  * eklediği bilinir ve aynı adı ikinci bir eklenti kaydettiğinde ilkinin üzerine yazılmaz:
  *  - İlk kaydeden açık kalır, sonraki "çakışan" olarak kapalı bekler.
- *  - Yönetici Flux AI › Araçlar'da hangisinin açık olacağını seçer (ayar tool_pick: ad => kaynak).
+ *  - Yönetici Flux AI & MCP › Araçlar'da hangisinin açık olacağını seçer (ayar tool_pick: ad => kaynak).
  *  - Aynı eklentinin aynı adı yeniden tanımlaması (ör. Flux CRM'in sohbet sürümü) ya da başka eklentinin mevcut
  *    aracı genişletmesi (açıklama/çalıştırıcı sarmalama; `source` korunur, ör. Flux Lang) çakışma sayılmaz.
  *
@@ -271,7 +271,7 @@ function flxai_tools_off() {
 	return array_values( array_unique( array_map( 'flxai_tool_resolve', array_map( 'strval', (array) flxai_setting( 'tools_off', array() ) ) ) ) );
 }
 
-/** Araç kapalı mı (Flux AI › Araçlar)? */
+/** Araç kapalı mı (Flux AI & MCP › Araçlar)? */
 function flxai_tool_is_off( $name ) {
 	return in_array( flxai_tool_resolve( $name ), flxai_tools_off(), true );
 }

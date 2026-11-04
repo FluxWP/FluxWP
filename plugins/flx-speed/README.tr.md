@@ -96,7 +96,7 @@ Ayrıntılı kurulum notları: [KURULUM.md](../../docs/flx-speed/KURULUM.md) · 
 
 ## Yapay zekâ asistanlarıyla kullanım (MCP)
 
-Flux Speed, sitenin MCP sunucusuna (**Flux SEO & MCP**) ve **Flux AI** sohbetine salt okunur araçlar ekler:
+Flux Speed, sitenin MCP sunucusuna (**Flux AI & MCP**) ve **Flux AI** sohbetine salt okunur araçlar ekler:
 
 | Araç | Neyi yanıtlar |
 |---|---|
@@ -105,7 +105,7 @@ Flux Speed, sitenin MCP sunucusuna (**Flux SEO & MCP**) ve **Flux AI** sohbetine
 | `flxp_environment`, `flxp_server`, `flxp_database`, `flxp_autoload`, `flxp_cron` | Sunucu, PHP, veritabanı, autoload boyutu ve zamanlanmış görevler |
 | `flxp_profile_url` | Sitenin bir sayfasını tüm ayrıntısıyla ölçer |
 
-Flux SEO & MCP ile `system_fix` aracı `flxp_expired_transients` düzeltmesini de çalıştırabilir (süresi dolmuş geçici verileri siler).
+Flux AI & MCP ile `system_fix` aracı `flxp_expired_transients` düzeltmesini de çalıştırabilir (süresi dolmuş geçici verileri siler).
 
 Örnek istekler:
 - *"Son 24 saatte site neden yavaştı?"*
