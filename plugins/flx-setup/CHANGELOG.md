@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.0.19
+- Paketler: kurulum/güncelleme başlayınca ekranın üstünde, sayfa kaydırılsa da yerinde duran koyu bir şerit çıkar: "Bitene kadar bu sayfadan ayrılmayın", o anki adım (ör. "Flux CRM kuruluyor…"), sayı (3 / 6) ve ilerleme çubuğu. İşlem bitince sonucu ("Bitti: 6 başarılı, 0 hatalı.") 4 saniye gösterip kapanır. Önceden uyarı yalnız kayıt kutusunun başlığındaydı, aşağı kaydırınca görünmüyordu.
+- Eski Flux Updater (`flx-updater`) paket listesinde, sihirbazda ve güncellemelerde artık görünmez: FluxWP Panel'e katıldığı için güncelleme sunucusu eski release'lerini listelese de katalogdan çıkarılır. Liste `flxk_retired_slugs` filtresiyle genişletilir.
+
 ## 1.0.18
 - Tarih ve "… önce" metinleri artık kullanıcının dilinde, tek ortak yardımcıdan (FluxWP `flx_date` / `flx_time_ago`, flx-brand 1.1.0): "31 minutes önce", "August 10" gibi Türkçe/İngilizce karışımı kalmadı; çekirdek dil paketi inmemiş olsa da TR ve EN ay/gün adları doğru.
 

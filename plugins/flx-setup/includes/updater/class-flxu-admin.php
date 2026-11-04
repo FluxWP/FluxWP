@@ -1379,7 +1379,18 @@ final class FLXU_Admin {
 			@keyframes flxu-spin{to{transform:rotate(360deg)}}
 			@keyframes flxu-slide{0%{left:-40%}100%{left:100%}}
 			@keyframes flxu-in{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:none}}
-			@media (prefers-reduced-motion:reduce){.flxu-run__spin,.flxu-log__spin,.flxu-run__bar span,.flxu-log__line.is-run .flxu-log__ico{animation:none}}
+.flxu-stay{position:fixed;z-index:100000;top:calc(var(--flxa-safe-top, var(--wp-admin--admin-bar--height, 32px)) + 10px);left:50%;transform:translateX(-50%);width:min(560px, calc(100vw - 32px));box-sizing:border-box;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:4px 12px;padding:12px 16px 14px;background:var(--flxa-text, #1d2327);color:var(--flxa-surface, #fff);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25);overflow:hidden;animation:flxu-in .25s ease-out}
+			.flxu-stay[hidden]{display:none!important}
+			.flxu-stay__spin{width:18px;height:18px;border-radius:50%;border:2px solid color-mix(in srgb, currentColor 30%, transparent);border-top-color:currentColor;animation:flxu-spin .8s linear infinite}
+			.flxu-stay__body{display:flex;flex-direction:column;min-width:0}
+			.flxu-stay__title{font-size:14px;line-height:1.35}
+			.flxu-stay__step{font-size:12px;opacity:.75;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.flxu-stay__step:empty{display:none}
+			.flxu-stay__count{font-size:12px;opacity:.75;font-variant-numeric:tabular-nums}
+			.flxu-stay__bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:color-mix(in srgb, currentColor 15%, transparent)}
+			.flxu-stay__bar span{display:block;height:100%;width:0;background:#4f94d4;transition:width .4s ease}
+			.flxu-stay.is-ok .flxu-stay__spin,.flxu-stay.is-err .flxu-stay__spin{animation:none;border:0;background:#1e8e3e}.flxu-stay.is-err .flxu-stay__spin{background:#d63638}
+			.flxu-stay.is-ok .flxu-stay__bar span{background:#1e8e3e}.flxu-stay.is-err .flxu-stay__bar span{background:#d63638}
+						@media (prefers-reduced-motion:reduce){.flxu-run__spin,.flxu-log__spin,.flxu-stay__spin,.flxu-run__bar span,.flxu-log__line.is-run .flxu-log__ico{animation:none}}
 			@media (max-width:782px){
 				.flxu-card{flex-wrap:wrap}
 				/* Araç çubuğu: başlık, iki ana düğme yan yana, toplu işlem tam satır */
@@ -1467,6 +1478,7 @@ final class FLXU_Admin {
 			'confirmDel'   => __( 'Şu paketler siteden kaldırılsın mı? Dosyaları silinir. %s', 'flx-setup' ),
 			'preparing'    => __( 'Hazırlanıyor…', 'flx-setup' ),
 			'working'      => __( 'İşlem sürüyor, sayfadan ayrılmayın…', 'flx-setup' ),
+			'stay'         => __( 'Bitene kadar bu sayfadan ayrılmayın', 'flx-setup' ),
 			'nothing'      => __( 'Yapılacak bir şey yok.', 'flx-setup' ),
 			'done'         => __( 'Bitti: %1$d başarılı, %2$d hatalı.', 'flx-setup' ),
 			'stepOf'       => __( '%1$d / %2$d', 'flx-setup' ),
