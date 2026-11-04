@@ -321,7 +321,7 @@ final class FLXCM_Page_Customer {
 		foreach ( $events as $e ) {
 			$day = wp_date( 'Y-m-d', $e['ts'] );
 			if ( $day !== $last_day ) {
-				echo '<li class="flxcm-timeline__day">' . esc_html( wp_date( get_option( 'date_format' ), $e['ts'] ) ) . '</li>';
+				echo '<li class="flxcm-timeline__day">' . esc_html( flxcm_date( $e['ts'] ) ) . '</li>';
 				$last_day = $day;
 			}
 			echo '<li class="flxcm-ev is-' . esc_attr( $e['type'] ) . '"><span class="flxcm-ev__icon">' . flxcm_icon( $icons[ $e['type'] ] ?? 'note', 15 ) . '</span><div class="flxcm-ev__body"><div class="flxcm-ev__top"><span class="flxcm-ev__type">' . esc_html( $e['label'] ) . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput
@@ -331,7 +331,7 @@ final class FLXCM_Page_Customer {
 			if ( '' !== $e['badge'] ) {
 				echo $e['badge']; // phpcs:ignore WordPress.Security.EscapeOutput
 			}
-			echo '<time datetime="' . esc_attr( wp_date( 'c', $e['ts'] ) ) . '">' . esc_html( wp_date( 'H:i', $e['ts'] ) ) . '</time></div>';
+			echo '<time datetime="' . esc_attr( wp_date( 'c', $e['ts'] ) ) . '">' . esc_html( flxcm_date( $e['ts'], 'time' ) ) . '</time></div>';
 			if ( '' !== $e['title'] ) {
 				echo '<p class="flxcm-ev__title">' . ( $e['url'] ? '<a href="' . esc_url( $e['url'] ) . '">' . esc_html( $e['title'] ) . '</a>' : esc_html( $e['title'] ) ) . '</p>';
 			}
@@ -513,7 +513,7 @@ final class FLXCM_Page_Customer {
 		foreach ( $o->get_items( 'line_item' ) as $it ) {
 			$items[] = $it->get_name() . ( $it->get_quantity() > 1 ? ' × ' . $it->get_quantity() : '' );
 		}
-		$date = $o->get_date_created() ? wp_date( get_option( 'date_format' ), $o->get_date_created()->getTimestamp() ) : '';
+		$date = $o->get_date_created() ? flxcm_date( $o->get_date_created()->getTimestamp() ) : '';
 		/* translators: %s: order number */
 		echo '<li><a href="' . esc_url( $o->get_edit_order_url() ) . '"><span class="' . esc_attr( $ns ) . '-list__main"><strong>' . esc_html( sprintf( __( 'Sipariş #%s', 'flx-commerce' ), $o->get_order_number() ) ) . '</strong>';
 		echo '<small>' . esc_html( trim( $date . ( $items ? ' · ' . implode( ', ', array_slice( $items, 0, 2 ) ) . ( count( $items ) > 2 ? '…' : '' ) : '' ), ' ·' ) ) . '</small></span>';
@@ -610,7 +610,7 @@ final class FLXCM_Page_Customer {
 		} else {
 			$cls = '';
 		}
-		$label = function_exists( 'wc_get_order_status_name' ) ? wc_get_order_status_name( $status ) : $status;
+		$label = flxcm_status_label( $status );
 		return '<span class="' . esc_attr( $ns ) . '-badge ' . esc_attr( $cls ) . '">' . esc_html( $label ) . '</span>';
 	}
 
@@ -624,15 +624,10 @@ final class FLXCM_Page_Customer {
 	}
 
 	private static function date( $gmt ) {
-		return get_date_from_gmt( $gmt, get_option( 'date_format' ) );
+		return flxcm_date( $gmt );
 	}
 
 	private static function ago( $gmt ) {
-		$ts = strtotime( $gmt . ' UTC' );
-		if ( ! $ts ) {
-			return '—';
-		}
-		/* translators: %s: human time difference */
-		return sprintf( __( '%s önce', 'flx-commerce' ), human_time_diff( $ts, time() ) );
+		return flxcm_ago( $gmt );
 	}
 }

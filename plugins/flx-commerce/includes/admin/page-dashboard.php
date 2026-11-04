@@ -43,10 +43,10 @@ final class FLXCM_Page_Dashboard {
 			sprintf(
 				/* translators: 1: from, 2: to, 3: previous from, 4: previous to */
 				__( '%1$s – %2$s · karşılaştırma: %3$s – %4$s', 'flx-commerce' ),
-				wp_date( 'j M Y', FLXCM_Stats::ts( $from ) + 2 * HOUR_IN_SECONDS ),
-				wp_date( 'j M Y', FLXCM_Stats::ts( $to ) + 2 * HOUR_IN_SECONDS ),
-				wp_date( 'j M', FLXCM_Stats::ts( $pfrom ) + 2 * HOUR_IN_SECONDS ),
-				wp_date( 'j M', FLXCM_Stats::ts( $pto ) + 2 * HOUR_IN_SECONDS )
+				flxcm_date( FLXCM_Stats::ts( $from ) + 2 * HOUR_IN_SECONDS ),
+				flxcm_date( FLXCM_Stats::ts( $to ) + 2 * HOUR_IN_SECONDS ),
+				flxcm_date( FLXCM_Stats::ts( $pfrom ) + 2 * HOUR_IN_SECONDS, 'short' ),
+				flxcm_date( FLXCM_Stats::ts( $pto ) + 2 * HOUR_IN_SECONDS, 'short' )
 			)
 		) . '</p>';
 
@@ -103,11 +103,10 @@ final class FLXCM_Page_Dashboard {
 		echo '<ul class="flxcm-list">';
 		foreach ( $list as $o ) {
 			$rec  = FLXCM_Bank::ID === $o->get_payment_method() ? count( FLXCM_Receipts::of( $o ) ) : 0;
-			$tag  = $rec ? '<span class="flxcm-badge is-ok">' . esc_html__( 'Dekont geldi', 'flx-commerce' ) . '</span>' : '<span class="flxcm-badge is-wait">' . esc_html( wc_get_order_status_name( $o->get_status() ) ) . '</span>';
-			$when = $o->get_date_created() ? human_time_diff( $o->get_date_created()->getTimestamp() ) : '';
+			$tag  = $rec ? '<span class="flxcm-badge is-ok">' . esc_html__( 'Dekont geldi', 'flx-commerce' ) . '</span>' : '<span class="flxcm-badge is-wait">' . esc_html( flxcm_status_label( $o->get_status() ) ) . '</span>';
+			$when = $o->get_date_created() ? flxcm_ago( $o->get_date_created()->getTimestamp() ) : '';
 			echo '<li><a href="' . esc_url( $o->get_edit_order_url() ) . '"><span class="flxcm-list__main"><strong>#' . esc_html( $o->get_order_number() ) . ' · ' . esc_html( $o->get_formatted_billing_full_name() ) . '</strong>';
-			/* translators: 1: payment method, 2: time ago */
-			echo '<small>' . esc_html( sprintf( __( '%1$s · %2$s önce', 'flx-commerce' ), $o->get_payment_method_title() ? $o->get_payment_method_title() : '—', $when ) ) . '</small></span>';
+			echo '<small>' . esc_html( ( $o->get_payment_method_title() ? $o->get_payment_method_title() : '—' ) . ' · ' . $when ) . '</small></span>';
 			echo '<span class="flxcm-list__side"><strong>' . esc_html( flxcm_money( $o->get_total(), $o->get_currency() ) ) . '</strong>' . $tag . '</span></a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 		echo '</ul></section>';

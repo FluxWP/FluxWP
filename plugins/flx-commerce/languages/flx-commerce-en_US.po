@@ -227,6 +227,27 @@ msgstr "%s M"
 msgid "%s B"
 msgstr "%s K"
 
+msgid "%s önce"
+msgstr "%s ago"
+
+msgid "Hazırlanıyor"
+msgstr "Processing"
+
+msgid "Beklemede"
+msgstr "On hold"
+
+msgid "Tamamlandı"
+msgstr "Completed"
+
+msgid "İptal edildi"
+msgstr "Cancelled"
+
+msgid "İade edildi"
+msgstr "Refunded"
+
+msgid "Başarısız"
+msgstr "Failed"
+
 msgid "Flux Commerce"
 msgstr "Flux Commerce"
 
@@ -448,9 +469,6 @@ msgstr "Top 10% spenders"
 msgid "Uzaklaşan"
 msgstr "Lapsed"
 
-msgid "%s önce"
-msgstr "%s ago"
-
 msgid "CSV indir"
 msgstr "Download CSV"
 
@@ -576,9 +594,6 @@ msgstr "Awaiting payment"
 
 msgid "Ödeme bekleyen sipariş yok."
 msgstr "No orders awaiting payment."
-
-msgid "%1$s · %2$s önce"
-msgstr "%1$s · %2$s ago"
 
 msgid "Stok azalanlar"
 msgstr "Low stock"

@@ -207,3 +207,51 @@ function flxcm_icon( $name, $size = 18 ) {
 	}
 	return '<svg class="flxcm-i" width="' . (int) $size . '" height="' . (int) $size . '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' . $p[ $name ] . '</svg>';
 }
+
+/**
+ * Tarih, kullanıcının dilinde (ortak flx_date: TR/EN ay adları çekirdek dil paketinden bağımsız).
+ *
+ * @param int|string $time   Unix zaman damgası ya da GMT "Y-m-d H:i:s".
+ * @param string     $format date | short | datetime | time | PHP biçimi.
+ */
+function flxcm_date( $time, $format = 'date' ) {
+	if ( function_exists( 'flx_date' ) ) {
+		return flx_date( $time, $format );
+	}
+	$ts  = is_numeric( $time ) ? (int) $time : (int) strtotime( $time . ' UTC' );
+	$map = array(
+		'date'     => get_option( 'date_format' ),
+		'short'    => 'j M',
+		'datetime' => get_option( 'date_format' ) . ' ' . get_option( 'time_format' ),
+		'time'     => get_option( 'time_format' ),
+	);
+	return $ts ? wp_date( $map[ $format ] ?? $format, $ts ) : '—';
+}
+
+/** "31 dakika önce" / "31 minutes ago" (ortak flx_time_ago). */
+function flxcm_ago( $time ) {
+	if ( function_exists( 'flx_time_ago' ) ) {
+		return flx_time_ago( $time );
+	}
+	$ts = is_numeric( $time ) ? (int) $time : (int) strtotime( $time . ' UTC' );
+	/* translators: %s: human time difference */
+	return $ts ? sprintf( __( '%s önce', 'flx-commerce' ), human_time_diff( $ts ) ) : '—';
+}
+
+/** Sipariş durumu adı; WooCommerce'in temel durumları eklentinin kendi çevirisinden (WC dil paketi yoksa da doğru). */
+function flxcm_status_label( $status ) {
+	$status = 0 === strpos( (string) $status, 'wc-' ) ? substr( $status, 3 ) : (string) $status;
+	$labels = array(
+		'pending'    => __( 'Ödeme bekleniyor', 'flx-commerce' ),
+		'processing' => __( 'Hazırlanıyor', 'flx-commerce' ),
+		'on-hold'    => __( 'Beklemede', 'flx-commerce' ),
+		'completed'  => __( 'Tamamlandı', 'flx-commerce' ),
+		'cancelled'  => __( 'İptal edildi', 'flx-commerce' ),
+		'refunded'   => __( 'İade edildi', 'flx-commerce' ),
+		'failed'     => __( 'Başarısız', 'flx-commerce' ),
+	);
+	if ( isset( $labels[ $status ] ) ) {
+		return $labels[ $status ];
+	}
+	return function_exists( 'wc_get_order_status_name' ) ? wc_get_order_status_name( $status ) : $status;
+}

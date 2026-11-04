@@ -278,5 +278,11 @@
 "Uzaklaşan": "Lapsed",
 "%s önce": "%s ago",
 "Yeni sipariş": "New order",
-"İade yapıldı": "Refund issued"
+"İade yapıldı": "Refund issued",
+"Hazırlanıyor": "Processing",
+"Beklemede": "On hold",
+"Tamamlandı": "Completed",
+"İptal edildi": "Cancelled",
+"İade edildi": "Refunded",
+"Başarısız": "Failed"
 }

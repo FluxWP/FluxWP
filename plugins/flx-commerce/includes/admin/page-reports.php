@@ -75,7 +75,7 @@ final class FLXCM_Page_Reports {
 		echo '</div>';
 
 		echo '<div class="flxcm-grid">';
-		echo '<section class="flxcm-card flxcm-span-3"><div class="flxcm-card__head"><h2>' . esc_html__( 'Günlük ciro', 'flx-commerce' ) . '</h2><span class="flxcm-muted">' . esc_html( wp_date( 'j M Y', FLXCM_Stats::ts( $s['from'] ) + 2 * HOUR_IN_SECONDS ) . ' – ' . wp_date( 'j M Y', FLXCM_Stats::ts( $s['to'] ) + 2 * HOUR_IN_SECONDS ) ) . '</span></div>';
+		echo '<section class="flxcm-card flxcm-span-3"><div class="flxcm-card__head"><h2>' . esc_html__( 'Günlük ciro', 'flx-commerce' ) . '</h2><span class="flxcm-muted">' . esc_html( flxcm_date( FLXCM_Stats::ts( $s['from'] ) + 2 * HOUR_IN_SECONDS ) . ' – ' . flxcm_date( FLXCM_Stats::ts( $s['to'] ) + 2 * HOUR_IN_SECONDS ) ) . '</span></div>';
 		if ( $s['orders'] ) {
 			FLXCM_Admin::chart( $s['series'] );
 		} else {
@@ -112,7 +112,7 @@ final class FLXCM_Page_Reports {
 			sprintf(
 				/* translators: %s: statuses */
 				__( 'Sayılan durumlar: %s. Ayarlar\'dan değişir.', 'flx-commerce' ),
-				implode( ', ', array_map( 'wc_get_order_status_name', flxcm_paid_statuses() ) )
+				implode( ', ', array_map( 'flxcm_status_label', flxcm_paid_statuses() ) )
 			)
 		) . '</p>';
 		FLXCM_Admin::close();

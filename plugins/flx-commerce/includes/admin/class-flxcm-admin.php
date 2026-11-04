@@ -175,7 +175,7 @@ final class FLXCM_Admin {
 			$bh = $v[0] > 0 ? max( 2, $h * (float) $v[0] / $nice ) : 0;
 			$x  = $pl + $i * ( $bw + $gap );
 			/* translators: 1: date, 2: revenue, 3: order count */
-			$tip = sprintf( __( '%1$s · %2$s · %3$s sipariş', 'flx-commerce' ), wp_date( 'j M', FLXCM_Stats::ts( $day ) + 2 * HOUR_IN_SECONDS ), flxcm_money( $v[0] ), number_format_i18n( $v[1] ) );
+			$tip = sprintf( __( '%1$s · %2$s · %3$s sipariş', 'flx-commerce' ), flxcm_date( FLXCM_Stats::ts( $day ) + 2 * HOUR_IN_SECONDS, 'short' ), flxcm_money( $v[0] ), number_format_i18n( $v[1] ) );
 			echo '<rect class="flxcm-chart__bar" x="' . esc_attr( round( $x, 2 ) ) . '" y="' . esc_attr( round( $h - $bh, 2 ) ) . '" width="' . esc_attr( round( $bw, 2 ) ) . '" height="' . esc_attr( round( $bh, 2 ) ) . '" rx="' . ( $bw > 8 ? 3 : 1 ) . '"><title>' . esc_html( $tip ) . '</title></rect>';
 			++$i;
 		}
@@ -184,7 +184,7 @@ final class FLXCM_Admin {
 		$step = max( 1, (int) ceil( $n / 7 ) );
 		for ( $j = 0; $j < $n; $j += $step ) {
 			$x = ( $pl + $j * ( $bw + $gap ) + $bw / 2 ) / $w * 100;
-			echo '<span style="left:' . esc_attr( round( $x, 2 ) ) . '%">' . esc_html( wp_date( 'j M', FLXCM_Stats::ts( $keys[ $j ] ) + 2 * HOUR_IN_SECONDS ) ) . '</span>';
+			echo '<span style="left:' . esc_attr( round( $x, 2 ) ) . '%">' . esc_html( flxcm_date( FLXCM_Stats::ts( $keys[ $j ] ) + 2 * HOUR_IN_SECONDS, 'short' ) ) . '</span>';
 		}
 		echo '</div><figcaption class="flxcm-chart__max">' . esc_html( flxcm_money_short( $nice ) ) . '</figcaption></figure>';
 	}
