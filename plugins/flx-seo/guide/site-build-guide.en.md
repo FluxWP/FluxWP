@@ -10,6 +10,7 @@ This guide collects the rules to follow when building a new WordPress site, them
 3. Build the page/theme with the rules below. Content is created as a draft; publishing needs the user's approval.
 4. When done, run `site_audit` with `refresh: true`. Findings come sorted **critical → high → medium → low**; fix them in that order.
 5. If the user wants, run `site_audit` with `pagespeed: "mobile"` (then `"desktop"`) for the real Lighthouse score. One run takes 15–40 s.
+   Every run is saved; `site_audit_history` shows past reports, the trend and what was resolved (useful to check that a fix stuck).
 6. Findings with a `fix_id` can be fixed in one step: pass that id to `system_fix` (tell the user what will be turned on first).
 7. After fixing, purge the page cache (LiteSpeed › Purge All) and run the audit again.
 

@@ -91,7 +91,7 @@ add_filter(
 		);
 		$tools['site_audit'] = array(
 			'title'       => __( 'Site denetimi', 'flx-seo' ),
-			'description' => 'PageSpeed-style site audit sorted by priority (critical, high, medium, low) across performance, accessibility, best-practices, seo and agentic. refresh=true re-runs the on-site audit (~2-5 s). pagespeed=mobile|desktop also runs Google PageSpeed Insights (15-40 s, uses the API key from settings). Each finding: id, category, priority, title, fix (how to fix), owner (theme/content/server/flx-seo/setting), items (offending elements), fix_id (one-step fix: pass it to system_fix after telling the user). Fix in priority order, then re-run.',
+			'description' => 'PageSpeed-style site audit sorted by priority (critical, high, medium, low) across performance, accessibility, best-practices, seo and agentic. refresh=true re-runs the on-site audit (~2-5 s); every run is saved to history (see site_audit_history). pagespeed=mobile|desktop also runs Google PageSpeed Insights (15-40 s, uses the API key from settings). Each finding: id, category, priority, title, fix (how to fix), owner (theme/content/server/flx-seo/setting), items (offending elements), fix_id (one-step fix: pass it to system_fix after telling the user). Fix in priority order, then re-run.',
 			'readonly'    => true,
 			'cap'         => 'manage_options',
 			'schema'      => array(
@@ -107,17 +107,25 @@ add_filter(
 			'run'         => function ( $a ) {
 				$url = ! empty( $a['url'] ) ? flxseo_audit_url( $a['url'] ) : '';
 				$err = array();
+				$ran = false;
 				if ( ! empty( $a['pagespeed'] ) && in_array( $a['pagespeed'], array( 'mobile', 'desktop' ), true ) ) {
 					$p = flxseo_psi_run( $a['pagespeed'], $url );
 					if ( is_wp_error( $p ) ) {
 						$err[] = $p->get_error_message();
+					} else {
+						$ran = true;
 					}
 				}
 				if ( ! empty( $a['refresh'] ) || ! get_option( 'flxseo_audit' ) ) {
 					$l = flxseo_audit_run_local( $url );
 					if ( is_wp_error( $l ) ) {
 						$err[] = $l->get_error_message();
+					} else {
+						$ran = true;
 					}
+				}
+				if ( $ran ) {
+					do_action( 'flxseo_audit_done', 'mcp' );
 				}
 				$r     = flxseo_audit_report();
 				$order = flxseo_audit_priorities();

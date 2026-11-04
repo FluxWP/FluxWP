@@ -326,7 +326,7 @@ function flxseo_mcp_instructions() {
 		. "- Yeni içerikler varsayılan olarak taslak (draft) oluşturulur; kullanıcı açıkça isterse publish yapın.\n"
 		. "- SEO: başlık en fazla ~60, meta açıklama 120–160 karakter. seo_audit eksikleri listeler; set_seo ile düzeltin. Görsellere anlamlı alt metin verin (set_image_alt).\n"
 		. "- Silme işlemi yalnızca çöpe taşır.\n"
-		. "- Yeni sayfa, desen, tema ya da ön ayar yapmadan önce site_build_guide ile FluxWP site yapım rehberini okuyun ve uygulayın. Değişiklikten sonra site_audit(refresh=true) çalıştırın; bulguları öncelik sırasıyla (critical, high, medium, low) düzeltin. fix_id olan bulgu system_fix ile tek adımda düzelir.\n"
+		. "- Yeni sayfa, desen, tema ya da ön ayar yapmadan önce site_build_guide ile FluxWP site yapım rehberini okuyun ve uygulayın. Değişiklikten sonra site_audit(refresh=true) çalıştırın; bulguları öncelik sırasıyla (critical, high, medium, low) düzeltin. fix_id olan bulgu system_fix ile tek adımda düzelir. Geçmiş raporlar ve eğilim: site_audit_history.\n"
 		. '- Site sağlığı: system_checks eklenti, cron ve ayar kontrollerini verir (status ile filtreleyin). Bir satırın "fixes" alanındaki düzeltme system_fix ile uygulanır; system_fixes izinli düzeltmeleri ve güncel değerlerini listeler. Ayar değiştirmeden önce kullanıcıya ne yapacağınızı söyleyin; her değişiklik system_fix_log\'a yazılır.';
 }
 

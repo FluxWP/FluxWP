@@ -777,3 +777,122 @@ msgstr ""
 msgid "SEO ayarları"
 msgstr ""
 
+msgid "Her gün"
+msgstr ""
+
+msgid "Her hafta"
+msgstr ""
+
+msgid "Kapalı"
+msgstr ""
+
+msgid "Pazartesi"
+msgstr ""
+
+msgid "Salı"
+msgstr ""
+
+msgid "Çarşamba"
+msgstr ""
+
+msgid "Perşembe"
+msgstr ""
+
+msgid "Cuma"
+msgstr ""
+
+msgid "Cumartesi"
+msgstr ""
+
+msgid "Pazar"
+msgstr ""
+
+msgid "[%1$s] Site denetimi: %2$d yeni kritik/yüksek öneri"
+msgstr ""
+
+msgid "Otomatik site denetiminde yeni öneriler çıktı:"
+msgstr ""
+
+msgid "Toplam: kritik %1$d, yüksek %2$d, orta %3$d, düşük %4$d."
+msgstr ""
+
+msgid "Önceki denetimden bu yana çözülen: %d."
+msgstr ""
+
+msgid "Ayrıntılar ve düzeltmeler:"
+msgstr ""
+
+msgid "Otomatik"
+msgstr ""
+
+msgid "Elle"
+msgstr ""
+
+msgid "Yapay zekâ"
+msgstr ""
+
+msgid "Düzeltme sonrası"
+msgstr ""
+
+msgid "Rapor geçmişi"
+msgstr ""
+
+msgid "Sonraki otomatik denetim: %s"
+msgstr ""
+
+msgid "Otomatik denetim kapalı."
+msgstr ""
+
+msgid "Henüz rapor yok. Her denetim (elle, otomatik ya da yapay zekâ ile) burada saklanır."
+msgstr ""
+
+msgid "Öneri sayısının zaman içindeki değişimi"
+msgstr ""
+
+msgid "Tarih"
+msgstr ""
+
+msgid "Nasıl"
+msgstr ""
+
+msgid "Mobil puanlar"
+msgstr ""
+
+msgid "Değişim"
+msgstr ""
+
+msgid "Değişiklik yok"
+msgstr ""
+
+msgid "yeni"
+msgstr ""
+
+msgid "çözüldü"
+msgstr ""
+
+msgid "Site denetimi geçmişi"
+msgstr ""
+
+msgid "Otomatik denetim"
+msgstr ""
+
+msgid "Sıklık"
+msgstr ""
+
+msgid "Gün"
+msgstr ""
+
+msgid "Saat"
+msgstr ""
+
+msgid "Arka planda çalışır, sonuç Rapor geçmişine yazılır. Saat sitenin saat dilimine göredir; site o saatte ziyaret almazsa ilk istekte başlar."
+msgstr ""
+
+msgid "PageSpeed Insights (mobil + masaüstü) da çalışsın (API anahtarı gerekir)"
+msgstr ""
+
+msgid "Yeni kritik ya da yüksek öncelikli öneri çıkınca e-posta gönder"
+msgstr ""
+
+msgid "E-posta adresi (boşsa site yöneticisi)"
+msgstr ""

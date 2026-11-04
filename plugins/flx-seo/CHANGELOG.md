@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 1.4.0
+- **Rapor geçmişi**: her denetim (elle, otomatik, yapay zekâ, düzeltme sonrası) özetiyle saklanır (son 90). Panelde önceliğe göre yığılmış eğilim grafiği ve tablo: tarih, nasıl çalıştığı, öncelik sayıları, mobil PageSpeed puanları + LCP, önceki rapora göre yeni ve çözülen öneriler.
+- **Otomatik denetim**: her gün ya da haftada bir (gün ve saat seçilir, sitenin saat dilimi), isteğe bağlı PageSpeed mobil + masaüstü dahil. Arka planda adım adım çalışır (PHP süre sınırına takılmaz); WP-Cron çalışmasa da ilk istekte başlar.
+- Yeni kritik ya da yüksek öncelikli öneri çıkınca e-posta (adres seçilebilir, boşsa site yöneticisi).
+- Yeni MCP aracı `site_audit_history` (geçmiş raporlar + takvim); Flux AI sohbetinde de var. `site_audit` her çalıştırmayı geçmişe yazar.
+
 ## 1.3.0
 - Yeni **SEO & MCP › Site denetimi**: PageSpeed Insights'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre (kritik, yüksek, orta, düşük). Her öneride nasıl düzeltilir, sorunlu öğeler ve düzeltme yeri. Menüde kritik + yüksek sayısı, Sistem Kontrolü'nde "Site denetimi" satırı.
 - Site içi denetim anahtarsız ve günde bir kendiliğinden: viewport yakınlaştırma kilidi, ARIA rolleri (tablist › tab, gerekli üst öğe), liste dışı `<li>`, adsız bağlantı/düğme/alan, yinelenen id, aynı başlıklı yayınlar ve aynı metinli farklı bağlantılar, engelleyen CSS/JS, DOM boyutu, boyutsuz ve lazy ilk görsel, font-display, güvenlik başlıkları, robots.txt, llms.txt, WebMCP.

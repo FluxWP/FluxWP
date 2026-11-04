@@ -10,6 +10,7 @@ Bu rehber yeni bir WordPress sitesi, tema, ön ayar (flx-preset-*), blok deseni 
 3. Sayfayı/temayı bu rehberdeki kurallarla yap. İçerik taslak (draft) oluşturulur; yayın kullanıcının onayıyla.
 4. Bitince `site_audit` aracını `refresh: true` ile çalıştır. Bulgular **kritik → yüksek → orta → düşük** sırasıyla gelir; aynı sırayla düzelt.
 5. Kullanıcı isterse `site_audit` ile `pagespeed: "mobile"` (sonra `"desktop"`) çalıştırıp gerçek Lighthouse puanını al. Bir ölçüm 15–40 sn sürer.
+   Her çalıştırma saklanır; `site_audit_history` geçmiş raporları, eğilimi ve çözülenleri gösterir (düzeltmenin kalıcı olduğunu doğrulamak için).
 6. `fix_id` alanı dolu bulgular tek tıkla düzelir: `system_fix` aracına bu kimliği ver (önce kullanıcıya ne açılacağını söyle).
 7. Düzeltmeden sonra önbelleği boşalt (LiteSpeed › Purge All) ve denetimi yeniden çalıştır.
 
