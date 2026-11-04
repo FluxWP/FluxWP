@@ -58,11 +58,11 @@ function flxseo_guide_sections( $lang = '' ) {
 }
 
 /* ---------------------------------------------------------------------------
- * MCP araçları (Flux AI flxseo_mcp_tools'u kendiliğinden alır)
+ * MCP araçları (flx_mcp_tools: Flux AI MCP sunucusu ve sohbeti)
  * ------------------------------------------------------------------------- */
 
 add_filter(
-	'flxseo_mcp_tools',
+	'flx_mcp_tools',
 	function ( $tools ) {
 		$tools['site_build_guide'] = array(
 			'title'       => __( 'Site yapım rehberi', 'flx-seo' ),
@@ -168,7 +168,14 @@ add_filter(
 	5
 );
 
-/** MCP kaynakları (resources/list, resources/read). */
+/** MCP kaynakları (resources/list, resources/read); Flux AI sunucusuna `flx_mcp_resources` ile eklenir. */
+add_filter(
+	'flx_mcp_resources',
+	function ( $res ) {
+		return array_merge( (array) $res, flxseo_mcp_resources() );
+	}
+);
+
 function flxseo_mcp_resources() {
 	$res = array();
 	foreach ( array( 'tr', 'en' ) as $l ) {
@@ -194,7 +201,7 @@ function flxseo_mcp_resources() {
 		'mimeType'    => 'text/markdown',
 		'read'        => fn() => flxseo_llms_txt(),
 	);
-	return (array) apply_filters( 'flxseo_mcp_resources', $res );
+	return $res;
 }
 
 /* Flux AI sohbeti: sayfa/tema işinde önce rehber, sonra denetim. */

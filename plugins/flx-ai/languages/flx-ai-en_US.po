@@ -4,6 +4,108 @@ msgstr ""
 "Project-Id-Version: Flux AI\n"
 "Language: en_US\n"
 
+msgid "ANAHTARINIZ"
+msgstr "YOUR_KEY"
+
+msgid "Claude gibi yapay zekâ asistanları bu siteye MCP (Model Context Protocol) ile bağlanır. Araçları kurulu FluxWP eklentileri verir (SEO, CRM, Mail, Speed…); Flux AI sohbeti de aynı araçları kullanır."
+msgstr "AI assistants such as Claude connect to this site over MCP (Model Context Protocol). Tools come from the installed FluxWP plugins (SEO, CRM, Mail, Speed…); Flux AI chat uses the same tools."
+
+msgid "Eski Flux SEO sürümü kendi MCP sunucusunu çalıştırıyor. Flux SEO'yu güncelleyin; anahtarlar ve ayar buraya kendiliğinden geçer."
+msgstr "An old Flux SEO version is running its own MCP server. Update Flux SEO; keys and the setting move here automatically."
+
+msgid "1. Sunucu"
+msgstr "1. Server"
+
+msgid "MCP sunucusu etkin"
+msgstr "MCP server enabled"
+
+msgid "Kaydet"
+msgstr "Save"
+
+msgid "Sunucu adresi"
+msgstr "Server URL"
+
+msgid "açık"
+msgstr "on"
+
+msgid "kapalı"
+msgstr "off"
+
+msgid "Araçlar"
+msgstr "Tools"
+
+msgid "2. Anahtarlar"
+msgstr "2. Keys"
+
+msgid "Asistan, anahtarı oluşturan kullanıcının yetkileriyle çalışır. Yeni içerikler taslak açılır, silme yalnız çöpe taşır."
+msgstr "The assistant works with the permissions of the user who created the key. New content is created as a draft; deleting only moves to trash."
+
+msgid "Yeni anahtar (yalnız şimdi gösterilir, kopyalayın):"
+msgstr "New key (shown only now, copy it):"
+
+msgid "okur"
+msgstr "reads"
+
+msgid "Araçları sınırla (isteğe bağlı)"
+msgstr "Limit tools (optional)"
+
+msgid "Hiçbiri seçilmezse anahtar kullanıcının bütün yetkileriyle çalışır. Seçilirse yalnız işaretli araçları görür ve çalıştırır (ör. TV sipariş paneli için yalnız order_summary)."
+msgstr "If none is selected the key works with all of the user's permissions. If some are selected it only sees and runs those tools (e.g. only order_summary for a TV order board)."
+
+msgid "Ör. Claude – Ahmet"
+msgstr "e.g. Claude – Alex"
+
+msgid "Yeni anahtar oluştur"
+msgstr "Create new key"
+
+msgid "Ad"
+msgstr "Name"
+
+msgid "Kullanıcı"
+msgstr "User"
+
+msgid "Oluşturma"
+msgstr "Created"
+
+msgid "Son kullanım"
+msgstr "Last used"
+
+msgid "Tümü"
+msgstr "All"
+
+msgid "İptal et"
+msgstr "Revoke"
+
+msgid "3. Asistana bağla"
+msgstr "3. Connect an assistant"
+
+msgid "Bağlayıcılar › Özel bağlayıcı ekle"
+msgstr "Connectors › Add custom connector"
+
+msgid "başlık eklenemeyen yerler için anahtarlı adres; kimseyle paylaşmayın:"
+msgstr "URL with the key, for places where headers can't be added; don't share it:"
+
+msgid "Sunucu Apache ise ve \"Geçersiz anahtar\" hatası alırsanız .htaccess'e SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 ekleyin ya da anahtarlı adresi kullanın."
+msgstr "If the server runs Apache and you get an \"Invalid key\" error, add SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 to .htaccess or use the URL with the key."
+
+msgid "Son işlemler"
+msgstr "Recent activity"
+
+msgid "Zaman"
+msgstr "Time"
+
+msgid "Araç"
+msgstr "Tool"
+
+msgid "Hedef"
+msgstr "Target"
+
+msgid "Sonuç"
+msgstr "Result"
+
+msgid "%d araç kayıtlı."
+msgstr "%d tools registered."
+
 msgid "Genel bakış"
 msgstr "Overview"
 
@@ -15,9 +117,6 @@ msgstr "Connected systems"
 
 msgid "Faturalandırma"
 msgstr "Billing"
-
-msgid "Araçlar"
-msgstr "Tools"
 
 msgid "Ayarlar"
 msgstr "Settings"
@@ -97,9 +196,6 @@ msgstr "By purpose"
 msgid "Bu aralıkta kayıt yok."
 msgstr "No records in this range."
 
-msgid "Ad"
-msgstr "Name"
-
 msgid "İstek"
 msgstr "Requests"
 
@@ -114,9 +210,6 @@ msgstr "%s errors"
 
 msgid "Her model isteği ve araç çağrısı: hangi sistemden, kim için, hangi model, token, süre, maliyet. İçerik kişisel veriler maskelenerek saklanır."
 msgstr "Every model request and tool call: which system, for whom, which model, tokens, time and cost. Content is stored with personal data masked."
-
-msgid "Tümü"
-msgstr "All"
 
 msgid "Araç çağrıları"
 msgstr "Tool calls"
@@ -138,9 +231,6 @@ msgstr "%s records"
 
 msgid "Kayıt yok."
 msgstr "No records."
-
-msgid "Zaman"
-msgstr "Time"
 
 msgid "Nerede"
 msgstr "Where"
@@ -202,9 +292,6 @@ msgstr "Model"
 msgid "İstek (30 gün)"
 msgstr "Requests (30 days)"
 
-msgid "Son kullanım"
-msgstr "Last used"
-
 msgid "kurulu değil"
 msgstr "not installed"
 
@@ -222,9 +309,6 @@ msgstr "Its settings"
 
 msgid "Model sütunu: o sistemin kullandığı model. Değiştirmek için Ayarlar › Eklentiye özel model. Kapalı sistemin istekleri reddedilir ve Kayıtlar'da \"Kapalı\" olarak görünür."
 msgstr "Model column: the model this system uses. To change it, see Settings › Per-plugin model. Requests from a system that is off are rejected and appear as \"Off\" in Logs."
-
-msgid "Kaydet"
-msgstr "Save"
 
 msgid "Aylık döküm, harcama sınırları ve sağlayıcı kredisi. Tutarlar USD; OpenRouter gerçek maliyeti, Anthropic fiyat listesinden hesaplanır."
 msgstr "Monthly breakdown, spending limits and provider credit. Amounts in USD; OpenRouter reports actual cost, Anthropic is computed from the price list."
@@ -289,9 +373,6 @@ msgstr "Press Refresh to see remaining credit. (Anthropic has no balance API; se
 msgid "Ortak sohbetin kullanabildiği araçlar. Değişiklik yapan araçlar her seferinde kullanıcı onayı ister; kullanıcı yalnız yetkisi olan araçları görür."
 msgstr "Tools available to the shared chat. Tools that make changes ask for the user's approval every time; users only see tools they have permission for."
 
-msgid "Araç"
-msgstr "Tool"
-
 msgid "Tür"
 msgstr "Type"
 
@@ -307,14 +388,11 @@ msgstr "Avg. time"
 msgid "değiştirir · onaylı"
 msgstr "writes · needs approval"
 
-msgid "okur"
-msgstr "reads"
-
 msgid "Kayıtlı araç yok."
 msgstr "No tools registered."
 
-msgid "Eklentiler araç eklemek için flxai_tools filtresini kullanır (API.md). Flux SEO & MCP araçları otomatik gelir."
-msgstr "Plugins add tools with the flxai_tools filter (API.md). Flux SEO & MCP tools are included automatically."
+msgid "Eklentiler araç eklemek için flx_mcp_tools (MCP + sohbet) ya da flxai_tools (yalnız sohbet) filtresini kullanır (API.md)."
+msgstr "Plugins add tools with the flx_mcp_tools filter (MCP + chat) or flxai_tools (chat only) (API.md)."
 
 msgid "Flux AI ayarları"
 msgstr "Flux AI settings"
@@ -679,14 +757,17 @@ msgstr "%1$s / %2$s requests failed."
 msgid "Son 24 saatte istek yok."
 msgstr "No requests in the last 24 hours."
 
-msgid "Sohbet araçları"
-msgstr "Chat tools"
+msgid "MCP sunucusu"
+msgstr "MCP server"
 
-msgid "Flux SEO & MCP araçları ortak sohbette kullanılabilir; değişiklik yapanlar onay ister."
-msgstr "Flux SEO & MCP tools are available in the shared chat; tools that make changes ask for approval."
+msgid "%1$s %2$d araç kayıtlı; Flux AI sohbeti de bunları kullanır, değişiklik yapanlar onay ister."
+msgstr "%1$s %2$d tools registered; Flux AI chat uses them too, and tools that change data ask for approval."
 
-msgid "Flux SEO & MCP kurulu değil; sohbet yalnız Flux AI ve diğer eklentilerin kaydettiği araçları kullanır."
-msgstr "Flux SEO & MCP is not installed; the chat only uses tools registered by Flux AI and other plugins."
+msgid "MCP sunucusu açık."
+msgstr "MCP server is on."
+
+msgid "MCP sunucusu kapalı."
+msgstr "MCP server is off."
 
 msgid "Görsel çevirici (WhatsApp/e-posta)"
 msgstr "Visual renderer (WhatsApp/email)"
@@ -747,6 +828,30 @@ msgstr "Flux AI chat"
 
 msgid "Belirtilmemiş"
 msgstr "Unspecified"
+
+msgid "MCP kapalı. Flux AI › MCP ekranından açın."
+msgstr "MCP is off. Turn it on in Flux AI › MCP."
+
+msgid "Geçersiz veya eksik MCP anahtarı."
+msgstr "Invalid or missing MCP key."
+
+msgid "Bu kullanıcının içerik düzenleme yetkisi yok."
+msgstr "This user can't edit content."
+
+msgid "Bilinmeyen araç: %s"
+msgstr "Unknown tool: %s"
+
+msgid "Bu anahtar bu aracı kullanamaz: %s"
+msgstr "This key can't use this tool: %s"
+
+msgid "Bu işlem için yetkiniz yok."
+msgstr "You don't have permission for this."
+
+msgid "Yetkisiz."
+msgstr "Unauthorized."
+
+msgid "Yapay zekâ"
+msgstr "AI"
 
 msgid "Desteklenmeyen model."
 msgstr "Unsupported model."
@@ -1074,9 +1179,6 @@ msgstr "awaiting approval"
 
 msgid "Girdi"
 msgstr "Input"
-
-msgid "Sonuç"
-msgstr "Result"
 
 msgid "Sonuç yok"
 msgstr "No result"

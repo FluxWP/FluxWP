@@ -104,13 +104,16 @@ add_filter(
 			'id'           => 'flxai.mcp',
 			'source'       => $src,
 			'group'        => 'AI',
-			'label'        => __( 'Sohbet araçları', 'flx-ai' ),
-			'status'       => function_exists( 'flxseo_mcp_tools' ) ? 'ok' : 'info',
-			'message'      => function_exists( 'flxseo_mcp_tools' )
-				? __( 'Flux SEO & MCP araçları ortak sohbette kullanılabilir; değişiklik yapanlar onay ister.', 'flx-ai' )
-				: __( 'Flux SEO & MCP kurulu değil; sohbet yalnız Flux AI ve diğer eklentilerin kaydettiği araçları kullanır.', 'flx-ai' ),
-			'action_url'   => admin_url( 'admin.php?page=flx-ai-tools' ),
-			'action_label' => __( 'Araçlar', 'flx-ai' ),
+			'label'        => __( 'MCP sunucusu', 'flx-ai' ),
+			'status'       => flxai_mcp_enabled() ? 'ok' : 'info',
+			'message'      => sprintf(
+				/* translators: 1: on/off sentence, 2: tool count */
+				__( '%1$s %2$d araç kayıtlı; Flux AI sohbeti de bunları kullanır, değişiklik yapanlar onay ister.', 'flx-ai' ),
+				flxai_mcp_enabled() ? __( 'MCP sunucusu açık.', 'flx-ai' ) : __( 'MCP sunucusu kapalı.', 'flx-ai' ),
+				count( flxai_mcp_tools() )
+			),
+			'action_url'   => flxai_mcp_admin_url(),
+			'action_label' => 'MCP',
 		);
 		$rnd      = flxai_widget_renderer();
 		$checks[] = array(

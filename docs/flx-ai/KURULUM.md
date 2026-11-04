@@ -18,7 +18,7 @@ Sol menüde **Flux AI** (Flux Admin'de "Diğer" grubunda, İletişim'in yanında
 - **Kayıtlar**: her model isteği ve araç çağrısı. Nerede (sistem · amaç · sohbet no), kim, model, token, süre, maliyet, hata. Süzgeç: 24 saat / 7 / 30 / 90 gün, tür, sistem, yalnız hatalar. **İçerik** düğmesi giden son mesajları ve gelen cevabı gösterir; e-posta, telefon, kart/TC, IBAN ve anahtarlar maskeli. İçerik 30 gün saklanır (Ayarlar › Kayıtlar › İçerik kaydı, kapatılabilir).
 - **Bağlı sistemler**: Flux AI'yı kullanan eklentiler (sohbet, Çağrı Merkezi, Görev …). Durum, model, 30 günlük kullanım, son kullanım. **Açık** kutusunu kaldırıp Kaydet: o sistem yapay zekâ isteği gönderemez (kayıtlarda "Kapalı" görünür). Eklentinin kendi ayarları değişmez; tekrar açınca kaldığı yerden devam eder. Sohbet kapatılırsa "AI'ya sor" düğmesi gizlenir.
 - **Faturalandırma**: ay listesi, ay toplamı, önbellek tasarrufu, sağlayıcıya göre döküm, CSV indir, OpenRouter kalan kredi (Yenile). Anthropic bakiye API'si sunmuyor; bakiye console.anthropic.com › Billing.
-- **Araçlar**: ortak sohbetin kullandığı araçlar (Flux SEO & MCP dahil); aç/kapat, 30 günlük kullanım ve süre.
+- **Araçlar**: ortak sohbetin kullandığı araçlar (MCP araçları dahil: Flux SEO, CRM, Mail, Speed…); aç/kapat, 30 günlük kullanım ve süre.
 - **Ayarlar**: API anahtarları, modeller, harcama sınırı (gün/hafta/ay), sohbet, görseller, kayıtlar.
 
 ## Ortak AI sohbeti

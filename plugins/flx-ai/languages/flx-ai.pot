@@ -3,6 +3,108 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Project-Id-Version: Flux AI\n"
 
+msgid "ANAHTARINIZ"
+msgstr ""
+
+msgid "Claude gibi yapay zekâ asistanları bu siteye MCP (Model Context Protocol) ile bağlanır. Araçları kurulu FluxWP eklentileri verir (SEO, CRM, Mail, Speed…); Flux AI sohbeti de aynı araçları kullanır."
+msgstr ""
+
+msgid "Eski Flux SEO sürümü kendi MCP sunucusunu çalıştırıyor. Flux SEO'yu güncelleyin; anahtarlar ve ayar buraya kendiliğinden geçer."
+msgstr ""
+
+msgid "1. Sunucu"
+msgstr ""
+
+msgid "MCP sunucusu etkin"
+msgstr ""
+
+msgid "Kaydet"
+msgstr ""
+
+msgid "Sunucu adresi"
+msgstr ""
+
+msgid "açık"
+msgstr ""
+
+msgid "kapalı"
+msgstr ""
+
+msgid "Araçlar"
+msgstr ""
+
+msgid "2. Anahtarlar"
+msgstr ""
+
+msgid "Asistan, anahtarı oluşturan kullanıcının yetkileriyle çalışır. Yeni içerikler taslak açılır, silme yalnız çöpe taşır."
+msgstr ""
+
+msgid "Yeni anahtar (yalnız şimdi gösterilir, kopyalayın):"
+msgstr ""
+
+msgid "okur"
+msgstr ""
+
+msgid "Araçları sınırla (isteğe bağlı)"
+msgstr ""
+
+msgid "Hiçbiri seçilmezse anahtar kullanıcının bütün yetkileriyle çalışır. Seçilirse yalnız işaretli araçları görür ve çalıştırır (ör. TV sipariş paneli için yalnız order_summary)."
+msgstr ""
+
+msgid "Ör. Claude – Ahmet"
+msgstr ""
+
+msgid "Yeni anahtar oluştur"
+msgstr ""
+
+msgid "Ad"
+msgstr ""
+
+msgid "Kullanıcı"
+msgstr ""
+
+msgid "Oluşturma"
+msgstr ""
+
+msgid "Son kullanım"
+msgstr ""
+
+msgid "Tümü"
+msgstr ""
+
+msgid "İptal et"
+msgstr ""
+
+msgid "3. Asistana bağla"
+msgstr ""
+
+msgid "Bağlayıcılar › Özel bağlayıcı ekle"
+msgstr ""
+
+msgid "başlık eklenemeyen yerler için anahtarlı adres; kimseyle paylaşmayın:"
+msgstr ""
+
+msgid "Sunucu Apache ise ve \"Geçersiz anahtar\" hatası alırsanız .htaccess'e SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 ekleyin ya da anahtarlı adresi kullanın."
+msgstr ""
+
+msgid "Son işlemler"
+msgstr ""
+
+msgid "Zaman"
+msgstr ""
+
+msgid "Araç"
+msgstr ""
+
+msgid "Hedef"
+msgstr ""
+
+msgid "Sonuç"
+msgstr ""
+
+msgid "%d araç kayıtlı."
+msgstr ""
+
 msgid "Genel bakış"
 msgstr ""
 
@@ -13,9 +115,6 @@ msgid "Bağlı sistemler"
 msgstr ""
 
 msgid "Faturalandırma"
-msgstr ""
-
-msgid "Araçlar"
 msgstr ""
 
 msgid "Ayarlar"
@@ -96,9 +195,6 @@ msgstr ""
 msgid "Bu aralıkta kayıt yok."
 msgstr ""
 
-msgid "Ad"
-msgstr ""
-
 msgid "İstek"
 msgstr ""
 
@@ -112,9 +208,6 @@ msgid "%s hata"
 msgstr ""
 
 msgid "Her model isteği ve araç çağrısı: hangi sistemden, kim için, hangi model, token, süre, maliyet. İçerik kişisel veriler maskelenerek saklanır."
-msgstr ""
-
-msgid "Tümü"
 msgstr ""
 
 msgid "Araç çağrıları"
@@ -136,9 +229,6 @@ msgid "%s kayıt"
 msgstr ""
 
 msgid "Kayıt yok."
-msgstr ""
-
-msgid "Zaman"
 msgstr ""
 
 msgid "Nerede"
@@ -201,9 +291,6 @@ msgstr ""
 msgid "İstek (30 gün)"
 msgstr ""
 
-msgid "Son kullanım"
-msgstr ""
-
 msgid "kurulu değil"
 msgstr ""
 
@@ -220,9 +307,6 @@ msgid "Ayarları"
 msgstr ""
 
 msgid "Model sütunu: o sistemin kullandığı model. Değiştirmek için Ayarlar › Eklentiye özel model. Kapalı sistemin istekleri reddedilir ve Kayıtlar'da \"Kapalı\" olarak görünür."
-msgstr ""
-
-msgid "Kaydet"
 msgstr ""
 
 msgid "Aylık döküm, harcama sınırları ve sağlayıcı kredisi. Tutarlar USD; OpenRouter gerçek maliyeti, Anthropic fiyat listesinden hesaplanır."
@@ -288,9 +372,6 @@ msgstr ""
 msgid "Ortak sohbetin kullanabildiği araçlar. Değişiklik yapan araçlar her seferinde kullanıcı onayı ister; kullanıcı yalnız yetkisi olan araçları görür."
 msgstr ""
 
-msgid "Araç"
-msgstr ""
-
 msgid "Tür"
 msgstr ""
 
@@ -306,13 +387,10 @@ msgstr ""
 msgid "değiştirir · onaylı"
 msgstr ""
 
-msgid "okur"
-msgstr ""
-
 msgid "Kayıtlı araç yok."
 msgstr ""
 
-msgid "Eklentiler araç eklemek için flxai_tools filtresini kullanır (API.md). Flux SEO & MCP araçları otomatik gelir."
+msgid "Eklentiler araç eklemek için flx_mcp_tools (MCP + sohbet) ya da flxai_tools (yalnız sohbet) filtresini kullanır (API.md)."
 msgstr ""
 
 msgid "Flux AI ayarları"
@@ -678,13 +756,16 @@ msgstr ""
 msgid "Son 24 saatte istek yok."
 msgstr ""
 
-msgid "Sohbet araçları"
+msgid "MCP sunucusu"
 msgstr ""
 
-msgid "Flux SEO & MCP araçları ortak sohbette kullanılabilir; değişiklik yapanlar onay ister."
+msgid "%1$s %2$d araç kayıtlı; Flux AI sohbeti de bunları kullanır, değişiklik yapanlar onay ister."
 msgstr ""
 
-msgid "Flux SEO & MCP kurulu değil; sohbet yalnız Flux AI ve diğer eklentilerin kaydettiği araçları kullanır."
+msgid "MCP sunucusu açık."
+msgstr ""
+
+msgid "MCP sunucusu kapalı."
 msgstr ""
 
 msgid "Görsel çevirici (WhatsApp/e-posta)"
@@ -745,6 +826,30 @@ msgid "Flux AI sohbet"
 msgstr ""
 
 msgid "Belirtilmemiş"
+msgstr ""
+
+msgid "MCP kapalı. Flux AI › MCP ekranından açın."
+msgstr ""
+
+msgid "Geçersiz veya eksik MCP anahtarı."
+msgstr ""
+
+msgid "Bu kullanıcının içerik düzenleme yetkisi yok."
+msgstr ""
+
+msgid "Bilinmeyen araç: %s"
+msgstr ""
+
+msgid "Bu anahtar bu aracı kullanamaz: %s"
+msgstr ""
+
+msgid "Bu işlem için yetkiniz yok."
+msgstr ""
+
+msgid "Yetkisiz."
+msgstr ""
+
+msgid "Yapay zekâ"
 msgstr ""
 
 msgid "Desteklenmeyen model."
@@ -1072,9 +1177,6 @@ msgid "onay bekliyor"
 msgstr ""
 
 msgid "Girdi"
-msgstr ""
-
-msgid "Sonuç"
 msgstr ""
 
 msgid "Sonuç yok"

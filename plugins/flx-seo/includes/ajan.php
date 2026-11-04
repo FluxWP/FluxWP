@@ -309,7 +309,7 @@ add_filter(
 				'label'       => $l[0],
 				'description' => $l[1],
 				'checks'      => array( 'flxseo.audit' ),
-				'source'      => 'SEO & MCP',
+				'source'      => 'Flux SEO',
 				'value'       => null,
 				'current'     => fn() => flxseo_fix_is_on( $id ),
 				'run'         => function () use ( $id ) {

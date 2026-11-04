@@ -604,7 +604,7 @@ function flxseo_audit_title( $id, $fallback ) {
  * ------------------------------------------------------------------------- */
 
 add_filter(
-	'flxseo_mcp_tools',
+	'flx_mcp_tools',
 	function ( $tools ) {
 		$tools['site_audit_history'] = array(
 			'title'       => __( 'Site denetimi geçmişi', 'flx-seo' ),

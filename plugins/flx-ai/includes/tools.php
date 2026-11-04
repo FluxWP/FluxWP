@@ -2,7 +2,7 @@
 /**
  * Araç kaydı. Kaynaklar:
  *  - flxai_tools filtresi (her eklenti kendi araçlarını ekler),
- *  - Flux SEO & MCP kuruluysa onun MCP araçları (flxseo_mcp_tools) otomatik gelir.
+ *  - MCP araçları (flx_mcp_tools, eski adı flxseo_mcp_tools; mcp.php) otomatik gelir.
  *
  * Araç: name => array( title, description, schema (JSON Schema), readonly (bool), cap, run (callable $args, $ctx → array),
  *        source, confirm (bool: okuma aracı olsa da onay iste) ).
@@ -20,8 +20,8 @@ function flxai_tools_all() {
 		return $cache;
 	}
 	$tools = array();
-	if ( function_exists( 'flxseo_mcp_tools' ) ) {
-		foreach ( (array) flxseo_mcp_tools() as $name => $t ) {
+	if ( function_exists( 'flxai_mcp_tools' ) ) {
+		foreach ( (array) flxai_mcp_tools() as $name => $t ) {
 			if ( ! is_array( $t ) || empty( $t['run'] ) ) {
 				continue;
 			}
@@ -31,7 +31,7 @@ function flxai_tools_all() {
 				'schema'      => $t['schema'] ?? array( 'type' => 'object', 'properties' => new stdClass() ),
 				'readonly'    => ! empty( $t['readonly'] ),
 				'cap'         => (string) ( $t['cap'] ?? 'edit_posts' ),
-				'source'      => 'flx-seo',
+				'source'      => flxai_mcp_tool_source( $t ),
 				'mcp'         => true,
 				'run'         => null,
 			);
@@ -123,7 +123,7 @@ function flxai_run_tool( $name, $args, array $ctx = array() ) {
 		$t = $tools[ $name ];
 		try {
 			if ( ! empty( $t['mcp'] ) ) {
-				$r    = flxseo_mcp_call( $name, is_array( $args ) ? $args : array() );
+				$r    = flxai_mcp_call( $name, is_array( $args ) ? $args : array() );
 				$text = (string) ( $r['content'][0]['text'] ?? '' );
 				$dec  = json_decode( $text, true );
 				$data = null !== $dec ? $dec : $text;

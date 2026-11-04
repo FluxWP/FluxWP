@@ -6,8 +6,8 @@
 
 # Flux SEO
 
-**Lightweight SEO for WordPress, plus an MCP server so Claude and other AI assistants can manage your content.**<br>
-Flux SEO adds what a charity site needs to be found: meta titles and descriptions, canonical, Open Graph with sharp WhatsApp previews, schema (Organization, WebSite, Breadcrumb, Article), sitemap fixes, IndexNow, favicon and browser caching, with an SEO check for every page. It also runs an MCP server, so Claude Desktop, Claude Code, Cursor or claude.ai can list, write and fix content with a per-user key.
+**Lightweight SEO for WordPress, plus content and SEO tools that Claude and other AI assistants use over MCP.**<br>
+Flux SEO adds what a charity site needs to be found: meta titles and descriptions, canonical, Open Graph with sharp WhatsApp previews, schema (Organization, WebSite, Breadcrumb, Article), sitemap fixes, IndexNow, favicon and browser caching, with an SEO check for every page. Its AI tools plug into the shared FluxWP MCP server in Flux AI, so Claude Desktop, Claude Code, Cursor or claude.ai can list, write and fix content with a per-user key.
 
 [![WordPress 6.5+](https://img.shields.io/badge/WordPress-6.5%2B-21759b?logo=wordpress&logoColor=white)](https://wordpress.org)
 [![PHP 7.4+](https://img.shields.io/badge/PHP-7.4%2B-777bb4?logo=php&logoColor=white)](https://www.php.net)
@@ -54,10 +54,10 @@ Big SEO plugins bring dozens of screens, upsells and their own database tables; 
 - Agent readiness: auto-generated `/llms.txt`, WebMCP `toolname` on search forms, opt-in X-Frame-Options, COOP, basic CSP and HSTS includeSubDomains/preload.
 - **Site build guide** (TR + EN Markdown) for new pages, themes and presets, served to AI agents as the MCP tool `site_build_guide` and resource `flxseo://guide/site-build`; `site_audit` tool for agents and Flux AI.
 
-### MCP server
-- `/wp-json/flx-mcp/v1/mcp` with per-user keys; keys can be limited to chosen tools; last use shown.
+### AI tools (MCP)
+- The MCP server, keys and log live in **Flux AI › MCP** (`/wp-json/flx-mcp/v1/mcp`, since Flux SEO 1.5.0 / Flux AI 0.7.0). Flux SEO registers its tools there; Flux AI chat uses the same tools.
 - Tools: site info, list/get/create/update/delete content, set SEO, SEO audit, patterns, media upload and alt text, terms, site SEO settings; prompts for "fix SEO gaps", "write a news post" and "build a page".
-- Other FluxWP plugins add their own tools through `flxseo_mcp_tools` (orders, system checks and fixes are already there).
+- Other FluxWP plugins add their own tools through `flx_mcp_tools` (old name `flxseo_mcp_tools` still works).
 - New content is created as a draft; delete only moves to trash. Every call is logged.
 
 ## Screenshots
@@ -87,7 +87,7 @@ Requirements: WordPress 6.5+, PHP 7.4+. An MCP client (Claude Desktop, Claude Co
 
 **First steps**
 
-1. Activate Flux SEO and open **SEO & MCP › General**: check the site name, home title and description.
+1. Activate Flux SEO and open **SEO › General**: check the site name, home title and description.
 2. Fill **Organisation and social** so Google can show your knowledge panel.
 3. Open **SEO check** and work through the list, by hand or with the assistant.
 
@@ -97,16 +97,16 @@ Full setup notes (Turkish): [KURULUM.md](../../docs/seo-mcp/KURULUM.md) · Relea
 
 ## Use it with AI assistants (MCP)
 
-1. **SEO & MCP › AI (MCP)**: turn on the MCP server and create a key (optionally limited to some tools).
+1. Install Flux AI 0.7.0+ and open **Flux AI › MCP**: turn on the MCP server and create a key (optionally limited to some tools).
 2. Add it to your client, for example Claude Code:
 
 ```bash
-claude mcp add --transport http yesil-turkiye https://example.org/wp-json/flx-mcp/v1/mcp --header "Authorization: Bearer YOUR_KEY"
+claude mcp add --transport http my-site https://example.org/wp-json/flx-mcp/v1/mcp --header "Authorization: Bearer YOUR_KEY"
 ```
 
 3. Ask: *"List posts with SEO gaps and fix them."* The assistant works with the permissions of the user who created the key.
 
-Adding tools from your own plugin: [MCP-API.md](../../docs/seo-mcp/MCP-API.md).
+Adding tools from your own plugin: [Flux AI API.md › MCP](../../docs/flx-ai/API.md#mcp-sunucusu-070) and [MCP-API.md](../../docs/seo-mcp/MCP-API.md) (Flux SEO tools and system fixes).
 
 ## Roadmap
 
@@ -114,7 +114,7 @@ Adding tools from your own plugin: [MCP-API.md](../../docs/seo-mcp/MCP-API.md).
 |---|---|
 | ✅ | Meta, Open Graph, schema and sitemap |
 | ✅ | SEO check and editor panel |
-| ✅ | MCP server with scoped keys |
+| ✅ | AI tools over MCP (server in Flux AI) |
 | ✅ | IndexNow and sharp WhatsApp previews |
 | ⬜ | English settings screens |
 | ⬜ | Redirect manager for changed slugs |
