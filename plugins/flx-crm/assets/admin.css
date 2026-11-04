@@ -285,3 +285,12 @@ html.flxa-dark .flxcrm-avatar{background:hsl(var(--h) 35% 24%);color:hsl(var(--h
 @media (prefers-reduced-motion:reduce){.flxcrm-spin{animation:none}}
 /* Mobil: tünel sınırlı yükseklikte, kendi içinde kayar */
 @media (max-width:782px){.flxcrm-timeline{max-height:70vh;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding-right:4px;margin-right:-4px}}
+/* Yapay zekâ ve MCP */
+.flxcrm-ai__status{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:8px}
+.flxcrm-ai__status li{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;padding:10px 12px;border:1px solid var(--c-bd);border-radius:10px;background:var(--c-card)}
+.flxcrm-ai__status small{flex-basis:100%}
+.flxcrm-ai__url{font-size:12px;word-break:break-all}
+.flxcrm-ai__perms{margin:4px 0 12px;grid-template-columns:1fr}
+.flxcrm-ai__tools summary{cursor:pointer;font-weight:600;margin:4px 0 8px}
+.flxcrm-ai__tools tr.is-off{opacity:.45}
+form + .flxcrm-card{margin-top:16px}

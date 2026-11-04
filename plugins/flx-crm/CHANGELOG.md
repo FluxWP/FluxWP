@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 0.2.0
+- **Yapay zekâ ve MCP ile tam yönetim**: CRM'deki her şey Flux AI sohbetinden ve MCP'den (Claude, ChatGPT, Cursor…) okunur ve düzenlenir. 25 araç: kişi ekle/düzenle (alanlar, roller, izinler, sorumlu, arşiv), etiket, zaman tüneli kaydı, segment, ayarlar ve roller, skor, mükerrer bulma, kişi birleştirme, silme, 5000 kişiye kadar toplu işlem, Flux Mail ile tek kişiye mesaj (kanal izni şart). Önceden yalnız 4 okuma/not aracı vardı ve MCP'de hiç yoktu.
+- **Yetki ve onay**: araçlar kullanıcının kendi CRM yetkisiyle çalışır (`flxcrm_view`, `flxcrm_manage`; ayarlar yalnız yönetici). Değişiklik yapan araçlar Flux AI onay kartında bekler. Silme, birleştirme, toplu işlem ve gönderim MCP'de ilk çağrıda yalnız önizleme döner; 15 dakikalık tek kullanımlık onay anahtarıyla uygulanır. Toplu işlemde sohbet de önce kaç kişinin etkileneceğini gösterir.
+- **CRM › Ayarlar › Yapay zekâ ve MCP**: Flux AI ve MCP durumu, MCP adresi, araçlar / düzenleme / onaylı işlemler anahtarları, araç listesi ve yapay zekâ ile yapılan son değişiklikler (kim, hangi kanal, sonuç).
+- **Kişi birleştirme**: zaman tüneli, kaynak bağlantıları ve etiketler birincil karta taşınır, boş alanlar dolar, roller birleşir; zaman tünelinde "Kişiler birleştirildi".
+- Geliştirici: tek araç kaydı `flxcrm_tools` filtresi ve `flxcrm_run_tool()` (ileride otomasyonlar aynı kayıttan çalışacak), `flxcrm_tool_ran` eylemi, `FLXCRM_Tags::update()`.
+
 ## 0.1.1
 - Tarih ve "… önce" metinleri artık kullanıcının dilinde, tek ortak yardımcıdan (FluxWP `flx_date` / `flx_time_ago`, flx-brand 1.1.0): "31 minutes önce", "August 10" gibi Türkçe/İngilizce karışımı kalmadı; çekirdek dil paketi inmemiş olsa da TR ve EN ay/gün adları doğru.
 

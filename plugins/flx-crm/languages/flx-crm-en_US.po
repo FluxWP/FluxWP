@@ -11,6 +11,93 @@ msgstr "Settings"
 msgid "Kişiler, roller, segmentler ve pazarlama"
 msgstr "Contacts, roles, segments and marketing"
 
+msgid "Okur"
+msgstr "Reads"
+
+msgid "Düzenler"
+msgstr "Edits"
+
+msgid "Onaylı"
+msgstr "Needs approval"
+
+msgid "Otomasyon"
+msgstr "Automation"
+
+msgid "CRM özeti"
+msgstr "CRM overview"
+
+msgid "CRM yapısı ve ayarları"
+msgstr "CRM structure and settings"
+
+msgid "CRM kişisi ara"
+msgstr "Search CRM contacts"
+
+msgid "CRM kişi kartı"
+msgstr "CRM contact card"
+
+msgid "Zaman tüneli"
+msgstr "Timeline"
+
+msgid "Son hareketler"
+msgstr "Recent activity"
+
+msgid "Mükerrer kişileri bul"
+msgstr "Find duplicate contacts"
+
+msgid "Kayıtlı segmentler"
+msgstr "Saved segments"
+
+msgid "Segment önizle"
+msgstr "Preview segment"
+
+msgid "Toplu işlem önizle"
+msgstr "Preview bulk action"
+
+msgid "CRM kişisi ekle"
+msgstr "Add CRM contact"
+
+msgid "CRM kişisini düzenle"
+msgstr "Edit CRM contact"
+
+msgid "Kişiye etiket ekle/çıkar"
+msgstr "Add/remove contact tags"
+
+msgid "Zaman tüneline kayıt ekle"
+msgstr "Add timeline entry"
+
+msgid "Etiket ekle/düzenle"
+msgstr "Add/edit tag"
+
+msgid "Segment kaydet"
+msgstr "Save segment"
+
+msgid "CRM ayarlarını değiştir"
+msgstr "Change CRM settings"
+
+msgid "Skorları yeniden hesapla"
+msgstr "Recalculate scores"
+
+msgid "Zaman tüneli kaydını sil"
+msgstr "Delete timeline entry"
+
+msgid "Etiketi sil"
+msgstr "Delete tag"
+
+msgid "Segmenti sil"
+msgstr "Delete segment"
+
+msgid "Kişileri birleştir"
+msgstr "Merge contacts"
+
+msgid "CRM kişisini sil"
+msgstr "Delete CRM contact"
+
+msgid "Toplu işlem"
+msgstr "Bulk action"
+
+msgid "Kişiye mesaj gönder"
+msgstr "Send message to contact"
+
 msgid "Kaynak: %s"
 msgstr "Source: %s"
 
@@ -40,6 +127,12 @@ msgstr "WhatsApp"
 
 msgid "Reklam kitleleri"
 msgstr "Ad audiences"
+
+msgid "Birleştirilecek başka kişi seçin."
+msgstr "Choose other contacts to merge."
+
+msgid "Bir seferde en çok 20 kişi birleştirilir."
+msgstr "Up to 20 contacts can be merged at once."
 
 msgid "E-posta ya da telefon gerekli."
 msgstr "An e-mail or phone number is required."
@@ -176,6 +269,18 @@ msgstr "Totals"
 msgid "RFM skoru"
 msgstr "RFM score"
 
+msgid "Etiket bulunamadı."
+msgstr "Tag not found."
+
+msgid "Etiket adı boş olamaz."
+msgstr "Tag name cannot be empty."
+
+msgid "Bu adla başka bir etiket var."
+msgstr "Another tag already has this name."
+
+msgid "Renk geçersiz (#16a34a gibi)."
+msgstr "Invalid color (use e.g. #16a34a)."
+
 msgid "Bağışçı"
 msgstr "Donor"
 
@@ -242,6 +347,9 @@ msgstr "Segment changed"
 msgid "İzin değişti"
 msgstr "Consent changed"
 
+msgid "Kişiler birleştirildi"
+msgstr "Contacts merged"
+
 msgid "Yeni"
 msgstr "New"
 
@@ -302,12 +410,6 @@ msgstr "%s M"
 msgid "%s B"
 msgstr "%s K"
 
-msgid "az önce"
-msgstr "just now"
-
-msgid "%s önce"
-msgstr "%s ago"
-
 msgid "(adsız kişi)"
 msgstr "(unnamed contact)"
 
@@ -325,18 +427,6 @@ msgstr "Sees contacts, segments and the timeline"
 
 msgid "Kişi ekler, düzenler, siler; segment ve CRM ayarlarını yönetir"
 msgstr "Adds, edits and deletes contacts; manages segments and CRM settings"
-
-msgid "CRM kişisi ara"
-msgstr "Search CRM contacts"
-
-msgid "CRM kişi kartı"
-msgstr "CRM contact card"
-
-msgid "CRM özeti"
-msgstr "CRM overview"
-
-msgid "CRM kişisine not ekle"
-msgstr "Add a note to a CRM contact"
 
 msgid "Flux CRM"
 msgstr "Flux CRM"
@@ -539,9 +629,6 @@ msgstr "Delete contact"
 msgid "Bağış ve siparişler kendi eklentisinde kalır; yalnız CRM kartı silinir."
 msgstr "Donations and orders stay in their own plugins; only the CRM card is deleted."
 
-msgid "Zaman tüneli"
-msgstr "Timeline"
-
 msgid "Not ekleyin: telefonda konuşuldu, kurban için tekrar aranacak…"
 msgstr "Add a note: talked on the phone, call again about the qurban…"
 
@@ -699,9 +786,6 @@ msgstr "No contacts yet."
 msgid "Bağış, sipariş, form ya da WhatsApp sohbeti geldikçe kişiler kendiliğinden oluşur. Geçmiş kayıtlar için Ayarlar › Tümünü eşitle."
 msgstr "Contacts appear on their own as donations, orders, forms and WhatsApp chats come in. For older records: Settings › Sync everything."
 
-msgid "Toplu işlem"
-msgstr "Bulk action"
-
 msgid "Rol ekle"
 msgstr "Add role"
 
@@ -789,17 +873,11 @@ msgstr "No valuable contacts with a high churn risk."
 msgid "son ödeme %s"
 msgstr "last payment %s"
 
-msgid "Son hareketler"
-msgstr "Recent activity"
-
 msgid "Bağış, sipariş, form ve WhatsApp hareketleri burada görünür."
 msgstr "Donations, orders, forms and WhatsApp activity appear here."
 
 msgid "Nereden geldiler"
 msgstr "Where they came from"
-
-msgid "Kayıtlı segmentler"
-msgstr "Saved segments"
 
 msgid "Yeni segment"
 msgstr "New segment"
@@ -872,9 +950,6 @@ msgstr "Not synced yet"
 
 msgid "Yeni bağış, sipariş, form ve sohbetler kişilere anında bağlanır. Geçmiş kayıtları almak ya da kaynak açıp kapattıktan sonra baştan bağlamak için tümünü eşitleyin. Var olan kişiler ve notlar korunur, aynı kayıt iki kez eklenmez."
 msgstr "New donations, orders, forms and chats are linked to contacts straight away. Sync everything to import past records, or to relink after switching a source on or off. Existing contacts and notes are kept, and nothing is added twice."
-
-msgid "Skorları yeniden hesapla"
-msgstr "Recalculate scores"
 
 msgid "Bağışçılar ve bağışlar"
 msgstr "Donors and donations"
@@ -953,6 +1028,66 @@ msgstr "Empty means the store currency. Payments in other currencies don't count
 
 msgid "Ayarları kaydet"
 msgstr "Save settings"
+
+msgid "Yapay zekâ ve MCP"
+msgstr "AI & MCP"
+
+msgid "CRM'deki her şey (kişiler, alanlar, roller, etiketler, izinler, zaman tüneli, segmentler, ayarlar) Flux AI sohbetinden ve MCP bağlantısıyla (Claude, ChatGPT, Cursor…) okunup düzenlenebilir. Araçlar kullanıcının kendi CRM yetkisiyle çalışır."
+msgstr "Everything in the CRM (contacts, fields, roles, tags, consents, timeline, segments, settings) can be read and edited from the Flux AI chat and over MCP (Claude, ChatGPT, Cursor…). Tools run with the user's own CRM permissions."
+
+msgid "bağlı"
+msgstr "connected"
+
+msgid "Panel sohbetinde CRM araçları. Değişiklik yapan her araç onay kartında bekler."
+msgstr "CRM tools in the admin chat. Every tool that changes something waits on an approval card."
+
+msgid "Flux SEO & MCP kurulu değil"
+msgstr "Flux SEO & MCP is not installed"
+
+msgid "Silme, birleştirme, toplu işlem ve gönderim ilk çağrıda yalnız önizleme döner; onay anahtarıyla tekrar çağrılınca uygulanır."
+msgstr "Delete, merge, bulk actions and sending return only a preview on the first call; they run when called again with the approval token."
+
+msgid "MCP anahtarları"
+msgstr "MCP keys"
+
+msgid "Yapay zekâ ve MCP araçları açık"
+msgstr "AI and MCP tools on"
+
+msgid "Düzenleme: kişi, etiket, segment, not, ayar"
+msgstr "Editing: contacts, tags, segments, notes, settings"
+
+msgid "Onaylı işlemler: silme, birleştirme, toplu işlem, mesaj gönderme"
+msgstr "Approval actions: delete, merge, bulk actions, sending messages"
+
+msgid "Araçlar: %1$d / %2$d açık"
+msgstr "Tools: %1$d / %2$d on"
+
+msgid "Araç"
+msgstr "Tool"
+
+msgid "Yapay zekâ ile yapılan son değişiklikler"
+msgstr "Recent changes made with AI"
+
+msgid "Henüz değişiklik yok. Flux AI ya da MCP ile yapılan her değişiklik burada görünür."
+msgstr "No changes yet. Every change made with Flux AI or MCP shows up here."
+
+msgid "Ne zaman"
+msgstr "When"
+
+msgid "Kim"
+msgstr "Who"
+
+msgid "İşlem"
+msgstr "Action"
+
+msgid "Sonuç"
+msgstr "Result"
+
+msgid "tamam"
+msgstr "done"
+
+msgid "hata"
+msgstr "error"
 
 msgid "WhatsApp sohbeti açıldı"
 msgstr "WhatsApp chat opened"

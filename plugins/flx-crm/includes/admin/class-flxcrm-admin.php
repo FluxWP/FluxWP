@@ -251,7 +251,7 @@ final class FLXCRM_Admin {
 	public static function post_settings_save() {
 		self::guard( 'settings_save' );
 		$v = array();
-		foreach ( array( 'src_donate', 'src_commerce', 'src_chat', 'src_forms', 'src_users', 'src_mail', 'chat_events' ) as $k ) {
+		foreach ( array( 'src_donate', 'src_commerce', 'src_chat', 'src_forms', 'src_users', 'src_mail', 'chat_events', 'ai_tools', 'ai_write', 'ai_destructive' ) as $k ) {
 			$v[ $k ] = self::post( $k ) ? 1 : 0;
 		}
 		$known = flxcrm_roles();

@@ -383,6 +383,93 @@ final class FLXCRM_Contacts {
 	}
 
 	/**
+	 * Mükerrer kişileri birincil karta birleştirir: olaylar, kaynak bağlantıları ve etiketler taşınır, boş alanlar
+	 * doldurulur, roller birleşir, izin herhangi bir kartta açıksa açık kalır, sonra mükerrerler silinir.
+	 *
+	 * @return int|WP_Error birleştirilen kart sayısı
+	 */
+	public static function merge( $primary_id, array $dup_ids ) {
+		global $wpdb;
+		$primary_id = (int) $primary_id;
+		$p          = self::get( $primary_id );
+		if ( ! $p ) {
+			return new WP_Error( 'flxcrm_missing', __( 'Kişi bulunamadı.', 'flx-crm' ) );
+		}
+		$dup_ids = array_values( array_unique( array_diff( array_filter( array_map( 'intval', $dup_ids ) ), array( $primary_id ) ) ) );
+		if ( ! $dup_ids ) {
+			return new WP_Error( 'flxcrm_merge', __( 'Birleştirilecek başka kişi seçin.', 'flx-crm' ) );
+		}
+		if ( count( $dup_ids ) > 20 ) {
+			return new WP_Error( 'flxcrm_merge', __( 'Bir seferde en çok 20 kişi birleştirilir.', 'flx-crm' ) );
+		}
+		$t     = flxcrm_table( 'contacts' );
+		$roles = flxcrm_unpack_roles( $p['roles'] );
+		$upd   = array();
+		$names = array();
+		foreach ( $dup_ids as $did ) {
+			$d = self::get( $did );
+			if ( ! $d ) {
+				return new WP_Error( 'flxcrm_missing', __( 'Kişi bulunamadı.', 'flx-crm' ) . ' #' . $did );
+			}
+			$names[] = flxcrm_display_name( $d );
+			foreach ( array( 'name', 'email', 'phone', 'company', 'city', 'country', 'utm_source', 'utm_campaign' ) as $k ) {
+				if ( '' === trim( (string) ( $upd[ $k ] ?? $p[ $k ] ) ) && '' !== trim( (string) $d[ $k ] ) ) {
+					$upd[ $k ] = $d[ $k ];
+				}
+			}
+			foreach ( array( 'user_id', 'owner_id' ) as $k ) {
+				if ( ! (int) ( $upd[ $k ] ?? $p[ $k ] ) && (int) $d[ $k ] ) {
+					$upd[ $k ] = (int) $d[ $k ];
+				}
+			}
+			foreach ( self::CONSENTS as $k ) {
+				if ( (int) $d[ 'consent_' . $k ] && ! (int) ( $upd[ 'consent_' . $k ] ?? $p[ 'consent_' . $k ] ) ) {
+					$upd[ 'consent_' . $k ] = 1;
+					$upd['consent_at']      = $d['consent_at'] ? $d['consent_at'] : flxcrm_now();
+				}
+			}
+			if ( '' !== trim( (string) $d['note'] ) ) {
+				$upd['note'] = trim( (string) ( $upd['note'] ?? $p['note'] ) . "\n" . $d['note'] );
+			}
+			if ( (string) $d['created_at'] < (string) ( $upd['created_at'] ?? $p['created_at'] ) ) {
+				$upd['created_at'] = $d['created_at'];
+				$upd['source']     = $d['source'];
+			}
+			$roles = array_merge( $roles, flxcrm_unpack_roles( $d['roles'] ) );
+			foreach ( FLXCRM_Tags::of( $did ) as $tag ) {
+				FLXCRM_Tags::attach( $primary_id, (int) $tag['id'] );
+			}
+			$wpdb->update( flxcrm_table( 'events' ), array( 'contact_id' => $primary_id ), array( 'contact_id' => $did ) ); // phpcs:ignore WordPress.DB
+			$wpdb->update( flxcrm_table( 'links' ), array( 'contact_id' => $primary_id ), array( 'contact_id' => $did ) ); // phpcs:ignore WordPress.DB
+			$wpdb->delete( flxcrm_table( 'contact_tags' ), array( 'contact_id' => $did ) ); // phpcs:ignore WordPress.DB
+			$wpdb->delete( $t, array( 'id' => $did ) ); // phpcs:ignore WordPress.DB
+			self::forget( $did );
+			do_action( 'flxcrm_contact_merged', $primary_id, $did );
+		}
+		$roles = array_values( array_unique( $roles ) );
+		if ( count( $roles ) > 1 ) {
+			$roles = array_values( array_diff( $roles, array( 'lead' ) ) );
+		}
+		$upd['roles']      = flxcrm_pack_roles( $roles );
+		$upd['updated_at'] = flxcrm_now();
+		$wpdb->update( $t, $upd, array( 'id' => $primary_id ) ); // phpcs:ignore WordPress.DB
+		self::forget( $primary_id );
+		FLXCRM_Events::add(
+			$primary_id,
+			'merged',
+			array(
+				'source'  => 'manual',
+				'title'   => implode( ', ', $names ),
+				'data'    => array( 'ids' => $dup_ids ),
+				'user_id' => get_current_user_id(),
+			)
+		);
+		self::recalc( $primary_id );
+		self::flush_stats();
+		return count( $dup_ids );
+	}
+
+	/**
 	 * Toplamları olaylardan yeniden hesaplar (değer, bağış/sipariş sayısı, ödeme günleri, son hareket).
 	 * Ödeme günü site saat dilimine göre tekilleştirilir: aynı gün 3 bağış sıklığı şişirmez, tutarı değere yansır.
 	 */
@@ -390,7 +477,7 @@ final class FLXCRM_Contacts {
 		global $wpdb;
 		$id = (int) $id;
 		$e  = flxcrm_table( 'events' );
-		$s  = $wpdb->get_row( $wpdb->prepare( "SELECT SUM(CASE WHEN paid = 1 THEN COALESCE(base_amount,0) ELSE 0 END) AS ltv, SUM(CASE WHEN paid = 1 AND type = 'donation' THEN 1 ELSE 0 END) AS donations, SUM(CASE WHEN paid = 1 AND type = 'order' THEN 1 ELSE 0 END) AS orders, MIN(CASE WHEN paid = 1 THEN at END) AS first_paid, MAX(CASE WHEN paid = 1 THEN at END) AS last_paid, MAX(CASE WHEN type NOT IN ('segment_entered','role_added','consent') THEN at END) AS last_act FROM $e WHERE contact_id = %d", $id ), ARRAY_A ); // phpcs:ignore WordPress.DB
+		$s  = $wpdb->get_row( $wpdb->prepare( "SELECT SUM(CASE WHEN paid = 1 THEN COALESCE(base_amount,0) ELSE 0 END) AS ltv, SUM(CASE WHEN paid = 1 AND type = 'donation' THEN 1 ELSE 0 END) AS donations, SUM(CASE WHEN paid = 1 AND type = 'order' THEN 1 ELSE 0 END) AS orders, MIN(CASE WHEN paid = 1 THEN at END) AS first_paid, MAX(CASE WHEN paid = 1 THEN at END) AS last_paid, MAX(CASE WHEN type NOT IN ('segment_entered','role_added','consent','merged') THEN at END) AS last_act FROM $e WHERE contact_id = %d", $id ), ARRAY_A ); // phpcs:ignore WordPress.DB
 		$paid_at = $wpdb->get_col( $wpdb->prepare( "SELECT at FROM $e WHERE contact_id = %d AND paid = 1 ORDER BY at", $id ) ); // phpcs:ignore WordPress.DB
 		$days    = array();
 		$tz      = wp_timezone();

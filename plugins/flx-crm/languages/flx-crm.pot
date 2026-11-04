@@ -9,6 +9,93 @@ msgstr ""
 msgid "Kişiler, roller, segmentler ve pazarlama"
 msgstr ""
 
+msgid "Okur"
+msgstr ""
+
+msgid "Düzenler"
+msgstr ""
+
+msgid "Onaylı"
+msgstr ""
+
+msgid "Otomasyon"
+msgstr ""
+
+msgid "CRM özeti"
+msgstr ""
+
+msgid "CRM yapısı ve ayarları"
+msgstr ""
+
+msgid "CRM kişisi ara"
+msgstr ""
+
+msgid "CRM kişi kartı"
+msgstr ""
+
+msgid "Zaman tüneli"
+msgstr ""
+
+msgid "Son hareketler"
+msgstr ""
+
+msgid "Mükerrer kişileri bul"
+msgstr ""
+
+msgid "Kayıtlı segmentler"
+msgstr ""
+
+msgid "Segment önizle"
+msgstr ""
+
+msgid "Toplu işlem önizle"
+msgstr ""
+
+msgid "CRM kişisi ekle"
+msgstr ""
+
+msgid "CRM kişisini düzenle"
+msgstr ""
+
+msgid "Kişiye etiket ekle/çıkar"
+msgstr ""
+
+msgid "Zaman tüneline kayıt ekle"
+msgstr ""
+
+msgid "Etiket ekle/düzenle"
+msgstr ""
+
+msgid "Segment kaydet"
+msgstr ""
+
+msgid "CRM ayarlarını değiştir"
+msgstr ""
+
+msgid "Skorları yeniden hesapla"
+msgstr ""
+
+msgid "Zaman tüneli kaydını sil"
+msgstr ""
+
+msgid "Etiketi sil"
+msgstr ""
+
+msgid "Segmenti sil"
+msgstr ""
+
+msgid "Kişileri birleştir"
+msgstr ""
+
+msgid "CRM kişisini sil"
+msgstr ""
+
+msgid "Toplu işlem"
+msgstr ""
+
+msgid "Kişiye mesaj gönder"
+msgstr ""
+
 msgid "Kaynak: %s"
 msgstr ""
 
@@ -37,6 +124,12 @@ msgid "WhatsApp"
 msgstr ""
 
 msgid "Reklam kitleleri"
+msgstr ""
+
+msgid "Birleştirilecek başka kişi seçin."
+msgstr ""
+
+msgid "Bir seferde en çok 20 kişi birleştirilir."
 msgstr ""
 
 msgid "E-posta ya da telefon gerekli."
@@ -174,6 +267,18 @@ msgstr ""
 msgid "RFM skoru"
 msgstr ""
 
+msgid "Etiket bulunamadı."
+msgstr ""
+
+msgid "Etiket adı boş olamaz."
+msgstr ""
+
+msgid "Bu adla başka bir etiket var."
+msgstr ""
+
+msgid "Renk geçersiz (#16a34a gibi)."
+msgstr ""
+
 msgid "Bağışçı"
 msgstr ""
 
@@ -240,6 +345,9 @@ msgstr ""
 msgid "İzin değişti"
 msgstr ""
 
+msgid "Kişiler birleştirildi"
+msgstr ""
+
 msgid "Yeni"
 msgstr ""
 
@@ -300,12 +408,6 @@ msgstr ""
 msgid "%s B"
 msgstr ""
 
-msgid "az önce"
-msgstr ""
-
-msgid "%s önce"
-msgstr ""
-
 msgid "(adsız kişi)"
 msgstr ""
 
@@ -322,18 +424,6 @@ msgid "Kişileri, segmentleri ve zaman tünelini görür"
 msgstr ""
 
 msgid "Kişi ekler, düzenler, siler; segment ve CRM ayarlarını yönetir"
-msgstr ""
-
-msgid "CRM kişisi ara"
-msgstr ""
-
-msgid "CRM kişi kartı"
-msgstr ""
-
-msgid "CRM özeti"
-msgstr ""
-
-msgid "CRM kişisine not ekle"
 msgstr ""
 
 msgid "Flux CRM"
@@ -537,9 +627,6 @@ msgstr ""
 msgid "Bağış ve siparişler kendi eklentisinde kalır; yalnız CRM kartı silinir."
 msgstr ""
 
-msgid "Zaman tüneli"
-msgstr ""
-
 msgid "Not ekleyin: telefonda konuşuldu, kurban için tekrar aranacak…"
 msgstr ""
 
@@ -697,9 +784,6 @@ msgstr ""
 msgid "Bağış, sipariş, form ya da WhatsApp sohbeti geldikçe kişiler kendiliğinden oluşur. Geçmiş kayıtlar için Ayarlar › Tümünü eşitle."
 msgstr ""
 
-msgid "Toplu işlem"
-msgstr ""
-
 msgid "Rol ekle"
 msgstr ""
 
@@ -787,16 +871,10 @@ msgstr ""
 msgid "son ödeme %s"
 msgstr ""
 
-msgid "Son hareketler"
-msgstr ""
-
 msgid "Bağış, sipariş, form ve WhatsApp hareketleri burada görünür."
 msgstr ""
 
 msgid "Nereden geldiler"
-msgstr ""
-
-msgid "Kayıtlı segmentler"
 msgstr ""
 
 msgid "Yeni segment"
@@ -869,9 +947,6 @@ msgid "Henüz eşitlenmedi"
 msgstr ""
 
 msgid "Yeni bağış, sipariş, form ve sohbetler kişilere anında bağlanır. Geçmiş kayıtları almak ya da kaynak açıp kapattıktan sonra baştan bağlamak için tümünü eşitleyin. Var olan kişiler ve notlar korunur, aynı kayıt iki kez eklenmez."
-msgstr ""
-
-msgid "Skorları yeniden hesapla"
 msgstr ""
 
 msgid "Bağışçılar ve bağışlar"
@@ -950,6 +1025,66 @@ msgid "Boşsa mağaza para birimi. Başka para birimindeki ödemeler kur verilme
 msgstr ""
 
 msgid "Ayarları kaydet"
+msgstr ""
+
+msgid "Yapay zekâ ve MCP"
+msgstr ""
+
+msgid "CRM'deki her şey (kişiler, alanlar, roller, etiketler, izinler, zaman tüneli, segmentler, ayarlar) Flux AI sohbetinden ve MCP bağlantısıyla (Claude, ChatGPT, Cursor…) okunup düzenlenebilir. Araçlar kullanıcının kendi CRM yetkisiyle çalışır."
+msgstr ""
+
+msgid "bağlı"
+msgstr ""
+
+msgid "Panel sohbetinde CRM araçları. Değişiklik yapan her araç onay kartında bekler."
+msgstr ""
+
+msgid "Flux SEO & MCP kurulu değil"
+msgstr ""
+
+msgid "Silme, birleştirme, toplu işlem ve gönderim ilk çağrıda yalnız önizleme döner; onay anahtarıyla tekrar çağrılınca uygulanır."
+msgstr ""
+
+msgid "MCP anahtarları"
+msgstr ""
+
+msgid "Yapay zekâ ve MCP araçları açık"
+msgstr ""
+
+msgid "Düzenleme: kişi, etiket, segment, not, ayar"
+msgstr ""
+
+msgid "Onaylı işlemler: silme, birleştirme, toplu işlem, mesaj gönderme"
+msgstr ""
+
+msgid "Araçlar: %1$d / %2$d açık"
+msgstr ""
+
+msgid "Araç"
+msgstr ""
+
+msgid "Yapay zekâ ile yapılan son değişiklikler"
+msgstr ""
+
+msgid "Henüz değişiklik yok. Flux AI ya da MCP ile yapılan her değişiklik burada görünür."
+msgstr ""
+
+msgid "Ne zaman"
+msgstr ""
+
+msgid "Kim"
+msgstr ""
+
+msgid "İşlem"
+msgstr ""
+
+msgid "Sonuç"
+msgstr ""
+
+msgid "tamam"
+msgstr ""
+
+msgid "hata"
 msgstr ""
 
 msgid "WhatsApp sohbeti açıldı"
