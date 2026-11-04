@@ -1,9 +1,12 @@
 # Değişiklikler
 
-## 1.4.1
+## 1.4.2
 - Rapor geçmişinde iki grafik: öneri sayısı (önceliğe göre yığılmış, eksen ve açıklamalı) ve PageSpeed puanları (Performans, Erişilebilirlik, En iyi uygulamalar, SEO çizgileri; Mobil / Masaüstü seçmeli).
 - Geçmiş tablosunda mobil ve masaüstü puanları + LCP birlikte.
 - Yeni **SEO & MCP › Ayarlar** sekmesi: denetim ayarları (PageSpeed anahtarı, otomatik denetim, ajan uyumu, güvenlik başlıkları) ve yeni site yapım rehberi Site denetimi sekmesinden buraya taşındı.
+
+## 1.4.1
+- Site denetimi başka paketlerin tek tık düzeltmelerini de çalıştırır (`flx_system_fixes` › `current` / `run`). Flux Speed 0.5.0 kuruluysa engelleyen CSS, kullanılmayan CSS, sıkıştırılmamış CSS/JS, viewport yakınlaştırma kilidi, yazı tipleri ve emoji bulgularında "Flux Speed (tek tık)" düğmesi çıkar.
 
 ## 1.4.0
 - **Rapor geçmişi**: her denetim (elle, otomatik, yapay zekâ, düzeltme sonrası) özetiyle saklanır (son 90). Panelde önceliğe göre yığılmış eğilim grafiği ve tablo: tarih, nasıl çalıştığı, öncelik sayıları, mobil PageSpeed puanları + LCP, önceki rapora göre yeni ve çözülen öneriler.

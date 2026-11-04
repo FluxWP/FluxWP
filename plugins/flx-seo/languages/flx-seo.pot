@@ -96,7 +96,7 @@ msgstr ""
 msgid "PageSpeed masaüstü"
 msgstr ""
 
-msgid "PageSpeed Insights'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre. Site içi denetim anahtarsızdır; PageSpeed ölçümü Google'ın gerçek Lighthouse sonucunu ekler. Otomatik denetim, API anahtarı ve güvenlik başlıkları Ayarlar sekmesinde."
+msgid "PageSpeed Insights'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre. Site içi denetim anahtarsız ve her gün kendiliğinden çalışır; PageSpeed ölçümü Google'ın gerçek Lighthouse sonucunu ekler."
 msgstr ""
 
 #, php-format
@@ -895,6 +895,12 @@ msgid "Yeni kritik ya da yüksek öncelikli öneri çıkınca e-posta gönder"
 msgstr ""
 
 msgid "E-posta adresi (boşsa site yöneticisi)"
+msgstr ""
+
+msgid "Flux Speed (tek tık)"
+msgstr ""
+
+msgid "PageSpeed Insights'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre. Site içi denetim anahtarsızdır; PageSpeed ölçümü Google'ın gerçek Lighthouse sonucunu ekler. Otomatik denetim, API anahtarı ve güvenlik başlıkları Ayarlar sekmesinde."
 msgstr ""
 
 msgid "PageSpeed puanları"
