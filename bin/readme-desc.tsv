@@ -22,3 +22,4 @@ flx-backup	Güncellemelerden önce otomatik yedek, zamanlanmış tam yedekler ve
 fluxwp	Sade, hızlı WooCommerce block teması. Hero, header, footer ve ana sayfa desenleri ön ayarlarla tamamen değişir.
 flx-setup	Kurulum sihirbazı, ön ayarlar ve güncellemeler: tema ve eklentileri tek seferde kurar, ön ayarı (profil, header/footer, sayfalar, menüler) uygular, FluxWP paketlerini güncelleme sunucusundan WordPress'in güncelleme ekranına getirir.
 flx-recaptcha	Giriş, kayıt, yorum, ödeme, bağış ve form gönderimlerini Google reCAPTCHA v3 ya da v2 ile botlara karşı korur. Hangi formun korunacağı panelden seçilir.
+flx-wiki	Sitede /wiki altında geliştirici wiki: Markdown sayfalar, ayrıntılı arama, SEO, LLM için .md ve llms.txt, Flux AI ile "Wiki'ye sor" ve MCP araçları. Eklenti ve tema yazma rehberleriyle gelir.

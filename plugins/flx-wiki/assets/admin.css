@@ -1,0 +1,39 @@
+/* Flux Wiki – yönetim: Markdown düzenleyici ve ayarlar. */
+.flxwk-ed{margin:16px 0 8px;border:1px solid #c3c4c7;border-radius:8px;background:#fff;overflow:hidden}
+.flxwk-ed__bar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px;padding:6px 8px;border-bottom:1px solid #dcdcde;background:#f6f7f7}
+.flxwk-ed__tabs,.flxwk-ed__tools{display:flex;flex-wrap:wrap;gap:2px}
+.flxwk-ed__tabs button,.flxwk-ed__tools button{border:1px solid transparent;background:none;border-radius:6px;padding:5px 10px;font-size:13px;line-height:1.3;cursor:pointer;color:#1d2327}
+.flxwk-ed__tools button{min-width:32px;font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:600}
+.flxwk-ed__tabs button.is-on{background:#fff;border-color:#c3c4c7;font-weight:600}
+.flxwk-ed__tools button:hover,.flxwk-ed__tabs button:hover{background:#fff;border-color:#dcdcde}
+.flxwk-ed__body{display:grid;grid-template-columns:1fr}
+.flxwk-ed.is-split .flxwk-ed__body{grid-template-columns:1fr 1fr}
+.flxwk-ed.is-split .flxwk-ed__preview{border-left:1px solid #dcdcde}
+#flxwk_md{display:block;width:100%;min-height:560px;border:0;border-radius:0;padding:16px 18px;font:14px/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;resize:vertical;box-shadow:none;tab-size:4;background:#fff;color:#1d2327}
+#flxwk_md:focus{outline:0;box-shadow:inset 0 0 0 1px #2271b1}
+.flxwk-ed__preview{padding:12px 24px 24px;min-height:560px;max-height:80vh;overflow:auto;font-size:15px}
+.flxwk-ed__preview.flxwk-content pre{white-space:pre}
+.flxwk-ed__help{margin:0;padding:8px 12px;border-top:1px solid #dcdcde;background:#f6f7f7;color:#646970;font-size:12px}
+.flxwk-ed__help a{margin-left:6px}
+@media (max-width:960px){.flxwk-ed__split{display:none}.flxwk-ed.is-split .flxwk-ed__body{grid-template-columns:1fr}}
+/* Önizleme renkleri (tema değişkenleri yönetimde yok). */
+.flxwk-ed__preview{--wk-ink:#1d2327;--wk-text:#3c434a;--wk-accent:#2271b1;--wk-line:#dcdcde;--wk-soft:#f6f7f7;--wk-tint:#f0f0f1;--wk-muted:#646970;--wk-code-bg:#1d2327;--wk-mono:ui-monospace,Menlo,Consolas,monospace;color:var(--wk-text)}
+
+.flxwk-admin__grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:20px;align-items:start;margin-top:16px}
+.flxwk-panel{background:#fff;border:1px solid #dcdcde;border-radius:10px;padding:4px 20px 16px;margin-bottom:20px}
+.flxwk-panel h2{font-size:15px;margin:16px 0 8px}
+.flxwk-panel .form-table th{width:180px}
+.flxwk-radio{display:block;margin:0 0 6px}
+.flxwk-note{padding:10px 12px;border-radius:8px;background:#fcf9e8;border:1px solid #f0e3a6}
+.flxwk-urls{margin:0 0 10px}
+.flxwk-urls li{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;margin:0 0 8px}
+.flxwk-urls li>span{min-width:96px;color:#646970}
+.flxwk-urls code{font-size:12px;word-break:break-all}
+@media (max-width:1100px){.flxwk-admin__grid{grid-template-columns:1fr}}
+.flxwk-ed__preview pre code{background:none!important;color:inherit!important;padding:0!important;border:0!important;box-shadow:none!important}
+.flxwk-ed__preview h2{font-size:1.4em}.flxwk-ed__preview h3{font-size:1.15em}
+.flxwk-tabs{margin:12px -20px 4px;padding:0 20px;border-bottom:1px solid #dcdcde}
+.flxwk-tabs .nav-tab{margin-bottom:-1px}
+.flxwk-base{width:12em;margin:0 2px}
+.flxwk-switch{font-weight:600}
+@media (max-width:782px){.flxwk-tabs{margin-inline:-12px;padding-inline:12px}.flxwk-base{width:9em}.flxwk-panel{padding-inline:12px}}

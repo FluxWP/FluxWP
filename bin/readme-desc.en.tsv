@@ -22,3 +22,4 @@ fluxwp	FluxWP	A simple, fast WooCommerce block theme. Hero, header, footer and h
 flx-setup	FluxWP Panel	Setup wizard, presets and updates: installs the theme and plugins in one pass, applies a preset (profile, header/footer, pages, menus) and brings FluxWP packages from your update server into the WordPress updates screen.
 flx-migrate	Flux Migrate	Moves site data saved under the old package names (settings, tables, meta, content, theme, upload folders) to the FluxWP names.
 flx-recaptcha	Flux reCAPTCHA	Protects login, registration, comments, checkout, donations and form submissions from bots with Google reCAPTCHA v3 or v2. Pick the forms to protect in the panel.
+flx-wiki	Flux Wiki	Developer wiki at /wiki: Markdown pages, detailed search, SEO, .md and llms.txt for LLMs, "Ask the wiki" with Flux AI and MCP tools. Ships with plugin and theme development guides.

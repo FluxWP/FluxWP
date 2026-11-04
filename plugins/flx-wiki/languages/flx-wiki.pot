@@ -1,0 +1,520 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Flux Wiki\n"
+
+msgid "Ayarlar"
+msgstr ""
+
+msgid "Wiki'yi aç"
+msgstr ""
+
+msgid "Geliştirici wiki'si: Markdown sayfalar, arama, LLM ve MCP desteği"
+msgstr ""
+
+msgid "Wiki ayarları"
+msgstr ""
+
+msgid "Önizleme hazırlanıyor…"
+msgstr ""
+
+msgid "Önizleme alınamadı."
+msgstr ""
+
+msgid "Önizlenecek içerik yok."
+msgstr ""
+
+msgid "Bağlantı adresi"
+msgstr ""
+
+msgid "Başlık"
+msgstr ""
+
+msgid "metin"
+msgstr ""
+
+msgid "kod"
+msgstr ""
+
+msgid "bağlantı"
+msgstr ""
+
+msgid "sayfa-adi"
+msgstr ""
+
+msgid "madde"
+msgstr ""
+
+msgid "Not"
+msgstr ""
+
+msgid "Ara başlık"
+msgstr ""
+
+msgid "Alt başlık"
+msgstr ""
+
+msgid "Kalın"
+msgstr ""
+
+msgid "İtalik"
+msgstr ""
+
+msgid "Satır içi kod"
+msgstr ""
+
+msgid "Kod bloğu"
+msgstr ""
+
+msgid "Bağlantı"
+msgstr ""
+
+msgid "Wiki bağlantısı"
+msgstr ""
+
+msgid "Liste"
+msgstr ""
+
+msgid "Not kutusu"
+msgstr ""
+
+msgid "Tablo"
+msgstr ""
+
+msgid "Yaz"
+msgstr ""
+
+msgid "Önizle"
+msgstr ""
+
+msgid "Yan yana"
+msgstr ""
+
+msgid "Markdown yazın. ## Ara başlık, ```php kod```, [[sayfa-adi]] wiki bağlantısı, > [!NOTE] not kutusu."
+msgstr ""
+
+msgid "Markdown: GitHub biçimi (tablo, kod bloğu). Wiki bağlantısı [[kisa-ad]] ya da [[kisa-ad|etiket]]. Not kutuları: > [!NOTE], [!TIP], [!IMPORTANT], [!WARNING], [!CAUTION]. Başlığı içerikte tekrar yazmayın."
+msgstr ""
+
+msgid ".md olarak aç"
+msgstr ""
+
+msgid "Sıra"
+msgstr ""
+
+msgid "Wiki ana sayfasında ve menüde küçük sayı önce gelir."
+msgstr ""
+
+msgid "Genel"
+msgstr ""
+
+msgid "Görünüm"
+msgstr ""
+
+msgid "AI"
+msgstr ""
+
+msgid "Yeni sayfa"
+msgstr ""
+
+msgid "Wiki ziyaretçilere kapalı; yalnız sayfa yazabilenler görüyor."
+msgstr ""
+
+msgid "Ayarlar kaydedildi."
+msgstr ""
+
+msgid "Rehberler aktarıldı: %1$d yeni, %2$d güncellendi, %3$d atlandı (elle değiştirilmiş ya da güncel)."
+msgstr ""
+
+msgid "Wiki"
+msgstr ""
+
+msgid "Wiki ziyaretçilere açık"
+msgstr ""
+
+msgid "Kapalıyken wiki adresleri, .md ve llms.txt ziyaretçilere 404 döner, site haritasından çıkar. Sayfa yazabilenler görmeye devam eder."
+msgstr ""
+
+msgid "Wiki adı"
+msgstr ""
+
+msgid "Geliştirici Wiki"
+msgstr ""
+
+msgid "Tanıtım"
+msgstr ""
+
+msgid "Ana sayfada, arama motoru açıklamasında ve llms.txt'de kullanılır."
+msgstr ""
+
+msgid "Adres"
+msgstr ""
+
+msgid "Küçük harf, rakam ve tire. Değiştirince eski adresler çalışmaz."
+msgstr ""
+
+msgid "Sayfa düğmeleri"
+msgstr ""
+
+msgid "\"AI'a sor\" menüsünde ChatGPT, Claude, Google AI, Perplexity bağlantıları"
+msgstr ""
+
+msgid "Yetkililere \"Düzenle\" düğmesi"
+msgstr ""
+
+msgid "Vurgu rengi"
+msgstr ""
+
+msgid "Temanın rengini kullan"
+msgstr ""
+
+msgid "Bağlantılar, seçili menü ve vurgulu düğmeler."
+msgstr ""
+
+msgid "Genişlik"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Geniş (uzun kod ve tablolar için)"
+msgstr ""
+
+msgid "Sayfa düzeni"
+msgstr ""
+
+msgid "Solda sayfa menüsü ve arama"
+msgstr ""
+
+msgid "Sağda \"Bu sayfada\" (içindekiler)"
+msgstr ""
+
+msgid "Flux AI kurulu değil. Kurulunca ziyaretçiler wiki içeriğinden cevap alan \"Wiki'ye sor\" penceresini kullanabilir."
+msgstr ""
+
+msgid "Flux AI'de anahtar yok ya da Flux Wiki sistemi kapalı (Flux AI › Bağlı sistemler)."
+msgstr ""
+
+msgid "Kimler sorabilir"
+msgstr ""
+
+msgid "Kapalı"
+msgstr ""
+
+msgid "Giriş yapmış kullanıcılar"
+msgstr ""
+
+msgid "Herkes (ziyaretçiler dahil)"
+msgstr ""
+
+msgid "Her soru Flux AI harcama sınırına sayılır; \"Herkes\" seçeneğinde saatlik sınırı düşük tutun."
+msgstr ""
+
+msgid "Saatlik soru sınırı"
+msgstr ""
+
+msgid "kişi başı (yöneticiler sınırsız)"
+msgstr ""
+
+msgid "Kaydet"
+msgstr ""
+
+msgid "Adresler"
+msgstr ""
+
+msgid "Arama API"
+msgstr ""
+
+msgid "Flux AI › MCP kapalı"
+msgstr ""
+
+msgid "Her sayfa adresin sonuna .md eklenerek Markdown olarak açılır. Flux SEO kuruluysa sitenin /llms.txt dosyasına \"Wiki\" bölümü eklenir."
+msgstr ""
+
+msgid "Hazır rehberler"
+msgstr ""
+
+msgid "Eklentiyle %d rehber gelir: eklenti ve tema yazma, AI destekli eklenti, MCP aracı, ayar şeması, çeviri, sürüm ve yayın. Eksikler eklenir; elle değiştirmediğiniz sayfalar yeni sürümle güncellenir."
+msgstr ""
+
+msgid "Rehberleri içe aktar / güncelle"
+msgstr ""
+
+msgid "Yayında %d sayfa."
+msgstr ""
+
+msgid "Yetkiniz yok."
+msgstr ""
+
+msgid "Wiki'ye sor"
+msgstr ""
+
+msgid "Wiki taslağı"
+msgstr ""
+
+msgid "Flux AI hazır değil."
+msgstr ""
+
+msgid "Cevap alınamadı. Biraz sonra tekrar deneyin."
+msgstr ""
+
+msgid "Kopyalandı"
+msgstr ""
+
+msgid "Kopyala"
+msgstr ""
+
+msgid "Kopyalanamadı"
+msgstr ""
+
+msgid "Aranıyor…"
+msgstr ""
+
+msgid "Sonuç yok. Başka bir kelime deneyin."
+msgstr ""
+
+msgid "Aramak için yazın"
+msgstr ""
+
+msgid "%d sonuç"
+msgstr ""
+
+msgid "AI'a sor"
+msgstr ""
+
+msgid "Sorunuzu yazın; cevap yalnız wiki sayfalarından verilir."
+msgstr ""
+
+msgid "Wiki okunuyor, cevap hazırlanıyor…"
+msgstr ""
+
+msgid "Kaynaklar"
+msgstr ""
+
+msgid "Ara"
+msgstr ""
+
+msgid "Soru sormak için giriş yapın."
+msgstr ""
+
+msgid "\"%s\" için wiki araması"
+msgstr ""
+
+msgid "FluxWP için eklenti ve tema yazma, AI destekli özellikler ve ortak altyapı rehberleri."
+msgstr ""
+
+msgid "Kaynak"
+msgstr ""
+
+msgid "Bölüm"
+msgstr ""
+
+msgid "Son güncelleme"
+msgstr ""
+
+msgid "Her sayfanın Markdown hâli adresin sonuna .md eklenerek alınır. Tüm wiki tek dosyada: %1$s"
+msgstr ""
+
+msgid "MCP sunucusu (anahtar gerekir): %s, araçlar flxwk_search, flxwk_get_page, flxwk_list_pages."
+msgstr ""
+
+msgid "Diğer sayfalar"
+msgstr ""
+
+msgid "Tüm wiki (tek dosya)"
+msgstr ""
+
+msgid "Bu sayfa henüz yok"
+msgstr ""
+
+msgid "İpucu"
+msgstr ""
+
+msgid "Önemli"
+msgstr ""
+
+msgid "Uyarı"
+msgstr ""
+
+msgid "Dikkat"
+msgstr ""
+
+msgid "Wiki'de ara"
+msgstr ""
+
+msgid "Wiki sayfasını oku"
+msgstr ""
+
+msgid "Wiki sayfalarını listele"
+msgstr ""
+
+msgid "Wiki sayfası yaz"
+msgstr ""
+
+msgid "FluxWP eklentisi yaz (wiki rehberiyle)"
+msgstr ""
+
+msgid "Bölümler"
+msgstr ""
+
+msgid "Yeni bölüm"
+msgstr ""
+
+msgid "Bölümü düzenle"
+msgstr ""
+
+msgid "Bölüm ara"
+msgstr ""
+
+msgid "Tüm bölümler"
+msgstr ""
+
+msgid "Wiki sayfası"
+msgstr ""
+
+msgid "Tüm sayfalar"
+msgstr ""
+
+msgid "Yeni wiki sayfası"
+msgstr ""
+
+msgid "Wiki sayfasını düzenle"
+msgstr ""
+
+msgid "Sayfayı görüntüle"
+msgstr ""
+
+msgid "Sayfa bulunamadı"
+msgstr ""
+
+msgid "Çöpte sayfa yok"
+msgstr ""
+
+msgid "Üst sayfa:"
+msgstr ""
+
+msgid "Wiki sayfası bulunamadı."
+msgstr ""
+
+msgid "Başlık gerekli."
+msgstr ""
+
+msgid "Wiki bölümü"
+msgstr ""
+
+msgid "Soru çok kısa."
+msgstr ""
+
+msgid "Bu saat için soru sınırına ulaştınız. Biraz sonra tekrar deneyin."
+msgstr ""
+
+msgid "Wiki adresleri"
+msgstr ""
+
+msgid "Wiki %s adresinde; .md ve llms.txt adresleri çalışıyor."
+msgstr ""
+
+msgid "Kalıcı bağlantılar \"Düz\" ayarında; /wiki, .md ve llms.txt adresleri çalışmaz. Ayarlar › Kalıcı bağlantılar'dan \"Yazı adı\"nı seçin."
+msgstr ""
+
+msgid "Kalıcı bağlantılar"
+msgstr ""
+
+msgid "Flux AI hazır; ziyaretçiler wiki içeriğinden cevap alabilir."
+msgstr ""
+
+msgid "Flux AI kurulu değil, anahtar yok ya da Flux Wiki sistemi kapalı; \"Wiki'ye sor\" gizli."
+msgstr ""
+
+msgid "%s sayfa"
+msgid_plural "%s sayfa"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "\"%2$s\" için %1$s sonuç"
+msgid_plural "\"%2$s\" için %1$s sonuç"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s dk okuma"
+msgid_plural "%s dk okuma"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Ne arıyorsunuz? Ör. MCP aracı, flx_settings_schema, tema…"
+msgstr ""
+
+msgid "Wiki'de ara…"
+msgstr ""
+
+msgid "Henüz yayımlanmış sayfa yok."
+msgstr ""
+
+msgid "Tümünü gör"
+msgstr ""
+
+msgid "Son güncellenenler"
+msgstr ""
+
+msgid "LLM ve AI ajanları için"
+msgstr ""
+
+msgid "Her sayfa adresin sonuna .md eklenerek düz Markdown olarak açılır. Ajanlar dizini llms.txt'den, tüm içeriği tek dosyada llms-full.txt'den okur."
+msgstr ""
+
+msgid "MCP: Flux AI sunucusundaki flxwk_search, flxwk_get_page ve flxwk_list_pages araçlarıyla wiki doğrudan okunur."
+msgstr ""
+
+msgid "Arama"
+msgstr ""
+
+msgid "Bu sayfada"
+msgstr ""
+
+msgid "Alt sayfalar"
+msgstr ""
+
+msgid "Güncellendi: %s"
+msgstr ""
+
+msgid "Önceki ve sonraki sayfa"
+msgstr ""
+
+msgid "Önceki"
+msgstr ""
+
+msgid "Sonraki"
+msgstr ""
+
+msgid "Markdown"
+msgstr ""
+
+msgid "%s adresindeki belgeyi oku; sonra bu konuda sorularımı yanıtla."
+msgstr ""
+
+msgid "Markdown'u kopyala"
+msgstr ""
+
+msgid "Düzenle"
+msgstr ""
+
+msgid "Konum"
+msgstr ""
+
+msgid "Sayfalar"
+msgstr ""
+
+msgid "Wiki sayfaları"
+msgstr ""
+
+msgid "Kapat"
+msgstr ""
+
+msgid "seç"
+msgstr ""
+
+msgid "aç"
+msgstr ""
+
+msgid "kapat"
+msgstr ""
