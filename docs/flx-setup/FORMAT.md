@@ -95,6 +95,8 @@ Hangi option'da hangi alanın olduğu, türü ve varsayılanı `flx_settings_sch
 ```
 İlk kurulumda hepsi sırayla uygulanır. Sonra eklenenler panelde "bekleyen güncelleme" olarak listelenir (Önizle, Uygula, Atla). `auto: true` olanlar güncellemeden sonra kendiliğinden uygulanır. Elle değiştirilmiş değerler yine korunur. `id` bir kez yayınlandıktan sonra değişmez.
 
+Bir migration belirli eklentilerin içerik türlerini ya da ayarlarını kullanıyorsa `"requires": {"plugins": ["flx-wiki"]}` yazın. Eklenti etkin değilse FluxWP Panel onu (gerekli eklentileriyle) kurup etkinleştirir ve migration'ı bekletir; eklenti etkin olduğunda uygulanır (`auto: true` ise kendiliğinden, sonraki istekte). Ön ayarın üstteki `requires` listesi yalnız uyarı ve panelde "Eksik eklentileri kur ve etkinleştir" düğmesidir.
+
 ## Yamalar (AI ve MCP)
 Yama, `id`/`name` taşımayan, yalnız değişecek alanları içeren flx-preset/1 parçasıdır. Akış: `preset_patch_preview` → kullanıcıya özet → `preset_patch_apply`. Flux AI sohbetinde yazan araçlar çalışmadan önce onay ister. Dış MCP'den gelen yama varsayılan olarak "onay bekleyen yama" olur. Uygulanan her yama geçmişte bir kayıttır, `preset_revert` ile geri alınır. Bir ön ayarın değerini değiştiren yama o ön ayar için "elle değiştirilmiş" sayılır.
 

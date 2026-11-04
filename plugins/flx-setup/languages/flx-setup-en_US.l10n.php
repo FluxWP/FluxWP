@@ -5,6 +5,8 @@ return array(
 	'plural-forms' => 'nplurals=2; plural=(n != 1);',
 	'language' => 'en_US',
 	'messages' => array(
+		'Eksik eklentileri kur ve etkinleştir' => 'Install and activate missing plugins',
+		'Eksik eklentiler kurulamadı. FluxWP Panel › Paketler\'den kurun.' => 'Could not install the missing plugins. Install them from FluxWP Panel › Packages.',
 		'Ön ayarlar' => 'Presets',
 		'Ön ayar boş siteye uygulandı.' => 'Preset applied to the empty site.',
 		'%s ön ayarı hazır. Sitede içerik olduğu için kendiliğinden uygulanmadı: önizleyip uygulayın.' => '%s preset is ready. It was not applied automatically because the site has content: preview and apply it.',

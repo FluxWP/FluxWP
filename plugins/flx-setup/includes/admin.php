@@ -163,6 +163,12 @@ function flxk_handle_post() {
 		case 'remove':
 			$res = flxk_remove_preset( $id );
 			break;
+		case 'requirements':
+			$p   = flxk_get_preset( $id );
+			$out = flxk_install_plugins( $p ? flxk_inactive_plugins( (array) ( $p['requires'] ?? array() ) ) : array() );
+			$bad = wp_list_pluck( wp_list_filter( $out['lines'], array( 'ok' => false ) ), 'text' );
+			$res = $out['ok'] ? array( 'ok' => true ) : new WP_Error( 'requirements', $bad ? implode( ' ', $bad ) : __( 'Eksik eklentiler kurulamadı. FluxWP Panel › Paketler\'den kurun.', 'flx-setup' ) );
+			break;
 		case 'revert':
 			$res = flxk_revert_run( sanitize_text_field( wp_unslash( $_POST['run'] ?? '' ) ) );
 			break;
@@ -383,6 +389,11 @@ function flxk_render_presets() {
 		if ( $req ) {
 			/* translators: %s: eksikler */
 			echo '<p class="flxk-warn">' . esc_html( sprintf( __( 'Eksik: %s. Bu kısımlar atlanır.', 'flx-setup' ), implode( ', ', $req ) ) ) . '</p>';
+			if ( flxk_inactive_plugins( (array) ( $p['requires'] ?? array() ) ) && current_user_can( 'install_plugins' ) ) {
+				echo '<div class="flxk-actions">';
+				flxk_form_open( 'requirements', array( 'preset' => $id ) );
+				echo '<button class="button">' . esc_html__( 'Eksik eklentileri kur ve etkinleştir', 'flx-setup' ) . '</button></form></div>';
+			}
 		}
 		echo '<div class="flxk-actions">';
 		if ( ! $st ) {
