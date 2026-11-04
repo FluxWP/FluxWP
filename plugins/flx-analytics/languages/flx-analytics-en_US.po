@@ -245,7 +245,7 @@ msgid "Sosyal medya"
 msgstr "Social media"
 
 msgid "Yapay zekâ"
-msgstr "AI assistants"
+msgstr "AI"
 
 msgid "E-posta"
 msgstr "Email"
@@ -700,6 +700,18 @@ msgstr "Tables updated."
 msgid "Ürün telemetrisi"
 msgstr "Product telemetry"
 
+msgid "Yönetim teması"
+msgstr "Admin theme"
+
+msgid "Mağaza"
+msgstr "Store"
+
+msgid "Dernek ve bağış"
+msgstr "Nonprofit and donations"
+
+msgid "%s kartı"
+msgstr "%s card"
+
 msgid "(tema)"
 msgstr "(theme)"
 
@@ -717,6 +729,18 @@ msgstr "Install"
 
 msgid "Bitti"
 msgstr "Done"
+
+msgid "Yönetim"
+msgstr "Management"
+
+msgid "İletişim"
+msgstr "Communication"
+
+msgid "Büyüme"
+msgstr "Growth"
+
+msgid "Sistem"
+msgstr "System"
 
 msgid "Eklentiler: %s"
 msgstr "Plugins: %s"
@@ -834,9 +858,6 @@ msgstr "Count"
 
 msgid "Son"
 msgstr "Last"
-
-msgid "%s önce"
-msgstr "%s ago"
 
 msgid "Çözüldü olarak kaldır"
 msgstr "Remove as resolved"

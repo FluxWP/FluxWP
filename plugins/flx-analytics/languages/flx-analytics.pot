@@ -699,6 +699,18 @@ msgstr ""
 msgid "Ürün telemetrisi"
 msgstr ""
 
+msgid "Yönetim teması"
+msgstr ""
+
+msgid "Mağaza"
+msgstr ""
+
+msgid "Dernek ve bağış"
+msgstr ""
+
+msgid "%s kartı"
+msgstr ""
+
 msgid "(tema)"
 msgstr ""
 
@@ -715,6 +727,18 @@ msgid "Kurulum"
 msgstr ""
 
 msgid "Bitti"
+msgstr ""
+
+msgid "Yönetim"
+msgstr ""
+
+msgid "İletişim"
+msgstr ""
+
+msgid "Büyüme"
+msgstr ""
+
+msgid "Sistem"
 msgstr ""
 
 msgid "Eklentiler: %s"
@@ -832,9 +856,6 @@ msgid "Tekrar"
 msgstr ""
 
 msgid "Son"
-msgstr ""
-
-msgid "%s önce"
 msgstr ""
 
 msgid "Çözüldü olarak kaldır"

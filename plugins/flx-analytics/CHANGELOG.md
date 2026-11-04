@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.3.8
+- Ürün telemetrisi › Kurulum sihirbazı: adımlar ve ilk ekran kartları okunur adla görünür ("Eklentiler: İletişim", "Mağaza kartı"); önce ham anahtar (`contact`, `store`) yazıyordu.
+
 ## 0.3.7
 - Tarih ve "… önce" metinleri artık kullanıcının dilinde, tek ortak yardımcıdan (FluxWP `flx_date` / `flx_time_ago`, flx-brand 1.1.0): "31 minutes önce", "August 10" gibi Türkçe/İngilizce karışımı kalmadı; çekirdek dil paketi inmemiş olsa da TR ve EN ay/gün adları doğru.
 

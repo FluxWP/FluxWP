@@ -521,7 +521,16 @@ class FLXAN_Telemetry_Hub {
 		}
 		$theme = 0 === strpos( $slug, 'theme:' );
 		$s     = $theme ? substr( $slug, 6 ) : $slug;
-		$s     = 0 === strpos( $s, 'core:' ) ? substr( $s, 5 ) : $s;
+		if ( 0 === strpos( $s, 'core:' ) ) {
+			$core = array(
+				'admin'   => __( 'Yönetim teması', 'flx-analytics' ),
+				'store'   => __( 'Mağaza', 'flx-analytics' ),
+				'charity' => __( 'Dernek ve bağış', 'flx-analytics' ),
+			);
+			$k = substr( $s, 5 );
+			/* translators: %s: sihirbazın ilk ekranındaki kart adı */
+			return sprintf( __( '%s kartı', 'flx-analytics' ), $core[ $k ] ?? $k );
+		}
 		return ( $names[ $s ] ?? $s ) . ( $theme ? ' ' . __( '(tema)', 'flx-analytics' ) : '' );
 	}
 
@@ -536,8 +545,20 @@ class FLXAN_Telemetry_Hub {
 		if ( isset( $map[ $key ] ) ) {
 			return $map[ $key ];
 		}
-		/* translators: %s: eklenti kategorisi anahtarı */
-		return 0 === strpos( $key, 'group:' ) ? sprintf( __( 'Eklentiler: %s', 'flx-analytics' ), substr( $key, 6 ) ) : $key;
+		if ( 0 !== strpos( $key, 'group:' ) ) {
+			return $key;
+		}
+		$groups = array(
+			'manage'  => __( 'Yönetim', 'flx-analytics' ),
+			'contact' => __( 'İletişim', 'flx-analytics' ),
+			'grow'    => __( 'Büyüme', 'flx-analytics' ),
+			'ai'      => __( 'Yapay zekâ', 'flx-analytics' ),
+			'system'  => __( 'Sistem', 'flx-analytics' ),
+			'other'   => __( 'Diğer', 'flx-analytics' ),
+		);
+		$g = substr( $key, 6 );
+		/* translators: %s: eklenti kategorisi (Yönetim, İletişim…) */
+		return sprintf( __( 'Eklentiler: %s', 'flx-analytics' ), $groups[ $g ] ?? $g );
 	}
 
 	private static function pct( $n, $of ) {
