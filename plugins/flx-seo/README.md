@@ -47,6 +47,13 @@ Big SEO plugins bring dozens of screens, upsells and their own database tables; 
 - Favicon set from one image, automatic image alt text, browser caching rules for Apache and LiteSpeed.
 - **SEO check:** every published page with its problems and suggestions.
 
+### Site audit (PageSpeed)
+- Knows every PageSpeed Insights / Lighthouse section: Performance, Accessibility, Best Practices, SEO and Agentic Browsing. Findings are sorted **critical, high, medium, low** with a "how to fix" note, the offending elements and who fixes it (theme, content, server, one click).
+- On-site audit without a key, refreshed daily: viewport zoom lock, ARIA roles (tablist › tab), lists, names and labels, duplicate titles and identical links, render-blocking CSS/JS, DOM size, image sizes, lazy LCP image, fonts, security headers, llms.txt, WebMCP.
+- Optional PageSpeed Insights API run (mobile + desktop, key from the panel) adds real Lighthouse scores and Core Web Vitals.
+- Agent readiness: auto-generated `/llms.txt`, WebMCP `toolname` on search forms, opt-in X-Frame-Options, COOP, basic CSP and HSTS includeSubDomains/preload.
+- **Site build guide** (TR + EN Markdown) for new pages, themes and presets, served to AI agents as the MCP tool `site_build_guide` and resource `flxseo://guide/site-build`; `site_audit` tool for agents and Flux AI.
+
 ### MCP server
 - `/wp-json/flx-mcp/v1/mcp` with per-user keys; keys can be limited to chosen tools; last use shown.
 - Tools: site info, list/get/create/update/delete content, set SEO, SEO audit, patterns, media upload and alt text, terms, site SEO settings; prompts for "fix SEO gaps", "write a news post" and "build a page".

@@ -36,6 +36,12 @@ Büyük SEO eklentileri onlarca ekran, satış teklifleri ve kendi veritabanı t
 
 ## Özellikler
 
+### Site denetimi (PageSpeed)
+- PageSpeed Insights / Lighthouse'un tüm başlıklarını bilir: Performans, Erişilebilirlik, En iyi uygulamalar, SEO ve Ajan uyumu. Bulgular **kritik, yüksek, orta, düşük** sırasıyla; nasıl düzeltilir notu, sorunlu öğeler ve düzeltme yeri (tema, içerik, sunucu, tek tık).
+- Anahtarsız site içi denetim, her gün yenilenir; isteğe bağlı PageSpeed Insights API ölçümü (mobil + masaüstü, anahtar panelden).
+- Ajan uyumu: otomatik `/llms.txt`, arama formunda WebMCP, isteğe bağlı X-Frame-Options, COOP, temel CSP, HSTS.
+- **Site yapım rehberi** (TR + EN): yapay zekâ ajanlarına MCP aracı `site_build_guide` ve kaynak `flxseo://guide/site-build` olarak; `site_audit` aracı ajanlar ve Flux AI için.
+
 ### SEO
 - Yazı, sayfa ve terim başına meta başlık ve açıklama; ayıraç ve ana sayfa başlığı; boşsa içerikten otomatik açıklama.
 - **Editör paneli:** Google önizlemesi, karakter sayaçları, kontrollü odak anahtar kelime (başlıkta, açıklamada, içerikte, H2, uzunluk, görsel alt metni), noindex anahtarı.
