@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 1.0.17
+- Güncelleme sunucusu isteği geri çevirdiğinde nedeni artık açıkça yazılıyor (sunucu 1.10+ hata gövdesindeki `code`): **Dağıtım durduruldu** (`paused`, 503), **Bölge engeli** (`region_blocked`, 403), **Site anahtarı gerekli** (`public_disabled`, 401), **Site anahtarı pasif** (`key_disabled`, 403). Önceden bunlar "Site anahtarı geçersiz" ya da "beklenmeyen yanıt (HTTP 503)" görünüyordu.
+- Durdurma ve diğer engellerde site sunucuyu sıkıştırmaz: 503/429'da `Retry-After` süresine (1 dk–1 gün), diğer engellerde 1 saate kadar otomatik kontrol yapılmaz, son iyi katalog kullanılır. Sonraki deneme zamanı mesajda yazar. "Bağlantıyı test et" / "Güncellemeleri kontrol et" beklemeden sorar.
+- Dağıtım durdurulduğunda kart, eklenti satırı ve Sistem Kontrolü sarı (uyarı) gösterir; diğer engeller kırmızı kalır.
+- Resmi sunucu (updater.fluxwp.com) engel mesajlarının sonunda "Destek ve öneri: info@fluxwp.com" yazar. Başka sunucularda adres gösterilmez; `flxk_support_email` filtresiyle değiştirilir.
+
 ## 1.0.16
 - Açık tema: cihaz koyu moddayken admin açık olsa bile ön ayar kartları koyu görünmüyor; Flux Setup renkleri (kart, rozet, uyarı, fark durumları, paket listesi) Flux Admin değişkenlerinden. Koyu tema: paket listesinde seçili satır artık beyazlaşmıyor. Kurulum sihirbazı: soluk metinler daha okunur.
 
