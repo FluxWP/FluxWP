@@ -96,7 +96,7 @@ msgstr ""
 msgid "PageSpeed masaüstü"
 msgstr ""
 
-msgid "PageSpeed Insights'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre. Site içi denetim anahtarsız ve her gün kendiliğinden çalışır; PageSpeed ölçümü Google'ın gerçek Lighthouse sonucunu ekler."
+msgid "PageSpeed Insights'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre. Site içi denetim anahtarsızdır; PageSpeed ölçümü Google'ın gerçek Lighthouse sonucunu ekler. Otomatik denetim, API anahtarı ve güvenlik başlıkları Ayarlar sekmesinde."
 msgstr ""
 
 #, php-format
@@ -913,4 +913,7 @@ msgid "PageSpeed ölçümü olan rapor yok. API anahtarı girip otomatik denetim
 msgstr ""
 
 msgid "%s PageSpeed puanlarının zaman içindeki değişimi"
+msgstr ""
+
+msgid "Site denetimi ve ajan uyumu"
 msgstr ""

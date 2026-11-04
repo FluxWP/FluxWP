@@ -98,8 +98,8 @@ msgstr "PageSpeed mobile"
 msgid "PageSpeed masaüstü"
 msgstr "PageSpeed desktop"
 
-msgid "PageSpeed Insights'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre. Site içi denetim anahtarsız ve her gün kendiliğinden çalışır; PageSpeed ölçümü Google'ın gerçek Lighthouse sonucunu ekler."
-msgstr "The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key and runs by itself every day; a PageSpeed run adds Google's real Lighthouse result."
+msgid "PageSpeed Insights'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre. Site içi denetim anahtarsızdır; PageSpeed ölçümü Google'ın gerçek Lighthouse sonucunu ekler. Otomatik denetim, API anahtarı ve güvenlik başlıkları Ayarlar sekmesinde."
+msgstr "The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key; a PageSpeed run adds Google's real Lighthouse result. Automatic audit, API key and security headers are in the Settings tab."
 
 #, php-format
 msgid "Site içi denetim: %1$s · %2$s"
@@ -916,3 +916,6 @@ msgstr "No report with a PageSpeed run yet. Enter the API key and turn on PageSp
 
 msgid "%s PageSpeed puanlarının zaman içindeki değişimi"
 msgstr "%s PageSpeed scores over time"
+
+msgid "Site denetimi ve ajan uyumu"
+msgstr "Site audit and agent readiness"

@@ -36,7 +36,7 @@ return array (
     'Site içi' => 'On-site',
     'PageSpeed mobil' => 'PageSpeed mobile',
     'PageSpeed masaüstü' => 'PageSpeed desktop',
-    'PageSpeed Insights\'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre. Site içi denetim anahtarsız ve her gün kendiliğinden çalışır; PageSpeed ölçümü Google\'ın gerçek Lighthouse sonucunu ekler.' => 'The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key and runs by itself every day; a PageSpeed run adds Google\'s real Lighthouse result.',
+    'PageSpeed Insights\'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre. Site içi denetim anahtarsızdır; PageSpeed ölçümü Google\'ın gerçek Lighthouse sonucunu ekler. Otomatik denetim, API anahtarı ve güvenlik başlıkları Ayarlar sekmesinde.' => 'The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key; a PageSpeed run adds Google\'s real Lighthouse result. Automatic audit, API key and security headers are in the Settings tab.',
     'Site içi denetim: %1$s · %2$s' => 'On-site audit: %1$s · %2$s',
     'Henüz denetim yapılmadı.' => 'No audit has run yet.',
     'Denetlenecek adres' => 'Address to audit',
@@ -305,5 +305,6 @@ return array (
     'Cihaz' => 'Device',
     'PageSpeed ölçümü olan rapor yok. API anahtarı girip otomatik denetimde PageSpeed\'i açın.' => 'No report with a PageSpeed run yet. Enter the API key and turn on PageSpeed in the automatic audit.',
     '%s PageSpeed puanlarının zaman içindeki değişimi' => '%s PageSpeed scores over time',
+    'Site denetimi ve ajan uyumu' => 'Site audit and agent readiness',
   ),
 );

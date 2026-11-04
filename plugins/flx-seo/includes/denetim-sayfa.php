@@ -41,11 +41,7 @@ function flxseo_audit_admin_page() {
 	$owners = flxseo_audit_owners();
 	$url    = $r['local']['url'] ?? home_url( '/' );
 	$o      = wp_parse_args( (array) get_option( 'flxseo', array() ), flxseo_defaults() );
-	$msg    = get_transient( 'flxseo_audit_msg_' . get_current_user_id() );
-	if ( $msg ) {
-		delete_transient( 'flxseo_audit_msg_' . get_current_user_id() );
-		printf( '<div class="notice notice-%s is-dismissible"><p>%s</p></div>', esc_attr( $msg[0] ), esc_html( $msg[1] ) );
-	}
+	flxseo_audit_flash();
 	$sources = array(
 		'local'       => __( 'Site içi', 'flx-seo' ),
 		'psi-mobile'  => __( 'PageSpeed mobil', 'flx-seo' ),
@@ -59,7 +55,7 @@ function flxseo_audit_admin_page() {
 		<section class="au-card au-head">
 			<div class="au-head__text">
 				<h2><?php esc_html_e( 'Site denetimi', 'flx-seo' ); ?></h2>
-				<p><?php esc_html_e( 'PageSpeed Insights\'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre. Site içi denetim anahtarsız ve her gün kendiliğinden çalışır; PageSpeed ölçümü Google\'ın gerçek Lighthouse sonucunu ekler.', 'flx-seo' ); ?></p>
+				<p><?php esc_html_e( 'PageSpeed Insights\'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre. Site içi denetim anahtarsızdır; PageSpeed ölçümü Google\'ın gerçek Lighthouse sonucunu ekler. Otomatik denetim, API anahtarı ve güvenlik başlıkları Ayarlar sekmesinde.', 'flx-seo' ); ?></p>
 				<p class="au-meta">
 					<?php if ( ! empty( $r['local']['time'] ) ) : ?>
 						<?php
@@ -194,9 +190,33 @@ function flxseo_audit_admin_page() {
 
 		<?php flxseo_audit_history_card(); ?>
 
+	</div>
+	<?php
+	flxseo_audit_js();
+}
+
+/** Kaydet/düzelt sonrası tek seferlik bildirim. */
+function flxseo_audit_flash() {
+	$msg = get_transient( 'flxseo_audit_msg_' . get_current_user_id() );
+	if ( $msg ) {
+		delete_transient( 'flxseo_audit_msg_' . get_current_user_id() );
+		printf( '<div class="notice notice-%s is-dismissible"><p>%s</p></div>', esc_attr( $msg[0] ), esc_html( $msg[1] ) );
+	}
+}
+
+/**
+ * SEO & MCP › Ayarlar: site denetimi ayarları (PageSpeed anahtarı, otomatik denetim, ajan uyumu, güvenlik başlıkları)
+ * ve yeni site yapım rehberi.
+ */
+function flxseo_audit_settings_page() {
+	$o = wp_parse_args( (array) get_option( 'flxseo', array() ), flxseo_defaults() );
+	flxseo_audit_flash();
+	flxseo_audit_css();
+	?>
+	<div class="flxseo-au" id="flxseo-au">
 		<section class="au-grid2">
 			<form class="au-card au-settings" data-freq="<?php echo esc_attr( $o['audit_freq'] ); ?>" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-				<h2><?php esc_html_e( 'Ayarlar', 'flx-seo' ); ?></h2>
+				<h2><?php esc_html_e( 'Site denetimi ve ajan uyumu', 'flx-seo' ); ?></h2>
 				<input type="hidden" name="action" value="flxseo_audit_settings">
 				<?php wp_nonce_field( 'flxseo_audit_settings' ); ?>
 				<p>
@@ -457,7 +477,7 @@ add_action(
 		}
 		flxseo_llms_flush();
 		set_transient( 'flxseo_audit_msg_' . get_current_user_id(), array( 'success', __( 'Kaydedildi.', 'flx-seo' ) ), 60 );
-		wp_safe_redirect( flxseo_admin_url( 'denetim' ) );
+		wp_safe_redirect( flxseo_admin_url( 'ayarlar' ) );
 		exit;
 	}
 );

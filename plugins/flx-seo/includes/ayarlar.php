@@ -145,6 +145,7 @@ function flxseo_tabs() {
 		'kontrol' => __( 'SEO kontrolü', 'flx-seo' ),
 		'denetim' => __( 'Site denetimi', 'flx-seo' ),
 		'mcp'     => __( 'Yapay zekâ (MCP)', 'flx-seo' ),
+		'ayarlar' => __( 'Ayarlar', 'flx-seo' ),
 	);
 }
 
@@ -279,6 +280,11 @@ function flxseo_settings_page() {
 	}
 	if ( 'denetim' === $tab ) {
 		flxseo_audit_admin_page();
+		echo '</div>';
+		return;
+	}
+	if ( 'ayarlar' === $tab ) {
+		flxseo_audit_settings_page();
 		echo '</div>';
 		return;
 	}
