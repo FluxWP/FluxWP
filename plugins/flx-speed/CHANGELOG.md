@@ -1,5 +1,13 @@
 # Değişiklikler
 
+## 0.4.0
+- Ayarlar › Yönetim giriş adresi: giriş ekranı wp-login.php yerine özel adreste açılır (örn. `/fluxadmin`). wp-login.php ve giriş yapmamış ziyaretçinin wp-admin istekleri temanın 404 sayfasını alır ya da ana sayfaya yönlenir.
+- WordPress'in ürettiği giriş, çıkış, şifre sıfırlama (e-posta dahil) ve kayıt bağlantıları yeni adrese çevrilir; `/login`, `/admin`, `/dashboard` kısayolları kapanır.
+- Etkilenmeyenler: admin-ajax.php, admin-post.php, REST API, wp-cron, XML-RPC, WP-CLI, WooCommerce Hesabım girişi, Flux App bağlantısı (`wp-login.php?action=flxapp_authorize`), şifreli yazı formu.
+- Kurtarma: wp-config.php'de `define( 'FLXP_LOGIN_DISABLE', true );` özelliği kapatır; `FLXP_LOGIN_SLUG` sabiti paneli ezer.
+- Önbellek: giriş ve engel yanıtları `no-cache` + `X-LiteSpeed-Cache-Control: no-cache`; adres değişince LiteSpeed önbelleği temizlenir.
+- Yeni filtreler: `flxp_login_passthrough_actions`, `flxp_login_blocked_redirect`.
+
 ## 0.3.4
 - Panel yalnız Flux Admin / tema koyu modunu izler; admin açıkken cihaz ayarından koyulaşmıyor.
 

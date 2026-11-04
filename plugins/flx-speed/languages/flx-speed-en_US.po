@@ -34,6 +34,12 @@ msgstr "Settings saved."
 msgid "Tüm kayıtlar silindi."
 msgstr "All records deleted."
 
+msgid "Özel giriş adresi kapatıldı; giriş yeniden wp-login.php üzerinden."
+msgstr "Custom login URL turned off; login is back on wp-login.php."
+
+msgid "Giriş adresi değişti: %s — yer imlerine ekleyin. wp-login.php artık açılmaz."
+msgstr "Login URL changed: %s — bookmark it. wp-login.php no longer opens."
+
 msgid "Temizlik tamam: %s öğe."
 msgstr "Cleanup done: %s items."
 
@@ -583,6 +589,54 @@ msgstr "Flux SEO & MCP is active: tools are registered."
 msgid "Flux SEO & MCP etkin değil: araçlar yalnız Flux AI sohbetinde."
 msgstr "Flux SEO & MCP is not active: tools are available in Flux AI chat only."
 
+msgid "Yönetim giriş adresi"
+msgstr "Admin login URL"
+
+msgid "Giriş ekranını wp-login.php yerine size özel bir adreste açar. wp-login.php ve giriş yapmamış ziyaretçinin wp-admin istekleri yanıt vermez; botların şifre denemesi ve sunucu yükü azalır."
+msgstr "Opens the login screen at an address of your own instead of wp-login.php. wp-login.php and wp-admin requests from logged-out visitors no longer respond, which cuts bot password guessing and server load."
+
+msgid "wp-config.php içinde FLXP_LOGIN_DISABLE tanımlı: özel adres kapalı, giriş yine wp-login.php üzerinden. Sorun çözüldüyse bu satırı silin."
+msgstr "FLXP_LOGIN_DISABLE is defined in wp-config.php: the custom URL is off and login uses wp-login.php. Remove that line once the problem is solved."
+
+msgid "Giriş adresiniz"
+msgstr "Your login URL"
+
+msgid "Kopyalandı"
+msgstr "Copied"
+
+msgid "Kopyala"
+msgstr "Copy"
+
+msgid "Bu adresi yer imlerine ekleyin ve giriş yapan herkese iletin. Unutursanız aşağıdaki kurtarma adımını kullanın."
+msgstr "Bookmark this address and share it with everyone who logs in. If you forget it, use the recovery step below."
+
+msgid "Giriş adresi"
+msgstr "Login URL"
+
+msgid "Adres wp-config.php içindeki FLXP_LOGIN_SLUG sabitinden geliyor; değiştirmek için sabiti düzenleyin ya da silin."
+msgstr "The address comes from the FLXP_LOGIN_SLUG constant in wp-config.php; edit or remove the constant to change it."
+
+msgid "Boş bırakılırsa WordPress'in standart adresi (wp-login.php) kullanılır. 3-40 karakter: küçük harf, rakam, tire, alt çizgi. Tahmin edilmesi zor bir ad seçin (admin, login kullanılamaz)."
+msgstr "Leave empty to use the standard WordPress address (wp-login.php). 3-40 characters: lowercase letters, digits, hyphen, underscore. Pick something hard to guess (admin and login are not allowed)."
+
+msgid "Eski adreslere gelen ziyaretçi"
+msgstr "Visitors to the old addresses"
+
+msgid "404 sayfası göster (önerilen)"
+msgstr "Show the 404 page (recommended)"
+
+msgid "Ana sayfaya yönlendir"
+msgstr "Redirect to the home page"
+
+msgid "wp-login.php ve giriş yapmamış ziyaretçinin wp-admin istekleri için. admin-ajax.php, admin-post.php, REST API, wp-cron, WooCommerce hesabım girişi ve Flux App bağlantısı etkilenmez."
+msgstr "Applies to wp-login.php and to wp-admin requests from logged-out visitors. admin-ajax.php, admin-post.php, the REST API, wp-cron, WooCommerce My Account login and the Flux App connection are not affected."
+
+msgid "Kurtarma"
+msgstr "Recovery"
+
+msgid "Adresi unutursanız ya da giriş açılmazsa: dosya yöneticisinden (Hostinger hPanel › Dosya Yöneticisi) wp-config.php dosyasına aşağıdaki satırı ekleyin. Giriş yeniden wp-login.php olur; girdikten sonra adresi buradan düzeltip satırı silin."
+msgstr "If you forget the address or login won't open: add the line below to wp-config.php using your file manager (Hostinger hPanel › File Manager). Login goes back to wp-login.php; once you're in, fix the address here and remove the line."
+
 msgid "%1$s sürümünden beri kullanımdan kalktı. Yerine: %2$s"
 msgstr "Deprecated since %1$s. Use instead: %2$s"
 
@@ -660,6 +714,15 @@ msgstr "Slow requests (24 h)"
 
 msgid "Ayrıntılar"
 msgstr "Details"
+
+msgid "Giriş adresi 3-40 karakter olmalı; yalnız küçük harf (a-z), rakam, tire ve alt çizgi kullanın."
+msgstr "The login URL must be 3-40 characters; use only lowercase letters (a-z), digits, hyphens and underscores."
+
+msgid "Bu adres WordPress tarafından kullanılıyor; başka bir ad seçin."
+msgstr "WordPress already uses this address; pick another name."
+
+msgid "Bu adreste zaten bir sayfa ya da yazı var; başka bir ad seçin."
+msgstr "A page or post already uses this address; pick another name."
 
 msgid "Performans özeti"
 msgstr "Performance summary"

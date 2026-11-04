@@ -50,6 +50,7 @@ Query Monitor tells you what happened on the page you are looking at; it forgets
 - **Server:** OS, web server, PHP limits and disabled functions, extensions, OPcache, caches, WordPress constants and active plugins. Read from `/proc` and PHP, no `shell_exec` and no external services.
 - **Database:** version, key settings, status, table sizes and a clean-up section (admin only, with confirmation).
 - **Autoload:** total size and the 40 largest options with their owner. **Cron:** every scheduled event, overdue ones and when cron last ran.
+- **Custom login URL:** your own address such as `/fluxadmin` instead of wp-login.php; old addresses return 404, and a wp-config constant turns it off if you get locked out.
 - **System Check:** checks and one-click fixes from every FluxWP package (`flx_system_checks`, `flx_system_fixes`).
 - Dashboard widget with live boxes, p95, failing and slow requests and the top suggestions.
 

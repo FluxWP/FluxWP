@@ -50,6 +50,7 @@ Query Monitor baktığınız sayfada ne olduğunu söyler, gerisini unutur. Payl
 - **Sunucu:** işletim sistemi, web sunucusu, PHP sınırları ve kapalı fonksiyonlar, uzantılar, OPcache, önbellekler, WordPress sabitleri ve etkin eklentiler. `/proc` ve PHP'den okunur; `shell_exec` ve dış servis yok.
 - **Veritabanı:** sürüm, önemli ayarlar, durum, tablo boyutları ve temizlik bölümü (yalnız yönetici, onay sorar).
 - **Autoload:** toplam boyut ve sahibiyle birlikte en büyük 40 seçenek. **Cron:** tüm zamanlanmış görevler, gecikenler ve cron'un son çalışması.
+- **Özel giriş adresi:** wp-login.php yerine `/fluxadmin` gibi kendi adresiniz; eski adresler 404 döner, kilitlenirseniz wp-config sabitiyle kapanır.
 - **Sistem Kontrolü:** tüm FluxWP paketlerinin kontrolleri ve tek tık düzeltmeleri (`flx_system_checks`, `flx_system_fixes`).
 - Canlı kutular, p95, hatalı ve yavaş istekler ve ilk önerilerle Başlangıç widget'ı.
 
