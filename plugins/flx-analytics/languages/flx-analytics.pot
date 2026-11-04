@@ -696,7 +696,22 @@ msgstr ""
 msgid "Tablolar güncellendi."
 msgstr ""
 
+msgid "Bilinmiyor"
+msgstr ""
+
 msgid "Ürün telemetrisi"
+msgstr ""
+
+msgid "Yönetim teması"
+msgstr ""
+
+msgid "Mağaza"
+msgstr ""
+
+msgid "Dernek ve bağış"
+msgstr ""
+
+msgid "%s kartı"
 msgstr ""
 
 msgid "(tema)"
@@ -717,6 +732,18 @@ msgstr ""
 msgid "Bitti"
 msgstr ""
 
+msgid "Yönetim"
+msgstr ""
+
+msgid "İletişim"
+msgstr ""
+
+msgid "Büyüme"
+msgstr ""
+
+msgid "Sistem"
+msgstr ""
+
 msgid "Eklentiler: %s"
 msgstr ""
 
@@ -733,6 +760,12 @@ msgid "Kurulum sihirbazı"
 msgstr ""
 
 msgid "%d gün"
+msgstr ""
+
+msgid "Tüm ülkeler"
+msgstr ""
+
+msgid "Süz"
 msgstr ""
 
 msgid "FluxWP Panel'de \"Ürünü geliştirmemize yardımcı olun\" kutusunu işaretleyen sitelerden günde bir kez gelen anonim veri. IP ve site adresi saklanmaz; kayıtlar 90 gün tutulur."
@@ -804,6 +837,9 @@ msgstr ""
 msgid "Dil"
 msgstr ""
 
+msgid "Ülke, gönderen sitenin ayarlarından gelir (WooCommerce mağaza ülkesi ya da Ayarlar › Genel saat dilimi). IP'ye bakılmaz ve saklanmaz. Bir ülkeye tıklayınca tüm sekmeler o ülkeye süzülür."
+msgstr ""
+
 msgid "Hata kaydı silindi. Yeniden olursa tekrar görünür."
 msgstr ""
 
@@ -814,9 +850,6 @@ msgid "Tüm türler"
 msgstr ""
 
 msgid "Yalnız ölümcül"
-msgstr ""
-
-msgid "Süz"
 msgstr ""
 
 msgid "%s kayıt"
@@ -832,9 +865,6 @@ msgid "Tekrar"
 msgstr ""
 
 msgid "Son"
-msgstr ""
-
-msgid "%s önce"
 msgstr ""
 
 msgid "Çözüldü olarak kaldır"

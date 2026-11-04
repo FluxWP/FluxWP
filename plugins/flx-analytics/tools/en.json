@@ -73,7 +73,7 @@
  "Doğrudan": "Direct",
  "Arama motoru": "Search engine",
  "Sosyal medya": "Social media",
- "Yapay zekâ": "AI assistants",
+ "Yapay zekâ": "AI",
  "E-posta": "Email",
  "Reklam": "Ads",
  "Kampanya": "Campaign",
@@ -476,5 +476,16 @@
  "Öneriyi kaldıran": "Removed suggestion",
  "Ön ayar (bitirenler)": "Preset (finishers)",
  "Renk stili (bitirenler)": "Colour style (finishers)",
- "Seçim": "Choice"
+ "Seçim": "Choice",
+ "Yönetim teması": "Admin theme",
+ "Mağaza": "Store",
+ "Dernek ve bağış": "Nonprofit and donations",
+ "%s kartı": "%s card",
+ "Yönetim": "Management",
+ "İletişim": "Communication",
+ "Büyüme": "Growth",
+ "Sistem": "System",
+ "Bilinmiyor": "Unknown",
+ "Tüm ülkeler": "All countries",
+ "Ülke, gönderen sitenin ayarlarından gelir (WooCommerce mağaza ülkesi ya da Ayarlar › Genel saat dilimi). IP'ye bakılmaz ve saklanmaz. Bir ülkeye tıklayınca tüm sekmeler o ülkeye süzülür.": "Country comes from the sending site's settings (WooCommerce store country or the Settings › General time zone). IP addresses are never looked up or stored. Click a country to filter every tab by it."
 }

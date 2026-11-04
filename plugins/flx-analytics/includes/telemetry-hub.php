@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || exit;
 
 class FLXAN_Telemetry_Hub {
 
-	const DB_VERSION   = 1;
+	const DB_VERSION   = 2;
 	const SLUG         = 'flx-analytics-telemetry';
 	const KEEP_DAYS    = 90;
 	const MAX_BODY     = 131072;
@@ -71,13 +71,15 @@ class FLXAN_Telemetry_Hub {
 				wp varchar(20) NOT NULL DEFAULT '',
 				php varchar(8) NOT NULL DEFAULT '',
 				loc varchar(16) NOT NULL DEFAULT '',
+				cc char(2) NOT NULL DEFAULT '',
 				ms tinyint(1) unsigned NOT NULL DEFAULT 0,
 				panel varchar(32) NOT NULL DEFAULT '',
 				pk text NOT NULL,
 				ob text NOT NULL,
 				ob_ts int(10) unsigned NOT NULL DEFAULT 0,
 				PRIMARY KEY  (iid),
-				KEY last_ts (last_ts)
+				KEY last_ts (last_ts),
+				KEY cc (cc)
 			) {$c};
 			CREATE TABLE " . self::t( 'errors' ) . " (
 				h char(16) NOT NULL,
@@ -181,6 +183,7 @@ class FLXAN_Telemetry_Hub {
 			'wp'       => self::ver( $b['wp'] ?? '' ),
 			'php'      => preg_match( '/^\d{1,2}\.\d{1,2}$/', (string) ( $b['php'] ?? '' ) ) ? (string) $b['php'] : '',
 			'loc'      => preg_match( '/^[A-Za-z]{2,3}(_[A-Za-z0-9]{2,8}){0,2}$/', (string) ( $b['locale'] ?? '' ) ) ? (string) $b['locale'] : '',
+			'cc'       => self::cc( $b['cc'] ?? '' ),
 			'ms'       => empty( $b['multisite'] ) ? 0 : 1,
 			'panel'    => self::ver( $b['panel'] ?? '' ),
 			'pk'       => wp_json_encode( $pk ),
@@ -227,6 +230,26 @@ class FLXAN_Telemetry_Hub {
 		$wpdb->query( $wpdb->prepare( 'INSERT INTO ' . self::t( 'days' ) . ' (d, r, e) VALUES (%s, 1, %d) ON DUPLICATE KEY UPDATE r = r + 1, e = e + VALUES(e)', $day, $events ) ); // phpcs:ignore WordPress.DB
 		delete_transient( 'flxan_tm_sum' );
 		return 'ok';
+	}
+
+	/** Ülke kodu (gönderen site ayarlarından; IP'ye bakılmaz). Geçersizse boş. */
+	public static function cc( $v ) {
+		$v = strtoupper( (string) $v );
+		return preg_match( '/^[A-Z]{2}$/', $v ) && ! in_array( $v, array( 'XX', 'ZZ' ), true ) ? $v : '';
+	}
+
+	/** Ülke adı (site dilinde). */
+	private static function cc_name( $cc ) {
+		if ( '' === $cc || '?' === $cc ) {
+			return __( 'Bilinmiyor', 'flx-analytics' );
+		}
+		return function_exists( 'flxan_dim_label' ) ? (string) flxan_dim_label( 'country', $cc ) : $cc;
+	}
+
+	/** Aralıkta rapor gönderen ülkeler (süzgeç listesi). */
+	public static function countries( $days ) {
+		global $wpdb;
+		return (array) $wpdb->get_results( $wpdb->prepare( 'SELECT cc, COUNT(*) n FROM ' . self::t( 'installs' ) . " WHERE last_ts >= %d AND cc <> '' GROUP BY cc ORDER BY n DESC", time() - $days * DAY_IN_SECONDS ), ARRAY_A ); // phpcs:ignore WordPress.DB
 	}
 
 	private static function ver( $v ) {
@@ -342,15 +365,17 @@ class FLXAN_Telemetry_Hub {
 	/* Özet                                                                */
 	/* ------------------------------------------------------------------ */
 
-	public static function summary( $days ) {
-		$key = 'flxan_tm_sum';
-		$all = get_transient( $key );
-		if ( is_array( $all ) && isset( $all[ $days ] ) ) {
-			return $all[ $days ];
+	public static function summary( $days, $cc = '' ) {
+		$key  = 'flxan_tm_sum';
+		$slot = $days . '|' . $cc;
+		$all  = get_transient( $key );
+		if ( is_array( $all ) && isset( $all[ $slot ] ) ) {
+			return $all[ $slot ];
 		}
 		global $wpdb;
 		$cut  = time() - $days * DAY_IN_SECONDS;
-		$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT wp, php, loc, pk, ob, ob_ts FROM ' . self::t( 'installs' ) . ' WHERE last_ts >= %d', $cut ), ARRAY_A ); // phpcs:ignore WordPress.DB
+		$sql  = 'SELECT wp, php, loc, cc, pk, ob, ob_ts FROM ' . self::t( 'installs' ) . ' WHERE last_ts >= %d';
+		$rows = '' !== $cc ? $wpdb->get_results( $wpdb->prepare( $sql . ' AND cc = %s', $cut, $cc ), ARRAY_A ) : $wpdb->get_results( $wpdb->prepare( $sql, $cut ), ARRAY_A ); // phpcs:ignore WordPress.DB
 		$S    = array(
 			'installs' => count( $rows ),
 			'usage'    => array(),
@@ -360,6 +385,7 @@ class FLXAN_Telemetry_Hub {
 			'php'      => array(),
 			'wp'       => array(),
 			'locale'   => array(),
+			'country'  => array(),
 			'ob'       => array(
 				'runs'    => 0,
 				'out'     => array( 'done' => 0, 'skip' => 0, 'left' => 0 ),
@@ -396,6 +422,7 @@ class FLXAN_Telemetry_Hub {
 			$inc( $S['php'], '' !== $r['php'] ? $r['php'] : '?' );
 			$inc( $S['wp'], preg_match( '/^(\d+\.\d+)/', (string) $r['wp'], $m ) ? $m[1] : '?' );
 			$inc( $S['locale'], '' !== $r['loc'] ? $r['loc'] : '?' );
+			$inc( $S['country'], '' !== $r['cc'] ? $r['cc'] : '?' );
 
 			$ob = json_decode( (string) $r['ob'], true );
 			if ( is_array( $ob ) && (int) $r['ob_ts'] >= $cut ) {
@@ -423,7 +450,7 @@ class FLXAN_Telemetry_Hub {
 				}
 			}
 		}
-		foreach ( array( 'usage', 'pairs', 'combos', 'php', 'wp', 'locale' ) as $k ) {
+		foreach ( array( 'usage', 'pairs', 'combos', 'php', 'wp', 'locale', 'country' ) as $k ) {
 			arsort( $S[ $k ] );
 		}
 		foreach ( array( 'reach', 'stop', 'picked', 'dropped', 'rec_off', 'preset', 'style' ) as $k ) {
@@ -442,27 +469,48 @@ class FLXAN_Telemetry_Hub {
 		$S['locale']          = array_slice( $S['locale'], 0, 8, true );
 		$S['reports']         = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COALESCE(SUM(r),0) FROM ' . self::t( 'days' ) . ' WHERE d >= %s', gmdate( 'Y-m-d', $cut ) ) ); // phpcs:ignore WordPress.DB
 		$S['events']          = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COALESCE(SUM(e),0) FROM ' . self::t( 'days' ) . ' WHERE d >= %s', gmdate( 'Y-m-d', $cut ) ) ); // phpcs:ignore WordPress.DB
-		$S['errors_open']     = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM ' . self::t( 'errors' ) . ' WHERE last_ts >= %d', $cut ) ); // phpcs:ignore WordPress.DB
-		$S['fatal_open']      = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM ' . self::t( 'errors' ) . " WHERE last_ts >= %d AND t IN ('" . implode( "','", self::FATAL ) . "')", $cut ) ); // phpcs:ignore WordPress.DB
+		$in_cc                = self::cc_where( $cc );
+		if ( '' !== $cc ) {
+			// Günlük toplamlar ülkesiz tutulur; ülke seçiliyken kurulum ve hata kayıtlarından sayılır.
+			$S['reports'] = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COALESCE(SUM(n),0) FROM ' . self::t( 'installs' ) . ' WHERE last_ts >= %d AND cc = %s', $cut, $cc ) ); // phpcs:ignore WordPress.DB
+			$S['events']  = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COALESCE(SUM(e.n),0) FROM ' . self::t( 'errors' ) . ' e WHERE e.last_ts >= %d', $cut ) . $in_cc ); // phpcs:ignore WordPress.DB
+		}
+		$S['errors_open']     = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM ' . self::t( 'errors' ) . ' e WHERE e.last_ts >= %d', $cut ) . $in_cc ); // phpcs:ignore WordPress.DB
+		$S['fatal_open']      = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM ' . self::t( 'errors' ) . " e WHERE e.last_ts >= %d AND e.t IN ('" . implode( "','", self::FATAL ) . "')", $cut ) . $in_cc ); // phpcs:ignore WordPress.DB
 		$all                  = is_array( $all ) ? $all : array();
-		$all[ $days ]         = $S;
+		$all[ $slot ]         = $S;
 		set_transient( $key, $all, 10 * MINUTE_IN_SECONDS );
 		return $S;
 	}
 
-	public static function errors( $days, $plugin = '', $type = '' ) {
+	/** Hata sorgusuna ülke süzgeci: o ülkeden en az bir kurulumda görülen hatalar (e = errors takma adı). */
+	private static function cc_where( $cc ) {
+		if ( '' === $cc ) {
+			return '';
+		}
 		global $wpdb;
-		$where = $wpdb->prepare( 'last_ts >= %d', time() - $days * DAY_IN_SECONDS );
+		return $wpdb->prepare( ' AND EXISTS (SELECT 1 FROM ' . self::t( 'esites' ) . ' s JOIN ' . self::t( 'installs' ) . ' i ON i.iid = s.iid WHERE s.h = e.h AND i.cc = %s)', $cc ); // phpcs:ignore WordPress.DB
+	}
+
+	public static function errors( $days, $plugin = '', $type = '', $cc = '' ) {
+		global $wpdb;
+		$where = $wpdb->prepare( 'e.last_ts >= %d', time() - $days * DAY_IN_SECONDS );
 		if ( '' !== $plugin ) {
-			$where .= $wpdb->prepare( ' AND p = %s', $plugin );
+			$where .= $wpdb->prepare( ' AND e.p = %s', $plugin );
 		}
 		if ( 'fatal' === $type ) {
-			$where .= " AND t IN ('" . implode( "','", self::FATAL ) . "')";
+			$where .= " AND e.t IN ('" . implode( "','", self::FATAL ) . "')";
 		} elseif ( in_array( $type, self::TYPES, true ) ) {
-			$where .= $wpdb->prepare( ' AND t = %s', $type );
+			$where .= $wpdb->prepare( ' AND e.t = %s', $type );
+		}
+		$where .= self::cc_where( $cc );
+		$sites  = 'e.sites';
+		if ( '' !== $cc ) {
+			// Ülke seçiliyken "Site": o ülkeden kaç kurulumda görüldüğü.
+			$sites = $wpdb->prepare( '(SELECT COUNT(*) FROM ' . self::t( 'esites' ) . ' s JOIN ' . self::t( 'installs' ) . ' i ON i.iid = s.iid WHERE s.h = e.h AND i.cc = %s)', $cc ); // phpcs:ignore WordPress.DB
 		}
 		$fatal = "'" . implode( "','", self::FATAL ) . "'";
-		return (array) $wpdb->get_results( 'SELECT * FROM ' . self::t( 'errors' ) . " WHERE {$where} ORDER BY (t IN ({$fatal})) DESC, sites DESC, n DESC LIMIT 300", ARRAY_A ); // phpcs:ignore WordPress.DB
+		return (array) $wpdb->get_results( "SELECT e.*, {$sites} AS sites FROM " . self::t( 'errors' ) . " e WHERE {$where} ORDER BY (e.t IN ({$fatal})) DESC, sites DESC, e.n DESC LIMIT 300", ARRAY_A ); // phpcs:ignore WordPress.DB
 	}
 
 	public static function error_plugins() {
@@ -521,7 +569,16 @@ class FLXAN_Telemetry_Hub {
 		}
 		$theme = 0 === strpos( $slug, 'theme:' );
 		$s     = $theme ? substr( $slug, 6 ) : $slug;
-		$s     = 0 === strpos( $s, 'core:' ) ? substr( $s, 5 ) : $s;
+		if ( 0 === strpos( $s, 'core:' ) ) {
+			$core = array(
+				'admin'   => __( 'Yönetim teması', 'flx-analytics' ),
+				'store'   => __( 'Mağaza', 'flx-analytics' ),
+				'charity' => __( 'Dernek ve bağış', 'flx-analytics' ),
+			);
+			$k = substr( $s, 5 );
+			/* translators: %s: sihirbazın ilk ekranındaki kart adı */
+			return sprintf( __( '%s kartı', 'flx-analytics' ), $core[ $k ] ?? $k );
+		}
 		return ( $names[ $s ] ?? $s ) . ( $theme ? ' ' . __( '(tema)', 'flx-analytics' ) : '' );
 	}
 
@@ -536,8 +593,20 @@ class FLXAN_Telemetry_Hub {
 		if ( isset( $map[ $key ] ) ) {
 			return $map[ $key ];
 		}
-		/* translators: %s: eklenti kategorisi anahtarı */
-		return 0 === strpos( $key, 'group:' ) ? sprintf( __( 'Eklentiler: %s', 'flx-analytics' ), substr( $key, 6 ) ) : $key;
+		if ( 0 !== strpos( $key, 'group:' ) ) {
+			return $key;
+		}
+		$groups = array(
+			'manage'  => __( 'Yönetim', 'flx-analytics' ),
+			'contact' => __( 'İletişim', 'flx-analytics' ),
+			'grow'    => __( 'Büyüme', 'flx-analytics' ),
+			'ai'      => __( 'Yapay zekâ', 'flx-analytics' ),
+			'system'  => __( 'Sistem', 'flx-analytics' ),
+			'other'   => __( 'Diğer', 'flx-analytics' ),
+		);
+		$g = substr( $key, 6 );
+		/* translators: %s: eklenti kategorisi (Yönetim, İletişim…) */
+		return sprintf( __( 'Eklentiler: %s', 'flx-analytics' ), $groups[ $g ] ?? $g );
 	}
 
 	private static function pct( $n, $of ) {
@@ -589,8 +658,10 @@ class FLXAN_Telemetry_Hub {
 		$tab   = in_array( $tab, array( 'overview', 'errors', 'onboarding' ), true ) ? $tab : 'overview';
 		$range = isset( $_GET['r'] ) ? (int) $_GET['r'] : 30;
 		$range = in_array( $range, array( 7, 30, 90 ), true ) ? $range : 30;
+		$cc    = isset( $_GET['c'] ) ? self::cc( sanitize_key( wp_unslash( $_GET['c'] ) ) ) : '';
 		// phpcs:enable
-		$S    = self::summary( $range );
+		$S    = self::summary( $range, $cc );
+		$ctry = self::countries( $range );
 		$tabs = array(
 			'overview'   => __( 'Genel bakış', 'flx-analytics' ),
 			'errors'     => __( 'Hatalar', 'flx-analytics' ),
@@ -610,36 +681,52 @@ class FLXAN_Telemetry_Hub {
 				.flxan-tm .tm-t.fatal{background:#fcf0f1;color:#b32d2e}.flxan-tm .tm-t.warn{background:#fcf3e6;color:#9a6700}
 				.flxan-tm .tm-filter{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
 				.flxan-tm .tm-funnel td{height:38px}
+				.flxan-tm .flxan-head{flex-wrap:wrap;gap:8px}.flxan-tm .tm-cc select{min-height:32px}
+				.flxan-tm .tm-cc-a{color:inherit;text-decoration:none}.flxan-tm .tm-cc-a:hover{text-decoration:underline}
 				@media(max-width:782px){.flxan-tm .flxan-cards,.flxan-tm .flxan-grid{grid-template-columns:1fr 1fr}.flxan-tm .flxan-grid{grid-template-columns:1fr}.flxan-tm .tm-hide-m{display:none}}
 			</style>
 			<div class="flxan-head">
 				<h1><?php esc_html_e( 'Ürün telemetrisi', 'flx-analytics' ); ?></h1>
 				<div class="flxan-tabs" role="tablist">
 					<?php foreach ( array( 7, 30, 90 ) as $r ) : ?>
-						<a href="<?php echo esc_url( self::url( array( 'tab' => $tab, 'r' => $r ) ) ); ?>"<?php echo $r === $range ? ' aria-current="page"' : ''; ?>><?php /* translators: %d: gün */ echo esc_html( sprintf( __( '%d gün', 'flx-analytics' ), $r ) ); ?></a>
+						<a href="<?php echo esc_url( self::url( array( 'tab' => $tab, 'r' => $r, 'c' => $cc ) ) ); ?>"<?php echo $r === $range ? ' aria-current="page"' : ''; ?>><?php /* translators: %d: gün */ echo esc_html( sprintf( __( '%d gün', 'flx-analytics' ), $r ) ); ?></a>
 					<?php endforeach; ?>
 				</div>
+				<?php if ( $ctry || '' !== $cc ) : ?>
+				<form method="get" class="tm-cc">
+					<input type="hidden" name="page" value="<?php echo esc_attr( self::SLUG ); ?>">
+					<input type="hidden" name="tab" value="<?php echo esc_attr( $tab ); ?>">
+					<input type="hidden" name="r" value="<?php echo esc_attr( $range ); ?>">
+					<select name="c" onchange="this.form.submit()" aria-label="<?php esc_attr_e( 'Ülke', 'flx-analytics' ); ?>">
+						<option value=""><?php esc_html_e( 'Tüm ülkeler', 'flx-analytics' ); ?></option>
+						<?php foreach ( $ctry as $row ) : ?>
+							<option value="<?php echo esc_attr( strtolower( $row['cc'] ) ); ?>" <?php selected( $cc, $row['cc'] ); ?>><?php echo esc_html( self::cc_name( $row['cc'] ) . ' (' . number_format_i18n( (int) $row['n'] ) . ')' ); ?></option>
+						<?php endforeach; ?>
+					</select>
+					<noscript><button class="button"><?php esc_html_e( 'Süz', 'flx-analytics' ); ?></button></noscript>
+				</form>
+				<?php endif; ?>
 			</div>
 			<p class="description" style="margin:-8px 0 14px"><?php esc_html_e( 'FluxWP Panel\'de "Ürünü geliştirmemize yardımcı olun" kutusunu işaretleyen sitelerden günde bir kez gelen anonim veri. IP ve site adresi saklanmaz; kayıtlar 90 gün tutulur.', 'flx-analytics' ); ?></p>
 			<nav class="flxan-tabs" style="margin-bottom:14px">
 				<?php foreach ( $tabs as $k => $l ) : ?>
-					<a href="<?php echo esc_url( self::url( array( 'tab' => $k, 'r' => $range ) ) ); ?>"<?php echo $k === $tab ? ' aria-current="page"' : ''; ?>><?php echo esc_html( $l ); ?></a>
+					<a href="<?php echo esc_url( self::url( array( 'tab' => $k, 'r' => $range, 'c' => $cc ) ) ); ?>"<?php echo $k === $tab ? ' aria-current="page"' : ''; ?>><?php echo esc_html( $l ); ?></a>
 				<?php endforeach; ?>
 			</nav>
 			<?php
 			if ( 'errors' === $tab ) {
-				self::view_errors( $range, $S );
+				self::view_errors( $range, $S, $cc );
 			} elseif ( 'onboarding' === $tab ) {
 				self::view_onboarding( $S );
 			} else {
-				self::view_overview( $S );
+				self::view_overview( $S, $range, $cc );
 			}
 			?>
 		</div>
 		<?php
 	}
 
-	private static function view_overview( $S ) {
+	private static function view_overview( $S, $range = 30, $cc = '' ) {
 		$n = $S['installs'];
 		echo '<div class="flxan-cards">';
 		echo self::kpi( __( 'Raporlayan site', 'flx-analytics' ), number_format_i18n( $n ), __( 'Tekil kurulum', 'flx-analytics' ), 'green' ); // phpcs:ignore
@@ -685,10 +772,22 @@ class FLXAN_Telemetry_Hub {
 			$rows[ esc_html( $v ) ] = array( $c, self::pct( $c, $n ) );
 		}
 		self::bars( __( 'Site dili', 'flx-analytics' ), $rows, array( __( 'Dil', 'flx-analytics' ), __( 'Site', 'flx-analytics' ), __( 'Pay', 'flx-analytics' ) ), $n );
+		if ( '' === $cc ) {
+			$rows = array();
+			foreach ( array_slice( $S['country'], 0, 15, true ) as $v => $c ) {
+				$label = esc_html( self::cc_name( (string) $v ) );
+				if ( '?' !== $v ) {
+					$label = '<a class="tm-cc-a" href="' . esc_url( self::url( array( 'r' => $range, 'c' => strtolower( (string) $v ) ) ) ) . '">' . $label . '</a> <small>' . esc_html( (string) $v ) . '</small>';
+				}
+				$rows[ $label ] = array( $c, self::pct( $c, $n ) );
+			}
+			self::bars( __( 'Ülke', 'flx-analytics' ), $rows, array( __( 'Ülke', 'flx-analytics' ), __( 'Site', 'flx-analytics' ), __( 'Pay', 'flx-analytics' ) ), $n );
+		}
 		echo '</div>';
+		echo '<p class="description">' . esc_html__( 'Ülke, gönderen sitenin ayarlarından gelir (WooCommerce mağaza ülkesi ya da Ayarlar › Genel saat dilimi). IP\'ye bakılmaz ve saklanmaz. Bir ülkeye tıklayınca tüm sekmeler o ülkeye süzülür.', 'flx-analytics' ) . '</p>';
 	}
 
-	private static function view_errors( $range, $S ) {
+	private static function view_errors( $range, $S, $cc = '' ) {
 		// phpcs:disable WordPress.Security.NonceVerification
 		$plugin = isset( $_GET['p'] ) ? sanitize_key( wp_unslash( $_GET['p'] ) ) : '';
 		$type   = isset( $_GET['t'] ) ? sanitize_text_field( wp_unslash( $_GET['t'] ) ) : '';
@@ -696,13 +795,14 @@ class FLXAN_Telemetry_Hub {
 			echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Hata kaydı silindi. Yeniden olursa tekrar görünür.', 'flx-analytics' ) . '</p></div>';
 		}
 		// phpcs:enable
-		$list = self::errors( $range, $plugin, $type );
+		$list = self::errors( $range, $plugin, $type, $cc );
 		?>
 		<div class="flxan-panel">
 			<form class="tm-filter" method="get">
 				<input type="hidden" name="page" value="<?php echo esc_attr( self::SLUG ); ?>">
 				<input type="hidden" name="tab" value="errors">
 				<input type="hidden" name="r" value="<?php echo esc_attr( $range ); ?>">
+				<input type="hidden" name="c" value="<?php echo esc_attr( strtolower( $cc ) ); ?>">
 				<select name="p">
 					<option value=""><?php esc_html_e( 'Tüm paketler', 'flx-analytics' ); ?></option>
 					<?php foreach ( self::error_plugins() as $p ) : ?>

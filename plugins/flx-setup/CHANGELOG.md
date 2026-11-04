@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.0.20
+- Anonim kullanım verisine ülke kodu eklendi (`cc`, ör. `TR`): WooCommerce mağaza adresi girilmişse mağaza ülkesi, yoksa Ayarlar › Genel saat dilimi. IP'ye bakılmaz, IP gönderilmez. Telemetri merkezi siteleri ülkeye göre gruplar.
+
 ## 1.0.19
 - Paketler: kurulum/güncelleme başlayınca ekranın üstünde, sayfa kaydırılsa da yerinde duran koyu bir şerit çıkar: "Bitene kadar bu sayfadan ayrılmayın", o anki adım (ör. "Flux CRM kuruluyor…"), sayı (3 / 6) ve ilerleme çubuğu. İşlem bitince sonucu ("Bitti: 6 başarılı, 0 hatalı.") 4 saniye gösterip kapanır. Önceden uyarı yalnız kayıt kutusunun başlığındaydı, aşağı kaydırınca görünmüyordu.
 - Eski Flux Updater (`flx-updater`) paket listesinde, sihirbazda ve güncellemelerde artık görünmez: FluxWP Panel'e katıldığı için güncelleme sunucusu eski release'lerini listelese de katalogdan çıkarılır. Liste `flxk_retired_slugs` filtresiyle genişletilir.
