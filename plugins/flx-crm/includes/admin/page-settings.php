@@ -78,7 +78,86 @@ final class FLXCRM_Page_Settings {
 		echo '<label><span>' . esc_html__( 'Raporlama para birimi', 'flx-crm' ) . '</span><input type="text" name="base_currency" maxlength="3" value="' . esc_attr( (string) $s['base_currency'] ) . '" placeholder="' . esc_attr( flxcrm_currency() ) . '"><small>' . esc_html__( 'Boşsa mağaza para birimi. Başka para birimindeki ödemeler kur verilmedikçe değere sayılmaz.', 'flx-crm' ) . '</small></label>';
 		echo '</div></section>';
 
+		self::ai_section( $s );
+
 		echo '<p class="flxcrm-actions"><button class="button button-primary">' . esc_html__( 'Ayarları kaydet', 'flx-crm' ) . '</button></p></form>';
+		self::ai_log();
 		FLXCRM_Admin::close();
+	}
+
+	/** Yapay zekâ ve MCP: izinler, bağlantı durumu, araç listesi. */
+	private static function ai_section( array $s ) {
+		echo '<section class="flxcrm-card flxcrm-ai" id="ai"><div class="flxcrm-card__head"><h2>' . flxcrm_icon( 'sparkles', 16 ) . esc_html__( 'Yapay zekâ ve MCP', 'flx-crm' ) . '</h2></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<p class="flxcrm-muted">' . esc_html__( 'CRM\'deki her şey (kişiler, alanlar, roller, etiketler, izinler, zaman tüneli, segmentler, ayarlar) Flux AI sohbetinden ve MCP bağlantısıyla (Claude, ChatGPT, Cursor…) okunup düzenlenebilir. Araçlar kullanıcının kendi CRM yetkisiyle çalışır.', 'flx-crm' ) . '</p>';
+
+		/* Bağlantı durumu */
+		$ai_on  = function_exists( 'flxai_chat' );
+		$mcp_on = function_exists( 'flxseo_mcp_url' );
+		$mcp_ok = $mcp_on && function_exists( 'flxseo_opt' ) && flxseo_opt( 'mcp_enabled' );
+		echo '<ul class="flxcrm-ai__status">';
+		echo '<li><strong>Flux AI</strong> ' . ( $ai_on ? '<span class="flxcrm-badge is-ok">' . esc_html__( 'bağlı', 'flx-crm' ) . '</span>' : '<span class="flxcrm-badge">' . esc_html__( 'kurulu değil', 'flx-crm' ) . '</span>' ) . '<small class="flxcrm-muted">' . esc_html__( 'Panel sohbetinde CRM araçları. Değişiklik yapan her araç onay kartında bekler.', 'flx-crm' ) . '</small></li>';
+		echo '<li><strong>MCP</strong> ';
+		if ( $mcp_ok ) {
+			echo '<span class="flxcrm-badge is-ok">' . esc_html__( 'açık', 'flx-crm' ) . '</span><code class="flxcrm-ai__url">' . esc_html( flxseo_mcp_url() ) . '</code>';
+		} elseif ( $mcp_on ) {
+			echo '<span class="flxcrm-badge is-warn">' . esc_html__( 'kapalı', 'flx-crm' ) . '</span>';
+		} else {
+			echo '<span class="flxcrm-badge">' . esc_html__( 'Flux SEO & MCP kurulu değil', 'flx-crm' ) . '</span>';
+		}
+		echo '<small class="flxcrm-muted">' . esc_html__( 'Silme, birleştirme, toplu işlem ve gönderim ilk çağrıda yalnız önizleme döner; onay anahtarıyla tekrar çağrılınca uygulanır.', 'flx-crm' );
+		if ( $mcp_on && function_exists( 'flxseo_admin_url' ) && current_user_can( 'manage_options' ) ) {
+			echo ' <a href="' . esc_url( flxseo_admin_url( 'mcp' ) ) . '">' . esc_html__( 'MCP anahtarları', 'flx-crm' ) . '</a>';
+		}
+		echo '</small></li></ul>';
+
+		/* İzinler */
+		echo '<div class="flxcrm-switches flxcrm-ai__perms">';
+		$perm = array(
+			'ai_tools'       => __( 'Yapay zekâ ve MCP araçları açık', 'flx-crm' ),
+			'ai_write'       => __( 'Düzenleme: kişi, etiket, segment, not, ayar', 'flx-crm' ),
+			'ai_destructive' => __( 'Onaylı işlemler: silme, birleştirme, toplu işlem, mesaj gönderme', 'flx-crm' ),
+		);
+		foreach ( $perm as $k => $label ) {
+			echo '<label class="flxcrm-check"><input type="checkbox" name="' . esc_attr( $k ) . '" value="1"' . checked( (int) $s[ $k ], 1, false ) . '> ' . esc_html( $label ) . '</label>';
+		}
+		echo '</div>';
+
+		/* Araçlar */
+		$kinds = flxcrm_kind_labels();
+		$tones = array( 'read' => 'is-info', 'write' => 'is-ok', 'destructive' => 'is-warn' );
+		$on    = flxcrm_tools_enabled();
+		echo '<details class="flxcrm-ai__tools"><summary>' . esc_html( sprintf( /* translators: 1: enabled tool count, 2: all tool count */ __( 'Araçlar: %1$d / %2$d açık', 'flx-crm' ), count( $on ), count( flxcrm_tools() ) ) ) . '</summary>';
+		echo '<table class="flxcrm-table flxcrm-table--settings"><thead><tr><th>' . esc_html__( 'Araç', 'flx-crm' ) . '</th><th>' . esc_html__( 'Tür', 'flx-crm' ) . '</th></tr></thead><tbody>';
+		foreach ( flxcrm_tools() as $name => $t ) {
+			echo '<tr' . ( isset( $on[ $name ] ) ? '' : ' class="is-off"' ) . '><td data-label="' . esc_attr__( 'Araç', 'flx-crm' ) . '"><strong>' . esc_html( $t['title'] ) . '</strong><br><code>' . esc_html( $name ) . '</code></td><td data-label="' . esc_attr__( 'Tür', 'flx-crm' ) . '"><span class="flxcrm-badge ' . esc_attr( $tones[ $t['kind'] ] ) . '">' . esc_html( $kinds[ $t['kind'] ] ) . '</span></td></tr>';
+		}
+		echo '</tbody></table></details></section>';
+	}
+
+	/** Son yapay zekâ / MCP değişiklikleri. */
+	private static function ai_log() {
+		$rows = flxcrm_tool_log_rows( 15 );
+		echo '<section class="flxcrm-card"><div class="flxcrm-card__head"><h2>' . flxcrm_icon( 'clock', 16 ) . esc_html__( 'Yapay zekâ ile yapılan son değişiklikler', 'flx-crm' ) . '</h2></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		if ( ! $rows ) {
+			echo '<p class="flxcrm-muted">' . esc_html__( 'Henüz değişiklik yok. Flux AI ya da MCP ile yapılan her değişiklik burada görünür.', 'flx-crm' ) . '</p></section>';
+			return;
+		}
+		$tools = flxcrm_tools();
+		$chs   = flxcrm_channel_labels();
+		echo '<table class="flxcrm-table flxcrm-table--settings"><thead><tr><th>' . esc_html__( 'Ne zaman', 'flx-crm' ) . '</th><th>' . esc_html__( 'Kim', 'flx-crm' ) . '</th><th>' . esc_html__( 'İşlem', 'flx-crm' ) . '</th><th>' . esc_html__( 'Sonuç', 'flx-crm' ) . '</th></tr></thead><tbody>';
+		foreach ( $rows as $r ) {
+			$u    = get_userdata( (int) $r['u'] );
+			$name = $tools[ $r['k'] ]['title'] ?? $r['k'];
+			$on   = (string) $r['on'];
+			if ( ctype_digit( $on ) && false === strpos( $r['k'], 'tag' ) && false === strpos( $r['k'], 'segment' ) && false === strpos( $r['k'], 'event' ) ) {
+				$c  = FLXCRM_Contacts::get( (int) $on );
+				$on = $c ? flxcrm_display_name( $c ) : '#' . $on;
+			}
+			echo '<tr><td data-label="' . esc_attr__( 'Ne zaman', 'flx-crm' ) . '">' . esc_html( flxcrm_ago( gmdate( 'Y-m-d H:i:s', (int) $r['t'] ) ) ) . '</td>';
+			echo '<td data-label="' . esc_attr__( 'Kim', 'flx-crm' ) . '">' . esc_html( $u ? $u->display_name : '—' ) . ' <span class="flxcrm-badge">' . esc_html( $chs[ $r['ch'] ] ?? $r['ch'] ) . '</span></td>';
+			echo '<td data-label="' . esc_attr__( 'İşlem', 'flx-crm' ) . '">' . esc_html( $name ) . ( '' !== $on ? ' <small class="flxcrm-muted">' . esc_html( $on ) . '</small>' : '' ) . '</td>';
+			echo '<td data-label="' . esc_attr__( 'Sonuç', 'flx-crm' ) . '">' . ( $r['ok'] ? '<span class="flxcrm-badge is-ok">' . esc_html__( 'tamam', 'flx-crm' ) . '</span>' : '<span class="flxcrm-badge is-bad" title="' . esc_attr( $r['err'] ) . '">' . esc_html__( 'hata', 'flx-crm' ) . '</span>' ) . '</td></tr>';
+		}
+		echo '</tbody></table></section>';
 	}
 }

@@ -96,7 +96,7 @@ Ayrıntılı kurulum notları: [KURULUM.md](../../docs/flx-crm/KURULUM.md) · AP
 
 - `FLXCRM_Contacts::upsert()`, `uniq` anahtarlı `FLXCRM_Events::add()`, `FLXCRM_Contacts::ids( array( 'rules' => … ) )`.
 - Eylemler: `flxcrm_event`, `flxcrm_contact_created`, `flxcrm_role_added`, `flxcrm_segment_changed`, `flxcrm_consent_changed`; filtreler `flxcrm_roles`, `flxcrm_segment_fields`, `flxcrm_fx_rate`, `flxcrm_sync_sources`.
-- REST `flx-crm/v1` ve Flux AI araçları. Tam liste: [API.md](../../docs/flx-crm/API.md).
+- REST `flx-crm/v1` ve 25 yapay zekâ & MCP aracı (tek kayıt, `flxcrm_tools`): kişi, rol, etiket, izin, zaman tüneli, segment ve ayarlar Flux AI ya da herhangi bir MCP istemcisinden okunur ve düzenlenir; silme, birleştirme, toplu işlem ve gönderim onay ister. Tam liste: [API.md](../../docs/flx-crm/API.md).
 
 ## Yol haritası
 

@@ -93,6 +93,46 @@ final class FLXCRM_Tags {
 		do_action( 'flxcrm_tag_removed', (int) $contact_id, (int) $tag_id );
 	}
 
+	/**
+	 * Ad ve/veya renk değiştirir.
+	 *
+	 * @return true|WP_Error
+	 */
+	public static function update( $tag_id, array $d ) {
+		global $wpdb;
+		$t   = flxcrm_table( 'tags' );
+		$all = self::all();
+		if ( ! isset( $all[ (int) $tag_id ] ) ) {
+			return new WP_Error( 'flxcrm_tag', __( 'Etiket bulunamadı.', 'flx-crm' ) );
+		}
+		$upd = array();
+		if ( isset( $d['name'] ) ) {
+			$name = mb_substr( trim( sanitize_text_field( (string) $d['name'] ) ), 0, 100 );
+			if ( '' === $name ) {
+				return new WP_Error( 'flxcrm_tag', __( 'Etiket adı boş olamaz.', 'flx-crm' ) );
+			}
+			$slug = sanitize_title( $name );
+			$slug = '' !== $slug ? $slug : 't' . substr( md5( $name ), 0, 10 );
+			$dup  = (int) $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $t WHERE slug = %s AND id <> %d", $slug, (int) $tag_id ) ); // phpcs:ignore WordPress.DB
+			if ( $dup ) {
+				return new WP_Error( 'flxcrm_tag', __( 'Bu adla başka bir etiket var.', 'flx-crm' ) );
+			}
+			$upd['name'] = $name;
+			$upd['slug'] = $slug;
+		}
+		if ( isset( $d['color'] ) ) {
+			$color = sanitize_hex_color( (string) $d['color'] );
+			if ( ! $color ) {
+				return new WP_Error( 'flxcrm_tag', __( 'Renk geçersiz (#16a34a gibi).', 'flx-crm' ) );
+			}
+			$upd['color'] = $color;
+		}
+		if ( $upd ) {
+			$wpdb->update( $t, $upd, array( 'id' => (int) $tag_id ) ); // phpcs:ignore WordPress.DB
+		}
+		return true;
+	}
+
 	public static function delete( $tag_id ) {
 		global $wpdb;
 		$wpdb->delete( flxcrm_table( 'contact_tags' ), array( 'tag_id' => (int) $tag_id ) ); // phpcs:ignore WordPress.DB

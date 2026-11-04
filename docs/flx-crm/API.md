@@ -117,5 +117,48 @@ Otomasyonlar (0.2) bu eylemleri tetikleyici olarak kullanacak.
 ## Entegrasyonlar
 
 - **Flux Mail**: `flxi_recipient_sources` altında "CRM segmenti" (`flxcrm_seg:ID`) ve "CRM rolü" (`flxcrm_role:KEY`); kanalın iznini veren kişiler alıcı olur.
-- **Flux AI**: `flxcrm_find_contacts`, `flxcrm_get_contact`, `flxcrm_overview` (okur), `flxcrm_add_note` (yazar).
+- **Flux AI ve MCP**: aşağıda "Yapay zekâ ve MCP araçları".
 - **Flux App**: `crm` modülü. **Flux Roles**: `crm` grubu. **Sistem**: `flxcrm.sources`, `flxcrm.sync`, `flxcrm.scoring`, `flxcrm.currency`.
+
+## Yapay zekâ ve MCP araçları (0.2.0)
+
+CRM'deki her şey Flux AI sohbetinden ve MCP'den (Flux SEO & MCP, `/wp-json/flx-mcp/v1/mcp`) okunur ve düzenlenir.
+Araçlar **tek kayıtta** (`flxcrm_tools()`, `includes/ai-tools.php`) tanımlanır, iki kanala da oradan gider. Kod
+`flxai_tools` ve `flxseo_mcp_tools` filtrelerine kendisi ekler; Flux AI sohbetinde MCP'den gelen aynı adlı araçların
+yerine doğrudan çalışan sürüm konur.
+
+| Tür | Araçlar |
+|---|---|
+| Okur (`flxcrm_view`) | `flxcrm_overview`, `flxcrm_meta` (roller, etiketler, olay türleri, segment alanları, ayarlar), `flxcrm_find_contacts` (q, role, rfm, tag, consent, owner_id, risk, status, segment_id, rules, sıralama, sayfa), `flxcrm_get_contact`, `flxcrm_timeline`, `flxcrm_recent_events`, `flxcrm_find_duplicates`, `flxcrm_list_segments`, `flxcrm_preview_segment` |
+| Okur (`flxcrm_manage`) | `flxcrm_bulk_preview` (sayı, örnek, `confirm_token`) |
+| Düzenler (`flxcrm_manage`) | `flxcrm_create_contact`, `flxcrm_update_contact` (alanlar, roles / add_roles / remove_roles, consent, owner, status, note), `flxcrm_tag_contact`, `flxcrm_add_note`, `flxcrm_save_tag`, `flxcrm_save_segment`, `flxcrm_rescore`; `flxcrm_update_settings` yalnız `manage_options` |
+| Onaylı (`flxcrm_manage`) | `flxcrm_delete_event`, `flxcrm_delete_tag`, `flxcrm_delete_segment`, `flxcrm_merge_contacts`, `flxcrm_delete_contact`, `flxcrm_bulk` (en çok 5000 kişi: add_tag, remove_tag, add_role, remove_role, archive, restore, set_owner, revoke_consent, delete), `flxcrm_send_message` (Flux Mail ile tek kişiye e-posta/WhatsApp/SMS, kanal izni şart) |
+
+**Onay:**
+- Flux AI sohbetinde değişiklik yapan her araç onay kartında bekler (kart onaydır). `flxcrm_bulk` ayrıca önizleme anahtarı ister: model önce `flxcrm_bulk_preview` ile kaç kişinin etkileneceğini göstermek zorunda.
+- MCP'de onaylı araçlar ilk çağrıda hiçbir şey değiştirmez; `confirmation_required`, `preview`, `confirm_token` (15 dk, tek kullanımlık, kullanıcıya ve argümanlara bağlı) döner. Aynı argümanlar + `confirm_token` ile tekrar çağrılınca uygulanır. Argüman değişirse anahtar geçmez.
+- İzni (consent) açmak yalnız kişi tek tek düzenlenirken mümkün; toplu işlemde yalnız kapatılır. AI/MCP izinleri araçla değiştirilemez.
+
+**Ayarlar** (CRM › Ayarlar › Yapay zekâ ve MCP): `ai_tools` (hepsi), `ai_write` (düzenleme), `ai_destructive` (onaylı işlemler). Okuma dışındaki her çağrı `flxcrm_tool_log` seçeneğine yazılır (son 200) ve aynı ekranda görünür.
+
+**Genişletme** (ileride otomasyonlar ve kendi kendini geliştiren akışlar):
+
+```php
+add_filter( 'flxcrm_tools', function ( $tools ) {
+	$tools['flxcrm_my_tool'] = array(
+		'title'       => __( 'Benim aracım', 'my-plugin' ),
+		'description' => 'English text for the model.',
+		'schema'      => array( 'type' => 'object', 'properties' => array( 'id' => array( 'type' => 'integer' ) ) ),
+		'kind'        => 'write',              // read | write | destructive
+		'cap'         => FLXCRM_CAP_MANAGE,
+		'preview'     => null,                 // destructive: function ( $args, $ctx ) → onay özeti
+		'run'         => function ( $args, $ctx ) { return array( 'ok' => true ); }, // hata: throw new Exception()
+	);
+	return $tools;
+} );
+
+// PHP'den (otomasyon): aynı yetki, aynı kayıt. Onaylı araçta 'confirmed' => true yalnız onay başka yerde alındıysa.
+flxcrm_run_tool( 'flxcrm_tag_contact', array( 'id' => 5, 'add' => array( 'VIP' ) ), array( 'channel' => 'automation' ) );
+```
+
+`flxcrm_tool_ran` eylemi `( $name, $args, $result, $ctx )` her başarılı çağrıdan sonra çalışır. Kişi birleştirme `FLXCRM_Contacts::merge( $primary, $ids )` ve `flxcrm_contact_merged` eylemi `( $primary_id, $merged_id )`; zaman tünelinde `merged` olayı.

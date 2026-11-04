@@ -39,7 +39,7 @@ C={
 4. Build a segment under **CRM › Segments** and send to it from **Flux Mail › Send**.''',
  dev='''- `FLXCRM_Contacts::upsert()`, `FLXCRM_Events::add()` with a `uniq` key, `FLXCRM_Contacts::ids( array( 'rules' => … ) )`.
 - Actions: `flxcrm_event`, `flxcrm_contact_created`, `flxcrm_role_added`, `flxcrm_segment_changed`, `flxcrm_consent_changed`; filters `flxcrm_roles`, `flxcrm_segment_fields`, `flxcrm_fx_rate`, `flxcrm_sync_sources`.
-- REST `flx-crm/v1` and Flux AI tools. Full list: [API.md](../../docs/flx-crm/API.md).''',
+- REST `flx-crm/v1` and 25 AI & MCP tools (one registry, `flxcrm_tools`): read and edit contacts, roles, tags, consents, timeline, segments and settings from Flux AI or any MCP client; delete, merge, bulk and send need approval. Full list: [API.md](../../docs/flx-crm/API.md).''',
  roadmap=[(1,'Contacts, roles, tags, consents, timeline'),(1,'Sources: Flux Donate, WooCommerce, Flux Chat, Flux Forms, site members'),(1,'RFM scoring, churn risk, segments for Flux Mail'),(0,'Pipelines (donation follow-up, partnership, volunteering)'),(0,'Automations and journeys: welcome, thank-you, win-back with frequency caps and quiet hours'),(0,'Flux Ads: ad audiences and conversions as a separate plugin')]),
 'tr':dict(name='Flux CRM',
  tagline='Bağışçı, müşteri, gönüllü ve adaylar tek kişi kartında: zaman tüneli, RFM skorlama ve segmentler.',
@@ -80,6 +80,6 @@ C={
 4. **CRM › Segmentler**'de segment kurun, **Flux Mail › Gönder**'den o segmente gönderin.''',
  dev='''- `FLXCRM_Contacts::upsert()`, `uniq` anahtarlı `FLXCRM_Events::add()`, `FLXCRM_Contacts::ids( array( 'rules' => … ) )`.
 - Eylemler: `flxcrm_event`, `flxcrm_contact_created`, `flxcrm_role_added`, `flxcrm_segment_changed`, `flxcrm_consent_changed`; filtreler `flxcrm_roles`, `flxcrm_segment_fields`, `flxcrm_fx_rate`, `flxcrm_sync_sources`.
-- REST `flx-crm/v1` ve Flux AI araçları. Tam liste: [API.md](../../docs/flx-crm/API.md).''',
+- REST `flx-crm/v1` ve 25 yapay zekâ & MCP aracı (tek kayıt, `flxcrm_tools`): kişi, rol, etiket, izin, zaman tüneli, segment ve ayarlar Flux AI ya da herhangi bir MCP istemcisinden okunur ve düzenlenir; silme, birleştirme, toplu işlem ve gönderim onay ister. Tam liste: [API.md](../../docs/flx-crm/API.md).''',
  roadmap=[(1,'Kişiler, roller, etiketler, izinler, zaman tüneli'),(1,'Kaynaklar: Flux Donate, WooCommerce, Flux Chat, Flux Forms, site üyeleri'),(1,'RFM skorlama, kayıp riski, Flux Mail için segmentler'),(0,'Süreçler (bağış takibi, kurumsal ortaklık, gönüllülük)'),(0,'Otomasyonlar ve yolculuklar: hoş geldin, teşekkür, geri kazanım; sıklık sınırı ve sessiz saatler'),(0,'Flux Ads: reklam kitleleri ve dönüşümler, ayrı eklenti')]),
 }

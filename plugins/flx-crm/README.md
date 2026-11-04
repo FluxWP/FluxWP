@@ -96,7 +96,7 @@ Full setup notes (Turkish): [KURULUM.md](../../docs/flx-crm/KURULUM.md) · API r
 
 - `FLXCRM_Contacts::upsert()`, `FLXCRM_Events::add()` with a `uniq` key, `FLXCRM_Contacts::ids( array( 'rules' => … ) )`.
 - Actions: `flxcrm_event`, `flxcrm_contact_created`, `flxcrm_role_added`, `flxcrm_segment_changed`, `flxcrm_consent_changed`; filters `flxcrm_roles`, `flxcrm_segment_fields`, `flxcrm_fx_rate`, `flxcrm_sync_sources`.
-- REST `flx-crm/v1` and Flux AI tools. Full list: [API.md](../../docs/flx-crm/API.md).
+- REST `flx-crm/v1` and 25 AI & MCP tools (one registry, `flxcrm_tools`): read and edit contacts, roles, tags, consents, timeline, segments and settings from Flux AI or any MCP client; delete, merge, bulk and send need approval. Full list: [API.md](../../docs/flx-crm/API.md).
 
 ## Roadmap
 

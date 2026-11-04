@@ -46,6 +46,10 @@ function flxcrm_defaults() {
 			'base_currency'   => '',
 			// WhatsApp mesajları zaman tünelinde (her mesaj bir satır).
 			'chat_events'     => 1,
+			// Yapay zekâ ve MCP: araçlar açık, düzenleme açık, onaylı işlemler (silme, birleştirme, toplu, gönderim) açık.
+			'ai_tools'        => 1,
+			'ai_write'        => 1,
+			'ai_destructive'  => 1,
 		)
 	);
 }
@@ -159,6 +163,7 @@ function flxcrm_event_types() {
 			'role_added'      => array( __( 'Rol eklendi', 'flx-crm' ), 'badge' ),
 			'segment_entered' => array( __( 'Segment değişti', 'flx-crm' ), 'chart' ),
 			'consent'         => array( __( 'İzin değişti', 'flx-crm' ), 'shield' ),
+			'merged'          => array( __( 'Kişiler birleştirildi', 'flx-crm' ), 'users' ),
 		)
 	);
 }
