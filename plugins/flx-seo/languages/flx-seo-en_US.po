@@ -779,3 +779,6 @@ msgstr "Off. Page descriptions, images and organization details will not show on
 msgid "SEO ayarları"
 msgstr "SEO settings"
 
+
+msgid "Flux Speed (tek tık)"
+msgstr "Flux Speed (one click)"

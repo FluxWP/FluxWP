@@ -259,5 +259,6 @@ return array (
     'Meta açıklama, Open Graph ve schema her sayfada ekleniyor.' => 'Meta description, Open Graph and schema are added to every page.',
     'Kapalı. Google ve sosyal paylaşımlarda sayfa açıklaması, görsel ve kurum bilgisi görünmez. Google\'da bulunmak istiyorsanız açın.' => 'Off. Page descriptions, images and organization details will not show on Google and social shares. Turn it on if you want to be found on Google.',
     'SEO ayarları' => 'SEO settings',
+    'Flux Speed (tek tık)' => 'Flux Speed (one click)',
   ),
 );

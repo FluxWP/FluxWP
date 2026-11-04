@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.3.1
+- Site denetimi başka paketlerin tek tık düzeltmelerini de çalıştırır (`flx_system_fixes` › `current` / `run`). Flux Speed 0.5.0 kuruluysa engelleyen CSS, kullanılmayan CSS, sıkıştırılmamış CSS/JS, viewport yakınlaştırma kilidi, yazı tipleri ve emoji bulgularında "Flux Speed (tek tık)" düğmesi çıkar.
+
 ## 1.3.0
 - Yeni **SEO & MCP › Site denetimi**: PageSpeed Insights'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre (kritik, yüksek, orta, düşük). Her öneride nasıl düzeltilir, sorunlu öğeler ve düzeltme yeri. Menüde kritik + yüksek sayısı, Sistem Kontrolü'nde "Site denetimi" satırı.
 - Site içi denetim anahtarsız ve günde bir kendiliğinden: viewport yakınlaştırma kilidi, ARIA rolleri (tablist › tab, gerekli üst öğe), liste dışı `<li>`, adsız bağlantı/düğme/alan, yinelenen id, aynı başlıklı yayınlar ve aynı metinli farklı bağlantılar, engelleyen CSS/JS, DOM boyutu, boyutsuz ve lazy ilk görsel, font-display, güvenlik başlıkları, robots.txt, llms.txt, WebMCP.

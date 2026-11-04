@@ -45,6 +45,7 @@ function flxseo_audit_owners() {
 		'content' => __( 'İçerik', 'flx-seo' ),
 		'server'  => __( 'Sunucu', 'flx-seo' ),
 		'flx-seo' => __( 'Flux SEO (tek tık)', 'flx-seo' ),
+		'flx-speed' => __( 'Flux Speed (tek tık)', 'flx-seo' ),
 		'setting' => __( 'WordPress ayarı', 'flx-seo' ),
 	);
 }

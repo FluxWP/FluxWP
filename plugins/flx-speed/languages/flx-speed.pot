@@ -6,6 +6,180 @@ msgstr ""
 msgid "Performans"
 msgstr ""
 
+msgid "Güvenli"
+msgstr ""
+
+msgid "Önce deneyin"
+msgstr ""
+
+msgid "Tema ya da ön ayar bu özelliği kod ile değiştiriyor (flxp_pagespeed_enabled); ayar geçerli olmayabilir."
+msgstr ""
+
+msgid "Kaydedildi. Önbellek ve LiteSpeed sayfa önbelleği temizlendi; birkaç sayfayı gezip kontrol edin."
+msgstr ""
+
+msgid "PageSpeed önbelleği temizlendi."
+msgstr ""
+
+msgid "Google PageSpeed / Lighthouse önerilerinin tema değiştirmeden yapılabilenleri. Her biri ayrı açılır; \"Önce deneyin\" olanları açtıktan sonra sitenin birkaç sayfasını (ana sayfa, yazı, bağış/ödeme) kontrol edin."
+msgstr ""
+
+msgid "Temel"
+msgstr ""
+
+msgid "Yakınlaştırma kilidini kaldır"
+msgstr ""
+
+msgid "Viewport etiketindeki user-scalable=no ve maximum-scale değerleri silinir; az gören kullanıcılar sayfayı büyütebilir. Erişilebilirlik puanını doğrudan etkiler."
+msgstr ""
+
+msgid "Emoji betiğini kaldır"
+msgstr ""
+
+msgid "WordPress'in emoji algılama betiği ve stili yüklenmez. Modern tarayıcılar emojiyi kendisi çizer."
+msgstr ""
+
+msgid "Kapsam"
+msgstr ""
+
+msgid "Yalnız tema CSS'i (önerilen)"
+msgstr ""
+
+msgid "Tema + eklentiler (wp-content altındaki tüm CSS)"
+msgstr ""
+
+msgid "Satır içi sınırı"
+msgstr ""
+
+msgid "Kırpılmış CSS bu boyuta kadar <head> içine yazılır; fazlası önbellekten ayrı dosya olarak yüklenir. 0 = hep dosya."
+msgstr ""
+
+msgid "Her zaman korunan sınıflar"
+msgstr ""
+
+msgid "Satır başına bir sınıf ya da id, * joker. JavaScript'in sonradan eklediği bir görünüm bozulursa sınıfını buraya yazın. is-*, has-*, wp-* her zaman korunur."
+msgstr ""
+
+msgid "Kullanılmayan CSS'i kırp ve satır içine al"
+msgstr ""
+
+msgid "Her sayfanın sınıf/id envanteri çıkarılır (HTML + sayfadaki betikler); CSS dosyasından o sayfada karşılığı olmayan kurallar atılır, kalan kısım <head> içine yazılır. Engelleyen CSS isteği kalkar, LCP ve FCP hızlanır. Aynı envanterli sayfalar aynı kopyayı paylaşır; dosya değişince kopyalar yenilenir, çok fazla farklı sayfa olursa tam dosyaya dönülür."
+msgstr ""
+
+msgid "CSS dosyalarını sıkıştır"
+msgstr ""
+
+msgid "Sıkıştırılmamış (.min olmayan) yerel CSS dosyaları için güncel .min kardeşi ya da yorumları ve boşlukları atılmış kopya kullanılır."
+msgstr ""
+
+msgid "JS dosyalarını sıkıştır"
+msgstr ""
+
+msgid "Tema ve eklenti betikleri için .min kardeşi kaynaktan yeniyse o kullanılır; değilse yorumları ve satır boşlukları atılmış kopya üretilir (satır sonları korunur). Kendi konumundan parça yükleyen paketlere ve çevirisi olan betiklere dokunulmaz."
+msgstr ""
+
+msgid "jQuery her zaman engelleyen kalır (sayfa içindeki eski betikler ona doğrudan bağlı olabilir). WordPress, sonradan çalışan satır içi betiği olan ya da engelleyen bir betiğin bağımlı olduğu betiklerde defer'i kendisi geri alır."
+msgstr ""
+
+msgid "Head betiklerini ertele (defer)"
+msgstr ""
+
+msgid "Sayfanın <head> bölümünde yüklenen ve çizimi bekleten betiklere defer verilir (ör. dil önerisi, analiz betikleri)."
+msgstr ""
+
+msgid "Yazı tipleri"
+msgstr ""
+
+msgid "Kullanılmayan yazı tiplerini çıkar"
+msgstr ""
+
+msgid "theme.json'da tanımlı ama sayfanın CSS'inde geçmeyen yazı tipi aileleri (@font-face) sayfaya yazılmaz. Kullanım belirlenemezse hiçbiri çıkarılmaz."
+msgstr ""
+
+msgid "İlk ekran yazı tipini önden yükle (preload)"
+msgstr ""
+
+msgid "Kullanılan en fazla iki ailenin normal (400) woff2 dosyası <link rel=\"preload\"> ile istenir; metin daha erken çizilir. Yanlış ağırlık önden yüklenirse boşa indirme olur; PageSpeed'de \"kullanılmayan preload\" uyarısı çıkarsa kapatın."
+msgstr ""
+
+msgid "Hariç tutma"
+msgstr ""
+
+msgid "Dokunulmayacak dosyalar"
+msgstr ""
+
+msgid "Satır başına tanıtıcı (handle) ya da adresin bir parçası. Kırpma, sıkıştırma ve defer bu dosyalara uygulanmaz."
+msgstr ""
+
+msgid "Dokunulmayacak sayfalar"
+msgstr ""
+
+msgid "Satır başına adres parçası. Bu sayfalarda hiçbir PageSpeed iyileştirmesi yapılmaz."
+msgstr ""
+
+msgid "Kaydet ve önbelleği temizle"
+msgstr ""
+
+msgid "Durum"
+msgstr ""
+
+msgid "Önbellek"
+msgstr ""
+
+msgid "%1$d CSS, %2$d JS kopyası · %3$s"
+msgstr ""
+
+msgid "Karşılaştır"
+msgstr ""
+
+msgid "İyileştirilmiş"
+msgstr ""
+
+msgid "Kapalı (?flxp_off=1)"
+msgstr ""
+
+msgid "Adresin sonuna ?flxp_off=1 eklenince sayfa iyileştirmesiz açılır; bir görünüm farkı varsa sebebi buradadır."
+msgstr ""
+
+msgid "Ölçüm"
+msgstr ""
+
+msgid "Flux SEO › Site denetimi"
+msgstr ""
+
+msgid "Site denetimi bu ayarları kendisi önerir ve tek tıkla açar."
+msgstr ""
+
+msgid "Önbelleği temizle"
+msgstr ""
+
+msgid "GPU'da çalışmayan animasyonlar"
+msgstr ""
+
+msgid "Lighthouse \"bileşik olmayan animasyonlar\" uyarısı: transform ve opacity dışındaki özellikler (stroke-dashoffset, background, width…) her karede yeniden çizim yapar. Bunu ayar düzeltemez; tema ya da ön ayarda transform/opacity ile yeniden yazılmalı."
+msgstr ""
+
+msgid "Animasyon"
+msgstr ""
+
+msgid "Özellikler"
+msgstr ""
+
+msgid "Dosya"
+msgstr ""
+
+msgid "prefers-reduced-motion yok"
+msgstr ""
+
+msgid "Sorun yok: görülen CSS dosyalarındaki animasyonlar transform/opacity kullanıyor."
+msgstr ""
+
+msgid "Ön yüzde görülen %1$d CSS dosyası tarandı (%2$s)."
+msgstr ""
+
+msgid "Henüz ön yüz görülmedi; tema klasörü tarandı. Siteyi bir kez açınca sayfanın yüklediği dosyalar taranır."
+msgstr ""
+
 msgid "Özet"
 msgstr ""
 
@@ -106,9 +280,6 @@ msgid "Zaman"
 msgstr ""
 
 msgid "Adres"
-msgstr ""
-
-msgid "Durum"
 msgstr ""
 
 msgid "Süre"
@@ -331,9 +502,6 @@ msgid "Yeniden başlama"
 msgstr ""
 
 msgid "Bilgi alınamadı (kapalı ya da sunucu izin vermiyor)."
-msgstr ""
-
-msgid "Önbellek"
 msgstr ""
 
 msgid "Nesne önbelleği"
@@ -759,6 +927,75 @@ msgstr ""
 msgid "Autoload seçenekleri"
 msgstr ""
 
+msgid "Flux Speed: kullanılmayan CSS'i kırp ve satır içine al"
+msgstr ""
+
+msgid "Tema CSS'inden sayfada kullanılmayan kuralları atar, kalanı <head> içine yazar; engelleyen CSS isteği kalkar. Önce birkaç sayfayı kontrol edin; sorun olursa kapatın ya da sınıfı güvenli listeye ekleyin."
+msgstr ""
+
+msgid "Flux Speed: CSS ve JS dosyalarını sıkıştır"
+msgstr ""
+
+msgid "Tema ve eklentilerin sıkıştırılmamış CSS/JS dosyaları için güncel .min sürümü ya da üretilmiş kopya kullanılır."
+msgstr ""
+
+msgid "Flux Speed: head betiklerini ertele (defer)"
+msgstr ""
+
+msgid "Sayfanın başındaki engelleyen betikler defer ile yüklenir. jQuery ve hariç tutulanlar dokunulmaz."
+msgstr ""
+
+msgid "Flux Speed: yakınlaştırma kilidini kaldır"
+msgstr ""
+
+msgid "Viewport etiketinden user-scalable=no ve maximum-scale kaldırılır."
+msgstr ""
+
+msgid "Flux Speed: yazı tiplerini düzenle"
+msgstr ""
+
+msgid "Sayfada kullanılmayan theme.json yazı tipleri çıkarılır, ilk ekran yazı tipi önden yüklenir (preload)."
+msgstr ""
+
+msgid "Flux Speed: emoji betiğini kaldır"
+msgstr ""
+
+msgid "WordPress'in emoji algılama betiği ve stili yüklenmez; modern tarayıcılar emojiyi kendisi çizer."
+msgstr ""
+
+msgid "Bilinmeyen düzeltme."
+msgstr ""
+
+msgid "Flux Speed › PageSpeed sekmesi hangi dosyada hangi animasyonun sorunlu olduğunu listeler."
+msgstr ""
+
+msgid "Flux Speed'de ilgili ayar açık; önbelleği (LiteSpeed Purge All) temizleyip yeniden ölçün. Kalan kısım tema/ön ayarın işi."
+msgstr ""
+
+msgid "Açıldı. Sayfa önbelleği temizlendi; Site denetimini ya da PageSpeed ölçümünü yeniden çalıştırın."
+msgstr ""
+
+msgid "Animasyonlar (GPU)"
+msgstr ""
+
+msgid "GPU'da çalışmayan animasyon: %s. transform/opacity ile yeniden yazılmalı (tema/ön ayar)."
+msgstr ""
+
+msgid "Görülen CSS dosyalarındaki animasyonlar transform/opacity kullanıyor."
+msgstr ""
+
+msgid "PageSpeed"
+msgstr ""
+
+msgid "PageSpeed önbelleği"
+msgstr ""
+
+msgid "uploads/flx-speed yazılabilir."
+msgstr ""
+
+msgid "uploads/flx-speed klasörü yazılamıyor: CSS kırpma ve sıkıştırma çalışmaz, sayfalar asıl dosyalarla açılır."
+msgstr ""
+
 msgid "Süresi dolmuş geçici veriler"
 msgstr ""
 
@@ -1126,9 +1363,6 @@ msgid "Çağıranlar"
 msgstr ""
 
 msgid "Sorgu türleri"
-msgstr ""
-
-msgid "Dosya"
 msgstr ""
 
 msgid "Konu"

@@ -263,7 +263,9 @@ function flxseo_fix_map() {
 function flxseo_fix_is_on( $fix_id ) {
 	$keys = flxseo_fix_map()[ $fix_id ] ?? array();
 	if ( ! $keys ) {
-		return false;
+		// Başka paketin düzeltmesi (ör. Flux Speed): kendi "current" denetimi.
+		$f = flxseo_system_fixes()[ $fix_id ] ?? null;
+		return $f && ! empty( $f['current'] ) && is_callable( $f['current'] ) && (bool) call_user_func( $f['current'] );
 	}
 	foreach ( $keys as $k ) {
 		if ( ! flxseo_opt( $k ) ) {
@@ -273,11 +275,16 @@ function flxseo_fix_is_on( $fix_id ) {
 	return true;
 }
 
-/** Düzeltmeyi uygular; açılan ayarların listesini döner. */
+/** Düzeltmeyi uygular; açılan ayarların listesini döner. Flux SEO dışındaki düzeltmeler flx_system_fixes üzerinden çalışır. */
 function flxseo_fix_apply( $fix_id ) {
 	$keys = flxseo_fix_map()[ $fix_id ] ?? null;
 	if ( ! $keys ) {
-		throw new Exception( __( 'Bilinmeyen düzeltme.', 'flx-seo' ) );
+		$f = flxseo_system_fixes()[ $fix_id ] ?? null;
+		if ( ! $f ) {
+			throw new Exception( __( 'Bilinmeyen düzeltme.', 'flx-seo' ) );
+		}
+		call_user_func( $f['run'], null );
+		return array( $fix_id );
 	}
 	$o = (array) get_option( 'flxseo', array() );
 	foreach ( $keys as $k ) {

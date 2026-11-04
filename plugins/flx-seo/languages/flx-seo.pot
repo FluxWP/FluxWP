@@ -777,3 +777,6 @@ msgstr ""
 msgid "SEO ayarları"
 msgstr ""
 
+
+msgid "Flux Speed (tek tık)"
+msgstr ""
