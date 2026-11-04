@@ -225,6 +225,27 @@ msgstr ""
 msgid "%s B"
 msgstr ""
 
+msgid "%s önce"
+msgstr ""
+
+msgid "Hazırlanıyor"
+msgstr ""
+
+msgid "Beklemede"
+msgstr ""
+
+msgid "Tamamlandı"
+msgstr ""
+
+msgid "İptal edildi"
+msgstr ""
+
+msgid "İade edildi"
+msgstr ""
+
+msgid "Başarısız"
+msgstr ""
+
 msgid "Flux Commerce"
 msgstr ""
 
@@ -303,6 +324,149 @@ msgstr ""
 msgid "%1$s · %2$s · %3$s sipariş"
 msgstr ""
 
+msgid "%s adet"
+msgid_plural "%s adet"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Müşteri bulunamadı"
+msgstr ""
+
+msgid "Müşterilere dön"
+msgstr ""
+
+msgid "Siparişler"
+msgstr ""
+
+msgid "WooCommerce'te aç"
+msgstr ""
+
+msgid "Sipariş yok."
+msgstr ""
+
+msgid "Tüm siparişler (%s)"
+msgstr ""
+
+msgid "Müşteri sayfası"
+msgstr ""
+
+msgid "Tümü"
+msgstr ""
+
+msgid "Ödemeler"
+msgstr ""
+
+msgid "Notlar"
+msgstr ""
+
+msgid "%s tarihinden beri müşteri"
+msgstr ""
+
+msgid "WhatsApp"
+msgstr ""
+
+msgid "%s açık sipariş"
+msgstr ""
+
+msgid "Ortalama sepet"
+msgstr ""
+
+msgid "Sipariş sıklığı"
+msgstr ""
+
+msgid "%s günde bir"
+msgstr ""
+
+msgid "Bilgiler"
+msgstr ""
+
+msgid "Üye profili"
+msgstr ""
+
+msgid "Hesap"
+msgstr ""
+
+msgid "Site üyesi"
+msgstr ""
+
+msgid "Misafir"
+msgstr ""
+
+msgid "Zaman tüneli"
+msgstr ""
+
+msgid "Zaman tüneli filtresi"
+msgstr ""
+
+msgid "Bu filtrede kayıt yok."
+msgstr ""
+
+msgid "Daha eskileri göster"
+msgstr ""
+
+msgid "%1$s / %2$s kayıt"
+msgstr ""
+
+msgid "Sipariş #%s"
+msgstr ""
+
+msgid "Yeni sipariş"
+msgstr ""
+
+msgid "Ödeme alındı"
+msgstr ""
+
+msgid "Sipariş #%1$s · %2$s"
+msgstr ""
+
+msgid "İade yapıldı"
+msgstr ""
+
+msgid "Müşteriye not"
+msgstr ""
+
+msgid "Sipariş notu"
+msgstr ""
+
+msgid "Adresler"
+msgstr ""
+
+msgid "Fatura ve teslimat"
+msgstr ""
+
+msgid "Fatura"
+msgstr ""
+
+msgid "Teslimat"
+msgstr ""
+
+msgid "Son siparişten"
+msgstr ""
+
+msgid "Sık aldığı ürünler"
+msgstr ""
+
+msgid "Mağaza notu"
+msgstr ""
+
+msgid "Ör. hediye paketi ister, kapıda teslim…"
+msgstr ""
+
+msgid "Alandan çıkınca kaydedilir."
+msgstr ""
+
+msgid "Üye"
+msgstr ""
+
+msgid "Tekrar alan"
+msgstr ""
+
+msgid "En çok harcayan %10"
+msgstr ""
+
+msgid "Uzaklaşan"
+msgstr ""
+
 msgid "CSV indir"
 msgstr ""
 
@@ -321,9 +485,6 @@ msgstr ""
 msgid "Müşteri"
 msgstr ""
 
-msgid "Tekrar alan"
-msgstr ""
-
 msgid "%%%s"
 msgstr ""
 
@@ -333,13 +494,7 @@ msgstr ""
 msgid "90 gündür almayan"
 msgstr ""
 
-msgid "Tümü"
-msgstr ""
-
 msgid "Yeni (30 gün)"
-msgstr ""
-
-msgid "En çok harcayan %10"
 msgstr ""
 
 msgid "Uzaklaşan (90 gün)"
@@ -358,9 +513,6 @@ msgid "Henüz müşteri yok."
 msgstr ""
 
 msgid "Toplam"
-msgstr ""
-
-msgid "Üye"
 msgstr ""
 
 msgid "Tekrar"
@@ -393,9 +545,6 @@ msgstr ""
 msgid "Net ciro"
 msgstr ""
 
-msgid "Ortalama sepet"
-msgstr ""
-
 msgid "%s yeni"
 msgstr ""
 
@@ -426,9 +575,6 @@ msgstr ""
 msgid "sipariş"
 msgstr ""
 
-msgid "Siparişler"
-msgstr ""
-
 msgid "Ürünler"
 msgstr ""
 
@@ -445,9 +591,6 @@ msgid "Ödeme bekleyenler"
 msgstr ""
 
 msgid "Ödeme bekleyen sipariş yok."
-msgstr ""
-
-msgid "%1$s · %2$s önce"
 msgstr ""
 
 msgid "Stok azalanlar"

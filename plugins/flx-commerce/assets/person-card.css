@@ -1,0 +1,19 @@
+/* Flux Commerce · Mağaza bölümleri: Flux CRM kişi kartı ve sade müşteri sayfası (--c-* her iki eklentide tanımlı). GPL-2.0-or-later. */
+.flxcm-sec h2 .flxcm-i{color:var(--c-ac)}
+.flxcm-sec__pills{margin:-4px 0 10px}
+.flxcm-sec__more{margin:8px 0 0}
+.flxcm-dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0;font-size:13px}
+.flxcm-dl dt{color:var(--c-mut)}
+.flxcm-dl dd{margin:0;text-align:right;font-weight:550;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.flxcm-note{display:flex;flex-direction:column;gap:5px;margin:14px 0 0;padding-top:12px;border-top:1px solid var(--c-bd)}
+.flxcm-note__label{font-weight:550;font-size:12.5px}
+.flxcm-note p{margin:0;font-size:13px;white-space:pre-line}
+.flxcm-note-area{width:100%;min-height:54px;border:1px solid var(--c-bd2);border-radius:8px;background:var(--c-card);color:var(--c-tx);padding:6px 9px;font-size:13px;resize:vertical}
+.flxcm-note-area:focus{border-color:var(--c-ac);box-shadow:0 0 0 1px var(--c-ac);outline:0}
+.flxcm-note-area.is-saved{border-color:var(--c-ok)}
+.flxcm-addr{display:flex;flex-direction:column;gap:12px}
+.flxcm-addr h3{margin:0 0 3px;font-size:12px;font-weight:600;color:var(--c-mut);text-transform:uppercase;letter-spacing:.03em}
+.flxcm-addr address{font-style:normal;font-size:13px;line-height:1.55}
+.flxcm-addr__src{margin:10px 0 0;font-size:12px}
+.flxcm-sec .flxcrm-list__side,.flxcm-sec .flxcm-list__side{gap:4px}
+.flxcrm-badge.is-vip,.flxcm-badge.is-vip{background:var(--c-ac-soft);color:var(--c-ac)}

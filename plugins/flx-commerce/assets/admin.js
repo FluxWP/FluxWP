@@ -45,7 +45,7 @@
 			});
 		}
 		el.addEventListener('blur', save);
-		el.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); el.blur(); } });
+		el.addEventListener('keydown', function (e) { if (e.key === 'Enter' && (el.tagName === 'INPUT' || e.metaKey || e.ctrlKey)) { e.preventDefault(); el.blur(); } });
 	});
 
 	// Kopyala düğmeleri.

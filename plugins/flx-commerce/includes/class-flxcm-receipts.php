@@ -126,7 +126,7 @@ final class FLXCM_Receipts {
 	<ul class="flxcm-files" data-flxcm-files<?php echo $list ? '' : ' hidden'; ?>>
 		<?php foreach ( $list as $i => $r ) : ?>
 		<li><?php echo flxcm_icon( 'file', 16 ); // phpcs:ignore WordPress.Security.EscapeOutput ?><a href="<?php echo esc_url( self::url( $order, $i ) ); ?>" target="_blank" rel="noopener"><?php echo esc_html( $r['name'] ); ?></a>
-			<small><?php echo esc_html( wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), (int) $r['at'] ) ); ?></small></li>
+			<small><?php echo esc_html( flxcm_date( (int) $r['at'], 'datetime' ) ); ?></small></li>
 		<?php endforeach; ?>
 	</ul>
 	<p class="flxcm-note flxcm-note--ok" data-flxcm-ok<?php echo $list ? '' : ' hidden'; ?>><?php echo flxcm_icon( 'check', 16 ); // phpcs:ignore WordPress.Security.EscapeOutput ?><span><?php esc_html_e( 'Dekontunuz bize ulaştı. Ödeme onaylanınca size haber vereceğiz.', 'flx-commerce' ); ?></span></p>

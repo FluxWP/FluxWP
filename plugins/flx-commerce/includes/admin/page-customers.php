@@ -14,6 +14,10 @@ final class FLXCM_Page_Customers {
 			wp_die( esc_html__( 'Bu işlem için yetkiniz yok.', 'flx-commerce' ), 403 );
 		}
 		// phpcs:disable WordPress.Security.NonceVerification
+		if ( ! empty( $_GET['customer'] ) || ! empty( $_GET['email'] ) ) {
+			FLXCM_Page_Customer::render( absint( $_GET['customer'] ?? 0 ), isset( $_GET['email'] ) ? sanitize_email( wp_unslash( $_GET['email'] ) ) : '' );
+			return;
+		}
 		$args = array(
 			's'        => isset( $_GET['s'] ) ? sanitize_text_field( wp_unslash( $_GET['s'] ) ) : '',
 			'segment'  => isset( $_GET['segment'] ) ? sanitize_key( $_GET['segment'] ) : 'all',
@@ -87,7 +91,7 @@ final class FLXCM_Page_Customers {
 		foreach ( $q['rows'] as $r ) {
 			$name = '' !== trim( (string) $r['name'] ) ? $r['name'] : $r['email'];
 			$init = function_exists( 'mb_substr' ) ? mb_strtoupper( mb_substr( trim( (string) $name ), 0, 1 ) ) : strtoupper( substr( (string) $name, 0, 1 ) );
-			echo '<tr><td data-label="' . esc_attr__( 'Müşteri', 'flx-commerce' ) . '"><div class="flxcm-who"><span class="flxcm-avatar" aria-hidden="true">' . esc_html( $init ) . '</span><span><strong>' . esc_html( $name ) . '</strong>';
+			echo '<tr><td data-label="' . esc_attr__( 'Müşteri', 'flx-commerce' ) . '"><div class="flxcm-who"><span class="flxcm-avatar" aria-hidden="true">' . esc_html( $init ) . '</span><span><a class="flxcm-who__name" href="' . esc_url( FLXCM_Page_Customer::url( $r['id'] ) ) . '"><strong>' . esc_html( $name ) . '</strong></a>';
 			if ( (int) $r['user_id'] ) {
 				echo ' <span class="flxcm-badge">' . esc_html__( 'Üye', 'flx-commerce' ) . '</span>';
 			}

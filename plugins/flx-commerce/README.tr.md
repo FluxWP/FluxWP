@@ -42,6 +42,7 @@ WooCommerce'in kendi analizi güçlü ama okuması yavaş ve arka plan işi iste
 
 ### Müşteriler
 - Üye ve misafir müşteriler e-posta başına tek satır: sipariş, toplam harcama, ilk/son sipariş, telefon (WhatsApp bağlantısı), şehir, satır içi not.
+- Müşteri sayfası: siparişler, ödemeler, iadeler ve sipariş notları filtreli zaman tünelinde; toplamlar, adresler, en çok aldığı ürünler. Flux CRM kuruluysa CRM'in ortak kişi kartı ve üstüne Mağaza bölümü gösterilir; kişi her yerde aynı kayıt.
 - Bölümler: Yeni (30 gün), Tekrar alan, En çok harcayan %10, Uzaklaşan (90 gün). Arama, sıralama, CSV.
 - Her sipariş durumu değişiminde güncellenir; eski siparişler bir kez 100'lük parçalarla taranır.
 

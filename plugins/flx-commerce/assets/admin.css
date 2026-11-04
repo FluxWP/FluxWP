@@ -147,3 +147,49 @@
 .flxcm-table .num{text-align:right}
 .flxcm-note-input{max-width:60%;text-align:right}
 }
+/* Müşteri sayfası (Flux CRM yokken; düzen CRM kişi kartıyla aynı) */
+.flxcm-who__name{color:inherit;text-decoration:none}
+.flxcm-who__name:hover strong{color:var(--c-ac)}
+.flxcm-back{display:inline-flex;align-items:center;gap:5px;margin:10px 0;text-decoration:none;color:var(--c-mut);font-weight:500}
+.flxcm-back:hover{color:var(--c-ac)}
+.flxcm-avatar.is-lg{width:64px;height:64px;font-size:24px}
+.flxcm-pills{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.flxcm-hero{display:flex;gap:16px;align-items:center;flex-wrap:wrap;padding:18px 20px;margin:0 0 14px}
+.flxcm-hero__main{flex:1;min-width:240px;display:flex;flex-direction:column;gap:6px}
+.flxcm .flxcm-hero__name{margin:0;padding:0;font-size:22px;line-height:1.25}
+.flxcm-hero__meta{display:flex;flex-wrap:wrap;gap:4px 16px;margin:0;font-size:13px}
+.flxcm-hero__meta a,.flxcm-hero__meta span{display:inline-flex;align-items:center;gap:5px;text-decoration:none}
+.flxcm-hero__meta .flxcm-i{color:var(--c-mut)}
+.flxcm-hero__actions{display:flex;flex-wrap:wrap;gap:8px}
+.flxcm-hero__actions .button{display:inline-flex;align-items:center;gap:6px}
+.flxcm--customer .flxcm-kpis{margin:0 0 14px}
+.flxcm-profile{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:14px;align-items:start}
+.flxcm-profile__side .flxcm-card{margin-bottom:14px}
+.flxcm-profile .flxcm-card__head{flex-wrap:wrap}
+.flxcm-seg{flex-wrap:wrap}
+.flxcm-list li>.flxcm-li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 0}
+.flxcm-timeline{margin:0;padding:0;list-style:none;position:relative}
+.flxcm-timeline:before{content:"";position:absolute;left:13px;top:6px;bottom:6px;width:2px;background:var(--c-bd)}
+.flxcm-timeline__day{position:relative;margin:14px 0 6px 40px;font-size:11.5px;font-weight:600;color:var(--c-mut);text-transform:uppercase;letter-spacing:.03em}
+.flxcm-timeline__day:first-child{margin-top:0}
+.flxcm-ev{position:relative;display:flex;gap:12px;margin:0 0 10px}
+.flxcm-ev__icon{position:relative;z-index:1;display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--c-s2);color:var(--c-mut);flex:none;box-shadow:0 0 0 3px var(--c-card)}
+.flxcm-ev.is-order .flxcm-ev__icon{background:var(--c-warn-s);color:var(--c-warn)}
+.flxcm-ev.is-paid .flxcm-ev__icon{background:var(--c-ok-s);color:var(--c-ok)}
+.flxcm-ev.is-refund .flxcm-ev__icon{background:var(--c-bad-s);color:var(--c-bad)}
+.flxcm-ev.is-note .flxcm-ev__icon,.flxcm-ev.is-customer_note .flxcm-ev__icon{background:var(--c-ac-soft);color:var(--c-ac)}
+.flxcm-ev__body{flex:1;min-width:0;border:1px solid var(--c-bd);border-radius:10px;padding:8px 12px}
+.flxcm-ev__top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.flxcm-ev__type{font-weight:600;font-size:12.5px}
+.flxcm-ev__amount{font-variant-numeric:tabular-nums}
+.flxcm-ev__top time{margin-left:auto;color:var(--c-mut);font-size:12px;font-variant-numeric:tabular-nums}
+.flxcm-ev__title{margin:3px 0 0;font-size:13px;overflow-wrap:anywhere}
+.flxcm-ev__title a{text-decoration:none}
+.flxcm-ev__text{font-size:13px}
+.flxcm-ev__text p{margin:4px 0}
+html.flxa-dark .flxcm{--c-ok:#4ade80;--c-ok-s:rgba(74,222,128,.14)}
+@media (max-width:1200px){.flxcm-profile{grid-template-columns:minmax(0,1fr) 320px}}
+@media (max-width:960px){.flxcm-profile{grid-template-columns:1fr}}
+@media (max-width:782px){.flxcm-hero{padding:14px}.flxcm-hero__actions{width:100%}.flxcm-hero__main{min-width:0}.flxcm-avatar.is-lg{width:52px;height:52px;font-size:20px}}
+@media (prefers-color-scheme:dark){html.flxa-auto .flxcm{--c-ok:#4ade80;--c-ok-s:rgba(74,222,128,.14)}}
+.flxcm-tl-more{display:flex;align-items:center;gap:10px;margin:6px 0 0 40px}
