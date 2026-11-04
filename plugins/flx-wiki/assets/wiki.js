@@ -152,9 +152,11 @@
 		} );
 	}
 	/* Geçerli sayfa menüde görünür olsun. */
+	/* Arama kutusu sabit kalır; yalnız sayfa ağacı kayar. */
+	var tree = $( '.flxwk-tree' );
 	var cur = $( '.flxwk-tree a[aria-current]' );
-	if ( cur && nav && nav.scrollHeight > nav.clientHeight ) {
-		nav.scrollTop = Math.max( 0, cur.offsetTop - nav.clientHeight / 3 );
+	if ( cur && tree && tree.scrollHeight > tree.clientHeight ) {
+		tree.scrollTop = Math.max( 0, cur.getBoundingClientRect().top - tree.getBoundingClientRect().top - tree.clientHeight / 3 );
 	}
 
 	/* İçindekiler: görünen bölüm vurgulanır. */
