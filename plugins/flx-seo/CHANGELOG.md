@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.5.1
+- PageSpeed Insights isteği site adresini `Referer` olarak gönderir: "Web siteleri" (HTTP referrer) kısıtlı API anahtarları artık "Requests from referer <empty> are blocked" hatası vermez. Anahtarın izinli siteler listesinde sitenin adresi (ör. `example.com/*`) olmalı.
+
 ## 1.5.0
 - **MCP sunucusu Flux AI'ya taşındı.** Sunucu, anahtarlar ve kayıtlar artık **Flux AI › MCP** ekranında (Flux AI 0.7.0+). Flux SEO yalnız kendi araçlarını (`flx_mcp_tools`), istemlerini (`flx_mcp_prompts`), kaynaklarını (`flx_mcp_resources`) ve talimatlarını (`flx_mcp_instructions`) kaydeder; adres ve araç adları aynı.
 - Menü adı **SEO & MCP → SEO**; "Yapay zekâ (MCP)" sekmesi kaldırıldı, eski adres Flux AI › MCP'ye yönlenir. Eski anahtarlar Flux AI'ya kendiliğinden geçer.
