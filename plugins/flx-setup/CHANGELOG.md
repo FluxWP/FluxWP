@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.0.19
+- Anonim kullanım verisine ülke kodu eklendi (`cc`, ör. `TR`): WooCommerce mağaza adresi girilmişse mağaza ülkesi, yoksa Ayarlar › Genel saat dilimi. IP'ye bakılmaz, IP gönderilmez. Telemetri merkezi siteleri ülkeye göre gruplar.
+
 ## 1.0.18
 - Tarih ve "… önce" metinleri artık kullanıcının dilinde, tek ortak yardımcıdan (FluxWP `flx_date` / `flx_time_ago`, flx-brand 1.1.0): "31 minutes önce", "August 10" gibi Türkçe/İngilizce karışımı kalmadı; çekirdek dil paketi inmemiş olsa da TR ve EN ay/gün adları doğru.
 

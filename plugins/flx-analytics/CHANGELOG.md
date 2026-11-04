@@ -2,6 +2,7 @@
 
 ## 0.3.8
 - Ürün telemetrisi › Kurulum sihirbazı: adımlar ve ilk ekran kartları okunur adla görünür ("Eklentiler: İletişim", "Mağaza kartı"); önce ham anahtar (`contact`, `store`) yazıyordu.
+- Ürün telemetrisi ülkeye göre gruplanır: Genel bakışta "Ülke" tablosu, üstte ülke süzgeci (tüm sekmeler; Hatalar'da "Site" o ülkedeki kurulum sayısı). Ülke gönderen sitenin ayarlarından gelir (FluxWP Panel 1.0.19+ `cc`: WooCommerce mağaza ülkesi ya da saat dilimi); IP'ye bakılmaz, saklanmaz. Eski Panel sürümleri "Bilinmiyor" görünür. Tablo `flxan_tm_installs` `cc` sütunu alır (otomatik).
 
 ## 0.3.7
 - Tarih ve "… önce" metinleri artık kullanıcının dilinde, tek ortak yardımcıdan (FluxWP `flx_date` / `flx_time_ago`, flx-brand 1.1.0): "31 minutes önce", "August 10" gibi Türkçe/İngilizce karışımı kalmadı; çekirdek dil paketi inmemiş olsa da TR ve EN ay/gün adları doğru.

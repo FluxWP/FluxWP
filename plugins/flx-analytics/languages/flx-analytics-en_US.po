@@ -697,6 +697,9 @@ msgstr "Tables could not be updated. The database user needs the ALTER privilege
 msgid "Tablolar güncellendi."
 msgstr "Tables updated."
 
+msgid "Bilinmiyor"
+msgstr "Unknown"
+
 msgid "Ürün telemetrisi"
 msgstr "Product telemetry"
 
@@ -759,6 +762,12 @@ msgstr "Setup wizard"
 
 msgid "%d gün"
 msgstr "%d days"
+
+msgid "Tüm ülkeler"
+msgstr "All countries"
+
+msgid "Süz"
+msgstr "Filter"
 
 msgid "FluxWP Panel'de \"Ürünü geliştirmemize yardımcı olun\" kutusunu işaretleyen sitelerden günde bir kez gelen anonim veri. IP ve site adresi saklanmaz; kayıtlar 90 gün tutulur."
 msgstr "Anonymous data sent once a day by sites that tick \"Help us improve the product\" in FluxWP Panel. IP and site address are not stored; records are kept for 90 days."
@@ -829,6 +838,9 @@ msgstr "Site language"
 msgid "Dil"
 msgstr "Language"
 
+msgid "Ülke, gönderen sitenin ayarlarından gelir (WooCommerce mağaza ülkesi ya da Ayarlar › Genel saat dilimi). IP'ye bakılmaz ve saklanmaz. Bir ülkeye tıklayınca tüm sekmeler o ülkeye süzülür."
+msgstr "Country comes from the sending site's settings (WooCommerce store country or the Settings › General time zone). IP addresses are never looked up or stored. Click a country to filter every tab by it."
+
 msgid "Hata kaydı silindi. Yeniden olursa tekrar görünür."
 msgstr "Error record removed. It will reappear if it happens again."
 
@@ -840,9 +852,6 @@ msgstr "All types"
 
 msgid "Yalnız ölümcül"
 msgstr "Fatal only"
-
-msgid "Süz"
-msgstr "Filter"
 
 msgid "%s kayıt"
 msgstr "%s records"

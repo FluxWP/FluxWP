@@ -484,5 +484,8 @@
  "Yönetim": "Management",
  "İletişim": "Communication",
  "Büyüme": "Growth",
- "Sistem": "System"
+ "Sistem": "System",
+ "Bilinmiyor": "Unknown",
+ "Tüm ülkeler": "All countries",
+ "Ülke, gönderen sitenin ayarlarından gelir (WooCommerce mağaza ülkesi ya da Ayarlar › Genel saat dilimi). IP'ye bakılmaz ve saklanmaz. Bir ülkeye tıklayınca tüm sekmeler o ülkeye süzülür.": "Country comes from the sending site's settings (WooCommerce store country or the Settings › General time zone). IP addresses are never looked up or stored. Click a country to filter every tab by it."
 }

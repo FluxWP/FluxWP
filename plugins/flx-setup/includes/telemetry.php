@@ -5,7 +5,8 @@
  *
  * Gönderilen (günde en fazla bir kez, telemetri adresine):
  *   - kuruluma özel rastgele kimlik (güncelleme anahtarı ve kurulum kimliğiyle ilişkisiz; kutu kapatılınca silinir),
- *   - WordPress sürümü, PHP ana sürümü (ör. 8.2), site dili, çoklu site mi,
+ *   - WordPress sürümü, PHP ana sürümü (ör. 8.2), site dili, ülke kodu (site saat diliminden ya da
+ *     WooCommerce mağaza ülkesinden; IP'ye bakılmaz), çoklu site mi,
  *   - etkin FluxWP eklentileri ve FluxWP teması (slug => sürüm),
  *   - FluxWP dosyalarından kaynaklanan PHP hata/uyarıları: tür, temizlenmiş mesaj, paket içindeki göreli dosya yolu,
  *     satır, tekrar sayısı.
@@ -418,6 +419,34 @@ final class FLXK_Telemetry {
 		return $out;
 	}
 
+	/**
+	 * Ülke kodu (ör. TR), yalnız site ayarlarından: WooCommerce mağaza adresi girilmişse mağaza ülkesi,
+	 * yoksa Ayarlar › Genel saat dilimi (Europe/Istanbul → TR). IP'ye bakılmaz; bulunamazsa boş.
+	 */
+	public static function country(): string {
+		$wc    = strtoupper( (string) get_option( 'woocommerce_default_country', '' ) );
+		$wc_cc = preg_match( '/^([A-Z]{2})(:|$)/', $wc, $m ) ? $m[1] : '';
+		if ( '' !== $wc_cc && '' !== trim( (string) get_option( 'woocommerce_store_address', '' ) ) ) {
+			return $wc_cc;
+		}
+		$tz = (string) get_option( 'timezone_string', '' );
+		if ( '' !== $tz ) {
+			try {
+				$loc = ( new DateTimeZone( $tz ) )->getLocation();
+				$cc  = is_array( $loc ) ? strtoupper( (string) ( $loc['country_code'] ?? '' ) ) : '';
+				if ( preg_match( '/^[A-Z]{2}$/', $cc ) && '??' !== $cc ) {
+					return $cc;
+				}
+			} catch ( Exception $e ) {
+				unset( $e );
+			}
+			if ( in_array( $tz, array( 'Asia/Istanbul', 'Turkey' ), true ) ) {
+				return 'TR';
+			}
+		}
+		return ''; // WooCommerce'in kurulumdaki varsayılanı (US:CA) mağaza adresi girilmeden ülke sayılmaz.
+	}
+
 	/** Gönderilecek veri (önizleme için de kullanılır; kimlik üretmez). */
 	public static function payload( bool $with_id = true ): array {
 		$errors = array();
@@ -434,6 +463,7 @@ final class FLXK_Telemetry {
 				'wp'        => substr( (string) get_bloginfo( 'version' ), 0, 20 ),
 				'php'       => PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION,
 				'locale'    => substr( (string) get_locale(), 0, 12 ),
+				'cc'        => self::country(),
 				'multisite' => is_multisite(),
 				'panel'     => FLXK_VERSION,
 				'plugins'   => self::packages(),
@@ -586,7 +616,7 @@ final class FLXK_Telemetry {
 					<?php esc_html_e( 'Hiçbir veri gönderilmez. "Ürünü geliştirmemize yardımcı olun" kutusunu işaretlerseniz açılır.', 'flx-setup' ); ?>
 				<?php endif; ?>
 			</p>
-			<p class="description"><?php esc_html_e( 'Gönderilen: rastgele kurulum kimliği, WordPress ve PHP sürümü, site dili, etkin FluxWP eklentileri ve teması, FluxWP kaynaklı PHP hataları (yollar, alan adı, e-posta ve IP silinmiş), kurulum sihirbazında ilerleme ve seçimler. Site adresi, IP, kullanıcı ve içerik gönderilmez.', 'flx-setup' ); ?></p>
+			<p class="description"><?php esc_html_e( 'Gönderilen: rastgele kurulum kimliği, WordPress ve PHP sürümü, site dili, ülke (saat diliminden ya da mağaza ülkesinden), etkin FluxWP eklentileri ve teması, FluxWP kaynaklı PHP hataları (yollar, alan adı, e-posta ve IP silinmiş), kurulum sihirbazında ilerleme ve seçimler. Site adresi, IP, kullanıcı ve içerik gönderilmez.', 'flx-setup' ); ?></p>
 			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 				<input type="hidden" name="action" value="flxk_telemetry">
 				<?php wp_nonce_field( 'flxk_telemetry' ); ?>
