@@ -192,8 +192,10 @@ function flxseo_audit_admin_page() {
 			</div>
 		</section>
 
+		<?php flxseo_audit_history_card(); ?>
+
 		<section class="au-grid2">
-			<form class="au-card au-settings" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+			<form class="au-card au-settings" data-freq="<?php echo esc_attr( $o['audit_freq'] ); ?>" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 				<h2><?php esc_html_e( 'Ayarlar', 'flx-seo' ); ?></h2>
 				<input type="hidden" name="action" value="flxseo_audit_settings">
 				<?php wp_nonce_field( 'flxseo_audit_settings' ); ?>
@@ -219,6 +221,37 @@ function flxseo_audit_admin_page() {
 					<label><input type="checkbox" name="o[hdr_csp]" value="1" <?php checked( $o['hdr_csp'] ); ?>> <?php esc_html_e( 'Temel CSP (object-src \'none\'; base-uri \'self\'; upgrade-insecure-requests)', 'flx-seo' ); ?></label><br>
 					<label><input type="checkbox" name="o[hsts_sub]" value="1" <?php checked( $o['hsts_sub'] ); ?>> <?php esc_html_e( 'HSTS alt alan adlarını kapsasın (includeSubDomains)', 'flx-seo' ); ?></label><br>
 					<label><input type="checkbox" name="o[hsts_preload]" value="1" <?php checked( $o['hsts_preload'] ); ?>> <?php esc_html_e( 'HSTS preload (geri alması aylar sürer; tüm alt alan adları HTTPS olmalı)', 'flx-seo' ); ?></label>
+				</fieldset>
+				<fieldset>
+					<legend><strong><?php esc_html_e( 'Otomatik denetim', 'flx-seo' ); ?></strong></legend>
+					<span class="au-sched">
+						<label><?php esc_html_e( 'Sıklık', 'flx-seo' ); ?>
+							<select name="o[audit_freq]" id="au-freq">
+								<?php foreach ( flxseo_audit_freqs() as $k => $l ) : ?>
+									<option value="<?php echo esc_attr( $k ); ?>" <?php selected( $o['audit_freq'], $k ); ?>><?php echo esc_html( $l ); ?></option>
+								<?php endforeach; ?>
+							</select>
+						</label>
+						<label class="au-day"><?php esc_html_e( 'Gün', 'flx-seo' ); ?>
+							<select name="o[audit_day]">
+								<?php foreach ( flxseo_audit_days() as $k => $l ) : ?>
+									<option value="<?php echo esc_attr( $k ); ?>" <?php selected( (string) $o['audit_day'], (string) $k ); ?>><?php echo esc_html( $l ); ?></option>
+								<?php endforeach; ?>
+							</select>
+						</label>
+						<label><?php esc_html_e( 'Saat', 'flx-seo' ); ?>
+							<select name="o[audit_hour]">
+								<?php for ( $hh = 0; $hh < 24; $hh++ ) : ?>
+									<option value="<?php echo (int) $hh; ?>" <?php selected( (int) $o['audit_hour'], $hh ); ?>><?php echo esc_html( sprintf( '%02d:00', $hh ) ); ?></option>
+								<?php endfor; ?>
+							</select>
+						</label>
+					</span>
+					<span class="description"><?php esc_html_e( 'Arka planda çalışır, sonuç Rapor geçmişine yazılır. Saat sitenin saat dilimine göredir; site o saatte ziyaret almazsa ilk istekte başlar.', 'flx-seo' ); ?></span>
+					<label><input type="checkbox" name="o[audit_psi]" value="1" <?php checked( $o['audit_psi'] ); ?>> <?php esc_html_e( 'PageSpeed Insights (mobil + masaüstü) da çalışsın (API anahtarı gerekir)', 'flx-seo' ); ?></label><br>
+					<label><input type="checkbox" name="o[audit_mail]" value="1" <?php checked( $o['audit_mail'] ); ?>> <?php esc_html_e( 'Yeni kritik ya da yüksek öncelikli öneri çıkınca e-posta gönder', 'flx-seo' ); ?></label>
+					<label for="au-mail" class="au-sub"><?php esc_html_e( 'E-posta adresi (boşsa site yöneticisi)', 'flx-seo' ); ?></label>
+					<input type="email" id="au-mail" name="o[audit_mail_to]" class="regular-text" value="<?php echo esc_attr( $o['audit_mail_to'] ); ?>" placeholder="<?php echo esc_attr( get_option( 'admin_email' ) ); ?>">
 				</fieldset>
 				<?php submit_button( __( 'Kaydet', 'flx-seo' ), 'primary', 'submit', false ); ?>
 			</form>
@@ -298,7 +331,7 @@ function flxseo_audit_css() {
 	.au-f__title{font-weight:600;flex:1 1 280px}.au-f__detail{font-weight:400;color:var(--au-muted)}
 	.au-f__body{padding:0 14px 12px 14px;border-top:1px solid var(--au-border)}
 	.au-p-critical{--au-p:var(--au-bad)}.au-p-high{--au-p:#d9480f}.au-p-medium{--au-p:var(--au-mid)}.au-p-low{--au-p:var(--au-info)}
-	.au-badge{background:var(--au-p);color:#fff;border-radius:4px;font-size:11px;font-weight:700;padding:2px 8px;text-transform:uppercase;letter-spacing:.03em;min-width:54px;text-align:center}
+	.au-badge{background:var(--au-p);color:var(--au-card);border-radius:4px;font-size:11px;font-weight:700;padding:2px 8px;text-transform:uppercase;letter-spacing:.03em;min-width:54px;text-align:center}
 	.au-tags{display:flex;gap:4px;flex-wrap:wrap}.au-tag{background:var(--au-soft);color:var(--au-muted);border-radius:4px;padding:1px 8px;font-size:11px}
 	.au-items{margin:8px 0;padding:0;list-style:none;display:grid;gap:4px;max-height:260px;overflow:auto}.au-items code{display:block;white-space:pre-wrap;word-break:break-word;font-size:12px;background:var(--au-soft);color:var(--au-text);padding:4px 8px;border-radius:4px}
 	.au-fix{margin-top:10px}
@@ -306,7 +339,16 @@ function flxseo_audit_css() {
 	.au-settings fieldset{margin:14px 0;display:block}.au-settings legend{margin-bottom:6px}.au-settings label{line-height:2}.au-sub{display:block;margin-top:6px}.au-settings .description{display:block;color:var(--au-muted)}
 	.au-toc{margin:10px 0 0;padding:0;list-style:none;color:var(--au-muted);columns:2 220px}.au-toc li{margin:0 0 4px}
 	.au-empty{color:var(--au-muted)}
-	@media (max-width:782px){.au-head{grid-template-columns:1fr}.au-run input{min-width:0;width:100%}.au-run .button{flex:1}.flxseo-au .au-card{padding:14px}.au-grid2,.au-scores{grid-template-columns:1fr}.au-bar h2{width:100%}}
+	.au-history .au-bar p{margin:0}.au-trend{margin:0 0 12px;overflow-x:auto}.au-trend svg{display:block;max-width:none}
+	.au-bar-critical{fill:var(--au-bad)}.au-bar-high{fill:#d9480f}.au-bar-medium{fill:var(--au-mid)}.au-bar-low{fill:var(--au-info)}
+	.au-table-wrap{overflow-x:auto}.au-table{width:100%;border-collapse:collapse;font-size:13px}
+	.au-table th,.au-table td{text-align:left;padding:8px 10px;border-top:1px solid var(--au-border);vertical-align:top}.au-table th{color:var(--au-muted);font-weight:600;border-top:0;white-space:nowrap}
+	.au-counts{white-space:nowrap}.au-counts .au-badge{display:inline-block;min-width:26px;padding:2px 6px;margin-right:2px}
+	.au-scorecell span{display:inline-block;margin-right:6px;font-weight:700}.au-scorecell .au-meta{font-weight:400}
+	.au-table summary{cursor:pointer}.au-table summary span{margin-right:8px;font-weight:600}.au-diff{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:2px}
+	.au-sched{display:flex;flex-wrap:wrap;gap:8px 14px;margin-bottom:4px}.au-sched label{display:flex;flex-direction:column;line-height:1.6}
+	.au-settings[data-freq="daily"] .au-day,.au-settings[data-freq="off"] .au-day{display:none}
+	@media (max-width:782px){.au-table thead{display:none}.au-table,.au-table tbody{display:block}.au-table tr{display:grid;grid-template-columns:1fr auto;gap:6px 10px;padding:12px 0;border-top:1px solid var(--au-border)}.au-table td{border:0;padding:0}.au-td-trig{text-align:right;color:var(--au-muted)}.au-counts,.au-scorecell,.au-td-diff{grid-column:1/-1}.au-td-date br{display:none}.au-td-date .au-meta::before{content:' · '}.au-head{grid-template-columns:1fr}.au-run input{min-width:0;width:100%}.au-run .button{flex:1}.flxseo-au .au-card{padding:14px}.au-grid2,.au-scores{grid-template-columns:1fr}.au-bar h2{width:100%}}
 	@media (prefers-reduced-motion:no-preference){.au-ring__fg{transition:stroke-dasharray .6s ease}}
 	</style>
 	<?php
@@ -339,6 +381,7 @@ function flxseo_audit_js() {
 		function apply(){root.querySelectorAll('.au-f').forEach(function(f){f.hidden=!((!prio||f.dataset.prio===prio)&&(!cat||(' '+f.dataset.cat+' ').indexOf(' '+cat+' ')>-1))})}
 		root.querySelectorAll('.au-chip').forEach(function(c){c.addEventListener('click',function(){prio=c.dataset.prio;root.querySelectorAll('.au-chip').forEach(function(x){x.classList.toggle('is-on',x===c);x.setAttribute('aria-pressed',x===c?'true':'false')});apply()})});
 		if(sel)sel.addEventListener('change',function(){cat=sel.value;apply()});
+		var fq=document.getElementById('au-freq');if(fq)fq.addEventListener('change',function(){fq.form.dataset.freq=fq.value});
 	})();
 	</script>
 	<?php
@@ -356,6 +399,9 @@ add_action(
 			wp_send_json_error( __( 'Yetkiniz yok.', 'flx-seo' ), 403 );
 		}
 		$r = flxseo_audit_run_local( isset( $_POST['url'] ) ? flxseo_audit_url( wp_unslash( $_POST['url'] ) ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		if ( ! is_wp_error( $r ) ) {
+			do_action( 'flxseo_audit_done', 'manual' );
+		}
 		is_wp_error( $r ) ? wp_send_json_error( $r->get_error_message() ) : wp_send_json_success( array( 'count' => count( $r['findings'] ) ) );
 	}
 );
@@ -389,10 +435,14 @@ add_action(
 		}
 		$in  = isset( $_POST['o'] ) ? (array) wp_unslash( $_POST['o'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 		$o   = (array) get_option( 'flxseo', array() );
-		foreach ( array( 'llms', 'webmcp', 'hdr_frame', 'hdr_coop', 'hdr_csp', 'hsts_sub', 'hsts_preload' ) as $k ) {
+		foreach ( array( 'llms', 'webmcp', 'hdr_frame', 'hdr_coop', 'hdr_csp', 'hsts_sub', 'hsts_preload', 'audit_psi', 'audit_mail' ) as $k ) {
 			$o[ $k ] = empty( $in[ $k ] ) ? 0 : 1;
 		}
-		$o['llms_intro'] = sanitize_textarea_field( $in['llms_intro'] ?? '' );
+		$o['llms_intro']    = sanitize_textarea_field( $in['llms_intro'] ?? '' );
+		$o['audit_freq']    = isset( flxseo_audit_freqs()[ $in['audit_freq'] ?? '' ] ) ? $in['audit_freq'] : 'daily';
+		$o['audit_day']     = (string) max( 1, min( 7, (int) ( $in['audit_day'] ?? 1 ) ) );
+		$o['audit_hour']    = (string) max( 0, min( 23, (int) ( $in['audit_hour'] ?? 3 ) ) );
+		$o['audit_mail_to'] = sanitize_email( $in['audit_mail_to'] ?? '' );
 		update_option( 'flxseo', $o );
 		if ( ! empty( $_POST['psi_key_clear'] ) ) {
 			delete_option( 'flxseo_psi_key' );
@@ -429,6 +479,7 @@ add_action(
 				);
 			}
 			flxseo_audit_run_local();
+			do_action( 'flxseo_audit_done', 'fix' );
 			$msg = array( 'success', __( 'Açıldı ve denetim yenilendi. Sayfa önbelleği (LiteSpeed) varsa Purge All yapın.', 'flx-seo' ) );
 		} catch ( Exception $e ) {
 			$msg = array( 'error', $e->getMessage() );

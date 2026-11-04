@@ -50,6 +50,13 @@ function flxseo_defaults() {
 		'hdr_csp'        => 0,
 		'hsts_sub'       => 0,
 		'hsts_preload'   => 0,
+		// Zamanlanmış denetim (metin: onay kutusu değil).
+		'audit_freq'     => 'daily',
+		'audit_day'      => '1',
+		'audit_hour'     => '3',
+		'audit_psi'      => 1,
+		'audit_mail'     => 1,
+		'audit_mail_to'  => '',
 	);
 }
 
@@ -237,6 +244,10 @@ function flxseo_sanitize( $in ) {
 			$out[ $k ] = sanitize_text_field( $in[ $k ] ?? '' );
 		}
 	}
+	$out['audit_freq']    = in_array( $out['audit_freq'], array( 'daily', 'weekly', 'off' ), true ) ? $out['audit_freq'] : 'daily';
+	$out['audit_day']     = (string) max( 1, min( 7, (int) $out['audit_day'] ) );
+	$out['audit_hour']    = (string) max( 0, min( 23, (int) $out['audit_hour'] ) );
+	$out['audit_mail_to'] = sanitize_email( $out['audit_mail_to'] );
 	return $out;
 }
 
