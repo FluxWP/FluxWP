@@ -5,6 +5,7 @@ flx-ai	Tüm FluxWP eklentileri için ortak yapay zekâ merkezi. Anahtarlar, mode
 flx-analytics	Çerezsiz, kişisel veri tutmayan site istatistikleri. Ziyaretçiler, kaynaklar, bağış hunisi ve yolculuklar sitede kalır.
 flx-donate	WooCommerce üzerinde fidan ve kampanya bağışları; kart, havale ve aylık bağış. Her bağışa kişi başına sertifika.
 flx-commerce	WooCommerce mağazası için satış paneli, müşteriler ve satış raporları. Dekont yüklemeli Havale/EFT, sade ödeme sayfası, ücretsiz kargo çubuğu ve Google Merchant feed'i.
+flx-crm	Bağışçı, müşteri, gönüllü ve adayları tek kişi kartında toplayan CRM. Zaman tüneli, RFM skorlama, kayıp riski ve Flux Mail gönderimine hazır segmentler.
 flx-chat	WhatsApp çağrı merkezi: sohbetler, hazır cevaplar, etiketler ve atama. Sohbetten bağış ve sertifika kaydı, AI asistanı.
 flx-lang	Siteyi çok dilli yapar: /en/ adresleri, içerik başına çeviri, hreflang ve dil seçici.
 flx-forms	Sürükle-bırak form oluşturucu: çok adımlı formlar, ödemeler, koşullu mantık ve otomasyonlar. Gelen kayıtlar tek panelde.
