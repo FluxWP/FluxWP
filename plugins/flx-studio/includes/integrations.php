@@ -40,7 +40,7 @@ add_filter(
 	}
 );
 
-/* Flux AI › Bağlı sistemler. */
+/* Flux AI & MCP › Bağlı sistemler. */
 add_filter(
 	'flxai_systems',
 	function ( $s ) {

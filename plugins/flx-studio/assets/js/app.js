@@ -134,7 +134,7 @@
 
 	function aiBanner() {
 		if (st.boot.ai.media && models('image').concat(models('video')).some(function (m) { return m.providers.length; })) return null;
-		var msg = st.boot.ai.media ? t('Görsel ve video üretimi için Flux AI › Ayarlar › Görsel ve video bölümünden en az bir anahtar (fal.ai, EvoLink…) girin.') : t('Flux AI (0.6.0+) kurulu değil. Üretim Flux AI üzerinden yapılır.');
+		var msg = st.boot.ai.media ? t('Görsel ve video üretimi için Flux AI & MCP › Ayarlar › Görsel ve video bölümünden en az bir anahtar (fal.ai, EvoLink…) girin.') : t('Flux AI (0.6.0+) kurulu değil. Üretim Flux AI üzerinden yapılır.');
 		return h('.flxst-banner', S.icon('alert', 16), h('span', msg), st.boot.ai.setup ? h('a.flxst-btn.is-ghost', { href: st.boot.ai.setup }, t('Flux AI ayarları')) : null);
 	}
 
@@ -736,7 +736,7 @@
 				var ok = x.providers.indexOf(p) >= 0;
 				var on = x.id === c.model && p === (c.provider && c.provider !== 'auto' ? c.provider : cur.auto);
 				box.appendChild(h('button.flxst-mp-i' + (on ? '.is-on' : '') + (ok ? '' : '.is-off'), {
-					type: 'button', disabled: !ok, title: ok ? '' : t('{p} anahtarı girilmemiş (Flux AI › Ayarlar › Görsel ve video).', { p: pr[p] ? pr[p].label : p }),
+					type: 'button', disabled: !ok, title: ok ? '' : t('{p} anahtarı girilmemiş (Flux AI & MCP › Ayarlar › Görsel ve video).', { p: pr[p] ? pr[p].label : p }),
 					onclick: function () { c.model = x.id; c.provider = p; saveCfg(); S.closePop(); drawComposer(); }
 				}, h('span', x.label), on ? S.icon('check', 14) : null));
 			});
@@ -1249,7 +1249,7 @@
 			h('.flxst-field', h('label', t('Geliştir / Beyin fırtınası metin modeli')), tm),
 			h('.flxst-row', h('.flxst-field', h('label', t('Bir seferde en çok görsel')), mn), h('.flxst-field', h('label', t('Beyin fırtınasında en çok fikir')), mb)),
 			h('label.flxst-chk', sp, h('span', t('Kişiler tüm Stüdyo kullanıcılarıyla paylaşılsın'))),
-			h('p.flxst-muted', t('Anahtarlar, sağlayıcılar ve harcama sınırı Flux AI › Ayarlar’dadır.'), ' ', st.boot.ai.setup ? h('a', { href: st.boot.ai.setup }, t('Flux AI ayarları')) : null)
+			h('p.flxst-muted', t('Anahtarlar, sağlayıcılar ve harcama sınırı Flux AI & MCP › Ayarlar’dadır.'), ' ', st.boot.ai.setup ? h('a', { href: st.boot.ai.setup }, t('Flux AI ayarları')) : null)
 		], {
 			foot: [h('button.flxst-btn', { type: 'button', onclick: function () { m.close(); } }, t('Vazgeç')),
 				h('button.flxst-btn.is-primary', { type: 'button', onclick: function () {

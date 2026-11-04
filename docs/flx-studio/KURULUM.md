@@ -2,7 +2,7 @@
 
 Yapay zekâ ile görsel ve video stüdyosu (Banana Studio uyarlaması). Üretim Flux AI üzerinden yapılır.
 
-1. Önce **Flux AI 0.6.0+** kurulu olmalı. Flux AI › Ayarlar › **Görsel ve video** bölümüne en az bir anahtar girin (fal.ai ve EvoLink önerilir; OpenAI, Gemini, OpenRouter da olur).
+1. Önce **Flux AI 0.6.0+** kurulu olmalı. Flux AI & MCP › Ayarlar › **Görsel ve video** bölümüne en az bir anahtar girin (fal.ai ve EvoLink önerilir; OpenAI, Gemini, OpenRouter da olur).
 2. Güncellemeler'den **Flux Studio**'yu kurup etkinleştirin. Sol menüde **Stüdyo** çıkar.
 3. Yetki: yöneticide hazır. Personele açmak için Flux Roles › Roller ve erişim'de **Stüdyo: görsel/video üret** (`flxst_use`) işaretlenir. **Stüdyo: tüm galeriler ve ayarlar** (`flxst_manage`) herkesin üretimini görür ve ayarları değiştirir.
 4. İsteğe bağlı: Stüdyo › sol alt ⚙ ile varsayılan görsel/video modeli, bir seferde en çok görsel, Beyin fırtınası fikir sınırı.

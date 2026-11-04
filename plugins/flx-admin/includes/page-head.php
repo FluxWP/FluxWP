@@ -51,7 +51,7 @@ function flxa_package_heads() {
 		'flxa_package_heads',
 		array(
 			'flx-admin'        => array( 'Flux Admin', __( 'Yönetim panelinin görünümü, menüsü ve yetkileri', 'flx-admin' ) ),
-			'flx-ai'           => array( 'Flux AI', __( 'Tüm eklentiler için ortak yapay zekâ merkezi', 'flx-admin' ) ),
+			'flx-ai'           => array( 'Flux AI & MCP', __( 'Tüm eklentiler için ortak yapay zekâ merkezi', 'flx-admin' ) ),
 			'flx-analytics'    => array( 'Flux Analytics', __( 'Çerezsiz site istatistikleri ve ziyaretçi yolculukları', 'flx-admin' ) ),
 			'flx-app'          => array( 'Flux App', __( 'Masaüstü ve mobil uygulama girişi, kişisel API anahtarları', 'flx-admin' ) ),
 			'flx-backup'       => array( 'Flux Backup', __( 'Güncelleme öncesi otomatik yedek, zamanlanmış yedek ve geri yükleme', 'flx-admin' ) ),
@@ -64,7 +64,7 @@ function flxa_package_heads() {
 			'flx-migrate'      => array( 'Flux Migrate', __( 'Eski paket adlarıyla kaydedilmiş verileri yeni adlara taşır', 'flx-admin' ) ),
 			'flx-qr-menu'      => array( 'Flux QR Menu', __( 'QR menüleri bu siteden yönet ve yayınla', 'flx-admin' ) ),
 			'flx-roles'        => array( 'Flux Roles', __( 'Personel, İdareci ve Yönetici rolleri ve erişimleri', 'flx-admin' ) ),
-			'flx-seo'          => array( 'Flux SEO', __( 'Meta etiketler, schema, site haritası ve yapay zekâ (MCP) erişimi', 'flx-admin' ) ),
+			'flx-seo'          => array( 'Flux SEO', __( 'Meta etiketler, schema, site haritası ve SEO denetimi', 'flx-admin' ) ),
 			'flx-setup'        => array( 'FluxWP Panel', __( 'Kurulum sihirbazı, ön ayarlar ve FluxWP paket güncellemeleri', 'flx-admin' ) ),
 			'flx-speed'        => array( 'Flux Speed', __( 'Sorgular, PHP hataları, dış istekler ve cron tek yerde', 'flx-admin' ) ),
 			'flx-staff'        => array( 'Flux Staff', __( 'Personel hediyeleri, kira, tahakkuk ve tahsilat', 'flx-admin' ) ),

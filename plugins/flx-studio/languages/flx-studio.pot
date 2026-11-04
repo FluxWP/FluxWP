@@ -66,7 +66,7 @@ msgstr ""
 msgid "Seç"
 msgstr ""
 
-msgid "Görsel ve video üretimi için Flux AI › Ayarlar › Görsel ve video bölümünden en az bir anahtar (fal.ai, EvoLink…) girin."
+msgid "Görsel ve video üretimi için Flux AI & MCP › Ayarlar › Görsel ve video bölümünden en az bir anahtar (fal.ai, EvoLink…) girin."
 msgstr ""
 
 msgid "Flux AI (0.6.0+) kurulu değil. Üretim Flux AI üzerinden yapılır."
@@ -339,7 +339,7 @@ msgstr ""
 msgid "anahtar yok"
 msgstr ""
 
-msgid "{p} anahtarı girilmemiş (Flux AI › Ayarlar › Görsel ve video)."
+msgid "{p} anahtarı girilmemiş (Flux AI & MCP › Ayarlar › Görsel ve video)."
 msgstr ""
 
 msgid "Bu referans zaten ekli"
@@ -594,7 +594,7 @@ msgstr ""
 msgid "Kişiler tüm Stüdyo kullanıcılarıyla paylaşılsın"
 msgstr ""
 
-msgid "Anahtarlar, sağlayıcılar ve harcama sınırı Flux AI › Ayarlar’dadır."
+msgid "Anahtarlar, sağlayıcılar ve harcama sınırı Flux AI & MCP › Ayarlar’dadır."
 msgstr ""
 
 msgid "Ayarlar kaydedildi"
@@ -759,7 +759,7 @@ msgstr ""
 msgid "Flux AI (0.6.0+) kurulu değil ya da görsel üretimi kapalı."
 msgstr ""
 
-msgid "Model bulunamadı. Flux AI › Ayarlar › Görsel ve video anahtarlarını kontrol edin."
+msgid "Model bulunamadı. Flux AI & MCP › Ayarlar › Görsel ve video anahtarlarını kontrol edin."
 msgstr ""
 
 msgid "Düzenlenecek görsel bulunamadı."
@@ -789,7 +789,7 @@ msgstr ""
 msgid "Üretim başarısız."
 msgstr ""
 
-msgid "Flux AI metin modeli hazır değil (Flux AI › Ayarlar)."
+msgid "Flux AI metin modeli hazır değil (Flux AI & MCP › Ayarlar)."
 msgstr ""
 
 msgid "Önce fikri kısaca yazın."
@@ -828,7 +828,7 @@ msgstr ""
 msgid "Eklentiler"
 msgstr ""
 
-msgid "Hiçbir model için anahtar yok. Flux AI › Ayarlar › Görsel ve video bölümünden fal.ai, EvoLink ya da başka bir anahtar girin."
+msgid "Hiçbir model için anahtar yok. Flux AI & MCP › Ayarlar › Görsel ve video bölümünden fal.ai, EvoLink ya da başka bir anahtar girin."
 msgstr ""
 
 msgid "Flux AI"

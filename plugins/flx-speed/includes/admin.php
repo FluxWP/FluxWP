@@ -917,8 +917,8 @@ class FLXP_Admin {
 			</table>
 			<?php self::login_settings( $s ); ?>
 			<h2><?php esc_html_e( 'Yapay zekâ (MCP)', 'flx-speed' ); ?></h2>
-			<p><?php esc_html_e( 'Kayıtlar Flux SEO & MCP sunucusunda ve Flux AI sohbetinde salt okunur araçlarla okunur: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url.', 'flx-speed' ); ?></p>
-			<p><?php echo function_exists( 'flxseo_mcp_tools' ) ? esc_html__( 'Flux SEO & MCP etkin: araçlar kayıtlı.', 'flx-speed' ) : esc_html__( 'Flux SEO & MCP etkin değil: araçlar yalnız Flux AI sohbetinde.', 'flx-speed' ); ?></p>
+			<p><?php esc_html_e( 'Kayıtlar Flux AI & MCP sunucusunda ve Flux AI sohbetinde salt okunur araçlarla okunur: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url.', 'flx-speed' ); ?></p>
+			<p><?php echo function_exists( 'flxseo_mcp_tools' ) ? esc_html__( 'Flux AI & MCP etkin: araçlar kayıtlı.', 'flx-speed' ) : esc_html__( 'Flux AI & MCP etkin değil: araçlar yalnız Flux AI sohbetinde.', 'flx-speed' ); ?></p>
 			<?php submit_button(); ?>
 		</form>
 		<?php

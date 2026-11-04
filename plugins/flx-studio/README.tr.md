@@ -79,7 +79,7 @@ Gereksinimler: WordPress 6.4+, PHP 7.4+. Flux AI 0.6.0+ ve en az bir görsel/vid
 
 **İlk adımlar**
 
-1. **Flux AI › Ayarlar › Görsel ve video**'ya bir sağlayıcı anahtarı girin.
+1. **Flux AI & MCP › Ayarlar › Görsel ve video**'ya bir sağlayıcı anahtarı girin.
 2. Flux Studio'yu etkinleştirin; panel menüsünde **Stüdyo** çıkar.
 3. Personel kullanacaksa Flux Roles'de **Stüdyo: görsel/video üret** yetkisini verin.
 4. Bir istem yazıp **Üret**'e basın (Ctrl/⌘+Enter).

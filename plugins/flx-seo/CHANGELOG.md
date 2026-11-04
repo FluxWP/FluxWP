@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.5.2
+- Metinler: MCP ekranı adresi "Flux AI & MCP › MCP".
+
 ## 1.5.1
 - PageSpeed Insights isteği site adresini `Referer` olarak gönderir: "Web siteleri" (HTTP referrer) kısıtlı API anahtarları artık "Requests from referer <empty> are blocked" hatası vermez. Anahtarın izinli siteler listesinde sitenin adresi (ör. `example.com/*`) olmalı.
 

@@ -47,8 +47,8 @@ msgstr "On, 5 minutes"
 msgid "Açık, 1 saat"
 msgstr "On, 1 hour"
 
-msgid "Yapay zekâ için Flux AI eklentisi gerekli; kurup etkinleştirin ve Flux AI › Ayarlar'a anahtarı girin."
-msgstr "AI needs the Flux AI plugin; install and activate it, then enter the key in Flux AI › Settings."
+msgid "Yapay zekâ için Flux AI & MCP eklentisi gerekli; kurup etkinleştirin ve Flux AI & MCP › Ayarlar'a anahtarı girin."
+msgstr "AI needs the Flux AI & MCP plugin; install and activate it, then enter the key in Flux AI & MCP › Settings."
 
 msgid "Yapay zekâ modeli seçilmemiş."
 msgstr "No AI model selected."
@@ -59,11 +59,11 @@ msgstr "No Anthropic (Claude) key has been entered in Flux AI."
 msgid "Flux AI'de OpenRouter anahtarı girilmemiş."
 msgstr "No OpenRouter key has been entered in Flux AI."
 
-msgid "Model listesi için Flux AI eklentisi gerekli."
-msgstr "The model list needs the Flux AI plugin."
+msgid "Model listesi için Flux AI & MCP eklentisi gerekli."
+msgstr "The model list needs the Flux AI & MCP plugin."
 
-msgid "Flux Chat: yapay zekâ özellikleri (öneri, asistan, dekont okuma, sesli mesaj, özet) için Flux AI eklentisi gerekli. Kurup etkinleştirin; Çağrı Merkezi'nde kayıtlı anahtarlar oraya kendiliğinden aktarılır."
-msgstr "Flux Call Center: AI features (suggestions, assistant, receipt reading, voice messages, summaries) need the Flux AI plugin. Install and activate it; keys saved in the Call Center are moved there automatically."
+msgid "Flux Chat: yapay zekâ özellikleri (öneri, asistan, dekont okuma, sesli mesaj, özet) için Flux AI & MCP eklentisi gerekli. Kurup etkinleştirin; Çağrı Merkezi'nde kayıtlı anahtarlar oraya kendiliğinden aktarılır."
+msgstr "Flux Call Center: AI features (suggestions, assistant, receipt reading, voice messages, summaries) need the Flux AI & MCP plugin. Install and activate it; keys saved in the Call Center are moved there automatically."
 
 msgid "Flux Chat: %s anahtarı Flux AI'de farklı bir anahtar olarak zaten kayıtlı; Flux AI'deki kullanılıyor. Çağrı Merkezi'ndeki eski anahtar aktarılmadı ve artık kullanılmıyor."
 msgstr "Flux Call Center: a different %s key is already saved in Flux AI and is the one in use. The old Call Center key was not moved and is no longer used."
@@ -3035,14 +3035,14 @@ msgstr "Variables: {first_name}, {name}, {donation}, {amount}, {quantity}, {bank
 msgid "Yapay zekâ bağlantısı"
 msgstr "AI connection"
 
-msgid "Anahtarlar, prompt önbelleği, harcama sınırı ve kullanım kayıtları Flux AI eklentisinden gelir; Çağrı Merkezi'nin tüm yapay zekâ istekleri oradan geçer. Model seçimleri burada kalır; alanlar boşsa Flux AI'de bu eklentiye seçilen model (ya da varsayılan) kullanılır."
-msgstr "Keys, prompt caching, spending limits and usage logs come from the Flux AI plugin; all of the Call Center's AI requests go through it. Model choices stay here; if a field is empty, the model chosen for this plugin in Flux AI (or the default) is used."
+msgid "Anahtarlar, prompt önbelleği, harcama sınırı ve kullanım kayıtları Flux AI & MCP eklentisinden gelir; Çağrı Merkezi'nin tüm yapay zekâ istekleri oradan geçer. Model seçimleri burada kalır; alanlar boşsa Flux AI'de bu eklentiye seçilen model (ya da varsayılan) kullanılır."
+msgstr "Keys, prompt caching, spending limits and usage logs come from the Flux AI & MCP plugin; all of the Call Center's AI requests go through it. Model choices stay here; if a field is empty, the model chosen for this plugin in Flux AI (or the default) is used."
 
 msgid "Flux AI ayarlarını aç"
 msgstr "Open Flux AI settings"
 
-msgid "Yapay zekâ için Flux AI eklentisi gerekli. Kurup etkinleştirin ve Flux AI › Ayarlar'a OpenRouter ve/veya Anthropic anahtarını girin. O zamana kadar öneri, asistan, dekont okuma, sesli mesaj ve özet kapalıdır."
-msgstr "AI needs the Flux AI plugin. Install and activate it, then enter the OpenRouter and/or Anthropic key in Flux AI › Settings. Until then suggestions, the assistant, receipt reading, voice messages and summaries are off."
+msgid "Yapay zekâ için Flux AI & MCP eklentisi gerekli. Kurup etkinleştirin ve Flux AI & MCP › Ayarlar'a OpenRouter ve/veya Anthropic anahtarını girin. O zamana kadar öneri, asistan, dekont okuma, sesli mesaj ve özet kapalıdır."
+msgstr "AI needs the Flux AI & MCP plugin. Install and activate it, then enter the OpenRouter and/or Anthropic key in Flux AI & MCP › Settings. Until then suggestions, the assistant, receipt reading, voice messages and summaries are off."
 
 msgid "Yaratıcılık (0–1)"
 msgstr "Creativity (0–1)"
@@ -3284,11 +3284,11 @@ msgstr "Images"
 msgid "Gerekince asistan görsel (tablo, rapor, şema) çizsin; WhatsApp'a resim olarak gider, metin ayrıca gider"
 msgstr "Let the assistant draw an image when useful (table, report, diagram); it goes to WhatsApp as a picture, the text is sent separately"
 
-msgid "Flux AI görsel çeviricisi kullanılır (Flux AI › Ayarlar › Görseller)."
-msgstr "The Flux AI image renderer is used (Flux AI › Settings › Images)."
+msgid "Flux AI görsel çeviricisi kullanılır (Flux AI & MCP › Ayarlar › Görseller)."
+msgstr "The Flux AI image renderer is used (Flux AI & MCP › Settings › Images)."
 
-msgid "Sunucuda görsel çevirici yok: Flux AI › Ayarlar › Görseller'e Gotenberg adresi girin ya da Imagick (SVG) kurulsun. O zamana kadar asistan görsel çizmez."
-msgstr "No image renderer on the server: enter a Gotenberg address in Flux AI › Settings › Images or install Imagick (SVG). Until then the assistant does not draw images."
+msgid "Sunucuda görsel çevirici yok: Flux AI & MCP › Ayarlar › Görseller'e Gotenberg adresi girin ya da Imagick (SVG) kurulsun. O zamana kadar asistan görsel çizmez."
+msgstr "No image renderer on the server: enter a Gotenberg address in Flux AI & MCP › Settings › Images or install Imagick (SVG). Until then the assistant does not draw images."
 
 msgid "Flux AI 0.2.0 ya da sonrası kurulunca çalışır."
 msgstr "Works once Flux AI 0.2.0 or later is installed."
@@ -4610,8 +4610,8 @@ msgstr "Active: donation records, receipt matching and the assistant are availab
 msgid "Flux Donate etkin değil; bağış kaydı, dekont eşleştirme ve bağış asistanı kapalı."
 msgstr "Flux Donate is not active; donation records, receipt matching and the donation assistant are off."
 
-msgid "Flux AI eklentisi kurulu değil; yapay zekâ özellikleri (öneri, asistan, dekont okuma, sesli mesaj, özet) kapalı. Flux AI'yi kurup anahtarı oraya girin."
-msgstr "The Flux AI plugin is not installed; AI features (suggestions, assistant, receipt reading, voice messages, summaries) are off. Install Flux AI and enter the key there."
+msgid "Flux AI & MCP eklentisi kurulu değil; yapay zekâ özellikleri (öneri, asistan, dekont okuma, sesli mesaj, özet) kapalı. Flux AI'yi kurup anahtarı oraya girin."
+msgstr "The Flux AI & MCP plugin is not installed; AI features (suggestions, assistant, receipt reading, voice messages, summaries) are off. Install Flux AI and enter the key there."
 
 msgid "Flux AI'de anahtar girilmemiş; mesaj önerisi ve asistan kapalı."
 msgstr "No key has been entered in Flux AI; message suggestions and the assistant are off."

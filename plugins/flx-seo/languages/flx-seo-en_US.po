@@ -926,5 +926,5 @@ msgstr "%s PageSpeed scores over time"
 msgid "Site denetimi ve ajan uyumu"
 msgstr "Site audit and agent readiness"
 
-msgid "Flux SEO'nun yapay zekâ (MCP) araçları ortak MCP sunucusu üzerinden çalışır. Sunucu, anahtarlar ve ayarlar Flux AI › MCP ekranındadır; Flux AI 0.7.0 ve üstünü kurup etkinleştirin."
-msgstr "Flux SEO's AI (MCP) tools run through the shared MCP server. The server, keys and settings are in Flux AI › MCP; install and activate Flux AI 0.7.0 or later."
+msgid "Flux SEO'nun yapay zekâ (MCP) araçları ortak MCP sunucusu üzerinden çalışır. Sunucu, anahtarlar ve ayarlar Flux AI & MCP › MCP ekranındadır; Flux AI 0.7.0 ve üstünü kurup etkinleştirin."
+msgstr "Flux SEO's AI (MCP) tools run through the shared MCP server. The server, keys and settings are in Flux AI & MCP › MCP; install and activate Flux AI 0.7.0 or later."

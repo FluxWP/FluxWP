@@ -757,14 +757,14 @@ msgstr "Your shared hosting plan's disk limit (Hostinger: hPanel › Account res
 msgid "Yapay zekâ (MCP)"
 msgstr "AI (MCP)"
 
-msgid "Kayıtlar Flux SEO & MCP sunucusunda ve Flux AI sohbetinde salt okunur araçlarla okunur: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url."
-msgstr "The data is read by read-only tools on the Flux SEO & MCP server and in Flux AI chat: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url."
+msgid "Kayıtlar Flux AI & MCP sunucusunda ve Flux AI sohbetinde salt okunur araçlarla okunur: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url."
+msgstr "The data is read by read-only tools on the Flux AI & MCP server and in Flux AI chat: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url."
 
-msgid "Flux SEO & MCP etkin: araçlar kayıtlı."
-msgstr "Flux SEO & MCP is active: tools are registered."
+msgid "Flux AI & MCP etkin: araçlar kayıtlı."
+msgstr "Flux AI & MCP is active: tools are registered."
 
-msgid "Flux SEO & MCP etkin değil: araçlar yalnız Flux AI sohbetinde."
-msgstr "Flux SEO & MCP is not active: tools are available in Flux AI chat only."
+msgid "Flux AI & MCP etkin değil: araçlar yalnız Flux AI sohbetinde."
+msgstr "Flux AI & MCP is not active: tools are available in Flux AI chat only."
 
 msgid "Yönetim giriş adresi"
 msgstr "Admin login URL"
@@ -1105,8 +1105,8 @@ msgstr "AI tools (flxp_*)"
 msgid "MCP ve Flux AI sohbeti kayıtları okuyabilir."
 msgstr "MCP and Flux AI chat can read the records."
 
-msgid "Flux SEO & MCP etkin değil ya da MCP kapalı; araçlar görünmüyor."
-msgstr "Flux SEO & MCP is not active or MCP is off; tools are not visible."
+msgid "Flux AI & MCP etkin değil ya da MCP kapalı; araçlar görünmüyor."
+msgstr "Flux AI & MCP is not active or MCP is off; tools are not visible."
 
 msgid "Her istekte %1$d KB (%2$d seçenek) yükleniyor."
 msgstr "%1$d KB (%2$d options) is loaded on every request."

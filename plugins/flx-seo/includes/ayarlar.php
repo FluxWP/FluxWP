@@ -187,7 +187,7 @@ add_filter(
 	2
 );
 
-// Eski adresler: Ayarlar › SEO yeni menüye, eski Yapay zekâ (MCP) sekmesi Flux AI › MCP'ye yönlenir.
+// Eski adresler: Ayarlar › SEO yeni menüye, eski Yapay zekâ (MCP) sekmesi Flux AI & MCP › MCP'ye yönlenir.
 add_action(
 	'admin_init',
 	function () {
@@ -273,7 +273,7 @@ function flxseo_settings_page() {
 		<div class="notice notice-warning"><p>Başka bir SEO eklentisi etkin. Çakışma olmaması için bu eklentinin meta ve schema çıktısı kapalı; favicon, SEO kontrolü ve yapay zekâ araçları çalışmaya devam ediyor.</p></div>
 	<?php endif; ?>
 	<?php if ( ! function_exists( 'flxai_mcp_tools' ) ) : ?>
-		<div class="notice notice-info"><p><?php esc_html_e( 'Flux SEO\'nun yapay zekâ (MCP) araçları ortak MCP sunucusu üzerinden çalışır. Sunucu, anahtarlar ve ayarlar Flux AI › MCP ekranındadır; Flux AI 0.7.0 ve üstünü kurup etkinleştirin.', 'flx-seo' ); ?></p></div>
+		<div class="notice notice-info"><p><?php esc_html_e( 'Flux SEO\'nun yapay zekâ (MCP) araçları ortak MCP sunucusu üzerinden çalışır. Sunucu, anahtarlar ve ayarlar Flux AI & MCP › MCP ekranındadır; Flux AI 0.7.0 ve üstünü kurup etkinleştirin.', 'flx-seo' ); ?></p></div>
 	<?php endif; ?>
 	<nav class="nav-tab-wrapper">
 		<?php foreach ( $tabs as $k => $label ) : ?>

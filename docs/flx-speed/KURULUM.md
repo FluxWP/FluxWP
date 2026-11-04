@@ -20,9 +20,9 @@ Sitenin performansı tek yerde: geliştirici paneli ve istek kaydı (Query Monit
 - **Başlangıç widget'ı**: canlı kutular, 24 saatte p95 / hatalı / yavaş istek, ilk 3 öneri.
 
 ## Yapay zekâ
-Flux SEO & MCP açıksa MCP'de, değilse yalnız Flux AI sohbetinde (salt okunur):
+Flux AI & MCP açıksa MCP'de, değilse yalnız Flux AI sohbetinde (salt okunur):
 `flxp_summary`, `flxp_requests`, `flxp_request`, `flxp_slow_queries`, `flxp_php_errors`, `flxp_http_calls`, `flxp_environment`, `flxp_server`, `flxp_database`, `flxp_autoload`, `flxp_cron`, `flxp_profile_url`.
-Düzeltme: Flux SEO & MCP `system_fix` ile `flxp_expired_transients` (süresi dolmuş geçici verileri sil).
+Düzeltme: Flux AI & MCP `system_fix` ile `flxp_expired_transients` (süresi dolmuş geçici verileri sil).
 Örnek: "Son 24 saatte site neden yavaş?", "/bagis/ sayfasını ölç, en yavaş sorgu hangi eklentiden?", "Evolution isteği hata veriyor mu?", "Autoload'ı en çok hangi eklenti şişiriyor?", "Cron çalışıyor mu?"
 
 ## Performans (Hostinger)

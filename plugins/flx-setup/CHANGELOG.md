@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.0.21
+- Metinler: MCP sunucusu artık Flux AI & MCP eklentisinde; "Flux SEO & MCP" ve "Flux AI ›" adresleri "Flux AI & MCP" oldu.
+
 ## 1.0.20
 - Anonim kullanım verisine ülke kodu eklendi (`cc`, ör. `TR`): WooCommerce mağaza adresi girilmişse mağaza ülkesi, yoksa Ayarlar › Genel saat dilimi. IP'ye bakılmaz, IP gönderilmez. Telemetri merkezi siteleri ülkeye göre gruplar.
 

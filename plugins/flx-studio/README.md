@@ -79,7 +79,7 @@ Requirements: WordPress 6.4+, PHP 7.4+. Flux AI 0.6.0+ with at least one image/v
 
 **First steps**
 
-1. In **Flux AI › Settings › Images and video** enter a provider key.
+1. In **Flux AI & MCP › Settings › Images and video** enter a provider key.
 2. Activate Flux Studio; **Studio** appears in the admin menu.
 3. Give staff the **Studio: generate** capability in Flux Roles if they should use it.
 4. Write a prompt and press **Generate** (Ctrl/⌘+Enter).

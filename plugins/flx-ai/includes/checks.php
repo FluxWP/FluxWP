@@ -11,7 +11,7 @@ add_filter(
 	'flx_system_checks',
 	function ( $checks ) {
 		$checks   = is_array( $checks ) ? $checks : array();
-		$src      = 'Flux AI';
+		$src      = 'Flux AI & MCP';
 		$settings = admin_url( 'admin.php?page=flx-ai-settings' );
 		$ready    = flxai_providers_ready();
 
@@ -141,7 +141,7 @@ add_filter(
 				/* translators: %s: period */
 				'label'       => sprintf( __( '%s yapay zekâ harcama sınırı (USD)', 'flx-ai' ), flxai_period_label( $p ) ),
 				'description' => __( '0 = sınırsız. Dolunca yapay zekâ istekleri durur (ayara göre yalnız uyarı).', 'flx-ai' ),
-				'source'      => 'Flux AI',
+				'source'      => 'Flux AI & MCP',
 				'checks'      => array( 'flxai.limit' ),
 				'value'       => array( 'type' => 'string' ),
 				'current'     => function () use ( $p ) {

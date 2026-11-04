@@ -88,7 +88,7 @@ add_action(
 	1
 );
 
-/* MCP (Flux SEO & MCP) ve kendi uçlarımız 401 dönünce istemciye metadata adresini göster (MCP yetkilendirme şartı). */
+/* MCP (Flux AI & MCP) ve kendi uçlarımız 401 dönünce istemciye metadata adresini göster (MCP yetkilendirme şartı). */
 add_filter(
 	'rest_post_dispatch',
 	function ( $res, $server, $req ) {

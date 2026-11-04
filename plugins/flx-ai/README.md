@@ -4,7 +4,7 @@
 
 <img src="docs/logo.svg" alt="Flux AI logo" width="120">
 
-# Flux AI
+# Flux AI & MCP
 
 **One AI hub for every FluxWP plugin: keys, models, costs, limits and a shared chat.**<br>
 Flux AI is the shared AI layer of the FluxWP packages. OpenRouter and Anthropic keys, the model catalogue and prices, prompt caching, a tool registry, the shared MCP server, usage logs, billing and spending limits live here once; Flux Call Center, Flux Contact, Flux Social, Flux Language, Flux Studio and the rest call it instead of talking to AI providers themselves. Authorised users also get a streaming AI chat in the admin that can use those tools.
@@ -83,7 +83,7 @@ Requirements: WordPress 6.5+, PHP 7.4+. An OpenRouter or Anthropic API key. Opti
 
 **First steps**
 
-1. Activate Flux AI and open **Flux AI › Settings**.
+1. Activate Flux AI and open **Flux AI & MCP › Settings**.
 2. Enter an OpenRouter key (or an Anthropic key), choose the default model and press **Test**.
 3. Set daily, weekly and monthly limits.
 4. Open **Connected systems** to see which plugins use Flux AI and pick a model per plugin if you like.

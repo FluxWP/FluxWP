@@ -1,6 +1,6 @@
 <?php
 /**
- * Flux AI › MCP: sunucuyu aç/kapa, anahtarlar, asistana bağlama ve son işlemler.
+ * Flux AI & MCP › MCP: sunucuyu aç/kapa, anahtarlar, asistana bağlama ve son işlemler.
  *
  * @package FLX_AI
  */

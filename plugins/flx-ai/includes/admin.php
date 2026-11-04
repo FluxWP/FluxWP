@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit;
 add_action( 'admin_menu', 'flxai_admin_menu' );
 
 function flxai_admin_menu() {
-	add_menu_page( 'Flux AI', 'Flux AI', 'manage_options', 'flx-ai', 'flxai_page_overview', 'none', 59 );
+	add_menu_page( 'Flux AI & MCP', 'Flux AI & MCP', 'manage_options', 'flx-ai', 'flxai_page_overview', 'none', 59 );
 	add_submenu_page( 'flx-ai', __( 'Genel bakış', 'flx-ai' ), __( 'Genel bakış', 'flx-ai' ), 'manage_options', 'flx-ai', 'flxai_page_overview' );
 	add_submenu_page( 'flx-ai', __( 'Kayıtlar', 'flx-ai' ), __( 'Kayıtlar', 'flx-ai' ), 'manage_options', 'flx-ai-log', 'flxai_page_log' );
 	add_submenu_page( 'flx-ai', __( 'Bağlı sistemler', 'flx-ai' ), __( 'Bağlı sistemler', 'flx-ai' ), 'manage_options', 'flx-ai-systems', 'flxai_page_systems' );

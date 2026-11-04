@@ -530,7 +530,7 @@ msgstr ""
 msgid "Alt bilgi (kurum)"
 msgstr ""
 
-msgid "Boş alanlar SEO & MCP › Kurum ve sosyal ayarlarından gelir."
+msgid "Boş alanlar SEO › Kurum ve sosyal ayarlarından gelir."
 msgstr ""
 
 msgid "Slogan"
@@ -1710,7 +1710,7 @@ msgstr ""
 msgid "AI yazıyor…"
 msgstr ""
 
-msgid "AI için Flux AI eklentisi ve anahtarı gerekir."
+msgid "AI için Flux AI & MCP eklentisi ve anahtarı gerekir."
 msgstr ""
 
 msgid "AI taslağı: kontrol edip düzenleyin, sonra gönderin. Siz göndermeden gitmez."
@@ -2007,7 +2007,7 @@ msgstr ""
 msgid "IMAP sunucusu cevap vermedi (zaman aşımı)."
 msgstr ""
 
-msgid "Flux AI kurulu değil ya da anahtarı girilmemiş (Flux AI › Ayarlar)."
+msgid "Flux AI & MCP kurulu değil ya da anahtarı girilmemiş (Flux AI & MCP › Ayarlar)."
 msgstr ""
 
 msgid "E-postaları listele"
@@ -2037,7 +2037,7 @@ msgstr ""
 msgid "E-posta taslağı"
 msgstr ""
 
-msgid "Sunucuda PDF çevirici yok (Flux AI › Ayarlar › Görseller › Gotenberg)."
+msgid "Sunucuda PDF çevirici yok (Flux AI & MCP › Ayarlar › Görseller › Gotenberg)."
 msgstr ""
 
 msgid "PDF çeviriciye ulaşılamadı: %s"

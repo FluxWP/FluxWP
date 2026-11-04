@@ -72,4 +72,4 @@ add_filter( 'flxapp_modules', function ( $m ) {
 ```
 
 ## MCP
-Flux SEO & MCP ucu (`/wp-json/flx-mcp/v1/mcp`) değişiklik gerektirmeden OAuth belirteci ve `flxak_` anahtarıyla da çalışır (kullanıcıyı bu eklenti belirler). Claude gibi istemciler sunucu adresini verince metadata'dan kendini kaydeder, kullanıcı onay ekranında izin verir.
+Flux AI & MCP ucu (`/wp-json/flx-mcp/v1/mcp`) değişiklik gerektirmeden OAuth belirteci ve `flxak_` anahtarıyla da çalışır (kullanıcıyı bu eklenti belirler). Claude gibi istemciler sunucu adresini verince metadata'dan kendini kaydeder, kullanıcı onay ekranında izin verir.

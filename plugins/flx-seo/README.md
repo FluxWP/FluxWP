@@ -55,7 +55,7 @@ Big SEO plugins bring dozens of screens, upsells and their own database tables; 
 - **Site build guide** (TR + EN Markdown) for new pages, themes and presets, served to AI agents as the MCP tool `site_build_guide` and resource `flxseo://guide/site-build`; `site_audit` tool for agents and Flux AI.
 
 ### AI tools (MCP)
-- The MCP server, keys and log live in **Flux AI › MCP** (`/wp-json/flx-mcp/v1/mcp`, since Flux SEO 1.5.0 / Flux AI 0.7.0). Flux SEO registers its tools there; Flux AI chat uses the same tools.
+- The MCP server, keys and log live in **Flux AI & MCP › MCP** (`/wp-json/flx-mcp/v1/mcp`, since Flux SEO 1.5.0 / Flux AI 0.7.0). Flux SEO registers its tools there; Flux AI chat uses the same tools.
 - Tools: site info, list/get/create/update/delete content, set SEO, SEO audit, patterns, media upload and alt text, terms, site SEO settings; prompts for "fix SEO gaps", "write a news post" and "build a page".
 - Other FluxWP plugins add their own tools through `flx_mcp_tools` (old name `flxseo_mcp_tools` still works).
 - New content is created as a draft; delete only moves to trash. Every call is logged.
@@ -97,7 +97,7 @@ Full setup notes (Turkish): [KURULUM.md](../../docs/seo-mcp/KURULUM.md) · Relea
 
 ## Use it with AI assistants (MCP)
 
-1. Install Flux AI 0.7.0+ and open **Flux AI › MCP**: turn on the MCP server and create a key (optionally limited to some tools).
+1. Install Flux AI 0.7.0+ and open **Flux AI & MCP › MCP**: turn on the MCP server and create a key (optionally limited to some tools).
 2. Add it to your client, for example Claude Code:
 
 ```bash

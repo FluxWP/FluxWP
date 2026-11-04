@@ -75,7 +75,7 @@ Kendi olayınız: `<a data-flxan-event="paylas" data-flxan-param="instagram">`, 
 
 ## Yapay zekâ
 
-Flux AI sohbeti ve MCP (Flux SEO & MCP) şu araçları görür: `flxan_summary`, `flxan_timeseries`, `flxan_pages`, `flxan_referrers`,
+Flux AI sohbeti ve MCP (Flux AI & MCP) şu araçları görür: `flxan_summary`, `flxan_timeseries`, `flxan_pages`, `flxan_referrers`,
 `flxan_breakdown`, `flxan_events`, `flxan_realtime`, `flxan_page`, `flxan_compare`, `flxan_funnel`, `flxan_refs`, `flxan_segments` (salt okunur;
 hepsi `seg` rol ve `rc` referans süzgeci alır) ve `flxan_ref_save` (referans bağlantısı oluşturur / adlandırır). Yetki: `flxan_view` (yöneticide var; Flux Roles'den diğer rollere).
 İstatistik ekranında Flux AI sohbeti hazır sorular önerir. Ayrıntı: API.md.

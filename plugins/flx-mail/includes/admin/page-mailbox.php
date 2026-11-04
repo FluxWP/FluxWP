@@ -58,7 +58,7 @@ function flxi_mailbox_boot() {
 			'aiHint'       => __( 'İsteğe bağlı talimat: "teşekkür et, 11 Kasım etkinliğine davet et"', 'flx-mail' ),
 			'aiNewHint'    => __( 'Ne yazılsın? Ör. "Firma X\'e fidan dikim işbirliği teklifi, kısa ve sıcak"', 'flx-mail' ),
 			'aiWorking'    => __( 'AI yazıyor…', 'flx-mail' ),
-			'aiOff'        => __( 'AI için Flux AI eklentisi ve anahtarı gerekir.', 'flx-mail' ),
+			'aiOff'        => __( 'AI için Flux AI & MCP eklentisi ve anahtarı gerekir.', 'flx-mail' ),
 			'aiDraft'      => __( 'AI taslağı: kontrol edip düzenleyin, sonra gönderin. Siz göndermeden gitmez.', 'flx-mail' ),
 			'markUnread'   => __( 'Okunmadı yap', 'flx-mail' ),
 			'star'         => __( 'Yıldızla', 'flx-mail' ),

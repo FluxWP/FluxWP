@@ -1,6 +1,6 @@
 <?php
 /**
- * Flux SEO & MCP sunucusuna araçlar (flxseo_mcp_tools). Flux AI sohbeti de aynı araçları görür.
+ * Flux AI & MCP sunucusuna araçlar (flxseo_mcp_tools). Flux AI sohbeti de aynı araçları görür.
  * Gönderi oluştur/zamanla/gönder, listele, düzenle, sil, ağda düzenle, pano. Anahtar/belirteç asla dönmez.
  */
 

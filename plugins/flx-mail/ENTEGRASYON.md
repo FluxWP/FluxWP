@@ -35,7 +35,7 @@ Kendi e-postalarını `flxi_email_types` ile kaydedip `flxi_send_email( array( '
 Kayıtlı şablonlar İletişim › E-postalar'da düzenlenebilir/kapatılabilir hale gelir ve aynı kurumsal tasarımı kullanır.
 WhatsApp bildirimleri (ör. WC Bağış mini bildirimi) `flxi_send_message( 'whatsapp', $tel, $metin, array( 'source' => '<slug>' ) )`.
 
-## Flux SEO & MCP
+## Flux AI & MCP
 
 Değişiklik gerekmez: `flxseo_mcp_tools` ve `flx_system_fixes` filtreleriyle 6 MCP aracı ve 9 düzeltilebilir ayar ekleniyor (şifre yok).
 

@@ -21,10 +21,10 @@ msgstr ""
 msgid "Görev bildirimleri"
 msgstr ""
 
-msgid "Yapay zekâ için Flux AI eklentisi gerekli. Yönetici Flux AI'yi kurup anahtar girmeli."
+msgid "Yapay zekâ için Flux AI & MCP eklentisi gerekli. Yönetici Flux AI'yi kurup anahtar girmeli."
 msgstr ""
 
-msgid "Yapay zekâ ayarlanmamış. Yönetici Flux AI › Ayarlar'dan anahtar ve model seçmeli."
+msgid "Yapay zekâ ayarlanmamış. Yönetici Flux AI & MCP › Ayarlar'dan anahtar ve model seçmeli."
 msgstr ""
 
 msgid "İşlem çok uzun sürdü; isteği daha küçük adımlara bölün."
@@ -1731,7 +1731,7 @@ msgstr ""
 msgid "Sunucunun PHP sınırı daha düşükse o geçerli olur."
 msgstr ""
 
-msgid "Anahtarlar, harcama sınırı ve raporlar Flux AI eklentisinden gelir. Model alanını boş bırakırsanız Flux AI varsayılanı kullanılır."
+msgid "Anahtarlar, harcama sınırı ve raporlar Flux AI & MCP eklentisinden gelir. Model alanını boş bırakırsanız Flux AI varsayılanı kullanılır."
 msgstr ""
 
 msgid "Flux AI ayarları"
@@ -1740,7 +1740,7 @@ msgstr ""
 msgid "Yapay zekâ kapalı: Flux AI'de anahtar ya da model eksik."
 msgstr ""
 
-msgid "Yapay zekâ kapalı: Flux AI eklentisi kurulu değil. Asistan ve hızlı işlemler Flux AI ile çalışır."
+msgid "Yapay zekâ kapalı: Flux AI & MCP eklentisi kurulu değil. Asistan ve hızlı işlemler Flux AI ile çalışır."
 msgstr ""
 
 msgid "Model (isteğe bağlı)"

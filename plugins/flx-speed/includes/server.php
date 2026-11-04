@@ -551,7 +551,7 @@ function flxp_option_owner( $name ) {
 		'flxg_'              => 'Flux Tasks',
 		'flxu_'              => 'FluxWP Panel',
 		'flxy_'              => 'Flux Backup',
-		'flxseo_'            => 'Flux SEO & MCP',
+		'flxseo_'            => 'Flux SEO',
 		'flxa_'              => 'Flux Admin',
 		'flxai_'             => 'Flux AI',
 		'flxl_'              => 'Flux Lang',

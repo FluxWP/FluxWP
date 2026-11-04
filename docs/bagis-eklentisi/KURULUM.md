@@ -232,4 +232,4 @@ Sayfalar varsayılan olarak `manage_options` yetkisi ister. Bu yetki `flxb_manag
 
 - **2.0.0:** WooCommerce'e geçiş (yukarıdaki her şey). Flux WooCommerce Bağış'tan veri taşınmaz (site canlı değil); eski `flxwb_*` adlarının çoğu `flxb_*` oldu (havale yöntemi `flxb_havale`, dekont REST `flxb-wc/v1/receipt`, dekont bağlantısı `?flxb_dekont=`). Aynı kalanlar: `/bagis-urunleri.xml`, blok adı `flx-wc-bagis/secenekler`, `[flx_bagis_secenekleri]`, `bekleyen-bagislar` uç noktası.
 - **1.2.4:** iyzico tek bildirim adresi (`flxb/v1/iyzico/notify`), WooCommerce bildirimlerinin iletilmesi.
-- **1.2.3:** SEO & MCP sistem düzeltmeleri. **1.2.2:** Sistem kontrolü filtreleri, 24 saat biçimi. **1.2.1:** Sistem kontrolü. **1.2:** iyzico. **1.1:** kalemler ve kurban modülü.
+- **1.2.3:** Flux SEO sistem düzeltmeleri. **1.2.2:** Sistem kontrolü filtreleri, 24 saat biçimi. **1.2.1:** Sistem kontrolü. **1.2:** iyzico. **1.1:** kalemler ve kurban modülü.

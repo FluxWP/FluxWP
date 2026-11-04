@@ -1,6 +1,6 @@
 <?php
 /**
- * Yapay zekâ araçları: Flux SEO & MCP (flxseo_mcp_tools) üzerinden kaydolur; Flux AI sohbeti bunları
+ * Yapay zekâ araçları: Flux AI & MCP (flxseo_mcp_tools) üzerinden kaydolur; Flux AI sohbeti bunları
  * kendiliğinden alır. Hepsi salt okunur; flxp_profile_url yalnız kendi sitesine GET atar.
  *
  * @package flx-speed
@@ -320,7 +320,7 @@ add_filter(
 	}
 );
 
-/** Flux SEO & MCP yoksa Flux AI sohbetine doğrudan. */
+/** Flux AI & MCP yoksa Flux AI sohbetine doğrudan. */
 add_filter(
 	'flxai_tools',
 	function ( $tools ) {

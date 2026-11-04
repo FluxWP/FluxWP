@@ -96,7 +96,7 @@ Full setup notes (Turkish): [KURULUM.md](../../docs/flx-speed/KURULUM.md) · API
 
 ## Use it with AI assistants (MCP)
 
-Flux Performance adds read-only tools to the site's MCP server (**Flux SEO & MCP**) and to the **Flux AI** chat:
+Flux Performance adds read-only tools to the site's MCP server (**Flux AI & MCP**) and to the **Flux AI** chat:
 
 | Tool | What it answers |
 |---|---|
@@ -105,7 +105,7 @@ Flux Performance adds read-only tools to the site's MCP server (**Flux SEO & MCP
 | `flxp_environment`, `flxp_server`, `flxp_database`, `flxp_autoload`, `flxp_cron` | Server, PHP, database, autoload size and scheduled events |
 | `flxp_profile_url` | Measure one page of this site with full detail |
 
-With Flux SEO & MCP, the `system_fix` tool can also run `flxp_expired_transients` (delete expired transients).
+With Flux AI & MCP, the `system_fix` tool can also run `flxp_expired_transients` (delete expired transients).
 
 Example prompts:
 - *"Why was the site slow in the last 24 hours?"*

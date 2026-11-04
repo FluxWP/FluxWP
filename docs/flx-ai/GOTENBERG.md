@@ -56,7 +56,7 @@ curl -s -o /dev/null -w '%{http_code}\n' https://gotenberg.example.org/        #
 **Sunucuda 80/443 başka bir şey tarafından kullanılıyorsa** (Evolution için nginx, Traefik ya da Caddy kuruluysa), compose dosyasından `caddy` servisini çıkarın. Gotenberg'e `ports: ["127.0.0.1:3000:3000"]` verin ve mevcut proxy'ye `gotenberg.example.org → 127.0.0.1:3000` kuralını ekleyin.
 
 ## 6. Siteye bağla
-Flux AI › Ayarlar › **Görseller**:
+Flux AI & MCP › Ayarlar › **Görseller**:
 - Sunucuda görsel çevirici: `https://gotenberg.example.org`
 - Gotenberg kullanıcı / şifre: `flx` ve `.env` dosyasındaki şifre
 - **Test et** (0.2.1): ✓ ve küçük bir önizleme görünmeli. "Kullanıcı adı veya şifre kabul edilmedi" çıkarsa şifreyi tekrar yapıştırın.

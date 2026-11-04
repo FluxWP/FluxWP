@@ -47,10 +47,10 @@ function flxai_chat( array $messages, array $opts = array() ) {
 			)
 		);
 		/* translators: %s: plugin name */
-		return new WP_Error( 'flxai_source_off', sprintf( __( '%s için yapay zekâ kapalı (Flux AI › Bağlı sistemler).', 'flx-ai' ), flxai_source_label( $source ) ) );
+		return new WP_Error( 'flxai_source_off', sprintf( __( '%s için yapay zekâ kapalı (Flux AI & MCP › Bağlı sistemler).', 'flx-ai' ), flxai_source_label( $source ) ) );
 	}
 	if ( '' === $model ) {
-		return new WP_Error( 'flxai_model', __( 'Yapay zekâ modeli seçilmemiş (Flux AI › Ayarlar).', 'flx-ai' ) );
+		return new WP_Error( 'flxai_model', __( 'Yapay zekâ modeli seçilmemiş (Flux AI & MCP › Ayarlar).', 'flx-ai' ) );
 	}
 	$ok = flxai_budget_check( $opts );
 	if ( is_wp_error( $ok ) ) {

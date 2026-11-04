@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.2.1
+- Metinler: MCP sunucusu artık Flux AI & MCP eklentisinde; "Flux SEO & MCP" ve "Flux AI ›" adresleri "Flux AI & MCP" oldu.
+
 ## 0.2.0
 - **Yapay zekâ ve MCP ile tam yönetim**: CRM'deki her şey Flux AI sohbetinden ve MCP'den (Claude, ChatGPT, Cursor…) okunur ve düzenlenir. 25 araç: kişi ekle/düzenle (alanlar, roller, izinler, sorumlu, arşiv), etiket, zaman tüneli kaydı, segment, ayarlar ve roller, skor, mükerrer bulma, kişi birleştirme, silme, 5000 kişiye kadar toplu işlem, Flux Mail ile tek kişiye mesaj (kanal izni şart). Önceden yalnız 4 okuma/not aracı vardı ve MCP'de hiç yoktu.
 - **Yetki ve onay**: araçlar kullanıcının kendi CRM yetkisiyle çalışır (`flxcrm_view`, `flxcrm_manage`; ayarlar yalnız yönetici). Değişiklik yapan araçlar Flux AI onay kartında bekler. Silme, birleştirme, toplu işlem ve gönderim MCP'de ilk çağrıda yalnız önizleme döner; 15 dakikalık tek kullanımlık onay anahtarıyla uygulanır. Toplu işlemde sohbet de önce kaç kişinin etkileneceğini gösterir.

@@ -1003,8 +1003,8 @@
 		));
 		inner.appendChild(h('section.flxg-card-box',
 			h('h2', t('Yapay zekâ')),
-			s.ai_ready ? h('p.flxg-muted', t('Anahtarlar, harcama sınırı ve raporlar Flux AI eklentisinden gelir. Model alanını boş bırakırsanız Flux AI varsayılanı kullanılır.'), ' ', h('a', { href: s.ai_hub_url }, t('Flux AI ayarları')))
-				: h('.flxg-notice.is-warning', Y.icon('alert', 16), h('span', s.ai_hub ? t('Yapay zekâ kapalı: Flux AI\'de anahtar ya da model eksik.') : t('Yapay zekâ kapalı: Flux AI eklentisi kurulu değil. Asistan ve hızlı işlemler Flux AI ile çalışır.')), ' ', h('a', { href: s.ai_hub_url }, s.ai_hub ? t('Flux AI ayarları') : t('Eklentiler'))),
+			s.ai_ready ? h('p.flxg-muted', t('Anahtarlar, harcama sınırı ve raporlar Flux AI & MCP eklentisinden gelir. Model alanını boş bırakırsanız Flux AI varsayılanı kullanılır.'), ' ', h('a', { href: s.ai_hub_url }, t('Flux AI ayarları')))
+				: h('.flxg-notice.is-warning', Y.icon('alert', 16), h('span', s.ai_hub ? t('Yapay zekâ kapalı: Flux AI\'de anahtar ya da model eksik.') : t('Yapay zekâ kapalı: Flux AI & MCP eklentisi kurulu değil. Asistan ve hızlı işlemler Flux AI ile çalışır.')), ' ', h('a', { href: s.ai_hub_url }, s.ai_hub ? t('Flux AI ayarları') : t('Eklentiler'))),
 			s.ai_hub ? h('label.flxg-field', h('span', t('Model (isteğe bağlı)')), modelSel) : null,
 			h('label.flxg-field', h('span', t('Yaratıcılık (temperature)')), h('input.flxg-input', { type: 'number', step: '0.1', min: 0, max: 1.5, value: s.ai_temperature, onchange: function (e) { vals.ai_temperature = +e.target.value; } })),
 			h('label.flxg-field', h('span', t('Kurum notları (asistan her istekte bunu bilir)')), h('textarea.flxg-input', { rows: 4, placeholder: t('Örn: Dernek İstanbul şubesi. Etkinlik görevlerine "Etkinlik" etiketi koy. Tarihleri gün.ay.yıl yaz.'), onchange: function (e) { vals.ai_instructions = e.target.value; } }, s.ai_instructions)),

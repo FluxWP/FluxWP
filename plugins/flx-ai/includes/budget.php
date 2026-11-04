@@ -117,7 +117,7 @@ function flxai_budget_check( array $opts = array() ) {
 			return new WP_Error(
 				'flxai_limit',
 				/* translators: 1: period (Günlük…), 2: limit, 3: reset date */
-				sprintf( __( '%1$s yapay zekâ harcama sınırı (%2$s) doldu. %3$s yenilenir; sınırı Flux AI › Ayarlar\'dan değiştirebilirsiniz.', 'flx-ai' ), $row['label'], flxai_usd( $row['limit'], 2 ), flx_date( $row['resets'], 'datetime' ) ),
+				sprintf( __( '%1$s yapay zekâ harcama sınırı (%2$s) doldu. %3$s yenilenir; sınırı Flux AI & MCP › Ayarlar\'dan değiştirebilirsiniz.', 'flx-ai' ), $row['label'], flxai_usd( $row['limit'], 2 ), flx_date( $row['resets'], 'datetime' ) ),
 				array( 'status' => 402, 'http' => 402, 'period' => $p )
 			);
 		}
@@ -187,7 +187,7 @@ add_action(
 			}
 			$cls = $row['over'] ? 'notice-error' : 'notice-warning';
 			printf(
-				'<div class="notice %1$s"><p><strong>Flux AI:</strong> %2$s <a href="%3$s">%4$s</a></p></div>',
+				'<div class="notice %1$s"><p><strong>Flux AI & MCP:</strong> %2$s <a href="%3$s">%4$s</a></p></div>',
 				esc_attr( $cls ),
 				esc_html(
 					sprintf(

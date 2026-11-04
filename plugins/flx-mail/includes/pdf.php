@@ -2,7 +2,7 @@
 /**
  * E-posta önizlemesini PDF'e çevirme.
  *
- * Sunucuda tarayıcı yok (Hostinger paylaşımlı); çevirici olarak Flux AI › Ayarlar › Görseller'deki
+ * Sunucuda tarayıcı yok (Hostinger paylaşımlı); çevirici olarak Flux AI & MCP › Ayarlar › Görseller'deki
  * Gotenberg kullanılır. Yoksa tarayıcının "PDF olarak kaydet" yazdırma penceresi açılır (admin.js).
  *
  * @package flx-mail
@@ -30,7 +30,7 @@ function flxi_render_pdf( $html ) {
 		return $pre;
 	}
 	if ( ! flxi_pdf_available() ) {
-		return new WP_Error( 'flxi_pdf_unavailable', __( 'Sunucuda PDF çevirici yok (Flux AI › Ayarlar › Görseller › Gotenberg).', 'flx-mail' ) );
+		return new WP_Error( 'flxi_pdf_unavailable', __( 'Sunucuda PDF çevirici yok (Flux AI & MCP › Ayarlar › Görseller › Gotenberg).', 'flx-mail' ) );
 	}
 	$url      = untrailingslashit( trim( (string) flxai_setting( 'render_url', '' ) ) ) . '/forms/chromium/convert/html';
 	$boundary = 'flxi' . wp_generate_password( 16, false );

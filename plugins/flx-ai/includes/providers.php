@@ -49,7 +49,7 @@ function flxai_strip_private( array $messages ) {
 function flxai_api_error( $provider, $code, $msg, $key ) {
 	$msg = str_replace( (string) $key, '***', (string) $msg );
 	if ( 'anthropic' === $provider && false !== stripos( $msg, 'anthropic-workspace-id' ) ) {
-		$msg .= ' ' . __( '→ Flux AI › Ayarlar › "Anthropic workspace ID" alanına console.anthropic.com › Settings › Workspaces\'teki kimliği (wrkspc_…) girin.', 'flx-ai' );
+		$msg .= ' ' . __( '→ Flux AI & MCP › Ayarlar › "Anthropic workspace ID" alanına console.anthropic.com › Settings › Workspaces\'teki kimliği (wrkspc_…) girin.', 'flx-ai' );
 	}
 	return new WP_Error(
 		'flxai_api',
@@ -157,7 +157,7 @@ function flxai_http_stream( $url, array $headers, $body, $timeout, callable $on_
 function flxai_openrouter_request( array $messages, array $opts, $model ) {
 	$key = flxai_setting( 'key_openrouter' );
 	if ( '' === $key ) {
-		return new WP_Error( 'flxai_key', __( 'OpenRouter API anahtarı girilmemiş (Flux AI › Ayarlar).', 'flx-ai' ) );
+		return new WP_Error( 'flxai_key', __( 'OpenRouter API anahtarı girilmemiş (Flux AI & MCP › Ayarlar).', 'flx-ai' ) );
 	}
 	$body = array(
 		'model'      => $model,
@@ -512,7 +512,7 @@ function flxai_anthropic_tools( array $tools ) {
 function flxai_anthropic_request( array $messages, array $opts, $model ) {
 	$key = flxai_setting( 'key_anthropic' );
 	if ( '' === $key ) {
-		return new WP_Error( 'flxai_key', __( 'Anthropic (Claude) API anahtarı girilmemiş (Flux AI › Ayarlar).', 'flx-ai' ) );
+		return new WP_Error( 'flxai_key', __( 'Anthropic (Claude) API anahtarı girilmemiş (Flux AI & MCP › Ayarlar).', 'flx-ai' ) );
 	}
 	$cache = (string) ( $opts['cache'] ?? '' );
 	if ( ! in_array( $cache, array( 'off', '5m', '1h' ), true ) ) {

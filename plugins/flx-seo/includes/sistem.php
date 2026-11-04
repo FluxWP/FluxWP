@@ -72,7 +72,7 @@ add_filter(
 			? $item( 'gsc', 'Search Console', 'ok', 'Google doğrulama kodu girili.' )
 			: $item( 'gsc', 'Search Console', 'info', 'Doğrulama kodu girilmemiş. DNS ile doğruladıysanız sorun yok.', flxseo_admin_url(), 'SEO ayarları' );
 
-		$checks[] = $item( 'mcp', 'Yapay zekâ (MCP)', function_exists( 'flxai_mcp_tools' ) ? 'info' : 'warning', function_exists( 'flxai_mcp_tools' ) ? ( flxseo_mcp_server_on() ? 'MCP sunucusu (Flux AI) açık; Flux SEO araçları kayıtlı.' : 'MCP sunucusu (Flux AI) kapalı; Flux SEO araçları yalnız Flux AI sohbetinde.' ) : 'Flux AI 0.7.0+ kurulu değil; Flux SEO yapay zekâ araçları çalışmıyor.', flxseo_mcp_admin_url(), 'Flux AI › MCP' );
+		$checks[] = $item( 'mcp', 'Yapay zekâ (MCP)', function_exists( 'flxai_mcp_tools' ) ? 'info' : 'warning', function_exists( 'flxai_mcp_tools' ) ? ( flxseo_mcp_server_on() ? 'MCP sunucusu (Flux AI) açık; Flux SEO araçları kayıtlı.' : 'MCP sunucusu (Flux AI) kapalı; Flux SEO araçları yalnız Flux AI sohbetinde.' ) : 'Flux AI 0.7.0+ kurulu değil; Flux SEO yapay zekâ araçları çalışmıyor.', flxseo_mcp_admin_url(), 'Flux AI & MCP › MCP' );
 
 		return $checks;
 	},

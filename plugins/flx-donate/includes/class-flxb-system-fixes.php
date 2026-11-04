@@ -1,6 +1,6 @@
 <?php
 /**
- * Safe fixes for Flux Donate's own settings, offered to the SEO & MCP plugin's `system_fix` tool
+ * Safe fixes for Flux Donate's own settings, offered to Flux SEO's `system_fix` tool
  * through the shared `flx_system_fixes` filter. Each fix names the System check rows it solves
  * (`checks`), validates its own input and never exposes keys or secrets.
  *

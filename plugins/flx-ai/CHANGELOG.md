@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.7.1
+- Eklentinin görünen adı **Flux AI & MCP** (eklenti listesi, sol menü, sistem kontrolü, metinlerdeki "Flux AI & MCP › …" adresleri). Klasör/slug (flx-ai), fonksiyonlar ve ayarlar aynı.
+
 ## 0.7.0
 - **Ortak MCP sunucusu Flux AI'ya taşındı** (önceden Flux SEO içindeydi). Yeni ekran **Flux AI › MCP**: sunucuyu aç/kapa, kullanıcıya özel anahtarlar (araçlarla sınırlanabilir), Claude Desktop / Claude Code / claude.ai bağlantı örnekleri ve son işlemler. Adres aynı: `/wp-json/flx-mcp/v1/mcp`.
 - Eklentiler araçlarını yeni `flx_mcp_tools` filtresiyle kaydeder; eski `flxseo_mcp_tools` aynen çalışır (CRM, Mail, Speed, Analytics, Social, Setup, Lang, TV Board, QR Menu değişmeden gelir). İstemler `flx_mcp_prompts`, kaynaklar `flx_mcp_resources` (eski `flxseo_mcp_resources` de), sunucu talimatları `flx_mcp_instructions`.

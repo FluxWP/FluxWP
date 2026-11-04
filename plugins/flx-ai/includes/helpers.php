@@ -45,7 +45,7 @@ function flxai_defaults() {
 		'media_video_model'   => 'seedance-2.5',
 		'media_days'          => 90,        // iş kayıtları (dosyalar silinmez)
 		'tools_off'           => array(),   // kapalı araçlar
-		'sources_off'         => array(),   // Flux AI › Bağlı sistemler'de kapatılan kaynaklar
+		'sources_off'         => array(),   // Flux AI & MCP › Bağlı sistemler'de kapatılan kaynaklar
 		'log_bodies'          => 1,         // istek/cevap içeriği (maskeli, kısaltılmış)
 		'log_body_days'       => 30,
 		'log_days'            => 365,

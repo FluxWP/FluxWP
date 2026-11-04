@@ -9,7 +9,7 @@ Ortak tarz: 256×256 SVG, yuvarlatılmış kare, eklentiye özel degrade ve beya
 | flx-wc-bagis.svg | Flux WooCommerce Bağış | çanta + kalp |
 | flx-forms.svg | Flux Forms | pano + onay |
 | flx-tasks.svg | Flux Tasks | yapılacaklar listesi |
-| flx-seo.svg | Flux SEO & MCP | büyüteç + grafik |
+| flx-seo.svg | Flux SEO | büyüteç + grafik |
 | flx-certificates.svg | Flux Certificates | madalya + yıldız |
 | flx-chat.svg | Flux Chat | kulaklık + mesaj |
 | flx-mail.svg | Flux Mail | zarf + mesaj |

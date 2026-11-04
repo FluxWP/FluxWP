@@ -114,6 +114,6 @@ function flxsm_system_checks() {
 	$ok = is_dir( $dir ) && wp_is_writable( $dir );
 	$add( 'uploads', __( 'Dosya klasörü', 'flx-social' ), $ok ? 'ok' : 'warning', $ok ? __( 'wp-content/uploads/flxsm yazılabilir (Instagram için JPEG kopyalar).', 'flx-social' ) : __( 'wp-content/uploads/flxsm yazılamıyor; PNG/WebP görseller Instagram’a gönderilemez.', 'flx-social' ) );
 
-	$add( 'ai', __( 'AI yazım yardımı', 'flx-social' ), flxsm_ai_ready() ? 'ok' : 'info', flxsm_ai_ready() ? __( 'Flux AI hazır: metin yazma, kısaltma, ağlara uyarlama.', 'flx-social' ) : __( 'Flux AI kurulu değil ya da anahtar yok; AI düğmeleri gizlenir, paylaşım çalışır.', 'flx-social' ), admin_url( 'admin.php?page=flx-ai-settings' ), 'Flux AI' );
+	$add( 'ai', __( 'AI yazım yardımı', 'flx-social' ), flxsm_ai_ready() ? 'ok' : 'info', flxsm_ai_ready() ? __( 'Flux AI hazır: metin yazma, kısaltma, ağlara uyarlama.', 'flx-social' ) : __( 'Flux AI & MCP kurulu değil ya da anahtar yok; AI düğmeleri gizlenir, paylaşım çalışır.', 'flx-social' ), admin_url( 'admin.php?page=flx-ai-settings' ), 'Flux AI' );
 	return $out;
 }

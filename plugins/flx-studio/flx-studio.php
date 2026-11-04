@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Studio
  * Description:       Yapay zekâ ile görsel ve video stüdyosu: üretim, referanslar ve kişiler, alan düzenleme, Geliştir ve Beyin fırtınası, klasörlü galeri. Üretim Flux AI üzerinden (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).
- * Version:           0.3.6
+ * Version:           0.3.7
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -20,7 +20,7 @@ if ( defined( 'FLXST_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXST_VERSION', '0.3.6' );
+define( 'FLXST_VERSION', '0.3.7' );
 define( 'FLXST_DB_VERSION', 1 );
 define( 'FLXST_FILE', __FILE__ );
 define( 'FLXST_DIR', plugin_dir_path( __FILE__ ) );

@@ -13,7 +13,7 @@ function flxi_site_domain() {
 	return preg_replace( '/^www\./i', '', strtolower( $host ) );
 }
 
-/** Flux SEO & MCP "Kurum ve sosyal" ayarları (varsa). */
+/** Flux SEO "Kurum ve sosyal" ayarları (varsa). */
 function flxi_seo_option( $key ) {
 	$o = get_option( 'flxseo', array() );
 	return is_array( $o ) && isset( $o[ $key ] ) ? (string) $o[ $key ] : '';

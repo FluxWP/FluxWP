@@ -45,7 +45,7 @@ msgstr ""
 msgid "Açık, 1 saat"
 msgstr ""
 
-msgid "Yapay zekâ için Flux AI eklentisi gerekli; kurup etkinleştirin ve Flux AI › Ayarlar'a anahtarı girin."
+msgid "Yapay zekâ için Flux AI & MCP eklentisi gerekli; kurup etkinleştirin ve Flux AI & MCP › Ayarlar'a anahtarı girin."
 msgstr ""
 
 msgid "Yapay zekâ modeli seçilmemiş."
@@ -57,10 +57,10 @@ msgstr ""
 msgid "Flux AI'de OpenRouter anahtarı girilmemiş."
 msgstr ""
 
-msgid "Model listesi için Flux AI eklentisi gerekli."
+msgid "Model listesi için Flux AI & MCP eklentisi gerekli."
 msgstr ""
 
-msgid "Flux Chat: yapay zekâ özellikleri (öneri, asistan, dekont okuma, sesli mesaj, özet) için Flux AI eklentisi gerekli. Kurup etkinleştirin; Çağrı Merkezi'nde kayıtlı anahtarlar oraya kendiliğinden aktarılır."
+msgid "Flux Chat: yapay zekâ özellikleri (öneri, asistan, dekont okuma, sesli mesaj, özet) için Flux AI & MCP eklentisi gerekli. Kurup etkinleştirin; Çağrı Merkezi'nde kayıtlı anahtarlar oraya kendiliğinden aktarılır."
 msgstr ""
 
 msgid "Flux Chat: %s anahtarı Flux AI'de farklı bir anahtar olarak zaten kayıtlı; Flux AI'deki kullanılıyor. Çağrı Merkezi'ndeki eski anahtar aktarılmadı ve artık kullanılmıyor."
@@ -3033,13 +3033,13 @@ msgstr ""
 msgid "Yapay zekâ bağlantısı"
 msgstr ""
 
-msgid "Anahtarlar, prompt önbelleği, harcama sınırı ve kullanım kayıtları Flux AI eklentisinden gelir; Çağrı Merkezi'nin tüm yapay zekâ istekleri oradan geçer. Model seçimleri burada kalır; alanlar boşsa Flux AI'de bu eklentiye seçilen model (ya da varsayılan) kullanılır."
+msgid "Anahtarlar, prompt önbelleği, harcama sınırı ve kullanım kayıtları Flux AI & MCP eklentisinden gelir; Çağrı Merkezi'nin tüm yapay zekâ istekleri oradan geçer. Model seçimleri burada kalır; alanlar boşsa Flux AI'de bu eklentiye seçilen model (ya da varsayılan) kullanılır."
 msgstr ""
 
 msgid "Flux AI ayarlarını aç"
 msgstr ""
 
-msgid "Yapay zekâ için Flux AI eklentisi gerekli. Kurup etkinleştirin ve Flux AI › Ayarlar'a OpenRouter ve/veya Anthropic anahtarını girin. O zamana kadar öneri, asistan, dekont okuma, sesli mesaj ve özet kapalıdır."
+msgid "Yapay zekâ için Flux AI & MCP eklentisi gerekli. Kurup etkinleştirin ve Flux AI & MCP › Ayarlar'a OpenRouter ve/veya Anthropic anahtarını girin. O zamana kadar öneri, asistan, dekont okuma, sesli mesaj ve özet kapalıdır."
 msgstr ""
 
 msgid "Yaratıcılık (0–1)"
@@ -3282,10 +3282,10 @@ msgstr ""
 msgid "Gerekince asistan görsel (tablo, rapor, şema) çizsin; WhatsApp'a resim olarak gider, metin ayrıca gider"
 msgstr ""
 
-msgid "Flux AI görsel çeviricisi kullanılır (Flux AI › Ayarlar › Görseller)."
+msgid "Flux AI görsel çeviricisi kullanılır (Flux AI & MCP › Ayarlar › Görseller)."
 msgstr ""
 
-msgid "Sunucuda görsel çevirici yok: Flux AI › Ayarlar › Görseller'e Gotenberg adresi girin ya da Imagick (SVG) kurulsun. O zamana kadar asistan görsel çizmez."
+msgid "Sunucuda görsel çevirici yok: Flux AI & MCP › Ayarlar › Görseller'e Gotenberg adresi girin ya da Imagick (SVG) kurulsun. O zamana kadar asistan görsel çizmez."
 msgstr ""
 
 msgid "Flux AI 0.2.0 ya da sonrası kurulunca çalışır."
@@ -4608,7 +4608,7 @@ msgstr ""
 msgid "Flux Donate etkin değil; bağış kaydı, dekont eşleştirme ve bağış asistanı kapalı."
 msgstr ""
 
-msgid "Flux AI eklentisi kurulu değil; yapay zekâ özellikleri (öneri, asistan, dekont okuma, sesli mesaj, özet) kapalı. Flux AI'yi kurup anahtarı oraya girin."
+msgid "Flux AI & MCP eklentisi kurulu değil; yapay zekâ özellikleri (öneri, asistan, dekont okuma, sesli mesaj, özet) kapalı. Flux AI'yi kurup anahtarı oraya girin."
 msgstr ""
 
 msgid "Flux AI'de anahtar girilmemiş; mesaj önerisi ve asistan kapalı."
