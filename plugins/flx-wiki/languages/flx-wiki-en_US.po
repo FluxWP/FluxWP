@@ -158,8 +158,8 @@ msgstr "Lowercase letters, digits and hyphens. Old addresses stop working when y
 msgid "Sayfa düğmeleri"
 msgstr "Page buttons"
 
-msgid "\"AI ile aç\" (ChatGPT, Claude, Perplexity) bağlantıları"
-msgstr "\"Open in AI\" links (ChatGPT, Claude, Perplexity)"
+msgid "\"AI'a sor\" menüsünde ChatGPT, Claude, Google AI, Perplexity bağlantıları"
+msgstr "ChatGPT, Claude, Google AI and Perplexity links in the \"Ask AI\" menu"
 
 msgid "Yetkililere \"Düzenle\" düğmesi"
 msgstr "\"Edit\" button for editors"
@@ -470,14 +470,14 @@ msgstr "MCP: agents read the wiki directly with the flxwk_search, flxwk_get_page
 msgid "Arama"
 msgstr "Search"
 
-msgid "Güncellendi: %s"
-msgstr "Updated %s"
-
 msgid "Bu sayfada"
 msgstr "On this page"
 
 msgid "Alt sayfalar"
 msgstr "Subpages"
+
+msgid "Güncellendi: %s"
+msgstr "Updated %s"
 
 msgid "Önceki ve sonraki sayfa"
 msgstr "Previous and next page"
@@ -496,12 +496,6 @@ msgstr "Read the document at %s, then answer my questions about it."
 
 msgid "Markdown'u kopyala"
 msgstr "Copy Markdown"
-
-msgid "AI ile aç"
-msgstr "Open in AI"
-
-msgid "%s ile aç"
-msgstr "Open in %s"
 
 msgid "Düzenle"
 msgstr "Edit"

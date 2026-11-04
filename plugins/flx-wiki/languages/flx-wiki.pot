@@ -156,7 +156,7 @@ msgstr ""
 msgid "Sayfa düğmeleri"
 msgstr ""
 
-msgid "\"AI ile aç\" (ChatGPT, Claude, Perplexity) bağlantıları"
+msgid "\"AI'a sor\" menüsünde ChatGPT, Claude, Google AI, Perplexity bağlantıları"
 msgstr ""
 
 msgid "Yetkililere \"Düzenle\" düğmesi"
@@ -468,13 +468,13 @@ msgstr ""
 msgid "Arama"
 msgstr ""
 
-msgid "Güncellendi: %s"
-msgstr ""
-
 msgid "Bu sayfada"
 msgstr ""
 
 msgid "Alt sayfalar"
+msgstr ""
+
+msgid "Güncellendi: %s"
 msgstr ""
 
 msgid "Önceki ve sonraki sayfa"
@@ -493,12 +493,6 @@ msgid "%s adresindeki belgeyi oku; sonra bu konuda sorularımı yanıtla."
 msgstr ""
 
 msgid "Markdown'u kopyala"
-msgstr ""
-
-msgid "AI ile aç"
-msgstr ""
-
-msgid "%s ile aç"
 msgstr ""
 
 msgid "Düzenle"

@@ -8,7 +8,7 @@ ayrıntılı anlık arama (Ctrl/⌘ + K) ve SEO uyumlu çıktı. Hem insanlar he
 - **Arama.** Başlık, ara başlık ve metne göre puanlanır; Türkçe karakterler eşit sayılır (ı = i, ş = s), basit ek
   temizliği yapılır, sonuç en iyi eşleşen başlığa götürür. JS'siz de çalışır: `/wiki/?q=`. REST: `GET /wp-json/flx-wiki/v1/search?q=`.
 - **LLM dostu.** Her sayfa `/wiki/<yol>.md` adresinde Markdown (ya da `Accept: text/markdown`); ayrıca `/wiki/llms.txt`,
-  `/wiki/llms-full.txt`, `/wiki/index.md`. Her sayfada "Markdown'u kopyala" ve "ChatGPT / Claude / Perplexity ile aç".
+  `/wiki/llms-full.txt`, `/wiki/index.md`. Her sayfada "Markdown'u kopyala" ve "AI'a sor" (ChatGPT / Claude / Google AI / Perplexity).
   Flux SEO'nun `/llms.txt` dosyasına Wiki bölümü eklenir.
 - **AI destekli.** Flux AI varsa "Wiki'ye sor" soruları yalnız wiki sayfalarından yanıtlar ve kaynakları listeler
   (varsayılan: giriş yapmış kullanıcılar, saatlik sınır). Flux AI MCP sunucusunda araçlar: `flxwk_search`,

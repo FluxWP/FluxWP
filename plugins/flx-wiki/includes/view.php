@@ -359,13 +359,14 @@ function flxwk_toc_list( $toc ) {
 	echo '</ul>';
 }
 
-/** Kopyala / Markdown / AI ile aç / Wiki'ye sor / Düzenle. */
+/** Markdown / AI'a sor (Wiki'ye sor + dış servisler) / Düzenle. */
 function flxwk_view_actions( $post, $mdurl ) {
 	/* translators: %s: sayfanın Markdown adresi */
 	$prompt = sprintf( __( '%s adresindeki belgeyi oku; sonra bu konuda sorularımı yanıtla.', 'flx-wiki' ), $mdurl );
 	$ai     = array(
 		'ChatGPT'    => 'https://chatgpt.com/?hints=search&q=' . rawurlencode( $prompt ),
 		'Claude'     => 'https://claude.ai/new?q=' . rawurlencode( $prompt ),
+		'Google AI'  => 'https://www.google.com/search?udm=50&q=' . rawurlencode( $prompt ),
 		'Perplexity' => 'https://www.perplexity.ai/search?q=' . rawurlencode( $prompt ),
 	);
 	$ai     = (array) apply_filters( 'flxwk_ai_links', $ai, $post, $mdurl );
@@ -385,17 +386,14 @@ function flxwk_view_actions( $post, $mdurl ) {
 		<?php endif; ?>
 		<?php if ( ( flxwk_opt( 'ai_links' ) && $ai ) || flxwk_can_ask() ) : ?>
 			<details class="flxwk-menu">
-				<summary class="flxwk-btn"><?php echo $ico( 'spark' ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <span><?php esc_html_e( 'AI ile aç', 'flx-wiki' ); ?></span> <?php echo $ico( 'down' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></summary>
+				<summary class="flxwk-btn"><?php echo $ico( 'spark' ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <span><?php esc_html_e( 'AI\'a sor', 'flx-wiki' ); ?></span> <?php echo $ico( 'down' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></summary>
 				<div class="flxwk-menu__pop">
 					<?php if ( flxwk_can_ask() ) : ?>
 						<button type="button" class="is-accent" data-flxwk-ask><?php echo $ico( 'spark' ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <span><?php esc_html_e( 'Wiki\'ye sor', 'flx-wiki' ); ?></span></button>
 					<?php endif; ?>
 					<?php foreach ( flxwk_opt( 'ai_links' ) ? $ai : array() as $label => $url ) : ?>
 						<a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener nofollow"><?php echo $ico( 'ext' ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <span>
-							<?php
-							/* translators: %s: AI servisinin adı */
-							echo esc_html( sprintf( __( '%s ile aç', 'flx-wiki' ), $label ) );
-							?>
+							<?php echo esc_html( $label ); ?>
 						</span></a>
 					<?php endforeach; ?>
 				</div>

@@ -58,7 +58,7 @@ Türler: `NOTE`, `TIP`, `IMPORTANT`, `WARNING`, `CAUTION`.
 | `/wiki/llms-full.txt` | Tüm wiki tek dosyada |
 | `/wiki/index.md` | Dizin, Markdown |
 
-Sayfadaki **Markdown'u kopyala** düğmesi sayfayı panoya alır; **AI ile aç** menüsü ChatGPT, Claude ya da Perplexity'de sayfayı okutan bir sohbet başlatır. `Accept: text/markdown` başlığıyla istek atan ajanlara sayfa adresi de doğrudan Markdown döner.
+Sayfadaki **Markdown'u kopyala** düğmesi sayfayı panoya alır; **AI'a sor** menüsü ChatGPT, Claude, Google AI ya da Perplexity'de sayfayı okutan bir sohbet başlatır. `Accept: text/markdown` başlığıyla istek atan ajanlara sayfa adresi de doğrudan Markdown döner.
 
 ## MCP
 

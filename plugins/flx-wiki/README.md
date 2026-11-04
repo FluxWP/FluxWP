@@ -8,8 +8,8 @@ detailed instant search (Ctrl/⌘ + K) and SEO-friendly output. Built for humans
 - **Search.** Ranked by title, headings and text, Turkish characters folded (ı = i, ş = s), light Turkish stemming,
   results jump to the best matching heading. Works without JS at `/wiki/?q=`. REST: `GET /wp-json/flx-wiki/v1/search?q=`.
 - **LLM friendly.** Every page is available as Markdown at `/wiki/<path>.md` (also via `Accept: text/markdown`),
-  plus `/wiki/llms.txt`, `/wiki/llms-full.txt` and `/wiki/index.md`. "Copy Markdown" and "Open in ChatGPT / Claude /
-  Perplexity" buttons on every page. Adds a Wiki section to Flux SEO's `/llms.txt`.
+  plus `/wiki/llms.txt`, `/wiki/llms-full.txt` and `/wiki/index.md`. "Copy Markdown" and "Ask AI" (ChatGPT / Claude / Google AI /
+  Perplexity) menus on every page. Adds a Wiki section to Flux SEO's `/llms.txt`.
 - **AI powered.** With Flux AI, "Ask the wiki" answers questions only from wiki pages and lists its sources
   (logged-in users by default, hourly limit). MCP tools on the Flux AI server: `flxwk_search`, `flxwk_get_page`,
   `flxwk_list_pages`, `flxwk_save_page`; resources `flxwiki://llms.txt`, `flxwiki://llms-full.txt`; prompt `flxwk_build_plugin`.

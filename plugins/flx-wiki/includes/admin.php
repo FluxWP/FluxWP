@@ -250,7 +250,7 @@ final class FLXWK_Admin {
 						<tr>
 							<th scope="row"><?php esc_html_e( 'Sayfa düğmeleri', 'flx-wiki' ); ?></th>
 							<td>
-								<label><input type="checkbox" name="ai_links" value="1" <?php checked( $s['ai_links'] ); ?>> <?php esc_html_e( '"AI ile aç" (ChatGPT, Claude, Perplexity) bağlantıları', 'flx-wiki' ); ?></label><br>
+								<label><input type="checkbox" name="ai_links" value="1" <?php checked( $s['ai_links'] ); ?>> <?php esc_html_e( '"AI\'a sor" menüsünde ChatGPT, Claude, Google AI, Perplexity bağlantıları', 'flx-wiki' ); ?></label><br>
 								<label><input type="checkbox" name="edit_link" value="1" <?php checked( $s['edit_link'] ); ?>> <?php esc_html_e( 'Yetkililere "Düzenle" düğmesi', 'flx-wiki' ); ?></label>
 							</td>
 						</tr>

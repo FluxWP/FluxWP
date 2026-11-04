@@ -56,7 +56,7 @@ Sayfa adresine `Accept: text/markdown` (ve `text/html` olmadan) istek gelirse Ma
 |---|---|
 | `flxwk_base` | Adres kökü (varsayılan Ayarlar › Genel › Adres, `wiki`) |
 | `flxwk_can_ask` | `( bool )` Wiki'ye sor bu ziyaretçiye açık mı |
-| `flxwk_ai_links` | `( $links, $post, $md_url )` "AI ile aç" menüsü (`etiket => adres`) |
+| `flxwk_ai_links` | `( $links, $post, $md_url )` "AI'a sor" menüsündeki dış servisler (`etiket => adres`) |
 | `flxwk_page_markdown` | `( $text, $post )` .md çıktısı |
 | `flxwk_index_markdown` | `( $text )` llms.txt |
 | `flxwk_stopwords` | Aramada atılan soru kelimeleri (katlanmış) |
