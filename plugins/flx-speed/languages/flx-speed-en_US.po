@@ -37,11 +37,26 @@ msgstr "All records deleted."
 msgid "Özel giriş adresi kapatıldı; giriş yeniden wp-login.php üzerinden."
 msgstr "Custom login URL turned off; login is back on wp-login.php."
 
-msgid "Giriş adresi değişti: %s — yer imlerine ekleyin. wp-login.php artık açılmaz."
-msgstr "Login URL changed: %s — bookmark it. wp-login.php no longer opens."
-
 msgid "Temizlik tamam: %s öğe."
 msgstr "Cleanup done: %s items."
+
+msgid "Giriş adresi değişti."
+msgstr "Login URL changed."
+
+msgid "Yeni adres:"
+msgstr "New address:"
+
+msgid "Yeni adresin çalıştığını görmeniz için oturumunuz kapatılıyor; %s saniye içinde yeni giriş sayfasına yönlendirileceksiniz. Giriş yapınca bu ekrana dönersiniz."
+msgstr "You are being logged out so you can see the new address work; you will be redirected to the new login page in %s seconds. After logging in you come back to this screen."
+
+msgid "Yönlendirme durduruldu. Oturumunuz açık; yeni adres bir sonraki girişte kullanılır."
+msgstr "Redirect stopped. You are still logged in; the new address is used the next time you log in."
+
+msgid "Şimdi git"
+msgstr "Go now"
+
+msgid "Oturumda kal"
+msgstr "Stay logged in"
 
 msgid "Bu sayfayı görme yetkiniz yok."
 msgstr "You are not allowed to view this page."
@@ -228,9 +243,6 @@ msgstr "Not set (Settings)"
 
 msgid "Son ölçüm"
 msgstr "Last measured"
-
-msgid "%s önce"
-msgstr "%s ago"
 
 msgid "yenileniyor"
 msgstr "refreshing"
@@ -502,9 +514,6 @@ msgstr "Recurrence"
 msgid "Argüman"
 msgstr "Args"
 
-msgid "%s sonra"
-msgstr "in %s"
-
 msgid "Gecikti: %s çalışmalıydı"
 msgstr "Overdue: due %s"
 
@@ -723,6 +732,9 @@ msgstr "WordPress already uses this address; pick another name."
 
 msgid "Bu adreste zaten bir sayfa ya da yazı var; başka bir ad seçin."
 msgstr "A page or post already uses this address; pick another name."
+
+msgid "Giriş adresi değişti. Bu sayfayı yer imlerine ekleyin ve yeniden giriş yapın."
+msgstr "The login URL has changed. Bookmark this page and log in again."
 
 msgid "Performans özeti"
 msgstr "Performance summary"

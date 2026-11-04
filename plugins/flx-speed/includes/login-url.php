@@ -32,6 +32,7 @@ class FLXP_Login_URL {
 			add_filter( $f, array( __CLASS__, 'filter_url' ), 100 );
 		}
 		add_filter( 'wp_speculation_rules_href_exclude_paths', array( __CLASS__, 'speculation_exclude' ) );
+		add_filter( 'wp_login_errors', array( __CLASS__, 'moved_message' ) );
 		// /login, /admin, /dashboard kısayolları gerçek adresi ele vermesin.
 		remove_action( 'template_redirect', 'wp_redirect_admin_locations', 1000 );
 	}
@@ -253,6 +254,14 @@ class FLXP_Login_URL {
 			$new .= ( false === strpos( $new, '?' ) ? '?' : '&' ) . $parts[1];
 		}
 		return $new;
+	}
+
+	/** Adres değişikliğinden sonra açılan giriş ekranında bilgi. */
+	public static function moved_message( $errors ) {
+		if ( self::$is_login && isset( $_GET['flxp_moved'] ) && is_wp_error( $errors ) ) { // phpcs:ignore
+			$errors->add( 'flxp_moved', __( 'Giriş adresi değişti. Bu sayfayı yer imlerine ekleyin ve yeniden giriş yapın.', 'flx-speed' ), 'message' );
+		}
+		return $errors;
 	}
 
 	/** Tarayıcı ön yüklemesi giriş adresini çağırmasın. */

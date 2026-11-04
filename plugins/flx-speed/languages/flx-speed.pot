@@ -36,10 +36,25 @@ msgstr ""
 msgid "Özel giriş adresi kapatıldı; giriş yeniden wp-login.php üzerinden."
 msgstr ""
 
-msgid "Giriş adresi değişti: %s — yer imlerine ekleyin. wp-login.php artık açılmaz."
+msgid "Temizlik tamam: %s öğe."
 msgstr ""
 
-msgid "Temizlik tamam: %s öğe."
+msgid "Giriş adresi değişti."
+msgstr ""
+
+msgid "Yeni adres:"
+msgstr ""
+
+msgid "Yeni adresin çalıştığını görmeniz için oturumunuz kapatılıyor; %s saniye içinde yeni giriş sayfasına yönlendirileceksiniz. Giriş yapınca bu ekrana dönersiniz."
+msgstr ""
+
+msgid "Yönlendirme durduruldu. Oturumunuz açık; yeni adres bir sonraki girişte kullanılır."
+msgstr ""
+
+msgid "Şimdi git"
+msgstr ""
+
+msgid "Oturumda kal"
 msgstr ""
 
 msgid "Bu sayfayı görme yetkiniz yok."
@@ -226,9 +241,6 @@ msgid "Girilmedi (Ayarlar)"
 msgstr ""
 
 msgid "Son ölçüm"
-msgstr ""
-
-msgid "%s önce"
 msgstr ""
 
 msgid "yenileniyor"
@@ -501,9 +513,6 @@ msgstr ""
 msgid "Argüman"
 msgstr ""
 
-msgid "%s sonra"
-msgstr ""
-
 msgid "Gecikti: %s çalışmalıydı"
 msgstr ""
 
@@ -721,6 +730,9 @@ msgid "Bu adres WordPress tarafından kullanılıyor; başka bir ad seçin."
 msgstr ""
 
 msgid "Bu adreste zaten bir sayfa ya da yazı var; başka bir ad seçin."
+msgstr ""
+
+msgid "Giriş adresi değişti. Bu sayfayı yer imlerine ekleyin ve yeniden giriş yapın."
 msgstr ""
 
 msgid "Performans özeti"

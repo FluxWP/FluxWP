@@ -105,3 +105,6 @@
 :is(body.flx-dark, html.flxa-dark) .flxp-wrap .flxp-slug-pre { background: transparent; border-color: var(--flxa-border, #333a36); }
 :is(body.flx-dark, html.flxa-dark) .flxp-wrap .flxp-slug input { background: transparent; color: inherit; }
 :is(body.flx-dark, html.flxa-dark) .flxp-wrap .flxp-login-now code { color: inherit; }
+.flxp-wrap .flxp-moved { border-left-width: 4px; padding: 6px 12px; }
+.flxp-wrap .flxp-moved code { font-weight: 600; }
+.flxp-wrap .flxp-moved [data-flxp-sec] { font-size: 1.15em; }

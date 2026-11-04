@@ -1,0 +1,406 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Flux reCAPTCHA\n"
+
+msgid "Ayarlar"
+msgstr ""
+
+msgid "Formları spam ve bot saldırılarına karşı korur"
+msgstr ""
+
+msgid "reCAPTCHA"
+msgstr ""
+
+msgid "Önce site anahtarını yazın."
+msgstr ""
+
+msgid "Gizli anahtarı yazın."
+msgstr ""
+
+msgid "Google reCAPTCHA yükleniyor…"
+msgstr ""
+
+msgid "Kutucuğu işaretleyin; işaretlenince test kendiliğinden sürer."
+msgstr ""
+
+msgid "Google ile doğrulanıyor…"
+msgstr ""
+
+msgid "Google reCAPTCHA yüklenemedi. Site anahtarını ve alan adını kontrol edin; Google erişilemiyorsa \"recaptcha.net\" seçeneğini deneyin."
+msgstr ""
+
+msgid "Site anahtarı değişti; testi yeni anahtarla yapmak için sayfa yenileniyor…"
+msgstr ""
+
+msgid "Bir şey ters gitti. Tekrar deneyin."
+msgstr ""
+
+msgid "Anahtarlar kaydedildi; koruma açık."
+msgstr ""
+
+msgid "Formlar henüz korunmuyor. Google reCAPTCHA anahtarlarını girip test edin."
+msgstr ""
+
+msgid "Ayarlara git"
+msgstr ""
+
+msgid "Bu işlem için yetkiniz yok."
+msgstr ""
+
+msgid "Giriş, kayıt, yorum, ödeme, bağış ve form gönderimlerini botlara karşı Google reCAPTCHA ile korur. Hangi formun korunacağını aşağıdan seçin."
+msgstr ""
+
+msgid "Koruma kurtarma sabitiyle kapalı."
+msgstr ""
+
+msgid "wp-config.php dosyasındaki FLXRC_DISABLE satırını silince koruma yeniden çalışır."
+msgstr ""
+
+msgid "Koruma henüz çalışmıyor."
+msgstr ""
+
+msgid "Anahtarları girip \"Test et\"e basın. Test geçmeden hiçbir forma doğrulama eklenmez; böylece yanlış anahtarla giriş ekranına kilitlenmezsiniz."
+msgstr ""
+
+msgid "Google gizli anahtarı reddetti"
+msgstr ""
+
+msgid "Google'a ulaşılamadı"
+msgstr ""
+
+msgid "O sırada gönderimler doğrulamasız geçirildi."
+msgstr ""
+
+msgid "O sırada gönderimler engellendi."
+msgstr ""
+
+msgid "Kapalı"
+msgstr ""
+
+msgid "Açık"
+msgstr ""
+
+msgid "v3 · görünmez"
+msgstr ""
+
+msgid "v2 · kutucuk"
+msgstr ""
+
+msgid "Test bekliyor"
+msgstr ""
+
+msgid "Anahtarları test edin"
+msgstr ""
+
+msgid "Koruma"
+msgstr ""
+
+msgid "Korunan form"
+msgstr ""
+
+msgid "%1$s / %2$s"
+msgstr ""
+
+msgid "kurulu eklentilerdeki formlar"
+msgstr ""
+
+msgid "Geçen gönderim"
+msgstr ""
+
+msgid "son 30 gün"
+msgstr ""
+
+msgid "Engellenen"
+msgstr ""
+
+msgid "Anahtarlar"
+msgstr ""
+
+msgid "Test edildi"
+msgstr ""
+
+msgid "Test edilmedi"
+msgstr ""
+
+msgid "Anahtarları %s alın: reCAPTCHA türünü seçin ve alan adınızı ekleyin. Site anahtarı ile gizli anahtar aynı kayda ait olmalı."
+msgstr ""
+
+msgid "Google reCAPTCHA konsolundan"
+msgstr ""
+
+msgid "reCAPTCHA türü"
+msgstr ""
+
+msgid "v3 · Görünmez"
+msgstr ""
+
+msgid "Ziyaretçiye hiçbir şey sorulmaz; Google 0–1 arası puan verir. Önerilen."
+msgstr ""
+
+msgid "v2 · \"Ben robot değilim\""
+msgstr ""
+
+msgid "Formda kutucuk görünür; şüpheli ziyaretçiye resim sorulur."
+msgstr ""
+
+msgid "Site anahtarı"
+msgstr ""
+
+msgid "Gizli anahtar"
+msgstr ""
+
+msgid "Kayıtlı (%s). Değiştirmek için yazın."
+msgstr ""
+
+msgid "Gizli anahtarı yapıştırın"
+msgstr ""
+
+msgid "Bir kez girilir, şifreli saklanır ve bir daha gösterilmez."
+msgstr ""
+
+msgid "Anahtarlardan biri wp-config.php sabitinden geliyor (FLXRC_SITE_KEY / FLXRC_SECRET_KEY); paneldeki değer kullanılmaz."
+msgstr ""
+
+msgid "Test et ve kaydet"
+msgstr ""
+
+msgid "Google'dan gerçek bir doğrulama alır; geçerse anahtarlar kaydedilir ve koruma açılır."
+msgstr ""
+
+msgid "Son test: %1$s · %2$s"
+msgstr ""
+
+msgid "Korunan formlar"
+msgstr ""
+
+msgid "Son 30 gün: geçen / engellenen"
+msgstr ""
+
+msgid "kurulu değil"
+msgstr ""
+
+msgid "Flux Forms'ta formun kendi reCAPTCHA seçeneği açıksa kapatın; iki doğrulama aynı sayfada çakışır."
+msgstr ""
+
+msgid "Bot eşiği (v3)"
+msgstr ""
+
+msgid "Puanı bunun altında kalan gönderim engellenir. 0,5 çoğu site için uygun; gerçek kişiler takılıyorsa düşürün."
+msgstr ""
+
+msgid "Kutucuk görünümü (v2)"
+msgstr ""
+
+msgid "Otomatik (sitenin koyu moduna uyar)"
+msgstr ""
+
+msgid "Açık tema"
+msgstr ""
+
+msgid "Koyu tema"
+msgstr ""
+
+msgid "Kutucuk boyutu (v2)"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Küçük"
+msgstr ""
+
+msgid "Google adresi"
+msgstr ""
+
+msgid "google.com'un engellendiği ağlarda recaptcha.net kullanın."
+msgstr ""
+
+msgid "Giriş yapmış kullanıcılara sorma"
+msgstr ""
+
+msgid "Yorum, ödeme, bağış ve formlarda üyelere doğrulama yapılmaz. Giriş ve kayıt formları her zaman korunur."
+msgstr ""
+
+msgid "Google'a ulaşılamazsa gönderimi geçir"
+msgstr ""
+
+msgid "Önerilen. Kapalıysa Google kesintisinde hiçbir korunan form gönderilemez (yönetici girişi dahil)."
+msgstr ""
+
+msgid "v3 rozetini gizle"
+msgstr ""
+
+msgid "Sağ alttaki reCAPTCHA rozeti gizlenir; Google'ın istediği bilgi metni korunan formların altına eklenir."
+msgstr ""
+
+msgid "Doğrulama yapılmayan IP adresleri"
+msgstr ""
+
+msgid "Satır başına bir IP ya da aralık (CIDR). Ofis, test ve izleme servisleri için. Şu anki IP adresiniz: %s"
+msgstr ""
+
+msgid "Giriş ekranına kilitlenirseniz wp-config.php dosyasına define( 'FLXRC_DISABLE', true ); satırını ekleyin; koruma tamamen kapanır."
+msgstr ""
+
+msgid "Ayarları kaydet"
+msgstr ""
+
+msgid "Kaydedildi."
+msgstr ""
+
+msgid "Kaydedildi. Anahtarlar değiştiği için koruma test edilene kadar kapalı."
+msgstr ""
+
+msgid "Site anahtarı ve gizli anahtar gerekli."
+msgstr ""
+
+msgid "Bu anahtarlar v2 (kutucuk) anahtarı. Türü v2 seçin ya da Google konsolunda v3 anahtarı oluşturun."
+msgstr ""
+
+msgid "Bu anahtarlar v3 anahtarı. Türü v3 seçin ya da Google konsolunda v2 anahtarı oluşturun."
+msgstr ""
+
+msgid "Bu formu göndermek için tarayıcınızda JavaScript açık olmalı."
+msgstr ""
+
+msgid "Bu form reCAPTCHA ile korunur; Google %1$s ve %2$s geçerlidir."
+msgstr ""
+
+msgid "Gizlilik Politikası"
+msgstr ""
+
+msgid "Hizmet Şartları"
+msgstr ""
+
+msgid "Lütfen \"Ben robot değilim\" kutusunu işaretleyin."
+msgstr ""
+
+msgid "Güvenlik doğrulaması yüklenemedi. Sayfayı yenileyip tekrar deneyin."
+msgstr ""
+
+msgid "Güvenlik doğrulaması geçilemedi. Sayfayı yenileyip tekrar deneyin."
+msgstr ""
+
+msgid "Google'a ulaşılamadı: %s"
+msgstr ""
+
+msgid "Google beklenmeyen bir yanıt döndü."
+msgstr ""
+
+msgid "Gizli anahtar geçersiz. Google reCAPTCHA konsolundaki \"Gizli anahtar\"ı kopyalayın."
+msgstr ""
+
+msgid "Site anahtarı ile gizli anahtar aynı kayda ait değil ya da reCAPTCHA türü (v2/v3) yanlış seçildi."
+msgstr ""
+
+msgid "Doğrulanamadı (%s)."
+msgstr ""
+
+msgid "Anahtarlar çalışıyor. Puan: %1$s, alan adı: %2$s"
+msgstr ""
+
+msgid "Anahtarlar çalışıyor. Alan adı: %s"
+msgstr ""
+
+msgid "Giriş"
+msgstr ""
+
+msgid "wp-login.php ve Flux Speed özel giriş adresi (örn. /fluxadmin)"
+msgstr ""
+
+msgid "Kayıt"
+msgstr ""
+
+msgid "WordPress kayıt formu"
+msgstr ""
+
+msgid "WordPress kayıt formu (sitede kayıt şu an kapalı)"
+msgstr ""
+
+msgid "Şifre sıfırlama"
+msgstr ""
+
+msgid "Şifremi unuttum formu: WordPress ve WooCommerce Hesabım"
+msgstr ""
+
+msgid "Yorumlar"
+msgstr ""
+
+msgid "Yazı ve sayfa yorum formu"
+msgstr ""
+
+msgid "Hesap girişi"
+msgstr ""
+
+msgid "WooCommerce Hesabım giriş formu"
+msgstr ""
+
+msgid "Hesap kaydı"
+msgstr ""
+
+msgid "WooCommerce Hesabım kayıt formu"
+msgstr ""
+
+msgid "Ödeme"
+msgstr ""
+
+msgid "Ödeme sayfası (klasik ve blok): mağaza siparişleri, Flux Donate ve Flux Commerce ödemeleri"
+msgstr ""
+
+msgid "Bağış formu"
+msgstr ""
+
+msgid "Flux Donate \"Bağış seçenekleri\" formu (sepete ekleme)"
+msgstr ""
+
+msgid "Formlar"
+msgstr ""
+
+msgid "Flux Forms gönderimleri (iletişim, başvuru, form ile giriş/kayıt)"
+msgstr ""
+
+msgid "Diğer eklentiler"
+msgstr ""
+
+msgid "Hata"
+msgstr ""
+
+msgid "Yorum gönderilemedi"
+msgstr ""
+
+msgid "Koruma wp-config.php'deki FLXRC_DISABLE sabitiyle kapalı. Sorun çözüldüyse satırı silin."
+msgstr ""
+
+msgid "Google reCAPTCHA anahtarları girilmemiş; formlar korunmuyor."
+msgstr ""
+
+msgid "Anahtarlar test edilmemiş; test geçene kadar koruma kapalı."
+msgstr ""
+
+msgid "Koruma açık (%s)."
+msgstr ""
+
+msgid "v3 görünmez"
+msgstr ""
+
+msgid "v2 kutucuk"
+msgstr ""
+
+msgid "reCAPTCHA anahtarları"
+msgstr ""
+
+msgid "Hiçbir form seçilmemiş."
+msgstr ""
+
+msgid "Korunmuyor: %s"
+msgstr ""
+
+msgid "Google doğrulaması"
+msgstr ""
+
+msgid "%1$s: %2$s. Anahtarları yeniden test edin; Google erişilemiyorsa Ayarlar > Google adresi: recaptcha.net."
+msgstr ""
+
+msgid "Test et"
+msgstr ""

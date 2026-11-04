@@ -1,7 +1,11 @@
 # Değişiklikler
 
-## 0.4.1
+## 0.4.2
 - Tarih ve "… önce" metinleri artık kullanıcının dilinde, tek ortak yardımcıdan (FluxWP `flx_date` / `flx_time_ago`, flx-brand 1.1.0): "31 minutes önce", "August 10" gibi Türkçe/İngilizce karışımı kalmadı; çekirdek dil paketi inmemiş olsa da TR ve EN ay/gün adları doğru.
+
+## 0.4.1
+- Giriş adresi kaydedilince ya da değişince uyarı çıkar: 5 saniye geri sayımdan sonra oturum kapanır ve yeni giriş sayfası açılır; giriş yapınca Ayarlar'a dönülür. "Şimdi git" ve "Oturumda kal" düğmeleri var.
+- Yeni giriş sayfasında "Giriş adresi değişti, yer imlerine ekleyin" bilgisi.
 
 ## 0.4.0
 - Ayarlar › Yönetim giriş adresi: giriş ekranı wp-login.php yerine özel adreste açılır (örn. `/fluxadmin`). wp-login.php ve giriş yapmamış ziyaretçinin wp-admin istekleri temanın 404 sayfasını alır ya da ana sayfaya yönlenir.
