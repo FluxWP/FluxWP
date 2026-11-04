@@ -385,7 +385,7 @@ final class FLXU_Admin {
 				break;
 			case 'error':
 				$title = FLXU_Updater::block_title( $status ) ?: __( 'Bağlantı hatası', 'flx-setup' );
-				$line  = FLXU_Updater::status_message( $status, '' !== FLXU_Updater::key() );
+				$line  = FLXU_Updater::status_message( $status, '' !== FLXU_Updater::key(), $host );
 				if ( 'paused' === ( $status['code'] ?? '' ) ) {
 					$state = 'paused';
 				}
@@ -835,7 +835,7 @@ final class FLXU_Admin {
 				return '<span class="flxu-src-st">' . esc_html__( 'Henüz kontrol edilmedi', 'flx-setup' ) . '</span>';
 			}
 			if ( empty( $st['ok'] ) ) {
-				return '<span class="flxu-src-st is-err">' . esc_html( FLXU_Updater::status_message( $st, '' !== (string) ( $s['key'] ?? '' ) ) ) . '</span>';
+				return '<span class="flxu-src-st is-err">' . esc_html( FLXU_Updater::status_message( $st, '' !== (string) ( $s['key'] ?? '' ), FLXU_Sources::host( $s ) ) ) . '</span>';
 			}
 			/* translators: %d: package count */
 			return '<span class="flxu-src-st is-ok">' . esc_html( sprintf( _n( 'Bağlı · %d paket', 'Bağlı · %d paket', (int) $st['count'], 'flx-setup' ), (int) $st['count'] ) ) . '</span>';

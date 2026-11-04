@@ -243,7 +243,7 @@ final class FLXU_Updater {
 		if ( 200 !== $code || ! is_array( $body ) || empty( $body['ok'] ) ) {
 			$reason = is_array( $body ) ? sanitize_key( (string) ( $body['code'] ?? '' ) ) : '';
 			$retry  = self::retry_at( $res, $code, $reason );
-			$msg    = self::block_message( $reason, $code, '' !== $key, $retry );
+			$msg    = self::block_message( $reason, $code, '' !== $key, $retry, $host );
 			if ( '' === $msg ) {
 				if ( 401 === $code && '' === $key ) {
 					$msg = __( 'Bu sunucu anahtarsız güncelleme vermiyor; site anahtarı girin.', 'flx-setup' );
@@ -409,11 +409,16 @@ final class FLXU_Updater {
 	/**
 	 * Sunucunun bildirdiği engel için kullanıcıya gösterilecek açıklama. Bilinmeyen kod için boş metin.
 	 */
-	public static function block_message( string $reason, int $code, bool $has_key, int $retry = 0 ): string {
+	public static function block_message( string $reason, int $code, bool $has_key, int $retry = 0, string $host = '' ): string {
 		$when = $retry > time()
 			/* translators: %s: date and time */
 			? ' ' . sprintf( __( 'Sonraki deneme: %s.', 'flx-setup' ), wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $retry ) )
 			: '';
+		$mail = self::support_email( $host );
+		if ( '' !== $mail && '' !== $reason ) {
+			/* translators: %s: e-mail address */
+			$when .= ' ' . sprintf( __( 'Destek ve öneri: %s', 'flx-setup' ), $mail );
+		}
 		switch ( $reason ) {
 			case 'paused':
 				return __( 'Güncelleme dağıtımı sunucuda geçici olarak durduruldu. Siteniz bir sorun yaşamıyor; dağıtım açılınca güncellemeler yeniden gelir.', 'flx-setup' ) . $when;
@@ -437,12 +442,22 @@ final class FLXU_Updater {
 	 * Durumun gösterilecek metni. Engel nedeni biliniyorsa o anki dilde yeniden üretilir
 	 * (kontrol cron'da ya da başka dilde çalışmış olabilir), değilse kayıtlı hata.
 	 */
-	public static function status_message( array $status, bool $has_key ): string {
+	public static function status_message( array $status, bool $has_key, string $host = '' ): string {
 		$reason = (string) ( $status['code'] ?? '' );
 		if ( in_array( $reason, self::BLOCK_CODES, true ) ) {
-			return self::block_message( $reason, 0, $has_key, (int) ( $status['retry'] ?? 0 ) );
+			return self::block_message( $reason, 0, $has_key, (int) ( $status['retry'] ?? 0 ), $host );
 		}
 		return (string) ( $status['error'] ?? '' );
+	}
+
+	/**
+	 * Engel mesajlarındaki destek adresi: yalnız resmi FluxWP sunucusu için (başka sunucuyu başkası yönetir).
+	 * `flxk_support_email` filtresiyle değiştirilir ya da boş dönülerek gizlenir.
+	 */
+	public static function support_email( string $host ): string {
+		$official = strtolower( (string) wp_parse_url( FLXU_DEFAULT_SERVER, PHP_URL_HOST ) );
+		$mail     = '' !== $host && strtolower( $host ) === $official ? 'info@fluxwp.com' : '';
+		return sanitize_email( (string) apply_filters( 'flxk_support_email', $mail, $host ) );
 	}
 
 	/** Durumdaki engel nedeninin kısa başlığı (kart, eklenti satırı). Engel yoksa boş. */
@@ -856,7 +871,7 @@ final class FLXU_Updater {
 			$msg = __( 'Henüz kontrol yapılmadı.', 'flx-setup' );
 		} elseif ( empty( $status['ok'] ) ) {
 			$st  = 'paused' === ( $status['code'] ?? '' ) ? 'warning' : 'error';
-			$msg = self::status_message( $status, '' !== self::key() );
+			$msg = self::status_message( $status, '' !== self::key(), (string) wp_parse_url( self::server(), PHP_URL_HOST ) );
 		} else {
 			$st = 'ok';
 			/* translators: %s: human time diff */

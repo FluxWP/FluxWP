@@ -119,7 +119,7 @@ final class FLXU_Sources {
 			if ( ! empty( $s['enabled'] ) && ! empty( $st['checked'] ) && empty( $st['ok'] ) ) {
 				$out[] = array(
 					'name'  => $s['name'],
-					'error' => FLXU_Updater::status_message( $st, '' !== (string) ( $s['key'] ?? '' ) ),
+					'error' => FLXU_Updater::status_message( $st, '' !== (string) ( $s['key'] ?? '' ), self::host( $s ) ),
 				);
 			}
 		}
