@@ -101,8 +101,13 @@ class FLXP_Admin {
 		$e = isset( $_GET['flxp_err'] ) ? sanitize_text_field( wp_unslash( $_GET['flxp_err'] ) ) : ''; // phpcs:ignore
 		$m = array(
 			'saved'   => __( 'Ayarlar kaydedildi.', 'flx-speed' ),
-			'cleared' => __( 'Tüm kayıtlar silindi.', 'flx-speed' ),
+			'cleared'   => __( 'Tüm kayıtlar silindi.', 'flx-speed' ),
+			'login_off' => __( 'Özel giriş adresi kapatıldı; giriş yeniden wp-login.php üzerinden.', 'flx-speed' ),
 		);
+		if ( 'login_on' === $n && FLXP_Login_URL::slug() ) {
+			/* translators: %s: yeni giriş adresi */
+			$m['login_on'] = sprintf( __( 'Giriş adresi değişti: %s — yer imlerine ekleyin. wp-login.php artık açılmaz.', 'flx-speed' ), FLXP_Login_URL::url() );
+		}
 		if ( isset( $m[ $n ] ) ) {
 			echo '<div class="notice notice-success is-dismissible"><p>' . esc_html( $m[ $n ] ) . '</p></div>';
 		}
@@ -879,11 +884,63 @@ class FLXP_Admin {
 					<p class="description"><?php esc_html_e( 'Paylaşımlı hosting planınızın disk sınırı (Hostinger: hPanel › Hesap kaynakları). PHP bu sınırı okuyamaz; girilirse Disk kutusu hesap kullanımını yüzde olarak gösterir. Boş bırakılırsa yalnız kullanılan alan görünür.', 'flx-speed' ); ?></p>
 				</td></tr>
 			</table>
+			<?php self::login_settings( $s ); ?>
 			<h2><?php esc_html_e( 'Yapay zekâ (MCP)', 'flx-speed' ); ?></h2>
 			<p><?php esc_html_e( 'Kayıtlar Flux SEO & MCP sunucusunda ve Flux AI sohbetinde salt okunur araçlarla okunur: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url.', 'flx-speed' ); ?></p>
 			<p><?php echo function_exists( 'flxseo_mcp_tools' ) ? esc_html__( 'Flux SEO & MCP etkin: araçlar kayıtlı.', 'flx-speed' ) : esc_html__( 'Flux SEO & MCP etkin değil: araçlar yalnız Flux AI sohbetinde.', 'flx-speed' ); ?></p>
 			<?php submit_button(); ?>
 		</form>
+		<?php
+	}
+
+	/** Ayarlar › Yönetim giriş adresi. */
+	private static function login_settings( $s ) {
+		$const_slug = defined( 'FLXP_LOGIN_SLUG' );
+		$off        = FLXP_Login_URL::disabled_by_constant();
+		$active     = FLXP_Login_URL::slug();
+		$value      = $const_slug ? FLXP_Login_URL::clean( FLXP_LOGIN_SLUG ) : $s['login_slug'];
+		$prefix     = get_option( 'permalink_structure' ) ? trailingslashit( home_url() ) : trailingslashit( home_url() ) . '?';
+		?>
+		<h2 id="flxp-login"><?php esc_html_e( 'Yönetim giriş adresi', 'flx-speed' ); ?></h2>
+		<p><?php esc_html_e( 'Giriş ekranını wp-login.php yerine size özel bir adreste açar. wp-login.php ve giriş yapmamış ziyaretçinin wp-admin istekleri yanıt vermez; botların şifre denemesi ve sunucu yükü azalır.', 'flx-speed' ); ?></p>
+		<?php if ( $off ) : ?>
+			<div class="notice notice-warning inline"><p><?php esc_html_e( 'wp-config.php içinde FLXP_LOGIN_DISABLE tanımlı: özel adres kapalı, giriş yine wp-login.php üzerinden. Sorun çözüldüyse bu satırı silin.', 'flx-speed' ); ?></p></div>
+		<?php elseif ( $active ) : ?>
+			<div class="flxp-login-now">
+				<span><?php esc_html_e( 'Giriş adresiniz', 'flx-speed' ); ?></span>
+				<code id="flxp-login-url"><?php echo esc_html( FLXP_Login_URL::url() ); ?></code>
+				<button type="button" class="button button-small" data-flxp-copy="flxp-login-url" data-done="<?php esc_attr_e( 'Kopyalandı', 'flx-speed' ); ?>"><?php esc_html_e( 'Kopyala', 'flx-speed' ); ?></button>
+			</div>
+			<p class="description"><?php esc_html_e( 'Bu adresi yer imlerine ekleyin ve giriş yapan herkese iletin. Unutursanız aşağıdaki kurtarma adımını kullanın.', 'flx-speed' ); ?></p>
+		<?php endif; ?>
+		<table class="form-table" role="presentation">
+			<tr><th scope="row"><label for="flxp-login-slug"><?php esc_html_e( 'Giriş adresi', 'flx-speed' ); ?></label></th><td>
+				<div class="flxp-slug"><span class="flxp-slug-pre"><?php echo esc_html( $prefix ); ?></span><input id="flxp-login-slug" type="text" name="flxp[login_slug]" value="<?php echo esc_attr( $value ); ?>" placeholder="fluxadmin" maxlength="40" pattern="[a-z0-9][a-z0-9_\-]{2,39}" autocomplete="off" spellcheck="false" <?php disabled( $const_slug ); ?>></div>
+				<p class="description">
+					<?php
+					if ( $const_slug ) {
+						esc_html_e( 'Adres wp-config.php içindeki FLXP_LOGIN_SLUG sabitinden geliyor; değiştirmek için sabiti düzenleyin ya da silin.', 'flx-speed' );
+					} else {
+						esc_html_e( 'Boş bırakılırsa WordPress\'in standart adresi (wp-login.php) kullanılır. 3-40 karakter: küçük harf, rakam, tire, alt çizgi. Tahmin edilmesi zor bir ad seçin (admin, login kullanılamaz).', 'flx-speed' );
+					}
+					?>
+				</p>
+			</td></tr>
+			<tr><th scope="row"><?php esc_html_e( 'Eski adreslere gelen ziyaretçi', 'flx-speed' ); ?></th><td>
+				<fieldset>
+					<label><input type="radio" name="flxp[login_blocked]" value="404" <?php checked( '404', $s['login_blocked'] ); ?>> <?php esc_html_e( '404 sayfası göster (önerilen)', 'flx-speed' ); ?></label><br>
+					<label><input type="radio" name="flxp[login_blocked]" value="home" <?php checked( 'home', $s['login_blocked'] ); ?>> <?php esc_html_e( 'Ana sayfaya yönlendir', 'flx-speed' ); ?></label>
+				</fieldset>
+				<p class="description"><?php esc_html_e( 'wp-login.php ve giriş yapmamış ziyaretçinin wp-admin istekleri için. admin-ajax.php, admin-post.php, REST API, wp-cron, WooCommerce hesabım girişi ve Flux App bağlantısı etkilenmez.', 'flx-speed' ); ?></p>
+			</td></tr>
+			<tr><th scope="row"><?php esc_html_e( 'Kurtarma', 'flx-speed' ); ?></th><td>
+				<p class="description"><?php esc_html_e( 'Adresi unutursanız ya da giriş açılmazsa: dosya yöneticisinden (Hostinger hPanel › Dosya Yöneticisi) wp-config.php dosyasına aşağıdaki satırı ekleyin. Giriş yeniden wp-login.php olur; girdikten sonra adresi buradan düzeltip satırı silin.', 'flx-speed' ); ?></p>
+				<code class="flxp-code">define( 'FLXP_LOGIN_DISABLE', true );</code>
+			</td></tr>
+		</table>
+		<script>
+		document.addEventListener('click',function(e){var b=e.target.closest('[data-flxp-copy]');if(!b)return;var t=document.getElementById(b.dataset.flxpCopy).textContent;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){var o=b.textContent;b.textContent=b.dataset.done;setTimeout(function(){b.textContent=o;},1500);}).catch(function(){window.prompt('',t);});});
+		</script>
 		<?php
 	}
 
@@ -895,8 +952,24 @@ class FLXP_Admin {
 		}
 		check_admin_referer( 'flxp_save' );
 		$in = isset( $_POST['flxp'] ) && is_array( $_POST['flxp'] ) ? wp_unslash( $_POST['flxp'] ) : array(); // phpcs:ignore
-		update_option( 'flxp_settings', flxp_sanitize_settings( $in ), false );
-		wp_safe_redirect( self::url( array( 'tab' => 'settings', 'flxp_msg' => 'saved' ) ) );
+		$out  = flxp_sanitize_settings( $in );
+		$err  = '';
+		$prev = (string) flxp_settings( 'login_slug' );
+		if ( ! defined( 'FLXP_LOGIN_SLUG' ) && array_key_exists( 'login_slug', $in ) ) {
+			$slug = FLXP_Login_URL::clean( $in['login_slug'] );
+			$ok   = '' === $slug ? true : FLXP_Login_URL::validate( $slug );
+			if ( is_wp_error( $ok ) ) {
+				$err = $ok->get_error_message();
+			} else {
+				$out['login_slug'] = $slug;
+			}
+		}
+		update_option( 'flxp_settings', $out, false );
+		if ( $out['login_slug'] !== $prev ) {
+			flxp_login_slug_changed();
+		}
+		$args = $err ? array( 'flxp_err' => rawurlencode( $err ) ) : array( 'flxp_msg' => $out['login_slug'] !== $prev ? ( '' === $out['login_slug'] ? 'login_off' : 'login_on' ) : 'saved' );
+		wp_safe_redirect( self::url( array_merge( array( 'tab' => 'settings' ), $args ) ) . ( $err || $out['login_slug'] !== $prev ? '#flxp-login' : '' ) );
 		exit;
 	}
 

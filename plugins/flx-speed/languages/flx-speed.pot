@@ -33,6 +33,12 @@ msgstr ""
 msgid "Tüm kayıtlar silindi."
 msgstr ""
 
+msgid "Özel giriş adresi kapatıldı; giriş yeniden wp-login.php üzerinden."
+msgstr ""
+
+msgid "Giriş adresi değişti: %s — yer imlerine ekleyin. wp-login.php artık açılmaz."
+msgstr ""
+
 msgid "Temizlik tamam: %s öğe."
 msgstr ""
 
@@ -582,6 +588,54 @@ msgstr ""
 msgid "Flux SEO & MCP etkin değil: araçlar yalnız Flux AI sohbetinde."
 msgstr ""
 
+msgid "Yönetim giriş adresi"
+msgstr ""
+
+msgid "Giriş ekranını wp-login.php yerine size özel bir adreste açar. wp-login.php ve giriş yapmamış ziyaretçinin wp-admin istekleri yanıt vermez; botların şifre denemesi ve sunucu yükü azalır."
+msgstr ""
+
+msgid "wp-config.php içinde FLXP_LOGIN_DISABLE tanımlı: özel adres kapalı, giriş yine wp-login.php üzerinden. Sorun çözüldüyse bu satırı silin."
+msgstr ""
+
+msgid "Giriş adresiniz"
+msgstr ""
+
+msgid "Kopyalandı"
+msgstr ""
+
+msgid "Kopyala"
+msgstr ""
+
+msgid "Bu adresi yer imlerine ekleyin ve giriş yapan herkese iletin. Unutursanız aşağıdaki kurtarma adımını kullanın."
+msgstr ""
+
+msgid "Giriş adresi"
+msgstr ""
+
+msgid "Adres wp-config.php içindeki FLXP_LOGIN_SLUG sabitinden geliyor; değiştirmek için sabiti düzenleyin ya da silin."
+msgstr ""
+
+msgid "Boş bırakılırsa WordPress'in standart adresi (wp-login.php) kullanılır. 3-40 karakter: küçük harf, rakam, tire, alt çizgi. Tahmin edilmesi zor bir ad seçin (admin, login kullanılamaz)."
+msgstr ""
+
+msgid "Eski adreslere gelen ziyaretçi"
+msgstr ""
+
+msgid "404 sayfası göster (önerilen)"
+msgstr ""
+
+msgid "Ana sayfaya yönlendir"
+msgstr ""
+
+msgid "wp-login.php ve giriş yapmamış ziyaretçinin wp-admin istekleri için. admin-ajax.php, admin-post.php, REST API, wp-cron, WooCommerce hesabım girişi ve Flux App bağlantısı etkilenmez."
+msgstr ""
+
+msgid "Kurtarma"
+msgstr ""
+
+msgid "Adresi unutursanız ya da giriş açılmazsa: dosya yöneticisinden (Hostinger hPanel › Dosya Yöneticisi) wp-config.php dosyasına aşağıdaki satırı ekleyin. Giriş yeniden wp-login.php olur; girdikten sonra adresi buradan düzeltip satırı silin."
+msgstr ""
+
 msgid "%1$s sürümünden beri kullanımdan kalktı. Yerine: %2$s"
 msgstr ""
 
@@ -658,6 +712,15 @@ msgid "Yavaş istek (24 sa)"
 msgstr ""
 
 msgid "Ayrıntılar"
+msgstr ""
+
+msgid "Giriş adresi 3-40 karakter olmalı; yalnız küçük harf (a-z), rakam, tire ve alt çizgi kullanın."
+msgstr ""
+
+msgid "Bu adres WordPress tarafından kullanılıyor; başka bir ad seçin."
+msgstr ""
+
+msgid "Bu adreste zaten bir sayfa ya da yazı var; başka bir ad seçin."
 msgstr ""
 
 msgid "Performans özeti"
