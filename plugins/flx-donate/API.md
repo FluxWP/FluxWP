@@ -420,3 +420,9 @@ Bağışlar › Excel'den yükle (`page=flxb-import`; takip açıkken görünür
 
 ## Ön ayar içerik türleri (2.11.0)
 Flux Setup için `flxb_type`, `flxb_partner`, `flxb_report`, `flxb_detail_tab` (`flx_preset_importers`) ve dışa aktarım (`flx_preset_export_content`, `flx_preset_export_options`). Şemalar: [docs/flx-donate/ON-AYAR.md](../../docs/flx-donate/ON-AYAR.md). Sınıf `FLXB_Preset`.
+
+## Flux CRM kişi kartı (2.12.0)
+Bağışçı sayfası (`flxb-donors&donor=ID`) Flux CRM varsa `flxcrm_person_card()` ile ortak kişi kartını basar (bağlam `donate`, bağlantı `donate`/`donor:ID`); CRM yoksa ya da kullanıcının `flxcrm_view` yetkisi yoksa klasik kart. Referans kullanıcısının kendi bağışçıları ("Bağışçılarım") hep klasik kartta.
+- Karta eklenenler: `flxcrm_person_card_actions` (Bağışlar, Bağış ekle), `flxcrm_person_card_main_before` (düzenli bağışlar, varsa), `flxcrm_person_card_side` (bağış özeti, sertifikalar, KVKK + bağış notu).
+- `flxb_use_crm_card` (bool, `$donor`): false → hep klasik kart.
+- `flxb-add&donor=ID`: bağış ekleme formunda bağışçı bilgileri hazır gelir.

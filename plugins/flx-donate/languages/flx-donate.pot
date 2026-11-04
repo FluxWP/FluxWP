@@ -4009,3 +4009,9 @@ msgstr ""
 
 msgid "Increase"
 msgstr ""
+
+msgid "Privacy and donation note"
+msgstr ""
+
+msgid "Donation note"
+msgstr ""

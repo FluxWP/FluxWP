@@ -188,6 +188,9 @@ final class FLXB_Admin {
 		if ( 'flxb-types' === $page || 'flxb-settings' === $page ) {
 			wp_enqueue_media();
 		}
+		if ( 'flxb-donors' === $page && ! empty( $_GET['donor'] ) && function_exists( 'flxcrm_person_card_enqueue' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			flxcrm_person_card_enqueue(); // 2.12.0: donor page is the Flux CRM person card.
+		}
 		wp_enqueue_script( 'flxb-admin', FLXB_URL . 'assets/admin.js', array(), self::ver( 'admin.js' ), true );
 		wp_localize_script(
 			'flxb-admin',
@@ -269,6 +272,9 @@ final class FLXB_Admin {
 			'mail'     => '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/>',
 			'phone'    => '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/>',
 			'plus'     => '<path d="M12 5v14M5 12h14"/>',
+			'list'     => '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',
+			'shield'   => '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+			'external' => '<path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>',
 			'edit'     => '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/>',
 			'print'    => '<path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/>',
 			'repeat'   => '<path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/>',
@@ -327,6 +333,11 @@ final class FLXB_Admin {
 
 	public static function footer() {
 		echo '</div>';
+	}
+
+	/** Redirect notice for pages that print their own frame (2.12.0: donor page on the Flux CRM card). */
+	public static function notices() {
+		self::notice();
 	}
 
 	/** One-shot notice after a redirect (?flxb_msg=). */

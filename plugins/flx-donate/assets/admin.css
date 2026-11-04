@@ -625,3 +625,14 @@ html.flxa-dark .flxb { --flxb-mint: var(--flxa-accent-soft); --flxb-dark: var(--
 	.flxb-matches { grid-template-columns: minmax(0, 1fr); }
 	.flxb-actions--sticky { bottom: 56px; }
 }
+
+/* 2.12.0: Flux Donate sections on the shared Flux CRM person card */
+.flxb--crm .flxb-crm-dl { margin: 0; display: grid; gap: 0; }
+.flxb--crm .flxb-crm-dl > div { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-top: 1px solid var(--flxa-border, rgba(127,127,127,.2)); }
+.flxb--crm .flxb-crm-dl > div:first-child { border-top: 0; padding-top: 0; }
+.flxb--crm .flxb-crm-dl dt { color: var(--flxa-muted, #6b7280); }
+.flxb--crm .flxb-crm-dl dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
+.flxb--crm .flxb-crm-consent .flxb-form { display: grid; gap: 12px; }
+.flxb--crm .flxb-crm-consent .flxb-formactions { margin: 0; }
+.flxb--crm .flxb-crm-subs .flxb-tablewrap { margin: 0 -4px; }
+.flxb--crm .flxcrm-hero__actions .flxb-ico { vertical-align: -3px; }
