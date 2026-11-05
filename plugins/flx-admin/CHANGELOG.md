@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.6
+- Giriş ekranı: "Beni hatırla" işaretlenince artık görünüyor. WordPress 7.x işaretli kutuyu tema renginde zemin + beyaz tik olarak çiziyor; giriş stilimizdeki kutu zemini bu zemini eziyordu, beyaz tik beyaz zeminde kayboluyor ve kutu tıklanmıyor gibi görünüyordu. İşaretli kutu panel rengini alıyor; odak halkası ve yanındaki "?" yardım düğmesi de panel renklerine uyuyor.
+
 ## 1.7.5
 - Metinler: MCP sunucusu artık Flux AI & MCP eklentisinde; "Flux SEO & MCP" ve "Flux AI ›" adresleri "Flux AI & MCP" oldu.
 
