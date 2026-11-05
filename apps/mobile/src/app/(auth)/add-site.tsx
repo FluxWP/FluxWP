@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { ApiError, AppPasswordError, DiscoveryError, OAuthError, loginApiKey, loginAppPassword, loginDemo, loginOAuth, loginOtp, otpStart, type Account, type SiteInfo } from '@fluxwp/core';
 import type { Bootstrap } from '@fluxwp/manifest';
-import { SiteNotAllowedError, loadBootstrap } from '@fluxwp/runtime';
+import { SiteNotAllowedError, loadBootstrap, siteMark } from '@fluxwp/runtime';
 import { LOGO, LOGO_DARK, brand, gate } from '@/brand';
 import { accountKey } from '@/shell/routes';
 import { Welcome, entryVariant } from '@/shell/entry/Welcome';
@@ -39,7 +39,8 @@ function errorKey(e: unknown): string {
 export default function AddSite() {
   const { t } = useTranslation();
   const { theme } = useUnistyles();
-  const { giris } = useLocalSearchParams<{ giris?: string }>();
+  const { giris, url: presetParam } = useLocalSearchParams<{ giris?: string; url?: string }>();
+  const preset = typeof presetParam === 'string' ? presetParam : '';
   const variant = entryVariant(giris);
   const insets = useSafeAreaInsets();
   const [url, setUrl] = useState(brand.defaultSite ?? '');
@@ -72,17 +73,23 @@ export default function AddSite() {
     }
   };
   const done = (a: Account) => router.replace({ pathname: '/[account]', params: { account: accountKey(a.id) } });
-  const discover = () =>
+  const discoverFrom = (input: string) =>
     run('discover', async () => {
-      const s = await gate.findSite(url);
-      setBoot(s.hasFluxApp ? await loadBootstrap(s.url).catch(() => null) : null);
-      setSite(s);
+      const s = await gate.findSite(input);
+      const next = s.hasFluxApp ? await loadBootstrap(s.url).catch(() => null) : null;
+      setBoot(next);
+      const mark = siteMark(s.icon, next?.brand?.icon, next?.site?.icon, next?.brand?.logo, next?.brand?.logo_dark);
+      setSite(mark ? { ...s, icon: mark } : s);
       setStep('method');
     });
+  const discover = () => discoverFrom(url);
 
-  // Single-site brand: connect to its site right away.
+  // Single-site brand, or a re-login that already knows the address: skip the address step.
   useEffect(() => {
-    if (gate.locked && brand.defaultSite) void Promise.resolve().then(discover);
+    const initial = gate.locked && brand.defaultSite ? brand.defaultSite : preset;
+    if (!initial) return;
+    setUrl(initial);
+    void Promise.resolve().then(() => discoverFrom(initial));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -158,18 +165,16 @@ export default function AddSite() {
             </View>
 
             {step === 'method' && site.hasFluxApp && clientOff ? <Text tone="danger">{t('mobile.addSite.appNotAllowed')}</Text> : null}
-            {step === 'method' && site.hasFluxApp && !clientOff ? (
+            {step === 'method' && site.hasFluxApp && !clientOff && methods.includes('oauth') ? (
               <>
-                {methods.includes('oauth') ? (
-                  <>
-                    <Button label={busy === 'oauth' ? t('auth.waitingBrowser') : t('auth.loginBrowser')} icon="lock" loading={busy === 'oauth'} disabled={!!busy} onPress={() => void run('oauth', async () => done(await loginOAuth(site, { scope: 'flx offline_access' })))} full testID="oauth" />
-                    <Text variant="small" tone="muted" style={styles.center}>{t('mobile.addSite.browserHint')}</Text>
-                  </>
-                ) : null}
-                {methods.includes('otp') ? <Button kind="secondary" label={t('mobile.addSite.otp')} icon="phone" disabled={!!busy} onPress={() => setStep('otp')} full /> : null}
-                {methods.includes('apikey') ? <Button kind="ghost" label={t('auth.useApiKey')} icon="key" disabled={!!busy} onPress={() => setStep('apikey')} full /> : null}
-                {methods.includes('oauth') ? <Button kind="ghost" label={t('mobile.addSite.secondAccount')} disabled={!!busy} loading={busy === 'oauth2'} onPress={() => void run('oauth2', async () => done(await loginOAuth(site, { scope: 'flx offline_access', prompt: 'login' })))} full /> : null}
+                <Button label={busy === 'oauth' ? t('auth.waitingBrowser') : t('auth.loginBrowser')} icon="lock" loading={busy === 'oauth'} disabled={!!busy} onPress={() => void run('oauth', async () => done(await loginOAuth(site, { scope: 'flx offline_access' })))} full testID="oauth" />
+                <Text variant="small" tone="muted" style={styles.center}>{t('mobile.addSite.browserHint')}</Text>
+                <Button kind="ghost" label={t('mobile.addSite.secondAccount')} disabled={!!busy} loading={busy === 'oauth2'} onPress={() => void run('oauth2', async () => done(await loginOAuth(site, { scope: 'flx offline_access', prompt: 'login' })))} full />
               </>
+            ) : null}
+            {step === 'method' && site.hasFluxApp && methods.includes('otp') ? <Button kind="secondary" label={t('mobile.addSite.otp')} icon="phone" disabled={!!busy} onPress={() => setStep('otp')} full /> : null}
+            {step === 'method' && site.hasFluxApp && methods.includes('apikey') ? (
+              <Button kind={!clientOff && methods.includes('oauth') ? 'ghost' : 'primary'} label={!clientOff && methods.includes('oauth') ? t('auth.useApiKey') : t('auth.login')} icon="key" disabled={!!busy} onPress={() => setStep('apikey')} full testID="apikey" />
             ) : null}
 
             {step === 'method' && !site.hasFluxApp ? (
@@ -177,6 +182,9 @@ export default function AddSite() {
                 <Text tone="muted">{t('mobile.addSite.noFluxApp')}</Text>
                 <Button label={t('mobile.addSite.appPassword')} icon="key" loading={busy === 'apppass'} disabled={!!busy || !site.appPasswordsUrl} onPress={() => void run('apppass', async () => done(await loginAppPassword(site, brand.name)))} full />
               </>
+            ) : null}
+            {step === 'method' && site.hasFluxApp && !methods.includes('oauth') && !methods.includes('otp') && !methods.includes('apikey') ? (
+              <Button label={t('auth.login')} icon="key" loading={busy === 'apppass'} disabled={!!busy || !site.appPasswordsUrl} onPress={() => void run('apppass', async () => done(await loginAppPassword(site, brand.name)))} full />
             ) : null}
 
             {step === 'otp' ? (

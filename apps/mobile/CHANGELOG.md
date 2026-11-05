@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.3.1
+- Oturum düşünce hesap silinmeden "Yeniden giriş" çıkar: hesap listesinde her zaman, ölü oturumda ekranın üstünde. Adres hazır gelir. API anahtarı da 401'de aynı yolu kullanır.
+- Site simgesi yoksa tema logosu ya da Flux Admin logosu hesap işaretine yazılır. Simgesi olan siteler (Yeşil Türkiye) simgeyi kullanmaya devam eder.
+
 ## 0.3.0
 - Sayfalar ve yazılar tam ekran düzenleyicide: kalın, liste, alıntı, bağlantı ve görsel. Görsel siteye yüklenir.
 - Onay, menü ve hesap pencereleri sistem sayfasıdır. Karartma sayfayla birlikte gelir; tutamaç yarım ve tam yükseklik arasında sürüklenir.

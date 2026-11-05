@@ -34,7 +34,7 @@ export function AccountSwitcherHost() {
           <Text variant="heading" style={styles.title}>{t('mobile.switcher.title')}</Text>
           <ScrollView style={styles.list}>
             {accounts.map((a) => (
-              <Pressable key={a.id} accessibilityRole="button" accessibilityState={{ selected: a.id === activeId }} onPress={() => (close(), switchTo(a))} style={({ pressed }) => [styles.row, pressed && styles.pressed]}>
+              <Pressable key={a.id} accessibilityRole="button" accessibilityState={{ selected: a.id === activeId }} onPress={() => { close(); if (a.needsLogin) router.push({ pathname: '/add-site', params: { url: a.siteUrl } }); else switchTo(a); }} style={({ pressed }) => [styles.row, pressed && styles.pressed]}>
                 <Avatar image={a.siteIcon || undefined} text={a.siteName} size={40} square />
                 <View style={styles.flex}>
                   <Text numberOfLines={1} style={styles.name}>{a.siteName}</Text>

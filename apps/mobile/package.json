@@ -1,6 +1,6 @@
 {
   "name": "@fluxwp/mobile",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "description": "FluxWP mobile app (iOS + Android, Expo). Multi-site WordPress admin on top of Flux App.",
   "main": "index.ts",
