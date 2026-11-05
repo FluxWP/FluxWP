@@ -1692,40 +1692,104 @@ function efb_esc_html_efb(v) {
     return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
   });
 }
-// Visible text of an HTML/entity string (tags dropped, entities decoded once), escaped again for HTML output.
-function efb_text_html_efb(v) {
-  const doc = new DOMParser().parseFromString(String(v == null ? '' : v), 'text/html');
-  return efb_esc_html_efb(doc.body.textContent || '');
+// Decodes the common named and numeric entities once (plain text out).
+function efb_decode_ent_efb(s) {
+  return String(s).replace(/&(#x[0-9a-f]{1,6}|#[0-9]{1,7}|amp|lt|gt|quot|apos|nbsp);/gi, function (m, e) {
+    const k = e.toLowerCase();
+    if (k === 'amp') return '&';
+    if (k === 'lt') return '<';
+    if (k === 'gt') return '>';
+    if (k === 'quot') return '"';
+    if (k === 'apos') return "'";
+    if (k === 'nbsp') return ' ';
+    const n = k.charAt(1) === 'x' ? parseInt(k.slice(2), 16) : parseInt(k.slice(1), 10);
+    return n > 0 && n <= 0x10ffff ? String.fromCodePoint(n) : '';
+  });
 }
-// Admin-authored HTML (custom HTML block, e-mail preview, alerts): parsed inertly, then rebuilt from an
-// allow-list of tags/attributes. Scripts, frames, inline handlers and non-http(s) URLs never survive.
+// Visible text of an HTML/entity string: tags dropped, entities decoded. For textContent, not innerHTML.
+function efb_text_html_efb(v) {
+  return efb_decode_ent_efb(String(v == null ? '' : v).replace(/<[^<>]*>/g, ''));
+}
+// Allow-listed tag name -> its literal (unknown tags give '').
+function efb_safe_tag_efb(t) {
+  switch (t) {
+    case 'a': return 'a'; case 'abbr': return 'abbr'; case 'b': return 'b'; case 'blockquote': return 'blockquote';
+    case 'br': return 'br'; case 'caption': return 'caption'; case 'center': return 'center'; case 'code': return 'code';
+    case 'div': return 'div'; case 'em': return 'em'; case 'font': return 'font'; case 'h1': return 'h1';
+    case 'h2': return 'h2'; case 'h3': return 'h3'; case 'h4': return 'h4'; case 'h5': return 'h5'; case 'h6': return 'h6';
+    case 'hr': return 'hr'; case 'i': return 'i'; case 'img': return 'img'; case 'label': return 'label';
+    case 'li': return 'li'; case 'ol': return 'ol'; case 'p': return 'p'; case 'pre': return 'pre'; case 's': return 's';
+    case 'small': return 'small'; case 'span': return 'span'; case 'strong': return 'strong'; case 'sub': return 'sub';
+    case 'sup': return 'sup'; case 'table': return 'table'; case 'tbody': return 'tbody'; case 'td': return 'td';
+    case 'tfoot': return 'tfoot'; case 'th': return 'th'; case 'thead': return 'thead'; case 'tr': return 'tr';
+    case 'u': return 'u'; case 'ul': return 'ul';
+    default: return '';
+  }
+}
+// Allow-listed attribute name -> its literal (unknown attributes give '').
+function efb_safe_attr_efb(a) {
+  switch (a) {
+    case 'href': return 'href'; case 'src': return 'src'; case 'alt': return 'alt'; case 'title': return 'title';
+    case 'class': return 'class'; case 'style': return 'style'; case 'width': return 'width'; case 'height': return 'height';
+    case 'align': return 'align'; case 'valign': return 'valign'; case 'colspan': return 'colspan'; case 'rowspan': return 'rowspan';
+    case 'border': return 'border'; case 'cellpadding': return 'cellpadding'; case 'cellspacing': return 'cellspacing';
+    case 'bgcolor': return 'bgcolor'; case 'color': return 'color'; case 'dir': return 'dir'; case 'target': return 'target';
+    case 'rel': return 'rel'; case 'role': return 'role'; case 'id': return 'id';
+    default: return '';
+  }
+}
+// URL for href/src: http(s), mailto, tel, relative, or (src only) data:image; otherwise ''.
+function efb_safe_link_efb(u, isSrc) {
+  u = String(u).trim();
+  const l = u.replace(/[\u0000- ]+/g, '').toLowerCase();
+  const scheme = /^([a-z][a-z0-9+.-]*):/.exec(l);
+  if (scheme) {
+    const s = scheme[1];
+    const okData = isSrc && (l.indexOf('data:image/png;') === 0 || l.indexOf('data:image/jpeg;') === 0 || l.indexOf('data:image/jpg;') === 0 || l.indexOf('data:image/gif;') === 0 || l.indexOf('data:image/webp;') === 0);
+    if (s !== 'http' && s !== 'https' && s !== 'mailto' && s !== 'tel' && !okData) return '';
+  }
+  try { return encodeURI(decodeURI(u)); } catch (e) { return ''; }
+}
+// Admin-authored HTML (custom HTML block, e-mail preview, alerts), rebuilt from an allow-list without
+// parsing it into the DOM: tags/attributes are matched to literals, every value and text run is escaped.
+// Scripts, frames, inline handlers and non-http(s) URLs never survive.
 function efb_safe_html_efb(html) {
-  const ok = { A:1, ABBR:1, B:1, BLOCKQUOTE:1, BR:1, CAPTION:1, CENTER:1, CODE:1, DIV:1, EM:1, FONT:1, H1:1, H2:1, H3:1, H4:1, H5:1, H6:1, HR:1, I:1, IMG:1, LI:1, OL:1, P:1, PRE:1, S:1, SMALL:1, SPAN:1, STRONG:1, SUB:1, SUP:1, TABLE:1, TBODY:1, TD:1, TFOOT:1, TH:1, THEAD:1, TR:1, U:1, UL:1, LABEL:1, SVG:0 };
-  const attrs = { href:1, src:1, alt:1, title:1, class:1, style:1, width:1, height:1, align:1, valign:1, colspan:1, rowspan:1, border:1, cellpadding:1, cellspacing:1, bgcolor:1, color:1, dir:1, target:1, rel:1, role:1, id:1 };
-  const doc = new DOMParser().parseFromString(String(html == null ? '' : html), 'text/html');
-  const out = document.createElement('div');
-  const copy = (src, dst) => {
-    src.childNodes.forEach((n) => {
-      if (n.nodeType === 3) { dst.appendChild(document.createTextNode(n.nodeValue)); return; }
-      if (n.nodeType !== 1) return;
-      if (!ok[n.tagName]) { if (n.tagName !== 'SCRIPT' && n.tagName !== 'STYLE' && n.tagName !== 'IFRAME' && n.tagName !== 'OBJECT' && n.tagName !== 'EMBED') copy(n, dst); return; }
-      const el = document.createElement(n.tagName.toLowerCase());
-      for (const a of Array.from(n.attributes)) {
-        const name = a.name.toLowerCase();
-        if (!attrs[name] && name.indexOf('data-') !== 0 && name.indexOf('aria-') !== 0) continue;
-        let val = a.value;
-        if (name === 'href' || name === 'src') {
-          const t = val.replace(/[\u0000- ]+/g, '').toLowerCase();
-          const m = /^([a-z][a-z0-9+.-]*):/.exec(t);
-          if (m && m[1] !== 'http' && m[1] !== 'https' && m[1] !== 'mailto' && m[1] !== 'tel' && !(name === 'src' && /^data:image\/(png|jpe?g|gif|webp);/.test(t))) continue;
-        }
-        if (name === 'style' && /expression\s*\(|url\s*\(\s*['"]?\s*javascript/i.test(val)) continue;
-        el.setAttribute(name, val);
-      }
-      copy(n, el);
-      dst.appendChild(el);
-    });
-  };
-  copy(doc.body, out);
-  return out.innerHTML;
+  let src = String(html == null ? '' : html);
+  for (let c = src.indexOf('<!--'); c !== -1; c = src.indexOf('<!--', c)) {
+    const e = src.indexOf('-->', c + 4);
+    src = src.slice(0, c) + (e === -1 ? '' : src.slice(e + 3));
+  }
+  const tagRe = /<(\/?)([a-zA-Z][a-zA-Z0-9]*)([^<>]*)>/g;
+  const attrRe = /([a-zA-Z_:][-a-zA-Z0-9_:.]*)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g;
+  let out = '', last = 0, skip = '', m;
+  const text = (s) => { if (!skip) out += efb_esc_html_efb(efb_decode_ent_efb(s)); };
+  while ((m = tagRe.exec(src)) !== null) {
+    text(src.slice(last, m.index));
+    last = tagRe.lastIndex;
+    const close = m[1] === '/';
+    const name = m[2].toLowerCase();
+    if (skip) { if (close && name === skip) skip = ''; continue; }
+    if (name === 'script' || name === 'style' || name === 'iframe' || name === 'object' || name === 'embed' || name === 'textarea' || name === 'title' || name === 'noscript' || name === 'template') {
+      if (!close && !/\/\s*$/.test(m[3])) skip = name;
+      continue;
+    }
+    const tag = efb_safe_tag_efb(name);
+    if (!tag) continue;
+    if (close) { out += '</' + tag + '>'; continue; }
+    let attrs = '', a;
+    attrRe.lastIndex = 0;
+    while ((a = attrRe.exec(m[3])) !== null) {
+      const raw = a[1].toLowerCase();
+      const an = efb_safe_attr_efb(raw);
+      if (!an && raw.indexOf('data-') !== 0 && raw.indexOf('aria-') !== 0) continue;
+      let val = efb_decode_ent_efb(a[2] != null ? a[2] : a[3] != null ? a[3] : a[4] != null ? a[4] : '');
+      if (an === 'href' || an === 'src') { val = efb_safe_link_efb(val, an === 'src'); if (!val) continue; }
+      if (an === 'style' && /expression\s*\(|url\s*\(|javascript:|behavior\s*:/i.test(val)) continue;
+      const nm = an || ((raw.indexOf('data-') === 0 ? 'data-' : 'aria-') + raw.slice(5).replace(/[^a-z0-9_-]/g, ''));
+      attrs += ' ' + nm + '="' + efb_esc_html_efb(val) + '"';
+    }
+    out += '<' + tag + attrs + '>';
+  }
+  text(src.slice(last));
+  return out;
 }
