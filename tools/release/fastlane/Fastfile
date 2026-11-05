@@ -52,7 +52,7 @@ platform :ios do
         skip_binary_upload: true, metadata_path: File.join(STORE, 'ios'), screenshots_path: screenshots,
         submit_for_review: true, automatic_release: ENV['RELEASE_ON_APPROVAL'] == 'true',
         force: true, precheck_include_in_app_purchases: false,
-        submission_information: { export_compliance_uses_encryption: false, add_id_info_uses_idfa: false }
+        submission_information: { add_id_info_uses_idfa: false }
       )
       FileUtils.mkdir_p(File.join(ROOT, 'release-out/ios'))
       File.write(File.join(ROOT, 'release-out/ios/release.json'), JSON.pretty_generate({bundle_id: identifier, version: version, build_number: build_number, destination: target, commit: ENV['GITHUB_SHA']}))
@@ -73,6 +73,14 @@ platform :ios do
     app_target = native.targets.find { |t| t.product_type == 'com.apple.product-type.application' }
     UI.user_error!('Cannot find the generated iOS application target') unless app_target
     scheme = app_target.name
+    release_config = app_target.build_configurations.find { |c| c.name == 'Release' }
+    entitlements_relative = release_config&.build_settings&.fetch('CODE_SIGN_ENTITLEMENTS', nil)
+    if entitlements_relative
+      entitlements_path = File.expand_path(entitlements_relative.gsub('$(SRCROOT)', File.dirname(project)), File.dirname(project))
+      entitlements = Plist.parse_xml(File.read(entitlements_path))
+      entitlements['aps-environment'] = 'production'
+      File.write(entitlements_path, entitlements.to_plist)
+    end
     latest = latest_testflight_build_number(api_key: api, app_identifier: identifier, version: version, initial_build_number: 0)
     build_number = [latest.to_i + 1, ENV.fetch('FLUX_BUILD_NUMBER', '1').to_i].max
     increment_build_number(build_number: build_number, xcodeproj: project)
