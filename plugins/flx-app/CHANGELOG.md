@@ -1,5 +1,20 @@
 # Değişiklikler
 
+## 0.4.0
+- **Masaüstü ve mobil tek sözleşme.** FluxWP masaüstü (Tauri) ve yeni mobil uygulama (Expo, `com.fluxwp.app`) aynı uçları kullanır; `X-FluxWP-Platform: mobile | desktop` yalnız kabuğu seçer. Çıktılar `@fluxwp/manifest` JSON şemalarından geçer.
+- **Giriş:** yerleşik `flx-mobil` istemcisi (`fluxwp://oauth/callback`). `flx-mobil` ve `flx-masaustu` hem deep link hem loopback (`http://127.0.0.1:<port>/callback`) kabul eder. `prompt=login` (aynı siteye ikinci hesap). Marka istemcileri `app_clients` ayarından (preset yazar). Site ana uygulamayı kapatabilir. Geliştirici modunda Expo `exp://` dönüşleri. Flux Speed özel giriş adresi (`/fluxadmin`) açıkken oturum devri de çalışır (önceden yalnız yetkilendirme geçiyordu).
+- **Keşif:** `GET /app/bootstrap` (herkese açık): site, giriş yolları, istemciler, tema önizlemesi, etkin FluxWP paketleri, preset, marka istemcileri. `/wp-json/` dizininde `flxapp` ipucu.
+- **Görünüm:** `GET /config` (`flx-app-config/1`): tema (theme.json + Flux Admin rengi + preset + override, açık/koyu), mobil kabuk (alt bar, yan menü, üst bar) ve masaüstü kabuk (kenar çubuğu, üst bar, ⌘K kısayolları), özellikler, webview kuralları; ETag/304. Yeni **Görünüm** sekmesi (iki platform önizlemesiyle) ve preset için `flx_settings_schema` kaydı.
+- **Manifest:** `flxapp_manifest` filtresi, `flxapp_manifest_file()`, `GET /manifest` ve `/manifest/<id>` (yetki, platform ve dil süzülmüş; ETag/304), şema doğrulaması (Modüller sekmesi + sistem kontrolü). Çekirdek (`core`: başlangıç, yazılar, sayfalar, ortam, yorumlar, kullanıcılar, ayarlar, eklentiler), WooCommerce (`woo`: siparişler, ürünler, müşteriler) ve Flux Donate bağışçı (`flxb-donations`) manifestleri. Ekran ekran kapatma (`screens_off`).
+- **Cihazlar ve push:** `GET/POST /devices`, `DELETE /devices/<id>`; cihaz listesi ve "Oturumu kapat" (Kullanıcılar › Uygulama erişimi, Tüm erişimler). Expo push (`do_action( 'flxapp_push', … )`, yanıt sonrası, ölü belirteç temizliği, şifreli belirteç), bildirim türleri (`flxapp_push_events`), içerik gizleme, deneme bildirimi. Masaüstü için `GET /sync` `events` listesi. Çekirdek olay: onay bekleyen yorum.
+- **Uygulamalar** sekmesi: ana uygulama, mağaza linkleri, push durumu, Expo belirteci, marka istemcileri, geliştirici modu.
+- **Tercihler:** `GET/POST /prefs` (sıra, sabitler, gizlenenler, sekmeler, bildirim türleri; cihazlar arası).
+- **Ayar köprüsü:** `GET/POST /settings/<option>`; yalnız manifestte bildirilen alanlar, gizli alanlar hiç dönmez.
+- **Webview:** `/session` ön yüz adresi (`front`, `url`) ve `embed`; `POST /session/end`; oturum kapanınca webview oturumları da biter. Gömülü görünüm çerezi/parametresi, ön yüzde admin bar yok, mobil safe-area, blok editörü tam ekran, `flxapp_mode` ile koyu tema, beyaz listeli köprü mesajları (başlık, adres, bildirim).
+- `/me`: `caps`, `hashes`, `modules[].manifest`, paket sürümleri. `/dashboard` kartlarında §6 hedefleri (`screen:`, `module:`, `web:`); eski `mod:` çevrilir.
+- Düzeltme: `X-FluxWP-Token` yedek başlığı ve `X-FluxWP-Platform` süzmesi okunmuyordu (yeniden adlandırma kalıntısı); ikisi de çalışıyor, eski adlar da okunur.
+- Sistem kontrolü: push son gönderim, manifest doğrulaması, uygulama istemcileri satırları.
+
 ## 0.3.10
 - Tarih ve "… önce" metinleri artık kullanıcının dilinde, tek ortak yardımcıdan (FluxWP `flx_date` / `flx_time_ago`, flx-brand 1.1.0): "31 minutes önce", "August 10" gibi Türkçe/İngilizce karışımı kalmadı; çekirdek dil paketi inmemiş olsa da TR ve EN ay/gün adları doğru.
 
