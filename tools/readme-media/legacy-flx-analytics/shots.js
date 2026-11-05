@@ -1,7 +1,7 @@
 const { chromium } = require('playwright');
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 const lang=process.argv[2]; const out=process.argv[3];
-execSync(`php ${__dirname}/../env/setloc.php ${lang==='en'?'en_US':'tr_TR'}`);
+execFileSync('php',[__dirname+'/../env/setloc.php',lang==='en'?'en_US':'tr_TR']);
 const B='http://127.0.0.1:8080/wp-admin/';
 async function login(c){const p=await c.newPage(); await p.goto('http://127.0.0.1:8080/wp-login.php'); await p.fill('#user_login','admin'); await p.fill('#user_pass','admin12345'); await p.click('#wp-submit'); await p.waitForLoadState('networkidle'); return p;}
 async function union(p,sels,pad=12){ const bs=[]; for(const s of sels){ for(const l of await p.locator(s).all()){ if(!(await l.isVisible())) continue; const b=await l.boundingBox(); if(b&&b.height>10) bs.push(b);} } const x=Math.min(...bs.map(b=>b.x))-pad,y=Math.min(...bs.map(b=>b.y))-pad; const x2=Math.max(...bs.map(b=>b.x+b.width))+pad,y2=Math.max(...bs.map(b=>b.y+b.height))+pad; return {x,y,width:x2-x,height:y2-y}; }

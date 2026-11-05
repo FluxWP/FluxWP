@@ -1,7 +1,7 @@
 // node gif.js <config.json> <lang>  -> $WPENV/vid/<slug>-<lang>/*.webm
-const {chromium,B,U}=require(__dirname+'/lib.js'); const fs=require('fs'); const {execSync}=require('child_process');
+const {chromium,B,U}=require(__dirname+'/lib.js'); const fs=require('fs'); const {execFileSync}=require('child_process');
 const cfg=JSON.parse(fs.readFileSync(process.argv[2])); const lang=process.argv[3]; const L=(v)=>typeof v==='object'&&v&&!Array.isArray(v)?v[lang]:v;
-execSync(`php ${__dirname}/env/setloc.php ${lang==='en'?'en_US':'tr_TR'}`);
+execFileSync('php',[__dirname+'/env/setloc.php',lang==='en'?'en_US':'tr_TR']);
 const CURSOR=fs.readFileSync(__dirname+'/cursor.js','utf8');
 (async()=>{ const b=await chromium.launch(); const W=cfg.gifW||1280,H=cfg.gifH||760;
  const {login}=require(__dirname+'/lib.js'); const {c:lc}=await login(b,{viewport:{width:W,height:H}}); const st=await lc.storageState(); await lc.close();
