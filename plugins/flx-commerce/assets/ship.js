@@ -23,9 +23,9 @@
 		last = key;
 		var left = Math.max(0, cfg.min - sub);
 		el.classList.toggle('is-done', left <= 0);
-		var span = document.createElement('span');
-		span.textContent = fmt(left, t);
-		text.innerHTML = left > 0 ? cfg.left.replace('%s', span.innerHTML) : cfg.done;
+		text.innerHTML = left > 0 ? String(cfg.left).replace('%s', '<span data-flxcm-amt></span>') : cfg.done;
+		var amt = text.querySelector('[data-flxcm-amt]');
+		if (amt) amt.textContent = fmt(left, t);
 		if (bar) bar.style.width = Math.min(100, Math.max(0, sub / cfg.min * 100)).toFixed(1) + '%';
 	});
 })();
