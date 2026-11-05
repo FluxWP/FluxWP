@@ -418,3 +418,18 @@ final class FLXWK_Admin {
 }
 
 FLXWK_Admin::init();
+
+/* Sol menüde renkli Flux Wiki logosu (diğer FluxWP paketleri gibi). Flux Admin varsa ortak logo setinden, yoksa paketteki assets/icon.svg. */
+add_filter(
+	'flxa_menu_logos',
+	function ( $m ) {
+		$m[ 'edit.php?post_type=' . FLXWK_PT ] = 'flx-wiki.svg';
+		return $m;
+	}
+);
+add_action(
+	'admin_head',
+	function () {
+		echo '<style>#menu-posts-' . esc_attr( FLXWK_PT ) . ':not(.flxa-logo) .wp-menu-image{background:url(' . esc_url( FLXWK_URL . 'assets/icon.svg?v=' . FLXWK_VERSION ) . ') center/20px 20px no-repeat}#menu-posts-' . esc_attr( FLXWK_PT ) . ':not(.flxa-logo) .wp-menu-image::before{content:none}</style>' . "\n";
+	}
+);

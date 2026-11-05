@@ -68,7 +68,7 @@ function flxwk_register_types() {
 				'with_front' => false,
 				'feeds'      => false,
 			),
-			'menu_icon'       => 'dashicons-book-alt',
+			'menu_icon'       => 'none', // Renkli paket logosu: includes/admin.php.
 			'menu_position'   => 21,
 			'show_in_rest'    => true,
 			'capability_type' => 'post',

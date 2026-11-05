@@ -1,5 +1,9 @@
 # Flux Wiki
 
+## 0.1.1
+
+- Sol admin menüsünde Flux Wiki artık diğer FluxWP paketleri gibi renkli paket logosuyla görünür (önceden gri WordPress kitap simgesi). Flux Admin varsa ortak logo setindeki `flx-wiki.svg`, yoksa paketteki `assets/icon.svg`.
+
 ## 0.1.0
 
 - İlk sürüm: `/wiki` altında geliştirici wiki'si. Hiyerarşik wiki sayfaları (`flx_wiki`) ve bölümler (`flx_wiki_section`).
