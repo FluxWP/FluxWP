@@ -1,10 +1,10 @@
 name: FluxWP CI
 on:
   pull_request:
-    paths: ['packages/**', 'apps/**', 'brands/**', 'tools/fluxapp/**', 'package.json', 'bun.lock', '.github/workflows/fluxapp-*.yml']
+    paths: ['packages/**', 'apps/**', '!apps/mobile/**', 'brands/**', 'tools/fluxapp/**', 'package.json', 'bun.lock', '.github/workflows/fluxapp-*.yml']
   push:
     branches: [main]
-    paths: ['packages/**', 'apps/**', 'brands/**', 'tools/fluxapp/**', 'package.json', 'bun.lock', '.github/workflows/fluxapp-*.yml']
+    paths: ['packages/**', 'apps/**', '!apps/mobile/**', 'brands/**', 'tools/fluxapp/**', 'package.json', 'bun.lock', '.github/workflows/fluxapp-*.yml']
 permissions:
   contents: read
 jobs:
@@ -17,8 +17,8 @@ jobs:
       - uses: actions/setup-node@v5
         with: { node-version: 22 }
       - run: bun install --frozen-lockfile
-      - run: bun run typecheck
-      - run: bun run test
+      # apps/mobile has its own workflow (mobile-ci.yml).
+      - run: bunx turbo run typecheck test --filter=!@fluxwp/mobile
       - run: bun run --filter @fluxwp/panel build
       - name: White-label build (flux)
         run: FLUX_BRAND=flux bun tools/fluxapp/brand.mjs && bun run --filter @fluxwp/panel build

@@ -8,7 +8,11 @@ export interface SiteInfo {
   description: string;
   icon: string;
   /** Flux App kurulu mu (OAuth + /me). */
+  hasFluxApp: boolean;
+  /** @deprecated hasFluxApp */
   hasYtApp: boolean;
+  /** WordPress Application Passwords yetkilendirme adresi (Flux App yoksa sınırlı mod). */
+  appPasswordsUrl: string | null;
   namespaces: string[];
 }
 
@@ -43,7 +47,7 @@ export async function discoverSite(input: string): Promise<SiteInfo> {
     throw new DiscoveryError('unreachable');
   }
   if (!res.ok) throw new DiscoveryError(res.status === 404 ? 'not_wordpress' : 'unreachable');
-  let j: { name?: string; description?: string; home?: string; url?: string; namespaces?: string[]; site_icon_url?: string };
+  let j: { name?: string; description?: string; home?: string; url?: string; namespaces?: string[]; site_icon_url?: string; authentication?: { 'application-passwords'?: { endpoints?: { authorization?: string } } } };
   try {
     j = await res.json();
   } catch {
@@ -55,7 +59,9 @@ export async function discoverSite(input: string): Promise<SiteInfo> {
     name: j.name || new URL(url).host,
     description: j.description || '',
     icon: j.site_icon_url || '',
+    hasFluxApp: j.namespaces.includes('flxapp/v1'),
     hasYtApp: j.namespaces.includes('flxapp/v1'),
+    appPasswordsUrl: j.authentication?.['application-passwords']?.endpoints?.authorization ?? null,
     namespaces: j.namespaces,
   };
 }

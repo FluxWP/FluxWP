@@ -1,0 +1,73 @@
+{
+  "addSite": {
+    "title": "Siteni bağla",
+    "hint": "WordPress sitenin adresini yaz. Birden çok site ekleyebilirsin.",
+    "continue": "Devam",
+    "browserHint": "Giriş, uygulama içindeki güvenli tarayıcıda yapılır. Şifren uygulamaya gelmez.",
+    "notAllowed": "Bu uygulama yalnız kendi sitesine bağlanabilir.",
+    "cancelled": "Giriş iptal edildi.",
+    "demo": "Demo hesabıyla dene",
+    "methods": "Giriş yolu",
+    "noFluxApp": "Bu sitede Flux App yok. Uygulama şifresiyle sınırlı modda bağlanabilirsin; tam deneyim için Flux App'i kur.",
+    "appPassword": "Uygulama şifresiyle bağlan",
+    "otp": "Kodla giriş",
+    "apiKey": "API anahtarı",
+    "secondAccount": "Bu sitede başka bir hesapla giriş yap",
+    "insecure": "Uygulama şifresi yalnız HTTPS sitelerde kullanılabilir.",
+    "appNotAllowed": "Bu site FluxWP uygulamasını kapatmış; yalnız sitenin kendi uygulamasıyla girilebilir."
+  },
+  "otp": {
+    "title": "Kodla giriş",
+    "login": "E-posta ya da telefon",
+    "send": "Kod gönder",
+    "sent": "Kod {{via}} gönderildi.",
+    "code": "6 haneli kod",
+    "verify": "Giriş yap",
+    "resend": "Kodu yeniden gönder"
+  },
+  "apikey": {
+    "title": "API anahtarıyla bağlan"
+  },
+  "switcher": {
+    "title": "Hesaplar",
+    "add": "Site ya da hesap ekle",
+    "manage": "Hesapları yönet",
+    "remove": "Hesabı kaldır",
+    "removeConfirm": "{{site}} hesabı bu cihazdan kaldırılsın mı?",
+    "current": "Açık hesap",
+    "relogin": "Yeniden giriş yap",
+    "limited": "Sınırlı mod"
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "theme": "Tema",
+    "language": "Dil",
+    "languageDevice": "Cihaz dili",
+    "cache": "Önbelleği temizle",
+    "cacheCleared": "Önbellek temizlendi.",
+    "version": "Sürüm {{version}}",
+    "about": "Hakkında",
+    "support": "Destek",
+    "notifications": "Bildirimler"
+  },
+  "web": {
+    "loading": "Panel sayfası açılıyor…",
+    "error": "Sayfa açılamadı.",
+    "openBrowser": "Tarayıcıda aç",
+    "reload": "Yenile",
+    "relogin": "Panel oturumu düştü, yeniden açılıyor…",
+    "demo": "Demo: örnek panel sayfası (gerçek sitede oturum açık gelir)"
+  },
+  "shell": {
+    "openDrawer": "Menüyü aç",
+    "back": "Geri",
+    "offline": "Çevrimdışı: kayıtlı veriler gösteriliyor",
+    "more": "Tüm menü",
+    "notFound": "Bu ekran bulunamadı.",
+    "native": "Bu ekran yakında uygulamaya gelecek."
+  },
+  "states": {
+    "retry": "Tekrar dene",
+    "loading": "Yükleniyor…"
+  }
+}
