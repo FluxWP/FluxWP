@@ -51,12 +51,18 @@ final class FLXPOS_Admin {
 			array(
 				'rest'  => esc_url_raw( rest_url( 'flxpos/v1/' ) ),
 				'nonce' => wp_create_nonce( 'wp_rest' ),
+				'cur'   => function_exists( 'get_woocommerce_currency' ) ? get_woocommerce_currency() : 'TRY',
+				'loc'   => str_replace( '_', '-', get_user_locale() ),
 				'i18n'  => array(
 					'testing' => __( 'Sağlayıcıya bağlanılıyor…', 'flx-pos' ),
 					'fail'    => __( 'Bir şey ters gitti. Tekrar deneyin.', 'flx-pos' ),
 					'copied'  => __( 'Kopyalandı', 'flx-pos' ),
 					'confirm' => __( 'Bu hesap silinsin mi? İşlem kayıtları kalır.', 'flx-pos' ),
 					'refund'  => __( 'Bu tutar karta iade edilsin mi? Geri alınamaz.', 'flx-pos' ),
+					/* translators: 1: aylık tutar, 2: toplam */
+					'iex'     => __( 'aylık %1$s · toplam %2$s', 'flx-pos' ),
+					'free'    => __( 'faizsiz', 'flx-pos' ),
+					'off'     => __( 'kapalı', 'flx-pos' ),
 				),
 			)
 		);
@@ -278,6 +284,11 @@ final class FLXPOS_Admin {
 			echo '<option value="' . esc_attr( $k ) . '"' . selected( $a['mode'], $k, false ) . '>' . esc_html( $l ) . '</option>';
 		}
 		echo '</select></label>';
+		echo '<label><span>' . esc_html__( 'Ödeme sayfası gösterimi', 'flx-pos' ) . '</span><select name="display"><option value="">' . esc_html__( 'Genel ayar', 'flx-pos' ) . ' (' . esc_html( flxpos_display_modes()[ (string) flxpos_setting( 'display' ) ] ?? '' ) . ')</option>';
+		foreach ( flxpos_display_modes() as $k => $l ) {
+			echo '<option value="' . esc_attr( $k ) . '"' . selected( $a['display'] ?? '', $k, false ) . '>' . esc_html( $l ) . '</option>';
+		}
+		echo '</select><small>' . esc_html__( 'Bankanın 3D doğrulaması ya da kuruluşun ödeme sayfası nasıl açılsın.', 'flx-pos' ) . '</small></label>';
 		echo '</div><div class="flxpos-checks">';
 		echo '<label class="flxpos-check"><input type="checkbox" name="enabled" value="1"' . checked( ! empty( $a['enabled'] ), true, false ) . '><span>' . esc_html__( 'Etkin', 'flx-pos' ) . '</span></label>';
 		echo '<label class="flxpos-check"><input type="checkbox" name="test" value="1"' . checked( ! empty( $a['test'] ), true, false ) . '><span>' . esc_html__( 'Test modu', 'flx-pos' ) . '<small>' . esc_html__( 'Sağlayıcının test ortamı; gerçek para çekilmez.', 'flx-pos' ) . '</small></span></label>';
@@ -331,14 +342,22 @@ final class FLXPOS_Admin {
 		if ( 'wallet' === $p['group'] ) {
 			echo '<div class="flxpos-fields flxpos-fields--2"><label><span>' . esc_html__( 'Ödeme sayfasındaki adı', 'flx-pos' ) . '</span><input type="text" name="title" value="' . esc_attr( $a['title'] ) . '" placeholder="' . esc_attr( $p['name'] ) . '"></label></div>';
 		} else {
-			echo '<p class="flxpos-muted">' . esc_html__( 'Taksit yalnız TL ödemelerde. Vade farkı (%) yazdığınız taksitler gösterilir; 0 yazarsanız vade farksız. Sağlayıcı karta göre taksit veriyorsa yalnız kartın desteklediği taksitler çıkar.', 'flx-pos' ) . '</p>';
-			echo '<div class="flxpos-inst">';
+			echo '<h3 class="flxpos-sub">' . esc_html__( 'Taksit', 'flx-pos' ) . '</h3><div class="flxpos-itool"><p class="flxpos-muted">' . esc_html__( 'Yalnız TL ödemelerde. Açtığınız taksitler ödeme sayfasında çıkar; vade farkı 0 ise faizsiz. Sağlayıcı karta göre taksit veriyorsa yalnız kartın desteklediği taksitler gösterilir.', 'flx-pos' ) . '</p>';
+			echo '<label class="flxpos-imin"><span>' . esc_html__( 'En düşük sepet', 'flx-pos' ) . '</span><span class="flxpos-affix"><input type="text" inputmode="decimal" name="inst_min" value="' . esc_attr( $a['inst_min'] ? flxpos_dec( $a['inst_min'] ) : '' ) . '" placeholder="0"><i>₺</i></span></label>';
+			echo '<label class="flxpos-imin"><span>' . esc_html__( 'Örnek tutar', 'flx-pos' ) . '</span><span class="flxpos-affix"><input type="text" inputmode="decimal" value="1000" data-flxpos-sample><i>₺</i></span></label></div>';
+			echo '<div class="flxpos-itable" role="table" aria-label="' . esc_attr__( 'Taksit tablosu', 'flx-pos' ) . '">';
 			foreach ( array( 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ) as $n ) {
-				$v = isset( $a['installments'][ $n ] ) ? flxpos_dec( $a['installments'][ $n ] ) : '';
+				$on = isset( $a['installments'][ $n ] );
+				$v  = $on ? flxpos_dec( $a['installments'][ $n ] ) : '';
 				/* translators: %d: taksit sayısı */
-				echo '<label><span>' . esc_html( sprintf( __( '%d taksit', 'flx-pos' ), $n ) ) . '</span><input type="text" inputmode="decimal" name="installments[' . (int) $n . ']" value="' . esc_attr( $v ) . '" placeholder="—" size="5"> %</label>';
+				$lab = sprintf( __( '%d taksit', 'flx-pos' ), $n );
+				echo '<div class="flxpos-irow' . ( $on ? ' is-on' : '' ) . '" role="row" data-n="' . (int) $n . '">';
+				echo '<label class="flxpos-switch" role="cell"><input type="checkbox" data-flxpos-ion' . checked( $on, true, false ) . ' aria-label="' . esc_attr( $lab ) . '"><span class="flxpos-switch__ui"></span></label>';
+				echo '<strong role="cell">' . esc_html( $lab ) . '</strong>';
+				echo '<span class="flxpos-affix" role="cell"><input type="text" inputmode="decimal" name="installments[' . (int) $n . ']" value="' . esc_attr( $v ) . '" placeholder="0" aria-label="' . esc_attr( sprintf( /* translators: %s: 3 taksit */ __( '%s vade farkı', 'flx-pos' ), $lab ) ) . '"' . ( $on ? '' : ' disabled' ) . '><i>%</i></span>';
+				echo '<span class="flxpos-iex" role="cell" data-flxpos-iex></span></div>';
 			}
-			echo '</div><div class="flxpos-fields flxpos-fields--2"><label><span>' . esc_html__( 'Taksit için en düşük tutar', 'flx-pos' ) . '</span><input type="text" inputmode="decimal" name="inst_min" value="' . esc_attr( $a['inst_min'] ? flxpos_dec( $a['inst_min'] ) : '' ) . '" placeholder="0"></label></div>';
+			echo '</div>';
 		}
 		echo '</section></div>';
 
@@ -570,7 +589,13 @@ final class FLXPOS_Admin {
 		}
 		echo '</section>';
 
-		echo '<section class="flxpos-card"><h2>' . esc_html__( 'Görünüm ve kayıt', 'flx-pos' ) . '</h2><div class="flxpos-checks flxpos-checks--col">';
+		echo '<section class="flxpos-card"><h2>' . esc_html__( 'Görünüm ve kayıt', 'flx-pos' ) . '</h2>';
+		echo '<fieldset class="flxpos-radios"><legend>' . esc_html__( 'Ödeme sayfası gösterimi', 'flx-pos' ) . '</legend>';
+		foreach ( flxpos_display_modes() as $k => $l ) {
+			echo '<label class="flxpos-check"><input type="radio" name="display" value="' . esc_attr( $k ) . '"' . checked( $s['display'], $k, false ) . '><span>' . esc_html( $l ) . '</span></label>';
+		}
+		echo '<small>' . esc_html__( 'Çerçeve içinde gösterimi her sağlayıcı izin vermeyebilir; sayfa açılmazsa o hesapta Yönlendirme seçin. Hesap ekranından hesap başına değiştirilebilir.', 'flx-pos' ) . '</small></fieldset>';
+		echo '<div class="flxpos-checks flxpos-checks--col">';
 		$checks = array(
 			'show_brands'    => array( __( 'Kart markası logosu', 'flx-pos' ), __( 'Kart numarası yazılırken Visa, Mastercard, Troy…', 'flx-pos' ) ),
 			'block_fallback' => array( __( 'Diğer ödeme eklentilerini blok ödemede göster', 'flx-pos' ), __( 'Kendi blok desteği olmayan, kartı kendi sayfasında alan eklentiler.', 'flx-pos' ) ),
@@ -604,6 +629,7 @@ final class FLXPOS_Admin {
 			'block_fallback'  => empty( $in['block_fallback'] ) ? 0 : 1,
 			'show_brands'     => empty( $in['show_brands'] ) ? 0 : 1,
 			'save_log'        => empty( $in['save_log'] ) ? 0 : 1,
+			'display'         => isset( flxpos_display_modes()[ (string) ( $in['display'] ?? '' ) ] ) ? (string) $in['display'] : 'redirect',
 		);
 		update_option( 'flxpos_settings', $out, false );
 		wp_safe_redirect( flxpos_admin_url( array( 'tab' => 'settings', 'msg' => 'saved' ) ) );

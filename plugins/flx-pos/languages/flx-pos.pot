@@ -30,6 +30,15 @@ msgstr ""
 msgid "Bu tutar karta iade edilsin mi? Geri alınamaz."
 msgstr ""
 
+msgid "aylık %1$s · toplam %2$s"
+msgstr ""
+
+msgid "faizsiz"
+msgstr ""
+
+msgid "kapalı"
+msgstr ""
+
 msgid "Hesaplar"
 msgstr ""
 
@@ -156,6 +165,15 @@ msgstr ""
 msgid "Ödeme modeli"
 msgstr ""
 
+msgid "Ödeme sayfası gösterimi"
+msgstr ""
+
+msgid "Genel ayar"
+msgstr ""
+
+msgid "Bankanın 3D doğrulaması ya da kuruluşun ödeme sayfası nasıl açılsın."
+msgstr ""
+
 msgid "Etkin"
 msgstr ""
 
@@ -204,13 +222,25 @@ msgstr ""
 msgid "Ödeme sayfasındaki adı"
 msgstr ""
 
-msgid "Taksit yalnız TL ödemelerde. Vade farkı (%) yazdığınız taksitler gösterilir; 0 yazarsanız vade farksız. Sağlayıcı karta göre taksit veriyorsa yalnız kartın desteklediği taksitler çıkar."
+msgid "Taksit"
+msgstr ""
+
+msgid "Yalnız TL ödemelerde. Açtığınız taksitler ödeme sayfasında çıkar; vade farkı 0 ise faizsiz. Sağlayıcı karta göre taksit veriyorsa yalnız kartın desteklediği taksitler gösterilir."
+msgstr ""
+
+msgid "En düşük sepet"
+msgstr ""
+
+msgid "Örnek tutar"
+msgstr ""
+
+msgid "Taksit tablosu"
 msgstr ""
 
 msgid "%d taksit"
 msgstr ""
 
-msgid "Taksit için en düşük tutar"
+msgid "%s vade farkı"
 msgstr ""
 
 msgid "Kaydet"
@@ -366,6 +396,9 @@ msgstr ""
 msgid "Görünüm ve kayıt"
 msgstr ""
 
+msgid "Çerçeve içinde gösterimi her sağlayıcı izin vermeyebilir; sayfa açılmazsa o hesapta Yönlendirme seçin. Hesap ekranından hesap başına değiştirilebilir."
+msgstr ""
+
 msgid "Kart markası logosu"
 msgstr ""
 
@@ -453,10 +486,16 @@ msgstr ""
 msgid "Kart bilgisinin süresi doldu; lütfen yeniden deneyin."
 msgstr ""
 
-msgid "Güvenli ödemeye geçiliyor…"
+msgid "Güvenli ödeme"
 msgstr ""
 
 msgid "Ödeme formu"
+msgstr ""
+
+msgid "Vazgeç, ödeme sayfasına dön"
+msgstr ""
+
+msgid "Güvenli ödemeye geçiliyor…"
 msgstr ""
 
 msgid "Devam et"
@@ -477,6 +516,9 @@ msgstr ""
 msgid "Kart ödemesi başarısız (%1$s): %2$s"
 msgstr ""
 
+msgid "Yönlendiriliyor…"
+msgstr ""
+
 msgid "Ödeme tamamlanamadı. Lütfen yeniden deneyin ya da başka bir kart kullanın."
 msgstr ""
 
@@ -490,9 +532,6 @@ msgid "Son kullanma (AA/YY)"
 msgstr ""
 
 msgid "Güvenlik kodu (CVC)"
-msgstr ""
-
-msgid "Taksit"
 msgstr ""
 
 msgid "Tek çekim"
@@ -517,6 +556,12 @@ msgid "Kart üzerindeki adı yazın."
 msgstr ""
 
 msgid "Test modu: gerçek para çekilmez."
+msgstr ""
+
+msgid "Kapat"
+msgstr ""
+
+msgid "Ödeme yarıda kalacak. Kapatılsın mı?"
 msgstr ""
 
 msgid "Seçilen taksit bu kartta kullanılamıyor."
@@ -880,6 +925,15 @@ msgid "%s (Flux POS)"
 msgstr ""
 
 msgid "Ödeme sağlayıcının sayfasında tamamlanır."
+msgstr ""
+
+msgid "Yönlendirme: banka ya da kuruluş sayfası tam ekran açılır"
+msgstr ""
+
+msgid "Açılır pencere: ödeme sayfasından ayrılmadan, çerçeve içinde"
+msgstr ""
+
+msgid "Site içinde: sitenin üst ve alt bölümüyle, çerçeve içinde"
 msgstr ""
 
 msgid "%1$s yanıt vermedi (HTTP %2$d)."

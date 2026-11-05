@@ -29,6 +29,7 @@ final class FLXPOS_Accounts {
 			'installments' => array(),  // taksit sayısı => vade farkı (%); boş = yalnız peşin
 			'inst_min'     => 0,        // taksit için en düşük tutar
 			'title'        => '',       // cüzdan/yönlendirmeli yöntemin ödeme sayfasındaki adı
+			'display'      => '',       // gösterim (redirect | modal | inline); boş = genel ayar
 			'created'      => '',
 		);
 	}
@@ -149,6 +150,7 @@ final class FLXPOS_Accounts {
 			'installments' => $inst,
 			'inst_min'     => max( 0, (float) ( $in['inst_min'] ?? 0 ) ),
 			'title'        => sanitize_text_field( (string) ( $in['title'] ?? '' ) ),
+			'display'      => isset( flxpos_display_modes()[ (string) ( $in['display'] ?? '' ) ] ) ? (string) $in['display'] : '',
 			'created'      => (string) ( $old['created'] ?? gmdate( 'c' ) ),
 		);
 		$raw[ $id ] = $a;

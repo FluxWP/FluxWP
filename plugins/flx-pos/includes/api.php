@@ -91,10 +91,7 @@ function flxpos_charge( array $args ) {
 		unset( $card['inst'] );
 		$more['v'] = FLXPOS_Vault::put( $card );
 	}
-	return array(
-		'txn'      => $txn,
-		'redirect' => FLXPOS_Flow::url( 'bridge', $txn['id'], $more ),
-	);
+	return array( 'txn' => $txn ) + FLXPOS_Flow::start_result( $txn, $acc, $more );
 }
 
 /**

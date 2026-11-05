@@ -74,6 +74,9 @@ final class FLXPOS_Gateways {
 				'badCvc'   => __( 'Güvenlik kodunu kontrol edin.', 'flx-pos' ),
 				'badName'  => __( 'Kart üzerindeki adı yazın.', 'flx-pos' ),
 				'test'     => __( 'Test modu: gerçek para çekilmez.', 'flx-pos' ),
+				'payTitle' => __( 'Güvenli ödeme', 'flx-pos' ),
+				'close'    => __( 'Kapat', 'flx-pos' ),
+				'cancelAsk' => __( 'Ödeme yarıda kalacak. Kapatılsın mı?', 'flx-pos' ),
 			),
 		);
 	}
@@ -189,10 +192,7 @@ final class FLXPOS_Gateways {
 			unset( $card['inst'] );
 			$more['v'] = FLXPOS_Vault::put( $card );
 		}
-		return array(
-			'result'   => 'success',
-			'redirect' => FLXPOS_Flow::url( 'bridge', $txn['id'], $more ),
-		);
+		return array( 'result' => 'success' ) + FLXPOS_Flow::start_result( $txn, $account, $more );
 	}
 
 	/** Taksit vade farkını siparişe ücret satırı olarak ekle (önceki denemeninkini değiştirir). */

@@ -17,3 +17,12 @@ fieldset.flxpos-card{margin:0;padding:0;border:0}
 .flxpos-b-label img{max-height:24px}
 .flxpos-page{font:16px/1.5 system-ui,sans-serif;max-width:520px;margin:10vh auto;padding:0 16px;text-align:center;color:#1f2937}
 .flxpos-frame{width:100%;min-height:640px;border:0}
+/* Açılır pencere gösterimi */
+.flxpos-modal-open,.flxpos-modal-open body{overflow:hidden}
+.flxpos-modal{position:fixed;inset:0;z-index:999999;background:rgba(15,18,20,.55);display:flex;align-items:center;justify-content:center;padding:16px;box-sizing:border-box}
+.flxpos-modal__box{background:#fff;color:#1f2328;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.3);width:min(720px,100%);height:min(780px,100%);display:flex;flex-direction:column;overflow:hidden}
+.flxpos-modal__bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:1px solid rgba(0,0,0,.08);font-weight:600;font-size:15px}
+.flxpos-modal__x{border:0;background:transparent;font-size:26px;line-height:1;cursor:pointer;color:inherit;padding:2px 8px;border-radius:8px}
+.flxpos-modal__x:hover,.flxpos-modal__x:focus-visible{background:rgba(0,0,0,.06)}
+.flxpos-modal__frame{flex:1;width:100%;border:0;background:#fff}
+@media (max-width:600px){.flxpos-modal{padding:0}.flxpos-modal__box{width:100%;height:100%;border-radius:0}}

@@ -18,6 +18,7 @@ function flxpos_settings() {
 		'block_fallback'  => 1,       // eklentisi blok desteklemeyen yönlendirmeli yöntemleri blok ödemeye ekle
 		'show_brands'     => 1,       // kart formunda kart markası logoları
 		'save_log'        => 1,       // ayrıntılı işlem günlüğü (kart verisi yazılmaz)
+		'display'         => 'redirect', // 3D/ödeme sayfasının gösterimi: redirect | modal | inline
 	);
 	$s = get_option( 'flxpos_settings', array() );
 	return array_merge( $d, is_array( $s ) ? $s : array() );
@@ -26,6 +27,15 @@ function flxpos_settings() {
 function flxpos_setting( $key ) {
 	$s = flxpos_settings();
 	return $s[ $key ] ?? null;
+}
+
+/** 3D / ödeme sayfası gösterim biçimleri. */
+function flxpos_display_modes() {
+	return array(
+		'redirect' => __( 'Yönlendirme: banka ya da kuruluş sayfası tam ekran açılır', 'flx-pos' ),
+		'modal'    => __( 'Açılır pencere: ödeme sayfasından ayrılmadan, çerçeve içinde', 'flx-pos' ),
+		'inline'   => __( 'Site içinde: sitenin üst ve alt bölümüyle, çerçeve içinde', 'flx-pos' ),
+	);
 }
 
 function flxpos_admin_url( $args = array() ) {

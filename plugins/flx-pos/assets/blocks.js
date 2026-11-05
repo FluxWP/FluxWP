@@ -38,8 +38,24 @@
 			el('input', Object.assign({ id: id, className: 'flxpos-b-input' }, props)));
 	}
 
+	/* Açılır pencere gösterimi: sipariş oluştuktan sonra yönlendirme yerine çerçeve (checkout.js). */
+	function useFrame(props) {
+		var on = props.eventRegistration && props.eventRegistration.onCheckoutSuccess;
+		useEffect(function () {
+			if (!on) return undefined;
+			return on(function (d) {
+				var pd = (d && d.processingResponse && d.processingResponse.paymentDetails) || {};
+				var api = window.FLXPOS_API;
+				if (!pd.flxpos_frame || !api || !api.frame) return true;
+				api.frame(pd.flxpos_frame, pd.flxpos_cancel);
+				return new Promise(function () {}); /* sayfa çerçeveden çıkınca değişir */
+			});
+		}, [on]);
+	}
+
 	function CardForm(data) {
 		return function (props) {
+			useFrame(props);
 			var s = useState({ name: '', pan: '', exp: '', cvc: '', inst: '1' });
 			var v = s[0], set = s[1];
 			var o = useState([]); var opts = o[0], setOpts = o[1];
@@ -102,7 +118,7 @@
 		if (!data) return;
 		var title = decode(data.title || name);
 		var Desc = function () { return data.description ? el('p', null, decode(data.description)) : null; };
-		var Content = data.card ? CardForm(data) : Desc;
+		var Content = data.card ? CardForm(data) : function (props) { useFrame(props); return Desc(); };
 		reg.registerPaymentMethod({
 			name: name,
 			label: el('span', { className: 'flxpos-b-label' }, title, data.icon ? el('img', { src: data.icon, alt: '', loading: 'lazy' }) : null),

@@ -32,6 +32,15 @@ msgstr "Delete this account? Transaction records stay."
 msgid "Bu tutar karta iade edilsin mi? Geri alınamaz."
 msgstr "Refund this amount to the card? This cannot be undone."
 
+msgid "aylık %1$s · toplam %2$s"
+msgstr "%1$s/month · total %2$s"
+
+msgid "faizsiz"
+msgstr "interest-free"
+
+msgid "kapalı"
+msgstr "off"
+
 msgid "Hesaplar"
 msgstr "Accounts"
 
@@ -158,6 +167,15 @@ msgstr "Display name (in the panel)"
 msgid "Ödeme modeli"
 msgstr "Payment model"
 
+msgid "Ödeme sayfası gösterimi"
+msgstr "Payment page display"
+
+msgid "Genel ayar"
+msgstr "General setting"
+
+msgid "Bankanın 3D doğrulaması ya da kuruluşun ödeme sayfası nasıl açılsın."
+msgstr "How the bank's 3D verification or the provider's payment page opens."
+
 msgid "Etkin"
 msgstr "Enabled"
 
@@ -206,14 +224,26 @@ msgstr "Currencies and installments"
 msgid "Ödeme sayfasındaki adı"
 msgstr "Name on the checkout"
 
-msgid "Taksit yalnız TL ödemelerde. Vade farkı (%) yazdığınız taksitler gösterilir; 0 yazarsanız vade farksız. Sağlayıcı karta göre taksit veriyorsa yalnız kartın desteklediği taksitler çıkar."
-msgstr "Installments are for TRY payments only. Installments with a rate (%) are shown; 0 means no interest. If the provider gives installments by card, only those the card supports are shown."
+msgid "Taksit"
+msgstr "Installments"
+
+msgid "Yalnız TL ödemelerde. Açtığınız taksitler ödeme sayfasında çıkar; vade farkı 0 ise faizsiz. Sağlayıcı karta göre taksit veriyorsa yalnız kartın desteklediği taksitler gösterilir."
+msgstr "TRY payments only. Installments you turn on appear at checkout; a 0 fee means interest-free. If the provider offers installments per card, only those the card supports are shown."
+
+msgid "En düşük sepet"
+msgstr "Minimum cart"
+
+msgid "Örnek tutar"
+msgstr "Sample amount"
+
+msgid "Taksit tablosu"
+msgstr "Installment table"
 
 msgid "%d taksit"
 msgstr "%d installments"
 
-msgid "Taksit için en düşük tutar"
-msgstr "Lowest amount for installments"
+msgid "%s vade farkı"
+msgstr "%s installment fee"
 
 msgid "Kaydet"
 msgstr "Save"
@@ -368,6 +398,9 @@ msgstr "Default"
 msgid "Görünüm ve kayıt"
 msgstr "Display and logging"
 
+msgid "Çerçeve içinde gösterimi her sağlayıcı izin vermeyebilir; sayfa açılmazsa o hesapta Yönlendirme seçin. Hesap ekranından hesap başına değiştirilebilir."
+msgstr "Not every provider allows being shown in a frame; if the page does not open, choose Redirect for that account. Can be changed per account on the account screen."
+
 msgid "Kart markası logosu"
 msgstr "Card brand logo"
 
@@ -455,11 +488,17 @@ msgstr "General"
 msgid "Kart bilgisinin süresi doldu; lütfen yeniden deneyin."
 msgstr "The card details have expired; please try again."
 
-msgid "Güvenli ödemeye geçiliyor…"
-msgstr "Going to the secure payment…"
+msgid "Güvenli ödeme"
+msgstr "Secure payment"
 
 msgid "Ödeme formu"
 msgstr "Payment form"
+
+msgid "Vazgeç, ödeme sayfasına dön"
+msgstr "Cancel and return to checkout"
+
+msgid "Güvenli ödemeye geçiliyor…"
+msgstr "Going to the secure payment…"
 
 msgid "Devam et"
 msgstr "Continue"
@@ -479,6 +518,9 @@ msgstr "Card payment needs a check (%1$s): %2$s"
 msgid "Kart ödemesi başarısız (%1$s): %2$s"
 msgstr "Card payment failed (%1$s): %2$s"
 
+msgid "Yönlendiriliyor…"
+msgstr "Redirecting…"
+
 msgid "Ödeme tamamlanamadı. Lütfen yeniden deneyin ya da başka bir kart kullanın."
 msgstr "The payment could not be completed. Please try again or use another card."
 
@@ -493,9 +535,6 @@ msgstr "Expiry (MM/YY)"
 
 msgid "Güvenlik kodu (CVC)"
 msgstr "Security code (CVC)"
-
-msgid "Taksit"
-msgstr "Installments"
 
 msgid "Tek çekim"
 msgstr "Single payment"
@@ -520,6 +559,12 @@ msgstr "Enter the name on the card."
 
 msgid "Test modu: gerçek para çekilmez."
 msgstr "Test mode: no real money is charged."
+
+msgid "Kapat"
+msgstr "Close"
+
+msgid "Ödeme yarıda kalacak. Kapatılsın mı?"
+msgstr "The payment will be left unfinished. Close it?"
 
 msgid "Seçilen taksit bu kartta kullanılamıyor."
 msgstr "The selected installment is not available for this card."
@@ -883,6 +928,15 @@ msgstr "%s (Flux POS)"
 
 msgid "Ödeme sağlayıcının sayfasında tamamlanır."
 msgstr "Completed on the payment provider's page."
+
+msgid "Yönlendirme: banka ya da kuruluş sayfası tam ekran açılır"
+msgstr "Redirect: the bank or provider page opens full screen"
+
+msgid "Açılır pencere: ödeme sayfasından ayrılmadan, çerçeve içinde"
+msgstr "Popup: in a frame, without leaving checkout"
+
+msgid "Site içinde: sitenin üst ve alt bölümüyle, çerçeve içinde"
+msgstr "On site: in a frame, with the site's header and footer"
 
 msgid "%1$s yanıt vermedi (HTTP %2$d)."
 msgstr "%1$s did not respond (HTTP %2$d)."

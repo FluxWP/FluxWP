@@ -31,3 +31,40 @@
 		if (f.hasAttribute('data-flxpos-refund') && !window.confirm(A.i18n.refund)) e.preventDefault();
 	});
 })();
+/* Taksit tablosu: aç/kapa ve örnek tutar. */
+(function () {
+	'use strict';
+	var A = window.flxposAdmin || { i18n: {} };
+	var box = document.querySelector('.flxpos-itable');
+	if (!box) return;
+	var sample = document.querySelector('[data-flxpos-sample]');
+	var fmt;
+	try { fmt = new Intl.NumberFormat(A.loc || 'tr-TR', { style: 'currency', currency: A.cur && A.cur !== 'TRY' ? 'TRY' : 'TRY' }); } catch (e) { fmt = { format: function (x) { return x.toFixed(2) + ' ₺'; } }; }
+	var num = function (v) { var x = parseFloat(String(v || '').replace(/\s/g, '').replace(',', '.')); return isNaN(x) ? 0 : x; };
+	function paint() {
+		var base = num(sample && sample.value) || 1000;
+		box.querySelectorAll('.flxpos-irow').forEach(function (row) {
+			var n = +row.getAttribute('data-n');
+			var inp = row.querySelector('input[name^="installments"]');
+			var ex = row.querySelector('[data-flxpos-iex]');
+			var on = row.querySelector('[data-flxpos-ion]').checked;
+			row.classList.toggle('is-on', on);
+			inp.disabled = !on;
+			if (!on) { ex.textContent = A.i18n.off; return; }
+			var r = num(inp.value);
+			var total = base * (1 + r / 100);
+			ex.textContent = A.i18n.iex.replace('%1$s', fmt.format(total / n)).replace('%2$s', fmt.format(total)) + (r === 0 ? ' · ' + A.i18n.free : '');
+		});
+	}
+	box.addEventListener('change', function (e) {
+		if (e.target.matches('[data-flxpos-ion]')) {
+			var inp = e.target.closest('.flxpos-irow').querySelector('input[name^="installments"]');
+			if (e.target.checked && inp.value === '') inp.value = '0';
+			paint();
+			if (e.target.checked) { inp.disabled = false; inp.focus(); inp.select(); }
+		}
+	});
+	box.addEventListener('input', paint);
+	if (sample) sample.addEventListener('input', paint);
+	paint();
+})();

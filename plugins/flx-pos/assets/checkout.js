@@ -71,4 +71,58 @@
 		}
 	}
 	document.addEventListener('input', onInput);
+
+	/* Açılır pencere gösterimi: 3D / ödeme sayfası çerçevede; akış bitince sunucu üst pencereyi yönlendirir. */
+	api.frame = function (url, cancel) {
+		var T = C.i18n || {};
+		var prev = document.querySelector('.flxpos-modal');
+		if (prev) prev.remove();
+		var wrap = document.createElement('div');
+		wrap.className = 'flxpos-modal';
+		var box = document.createElement('div');
+		box.className = 'flxpos-modal__box';
+		box.setAttribute('role', 'dialog');
+		box.setAttribute('aria-modal', 'true');
+		box.setAttribute('aria-label', T.payTitle || '');
+		var bar = document.createElement('div');
+		bar.className = 'flxpos-modal__bar';
+		var title = document.createElement('span');
+		title.textContent = T.payTitle || '';
+		var x = document.createElement('button');
+		x.type = 'button';
+		x.className = 'flxpos-modal__x';
+		x.setAttribute('aria-label', T.close || 'Close');
+		x.textContent = '\u00d7';
+		var fr = document.createElement('iframe');
+		fr.className = 'flxpos-modal__frame';
+		fr.src = url;
+		fr.title = T.payTitle || '';
+		fr.setAttribute('allow', 'payment');
+		bar.appendChild(title); bar.appendChild(x);
+		box.appendChild(bar); box.appendChild(fr);
+		wrap.appendChild(box);
+		document.body.appendChild(wrap);
+		document.documentElement.classList.add('flxpos-modal-open');
+		var close = function () {
+			if (T.cancelAsk && !window.confirm(T.cancelAsk)) return;
+			window.location.href = cancel || window.location.href;
+		};
+		x.addEventListener('click', close);
+		document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && document.querySelector('.flxpos-modal')) close(); });
+		x.focus();
+	};
+
+	/* Klasik ödeme: sonuçta çerçeve adresi varsa yönlendirme yerine pencere. */
+	function bindClassic() {
+		var $ = window.jQuery;
+		if (!$) return;
+		$('form.checkout').on('checkout_place_order_success', function (e, result) {
+			if (!result || !result.flxpos_frame) return;
+			api.frame(result.flxpos_frame, result.flxpos_cancel);
+			var f = $(this).removeClass('processing');
+			if (f.unblock) f.unblock();
+			return false;
+		});
+	}
+	if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindClassic); else bindClassic();
 })();

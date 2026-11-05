@@ -10,6 +10,10 @@
  *  3. Banka ödeyeni /?flxpos=return&t=…&s=… adresine gönderir; sürücünün finish() sonucu işlenir
  *     (complete()). Bildirim gönderen sağlayıcılar /?flxpos=notify&a=<hesap> adresine yazar.
  *
+ * Gösterim (flxpos_display_modes): redirect = köprü tam sayfa; inline = köprü sitenin üst/alt bölümüyle
+ * bir çerçeve sayfası açar (w=1); modal = ödeme sayfası köprüyü açılır pencerede çerçeveye alır. Çerçevedeki
+ * köprü ve dönüş f=1 taşır; akış biterken çerçeveden çıkılır (window.top). Filtre: flxpos_display.
+ *
  * Adresler imzalıdır (flxpos_sign); her işlem bir kez sonuçlanır (FLXPOS_Txn::settle).
  *
  * @package FLX_POS
@@ -20,6 +24,9 @@ defined( 'ABSPATH' ) || exit;
 final class FLXPOS_Flow {
 
 	const ERR = 'flxpos_error';
+
+	/** @var bool İstek çerçeve içinde mi (f=1). */
+	private static $frame = false;
 
 	public static function init() {
 		add_action( 'init', array( __CLASS__, 'route' ), 20 );
@@ -43,6 +50,41 @@ final class FLXPOS_Flow {
 			),
 			home_url( '/' )
 		);
+	}
+
+	/** Hesabın gösterim biçimi. */
+	public static function display( array $account, array $txn = array() ) {
+		$modes = flxpos_display_modes();
+		$d     = (string) ( $account['display'] ?? '' );
+		if ( ! isset( $modes[ $d ] ) ) {
+			$d = (string) flxpos_setting( 'display' );
+		}
+		$d = (string) apply_filters( 'flxpos_display', $d, $account, $txn );
+		return isset( $modes[ $d ] ) ? $d : 'redirect';
+	}
+
+	/**
+	 * Ödeme başlatma sonucu: redirect her zaman var (JS olmadan da çalışır); modal'da ödeme sayfası
+	 * flxpos_frame adresini açılır pencerede açar, kapatılırsa flxpos_cancel'a döner.
+	 */
+	public static function start_result( array $txn, array $account, array $more = array() ) {
+		$d      = self::display( $account, $txn );
+		$bridge = self::url( 'bridge', $txn['id'], $more );
+		if ( 'redirect' === $d ) {
+			return array( 'redirect' => $bridge );
+		}
+		$out = array( 'redirect' => add_query_arg( 'w', 1, $bridge ) );
+		if ( 'modal' === $d ) {
+			$out['flxpos_frame']  = add_query_arg( 'f', 1, $bridge );
+			$out['flxpos_cancel'] = self::cancel_url( $txn );
+		}
+		return $out;
+	}
+
+	/** Çerçeve kapatılınca dönülecek adres. */
+	private static function cancel_url( array $txn ) {
+		$o = $txn['order_id'] && function_exists( 'wc_get_order' ) ? wc_get_order( $txn['order_id'] ) : null;
+		return $o ? $o->get_checkout_payment_url() : (string) ( $txn['data']['back'] ?? home_url( '/' ) );
 	}
 
 	public static function notify_url( $account_id ) {
@@ -74,7 +116,8 @@ final class FLXPOS_Flow {
 		$id  = isset( $_GET['t'] ) ? absint( $_GET['t'] ) : 0;
 		$sig = isset( $_GET['s'] ) ? sanitize_text_field( wp_unslash( $_GET['s'] ) ) : '';
 		// phpcs:enable
-		$txn = $id ? FLXPOS_Txn::get( $id ) : null;
+		self::$frame = ! empty( $_GET['f'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- yalnız gösterim
+		$txn         = $id ? FLXPOS_Txn::get( $id ) : null;
 		if ( ! $txn || ! hash_equals( flxpos_sign( $act . '|' . $id ), $sig ) ) {
 			wp_die( esc_html__( 'Ödeme bağlantısı geçersiz ya da süresi dolmuş.', 'flx-pos' ), '', array( 'response' => 403 ) );
 		}
@@ -160,17 +203,24 @@ final class FLXPOS_Flow {
 		if ( FLXPOS_Txn::PENDING !== $txn['status'] ) {
 			self::leave( $txn );
 		}
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- imzalı adres
+		$vid = isset( $_GET['v'] ) ? sanitize_text_field( wp_unslash( $_GET['v'] ) ) : '';
+		if ( ! self::$frame && ! empty( $_GET['w'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			self::wrapper( $txn, $vid );
+			exit;
+		}
 		$drv = FLXPOS_Accounts::driver( $txn['account'] );
 		if ( is_wp_error( $drv ) ) {
 			self::stop( $txn, $drv->get_error_message() );
 		}
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- imzalı adres
-		$vid  = isset( $_GET['v'] ) ? sanitize_text_field( wp_unslash( $_GET['v'] ) ) : '';
 		$card = $drv->needs_card() ? FLXPOS_Vault::take( $vid ) : null;
 		if ( $drv->needs_card() && ! $card ) {
 			self::stop( $txn, __( 'Kart bilgisinin süresi doldu; lütfen yeniden deneyin.', 'flx-pos' ) );
 		}
 		$p = self::payment( $txn, $card );
+		if ( self::$frame ) {
+			$p->return_url = add_query_arg( 'f', 1, $p->return_url );
+		}
 		if ( $card && method_exists( $drv, 'card_on_return' ) && $drv->card_on_return() ) {
 			$p->return_url = add_query_arg( 'vk', FLXPOS_Vault::put_return( $txn['id'], $card ), $p->return_url );
 		}
@@ -190,7 +240,43 @@ final class FLXPOS_Flow {
 			wp_redirect( esc_url_raw( (string) $act['redirect'] ) ); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect -- sağlayıcının ödeme sayfası
 			exit;
 		}
+		if ( self::$frame && isset( $act['iframe'] ) ) {
+			wp_redirect( esc_url_raw( (string) $act['iframe']['url'] ) ); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect -- zaten çerçevedeyiz
+			exit;
+		}
 		self::page( $act, $txn );
+	}
+
+	/** Site içinde gösterim: sitenin üst/alt bölümü arasında köprüyü çerçeveye alan sayfa. */
+	private static function wrapper( array $txn, $vid ) {
+		$src    = self::url( 'bridge', $txn['id'], array_filter( array( 'v' => $vid, 'f' => 1 ) ) );
+		$title  = __( 'Güvenli ödeme', 'flx-pos' );
+		$amount = flxpos_money( (float) $txn['amount'], $txn['currency'] );
+		header( 'Content-Type: text/html; charset=utf-8' );
+		header( 'X-Robots-Tag: noindex' );
+		add_filter( 'wp_robots', 'wp_robots_no_robots' );
+		add_filter( 'pre_get_document_title', static fn() => $title );
+		$main  = '<main class="flxpos-pay"><div class="flxpos-pay__box"><div class="flxpos-pay__bar"><span>' . esc_html( $title ) . '</span><strong>' . esc_html( $amount ) . '</strong></div>';
+		$main .= '<iframe class="flxpos-pay__frame" src="' . esc_url( $src ) . '" title="' . esc_attr__( 'Ödeme formu', 'flx-pos' ) . '" allow="payment"></iframe>';
+		$main .= '<a class="flxpos-pay__back" href="' . esc_url( self::cancel_url( $txn ) ) . '">' . esc_html__( 'Vazgeç, ödeme sayfasına dön', 'flx-pos' ) . '</a></div></main>';
+		$css   = '.flxpos-pay{max-width:760px;margin:32px auto;padding:0 16px;box-sizing:border-box}.flxpos-pay__box{display:flex;flex-direction:column;gap:12px}.flxpos-pay__bar{display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:600}.flxpos-pay__frame{width:100%;height:min(760px,calc(100vh - 160px));min-height:560px;border:1px solid rgba(0,0,0,.12);border-radius:12px;background:#fff}.flxpos-pay__back{align-self:center;font-size:.9em}';
+		if ( function_exists( 'wp_is_block_theme' ) && wp_is_block_theme() ) {
+			// Parçalar wp_head'den önce işlenir ki blok stilleri <head>'e yazılsın.
+			$head = do_blocks( '<!-- wp:template-part {"slug":"header","tagName":"header"} /-->' );
+			$foot = do_blocks( '<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->' );
+			echo '<!doctype html><html ' . get_language_attributes() . '><head><meta charset="' . esc_attr( get_bloginfo( 'charset' ) ) . '"><meta name="viewport" content="width=device-width,initial-scale=1">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			wp_head();
+			echo '<style>' . $css . '</style></head><body class="' . esc_attr( implode( ' ', get_body_class( 'flxpos-pay-page' ) ) ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			wp_body_open();
+			echo '<div class="wp-site-blocks">' . $head . $main . $foot . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			wp_footer();
+			echo '</body></html>';
+			return;
+		}
+		add_action( 'wp_head', static function () use ( $css ) { echo '<style>' . $css . '</style>'; } ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		get_header();
+		echo $main; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		get_footer();
 	}
 
 	/** Banka sayfasına geçiş sayfası: otomatik POST formu, bankanın HTML'i ya da iFrame. */
@@ -237,7 +323,7 @@ final class FLXPOS_Flow {
 				$req['card'] = FLXPOS_Vault::take_return( $txn['id'], sanitize_text_field( wp_unslash( $_GET['vk'] ) ) );
 			}
 			// phpcs:enable
-			unset( $req['get']['vk'], $req['get']['flxpos'], $req['get']['t'], $req['get']['s'] ); // yalnız bankanın alanları
+			unset( $req['get']['vk'], $req['get']['flxpos'], $req['get']['t'], $req['get']['s'], $req['get']['f'] ); // yalnız bankanın alanları
 			$res = $drv->finish( $txn, $req );
 			unset( $req );
 			self::complete( $txn, is_array( $res ) ? $res : array( 'status' => 'failed', 'message' => '' ) );
@@ -386,7 +472,21 @@ final class FLXPOS_Flow {
 				);
 			}
 		}
+		if ( self::$frame ) {
+			self::break_out( $url );
+		}
 		wp_safe_redirect( $url, 303 );
+		exit;
+	}
+
+	/** Çerçeveden çık: üst pencereyi sonuç sayfasına götür. */
+	private static function break_out( $url ) {
+		$url = wp_validate_redirect( $url, home_url( '/' ) );
+		header( 'Content-Type: text/html; charset=utf-8' );
+		header( 'Referrer-Policy: no-referrer' );
+		echo '<!doctype html><html><head><meta charset="utf-8"><meta name="robots" content="noindex"><title>' . esc_html__( 'Yönlendiriliyor…', 'flx-pos' ) . '</title></head><body>';
+		echo '<p style="font:15px system-ui,sans-serif;text-align:center;margin-top:40px"><a href="' . esc_url( $url ) . '" target="_top">' . esc_html__( 'Devam et', 'flx-pos' ) . '</a></p>';
+		echo '<script>(function(u){try{window.top.location.replace(u)}catch(e){location.replace(u)}})(' . wp_json_encode( $url ) . ');</script></body></html>';
 		exit;
 	}
 
