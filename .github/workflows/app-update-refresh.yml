@@ -1,0 +1,20 @@
+name: Refresh desktop update feed
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+permissions:
+  contents: read
+jobs:
+  refresh:
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.release.tag_name, 'fluxapp-v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: { node-version: 22 }
+      - name: Refresh signed update-server cache
+        env:
+          UPDATE_SERVER: ${{ secrets.UPDATE_SERVER }}
+          UPDATE_WEBHOOK_SECRET: ${{ secrets.UPDATE_WEBHOOK_SECRET }}
+        run: node tools/release/refresh-updater.mjs
