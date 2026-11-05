@@ -23,3 +23,4 @@ flx-setup	FluxWP Panel	Setup wizard, presets and updates: installs the theme and
 flx-migrate	Flux Migrate	Moves site data saved under the old package names (settings, tables, meta, content, theme, upload folders) to the FluxWP names.
 flx-recaptcha	Flux reCAPTCHA	Protects login, registration, comments, checkout, donations and form submissions from bots with Google reCAPTCHA v3 or v2. Pick the forms to protect in the panel.
 flx-wiki	Flux Wiki	Developer wiki at /wiki: Markdown pages, detailed search, SEO, .md and llms.txt for LLMs, "Ask the wiki" with Flux AI and MCP tools. Ships with plugin and theme development guides.
+flx-pos	Flux POS Entegrator	One virtual POS for WooCommerce: Turkish banks and payment institutions in one plugin. Own card form, 3D Secure, installments, refunds from the site and a capability table of every payment method.

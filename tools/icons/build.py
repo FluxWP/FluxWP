@@ -50,6 +50,7 @@ PKGS = [
   ('flx-donate', 'Flux Donate', 'commerce', 'hand-heart'),
   ('flx-commerce', 'Flux Commerce', 'commerce', 'shopping-bag'),
   ('flx-certificates', 'Flux Certificates', 'commerce', 'award'),
+  ('flx-pos', 'Flux POS Entegrator', 'commerce', 'credit-card'),
   ('flx-qr-menu', 'Flux QR Menu', 'commerce', 'qr-code'),
   ('flx-menu-theme', 'Flux Menu Theme', 'commerce', 'utensils-crossed'),
   # wp-extras

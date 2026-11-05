@@ -5241,3 +5241,15 @@ msgstr "Tek seferlik kart ödemelerini %s alır; iyzico ödeme sayfasında göst
 
 msgid "Payment logos on the site"
 msgstr "Sitedeki ödeme logoları"
+
+msgid "Card payments, the payment method table and the one card rule are managed in Flux POS Entegrator. Monthly donations still use Flux Donate iyzico."
+msgstr "Kart ödemeleri, ödeme yöntemleri tablosu ve tek kart kuralı Flux POS Entegrator'da yönetilir. Aylık bağışlar yine Flux Donate iyzico ile alınır."
+
+msgid "POS accounts"
+msgstr "POS hesapları"
+
+msgid "Managed in Flux POS Entegrator (POS › Settings): which card method donors see and other payment plugins on the checkout block."
+msgstr "Flux POS Entegrator'da yönetilir (POS › Ayarlar): bağışçının hangi kart yöntemini göreceği ve diğer ödeme eklentilerinin blok ödemede gösterilmesi."
+
+msgid "Open Flux POS settings"
+msgstr "Flux POS ayarlarını aç"

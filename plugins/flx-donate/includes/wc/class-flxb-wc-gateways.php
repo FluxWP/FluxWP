@@ -29,6 +29,10 @@
  *    (has_fields = false) is added to the checkout block by Flux Donate (setting block_fallback).
  *    One with its own card fields cannot be shown there; the table says so.
  *
+ * Flux Donate 2.14.0: with Flux POS Entegrator (flx-pos) active, the method table, the one card rule, the
+ * block fallback, payment logos and the EsnekPOS adapter run in Flux POS (POS › Payment methods). Flux
+ * Donate only keeps monthly donations on its iyzico method (`flxpos_one_card_skip`).
+ *
  * GPL v2 or later.
  *
  * @package FLX_Bagis
@@ -37,6 +41,68 @@
 defined( 'ABSPATH' ) || exit;
 
 class FLXB_WC_Gateways {
+
+	/** Is Flux POS Entegrator active? */
+	public static function pos() {
+		return defined( 'FLXPOS_VERSION' ) && class_exists( 'FLXPOS_Methods' );
+	}
+
+	/** Flux POS mode: monthly lines keep Flux Donate iyzico (card storage). */
+	public static function init_pos() {
+		add_filter(
+			'flxpos_one_card_skip',
+			static function ( $skip ) {
+				return $skip || FLXB_WC_Iyzico::context_monthly();
+			}
+		);
+		// Flux POS bank transfer matching: our transfer method, the donation reference code, approval flow.
+		add_filter(
+			'flxpos_bank_methods',
+			static function ( $m ) {
+				$m   = (array) $m;
+				$m[] = FLXB_WC_Havale::ID;
+				return $m;
+			}
+		);
+		add_filter(
+			'flxpos_bank_codes',
+			static function ( $codes, $order ) {
+				foreach ( array( '_flxb_code', '_flxb_ref' ) as $k ) {
+					$v = (string) $order->get_meta( $k );
+					if ( '' !== $v ) {
+						$codes[] = $v;
+					}
+				}
+				return $codes;
+			},
+			10,
+			2
+		);
+		add_filter( 'flxpos_bank_confirm', array( __CLASS__, 'bank_confirm' ), 10, 4 );
+	}
+
+	/** A Flux POS bank match on a donation order: approve the gift the usual way (certificate, notices). */
+	public static function bank_confirm( $done, $order, $row, $note ) {
+		if ( $done || ! $order || FLXB_WC_Havale::ID !== $order->get_payment_method() ) {
+			return $done;
+		}
+		$ids = FLXB_Donations::ids_of_order( $order->get_id() );
+		$d   = $ids ? FLXB_Donations::get( $ids[0] ) : null;
+		if ( ! $d ) {
+			return $done;
+		}
+		if ( ! class_exists( 'FLXB_Approval' ) ) {
+			require_once FLXB_DIR . 'includes/admin/class-flxb-approval.php';
+		}
+		$order->add_order_note( $note );
+		FLXB_Approval::do_approve( (array) $d );
+		return true;
+	}
+
+	/** Flux POS panel link (payment methods tab). */
+	public static function pos_url( $tab = 'methods' ) {
+		return function_exists( 'flxpos_admin_url' ) ? flxpos_admin_url( array( 'tab' => $tab ) ) : admin_url( 'admin.php?page=flx-pos' );
+	}
 
 	/** Gateways added to the checkout block by us (id => title). */
 	private static $fallback = array();
@@ -57,6 +123,10 @@ class FLXB_WC_Gateways {
 	 * Automatic: the first enabled third-party POS, else iyzico.
 	 */
 	public static function card_method() {
+		if ( self::pos() && function_exists( 'WC' ) ) {
+			$m = FLXPOS_Methods::card_method();
+			return 'flxpos' === $m ? 'flxpos_card' : $m;
+		}
 		$set   = (string) FLXB_WC::setting( 'card_method' );
 		$third = self::third_party_enabled();
 		if ( 'all' === $set || 'iyzico' === $set ) {
@@ -334,6 +404,11 @@ class FLXB_WC_Gateways {
 
 	/** The "Payment methods" card. */
 	public static function render() {
+		if ( self::pos() ) {
+			echo '<section class="flxb-card flxb-gw"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Payment methods', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( 'Card payments, the payment method table and the one card rule are managed in Flux POS Entegrator. Monthly donations still use Flux Donate iyzico.', 'flx-donate' ) . '</p></div>';
+			echo '<div class="flxb-gw__links"><a class="flxb-btn flxb-btn--sm" href="' . esc_url( self::pos_url( 'accounts' ) ) . '">' . esc_html__( 'POS accounts', 'flx-donate' ) . '</a> <a class="flxb-btn flxb-btn--sm" href="' . esc_url( self::pos_url( 'methods' ) ) . '">' . esc_html__( 'Payment methods', 'flx-donate' ) . '</a></div></div></section>';
+			return;
+		}
 		$gws    = self::all();
 		$labels = self::cap_labels();
 		$help   = self::cap_help();

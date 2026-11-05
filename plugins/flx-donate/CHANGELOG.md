@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 2.14.0
+- Flux POS Entegrator (flx-pos) kuruluysa kartlı ödemeler, ödeme yöntemleri tablosu, tek kart kuralı, blok ödeme yedeği, ödeme logoları ve EsnekPOS bağdaştırıcısı Flux POS'tan yürür (POS › Ödeme yöntemleri). Bağışlar › Ayarlar › WooCommerce'teki tablo ve "Kart ödeme yöntemi" seçimi yerine Flux POS'a bağlantı görünür; ayarlar korunur, Flux POS kaldırılırsa eski davranış geri gelir.
+- Aylık bağışlar Flux POS açıkken de Flux Donate iyzico ile alınır (kart saklama); tek kart kuralı aylık sepette uygulanmaz (`flxpos_one_card_skip`).
+- Flux POS'un Havale / EFT eşleştirmesi bağışları tanır: `flxb_havale` bekleyen bağışlar ve bağış referans kodu (ör. FluxWP1234) aranır; eşleşme onaylanınca bağış, yöneticinin havale onayıyla aynı yoldan onaylanır (sertifika, bildirimler).
+
 ## 2.13.1
 - Güvenlik (CodeQL): yönetim ekranında satır bağlantısı, dekont önizlemesi ve CSV adresi yalnız http(s)/göreli adresse açılır. Ödeme sayfasında telefon yer tutucu e-posta kontrolü regex kurmadan yapılır.
 

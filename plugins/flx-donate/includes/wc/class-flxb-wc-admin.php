@@ -157,18 +157,23 @@ class FLXB_WC_Admin {
 		echo '<div class="flxb-field"><label for="page_id">' . esc_html__( 'Donation page', 'flx-donate' ) . '</label>';
 		wp_dropdown_pages( array( 'name' => 'page_id', 'id' => 'page_id', 'selected' => $page, 'show_option_none' => __( '— Choose —', 'flx-donate' ), 'option_none_value' => 0 ) );
 		echo '<p class="flxb-help">' . esc_html__( '"Donate" links and the hidden product pages go here.', 'flx-donate' ) . '</p></div>';
-		echo '<div class="flxb-field"><label for="flxbwc-cm">' . esc_html__( 'Card payment method', 'flx-donate' ) . '</label><select id="flxbwc-cm" name="card_method">';
-		$cms = array( 'auto' => __( 'Automatic: another virtual POS if one is enabled (e.g. EsnekPOS), otherwise iyzico', 'flx-donate' ), 'iyzico' => __( 'iyzico', 'flx-donate' ) );
-		foreach ( FLXB_WC_Gateways::third_party_enabled() as $gid => $gname ) {
-			$cms[ $gid ] = $gname;
+		if ( FLXB_WC_Gateways::pos() ) {
+			echo '<input type="hidden" name="card_method" value="' . esc_attr( (string) $s['card_method'] ) . '"><input type="hidden" name="block_fallback" value="' . ( $s['block_fallback'] ? '1' : '' ) . '">';
+			echo '<div class="flxb-field"><label>' . esc_html__( 'Card payment method', 'flx-donate' ) . '</label><p class="flxb-help">' . esc_html__( 'Managed in Flux POS Entegrator (POS › Settings): which card method donors see and other payment plugins on the checkout block.', 'flx-donate' ) . ' <a href="' . esc_url( FLXB_WC_Gateways::pos_url( 'settings' ) ) . '">' . esc_html__( 'Open Flux POS settings', 'flx-donate' ) . '</a></p></div>';
+		} else {
+			echo '<div class="flxb-field"><label for="flxbwc-cm">' . esc_html__( 'Card payment method', 'flx-donate' ) . '</label><select id="flxbwc-cm" name="card_method">';
+			$cms = array( 'auto' => __( 'Automatic: another virtual POS if one is enabled (e.g. EsnekPOS), otherwise iyzico', 'flx-donate' ), 'iyzico' => __( 'iyzico', 'flx-donate' ) );
+			foreach ( FLXB_WC_Gateways::third_party_enabled() as $gid => $gname ) {
+				$cms[ $gid ] = $gname;
+			}
+			$cms['all'] = __( 'Show every enabled card method', 'flx-donate' );
+			foreach ( $cms as $k => $l ) {
+				echo '<option value="' . esc_attr( $k ) . '"' . selected( (string) $s['card_method'], $k, false ) . '>' . esc_html( $l ) . '</option>';
+			}
+			/* translators: %s: payment method */
+			echo '</select><p class="flxb-help">' . esc_html( sprintf( __( 'Donors see one card method; now: %s. Monthly donations always use Flux Donate iyzico (it stores the card). Bank transfer is always shown.', 'flx-donate' ), 'iyzico' === FLXB_WC_Gateways::card_method() ? 'iyzico' : ( 'all' === FLXB_WC_Gateways::card_method() ? __( 'all', 'flx-donate' ) : ( FLXB_WC_Gateways::third_party_enabled()[ FLXB_WC_Gateways::card_method() ] ?? FLXB_WC_Gateways::card_method() ) ) ) ) . '</p></div>';
+			echo '<div class="flxb-field">' . self::check( 'block_fallback', (bool) $s['block_fallback'], __( 'Show other payment plugins on the checkout block', 'flx-donate' ) ) . '<p class="flxb-help">' . esc_html__( 'Virtual POS plugins that take the card on their own page but have no checkout block support (for example EsnekPOS) are added to the Checkout block. Plugins with their own card fields need the classic checkout.', 'flx-donate' ) . '</p></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
-		$cms['all'] = __( 'Show every enabled card method', 'flx-donate' );
-		foreach ( $cms as $k => $l ) {
-			echo '<option value="' . esc_attr( $k ) . '"' . selected( (string) $s['card_method'], $k, false ) . '>' . esc_html( $l ) . '</option>';
-		}
-		/* translators: %s: payment method */
-		echo '</select><p class="flxb-help">' . esc_html( sprintf( __( 'Donors see one card method; now: %s. Monthly donations always use Flux Donate iyzico (it stores the card). Bank transfer is always shown.', 'flx-donate' ), 'iyzico' === FLXB_WC_Gateways::card_method() ? 'iyzico' : ( 'all' === FLXB_WC_Gateways::card_method() ? __( 'all', 'flx-donate' ) : ( FLXB_WC_Gateways::third_party_enabled()[ FLXB_WC_Gateways::card_method() ] ?? FLXB_WC_Gateways::card_method() ) ) ) ) . '</p></div>';
-		echo '<div class="flxb-field">' . self::check( 'block_fallback', (bool) $s['block_fallback'], __( 'Show other payment plugins on the checkout block', 'flx-donate' ) ) . '<p class="flxb-help">' . esc_html__( 'Virtual POS plugins that take the card on their own page but have no checkout block support (for example EsnekPOS) are added to the Checkout block. Plugins with their own card fields need the classic checkout.', 'flx-donate' ) . '</p></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<div class="flxb-field">' . self::check( 'forms_checkout', (bool) $s['forms_checkout'], __( 'Flux Forms payment forms continue on the WooCommerce checkout', 'flx-donate' ) ) . '<p class="flxb-help">' . esc_html__( 'The donor picks card or bank transfer there; the form entry, the certificate automation and the donation record are completed when the order is paid.', 'flx-donate' ) . '</p></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<div class="flxb-fields-2"><div class="flxb-field"><label for="flxbwc-card">' . esc_html__( 'Card payment screen', 'flx-donate' ) . '</label><select id="flxbwc-card" name="card_ui">';
 		foreach ( array( 'fields' => __( 'Our own card fields on the checkout (3D Secure, installments, saved cards)', 'flx-donate' ), 'form' => __( 'iyzico payment page (as before)', 'flx-donate' ), 'official' => __( 'Official iyzico plugin for one-time donations', 'flx-donate' ) ) as $k => $l ) {
