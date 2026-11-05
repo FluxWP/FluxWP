@@ -1,7 +1,7 @@
 // Flux Tasks ekran durumu: WP'deki assets/js/state.js'in karşılığı. Tek nesne (S) + sürüm sayacı;
 // bileşenler useYtg() ile sürüme abone olur, değişiklikte bump() çağrılır.
 import { useSyncExternalStore } from 'react';
-import { stripTags } from '@fluxwp/core';
+import { isUnsafeKey, stripTags } from '@fluxwp/core';
 import type { FlxgApi, FlxgBoot, FlxgField, FlxgList, FlxgNotif, FlxgSpace, FlxgStatus, FlxgTag, FlxgTask, FlxgUser, FlxgView, FlxgViewConfig } from '@fluxwp/core';
 import { browserPorts, store, type ModulePorts } from '../ports';
 
@@ -642,12 +642,13 @@ export class FlxgEngine {
         if (k === 'fields') {
           cur.fields = { ...cur.fields };
           for (const [f, fv] of Object.entries(v as Record<string, unknown>)) {
+            if (isUnsafeKey(f)) continue;
             if (fv === null || fv === '') delete cur.fields[f];
             else cur.fields[f] = fv;
           }
         } else if (k === 'list') cur.list = Number(v);
         else if (k === 'position') cur.pos = Number(v);
-        else if (!['tag_names', 'add_assignees', 'remove_assignees', 'detail'].includes(k)) (cur as unknown as Record<string, unknown>)[k] = v;
+        else if (!isUnsafeKey(k) && !['tag_names', 'add_assignees', 'remove_assignees', 'detail'].includes(k)) (cur as unknown as Record<string, unknown>)[k] = v;
       }
     }
     if (!opts.silent) this.bump();

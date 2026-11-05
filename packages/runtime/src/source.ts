@@ -1,5 +1,6 @@
 // Sources (§7.3) → REST requests, and responses → pages. Platform-neutral; the app runs the request
 // through @fluxwp/core's client (auth, refresh, same-site guard).
+import { isUnsafeKey } from '@fluxwp/core';
 import { fill, getPath, value, type Action, type ExprContext, type FormScreen, type Paging, type RequestSpec, type Source } from '@fluxwp/manifest';
 
 export class ManifestError extends Error {
@@ -100,12 +101,14 @@ export function actionRequest(req: RequestSpec, ctx: ExprContext, methodOverride
 /** "consent.email" → { consent: { email } } */
 export function setPath(obj: Record<string, unknown>, path: string, v: unknown): void {
   const keys = path.split('.');
+  if (keys.some(isUnsafeKey)) return;
   let cur = obj;
   keys.slice(0, -1).forEach((k) => {
     if (!cur[k] || typeof cur[k] !== 'object') cur[k] = {};
     cur = cur[k] as Record<string, unknown>;
   });
-  cur[keys[keys.length - 1]!] = v;
+  const last = keys[keys.length - 1]!;
+  cur[last] = v;
 }
 
 /** Form submit: `path_update` when `params.id` is filled, else `path_create`; body = form values. */

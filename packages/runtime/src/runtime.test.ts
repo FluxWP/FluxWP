@@ -112,6 +112,9 @@ describe('sources and requests', () => {
     const upd = formRequest(form, { name: 'A', consent: { email: true } }, { params: { id: '4' } });
     expect(upd).toMatchObject({ path: 'flx-crm/v1/contacts/4', body: { name: 'A', consent: { email: true } } });
     expect(formRequest(form, { name: 'A' }, { params: {} }).path).toBe('flx-crm/v1/contacts');
+    formRequest(form, { name: 'A', '__proto__.polluted': true, 'constructor.prototype.polluted': true }, { params: {} });
+    expect(({} as { polluted?: boolean }).polluted).toBeUndefined();
+    expect(Object.prototype).not.toHaveProperty('polluted');
   });
 
   it('rejects absolute paths', () => {
@@ -178,6 +181,8 @@ describe('brand gate and push routing', () => {
     expect(siteAllowed('https://www.a.org', ['*.a.org'])).toBe(true);
     expect(siteAllowed('https://a.org', ['*.a.org'])).toBe(false);
     expect(siteAllowed('https://evil-a.org', ['a.org'])).toBe(false);
+    expect(siteAllowed('https://a.org', ['https://A.org/wp/'])).toBe(true);
+    expect(siteAllowed('https://a.org', ['http://a.org'])).toBe(true);
     const g = brandGate({ lockSite: true, defaultSite: 'https://a.org', allowedSites: [] });
     expect(g.allowed('https://a.org/x')).toBe(true);
     expect(g.allowed('https://b.org')).toBe(false);

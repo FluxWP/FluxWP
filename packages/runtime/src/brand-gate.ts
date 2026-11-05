@@ -1,6 +1,15 @@
 // White-label lock (plan §11.4), app side. The server side is the brand's own OAuth client.
 import { discoverSite, normalizeSiteUrl, type Brand, type SiteInfo } from '@fluxwp/core';
 
+/** Host from an allow-list entry. `https://a.org/path` and `a.org` both yield `a.org`. */
+function allowHost(raw: string): string {
+  let s = raw.trim().toLowerCase();
+  if (s.startsWith('https://')) s = s.slice(8);
+  else if (s.startsWith('http://')) s = s.slice(7);
+  const slash = s.indexOf('/');
+  return slash === -1 ? s : s.slice(0, slash);
+}
+
 /** Exact host or "*.example.org"; full URLs in the list are accepted. Empty list = any site. */
 export function siteAllowed(siteUrl: string, allowed?: string[] | null): boolean {
   if (!allowed?.length) return true;
@@ -11,7 +20,7 @@ export function siteAllowed(siteUrl: string, allowed?: string[] | null): boolean
     return false;
   }
   return allowed.some((raw) => {
-    const a = raw.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/\/.*$/, '');
+    const a = allowHost(raw);
     return a.startsWith('*.') ? host.endsWith(a.slice(1)) && host !== a.slice(2) : host === a;
   });
 }

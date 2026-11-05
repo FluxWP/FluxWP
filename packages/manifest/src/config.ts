@@ -1,5 +1,6 @@
 // Config layers (§8.1): app default → brand (build) → site+role (server) → user prefs → device.
 // Brand `locked` paths win over the site and user layers (white-label).
+import { isUnsafeKey } from '@fluxwp/core';
 import type { AppConfig, ConfigLayer, ShellConfig } from './types/config';
 
 /** Layer 1: works on any site; tabs that the site cannot serve resolve to nothing and hide. */
@@ -43,12 +44,14 @@ export function deepMerge<T>(base: T, patch: unknown): T {
 const getAt = (o: unknown, path: string) => path.split('.').reduce<unknown>((c, k) => (isObj(c) ? c[k] : undefined), o);
 function setAt(o: Record<string, unknown>, path: string, v: unknown) {
   const keys = path.split('.');
+  if (keys.some(isUnsafeKey)) return;
   let cur = o;
   for (const k of keys.slice(0, -1)) {
     if (!isObj(cur[k])) cur[k] = {};
     cur = cur[k] as Record<string, unknown>;
   }
-  cur[keys[keys.length - 1]!] = v;
+  const last = keys[keys.length - 1]!;
+  cur[last] = v;
 }
 
 export interface ConfigLayers {

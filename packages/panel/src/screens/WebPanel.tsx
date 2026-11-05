@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ExternalLink, Loader2, MonitorSmartphone } from 'lucide-react';
-import { platform, type EmbeddedView } from '@fluxwp/core';
+import { platform, trimEnd, trimStart, type EmbeddedView } from '@fluxwp/core';
 import { useOverlay } from '@fluxwp/ui';
 import { WebSessionManager, classifyNavigation, parseBridgeMessage, useAccount, useApi, useBootstrap, useConfig, useRenderer, useResolveEnv } from '@fluxwp/runtime';
 
@@ -53,12 +53,12 @@ export function WebPanel({ path, title }: { path: string; title: string }) {
     if (msg.type === 'toast') ui.toast(msg.text, 'ok');
     if (msg.type === 'close') nav.back();
     if (msg.type === 'route') {
-      const decision = classifyNavigation(msg.path.startsWith('http') ? msg.path : account.siteUrl.replace(/\/+$/, '') + '/wp-admin/' + msg.path.replace(/^\/+/, ''), { siteUrl: account.siteUrl, env });
+      const decision = classifyNavigation(msg.path.startsWith('http') ? msg.path : trimEnd(account.siteUrl) + '/wp-admin/' + trimStart(msg.path), { siteUrl: account.siteUrl, env });
       if (decision.action === 'native') nav.push(decision.route);
     }
   }, [ui, nav, account.siteUrl, env]);
 
-  const fallbackUrl = account.siteUrl.replace(/\/+$/, '') + '/wp-admin/' + path.replace(/^\/+/, '');
+  const fallbackUrl = trimEnd(account.siteUrl) + '/wp-admin/' + trimStart(path);
 
   return canEmbed ? (
     <Embedded key={path} title={title} resolveUrl={resolveUrl} fallbackUrl={fallbackUrl} onNavigate={onNavigate} onMessage={onMessage} />

@@ -111,6 +111,13 @@ describe('config layers', () => {
     expect(merged.theme?.mode).toBe('dark');
   });
 
+  it('does not assign __proto__, constructor or prototype from a locked path', () => {
+    const brand = { locked: ['__proto__.polluted', 'constructor.prototype.polluted'], __proto__: { polluted: true } };
+    mergeConfig({ brand: brand as unknown as { locked: string[] } });
+    expect(({} as { polluted?: boolean }).polluted).toBeUndefined();
+    expect(Object.prototype).not.toHaveProperty('polluted');
+  });
+
   it('guarantees "more" when there is no drawer', () => {
     const s = normalizeShell({ ...DEFAULT_CONFIG.shell, nav: 'tabs', tabs: DEFAULT_CONFIG.shell.tabs.filter((t) => t.target !== 'more') });
     expect(s.tabs.at(-1)?.target).toBe('more');

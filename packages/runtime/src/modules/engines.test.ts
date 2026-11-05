@@ -80,7 +80,14 @@ describe('platform ports', () => {
 
 describe('screen engines', () => {
   it('parses and toggles a checklist inside the description', () => {
+    expect(parseChecklist(html).map((i) => i.text)).toEqual(['Fidanlık', 'Kamyon']);
     expect(parseChecklist(html).map((i) => i.done)).toEqual([true, false]);
+    const nasty = '<ul data-checklist="1"><li data-checked="0"><script>x</script></li><li data-checked="1">A &amp; B</li><li data-checked="0">&amp;lt;script</li></ul>';
+    const items = parseChecklist(nasty);
+    expect(items[0]!.text.includes('<')).toBe(false);
+    expect(items[1]).toEqual({ text: 'A & B', done: true });
+    expect(items[2]!.text).toBe('&lt;script');
+    expect(items[2]!.text.includes('<')).toBe(false);
     const next = toggleChecklistItem(html, 1);
     expect(parseChecklist(next).map((i) => i.done)).toEqual([true, true]);
     expect(toggleChecklistItem('<p>yok</p>', 0)).toBe('<p>yok</p>');

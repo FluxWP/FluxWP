@@ -1,7 +1,7 @@
 // Webview fallback decisions (plan §9): SSO address, which account owns the WP cookie of a host,
 // navigation classification and the bridge message whitelist. Mobile (react-native-webview) and
 // desktop (Tauri embedWebView) apply these decisions; neither decides on its own.
-import { adminPath, flxapp, type Account, type ApiClient } from '@fluxwp/core';
+import { adminPath, flxapp, trimEnd, trimStart, type Account, type ApiClient } from '@fluxwp/core';
 import { safeAdminPath } from '@fluxwp/manifest';
 import { routeForAdminPath, type ResolveEnv, type Route } from './resolve';
 
@@ -21,7 +21,7 @@ export class WebSessionManager {
 
   /** Full admin URL for a wp-admin relative path. */
   adminUrl(path: string): string {
-    return this.account.siteUrl.replace(/\/+$/, '') + '/wp-admin/' + path.replace(/^\/+/, '');
+    return trimEnd(this.account.siteUrl) + '/wp-admin/' + trimStart(path);
   }
 
   /**
@@ -79,7 +79,7 @@ function isLoginPage(u: URL, loginUrl?: string | null): boolean {
   if (!loginUrl) return false;
   try {
     const l = new URL(loginUrl);
-    return l.origin === u.origin && u.pathname.replace(/\/+$/, '') === l.pathname.replace(/\/+$/, '');
+    return l.origin === u.origin && trimEnd(u.pathname) === trimEnd(l.pathname);
   } catch {
     return false;
   }
