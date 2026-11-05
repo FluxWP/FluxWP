@@ -5,10 +5,9 @@
 	var flxmSafeUrl = function (u) {
 		u = String(u == null ? '' : u).trim();
 		var l = u.toLowerCase();
-		if (l.indexOf('https://') === 0) return 'https://' + u.slice(8);
-		if (l.indexOf('http://') === 0) return 'http://' + u.slice(7);
-		if (u.charAt(0) === '/' && u.charAt(1) !== '/' && u.charAt(1) !== '\\') return location.origin + u;
-		return '';
+		if (!(l.indexOf('https://') === 0 || l.indexOf('http://') === 0 || (u.charAt(0) === '/' && u.charAt(1) !== '/' && u.charAt(1) !== '\\'))) return '';
+		// Normalised with encodeURI: quotes, spaces and angle brackets are escaped as well.
+		try { return encodeURI(decodeURI(u)); } catch (e) { return ''; }
 	};
 
 	var C = window.FLXIMB;

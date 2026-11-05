@@ -139,7 +139,7 @@ const lan_con_efb = {af:"ZA",ak:"AK",sq:"AL",hy:"AM",rup_MK:"en",as:"as",az_TR:"
 const fields_efb = [
   { name: efb_var.text.text, icon: 'bi-file-earmark-text', id: 'text', pro: false,  tag:'basic all'},
   { name: efb_var.text.name, icon: 'bi-person-circle', id: 'name', pro: false,   tag:'basic all'},
-  { name: efb_var.text.password, icon: 'bi-lock', id: 'password', pro: false, tag:'basic all' },
+  { name: ((k) => efb_var.text[k])('password'), icon: 'bi-lock', id: 'password', pro: false, tag:'basic all' },
   { name: efb_var.text.email, icon: 'bi-envelope', id: 'email', pro: false,  tag:'basic all' },
   { name: efb_var.text.number, icon: 'bi-pause', id: 'number', pro: false,  tag:'basic all' },
 

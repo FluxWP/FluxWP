@@ -104,8 +104,16 @@
 		renderNav();
 		clear(body);
 		if (!D) { body.appendChild(h('p', { class: 'flxbs-muted', text: t('Yükleniyor…') })); return; }
-		var views = new Map([['chats', renderChats], ['prompt', renderPrompt], ['docs', renderDocs], ['editor', renderEditor], ['test', renderTest], ['bench', renderBench], ['memory', renderMemory], ['jobs', renderJobs]]);
-		(views.get(tab) || renderChats)();
+		switch (tab) {
+			case 'prompt': renderPrompt(); break;
+			case 'docs': renderDocs(); break;
+			case 'editor': renderEditor(); break;
+			case 'test': renderTest(); break;
+			case 'bench': renderBench(); break;
+			case 'memory': renderMemory(); break;
+			case 'jobs': renderJobs(); break;
+			default: renderChats();
+		}
 	}
 	function banner() {
 		if (!D.ready) return h('div', { class: 'flxbs-note is-warn' }, t('Yapay zekâ anahtarı ya da modeli girilmemiş.'), ' ', h('a', { href: B.settingsUrl + '&tab=ai', text: t('Ayarlar') }));
