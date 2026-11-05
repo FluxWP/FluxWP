@@ -1379,7 +1379,7 @@ final class FLXU_Admin {
 			@keyframes flxu-spin{to{transform:rotate(360deg)}}
 			@keyframes flxu-slide{0%{left:-40%}100%{left:100%}}
 			@keyframes flxu-in{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:none}}
-.flxu-stay{position:fixed;z-index:100000;top:calc(var(--flxa-safe-top, var(--wp-admin--admin-bar--height, 32px)) + 10px);left:50%;transform:translateX(-50%);width:min(560px, calc(100vw - 32px));box-sizing:border-box;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:4px 12px;padding:12px 16px 14px;background:var(--flxa-text, #1d2327);color:var(--flxa-surface, #fff);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25);overflow:hidden;animation:flxu-in .25s ease-out}
+.flxu-stay{position:fixed;z-index:100000;top:calc(var(--flxa-safe-top, var(--wp-admin--admin-bar--height, 32px)) + 10px);left:50%;transform:translateX(-50%);width:min(560px, calc(100vw - 32px));box-sizing:border-box;display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:4px 12px;padding:12px 16px 14px;background:var(--flxa-text, #1d2327);color:var(--flxa-surface, #fff);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25);overflow:hidden;animation:flxu-in .25s ease-out}
 			.flxu-stay[hidden]{display:none!important}
 			.flxu-stay__spin{width:18px;height:18px;border-radius:50%;border:2px solid color-mix(in srgb, currentColor 30%, transparent);border-top-color:currentColor;animation:flxu-spin .8s linear infinite}
 			.flxu-stay__body{display:flex;flex-direction:column;min-width:0}
@@ -1390,6 +1390,10 @@ final class FLXU_Admin {
 			.flxu-stay__bar span{display:block;height:100%;width:0;background:#4f94d4;transition:width .4s ease}
 			.flxu-stay.is-ok .flxu-stay__spin,.flxu-stay.is-err .flxu-stay__spin{animation:none;border:0;background:#1e8e3e}.flxu-stay.is-err .flxu-stay__spin{background:#d63638}
 			.flxu-stay.is-ok .flxu-stay__bar span{background:#1e8e3e}.flxu-stay.is-err .flxu-stay__bar span{background:#d63638}
+			.flxu-stay__close{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;margin:-4px -8px -4px 0;padding:0;border:0;border-radius:6px;background:transparent;color:inherit;opacity:.7;cursor:pointer}.flxu-stay__close:hover,.flxu-stay__close:focus-visible{opacity:1;background:color-mix(in srgb, currentColor 14%, transparent)}.flxu-stay__close:focus-visible{outline:2px solid #4f94d4;outline-offset:1px}.flxu-stay__close .dashicons{font-size:20px;width:20px;height:20px}
+			.flxu-stay__done{grid-column:2 / -1;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:6px}.flxu-stay__done[hidden]{display:none}
+			.flxu-stay__hint{flex:1 1 200px;font-size:12px;opacity:.8}
+			.flxu-stay__reload{display:inline-flex;font-family:inherit;align-items:center;gap:6px;padding:6px 12px;border:0;border-radius:8px;background:var(--flxa-surface, #fff);color:var(--flxa-text, #1d2327);font-size:13px;font-weight:600;line-height:1.3;cursor:pointer}.flxu-stay__reload:hover{opacity:.9}.flxu-stay__reload:focus-visible{outline:2px solid #4f94d4;outline-offset:2px}.flxu-stay__reload .dashicons{font-size:16px;width:16px;height:16px}
 						@media (prefers-reduced-motion:reduce){.flxu-run__spin,.flxu-log__spin,.flxu-stay__spin,.flxu-run__bar span,.flxu-log__line.is-run .flxu-log__ico{animation:none}}
 			@media (max-width:782px){
 				.flxu-card{flex-wrap:wrap}
@@ -1479,6 +1483,9 @@ final class FLXU_Admin {
 			'preparing'    => __( 'Hazırlanıyor…', 'flx-setup' ),
 			'working'      => __( 'İşlem sürüyor, sayfadan ayrılmayın…', 'flx-setup' ),
 			'stay'         => __( 'Bitene kadar bu sayfadan ayrılmayın', 'flx-setup' ),
+			'reload'       => __( 'Yeniden başlat', 'flx-setup' ),
+			'reloadHint'   => __( 'Son değişiklikleri görmek için sayfayı yeniden başlatın.', 'flx-setup' ),
+			'close'        => __( 'Uyarıyı kapat', 'flx-setup' ),
 			'nothing'      => __( 'Yapılacak bir şey yok.', 'flx-setup' ),
 			'done'         => __( 'Bitti: %1$d başarılı, %2$d hatalı.', 'flx-setup' ),
 			'stepOf'       => __( '%1$d / %2$d', 'flx-setup' ),

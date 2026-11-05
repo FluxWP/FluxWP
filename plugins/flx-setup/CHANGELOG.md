@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.0.24
+- Paketler: üstteki "Bitene kadar bu sayfadan ayrılmayın" şeridinde kapatma (X) düğmesi. İşlem bitince şerit artık 4 saniyede kaybolmaz; en az bir paket değiştiyse "Son değişiklikleri görmek için sayfayı yeniden başlatın." yazısı ve **Yeniden başlat** düğmesi çıkar (sayfayı yeniler), X'e basılana kadar kalır. Hiçbir şey değişmediyse şerit 6 saniyede kapanır.
+
 ## 1.0.23
 - Ön ayar migration'ı `"requires": {"plugins": [...]}` bildirebilir. Eksik eklenti FluxWP Panel'in paket kurucusuyla kurulur ve etkinleştirilir; migration o zamana kadar bekler, "uygulandı" sayılmaz. Önceden eklenti yoksa içerik sessizce atlanıp migration bitmiş sayılıyordu (ör. Flux Wiki kurulu olmayan sitede wiki sayfaları hiç gelmiyordu). Kurma denemesi saatte bir.
 - Ön ayar kartında "Eksik: …" uyarısının yanında **Eksik eklentileri kur ve etkinleştir** düğmesi.
