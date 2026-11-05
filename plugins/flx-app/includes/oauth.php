@@ -169,7 +169,7 @@ add_action(
 	function () {
 		$src = 'POST' === ( $_SERVER['REQUEST_METHOD'] ?? '' ) ? $_POST : $_GET; // phpcs:ignore WordPress.Security.NonceVerification
 		$p   = array();
-		foreach ( array( 'response_type', 'client_id', 'redirect_uri', 'state', 'scope', 'code_challenge', 'code_challenge_method', 'resource' ) as $k ) {
+		foreach ( array( 'response_type', 'client_id', 'redirect_uri', 'state', 'scope', 'code_challenge', 'code_challenge_method', 'resource', 'app_id', 'prompt' ) as $k ) {
 			$p[ $k ] = isset( $src[ $k ] ) ? trim( (string) wp_unslash( $src[ $k ] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		}
 		$client = flxapp_client( $p['client_id'] );
@@ -187,9 +187,19 @@ add_action(
 		if ( 'S256' !== $p['code_challenge_method'] || ! preg_match( '/^[A-Za-z0-9_\-]{43,128}$/', $p['code_challenge'] ) ) {
 			flxapp_redirect_with( $p['redirect_uri'], $back + array( 'error' => 'invalid_request', 'error_description' => 'PKCE (S256) required' ) );
 		}
+		if ( ! flxapp_client_usable( $client ) ) {
+			flxapp_redirect_with( $p['redirect_uri'], $back + array( 'error' => 'unauthorized_client', 'error_description' => 'app_not_allowed' ) );
+		}
+		$app_id = ! empty( $client['native'] ) ? flxapp_app_id_for( $client, $p['app_id'] ) : '';
+		// prompt=login: aynı siteye ikinci hesap. Açık oturum kapatılır, giriş ekranı istenir (bir kez).
+		$prompt = $p['prompt'];
+		unset( $p['prompt'] );
+		if ( 'login' === $prompt && is_user_logged_in() && 'GET' === ( $_SERVER['REQUEST_METHOD'] ?? 'GET' ) ) {
+			wp_logout();
+		}
 		if ( ! is_user_logged_in() ) {
 			$here = add_query_arg( array_map( 'rawurlencode', array_filter( $p ) ), flxapp_authorize_url() );
-			wp_safe_redirect( wp_login_url( $here ) );
+			wp_safe_redirect( wp_login_url( $here, 'login' === $prompt ) );
 			exit;
 		}
 		$user  = wp_get_current_user();
@@ -211,6 +221,7 @@ add_action(
 					'redirect'  => $p['redirect_uri'],
 					'challenge' => $p['code_challenge'],
 					'scope'     => $scope,
+					'app'       => $app_id,
 				),
 				10 * MINUTE_IN_SECONDS
 			);
@@ -227,7 +238,7 @@ add_action(
 		?>
 		<div class="flxapp-consent">
 			<div class="flxapp-brand">
-				<img src="<?php echo esc_url( flxapp_brand_logo() ); ?>" alt="" width="56" height="56">
+				<img src="<?php echo esc_url( ! empty( $client['icon'] ) ? $client['icon'] : flxapp_brand_logo() ); ?>" alt="" width="56" height="56">
 				<span><?php echo esc_html( $brand ); ?></span>
 			</div>
 			<h1 class="flxapp-title">
@@ -300,30 +311,125 @@ function flxapp_clean_admin_path( $path ) {
 	return $path;
 }
 
-function flxapp_sso_url( $user_id, $path ) {
-	$path = flxapp_clean_admin_path( $path );
-	if ( '' === $path ) {
+/** Sitenin kendi ön yüz adresi mi (aynı host, http/https). Göreli yol ana adrese eklenir. */
+function flxapp_clean_front_url( $url ) {
+	$url = trim( (string) $url );
+	if ( '' === $url ) {
+		return '';
+	}
+	if ( '/' === $url[0] && ( ! isset( $url[1] ) || '/' !== $url[1] ) ) {
+		$url = home_url( $url );
+	}
+	$u = wp_parse_url( $url );
+	$h = wp_parse_url( home_url() );
+	if ( ! $u || ! in_array( $u['scheme'] ?? '', array( 'http', 'https' ), true ) || strtolower( $u['host'] ?? '' ) !== strtolower( $h['host'] ?? '' ) || ( $u['port'] ?? null ) !== ( $h['port'] ?? null ) ) {
+		return '';
+	}
+	return esc_url_raw( $url );
+}
+
+/**
+ * Tek seferlik oturum devri adresi (60 sn). Hedef wp-admin yolu ya da sitenin ön yüz adresi.
+ *
+ * @param int    $user_id
+ * @param string $path  wp-admin göreli yolu (ör. edit.php?post_type=page) ya da boş
+ * @param array  $opts  url (ön yüz adresi, path yerine), embed (bool, varsayılan true: uygulama görünümü)
+ */
+function flxapp_sso_url( $user_id, $path, $opts = array() ) {
+	$front = flxapp_clean_front_url( $opts['url'] ?? '' );
+	$path  = '' === $front ? flxapp_clean_admin_path( $path ) : '';
+	if ( '' === $path && '' === $front ) {
 		return '';
 	}
 	$t = flxapp_random( 'flxss_' );
-	set_transient( 'flxapp_sso_' . flxapp_hash( $t ), array( 'user' => (int) $user_id, 'path' => $path ), MINUTE_IN_SECONDS );
+	set_transient(
+		'flxapp_sso_' . flxapp_hash( $t ),
+		array(
+			'user'  => (int) $user_id,
+			'path'  => $path,
+			'url'   => $front,
+			'embed' => ! isset( $opts['embed'] ) || (bool) $opts['embed'],
+			'grant' => (string) ( $opts['grant'] ?? '' ),
+		),
+		MINUTE_IN_SECONDS
+	);
 	return add_query_arg( array( 'action' => 'flxapp_sso', 't' => $t ), site_url( 'wp-login.php', 'login' ) );
 }
 
-add_action(
-	'login_form_flxapp_sso',
-	function () {
-		$t   = preg_replace( '/[^A-Za-z0-9_\-]/', '', (string) wp_unslash( $_GET['t'] ?? '' ) ); // phpcs:ignore WordPress.Security.NonceVerification, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$key = 'flxapp_sso_' . flxapp_hash( $t );
-		$d   = '' !== $t ? get_transient( $key ) : false;
-		delete_transient( $key );
-		if ( ! $d || ! flxapp_opt( 'web_session' ) || ! get_userdata( (int) $d['user'] ) ) {
-			flxapp_authorize_error_page( __( 'Bağlantının süresi doldu. Uygulamadan yeniden açın.', 'flx-app' ) );
+/* `flxapp_session` eşdeğer ad (runtime `classifyNavigation` bu adı tanır). */
+add_action( 'login_form_flxapp_session', 'flxapp_sso_handle' );
+add_action( 'login_form_flxapp_sso', 'flxapp_sso_handle' );
+
+function flxapp_sso_handle() {
+	$t   = preg_replace( '/[^A-Za-z0-9_\-]/', '', (string) wp_unslash( $_GET['t'] ?? '' ) ); // phpcs:ignore WordPress.Security.NonceVerification, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+	$key = 'flxapp_sso_' . flxapp_hash( $t );
+	$d   = '' !== $t ? get_transient( $key ) : false;
+	delete_transient( $key );
+	if ( ! $d || ! flxapp_opt( 'web_session' ) || ! get_userdata( (int) $d['user'] ) ) {
+		flxapp_authorize_error_page( __( 'Bağlantının süresi doldu. Uygulamadan yeniden açın.', 'flx-app' ) );
+	}
+	wp_set_current_user( (int) $d['user'] );
+	$grant = (string) ( $d['grant'] ?? '' );
+	$tag   = function ( $info ) use ( $grant ) {
+		$info['flxapp'] = 1;
+		if ( '' !== $grant ) {
+			$info['flxapp_grant'] = $grant;
 		}
-		wp_set_current_user( (int) $d['user'] );
-		wp_set_auth_cookie( (int) $d['user'], true, is_ssl() );
-		wp_safe_redirect( admin_url( $d['path'] ) );
-		exit;
+		return $info;
+	};
+	add_filter( 'attach_session_information', $tag );
+	wp_set_auth_cookie( (int) $d['user'], true, is_ssl() );
+	remove_filter( 'attach_session_information', $tag );
+	if ( ! empty( $d['embed'] ) ) {
+		flxapp_set_embed_cookie( true );
+	}
+	$target = ! empty( $d['url'] ) ? $d['url'] : admin_url( $d['path'] );
+	flxapp_nocache_headers();
+	wp_safe_redirect( $target );
+	exit;
+}
+
+/**
+ * Uygulamanın açtığı WordPress çerez oturumlarını bitirir (webview). $grant boşsa kullanıcının tüm uygulama oturumları.
+ *
+ * @return int bitirilen oturum sayısı
+ */
+function flxapp_end_web_sessions( $user_id, $grant = '' ) {
+	$all = get_user_meta( (int) $user_id, 'session_tokens', true );
+	if ( ! is_array( $all ) ) {
+		return 0;
+	}
+	$n = 0;
+	foreach ( $all as $verifier => $sess ) {
+		if ( empty( $sess['flxapp'] ) || ( '' !== (string) $grant && (string) ( $sess['flxapp_grant'] ?? '' ) !== (string) $grant ) ) {
+			continue;
+		}
+		unset( $all[ $verifier ] );
+		++$n;
+	}
+	if ( $n ) {
+		update_user_meta( (int) $user_id, 'session_tokens', $all );
+	}
+	return $n;
+}
+
+/* Grant kapanınca (çıkış, cihaz iptali) o grant'ın webview oturumları da biter. */
+add_action(
+	'flxapp_grant_revoked',
+	function ( $grant_id ) {
+		global $wpdb;
+		$uid = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT user_id FROM ' . flxapp_table() . ' WHERE grant_id = %s LIMIT 1', (string) $grant_id ) ); // phpcs:ignore WordPress.DB
+		if ( $uid ) {
+			flxapp_end_web_sessions( $uid, (string) $grant_id );
+		}
+	}
+);
+
+/* Flux Speed özel giriş adresi (/fluxadmin) açıkken wp-login.php'deki uygulama işlemleri engellenmesin. */
+add_filter(
+	'flxp_login_passthrough_actions',
+	function ( $allow ) {
+		return array_values( array_unique( array_merge( (array) $allow, array( 'flxapp_authorize', 'flxapp_sso', 'flxapp_session' ) ) ) );
 	}
 );
 
@@ -357,7 +463,7 @@ function flxapp_request_client( WP_REST_Request $req ) {
 	return $client;
 }
 
-function flxapp_token_pair( $client_id, $user_id, $scope, $grant_id ) {
+function flxapp_token_pair( $client_id, $user_id, $scope, $grant_id, $app_id = '' ) {
 	$access_ttl  = max( 5, (int) flxapp_opt( 'access_minutes' ) ) * MINUTE_IN_SECONDS;
 	$refresh_ttl = max( 1, (int) flxapp_opt( 'refresh_days' ) ) * DAY_IN_SECONDS;
 	$client      = flxapp_client( $client_id );
@@ -365,6 +471,7 @@ function flxapp_token_pair( $client_id, $user_id, $scope, $grant_id ) {
 		'user_id'   => $user_id,
 		'client_id' => $client_id,
 		'grant_id'  => $grant_id,
+		'app_id'    => (string) $app_id,
 		'name'      => $client ? $client['name'] : $client_id,
 		'scope'     => $scope,
 	);
@@ -391,6 +498,9 @@ function flxapp_rest_token( WP_REST_Request $req ) {
 		return flxapp_oauth_error( 'invalid_client', '', 401 );
 	}
 	$grant = (string) $req->get_param( 'grant_type' );
+	if ( ! flxapp_client_usable( $client ) ) {
+		return flxapp_oauth_error( 'unauthorized_client', 'app_not_allowed', 400 );
+	}
 
 	if ( 'authorization_code' === $grant ) {
 		$code = preg_replace( '/[^A-Za-z0-9_\-]/', '', (string) $req->get_param( 'code' ) );
@@ -411,7 +521,7 @@ function flxapp_rest_token( WP_REST_Request $req ) {
 		if ( ! get_userdata( (int) $d['user'] ) ) {
 			return flxapp_oauth_error( 'invalid_grant', 'user' );
 		}
-		return flxapp_token_pair( $client['id'], (int) $d['user'], $d['scope'], strtolower( wp_generate_password( 24, false ) ) );
+		return flxapp_token_pair( $client['id'], (int) $d['user'], $d['scope'], strtolower( wp_generate_password( 24, false ) ), (string) ( $d['app'] ?? '' ) );
 	}
 
 	if ( 'refresh_token' === $grant ) {
@@ -427,8 +537,13 @@ function flxapp_rest_token( WP_REST_Request $req ) {
 		if ( ! flxapp_is_live( $row ) || ! get_userdata( (int) $row['user_id'] ) ) {
 			return flxapp_oauth_error( 'invalid_grant' );
 		}
+		if ( ! flxapp_client_usable( $client ) ) {
+			// Site, genel uygulamayı sonradan kapattı.
+			flxapp_revoke_grant( $row['grant_id'] );
+			return flxapp_oauth_error( 'unauthorized_client', 'app_not_allowed' );
+		}
 		flxapp_revoke_id( $row['id'] );
-		return flxapp_token_pair( $client['id'], (int) $row['user_id'], $row['scope'], $row['grant_id'] );
+		return flxapp_token_pair( $client['id'], (int) $row['user_id'], $row['scope'], $row['grant_id'], (string) $row['app_id'] );
 	}
 
 	return flxapp_oauth_error( 'unsupported_grant_type' );

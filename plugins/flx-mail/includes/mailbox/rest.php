@@ -30,6 +30,7 @@ add_action(
 		$r( '/draft/(?P<id>\d+)/delete', 'POST', 'flxi_rest_mb_draft_delete' );
 		$r( '/draft/(?P<id>\d+)/send', 'POST', 'flxi_rest_mb_draft_send' );
 		$r( '/reply', 'POST', 'flxi_rest_mb_reply' );
+		$r( '/item/(?P<id>\d+)/reply', 'POST', 'flxi_rest_mb_send_reply' );
 		$r( '/preview', 'POST', 'flxi_rest_mb_preview' );
 		$r( '/ai', 'POST', 'flxi_rest_mb_ai' );
 		$r( '/layouts', 'GET', 'flxi_rest_mb_layouts' );
@@ -94,6 +95,7 @@ function flxi_mailbox_list_row( array $r ) {
 		'date'    => flxi_mailbox_date( $r['mail_date'] ),
 		'iso'     => mysql2date( 'c', get_date_from_gmt( $r['mail_date'] ) ),
 		'read'    => (bool) $r['is_read'],
+		'unread'  => ! (bool) $r['is_read'],
 		'starred' => (bool) $r['is_starred'],
 		'system'  => (bool) $r['is_system'],
 		'replied' => (bool) $r['replied'],
@@ -115,20 +117,29 @@ function flxi_mailbox_date( $gmt ) {
 }
 
 function flxi_rest_mb_list( WP_REST_Request $q ) {
-	$r = flxi_mailbox_query(
+	$per = (int) $q->get_param( 'per_page' );
+	if ( $per < 1 ) {
+		$per = 40;
+	}
+	$per  = min( 50, $per );
+	$page = max( 0, (int) $q->get_param( 'page' ) );
+	$off  = $page > 0 ? ( $page - 1 ) * $per : (int) $q['offset'];
+	$r    = flxi_mailbox_query(
 		array(
 			'folder' => sanitize_key( (string) $q['folder'] ) ?: 'inbox',
-			'search' => sanitize_text_field( (string) $q['search'] ),
+			'search' => sanitize_text_field( (string) ( $q['search'] ? $q['search'] : $q['s'] ) ),
 			'system' => ! empty( $q['system'] ) && 'false' !== $q['system'],
 			'unread' => ! empty( $q['unread'] ) && 'false' !== $q['unread'],
-			'limit'  => 40,
-			'offset' => (int) $q['offset'],
+			'limit'  => $per,
+			'offset' => $off,
 		)
 	);
 	return flxi_rest_mb_nocache(
 		array(
 			'rows'   => array_map( 'flxi_mailbox_list_row', $r['rows'] ),
+			'items'  => array_map( 'flxi_mailbox_list_row', $r['rows'] ),
 			'total'  => $r['total'],
+			'pages'  => max( 1, (int) ceil( (int) $r['total'] / $per ) ),
 			'status' => flxi_mailbox_status(),
 		)
 	);
@@ -336,6 +347,23 @@ function flxi_rest_mb_draft_send( WP_REST_Request $q ) {
 	}
 	$r = flxi_draft_send( $id );
 	return array_merge( $r, array( 'status' => flxi_mailbox_status() ) );
+}
+
+/** Tek istekte yanıtla ve gönder: { body }. Taslak oluşturup flxi_draft_send çağırır. */
+function flxi_rest_mb_send_reply( WP_REST_Request $q ) {
+	$body = trim( (string) ( $q['body'] ? $q['body'] : '' ) );
+	if ( '' === $body ) {
+		return new WP_Error( 'flxi_body', __( 'Yanıt boş olamaz.', 'flx-mail' ), array( 'status' => 400 ) );
+	}
+	$id = flxi_mailbox_start_reply( (int) $q['id'], 'reply', array( 'body' => wp_kses_post( $body ) ) );
+	if ( ! $id ) {
+		return new WP_Error( 'flxi_404', __( 'E-posta bulunamadı.', 'flx-mail' ), array( 'status' => 404 ) );
+	}
+	$res = flxi_draft_send( $id );
+	if ( empty( $res['ok'] ) ) {
+		return new WP_Error( 'flxi_send', isset( $res['error'] ) ? $res['error'] : __( 'Gönderilemedi.', 'flx-mail' ), array( 'status' => 400 ) );
+	}
+	return flxi_rest_mb_nocache( $res );
 }
 
 function flxi_rest_mb_reply( WP_REST_Request $q ) {

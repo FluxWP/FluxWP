@@ -234,8 +234,12 @@ function flxapp_rest_otp_verify( WP_REST_Request $req ) {
 	if ( ! $user || ! flxapp_otp_allowed( $user ) ) {
 		return $bad;
 	}
+	if ( ! flxapp_client_usable( $client ) ) {
+		return flxapp_oauth_error( 'unauthorized_client', 'app_not_allowed', 403 );
+	}
+	$app_id = flxapp_app_id_for( $client, (string) $req->get_param( 'app_id' ) );
 	do_action( 'flxapp_otp_login', $user->ID, $type );
-	return flxapp_token_pair( $client['id'], $user->ID, 'flx', strtolower( wp_generate_password( 24, false ) ) );
+	return flxapp_token_pair( $client['id'], $user->ID, 'flx', strtolower( wp_generate_password( 24, false ) ), $app_id );
 }
 
 add_action(
