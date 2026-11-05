@@ -310,6 +310,21 @@ function flxseo_audit_parent_role( DOMElement $el ) {
  *
  * @param array $page flxseo_audit_fetch sonucu.
  */
+/**
+ * Görsel lazy mi yükleniyor? loading="lazy" ya da lazy load eklentisi işareti (lazy/lazyload sınıfı, data-src).
+ * "skip-lazy", "no-lazyload" sınıfları ve data-no-lazy hariç tutma işaretidir, lazy sayılmaz.
+ */
+function flxseo_audit_img_lazy( DOMElement $img ) {
+	if ( 'lazy' === strtolower( $img->getAttribute( 'loading' ) ) ) {
+		return true;
+	}
+	$cls = preg_split( '/\s+/', strtolower( $img->getAttribute( 'class' ) ), -1, PREG_SPLIT_NO_EMPTY );
+	if ( $img->hasAttribute( 'data-no-lazy' ) || array_intersect( $cls, array( 'skip-lazy', 'no-lazy', 'no-lazyload', 'nolazy' ) ) ) {
+		return false;
+	}
+	return (bool) array_intersect( $cls, array( 'lazy', 'lazyload', 'lazyloading', 'litespeed-lazy', 'lazyloaded' ) ) || $img->hasAttribute( 'data-src' ) || $img->hasAttribute( 'data-lazy-src' );
+}
+
 function flxseo_audit_analyze( array $page, $url ) {
 	$f    = array();
 	$html = $page['body'];
@@ -331,6 +346,12 @@ function flxseo_audit_analyze( array $page, $url ) {
 	$doc->loadHTML( '<?xml encoding="UTF-8">' . $html, LIBXML_NOWARNING | LIBXML_NOERROR | LIBXML_COMPACT );
 	libxml_clear_errors();
 	$xp = new DOMXPath( $doc );
+	// <template> içeriği tarayıcıda çizilmez (ör. WooCommerce mini sepet şablonları); denetime girmesin.
+	foreach ( iterator_to_array( $xp->query( '//template' ) ) as $tpl ) {
+		if ( $tpl->parentNode ) {
+			$tpl->parentNode->removeChild( $tpl );
+		}
+	}
 
 	/* --- SEO --- */
 	$robots_meta = strtolower( (string) ( $xp->evaluate( 'string(//meta[translate(@name,"ROBTS","robts")="robots"]/@content)' ) ) );
@@ -641,7 +662,7 @@ function flxseo_audit_analyze( array $page, $url ) {
 	if ( $unsized ) {
 		$add( 'unsized-images', count( $unsized ) > 3 ? 'medium' : 'low', $unsized );
 	}
-	if ( $first && ( 'lazy' === strtolower( $first->getAttribute( 'loading' ) ) || preg_match( '/\blazy|litespeed-lazy|data-lazy/i', $first->getAttribute( 'class' ) . ' ' . ( $first->hasAttribute( 'data-src' ) ? 'data-lazy' : '' ) ) ) ) {
+	if ( $first && flxseo_audit_img_lazy( $first ) ) {
 		$add( 'lcp-lazy-loaded', 'medium', array( flxseo_audit_snippet( $first, false ) ) );
 	}
 	$fonts_no_swap = array();

@@ -29,7 +29,7 @@ class FLXP_PageSpeed {
 	const MAX_VARIANTS = 40;
 
 	/** Her zaman korunan durum sınıfları (JS'in birleştirerek eklediği sınıflar için). */
-	const SAFE_DEFAULT = array( 'is-*', 'has-*', 'screen-reader-text', 'wp-*' );
+	const SAFE_DEFAULT = array( 'is-*', 'has-*', 'screen-reader-text', 'wp-*', 'swiper-*' ); // swiper-*: Swiper sınıf adlarını JS'de birleştirerek üretir (swiper-pagination-bullet), kelime envanterinde çıkmaz.
 
 	private static $seen = array();
 

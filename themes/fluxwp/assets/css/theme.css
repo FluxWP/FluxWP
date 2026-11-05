@@ -133,6 +133,7 @@ html{scroll-behavior:smooth}
 .flx-swiper-prev:hover,.flx-swiper-next:hover{background:var(--flx-leaf);border-color:var(--flx-leaf);transform:scale(1.06)}
 /* Sayfalama */
 .flx-hero .swiper-pagination{bottom:clamp(1.4rem,3vw,2.2rem)!important;z-index:5}
+.flx-slider{--swiper-pagination-bullet-horizontal-gap:8px}
 .flx-slider .swiper-pagination-bullet{width:10px;height:10px;opacity:1;background:rgba(255,255,255,.55);transition:width .25s,background .25s;border-radius:99px}
 .flx-slider .swiper-pagination-bullet-active{width:30px;background:#fff}
 /* 0.5.27: hero'da aktif nokta gri, slayt süresi boyunca içi beyazla dolar (--flx-fill slider.js'den) */

@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once __DIR__ . '/inc/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLX_VERSION', '0.7.1' );
+define( 'FLX_VERSION', '0.7.8' ); // style.css Version ile aynı tutulur (CSS/JS önbelleği bununla yenilenir).
 
 /**
  * Theme supports.

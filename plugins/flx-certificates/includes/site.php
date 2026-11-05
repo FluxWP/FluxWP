@@ -154,7 +154,7 @@ function flxs_progress_html( $p, $closed_word = false ) {
 	if ( ! $p['target'] ) {
 		return '';
 	}
-	return '<div class="flxs-ev-goal"><div class="flxs-ev-goal__bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' . (int) $p['pct'] . '"><span style="width:' . (int) $p['pct'] . '%"></span></div><div class="flxs-ev-goal__txt"><span>' . sprintf( /* translators: %s: hedef fidan sayısı */ esc_html__( 'Hedef %s fidan', 'flx-certificates' ), '<b>' . flxs_n( $p['target'] ) . '</b>' ) . '</span><span>' . esc_html( sprintf( /* translators: %s: yüzde değeri; Türkçede işaret başta (%63) */ __( '%%%s', 'flx-certificates' ), (int) $p['pct'] ) ) . '</span></div></div>';
+	return '<div class="flxs-ev-goal"><div class="flxs-ev-goal__bar" role="progressbar" aria-label="' . esc_attr__( 'Fidan hedefi ilerlemesi', 'flx-certificates' ) . '" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' . (int) $p['pct'] . '"><span style="width:' . (int) $p['pct'] . '%"></span></div><div class="flxs-ev-goal__txt"><span>' . sprintf( /* translators: %s: hedef fidan sayısı */ esc_html__( 'Hedef %s fidan', 'flx-certificates' ), '<b>' . flxs_n( $p['target'] ) . '</b>' ) . '</span><span>' . esc_html( sprintf( /* translators: %s: yüzde değeri; Türkçede işaret başta (%63) */ __( '%%%s', 'flx-certificates' ), (int) $p['pct'] ) ) . '</span></div></div>';
 }
 
 /* ---------- Etkinlik paneli (etkinlik sayfasının başında) ---------- */
