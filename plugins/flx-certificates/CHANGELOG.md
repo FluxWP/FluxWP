@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.8.8
+- Güvenlik (CodeQL): yönetim adresleri ve harita sorgusu `encodeURI` ile temizlenir.
+
 ## 1.8.7
 - Güvenlik (CodeQL): şablon, etkinlik, personel ve alan kimlikleri HTML'e kaçışlanarak yazılır; harita yalnız https adresiyle yüklenir, "yeni" yönlendirmesi adresi doğrular.
 

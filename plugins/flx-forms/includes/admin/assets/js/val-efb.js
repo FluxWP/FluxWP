@@ -2560,7 +2560,7 @@ efb_add_opt_setting= (objOptions, el ,s ,newRndm ,ftyp)=>{
     }else if((tp.includes("multi")==true || tp.includes("checkbox")==true) &&  typeof vl!="string" &&  vl.findIndex(x=>x==id || x==id_old)!=-1 ){checked="checked"
     }else if((tp.includes("stateprovince")==true || tp.includes("conturylist")==true  || tp.includes("citylist")==true ) &&  (vl==id || vl==id_old) ){checked="checked"}
 
-    opetions +=add_option_edit_admin_efb(price,parent.id_,t,ob.id_op,el.dataset.tag.trim(),ob.id_ob,ob.value,col,s,l_b,ftyp,id,checked)
+    opetions +=add_option_edit_admin_efb(typeof price === "string" ? efb_esc_html_efb(price) : price,parent.id_,t,ob.id_op,el.dataset.tag.trim(),ob.id_ob,efb_esc_html_efb(ob.value),col,s,l_b,ftyp,id,checked)
   }
   return opetions
 }
@@ -2697,7 +2697,7 @@ const optionSmartforOptionsEls = (idset ,fid , s_op)=>{
 
  for (let i =0 ; i< row.length ; i++){
 
-  op +=`<option value="${row[i].id_}"  id="ocsso-${row[i].id_}" data-idset="${idset}" data-fid="${fid}"  data-op="${s_op}" ${ row[i].id_==two ? `selected` : ''} >${row[i].name}</option>`;
+  op +=`<option value="${efb_esc_html_efb(row[i].id_)}"  id="ocsso-${efb_esc_html_efb(row[i].id_)}" data-idset="${efb_esc_html_efb(idset)}" data-fid="${efb_esc_html_efb(fid)}"  data-op="${efb_esc_html_efb(s_op)}" ${ row[i].id_==two ? `selected` : ''} >${efb_esc_html_efb(row[i].name)}</option>`;
  }
  return `<select  data-id="oso-${idset}" data-no="${idset}" data-fid="${fid}" class="efb w-100 elEdit form-select border-d rounded-4 ps-1 pe-4"  id="optiontSmartforOptionsEls" data-tag="list_otiones">
  ${op}
@@ -2717,7 +2717,7 @@ const selectSmartforOptionsEls = (idset ,fid)=>{
 
  for (let i =0 ; i< row.length ; i++){
 
-  op +=`<option value="${row[i].id_}" id="opsso-${row[i].id_}" data-idset="${idset}" data-fid="${fid}" ${c.one == row[i].id_ ? `selected` : ''} >${row[i].name}</option>`;
+  op +=`<option value="${efb_esc_html_efb(row[i].id_)}" id="opsso-${efb_esc_html_efb(row[i].id_)}" data-idset="${efb_esc_html_efb(idset)}" data-fid="${efb_esc_html_efb(fid)}" ${c.one == row[i].id_ ? `selected` : ''} >${efb_esc_html_efb(row[i].name)}</option>`;
  }
  return `<select  data-id="sso-${idset}" data-no="${idset}" data-fid="${fid}" class="efb w-100 elEdit form-select border-d rounded-4 ps-1 pe-4"  id="selectSmartforOptionsEls" data-tag="list_selected">
  ${op}
@@ -5057,4 +5057,49 @@ function resetSetupModal() {
   localStorage.removeItem('efb_setup_modal_shown');
   sessionStorage.setItem('efb_force_setup_modal', 'true');
   location.reload();
+}
+
+/* ---- Flux Forms 2.1.13: shared output helpers (declared in every builder file; identical bodies) ---- */
+// Text for an HTML context: & < > " ' become entities.
+function efb_esc_html_efb(v) {
+  return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+// Visible text of an HTML/entity string (tags dropped, entities decoded once), escaped again for HTML output.
+function efb_text_html_efb(v) {
+  const doc = new DOMParser().parseFromString(String(v == null ? '' : v), 'text/html');
+  return efb_esc_html_efb(doc.body.textContent || '');
+}
+// Admin-authored HTML (custom HTML block, e-mail preview, alerts): parsed inertly, then rebuilt from an
+// allow-list of tags/attributes. Scripts, frames, inline handlers and non-http(s) URLs never survive.
+function efb_safe_html_efb(html) {
+  const ok = { A:1, ABBR:1, B:1, BLOCKQUOTE:1, BR:1, CAPTION:1, CENTER:1, CODE:1, DIV:1, EM:1, FONT:1, H1:1, H2:1, H3:1, H4:1, H5:1, H6:1, HR:1, I:1, IMG:1, LI:1, OL:1, P:1, PRE:1, S:1, SMALL:1, SPAN:1, STRONG:1, SUB:1, SUP:1, TABLE:1, TBODY:1, TD:1, TFOOT:1, TH:1, THEAD:1, TR:1, U:1, UL:1, LABEL:1, SVG:0 };
+  const attrs = { href:1, src:1, alt:1, title:1, class:1, style:1, width:1, height:1, align:1, valign:1, colspan:1, rowspan:1, border:1, cellpadding:1, cellspacing:1, bgcolor:1, color:1, dir:1, target:1, rel:1, role:1, id:1 };
+  const doc = new DOMParser().parseFromString(String(html == null ? '' : html), 'text/html');
+  const out = document.createElement('div');
+  const copy = (src, dst) => {
+    src.childNodes.forEach((n) => {
+      if (n.nodeType === 3) { dst.appendChild(document.createTextNode(n.nodeValue)); return; }
+      if (n.nodeType !== 1) return;
+      if (!ok[n.tagName]) { if (n.tagName !== 'SCRIPT' && n.tagName !== 'STYLE' && n.tagName !== 'IFRAME' && n.tagName !== 'OBJECT' && n.tagName !== 'EMBED') copy(n, dst); return; }
+      const el = document.createElement(n.tagName.toLowerCase());
+      for (const a of Array.from(n.attributes)) {
+        const name = a.name.toLowerCase();
+        if (!attrs[name] && name.indexOf('data-') !== 0 && name.indexOf('aria-') !== 0) continue;
+        let val = a.value;
+        if (name === 'href' || name === 'src') {
+          const t = val.replace(/[\u0000- ]+/g, '').toLowerCase();
+          const m = /^([a-z][a-z0-9+.-]*):/.exec(t);
+          if (m && m[1] !== 'http' && m[1] !== 'https' && m[1] !== 'mailto' && m[1] !== 'tel' && !(name === 'src' && /^data:image\/(png|jpe?g|gif|webp);/.test(t))) continue;
+        }
+        if (name === 'style' && /expression\s*\(|url\s*\(\s*['"]?\s*javascript/i.test(val)) continue;
+        el.setAttribute(name, val);
+      }
+      copy(n, el);
+      dst.appendChild(el);
+    });
+  };
+  copy(doc.body, out);
+  return out.innerHTML;
 }

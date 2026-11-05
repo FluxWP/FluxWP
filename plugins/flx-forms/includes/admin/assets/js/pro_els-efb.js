@@ -295,31 +295,34 @@ function viewfileEfb(id, indx ,filed,form_id) {
       document.getElementById(`${valj_efb[indx].id_}_-message`).innerHTML='';
       document.getElementById(`${valj_efb[indx].id_}_-message`).style.display='none';
       return;}
-    const filename =  filed.name ;
+    const filename =  String(filed.name) ;
+    const fileExt = efb_esc_html_efb(filename.slice(filename.lastIndexOf('.') + 1));
     let fileType =valj_efb[indx].file=='customize' ? filename.slice(filename.lastIndexOf('.') + 1) : filed.type;
     let icon = ``;
     const svg_file = `<svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-file-earmark" viewBox="0 0 16 16">
     <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z"/>
-    <text x="50%" y="67%" dominant-baseline="middle" text-anchor="middle" fill="black" font-size="4">${filename.slice(filename.lastIndexOf('.') + 1)}</text>
+    <text x="50%" y="67%" dominant-baseline="middle" text-anchor="middle" fill="black" font-size="4">${fileExt}</text>
   </svg>`
     let box_v = `<div class="efb ">
     <button type="button" class="efb btn btn-delete btn-sm bi-x-lg efb" id="rmvFileEfb" onclick="removeFileEfb('${id}',${indx} ,${form_id})"
          aria-label="${efb_var.text.close}" data-bs-toggle="tooltip" data-bs-placement="top" title="${efb_var.text.removeTheFile}"></button>
          <div class="efb card p-2">
           <i class="efb  ico-file ${valj_efb[indx].icon_color} text-center fs-2">${svg_file}</i>
-          <span class="efb  text-muted">${String(filed.name).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c])}</span>
+          <span class="efb  text-muted">${efb_esc_html_efb(filename)}</span>
           </div>
     </div>`;
     if (validExtensions_efb_fun(valj_efb[indx].file, fileType ,indx)) {
       fun_addProgessiveEl_efb(id ,0);
       let fileReader = new FileReader();
       fileReader.onload = () => {
-        let fileURL = fileReader.result;
+        let fileURL;
+        try { fileURL = encodeURI(decodeURI(String(fileReader.result || ''))); } catch (e) { fileURL = ''; }
+        if (fileURL.indexOf('data:image/') !== 0) fileURL = '';
         const box = document.getElementById(`${id}_box`)
         if (valj_efb[indx].file == "image") {
           box.innerHTML = `<div class="efb ">
               <button type="button" class="efb btn btn-delete btn-sm bi-x-lg efb" id="rmvFileEfb" onclick="removeFileEfb('${id}',${indx},${form_id})"
-                   aria-label="${efb_var.text.close}" data-bs-toggle="tooltip" data-bs-placement="top" title=${efb_var.text.removeTheFile}"></button>
+                   aria-label="${efb_var.text.close}" data-bs-toggle="tooltip" data-bs-placement="top" title="${efb_var.text.removeTheFile}"></button>
               <img src="${fileURL}" alt="image">
               </div>`;
         } else {
@@ -1680,4 +1683,49 @@ fun_state_check_addon_AdnOF_setting_efb =()=>{
   }else{
    return setting_emsFormBuilder.addons.hasOwnProperty('AdnOF')==true && setting_emsFormBuilder.addons.AdnOF==true ? true : false;
   }
+}
+
+/* ---- Flux Forms 2.1.13: shared output helpers (declared in every builder file; identical bodies) ---- */
+// Text for an HTML context: & < > " ' become entities.
+function efb_esc_html_efb(v) {
+  return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+// Visible text of an HTML/entity string (tags dropped, entities decoded once), escaped again for HTML output.
+function efb_text_html_efb(v) {
+  const doc = new DOMParser().parseFromString(String(v == null ? '' : v), 'text/html');
+  return efb_esc_html_efb(doc.body.textContent || '');
+}
+// Admin-authored HTML (custom HTML block, e-mail preview, alerts): parsed inertly, then rebuilt from an
+// allow-list of tags/attributes. Scripts, frames, inline handlers and non-http(s) URLs never survive.
+function efb_safe_html_efb(html) {
+  const ok = { A:1, ABBR:1, B:1, BLOCKQUOTE:1, BR:1, CAPTION:1, CENTER:1, CODE:1, DIV:1, EM:1, FONT:1, H1:1, H2:1, H3:1, H4:1, H5:1, H6:1, HR:1, I:1, IMG:1, LI:1, OL:1, P:1, PRE:1, S:1, SMALL:1, SPAN:1, STRONG:1, SUB:1, SUP:1, TABLE:1, TBODY:1, TD:1, TFOOT:1, TH:1, THEAD:1, TR:1, U:1, UL:1, LABEL:1, SVG:0 };
+  const attrs = { href:1, src:1, alt:1, title:1, class:1, style:1, width:1, height:1, align:1, valign:1, colspan:1, rowspan:1, border:1, cellpadding:1, cellspacing:1, bgcolor:1, color:1, dir:1, target:1, rel:1, role:1, id:1 };
+  const doc = new DOMParser().parseFromString(String(html == null ? '' : html), 'text/html');
+  const out = document.createElement('div');
+  const copy = (src, dst) => {
+    src.childNodes.forEach((n) => {
+      if (n.nodeType === 3) { dst.appendChild(document.createTextNode(n.nodeValue)); return; }
+      if (n.nodeType !== 1) return;
+      if (!ok[n.tagName]) { if (n.tagName !== 'SCRIPT' && n.tagName !== 'STYLE' && n.tagName !== 'IFRAME' && n.tagName !== 'OBJECT' && n.tagName !== 'EMBED') copy(n, dst); return; }
+      const el = document.createElement(n.tagName.toLowerCase());
+      for (const a of Array.from(n.attributes)) {
+        const name = a.name.toLowerCase();
+        if (!attrs[name] && name.indexOf('data-') !== 0 && name.indexOf('aria-') !== 0) continue;
+        let val = a.value;
+        if (name === 'href' || name === 'src') {
+          const t = val.replace(/[\u0000- ]+/g, '').toLowerCase();
+          const m = /^([a-z][a-z0-9+.-]*):/.exec(t);
+          if (m && m[1] !== 'http' && m[1] !== 'https' && m[1] !== 'mailto' && m[1] !== 'tel' && !(name === 'src' && /^data:image\/(png|jpe?g|gif|webp);/.test(t))) continue;
+        }
+        if (name === 'style' && /expression\s*\(|url\s*\(\s*['"]?\s*javascript/i.test(val)) continue;
+        el.setAttribute(name, val);
+      }
+      copy(n, el);
+      dst.appendChild(el);
+    });
+  };
+  copy(doc.body, out);
+  return out.innerHTML;
 }

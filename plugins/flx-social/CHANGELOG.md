@@ -1,5 +1,8 @@
 # Değişiklik günlüğü
 
+## 0.1.9
+- Güvenlik (CodeQL): `h()` çocukları yalnız DOM düğümü ya da düz metin olarak eklenir.
+
 ## 0.1.8
 - Güvenlik (CodeQL): `h()` yardımcısındaki kullanılmayan `html` özniteliği kaldırıldı; adres çubuğundan gelen değerler hiçbir yolla HTML olarak eklenmez.
 

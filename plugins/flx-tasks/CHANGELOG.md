@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.8.11
+- Güvenlik (CodeQL): `h()` çocukları yalnız DOM düğümü ya da düz metin olarak eklenir.
+
 ## 0.8.10
 - Güvenlik (CodeQL): dosya adresi yalnız sayısal dosya kimliğiyle kurulur (`Y.fileUrl`); DOM'dan okunan `data-file` değeri adrese ham girmez.
 - Güvenlik: `h()` yardımcısında HTML yalnız açık `html` anahtarından girer; diğer öznitelik değerleri HTML olarak yorumlanmaz. Açıklama var mı kontrolü regex yerine DOMParser ile.

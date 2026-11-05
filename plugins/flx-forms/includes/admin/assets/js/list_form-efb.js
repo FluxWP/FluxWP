@@ -1183,7 +1183,8 @@ function fun_show_setting__emsFormBuilder() {
       catch(e) { valueJson_ws_setting = JSON.parse(valueJson_ws_setting.replace(/[\\]/g, '')); }
     }
     const f = (name) => {
-      if (valueJson_ws_setting.hasOwnProperty(name)==true) { return valueJson_ws_setting[name] } else { return 'null' } }
+      // Saved settings are written into the settings screen's HTML below, so string values are HTML-escaped here.
+      if (valueJson_ws_setting.hasOwnProperty(name)==true) { const v = valueJson_ws_setting[name]; return typeof v === 'string' ? efb_esc_html_efb(v) : v } else { return 'null' } }
     if (valueJson_ws_setting.text) text = valueJson_ws_setting.text
 
     activeCode = f('activeCode');
@@ -2403,7 +2404,10 @@ function efb_open_color_modal() {
         link.rel = 'stylesheet';
         document.head.appendChild(link);
       }
-      if (link.href !== url) link.href = url;
+      let safe;
+      try { safe = encodeURI(decodeURI(String(url))); } catch (e) { safe = ''; }
+      if (safe.toLowerCase().indexOf('https://') !== 0) { link.remove(); return; }
+      if (link.href !== safe) link.href = safe;
     };
 
     /* Only http(s) is worth putting in a <link>: esc_url() drops anything
@@ -3046,7 +3050,7 @@ function fun_set_setting_emsFormBuilder(state_auto = 0, done) {
 
         if (st == 0) {
           ti = efb_var.text.error
-          show_modal_efb(c, ti, '', 'saveBox');
+          show_modal_efb(efb_safe_html_efb(c), ti, '', 'saveBox');
           state_modal_show_efb(1)
           return false;
         }
@@ -4669,7 +4673,7 @@ function email_template_efb(s) {
     } else {
       ti = efb_var.text.preview;
     }
-    show_modal_efb(c, ti, '', 'saveBox');
+    show_modal_efb(efb_safe_html_efb(c), ti, '', 'saveBox');
     state_modal_show_efb(1)
   } else if (s == "h") {
   } else if (s == 'r') {
@@ -4930,4 +4934,49 @@ function emsFormBuilder_read(state,val){
 }
 
 function efb_test_onchange(){
+}
+
+/* ---- Flux Forms 2.1.13: shared output helpers (declared in every builder file; identical bodies) ---- */
+// Text for an HTML context: & < > " ' become entities.
+function efb_esc_html_efb(v) {
+  return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+// Visible text of an HTML/entity string (tags dropped, entities decoded once), escaped again for HTML output.
+function efb_text_html_efb(v) {
+  const doc = new DOMParser().parseFromString(String(v == null ? '' : v), 'text/html');
+  return efb_esc_html_efb(doc.body.textContent || '');
+}
+// Admin-authored HTML (custom HTML block, e-mail preview, alerts): parsed inertly, then rebuilt from an
+// allow-list of tags/attributes. Scripts, frames, inline handlers and non-http(s) URLs never survive.
+function efb_safe_html_efb(html) {
+  const ok = { A:1, ABBR:1, B:1, BLOCKQUOTE:1, BR:1, CAPTION:1, CENTER:1, CODE:1, DIV:1, EM:1, FONT:1, H1:1, H2:1, H3:1, H4:1, H5:1, H6:1, HR:1, I:1, IMG:1, LI:1, OL:1, P:1, PRE:1, S:1, SMALL:1, SPAN:1, STRONG:1, SUB:1, SUP:1, TABLE:1, TBODY:1, TD:1, TFOOT:1, TH:1, THEAD:1, TR:1, U:1, UL:1, LABEL:1, SVG:0 };
+  const attrs = { href:1, src:1, alt:1, title:1, class:1, style:1, width:1, height:1, align:1, valign:1, colspan:1, rowspan:1, border:1, cellpadding:1, cellspacing:1, bgcolor:1, color:1, dir:1, target:1, rel:1, role:1, id:1 };
+  const doc = new DOMParser().parseFromString(String(html == null ? '' : html), 'text/html');
+  const out = document.createElement('div');
+  const copy = (src, dst) => {
+    src.childNodes.forEach((n) => {
+      if (n.nodeType === 3) { dst.appendChild(document.createTextNode(n.nodeValue)); return; }
+      if (n.nodeType !== 1) return;
+      if (!ok[n.tagName]) { if (n.tagName !== 'SCRIPT' && n.tagName !== 'STYLE' && n.tagName !== 'IFRAME' && n.tagName !== 'OBJECT' && n.tagName !== 'EMBED') copy(n, dst); return; }
+      const el = document.createElement(n.tagName.toLowerCase());
+      for (const a of Array.from(n.attributes)) {
+        const name = a.name.toLowerCase();
+        if (!attrs[name] && name.indexOf('data-') !== 0 && name.indexOf('aria-') !== 0) continue;
+        let val = a.value;
+        if (name === 'href' || name === 'src') {
+          const t = val.replace(/[\u0000- ]+/g, '').toLowerCase();
+          const m = /^([a-z][a-z0-9+.-]*):/.exec(t);
+          if (m && m[1] !== 'http' && m[1] !== 'https' && m[1] !== 'mailto' && m[1] !== 'tel' && !(name === 'src' && /^data:image\/(png|jpe?g|gif|webp);/.test(t))) continue;
+        }
+        if (name === 'style' && /expression\s*\(|url\s*\(\s*['"]?\s*javascript/i.test(val)) continue;
+        el.setAttribute(name, val);
+      }
+      copy(n, el);
+      dst.appendChild(el);
+    });
+  };
+  copy(doc.body, out);
+  return out.innerHTML;
 }

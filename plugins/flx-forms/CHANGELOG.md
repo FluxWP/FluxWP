@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.1.13
+- Güvenlik (CodeQL): modal başlığı düz metin; uyarı, e-posta önizlemesi ve HTML blok içeriği izin listeli temizleyiciden (`efb_safe_html_efb`, script/on* yok) geçer. Seçenek değerleri, ayarlar ve dosya adları HTML'e kaçışlanır; resim önizlemesi yalnız `data:image`, font bağlantısı yalnız https. Kısa kod etiketleri `switch` ile; e-posta şablonunda şifre etiketi anahtarla okunur.
+
 ## 2.1.12
 - Güvenlik (CodeQL): form oluşturucu önizlemesinde etiket, açıklama, seçenek ve dosya adları `textContent` ile yazılır; bağlantı biçimi (`[metin](adres)`) her şeyi kaçışlar, yalnız http(s)/göreli adresi bağlantı yapar.
 - E-posta şablonunda adres denetimi izin listesiyle (http, https, mailto, tel, data:image); genel ayarlar ve blok etiketleri kaçışlanır. Yanıt görüntüleyici metni DOMParser ile düz metne çevirir (çift kaçış yok).

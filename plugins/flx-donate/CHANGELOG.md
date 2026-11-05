@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.13.2
+- Güvenlik (CodeQL): yönetim adresleri `encodeURI` ile temizlenir; dekont önizlemesi yalnız sitenin kendi adresinden, göreli yolla açılır.
+
 ## 2.13.1
 - Güvenlik (CodeQL): yönetim ekranında satır bağlantısı, dekont önizlemesi ve CSV adresi yalnız http(s)/göreli adresse açılır. Ödeme sayfasında telefon yer tutucu e-posta kontrolü regex kurmadan yapılır.
 

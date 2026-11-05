@@ -233,7 +233,14 @@
 				el = document.createElement('iframe');
 				el.title = pv.getAttribute('data-name') || '';
 			}
-			el.src = url;
+			/* Dekontlar bu sitenin yüklemeleri: önizleme yalnız aynı kaynaktan, göreli yolla açılır. */
+			var src = '';
+			try {
+				var pu = new URL(url, window.location.href);
+				if (pu.origin === window.location.origin) src = pu.pathname + pu.search;
+			} catch (err) { src = ''; }
+			if (!src) return;
+			el.src = src;
 			body.appendChild(el);
 			return;
 		}

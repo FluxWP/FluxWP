@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.13.8
+- Güvenlik (CodeQL): logo ve posta kutusu adresleri `encodeURI` ile temizlenir.
+
 ## 1.13.7
 - Güvenlik (CodeQL): test ekranında senaryo adları kaçışlanır; logo önizlemesi yalnız http(s) veya site içi adresi gösterir (`javascript:` vb. reddedilir).
 

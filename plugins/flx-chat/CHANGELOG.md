@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.35.10
+- Güvenlik (CodeQL): stüdyo sekmesi `switch` ile seçilir.
+
 ## 1.35.9
 - Güvenlik (CodeQL): Asistan stüdyosunda sekme adı yalnız bilinen sekmelerden seçilir.
 
