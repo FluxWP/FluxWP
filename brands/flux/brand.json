@@ -47,5 +47,10 @@
     }
   },
   "allowedSites": [],
-  "locked": []
+  "locked": [],
+  "eas": {
+    "projectId": null,
+    "owner": "fluxwp",
+    "updatesChannel": "production"
+  }
 }

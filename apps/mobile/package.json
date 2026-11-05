@@ -6,6 +6,7 @@
   "main": "index.ts",
   "scripts": {
     "postinstall": "node scripts/brand.cjs",
+    "eas-build-pre-install": "cd ../.. && bun tools/fluxapp/brand.mjs && node apps/mobile/scripts/brand.cjs",
     "brand": "node scripts/brand.cjs",
     "start": "expo start",
     "android": "expo start --android",

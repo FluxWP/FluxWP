@@ -162,6 +162,21 @@ describe('brand gate and push routing', () => {
     return expect(g.findSite('b.org')).rejects.toThrow('site_not_allowed');
   });
 
+  it('example brand build rejects a site outside its allow-list', async () => {
+    const b = JSON.parse(readFileSync(join(__dirname, '../../../brands/example/brand.json'), 'utf8'));
+    const g = brandGate({ lockSite: b.lockSite, defaultSite: b.defaultSite, allowedSites: b.allowedSites });
+    expect(g.locked).toBe(false);
+    expect(g.allowed('https://north.example.org')).toBe(true);
+    expect(g.allowed('https://south.example.org')).toBe(true);
+    expect(g.allowed('https://evil.example.com')).toBe(false);
+    await expect(g.findSite('evil.example.com')).rejects.toThrow('site_not_allowed');
+    const flux = JSON.parse(readFileSync(join(__dirname, '../../../brands/flux/brand.json'), 'utf8'));
+    const open = brandGate({ lockSite: flux.lockSite, defaultSite: flux.defaultSite, allowedSites: flux.allowedSites });
+    expect(open.locked).toBe(false);
+    expect(open.allowed('https://anywhere.example')).toBe(true);
+    expect(flux.ios.bundleIdentifier).toBe('com.fluxwp.app');
+  });
+
   it('routes a push to the matching account only', () => {
     const acc = { id: 'demo.fluxapp.local#1', siteUrl: DEMO_SITE, siteName: '', siteIcon: '', userId: 1, userName: '', userAvatar: '', authKind: 'demo' as const, addedAt: 0 };
     expect(accountForPush({ site: 'https://demo.fluxapp.local', user: 2 }, [acc])).toBeNull();

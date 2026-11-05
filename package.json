@@ -9,6 +9,10 @@
   "scripts": {
     "postinstall": "bun tools/fluxapp/brand.mjs",
     "brand": "bun tools/fluxapp/brand.mjs",
+    "brand:new": "bun tools/fluxapp/brand-new.mjs",
+    "brand:build": "bun tools/fluxapp/brand-build.mjs",
+    "brand:pull": "bun tools/fluxapp/brand-pull.mjs",
+    "brand:test": "bun test tools/fluxapp/brand.test.ts",
     "dev": "bun run brand && turbo run dev --filter=@fluxwp/panel",
     "build": "bun run brand && turbo run build",
     "typecheck": "turbo run typecheck",

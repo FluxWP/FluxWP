@@ -2,8 +2,12 @@
 // Seçili markayı (FLUX_BRAND, varsayılan "flux") uygulamanın her yerine yayar.
 // Tek kaynak: brands/<slug>/brand.json + logo/ikon dosyaları.
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+const require = createRequire(import.meta.url);
+const { assertBrand } = require('./brand-lib.cjs');
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const slug = process.env.FLUX_BRAND || 'flux';
@@ -13,14 +17,12 @@ if (!existsSync(join(dir, 'brand.json'))) {
   process.exit(1);
 }
 const brand = JSON.parse(readFileSync(join(dir, 'brand.json'), 'utf8'));
-
-const required = ['slug', 'name', 'bundleId', 'scheme', 'icon', 'logo', 'colors', 'loginMethods', 'defaultLocale', 'locales'];
-for (const k of required) {
-  if (brand[k] === undefined) { console.error(`[brand] ${slug}: "${k}" eksik`); process.exit(1); }
+try {
+  assertBrand(slug, brand, dir);
+} catch (e) {
+  console.error(e.message);
+  process.exit(1);
 }
-if (brand.lockSite && !brand.defaultSite) { console.error(`[brand] ${slug}: lockSite için defaultSite gerekli`); process.exit(1); }
-if (!brand.loginMethods.length || brand.loginMethods.some((m) => !['oauth', 'apikey'].includes(m))) { console.error(`[brand] ${slug}: loginMethods geçersiz`); process.exit(1); }
-if (!/^[a-z][a-z0-9+.-]*$/.test(brand.scheme)) { console.error(`[brand] ${slug}: scheme geçersiz`); process.exit(1); }
 
 const write = (p, data) => { mkdirSync(dirname(p), { recursive: true }); writeFileSync(p, data); };
 // SVG'deki <metadata> (ör. c2pa) atılır: iç içe svg'de tanımsız namespace tauri icon'u bozar, boyutu da şişirir.

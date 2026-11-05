@@ -1,0 +1,51 @@
+name: FluxWP mobile brand build
+# workflow_dispatch only. EXPO_TOKEN is a GitHub secret; Apple and Google credentials stay in EAS.
+on:
+  workflow_dispatch:
+    inputs:
+      brand:
+        description: brands/<slug> (flux is the main app)
+        default: flux
+        required: true
+      platform:
+        type: choice
+        default: all
+        options: [all, ios, android]
+      profile:
+        description: production or preview
+        type: choice
+        default: production
+        options: [production, preview]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: oven-sh/setup-bun@v2
+        with: { bun-version: 1.4.4 }
+      - uses: actions/setup-node@v5
+        with: { node-version: 22 }
+      - run: bun install --frozen-lockfile
+      - name: Apply brand
+        env:
+          FLUX_BRAND: ${{ inputs.brand }}
+        run: bun tools/fluxapp/brand.mjs && node apps/mobile/scripts/brand.cjs
+      - name: EAS Build
+        working-directory: apps/mobile
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          FLUX_BRAND: ${{ inputs.brand }}
+          BRAND: ${{ inputs.brand }}
+          PROFILE: ${{ inputs.profile }}
+          PLATFORM: ${{ inputs.platform }}
+        run: |
+          if [ "$BRAND" = "flux" ]; then
+            profile="$PROFILE"
+          elif [ "$PROFILE" = "preview" ]; then
+            profile="preview-$BRAND"
+          else
+            profile="prod-$BRAND"
+          fi
+          bunx eas-cli build --non-interactive --no-wait --platform "$PLATFORM" --profile "$profile"

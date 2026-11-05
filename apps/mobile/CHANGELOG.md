@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 0.1.1
+- Beyaz etiket: `FLUX_BRAND` build anında `brands/<slug>/brand.json` okur (ad, bundle, şema, ikon, splash, tema, kabuk). Ana uygulama `com.fluxwp.app` / `fluxwp` olarak kalır; `allowedSites` boştur.
+- Marka derlemesi yalnız listedeki siteleri ekler (`brandGate`). Liste doluysa demo girişi kapalıdır. `lockSite` tek siteyi kilitler; liste dolu ve kilit yoksa kullanıcı listeden seçer.
+- EAS profilleri: `production` / `preview` (FluxWP), `prod-<slug>` / `preview-<slug>`. `bun run brand:new`, `brand:build`, `brand:pull`.
+
 ## 0.1.0
 - İlk sürüm (temel): Expo SDK 58 + expo-router, `apps/mobile` monorepo içinde. Uygulama adı FluxWP, kimlik `com.fluxwp.app`, şema `fluxwp`.
 - Çoklu site ve hesap: site adresi → keşif → uygulama içi tarayıcıda OAuth + PKCE (`flx-mobil`, aynı siteye ikinci hesap `prompt=login`), kodla giriş, API anahtarı, Flux App olmayan sitede uygulama şifresi (sınırlı mod). Belirteçler SecureStore'da, hesaplar ve önbellek MMKV'de. Hızlı hesap değiştirici, Hesaplar ve Ayarlar sayfaları.

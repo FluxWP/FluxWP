@@ -14,18 +14,21 @@ interface MobileBrand {
   scheme: string;
   colors: { primary: string };
   splash: { background?: string; backgroundDark?: string };
-  eas: { projectId?: string | null; updatesChannel?: string } | null;
+  eas: { projectId?: string | null; owner?: string; updatesChannel?: string } | null;
+  oauthClientId: string;
+  allowedSites: string[];
+  lockSite: boolean;
 }
 
 export default ({ config }: ConfigContext): ExpoConfig => {
   const brand = applyBrand(process.env.FLUX_BRAND);
   const asset = (f: string) => `./assets/brand/${f}`;
-  const projectId = brand.eas?.projectId ?? undefined;
+  const projectId = brand.eas?.projectId || undefined;
   return {
     ...config,
     name: brand.name,
     slug: brand.slug === 'flux' ? 'fluxwp' : `fluxwp-${brand.slug}`,
-    owner: 'fluxwp',
+    owner: brand.eas?.owner || 'fluxwp',
     version: pkg.version,
     orientation: 'portrait',
     icon: asset('icon.png'),
@@ -71,6 +74,12 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       ],
     ],
     experiments: { typedRoutes: true, reactCompiler: true },
-    extra: { brand: brand.slug, ...(projectId ? { eas: { projectId } } : {}) },
+    extra: {
+      brand: brand.slug,
+      oauthClientId: brand.oauthClientId,
+      allowedSites: brand.allowedSites,
+      lockSite: brand.lockSite,
+      ...(projectId ? { eas: { projectId } } : {}),
+    },
   };
 };

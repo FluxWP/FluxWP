@@ -20,6 +20,7 @@ apps/mobile/src/brand/logo.json
 apps/mobile/assets/brand/
 apps/mobile/.expo/
 apps/mobile/dist/
+apps/mobile/dist-*/
 apps/mobile/ios/
 apps/mobile/android/
 apps/mobile/expo-env.d.ts
