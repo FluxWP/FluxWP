@@ -1,5 +1,8 @@
 # Flux Wiki
 
+## 0.2.0
+- Uygulama: sayfa listesi, arama ve Markdown düzenleme. `wp/v2/flx_wiki` alanına `markdown` eklendi.
+
 ## 0.1.1
 
 - Sol admin menüsünde Flux Wiki artık diğer FluxWP paketleri gibi renkli paket logosuyla görünür (önceden gri WordPress kitap simgesi). Flux Admin varsa ortak logo setindeki `flx-wiki.svg`, yoksa paketteki `assets/icon.svg`.

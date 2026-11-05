@@ -1,0 +1,25 @@
+{
+  "id": "setup",
+  "plugin": "flx-setup",
+  "min_app": "1.0.0",
+  "title": "FluxWP Panel",
+  "icon": "update",
+  "menu": "flx-setup",
+  "entry": "packages",
+  "tabs": ["packages", "wizard", "presets", "settings"],
+  "fallback": { "web": "admin.php?page=flx-setup" },
+  "routes": {
+    "admin.php?page=flx-setup": { "screen": "packages" },
+    "admin.php?page=flx-setup-wizard": { "screen": "wizard" },
+    "admin.php?page=flx-setup-presets": { "screen": "presets" },
+    "admin.php?page=flx-setup-settings": { "screen": "settings" }
+  },
+  "sources": {},
+  "screens": {
+    "packages": { "type": "web", "title": "Paketler", "path": "admin.php?page=flx-setup" },
+    "wizard": { "type": "web", "title": "Kurulum sihirbazı", "path": "admin.php?page=flx-setup-wizard" },
+    "presets": { "type": "web", "title": "Ön ayarlar", "path": "admin.php?page=flx-setup-presets" },
+    "settings": { "type": "web", "title": "Güncelleme ayarları", "path": "admin.php?page=flx-setup-settings" }
+  },
+  "actions": {}
+}

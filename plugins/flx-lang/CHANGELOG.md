@@ -1,5 +1,8 @@
 # Flux Lang
 
+## 0.2.0
+- Uygulama menüsü dil ayarlarını web görünümünde açar.
+
 ## 0.1.9
 - Metinler: MCP sunucusu artık Flux AI & MCP eklentisinde; "Flux SEO & MCP" ve "Flux AI ›" adresleri "Flux AI & MCP" oldu.
 

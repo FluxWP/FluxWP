@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux reCAPTCHA
  * Description:       Google reCAPTCHA (v3 görünmez ya da v2 kutucuk) ile giriş, kayıt, şifre sıfırlama, yorum, WooCommerce hesap ve ödeme, Flux Donate bağış formu ve Flux Forms gönderimlerini spam ve bot saldırılarına karşı korur. Hangi formun korunacağı panelden açılıp kapanır; Flux Speed özel giriş adresiyle uyumludur.
- * Version:           0.1.0
+ * Version:           0.2.0
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -23,7 +23,7 @@ if ( defined( 'FLXRC_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXRC_VERSION', '0.1.0' );
+define( 'FLXRC_VERSION', '0.2.0' );
 define( 'FLXRC_FILE', __FILE__ );
 define( 'FLXRC_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXRC_URL', plugin_dir_url( __FILE__ ) );
@@ -35,6 +35,7 @@ require_once FLXRC_DIR . 'includes/class-flxrc-front.php';
 require_once FLXRC_DIR . 'includes/integrations.php';
 require_once FLXRC_DIR . 'includes/api.php';
 require_once FLXRC_DIR . 'includes/system-checks.php';
+require_once FLXRC_DIR . 'includes/app.php';
 if ( is_admin() ) {
 	require_once FLXRC_DIR . 'includes/admin.php';
 }
