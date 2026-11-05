@@ -17,11 +17,22 @@ export interface NavEntry {
   badge?: number | string;
 }
 
+export interface ShellGroup {
+  id: string;
+  label: string;
+  collapsed: boolean;
+  items: NavEntry[];
+}
+
 export interface ResolvedShell {
   nav: AppConfig['shell']['nav'];
   home: NavEntry;
   tabs: NavEntry[];
-  drawer: { enabled: boolean; header: AppConfig['shell']['drawer']['header']; pins: NavEntry[]; groups: { id: string; label: string; collapsed: boolean; items: NavEntry[] }[]; footer: NavEntry[] };
+  drawer: { enabled: boolean; header: AppConfig['shell']['drawer']['header']; pins: NavEntry[]; groups: ShellGroup[]; footer: NavEntry[] };
+  /** Desktop sidebar. `shell.sidebar` when the server sent one, otherwise the drawer (same Flux Admin groups). */
+  sidebar: { pins: NavEntry[]; groups: ShellGroup[]; footer: NavEntry[] };
+  /** Command-palette pins (`shell.commands`). */
+  commands: NavEntry[];
   topbar: AppConfig['shell']['topbar'] & { actionEntries: NavEntry[] };
 }
 
@@ -90,10 +101,19 @@ function entry(id: string, target: string, env: ShellEnv, over: { label?: string
 
 const visible = (e: NavEntry) => e.route.kind !== 'none';
 
+function groupsOf(groups: { id: string; label?: string; collapsed?: boolean; items: string[] }[] | undefined, env: ShellEnv, prefix: string): ShellGroup[] {
+  return (groups ?? [])
+    .map((g) => ({ id: g.id, label: g.label ?? '', collapsed: !!g.collapsed, items: g.items.map((t, i) => entry(`${prefix}${g.id}:${i}`, t, env)).filter(visible) }))
+    .filter((g) => g.items.length);
+}
+
 export function resolveShell(config: AppConfig, env: ShellEnv): ResolvedShell {
   const shell = normalizeShell(config.shell);
   const tabs = shell.tabs.map((t) => entry(t.id, t.target, env, t)).filter(visible);
   const home = entry('home', shell.home, env);
+  const drawerGroups = groupsOf(shell.drawer.groups, env, '');
+  const ownSidebar = !!(shell.sidebar && ((shell.sidebar.groups && shell.sidebar.groups.length) || (shell.sidebar.pins && shell.sidebar.pins.length) || (shell.sidebar.footer && shell.sidebar.footer.length)));
+  const side = ownSidebar ? shell.sidebar! : { pins: shell.drawer.pins, groups: shell.drawer.groups, footer: shell.drawer.footer };
   return {
     nav: shell.nav,
     home: visible(home) ? home : (tabs[0] ?? entry('more', 'more', env)),
@@ -102,11 +122,15 @@ export function resolveShell(config: AppConfig, env: ShellEnv): ResolvedShell {
       enabled: shell.drawer.enabled,
       header: shell.drawer.header,
       pins: (shell.drawer.pins ?? []).map((t, i) => entry(`pin${i}`, t, env)).filter(visible),
-      groups: shell.drawer.groups
-        .map((g) => ({ id: g.id, label: g.label ?? '', collapsed: !!g.collapsed, items: g.items.map((t, i) => entry(`${g.id}:${i}`, t, env)).filter(visible) }))
-        .filter((g) => g.items.length),
+      groups: drawerGroups,
       footer: shell.drawer.footer.map((t, i) => entry(`foot${i}`, t, env)).filter(visible),
     },
+    sidebar: {
+      pins: (side.pins ?? []).map((t, i) => entry(`spin${i}`, t, env)).filter(visible),
+      groups: ownSidebar ? groupsOf(side.groups, env, 's') : drawerGroups,
+      footer: (side.footer ?? []).map((t, i) => entry(`sfoot${i}`, t, env)).filter(visible),
+    },
+    commands: (shell.commands ?? []).map((t, i) => entry(`cmd${i}`, t, env)).filter(visible),
     topbar: { ...shell.topbar, actionEntries: shell.topbar.actions.map((a, i) => entry(`act${i}`, a.target, env, a)).filter(visible) },
   };
 }

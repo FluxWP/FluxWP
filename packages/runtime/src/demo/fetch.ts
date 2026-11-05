@@ -55,6 +55,11 @@ const routes: [string, RegExp, Handler][] = [
   ['DELETE', /^flxapp\/v1\/devices\/(\d+)$/, () => { devices = []; return { deleted: true }; }],
   ['POST', /^flxapp\/v1\/session$/, (_m, _q, b) => ({ url: `${DEMO_ORIGIN}/wp-admin/${String(b.path ?? 'index.php')}`, expires_in: 60 })],
   ['POST', /^flxapp\/v1\/session\/end$/, () => ({ ok: true })],
+  ['GET', /^flxapp\/v1\/sync$/, (_m, q) => ({
+    counts: {},
+    server_time: 1_700_000_100,
+    events: Number(q.get('since') ?? 0) > 0 ? [] : [{ event: 'comment', title: 'New comment', body: 'A comment is waiting for approval.', target: 'screen:core/comments', at: 1_700_000_050 }],
+  })],
   ['GET', /^wp\/v2\/users$/, () => [{ id: 1, name: 'Demo Yönetici' }]],
   ['GET', /^wp\/v2\/users\/(\d+)$/, (m) => ({ id: Number(m[1]), name: 'Demo Yönetici' })],
   ['GET', /^wp\/v2\/categories$/, (_m, q) => [{ id: 1, name: 'Genel' }].filter((c) => !q.get('search') || c.name.toLocaleLowerCase('tr').includes(q.get('search')!.toLocaleLowerCase('tr')))],

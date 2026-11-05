@@ -133,6 +133,10 @@ export function useListController(manifest: Manifest, screen: ListScreen, params
     headerActions: actions.list(screen.actions?.header, base),
     fab: screen.actions?.fab ? actions.list([screen.actions.fab], base)[0] ?? null : null,
     rowActions: (row: RowView): ActionView[] => actions.list(screen.actions?.row, row.ctx),
+    /** Bulk actions use the list context for visibility; `runAction(id, row)` runs one row. */
+    bulkActions: actions.list(screen.actions?.bulk, base),
+    /** Desktop table cells (manifest `columns`). Empty when the screen has no columns. */
+    cells: (row: RowView) => (screen.columns ?? []).map((c) => ({ label: text(c.label), align: c.align ?? ('start' as const), width: c.width, text: text(c.value, row.ctx) })),
     runAction: (id: string, row?: RowView) => actions.run(id, row?.ctx ?? base),
     running: actions.running,
   };

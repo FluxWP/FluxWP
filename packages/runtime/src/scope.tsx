@@ -40,10 +40,10 @@ export function dropAccountCache(accountId: string): void {
   clients.delete(accountId);
 }
 
-export function AccountScope(props: { account: Account; renderer: Renderer; app: AppInfo; store?: PersistStore; children: ReactNode }) {
-  const { account, renderer, app, store, children } = props;
+export function AccountScope(props: { account: Account; renderer: Renderer; app: AppInfo; store?: PersistStore; api?: ApiClient; children: ReactNode }) {
+  const { account, renderer, app, store, api, children } = props;
   const client = queryClientFor(account.id);
-  const value = useMemo<Scope>(() => ({ account, api: apiFor(account), client, renderer, app }), [account, client, renderer, app]);
+  const value = useMemo<Scope>(() => ({ account, api: api ?? apiFor(account), client, renderer, app }), [account, api, client, renderer, app]);
   const persister = useMemo(() => (store ? createPersister(store) : null), [store]);
   const body = <Ctx.Provider value={value}>{children}</Ctx.Provider>;
   if (!persister) return <QueryClientProvider client={client}>{body}</QueryClientProvider>;

@@ -61,6 +61,28 @@ describe('shell model', () => {
     const shell = resolveShell(DEFAULT_CONFIG, { ...env, manifests: { core: CORE_MANIFEST } });
     expect(shell.tabs.map((t) => t.id)).toEqual(['home', 'posts', 'comments', 'more']);
     expect(shell.home.route).toMatchObject({ kind: 'native', component: 'dashboard' });
+    expect(shell.sidebar.groups.length).toBeGreaterThan(0);
+    expect(shell.commands).toEqual([]);
+  });
+
+  it('reads a desktop sidebar and command pins (additive shell fields)', () => {
+    const cfg = parseConfig({
+      schema: 'flx-app-config/1',
+      shell: {
+        home: 'screen:core/dashboard',
+        sidebar: { pins: ['screen:core/posts'], groups: [{ id: 'content', label: 'Content', items: ['screen:core/comments'] }], footer: ['settings'] },
+        commands: ['screen:core/posts'],
+        topbar: { site_switcher: true, actions: [{ target: 'search', icon: 'search' }] },
+      },
+    });
+    expect(cfg?.shell.sidebar?.pins).toEqual(['screen:core/posts']);
+    expect(cfg?.shell.commands).toEqual(['screen:core/posts']);
+    expect(cfg?.shell.nav).toBe('drawer');
+    const shell = resolveShell(mergeConfig({ site: cfg }), { ...env, manifests: { core: CORE_MANIFEST } });
+    expect(shell.sidebar.pins[0]?.route).toMatchObject({ kind: 'manifest', screen: 'posts' });
+    expect(shell.sidebar.groups[0]?.items[0]?.route).toMatchObject({ screen: 'comments' });
+    expect(shell.commands[0]?.route).toMatchObject({ kind: 'manifest', screen: 'posts' });
+    expect(shell.topbar.actionEntries[0]?.target).toBe('search');
   });
 });
 
