@@ -67,7 +67,6 @@ jobs:
       SIMULATOR_RELEASE: ${{ inputs.simulator_release }}
       SCREENSHOT_LOCALE: ${{ matrix.locale }}
       SCREENSHOT_DEVICE: ${{ matrix.device }}
-      MAESTRO_DRIVER_STARTUP_TIMEOUT: '600000'
     steps:
       - uses: actions/checkout@v5
         with: { persist-credentials: false }
@@ -83,10 +82,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: node tools/release/prepare-simulator.mjs
-      - uses: actions/setup-java@v5
-        with: { distribution: temurin, java-version: '17' }
-      - name: Install native UI test tool
-        run: brew install mobile-dev-inc/tap/maestro
+      - name: Install native test project generator
+        run: brew install xcodegen
       - name: Capture actual native app screens
         run: node tools/release/native-store-screenshots.mjs
       - uses: actions/upload-artifact@v5
@@ -100,9 +97,9 @@ jobs:
         with:
           name: native-debug-${{ matrix.device }}-${{ matrix.locale }}
           path: |
-            ~/.maestro/tests/
             release-out/store-assets/
             release-out/logs/
+            release-out/capture-runner/attachments/
           include-hidden-files: true
           retention-days: 7
   bundle:
