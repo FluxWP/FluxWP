@@ -1,7 +1,7 @@
 // Toast, confirm dialog and prompt sheet: the RendererUI ports. One store, one host at the root.
 // (RN's Alert has no buttons on web, so the confirm is our own modal on every platform.)
 import { useState } from 'react';
-import { Modal, Pressable, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { create } from 'zustand';
@@ -10,6 +10,7 @@ import type { ConfirmRequest } from '@fluxwp/runtime';
 import { i18n } from '@/i18n';
 import { Icon } from './Icon';
 import { Button, Field, Segmented, Text } from './primitives';
+import { Sheet } from './Sheet';
 
 interface Overlay {
   toast: { id: number; text: string; tone: 'ok' | 'error' } | null;
@@ -56,18 +57,14 @@ export function OverlayHost() {
           </View>
         </View>
       ) : null}
-      <Modal transparent visible={!!confirm} animationType="fade" onRequestClose={() => close(false)}>
-        <Pressable style={styles.backdrop} onPress={() => close(false)}>
-          <Pressable style={styles.dialog} onPress={() => undefined}>
-            <Text variant="heading">{confirm?.title}</Text>
-            {confirm?.body ? <Text tone="muted">{confirm.body}</Text> : null}
-            <View style={styles.row}>
-              <Button kind="ghost" label={i18n.t('common.cancel')} onPress={() => close(false)} />
-              <Button kind={confirm?.tone === 'danger' ? 'danger' : 'primary'} label={confirm?.ok ?? i18n.t('action.confirm')} onPress={() => close(true)} />
-            </View>
-          </Pressable>
-        </Pressable>
-      </Modal>
+      <Sheet visible={!!confirm} onDismiss={() => close(false)}>
+        <Text variant="heading">{confirm?.title}</Text>
+        {confirm?.body ? <Text tone="muted">{confirm.body}</Text> : null}
+        <View style={styles.row}>
+          <Button kind="ghost" label={i18n.t('common.cancel')} onPress={() => close(false)} />
+          <Button kind={confirm?.tone === 'danger' ? 'danger' : 'primary'} label={confirm?.ok ?? i18n.t('action.confirm')} onPress={() => close(true)} />
+        </View>
+      </Sheet>
       {prompt ? <PromptSheet key={prompt.title} {...prompt} /> : null}
       {menu ? <MenuSheet {...menu} /> : null}
     </>
@@ -82,19 +79,17 @@ function MenuSheet({ title, items, resolve }: NonNullable<Overlay['menu']>) {
     useOverlay.setState({ menu: null });
   };
   return (
-    <Modal transparent visible animationType="slide" onRequestClose={() => done(null)}>
-      <Pressable style={styles.sheetBackdrop} onPress={() => done(null)}>
-        <View style={[styles.sheet, { paddingBottom: insets.bottom + 8 }]}>
-          <Text variant="label" numberOfLines={1}>{title}</Text>
-          {items.map((it) => (
-            <Pressable key={it.id} accessibilityRole="button" onPress={() => done(it.id)} style={({ pressed }) => [styles.menuItem, pressed && styles.menuPressed]}>
-              <Icon name={it.icon} size={20} color={it.danger ? theme.colors.danger : theme.colors.text} />
-              <Text tone={it.danger ? 'danger' : undefined}>{it.label}</Text>
-            </Pressable>
-          ))}
-        </View>
-      </Pressable>
-    </Modal>
+    <Sheet visible onDismiss={() => done(null)}>
+      <View style={{ paddingBottom: insets.bottom }}>
+        <Text variant="label" numberOfLines={1}>{title}</Text>
+        {items.map((it) => (
+          <Pressable key={it.id} accessibilityRole="button" onPress={() => done(it.id)} style={({ pressed }) => [styles.menuItem, pressed && styles.menuPressed]}>
+            <Icon name={it.icon} size={20} color={it.danger ? theme.colors.danger : theme.colors.text} />
+            <Text tone={it.danger ? 'danger' : undefined}>{it.label}</Text>
+          </Pressable>
+        ))}
+      </View>
+    </Sheet>
   );
 }
 
@@ -107,24 +102,22 @@ function PromptSheet({ title, fields, resolve }: NonNullable<Overlay['prompt']>)
   };
   const missing = fields.some((f) => f.required && !values[f.name]);
   return (
-    <Modal transparent visible animationType="slide" onRequestClose={() => done(null)}>
-      <Pressable style={styles.sheetBackdrop} onPress={() => done(null)}>
-        <Pressable style={[styles.sheet, { paddingBottom: insets.bottom + 16 }]} onPress={() => undefined}>
-          <Text variant="heading">{title}</Text>
-          {fields.map((f) =>
-            (f.type === 'segmented' || f.type === 'radio') && Array.isArray(f.options) ? (
-              <View key={f.name} style={styles.gap}>
-                <Text variant="label">{f.label}</Text>
-                <Segmented options={f.options} value={String(values[f.name] ?? '')} onChange={(v) => setValues((s) => ({ ...s, [f.name]: v }))} />
-              </View>
-            ) : (
-              <Field key={f.name} label={f.label} value={String(values[f.name] ?? '')} multiline={f.type === 'textarea'} onChangeText={(v) => setValues((s) => ({ ...s, [f.name]: v }))} />
-            ),
-          )}
-          <Button label={i18n.t('action.confirm')} disabled={missing} onPress={() => done(values)} full />
-        </Pressable>
-      </Pressable>
-    </Modal>
+    <Sheet visible onDismiss={() => done(null)}>
+      <View style={{ paddingBottom: insets.bottom, gap: 12 }}>
+        <Text variant="heading">{title}</Text>
+        {fields.map((f) =>
+          (f.type === 'segmented' || f.type === 'radio') && Array.isArray(f.options) ? (
+            <View key={f.name} style={styles.gap}>
+              <Text variant="label">{f.label}</Text>
+              <Segmented options={f.options} value={String(values[f.name] ?? '')} onChange={(v) => setValues((s) => ({ ...s, [f.name]: v }))} />
+            </View>
+          ) : (
+            <Field key={f.name} label={f.label} value={String(values[f.name] ?? '')} multiline={f.type === 'textarea'} onChangeText={(v) => setValues((s) => ({ ...s, [f.name]: v }))} />
+          ),
+        )}
+        <Button label={i18n.t('action.confirm')} disabled={missing} onPress={() => done(values)} full />
+      </View>
+    </Sheet>
   );
 }
 
@@ -133,11 +126,7 @@ const styles = StyleSheet.create((theme) => ({
   toast: { backgroundColor: theme.mode === 'dark' ? '#E8EBF0' : '#14171C', borderRadius: theme.radius.lg, paddingHorizontal: 16, paddingVertical: 12, maxWidth: 480 },
   toastError: { backgroundColor: theme.colors.danger },
   toastText: { color: theme.mode === 'dark' ? '#14171C' : '#FFFFFF', fontWeight: '600' },
-  backdrop: { flex: 1, backgroundColor: theme.colors.overlay, alignItems: 'center', justifyContent: 'center', padding: 24 },
-  dialog: { backgroundColor: theme.colors.surface, borderRadius: theme.radius.xl, padding: 20, gap: 12, width: '100%', maxWidth: 420 },
   row: { flexDirection: 'row', justifyContent: 'flex-end', gap: 8 },
-  sheetBackdrop: { flex: 1, backgroundColor: theme.colors.overlay, justifyContent: 'flex-end' },
-  sheet: { backgroundColor: theme.colors.surface, borderTopLeftRadius: theme.radius.xl, borderTopRightRadius: theme.radius.xl, padding: 20, gap: 14 },
   gap: { gap: 6 },
   menuItem: { flexDirection: 'row', alignItems: 'center', gap: 14, minHeight: 48, paddingHorizontal: 4 },
   menuPressed: { opacity: 0.6 },

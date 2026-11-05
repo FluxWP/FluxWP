@@ -1,6 +1,8 @@
 # Değişiklikler
 
 ## 0.3.0
+- Sayfalar ve yazılar tam ekran düzenleyicide: kalın, liste, alıntı, bağlantı ve görsel. Görsel siteye yüklenir.
+- Onay, menü ve hesap pencereleri sistem sayfasıdır. Karartma sayfayla birlikte gelir; tutamaç yarım ve tam yükseklik arasında sürüklenir.
 - İlk açılış üç karşılama sayfası: İleri ile geçilir, sonra site adresi gelir. Atla doğrudan girişe iner.
 - Diğer iki giriş düzeni duruyor: kart (`/add-site?giris=card`) ve indigo bant (`/add-site?giris=band`).
 

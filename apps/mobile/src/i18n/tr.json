@@ -20,6 +20,15 @@
     "cardTitle": "FluxWP",
     "cardBody": "WordPress sitenin adresi yeterli. Gerisi sitenin kendi teması."
   },
+  "editor": {
+    "title": "Metin",
+    "placeholder": "Yazmaya başlayın…",
+    "expand": "Tam ekran",
+    "done": "Bitti",
+    "link": "Bağlantı",
+    "image": "Görsel",
+    "insert": "Ekle"
+  },
   "addSite": {
     "title": "Siteni bağla",
     "hint": "WordPress sitenin adresini yaz. Birden çok site ekleyebilirsin.",
@@ -157,7 +166,7 @@
       "save": "Kaydet",
       "saved": "Yazı kaydedildi",
       "blocks": "Blokları tarayıcıda düzenle",
-      "hint": "Metin, görsel ve bloklar web editöründe durur. Buradan başlık, özet ve durum kaydedilir."
+      "hint": "Metni aşağıdaki düzenleyicide yazın. Tam ekranda başlık, liste ve görsel eklenir."
     },
     "media": {
       "title": "Ortam",

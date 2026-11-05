@@ -20,6 +20,15 @@
     "cardTitle": "FluxWP",
     "cardBody": "Your WordPress address is enough. After that, the site’s own theme takes over."
   },
+  "editor": {
+    "title": "Text",
+    "placeholder": "Start writing…",
+    "expand": "Full screen",
+    "done": "Done",
+    "link": "Link",
+    "image": "Image",
+    "insert": "Insert"
+  },
   "addSite": {
     "title": "Connect your site",
     "hint": "Enter your WordPress site address. You can add more than one site.",
@@ -157,7 +166,7 @@
       "save": "Save",
       "saved": "Post saved",
       "blocks": "Edit blocks in the browser",
-      "hint": "Text, images and blocks stay in the web editor. Title, excerpt and status are saved here."
+      "hint": "Write the text in the editor below. Full screen adds headings, lists and images."
     },
     "media": {
       "title": "Media",
