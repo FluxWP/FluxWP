@@ -6,7 +6,9 @@
 		var b = e.target.closest('[data-map]');
 		if (!b) return;
 		var f = document.createElement('iframe');
-		f.src = b.getAttribute('data-map');
+		var src = b.getAttribute('data-map') || '';
+		if (!/^https:\/\//i.test(src)) return;
+		f.src = src;
 		f.loading = 'lazy';
 		f.title = L.mapTitle || 'Etkinlik konumu';
 		f.referrerPolicy = 'no-referrer-when-downgrade';
