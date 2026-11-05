@@ -4959,7 +4959,15 @@ function efb_decode_ent_efb(s) {
 }
 // Visible text of an HTML/entity string: tags dropped, entities decoded. For textContent, not innerHTML.
 function efb_text_html_efb(v) {
-  return efb_decode_ent_efb(String(v == null ? '' : v).replace(/<[^<>]*>/g, ''));
+  const s = String(v == null ? '' : v);
+  let out = '', inTag = false;
+  for (let i = 0; i < s.length; i++) {
+    const ch = s.charAt(i);
+    if (inTag) { if (ch === '>') inTag = false; continue; }
+    if (ch === '<' && /[a-zA-Z\/!?]/.test(s.charAt(i + 1))) { inTag = true; continue; }
+    out += ch;
+  }
+  return efb_decode_ent_efb(out);
 }
 // Allow-listed tag name -> its literal (unknown tags give '').
 function efb_safe_tag_efb(t) {
