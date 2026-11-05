@@ -258,6 +258,11 @@ msgstr ""
 msgid "Cevap alınamadı. Biraz sonra tekrar deneyin."
 msgstr ""
 
+msgid "\"%2$s\" için %1$s sonuç"
+msgid_plural "\"%2$s\" için %1$s sonuç"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Kopyalandı"
 msgstr ""
 
@@ -295,6 +300,12 @@ msgid "Ara"
 msgstr ""
 
 msgid "Soru sormak için giriş yapın."
+msgstr ""
+
+msgid "\"%1$s\" bulunamadı; \"%2$s\" için sonuçlar gösteriliyor."
+msgstr ""
+
+msgid "%d sonucun hepsini gör"
 msgstr ""
 
 msgid "\"%s\" için wiki araması"
@@ -428,11 +439,6 @@ msgstr ""
 
 msgid "%s sayfa"
 msgid_plural "%s sayfa"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "\"%2$s\" için %1$s sonuç"
-msgid_plural "\"%2$s\" için %1$s sonuç"
 msgstr[0] ""
 msgstr[1] ""
 

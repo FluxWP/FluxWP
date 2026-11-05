@@ -1,5 +1,13 @@
 # Flux Wiki
 
+## 0.1.2
+
+- **Canlı arama:** wiki'deki arama kutuları (yan menü ve ana sayfa) artık pencere açmıyor. Yazdıkça (220 ms bekleyerek) sonuçlar kutunun hemen altında açılıyor, sayfa aşağı uzuyor. Ok tuşlarıyla seçilip Enter ile açılıyor, Esc kapatıyor. Fazla sonuç varsa "N sonucun hepsini gör" bağlantısı çıkıyor. Ctrl/⌘+K ve "/" kutuya odaklanıyor. "Wiki'ye sor" penceresi ayrı kalıyor.
+- **Arama sayfası** da canlı: büyük kutuya yazdıkça liste yerinde güncelleniyor, adres `?q=` ile eşitleniyor.
+- **Yazım hatası düzeltme:** sonuç yoksa her kelime dizindeki en yakın kelimeyle (1-2 harf fark) değiştirilip yeniden aranıyor: "kurlum" → "kurulum", "eklnti" → "eklenti". Sayfada "'kurlum' bulunamadı; 'kurulum' için sonuçlar gösteriliyor" yazıyor.
+- Arama sayfasında sonuç yokken içerik sütunu daralmıyor (wiki kapsayıcısı tam genişlik).
+- Arama sonuçlarında `&` gibi karakterler artık `&#038;` olarak görünmüyor.
+
 ## 0.1.1
 
 - Sol admin menüsünde Flux Wiki artık diğer FluxWP paketleri gibi renkli paket logosuyla görünür (önceden gri WordPress kitap simgesi). Flux Admin varsa ortak logo setindeki `flx-wiki.svg`, yoksa paketteki `assets/icon.svg`.

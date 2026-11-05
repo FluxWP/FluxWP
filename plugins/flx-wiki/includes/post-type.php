@@ -217,6 +217,7 @@ function flxwk_set_section( $post_id, $section ) {
 function flxwk_bump() {
 	update_option( 'flxwk_gen', (int) get_option( 'flxwk_gen', 0 ) + 1, false );
 	delete_transient( 'flxwk_index' );
+	delete_transient( 'flxwk_vocab' );
 	delete_transient( 'flxseo_llms' );
 }
 

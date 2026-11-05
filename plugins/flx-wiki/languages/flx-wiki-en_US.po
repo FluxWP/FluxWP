@@ -260,6 +260,11 @@ msgstr "Flux AI is not ready."
 msgid "Cevap alınamadı. Biraz sonra tekrar deneyin."
 msgstr "Could not get an answer. Try again in a moment."
 
+msgid "\"%2$s\" için %1$s sonuç"
+msgid_plural "\"%2$s\" için %1$s sonuç"
+msgstr[0] "%1$s result for \"%2$s\""
+msgstr[1] "%1$s results for \"%2$s\""
+
 msgid "Kopyalandı"
 msgstr "Copied"
 
@@ -298,6 +303,12 @@ msgstr "Search"
 
 msgid "Soru sormak için giriş yapın."
 msgstr "Log in to ask a question."
+
+msgid "\"%1$s\" bulunamadı; \"%2$s\" için sonuçlar gösteriliyor."
+msgstr "No results for \"%1$s\"; showing results for \"%2$s\"."
+
+msgid "%d sonucun hepsini gör"
+msgstr "See all %d results"
 
 msgid "\"%s\" için wiki araması"
 msgstr "Wiki search for \"%s\""
@@ -432,11 +443,6 @@ msgid "%s sayfa"
 msgid_plural "%s sayfa"
 msgstr[0] "%s page"
 msgstr[1] "%s pages"
-
-msgid "\"%2$s\" için %1$s sonuç"
-msgid_plural "\"%2$s\" için %1$s sonuç"
-msgstr[0] "%1$s result for \"%2$s\""
-msgstr[1] "%1$s results for \"%2$s\""
 
 msgid "%s dk okuma"
 msgid_plural "%s dk okuma"
