@@ -77,3 +77,7 @@ metni çevir (blok yapısını koru) → `flxl_save_translation source_id lang=e
 - E-posta/WhatsApp metni ziyaretçinin dilinde: `flxl_switch_language( flxl_order_language( $order ) )` … `flxl_restore_language()`.
 - Kendi önbellek anahtarınızda dil: `flxl_current_language()`.
 - `home_url()` ön yüzde istek dilinin önekini taşır; dilsiz adres gerekiyorsa `flxl_raw( fn )`.
+
+## Uygulama
+
+Modül `lang` ayar sayfasını `options-general.php?page=flx-lang` web görünümünde açar.

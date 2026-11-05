@@ -132,5 +132,14 @@
 "Korunmuyor: %s": "Not protected: %s",
 "Google doğrulaması": "Google verification",
 "%1$s: %2$s. Anahtarları yeniden test edin; Google erişilemiyorsa Ayarlar > Google adresi: recaptcha.net.": "%1$s: %2$s. Test the keys again; if Google is unreachable, set Settings > Google host to recaptcha.net.",
-"Test et": "Test"
+"Test et": "Test",
+"0,1 ile 0,9 arası. Altında kalan gönderim engellenir.": "Between 0.1 and 0.9. Submissions scoring below this are blocked.",
+"Bir kez yazılır, şifreli saklanır ve bir daha gösterilmez.": "Entered once, stored encrypted and never shown again.",
+"Boş bırakılırsa kayıtlı anahtar kalır. Değer geri okunmaz.": "Leave blank to keep the saved key. The value is never read back.",
+"Koyu": "Dark",
+"Kutucuk boyutu": "Checkbox size",
+"Kutucuk görünümü": "Checkbox theme",
+"Otomatik": "Automatic",
+"google.com": "google.com",
+"recaptcha.net": "recaptcha.net"
 }

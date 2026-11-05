@@ -70,3 +70,7 @@ hepsi `range|start|end` ve `seg|rc` alır. `POST refs/save {code, name, delete}`
 `wp_flxan_paths, refs, site, pages, referrers, dims, events` (günlük özet; anahtarda `seg` rol ve `rc` referans kodu),
 `visits` (ziyaret başına: kanal, giriş sayfası, ülke, sayfa sayısı, ilk/son zaman, `seq` ilk 8 sayfa kimliği virgüllü, `exit_id` çıkış sayfası), `fsteps` (huni: ziyaretin ulaştığı en ileri adım),
 `seen` (günlük tekillik, 2 gün), `recent` (son 1 saat).
+
+## Uygulama (`flx-app-manifest/1`)
+
+Modül `analytics`. Ekranlar mevcut `flxan/v1` uçlarını kullanır: `report` (genel bakış ve grafik), `realtime` (canlı, 15 sn), `list` (sayfalar, yönlendirenler, kanallar).

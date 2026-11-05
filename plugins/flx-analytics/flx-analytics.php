@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Analytics
  * Description:       Çerezsiz, kişisel veri tutmayan site istatistikleri: ziyaretçi, görüntülenme, en çok okunan sayfalar, yönlendiren siteler, kanal, cihaz/tarayıcı, kampanya (UTM), tıklama olayları ve bağış dönüşümleri. Veriler sitede kalır; yapay zekâ Flux AI / Flux AI & MCP araçlarıyla okur.
- * Version:           0.3.9
+ * Version:           0.4.0
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -20,7 +20,7 @@ if ( defined( 'FLXAN_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXAN_VERSION', '0.3.9' );
+define( 'FLXAN_VERSION', '0.4.0' );
 define( 'FLXAN_DB_VERSION', 3 );
 define( 'FLXAN_FILE', __FILE__ );
 define( 'FLXAN_DIR', plugin_dir_path( __FILE__ ) );
@@ -41,6 +41,7 @@ require_once FLXAN_DIR . 'includes/system-checks.php';
 require_once FLXAN_DIR . 'includes/js-strings.php';
 require_once FLXAN_DIR . 'includes/telemetry-hub.php';
 require_once FLXAN_DIR . 'includes/dashboard.php'; // widget'lar + REST /dashboard (REST isteği is_admin değildir)
+require_once FLXAN_DIR . 'includes/app.php';
 if ( is_admin() ) {
 	require_once FLXAN_DIR . 'includes/import.php';
 	require_once FLXAN_DIR . 'includes/admin.php';

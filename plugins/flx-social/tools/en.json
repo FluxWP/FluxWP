@@ -545,5 +545,20 @@
  "Bağlantı reddedildi.": "Connection refused.",
  "Medya dosyası okunamadı.": "Could not read the media file.",
  "video işlenemedi": "video could not be processed",
- "Kayıtlı (değiştirmek için yazın)": "Saved (type to change)"
+ "Kayıtlı (değiştirmek için yazın)": "Saved (type to change)",
+"Bu ay gönderi yok": "Nothing this month",
+"Gönderi silinsin mi?": "Delete this post?",
+"Gönderilerde ara": "Search posts",
+"Hesap açıldı": "Account enabled",
+"Hesap bağlamak için paneli açın.": "Open the panel to connect an account.",
+"Hesap kapatıldı": "Account disabled",
+"Hesap yok": "No accounts",
+"Not": "Note",
+"Onay": "Review",
+"Onaylandı": "Approved",
+"Panelde aç": "Open in panel",
+"Silindi": "Deleted",
+"Yayında": "Published",
+"Yeni gönderi medya yazarıyla hazırlanır.": "New posts are composed in the media composer.",
+"Zamanlanan ve yayımlanan gönderiler burada görünür.": "Scheduled and published posts show up here."
 }

@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.9.0
+- Uygulama ayarları ve kayıt listesi (`flx-ai/v1/log`, istek gövdesi dönmez). Anahtarlar write-only. Sohbet yerelde sonra açılır.
+
 ## 0.8.1
 - Eklentinin görünen adı **Flux AI & MCP** (eklenti listesi, sol menü, sistem kontrolü, metinlerdeki "Flux AI & MCP › …" adresleri). Klasör/slug (flx-ai), fonksiyonlar ve ayarlar aynı.
 
