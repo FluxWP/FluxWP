@@ -1065,3 +1065,27 @@ msgstr ""
 
 msgid "Kapalı; yeni sayfalar Bing ve Yandex'e bildirilmiyor."
 msgstr ""
+
+msgid "Naver Search Advisor'ı aç"
+msgstr ""
+
+msgid "Kore'nin en büyük arama motoru. Site ekle › HTML etiketi; sonra Request › Submit sitemap. İsteğe bağlı."
+msgstr ""
+
+msgid "Seznam Webmaster'ı aç"
+msgstr ""
+
+msgid "Çekya'nın arama motoru (Webmaster bağlantısı sayfa altında). Meta etiketi yöntemi. İsteğe bağlı."
+msgstr ""
+
+msgid "Baidu Webmaster'ı aç"
+msgstr ""
+
+msgid "Çin'in arama motoru; kayıt için Çin telefon numarası gerekebilir. Çin'e hitap etmiyorsanız gerek yok."
+msgstr ""
+
+msgid "Google Site Kit ile bağlı; Search Console doğrulaması ve sitemap Site Kit'te. Bu alanı boş bırakabilirsiniz."
+msgstr ""
+
+msgid "Google Site Kit ile bağlı."
+msgstr ""

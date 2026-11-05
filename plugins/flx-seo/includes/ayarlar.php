@@ -34,6 +34,9 @@ function flxseo_defaults() {
 		'verify_google'  => '',
 		'verify_bing'    => '',
 		'verify_yandex'  => '',
+		'verify_naver'   => '',
+		'verify_seznam'  => '',
+		'verify_baidu'   => '',
 		'noindex_shop'   => 1,
 		'noindex_search' => 1,
 		'noindex_author' => 1,
@@ -167,7 +170,33 @@ function flxseo_search_engines() {
 			'placeholder' => '<meta name="yandex-verification" …>',
 			'help'        => __( 'Site ekle › Meta etiketi. Doğruladıktan sonra Indexing › Sitemap files bölümüne sitemap adresini ekleyin.', 'flx-seo' ),
 		),
+		'verify_naver'  => array(
+			'name'        => 'Naver Search Advisor',
+			'url'         => 'https://searchadvisor.naver.com/',
+			'link'        => __( 'Naver Search Advisor\'ı aç', 'flx-seo' ),
+			'placeholder' => '<meta name="naver-site-verification" …>',
+			'help'        => __( 'Kore\'nin en büyük arama motoru. Site ekle › HTML etiketi; sonra Request › Submit sitemap. İsteğe bağlı.', 'flx-seo' ),
+		),
+		'verify_seznam' => array(
+			'name'        => 'Seznam Webmaster',
+			'url'         => 'https://search.seznam.cz/',
+			'link'        => __( 'Seznam Webmaster\'ı aç', 'flx-seo' ),
+			'placeholder' => '<meta name="seznam-wmt" …>',
+			'help'        => __( 'Çekya\'nın arama motoru (Webmaster bağlantısı sayfa altında). Meta etiketi yöntemi. İsteğe bağlı.', 'flx-seo' ),
+		),
+		'verify_baidu'  => array(
+			'name'        => 'Baidu Webmaster',
+			'url'         => 'https://ziyuan.baidu.com/site/index',
+			'link'        => __( 'Baidu Webmaster\'ı aç', 'flx-seo' ),
+			'placeholder' => '<meta name="baidu-site-verification" …>',
+			'help'        => __( 'Çin\'in arama motoru; kayıt için Çin telefon numarası gerekebilir. Çin\'e hitap etmiyorsanız gerek yok.', 'flx-seo' ),
+		),
 	);
+}
+
+/** Google Site Kit kurulu ve bir yönetici Google hesabını bağlamış mı. */
+function flxseo_sitekit_connected() {
+	return defined( 'GOOGLESITEKIT_VERSION' ) && (bool) get_option( 'googlesitekit_has_connected_admins', false );
 }
 
 /** Son IndexNow toplu bildiriminin kısa metni. */
@@ -347,7 +376,7 @@ function flxseo_settings_page() {
 		// Diğer sekmedeki değerler kaybolmasın.
 		foreach ( $o as $k => $v ) {
 			$here = 'genel' === $tab
-				? in_array( $k, array( 'enabled', 'site_name', 'alt_name', 'sep', 'home_title', 'home_desc', 'og_image', 'verify_google', 'verify_bing', 'verify_yandex', 'noindex_shop', 'noindex_search', 'noindex_author', 'noindex_tags', 'auto_alt', 'indexnow' ), true )
+				? in_array( $k, array( 'enabled', 'site_name', 'alt_name', 'sep', 'home_title', 'home_desc', 'og_image', 'verify_google', 'verify_bing', 'verify_yandex', 'verify_naver', 'verify_seznam', 'verify_baidu', 'noindex_shop', 'noindex_search', 'noindex_author', 'noindex_tags', 'auto_alt', 'indexnow' ), true )
 				: in_array( $k, array( 'org_name', 'org_type', 'founding', 'logo', 'street', 'locality', 'postal', 'phone', 'email', 'same_as', 'twitter' ), true );
 			if ( ! $here ) {
 				printf( '<input type="hidden" name="%s[%s]" value="%s">', esc_attr( $n ), esc_attr( $k ), esc_attr( $v ) );
@@ -378,6 +407,7 @@ function flxseo_settings_page() {
 							<a href="<?php echo esc_url( $e['url'] ); ?>" target="_blank" rel="noopener"><?php echo esc_html( $e['link'] ); ?> ↗</a></td>
 						<td><input id="flxseo-<?php echo esc_attr( $k ); ?>" class="regular-text code" name="<?php echo esc_attr( $n ); ?>[<?php echo esc_attr( $k ); ?>]" value="<?php echo esc_attr( $o[ $k ] ); ?>" placeholder="<?php echo esc_attr( $e['placeholder'] ); ?>">
 							<?php echo $o[ $k ] ? '<span class="dashicons dashicons-yes-alt" style="color:#008a20" title="' . esc_attr__( 'Doğrulama etiketi sitede', 'flx-seo' ) . '"></span>' : ''; ?>
+							<?php if ( 'verify_google' === $k && flxseo_sitekit_connected() ) : ?><p><span class="dashicons dashicons-yes-alt" style="color:#008a20"></span> <?php esc_html_e( 'Google Site Kit ile bağlı; Search Console doğrulaması ve sitemap Site Kit\'te. Bu alanı boş bırakabilirsiniz.', 'flx-seo' ); ?></p><?php endif; ?>
 							<p class="description"><?php echo esc_html( $e['help'] ); ?></p></td>
 					</tr>
 				<?php endforeach; ?>

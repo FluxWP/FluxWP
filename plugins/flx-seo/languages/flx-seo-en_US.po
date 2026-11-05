@@ -1067,3 +1067,27 @@ msgstr "On; the first bulk submission is sent on the next admin page load."
 
 msgid "Kapalı; yeni sayfalar Bing ve Yandex'e bildirilmiyor."
 msgstr "Off; new pages are not sent to Bing and Yandex."
+
+msgid "Naver Search Advisor'ı aç"
+msgstr "Open Naver Search Advisor"
+
+msgid "Kore'nin en büyük arama motoru. Site ekle › HTML etiketi; sonra Request › Submit sitemap. İsteğe bağlı."
+msgstr "Korea's largest search engine. Add site › HTML tag; then Request › Submit sitemap. Optional."
+
+msgid "Seznam Webmaster'ı aç"
+msgstr "Open Seznam Webmaster"
+
+msgid "Çekya'nın arama motoru (Webmaster bağlantısı sayfa altında). Meta etiketi yöntemi. İsteğe bağlı."
+msgstr "Czech search engine (Webmaster link at the bottom of the page). Meta tag method. Optional."
+
+msgid "Baidu Webmaster'ı aç"
+msgstr "Open Baidu Webmaster"
+
+msgid "Çin'in arama motoru; kayıt için Çin telefon numarası gerekebilir. Çin'e hitap etmiyorsanız gerek yok."
+msgstr "China's search engine; sign-up may need a Chinese phone number. Not needed unless you target China."
+
+msgid "Google Site Kit ile bağlı; Search Console doğrulaması ve sitemap Site Kit'te. Bu alanı boş bırakabilirsiniz."
+msgstr "Connected with Google Site Kit; Search Console verification and the sitemap are handled there. You can leave this empty."
+
+msgid "Google Site Kit ile bağlı."
+msgstr "Connected with Google Site Kit."

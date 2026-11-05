@@ -354,5 +354,13 @@ return array (
     'Açık; site Bing ve Yandex\'e bildirildi.' => 'On; the site has been submitted to Bing and Yandex.',
     'Açık; ilk toplu bildirim yönetim panelinde bir sonraki istekte gönderilir.' => 'On; the first bulk submission is sent on the next admin page load.',
     'Kapalı; yeni sayfalar Bing ve Yandex\'e bildirilmiyor.' => 'Off; new pages are not sent to Bing and Yandex.',
+    'Naver Search Advisor\'ı aç' => 'Open Naver Search Advisor',
+    'Kore\'nin en büyük arama motoru. Site ekle › HTML etiketi; sonra Request › Submit sitemap. İsteğe bağlı.' => 'Korea\'s largest search engine. Add site › HTML tag; then Request › Submit sitemap. Optional.',
+    'Seznam Webmaster\'ı aç' => 'Open Seznam Webmaster',
+    'Çekya\'nın arama motoru (Webmaster bağlantısı sayfa altında). Meta etiketi yöntemi. İsteğe bağlı.' => 'Czech search engine (Webmaster link at the bottom of the page). Meta tag method. Optional.',
+    'Baidu Webmaster\'ı aç' => 'Open Baidu Webmaster',
+    'Çin\'in arama motoru; kayıt için Çin telefon numarası gerekebilir. Çin\'e hitap etmiyorsanız gerek yok.' => 'China\'s search engine; sign-up may need a Chinese phone number. Not needed unless you target China.',
+    'Google Site Kit ile bağlı; Search Console doğrulaması ve sitemap Site Kit\'te. Bu alanı boş bırakabilirsiniz.' => 'Connected with Google Site Kit; Search Console verification and the sitemap are handled there. You can leave this empty.',
+    'Google Site Kit ile bağlı.' => 'Connected with Google Site Kit.',
   ),
 );

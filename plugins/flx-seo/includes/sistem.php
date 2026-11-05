@@ -68,8 +68,8 @@ add_filter(
 			? $item( 'org', 'Kurum bilgileri', in_array( 'e-posta', $missing, true ) ? 'warning' : 'info', 'Eksik: ' . implode( ', ', $missing ) . '. Google\'daki kurum kartı ve yerel aramalar için doldurun.', flxseo_admin_url( 'kurum' ), 'Kurum ve sosyal' )
 			: $item( 'org', 'Kurum bilgileri', 'ok', 'Adres, telefon ve e-posta schema\'da.' );
 
-		$checks[] = flxseo_opt( 'verify_google' )
-			? $item( 'gsc', 'Search Console', 'ok', 'Google doğrulama kodu girili.' )
+		$checks[] = ( flxseo_opt( 'verify_google' ) || flxseo_sitekit_connected() )
+			? $item( 'gsc', 'Search Console', 'ok', flxseo_opt( 'verify_google' ) ? 'Google doğrulama kodu girili.' : __( 'Google Site Kit ile bağlı.', 'flx-seo' ) )
 			: $item( 'gsc', 'Search Console', 'info', 'Doğrulama kodu girilmemiş. DNS ile doğruladıysanız sorun yok.', flxseo_admin_url(), 'SEO ayarları' );
 
 		$se_miss = array_values( array_filter( array( flxseo_opt( 'verify_bing' ) ? '' : 'Bing', flxseo_opt( 'verify_yandex' ) ? '' : 'Yandex' ) ) );
