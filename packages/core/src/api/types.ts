@@ -52,6 +52,8 @@ export interface ModuleInfo {
   icon?: string;
   version?: string;
   order?: number;
+  /** Modülün manifesti var (flxapp/v1/manifest). */
+  manifest?: boolean;
 }
 
 export interface Me {
@@ -65,6 +67,10 @@ export interface Me {
   layout?: MenuLayout;
   web_session: boolean;
   versions: Record<string, string>;
+  /** Çekirdek yetki özeti (edit_posts, upload_files, moderate_comments…). */
+  caps?: Record<string, boolean>;
+  /** me/config/manifest özetleri: değişince yeniden çekilir. */
+  hashes?: Record<string, string>;
 }
 
 export interface DashboardCard {

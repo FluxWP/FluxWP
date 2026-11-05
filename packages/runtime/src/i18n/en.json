@@ -1,0 +1,126 @@
+{
+  "shell": {
+    "tabs": {
+      "home": "Home",
+      "posts": "Posts",
+      "comments": "Comments",
+      "menu": "Menu",
+      "more": "Menu"
+    },
+    "status": {
+      "publish": "Published",
+      "draft": "Draft",
+      "pending": "Pending",
+      "future": "Scheduled",
+      "private": "Private"
+    },
+    "switchSite": "Switch site",
+    "offline": "Offline: showing saved data",
+    "notFound": "This screen was not found.",
+    "demo": "Demo",
+    "nav": {
+      "more": "Menu",
+      "accounts": "Accounts",
+      "settings": "Settings",
+      "search": "Search",
+      "notifications": "Notifications"
+    },
+    "groups": {
+      "content": "Content"
+    },
+    "openedInWeb": "Opened in web view"
+  },
+  "list": {
+    "search": "Search",
+    "empty": "Nothing here yet.",
+    "noResults": "No results.",
+    "end": "That's all",
+    "loadingMore": "Loading…"
+  },
+  "states": {
+    "loading": "Loading…",
+    "errorTitle": "Could not load",
+    "errorBody": "The server could not be reached. Check your connection and try again.",
+    "forbidden": "You don't have access to this screen.",
+    "sessionExpired": "Your session expired, please sign in again."
+  },
+  "form": {
+    "required": "This field is required.",
+    "invalid": "Enter a valid value.",
+    "min": "Value is too small.",
+    "max": "Value is too large.",
+    "submit": "Save",
+    "saving": "Saving…",
+    "saved": "Saved.",
+    "minLength": "At least {{count}} characters.",
+    "maxLength": "At most {{count}} characters."
+  },
+  "action": {
+    "confirmTitle": "Are you sure?",
+    "confirm": "Confirm",
+    "done": "Done.",
+    "failed": "The action could not be completed."
+  },
+  "webview": {
+    "loading": "Opening dashboard page…",
+    "error": "The page could not be opened.",
+    "openBrowser": "Open in browser",
+    "reload": "Reload",
+    "back": "Back",
+    "demoNote": "Demo: sample dashboard page"
+  },
+  "switcher": {
+    "title": "Accounts",
+    "manage": "Manage accounts",
+    "remove": "Remove account",
+    "removeConfirm": "Remove the {{site}} account from this device?",
+    "current": "Current account"
+  },
+  "prefs": {
+    "cache": "Cache",
+    "clearCache": "Clear cache",
+    "cacheCleared": "Cache cleared.",
+    "version": "Version {{version}}"
+  },
+  "core": {
+    "pages": "Pages",
+    "post": "Post",
+    "edit": "Edit",
+    "openInPanel": "Open in dashboard",
+    "trash": "Move to trash",
+    "trashConfirm": "Move this item to the trash?",
+    "trashed": "Moved to trash",
+    "title": "Title",
+    "status": "Status",
+    "excerpt": "Excerpt",
+    "link": "Link",
+    "date": "Date",
+    "author": "Author",
+    "content": "Content",
+    "newPost": "New post",
+    "approve": "Approve",
+    "spam": "Spam",
+    "approved": "Approved",
+    "statusAll": "All",
+    "statusDraft": "Drafts",
+    "statusPending": "Pending",
+    "statusHold": "Pending",
+    "emptyPosts": "No posts yet",
+    "emptyComments": "No comments",
+    "searchPosts": "Search posts",
+    "searchComments": "Search comments",
+    "details": "Details"
+  },
+  "addSite": {
+    "notAllowed": "This app can only connect to its own site.",
+    "browserHint": "You sign in inside the app's secure browser. Your password never reaches the app.",
+    "cancelled": "Sign-in was cancelled.",
+    "title": "Connect your site",
+    "demo": "Try the demo account"
+  },
+  "drawer": {
+    "open": "Open menu",
+    "close": "Close menu",
+    "expand": "Toggle submenu"
+  }
+}

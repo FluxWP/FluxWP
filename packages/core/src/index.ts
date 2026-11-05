@@ -7,6 +7,8 @@ export * from './api/flxapp';
 export * from './auth/pkce';
 export * from './auth/discovery';
 export * from './auth/oauth';
+export * from './auth/otp';
+export * from './auth/apppass';
 export * from './auth/login';
 export * from './accounts/types';
 export * from './accounts/tokens';

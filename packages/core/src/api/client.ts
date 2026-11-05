@@ -14,9 +14,19 @@ export class ApiError extends Error {
 }
 
 export interface Credentials {
-  /** Erişim belirteci (flxat_) ya da API anahtarı (flxak_). */
+  /** Erişim belirteci (flxat_), API anahtarı (flxak_) ya da Basic için base64(kullanıcı:uygulama şifresi). */
   token: string;
+  /** "basic": WordPress Application Passwords (Flux App olmayan site). */
+  scheme?: 'bearer' | 'basic';
 }
+
+const platformHeaders = (): Record<string, string> => {
+  try {
+    return platform().headers?.() ?? {};
+  } catch {
+    return {};
+  }
+};
 
 export interface ClientOptions {
   siteUrl: string;
@@ -73,7 +83,7 @@ export function createClient(o: ClientOptions): ApiClient {
   const doFetch = (...a: Parameters<typeof fetch>) => (o.fetchImpl ?? platform().fetch)(...a);
 
   const send = async (path: string, opts: RequestOptions, cred: Credentials | null) => {
-    const headers: Record<string, string> = { Accept: 'application/json', ...o.extraHeaders?.() };
+    const headers: Record<string, string> = { Accept: 'application/json', ...platformHeaders(), ...o.extraHeaders?.() };
     let body: BodyInit | undefined;
     if (opts.formData) {
       body = opts.formData;
@@ -85,7 +95,8 @@ export function createClient(o: ClientOptions): ApiClient {
       body = JSON.stringify(opts.body);
     }
     if (cred && !opts.anonymous) {
-      if (o.useHeaderFallback) headers['X-FluxWP-Token'] = cred.token;
+      if (cred.scheme === 'basic') headers.Authorization = `Basic ${cred.token}`;
+      else if (o.useHeaderFallback) headers['X-FluxWP-Token'] = cred.token;
       else headers.Authorization = `Bearer ${cred.token}`;
     }
     return doFetch(buildUrl(o.siteUrl, path, opts.query), {

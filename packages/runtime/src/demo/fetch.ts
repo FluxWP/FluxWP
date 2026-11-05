@@ -1,0 +1,100 @@
+// Demo transport: fixtures for the flx-app contract (bootstrap, config, manifest) + sample REST data,
+// falling back to @fluxwp/core's demo routes (me, dashboard, tasks, chat). No server needed.
+import { demoFetch } from '@fluxwp/core/src/demo/fetch';
+import { DEMO_ORIGIN } from '@fluxwp/core/src/demo/origin';
+import bootstrap from '@fluxwp/manifest/fixtures/bootstrap.json';
+import config from '@fluxwp/manifest/fixtures/config.json';
+import manifest from '@fluxwp/manifest/fixtures/manifest.json';
+import { comments, contacts, crm, pages, posts } from './data';
+
+export const DEMO_SITE = DEMO_ORIGIN;
+
+type Q = URLSearchParams;
+type Handler = (m: RegExpMatchArray, q: Q, body: Record<string, unknown>) => unknown;
+
+const json = (data: unknown, headers: Record<string, string> = {}) =>
+  new Response(JSON.stringify(data), { status: 200, headers: { 'Content-Type': 'application/json', ...headers } });
+
+const pageOf = <T>(all: T[], q: Q, wrap: boolean) => {
+  const per = Number(q.get('per_page') ?? 20);
+  const page = Number(q.get('page') ?? 1);
+  const items = all.slice((page - 1) * per, page * per);
+  const pages = Math.max(1, Math.ceil(all.length / per));
+  if (wrap) return { items, total: all.length, page, pages };
+  return json(items, { 'X-WP-Total': String(all.length), 'X-WP-TotalPages': String(pages) });
+};
+
+const has = (s: string, q: Q, k: string) => s.toLocaleLowerCase('tr').includes((q.get(k) ?? '').toLocaleLowerCase('tr'));
+const statusIn = (status: string, q: Q) => {
+  const want = q.get('status');
+  return !want || want === 'all' || want.split(',').includes(status);
+};
+
+const routes: [string, RegExp, Handler][] = [
+  ['GET', /^flxapp\/v1\/app\/bootstrap$/, () => bootstrap],
+  ['GET', /^flxapp\/v1\/config$/, () => config],
+  ['GET', /^flxapp\/v1\/manifest$/, () => manifest],
+  ['POST', /^flxapp\/v1\/session$/, (_m, _q, b) => ({ url: `${DEMO_ORIGIN}/wp-admin/${String(b.path ?? 'index.php')}`, expires_in: 60 })],
+  // Flux CRM (fixture manifest "crm")
+  ['GET', /^flx-crm\/v1\/meta$/, () => crm.meta],
+  ['GET', /^flx-crm\/v1\/stats$/, () => crm.stats],
+  ['GET', /^flx-crm\/v1\/segments$/, () => crm.segments],
+  ['GET', /^flx-crm\/v1\/segments\/(\d+)\/contacts$/, (m, q) => pageOf(contacts.filter((_, i) => i % 3 === Number(m[1]) % 3), q, true)],
+  ['GET', /^flx-crm\/v1\/contacts$/, (_m, q) => {
+    let list = contacts.filter((c) => has(`${c.name} ${c.email} ${c.phone}`, q, 's'));
+    if (q.get('role')) list = list.filter((c) => c.roles.some((r) => r.key === q.get('role')));
+    if (q.get('risk')) list = list.filter((c) => c.churn >= 70);
+    return pageOf(list, q, true);
+  }],
+  ['GET', /^flx-crm\/v1\/contacts\/(\d+)$/, (m) => contacts.find((c) => c.id === Number(m[1])) ?? null],
+  ['POST', /^flx-crm\/v1\/contacts(\/\d+)?(\/events|\/tags)?$/, (_m, _q, b) => ({ ok: true, ...b })],
+  // WordPress core (wp mode paging: bare array + X-WP-* headers)
+  ['GET', /^wp\/v2\/posts$/, (_m, q) => pageOf(posts.filter((p) => statusIn(p.status, q) && has(p.title.raw, q, 'search')), q, false)],
+  ['GET', /^wp\/v2\/posts\/(\d+)$/, (m) => posts.find((p) => p.id === Number(m[1])) ?? null],
+  ['POST', /^wp\/v2\/posts(?:\/(\d+))?$/, (m, q, b) => {
+    if (q.get('_method') === 'DELETE') {
+      const i = posts.findIndex((p) => p.id === Number(m[1]));
+      return i >= 0 ? { deleted: false, ...posts.splice(i, 1)[0] } : null;
+    }
+    const title = typeof b.title === 'string' ? b.title : '';
+    const status = typeof b.status === 'string' ? b.status : 'draft';
+    const excerpt = typeof b.excerpt === 'string' ? b.excerpt : '';
+    const existing = posts.find((p) => p.id === Number(m[1]));
+    if (existing) return Object.assign(existing, { status, title: { raw: title, rendered: title }, excerpt: { raw: excerpt, rendered: excerpt } });
+    const p = { ...posts[0]!, id: 600 + posts.length, date: new Date().toISOString(), status, title: { raw: title, rendered: title }, excerpt: { raw: excerpt, rendered: excerpt } };
+    posts.unshift(p);
+    return p;
+  }],
+  ['GET', /^wp\/v2\/pages$/, (_m, q) => pageOf(pages.filter((p) => has(p.title.raw, q, 'search')), q, false)],
+  ['GET', /^wp\/v2\/comments$/, (_m, q) => pageOf(comments.filter((c) => statusIn(c.status, q) && has(c.content.raw + c.author_name, q, 'search')), q, false)],
+  ['POST', /^wp\/v2\/comments\/(\d+)$/, (m, q, b) => {
+    const i = comments.findIndex((c) => c.id === Number(m[1]));
+    if (i < 0) return null;
+    if (q.get('_method') === 'DELETE' || b.status === 'spam') return comments.splice(i, 1)[0];
+    return Object.assign(comments[i]!, { status: b.status === 'approved' ? 'approved' : comments[i]!.status });
+  }],
+];
+
+export const demoShellFetch: typeof fetch = async (input, init) => {
+  const url = new URL(typeof input === 'string' ? input : input instanceof URL ? input.href : input.url);
+  const path = url.pathname.replace(/^\/wp-json\//, '');
+  const method = (init?.method ?? 'GET').toUpperCase();
+  for (const [m, re, h] of routes) {
+    const match = method === m ? path.match(re) : null;
+    if (!match) continue;
+    let body: Record<string, unknown> = {};
+    if (typeof init?.body === 'string') {
+      try {
+        body = JSON.parse(init.body);
+      } catch {
+        body = Object.fromEntries(new URLSearchParams(init.body));
+      }
+    }
+    await new Promise((r) => setTimeout(r, 150));
+    const out = h(match, url.searchParams, body);
+    if (out instanceof Response) return out;
+    if (out === null || out === undefined) return new Response(JSON.stringify({ code: 'rest_not_found', message: path }), { status: 404 });
+    return json(out);
+  }
+  return demoFetch(input, init);
+};

@@ -6,5 +6,4 @@ export * from './expr';
 export * from './target';
 export * from './schema';
 export * from './config';
-export * from './theme';
 export { CORE_MANIFEST } from './core-manifest';

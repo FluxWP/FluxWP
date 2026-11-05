@@ -1,11 +1,34 @@
-// Theme = @fluxwp/tokens palette + brand colors + config.theme (site: WordPress theme.json + Flux Admin +
-// preset, derived on the server, §8.2) + brand overrides (white-label). Missing tokens come from @fluxwp/tokens.
-import { font, palette, radius as baseRadius, space, type BrandColors } from '@fluxwp/tokens';
-import type { ThemeColorsInput, ThemeConfig } from '../types/config';
+// Account theme = palette + brand colors + config.theme (site: WordPress theme.json + Flux Admin + preset,
+// derived on the server, plan §8.2) + white-label overrides. Web: toCssVars(); RN: Unistyles themes.
+import { font, palette, radius as baseRadius, space, type BrandColors } from './index';
+
+/** Colors a site config may set (flx-app-config/1 `theme.light|dark`). */
+export interface ThemeColorsInput {
+  primary?: string;
+  onPrimary?: string;
+  accent?: string;
+  bg?: string;
+  surface?: string;
+  surface2?: string;
+  border?: string;
+  text?: string;
+  textMuted?: string;
+  danger?: string;
+  warning?: string;
+  success?: string;
+  info?: string;
+}
+
+export interface ThemeConfigInput {
+  light?: ThemeColorsInput;
+  dark?: ThemeColorsInput;
+  radius?: 'small' | 'medium' | 'large';
+  density?: 'compact' | 'comfortable';
+}
 
 export type Mode = 'light' | 'dark';
 
-export interface ThemeColors {
+export interface AppThemeColors {
   bg: string;
   surface: string;
   surface2: string;
@@ -19,6 +42,7 @@ export interface ThemeColors {
   warning: string;
   success: string;
   info: string;
+  surface3: string;
   overlay: string;
   primary: string;
   onPrimary: string;
@@ -26,9 +50,9 @@ export interface ThemeColors {
   accent: string;
 }
 
-export interface Theme {
+export interface AppTheme {
   mode: Mode;
-  colors: ThemeColors;
+  colors: AppThemeColors;
   space: typeof space;
   radius: { sm: number; md: number; lg: number; xl: number; full: number };
   font: typeof font;
@@ -89,12 +113,12 @@ export interface ThemeInput {
   mode: Mode;
   brand: BrandColors;
   /** Site config theme (server). */
-  config?: ThemeConfig;
+  config?: ThemeConfigInput;
   /** White-label brand overrides, applied last. */
   overrides?: { light?: ThemeColorsInput; dark?: ThemeColorsInput };
 }
 
-export function buildTheme({ mode, brand, config, overrides }: ThemeInput): Theme {
+export function themeFromConfig({ mode, brand, config, overrides }: ThemeInput): AppTheme {
   const site = cleanColors(config?.[mode]);
   const over = cleanColors(overrides?.[mode]);
   const p = palette[mode];
@@ -104,7 +128,7 @@ export function buildTheme({ mode, brand, config, overrides }: ThemeInput): Them
   // A dark brand primary disappears on dark surfaces when the site sends no dark tone.
   if (mode === 'dark' && !over.primary && !site.primary && contrast(primary, p.bg) < 3) primary = '#818CF8';
   const surface = pick('surface', p.surface);
-  const colors: ThemeColors = {
+  const colors: AppThemeColors = {
     bg: pick('bg', p.bg),
     surface,
     surface2: pick('surface2', p.surface2),
@@ -117,7 +141,8 @@ export function buildTheme({ mode, brand, config, overrides }: ThemeInput): Them
     danger: pick('danger', p.danger),
     warning: pick('warning', p.warning),
     success: pick('success', p.success),
-    info: pick('info', mode === 'dark' ? '#60A5FA' : '#2563EB'),
+    info: pick('info', p.info),
+    surface3: p.surface3,
     overlay: p.overlay,
     primary,
     onPrimary: over.onPrimary ?? site.onPrimary ?? (primary === brand.primary ? brand.primaryContrast : onColor(primary)),

@@ -9,7 +9,6 @@ import { compile, fill, render, test as cond, timeAgo } from './expr';
 import { formatTarget, matchRoute, parseTarget, safeAdminPath } from './target';
 import { DEFAULT_CONFIG, mergeConfig, normalizeShell } from './config';
 import { parseBootstrap, parseConfig, parseManifest, parseManifestBundle, type ParseIssue } from './schema';
-import { buildTheme, contrast } from './theme';
 
 describe('templates', () => {
   const ctx = { scope: { name: 'Ayşe Kaya', email: '', phone: '+90 532 000 00 01', ltv: 1500.5, currency: 'TRY', roles: [{ label: 'Bağışçı' }], consent: { email: true } }, params: { id: '7' }, locale: 'tr-TR' };
@@ -116,22 +115,5 @@ describe('config layers', () => {
     const s = normalizeShell({ ...DEFAULT_CONFIG.shell, nav: 'tabs', tabs: DEFAULT_CONFIG.shell.tabs.filter((t) => t.target !== 'more') });
     expect(s.tabs.at(-1)?.target).toBe('more');
     expect(s.tabs.length).toBeLessThanOrEqual(5);
-  });
-});
-
-describe('theme', () => {
-  const brand = { primary: '#4338CA', primaryContrast: '#FFFFFF', accent: '#F59E0B' };
-  it('applies site colors and computes a readable onPrimary', () => {
-    const t = buildTheme({ mode: 'light', brand, config: { light: { primary: '#FDE047' } } });
-    expect(t.colors.primary).toBe('#FDE047');
-    expect(contrast(t.colors.primary, t.colors.onPrimary)).toBeGreaterThan(4.5);
-  });
-  it('ignores non-color values from the server', () => {
-    const t = buildTheme({ mode: 'light', brand, config: { light: { primary: 'url(javascript:x)' } } });
-    expect(t.colors.primary).toBe('#4338CA');
-  });
-  it('lifts a too-dark primary in dark mode', () => {
-    const t = buildTheme({ mode: 'dark', brand: { ...brand, primary: '#1F2937' } });
-    expect(contrast(t.colors.primary, t.colors.bg)).toBeGreaterThan(3);
   });
 });
