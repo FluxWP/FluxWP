@@ -1091,3 +1091,30 @@ msgstr "Connected with Google Site Kit; Search Console verification and the site
 
 msgid "Google Site Kit ile bağlı."
 msgstr "Connected with Google Site Kit."
+
+msgid "Uzmanlık konuları"
+msgstr "Areas of expertise"
+
+msgid "Her satıra bir konu"
+msgstr "One topic per line"
+
+msgid "Kurumun uzman olduğu konular (schema knowsAbout). Arama motorları ve yapay zekâ asistanları kurumu bu konularla eşleştirir. Boşsa eklenmez."
+msgstr "Topics the organization is an expert in (schema knowsAbout). Search engines and AI assistants match the organization to these topics. Left out when empty."
+
+msgid "Hizmet bölgesi"
+msgstr "Area served"
+
+msgid "ör. Türkiye"
+msgstr "e.g. United States"
+
+msgid "Hizmet verilen ülke (schema areaServed). Boşsa eklenmez."
+msgstr "Country served (schema areaServed). Left out when empty."
+
+msgid "Bağış çağrısı"
+msgstr "Donation call to action"
+
+msgid "ör. Bağış yap"
+msgstr "e.g. Donate"
+
+msgid "Bağış kabul eden kurumlar için (schema DonateAction). Ad boşsa eklenmez; adres boşsa bağış sayfası kendiliğinden bulunur."
+msgstr "For organizations that accept donations (schema DonateAction). Left out when the label is empty; when the URL is empty the donation page is found automatically."

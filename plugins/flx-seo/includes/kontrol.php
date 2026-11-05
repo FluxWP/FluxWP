@@ -27,7 +27,7 @@ function flxseo_audit_post( $post ) {
 	$title   = flxseo_get( $post->ID, 'title' );
 	$full    = $title ? $title : get_the_title( $post ) . ' ' . flxseo_opt( 'sep' ) . ' ' . flxseo_opt( 'alt_name' );
 	$desc    = flxseo_get( $post->ID, 'desc' );
-	$article = in_array( $post->post_type, array( 'post', 'proje', 'etkinlik' ), true );
+	$article = in_array( $post->post_type, flxseo_article_types(), true );
 
 	if ( flxseo_get( $post->ID, 'noindex' ) ) {
 		$add( 'warning', 'noindex', 'Arama motorlarına kapalı (noindex).' );

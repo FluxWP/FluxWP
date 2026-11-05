@@ -1089,3 +1089,30 @@ msgstr ""
 
 msgid "Google Site Kit ile bağlı."
 msgstr ""
+
+msgid "Uzmanlık konuları"
+msgstr ""
+
+msgid "Her satıra bir konu"
+msgstr ""
+
+msgid "Kurumun uzman olduğu konular (schema knowsAbout). Arama motorları ve yapay zekâ asistanları kurumu bu konularla eşleştirir. Boşsa eklenmez."
+msgstr ""
+
+msgid "Hizmet bölgesi"
+msgstr ""
+
+msgid "ör. Türkiye"
+msgstr ""
+
+msgid "Hizmet verilen ülke (schema areaServed). Boşsa eklenmez."
+msgstr ""
+
+msgid "Bağış çağrısı"
+msgstr ""
+
+msgid "ör. Bağış yap"
+msgstr ""
+
+msgid "Bağış kabul eden kurumlar için (schema DonateAction). Ad boşsa eklenmez; adres boşsa bağış sayfası kendiliğinden bulunur."
+msgstr ""

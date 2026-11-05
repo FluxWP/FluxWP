@@ -31,6 +31,10 @@ function flxseo_defaults() {
 		'email'          => '',
 		'same_as'        => '',
 		'twitter'        => '',
+		'knows_about'    => '',
+		'area_served'    => '',
+		'donate_label'   => '',
+		'donate_url'     => '',
 		'verify_google'  => '',
 		'verify_bing'    => '',
 		'verify_yandex'  => '',
@@ -194,6 +198,11 @@ function flxseo_search_engines() {
 	);
 }
 
+/** Makale (Article schema, og:type article) sayılan yazı türleri. Ön ayarlar kendi türlerini ekler (ör. etkinlik, proje). */
+function flxseo_article_types() {
+	return array_values( array_unique( (array) apply_filters( 'flxseo_article_types', array( 'post' ) ) ) );
+}
+
 /** Google Site Kit kurulu ve bir yönetici Google hesabını bağlamış mı. */
 function flxseo_sitekit_connected() {
 	return defined( 'GOOGLESITEKIT_VERSION' ) && (bool) get_option( 'googlesitekit_has_connected_admins', false );
@@ -308,9 +317,9 @@ function flxseo_sanitize( $in ) {
 	foreach ( $d as $k => $v ) {
 		if ( is_int( $v ) ) {
 			$out[ $k ] = empty( $in[ $k ] ) ? 0 : 1;
-		} elseif ( in_array( $k, array( 'logo', 'og_image' ), true ) ) {
+		} elseif ( in_array( $k, array( 'logo', 'og_image', 'donate_url' ), true ) ) {
 			$out[ $k ] = esc_url_raw( $in[ $k ] ?? '' );
-		} elseif ( in_array( $k, array( 'home_desc', 'same_as', 'llms_intro' ), true ) ) {
+		} elseif ( in_array( $k, array( 'home_desc', 'same_as', 'llms_intro', 'knows_about' ), true ) ) {
 			$out[ $k ] = sanitize_textarea_field( $in[ $k ] ?? '' );
 		} elseif ( 0 === strpos( $k, 'verify_' ) ) {
 			// Doğrulama: tam <meta> etiketi yapıştırılırsa yalnızca content değeri alınır.
@@ -377,7 +386,7 @@ function flxseo_settings_page() {
 		foreach ( $o as $k => $v ) {
 			$here = 'genel' === $tab
 				? in_array( $k, array( 'enabled', 'site_name', 'alt_name', 'sep', 'home_title', 'home_desc', 'og_image', 'verify_google', 'verify_bing', 'verify_yandex', 'verify_naver', 'verify_seznam', 'verify_baidu', 'noindex_shop', 'noindex_search', 'noindex_author', 'noindex_tags', 'auto_alt', 'indexnow' ), true )
-				: in_array( $k, array( 'org_name', 'org_type', 'founding', 'logo', 'street', 'locality', 'postal', 'phone', 'email', 'same_as', 'twitter' ), true );
+				: in_array( $k, array( 'org_name', 'org_type', 'founding', 'logo', 'street', 'locality', 'postal', 'phone', 'email', 'same_as', 'twitter', 'knows_about', 'area_served', 'donate_label', 'donate_url' ), true );
 			if ( ! $here ) {
 				printf( '<input type="hidden" name="%s[%s]" value="%s">', esc_attr( $n ), esc_attr( $k ), esc_attr( $v ) );
 			} elseif ( is_int( flxseo_defaults()[ $k ] ) ) {
@@ -437,11 +446,14 @@ function flxseo_settings_page() {
 			<tr><th scope="row"><label for="ys-on">Kurum adı</label></th><td><input id="ys-on" class="large-text" name="<?php echo esc_attr( $n ); ?>[org_name]" value="<?php echo esc_attr( $o['org_name'] ); ?>"></td></tr>
 			<tr><th scope="row"><label for="ys-ot">Kurum türü</label></th><td><select id="ys-ot" name="<?php echo esc_attr( $n ); ?>[org_type]"><?php foreach ( array( 'NGO' => 'Dernek / STK (NGO)', 'Organization' => 'Kurum (Organization)' ) as $k => $l ) : ?><option value="<?php echo esc_attr( $k ); ?>" <?php selected( $o['org_type'], $k ); ?>><?php echo esc_html( $l ); ?></option><?php endforeach; ?></select>
 				Kuruluş yılı <input class="small-text" name="<?php echo esc_attr( $n ); ?>[founding]" value="<?php echo esc_attr( $o['founding'] ); ?>"></td></tr>
-			<tr><th scope="row"><label for="ys-lg">Logo (kare)</label></th><td><input id="ys-lg" class="large-text code" name="<?php echo esc_attr( $n ); ?>[logo]" value="<?php echo esc_attr( $o['logo'] ); ?>" placeholder="<?php echo esc_attr( FLXSEO_URL . 'assets/icons/icon-512.png' ); ?>"><p class="description">Google bilgi paneli için. En az 112×112 PNG. Boşsa yaprak simgesi.</p></td></tr>
+			<tr><th scope="row"><label for="ys-lg">Logo (kare)</label></th><td><input id="ys-lg" class="large-text code" name="<?php echo esc_attr( $n ); ?>[logo]" value="<?php echo esc_attr( $o['logo'] ); ?>" placeholder="<?php echo esc_attr( FLXSEO_URL . 'assets/icons/icon-512.png' ); ?>"><p class="description">Google bilgi paneli için. En az 112×112 PNG. Boşsa Flux SEO simgesi.</p></td></tr>
 			<tr><th scope="row">Adres</th><td><input class="regular-text" name="<?php echo esc_attr( $n ); ?>[street]" value="<?php echo esc_attr( $o['street'] ); ?>" placeholder="Sokak, no"> <input class="regular-text" name="<?php echo esc_attr( $n ); ?>[locality]" value="<?php echo esc_attr( $o['locality'] ); ?>" placeholder="İlçe, il"> <input class="small-text" name="<?php echo esc_attr( $n ); ?>[postal]" value="<?php echo esc_attr( $o['postal'] ); ?>" placeholder="Posta kodu"></td></tr>
 			<tr><th scope="row">İletişim</th><td><input class="regular-text" name="<?php echo esc_attr( $n ); ?>[phone]" value="<?php echo esc_attr( $o['phone'] ); ?>" placeholder="+90 ..."> <input class="regular-text" name="<?php echo esc_attr( $n ); ?>[email]" value="<?php echo esc_attr( $o['email'] ); ?>" placeholder="e-posta"></td></tr>
 			<tr><th scope="row"><label for="ys-sa">Sosyal medya profilleri</label></th><td><textarea id="ys-sa" class="large-text code" rows="5" name="<?php echo esc_attr( $n ); ?>[same_as]" placeholder="https://www.instagram.com/...&#10;https://www.youtube.com/@..."><?php echo esc_textarea( $o['same_as'] ); ?></textarea><p class="description">Her satıra bir adres. Google kurum bilgisini bu profillerle eşleştirir.</p></td></tr>
 			<tr><th scope="row"><label for="ys-tw">X (Twitter) kullanıcı adı</label></th><td><input id="ys-tw" class="regular-text" name="<?php echo esc_attr( $n ); ?>[twitter]" value="<?php echo esc_attr( $o['twitter'] ); ?>" placeholder="@kullanici"></td></tr>
+			<tr><th scope="row"><label for="ys-ka"><?php esc_html_e( 'Uzmanlık konuları', 'flx-seo' ); ?></label></th><td><textarea id="ys-ka" class="large-text" rows="4" name="<?php echo esc_attr( $n ); ?>[knows_about]" placeholder="<?php esc_attr_e( 'Her satıra bir konu', 'flx-seo' ); ?>"><?php echo esc_textarea( $o['knows_about'] ); ?></textarea><p class="description"><?php esc_html_e( 'Kurumun uzman olduğu konular (schema knowsAbout). Arama motorları ve yapay zekâ asistanları kurumu bu konularla eşleştirir. Boşsa eklenmez.', 'flx-seo' ); ?></p></td></tr>
+			<tr><th scope="row"><label for="ys-as"><?php esc_html_e( 'Hizmet bölgesi', 'flx-seo' ); ?></label></th><td><input id="ys-as" class="regular-text" name="<?php echo esc_attr( $n ); ?>[area_served]" value="<?php echo esc_attr( $o['area_served'] ); ?>" placeholder="<?php esc_attr_e( 'ör. Türkiye', 'flx-seo' ); ?>"><p class="description"><?php esc_html_e( 'Hizmet verilen ülke (schema areaServed). Boşsa eklenmez.', 'flx-seo' ); ?></p></td></tr>
+			<tr><th scope="row"><label for="ys-dl"><?php esc_html_e( 'Bağış çağrısı', 'flx-seo' ); ?></label></th><td><input id="ys-dl" class="regular-text" name="<?php echo esc_attr( $n ); ?>[donate_label]" value="<?php echo esc_attr( $o['donate_label'] ); ?>" placeholder="<?php esc_attr_e( 'ör. Bağış yap', 'flx-seo' ); ?>"> <input class="regular-text code" name="<?php echo esc_attr( $n ); ?>[donate_url]" value="<?php echo esc_attr( $o['donate_url'] ); ?>" placeholder="<?php echo esc_attr( home_url( '/…/' ) ); ?>"><p class="description"><?php esc_html_e( 'Bağış kabul eden kurumlar için (schema DonateAction). Ad boşsa eklenmez; adres boşsa bağış sayfası kendiliğinden bulunur.', 'flx-seo' ); ?></p></td></tr>
 		<?php endif; ?>
 		</table>
 		<?php submit_button(); ?>

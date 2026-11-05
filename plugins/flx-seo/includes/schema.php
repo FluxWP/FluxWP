@@ -170,7 +170,7 @@ function flxseo_schema_graph() {
 	}
 	$graph[] = $page;
 
-	if ( is_singular( array( 'post', 'proje', 'etkinlik' ) ) ) {
+	if ( is_singular( flxseo_article_types() ) ) {
 		$post    = get_queried_object();
 		$graph[] = array(
 			'@type'            => 'post' === $post->post_type ? 'NewsArticle' : 'Article',
