@@ -17,7 +17,7 @@ window.addEventListener('message', function (ev) {
 
 #[derive(serde::Deserialize)]
 #[serde(rename_all = "camelCase")]
-struct EmbedArgs {
+pub(crate) struct EmbedArgs {
     label: String,
     url: String,
     x: f64,

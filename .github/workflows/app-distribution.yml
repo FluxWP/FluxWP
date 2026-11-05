@@ -1,0 +1,76 @@
+name: App distribution - choose platforms
+on:
+  workflow_dispatch:
+    inputs:
+      brand: { description: 'Brand in brands/<slug>', default: flux, required: true }
+      ios:
+        description: iOS destination (app-store promotes an already tested build)
+        type: choice
+        default: testflight
+        options: [skip, simulator, ipa, testflight, app-store]
+      android:
+        type: choice
+        default: skip
+        options: [skip, apk, internal, alpha, beta, production]
+      macos:
+        description: Signed, notarized macOS artifact or GitHub release
+        type: choice
+        default: skip
+        options: [skip, artifact, release]
+      version: { description: 'Mobile version; empty uses package.json', default: '' }
+      ios_build_number: { description: 'Tested TestFlight build for app-store submission', default: '' }
+      screenshots_run_id: { description: 'App store assets run ID for app-store submission', default: '' }
+      disclosures_reviewed:
+        description: Store privacy, age rating, review contact and content declarations are complete
+        type: boolean
+        default: false
+      release_tag: { description: 'Required for macOS release, e.g. fluxapp-v0.3.0', default: '' }
+permissions:
+  contents: read
+  actions: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require at least one platform and a release tag when publishing macOS
+        env:
+          IOS: ${{ inputs.ios }}
+          ANDROID: ${{ inputs.android }}
+          MACOS: ${{ inputs.macos }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: |
+          if [ "$IOS:$ANDROID:$MACOS" = skip:skip:skip ]; then echo '::error::Select at least one platform'; exit 1; fi
+          if [ "$MACOS" = release ] && [ -z "$RELEASE_TAG" ]; then echo '::error::A macOS release tag is required'; exit 1; fi
+  ios:
+    needs: validate
+    if: inputs.ios != 'skip'
+    uses: ./.github/workflows/mobile-release-ios.yml
+    with:
+      brand: ${{ inputs.brand }}
+      destination: ${{ inputs.ios }}
+      version: ${{ inputs.version }}
+      build_number: ${{ inputs.ios_build_number }}
+      screenshots_run_id: ${{ inputs.screenshots_run_id }}
+      disclosures_reviewed: ${{ inputs.disclosures_reviewed }}
+    secrets: inherit
+  android:
+    needs: validate
+    if: inputs.android != 'skip'
+    uses: ./.github/workflows/mobile-release-android.yml
+    with:
+      brand: ${{ inputs.brand }}
+      destination: ${{ inputs.android }}
+      version: ${{ inputs.version }}
+    secrets: inherit
+  macos:
+    needs: validate
+    if: inputs.macos != 'skip'
+    permissions:
+      contents: write
+    uses: ./.github/workflows/fluxapp-desktop.yml
+    with:
+      brand: ${{ inputs.brand }}
+      platforms: macos
+      release: ${{ inputs.macos == 'release' && inputs.release_tag || '' }}
+      require_signing: true
+    secrets: inherit

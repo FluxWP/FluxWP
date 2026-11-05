@@ -23,13 +23,18 @@ interface MobileBrand {
 export default ({ config }: ConfigContext): ExpoConfig => {
   const brand = applyBrand(process.env.FLUX_BRAND);
   const asset = (f: string) => `./assets/brand/${f}`;
-  const projectId = brand.eas?.projectId || undefined;
+  const projectId = process.env.EXPO_PUBLIC_EAS_PROJECT_ID || brand.eas?.projectId || undefined;
+  const version = process.env.FLUX_APP_VERSION || pkg.version;
+  const buildNumber = process.env.FLUX_BUILD_NUMBER;
+  if (!/^\d+\.\d+\.\d+$/.test(version)) throw new Error('FLUX_APP_VERSION must be major.minor.patch');
+  if (buildNumber && (!/^[1-9]\d*$/.test(buildNumber) || Number(buildNumber) > 2_100_000_000)) throw new Error('Invalid FLUX_BUILD_NUMBER');
+  if (projectId && !/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(projectId)) throw new Error('Invalid EAS project ID');
   return {
     ...config,
     name: brand.name,
     slug: brand.slug === 'flux' ? 'fluxwp' : `fluxwp-${brand.slug}`,
     owner: brand.eas?.owner || 'fluxwp',
-    version: pkg.version,
+    version,
     orientation: 'portrait',
     icon: asset('icon.png'),
     scheme: brand.scheme,
@@ -39,10 +44,14 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     ios: {
       bundleIdentifier: brand.bundleId,
       supportsTablet: true,
+      ...(buildNumber ? { buildNumber } : {}),
+      ...(process.env.APPLE_TEAM_ID ? { appleTeamId: process.env.APPLE_TEAM_ID } : {}),
       config: { usesNonExemptEncryption: false },
     },
     android: {
       package: brand.androidPackage,
+      ...(buildNumber ? { versionCode: Number(buildNumber) } : {}),
+      blockedPermissions: ['android.permission.RECORD_AUDIO'],
       adaptiveIcon: {
         backgroundColor: brand.colors.primary,
         foregroundImage: asset('adaptive-icon.png'),
@@ -65,11 +74,13 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       'expo-secure-store',
       'expo-localization',
       'expo-web-browser',
+      ['expo-notifications', { icon: asset('notification.png'), color: brand.colors.primary }],
       [
         'expo-image-picker',
         {
           photosPermission: 'Fotoğraf seçmek için galeriye erişilir. / The gallery is used to choose photos.',
           cameraPermission: 'Dekont ve görsel çekmek için kamera kullanılır. / The camera is used to take photos.',
+          microphonePermission: false,
         },
       ],
     ],
