@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.2.0
+- Kabuk (üst çubuk, yan çekmece, alt sekmeler), listeler, ayrıntı, formlar ve boş durumlar Flux Admin dilinde: antrasit + bej zemin, indigo düğmeler, amber vurgu, Figtree. Hesap açılınca sitenin theme.json yazı tipi ve renkleri geçerli olur.
+- Yerel ekranlar (WhatsApp, Görevler, bağış inceleme, yazı, ortam, Social, Studio, AI, TV kumandası) aynı yazı, aralık ve düğmeleri kullanır. Web görünümü çerçevesiz kalır.
+
 ## 0.1.1
 - Beyaz etiket: `FLUX_BRAND` build anında `brands/<slug>/brand.json` okur (ad, bundle, şema, ikon, splash, tema, kabuk). Ana uygulama `com.fluxwp.app` / `fluxwp` olarak kalır; `allowedSites` boştur.
 - Marka derlemesi yalnız listedeki siteleri ekler (`brandGate`). Liste doluysa demo girişi kapalıdır. `lockSite` tek siteyi kilitler; liste dolu ve kilit yoksa kullanıcı listeden seçer.

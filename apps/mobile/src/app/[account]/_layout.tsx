@@ -59,7 +59,7 @@ function AccountDrawer() {
   return (
     <Drawer
       drawerContent={(p) => <DrawerContent close={() => p.navigation.closeDrawer()} />}
-      screenOptions={{ headerShown: false, drawerType: 'front', swipeEdgeWidth: 32, drawerStyle: { backgroundColor: theme.colors.sidebar, width: 304 }, overlayColor: theme.colors.overlay }}
+      screenOptions={{ headerShown: false, drawerType: 'front', swipeEdgeWidth: 32, drawerStyle: { backgroundColor: theme.colors.sidebar, width: 304, borderTopRightRadius: 22, borderBottomRightRadius: 22, overflow: 'hidden' }, overlayColor: theme.colors.overlay }}
     >
       <Drawer.Screen name="(tabs)" />
       <Drawer.Screen name="accounts" options={{ headerShown: true, header: () => <SimpleHeader titleKey="mobile.switcher.title" />, swipeEnabled: false }} />

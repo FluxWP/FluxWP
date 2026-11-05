@@ -42,8 +42,8 @@
       "apikey"
     ],
     "splash": {
-      "background": "#F6F7F9",
-      "backgroundDark": "#0E1014"
+      "background": "#F3F2EF",
+      "backgroundDark": "#101114"
     }
   },
   "allowedSites": [],

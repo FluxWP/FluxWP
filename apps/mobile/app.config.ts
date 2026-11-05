@@ -58,8 +58,8 @@ export default ({ config }: ConfigContext): ExpoConfig => {
         {
           image: asset('splash.png'),
           imageWidth: 120,
-          backgroundColor: brand.splash.background ?? '#F6F7F9',
-          dark: { image: asset('splash.png'), backgroundColor: brand.splash.backgroundDark ?? '#0E1014' },
+          backgroundColor: brand.splash.background ?? '#F3F2EF',
+          dark: { image: asset('splash.png'), backgroundColor: brand.splash.backgroundDark ?? '#101114' },
         },
       ],
       'expo-secure-store',

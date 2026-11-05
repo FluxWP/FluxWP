@@ -153,7 +153,7 @@ const styles = StyleSheet.create((theme) => ({
   fill: { flex: 1, backgroundColor: theme.colors.bg },
   flex: { flex: 1 },
   tools: { padding: theme.space[3] },
-  row: { minHeight: 64, paddingHorizontal: theme.space[4], justifyContent: 'center', borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.colors.border },
+  row: { minHeight: 64, marginHorizontal: 12, marginBottom: 8, paddingHorizontal: theme.space[4], justifyContent: 'center', backgroundColor: theme.colors.surface, borderWidth: 1, borderColor: theme.colors.border, borderRadius: theme.radius.lg },
   head: { flexDirection: 'row', alignItems: 'center', borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.colors.border },
   thread: { padding: theme.space[3] },
   bubble: { maxWidth: '86%', borderRadius: theme.radius.lg, padding: 12, marginBottom: 8, gap: 4 },
@@ -162,5 +162,5 @@ const styles = StyleSheet.create((theme) => ({
   pending: { margin: theme.space[3], padding: theme.space[3], gap: 6, borderRadius: theme.radius.md, backgroundColor: theme.colors.surface, borderWidth: StyleSheet.hairlineWidth, borderColor: theme.colors.border },
   actions: { flexDirection: 'row', gap: 8 },
   composer: { flexDirection: 'row', alignItems: 'flex-end', gap: 4, padding: 8, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: theme.colors.border, backgroundColor: theme.colors.surface },
-  input: { flex: 1, minHeight: 44, maxHeight: 120, color: theme.colors.text, fontSize: 16, paddingHorizontal: 8 },
+  input: { flex: 1, minHeight: 44, maxHeight: 120, color: theme.colors.text, fontSize: 16, fontFamily: theme.font.family, paddingHorizontal: 12, borderWidth: 1, borderColor: theme.colors.border, borderRadius: theme.radius.md, backgroundColor: theme.colors.bg },
 }));

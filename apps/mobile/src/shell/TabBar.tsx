@@ -19,11 +19,11 @@ export function TabBar({ tabs, active, onPress }: { tabs: NavEntry[]; active: nu
         const color = on ? theme.colors.primary : theme.colors.textMuted;
         return (
           <Pressable key={tab.id} accessibilityRole="tab" accessibilityState={{ selected: on }} accessibilityLabel={label(tab.label)} onPress={() => onPress(i)} style={styles.tab}>
-            <View>
-              <Icon name={tab.icon} slug={tab.slug} size={24} color={color} strokeWidth={on ? 2.2 : 1.8} />
+            <View style={[styles.ico, on && styles.icoOn]}>
+              <Icon name={tab.icon} slug={tab.slug} size={22} color={color} strokeWidth={on ? 2.2 : 1.8} />
               {tab.badge ? <Badge text={String(tab.badge)} tone="danger" style={styles.badge} /> : null}
             </View>
-            <Text numberOfLines={1} style={[styles.label, { color }]}>{label(tab.label)}</Text>
+            <Text numberOfLines={1} style={[styles.label, { color }, on && styles.labelOn]}>{label(tab.label)}</Text>
           </Pressable>
         );
       })}
@@ -32,8 +32,11 @@ export function TabBar({ tabs, active, onPress }: { tabs: NavEntry[]; active: nu
 }
 
 const styles = StyleSheet.create((theme) => ({
-  bar: { flexDirection: 'row', backgroundColor: theme.colors.surface, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: theme.colors.border, paddingTop: 6 },
-  tab: { flex: 1, alignItems: 'center', gap: 3, minHeight: 48, justifyContent: 'center' },
-  label: { fontSize: 11, fontWeight: '600' },
-  badge: { position: 'absolute', top: -6, right: -14 },
+  bar: { flexDirection: 'row', backgroundColor: theme.colors.sidebar, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: theme.colors.border, paddingTop: 6, shadowColor: '#000', shadowOpacity: 0.04, shadowRadius: 12, shadowOffset: { width: 0, height: -4 } },
+  tab: { flex: 1, alignItems: 'center', gap: 2, minHeight: 52, justifyContent: 'center' },
+  ico: { width: 56, height: 30, borderRadius: 15, alignItems: 'center', justifyContent: 'center' },
+  icoOn: { backgroundColor: theme.colors.primarySoft },
+  label: { fontFamily: theme.font.family, fontSize: 11, fontWeight: '600' },
+  labelOn: { fontWeight: '800' },
+  badge: { position: 'absolute', top: -4, right: 6 },
 }));

@@ -182,7 +182,7 @@ const styles = StyleSheet.create((theme) => ({
   flex: { flex: 1 },
   hscroll: { flexGrow: 0, maxHeight: 52 },
   filters: { paddingRight: theme.space[4], alignItems: 'center' },
-  row: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: theme.space[4], minHeight: 76, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.colors.border },
+  row: { flexDirection: 'row', alignItems: 'center', gap: 12, marginHorizontal: 12, marginBottom: 8, paddingHorizontal: theme.space[4], minHeight: 76, backgroundColor: theme.colors.surface, borderWidth: 1, borderColor: theme.colors.border, borderRadius: theme.radius.lg },
   line: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   badge: { minWidth: 22, height: 22, borderRadius: 11, backgroundColor: theme.colors.primary, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 6 },
   badgeText: { color: theme.colors.onPrimary, fontSize: 12 },
@@ -197,5 +197,5 @@ const styles = StyleSheet.create((theme) => ({
   media: { width: 220, height: 160, borderRadius: theme.radius.md },
   mediaCard: { width: 200, height: 92, borderRadius: theme.radius.md, alignItems: 'center', justifyContent: 'center', gap: 6 },
   composer: { flexDirection: 'row', alignItems: 'flex-end', gap: 2, padding: 6, paddingBottom: 10, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: theme.colors.border, backgroundColor: theme.colors.surface },
-  input: { flex: 1, minHeight: 44, maxHeight: 120, color: theme.colors.text, fontSize: 16, paddingHorizontal: 8 },
+  input: { flex: 1, minHeight: 44, maxHeight: 120, color: theme.colors.text, fontSize: 16, fontFamily: theme.font.family, paddingHorizontal: 12, borderWidth: 1, borderColor: theme.colors.border, borderRadius: theme.radius.md, backgroundColor: theme.colors.bg },
 }));

@@ -87,7 +87,9 @@ export default function AddSite() {
     <KeyboardAvoidingView style={styles.screen} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <ScrollView contentContainerStyle={[styles.wrap, { paddingTop: insets.top + 24, paddingBottom: insets.bottom + 24 }]} keyboardShouldPersistTaps="handled">
         {router.canGoBack() ? <View style={styles.close}><IconButton icon="x" label={t('common.close')} onPress={() => router.back()} /></View> : null}
-        <SvgXml xml={theme.mode === 'dark' ? LOGO_DARK : LOGO} width={170} height={50} accessibilityLabel={brand.name} />
+        <View accessible accessibilityRole="image" accessibilityLabel={brand.name}>
+          <SvgXml xml={(theme.mode === 'dark' ? LOGO_DARK : LOGO).replace(/\s(?:aria-label|role)="[^"]*"/g, '')} width={170} height={50} />
+        </View>
         {step === 'url' ? (
           <View style={styles.block}>
             <Text variant="title">{gate.locked ? t('auth.welcome', { name: brand.name }) : t('mobile.addSite.title')}</Text>

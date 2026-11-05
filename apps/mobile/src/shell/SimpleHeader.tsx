@@ -20,6 +20,6 @@ export function SimpleHeader({ titleKey }: { titleKey: string }) {
 }
 
 const styles = StyleSheet.create((theme) => ({
-  bar: { backgroundColor: theme.colors.surface, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.colors.border },
-  row: { height: 52, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 4, gap: 4 },
+  bar: { backgroundColor: theme.colors.sidebar, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.colors.border },
+  row: { height: 48, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 4, gap: 4 },
 }));

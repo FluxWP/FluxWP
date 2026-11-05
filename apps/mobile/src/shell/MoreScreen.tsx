@@ -1,7 +1,7 @@
 // "Menü": everything the user can open on the site (wp-admin menu, role-filtered by flx-app), each item
 // resolved through the same targets as the shell (manifest screen → native → webview).
 import { useMemo } from 'react';
-import { Pressable, View } from 'react-native';
+import { Pressable } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
@@ -44,11 +44,7 @@ export function MoreScreen() {
       style={styles.list}
       renderItem={({ item }) => (
         <Pressable accessibilityRole="button" onPress={() => renderer.nav.push(item.route)} style={({ pressed }) => [styles.row, item.child && styles.child, pressed && styles.pressed]}>
-          {item.child ? null : (
-            <View style={styles.iconBox}>
-              <Icon name={item.iconUrl || item.icon} slug={item.slug} size={18} color={theme.colors.primary} />
-            </View>
-          )}
+          {item.child ? null : <Icon name={item.iconUrl || item.icon} slug={item.slug} size={20} color={theme.colors.textMuted} />}
           <Text numberOfLines={1} style={[styles.flex, item.child && styles.childText]}>{item.title}</Text>
           {item.badge ? <Badge text={String(item.badge)} tone="danger" /> : null}
           <Icon name={item.route.kind === 'web' ? 'external' : 'chevron'} size={16} color={theme.colors.textMuted} />
@@ -60,10 +56,9 @@ export function MoreScreen() {
 
 const styles = StyleSheet.create((theme) => ({
   list: { backgroundColor: theme.colors.bg },
-  row: { flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 52, paddingHorizontal: 16, backgroundColor: theme.colors.surface, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.colors.border },
-  child: { paddingLeft: 58, minHeight: 44 },
+  row: { flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 48, marginHorizontal: 12, marginBottom: 6, paddingHorizontal: 12, backgroundColor: theme.colors.surface, borderWidth: 1, borderColor: theme.colors.border, borderRadius: theme.radius.md },
+  child: { marginLeft: 28, minHeight: 42 },
   childText: { color: theme.colors.textMuted, fontSize: 14 },
-  pressed: { backgroundColor: theme.colors.surface2 },
-  iconBox: { width: 30, height: 30, borderRadius: 8, backgroundColor: theme.colors.primarySoft, alignItems: 'center', justifyContent: 'center' },
+  pressed: { backgroundColor: theme.colors.primarySoft },
   flex: { flex: 1 },
 }));

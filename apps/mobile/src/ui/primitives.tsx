@@ -15,7 +15,7 @@ export function Button(props: { label: string; onPress?: () => void; kind?: 'pri
   const { kind = 'primary', loading, disabled } = props;
   const { theme } = useUnistyles();
   styles.useVariants({ kind });
-  const fg = kind === 'primary' ? theme.colors.onPrimary : kind === 'danger' ? '#FFFFFF' : theme.colors.primary;
+  const fg = kind === 'primary' ? theme.colors.onPrimary : kind === 'danger' ? '#FFFFFF' : kind === 'secondary' ? theme.colors.text : theme.colors.primary;
   return (
     <Pressable
       testID={props.testID}
@@ -111,12 +111,14 @@ export function EmptyState({ icon = 'inbox', title, body, action }: { icon?: str
   const { theme } = useUnistyles();
   return (
     <View style={styles.empty}>
-      <View style={styles.emptyIcon}>
-        <Icon name={icon} size={28} color={theme.colors.textMuted} />
+      <View style={styles.emptyCard}>
+        <View style={styles.emptyIcon}>
+          <Icon name={icon} size={26} color={theme.colors.accent} />
+        </View>
+        <Text variant="heading" style={styles.centerText}>{title}</Text>
+        {body ? <Text tone="muted" style={styles.centerText}>{body}</Text> : null}
+        {action ? <Button kind="secondary" label={action.label} onPress={action.onPress} /> : null}
       </View>
-      <Text variant="heading" style={styles.centerText}>{title}</Text>
-      {body ? <Text tone="muted" style={styles.centerText}>{body}</Text> : null}
-      {action ? <Button kind="secondary" label={action.label} onPress={action.onPress} /> : null}
     </View>
   );
 }
@@ -140,13 +142,14 @@ export function Skeleton({ rows = 6 }: { rows?: number }) {
 const styles = StyleSheet.create((theme) => ({
   text: {
     color: theme.colors.text,
+    fontFamily: theme.font.family,
     fontSize: theme.font.size.md,
     variants: {
       variant: {
-        title: { fontSize: 26, fontWeight: '700', letterSpacing: -0.3 },
-        heading: { fontSize: theme.font.size.lg, fontWeight: '600' },
+        title: { fontFamily: theme.font.heading, fontSize: 26, fontWeight: '800', letterSpacing: -0.4 },
+        heading: { fontFamily: theme.font.heading, fontSize: theme.font.size.lg, fontWeight: '700' },
         body: { fontSize: 15, lineHeight: 21 },
-        label: { fontSize: theme.font.size.sm, fontWeight: '600', color: theme.colors.textMuted },
+        label: { fontSize: theme.font.size.sm, fontWeight: '700', color: theme.colors.textMuted },
         small: { fontSize: theme.font.size.sm, lineHeight: 18 },
         caption: { fontSize: theme.font.size.xs, color: theme.colors.textMuted },
       },
@@ -159,23 +162,25 @@ const styles = StyleSheet.create((theme) => ({
     },
   },
   button: {
-    minHeight: 48,
-    paddingHorizontal: theme.space[5],
+    minHeight: 44,
+    paddingHorizontal: theme.space[4],
     borderRadius: theme.radius.md,
+    borderWidth: 1,
+    borderColor: 'transparent',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     gap: theme.space[2],
     variants: {
       kind: {
-        primary: { backgroundColor: theme.colors.primary },
-        secondary: { backgroundColor: theme.colors.primarySoft },
+        primary: { backgroundColor: theme.colors.primary, borderColor: theme.colors.primary },
+        secondary: { backgroundColor: theme.colors.surface, borderColor: theme.colors.border },
         ghost: { backgroundColor: 'transparent' },
-        danger: { backgroundColor: theme.colors.danger },
+        danger: { backgroundColor: theme.colors.danger, borderColor: theme.colors.danger },
       },
     },
   },
-  buttonText: { fontSize: 16, fontWeight: '600' },
+  buttonText: { fontFamily: theme.font.family, fontSize: 15, fontWeight: '700' },
   full: { alignSelf: 'stretch' },
   pressed: { opacity: 0.6 },
   iconButton: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
@@ -192,7 +197,7 @@ const styles = StyleSheet.create((theme) => ({
     variants: {
       badgeTone: {
         neutral: { backgroundColor: theme.colors.surface2 },
-        accent: { backgroundColor: theme.colors.primarySoft },
+        accent: { backgroundColor: theme.mode === 'dark' ? 'rgba(245,158,11,.22)' : '#FBEADB' },
         ok: { backgroundColor: theme.mode === 'dark' ? 'rgba(60,194,122,.2)' : 'rgba(31,157,85,.12)' },
         warn: { backgroundColor: theme.mode === 'dark' ? 'rgba(232,176,58,.2)' : 'rgba(201,138,0,.14)' },
         danger: { backgroundColor: theme.colors.danger },
@@ -208,7 +213,7 @@ const styles = StyleSheet.create((theme) => ({
     variants: {
       badgeTone: {
         neutral: { color: theme.colors.text },
-        accent: { color: theme.colors.primary },
+        accent: { color: theme.colors.accent },
         ok: { color: theme.colors.success },
         warn: { color: theme.colors.warning },
         danger: { color: '#FFFFFF' },
@@ -217,10 +222,21 @@ const styles = StyleSheet.create((theme) => ({
       },
     },
   },
-  card: { backgroundColor: theme.colors.surface, borderRadius: theme.radius.lg, borderWidth: 1, borderColor: theme.colors.border, padding: theme.space[4] },
+  card: {
+    backgroundColor: theme.colors.surface,
+    borderRadius: theme.radius.lg,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
+    padding: theme.space[4],
+    shadowColor: '#111318',
+    shadowOpacity: 0.05,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 1,
+  },
   field: { gap: 6 },
   input: {
-    minHeight: 48,
+    minHeight: 44,
     borderRadius: theme.radius.md,
     borderWidth: 1,
     borderColor: theme.colors.border,
@@ -228,18 +244,20 @@ const styles = StyleSheet.create((theme) => ({
     color: theme.colors.text,
     paddingHorizontal: theme.space[4],
     fontSize: 16,
+    fontFamily: theme.font.family,
   },
   inputError: { borderColor: theme.colors.danger },
   textarea: { minHeight: 110, paddingTop: 12, textAlignVertical: 'top' },
   segmented: { flexDirection: 'row', backgroundColor: theme.colors.surface2, borderRadius: theme.radius.md, padding: 3, gap: 3 },
   segment: { flex: 1, minHeight: 34, borderRadius: theme.radius.sm, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 8 },
   segmentActive: { backgroundColor: theme.colors.surface, shadowColor: '#000', shadowOpacity: 0.08, shadowRadius: 3, shadowOffset: { width: 0, height: 1 }, elevation: 1 },
-  segmentText: { fontSize: 13, fontWeight: '600', color: theme.colors.textMuted },
-  segmentTextActive: { color: theme.colors.text },
+  segmentText: { fontFamily: theme.font.family, fontSize: 13, fontWeight: '600', color: theme.colors.textMuted },
+  segmentTextActive: { color: theme.colors.text, fontWeight: '700' },
   center: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: theme.space[8] },
   centerText: { textAlign: 'center' },
-  empty: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: theme.space[8], gap: theme.space[3] },
-  emptyIcon: { width: 64, height: 64, borderRadius: 32, backgroundColor: theme.colors.surface2, alignItems: 'center', justifyContent: 'center' },
+  empty: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: theme.space[6] },
+  emptyCard: { alignItems: 'center', gap: theme.space[3], width: '100%', maxWidth: 360, padding: theme.space[6], backgroundColor: theme.colors.surface, borderWidth: 1, borderStyle: 'dashed', borderColor: theme.colors.border, borderRadius: theme.radius.xl },
+  emptyIcon: { width: 56, height: 56, borderRadius: theme.radius.lg, backgroundColor: theme.colors.surface2, alignItems: 'center', justifyContent: 'center' },
   skeletonWrap: { padding: theme.space[4], gap: theme.space[4] },
   skeletonRow: { flexDirection: 'row', gap: theme.space[3], alignItems: 'center' },
   skeletonAvatar: { width: 40, height: 40, borderRadius: 20, backgroundColor: theme.colors.surface2 },
