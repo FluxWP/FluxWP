@@ -638,21 +638,29 @@ export class FlxgEngine {
       if (!S.saving[id]) delete S.saving[id];
     };
     if (cur) {
-      for (const [k, v] of Object.entries(patch)) {
-        if (k === 'fields') {
-          cur.fields = { ...cur.fields };
-          for (const [f, fv] of Object.entries(v as Record<string, unknown>)) {
-            if (f === '__proto__' || f === 'constructor' || f === 'prototype') continue;
-            if (fv === null || fv === '') delete cur.fields[f];
-            else cur.fields[f] = fv;
-          }
-        } else if (k === 'list') cur.list = Number(v);
-        else if (k === 'position') cur.pos = Number(v);
-        else if (!['tag_names', 'add_assignees', 'remove_assignees', 'detail'].includes(k)) {
-          if (k === '__proto__' || k === 'constructor' || k === 'prototype') continue;
-          (cur as unknown as Record<string, unknown>)[k] = v;
+      const fields = patch.fields;
+      if (fields && typeof fields === 'object') {
+        cur.fields = { ...cur.fields };
+        for (const [f, fv] of Object.entries(fields as Record<string, unknown>)) {
+          if (f === '__proto__' || f === 'constructor' || f === 'prototype') continue;
+          if (fv === null || fv === '') delete cur.fields[f];
+          else cur.fields[f] = fv;
         }
       }
+      if ('list' in patch) cur.list = Number(patch.list);
+      if ('position' in patch) cur.pos = Number(patch.position);
+      if (typeof patch.title === 'string') cur.title = patch.title;
+      if (typeof patch.status === 'string') cur.status = patch.status;
+      if ('priority' in patch) cur.priority = Number(patch.priority);
+      if (typeof patch.start === 'string') cur.start = patch.start;
+      if (typeof patch.due === 'string') cur.due = patch.due;
+      if (typeof patch.description === 'string') cur.description = patch.description;
+      if ('cover' in patch) cur.cover = Number(patch.cover);
+      if ('archived' in patch) cur.archived = Number(patch.archived) ? 1 : 0;
+      if ('parent' in patch) cur.parent = Number(patch.parent);
+      if (typeof patch.kind === 'string') cur.kind = patch.kind;
+      if (Array.isArray(patch.assignees)) cur.assignees = patch.assignees.map((n) => Number(n));
+      if (Array.isArray(patch.tags)) cur.tags = patch.tags.map((n) => Number(n));
     }
     if (!opts.silent) this.bump();
     try {
