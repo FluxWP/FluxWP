@@ -98,6 +98,15 @@ Tüm sürümler: [Releases](https://github.com/FluxWP/FluxWP/releases). Bu tablo
 3. Önerilen temel: **Flux Admin**, **Flux Roles**, **Flux AI** ve **Flux Speed** (Sistem Kontrolü). Çözümleri ihtiyaç oldukça ekleyin.
 4. Her paketin README'sinde ekranlar, kurulum adımları ve yol haritası var; ayrıntılı notlar [`docs/`](docs/README.md) altında.
 
+## Kaynaklar
+
+Başlamak için en iyi yer [FluxWP Wiki](https://fluxwp.com/wiki). Diğer kanallar:
+
+* [Web sitesi](https://fluxwp.com) (Ürün, ön ayarlar)
+* [GitHub Issues](https://github.com/FluxWP/FluxWP/issues) (Hata bildirimi, özellik isteği)
+* [Güvenlik politikası](SECURITY.md) (Güvenlik açığı bildirimi)
+* [info@fluxwp.com](mailto:info@fluxwp.com) (Destek, sorular)
+
 ## Geliştiriciler için
 
 ```
