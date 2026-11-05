@@ -359,9 +359,68 @@ export interface ParseIssue {
 const issuesOf = (prefix: string, r: { issues: readonly v.BaseIssue<unknown>[] }): ParseIssue[] =>
   r.issues.map((i) => ({ where: prefix + (i.path ? '.' + i.path.map((p) => String(p.key)).join('.') : ''), message: i.message }));
 
+/**
+ * Desktop configs (`shell.sidebar` + a short `topbar`) omit the mobile-required keys. Fill those
+ * from the sidebar so the existing schema still accepts them. Unknown keys (`sidebar`, `commands`)
+ * stay on the object — ShellSchema is a loose object.
+ */
+function adaptConfig(input: unknown): unknown {
+  if (!input || typeof input !== 'object') return input;
+  const root = input as Record<string, unknown>;
+  if (!root.shell || typeof root.shell !== 'object') return input;
+  const s = { ...(root.shell as Record<string, unknown>) };
+  let changed = false;
+  const fill = (key: string, value: unknown) => {
+    if (s[key] === undefined) {
+      s[key] = value;
+      changed = true;
+    }
+  };
+  const side = s.sidebar && typeof s.sidebar === 'object' ? (s.sidebar as Record<string, unknown>) : null;
+  fill('nav', side ? 'drawer' : 'tabs+drawer');
+  fill('home', 'screen:core/dashboard');
+  fill('tabs', []);
+  fill('drawer', {
+    enabled: true,
+    header: 'account',
+    pins: side?.pins ?? [],
+    groups: side?.groups ?? [],
+    footer: side?.footer ?? ['accounts', 'settings'],
+  });
+  if (s.topbar && typeof s.topbar === 'object') {
+    const t = { ...(s.topbar as Record<string, unknown>) };
+    let topChanged = false;
+    for (const [k, v] of Object.entries({ style: 'compact', show_logo: true, site_switcher: true, actions: [] as unknown[] })) {
+      if (t[k] === undefined) {
+        t[k] = v;
+        topChanged = true;
+      }
+    }
+    if (topChanged) {
+      s.topbar = t;
+      changed = true;
+    }
+  } else fill('topbar', { style: 'compact', show_logo: true, site_switcher: true, actions: [] });
+  if (s.drawer && typeof s.drawer === 'object') {
+    const d = { ...(s.drawer as Record<string, unknown>) };
+    let drawerChanged = false;
+    for (const [k, v] of Object.entries({ enabled: true, header: 'account', groups: [] as unknown[], footer: [] as unknown[] })) {
+      if (d[k] === undefined) {
+        d[k] = v;
+        drawerChanged = true;
+      }
+    }
+    if (drawerChanged) {
+      s.drawer = d;
+      changed = true;
+    }
+  }
+  return changed ? { ...root, shell: s } : input;
+}
+
 /** Full config (server output). Null when invalid: the caller keeps the app default. */
 export function parseConfig(input: unknown, issues?: ParseIssue[]): AppConfig | null {
-  const r = v.safeParse(ConfigSchema, input);
+  const r = v.safeParse(ConfigSchema, adaptConfig(input));
   if (r.success) return r.output as unknown as AppConfig;
   issues?.push(...issuesOf('config', r));
   return null;

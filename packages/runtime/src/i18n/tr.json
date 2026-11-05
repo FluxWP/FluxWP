@@ -118,6 +118,33 @@
     "searchComments": "Yorumlarda ara",
     "details": "Ayrıntılar"
   },
+  "accounts": {
+    "kind": {
+      "otp": "Tek kullanımlık kod",
+      "apppass": "Uygulama şifresi"
+    }
+  },
+  "auth": {
+    "otpLogin": "Kodla giriş",
+    "otpHint": "Tek kullanımlık kod gönderilir. Bağışçı ve müşteri hesapları için.",
+    "sendCode": "Kod gönder",
+    "otpCode": "Kod",
+    "verify": "Doğrula ve gir",
+    "codeSent": "Hesap varsa kod yola çıktı.",
+    "appPassword": "Uygulama şifresi"
+  },
+  "desktop": {
+    "selected": "{{count}} seçili",
+    "clear": "Temizle",
+    "notifications": "Bildirimler",
+    "notificationsEmpty": "Henüz bildirim yok.",
+    "cancel": "Vazgeç",
+    "more": "Diğer işlemler",
+    "rowActions": "Satır işlemleri",
+    "back": "Geri",
+    "loading": "Yükleniyor…",
+    "offline": "Kayıtlı veri gösteriliyor"
+  },
   "addSite": {
     "notAllowed": "Bu uygulama yalnız kendi sitesine bağlanabilir.",
     "browserHint": "Giriş, uygulama içindeki güvenli tarayıcıda yapılır. Şifren uygulamaya gelmez.",

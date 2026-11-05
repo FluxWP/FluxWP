@@ -1,14 +1,19 @@
 import { useEffect, useMemo, useState } from 'react';
 import { I18nextProvider } from 'react-i18next';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { toCssVars } from '@fluxwp/tokens';
-import { accountsStore, brand, createI18n, normalizeLocale } from '@fluxwp/core';
+import { accountsStore, brand, normalizeLocale } from '@fluxwp/core';
+import { AccountScope, useSiteTheme, type AppInfo, type PersistStore } from '@fluxwp/runtime';
+import { RenderOverlays } from '@fluxwp/render-web';
 import { useAccounts, useActiveAccount } from './state/hooks';
 import { usePrefs } from './state/prefs';
 import { AddSite } from './screens/AddSite';
 import { Shell } from './screens/Shell';
-
-const queryClient = new QueryClient({ defaultOptions: { queries: { retry: 1, refetchOnWindowFocus: true } } });
+import { desktopRenderer } from './renderer';
+import { ensureI18n, i18n } from './i18n';
+import { applyTheme, brandTheme } from './theme';
+import { APP_VERSION } from './version';
+import '@fluxwp/ui/src/styles.css';
+import '@fluxwp/render-web/styles.css';
+import './styles.css';
 
 function useSystemDark() {
   const mq = typeof matchMedia === 'function' ? matchMedia('(prefers-color-scheme: dark)') : null;
@@ -22,19 +27,53 @@ function useSystemDark() {
   return dark;
 }
 
-function Root() {
+function accountStore(id: string): PersistStore {
+  const prefix = `flux.acc.${id}.`;
+  return {
+    getItem: (k) => {
+      try { return localStorage.getItem(prefix + k); } catch { return null; }
+    },
+    setItem: (k, v) => {
+      try { localStorage.setItem(prefix + k, v); } catch { /* private mode */ }
+    },
+    removeItem: (k) => {
+      try { localStorage.removeItem(prefix + k); } catch { /* private mode */ }
+    },
+  };
+}
+
+function AccountTheme({ mode }: { mode: 'light' | 'dark' }) {
+  const theme = useSiteTheme(mode, brand.colors);
+  useEffect(() => applyTheme(theme), [theme]);
+  return null;
+}
+
+function Root({ mode }: { mode: 'light' | 'dark' }) {
   const { ready } = useAccounts();
   const active = useActiveAccount();
+  const prefs = usePrefs();
+  const renderer = useMemo(() => desktopRenderer(), []);
+  const app = useMemo<AppInfo>(() => ({
+    version: APP_VERSION,
+    device: prefs.theme === 'system' ? undefined : { theme: { mode: prefs.theme } },
+  }), [prefs.theme]);
   if (!ready) return null;
-  return active ? <Shell key={active.id} account={active} /> : <AddSite />;
+  if (!active) return <AddSite />;
+  return (
+    <AccountScope key={active.id} account={active} renderer={renderer} app={app} store={accountStore(active.id)}>
+      <AccountTheme mode={mode} />
+      <Shell />
+    </AccountScope>
+  );
 }
 
 export function App() {
   const prefs = usePrefs();
+  const active = useActiveAccount();
   const systemDark = useSystemDark();
   const mode = prefs.theme === 'system' ? (systemDark ? 'dark' : 'light') : prefs.theme;
   const locale = normalizeLocale(prefs.locale ?? (typeof navigator !== 'undefined' ? navigator.language : brand.defaultLocale));
-  const i18n = useMemo(() => createI18n(locale), []); // eslint-disable-line react-hooks/exhaustive-deps
+  const ready = useMemo(() => ensureI18n(locale), [locale]);
 
   useEffect(() => {
     void prefs.load();
@@ -43,21 +82,18 @@ export function App() {
   }, []);
 
   useEffect(() => {
-    void i18n.changeLanguage(locale);
+    void ready.changeLanguage(locale);
     document.documentElement.lang = locale;
-  }, [i18n, locale]);
+  }, [ready, locale]);
 
   useEffect(() => {
-    const root = document.documentElement;
-    for (const [k, v] of Object.entries(toCssVars(mode, brand.colors))) root.style.setProperty(k, v);
-    root.dataset.theme = mode;
-  }, [mode]);
+    if (!active) applyTheme(brandTheme(mode));
+  }, [mode, active]);
 
   return (
     <I18nextProvider i18n={i18n}>
-      <QueryClientProvider client={queryClient}>
-        <Root />
-      </QueryClientProvider>
+      <RenderOverlays t={(key) => i18n.t(key)} />
+      <Root mode={mode} />
     </I18nextProvider>
   );
 }

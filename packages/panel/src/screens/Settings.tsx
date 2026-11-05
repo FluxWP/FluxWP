@@ -6,7 +6,7 @@ import { logoutAccount } from '../lib/logout';
 import { Avatar } from '@fluxwp/ui';
 import { useAccounts } from '../state/hooks';
 import { usePrefs, type ThemePref } from '../state/prefs';
-import { useRoute } from '../state/route';
+import { homeRoute, useRoute } from '../state/route';
 
 export function Settings() {
   const { t, i18n } = useTranslation();
@@ -17,7 +17,7 @@ export function Settings() {
   const logout = async (a: Account) => {
     if (!confirm(t('settings.logoutConfirm', { site: a.siteName }))) return;
     await logoutAccount(a);
-    go({ kind: 'nav', id: 'dashboard' });
+    go(homeRoute());
   };
 
   const themes: { id: ThemePref; icon: typeof Sun }[] = [

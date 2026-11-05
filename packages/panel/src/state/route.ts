@@ -1,13 +1,17 @@
 import { create } from 'zustand';
+import type { Route as TargetRoute } from '@fluxwp/runtime';
 
-export type Route = { kind: 'nav'; id: string; sub?: string } | { kind: 'settings' } | { kind: 'add-account' };
+/** Runtime route, plus the signed-out "add a site" screen. */
+export type Route = TargetRoute | { kind: 'add-account' };
+
+export const homeRoute = (): Route => ({ kind: 'native', component: 'dashboard', params: {} });
 
 interface RouteState {
   route: Route;
-  /** Geri/ileri yığınları (tarayıcı gibi). */
   past: Route[];
   future: Route[];
   go(r: Route): void;
+  replace(r: Route): void;
   back(): void;
   forward(): void;
 }
@@ -16,13 +20,17 @@ const same = (a: Route, b: Route) => JSON.stringify(a) === JSON.stringify(b);
 const LIMIT = 50;
 
 export const useRoute = create<RouteState>((set, get) => ({
-  route: { kind: 'nav', id: 'dashboard' },
+  route: homeRoute(),
   past: [],
   future: [],
   go: (route) => {
     const s = get();
     if (same(s.route, route)) return;
     set({ route, past: [...s.past, s.route].slice(-LIMIT), future: [] });
+  },
+  replace: (route) => {
+    if (same(get().route, route)) return;
+    set({ route, future: [] });
   },
   back: () => {
     const { past, route, future } = get();

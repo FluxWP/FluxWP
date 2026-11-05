@@ -63,6 +63,17 @@ export interface ShellConfig {
     site_switcher: boolean;
     actions: { target: TargetString; icon?: string; label?: string }[];
   };
+  /**
+   * Desktop shell (`X-FluxWP-Platform: desktop`). Loose on the wire: older configs omit it and the
+   * app reuses `drawer`. Not part of the published JSON Schema until the contract PR.
+   */
+  sidebar?: {
+    pins?: TargetString[];
+    groups?: DrawerGroup[];
+    footer?: TargetString[];
+  };
+  /** Targets pinned in the desktop command palette. */
+  commands?: TargetString[];
 }
 
 export interface AppConfig {

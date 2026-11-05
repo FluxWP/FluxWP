@@ -118,6 +118,33 @@
     "searchComments": "Search comments",
     "details": "Details"
   },
+  "accounts": {
+    "kind": {
+      "otp": "One-time code",
+      "apppass": "Application password"
+    }
+  },
+  "auth": {
+    "otpLogin": "Sign in with a code",
+    "otpHint": "We send a one-time code. It works for donors and customers.",
+    "sendCode": "Send code",
+    "otpCode": "Code",
+    "verify": "Verify and sign in",
+    "codeSent": "If the account exists, the code is on its way.",
+    "appPassword": "Application password"
+  },
+  "desktop": {
+    "selected": "{{count}} selected",
+    "clear": "Clear",
+    "notifications": "Notifications",
+    "notificationsEmpty": "No notifications yet.",
+    "cancel": "Cancel",
+    "more": "More actions",
+    "rowActions": "Row actions",
+    "back": "Back",
+    "loading": "Loading…",
+    "offline": "Showing saved data"
+  },
   "addSite": {
     "notAllowed": "This app can only connect to its own site.",
     "browserHint": "You sign in inside the app's secure browser. Your password never reaches the app.",

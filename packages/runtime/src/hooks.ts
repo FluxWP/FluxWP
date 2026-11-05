@@ -1,8 +1,8 @@
 // Contract hooks: me, config, manifest, sync (badges), dashboard, merged config, shell model, theme.
 // Hostinger budget (plan §1.3): at most these four requests on open, polling ≥ poll_min and only in front.
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { ApiError, flxapp, type Dashboard, type Me } from '@fluxwp/core';
+import { ApiError, flxapp, platform, type Dashboard, type Me } from '@fluxwp/core';
 import { DEFAULT_CONFIG, mergeConfig, type AppConfig, type Bootstrap, type ManifestBundle, type ThemeMode } from '@fluxwp/manifest';
 import { themeFromConfig, type BrandColors, type ThemeInput } from '@fluxwp/tokens';
 import { loadBootstrap, loadConfig, loadManifests, rememberedEtag, rememberEtag, withCore } from './api';
@@ -65,26 +65,51 @@ export function useManifest() {
   });
 }
 
+/** One desktop notification row from `GET /sync` (`events`, since the previous poll, at most 20). */
+export interface SyncEvent {
+  event: string;
+  title: string;
+  body?: string;
+  target?: string;
+  params?: Record<string, string>;
+  at?: number;
+}
+
 export interface SyncState {
   counts: Record<string, number>;
   hashes?: Record<string, string>;
+  events?: SyncEvent[];
+  server_time?: number;
 }
 
-/** Badges. `flxapp/v1/sync` when the site has it, else the existing `/counts`. */
+const hiddenInterval = (every: number) => {
+  try {
+    const v = platform().visibility;
+    if (v && !v.visible()) return Math.max(every, 60_000);
+  } catch {
+    /* platform not set (tests) */
+  }
+  return every;
+};
+
+/** Badges and, on desktop, notification events. `flxapp/v1/sync` when the site has it, else `/counts`. */
 export function useSync(enabled = true) {
   const { api } = useScope();
   const config = useConfig();
   const every = Math.max(10, config.transport?.poll_min ?? 15) * 1000;
+  const since = useRef(0);
   return useQuery<SyncState>({
     queryKey: qk.sync(),
     enabled,
-    refetchInterval: every,
+    refetchInterval: () => hiddenInterval(every),
     refetchIntervalInBackground: false,
     queryFn: async () => {
       try {
-        return await api<SyncState>('flxapp/v1/sync');
+        const data = await api<SyncState>('flxapp/v1/sync', { query: { since: since.current } });
+        since.current = typeof data.server_time === 'number' ? data.server_time : Math.floor(Date.now() / 1000);
+        return data;
       } catch (e) {
-        if (!(e instanceof ApiError && e.status === 404)) throw e;
+        if (!(e instanceof ApiError && (e.status === 404 || e.code === 'rest_no_route'))) throw e;
         return { counts: await flxapp(api).counts() };
       }
     },
