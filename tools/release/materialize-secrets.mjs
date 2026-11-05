@@ -26,7 +26,7 @@ if (process.env.RELEASE_PLATFORM === 'ios') {
   save('APPLE_API_KEY_P8', `AuthKey_${process.env.APPLE_API_KEY}.p8`, 'ASC_KEY_FILE');
 } else if (process.env.RELEASE_PLATFORM === 'android') {
   save('ANDROID_KEYSTORE', 'upload.keystore', 'ANDROID_KEYSTORE_PATH', true);
-  if (process.env.RELEASE_DESTINATION !== 'apk') save('GOOGLE_PLAY_SERVICE_ACCOUNT_JSON', 'google-play.json', 'GOOGLE_PLAY_JSON_PATH');
+  if (!['apk', 'aab'].includes(process.env.RELEASE_DESTINATION)) save('GOOGLE_PLAY_SERVICE_ACCOUNT_JSON', 'google-play.json', 'GOOGLE_PLAY_JSON_PATH');
   // Gradle reads these through environment-backed project properties, so passwords are not CLI flags.
   Object.assign(values, {
     ORG_GRADLE_PROJECT_FLUX_UPLOAD_STORE_FILE: values.ANDROID_KEYSTORE_PATH,

@@ -1,4 +1,4 @@
-name: Android - signed APK or Google Play
+name: Android - signed APK, AAB or Google Play
 on:
   workflow_dispatch:
     inputs:
@@ -6,7 +6,7 @@ on:
       destination:
         type: choice
         default: apk
-        options: [apk, internal, alpha, beta, production]
+        options: [apk, aab, internal, alpha, beta, production]
       version: { description: 'Store version; empty uses package.json', default: '' }
       release_status:
         description: Draft for first setup; completed publishes to the selected track
@@ -58,7 +58,7 @@ jobs:
           packages: platform-tools
           log-accepted-android-sdk-licenses: false
       - uses: ruby/setup-ruby@v1
-        if: env.RELEASE_DESTINATION != 'apk'
+        if: env.RELEASE_DESTINATION != 'apk' && env.RELEASE_DESTINATION != 'aab'
         with:
           ruby-version: '3.3'
           bundler-cache: true
@@ -93,7 +93,7 @@ jobs:
       - name: Verify and collect Android binaries
         run: node tools/release/collect-android.mjs
       - name: Upload to Google Play
-        if: env.RELEASE_DESTINATION != 'apk'
+        if: env.RELEASE_DESTINATION != 'apk' && env.RELEASE_DESTINATION != 'aab'
         working-directory: tools/release
         run: bundle exec fastlane android publish
       - uses: actions/upload-artifact@v5

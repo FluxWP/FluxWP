@@ -11,7 +11,7 @@ on:
       android:
         type: choice
         default: skip
-        options: [skip, apk, internal, alpha, beta, production]
+        options: [skip, apk, aab, internal, alpha, beta, production]
       macos:
         description: Signed, notarized macOS artifact or GitHub release
         type: choice
