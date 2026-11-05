@@ -23,6 +23,10 @@ on:
         description: App privacy, age rating, content rights and review contact are complete in App Store Connect
         type: boolean
         default: false
+      replace_store_screenshots:
+        description: Replace prepared store artwork with the raw native capture set
+        type: boolean
+        default: false
       release_on_approval:
         description: Publish automatically after Apple approves the App Store submission
         type: boolean
@@ -35,6 +39,7 @@ on:
       build_number: { type: string, default: '' }
       screenshots_run_id: { type: string, default: '' }
       disclosures_reviewed: { type: boolean, default: false }
+      replace_store_screenshots: { type: boolean, default: false }
       release_on_approval: { type: boolean, default: false }
 permissions:
   contents: read
@@ -117,6 +122,7 @@ jobs:
         env:
           STORE_DISCLOSURES_REVIEWED: ${{ inputs.disclosures_reviewed }}
           RELEASE_ON_APPROVAL: ${{ inputs.release_on_approval }}
+          REPLACE_STORE_SCREENSHOTS: ${{ inputs.replace_store_screenshots }}
           IOS_DISTRIBUTION_CERTIFICATE_PASSWORD: ${{ secrets.IOS_DISTRIBUTION_CERTIFICATE_PASSWORD }}
           APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
           APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
