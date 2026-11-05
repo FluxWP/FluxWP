@@ -54,12 +54,6 @@ jobs:
       RELEASE_PLATFORM: ios
       RELEASE_DESTINATION: ${{ inputs.destination || 'testflight' }}
       APPLE_TEAM_ID: ${{ vars.APPLE_TEAM_ID }}
-      IOS_DISTRIBUTION_CERTIFICATE: ${{ secrets.IOS_DISTRIBUTION_CERTIFICATE }}
-      IOS_DISTRIBUTION_CERTIFICATE_PASSWORD: ${{ secrets.IOS_DISTRIBUTION_CERTIFICATE_PASSWORD }}
-      IOS_PROVISIONING_PROFILE: ${{ secrets.IOS_PROVISIONING_PROFILE }}
-      APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
-      APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
-      APPLE_API_KEY_P8: ${{ secrets.APPLE_API_KEY_P8 }}
       STORE_DISCLOSURES_REVIEWED: ${{ inputs.disclosures_reviewed }}
       ASSET_RUN_ID: ${{ inputs.screenshots_run_id }}
     steps:
@@ -67,6 +61,13 @@ jobs:
       - uses: actions/setup-node@v5
         with: { node-version: 22 }
       - name: Validate inputs and credentials
+        env:
+          IOS_DISTRIBUTION_CERTIFICATE: ${{ secrets.IOS_DISTRIBUTION_CERTIFICATE }}
+          IOS_DISTRIBUTION_CERTIFICATE_PASSWORD: ${{ secrets.IOS_DISTRIBUTION_CERTIFICATE_PASSWORD }}
+          IOS_PROVISIONING_PROFILE: ${{ secrets.IOS_PROVISIONING_PROFILE }}
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          APPLE_API_KEY_P8: ${{ secrets.APPLE_API_KEY_P8 }}
         run: node tools/release/config.mjs
       - uses: oven-sh/setup-bun@v2
         with: { bun-version: 1.4.4 }
@@ -98,6 +99,11 @@ jobs:
         run: node tools/release/ios-simulator.mjs
       - name: Materialize signing files
         if: env.RELEASE_DESTINATION != 'simulator'
+        env:
+          IOS_DISTRIBUTION_CERTIFICATE: ${{ secrets.IOS_DISTRIBUTION_CERTIFICATE }}
+          IOS_PROVISIONING_PROFILE: ${{ secrets.IOS_PROVISIONING_PROFILE }}
+          APPLE_API_KEY_P8: ${{ secrets.APPLE_API_KEY_P8 }}
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
         run: node tools/release/materialize-secrets.mjs
       - name: Download reviewed native screenshots
         if: env.RELEASE_DESTINATION == 'app-store'
@@ -111,6 +117,9 @@ jobs:
         env:
           STORE_DISCLOSURES_REVIEWED: ${{ inputs.disclosures_reviewed }}
           RELEASE_ON_APPROVAL: ${{ inputs.release_on_approval }}
+          IOS_DISTRIBUTION_CERTIFICATE_PASSWORD: ${{ secrets.IOS_DISTRIBUTION_CERTIFICATE_PASSWORD }}
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
         run: bundle exec fastlane ios release
       - uses: actions/upload-artifact@v5
         if: success()
