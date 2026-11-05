@@ -243,7 +243,7 @@ function flxseo_head() {
 	$canon = flxseo_canonical();
 	$title = wp_get_document_title();
 	$img   = flxseo_og_image( flxseo_image() );
-	$type  = is_singular( array( 'post', 'proje', 'etkinlik' ) ) ? 'article' : 'website';
+	$type  = is_singular( flxseo_article_types() ) ? 'article' : 'website';
 
 	echo "<!-- Flux SEO -->\n";
 	if ( $desc && ! is_404() ) {
@@ -291,7 +291,7 @@ function flxseo_head() {
 	if ( flxseo_opt( 'twitter' ) ) {
 		printf( '<meta name="twitter:site" content="%s">' . "\n", esc_attr( '@' . ltrim( flxseo_opt( 'twitter' ), '@' ) ) );
 	}
-	echo "<!-- /Örnek Vakfı SEO -->\n";
+	echo "<!-- /Flux SEO -->\n";
 }
 add_action( 'wp_head', 'flxseo_head', 3 );
 

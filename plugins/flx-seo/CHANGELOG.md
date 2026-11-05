@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 1.7.1
+- **Siteye özel sabit değer kalmadı.** Kurum schema'sına her sitede yazılan fidan/ağaçlandırma konuları (`knowsAbout`), `areaServed: Türkiye` ve "Fidan bağışı yap" `DonateAction` kaldırıldı. Yerine SEO › Kurum ve sosyal'de **Uzmanlık konuları**, **Hizmet bölgesi** ve **Bağış çağrısı** (ad + adres) ayarları geldi; boşsa schema'ya eklenmez. Ön ayarlar Flux Setup ile doldurur.
+- Bağış/fidan sayfalarının ve etkinlik/proje arşivlerinin sabit SEO metinleri çıkarıldı; ön ayarlar `flxseo_keyword_pages` ve `flxseo_keyword_archives` filtreleriyle verir (değişince boş alanlara bir kez yazılır, elle girilene dokunulmaz).
+- Makale sayılan yazı türleri `flxseo_article_types` filtresiyle (varsayılan yalnız `post`; ön ayar `etkinlik`, `proje` ekler). Bağış adresi için `flxseo_donate_url` filtresi.
+- HTML yorumundaki eski ad "Flux SEO" oldu.
+
 ## 1.7.0
 - **Arama motorları** bölümü (SEO › Genel): Google Search Console, Bing Webmaster Tools ve Yandex Webmaster için panel bağlantıları, adım adım ipucu ve doğrulama alanları; kopyalanabilir sitemap adresi. Bing'de "Google Search Console'dan içe aktar" yolu öne çıkarıldı (kod gerekmez). Tam `<meta>` etiketi yapıştırılabilir.
 - **IndexNow ilk bildirim:** IndexNow açıkken site hiç toplu bildirilmediyse tüm site bir kez kendiliğinden Bing, Yandex, Seznam ve Naver'e gönderilir (cron'a bağlı değil; yönetim panelinde yanıt gönderildikten sonra). IndexNow yeniden açılınca ya da site arama motorlarına açılınca tekrarlanır.
