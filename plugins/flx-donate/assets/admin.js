@@ -3,6 +3,11 @@
 	'use strict';
 	var cfg = window.flxbAdmin || {};
 	var t = cfg.i18n || {};
+	/* Only http(s), same-site relative or query-only addresses are followed (no javascript:, data: ...). */
+	function safeUrl(u) {
+		u = String(u || '');
+		return /^(https?:\/\/|\/(?!\/)|\?)/i.test(u) ? u : '';
+	}
 
 	/* Buttons that submit long-running forms show a spinner. */
 	document.addEventListener('submit', function (e) {
@@ -147,8 +152,10 @@
 		var inner = e.target.closest('a,button,input,select,textarea,label,form');
 		if (inner && !(window.matchMedia('(max-width: 782px)').matches && inner.closest('.flxb-col-main'))) return;
 		if (window.getSelection && String(window.getSelection())) return;
-		if (e.metaKey || e.ctrlKey) { window.open(tr.getAttribute('data-href'), '_blank'); return; }
-		window.location.href = tr.getAttribute('data-href');
+		var href = safeUrl(tr.getAttribute('data-href'));
+		if (!href) return;
+		if (e.metaKey || e.ctrlKey) { window.open(href, '_blank'); return; }
+		window.location.href = href;
 	});
 
 	/* 2.2.3: donation list, "Detailed filter" opens the other filters. */
@@ -209,7 +216,8 @@
 		if (pv) {
 			var d = flxbDialog('flxb-preview');
 			if (!d) return;
-			var url = pv.getAttribute('data-flxb-preview'), kind = pv.getAttribute('data-kind');
+			var url = safeUrl(pv.getAttribute('data-flxb-preview')), kind = pv.getAttribute('data-kind');
+			if (!url) return;
 			var body = d.querySelector('[data-flxb-preview-body]');
 			d.querySelector('.flxb-modal__title').textContent = pv.getAttribute('data-name') || '';
 			d.querySelector('[data-flxb-preview-open]').href = url;
@@ -467,7 +475,7 @@
 
 	function updateCsv() {
 		var a = document.getElementById('flxb-csv');
-		if (a && data) a.href = a.getAttribute('data-base') + '&from=' + encodeURIComponent(data.range.from) + '&to=' + encodeURIComponent(data.range.to);
+		if (a && data) a.href = safeUrl(a.getAttribute('data-base')) + '&from=' + encodeURIComponent(data.range.from) + '&to=' + encodeURIComponent(data.range.to);
 	}
 
 	/* Range controls */

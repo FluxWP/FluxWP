@@ -6,7 +6,12 @@
 	var reEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 	var digits = function (v) { return String(v || '').replace(/\D+/g, ''); };
 	var phoneOk = function (v) { return digits(v).length >= 10; };
-	var isPh = function (e) { e = String(e || ''); return /@telefon\.invalid$/i.test(e) || new RegExp('^bagisci-[0-9a-z]+@' + C.domain.replace(/\./g, '\\.') + '$', 'i').test(e); };
+	var isPh = function (e) {
+		e = String(e || '').toLowerCase();
+		if (/@telefon\.invalid$/.test(e)) { return true; }
+		var tail = '@' + String(C.domain || '').toLowerCase();
+		return e.length > tail.length && e.slice(-tail.length) === tail && /^bagisci-[0-9a-z]+$/.test(e.slice(0, -tail.length));
+	};
 	var placeholder = function (p) { return 'bagisci-' + digits(p) + '@' + C.domain; };
 	var store = function () { return window.wp && wp.data && wp.data.select('wc/store/cart') ? wp.data : null; };
 	var ui = null, timer = 0;
