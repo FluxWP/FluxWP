@@ -62,6 +62,13 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       'expo-secure-store',
       'expo-localization',
       'expo-web-browser',
+      [
+        'expo-image-picker',
+        {
+          photosPermission: 'Fotoğraf seçmek için galeriye erişilir. / The gallery is used to choose photos.',
+          cameraPermission: 'Dekont ve görsel çekmek için kamera kullanılır. / The camera is used to take photos.',
+        },
+      ],
     ],
     experiments: { typedRoutes: true, reactCompiler: true },
     extra: { brand: brand.slug, ...(projectId ? { eas: { projectId } } : {}) },

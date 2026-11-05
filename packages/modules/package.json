@@ -1,6 +1,6 @@
 {
   "name": "@fluxwp/modules",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "main": "src/index.ts",
@@ -11,6 +11,7 @@
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
     "@fluxwp/core": "workspace:*",
+    "@fluxwp/runtime": "workspace:*",
     "@fluxwp/ui": "workspace:*",
     "@tanstack/react-query": "^5.105.1",
     "lucide-react": "^1.66.0",
