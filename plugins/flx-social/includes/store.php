@@ -192,7 +192,14 @@ function flxsm_post_public( array $p, $full = true ) {
 		}
 		$tout[] = $row;
 	}
-	$u = $p['user_id'] ? get_userdata( (int) $p['user_id'] ) : null;
+	$u     = $p['user_id'] ? get_userdata( (int) $p['user_id'] ) : null;
+	$names = array();
+	foreach ( $tout as $trow ) {
+		if ( ! empty( $trow['account'] ) ) {
+			$names[] = (string) $trow['account'];
+		}
+	}
+	$ts = (int) ( $p['scheduled_at'] ? $p['scheduled_at'] : ( $p['published_at'] ? $p['published_at'] : $p['created'] ) );
 	return array(
 		'id'           => (int) $p['id'],
 		'status'       => $p['status'],
@@ -208,9 +215,12 @@ function flxsm_post_public( array $p, $full = true ) {
 		'user'         => $u ? $u->display_name : '',
 		'user_id'      => (int) $p['user_id'],
 		'approved_by'  => (int) $p['approved_by'],
-		'created'      => (int) $p['created'],
-		'updated'      => (int) $p['updated'],
-		'targets'      => $tout,
+		'created'         => (int) $p['created'],
+		'updated'         => (int) $p['updated'],
+		'targets'         => $tout,
+		'when_label'      => ( $ts && function_exists( 'flx_date' ) ) ? flx_date( $ts, 'datetime' ) : '',
+		'accounts_label'  => implode( ', ', $names ),
+		'excerpt'         => mb_substr( trim( wp_strip_all_tags( (string) $p['content'] ) ), 0, 140 ),
 	);
 }
 
@@ -549,6 +559,7 @@ function flxsm_query_posts( array $f ) {
 	return array(
 		'total' => $total,
 		'page'  => $page,
+		'pages' => (int) ceil( $total / $per ),
 		'per'   => $per,
 		'items' => array_map( fn( $r ) => flxsm_post_public( $r, ! empty( $f['full'] ) ), (array) $rows ),
 	);

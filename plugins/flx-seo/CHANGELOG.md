@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.8.0
+- Uygulama ayarları (ayar köprüsü) ve site denetimi (`flx-seo/v1/audit`).
+
 ## 1.7.1
 - **Siteye özel sabit değer kalmadı.** Kurum schema'sına her sitede yazılan fidan/ağaçlandırma konuları (`knowsAbout`), `areaServed: Türkiye` ve "Fidan bağışı yap" `DonateAction` kaldırıldı. Yerine SEO › Kurum ve sosyal'de **Uzmanlık konuları**, **Hizmet bölgesi** ve **Bağış çağrısı** (ad + adres) ayarları geldi; boşsa schema'ya eklenmez. Ön ayarlar Flux Setup ile doldurur.
 - Bağış/fidan sayfalarının ve etkinlik/proje arşivlerinin sabit SEO metinleri çıkarıldı; ön ayarlar `flxseo_keyword_pages` ve `flxseo_keyword_archives` filtreleriyle verir (değişince boş alanlara bir kez yazılır, elle girilene dokunulmaz).

@@ -1,0 +1,33 @@
+{
+  "name": "@fluxwp/runtime",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Headless React runtime for FluxWP apps: account scope, query cache, contract hooks, list/detail/form/action controllers, shell model, target resolution, web session, brand gate. No react-dom / react-native: the Expo app and the desktop panel render it.",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc -p .",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@fluxwp/core": "workspace:*",
+    "@fluxwp/manifest": "workspace:*",
+    "@fluxwp/tokens": "workspace:*",
+    "@hookform/resolvers": "^7.0.3",
+    "@tanstack/query-async-storage-persister": "^5.106.1",
+    "@tanstack/react-query": "^5.106.1",
+    "@tanstack/react-query-persist-client": "^5.106.1",
+    "react-hook-form": "^7.91.0",
+    "valibot": "^1.5.0",
+    "zustand": "^5.0.16"
+  },
+  "peerDependencies": {
+    "react": "19.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "~19.3.0",
+    "react": "19.3.0",
+    "vitest": "^5.1.0"
+  }
+}

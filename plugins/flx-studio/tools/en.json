@@ -305,5 +305,19 @@
  "Şablon olarak kaydet": "Save as template",
  "Şablon sil…": "Delete template…",
  "Şablonlar": "Templates",
- "Şu anki ayarları kaydet": "Save current settings"
+ "Şu anki ayarları kaydet": "Save current settings",
+"Durum": "Status",
+"Galeri": "Gallery",
+"Galeri boş": "Gallery is empty",
+"Galeride ara": "Search the gallery",
+"Hazırlanıyor": "Working",
+"Panelde aç": "Open in panel",
+"Sahip": "Owner",
+"Tür": "Type",
+"Yıldız": "Star",
+"Yıldızla": "Star",
+"Yıldızlandı": "Starred",
+"Yıldızlı": "Starred",
+"Üretilen görseller burada listelenir. Üretim paneli uygulamada sonra açılır.": "Generated images are listed here. The production screen opens in the app later.",
+"İstem": "Prompt"
 }

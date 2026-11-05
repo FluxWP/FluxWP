@@ -1,0 +1,201 @@
+// WhatsApp inbox (`flxc-inbox`). The engine is shared with the desktop panel.
+import { memo, useEffect, useMemo, useRef, useState } from 'react';
+import { KeyboardAvoidingView, Platform, Pressable, ScrollView, TextInput, View } from 'react-native';
+import { FlashList, type FlashListRef } from '@shopify/flash-list';
+import { Image } from 'expo-image';
+import * as ImagePicker from 'expo-image-picker';
+import { useTranslation } from 'react-i18next';
+import { StyleSheet, useUnistyles } from 'react-native-unistyles';
+import { useStore } from 'zustand';
+import type { FlxcChat, FlxcFilter, FlxcMessage } from '@fluxwp/core';
+import { notifyIncoming, useAccount, useApi, WaEngine } from '@fluxwp/runtime';
+import { Avatar, EmptyState, IconButton, Spinner, Text } from '@/ui/primitives';
+import { Icon } from '@/ui/Icon';
+import { Chip, Chips, SearchField, useScreenTitle } from '../kit';
+import { mobilePorts } from '../ports';
+
+const FILTERS: FlxcFilter[] = ['all', 'unread', 'mine', 'unassigned', 'closed'];
+
+const preview = (s: string) => s.replace(/[*_~]/g, '').replace(/\s+/g, ' ').trim();
+const clock = (ts: number, locale: string) => {
+  const d = new Date(ts);
+  const same = d.toDateString() === new Date().toDateString();
+  return same ? d.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' }) : d.toLocaleDateString(locale, { day: 'numeric', month: 'short' });
+};
+
+const ChatRow = memo(function ChatRow({ chat, fresh, locale, onPress }: { chat: FlxcChat; fresh: boolean; locale: string; onPress: (id: number) => void }) {
+  const { theme } = useUnistyles();
+  return (
+    <Pressable accessibilityRole="button" onPress={() => onPress(chat.id)} style={[styles.row, fresh && { backgroundColor: theme.colors.primarySoft }]}>
+      <Avatar text={chat.title || chat.phoneFmt} size={46} />
+      <View style={styles.flex}>
+        <View style={styles.line}>
+          <Text variant="label" numberOfLines={1} style={styles.flex}>{chat.title || chat.phoneFmt}</Text>
+          <Text variant="caption">{clock(chat.lastTs, locale)}</Text>
+        </View>
+        <View style={styles.line}>
+          <Text variant="small" tone="muted" numberOfLines={1} style={styles.flex}>{preview(chat.last?.body || chat.phoneFmt)}</Text>
+          {chat.unread > 0 ? <View style={styles.badge}><Text variant="caption" style={styles.badgeText}>{chat.unread}</Text></View> : null}
+        </View>
+      </View>
+    </Pressable>
+  );
+});
+
+function Bubble({ m, locale }: { m: FlxcMessage; locale: string }) {
+  const { theme } = useUnistyles();
+  const { t } = useTranslation();
+  if (m.dir === 'system' || m.type === 'deleted') return <Text variant="caption" style={styles.system}>{m.body || '·'}</Text>;
+  const mine = m.dir === 'out';
+  const note = m.dir === 'note';
+  const bg = note ? theme.colors.warning : mine ? theme.colors.primary : theme.colors.surface;
+  const fg = mine && !note ? theme.colors.onPrimary : theme.colors.text;
+  return (
+    <View style={[styles.bubble, mine ? styles.bubbleMine : styles.bubbleIn, { backgroundColor: bg }, note && styles.note]}>
+      {m.media?.url && !m.media.url.includes('demo.fluxapp.local') ? (
+        <Image source={{ uri: m.media.url }} style={styles.media} contentFit="cover" />
+      ) : m.media ? (
+        <View style={[styles.mediaCard, { backgroundColor: theme.colors.primarySoft }]}>
+          <Icon name={m.type === 'audio' ? 'media-audio' : 'image'} size={22} color={theme.colors.primary} />
+          <Text variant="small">{m.media.name || t('mobile.screens.inbox.attach')}</Text>
+        </View>
+      ) : null}
+      {m.body ? <Text style={{ color: fg }}>{m.body}</Text> : null}
+      <Text variant="caption" style={{ color: mine && !note ? theme.colors.onPrimary : theme.colors.textMuted, alignSelf: 'flex-end' }}>{clock(m.ts, locale)}{m.status === 'failed' ? ' · !' : ''}</Text>
+    </View>
+  );
+}
+
+export default function InboxScreen({ params }: { params: Record<string, string> }) {
+  const { t, i18n } = useTranslation();
+  const { theme } = useUnistyles();
+  useScreenTitle(t('mobile.screens.inbox.title'));
+  const api = useApi();
+  const account = useAccount();
+  const ports = useMemo(() => mobilePorts(account.id), [account.id]);
+  const engine = useMemo(() => {
+    const e = new WaEngine({
+      client: api,
+      ports,
+      poll: 10,
+      onIncoming: (items) => notifyIncoming(items, e.s.active, undefined, (id) => e.open(id), ports),
+    });
+    return e;
+  }, [api, ports]);
+  const s = useStore(engine.store);
+  const [text, setText] = useState('');
+  const [note, setNote] = useState(false);
+  const listRef = useRef<FlashListRef<FlxcMessage>>(null);
+  const phoneOnce = useRef(false);
+
+  useEffect(() => {
+    void engine.start();
+    return () => engine.stop();
+  }, [engine]);
+
+  useEffect(() => {
+    if (phoneOnce.current || !params.phone || !s.boot) return;
+    phoneOnce.current = true;
+    engine.setView({ q: params.phone });
+  }, [engine, params.phone, s.boot]);
+
+  const chats = s.order.map((id) => s.chats[id]).filter((c): c is FlxcChat => !!c);
+  const active = s.active ? s.chats[s.active] : undefined;
+  const msgs = s.active ? (s.msgs[s.active]?.list ?? []) : [];
+
+  const send = () => {
+    const body = text.trim();
+    const id = s.active;
+    if (!body || !id) return;
+    setText('');
+    void engine.send(id, { type: note ? 'note' : 'text', body }).catch(() => undefined);
+  };
+
+  const attach = async () => {
+    const id = s.active;
+    if (!id) return;
+    const r = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ['images'], quality: 0.8 });
+    if (r.canceled || !r.assets[0]) return;
+    const a = r.assets[0];
+    const blob = await (await fetch(a.uri)).blob();
+    void engine.send(id, { type: 'image', file: blob, name: a.fileName ?? 'photo.jpg' }).catch(() => undefined);
+  };
+
+  if (!s.boot && !s.bootError) return <View testID="screen-inbox" style={styles.fill}><Spinner label={t('mobile.states.loading')} /></View>;
+  if (s.bootError) return <View testID="screen-inbox" style={styles.fill}><EmptyState icon="alert" title={s.bootError} action={{ label: t('mobile.states.retry'), onPress: () => void engine.start() }} /></View>;
+
+  return (
+    <View testID="screen-inbox" style={styles.fill}>
+      {active ? (
+        <KeyboardAvoidingView style={styles.fill} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+          <View style={styles.threadHead}>
+            <IconButton icon="back" label={t('mobile.screens.inbox.back')} onPress={() => engine.open(null)} />
+            <View style={styles.flex}>
+              <Text variant="label" numberOfLines={1}>{active.title || active.phoneFmt}</Text>
+              <Text variant="caption">{active.phoneFmt}</Text>
+            </View>
+            <IconButton icon="bot" label={active.bot === 'on' ? t('mobile.screens.inbox.botOn') : t('mobile.screens.inbox.botOff')} color={active.bot === 'on' ? theme.colors.primary : theme.colors.textMuted} onPress={() => void engine.setBot(active.id, active.bot !== 'on')} />
+          </View>
+          <FlashList
+            ref={listRef}
+            data={msgs}
+            keyExtractor={(m) => String(m.id)}
+            renderItem={({ item }) => <Bubble m={item} locale={i18n.language} />}
+            contentContainerStyle={styles.thread}
+            onContentSizeChange={() => listRef.current?.scrollToEnd({ animated: false })}
+            ListEmptyComponent={<Spinner />}
+          />
+          <View style={styles.composer}>
+            <IconButton icon="image" label={t('mobile.screens.inbox.attach')} onPress={() => void attach()} />
+            <IconButton icon="note" label={t('mobile.screens.inbox.note')} color={note ? theme.colors.warning : theme.colors.textMuted} onPress={() => setNote((v) => !v)} />
+            <TextInput value={text} onChangeText={(v) => (setText(v), engine.typing(active.id))} placeholder={t('mobile.screens.inbox.placeholder')} placeholderTextColor={theme.colors.textMuted} style={styles.input} accessibilityLabel={t('mobile.screens.inbox.placeholder')} />
+            <IconButton icon="airplane" label={t('mobile.screens.inbox.send')} color={theme.colors.primary} onPress={send} />
+          </View>
+        </KeyboardAvoidingView>
+      ) : (
+        <>
+          <SearchField testID="inbox-search" value={s.q} onChange={(q) => engine.setView({ q })} placeholder={t('mobile.screens.inbox.search')} />
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.hscroll} contentContainerStyle={styles.filters}>
+            <Chips>
+              {FILTERS.map((f) => (
+                <Chip key={f} label={t(`mobile.screens.inbox.filters.${f}`)} active={s.filter === f} onPress={() => engine.setView({ filter: f })} />
+              ))}
+            </Chips>
+          </ScrollView>
+          {s.offline ? <Text variant="caption" tone="danger" style={styles.banner}>{t(s.offline === 'auth' ? 'mobile.screens.inbox.auth' : 'mobile.screens.inbox.offline')}</Text> : null}
+          <FlashList
+            style={styles.flex}
+            data={chats}
+            keyExtractor={(c) => String(c.id)}
+            renderItem={({ item }) => <ChatRow chat={item} fresh={!!s.fresh[item.id]} locale={i18n.language} onPress={(id) => engine.open(id)} />}
+            ListEmptyComponent={s.listLoading ? <Spinner /> : <EmptyState icon="chat" title={t('mobile.screens.inbox.empty')} body={t('mobile.screens.inbox.emptyBody')} />}
+            onEndReached={() => { if (s.listMore && !s.listLoading) void engine.loadChats(true).catch(() => undefined); }}
+          />
+        </>
+      )}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create((theme) => ({
+  fill: { flex: 1, backgroundColor: theme.colors.bg },
+  flex: { flex: 1 },
+  hscroll: { flexGrow: 0, maxHeight: 52 },
+  filters: { paddingRight: theme.space[4], alignItems: 'center' },
+  row: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: theme.space[4], minHeight: 76, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.colors.border },
+  line: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  badge: { minWidth: 22, height: 22, borderRadius: 11, backgroundColor: theme.colors.primary, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 6 },
+  badgeText: { color: theme.colors.onPrimary, fontSize: 12 },
+  banner: { paddingHorizontal: theme.space[4], paddingBottom: 4 },
+  threadHead: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingRight: 8, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.colors.border, backgroundColor: theme.colors.surface },
+  thread: { padding: theme.space[3], gap: 8 },
+  bubble: { maxWidth: '82%', borderRadius: theme.radius.lg, paddingHorizontal: 12, paddingVertical: 8, gap: 4, marginBottom: 8 },
+  bubbleIn: { alignSelf: 'flex-start', borderWidth: StyleSheet.hairlineWidth, borderColor: theme.colors.border },
+  bubbleMine: { alignSelf: 'flex-end' },
+  note: { alignSelf: 'center', maxWidth: '92%' },
+  system: { textAlign: 'center', marginVertical: 6 },
+  media: { width: 220, height: 160, borderRadius: theme.radius.md },
+  mediaCard: { width: 200, height: 92, borderRadius: theme.radius.md, alignItems: 'center', justifyContent: 'center', gap: 6 },
+  composer: { flexDirection: 'row', alignItems: 'flex-end', gap: 2, padding: 6, paddingBottom: 10, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: theme.colors.border, backgroundColor: theme.colors.surface },
+  input: { flex: 1, minHeight: 44, maxHeight: 120, color: theme.colors.text, fontSize: 16, paddingHorizontal: 8 },
+}));

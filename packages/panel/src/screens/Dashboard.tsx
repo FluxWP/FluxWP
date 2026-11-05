@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import { Eye, EyeOff, GripVertical, Pencil, RefreshCw } from 'lucide-react';
-import { arrangeCards, layoutStore, moveItem, type DashboardCard } from '@fluxwp/core';
+import { arrangeCards, layoutStore, moveItem, platform, type DashboardCard } from '@fluxwp/core';
+import { resolveTarget, useResolveEnv } from '@fluxwp/runtime';
 import { Icon } from '@fluxwp/ui';
 import { useActiveAccount, useApi, useLayoutPrefs, useMe } from '../state/hooks';
 import { useRoute } from '../state/route';
@@ -14,6 +15,7 @@ export function Dashboard() {
   const me = useMe(account).data;
   const prefs = useLayoutPrefs(account);
   const go = useRoute((s) => s.go);
+  const env = useResolveEnv();
   const q = useQuery({ queryKey: [account.id, 'dashboard'], queryFn: api.dashboard, refetchInterval: 60_000 });
   const [edit, setEdit] = useState(false);
   const [drag, setDrag] = useState<number | null>(null);
@@ -23,8 +25,10 @@ export function Dashboard() {
   const lists = (q.data?.lists ?? []).slice().sort((a, b) => (a.order ?? 50) - (b.order ?? 50));
 
   const open = (c: DashboardCard) => {
-    if (edit) return;
-    if (c.open?.startsWith('mod:')) go({ kind: 'nav', id: c.open });
+    if (edit || !c.open) return;
+    const route = resolveTarget(c.open, env);
+    if (route.kind === 'url') void platform().openExternal(route.url);
+    else if (route.kind !== 'none') go(route);
   };
   const toggle = (id: string) => {
     const h = new Set(prefs?.cardHidden ?? []);

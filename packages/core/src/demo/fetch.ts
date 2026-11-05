@@ -113,7 +113,7 @@ export const demoFetch: typeof fetch = async (input, init) => {
   const method = (init?.method ?? 'GET').toUpperCase();
   let body: Record<string, unknown> = {};
   if (init?.body instanceof FormData) {
-    body = Object.fromEntries([...init.body.entries()].filter(([, v]) => typeof v === 'string'));
+    body = Object.fromEntries([...(init.body as unknown as { entries(): Iterable<[string, unknown]> }).entries()].filter(([, v]) => typeof v === 'string'));
   } else if (typeof init?.body === 'string') {
     try {
       body = JSON.parse(init.body);

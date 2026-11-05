@@ -32,6 +32,8 @@ export const palette = {
     danger: '#D93B3B',
     warning: '#C98A00',
     success: '#1F9D55',
+    info: '#2563EB',
+    surface3: '#E7EAEF',
     overlay: 'rgba(15,18,24,.45)',
   },
   dark: {
@@ -47,6 +49,8 @@ export const palette = {
     danger: '#F06464',
     warning: '#E8B03A',
     success: '#3CC27A',
+    info: '#60A5FA',
+    surface3: '#242A33',
     overlay: 'rgba(0,0,0,.6)',
   },
 } as const;
@@ -76,3 +80,5 @@ export function toCssVars(mode: ThemeMode, brand: BrandColors): Record<string, s
 export function nativeTheme(mode: ThemeMode, brand: BrandColors) {
   return { mode, colors: themeColors(mode, brand), space, radius, font };
 }
+
+export * from './theme';

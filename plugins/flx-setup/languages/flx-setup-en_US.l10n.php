@@ -633,5 +633,6 @@ return array(
 		'Site anahtarı gerekli' => 'Site key required',
 		'Site anahtarı pasif' => 'Site key disabled',
 		'Destek ve öneri: %s' => 'Support and feedback: %s',
+		'FluxWP Panel' => 'FluxWP Panel',
 	),
 );

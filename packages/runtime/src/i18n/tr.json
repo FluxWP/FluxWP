@@ -1,0 +1,160 @@
+{
+  "shell": {
+    "tabs": {
+      "home": "Başlangıç",
+      "posts": "Yazılar",
+      "comments": "Yorumlar",
+      "menu": "Menü",
+      "more": "Menü"
+    },
+    "status": {
+      "publish": "Yayında",
+      "draft": "Taslak",
+      "pending": "İncelemede",
+      "future": "Zamanlandı",
+      "private": "Gizli"
+    },
+    "switchSite": "Site değiştir",
+    "offline": "Çevrimdışı: kayıtlı veriler gösteriliyor",
+    "notFound": "Bu ekran bulunamadı.",
+    "demo": "Demo",
+    "nav": {
+      "more": "Menü",
+      "accounts": "Hesaplar",
+      "settings": "Ayarlar",
+      "search": "Ara",
+      "notifications": "Bildirimler"
+    },
+    "groups": {
+      "content": "İçerik"
+    },
+    "openedInWeb": "Web görünümünde açıldı"
+  },
+  "list": {
+    "search": "Ara",
+    "empty": "Burada henüz bir şey yok.",
+    "noResults": "Sonuç yok.",
+    "end": "Hepsi bu kadar",
+    "loadingMore": "Yükleniyor…"
+  },
+  "states": {
+    "loading": "Yükleniyor…",
+    "errorTitle": "Yüklenemedi",
+    "errorBody": "Sunucuya ulaşılamadı. Bağlantını kontrol edip tekrar dene.",
+    "forbidden": "Bu ekran için yetkin yok.",
+    "sessionExpired": "Oturumun sona erdi, yeniden giriş yap."
+  },
+  "form": {
+    "required": "Bu alan gerekli.",
+    "invalid": "Geçerli bir değer gir.",
+    "min": "Değer çok küçük.",
+    "max": "Değer çok büyük.",
+    "submit": "Kaydet",
+    "saving": "Kaydediliyor…",
+    "saved": "Kaydedildi.",
+    "minLength": "En az {{count}} karakter.",
+    "maxLength": "En çok {{count}} karakter.",
+    "choose": "Seç",
+    "change": "Değiştir",
+    "remove": "Kaldır",
+    "upload": "Yükle",
+    "uploading": "Yükleniyor…",
+    "search": "Ara"
+  },
+  "action": {
+    "confirmTitle": "Emin misin?",
+    "confirm": "Onayla",
+    "done": "Tamam.",
+    "failed": "İşlem yapılamadı."
+  },
+  "webview": {
+    "loading": "Panel sayfası açılıyor…",
+    "error": "Sayfa açılamadı.",
+    "openBrowser": "Tarayıcıda aç",
+    "reload": "Yenile",
+    "back": "Geri",
+    "demoNote": "Demo: örnek panel sayfası"
+  },
+  "switcher": {
+    "title": "Hesaplar",
+    "manage": "Hesapları yönet",
+    "remove": "Hesabı kaldır",
+    "removeConfirm": "{{site}} hesabı bu cihazdan kaldırılsın mı?",
+    "current": "Şu anki hesap"
+  },
+  "prefs": {
+    "cache": "Önbellek",
+    "clearCache": "Önbelleği temizle",
+    "cacheCleared": "Önbellek temizlendi.",
+    "version": "Sürüm {{version}}"
+  },
+  "core": {
+    "pages": "Sayfalar",
+    "post": "Yazı",
+    "edit": "Düzenle",
+    "openInPanel": "Panelde aç",
+    "trash": "Çöpe taşı",
+    "trashConfirm": "Bu öğe çöpe taşınsın mı?",
+    "trashed": "Çöpe taşındı",
+    "title": "Başlık",
+    "status": "Durum",
+    "excerpt": "Özet",
+    "link": "Bağlantı",
+    "date": "Tarih",
+    "author": "Yazar",
+    "image": "Görsel",
+    "content": "İçerik",
+    "newPost": "Yeni yazı",
+    "approve": "Onayla",
+    "spam": "İstenmeyen",
+    "approved": "Onaylandı",
+    "statusAll": "Tümü",
+    "statusDraft": "Taslak",
+    "statusPending": "İncelemede",
+    "statusHold": "Bekleyen",
+    "emptyPosts": "Henüz yazı yok",
+    "emptyComments": "Yorum yok",
+    "searchPosts": "Yazılarda ara",
+    "searchComments": "Yorumlarda ara",
+    "details": "Ayrıntılar"
+  },
+  "accounts": {
+    "kind": {
+      "otp": "Tek kullanımlık kod",
+      "apppass": "Uygulama şifresi"
+    }
+  },
+  "auth": {
+    "otpLogin": "Kodla giriş",
+    "otpHint": "Tek kullanımlık kod gönderilir. Bağışçı ve müşteri hesapları için.",
+    "sendCode": "Kod gönder",
+    "otpCode": "Kod",
+    "verify": "Doğrula ve gir",
+    "codeSent": "Hesap varsa kod yola çıktı.",
+    "appPassword": "Uygulama şifresi"
+  },
+  "desktop": {
+    "selected": "{{count}} seçili",
+    "clear": "Temizle",
+    "notifications": "Bildirimler",
+    "notificationsEmpty": "Henüz bildirim yok.",
+    "cancel": "Vazgeç",
+    "more": "Diğer işlemler",
+    "rowActions": "Satır işlemleri",
+    "back": "Geri",
+    "loading": "Yükleniyor…",
+    "offline": "Kayıtlı veri gösteriliyor"
+  },
+  "addSite": {
+    "notAllowed": "Bu uygulama yalnız kendi sitesine bağlanabilir.",
+    "browserHint": "Giriş, uygulama içindeki güvenli tarayıcıda yapılır. Şifren uygulamaya gelmez.",
+    "cancelled": "Giriş iptal edildi.",
+    "title": "Siteni bağla",
+    "demo": "Demo hesabıyla dene"
+  },
+  "drawer": {
+    "open": "Menüyü aç",
+    "close": "Menüyü kapat",
+    "expand": "Alt menüyü aç"
+  }
+}

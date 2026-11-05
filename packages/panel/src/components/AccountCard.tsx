@@ -7,7 +7,7 @@ import { accountsStore, brand, platform, type Account } from '@fluxwp/core';
 import { useQueryClient } from '@tanstack/react-query';
 import { Avatar } from '@fluxwp/ui';
 import { useAccounts, useMe } from '../state/hooks';
-import { useRoute } from '../state/route';
+import { homeRoute, useRoute } from '../state/route';
 import { logoutAccount } from '../lib/logout';
 
 export function AccountCard({ active }: { active: Account }) {
@@ -32,7 +32,7 @@ export function AccountCard({ active }: { active: Account }) {
     setOpen(false);
     if (a.id === active.id) return;
     await accountsStore.getState().setActive(a.id);
-    go({ kind: 'nav', id: 'dashboard' });
+    go(homeRoute());
     void qc.invalidateQueries({ queryKey: [a.id] });
   };
   const run = (fn: () => void) => () => (setOpen(false), fn());
@@ -72,7 +72,7 @@ export function AccountCard({ active }: { active: Account }) {
           <button className="menu-item" role="menuitem" onClick={run(() => void platform().openExternal(active.siteUrl))}>
             <ExternalLink size={16} /> <span className="grow">{t('account.web')}</span>
           </button>
-          <button className="menu-item" role="menuitem" onClick={run(() => go({ kind: 'settings' }))}>
+          <button className="menu-item" role="menuitem" onClick={run(() => go({ kind: 'shell', name: 'settings' }))}>
             <Settings size={16} /> <span className="grow">{t('settings.title')}</span>
           </button>
           {(others.length > 0 || !brand.lockSite) && <div className="menu-sep" />}
@@ -98,7 +98,7 @@ export function AccountCard({ active }: { active: Account }) {
             role="menuitem"
             onClick={run(() => {
               if (!confirm(t('settings.logoutConfirm', { site: active.siteName }))) return;
-              void logoutAccount(active).then(() => go({ kind: 'nav', id: 'dashboard' }));
+              void logoutAccount(active).then(() => go(homeRoute()));
             })}
           >
             <LogOut size={16} /> <span className="grow">{t('accounts.logout')}</span>

@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.4.0
+- Mobil ve masaüstü uygulama manifesti: genel bakış, canlı ziyaret, sayfalar ve kaynaklar (`flxan/v1`).
+
 ## 0.3.9
 - Metinler: MCP sunucusu artık Flux AI & MCP eklentisinde; "Flux SEO & MCP" ve "Flux AI ›" adresleri "Flux AI & MCP" oldu.
 

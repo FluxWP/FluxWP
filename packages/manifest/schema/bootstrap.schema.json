@@ -1,0 +1,467 @@
+{
+  "$id": "https://fluxwp.com/schema/bootstrap.schema.json",
+  "title": "GET flxapp/v1/app/bootstrap",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "flx-app-bootstrap/1"
+    },
+    "site": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "admin_url": {
+          "type": "string"
+        },
+        "rest_url": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "locale": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "https": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "url"
+      ]
+    },
+    "auth": {
+      "type": "object",
+      "properties": {
+        "methods": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "oauth",
+              "otp",
+              "apikey",
+              "apppass"
+            ],
+            "type": "string"
+          }
+        },
+        "clients": {
+          "type": "object",
+          "properties": {
+            "mobile": {
+              "type": "string"
+            },
+            "desktop": {
+              "type": "string"
+            }
+          },
+          "required": []
+        },
+        "redirects": {
+          "type": "object",
+          "properties": {
+            "mobile": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "desktop": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "loopback_any_port": {
+              "type": "boolean"
+            }
+          },
+          "required": []
+        },
+        "authorize": {
+          "type": "string"
+        },
+        "login_url": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "revoke": {
+          "type": "string"
+        },
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pkce": {
+          "const": "S256"
+        },
+        "prompt_login": {
+          "type": "boolean"
+        },
+        "otp": {
+          "type": "object",
+          "properties": {
+            "start": {
+              "type": "string"
+            },
+            "verify": {
+              "type": "string"
+            }
+          },
+          "required": []
+        }
+      },
+      "required": [
+        "methods"
+      ]
+    },
+    "apps": {
+      "type": "object",
+      "properties": {
+        "generic": {
+          "type": "boolean"
+        },
+        "clients": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "platform": {
+                "enum": [
+                  "mobile",
+                  "desktop"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "platform"
+            ]
+          }
+        },
+        "preset": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "store": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "required": []
+    },
+    "brand": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "short_name": {
+          "type": "string"
+        },
+        "logo": {
+          "type": "string"
+        },
+        "logo_dark": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        }
+      },
+      "required": []
+    },
+    "theme": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "enum": [
+            "system",
+            "light",
+            "dark"
+          ],
+          "type": "string"
+        },
+        "light": {
+          "type": "object",
+          "properties": {
+            "primary": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "onPrimary": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "accent": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "bg": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "surface": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "surface2": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "border": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "text": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "textMuted": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "danger": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "warning": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "success": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "info": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            }
+          },
+          "required": []
+        },
+        "dark": {
+          "type": "object",
+          "properties": {
+            "primary": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "onPrimary": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "accent": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "bg": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "surface": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "surface2": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "border": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "text": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "textMuted": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "danger": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "warning": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "success": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "info": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    },
+    "packages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "plugin",
+              "theme"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "slug",
+          "name",
+          "type"
+        ]
+      }
+    },
+    "min_app": {
+      "type": "string"
+    },
+    "min_app_desktop": {
+      "type": "string"
+    },
+    "flx_app": {
+      "type": "string"
+    },
+    "api": {
+      "type": "string"
+    },
+    "endpoints": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "site",
+    "auth"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$defs": {
+    "Condition": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "op": {
+              "enum": [
+                "eq",
+                "ne",
+                "in",
+                "nin",
+                "gt",
+                "gte",
+                "lt",
+                "lte",
+                "filled",
+                "empty",
+                "truthy",
+                "falsy"
+              ],
+              "type": "string"
+            },
+            "value": {}
+          },
+          "required": [
+            "path",
+            "op"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "all": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Condition"
+              }
+            }
+          },
+          "required": [
+            "all"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "any": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Condition"
+              }
+            }
+          },
+          "required": [
+            "any"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "not": {
+              "$ref": "#/$defs/Condition"
+            }
+          },
+          "required": [
+            "not"
+          ]
+        }
+      ]
+    }
+  }
+}

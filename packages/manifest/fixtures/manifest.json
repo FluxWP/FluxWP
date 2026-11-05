@@ -1,0 +1,847 @@
+{
+  "hash": "demo-1",
+  "modules": {
+    "crm": {
+      "schema": "flx-app-manifest/1",
+      "id": "crm",
+      "plugin": "flx-crm",
+      "version": "0.2.2",
+      "min_app": "0.1.0",
+      "title": "CRM",
+      "icon": "users",
+      "menu": "flx-crm",
+      "entry": "overview",
+      "tabs": [
+        "overview",
+        "contacts",
+        "segments"
+      ],
+      "can": {
+        "view": true,
+        "manage": true
+      },
+      "fallback": {
+        "web": "admin.php?page=flx-crm"
+      },
+      "routes": {
+        "admin.php?page=flx-crm-contacts&id={id}": {
+          "screen": "contact",
+          "params": {
+            "id": "{id}"
+          }
+        },
+        "admin.php?page=flx-crm-contacts": {
+          "screen": "contacts"
+        },
+        "admin.php?page=flx-crm-segments": {
+          "screen": "segments"
+        },
+        "admin.php?page=flx-crm": {
+          "screen": "overview"
+        }
+      },
+      "search": {
+        "source": "contacts",
+        "param": "s",
+        "item": {
+          "title": "{{name}}",
+          "subtitle": "{{email}}"
+        },
+        "onPress": {
+          "target": "screen:crm/contact",
+          "params": {
+            "id": "{{id}}"
+          }
+        }
+      },
+      "sources": {
+        "meta": {
+          "path": "flx-crm/v1/meta",
+          "cache": {
+            "stale": 3600,
+            "persist": true
+          }
+        },
+        "stats": {
+          "path": "flx-crm/v1/stats",
+          "cache": {
+            "stale": 300,
+            "persist": true
+          }
+        },
+        "contacts": {
+          "path": "flx-crm/v1/contacts",
+          "query": {
+            "orderby": "last_activity_at",
+            "order": "desc"
+          },
+          "paging": {
+            "mode": "page",
+            "param": "page",
+            "size_param": "per_page",
+            "size": 25,
+            "items": "items",
+            "total": "total",
+            "pages": "pages"
+          },
+          "key": "id",
+          "cache": {
+            "stale": 60,
+            "persist": true
+          }
+        },
+        "contact": {
+          "path": "flx-crm/v1/contacts/{{params.id}}",
+          "query": {
+            "limit": 30
+          },
+          "cache": {
+            "stale": 30
+          }
+        },
+        "segments": {
+          "path": "flx-crm/v1/segments",
+          "paging": {
+            "mode": "none"
+          },
+          "key": "id",
+          "cache": {
+            "stale": 300
+          }
+        },
+        "segment_contacts": {
+          "path": "flx-crm/v1/segments/{{params.id}}/contacts",
+          "paging": {
+            "mode": "page",
+            "param": "page",
+            "size_param": "per_page",
+            "size": 25,
+            "items": "items",
+            "total": "total",
+            "pages": "pages"
+          },
+          "key": "id"
+        }
+      },
+      "screens": {
+        "overview": {
+          "type": "dashboard",
+          "title": "Genel bakış",
+          "sources": [
+            "stats"
+          ],
+          "sections": [
+            {
+              "type": "stats",
+              "items": [
+                {
+                  "label": "Kişi",
+                  "value": "{{data.total|number}}",
+                  "sub": "+{{data.new30|number}} son 30 gün"
+                },
+                {
+                  "label": "Aktif",
+                  "value": "{{data.active|number}}"
+                },
+                {
+                  "label": "Ödeme yapan",
+                  "value": "{{data.paying|number}}",
+                  "sub": "{{data.repeat|number}} tekrar"
+                },
+                {
+                  "label": "Kayıp riski",
+                  "value": "{{data.risk|number}}",
+                  "tone": "warn",
+                  "onPress": {
+                    "target": "screen:crm/contacts",
+                    "params": {
+                      "risk": 1
+                    }
+                  }
+                },
+                {
+                  "label": "Toplam değer",
+                  "value": "{{data.ltv|money:TRY}}"
+                }
+              ]
+            },
+            {
+              "type": "actions",
+              "items": [
+                "new_contact",
+                "open_segments"
+              ]
+            }
+          ]
+        },
+        "contacts": {
+          "type": "list",
+          "title": "Kişiler",
+          "source": "contacts",
+          "layout": "rows",
+          "columns": [
+            {
+              "label": "Ad",
+              "value": "{{name}}",
+              "width": 2
+            },
+            {
+              "label": "E-posta",
+              "value": "{{email}}",
+              "width": 2
+            },
+            {
+              "label": "Segment",
+              "value": "{{segment_label}}"
+            },
+            {
+              "label": "Değer",
+              "value": "{{ltv|money:currency}}",
+              "align": "end"
+            }
+          ],
+          "search": {
+            "param": "s",
+            "placeholder": "Ad, e-posta ya da telefon"
+          },
+          "filters": [
+            {
+              "param": "role",
+              "label": "Rol",
+              "type": "select",
+              "options": {
+                "source": "meta",
+                "path": "roles",
+                "value": "key",
+                "label": "label"
+              }
+            },
+            {
+              "param": "segment",
+              "label": "Segment",
+              "type": "select",
+              "options": {
+                "source": "meta",
+                "path": "segments",
+                "value": "key",
+                "label": "label"
+              }
+            },
+            {
+              "param": "tag",
+              "label": "Etiket",
+              "type": "select",
+              "options": {
+                "source": "meta",
+                "path": "tags",
+                "value": "id",
+                "label": "name"
+              }
+            },
+            {
+              "param": "consent",
+              "label": "İzin",
+              "type": "select",
+              "options": [
+                {
+                  "value": "email",
+                  "label": "E-posta"
+                },
+                {
+                  "value": "sms",
+                  "label": "SMS"
+                },
+                {
+                  "value": "whatsapp",
+                  "label": "WhatsApp"
+                },
+                {
+                  "value": "ads",
+                  "label": "Reklam"
+                }
+              ]
+            },
+            {
+              "param": "risk",
+              "label": "Kayıp riski",
+              "type": "toggle"
+            }
+          ],
+          "sort": {
+            "param": "orderby",
+            "order_param": "order",
+            "options": [
+              {
+                "value": "last_activity_at",
+                "label": "Son etkileşim"
+              },
+              {
+                "value": "ltv",
+                "label": "Toplam değer"
+              },
+              {
+                "value": "last_paid_at",
+                "label": "Son ödeme"
+              },
+              {
+                "value": "created_at",
+                "label": "Eklenme"
+              },
+              {
+                "value": "name",
+                "label": "Ad"
+              },
+              {
+                "value": "churn",
+                "label": "Risk"
+              }
+            ]
+          },
+          "item": {
+            "title": "{{name}}",
+            "subtitle": "{{email|default:phone}}",
+            "meta": "{{ltv|money:currency}}",
+            "caption": "{{last_activity_at|ago}}",
+            "avatar": {
+              "text": "{{name}}"
+            },
+            "badges": [
+              {
+                "text": "{{segment_label}}",
+                "tone": "accent",
+                "when": {
+                  "path": "segment_label",
+                  "op": "filled"
+                }
+              },
+              {
+                "text": "Risk",
+                "tone": "warn",
+                "when": {
+                  "path": "churn",
+                  "op": "gte",
+                  "value": 70
+                }
+              }
+            ],
+            "chips": {
+              "path": "roles",
+              "text": "{{label}}"
+            }
+          },
+          "onPress": {
+            "target": "screen:crm/contact",
+            "params": {
+              "id": "{{id}}"
+            }
+          },
+          "actions": {
+            "header": [
+              "new_contact"
+            ],
+            "row": [
+              "call",
+              "whatsapp"
+            ],
+            "fab": "new_contact"
+          },
+          "empty": {
+            "title": "Kişi yok",
+            "body": "Bağış, sipariş ve formlardan kişiler kendiliğinden gelir."
+          }
+        },
+        "contact": {
+          "type": "detail",
+          "source": "contact",
+          "header": {
+            "title": "{{name}}",
+            "subtitle": "{{company}}",
+            "avatar": {
+              "text": "{{name}}"
+            },
+            "chips": {
+              "path": "roles",
+              "text": "{{label}}"
+            },
+            "quick": [
+              "call",
+              "whatsapp",
+              "email"
+            ]
+          },
+          "sections": [
+            {
+              "type": "stats",
+              "items": [
+                {
+                  "label": "Toplam değer",
+                  "value": "{{ltv|money:currency}}"
+                },
+                {
+                  "label": "Bağış",
+                  "value": "{{stats.donations|number}}"
+                },
+                {
+                  "label": "Sipariş",
+                  "value": "{{stats.orders|number}}"
+                },
+                {
+                  "label": "Risk",
+                  "value": "{{churn}}",
+                  "tone": "warn",
+                  "when": {
+                    "path": "churn",
+                    "op": "gte",
+                    "value": 70
+                  }
+                }
+              ]
+            },
+            {
+              "type": "fields",
+              "title": "İletişim",
+              "fields": [
+                {
+                  "label": "E-posta",
+                  "value": "{{email}}",
+                  "link": "mailto:{{email}}",
+                  "copy": true,
+                  "when": {
+                    "path": "email",
+                    "op": "filled"
+                  }
+                },
+                {
+                  "label": "Telefon",
+                  "value": "{{phone}}",
+                  "link": "tel:{{phone}}",
+                  "copy": true,
+                  "when": {
+                    "path": "phone",
+                    "op": "filled"
+                  }
+                },
+                {
+                  "label": "Şehir",
+                  "value": "{{city}}",
+                  "when": {
+                    "path": "city",
+                    "op": "filled"
+                  }
+                },
+                {
+                  "label": "Segment",
+                  "value": "{{segment_label}}"
+                },
+                {
+                  "label": "Kaynak",
+                  "value": "{{source}}"
+                },
+                {
+                  "label": "Not",
+                  "value": "{{note}}",
+                  "when": {
+                    "path": "note",
+                    "op": "filled"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "fields",
+              "title": "İzinler",
+              "fields": [
+                {
+                  "label": "E-posta",
+                  "value": "{{consent.email|bool:'Açık':'Kapalı'}}"
+                },
+                {
+                  "label": "SMS",
+                  "value": "{{consent.sms|bool:'Açık':'Kapalı'}}"
+                },
+                {
+                  "label": "WhatsApp",
+                  "value": "{{consent.whatsapp|bool:'Açık':'Kapalı'}}"
+                },
+                {
+                  "label": "Reklam",
+                  "value": "{{consent.ads|bool:'Açık':'Kapalı'}}"
+                }
+              ]
+            },
+            {
+              "type": "chips",
+              "title": "Etiketler",
+              "path": "tags",
+              "text": "{{name}}",
+              "color": "{{color}}",
+              "add": "tag_add",
+              "remove": "tag_remove"
+            },
+            {
+              "type": "timeline",
+              "title": "Zaman tüneli",
+              "path": "timeline",
+              "item": {
+                "title": "{{title}}",
+                "body": "{{body}}",
+                "at": "{{at|ago}}",
+                "label": "{{type_label}}",
+                "link": "{{url}}"
+              }
+            }
+          ],
+          "actions": {
+            "header": [
+              "edit",
+              "web",
+              "delete"
+            ],
+            "footer": [
+              "note_add",
+              "tag_add"
+            ]
+          }
+        },
+        "contact_form": {
+          "type": "form",
+          "title": "Kişi",
+          "load": "contact",
+          "submit": {
+            "method": "POST",
+            "path": "{{params.id|default:''}}",
+            "path_create": "flx-crm/v1/contacts",
+            "path_update": "flx-crm/v1/contacts/{{params.id}}"
+          },
+          "fields": [
+            {
+              "name": "name",
+              "type": "text",
+              "label": "Ad soyad",
+              "maxLength": 190
+            },
+            {
+              "name": "email",
+              "type": "email",
+              "label": "E-posta"
+            },
+            {
+              "name": "phone",
+              "type": "phone",
+              "label": "Telefon"
+            },
+            {
+              "name": "company",
+              "type": "text",
+              "label": "Kurum",
+              "width": "half"
+            },
+            {
+              "name": "city",
+              "type": "text",
+              "label": "Şehir",
+              "width": "half"
+            },
+            {
+              "name": "note",
+              "type": "textarea",
+              "label": "Not"
+            },
+            {
+              "name": "consent.email",
+              "type": "switch",
+              "label": "E-posta izni"
+            },
+            {
+              "name": "consent.sms",
+              "type": "switch",
+              "label": "SMS izni"
+            },
+            {
+              "name": "consent.whatsapp",
+              "type": "switch",
+              "label": "WhatsApp izni"
+            },
+            {
+              "name": "consent.ads",
+              "type": "switch",
+              "label": "Reklam izni"
+            },
+            {
+              "name": "status",
+              "type": "segmented",
+              "label": "Durum",
+              "when": {
+                "path": "params.id",
+                "op": "filled"
+              },
+              "options": [
+                {
+                  "value": "active",
+                  "label": "Aktif"
+                },
+                {
+                  "value": "archived",
+                  "label": "Arşiv"
+                }
+              ]
+            }
+          ],
+          "validate": {
+            "any_of": [
+              "email",
+              "phone"
+            ],
+            "message": "E-posta ya da telefon gerekli."
+          },
+          "after": {
+            "toast": "Kaydedildi",
+            "back": true,
+            "invalidate": [
+              "contacts",
+              "contact",
+              "stats"
+            ]
+          }
+        },
+        "segments": {
+          "type": "list",
+          "title": "Segmentler",
+          "source": "segments",
+          "item": {
+            "title": "{{name}}",
+            "subtitle": "{{summary}}",
+            "meta": "{{count|number}}"
+          },
+          "onPress": {
+            "target": "screen:crm/segment",
+            "params": {
+              "id": "{{id}}",
+              "title": "{{name}}"
+            }
+          },
+          "actions": {
+            "header": [
+              "segment_edit_web"
+            ]
+          },
+          "empty": {
+            "title": "Segment yok",
+            "body": "Segmentleri panelde kural ekleyerek oluşturun."
+          }
+        },
+        "segment": {
+          "type": "list",
+          "title": "{{params.title}}",
+          "source": "segment_contacts",
+          "item": {
+            "title": "{{name}}",
+            "subtitle": "{{email|default:phone}}",
+            "meta": "{{ltv|money:currency}}",
+            "avatar": {
+              "text": "{{name}}"
+            }
+          },
+          "onPress": {
+            "target": "screen:crm/contact",
+            "params": {
+              "id": "{{id}}"
+            }
+          }
+        }
+      },
+      "actions": {
+        "new_contact": {
+          "label": "Yeni kişi",
+          "icon": "plus",
+          "can": "manage",
+          "navigate": {
+            "target": "screen:crm/contact_form"
+          }
+        },
+        "open_segments": {
+          "label": "Segmentler",
+          "icon": "filter",
+          "navigate": {
+            "target": "screen:crm/segments"
+          }
+        },
+        "edit": {
+          "label": "Düzenle",
+          "icon": "edit",
+          "can": "manage",
+          "navigate": {
+            "target": "screen:crm/contact_form",
+            "params": {
+              "id": "{{data.id}}"
+            }
+          }
+        },
+        "web": {
+          "label": "Panelde aç",
+          "icon": "globe",
+          "web": "admin.php?page=flx-crm-contacts&id={{data.id}}"
+        },
+        "segment_edit_web": {
+          "label": "Segment kuralları",
+          "icon": "edit",
+          "can": "manage",
+          "web": "admin.php?page=flx-crm-segments"
+        },
+        "delete": {
+          "label": "Sil",
+          "icon": "trash",
+          "tone": "danger",
+          "can": "manage",
+          "confirm": {
+            "title": "Kişi silinsin mi?",
+            "body": "Zaman tüneli ve etiketleri de silinir.",
+            "ok": "Sil"
+          },
+          "request": {
+            "method": "DELETE",
+            "path": "flx-crm/v1/contacts/{{data.id}}"
+          },
+          "after": {
+            "toast": "Silindi",
+            "back": true,
+            "invalidate": [
+              "contacts",
+              "stats"
+            ]
+          },
+          "haptic": "warning"
+        },
+        "note_add": {
+          "label": "Not ekle",
+          "icon": "note",
+          "can": "manage",
+          "prompt": {
+            "title": "Etkileşim ekle",
+            "fields": [
+              {
+                "name": "type",
+                "type": "segmented",
+                "label": "Tür",
+                "default": "note",
+                "options": [
+                  {
+                    "value": "note",
+                    "label": "Not"
+                  },
+                  {
+                    "value": "call",
+                    "label": "Arama"
+                  },
+                  {
+                    "value": "meeting",
+                    "label": "Görüşme"
+                  },
+                  {
+                    "value": "email_sent",
+                    "label": "E-posta"
+                  }
+                ]
+              },
+              {
+                "name": "body",
+                "type": "textarea",
+                "label": "Metin",
+                "required": true
+              }
+            ]
+          },
+          "request": {
+            "method": "POST",
+            "path": "flx-crm/v1/contacts/{{data.id}}/events",
+            "body": {
+              "type": "{{input.type}}",
+              "body": "{{input.body}}"
+            }
+          },
+          "after": {
+            "toast": "Eklendi",
+            "refresh": true
+          }
+        },
+        "tag_add": {
+          "label": "Etiket",
+          "icon": "tag",
+          "can": "manage",
+          "prompt": {
+            "title": "Etiket ekle",
+            "fields": [
+              {
+                "name": "tag",
+                "type": "tags",
+                "label": "Etiket",
+                "options": {
+                  "source": "meta",
+                  "path": "tags",
+                  "value": "id",
+                  "label": "name"
+                },
+                "creatable": true,
+                "required": true
+              }
+            ]
+          },
+          "request": {
+            "method": "POST",
+            "path": "flx-crm/v1/contacts/{{data.id}}/tags",
+            "body": {
+              "tag": "{{input.tag}}"
+            }
+          },
+          "after": {
+            "refresh": true,
+            "invalidate": [
+              "meta"
+            ]
+          }
+        },
+        "tag_remove": {
+          "label": "Etiketi kaldır",
+          "can": "manage",
+          "request": {
+            "method": "DELETE",
+            "path": "flx-crm/v1/contacts/{{data.id}}/tags/{{item.id}}"
+          },
+          "optimistic": {
+            "remove": "item"
+          },
+          "after": {
+            "refresh": true
+          }
+        },
+        "call": {
+          "label": "Ara",
+          "icon": "phone",
+          "when": {
+            "path": "phone",
+            "op": "filled"
+          },
+          "open": "tel:{{phone}}"
+        },
+        "whatsapp": {
+          "label": "WhatsApp",
+          "icon": "whatsapp",
+          "when": {
+            "path": "phone",
+            "op": "filled"
+          },
+          "open": "https://wa.me/{{phone|phone}}"
+        },
+        "email": {
+          "label": "E-posta",
+          "icon": "mail",
+          "when": {
+            "path": "email",
+            "op": "filled"
+          },
+          "open": "mailto:{{email}}"
+        }
+      }
+    }
+  }
+}

@@ -40,9 +40,9 @@ export function clientFor(a: Account): ApiClient {
       const t = await loadTokens(a.id);
       if (!t) return null;
       if (t.expiresAt && t.expiresAt - SKEW < Date.now() && t.refresh) return refresh(a);
-      return { token: t.access };
+      return { token: t.access, scheme: a.authKind === 'apppass' ? 'basic' : 'bearer' };
     },
-    onUnauthorized: a.authKind === 'oauth' ? () => refresh(a) : undefined,
+    onUnauthorized: a.authKind === 'oauth' || a.authKind === 'otp' ? () => refresh(a) : undefined,
   });
   clients.set(a.id, c);
   return c;

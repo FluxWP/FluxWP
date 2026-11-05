@@ -101,3 +101,7 @@ Araçlar `flxwk_search`, `flxwk_get_page`, `flxwk_list_pages` (yetki `read`, sal
 
 Kaynak `flx-wiki`, amaç `wiki_ask`. Bağlam: okunan sayfa + aramada ilk 5 sayfa (~28.000 karakter). Saatlik sınır
 kullanıcı ya da IP başına (yöneticiler hariç).
+
+## Uygulama
+
+Sayfa listesi `wp/v2/flx_wiki`. Okuma alanı `html` (CPT editör desteği yok; HTML `post_content` kopyası). Düzenleme alanı `markdown` (`_flxwk_md`; kayıt HTML kopyasını da günceller). Arama `GET /wp-json/flx-wiki/v1/search?q=` — boş `q` boş sonuç döner.
