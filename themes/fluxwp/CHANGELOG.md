@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.7.7
+- Ödeme logoları (Görünüm › Tema Ayarları › Ödeme logoları): footer'daki ödeme/güven logoları artık seçilebilir. Ortam kütüphanesinden logo yükle, kaldır, sırala; hazır logolar iyzico bandı ve eklentilerin eklediği sanal POS logoları (Flux Donate: EsnekPOS). Hiç dokunulmadıysa otomatik: iyzico bandı + etkin sanal POS logoları. Renkli logolar koyu footer'da beyaz kutuda. Başka yere `[flx_odeme_logolari]`; filtre `flx_pay_logos_builtin`.
+
 ## 0.7.6
 - Tarih ve "… önce" metinleri artık kullanıcının dilinde, tek ortak yardımcıdan (FluxWP `flx_date` / `flx_time_ago`, flx-brand 1.1.0): "31 minutes önce", "August 10" gibi Türkçe/İngilizce karışımı kalmadı; çekirdek dil paketi inmemiş olsa da TR ve EN ay/gün adları doğru.
 

@@ -5013,3 +5013,231 @@ msgstr "Gizlilik ve bağış notu"
 
 msgid "Donation note"
 msgstr "Bağış notu"
+
+msgid "Block checkout"
+msgstr "Blok ödeme sayfası"
+
+msgid "No address"
+msgstr "Adressiz"
+
+msgid "Server check"
+msgstr "Sunucu doğrulaması"
+
+msgid "Saved cards"
+msgstr "Kart saklama"
+
+msgid "Refund from site"
+msgstr "Siteden iade"
+
+msgid "Shown on a checkout page built with the Checkout block. The classic checkout ([woocommerce_checkout]) shows every method."
+msgstr "Ödeme bloğuyla kurulmuş ödeme sayfasında görünür. Klasik ödeme sayfası ([woocommerce_checkout]) her yöntemi gösterir."
+
+msgid "Pays an existing order from its payment link (call center, \"pay again\"), without a cart."
+msgstr "Var olan bir siparişi ödeme linkinden sepetsiz öder (çağrı merkezi, \"yeniden öde\")."
+
+msgid "Works on our checkout that asks no address: Flux Donate fills the organisation's city and address in."
+msgstr "Adres sormayan ödeme sayfamızda çalışır: şehir ve adresi Flux Donate kurum adresiyle doldurur."
+
+msgid "The payment is confirmed with the provider from the server before the order is marked paid."
+msgstr "Sipariş ödendi sayılmadan önce ödeme, sunucudan sağlayıcıya sorularak doğrulanır."
+
+msgid "The donor can pay in installments."
+msgstr "Bağışçı taksitle ödeyebilir."
+
+msgid "The donor can save a card for the next donation."
+msgstr "Bağışçı kartını sonraki bağış için saklayabilir."
+
+msgid "The Refund button on the order sends the refund to the provider."
+msgstr "Siparişteki İade düğmesi iadeyi sağlayıcıya gönderir."
+
+msgid "Monthly donations charge a stored card every month. Only Flux Donate iyzico does this."
+msgstr "Aylık bağış her ay saklanan karttan çekilir. Bunu yalnız Flux Donate iyzico yapar."
+
+msgid "Added by Flux Donate (the plugin has no block support)."
+msgstr "Flux Donate ekliyor (eklentinin blok desteği yok)."
+
+msgid "Added by Flux Donate once the method is enabled."
+msgstr "Yöntem etkinleşince Flux Donate ekler."
+
+msgid "Turn on \"Show other payment plugins on the checkout block\"."
+msgstr "\"Diğer ödeme eklentilerini blok ödeme sayfasında göster\" ayarını açın."
+
+msgid "The plugin shows its own card fields only on the classic checkout. Use the classic checkout page or ask the provider for block support."
+msgstr "Eklenti kendi kart alanlarını yalnız klasik ödeme sayfasında gösterir. Klasik ödeme sayfası kullanın ya da sağlayıcıdan blok desteği isteyin."
+
+msgid "Most plugins work; try a payment link once."
+msgstr "Çoğu eklentide çalışır; bir kez ödeme linkiyle deneyin."
+
+msgid "Depends on the plugin; ask the provider."
+msgstr "Eklentiye bağlı; sağlayıcıya sorun."
+
+msgid "If the provider offers it, on its payment page."
+msgstr "Sağlayıcı sunuyorsa kendi ödeme sayfasında."
+
+msgid "Refund in the provider's panel, then mark the order refunded."
+msgstr "İadeyi sağlayıcının panelinden yapın, sonra siparişi iade edildi olarak işaretleyin."
+
+msgid "Confirmed by hand after the receipt."
+msgstr "Dekonttan sonra elle onaylanır."
+
+msgid "not shown on the block checkout page"
+msgstr "blok ödeme sayfasında görünmüyor"
+
+msgid "Yes, by Flux Donate"
+msgstr "Evet, Flux Donate ile"
+
+msgid "On the provider's page"
+msgstr "Sağlayıcının sayfasında"
+
+msgid "Unknown"
+msgstr "Bilinmiyor"
+
+msgid "Payment methods"
+msgstr "Ödeme yöntemleri"
+
+msgid "Every WooCommerce payment plugin (virtual POS) works on the donation checkout: install it, enter its settings in WooCommerce › Settings › Payments and enable it. This table shows what each one can do here."
+msgstr "WooCommerce'e uyumlu her ödeme eklentisi (sanal POS) bağış ödeme sayfasında çalışır: kurun, ayarlarını WooCommerce › Ayarlar › Ödemeler'den girin ve etkinleştirin. Tablo her birinin burada neyi destekleyip neyi desteklemediğini gösterir."
+
+msgid "WooCommerce payments"
+msgstr "WooCommerce ödemeleri"
+
+msgid "Checkout page: %s."
+msgstr "Ödeme sayfası: %s."
+
+msgid "Checkout block"
+msgstr "Ödeme bloğu"
+
+msgid "classic"
+msgstr "klasik"
+
+msgid "Method"
+msgstr "Yöntem"
+
+msgid "On"
+msgstr "Açık"
+
+msgid "Off"
+msgstr "Kapalı"
+
+msgid "yes"
+msgstr "evet"
+
+msgid "on the provider's page"
+msgstr "sağlayıcının sayfasında"
+
+msgid "no"
+msgstr "hayır"
+
+msgid "unknown, test it"
+msgstr "bilinmiyor, deneyin"
+
+msgid "Point at a mark for details."
+msgstr "Ayrıntı için işaretin üzerine gelin."
+
+msgid "Flux Donate always uses EsnekPOS's secure payment page; the bank asks for 3D Secure there when needed."
+msgstr "Flux Donate her zaman EsnekPOS'un güvenli ödeme sayfasını kullanır; gerekirse banka 3D Secure'u orada sorar."
+
+msgid "Flux Donate"
+msgstr "Flux Donate"
+
+msgid "Flux Donate runs this payment method: classic and block checkout, payment links without a cart, and every payment is confirmed with EsnekPOS from the server before the order is marked paid. For a test, enter merchant TEST1234 and the test merchant key from EsnekPOS's developer page."
+msgstr "Bu ödeme yöntemini Flux Donate çalıştırır: klasik ve blok ödeme sayfası, sepetsiz ödeme linkleri; her ödeme, sipariş ödendi sayılmadan önce sunucudan EsnekPOS'a sorularak doğrulanır. Test için merchant TEST1234 ve EsnekPOS geliştirici sayfasındaki test anahtarını girin."
+
+msgid "Donation #%d"
+msgstr "Bağış #%d"
+
+msgid "EsnekPOS did not answer (HTTP %d)."
+msgstr "EsnekPOS yanıt vermedi (HTTP %d)."
+
+msgid "EsnekPOS payment could not start: %s"
+msgstr "EsnekPOS ödemesi başlatılamadı: %s"
+
+msgid "EsnekPOS payment could not start: %1$s (%2$s)."
+msgstr "EsnekPOS ödemesi başlatılamadı: %1$s (%2$s)."
+
+msgid "The payment is being checked. Please wait a moment and refresh the page."
+msgstr "Ödeme kontrol ediliyor. Lütfen biraz bekleyip sayfayı yenileyin."
+
+msgid "EsnekPOS payment could not be checked: %s"
+msgstr "EsnekPOS ödemesi kontrol edilemedi: %s"
+
+msgid "The payment could not be verified yet. If money was taken from your card, please contact us before trying again."
+msgstr "Ödeme henüz doğrulanamadı. Kartınızdan para çekildiyse tekrar denemeden önce lütfen bizimle iletişime geçin."
+
+msgid "EsnekPOS payment received: reference %1$s, %2$s installment(s), %3$s charged."
+msgstr "EsnekPOS ödemesi alındı: referans %1$s, %2$s taksit, çekilen %3$s."
+
+msgid "EsnekPOS reported a payment (%s) that does not match this order (amount or reference). Check it in the EsnekPOS panel before doing anything."
+msgstr "EsnekPOS bu siparişle eşleşmeyen (tutar ya da referans) bir ödeme bildirdi (%s). İşlem yapmadan önce EsnekPOS panelinden kontrol edin."
+
+msgid "EsnekPOS return said success but EsnekPOS did not confirm the payment: %s"
+msgstr "EsnekPOS dönüşü başarılı dedi ama EsnekPOS ödemeyi doğrulamadı: %s"
+
+msgid "EsnekPOS: the payment was not completed (%s)."
+msgstr "EsnekPOS: ödeme tamamlanmadı (%s)."
+
+msgid "Test mode (merchant TEST1234)."
+msgstr "Test modu (merchant TEST1234)."
+
+msgid "Flux Donate sends the order lines, no cart needed."
+msgstr "Flux Donate sipariş satırlarını gönderir, sepet gerekmez."
+
+msgid "Flux Donate asks EsnekPOS (ProcessQuery) before the order is marked paid."
+msgstr "Sipariş ödendi sayılmadan önce Flux Donate EsnekPOS'a sorar (ProcessQuery)."
+
+msgid "On EsnekPOS's payment page, as set in the EsnekPOS panel."
+msgstr "EsnekPOS ödeme sayfasında, EsnekPOS panelindeki ayara göre."
+
+msgid "Refund in the EsnekPOS panel, then mark the order refunded."
+msgstr "İadeyi EsnekPOS panelinden yapın, sonra siparişi iade edildi olarak işaretleyin."
+
+msgid "Show other payment plugins on the checkout block"
+msgstr "Diğer ödeme eklentilerini blok ödeme sayfasında göster"
+
+msgid "Virtual POS plugins that take the card on their own page but have no checkout block support (for example EsnekPOS) are added to the Checkout block. Plugins with their own card fields need the classic checkout."
+msgstr "Kartı kendi sayfasında alan ama blok desteği olmayan sanal POS eklentileri (ör. EsnekPOS) ödeme bloğuna eklenir. Kendi kart alanları olan eklentiler klasik ödeme sayfası ister."
+
+msgid "Other payment plugins"
+msgstr "Diğer ödeme eklentileri"
+
+msgid "Check these on the donation checkout: %s. Details: Donations › Settings › WooCommerce › Payment methods."
+msgstr "Bağış ödeme sayfasında şunları kontrol edin: %s. Ayrıntı: Bağışlar › Ayarlar › WooCommerce › Ödeme yöntemleri."
+
+msgid "Enabled and shown on the donation checkout: %s."
+msgstr "Etkin ve bağış ödeme sayfasında görünüyor: %s."
+
+msgid "Card payments are taken by: %s."
+msgstr "Kart ödemelerini alan: %s."
+
+msgid "Card payments: %s."
+msgstr "Kart ödemeleri: %s."
+
+msgid "Only one card method is shown to donors. Change it under Cart and checkout › Card payment method."
+msgstr "Bağışçılara tek kart yöntemi gösterilir. Sepet ve ödeme › Kart ödeme yöntemi'nden değiştirin."
+
+msgid "Hidden at checkout"
+msgstr "Ödeme sayfasında gizli"
+
+msgid "Card payment method"
+msgstr "Kart ödeme yöntemi"
+
+msgid "Automatic: another virtual POS if one is enabled (e.g. EsnekPOS), otherwise iyzico"
+msgstr "Otomatik: başka bir sanal POS etkinse o (ör. EsnekPOS), yoksa iyzico"
+
+msgid "iyzico"
+msgstr "iyzico"
+
+msgid "Show every enabled card method"
+msgstr "Etkin tüm kart yöntemlerini göster"
+
+msgid "Donors see one card method; now: %s. Monthly donations always use Flux Donate iyzico (it stores the card). Bank transfer is always shown."
+msgstr "Bağışçı tek kart yöntemi görür; şu an: %s. Aylık bağışlar her zaman Flux Donate iyzico ile alınır (kartı o saklar). Havale her zaman görünür."
+
+msgid "all"
+msgstr "hepsi"
+
+msgid "One-time card payments are taken by %s; iyzico is not shown at the checkout."
+msgstr "Tek seferlik kart ödemelerini %s alır; iyzico ödeme sayfasında gösterilmez."
+
+msgid "Payment logos on the site"
+msgstr "Sitedeki ödeme logoları"

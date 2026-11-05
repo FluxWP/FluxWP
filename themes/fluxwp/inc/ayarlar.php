@@ -328,6 +328,7 @@ function flx_ayar_page() {
 				<tr><th scope="row"><label for="flx-bh">Alıcı adı</label></th><td><input id="flx-bh" class="large-text" name="<?php echo esc_attr( $n ); ?>[bank_holder]" value="<?php echo esc_attr( $o['bank_holder'] ); ?>"></td></tr>
 				<tr><th scope="row"><label for="flx-bi">TL IBAN</label></th><td><input id="flx-bi" class="regular-text code" name="<?php echo esc_attr( $n ); ?>[bank_iban]" value="<?php echo esc_attr( flx_iban_bicim( $o['bank_iban'] ) ); ?>"></td></tr>
 			</table>
+			<?php flx_pay_logos_admin(); ?>
 			<?php submit_button( __( 'Ayarları kaydet', 'fluxwp' ) ); ?>
 		</form>
 		<?php flx_tasi_box(); ?>

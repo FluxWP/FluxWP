@@ -137,7 +137,7 @@ final class FLXB_WC {
 			return;
 		}
 		$dir = FLXB_DIR . 'includes/wc/';
-		foreach ( array( 'products', 'cart', 'form', 'havale', 'iyzico', 'iyzico-card', 'receipts', 'certificates', 'notify', 'account', 'ledger', 'recurring', 'feed', 'callcenter', 'flxform', 'admin', 'checks', 'addresses', 'contact', 'designs', 'terms' ) as $f ) {
+		foreach ( array( 'products', 'cart', 'form', 'havale', 'iyzico', 'iyzico-card', 'receipts', 'certificates', 'notify', 'account', 'ledger', 'recurring', 'feed', 'callcenter', 'flxform', 'admin', 'checks', 'addresses', 'contact', 'designs', 'terms', 'gateways', 'esnekpos' ) as $f ) {
 			require_once $dir . 'class-flxb-wc-' . $f . '.php';
 		}
 		if ( ! defined( 'FLXWB_VERSION' ) ) {
@@ -164,6 +164,8 @@ final class FLXB_WC {
 		FLXB_WC_Contact::init();
 		FLXB_WC_Designs::init();
 		FLXB_WC_Terms::init();
+		FLXB_WC_Gateways::init();
+		FLXB_WC_Esnekpos::init();
 		define( 'FLXB_WC_READY', true );
 		do_action( 'flxb_wc_loaded' );
 	}
@@ -208,6 +210,8 @@ final class FLXB_WC {
 			'card_ui'         => 'fields', // 2.1.0: fields (our card fields) | form (iyzico payment page) | official (official iyzico plugin for one-time).
 			'card_installments' => 12,   // 2.1.0: most installments offered with our card fields (1 = single payment only).
 			'support_wa'      => '', // 2.0.4: shown on the checkout and the transfer panel; empty = hidden.
+			'card_method'     => 'auto', // 2.13.0: auto (a third-party POS if enabled, else iyzico) | iyzico | <gateway id> | all.
+			'block_fallback'  => 1,  // 2.13.0: payment plugins without checkout block support are added to the block (FLXB_WC_Gateways).
 		);
 	}
 

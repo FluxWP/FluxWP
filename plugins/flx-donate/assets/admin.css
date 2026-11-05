@@ -636,3 +636,23 @@ html.flxa-dark .flxb { --flxb-mint: var(--flxa-accent-soft); --flxb-dark: var(--
 .flxb--crm .flxb-crm-consent .flxb-formactions { margin: 0; }
 .flxb--crm .flxb-crm-subs .flxb-tablewrap { margin: 0 -4px; }
 .flxb--crm .flxcrm-hero__actions .flxb-ico { vertical-align: -3px; }
+
+/* 2.13.0: payment methods (virtual POS) table */
+.flxb-gw { margin-bottom: 18px; }
+.flxb-gw__table td { text-align: center; }
+.flxb-gw__table thead th:not(:first-child) { text-align: center; cursor: help; }
+.flxb-gw__table tbody th { font-weight: 700; white-space: nowrap; }
+.flxb-gw__table tbody th small { font-weight: 500; color: var(--flxb-muted); white-space: normal; }
+.flxb-gw__table tr.is-off > * { opacity: .62; }
+.flxb-gwcap { min-width: 26px; justify-content: center; cursor: help; }
+.flxb-gw__legend { margin-top: 26px; }
+.flxb-gw__legend .flxb-gwcap { cursor: default; }
+@media (max-width: 782px) {
+	.flxb-gw__table thead { display: none; }
+	.flxb-gw__table, .flxb-gw__table tbody, .flxb-gw__table tr { display: block; }
+	.flxb-gw__table tr { padding: 10px 16px; border-top: 1px solid var(--flxb-line); }
+	.flxb-gw__table tbody th { display: block; border: 0; padding: 4px 0 8px !important; white-space: normal; }
+	.flxb-gw__table td { display: inline-flex; align-items: center; gap: 6px; border: 0; padding: 3px 10px 3px 0 !important; font-size: 12px; text-align: left; }
+	.flxb-gw__table td::before { content: attr(data-label); color: var(--flxb-muted); }
+}
+.flxb-gw__links { display: flex; flex-wrap: wrap; gap: 8px; }
