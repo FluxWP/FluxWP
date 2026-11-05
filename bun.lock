@@ -31,7 +31,7 @@
     },
     "apps/mobile": {
       "name": "@fluxwp/mobile",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "dependencies": {
         "@expo/ui": "~58.0.27",
         "@fluxwp/core": "workspace:*",

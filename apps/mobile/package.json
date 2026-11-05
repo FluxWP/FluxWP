@@ -1,11 +1,12 @@
 {
   "name": "@fluxwp/mobile",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "FluxWP mobile app (iOS + Android, Expo). Multi-site WordPress admin on top of Flux App.",
   "main": "index.ts",
   "scripts": {
     "postinstall": "node scripts/brand.cjs",
+    "eas-build-pre-install": "cd ../.. && bun tools/fluxapp/brand.mjs && node apps/mobile/scripts/brand.cjs",
     "brand": "node scripts/brand.cjs",
     "start": "expo start",
     "android": "expo start --android",

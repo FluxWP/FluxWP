@@ -1,0 +1,38 @@
+{
+  "cli": {
+    "version": ">= 16.0.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": { "FLUX_BRAND": "flux" },
+      "channel": "development"
+    },
+    "preview": {
+      "distribution": "internal",
+      "env": { "FLUX_BRAND": "flux" },
+      "channel": "preview"
+    },
+    "production": {
+      "autoIncrement": true,
+      "env": { "FLUX_BRAND": "flux" },
+      "channel": "production"
+    },
+    "preview-example": {
+      "extends": "preview",
+      "distribution": "internal",
+      "env": { "FLUX_BRAND": "example" },
+      "channel": "preview-example"
+    },
+    "prod-example": {
+      "extends": "production",
+      "env": { "FLUX_BRAND": "example" },
+      "channel": "production-example"
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

@@ -2,10 +2,10 @@ name: FluxWP Mobile CI
 # apps/mobile (Expo) + the shared packages it uses. Shared package changes also run fluxapp-ci (desktop).
 on:
   pull_request:
-    paths: ['apps/mobile/**', 'packages/**', 'brands/**', 'package.json', 'bun.lock', 'bunfig.toml', '.easignore', '.github/workflows/mobile-*.yml']
+    paths: ['apps/mobile/**', 'packages/**', 'brands/**', 'tools/fluxapp/**', 'package.json', 'bun.lock', 'bunfig.toml', '.easignore', '.github/workflows/mobile-*.yml']
   push:
     branches: [main]
-    paths: ['apps/mobile/**', 'packages/**', 'brands/**', 'package.json', 'bun.lock', 'bunfig.toml', '.easignore', '.github/workflows/mobile-*.yml']
+    paths: ['apps/mobile/**', 'packages/**', 'brands/**', 'tools/fluxapp/**', 'package.json', 'bun.lock', 'bunfig.toml', '.easignore', '.github/workflows/mobile-*.yml']
 permissions:
   contents: read
 concurrency:
@@ -21,6 +21,8 @@ jobs:
       - uses: actions/setup-node@v5
         with: { node-version: 22 }
       - run: bun install --frozen-lockfile
+      - name: Brand pipeline
+        run: bun test tools/fluxapp/brand.test.ts
       - name: Shared packages (typecheck + tests)
         run: bunx turbo run typecheck test --filter=@fluxwp/core --filter=@fluxwp/tokens --filter=@fluxwp/manifest --filter=@fluxwp/runtime
       - name: JSON Schemas are current
