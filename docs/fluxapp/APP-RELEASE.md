@@ -61,3 +61,5 @@ Yerelde `node --test tools/release/*.test.mjs`, mobil/shared typecheck ve mevcut
 API doğrulaması ve derlemeler için [Fastlane belgeleri](https://docs.fastlane.tools/), [App Store Connect yardımı](https://developer.apple.com/help/app-store-connect/) ve [Google Play Console yardımı](https://support.google.com/googleplay/android-developer/) esas alınır.
 
 Android hesabı doğrulanmayı beklerken `aab` hedefiyle imzalı Play paketini hazırlayabilirsiniz. Bu hedef mağazaya yükleme yapmaz ve Google Play erişim anahtarı istemez; oluşturulan `.aab` ve SHA-256 dosyası çalışma çıktısından indirilir.
+
+Tamamlanmış yerel çekimleri yeniden paketlemek için **App store assets** içindeki `capture_run_id` alanına başarılı çekim çalışmasının numarasını girin. Bu seçenek cihazları yeniden başlatmaz. Her görselin özeti, cihaz/dil paketi ve yerel uygulama girdilerinin özeti tekrar kontrol edilir; uygulama kodu, bağımlılıklar veya marka değişmişse eski çekimler kullanılamaz.
