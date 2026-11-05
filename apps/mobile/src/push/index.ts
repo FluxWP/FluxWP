@@ -26,11 +26,12 @@ Notifications.setNotificationHandler({
 
 async function ensurePushToken(): Promise<string | undefined> {
   if (Platform.OS === 'web' || !Device.isDevice) return undefined;
+  const projectId = Constants.expoConfig?.extra?.eas?.projectId ?? Constants.easConfig?.projectId;
+  // Do not request notification permission when there is no configured delivery backend.
+  if (!projectId) return undefined;
   const current = await Notifications.getPermissionsAsync();
   const status = current.granted || current.status === 'granted' ? current.status : (await Notifications.requestPermissionsAsync()).status;
   if (status !== 'granted') return undefined;
-  const projectId = Constants.expoConfig?.extra?.eas?.projectId ?? Constants.easConfig?.projectId;
-  if (!projectId) return undefined;
   try {
     return (await Notifications.getExpoPushTokenAsync({ projectId })).data;
   } catch {

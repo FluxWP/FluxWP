@@ -1,0 +1,17 @@
+FluxWP is a mobile administration app that connects to your WordPress sites.
+
+YOUR SITES AND ACCOUNTS, TOGETHER
+Add multiple sites and accounts. Switch from the top bar while keeping each account’s permissions and installed modules separate.
+
+CONTENT AND MEDIA
+Browse posts, open content screens and access your media library. Use supported FluxWP modules through mobile screens; other administration pages open in a signed-in web view.
+
+NAVIGATION THAT FITS YOUR SITE
+Tabs, menus and module screens come from your site’s configuration. Both light and dark themes are supported.
+
+TRY THE DEMO
+The built-in demo account lets you explore sample data before connecting your own site.
+
+Full integration requires Flux App and the relevant FluxWP plugins on your site. Limited connections through WordPress Application Passwords are also supported on compatible sites. Available features depend on your site’s setup and your account’s permissions.
+
+FluxWP is an independent project and is not provided by WordPress or Automattic.

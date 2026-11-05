@@ -2,10 +2,10 @@ name: FluxWP Mobile CI
 # apps/mobile (Expo) + the shared packages it uses. Shared package changes also run fluxapp-ci (desktop).
 on:
   pull_request:
-    paths: ['apps/mobile/**', 'packages/**', 'brands/**', 'tools/fluxapp/**', 'package.json', 'bun.lock', 'bunfig.toml', '.easignore', '.github/workflows/mobile-*.yml']
+    paths: ['apps/mobile/**', 'packages/**', 'brands/**', 'tools/fluxapp/**', 'tools/release/**', 'package.json', 'bun.lock', 'bunfig.toml', '.easignore', '.github/workflows/mobile-*.yml', '.github/workflows/app-distribution.yml']
   push:
     branches: [main]
-    paths: ['apps/mobile/**', 'packages/**', 'brands/**', 'tools/fluxapp/**', 'package.json', 'bun.lock', 'bunfig.toml', '.easignore', '.github/workflows/mobile-*.yml']
+    paths: ['apps/mobile/**', 'packages/**', 'brands/**', 'tools/fluxapp/**', 'tools/release/**', 'package.json', 'bun.lock', 'bunfig.toml', '.easignore', '.github/workflows/mobile-*.yml', '.github/workflows/app-distribution.yml']
 permissions:
   contents: read
 concurrency:
@@ -21,6 +21,8 @@ jobs:
       - uses: actions/setup-node@v5
         with: { node-version: 22 }
       - run: bun install --frozen-lockfile
+      - name: Release input and credential safety tests
+        run: node --test tools/release/*.test.mjs
       - name: Brand pipeline
         run: bun test tools/fluxapp/brand.test.ts
       - name: Shared packages (typecheck + tests)

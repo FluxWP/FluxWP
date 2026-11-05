@@ -24,3 +24,9 @@ apps/mobile/dist-*/
 apps/mobile/ios/
 apps/mobile/android/
 apps/mobile/expo-env.d.ts
+# Release builds and local Ruby dependencies are never source artifacts.
+release-out/
+tools/release/.bundle/
+tools/release/vendor/
+tools/release/fastlane/report.xml
+tools/release/fastlane/README.md

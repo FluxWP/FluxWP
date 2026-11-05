@@ -1,0 +1,128 @@
+require 'json'
+require 'open3'
+require 'securerandom'
+require 'fileutils'
+require 'plist'
+require 'time'
+
+ROOT = File.expand_path('../../..', __dir__)
+MOBILE = File.join(ROOT, 'apps/mobile')
+STORE = File.join(ROOT, 'tools/release/store')
+
+def required(name)
+  value = ENV[name]
+  UI.user_error!("Missing #{name}") if value.to_s.empty?
+  value
+end
+
+def brand_config
+  slug = ENV.fetch('FLUX_BRAND', 'flux')
+  UI.user_error!('Invalid brand') unless slug.match?(/\A[a-z0-9]+(?:-[a-z0-9]+)*\z/)
+  JSON.parse(File.read(File.join(ROOT, 'brands', slug, 'brand.json')))
+end
+
+def asc_api_key
+  app_store_connect_api_key(
+    key_id: required('APPLE_API_KEY'), issuer_id: required('APPLE_API_ISSUER'),
+    key_filepath: required('ASC_KEY_FILE'), in_house: false
+  )
+end
+
+def release_notes
+  File.read(File.join(STORE, 'release-notes.txt')).strip
+end
+
+platform :ios do
+  desc 'Build a signed IPA, upload to internal TestFlight, or submit an existing build with metadata for review'
+  lane :release do
+    target = required('RELEASE_DESTINATION')
+    UI.user_error!('Invalid iOS release destination') unless %w[ipa testflight app-store].include?(target)
+    brand = brand_config
+    identifier = brand.dig('ios', 'bundleIdentifier') || brand.fetch('bundleId')
+    version = ENV['FLUX_APP_VERSION'].to_s.empty? ? JSON.parse(File.read(File.join(MOBILE, 'package.json'))).fetch('version') : ENV['FLUX_APP_VERSION']
+    api = asc_api_key
+    if target == 'app-store'
+      UI.user_error!('Store metadata is configured only for the flux brand') unless brand.fetch('slug') == 'flux'
+      build_number = required('FLUX_BUILD_NUMBER')
+      screenshots = required('IOS_SCREENSHOTS_PATH')
+      UI.user_error!('Real native iPhone/iPad screenshots are required') if Dir.glob(File.join(screenshots, '**/*.png')).empty?
+      UI.user_error!('Store disclosures have not been reviewed') unless ENV['STORE_DISCLOSURES_REVIEWED'] == 'true'
+      upload_to_app_store(
+        api_key: api, app_identifier: identifier, app_version: version, build_number: build_number,
+        skip_binary_upload: true, metadata_path: File.join(STORE, 'ios'), screenshots_path: screenshots,
+        submit_for_review: true, automatic_release: ENV['RELEASE_ON_APPROVAL'] == 'true',
+        force: true, precheck_include_in_app_purchases: false,
+        submission_information: { export_compliance_uses_encryption: false, add_id_info_uses_idfa: false }
+      )
+      FileUtils.mkdir_p(File.join(ROOT, 'release-out/ios'))
+      File.write(File.join(ROOT, 'release-out/ios/release.json'), JSON.pretty_generate({bundle_id: identifier, version: version, build_number: build_number, destination: target, commit: ENV['GITHUB_SHA']}))
+      next
+    end
+    profile_xml, status = Open3.capture2('security', 'cms', '-D', '-i', required('IOS_PROFILE_PATH'))
+    UI.user_error!('Cannot decode provisioning profile') unless status.success?
+    profile = Plist.parse_xml(profile_xml)
+    team = required('APPLE_TEAM_ID')
+    UI.user_error!('Provisioning profile belongs to another team or app') unless profile.dig('Entitlements', 'application-identifier') == "#{team}.#{identifier}"
+    UI.user_error!('Expired provisioning profile') unless Time.parse(profile.fetch('ExpirationDate').to_s) > Time.now
+    UI.user_error!('A development/ad-hoc profile cannot be used for App Store builds') if profile.dig('Entitlements', 'get-task-allow') || profile.key?('ProvisionedDevices')
+    UI.user_error!('Profile lacks production push entitlement') unless profile.dig('Entitlements', 'aps-environment') == 'production'
+    workspace = Dir.glob(File.join(MOBILE, 'ios/*.xcworkspace')).first
+    project = Dir.glob(File.join(MOBILE, 'ios/*.xcodeproj')).first
+    UI.user_error!('Run Expo prebuild and pod install before release') unless workspace && project
+    native = Xcodeproj::Project.open(project)
+    app_target = native.targets.find { |t| t.product_type == 'com.apple.product-type.application' }
+    UI.user_error!('Cannot find the generated iOS application target') unless app_target
+    scheme = app_target.name
+    latest = latest_testflight_build_number(api_key: api, app_identifier: identifier, version: version, initial_build_number: 0)
+    build_number = [latest.to_i + 1, ENV.fetch('FLUX_BUILD_NUMBER', '1').to_i].max
+    increment_build_number(build_number: build_number, xcodeproj: project)
+
+    keychain = "fluxwp-#{ENV.fetch('GITHUB_RUN_ID', Process.pid.to_s)}"
+    keychain_password = SecureRandom.hex(32)
+    begin
+      create_keychain(name: keychain, password: keychain_password, default_keychain: false, unlock: true, timeout: 7200, lock_when_sleeps: true)
+      import_certificate(certificate_path: required('IOS_CERTIFICATE_PATH'), certificate_password: required('IOS_DISTRIBUTION_CERTIFICATE_PASSWORD'), keychain_name: keychain, keychain_password: keychain_password)
+      install_provisioning_profile(path: required('IOS_PROFILE_PATH'))
+      update_code_signing_settings(
+        use_automatic_signing: false, path: project, targets: [scheme], build_configurations: ['Release'],
+        team_id: team, code_sign_identity: 'Apple Distribution', profile_name: profile.fetch('Name')
+      )
+      ipa = build_app(
+        workspace: workspace, scheme: scheme, configuration: 'Release', clean: true,
+        export_method: 'app-store', output_directory: File.join(ROOT, 'release-out/ios'),
+        output_name: "fluxwp-#{brand.fetch('slug')}-#{version}-#{build_number}.ipa",
+        export_options: { signingStyle: 'manual', teamID: team, provisioningProfiles: { identifier => profile.fetch('Name') } },
+        buildlog_path: File.join(ROOT, 'release-out/logs/ios')
+      )
+      if target != 'ipa'
+        upload_to_testflight(
+          api_key: api, app_identifier: identifier, ipa: ipa,
+          skip_waiting_for_build_processing: false, skip_submission: true,
+          distribute_external: false, changelog: release_notes
+        )
+      end
+      File.write(File.join(ROOT, 'release-out/ios/release.json'), JSON.pretty_generate({bundle_id: identifier, version: version, build_number: build_number, destination: target, commit: ENV['GITHUB_SHA']}))
+    ensure
+      delete_keychain(name: keychain)
+    end
+  end
+end
+
+platform :android do
+  desc 'Upload a signed AAB to the selected Google Play test or production track'
+  lane :publish do
+    brand = brand_config
+    track = required('RELEASE_DESTINATION')
+    UI.user_error!('Invalid Google Play track') unless %w[internal alpha beta production].include?(track)
+    UI.user_error!('Store metadata is configured only for the flux brand') unless brand.fetch('slug') == 'flux'
+    UI.user_error!('Invalid Google Play release status') unless %w[draft completed].include?(ENV.fetch('PLAY_RELEASE_STATUS', 'draft'))
+    aab = Dir.glob(File.join(MOBILE, 'android/app/build/outputs/bundle/release/*.aab')).first
+    UI.user_error!('No signed Android App Bundle was built') unless aab
+    upload_to_play_store(
+      package_name: brand.dig('android', 'package') || brand.dig('ios', 'bundleIdentifier') || brand.fetch('bundleId'),
+      json_key: required('GOOGLE_PLAY_JSON_PATH'), aab: aab, track: track,
+      release_status: ENV.fetch('PLAY_RELEASE_STATUS', 'draft'), metadata_path: File.join(STORE, 'android'),
+      skip_upload_screenshots: true, skip_upload_images: true
+    )
+  end
+end

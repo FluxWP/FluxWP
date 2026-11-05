@@ -1,0 +1,58 @@
+name: App store assets - native iPhone and iPad
+on:
+  workflow_dispatch:
+    inputs:
+      brand: { description: 'Brand in brands/<slug>', default: flux, required: true }
+permissions:
+  contents: read
+jobs:
+  screenshots:
+    runs-on: macos-latest
+    timeout-minutes: 100
+    env:
+      FLUX_BRAND: ${{ inputs.brand || 'flux' }}
+      RELEASE_PLATFORM: ios
+      RELEASE_DESTINATION: simulator
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: { node-version: 22 }
+      - run: node tools/release/config.mjs
+      - uses: oven-sh/setup-bun@v2
+        with: { bun-version: 1.4.4 }
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+          working-directory: tools/release
+      - uses: actions/setup-java@v5
+        with: { distribution: temurin, java-version: '17' }
+      - run: bun install --frozen-lockfile
+      - name: Generate native app
+        working-directory: apps/mobile
+        run: bunx expo prebuild --platform ios --no-install
+      - name: Install pods
+        working-directory: apps/mobile/ios
+        env:
+          BUNDLE_GEMFILE: ${{ github.workspace }}/tools/release/Gemfile
+        run: bundle exec pod install
+      - name: Build real native simulator app
+        run: node tools/release/ios-simulator.mjs
+      - name: Install native UI test tool
+        run: brew install mobile-dev-inc/tap/maestro
+      - name: Capture real iPhone and iPad screens
+        run: node tools/release/native-store-screenshots.mjs
+      - uses: actions/upload-artifact@v5
+        with:
+          name: appstore-screenshots
+          path: release-out/store-assets/
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v5
+        if: failure()
+        with:
+          name: native-screenshot-debug
+          path: |
+            ~/.maestro/tests/
+            release-out/logs/
+          retention-days: 7
