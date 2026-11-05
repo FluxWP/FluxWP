@@ -20,3 +20,7 @@ body.login { background: var(--bg); color: var(--text); font-family: "FLXA Figtr
 .login #login_error { border-left-color: #B42318; }
 .login .language-switcher { display: none; }
 .login input[type=checkbox] { background: var(--field); border-color: var(--border); }
+.login input[type=checkbox]:checked { background: var(--flxa-accent); border-color: var(--flxa-accent); }
+.login input[type=checkbox]:focus { border-color: var(--flxa-accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--flxa-accent) 35%, transparent); }
+.login .wp-tooltip .wp-tooltip__toggle { color: var(--muted); }
+.login .wp-tooltip .wp-tooltip__toggle:hover, .login .wp-tooltip .wp-tooltip__toggle:focus { color: var(--flxa-accent); }
