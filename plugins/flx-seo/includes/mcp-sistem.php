@@ -335,6 +335,10 @@ add_filter(
 			'same_as'       => 'Sosyal hesap adresleri (satır başına bir)',
 			'verify_google' => 'Google Search Console doğrulama kodu',
 			'verify_bing'   => 'Bing doğrulama kodu',
+			'verify_yandex' => 'Yandex doğrulama kodu',
+			'verify_naver'  => 'Naver doğrulama kodu',
+			'verify_seznam' => 'Seznam doğrulama kodu',
+			'verify_baidu'  => 'Baidu doğrulama kodu',
 		);
 		$fixes['seo.setting'] = array(
 			'label'       => 'Flux SEO kurum/doğrulama alanı',

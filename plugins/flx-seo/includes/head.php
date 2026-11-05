@@ -223,8 +223,15 @@ function flxseo_head() {
 		'google-site-verification' => flxseo_opt( 'verify_google' ),
 		'msvalidate.01'            => flxseo_opt( 'verify_bing' ),
 		'yandex-verification'      => flxseo_opt( 'verify_yandex' ),
+		'naver-site-verification'  => flxseo_opt( 'verify_naver' ),
+		'seznam-wmt'               => flxseo_opt( 'verify_seznam' ),
+		'baidu-site-verification'  => flxseo_opt( 'verify_baidu' ),
 	);
 	foreach ( $v as $name => $content ) {
+		// Kaydedilirken sanitize çalışmadıysa (ör. yönetim dışından yazıldıysa) tam etiketten content alınır.
+		if ( $content && preg_match( '/content=["\']([^"\']+)["\']/', $content, $m ) ) {
+			$content = $m[1];
+		}
 		if ( $content ) {
 			printf( '<meta name="%s" content="%s">' . "\n", esc_attr( $name ), esc_attr( $content ) );
 		}
