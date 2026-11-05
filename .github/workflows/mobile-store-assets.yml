@@ -3,10 +3,14 @@ on:
   workflow_dispatch:
     inputs:
       brand: { description: 'Brand in brands/<slug>', default: flux, required: true }
+      simulator_release:
+        description: Optional prepared native QA cache tag; empty builds from source
+        default: ''
 permissions:
   contents: read
 jobs:
-  screenshots:
+  build:
+    if: inputs.simulator_release == ''
     runs-on: macos-latest
     timeout-minutes: 100
     env:
@@ -25,8 +29,6 @@ jobs:
           ruby-version: '3.3'
           bundler-cache: true
           working-directory: tools/release
-      - uses: actions/setup-java@v5
-        with: { distribution: temurin, java-version: '17' }
       - run: bun install --frozen-lockfile
       - name: Generate native app
         working-directory: apps/mobile
@@ -38,21 +40,89 @@ jobs:
         run: bundle exec pod install
       - name: Build real native simulator app
         run: node tools/release/ios-simulator.mjs
+      - uses: actions/upload-artifact@v5
+        with:
+          name: native-ios-simulator
+          path: |
+            release-out/ios/*-simulator.zip
+            release-out/ios/native-build.json
+          if-no-files-found: error
+          retention-days: 7
+  capture:
+    needs: build
+    if: ${{ !cancelled() && (needs.build.result == 'success' || (needs.build.result == 'skipped' && inputs.simulator_release != '')) }}
+    runs-on: macos-latest
+    timeout-minutes: 40
+    permissions:
+      contents: write # Reading the optional private draft QA release requires repository push access.
+    strategy:
+      fail-fast: false
+      matrix:
+        locale: [tr-TR, en-US]
+        device: [iphone, ipad]
+    env:
+      FLUX_BRAND: ${{ inputs.brand || 'flux' }}
+      RELEASE_PLATFORM: ios
+      RELEASE_DESTINATION: simulator
+      SIMULATOR_RELEASE: ${{ inputs.simulator_release }}
+      SCREENSHOT_LOCALE: ${{ matrix.locale }}
+      SCREENSHOT_DEVICE: ${{ matrix.device }}
+      MAESTRO_DRIVER_STARTUP_TIMEOUT: '600000'
+    steps:
+      - uses: actions/checkout@v5
+        with: { persist-credentials: false }
+      - uses: actions/setup-node@v5
+        with: { node-version: 22 }
+      - run: node tools/release/config.mjs
+      - uses: actions/download-artifact@v5
+        if: inputs.simulator_release == ''
+        with:
+          name: native-ios-simulator
+          path: release-out/ios
+      - name: Verify and prepare native app
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node tools/release/prepare-simulator.mjs
+      - uses: actions/setup-java@v5
+        with: { distribution: temurin, java-version: '17' }
       - name: Install native UI test tool
         run: brew install mobile-dev-inc/tap/maestro
-      - name: Capture real iPhone and iPad screens
+      - name: Capture actual native app screens
         run: node tools/release/native-store-screenshots.mjs
+      - uses: actions/upload-artifact@v5
+        with:
+          name: native-screens-${{ matrix.device }}-${{ matrix.locale }}
+          path: release-out/store-assets/
+          if-no-files-found: error
+          retention-days: 7
+      - uses: actions/upload-artifact@v5
+        if: failure()
+        with:
+          name: native-debug-${{ matrix.device }}-${{ matrix.locale }}
+          path: |
+            ~/.maestro/tests/
+            release-out/store-assets/
+            release-out/logs/
+          include-hidden-files: true
+          retention-days: 7
+  bundle:
+    needs: capture
+    runs-on: ubuntu-latest
+    env:
+      FLUX_BRAND: ${{ inputs.brand || 'flux' }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: { node-version: 22 }
+      - uses: actions/download-artifact@v5
+        with:
+          pattern: native-screens-*
+          merge-multiple: true
+          path: release-out/store-assets
+      - run: node tools/release/merge-store-assets.mjs
       - uses: actions/upload-artifact@v5
         with:
           name: appstore-screenshots
           path: release-out/store-assets/
           if-no-files-found: error
           retention-days: 30
-      - uses: actions/upload-artifact@v5
-        if: failure()
-        with:
-          name: native-screenshot-debug
-          path: |
-            ~/.maestro/tests/
-            release-out/logs/
-          retention-days: 7
