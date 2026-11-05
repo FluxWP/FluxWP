@@ -655,3 +655,4 @@ html.flxa-dark .flxb { --flxb-mint: var(--flxa-accent-soft); --flxb-dark: var(--
 	.flxb-gw__table td { display: inline-flex; align-items: center; gap: 6px; border: 0; padding: 3px 10px 3px 0 !important; font-size: 12px; text-align: left; }
 	.flxb-gw__table td::before { content: attr(data-label); color: var(--flxb-muted); }
 }
+.flxb-gw__links { display: flex; flex-wrap: wrap; gap: 8px; }

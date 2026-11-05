@@ -66,7 +66,11 @@ class FLXB_WC_Checks {
 		}
 
 		/* Card payments. */
-		if ( $on( FLXB_WC_Iyzico::OFFICIAL ) && 'official' === FLXB_WC_Iyzico::ui() ) {
+		$cm = FLXB_WC_Gateways::card_method();
+		if ( ! in_array( $cm, array( 'iyzico', 'all' ), true ) ) {
+			/* translators: %s: payment method */
+			$card = array( 'ok', sprintf( __( 'One-time card payments are taken by %s; iyzico is not shown at the checkout.', 'flx-donate' ), FLXB_WC_Gateways::third_party_enabled()[ $cm ] ?? $cm ) );
+		} elseif ( $on( FLXB_WC_Iyzico::OFFICIAL ) && 'official' === FLXB_WC_Iyzico::ui() ) {
 			$card = array( 'ok', __( 'One-time card payments are taken by the official iyzico WooCommerce plugin.', 'flx-donate' ) );
 		} elseif ( $on( FLXB_WC_Iyzico::ID ) && FLXB_WC_Iyzico::configured() && FLXB_WC_Iyzico_Card::on() ) {
 			$card = array( 'ok', __( 'Card payments use our own card fields on the checkout (iyzico 3D Secure, installments, saved cards).', 'flx-donate' ) );

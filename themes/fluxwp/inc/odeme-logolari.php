@@ -172,7 +172,7 @@ function flx_pay_logos_admin() {
 		),
 	);
 	?>
-	<h2 class="title"><?php esc_html_e( 'Ödeme logoları', 'fluxwp' ); ?></h2>
+	<h2 class="title" id="flx-odeme-logolari"><?php esc_html_e( 'Ödeme logoları', 'fluxwp' ); ?></h2>
 	<p><?php esc_html_e( 'Sanal POS sağlayıcılarının (iyzico, EsnekPOS vb.) sitede görünmesini istediği logolar. Footer\'da gösterilir; başka bir yere [flx_odeme_logolari] kısa koduyla eklenir.', 'fluxwp' ); ?></p>
 	<table class="form-table" role="presentation">
 		<tr><th scope="row"><?php esc_html_e( 'Logolar', 'fluxwp' ); ?></th><td>

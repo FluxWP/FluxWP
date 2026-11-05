@@ -243,7 +243,8 @@ add_filter( 'flxb_gateway_caps', function ( $caps, $gateway ) { return $caps; },
 ```
 
 - EsnekPOS adaptörü (`FLXB_WC_Esnekpos`, gateway `esnekpospos`): başlatma order-pay sayfasında (`template_redirect`), dönüş `wc-api/flxb_esnekpos?order=&key=` (eski `?wc-api=WC_Gateway_Esnekpospos` de karşılanır, sipariş anahtarı verilmez). Ödendi sayılması için ProcessQuery `STATUS=SUCCESS`, `RETURN_CODE=0`, referans eşleşmesi, `AMOUNT >= toplam`, varsa `TRANSACTIONS` içinde `STATUS_ID=3`. Referans `<sipariş>-<zaman36>` (meta `_flxb_esnek_ref`), ödeme bilgisi meta `_flxb_esnekpos`. Filtreler: `flxb_esnekpos_base_url`, `flxb_esnekpos_request`, `flxb_esnekpos_amount`; aksiyon `flxb_wc_esnekpos_paid( $order, $query )`.
-- Tema logoları: `flx_pay_logos_builtin` filtresine adaptör logoları `gw-<id>` anahtarıyla eklenir (`default` = gateway etkin).
+- Tek kart yöntemi: ayar `card_method` (`auto` | `iyzico` | gateway id | `all`). `auto` = ilk etkin üçüncü taraf kart gateway'i, yoksa `iyzico`. `woocommerce_available_payment_gateways` (60) diğer kart yöntemlerini çıkarır; admin, aylık bağış bağlamı ve order-pay'de siparişin kendi yöntemi hariç. Yardımcılar `FLXB_WC_Gateways::card_method()`, `is_card( $gw )`, `hidden_by_card_method( $id )`.
+- Tema logoları: `flx_pay_logos_builtin` filtresine adaptör logoları `gw-<id>` anahtarıyla eklenir (`default` = gateway etkin ve seçili kart yöntemi; iyzico bandı yalnız kart yöntemi iyzico/hepsi iken varsayılan).
 
 ## Referans ve roller (2.2.0, Flux Roles)
 

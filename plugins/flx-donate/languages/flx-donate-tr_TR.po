@@ -5211,3 +5211,33 @@ msgstr "Kart ödemelerini alan: %s."
 
 msgid "Card payments: %s."
 msgstr "Kart ödemeleri: %s."
+
+msgid "Only one card method is shown to donors. Change it under Cart and checkout › Card payment method."
+msgstr "Bağışçılara tek kart yöntemi gösterilir. Sepet ve ödeme › Kart ödeme yöntemi'nden değiştirin."
+
+msgid "Hidden at checkout"
+msgstr "Ödeme sayfasında gizli"
+
+msgid "Card payment method"
+msgstr "Kart ödeme yöntemi"
+
+msgid "Automatic: another virtual POS if one is enabled (e.g. EsnekPOS), otherwise iyzico"
+msgstr "Otomatik: başka bir sanal POS etkinse o (ör. EsnekPOS), yoksa iyzico"
+
+msgid "iyzico"
+msgstr "iyzico"
+
+msgid "Show every enabled card method"
+msgstr "Etkin tüm kart yöntemlerini göster"
+
+msgid "Donors see one card method; now: %s. Monthly donations always use Flux Donate iyzico (it stores the card). Bank transfer is always shown."
+msgstr "Bağışçı tek kart yöntemi görür; şu an: %s. Aylık bağışlar her zaman Flux Donate iyzico ile alınır (kartı o saklar). Havale her zaman görünür."
+
+msgid "all"
+msgstr "hepsi"
+
+msgid "One-time card payments are taken by %s; iyzico is not shown at the checkout."
+msgstr "Tek seferlik kart ödemelerini %s alır; iyzico ödeme sayfasında gösterilmez."
+
+msgid "Payment logos on the site"
+msgstr "Sitedeki ödeme logoları"

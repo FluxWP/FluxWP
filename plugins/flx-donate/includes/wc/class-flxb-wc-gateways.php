@@ -20,6 +20,11 @@
  *
  *    A cap is array( state, note ): state yes | no | page (done on the provider's page) | flux
  *    (Flux Donate does it) | unknown.
+ *  - One card method (setting card_method, 2.13.0): when a third-party card POS is enabled (e.g.
+ *    EsnekPOS) it is the only card method for one-time donations; iyzico (ours and the official
+ *    plugin) and other card POSes are hidden, and the theme's iyzico logo band is no longer a
+ *    default logo. Monthly lines still use Flux Donate iyzico (card storage). card_method: auto |
+ *    iyzico | <gateway id> | all.
  *  - Block checkout: a gateway without its own blocks integration that takes the card on its own page
  *    (has_fields = false) is added to the checkout block by Flux Donate (setting block_fallback).
  *    One with its own card fields cannot be shown there; the table says so.
@@ -39,6 +44,65 @@ class FLXB_WC_Gateways {
 	public static function init() {
 		add_action( 'woocommerce_blocks_payment_method_type_registration', array( __CLASS__, 'blocks' ), 99 );
 		add_filter( 'flx_pay_logos_builtin', array( __CLASS__, 'pay_logos' ), 20 );
+		add_filter( 'woocommerce_available_payment_gateways', array( __CLASS__, 'one_card' ), 60 );
+	}
+
+	/** Card methods: iyzico (ours, official) and third-party POSes. */
+	private static function is_card( $id ) {
+		return in_array( $id, array( FLXB_WC_Iyzico::ID, FLXB_WC_Iyzico::OFFICIAL ), true ) || ( ! self::own( $id ) && ! self::offline( $id ) );
+	}
+
+	/**
+	 * The card method donors see: 'iyzico', a gateway id, or 'all' (every enabled card method).
+	 * Automatic: the first enabled third-party POS, else iyzico.
+	 */
+	public static function card_method() {
+		$set   = (string) FLXB_WC::setting( 'card_method' );
+		$third = self::third_party_enabled();
+		if ( 'all' === $set || 'iyzico' === $set ) {
+			return $set;
+		}
+		if ( '' !== $set && 'auto' !== $set && isset( $third[ $set ] ) ) {
+			return $set;
+		}
+		return $third ? (string) array_key_first( $third ) : 'iyzico';
+	}
+
+	/** One card method at the checkout (one-time donations). */
+	public static function one_card( $gateways ) {
+		if ( ! is_array( $gateways ) || ( is_admin() && ! wp_doing_ajax() ) || FLXB_WC_Iyzico::context_monthly() ) {
+			return $gateways;
+		}
+		$keep = self::card_method();
+		if ( 'all' === $keep ) {
+			return $gateways;
+		}
+		global $wp;
+		$own = '';
+		if ( ! empty( $wp->query_vars['order-pay'] ) ) {
+			$o   = wc_get_order( absint( $wp->query_vars['order-pay'] ) );
+			$own = $o ? (string) $o->get_payment_method() : ''; // an existing order keeps its own method
+		}
+		foreach ( array_keys( $gateways ) as $id ) {
+			if ( ! self::is_card( $id ) || $id === $own ) {
+				continue;
+			}
+			$iyz = in_array( $id, array( FLXB_WC_Iyzico::ID, FLXB_WC_Iyzico::OFFICIAL ), true );
+			if ( 'iyzico' === $keep ? ! $iyz : $id !== $keep ) {
+				unset( $gateways[ $id ] );
+			}
+		}
+		return $gateways;
+	}
+
+	/** Is an enabled card method hidden at the checkout by the one-card rule? */
+	public static function hidden_by_card_method( $id ) {
+		$keep = self::card_method();
+		if ( 'all' === $keep || ! self::is_card( $id ) ) {
+			return false;
+		}
+		$iyz = in_array( $id, array( FLXB_WC_Iyzico::ID, FLXB_WC_Iyzico::OFFICIAL ), true );
+		return 'iyzico' === $keep ? ! $iyz : $id !== $keep;
 	}
 
 	/** Capability keys and their labels (table columns). */
@@ -235,6 +299,10 @@ class FLXB_WC_Gateways {
 	/** Footer payment logos: adapter logos (theme FluxWP, Tema Ayarları). */
 	public static function pay_logos( $list ) {
 		$gws = self::all();
+		$cm  = self::card_method();
+		if ( isset( $list['iyzico'] ) && ! in_array( $cm, array( 'iyzico', 'all' ), true ) ) {
+			$list['iyzico']['default'] = false; // another POS takes the cards: no iyzico band by default
+		}
 		foreach ( self::adapters() as $id => $a ) {
 			if ( ! isset( $gws[ $id ] ) || empty( $a['logo'] ) || isset( $list[ 'gw-' . $id ] ) ) {
 				continue;
@@ -242,7 +310,7 @@ class FLXB_WC_Gateways {
 			$list[ 'gw-' . $id ] = array(
 				'label'   => (string) ( $a['label'] ?? $gws[ $id ]->get_method_title() ),
 				'url'     => (string) $a['logo'],
-				'default' => 'yes' === $gws[ $id ]->enabled,
+				'default' => 'yes' === $gws[ $id ]->enabled && ( 'all' === $cm || $id === $cm ),
 				'chip'    => true,
 			);
 		}
@@ -272,7 +340,11 @@ class FLXB_WC_Gateways {
 		$bids   = self::block_ids();
 		$block  = self::block_checkout();
 		echo '<section class="flxb-card flxb-gw"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Payment methods', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( 'Every WooCommerce payment plugin (virtual POS) works on the donation checkout: install it, enter its settings in WooCommerce › Settings › Payments and enable it. This table shows what each one can do here.', 'flx-donate' ) . '</p></div>';
-		echo '<a class="flxb-btn flxb-btn--sm" href="' . esc_url( admin_url( 'admin.php?page=wc-settings&tab=checkout' ) ) . '">' . esc_html__( 'WooCommerce payments', 'flx-donate' ) . '</a></div>';
+		echo '<div class="flxb-gw__links"><a class="flxb-btn flxb-btn--sm" href="' . esc_url( admin_url( 'admin.php?page=wc-settings&tab=checkout' ) ) . '">' . esc_html__( 'WooCommerce payments', 'flx-donate' ) . '</a>';
+		if ( function_exists( 'flx_pay_logos_admin' ) ) {
+			echo ' <a class="flxb-btn flxb-btn--sm" href="' . esc_url( admin_url( 'themes.php?page=flx-ayarlar#flx-odeme-logolari' ) ) . '">' . esc_html__( 'Payment logos on the site', 'flx-donate' ) . '</a>';
+		}
+		echo '</div></div>';
 		/* translators: %s: classic or block */
 		echo '<p class="flxb-help">' . esc_html( sprintf( __( 'Checkout page: %s.', 'flx-donate' ), $block ? __( 'Checkout block', 'flx-donate' ) : __( 'classic', 'flx-donate' ) ) ) . '</p>';
 		echo '<div class="flxb-tablewrap"><table class="flxb-table flxb-gw__table"><thead><tr><th scope="col">' . esc_html__( 'Method', 'flx-donate' ) . '</th>';
@@ -285,6 +357,9 @@ class FLXB_WC_Gateways {
 			$on   = 'yes' === $gw->enabled;
 			$name = wp_strip_all_tags( (string) ( $gw->get_method_title() ? $gw->get_method_title() : $gw->get_title() ) );
 			echo '<tr class="' . ( $on ? '' : 'is-off' ) . '"><th scope="row"><a href="' . esc_url( admin_url( 'admin.php?page=wc-settings&tab=checkout&section=' . $id ) ) . '">' . esc_html( $name ) . '</a> <span class="flxb-pill flxb-pill--' . ( $on ? 'ok' : 'muted' ) . '">' . esc_html( $on ? __( 'On', 'flx-donate' ) : __( 'Off', 'flx-donate' ) ) . '</span>';
+			if ( $on && self::hidden_by_card_method( $id ) ) {
+				echo ' <span class="flxb-pill flxb-pill--pending" title="' . esc_attr__( 'Only one card method is shown to donors. Change it under Cart and checkout › Card payment method.', 'flx-donate' ) . '">' . esc_html__( 'Hidden at checkout', 'flx-donate' ) . '</span>';
+			}
 			$a = self::adapters()[ $id ] ?? null;
 			if ( is_array( $a ) && ! empty( $a['note'] ) ) {
 				echo '<br><small>' . esc_html( (string) $a['note'] ) . '</small>';

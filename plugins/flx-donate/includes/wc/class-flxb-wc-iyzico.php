@@ -148,7 +148,7 @@ class FLXB_WC_Iyzico {
 	}
 
 	/** Monthly lines in the cart, or in the order being paid (order-pay page). */
-	private static function context_monthly() {
+	public static function context_monthly() {
 		global $wp;
 		if ( isset( $wp->query_vars['order-pay'] ) && function_exists( 'is_checkout_pay_page' ) && is_checkout_pay_page() ) {
 			$o = wc_get_order( absint( $wp->query_vars['order-pay'] ) );
