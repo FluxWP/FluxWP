@@ -107,8 +107,9 @@ platform :ios do
       if target != 'ipa'
         upload_to_testflight(
           api_key: api, app_identifier: identifier, ipa: ipa,
-          skip_waiting_for_build_processing: false, skip_submission: true,
-          distribute_external: false, changelog: release_notes
+          skip_waiting_for_build_processing: false, skip_submission: false,
+          distribute_external: false, submit_beta_review: false,
+          groups: ["#{brand.fetch('name')} Internal"], changelog: release_notes
         )
       end
       File.write(File.join(ROOT, 'release-out/ios/release.json'), JSON.pretty_generate({bundle_id: identifier, version: version, build_number: build_number, destination: target, commit: ENV['GITHUB_SHA']}))
