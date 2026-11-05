@@ -45,13 +45,64 @@ export function fieldSchema(f: FormField): v.GenericSchema<unknown> {
 
 const plain = (x: unknown) => (x && typeof x === 'object' && 'raw' in (x as object) ? (x as { raw: unknown }).raw : x);
 
+/** Media and relation fields travel as `{ id, url?, label? }` in the form and as the id on submit. */
+export const RELATION_FIELDS = new Set<FormField['type']>(['image', 'file', 'user', 'post', 'term']);
+
+export interface RelationValue {
+  id: number;
+  url?: string;
+  label?: string;
+}
+
+export function relationValue(got: unknown): RelationValue | null {
+  if (got === undefined || got === null || got === '' || got === 0) return null;
+  if (typeof got === 'number' || (typeof got === 'string' && got !== '')) {
+    const id = Number(got);
+    return id ? { id } : null;
+  }
+  if (typeof got === 'object') {
+    const o = got as { id?: unknown; source_url?: string; url?: string; name?: string; rendered?: string };
+    const id = Number(o.id);
+    if (!id) return null;
+    const label = o.name || (typeof o.rendered === 'string' ? o.rendered : undefined);
+    return { id, url: o.source_url || o.url, label };
+  }
+  return null;
+}
+
+function fieldValue(f: FormField, got: unknown): unknown {
+  if (RELATION_FIELDS.has(f.type)) return relationValue(got);
+  if (got !== undefined && got !== null) return got;
+  if (f.default !== undefined) return f.default;
+  if (f.type === 'switch') return false;
+  if (f.type === 'multiselect' || f.type === 'tags') return [];
+  return '';
+}
+
 export function initialValues(fields: FormField[], loaded?: Values): Values {
   const out: Values = {};
   for (const f of fields) {
-    const got = loaded ? plain(getPath(loaded, f.name)) : undefined;
-    setPath(out, f.name, got ?? f.default ?? (f.type === 'switch' ? false : f.type === 'multiselect' || f.type === 'tags' ? [] : ''));
+    const got = loaded ? plain(getPath(loaded, f.load ?? f.name)) : undefined;
+    setPath(out, f.name, fieldValue(f, got));
   }
   return out;
+}
+
+/** Drops empty secrets and relations; image/user/term/post/file submit their id, not the preview object. */
+export function submitValues(fields: FormField[], vals: Values): Values {
+  const sendable: Values = {};
+  for (const f of fields) {
+    const x = getPath(vals, f.name);
+    if (f.type === 'readonly' || (f.type === 'secret' && !x)) continue;
+    if (RELATION_FIELDS.has(f.type)) {
+      const id = relationValue(x)?.id;
+      if (!id) continue;
+      setPath(sendable, f.name, id);
+      continue;
+    }
+    setPath(sendable, f.name, x);
+  }
+  return sendable;
 }
 
 export function useFormController(manifest: Manifest, screen: FormScreen, params: Record<string, string>) {
@@ -98,15 +149,8 @@ export function useFormController(manifest: Manifest, screen: FormScreen, params
       form.setError('root', { message: text(screen.validate.message) || renderer.t('form.invalid') });
       return;
     }
-    const sendable: Values = {};
-    for (const f of screen.fields) {
-      const x = getPath(vals, f.name);
-      // Secrets are write-only: an empty value keeps the stored one.
-      if (f.type === 'readonly' || (f.type === 'secret' && !x)) continue;
-      setPath(sendable, f.name, x);
-    }
     try {
-      await runRequest(api, formRequest(screen, sendable, base, config.transport?.method_override !== false));
+      await runRequest(api, formRequest(screen, submitValues(screen.fields, vals), base, config.transport?.method_override !== false));
       const after = screen.after;
       renderer.ui.haptic?.('success');
       renderer.ui.toast(text(after?.toast) || renderer.t('form.saved'), 'ok');

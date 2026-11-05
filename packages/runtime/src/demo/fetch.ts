@@ -30,11 +30,35 @@ const statusIn = (status: string, q: Q) => {
   return !want || want === 'all' || want.split(',').includes(status);
 };
 
+const ETAGS: Record<string, string> = { 'flxapp/v1/config': '"demo-config"', 'flxapp/v1/manifest': '"demo-manifest"' };
+
+let prefs: Record<string, unknown> = {
+  order: [], hidden: [], pinned: [], forceWeb: [], tabs: [], cardOrder: [], cardHidden: [],
+  push: { 'core.comment': true },
+  events: [{ id: 'core.comment', title: 'Yorum', source: 'core', default: true, on: true }],
+  updated: 1,
+};
+let devices: { id: number; device_id?: string; token?: string; current: boolean }[] = [];
+
 const routes: [string, RegExp, Handler][] = [
   ['GET', /^flxapp\/v1\/app\/bootstrap$/, () => bootstrap],
   ['GET', /^flxapp\/v1\/config$/, () => config],
   ['GET', /^flxapp\/v1\/manifest$/, () => manifest],
+  ['GET', /^flxapp\/v1\/prefs$/, () => prefs],
+  ['POST', /^flxapp\/v1\/prefs$/, (_m, _q, b) => (prefs = { ...prefs, ...b, updated: Number(prefs.updated ?? 0) + 1 })],
+  ['GET', /^flxapp\/v1\/devices$/, () => devices],
+  ['POST', /^flxapp\/v1\/devices$/, (_m, _q, b) => {
+    const row = { id: 7, current: true, token: typeof b.token === 'string' ? b.token : '', device_id: typeof b.device_id === 'string' ? b.device_id : '' };
+    devices = [row];
+    return row;
+  }],
+  ['DELETE', /^flxapp\/v1\/devices\/(\d+)$/, () => { devices = []; return { deleted: true }; }],
   ['POST', /^flxapp\/v1\/session$/, (_m, _q, b) => ({ url: `${DEMO_ORIGIN}/wp-admin/${String(b.path ?? 'index.php')}`, expires_in: 60 })],
+  ['POST', /^flxapp\/v1\/session\/end$/, () => ({ ok: true })],
+  ['GET', /^wp\/v2\/users$/, () => [{ id: 1, name: 'Demo Yönetici' }]],
+  ['GET', /^wp\/v2\/users\/(\d+)$/, (m) => ({ id: Number(m[1]), name: 'Demo Yönetici' })],
+  ['GET', /^wp\/v2\/categories$/, (_m, q) => [{ id: 1, name: 'Genel' }].filter((c) => !q.get('search') || c.name.toLocaleLowerCase('tr').includes(q.get('search')!.toLocaleLowerCase('tr')))],
+  ['POST', /^wp\/v2\/media$/, () => ({ id: 50, source_url: `${DEMO_ORIGIN}/wp-content/uploads/demo.jpg` })],
   // Flux CRM (fixture manifest "crm")
   ['GET', /^flx-crm\/v1\/meta$/, () => crm.meta],
   ['GET', /^flx-crm\/v1\/stats$/, () => crm.stats],
@@ -94,7 +118,9 @@ export const demoShellFetch: typeof fetch = async (input, init) => {
     const out = h(match, url.searchParams, body);
     if (out instanceof Response) return out;
     if (out === null || out === undefined) return new Response(JSON.stringify({ code: 'rest_not_found', message: path }), { status: 404 });
-    return json(out);
+    const etag = ETAGS[path];
+    if (etag && new Headers(init?.headers).get('if-none-match') === etag) return new Response(null, { status: 304, headers: { ETag: etag } });
+    return json(out, etag ? { ETag: etag } : {});
   }
   return demoFetch(input, init);
 };

@@ -6,16 +6,18 @@ import { CORE_MANIFEST, DEFAULT_CONFIG, mergeConfig, parseConfig, parseManifestB
 import config from '@fluxwp/manifest/fixtures/config.json';
 import bundle from '@fluxwp/manifest/fixtures/manifest.json';
 import { demoMe } from '../../core/src/demo/fixtures';
-import { loadBootstrap } from './api';
+import { loadBootstrap, loadConfig } from './api';
+import { registerDevice, deleteDevice } from './devices';
+import { applyUserPrefs, loadPrefs, parsePrefs, savePrefs } from './prefs';
 import { brandGate, siteAllowed } from './brand-gate';
 import { DEMO_SITE, demoShellFetch } from './demo/fetch';
-import { accountForPush, routePush } from './notify';
+import { accountForPush, pushDataOf, routePush } from './notify';
 import { resolveTarget, routeForAdminPath, type ResolveEnv } from './resolve';
 import { resolveShell } from './shell';
 import { actionRequest, formRequest, parsePage, sourceRequest } from './source';
 import { classifyNavigation, embedUserAgent, parseBridgeMessage } from './web-session';
 import { rowView } from './controllers/list';
-import { fieldSchema, initialValues } from './controllers/form';
+import { fieldSchema, initialValues, submitValues } from './controllers/form';
 import { appResources, textOf } from './i18n';
 import * as v from 'valibot';
 
@@ -114,6 +116,8 @@ describe('rows and forms', () => {
     expect(v.safeParse(fieldSchema({ name: 't', type: 'text', label: 'T', required: true }), ' ').success).toBe(true);
     expect(v.safeParse(fieldSchema({ name: 't', type: 'text', label: 'T', required: true }), '').issues?.[0]?.message).toBe('form.required');
     expect(initialValues([{ name: 'title', type: 'text', label: 'T' }, { name: 'consent.sms', type: 'switch', label: 'S' }], { title: { raw: 'Ham', rendered: '<b>Ham</b>' } })).toEqual({ title: 'Ham', consent: { sms: false } });
+    expect(initialValues([{ name: 'featured_media', type: 'image', label: 'I' }, { name: 'author', type: 'user', label: 'A', load: 'author' }], { featured_media: 0, author: 4 })).toEqual({ featured_media: null, author: { id: 4 } });
+    expect(submitValues([{ name: 'title', type: 'text', label: 'T' }, { name: 'featured_media', type: 'image', label: 'I' }, { name: 'author', type: 'user', label: 'A' }], { title: 'A', featured_media: null, author: { id: 4, label: 'Demo' } })).toEqual({ title: 'A', author: 4 });
   });
 });
 
@@ -162,6 +166,41 @@ describe('brand gate and push routing', () => {
     const acc = { id: 'demo.fluxapp.local#1', siteUrl: DEMO_SITE, siteName: '', siteIcon: '', userId: 1, userName: '', userAvatar: '', authKind: 'demo' as const, addedAt: 0 };
     expect(accountForPush({ site: 'https://demo.fluxapp.local', user: 2 }, [acc])).toBeNull();
     expect(routePush({ site: 'https://demo.fluxapp.local', user: 1, target: 'screen:crm/contact', params: { id: '3' } }, [acc], () => env)).toMatchObject({ route: { kind: 'manifest', screen: 'contact' } });
+    expect(pushDataOf('{"v":1,"site":"https://demo.fluxapp.local","user":"1","target":"screen:core/posts"}')).toMatchObject({ user: 1, target: 'screen:core/posts' });
+    // Manifests not loaded yet (cold start): the screen target is still opened.
+    expect(routePush({ site: DEMO_SITE, user: 1, target: 'screen:core/posts', params: { status: 'draft' } }, [acc], () => ({ appVersion: '0.1.0' }))).toMatchObject({ route: { kind: 'manifest', module: 'core', screen: 'posts', params: { status: 'draft' } } });
+  });
+});
+
+describe('prefs, devices and etag', () => {
+  const api = createClient({ siteUrl: DEMO_SITE, fetchImpl: demoShellFetch, getCredentials: async () => ({ token: 'demo' }) });
+
+  it('keeps the cached config on 304 and reads wp paging headers', async () => {
+    const first = await loadConfig(api);
+    expect(first.notModified).toBe(false);
+    expect(first.etag).toBe('"demo-config"');
+    expect(first.value?.schema).toBe('flx-app-config/1');
+    const again = await loadConfig(api, undefined, first.etag);
+    expect(again).toMatchObject({ notModified: true, value: null, etag: '"demo-config"' });
+    const page = await api<unknown[]>('wp/v2/posts', { raw: true, query: { per_page: 3, page: 1 } });
+    expect(page.headers.get('X-WP-TotalPages')).toBe('3');
+    expect(page.headers.get('x-wp-total')).toBe('8');
+  });
+
+  it('syncs prefs and registers then deletes a device', async () => {
+    expect(parsePrefs({ pinned: ['menu:flx-crm'], push: { 'core.comment': false }, events: [{ id: 'core.comment', title: 'Yorum' }], updated: 3 }).pinned).toEqual(['menu:flx-crm']);
+    const saved = await savePrefs(api, { forceWeb: ['crm'] });
+    expect(saved.forceWeb).toEqual(['crm']);
+    expect((await loadPrefs(api)).forceWeb).toEqual(['crm']);
+    const base = mergeConfig({ site: parseConfig(config) });
+    const layered = applyUserPrefs(base, { pinned: ['menu:flx-crm'], hidden: ['menu:upload.php'], tabs: ['screen:core/posts', 'more'] });
+    expect(layered.shell.drawer.pins).toEqual(['menu:flx-crm']);
+    expect(layered.shell.drawer.groups[0]!.items).not.toContain('menu:upload.php');
+    expect(layered.shell.tabs.map((t) => t.target)).toEqual(['screen:core/posts', 'more']);
+    const device = await registerDevice(api, { token: 'ExponentPushToken[demo]', platform: 'android', brand: 'flux', appVersion: '0.1.0', deviceId: 'install-1' });
+    expect(device).toEqual({ id: '7' });
+    await deleteDevice(api, device!.id);
+    expect(await api('flxapp/v1/devices')).toEqual([]);
   });
 });
 

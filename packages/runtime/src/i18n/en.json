@@ -53,7 +53,13 @@
     "saving": "Saving…",
     "saved": "Saved.",
     "minLength": "At least {{count}} characters.",
-    "maxLength": "At most {{count}} characters."
+    "maxLength": "At most {{count}} characters.",
+    "choose": "Choose",
+    "change": "Change",
+    "remove": "Remove",
+    "upload": "Upload",
+    "uploading": "Uploading…",
+    "search": "Search"
   },
   "action": {
     "confirmTitle": "Are you sure?",
@@ -96,6 +102,7 @@
     "link": "Link",
     "date": "Date",
     "author": "Author",
+    "image": "Image",
     "content": "Content",
     "newPost": "New post",
     "approve": "Approve",

@@ -5,7 +5,8 @@ import { useQuery } from '@tanstack/react-query';
 import { ApiError, flxapp, type Dashboard, type Me } from '@fluxwp/core';
 import { DEFAULT_CONFIG, mergeConfig, type AppConfig, type Bootstrap, type ManifestBundle, type ThemeMode } from '@fluxwp/manifest';
 import { themeFromConfig, type BrandColors, type ThemeInput } from '@fluxwp/tokens';
-import { loadBootstrap, loadConfig, loadManifests, withCore } from './api';
+import { loadBootstrap, loadConfig, loadManifests, rememberedEtag, rememberEtag, withCore } from './api';
+import { applyUserPrefs, useUserPrefs } from './prefs';
 import { demoShellFetch } from './demo/fetch';
 import { qk } from './query';
 import { useScope } from './scope';
@@ -26,22 +27,42 @@ export function useMe() {
   return useQuery<Me>({ queryKey: qk.me(), queryFn: () => flxapp(api).me(), staleTime: 60_000 });
 }
 
-/** Site config (layers 3+4) as sent by the server; null on sites without the endpoint. */
+/** Site config (layers 3+4) as sent by the server; null on sites without the endpoint. Sends `If-None-Match`. */
 export function useSiteConfig() {
-  const { api } = useScope();
-  return useQuery<AppConfig | null>({ queryKey: qk.config(), queryFn: () => loadConfig(api), staleTime: 5 * 60_000 });
+  const { api, account, client } = useScope();
+  return useQuery<AppConfig | null>({
+    queryKey: qk.config(),
+    queryFn: async () => {
+      const res = await loadConfig(api, undefined, await rememberedEtag(account.id, 'config'));
+      if (res.notModified) return client.getQueryData<AppConfig | null>(qk.config()) ?? null;
+      await rememberEtag(account.id, 'config', res.etag);
+      return res.value;
+    },
+    staleTime: 5 * 60_000,
+  });
 }
 
-/** All layers merged: default → brand → site → user → device. */
+/** All layers merged: default → brand → site → user prefs → device. */
 export function useConfig(): AppConfig {
   const { app } = useScope();
   const site = useSiteConfig().data;
-  return useMemo(() => mergeConfig({ brand: app.brand, site, device: app.device }, DEFAULT_CONFIG), [app.brand, app.device, site]);
+  const prefs = useUserPrefs().data;
+  return useMemo(() => applyUserPrefs(mergeConfig({ brand: app.brand, site, device: app.device }, DEFAULT_CONFIG), prefs), [app.brand, app.device, site, prefs]);
 }
 
 export function useManifest() {
-  const { api } = useScope();
-  return useQuery<ManifestBundle>({ queryKey: qk.manifest(), queryFn: () => loadManifests(api), staleTime: 5 * 60_000, placeholderData: withCore({ modules: {} }) });
+  const { api, account, client } = useScope();
+  return useQuery<ManifestBundle>({
+    queryKey: qk.manifest(),
+    queryFn: async () => {
+      const res = await loadManifests(api, undefined, await rememberedEtag(account.id, 'manifest'));
+      if (res.notModified) return client.getQueryData<ManifestBundle>(qk.manifest()) ?? withCore({ modules: {} });
+      await rememberEtag(account.id, 'manifest', res.etag);
+      return res.value;
+    },
+    staleTime: 5 * 60_000,
+    placeholderData: withCore({ modules: {} }),
+  });
 }
 
 export interface SyncState {
@@ -81,10 +102,11 @@ export function useShellModel(): ResolvedShell {
   const config = useConfig();
   const me = useMe().data;
   const manifests = useManifest().data;
+  const prefs = useUserPrefs().data;
   const counts = useSync(!!me).data?.counts;
   return useMemo(
-    () => resolveShell(config, { me, counts, manifests: manifests?.modules, native: renderer.native, appVersion: app.version }),
-    [config, me, counts, manifests, renderer.native, app.version],
+    () => resolveShell(config, { me, counts, manifests: manifests?.modules, native: renderer.native, appVersion: app.version, forceWeb: new Set(prefs?.forceWeb ?? []) }),
+    [config, me, counts, manifests, renderer.native, app.version, prefs?.forceWeb],
   );
 }
 

@@ -50,6 +50,7 @@ export const qk = {
   manifest: () => ['manifest'] as const,
   sync: () => ['sync'] as const,
   dashboard: () => ['dashboard'] as const,
+  prefs: () => ['prefs'] as const,
   /** Source data; `invalidate: ["contacts"]` targets every key that starts with [src, module, "contacts"]. */
   source: (module: string, source: string, path: string, query: unknown) => ['src', module, source, path, query] as const,
   sourceRoot: (module: string, source: string) => ['src', module, source] as const,

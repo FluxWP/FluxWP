@@ -9,6 +9,8 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { useFormController } from '@fluxwp/runtime';
 import type { FormScreen as FormDef, Manifest } from '@fluxwp/manifest';
 import { Button, Field, Segmented, Skeleton, Text } from '@/ui/primitives';
+import { EntityField, MediaField } from './fields';
+import type { RelationValue } from '@fluxwp/runtime';
 
 const KEYBOARD: Record<string, 'default' | 'email-address' | 'phone-pad' | 'url' | 'decimal-pad'> = { email: 'email-address', phone: 'phone-pad', url: 'url', number: 'decimal-pad', money: 'decimal-pad' };
 
@@ -32,6 +34,9 @@ export function FormScreen({ manifest, screen, params }: { manifest: Manifest; s
             rules={c.rules(f)}
             render={({ field, fieldState }) => {
               const err = msg(fieldState.error?.message);
+              const relation = field.value && typeof field.value === 'object' && 'id' in (field.value as object) ? (field.value as RelationValue) : null;
+              if (f.type === 'image' || f.type === 'file') return <MediaField field={f} value={relation} onChange={field.onChange} />;
+              if (f.type === 'user' || f.type === 'term' || f.type === 'post') return <EntityField field={f} value={relation} onChange={field.onChange} />;
               if (f.type === 'switch')
                 return (
                   <View style={styles.switchRow}>

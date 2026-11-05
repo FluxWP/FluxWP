@@ -5,10 +5,11 @@ import { Drawer } from 'expo-router/drawer';
 import { useStore } from 'zustand';
 import { useUnistyles } from 'react-native-unistyles';
 import { accountsStore } from '@fluxwp/core';
-import { AccountScope, useConfig, type AppInfo } from '@fluxwp/runtime';
+import { AccountScope, useConfig, useDeviceRegistration, type AppInfo } from '@fluxwp/runtime';
 import { brandLayer } from '@/brand';
 import { APP_VERSION } from '@/platform';
 import { accountStore } from '@/platform/storage';
+import { usePushDevice } from '@/push';
 import { useRenderer } from '@/render/renderer';
 import { DrawerContent } from '@/shell/DrawerContent';
 import { accountIdFromKey } from '@/shell/routes';
@@ -31,6 +32,7 @@ export default function AccountLayout() {
   return (
     <AccountScope account={account} renderer={renderer} app={app} store={accountStore(account.id)}>
       <SiteTheme />
+      <DeviceSync />
       <AccountDrawer />
     </AccountScope>
   );
@@ -43,6 +45,12 @@ function SiteTheme() {
     applySiteTheme(theme);
     return () => applySiteTheme(undefined);
   }, [theme]);
+  return null;
+}
+
+function DeviceSync() {
+  const info = usePushDevice();
+  useDeviceRegistration(info);
   return null;
 }
 

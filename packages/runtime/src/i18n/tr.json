@@ -53,7 +53,13 @@
     "saving": "Kaydediliyor…",
     "saved": "Kaydedildi.",
     "minLength": "En az {{count}} karakter.",
-    "maxLength": "En çok {{count}} karakter."
+    "maxLength": "En çok {{count}} karakter.",
+    "choose": "Seç",
+    "change": "Değiştir",
+    "remove": "Kaldır",
+    "upload": "Yükle",
+    "uploading": "Yükleniyor…",
+    "search": "Ara"
   },
   "action": {
     "confirmTitle": "Emin misin?",
@@ -96,6 +102,7 @@
     "link": "Bağlantı",
     "date": "Tarih",
     "author": "Yazar",
+    "image": "Görsel",
     "content": "İçerik",
     "newPost": "Yeni yazı",
     "approve": "Onayla",

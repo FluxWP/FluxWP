@@ -94,6 +94,8 @@ export const CORE_MANIFEST: Manifest = {
           ],
         },
         { name: 'excerpt', type: 'textarea', label: '$t:core.excerpt' },
+        { name: 'featured_media', type: 'image', label: '$t:core.image' },
+        { name: 'author', type: 'user', label: '$t:core.author' },
       ],
       submit: { method: 'POST', path: 'wp/v2/posts', path_create: 'wp/v2/posts', path_update: 'wp/v2/posts/{{params.id}}' },
       after: { toast: '$t:form.saved', back: true, invalidate: ['posts', 'post'] },

@@ -13,6 +13,7 @@ import { useUnistyles } from 'react-native-unistyles';
 import { accountsStore } from '@fluxwp/core';
 import { AccountSwitcherHost } from '@/shell/AccountSwitcher';
 import { OverlayHost } from '@/ui/overlays';
+import { PushRouter } from '@/push';
 
 void SplashScreen.preventAutoHideAsync();
 
@@ -37,6 +38,7 @@ export default function RootLayout() {
           </Stack>
           <OverlayHost />
           <AccountSwitcherHost />
+          <PushRouter />
         </ThemeProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>

@@ -47,7 +47,8 @@
     "cacheCleared": "Önbellek temizlendi.",
     "version": "Sürüm {{version}}",
     "about": "Hakkında",
-    "support": "Destek"
+    "support": "Destek",
+    "notifications": "Bildirimler"
   },
   "web": {
     "loading": "Panel sayfası açılıyor…",

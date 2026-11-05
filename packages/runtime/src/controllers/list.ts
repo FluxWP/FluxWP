@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getPath, render, test, type ExprContext, type ListFilter, type ListItem, type ListScreen, type Manifest, type Tone } from '@fluxwp/manifest';
-import { runRequest } from '../api';
+import { runRequestRaw } from '../api';
 import { qk } from '../query';
 import { parsePage, sourceRequest, type Page } from '../source';
 import { useScope } from '../scope';
@@ -84,8 +84,8 @@ export function useListController(manifest: Manifest, screen: ListScreen, params
     initialPageParam: 1,
     queryFn: async ({ pageParam, signal }) => {
       const req = sourceRequest(source, base, typeof pageParam === 'number' ? { ...listQuery, page: pageParam } : { ...listQuery, cursor: pageParam });
-      const body = await runRequest(api, req, signal);
-      return parsePage(source, body, typeof pageParam === 'number' ? pageParam : 1);
+      const res = await runRequestRaw(api, req, signal);
+      return parsePage(source, res.data, typeof pageParam === 'number' ? pageParam : 1, res.headers);
     },
     getNextPageParam: (last) => last.next ?? undefined,
     staleTime: (source.cache?.stale ?? 30) * 1000,

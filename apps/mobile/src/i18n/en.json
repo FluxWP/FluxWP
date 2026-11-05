@@ -47,7 +47,8 @@
     "cacheCleared": "Cache cleared.",
     "version": "Version {{version}}",
     "about": "About",
-    "support": "Support"
+    "support": "Support",
+    "notifications": "Notifications"
   },
   "web": {
     "loading": "Opening dashboard page…",

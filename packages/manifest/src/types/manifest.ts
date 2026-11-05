@@ -138,6 +138,13 @@ export interface FormField {
   width?: 'full' | 'half';
   readonly_when?: Condition;
   creatable?: boolean;
+  /** Read path when it differs from `name` (e.g. `title.raw`). */
+  load?: string;
+  /** Upload endpoint for image/file. Default `wp/v2/media`. */
+  upload?: string;
+  /** REST base of a term field. Default `categories`. */
+  taxonomy?: string;
+  multiple?: boolean;
 }
 
 export interface After {

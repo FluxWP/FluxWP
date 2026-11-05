@@ -50,11 +50,33 @@ export interface RequestOptions {
   form?: Record<string, string>;
   /** Dosya yükleme (multipart). Content-Type tarayıcıya bırakılır. */
   formData?: FormData;
+  /** İsteğe ek başlıklar (ör. `If-None-Match`). Kimlik başlığının üstüne yazamaz. */
+  headers?: Record<string, string>;
+  /** Multipart yüklemede 0..1. Platform `XMLHttpRequest` verirse ara değerler gelir. */
+  onUploadProgress?: (ratio: number) => void;
   /** 'blob': medya gibi ham cevap. */
   as?: 'json' | 'blob';
+  /**
+   * true: gövdeyle birlikte durum ve yanıt başlıkları (`ETag`, `X-WP-TotalPages`).
+   * 304 gövdesiz başarıdır (`data: null`), hata değildir.
+   */
+  raw?: boolean;
   signal?: AbortSignal;
   /** Kimlik eklemeden gönder (OAuth token ucu gibi). */
   anonymous?: boolean;
+}
+
+/** Case-insensitive response headers (Fetch `Headers#get`). */
+export interface ResponseHeaders {
+  get(name: string): string | null;
+}
+
+/** `raw: true` cevabı. `etag` başlıktan okunmuş hâli (yoksa null). */
+export interface ApiResult<T> {
+  data: T | null;
+  status: number;
+  etag: string | null;
+  headers: ResponseHeaders;
 }
 
 export function restBase(siteUrl: string): string {
@@ -77,13 +99,52 @@ export function buildUrl(siteUrl: string, path: string, query?: RequestOptions['
   return u.toString();
 }
 
-export type ApiClient = <T>(path: string, opts?: RequestOptions) => Promise<T>;
+export interface ApiClient {
+  <T>(path: string, opts: RequestOptions & { raw: true }): Promise<ApiResult<T>>;
+  <T>(path: string, opts?: RequestOptions): Promise<T>;
+}
+
+function responseHeaders(res: Response): ResponseHeaders {
+  const map = new Map<string, string>();
+  res.headers.forEach((value, key) => map.set(key.toLowerCase(), value));
+  return { get: (name) => map.get(name.toLowerCase()) ?? null };
+}
+
+/** Upload progress needs XHR; fetch has none. Falls back to fetch when XHR is missing (tests, some hosts). */
+function xhrSend(url: string, method: string, headers: Record<string, string>, body: BodyInit | undefined, signal: AbortSignal | undefined, onProgress: (ratio: number) => void): Promise<Response> {
+  const XHR = globalThis.XMLHttpRequest;
+  if (!XHR) return Promise.reject(new ApiError(0, 'no_xhr', 'upload progress unavailable'));
+  return new Promise((resolve, reject) => {
+    const xhr = new XHR();
+    xhr.open(method, url);
+    for (const [key, value] of Object.entries(headers)) xhr.setRequestHeader(key, value);
+    xhr.upload.onprogress = (e) => {
+      if (e.lengthComputable && e.total > 0) onProgress(e.loaded / e.total);
+    };
+    const done = () => {
+      const h = new Headers();
+      for (const line of xhr.getAllResponseHeaders().trim().split(/[\r\n]+/)) {
+        const i = line.indexOf(':');
+        if (i > 0) h.append(line.slice(0, i).trim(), line.slice(i + 1).trim());
+      }
+      resolve(new Response(xhr.responseText, { status: xhr.status, statusText: xhr.statusText, headers: h }));
+    };
+    xhr.onload = done;
+    xhr.onerror = () => reject(new ApiError(0, 'network', 'network'));
+    xhr.onabort = () => reject(new ApiError(0, 'aborted', 'aborted'));
+    if (signal) {
+      if (signal.aborted) xhr.abort();
+      else signal.addEventListener('abort', () => xhr.abort(), { once: true });
+    }
+    xhr.send((body ?? null) as XMLHttpRequestBodyInit | null);
+  });
+}
 
 export function createClient(o: ClientOptions): ApiClient {
   const doFetch = (...a: Parameters<typeof fetch>) => (o.fetchImpl ?? platform().fetch)(...a);
 
   const send = async (path: string, opts: RequestOptions, cred: Credentials | null) => {
-    const headers: Record<string, string> = { Accept: 'application/json', ...platformHeaders(), ...o.extraHeaders?.() };
+    const headers: Record<string, string> = { Accept: 'application/json', ...platformHeaders(), ...o.extraHeaders?.(), ...opts.headers };
     let body: BodyInit | undefined;
     if (opts.formData) {
       body = opts.formData;
@@ -99,21 +160,25 @@ export function createClient(o: ClientOptions): ApiClient {
       else if (o.useHeaderFallback) headers['X-FluxWP-Token'] = cred.token;
       else headers.Authorization = `Bearer ${cred.token}`;
     }
-    return doFetch(buildUrl(o.siteUrl, path, opts.query), {
-      method: opts.method ?? (body ? 'POST' : 'GET'),
-      headers,
-      body,
-      signal: opts.signal,
-      credentials: o.credentials,
-    });
+    const method = opts.method ?? (body ? 'POST' : 'GET');
+    const url = buildUrl(o.siteUrl, path, opts.query);
+    if (opts.onUploadProgress && typeof XMLHttpRequest !== 'undefined') return xhrSend(url, method, headers, body, opts.signal, opts.onUploadProgress);
+    return doFetch(url, { method, headers, body, signal: opts.signal, credentials: o.credentials });
   };
 
-  return async function request<T>(path: string, opts: RequestOptions = {}): Promise<T> {
+  async function request<T>(path: string, opts: RequestOptions = {}): Promise<T | ApiResult<T>> {
     let cred = opts.anonymous ? null : await o.getCredentials();
     let res = await send(path, opts, cred);
     if (res.status === 401 && !opts.anonymous && o.onUnauthorized) {
       cred = await o.onUnauthorized();
       if (cred) res = await send(path, opts, cred);
+    }
+    const headers = responseHeaders(res);
+    const etag = headers.get('etag');
+    // 304 Not Modified: empty body, cache stays. Not an error.
+    if (res.status === 304) {
+      const result: ApiResult<T> = { data: null, status: 304, etag, headers };
+      return opts.raw ? result : (null as T);
     }
     if (opts.as === 'blob' && res.ok) return (await res.blob()) as T;
     const text = await res.text();
@@ -129,6 +194,9 @@ export function createClient(o: ClientOptions): ApiClient {
       const j = (json ?? {}) as { code?: string; message?: string; error?: string; error_description?: string; data?: unknown };
       throw new ApiError(res.status, j.code ?? j.error ?? 'http_' + res.status, j.message ?? j.error_description ?? res.statusText, j.data);
     }
+    if (opts.raw) return { data: json as T, status: res.status, etag, headers };
     return json as T;
-  };
+  }
+
+  return request as ApiClient;
 }

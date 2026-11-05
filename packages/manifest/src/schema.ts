@@ -101,6 +101,10 @@ export const FormFieldSchema = v.looseObject({
   width: opt(v.picklist(['full', 'half'])),
   readonly_when: when,
   creatable: opt(v.boolean()),
+  load: opt(str),
+  upload: opt(v.pipe(str, v.maxLength(200))),
+  taxonomy: opt(v.pipe(str, v.regex(/^[\w-]+$/))),
+  multiple: opt(v.boolean()),
 });
 
 const sectionBase = { title: opt(str), when };

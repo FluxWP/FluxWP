@@ -1308,6 +1308,20 @@
                     },
                     "creatable": {
                       "type": "boolean"
+                    },
+                    "load": {
+                      "type": "string"
+                    },
+                    "upload": {
+                      "type": "string",
+                      "maxLength": 200
+                    },
+                    "taxonomy": {
+                      "type": "string",
+                      "pattern": "^[\\w-]+$"
+                    },
+                    "multiple": {
+                      "type": "boolean"
                     }
                   },
                   "required": [
@@ -2088,6 +2102,20 @@
                     },
                     "creatable": {
                       "type": "boolean"
+                    },
+                    "load": {
+                      "type": "string"
+                    },
+                    "upload": {
+                      "type": "string",
+                      "maxLength": 200
+                    },
+                    "taxonomy": {
+                      "type": "string",
+                      "pattern": "^[\\w-]+$"
+                    },
+                    "multiple": {
+                      "type": "boolean"
                     }
                   },
                   "required": [
@@ -2428,6 +2456,20 @@
                           "$ref": "#/$defs/Condition"
                         },
                         "creatable": {
+                          "type": "boolean"
+                        },
+                        "load": {
+                          "type": "string"
+                        },
+                        "upload": {
+                          "type": "string",
+                          "maxLength": 200
+                        },
+                        "taxonomy": {
+                          "type": "string",
+                          "pattern": "^[\\w-]+$"
+                        },
+                        "multiple": {
                           "type": "boolean"
                         }
                       },

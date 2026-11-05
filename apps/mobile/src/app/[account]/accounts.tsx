@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native-unistyles';
 import { useStore } from 'zustand';
 import { accountsStore, dropClient, loadTokens, revokeToken, type Account } from '@fluxwp/core';
-import { dropAccountCache } from '@fluxwp/runtime';
+import { dropAccountCache, signOutRemote } from '@fluxwp/runtime';
 import { gate } from '@/brand';
 import { deleteAccountStore } from '@/platform/storage';
 import { switchTo } from '@/shell/AccountSwitcher';
@@ -15,7 +15,8 @@ import { Avatar, Badge, Button, Card, IconButton, Text } from '@/ui/primitives';
 
 async function removeAccount(a: Account) {
   const tokens = await loadTokens(a.id);
-  if (tokens?.refresh && (a.authKind === 'oauth' || a.authKind === 'otp')) await revokeToken(a.siteUrl, tokens.refresh);
+  const deviceDeleted = await signOutRemote(a);
+  if (!deviceDeleted && tokens?.refresh && (a.authKind === 'oauth' || a.authKind === 'otp')) await revokeToken(a.siteUrl, tokens.refresh);
   await accountsStore.getState().remove(a.id);
   dropClient(a.id);
   dropAccountCache(a.id);

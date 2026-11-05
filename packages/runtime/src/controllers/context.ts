@@ -2,6 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { render, test, value, type ExprContext, type Manifest, type Navigate } from '@fluxwp/manifest';
 import { useManifest, useMe } from '../hooks';
+import { useUserPrefs } from '../prefs';
 import { qk } from '../query';
 import { resolveTarget, type ResolveEnv, type Route } from '../resolve';
 import { useScope } from '../scope';
@@ -10,7 +11,8 @@ export function useResolveEnv(): ResolveEnv {
   const { renderer, app } = useScope();
   const me = useMe().data;
   const manifests = useManifest().data?.modules;
-  return useMemo(() => ({ me, manifests, native: renderer.native, appVersion: app.version }), [me, manifests, renderer.native, app.version]);
+  const forceWeb = useUserPrefs().data?.forceWeb;
+  return useMemo(() => ({ me, manifests, native: renderer.native, appVersion: app.version, forceWeb: new Set(forceWeb ?? []) }), [me, manifests, renderer.native, app.version, forceWeb]);
 }
 
 /** Base template context for a manifest screen. */
