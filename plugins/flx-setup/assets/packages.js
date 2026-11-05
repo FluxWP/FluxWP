@@ -210,7 +210,11 @@
 				el.setAttribute('role', 'status');
 				el.setAttribute('aria-live', 'polite');
 				el.hidden = true;
-				el.innerHTML = '<span class="flxu-stay__spin" aria-hidden="true"></span><span class="flxu-stay__body"><strong class="flxu-stay__title"></strong><span class="flxu-stay__step"></span></span><span class="flxu-stay__count"></span><span class="flxu-stay__bar"><span></span></span>';
+				el.innerHTML = '<span class="flxu-stay__spin" aria-hidden="true"></span><span class="flxu-stay__body"><strong class="flxu-stay__title"></strong><span class="flxu-stay__step"></span></span><span class="flxu-stay__count"></span><button type="button" class="flxu-stay__close" aria-label="' + esc(L.close) + '" title="' + esc(L.close) + '"><span class="dashicons dashicons-no-alt" aria-hidden="true"></span></button><span class="flxu-stay__done" hidden><span class="flxu-stay__hint"></span><button type="button" class="flxu-stay__reload"><span class="dashicons dashicons-update" aria-hidden="true"></span><span></span></button></span><span class="flxu-stay__bar"><span></span></span>';
+				el.querySelector('.flxu-stay__hint').textContent = L.reloadHint;
+				el.querySelector('.flxu-stay__reload span:last-child').textContent = L.reload;
+				el.querySelector('.flxu-stay__close').addEventListener('click', function () { stay.hide(); });
+				el.querySelector('.flxu-stay__reload').addEventListener('click', function () { window.location.reload(); });
 				document.body.appendChild(el);
 			}
 			return el;
@@ -219,6 +223,7 @@
 			var el = this.el();
 			clearTimeout(this.t);
 			el.classList.remove('is-ok', 'is-err');
+			el.querySelector('.flxu-stay__done').hidden = true;
 			el.querySelector('.flxu-stay__title').textContent = L.stay || L.working;
 			this.step('', 0, 0);
 			el.hidden = false;
@@ -237,7 +242,19 @@
 			el.querySelector('.flxu-stay__step').textContent = '';
 			el.querySelector('.flxu-stay__count').textContent = '';
 			el.querySelector('.flxu-stay__bar span').style.width = '100%';
-			this.t = setTimeout(function () { el.hidden = true; document.body.classList.remove('flxu-staying'); }, 4000);
+			/* Değişen eklentilerin yeni kodu (menü, ekranlar) ancak sayfa yenilenince yüklenir: düğme göster, kullanıcı kapatana kadar kalsın. */
+			if (okN) {
+				el.querySelector('.flxu-stay__done').hidden = false;
+				el.querySelector('.flxu-stay__reload').focus({ preventScroll: true });
+			} else {
+				this.t = setTimeout(function () { stay.hide(); }, 6000);
+			}
+		},
+		hide: function () {
+			clearTimeout(this.t);
+			var el = document.getElementById('flxu-stay');
+			if (el) { el.hidden = true; }
+			document.body.classList.remove('flxu-staying');
 		}
 	};
 
@@ -352,6 +369,27 @@
 		});
 	}
 
+	/** Güncellemeleri sunucudan kontrol et; tablo ve rozet sayfa yenilenmeden tazelenir. */
+	function checkNow() {
+		var ck = document.getElementById('flxu-check');
+		if (!ck || !window.fetch || busy || ck.classList.contains('is-busy')) { return; }
+		ck.classList.add('is-busy');
+		var lbl = document.getElementById('flxu-checked');
+		if (lbl) { lbl.textContent = L.checking; lbl.className = 'flxu-checked'; }
+		post({ action: 'flxu_check' }).then(function (res) {
+			setBadge(res.pending);
+			/* Bu arada kurulum/güncelleme başladıysa tabloyu değiştirme; o iş bitince kendisi tazeler. */
+			return (busy ? Promise.resolve() : refresh()).then(function () {
+				ck.classList.remove('is-busy');
+				var l = document.getElementById('flxu-checked');
+				if (l) { l.textContent = res.label + ' · ' + res.summary; l.className = 'flxu-checked ' + (res.ok ? 'is-ok' : 'is-err'); }
+			});
+		}).catch(function (err) {
+			ck.classList.remove('is-busy');
+			if (lbl) { lbl.textContent = err.message; lbl.className = 'flxu-checked is-err'; }
+		});
+	}
+
 	/* ---------------- Olaylar ---------------- */
 
 	document.addEventListener('change', function (e) {
@@ -385,21 +423,7 @@
 		var ck = t.closest('#flxu-check');
 		if (ck && window.fetch) {
 			e.preventDefault();
-			if (busy || ck.classList.contains('is-busy')) { return; }
-			ck.classList.add('is-busy');
-			var lbl = document.getElementById('flxu-checked');
-			if (lbl) { lbl.textContent = L.checking; }
-			post({ action: 'flxu_check' }).then(function (res) {
-				setBadge(res.pending);
-				return refresh().then(function () {
-					ck.classList.remove('is-busy');
-					var l = document.getElementById('flxu-checked');
-					if (l) { l.textContent = res.label + ' · ' + res.summary; l.className = 'flxu-checked ' + (res.ok ? 'is-ok' : 'is-err'); }
-				});
-			}).catch(function (err) {
-				ck.classList.remove('is-busy');
-				if (lbl) { lbl.textContent = err.message; lbl.className = 'flxu-checked is-err'; }
-			});
+			checkNow();
 			return;
 		}
 		var b = t.closest('button[name="flxu_do"]');
@@ -448,4 +472,7 @@
 	});
 
 	if (form()) { load(); draw(); }
+	/* Sayfa açılınca bir kez kendiliğinden kontrol (sunucu son kontrol yakın zamandaysa data-auto koymaz). */
+	var ck0 = document.getElementById('flxu-check');
+	if (ck0 && ck0.getAttribute('data-auto') === '1') { checkNow(); }
 })();
