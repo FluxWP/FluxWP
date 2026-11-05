@@ -33,3 +33,9 @@ test('App Store submission promotes a selected TestFlight build and requires rev
   assert.throws(() => preflight(config, { ...credentials, ASSET_RUN_ID: '1234' }), /disclosures/);
   assert.doesNotThrow(() => preflight(config, { ...credentials, ASSET_RUN_ID: '1234', STORE_DISCLOSURES_REVIEWED: 'true' }));
 });
+
+test('signed Android AAB preparation does not require Play publishing access', () => {
+  const signing = { ANDROID_KEYSTORE: 'test', ANDROID_KEYSTORE_PASSWORD: 'test', ANDROID_KEY_ALIAS: 'test', ANDROID_KEY_PASSWORD: 'test' };
+  assert.doesNotThrow(() => preflight(releaseConfig({platform:'android', destination:'aab'}), signing));
+  assert.throws(() => preflight(releaseConfig({platform:'android', destination:'internal'}), signing), /GOOGLE_PLAY_SERVICE_ACCOUNT_JSON/);
+});

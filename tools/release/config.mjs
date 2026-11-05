@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 export const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 export const destinations = {
   ios: ['simulator', 'ipa', 'testflight', 'app-store'],
-  android: ['apk', 'internal', 'alpha', 'beta', 'production'],
+  android: ['apk', 'aab', 'internal', 'alpha', 'beta', 'production'],
 };
 
 export function releaseConfig({ brand = 'flux', platform, destination, version = '', buildNumber = '' }, repo = root) {
@@ -34,7 +34,7 @@ export function requireSecrets(names, env = process.env) {
 }
 
 export function preflight(config, env = process.env) {
-  const publishesMetadata = config.destination === 'app-store' || (config.platform === 'android' && config.destination !== 'apk');
+  const publishesMetadata = config.destination === 'app-store' || (config.platform === 'android' && !['apk', 'aab'].includes(config.destination));
   if (publishesMetadata && config.brand !== 'flux') throw new Error('Store metadata is configured only for the flux brand');
   if (config.platform === 'android' && env.PLAY_RELEASE_STATUS && !['draft', 'completed'].includes(env.PLAY_RELEASE_STATUS)) throw new Error('Invalid Google Play release status');
   if (config.platform === 'ios' && config.destination !== 'simulator') {
@@ -47,7 +47,7 @@ export function preflight(config, env = process.env) {
   }
   if (config.platform === 'android') {
     requireSecrets(['ANDROID_KEYSTORE', 'ANDROID_KEYSTORE_PASSWORD', 'ANDROID_KEY_ALIAS', 'ANDROID_KEY_PASSWORD'], env);
-    if (config.destination !== 'apk') requireSecrets(['GOOGLE_PLAY_SERVICE_ACCOUNT_JSON'], env);
+    if (!['apk', 'aab'].includes(config.destination)) requireSecrets(['GOOGLE_PLAY_SERVICE_ACCOUNT_JSON'], env);
   }
 }
 

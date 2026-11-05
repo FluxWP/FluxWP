@@ -59,3 +59,5 @@ GitHub Variables: `APPLE_TEAM_ID`; kayıt referansı için `ASC_APP_ID`. Expo bi
 Yerelde `node --test tools/release/*.test.mjs`, mobil/shared typecheck ve mevcut shared testler çalıştırılır. İş akışları derlemeyi tamamlamadan dosya yüklemez. Android APK/AAB imzası, macOS imza/notarization ve iOS profilinin takım/bundle/son kullanma tarihi doğrulanır. Apple/Google yüklemesinin başarılı olması mağazada herkese açık yayın anlamına gelmez; gerçek durum ilgili Console üzerinden kontrol edilmelidir.
 
 API doğrulaması ve derlemeler için [Fastlane belgeleri](https://docs.fastlane.tools/), [App Store Connect yardımı](https://developer.apple.com/help/app-store-connect/) ve [Google Play Console yardımı](https://support.google.com/googleplay/android-developer/) esas alınır.
+
+Android hesabı doğrulanmayı beklerken `aab` hedefiyle imzalı Play paketini hazırlayabilirsiniz. Bu hedef mağazaya yükleme yapmaz ve Google Play erişim anahtarı istemez; oluşturulan `.aab` ve SHA-256 dosyası çalışma çıktısından indirilir.
