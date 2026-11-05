@@ -36,6 +36,8 @@ Artifact denemesi için release tag'ini boş bırakın. Halka açık yayın içi
 
 Halka açık macOS paketi Apple Developer ID imzası, notarization bileti, Gatekeeper kontrolü ve Tauri güncelleme imzası olmadan yayımlanmaz. İmzasız geliştirme paketi ancak `require_signing=false` ve release tag'i boşken üretilebilir. Bu hedef doğrudan DMG dağıtımıdır; Mac App Store gönderimi ayrı ürün/entitlement değerlendirmesi gerektirir.
 
+Yayın sonrası mevcut güncelleme sunucusunun önbelleği imzalı webhook ile yenilenir (`UPDATE_SERVER`, `UPDATE_WEBHOOK_SECRET`). Gerekirse **Refresh desktop update feed** elle çalıştırılabilir. Sürüm GitHub üzerinde hazır olsa bile sunucunun marka kaydı yapılandırılmamışsa otomatik güncelleme sunulmaz; `/v1/fluxapp/<brand>/latest` ayrıca kontrol edilmelidir.
+
 ## Erişim ayarları
 
 | GitHub Secrets | Kullanım |

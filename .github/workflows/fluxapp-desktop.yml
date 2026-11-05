@@ -266,3 +266,8 @@ jobs:
           prerelease: ${{ contains(inputs.release || github.ref_name, '-beta') || contains(inputs.release || github.ref_name, '-rc') || contains(inputs.release || github.ref_name, '-alpha') }}
           body_path: ${{ runner.temp }}/notes.md
           files: out/*
+      - name: Refresh desktop update feed
+        env:
+          UPDATE_SERVER: ${{ secrets.UPDATE_SERVER }}
+          UPDATE_WEBHOOK_SECRET: ${{ secrets.UPDATE_WEBHOOK_SECRET }}
+        run: node tools/release/refresh-updater.mjs
