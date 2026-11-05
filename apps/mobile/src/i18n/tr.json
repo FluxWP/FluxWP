@@ -1,4 +1,25 @@
 {
+  "welcome": {
+    "skip": "Atla",
+    "next": "İleri",
+    "enter": "Girişe geç",
+    "sites": {
+      "title": "Siteni cebinden yönet",
+      "body": "Yazılar, görevler, bağışlar ve gelen kutusu tek yerde. Menü, sitenin kendi Flux Admin düzeni."
+    },
+    "look": {
+      "title": "Aynı dil, açık ve koyu",
+      "body": "Antrasit ve bej zemin, indigo düğmeler. Site bağlanınca tema renklerin gelir."
+    },
+    "safe": {
+      "title": "Şifren uygulamada durmaz",
+      "body": "Giriş tarayıcıda onaylanır. İstediğin zaman başka bir site daha eklersin."
+    },
+    "bandTitle": "Yönetim, cebinde",
+    "bandBody": "Flux Admin’in sakin düzeni. Üç adımda bak, sonra siteni bağla.",
+    "cardTitle": "FluxWP",
+    "cardBody": "WordPress sitenin adresi yeterli. Gerisi sitenin kendi teması."
+  },
   "addSite": {
     "title": "Siteni bağla",
     "hint": "WordPress sitenin adresini yaz. Birden çok site ekleyebilirsin.",

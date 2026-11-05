@@ -2,7 +2,7 @@
 // (default), code (OTP), API key, or Application Passwords when the site has no Flux App (limited mode).
 import { useEffect, useState } from 'react';
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, View } from 'react-native';
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { SvgXml } from 'react-native-svg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
@@ -12,6 +12,7 @@ import type { Bootstrap } from '@fluxwp/manifest';
 import { SiteNotAllowedError, loadBootstrap } from '@fluxwp/runtime';
 import { LOGO, LOGO_DARK, brand, gate } from '@/brand';
 import { accountKey } from '@/shell/routes';
+import { Welcome, entryVariant } from '@/shell/entry/Welcome';
 import { Avatar, Button, Field, IconButton, Text } from '@/ui/primitives';
 
 type Step = 'url' | 'method' | 'otp' | 'apikey';
@@ -38,6 +39,8 @@ function errorKey(e: unknown): string {
 export default function AddSite() {
   const { t } = useTranslation();
   const { theme } = useUnistyles();
+  const { giris } = useLocalSearchParams<{ giris?: string }>();
+  const variant = entryVariant(giris);
   const insets = useSafeAreaInsets();
   const [url, setUrl] = useState(brand.defaultSite ?? '');
   const [site, setSite] = useState<SiteInfo | null>(null);
@@ -83,6 +86,59 @@ export default function AddSite() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const urlForm = !gate.locked ? (
+    <>
+      <Text tone="muted">{restricted ? t('mobile.addSite.allowedHint') : t('mobile.addSite.hint')}</Text>
+      {picks.length ? (
+        <View style={styles.sites}>
+          {picks.map((host) => {
+            const on = currentHost === host.toLowerCase();
+            return (
+              <Pressable key={host} testID={`allowed-site-${host}`} accessibilityRole="button" accessibilityState={{ selected: on }} onPress={() => setUrl(host.includes('://') ? host : `https://${host}`)} style={[styles.sitePick, on && styles.sitePickOn]}>
+                <Text variant="small" tone={on ? 'primary' : undefined}>{host}</Text>
+              </Pressable>
+            );
+          })}
+        </View>
+      ) : null}
+      {wildcards.map((host) => <Text key={host} variant="small" tone="muted">{t('mobile.addSite.wildcard', { host })}</Text>)}
+      <Field label={t('auth.siteUrl')} value={url} onChangeText={setUrl} placeholder={t('auth.siteUrlPlaceholder')} autoCapitalize="none" autoCorrect={false} keyboardType="url" returnKeyType="go" onSubmitEditing={() => url.trim() && void discover()} testID="site-url" />
+      <Button label={t('mobile.addSite.continue')} onPress={() => void discover()} loading={busy === 'discover'} disabled={!url.trim() || !!busy} full testID="continue" />
+      {error ? <Text tone="danger" accessibilityRole="alert" style={styles.center}>{t(error)}</Text> : null}
+    </>
+  ) : (
+    <>
+      <Button label={t('common.retry')} onPress={() => void discover()} loading={busy === 'discover'} full />
+      {error ? <Text tone="danger" accessibilityRole="alert" style={styles.center}>{t(error)}</Text> : null}
+    </>
+  );
+
+  if (step === 'url' && !gate.locked) {
+    return (
+      <KeyboardAvoidingView style={styles.screen} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+        <Welcome
+          key={variant}
+          variant={variant}
+          footer={!restricted ? <Button kind="ghost" label={t('mobile.addSite.demo')} loading={busy === 'demo'} disabled={!!busy} onPress={() => void run('demo', async () => done(await loginDemo()))} testID="demo" /> : null}
+        >
+          {urlForm}
+        </Welcome>
+      </KeyboardAvoidingView>
+    );
+  }
+
+  if (step === 'url') {
+    return (
+      <KeyboardAvoidingView style={styles.screen} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+        <View style={[styles.wrap, { paddingTop: insets.top + 48 }]}>
+          <Text variant="title">{t('auth.welcome', { name: brand.name })}</Text>
+          <Text tone="muted">{restricted ? t('mobile.addSite.allowedHint') : t('mobile.addSite.hint')}</Text>
+          {urlForm}
+        </View>
+      </KeyboardAvoidingView>
+    );
+  }
+
   return (
     <KeyboardAvoidingView style={styles.screen} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <ScrollView contentContainerStyle={[styles.wrap, { paddingTop: insets.top + 24, paddingBottom: insets.bottom + 24 }]} keyboardShouldPersistTaps="handled">
@@ -90,33 +146,7 @@ export default function AddSite() {
         <View accessible accessibilityRole="image" accessibilityLabel={brand.name}>
           <SvgXml xml={(theme.mode === 'dark' ? LOGO_DARK : LOGO).replace(/\s(?:aria-label|role)="[^"]*"/g, '')} width={170} height={50} />
         </View>
-        {step === 'url' ? (
-          <View style={styles.block}>
-            <Text variant="title">{gate.locked ? t('auth.welcome', { name: brand.name }) : t('mobile.addSite.title')}</Text>
-            <Text tone="muted">{restricted ? t('mobile.addSite.allowedHint') : t('mobile.addSite.hint')}</Text>
-            {!gate.locked ? (
-              <>
-                {picks.length ? (
-                  <View style={styles.sites}>
-                    {picks.map((host) => {
-                      const on = currentHost === host.toLowerCase();
-                      return (
-                        <Pressable key={host} testID={`allowed-site-${host}`} accessibilityRole="button" accessibilityState={{ selected: on }} onPress={() => setUrl(host.includes('://') ? host : `https://${host}`)} style={[styles.sitePick, on && styles.sitePickOn]}>
-                          <Text variant="small" tone={on ? 'primary' : undefined}>{host}</Text>
-                        </Pressable>
-                      );
-                    })}
-                  </View>
-                ) : null}
-                {wildcards.map((host) => <Text key={host} variant="small" tone="muted">{t('mobile.addSite.wildcard', { host })}</Text>)}
-                <Field label={t('auth.siteUrl')} value={url} onChangeText={setUrl} placeholder={t('auth.siteUrlPlaceholder')} autoCapitalize="none" autoCorrect={false} keyboardType="url" returnKeyType="go" onSubmitEditing={() => url.trim() && void discover()} testID="site-url" />
-                <Button label={t('mobile.addSite.continue')} onPress={() => void discover()} loading={busy === 'discover'} disabled={!url.trim() || !!busy} full testID="continue" />
-              </>
-            ) : (
-              <Button label={t('common.retry')} onPress={() => void discover()} loading={busy === 'discover'} full />
-            )}
-          </View>
-        ) : site ? (
+        {site ? (
           <View style={styles.block}>
             <View style={styles.siteChip}>
               <Avatar image={site.icon || undefined} text={site.name} size={44} square />
@@ -179,9 +209,6 @@ export default function AddSite() {
         ) : null}
 
         {error ? <Text tone="danger" accessibilityRole="alert" style={styles.center}>{t(error)}</Text> : null}
-        {!restricted && !gate.locked && step === 'url' ? (
-          <Button kind="ghost" label={t('mobile.addSite.demo')} loading={busy === 'demo'} disabled={!!busy} onPress={() => void run('demo', async () => done(await loginDemo()))} testID="demo" />
-        ) : null}
         <Text variant="caption" style={styles.center}>{t('auth.footer', { name: brand.name })}</Text>
       </ScrollView>
     </KeyboardAvoidingView>

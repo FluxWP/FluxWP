@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.3.0
+- İlk açılış üç karşılama sayfası: İleri ile geçilir, sonra site adresi gelir. Atla doğrudan girişe iner.
+- Diğer iki giriş düzeni duruyor: kart (`/add-site?giris=card`) ve indigo bant (`/add-site?giris=band`).
+
 ## 0.2.0
 - Kabuk (üst çubuk, yan çekmece, alt sekmeler), listeler, ayrıntı, formlar ve boş durumlar Flux Admin dilinde: antrasit + bej zemin, indigo düğmeler, amber vurgu, Figtree. Hesap açılınca sitenin theme.json yazı tipi ve renkleri geçerli olur.
 - Yerel ekranlar (WhatsApp, Görevler, bağış inceleme, yazı, ortam, Social, Studio, AI, TV kumandası) aynı yazı, aralık ve düğmeleri kullanır. Web görünümü çerçevesiz kalır.
