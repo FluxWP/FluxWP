@@ -44,6 +44,7 @@ export function createPersister(store: PersistStore) {
 
 /** Query keys. Each account has its own client, so keys do not repeat the account id. */
 export const qk = {
+  bootstrap: () => ['bootstrap'] as const,
   me: () => ['me'] as const,
   config: () => ['config'] as const,
   manifest: () => ['manifest'] as const,

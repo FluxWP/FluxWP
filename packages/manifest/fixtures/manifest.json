@@ -6,7 +6,7 @@
       "id": "crm",
       "plugin": "flx-crm",
       "version": "0.2.2",
-      "min_app": "1.0.0",
+      "min_app": "0.1.0",
       "title": "CRM",
       "icon": "users",
       "menu": "flx-crm",

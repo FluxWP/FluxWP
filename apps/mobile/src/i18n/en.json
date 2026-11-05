@@ -1,0 +1,72 @@
+{
+  "addSite": {
+    "title": "Connect your site",
+    "hint": "Enter your WordPress site address. You can add more than one site.",
+    "continue": "Continue",
+    "browserHint": "You sign in inside the app's secure browser. Your password never reaches the app.",
+    "notAllowed": "This app can only connect to its own site.",
+    "cancelled": "Sign-in was cancelled.",
+    "demo": "Try the demo account",
+    "methods": "Sign-in method",
+    "noFluxApp": "Flux App is not installed on this site. You can connect in limited mode with an application password; install Flux App for the full experience.",
+    "appPassword": "Connect with an application password",
+    "otp": "Sign in with a code",
+    "apiKey": "API key",
+    "secondAccount": "Sign in with another account on this site",
+    "insecure": "Application passwords only work on HTTPS sites.",
+    "appNotAllowed": "This site has turned off the FluxWP app; only its own branded app can sign in."
+  },
+  "otp": {
+    "title": "Sign in with a code",
+    "login": "Email or phone",
+    "send": "Send code",
+    "sent": "Code sent via {{via}}.",
+    "code": "6-digit code",
+    "verify": "Sign in",
+    "resend": "Send the code again"
+  },
+  "apikey": {
+    "title": "Connect with an API key"
+  },
+  "switcher": {
+    "title": "Accounts",
+    "add": "Add site or account",
+    "manage": "Manage accounts",
+    "remove": "Remove account",
+    "removeConfirm": "Remove the {{site}} account from this device?",
+    "current": "Current account",
+    "relogin": "Sign in again",
+    "limited": "Limited mode"
+  },
+  "settings": {
+    "title": "Settings",
+    "theme": "Theme",
+    "language": "Language",
+    "languageDevice": "Device language",
+    "cache": "Clear cache",
+    "cacheCleared": "Cache cleared.",
+    "version": "Version {{version}}",
+    "about": "About",
+    "support": "Support"
+  },
+  "web": {
+    "loading": "Opening dashboard page…",
+    "error": "The page could not be opened.",
+    "openBrowser": "Open in browser",
+    "reload": "Reload",
+    "relogin": "Dashboard session ended, reopening…",
+    "demo": "Demo: sample dashboard page (a real site opens signed in)"
+  },
+  "shell": {
+    "openDrawer": "Open menu",
+    "back": "Back",
+    "offline": "Offline: showing saved data",
+    "more": "Full menu",
+    "notFound": "This screen was not found.",
+    "native": "This screen is coming to the app soon."
+  },
+  "states": {
+    "retry": "Try again",
+    "loading": "Loading…"
+  }
+}

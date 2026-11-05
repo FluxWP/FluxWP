@@ -85,11 +85,32 @@ export type ConfigLayer = {
   features?: AppConfig['features'];
 };
 
-/** GET flxapp/v1/app/bootstrap (public). */
+/** GET flxapp/v1/app/bootstrap (public, flx-app 0.4.0+). */
 export interface Bootstrap {
-  site: { name: string; url: string; icon?: string; locale?: string };
-  auth: { methods: ('oauth' | 'otp' | 'apikey' | 'apppass')[]; clients?: { mobile?: string }; prompt_login?: boolean };
-  theme?: { light?: ThemeColorsInput; dark?: ThemeColorsInput };
+  schema?: 'flx-app-bootstrap/1';
+  site: { name: string; url: string; description?: string; admin_url?: string; rest_url?: string; icon?: string; locale?: string; timezone?: string; https?: boolean };
+  auth: {
+    methods: ('oauth' | 'otp' | 'apikey' | 'apppass')[];
+    /** Built-in OAuth clients; empty when the site turned the generic apps off. */
+    clients?: { mobile?: string; desktop?: string };
+    redirects?: { mobile?: string[]; desktop?: string[]; loopback_any_port?: boolean };
+    authorize?: string;
+    /** Login page (Flux Speed: /fluxadmin/). A webview landing here means the session dropped. */
+    login_url?: string;
+    token?: string;
+    revoke?: string;
+    scopes?: string[];
+    pkce?: 'S256';
+    prompt_login?: boolean;
+    otp?: { start?: string; verify?: string };
+  };
+  apps?: { generic?: boolean; clients?: { id: string; name: string; platform: 'mobile' | 'desktop' }[]; preset?: string | null; store?: Record<string, string> };
+  brand?: { name?: string; short_name?: string; logo?: string; logo_dark?: string; icon?: string };
+  theme?: { mode?: ThemeMode; light?: ThemeColorsInput; dark?: ThemeColorsInput };
+  packages?: { slug: string; name: string; type: 'plugin' | 'theme' }[];
   min_app?: string;
+  min_app_desktop?: string;
   flx_app?: string;
+  api?: string;
+  endpoints?: Record<string, string>;
 }

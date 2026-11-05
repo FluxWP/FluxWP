@@ -288,15 +288,37 @@ export const ConfigSchema = v.looseObject({
 });
 
 export const BootstrapSchema = v.looseObject({
-  site: v.looseObject({ name: str, url: str, icon: opt(str), locale: opt(str) }),
+  schema: opt(v.literal('flx-app-bootstrap/1')),
+  site: v.looseObject({ name: str, url: str, description: opt(str), admin_url: opt(str), rest_url: opt(str), icon: opt(str), locale: opt(str), timezone: opt(str), https: opt(v.boolean()) }),
   auth: v.looseObject({
     methods: v.array(v.picklist(['oauth', 'otp', 'apikey', 'apppass'])),
     clients: opt(v.looseObject({ mobile: opt(str), desktop: opt(str) })),
+    redirects: opt(v.looseObject({ mobile: opt(v.array(str)), desktop: opt(v.array(str)), loopback_any_port: opt(v.boolean()) })),
+    authorize: opt(str),
+    login_url: opt(str),
+    token: opt(str),
+    revoke: opt(str),
+    scopes: opt(v.array(str)),
+    pkce: opt(v.literal('S256')),
     prompt_login: opt(v.boolean()),
+    otp: opt(v.looseObject({ start: opt(str), verify: opt(str) })),
   }),
-  theme: opt(v.looseObject({ light: opt(colors), dark: opt(colors) })),
+  apps: opt(
+    v.looseObject({
+      generic: opt(v.boolean()),
+      clients: opt(v.array(v.looseObject({ id: str, name: str, platform: v.picklist(['mobile', 'desktop']) }))),
+      preset: opt(v.nullable(str)),
+      store: opt(v.record(str, str)),
+    }),
+  ),
+  brand: opt(v.looseObject({ name: opt(str), short_name: opt(str), logo: opt(str), logo_dark: opt(str), icon: opt(str) })),
+  theme: opt(v.looseObject({ mode: opt(v.picklist(['system', 'light', 'dark'])), light: opt(colors), dark: opt(colors) })),
+  packages: opt(v.array(v.looseObject({ slug: str, name: str, type: v.picklist(['plugin', 'theme']) }))),
   min_app: opt(str),
+  min_app_desktop: opt(str),
   flx_app: opt(str),
+  api: opt(str),
+  endpoints: opt(v.record(str, str)),
 });
 
 /** brands/<slug>/brand.json (desktop core keys + mobile keys, plan §11.1). */

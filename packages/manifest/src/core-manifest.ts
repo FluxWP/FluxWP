@@ -68,7 +68,7 @@ export const CORE_MANIFEST: Manifest = {
           type: 'fields',
           title: '$t:core.details',
           fields: [
-            { label: '$t:core.status', value: '{{status}}' },
+            ...(['publish', 'draft', 'pending', 'future', 'private'] as const).map((st) => ({ label: '$t:core.status', value: `$t:shell.status.${st}`, when: { path: 'status', op: 'eq' as const, value: st } })),
             { label: '$t:core.link', value: '{{link}}', link: '{{link}}', copy: true, when: { path: 'link', op: 'filled' } },
           ],
         },

@@ -3,12 +3,23 @@
 import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { ApiError, flxapp, type Dashboard, type Me } from '@fluxwp/core';
-import { DEFAULT_CONFIG, mergeConfig, type AppConfig, type ManifestBundle, type ThemeMode } from '@fluxwp/manifest';
+import { DEFAULT_CONFIG, mergeConfig, type AppConfig, type Bootstrap, type ManifestBundle, type ThemeMode } from '@fluxwp/manifest';
 import { themeFromConfig, type BrandColors, type ThemeInput } from '@fluxwp/tokens';
-import { loadConfig, loadManifests, withCore } from './api';
+import { loadBootstrap, loadConfig, loadManifests, withCore } from './api';
+import { demoShellFetch } from './demo/fetch';
 import { qk } from './query';
 import { useScope } from './scope';
 import { resolveShell, type ResolvedShell } from './shell';
+
+/** Public discovery (login methods, clients, login_url…). Null on sites before flx-app 0.4.0. */
+export function useBootstrap() {
+  const { account } = useScope();
+  return useQuery<Bootstrap | null>({
+    queryKey: qk.bootstrap(),
+    queryFn: () => loadBootstrap(account.siteUrl, account.authKind === 'demo' ? demoShellFetch : undefined),
+    staleTime: 60 * 60_000,
+  });
+}
 
 export function useMe() {
   const { api } = useScope();

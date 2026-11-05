@@ -6,6 +6,7 @@ import { CORE_MANIFEST, DEFAULT_CONFIG, mergeConfig, parseConfig, parseManifestB
 import config from '@fluxwp/manifest/fixtures/config.json';
 import bundle from '@fluxwp/manifest/fixtures/manifest.json';
 import { demoMe } from '../../core/src/demo/fixtures';
+import { loadBootstrap } from './api';
 import { brandGate, siteAllowed } from './brand-gate';
 import { DEMO_SITE, demoShellFetch } from './demo/fetch';
 import { accountForPush, routePush } from './notify';
@@ -31,7 +32,7 @@ describe('resolveTarget (§6 order)', () => {
   });
 
   it('honours min_app and forceWeb', () => {
-    const old = { ...env, appVersion: '0.9.0' };
+    const old = { ...env, appVersion: '0.0.9' };
     expect(resolveTarget('module:crm', old)).toEqual({ kind: 'web', path: 'admin.php?page=flx-crm' });
     expect(resolveTarget('module:crm', { ...env, forceWeb: new Set(['crm']) }).kind).toBe('web');
   });
@@ -48,6 +49,7 @@ describe('shell model', () => {
     const cfg = mergeConfig({ site: parseConfig(config) });
     const shell = resolveShell(cfg, { ...env, me: demoMe as Me, counts: { 'flx-chat': 7 } });
     expect(shell.tabs.map((t) => t.id)).toEqual(['home', 'crm', 'chat', 'posts', 'more']);
+    expect(shell.tabs[1]!.route).toMatchObject({ kind: 'manifest', module: 'crm', screen: 'contacts' });
     expect(shell.tabs.find((t) => t.id === 'chat')).toMatchObject({ badge: 7, route: { kind: 'web' } });
     expect(shell.drawer.groups[0]!.items[0]).toMatchObject({ label: 'Yazılar', route: { kind: 'manifest', screen: 'posts' } });
     expect(shell.drawer.footer.map((f) => f.target)).toEqual(['accounts', 'settings']);
@@ -122,6 +124,11 @@ describe('webview decisions', () => {
     expect(classifyNavigation('https://demo.fluxapp.local/wp-admin/upload.php', opts)).toEqual({ action: 'allow' });
     expect(classifyNavigation('https://demo.fluxapp.local/wp-login.php?redirect_to=x', opts)).toEqual({ action: 'relogin' });
     expect(classifyNavigation('https://demo.fluxapp.local/wp-login.php?action=logout', opts)).toEqual({ action: 'block', reason: 'logout' });
+    // Flux Speed custom login page (bootstrap auth.login_url).
+    const speed = { ...opts, loginUrl: 'https://demo.fluxapp.local/fluxadmin/' };
+    expect(classifyNavigation('https://demo.fluxapp.local/fluxadmin/?redirect_to=x', speed)).toEqual({ action: 'relogin' });
+    expect(classifyNavigation('https://demo.fluxapp.local/fluxadmin/?action=flxapp_sso&t=abc', speed)).toEqual({ action: 'allow' });
+    expect(classifyNavigation('https://demo.fluxapp.local/fluxadmin/', opts)).toEqual({ action: 'allow' });
     expect(classifyNavigation('https://example.com/', opts)).toEqual({ action: 'browser', url: 'https://example.com/' });
     expect(classifyNavigation('tel:+905320000000', opts).action).toBe('system');
     expect(classifyNavigation('javascript:alert(1)', opts)).toEqual({ action: 'block', reason: 'scheme' });
@@ -162,6 +169,9 @@ describe('demo transport', () => {
   it('serves the contract fixtures and wp paging headers', async () => {
     const api = createClient({ siteUrl: DEMO_SITE, fetchImpl: demoShellFetch, getCredentials: async () => ({ token: 'demo' }) });
     expect(parseConfig(await api('flxapp/v1/config'))).not.toBeNull();
+    const boot = await loadBootstrap(DEMO_SITE, demoShellFetch);
+    expect(boot?.auth.clients).toEqual({ mobile: 'flx-mobil', desktop: 'flx-masaustu' });
+    expect(boot?.auth.login_url).toBe('https://demo.fluxapp.local/fluxadmin/');
     expect(Object.keys(parseManifestBundle(await api('flxapp/v1/manifest')).modules)).toEqual(['crm']);
     const res = await demoShellFetch(`${DEMO_SITE}/wp-json/wp/v2/posts?per_page=3&page=1`);
     expect(res.headers.get('X-WP-TotalPages')).toBe('3');

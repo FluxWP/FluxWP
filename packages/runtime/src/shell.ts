@@ -53,7 +53,10 @@ export function describeTarget(target: string, env: ShellEnv): Omit<NavEntry, 'i
       const m = env.manifests?.[t.module];
       const s = t.kind === 'screen' ? m?.screens[t.screen] : undefined;
       const title = s?.title && !s.title.includes('{{') ? s.title : (m?.title ?? env.me?.modules[t.module]?.title ?? t.module);
-      const menu = m?.menu ? findMenu(env.me, (slug) => slug === m.menu) : null;
+      // A screen that a manifest route maps to a wp-admin page borrows that menu item's icon and badge.
+      const page = t.kind === 'screen' ? Object.entries(m?.routes ?? {}).find(([, r]) => r.screen === t.screen && !r.params)?.[0] : undefined;
+      const menu = page ? findMenu(env.me, (_s, url) => adminPath(url) === page) : m?.menu ? findMenu(env.me, (slug) => slug === m.menu) : null;
+      if (page) return { label: title, icon: menu?.icon ?? '', slug: menu?.slug ?? page, iconUrl: menu?.iconUrl, badge: (menu?.slug && counts[menu.slug]) || menu?.badge || undefined };
       return { label: title, icon: m?.icon ?? env.me?.modules[t.module]?.icon ?? menu?.icon ?? '', slug: m?.menu ?? menu?.slug, iconUrl: m?.icon_url ?? menu?.iconUrl, badge: (m?.menu && counts[m.menu]) || undefined };
     }
     case 'menu': {

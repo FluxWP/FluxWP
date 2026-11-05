@@ -61,8 +61,32 @@ export type NavDecision =
 
 const SYSTEM = /^(tel|mailto|sms|whatsapp|geo|maps):/i;
 
+const SSO_ACTIONS = new Set(['flxapp_sso', 'flxapp_session']);
+
+export interface NavOptions {
+  siteUrl: string;
+  env: ResolveEnv;
+  allowHosts?: string[];
+  /** The one-time SSO address just loaded (always allowed). */
+  ssoUrl?: string | null;
+  /** bootstrap `auth.login_url`: custom login page (Flux Speed /fluxadmin/). */
+  loginUrl?: string | null;
+}
+
+/** Login page hit outside an SSO hand-off → the WP cookie session dropped. */
+function isLoginPage(u: URL, loginUrl?: string | null): boolean {
+  if (/\/wp-login\.php$/.test(u.pathname)) return true;
+  if (!loginUrl) return false;
+  try {
+    const l = new URL(loginUrl);
+    return l.origin === u.origin && u.pathname.replace(/\/+$/, '') === l.pathname.replace(/\/+$/, '');
+  } catch {
+    return false;
+  }
+}
+
 /** What to do when the webview is about to load `url` (onShouldStartLoadWithRequest / on_navigation). */
-export function classifyNavigation(url: string, opts: { siteUrl: string; env: ResolveEnv; allowHosts?: string[]; ssoUrl?: string | null }): NavDecision {
+export function classifyNavigation(url: string, opts: NavOptions): NavDecision {
   if (SYSTEM.test(url) || /^https:\/\/(wa\.me|api\.whatsapp\.com)\//i.test(url)) return { action: 'system', url };
   if (/^(about:blank|data:|blob:)/i.test(url)) return { action: 'allow' };
   let u: URL;
@@ -76,9 +100,10 @@ export function classifyNavigation(url: string, opts: { siteUrl: string; env: Re
   const sameSite = u.origin === site.origin || (opts.allowHosts ?? []).includes(u.host);
   if (!sameSite) return { action: 'browser', url };
   if (opts.ssoUrl && url === opts.ssoUrl) return { action: 'allow' };
-  if (/\/wp-login\.php/.test(u.pathname)) {
-    if (u.searchParams.get('action') === 'logout') return { action: 'block', reason: 'logout' };
-    if (u.searchParams.get('action') === 'flxapp_session') return { action: 'allow' };
+  if (isLoginPage(u, opts.loginUrl)) {
+    const action = u.searchParams.get('action') ?? '';
+    if (action === 'logout') return { action: 'block', reason: 'logout' };
+    if (SSO_ACTIONS.has(action)) return { action: 'allow' };
     return { action: 'relogin' };
   }
   if (u.pathname.includes('/wp-admin/')) {

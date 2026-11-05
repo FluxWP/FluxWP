@@ -3,6 +3,9 @@
   "title": "GET flxapp/v1/app/bootstrap",
   "type": "object",
   "properties": {
+    "schema": {
+      "const": "flx-app-bootstrap/1"
+    },
     "site": {
       "type": "object",
       "properties": {
@@ -12,11 +15,26 @@
         "url": {
           "type": "string"
         },
+        "description": {
+          "type": "string"
+        },
+        "admin_url": {
+          "type": "string"
+        },
+        "rest_url": {
+          "type": "string"
+        },
         "icon": {
           "type": "string"
         },
         "locale": {
           "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "https": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -51,17 +69,154 @@
           },
           "required": []
         },
+        "redirects": {
+          "type": "object",
+          "properties": {
+            "mobile": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "desktop": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "loopback_any_port": {
+              "type": "boolean"
+            }
+          },
+          "required": []
+        },
+        "authorize": {
+          "type": "string"
+        },
+        "login_url": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "revoke": {
+          "type": "string"
+        },
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pkce": {
+          "const": "S256"
+        },
         "prompt_login": {
           "type": "boolean"
+        },
+        "otp": {
+          "type": "object",
+          "properties": {
+            "start": {
+              "type": "string"
+            },
+            "verify": {
+              "type": "string"
+            }
+          },
+          "required": []
         }
       },
       "required": [
         "methods"
       ]
     },
+    "apps": {
+      "type": "object",
+      "properties": {
+        "generic": {
+          "type": "boolean"
+        },
+        "clients": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "platform": {
+                "enum": [
+                  "mobile",
+                  "desktop"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "platform"
+            ]
+          }
+        },
+        "preset": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "store": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "required": []
+    },
+    "brand": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "short_name": {
+          "type": "string"
+        },
+        "logo": {
+          "type": "string"
+        },
+        "logo_dark": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        }
+      },
+      "required": []
+    },
     "theme": {
       "type": "object",
       "properties": {
+        "mode": {
+          "enum": [
+            "system",
+            "light",
+            "dark"
+          ],
+          "type": "string"
+        },
         "light": {
           "type": "object",
           "properties": {
@@ -181,11 +336,52 @@
       },
       "required": []
     },
+    "packages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "plugin",
+              "theme"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "slug",
+          "name",
+          "type"
+        ]
+      }
+    },
     "min_app": {
+      "type": "string"
+    },
+    "min_app_desktop": {
       "type": "string"
     },
     "flx_app": {
       "type": "string"
+    },
+    "api": {
+      "type": "string"
+    },
+    "endpoints": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
     }
   },
   "required": [

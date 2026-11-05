@@ -25,3 +25,4 @@ export const appResources = Object.fromEntries(
 export const textOf = (s: string | undefined, t: (k: string) => string): string => (s?.startsWith('$t:') ? t(s.slice(3)) : (s ?? ''));
 
 export { normalizeLocale };
+export type { Locale };

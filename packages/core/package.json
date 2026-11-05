@@ -1,6 +1,6 @@
 {
   "name": "@fluxwp/core",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "main": "src/index.ts",
@@ -14,5 +14,7 @@
     "i18next": "^26.6.0",
     "zustand": "^5.0.16"
   },
-  "devDependencies": { "vitest": "^5.0.5" }
+  "devDependencies": {
+    "vitest": "^5.0.5"
+  }
 }

@@ -114,7 +114,7 @@ plugins/<slug>/      eklentiler (ana dosya <slug>/<slug>.php)
 themes/<slug>/       temalar (style.css)
 bin/                 build.sh, package-info.sh, release-notes.sh, test-update.sh, readme-table.sh
 tools/readme-media/  tanıtım ekranları, GIF'ler ve README üretici
-.github/workflows/   release.yml, fluxapp-ci.yml, fluxapp-desktop.yml
+.github/workflows/   release.yml, fluxapp-ci.yml, fluxapp-desktop.yml, mobile-ci.yml
 docs/                paket kurulum/API belgeleri (docs/README.md)
 .claude/skills/      Claude Code skill'leri: flx-wp-eklenti, flx-wp-tema, flx-paket-yayin, flx-readme-tanitim
 ```
@@ -150,9 +150,9 @@ release'den tanır, ayrıca ayar gerekmez. Siteye ilk kurulum: **FluxWP Panel �
 Güncelleme sunucusu ayrı repoda: [FluxWP/updater](https://github.com/FluxWP/updater) (`updater.fluxwp.com`).
 Sitelerde `plugins/flx-setup` kurulu olmalı; kurulum adımları o reponun README'sinde.
 
-## Masaüstü uygulaması ve ortak TS paketleri
+## Masaüstü ve mobil uygulama, ortak TS paketleri
 
-Masaüstü/web uygulaması (React + Tauri) ve eklenti panellerinin de kullandığı ortak katman kökte: `packages/` (core, tokens, ui, modules, panel), `apps/desktop`, `apps/wp-embed`, `brands/`. Paket yöneticisi Bun: `bun install`, `bun run dev`. Ayrıntı: [docs/fluxapp/README.md](docs/fluxapp/README.md).
+Masaüstü/web uygulaması (React + Tauri), mobil uygulama (Expo, [apps/mobile](apps/mobile/README.tr.md)) ve eklenti panellerinin de kullandığı ortak katman kökte: `packages/` (core, tokens, manifest, runtime, ui, modules, panel), `apps/desktop`, `apps/mobile`, `apps/wp-embed`, `brands/`. `core`, `tokens`, `manifest` ve `runtime` platformdan bağımsızdır (DOM ya da React Native yok); uygulama sözleşmeleri ve JSON Schema'ları `packages/manifest`'te. React tüm workspace'te Expo'nun sürümüne sabitli. Paket yöneticisi Bun: `bun install`, `bun run dev`. Ayrıntı: [docs/fluxapp/README.md](docs/fluxapp/README.md).
 
 ## Geliştirici
 

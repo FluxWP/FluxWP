@@ -41,7 +41,7 @@
       },
       {
         "id": "crm",
-        "target": "module:crm",
+        "target": "screen:crm/contacts",
         "icon": "users",
         "label": "Kişiler"
       },
