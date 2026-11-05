@@ -79,7 +79,7 @@ function flx_brand_credit( $context = '', $args = array() ) {
 	$css = '';
 	if ( empty( $GLOBALS['flx_brand_css'] ) ) {
 		$GLOBALS['flx_brand_css'] = true;
-		$css = '<style id="flx-credit-css">.flx-credit{opacity:.78;transition:opacity .15s}.flx-credit:hover,.flx-credit:focus-visible{opacity:1}</style>';
+		$css = '<style id="flx-credit-css">.flx-credit{text-underline-offset:3px}.flx-credit:hover,.flx-credit:focus-visible{text-decoration:underline}</style>';
 	}
 	$GLOBALS['flx_brand_printed'] = true;
 

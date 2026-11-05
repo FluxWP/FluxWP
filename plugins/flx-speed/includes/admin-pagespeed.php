@@ -92,7 +92,7 @@ class FLXP_Admin_PageSpeed {
 					<p>
 						<label for="flxp-ps-safelist"><?php esc_html_e( 'Her zaman korunan sınıflar', 'flx-speed' ); ?></label>
 						<textarea id="flxp-ps-safelist" name="flxp[ps_safelist]" rows="3" class="large-text code" placeholder="menu-open&#10;swiper-*"><?php echo esc_textarea( $s['ps_safelist'] ); ?></textarea>
-						<span class="description"><?php esc_html_e( 'Satır başına bir sınıf ya da id, * joker. JavaScript\'in sonradan eklediği bir görünüm bozulursa sınıfını buraya yazın. is-*, has-*, wp-* her zaman korunur.', 'flx-speed' ); ?></span>
+						<span class="description"><?php esc_html_e( 'Satır başına bir sınıf ya da id, * joker. JavaScript\'in sonradan eklediği bir görünüm bozulursa sınıfını buraya yazın. is-*, has-*, wp-*, swiper-* her zaman korunur.', 'flx-speed' ); ?></span>
 					</p>
 				</div>
 				<?php

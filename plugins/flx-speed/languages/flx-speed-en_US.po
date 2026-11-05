@@ -58,8 +58,8 @@ msgstr "Trimmed CSS is written into <head> up to this size; anything beyond is l
 msgid "Her zaman korunan sınıflar"
 msgstr "Always keep these classes"
 
-msgid "Satır başına bir sınıf ya da id, * joker. JavaScript'in sonradan eklediği bir görünüm bozulursa sınıfını buraya yazın. is-*, has-*, wp-* her zaman korunur."
-msgstr "One class or id per line, * as wildcard. If a style added later by JavaScript breaks, add its class here. is-*, has-*, wp-* are always kept."
+msgid "Satır başına bir sınıf ya da id, * joker. JavaScript'in sonradan eklediği bir görünüm bozulursa sınıfını buraya yazın. is-*, has-*, wp-*, swiper-* her zaman korunur."
+msgstr "One class or id per line, * as wildcard. If a style added later by JavaScript breaks, add its class here. is-*, has-*, wp-*, swiper-* are always kept."
 
 msgid "Kullanılmayan CSS'i kırp ve satır içine al"
 msgstr "Remove unused CSS and inline it"

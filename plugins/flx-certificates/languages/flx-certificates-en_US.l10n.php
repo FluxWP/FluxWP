@@ -6,6 +6,7 @@ return array(
 	'language'     => 'en_US',
 	'project-id-version' => 'Flux Certificates',
 	'messages'     => array(
+		'Fidan hedefi ilerlemesi' => 'Sapling goal progress',
 		'Kayıt yok' => 'No record',
 		'Sertifika bulunamadı' => 'Certificate not found',
 		'Bağlantıyı eksik kopyalamış olabilirsiniz. Kodu kontrol edin ya da aşağıdan sertifikanızı isteyin.' => 'The link may have been copied incompletely. Check the code or request your certificate below.',

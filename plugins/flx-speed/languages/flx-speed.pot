@@ -57,7 +57,7 @@ msgstr ""
 msgid "Her zaman korunan sınıflar"
 msgstr ""
 
-msgid "Satır başına bir sınıf ya da id, * joker. JavaScript'in sonradan eklediği bir görünüm bozulursa sınıfını buraya yazın. is-*, has-*, wp-* her zaman korunur."
+msgid "Satır başına bir sınıf ya da id, * joker. JavaScript'in sonradan eklediği bir görünüm bozulursa sınıfını buraya yazın. is-*, has-*, wp-*, swiper-* her zaman korunur."
 msgstr ""
 
 msgid "Kullanılmayan CSS'i kırp ve satır içine al"
