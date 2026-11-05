@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 // A real Release simulator build (not the Expo web preview), used for QA and store screenshots.
-import { readdirSync, mkdirSync, writeFileSync } from 'node:fs';
+import { readdirSync, mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { root } from './config.mjs';
+import { createHash } from 'node:crypto';
+import { nativeInputHash } from './native-inputs.mjs';
 
 const ios = join(root, 'apps/mobile/ios');
 const workspace = readdirSync(ios).find(f => f.endsWith('.xcworkspace'));
@@ -27,4 +29,5 @@ const archive = join(out, `${project}-simulator.zip`);
 const zip = spawnSync('ditto', ['-c', '-k', '--sequesterRsrc', '--keepParent', join(products, app), archive], { stdio: 'inherit' });
 if (zip.status) throw new Error('Cannot preserve simulator app permissions in archive');
 writeFileSync(join(out, 'simulator.json'), JSON.stringify({ app: join(products, app) }, null, 2));
+writeFileSync(join(out, 'native-build.json'), JSON.stringify({brand: process.env.FLUX_BRAND || 'flux', sourceCommit: process.env.GITHUB_SHA, nativeInputHash: nativeInputHash(), sha256: createHash('sha256').update(readFileSync(archive)).digest('hex')}, null, 2));
 console.log(`Native simulator app archived: release-out/ios/${project}-simulator.zip`);
