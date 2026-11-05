@@ -34,7 +34,7 @@ function flxf_app_version() {
 	static $v = null;
 	if ( null === $v ) {
 		$data = get_file_data( FLXF_PLUGIN_FILE, array( 'Version' => 'Version' ) );
-		$v    = ! empty( $data['Version'] ) ? $data['Version'] : '2.1.13';
+		$v    = ! empty( $data['Version'] ) ? $data['Version'] : '2.1.14';
 	}
 	return $v;
 }

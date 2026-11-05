@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Flux SEO
  * Description: Meta başlık/açıklama, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap ayarları, favicon ve SEO kontrolü. Yapay zekâ asistanları için içerik ve SEO araçları (MCP sunucusu Flux AI'da).
- * Version: 1.8.0
+ * Version: 1.8.1
  * Author: FluxWP
  * Requires at least: 6.5
  * Requires PHP: 7.4
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLXSEO_VERSION', '1.8.0' );
+define( 'FLXSEO_VERSION', '1.8.1' );
 
 if ( ! function_exists( 'array_is_list' ) ) {
 	function array_is_list( array $a ) {

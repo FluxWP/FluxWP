@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.35.10
+- Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
+
+
 ## 1.35.9
 - Güvenlik (CodeQL): Asistan stüdyosunda sekme adı yalnız bilinen sekmelerden seçilir.
 

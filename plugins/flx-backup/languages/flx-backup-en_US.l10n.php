@@ -355,5 +355,10 @@ return array(
 		'İlerleme' => 'Progress',
 		'Şimdi yedekle' => 'Back up now',
 		'Şimdi yedekle ile ilk yedeği alın. Geri yükleme panelde yapılır.' => 'Take the first backup with Back up now. Restore is done in the panel.',
-	),
+			'Yedeğin tahmini boyutu (%1$s) kotadan (%2$s) büyük. Ayarlar\'dan kotayı artırın.' => 'The estimated backup size (%1$s) is larger than the quota (%2$s). Raise the quota in Settings.',
+		'PHP zip (ZipArchive) veya zlib eklentisi yok; yedek alınamaz. Hostinger panelinde PHP Yapılandırması › PHP Uzantıları\'ndan "zip" açın.' => 'The PHP zip (ZipArchive) or zlib extension is missing; backups cannot be created. On Hostinger, turn on "zip" under PHP Configuration › PHP Extensions.',
+		'DISABLE_WP_CRON açık ve günlük görev 2 gündür çalışmadı. Hostinger panelinde Gelişmiş › Cron Jobs ile wp-cron.php\'yi 5–15 dakikada bir çağırın.' => 'DISABLE_WP_CRON is on and the daily job has not run for 2 days. In the Hostinger panel, call wp-cron.php every 5–15 minutes under Advanced › Cron Jobs.',
+		'Dosya (%1$s) yedek kotasından (%2$s) büyük. Ayarlar\'dan kotayı artırın.' => 'The file (%1$s) is larger than the backup quota (%2$s). Raise the quota in Settings.',
+		'Çekirdek her zaman wordpress.org\'dan yeniden indirilebilir; kapalı bırakmak yer kazandırır.' => 'WordPress core can always be downloaded again from wordpress.org; leaving it out saves space.',
+),
 );

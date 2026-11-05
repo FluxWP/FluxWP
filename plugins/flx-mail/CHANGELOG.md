@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.13.9
+- Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
+
+
 ## 1.13.8
 - Uygulama manifesti: posta kutusu (liste, oku, yanıtla) ve gönderim kaydı. Gövde HTML içerik olarak açılır. Şablonlar ve bağlantılar web görünümünde kalır.
 - Posta listesi `page` / `per_page` kabul eder. Yeni uçlar: `POST /mailbox/item/{id}/reply` (yanıtı gönderir) ve `GET /log` (sayfalı kayıt). Yetki `flxi_manage`.
