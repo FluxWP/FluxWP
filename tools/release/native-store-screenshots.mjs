@@ -5,9 +5,10 @@ import { join, relative } from 'node:path';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { root } from './config.mjs';
+import { captureWithXCTest } from './native-capture.mjs';
 
 function run(command, args, capture = false) {
-  const r = spawnSync(command, args, { encoding: 'utf8', stdio: capture ? 'pipe' : 'inherit', env: { ...process.env, MAESTRO_CLI_NO_ANALYTICS: '1', MAESTRO_DRIVER_STARTUP_TIMEOUT: process.env.MAESTRO_DRIVER_STARTUP_TIMEOUT || '600000' } });
+  const r = spawnSync(command, args, { encoding: 'utf8', stdio: capture ? 'pipe' : 'inherit' });
   if (r.status !== 0) throw new Error(`${command} failed (${r.status})`);
   return r.stdout?.trim();
 }
@@ -24,7 +25,6 @@ if (!phone || !tablet) throw new Error('A large iPhone and 13-inch iPad simulato
 const screenshots = [];
 const locales = process.env.SCREENSHOT_LOCALE ? [process.env.SCREENSHOT_LOCALE] : ['tr-TR', 'en-US'];
 if (!locales.every(l => ['tr-TR', 'en-US'].includes(l))) throw new Error('Invalid screenshot locale');
-run('open', ['-a', 'Simulator']);
 for (const locale of locales) {
   for (const [device, kind] of [[phone, 'iphone'], [tablet, 'ipad']]) {
     if (process.env.SCREENSHOT_DEVICE && process.env.SCREENSHOT_DEVICE !== kind) continue;
@@ -32,15 +32,13 @@ for (const locale of locales) {
     const folder = join(out, 'ios', locale === 'tr-TR' ? 'tr' : locale);
     mkdirSync(folder, { recursive: true });
     const names = ['01-connect', '02-dashboard', '03-contacts', '04-posts', '05-menu', '06-accounts'].map(s => `${kind}-${s}`);
-    const shot = n => JSON.stringify(join(folder, n));
     try {
       run('xcrun', ['simctl', 'boot', id]);
+      run('open', ['-a', 'Simulator', '--args', '-CurrentDeviceUDID', id]);
       run('xcrun', ['simctl', 'bootstatus', id, '-b']);
       run('xcrun', ['simctl', 'status_bar', id, 'override', '--time', '9:41', '--dataNetwork', 'wifi', '--wifiMode', 'active', '--wifiBars', '3', '--batteryState', 'charged', '--batteryLevel', '100']);
       run('xcrun', ['simctl', 'install', id, manifest.app]);
-      const flow = join(out, `flow-${kind}-${locale}.yaml`);
-      writeFileSync(flow, `appId: ${process.env.FLUX_BUNDLE_IDENTIFIER}\n---\n- launchApp:\n    clearState: true\n    arguments:\n      AppleLanguages: '${locale === 'tr-TR' ? '(tr)' : '(en)'}'\n      AppleLocale: '${locale.replace('-', '_')}'\n- extendedWaitUntil:\n    visible:\n      id: demo\n    timeout: 60000\n- takeScreenshot: ${shot(names[0])}\n- tapOn:\n    id: demo\n- extendedWaitUntil:\n    visible:\n      id: open-drawer\n    timeout: 60000\n- waitForAnimationToEnd\n- takeScreenshot: ${shot(names[1])}\n- tapOn:\n    text: '(Kişiler|Contacts)'\n- waitForAnimationToEnd\n- takeScreenshot: ${shot(names[2])}\n- tapOn:\n    text: '(Yazılar|Posts)'\n- waitForAnimationToEnd\n- takeScreenshot: ${shot(names[3])}\n- tapOn:\n    id: site-switcher\n- waitForAnimationToEnd\n- takeScreenshot: ${shot(names[5])}\n- tapOn:\n    point: '50%,15%'\n- waitForAnimationToEnd\n- tapOn:\n    id: open-drawer\n- waitForAnimationToEnd\n- takeScreenshot: ${shot(names[4])}\n`);
-      run('maestro', ['--device', id, 'test', flow]);
+      captureWithXCTest({id, kind, locale, bundleId: process.env.FLUX_BUNDLE_IDENTIFIER, folder, names});
       for (const name of names) {
         const file = `${name}.png`;
         if (!readdirSync(folder).includes(file)) throw new Error(`Missing native screenshot ${locale}/${file}`);
