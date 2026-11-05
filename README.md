@@ -98,6 +98,15 @@ All versions: [Releases](https://github.com/FluxWP/FluxWP/releases). This table 
 3. Recommended base: **Flux Admin**, **Flux Roles**, **Flux AI** and **Flux Performance** (System Check). Add solutions as you need them.
 4. Each package README has screenshots, setup steps and a roadmap; detailed notes are in [`docs/`](docs/README.md).
 
+## Resources
+
+The [FluxWP Wiki](https://fluxwp.com/wiki) is a great place to start, or explore these other channels:
+
+* [Website](https://fluxwp.com) (Product, Presets)
+* [GitHub Issues](https://github.com/FluxWP/FluxWP/issues) (Report Bugs, Feature Requests)
+* [Security Policy](SECURITY.md) (Report Vulnerabilities)
+* [info@fluxwp.com](mailto:info@fluxwp.com) (Support, Questions)
+
 ## For developers
 
 ```
