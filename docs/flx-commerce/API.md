@@ -33,6 +33,17 @@
 ## REST
 `POST /wp-json/flx-commerce/v1/receipt` — `order`, `key` (sipariş anahtarı), `dekont` (dosya). Yetki sipariş anahtarıdır.
 
+Uygulama (Flux App manifesti `flxcm`, 0.2.3). Okuma `view_woocommerce_reports` ya da `manage_woocommerce`. Onay `edit_shop_orders`.
+
+| Yöntem | Yol | Ne |
+|---|---|---|
+| GET | `/summary?days=30` | Ciro, sipariş, ortalama sepet, yeni müşteri, dekont bekleyen, günlük `series` |
+| GET | `/customers` | `s, segment, orderby, order, page, per_page` → `items, total, pages` |
+| GET | `/customers/{id}` | Müşteri kartı |
+| GET | `/receipts` | Havale ve ödeme bekleyen siparişler |
+| GET | `/receipts/{id}` | Tek sipariş ve dekont dosyaları |
+| POST | `/receipts/{id}/approve` | `FLXCM_Bank::mark_paid()` |
+
 ## Sipariş meta
 `_flxcm_ref`, `_flxcm_code`, `_flxcm_receipts`, `_flxcm_confirmed`, `_flxcm_confirmed_by`, `_flxcm_wa_placed`, `_flxcm_wa_admin`.
 Ürün meta `_flxcm_no_feed` = feed'e girmez.

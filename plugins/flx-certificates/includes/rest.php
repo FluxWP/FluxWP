@@ -16,7 +16,18 @@ function flxs_register_rest() {
 	};
 
 	register_rest_route( $ns, '/people', array( 'methods' => 'GET', 'callback' => 'flxs_rest_people', 'permission_callback' => $use ) );
-	register_rest_route( $ns, '/certificates', array( 'methods' => 'POST', 'callback' => 'flxs_rest_cert_save', 'permission_callback' => $use ) );
+	register_rest_route( $ns, '/directory', array( 'methods' => 'GET', 'callback' => 'flxs_rest_directory', 'permission_callback' => $use ) );
+	register_rest_route(
+		$ns,
+		'/certificates',
+		array(
+			array( 'methods' => 'GET', 'callback' => 'flxs_rest_cert_list', 'permission_callback' => $use ),
+			array( 'methods' => 'POST', 'callback' => 'flxs_rest_cert_save', 'permission_callback' => $use ),
+		)
+	);
+	register_rest_route( $ns, '/messages', array( 'methods' => 'GET', 'callback' => 'flxs_rest_messages', 'permission_callback' => $use ) );
+	register_rest_route( $ns, '/overview', array( 'methods' => 'GET', 'callback' => 'flxs_rest_overview', 'permission_callback' => 'flxs_can_dashboard' ) );
+	add_filter( 'rest_post_dispatch', 'flxs_rest_app_nocache', 10, 3 );
 	register_rest_route(
 		$ns,
 		'/certificates/(?P<id>\d+)',
@@ -540,6 +551,138 @@ function flxs_rest_cert_ref( WP_REST_Request $r ) {
 	return array( 'ok' => true, 'ref_user_id' => $ref, 'ref_user' => flxs_ref_label( $ref ) );
 }
 
+
+/** Uygulama listeleri önbelleğe alınmasın. */
+function flxs_rest_app_nocache( $result, $server, $request ) {
+	unset( $server );
+	$route = (string) $request->get_route();
+	$live  = array( '/flx-certificates/v1/certificates', '/flx-certificates/v1/directory', '/flx-certificates/v1/messages', '/flx-certificates/v1/queue/status', '/flx-certificates/v1/stats', '/flx-certificates/v1/overview' );
+	if ( $result instanceof WP_REST_Response && in_array( $route, $live, true ) ) {
+		$result->header( 'Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0' );
+		$result->header( 'X-LiteSpeed-Cache-Control', 'no-cache' );
+		$result->header( 'CDN-Cache-Control', 'no-store' );
+		do_action( 'litespeed_control_set_nocache', 'flxs-app' );
+	}
+	return $result;
+}
+
+function flxs_rest_pages( $total, $per ) {
+	return max( 1, (int) ceil( (int) $total / max( 1, (int) $per ) ) );
+}
+
+/** Sertifika listesi (uygulama). Oluşturma POST'u aynı yolda durur. */
+function flxs_rest_cert_list( WP_REST_Request $r ) {
+	$per = min( 100, max( 1, absint( $r->get_param( 'per_page' ) ? $r->get_param( 'per_page' ) : 25 ) ) );
+	$q   = flxs_query_certificates(
+		array(
+			'search'   => sanitize_text_field( (string) $r->get_param( 's' ) ),
+			'status'   => sanitize_key( (string) $r->get_param( 'status' ) ),
+			'page'     => max( 1, absint( $r->get_param( 'page' ) ) ),
+			'per_page' => $per,
+			'scope'    => true,
+			'orderby'  => 'created_at',
+		)
+	);
+	$items = array();
+	foreach ( $q['items'] as $row ) {
+		$js              = flxs_certificate_for_js( $row );
+		$js['name']      = (string) ( $row['person_name'] ?? ( $js['person']['name'] ?? '' ) );
+		$js['email']     = (string) ( $row['person_email'] ?? ( $js['person']['email'] ?? '' ) );
+		$js['phone']     = (string) ( $js['person']['phone_label'] ?? '' );
+		$js['template']  = (string) ( $row['template_name'] ?? '' );
+		$js['date_label'] = flxs_date( $row['created_at'] );
+		$js['status_label'] = 'revoked' === $row['status'] ? __( 'İptal', 'flx-certificates' ) : __( 'Geçerli', 'flx-certificates' );
+		$items[]         = $js;
+	}
+	return array(
+		'items' => $items,
+		'total' => (int) $q['total'],
+		'pages' => flxs_rest_pages( $q['total'], $per ),
+	);
+}
+
+/** Kişiler, sayfalı. Arama ucu `/people` olduğu gibi kalır. */
+function flxs_rest_directory( WP_REST_Request $r ) {
+	global $wpdb;
+	$per  = min( 100, max( 1, absint( $r->get_param( 'per_page' ) ? $r->get_param( 'per_page' ) : 25 ) ) );
+	$page = max( 1, absint( $r->get_param( 'page' ) ) );
+	$s    = sanitize_text_field( (string) $r->get_param( 's' ) );
+	$t     = flxs_table( 'people' );
+	$where = array( '1=1' );
+	$prm   = array();
+	if ( '' !== $s ) {
+		$like    = '%' . $wpdb->esc_like( $s ) . '%';
+		$where[] = '(p.name LIKE %s OR p.email LIKE %s OR p.phone LIKE %s)';
+		array_push( $prm, $like, $like, $like );
+	}
+	$scope = flxs_people_scope_sql( 'p' );
+	if ( $scope ) {
+		$where[] = $scope;
+	}
+	$w     = implode( ' AND ', $where );
+	$total = (int) ( $prm ? $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$t} p WHERE {$w}", $prm ) ) : $wpdb->get_var( "SELECT COUNT(*) FROM {$t} p WHERE {$w}" ) ); // phpcs:ignore WordPress.DB.PreparedSQL
+	$sql   = "SELECT p.* FROM {$t} p WHERE {$w} ORDER BY p.id DESC" . $wpdb->prepare( ' LIMIT %d OFFSET %d', $per, ( $page - 1 ) * $per );
+	$rows  = $prm ? $wpdb->get_results( $wpdb->prepare( $sql, $prm ), ARRAY_A ) : $wpdb->get_results( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
+	$items = array();
+	foreach ( (array) $rows as $row ) {
+		$pub         = flxs_person_public( $row );
+		$pub['date_label'] = flxs_date( $row['created_at'] );
+		$pub['certs'] = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM ' . flxs_table( 'certificates' ) . ' WHERE person_id = %d', (int) $row['id'] ) );
+		$items[]     = $pub;
+	}
+	return array( 'items' => $items, 'total' => $total, 'pages' => flxs_rest_pages( $total, $per ) );
+}
+
+/** Gönderim kuyruğu. */
+function flxs_rest_messages( WP_REST_Request $r ) {
+	$per = min( 100, max( 1, absint( $r->get_param( 'per_page' ) ? $r->get_param( 'per_page' ) : 25 ) ) );
+	$q   = flxs_query_messages(
+		array(
+			'search'   => sanitize_text_field( (string) $r->get_param( 's' ) ),
+			'status'   => sanitize_key( (string) $r->get_param( 'status' ) ),
+			'channel'  => sanitize_key( (string) $r->get_param( 'channel' ) ),
+			'page'     => max( 1, absint( $r->get_param( 'page' ) ) ),
+			'per_page' => $per,
+			'scope'    => true,
+		)
+	);
+	$labels = flxs_status_labels();
+	$items  = array();
+	foreach ( $q['items'] as $row ) {
+		$items[] = array(
+			'id'           => (int) $row['id'],
+			'certificate_id' => (int) $row['certificate_id'],
+			'channel'      => (string) $row['channel'],
+			'channel_label' => flxs_channel_label( $row['channel'] ),
+			'status'       => (string) $row['status'],
+			'status_label' => $labels[ $row['status'] ] ?? $row['status'],
+			'name'         => (string) $row['recipient_name'],
+			'recipient'    => (string) $row['recipient'],
+			'subject'      => (string) $row['subject'],
+			'error'        => (string) $row['last_error'],
+			'date_label'   => flxs_date( $row['created_at'] ),
+		);
+	}
+	return array(
+		'items' => $items,
+		'total' => (int) $q['total'],
+		'pages' => flxs_rest_pages( $q['total'], $per ),
+	);
+}
+
+/** Uygulama özeti: sayaçlar ve seri, tek kaynak. */
+function flxs_rest_overview() {
+	$stats = flxs_stats( array() );
+	$q     = flxs_queue_counts( 0, true );
+	return array(
+		'certs'   => (int) ( $stats['totals']['certs'] ?? 0 ),
+		'people'  => (int) ( $stats['totals']['people'] ?? 0 ),
+		'fidan'   => (int) ( $stats['totals']['fidan'] ?? 0 ),
+		'queued'  => (int) ( $q['queued'] ?? 0 ),
+		'failed'  => (int) ( $q['failed'] ?? 0 ),
+		'series'  => array_values( (array) ( $stats['series'] ?? array() ) ),
+	);
+}
 
 /** Dashboard verisi */
 function flxs_rest_stats( WP_REST_Request $r ) {

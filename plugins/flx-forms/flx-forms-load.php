@@ -378,6 +378,8 @@ if (!function_exists('get_locale_script_chars_efb')) {
     }
 }
 
+require_once __DIR__ . '/includes/flx/app.php';
+
 if (!function_exists('emsfb_is_email_sending_enabled_efb')) {
     /**
      * Whether "This site can send emails" is on. Gates every notification email.
