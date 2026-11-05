@@ -235,7 +235,7 @@ function fun_emsFormBuilder_render_view(x) {
   if(!document.getElementById('alert_efb')){
     const currentUrl = window.location.href;
     const txt = fun_create_content_nloading_efb();
-    const txtWithoutHTML = txt.replace(/<[^>]+>/g, '');
+    const txtWithoutHTML = stripTags_efb(txt);
     alert(txtWithoutHTML)
     report_problem_efb('AdminPagesNotLoaded' ,currentUrl);
     return;
@@ -495,6 +495,19 @@ function fun_send_replayMessage_emsFormBuilder(id) {
 
 }
 
+// Plain text of an HTML string without regex: every <...> is dropped, an unclosed "<" drops the rest.
+function stripTags_efb(html) {
+  const str = String(html == null ? '' : html);
+  let out = '', inTag = false;
+  for (let i = 0; i < str.length; i++) {
+    const ch = str[i];
+    if (inTag) { if (ch === '>') inTag = false; }
+    else if (ch === '<') inTag = true;
+    else out += ch;
+  }
+  return out;
+}
+
 function escapeContentPreviewText_efb(value) {
   return String(value == null ? '' : value).replace(/[&<>"']/g, function (match) {
     return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[match];
@@ -509,7 +522,8 @@ function getContentPreview_efb(contentStr) {
     for (const c of parsed) {
       if (!c || !c.value || c.value === '@file@') continue;
       if (c.type === 'maps' || c.type === 'esign' || c.type === 'payment' || c.type ==='w_link') continue;
-      let val = String(c.value).replace(/<[^>]*>/g, '').replace(/@efb!/g, ',').replace(/@efb[^#]*#/g, ' ').replace(/,\s*$/, '').trim();
+      let val = stripTags_efb(c.value).replace(/@efb!/g, ',').replace(/@efb[^#]*#/g, ' ').trim();
+      while (val.endsWith(',')) val = val.slice(0, -1).trimEnd();
       if (val.length > 0) {
         // c.name/c.id_ come straight off the stored submission, not the
         // trusted form definition - never trust them into innerHTML unescaped.
@@ -2382,7 +2396,7 @@ function efb_open_color_modal() {
 
     const linkFont = (id, url) => {
       let link = document.getElementById(id);
-      if (!url) { if (link) link.remove(); return; }
+      if (!url || !/^https:\/\//i.test(String(url))) { if (link) link.remove(); return; }
       if (!link) {
         link = document.createElement('link');
         link.id = id;
@@ -3061,7 +3075,7 @@ function fun_set_setting_emsFormBuilder(state_auto = 0, done) {
               returnError(`<b>${el.dataset.tab}</b>`);
               el.classList.add('invalid');
               const msg = efb_var.text.pleaseEnterVaildValue +`(${phoneNoArr[i]})`
-              document.getElementById(`${el.id}-message`).innerHTML =msg ;
+              document.getElementById(`${el.id}-message`).textContent = msg;
               return false;
             }
           }
