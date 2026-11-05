@@ -50,6 +50,9 @@ msgstr "Payment methods"
 msgid "İşlemler"
 msgstr "Transactions"
 
+msgid "Havale / EFT"
+msgstr "Bank transfers"
+
 msgid "Ayarlar"
 msgstr "Settings"
 
@@ -73,6 +76,18 @@ msgstr "Account deleted."
 
 msgid "İade bankaya gönderildi ve onaylandı."
 msgstr "The refund was sent to the bank and approved."
+
+msgid "Eşleştirildi; sipariş ödendi olarak işaretlendi."
+msgstr "Matched; the order is marked as paid."
+
+msgid "Güncellendi."
+msgstr "Updated."
+
+msgid "Eşleştirme çalıştırıldı."
+msgstr "Matching ran."
+
+msgid "%1$s ekstresi yüklendi: %2$d yeni hareket, %3$d hareket zaten kayıtlıydı (atlandı), %4$d çıkan hareket (eşleştirilmez). Eşleştirme arka planda sürer."
+msgstr "%1$s statement uploaded: %2$d new transactions, %3$d already recorded (skipped), %4$d outgoing (not matched). Matching continues in the background."
 
 msgid "Etkin hesap"
 msgstr "Active accounts"
@@ -418,6 +433,156 @@ msgstr "Detailed transaction log"
 
 msgid "Banka yanıtları işlem kaydında saklanır; kart verisi ve anahtarlar yazılmaz."
 msgstr "Bank responses are kept in the transaction record; card data and keys are never written."
+
+msgid "Kesin havale eşleşmelerini kendiliğinden onayla"
+msgstr "Confirm certain bank transfer matches automatically"
+
+msgid "Açıklamada sipariş numarası ya da bağış kodu var, tutar birebir ve başka aday yoksa sipariş ödendi yapılır. Kapalıyken her eşleşme onayınızı bekler."
+msgstr "If the description has the order number or donation code, the amount is exact and there is no other candidate, the order is marked paid. When off, every match waits for your approval."
+
+msgid "Öneri bekleyen"
+msgstr "Awaiting approval"
+
+msgid "onayınızı bekliyor"
+msgstr "waiting for you"
+
+msgid "Eşleşmeyen giriş"
+msgstr "Unmatched incoming"
+
+msgid "bir kısmı sırada"
+msgstr "some are queued"
+
+msgid "her gün yeniden denenir"
+msgstr "retried every day"
+
+msgid "Eşleşen"
+msgstr "Matched"
+
+msgid "kesinler kendiliğinden"
+msgstr "certain ones automatically"
+
+msgid "hepsi onayla"
+msgstr "you approve all"
+
+msgid "Son hareket"
+msgstr "Last transaction"
+
+msgid "yüklenen ekstrelerde"
+msgstr "in uploaded statements"
+
+msgid "Ekstre yükle"
+msgstr "Upload statement"
+
+msgid "İnternet şubesinden indirdiğiniz hesap hareketleri dosyası (.xls, .xlsx, .csv). Aynı ya da çakışan tarihli ekstreyi yeniden yükleyebilirsiniz: kayıtlı hareketler atlanır."
+msgstr "The account transactions file downloaded from internet banking (.xls, .xlsx, .csv). You can upload the same or an overlapping period again: recorded transactions are skipped."
+
+msgid "Dosya"
+msgstr "File"
+
+msgid "Banka"
+msgstr "Bank"
+
+msgid "Dosyadan tanı"
+msgstr "Detect from file"
+
+msgid "Hesap (isteğe bağlı)"
+msgstr "Account (optional)"
+
+msgid "ör. Bağış hesabı"
+msgstr "e.g. Donation account"
+
+msgid "Yükle ve eşleştir"
+msgstr "Upload and match"
+
+msgid "Tanınan düzenler: Ziraat, Yapı Kredi, Garanti BBVA, İş Bankası, Türkiye Finans, VakıfBank. Başka bankalarda başlık satırındaki Tarih, Tutar (ya da Borç/Alacak) ve Açıklama sütunları aranır."
+msgstr "Known layouts: Ziraat, Yapı Kredi, Garanti BBVA, İş Bankası, Türkiye Finans, VakıfBank. For other banks the Date, Amount (or Debit/Credit) and Description columns are looked up in the header row."
+
+msgid "Nasıl eşleşir?"
+msgstr "How does matching work?"
+
+msgid "Yalnız hesaba giren tutarlar, havale/EFT ile bekleyen (beklemede, ödeme bekliyor) sipariş ve bağışlarla karşılaştırılır."
+msgstr "Only incoming amounts are compared with orders and donations waiting for a bank transfer (on hold, pending payment)."
+
+msgid "Puan: tutar birebir, açıklamada sipariş numarası ya da bağış referans kodu, gönderenin adı soyadı."
+msgstr "Score: exact amount, the order number or donation reference code in the description, the sender's full name."
+
+msgid "Kod ve tutar tutan, tek adaylı hareketler kendiliğinden onaylanır; diğerleri öneri olarak bekler."
+msgstr "Transactions with matching code and amount and a single candidate are confirmed automatically; others wait as suggestions."
+
+msgid "Her eşleşmeyi siz onaylarsınız. Kesin eşleşmeleri kendiliğinden onaylamak için Ayarlar sekmesi."
+msgstr "You approve every match. To confirm certain matches automatically, see the Settings tab."
+
+msgid "Onaylanan sipariş ödendi olur; bağışta sertifika ve bildirimler her zamanki gibi gider."
+msgstr "A confirmed order is marked paid; for donations the certificate and notices go out as usual."
+
+msgid "Canlı hareket çekme"
+msgstr "Live transaction import"
+
+msgid "Banka API bağlantısı eklendiğinde hareketler saatte bir kendiliğinden çekilir ve aynı eşleştirmeden geçer."
+msgstr "Once a bank API connection is added, transactions are fetched every hour and go through the same matching."
+
+msgid "Şimdi eşleştir"
+msgstr "Match now"
+
+msgid "Açık (eşleşmeyen ve öneriler)"
+msgstr "Open (unmatched and suggestions)"
+
+msgid "Tüm girişler"
+msgstr "All incoming"
+
+msgid "Hepsi (çıkanlar dahil)"
+msgstr "Everything (including outgoing)"
+
+msgid "Açıklama, tutar, referans…"
+msgstr "Description, amount, reference…"
+
+msgid "Hareket yok. Bir ekstre yükleyin."
+msgstr "No transactions. Upload a statement."
+
+msgid "Sipariş / bağış"
+msgstr "Order / donation"
+
+msgid "onaylayan: %s"
+msgstr "approved by: %s"
+
+msgid "kendiliğinden"
+msgstr "automatically"
+
+msgid "Eşleşmeyi kaldır"
+msgstr "Remove match"
+
+msgid "Geri al"
+msgstr "Undo"
+
+msgid "tutar"
+msgstr "amount"
+
+msgid "kod"
+msgstr "code"
+
+msgid "ad soyad"
+msgstr "full name"
+
+msgid "soyad"
+msgstr "surname"
+
+msgid "Onayla"
+msgstr "Approve"
+
+msgid "Sipariş no"
+msgstr "Order no."
+
+msgid "Eşleştir"
+msgstr "Match"
+
+msgid "Yoksay"
+msgstr "Ignore"
+
+msgid "Dosya yüklenemedi."
+msgstr "The file could not be uploaded."
+
+msgid "Dosya 10 MB'tan büyük."
+msgstr "The file is larger than 10 MB."
 
 msgid "Kart ödemesi"
 msgstr "Card payment"
@@ -972,6 +1137,69 @@ msgstr "Keys are encrypted with the WordPress salts. If the wp-config.php salts 
 
 msgid "Denetim çalışmadı: %s"
 msgstr "The check could not run: %s"
+
+msgid "Genel düzen"
+msgstr "Generic layout"
+
+msgid "Ekstre düzeni tanınmadı: başlık satırında tarih, tutar ve açıklama sütunları bulunamadı."
+msgstr "Statement layout not recognized: no date, amount and description columns found in a header row."
+
+msgid "Sırada"
+msgstr "Queued"
+
+msgid "Eşleşmedi"
+msgstr "Unmatched"
+
+msgid "Öneri var"
+msgstr "Suggested"
+
+msgid "Eşleşti"
+msgstr "Matched"
+
+msgid "Yoksayıldı"
+msgstr "Ignored"
+
+msgid "Çıkan"
+msgstr "Outgoing"
+
+msgid "Dosyada hareket bulunamadı."
+msgstr "No transactions found in the file."
+
+msgid "Hareket ya da sipariş bulunamadı."
+msgstr "Transaction or order not found."
+
+msgid "Bu hareket zaten eşleşmiş."
+msgstr "This transaction is already matched."
+
+msgid "Sipariş zaten ödenmiş."
+msgstr "The order is already paid."
+
+msgid "Havale/EFT banka hareketiyle eşleşti: %1$s, %2$s, \"%3$s\" (%4$s)."
+msgstr "Matched with a bank transfer transaction: %1$s, %2$s, \"%3$s\" (%4$s)."
+
+msgid "otomatik"
+msgstr "automatic"
+
+msgid "Banka hareketi eşleşmesi kaldırıldı; sipariş durumu değiştirilmedi."
+msgstr "Bank transaction match removed; the order status was not changed."
+
+msgid "Dosya boş."
+msgstr "The file is empty."
+
+msgid "Dosya okunamadı; Excel (.xls, .xlsx) ya da CSV olarak yeniden indirin."
+msgstr "The file could not be read; download it again as Excel (.xls, .xlsx) or CSV."
+
+msgid "Sunucuda DOM uzantısı yok."
+msgstr "The DOM extension is missing on the server."
+
+msgid "Sunucuda zip uzantısı yok; dosyayı CSV olarak yükleyin."
+msgstr "The zip extension is missing on the server; upload the file as CSV."
+
+msgid "Excel dosyası açılamadı."
+msgstr "The Excel file could not be opened."
+
+msgid "Excel dosyasında sayfa bulunamadı."
+msgstr "No sheet found in the Excel file."
 
 msgid "Üye işyeri bilgileri hatalı; hesap ayarlarını kontrol edin."
 msgstr "The merchant details are wrong; check the account settings."

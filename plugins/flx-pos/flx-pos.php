@@ -45,11 +45,20 @@ require_once FLXPOS_DIR . 'includes/class-flxpos-esnekpos-module.php';
 require_once FLXPOS_DIR . 'includes/rest.php';
 require_once FLXPOS_DIR . 'includes/api.php';
 require_once FLXPOS_DIR . 'includes/system-checks.php';
+require_once FLXPOS_DIR . 'includes/bank/class-flxpos-sheet.php';
+require_once FLXPOS_DIR . 'includes/bank/class-flxpos-bank-layouts.php';
+require_once FLXPOS_DIR . 'includes/bank/class-flxpos-bank.php';
 if ( is_admin() ) {
 	require_once FLXPOS_DIR . 'includes/admin.php';
 }
 
-register_activation_hook( FLXPOS_FILE, array( 'FLXPOS_Txn', 'install' ) );
+register_activation_hook(
+	FLXPOS_FILE,
+	function () {
+		FLXPOS_Txn::install();
+		FLXPOS_Bank::install();
+	}
+);
 
 /*
  * Çeviri: kaynak metinler Türkçe; site/kullanıcı dili İngilizce olduğunda languages/ içindeki çeviri kullanılır.
@@ -91,6 +100,7 @@ add_action(
 		FLXPOS_Txn::maybe_upgrade();
 		FLXPOS_Rest::init();
 		FLXPOS_Flow::init();
+		FLXPOS_Bank::init();
 		if ( class_exists( 'WooCommerce' ) ) {
 			FLXPOS_Gateways::init();
 			FLXPOS_Methods::init();

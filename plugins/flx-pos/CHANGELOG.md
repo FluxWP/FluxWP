@@ -13,4 +13,7 @@
 - PHP API: `flxpos_charge()`, `flxpos_refund()`, `flxpos_txn()`; olay `flxpos_txn_settled`. REST `flxpos/v1/installments`.
 - Kart bilgisi sitede saklanmaz: tek kullanımlık şifreli kasada en fazla 10 dakika kalır, köprü sayfasında bir kez açılır. Günlükte kart ve anahtarlar maskelenir.
 - Sistem Kontrolü satırları (test modundaki hesaplar, HTTPS, şifreleme).
+- Ödeme sayfası gösterimi (hesap başına ya da genel): yönlendirme, açılır pencere (ödeme sayfasından ayrılmadan), site içinde (sitenin üst/alt bölümüyle). Çerçeveden sonuç sayfasına üst pencerede çıkılır. Filtre `flxpos_display`.
+- Taksit düzenleyici: taksit başına aç/kapa, vade farkı %, örnek tutara göre aylık ve toplam önizleme.
+- Havale / EFT sekmesi: internet şubesi ekstresi yükleme (.xls, .xlsx, .csv; Ziraat, Yapı Kredi, Garanti BBVA, İş Bankası, Türkiye Finans, VakıfBank düzenleri ve genel düzen), tekrar kayıt engeli, bekleyen sipariş ve bağışlarla arka planda eşleştirme (tutar, sipariş no / bağış kodu, ad soyad), öneriyi onayla, elle eşleştir, yoksay. İsteğe bağlı kesin eşleşmeleri kendiliğinden onaylama. Canlı banka kaynakları için `flxpos_bank_sources`. Ekstre sütun düzenleri banka-ekstre projesinden uyarlandı (MIT, © 2026 Ahmet Said Kara).
 - Not: Sürücüler sağlayıcı test ortamlarında henüz denenmedi; canlıya almadan önce her hesabı test kartıyla deneyin.

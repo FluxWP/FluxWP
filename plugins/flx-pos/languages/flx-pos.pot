@@ -48,6 +48,9 @@ msgstr ""
 msgid "İşlemler"
 msgstr ""
 
+msgid "Havale / EFT"
+msgstr ""
+
 msgid "Ayarlar"
 msgstr ""
 
@@ -70,6 +73,18 @@ msgid "Hesap silindi."
 msgstr ""
 
 msgid "İade bankaya gönderildi ve onaylandı."
+msgstr ""
+
+msgid "Eşleştirildi; sipariş ödendi olarak işaretlendi."
+msgstr ""
+
+msgid "Güncellendi."
+msgstr ""
+
+msgid "Eşleştirme çalıştırıldı."
+msgstr ""
+
+msgid "%1$s ekstresi yüklendi: %2$d yeni hareket, %3$d hareket zaten kayıtlıydı (atlandı), %4$d çıkan hareket (eşleştirilmez). Eşleştirme arka planda sürer."
 msgstr ""
 
 msgid "Etkin hesap"
@@ -415,6 +430,156 @@ msgid "Ayrıntılı işlem günlüğü"
 msgstr ""
 
 msgid "Banka yanıtları işlem kaydında saklanır; kart verisi ve anahtarlar yazılmaz."
+msgstr ""
+
+msgid "Kesin havale eşleşmelerini kendiliğinden onayla"
+msgstr ""
+
+msgid "Açıklamada sipariş numarası ya da bağış kodu var, tutar birebir ve başka aday yoksa sipariş ödendi yapılır. Kapalıyken her eşleşme onayınızı bekler."
+msgstr ""
+
+msgid "Öneri bekleyen"
+msgstr ""
+
+msgid "onayınızı bekliyor"
+msgstr ""
+
+msgid "Eşleşmeyen giriş"
+msgstr ""
+
+msgid "bir kısmı sırada"
+msgstr ""
+
+msgid "her gün yeniden denenir"
+msgstr ""
+
+msgid "Eşleşen"
+msgstr ""
+
+msgid "kesinler kendiliğinden"
+msgstr ""
+
+msgid "hepsi onayla"
+msgstr ""
+
+msgid "Son hareket"
+msgstr ""
+
+msgid "yüklenen ekstrelerde"
+msgstr ""
+
+msgid "Ekstre yükle"
+msgstr ""
+
+msgid "İnternet şubesinden indirdiğiniz hesap hareketleri dosyası (.xls, .xlsx, .csv). Aynı ya da çakışan tarihli ekstreyi yeniden yükleyebilirsiniz: kayıtlı hareketler atlanır."
+msgstr ""
+
+msgid "Dosya"
+msgstr ""
+
+msgid "Banka"
+msgstr ""
+
+msgid "Dosyadan tanı"
+msgstr ""
+
+msgid "Hesap (isteğe bağlı)"
+msgstr ""
+
+msgid "ör. Bağış hesabı"
+msgstr ""
+
+msgid "Yükle ve eşleştir"
+msgstr ""
+
+msgid "Tanınan düzenler: Ziraat, Yapı Kredi, Garanti BBVA, İş Bankası, Türkiye Finans, VakıfBank. Başka bankalarda başlık satırındaki Tarih, Tutar (ya da Borç/Alacak) ve Açıklama sütunları aranır."
+msgstr ""
+
+msgid "Nasıl eşleşir?"
+msgstr ""
+
+msgid "Yalnız hesaba giren tutarlar, havale/EFT ile bekleyen (beklemede, ödeme bekliyor) sipariş ve bağışlarla karşılaştırılır."
+msgstr ""
+
+msgid "Puan: tutar birebir, açıklamada sipariş numarası ya da bağış referans kodu, gönderenin adı soyadı."
+msgstr ""
+
+msgid "Kod ve tutar tutan, tek adaylı hareketler kendiliğinden onaylanır; diğerleri öneri olarak bekler."
+msgstr ""
+
+msgid "Her eşleşmeyi siz onaylarsınız. Kesin eşleşmeleri kendiliğinden onaylamak için Ayarlar sekmesi."
+msgstr ""
+
+msgid "Onaylanan sipariş ödendi olur; bağışta sertifika ve bildirimler her zamanki gibi gider."
+msgstr ""
+
+msgid "Canlı hareket çekme"
+msgstr ""
+
+msgid "Banka API bağlantısı eklendiğinde hareketler saatte bir kendiliğinden çekilir ve aynı eşleştirmeden geçer."
+msgstr ""
+
+msgid "Şimdi eşleştir"
+msgstr ""
+
+msgid "Açık (eşleşmeyen ve öneriler)"
+msgstr ""
+
+msgid "Tüm girişler"
+msgstr ""
+
+msgid "Hepsi (çıkanlar dahil)"
+msgstr ""
+
+msgid "Açıklama, tutar, referans…"
+msgstr ""
+
+msgid "Hareket yok. Bir ekstre yükleyin."
+msgstr ""
+
+msgid "Sipariş / bağış"
+msgstr ""
+
+msgid "onaylayan: %s"
+msgstr ""
+
+msgid "kendiliğinden"
+msgstr ""
+
+msgid "Eşleşmeyi kaldır"
+msgstr ""
+
+msgid "Geri al"
+msgstr ""
+
+msgid "tutar"
+msgstr ""
+
+msgid "kod"
+msgstr ""
+
+msgid "ad soyad"
+msgstr ""
+
+msgid "soyad"
+msgstr ""
+
+msgid "Onayla"
+msgstr ""
+
+msgid "Sipariş no"
+msgstr ""
+
+msgid "Eşleştir"
+msgstr ""
+
+msgid "Yoksay"
+msgstr ""
+
+msgid "Dosya yüklenemedi."
+msgstr ""
+
+msgid "Dosya 10 MB'tan büyük."
 msgstr ""
 
 msgid "Kart ödemesi"
@@ -969,6 +1134,69 @@ msgid "Anahtarlar WordPress tuzlarıyla şifreli. wp-config.php tuzları değiş
 msgstr ""
 
 msgid "Denetim çalışmadı: %s"
+msgstr ""
+
+msgid "Genel düzen"
+msgstr ""
+
+msgid "Ekstre düzeni tanınmadı: başlık satırında tarih, tutar ve açıklama sütunları bulunamadı."
+msgstr ""
+
+msgid "Sırada"
+msgstr ""
+
+msgid "Eşleşmedi"
+msgstr ""
+
+msgid "Öneri var"
+msgstr ""
+
+msgid "Eşleşti"
+msgstr ""
+
+msgid "Yoksayıldı"
+msgstr ""
+
+msgid "Çıkan"
+msgstr ""
+
+msgid "Dosyada hareket bulunamadı."
+msgstr ""
+
+msgid "Hareket ya da sipariş bulunamadı."
+msgstr ""
+
+msgid "Bu hareket zaten eşleşmiş."
+msgstr ""
+
+msgid "Sipariş zaten ödenmiş."
+msgstr ""
+
+msgid "Havale/EFT banka hareketiyle eşleşti: %1$s, %2$s, \"%3$s\" (%4$s)."
+msgstr ""
+
+msgid "otomatik"
+msgstr ""
+
+msgid "Banka hareketi eşleşmesi kaldırıldı; sipariş durumu değiştirilmedi."
+msgstr ""
+
+msgid "Dosya boş."
+msgstr ""
+
+msgid "Dosya okunamadı; Excel (.xls, .xlsx) ya da CSV olarak yeniden indirin."
+msgstr ""
+
+msgid "Sunucuda DOM uzantısı yok."
+msgstr ""
+
+msgid "Sunucuda zip uzantısı yok; dosyayı CSV olarak yükleyin."
+msgstr ""
+
+msgid "Excel dosyası açılamadı."
+msgstr ""
+
+msgid "Excel dosyasında sayfa bulunamadı."
 msgstr ""
 
 msgid "Üye işyeri bilgileri hatalı; hesap ayarlarını kontrol edin."

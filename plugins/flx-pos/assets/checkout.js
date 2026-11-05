@@ -112,7 +112,7 @@
 		x.focus();
 	};
 
-	/* Klasik ödeme: sonuçta çerçeve adresi varsa yönlendirme yerine pencere. */
+	/* Klasik ödeme: sonuçta çerçeve adresi varsa yönlendirme yerine pencere (sayfa değişmez). */
 	function bindClassic() {
 		var $ = window.jQuery;
 		if (!$) return;
@@ -121,7 +121,8 @@
 			api.frame(result.flxpos_frame, result.flxpos_cancel);
 			var f = $(this).removeClass('processing');
 			if (f.unblock) f.unblock();
-			return false;
+			/* false dönmek WC'de "Invalid response" hatası verir; yönlendirmeyi yalnız adres çapasına çevir. */
+			result.redirect = '#flxpos-pay';
 		});
 	}
 	if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindClassic); else bindClassic();

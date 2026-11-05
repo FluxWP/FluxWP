@@ -14,6 +14,9 @@ form (classic and block checkout), 3D Secure, test mode, installments, refunds f
 - The order's Refund button refunds or (same day, full amount) cancels at the provider.
 - **Payment methods** tab: what every WooCommerce payment plugin on the site can do, one card method rule, checkout
   block fallback for redirect plugins, theme payment logos. EsnekPOS official module is run safely through Flux POS.
+- **Bank transfers:** upload the internet banking statement (.xls, .xlsx, .csv); incoming amounts are matched with
+  waiting orders and donations by amount, order number / donation code and name. The same statement is never stored twice.
+- The 3D page can be shown as a redirect, a popup or a frame inside the site.
 - Keys are stored encrypted; card data never touches the database.
 - PHP API for other plugins: `flxpos_charge()`, `flxpos_refund()`, `flxpos_txn_settled`.
   See [docs/flx-pos/API.md](../../docs/flx-pos/API.md).

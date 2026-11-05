@@ -55,6 +55,48 @@ class FLXB_WC_Gateways {
 				return $skip || FLXB_WC_Iyzico::context_monthly();
 			}
 		);
+		// Flux POS bank transfer matching: our transfer method, the donation reference code, approval flow.
+		add_filter(
+			'flxpos_bank_methods',
+			static function ( $m ) {
+				$m   = (array) $m;
+				$m[] = FLXB_WC_Havale::ID;
+				return $m;
+			}
+		);
+		add_filter(
+			'flxpos_bank_codes',
+			static function ( $codes, $order ) {
+				foreach ( array( '_flxb_code', '_flxb_ref' ) as $k ) {
+					$v = (string) $order->get_meta( $k );
+					if ( '' !== $v ) {
+						$codes[] = $v;
+					}
+				}
+				return $codes;
+			},
+			10,
+			2
+		);
+		add_filter( 'flxpos_bank_confirm', array( __CLASS__, 'bank_confirm' ), 10, 4 );
+	}
+
+	/** A Flux POS bank match on a donation order: approve the gift the usual way (certificate, notices). */
+	public static function bank_confirm( $done, $order, $row, $note ) {
+		if ( $done || ! $order || FLXB_WC_Havale::ID !== $order->get_payment_method() ) {
+			return $done;
+		}
+		$ids = FLXB_Donations::ids_of_order( $order->get_id() );
+		$d   = $ids ? FLXB_Donations::get( $ids[0] ) : null;
+		if ( ! $d ) {
+			return $done;
+		}
+		if ( ! class_exists( 'FLXB_Approval' ) ) {
+			require_once FLXB_DIR . 'includes/admin/class-flxb-approval.php';
+		}
+		$order->add_order_note( $note );
+		FLXB_Approval::do_approve( (array) $d );
+		return true;
 	}
 
 	/** Flux POS panel link (payment methods tab). */

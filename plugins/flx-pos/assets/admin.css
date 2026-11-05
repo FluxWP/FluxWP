@@ -200,3 +200,9 @@ html.flxa-dark .flxpos{--c-ok:#4ade80;--c-ok-s:rgba(74,222,128,.14)}
 .flxpos-radios legend{font-weight:600;margin-bottom:6px}
 .flxpos-radios .flxpos-check input[type=radio]{margin:2px 0 0}
 .flxpos-radios>small{color:var(--c-mut);font-size:12px;line-height:1.45}
+.flxpos-inline{display:inline-flex;gap:6px;align-items:center;margin:2px 0}
+.flxpos-cands{margin:0 0 6px;padding:0;list-style:none;display:grid;gap:6px}
+.flxpos-cands li{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.flxpos-bank__act{min-width:280px}
+.flxpos-list{margin:0 0 12px 18px;list-style:disc;display:grid;gap:4px}
+.flxpos-bank__no{width:104px}

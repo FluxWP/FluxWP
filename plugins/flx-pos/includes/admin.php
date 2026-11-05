@@ -20,6 +20,8 @@ final class FLXPOS_Admin {
 		add_action( 'admin_post_flxpos_delete_account', array( __CLASS__, 'delete_account' ) );
 		add_action( 'admin_post_flxpos_save_settings', array( __CLASS__, 'save_settings' ) );
 		add_action( 'admin_post_flxpos_refund', array( __CLASS__, 'refund' ) );
+		add_action( 'admin_post_flxpos_bank_upload', array( __CLASS__, 'bank_upload' ) );
+		add_action( 'admin_post_flxpos_bank_action', array( __CLASS__, 'bank_action' ) );
 		add_action( 'add_meta_boxes', array( __CLASS__, 'order_box' ), 30 );
 	}
 
@@ -73,6 +75,7 @@ final class FLXPOS_Admin {
 			'accounts' => __( 'Hesaplar', 'flx-pos' ),
 			'methods'  => __( 'Ödeme yöntemleri', 'flx-pos' ),
 			'txns'     => __( 'İşlemler', 'flx-pos' ),
+			'bank'     => __( 'Havale / EFT', 'flx-pos' ),
 			'settings' => __( 'Ayarlar', 'flx-pos' ),
 		);
 	}
@@ -112,6 +115,9 @@ final class FLXPOS_Admin {
 			case 'settings':
 				self::tab_settings();
 				break;
+			case 'bank':
+				self::tab_bank();
+				break;
 			default:
 				'' !== self::get( 'edit' ) ? self::editor( self::get( 'edit' ) ) : self::tab_accounts();
 		}
@@ -125,7 +131,15 @@ final class FLXPOS_Admin {
 			'saved'    => __( 'Kaydedildi.', 'flx-pos' ),
 			'deleted'  => __( 'Hesap silindi.', 'flx-pos' ),
 			'refunded' => __( 'İade bankaya gönderildi ve onaylandı.', 'flx-pos' ),
+			'matched'  => __( 'Eşleştirildi; sipariş ödendi olarak işaretlendi.', 'flx-pos' ),
+			'bankdone' => __( 'Güncellendi.', 'flx-pos' ),
+			'ran'      => __( 'Eşleştirme çalıştırıldı.', 'flx-pos' ),
 		);
+		$imp = self::get( 'imp' );
+		if ( '' !== $imp && preg_match( '/^(\d+)-(\d+)-(\d+)-([a-z0-9_]+)$/', $imp, $im ) ) {
+			/* translators: 1: banka, 2: yeni, 3: atlanan, 4: çıkan */
+			echo '<div class="flxpos-notice is-ok" role="status">' . esc_html( sprintf( __( '%1$s ekstresi yüklendi: %2$d yeni hareket, %3$d hareket zaten kayıtlıydı (atlandı), %4$d çıkan hareket (eşleştirilmez). Eşleştirme arka planda sürer.', 'flx-pos' ), FLXPOS_Bank_Layouts::name( $im[4] ), (int) $im[1], (int) $im[2], (int) $im[3] ) ) . '</div>';
+		}
 		if ( isset( $map[ $m ] ) ) {
 			echo '<div class="flxpos-notice is-ok" role="status">' . esc_html( $map[ $m ] ) . '</div>';
 		}
@@ -600,6 +614,7 @@ final class FLXPOS_Admin {
 			'show_brands'    => array( __( 'Kart markası logosu', 'flx-pos' ), __( 'Kart numarası yazılırken Visa, Mastercard, Troy…', 'flx-pos' ) ),
 			'block_fallback' => array( __( 'Diğer ödeme eklentilerini blok ödemede göster', 'flx-pos' ), __( 'Kendi blok desteği olmayan, kartı kendi sayfasında alan eklentiler.', 'flx-pos' ) ),
 			'save_log'       => array( __( 'Ayrıntılı işlem günlüğü', 'flx-pos' ), __( 'Banka yanıtları işlem kaydında saklanır; kart verisi ve anahtarlar yazılmaz.', 'flx-pos' ) ),
+			'bank_auto'      => array( __( 'Kesin havale eşleşmelerini kendiliğinden onayla', 'flx-pos' ), __( 'Açıklamada sipariş numarası ya da bağış kodu var, tutar birebir ve başka aday yoksa sipariş ödendi yapılır. Kapalıyken her eşleşme onayınızı bekler.', 'flx-pos' ) ),
 		);
 		foreach ( $checks as $k => $l ) {
 			echo '<label class="flxpos-check"><input type="checkbox" name="' . esc_attr( $k ) . '" value="1"' . checked( ! empty( $s[ $k ] ), true, false ) . '><span>' . esc_html( $l[0] ) . '<small>' . esc_html( $l[1] ) . '</small></span></label>';
@@ -629,10 +644,248 @@ final class FLXPOS_Admin {
 			'block_fallback'  => empty( $in['block_fallback'] ) ? 0 : 1,
 			'show_brands'     => empty( $in['show_brands'] ) ? 0 : 1,
 			'save_log'        => empty( $in['save_log'] ) ? 0 : 1,
+			'bank_auto'       => empty( $in['bank_auto'] ) ? 0 : 1,
 			'display'         => isset( flxpos_display_modes()[ (string) ( $in['display'] ?? '' ) ] ) ? (string) $in['display'] : 'redirect',
 		);
 		update_option( 'flxpos_settings', $out, false );
 		wp_safe_redirect( flxpos_admin_url( array( 'tab' => 'settings', 'msg' => 'saved' ) ) );
+		exit;
+	}
+
+	/* ---------------- Havale / EFT ---------------- */
+
+	private static function tab_bank() {
+		$c = FLXPOS_Bank::counts();
+		echo '<div class="flxpos-kpis">';
+		self::kpi( __( 'Öneri bekleyen', 'flx-pos' ), number_format_i18n( $c[ FLXPOS_Bank::SUGGEST ] ), __( 'onayınızı bekliyor', 'flx-pos' ), $c[ FLXPOS_Bank::SUGGEST ] ? 'is-warn' : '' );
+		self::kpi( __( 'Eşleşmeyen giriş', 'flx-pos' ), number_format_i18n( $c[ FLXPOS_Bank::NOMATCH ] + $c[ FLXPOS_Bank::NEW ] ), $c[ FLXPOS_Bank::NEW ] ? __( 'bir kısmı sırada', 'flx-pos' ) : __( 'her gün yeniden denenir', 'flx-pos' ) );
+		self::kpi( __( 'Eşleşen', 'flx-pos' ), number_format_i18n( $c[ FLXPOS_Bank::MATCHED ] ), flxpos_setting( 'bank_auto' ) ? __( 'kesinler kendiliğinden', 'flx-pos' ) : __( 'hepsi onayla', 'flx-pos' ), 'is-ok' );
+		self::kpi( __( 'Son hareket', 'flx-pos' ), '' !== $c['last'] ? flx_date( strtotime( $c['last'] . ' 12:00 UTC' ), 'date' ) : '—', __( 'yüklenen ekstrelerde', 'flx-pos' ) );
+		echo '</div><div class="flxpos-grid">';
+
+		echo '<section class="flxpos-card"><h2>' . esc_html__( 'Ekstre yükle', 'flx-pos' ) . '</h2><p class="flxpos-muted">' . esc_html__( 'İnternet şubesinden indirdiğiniz hesap hareketleri dosyası (.xls, .xlsx, .csv). Aynı ya da çakışan tarihli ekstreyi yeniden yükleyebilirsiniz: kayıtlı hareketler atlanır.', 'flx-pos' ) . '</p>';
+		echo '<form method="post" enctype="multipart/form-data" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxpos-form">';
+		wp_nonce_field( 'flxpos_bank_upload' );
+		echo '<input type="hidden" name="action" value="flxpos_bank_upload"><div class="flxpos-fields">';
+		echo '<label><span>' . esc_html__( 'Dosya', 'flx-pos' ) . '</span><input type="file" name="file" required accept=".xls,.xlsx,.csv,.txt,.htm,.html"></label>';
+		echo '<div class="flxpos-fields flxpos-fields--2"><label><span>' . esc_html__( 'Banka', 'flx-pos' ) . '</span><select name="bank"><option value="">' . esc_html__( 'Dosyadan tanı', 'flx-pos' ) . '</option>';
+		foreach ( FLXPOS_Bank_Layouts::all() as $k => $l ) {
+			echo '<option value="' . esc_attr( $k ) . '">' . esc_html( $l['name'] ) . '</option>';
+		}
+		echo '</select></label><label><span>' . esc_html__( 'Hesap (isteğe bağlı)', 'flx-pos' ) . '</span><input type="text" name="account" maxlength="64" placeholder="' . esc_attr__( 'ör. Bağış hesabı', 'flx-pos' ) . '"></label></div>';
+		echo '</div><div class="flxpos-actions"><button class="button button-primary">' . esc_html__( 'Yükle ve eşleştir', 'flx-pos' ) . '</button></div></form>';
+		echo '<p class="flxpos-muted"><small>' . esc_html__( 'Tanınan düzenler: Ziraat, Yapı Kredi, Garanti BBVA, İş Bankası, Türkiye Finans, VakıfBank. Başka bankalarda başlık satırındaki Tarih, Tutar (ya da Borç/Alacak) ve Açıklama sütunları aranır.', 'flx-pos' ) . '</small></p></section>';
+
+		echo '<section class="flxpos-card"><h2>' . esc_html__( 'Nasıl eşleşir?', 'flx-pos' ) . '</h2><ul class="flxpos-list">';
+		echo '<li>' . esc_html__( 'Yalnız hesaba giren tutarlar, havale/EFT ile bekleyen (beklemede, ödeme bekliyor) sipariş ve bağışlarla karşılaştırılır.', 'flx-pos' ) . '</li>';
+		echo '<li>' . esc_html__( 'Puan: tutar birebir, açıklamada sipariş numarası ya da bağış referans kodu, gönderenin adı soyadı.', 'flx-pos' ) . '</li>';
+		echo '<li>' . ( flxpos_setting( 'bank_auto' ) ? esc_html__( 'Kod ve tutar tutan, tek adaylı hareketler kendiliğinden onaylanır; diğerleri öneri olarak bekler.', 'flx-pos' ) : esc_html__( 'Her eşleşmeyi siz onaylarsınız. Kesin eşleşmeleri kendiliğinden onaylamak için Ayarlar sekmesi.', 'flx-pos' ) ) . '</li>';
+		echo '<li>' . esc_html__( 'Onaylanan sipariş ödendi olur; bağışta sertifika ve bildirimler her zamanki gibi gider.', 'flx-pos' ) . '</li></ul>';
+		$src = FLXPOS_Bank::sources();
+		echo '<h3 class="flxpos-sub">' . esc_html__( 'Canlı hareket çekme', 'flx-pos' ) . '</h3>';
+		if ( $src ) {
+			echo '<ul class="flxpos-list">';
+			foreach ( $src as $s ) {
+				echo '<li>' . esc_html( $s->name ) . '</li>';
+			}
+			echo '</ul>';
+		} else {
+			echo '<p class="flxpos-muted"><small>' . esc_html__( 'Banka API bağlantısı eklendiğinde hareketler saatte bir kendiliğinden çekilir ve aynı eşleştirmeden geçer.', 'flx-pos' ) . '</small></p>';
+		}
+		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
+		wp_nonce_field( 'flxpos_bank_action' );
+		echo '<input type="hidden" name="action" value="flxpos_bank_action"><input type="hidden" name="do" value="run"><button class="button">' . esc_html__( 'Şimdi eşleştir', 'flx-pos' ) . '</button></form></section></div>';
+
+		self::bank_table();
+	}
+
+	private static function bank_table() {
+		$labels = FLXPOS_Bank::status_labels();
+		$q      = array(
+			'status' => sanitize_key( self::get( 'bst', 'open' ) ),
+			's'      => self::get( 's' ),
+			'page'   => max( 1, (int) self::get( 'paged', 1 ) ),
+			'per'    => 30,
+		);
+		$res    = FLXPOS_Bank::query( $q );
+		$cls    = array(
+			FLXPOS_Bank::SUGGEST => 'is-warn',
+			FLXPOS_Bank::MATCHED => 'is-ok',
+			FLXPOS_Bank::NOMATCH => '',
+			FLXPOS_Bank::NEW     => 'is-info',
+			FLXPOS_Bank::IGNORED => '',
+			FLXPOS_Bank::OUT     => '',
+		);
+		echo '<section class="flxpos-card"><form method="get" class="flxpos-filter"><input type="hidden" name="page" value="flx-pos"><input type="hidden" name="tab" value="bank">';
+		echo '<label class="screen-reader-text" for="flxpos-bst">' . esc_html__( 'Durum', 'flx-pos' ) . '</label><select id="flxpos-bst" name="bst">';
+		$opts = array(
+			'open' => __( 'Açık (eşleşmeyen ve öneriler)', 'flx-pos' ),
+			''     => __( 'Tüm girişler', 'flx-pos' ),
+		) + $labels + array( 'all' => __( 'Hepsi (çıkanlar dahil)', 'flx-pos' ) );
+		foreach ( $opts as $k => $l ) {
+			echo '<option value="' . esc_attr( $k ) . '"' . selected( $q['status'], $k, false ) . '>' . esc_html( $l ) . '</option>';
+		}
+		echo '</select> <input type="search" name="s" value="' . esc_attr( $q['s'] ) . '" placeholder="' . esc_attr__( 'Açıklama, tutar, referans…', 'flx-pos' ) . '"> <button class="button">' . esc_html__( 'Süz', 'flx-pos' ) . '</button></form>';
+		if ( ! $res['rows'] ) {
+			echo '<div class="flxpos-empty"><p>' . esc_html__( 'Hareket yok. Bir ekstre yükleyin.', 'flx-pos' ) . '</p></div></section>';
+			return;
+		}
+		echo '<div class="flxpos-tablewrap"><table class="flxpos-table flxpos-bank"><thead><tr><th scope="col">' . esc_html__( 'Tarih', 'flx-pos' ) . '</th><th scope="col">' . esc_html__( 'Açıklama', 'flx-pos' ) . '</th><th scope="col" class="num">' . esc_html__( 'Tutar', 'flx-pos' ) . '</th><th scope="col">' . esc_html__( 'Durum', 'flx-pos' ) . '</th><th scope="col">' . esc_html__( 'Sipariş / bağış', 'flx-pos' ) . '</th></tr></thead><tbody>';
+		foreach ( $res['rows'] as $r ) {
+			echo '<tr><td data-label="' . esc_attr__( 'Tarih', 'flx-pos' ) . '">' . esc_html( flx_date( strtotime( $r['tdate'] . ' 12:00 UTC' ), 'date' ) ) . ( '' !== $r['ttime'] ? '<br><small>' . esc_html( $r['ttime'] ) . '</small>' : '' ) . '</td>';
+			echo '<td data-label="' . esc_attr__( 'Açıklama', 'flx-pos' ) . '" class="flxpos-msg">' . esc_html( (string) $r['description'] ) . '<br><small>' . esc_html( FLXPOS_Bank_Layouts::name( $r['bank'] ) . ( '' !== $r['account'] ? ' · ' . $r['account'] : '' ) . ( '' !== $r['ref'] ? ' · ' . $r['ref'] : '' ) ) . '</small></td>';
+			echo '<td data-label="' . esc_attr__( 'Tutar', 'flx-pos' ) . '" class="num">' . esc_html( self::money( (float) $r['amount'], $r['currency'] ) ) . '</td>';
+			echo '<td data-label="' . esc_attr__( 'Durum', 'flx-pos' ) . '">' . self::badge( $labels[ $r['status'] ] ?? $r['status'], $cls[ $r['status'] ] ?? '' ) . '</td>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '<td data-label="' . esc_attr__( 'Sipariş / bağış', 'flx-pos' ) . '" class="flxpos-bank__act">';
+			self::bank_cell( $r );
+			echo '</td></tr>';
+		}
+		echo '</tbody></table></div>';
+		$pages = (int) ceil( $res['total'] / 30 );
+		if ( $pages > 1 ) {
+			echo '<p class="flxpos-pages">' . paginate_links( // phpcs:ignore WordPress.Security.EscapeOutput
+				array(
+					'base'    => add_query_arg( 'paged', '%#%' ),
+					'current' => $q['page'],
+					'total'   => $pages,
+				)
+			) . '</p>';
+		}
+		echo '</section>';
+	}
+
+	private static function bank_btn( $id, $do, $label, $order = 0, $primary = false ) {
+		return '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxpos-inline">' . wp_nonce_field( 'flxpos_bank_action', '_wpnonce', true, false ) . '<input type="hidden" name="action" value="flxpos_bank_action"><input type="hidden" name="id" value="' . esc_attr( (string) $id ) . '"><input type="hidden" name="do" value="' . esc_attr( $do ) . '">' . ( $order ? '<input type="hidden" name="order" value="' . esc_attr( (string) $order ) . '">' : '' ) . '<button class="button button-small' . ( $primary ? ' button-primary' : '' ) . '">' . esc_html( $label ) . '</button></form>';
+	}
+
+	private static function bank_cell( array $r ) {
+		$id = (int) $r['id'];
+		if ( FLXPOS_Bank::OUT === $r['status'] ) {
+			echo '—';
+			return;
+		}
+		if ( FLXPOS_Bank::MATCHED === $r['status'] ) {
+			$o = function_exists( 'wc_get_order' ) ? wc_get_order( (int) $r['order_id'] ) : null;
+			echo $o ? '<a href="' . esc_url( $o->get_edit_order_url() ) . '">#' . esc_html( $o->get_order_number() ) . ' · ' . esc_html( $o->get_formatted_billing_full_name() ) . '</a>' : '#' . (int) $r['order_id']; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '<br><small>' . esc_html( $r['matched_by'] ? sprintf( /* translators: %s: kullanıcı */ __( 'onaylayan: %s', 'flx-pos' ), get_the_author_meta( 'display_name', (int) $r['matched_by'] ) ) : __( 'kendiliğinden', 'flx-pos' ) ) . '</small> ';
+			echo self::bank_btn( $id, 'unmatch', __( 'Eşleşmeyi kaldır', 'flx-pos' ) ); // phpcs:ignore WordPress.Security.EscapeOutput
+			return;
+		}
+		if ( FLXPOS_Bank::IGNORED === $r['status'] ) {
+			echo self::bank_btn( $id, 'unignore', __( 'Geri al', 'flx-pos' ) ); // phpcs:ignore WordPress.Security.EscapeOutput
+			return;
+		}
+		$why_l = array(
+			'amount'  => __( 'tutar', 'flx-pos' ),
+			'code'    => __( 'kod', 'flx-pos' ),
+			'name'    => __( 'ad soyad', 'flx-pos' ),
+			'surname' => __( 'soyad', 'flx-pos' ),
+		);
+		$cands = json_decode( (string) $r['cands'], true );
+		if ( is_array( $cands ) && $cands && FLXPOS_Bank::SUGGEST === $r['status'] ) {
+			$live = array();
+			foreach ( FLXPOS_Bank::candidates( $r ) as $c ) {
+				$live[ $c['id'] ] = $c;
+			}
+			echo '<ul class="flxpos-cands">';
+			foreach ( array_slice( $cands, 0, 3 ) as $c ) {
+				$o = wc_get_order( (int) $c[0] );
+				if ( ! $o ) {
+					continue;
+				}
+				$why = isset( $live[ $o->get_id() ] ) ? implode( ', ', array_map( static fn( $w ) => $why_l[ $w ] ?? $w, $live[ $o->get_id() ]['why'] ) ) : '';
+				echo '<li><a href="' . esc_url( $o->get_edit_order_url() ) . '">#' . esc_html( $o->get_order_number() ) . '</a> ' . esc_html( $o->get_formatted_billing_full_name() ) . ' · ' . esc_html( self::money( (float) $o->get_total(), $o->get_currency() ) ) . ' ' . self::badge( '%' . (int) $c[1] . ( '' !== $why ? ' · ' . $why : '' ), (int) $c[1] >= 90 ? 'is-ok' : 'is-warn' ) . ' ' . self::bank_btn( $id, 'match', __( 'Onayla', 'flx-pos' ), $o->get_id(), true ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			}
+			echo '</ul>';
+		}
+		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxpos-inline">';
+		wp_nonce_field( 'flxpos_bank_action' );
+		echo '<input type="hidden" name="action" value="flxpos_bank_action"><input type="hidden" name="id" value="' . esc_attr( (string) $id ) . '"><input type="hidden" name="do" value="match"><label class="screen-reader-text" for="flxpos-bo-' . esc_attr( (string) $id ) . '">' . esc_html__( 'Sipariş no', 'flx-pos' ) . '</label><input id="flxpos-bo-' . esc_attr( (string) $id ) . '" type="number" min="1" name="order" class="flxpos-bank__no" placeholder="' . esc_attr__( 'Sipariş no', 'flx-pos' ) . '"> <button class="button button-small">' . esc_html__( 'Eşleştir', 'flx-pos' ) . '</button></form> ';
+		echo self::bank_btn( $id, 'ignore', __( 'Yoksay', 'flx-pos' ) ); // phpcs:ignore WordPress.Security.EscapeOutput
+	}
+
+	public static function bank_upload() {
+		if ( ! current_user_can( self::cap() ) ) {
+			wp_die( esc_html__( 'Bu işlem için yetkiniz yok.', 'flx-pos' ), 403 );
+		}
+		check_admin_referer( 'flxpos_bank_upload' );
+		$back = array( 'tab' => 'bank' );
+		// phpcs:disable WordPress.Security.ValidatedSanitizedInput -- yüklenen dosya yalnız okunur, saklanmaz
+		$f = $_FILES['file'] ?? null;
+		if ( ! $f || UPLOAD_ERR_OK !== (int) $f['error'] || ! is_uploaded_file( $f['tmp_name'] ) ) {
+			wp_safe_redirect( flxpos_admin_url( $back + array( 'err' => rawurlencode( __( 'Dosya yüklenemedi.', 'flx-pos' ) ) ) ) );
+			exit;
+		}
+		if ( (int) $f['size'] > 10 * MB_IN_BYTES ) {
+			wp_safe_redirect( flxpos_admin_url( $back + array( 'err' => rawurlencode( __( 'Dosya 10 MB\'tan büyük.', 'flx-pos' ) ) ) ) );
+			exit;
+		}
+		$name = sanitize_file_name( wp_unslash( (string) $f['name'] ) );
+		// phpcs:enable
+		$in  = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput -- aşağıda temizlenir
+		$res = FLXPOS_Bank::import_file( $f['tmp_name'], $name, sanitize_key( (string) ( $in['bank'] ?? '' ) ), sanitize_text_field( (string) ( $in['account'] ?? '' ) ) );
+		wp_delete_file( $f['tmp_name'] );
+		if ( is_wp_error( $res ) ) {
+			wp_safe_redirect( flxpos_admin_url( $back + array( 'err' => rawurlencode( $res->get_error_message() ) ) ) );
+			exit;
+		}
+		FLXPOS_Bank::run(); // ilk parti hemen; kalanı arka planda
+		wp_safe_redirect( flxpos_admin_url( $back + array( 'imp' => $res['added'] - $res['out'] . '-' . $res['skipped'] . '-' . $res['out'] . '-' . $res['bank'] ) ) );
+		exit;
+	}
+
+	public static function bank_action() {
+		if ( ! current_user_can( self::cap() ) ) {
+			wp_die( esc_html__( 'Bu işlem için yetkiniz yok.', 'flx-pos' ), 403 );
+		}
+		check_admin_referer( 'flxpos_bank_action' );
+		$in   = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput -- aşağıda temizlenir
+		$id   = absint( $in['id'] ?? 0 );
+		$do   = sanitize_key( (string) ( $in['do'] ?? '' ) );
+		$back = array( 'tab' => 'bank' );
+		$msg  = 'bankdone';
+		switch ( $do ) {
+			case 'match':
+				$oid = absint( $in['order'] ?? 0 );
+				if ( $oid && function_exists( 'wc_get_order' ) && ! wc_get_order( $oid ) ) {
+					// Sipariş numarası kimlikten farklı olabilir (sıralı numara eklentileri).
+					$found = wc_get_orders(
+						array(
+							'limit'        => 1,
+							'return'       => 'ids',
+							'meta_query'   => array( // phpcs:ignore WordPress.DB.SlowDBQuery
+								array(
+									'key'   => '_order_number',
+									'value' => (string) $oid,
+								),
+							),
+						)
+					);
+					$oid   = $found ? (int) $found[0] : 0;
+				}
+				$r = FLXPOS_Bank::confirm( $id, $oid, get_current_user_id() );
+				if ( is_wp_error( $r ) ) {
+					wp_safe_redirect( flxpos_admin_url( $back + array( 'err' => rawurlencode( $r->get_error_message() ) ) ) );
+					exit;
+				}
+				$msg = 'matched';
+				break;
+			case 'ignore':
+				FLXPOS_Bank::ignore( $id, true );
+				break;
+			case 'unignore':
+				FLXPOS_Bank::ignore( $id, false );
+				break;
+			case 'unmatch':
+				FLXPOS_Bank::unmatch( $id );
+				break;
+			case 'run':
+				FLXPOS_Bank::daily();
+				FLXPOS_Bank::run();
+				$msg = 'ran';
+				break;
+		}
+		wp_safe_redirect( flxpos_admin_url( $back + array( 'msg' => $msg ) ) );
 		exit;
 	}
 

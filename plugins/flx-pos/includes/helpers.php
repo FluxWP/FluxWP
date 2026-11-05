@@ -19,6 +19,7 @@ function flxpos_settings() {
 		'show_brands'     => 1,       // kart formunda kart markası logoları
 		'save_log'        => 1,       // ayrıntılı işlem günlüğü (kart verisi yazılmaz)
 		'display'         => 'redirect', // 3D/ödeme sayfasının gösterimi: redirect | modal | inline
+		'bank_auto'       => 0,       // havale: kod + tutar kesin eşleşmede siparişi kendiliğinden onayla
 	);
 	$s = get_option( 'flxpos_settings', array() );
 	return array_merge( $d, is_array( $s ) ? $s : array() );

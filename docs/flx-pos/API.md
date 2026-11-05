@@ -63,6 +63,15 @@ flxpos_txn( $ref );               // işlem satırı
 | `flxpos_card_icon` | filter | Kart yönteminin simgesi. |
 | `flxpos_http_pre` | filter | Test için sahte sağlayıcı yanıtı. |
 | `flxpos_sslverify` | filter | Yalnız yerel test. |
+| `flxpos_display` | filter `( $mode, $account, $txn )` | 3D / ödeme sayfası gösterimi: `redirect`, `modal`, `inline`. |
+| `flxpos_bank_methods` | filter | Havale eşleşmesine giren ödeme yöntemleri (varsayılan `bacs`; Flux Donate `flxb_havale` ekler). |
+| `flxpos_bank_codes` | filter `( $codes, $order )` | Siparişin açıklamada aranacak referans kodları (Flux Donate `_flxb_code`). |
+| `flxpos_bank_candidates` | filter `( $list, $row )` | Hareketin aday siparişleri (id, score, exact, code, why). |
+| `flxpos_bank_confirm` | filter `( $done, $order, $row, $note )` | Eşleşme onayını devral; true dönerse Flux POS `payment_complete()` çağırmaz. |
+| `flxpos_bank_layouts` | filter | Ekstre düzeni ekle: `id => array( name, sig, cols )`. |
+| `flxpos_bank_sources` | filter | Canlı hareket kaynakları (`FLXPOS_Bank_Source` nesneleri). |
+| `flxpos_bank_imported` | action `( $result, $source )` | Ekstre ya da canlı kaynak yazıldı. |
+| `flxpos_bank_matched` | action `( $row, $order )` | Hareket siparişle eşleşti. |
 
 Bağdaştırıcı örneği:
 
@@ -87,6 +96,55 @@ add_filter( 'flxpos_gateway_adapters', function ( $a ) {
 - İsteğe bağlı: `notify( $req )`, `refund( $txn, $amount )`, `cancel( $txn )`, `status( $txn )`, `installments( $bin, $amount, $currency )`, `test_connection()`.
 - Dönüş verisine güvenmeyin: imza doğrulayın ya da sunucudan sorun; tutarı ve referansı karşılaştırın.
 
+## Gösterim
+
+Hesap başına (boşsa Ayarlar'daki genel değer) bankanın 3D sayfası ya da kuruluşun ödeme sayfası:
+
+- `redirect`: köprü tam sayfa (varsayılan).
+- `modal`: ödeme sayfasından ayrılmadan açılır pencerede çerçeve. Ödeme sonucu `flxpos_frame` ve `flxpos_cancel` döner;
+  klasik ödeme `checkout_place_order_success`, blok ödeme `onCheckoutSuccess` ile pencere açılır. JS yoksa `redirect`
+  site içi sayfaya gider.
+- `inline`: sitenin üst ve alt bölümüyle bir sayfada çerçeve (`?flxpos=bridge…&w=1`).
+
+Çerçevedeki köprü ve dönüş adresi `f=1` taşır; akış bitince sonuç sayfası üst pencerede açılır. Çerçeveye izin
+vermeyen sağlayıcıda o hesabı `redirect` yapın. `flxpos_charge()` aynı alanları döner.
+
+## Havale / EFT hareketleri
+
+Ekstre yükleme (Havale / EFT sekmesi) ya da canlı kaynak → `wp_flxpos_bank` → arka planda eşleştirme.
+
+- Okuyucu: `.xls` (BIFF8), `.xlsx`, `.csv` (`;` `,` sekme; UTF-8 ya da Windows-1254), HTML tablo. İlk sayfa.
+- Düzenler: Ziraat, Yapı Kredi, Garanti BBVA, İş Bankası, Türkiye Finans, VakıfBank (sütunlar banka-ekstre projesinden,
+  MIT); diğerlerinde başlıkta Tarih + Tutar (ya da Borç/Alacak) + Açıklama aranır.
+- Tekrar engeli: her hareketin parmak izi (banka, tarih, saat, tutar, bakiye, referans, açıklama) tekildir; aynı ya da
+  çakışan ekstre yeniden yüklenince kayıtlılar atlanır.
+- Eşleştirme: yalnız giren tutar; `on-hold`/`pending`, `flxpos_bank_methods` yöntemli, son 45 günün siparişleri.
+  Puan: tutar birebir 40, kod (sipariş no ya da `flxpos_bank_codes`) 50, ad soyad 30 (yalnız soyad 15), tarih 5.
+  40+ öneri olur. `bank_auto` açıksa kod + tutar tutan, ikinci adaydan 30 puan önde olanlar kendiliğinden onaylanır.
+- Durumlar: `new` (sırada), `nomatch`, `suggested`, `matched`, `ignored`, `out` (çıkan). Eşleşmeyenler her gün yeniden
+  denenir. İş Action Scheduler ile (`flxpos_bank_match`), yoksa WP-Cron; panelde "Şimdi eşleştir".
+
+PHP:
+
+```php
+FLXPOS_Bank::import_file( $path, $name, $bank = '', $account = '' ); // { bank, added, skipped, total, out }
+FLXPOS_Bank::import( $items, 'kaynak', 'banka' );  // items: date (Y-m-d), time, amount (±), balance, currency, desc, ref
+FLXPOS_Bank::confirm( $row_id, $order_id, get_current_user_id() );
+```
+
+Canlı kaynak:
+
+```php
+class My_Bank_Source extends FLXPOS_Bank_Source {
+	public $id = 'mybank';
+	public $name = 'Banka API';
+	public function fetch( $since, array $creds ) { return array( /* items */ ); }
+}
+add_filter( 'flxpos_bank_sources', fn( $l ) => array_merge( $l, array( new My_Bank_Source() ) ) );
+```
+
+Ayarlar `flxpos_bank_sources` seçeneğinde (`enabled`, `account`, kaynak alanları); saatte bir son 7 gün çekilir.
+
 ## REST
 
 - `GET flxpos/v1/installments?account=&amount=&bin=` (herkese açık; yalnız etkin hesap, TRY) → `{ options: [ { n, total, monthly, rate, label } ] }`.
@@ -95,3 +153,6 @@ add_filter( 'flxpos_gateway_adapters', function ( $a ) {
 ## Flux Donate
 
 Flux POS etkinse Flux Donate'in yöntem tablosu, tek kart kuralı ve EsnekPOS bağdaştırıcısı çalışmaz, Flux POS'unkiler çalışır. Aylık bağış sepeti `flxpos_one_card_skip` ile Flux Donate iyzico'da kalır.
+
+Havale eşleşmesi: Flux Donate `flxb_havale` yöntemini ve bağışın referans kodunu (`_flxb_code`) ekler; eşleşme onayı
+bağışın kendi onayından geçer (`FLXB_Approval::do_approve`: sertifika, bildirimler).

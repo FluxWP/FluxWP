@@ -15,6 +15,9 @@ ve blok ödeme), 3D Secure, test modu, taksit, siteden iade ve işlem kayıtlar�
 - **Ödeme yöntemleri** sekmesi: sitedeki her WooCommerce ödeme eklentisinin neyi yapabildiği, tek kart yöntemi kuralı,
   yönlendirmeli eklentiler için blok ödeme yedeği, tema ödeme logoları. EsnekPOS resmi modülü Flux POS üzerinden
   güvenle çalışır.
+- **Havale / EFT:** internet şubesi ekstresini (.xls, .xlsx, .csv) yükleyin; giren tutarlar bekleyen sipariş ve
+  bağışlarla tutar, sipariş no / bağış kodu ve ad soyada göre eşleştirilir. Aynı ekstre iki kez yazılmaz.
+- 3D sayfası yönlendirme, açılır pencere ya da site içinde çerçeve olarak gösterilebilir.
 - Anahtarlar şifreli saklanır; kart bilgisi veritabanına yazılmaz.
 - Diğer eklentiler için PHP API: `flxpos_charge()`, `flxpos_refund()`, `flxpos_txn_settled`.
   Ayrıntı: [docs/flx-pos/API.md](../../docs/flx-pos/API.md).
