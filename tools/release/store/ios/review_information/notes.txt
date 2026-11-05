@@ -1,0 +1,7 @@
+FluxWP is a companion application for managing WordPress sites.
+
+To inspect the application without connecting a website, launch the app and use the Demo button on the connection screen. The built-in demo uses fictional sample data and requires no credentials. It includes the navigation shell and supported native management screens. Demo data is local sample content; it is not a production customer account.
+
+For a real site, the user connects their own WordPress installation. Full integration requires the Flux App plugin and any relevant FluxWP modules; available features depend on the site's configuration and the user's WordPress permissions. Other administration pages open in an authenticated web view.
+
+No subscription or in-app purchase is implemented in this build. Camera and photo access are requested only for selecting or taking media. The app does not require microphone access.
