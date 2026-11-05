@@ -49,6 +49,8 @@ platform :ios do
       UI.user_error!('Store disclosures have not been reviewed') unless ENV['STORE_DISCLOSURES_REVIEWED'] == 'true'
       upload_to_app_store(
         api_key: api, app_identifier: identifier, app_version: version, build_number: build_number,
+        skip_screenshots: ENV['REPLACE_STORE_SCREENSHOTS'] != 'true',
+        overwrite_screenshots: ENV['REPLACE_STORE_SCREENSHOTS'] == 'true',
         skip_binary_upload: true, metadata_path: File.join(STORE, 'ios'), screenshots_path: screenshots,
         submit_for_review: true, automatic_release: ENV['RELEASE_ON_APPROVAL'] == 'true',
         force: true, precheck_include_in_app_purchases: false,
