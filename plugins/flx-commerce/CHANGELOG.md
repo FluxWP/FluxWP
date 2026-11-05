@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.2.3
+- Uygulama manifesti: satış özeti, müşteriler ve dekont onayı. Ayarlar web görünümünde açılır.
+- Yeni uçlar `flx-commerce/v1`: `summary`, `customers`, `customers/{id}`, `receipts`, `receipts/{id}`, `receipts/{id}/approve`. Okuma rapor yetkisi, onay sipariş yetkisi.
+
 ## 0.2.2
 - Güvenlik (CodeQL): ücretsiz kargo şeridi artık HTML ayrıştırmıyor; metin düz çeviri, tutar `<strong>` içinde `textContent` ile yazılır.
 

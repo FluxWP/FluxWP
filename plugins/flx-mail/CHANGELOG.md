@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.13.8
+- Uygulama manifesti: posta kutusu (liste, oku, yanıtla) ve gönderim kaydı. Gövde HTML içerik olarak açılır. Şablonlar ve bağlantılar web görünümünde kalır.
+- Posta listesi `page` / `per_page` kabul eder. Yeni uçlar: `POST /mailbox/item/{id}/reply` (yanıtı gönderir) ve `GET /log` (sayfalı kayıt). Yetki `flxi_manage`.
+
 ## 1.13.7
 - Güvenlik (CodeQL): test ekranında senaryo adları kaçışlanır; logo önizlemesi yalnız http(s) veya site içi adresi gösterir (`javascript:` vb. reddedilir).
 
