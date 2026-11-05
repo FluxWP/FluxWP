@@ -1,5 +1,13 @@
 # Değişiklikler
 
+## 1.7.0
+- **Arama motorları** bölümü (SEO › Genel): Google Search Console, Bing Webmaster Tools ve Yandex Webmaster için panel bağlantıları, adım adım ipucu ve doğrulama alanları; kopyalanabilir sitemap adresi. Bing'de "Google Search Console'dan içe aktar" yolu öne çıkarıldı (kod gerekmez). Tam `<meta>` etiketi yapıştırılabilir.
+- **IndexNow ilk bildirim:** IndexNow açıkken site hiç toplu bildirilmediyse tüm site bir kez kendiliğinden Bing, Yandex, Seznam ve Naver'e gönderilir (cron'a bağlı değil; yönetim panelinde yanıt gönderildikten sonra). IndexNow yeniden açılınca ya da site arama motorlarına açılınca tekrarlanır.
+- IndexNow toplu bildirimine kategori arşivleri eklendi; sepet, ödeme, Hesabım ve alt sayfaları (ör. order-received) "noindex" ayarı açıkken gönderilmez. Yeni filtre `flxseo_indexnow_all_urls`.
+- Site denetimine yeni kontroller: robots.txt Bingbot/YandexBot/DuckDuckBot'u engelliyor (yüksek), robots.txt'de Sitemap satırı yok, IndexNow kapalı (tek tık düzeltme `flxseo_indexnow`), IndexNow anahtar dosyası açılmıyor ya da son bildirim hatalı, Bing/Yandex doğrulama kodu yok.
+- Sistem Kontrolü'nde Bing ve Yandex doğrulama + IndexNow durumu. MCP `seo.setting` Yandex doğrulama kodunu da yazar.
+- Arama motoru ve IndexNow metinleri çevrilebilir (TR + EN).
+
 ## 1.6.2
 - Site denetimi yanlış uyarı vermiyor: `<template>` içindeki öğeler (ör. WooCommerce mini sepetinin şablonları) artık alt metinsiz görsel, adsız düğme, etiketsiz alan ve liste dışı `<li>` sayılmıyor; tarayıcı bunları çizmez.
 - "İlk ekrandaki görsel lazy yükleniyor" kontrolü `skip-lazy`, `no-lazyload` sınıflarını ve `data-no-lazy`'yi hariç tutma işareti olarak tanır (önceden "no-lazyload" içindeki "lazy" yüzünden logoyu lazy sanıyordu).

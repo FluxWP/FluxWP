@@ -72,6 +72,15 @@ add_filter(
 			? $item( 'gsc', 'Search Console', 'ok', 'Google doğrulama kodu girili.' )
 			: $item( 'gsc', 'Search Console', 'info', 'Doğrulama kodu girilmemiş. DNS ile doğruladıysanız sorun yok.', flxseo_admin_url(), 'SEO ayarları' );
 
+		$se_miss = array_values( array_filter( array( flxseo_opt( 'verify_bing' ) ? '' : 'Bing', flxseo_opt( 'verify_yandex' ) ? '' : 'Yandex' ) ) );
+		$checks[] = $se_miss
+			/* translators: %s: arama motoru adları */
+			? $item( 'search-engines', __( 'Bing ve Yandex', 'flx-seo' ), 'info', sprintf( __( 'Doğrulama kodu girilmemiş: %s. Siteyi bu arama motorlarının panellerine ekleyin (Bing\'de Google Search Console\'dan içe aktarma kod istemez).', 'flx-seo' ), implode( ', ', $se_miss ) ), flxseo_admin_url() . '#search-engines', __( 'Arama motorları', 'flx-seo' ) )
+			: $item( 'search-engines', __( 'Bing ve Yandex', 'flx-seo' ), 'ok', __( 'Bing ve Yandex doğrulama kodları girili.', 'flx-seo' ) );
+		$checks[] = flxseo_opt( 'indexnow' )
+			? $item( 'indexnow', 'IndexNow', 'ok', get_option( 'flxseo_indexnow_init' ) ? __( 'Açık; site Bing ve Yandex\'e bildirildi.', 'flx-seo' ) : __( 'Açık; ilk toplu bildirim yönetim panelinde bir sonraki istekte gönderilir.', 'flx-seo' ) )
+			: $item( 'indexnow', 'IndexNow', 'warning', __( 'Kapalı; yeni sayfalar Bing ve Yandex\'e bildirilmiyor.', 'flx-seo' ), flxseo_admin_url() . '#indexnow', 'IndexNow' );
+
 		$checks[] = $item( 'mcp', 'Yapay zekâ (MCP)', function_exists( 'flxai_mcp_tools' ) ? 'info' : 'warning', function_exists( 'flxai_mcp_tools' ) ? ( flxseo_mcp_server_on() ? 'MCP sunucusu (Flux AI) açık; Flux SEO araçları kayıtlı.' : 'MCP sunucusu (Flux AI) kapalı; Flux SEO araçları yalnız Flux AI sohbetinde.' ) : 'Flux AI 0.7.0+ kurulu değil; Flux SEO yapay zekâ araçları çalışmıyor.', flxseo_mcp_admin_url(), 'Flux AI & MCP › MCP' );
 
 		return $checks;

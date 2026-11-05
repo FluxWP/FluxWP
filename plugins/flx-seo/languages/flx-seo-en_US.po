@@ -928,3 +928,142 @@ msgstr "Site audit and agent readiness"
 
 msgid "Flux SEO'nun yapay zekâ (MCP) araçları ortak MCP sunucusu üzerinden çalışır. Sunucu, anahtarlar ve ayarlar Flux AI & MCP › MCP ekranındadır; Flux AI 0.7.0 ve üstünü kurup etkinleştirin."
 msgstr "Flux SEO's AI (MCP) tools run through the shared MCP server. The server, keys and settings are in Flux AI & MCP › MCP; install and activate Flux AI 0.7.0 or later."
+
+msgid "Gönderilecek adres yok."
+msgstr "No URLs to submit."
+
+#, php-format
+msgid "IndexNow %d döndü."
+msgstr "IndexNow returned %d."
+
+msgid "Yetki yok."
+msgstr "Not allowed."
+
+msgid "IndexNow kapalı ya da site arama motorlarına kapalı (Ayarlar › Okuma)."
+msgstr "IndexNow is off or the site is hidden from search engines (Settings › Reading)."
+
+#, php-format
+msgid "%d adres Bing, Yandex ve diğer IndexNow arama motorlarına bildirildi."
+msgstr "%d URLs submitted to Bing, Yandex and the other IndexNow search engines."
+
+msgid "Search Console'u aç"
+msgstr "Open Search Console"
+
+msgid "Özellik ekle › URL öneki › HTML etiketi. DNS ile doğruladıysanız boş bırakın."
+msgstr "Add property › URL prefix › HTML tag. Leave empty if you verified with DNS."
+
+msgid "Bing Webmaster'ı aç"
+msgstr "Open Bing Webmaster"
+
+msgid "En kolayı \"Google Search Console'dan içe aktar\": doğrulama ve sitemap kendiliğinden gelir, kod gerekmez. Elle eklerken HTML Meta Tag kodunu yapıştırın. DuckDuckGo, Yahoo ve Ecosia sonuçları Bing'den gelir."
+msgstr "Easiest is \"Import from Google Search Console\": verification and sitemaps come over automatically, no code needed. When adding manually, paste the HTML Meta Tag code. DuckDuckGo, Yahoo and Ecosia results come from Bing."
+
+msgid "Yandex Webmaster'ı aç"
+msgstr "Open Yandex Webmaster"
+
+msgid "Site ekle › Meta etiketi. Doğruladıktan sonra Indexing › Sitemap files bölümüne sitemap adresini ekleyin."
+msgstr "Add site › Meta tag. After verifying, add the sitemap URL under Indexing › Sitemap files."
+
+#, php-format
+msgid "%1$s · %2$d adres · HTTP %3$d"
+msgstr "%1$s · %2$d URLs · HTTP %3$d"
+
+msgid "anahtar dosyası doğrulanamadı"
+msgstr "key file could not be verified"
+
+msgid "adresler site alan adıyla eşleşmiyor"
+msgstr "URLs do not match the site domain"
+
+msgid "çok sık istek, sonra tekrar deneyin"
+msgstr "too many requests, try again later"
+
+msgid "hata"
+msgstr "error"
+
+msgid "Arama motorları"
+msgstr "Search engines"
+
+msgid "Google dışındaki arama motorları (Bing, Yandex, DuckDuckGo, Yahoo, Ecosia) siteyi ancak tanıtılınca hızlı tarar. Her birinin kendi panelinde siteyi ekleyin; doğrulama kodunu aşağıya yapıştırın, sitemap adresini gönderin."
+msgstr "Search engines other than Google (Bing, Yandex, DuckDuckGo, Yahoo, Ecosia) crawl a site quickly only once it is introduced to them. Add the site in each one's webmaster panel, paste the verification code below and submit the sitemap URL."
+
+msgid "Sitemap adresi"
+msgstr "Sitemap URL"
+
+msgid "robots.txt'de de yazılı; Search Console, Bing ve Yandex panellerine bu adresi ekleyin."
+msgstr "Also listed in robots.txt; add this URL in Search Console, Bing and Yandex."
+
+msgid "Doğrulama etiketi sitede"
+msgstr "Verification tag is on the site"
+
+msgid "Yayınlanan ve güncellenen sayfaları Bing, Yandex, DuckDuckGo (Bing üzerinden), Seznam ve Naver'e anında bildir"
+msgstr "Instantly notify Bing, Yandex, DuckDuckGo (via Bing), Seznam and Naver about published and updated pages"
+
+msgid "Anahtar dosyası:"
+msgstr "Key file:"
+
+msgid "Açıkken tüm site bir kez kendiliğinden bildirilir. Google IndexNow kullanmaz; Google için Search Console'a sitemap ekleyin."
+msgstr "When on, the whole site is submitted once automatically. Google does not use IndexNow; add your sitemap in Search Console for Google."
+
+msgid "Site arama motorlarına kapalı (Ayarlar › Okuma); IndexNow bildirim göndermez."
+msgstr "The site is hidden from search engines (Settings › Reading); IndexNow sends nothing."
+
+msgid "Son toplu bildirim:"
+msgstr "Last bulk submission:"
+
+msgid "Tüm siteyi şimdi bildir"
+msgstr "Submit the whole site now"
+
+msgid "robots.txt Bing ya da Yandex tarayıcısını engelliyor"
+msgstr "robots.txt blocks the Bing or Yandex crawler"
+
+msgid "Bingbot, YandexBot, DuckDuckBot gibi arama motoru tarayıcıları için \"Disallow: /\" olmamalı; site yalnız Google'da görünür. Kökteki robots.txt dosyasını düzeltin."
+msgstr "Search engine crawlers such as Bingbot, YandexBot and DuckDuckBot must not get \"Disallow: /\", otherwise the site only shows up on Google. Fix the robots.txt file in the site root."
+
+msgid "robots.txt'de Sitemap satırı yok"
+msgstr "robots.txt has no Sitemap line"
+
+msgid "Bing ve Yandex sitemap'i robots.txt'deki \"Sitemap:\" satırından bulur. Kökte elle konmuş bir robots.txt varsa silin (Flux SEO satırı ekler) ya da satırı elle ekleyin."
+msgstr "Bing and Yandex find the sitemap through the \"Sitemap:\" line in robots.txt. If there is a hand-made robots.txt in the site root, delete it (Flux SEO adds the line) or add the line yourself."
+
+msgid "IndexNow kapalı"
+msgstr "IndexNow is off"
+
+msgid "IndexNow yeni ve güncellenen sayfaları Bing, Yandex, Seznam ve Naver'e anında bildirir; Google dışındaki arama motorlarında görünmenin en hızlı yolu. Açmak için tek tık."
+msgstr "IndexNow instantly notifies Bing, Yandex, Seznam and Naver about new and updated pages; it is the fastest way to show up outside Google. One click to turn it on."
+
+msgid "IndexNow bildirimi başarısız"
+msgstr "IndexNow submission failed"
+
+msgid "Anahtar dosyası (/<anahtar>.txt) dışarıdan açılabilmeli. Önbellek ya da güvenlik eklentisi engelliyorsa istisna ekleyin, sonra SEO › Genel › IndexNow › \"Tüm siteyi şimdi bildir\"."
+msgstr "The key file (/<key>.txt) must be reachable from outside. If a cache or security plugin blocks it, add an exception, then use SEO › General › IndexNow › \"Submit the whole site now\"."
+
+msgid "Bing / Yandex doğrulama kodu girilmemiş"
+msgstr "No Bing / Yandex verification code"
+
+msgid "Site Bing Webmaster Tools ve Yandex Webmaster'a eklenmemiş olabilir; eklenmezse bu arama motorlarında geç ya da hiç görünmez. Bing'de \"Google Search Console'dan içe aktar\" ile kod gerekmez; o yolla eklediyseniz yok sayın. Kodlar SEO › Genel › Arama motorları'nda."
+msgstr "The site may not be added to Bing Webmaster Tools and Yandex Webmaster; without that it shows up late or not at all on those engines. Bing's \"Import from Google Search Console\" needs no code; ignore this if you used it. Codes go in SEO › General › Search engines."
+
+msgid "IndexNow'u aç"
+msgstr "Turn on IndexNow"
+
+msgid "Yeni ve güncellenen sayfalar Bing, Yandex, Seznam ve Naver'e anında bildirilir; tüm site bir kez kendiliğinden gönderilir."
+msgstr "New and updated pages are sent instantly to Bing, Yandex, Seznam and Naver; the whole site is submitted once automatically."
+
+msgid "Bing ve Yandex"
+msgstr "Bing and Yandex"
+
+#, php-format
+msgid "Doğrulama kodu girilmemiş: %s. Siteyi bu arama motorlarının panellerine ekleyin (Bing'de Google Search Console'dan içe aktarma kod istemez)."
+msgstr "No verification code: %s. Add the site in these search engines' webmaster panels (Bing's import from Google Search Console needs no code)."
+
+msgid "Bing ve Yandex doğrulama kodları girili."
+msgstr "Bing and Yandex verification codes are set."
+
+msgid "Açık; site Bing ve Yandex'e bildirildi."
+msgstr "On; the site has been submitted to Bing and Yandex."
+
+msgid "Açık; ilk toplu bildirim yönetim panelinde bir sonraki istekte gönderilir."
+msgstr "On; the first bulk submission is sent on the next admin page load."
+
+msgid "Kapalı; yeni sayfalar Bing ve Yandex'e bildirilmiyor."
+msgstr "Off; new pages are not sent to Bing and Yandex."

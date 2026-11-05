@@ -61,7 +61,7 @@ function flxseo_indexnow_send( $urls, $blocking = false ) {
 	$host = (string) wp_parse_url( home_url(), PHP_URL_HOST );
 	$urls = array_values( array_unique( array_filter( (array) $urls, fn( $u ) => wp_parse_url( $u, PHP_URL_HOST ) === $host ) ) );
 	if ( ! $urls ) {
-		return new WP_Error( 'flxseo_indexnow_empty', 'Gönderilecek adres yok.' );
+		return new WP_Error( 'flxseo_indexnow_empty', __( 'Gönderilecek adres yok.', 'flx-seo' ) );
 	}
 	$key = flxseo_indexnow_key();
 	$r   = wp_remote_post(
@@ -87,7 +87,8 @@ function flxseo_indexnow_send( $urls, $blocking = false ) {
 		$code = (int) wp_remote_retrieve_response_code( $r );
 		update_option( 'flxseo_indexnow_last', array( 'time' => time(), 'code' => $code, 'count' => count( $urls ) ), false );
 		if ( $code >= 400 ) {
-			return new WP_Error( 'flxseo_indexnow_http', sprintf( 'IndexNow %d döndü.', $code ) );
+			/* translators: %d: HTTP durum kodu */
+			return new WP_Error( 'flxseo_indexnow_http', sprintf( __( 'IndexNow %d döndü.', 'flx-seo' ), $code ) );
 		}
 	}
 	return true;
@@ -101,6 +102,13 @@ function flxseo_indexnow_post_urls( $post ) {
 	}
 	if ( flxseo_get( $post->ID, 'noindex' ) || post_password_required( $post ) ) {
 		return array();
+	}
+	// Sepet, ödeme ve Hesabım sayfaları (ve alt sayfaları, ör. order-received) noindex ise bildirilmez.
+	if ( flxseo_opt( 'noindex_shop' ) && 'page' === $post->post_type ) {
+		$shop = array_filter( array_map( 'intval', array( get_option( 'woocommerce_cart_page_id' ), get_option( 'woocommerce_checkout_page_id' ), get_option( 'woocommerce_myaccount_page_id' ) ) ) );
+		if ( $shop && array_intersect( array_merge( array( (int) $post->ID ), array_map( 'intval', get_post_ancestors( $post ) ) ), $shop ) ) {
+			return array();
+		}
 	}
 	return (array) apply_filters( 'flxseo_indexnow_urls', array( get_permalink( $post ) ), $post );
 }
@@ -172,25 +180,101 @@ function flxseo_indexnow_all_urls() {
 	foreach ( $ids as $id ) {
 		$urls = array_merge( $urls, flxseo_indexnow_post_urls( $id ) );
 	}
-	return array_values( array_unique( $urls ) );
+	// Kategori arşivleri (etiketler noindex ise atlanır).
+	$taxes = array_filter( array( 'category', 'product_cat', flxseo_opt( 'noindex_tags' ) ? '' : 'post_tag' ), 'taxonomy_exists' );
+	if ( $taxes ) {
+		$terms = get_terms(
+			array(
+				'taxonomy'   => array_values( $taxes ),
+				'hide_empty' => true,
+				'number'     => 500,
+			)
+		);
+		foreach ( is_wp_error( $terms ) ? array() : $terms as $t ) {
+			$link = get_term_link( $t );
+			if ( ! is_wp_error( $link ) ) {
+				$urls[] = $link;
+			}
+		}
+	}
+	return array_values( array_unique( (array) apply_filters( 'flxseo_indexnow_all_urls', $urls ) ) );
 }
 
 add_action(
 	'admin_post_flxseo_indexnow_all',
 	function () {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( 'Yetki yok.' );
+			wp_die( esc_html__( 'Yetki yok.', 'flx-seo' ) );
 		}
 		check_admin_referer( 'flxseo_indexnow_all' );
 		if ( ! flxseo_indexnow_enabled() ) {
-			$msg = array( 'error', 'IndexNow kapalı ya da site arama motorlarına kapalı (Ayarlar › Okuma).' );
+			$msg = array( 'error', __( 'IndexNow kapalı ya da site arama motorlarına kapalı (Ayarlar › Okuma).', 'flx-seo' ) );
 		} else {
 			$urls = flxseo_indexnow_all_urls();
 			$r    = flxseo_indexnow_send( $urls, true );
-			$msg  = is_wp_error( $r ) ? array( 'error', $r->get_error_message() ) : array( 'success', sprintf( '%d adres Bing, Yandex ve diğer IndexNow arama motorlarına bildirildi.', count( $urls ) ) );
+			if ( ! is_wp_error( $r ) ) {
+				update_option( 'flxseo_indexnow_init', time(), false );
+			}
+			/* translators: %d: adres sayısı */
+			$msg = is_wp_error( $r ) ? array( 'error', $r->get_error_message() ) : array( 'success', sprintf( __( '%d adres Bing, Yandex ve diğer IndexNow arama motorlarına bildirildi.', 'flx-seo' ), count( $urls ) ) );
 		}
 		set_transient( 'flxseo_indexnow_msg_' . get_current_user_id(), $msg, 60 );
 		wp_safe_redirect( flxseo_admin_url() . '#indexnow' );
 		exit;
 	}
+);
+
+/**
+ * İlk bildirim: IndexNow açıkken site hiç toplu bildirilmediyse (yeni kurulum, IndexNow yeni açıldı ya da site
+ * arama motorlarına yeni açıldı) tüm site bir kez kendiliğinden gönderilir. Cron'a güvenilmez (Hostinger'da
+ * tetiklenmeyebiliyor); yönetim panelindeki bir isteğin sonunda, yanıt gönderildikten sonra çalışır.
+ */
+add_action(
+	'admin_init',
+	function () {
+		if ( wp_doing_ajax() || get_option( 'flxseo_indexnow_init' ) || ! current_user_can( 'manage_options' ) || ! flxseo_indexnow_enabled() ) {
+			return;
+		}
+		if ( get_transient( 'flxseo_indexnow_init_lock' ) ) {
+			return;
+		}
+		set_transient( 'flxseo_indexnow_init_lock', 1, HOUR_IN_SECONDS );
+		add_action(
+			'shutdown',
+			function () {
+				if ( function_exists( 'fastcgi_finish_request' ) ) {
+					fastcgi_finish_request();
+				}
+				$r = flxseo_indexnow_send( flxseo_indexnow_all_urls(), true );
+				if ( ! is_wp_error( $r ) ) {
+					update_option( 'flxseo_indexnow_init', time(), false );
+				}
+			},
+			30
+		);
+	}
+);
+
+/** IndexNow yeniden açılınca ya da site arama motorlarına açılınca ilk bildirim tekrarlanır. */
+add_action(
+	'update_option_flxseo',
+	function ( $old, $new ) {
+		if ( empty( $old['indexnow'] ) && ! empty( $new['indexnow'] ) ) {
+			delete_option( 'flxseo_indexnow_init' );
+			delete_transient( 'flxseo_indexnow_init_lock' );
+		}
+	},
+	10,
+	2
+);
+add_action(
+	'update_option_blog_public',
+	function ( $old, $new ) {
+		if ( ! $old && $new ) {
+			delete_option( 'flxseo_indexnow_init' );
+			delete_transient( 'flxseo_indexnow_init_lock' );
+		}
+	},
+	10,
+	2
 );
