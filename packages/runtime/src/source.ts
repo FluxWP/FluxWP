@@ -1,6 +1,5 @@
 // Sources (§7.3) → REST requests, and responses → pages. Platform-neutral; the app runs the request
 // through @fluxwp/core's client (auth, refresh, same-site guard).
-import { isUnsafeKey } from '@fluxwp/core';
 import { fill, getPath, value, type Action, type ExprContext, type FormScreen, type Paging, type RequestSpec, type Source } from '@fluxwp/manifest';
 
 export class ManifestError extends Error {
@@ -101,13 +100,14 @@ export function actionRequest(req: RequestSpec, ctx: ExprContext, methodOverride
 /** "consent.email" → { consent: { email } } */
 export function setPath(obj: Record<string, unknown>, path: string, v: unknown): void {
   const keys = path.split('.');
-  if (keys.some(isUnsafeKey)) return;
   let cur = obj;
-  keys.slice(0, -1).forEach((k) => {
-    if (!cur[k] || typeof cur[k] !== 'object') cur[k] = {};
+  for (const k of keys.slice(0, -1)) {
+    if (k === '__proto__' || k === 'constructor' || k === 'prototype') return;
+    if (!cur[k] || typeof cur[k] !== 'object') cur[k] = Object.create(null);
     cur = cur[k] as Record<string, unknown>;
-  });
+  }
   const last = keys[keys.length - 1]!;
+  if (last === '__proto__' || last === 'constructor' || last === 'prototype') return;
   cur[last] = v;
 }
 
@@ -116,7 +116,7 @@ export function formRequest(form: FormScreen, values: Record<string, unknown>, c
   const hasId = !!ctx.params?.id;
   const path = (hasId ? form.submit.path_update : form.submit.path_create) ?? form.submit.path;
   const req = actionRequest({ ...form.submit, path }, { ...ctx, input: values }, methodOverride);
-  const nested: Record<string, unknown> = {};
+  const nested: Record<string, unknown> = Object.create(null);
   for (const [k, v] of Object.entries(values)) setPath(nested, k, v);
   return { ...req, body: { ...(req.body ?? {}), ...nested } };
 }

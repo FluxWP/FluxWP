@@ -14,13 +14,6 @@ export function trimStart(s: string, ch = '/'): string {
   return s.slice(i);
 }
 
-const UNSAFE_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
-
-/** Keys that must not be written from an untrusted path or patch. */
-export function isUnsafeKey(key: string): boolean {
-  return UNSAFE_KEYS.has(key);
-}
-
 /** Site address without trailing slashes. */
 export function siteBase(url: string): string {
   return trimEnd(String(url || ''));

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { isUnsafeKey, siteBase, stripAngles, stripTags, trimEnd, trimStart } from './text';
+import { siteBase, stripAngles, stripTags, trimEnd, trimStart } from './text';
 import { adminPath } from './layout/merge';
 
 describe('text helpers', () => {
@@ -20,10 +20,6 @@ describe('text helpers', () => {
     expect(stripAngles('<script')).toBe('script');
     expect(stripAngles('<scr<script>ipt>')).toBe('scrscriptipt');
     expect(stripAngles('Fish & chips')).toBe('Fish & chips');
-    expect(isUnsafeKey('__proto__')).toBe(true);
-    expect(isUnsafeKey('constructor')).toBe(true);
-    expect(isUnsafeKey('prototype')).toBe(true);
-    expect(isUnsafeKey('name')).toBe(false);
   });
   it('strips tags', () => {
     expect(stripTags('<p>Hi <b>there</b></p>')).toBe('Hi there');
