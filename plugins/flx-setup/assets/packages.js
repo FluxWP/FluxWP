@@ -369,6 +369,27 @@
 		});
 	}
 
+	/** Güncellemeleri sunucudan kontrol et; tablo ve rozet sayfa yenilenmeden tazelenir. */
+	function checkNow() {
+		var ck = document.getElementById('flxu-check');
+		if (!ck || !window.fetch || busy || ck.classList.contains('is-busy')) { return; }
+		ck.classList.add('is-busy');
+		var lbl = document.getElementById('flxu-checked');
+		if (lbl) { lbl.textContent = L.checking; lbl.className = 'flxu-checked'; }
+		post({ action: 'flxu_check' }).then(function (res) {
+			setBadge(res.pending);
+			/* Bu arada kurulum/güncelleme başladıysa tabloyu değiştirme; o iş bitince kendisi tazeler. */
+			return (busy ? Promise.resolve() : refresh()).then(function () {
+				ck.classList.remove('is-busy');
+				var l = document.getElementById('flxu-checked');
+				if (l) { l.textContent = res.label + ' · ' + res.summary; l.className = 'flxu-checked ' + (res.ok ? 'is-ok' : 'is-err'); }
+			});
+		}).catch(function (err) {
+			ck.classList.remove('is-busy');
+			if (lbl) { lbl.textContent = err.message; lbl.className = 'flxu-checked is-err'; }
+		});
+	}
+
 	/* ---------------- Olaylar ---------------- */
 
 	document.addEventListener('change', function (e) {
@@ -402,21 +423,7 @@
 		var ck = t.closest('#flxu-check');
 		if (ck && window.fetch) {
 			e.preventDefault();
-			if (busy || ck.classList.contains('is-busy')) { return; }
-			ck.classList.add('is-busy');
-			var lbl = document.getElementById('flxu-checked');
-			if (lbl) { lbl.textContent = L.checking; }
-			post({ action: 'flxu_check' }).then(function (res) {
-				setBadge(res.pending);
-				return refresh().then(function () {
-					ck.classList.remove('is-busy');
-					var l = document.getElementById('flxu-checked');
-					if (l) { l.textContent = res.label + ' · ' + res.summary; l.className = 'flxu-checked ' + (res.ok ? 'is-ok' : 'is-err'); }
-				});
-			}).catch(function (err) {
-				ck.classList.remove('is-busy');
-				if (lbl) { lbl.textContent = err.message; lbl.className = 'flxu-checked is-err'; }
-			});
+			checkNow();
 			return;
 		}
 		var b = t.closest('button[name="flxu_do"]');
@@ -465,4 +472,7 @@
 	});
 
 	if (form()) { load(); draw(); }
+	/* Sayfa açılınca bir kez kendiliğinden kontrol (sunucu son kontrol yakın zamandaysa data-auto koymaz). */
+	var ck0 = document.getElementById('flxu-check');
+	if (ck0 && ck0.getAttribute('data-auto') === '1') { checkNow(); }
 })();

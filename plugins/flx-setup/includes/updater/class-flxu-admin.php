@@ -551,10 +551,17 @@ final class FLXU_Admin {
 			return 'update' === $r['state'];
 		} ) );
 		$state   = self::connection_state( $status );
+		/*
+		 * Sayfa açılınca güncellemeler bir kez kendiliğinden kontrol edilir. Son kontrol yakın zamandaysa
+		 * (varsayılan 2 dk) ya da sunucu bekleme süresi bildirdiyse istek atılmaz (wp-admin hız sınırı).
+		 * 0 verilirse otomatik kontrol kapanır.
+		 */
+		$auto_ttl = (int) apply_filters( 'flxk_auto_check_after', 2 * MINUTE_IN_SECONDS );
+		$auto     = $auto_ttl > 0 && ! FLXU_Updater::backing_off( $status ) && ( time() - (int) ( $status['checked'] ?? 0 ) ) >= $auto_ttl;
 		?>
 		<div class="wrap flxu-wrap">
 			<h1 class="wp-heading-inline"><?php esc_html_e( 'Paketler', 'flx-setup' ); ?></h1>
-			<a class="page-title-action" id="flxu-check" href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=flxu_check' ), 'flxu_check' ) ); ?>"><span class="flxu-check__spin" aria-hidden="true"></span><?php esc_html_e( 'Güncellemeleri kontrol et', 'flx-setup' ); ?></a>
+			<a class="page-title-action" id="flxu-check"<?php echo $auto ? ' data-auto="1"' : ''; ?> href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=flxu_check' ), 'flxu_check' ) ); ?>"><span class="flxu-check__spin" aria-hidden="true"></span><?php esc_html_e( 'Güncellemeleri kontrol et', 'flx-setup' ); ?></a>
 			<span class="flxu-checked" id="flxu-checked"><?php echo esc_html( self::checked_label( $status ) ); ?></span>
 			<hr class="wp-header-end">
 
