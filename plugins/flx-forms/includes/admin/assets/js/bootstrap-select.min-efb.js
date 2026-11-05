@@ -94,7 +94,7 @@ document.addEventListener("click", (evnt) => {
                 let fc = e.querySelector("TH");
                 if (e.dataset.row == l.dataset.select) {
                     l.dataset.select = "";
-                    l.innerHTML = default_val_efb;
+                    l.textContent = default_val_efb;
                     fc.classList.remove("border-info");
                     if (l.dataset.icon == 1) fc.className = "bi-square efb";
                 } else {
@@ -104,7 +104,7 @@ document.addEventListener("click", (evnt) => {
                         if (l.dataset.icon == 1) x.querySelector("TH").className = "bi-square efb";
                     }
                     l.dataset.select = e.dataset.row;
-                    l.innerHTML = l.id === "iconEl" ? `<i class="efb ${e.dataset.name} fs-5"></i>` : e.dataset.name;
+                    if (l.id === "iconEl") { l.textContent = ""; const ic = document.createElement("i"); ic.className = `efb ${e.dataset.name} fs-5`; l.appendChild(ic); } else l.textContent = e.dataset.name;
                     if (l.dataset.icon == 1) fc.className = "bi-check-square text-info efb";
                     e.className += " border-info";
                 }
@@ -114,19 +114,19 @@ document.addEventListener("click", (evnt) => {
                 let fc = e.querySelector("TH");
                 if (l.dataset.select.includes(r)) {
                     l.dataset.select = l.dataset.select.replace(`${r} @efb!`, '');
-                    const v = l.innerHTML.length == (l.innerHTML.indexOf(',') + 1) ? default_val_efb : ''
-                    l.innerHTML = l.innerHTML.replace(`${e.dataset.name},`, v);
+                    const v = l.textContent.length == (l.textContent.indexOf(',') + 1) ? default_val_efb : ''
+                    l.textContent = l.textContent.replace(`${e.dataset.name},`, v);
                     if (l.dataset.icon == 1) fc.className = "bi-square efb";
                     e.className = "efblist";
                     if (l.dataset.select.length < 1) {
-                        l.innerHTML = default_val_efb;
+                        l.textContent = default_val_efb;
                         l.classList.remove("border-success");
                     }
                 } else {
                     const s = l.dataset.select.split("@efb!");
                     if ((s.length) <= l.dataset.no) {
                         if (l.dataset.icon == 1) fc.className = "bi-check-square text-info efb";
-                        l.dataset.select.length < 1 ? l.innerHTML = e.dataset.name + "," : l.innerHTML += e.dataset.name + ","
+                        l.dataset.select.length < 1 ? l.textContent = e.dataset.name + "," : l.textContent += e.dataset.name + ","
                         l.dataset.select += `${e.dataset.row} @efb!`;
                         l.classList.remove("border-info");
                         l.classList.add("border-success");
@@ -140,7 +140,7 @@ document.addEventListener("click", (evnt) => {
                     break;
             }
             if ((typeof ajax_object_efm) == 'object') {
-                const v = l.innerHTML.replaceAll(`,`, "@efb!");
+                const v = l.textContent.replaceAll(`,`, "@efb!");
                 const el_o = l.dataset.select.split(" @efb!");
                 const ms_form_id = e.dataset.formid || (l.closest('[data-formid]') ? l.closest('[data-formid]').dataset.formid : '') || (typeof form_ID_emsFormBuilder !== 'undefined' ? form_ID_emsFormBuilder : 0);
                 const ms_valj = (typeof get_structure_by_form_id_efb === 'function' && ms_form_id) ? get_structure_by_form_id_efb(ms_form_id) : valj_efb;

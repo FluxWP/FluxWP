@@ -155,12 +155,13 @@
     s = s.replace(/\x00/g, '');
     const tmp = s.replace(/&#(\d+);?/g, (_, n) => String.fromCharCode(n))
                  .replace(/&#x([0-9a-f]+);?/gi, (_, h) => String.fromCharCode(parseInt(h, 16)));
-    const lower = tmp.replace(/\s+/g, '').toLowerCase();
-    if (lower.startsWith('javascript:') || lower.startsWith('vbscript:') ||
-        lower.startsWith('data:text/html') || lower.startsWith('data:application')) {
+    const lower = tmp.replace(/[\s\x00-\x1f]+/g, '').toLowerCase();
+    // Allow-list of schemes: anything else (javascript:, vbscript:, data:text/html, ...) is dropped.
+    const scheme = lower.match(/^([a-z][a-z0-9+.-]*):/);
+    if (scheme && !['http', 'https', 'mailto', 'tel'].includes(scheme[1]) &&
+        !/^data:image\/(png|jpe?g|gif|webp);/.test(lower)) {
       return '';
     }
-    if (s.startsWith('shortcode_')) return s;
     return s;
   }
 
@@ -898,7 +899,7 @@ ${blocksHtml}
         role="listitem" tabindex="0"
         aria-label="${escHtml_efb(label)} - ${t_efb('ebBlock', 'Block')} ${index + 1}" aria-selected="${isSelected}">
         <div class="efb-block-label">
-          <span><i class="efb ${def?.icon || 'bi-square'}"></i> ${label}</span>
+          <span><i class="efb ${escHtml_efb(def?.icon || 'bi-square')}"></i> ${escHtml_efb(label)}</span>
           <div class="efb-block-actions" role="toolbar" aria-label="${t_efb('ebBlockActions', 'Block actions')}">
             <button class="efb-blk-btn" onclick="efbEmailBuilder.moveBlock_efb('${block.id}',-1)" title="${t_efb('ebMoveUp', 'Move Up')}" aria-label="${t_efb('ebMoveUp', 'Move Up')}"><i class="efb bi-arrow-up"></i></button>
             <button class="efb-blk-btn" onclick="efbEmailBuilder.moveBlock_efb('${block.id}',1)" title="${t_efb('ebMoveDown', 'Move Down')}" aria-label="${t_efb('ebMoveDown', 'Move Down')}"><i class="efb bi-arrow-down"></i></button>
@@ -1572,8 +1573,10 @@ ${blocksHtml}
     'shortcode_admin_email':   () => t_efb('ebSCAdminEmail', 'Admin Email')
   };
 
+  const _SHORTCODE_LABEL_MAP_efb = new Map(Object.entries(_SHORTCODE_LABELS_efb));
+
   function _shortcodeChipHtml_efb(code) {
-    const labelFn = _SHORTCODE_LABELS_efb[code];
+    const labelFn = _SHORTCODE_LABEL_MAP_efb.get(code);
     const label = labelFn ? labelFn() : code;
     return `<span class="efb-chip" contenteditable="false" data-shortcode="${escHtml_efb(code)}"><i class="efb bi-braces me-1"></i>${escHtml_efb(label)}<button type="button" class="efb-chip-remove" tabindex="-1">&times;</button></span>`;
   }
@@ -2031,24 +2034,24 @@ ${blocksHtml}
         <div class="efb-prop-row efb-prop-color-row">
           <label class="efb-prop-label">${t_efb('ebEmailBg', 'Email Background')}</label>
           <div class="efb-color-picker-wrap">
-            <input type="color" class="efb-gs-color" data-gs="bgColor" value="${gs.bgColor}" />
-            <input type="text" class="efb-prop-input efb-gs-text" data-gs="bgColor" value="${gs.bgColor}" />
+            <input type="color" class="efb-gs-color" data-gs="bgColor" value="${escHtml_efb(gs.bgColor)}" />
+            <input type="text" class="efb-prop-input efb-gs-text" data-gs="bgColor" value="${escHtml_efb(gs.bgColor)}" />
           </div>
         </div>
         <div class="efb-prop-row efb-prop-color-row">
           <label class="efb-prop-label">${t_efb('ebContentBg', 'Content Background')}</label>
           <div class="efb-color-picker-wrap">
-            <input type="color" class="efb-gs-color" data-gs="contentBgColor" value="${gs.contentBgColor}" />
-            <input type="text" class="efb-prop-input efb-gs-text" data-gs="contentBgColor" value="${gs.contentBgColor}" />
+            <input type="color" class="efb-gs-color" data-gs="contentBgColor" value="${escHtml_efb(gs.contentBgColor)}" />
+            <input type="text" class="efb-prop-input efb-gs-text" data-gs="contentBgColor" value="${escHtml_efb(gs.contentBgColor)}" />
           </div>
         </div>
         <div class="efb-prop-row">
           <label class="efb-prop-label">${t_efb('ebContentWidth', 'Content Width (px)')}</label>
-          <input type="text" class="efb-prop-input efb-gs-input" data-gs="contentWidth" value="${gs.contentWidth}" />
+          <input type="text" class="efb-prop-input efb-gs-input" data-gs="contentWidth" value="${escHtml_efb(gs.contentWidth)}" />
         </div>
         <div class="efb-prop-row">
-          <label class="efb-prop-label">${t_efb('ebBorderRadius', 'Border Radius (px)')}: <span class="efb-range-val">${gs.borderRadius}</span></label>
-          <input type="range" class="efb-prop-range efb-gs-range" data-gs="borderRadius" value="${gs.borderRadius}" min="0" max="30" />
+          <label class="efb-prop-label">${t_efb('ebBorderRadius', 'Border Radius (px)')}: <span class="efb-range-val">${escHtml_efb(gs.borderRadius)}</span></label>
+          <input type="range" class="efb-prop-range efb-gs-range" data-gs="borderRadius" value="${escHtml_efb(gs.borderRadius)}" min="0" max="30" />
         </div>
         <div class="efb-prop-row">
           <label class="efb-prop-label">${t_efb('ebDefaultFont', 'Default Font')}</label>

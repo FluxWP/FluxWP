@@ -5,7 +5,7 @@ import { StrictMode, useEffect, useState } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { I18nextProvider } from 'react-i18next';
-import { brand, createClient, createI18n, setPlatform, memoryStore } from '@fluxwp/core';
+import { brand, createClient, createI18n, setPlatform, memoryStore, trimEnd } from '@fluxwp/core';
 import type { BrandColors } from '@fluxwp/tokens';
 import { toCssVars } from '@fluxwp/tokens';
 import { ModuleHostProvider, moduleScreens, type ModuleHost } from '@fluxwp/modules';
@@ -30,7 +30,7 @@ let nonce = '';
 const roots = new Map<HTMLElement, Root>();
 
 function siteFromRest(rest: string): string {
-  return rest.replace(/\/wp-json\/?$/, '').replace(/\/+$/, '') || location.origin;
+  return trimEnd(rest.replace(/\/wp-json\/?$/, '')) || location.origin;
 }
 
 function Themed({ el, theme }: { el: HTMLElement; theme: NonNullable<MountOptions['theme']> }) {

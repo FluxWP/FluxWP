@@ -458,7 +458,7 @@
 	Y.upsertTask = function (task) {
 		if (!task) return;
 		var old = S.tasks[task.id];
-		if (old && old.hasDesc !== undefined && task.hasDesc === undefined) task.hasDesc = !!(task.description && task.description.replace(/<img[^>]*>/g, 'x').replace(/<[^>]+>/g, '').trim());
+		if (old && old.hasDesc !== undefined && task.hasDesc === undefined) task.hasDesc = !!task.description && (/<img\b/i.test(task.description) || !!(new DOMParser().parseFromString(String(task.description), 'text/html').body.textContent || '').trim());
 		delete task.description;
 		delete task.comments_list;
 		delete task.activity;

@@ -1,7 +1,7 @@
 // node shoot.js <config.json> <lang> <outdir>
-const {chromium,B,login,U}=require(__dirname+'/lib.js'); const fs=require('fs'); const {execSync}=require('child_process');
+const {chromium,B,login,U}=require(__dirname+'/lib.js'); const fs=require('fs'); const {execFileSync}=require('child_process');
 const cfg=JSON.parse(fs.readFileSync(process.argv[2])); const lang=process.argv[3]; const out=process.argv[4]; fs.mkdirSync(out,{recursive:true});
-execSync(`php ${__dirname}/env/setloc.php ${lang==='en'?'en_US':'tr_TR'}`);
+execFileSync('php',[__dirname+'/env/setloc.php',lang==='en'?'en_US':'tr_TR']);
 async function union(p,sels,pad){ const bs=[]; for(const s of sels){ for(const l of await p.locator(s).all()){ if(!(await l.isVisible())) continue; const b=await l.boundingBox(); if(b&&b.height>10) bs.push(b);} } if(!bs.length) throw new Error('no el '+sels); const x=Math.max(0,Math.min(...bs.map(b=>b.x))-pad),y=Math.max(0,Math.min(...bs.map(b=>b.y))-pad); const x2=Math.max(...bs.map(b=>b.x+b.width))+pad,y2=Math.max(...bs.map(b=>b.y+b.height))+pad; return {x,y,width:x2-x,height:y2-y}; }
 async function run(p,s,suffix){ 
   await p.goto(B+U(s.url.startsWith('/')?s.url:'/wp-admin/'+s.url)); await p.waitForTimeout(s.wait||2500);

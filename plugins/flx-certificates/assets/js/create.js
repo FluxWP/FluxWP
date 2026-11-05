@@ -91,7 +91,7 @@
 		var box = $('flxs-tpls');
 		box.innerHTML = DATA.templates.map(function (t) {
 			var on = state.tpl && state.tpl.id === t.id;
-			return '<button type="button" class="flxs-tpl' + (on ? ' is-on' : '') + '" data-tpl="' + t.id + '"' + (state.edit && !on ? ' disabled' : '') + '>' +
+			return '<button type="button" class="flxs-tpl' + (on ? ' is-on' : '') + '" data-tpl="' + esc(t.id) + '"' + (state.edit && !on ? ' disabled' : '') + '>' +
 				(t.thumb ? '<img src="' + esc(t.thumb) + '" alt="">' : '<span class="flxs-tpl__ph dashicons dashicons-awards"></span>') +
 				'<span>' + esc(t.name) + '</span></button>';
 		}).join('');
@@ -756,7 +756,7 @@
 		}).catch(function (e) { A.toast(e.message, 'err'); });
 	});
 	function resetAll() {
-		if (state.edit) { window.location.href = DATA.newUrl; return; }
+		if (state.edit) { var nu = A.safeUrl(DATA.newUrl); if (nu) window.location.href = nu; return; }
 		if (state.current) { state.current.detached = true; state.current = null; refreshJobs(); }
 		state.results = [];
 		resetForm();

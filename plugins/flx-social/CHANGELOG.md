@@ -1,5 +1,8 @@
 # Değişiklik günlüğü
 
+## 0.1.8
+- Güvenlik (CodeQL): `h()` yardımcısındaki kullanılmayan `html` özniteliği kaldırıldı; adres çubuğundan gelen değerler hiçbir yolla HTML olarak eklenmez.
+
 ## 0.1.7
 - Metinler: MCP sunucusu artık Flux AI & MCP eklentisinde; "Flux SEO & MCP" ve "Flux AI ›" adresleri "Flux AI & MCP" oldu.
 

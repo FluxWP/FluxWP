@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.7.9
+- Güvenlik (CodeQL): YouTube oynatıcı yalnız geçerli video kimliğiyle yüklenir.
+
 ## 0.7.8
 - Erişilebilirlik: yalnız simgeli arama düğmesi artık sunucu HTML'inde de adlı (`aria-label`). Interactivity API sunucuda `data-wp-bind--aria-label` değerini hesaplayamadığı için etiketi siliyordu; bağlama kaldırıldı, sabit etiket yazılır.
 - Slider noktaları arasındaki boşluk 8px: dokunma hedefi Lighthouse "target-size" denetiminden geçer.

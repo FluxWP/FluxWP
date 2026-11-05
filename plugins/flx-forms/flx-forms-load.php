@@ -38,6 +38,21 @@ if (!defined("EMSFB_PLUGIN_URL")) {
     define("EMSFB_PLUGIN_URL", plugin_dir_url(FLXF_PLUGIN_FILE));
 }
 
+/* Flux Forms 2.1.12: plugin scripts registered with the fixed legacy version
+ * (EMSFB_PLUGIN_VERSION) get the file's mtime instead, so browsers and page
+ * caches pick up changed files after every update. */
+add_filter('script_loader_src', function ($src) {
+    if (!is_string($src) || strpos($src, EMSFB_PLUGIN_URL) !== 0 || strpos($src, 'ver=' . EMSFB_PLUGIN_VERSION) === false) {
+        return $src;
+    }
+    $rel  = strtok(substr($src, strlen(EMSFB_PLUGIN_URL)), '?');
+    $path = EMSFB_PLUGIN_DIRECTORY . $rel;
+    if ($rel === false || strpos($rel, '..') !== false || !is_readable($path)) {
+        return $src;
+    }
+    return add_query_arg('ver', (string) filemtime($path), $src);
+});
+
 require __DIR__ . '/includes/flx/flx-fork.php';
 
 if (!defined("WP_PLUGIN_DIR")) {

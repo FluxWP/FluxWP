@@ -2,6 +2,7 @@
 // ekler, yorumlar ve etkinlik, yapay zekâ. Aynı sınıf adları, aynı davranış.
 import { createContext, useContext, useEffect, useLayoutEffect, useReducer, useRef, useState, type ReactNode, type DragEvent as RDragEvent } from 'react';
 import type { FlxgActivity, FlxgComment, FlxgField, FlxgFile, FlxgTask, FlxgTaskDetail, FlxgUser } from '@fluxwp/core';
+import { trimEnd } from '@fluxwp/core';
 import { useHost } from '../host';
 import { between, norm, rank, store } from './engine';
 import { tt } from './i18n';
@@ -327,7 +328,7 @@ function Drawer({ id }: { id: number }) {
     );
   };
 
-  const link = (tid: number) => (host.siteUrl ? host.siteUrl.replace(/\/+$/, '') + '/wp-admin/admin.php?page=flx-tasks' : '') + '#/task/' + tid;
+  const link = (tid: number) => (host.siteUrl ? trimEnd(host.siteUrl) + '/wp-admin/admin.php?page=flx-tasks' : '') + '#/task/' + tid;
   const ctx: DCtx = { c, D, render: force, load, save, close, canEdit, canComment, role, mobile, link, uploadTaskFiles, subPatch };
   const sideOpen = store.get('task-side') !== '0';
 

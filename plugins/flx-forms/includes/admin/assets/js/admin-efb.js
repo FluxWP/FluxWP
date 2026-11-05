@@ -1614,12 +1614,12 @@ let change_el_edit_Efb = (el) => {
       case "labelEl":
 
         valj_efb[indx].name = el.value;
-        document.getElementById(`${valj_efb[indx].id_}_lab`).innerHTML = sanitize_text_efb(el.value)
+        document.getElementById(`${valj_efb[indx].id_}_lab`).textContent = sanitize_text_efb(el.value)
 
         break;
       case "desEl":
         valj_efb[indx].message = el.value;
-        document.getElementById(`${valj_efb[indx].id_}-des`).innerHTML =sanitize_text_efb(el.value)
+        document.getElementById(`${valj_efb[indx].id_}-des`).textContent = sanitize_text_efb(el.value)
         break;
       case 'bookDateExpEl':
         if(valj_efb[indx].hasOwnProperty('dateExp')==false) Object.assign( valj_efb[indx] , {dateExp:''})
@@ -1669,7 +1669,7 @@ let change_el_edit_Efb = (el) => {
 
         valj_efb[indx][el.dataset.atr] =sanitize_text_efb(el.value);
         c =  valj_efb[indx].id_ +"_"+el.dataset.atr
-        document.getElementById(c).innerHTML=sanitize_text_efb(el.value);
+        document.getElementById(c).textContent = sanitize_text_efb(el.value);
         break;
       case "miLenEl":
         if( Number(el.value)==0 ||Number(el.value)==-1 ){
@@ -2210,17 +2210,17 @@ let change_el_edit_Efb = (el) => {
           document.getElementById(`${valj_efb[indx].id_}_`).value = c;
           valj_efb[indx].value = c;
            if(valj_efb[indx].type=='range'){
-            document.getElementById(`${valj_efb[indx].id_}_rv`).innerHTML = c;
+            document.getElementById(`${valj_efb[indx].id_}_rv`).textContent = c;
            }
         } else if (el.dataset.tag == 'heading' ||el.dataset.tag == 'link' ||el.dataset.tag == 'textarea') {
           c= el.dataset.tag=='textarea' ? sanitize_text_efb(el.value ,true) : sanitize_text_efb(el.value);
-          document.getElementById(`${valj_efb[indx].id_}_`).innerHTML = text_nr_efb(c,0);
+          document.getElementById(`${valj_efb[indx].id_}_`).textContent = text_nr_efb(c,0);
           valj_efb[indx].value = c;
         } else {
           c= sanitize_text_efb(el.value);
           id = `${valj_efb[indx].id_}_${el.dataset.no}`
           document.getElementById(id).value = c;
-          document.getElementById(`${id}_lab`).innerHTML =c;
+          document.getElementById(`${id}_lab`).textContent = c;
           el.dataset.no == 1 ? valj_efb[indx].button_1_text = c : valj_efb[indx].button_2_text = c
 
         }
@@ -2487,7 +2487,7 @@ let change_el_edit_Efb = (el) => {
           document.getElementById(`fileCustomizeTypleEls`).classList.add('d-none');
         }
 
-        if (document.getElementById(`${valj_efb[indx].id_}_txt`)) document.getElementById(`${valj_efb[indx].id_}_txt`).innerHTML = `${efb_var.text.dragAndDropA} ${nfile}`
+        if (document.getElementById(`${valj_efb[indx].id_}_txt`)) document.getElementById(`${valj_efb[indx].id_}_txt`).textContent = `${efb_var.text.dragAndDropA} ${nfile}`
         break;
       case 'fileSizeMaxEl':
         valj_efb[indx].hasOwnProperty('max_fsize')==false ? Object.assign(valj_efb[indx],{'max_fsize':el.value}) : valj_efb[indx].max_fsize = el.value;
@@ -2550,7 +2550,7 @@ let change_el_edit_Efb = (el) => {
 
         valj_efb[indx].hasOwnProperty('file_ctype')==false ? Object.assign(valj_efb[indx],{'file_ctype':c}) : valj_efb[indx].file_ctype = c;
 
-        if (document.getElementById(`${valj_efb[indx].id_}_txt`)) document.getElementById(`${valj_efb[indx].id_}_txt`).innerHTML = `${efb_var.text.dragAndDropA} ${c}`
+        if (document.getElementById(`${valj_efb[indx].id_}_txt`)) document.getElementById(`${valj_efb[indx].id_}_txt`).textContent = `${efb_var.text.dragAndDropA} ${c}`
 
         break;
 
@@ -2890,7 +2890,7 @@ let change_el_edit_Efb = (el) => {
           el.dataset.side == "Next" ? valj_efb[0].button_Next_text = el.value : valj_efb[0].button_Previous_text = el.value
         }
 
-        document.getElementById(iidd).innerHTML = el.value;
+        document.getElementById(iidd).textContent = el.value;
 
         break;
       case 'iconEl':
@@ -2944,7 +2944,7 @@ let change_el_edit_Efb = (el) => {
           if (el.dataset.tag == "select" || el.dataset.tag == 'stateProvince' || el.dataset.tag == 'conturyList' ||  el.dataset.tag == 'cityList' ) {
 
             let vl = document.querySelector(`[data-op="${el.dataset.id}"]`);
-            if (vl) vl.innerHTML = el.value;
+            if (vl) vl.textContent = el.value;
             if (vl) vl.value = el.value;
             c =vl.dataset.id;
             temp = valj_efb.findIndex(x=>x.id_op == c);
@@ -2953,9 +2953,9 @@ let change_el_edit_Efb = (el) => {
 
           }else if(el.dataset.tag == "imgRadio"){
 
-            document.getElementById(`${valj_efb[iindx].id_op}_value`).innerHTML = el.value;
+            document.getElementById(`${valj_efb[iindx].id_op}_value`).textContent = el.value;
           }else if(el.dataset.tag == "table_matrix"){
-            document.getElementById(`${valj_efb[iindx].id_op}_lab`).innerHTML = el.value;
+            document.getElementById(`${valj_efb[iindx].id_op}_lab`).textContent = el.value;
           } else if (el.dataset.tag != "multiselect" && el.dataset.tag != 'payMultiselect') {
              document.querySelector(`[data-op="${el.dataset.id}"]`).value = el.value;
             document.getElementById(`${valj_efb[iindx].id_op}_lab`).innerHTML = fun_get_links_from_string_Efb(el.value,true);
@@ -3238,12 +3238,16 @@ let change_el_edit_Efb = (el) => {
           return url;
           }
         valj_efb[indx].src = ud(el.value);
-        document.getElementById(valj_efb[indx].id_+'_img').src = el.value;
+        {
+          // Only http(s) or same-site image addresses; the value always starts with a fixed prefix.
+          const iu = String(el.value).trim(), il = iu.toLowerCase();
+          document.getElementById(valj_efb[indx].id_+'_img').src = il.startsWith('https://') ? 'https://' + iu.slice(8) : il.startsWith('http://') ? 'http://' + iu.slice(7) : (iu.startsWith('/') && !iu.startsWith('//')) ? location.origin + iu : '';
+        }
         break;
       case 'imgRadio_sub_value':
         indx = valj_efb.findIndex(x => x.id_op == el.dataset.id);
         valj_efb[indx].sub_value = el.value;
-        document.getElementById(valj_efb[indx].id_+'_value_sub').innerHTML = el.value;
+        document.getElementById(valj_efb[indx].id_+'_value_sub').textContent = el.value;
         break;
       case 'selectSmartforOptionsEls':
         indx = valj_efb.findIndex(x=>x.id_ ==el.options[el.selectedIndex].value);

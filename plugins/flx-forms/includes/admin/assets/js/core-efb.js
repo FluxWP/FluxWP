@@ -528,10 +528,6 @@ function fun_multiSelectElemnets_emsFormBuilder(ob) {
   return r;
 }
 
-function saveLocalStorage_emsFormBuilder_view() {
-  localStorage.setItem('valueJson_ws', JSON.stringify(valueJson_ws));
-}
-
 function alarm_emsFormBuilder(val) {
   return `<div class="efb alert alert-warning alert-dismissible fade show " role="alert" id="alarm_emsFormBuilder">
   <div class="efb emsFormBuilder"><i class="efb bi-exclamation-triangle-fill"></i></div>

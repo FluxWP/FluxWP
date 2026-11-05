@@ -34,8 +34,8 @@ export interface NavItem {
 
 /** Tam admin adresinden wp-admin göreli yol. */
 export function adminPath(url: string): string {
-  const m = url.match(/\/wp-admin\/(.*)$/);
-  return m ? m[1] || 'index.php' : url;
+  const i = url.indexOf('/wp-admin/');
+  return i < 0 ? url : url.slice(i + 10) || 'index.php';
 }
 
 const pick = <K extends keyof LayoutPrefs>(k: K, user?: LayoutPrefs, site?: LayoutPrefs): LayoutPrefs[K] =>

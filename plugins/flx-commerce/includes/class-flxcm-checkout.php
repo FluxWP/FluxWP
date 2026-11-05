@@ -134,8 +134,8 @@ final class FLXCM_Checkout {
 			'min'  => $min,
 			'incl' => WC()->cart->display_prices_including_tax() ? 1 : 0,
 			/* translators: %s: amount */
-			'left' => sprintf( __( 'Ücretsiz kargo için %s daha ekleyin.', 'flx-commerce' ), '<strong>%s</strong>' ),
-			'done' => '<strong>' . esc_html__( 'Kargo bedava!', 'flx-commerce' ) . '</strong>',
+			'left' => __( 'Ücretsiz kargo için %s daha ekleyin.', 'flx-commerce' ), // Plain text; ship.js builds the nodes.
+			'done' => __( 'Kargo bedava!', 'flx-commerce' ),
 		);
 		return '<div class="flxcm-ship' . ( $left > 0 ? '' : ' is-done' ) . '" role="status" data-flxcm-ship="' . esc_attr( wp_json_encode( $data ) ) . '"><span class="flxcm-ship__icon">' . flxcm_icon( 'truck', 18 ) . '</span><div class="flxcm-ship__body"><p data-flxcm-ship-text>' . $text . '</p><span class="flxcm-ship__bar"><span style="width:' . esc_attr( round( $pct, 1 ) ) . '%"></span></span></div></div>';
 	}

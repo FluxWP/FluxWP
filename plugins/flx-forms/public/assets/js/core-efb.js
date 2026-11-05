@@ -2409,7 +2409,7 @@ function efb_css_escape_efb(value) {
   if (typeof CSS !== 'undefined' && CSS && typeof CSS.escape === 'function') {
     return CSS.escape(text);
   }
-  return text.replace(/([ #;?%&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+  return text.replace(/([\\ #;?%&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
 }
 
 function efb_form_body_efb(form_id) {

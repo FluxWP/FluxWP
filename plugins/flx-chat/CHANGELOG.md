@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.35.9
+- Güvenlik (CodeQL): Asistan stüdyosunda sekme adı yalnız bilinen sekmelerden seçilir.
+
 ## 1.35.8
 - Metinler: MCP sunucusu artık Flux AI & MCP eklentisinde; "Flux SEO & MCP" ve "Flux AI ›" adresleri "Flux AI & MCP" oldu.
 

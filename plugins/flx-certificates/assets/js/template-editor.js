@@ -140,7 +140,7 @@
 
 	function renderList() {
 		$('te-fields').innerHTML = cfg.fields.map(function (f, i) {
-			return '<li class="' + (f.id === sel ? 'is-sel' : '') + (f.draw === false ? ' is-hidden' : '') + '" data-id="' + f.id + '">' +
+			return '<li class="' + (f.id === sel ? 'is-sel' : '') + (f.draw === false ? ' is-hidden' : '') + '" data-id="' + esc(f.id) + '">' +
 				'<span class="flxs-fields__lbl"><strong>' + esc(f.label) + '</strong> <code>{' + esc(f.key) + '}</code><small>' + esc(D.types[f.type] || f.type) + (f.draw === false ? ' · sayfada yok, formda var' : '') + '</small></span>' +
 				'<span class="flxs-fields__acts">' +
 				'<button type="button" data-act="up" title="Yukarı"' + (i === 0 ? ' disabled' : '') + '>↑</button>' +
@@ -188,7 +188,7 @@
 		var isQr = f.type === 'qr';
 		var isText = !isQr;
 		var input = ['text', 'textarea', 'date', 'number', 'select'].indexOf(f.type) !== -1;
-		var fontOpts = D.fonts.map(function (o) { return '<option value="' + o.id + '"' + (o.id === f.font ? ' selected' : '') + '>' + esc(o.label) + '</option>'; }).join('');
+		var fontOpts = D.fonts.map(function (o) { return '<option value="' + esc(o.id) + '"' + (o.id === f.font ? ' selected' : '') + '>' + esc(o.label) + '</option>'; }).join('');
 		var h = '<div class="flxs-card__head"><h2 class="flxs-card__title">' + esc(f.label) + ' <small>' + esc(D.types[f.type]) + '</small></h2><button type="button" class="button-link" data-p-close>Kapat</button></div>';
 		h += '<div class="flxs-grid">' +
 			p('label', 'Etiket (formda)', 'text') +
@@ -296,7 +296,7 @@
 		overlay.style.height = ch + 'px';
 		var s = cw / cfg.page.w;
 		overlay.innerHTML = cfg.fields.filter(function (f) { return f.draw !== false && (f.page || 0) === 0; }).map(function (f) {
-			return '<div class="flxs-box' + (f.id === sel ? ' is-sel' : '') + (f.type === 'qr' ? ' is-qr' : '') + '" data-id="' + f.id + '" style="left:' + (f.x * s) + 'px;top:' + (f.y * s) + 'px;width:' + (f.w * s) + 'px;height:' + (boxH(f) * s) + 'px">' +
+			return '<div class="flxs-box' + (f.id === sel ? ' is-sel' : '') + (f.type === 'qr' ? ' is-qr' : '') + '" data-id="' + esc(f.id) + '" style="left:' + (Number(f.x) * s || 0) + 'px;top:' + (Number(f.y) * s || 0) + 'px;width:' + (Number(f.w) * s || 0) + 'px;height:' + (Number(boxH(f)) * s || 0) + 'px">' +
 				'<span class="flxs-box__tag">' + esc(f.label) + '</span><span class="flxs-box__rs" data-rs></span></div>';
 		}).join('') + '<div class="flxs-guide" hidden></div>';
 	}

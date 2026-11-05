@@ -105,13 +105,8 @@ const EfbResponseViewer = (function () {
 
     text = text.replace(/<a\b[^>]*href="([^"]*)"[^>]*>[\s\S]*?<\/a>/gi, '$1');
 
-    text = text.replace(/<[^>]+>/g, '');
-
-    text = text.replace(/&amp;/g, '&');
-    text = text.replace(/&lt;/g, '<');
-    text = text.replace(/&gt;/g, '>');
-    text = text.replace(/&nbsp;/g, ' ');
-    text = text.replace(/&quot;/g, '"');
+    // Inert parse: drops remaining tags and decodes entities once (no script runs, no double unescaping).
+    text = (new DOMParser().parseFromString(text, 'text/html').body.textContent || '').replace(/\u00a0/g, ' ');
 
     text = text.replace(/\n{3,}/g, '\n\n');
     text = text.trim();

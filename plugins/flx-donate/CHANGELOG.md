@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.13.1
+- Güvenlik (CodeQL): yönetim ekranında satır bağlantısı, dekont önizlemesi ve CSV adresi yalnız http(s)/göreli adresse açılır. Ödeme sayfasında telefon yer tutucu e-posta kontrolü regex kurmadan yapılır.
+
 ## 2.13.0
 - Sanal POS altyapısı: WooCommerce'e kurulan her ödeme eklentisi (EsnekPOS, Stripe, resmi iyzico, PayTR vb.) bağış ödeme sayfasında ek ayar olmadan çalışır. Bağışlar › Ayarlar › WooCommerce'te yeni **Ödeme yöntemleri** tablosu her yöntemin neyi desteklediğini gösterir: blok ödeme sayfası, sepetsiz ödeme linki, adressiz ödeme, sunucu doğrulaması, taksit, kart saklama, siteden iade, aylık bağış. Bilgi WooCommerce'in kendisinden (supports(), process_refund, blok kaydı) ve adaptörlerden gelir.
 - Blok ödeme sayfası: kendi blok desteği olmayan ve kartı kendi sayfasında alan eklentiler (has_fields = false) ödeme bloğuna Flux Donate tarafından eklenir (ayar "Diğer ödeme eklentilerini blok ödeme sayfasında göster", varsayılan açık). Kendi kart alanları olan ama blok desteği olmayan eklentiler tabloda ve Sistem Kontrolü'nde uyarı olarak görünür.

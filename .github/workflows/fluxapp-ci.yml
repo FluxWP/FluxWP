@@ -5,6 +5,8 @@ on:
   push:
     branches: [main]
     paths: ['packages/**', 'apps/**', 'brands/**', 'tools/fluxapp/**', 'package.json', 'bun.lock', '.github/workflows/fluxapp-*.yml']
+permissions:
+  contents: read
 jobs:
   web:
     runs-on: ubuntu-latest

@@ -1,4 +1,5 @@
 import { platform } from '../platform';
+import { trimEnd } from '../text';
 import { restBase } from '../api/client';
 
 export interface SiteInfo {
@@ -28,7 +29,8 @@ export function normalizeSiteUrl(input: string): string {
   } catch {
     throw new DiscoveryError('invalid_url');
   }
-  const path = u.pathname.replace(/\/(wp-admin|wp-json|wp-login\.php).*$/, '').replace(/\/+$/, '');
+  const cut = u.pathname.search(/\/(?:wp-admin|wp-json|wp-login\.php)/);
+  const path = trimEnd(cut < 0 ? u.pathname : u.pathname.slice(0, cut));
   return `${u.protocol}//${u.host}${path}`;
 }
 
@@ -49,7 +51,7 @@ export async function discoverSite(input: string): Promise<SiteInfo> {
   }
   if (!Array.isArray(j.namespaces)) throw new DiscoveryError('not_wordpress');
   return {
-    url: (j.url || url).replace(/\/+$/, ''),
+    url: trimEnd(j.url || url),
     name: j.name || new URL(url).host,
     description: j.description || '',
     icon: j.site_icon_url || '',

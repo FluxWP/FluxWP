@@ -23,9 +23,19 @@
 		last = key;
 		var left = Math.max(0, cfg.min - sub);
 		el.classList.toggle('is-done', left <= 0);
-		var span = document.createElement('span');
-		span.textContent = fmt(left, t);
-		text.innerHTML = left > 0 ? cfg.left.replace('%s', span.innerHTML) : cfg.done;
+		// Plain-text template, amount in <strong>; nothing is parsed as HTML.
+		while (text.firstChild) text.removeChild(text.firstChild);
+		var strong = document.createElement('strong');
+		if (left > 0) {
+			var parts = String(cfg.left || '').split('%s');
+			strong.textContent = fmt(left, t);
+			text.appendChild(document.createTextNode(parts[0] || ''));
+			text.appendChild(strong);
+			text.appendChild(document.createTextNode(parts.slice(1).join('%s')));
+		} else {
+			strong.textContent = String(cfg.done || '');
+			text.appendChild(strong);
+		}
 		if (bar) bar.style.width = Math.min(100, Math.max(0, sub / cfg.min * 100)).toFixed(1) + '%';
 	});
 })();

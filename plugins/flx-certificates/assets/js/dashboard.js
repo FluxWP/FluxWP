@@ -46,11 +46,11 @@
 		'<span class="flxs-seg flxs-seg--sm" data-presets>' + PRESETS.map(function (p) { return '<button type="button" data-p="' + p[0] + '">' + p[1] + '</button>'; }).join('') + '</span>' +
 		'<span class="flxs-dash__dates"><input type="date" data-from aria-label="Başlangıç"> – <input type="date" data-to aria-label="Bitiş"></span>' +
 		(DATA.events.length ? '<select data-event aria-label="Etkinlik"><option value="">Tüm etkinlikler</option>' +
-			DATA.events.filter(function (e) { return e.status === 'open'; }).map(function (e) { return '<option value="' + e.id + '">' + esc(e.name) + '</option>'; }).join('') +
-			(DATA.events.some(function (e) { return e.status !== 'open'; }) ? '<optgroup label="Arşiv">' + DATA.events.filter(function (e) { return e.status !== 'open'; }).map(function (e) { return '<option value="' + e.id + '">' + esc(e.name) + '</option>'; }).join('') + '</optgroup>' : '') +
+			DATA.events.filter(function (e) { return e.status === 'open'; }).map(function (e) { return '<option value="' + esc(e.id) + '">' + esc(e.name) + '</option>'; }).join('') +
+			(DATA.events.some(function (e) { return e.status !== 'open'; }) ? '<optgroup label="Arşiv">' + DATA.events.filter(function (e) { return e.status !== 'open'; }).map(function (e) { return '<option value="' + esc(e.id) + '">' + esc(e.name) + '</option>'; }).join('') + '</optgroup>' : '') +
 			'<option value="0">Etkinliksiz</option></select>' : '') +
-		'<select data-ref aria-label="Referans personel"><option value="">Tüm personel</option><option value="0">Referanssız</option>' + DATA.refs.map(function (r) { return '<option value="' + r.id + '">' + esc(r.name) + '</option>'; }).join('') + '</select>' +
-		(DATA.templates.length > 1 ? '<select data-tpl aria-label="Şablon"><option value="">Tüm şablonlar</option>' + DATA.templates.map(function (t) { return '<option value="' + t.id + '">' + esc(t.name) + '</option>'; }).join('') + '</select>' : '') +
+		'<select data-ref aria-label="Referans personel"><option value="">Tüm personel</option><option value="0">Referanssız</option>' + DATA.refs.map(function (r) { return '<option value="' + esc(r.id) + '">' + esc(r.name) + '</option>'; }).join('') + '</select>' +
+		(DATA.templates.length > 1 ? '<select data-tpl aria-label="Şablon"><option value="">Tüm şablonlar</option>' + DATA.templates.map(function (t) { return '<option value="' + esc(t.id) + '">' + esc(t.name) + '</option>'; }).join('') + '</select>' : '') +
 		'<button type="button" class="button" data-csv><span class="dashicons dashicons-download"></span> CSV</button>' +
 		'</div>' +
 		'<div class="flxs-dash__body"></div>' +

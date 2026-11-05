@@ -1,4 +1,5 @@
 import { platform } from '../platform';
+import { trimEnd } from '../text';
 
 export class ApiError extends Error {
   constructor(
@@ -47,7 +48,7 @@ export interface RequestOptions {
 }
 
 export function restBase(siteUrl: string): string {
-  return siteUrl.replace(/\/+$/, '') + '/wp-json/';
+  return trimEnd(siteUrl) + '/wp-json/';
 }
 
 export function buildUrl(siteUrl: string, path: string, query?: RequestOptions['query']): string {

@@ -1,5 +1,9 @@
 # Flux Tasks — Değişiklikler
 
+## 0.8.10
+- Güvenlik (CodeQL): dosya adresi yalnız sayısal dosya kimliğiyle kurulur (`Y.fileUrl`); DOM'dan okunan `data-file` değeri adrese ham girmez.
+- Güvenlik: `h()` yardımcısında HTML yalnız açık `html` anahtarından girer; diğer öznitelik değerleri HTML olarak yorumlanmaz. Açıklama var mı kontrolü regex yerine DOMParser ile.
+
 ## 0.8.9
 - Metinler: MCP sunucusu artık Flux AI & MCP eklentisinde; "Flux SEO & MCP" ve "Flux AI ›" adresleri "Flux AI & MCP" oldu.
 
