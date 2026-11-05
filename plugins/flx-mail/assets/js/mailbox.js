@@ -833,7 +833,12 @@
 		var E = editor( l.body );
 		E.ed.addEventListener( 'input', refresh );
 		var logoImg = el( 'img', { class: 'flxm-logo-prev', alt: '', src: l.partner_logo || '', hidden: ! l.partner_logo } );
-		plogo.addEventListener( 'input', function () { logoImg.src = plogo.value; logoImg.hidden = ! plogo.value; } );
+		plogo.addEventListener( 'input', function () {
+			var u = String( plogo.value || '' ).trim();
+			var ok = /^(https?:\/\/|\/(?!\/))/i.test( u );
+			logoImg.src = ok ? u : '';
+			logoImg.hidden = ! ok;
+		} );
 		function data() {
 			return { name: name.value, desc: desc.value, base: base.value, partner_name: pname.value, partner_logo: plogo.value, partner_url: purl.value, accent: accent.value, heading: heading.value, subject: subj.value, body: E.ed.innerHTML };
 		}

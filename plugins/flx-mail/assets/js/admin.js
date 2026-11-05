@@ -672,7 +672,7 @@
 			} else if ( k === 'template' ) {
 				inner = '<div class="flxi-bubble__text">' + ( ts.tpl ? th( tplText() ) : '<em>' + th( TT.tplPick ) + '</em>' ) + '</div>';
 			}
-			return '<div class="flxi-bubble flxi-bubble--' + k + '" data-bubble="' + k + '">' + inner + meta + '<div class="flxi-bubble__err" data-err hidden></div></div>';
+			return '<div class="flxi-bubble flxi-bubble--' + th( k ) + '" data-bubble="' + th( k ) + '">' + inner + meta + '<div class="flxi-bubble__err" data-err hidden></div></div>';
 		};
 		var tpreview = function () {
 			var box = $( '[data-test-preview]', tbody );
@@ -733,7 +733,7 @@
 			html += '<label class="flxi-field"><span>' + th( TT.to ) + '</span><input type="tel" inputmode="tel" data-test-to placeholder="905301234567" value="' + th( lsGet( 'flxi-test-to' ) ) + '"><small class="flxi-muted">' + th( TT.toHelp ) + '</small></label>';
 			if ( wa ) {
 				html += '<fieldset class="flxi-test__scen"><legend>' + th( TT.scenarios ) + '</legend>' + ts.scen.map( function ( k ) {
-					return '<label class="flxi-chip"><input type="checkbox" value="' + k + '"' + ( ts.sel[ k ] ? ' checked' : '' ) + '>' + ICON[ k ] + '<span>' + th( TT[ k ] ) + '</span></label>';
+					return '<label class="flxi-chip"><input type="checkbox" value="' + th( k ) + '"' + ( ts.sel[ k ] ? ' checked' : '' ) + '>' + ( ICON[ k ] || '' ) + '<span>' + th( TT[ k ] ) + '</span></label>';
 				} ).join( '' ) + '</fieldset>';
 			}
 			html += '<label class="flxi-field" data-test-text-row><span>' + th( TT.message ) + '</span><textarea rows="3" data-test-text>' + th( wa ? TT.sampleText : TT.sampleSms ) + '</textarea></label>';
@@ -1412,7 +1412,9 @@
 			clear.addEventListener( 'click', function () {
 				input.value = '';
 				if ( img ) {
-					img.src = clear.getAttribute( 'data-media-clear' ) || def;
+					var back = clear.getAttribute( 'data-media-clear' ) || def || '';
+					// Yalnız http(s) veya site içi göreli adres.
+					img.src = /^(https?:\/\/|\/(?!\/))/i.test( back ) ? back : '';
 				}
 				input.dispatchEvent( new Event( 'change', { bubbles: true } ) );
 			} );
