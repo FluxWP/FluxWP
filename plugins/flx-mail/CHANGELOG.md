@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.13.7
+- Güvenlik (CodeQL): test ekranında senaryo adları kaçışlanır; logo önizlemesi yalnız http(s) veya site içi adresi gösterir (`javascript:` vb. reddedilir).
+
 ## 1.13.6
 - Metinler: MCP sunucusu artık Flux AI & MCP eklentisinde; "Flux SEO & MCP" ve "Flux AI ›" adresleri "Flux AI & MCP" oldu.
 

@@ -28,10 +28,20 @@ add_filter(
 
 /**
  * Arama butonu (yalnızca simge): görünmez metin etiketi.
+ * Çekirdek düğmenin adını data-wp-bind--aria-label="state.ariaLabel" ile verir; bu durum sunucuda hesaplanamadığı için
+ * Interactivity API sunucu tarafında aria-label'ı siler ve sayfa HTML'inde düğme adsız kalır (ajanlar, denetimler).
+ * Tema arama düğmesinde kendi penceresini açar: bağlama kaldırılır, sabit ad verilir.
  */
 add_filter(
 	'render_block_core/search',
 	function ( $html ) {
-		return preg_replace( '/<button(?![^>]*aria-label)([^>]*class="[^"]*wp-block-search__button)/', '<button aria-label="' . esc_attr__( 'Ara', 'fluxwp' ) . '"$1', $html, 1 );
+		if ( ! preg_match( '/<button\b[^>]*wp-block-search__button[^>]*>/', $html, $m ) ) {
+			return $html;
+		}
+		$tag = preg_replace( '/\sdata-wp-bind--aria-label="[^"]*"/', '', $m[0] );
+		if ( ! preg_match( '/\saria-label\s*=/', $tag ) ) {
+			$tag = preg_replace( '/^<button\b/', '<button aria-label="' . esc_attr__( 'Ara', 'fluxwp' ) . '"', $tag );
+		}
+		return str_replace( $m[0], $tag, $html );
 	}
 );

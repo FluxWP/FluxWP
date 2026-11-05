@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.8.7
+- Güvenlik (CodeQL): şablon, etkinlik, personel ve alan kimlikleri HTML'e kaçışlanarak yazılır; harita yalnız https adresiyle yüklenir, "yeni" yönlendirmesi adresi doğrular.
+
+## 1.8.6
+- Erişilebilirlik: etkinlik fidan hedefi çubuğunun (`role="progressbar"`) adı var ("Fidan hedefi ilerlemesi" / "Sapling goal progress"); Lighthouse "aria-progressbar-name" uyarısı gider.
+- FluxWP imzası (flx-brand 1.1.1) koyu zeminde soluk değil.
+
 ## 1.8.5
 - Tarih ve "… önce" metinleri artık kullanıcının dilinde, tek ortak yardımcıdan (FluxWP `flx_date` / `flx_time_ago`, flx-brand 1.1.0): "31 minutes önce", "August 10" gibi Türkçe/İngilizce karışımı kalmadı; çekirdek dil paketi inmemiş olsa da TR ve EN ay/gün adları doğru.
 

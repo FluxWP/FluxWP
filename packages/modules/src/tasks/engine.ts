@@ -1,6 +1,7 @@
 // Flux Tasks ekran durumu: WP'deki assets/js/state.js'in karşılığı. Tek nesne (S) + sürüm sayacı;
 // bileşenler useYtg() ile sürüme abone olur, değişiklikte bump() çağrılır.
 import { useSyncExternalStore } from 'react';
+import { stripTags } from '@fluxwp/core';
 import type { FlxgApi, FlxgBoot, FlxgField, FlxgList, FlxgNotif, FlxgSpace, FlxgStatus, FlxgTag, FlxgTask, FlxgUser, FlxgView, FlxgViewConfig } from '@fluxwp/core';
 import { tt } from './i18n';
 
@@ -617,7 +618,7 @@ export class FlxgEngine {
     const old = this.S.tasks[task.id];
     const t = { ...task };
     if (t.hasDesc === undefined && typeof t.description === 'string')
-      t.hasDesc = !!t.description.replace(/<img[^>]*>/g, 'x').replace(/<[^>]+>/g, '').trim();
+      t.hasDesc = /<img\b/i.test(t.description) || !!stripTags(t.description).trim();
     for (const k of ['description', 'comments_list', 'activity', 'attachments', 'children', 'subtree', 'watchers', 'watching', 'role', 'parentInfo', 'depth', 'depthLimit']) delete t[k];
     if (this.inScopeTask(t) || (this.S.scope?.type === 'home' && old)) this.S.tasks[t.id] = t;
     else delete this.S.tasks[t.id];

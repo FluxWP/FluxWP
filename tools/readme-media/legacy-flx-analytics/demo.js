@@ -1,7 +1,7 @@
 const { chromium } = require('playwright');
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 const lang=process.argv[2]; const T=lang==='en'?{journeys:'Journeys',settings:'Settings',byref:'By referral code',stats:'Statistics',range:'Last 7 days'}:{journeys:'Yolculuklar',settings:'Ayarlar',byref:'Referans koduna göre',stats:'İstatistikler',range:'Son 7 gün'};
-execSync(`php ${__dirname}/../env/setloc.php ${lang==='en'?'en_US':'tr_TR'}`);
+execFileSync('php',[__dirname+'/../env/setloc.php',lang==='en'?'en_US':'tr_TR']);
 const CURSOR=`(()=>{const add=()=>{ if(document.getElementById('zz-cur'))return; const c=document.createElement('div'); c.id='zz-cur';
 c.innerHTML='<svg width="26" height="26" viewBox="0 0 24 24"><path d="M4 2l16 9.5-7 1.6-3.6 6.9z" fill="#111" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>';
 c.style.cssText='position:fixed;left:0;top:0;z-index:2147483647;pointer-events:none;transform:translate(-4px,-2px);transition:none';

@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 2.1.12
+- Güvenlik (CodeQL): form oluşturucu önizlemesinde etiket, açıklama, seçenek ve dosya adları `textContent` ile yazılır; bağlantı biçimi (`[metin](adres)`) her şeyi kaçışlar, yalnız http(s)/göreli adresi bağlantı yapar.
+- E-posta şablonunda adres denetimi izin listesiyle (http, https, mailto, tel, data:image); genel ayarlar ve blok etiketleri kaçışlanır. Yanıt görüntüleyici metni DOMParser ile düz metne çevirir (çift kaçış yok).
+- Regex ile etiket silme yerine döngüyle düz metin; CSS seçici kaçışına ters eğik çizgi eklendi; kullanılmayan `santize_string_efb` ve `saveLocalStorage_emsFormBuilder_view` kaldırıldı.
+- Eklenti betikleri dosya değişim zamanıyla sürümlenir (sabit 4.2.0 yerine); güncellemeden sonra tarayıcı/LiteSpeed eski JS göstermez.
+
 ## 2.1.11
 - Tarih ve "… önce" metinleri artık kullanıcının dilinde, tek ortak yardımcıdan (FluxWP `flx_date` / `flx_time_ago`, flx-brand 1.1.0): "31 minutes önce", "August 10" gibi Türkçe/İngilizce karışımı kalmadı; çekirdek dil paketi inmemiş olsa da TR ve EN ay/gün adları doğru.
 

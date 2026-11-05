@@ -2,7 +2,7 @@
 // görünüm sekmeleri, araç çubuğu, liste/pano/takvim, bildirim kutusu, görev penceresi. WP ile aynı tasarım (flxg.css).
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { flxg, type FlxgList, type FlxgNotif, type FlxgView } from '@fluxwp/core';
+import { flxg, trimEnd, type FlxgList, type FlxgNotif, type FlxgView } from '@fluxwp/core';
 import { useHost } from '../host';
 import { addDays, dayKey, rank, store, FlxgEngine, type Route } from './engine';
 import { setYtgLang, tt, flxgLocale } from './i18n';
@@ -222,7 +222,7 @@ function Side({ closeNav, hide, setW, setResizing, collapse }: { closeNav: () =>
     closeNav();
     void e.go(route);
   };
-  const site = host.siteUrl ? host.siteUrl.replace(/\/+$/, '') + '/wp-admin/admin.php?page=flx-tasks' : '';
+  const site = host.siteUrl ? trimEnd(host.siteUrl) + '/wp-admin/admin.php?page=flx-tasks' : '';
   const webMenu = (anchor: HTMLElement, hash: string) =>
     c.ui.menu(anchor, [{ label: tt('Web panelinde aç (ayarlar, üyeler)'), icon: 'settings', onClick: () => host.openUrl(site + hash) }]);
   const listRow = (l: FlxgList) => (
@@ -513,7 +513,7 @@ function ScopePage({ toggleSide, mobile }: { toggleSide: () => void; mobile: boo
       { label: tt('Takvim'), icon: 'calendar', onClick: () => void mk('calendar', tt('Takvim')) },
     ]);
   };
-  const site = host.siteUrl ? host.siteUrl.replace(/\/+$/, '') + '/wp-admin/admin.php?page=flx-tasks' : '';
+  const site = host.siteUrl ? trimEnd(host.siteUrl) + '/wp-admin/admin.php?page=flx-tasks' : '';
   const extra =
     sc?.type === 'list' && rank(sc.role) >= 4 && site ? (
       <button type="button" className="flxg-icon-btn" title={tt('Liste ayarları')} onClick={() => host.openUrl(site + '#/list/' + sc.id)}>

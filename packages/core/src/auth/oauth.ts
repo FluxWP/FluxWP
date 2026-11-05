@@ -1,5 +1,6 @@
 // Flux App OAuth 2.0 + PKCE. Masaüstü: 127.0.0.1 loopback; mobil: <scheme>://oauth/callback.
 import { platform } from '../platform';
+import { trimEnd } from '../text';
 import { createClient, ApiError } from '../api/client';
 import type { TokenResponse } from '../api/types';
 import { oauthClientId } from '../brand';
@@ -12,7 +13,7 @@ export class OAuthError extends Error {
 }
 
 export function authorizeUrl(siteUrl: string, p: { clientId: string; redirectUri: string; state: string; challenge: string }): string {
-  const u = new URL(siteUrl.replace(/\/+$/, '') + '/wp-login.php');
+  const u = new URL(trimEnd(siteUrl) + '/wp-login.php');
   u.search = new URLSearchParams({
     action: 'flxapp_authorize',
     response_type: 'code',

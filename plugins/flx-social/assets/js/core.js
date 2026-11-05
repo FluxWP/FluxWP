@@ -40,7 +40,6 @@
 					});
 				} else if (k.indexOf('on') === 0 && typeof v === 'function') el.addEventListener(k.slice(2).toLowerCase(), v);
 				else if (k === 'text') el.textContent = v;
-				else if (k === 'html') el.innerHTML = v;
 				else if (k === 'dataset') Object.keys(v).forEach(function (d) { el.dataset[d] = v[d]; });
 				else if (k === 'value') el.value = v;
 				else if (v === true) el.setAttribute(k, '');
@@ -53,7 +52,8 @@
 	function add(el, c) {
 		if (c === null || c === undefined || c === false) return;
 		if (Array.isArray(c)) return c.forEach(function (x) { add(el, x); });
-		el.appendChild(c instanceof Node ? c : document.createTextNode(String(c)));
+		if (c instanceof Node) el.appendChild(c);
+		else el.appendChild(document.createTextNode(String(c)));
 	}
 	S.h = h;
 	S.clear = function (el) {

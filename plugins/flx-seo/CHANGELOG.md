@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 1.6.2
+- Site denetimi yanlış uyarı vermiyor: `<template>` içindeki öğeler (ör. WooCommerce mini sepetinin şablonları) artık alt metinsiz görsel, adsız düğme, etiketsiz alan ve liste dışı `<li>` sayılmıyor; tarayıcı bunları çizmez.
+- "İlk ekrandaki görsel lazy yükleniyor" kontrolü `skip-lazy`, `no-lazyload` sınıflarını ve `data-no-lazy`'yi hariç tutma işareti olarak tanır (önceden "no-lazyload" içindeki "lazy" yüzünden logoyu lazy sanıyordu).
+- FluxWP imzası (flx-brand 1.1.1) koyu zeminde soluk değil.
+
 ## 1.6.1
 - Metinler: MCP ekranı adresi "Flux AI & MCP › MCP".
 

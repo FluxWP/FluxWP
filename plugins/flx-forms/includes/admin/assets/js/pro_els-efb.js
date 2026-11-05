@@ -307,7 +307,7 @@ function viewfileEfb(id, indx ,filed,form_id) {
          aria-label="${efb_var.text.close}" data-bs-toggle="tooltip" data-bs-placement="top" title="${efb_var.text.removeTheFile}"></button>
          <div class="efb card p-2">
           <i class="efb  ico-file ${valj_efb[indx].icon_color} text-center fs-2">${svg_file}</i>
-          <span class="efb  text-muted">${filed.name}</span>
+          <span class="efb  text-muted">${String(filed.name).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c])}</span>
           </div>
     </div>`;
     if (validExtensions_efb_fun(valj_efb[indx].file, fileType ,indx)) {
@@ -362,7 +362,7 @@ function viewfileReplyEfb(id, indx, responseMessageId) {
       const responseOptions = { response_id: responseId, response_track: responseTrack };
       if (efb_var.response_upload_token) responseOptions.response_token = efb_var.response_upload_token;
       fun_upload_file_api_emsFormBuilder('resp_file_efb', 'allformat' ,'resp',fileEfb, responseOptions);
-      document.getElementById('name_attach_efb').innerHTML = fileEfb.name.length > 10 ? `${fileEfb.name.slice(0,7)}..` :fileEfb.name;
+      document.getElementById('name_attach_efb').textContent = fileEfb.name.length > 10 ? `${fileEfb.name.slice(0,7)}..` :fileEfb.name;
     } else {
       const m  = efb_var.text.pleaseUploadA.replace('NN', `${efb_var.text['media']} , ${efb_var.text['document']} ${efb_var.text['or']} ${efb_var.text['zip']}`);
       alert_message_efb('', m, 4, 'danger')

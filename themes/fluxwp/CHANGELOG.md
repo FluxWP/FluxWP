@@ -1,5 +1,15 @@
 # Değişiklikler
 
+## 0.7.9
+- Güvenlik (CodeQL): YouTube oynatıcı yalnız geçerli video kimliğiyle yüklenir.
+
+## 0.7.8
+- Erişilebilirlik: yalnız simgeli arama düğmesi artık sunucu HTML'inde de adlı (`aria-label`). Interactivity API sunucuda `data-wp-bind--aria-label` değerini hesaplayamadığı için etiketi siliyordu; bağlama kaldırıldı, sabit etiket yazılır.
+- Slider noktaları arasındaki boşluk 8px: dokunma hedefi Lighthouse "target-size" denetiminden geçer.
+- CSS/JS sürüm eki tema sürümüyle aynı (önceden 0.7.1'de kalmıştı; güncellemeden sonra tarayıcı/LiteSpeed eski CSS'i gösterebiliyordu).
+- Ödeme logoları `width`/`height` ile basılır (SVG'de width/height ya da viewBox, diğerlerinde dosya boyutu): yerleşim kayması ve "unsized-images" bulgusu yok.
+- FluxWP imzası (flx-brand 1.1.1) koyu zeminde soluk değil; kontrast yeterli.
+
 ## 0.7.7
 - Ödeme logoları (Görünüm › Tema Ayarları › Ödeme logoları): footer'daki ödeme/güven logoları artık seçilebilir. Ortam kütüphanesinden logo yükle, kaldır, sırala; hazır logolar iyzico bandı ve eklentilerin eklediği sanal POS logoları (Flux Donate: EsnekPOS). Hiç dokunulmadıysa otomatik: iyzico bandı + etkin sanal POS logoları. Renkli logolar koyu footer'da beyaz kutuda. Başka yere `[flx_odeme_logolari]`; filtre `flx_pay_logos_builtin`.
 

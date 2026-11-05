@@ -1,4 +1,5 @@
 export * from './platform';
+export * from './text';
 export * from './brand';
 export * from './api/client';
 export * from './api/types';
@@ -15,7 +16,7 @@ export * from './layout/merge';
 export * from './layout/store';
 export * from './i18n';
 export { DEMO_SITE } from './demo/fetch';
-export const VERSION = '0.2.2';
+export const VERSION = '0.2.3';
 export * from './modules/common';
 export * from './modules/bagis';
 export * from './modules/gorev';

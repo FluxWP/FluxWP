@@ -30,6 +30,8 @@
 		var start = 1;
 		if (attrs && typeof attrs === 'object' && !(attrs instanceof Node) && !Array.isArray(attrs)) {
 			start = 2;
+			// HTML yalnız açık 'html' anahtarından girer; diğer öznitelik değerleri hiçbir zaman HTML olarak yorumlanmaz.
+			if (attrs.html !== null && attrs.html !== undefined && attrs.html !== false) el.innerHTML = attrs.html;
 			Object.keys(attrs).forEach(function (k) {
 				var v = attrs[k];
 				if (v === null || v === undefined || v === false) return;
@@ -43,7 +45,7 @@
 				} else if (k.indexOf('on') === 0 && typeof v === 'function') {
 					el.addEventListener(k.slice(2).toLowerCase(), v);
 				} else if (k === 'html') {
-					el.innerHTML = v;
+					return;
 				} else if (k === 'text') {
 					el.textContent = v;
 				} else if (k === 'dataset') {
@@ -61,7 +63,8 @@
 	function add(el, c) {
 		if (c === null || c === undefined || c === false) return;
 		if (Array.isArray(c)) return c.forEach(function (x) { add(el, x); });
-		el.appendChild(c instanceof Node ? c : document.createTextNode(String(c)));
+		if (c instanceof Node) el.appendChild(c);
+		else el.appendChild(document.createTextNode(String(c)));
 	}
 	Y.h = h;
 	Y.clear = function (el) {
@@ -491,7 +494,8 @@
 		});
 	}
 	Y.fileUrl = function (id, size, download) {
-		var u = B.rest + 'files/' + id;
+		// Yalnız sayısal dosya kimliği; DOM'dan okunan değer adrese ham girmez.
+		var u = B.rest + 'files/' + (parseInt(id, 10) || 0);
 		return u + (u.indexOf('?') > -1 ? '&' : '?') + '_wpnonce=' + encodeURIComponent(B.nonce) + (size ? '&size=' + size : '') + (download ? '&download=1' : '');
 	};
 

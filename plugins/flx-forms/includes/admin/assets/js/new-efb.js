@@ -691,7 +691,7 @@ async function fun_offline_Efb() {
         el=value.type;
         break;
       case 'textarea':
-        document.getElementById(value.id_ob).innerHTML = value.value;
+        document.getElementById(value.id_ob).textContent = value.value;
 
         el=value.type;
         break;
@@ -753,7 +753,7 @@ async function fun_offline_Efb() {
       case 'payMultiselect':
 
         const op = document.getElementById(`${value.id_}_options`)
-        op.innerHTML = value.value.replaceAll('@efb!', ',');
+        op.textContent = value.value.replaceAll('@efb!', ',');
         const vs = value.value.split('@efb!');
         for (let v of vs) {
           el = document.querySelector(`.efblist  [data-name="${v}"]`)
@@ -761,8 +761,9 @@ async function fun_offline_Efb() {
             el.className += ` border-info`;
             el.innerHTML = `
                 <th scope="row" class="bi-check-square text-info efb"></th>
-                <td class="efb  ms">${v}</td>
+                <td class="efb  ms"></td>
                 `
+            el.querySelector('td').textContent = v;
             op.dataset.select = `${el.dataset.row} @efb!`
           }
         }
@@ -807,7 +808,7 @@ async function fun_offline_Efb() {
         s = s.pop();
         el = document.getElementById(`${value.id_}_-message`);
         el.className = `efb text-success efb fs-7 fw-bolder`;
-        el.innerHTML = `${efb_var.text.uploadedFile}: ${s}`;
+        el.textContent = `${efb_var.text.uploadedFile}: ${s}`;
         if(!el.classList.contains('show'))el.classList.add('show');
 
         el=value.type;
@@ -1202,21 +1203,11 @@ if (!Array.prototype.findIndex) {
   };
 }
 
-function santize_string_efb(str){
-  if(str==undefined || str==null) return null;
-  const regexp = /(<)(script[^>]*>[^<]*(?:<(?!\/script>)[^<]*)*<\/script>|\/?\b[^<>]+>|!(?:--\s*(?:(?:\[if\s*!IE]>\s*-->)?[^-]*(?:-(?!->)-*[^-]*)*)--|\[CDATA[^\]]*(?:](?!]>)[^\]]*)*]])>)/g
-  return  str.replaceAll(regexp,'do not use HTML tags');
-}
 window.addEventListener('offline', (e) => {  });
 window.addEventListener('online', (e) => {  });
  function fun_show_val_range_efb(id ){
   document.getElementById(id+'_rv').innerText=document.getElementById(id+'_').value;
  }
- santize_string_efb = (str) => {
-  if(str==undefined || str==null) return null;
-  const regexp = /(<)(script[^>]*>[^<]*(?:<(?!\/script>)[^<]*)*<\/script>|\/?\b[^<>]+>|!(?:--\s*(?:(?:\[if\s*!IE]>\s*-->)?[^-]*(?:-(?!->)-*[^-]*)*)--|\[CDATA[^\]]*(?:](?!]>)[^\]]*)*]])>)/g
-  return str.replaceAll(regexp, '');
-}
 const checkInvalidUTF8_efb=(string, strip = false)=>{
   string = String(string);
   if (string.length === 0) {
@@ -1819,12 +1810,20 @@ fun_get_links_from_string_Efb=(str , handler)=>{
     return [state,r]
   }else{
 
-    str= str.replace(/\[([^\]]+)\]\(([^)]+)\)/g, function(_, anchorText, url) {
-          state=true;
-        return `<a href="${url}" target="_blank")>${anchorText}</a>`;
-    });
-
-    return str;
+    // Everything is HTML-escaped; only [text](http(s)/relative url) becomes a link.
+    const esc = (v) => String(v).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+    const src = String(str == null ? '' : str);
+    const re = /\[([^\]]+)\]\(([^)]+)\)/g;
+    let out = '', last = 0, m;
+    while ((m = re.exec(src)) !== null) {
+      out += esc(src.slice(last, m.index));
+      const url = m[2].trim();
+      out += /^(https?:\/\/|\/(?!\/)|#)/i.test(url)
+        ? `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(m[1])}</a>`
+        : esc(m[0]);
+      last = re.lastIndex;
+    }
+    return out + esc(src.slice(last));
   }
 
 }

@@ -1305,3 +1305,6 @@ msgstr ""
 #, php-format
 msgid "Bu sayfa sertifikanın %s kayıtlarında bulunduğunu doğrular."
 msgstr ""
+
+msgid "Fidan hedefi ilerlemesi"
+msgstr ""

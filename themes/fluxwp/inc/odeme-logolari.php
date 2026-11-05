@@ -72,6 +72,43 @@ function flx_pay_logos() {
 	return $out;
 }
 
+/**
+ * Logonun gerçek boyutu (width/height öznitelikleri; yerleşim kaymasını önler, CSS boyutu yine belirler).
+ * Yerel dosya (tema, eklenti, uploads) PNG/JPG/WebP ise getimagesize, SVG ise width/height veya viewBox.
+ */
+function flx_pay_logo_size_attr( $url ) {
+	$path = (string) wp_parse_url( $url, PHP_URL_PATH );
+	$base = (string) wp_parse_url( content_url(), PHP_URL_PATH );
+	if ( '' === $path || '' === $base || 0 !== strpos( $path, $base . '/' ) ) {
+		return '';
+	}
+	$file = WP_CONTENT_DIR . substr( $path, strlen( $base ) );
+	if ( false !== strpos( $file, '..' ) || ! is_file( $file ) ) {
+		return '';
+	}
+	$w = 0;
+	$h = 0;
+	if ( preg_match( '/\.svg$/i', $file ) ) {
+		$svg = (string) file_get_contents( $file, false, null, 0, 2048 ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+		if ( preg_match( '/<svg\b[^>]*>/i', $svg, $m ) ) {
+			if ( preg_match( '/\swidth="([\d.]+)(px)?"/i', $m[0], $a ) && preg_match( '/\sheight="([\d.]+)(px)?"/i', $m[0], $b ) ) {
+				$w = (int) round( (float) $a[1] );
+				$h = (int) round( (float) $b[1] );
+			} elseif ( preg_match( '/\sviewBox="[\d.\-]+[\s,]+[\d.\-]+[\s,]+([\d.]+)[\s,]+([\d.]+)"/i', $m[0], $v ) ) {
+				$w = (int) round( (float) $v[1] );
+				$h = (int) round( (float) $v[2] );
+			}
+		}
+	} else {
+		$size = @getimagesize( $file ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
+		if ( $size ) {
+			$w = (int) $size[0];
+			$h = (int) $size[1];
+		}
+	}
+	return $w > 0 && $h > 0 ? ' width="' . $w . '" height="' . $h . '"' : '';
+}
+
 function flx_pay_logos_html( $class = '' ) {
 	$logos = flx_pay_logos();
 	if ( ! $logos ) {
@@ -79,7 +116,7 @@ function flx_pay_logos_html( $class = '' ) {
 	}
 	$h = '<div class="flx-pay-logos flx-pay-logos--list' . ( '' !== $class ? ' ' . esc_attr( $class ) : '' ) . '" role="list" aria-label="' . esc_attr__( 'Ödeme yöntemleri', 'fluxwp' ) . '">';
 	foreach ( $logos as $l ) {
-		$h .= '<span role="listitem" class="flx-pay-logo' . ( $l['chip'] ? ' flx-pay-logo--chip' : '' ) . ( $l['band'] ? ' flx-pay-logo--band' : '' ) . '"><img src="' . esc_url( $l['url'] ) . '" alt="' . esc_attr( $l['label'] ) . '" loading="lazy" decoding="async"></span>';
+		$h .= '<span role="listitem" class="flx-pay-logo' . ( $l['chip'] ? ' flx-pay-logo--chip' : '' ) . ( $l['band'] ? ' flx-pay-logo--band' : '' ) . '"><img src="' . esc_url( $l['url'] ) . '" alt="' . esc_attr( $l['label'] ) . '"' . flx_pay_logo_size_attr( $l['url'] ) . ' loading="lazy" decoding="async"></span>';
 	}
 	return $h . '</div>';
 }
