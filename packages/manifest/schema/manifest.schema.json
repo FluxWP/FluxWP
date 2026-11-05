@@ -1,0 +1,2948 @@
+{
+  "$id": "https://fluxwp.com/schema/manifest.schema.json",
+  "title": "FluxWP app manifest (flx-app-manifest/1)",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "flx-app-manifest/1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[\\w-]+$"
+    },
+    "plugin": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "min_app": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "icon_url": {
+      "type": "string"
+    },
+    "menu": {
+      "type": "string"
+    },
+    "entry": {
+      "type": "string"
+    },
+    "tabs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "can": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "routes": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "screen": {
+            "type": "string"
+          },
+          "params": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "screen"
+        ]
+      }
+    },
+    "sources": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1
+          },
+          "method": {
+            "enum": [
+              "GET",
+              "POST"
+            ],
+            "type": "string"
+          },
+          "query": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            }
+          },
+          "body": {
+            "anyOf": [
+              {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {}
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "paging": {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "enum": [
+                  "page",
+                  "wp",
+                  "cursor",
+                  "none"
+                ],
+                "type": "string"
+              },
+              "param": {
+                "type": "string"
+              },
+              "size_param": {
+                "type": "string"
+              },
+              "size": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 200
+              },
+              "items": {
+                "type": "string"
+              },
+              "total": {
+                "type": "string"
+              },
+              "pages": {
+                "type": "string"
+              },
+              "next": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "mode"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "cache": {
+            "type": "object",
+            "properties": {
+              "stale": {
+                "type": "number"
+              },
+              "persist": {
+                "type": "boolean"
+              }
+            },
+            "required": []
+          },
+          "poll": {
+            "anyOf": [
+              {
+                "const": 0
+              },
+              {
+                "type": "number",
+                "minimum": 10
+              }
+            ]
+          }
+        },
+        "required": [
+          "path"
+        ]
+      }
+    },
+    "screens": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "list"
+              },
+              "title": {
+                "type": "string",
+                "maxLength": 2000
+              },
+              "when": {
+                "$ref": "#/$defs/Condition"
+              },
+              "source": {
+                "type": "string"
+              },
+              "layout": {
+                "enum": [
+                  "rows",
+                  "cards",
+                  "grid",
+                  "table"
+                ],
+                "type": "string"
+              },
+              "columns": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "string",
+                      "maxLength": 2000
+                    },
+                    "width": {
+                      "type": "number"
+                    },
+                    "align": {
+                      "enum": [
+                        "start",
+                        "end"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "label",
+                    "value"
+                  ]
+                }
+              },
+              "search": {
+                "type": "object",
+                "properties": {
+                  "param": {
+                    "type": "string"
+                  },
+                  "placeholder": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "param"
+                ]
+              },
+              "filters": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "param": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "enum": [
+                        "select",
+                        "toggle",
+                        "segmented"
+                      ],
+                      "type": "string"
+                    },
+                    "options": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value",
+                              "label"
+                            ]
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "source": {
+                              "type": "string"
+                            },
+                            "path": {
+                              "type": "string"
+                            },
+                            "value": {
+                              "type": "string"
+                            },
+                            "label": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "source",
+                            "path",
+                            "value",
+                            "label"
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "param",
+                    "label",
+                    "type"
+                  ]
+                }
+              },
+              "sort": {
+                "type": "object",
+                "properties": {
+                  "param": {
+                    "type": "string"
+                  },
+                  "order_param": {
+                    "type": "string"
+                  },
+                  "options": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "value": {
+                          "type": "string"
+                        },
+                        "label": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "value",
+                        "label"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "param",
+                  "options"
+                ]
+              },
+              "group_by": {
+                "type": "string"
+              },
+              "item": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "maxLength": 2000
+                  },
+                  "subtitle": {
+                    "type": "string",
+                    "maxLength": 2000
+                  },
+                  "meta": {
+                    "type": "string",
+                    "maxLength": 2000
+                  },
+                  "caption": {
+                    "type": "string",
+                    "maxLength": 2000
+                  },
+                  "avatar": {
+                    "type": "object",
+                    "properties": {
+                      "image": {
+                        "type": "string",
+                        "maxLength": 2000
+                      },
+                      "text": {
+                        "type": "string",
+                        "maxLength": 2000
+                      }
+                    },
+                    "required": []
+                  },
+                  "badges": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string",
+                          "maxLength": 2000
+                        },
+                        "tone": {
+                          "enum": [
+                            "default",
+                            "accent",
+                            "ok",
+                            "warn",
+                            "danger",
+                            "muted",
+                            "info"
+                          ],
+                          "type": "string"
+                        },
+                        "when": {
+                          "$ref": "#/$defs/Condition"
+                        }
+                      },
+                      "required": [
+                        "text"
+                      ]
+                    }
+                  },
+                  "chips": {
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string"
+                      },
+                      "text": {
+                        "type": "string",
+                        "maxLength": 2000
+                      },
+                      "color": {
+                        "type": "string",
+                        "maxLength": 2000
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "text"
+                    ]
+                  },
+                  "image": {
+                    "type": "string",
+                    "maxLength": 2000
+                  },
+                  "unread": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "$ref": "#/$defs/Condition"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "title"
+                ]
+              },
+              "onPress": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  "params": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "maxLength": 2000
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              },
+              "actions": {
+                "type": "object",
+                "properties": {
+                  "header": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "row": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "bulk": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "fab": {
+                    "type": "string"
+                  },
+                  "footer": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": []
+              },
+              "empty": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "body": {
+                    "type": "string"
+                  },
+                  "icon": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              },
+              "refresh": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "type",
+              "source",
+              "item"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "detail"
+              },
+              "title": {
+                "type": "string",
+                "maxLength": 2000
+              },
+              "when": {
+                "$ref": "#/$defs/Condition"
+              },
+              "source": {
+                "type": "string"
+              },
+              "header": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "maxLength": 2000
+                  },
+                  "subtitle": {
+                    "type": "string",
+                    "maxLength": 2000
+                  },
+                  "avatar": {
+                    "type": "object",
+                    "properties": {
+                      "image": {
+                        "type": "string",
+                        "maxLength": 2000
+                      },
+                      "text": {
+                        "type": "string",
+                        "maxLength": 2000
+                      }
+                    },
+                    "required": []
+                  },
+                  "chips": {
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string"
+                      },
+                      "text": {
+                        "type": "string",
+                        "maxLength": 2000
+                      },
+                      "color": {
+                        "type": "string",
+                        "maxLength": 2000
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "text"
+                    ]
+                  },
+                  "quick": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "title"
+                ]
+              },
+              "sections": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "const": "fields"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "when": {
+                          "$ref": "#/$defs/Condition"
+                        },
+                        "fields": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "string",
+                                "maxLength": 2000
+                              },
+                              "link": {
+                                "type": "string",
+                                "maxLength": 2000
+                              },
+                              "copy": {
+                                "type": "boolean"
+                              },
+                              "when": {
+                                "$ref": "#/$defs/Condition"
+                              }
+                            },
+                            "required": [
+                              "label",
+                              "value"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "fields"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "const": "stats"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "when": {
+                          "$ref": "#/$defs/Condition"
+                        },
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "string",
+                                "maxLength": 2000
+                              },
+                              "sub": {
+                                "type": "string",
+                                "maxLength": 2000
+                              },
+                              "tone": {
+                                "enum": [
+                                  "default",
+                                  "accent",
+                                  "ok",
+                                  "warn",
+                                  "danger",
+                                  "muted",
+                                  "info"
+                                ],
+                                "type": "string"
+                              },
+                              "when": {
+                                "$ref": "#/$defs/Condition"
+                              },
+                              "onPress": {
+                                "type": "object",
+                                "properties": {
+                                  "target": {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 500
+                                  },
+                                  "params": {
+                                    "type": "object",
+                                    "propertyNames": {
+                                      "type": "string"
+                                    },
+                                    "additionalProperties": {
+                                      "anyOf": [
+                                        {
+                                          "type": "string",
+                                          "maxLength": 2000
+                                        },
+                                        {
+                                          "type": "number"
+                                        },
+                                        {
+                                          "type": "boolean"
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "target"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "label",
+                              "value"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "items"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "const": "chips"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "when": {
+                          "$ref": "#/$defs/Condition"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "text": {
+                          "type": "string",
+                          "maxLength": 2000
+                        },
+                        "color": {
+                          "type": "string",
+                          "maxLength": 2000
+                        },
+                        "add": {
+                          "type": "string"
+                        },
+                        "remove": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "path",
+                        "text"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "const": "timeline"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "when": {
+                          "$ref": "#/$defs/Condition"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "item": {
+                          "type": "object",
+                          "properties": {
+                            "title": {
+                              "type": "string",
+                              "maxLength": 2000
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 2000
+                            },
+                            "at": {
+                              "type": "string",
+                              "maxLength": 2000
+                            },
+                            "label": {
+                              "type": "string",
+                              "maxLength": 2000
+                            },
+                            "link": {
+                              "type": "string",
+                              "maxLength": 2000
+                            }
+                          },
+                          "required": [
+                            "title"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "path",
+                        "item"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "const": "list"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "when": {
+                          "$ref": "#/$defs/Condition"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "item": {
+                          "type": "object",
+                          "properties": {
+                            "title": {
+                              "type": "string",
+                              "maxLength": 2000
+                            },
+                            "subtitle": {
+                              "type": "string",
+                              "maxLength": 2000
+                            },
+                            "meta": {
+                              "type": "string",
+                              "maxLength": 2000
+                            },
+                            "caption": {
+                              "type": "string",
+                              "maxLength": 2000
+                            },
+                            "avatar": {
+                              "type": "object",
+                              "properties": {
+                                "image": {
+                                  "type": "string",
+                                  "maxLength": 2000
+                                },
+                                "text": {
+                                  "type": "string",
+                                  "maxLength": 2000
+                                }
+                              },
+                              "required": []
+                            },
+                            "badges": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "text": {
+                                    "type": "string",
+                                    "maxLength": 2000
+                                  },
+                                  "tone": {
+                                    "enum": [
+                                      "default",
+                                      "accent",
+                                      "ok",
+                                      "warn",
+                                      "danger",
+                                      "muted",
+                                      "info"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "when": {
+                                    "$ref": "#/$defs/Condition"
+                                  }
+                                },
+                                "required": [
+                                  "text"
+                                ]
+                              }
+                            },
+                            "chips": {
+                              "type": "object",
+                              "properties": {
+                                "path": {
+                                  "type": "string"
+                                },
+                                "text": {
+                                  "type": "string",
+                                  "maxLength": 2000
+                                },
+                                "color": {
+                                  "type": "string",
+                                  "maxLength": 2000
+                                }
+                              },
+                              "required": [
+                                "path",
+                                "text"
+                              ]
+                            },
+                            "image": {
+                              "type": "string",
+                              "maxLength": 2000
+                            },
+                            "unread": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "$ref": "#/$defs/Condition"
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "title"
+                          ]
+                        },
+                        "onPress": {
+                          "type": "object",
+                          "properties": {
+                            "target": {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 500
+                            },
+                            "params": {
+                              "type": "object",
+                              "propertyNames": {
+                                "type": "string"
+                              },
+                              "additionalProperties": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "maxLength": 2000
+                                  },
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "boolean"
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "target"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "path",
+                        "item"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "const": "content"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "when": {
+                          "$ref": "#/$defs/Condition"
+                        },
+                        "value": {
+                          "type": "string",
+                          "maxLength": 2000
+                        },
+                        "format": {
+                          "enum": [
+                            "markdown",
+                            "html",
+                            "text"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "value"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "const": "actions"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "when": {
+                          "$ref": "#/$defs/Condition"
+                        },
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "items"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "const": "notice"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "when": {
+                          "$ref": "#/$defs/Condition"
+                        },
+                        "tone": {
+                          "enum": [
+                            "default",
+                            "accent",
+                            "ok",
+                            "warn",
+                            "danger",
+                            "muted",
+                            "info"
+                          ],
+                          "type": "string"
+                        },
+                        "text": {
+                          "type": "string",
+                          "maxLength": 2000
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "text"
+                      ]
+                    }
+                  ]
+                }
+              },
+              "actions": {
+                "type": "object",
+                "properties": {
+                  "header": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "row": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "bulk": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "fab": {
+                    "type": "string"
+                  },
+                  "footer": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": []
+              }
+            },
+            "required": [
+              "type",
+              "source",
+              "sections"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "form"
+              },
+              "title": {
+                "type": "string",
+                "maxLength": 2000
+              },
+              "when": {
+                "$ref": "#/$defs/Condition"
+              },
+              "load": {
+                "type": "string"
+              },
+              "fields": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "pattern": "^[\\w-]+(\\.[\\w-]+)*$"
+                    },
+                    "type": {
+                      "enum": [
+                        "text",
+                        "textarea",
+                        "email",
+                        "phone",
+                        "url",
+                        "number",
+                        "money",
+                        "switch",
+                        "select",
+                        "multiselect",
+                        "radio",
+                        "segmented",
+                        "date",
+                        "datetime",
+                        "time",
+                        "color",
+                        "image",
+                        "file",
+                        "markdown",
+                        "user",
+                        "post",
+                        "term",
+                        "tags",
+                        "hidden",
+                        "readonly",
+                        "secret",
+                        "repeater"
+                      ],
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "placeholder": {
+                      "type": "string"
+                    },
+                    "help": {
+                      "type": "string"
+                    },
+                    "required": {
+                      "type": "boolean"
+                    },
+                    "min": {
+                      "type": "number"
+                    },
+                    "max": {
+                      "type": "number"
+                    },
+                    "minLength": {
+                      "type": "number"
+                    },
+                    "maxLength": {
+                      "type": "number"
+                    },
+                    "pattern": {
+                      "type": "string",
+                      "maxLength": 200
+                    },
+                    "default": {},
+                    "options": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value",
+                              "label"
+                            ]
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "source": {
+                              "type": "string"
+                            },
+                            "path": {
+                              "type": "string"
+                            },
+                            "value": {
+                              "type": "string"
+                            },
+                            "label": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "source",
+                            "path",
+                            "value",
+                            "label"
+                          ]
+                        }
+                      ]
+                    },
+                    "when": {
+                      "$ref": "#/$defs/Condition"
+                    },
+                    "width": {
+                      "enum": [
+                        "full",
+                        "half"
+                      ],
+                      "type": "string"
+                    },
+                    "readonly_when": {
+                      "$ref": "#/$defs/Condition"
+                    },
+                    "creatable": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "type",
+                    "label"
+                  ]
+                }
+              },
+              "submit": {
+                "type": "object",
+                "properties": {
+                  "method": {
+                    "enum": [
+                      "GET",
+                      "POST",
+                      "PUT",
+                      "PATCH",
+                      "DELETE"
+                    ],
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string",
+                    "maxLength": 2000
+                  },
+                  "body": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "propertyNames": {
+                          "type": "string"
+                        },
+                        "additionalProperties": {}
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "path_create": {
+                    "type": "string",
+                    "maxLength": 2000
+                  },
+                  "path_update": {
+                    "type": "string",
+                    "maxLength": 2000
+                  }
+                },
+                "required": [
+                  "path"
+                ]
+              },
+              "validate": {
+                "type": "object",
+                "properties": {
+                  "any_of": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              },
+              "after": {
+                "type": "object",
+                "properties": {
+                  "toast": {
+                    "type": "string"
+                  },
+                  "back": {
+                    "type": "boolean"
+                  },
+                  "navigate": {
+                    "type": "object",
+                    "properties": {
+                      "target": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 500
+                      },
+                      "params": {
+                        "type": "object",
+                        "propertyNames": {
+                          "type": "string"
+                        },
+                        "additionalProperties": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "maxLength": 2000
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "target"
+                    ]
+                  },
+                  "refresh": {
+                    "type": "boolean"
+                  },
+                  "invalidate": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "merge": {
+                    "type": "boolean"
+                  }
+                },
+                "required": []
+              },
+              "dirty_guard": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "type",
+              "fields",
+              "submit"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "dashboard"
+              },
+              "title": {
+                "type": "string",
+                "maxLength": 2000
+              },
+              "when": {
+                "$ref": "#/$defs/Condition"
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "sections": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "const": "fields"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "when": {
+                          "$ref": "#/$defs/Condition"
+                        },
+                        "fields": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "string",
+                                "maxLength": 2000
+                              },
+                              "link": {
+                                "type": "string",
+                                "maxLength": 2000
+                              },
+                              "copy": {
+                                "type": "boolean"
+                              },
+                              "when": {
+                                "$ref": "#/$defs/Condition"
+                              }
+                            },
+                            "required": [
+                              "label",
+                              "value"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "fields"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "const": "stats"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "when": {
+                          "$ref": "#/$defs/Condition"
+                        },
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "string",
+                                "maxLength": 2000
+                              },
+                              "sub": {
+                                "type": "string",
+                                "maxLength": 2000
+                              },
+                              "tone": {
+                                "enum": [
+                                  "default",
+                                  "accent",
+                                  "ok",
+                                  "warn",
+                                  "danger",
+                                  "muted",
+                                  "info"
+                                ],
+                                "type": "string"
+                              },
+                              "when": {
+                                "$ref": "#/$defs/Condition"
+                              },
+                              "onPress": {
+                                "type": "object",
+                                "properties": {
+                                  "target": {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 500
+                                  },
+                                  "params": {
+                                    "type": "object",
+                                    "propertyNames": {
+                                      "type": "string"
+                                    },
+                                    "additionalProperties": {
+                                      "anyOf": [
+                                        {
+                                          "type": "string",
+                                          "maxLength": 2000
+                                        },
+                                        {
+                                          "type": "number"
+                                        },
+                                        {
+                                          "type": "boolean"
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "target"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "label",
+                              "value"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "items"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "const": "chips"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "when": {
+                          "$ref": "#/$defs/Condition"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "text": {
+                          "type": "string",
+                          "maxLength": 2000
+                        },
+                        "color": {
+                          "type": "string",
+                          "maxLength": 2000
+                        },
+                        "add": {
+                          "type": "string"
+                        },
+                        "remove": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "path",
+                        "text"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "const": "timeline"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "when": {
+                          "$ref": "#/$defs/Condition"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "item": {
+                          "type": "object",
+                          "properties": {
+                            "title": {
+                              "type": "string",
+                              "maxLength": 2000
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 2000
+                            },
+                            "at": {
+                              "type": "string",
+                              "maxLength": 2000
+                            },
+                            "label": {
+                              "type": "string",
+                              "maxLength": 2000
+                            },
+                            "link": {
+                              "type": "string",
+                              "maxLength": 2000
+                            }
+                          },
+                          "required": [
+                            "title"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "path",
+                        "item"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "const": "list"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "when": {
+                          "$ref": "#/$defs/Condition"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "item": {
+                          "type": "object",
+                          "properties": {
+                            "title": {
+                              "type": "string",
+                              "maxLength": 2000
+                            },
+                            "subtitle": {
+                              "type": "string",
+                              "maxLength": 2000
+                            },
+                            "meta": {
+                              "type": "string",
+                              "maxLength": 2000
+                            },
+                            "caption": {
+                              "type": "string",
+                              "maxLength": 2000
+                            },
+                            "avatar": {
+                              "type": "object",
+                              "properties": {
+                                "image": {
+                                  "type": "string",
+                                  "maxLength": 2000
+                                },
+                                "text": {
+                                  "type": "string",
+                                  "maxLength": 2000
+                                }
+                              },
+                              "required": []
+                            },
+                            "badges": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "text": {
+                                    "type": "string",
+                                    "maxLength": 2000
+                                  },
+                                  "tone": {
+                                    "enum": [
+                                      "default",
+                                      "accent",
+                                      "ok",
+                                      "warn",
+                                      "danger",
+                                      "muted",
+                                      "info"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "when": {
+                                    "$ref": "#/$defs/Condition"
+                                  }
+                                },
+                                "required": [
+                                  "text"
+                                ]
+                              }
+                            },
+                            "chips": {
+                              "type": "object",
+                              "properties": {
+                                "path": {
+                                  "type": "string"
+                                },
+                                "text": {
+                                  "type": "string",
+                                  "maxLength": 2000
+                                },
+                                "color": {
+                                  "type": "string",
+                                  "maxLength": 2000
+                                }
+                              },
+                              "required": [
+                                "path",
+                                "text"
+                              ]
+                            },
+                            "image": {
+                              "type": "string",
+                              "maxLength": 2000
+                            },
+                            "unread": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "$ref": "#/$defs/Condition"
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "title"
+                          ]
+                        },
+                        "onPress": {
+                          "type": "object",
+                          "properties": {
+                            "target": {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 500
+                            },
+                            "params": {
+                              "type": "object",
+                              "propertyNames": {
+                                "type": "string"
+                              },
+                              "additionalProperties": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "maxLength": 2000
+                                  },
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "boolean"
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "target"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "path",
+                        "item"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "const": "content"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "when": {
+                          "$ref": "#/$defs/Condition"
+                        },
+                        "value": {
+                          "type": "string",
+                          "maxLength": 2000
+                        },
+                        "format": {
+                          "enum": [
+                            "markdown",
+                            "html",
+                            "text"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "value"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "const": "actions"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "when": {
+                          "$ref": "#/$defs/Condition"
+                        },
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "items"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "const": "notice"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "when": {
+                          "$ref": "#/$defs/Condition"
+                        },
+                        "tone": {
+                          "enum": [
+                            "default",
+                            "accent",
+                            "ok",
+                            "warn",
+                            "danger",
+                            "muted",
+                            "info"
+                          ],
+                          "type": "string"
+                        },
+                        "text": {
+                          "type": "string",
+                          "maxLength": 2000
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "text"
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "type",
+              "sections"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "settings"
+              },
+              "title": {
+                "type": "string",
+                "maxLength": 2000
+              },
+              "when": {
+                "$ref": "#/$defs/Condition"
+              },
+              "option": {
+                "type": "string"
+              },
+              "fields": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "pattern": "^[\\w-]+(\\.[\\w-]+)*$"
+                    },
+                    "type": {
+                      "enum": [
+                        "text",
+                        "textarea",
+                        "email",
+                        "phone",
+                        "url",
+                        "number",
+                        "money",
+                        "switch",
+                        "select",
+                        "multiselect",
+                        "radio",
+                        "segmented",
+                        "date",
+                        "datetime",
+                        "time",
+                        "color",
+                        "image",
+                        "file",
+                        "markdown",
+                        "user",
+                        "post",
+                        "term",
+                        "tags",
+                        "hidden",
+                        "readonly",
+                        "secret",
+                        "repeater"
+                      ],
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "placeholder": {
+                      "type": "string"
+                    },
+                    "help": {
+                      "type": "string"
+                    },
+                    "required": {
+                      "type": "boolean"
+                    },
+                    "min": {
+                      "type": "number"
+                    },
+                    "max": {
+                      "type": "number"
+                    },
+                    "minLength": {
+                      "type": "number"
+                    },
+                    "maxLength": {
+                      "type": "number"
+                    },
+                    "pattern": {
+                      "type": "string",
+                      "maxLength": 200
+                    },
+                    "default": {},
+                    "options": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value",
+                              "label"
+                            ]
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "source": {
+                              "type": "string"
+                            },
+                            "path": {
+                              "type": "string"
+                            },
+                            "value": {
+                              "type": "string"
+                            },
+                            "label": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "source",
+                            "path",
+                            "value",
+                            "label"
+                          ]
+                        }
+                      ]
+                    },
+                    "when": {
+                      "$ref": "#/$defs/Condition"
+                    },
+                    "width": {
+                      "enum": [
+                        "full",
+                        "half"
+                      ],
+                      "type": "string"
+                    },
+                    "readonly_when": {
+                      "$ref": "#/$defs/Condition"
+                    },
+                    "creatable": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "type",
+                    "label"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "type",
+              "option",
+              "fields"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "content"
+              },
+              "title": {
+                "type": "string",
+                "maxLength": 2000
+              },
+              "when": {
+                "$ref": "#/$defs/Condition"
+              },
+              "source": {
+                "type": "string"
+              },
+              "format": {
+                "enum": [
+                  "markdown",
+                  "html"
+                ],
+                "type": "string"
+              },
+              "path": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "source"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "tabs"
+              },
+              "title": {
+                "type": "string",
+                "maxLength": 2000
+              },
+              "when": {
+                "$ref": "#/$defs/Condition"
+              },
+              "tabs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "screen": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "screen",
+                    "title"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "type",
+              "tabs"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "native"
+              },
+              "title": {
+                "type": "string",
+                "maxLength": 2000
+              },
+              "when": {
+                "$ref": "#/$defs/Condition"
+              },
+              "component": {
+                "type": "string",
+                "pattern": "^[\\w-]+$"
+              },
+              "params": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {
+                  "type": "string",
+                  "maxLength": 2000
+                }
+              },
+              "fallback": {
+                "type": "object",
+                "properties": {
+                  "web": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "web"
+                ]
+              }
+            },
+            "required": [
+              "type",
+              "component"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "web"
+              },
+              "title": {
+                "type": "string",
+                "maxLength": 2000
+              },
+              "when": {
+                "$ref": "#/$defs/Condition"
+              },
+              "path": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "path"
+            ]
+          }
+        ]
+      }
+    },
+    "actions": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "tone": {
+            "enum": [
+              "default",
+              "accent",
+              "ok",
+              "warn",
+              "danger",
+              "muted",
+              "info"
+            ],
+            "type": "string"
+          },
+          "can": {
+            "type": "string"
+          },
+          "when": {
+            "$ref": "#/$defs/Condition"
+          },
+          "confirm": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "body": {
+                "type": "string"
+              },
+              "ok": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title"
+            ]
+          },
+          "prompt": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "fields": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "pattern": "^[\\w-]+(\\.[\\w-]+)*$"
+                        },
+                        "type": {
+                          "enum": [
+                            "text",
+                            "textarea",
+                            "email",
+                            "phone",
+                            "url",
+                            "number",
+                            "money",
+                            "switch",
+                            "select",
+                            "multiselect",
+                            "radio",
+                            "segmented",
+                            "date",
+                            "datetime",
+                            "time",
+                            "color",
+                            "image",
+                            "file",
+                            "markdown",
+                            "user",
+                            "post",
+                            "term",
+                            "tags",
+                            "hidden",
+                            "readonly",
+                            "secret",
+                            "repeater"
+                          ],
+                          "type": "string"
+                        },
+                        "label": {
+                          "type": "string"
+                        },
+                        "placeholder": {
+                          "type": "string"
+                        },
+                        "help": {
+                          "type": "string"
+                        },
+                        "required": {
+                          "type": "boolean"
+                        },
+                        "min": {
+                          "type": "number"
+                        },
+                        "max": {
+                          "type": "number"
+                        },
+                        "minLength": {
+                          "type": "number"
+                        },
+                        "maxLength": {
+                          "type": "number"
+                        },
+                        "pattern": {
+                          "type": "string",
+                          "maxLength": 200
+                        },
+                        "default": {},
+                        "options": {
+                          "anyOf": [
+                            {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  },
+                                  "label": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value",
+                                  "label"
+                                ]
+                              }
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "source": {
+                                  "type": "string"
+                                },
+                                "path": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                },
+                                "label": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "source",
+                                "path",
+                                "value",
+                                "label"
+                              ]
+                            }
+                          ]
+                        },
+                        "when": {
+                          "$ref": "#/$defs/Condition"
+                        },
+                        "width": {
+                          "enum": [
+                            "full",
+                            "half"
+                          ],
+                          "type": "string"
+                        },
+                        "readonly_when": {
+                          "$ref": "#/$defs/Condition"
+                        },
+                        "creatable": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "type",
+                        "label"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "title",
+                  "fields"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "request": {
+            "type": "object",
+            "properties": {
+              "method": {
+                "enum": [
+                  "GET",
+                  "POST",
+                  "PUT",
+                  "PATCH",
+                  "DELETE"
+                ],
+                "type": "string"
+              },
+              "path": {
+                "type": "string",
+                "maxLength": 2000
+              },
+              "body": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {}
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "path_create": {
+                "type": "string",
+                "maxLength": 2000
+              },
+              "path_update": {
+                "type": "string",
+                "maxLength": 2000
+              }
+            },
+            "required": [
+              "path"
+            ]
+          },
+          "navigate": {
+            "type": "object",
+            "properties": {
+              "target": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "params": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 2000
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "target"
+            ]
+          },
+          "web": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "open": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "share": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string",
+                "maxLength": 2000
+              },
+              "url": {
+                "type": "string",
+                "maxLength": 2000
+              }
+            },
+            "required": []
+          },
+          "copy": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "native": {
+            "type": "object",
+            "properties": {
+              "component": {
+                "type": "string",
+                "pattern": "^[\\w-]+$"
+              },
+              "params": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {
+                  "type": "string",
+                  "maxLength": 2000
+                }
+              }
+            },
+            "required": [
+              "component"
+            ]
+          },
+          "refresh": {
+            "type": "boolean"
+          },
+          "after": {
+            "type": "object",
+            "properties": {
+              "toast": {
+                "type": "string"
+              },
+              "back": {
+                "type": "boolean"
+              },
+              "navigate": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  "params": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "maxLength": 2000
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              },
+              "refresh": {
+                "type": "boolean"
+              },
+              "invalidate": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "merge": {
+                "type": "boolean"
+              }
+            },
+            "required": []
+          },
+          "optimistic": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string"
+                  },
+                  "value": {},
+                  "remove": {
+                    "const": "item"
+                  }
+                },
+                "required": []
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "haptic": {
+            "enum": [
+              "success",
+              "warning",
+              "error",
+              "light"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "label"
+        ]
+      }
+    },
+    "fallback": {
+      "type": "object",
+      "properties": {
+        "web": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "web"
+      ]
+    },
+    "search": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "param": {
+          "type": "string"
+        },
+        "item": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "maxLength": 2000
+            },
+            "subtitle": {
+              "type": "string",
+              "maxLength": 2000
+            },
+            "meta": {
+              "type": "string",
+              "maxLength": 2000
+            },
+            "caption": {
+              "type": "string",
+              "maxLength": 2000
+            },
+            "avatar": {
+              "type": "object",
+              "properties": {
+                "image": {
+                  "type": "string",
+                  "maxLength": 2000
+                },
+                "text": {
+                  "type": "string",
+                  "maxLength": 2000
+                }
+              },
+              "required": []
+            },
+            "badges": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "maxLength": 2000
+                  },
+                  "tone": {
+                    "enum": [
+                      "default",
+                      "accent",
+                      "ok",
+                      "warn",
+                      "danger",
+                      "muted",
+                      "info"
+                    ],
+                    "type": "string"
+                  },
+                  "when": {
+                    "$ref": "#/$defs/Condition"
+                  }
+                },
+                "required": [
+                  "text"
+                ]
+              }
+            },
+            "chips": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string",
+                  "maxLength": 2000
+                },
+                "color": {
+                  "type": "string",
+                  "maxLength": 2000
+                }
+              },
+              "required": [
+                "path",
+                "text"
+              ]
+            },
+            "image": {
+              "type": "string",
+              "maxLength": 2000
+            },
+            "unread": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "$ref": "#/$defs/Condition"
+                }
+              ]
+            }
+          },
+          "required": [
+            "title"
+          ]
+        },
+        "onPress": {
+          "type": "object",
+          "properties": {
+            "target": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "params": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 2000
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  }
+                ]
+              }
+            }
+          },
+          "required": [
+            "target"
+          ]
+        }
+      },
+      "required": [
+        "source",
+        "param",
+        "item"
+      ]
+    },
+    "push": {
+      "type": "object",
+      "properties": {
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "default": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "title"
+            ]
+          }
+        }
+      },
+      "required": [
+        "events"
+      ]
+    }
+  },
+  "required": [
+    "schema",
+    "id",
+    "title",
+    "entry",
+    "sources",
+    "screens"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$defs": {
+    "Condition": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "op": {
+              "enum": [
+                "eq",
+                "ne",
+                "in",
+                "nin",
+                "gt",
+                "gte",
+                "lt",
+                "lte",
+                "filled",
+                "empty",
+                "truthy",
+                "falsy"
+              ],
+              "type": "string"
+            },
+            "value": {}
+          },
+          "required": [
+            "path",
+            "op"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "all": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Condition"
+              }
+            }
+          },
+          "required": [
+            "all"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "any": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Condition"
+              }
+            }
+          },
+          "required": [
+            "any"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "not": {
+              "$ref": "#/$defs/Condition"
+            }
+          },
+          "required": [
+            "not"
+          ]
+        }
+      ]
+    }
+  }
+}

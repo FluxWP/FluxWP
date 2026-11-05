@@ -14,3 +14,11 @@ apps/desktop/src-tauri/tauri.brand.conf.json
 apps/desktop/src-tauri/gen/
 apps/desktop/src-tauri/app-icon.svg
 apps/desktop/src-tauri/app-icon-windows.svg
+# apps/mobile/scripts/brand.cjs çıktıları
+apps/mobile/src/brand/current.json
+apps/mobile/assets/brand/
+apps/mobile/.expo/
+apps/mobile/dist/
+apps/mobile/ios/
+apps/mobile/android/
+apps/mobile/expo-env.d.ts

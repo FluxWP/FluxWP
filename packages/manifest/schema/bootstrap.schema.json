@@ -1,0 +1,271 @@
+{
+  "$id": "https://fluxwp.com/schema/bootstrap.schema.json",
+  "title": "GET flxapp/v1/app/bootstrap",
+  "type": "object",
+  "properties": {
+    "site": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "locale": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "url"
+      ]
+    },
+    "auth": {
+      "type": "object",
+      "properties": {
+        "methods": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "oauth",
+              "otp",
+              "apikey",
+              "apppass"
+            ],
+            "type": "string"
+          }
+        },
+        "clients": {
+          "type": "object",
+          "properties": {
+            "mobile": {
+              "type": "string"
+            },
+            "desktop": {
+              "type": "string"
+            }
+          },
+          "required": []
+        },
+        "prompt_login": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "methods"
+      ]
+    },
+    "theme": {
+      "type": "object",
+      "properties": {
+        "light": {
+          "type": "object",
+          "properties": {
+            "primary": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "onPrimary": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "accent": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "bg": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "surface": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "surface2": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "border": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "text": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "textMuted": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "danger": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "warning": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "success": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "info": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            }
+          },
+          "required": []
+        },
+        "dark": {
+          "type": "object",
+          "properties": {
+            "primary": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "onPrimary": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "accent": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "bg": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "surface": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "surface2": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "border": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "text": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "textMuted": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "danger": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "warning": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "success": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            },
+            "info": {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    },
+    "min_app": {
+      "type": "string"
+    },
+    "flx_app": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "site",
+    "auth"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$defs": {
+    "Condition": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "op": {
+              "enum": [
+                "eq",
+                "ne",
+                "in",
+                "nin",
+                "gt",
+                "gte",
+                "lt",
+                "lte",
+                "filled",
+                "empty",
+                "truthy",
+                "falsy"
+              ],
+              "type": "string"
+            },
+            "value": {}
+          },
+          "required": [
+            "path",
+            "op"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "all": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Condition"
+              }
+            }
+          },
+          "required": [
+            "all"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "any": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Condition"
+              }
+            }
+          },
+          "required": [
+            "any"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "not": {
+              "$ref": "#/$defs/Condition"
+            }
+          },
+          "required": [
+            "not"
+          ]
+        }
+      ]
+    }
+  }
+}

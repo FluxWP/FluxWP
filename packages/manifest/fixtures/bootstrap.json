@@ -1,0 +1,37 @@
+{
+  "site": {
+    "name": "Demo Dernek",
+    "url": "https://demo.fluxapp.local",
+    "icon": "",
+    "locale": "tr_TR"
+  },
+  "auth": {
+    "methods": [
+      "oauth",
+      "otp",
+      "apikey"
+    ],
+    "clients": {
+      "mobile": "flx-mobil"
+    },
+    "prompt_login": true
+  },
+  "theme": {
+    "light": {
+      "primary": "#1F2937",
+      "accent": "#3B82F6",
+      "bg": "#FBF9F6",
+      "surface": "#FFFFFF",
+      "surface2": "#F8F5F0",
+      "border": "#E6E0D6",
+      "text": "#111827",
+      "textMuted": "#4B5563"
+    },
+    "dark": {
+      "primary": "#3B82F6",
+      "accent": "#F59E0B"
+    }
+  },
+  "min_app": "0.1.0",
+  "flx_app": "0.4.0"
+}
