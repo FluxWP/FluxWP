@@ -97,7 +97,6 @@ jobs:
         with:
           name: native-debug-${{ matrix.device }}-${{ matrix.locale }}
           path: |
-            ~/.maestro/tests/
             release-out/store-assets/
             release-out/logs/
             release-out/capture-runner/attachments/

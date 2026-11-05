@@ -10,14 +10,10 @@ final class CaptureTests: XCTestCase {
         XCTAssertTrue(target.waitForExistence(timeout: 60), "Missing app control: \(id)")
         target.tap()
     }
-    func tab(_ text: String) {
-        let button = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", text)).firstMatch
-        if button.waitForExistence(timeout: 3) { button.tap() }
-        else {
-            let label = app.staticTexts[text].firstMatch
-            XCTAssertTrue(label.waitForExistence(timeout: 10))
-            label.tap()
-        }
+    func tab(_ choices: [String]) {
+        let target = app.descendants(matching: .any).matching(NSPredicate(format: "label IN %@", choices)).firstMatch
+        XCTAssertTrue(target.waitForExistence(timeout: 15), "Missing navigation tab: \(choices)")
+        target.tap()
     }
     func shot(_ name: String) {
         sleep(2)

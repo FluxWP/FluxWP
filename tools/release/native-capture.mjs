@@ -9,7 +9,7 @@ export function captureWithXCTest({id, kind, locale, bundleId, folder, names}) {
   mkdirSync(dir,{recursive:true}); mkdirSync(logs,{recursive:true});
   let source=readFileSync(new URL('./native-capture/CaptureTests.swift.template',import.meta.url),'utf8');
   const tr=locale==='tr-TR';
-  const values={BUNDLE_ID:bundleId,DEVICE_PREFIX:`${kind}-`,LANGUAGES:tr?'(tr)':'(en)',LOCALE:locale.replace('-','_'),CONTACTS:tr?'Kişiler':'Contacts',POSTS:tr?'Yazılar':'Posts'};
+  const values={BUNDLE_ID:bundleId,DEVICE_PREFIX:`${kind}-`,LANGUAGES:tr?'(tr)':'(en)',LOCALE:locale.replace('-','_'),CONTACTS:['Kişiler','Contacts'],POSTS:['Yazılar','Posts']};
   for(const [key,value] of Object.entries(values)) source=source.replace(`__${key}__`,JSON.stringify(value));
   writeFileSync(join(dir,'CaptureTests.swift'),source);
   const spec={name:'FluxStoreCapture',targets:{CaptureTests:{type:'bundle.ui-testing',platform:'iOS',deploymentTarget:'17.0',sources:[{path:'CaptureTests.swift'}],settings:{base:{GENERATE_INFOPLIST_FILE:'YES',PRODUCT_BUNDLE_IDENTIFIER:'com.fluxwp.capture.tests',CODE_SIGNING_ALLOWED:'NO',SWIFT_VERSION:'5.0',TARGETED_DEVICE_FAMILY:'1,2'}}}},schemes:{FluxStoreCapture:{build:{targets:{CaptureTests:'all'}},test:{targets:['CaptureTests']}}}};
