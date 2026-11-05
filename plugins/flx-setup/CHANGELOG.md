@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.0.23
+- Ön ayar migration'ı `"requires": {"plugins": [...]}` bildirebilir. Eksik eklenti FluxWP Panel'in paket kurucusuyla kurulur ve etkinleştirilir; migration o zamana kadar bekler, "uygulandı" sayılmaz. Önceden eklenti yoksa içerik sessizce atlanıp migration bitmiş sayılıyordu (ör. Flux Wiki kurulu olmayan sitede wiki sayfaları hiç gelmiyordu). Kurma denemesi saatte bir.
+- Ön ayar kartında "Eksik: …" uyarısının yanında **Eksik eklentileri kur ve etkinleştir** düğmesi.
+
 ## 1.0.22
 - Metinler: MCP sunucusu artık Flux AI & MCP eklentisinde; "Flux SEO & MCP" ve "Flux AI ›" adresleri "Flux AI & MCP" oldu.
 

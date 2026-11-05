@@ -627,6 +627,12 @@ function flxk_apply_preset( $id, $mode = 'apply', $force = array() ) {
 		if ( empty( $m['id'] ) || isset( $st['migrations'][ $m['id'] ] ) ) {
 			continue;
 		}
+		$need = flxk_inactive_plugins( (array) ( $m['requires'] ?? array() ) );
+		if ( $need ) {
+			// Gereken eklenti şimdi kurulup etkinleşir; migration bekleyenlerde kalır ("auto" ise sonraki istekte uygulanır).
+			flxk_install_plugins( $need );
+			continue;
+		}
 		flxk_apply_migration( $id, $m['id'], array( 'mode' => $mode ) );
 	}
 	flxk_save_state( $id, flxk_state( $id ) + $st );
@@ -695,7 +701,71 @@ function flxk_skip_migration( $id, $mig_id ) {
 	);
 }
 
-/** "auto": true migration'lar güncellemeden sonra kendiliğinden uygulanır. */
+/** "requires.plugins" listesinden etkin olmayan eklenti slug'ları ("flx-wiki>=0.1" gibi sürüm eki atılır). */
+function flxk_inactive_plugins( array $req ) {
+	$active = array();
+	foreach ( (array) get_option( 'active_plugins', array() ) as $b ) {
+		$active[ dirname( $b ) ] = true;
+	}
+	$out = array();
+	foreach ( (array) ( $req['plugins'] ?? array() ) as $r ) {
+		$slug = preg_replace( '/[<>=].*$/', '', (string) $r );
+		if ( '' !== $slug && empty( $active[ $slug ] ) ) {
+			$out[] = $slug;
+		}
+	}
+	return $out;
+}
+
+/**
+ * Eksik eklentileri FluxWP Panel'in paket kurucusuyla kurar ve etkinleştirir (gerekli eklentileriyle birlikte;
+ * FluxWP paketi güncelleme sunucusundan, diğerleri wordpress.org'dan). Yeni etkinleşen eklentinin init kancaları
+ * bir sonraki istekte çalışır; içerik ondan sonra yazılmalı.
+ *
+ * @return array{ok: bool, lines: array} lines: {ok, text}
+ */
+function flxk_install_plugins( array $slugs ) {
+	$lines = array();
+	if ( ! $slugs ) {
+		return array( 'ok' => true, 'lines' => $lines );
+	}
+	if ( ! class_exists( 'FLXU_Installer' ) || ! current_user_can( 'activate_plugins' ) ) {
+		return array( 'ok' => false, 'lines' => $lines );
+	}
+	$catalog = FLXU_Updater::instance()->catalog();
+	$rows    = FLXU_Admin::rows( $catalog );
+	$steps   = FLXU_Installer::steps( FLXU_Installer::plan( $slugs, $catalog, $rows ), $catalog, true );
+	foreach ( $steps as $st ) {
+		$res   = FLXU_Ajax::run_step( $st['kind'], $st['slug'] );
+		$lines = array_merge( $lines, (array) ( $res['lines'] ?? array() ) );
+	}
+	// Kurulu ama kapalı olup plana girmeyenler (katalogda yoksa) doğrudan etkinleşir.
+	if ( ! function_exists( 'activate_plugin' ) ) {
+		require_once ABSPATH . 'wp-admin/includes/plugin.php';
+	}
+	$installed = FLXU_Installer::installed_plugins();
+	foreach ( flxk_inactive_plugins( array( 'plugins' => $slugs ) ) as $slug ) {
+		if ( isset( $installed[ $slug ] ) ) {
+			$r       = activate_plugin( $installed[ $slug ]['file'] );
+			$lines[] = array(
+				'ok'   => ! is_wp_error( $r ),
+				/* translators: %s: eklenti */
+				'text' => is_wp_error( $r ) ? $r->get_error_message() : sprintf( __( '%s etkinleştirildi.', 'flx-setup' ), $installed[ $slug ]['name'] ),
+			);
+		}
+	}
+	return array(
+		'ok'    => ! flxk_inactive_plugins( array( 'plugins' => $slugs ) ),
+		'lines' => $lines,
+	);
+}
+
+/**
+ * "auto": true migration'lar güncellemeden sonra kendiliğinden uygulanır.
+ * Migration "requires": {"plugins": [...]} bildirirse eksik eklentiler önce kurulup etkinleştirilir; migration
+ * hepsi etkin olana kadar bekler (atlandı sayılmaz) ve bir sonraki istekte, eklentinin içerik türleri
+ * kayıtlıyken uygulanır. Kurma denemesi saatte bir kez yapılır.
+ */
 add_action( 'admin_init', 'flxk_auto_migrations' );
 function flxk_auto_migrations() {
 	if ( wp_doing_ajax() || ! current_user_can( flxk_cap() ) ) {
@@ -703,9 +773,19 @@ function flxk_auto_migrations() {
 	}
 	foreach ( array_keys( flxk_state() ) as $id ) {
 		foreach ( flxk_pending_migrations( $id ) as $m ) {
-			if ( ! empty( $m['auto'] ) ) {
-				flxk_apply_migration( $id, $m['id'] );
+			if ( empty( $m['auto'] ) ) {
+				continue;
 			}
+			$need = flxk_inactive_plugins( (array) ( $m['requires'] ?? array() ) );
+			if ( $need ) {
+				$key = 'flxk_req_' . md5( $id . '|' . $m['id'] );
+				if ( ! get_transient( $key ) ) {
+					set_transient( $key, 1, HOUR_IN_SECONDS );
+					flxk_install_plugins( $need );
+				}
+				continue;
+			}
+			flxk_apply_migration( $id, $m['id'] );
 		}
 	}
 }
