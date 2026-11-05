@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 2.14.0
+- Flux POS Entegrator (flx-pos) kuruluysa kartlı ödemeler, ödeme yöntemleri tablosu, tek kart kuralı, blok ödeme yedeği, ödeme logoları ve EsnekPOS bağdaştırıcısı Flux POS'tan yürür (POS › Ödeme yöntemleri). Bağışlar › Ayarlar › WooCommerce'teki tablo ve "Kart ödeme yöntemi" seçimi yerine Flux POS'a bağlantı görünür; ayarlar korunur, Flux POS kaldırılırsa eski davranış geri gelir.
+- Aylık bağışlar Flux POS açıkken de Flux Donate iyzico ile alınır (kart saklama); tek kart kuralı aylık sepette uygulanmaz (`flxpos_one_card_skip`).
+
 ## 2.13.0
 - Sanal POS altyapısı: WooCommerce'e kurulan her ödeme eklentisi (EsnekPOS, Stripe, resmi iyzico, PayTR vb.) bağış ödeme sayfasında ek ayar olmadan çalışır. Bağışlar › Ayarlar › WooCommerce'te yeni **Ödeme yöntemleri** tablosu her yöntemin neyi desteklediğini gösterir: blok ödeme sayfası, sepetsiz ödeme linki, adressiz ödeme, sunucu doğrulaması, taksit, kart saklama, siteden iade, aylık bağış. Bilgi WooCommerce'in kendisinden (supports(), process_refund, blok kaydı) ve adaptörlerden gelir.
 - Blok ödeme sayfası: kendi blok desteği olmayan ve kartı kendi sayfasında alan eklentiler (has_fields = false) ödeme bloğuna Flux Donate tarafından eklenir (ayar "Diğer ödeme eklentilerini blok ödeme sayfasında göster", varsayılan açık). Kendi kart alanları olan ama blok desteği olmayan eklentiler tabloda ve Sistem Kontrolü'nde uyarı olarak görünür.

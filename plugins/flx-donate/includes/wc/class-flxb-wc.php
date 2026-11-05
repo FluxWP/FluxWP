@@ -164,8 +164,12 @@ final class FLXB_WC {
 		FLXB_WC_Contact::init();
 		FLXB_WC_Designs::init();
 		FLXB_WC_Terms::init();
-		FLXB_WC_Gateways::init();
-		FLXB_WC_Esnekpos::init();
+		if ( FLXB_WC_Gateways::pos() ) {
+			FLXB_WC_Gateways::init_pos(); // Flux POS: method table, one card rule and EsnekPOS live there
+		} else {
+			FLXB_WC_Gateways::init();
+			FLXB_WC_Esnekpos::init();
+		}
 		define( 'FLXB_WC_READY', true );
 		do_action( 'flxb_wc_loaded' );
 	}
