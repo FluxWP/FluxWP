@@ -220,6 +220,31 @@ Hepsi herkese açık API, ama blok tarafı WooCommerce'te en hızlı değişen k
 - Tutar her hesaplamada `woocommerce_before_calculate_totals` ile türden yazılır.
 - Sipariş işlemleri yalnızca `wc_get_order()`, `$order->get_meta()/update_meta_data()`, `wc_get_orders()`, `wc_create_refund()` ile (HPOS açık/kapalı fark etmez).
 
+## Sanal POS altyapısı (2.13.0)
+
+WooCommerce'e kayıtlı her ödeme eklentisi bağış ödeme sayfasında görünür (whitelist yok). `FLXB_WC_Gateways`:
+
+- `FLXB_WC_Gateways::caps( $gateway )` → `[ cap => [ state, note ] ]`. cap: `blocks`, `no_cart`, `no_address`, `verified`, `installments`, `tokenization`, `refunds`, `monthly`. state: `yes` | `flux` (Flux Donate yapıyor) | `page` (sağlayıcının sayfasında) | `no` | `unknown`.
+- Otomatik tespit: `supports('tokenization')`, `supports('refunds')` + `process_refund` gerçekten yazılmış mı, blok kaydı (`PaymentMethodRegistry`), `has_fields`.
+- Blok fallback: kendi blok entegrasyonu olmayan, kartı kendi sayfasında alan (`has_fields = false`) etkin gateway'ler ödeme bloğuna eklenir (`FLXB_WC_Generic_Blocks`, ayar `block_fallback`). Sipariş Store API'den geçer, WooCommerce eklentinin kendi `process_payment()` yönlendirmesini izler.
+- Adaptör: bir eklentiyi tarif eder (ve gerekiyorsa düzeltir).
+
+```php
+add_filter( 'flxb_gateway_adapters', function ( $a ) {
+	$a['my_pos'] = array(
+		'label' => 'My POS',
+		'logo'  => 'https://…/logo.svg',                // Tema › Ödeme logoları'nda hazır logo (anahtar gw-my_pos)
+		'note'  => 'Test modu',                          // tabloda adın altında
+		'caps'  => array( 'installments' => array( 'page', 'POS sayfasında' ), 'verified' => array( 'yes', '' ) ),
+	);
+	return $a;
+} );
+add_filter( 'flxb_gateway_caps', function ( $caps, $gateway ) { return $caps; }, 10, 2 );
+```
+
+- EsnekPOS adaptörü (`FLXB_WC_Esnekpos`, gateway `esnekpospos`): başlatma order-pay sayfasında (`template_redirect`), dönüş `wc-api/flxb_esnekpos?order=&key=` (eski `?wc-api=WC_Gateway_Esnekpospos` de karşılanır, sipariş anahtarı verilmez). Ödendi sayılması için ProcessQuery `STATUS=SUCCESS`, `RETURN_CODE=0`, referans eşleşmesi, `AMOUNT >= toplam`, varsa `TRANSACTIONS` içinde `STATUS_ID=3`. Referans `<sipariş>-<zaman36>` (meta `_flxb_esnek_ref`), ödeme bilgisi meta `_flxb_esnekpos`. Filtreler: `flxb_esnekpos_base_url`, `flxb_esnekpos_request`, `flxb_esnekpos_amount`; aksiyon `flxb_wc_esnekpos_paid( $order, $query )`.
+- Tema logoları: `flx_pay_logos_builtin` filtresine adaptör logoları `gw-<id>` anahtarıyla eklenir (`default` = gateway etkin).
+
 ## Referans ve roller (2.2.0, Flux Roles)
 
 - Sütun `ref_user_id` (bağışlar ve düzenli bağışlar). Kaynak sırası: siparişte `_flx_ref_user` (Flux Roles) → düzenli bağışın referansı (aylık tahsilatlar) → Çağrı Merkezi'nde bağışı kaydeden temsilci (`meta.created_by`, `flx_referans` yetkisi varsa) → "Bağış ekle"de seçilen kişi. `FLXB_Donations::record()` `ref_user_id` alır; dolu referans ezilmez.

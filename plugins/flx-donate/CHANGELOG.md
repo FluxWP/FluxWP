@@ -1,5 +1,13 @@
 # Değişiklikler
 
+## 2.13.0
+- Sanal POS altyapısı: WooCommerce'e kurulan her ödeme eklentisi (EsnekPOS, Stripe, resmi iyzico, PayTR vb.) bağış ödeme sayfasında ek ayar olmadan çalışır. Bağışlar › Ayarlar › WooCommerce'te yeni **Ödeme yöntemleri** tablosu her yöntemin neyi desteklediğini gösterir: blok ödeme sayfası, sepetsiz ödeme linki, adressiz ödeme, sunucu doğrulaması, taksit, kart saklama, siteden iade, aylık bağış. Bilgi WooCommerce'in kendisinden (supports(), process_refund, blok kaydı) ve adaptörlerden gelir.
+- Blok ödeme sayfası: kendi blok desteği olmayan ve kartı kendi sayfasında alan eklentiler (has_fields = false) ödeme bloğuna Flux Donate tarafından eklenir (ayar "Diğer ödeme eklentilerini blok ödeme sayfasında göster", varsayılan açık). Kendi kart alanları olan ama blok desteği olmayan eklentiler tabloda ve Sistem Kontrolü'nde uyarı olarak görünür.
+- Adaptör filtresi `flxb_gateway_adapters` (yetenekler, not, logo) ve `flxb_gateway_caps`. Ayrıntı API.md "Sanal POS altyapısı".
+- EsnekPOS adaptörü (resmi modül 1.0.0, gateway `esnekpospos`): ödemeyi Flux Donate yürütür. EsnekPOS ortak ödeme sayfasına sipariş satırlarıyla gider (sepetsiz ödeme linki de çalışır), dönüşte ödeme sunucudan ProcessQuery ile doğrulanmadan sipariş ödendi sayılmaz (modülün kendi dönüş kontrolü boş sorgu gönderiyor ve sahte POST ile kandırılabiliyordu). Modülün her istekte çalışan `init` kancası kaldırılır, Merchant Key alanı şifre alanı olur, test için TEST1234.
+- Sistem Kontrolü: "Diğer ödeme eklentileri" satırı; kart yöntemi olarak üçüncü taraf POS'lar da sayılır.
+- Tema FluxWP 0.7.7 ödeme logoları için etkin adaptörlerin logolarını (ör. EsnekPOS) hazır logo olarak sunar.
+
 ## 2.12.1
 - Tarih ve "… önce" metinleri artık kullanıcının dilinde, tek ortak yardımcıdan (FluxWP `flx_date` / `flx_time_ago`, flx-brand 1.1.0): "31 minutes önce", "August 10" gibi Türkçe/İngilizce karışımı kalmadı; çekirdek dil paketi inmemiş olsa da TR ve EN ay/gün adları doğru.
 

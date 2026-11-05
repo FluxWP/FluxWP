@@ -222,6 +222,7 @@ require get_theme_file_path( 'inc/hiz.php' );
 require get_theme_file_path( 'inc/erisim.php' );
 require get_theme_file_path( 'inc/onbellek.php' );
 require get_theme_file_path( 'inc/ayarlar.php' );
+require get_theme_file_path( 'inc/odeme-logolari.php' );
 require get_theme_file_path( 'inc/dil.php' );
 require get_theme_file_path( 'inc/woocommerce.php' );
 require get_theme_file_path( 'inc/hesap.php' );

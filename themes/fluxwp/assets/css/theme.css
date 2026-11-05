@@ -1499,3 +1499,10 @@ body.woocommerce-order-pay::after{content:"";position:fixed;left:0;right:0;botto
 
 /* [products] kısa kodu: ızgara */
 .woocommerce ul.products{display:grid!important;grid-template-columns:repeat(var(--flx-cols,4),minmax(0,1fr));gap:1.4rem;margin:0;padding:0;list-style:none}.woocommerce ul.products::before,.woocommerce ul.products::after{display:none!important}.woocommerce ul.products.columns-3{--flx-cols:3}.woocommerce ul.products.columns-2{--flx-cols:2}.woocommerce ul.products li.product{width:auto!important;margin:0!important;float:none!important}@media (max-width:900px){.woocommerce ul.products{--flx-cols:2!important}}@media (max-width:420px){.woocommerce ul.products{gap:.8rem}}
+
+/* ---------- v0.7.7: ödeme logoları listesi (Tema Ayarları › Ödeme logoları) ---------- */
+.flx-pay-logos.flx-pay-logos--list{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem .8rem;width:auto;aspect-ratio:auto;font-size:inherit;color:inherit!important;overflow:visible;background:none}
+.flx-pay-logo{display:inline-flex;align-items:center;line-height:0}
+.flx-pay-logo img{display:block;height:22px;width:auto;max-width:160px}
+.flx-pay-logo--band img{height:24px;max-width:min(100%,342px)}
+.flx-pay-logo--chip{padding:5px 10px;border-radius:6px;background:#fff}
