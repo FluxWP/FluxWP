@@ -3,11 +3,15 @@
 	'use strict';
 	var cfg = window.flxbAdmin || {};
 	var t = cfg.i18n || {};
-	/* Only http(s), same-site relative or query-only addresses are followed (no javascript:, data: ...). */
-	function safeUrl(u) {
-		u = String(u || '');
-		return /^(https?:\/\/|\/(?!\/)|\?)/i.test(u) ? u : '';
-	}
+	/* Only http(s) or same-site paths are followed (no javascript:, data: ...); the result starts with a fixed prefix. */
+	var safeUrl = function (u) {
+		u = String(u == null ? '' : u).trim();
+		var l = u.toLowerCase();
+		if (l.indexOf('https://') === 0) return 'https://' + u.slice(8);
+		if (l.indexOf('http://') === 0) return 'http://' + u.slice(7);
+		if (u.charAt(0) === '/' && u.charAt(1) !== '/' && u.charAt(1) !== '\\') return location.origin + u;
+		return '';
+	};
 
 	/* Buttons that submit long-running forms show a spinner. */
 	document.addEventListener('submit', function (e) {

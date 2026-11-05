@@ -1,6 +1,15 @@
 /* Flux Mail – yönetim ekranları */
 ( function () {
 	'use strict';
+	/* Yalnız http(s) veya site içi adres; sonuç sabit bir önekle başlar (javascript:, data: vb. düşer). */
+	var flxiSafeUrl = function (u) {
+		u = String(u == null ? '' : u).trim();
+		var l = u.toLowerCase();
+		if (l.indexOf('https://') === 0) return 'https://' + u.slice(8);
+		if (l.indexOf('http://') === 0) return 'http://' + u.slice(7);
+		if (u.charAt(0) === '/' && u.charAt(1) !== '/' && u.charAt(1) !== '\\') return location.origin + u;
+		return '';
+	};
 
 	var C = window.FLXI || { rest: '', nonce: '', i18n: {} };
 	var T = C.i18n || {};
@@ -1413,8 +1422,7 @@
 				input.value = '';
 				if ( img ) {
 					var back = clear.getAttribute( 'data-media-clear' ) || def || '';
-					// Yalnız http(s) veya site içi göreli adres.
-					img.src = /^(https?:\/\/|\/(?!\/))/i.test( back ) ? back : '';
+					img.src = flxiSafeUrl( back );
 				}
 				input.dispatchEvent( new Event( 'change', { bubbles: true } ) );
 			} );

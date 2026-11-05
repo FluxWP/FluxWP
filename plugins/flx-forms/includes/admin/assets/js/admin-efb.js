@@ -3238,7 +3238,11 @@ let change_el_edit_Efb = (el) => {
           return url;
           }
         valj_efb[indx].src = ud(el.value);
-        document.getElementById(valj_efb[indx].id_+'_img').src = /^(https?:\/\/|\/(?!\/))/i.test(String(el.value).trim()) ? String(el.value).trim() : '';
+        {
+          // Only http(s) or same-site image addresses; the value always starts with a fixed prefix.
+          const iu = String(el.value).trim(), il = iu.toLowerCase();
+          document.getElementById(valj_efb[indx].id_+'_img').src = il.startsWith('https://') ? 'https://' + iu.slice(8) : il.startsWith('http://') ? 'http://' + iu.slice(7) : (iu.startsWith('/') && !iu.startsWith('//')) ? location.origin + iu : '';
+        }
         break;
       case 'imgRadio_sub_value':
         indx = valj_efb.findIndex(x => x.id_op == el.dataset.id);

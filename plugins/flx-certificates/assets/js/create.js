@@ -756,7 +756,7 @@
 		}).catch(function (e) { A.toast(e.message, 'err'); });
 	});
 	function resetAll() {
-		if (state.edit) { if (/^(https?:\/\/|\/(?!\/))/i.test(String(DATA.newUrl || ''))) window.location.href = DATA.newUrl; return; }
+		if (state.edit) { var nu = A.safeUrl(DATA.newUrl); if (nu) window.location.href = nu; return; }
 		if (state.current) { state.current.detached = true; state.current = null; refreshJobs(); }
 		state.results = [];
 		resetForm();

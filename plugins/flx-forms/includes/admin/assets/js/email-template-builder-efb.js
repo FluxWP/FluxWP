@@ -1573,9 +1573,11 @@ ${blocksHtml}
     'shortcode_admin_email':   () => t_efb('ebSCAdminEmail', 'Admin Email')
   };
 
+  const _SHORTCODE_LABEL_MAP_efb = new Map(Object.entries(_SHORTCODE_LABELS_efb));
+
   function _shortcodeChipHtml_efb(code) {
-    const labelFn = Object.prototype.hasOwnProperty.call(_SHORTCODE_LABELS_efb, code) ? _SHORTCODE_LABELS_efb[code] : null;
-    const label = typeof labelFn === 'function' ? labelFn() : code;
+    const labelFn = _SHORTCODE_LABEL_MAP_efb.get(code);
+    const label = labelFn ? labelFn() : code;
     return `<span class="efb-chip" contenteditable="false" data-shortcode="${escHtml_efb(code)}"><i class="efb bi-braces me-1"></i>${escHtml_efb(label)}<button type="button" class="efb-chip-remove" tabindex="-1">&times;</button></span>`;
   }
 

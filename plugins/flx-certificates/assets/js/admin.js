@@ -352,7 +352,16 @@
 		if (ev) ev.hidden = e.target.value !== 'event';
 	});
 
-	window.FLXSA = { forward: forward, normPhone: normPhone, fmtPhone: fmtPhone, validEmail: validEmail, api: api, esc: esc, debounce: debounce, toast: toast, copy: copy, download: download, C: C };
+	/* Yalnız http(s) veya site içi adres; sonuç sabit bir önekle başlar. */
+	var safeUrl = function (u) {
+		u = String(u == null ? '' : u).trim();
+		var l = u.toLowerCase();
+		if (l.indexOf('https://') === 0) return 'https://' + u.slice(8);
+		if (l.indexOf('http://') === 0) return 'http://' + u.slice(7);
+		if (u.charAt(0) === '/' && u.charAt(1) !== '/' && u.charAt(1) !== '\\') return location.origin + u;
+		return '';
+	};
+	window.FLXSA = { safeUrl: safeUrl, forward: forward, normPhone: normPhone, fmtPhone: fmtPhone, validEmail: validEmail, api: api, esc: esc, debounce: debounce, toast: toast, copy: copy, download: download, C: C };
 
 	// Toplu işlem çubuğu: seçim varken görünür (telefonda yer kaplamasın)
 	function selState(f) {

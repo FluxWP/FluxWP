@@ -1,6 +1,15 @@
 /* Flux Mail – Posta kutusu */
 ( function () {
 	'use strict';
+	/* Yalnız http(s) veya site içi adres; sonuç sabit bir önekle başlar. */
+	var flxmSafeUrl = function (u) {
+		u = String(u == null ? '' : u).trim();
+		var l = u.toLowerCase();
+		if (l.indexOf('https://') === 0) return 'https://' + u.slice(8);
+		if (l.indexOf('http://') === 0) return 'http://' + u.slice(7);
+		if (u.charAt(0) === '/' && u.charAt(1) !== '/' && u.charAt(1) !== '\\') return location.origin + u;
+		return '';
+	};
 
 	var C = window.FLXIMB;
 	var root = document.querySelector( '[data-flxm]' );
@@ -834,10 +843,9 @@
 		E.ed.addEventListener( 'input', refresh );
 		var logoImg = el( 'img', { class: 'flxm-logo-prev', alt: '', src: l.partner_logo || '', hidden: ! l.partner_logo } );
 		plogo.addEventListener( 'input', function () {
-			var u = String( plogo.value || '' ).trim();
-			var ok = /^(https?:\/\/|\/(?!\/))/i.test( u );
-			logoImg.src = ok ? u : '';
-			logoImg.hidden = ! ok;
+			var u = flxmSafeUrl( plogo.value );
+			logoImg.src = u;
+			logoImg.hidden = ! u;
 		} );
 		function data() {
 			return { name: name.value, desc: desc.value, base: base.value, partner_name: pname.value, partner_logo: plogo.value, partner_url: purl.value, accent: accent.value, heading: heading.value, subject: subj.value, body: E.ed.innerHTML };

@@ -6,9 +6,10 @@
 		var b = e.target.closest('[data-map]');
 		if (!b) return;
 		var f = document.createElement('iframe');
-		var src = b.getAttribute('data-map') || '';
-		if (!/^https:\/\//i.test(src)) return;
-		f.src = src;
+		// Yalnız Google Haritalar gömme adresi; sorgu kısmı korunur, adres sabit önekle kurulur.
+		var raw = b.getAttribute('data-map') || '', q = raw.indexOf('?');
+		if (raw.toLowerCase().indexOf('https://maps.google.com/maps?') !== 0 || q < 0) return;
+		f.src = 'https://maps.google.com/maps' + raw.slice(q);
 		f.loading = 'lazy';
 		f.title = L.mapTitle || 'Etkinlik konumu';
 		f.referrerPolicy = 'no-referrer-when-downgrade';
