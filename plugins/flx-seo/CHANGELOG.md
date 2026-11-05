@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 1.7.2
+- **PHP güvenlik uyarısı** (Sistem Kontrolü › Güvenlik ve Site denetimi): çalışan PHP, PHP2Shell (CVE-2026-109618, CVE-2026-109619) açığına karşı yamasızsa (8.2.35, 8.3.36, 8.4.27, 8.5.12 altı) ya da desteklenmeyen bir daldaysa (8.1 ve öncesi) hata/kritik bulgu.
+- `session.upload_progress.enabled` açıksa uyarı (PHP yamasızsa hata).
+- Sürüm tablosu `flxseo_php_security_table` filtresiyle güncellenebilir (açık adı, sürüm notları adresi, dal başına yamalı sürüm).
+
 ## 1.7.1
 - **Siteye özel sabit değer kalmadı.** Kurum schema'sına her sitede yazılan fidan/ağaçlandırma konuları (`knowsAbout`), `areaServed: Türkiye` ve "Fidan bağışı yap" `DonateAction` kaldırıldı. Yerine SEO › Kurum ve sosyal'de **Uzmanlık konuları**, **Hizmet bölgesi** ve **Bağış çağrısı** (ad + adres) ayarları geldi; boşsa schema'ya eklenmez. Ön ayarlar Flux Setup ile doldurur.
 - Bağış/fidan sayfalarının ve etkinlik/proje arşivlerinin sabit SEO metinleri çıkarıldı; ön ayarlar `flxseo_keyword_pages` ve `flxseo_keyword_archives` filtreleriyle verir (değişince boş alanlara bir kez yazılır, elle girilene dokunulmaz).

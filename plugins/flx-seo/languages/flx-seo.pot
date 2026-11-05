@@ -1116,3 +1116,39 @@ msgstr ""
 
 msgid "Bağış kabul eden kurumlar için (schema DonateAction). Ad boşsa eklenmez; adres boşsa bağış sayfası kendiliğinden bulunur."
 msgstr ""
+
+#, php-format
+msgid "PHP %1$s, %2$s açığına karşı yamasız. En az %3$s sürümüne güncelleyin (hosting paneli › PHP sürümü). Dağıtım paketi yamayı sürüm numarasını değiştirmeden almış olabilir; emin değilseniz sağlayıcınıza sorun."
+msgstr ""
+
+#, php-format
+msgid "PHP %1$s artık güvenlik yaması almıyor; %2$s gibi açıklar kapatılmaz. PHP %3$s ya da yamalı daha yeni bir sürüme geçin."
+msgstr ""
+
+#, php-format
+msgid "PHP %1$s, %2$s için yamalı."
+msgstr ""
+
+msgid "Güvenlik"
+msgstr ""
+
+msgid "PHP güvenlik yaması"
+msgstr ""
+
+msgid "Sürüm notları"
+msgstr ""
+
+msgid "session.upload_progress.enabled açık. WordPress bunu kullanmaz; kapatmak saldırı yüzeyini küçültür. php.ini ya da hosting panelinde \"session.upload_progress.enabled = Off\" yapın."
+msgstr ""
+
+msgid "PHP sürümü güvenlik yaması almamış"
+msgstr ""
+
+msgid "Sunucudaki PHP bilinen bir açığa karşı yamasız ya da artık desteklenmiyor. Hosting panelinden PHP'yi güncel yama sürümüne yükseltin."
+msgstr ""
+
+msgid "session.upload_progress açık"
+msgstr ""
+
+msgid "WordPress bu PHP özelliğini kullanmaz; PHP2Shell gibi açıklarda istismar yolu olur. php.ini ya da hosting panelinde session.upload_progress.enabled = Off yapın."
+msgstr ""
