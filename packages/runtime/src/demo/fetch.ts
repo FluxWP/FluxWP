@@ -5,6 +5,7 @@ import { DEMO_ORIGIN } from '@fluxwp/core/src/demo/origin';
 import bootstrap from '@fluxwp/manifest/fixtures/bootstrap.json';
 import config from '@fluxwp/manifest/fixtures/config.json';
 import manifest from '@fluxwp/manifest/fixtures/manifest.json';
+import { moduleDemoRoutes } from '../modules/demo';
 import { comments, contacts, crm, pages, posts } from './data';
 
 export const DEMO_SITE = DEMO_ORIGIN;
@@ -41,6 +42,7 @@ let prefs: Record<string, unknown> = {
 let devices: { id: number; device_id?: string; token?: string; current: boolean }[] = [];
 
 const routes: [string, RegExp, Handler][] = [
+  ...moduleDemoRoutes,
   ['GET', /^flxapp\/v1\/app\/bootstrap$/, () => bootstrap],
   ['GET', /^flxapp\/v1\/config$/, () => config],
   ['GET', /^flxapp\/v1\/manifest$/, () => manifest],
