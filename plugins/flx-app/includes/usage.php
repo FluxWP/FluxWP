@@ -120,7 +120,7 @@ function flxapp_usage_save_consent() {
 	}
 	check_admin_referer( 'flxapp_usage_consent' );
 	update_option( 'flxapp_usage_share', ! empty( $_POST['share'] ) ? '1' : '0', false );
-	wp_safe_redirect( admin_url( 'admin.php?page=flx-setup&tab=settings' ) );
+	wp_safe_redirect( admin_url( 'admin.php?page=flx-setup-settings' ) );
 	exit;
 }
 
