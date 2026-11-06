@@ -4015,3 +4015,57 @@ msgstr ""
 
 msgid "Donation note"
 msgstr ""
+
+msgid "Manage"
+msgstr ""
+
+msgid "This gift is one basket: every item in it changes together."
+msgstr ""
+
+msgid "Change the status of this gift? Its WooCommerce order follows; when you mark it paid, the certificate is made and sent to the donor."
+msgstr ""
+
+msgid "Change the status of this gift?"
+msgstr ""
+
+msgid "Change status"
+msgstr ""
+
+msgid "Restore this gift from the trash?"
+msgstr ""
+
+msgid "Move this gift and its WooCommerce order to the trash? You can restore it later."
+msgstr ""
+
+msgid "Move this gift to the trash? You can restore it later."
+msgstr ""
+
+msgid "Delete this gift permanently? This cannot be undone."
+msgstr ""
+
+msgid "Pending (on hold)"
+msgstr ""
+
+msgid "Completed (paid)"
+msgstr ""
+
+msgid "Status changed to \"%s\"."
+msgstr ""
+
+msgid "The status was not changed."
+msgstr ""
+
+msgid "Put on hold in Flux Donate."
+msgstr ""
+
+msgid "Pending (payment not received yet)"
+msgstr ""
+
+msgid "Completed (payment received)"
+msgstr ""
+
+msgid "You can change it later on the donation page."
+msgstr ""
+
+msgid "Record a gift paid or promised by bank transfer, in cash or another way."
+msgstr ""

@@ -265,6 +265,12 @@ class FLXB_WC_Callcenter {
 						$order->update_status( 'cancelled', __( 'Canceled in Flux Donate.', 'flx-donate' ) );
 					}
 					break;
+				case 'pending':
+					/* 2.14.0: put on hold by hand in Flux Donate (also a gift that was marked paid). */
+					if ( ! empty( $upd['manual'] ) && ! $order->has_status( array( 'on-hold', 'pending', 'refunded' ) ) ) {
+						$order->update_status( 'on-hold', __( 'Put on hold in Flux Donate.', 'flx-donate' ) );
+					}
+					break;
 				case 'failed':
 					if ( ! $order->is_paid() ) {
 						$order->update_status( 'failed', __( 'Marked as failed in Flux Donate.', 'flx-donate' ) );

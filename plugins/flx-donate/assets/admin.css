@@ -656,3 +656,10 @@ html.flxa-dark .flxb { --flxb-mint: var(--flxa-accent-soft); --flxb-dark: var(--
 	.flxb-gw__table td::before { content: attr(data-label); color: var(--flxb-muted); }
 }
 .flxb-gw__links { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* 2.14.0: Manage card on the donation detail (status, trash, delete) */
+.flxb-manage__row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px}
+.flxb-manage__row form{margin:0;display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap}
+.flxb-manage__status select{min-width:180px}
+.flxb-manage__status label{font-weight:600}
+@media (max-width:600px){.flxb-manage__row form,.flxb-manage__status select{width:100%}.flxb-manage__row .flxb-btn{flex:1}}
