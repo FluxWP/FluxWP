@@ -4,11 +4,13 @@ import { useTranslation } from 'react-i18next';
 import { useStore } from 'zustand';
 import { Copy, ExternalLink, Pin, X } from 'lucide-react';
 import type { FlxcSection } from '@fluxwp/core';
-import { Avatar } from '@fluxwp/ui';
+import { Avatar, ResizablePane } from '@fluxwp/ui';
 import type { WaEngine } from './engine';
+import { useHost } from '../host';
 
 export function InfoPanel({ engine, id, onClose, onInsert, toast }: { engine: WaEngine; id: number; onClose: () => void; onInsert: (s: string) => void; toast: (s: string) => void }) {
   const { t, i18n } = useTranslation();
+  const host = useHost();
   const c = useStore(engine.store, (s) => s.chats[id]);
   const boot = useStore(engine.store, (s) => s.boot);
   const [sections, setSections] = useState<FlxcSection[]>([]);
@@ -29,7 +31,7 @@ export function InfoPanel({ engine, id, onClose, onInsert, toast }: { engine: Wa
   const save = (patch: Parameters<WaEngine['update']>[1]) => void engine.update(id, patch).catch((e: Error) => toast(e.message));
 
   return (
-    <aside className="wa-info">
+    <ResizablePane className="wa-info" storageKey={`flux.pane.${host.scope}.wa-contact`} initialWidth={320} minWidth={240} maxWidth={520} minContentWidth={320} edge="left" label={t('pane.details')}>
       <header>
         <strong>{t('wa.info.title')}</strong>
         <button type="button" className="icon-btn" onClick={onClose} aria-label={t('common.close')}><X size={17} /></button>
@@ -114,6 +116,6 @@ export function InfoPanel({ engine, id, onClose, onInsert, toast }: { engine: Wa
         </section>
         <p className="muted xsmall">{t('wa.info.firstSeen', { date: new Date(c.created).toLocaleDateString(i18n.language, { day: 'numeric', month: 'long', year: 'numeric' }) })}</p>
       </div>
-    </aside>
+    </ResizablePane>
   );
 }

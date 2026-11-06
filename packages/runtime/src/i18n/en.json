@@ -26,7 +26,15 @@
       "notifications": "Notifications"
     },
     "groups": {
-      "content": "Content"
+      "general": "General",
+      "communication": "Communication",
+      "donations": "Donations",
+      "content": "Content",
+      "growth": "Growth",
+      "screens": "Screens",
+      "system": "System",
+      "other": "Other",
+      "apps": "Apps"
     },
     "openedInWeb": "Opened in web view"
   },
@@ -156,5 +164,38 @@
     "open": "Open menu",
     "close": "Close menu",
     "expand": "Toggle submenu"
+  },
+  "ai": {
+    "title": "AI assistant",
+    "shortcut": "Toggle AI assistant (⌘/Ctrl+J)",
+    "resize": "Assistant panel width",
+    "float": "Open as bubble",
+    "dock": "Dock on the right",
+    "expand": "Open full page",
+    "new": "New chat",
+    "search": "Search chats",
+    "history": "Chat history",
+    "notReady": "AI is not configured on this site yet. An administrator must complete Flux AI settings on the server.",
+    "messages": "Chat messages",
+    "welcome": "How can I help?",
+    "disclosure": "Works within your permissions. Tools that make changes wait for your explicit approval.",
+    "you": "You",
+    "tool": "Tool",
+    "assistant": "Assistant",
+    "thinking": "Thinking summary",
+    "working": "Assistant is working…",
+    "approval": "Your approval is required",
+    "arguments": "Data to be sent",
+    "reject": "Reject",
+    "approve": "Approve",
+    "continue": "Submit decisions",
+    "resume": "Continue response",
+    "message": "Write a message",
+    "stop": "Stop",
+    "send": "Send"
+  },
+  "pane": {
+    "list": "List width",
+    "details": "Contact details width"
   }
 }

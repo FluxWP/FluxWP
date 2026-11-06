@@ -842,6 +842,36 @@
           "open": "mailto:{{email}}"
         }
       }
+    },
+    "ai": {
+      "id": "ai",
+      "plugin": "flx-ai",
+      "min_app": "1.0.0",
+      "title": "Flux AI",
+      "icon": "chat",
+      "menu": "flx-ai",
+      "fallback": {
+        "web": "admin.php?page=flx-ai-settings"
+      },
+      "entry": "chat",
+      "sources": {},
+      "screens": {
+        "chat": {
+          "type": "native",
+          "title": "Sohbet",
+          "component": "flxai-chat",
+          "fallback": {
+            "web": "admin.php?page=flx-ai"
+          }
+        }
+      },
+      "routes": {
+        "admin.php?page=flx-ai": {
+          "screen": "chat"
+        }
+      },
+      "schema": "flx-app-manifest/1",
+      "version": "0.9.1"
     }
   }
 }

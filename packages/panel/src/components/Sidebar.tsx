@@ -7,7 +7,7 @@ import { AccountCard } from './AccountCard';
 import { BrandLogo } from './BrandLogo';
 import { TitleBar } from './TitleBar';
 import { UpdateBanner } from './UpdateBanner';
-import { useSidebar } from '../state/sidebar';
+import { useSidebar, SIDEBAR_MIN, SIDEBAR_MAX } from '../state/sidebar';
 import type { Route } from '../state/route';
 import type { SideGroup, SideLink } from '../shell/links';
 
@@ -44,6 +44,7 @@ export function Sidebar({ account, pins, groups, activeId, childId, onSearch, on
   };
   const onResizeMove = (e: React.PointerEvent) => resizing && setWidth(startW.current + e.clientX - startX.current);
   const onResizeUp = () => (setResizing(false), document.documentElement.classList.remove('flux-resizing'));
+  useEffect(() => () => document.documentElement.classList.remove('flux-resizing'), []);
   const bell = actions.find((a) => a.route.kind === 'shell' && a.route.name === 'notifications');
 
   return (
@@ -128,11 +129,20 @@ export function Sidebar({ account, pins, groups, activeId, childId, onSearch, on
           role="separator"
           aria-orientation="vertical"
           aria-label={t('nav.resize')}
+          tabIndex={0}
+          aria-valuemin={SIDEBAR_MIN}
+          aria-valuemax={SIDEBAR_MAX}
+          aria-valuenow={width}
           onPointerDown={onResizeDown}
           onPointerMove={onResizeMove}
           onPointerUp={onResizeUp}
           onPointerCancel={onResizeUp}
+          onLostPointerCapture={onResizeUp}
           onDoubleClick={() => setWidth(260)}
+          onKeyDown={(e) => {
+            const next = e.key === 'Home' ? SIDEBAR_MIN : e.key === 'End' ? SIDEBAR_MAX : e.key === 'Enter' ? 260 : e.key === 'ArrowLeft' ? width - (e.shiftKey ? 40 : 10) : e.key === 'ArrowRight' ? width + (e.shiftKey ? 40 : 10) : null;
+            if (next !== null) { e.preventDefault(); setWidth(next); }
+          }}
         />
       </div>
     </aside>

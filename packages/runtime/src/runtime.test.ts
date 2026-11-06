@@ -253,7 +253,7 @@ describe('demo transport', () => {
     const boot = await loadBootstrap(DEMO_SITE, demoShellFetch);
     expect(boot?.auth.clients).toEqual({ mobile: 'flx-mobil', desktop: 'flx-masaustu' });
     expect(boot?.auth.login_url).toBe('https://demo.fluxapp.local/fluxadmin/');
-    expect(Object.keys(parseManifestBundle(await api('flxapp/v1/manifest')).modules)).toEqual(['crm']);
+    expect(Object.keys(parseManifestBundle(await api('flxapp/v1/manifest')).modules)).toEqual(['crm', 'ai']);
     const res = await demoShellFetch(`${DEMO_SITE}/wp-json/wp/v2/posts?per_page=3&page=1`);
     expect(res.headers.get('X-WP-TotalPages')).toBe('3');
   });

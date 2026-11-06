@@ -6,7 +6,7 @@ import {
   ArrowDown, Bot, Check, CheckCheck, Info, Lock, LockOpen, MessageCircle, MessageSquarePlus, Mic, Pin, Search, StickyNote, UserCheck, WifiOff,
 } from 'lucide-react';
 import type { FlxcChat, FlxcFilter, FlxcMessage } from '@fluxwp/core';
-import { Avatar, Empty, Loading } from '@fluxwp/ui';
+import { Avatar, Empty, Loading, ResizablePane } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { WaEngine, type WaState } from './engine';
 import { Bubble, type BubbleActions } from './Bubble';
@@ -79,6 +79,7 @@ function ChatList({ engine, offline }: { engine: WaEngine; offline: WaState['off
   const more = useWa(engine, (s) => s.listMore);
   const boot = useWa(engine, (s) => s.boot);
   const conns = useWa(engine, (s) => s.conns);
+  const host = useHost();
   const [q, setQ] = useState('');
   const [adding, setAdding] = useState(false);
 
@@ -90,7 +91,7 @@ function ChatList({ engine, offline }: { engine: WaEngine; offline: WaState['off
   const down = conns.filter((c) => c.state && c.state !== 'open');
 
   return (
-    <section className="split-list wa-list">
+    <ResizablePane className="split-list wa-list" storageKey={`flux.pane.${host.scope}.wa-list`} initialWidth={340} minWidth={260} maxWidth={560} minContentWidth={360} label={t('pane.list')}>
       <header className="split-head column">
         <div className="row wa-list-title">
           <h1 className="grow">{t('inbox.title')}</h1>
@@ -131,7 +132,7 @@ function ChatList({ engine, offline }: { engine: WaEngine; offline: WaState['off
         {loading && <Loading />}
         {!loading && order.length === 0 && <Empty icon={<MessageCircle size={28} />} title={t('inbox.empty')} />}
       </div>
-    </section>
+    </ResizablePane>
   );
 }
 

@@ -26,7 +26,15 @@
       "notifications": "Bildirimler"
     },
     "groups": {
-      "content": "İçerik"
+      "general": "Genel",
+      "communication": "İletişim",
+      "donations": "Bağış",
+      "content": "İçerik",
+      "growth": "Büyüme",
+      "screens": "Ekranlar",
+      "system": "Sistem",
+      "other": "Diğer",
+      "apps": "Uygulamalar"
     },
     "openedInWeb": "Web görünümünde açıldı"
   },
@@ -156,5 +164,38 @@
     "open": "Menüyü aç",
     "close": "Menüyü kapat",
     "expand": "Alt menüyü aç"
+  },
+  "ai": {
+    "title": "Yapay zekâ asistanı",
+    "shortcut": "AI asistanını aç/kapat (⌘/Ctrl+J)",
+    "resize": "Asistan paneli genişliği",
+    "float": "Baloncuk olarak aç",
+    "dock": "Sağa sabitle",
+    "expand": "Tam sayfa aç",
+    "new": "Yeni sohbet",
+    "search": "Sohbetlerde ara",
+    "history": "Sohbet geçmişi",
+    "notReady": "Bu sitede AI henüz yapılandırılmadı. Bir yönetici sunucudaki Flux AI ayarlarını tamamlamalı.",
+    "messages": "Sohbet mesajları",
+    "welcome": "Size nasıl yardımcı olabilirim?",
+    "disclosure": "Yetkiniz olan işlemlerde yardımcı olur. Değişiklik yapacak araçlar açık onayınızı bekler.",
+    "you": "Siz",
+    "tool": "Araç",
+    "assistant": "Asistan",
+    "thinking": "Düşünme özeti",
+    "working": "Asistan çalışıyor…",
+    "approval": "Onayınız gerekiyor",
+    "arguments": "Gönderilecek veri",
+    "reject": "Reddet",
+    "approve": "Onayla",
+    "continue": "Kararları gönder",
+    "resume": "Yanıta devam et",
+    "message": "Mesajınızı yazın",
+    "stop": "Durdur",
+    "send": "Gönder"
+  },
+  "pane": {
+    "list": "Liste genişliği",
+    "details": "Kişi detay paneli genişliği"
   }
 }
