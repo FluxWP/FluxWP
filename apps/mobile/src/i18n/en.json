@@ -235,5 +235,12 @@
       "textPh": "Text",
       "type": "Type"
     }
+  },
+  "privacy": {
+    "connection": "Sign-in and site actions go to the WordPress site you choose. Your site operator has its own privacy policy.",
+    "share": "Share aggregate app usage (optional)",
+    "usage": "Off by default. With your choice and the site administrator’s permission, the site counts daily active accounts by iOS/Android. Only totals for groups of at least five are shared with FluxWP, with the site’s configured country. No names, content or GPS location are sent. Turn this off here or in Settings at any time.",
+    "policy": "Privacy",
+    "terms": "Terms of use"
   }
 }

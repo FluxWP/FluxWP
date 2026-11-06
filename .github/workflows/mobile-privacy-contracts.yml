@@ -1,0 +1,21 @@
+name: Mobile privacy contracts
+on:
+  pull_request:
+    paths: ['plugins/flx-app/**', 'plugins/flx-analytics/**', 'tools/tests/mobile-usage.php', '.github/workflows/mobile-privacy-contracts.yml']
+  push:
+    branches: [main]
+    paths: ['plugins/flx-app/**', 'plugins/flx-analytics/**', 'tools/tests/mobile-usage.php', '.github/workflows/mobile-privacy-contracts.yml']
+permissions:
+  contents: read
+jobs:
+  privacy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['7.4', '8.3']
+    container:
+      image: php:${{ matrix.php }}-cli
+    steps:
+      - uses: actions/checkout@v5
+      - run: php tools/tests/mobile-usage.php
+      - run: php -l plugins/flx-app/includes/usage.php && php -l plugins/flx-analytics/includes/telemetry-hub.php

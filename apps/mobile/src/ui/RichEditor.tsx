@@ -93,17 +93,17 @@ export function RichEditor({ value, onChange, upload = true }: { value: string; 
     }
   };
 
-  const tools: { id: string; label: string; run: () => void }[] = [
-    { id: 'b', label: 'B', run: () => send({ type: 'cmd', cmd: 'bold' }) },
-    { id: 'i', label: 'I', run: () => send({ type: 'cmd', cmd: 'italic' }) },
-    { id: 'u', label: 'U', run: () => send({ type: 'cmd', cmd: 'underline' }) },
-    { id: 'h', label: 'H', run: () => send({ type: 'block', tag: 'H2' }) },
-    { id: 'ul', label: '•', run: () => send({ type: 'cmd', cmd: 'insertUnorderedList' }) },
-    { id: 'ol', label: '1.', run: () => send({ type: 'cmd', cmd: 'insertOrderedList' }) },
-    { id: 'q', label: '❝', run: () => send({ type: 'block', tag: 'BLOCKQUOTE' }) },
-    { id: 'link', label: t('mobile.editor.link'), run: () => setLink(true) },
+  const tools: { id: string; label: string; message?: object }[] = [
+    { id: 'b', label: 'B', message: { type: 'cmd', cmd: 'bold' } },
+    { id: 'i', label: 'I', message: { type: 'cmd', cmd: 'italic' } },
+    { id: 'u', label: 'U', message: { type: 'cmd', cmd: 'underline' } },
+    { id: 'h', label: 'H', message: { type: 'block', tag: 'H2' } },
+    { id: 'ul', label: '•', message: { type: 'cmd', cmd: 'insertUnorderedList' } },
+    { id: 'ol', label: '1.', message: { type: 'cmd', cmd: 'insertOrderedList' } },
+    { id: 'q', label: '❝', message: { type: 'block', tag: 'BLOCKQUOTE' } },
+    { id: 'link', label: t('mobile.editor.link') },
+    ...(upload ? [{ id: 'img', label: t('mobile.editor.image') }] : []),
   ];
-  if (upload) tools.push({ id: 'img', label: t('mobile.editor.image'), run: () => void addImage() });
 
   const body = (
     <View style={[styles.wrap, full && styles.full, full && { paddingTop: insets.top }]}>
@@ -115,7 +115,11 @@ export function RichEditor({ value, onChange, upload = true }: { value: string; 
       </View>
       <View style={styles.tools}>
         {tools.map((tool) => (
-          <Pressable key={tool.id} accessibilityRole="button" accessibilityLabel={tool.label} onPress={tool.run} style={styles.tool}>
+          <Pressable key={tool.id} accessibilityRole="button" accessibilityLabel={tool.label} onPress={() => {
+              if (tool.id === 'img') void addImage();
+              else if (tool.id === 'link') setLink(true);
+              else if (tool.message) send(tool.message);
+            }} style={styles.tool}>
             <Text style={tool.id === 'i' ? styles.italic : tool.id === 'b' ? styles.bold : undefined}>{tool.label}</Text>
           </Pressable>
         ))}

@@ -1,7 +1,7 @@
 // First-run frames for the site form. `onboarding` is three pages then the form.
 // `card` and `band` are the other two entry designs (open with /add-site?giris=card|band).
 import { useState, type ReactNode } from 'react';
-import { Pressable, View } from 'react-native';
+import { Pressable, ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
@@ -56,7 +56,7 @@ export function Welcome({ variant, children, footer }: { variant: EntryVariant; 
 
   if (variant === 'band') {
     return (
-      <View style={[styles.screen, { paddingTop: insets.top }]}>
+      <ScrollView style={styles.screen} contentContainerStyle={[styles.formScreen, { paddingTop: insets.top }]} keyboardShouldPersistTaps="handled">
         <View style={[styles.band, { backgroundColor: theme.colors.primary }]}>
           <Mark on={theme.colors.onPrimary} accent={theme.colors.accent} />
           <Text variant="title" style={{ color: theme.colors.onPrimary }}>{t('mobile.welcome.bandTitle')}</Text>
@@ -68,13 +68,13 @@ export function Welcome({ variant, children, footer }: { variant: EntryVariant; 
           <View style={styles.flex} />
           {footer ? <View style={styles.footer}>{footer}</View> : null}
         </View>
-      </View>
+      </ScrollView>
     );
   }
 
   if (variant === 'card') {
     return (
-      <View style={[styles.screen, styles.cardScreen, { paddingTop: insets.top + 28, paddingBottom: bottom }]}>
+      <ScrollView style={styles.screen} contentContainerStyle={[styles.formScreen, styles.cardScreen, { paddingTop: insets.top + 28, paddingBottom: bottom }]} keyboardShouldPersistTaps="handled">
         <Mark size={26} />
         <Text variant="title" style={styles.center}>{t('mobile.welcome.cardTitle')}</Text>
         <Text tone="muted" style={styles.center}>{t('mobile.welcome.cardBody')}</Text>
@@ -85,18 +85,18 @@ export function Welcome({ variant, children, footer }: { variant: EntryVariant; 
         </View>
         <View style={styles.flex} />
         {footer ? <View style={styles.footer}>{footer}</View> : null}
-      </View>
+      </ScrollView>
     );
   }
 
   return (
-    <View style={[styles.screen, { paddingTop: insets.top + 8, paddingBottom: bottom, paddingHorizontal: 24 }]}>
+    <ScrollView style={styles.screen} contentContainerStyle={[styles.formScreen, { paddingTop: insets.top + 8, paddingBottom: bottom, paddingHorizontal: 24 }]} keyboardShouldPersistTaps="handled">
       <Mark size={18} />
       <Text variant="title">{t('mobile.addSite.title')}</Text>
       <View style={styles.formGap}>{children}</View>
       <View style={styles.flex} />
       {footer ? <View style={styles.footer}>{footer}</View> : null}
-    </View>
+    </ScrollView>
   );
 }
 
@@ -145,6 +145,7 @@ function SafeArt() {
 
 const styles = StyleSheet.create((theme) => ({
   screen: { flex: 1, backgroundColor: theme.colors.bg },
+  formScreen: { flexGrow: 1 },
   flex: { flex: 1, minHeight: 0 },
   skip: { alignSelf: 'flex-end', paddingHorizontal: 24, paddingVertical: 8, flexShrink: 0 },
   page: { flex: 1, minHeight: 0, paddingHorizontal: 32, alignItems: 'center', justifyContent: 'center', gap: 14 },

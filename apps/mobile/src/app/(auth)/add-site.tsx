@@ -14,6 +14,7 @@ import { LOGO, LOGO_DARK, brand, gate } from '@/brand';
 import { accountKey } from '@/shell/routes';
 import { Welcome, entryVariant } from '@/shell/entry/Welcome';
 import { Avatar, Button, Field, IconButton, Text } from '@/ui/primitives';
+import { PrivacyNotice } from '@/privacy/PrivacyNotice';
 
 type Step = 'url' | 'method' | 'otp' | 'apikey';
 type Busy = null | 'discover' | 'oauth' | 'oauth2' | 'otp' | 'verify' | 'key' | 'apppass' | 'demo';
@@ -43,7 +44,7 @@ export default function AddSite() {
   const preset = typeof presetParam === 'string' ? presetParam : '';
   const variant = entryVariant(giris);
   const insets = useSafeAreaInsets();
-  const [url, setUrl] = useState(brand.defaultSite ?? '');
+  const [url, setUrl] = useState((gate.locked && brand.defaultSite ? brand.defaultSite : preset) || brand.defaultSite || '');
   const [site, setSite] = useState<SiteInfo | null>(null);
   const [step, setStep] = useState<Step>('url');
   const [busy, setBusy] = useState<Busy>(null);
@@ -88,7 +89,6 @@ export default function AddSite() {
   useEffect(() => {
     const initial = gate.locked && brand.defaultSite ? brand.defaultSite : preset;
     if (!initial) return;
-    setUrl(initial);
     void Promise.resolve().then(() => discoverFrom(initial));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -129,6 +129,7 @@ export default function AddSite() {
           footer={!restricted ? <Button kind="ghost" label={t('mobile.addSite.demo')} loading={busy === 'demo'} disabled={!!busy} onPress={() => void run('demo', async () => done(await loginDemo()))} testID="demo" /> : null}
         >
           {urlForm}
+          <PrivacyNotice introduction />
         </Welcome>
       </KeyboardAvoidingView>
     );
@@ -141,6 +142,7 @@ export default function AddSite() {
           <Text variant="title">{t('auth.welcome', { name: brand.name })}</Text>
           <Text tone="muted">{restricted ? t('mobile.addSite.allowedHint') : t('mobile.addSite.hint')}</Text>
           {urlForm}
+          <PrivacyNotice introduction />
         </View>
       </KeyboardAvoidingView>
     );
@@ -217,6 +219,7 @@ export default function AddSite() {
         ) : null}
 
         {error ? <Text tone="danger" accessibilityRole="alert" style={styles.center}>{t(error)}</Text> : null}
+        <PrivacyNotice introduction />
         <Text variant="caption" style={styles.center}>{t('auth.footer', { name: brand.name })}</Text>
       </ScrollView>
     </KeyboardAvoidingView>

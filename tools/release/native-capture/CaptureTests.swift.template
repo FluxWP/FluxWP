@@ -26,7 +26,13 @@ final class CaptureTests: XCTestCase {
         continueAfterFailure = false
         app.launchArguments = ["-AppleLanguages", __LANGUAGES__, "-AppleLocale", __LOCALE__]
         app.launch()
+        if element("welcome-skip").waitForExistence(timeout: 5) {
+            tap("welcome-skip")
+        }
         XCTAssertTrue(element("demo").waitForExistence(timeout: 60))
+        let consent = element("usage-consent")
+        XCTAssertTrue(consent.waitForExistence(timeout: 15), "Privacy choice must be available before login")
+        XCTAssertEqual(consent.value as? String, "0", "Usage sharing must default off")
         shot("01-connect")
         tap("demo")
         XCTAssertTrue(element("open-drawer").waitForExistence(timeout: 60))

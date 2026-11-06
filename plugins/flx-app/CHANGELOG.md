@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.4.2
+- Ayrı kullanıcı ve site yöneticisi izniyle günlük iOS/Android aktif hesap toplamları. Varsayılan kapalı; yalnız başarılı oturumlu istekler; gün bazlı tekilleştirme, 5 hesap eşiği, içerik/kimlik göndermeyen telemetri ve süreli yerel sayaçlar.
+
 ## 0.4.1
 - Site işareti artık yalnız WordPress site simgesine bakmıyor. Simge yoksa tema logosu, Flux Admin logosu ya da profil logosu gelir. Yeşil Türkiye gibi simgesi olan siteler eskisi gibi simgeyi kullanır.
 
