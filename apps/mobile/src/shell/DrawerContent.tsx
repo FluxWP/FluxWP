@@ -60,11 +60,9 @@ function Item({ e, onPress }: { e: NavEntry; onPress: (e: NavEntry) => void }) {
   const { theme } = useUnistyles();
   const label = useLabel();
   return (
-    <Pressable accessibilityRole="button" onPress={() => onPress(e)} style={({ pressed }) => [styles.item, pressed && styles.pressed]}>
-      <View style={styles.iconBox}>
-        <Icon name={e.iconUrl || e.icon} slug={e.slug} size={18} color={theme.colors.primary} />
-      </View>
-      <Text numberOfLines={1} style={styles.flex}>{label(e.label)}</Text>
+        <Pressable accessibilityRole="button" onPress={() => onPress(e)} style={({ pressed }) => [styles.item, pressed && styles.pressed]}>
+      <Icon name={e.iconUrl || e.icon} slug={e.slug} size={20} color={theme.colors.textMuted} />
+      <Text numberOfLines={1} style={styles.itemLabel}>{label(e.label)}</Text>
       {e.badge ? <Badge text={String(e.badge)} tone="danger" /> : null}
       {e.route.kind === 'web' ? <Icon name="external" size={14} color={theme.colors.textMuted} /> : null}
     </Pressable>
@@ -72,15 +70,15 @@ function Item({ e, onPress }: { e: NavEntry; onPress: (e: NavEntry) => void }) {
 }
 
 const styles = StyleSheet.create((theme) => ({
-  drawer: { flex: 1, backgroundColor: theme.colors.sidebar },
-  account: { flexDirection: 'row', alignItems: 'center', gap: 12, marginHorizontal: 12, marginBottom: 12, padding: 12, borderRadius: theme.radius.lg, backgroundColor: theme.colors.surface2 },
+  drawer: { flex: 1, backgroundColor: theme.colors.sidebar, borderTopRightRadius: 22, borderBottomRightRadius: 22 },
+  account: { flexDirection: 'row', alignItems: 'center', gap: 12, marginHorizontal: 8, marginBottom: 8, padding: 8, borderRadius: theme.radius.md },
   brand: { paddingHorizontal: 20, marginBottom: 12 },
   flex: { flex: 1 },
-  group: { marginTop: 8 },
-  groupHead: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 20, paddingVertical: 8 },
+  group: { marginTop: 14 },
+  groupHead: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 18, paddingVertical: 6 },
   groupTitle: { textTransform: 'uppercase', letterSpacing: 0.6, fontWeight: '700' },
-  item: { flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 46, paddingHorizontal: 16, marginHorizontal: 8, borderRadius: theme.radius.md },
-  pressed: { backgroundColor: theme.colors.sidebarActive },
-  iconBox: { width: 30, height: 30, borderRadius: 8, backgroundColor: theme.colors.primarySoft, alignItems: 'center', justifyContent: 'center' },
-  sep: { height: StyleSheet.hairlineWidth, backgroundColor: theme.colors.border, marginVertical: 12, marginHorizontal: 20 },
+  item: { flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 46, paddingHorizontal: 12, marginHorizontal: 8, borderRadius: theme.radius.md },
+  itemLabel: { flex: 1, fontSize: 15, fontWeight: '500' },
+  pressed: { backgroundColor: theme.colors.primarySoft },
+  sep: { height: StyleSheet.hairlineWidth, backgroundColor: theme.colors.border, marginVertical: 12, marginHorizontal: 16 },
 }));

@@ -5,7 +5,7 @@ import {
   ApiError, accountsStore, brand, discoverSite, DiscoveryError, loginApiKey, loginAppPassword, loginDemo, loginOAuth, loginOtp, OAuthError, otpStart, platform, type SiteInfo,
 } from '@fluxwp/core';
 import type { Bootstrap } from '@fluxwp/manifest';
-import { brandGate, loadBootstrap, SiteNotAllowedError } from '@fluxwp/runtime';
+import { brandGate, loadBootstrap, siteMark, SiteNotAllowedError } from '@fluxwp/runtime';
 import { Avatar } from '@fluxwp/ui';
 import { BrandLogo } from '../components/BrandLogo';
 
@@ -24,9 +24,9 @@ const sameHost = (siteUrl: string) => {
   return accountsStore.getState().accounts.some((a) => { try { return new URL(a.siteUrl).host === host; } catch { return false; } });
 };
 
-export function AddSite({ onCancel }: { onCancel?: () => void }) {
+export function AddSite({ onCancel, initialUrl }: { onCancel?: () => void; initialUrl?: string }) {
   const { t } = useTranslation();
-  const [url, setUrl] = useState(brand.defaultSite ?? '');
+  const [url, setUrl] = useState(initialUrl || brand.defaultSite || '');
   const [site, setSite] = useState<SiteInfo | null>(null);
   const [boot, setBoot] = useState<Bootstrap | null>(null);
   const [busy, setBusy] = useState<null | 'discover' | 'oauth' | 'key' | 'demo' | 'otp' | 'apppass'>(null);
@@ -47,13 +47,15 @@ export function AddSite({ onCancel }: { onCancel?: () => void }) {
     e?.preventDefault();
     void run('discover', async () => {
       const found = brand.allowedSites?.length || brand.lockSite ? await brandGate(brand).findSite(url) : await discoverSite(url);
-      setSite(found);
-      setBoot(await loadBootstrap(found.url).catch(() => null));
+      const next = await loadBootstrap(found.url).catch(() => null);
+      const mark = siteMark(found.icon, next?.brand?.icon, next?.site?.icon, next?.brand?.logo, next?.brand?.logo_dark);
+      setSite(mark ? { ...found, icon: mark } : found);
+      setBoot(next);
     });
   };
 
   useEffect(() => {
-    if (brand.lockSite && brand.defaultSite) discover();
+    if (initialUrl || (brand.lockSite && brand.defaultSite)) discover();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

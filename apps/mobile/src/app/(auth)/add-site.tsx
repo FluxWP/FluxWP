@@ -2,16 +2,17 @@
 // (default), code (OTP), API key, or Application Passwords when the site has no Flux App (limited mode).
 import { useEffect, useState } from 'react';
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, View } from 'react-native';
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { SvgXml } from 'react-native-svg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { ApiError, AppPasswordError, DiscoveryError, OAuthError, loginApiKey, loginAppPassword, loginDemo, loginOAuth, loginOtp, otpStart, type Account, type SiteInfo } from '@fluxwp/core';
 import type { Bootstrap } from '@fluxwp/manifest';
-import { SiteNotAllowedError, loadBootstrap } from '@fluxwp/runtime';
+import { SiteNotAllowedError, loadBootstrap, siteMark } from '@fluxwp/runtime';
 import { LOGO, LOGO_DARK, brand, gate } from '@/brand';
 import { accountKey } from '@/shell/routes';
+import { Welcome, entryVariant } from '@/shell/entry/Welcome';
 import { Avatar, Button, Field, IconButton, Text } from '@/ui/primitives';
 
 type Step = 'url' | 'method' | 'otp' | 'apikey';
@@ -38,6 +39,9 @@ function errorKey(e: unknown): string {
 export default function AddSite() {
   const { t } = useTranslation();
   const { theme } = useUnistyles();
+  const { giris, url: presetParam } = useLocalSearchParams<{ giris?: string; url?: string }>();
+  const preset = typeof presetParam === 'string' ? presetParam : '';
+  const variant = entryVariant(giris);
   const insets = useSafeAreaInsets();
   const [url, setUrl] = useState(brand.defaultSite ?? '');
   const [site, setSite] = useState<SiteInfo | null>(null);
@@ -69,52 +73,87 @@ export default function AddSite() {
     }
   };
   const done = (a: Account) => router.replace({ pathname: '/[account]', params: { account: accountKey(a.id) } });
-  const discover = () =>
+  const discoverFrom = (input: string) =>
     run('discover', async () => {
-      const s = await gate.findSite(url);
-      setBoot(s.hasFluxApp ? await loadBootstrap(s.url).catch(() => null) : null);
-      setSite(s);
+      const s = await gate.findSite(input);
+      const next = s.hasFluxApp ? await loadBootstrap(s.url).catch(() => null) : null;
+      setBoot(next);
+      const mark = siteMark(s.icon, next?.brand?.icon, next?.site?.icon, next?.brand?.logo, next?.brand?.logo_dark);
+      setSite(mark ? { ...s, icon: mark } : s);
       setStep('method');
     });
+  const discover = () => discoverFrom(url);
 
-  // Single-site brand: connect to its site right away.
+  // Single-site brand, or a re-login that already knows the address: skip the address step.
   useEffect(() => {
-    if (gate.locked && brand.defaultSite) void Promise.resolve().then(discover);
+    const initial = gate.locked && brand.defaultSite ? brand.defaultSite : preset;
+    if (!initial) return;
+    setUrl(initial);
+    void Promise.resolve().then(() => discoverFrom(initial));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const urlForm = !gate.locked ? (
+    <>
+      <Text tone="muted">{restricted ? t('mobile.addSite.allowedHint') : t('mobile.addSite.hint')}</Text>
+      {picks.length ? (
+        <View style={styles.sites}>
+          {picks.map((host) => {
+            const on = currentHost === host.toLowerCase();
+            return (
+              <Pressable key={host} testID={`allowed-site-${host}`} accessibilityRole="button" accessibilityState={{ selected: on }} onPress={() => setUrl(host.includes('://') ? host : `https://${host}`)} style={[styles.sitePick, on && styles.sitePickOn]}>
+                <Text variant="small" tone={on ? 'primary' : undefined}>{host}</Text>
+              </Pressable>
+            );
+          })}
+        </View>
+      ) : null}
+      {wildcards.map((host) => <Text key={host} variant="small" tone="muted">{t('mobile.addSite.wildcard', { host })}</Text>)}
+      <Field label={t('auth.siteUrl')} value={url} onChangeText={setUrl} placeholder={t('auth.siteUrlPlaceholder')} autoCapitalize="none" autoCorrect={false} keyboardType="url" returnKeyType="go" onSubmitEditing={() => url.trim() && void discover()} testID="site-url" />
+      <Button label={t('mobile.addSite.continue')} onPress={() => void discover()} loading={busy === 'discover'} disabled={!url.trim() || !!busy} full testID="continue" />
+      {error ? <Text tone="danger" accessibilityRole="alert" style={styles.center}>{t(error)}</Text> : null}
+    </>
+  ) : (
+    <>
+      <Button label={t('common.retry')} onPress={() => void discover()} loading={busy === 'discover'} full />
+      {error ? <Text tone="danger" accessibilityRole="alert" style={styles.center}>{t(error)}</Text> : null}
+    </>
+  );
+
+  if (step === 'url' && !gate.locked) {
+    return (
+      <KeyboardAvoidingView style={styles.screen} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+        <Welcome
+          key={variant}
+          variant={variant}
+          footer={!restricted ? <Button kind="ghost" label={t('mobile.addSite.demo')} loading={busy === 'demo'} disabled={!!busy} onPress={() => void run('demo', async () => done(await loginDemo()))} testID="demo" /> : null}
+        >
+          {urlForm}
+        </Welcome>
+      </KeyboardAvoidingView>
+    );
+  }
+
+  if (step === 'url') {
+    return (
+      <KeyboardAvoidingView style={styles.screen} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+        <View style={[styles.wrap, { paddingTop: insets.top + 48 }]}>
+          <Text variant="title">{t('auth.welcome', { name: brand.name })}</Text>
+          <Text tone="muted">{restricted ? t('mobile.addSite.allowedHint') : t('mobile.addSite.hint')}</Text>
+          {urlForm}
+        </View>
+      </KeyboardAvoidingView>
+    );
+  }
 
   return (
     <KeyboardAvoidingView style={styles.screen} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <ScrollView contentContainerStyle={[styles.wrap, { paddingTop: insets.top + 24, paddingBottom: insets.bottom + 24 }]} keyboardShouldPersistTaps="handled">
         {router.canGoBack() ? <View style={styles.close}><IconButton icon="x" label={t('common.close')} onPress={() => router.back()} /></View> : null}
-        <SvgXml xml={theme.mode === 'dark' ? LOGO_DARK : LOGO} width={170} height={50} accessibilityLabel={brand.name} />
-        {step === 'url' ? (
-          <View style={styles.block}>
-            <Text variant="title">{gate.locked ? t('auth.welcome', { name: brand.name }) : t('mobile.addSite.title')}</Text>
-            <Text tone="muted">{restricted ? t('mobile.addSite.allowedHint') : t('mobile.addSite.hint')}</Text>
-            {!gate.locked ? (
-              <>
-                {picks.length ? (
-                  <View style={styles.sites}>
-                    {picks.map((host) => {
-                      const on = currentHost === host.toLowerCase();
-                      return (
-                        <Pressable key={host} testID={`allowed-site-${host}`} accessibilityRole="button" accessibilityState={{ selected: on }} onPress={() => setUrl(host.includes('://') ? host : `https://${host}`)} style={[styles.sitePick, on && styles.sitePickOn]}>
-                          <Text variant="small" tone={on ? 'primary' : undefined}>{host}</Text>
-                        </Pressable>
-                      );
-                    })}
-                  </View>
-                ) : null}
-                {wildcards.map((host) => <Text key={host} variant="small" tone="muted">{t('mobile.addSite.wildcard', { host })}</Text>)}
-                <Field label={t('auth.siteUrl')} value={url} onChangeText={setUrl} placeholder={t('auth.siteUrlPlaceholder')} autoCapitalize="none" autoCorrect={false} keyboardType="url" returnKeyType="go" onSubmitEditing={() => url.trim() && void discover()} testID="site-url" />
-                <Button label={t('mobile.addSite.continue')} onPress={() => void discover()} loading={busy === 'discover'} disabled={!url.trim() || !!busy} full testID="continue" />
-              </>
-            ) : (
-              <Button label={t('common.retry')} onPress={() => void discover()} loading={busy === 'discover'} full />
-            )}
-          </View>
-        ) : site ? (
+        <View accessible accessibilityRole="image" accessibilityLabel={brand.name}>
+          <SvgXml xml={(theme.mode === 'dark' ? LOGO_DARK : LOGO).replace(/\s(?:aria-label|role)="[^"]*"/g, '')} width={170} height={50} />
+        </View>
+        {site ? (
           <View style={styles.block}>
             <View style={styles.siteChip}>
               <Avatar image={site.icon || undefined} text={site.name} size={44} square />
@@ -126,18 +165,16 @@ export default function AddSite() {
             </View>
 
             {step === 'method' && site.hasFluxApp && clientOff ? <Text tone="danger">{t('mobile.addSite.appNotAllowed')}</Text> : null}
-            {step === 'method' && site.hasFluxApp && !clientOff ? (
+            {step === 'method' && site.hasFluxApp && !clientOff && methods.includes('oauth') ? (
               <>
-                {methods.includes('oauth') ? (
-                  <>
-                    <Button label={busy === 'oauth' ? t('auth.waitingBrowser') : t('auth.loginBrowser')} icon="lock" loading={busy === 'oauth'} disabled={!!busy} onPress={() => void run('oauth', async () => done(await loginOAuth(site, { scope: 'flx offline_access' })))} full testID="oauth" />
-                    <Text variant="small" tone="muted" style={styles.center}>{t('mobile.addSite.browserHint')}</Text>
-                  </>
-                ) : null}
-                {methods.includes('otp') ? <Button kind="secondary" label={t('mobile.addSite.otp')} icon="phone" disabled={!!busy} onPress={() => setStep('otp')} full /> : null}
-                {methods.includes('apikey') ? <Button kind="ghost" label={t('auth.useApiKey')} icon="key" disabled={!!busy} onPress={() => setStep('apikey')} full /> : null}
-                {methods.includes('oauth') ? <Button kind="ghost" label={t('mobile.addSite.secondAccount')} disabled={!!busy} loading={busy === 'oauth2'} onPress={() => void run('oauth2', async () => done(await loginOAuth(site, { scope: 'flx offline_access', prompt: 'login' })))} full /> : null}
+                <Button label={busy === 'oauth' ? t('auth.waitingBrowser') : t('auth.loginBrowser')} icon="lock" loading={busy === 'oauth'} disabled={!!busy} onPress={() => void run('oauth', async () => done(await loginOAuth(site, { scope: 'flx offline_access' })))} full testID="oauth" />
+                <Text variant="small" tone="muted" style={styles.center}>{t('mobile.addSite.browserHint')}</Text>
+                <Button kind="ghost" label={t('mobile.addSite.secondAccount')} disabled={!!busy} loading={busy === 'oauth2'} onPress={() => void run('oauth2', async () => done(await loginOAuth(site, { scope: 'flx offline_access', prompt: 'login' })))} full />
               </>
+            ) : null}
+            {step === 'method' && site.hasFluxApp && methods.includes('otp') ? <Button kind="secondary" label={t('mobile.addSite.otp')} icon="phone" disabled={!!busy} onPress={() => setStep('otp')} full /> : null}
+            {step === 'method' && site.hasFluxApp && methods.includes('apikey') ? (
+              <Button kind={!clientOff && methods.includes('oauth') ? 'ghost' : 'primary'} label={!clientOff && methods.includes('oauth') ? t('auth.useApiKey') : t('auth.login')} icon="key" disabled={!!busy} onPress={() => setStep('apikey')} full testID="apikey" />
             ) : null}
 
             {step === 'method' && !site.hasFluxApp ? (
@@ -145,6 +182,9 @@ export default function AddSite() {
                 <Text tone="muted">{t('mobile.addSite.noFluxApp')}</Text>
                 <Button label={t('mobile.addSite.appPassword')} icon="key" loading={busy === 'apppass'} disabled={!!busy || !site.appPasswordsUrl} onPress={() => void run('apppass', async () => done(await loginAppPassword(site, brand.name)))} full />
               </>
+            ) : null}
+            {step === 'method' && site.hasFluxApp && !methods.includes('oauth') && !methods.includes('otp') && !methods.includes('apikey') ? (
+              <Button label={t('auth.login')} icon="key" loading={busy === 'apppass'} disabled={!!busy || !site.appPasswordsUrl} onPress={() => void run('apppass', async () => done(await loginAppPassword(site, brand.name)))} full />
             ) : null}
 
             {step === 'otp' ? (
@@ -177,9 +217,6 @@ export default function AddSite() {
         ) : null}
 
         {error ? <Text tone="danger" accessibilityRole="alert" style={styles.center}>{t(error)}</Text> : null}
-        {!restricted && !gate.locked && step === 'url' ? (
-          <Button kind="ghost" label={t('mobile.addSite.demo')} loading={busy === 'demo'} disabled={!!busy} onPress={() => void run('demo', async () => done(await loginDemo()))} testID="demo" />
-        ) : null}
         <Text variant="caption" style={styles.center}>{t('auth.footer', { name: brand.name })}</Text>
       </ScrollView>
     </KeyboardAvoidingView>

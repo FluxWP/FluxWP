@@ -107,7 +107,7 @@ export default function SocialScreen(_props: { params: Record<string, string> })
 
 const styles = StyleSheet.create((theme) => ({
   wrap: { padding: theme.space[4], gap: theme.space[3], paddingBottom: theme.space[12] },
-  input: { minHeight: 140, borderWidth: StyleSheet.hairlineWidth, borderColor: theme.colors.border, borderRadius: theme.radius.md, padding: theme.space[3], color: theme.colors.text, fontSize: 16, backgroundColor: theme.colors.surface, textAlignVertical: 'top' },
+  input: { minHeight: 140, borderWidth: 1, borderColor: theme.colors.border, borderRadius: theme.radius.md, padding: theme.space[3], color: theme.colors.text, fontSize: 16, fontFamily: theme.font.family, backgroundColor: theme.colors.surface, textAlignVertical: 'top' },
   preview: { width: '100%', height: 220, borderRadius: theme.radius.md, backgroundColor: theme.colors.surface2 },
   actions: { flexDirection: 'row', gap: 8 },
 }));

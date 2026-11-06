@@ -67,7 +67,7 @@ function flxapp_bootstrap() {
 			'url'         => flxapp_issuer(),
 			'admin_url'   => admin_url(),
 			'rest_url'    => rest_url(),
-			'icon'        => (string) get_site_icon_url( 256 ),
+			'icon'        => flxapp_site_mark(),
 			'locale'      => get_locale(),
 			'timezone'    => wp_timezone_string(),
 			'https'       => 0 === strpos( home_url(), 'https://' ),

@@ -23,7 +23,7 @@ function flxapp_counts() {
 function flxapp_rest_me() {
 	$u     = wp_get_current_user();
 	$tok   = flxapp_current_token();
-	$icon  = get_site_icon_url( 256 );
+	$icon  = flxapp_site_mark();
 	$roles = array();
 	$menu  = flxapp_menu_with_icons( flxapp_user_menu( $u->ID ) );
 	foreach ( (array) $u->roles as $r ) {

@@ -343,13 +343,38 @@ function flxapp_brand_info() {
 	$profile = (array) get_option( 'flx_profile', array() );
 	$icon    = get_site_icon_url( 512 );
 	$logo    = flxapp_media_url( $profile['logo'] ?? 0 );
+	$square  = $icon ? $icon : flxapp_custom_logo_url();
 	return array(
 		'name'       => (string) ( $o['name'] ?? '' ) ? $o['name'] : html_entity_decode( get_bloginfo( 'name' ), ENT_QUOTES, 'UTF-8' ),
 		'short_name' => (string) ( $o['short_name'] ?? '' ) ? $o['short_name'] : (string) ( $profile['name'] ?? '' ),
 		'logo'       => (string) ( $o['logo'] ?? '' ) ? $o['logo'] : ( $logo ? $logo : ( function_exists( 'flxa_logo_url' ) ? flxa_logo_url( 256 ) : ( $icon ? $icon : '' ) ) ),
 		'logo_dark'  => (string) ( $o['logo_dark'] ?? '' ) ? $o['logo_dark'] : flxapp_media_url( $profile['logo_light'] ?? 0 ),
-		'icon'       => (string) ( $o['icon'] ?? '' ) ? $o['icon'] : ( flxapp_media_url( $profile['icon'] ?? 0 ) ? flxapp_media_url( $profile['icon'] ) : ( $icon ? $icon : '' ) ),
+		'icon'       => (string) ( $o['icon'] ?? '' ) ? $o['icon'] : ( flxapp_media_url( $profile['icon'] ?? 0 ) ? flxapp_media_url( $profile['icon'] ) : (string) $square ),
 	);
+}
+
+/** Tema logosu (Görünüm › Özelleştir › Site kimliği). Site simgesi yoksa hesap işareti budur. */
+function flxapp_custom_logo_url() {
+	$id = (int) get_theme_mod( 'custom_logo' );
+	if ( ! $id ) {
+		return '';
+	}
+	$u = wp_get_attachment_image_url( $id, array( 512, 512 ) );
+	if ( ! $u ) {
+		$u = wp_get_attachment_url( $id );
+	}
+	return $u ? (string) $u : '';
+}
+
+/** Uygulamadaki site işareti: kare ikon, yoksa tema / Flux Admin / profil logosu. */
+function flxapp_site_mark() {
+	$b = flxapp_brand_info();
+	foreach ( array( 'icon', 'logo', 'logo_dark' ) as $key ) {
+		if ( ! empty( $b[ $key ] ) ) {
+			return (string) $b[ $key ];
+		}
+	}
+	return '';
 }
 
 /* ───────── Kabuk ───────── */

@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.2.3
+- Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
+
+
 ## 0.2.2
 - Uygulama manifesti (`crm`): genel bakış, kişiler, kişi kartı, kişi formu, segment listesi ve segmentteki kişiler. Segment kuralı düzenleyici web görünümünde açılır. Veri mevcut `flx-crm/v1` uçlarından gelir.
 

@@ -104,7 +104,7 @@ const styles = StyleSheet.create((theme) => ({
   flex: { flex: 1 },
   form: { padding: theme.space[4], gap: theme.space[3] },
   kinds: { flexDirection: 'row', gap: 8 },
-  input: { minHeight: 72, borderWidth: StyleSheet.hairlineWidth, borderColor: theme.colors.border, borderRadius: theme.radius.md, padding: theme.space[3], color: theme.colors.text, fontSize: 16, backgroundColor: theme.colors.surface, textAlignVertical: 'top' },
+  input: { minHeight: 72, borderWidth: 1, borderColor: theme.colors.border, borderRadius: theme.radius.md, padding: theme.space[3], color: theme.colors.text, fontSize: 16, fontFamily: theme.font.family, backgroundColor: theme.colors.surface, textAlignVertical: 'top' },
   gallery: { paddingHorizontal: theme.space[4] },
   tile: { borderRadius: theme.radius.md, overflow: 'hidden', backgroundColor: theme.colors.surface2, marginBottom: 4 },
   img: { width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' },

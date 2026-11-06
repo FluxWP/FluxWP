@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 2.1.14
+- Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
+
+
 ## 2.1.13
 - Uygulama manifesti: form listesi (`efb/v1/forms`) ve yanıt listesi. Form oluşturucu web görünümünde açılır.
 - Yeni uçlar `flx-forms/v1/responses`, `responses/{id}`, `responses/{id}/read`. Yetki `Emsfb` ya da yönetici.

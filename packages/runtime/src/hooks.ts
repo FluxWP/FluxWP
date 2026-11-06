@@ -1,8 +1,8 @@
 // Contract hooks: me, config, manifest, sync (badges), dashboard, merged config, shell model, theme.
 // Hostinger budget (plan §1.3): at most these four requests on open, polling ≥ poll_min and only in front.
-import { useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { ApiError, flxapp, platform, type Dashboard, type Me } from '@fluxwp/core';
+import { ApiError, accountsStore, flxapp, platform, type Dashboard, type Me } from '@fluxwp/core';
 import { DEFAULT_CONFIG, mergeConfig, type AppConfig, type Bootstrap, type ManifestBundle, type ThemeMode } from '@fluxwp/manifest';
 import { themeFromConfig, type BrandColors, type ThemeInput } from '@fluxwp/tokens';
 import { loadBootstrap, loadConfig, loadManifests, rememberedEtag, rememberEtag, withCore } from './api';
@@ -20,6 +20,27 @@ export function useBootstrap() {
     queryFn: () => loadBootstrap(account.siteUrl, account.authKind === 'demo' ? demoShellFetch : undefined),
     staleTime: 60 * 60_000,
   });
+}
+
+/** Raster mark for the account avatar. Skips SVG (the image view cannot draw it). */
+export function siteMark(...urls: (string | null | undefined)[]): string {
+  const list = urls.filter((u): u is string => typeof u === 'string' && u.length > 0);
+  return list.find((u) => !/\.svg(?:$|\?)/i.test(u)) ?? '';
+}
+
+/** Writes the site mark from /me or bootstrap onto the account, so a logo added later shows up without deleting the account. */
+export function useRememberSiteMark() {
+  const { account } = useScope();
+  const me = useMe();
+  const boot = useBootstrap();
+  const icon = siteMark(me.data?.site.icon, boot.data?.brand?.icon, boot.data?.site?.icon, boot.data?.brand?.logo, boot.data?.brand?.logo_dark);
+  const name = me.data?.site.name || boot.data?.site.name || '';
+  useEffect(() => {
+    const patch: { siteIcon?: string; siteName?: string } = {};
+    if (icon && icon !== account.siteIcon) patch.siteIcon = icon;
+    if (name && name !== account.siteName) patch.siteName = name;
+    if (patch.siteIcon || patch.siteName) void accountsStore.getState().update(account.id, patch);
+  }, [account.id, account.siteIcon, account.siteName, icon, name]);
 }
 
 export function useMe() {

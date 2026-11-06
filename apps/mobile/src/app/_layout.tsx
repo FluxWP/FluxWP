@@ -12,12 +12,14 @@ import { useStore } from 'zustand';
 import { useUnistyles } from 'react-native-unistyles';
 import { accountsStore } from '@fluxwp/core';
 import { AccountSwitcherHost } from '@/shell/AccountSwitcher';
+import { useAppFonts } from '@/theme/fonts';
 import { OverlayHost } from '@/ui/overlays';
 import { PushRouter } from '@/push';
 
 void SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  useAppFonts();
   const ready = useStore(accountsStore, (s) => s.ready);
   const { theme } = useUnistyles();
   useEffect(() => void accountsStore.getState().load(), []);

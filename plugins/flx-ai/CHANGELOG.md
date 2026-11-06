@@ -1,5 +1,9 @@
 # Flux AI — Değişiklikler
 
+## 0.9.1
+- Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
+
+
 ## 0.9.0
 - Uygulama ayarları ve kayıt listesi (`flx-ai/v1/log`, istek gövdesi dönmez). Anahtarlar write-only. Sohbet yerelde sonra açılır.
 

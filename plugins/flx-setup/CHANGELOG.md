@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.1.1
+- Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
+
+
 ## 1.1.0
 - Uygulama: paketler, kurulum sihirbazı, ön ayarlar ve güncelleme ayarları web görünümünde açılır.
 

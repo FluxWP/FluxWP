@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { useFormController } from '@fluxwp/runtime';
 import type { FormScreen as FormDef, Manifest } from '@fluxwp/manifest';
+import { RichEditor } from '@/ui/RichEditor';
 import { Button, Field, Segmented, Skeleton, Text } from '@/ui/primitives';
 import { EntityField, MediaField } from './fields';
 import type { RelationValue } from '@fluxwp/runtime';
@@ -35,6 +36,7 @@ export function FormScreen({ manifest, screen, params }: { manifest: Manifest; s
             render={({ field, fieldState }) => {
               const err = msg(fieldState.error?.message);
               const relation = field.value && typeof field.value === 'object' && 'id' in (field.value as object) ? (field.value as RelationValue) : null;
+              if (f.type === 'markdown') return <RichEditor value={field.value == null ? '' : String(field.value)} onChange={field.onChange} />;
               if (f.type === 'image' || f.type === 'file') return <MediaField field={f} value={relation} onChange={field.onChange} />;
               if (f.type === 'user' || f.type === 'term' || f.type === 'post') return <EntityField field={f} value={relation} onChange={field.onChange} />;
               if (f.type === 'switch')
@@ -52,7 +54,7 @@ export function FormScreen({ manifest, screen, params }: { manifest: Manifest; s
                     {err ? <Text variant="small" tone="danger">{err}</Text> : null}
                   </View>
                 );
-              const editable = !f.readonly && ['text', 'textarea', 'email', 'phone', 'url', 'number', 'money', 'markdown', 'secret', 'color', 'date', 'datetime', 'time'].includes(f.type);
+              const editable = !f.readonly && ['text', 'textarea', 'email', 'phone', 'url', 'number', 'money', 'secret', 'color', 'date', 'datetime', 'time'].includes(f.type);
               return (
                 <Field
                   label={f.label + (f.required ? ' *' : '')}
@@ -63,7 +65,7 @@ export function FormScreen({ manifest, screen, params }: { manifest: Manifest; s
                   placeholder={f.placeholder}
                   help={f.help}
                   error={err}
-                  multiline={f.type === 'textarea' || f.type === 'markdown'}
+                  multiline={f.type === 'textarea'}
                   secureTextEntry={f.type === 'secret'}
                   keyboardType={KEYBOARD[f.type] ?? 'default'}
                   autoCapitalize={f.type === 'email' || f.type === 'url' ? 'none' : 'sentences'}

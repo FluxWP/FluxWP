@@ -24,6 +24,8 @@ export interface ThemeConfigInput {
   dark?: ThemeColorsInput;
   radius?: 'small' | 'medium' | 'large';
   density?: 'compact' | 'comfortable';
+  /** Site font from theme.json / Flux Admin. Only the allowlist is applied. */
+  font?: { body?: string; heading?: string };
 }
 
 export type Mode = 'light' | 'dark';
@@ -55,7 +57,7 @@ export interface AppTheme {
   colors: AppThemeColors;
   space: typeof space;
   radius: { sm: number; md: number; lg: number; xl: number; full: number };
-  font: typeof font;
+  font: Omit<typeof font, 'family' | 'heading'> & { family: string; heading: string };
   density: 'compact' | 'comfortable';
 }
 
@@ -108,6 +110,16 @@ export function alpha(color: string, a: number): string {
 }
 
 const RADIUS = { small: 0.6, medium: 1, large: 1.4 } as const;
+const SYSTEM = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+const FONT_FACES = new Set(['Inter', 'Figtree', 'Nunito', 'Nunito Sans']);
+
+/** Quoted face plus the default stack. Unknown names are dropped (server data is untrusted). */
+function fontStack(name: unknown, fallback: string): string {
+  if (name === 'System') return SYSTEM;
+  if (typeof name !== 'string' || !FONT_FACES.has(name)) return fallback;
+  const face = name.includes(' ') ? `"${name}"` : name;
+  return `${face}, ${fallback}`;
+}
 
 export interface ThemeInput {
   mode: Mode;
@@ -155,7 +167,7 @@ export function themeFromConfig({ mode, brand, config, overrides }: ThemeInput):
     colors,
     space,
     radius: { sm: Math.round(baseRadius.sm * f), md: Math.round(baseRadius.md * f), lg: Math.round(baseRadius.lg * f), xl: Math.round(baseRadius.xl * f), full: baseRadius.full },
-    font,
+    font: { ...font, family: fontStack(config?.font?.body, font.family), heading: fontStack(config?.font?.heading, font.heading) },
     density: config?.density ?? 'comfortable',
   };
 }

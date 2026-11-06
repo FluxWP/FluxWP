@@ -501,5 +501,9 @@ return array(
 		'Yüksek' => 'High',
 		'Çaba' => 'Effort',
 		'İstek içeriğini kaydet' => 'Store request bodies',
-	),
+			'Sunucu Apache ise ve "Geçersiz anahtar" hatası alırsanız .htaccess\'e SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1 ekleyin ya da anahtarlı adresi kullanın.' => 'On Apache, if you see "Invalid key", add SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1 to .htaccess, or use the keyed URL.',
+		'Model sütunu: o sistemin kullandığı model. Değiştirmek için Ayarlar › Eklentiye özel model. Kapalı sistemin istekleri reddedilir ve Kayıtlar\'da "Kapalı" olarak görünür.' => 'The Model column is the model that system uses. Change it under Settings › Per-plugin model. Requests to a disabled system are rejected and show as "Disabled" in the log.',
+		'Yalnız anahtar bir workspace\'e bağlı değilse gerekir (hata mesajı "anthropic-workspace-id" isterse).' => 'Only needed when the key is not tied to a workspace (if the error asks for "anthropic-workspace-id").',
+		'→ Flux AI & MCP › Ayarlar › "Anthropic workspace ID" alanına console.anthropic.com › Settings › Workspaces\'teki kimliği (wrkspc_…) girin.' => '→ Flux AI & MCP › Settings › "Anthropic workspace ID": paste the id (wrkspc_…) from console.anthropic.com › Settings › Workspaces.',
+),
 );
