@@ -63,11 +63,11 @@ export function AccountSwitcherHost() {
 }
 
 const styles = StyleSheet.create((theme) => ({
-  title: { paddingHorizontal: 12, marginBottom: 8 },
-  list: { flexGrow: 0 },
-  row: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 12, borderRadius: theme.radius.md, minHeight: 56 },
+  title: { paddingHorizontal: 12, marginBottom: 4 },
+  list: { flexGrow: 0, maxHeight: 360 },
+  row: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 10, paddingHorizontal: 12, borderRadius: theme.radius.md, minHeight: 60 },
   pressed: { backgroundColor: theme.colors.surface2 },
-  flex: { flex: 1 },
+  flex: { flex: 1, minWidth: 0 },
   name: { fontWeight: '600' },
   add: { width: 40, height: 40, borderRadius: theme.radius.md, backgroundColor: theme.colors.primarySoft, alignItems: 'center', justifyContent: 'center' },
 }));

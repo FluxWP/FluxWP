@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.3.2
+- Alt pencereler (hesaplar, onay, seçim) iOS'ta düzgün: içerik yerel pencereye `RNHostView` ile bağlanır. Önceden satırlar tıklanmıyordu, metin dar alanda kesiliyordu ve başlık tutamacın altına giriyordu.
+- Hesap listesinde boşluklar ve hizalama düzeltildi; uzun liste kayar.
+
 ## 0.3.1
 - Oturum düşünce hesap silinmeden "Yeniden giriş" çıkar: hesap listesinde her zaman, ölü oturumda ekranın üstünde. Adres hazır gelir. API anahtarı da 401'de aynı yolu kullanır.
 - Site simgesi yoksa tema logosu ya da Flux Admin logosu hesap işaretine yazılır. Simgesi olan siteler (Yeşil Türkiye) simgeyi kullanmaya devam eder.
