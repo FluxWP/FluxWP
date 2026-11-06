@@ -1,6 +1,6 @@
 // Quick site/account switcher (top bar avatar, drawer header). Switching = replace to the other
 // account's route segment; each account keeps its own cache and theme.
-import { Modal, Pressable, ScrollView, View } from 'react-native';
+import { Pressable, ScrollView, View } from 'react-native';
 import { router } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
@@ -10,6 +10,7 @@ import { accountsStore, type Account } from '@fluxwp/core';
 import { gate } from '@/brand';
 import { Icon } from '@/ui/Icon';
 import { Avatar, Badge, Text } from '@/ui/primitives';
+import { Sheet } from '@/ui/Sheet';
 import { accountKey } from './routes';
 
 const useSwitcher = create<{ open: boolean }>(() => ({ open: false }));
@@ -28,13 +29,12 @@ export function AccountSwitcherHost() {
   const { theme } = useUnistyles();
   const insets = useSafeAreaInsets();
   return (
-    <Modal transparent visible={open} animationType="slide" onRequestClose={close}>
-      <Pressable style={styles.backdrop} onPress={close}>
-        <Pressable style={[styles.sheet, { paddingBottom: insets.bottom + 12 }]} onPress={() => undefined}>
+    <Sheet visible={open} onDismiss={close}>
+      <View style={{ paddingBottom: insets.bottom }}>
           <Text variant="heading" style={styles.title}>{t('mobile.switcher.title')}</Text>
           <ScrollView style={styles.list}>
             {accounts.map((a) => (
-              <Pressable key={a.id} accessibilityRole="button" accessibilityState={{ selected: a.id === activeId }} onPress={() => (close(), switchTo(a))} style={({ pressed }) => [styles.row, pressed && styles.pressed]}>
+              <Pressable key={a.id} accessibilityRole="button" accessibilityState={{ selected: a.id === activeId }} onPress={() => { close(); if (a.needsLogin) router.push({ pathname: '/add-site', params: { url: a.siteUrl } }); else switchTo(a); }} style={({ pressed }) => [styles.row, pressed && styles.pressed]}>
                 <Avatar image={a.siteIcon || undefined} text={a.siteName} size={40} square />
                 <View style={styles.flex}>
                   <Text numberOfLines={1} style={styles.name}>{a.siteName}</Text>
@@ -57,20 +57,17 @@ export function AccountSwitcherHost() {
               <Text style={styles.name}>{t('mobile.switcher.manage')}</Text>
             </Pressable>
           ) : null}
-        </Pressable>
-      </Pressable>
-    </Modal>
+      </View>
+    </Sheet>
   );
 }
 
 const styles = StyleSheet.create((theme) => ({
-  backdrop: { flex: 1, backgroundColor: theme.colors.overlay, justifyContent: 'flex-end' },
-  sheet: { backgroundColor: theme.colors.surface, borderTopLeftRadius: theme.radius.xl, borderTopRightRadius: theme.radius.xl, paddingTop: 16, paddingHorizontal: 8, maxHeight: '80%' },
-  title: { paddingHorizontal: 12, marginBottom: 8 },
-  list: { flexGrow: 0 },
-  row: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 12, borderRadius: theme.radius.md, minHeight: 56 },
+  title: { paddingHorizontal: 12, marginBottom: 4 },
+  list: { flexGrow: 0, maxHeight: 360 },
+  row: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 10, paddingHorizontal: 12, borderRadius: theme.radius.md, minHeight: 60 },
   pressed: { backgroundColor: theme.colors.surface2 },
-  flex: { flex: 1 },
+  flex: { flex: 1, minWidth: 0 },
   name: { fontWeight: '600' },
   add: { width: 40, height: 40, borderRadius: theme.radius.md, backgroundColor: theme.colors.primarySoft, alignItems: 'center', justifyContent: 'center' },
 }));

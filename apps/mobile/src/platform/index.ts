@@ -8,6 +8,7 @@ import { OAuthError, setPlatform, type OAuthRedirect, type Platform, type Visibi
 import { brand } from '@/brand';
 import { secure } from './secure';
 import { storage } from './storage';
+import { usageHeaders } from '@/privacy';
 import './crypto';
 
 WebBrowser.maybeCompleteAuthSession();
@@ -72,7 +73,7 @@ export const mobilePlatform: Platform = {
   prepareOAuthRedirect,
   visibility,
   // flx-app maps ios/android to the mobile shell; the web preview asks for it by name.
-  headers: () => ({ 'X-FluxWP-Platform': OS === 'web' ? 'mobile' : OS }),
+  headers: () => ({ 'X-FluxWP-Platform': OS === 'web' ? 'mobile' : OS, ...usageHeaders() }),
   // Local notifications arrive with push (a6); until then nothing to show outside the app.
   notify: async () => undefined,
 };

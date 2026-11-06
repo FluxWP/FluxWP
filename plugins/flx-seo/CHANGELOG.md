@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.8.1
+- Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
+
+
 ## 1.8.0
 - Uygulama ayarları (ayar köprüsü) ve site denetimi (`flx-seo/v1/audit`).
 

@@ -16,4 +16,17 @@ describe('theme', () => {
     const t = themeFromConfig({ mode: 'dark', brand: { ...brand, primary: '#1F2937' } });
     expect(contrast(t.colors.primary, t.colors.bg)).toBeGreaterThan(3);
   });
+  it('applies an allowlisted site font and keeps Figtree otherwise', () => {
+    const t = themeFromConfig({ mode: 'light', brand, config: { font: { body: 'Nunito Sans', heading: 'Nunito' } } });
+    expect(t.font.family.startsWith('"Nunito Sans"')).toBe(true);
+    expect(t.font.heading.startsWith('Nunito')).toBe(true);
+    const blocked = themeFromConfig({ mode: 'light', brand, config: { font: { body: 'url(javascript:x)' } } });
+    expect(blocked.font.family.startsWith('Figtree')).toBe(true);
+  });
+  it('keeps the beige canvas when the site only overrides the action color', () => {
+    const t = themeFromConfig({ mode: 'light', brand, config: { light: { primary: '#4338CA' } } });
+    expect(t.colors.bg).toBe('#F3F2EF');
+    expect(t.colors.accent).toBe('#F59E0B');
+    expect(t.colors.border).toBe('#E6E0D6');
+  });
 });

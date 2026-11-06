@@ -12,6 +12,7 @@ export function applyTheme(theme: AppTheme) {
   for (const [k, v] of Object.entries(theme.radius)) root.style.setProperty(`--flux-radius-${k}`, `${v}px`);
   for (const [k, v] of Object.entries(theme.font.size)) root.style.setProperty(`--flux-font-${k}`, `${v}px`);
   root.style.setProperty('--flux-font-family', theme.font.family);
+  root.style.setProperty('--flux-font-heading', theme.font.heading);
   root.style.setProperty('--flux-font-mono', theme.font.mono);
   root.dataset.theme = theme.mode;
   root.dataset.density = theme.density;

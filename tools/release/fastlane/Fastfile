@@ -49,6 +49,8 @@ platform :ios do
       UI.user_error!('Store disclosures have not been reviewed') unless ENV['STORE_DISCLOSURES_REVIEWED'] == 'true'
       upload_to_app_store(
         api_key: api, app_identifier: identifier, app_version: version, build_number: build_number,
+        skip_screenshots: ENV['REPLACE_STORE_SCREENSHOTS'] != 'true',
+        overwrite_screenshots: ENV['REPLACE_STORE_SCREENSHOTS'] == 'true',
         skip_binary_upload: true, metadata_path: File.join(STORE, 'ios'), screenshots_path: screenshots,
         submit_for_review: true, automatic_release: ENV['RELEASE_ON_APPROVAL'] == 'true',
         force: true, precheck_include_in_app_purchases: false,
@@ -107,8 +109,9 @@ platform :ios do
       if target != 'ipa'
         upload_to_testflight(
           api_key: api, app_identifier: identifier, ipa: ipa,
-          skip_waiting_for_build_processing: false, skip_submission: true,
-          distribute_external: false, changelog: release_notes
+          skip_waiting_for_build_processing: false, skip_submission: false,
+          distribute_external: false, submit_beta_review: false,
+          groups: ["#{brand.fetch('name')} Internal"], changelog: release_notes
         )
       end
       File.write(File.join(ROOT, 'release-out/ios/release.json'), JSON.pretty_generate({bundle_id: identifier, version: version, build_number: build_number, destination: target, commit: ENV['GITHUB_SHA']}))

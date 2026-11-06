@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { accountsStore, brand, normalizeLocale } from '@fluxwp/core';
-import { AccountScope, useSiteTheme, type AppInfo, type PersistStore } from '@fluxwp/runtime';
+import { AccountScope, useRememberSiteMark, useSiteTheme, type AppInfo, type PersistStore } from '@fluxwp/runtime';
 import { RenderOverlays } from '@fluxwp/render-web';
 import { useAccounts, useActiveAccount } from './state/hooks';
 import { usePrefs } from './state/prefs';
@@ -48,6 +48,11 @@ function AccountTheme({ mode }: { mode: 'light' | 'dark' }) {
   return null;
 }
 
+function RememberSite() {
+  useRememberSiteMark();
+  return null;
+}
+
 function Root({ mode }: { mode: 'light' | 'dark' }) {
   const { ready } = useAccounts();
   const active = useActiveAccount();
@@ -62,6 +67,7 @@ function Root({ mode }: { mode: 'light' | 'dark' }) {
   return (
     <AccountScope key={active.id} account={active} renderer={renderer} app={app} store={accountStore(active.id)}>
       <AccountTheme mode={mode} />
+      <RememberSite />
       <Shell />
     </AccountScope>
   );

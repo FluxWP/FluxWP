@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import type { Route as TargetRoute } from '@fluxwp/runtime';
 
 /** Runtime route, plus the signed-out "add a site" screen. */
-export type Route = TargetRoute | { kind: 'add-account' };
+export type Route = TargetRoute | { kind: 'add-account'; siteUrl?: string };
 
 export const homeRoute = (): Route => ({ kind: 'native', component: 'dashboard', params: {} });
 

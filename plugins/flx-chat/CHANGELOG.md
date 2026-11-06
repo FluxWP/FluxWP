@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.36.0
+- Personel tanıma: WhatsApp numarayı gizlediğinde (gizli numara, @lid) asistan personeli numaradan tanıyamıyordu; rol güncellense de "bu numara personel olarak tanınmıyor" deyip duruyordu. Kişi bilgisi panelinde yeni "Personel" alanı: yönetici sohbeti bir personele bağlar, asistan personel araçlarını (başkası adına bağış, bağışçılarım, rapor) açar. Numarası bilinen sohbette numara önceliklidir. Bağlama/kaldırma sohbete sistem satırı olarak yazılır.
+- Gizli numaralı sohbette asistan sebebi söyler (WhatsApp numarayı gizliyor), "tekrar dene" denince aynı cümleyi tekrarlamaz; kişi mesajında numara yazarsa hemen o numaraya doğrulama kodu gönderir.
+- Normal bağış akışı: ödeme linki ve havale bilgileri yalnız o sohbete gider; asistan artık "X'in numarasına gönderilecek" demez. Özette "Bağışçı" satırı korunur (kayıt ve havale açıklaması bu adla açılır).
+
+## 1.35.10
+- Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
+
+
 ## 1.35.9
 - Güvenlik (CodeQL): Asistan stüdyosunda sekme adı yalnız bilinen sekmelerden seçilir.
 

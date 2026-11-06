@@ -181,7 +181,7 @@ const styles = StyleSheet.create((theme) => ({
   hscroll: { flexGrow: 0, maxHeight: 52 },
   filters: { paddingRight: theme.space[4], alignItems: 'center' },
   tools: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingHorizontal: theme.space[4], paddingBottom: 4 },
-  row: { flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 68, paddingHorizontal: theme.space[4], borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.colors.border },
+  row: { flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 68, marginHorizontal: 12, marginBottom: 8, paddingHorizontal: theme.space[4], backgroundColor: theme.colors.surface, borderWidth: 1, borderColor: theme.colors.border, borderRadius: theme.radius.lg },
   dot: { width: 10, height: 10, borderRadius: 5 },
   done: { textDecorationLine: 'line-through', color: theme.colors.textMuted },
   board: { padding: theme.space[3], gap: theme.space[3], alignItems: 'stretch' },
@@ -195,5 +195,5 @@ const styles = StyleSheet.create((theme) => ({
   box: { width: 22, height: 22, borderRadius: 6, borderWidth: 1.5, borderColor: theme.colors.border },
   comment: { flexDirection: 'row', gap: 8, paddingVertical: 6 },
   composer: { flexDirection: 'row', alignItems: 'center', gap: 8, padding: 8, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: theme.colors.border, backgroundColor: theme.colors.surface },
-  input: { flex: 1, minHeight: 44, color: theme.colors.text, fontSize: 16, paddingHorizontal: 8 },
+  input: { flex: 1, minHeight: 44, color: theme.colors.text, fontSize: 16, fontFamily: theme.font.family, paddingHorizontal: 12, borderWidth: 1, borderColor: theme.colors.border, borderRadius: theme.radius.md, backgroundColor: theme.colors.bg },
 }));

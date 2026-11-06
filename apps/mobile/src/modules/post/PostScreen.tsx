@@ -4,6 +4,7 @@ import { ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native-unistyles';
 import { postBody, postEditPath, useApi, useRenderer, type PostStatus, type WpPost } from '@fluxwp/runtime';
+import { cleanHtml, RichEditor } from '@/ui/RichEditor';
 import { Button, Field, Segmented, Text } from '@/ui/primitives';
 import { useScreenTitle } from '../kit';
 
@@ -14,6 +15,7 @@ export default function PostScreen(_props: { params: Record<string, string> }) {
   const renderer = useRenderer();
   const [title, setTitle] = useState('');
   const [excerpt, setExcerpt] = useState('');
+  const [content, setContent] = useState('');
   const [status, setStatus] = useState<PostStatus>('draft');
   const [busy, setBusy] = useState(false);
   const [saved, setSaved] = useState<WpPost | null>(null);
@@ -24,7 +26,7 @@ export default function PostScreen(_props: { params: Record<string, string> }) {
     setBusy(true);
     setError('');
     try {
-      const post = await api<WpPost>(saved ? `wp/v2/posts/${saved.id}` : 'wp/v2/posts', { method: 'POST', body: postBody({ title, excerpt, status }) });
+      const post = await api<WpPost>(saved ? `wp/v2/posts/${saved.id}` : 'wp/v2/posts', { method: 'POST', body: postBody({ title, excerpt, status, content: cleanHtml(content) }) });
       setSaved(post);
       renderer.ui.toast(t('mobile.screens.post.saved'), 'ok');
     } catch (e) {
@@ -36,8 +38,8 @@ export default function PostScreen(_props: { params: Record<string, string> }) {
 
   return (
     <ScrollView testID="screen-post" contentContainerStyle={styles.wrap} keyboardShouldPersistTaps="handled">
-      <Text tone="muted">{t('mobile.screens.post.hint')}</Text>
       <Field label={t('mobile.screens.post.name')} value={title} onChangeText={setTitle} />
+      <RichEditor value={content} onChange={setContent} />
       <Field label={t('mobile.screens.post.excerpt')} value={excerpt} onChangeText={setExcerpt} multiline />
       <Text variant="label">{t('mobile.screens.post.status')}</Text>
       <Segmented

@@ -1,4 +1,34 @@
 {
+  "welcome": {
+    "skip": "Skip",
+    "next": "Next",
+    "enter": "Continue to sign in",
+    "sites": {
+      "title": "Run your site from your pocket",
+      "body": "Posts, tasks, donations and the inbox in one place. The menu follows your Flux Admin layout."
+    },
+    "look": {
+      "title": "Same look, light and dark",
+      "body": "Anthracite and beige, indigo buttons. Your site’s theme colors take over once you connect."
+    },
+    "safe": {
+      "title": "Your password stays out of the app",
+      "body": "You approve sign-in in the browser. Add another site whenever you want."
+    },
+    "bandTitle": "The admin, in your pocket",
+    "bandBody": "Flux Admin’s calm layout. Look through three steps, then connect your site.",
+    "cardTitle": "FluxWP",
+    "cardBody": "Your WordPress address is enough. After that, the site’s own theme takes over."
+  },
+  "editor": {
+    "title": "Text",
+    "placeholder": "Start writing…",
+    "expand": "Full screen",
+    "done": "Done",
+    "link": "Link",
+    "image": "Image",
+    "insert": "Insert"
+  },
   "addSite": {
     "title": "Connect your site",
     "hint": "Enter your WordPress site address. You can add more than one site.",
@@ -136,7 +166,7 @@
       "save": "Save",
       "saved": "Post saved",
       "blocks": "Edit blocks in the browser",
-      "hint": "Text, images and blocks stay in the web editor. Title, excerpt and status are saved here."
+      "hint": "Write the text in the editor below. Full screen adds headings, lists and images."
     },
     "media": {
       "title": "Media",
@@ -205,5 +235,12 @@
       "textPh": "Text",
       "type": "Type"
     }
+  },
+  "privacy": {
+    "connection": "Sign-in and site actions go to the WordPress site you choose. Your site operator has its own privacy policy.",
+    "share": "Share aggregate app usage (optional)",
+    "usage": "Off by default. With your choice and the site administrator’s permission, the site counts daily active accounts by iOS/Android. Only totals for groups of at least five are shared with FluxWP, with the site’s configured country. No names, content or GPS location are sent. Turn this off here or in Settings at any time.",
+    "policy": "Privacy",
+    "terms": "Terms of use"
   }
 }

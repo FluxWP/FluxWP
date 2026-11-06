@@ -1,0 +1,76 @@
+name: Mac App Store - Package or TestFlight
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Mac App Store version
+        default: '0.3.0'
+        required: true
+      build_number:
+        description: Unique numeric Mac build number
+        required: true
+      destination:
+        type: choice
+        default: package
+        options: [package, testflight]
+permissions:
+  contents: read
+concurrency:
+  group: mac-app-store
+  cancel-in-progress: false
+jobs:
+  macos:
+    runs-on: macos-latest
+    timeout-minutes: 75
+    env:
+      FLUX_BRAND: flux
+      STORE_VERSION: ${{ inputs.version }}
+      STORE_BUILD_NUMBER: ${{ inputs.build_number }}
+      APPLE_TEAM_ID: ${{ vars.APPLE_TEAM_ID }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: { node-version: 22 }
+      - uses: oven-sh/setup-bun@v2
+        with: { bun-version: 1.4.4 }
+      - uses: dtolnay/rust-toolchain@stable
+        with: { targets: 'aarch64-apple-darwin,x86_64-apple-darwin' }
+      - uses: swatinem/rust-cache@v2
+        with: { workspaces: apps/desktop/src-tauri, key: mac-app-store, cache-on-failure: true }
+      - run: bun install --frozen-lockfile
+      - name: Check desktop and release code
+        run: |
+          bun run --filter @fluxwp/desktop typecheck
+          node --check tools/release/macos-app-store.mjs
+      - run: bun tools/fluxapp/brand.mjs && bun run --filter @fluxwp/desktop icons
+      - name: Prepare isolated store signing
+        env:
+          IOS_DISTRIBUTION_CERTIFICATE: ${{ secrets.IOS_DISTRIBUTION_CERTIFICATE }}
+          IOS_DISTRIBUTION_CERTIFICATE_PASSWORD: ${{ secrets.IOS_DISTRIBUTION_CERTIFICATE_PASSWORD }}
+          MACOS_INSTALLER_CERTIFICATE: ${{ secrets.MACOS_INSTALLER_CERTIFICATE }}
+          MACOS_INSTALLER_CERTIFICATE_PASSWORD: ${{ secrets.MACOS_INSTALLER_CERTIFICATE_PASSWORD }}
+          MACOS_PROVISIONING_PROFILE: ${{ secrets.MACOS_PROVISIONING_PROFILE }}
+        run: node tools/release/macos-app-store.mjs prepare
+      - name: Build sandboxed universal store app
+        working-directory: apps/desktop
+        run: bun run tauri build --target universal-apple-darwin --features app-store --bundles app --config src-tauri/tauri.brand.conf.json --config "$MAS_CONFIG"
+      - name: Verify readable store bundle and package
+        run: node tools/release/macos-app-store.mjs package
+      - uses: actions/upload-artifact@v5
+        with:
+          name: mac-app-store-${{ inputs.version }}-${{ inputs.build_number }}
+          path: release-out/macos-app-store/
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload verified package to TestFlight
+        if: inputs.destination == 'testflight'
+        env:
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+          APPLE_API_KEY_P8: ${{ secrets.APPLE_API_KEY_P8 }}
+        run: node tools/release/macos-app-store.mjs upload
+      - name: Clean isolated signing material
+        if: always()
+        run: |
+          node tools/release/macos-app-store.mjs clean
+          if [ -n "${MAS_TEMP:-}" ]; then rm -rf -- "$MAS_TEMP"; fi

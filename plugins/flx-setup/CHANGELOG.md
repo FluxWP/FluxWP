@@ -1,7 +1,10 @@
 # Değişiklikler
 
+## 1.1.2
+- Güncelleme denetimi site adresini kullanım verisi izninden bağımsız gönderir (zorunlu kayıt, zorunlu çerez gibi). Sunucu (updater 1.10.2) yalnız adresi ve IP'den bulunan ülkeyi tutar, IP saklamaz. WordPress/PHP sürümü, saat dilimi ve dil yine yalnız izinle. Ayarlar ve sihirbaz metinleri buna göre.
+
 ## 1.1.1
-- Güncelleme denetimi site adresini kullanım verisi izninden bağımsız gönderir (zorunlu kayıt, zorunlu çerez gibi). Sunucu (updater 1.10.1) yalnız adresi ve IP'den bulunan ülkeyi tutar, IP saklamaz. WordPress/PHP sürümü, saat dilimi ve dil yine yalnız izinle. Ayarlar ve sihirbaz metinleri buna göre.
+- Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
 
 ## 1.1.0
 - Uygulama: paketler, kurulum sihirbazı, ön ayarlar ve güncelleme ayarları web görünümünde açılır.

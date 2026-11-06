@@ -1,5 +1,14 @@
 # Değişiklikler
 
+## 2.14.0
+- Bağış ekle: yeni "Durum" alanı. Varsayılan "Ödeme bekleniyor"; ödeme alındıysa "Tamamlandı" seçilir. Önceden eklenen her bağış doğrudan ödendi oluyordu. Bekleyen havale bağışı onay kartına düşer.
+- Bağış detayı: yeni "İşlemler" kartı. Durumu değiştir (askıya al / ödendi / iptal / başarısız), çöpe taşı ya da geri al, kalıcı sil (yalnız yönetici). Sepet (tek sipariş) birlikte değişir; WooCommerce siparişi durumu izler (askıya alınca Beklemede, ödendi yapılınca sertifika oluşur). Değişiklik geçmişe yazılır.
+- `FLXB_Donations::set_status( $id, $status )`: yöneticinin elle durum değişikliği (ödenmiş bağışı da askıya alabilir).
+
+## 2.13.3
+- Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
+
+
 ## 2.13.2
 - Uygulama manifesti: bağışçı ekranları (özet, bağışlarım, bağış detayı, sertifikalarım) `flxb-donations` kimliğiyle paketin kendi kaydı oldu. Personel için bağış, bağışçı ve abonelik listeleri ile onay ekranı (`flxb-review`) eklendi. Bağış türleri ve ayarlar web görünümünde açılır.
 - Yeni okuma uçları `flxb/v1/admin/*` (özet, bağışlar, bağışçılar, abonelikler). Yetki `flx_bagis_view`.

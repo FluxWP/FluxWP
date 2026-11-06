@@ -387,5 +387,9 @@ return array(
 		'Televizyonları ve panoları uzaktan yönet' => 'Control TVs and boards remotely',
 		'FluxWP tema ve eklentilerini güncelleme sunucusundan güncelle' => 'Update FluxWP themes and plugins from the update server',
 		'Tema ayarları ve ön ayarlar' => 'Theme settings and presets',
-	),
+			'Kurulum sihirbazı, ön ayarlar ve FluxWP paket güncellemeleri' => 'Setup wizard, presets and FluxWP package updates',
+		'Satır başına "Etiket|Adres". Adres wp-admin\'e göre veya tam https:// olabilir.' => 'One "Label|Address" per line. The address can be relative to wp-admin or a full https:// URL.',
+		'Modüllerin sırası ve görünürlüğü kişiye özeldir: Başlangıç\'ta "Modülleri düzenle" ile açılır, kutular sürüklenerek taşınır.' => 'Module order and visibility are personal: open "Edit modules" on the dashboard and drag the boxes.',
+		'Başlangıç\'taki "Yükle" düğmesi veya menü › Uygulamayı yükle.' => 'The "Install" button on the dashboard, or menu › Install the app.',
+),
 );

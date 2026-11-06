@@ -136,6 +136,7 @@ function flxc_rest_bootstrap() {
 		'ai'          => $ai ? array( 'id' => $ai['id'], 'label' => (string) ( $ai['label'] ?? $ai['id'] ), 'auto' => (bool) flxc_setting( 'ai_auto_suggest' ) ) : null,
 		'bot'         => function_exists( 'flxc_bot_enabled' ) && flxc_bot_enabled(),
 		'records'     => flxc_records_boot(),
+		'staff'       => flxc_can_manage() && function_exists( 'flxc_staff_link_users' ) ? flxc_staff_link_users() : array(),
 		'rev'         => flxc_rev(),
 	);
 }
@@ -330,6 +331,16 @@ function flxc_rest_update_chat( WP_REST_Request $req ) {
 	}
 	if ( null !== $req->get_param( 'unread' ) ) {
 		$upd['unread'] = max( 0, (int) $req->get_param( 'unread' ) );
+	}
+	// 1.36.0: a manager links a hidden-number chat to a staff user (the assistant then opens staff tools).
+	if ( null !== $req->get_param( 'staff_user' ) && function_exists( 'flxc_staff_link_chat' ) ) {
+		if ( ! flxc_can_manage() ) {
+			return new WP_Error( 'flxc_forbidden', __( 'Bu işlem için yetkiniz yok.', 'flx-chat' ), array( 'status' => 403 ) );
+		}
+		$r = flxc_staff_link_chat( $chat, (int) $req->get_param( 'staff_user' ) );
+		if ( is_wp_error( $r ) ) {
+			return $r;
+		}
 	}
 	if ( $upd ) {
 		flxc_update_chat( $chat['id'], $upd );

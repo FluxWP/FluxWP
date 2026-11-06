@@ -11,6 +11,8 @@ describe('tokens', () => {
     expect(v['--flux-space-4']).toBe('16px');
   });
   it('native tema mod taşır', () => {
-    expect(nativeTheme('dark', brand).colors.bg).toBe('#0E1014');
+    expect(nativeTheme('dark', brand).colors.bg).toBe('#101114');
+    expect(nativeTheme('light', brand).colors.bg).toBe('#F3F2EF');
+    expect(nativeTheme('light', brand).colors.text).toBe('#111827');
   });
 });

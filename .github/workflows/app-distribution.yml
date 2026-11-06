@@ -11,7 +11,7 @@ on:
       android:
         type: choice
         default: skip
-        options: [skip, apk, internal, alpha, beta, production]
+        options: [skip, apk, aab, internal, alpha, beta, production]
       macos:
         description: Signed, notarized macOS artifact or GitHub release
         type: choice
@@ -19,6 +19,10 @@ on:
         options: [skip, artifact, release]
       version: { description: 'Mobile version; empty uses package.json', default: '' }
       ios_build_number: { description: 'Tested TestFlight build for app-store submission', default: '' }
+      replace_store_screenshots:
+        description: Replace prepared App Store artwork with raw native screenshots
+        type: boolean
+        default: false
       screenshots_run_id: { description: 'App store assets run ID for app-store submission', default: '' }
       disclosures_reviewed:
         description: Store privacy, age rating, review contact and content declarations are complete
@@ -51,6 +55,7 @@ jobs:
       version: ${{ inputs.version }}
       build_number: ${{ inputs.ios_build_number }}
       screenshots_run_id: ${{ inputs.screenshots_run_id }}
+      replace_store_screenshots: ${{ inputs.replace_store_screenshots }}
       disclosures_reviewed: ${{ inputs.disclosures_reviewed }}
     secrets: inherit
   android:

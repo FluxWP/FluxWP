@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 0.4.2
+- Mobil uygulama kullanım toplamlarını telemetri merkezinde gün, platform ve site ülkesi bazında gösterir. Eksik/küçük gruplar, bilinmeyen alanlar ve geçersiz sayılar kabul edilmez; kişi veya site adresi eklenmez.
+
+## 0.4.1
+- Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
+
+
 ## 0.4.0
 - Mobil ve masaüstü uygulama manifesti: genel bakış, canlı ziyaret, sayfalar ve kaynaklar (`flxan/v1`).
 

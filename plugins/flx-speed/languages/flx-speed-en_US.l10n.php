@@ -509,5 +509,7 @@ return array(
 		'Yük' => 'Load',
 		'p95' => 'p95',
 		'İşaret' => 'Flag',
-	),
+			'Kullanılan en fazla iki ailenin normal (400) woff2 dosyası <link rel="preload"> ile istenir; metin daha erken çizilir. Yanlış ağırlık önden yüklenirse boşa indirme olur; PageSpeed\'de "kullanılmayan preload" uyarısı çıkarsa kapatın.' => 'The regular (400) woff2 of up to two families in use is requested with <link rel="preload"> so text paints sooner. Preloading the wrong weight wastes a download; turn this off if PageSpeed reports an unused preload.',
+		'Panel; yöneticiye ve Flux Roles\'den "Performansı görüntüle" yetkisi verilen personele görünür.' => 'The panel is visible to administrators and to staff granted "View performance" by Flux Roles.',
+),
 );

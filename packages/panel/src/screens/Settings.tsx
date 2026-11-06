@@ -1,23 +1,31 @@
 import { useTranslation } from 'react-i18next';
 import { LogOut, Monitor, Moon, Sun, RefreshCw } from 'lucide-react';
-import { brand, locales, platform, VERSION, type Account } from '@fluxwp/core';
+import { brand, locales, platform, type Account } from '@fluxwp/core';
 import { useUpdate } from '../state/update';
 import { logoutAccount } from '../lib/logout';
 import { Avatar } from '@fluxwp/ui';
 import { useAccounts } from '../state/hooks';
 import { usePrefs, type ThemePref } from '../state/prefs';
 import { homeRoute, useRoute } from '../state/route';
+import { webUI } from '@fluxwp/render-web';
+import { APP_VERSION } from '../version';
+import { LegalLinks } from '../components/LegalLinks';
 
 export function Settings() {
   const { t, i18n } = useTranslation();
   const { accounts, activeId } = useAccounts();
   const prefs = usePrefs();
   const go = useRoute((s) => s.go);
+  const ui = webUI((key) => t(key));
 
   const logout = async (a: Account) => {
-    if (!confirm(t('settings.logoutConfirm', { site: a.siteName }))) return;
-    await logoutAccount(a);
-    go(homeRoute());
+    if (!await ui.confirm({ title: t('accounts.logout'), body: t('settings.logoutConfirm', { site: a.siteName }), ok: t('accounts.logout'), tone: 'danger' })) return;
+    try {
+      await logoutAccount(a);
+      go(homeRoute());
+    } catch {
+      ui.toast(t('settings.logoutFailed'), 'error');
+    }
   };
 
   const themes: { id: ThemePref; icon: typeof Sun }[] = [
@@ -64,11 +72,9 @@ export function Settings() {
                 <div>{a.siteName} {a.id === activeId && <span className="pill">{t('accounts.active')}</span>}</div>
                 <small className="muted">{a.userName} · {a.siteUrl.replace(/^https?:\/\//, '')} · {t(`accounts.kind.${a.authKind}`)}</small>
               </div>
-              {a.needsLogin && (
-                <button className="btn-ghost small" onClick={() => go({ kind: 'add-account' })}>
-                  <RefreshCw size={14} /> {t('accounts.relogin')}
-                </button>
-              )}
+              <button className="btn-ghost small" onClick={() => go({ kind: 'add-account', siteUrl: a.siteUrl })}>
+                <RefreshCw size={14} /> {t('accounts.relogin')}
+              </button>
               <button className="btn-ghost small danger" onClick={() => logout(a)}>
                 <LogOut size={14} /> {t('accounts.logout')}
               </button>
@@ -79,8 +85,9 @@ export function Settings() {
 
       <section className="panel">
         <h2>{t('settings.about')}</h2>
-        <div className="setting"><span>{t('settings.app')}</span><span className="muted">{brand.name} {VERSION}</span></div>
+        <div className="setting"><span>{t('settings.app')}</span><span className="muted">{brand.name} {APP_VERSION}</span></div>
         {platform().checkUpdate && <UpdateRow />}
+        {brand.slug === 'flux' && <div className="setting"><span>{t('legal.title')}</span><LegalLinks /></div>}
         {brand.supportUrl && (
           <div className="setting"><span>{t('settings.support')}</span><a href={brand.supportUrl} target="_blank" rel="noreferrer">{t('settings.contact')}</a></div>
         )}

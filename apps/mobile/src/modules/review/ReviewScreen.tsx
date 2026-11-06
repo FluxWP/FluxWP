@@ -135,7 +135,7 @@ const styles = StyleSheet.create((theme) => ({
   fill: { flex: 1, backgroundColor: theme.colors.bg },
   flex: { flex: 1 },
   count: { paddingHorizontal: theme.space[4], paddingTop: theme.space[3] },
-  row: { flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 76, paddingHorizontal: theme.space[4], borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.colors.border },
+  row: { flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 76, marginHorizontal: 12, marginBottom: 8, paddingHorizontal: theme.space[4], backgroundColor: theme.colors.surface, borderWidth: 1, borderColor: theme.colors.border, borderRadius: theme.radius.lg },
   line: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   head: { flexDirection: 'row', alignItems: 'center', gap: 4, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.colors.border },
   detail: { padding: theme.space[4], gap: theme.space[2], paddingBottom: 32 },

@@ -52,6 +52,7 @@ final class FLXB_Admin {
 		FLXB_Page_Import::init();
 		FLXB_Detail_Tabs::init();
 		add_action( 'admin_post_flxb_bulk', array( 'FLXB_Page_Donations', 'bulk' ) );
+		add_action( 'admin_post_flxb_status', array( 'FLXB_Page_Donations', 'status_post' ) );
 		add_action( 'admin_post_flxb_cert_remake', array( 'FLXB_Page_Donations', 'cert_post' ) );
 		add_action( 'admin_post_flxb_cert_send', array( 'FLXB_Page_Donations', 'cert_post' ) );
 		add_action( 'admin_post_flxb_items_save', array( 'FLXB_Page_Donations', 'items_save' ) );

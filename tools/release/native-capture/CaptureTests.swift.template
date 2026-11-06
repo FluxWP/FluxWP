@@ -1,0 +1,50 @@
+import XCTest
+
+final class CaptureTests: XCTestCase {
+    let app = XCUIApplication(bundleIdentifier: __BUNDLE_ID__)
+    func element(_ id: String) -> XCUIElement {
+        app.descendants(matching: .any).matching(identifier: id).firstMatch
+    }
+    func tap(_ id: String) {
+        let target = element(id)
+        XCTAssertTrue(target.waitForExistence(timeout: 60), "Missing app control: \(id)")
+        target.tap()
+    }
+    func tab(_ choices: [String]) {
+        let target = app.descendants(matching: .any).matching(NSPredicate(format: "label IN %@", choices)).firstMatch
+        XCTAssertTrue(target.waitForExistence(timeout: 15), "Missing navigation tab: \(choices)")
+        target.tap()
+    }
+    func shot(_ name: String) {
+        sleep(2)
+        let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        attachment.name = __DEVICE_PREFIX__ + name + ".png"
+        attachment.lifetime = .keepAlways
+        add(attachment)
+    }
+    func testStoreScreens() {
+        continueAfterFailure = false
+        app.launchArguments = ["-AppleLanguages", __LANGUAGES__, "-AppleLocale", __LOCALE__]
+        app.launch()
+        if element("welcome-skip").waitForExistence(timeout: 5) {
+            tap("welcome-skip")
+        }
+        XCTAssertTrue(element("demo").waitForExistence(timeout: 60))
+        let consent = element("usage-consent")
+        XCTAssertTrue(consent.waitForExistence(timeout: 15), "Privacy choice must be available before login")
+        XCTAssertEqual(consent.value as? String, "0", "Usage sharing must default off")
+        shot("01-connect")
+        tap("demo")
+        XCTAssertTrue(element("open-drawer").waitForExistence(timeout: 60))
+        shot("02-dashboard")
+        tab(__CONTACTS__)
+        shot("03-contacts")
+        tab(__POSTS__)
+        shot("04-posts")
+        tap("site-switcher")
+        shot("06-accounts")
+        app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.15)).tap()
+        tap("open-drawer")
+        shot("05-menu")
+    }
+}
