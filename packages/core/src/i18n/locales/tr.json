@@ -112,7 +112,8 @@
     "app": "Uygulama",
     "support": "Destek",
     "contact": "İletişime geç",
-    "logoutConfirm": "{{site}} hesabından çıkılsın mı?"
+    "logoutConfirm": "{{site}} hesabından çıkılsın mı?",
+    "logoutFailed": "Hesaptan çıkış yapılamadı. Lütfen yeniden deneyin."
   },
   "oauth": {
     "doneTitle": "Giriş tamamlandı",
@@ -304,5 +305,10 @@
     "download": "İndir",
     "installing": "Kuruluyor…",
     "failed": "Denetlenemedi"
+  },
+  "legal": {
+    "title": "Yasal bilgiler",
+    "privacy": "Gizlilik politikası",
+    "terms": "Kullanım koşulları"
   }
 }
