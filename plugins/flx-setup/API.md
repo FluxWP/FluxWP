@@ -102,7 +102,7 @@ Sanitize callback'iniz kısmi diziyle de çağrılabilir (ön ayar, AI, yama yal
 ## Yasal onay ve kullanım verisi
 - Sihirbazın ilk ekranında **Kullanım Şartları + Gizlilik Politikası** kabulü ve KVKK Aydınlatma Metni bilgisi zorunlu (Başlayalım ancak işaretlenince açılır). Kayıt `flxk_terms` = `{version, at, user}`; sürüm `FLXK_LEGAL_VERSION`. Sihirbaz atlanırsa onay kaydı olmaz, güncellemeler yine çalışır.
 - **Kullanım verisi** (isteğe bağlı, varsayılan kapalı): `flxk_telemetry` = `'1'` açık, `flxk_telemetry_at` son değişiklik zamanı. FluxWP Panel › Ayarlar'dan geri alınır. Okumak için `flxk_telemetry_enabled()`.
-- Kapalıyken `/v1/check` yalnız `packages`, `updater`, `install` ve `"usage": false` gönderir; `site`, `wp`, `php`, `tz`, `locale` gitmez. FluxWP sunucularına giden isteklerde WordPress'in site adresli User-Agent'ı `FluxWP-Panel/<sürüm>` olur.
+- `/v1/check` her zaman `site` gönderir (zorunlu kayıt; sunucu ülkeyi IP'den bulur, IP saklamaz). Kapalıyken yalnız `packages`, `updater`, `install`, `site` ve `"usage": false` gider; `wp`, `php`, `tz`, `locale` gitmez. FluxWP sunucularına giden isteklerde WordPress'in site adresli User-Agent'ı `FluxWP-Panel/<sürüm>` olur.
 - Fonksiyonlar: `flxk_telemetry_enabled()`, `flxk_set_telemetry( bool )`, `flxk_accept_terms()`, `flxk_terms_accepted()`, `flxk_legal_urls()`.
 
 ## MCP / Flux AI araçları
