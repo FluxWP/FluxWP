@@ -36,7 +36,7 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with: { targets: 'aarch64-apple-darwin,x86_64-apple-darwin' }
       - uses: swatinem/rust-cache@v2
-        with: { workspaces: apps/desktop/src-tauri, key: mac-app-store }
+        with: { workspaces: apps/desktop/src-tauri, key: mac-app-store, cache-on-failure: true }
       - run: bun install --frozen-lockfile
       - name: Check desktop and release code
         run: |
@@ -54,12 +54,7 @@ jobs:
       - name: Build sandboxed universal store app
         working-directory: apps/desktop
         run: bun run tauri build --target universal-apple-darwin --features app-store --bundles app --config src-tauri/tauri.brand.conf.json --config "$MAS_CONFIG"
-      - name: Verify and package; optionally upload to TestFlight
-        env:
-          MAS_UPLOAD: ${{ inputs.destination == 'testflight' }}
-          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
-          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
-          APPLE_API_KEY_P8: ${{ secrets.APPLE_API_KEY_P8 }}
+      - name: Verify readable store bundle and package
         run: node tools/release/macos-app-store.mjs package
       - uses: actions/upload-artifact@v5
         with:
@@ -67,6 +62,13 @@ jobs:
           path: release-out/macos-app-store/
           if-no-files-found: error
           retention-days: 14
+      - name: Upload verified package to TestFlight
+        if: inputs.destination == 'testflight'
+        env:
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+          APPLE_API_KEY_P8: ${{ secrets.APPLE_API_KEY_P8 }}
+        run: node tools/release/macos-app-store.mjs upload
       - name: Clean isolated signing material
         if: always()
         run: |

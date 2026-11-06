@@ -1,11 +1,10 @@
 // Mac App Store signing stays separate from Developer ID / direct-update releases.
-import { readFileSync, writeFileSync, mkdirSync, mkdtempSync, appendFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, mkdtempSync, appendFileSync, chmodSync, readdirSync, lstatSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 import { execFileSync } from 'node:child_process';
 import { randomBytes, createHash } from 'node:crypto';
 
-const root = process.cwd();
 const required = name => {
   if (!process.env[name]) throw new Error(`Missing ${name}`);
   return process.env[name];
@@ -29,6 +28,9 @@ if (stage === 'prepare') {
     return path;
   };
   const profile = materialize('store.provisionprofile', 'MACOS_PROVISIONING_PROFILE');
+  // This public profile is embedded in the shipped app; it must be readable after installation.
+  // Private keys and P12 files retain their restricted modes in the temporary keychain directory.
+  chmodSync(profile, 0o644);
   const xml = run('security', ['cms', '-D', '-i', profile]);
   writeFileSync(join(dir, 'profile.plist'), xml, { mode: 0o600 });
   const parsed = JSON.parse(run('python3', ['-c', 'import plistlib,json,sys,datetime; p=plistlib.load(open(sys.argv[1],"rb")); print(json.dumps({"TeamIdentifier":p.get("TeamIdentifier"),"Entitlements":p["Entitlements"],"ProvisionedDevices":p.get("ProvisionedDevices"),"ExpirationDate":p["ExpirationDate"].replace(tzinfo=datetime.timezone.utc).isoformat()}))', join(dir, 'profile.plist')]));
@@ -85,6 +87,14 @@ if (stage === 'prepare') {
   const app = resolve('apps/desktop/src-tauri/target/universal-apple-darwin/release/bundle/macos/FluxWP.app');
   const info = JSON.parse(run('plutil', ['-convert', 'json', '-o', '-', join(app, 'Contents/Info.plist')]));
   if (info.CFBundleIdentifier !== state.bundleId || info.CFBundleShortVersionString !== state.version || info.CFBundleVersion !== state.build) throw new Error('Native bundle metadata mismatch');
+  const verifyReadable = path => {
+    const stat = lstatSync(path);
+    if (stat.isSymbolicLink()) return;
+    const requiredMode = stat.isDirectory() ? 0o005 : 0o004;
+    if ((stat.mode & requiredMode) !== requiredMode) throw new Error(`Store bundle is not publicly readable: ${path}`);
+    if (stat.isDirectory()) for (const name of readdirSync(path)) verifyReadable(join(path, name));
+  };
+  verifyReadable(app);
   run('codesign', ['--verify', '--deep', '--strict', app]);
   const signedEntitlements = run('codesign', ['-d', '--entitlements', ':-', app]);
   if (!signedEntitlements.includes('com.apple.security.app-sandbox')) throw new Error('Sandbox entitlement missing');
@@ -98,18 +108,22 @@ if (stage === 'prepare') {
   const sha256 = createHash('sha256').update(readFileSync(pkg)).digest('hex');
   writeFileSync(join(out, 'SHA256SUMS'), `${sha256}  ${pkg.split('/').at(-1)}\n`);
   writeFileSync(join(out, 'release.json'), JSON.stringify({ platform: 'MAC_OS', bundleId: state.bundleId, version: state.version, build: state.build, commit: process.env.GITHUB_SHA, sandbox: true, architectures: architectures.trim(), sha256 }, null, 2) + '\n');
-  if (process.env.MAS_UPLOAD === 'true') {
-    const keyId = required('APPLE_API_KEY');
-    if (!/^[A-Z0-9]+$/.test(keyId)) throw new Error('Invalid API key ID');
-    const keys = join(state.dir, 'private_keys'); mkdirSync(keys);
-    writeFileSync(join(keys, `AuthKey_${keyId}.p8`), required('APPLE_API_KEY_P8'), { mode: 0o600 });
-    execFileSync('xcrun', ['altool', '--upload-app', '--type', 'macos', '--file', pkg, '--apiKey', keyId, '--apiIssuer', required('APPLE_API_ISSUER')], { cwd: state.dir, stdio: 'inherit', timeout: 1800000 });
-  }
   console.log('Signed universal sandboxed store package verified');
+} else if (stage === 'upload') {
+  const state = JSON.parse(readFileSync(join(required('MAS_TEMP'), 'state.json')));
+  const out = resolve('release-out/macos-app-store');
+  const pkg = join(out, `FluxWP-${state.version}-${state.build}.pkg`);
+  const manifest = JSON.parse(readFileSync(join(out, 'release.json')));
+  if (createHash('sha256').update(readFileSync(pkg)).digest('hex') !== manifest.sha256) throw new Error('Store package changed before upload');
+  const keyId = required('APPLE_API_KEY');
+  if (!/^[A-Z0-9]+$/.test(keyId)) throw new Error('Invalid API key ID');
+  const keys = join(state.dir, 'private_keys'); mkdirSync(keys);
+  writeFileSync(join(keys, `AuthKey_${keyId}.p8`), required('APPLE_API_KEY_P8'), { mode: 0o600 });
+  execFileSync('xcrun', ['altool', '--upload-app', '--type', 'macos', '--file', pkg, '--apiKey', keyId, '--apiIssuer', required('APPLE_API_ISSUER')], { cwd: state.dir, stdio: 'inherit', timeout: 1800000 });
 } else if (stage === 'clean') {
   if (process.env.MAS_TEMP) {
     const state = JSON.parse(readFileSync(join(process.env.MAS_TEMP, 'state.json')));
     run('security', ['list-keychains', '-d', 'user', '-s', ...state.previous]);
     run('security', ['delete-keychain', state.keychain]);
   }
-} else throw new Error('Expected prepare, package or clean');
+} else throw new Error('Expected prepare, package, upload or clean');
