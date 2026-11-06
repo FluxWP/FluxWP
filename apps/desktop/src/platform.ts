@@ -211,7 +211,8 @@ export const desktopPlatform: Platform = {
   prepareOAuthRedirect,
   embedWebView,
   openWeb: (url, title) => openPanel(url, title ?? brand.name),
-  checkUpdate,
+  // Store builds receive application updates through the Mac App Store.
+  ...(import.meta.env.VITE_APP_STORE === 'true' ? {} : { checkUpdate }),
   async openWebView(url, title) {
     return openPanel(url, title);
   },
