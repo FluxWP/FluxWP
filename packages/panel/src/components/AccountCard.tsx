@@ -9,6 +9,7 @@ import { Avatar } from '@fluxwp/ui';
 import { useAccounts, useMe } from '../state/hooks';
 import { homeRoute, useRoute } from '../state/route';
 import { logoutAccount } from '../lib/logout';
+import { webUI } from '@fluxwp/render-web';
 
 export function AccountCard({ active }: { active: Account }) {
   const { t } = useTranslation();
@@ -16,6 +17,7 @@ export function AccountCard({ active }: { active: Account }) {
   const me = useMe(active).data;
   const go = useRoute((s) => s.go);
   const qc = useQueryClient();
+  const ui = webUI((key) => t(key));
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -97,8 +99,15 @@ export function AccountCard({ active }: { active: Account }) {
             className="menu-item danger"
             role="menuitem"
             onClick={run(() => {
-              if (!confirm(t('settings.logoutConfirm', { site: active.siteName }))) return;
-              void logoutAccount(active).then(() => go(homeRoute()));
+              void (async () => {
+                if (!await ui.confirm({ title: t('accounts.logout'), body: t('settings.logoutConfirm', { site: active.siteName }), ok: t('accounts.logout'), tone: 'danger' })) return;
+                try {
+                  await logoutAccount(active);
+                  go(homeRoute());
+                } catch {
+                  ui.toast(t('settings.logoutFailed'), 'error');
+                }
+              })();
             })}
           >
             <LogOut size={16} /> <span className="grow">{t('accounts.logout')}</span>

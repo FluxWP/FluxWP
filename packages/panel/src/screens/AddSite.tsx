@@ -1,3 +1,4 @@
+import { LegalLinks } from '../components/LegalLinks';
 import { useEffect, useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, KeyRound, Loader2, LogIn, Shield } from 'lucide-react';
@@ -164,6 +165,7 @@ export function AddSite({ onCancel, initialUrl }: { onCancel?: () => void; initi
         )}
       </div>
       <p className="auth-foot muted small">{t('auth.footer', { name: brand.name })}</p>
+      <LegalLinks />
     </div>
   );
 }

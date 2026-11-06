@@ -169,3 +169,5 @@ html.flux-resizing,html.flux-resizing *{cursor:col-resize!important;user-select:
 .nav-group .nav-caret.open svg{transform:rotate(90deg)}
 .nav-group .nav-children-inner{padding-left:48px}
 .nav-item.active .menu-ic.img{box-shadow:none}
+
+.legal-links { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 16px; }
