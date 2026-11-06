@@ -1,1 +1,1 @@
-FluxWP
+FluxWP: WordPress Yönetimi

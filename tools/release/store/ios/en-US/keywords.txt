@@ -1,1 +1,1 @@
-wordpress,admin,sites,content,media,tasks,crm
+admin,dashboard,website,blog,posts,pages,media,editor,publishing,tasks,crm,contacts,multisite,web
