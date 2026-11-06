@@ -384,5 +384,11 @@ function flxc_js_strings() {
 		'Kurum' => __( 'Kurum', 'flx-chat' ),
 		'Web sitesi' => __( 'Web sitesi', 'flx-chat' ),
 		'Tarih' => __( 'Tarih', 'flx-chat' ),
+		'Personel' => __( 'Personel', 'flx-chat' ),
+		'Sohbet personele bağlandı' => __( 'Sohbet personele bağlandı', 'flx-chat' ),
+		'Personel bağlantısı kaldırıldı' => __( 'Personel bağlantısı kaldırıldı', 'flx-chat' ),
+		'— Personel değil —' => __( '— Personel değil —', 'flx-chat' ),
+		'WhatsApp bu kişinin numarasını gizliyor, asistan personeli numaradan tanıyamaz. Bu kişi ekibinizdense buradan bağlayın; asistan personel araçlarını açar.' => __( 'WhatsApp bu kişinin numarasını gizliyor, asistan personeli numaradan tanıyamaz. Bu kişi ekibinizdense buradan bağlayın; asistan personel araçlarını açar.', 'flx-chat' ),
+		'Asistan personeli Flux Roles profilindeki numaradan tanır. Numara eşleşmiyorsa buradan bağlayabilirsiniz; numarası bilinen sohbette numara önceliklidir.' => __( 'Asistan personeli Flux Roles profilindeki numaradan tanır. Numara eşleşmiyorsa buradan bağlayabilirsiniz; numarası bilinen sohbette numara önceliklidir.', 'flx-chat' ),
 	);
 }

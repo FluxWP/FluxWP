@@ -329,6 +329,7 @@ function flxc_chat_for_js( $r, $last = null ) {
 		) : null,
 		'unknownName' => '' === $r['name'],
 		'meta'      => array_intersect_key( $meta, array_flip( array( 'blocked' ) ) ),
+		'staffUser' => (int) ( $meta['staff_user'] ?? 0 ),
 		'bot'       => $bot,
 		'botBusy'   => 'on' === $bot && get_transient( 'flxc_bot_busy_' . $r['id'] ) ? 1 : 0,
 		'ai'        => ! empty( $meta['bot']['ai'] ) ? 1 : 0,

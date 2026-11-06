@@ -2244,6 +2244,18 @@
 		var assign = h('select', { class: 'flxc-field', onchange: function () { patchChat(c.id, { assigned: +assign.value }); } },
 			h('option', { value: '0', text: t('— Atanmadı —') }));
 		S.agents.forEach(function (a) { assign.appendChild(h('option', { value: a.id, text: a.name, selected: a.id === c.assigned })); });
+		// 1.36.0: personel bağlantısı (yönetici). WhatsApp numarayı gizlerse asistan personeli numaradan tanıyamaz.
+		var staffSec = null;
+		if (S.me && S.me.manage && S.staff && S.staff.length && !c.group) {
+			var staff = h('select', { class: 'flxc-field', 'aria-label': t('Personel'), onchange: function () { patchChat(c.id, { staff_user: +staff.value }).then(function () { toast(+staff.value ? t('Sohbet personele bağlandı') : t('Personel bağlantısı kaldırıldı')); }); } },
+				h('option', { value: '0', text: t('— Personel değil —') }));
+			S.staff.forEach(function (u) { staff.appendChild(h('option', { value: u.id, text: u.name, selected: u.id === c.staffUser })); });
+			var hidden = !c.phone && /@lid$/.test(c.jid || '');
+			staffSec = h('div', { class: 'flxc-info-sec' }, h('h4', null, icon('person'), t('Personel')), staff,
+				h('small', { class: 'flxc-help', text: hidden
+					? t('WhatsApp bu kişinin numarasını gizliyor, asistan personeli numaradan tanıyamaz. Bu kişi ekibinizdense buradan bağlayın; asistan personel araçlarını açar.')
+					: t('Asistan personeli Flux Roles profilindeki numaradan tanır. Numara eşleşmiyorsa buradan bağlayabilirsiniz; numarası bilinen sohbette numara önceliklidir.') }));
+		}
 
 		var sec = h('div');
 		(S.sections[c.id] || []).forEach(function (s) {
@@ -2272,6 +2284,7 @@
 			),
 			h('div', { class: 'flxc-info-sec' }, h('h4', null, icon('label'), t('Etiketler')), labels),
 			h('div', { class: 'flxc-info-sec' }, h('h4', null, icon('assign'), t('Atanan temsilci')), assign),
+			staffSec,
 			h('div', { class: 'flxc-info-sec' }, h('h4', null, icon('note'), t('Kişi notları')), notes),
 			recOn() ? h('div', { class: 'flxc-info-sec flxc-info-actions' },
 				S.rec.donations ? h('button', { type: 'button', class: 'flxc-info-act', onclick: function () { openDonation({ chat: c.id }); } }, icon('gift'), t('Bağış kaydı oluştur')) : null,
@@ -2997,7 +3010,7 @@
 	buildShell();
 	setView('list');
 	api('bootstrap').then(function (b) {
-		S.me = b.me; S.agents = b.agents; S.labels = b.labels; S.conns = b.connections; S.replies = b.replies; S.ai = b.ai; S.bot = !!b.bot; S.unread = b.unread; S.rev = b.rev; S.rec = b.records || {};
+		S.me = b.me; S.agents = b.agents; S.labels = b.labels; S.conns = b.connections; S.replies = b.replies; S.ai = b.ai; S.bot = !!b.bot; S.unread = b.unread; S.rev = b.rev; S.rec = b.records || {}; S.staff = b.staff || [];
 		renderSideActions();
 		renderMe(); renderConn(); renderFilters();
 		return loadChats();

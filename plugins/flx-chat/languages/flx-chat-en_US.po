@@ -4760,3 +4760,27 @@ msgstr "Hello {first_name}, we have created your donation record: {donation}, to
 msgid "Merhaba {first_name}, bağışınız kaydedildi: {donation}, toplam {amount}.\n\nDesteğiniz için teşekkür ederiz."
 msgstr "Hello {first_name}, your donation has been recorded: {donation}, total {amount}.\n\nThank you for your support."
 
+
+msgid "Bu kullanıcının personel araçları yetkisi yok."
+msgstr "This user is not allowed to use the staff tools."
+
+msgid "%1$s bu sohbeti personel olarak bağladı: %2$s"
+msgstr "%1$s linked this chat to staff member %2$s"
+
+msgid "%s sohbetin personel bağlantısını kaldırdı"
+msgstr "%s removed the staff link of this chat"
+
+msgid "Sohbet personele bağlandı"
+msgstr "Chat linked to staff member"
+
+msgid "Personel bağlantısı kaldırıldı"
+msgstr "Staff link removed"
+
+msgid "— Personel değil —"
+msgstr "— Not staff —"
+
+msgid "WhatsApp bu kişinin numarasını gizliyor, asistan personeli numaradan tanıyamaz. Bu kişi ekibinizdense buradan bağlayın; asistan personel araçlarını açar."
+msgstr "WhatsApp hides this person's number, so the assistant cannot recognise staff by number. If this person is on your team, link them here and the assistant opens the staff tools."
+
+msgid "Asistan personeli Flux Roles profilindeki numaradan tanır. Numara eşleşmiyorsa buradan bağlayabilirsiniz; numarası bilinen sohbette numara önceliklidir."
+msgstr "The assistant recognises staff by the number in their Flux Roles profile. If the number does not match, you can link them here; in a chat with a known number the number comes first."

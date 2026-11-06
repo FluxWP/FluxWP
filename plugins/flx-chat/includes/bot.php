@@ -1274,7 +1274,7 @@ function flxc_bot_tool( $name, array $a, $chat, array &$ctx ) {
 			}
 			$state['order'] = $o;
 			$save( $state );
-			return array( 'ok' => true, 'summary' => flxc_bot_order_summary( $o, $state ), 'note' => 'Özeti kişiye satırlarıyla aynen göster: satır çıkarma, ekleme, dağılımı değiştirme. Dağılım kişinin dediğine uymuyorsa özeti göstermeden set_order\'ı düzeltip yeniden çağır.' );
+			return array( 'ok' => true, 'summary' => flxc_bot_order_summary( $o, $state ), 'note' => 'Özeti kişiye satırlarıyla aynen göster: satır çıkarma (Bağışçı satırı da kalır; kayıt ve havale açıklaması bu adla açılır, kişi düzeltirse save_details(full_name) ile düzelt), ekleme, dağılımı değiştirme. Dağılım kişinin dediğine uymuyorsa özeti göstermeden set_order\'ı düzeltip yeniden çağır.' );
 
 		case 'create_donation':
 			if ( empty( $a['confirmed'] ) ) {
@@ -1342,7 +1342,7 @@ function flxc_bot_tool( $name, array $a, $chat, array &$ctx ) {
 				$ctx['after'][] = $t;
 			}
 			$ctx['preview'] = false;
-			return array( 'ok' => true, 'donation' => $state['donation'], 'method' => $state['pay_method'], 'note' => 'Kayıt açıldı. Kişinin kendi ödeme linki ve bilgiler senin mesajından sonra ayrı mesajlarla gidecek; sen bunları yazma. Kişi sonra yöntemi değiştirmek isterse payment_link çağır.' );
+			return array( 'ok' => true, 'donation' => $state['donation'], 'method' => $state['pay_method'], 'note' => 'Kayıt açıldı. Kişinin kendi ödeme linki ve bilgiler senin mesajından sonra ayrı mesajlarla YALNIZ BU SOHBETE gidecek (başka bir numaraya gitmez; "X\'in numarasına gönderilecek" deme); sen bunları yazma. Kişi sonra yöntemi değiştirmek isterse payment_link çağır.' );
 
 		case 'payment_link':
 			if ( ! $state['donation'] ) {
