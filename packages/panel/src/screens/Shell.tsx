@@ -91,7 +91,7 @@ export function Shell() {
     go(next);
   };
 
-  if (route.kind === 'add-account') return <AddSite onCancel={() => go(homeRoute())} />;
+  if (route.kind === 'add-account') return <AddSite initialUrl={route.siteUrl} onCancel={() => go(homeRoute())} />;
 
   return (
     <div className="shell">

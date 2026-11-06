@@ -5,6 +5,8 @@ export interface PostDraft {
   title: string;
   excerpt: string;
   status: PostStatus;
+  /** HTML from the rich editor. Omitted on older callers. */
+  content?: string;
 }
 
 export interface WpPost {
@@ -16,7 +18,7 @@ export interface WpPost {
 }
 
 export function postBody(d: PostDraft): { title: string; excerpt: string; status: PostStatus; content: string } {
-  return { title: d.title.trim(), excerpt: d.excerpt.trim(), status: d.status, content: '' };
+  return { title: d.title.trim(), excerpt: d.excerpt.trim(), status: d.status, content: (d.content ?? '').trim() };
 }
 
 export function postEditPath(id: number): string {

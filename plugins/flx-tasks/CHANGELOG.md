@@ -1,5 +1,9 @@
 # Flux Tasks — Değişiklikler
 
+## 0.8.11
+- Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
+
+
 ## 0.8.10
 - Güvenlik (CodeQL): dosya adresi yalnız sayısal dosya kimliğiyle kurulur (`Y.fileUrl`); DOM'dan okunan `data-file` değeri adrese ham girmez.
 - Güvenlik: `h()` yardımcısında HTML yalnız açık `html` anahtarından girer; diğer öznitelik değerleri HTML olarak yorumlanmaz. Açıklama var mı kontrolü regex yerine DOMParser ile.

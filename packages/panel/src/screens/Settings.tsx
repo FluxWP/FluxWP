@@ -64,11 +64,9 @@ export function Settings() {
                 <div>{a.siteName} {a.id === activeId && <span className="pill">{t('accounts.active')}</span>}</div>
                 <small className="muted">{a.userName} · {a.siteUrl.replace(/^https?:\/\//, '')} · {t(`accounts.kind.${a.authKind}`)}</small>
               </div>
-              {a.needsLogin && (
-                <button className="btn-ghost small" onClick={() => go({ kind: 'add-account' })}>
-                  <RefreshCw size={14} /> {t('accounts.relogin')}
-                </button>
-              )}
+              <button className="btn-ghost small" onClick={() => go({ kind: 'add-account', siteUrl: a.siteUrl })}>
+                <RefreshCw size={14} /> {t('accounts.relogin')}
+              </button>
               <button className="btn-ghost small danger" onClick={() => logout(a)}>
                 <LogOut size={14} /> {t('accounts.logout')}
               </button>

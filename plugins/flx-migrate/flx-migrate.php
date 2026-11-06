@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Migrate
  * Description:       Eski paket adlarıyla kaydedilmiş site verilerini (ayarlar, tablolar, meta, içerik, tema, yükleme klasörleri) FluxWP adlarına taşır. Ad eşlemesi map.json'dadır.
- * Version:           0.1.5
+ * Version:           0.1.6
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || exit;
 
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLX_MIGRATE_VERSION', '0.1.5' );
+define( 'FLX_MIGRATE_VERSION', '0.1.6' );
 define( 'FLX_MIGRATE_DIR', __DIR__ );
 
 require_once __DIR__ . '/includes/class-mapper.php';
@@ -29,7 +29,19 @@ add_action(
 	'init',
 	static function () {
 		load_plugin_textdomain( 'flx-migrate', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-	}
+	},
+	1
+);
+add_filter(
+	'load_textdomain_mofile',
+	static function ( $mofile, $domain ) {
+		if ( 'flx-migrate' === $domain && ! is_readable( $mofile ) && ! is_readable( str_replace( '.mo', '.l10n.php', $mofile ) ) && preg_match( '/-en_[A-Z]{2}\.mo$/', $mofile ) ) {
+			return FLX_MIGRATE_DIR . '/languages/flx-migrate-en_US.mo';
+		}
+		return $mofile;
+	},
+	10,
+	2
 );
 
 /** Eşleme dosyası (map.json; filtreyle değiştirilebilir). */

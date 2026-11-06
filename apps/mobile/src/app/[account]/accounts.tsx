@@ -39,6 +39,7 @@ export default function Accounts() {
               <Badge text={t(`accounts.kind.${a.authKind === 'otp' ? 'oauth' : a.authKind === 'apppass' ? 'apikey' : a.authKind}`)} tone="muted" />
               {a.needsLogin ? <Badge text={t('accounts.needsLogin')} tone="warn" /> : null}
             </View>
+            <Button kind={a.needsLogin ? 'primary' : 'secondary'} label={t('accounts.relogin')} onPress={() => router.push({ pathname: '/add-site', params: { url: a.siteUrl } })} full />
           </View>
           <IconButton
             icon="trash"

@@ -1,5 +1,9 @@
 # Flux Wiki
 
+## 0.2.1
+- Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
+
+
 ## 0.2.0
 - Uygulama: sayfa listesi, arama ve Markdown düzenleme. `wp/v2/flx_wiki` alanına `markdown` eklendi.
 

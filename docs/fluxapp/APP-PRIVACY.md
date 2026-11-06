@@ -1,6 +1,6 @@
 # FluxWP app privacy
 
-Last updated: 6 November 2026. Mobile usage reporting below requires a mobile build with the sharing switch and Flux App 0.4.1 or later on the connected site. Earlier mobile builds do not send this opt-in signal. This release does not integrate a third-party mobile crash-reporting service.
+Last updated: 6 November 2026. Mobile usage reporting below requires a mobile build with the sharing switch and Flux App 0.4.2 or later on the connected site. Earlier mobile builds do not send this opt-in signal. This release does not integrate a third-party mobile crash-reporting service.
 
 FluxWP is maintained by Ahmet Yılmaz. This notice covers the FluxWP iOS, Android and desktop companion apps. It does not replace the privacy policies of the WordPress sites you choose to connect.
 
@@ -56,7 +56,7 @@ For questions about the FluxWP app, use [the project's support page](https://git
 
 ## Türkçe
 
-Son güncelleme: 6 Kasım 2026. Aşağıdaki mobil kullanım paylaşımı, paylaşım anahtarı bulunan mobil sürümü ve bağlı sitede Flux App 0.4.1 veya üstünü gerektirir. Önceki mobil sürümler bu izin işaretini göndermez. Bu sürümde üçüncü taraf mobil hata raporlama hizmeti entegre değildir.
+Son güncelleme: 6 Kasım 2026. Aşağıdaki mobil kullanım paylaşımı, paylaşım anahtarı bulunan mobil sürümü ve bağlı sitede Flux App 0.4.2 veya üstünü gerektirir. Önceki mobil sürümler bu izin işaretini göndermez. Bu sürümde üçüncü taraf mobil hata raporlama hizmeti entegre değildir.
 
 FluxWP, sizin seçtiğiniz WordPress sitelerine bağlanır. Giriş ve içerik işlemleri ilgili siteye gönderilir; sitelerdeki veriler ve saklama süreleri site işletmecisinin kontrolündedir. Mobil uygulamada kimlik bilgileri işletim sisteminin güvenli deposunda, tercihler ve önbellek verileri cihazda tutulur.
 

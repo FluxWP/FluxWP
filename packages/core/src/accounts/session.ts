@@ -10,18 +10,26 @@ const SKEW = 60_000;
 const clients = new Map<string, ApiClient>();
 const inflight = new Map<string, Promise<Credentials | null>>();
 
+async function markNeedsLogin(id: string): Promise<void> {
+  const cur = accountsStore.getState().accounts.find((x) => x.id === id);
+  if (cur && !cur.needsLogin) await accountsStore.getState().update(id, { needsLogin: true });
+}
+
 async function refresh(a: Account): Promise<Credentials | null> {
   const running = inflight.get(a.id);
   if (running) return running;
   const p = (async () => {
     const t = await loadTokens(a.id);
-    if (!t?.refresh) return null;
+    if (!t?.refresh || (a.authKind !== 'oauth' && a.authKind !== 'otp')) {
+      await markNeedsLogin(a.id);
+      return null;
+    }
     try {
       const next = fromTokenResponse(await refreshTokens(a.siteUrl, t.refresh));
       await saveTokens(a.id, next);
       return { token: next.access };
     } catch {
-      await accountsStore.getState().update(a.id, { needsLogin: true });
+      await markNeedsLogin(a.id);
       return null;
     }
   })().finally(() => inflight.delete(a.id));
@@ -38,11 +46,22 @@ export function clientFor(a: Account): ApiClient {
     getCredentials: async () => {
       if (a.authKind === 'demo') return { token: 'demo' };
       const t = await loadTokens(a.id);
-      if (!t) return null;
-      if (t.expiresAt && t.expiresAt - SKEW < Date.now() && t.refresh) return refresh(a);
+      if (!t) {
+        await markNeedsLogin(a.id);
+        return null;
+      }
+      if (t.expiresAt && t.expiresAt - SKEW < Date.now()) return refresh(a);
       return { token: t.access, scheme: a.authKind === 'apppass' ? 'basic' : 'bearer' };
     },
-    onUnauthorized: a.authKind === 'oauth' || a.authKind === 'otp' ? () => refresh(a) : undefined,
+    onUnauthorized: async () => {
+      if (a.authKind === 'demo') return null;
+      if (a.authKind === 'oauth' || a.authKind === 'otp') {
+        const next = await refresh(a);
+        if (next) return next;
+      }
+      await markNeedsLogin(a.id);
+      return null;
+    },
   });
   clients.set(a.id, c);
   return c;

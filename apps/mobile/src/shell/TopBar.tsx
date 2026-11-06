@@ -51,9 +51,9 @@ export function TopBar({ options, back, navigation }: TopBarProps) {
 }
 
 const styles = StyleSheet.create((theme) => ({
-  bar: { backgroundColor: theme.colors.surface, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.colors.border },
-  row: { height: 52, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 4, gap: 4 },
-  title: { flex: 1, marginLeft: 4 },
+  bar: { backgroundColor: theme.colors.sidebar, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.colors.border },
+  row: { height: 48, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 4, gap: 4 },
+  title: { flex: 1, marginLeft: 4, fontFamily: theme.font.heading, fontWeight: '800', letterSpacing: -0.3 },
   spacer: { width: 12 },
   avatar: { paddingHorizontal: 8 },
 }));

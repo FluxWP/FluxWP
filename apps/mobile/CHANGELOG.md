@@ -1,5 +1,19 @@
 # Değişiklikler
 
+## 0.3.1
+- Oturum düşünce hesap silinmeden "Yeniden giriş" çıkar: hesap listesinde her zaman, ölü oturumda ekranın üstünde. Adres hazır gelir. API anahtarı da 401'de aynı yolu kullanır.
+- Site simgesi yoksa tema logosu ya da Flux Admin logosu hesap işaretine yazılır. Simgesi olan siteler (Yeşil Türkiye) simgeyi kullanmaya devam eder.
+
+## 0.3.0
+- Sayfalar ve yazılar tam ekran düzenleyicide: kalın, liste, alıntı, bağlantı ve görsel. Görsel siteye yüklenir.
+- Onay, menü ve hesap pencereleri sistem sayfasıdır. Karartma sayfayla birlikte gelir; tutamaç yarım ve tam yükseklik arasında sürüklenir.
+- İlk açılış üç karşılama sayfası: İleri ile geçilir, sonra site adresi gelir. Atla doğrudan girişe iner.
+- Diğer iki giriş düzeni duruyor: kart (`/add-site?giris=card`) ve indigo bant (`/add-site?giris=band`).
+
+## 0.2.0
+- Kabuk (üst çubuk, yan çekmece, alt sekmeler), listeler, ayrıntı, formlar ve boş durumlar Flux Admin dilinde: antrasit + bej zemin, indigo düğmeler, amber vurgu, Figtree. Hesap açılınca sitenin theme.json yazı tipi ve renkleri geçerli olur.
+- Yerel ekranlar (WhatsApp, Görevler, bağış inceleme, yazı, ortam, Social, Studio, AI, TV kumandası) aynı yazı, aralık ve düğmeleri kullanır. Web görünümü çerçevesiz kalır.
+
 ## 0.1.1
 - Beyaz etiket: `FLUX_BRAND` build anında `brands/<slug>/brand.json` okur (ad, bundle, şema, ikon, splash, tema, kabuk). Ana uygulama `com.fluxwp.app` / `fluxwp` olarak kalır; `allowedSites` boştur.
 - Marka derlemesi yalnız listedeki siteleri ekler (`brandGate`). Liste doluysa demo girişi kapalıdır. `lockSite` tek siteyi kilitler; liste dolu ve kilit yoksa kullanıcı listeden seçer.
