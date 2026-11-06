@@ -1126,9 +1126,31 @@
 	function onMsgsScroll() {
 		if (el.msgs.scrollTop < 80) loadOlder();
 		if (nearBottom()) { newBelow = 0; markRead(); }
+		// 1.36.1: the sticky day label shows only while scrolling, so it does not cover a bubble when the list rests.
+		el.msgs.classList.add('is-scrolling');
+		clearTimeout(daysT);
+		daysT = setTimeout(function () { if (el.msgs) el.msgs.classList.remove('is-scrolling'); }, 1200);
 		updateDown();
 	}
+	var daysT = 0, daysRaf = 0;
+	function syncDays() {
+		if (daysRaf || !el.inner) return;
+		daysRaf = requestAnimationFrame(function () {
+			daysRaf = 0;
+			if (!el.inner) return;
+			var days = el.inner.querySelectorAll('.flxc-day'), last = -1;
+			Array.prototype.forEach.call(days, function (d, i) {
+				var nx = d.nextElementSibling, sp = d.firstChild;
+				var stuck = !!(nx && sp && nx.getBoundingClientRect().top < sp.getBoundingClientRect().bottom + 2);
+				d.classList.toggle('is-stuck', stuck);
+				if (stuck) last = i;
+			});
+			// Stuck labels pile up at the top: only the newest one is shown.
+			Array.prototype.forEach.call(days, function (d, i) { d.classList.toggle('is-past', d.classList.contains('is-stuck') && i < last); });
+		});
+	}
 	function updateDown() {
+		syncDays();
 		if (!el.down) return;
 		el.down.hidden = nearBottom();
 		el.downN.hidden = !newBelow;
