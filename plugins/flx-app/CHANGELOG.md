@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.4.1
+- Ayrı kullanıcı ve site yöneticisi izniyle günlük iOS/Android aktif hesap toplamları. Varsayılan kapalı; yalnız başarılı oturumlu istekler; gün bazlı tekilleştirme, 5 hesap eşiği, içerik/kimlik göndermeyen telemetri ve süreli yerel sayaçlar.
+
 ## 0.4.0
 - **Masaüstü ve mobil tek sözleşme.** FluxWP masaüstü (Tauri) ve yeni mobil uygulama (Expo, `com.fluxwp.app`) aynı uçları kullanır; `X-FluxWP-Platform: mobile | desktop` yalnız kabuğu seçer. Çıktılar `@fluxwp/manifest` JSON şemalarından geçer.
 - **Giriş:** yerleşik `flx-mobil` istemcisi (`fluxwp://oauth/callback`). `flx-mobil` ve `flx-masaustu` hem deep link hem loopback (`http://127.0.0.1:<port>/callback`) kabul eder. `prompt=login` (aynı siteye ikinci hesap). Marka istemcileri `app_clients` ayarından (preset yazar). Site ana uygulamayı kapatabilir. Geliştirici modunda Expo `exp://` dönüşleri. Flux Speed özel giriş adresi (`/fluxadmin`) açıkken oturum devri de çalışır (önceden yalnız yetkilendirme geçiyordu).

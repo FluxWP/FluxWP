@@ -11,6 +11,7 @@ import { usePrefs, type ThemePref } from '@/theme/prefs';
 import { applyThemeMode } from '@/theme/unistyles';
 import { overlays } from '@/ui/overlays';
 import { Button, Card, Segmented, Text } from '@/ui/primitives';
+import { PrivacyNotice } from '@/privacy/PrivacyNotice';
 
 export default function Settings() {
   const { t } = useTranslation();
@@ -60,6 +61,7 @@ export default function Settings() {
         </Card>
       ) : null}
       <Button kind="secondary" icon="refresh" label={t('mobile.settings.cache')} onPress={() => (client.clear(), overlays.toast(t('mobile.settings.cacheCleared')))} full />
+      <Card style={styles.card}><PrivacyNotice /></Card>
       <View style={styles.about}>
         <Text variant="caption">{brand.name} · {t('mobile.settings.version', { version: APP_VERSION })}</Text>
         {brand.supportUrl ? <Button kind="ghost" label={t('mobile.settings.support')} onPress={() => renderer.nav.openUrl(brand.supportUrl!)} /> : null}

@@ -13,6 +13,7 @@ import { SiteNotAllowedError, loadBootstrap } from '@fluxwp/runtime';
 import { LOGO, LOGO_DARK, brand, gate } from '@/brand';
 import { accountKey } from '@/shell/routes';
 import { Avatar, Button, Field, IconButton, Text } from '@/ui/primitives';
+import { PrivacyNotice } from '@/privacy/PrivacyNotice';
 
 type Step = 'url' | 'method' | 'otp' | 'apikey';
 type Busy = null | 'discover' | 'oauth' | 'oauth2' | 'otp' | 'verify' | 'key' | 'apppass' | 'demo';
@@ -180,6 +181,7 @@ export default function AddSite() {
         {!restricted && !gate.locked && step === 'url' ? (
           <Button kind="ghost" label={t('mobile.addSite.demo')} loading={busy === 'demo'} disabled={!!busy} onPress={() => void run('demo', async () => done(await loginDemo()))} testID="demo" />
         ) : null}
+        <PrivacyNotice introduction />
         <Text variant="caption" style={styles.center}>{t('auth.footer', { name: brand.name })}</Text>
       </ScrollView>
     </KeyboardAvoidingView>

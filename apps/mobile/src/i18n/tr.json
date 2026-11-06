@@ -205,5 +205,12 @@
       "textPh": "Metin",
       "type": "Yaz"
     }
+  },
+  "privacy": {
+    "connection": "Giriş ve site işlemleri seçtiğiniz WordPress sitesine gider. Site işletmecisinin kendi gizlilik politikası da geçerlidir.",
+    "share": "Toplam uygulama kullanımını paylaş (isteğe bağlı)",
+    "usage": "Varsayılan kapalıdır. Sizin tercihiniz ve site yöneticisinin izniyle site, günlük aktif hesapları iOS/Android bazında sayar. En az beş kişilik grupların toplamı, sitenin ayarlı ülkesiyle FluxWP’ye gönderilir. Ad, içerik veya GPS konumu gönderilmez. Buradan ya da Ayarlar’dan istediğiniz zaman kapatabilirsiniz.",
+    "policy": "Gizlilik",
+    "terms": "Kullanım şartları"
   }
 }

@@ -3,6 +3,11 @@ return array(
 	'language' => 'en_US',
 	'plural-forms' => 'nplurals=2; plural=(n != 1);',
 	'messages' => array(
+		'Mobil uygulama: günlük aktif hesaplar' => 'Mobile app: daily active accounts',
+		'UTC gün / platform' => 'UTC day / platform',
+		'İzin veren hesaplar' => 'Consenting accounts',
+		'Henüz uygun toplam yok. Kullanıcı ve site izni gerekir; site/platform/gün başına beşten az hesap paylaşılmaz. Ülke filtresi sitenin ayarlı ülkesidir; kişilerin konumu değildir. Aynı kişi farklı sitelerde veya platformlarda tekrar sayılabilir.' => 'No eligible totals yet. Both device and site consent are required; cohorts below five accounts per site/platform/day are withheld. Country is the configured site country, not a person’s location. The same person may count on multiple sites or platforms.',
+
 		'İstatistikler' => 'Statistics',
 		'Site Analitik' => 'Site Analytics',
 		'Yolculuklar' => 'Journeys',

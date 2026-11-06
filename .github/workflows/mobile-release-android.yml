@@ -47,7 +47,7 @@ jobs:
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
           GOOGLE_PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
         run: |
-          echo "FLUX_BUILD_NUMBER=$(date +%s)" >> "$GITHUB_ENV"
+          node tools/release/android-version-code.mjs
           node tools/release/config.mjs
       - uses: oven-sh/setup-bun@v2
         with: { bun-version: 1.4.4 }
