@@ -1156,3 +1156,9 @@ msgstr "Theme settings and presets"
 
 msgid "Sistem (cihaza göre)"
 msgstr "System (follow device)"
+
+msgid "Menüyü daralt"
+msgstr "Collapse menu"
+
+msgid "Menüyü genişlet"
+msgstr "Expand menu"

@@ -468,7 +468,9 @@
 		e.preventDefault();
 		if (d.body.classList.contains('flxa-appmode')) {
 			// WhatsApp / Görevler: panelin genel daraltma ayarına dokunmadan yalnız bu ekranlar için hatırlanır.
-			var open = d.body.classList.toggle('folded') === false;
+			var open = isFolded();
+			d.body.classList.toggle('folded', !open);
+			d.body.classList.remove('auto-fold');
 			html.classList.toggle('flxa-app-open', open);
 			try { localStorage.setItem('flxa-app-open', open ? '1' : '0'); } catch (x) {}
 			paintGroups();
@@ -479,6 +481,26 @@
 		if (b) b.click(); else d.body.classList.toggle('folded');
 		paintGroups();
 	});
+
+	function paintFoldButton() {
+		var button = $('[data-flxa-fold]');
+		if (!button) return;
+		var folded = isFolded();
+		var label = folded ? T.expandMenu : T.foldMenu;
+		button.setAttribute('aria-expanded', folded ? 'false' : 'true');
+		if (label) { button.setAttribute('aria-label', label); button.setAttribute('title', label + ' ([)'); }
+	}
+	function refreshSidebar() {
+		// Application screens remember their own width, including the automatic 783–960px rail.
+		if (wide.matches && d.body.classList.contains('flxa-appmode') && html.classList.contains('flxa-app-open')) d.body.classList.remove('auto-fold');
+		gflyHide();
+		tipHide();
+		paintFoldButton();
+		paintGroups();
+	}
+	paintFoldButton();
+	window.addEventListener('resize', refreshSidebar);
+	if (window.MutationObserver) new MutationObserver(function () { gflyHide(); tipHide(); paintFoldButton(); paintGroups(); }).observe(d.body, { attributes: true, attributeFilter: ['class'] });
 
 	/* "[" tuşu: menüyü daralt / genişlet (yazı alanında değilken). */
 	d.addEventListener('keydown', function (e) {
@@ -585,6 +607,7 @@
 		$$('li.flxa-group', menuEl).forEach(function (sep) {
 			var g = M.groups[sep.id];
 			if (!g || !g.label) return;
+			sep.setAttribute('aria-label', g.label);
 			if (sep.querySelector('.flxa-gchev')) { sep.setAttribute('role', 'button'); sep.setAttribute('tabindex', '0'); sep.setAttribute('title', T.groupToggle); return; }
 			sep.classList.add('flxa-gh');
 			sep.setAttribute('role', 'button');
@@ -619,82 +642,132 @@
 		autoFold.addEventListener && autoFold.addEventListener('change', paintGroups);
 	}
 
-	/* ───────── Daraltılmış menü: kapalı grup "•••" ve sağda açılan liste ───────── */
-	var gfly = null, gflyT = 0, gflySep = null;
-	function gflyHide() {
+	/* One anchored flyout for groups AND plugin submenus; its outer node never changes. */
+	var gfly = null, gflyT = 0, gflySep = null, gflyBody = null, gflyHead = null, gflyFocusBack = false;
+	function gflyTrigger(item) { return item && (item.matches('li.flxa-gh') ? item : $('a.menu-top', item)); }
+	function gflyHide(restore) {
 		clearTimeout(gflyT);
 		if (gfly) gfly.classList.remove('is-on');
+		var trigger = gflyTrigger(gflySep);
 		if (gflySep) gflySep.classList.remove('is-open');
+		if (trigger) trigger.setAttribute('aria-expanded', 'false');
 		gflySep = null;
+		if (restore && trigger) { gflyFocusBack = true; trigger.focus(); gflyFocusBack = false; }
 	}
 	function gflyHovered() {
-		try { return !!((gfly && gfly.matches(':hover')) || (gflySep && gflySep.matches(':hover'))); } catch (x) { return false; }
+		return !!((gfly && (gfly.matches(':hover') || gfly.contains(d.activeElement))) || (gflySep && (gflySep.matches(':hover') || gflySep.contains(d.activeElement))));
 	}
-	// Fare listenin ya da grup simgesinin üstündeyse kapanmaz (geçişte arada bir an boşluk olsa da).
 	function gflyLater() {
 		clearTimeout(gflyT);
 		gflyT = setTimeout(function check() {
 			if (gflyHovered()) { gflyT = setTimeout(check, 250); return; }
 			gflyHide();
-		}, 350);
+		}, 300);
 	}
-	function gflyShow(sep) {
+	function gflyPosition() {
+		if (!gflySep || !gfly || !gfly.classList.contains('is-on')) return;
+		var aw = d.getElementById('adminmenuwrap'), r = gflySep.getBoundingClientRect();
+		var ar = aw ? aw.getBoundingClientRect() : r;
+		if (!isFolded() || !wide.matches || r.bottom < ar.top || r.top > ar.bottom) { gflyHide(); return; }
+		var view = window.visualViewport, left = view ? view.offsetLeft : 0, top = view ? view.offsetTop : 0;
+		var width = view ? view.width : window.innerWidth, height = view ? view.height : window.innerHeight;
+		gfly.style.maxHeight = Math.max(80, height - 16) + 'px';
+		gfly.style.maxWidth = Math.max(160, Math.min(280, width - ar.width - 24)) + 'px';
+		var right = railRight(), x = right ? ar.left - 8 - gfly.offsetWidth : ar.right + 8;
+		gfly.classList.toggle('is-right-rail', right);
+		gfly.style.left = Math.round(Math.max(left + 8, Math.min(x, left + width - gfly.offsetWidth - 8))) + 'px';
+		var y = Math.round(Math.max(top + 8, Math.min(r.top - 6, top + height - gfly.offsetHeight - 8)));
+		gfly.style.top = y + 'px';
+		gfly.style.setProperty('--flxa-fly-y', Math.round(Math.max(14, Math.min(gfly.offsetHeight - 14, r.top + r.height / 2 - y))) + 'px');
+	}
+	function gflyIcon(li, a) {
+		var img = $('.wp-menu-image', a);
+		if (!img) return null;
+		var ic = img.cloneNode(true);
+		ic.removeAttribute('id');
+		$$('[id]', ic).forEach(function (node) { node.removeAttribute('id'); });
+		ic.setAttribute('aria-hidden', 'true');
+		ic.classList.add('flxa-gfly-ico');
+		if (li.classList.contains('flxa-letter')) { ic.innerHTML = ''; ic.className = 'flxa-gfly-ico flxa-gfly-ch'; ic.textContent = li.getAttribute('data-flxa-ch') || getComputedStyle(img, '::before').content.replace(/^["']|["']$/g, '').replace(/^(none|normal)$/, ''); }
+		else if (li.classList.contains('flxa-lic')) { ic.innerHTML = ''; ic.className = 'flxa-gfly-ico flxa-gfly-mask'; ic.style.setProperty('--flxa-i', getComputedStyle(img, '::before').getPropertyValue('--flxa-i')); }
+		else if (li.classList.contains('flxa-logo')) { ic.innerHTML = ''; ic.className = 'flxa-gfly-ico flxa-gfly-logo'; ic.style.backgroundImage = getComputedStyle(img).backgroundImage; }
+		else if (getComputedStyle(img).backgroundImage !== 'none') { ic.innerHTML = ''; ic.className = 'flxa-gfly-ico flxa-gfly-logo flxa-gfly-bg'; ic.style.backgroundImage = getComputedStyle(img).backgroundImage; }
+		return ic;
+	}
+	function gflyLinkText(a) {
+		var label = a.cloneNode(true);
+		$$('.awaiting-mod, .update-plugins', label).forEach(function (badge) { badge.remove(); });
+		return label.textContent.trim();
+	}
+	function gflyShow(item) {
+		if (!isFolded() || !wide.matches) return;
 		clearTimeout(gflyT);
-		if (gflySep === sep && gfly && gfly.classList.contains('is-on')) return;
-		gflyHide();
+		if (gflySep === item && gfly && gfly.classList.contains('is-on')) { gflyPosition(); return; }
 		if (!gfly) {
-			gfly = el('div', { id: 'flxa-gfly', role: 'menu' });
+			gflyHead = el('div', { 'class': 'flxa-gfly-head', id: 'flxa-gfly-title' });
+			gflyBody = el('div', { 'class': 'flxa-gfly-body' });
+			gfly = el('div', { id: 'flxa-gfly', role: 'menu', 'aria-labelledby': 'flxa-gfly-title' }, [gflyHead, gflyBody]);
 			gfly.addEventListener('mouseenter', function () { clearTimeout(gflyT); });
 			gfly.addEventListener('mouseleave', gflyLater);
+			gfly.addEventListener('focusout', gflyLater);
 			d.body.appendChild(gfly);
 		}
-		var g = M.groups[sep.id] || {};
-		gfly.innerHTML = '';
-		if (g.label) gfly.appendChild(el('div', { 'class': 'flxa-gfly-head', text: g.label }));
-		groupItems(sep).forEach(function (li) {
-			var a = $('a.menu-top', li);
+		var old = gflyTrigger(gflySep);
+		if (gflySep) gflySep.classList.remove('is-open');
+		if (old) old.setAttribute('aria-expanded', 'false');
+		var group = item.matches('li.flxa-gh'), main = $('a.menu-top', item);
+		gflyHead.textContent = group ? (M.groups[item.id] || {}).label || '' : tipText(main);
+		gflyBody.replaceChildren();
+		var entries = group ? groupItems(item).map(function (li) { return { li: li, a: $('a.menu-top', li), icon: true }; }) : $$('.wp-submenu > li > a', item).filter(function (a) { return !a.parentElement.classList.contains('flxa-sub-more'); }).map(function (a) { return { li: a.parentElement, a: a }; });
+		if (!entries.length && main) entries = [{ li: item, a: main }];
+		entries.forEach(function (entry) {
+			var a = entry.a, li = entry.li;
 			if (!a) return;
 			var row = el('a', { 'class': 'flxa-gfly-item', href: a.getAttribute('href') || '#', role: 'menuitem' });
-			row.style.setProperty('--flxa-t', getComputedStyle(li).getPropertyValue('--flxa-t'));
-			var img = $('.wp-menu-image', a);
-			if (img) {
-				var ic = img.cloneNode(true);
-				ic.removeAttribute('id');
-				ic.classList.add('flxa-gfly-ico');
-				if (li.classList.contains('flxa-letter')) { ic.innerHTML = ''; ic.className = 'flxa-gfly-ico flxa-gfly-ch'; ic.textContent = li.getAttribute('data-flxa-ch') || getComputedStyle(img, '::before').content.replace(/^["']|["']$/g, '').replace(/^(none|normal)$/, ''); }
-				else if (li.classList.contains('flxa-lic')) { ic.innerHTML = ''; ic.className = 'flxa-gfly-ico flxa-gfly-mask'; ic.style.setProperty('--flxa-i', getComputedStyle(img, '::before').getPropertyValue('--flxa-i')); }
-				else if (li.classList.contains('flxa-logo')) { ic.innerHTML = ''; ic.className = 'flxa-gfly-ico flxa-gfly-logo'; ic.style.backgroundImage = getComputedStyle(img).backgroundImage; }
-				else if (getComputedStyle(img).backgroundImage !== 'none') { ic.innerHTML = ''; ic.className = 'flxa-gfly-ico flxa-gfly-logo flxa-gfly-bg'; ic.style.backgroundImage = getComputedStyle(img).backgroundImage; }
-				row.appendChild(ic);
-			}
-			row.appendChild(el('span', { 'class': 'flxa-gfly-name', text: tipText(a) }));
-			gfly.appendChild(row);
+			['target', 'rel'].forEach(function (key) { if (a.hasAttribute(key)) row.setAttribute(key, a.getAttribute(key)); });
+			if (li.classList.contains('current') || a.getAttribute('aria-current') === 'page') row.setAttribute('aria-current', 'page');
+			if (entry.icon) { row.style.setProperty('--flxa-t', getComputedStyle(li).getPropertyValue('--flxa-t')); var icon = gflyIcon(li, a); if (icon) row.appendChild(icon); }
+			row.appendChild(el('span', { 'class': 'flxa-gfly-name', text: entry.icon ? tipText(a) : gflyLinkText(a) }));
+			gflyBody.appendChild(row);
 		});
-		gflySep = sep;
-		sep.classList.add('is-open');
-		var r = sep.getBoundingClientRect();
-		var aw = d.getElementById('adminmenuwrap');
-		gfly.style.left = Math.round((aw ? aw.getBoundingClientRect().right : r.right) + 8) + 'px';
-		gfly.style.top = '0px';
+		gflyBody.scrollTop = 0;
+		gflySep = item;
+		item.classList.add('is-open');
+		var trigger = gflyTrigger(item);
+		if (trigger) { trigger.setAttribute('aria-haspopup', 'menu'); trigger.setAttribute('aria-controls', 'flxa-gfly'); trigger.setAttribute('aria-expanded', 'true'); }
 		gfly.classList.add('is-on');
-		if (railRight()) gfly.style.left = Math.max(8, Math.round(aw.getBoundingClientRect().left - 8 - gfly.offsetWidth)) + 'px';
-		var h = gfly.offsetHeight;
-		var top = Math.round(Math.max(8, Math.min(r.top - 6, window.innerHeight - h - 8)));
-		gfly.style.top = top + 'px';
-		// Liste ile simgeyi bağlayan ok: simgenin ortasına hizalı.
-		gfly.style.setProperty('--flxa-fly-y', Math.round(Math.max(14, Math.min(h - 14, r.top + r.height / 2 - top))) + 'px');
+		gflyPosition();
 	}
 	if (menuEl) {
+		html.classList.add('flxa-unified-flyout');
+		function flyoutItem(target) {
+			var item = target.closest && target.closest('#adminmenu > li.menu-top, #adminmenu > li.flxa-gh.is-closed');
+			return item && !item.classList.contains('flxa-side-head') ? item : null;
+		}
 		menuEl.addEventListener('mouseover', function (e) {
-			if (!isFolded() || window.innerWidth <= 782) return;
-			var sep = e.target.closest('li.flxa-gh.is-closed');
-			if (sep) gflyShow(sep);
-			else if (gflySep) gflyLater();
+			if (!isFolded() || !wide.matches) return;
+			var item = flyoutItem(e.target);
+			if (item) gflyShow(item); else if (gflySep) gflyLater();
 		});
+		menuEl.addEventListener('focusin', function (e) { if (!gflyFocusBack) { var item = flyoutItem(e.target); if (item) gflyShow(item); } });
+		menuEl.addEventListener('focusout', gflyLater);
 		menuEl.addEventListener('mouseleave', function () { if (gflySep) gflyLater(); });
+		d.addEventListener('keydown', function (e) {
+			if (!gfly || !gflySep) return;
+			var inFlyout = gfly.contains(e.target), from = gflyTrigger(gflySep) === e.target;
+			if (!inFlyout && !from) return;
+			if (e.key === 'Escape' || inFlyout && e.key === 'ArrowLeft') { e.preventDefault(); gflyHide(true); return; }
+			if (from && e.key === 'ArrowRight') { e.preventDefault(); var first = $('a', gflyBody); if (first) first.focus(); return; }
+			if (inFlyout && /^(ArrowDown|ArrowUp|Home|End)$/.test(e.key)) {
+				e.preventDefault(); var links = $$('a', gflyBody), i = links.indexOf(d.activeElement);
+				var next = e.key === 'Home' ? 0 : e.key === 'End' ? links.length - 1 : (i + (e.key === 'ArrowUp' ? links.length - 1 : 1)) % links.length;
+				if (links[next]) links[next].focus();
+			}
+		});
+		d.addEventListener('pointerdown', function (e) { if (gflySep && !gfly.contains(e.target) && !menuEl.contains(e.target)) gflyHide(); });
 		var gaw = d.getElementById('adminmenuwrap');
-		if (gaw) gaw.addEventListener('scroll', function () { if (gflySep && !gflyHovered()) gflyHide(); }, { passive: true });
-		d.addEventListener('keydown', function (e) { if (e.key === 'Escape') gflyHide(); });
+		if (gaw) gaw.addEventListener('scroll', gflyPosition, { passive: true });
+		if (window.visualViewport) { window.visualViewport.addEventListener('resize', gflyPosition); window.visualViewport.addEventListener('scroll', gflyPosition); }
 	}
 
 	/* ───────── Sağ tık: sabitle, Diğer'e taşı, sırala ───────── */
@@ -710,7 +783,7 @@
 		var id = 'flxa-g-' + key;
 		var sep = d.getElementById(id);
 		if (sep) return sep;
-		sep = el('li', { 'class': 'wp-menu-separator flxa-group flxa-gh', id: id, role: 'button', tabindex: '0', title: T.groupToggle }, [el('div', { 'class': 'separator' })]);
+		sep = el('li', { 'class': 'wp-menu-separator flxa-group flxa-gh', id: id, role: 'button', tabindex: '0', title: T.groupToggle, 'aria-label': label }, [el('div', { 'class': 'separator' })]);
 		sep.querySelector('.separator').setAttribute('data-label', label);
 		sep.appendChild(el('span', { 'class': 'flxa-gcount' }));
 		sep.appendChild(el('span', { 'class': 'flxa-gchev', html: B.icons.chevron }));
@@ -1013,31 +1086,11 @@
 		return (a.getAttribute('aria-label') || a.getAttribute('title') || a.textContent || '').trim();
 	}
 	function tipHide() { if (tip) tip.classList.remove('is-on'); }
-	/* Daraltılmış menüde aynı anda tek açılır alt menü: WordPress'in hoverIntent'i bazen "opensub"u
-	   eski öğelerde bırakıyor; o zaman tüm alt menüler kendi satırında üst üste kart gibi açık kalıyordu. */
-	function subReset(keep) {
-		[].forEach.call(d.querySelectorAll('#adminmenu > li.menu-top'), function (o) {
-			if (o === keep) return;
-			o.classList.remove('opensub');
-			o.style.removeProperty('--flxa-sub-top');
-		});
-	}
 	var amenu = d.getElementById('adminmenu');
 	if (amenu) {
 		amenu.addEventListener('mouseover', function (e) {
 			if (!railOn() || window.innerWidth <= 782) return;
-			var li = e.target.closest('#adminmenu > li.menu-top');
-			if (li) {
-				subReset(li);
-				var sub = $('.wp-submenu', li);
-				if (sub) {
-					var r = li.getBoundingClientRect();
-					var h = sub.offsetHeight || 0;
-					var top = Math.max(8, Math.min(r.top - 1, window.innerHeight - h - 8));
-					li.style.setProperty('--flxa-sub-top', top + 'px');
-				}
-			}
-			var a = e.target.closest('#adminmenu > li.menu-top:not(.wp-has-submenu) > a, .flxa-side-head a, .flxa-side-head button, .flxa-side-foot a, .flxa-side-foot button');
+			var a = e.target.closest('.flxa-side-head a, .flxa-side-head button, .flxa-side-foot a, .flxa-side-foot button');
 			if (!a) { tipHide(); return; }
 			var t = tipText(a);
 			if (!t) { tipHide(); return; }
@@ -1049,7 +1102,7 @@
 			tip.classList.add('is-on');
 			if (railRight()) tip.style.left = Math.max(8, Math.round(rr.left - 10 - tip.offsetWidth)) + 'px';
 		});
-		amenu.addEventListener('mouseleave', function () { tipHide(); subReset(null); });
+		amenu.addEventListener('mouseleave', function () { tipHide(); });
 		var aw = d.getElementById('adminmenuwrap');
 		if (aw) aw.addEventListener('scroll', tipHide, { passive: true });
 		/* Sayfa değişince menü aynı kaydırma yerinde açılsın (ilk boyamada menu early paint geri koyar). */
