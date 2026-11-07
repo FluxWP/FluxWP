@@ -37,8 +37,13 @@ export function useAiMcp() {
  const toggle=()=>state&&mutation({action:'toggle',revision:state.revision,enabled:!state.enabled},renderer.t(state.enabled?'aiMcp.confirmDisable':'aiMcp.confirmEnable',{site}));
  const revoke=(key:AiMcpKey)=>state&&mutation({action:'revoke',revision:state.revision,id:key.id},renderer.t('aiMcp.confirmRevoke',{name:key.name,owner:key.owner||'—',site}));
  const copy=async(value:string)=>{try{await renderer.ui.copy(value);if(active.current)renderer.ui.toast(renderer.t('aiMcp.copied'),'ok');}catch(e){if(active.current)setError(e instanceof Error?e.message:String(e));}};
- const keyUrl=()=>{if(!state||!created)return'';const url=new URL(state.url);url.searchParams.set('key',created.secret);return url.toString();};
+ const keyUrl=()=>{if(!state)return'';const url=new URL(state.url);url.searchParams.set('key',created?.secret??'YOUR_MCP_KEY');return url.toString();};
+ const cli=()=>{
+  // This is copyable shell text: quote each argument, including a site's potentially unusual URL.
+  const quote=(value:string)=>`'${value.replaceAll("'", "'\\''")}'`;
+  return `claude mcp add --transport http ${quote(state?.slug||'fluxwp')} ${quote(state?.url??'')} --header ${quote(`Authorization: Bearer ${created?.secret??'YOUR_MCP_KEY'}`)}`;
+ };
  const config=()=>JSON.stringify({mcpServers:{[state?.slug||'fluxwp']:{command:'npx',args:['-y','mcp-remote',state?.url??'','--header',`Authorization: Bearer ${created?.secret??'YOUR_MCP_KEY'}`]}}},null,2);
  const reload=async()=>{if(operation.current)return;operation.current=true;setBusy(true);try{await query.refetch();}finally{operation.current=false;if(active.current)setBusy(false);}};
- return{account,query,state,form,edit,select,filteredTools,search,setSearch,stale,busy,error,created,create,toggle,revoke,copy,keyUrl,config,reload,reset:()=>{if(!busy){setDraft(null);setError('');}},dismiss:()=>setCreated(null)};
+ return{account,query,state,form,edit,select,filteredTools,search,setSearch,stale,busy,error,created,create,toggle,revoke,copy,keyUrl,config,cli,reload,reset:()=>{if(!busy){setDraft(null);setError('');}},dismiss:()=>setCreated(null)};
 }

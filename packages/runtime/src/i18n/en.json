@@ -343,6 +343,9 @@
     "confirmCreate": "Create a key for {{site}} with access to {{scope}}? It will use your site permissions. Store the key safely; it will be shown once.",
     "confirmEnable": "Turn on the MCP server for {{site}}? Existing keys will be able to connect.",
     "confirmDisable": "Turn off the MCP server for {{site}}? All MCP clients will lose access until it is enabled again.",
-    "confirmRevoke": "Permanently revoke “{{name}}” (owner: {{owner}}) on {{site}}? Clients using it will lose access. A replacement key can be created."
+    "confirmRevoke": "Permanently revoke “{{name}}” (owner: {{owner}}) on {{site}}? Clients using it will lose access. A replacement key can be created.",
+    "cli": "Command-line example",
+    "copyCli": "Copy command",
+    "keyUrl": "Connection URL for clients without headers"
   }
 }
