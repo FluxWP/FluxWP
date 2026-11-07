@@ -578,6 +578,90 @@
 			'</div>';
 	}
 
+	/* ---------- güncelleme kapısı: kurulumdan önce bekleyen güncellemeler ---------- */
+	var RESUME = 'flxkResume';
+	function store(set) {
+		try { if (set) { sessionStorage.setItem(RESUME, '1'); } else if (set === false) { sessionStorage.removeItem(RESUME); } else { return sessionStorage.getItem(RESUME) === '1'; } } catch (e) { return false; }
+		return false;
+	}
+	function updateGate(cont) {
+		var g = $('#gate');
+		if (!g) {
+			g = document.createElement('div');
+			g.id = 'gate';
+			g.className = 'gate';
+			root.appendChild(g);
+		}
+		g.hidden = false;
+		window.onbeforeunload = function () { return T.keep; };
+		function frame(inner) {
+			g.innerHTML = '<div class="gate-in"><img class="logo" src="' + esc(root.getAttribute('data-logo')) + '" alt="FluxWP">' +
+				'<h1>' + esc(T.gH) + '</h1><p class="lead">' + esc(T.gP) + '</p>' + inner + '</div>';
+		}
+		function fail(msg) {
+			window.onbeforeunload = null;
+			frame('<p class="notice">' + esc(fmt(T.gErr, msg || T.gUnknown)) + '</p>' +
+				'<div class="acts"><button class="btn btn-primary" id="gRetry">' + esc(T.gRetry) + '</button>' +
+				'<a class="btn btn-ghost" href="' + esc(D.packages) + '" style="text-decoration:none;color:inherit">' + esc(T.gPk) + '</a></div>');
+			$('#gRetry').addEventListener('click', function () { updateGate(cont); });
+		}
+		function open() {
+			window.onbeforeunload = null;
+			g.hidden = true;
+			store(false);
+			cont();
+		}
+		frame('<p class="gate-check"><span class="spin"></span>' + esc(T.gCheck) + '</p>');
+		post({ action: 'flxk_onboarding_updates', nonce: D.nonce }).then(function (r) {
+			if (!r.ok) { throw new Error(r.error || T.netErr); }
+			var items = r.items || [];
+			if (!items.length) { return open(); }
+			// FluxWP Panel kendisi güncellenecekse önce yalnız o: sonra sayfa yenilenir, kalanı yeni sürüm yapar.
+			var self = items.filter(function (i) { return i.self; });
+			var todo = self.length ? self : items;
+			frame('<ul class="queue" id="gList">' + todo.map(function (i, k) {
+				return '<li data-i="' + k + '" class="wait"><img src="' + esc(i.icon || D.setupIcon) + '" alt=""><span class="n">' + esc(i.name) + '<small>' + esc(i.from + ' → ' + i.to) + '</small></span><span class="st">' + esc(T.waiting) + '</span></li>';
+			}).join('') + '</ul>');
+			return post({ action: 'flxu_plan', nonce: D.flxuNonce, slugs: todo.map(function (i) { return i.slug; }) }).then(function (plan) {
+				var steps = plan.steps || [];
+				var bySlug = {};
+				todo.forEach(function (i, k) { bySlug[i.slug] = k; });
+				var si = 0;
+				function next() {
+					if (si >= steps.length) {
+						if (self.length) {
+							store(true);
+							window.onbeforeunload = null;
+							var n = document.createElement('p');
+							n.className = 'gate-check';
+							n.innerHTML = '<span class="spin"></span>' + esc(T.gSelf);
+							$('#gList').after(n);
+							return setTimeout(function () { window.location.reload(); }, 900);
+						}
+						return open();
+					}
+					var s = steps[si];
+					var li = $('#gList li[data-i="' + (bySlug[s.slug] != null ? bySlug[s.slug] : 0) + '"]');
+					li.className = 'now';
+					li.querySelector('.st').innerHTML = '<span class="spin"></span>' + esc(T.gUpdating);
+					return post({ action: 'flxu_step', nonce: D.flxuNonce, kind: s.kind, slug: s.slug }).then(function (res) {
+						if (!res.ok) {
+							li.className = 'fail';
+							li.querySelector('.st').textContent = T.failed;
+							var bad = (res.lines || []).filter(function (l) { return !l.ok; }).map(function (l) { return l.text; });
+							throw new Error(s.name + ': ' + (bad[0] || T.gUnknown));
+						}
+						li.className = 'ok';
+						li.querySelector('.st').textContent = T.gUpdated;
+						si++;
+						return next();
+					});
+				}
+				return next();
+			});
+		}).catch(function (e) { fail(e.message); });
+	}
+
 	/* ---------- events ---------- */
 	function openSkip() { $('#skipModal').classList.add('on'); $('#skipNo').focus(); }
 	function closeSkip() { $('#skipModal').classList.remove('on'); }
@@ -588,8 +672,10 @@
 	$('#startBtn').addEventListener('click', function () {
 		if (!$('#cTerms').checked) { return; }
 		// Şartlar onayı + kullanım verisi izni (varsayılan kapalı). Kayıt hatası kurulumu durdurmaz.
-		post({ action: 'flxk_onboarding_step', nonce: D.nonce, kind: 'consent', value: $('#cUsage').checked ? '1' : '0' }).catch(function () {});
-		go(1);
+		post({ action: 'flxk_onboarding_step', nonce: D.nonce, kind: 'consent', value: $('#cUsage').checked ? '1' : '0' }).catch(function () {}).then(function () {
+			// Önce yüklü uygulamaların bekleyen güncellemeleri; bitmeden kuruluma geçilmez.
+			updateGate(function () { go(1); });
+		});
 	});
 	$('#skip2').addEventListener('click', openSkip);
 	$('#skipBtn').addEventListener('click', openSkip);
@@ -613,4 +699,6 @@
 	renderGrid();
 	renderAppearance();
 	go(0);
+	// FluxWP Panel güncellenince sayfa yenilenir; kalan güncellemelerle devam edilir.
+	if (store() && D.terms) { updateGate(function () { go(1); }); }
 }());

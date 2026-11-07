@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.1.7
+- Kurulum sihirbazı "Başlayalım"dan sonra önce yüklü uygulamaların bekleyen güncellemelerini yapar; güncellemeler bitmeden kuruluma geçilmez. FluxWP Panel'in kendisi güncellenecekse önce o güncellenir, sihirbaz yeni sürümle yeniden açılır ve kalan uygulamalar onunla güncellenir. Hata olursa nedeni yazılır; "Tekrar dene" ve Paketler ekranına gitme seçeneği çıkar.
+
 ## 1.1.6
 - Paketler: güncelleme sunucusundaki ikon açılmazsa kırık görsel yerine standart eklenti/tema ikonu görünür.
 
