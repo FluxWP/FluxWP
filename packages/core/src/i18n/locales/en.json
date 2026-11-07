@@ -545,7 +545,7 @@
   },
   "aiTools": {
     "title": "Tools",
-    "intro": "Manage the tools available to chat and MCP. Write tools still require approval each time they run.",
+    "intro": "Manage the tools available to chat and MCP. Chat tools that change data require approval before they run.",
     "tools": "Tools",
     "on": "Enabled",
     "off": "Disabled",
@@ -568,7 +568,7 @@
     "cap": "Capability",
     "usage": "Last 30 days",
     "chat": "Chat",
-    "approval": "Approval is required before running.",
+    "approval": "Chat requires approval before this tool runs.",
     "duplicate": "Competing definition",
     "aliases": "Previous names",
     "rivals": "Other definitions",
@@ -593,12 +593,12 @@
     "stale": "Tool settings changed elsewhere. Refresh before saving.",
     "useDefinition": "Use this definition",
     "pickConfirm": "Use {{source}} for {{name}} on {{site}}? This changes the definition used by chat and MCP. A disabled tool stays disabled.",
-    "saveConfirm": "Save pending tool changes ({{dirty}}) on {{site}}? These settings apply to chat and MCP; write tools still require approval.",
+    "saveConfirm": "Save pending tool changes ({{dirty}}) on {{site}}? These settings apply to chat and MCP. Chat tools that change data still require approval.",
     "saveBeforePick": "Save or discard pending changes before choosing a different definition.",
     "resize": "Tool details panel width",
     "updateRequired": "Update the Flux AI plugin on your site to manage tools in the app.",
     "registrationHint": "Tools are registered by plugins through the Flux AI SDK or WordPress filters. A name conflict uses one definition at a time.",
-    "bulkConfirm": "Apply this change to {{count}} selected tools on {{site}}? Pending changes ({{dirty}}) will also be saved. These settings apply to chat and MCP; write tools still require approval.",
+    "bulkConfirm": "Apply this change to {{count}} selected tools on {{site}}? Pending changes ({{dirty}}) will also be saved. These settings apply to chat and MCP. Chat tools that change data still require approval.",
     "dirty_one": "{{count}} unsaved change. Save before leaving this screen."
   },
   "aiSystems": {

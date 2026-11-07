@@ -545,7 +545,7 @@
   },
   "aiTools": {
     "title": "Araçlar",
-    "intro": "Sohbet ve MCP’nin kullanabildiği araçları yönetin. Değişiklik yapan araçlar her çalıştırmada yine onay ister.",
+    "intro": "Sohbet ve MCP’nin kullanabildiği araçları yönetin. Veriyi değiştiren sohbet araçları çalışmadan önce onay ister.",
     "tools": "Araçlar",
     "on": "Açık",
     "off": "Kapalı",
@@ -568,7 +568,7 @@
     "cap": "Yetki",
     "usage": "Son 30 gün",
     "chat": "Sohbet",
-    "approval": "Çalıştırılmadan önce onay gerekir.",
+    "approval": "Bu araç sohbetten çalıştırılırken onay gerekir.",
     "duplicate": "Çakışan tanım",
     "aliases": "Eski adlar",
     "rivals": "Diğer tanımlar",
@@ -593,12 +593,12 @@
     "stale": "Araç ayarları başka bir yerde değişti. Kaydetmeden önce yenileyin.",
     "useDefinition": "Bu tanımı kullan",
     "pickConfirm": "{{site}} sitesinde {{name}} için {{source}} kullanılsın mı? Sohbet ve MCP bu tanımı kullanır. Kapalı araç kapalı kalır.",
-    "saveConfirm": "{{site}} sitesinde bekleyen {{dirty}} araç değişikliği kaydedilsin mi? Ayarlar sohbet ve MCP için geçerlidir; değişiklik yapan araçlar yine onay ister.",
+    "saveConfirm": "{{site}} sitesinde bekleyen {{dirty}} araç değişikliği kaydedilsin mi? Ayarlar sohbet ve MCP için geçerlidir. Veriyi değiştiren sohbet araçları yine onay ister.",
     "saveBeforePick": "Başka bir tanım seçmeden önce bekleyen değişiklikleri kaydedin veya silin.",
     "resize": "Araç ayrıntıları panelinin genişliği",
     "updateRequired": "Araçları uygulamadan yönetmek için sitenizdeki Flux AI eklentisini güncelleyin.",
     "registrationHint": "Eklentiler araçlarını Flux AI SDK veya WordPress filtreleriyle kaydeder. Ad çakışmasında aynı anda yalnız bir tanım kullanılır.",
-    "bulkConfirm": "{{site}} sitesinde seçilen {{count}} araca bu değişiklik uygulansın mı? Bekleyen {{dirty}} değişiklik de kaydedilir. Ayarlar sohbet ve MCP için geçerlidir; değişiklik yapan araçlar yine onay ister.",
+    "bulkConfirm": "{{site}} sitesinde seçilen {{count}} araca bu değişiklik uygulansın mı? Bekleyen {{dirty}} değişiklik de kaydedilir. Ayarlar sohbet ve MCP için geçerlidir. Veriyi değiştiren sohbet araçları yine onay ister.",
     "dirty_one": "{{count}} kaydedilmemiş değişiklik var. Bu ekrandan ayrılmadan kaydedin."
   },
   "aiSystems": {
