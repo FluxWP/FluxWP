@@ -1,13 +1,16 @@
 # Değişiklikler
 
-## 1.1.4
+## 1.1.5
 - Kurulum sihirbazının eklenti ekranları güncelleme sunucusundan gelir (updater 1.11.0+): kategoriler ve sırası (TR/EN ad ve açıklama), her paketin kategorisi, sırası, "önerilen" işareti ve kısa açıklaması. Sunucu bu bilgiyi vermezse yerleşik liste kullanılır.
 - Sunucunun private dediği paketler sihirbazda hiç görünmez (QR Menü, TV Remote, Staff gibi adlar artık elle yazılmaz).
 - Paket ikonları da sunucudan (paketin kendi zip'indeki assets/icon.svg, icon-pastel.svg); sunucu vermezse eklentideki yerleşik ikon.
 
+## 1.1.4
+- Kurulum sihirbazından yalnız özel depoda dağıtılan bir paketin tanıtım metni, ikonu ve ekran görüntüsü kaldırıldı. Böyle paketler katalogda varsa adlarıyla ve kendi ikonlarıyla listelenmeye devam eder.
+
 ## 1.1.3
-- Kurulum sihirbazı, Diğer ekranı: Flux AI Chatbot ve Flux Updater Manager kendi ikonlarıyla görünür (ikonlar pakete eklenmişti ama sürüm artmadığı için sitelere gitmemişti; genel FluxWP Panel ikonu çıkıyordu).
-- Flux CRM, Flux AI Chatbot, Flux Wiki, Flux reCAPTCHA ve Flux Updater Manager kartlarına ekran görüntüsü ve kısa açıklama (TR + EN) eklendi; önizleme alanı artık boş gri değil.
+- Kurulum sihirbazı, Diğer ekranı: Flux AI Chatbot kendi ikonuyla görünür (ikonlar pakete eklenmişti ama sürüm artmadığı için sitelere gitmemişti; genel FluxWP Panel ikonu çıkıyordu).
+- Flux CRM, Flux AI Chatbot, Flux Wiki ve Flux reCAPTCHA kartlarına ekran görüntüsü ve kısa açıklama (TR + EN) eklendi; önizleme alanı artık boş gri değil.
 - Ekran görüntüsü olmayan kartta ikon önizleme alanının sol üst köşesine yapışıyordu; artık ortada.
 - Kategori ekranında 8'den çok kart olunca alt satırlar üsttekilerin üstüne biniyordu; artık satırlar tam boy, alan kendi içinde kayar.
 

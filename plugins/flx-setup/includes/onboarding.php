@@ -124,7 +124,6 @@ final class FLXK_Onboarding {
 			'flx-chatbot'         => array( 0, __( 'Sitede AI sohbet penceresi, gerektiğinde canlı temsilciye devir.', 'flx-setup' ) ),
 			'flx-wiki'            => array( 0, __( '/wiki altında Markdown belgeler, arama ve llms.txt.', 'flx-setup' ) ),
 			'flx-recaptcha'       => array( 0, __( 'Giriş, kayıt, yorum ve formları botlara karşı korur.', 'flx-setup' ) ),
-			'flx-updater-manager' => array( 0, __( 'Kendi güncelleme sunucunuzu bu panelden yönetir.', 'flx-setup' ) ),
 		);
 		return (array) apply_filters( 'flxk_onboarding_intro', $d );
 	}

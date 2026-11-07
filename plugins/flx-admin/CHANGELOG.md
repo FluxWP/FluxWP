@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.10
+- Kullanılmayan bir paket logosu kaldırıldı.
+
 ## 1.7.9
 - Çağrı merkezi artık tüm kanalların (WhatsApp, site sohbeti…) tek gelen kutusu: uygulama değiştiricide, mobil alt çubukta, hızlı işlemlerde ve PWA kısayolunda "WhatsApp" yerine "Mesajlar"; panel kutucuğu "Okunmamış mesaj".
 
