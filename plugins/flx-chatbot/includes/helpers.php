@@ -40,7 +40,7 @@ function flxcb_defaults() {
 		'launcher_label'   => '',
 		'launcher_size'    => 58,
 		'radius'           => 18,
-		'width'            => 390,
+		'width'            => 360,
 		'header_style'     => 'gradient', // solid | gradient
 		'font'             => 'inherit', // inherit | system
 		'mobile_full'      => 1,
