@@ -598,6 +598,7 @@
     "resize": "Araç ayrıntıları panelinin genişliği",
     "updateRequired": "Araçları uygulamadan yönetmek için sitenizdeki Flux AI eklentisini güncelleyin.",
     "registrationHint": "Eklentiler araçlarını Flux AI SDK veya WordPress filtreleriyle kaydeder. Ad çakışmasında aynı anda yalnız bir tanım kullanılır.",
-    "bulkConfirm": "{{site}} sitesinde seçilen {{count}} araca bu değişiklik uygulansın mı? Bekleyen {{dirty}} değişiklik de kaydedilir. Ayarlar sohbet ve MCP için geçerlidir; değişiklik yapan araçlar yine onay ister."
+    "bulkConfirm": "{{site}} sitesinde seçilen {{count}} araca bu değişiklik uygulansın mı? Bekleyen {{dirty}} değişiklik de kaydedilir. Ayarlar sohbet ve MCP için geçerlidir; değişiklik yapan araçlar yine onay ister.",
+    "dirty_one": "{{count}} kaydedilmemiş değişiklik var. Bu ekrandan ayrılmadan kaydedin."
   }
 }
