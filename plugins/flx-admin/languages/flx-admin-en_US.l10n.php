@@ -5,6 +5,8 @@ return array(
 	'plural-forms' => 'nplurals=2; plural=(n != 1);',
 	'x-generator' => 'flx',
 	'messages' => array(
+		'Menüyü daralt' => 'Collapse menu',
+		'Menüyü genişlet' => 'Expand menu',
 		'Çıkış yap' => 'Log out',
 		'Menüyü daralt / genişlet ([)' => 'Collapse / expand menu ([)',
 		'Mağaza: %s' => 'Store: %s',
