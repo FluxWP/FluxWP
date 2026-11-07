@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 1.1.3
+- Kurulum sihirbazı, Diğer ekranı: Flux AI Chatbot ve Flux Updater Manager kendi ikonlarıyla görünür (ikonlar pakete eklenmişti ama sürüm artmadığı için sitelere gitmemişti; genel FluxWP Panel ikonu çıkıyordu).
+- Flux CRM, Flux AI Chatbot, Flux Wiki, Flux reCAPTCHA ve Flux Updater Manager kartlarına ekran görüntüsü ve kısa açıklama (TR + EN) eklendi; önizleme alanı artık boş gri değil.
+- Ekran görüntüsü olmayan kartta ikon önizleme alanının sol üst köşesine yapışıyordu; artık ortada.
+- Kategori ekranında 8'den çok kart olunca alt satırlar üsttekilerin üstüne biniyordu; artık satırlar tam boy, alan kendi içinde kayar.
+
 ## 1.1.2
 - Güncelleme denetimi site adresini kullanım verisi izninden bağımsız gönderir (zorunlu kayıt, zorunlu çerez gibi). Sunucu (updater 1.10.2) yalnız adresi ve IP'den bulunan ülkeyi tutar, IP saklamaz. WordPress/PHP sürümü, saat dilimi ve dil yine yalnız izinle. Ayarlar ve sihirbaz metinleri buna göre.
 
