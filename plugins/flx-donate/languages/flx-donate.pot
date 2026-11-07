@@ -4104,3 +4104,13 @@ msgstr ""
 #, php-format
 msgid "Preset amounts in %s"
 msgstr ""
+
+msgid "Translations"
+msgstr ""
+
+msgid "Shown on the donation page, the cart and the checkout in that language (Flux Lang). Empty fields use the texts above. Records keep the texts above. Save once after adding options to translate their names."
+msgstr ""
+
+#, php-format
+msgid "Option: %s"
+msgstr ""

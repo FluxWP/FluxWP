@@ -231,6 +231,8 @@ if ( function_exists( 'flxb_currencies' ) && count( flxb_currencies() ) > 1 ) {
 }
 ```
 
+Çeviri (2.15.1, Flux Lang): tür meta `i18n` `{ "en": { "title": "…", "description": "…", "options": { "fidan": "Sapling" } } }`. `FLXB_Types::localize( $t, $lang = null )` (varsayılan: ziyaretçinin dili) gösterim için çevirir; form, sepet, ödeme ve `flxb_type_public()` bunu ön yüzde kullanır. Kayıtlar varsayılan dildeki metni tutar.
+
 Seçenek: `prices` `{ "EUR": 120, "USD": 130 }` (türün kendi para birimi `price`). Tür meta: `min_by_currency` `{ "EUR": 10 }`, `presets_by_currency` `{ "EUR": [10, 25, 50] }`. `flxb_type_public()` seçeneklerde `prices` döner. Sepet satırı `currency` taşır; serbest tutar ve form satırı yalnız kendi para biriminde ödenir.
 
 ### Sürüme duyarlı yerler (WooCommerce güncellemesinden sonra deneyin)

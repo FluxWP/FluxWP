@@ -95,7 +95,9 @@ final class FLXB_Preset {
 				'price'  => (float) $o['price'],
 				'unit'   => (string) ( $o['unit'] ?? '' ),
 				'active' => (int) ! empty( $o['active'] ),
-			) + ( ! empty( $o['prices'] ) ? array( 'prices' => $o['prices'] ) : array() ); // 2.15: { CODE: price }
+			) + ( ! empty( $o['prices'] ) ? array( 'prices' => $o['prices'] ) : array() ) // 2.15: { CODE: price }
+				+ ( (int) ( $o['units_per'] ?? 1 ) > 1 ? array( 'units_per' => (int) $o['units_per'] ) : array() ) // 2.15.1: kept on re-apply
+				+ ( '' !== (string) ( $o['badge'] ?? '' ) ? array( 'badge' => (string) $o['badge'] ) : array() );
 		}
 		ksort( $out['meta'] );
 		return $out;
@@ -106,7 +108,7 @@ final class FLXB_Preset {
 		if ( ! $t ) {
 			return array();
 		}
-		$keys = array_keys( FLXB_Types::clean_meta( array( 'requires_proxy' => 0, 'meat_to_needy' => 0, 'intention' => '', 'track_items' => 0, 'file_completes' => 0, 'labels' => array(), 'lock_preselect' => 0, 'grouping' => 'none', 'min_by_currency' => array(), 'presets_by_currency' => array() ) ) );
+		$keys = array_keys( FLXB_Types::clean_meta( array( 'requires_proxy' => 0, 'meat_to_needy' => 0, 'intention' => '', 'track_items' => 0, 'file_completes' => 0, 'labels' => array(), 'lock_preselect' => 0, 'grouping' => 'none', 'min_by_currency' => array(), 'presets_by_currency' => array(), 'i18n' => array() ) ) );
 		$meta = array_intersect_key( (array) $t['meta'], array_flip( $keys ) );
 		return self::type_data(
 			array(
@@ -136,7 +138,7 @@ final class FLXB_Preset {
 			$old = FLXB_Types::get( (int) $id );
 			if ( $old ) {
 				$d['slug']     = $old['slug']; // an owned type keeps its address
-				$d['form_ids'] = array_filter( array_map( 'absint', explode( ',', (string) $old['form_ids'] ) ) );
+				$d['form_ids'] = array_filter( array_map( 'absint', (array) $old['form_ids'] ) ); // FLXB_Types::get() gives an array
 			}
 		}
 		return FLXB_Types::save( $d, (int) $id );

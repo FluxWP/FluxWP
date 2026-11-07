@@ -1788,5 +1788,8 @@ Teşekkürler,
     'With more than one, donors pick the currency (shortcode [flx_bagis_para_birimi] or the theme). There are no exchange rates: set each option\'s price per currency on the donation type; options without a price in a currency are not offered in it. Check that your payment methods take these currencies.' => 'Birden fazla seçiliyse bağışçı para birimini seçer ([flx_bagis_para_birimi] kısa kodu ya da tema). Kur çevrimi yoktur: her seçeneğin fiyatını bağış türünde para birimi başına girin; bir para biriminde fiyatı olmayan seçenek o para biriminde sunulmaz. Ödeme yöntemlerinizin bu para birimlerini aldığını kontrol edin.',
     'not offered' => 'sunulmuyor',
     'Preset amounts in %s' => '%s hazır tutarları',
+    'Translations' => 'Çeviriler',
+    'Shown on the donation page, the cart and the checkout in that language (Flux Lang). Empty fields use the texts above. Records keep the texts above. Save once after adding options to translate their names.' => 'Bağış sayfasında, sepette ve ödeme sayfasında o dilde gösterilir (Flux Lang). Boş alanlarda yukarıdaki metin kullanılır. Kayıtlar yukarıdaki metinle tutulur. Yeni eklenen seçeneklerin adını çevirmek için önce bir kez kaydedin.',
+    'Option: %s' => 'Seçenek: %s',
 ),
 );

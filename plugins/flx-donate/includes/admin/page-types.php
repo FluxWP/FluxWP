@@ -273,6 +273,7 @@ final class FLXB_Page_Types {
 		if ( flxb_kurban_enabled() ) {
 			self::kurban_card( $t );
 		}
+		self::i18n_card( $t );
 		/* Add-ons print their own cards here (save their keys through `flxb_type_meta_clean`). */
 		do_action( 'flxb_type_fields', $t );
 		echo '</div>';
@@ -357,6 +358,41 @@ final class FLXB_Page_Types {
 			echo '</div>';
 		}
 		echo '</div>';
+	}
+
+	/** 2.15: title, description and option names in the other Flux Lang languages. */
+	private static function i18n_card( array $t ) {
+		if ( ! function_exists( 'flxl_languages' ) || ! function_exists( 'flxl_default_language' ) ) {
+			return;
+		}
+		$def   = (string) flxl_default_language();
+		$langs = array_diff_key( (array) flxl_languages(), array( $def => 1 ) );
+		if ( ! $langs ) {
+			return;
+		}
+		$all = (array) FLXB_Types::meta( $t, 'i18n', array() );
+		echo '<section class="flxb-card"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Translations', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( 'Shown on the donation page, the cart and the checkout in that language (Flux Lang). Empty fields use the texts above. Records keep the texts above. Save once after adding options to translate their names.', 'flx-donate' ) . '</p></div></div><div class="flxb-form">';
+		foreach ( $langs as $code => $l ) {
+			$tr  = (array) ( $all[ $code ] ?? array() );
+			$pre = 'meta[i18n][' . esc_attr( $code ) . ']';
+			$id  = 'flxb-i18n-' . esc_attr( $code );
+			echo '<fieldset class="flxb-field flxb-i18n"><legend class="flxb-label">' . esc_html( trim( ( $l['flag'] ?? '' ) . ' ' . ( $l['name'] ?? $code ) ) ) . '</legend>';
+			echo '<div class="flxb-field"><label for="' . $id . '-title">' . esc_html__( 'Title', 'flx-donate' ) . '</label><input type="text" id="' . $id . '-title" name="' . $pre . '[title]" maxlength="191" value="' . esc_attr( (string) ( $tr['title'] ?? '' ) ) . '" placeholder="' . esc_attr( $t['title'] ) . '"></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<div class="flxb-field"><label for="' . $id . '-desc">' . esc_html__( 'Short description', 'flx-donate' ) . '</label><textarea id="' . $id . '-desc" name="' . $pre . '[description]" rows="2" placeholder="' . esc_attr( (string) $t['description'] ) . '">' . esc_textarea( (string) ( $tr['description'] ?? '' ) ) . '</textarea></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			if ( $t['options'] ) {
+				echo '<div class="flxb-fields-2">';
+				foreach ( $t['options'] as $o ) {
+					if ( '' === (string) $o['key'] ) {
+						continue;
+					}
+					/* translators: %s: option name in the default language */
+					echo '<div class="flxb-field"><label for="' . $id . '-o-' . esc_attr( $o['key'] ) . '">' . esc_html( sprintf( __( 'Option: %s', 'flx-donate' ), $o['label'] ) ) . '</label><input type="text" id="' . $id . '-o-' . esc_attr( $o['key'] ) . '" name="' . $pre . '[options][' . esc_attr( $o['key'] ) . ']" maxlength="120" value="' . esc_attr( (string) ( $tr['options'][ $o['key'] ] ?? '' ) ) . '" placeholder="' . esc_attr( $o['label'] ) . '"></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				}
+				echo '</div>';
+			}
+			echo '</fieldset>';
+		}
+		echo '</div></section>';
 	}
 
 	/** 2.11: tracking fields (Settings › General › Tracking module). */

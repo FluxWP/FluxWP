@@ -251,7 +251,7 @@ final class FLXB_WC_Form {
 			foreach ( preg_split( '/[\s,]+/', (string) $args['types'] ) as $ref ) {
 				$t = is_numeric( $ref ) ? FLXB_Types::get( (int) $ref ) : FLXB_Types::get_by_slug( $ref );
 				if ( $t && FLXB_Types::is_open( $t ) ) {
-					$out[ (int) $t['id'] ] = $t;
+					$out[ (int) $t['id'] ] = FLXB_Types::localize( $t );
 				}
 			}
 			return $out;
@@ -259,7 +259,7 @@ final class FLXB_WC_Form {
 		/* Default: the types marked "Show in the Donation options block", in type order. */
 		foreach ( FLXB_Types::all( 'active' ) as $t ) {
 			if ( FLXB_WC_Cart::in_form( $t ) && FLXB_Types::is_open( $t ) && self::has_choices( $t ) ) {
-				$out[ (int) $t['id'] ] = $t;
+				$out[ (int) $t['id'] ] = FLXB_Types::localize( $t );
 			}
 		}
 		return $out;
