@@ -55,6 +55,8 @@ function flxapp_settings_clean_value( $value, array $def ) {
 		case 'int':
 		case 'page':
 			return is_numeric( $value ) ? (int) $value : null;
+		case 'number':
+			return is_numeric( $value ) && is_finite( (float) $value ) ? (float) $value : null;
 		case 'enum':
 			return in_array( (string) $value, array_map( 'strval', (array) ( $def['enum'] ?? array() ) ), true ) ? (string) $value : null;
 		case 'color':
@@ -97,6 +99,10 @@ function flxapp_settings_get( $opt, array $screen ) {
 
 function flxapp_rest_settings( WP_REST_Request $req ) {
 	$opt     = sanitize_key( (string) $req['option'] );
+	// Plugins with a dedicated validated contract may retain their legacy settings URL.
+	// The override must perform its own read/write capability checks.
+	$override = apply_filters( 'flxapp_settings_override', null, $opt, $req );
+	if ( null !== $override ) { return $override; }
 	$screens = flxapp_settings_screens();
 	if ( ! isset( $screens[ $opt ] ) ) {
 		return new WP_Error( 'flxapp_not_found', __( 'Bu ayar uygulamadan açılamaz.', 'flx-app' ), array( 'status' => 404 ) );

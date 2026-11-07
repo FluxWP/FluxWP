@@ -1,0 +1,362 @@
+{
+  "revision": "1",
+  "fields": {
+    "key_openrouter": {
+      "section": "providers",
+      "type": "secret"
+    },
+    "key_anthropic": {
+      "section": "providers",
+      "type": "secret"
+    },
+    "key_openai": {
+      "section": "providers",
+      "type": "secret"
+    },
+    "key_gemini": {
+      "section": "providers",
+      "type": "secret"
+    },
+    "key_fal": {
+      "section": "providers",
+      "type": "secret"
+    },
+    "key_evolink": {
+      "section": "providers",
+      "type": "secret"
+    },
+    "anthropic_workspace": {
+      "section": "providers",
+      "type": "text"
+    },
+    "model": {
+      "section": "models",
+      "type": "model"
+    },
+    "chat_model": {
+      "section": "models",
+      "type": "model"
+    },
+    "title_model": {
+      "section": "models",
+      "type": "model"
+    },
+    "cache": {
+      "section": "reasoning",
+      "type": "select",
+      "options": [
+        "off",
+        "5m",
+        "1h"
+      ]
+    },
+    "effort": {
+      "section": "reasoning",
+      "type": "select",
+      "options": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "thinking": {
+      "section": "reasoning",
+      "type": "toggle"
+    },
+    "limit_day": {
+      "section": "limits",
+      "type": "number",
+      "min": 0,
+      "step": 0.01
+    },
+    "limit_week": {
+      "section": "limits",
+      "type": "number",
+      "min": 0,
+      "step": 0.01
+    },
+    "limit_month": {
+      "section": "limits",
+      "type": "number",
+      "min": 0,
+      "step": 0.01
+    },
+    "limit_action": {
+      "section": "limits",
+      "type": "select",
+      "options": [
+        "block",
+        "warn"
+      ]
+    },
+    "limit_warn_pct": {
+      "section": "limits",
+      "type": "number",
+      "min": 10,
+      "max": 99,
+      "step": 1
+    },
+    "limit_notify": {
+      "section": "limits",
+      "type": "toggle"
+    },
+    "chat_roles": {
+      "section": "chat",
+      "type": "roles"
+    },
+    "chat_admin": {
+      "section": "chat",
+      "type": "toggle"
+    },
+    "chat_front": {
+      "section": "chat",
+      "type": "toggle"
+    },
+    "chat_mode": {
+      "section": "chat",
+      "type": "select",
+      "options": [
+        "bubble",
+        "dock"
+      ]
+    },
+    "chat_max_rounds": {
+      "section": "chat",
+      "type": "number",
+      "min": 2,
+      "max": 30,
+      "step": 1
+    },
+    "chat_history": {
+      "section": "chat",
+      "type": "number",
+      "min": 6,
+      "max": 200,
+      "step": 1
+    },
+    "chat_instructions": {
+      "section": "chat",
+      "type": "textarea"
+    },
+    "media_image_model": {
+      "section": "media",
+      "type": "image-model"
+    },
+    "media_video_model": {
+      "section": "media",
+      "type": "video-model"
+    },
+    "media_days": {
+      "section": "media",
+      "type": "number",
+      "min": 7,
+      "max": 1825,
+      "step": 1
+    },
+    "chat_widgets": {
+      "section": "render",
+      "type": "toggle"
+    },
+    "render_url": {
+      "section": "render",
+      "type": "url"
+    },
+    "render_user": {
+      "section": "render",
+      "type": "text"
+    },
+    "key_render": {
+      "section": "render",
+      "type": "secret"
+    },
+    "log_days": {
+      "section": "logs",
+      "type": "number",
+      "min": 0,
+      "max": 3650,
+      "step": 1
+    },
+    "log_body_days": {
+      "section": "logs",
+      "type": "number",
+      "min": 0,
+      "max": 3650,
+      "step": 1
+    },
+    "log_bodies": {
+      "section": "logs",
+      "type": "toggle"
+    },
+    "delete_data": {
+      "section": "logs",
+      "type": "toggle"
+    }
+  },
+  "values": {
+    "anthropic_workspace": "",
+    "model": "",
+    "chat_model": "",
+    "title_model": "",
+    "cache": "5m",
+    "effort": "low",
+    "thinking": true,
+    "limit_day": 0,
+    "limit_week": 0,
+    "limit_month": 0,
+    "limit_action": "block",
+    "limit_warn_pct": 80,
+    "limit_notify": true,
+    "chat_roles": [
+      "administrator"
+    ],
+    "chat_admin": true,
+    "chat_front": true,
+    "chat_mode": "bubble",
+    "chat_max_rounds": 12,
+    "chat_history": 40,
+    "chat_instructions": "",
+    "media_image_model": "gemini-nano-banana-2.1",
+    "media_video_model": "seedance-2.5",
+    "media_days": 90,
+    "chat_widgets": true,
+    "render_url": "",
+    "render_user": "",
+    "log_days": 0,
+    "log_body_days": 0,
+    "log_bodies": true,
+    "delete_data": false
+  },
+  "secrets": {
+    "key_openrouter": {
+      "configured": true,
+      "locked": false
+    },
+    "key_anthropic": {
+      "configured": false,
+      "locked": false
+    },
+    "key_openai": {
+      "configured": false,
+      "locked": false
+    },
+    "key_gemini": {
+      "configured": false,
+      "locked": false
+    },
+    "key_fal": {
+      "configured": false,
+      "locked": false
+    },
+    "key_evolink": {
+      "configured": false,
+      "locked": false
+    },
+    "key_render": {
+      "configured": false,
+      "locked": false
+    }
+  },
+  "roles": [
+    {
+      "value": "administrator",
+      "label": "Administrator"
+    },
+    {
+      "value": "editor",
+      "label": "Editor"
+    }
+  ],
+  "media": {
+    "models": [
+      {
+        "id": "gpt-image-2.5-sunburst",
+        "label": "GPT Image 2.5",
+        "kind": "image",
+        "routes": [
+          "fal",
+          "openai",
+          "openrouter"
+        ],
+        "auto": ""
+      },
+      {
+        "id": "gemini-nano-banana-2.1",
+        "label": "Nano Banana 2.1",
+        "kind": "image",
+        "routes": [
+          "fal",
+          "gemini",
+          "openrouter"
+        ],
+        "auto": ""
+      },
+      {
+        "id": "gemini-3-pro-image-preview",
+        "label": "Nano Banana Pro",
+        "kind": "image",
+        "routes": [
+          "fal",
+          "gemini",
+          "openrouter"
+        ],
+        "auto": ""
+      },
+      {
+        "id": "seedance-2.5",
+        "label": "Seedance 2.5",
+        "kind": "video",
+        "routes": [
+          "evolink",
+          "fal",
+          "openrouter"
+        ],
+        "auto": ""
+      },
+      {
+        "id": "seedance-2.0",
+        "label": "Seedance 2.0",
+        "kind": "video",
+        "routes": [
+          "evolink",
+          "fal",
+          "openrouter"
+        ],
+        "auto": ""
+      },
+      {
+        "id": "minimax-h3",
+        "label": "MiniMax H3 Max",
+        "kind": "video",
+        "routes": [
+          "fal"
+        ],
+        "auto": ""
+      }
+    ],
+    "providers": {
+      "fal": {
+        "label": "fal.ai",
+        "ready": false
+      },
+      "evolink": {
+        "label": "EvoLink",
+        "ready": false
+      },
+      "openai": {
+        "label": "OpenAI",
+        "ready": false
+      },
+      "gemini": {
+        "label": "Google Gemini",
+        "ready": false
+      },
+      "openrouter": {
+        "label": "OpenRouter",
+        "ready": false
+      }
+    }
+  },
+  "sources": [],
+  "renderer": "",
+  "default_model": "demo/model-1"
+}

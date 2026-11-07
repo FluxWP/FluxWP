@@ -1,7 +1,7 @@
 <?php
 /**
- * Flux App: ayarlar (köprü, anahtarlar write-only) ve kayıt listesi. Sohbet yerelde sonra açılır (flxai-chat).
- * REST: flx-ai/v1/log  — istek gövdesi dönmez.
+ * Flux App: yönetici ayarları (write-only anahtarlar) ve sayfalı kayıt metaverisi.
+ * REST: flx-ai/v1/log — içerik listede dönmez; maskeli gövde ayrı yönetici rotasından okunur.
  *
  * @package FLX_AI
  */
@@ -54,9 +54,9 @@ add_filter(
 				'cache'             => array( 'type' => 'enum', 'enum' => array( 'off', '5m', '1h' ), 'default' => '5m' ),
 				'effort'            => array( 'type' => 'enum', 'enum' => array( 'low', 'medium', 'high' ), 'default' => 'low' ),
 				'thinking'          => array( 'type' => 'bool', 'default' => 1 ),
-				'limit_day'         => array( 'type' => 'int', 'default' => 0 ),
-				'limit_week'        => array( 'type' => 'int', 'default' => 0 ),
-				'limit_month'       => array( 'type' => 'int', 'default' => 0 ),
+				'limit_day'         => array( 'type' => 'number', 'default' => 0 ),
+				'limit_week'        => array( 'type' => 'number', 'default' => 0 ),
+				'limit_month'       => array( 'type' => 'number', 'default' => 0 ),
 				'limit_action'      => array( 'type' => 'enum', 'enum' => array( 'block', 'warn' ), 'default' => 'block' ),
 				'limit_warn_pct'    => array( 'type' => 'int', 'default' => 80 ),
 				'limit_notify'      => array( 'type' => 'bool', 'default' => 1 ),
@@ -105,64 +105,65 @@ add_filter(
 	}
 );
 
+/** Paged metadata only. Saved, masked request/response bodies use the separate manager route. */
 function flxai_app_log( WP_REST_Request $req ) {
 	global $wpdb;
 	$t = flxai_table( 'log' );
-	if ( $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $t ) ) !== $t ) {
-		return rest_ensure_response( array( 'items' => array(), 'total' => 0, 'page' => 1, 'pages' => 0 ) );
+	$b = flxai_table( 'log_body' );
+	$sources = flxai_sources();
+	foreach ( flxai_systems() as $system ) { $sources[ $system['source'] ] = $system['label']; }
+	$exists = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $t ) ) === $t;
+	if ( $exists ) {
+		foreach ( (array) $wpdb->get_col( "SELECT DISTINCT source FROM {$t} ORDER BY source" ) as $source ) { // phpcs:ignore WordPress.DB.PreparedSQL
+			if ( ! isset( $sources[ $source ] ) ) { $sources[ $source ] = flxai_source_label( $source ); }
+		}
 	}
-	$where = array( '1=1' );
-	$args  = array();
-	$kind  = sanitize_key( (string) $req->get_param( 'kind' ) );
-	if ( in_array( $kind, array( 'model', 'tool' ), true ) ) {
-		$where[] = 'kind = %s';
-		$args[]  = $kind;
-	}
+	$options = array();
+	foreach ( $sources as $id => $label ) { if ( '' !== (string) $id ) { $options[] = array( 'id' => (string) $id, 'label' => (string) $label ); } }
+	$page = max( 1, (int) $req->get_param( 'page' ) );
+	$per = max( 1, min( 50, (int) ( $req->get_param( 'per_page' ) ?: 25 ) ) );
+	$empty = array( 'items' => array(), 'total' => 0, 'page' => $page, 'pages' => 0, 'sources' => $options, 'details_available' => true );
+	if ( ! $exists ) { return rest_ensure_response( $empty ); }
+	$where = array( '1=1' ); $args = array();
+	$days = (int) $req->get_param( 'days' );
+	if ( $days ) { $where[] = 'l.ts >= %d'; $args[] = time() - $days * DAY_IN_SECONDS; }
+	$kind = sanitize_key( (string) $req->get_param( 'kind' ) );
+	if ( '' !== $kind ) { $where[] = 'l.kind = %s'; $args[] = $kind; }
 	$source = sanitize_key( (string) $req->get_param( 'source' ) );
-	if ( '' !== $source ) {
-		$where[] = 'source = %s';
-		$args[]  = $source;
-	}
+	if ( '' !== $source ) { $where[] = 'l.source = %s'; $args[] = $source; }
+	if ( $req->get_param( 'errors' ) ) { $where[] = 'l.ok = 0'; }
 	$q = trim( (string) $req->get_param( 'q' ) );
 	if ( '' !== $q ) {
-		$like    = '%' . $wpdb->esc_like( $q ) . '%';
-		$where[] = '(model LIKE %s OR tool LIKE %s OR error LIKE %s OR source LIKE %s)';
-		array_push( $args, $like, $like, $like, $like );
+		$like = '%' . $wpdb->esc_like( $q ) . '%';
+		$where[] = '(l.model LIKE %s OR l.tool LIKE %s OR l.error LIKE %s OR l.source LIKE %s OR l.purpose LIKE %s)';
+		array_push( $args, $like, $like, $like, $like, $like );
 	}
-	$w    = implode( ' AND ', $where );
-	$per  = max( 1, min( 50, (int) ( $req->get_param( 'per_page' ) ? $req->get_param( 'per_page' ) : 25 ) ) );
-	$page = max( 1, (int) $req->get_param( 'page' ) );
-	$sqlc = "SELECT COUNT(*) FROM {$t} WHERE {$w}";
-	$sql  = "SELECT id, ts, kind, source, purpose, user_id, provider, model, tool, cost, ms, ok, error FROM {$t} WHERE {$w} ORDER BY id DESC LIMIT %d OFFSET %d";
+	$w = implode( ' AND ', $where );
+	$sqlc = "SELECT COUNT(*) FROM {$t} l WHERE {$w}";
 	$total = (int) ( $args ? $wpdb->get_var( $wpdb->prepare( $sqlc, $args ) ) : $wpdb->get_var( $sqlc ) ); // phpcs:ignore WordPress.DB.PreparedSQL
-	$rows  = $wpdb->get_results( $wpdb->prepare( $sql, array_merge( $args, array( $per, ( $page - 1 ) * $per ) ) ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
-	$items = array();
-	foreach ( (array) $rows as $r ) {
-		$items[] = array(
-			'id'       => (int) $r['id'],
-			'ts'       => (int) $r['ts'],
-			'ts_label' => function_exists( 'flx_date' ) ? flx_date( (int) $r['ts'], 'datetime' ) : '',
-			'kind'     => (string) $r['kind'],
-			'source'   => (string) $r['source'],
-			'purpose'  => (string) $r['purpose'],
-			'provider' => (string) $r['provider'],
-			'model'    => (string) $r['model'],
-			'tool'     => (string) $r['tool'],
-			'cost'     => (float) $r['cost'],
-			'ms'       => (int) $r['ms'],
-			'ok'       => (int) $r['ok'],
-			'error'    => (string) $r['error'],
-			'title'    => (string) ( $r['tool'] ? $r['tool'] : ( $r['model'] ? $r['model'] : $r['kind'] ) ),
-		);
+	// Only read the body existence flag; never join the request/response text into the list.
+	$body_exists = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $b ) ) === $b;
+	$flag = $body_exists ? '(b.log_id IS NOT NULL)' : '0';
+	$join = $body_exists ? " LEFT JOIN {$b} b ON b.log_id = l.id" : '';
+	$sql = "SELECT l.id,l.ts,l.kind,l.source,l.purpose,l.user_id,l.chat_id,l.provider,l.model,l.tool,l.in_tok,l.out_tok,l.cache_read,l.cache_write,l.cost,l.est,l.ms,l.ok,l.error,{$flag} AS has_body FROM {$t} l{$join} WHERE {$w} ORDER BY l.id DESC LIMIT %d OFFSET %d";
+	$rows = $wpdb->get_results( $wpdb->prepare( $sql, array_merge( $args, array( $per, ( $page - 1 ) * $per ) ) ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
+	$items = array(); $users = array();
+	foreach ( (array) $rows as $row ) {
+		$item = array();
+		foreach ( array( 'id','ts','user_id','chat_id','in_tok','out_tok','cache_read','cache_write','ms','ok' ) as $key ) { $item[ $key ] = (int) $row[ $key ]; }
+		foreach ( array( 'kind','source','purpose','provider','model','tool','error' ) as $key ) { $item[ $key ] = (string) $row[ $key ]; }
+		$uid = $item['user_id'];
+		if ( $uid && ! isset( $users[ $uid ] ) ) { $user = get_userdata( $uid ); $users[ $uid ] = $user ? $user->display_name : '#' . $uid; }
+		$item['user_label'] = $uid ? $users[ $uid ] : ''; // The client localizes the system actor.
+		$item['source_label'] = (string) ( $sources[ $row['source'] ] ?? flxai_source_label( $row['source'] ) );
+		$item['purpose_label'] = '' !== $row['purpose'] ? flxai_purpose_label( $row['purpose'] ) : '';
+		$item['model_label'] = '' !== $row['model'] ? flxai_model_label( $row['model'] ) : '';
+		$item['ts_label'] = function_exists( 'flx_date' ) ? flx_date( $item['ts'], 'datetime' ) : '';
+		$item['cost'] = (float) $row['cost']; $item['est'] = (bool) $row['est']; $item['has_body'] = (bool) $row['has_body'];
+		$item['title'] = (string) ( $row['tool'] ?: ( $row['model'] ?: $row['kind'] ) );
+		$items[] = $item;
 	}
-	return rest_ensure_response(
-		array(
-			'items' => $items,
-			'total' => $total,
-			'page'  => $page,
-			'pages' => (int) ceil( $total / $per ),
-		)
-	);
+	return rest_ensure_response( array( 'items' => $items, 'total' => $total, 'page' => $page, 'pages' => (int) ceil( $total / $per ), 'sources' => $options, 'details_available' => true ) );
 }
 
 add_action(
@@ -178,7 +179,9 @@ add_action(
 				'args'                => array(
 					'page'     => array( 'type' => 'integer', 'default' => 1 ),
 					'per_page' => array( 'type' => 'integer', 'default' => 25 ),
-					'kind'     => array( 'type' => 'string', 'default' => '' ),
+					'kind'     => array( 'type' => 'string', 'enum' => array( '', 'model', 'tool' ), 'default' => '' ),
+					'days' => array( 'type' => 'integer', 'enum' => array( 0, 1, 7, 30, 90, 365 ), 'default' => 0 ),
+					'errors' => array( 'type' => 'boolean', 'default' => false ),
 					'source'   => array( 'type' => 'string', 'default' => '' ),
 					'q'        => array( 'type' => 'string', 'default' => '' ),
 				),

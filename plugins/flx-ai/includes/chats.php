@@ -103,7 +103,7 @@ function flxai_chat_list( array $args = array(), $user_id = 0 ) {
 		$like   = '%' . $wpdb->esc_like( $q ) . '%';
 		$where .= $wpdb->prepare( ' AND (title LIKE %s OR messages LIKE %s)', $like, $like );
 	}
-	$rows = $wpdb->get_results( 'SELECT id, title, archived, status, updated, ' . ( '' !== $q ? 'messages' : "'' AS messages" ) . ' FROM ' . flxai_table( 'chats' ) . " WHERE {$where} ORDER BY updated DESC LIMIT {$limit} OFFSET {$offset}", ARRAY_A ); // phpcs:ignore
+	$rows = $wpdb->get_results( 'SELECT id, title, archived, status, updated, ' . ( '' !== $q ? 'messages' : "'' AS messages" ) . ' FROM ' . flxai_table( 'chats' ) . " WHERE {$where} ORDER BY updated DESC, id DESC LIMIT {$limit} OFFSET {$offset}", ARRAY_A ); // phpcs:ignore
 	$out  = array();
 	foreach ( (array) $rows as $r ) {
 		$item = array(

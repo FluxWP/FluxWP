@@ -8,6 +8,14 @@ import config from '@fluxwp/manifest/fixtures/config.json';
 import manifest from '@fluxwp/manifest/fixtures/manifest.json';
 import { moduleDemoRoutes } from '../modules/demo';
 import { comments, contacts, crm, pages, posts } from './data';
+import { nativeAdminDemoRoutes } from './native-admin';
+import { aiBillingDemoRoutes } from './ai-billing';
+import { aiToolsDemoRoutes } from './ai-tools';
+import { aiSystemsDemoRoutes } from './ai-systems';
+import { aiMcpDemoRoutes } from './ai-mcp';
+import { aiChatDemoRoutes } from './ai-chat';
+import { aiLogDemoRoutes } from './ai-log';
+import { aiSettingsDemoRoutes } from './ai-settings';
 
 export const DEMO_SITE = DEMO_ORIGIN;
 
@@ -32,7 +40,7 @@ const statusIn = (status: string, q: Q) => {
   return !want || want === 'all' || want.split(',').includes(status);
 };
 
-const ETAGS: Record<string, string> = { 'flxapp/v1/config': 'demo-config-032-menu', 'flxapp/v1/manifest': 'demo-manifest' };
+const ETAGS: Record<string, string> = { 'flxapp/v1/config': 'demo-config-native-admin-032-menu', 'flxapp/v1/manifest': 'demo-manifest-ai-log' };
 
 let prefs: Record<string, unknown> = {
   order: [], hidden: [], pinned: [], forceWeb: [], tabs: [], cardOrder: [], cardHidden: [],
@@ -43,6 +51,14 @@ let prefs: Record<string, unknown> = {
 let devices: { id: number; device_id?: string; token?: string; current: boolean }[] = [];
 
 const routes: [string, RegExp, Handler][] = [
+  ...aiChatDemoRoutes,
+  ...aiLogDemoRoutes,
+  ...aiSettingsDemoRoutes,
+  ...aiMcpDemoRoutes,
+  ...aiSystemsDemoRoutes,
+  ...aiToolsDemoRoutes,
+  ...aiBillingDemoRoutes,
+  ...nativeAdminDemoRoutes(),
   ...moduleDemoRoutes,
   ['GET', /^flxapp\/v1\/app\/bootstrap$/, () => bootstrap],
   ['GET', /^flxapp\/v1\/config$/, () => config],

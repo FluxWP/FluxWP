@@ -327,10 +327,10 @@ function flxai_page_systems() {
 	if ( isset( $_POST['flxai_systems_nonce'] ) && wp_verify_nonce( sanitize_key( $_POST['flxai_systems_nonce'] ), 'flxai_systems' ) && flxai_can_manage() ) {
 		$all = array_map( 'sanitize_key', (array) wp_unslash( $_POST['sys'] ?? array() ) ); // phpcs:ignore
 		$on  = array_map( 'sanitize_key', (array) wp_unslash( $_POST['sys_on'] ?? array() ) ); // phpcs:ignore
-		$off = array_values( array_diff( $all, $on ) );
-		// Listede olmayan (ör. kaldırılmış) kapalı kaynaklar korunur.
-		$keep = array_diff( (array) flxai_setting( 'sources_off', array() ), $all );
-		flxai_update_settings( array( 'sources_off' => array_values( array_unique( array_merge( $keep, $off ) ) ) ) );
+		$changes = array();
+		foreach ( $all as $source ) { $changes[ $source ] = in_array( $source, $on, true ); }
+		$result = flxai_admin_systems_toggle( array( 'revision' => (string) ( $_POST['revision'] ?? '' ), 'changes' => $changes ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		if ( is_wp_error( $result ) ) { wp_die( esc_html( $result->get_error_message() ), '', array( 'response' => (int) ( $result->get_error_data()['status'] ?? 400 ) ) ); }
 		$saved = true;
 	}
 	flxai_page_head( __( 'Bağlı sistemler', 'flx-ai' ), __( 'Flux AI\'yı kullanan eklentiler. Buradan kapatılan sistem yapay zekâ isteği gönderemez; kendi ayarları da olduğu gibi kalır.', 'flx-ai' ) );
@@ -340,6 +340,7 @@ function flxai_page_systems() {
 	$rows = flxai_systems();
 	echo '<form method="post">';
 	wp_nonce_field( 'flxai_systems', 'flxai_systems_nonce' );
+	echo '<input type="hidden" name="revision" value="' . esc_attr( flxai_admin_systems_revision( $rows ) ) . '">';
 	echo '<div class="flxai-card"><div class="flxai-tscroll"><table class="flxai-table flxai-systems"><thead><tr><th>' . esc_html__( 'Açık', 'flx-ai' ) . '</th><th>' . esc_html__( 'Sistem', 'flx-ai' ) . '</th><th>' . esc_html__( 'Durum', 'flx-ai' ) . '</th><th>' . esc_html__( 'Model', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'İstek (30 gün)', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Token', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Maliyet', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Hata', 'flx-ai' ) . '</th><th>' . esc_html__( 'Son kullanım', 'flx-ai' ) . '</th><th></th></tr></thead><tbody>';
 	foreach ( $rows as $r ) {
 		if ( ! $r['installed'] ) {
@@ -460,70 +461,21 @@ function flxai_page_billing() {
  * ------------------------------------------------------------------------- */
 
 function flxai_save_settings() {
-	if ( ! isset( $_POST['flxai_settings_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['flxai_settings_nonce'] ), 'flxai_settings' ) || ! flxai_can_manage() ) {
-		return false;
-	}
-	$p   = wp_unslash( $_POST ); // phpcs:ignore
-	$new = array();
-	foreach ( array( 'key_openrouter', 'key_anthropic', 'key_render', 'key_fal', 'key_evolink', 'key_openai', 'key_gemini' ) as $k ) {
-		$v = trim( (string) ( $p[ $k ] ?? '' ) );
-		if ( ! empty( $p[ $k . '_clear' ] ) ) {
-			$new[ $k ] = '';
-		} elseif ( '' !== $v ) {
-			$new[ $k ] = sanitize_text_field( $v );
+	if ( ! isset( $_POST['flxai_settings_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['flxai_settings_nonce'] ), 'flxai_settings' ) || ! flxai_can_manage() ) { return false; }
+	$p = wp_unslash( $_POST ); // phpcs:ignore
+	$body = array( 'revision' => $p['revision'] ?? '', 'values' => array(), 'secrets' => array(), 'source_models' => $p['source_models'] ?? array() );
+	foreach ( flxai_admin_setting_definitions() as $key => $field ) {
+		if ( 'secret' === $field['type'] ) {
+			if ( ! empty( $p[ $key . '_clear' ] ) ) { $body['secrets'][ $key ] = array( 'action' => 'clear' ); }
+			elseif ( is_string( $p[ $key ] ?? null ) && '' !== trim( $p[ $key ] ) ) { $body['secrets'][ $key ] = array( 'action' => 'replace', 'value' => $p[ $key ] ); }
+			continue;
 		}
+		$value = $p[ $key ] ?? ( 'roles' === $field['type'] ? array() : '' );
+		if ( 'toggle' === $field['type'] ) { $value = ! empty( $value ); }
+		elseif ( 'number' === $field['type'] ) { $raw = str_replace( ',', '.', (string) $value ); if ( '' === $raw && in_array( $key, array( 'log_days', 'log_body_days' ), true ) ) { $raw = '0'; } $value = is_numeric( $raw ) ? $raw + 0 : $value; }
+		$body['values'][ $key ] = $value;
 	}
-	$new['anthropic_workspace'] = preg_replace( '/[^a-zA-Z0-9_-]/', '', (string) ( $p['anthropic_workspace'] ?? '' ) );
-	foreach ( array( 'model', 'chat_model', 'title_model' ) as $k ) {
-		$new[ $k ] = sanitize_text_field( (string) ( $p[ $k ] ?? '' ) );
-	}
-	$map = array();
-	foreach ( (array) ( $p['source_models'] ?? array() ) as $src => $m ) {
-		$m = sanitize_text_field( (string) $m );
-		if ( '' !== $m ) {
-			$map[ sanitize_key( $src ) ] = $m;
-		}
-	}
-	$new['source_models']  = $map;
-	$new['cache']          = in_array( $p['cache'] ?? '', array( 'off', '5m', '1h' ), true ) ? $p['cache'] : '5m';
-	$new['effort']         = in_array( $p['effort'] ?? '', array( 'low', 'medium', 'high' ), true ) ? $p['effort'] : 'low';
-	$new['thinking']       = empty( $p['thinking'] ) ? 0 : 1;
-	foreach ( array( 'limit_day', 'limit_week', 'limit_month' ) as $k ) {
-		$new[ $k ] = max( 0, round( (float) str_replace( ',', '.', (string) ( $p[ $k ] ?? 0 ) ), 2 ) );
-	}
-	$new['limit_action']   = 'warn' === ( $p['limit_action'] ?? '' ) ? 'warn' : 'block';
-	$new['limit_warn_pct'] = max( 10, min( 99, (int) ( $p['limit_warn_pct'] ?? 80 ) ) );
-	$new['limit_notify']   = empty( $p['limit_notify'] ) ? 0 : 1;
-	$roles                 = array_map( 'sanitize_key', (array) ( $p['chat_roles'] ?? array() ) );
-	$new['chat_roles']     = array_values( array_intersect( $roles, array_keys( wp_roles()->get_names() ) ) );
-	$new['chat_admin']     = empty( $p['chat_admin'] ) ? 0 : 1;
-	$new['chat_front']     = empty( $p['chat_front'] ) ? 0 : 1;
-	$new['chat_mode']      = 'dock' === ( $p['chat_mode'] ?? '' ) ? 'dock' : 'bubble';
-	$new['chat_max_rounds'] = max( 2, min( 30, (int) ( $p['chat_max_rounds'] ?? 12 ) ) );
-	$new['chat_history']   = max( 6, min( 200, (int) ( $p['chat_history'] ?? 40 ) ) );
-	$new['chat_instructions'] = sanitize_textarea_field( (string) ( $p['chat_instructions'] ?? '' ) );
-	$new['chat_widgets']   = empty( $p['chat_widgets'] ) ? 0 : 1;
-	$new['render_url']     = esc_url_raw( trim( (string) ( $p['render_url'] ?? '' ) ), array( 'http', 'https' ) );
-	$new['render_user']    = sanitize_text_field( (string) ( $p['render_user'] ?? '' ) );
-	$flxai_cat = flxai_media_catalog();
-	foreach ( array( 'media_image_model' => 'image', 'media_video_model' => 'video' ) as $k => $kind ) {
-		$m = sanitize_text_field( (string) ( $p[ $k ] ?? '' ) );
-		if ( isset( $flxai_cat[ $m ] ) && $kind === $flxai_cat[ $m ]['kind'] ) {
-			$new[ $k ] = $m;
-		}
-	}
-	$new['media_days']     = max( 7, min( 1825, (int) ( $p['media_days'] ?? 90 ) ) );
-	// Boş ya da 0 = sınırsız.
-	$new['log_days']       = max( 0, min( 3650, (int) ( $p['log_days'] ?? 0 ) ) );
-	$new['log_bodies']     = empty( $p['log_bodies'] ) ? 0 : 1;
-	$new['log_body_days']  = max( 0, min( 3650, (int) ( $p['log_body_days'] ?? 0 ) ) );
-	$new['delete_data']    = empty( $p['delete_data'] ) ? 0 : 1;
-	$old_keys              = array( flxai_setting( 'key_openrouter' ), flxai_setting( 'key_anthropic' ), flxai_setting( 'anthropic_workspace' ) );
-	flxai_update_settings( $new );
-	if ( array( flxai_setting( 'key_openrouter' ), flxai_setting( 'key_anthropic' ), flxai_setting( 'anthropic_workspace' ) ) !== $old_keys ) {
-		flxai_models_flush();
-	}
-	return true;
+	return flxai_admin_settings_update( $body );
 }
 
 /** Model seçici alanı (ortak model-picker.js ile zenginleşir). */
@@ -539,7 +491,8 @@ function flxai_model_field( $name, $value, $placeholder = '' ) {
 function flxai_page_settings() {
 	$saved = flxai_save_settings();
 	flxai_page_head( __( 'Flux AI ayarları', 'flx-ai' ), __( 'Anahtarlar burada bir kez girilir; tüm FluxWP eklentileri bu bağlantıyı kullanır.', 'flx-ai' ) );
-	if ( $saved ) {
+	if ( is_wp_error( $saved ) ) { echo '<div class="notice notice-error"><p>' . esc_html( $saved->get_error_message() ) . '</p></div>'; }
+	elseif ( $saved ) {
 		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Ayarlar kaydedildi.', 'flx-ai' ) . '</p></div>';
 	}
 	$s   = flxai_settings();
@@ -548,7 +501,7 @@ function flxai_page_settings() {
 	$def = flxai_model_for( '' );
 	?>
 	<form method="post" class="flxai-settings" autocomplete="off">
-		<?php wp_nonce_field( 'flxai_settings', 'flxai_settings_nonce' ); ?>
+		<?php wp_nonce_field( 'flxai_settings', 'flxai_settings_nonce' ); ?><input type="hidden" name="revision" value="<?php echo esc_attr( flxai_admin_settings_snapshot()['revision'] ); ?>">
 		<section class="flxai-card">
 			<h2><?php esc_html_e( 'Sağlayıcılar', 'flx-ai' ); ?></h2>
 			<table class="form-table" role="presentation">

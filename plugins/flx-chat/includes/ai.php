@@ -303,7 +303,8 @@ function flxc_ai_migrate() {
 	);
 	if ( $pay ) {
 		if ( function_exists( 'flxai_import_config' ) ) {
-			flxai_import_config( 'flx-chat', $pay );
+			$result = flxai_import_config( 'flx-chat', $pay );
+			if ( is_wp_error( $result ) ) { return $out; }
 		} else {
 			$set = array();
 			foreach ( array( 'key_openrouter', 'key_anthropic', 'anthropic_workspace' ) as $k ) {
@@ -317,7 +318,8 @@ function flxc_ai_migrate() {
 				$set['source_models']    = $map;
 			}
 			if ( $set ) {
-				flxai_update_settings( $set );
+				$result = flxai_update_settings( $set );
+				if ( is_wp_error( $result ) ) { return $out; }
 			}
 		}
 		flxc_ai_models_flush();

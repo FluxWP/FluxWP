@@ -64,3 +64,30 @@ describe('auth yardımcıları', () => {
     expect(await pkceChallenge(v)).toBe(expected);
   });
 });
+
+describe('authenticated response bodies',()=>{
+ it('leaves a successful streaming body unread and keeps account/platform authentication',async()=>{
+  const response=new Response('{"t":"text","d":"hello"}\n',{headers:{'Content-Type':'application/x-ndjson'}});
+  const fetchImpl=vi.fn<typeof fetch>().mockResolvedValueOnce(json(401,{message:'expired'})).mockResolvedValueOnce(response);
+  const refresh=vi.fn(async()=>({token:'fresh'}));
+  const api=createClient({siteUrl:'https://x.org',fetchImpl,getCredentials:async()=>({token:'old'}),onUnauthorized:refresh,useHeaderFallback:true,extraHeaders:()=>({'X-WP-Nonce':'fixture-nonce'})});
+  const result=await api<Response>('flx-ai/v1/chats/7/step',{method:'POST',body:{},as:'response',headers:{Accept:'application/x-ndjson'}});
+  expect(result).toBe(response);expect(response.bodyUsed).toBe(false);expect(refresh).toHaveBeenCalledTimes(1);
+  expect(fetchImpl.mock.calls[1]![1]!.headers).toMatchObject({'X-FluxWP-Token':'fresh','X-WP-Nonce':'fixture-nonce',Accept:'application/x-ndjson'});
+  expect(await result.text()).toContain('hello');
+ });
+ it('keeps WP errors structured and does not repeat an ambiguous POST',async()=>{
+  const fetchImpl=vi.fn<typeof fetch>().mockResolvedValue(json(503,{code:'busy',message:'try later'}));
+  const api=createClient({siteUrl:'https://x.org',fetchImpl,getCredentials:async()=>({token:'t',scheme:'basic'})});
+  await expect(api<Response>('step',{method:'POST',body:{},as:'response'})).rejects.toMatchObject({status:503,code:'busy'});expect(fetchImpl).toHaveBeenCalledTimes(1);expect(fetchImpl.mock.calls[0]![1]!.headers).toMatchObject({Authorization:'Basic t'});
+ });
+ it('does not refresh or send again after an aborted response',async()=>{
+  const c=new AbortController();const refresh=vi.fn(async()=>({token:'fresh'}));const fetchImpl=vi.fn<typeof fetch>().mockImplementation(async()=>{c.abort();return json(401,{message:'expired'});});
+  const api=createClient({siteUrl:'https://x.org',fetchImpl,getCredentials:async()=>({token:'t'}),onUnauthorized:refresh});
+  await expect(api<Response>('step',{as:'response',signal:c.signal})).rejects.toMatchObject({code:'aborted'});expect(refresh).not.toHaveBeenCalled();expect(fetchImpl).toHaveBeenCalledTimes(1);
+ });
+ it('rejects conflicting response modes before sending credentials',async()=>{
+  const credentials=vi.fn(async()=>({token:'t'}));const fetchImpl=vi.fn<typeof fetch>();const api=createClient({siteUrl:'https://x.org',fetchImpl,getCredentials:credentials});
+  await expect(api('step',{as:'response',raw:true})).rejects.toMatchObject({code:'invalid_options'});expect(credentials).not.toHaveBeenCalled();expect(fetchImpl).not.toHaveBeenCalled();
+ });
+});
