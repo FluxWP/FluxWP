@@ -24,7 +24,8 @@ final class CaptureTests: XCTestCase {
     }
     func testStoreScreens() {
         continueAfterFailure = false
-        app.launchArguments = ["-AppleLanguages", __LANGUAGES__, "-AppleLocale", __LOCALE__]
+        let locale = __LOCALE__
+        app.launchArguments = ["-AppleLanguages", __LANGUAGES__, "-AppleLocale", locale]
         app.launch()
         if element("welcome-skip").waitForExistence(timeout: 5) {
             tap("welcome-skip")
@@ -35,7 +36,7 @@ final class CaptureTests: XCTestCase {
         shot("01-connect")
         tap("demo")
         XCTAssertTrue(element("open-drawer").waitForExistence(timeout: 60))
-        if __LOCALE__ == "en_US" {
+        if locale == "en_US" {
             let menu = app.descendants(matching: .any).matching(NSPredicate(format: "label == %@", "Menu")).firstMatch
             XCTAssertTrue(menu.waitForExistence(timeout: 15), "English tab labels must be localized")
             XCTAssertFalse(app.descendants(matching: .any).matching(NSPredicate(format: "label == %@", "Menü")).firstMatch.exists, "English captures must not retain the Turkish default Menu label")
