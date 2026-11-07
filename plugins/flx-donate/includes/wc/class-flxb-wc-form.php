@@ -355,6 +355,7 @@ final class FLXB_WC_Form {
 	<form class="flxwb-form" method="post" action="" novalidate>
 		<input type="hidden" name="flxb_action" value="add">
 		<input type="hidden" name="flxb_type" value="<?php echo esc_attr( $cur ); ?>" data-flxwb-type>
+		<?php echo FLXB_WC_Currency::switcher(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped inside ?>
 		<?php if ( count( $types ) > 1 ) : ?>
 		<div class="flxwb-tabs" role="tablist" aria-label="<?php esc_attr_e( 'Donation type', 'flx-donate' ); ?>">
 			<?php foreach ( $types as $id => $t ) : ?>

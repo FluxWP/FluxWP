@@ -201,17 +201,37 @@ final class FLXB_WC_Currency {
 		return array_values( array_filter( array_map( 'floatval', $list ) ) );
 	}
 
-	/** [flx_bagis_para_birimi]: a small currency switcher (a select that follows the links). */
-	public static function shortcode() {
+	/** Short name shown on the switcher ("TL" for TRY, else the code). */
+	public static function short( $code ) {
+		return 'TRY' === $code ? 'TL' : $code;
+	}
+
+	/**
+	 * Currency switcher: a segmented row of links (no JavaScript, works with page caches).
+	 *
+	 * @param bool $compact Small pill row without the label (header, shortcode).
+	 */
+	public static function switcher( $compact = false ) {
 		$all = self::all();
 		if ( count( $all ) < 2 ) {
 			return '';
 		}
-		$id   = 'flxb-cur-' . wp_rand( 1000, 99999 );
-		$html = '<label class="flxb-curswitch" for="' . esc_attr( $id ) . '"><span class="screen-reader-text">' . esc_html__( 'Currency', 'flx-donate' ) . '</span><select id="' . esc_attr( $id ) . '" onchange="if(this.value){location.href=this.value}">';
-		foreach ( $all as $c ) {
-			$html .= '<option value="' . esc_url( $c['url'] ) . '"' . selected( $c['current'], true, false ) . '>' . esc_html( $c['symbol'] . ' ' . $c['code'] ) . '</option>';
+		$html = '<nav class="flxwb-cur' . ( $compact ? ' flxwb-cur--compact' : '' ) . '" aria-label="' . esc_attr__( 'Currency', 'flx-donate' ) . '">';
+		if ( ! $compact ) {
+			$html .= '<span class="flxwb-cur__label">' . esc_html__( 'Currency', 'flx-donate' ) . '</span>';
 		}
-		return $html . '</select></label>';
+		$html .= '<span class="flxwb-cur__opts">';
+		foreach ( $all as $c ) {
+			$html .= '<a class="flxwb-cur__opt' . ( $c['current'] ? ' is-on' : '' ) . '" href="' . esc_url( $c['url'] ) . '" rel="nofollow"' . ( $c['current'] ? ' aria-current="true"' : '' ) . ' title="' . esc_attr( $c['label'] ) . '"><span class="flxwb-cur__sym" aria-hidden="true">' . esc_html( $c['symbol'] ) . '</span>' . esc_html( self::short( $c['code'] ) ) . '</a>';
+		}
+		return $html . '</span></nav>';
+	}
+
+	/** [flx_bagis_para_birimi]: the compact switcher. */
+	public static function shortcode() {
+		if ( class_exists( 'FLXB_WC_Form' ) ) {
+			wp_enqueue_style( 'flxwb-front', FLXB_URL . 'assets/wc/front.css', array(), FLXB_VERSION );
+		}
+		return self::switcher( true );
 	}
 }
