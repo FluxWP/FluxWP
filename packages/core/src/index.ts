@@ -18,6 +18,7 @@ export * from './layout/merge';
 export * from './layout/store';
 export * from './i18n';
 export { DEMO_SITE } from './demo/fetch';
+export { setDemoLocale, getDemoLocale } from './demo/locale';
 export const VERSION = '0.2.3';
 export * from './modules/common';
 export * from './modules/bagis';

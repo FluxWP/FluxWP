@@ -26,8 +26,8 @@ const media: WpMedia[] = [
 ];
 
 const accounts: SocialAccount[] = [
-  { id: 1, name: 'Örnek Vakfı', provider: 'instagram', color: '#E1306C' },
-  { id: 2, name: 'Örnek Vakfı', provider: 'facebook', color: '#1877F2' },
+  { id: 1, name: 'Örnek Site', provider: 'instagram', color: '#E1306C' },
+  { id: 2, name: 'Örnek Site', provider: 'facebook', color: '#1877F2' },
   { id: 3, name: '@ornekvakfi', provider: 'x', color: '#111111' },
 ];
 
