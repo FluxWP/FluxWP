@@ -10,6 +10,11 @@
 
 defined( 'ABSPATH' ) || exit;
 
+add_filter( 'flxl_post_types', function ( $types ) {
+	$types[] = FLXWK_PT;
+	return array_values( array_unique( $types ) );
+} );
+
 add_action( 'init', 'flxwk_register_types', 5 );
 add_action( 'init', 'flxwk_rewrite_rules', 6 );
 
@@ -174,7 +179,7 @@ function flxwk_save_page( array $a ) {
 		$data['post_status'] = 'draft';
 	}
 	if ( isset( $a['parent'] ) ) {
-		$parent              = '' === $a['parent'] || 0 === $a['parent'] ? null : flxwk_find_page( (string) $a['parent'] );
+		$parent              = '' === $a['parent'] || 0 === $a['parent'] ? null : ( get_page_by_path( (string) $a['parent'], OBJECT, FLXWK_PT ) ?: flxwk_find_page( (string) $a['parent'] ) );
 		$data['post_parent'] = $parent ? $parent->ID : 0;
 	}
 

@@ -1,5 +1,11 @@
 # Flux Wiki
 
+## 0.2.3
+
+- Flux Lang integration for wiki pages and preset language/translation pairs.
+- Isolate page, search and rendered Markdown caches by language; preserve language in live search and AI requests.
+- Mark bundled Turkish guides as Turkish on import.
+
 ## 0.2.2
 
 - **Canlı arama:** wiki'deki arama kutuları (yan menü ve ana sayfa) artık pencere açmıyor. Yazdıkça (220 ms bekleyerek) sonuçlar kutunun hemen altında açılıyor, sayfa aşağı uzuyor. Ok tuşlarıyla seçilip Enter ile açılıyor, Esc kapatıyor. Fazla sonuç varsa "N sonucun hepsini gör" bağlantısı çıkıyor. Ctrl/⌘+K ve "/" kutuya odaklanıyor. "Wiki'ye sor" penceresi ayrı kalıyor.
