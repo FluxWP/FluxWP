@@ -40,13 +40,17 @@
     "cancelled": "Sign-in was cancelled.",
     "demo": "Try the demo account",
     "methods": "Sign-in method",
-    "noFluxApp": "Flux App is not installed on this site. You can connect in limited mode with an application password; install Flux App for the full experience.",
+    "noFluxApp": "An active Flux App plugin was not found on this site. Install and activate it, then try again. Application passwords are available in limited mode.",
     "appPassword": "Connect with an application password",
     "otp": "Sign in with a code",
     "apiKey": "API key",
     "secondAccount": "Sign in with another account on this site",
     "insecure": "Application passwords only work on HTTPS sites.",
-    "appNotAllowed": "This site has turned off the FluxWP app; only its own branded app can sign in."
+    "appNotAllowed": "This site has turned off the FluxWP app; only its own branded app can sign in.",
+    "connectionTitle": "Unable to connect to your site",
+    "fluxAppTitle": "Flux App plugin",
+    "fluxAppRequired": "To connect your site, the Flux App plugin must be installed and active in WordPress. If it is already active, check the site address and access settings, then try again.",
+    "getFluxApp": "Get the Flux App plugin"
   },
   "otp": {
     "title": "Sign in with a code",
