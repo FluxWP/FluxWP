@@ -95,6 +95,9 @@ function flxwk_seed_import( $update = true ) {
 			$args['section'] = $meta['section'];
 		}
 		if ( $existing ) {
+			if ( function_exists( 'flxl_set_post_language' ) ) {
+				flxl_set_post_language( $existing->ID, $meta['language'] ?? 'tr' );
+			}
 			$seeded = get_post_meta( $existing->ID, '_flxwk_seed_hash', true );
 			$same   = $seeded && md5( flxwk_md( $existing ) ) === $seeded;
 			if ( ! $update || ! $same || $seeded === $hash ) {

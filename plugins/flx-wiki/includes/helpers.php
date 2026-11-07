@@ -155,6 +155,13 @@ function flxwk_all_pages() {
 			)
 		);
 	}
+	// Bundled guides shipped in Turkish before language metadata existed.
+	// Respect their source language without rewriting existing content.
+	if ( function_exists( 'flxl_current_language' ) && 'tr' !== flxl_current_language() ) {
+		return array_values( array_filter( $cache[ $key ], function ( $post ) {
+			return ! get_post_meta( $post->ID, '_flxwk_seed_hash', true ) || get_the_terms( $post->ID, FLXL_TAX );
+		} ) );
+	}
 	return $cache[ $key ];
 }
 

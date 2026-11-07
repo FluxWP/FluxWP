@@ -37,21 +37,19 @@ function flxwk_preset_importers( $t ) {
 			return $term ? (int) $term->term_id : 0;
 		},
 		'data'    => function ( $item ) {
-			return array(
+			return ( empty( $item['translations'] ) ? array() : array( 'translations' => (array) $item['translations'] ) ) + array(
 				'name'        => (string) ( $item['translations'][ function_exists( 'flxl_default_language' ) ? flxl_default_language() : 'tr' ]['name'] ?? $item['name'] ?? $item['key'] ),
 				'slug'        => sanitize_title( (string) ( $item['slug'] ?? $item['key'] ) ),
 				'description' => (string) ( $item['translations'][ function_exists( 'flxl_default_language' ) ? flxl_default_language() : 'tr' ]['description'] ?? $item['description'] ?? '' ),
 				'order'       => (int) ( $item['order'] ?? 0 ),
-				'translations' => (array) ( $item['translations'] ?? array() ),
 			);
 		},
 		'read'    => function ( $id ) {
 			$term = get_term( (int) $id, FLXWK_TAX );
-			return $term && ! is_wp_error( $term ) ? array(
+			return $term && ! is_wp_error( $term ) ? ( (array) get_term_meta( $id, '_flxwk_translations', true ) ? array( 'translations' => (array) get_term_meta( $id, '_flxwk_translations', true ) ) : array() ) + array(
 				'name'        => $term->name,
 				'slug'        => $term->slug,
 				'description' => $term->description,
-				'translations' => (array) get_term_meta( $id, '_flxwk_translations', true ),
 				'order'       => (int) get_term_meta( $term->term_id, 'flxwk_order', true ),
 			) : array();
 		},
@@ -96,9 +94,10 @@ function flxwk_preset_importers( $t ) {
 			return $p ? (int) $p->ID : 0;
 		},
 		'data'    => function ( $item ) {
-			return array(
+			return array_filter( array(
 				'language' => (string) ( $item['language'] ?? '' ),
 				'translation_of' => (string) ( $item['translation_of'] ?? '' ),
+			), 'strlen' ) + array(
 				'title'   => (string) ( $item['title'] ?? $item['key'] ),
 				'slug'    => sanitize_title( (string) ( $item['slug'] ?? $item['key'] ) ),
 				'md'      => str_replace( "\r\n", "\n", (string) ( $item['md'] ?? '' ) ),
@@ -116,9 +115,10 @@ function flxwk_preset_importers( $t ) {
 			}
 			$par   = $p->post_parent ? get_post( $p->post_parent ) : null;
 			$terms = get_the_terms( $p, FLXWK_TAX );
-			return array(
+			return array_filter( array(
 				'language' => (string) get_post_meta( $id, '_flxwk_language', true ),
 				'translation_of' => (string) get_post_meta( $id, '_flxwk_translation_of', true ),
+			), 'strlen' ) + array(
 				'title'   => $p->post_title,
 				'slug'    => $p->post_name,
 				'md'      => flxwk_md( $p ),
