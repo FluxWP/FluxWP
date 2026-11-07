@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Commerce
  * Description:       WooCommerce mağazası için satış paneli, müşteriler, satış raporları, dekont yüklemeli Havale/EFT, sade ödeme sayfası, ücretsiz kargo çubuğu, Google Merchant ürün feed'i ve WhatsApp/e-posta bildirimleri.
- * Version:           0.2.2
+ * Version:           0.2.4
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Requires Plugins:  woocommerce
@@ -26,7 +26,7 @@ if ( defined( 'FLXCM_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXCM_VERSION', '0.2.2' );
+define( 'FLXCM_VERSION', '0.2.4' );
 define( 'FLXCM_DB_VERSION', 1 );
 define( 'FLXCM_FILE', __FILE__ );
 define( 'FLXCM_DIR', plugin_dir_path( __FILE__ ) );
@@ -38,6 +38,8 @@ require_once FLXCM_DIR . 'includes/class-flxcm-stats.php';
 require_once FLXCM_DIR . 'includes/class-flxcm-customers.php';
 require_once FLXCM_DIR . 'includes/class-flxcm-bank.php';
 require_once FLXCM_DIR . 'includes/class-flxcm-receipts.php';
+require_once FLXCM_DIR . 'includes/class-flxcm-rest.php';
+require_once FLXCM_DIR . 'includes/app-manifest.php';
 require_once FLXCM_DIR . 'includes/class-flxcm-checkout.php';
 require_once FLXCM_DIR . 'includes/class-flxcm-feed.php';
 require_once FLXCM_DIR . 'includes/class-flxcm-notify.php';
@@ -92,6 +94,7 @@ add_action(
 			return;
 		}
 		FLXCM_Customers::init();
+		FLXCM_REST::init();
 		FLXCM_Bank::init();
 		FLXCM_Receipts::init();
 		FLXCM_Checkout::init();

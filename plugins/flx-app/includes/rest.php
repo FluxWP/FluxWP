@@ -5,6 +5,7 @@
  *   GET  /me        kullanıcı, site, rol bazlı menü (+icon_url), menü düzeni (layout: pins, groups), alt bar kısayolları, yerel modüller, sayaçlar
  *   GET  /counts    yalnız sayaçlar (hafif yoklama)
  *   POST /session   { path } → tek seferlik panel oturumu adresi (uygulamadaki web görünümü)
+ *   POST /session/end  bu oturumun açtığı webview çerez oturumlarını bitirir
  *   POST /logout    bu oturumu (grant) kapatır
  */
 
@@ -22,7 +23,7 @@ function flxapp_counts() {
 function flxapp_rest_me() {
 	$u     = wp_get_current_user();
 	$tok   = flxapp_current_token();
-	$icon  = get_site_icon_url( 256 );
+	$icon  = flxapp_site_mark();
 	$roles = array();
 	$menu  = flxapp_menu_with_icons( flxapp_user_menu( $u->ID ) );
 	foreach ( (array) $u->roles as $r ) {
@@ -59,12 +60,55 @@ function flxapp_rest_me() {
 			'expires' => (int) $tok['expires'],
 		) : array( 'kind' => 'cookie' ),
 		'menu'    => $menu,
-		'modules' => flxapp_user_modules( $u->ID ),
+		'modules' => flxapp_me_modules( $u ),
 		'counts'  => flxapp_counts(),
 		'bottom'      => flxapp_user_bottom( $u ),
 		'web_session' => (bool) flxapp_opt( 'web_session' ),
-		'versions'    => array( 'flx-app' => FLXAPP_VERSION ),
+		'caps'        => flxapp_me_caps( $u ),
+		'versions'    => flxapp_me_versions(),
 	) + flxapp_user_layout( $u, $menu );
+}
+
+/** Çekirdek yetki özeti (uygulama ekran/menü kararları için; yetki yine sunucuda denetlenir). */
+function flxapp_me_caps( $u ) {
+	$out = array();
+	foreach ( (array) apply_filters( 'flxapp_me_caps', array( 'read', 'edit_posts', 'publish_posts', 'edit_pages', 'upload_files', 'moderate_comments', 'list_users', 'edit_users', 'manage_options', 'activate_plugins', 'manage_woocommerce', 'edit_shop_orders', 'edit_products' ) ) as $cap ) {
+		$out[ $cap ] = user_can( $u, $cap );
+	}
+	return $out;
+}
+
+/** Modüllere `manifest: bool` (manifesti olan modül uygulamada manifestle açılır). */
+function flxapp_me_modules( $u ) {
+	$mods = flxapp_user_modules( $u->ID );
+	$man  = function_exists( 'flxapp_user_manifest' ) ? flxapp_user_manifest( $u ) : array();
+	foreach ( $mods as $id => $m ) {
+		$mods[ $id ]['manifest'] = isset( $man[ $id ] );
+	}
+	return (object) $mods;
+}
+
+function flxapp_me_versions() {
+	$v = array( 'flx-app' => FLXAPP_VERSION );
+	if ( function_exists( 'flxapp_active_packages' ) ) {
+		foreach ( flxapp_active_packages() as $p ) {
+			$v[ $p['slug'] ] = $p['version'];
+		}
+	}
+	return $v;
+}
+
+/** /me + config + manifest özetleri: uygulama değişmeyeni yeniden indirmez. */
+function flxapp_rest_me_full() {
+	$me       = flxapp_rest_me();
+	$u        = wp_get_current_user();
+	$platform = flxapp_request_platform();
+	$me['hashes'] = array(
+		'me'       => substr( md5( wp_json_encode( $me ) ), 0, 12 ),
+		'config'   => function_exists( 'flxapp_config_hash' ) ? flxapp_config_hash( $u, $platform ) : '',
+		'manifest' => function_exists( 'flxapp_manifest_hash' ) ? flxapp_manifest_hash( $u, $platform ) : '',
+	);
+	return $me;
 }
 
 /**
@@ -186,11 +230,37 @@ function flxapp_rest_session( WP_REST_Request $req ) {
 	if ( ! flxapp_rate( 'session', 30, MINUTE_IN_SECONDS ) ) {
 		return new WP_Error( 'flxapp_rate', __( 'Çok fazla istek. Biraz bekleyin.', 'flx-app' ), array( 'status' => 429 ) );
 	}
-	$url = flxapp_sso_url( get_current_user_id(), (string) $req->get_param( 'path' ) );
+	$embed = $req->get_param( 'embed' );
+	$path  = (string) $req->get_param( 'path' );
+	$front = (string) $req->get_param( 'url' );
+	if ( '' === $front && rest_sanitize_boolean( $req->get_param( 'front' ) ) ) {
+		$front = '/' . ltrim( $path, '/' );
+		$path  = '';
+	}
+	if ( '' !== $front && '' === flxapp_clean_front_url( $front ) ) {
+		return new WP_Error( 'flxapp_bad_path', __( 'Geçersiz panel yolu.', 'flx-app' ), array( 'status' => 400 ) );
+	}
+	$tok = flxapp_current_token();
+	$url = flxapp_sso_url(
+		get_current_user_id(),
+		$path,
+		array(
+			'url'   => $front,
+			'embed' => null === $embed ? true : rest_sanitize_boolean( $embed ),
+			'grant' => $tok ? (string) $tok['grant_id'] : '',
+		)
+	);
 	if ( '' === $url ) {
 		return new WP_Error( 'flxapp_bad_path', __( 'Geçersiz panel yolu.', 'flx-app' ), array( 'status' => 400 ) );
 	}
 	return array( 'url' => $url, 'expires_in' => 60 );
+}
+
+/** Bu oturumun (grant) açtığı webview çerez oturumlarını bitirir. */
+function flxapp_rest_session_end() {
+	$tok = flxapp_current_token();
+	$n   = flxapp_end_web_sessions( get_current_user_id(), $tok ? (string) $tok['grant_id'] : '' );
+	return array( 'ok' => true, 'ended' => $n );
 }
 
 function flxapp_rest_logout() {
@@ -208,7 +278,7 @@ function flxapp_rest_logout() {
 add_action(
 	'rest_api_init',
 	function () {
-		register_rest_route( 'flxapp/v1', '/me', array( 'methods' => 'GET', 'callback' => 'flxapp_rest_me', 'permission_callback' => 'flxapp_logged_in' ) );
+		register_rest_route( 'flxapp/v1', '/me', array( 'methods' => 'GET', 'callback' => 'flxapp_rest_me_full', 'permission_callback' => 'flxapp_logged_in' ) );
 		register_rest_route(
 			'flxapp/v1',
 			'/counts',
@@ -221,6 +291,7 @@ add_action(
 			)
 		);
 		register_rest_route( 'flxapp/v1', '/session', array( 'methods' => 'POST', 'callback' => 'flxapp_rest_session', 'permission_callback' => 'flxapp_logged_in' ) );
+		register_rest_route( 'flxapp/v1', '/session/end', array( 'methods' => 'POST', 'callback' => 'flxapp_rest_session_end', 'permission_callback' => 'flxapp_logged_in' ) );
 		register_rest_route( 'flxapp/v1', '/logout', array( 'methods' => 'POST', 'callback' => 'flxapp_rest_logout', 'permission_callback' => 'flxapp_logged_in' ) );
 	}
 );

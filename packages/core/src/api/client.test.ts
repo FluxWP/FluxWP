@@ -34,6 +34,23 @@ describe('client', () => {
     await api('x');
     expect((f.mock.calls[0]![1]!.headers as Record<string, string>)['X-FluxWP-Token']).toBe('t');
   });
+
+  it('raw: ETag, 304 ve X-WP-TotalPages', async () => {
+    const f = vi.fn<typeof fetch>()
+      .mockResolvedValueOnce(new Response(JSON.stringify([{ id: 1 }]), { status: 200, headers: { ETag: '"abc"', 'X-WP-Total': '40', 'X-WP-TotalPages': '2' } }))
+      .mockResolvedValueOnce(new Response(null, { status: 304, headers: { ETag: '"abc"' } }))
+      .mockResolvedValueOnce(new Response(null, { status: 304, headers: { ETag: '"abc"' } }));
+    const api = createClient({ siteUrl: 'https://x.org', fetchImpl: f, getCredentials: async () => ({ token: 't' }) });
+    const page = await api<unknown[]>('wp/v2/posts', { raw: true });
+    expect(page.status).toBe(200);
+    expect(page.etag).toBe('"abc"');
+    expect(page.headers.get('X-WP-TotalPages')).toBe('2');
+    expect(page.data).toEqual([{ id: 1 }]);
+    const again = await api('flxapp/v1/config', { raw: true, headers: { 'If-None-Match': page.etag! } });
+    expect(again).toMatchObject({ status: 304, data: null, etag: '"abc"' });
+    expect((f.mock.calls[1]![1]!.headers as Record<string, string>)['If-None-Match']).toBe('"abc"');
+    await expect(api('flxapp/v1/config', { headers: { 'If-None-Match': '"abc"' } })).resolves.toBeNull();
+  });
 });
 
 describe('auth yardımcıları', () => {

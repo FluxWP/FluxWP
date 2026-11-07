@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 0.6.1
+- Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
+
+
+## 0.6.0
+- Uygulama: sunucu özeti ve yavaş istekler (`flx-speed/v1/summary`, `/requests`).
+
 ## 0.5.2
 - Kullanılmayan CSS kırpma `swiper-*` sınıflarını her zaman korur: Swiper sınıf adlarını JavaScript'te birleştirerek ürettiği için slider noktaları (pagination) siliniyordu.
 - FluxWP imzası (flx-brand 1.1.1) koyu zeminde soluk değil.

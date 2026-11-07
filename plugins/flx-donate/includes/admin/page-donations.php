@@ -541,6 +541,7 @@ final class FLXB_Page_Donations {
 		/* translators: %s: amount */
 		FLXB_Admin::header( sprintf( __( 'Donation of %s', 'flx-donate' ), flxb_money( $multi ? array_sum( array_map( 'floatval', wp_list_pluck( $sibs, 'amount' ) ) ) : $d['amount'], $d['currency'] ) ), flxb_date( $d['created_at'] ), in_array( $d['status'], FLXB_Donations::PAID, true ) ? array( array( 'label' => __( 'Print receipt', 'flx-donate' ), 'icon' => 'print', 'url' => wp_nonce_url( admin_url( 'admin-post.php?action=flxb_receipt&id=' . (int) $d['id'] ), 'flxb_receipt_' . (int) $d['id'] ) ) ) : array(), array( __( 'Donations', 'flx-donate' ), FLXB_Admin_Url::page( 'flxb-donations' ) ) );
 		FLXB_Approval::card( $d, $sibs );
+		self::manage_card( $d, $sibs );
 		self::order_card( $d, $sibs );
 		echo '<div class="flxb-grid flxb-grid--2-1"><section class="flxb-card"><div class="flxb-card__head"><h2 class="flxb-card__title">' . esc_html( $multi ? __( 'This item', 'flx-donate' ) : __( 'Payment', 'flx-donate' ) ) . '</h2><div class="flxb-chips">' . FLXB_Admin::type_pill( $d['type'] ) . FLXB_Admin::pill( $d['status'] ) . '</div></div><dl class="flxb-dl">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		$rows = array(
@@ -643,6 +644,93 @@ final class FLXB_Page_Donations {
 		self::records_card( $d );
 		echo FLXB_Detail_Tabs::render( 'donation', $d, flxb_can_manage() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped inside
 		FLXB_Admin::footer();
+	}
+
+	/**
+	 * 2.14.0: what an admin can do with one gift: change its status (put on hold, mark paid, cancel),
+	 * move it to the trash or back, delete it for good. A basket (one order) always moves together.
+	 */
+	private static function manage_card( array $d, array $sibs ) {
+		if ( FLXB_Refs::own_only() || ! flxb_can_manage() ) {
+			return;
+		}
+		$id    = (int) $d['id'];
+		$trash = 'trash' === $d['status'];
+		$multi = count( $sibs ) > 1;
+		$oid   = (int) $d['wc_order_id'];
+		$bulk  = function ( $do, $label, $confirm, $cls, $back ) use ( $id ) {
+			return '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxb-inline-form" onsubmit="return confirm(' . esc_attr( wp_json_encode( $confirm ) ) . ')">' . wp_nonce_field( 'flxb_bulk', '_wpnonce', true, false ) . '<input type="hidden" name="action" value="flxb_bulk"><input type="hidden" name="do" value="' . esc_attr( $do ) . '"><input type="hidden" name="ids[]" value="' . (int) $id . '"><input type="hidden" name="back" value="' . esc_url( $back ) . '"><button type="submit" class="flxb-btn flxb-btn--sm ' . esc_attr( $cls ) . '">' . esc_html( $label ) . '</button></form>';
+		};
+		echo '<section class="flxb-card flxb-card--gap flxb-manage"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Manage', 'flx-donate' ) . '</h2>';
+		if ( $multi ) {
+			echo '<p class="flxb-card__hint">' . esc_html__( 'This gift is one basket: every item in it changes together.', 'flx-donate' ) . '</p>';
+		}
+		echo '</div></div><div class="flxb-manage__row">';
+		if ( ! $trash && ! in_array( $d['status'], array( 'refunded', 'partially_refunded' ), true ) ) {
+			$opts = self::manual_statuses();
+			unset( $opts[ $d['status'] ] );
+			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxb-inline-form flxb-manage__status" data-flxb-status-form>';
+			wp_nonce_field( 'flxb_status_' . $id );
+			echo '<input type="hidden" name="action" value="flxb_status"><input type="hidden" name="id" value="' . (int) $id . '">';
+			echo '<label for="flxb-st">' . esc_html__( 'Status', 'flx-donate' ) . '</label> <select id="flxb-st" name="status">';
+			foreach ( $opts as $k => $l ) {
+				echo '<option value="' . esc_attr( $k ) . '">' . esc_html( $l ) . '</option>';
+			}
+			echo '</select> <button type="submit" class="flxb-btn flxb-btn--sm flxb-btn--primary" onclick="return confirm(' . esc_attr(
+				wp_json_encode(
+					$oid
+						? __( 'Change the status of this gift? Its WooCommerce order follows; when you mark it paid, the certificate is made and sent to the donor.', 'flx-donate' )
+						: __( 'Change the status of this gift?', 'flx-donate' )
+				)
+			) . ')">' . esc_html__( 'Change status', 'flx-donate' ) . '</button></form>';
+		}
+		$list = FLXB_Admin_Url::page( 'flxb-donations' );
+		if ( $trash ) {
+			echo $bulk( 'restore', __( 'Restore', 'flx-donate' ), __( 'Restore this gift from the trash?', 'flx-donate' ), '', FLXB_Admin_Url::donation( $id ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		} else {
+			echo $bulk( 'trash', __( 'Move to trash', 'flx-donate' ), $oid ? __( 'Move this gift and its WooCommerce order to the trash? You can restore it later.', 'flx-donate' ) : __( 'Move this gift to the trash? You can restore it later.', 'flx-donate' ), 'flxb-btn--ghost', $list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		}
+		if ( current_user_can( 'manage_options' ) ) {
+			echo $bulk( 'delete', __( 'Delete permanently', 'flx-donate' ), __( 'Delete this gift permanently? This cannot be undone.', 'flx-donate' ), 'flxb-btn--danger', $list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		}
+		echo '</div></section>';
+	}
+
+	/** Statuses an admin may set by hand. */
+	public static function manual_statuses() {
+		return array(
+			'pending'   => __( 'Pending (on hold)', 'flx-donate' ),
+			'completed' => __( 'Completed (paid)', 'flx-donate' ),
+			'canceled'  => __( 'Canceled', 'flx-donate' ),
+			'failed'    => __( 'Failed', 'flx-donate' ),
+		);
+	}
+
+	/** 2.14.0: change the status from the detail page; every item of the same order follows. */
+	public static function status_post() {
+		$id = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
+		check_admin_referer( 'flxb_status_' . $id );
+		if ( FLXB_Refs::own_only() || ! flxb_can_manage() ) {
+			FLXB_Admin::deny();
+		}
+		$status = isset( $_POST['status'] ) ? sanitize_key( wp_unslash( $_POST['status'] ) ) : '';
+		$d      = FLXB_Donations::get( $id );
+		$back   = FLXB_Admin_Url::donation( $id );
+		if ( ! $d || ! isset( self::manual_statuses()[ $status ] ) ) {
+			wp_safe_redirect( add_query_arg( 'flxb_msg', 'error', $back ) );
+			exit;
+		}
+		if ( (int) $d['wc_order_id'] && ! current_user_can( 'edit_shop_orders' ) && ! current_user_can( 'manage_woocommerce' ) ) {
+			FLXB_Admin::deny();
+		}
+		$done = 0;
+		foreach ( FLXB_Donations::siblings( $d ) as $s ) {
+			$done += FLXB_Donations::set_status( (int) $s['id'], $status ) ? 1 : 0;
+		}
+		/* translators: %s: new status */
+		$msg = $done ? sprintf( __( 'Status changed to "%s".', 'flx-donate' ), flxb_status_label( $status )[1] ) : __( 'The status was not changed.', 'flx-donate' );
+		wp_safe_redirect( add_query_arg( array( 'flxb_msg' => $done ? 'saved' : 'warn', 'flxb_err' => rawurlencode( $msg ) ), $back ) );
+		exit;
 	}
 
 	/**

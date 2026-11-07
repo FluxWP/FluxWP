@@ -53,17 +53,27 @@ function flxapp_redirect_ok( array $client, $uri ) {
 	if ( ! $p || empty( $p['scheme'] ) || ! empty( $p['fragment'] ) ) {
 		return false;
 	}
+	$ok = false;
 	foreach ( (array) $client['redirect_uris'] as $reg ) {
 		if ( $reg === $uri ) {
-			return true;
+			$ok = true;
+			break;
 		}
 		$r = wp_parse_url( $reg );
 		if ( $r && 'http' === ( $r['scheme'] ?? '' ) && 'http' === $p['scheme'] && flxapp_is_loopback( $r['host'] ?? '' ) && flxapp_is_loopback( $p['host'] ?? '' )
 			&& ( $r['path'] ?? '/' ) === ( $p['path'] ?? '/' ) && ( $r['query'] ?? '' ) === ( $p['query'] ?? '' ) ) {
-			return true;
+			$ok = true;
+			break;
 		}
 	}
-	return false;
+	/**
+	 * Dönüş adresi kararı (ör. geliştirici modunda Expo Go).
+	 *
+	 * @param bool   $ok
+	 * @param array  $client
+	 * @param string $uri
+	 */
+	return (bool) apply_filters( 'flxapp_redirect_ok', $ok, $client, $uri );
 }
 
 /**
@@ -137,6 +147,7 @@ function flxapp_delete_client( $id ) {
 	unset( $all[ $id ] );
 	update_option( 'flxapp_clients', $all, false );
 	$wpdb->update( flxapp_table(), array( 'revoked' => 1 ), array( 'client_id' => $id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
+	$wpdb->delete( flxapp_devices_table(), array( 'client_id' => $id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
 	return true;
 }
 

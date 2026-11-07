@@ -1,7 +1,8 @@
 name: Flux Desktop (macOS + Windows)
 # macOS (universal dmg: Apple Silicon + Intel) ve Windows (x64 setup.exe + msi) derler, tek release'e koyar.
 # fluxapp-v* tag'i release açar; elle de çalıştırılabilir (marka ve release tag'i seçerek).
-# İmza secret'ları yoksa imzasız derlenir (uyarı düşer). Secret listesi: docs/fluxapp/IMZA.md
+# Public macOS releases require code signing, notarization and updater signatures.
+# Secret list: docs/fluxapp/APP-RELEASE.md
 on:
   push:
     tags: ['fluxapp-v*']
@@ -18,6 +19,16 @@ on:
         type: choice
         default: all
         options: [all, macos, windows]
+      require_signing:
+        description: Require macOS signing and notarization (unsigned builds are artifact-only)
+        type: boolean
+        default: true
+  workflow_call:
+    inputs:
+      brand: { type: string, default: flux }
+      release: { type: string, default: '' }
+      platforms: { type: string, default: macos }
+      require_signing: { type: boolean, default: true }
 permissions:
   contents: write
 jobs:
@@ -30,8 +41,23 @@ jobs:
         brand: ${{ fromJSON(inputs.brand && format('["{0}"]', inputs.brand) || '["flux"]') }}
     env:
       FLUX_BRAND: ${{ matrix.brand }}
+      REQUIRE_SIGNING: ${{ inputs.require_signing != false || startsWith(github.ref, 'refs/tags/fluxapp-v') || inputs.release != '' }}
     steps:
       - uses: actions/checkout@v5
+      - name: Validate macOS release inputs and signing
+        env:
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          APPLE_API_KEY_P8: ${{ secrets.APPLE_API_KEY_P8 }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          RELEASE_TAG: ${{ inputs.release }}
+        run: node tools/release/macos-preflight.mjs
       - uses: oven-sh/setup-bun@v2
         with: { bun-version: 1.4.4 }
       - uses: actions/setup-node@v5
@@ -55,6 +81,7 @@ jobs:
         run: |
           if [ -n "$APPLE_CERTIFICATE" ]; then echo "FLUX_SIGNED=1" >> "$GITHUB_ENV"; echo "İmzalı derleme"; else echo "::warning::APPLE_CERTIFICATE yok, macOS imzasız derleniyor"; fi
           if [ -n "$APPLE_API_KEY_P8" ]; then
+            umask 077
             mkdir -p "$RUNNER_TEMP/keys" && printf '%s' "$APPLE_API_KEY_P8" > "$RUNNER_TEMP/keys/AuthKey.p8"
             echo "APPLE_API_KEY_PATH=$RUNNER_TEMP/keys/AuthKey.p8" >> "$GITHUB_ENV"
           fi
@@ -83,7 +110,36 @@ jobs:
         run: |
           app=$(ls -d apps/desktop/src-tauri/target/universal-apple-darwin/release/bundle/macos/*.app | head -1)
           codesign --verify --deep --strict --verbose=2 "$app"
-          spctl -a -vv "$app" || echo "::warning::Gatekeeper onayı yok (notarize secret'ları eksik olabilir)"
+          xcrun stapler validate "$app"
+          spctl --assess --type execute --verbose=2 "$app"
+      - name: Notarize and verify distributable disk images
+        if: env.FLUX_SIGNED == '1'
+        env:
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          images=(apps/desktop/src-tauri/target/universal-apple-darwin/release/bundle/dmg/*.dmg)
+          [ "${#images[@]}" -gt 0 ] || { echo "::error::Missing macOS disk image"; exit 1; }
+          if [ -n "${APPLE_API_KEY_PATH:-}" ]; then
+            auth=(--key "$APPLE_API_KEY_PATH" --key-id "$APPLE_API_KEY" --issuer "$APPLE_API_ISSUER")
+          else
+            auth=(--apple-id "$APPLE_ID" --password "$APPLE_PASSWORD" --team-id "$APPLE_TEAM_ID")
+          fi
+          for dmg in "${images[@]}"; do
+            if ! xcrun stapler validate "$dmg"; then
+              result="$RUNNER_TEMP/dmg-notary.json"
+              xcrun notarytool submit "$dmg" "${auth[@]}" --wait --output-format json > "$result"
+              node -e 'const r=JSON.parse(require("fs").readFileSync(process.argv[1])); if(r.status!=="Accepted") throw new Error("Disk image notarization failed: "+r.status)' "$result"
+              xcrun stapler staple "$dmg"
+            fi
+            xcrun stapler validate "$dmg"
+            spctl --assess --type open --context context:primary-signature --verbose=2 "$dmg"
+          done
       # Dosya adları markayı taşır; güncelleme sunucusu fluxapp-<marka>-* ile eşler.
       - name: Dosyaları topla
         run: |
@@ -97,13 +153,19 @@ jobs:
             cp "$tgz" "out/$n.app.tar.gz"
             cp "$tgz.sig" "out/$n.app.tar.gz.sig"
           else
-            echo "::warning::TAURI_SIGNING_PRIVATE_KEY yok, macOS otomatik güncelleme paketi üretilmedi"
+            if [ "$REQUIRE_SIGNING" = "true" ]; then echo "::error::Missing signed updater archive"; exit 1; fi
+            echo "::warning::No macOS updater archive"
           fi
           ls -la out
       - uses: actions/upload-artifact@v5
         with:
           name: ${{ env.FLUX_BRAND }}-macos
           path: out/*
+          if-no-files-found: error
+          retention-days: 14
+      - name: Clean notarization key
+        if: always()
+        run: rm -rf -- "$RUNNER_TEMP/keys"
 
   windows:
     if: inputs.platforms != 'macos'
@@ -212,6 +274,9 @@ jobs:
     # Bir platform atlandıysa (platforms seçimi) diğeriyle yine yayımlanır; biri hata verdiyse yayımlanmaz.
     if: ${{ !cancelled() && !contains(needs.*.result, 'failure') && (startsWith(github.ref, 'refs/tags/fluxapp-v') || inputs.release != '') }}
     runs-on: ubuntu-latest
+    concurrency:
+      group: desktop-release-${{ inputs.release || github.ref_name }}
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v5
       - uses: actions/download-artifact@v5
@@ -229,6 +294,21 @@ jobs:
           tag_name: ${{ inputs.release || github.ref_name }}
           target_commitish: ${{ github.sha }}
           name: FluxWP ${{ inputs.release || github.ref_name }}
-          prerelease: true
+          prerelease: ${{ contains(inputs.release || github.ref_name, '-beta') || contains(inputs.release || github.ref_name, '-rc') || contains(inputs.release || github.ref_name, '-alpha') }}
           body_path: ${{ runner.temp }}/notes.md
           files: out/*
+      - name: Publish checksums for all release platforms
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.release || github.ref_name }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/release-assets"
+          gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --pattern 'fluxapp-*' --dir "$RUNNER_TEMP/release-assets"
+          (cd "$RUNNER_TEMP/release-assets" && sha256sum fluxapp-* > SHA256SUMS)
+          gh release upload "$RELEASE_TAG" "$RUNNER_TEMP/release-assets/SHA256SUMS" --clobber --repo "$GITHUB_REPOSITORY"
+      - name: Refresh desktop update feed
+        env:
+          UPDATE_SERVER: ${{ secrets.UPDATE_SERVER }}
+          UPDATE_WEBHOOK_SECRET: ${{ secrets.UPDATE_WEBHOOK_SECRET }}
+        run: node tools/release/refresh-updater.mjs

@@ -56,15 +56,21 @@ final class FLXB_WC {
 			$out['custom_option'] = sanitize_key( (string) $m['custom_option'] );
 		}
 		if ( array_key_exists( 'presets', $m ) ) {
-			$raw  = is_array( $m['presets'] ) ? $m['presets'] : preg_split( '/[\s;|]+/', (string) $m['presets'] );
-			$vals = array();
-			foreach ( (array) $raw as $v ) {
-				$a = is_numeric( $v ) ? (float) $v : self::parse_amount( $v );
-				if ( $a > 0 ) {
-					$vals[] = round( $a, 2 );
+			$out['presets'] = self::clean_amounts( $m['presets'] );
+		}
+		/* 2.15: per-currency preset amounts and minimums for currencies other than the type's own. */
+		if ( array_key_exists( 'presets_by_currency', $m ) ) {
+			$out['presets_by_currency'] = array();
+			foreach ( (array) $m['presets_by_currency'] as $code => $list ) {
+				$code = strtoupper( sanitize_text_field( (string) $code ) );
+				$vals = self::clean_amounts( $list );
+				if ( preg_match( '/^[A-Z]{3}$/', $code ) && $vals ) {
+					$out['presets_by_currency'][ $code ] = $vals;
 				}
 			}
-			$out['presets'] = array_slice( array_values( array_unique( $vals ) ), 0, 8 );
+		}
+		if ( array_key_exists( 'min_by_currency', $m ) ) {
+			$out['min_by_currency'] = FLXB_Types::clean_prices( (array) $m['min_by_currency'] );
 		}
 		if ( array_key_exists( 'page_url', $m ) ) {
 			/* 2.0.1: kept as a post id and a site-relative path, so moving the site does not break it. */
@@ -137,12 +143,13 @@ final class FLXB_WC {
 			return;
 		}
 		$dir = FLXB_DIR . 'includes/wc/';
-		foreach ( array( 'products', 'cart', 'form', 'havale', 'iyzico', 'iyzico-card', 'receipts', 'certificates', 'notify', 'account', 'ledger', 'recurring', 'feed', 'callcenter', 'flxform', 'admin', 'checks', 'addresses', 'contact', 'designs', 'terms', 'gateways', 'esnekpos' ) as $f ) {
+		foreach ( array( 'currency', 'products', 'cart', 'form', 'havale', 'iyzico', 'iyzico-card', 'receipts', 'certificates', 'notify', 'account', 'ledger', 'recurring', 'feed', 'callcenter', 'flxform', 'admin', 'checks', 'addresses', 'contact', 'designs', 'terms', 'gateways', 'esnekpos' ) as $f ) {
 			require_once $dir . 'class-flxb-wc-' . $f . '.php';
 		}
 		if ( ! defined( 'FLXWB_VERSION' ) ) {
 			require_once $dir . 'compat-flxwb.php'; // Not while the retired plugin is still active: it declares these names itself.
 		}
+		FLXB_WC_Currency::init();
 		FLXB_WC_Products::init();
 		FLXB_WC_Cart::init();
 		FLXB_WC_Form::init();
@@ -212,6 +219,7 @@ final class FLXB_WC {
 			'support_wa'      => '', // 2.0.4: shown on the checkout and the transfer panel; empty = hidden.
 			'card_method'     => 'auto', // 2.13.0: auto (a third-party POS if enabled, else iyzico) | iyzico | <gateway id> | all.
 			'block_fallback'  => 1,  // 2.13.0: payment plugins without checkout block support are added to the block (FLXB_WC_Gateways).
+			'currencies'      => array(), // 2.15.0: extra currencies donors can choose (the store currency is always offered).
 		);
 	}
 
@@ -264,6 +272,19 @@ final class FLXB_WC {
 	 * ------------------------------------------------------------------ */
 
 	/** Plain-text money (WhatsApp/SMS, JS). */
+	/** Up to 8 positive amounts from a list or a "250 500 1000" string. */
+	public static function clean_amounts( $raw ) {
+		$raw  = is_array( $raw ) ? $raw : preg_split( '/[\s;|]+/', (string) $raw );
+		$vals = array();
+		foreach ( (array) $raw as $v ) {
+			$a = is_numeric( $v ) ? (float) $v : self::parse_amount( $v );
+			if ( $a > 0 ) {
+				$vals[] = round( $a, 2 );
+			}
+		}
+		return array_slice( array_values( array_unique( $vals ) ), 0, 8 );
+	}
+
 	public static function money_text( $amount, $currency = '' ) {
 		return html_entity_decode( wp_strip_all_tags( wc_price( $amount, array( 'currency' => $currency ) ) ), ENT_QUOTES, 'UTF-8' );
 	}

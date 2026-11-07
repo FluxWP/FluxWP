@@ -1,0 +1,96 @@
+{
+  "$id": "https://fluxwp.com/schema/manifest-bundle.schema.json",
+  "title": "GET flxapp/v1/manifest",
+  "type": "object",
+  "properties": {
+    "hash": {
+      "type": "string"
+    },
+    "modules": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {}
+    }
+  },
+  "required": [
+    "modules"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$defs": {
+    "Condition": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "op": {
+              "enum": [
+                "eq",
+                "ne",
+                "in",
+                "nin",
+                "gt",
+                "gte",
+                "lt",
+                "lte",
+                "filled",
+                "empty",
+                "truthy",
+                "falsy"
+              ],
+              "type": "string"
+            },
+            "value": {}
+          },
+          "required": [
+            "path",
+            "op"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "all": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Condition"
+              }
+            }
+          },
+          "required": [
+            "all"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "any": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Condition"
+              }
+            }
+          },
+          "required": [
+            "any"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "not": {
+              "$ref": "#/$defs/Condition"
+            }
+          },
+          "required": [
+            "not"
+          ]
+        }
+      ]
+    }
+  }
+}

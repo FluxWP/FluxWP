@@ -1,0 +1,1 @@
+FluxWP mobile preview: connect your WordPress sites, switch accounts, manage content and media, and use FluxWP module screens. Includes an offline demo account for testing.

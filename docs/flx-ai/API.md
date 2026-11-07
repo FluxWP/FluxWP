@@ -303,3 +303,9 @@ Sohbet arayüzü içindir (nonce `wp_rest`): `GET boot`, `GET chats`, `GET chats
 
 ## Sistem kontrolü
 `flx_system_checks`: `flxai.keys`, `flxai.model`, `flxai.limit`, `flxai.errors`, `flxai.mcp`, `flxai.render`. `flx_system_fixes`: `flxai.limit_day`, `flxai.limit_week`, `flxai.limit_month` (USD).
+
+## Uygulama
+
+Ayarlar `flxai_settings` köprüsünden. `key_*` alanları write-only; boş gönderilirse eski şifreli değer kalır, yeni değer `flxai_encrypt` ile saklanır.
+
+`GET /wp-json/flx-ai/v1/log` — `page`, `per_page`, `kind` (`model`|`tool`), `source`, `q`. Yetki `manage_options`. İstek ve cevap gövdesi dönmez. Sohbet ekranı (`flxai-chat`) uygulamada sonra açılır.

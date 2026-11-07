@@ -7,6 +7,7 @@ import react from '@vitejs/plugin-react';
 import prefixer from 'postcss-prefix-selector';
 
 export default defineConfig(({ command }) => ({
+  resolve: { dedupe: ['react', 'react-dom', '@tanstack/react-query'] },
   plugins: [react()],
   define: command === 'build' ? { 'process.env.NODE_ENV': '"production"' } : {},
   css: {

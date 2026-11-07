@@ -116,3 +116,4 @@ export function setNonce(n: string) {
 }
 
 export const modules = Object.keys(moduleScreens);
+export { mountManifest, type ManifestMountOptions } from './manifest';

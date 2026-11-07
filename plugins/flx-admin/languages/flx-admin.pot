@@ -345,7 +345,7 @@ msgstr ""
 msgid "Havale / dekont"
 msgstr ""
 
-msgid "Okunmamış WhatsApp"
+msgid "Okunmamış mesaj"
 msgstr ""
 
 msgid "Çağrı Merkezi'ni aç →"
@@ -405,7 +405,7 @@ msgstr ""
 msgid "Görev oluştur"
 msgstr ""
 
-msgid "WhatsApp"
+msgid "Mesajlar"
 msgstr ""
 
 msgid "Sayfa ekle"
@@ -1143,4 +1143,10 @@ msgid "Tema ayarları ve ön ayarlar"
 msgstr ""
 
 msgid "Sistem (cihaza göre)"
+msgstr ""
+
+msgid "Menüyü daralt"
+msgstr ""
+
+msgid "Menüyü genişlet"
 msgstr ""

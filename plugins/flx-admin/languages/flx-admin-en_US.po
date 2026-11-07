@@ -345,8 +345,8 @@ msgstr "Awaiting approval"
 msgid "Havale / dekont"
 msgstr "Bank transfer / receipt"
 
-msgid "Okunmamış WhatsApp"
-msgstr "Unread WhatsApp"
+msgid "Okunmamış mesaj"
+msgstr "Unread messages"
 
 msgid "Çağrı Merkezi'ni aç →"
 msgstr "Open Call Center →"
@@ -405,8 +405,8 @@ msgstr "Create certificate"
 msgid "Görev oluştur"
 msgstr "Create task"
 
-msgid "WhatsApp"
-msgstr "WhatsApp"
+msgid "Mesajlar"
+msgstr "Messages"
 
 msgid "Sayfa ekle"
 msgstr "Add page"
@@ -1156,3 +1156,9 @@ msgstr "Theme settings and presets"
 
 msgid "Sistem (cihaza göre)"
 msgstr "System (follow device)"
+
+msgid "Menüyü daralt"
+msgstr "Collapse menu"
+
+msgid "Menüyü genişlet"
+msgstr "Expand menu"

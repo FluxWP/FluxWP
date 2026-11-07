@@ -203,7 +203,7 @@ function flxa_apps() {
 	);
 	if ( defined( 'FLXC_VERSION' ) ) {
 		$apps['whatsapp'] = array(
-			'label'     => __( 'WhatsApp', 'flx-admin' ),
+			'label'     => __( 'Mesajlar', 'flx-admin' ),
 			'url'       => admin_url( 'admin.php?page=flx-chat' ),
 			'cap'       => 'flxc_use',
 			'icon'      => 'chat',

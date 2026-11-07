@@ -3,7 +3,297 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Project-Id-Version: Flux App\n"
 
+msgid "Uygulama"
+msgstr ""
+
+msgid "Menü (tüm öğeler)"
+msgstr ""
+
+msgid "Arama"
+msgstr ""
+
+msgid "Bildirimler"
+msgstr ""
+
+msgid "Hesaplar"
+msgstr ""
+
+msgid "Uygulama ayarları"
+msgstr ""
+
+msgid "Ekranlar"
+msgstr ""
+
+msgid "Yerel modüller"
+msgstr ""
+
+msgid "Panel menüsü"
+msgstr ""
+
+msgid "Ana renk"
+msgstr ""
+
+msgid "Vurgu"
+msgstr ""
+
+msgid "Zemin"
+msgstr ""
+
+msgid "Kart"
+msgstr ""
+
+msgid "Yazı"
+msgstr ""
+
+msgid "Masaüstü ve mobil uygulamanın görünümü. Renkler boş bırakılırsa tema (theme.json) ve Flux Admin renginden gelir. Menüler kullanıcının rolüne göre süzülür: göremediği öğe uygulamada da çıkmaz."
+msgstr ""
+
+msgid "Tema"
+msgstr ""
+
+msgid "Mod"
+msgstr ""
+
+msgid "Cihaza göre"
+msgstr ""
+
+msgid "Açık"
+msgstr ""
+
+msgid "Koyu"
+msgstr ""
+
+msgid "Köşe"
+msgstr ""
+
+msgid "Temadan"
+msgstr ""
+
+msgid "Keskin"
+msgstr ""
+
+msgid "Az"
+msgstr ""
+
+msgid "Orta"
+msgstr ""
+
+msgid "Yuvarlak"
+msgstr ""
+
+msgid "Yoğunluk"
+msgstr ""
+
+msgid "Rahat"
+msgstr ""
+
+msgid "Sıkı"
+msgstr ""
+
+msgid "Yazı tipi"
+msgstr ""
+
+msgid "Başlık yazı tipi"
+msgstr ""
+
+msgid "Temadan (%s)"
+msgstr ""
+
+msgid "Mobil"
+msgstr ""
+
+msgid "Gezinme"
+msgstr ""
+
+msgid "Alt bar + yan menü"
+msgstr ""
+
+msgid "Yalnız alt bar"
+msgstr ""
+
+msgid "Yalnız yan menü"
+msgstr ""
+
+msgid "Açılış ekranı"
+msgstr ""
+
+msgid "Başlangıç"
+msgstr ""
+
+msgid "Alt bar (en çok 5)"
+msgstr ""
+
+msgid "Boş bırakılırsa Flux Admin mobil alt bar ayarı kullanılır. Kullanıcının göremediği sekme gizlenir; \"Menü\" her zaman erişilebilir kalır."
+msgstr ""
+
+msgid "Etiket"
+msgstr ""
+
+msgid "İkon (home, chat…)"
+msgstr ""
+
+msgid "Sayaç"
+msgstr ""
+
+msgid "Yan menü (rol menüsü grupları)"
+msgstr ""
+
+msgid "Üst barda logo"
+msgstr ""
+
+msgid "Site değiştirici"
+msgstr ""
+
+msgid "Üst bar"
+msgstr ""
+
+msgid "Büyük başlık"
+msgstr ""
+
+msgid "Sade"
+msgstr ""
+
+msgid "Masaüstü"
+msgstr ""
+
+msgid "Kenar çubuğu, rolün Flux Admin menü düzenini (sabitlenenler ve gruplar) izler. Komut paletinde (⌘K) her zaman görünecek kısayollar:"
+msgstr ""
+
+msgid "Kapatılan ekran uygulamada yerel olarak açılmaz; o sayfa web görünümünde açılır."
+msgstr ""
+
+msgid "Kaydet"
+msgstr ""
+
+msgid "Önizleme"
+msgstr ""
+
+msgid "Önizleme sizin rolünüzle; diğer roller kendi menülerini görür."
+msgstr ""
+
+msgid "Bu siteye hangi uygulamaların bağlanabileceği, mağaza bağlantıları ve bildirimler."
+msgstr ""
+
+msgid "Ana FluxWP uygulaması"
+msgstr ""
+
+msgid "Masaüstü ve mobil FluxWP uygulaması bağlanabilsin (flx-masaustu, flx-mobil)"
+msgstr ""
+
+msgid "Kapatılırsa yalnız aşağıdaki markalı uygulamalar bağlanır; ana uygulamanın açık oturumları bir sonraki yenilemede kapanır."
+msgstr ""
+
+msgid "Mağaza bağlantıları"
+msgstr ""
+
+msgid "Mobil cihazlara push bildirimi gönder (Expo)"
+msgstr ""
+
+msgid "Kilit ekranında içeriği gizle (yalnız bildirim türü görünür)"
+msgstr ""
+
+msgid "Kayıtlı (değiştirmek için yazın)"
+msgstr ""
+
+msgid "Expo erişim belirteci (isteğe bağlı)"
+msgstr ""
+
+msgid "Sil"
+msgstr ""
+
+msgid "Yalnız Expo hesabında gelişmiş push güvenliği açıksa gerekir. Masaüstü uygulaması push almaz; bildirimleri açıkken eşitleme ile gösterir."
+msgstr ""
+
+msgid "Cihaz: %1$d · bildirim açık: %2$d"
+msgstr ""
+
+msgid "Son gönderim %1$s: %2$d gönderildi, %3$d hata"
+msgstr ""
+
+msgid "Web görünümü"
+msgstr ""
+
+msgid "Uygulamada açılan site sayfalarında yönetim çubuğunu gizle"
+msgstr ""
+
+msgid "Geliştirici modu"
+msgstr ""
+
+msgid "Expo geliştirme dönüş adreslerine (exp://…/--/oauth/callback) izin ver"
+msgstr ""
+
+msgid "Yalnız test sitelerinde açın."
+msgstr ""
+
+msgid "Markalı uygulamalar"
+msgstr ""
+
+msgid "Kurumun kendi adıyla yayımlanan uygulaması bu siteye yalnız burada tanımlıysa bağlanır. Genelde ön ayar (preset) doldurur."
+msgstr ""
+
+msgid "Ad"
+msgstr ""
+
+msgid "Platform"
+msgstr ""
+
+msgid "Dönüş adresleri (satır başına bir)"
+msgstr ""
+
+msgid "Dönüş adresleri"
+msgstr ""
+
+msgid "Bağlantı bilgileri"
+msgstr ""
+
+msgid "Etkin ön ayar"
+msgstr ""
+
+msgid "Kendime deneme bildirimi gönder"
+msgstr ""
+
+msgid "Deneme bildirimi: bu cihaz bildirim alıyor."
+msgstr ""
+
+msgid "Uygulamada oturum açılmış cihaz yok."
+msgstr ""
+
+msgid "Kullanıcı"
+msgstr ""
+
+msgid "Cihaz"
+msgstr ""
+
+msgid "Bildirim"
+msgstr ""
+
+msgid "Son görülme"
+msgstr ""
+
+msgid "Adsız cihaz"
+msgstr ""
+
+msgid "Kapalı"
+msgstr ""
+
+msgid "Bu cihazdaki oturum kapatılsın mı?"
+msgstr ""
+
+msgid "Oturumu kapat"
+msgstr ""
+
+msgid "%d ekran"
+msgid_plural "%d ekran"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Genel"
+msgstr ""
+
+msgid "Görünüm"
+msgstr ""
+
+msgid "Uygulamalar"
 msgstr ""
 
 msgid "Modüller"
@@ -12,16 +302,13 @@ msgstr ""
 msgid "Menü"
 msgstr ""
 
-msgid "Bağlı uygulamalar"
+msgid "OAuth istemcileri"
 msgstr ""
 
 msgid "Tüm erişimler"
 msgstr ""
 
 msgid "Uygulama erişimi"
-msgstr ""
-
-msgid "Uygulama"
 msgstr ""
 
 msgid "Bu işlem için yetkiniz yok."
@@ -37,12 +324,6 @@ msgid "Yalnız yöneticiler"
 msgstr ""
 
 msgid "Kayıt yok."
-msgstr ""
-
-msgid "Kullanıcı"
-msgstr ""
-
-msgid "Ad"
 msgstr ""
 
 msgid "Tür"
@@ -78,6 +359,9 @@ msgstr ""
 msgid "Kaydedildi."
 msgstr ""
 
+msgid "Deneme bildirimi: %1$d gönderildi, %2$d hata, %3$d atlandı."
+msgstr ""
+
 msgid "Anahtara bir ad verin."
 msgstr ""
 
@@ -102,10 +386,13 @@ msgstr ""
 msgid "Windows MSI paketi (kurumsal dağıtım)"
 msgstr ""
 
-msgid "Uygulama ayarları"
+msgid "Flux Masaüstü uygulamasında \"Giriş yap\"a basınca tarayıcıda bu siteye girer, izin verirsiniz; uygulama sizin yetkilerinizle çalışır. Başka araçlar (MCP istemcileri, betikler) için kişisel API anahtarı oluşturabilirsiniz."
 msgstr ""
 
-msgid "Flux Masaüstü uygulamasında \"Giriş yap\"a basınca tarayıcıda bu siteye girer, izin verirsiniz; uygulama sizin yetkilerinizle çalışır. Başka araçlar (MCP istemcileri, betikler) için kişisel API anahtarı oluşturabilirsiniz."
+msgid "Cihazlarım"
+msgstr ""
+
+msgid "Bağlı uygulamalar"
 msgstr ""
 
 msgid "API anahtarları"
@@ -174,7 +461,10 @@ msgstr ""
 msgid "API anahtarı oluşturabilir"
 msgstr ""
 
-msgid "Kaydet"
+msgid "Cihazlar"
+msgstr ""
+
+msgid "Oturumlar ve anahtarlar"
 msgstr ""
 
 msgid "Yönlendirme adresleri"
@@ -195,9 +485,6 @@ msgstr ""
 msgid "Uygulama ve tüm oturumları silinsin mi?"
 msgstr ""
 
-msgid "Sil"
-msgstr ""
-
 msgid "Uygulama ekle"
 msgstr ""
 
@@ -210,25 +497,31 @@ msgstr ""
 msgid "Ekle"
 msgstr ""
 
-msgid "Bağlantı bilgileri"
+msgid "Manifest"
 msgstr ""
 
-msgid "Eklentilerin uygulamadaki kendi (yerel) ekranları. Kapatılan modülün menüsü uygulamada panel sayfası olarak açılır. Kimin göreceği yetkiye ve rol menüsüne göre belirlenir."
+msgid "Yerel ekran"
+msgstr ""
+
+msgid "Eklentilerin uygulamadaki ekranları. Manifestli modüller masaüstünde ve mobilde aynı tanımla çizilir; yerel ekranlılar uygulamanın kendi ekranıyla açılır. Kapatılan modülün menüsü uygulamada panel sayfası olarak açılır. Kimin göreceği yetkiye ve rol menüsüne göre belirlenir."
 msgstr ""
 
 msgid "Kayıtlı modül yok."
 msgstr ""
 
-msgid "Açık"
+msgid "Modül"
 msgstr ""
 
-msgid "Modül"
+msgid "Uygulamada"
 msgstr ""
 
 msgid "Yetki"
 msgstr ""
 
 msgid "Sürüm"
+msgstr ""
+
+msgid "Manifest hatası: %s"
 msgstr ""
 
 msgid "Ayrı öğe"
@@ -261,6 +554,15 @@ msgstr ""
 msgid "Gizli"
 msgstr ""
 
+msgid "FluxWP Mobil"
+msgstr ""
+
+msgid "Mobil marka istemcisi (app_clients) tanımlı değil; markalı mobil uygulama bu siteye bağlanamaz."
+msgstr ""
+
+msgid "Site simgesi yok; mağaza ikonu için 1024 px görsel gerekir."
+msgstr ""
+
 msgid "Flux Masaüstü"
 msgstr ""
 
@@ -271,6 +573,9 @@ msgid "Yönlendirme adresi kabul edilmedi: %s (https, 127.0.0.1 ya da uygulama �
 msgstr ""
 
 msgid "Dinamik istemci sınırı doldu; eskileri silin."
+msgstr ""
+
+msgid "Yorumlar"
 msgstr ""
 
 msgid "Yazılar"
@@ -324,10 +629,19 @@ msgstr ""
 msgid "Web"
 msgstr ""
 
-msgid "Mobil"
+msgid "Giriş gerekli."
 msgstr ""
 
-msgid "Masaüstü"
+msgid "Bu işlem yalnız uygulama oturumuyla (OAuth) yapılır."
+msgstr ""
+
+msgid "Push belirteci tanınmadı."
+msgstr ""
+
+msgid "Cihaz bulunamadı."
+msgstr ""
+
+msgid "Manifest bulunamadı."
 msgstr ""
 
 msgid "Uygulama bağlantısı"
@@ -399,9 +713,6 @@ msgstr ""
 msgid "Kod yanlış ya da süresi dolmuş."
 msgstr ""
 
-msgid "Giriş gerekli."
-msgstr ""
-
 msgid "Diğer"
 msgstr ""
 
@@ -412,6 +723,15 @@ msgid "Çok fazla istek. Biraz bekleyin."
 msgstr ""
 
 msgid "Geçersiz panel yolu."
+msgstr ""
+
+msgid "Bu ayar uygulamadan açılamaz."
+msgstr ""
+
+msgid "Geçersiz değer."
+msgstr ""
+
+msgid "Bazı alanlar geçersiz."
 msgstr ""
 
 msgid "Flux App"
@@ -441,5 +761,560 @@ msgstr ""
 msgid "Uygulama oturumu: %1$s · API anahtarı: %2$s"
 msgstr ""
 
+msgid "Push bildirimleri"
+msgstr ""
+
+msgid "Kapalı."
+msgstr ""
+
+msgid "Henüz gönderim yok. Kayıtlı cihaz: %s"
+msgstr ""
+
+msgid "Son gönderim %1$s: %2$s gönderildi, %3$s hata. %4$s"
+msgstr ""
+
+msgid "Uygulama ekranları (manifest)"
+msgstr ""
+
+msgid "Şema hatası olan modüller: %s. Bu modüller uygulamada web görünümünde açılabilir."
+msgstr ""
+
+msgid "%s modül geçerli."
+msgstr ""
+
+msgid "Uygulama istemcileri"
+msgstr ""
+
+msgid "Ana FluxWP uygulaması: %1$s · markalı uygulama: %2$s"
+msgstr ""
+
+msgid "açık"
+msgstr ""
+
+msgid "kapalı"
+msgstr ""
+
+msgid "Geliştirici modu açık (exp:// dönüşleri); canlıda kapatın."
+msgstr ""
+
 msgid "Belirteç geçersiz ya da süresi dolmuş."
+msgstr ""
+
+msgid "Taslak"
+msgstr ""
+
+msgid "İnceleme bekliyor"
+msgstr ""
+
+msgid "Zamanlanmış"
+msgstr ""
+
+msgid "Özel"
+msgstr ""
+
+msgid "Yayımlandı"
+msgstr ""
+
+msgid "Tümü"
+msgstr ""
+
+msgid "Çöp"
+msgstr ""
+
+msgid "Başlık"
+msgstr ""
+
+msgid "Özet"
+msgstr ""
+
+msgid "İçerik"
+msgstr ""
+
+msgid "Biçimli içerik ve bloklar için panelde düzenleyin."
+msgstr ""
+
+msgid "Durum"
+msgstr ""
+
+msgid "Yayın tarihi"
+msgstr ""
+
+msgid "Kategoriler"
+msgstr ""
+
+msgid "Etiketler"
+msgstr ""
+
+msgid "Öne çıkan görsel"
+msgstr ""
+
+msgid "Yazar"
+msgstr ""
+
+msgid "Değişiklik"
+msgstr ""
+
+msgid "Son değişiklik"
+msgstr ""
+
+msgid "Tarih"
+msgstr ""
+
+msgid "Adres"
+msgstr ""
+
+msgid "Kaydedildi"
+msgstr ""
+
+msgid "Hızlı düzenle"
+msgstr ""
+
+msgid "Editörde aç"
+msgstr ""
+
+msgid "Sitede gör"
+msgstr ""
+
+msgid "Yayımla"
+msgstr ""
+
+msgid "Çöpe taşı"
+msgstr ""
+
+msgid "Çöpe taşındı"
+msgstr ""
+
+msgid "Yeni yazı"
+msgstr ""
+
+msgid "Yazılarda ara"
+msgstr ""
+
+msgid "Yazı yok"
+msgstr ""
+
+msgid "İlk yazınızı buradan ekleyin."
+msgstr ""
+
+msgid "Yazı çöpe taşınsın mı?"
+msgstr ""
+
+msgid "Sayfa"
+msgstr ""
+
+msgid "Yeni sayfa"
+msgstr ""
+
+msgid "Sayfalarda ara"
+msgstr ""
+
+msgid "Sayfa yok"
+msgstr ""
+
+msgid "İlk sayfanızı buradan ekleyin."
+msgstr ""
+
+msgid "Sayfa çöpe taşınsın mı?"
+msgstr ""
+
+msgid "Bekleyen"
+msgstr ""
+
+msgid "Onaylı"
+msgstr ""
+
+msgid "İstenmeyen"
+msgstr ""
+
+msgid "Site"
+msgstr ""
+
+msgid "Ortamda ara"
+msgstr ""
+
+msgid "Görsel"
+msgstr ""
+
+msgid "Video"
+msgstr ""
+
+msgid "Ses"
+msgstr ""
+
+msgid "Belge"
+msgstr ""
+
+msgid "Ortam boş"
+msgstr ""
+
+msgid "Kamera ya da galeriden yükleyin."
+msgstr ""
+
+msgid "Alternatif metin"
+msgstr ""
+
+msgid "Boyut"
+msgstr ""
+
+msgid "Yüklenme"
+msgstr ""
+
+msgid "Görme engelliler ve arama motorları için kısa açıklama."
+msgstr ""
+
+msgid "Açıklama"
+msgstr ""
+
+msgid "Yorumlarda ara"
+msgstr ""
+
+msgid "Yorum yok"
+msgstr ""
+
+msgid "Bu durumda yorum bulunmuyor."
+msgstr ""
+
+msgid "Yorum"
+msgstr ""
+
+msgid "IP"
+msgstr ""
+
+msgid "Ad ya da e-posta"
+msgstr ""
+
+msgid "Kullanıcı adı"
+msgstr ""
+
+msgid "Web sitesi"
+msgstr ""
+
+msgid "Kayıt"
+msgstr ""
+
+msgid "Soyad"
+msgstr ""
+
+msgid "Görünen ad"
+msgstr ""
+
+msgid "Parola"
+msgstr ""
+
+msgid "Boş bırakılırsa değişmez."
+msgstr ""
+
+msgid "Genel ayarlar"
+msgstr ""
+
+msgid "Site başlığı"
+msgstr ""
+
+msgid "Slogan"
+msgstr ""
+
+msgid "Yönetici e-postası"
+msgstr ""
+
+msgid "Saat dilimi"
+msgstr ""
+
+msgid "Örnek: Europe/Istanbul"
+msgstr ""
+
+msgid "Tarih biçimi"
+msgstr ""
+
+msgid "Saat biçimi"
+msgstr ""
+
+msgid "Hafta başlangıcı"
+msgstr ""
+
+msgid "Pazartesi"
+msgstr ""
+
+msgid "Pazar"
+msgstr ""
+
+msgid "Cumartesi"
+msgstr ""
+
+msgid "Okuma ayarları"
+msgstr ""
+
+msgid "Ana sayfada"
+msgstr ""
+
+msgid "Son yazılar"
+msgstr ""
+
+msgid "Sabit sayfa"
+msgstr ""
+
+msgid "Ana sayfa"
+msgstr ""
+
+msgid "Yazılar sayfası"
+msgstr ""
+
+msgid "Sayfa başına yazı"
+msgstr ""
+
+msgid "Tartışma ayarları"
+msgstr ""
+
+msgid "Yeni yazılarda yorum"
+msgstr ""
+
+msgid "Geri izleme"
+msgstr ""
+
+msgid "Eklentiler"
+msgstr ""
+
+msgid "Eklentilerde ara"
+msgstr ""
+
+msgid "Etkin"
+msgstr ""
+
+msgid "Etkin değil"
+msgstr ""
+
+msgid "Yükle"
+msgstr ""
+
+msgid "Düzenle"
+msgstr ""
+
+msgid "Paylaş"
+msgstr ""
+
+msgid "Kalıcı sil"
+msgstr ""
+
+msgid "Dosya kalıcı silinsin mi?"
+msgstr ""
+
+msgid "Kullanıldığı sayfalarda görünmez olur."
+msgstr ""
+
+msgid "Silindi"
+msgstr ""
+
+msgid "Yanıtla"
+msgstr ""
+
+msgid "Yanıt"
+msgstr ""
+
+msgid "Metin"
+msgstr ""
+
+msgid "Yanıt gönderildi"
+msgstr ""
+
+msgid "Panelde aç"
+msgstr ""
+
+msgid "Yeni kullanıcı"
+msgstr ""
+
+msgid "Etkinleştir"
+msgstr ""
+
+msgid "Etkinleştirildi"
+msgstr ""
+
+msgid "Devre dışı bırak"
+msgstr ""
+
+msgid "Eklenti devre dışı bırakılsın mı?"
+msgstr ""
+
+msgid "Devre dışı"
+msgstr ""
+
+msgid "Onayla"
+msgstr ""
+
+msgid "Onaylandı"
+msgstr ""
+
+msgid "Onayı kaldır"
+msgstr ""
+
+msgid "Bekletmeye alındı"
+msgstr ""
+
+msgid "İstenmeyen olarak işaretlendi"
+msgstr ""
+
+msgid "Bağışlarım"
+msgstr ""
+
+msgid "Toplam bağış"
+msgstr ""
+
+msgid "Bağış"
+msgstr ""
+
+msgid "Sertifika"
+msgstr ""
+
+msgid "Henüz bağış yok"
+msgstr ""
+
+msgid "Yaptığınız bağışlar burada görünür."
+msgstr ""
+
+msgid "Tutar"
+msgstr ""
+
+msgid "Kalemler"
+msgstr ""
+
+msgid "Sertifikalarım"
+msgstr ""
+
+msgid "Sertifika yok"
+msgstr ""
+
+msgid "Fidan bağışlarınızın sertifikaları burada görünür."
+msgstr ""
+
+msgid "Bağış yap"
+msgstr ""
+
+msgid "Siparişi gör"
+msgstr ""
+
+msgid "PDF"
+msgstr ""
+
+msgid "Mağaza"
+msgstr ""
+
+msgid "Siparişler"
+msgstr ""
+
+msgid "Sipariş"
+msgstr ""
+
+msgid "Müşteri"
+msgstr ""
+
+msgid "Sipariş no, ad ya da e-posta"
+msgstr ""
+
+msgid "Ödeme bekliyor"
+msgstr ""
+
+msgid "Hazırlanıyor"
+msgstr ""
+
+msgid "İptal"
+msgstr ""
+
+msgid "Sipariş yok"
+msgstr ""
+
+msgid "Bu durumda sipariş bulunmuyor."
+msgstr ""
+
+msgid "Ödeme"
+msgstr ""
+
+msgid "Ürünler"
+msgstr ""
+
+msgid "Telefon"
+msgstr ""
+
+msgid "Müşteri notu"
+msgstr ""
+
+msgid "Sipariş notları"
+msgstr ""
+
+msgid "Müşteriye gönderildi"
+msgstr ""
+
+msgid "Not yok"
+msgstr ""
+
+msgid "Ürün adı ya da SKU"
+msgstr ""
+
+msgid "Stok"
+msgstr ""
+
+msgid "Stokta"
+msgstr ""
+
+msgid "Tükendi"
+msgstr ""
+
+msgid "Ön sipariş"
+msgstr ""
+
+msgid "Ürün"
+msgstr ""
+
+msgid "Fiyat"
+msgstr ""
+
+msgid "İndirimli fiyat"
+msgstr ""
+
+msgid "Stok takibi"
+msgstr ""
+
+msgid "Stok durumu"
+msgstr ""
+
+msgid "Müşteriler"
+msgstr ""
+
+msgid "Şehir"
+msgstr ""
+
+msgid "Tamamlandı"
+msgstr ""
+
+msgid "Sipariş tamamlandı"
+msgstr ""
+
+msgid "Durumu değiştir"
+msgstr ""
+
+msgid "Sipariş durumu"
+msgstr ""
+
+msgid "Güncellendi"
+msgstr ""
+
+msgid "Not ekle"
+msgstr ""
+
+msgid "Sipariş notu"
+msgstr ""
+
+msgid "Not"
+msgstr ""
+
+msgid "Müşteriye gönder"
+msgstr ""
+
+msgid "Not eklendi"
+msgstr ""
+
+msgid "Notlar"
+msgstr ""
+
+msgid "Ara"
+msgstr ""
+
+msgid "Siparişleri"
 msgstr ""

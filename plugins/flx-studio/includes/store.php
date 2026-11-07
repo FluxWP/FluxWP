@@ -169,7 +169,9 @@ function flxst_items_query( $user_id, array $q ) {
 		$args[]  = (int) $q['before'];
 	}
 	$limit  = max( 1, min( 200, (int) ( $q['limit'] ?? 60 ) ) );
-	$sql    = "SELECT i.* FROM {$t} i WHERE " . implode( ' AND ', $where ) . " ORDER BY i.id DESC LIMIT {$limit}";
+	$page   = max( 1, (int) ( $q['page'] ?? 1 ) );
+	$offset = ( $page - 1 ) * $limit;
+	$sql    = "SELECT i.* FROM {$t} i WHERE " . implode( ' AND ', $where ) . " ORDER BY i.id DESC LIMIT {$limit} OFFSET {$offset}";
 	$rows   = $args ? $wpdb->get_results( $wpdb->prepare( $sql, $args ), ARRAY_A ) : $wpdb->get_results( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB
 	return array_map( 'flxst_format_item', (array) $rows );
 }

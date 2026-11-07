@@ -223,8 +223,15 @@ function flxseo_head() {
 		'google-site-verification' => flxseo_opt( 'verify_google' ),
 		'msvalidate.01'            => flxseo_opt( 'verify_bing' ),
 		'yandex-verification'      => flxseo_opt( 'verify_yandex' ),
+		'naver-site-verification'  => flxseo_opt( 'verify_naver' ),
+		'seznam-wmt'               => flxseo_opt( 'verify_seznam' ),
+		'baidu-site-verification'  => flxseo_opt( 'verify_baidu' ),
 	);
 	foreach ( $v as $name => $content ) {
+		// Kaydedilirken sanitize çalışmadıysa (ör. yönetim dışından yazıldıysa) tam etiketten content alınır.
+		if ( $content && preg_match( '/content=["\']([^"\']+)["\']/', $content, $m ) ) {
+			$content = $m[1];
+		}
 		if ( $content ) {
 			printf( '<meta name="%s" content="%s">' . "\n", esc_attr( $name ), esc_attr( $content ) );
 		}
@@ -236,7 +243,7 @@ function flxseo_head() {
 	$canon = flxseo_canonical();
 	$title = wp_get_document_title();
 	$img   = flxseo_og_image( flxseo_image() );
-	$type  = is_singular( array( 'post', 'proje', 'etkinlik' ) ) ? 'article' : 'website';
+	$type  = is_singular( flxseo_article_types() ) ? 'article' : 'website';
 
 	echo "<!-- Flux SEO -->\n";
 	if ( $desc && ! is_404() ) {
@@ -284,7 +291,7 @@ function flxseo_head() {
 	if ( flxseo_opt( 'twitter' ) ) {
 		printf( '<meta name="twitter:site" content="%s">' . "\n", esc_attr( '@' . ltrim( flxseo_opt( 'twitter' ), '@' ) ) );
 	}
-	echo "<!-- /Örnek Vakfı SEO -->\n";
+	echo "<!-- /Flux SEO -->\n";
 }
 add_action( 'wp_head', 'flxseo_head', 3 );
 

@@ -1,0 +1,67 @@
+{
+  "slug": "example",
+  "name": "Example",
+  "shortName": "Example",
+  "bundleId": "org.example.desktop",
+  "scheme": "example-desktop",
+  "icon": "icon.svg",
+  "logo": "logo.svg",
+  "logoDark": "logo-dark.svg",
+  "colors": {
+    "primary": "#0F766E",
+    "primaryContrast": "#FFFFFF",
+    "accent": "#F59E0B"
+  },
+  "defaultSite": "https://north.example.org",
+  "lockSite": false,
+  "loginMethods": ["oauth", "otp"],
+  "defaultLocale": "tr",
+  "locales": ["tr", "en"],
+  "supportUrl": "mailto:support@example.org",
+  "updateUrl": null,
+  "oauthClientId": "flx-masaustu-example",
+  "appIcon": { "background": null },
+  "ios": { "bundleIdentifier": "org.example.app", "appleTeamId": null },
+  "android": { "package": "org.example.app" },
+  "mobile": {
+    "scheme": "example",
+    "oauthClientId": "flx-mobil-example",
+    "loginMethods": ["oauth", "otp"],
+    "splash": { "background": "#F4FBFA", "backgroundDark": "#0C1414" }
+  },
+  "eas": { "projectId": null, "owner": "fluxwp", "updatesChannel": "production-example" },
+  "allowedSites": ["north.example.org", "south.example.org"],
+  "locked": ["theme.light.primary", "theme.dark.primary", "shell.tabs"],
+  "theme": {
+    "mode": "system",
+    "radius": "medium",
+    "density": "comfortable",
+    "light": { "primary": "#0F766E", "onPrimary": "#FFFFFF", "accent": "#F59E0B" },
+    "dark": { "primary": "#2DD4BF", "onPrimary": "#042F2E", "accent": "#FBBF24" }
+  },
+  "shell": {
+    "nav": "tabs+drawer",
+    "home": "screen:core/dashboard",
+    "tabs": [
+      { "id": "home", "target": "screen:core/dashboard", "icon": "home", "label": "$t:shell.tabs.home" },
+      { "id": "posts", "target": "screen:core/posts", "icon": "post", "label": "$t:shell.tabs.posts" },
+      { "id": "more", "target": "more", "icon": "menu", "label": "$t:shell.tabs.more" }
+    ],
+    "drawer": {
+      "enabled": true,
+      "header": "brand",
+      "pins": [],
+      "groups": [
+        { "id": "content", "label": "$t:shell.groups.content", "items": ["screen:core/posts", "screen:core/pages", "screen:core/comments"] }
+      ],
+      "footer": ["accounts", "settings"]
+    },
+    "topbar": {
+      "style": "large",
+      "show_logo": true,
+      "site_switcher": true,
+      "actions": [{ "target": "search", "icon": "search" }]
+    }
+  },
+  "store": { "appStoreId": null, "playUrl": null }
+}

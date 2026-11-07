@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { siteBase, stripTags, trimEnd } from './text';
+import { siteBase, stripAngles, stripTags, trimEnd, trimStart } from './text';
 import { adminPath } from './layout/merge';
 
 describe('text helpers', () => {
@@ -11,6 +11,15 @@ describe('text helpers', () => {
     const t0 = Date.now();
     expect(trimEnd(evil)).toBe(evil);
     expect(Date.now() - t0).toBeLessThan(100);
+    expect(trimStart('///wp-admin/')).toBe('wp-admin/');
+    expect(trimStart('/')).toBe('');
+    expect(trimStart('index.php')).toBe('index.php');
+  });
+  it('strips angle brackets without leaving a tag fragment', () => {
+    expect(stripAngles('<p>Hi</p>')).toBe('pHi/p');
+    expect(stripAngles('<script')).toBe('script');
+    expect(stripAngles('<scr<script>ipt>')).toBe('scrscriptipt');
+    expect(stripAngles('Fish & chips')).toBe('Fish & chips');
   });
   it('strips tags', () => {
     expect(stripTags('<p>Hi <b>there</b></p>')).toBe('Hi there');

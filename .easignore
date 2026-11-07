@@ -1,0 +1,21 @@
+# EAS Build uploads the git root (monorepo); apps/mobile needs packages/*, brands/, the root
+# package files and tools/fluxapp (root postinstall). Everything else stays out (plan §2.4).
+# Note: .easignore replaces .gitignore for EAS, so the generated/ignored paths are repeated here.
+node_modules/
+**/node_modules/
+**/dist/
+**/.turbo/
+**/.expo/
+apps/mobile/ios/
+apps/mobile/android/
+/plugins/
+/themes/
+/docs/
+/bin/
+/codeql/
+/tools/*
+!/tools/fluxapp/
+/apps/desktop/src-tauri/target/
+*.zip
+*.log
+.DS_Store

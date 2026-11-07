@@ -39,10 +39,36 @@ function flxapp_rest_dashboard() {
 	$d = (array) apply_filters( 'flxapp_dashboard', $d, $u );
 	foreach ( array( 'cards', 'lists' ) as $k ) {
 		$rows = array_values( array_filter( (array) ( $d[ $k ] ?? array() ), 'is_array' ) );
+		foreach ( $rows as $i => $row ) {
+			$rows[ $i ] = flxapp_dash_target( $row );
+			foreach ( (array) ( $row['items'] ?? array() ) as $j => $it ) {
+				$rows[ $i ]['items'][ $j ] = flxapp_dash_target( $it );
+			}
+		}
 		usort( $rows, fn( $a, $b ) => ( (int) ( $a['order'] ?? 50 ) ) <=> ( (int) ( $b['order'] ?? 50 ) ) );
 		$d[ $k ] = $rows;
 	}
 	return $d;
+}
+
+/**
+ * `open` hedefini §6 sözdizimine çevirir: eski `mod:<id>` → `module:<id>`, çıplak menü slug'ı → `menu:<slug>`;
+ * `open` yoksa `url`'den `web:<admin yolu>`. Hedefi uygulamada yoksa uygulama `url`'i web görünümünde açar.
+ */
+function flxapp_dash_target( array $row ) {
+	$open = (string) ( $row['open'] ?? '' );
+	if ( 0 === strpos( $open, 'mod:' ) ) {
+		$open = 'module:' . substr( $open, 4 );
+	} elseif ( '' !== $open && false === strpos( $open, ':' ) && ! in_array( $open, array( 'more', 'search', 'notifications', 'accounts', 'settings' ), true ) ) {
+		$open = 'menu:' . $open;
+	}
+	if ( '' === $open && ! empty( $row['url'] ) && 0 === strpos( (string) $row['url'], admin_url() ) ) {
+		$open = 'web:' . substr( (string) $row['url'], strlen( admin_url() ) );
+	}
+	if ( '' !== $open ) {
+		$row['open'] = $open;
+	}
+	return $row;
 }
 
 function flxapp_dash_num( $n ) {
@@ -70,6 +96,7 @@ function flxapp_dash_wp( $d, $u ) {
 			/* translators: %s: taslak sayısı */
 			'sub'   => (int) ( $pc->draft ?? 0 ) ? sprintf( __( '%s taslak', 'flx-app' ), flxapp_dash_num( $pc->draft ) ) : '',
 			'icon'  => 'post',
+			'open'  => 'screen:core/posts',
 			'url'   => admin_url( 'edit.php' ),
 			'order' => 60,
 		);
@@ -88,12 +115,15 @@ function flxapp_dash_wp( $d, $u ) {
 				'id'    => 'wp-drafts',
 				'title' => __( 'Taslaklarım', 'flx-app' ),
 				'icon'  => 'post',
+				'open'  => 'screen:core/posts',
 				'url'   => admin_url( 'edit.php?post_status=draft&author=' . $u->ID ),
 				'order' => 60,
 				'items' => array_map(
 					fn( $p ) => array(
 						'title' => get_the_title( $p ) !== '' ? get_the_title( $p ) : __( '(başlıksız)', 'flx-app' ),
 						'meta'  => flxapp_dash_when( $p->post_modified_gmt ),
+						'open'  => 'screen:core/' . ( 'page' === $p->post_type ? 'page' : 'post' ),
+						'params' => array( 'id' => $p->ID ),
 						'url'   => get_edit_post_link( $p->ID, 'raw' ),
 					),
 					$drafts
@@ -108,6 +138,7 @@ function flxapp_dash_wp( $d, $u ) {
 			'title' => __( 'Sayfalar', 'flx-app' ),
 			'value' => flxapp_dash_num( $pg->publish ?? 0 ),
 			'icon'  => 'page',
+			'open'  => 'screen:core/pages',
 			'url'   => admin_url( 'edit.php?post_type=page' ),
 			'order' => 62,
 		);
@@ -123,6 +154,7 @@ function flxapp_dash_wp( $d, $u ) {
 			'sub'   => sprintf( __( '%s onaylı', 'flx-app' ), flxapp_dash_num( $cc->approved ) ),
 			'icon'  => 'comment',
 			'tone'  => $wait ? 'warn' : '',
+			'open'  => 'screen:core/comments',
 			'url'   => admin_url( 'edit-comments.php' . ( $wait ? '?comment_status=moderated' : '' ) ),
 			'order' => 40,
 		);
@@ -145,6 +177,8 @@ function flxapp_dash_wp( $d, $u ) {
 						'title' => wp_trim_words( wp_strip_all_tags( $c->comment_content ), 12 ),
 						'sub'   => $c->comment_author . ' · ' . get_the_title( $c->comment_post_ID ),
 						'meta'  => '0' === $c->comment_approved ? __( 'Bekliyor', 'flx-app' ) : flxapp_dash_when( $c->comment_date_gmt ),
+						'open'  => 'screen:core/comment',
+						'params' => array( 'id' => (int) $c->comment_ID ),
 						'url'   => admin_url( 'comment.php?action=editcomment&c=' . $c->comment_ID ),
 					),
 					$recent
@@ -163,6 +197,7 @@ function flxapp_dash_wp( $d, $u ) {
 			'title' => __( 'Ortam', 'flx-app' ),
 			'value' => flxapp_dash_num( $total ),
 			'icon'  => 'media',
+			'open'  => 'screen:core/media',
 			'url'   => admin_url( 'upload.php' ),
 			'order' => 64,
 		);
@@ -174,6 +209,7 @@ function flxapp_dash_wp( $d, $u ) {
 			'title' => __( 'Kullanıcılar', 'flx-app' ),
 			'value' => flxapp_dash_num( $uc['total_users'] ?? 0 ),
 			'icon'  => 'users',
+			'open'  => 'screen:core/users',
 			'url'   => admin_url( 'users.php' ),
 			'order' => 66,
 		);
@@ -188,6 +224,7 @@ function flxapp_dash_wp( $d, $u ) {
 				'value' => flxapp_dash_num( $n ),
 				'icon'  => 'update',
 				'tone'  => 'warn',
+				'open'  => 'web:update-core.php',
 				'url'   => admin_url( 'update-core.php' ),
 				'order' => 45,
 			);
@@ -232,6 +269,7 @@ function flxapp_dash_wc( $d, $u ) {
 		'sub'   => sprintf( __( '%s sipariş', 'flx-app' ), flxapp_dash_num( count( $today ) ) ),
 		'icon'  => 'cart',
 		'tone'  => 'accent',
+		'open'  => 'screen:woo/orders',
 		'url'   => flxapp_dash_orders_url(),
 		'order' => 10,
 	);
@@ -249,6 +287,7 @@ function flxapp_dash_wc( $d, $u ) {
 		'value' => flxapp_dash_num( $n ),
 		'icon'  => 'clock',
 		'tone'  => $n ? 'warn' : '',
+		'open'  => 'screen:woo/orders',
 		'url'   => flxapp_dash_orders_url( 'wc-on-hold' ),
 		'order' => 20,
 	);
@@ -275,6 +314,8 @@ function flxapp_dash_wc( $d, $u ) {
 						'title' => '#' . $o->get_order_number() . ( '' !== $name ? ' · ' . $name : '' ),
 						'sub'   => wc_get_order_status_name( $o->get_status() ) . ' · ' . flxapp_dash_when( $o->get_date_created() ? $o->get_date_created()->getTimestamp() : 0 ),
 						'meta'  => html_entity_decode( wp_strip_all_tags( $o->get_formatted_order_total() ), ENT_QUOTES, 'UTF-8' ),
+						'open'  => 'screen:woo/order',
+						'params' => array( 'id' => $o->get_id() ),
 						'url'   => $o->get_edit_order_url(),
 					);
 				},

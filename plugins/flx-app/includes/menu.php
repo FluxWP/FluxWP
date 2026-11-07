@@ -205,9 +205,17 @@ function flxapp_platforms() {
 	);
 }
 
-/** İsteği yapan uygulamanın platformu (`X-FluxWP-Platform: desktop | mobile`); bilinmiyorsa boş (süzme yok). */
+/**
+ * İsteği yapan uygulamanın platformu: `X-FluxWP-Platform` başlığı ya da `?platform=` (`mobile` | `desktop`;
+ * `ios`/`android` → mobile, `macos`/`windows`/`linux` → desktop). Bilinmiyorsa boş: süzme yok, iki düzen de döner.
+ */
 function flxapp_request_platform() {
-	$p = sanitize_key( wp_unslash( $_SERVER['HTTP_X_FLX_PLATFORM'] ?? '' ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+	$p = sanitize_key( wp_unslash( $_SERVER['HTTP_X_FLUXWP_PLATFORM'] ?? $_SERVER['HTTP_X_FLX_PLATFORM'] ?? '' ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+	if ( '' === $p && isset( $_GET['platform'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+		$p = sanitize_key( wp_unslash( $_GET['platform'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
+	}
+	$map = array( 'ios' => 'mobile', 'android' => 'mobile', 'macos' => 'desktop', 'windows' => 'desktop', 'linux' => 'desktop' );
+	$p   = $map[ $p ] ?? $p;
 	return in_array( $p, array( 'mobile', 'desktop' ), true ) ? $p : '';
 }
 

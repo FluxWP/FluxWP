@@ -47,3 +47,11 @@ Heartbeat: istekte `data.flxp_live = 1` → cevapta `flxp_live` (kutu başına `
 
 ## Kapatma
 `define( 'FLXP_DISABLED', true );` (wp-config). WP-CLI isteklerinde zaten çalışmaz.
+
+## Uygulama
+
+`GET /wp-json/flx-speed/v1/summary?hours=24` — sunucu ölçüleri (`load_pct`, `ram_pct`, `disk_pct`) ve `FLXP_Store::summary`. Yetki: `manage_options` veya `flxp_view`.
+
+`GET /wp-json/flx-speed/v1/requests` — `hours`, `flag` (`slow`, `error`, `fatal`, `slow_query`), `type`, `q`, `min_ms`, `page`, `per_page`, `order` (`new`|`slow`). Yanıt `{items, total, page, pages}`. Ayrıntı gövdesi (SQL) dönmez.
+
+`GET /wp-json/flx-speed/v1/requests/<id>` — satır + `overview`.

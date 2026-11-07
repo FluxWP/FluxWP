@@ -1,5 +1,13 @@
 # Değişiklikler
 
+## 2.1.14
+- Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
+
+
+## 2.1.13
+- Uygulama manifesti: form listesi (`efb/v1/forms`) ve yanıt listesi. Form oluşturucu web görünümünde açılır.
+- Yeni uçlar `flx-forms/v1/responses`, `responses/{id}`, `responses/{id}/read`. Yetki `Emsfb` ya da yönetici.
+
 ## 2.1.12
 - Güvenlik (CodeQL): form oluşturucu önizlemesinde etiket, açıklama, seçenek ve dosya adları `textContent` ile yazılır; bağlantı biçimi (`[metin](adres)`) her şeyi kaçışlar, yalnız http(s)/göreli adresi bağlantı yapar.
 - E-posta şablonunda adres denetimi izin listesiyle (http, https, mailto, tel, data:image); genel ayarlar ve blok etiketleri kaçışlanır. Yanıt görüntüleyici metni DOMParser ile düz metne çevirir (çift kaçış yok).

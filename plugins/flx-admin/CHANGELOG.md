@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.7.9
+- Çağrı merkezi artık tüm kanalların (WhatsApp, site sohbeti…) tek gelen kutusu: uygulama değiştiricide, mobil alt çubukta, hızlı işlemlerde ve PWA kısayolunda "WhatsApp" yerine "Mesajlar"; panel kutucuğu "Okunmamış mesaj".
+
+## 1.7.8
+- Sol menüyü daralt/genişlet düğmesi 783–960 piksel ekranlarda da görünür. Düğmenin adı ve erişilebilir durumu açık/kapalı menüyü izler; uygulama ekranlarında genişletme otomatik daralmaya takılmaz.
+- Dar menüde grup ve eklenti alt bağlantıları tek bir ortak açılır panelde gösterilir. Simge değişince panelin başlığı, bağlantıları ve konumu güncellenir; WordPress’in ayrı alt menü kartları üst üste açılmaz.
+- Açılır panel fare geçişini, klavyeyle dolaşmayı ve Escape ile simgeye dönmeyi destekler; uzun listeler panel içinde kayar.
+
+## 1.7.7
+- Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
+
+
 ## 1.7.6
 - Giriş ekranı: "Beni hatırla" işaretlenince artık görünüyor. WordPress 7.x işaretli kutuyu tema renginde zemin + beyaz tik olarak çiziyor; giriş stilimizdeki kutu zemini bu zemini eziyordu, beyaz tik beyaz zeminde kayboluyor ve kutu tıklanmıyor gibi görünüyordu. İşaretli kutu panel rengini alıyor; odak halkası ve yanındaki "?" yardım düğmesi de panel renklerine uyuyor.
 

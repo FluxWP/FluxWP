@@ -1,0 +1,109 @@
+name: Android - signed APK, AAB or Google Play
+on:
+  workflow_dispatch:
+    inputs:
+      brand: { description: 'Brand in brands/<slug>', default: flux, required: true }
+      destination:
+        type: choice
+        default: apk
+        options: [apk, aab, internal, alpha, beta, production]
+      version: { description: 'Store version; empty uses package.json', default: '' }
+      release_status:
+        description: Draft for first setup; completed publishes to the selected track
+        type: choice
+        default: draft
+        options: [draft, completed]
+  workflow_call:
+    inputs:
+      brand: { type: string, default: flux }
+      destination: { type: string, default: apk }
+      version: { type: string, default: '' }
+      release_status: { type: string, default: draft }
+permissions:
+  contents: read
+concurrency:
+  group: android-release-${{ inputs.brand || 'flux' }}
+  cancel-in-progress: false
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      FLUX_BRAND: ${{ inputs.brand || 'flux' }}
+      FLUX_APP_VERSION: ${{ inputs.version }}
+      EXPO_PUBLIC_EAS_PROJECT_ID: ${{ vars.EXPO_PUBLIC_EAS_PROJECT_ID }}
+      RELEASE_PLATFORM: android
+      RELEASE_DESTINATION: ${{ inputs.destination || 'apk' }}
+      PLAY_RELEASE_STATUS: ${{ inputs.release_status || 'draft' }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: { node-version: 22 }
+      - name: Monotonic Android version code and preflight
+        env:
+          ANDROID_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          GOOGLE_PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
+        run: |
+          node tools/release/android-version-code.mjs
+          node tools/release/config.mjs
+      - uses: oven-sh/setup-bun@v2
+        with: { bun-version: 1.4.4 }
+      - uses: actions/setup-java@v5
+        with: { distribution: temurin, java-version: '17' }
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: platform-tools
+          log-accepted-android-sdk-licenses: false
+      - uses: ruby/setup-ruby@v1
+        if: env.RELEASE_DESTINATION != 'apk' && env.RELEASE_DESTINATION != 'aab'
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+          working-directory: tools/release
+      - run: bun install --frozen-lockfile
+      - name: Check shared and mobile code
+        run: |
+          bunx turbo run typecheck test --filter=@fluxwp/core --filter=@fluxwp/tokens --filter=@fluxwp/manifest --filter=@fluxwp/runtime
+          bun run --filter @fluxwp/mobile typecheck
+          node --test tools/release/*.test.mjs
+      - name: Generate Android project
+        working-directory: apps/mobile
+        run: bunx expo prebuild --platform android --no-install
+      - name: Prepare upload signing
+        env:
+          ANDROID_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          GOOGLE_PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
+        run: |
+          node tools/release/materialize-secrets.mjs
+          node tools/release/android-signing.mjs
+      - name: Build signed release
+        working-directory: apps/mobile/android
+        run: |
+          if [ "$RELEASE_DESTINATION" = apk ]; then
+            ./gradlew :app:assembleRelease --no-daemon
+          else
+            ./gradlew :app:bundleRelease --no-daemon
+          fi
+      - name: Verify and collect Android binaries
+        run: node tools/release/collect-android.mjs
+      - name: Upload to Google Play
+        if: env.RELEASE_DESTINATION != 'apk' && env.RELEASE_DESTINATION != 'aab'
+        working-directory: tools/release
+        run: bundle exec fastlane android publish
+      - uses: actions/upload-artifact@v5
+        with:
+          name: android-${{ env.FLUX_BRAND }}-${{ env.RELEASE_DESTINATION }}-${{ github.run_id }}
+          path: release-out/android/
+          if-no-files-found: error
+          retention-days: 14
+      - name: Clean signing material
+        if: always()
+        run: |
+          if [ -n "${FLUX_RELEASE_TEMP:-}" ]; then rm -rf -- "$FLUX_RELEASE_TEMP"; fi
+      - run: node tools/release/summary.mjs

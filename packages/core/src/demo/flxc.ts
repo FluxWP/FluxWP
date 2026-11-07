@@ -89,7 +89,7 @@ export const flxcBoot = (): FlxcBootstrap => ({
   ],
   connections: [{ id: 'ana', label: 'Ana hat', color: '#22C3A6', state: 'open', at: now }],
   replies: [
-    { id: 1, shortcut: 'iban', title: 'IBAN', body: 'IBAN: TR00 0000 0000 0000 0000 0000 00 (Örnek Vakfı)', category: 'Bağış', uses: 12 },
+    { id: 1, shortcut: 'iban', title: 'IBAN', body: 'IBAN: TR00 0000 0000 0000 0000 0000 00 (Örnek Site)', category: 'Bağış', uses: 12 },
     { id: 2, shortcut: 'tesekkur', title: 'Teşekkür', body: 'Merhaba {first_name}, desteğiniz için çok teşekkür ederiz 🌱', category: 'Genel', uses: 30 },
     { id: 3, shortcut: 'sertifika', title: 'Sertifika süresi', body: 'Sertifikanız ödeme onayından sonra 1 iş günü içinde gönderilir.', category: 'Sertifika', uses: 7 },
   ],

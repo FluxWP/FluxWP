@@ -1,0 +1,10 @@
+import {spawnSync} from 'node:child_process';
+import {appendFileSync} from 'node:fs';
+const id=process.env.CAPTURE_RUN_ID;
+if(!/^[1-9]\d*$/.test(id || '')) throw new Error('Invalid native capture run ID');
+const r=spawnSync('gh',['api',`repos/${process.env.GITHUB_REPOSITORY}/actions/runs/${id}`],{encoding:'utf8'});
+if(r.status) throw new Error('Cannot inspect source capture run');
+const run=JSON.parse(r.stdout);
+if(run.path!=='.github/workflows/mobile-store-assets.yml' || run.conclusion!=='success' || !/^[a-f0-9]{40}$/.test(run.head_sha)) throw new Error('Source must be a successful native store capture workflow');
+appendFileSync(process.env.GITHUB_ENV,`CAPTURE_COMMIT=${run.head_sha}\n`);
+console.log('Verified successful native capture workflow provenance.');

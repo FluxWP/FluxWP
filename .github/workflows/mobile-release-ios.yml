@@ -1,0 +1,149 @@
+name: iOS - IPA, TestFlight or App Store
+on:
+  workflow_dispatch:
+    inputs:
+      brand:
+        description: Brand in brands/<slug>
+        default: flux
+        required: true
+      destination:
+        type: choice
+        default: testflight
+        options: [simulator, ipa, testflight, app-store]
+      version:
+        description: Store version; empty uses apps/mobile/package.json
+        default: ''
+      build_number:
+        description: Existing tested TestFlight build to submit (required for app-store)
+        default: ''
+      screenshots_run_id:
+        description: Successful App store assets workflow run (required for app-store)
+        default: ''
+      disclosures_reviewed:
+        description: App privacy, age rating, content rights and review contact are complete in App Store Connect
+        type: boolean
+        default: false
+      replace_store_screenshots:
+        description: Replace prepared store artwork with the raw native capture set
+        type: boolean
+        default: false
+      release_on_approval:
+        description: Publish automatically after Apple approves the App Store submission
+        type: boolean
+        default: false
+  workflow_call:
+    inputs:
+      brand: { type: string, default: flux }
+      destination: { type: string, default: testflight }
+      version: { type: string, default: '' }
+      build_number: { type: string, default: '' }
+      screenshots_run_id: { type: string, default: '' }
+      disclosures_reviewed: { type: boolean, default: false }
+      replace_store_screenshots: { type: boolean, default: false }
+      release_on_approval: { type: boolean, default: false }
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: ios-release-${{ inputs.brand || 'flux' }}
+  cancel-in-progress: false
+jobs:
+  ios:
+    runs-on: macos-latest
+    timeout-minutes: 100
+    env:
+      FLUX_BRAND: ${{ inputs.brand || 'flux' }}
+      FLUX_APP_VERSION: ${{ inputs.version }}
+      FLUX_BUILD_NUMBER: ${{ inputs.build_number }}
+      EXPO_PUBLIC_EAS_PROJECT_ID: ${{ vars.EXPO_PUBLIC_EAS_PROJECT_ID }}
+      RELEASE_PLATFORM: ios
+      RELEASE_DESTINATION: ${{ inputs.destination || 'testflight' }}
+      APPLE_TEAM_ID: ${{ vars.APPLE_TEAM_ID }}
+      STORE_DISCLOSURES_REVIEWED: ${{ inputs.disclosures_reviewed }}
+      ASSET_RUN_ID: ${{ inputs.screenshots_run_id }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: { node-version: 22 }
+      - name: Validate inputs and credentials
+        env:
+          IOS_DISTRIBUTION_CERTIFICATE: ${{ secrets.IOS_DISTRIBUTION_CERTIFICATE }}
+          IOS_DISTRIBUTION_CERTIFICATE_PASSWORD: ${{ secrets.IOS_DISTRIBUTION_CERTIFICATE_PASSWORD }}
+          IOS_PROVISIONING_PROFILE: ${{ secrets.IOS_PROVISIONING_PROFILE }}
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          APPLE_API_KEY_P8: ${{ secrets.APPLE_API_KEY_P8 }}
+        run: node tools/release/config.mjs
+      - uses: oven-sh/setup-bun@v2
+        with: { bun-version: 1.4.4 }
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+          working-directory: tools/release
+      - run: bun install --frozen-lockfile
+        if: env.RELEASE_DESTINATION != 'app-store'
+      - name: Check mobile and shared code
+        if: env.RELEASE_DESTINATION != 'app-store'
+        run: |
+          bunx turbo run typecheck test --filter=@fluxwp/core --filter=@fluxwp/tokens --filter=@fluxwp/manifest --filter=@fluxwp/runtime
+          bun run --filter @fluxwp/mobile typecheck
+          node --test tools/release/*.test.mjs
+      - name: Generate native iOS project
+        if: env.RELEASE_DESTINATION != 'app-store'
+        working-directory: apps/mobile
+        run: bunx expo prebuild --platform ios --no-install
+      - name: Install native pods
+        if: env.RELEASE_DESTINATION != 'app-store'
+        working-directory: apps/mobile/ios
+        env:
+          BUNDLE_GEMFILE: ${{ github.workspace }}/tools/release/Gemfile
+        run: bundle exec pod install
+      - name: Build unsigned simulator app
+        if: env.RELEASE_DESTINATION == 'simulator'
+        run: node tools/release/ios-simulator.mjs
+      - name: Materialize signing files
+        if: env.RELEASE_DESTINATION != 'simulator'
+        env:
+          IOS_DISTRIBUTION_CERTIFICATE: ${{ secrets.IOS_DISTRIBUTION_CERTIFICATE }}
+          IOS_PROVISIONING_PROFILE: ${{ secrets.IOS_PROVISIONING_PROFILE }}
+          APPLE_API_KEY_P8: ${{ secrets.APPLE_API_KEY_P8 }}
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+        run: node tools/release/materialize-secrets.mjs
+      - name: Download reviewed native screenshots
+        if: env.RELEASE_DESTINATION == 'app-store'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ASSET_RUN_ID: ${{ inputs.screenshots_run_id }}
+        run: node tools/release/download-store-assets.mjs
+      - name: Build, sign and distribute
+        if: env.RELEASE_DESTINATION != 'simulator'
+        working-directory: tools/release
+        env:
+          STORE_DISCLOSURES_REVIEWED: ${{ inputs.disclosures_reviewed }}
+          RELEASE_ON_APPROVAL: ${{ inputs.release_on_approval }}
+          REPLACE_STORE_SCREENSHOTS: ${{ inputs.replace_store_screenshots }}
+          IOS_DISTRIBUTION_CERTIFICATE_PASSWORD: ${{ secrets.IOS_DISTRIBUTION_CERTIFICATE_PASSWORD }}
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+        run: bundle exec fastlane ios release
+      - uses: actions/upload-artifact@v5
+        if: success()
+        with:
+          name: ios-${{ env.FLUX_BRAND }}-${{ env.RELEASE_DESTINATION }}-${{ github.run_id }}
+          path: release-out/ios/
+          if-no-files-found: error
+          retention-days: 14
+      - uses: actions/upload-artifact@v5
+        if: failure()
+        with:
+          name: ios-build-logs-${{ github.run_id }}
+          path: release-out/logs/ios/
+          retention-days: 7
+      - name: Clean signing material
+        if: always()
+        run: |
+          if [ -n "${FLUX_RELEASE_TEMP:-}" ]; then rm -rf -- "$FLUX_RELEASE_TEMP"; fi
+      - name: Release summary
+        if: success()
+        run: node tools/release/summary.mjs

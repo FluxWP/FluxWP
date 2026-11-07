@@ -1,0 +1,22 @@
+{
+  "id": "lang",
+  "plugin": "flx-lang",
+  "min_app": "1.0.0",
+  "title": "Diller",
+  "icon": "globe",
+  "menu": "options-general.php?page=flx-lang",
+  "entry": "settings",
+  "fallback": { "web": "options-general.php?page=flx-lang" },
+  "routes": {
+    "options-general.php?page=flx-lang": { "screen": "settings" }
+  },
+  "sources": {},
+  "screens": {
+    "settings": {
+      "type": "web",
+      "title": "Diller",
+      "path": "options-general.php?page=flx-lang"
+    }
+  },
+  "actions": {}
+}

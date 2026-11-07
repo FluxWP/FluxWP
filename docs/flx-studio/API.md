@@ -47,3 +47,7 @@ Flux App `/flxapp/v1/me` cevabında `modules.studio` = `{title, menu:'flx-studio
 ## Filtre ve olaylar
 - `flxai_media_done` (Flux AI) dinlenir: iş Flux AI tarafında biterse kayıtlar güncellenir.
 - Kaydolduğu yerler: `flxapp_modules`, `flxa_apps`, `flxa_app_screens`, `flxai_systems`, `flx_system_checks`, `flx_role_caps_supported`, `flxa_cap_labels`.
+
+## Uygulama
+
+Galeri `GET /wp-json/flx-studio/v1/items` (`page`, `limit`, `kind`, `q`, `fav`). `page` 1 tabanlı ofset ekler; `before` imleci aynı kalır. Üretim ekranı bu sürümde yok.

@@ -128,6 +128,7 @@ add_action(
 						'search' => (string) $r->get_param( 'q' ),
 						'owner'  => (string) $r->get_param( 'owner' ),
 						'before' => (int) $r->get_param( 'before' ),
+						'page'   => (int) $r->get_param( 'page' ),
 						'limit'  => (int) ( $r->get_param( 'limit' ) ? $r->get_param( 'limit' ) : 60 ),
 					)
 				);

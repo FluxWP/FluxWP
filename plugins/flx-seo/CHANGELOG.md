@@ -1,5 +1,26 @@
 # Değişiklikler
 
+## 1.8.1
+- Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
+
+
+## 1.8.0
+- Uygulama ayarları (ayar köprüsü) ve site denetimi (`flx-seo/v1/audit`).
+
+## 1.7.1
+- **Siteye özel sabit değer kalmadı.** Kurum schema'sına her sitede yazılan fidan/ağaçlandırma konuları (`knowsAbout`), `areaServed: Türkiye` ve "Fidan bağışı yap" `DonateAction` kaldırıldı. Yerine SEO › Kurum ve sosyal'de **Uzmanlık konuları**, **Hizmet bölgesi** ve **Bağış çağrısı** (ad + adres) ayarları geldi; boşsa schema'ya eklenmez. Ön ayarlar Flux Setup ile doldurur.
+- Bağış/fidan sayfalarının ve etkinlik/proje arşivlerinin sabit SEO metinleri çıkarıldı; ön ayarlar `flxseo_keyword_pages` ve `flxseo_keyword_archives` filtreleriyle verir (değişince boş alanlara bir kez yazılır, elle girilene dokunulmaz).
+- Makale sayılan yazı türleri `flxseo_article_types` filtresiyle (varsayılan yalnız `post`; ön ayar `etkinlik`, `proje` ekler). Bağış adresi için `flxseo_donate_url` filtresi.
+- HTML yorumundaki eski ad "Flux SEO" oldu.
+
+## 1.7.0
+- **Arama motorları** bölümü (SEO › Genel): Google Search Console, Bing Webmaster Tools ve Yandex Webmaster için panel bağlantıları, adım adım ipucu ve doğrulama alanları; kopyalanabilir sitemap adresi. Bing'de "Google Search Console'dan içe aktar" yolu öne çıkarıldı (kod gerekmez). Tam `<meta>` etiketi yapıştırılabilir.
+- **IndexNow ilk bildirim:** IndexNow açıkken site hiç toplu bildirilmediyse tüm site bir kez kendiliğinden Bing, Yandex, Seznam ve Naver'e gönderilir (cron'a bağlı değil; yönetim panelinde yanıt gönderildikten sonra). IndexNow yeniden açılınca ya da site arama motorlarına açılınca tekrarlanır.
+- IndexNow toplu bildirimine kategori arşivleri eklendi; sepet, ödeme, Hesabım ve alt sayfaları (ör. order-received) "noindex" ayarı açıkken gönderilmez. Yeni filtre `flxseo_indexnow_all_urls`.
+- Site denetimine yeni kontroller: robots.txt Bingbot/YandexBot/DuckDuckBot'u engelliyor (yüksek), robots.txt'de Sitemap satırı yok, IndexNow kapalı (tek tık düzeltme `flxseo_indexnow`), IndexNow anahtar dosyası açılmıyor ya da son bildirim hatalı, Bing/Yandex doğrulama kodu yok.
+- Sistem Kontrolü'nde Bing ve Yandex doğrulama + IndexNow durumu. MCP `seo.setting` Yandex doğrulama kodunu da yazar.
+- Arama motoru ve IndexNow metinleri çevrilebilir (TR + EN).
+
 ## 1.6.2
 - Site denetimi yanlış uyarı vermiyor: `<template>` içindeki öğeler (ör. WooCommerce mini sepetinin şablonları) artık alt metinsiz görsel, adsız düğme, etiketsiz alan ve liste dışı `<li>` sayılmıyor; tarayıcı bunları çizmez.
 - "İlk ekrandaki görsel lazy yükleniyor" kontrolü `skip-lazy`, `no-lazyload` sınıflarını ve `data-no-lazy`'yi hariç tutma işareti olarak tanır (önceden "no-lazyload" içindeki "lazy" yüzünden logoyu lazy sanıyordu).

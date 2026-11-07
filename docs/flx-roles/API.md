@@ -148,3 +148,7 @@ Panelde `flxb_create_ref` (Bağış ekle, referans = kendisi) ve `flxb_donors_ow
 
 ### Flux Tasks, Flux Admin, Flux Chat
 Değişiklik gerekmez. (Flux Admin › Yetkiler tablosu bu yetkileri `flxa_cap_labels` ile okunur adla gösterir.)
+
+## Uygulama
+
+Modül `roles` menüyü `users.php?page=flx-roles` web görünümünde açar. Rol matrisi için ayrı REST yoktur.

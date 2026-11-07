@@ -17,7 +17,7 @@ export const demoMe: Me = {
     profile_url: A + 'profile.php',
   },
   site: {
-    name: 'Demo Dernek',
+    name: 'Demo Site',
     url: 'https://demo.fluxapp.local/',
     admin_url: A,
     rest_url: 'https://demo.fluxapp.local/wp-json/',
@@ -84,28 +84,22 @@ export const demoMe: Me = {
 
 export const demoDashboard: Dashboard = {
   cards: [
-    { id: 'flxb-today', title: 'Bugünkü bağış', value: '4.350 ₺', sub: '29 fidan', icon: 'heart', tone: 'ok', order: 10 },
-    { id: 'flxb-review', title: 'Onay bekleyen', value: '3', icon: 'check', tone: 'warn', open: 'mod:flxb-review', order: 12 },
-    { id: 'flxc-unread', title: 'Okunmamış WhatsApp', value: '12', icon: 'chat', order: 20 },
+    { id: 'wp-posts', title: 'Yayımlanan yazılar', value: '24', sub: 'Bu ay 4 yeni yazı', icon: 'post', tone: 'ok', order: 10 },
+    { id: 'wp-drafts', title: 'Taslaklar', value: '3', icon: 'edit', tone: 'warn', order: 12 },
+    { id: 'flxc-unread', title: 'Okunmamış mesajlar', value: '12', icon: 'chat', order: 20 },
     { id: 'flxg-open', title: 'Açık görev', value: '5', sub: '1 gecikmiş', icon: 'task', tone: 'danger', order: 30 },
     { id: 'flxa-live', title: 'Canlı ziyaretçi', value: '18', icon: 'chart', order: 40 },
     { id: 'wp-comments', title: 'Onay bekleyen yorum', value: '0', icon: 'comment', order: 50 },
   ],
   lists: [
-    {
-      id: 'flxb-last', title: 'Son bağışlar', icon: 'heart', order: 10,
-      items: [
-        { title: 'Ayşe K.', sub: '5 fidan · Havale/EFT', meta: '10 dk önce' },
-        { title: 'Mehmet T.', sub: '1 fidan · Kart', meta: '42 dk önce' },
-        { title: 'Zeynep A.', sub: '10 fidan · Havale/EFT', meta: '2 sa önce' },
-      ],
-    },
-    {
-      id: 'flxg-mine', title: 'Görevlerim', icon: 'task', order: 20,
-      items: [
-        { title: '11 Kasım etkinlik afişi', sub: 'Etkinlik', meta: 'Bugün' },
-        { title: 'Sertifika şablonu kontrolü', sub: 'Sertifika', meta: 'Yarın' },
-      ],
-    },
+    { id: 'wp-recent', title: 'Son içerikler', icon: 'post', order: 10, items: [
+      { title: 'Yeni ürün koleksiyonu', sub: 'Yazı · Yayımlandı', meta: '10 dk önce' },
+      { title: 'Ekibimizle tanışın', sub: 'Sayfa · Güncellendi', meta: '42 dk önce' },
+      { title: 'Kasım içerik planı', sub: 'Yazı · Taslak', meta: '2 sa önce' },
+    ] },
+    { id: 'flxg-mine', title: 'Görevlerim', icon: 'task', order: 20, items: [
+      { title: 'Haftalık blog yazısını hazırla', sub: 'İçerik', meta: 'Bugün' },
+      { title: 'Ürün görsellerini güncelle', sub: 'Medya', meta: 'Yarın' },
+    ] },
   ],
 };
