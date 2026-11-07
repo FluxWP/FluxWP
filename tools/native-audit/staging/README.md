@@ -64,3 +64,13 @@ The 37 declared global fields cover all defaults except the four tool/source pre
 Desktop and mobile `flxai-settings` share an account-scoped controller and use component state for unsaved credentials, never a query/mutation cache. Existing clients can still use the capability-checked settings bridge URL; AI writes delegate to the same validator/lock and preserve blank secrets. Decimal settings have a number schema. Source-specific models remain reachable through Connected systems. Model/render tests are explicit actions; a real model test may incur provider charges and bypass its budget, so the UI discloses this before confirmation. Renderer tests use the current address/credentials and do not persist them. The offline demo simulates tests without contacting services.
 
 After settings save, the desktop chat bootstrap refreshes for that account (queued until the current turn finishes). The saved default layout and administration visibility are applied; an explicit device layout preference is preserved. This does not complete the remaining chat streaming/rich-output/history work or native-device verification.
+
+Native AI activity log regression:
+
+```sh
+docker compose -p fluxwp-native-qa --env-file /absolute/private/qa-state/qa.env -f tools/native-audit/staging/compose.yaml run --rm cli eval-file /opt/fluxwp-public/tools/native-audit/staging/ai-log-test.php
+```
+
+This exercises manager-only list/body access, 62-row paging, historical plugin sources, combined date/type/error filters, literal wildcard and purpose searches, full token/cache/actor/cost metadata, body existence/expiration, shortened and masked saved content, and no-store headers. The list never includes request/response text. All generated rows/users/settings are restored in `finally`; the test refuses other environments and makes no external AI request. Omitting the period preserves the older list endpoint’s all-time behavior; the new UI explicitly starts at seven days.
+
+Desktop and mobile `flxai-log` use a shared account-scoped controller. Filters and pagination run on the server. Opening a record fetches its saved, masked body into temporary component state, outside persisted query/mutation caches. Closing, changing accounts or selecting another record discards/aborts the old content request; missing/expired content has its own state and transport failures can be retried. Both platforms show request/response and complete metadata. Desktop details resize with pointer/keyboard and retain their width; mobile uses a sheet with header/footer close controls. Offline demos and browser checks do not prove native device operation or production activation.

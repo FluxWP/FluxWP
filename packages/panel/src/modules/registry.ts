@@ -11,6 +11,7 @@ import { AiBillingScreen } from '../native/AiBillingScreen';
 import { AiToolsScreen } from '../native/AiToolsScreen';
 import { AiSystemsScreen } from '../native/AiSystemsScreen';
 import { AiMcpScreen } from '../native/AiMcpScreen';
+import { AiLogScreen } from '../native/AiLogScreen';
 import { AiSettingsScreen } from '../native/AiSettingsScreen';
 
 /** Sunucuda kaydı olmayan, uygulamanın kendi modülleri (WP çekirdek menülerine bağlanır). */
@@ -27,6 +28,7 @@ export const screens: Record<string, ComponentType> = {
   'flxai-systems': AiSystemsScreen,
   'flxai-mcp': AiMcpScreen,
   'flxai-settings': AiSettingsScreen,
+  'flxai-log': AiLogScreen,
   'flxr-roles': RolesScreen,
   'flxl-languages': LanguagesScreen,
   'flxsm-composer': SocialComposerScreen,

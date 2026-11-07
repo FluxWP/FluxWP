@@ -27,42 +27,7 @@
   },
   "screens": {
     "settings": { "type": "native", "title": "$t:aiSettings.title", "component": "flxai-settings", "fallback": { "web": "admin.php?page=flx-ai-settings" } },
-    "log": {
-      "type": "list",
-      "title": "Kayıtlar",
-      "source": "log",
-      "search": { "param": "q", "placeholder": "Model, araç ya da hata" },
-      "filters": [
-        {
-          "param": "kind",
-          "label": "Tür",
-          "type": "select",
-          "options": [
-            { "value": "", "label": "Tümü" },
-            { "value": "model", "label": "Model" },
-            { "value": "tool", "label": "Araç" }
-          ]
-        }
-      ],
-      "columns": [
-        { "label": "Kayıt", "value": "{{title}}", "width": 3 },
-        { "label": "Kaynak", "value": "{{source}}" },
-        { "label": "Süre", "value": "{{ms|number}}", "align": "end" },
-        { "label": "Zaman", "value": "{{ts_label}}", "align": "end" }
-      ],
-      "item": {
-        "title": "{{title}}",
-        "subtitle": "{{source}}",
-        "meta": "{{ms|number}}",
-        "caption": "{{ts_label}}",
-        "badges": [
-          { "text": "Hata", "tone": "danger", "when": { "path": "ok", "op": "eq", "value": 0 } },
-          { "text": "Araç", "tone": "muted", "when": { "path": "kind", "op": "eq", "value": "tool" } }
-        ]
-      },
-      "actions": { "header": ["open_chat"] },
-      "empty": { "title": "Kayıt yok", "body": "Model ve araç çağrıları burada listelenir. İstek içeriği uygulamaya gelmez." }
-    },
+    "log": { "type": "native", "title": "$t:aiLog.title", "component": "flxai-log", "fallback": { "web": "admin.php?page=flx-ai-log" } },
     "chat": {
       "type": "native",
       "title": "Sohbet",

@@ -11,8 +11,8 @@ mountApp(document.getElementById('root')!,webPlatform);
 
 const launch=document.createElement('button');
 const requested = new URLSearchParams(location.search).get('component');
-const preview = requested === 'flxai-billing' || requested === 'flxai-tools' || requested === 'flxai-systems' || requested === 'flxai-mcp' || requested === 'flxai-settings' ? requested : 'flxsm-composer';
-launch.textContent=preview==='flxai-settings'?'AI ayarları önizlemesi':preview==='flxai-mcp'?'MCP yönetimi önizlemesi':preview==='flxai-billing'?'AI faturalandırma önizlemesi':preview==='flxai-systems'?'AI bağlı sistemler önizlemesi':preview==='flxai-tools'?'AI araç yönetimi önizlemesi':'Sosyal gönderi önizlemesi';launch.className='btn-primary';
+const preview = requested === 'flxai-log' || requested === 'flxai-billing' || requested === 'flxai-tools' || requested === 'flxai-systems' || requested === 'flxai-mcp' || requested === 'flxai-settings' ? requested : 'flxsm-composer';
+launch.textContent=preview==='flxai-log'?'AI kayıtları önizlemesi':preview==='flxai-settings'?'AI ayarları önizlemesi':preview==='flxai-mcp'?'MCP yönetimi önizlemesi':preview==='flxai-billing'?'AI faturalandırma önizlemesi':preview==='flxai-systems'?'AI bağlı sistemler önizlemesi':preview==='flxai-tools'?'AI araç yönetimi önizlemesi':'Sosyal gönderi önizlemesi';launch.className='btn-primary';
 Object.assign(launch.style,{position:'fixed',right:'16px',top:'12px',zIndex:'10000'});
 launch.onclick=()=>{useRoute.getState().go({kind:'native',component:preview,params:{}});launch.remove();};
 document.body.appendChild(launch);

@@ -903,6 +903,14 @@
           "fallback": {
             "web": "admin.php?page=flx-ai-settings"
           }
+        },
+        "log": {
+          "type": "native",
+          "title": "$t:aiLog.title",
+          "component": "flxai-log",
+          "fallback": {
+            "web": "admin.php?page=flx-ai-log"
+          }
         }
       },
       "routes": {
@@ -923,6 +931,9 @@
         },
         "admin.php?page=flx-ai-settings": {
           "screen": "settings"
+        },
+        "admin.php?page=flx-ai-log": {
+          "screen": "log"
         }
       },
       "schema": "flx-app-manifest/1",
