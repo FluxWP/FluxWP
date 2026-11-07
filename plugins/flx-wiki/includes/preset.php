@@ -101,7 +101,7 @@ function flxwk_preset_importers( $t ) {
 				'title'   => (string) ( $item['title'] ?? $item['key'] ),
 				'slug'    => sanitize_title( (string) ( $item['slug'] ?? $item['key'] ) ),
 				'md'      => str_replace( "\r\n", "\n", (string) ( $item['md'] ?? '' ) ),
-				'excerpt' => (string) ( $item['excerpt'] ?? '' ),
+				'excerpt' => sanitize_textarea_field( (string) ( $item['excerpt'] ?? '' ) ),
 				'parent'  => trim( (string) ( $item['parent'] ?? '' ), '/' ),
 				'section' => (string) ( $item['section'] ?? '' ),
 				'order'   => (int) ( $item['order'] ?? 0 ),
@@ -119,7 +119,7 @@ function flxwk_preset_importers( $t ) {
 				'language' => (string) get_post_meta( $id, '_flxwk_language', true ),
 				'translation_of' => (string) get_post_meta( $id, '_flxwk_translation_of', true ),
 			), 'strlen' ) + array(
-				'title'   => $p->post_title,
+				'title'   => html_entity_decode( $p->post_title, ENT_QUOTES, 'UTF-8' ),
 				'slug'    => $p->post_name,
 				'md'      => flxwk_md( $p ),
 				'excerpt' => $p->post_excerpt,
