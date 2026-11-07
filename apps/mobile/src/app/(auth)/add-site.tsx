@@ -15,6 +15,7 @@ import { accountKey } from '@/shell/routes';
 import { Welcome, entryVariant } from '@/shell/entry/Welcome';
 import { Avatar, Button, Field, IconButton, Text } from '@/ui/primitives';
 import { ConnectionTerms } from '@/privacy/ConnectionTerms';
+import { ConnectionHelp } from '@/shell/entry/ConnectionHelp';
 
 type Step = 'url' | 'method' | 'otp' | 'apikey';
 type Busy = null | 'discover' | 'oauth' | 'oauth2' | 'otp' | 'verify' | 'key' | 'apppass' | 'demo';
@@ -93,6 +94,10 @@ export default function AddSite() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const connectionIssue = error === 'errors.not_wordpress' || error === 'errors.unreachable';
+  const errorContent = error ? connectionIssue ? <ConnectionHelp unreachable={error === 'errors.unreachable'} busy={!!busy} onRetry={() => void discover()} onClose={() => setError(null)}/> : <Text tone="danger" accessibilityRole="alert" style={styles.center}>{t(error)}</Text> : null;
+  const closeEntry = router.canGoBack() ? <View style={[styles.close, { top: insets.top + 8, zIndex: 2 }]}><IconButton icon="x" label={t('common.close')} onPress={() => router.back()}/></View> : null;
+
   const urlForm = !gate.locked ? (
     <>
       <Text tone="muted">{restricted ? t('mobile.addSite.allowedHint') : t('mobile.addSite.hint')}</Text>
@@ -111,18 +116,19 @@ export default function AddSite() {
       {wildcards.map((host) => <Text key={host} variant="small" tone="muted">{t('mobile.addSite.wildcard', { host })}</Text>)}
       <Field label={t('auth.siteUrl')} value={url} onChangeText={setUrl} placeholder={t('auth.siteUrlPlaceholder')} autoCapitalize="none" autoCorrect={false} keyboardType="url" returnKeyType="go" onSubmitEditing={() => url.trim() && void discover()} testID="site-url" />
       <Button label={t('mobile.addSite.continue')} onPress={() => void discover()} loading={busy === 'discover'} disabled={!url.trim() || !!busy} full testID="continue" />
-      {error ? <Text tone="danger" accessibilityRole="alert" style={styles.center}>{t(error)}</Text> : null}
+      {errorContent}
     </>
   ) : (
     <>
       <Button label={t('common.retry')} onPress={() => void discover()} loading={busy === 'discover'} full />
-      {error ? <Text tone="danger" accessibilityRole="alert" style={styles.center}>{t(error)}</Text> : null}
+      {errorContent}
     </>
   );
 
   if (step === 'url' && !gate.locked) {
     return (
       <KeyboardAvoidingView style={styles.screen} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+        {closeEntry}
         <Welcome
           key={variant}
           variant={variant}
@@ -138,6 +144,7 @@ export default function AddSite() {
   if (step === 'url') {
     return (
       <KeyboardAvoidingView style={styles.screen} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+        {closeEntry}
         <View style={[styles.wrap, { paddingTop: insets.top + 48 }]}>
           <Text variant="title">{t('auth.welcome', { name: brand.name })}</Text>
           <Text tone="muted">{restricted ? t('mobile.addSite.allowedHint') : t('mobile.addSite.hint')}</Text>
@@ -151,7 +158,7 @@ export default function AddSite() {
   return (
     <KeyboardAvoidingView style={styles.screen} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <ScrollView contentContainerStyle={[styles.wrap, { paddingTop: insets.top + 24, paddingBottom: insets.bottom + 24 }]} keyboardShouldPersistTaps="handled">
-        {router.canGoBack() ? <View style={styles.close}><IconButton icon="x" label={t('common.close')} onPress={() => router.back()} /></View> : null}
+        {router.canGoBack() ? <View style={[styles.close, { top: insets.top + 8 }]}><IconButton icon="x" label={t('common.close')} onPress={() => router.back()} /></View> : null}
         <View accessible accessibilityRole="image" accessibilityLabel={brand.name}>
           <SvgXml xml={(theme.mode === 'dark' ? LOGO_DARK : LOGO).replace(/\s(?:aria-label|role)="[^"]*"/g, '')} width={170} height={50} />
         </View>
@@ -181,7 +188,7 @@ export default function AddSite() {
 
             {step === 'method' && !site.hasFluxApp ? (
               <>
-                <Text tone="muted">{t('mobile.addSite.noFluxApp')}</Text>
+                <ConnectionHelp missingPlugin busy={!!busy} onRetry={() => void discover()} onClose={() => { if (router.canGoBack()) router.back(); else { setStep('url'); setSite(null); } }}/>
                 <Button label={t('mobile.addSite.appPassword')} icon="key" loading={busy === 'apppass'} disabled={!!busy || !site.appPasswordsUrl} onPress={() => void run('apppass', async () => done(await loginAppPassword(site, brand.name)))} full />
               </>
             ) : null}
@@ -218,7 +225,7 @@ export default function AddSite() {
           </View>
         ) : null}
 
-        {error ? <Text tone="danger" accessibilityRole="alert" style={styles.center}>{t(error)}</Text> : null}
+        {errorContent}
         <ConnectionTerms />
         <Text variant="caption" style={styles.center}>{t('auth.footer', { name: brand.name })}</Text>
       </ScrollView>

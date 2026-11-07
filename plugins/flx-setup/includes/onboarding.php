@@ -120,6 +120,11 @@ final class FLXK_Onboarding {
 			'flx-studio'       => array( 0, __( 'AI ile görsel ve kısa video üretimi.', 'flx-setup' ) ),
 			'flx-roles'        => array( 0, __( 'Personel rolleri ve sayfa bazlı yetkiler.', 'flx-setup' ) ),
 			'flx-app'          => array( 0, __( 'Masaüstü ve mobil FluxApp bağlantısı.', 'flx-setup' ) ),
+			'flx-crm'             => array( 0, __( 'Bağışçı ve müşteriler tek kişi kartında: zaman tüneli, etiketler, segmentler.', 'flx-setup' ) ),
+			'flx-chatbot'         => array( 0, __( 'Sitede AI sohbet penceresi, gerektiğinde canlı temsilciye devir.', 'flx-setup' ) ),
+			'flx-wiki'            => array( 0, __( '/wiki altında Markdown belgeler, arama ve llms.txt.', 'flx-setup' ) ),
+			'flx-recaptcha'       => array( 0, __( 'Giriş, kayıt, yorum ve formları botlara karşı korur.', 'flx-setup' ) ),
+			'flx-updater-manager' => array( 0, __( 'Kendi güncelleme sunucunuzu bu panelden yönetir.', 'flx-setup' ) ),
 		);
 		return (array) apply_filters( 'flxk_onboarding_intro', $d );
 	}

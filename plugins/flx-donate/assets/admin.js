@@ -7,10 +7,9 @@
 	var safeUrl = function (u) {
 		u = String(u == null ? '' : u).trim();
 		var l = u.toLowerCase();
-		if (l.indexOf('https://') === 0) return 'https://' + u.slice(8);
-		if (l.indexOf('http://') === 0) return 'http://' + u.slice(7);
-		if (u.charAt(0) === '/' && u.charAt(1) !== '/' && u.charAt(1) !== '\\') return location.origin + u;
-		return '';
+		if (!(l.indexOf('https://') === 0 || l.indexOf('http://') === 0 || (u.charAt(0) === '/' && u.charAt(1) !== '/' && u.charAt(1) !== '\\'))) return '';
+		// Normalised with encodeURI: quotes, spaces and angle brackets are escaped as well.
+		try { return encodeURI(decodeURI(u)); } catch (e) { return ''; }
 	};
 
 	/* Buttons that submit long-running forms show a spinner. */
@@ -234,7 +233,14 @@
 				el = document.createElement('iframe');
 				el.title = pv.getAttribute('data-name') || '';
 			}
-			el.src = url;
+			/* Dekontlar bu sitenin yüklemeleri: önizleme yalnız aynı kaynaktan, göreli yolla açılır. */
+			var src = '';
+			try {
+				var pu = new URL(url, window.location.href);
+				if (pu.origin === window.location.origin) src = pu.pathname + pu.search;
+			} catch (err) { src = ''; }
+			if (!src) return;
+			el.src = src;
 			body.appendChild(el);
 			return;
 		}

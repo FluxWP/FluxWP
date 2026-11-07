@@ -40,13 +40,17 @@
     "cancelled": "Giriş iptal edildi.",
     "demo": "Demo hesabıyla dene",
     "methods": "Giriş yolu",
-    "noFluxApp": "Bu sitede Flux App yok. Uygulama şifresiyle sınırlı modda bağlanabilirsin; tam deneyim için Flux App'i kur.",
+    "noFluxApp": "Bu sitede etkin bir Flux App eklentisi bulunamadı. Eklentiyi kurup etkinleştirin; ardından yeniden deneyin. Uygulama şifresi sınırlı modda kullanılabilir.",
     "appPassword": "Uygulama şifresiyle bağlan",
     "otp": "Kodla giriş",
     "apiKey": "API anahtarı",
     "secondAccount": "Bu sitede başka bir hesapla giriş yap",
     "insecure": "Uygulama şifresi yalnız HTTPS sitelerde kullanılabilir.",
-    "appNotAllowed": "Bu site FluxWP uygulamasını kapatmış; yalnız sitenin kendi uygulamasıyla girilebilir."
+    "appNotAllowed": "Bu site FluxWP uygulamasını kapatmış; yalnız sitenin kendi uygulamasıyla girilebilir.",
+    "connectionTitle": "Sitenize bağlanılamadı",
+    "fluxAppTitle": "Flux App eklentisi",
+    "fluxAppRequired": "Sitenize bağlanmak için WordPress’te Flux App eklentisinin kurulu ve etkin olması gerekir. Eklenti kuruluysa site adresini ve erişim ayarlarını kontrol edip yeniden deneyin.",
+    "getFluxApp": "Flux App eklentisini edin"
   },
   "otp": {
     "title": "Kodla giriş",

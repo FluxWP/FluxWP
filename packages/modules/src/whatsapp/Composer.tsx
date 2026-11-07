@@ -159,7 +159,7 @@ export function Composer({ engine, chatId, scope, quote, clearQuote, replies, ai
       )}
       {file && (
         <div className="wa-file-bar">
-          {preview ? <img src={preview} alt="" /> : <FileText size={22} />}
+          {preview ? <img src={encodeURI(preview)} alt="" /> : <FileText size={22} />}
           <span className="grow ellipsis">{file.name} <span className="muted small">{fileSize(file.size)}</span></span>
           <button type="button" className="icon-btn" onClick={() => setFile(null)} aria-label={t('common.cancel')}><X size={16} /></button>
         </div>

@@ -81,7 +81,7 @@ document.addEventListener('click', function (e) {
 	var box = btn.parentNode, id = box.getAttribute('data-flx-id');
 	if (!/^[\w-]{6,20}$/.test(id || '')) return;
 	var f = document.createElement('iframe');
-	f.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1&origin=' + encodeURIComponent(location.origin);
+	f.src = 'https://www.youtube.com/embed/' + encodeURIComponent(id) + '?autoplay=1&rel=0&playsinline=1&origin=' + encodeURIComponent(location.origin);
 	f.title = 'YouTube video';
 	f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
 	f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');

@@ -1,5 +1,10 @@
 # Flux AI Chatbot
 
+## 0.1.1
+
+- Sohbet penceresi masaüstünde butonun üstünde değil yanında açılır (sağdaysa solunda, soldaysa sağında); dar ekranda yine üstünde ya da tam ekran.
+- Pencere küçüldü: varsayılan genişlik 360 px, yükseklik en fazla 580 px; başlık ve kartlar daha sıkı.
+
 ## 0.1.0
 
 - İlk sürüm: sitede yapay zekâ destekli sohbet penceresi (Shadow DOM; tema stilleriyle çakışmaz).

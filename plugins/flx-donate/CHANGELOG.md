@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.15.2
+- Güvenlik (CodeQL): yönetim adresleri `encodeURI` ile temizlenir; dekont önizlemesi yalnız sitenin kendi adresinden, göreli yolla açılır.
+
 ## 2.15.1
 - Bağış türü çevirisi (Flux Lang): tür düzenlemede yeni "Çeviriler" kartı; her dil için başlık, kısa açıklama ve seçenek adları. Bağış sayfası, sepet, ödeme sayfası ve `flxb_type_public()` ziyaretçinin dilinde gösterir; kayıtlar varsayılan dildeki metni tutar. Tür meta `i18n` `{ "en": { "title", "description", "options": { "anahtar": "Ad" } } }`, ön ayarlarla taşınır. `FLXB_Types::localize( $t, $lang = null )`.
 - Düzeltme: ön ayar yeniden uygulanınca "Array to string conversion" uyarısı (bağlı formlar). Ön ayar türü yeniden uygulanınca seçeneklerin "seçim başına birim" ve rozet değerleri artık korunuyor.

@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.1.15
+- Güvenlik (CodeQL): modal başlığı düz metin; uyarı, e-posta önizlemesi ve HTML blok içeriği izin listeli temizleyiciden (`efb_safe_html_efb`, script/on* yok) geçer. Seçenek değerleri, ayarlar ve dosya adları HTML'e kaçışlanır; resim önizlemesi yalnız `data:image`, font bağlantısı yalnız https. Kısa kod etiketleri `switch` ile; e-posta şablonunda şifre etiketi anahtarla okunur.
+
 ## 2.1.14
 - Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
 
