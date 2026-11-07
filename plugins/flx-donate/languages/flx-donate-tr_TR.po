@@ -5340,3 +5340,162 @@ msgstr "Bağış sayfasında, sepette ve ödeme sayfasında o dilde gösterilir 
 #, php-format
 msgid "Option: %s"
 msgstr "Seçenek: %s"
+
+msgid "Automatic"
+msgstr "Otomatik"
+
+msgid "Heart"
+msgstr "Kalp"
+
+msgid "Gift"
+msgstr "Hediye"
+
+msgid "Sheep"
+msgstr "Koyun"
+
+msgid "Cattle"
+msgstr "Sığır"
+
+msgid "Camel"
+msgstr "Deve"
+
+msgid "Card subtitle"
+msgstr "Kart alt başlığı"
+
+msgid "One short line under the title on the type cards, e.g. \"Sheep or goat\"."
+msgstr "Tür kartlarında başlığın altında kısa bir satır, ör. \"Koyun veya keçi\"."
+
+msgid "Icon"
+msgstr "İkon"
+
+msgid "Shown when the type has no image."
+msgstr "Türün görseli yoksa gösterilir."
+
+msgid "from %s"
+msgstr "%s'den başlayan"
+
+msgid "Given in your name, as you write it at the checkout."
+msgstr "Ödeme sayfasında yazdığınız ad adına kesilir."
+
+msgid "Shares without a name are given in the name from the checkout. With a phone number we can also send that person the news on WhatsApp."
+msgstr "Adı boş bırakılan hisseler ödeme sayfasındaki ad adına kesilir. Telefon yazarsanız o kişiye WhatsApp'tan haber de gönderebiliriz."
+
+msgid "Shares without a name are given in the name from the checkout."
+msgstr "Adı boş bırakılan hisseler ödeme sayfasındaki ad adına kesilir."
+
+msgid "Apply to all"
+msgstr "Hepsine uygula"
+
+msgid "Phone (optional)"
+msgstr "Telefon (isteğe bağlı)"
+
+msgid "Classic"
+msgstr "Klasik"
+
+msgid "One card: type tabs on top, the choices under them, the total at the bottom."
+msgstr "Tek kart: üstte tür sekmeleri, altında seçimler, en altta toplam."
+
+msgid "A · Steps + summary"
+msgstr "A · Adım adım + özet"
+
+msgid "Numbered steps on the left, a summary with the total and the button on the right."
+msgstr "Solda numaralı adımlar, sağda toplam ve butonla özet."
+
+msgid "B · Two panels"
+msgstr "B · İki panel"
+
+msgid "Types as a list on the left, the details on the right; a dark total bar."
+msgstr "Solda tür listesi, sağda ayrıntılar; koyu toplam çubuğu."
+
+msgid "C · Picture cards"
+msgstr "C · Görselli kartlar"
+
+msgid "Large cards with the type picture or icon; the details open below."
+msgstr "Tür görseli ya da ikonuyla büyük kartlar; ayrıntılar altta açılır."
+
+msgid "Theme"
+msgstr "Tema"
+
+msgid "The look of WooCommerce and the theme."
+msgstr "WooCommerce ve temanın görünümü."
+
+msgid "A · Side-by-side cards"
+msgstr "A · Yan yana kartlar"
+
+msgid "Methods as cards with icons; the details of the picked one below."
+msgstr "Yöntemler ikonlu kartlar; seçilenin ayrıntısı altta."
+
+msgid "B · Plain list"
+msgstr "B · Sade liste"
+
+msgid "Rows one under the other; the picked row opens."
+msgstr "Alt alta satırlar; seçilen satır açılır."
+
+msgid "C · Segmented tabs"
+msgstr "C · Sekmeler"
+
+msgid "One row of tab buttons; the details of the picked one below."
+msgstr "Tek sıra sekme butonu; seçilenin ayrıntısı altta."
+
+msgid "Options and amount"
+msgstr "Seçenekler ve tutar"
+
+msgid "On whose behalf"
+msgstr "Kimler adına"
+
+msgid "Certificate design"
+msgstr "Sertifika tasarımı"
+
+msgid "Appearance"
+msgstr "Görünüm"
+
+msgid "Donation form"
+msgstr "Bağış formu"
+
+msgid "How the \"Donation options\" block looks on the site. Prices, options and names are set under Donation types."
+msgstr "\"Bağış seçenekleri\" bloğunun sitedeki görünümü. Fiyat, seçenek ve adlar Bağış türleri altında ayarlanır."
+
+msgid "View the page"
+msgstr "Sayfayı gör"
+
+msgid "Heading over the types"
+msgstr "Türlerin üstündeki başlık"
+
+msgid "Shown in the A and C layouts."
+msgstr "A ve C düzenlerinde gösterilir."
+
+msgid "Heading over the options"
+msgstr "Seçeneklerin üstündeki başlık"
+
+msgid "Order of the sections"
+msgstr "Bölümlerin sırası"
+
+msgid "The type choice is always first and the total always last. Sections a type does not use are skipped."
+msgstr "Tür seçimi hep ilk, toplam hep son. Türün kullanmadığı bölümler atlanır."
+
+msgid "Ask a phone number for every share (types with a proxy). The video or certificate of that share can be sent there too."
+msgstr "Her hisse için telefon sor (vekâletli türler). O hissenin videosu ya da sertifikası oraya da gönderilebilir."
+
+msgid "Payment options at the checkout"
+msgstr "Ödeme sayfasındaki ödeme seçenekleri"
+
+msgid "How card, PayPal, bank transfer and the other methods are shown. The methods themselves are turned on under WooCommerce › Settings › Payments."
+msgstr "Kart, PayPal, havale ve diğer yöntemlerin nasıl gösterileceği. Yöntemler WooCommerce › Ayarlar › Ödemeler altında açılır."
+
+msgid "Colours and corners"
+msgstr "Renkler ve köşeler"
+
+msgid "Used by the form and the payment options. Empty fields follow the theme."
+msgstr "Form ve ödeme seçenekleri kullanır. Boş alanlar temayı izler."
+
+msgid "Main colour"
+msgstr "Ana renk"
+
+msgid "Accent colour"
+msgstr "Vurgu rengi"
+
+msgid "Corner radius (px)"
+msgstr "Köşe yuvarlaklığı (px)"
+
+msgid "0 = square, 4 = plain corporate, 16 = round."
+msgstr "0 = keskin, 4 = sade kurumsal, 16 = yuvarlak."

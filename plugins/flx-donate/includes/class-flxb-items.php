@@ -33,7 +33,7 @@ final class FLXB_Items {
 	 * @param array $beneficiaries Names on whose behalf the units are given (proxy types).
 	 * @return int Rows created.
 	 */
-	public static function create( array $donation, array $lines = array(), array $beneficiaries = array() ) {
+	public static function create( array $donation, array $lines = array(), array $beneficiaries = array(), array $phones = array() ) {
 		global $wpdb;
 		$id = (int) $donation['id'];
 		if ( ! $id || self::count_for_donation( $id ) ) {
@@ -68,7 +68,8 @@ final class FLXB_Items {
 			$rows  = $split && '' !== (string) ( $l['key'] ?? '' ) ? $units : 1;
 			for ( $i = 0; $i < $rows; $i++ ) {
 				$qty  = $split && $rows > 1 ? 1 : $units;
-				$name = $split ? ( $beneficiaries[ $b ] ?? $fallback ) : '';
+				$name  = $split ? ( $beneficiaries[ $b ] ?? $fallback ) : '';
+				$phone = $split ? preg_replace( '/[^0-9+]/', '', (string) ( $phones[ $b ] ?? '' ) ) : ''; // 2.16.0
 				if ( $split ) {
 					++$b;
 				}
@@ -85,6 +86,7 @@ final class FLXB_Items {
 						'amount'           => round( $split && $rows > 1 ? (float) ( $l['unit_price'] ?? 0 ) : (float) ( $l['amount'] ?? 0 ), 4 ),
 						'currency'         => strtoupper( (string) $donation['currency'] ),
 						'beneficiary_name' => mb_substr( sanitize_text_field( $name ), 0, 191 ),
+						'beneficiary_phone' => mb_substr( $phone, 0, 32 ),
 						'intention'        => $named ? $intention : '',
 						'meat_to_needy'    => $named && $meat ? 1 : 0,
 						'status'           => 'pending',

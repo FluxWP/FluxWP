@@ -204,6 +204,15 @@ final class FLXB_Page_Types {
 		}
 		echo '</select><p class="flxb-help">' . esc_html__( 'Prices and the goal are in this currency. A linked form must charge in the same currency, otherwise its payments are stopped.', 'flx-donate' ) . '</p></div>';
 		echo '<div class="flxb-field"><label for="flxb-desc">' . esc_html__( 'Short description', 'flx-donate' ) . '</label><textarea id="flxb-desc" name="description" rows="3">' . esc_textarea( (string) $t['description'] ) . '</textarea></div>';
+		/* 2.16.0: subtitle and icon on the type cards of the form layouts. */
+		$tm    = (array) $t['meta'];
+		$icons = array( '' => __( 'Automatic', 'flx-donate' ), 'heart' => __( 'Heart', 'flx-donate' ), 'gift' => __( 'Gift', 'flx-donate' ), 'sprout' => __( 'Sapling', 'flx-donate' ), 'sheep' => __( 'Sheep', 'flx-donate' ), 'cow' => __( 'Cattle', 'flx-donate' ), 'camel' => __( 'Camel', 'flx-donate' ) );
+		echo '<div class="flxb-fields-2"><div class="flxb-field"><label for="flxb-sub">' . esc_html__( 'Card subtitle', 'flx-donate' ) . '</label><input type="text" id="flxb-sub" name="meta[subtitle]" maxlength="80" value="' . esc_attr( (string) ( $tm['subtitle'] ?? '' ) ) . '"><p class="flxb-help">' . esc_html__( 'One short line under the title on the type cards, e.g. "Sheep or goat".', 'flx-donate' ) . '</p></div>';
+		echo '<div class="flxb-field"><label for="flxb-icon">' . esc_html__( 'Icon', 'flx-donate' ) . '</label><select id="flxb-icon" name="meta[icon]">';
+		foreach ( $icons as $k => $l ) {
+			echo '<option value="' . esc_attr( $k ) . '"' . selected( (string) ( $tm['icon'] ?? '' ), $k, false ) . '>' . esc_html( $l ) . '</option>';
+		}
+		echo '</select><p class="flxb-help">' . esc_html__( 'Shown when the type has no image.', 'flx-donate' ) . '</p></div></div>';
 		$img = $t['image_id'] ? wp_get_attachment_image_url( (int) $t['image_id'], 'medium' ) : '';
 		echo '<div class="flxb-field"><span class="flxb-label">' . esc_html__( 'Image', 'flx-donate' ) . '</span><div class="flxb-media" data-flxb-media><input type="hidden" name="image_id" value="' . (int) $t['image_id'] . '"><img alt="" src="' . esc_url( (string) $img ) . '"' . ( $img ? '' : ' hidden' ) . '><button type="button" class="flxb-btn flxb-btn--sm" data-flxb-media-pick data-title="' . esc_attr__( 'Choose an image', 'flx-donate' ) . '">' . esc_html__( 'Choose image', 'flx-donate' ) . '</button><button type="button" class="flxb-linkbtn flxb-linkbtn--danger" data-flxb-media-clear' . ( $img ? '' : ' hidden' ) . '>' . esc_html__( 'Remove', 'flx-donate' ) . '</button></div></div>';
 		echo '</div></section>';
@@ -379,6 +388,9 @@ final class FLXB_Page_Types {
 			echo '<fieldset class="flxb-field flxb-i18n"><legend class="flxb-label">' . esc_html( trim( ( $l['flag'] ?? '' ) . ' ' . ( $l['name'] ?? $code ) ) ) . '</legend>';
 			echo '<div class="flxb-field"><label for="' . $id . '-title">' . esc_html__( 'Title', 'flx-donate' ) . '</label><input type="text" id="' . $id . '-title" name="' . $pre . '[title]" maxlength="191" value="' . esc_attr( (string) ( $tr['title'] ?? '' ) ) . '" placeholder="' . esc_attr( $t['title'] ) . '"></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo '<div class="flxb-field"><label for="' . $id . '-desc">' . esc_html__( 'Short description', 'flx-donate' ) . '</label><textarea id="' . $id . '-desc" name="' . $pre . '[description]" rows="2" placeholder="' . esc_attr( (string) $t['description'] ) . '">' . esc_textarea( (string) ( $tr['description'] ?? '' ) ) . '</textarea></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			if ( '' !== (string) ( $t['meta']['subtitle'] ?? '' ) ) {
+				echo '<div class="flxb-field"><label for="' . $id . '-sub">' . esc_html__( 'Card subtitle', 'flx-donate' ) . '</label><input type="text" id="' . $id . '-sub" name="' . $pre . '[subtitle]" maxlength="80" value="' . esc_attr( (string) ( $tr['subtitle'] ?? '' ) ) . '" placeholder="' . esc_attr( (string) $t['meta']['subtitle'] ) . '"></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $id, $pre escaped above
+			}
 			if ( $t['options'] ) {
 				echo '<div class="flxb-fields-2">';
 				foreach ( $t['options'] as $o ) {

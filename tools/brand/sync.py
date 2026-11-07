@@ -12,6 +12,7 @@ import os, sys, glob, shutil
 
 SRC = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'flx-brand')
 FILES = ('loader.php', 'core.php')
+DIRS = ('phone',)  # 1.2.0: shared phone field assets
 MARK = 'flx-brand/loader.php'
 
 
@@ -47,6 +48,10 @@ def sync(root):
         os.makedirs(dst, exist_ok=True)
         for f in FILES:
             shutil.copyfile(os.path.join(SRC, f), os.path.join(dst, f))
+        for d in DIRS:
+            if os.path.isdir(os.path.join(dst, d)):
+                shutil.rmtree(os.path.join(dst, d))
+            shutil.copytree(os.path.join(SRC, d), os.path.join(dst, d))
         # Already required from another top-level file (e.g. flx-forms-load.php)?
         done = any(MARK in open(f, encoding='utf-8').read() for f in glob.glob(os.path.join(pkg, '*.php')) if f != main)
         print(('+ ' if not done and add_require(main, rel) else '= ') + os.path.relpath(pkg, root))

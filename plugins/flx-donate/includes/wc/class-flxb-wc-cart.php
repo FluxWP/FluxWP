@@ -212,6 +212,14 @@ final class FLXB_WC_Cart {
 				return new WP_Error( 'flxb_names', sprintf( _n( 'Please write at most %s name (one per share).', 'Please write at most %s names (one per share).', $shares, 'flx-donate' ), number_format_i18n( $shares ) ) );
 			}
 			$line['beneficiaries'] = $names;
+			/* 2.16.0: a phone per share card, next to its name (empty = none). */
+			$nums = isset( $in['beneficiary_phones'] ) && is_array( $in['beneficiary_phones'] ) ? array_slice( array_values( $in['beneficiary_phones'] ), 0, count( $names ) ) : array();
+			$nums = array_map( static function ( $p ) { return mb_substr( preg_replace( '/[^0-9+]/', '', (string) $p ), 0, 32 ); }, $nums );
+			if ( array_filter( $nums ) ) {
+				$line['beneficiary_phones'] = array_pad( $nums, count( $names ), '' );
+			} else {
+				unset( $line['beneficiary_phones'] );
+			}
 			$line['proxy_consent'] = array( 'version' => (int) $text['version'], 'accepted_at' => flxb_now(), 'source' => 'cart' );
 			$line['for_other']     = (bool) $names;
 			$line['name']          = $names ? mb_substr( implode( ', ', $names ), 0, 80 ) : '';
