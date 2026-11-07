@@ -7,6 +7,7 @@ import { useAccount, useApi, useRenderer } from '@fluxwp/runtime';
 import { roleMatrixPatch, type RoleMatrix, type RoleMatrixPatch, type RoleMembers } from '@fluxwp/runtime/src/modules/roles';
 import { ResizablePane } from '@fluxwp/ui';
 import './native-admin.css';
+import { Select } from '@fluxwp/ui';
 
 export function RolesScreen() {
   const { t } = useTranslation();
@@ -64,15 +65,15 @@ export function RolesScreen() {
           </tr>)}
         </tbody>)}
       </table></div>
-      <section className="panel"><h2>{t('roles.settings')}</h2>{data.roles.map(role => <label key={role.id} className="setting"><span>{t('roles.home', { role: role.label })}</span><select disabled={busy} value={draft.home[role.id] ?? 'auto'} onChange={e => { const home = e.target.value; setDraft(v => v && ({ ...v, home: { ...v.home, [role.id]: home } })); setDirty(true); }}>{data.home_choices.map(c => <option value={c.id} key={c.id}>{c.label}</option>)}</select></label>)}
+      <section className="panel"><h2>{t('roles.settings')}</h2>{data.roles.map(role => <label key={role.id} className="setting"><span>{t('roles.home', { role: role.label })}</span><Select disabled={busy} value={draft.home[role.id] ?? 'auto'} onChange={e => { const home = e.target.value; setDraft(v => v && ({ ...v, home: { ...v.home, [role.id]: home } })); setDirty(true); }}>{data.home_choices.map(c => <option value={c.id} key={c.id}>{c.label}</option>)}</Select></label>)}
         <label className="setting"><span>{t('roles.refDays')}</span><input type="number" min={1} max={365} disabled={busy} value={draft.ref_days} onChange={e => { const days = e.target.valueAsNumber; setDraft(v => v && ({ ...v, ref_days: Number.isFinite(days) ? days : 0 })); setDirty(true); }} /></label><p className="muted small">{t('roles.refHelp')}</p>
       </section>
-      {selected && <RolePeople role={selected} canPromote={data.can_promote} />}
+      {selected && <RolePeople role={selected} canPromote={data.can_promote} canList={!!data.can_list} />}
     </main>
   </div>;
 }
 
-function RolePeople({ role, canPromote }: { role: string; canPromote: boolean }) {
+function RolePeople({ role, canPromote, canList }: { role: string; canPromote: boolean; canList: boolean }) {
   const { t } = useTranslation(); const account = useAccount(); const api = useApi(); const renderer = useRenderer(); const qc = useQueryClient();
   const [search, setSearch] = useState(''); const [page, setPage] = useState(1); const [who, setWho] = useState(''); const [busy, setBusy] = useState(false); const [error, setError] = useState('');
   const [links, setLinks] = useState<Record<number, string>>({});
@@ -101,6 +102,9 @@ function RolePeople({ role, canPromote }: { role: string; canPromote: boolean })
     {error && <p className="error" role="alert">{error}</p>}{people.isError && <p className="error">{people.error instanceof Error ? people.error.message : t('states.errorTitle')}</p>}
     {people.isPending ? <p role="status">{t('states.loading')}</p> : !people.data?.items.length ? <p className="muted">{t('roles.empty')}</p> : <div className="native-table-scroll"><table className="native-matrix"><thead><tr><th>{t('roles.person')}</th><th>{t('roles.phone')}</th><th>{t('roles.actions')}</th></tr></thead><tbody>{people.data.items.map(user => <tr key={`${role}:${user.id}:${user.phone}`}><th><strong>{user.name}</strong><small>{user.login} · {user.email}</small></th><td><form className="row" onSubmit={e => { e.preventDefault(); const input = e.currentTarget.elements.namedItem('phone') as HTMLInputElement; void phone(user.id, input.value); }}><input name="phone" type="tel" aria-label={t('roles.phoneFor', { name: user.name })} defaultValue={user.phone} disabled={busy} /><button className="btn-ghost small" disabled={busy}>{t('form.submit')}</button></form>{user.referral && <button className="btn-link small" disabled={busy} onClick={() => void referral(user.id)}>{t('roles.referral')}</button>}{links[user.id] && <input aria-label={t('roles.referralLink')} value={links[user.id]} readOnly onFocus={e => e.currentTarget.select()} />}</td><td>{canPromote && !user.protected && <button className="btn-ghost small danger" disabled={busy} onClick={() => void change({ operation: 'remove', role, user: user.id }, t('roles.removeBody', { name: user.name }))}>{t('roles.remove')}</button>}</td></tr>)}</tbody></table></div>}
     {people.data && people.data.pages > 1 && <div className="row"><button className="btn-ghost small" disabled={page <= 1 || people.isFetching} onClick={() => setPage(v => v - 1)}>{t('nav.back')}</button><span>{page} / {people.data.pages}</span><button className="btn-ghost small" disabled={page >= people.data.pages || people.isFetching} onClick={() => setPage(v => v + 1)}>{t('nav.forward')}</button></div>}
-    {canPromote && <form className="native-member-add" onSubmit={e => { e.preventDefault(); if (who.trim()) void change({ operation: 'add', role, who: who.trim() }, t('roles.assignBody', { who })); }}><label className="field">{t('roles.loginOrEmail')}<input value={who} disabled={busy} onChange={e => setWho(e.target.value)} /></label><button className="btn-ghost small" disabled={busy || !who.trim()}>{t('roles.assign')}</button></form>}
+    {canPromote && <form className="native-member-add" onSubmit={e => { e.preventDefault(); if (who.trim()) void change({ operation: 'add', role, who: who.trim() }, t('roles.assignBody', { who })); }}><label className="field">{t('roles.loginOrEmail')}{canList ? <Select value={who} disabled={busy} onChange={e=>setWho(e.target.value)} remote={{key:JSON.stringify([account.id,'role-user-search']),load:async({search,cursor,signal})=>{
+      const page=Math.max(1,Number(cursor||1)); const response=await api<{id:number;name:string;username?:string;email?:string;roles?:string[]}[]>('wp/v2/users',{raw:true,signal,query:{context:'edit',search,page,per_page:25}});
+      return {options:(response.data ?? []).filter(u=>!u.roles?.includes('administrator')).flatMap(u=>{const value=u.username||u.email;return value?[{value,label:u.name,description:u.email||u.username}]:[];}),nextCursor:page<Number(response.headers.get('X-WP-TotalPages')||1)?String(page+1):null};
+    }}}><option value="">{t('form.choose')}</option></Select> : <input value={who} disabled={busy} onChange={e => setWho(e.target.value)} />}</label><button className="btn-ghost small" disabled={busy || !who.trim()}>{t('roles.assign')}</button></form>}
   </section>;
 }

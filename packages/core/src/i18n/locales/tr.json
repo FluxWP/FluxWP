@@ -310,5 +310,16 @@
     "title": "Yasal bilgiler",
     "privacy": "Gizlilik politikası",
     "terms": "Kullanım koşulları"
+  },
+  "selectControl": {
+    "choose": "Seç…",
+    "search": "Seçeneklerde ara",
+    "searchPlaceholder": "Ara…",
+    "clear": "Aramayı temizle",
+    "loading": "Yükleniyor…",
+    "empty": "Sonuç bulunamadı",
+    "retry": "Tekrar dene",
+    "more": "Daha fazla yükle",
+    "selected": "{{count}} seçildi"
   }
 }

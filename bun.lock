@@ -32,7 +32,7 @@
     },
     "apps/mobile": {
       "name": "@fluxwp/mobile",
-      "version": "0.3.0",
+      "version": "0.3.2",
       "dependencies": {
         "@expo/ui": "~58.0.27",
         "@fluxwp/core": "workspace:*",
@@ -119,7 +119,7 @@
     },
     "packages/core": {
       "name": "@fluxwp/core",
-      "version": "0.3.1",
+      "version": "0.3.2",
       "dependencies": {
         "@fluxwp/tokens": "workspace:*",
         "i18next": "^26.6.0",
@@ -165,7 +165,7 @@
     },
     "packages/panel": {
       "name": "@fluxwp/panel",
-      "version": "0.3.1",
+      "version": "0.3.2",
       "dependencies": {
         "@fluxwp/core": "workspace:*",
         "@fluxwp/manifest": "workspace:*",
@@ -211,7 +211,7 @@
     },
     "packages/runtime": {
       "name": "@fluxwp/runtime",
-      "version": "0.2.1",
+      "version": "0.2.2",
       "dependencies": {
         "@fluxwp/core": "workspace:*",
         "@fluxwp/manifest": "workspace:*",
@@ -248,10 +248,13 @@
         "@fluxwp/tokens": "workspace:*",
         "lucide-react": "^1.66.0",
         "react": "19.3.0",
+        "react-dom": "19.3.0",
+        "react-i18next": "^17.1.10",
         "zustand": "^5.0.16",
       },
       "devDependencies": {
         "@types/react": "^19.3.0",
+        "@types/react-dom": "^19.3.0",
         "vite": "^8.3.5",
       },
     },

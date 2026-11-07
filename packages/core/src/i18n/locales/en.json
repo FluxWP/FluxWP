@@ -310,5 +310,16 @@
     "title": "Legal information",
     "privacy": "Privacy policy",
     "terms": "Terms of use"
+  },
+  "selectControl": {
+    "choose": "Choose…",
+    "search": "Search options",
+    "searchPlaceholder": "Search…",
+    "clear": "Clear search",
+    "loading": "Loading…",
+    "empty": "No results",
+    "retry": "Retry",
+    "more": "Load more",
+    "selected": "{{count}} selected"
   }
 }

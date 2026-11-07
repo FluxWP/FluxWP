@@ -15,6 +15,7 @@ import { dayLabel, listTime, sameDay } from './format';
 import { InfoPanel } from './InfoPanel';
 import { NewChat } from './extras';
 import { notifyIncoming } from './notify';
+import { Select } from '@fluxwp/ui';
 
 const FILTERS: FlxcFilter[] = ['all', 'unread', 'mine', 'unassigned', 'closed'];
 
@@ -314,7 +315,7 @@ function Conversation({ engine, id, toast }: { engine: WaEngine; id: number; toa
             <Bot size={14} /> <span className="lbl">{t(`wa.bot.${c.bot}`)}</span>
           </button>
         )}
-        <select
+        <Select
           className="wa-assign"
           value={c.assigned}
           onChange={(e) => void engine.update(c.id, { assigned: Number(e.target.value) }).catch((x: Error) => toast(x.message))}
@@ -322,7 +323,7 @@ function Conversation({ engine, id, toast }: { engine: WaEngine; id: number; toa
         >
           <option value={0}>{t('wa.unassigned')}</option>
           {boot?.agents.map((a) => <option key={a.id} value={a.id}>{a.name}</option>)}
-        </select>
+        </Select>
         <button
           type="button"
           className="icon-btn"

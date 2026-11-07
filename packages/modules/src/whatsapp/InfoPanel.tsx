@@ -7,6 +7,7 @@ import type { FlxcSection } from '@fluxwp/core';
 import { Avatar, ResizablePane } from '@fluxwp/ui';
 import type { WaEngine } from './engine';
 import { useHost } from '../host';
+import { Select } from '@fluxwp/ui';
 
 export function InfoPanel({ engine, id, onClose, onInsert, toast }: { engine: WaEngine; id: number; onClose: () => void; onInsert: (s: string) => void; toast: (s: string) => void }) {
   const { t, i18n } = useTranslation();
@@ -69,10 +70,10 @@ export function InfoPanel({ engine, id, onClose, onInsert, toast }: { engine: Wa
 
         <section>
           <h3>{t('wa.assign')}</h3>
-          <select className="wa-select" value={c.assigned} onChange={(e) => save({ assigned: Number(e.target.value) })}>
+          <Select className="wa-select" value={c.assigned} onChange={(e) => save({ assigned: Number(e.target.value) })}>
             <option value={0}>{t('wa.unassigned')}</option>
             {boot?.agents.map((a) => <option key={a.id} value={a.id}>{a.name}</option>)}
-          </select>
+          </Select>
         </section>
 
         <section>

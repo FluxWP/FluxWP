@@ -39,7 +39,7 @@ function flxr_rest_matrix() {
 	foreach ( flxr_home_choices() as $id => $choice ) { $choices[] = array( 'id' => $id, 'label' => $choice[0] ); }
 	$settings = flxr_settings();
 	$version_roles = array_map( function ( $r ) { return array( 'id' => $r['id'], 'caps' => $r['caps'] ); }, $roles );
-	return array( 'roles' => $roles, 'groups' => $groups, 'settings' => $settings, 'home_choices' => $choices, 'can_promote' => flxr_rest_promote_can(), 'version' => hash( 'sha256', wp_json_encode( array( $version_roles, $settings, $groups ) ) ) );
+	return array( 'roles' => $roles, 'groups' => $groups, 'settings' => $settings, 'home_choices' => $choices, 'can_promote' => flxr_rest_promote_can(), 'can_list' => current_user_can( 'list_users' ), 'version' => hash( 'sha256', wp_json_encode( array( $version_roles, $settings, $groups ) ) ) );
 }
 
 /** Validate the entire patch before touching any capability or option. */

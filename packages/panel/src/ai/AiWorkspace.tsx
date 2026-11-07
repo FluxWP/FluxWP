@@ -7,6 +7,7 @@ import { ResizablePane } from '@fluxwp/ui';
 import { useRoute } from '../state/route';
 import './ai.css';
 import { useSidebar } from '../state/sidebar';
+import { Select } from '@fluxwp/ui';
 
 type Mode = 'bubble' | 'dock';
 interface Workspace { engine: AiSession; open: boolean; mode: Mode; setOpen: (open: boolean) => void; setMode: (mode: Mode) => void; text: string; setText: Dispatch<SetStateAction<string>> }
@@ -103,10 +104,10 @@ function AiConversation({ compact = false }: { compact?: boolean }) {
     <div className="ai-history">
       <button type="button" className="btn-ghost small" disabled={busy || loading} onClick={() => engine.newChat()}><Plus size={16} />{t('ai.new')}</button>
       <label className="ai-search"><span className="sr-only">{t('ai.search')}</span><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder={t('ai.search')} /></label>
-      <select aria-label={t('ai.history')} value={chat?.id ?? ''} disabled={busy || loading} onChange={(e) => { if (e.target.value) void engine.open(Number(e.target.value)); }}>
+      <Select aria-label={t('ai.history')} value={chat?.id ?? ''} disabled={busy || loading} onChange={(e) => { if (e.target.value) void engine.open(Number(e.target.value)); }}>
         <option value="">{t('ai.history')}</option>
         {results.map((c) => <option key={c.id} value={c.id}>{c.title || t('ai.new')}</option>)}
-      </select>
+      </Select>
     </div>
     {(error || searchError) && <div className="ai-error" role="alert">{error || searchError}<button className="btn-link" disabled={busy} onClick={() => void engine.initialize()}>{t('common.retry')}</button></div>}
     {loading && <p role="status">{t('states.loading')}</p>}

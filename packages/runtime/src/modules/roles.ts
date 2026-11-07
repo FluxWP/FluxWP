@@ -3,7 +3,7 @@ export interface RoleCapability { id: string; label: string; locked: boolean; su
 export interface RoleGroup { id: string; label: string; plugin: string; active: boolean; caps: RoleCapability[] }
 export interface RoleMatrix {
   roles: ManagedRole[]; groups: RoleGroup[]; settings: { home: Record<string, string>; ref_days: number };
-  home_choices: { id: string; label: string }[]; can_promote: boolean; version: string;
+  home_choices: { id: string; label: string }[]; can_promote: boolean; can_list?: boolean; version: string;
 }
 export interface RoleMatrixPatch { version: string; caps: Record<string, Record<string, boolean>>; home: Record<string, string>; ref_days: number }
 export interface RoleMember { id: number; name: string; login: string; email: string; phone: string; protected: boolean; referral: boolean }
