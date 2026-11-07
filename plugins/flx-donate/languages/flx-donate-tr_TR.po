@@ -5499,3 +5499,59 @@ msgstr "Köşe yuvarlaklığı (px)"
 
 msgid "0 = square, 4 = plain corporate, 16 = round."
 msgstr "0 = keskin, 4 = sade kurumsal, 16 = yuvarlak."
+
+msgid "I will also cover the transaction fee"
+msgstr "İşlem ücretini de ben karşılamak istiyorum"
+
+msgid "So your whole donation reaches its purpose. The exact fee depends on the payment method and is shown at the checkout."
+msgstr "Bağışınızın tamamı yerine ulaşsın. Kesin ücret ödeme yöntemine göre değişir, ödeme sayfasında gösterilir."
+
+msgid "Transaction fee (covered by you)"
+msgstr "İşlem ücreti (sizin karşıladığınız)"
+
+msgid "I have read and accept the %1$sprivacy policy%2$s and the %3$sdonation agreement%4$s."
+msgstr "%1$sGizlilik politikasını%2$s ve %3$sbağış sözleşmesini%4$s okudum, kabul ediyorum."
+
+msgid "(up to %s)"
+msgstr "(en fazla %s)"
+
+msgid "Transaction fee"
+msgstr "İşlem ücreti"
+
+msgid "List"
+msgstr "Liste"
+
+msgid "All options one under the other."
+msgstr "Tüm seçenekler alt alta."
+
+msgid "Drop-down"
+msgstr "Açılır menü"
+
+msgid "One row: the option in a drop-down menu and the quantity beside it."
+msgstr "Tek satır: seçenek açılır menüde, adet yanında."
+
+msgid "List, then one row"
+msgstr "Önce liste, sonra tek satır"
+
+msgid "The list first; after a pick it folds into one row (drop-down + quantity) and the rest of the form opens."
+msgstr "Önce liste; seçim yapılınca tek satıra (açılır menü + adet) toplanır ve formun geri kalanı açılır."
+
+msgid "How the options are shown"
+msgstr "Seçeneklerin görünümü"
+
+msgid "Donors can choose to also pay the fee of the payment method, so the whole donation reaches you. The fee is added at the checkout for the method they pick."
+msgstr "Bağışçı, ödeme yönteminin ücretini de üstlenebilir; böylece bağışın tamamı size ulaşır. Ücret ödeme sayfasında seçilen yönteme göre eklenir."
+
+msgid "Show \"I will cover the transaction fee\" on the donation form"
+msgstr "Bağış formunda \"İşlem ücretini ben karşılamak istiyorum\" kutusunu göster"
+
+msgid "Ticked by default"
+msgstr "Varsayılan olarak işaretli"
+
+msgid "Fixed"
+msgstr "Sabit"
+
+msgid "Empty or 0 = no fee for that method (for example bank transfer). Fee = donation × % + fixed."
+msgstr "Boş ya da 0 = o yöntemde ücret yok (ör. havale). Ücret = bağış × % + sabit."
+
+

@@ -215,3 +215,55 @@
 	.flxwb--cards .flxwb-bar { position: sticky; bottom: max(10px, env(safe-area-inset-bottom, 0px)); padding: 10px 10px 10px 16px; background: var(--w-surface); border: 1px solid var(--w-line); border-radius: var(--w-radius); box-shadow: 0 10px 28px -8px rgba(20, 50, 74, .28); }
 }
 .flxwb--cards .flxwb-share__fields { grid-template-columns: 1fr; }
+
+/* ---------- 2.17.0: option view (Settings › Appearance): select = one row, smart = list until the first pick ---------- */
+.flxwb-pick { display: none; position: relative; flex: 1 1 auto; min-width: 0; }
+.flxwb-pick select {
+	width: 100%; height: 100%; min-height: 54px; margin: 0;
+	padding: 0 44px 0 16px;
+	border: 1.5px solid var(--w-primary); border-radius: var(--w-radius);
+	background: var(--w-surface); color: var(--w-ink, inherit);
+	font: inherit; font-weight: 600; font-size: 15.5px;
+	-webkit-appearance: none; appearance: none; cursor: pointer;
+}
+.flxwb-pick select:focus-visible { outline: 2px solid var(--w-primary); outline-offset: 2px; }
+.flxwb-pick__chev { position: absolute; right: 16px; top: 50%; width: 9px; height: 9px; margin-top: -7px; border-right: 2px solid var(--w-primary); border-bottom: 2px solid var(--w-primary); transform: rotate(45deg); pointer-events: none; }
+
+.flxwb-opts-fs.is-picked .flxwb-optrow { display: flex; align-items: stretch; gap: 10px; }
+.flxwb-opts-fs.is-picked .flxwb-pick { display: block; }
+.flxwb-opts-fs.is-picked .flxwb-pkgs { display: flex !important; flex: none; gap: 0; margin: 0; }
+.flxwb-opts-fs.is-picked .flxwb-pkg:not(:has(input:checked)) { display: none !important; }
+.flxwb-opts-fs.is-picked .flxwb-pkg:has(input:checked) {
+	flex-direction: row !important; align-items: center !important; gap: 12px !important;
+	padding: 6px 8px 6px 16px !important; min-height: 54px; transform: none !important;
+	border-color: var(--w-line) !important; background: var(--w-surface) !important; box-shadow: none !important; cursor: default;
+}
+.flxwb-opts-fs.is-picked .flxwb-pkg:has(input:checked) :is(.flxwb-pkg__count, .flxwb-pkg__icon, .flxwb-pkg__tick, .flxwb-badge) { display: none !important; }
+.flxwb-opts-fs.is-picked .flxwb-pkg:has(input:checked) .flxwb-pkg__price { margin: 0 !important; white-space: nowrap; font-weight: 700; }
+.flxwb-opts-fs.is-picked .flxwb-pkg:has(input:checked) .flxwb-stepper { display: inline-flex !important; margin: 0 !important; align-self: center !important; }
+.flxwb-opts-fs.is-picked .flxwb-pkg--free:has(input:checked) { display: none !important; }
+.flxwb-opts-fs.is-anim .flxwb-optrow { animation: flxwb-fold .45s cubic-bezier(.2, .8, .2, 1); }
+@keyframes flxwb-fold { from { opacity: 0; transform: translateY(-8px) scaleY(.92); transform-origin: top; } to { opacity: 1; transform: none; } }
+
+/* Smart view, nothing picked yet: only the type and the options; the rest opens after the pick. */
+.flxwb.is-await :is(.flxwb-sec:not(.flxwb-sec--options), .flxwb-end) { display: none !important; }
+.flxwb.is-reveal :is(.flxwb-sec:not(.flxwb-sec--options), .flxwb-end) { animation: flxwb-reveal .55s cubic-bezier(.2, .8, .2, 1) both; }
+.flxwb.is-reveal .flxwb-end { animation-delay: .08s; }
+@keyframes flxwb-reveal { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+	.flxwb-opts-fs.is-anim .flxwb-optrow, .flxwb.is-reveal :is(.flxwb-sec, .flxwb-end) { animation: none; }
+}
+@media (max-width: 600px) {
+	.flxwb-opts-fs.is-picked .flxwb-pkg:has(input:checked) .flxwb-pkg__price { display: none !important; }
+	.flxwb-opts-fs.is-picked .flxwb-pkg:has(input:checked) { padding: 0 !important; border: 0 !important; background: none !important; min-height: 0; }
+	.flxwb-opts-fs.is-picked .flxwb-pkg:has(input:checked) .flxwb-stepper { height: 100%; }
+	.flxwb-pick select { font-size: 15px; padding-left: 12px; }
+}
+
+/* Transaction fee box */
+.flxwb .flxwb-fee { display: flex; align-items: flex-start; gap: 10px; margin: 4px 0 12px; padding: 12px 14px; border: 1px dashed var(--w-line); border-radius: var(--w-radius); background: var(--w-surface); cursor: pointer; }
+.flxwb-fee[hidden] { display: none; }
+.flxwb .flxwb-fee input { margin-top: 3px; flex: none; width: 18px; height: 18px; accent-color: var(--w-primary); }
+.flxwb-fee strong { font-weight: 600; }
+.flxwb-fee [data-flxwb-fee-amount] { font-weight: 600; color: var(--w-primary); font-size: inherit; }
+.flxwb-fee__help { display: block; margin-top: 2px; color: var(--w-muted, #6B7280); font-size: 12.5px; line-height: 1.45; }

@@ -242,6 +242,7 @@ Seçenek: `prices` `{ "EUR": 120, "USD": 130 }` (türün kendi para birimi `pric
 - Ödeme sayfasında body sınıfı `flxb-pay flxb-pay-<stil>`; CSS değişkenleri `--flxb-l-p`, `--flxb-l-a`, `--flxb-l-r`.
 - Form alanları: `owner_mode[<tür>]` self|other, `owners[<tür>][]`, `owner_phones[<tür>][]` (E.164). Satır meta `beneficiary_phones` (adlarla aynı sırada).
 - Tür meta: `subtitle` (80), `icon` (sheep, cow, camel, heart, gift; boş = otomatik).
+- 2.17.0: `opt_view` list|select|smart; `fee_on`, `fee_checked`, `fee_rates` `{ "<gateway id>": { "pct": 2.9, "fixed": 0.25 } }`. Form alanı `fee_cover=1` (WC oturumu `flxb_fee_cover`), Store API güncelleme ad alanı `flxb-fee` (`{ method, cover }`), sipariş meta `_flxb_fee_cover`. `FLXB_WC_Fee::amount( $tutar, $gateway )`. Onay metni filtresi `flxb_terms_text`.
 
 ### Sürüme duyarlı yerler (WooCommerce güncellemesinden sonra deneyin)
 

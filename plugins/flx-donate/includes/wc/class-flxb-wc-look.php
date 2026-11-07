@@ -46,6 +46,10 @@ final class FLXB_WC_Look {
 			'type_label'   => '',        // heading over the type choice (steps / cards); empty = "Donation type"
 			'option_label' => '',        // heading over the options; empty = built-in
 			'share_phone'  => 1,         // proxy types: a phone field on every share card
+			'opt_view'     => 'list',    // list | select (one row: drop-down + quantity) | smart (list until a pick, then one row)
+			'fee_on'       => 0,         // "I will cover the transaction fee" box on the form
+			'fee_checked'  => 0,         // the box is ticked by default
+			'fee_rates'    => array(),   // [ gateway id => [ 'pct' => 2.9, 'fixed' => 0.25 ] ]
 		);
 	}
 
@@ -75,6 +79,14 @@ final class FLXB_WC_Look {
 			'steps'   => array( __( 'A · Steps + summary', 'flx-donate' ), __( 'Numbered steps on the left, a summary with the total and the button on the right.', 'flx-donate' ) ),
 			'panel'   => array( __( 'B · Two panels', 'flx-donate' ), __( 'Types as a list on the left, the details on the right; a dark total bar.', 'flx-donate' ) ),
 			'cards'   => array( __( 'C · Picture cards', 'flx-donate' ), __( 'Large cards with the type picture or icon; the details open below.', 'flx-donate' ) ),
+		);
+	}
+
+	public static function opt_views() {
+		return array(
+			'list'   => array( __( 'List', 'flx-donate' ), __( 'All options one under the other.', 'flx-donate' ) ),
+			'select' => array( __( 'Drop-down', 'flx-donate' ), __( 'One row: the option in a drop-down menu and the quantity beside it.', 'flx-donate' ) ),
+			'smart'  => array( __( 'List, then one row', 'flx-donate' ), __( 'The list first; after a pick it folds into one row (drop-down + quantity) and the rest of the form opens.', 'flx-donate' ) ),
 		);
 	}
 
@@ -125,6 +137,19 @@ final class FLXB_WC_Look {
 		$out['type_label']   = mb_substr( sanitize_text_field( (string) ( $in['type_label'] ?? '' ) ), 0, 60 );
 		$out['option_label'] = mb_substr( sanitize_text_field( (string) ( $in['option_label'] ?? '' ) ), 0, 60 );
 		$out['share_phone']  = array_key_exists( 'share_phone', $in ) ? ( empty( $in['share_phone'] ) ? 0 : 1 ) : $d['share_phone'];
+		$out['opt_view']     = isset( $in['opt_view'], self::opt_views()[ $in['opt_view'] ] ) ? (string) $in['opt_view'] : $d['opt_view'];
+		$out['fee_on']       = empty( $in['fee_on'] ) ? 0 : 1;
+		$out['fee_checked']  = empty( $in['fee_checked'] ) ? 0 : 1;
+		$out['fee_rates']    = array();
+		foreach ( (array) ( $in['fee_rates'] ?? array() ) as $gw => $r ) {
+			$gw  = sanitize_key( (string) $gw );
+			$r   = (array) $r;
+			$pct = round( max( 0, min( 20, (float) str_replace( ',', '.', (string) ( $r['pct'] ?? 0 ) ) ) ), 2 );
+			$fix = round( max( 0, min( 100, (float) str_replace( ',', '.', (string) ( $r['fixed'] ?? 0 ) ) ) ), 2 );
+			if ( '' !== $gw && ( $pct > 0 || $fix > 0 ) ) {
+				$out['fee_rates'][ $gw ] = array( 'pct' => $pct, 'fixed' => $fix );
+			}
+		}
 		return $out;
 	}
 
@@ -230,6 +255,10 @@ final class FLXB_WC_Look {
 				'type_label'   => array( 'type' => 'string', 'default' => '', 'desc' => 'Heading over the donation type choice (steps / cards layouts).' ),
 				'option_label' => array( 'type' => 'string', 'default' => '', 'desc' => 'Heading over the options of a type; empty = built-in text.' ),
 				'share_phone'  => array( 'type' => 'bool', 'default' => true, 'desc' => 'Proxy (sacrifice) types: a phone field on every share card.' ),
+				'opt_view'     => array( 'type' => 'enum', 'enum' => array_keys( self::opt_views() ), 'default' => 'list', 'desc' => 'Options of a type: list (one under the other), select (one row: drop-down + quantity), smart (list until a pick, then one row; the rest of the form opens after the pick).' ),
+				'fee_on'       => array( 'type' => 'bool', 'default' => false, 'desc' => 'Show the "I will cover the transaction fee" box on the donation form.' ),
+				'fee_checked'  => array( 'type' => 'bool', 'default' => false, 'desc' => 'The transaction fee box is ticked by default.' ),
+				'fee_rates'    => array( 'type' => 'object', 'default' => array(), 'desc' => 'Transaction fee per payment method: { "gateway id": { "pct": 2.9, "fixed": 0.25 } } (fixed in the store currency).' ),
 			),
 		);
 		return $s;
@@ -261,6 +290,12 @@ final class FLXB_WC_Look {
 		echo '<div class="flxb-field"><label for="flxb-look-ol">' . esc_html__( 'Heading over the options', 'flx-donate' ) . '</label><input id="flxb-look-ol" type="text" name="option_label" maxlength="60" value="' . esc_attr( $s['option_label'] ) . '" placeholder="' . esc_attr__( 'Choose an option', 'flx-donate' ) . '"></div>';
 		echo '</div>';
 
+		echo '<div class="flxb-field"><span class="flxb-label">' . esc_html__( 'How the options are shown', 'flx-donate' ) . '</span><div class="flxb-look__grid flxb-look__grid--text">';
+		foreach ( self::opt_views() as $k => $v ) {
+			echo '<label class="flxb-look__opt"><input type="radio" name="opt_view" value="' . esc_attr( $k ) . '"' . checked( $s['opt_view'], $k, false ) . '><strong>' . esc_html( $v[0] ) . '</strong><span>' . esc_html( $v[1] ) . '</span></label>';
+		}
+		echo '</div></div>';
+
 		echo '<div class="flxb-field"><span class="flxb-label">' . esc_html__( 'Order of the sections', 'flx-donate' ) . '</span><ol class="flxb-look__order" data-flxb-look-order>';
 		$labels = self::section_labels();
 		foreach ( $s['order'] as $k ) {
@@ -283,6 +318,16 @@ final class FLXB_WC_Look {
 		echo '<div class="flxb-field"><label for="flxb-look-r">' . esc_html__( 'Corner radius (px)', 'flx-donate' ) . '</label><input id="flxb-look-r" type="number" name="radius" min="0" max="28" step="1" style="width:110px" value="' . esc_attr( $s['radius'] ) . '" placeholder="' . esc_attr__( 'Theme', 'flx-donate' ) . '"><p class="flxb-help">' . esc_html__( '0 = square, 4 = plain corporate, 16 = round.', 'flx-donate' ) . '</p></div>';
 		echo '</div></section>';
 
+		echo '<section class="flxb-card"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Transaction fee', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( 'Donors can choose to also pay the fee of the payment method, so the whole donation reaches you. The fee is added at the checkout for the method they pick.', 'flx-donate' ) . '</p></div></div>';
+		echo '<label class="flxb-check"><input type="checkbox" name="fee_on" value="1"' . checked( (int) $s['fee_on'], 1, false ) . '> ' . esc_html__( 'Show "I will cover the transaction fee" on the donation form', 'flx-donate' ) . '</label>';
+		echo '<label class="flxb-check"><input type="checkbox" name="fee_checked" value="1"' . checked( (int) $s['fee_checked'], 1, false ) . '> ' . esc_html__( 'Ticked by default', 'flx-donate' ) . '</label>';
+		echo '<table class="flxb-look__fees"><thead><tr><th>' . esc_html__( 'Payment method', 'flx-donate' ) . '</th><th>%</th><th>' . esc_html__( 'Fixed', 'flx-donate' ) . ' (' . esc_html( html_entity_decode( get_woocommerce_currency_symbol(), ENT_QUOTES, 'UTF-8' ) ) . ')</th></tr></thead><tbody>';
+		foreach ( FLXB_WC_Fee::gateways() as $id => $title ) {
+			$r = $s['fee_rates'][ $id ] ?? array( 'pct' => '', 'fixed' => '' );
+			echo '<tr><td>' . esc_html( $title ) . ' <code>' . esc_html( $id ) . '</code></td><td><input type="number" step="0.01" min="0" max="20" name="fee_rates[' . esc_attr( $id ) . '][pct]" value="' . esc_attr( (string) $r['pct'] ) . '" placeholder="0"></td><td><input type="number" step="0.01" min="0" max="100" name="fee_rates[' . esc_attr( $id ) . '][fixed]" value="' . esc_attr( (string) $r['fixed'] ) . '" placeholder="0"></td></tr>';
+		}
+		echo '</tbody></table><p class="flxb-help">' . esc_html__( 'Empty or 0 = no fee for that method (for example bank transfer). Fee = donation × % + fixed.', 'flx-donate' ) . '</p></section>';
+
 		echo '<div class="flxb-formactions"><button type="submit" class="flxb-btn flxb-btn--primary">' . esc_html__( 'Save settings', 'flx-donate' ) . '</button></div></form>';
 		?>
 <style>
@@ -298,6 +343,13 @@ final class FLXB_WC_Look {
 .flxb-look__order li span{flex:1}
 .flxb-look__order li span::before{counter-increment:o;content:counter(o) ". ";color:#646970}
 .flxb-look__color{display:flex;gap:8px;align-items:center}
+.flxb-look__grid--text{margin:6px 0 4px}
+.flxb-look .flxb-check{display:flex;gap:8px;align-items:center;margin:6px 0}
+.flxb-look__grid--text strong{font-size:13.5px}
+.flxb-look__fees{border-collapse:collapse;margin:10px 0 4px;min-width:min(520px,100%)}
+.flxb-look__fees th,.flxb-look__fees td{text-align:left;padding:7px 10px;border-bottom:1px solid #f0f0f1;font-size:13px}
+.flxb-look__fees input{width:96px}
+.flxb-look__fees code{font-size:11px;color:#8c8f94;background:none;padding:0}
 .flxb-look__color input[type=color]{width:42px;height:36px;padding:2px;border:1px solid #dcdcde;border-radius:6px;background:#fff}
 .flxb-look__color input[type=text]{width:120px}
 </style>
@@ -329,6 +381,8 @@ final class FLXB_WC_Look {
 		$in = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- cleaned in clean()
 		$in = is_array( $in ) ? $in : array();
 		$in['share_phone'] = ! empty( $in['share_phone'] ) ? 1 : 0;
+		$in['fee_on']      = ! empty( $in['fee_on'] ) ? 1 : 0;
+		$in['fee_checked'] = ! empty( $in['fee_checked'] ) ? 1 : 0;
 		update_option( self::OPTION, self::clean( $in ), false );
 		self::flush();
 		FLXB_Admin::redirect( 'flxb-settings', array( 'tab' => 'look', 'flxb_msg' => 'saved' ) );

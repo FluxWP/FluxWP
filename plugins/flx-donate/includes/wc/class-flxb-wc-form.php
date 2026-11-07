@@ -20,6 +20,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 final class FLXB_WC_Form {
 
+	/** 2.17.0: types whose "smart" option view waits for the first pick: [ type id => bool ]. */
+	private static $waiting = array();
+
 	public static function init() {
 		add_shortcode( 'flx_bagis_secenekleri', array( __CLASS__, 'shortcode' ) );
 		add_action( 'init', array( __CLASS__, 'register_block' ) );
@@ -133,6 +136,10 @@ final class FLXB_WC_Form {
 					'needConsent' => __( 'Please accept the proxy (vekâlet) text to continue.', 'flx-donate' ),
 					'tooMany'     => __( 'Please write at most one name per share.', 'flx-donate' ),
 					'monthly'     => __( '/ month', 'flx-donate' ),
+					'needOption'  => __( 'Please choose an option.', 'flx-donate' ),
+					/* translators: %s: amount */
+					'feeUpTo'     => __( '(up to %s)', 'flx-donate' ),
+					'feeLine'     => __( 'Transaction fee', 'flx-donate' ),
 					/* translators: %s: number of saplings */
 					'sapling1'    => _n( '%s Sapling', '%s Saplings', 1, 'flx-donate' ),
 					/* translators: %s: number of saplings */
@@ -158,6 +165,7 @@ final class FLXB_WC_Form {
 			return;
 		}
 		self::remember_contact( $line );
+		FLXB_WC_Fee::remember( $in );
 		$after = FLXB_WC::setting( 'after_add' );
 		if ( 'checkout' === $after ) {
 			$url = wc_get_checkout_url();
@@ -359,7 +367,7 @@ final class FLXB_WC_Form {
 		$fee     = FLXB_WC_Cart::print_here() ? (float) FLXB_WC::setting( 'print_fee' ) : 0;
 		$money   = FLXB_WC_Cart::currency();
 		$monthly = FLXB_WC_Cart::monthly_available();
-		$data    = array( 'fee' => $fee, 'types' => array(), 'me' => array( 'phone' => (string) $me['phone'], 'email' => (string) $me['email'] ) );
+		$data    = array( 'fee' => $fee, 'txfee' => FLXB_WC_Fee::rates_for_form(), 'types' => array(), 'me' => array( 'phone' => (string) $me['phone'], 'email' => (string) $me['email'] ) );
 		foreach ( $types as $id => $t ) {
 			$opts = array();
 			foreach ( $t['options'] as $o ) {
@@ -496,12 +504,13 @@ final class FLXB_WC_Form {
 
 		ob_start();
 		?>
-<div class="flxwb <?php echo esc_attr( FLXB_WC_Look::form_class() ); ?><?php echo $args['align'] ? ' align' . esc_attr( $args['align'] ) : ''; ?>" data-flxwb="<?php echo esc_attr( wp_json_encode( $data ) ); ?>"<?php echo '' !== FLXB_WC_Look::vars() ? ' style="' . esc_attr( FLXB_WC_Look::vars() ) . '"' : ''; ?>>
+<div class="flxwb <?php echo esc_attr( FLXB_WC_Look::form_class() ); ?><?php echo ! empty( self::$waiting[ $cur ] ) ? ' is-await' : ''; ?><?php echo $args['align'] ? ' align' . esc_attr( $args['align'] ) : ''; ?>" data-flxwb="<?php echo esc_attr( wp_json_encode( $data ) ); ?>"<?php echo '' !== FLXB_WC_Look::vars() ? ' style="' . esc_attr( FLXB_WC_Look::vars() ) . '"' : ''; ?>>
 	<?php if ( isset( $_GET['flxb_added'] ) ) : // phpcs:ignore WordPress.Security.NonceVerification ?>
 	<div class="flxwb-note flxwb-note--ok" role="status"><?php echo FLXB_WC::icon( 'check' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 		<span><?php esc_html_e( 'Your donation was added to the cart.', 'flx-donate' ); ?> <a href="<?php echo esc_url( wc_get_cart_url() ); ?>"><?php esc_html_e( 'Go to cart', 'flx-donate' ); ?></a></span>
 	</div>
 	<?php endif; ?>
+	<?php if ( ! empty( self::$waiting[ $cur ] ) ) : ?><noscript><style>.flxwb.is-await .flxwb-sec,.flxwb.is-await .flxwb-end{display:block!important}</style></noscript><?php endif; ?>
 	<form class="flxwb-form" method="post" action="" novalidate>
 		<input type="hidden" name="flxb_action" value="add">
 		<input type="hidden" name="flxb_type" value="<?php echo esc_attr( $cur ); ?>" data-flxwb-type>
@@ -530,6 +539,7 @@ final class FLXB_WC_Form {
 				<p class="flxwb-sum__title"><?php esc_html_e( 'Your donation', 'flx-donate' ); ?></p>
 				<dl class="flxwb-sum__lines" data-flxwb-sum-lines></dl>
 			</div>
+			<?php echo FLXB_WC_Fee::form_box( $old ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped inside ?>
 			<?php if ( '' !== $err ) : ?>
 			<div class="flxwb-note flxwb-note--err" role="alert"><?php echo esc_html( $err ); ?></div>
 			<?php endif; ?>
@@ -634,7 +644,11 @@ final class FLXB_WC_Form {
 				$cards[] = $o;
 			}
 		}
-		if ( '' === $sel ) {
+		/* 2.17.0: "smart" option view waits for the donor's pick (unless one option only or a pick came with the link). */
+		$view = $cards ? (string) FLXB_WC_Look::get( 'opt_view' ) : 'list';
+		$wait = 'smart' === $view && '' === $sel && ( count( $cards ) + ( $t['allow_free'] ? 1 : 0 ) ) > 1;
+		self::$waiting[ $id ] = $wait;
+		if ( '' === $sel && ! $wait ) {
 			$sel = $cards ? $cards[0]['key'] : '__free';
 		}
 		$money   = FLXB_WC_Cart::currency();
@@ -646,8 +660,21 @@ final class FLXB_WC_Form {
 		}
 		if ( $cards ) :
 			?>
-		<fieldset class="flxwb-fs">
+		<fieldset class="flxwb-fs flxwb-opts-fs<?php echo 'list' !== $view && ! $wait ? ' is-picked' : ''; ?>" data-flxwb-optview="<?php echo esc_attr( $view ); ?>">
 			<legend class="flxwb-legend"><?php echo '' !== FLXB_WC_Look::label( 'option_label' ) ? esc_html( FLXB_WC_Look::label( 'option_label' ) ) : ( 'fidan' === $cards[0]['unit'] ? esc_html__( 'How many saplings would you like to donate?', 'flx-donate' ) : esc_html__( 'Choose an option', 'flx-donate' ) ); ?></legend>
+			<div class="flxwb-optrow">
+			<?php if ( 'list' !== $view ) : ?>
+			<span class="flxwb-pick">
+				<select data-flxwb-pick aria-label="<?php echo esc_attr( '' !== FLXB_WC_Look::label( 'option_label' ) ? FLXB_WC_Look::label( 'option_label' ) : __( 'Choose an option', 'flx-donate' ) ); ?>">
+					<?php if ( $wait ) : ?><option value="" disabled<?php selected( $sel, '' ); ?>><?php esc_html_e( 'Choose an option', 'flx-donate' ); ?></option><?php endif; ?>
+					<?php foreach ( $cards as $o ) : ?>
+					<option value="<?php echo esc_attr( $o['key'] ); ?>" <?php selected( $sel, $o['key'] ); ?>><?php echo esc_html( $o['label'] . ' · ' . html_entity_decode( wp_strip_all_tags( wc_price( FLXB_Types::option_price( $t, $o, $money ) ) ), ENT_QUOTES, 'UTF-8' ) ); ?></option>
+					<?php endforeach; ?>
+					<?php if ( $t['allow_free'] ) : ?><option value="__free" <?php selected( $sel, '__free' ); ?>><?php esc_html_e( 'Another amount', 'flx-donate' ); ?></option><?php endif; ?>
+				</select>
+				<span class="flxwb-pick__chev" aria-hidden="true"></span>
+			</span>
+			<?php endif; ?>
 			<div class="flxwb-pkgs">
 			<?php
 			foreach ( $cards as $o ) :
@@ -682,6 +709,7 @@ final class FLXB_WC_Form {
 					<span class="flxwb-pkg__tick" aria-hidden="true"><?php echo FLXB_WC::icon( 'check' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
 				</label>
 			<?php endif; ?>
+			</div>
 			</div>
 		</fieldset>
 			<?php
