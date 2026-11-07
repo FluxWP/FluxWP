@@ -43,6 +43,17 @@ async function cachedGet<T>(api: ApiClient, path: string, etag: string | null | 
   return { value: parse(res.data), etag: res.etag, notModified: false };
 }
 
+/** A persisted validator may outlive its cached body after a reset, eviction or app upgrade. */
+export async function loadContractValue<T>(load: (etag: string | null) => Promise<Cached<T>>, etag: string | null, cached: () => T | undefined): Promise<Pick<Cached<T>, 'value' | 'etag'>> {
+  const response = await load(etag);
+  if (!response.notModified) return response;
+  const value = cached();
+  if (value !== undefined) return { value, etag: response.etag };
+  const fresh = await load(null);
+  if (fresh.notModified) throw new Error('Server returned HTTP 304 without a cached response.');
+  return fresh;
+}
+
 /** Site config (layers 3+4). Null when the site has no config endpoint or sent an invalid one. */
 export async function loadConfig(api: ApiClient, issues?: ParseIssue[], etag?: string | null): Promise<Cached<AppConfig | null>> {
   try {
@@ -78,9 +89,8 @@ export async function rememberedEtag(accountId: string, name: string): Promise<s
 }
 
 export async function rememberEtag(accountId: string, name: string, etag: string | null): Promise<void> {
-  if (!etag) return;
   try {
-    await platform().storage.set(etagKey(accountId, name), etag);
+    await platform().storage.set(etagKey(accountId, name), etag ?? '');
   } catch {
     /* storage is optional; the next open just refetches */
   }

@@ -2,10 +2,10 @@
 // Hostinger budget (plan §1.3): at most these four requests on open, polling ≥ poll_min and only in front.
 import { useEffect, useMemo, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { ApiError, accountsStore, flxapp, platform, type Dashboard, type Me } from '@fluxwp/core';
+import { ApiError, accountsStore, flxapp, getDemoLocale, platform, type Dashboard, type Me } from '@fluxwp/core';
 import { DEFAULT_CONFIG, mergeConfig, type AppConfig, type Bootstrap, type ManifestBundle, type ThemeMode } from '@fluxwp/manifest';
 import { themeFromConfig, type BrandColors, type ThemeInput } from '@fluxwp/tokens';
-import { loadBootstrap, loadConfig, loadManifests, rememberedEtag, rememberEtag, withCore } from './api';
+import { loadBootstrap, loadConfig, loadContractValue, loadManifests, rememberedEtag, rememberEtag, withCore } from './api';
 import { applyUserPrefs, useUserPrefs } from './prefs';
 import { demoShellFetch } from './demo/fetch';
 import { qk } from './query';
@@ -51,11 +51,11 @@ export function useMe() {
 /** Site config (layers 3+4) as sent by the server; null on sites without the endpoint. Sends `If-None-Match`. */
 export function useSiteConfig() {
   const { api, account, client } = useScope();
+  const queryKey = account.authKind === 'demo' ? [...qk.config(), getDemoLocale()] : qk.config();
   return useQuery<AppConfig | null>({
-    queryKey: qk.config(),
+    queryKey,
     queryFn: async () => {
-      const res = await loadConfig(api, undefined, await rememberedEtag(account.id, 'config'));
-      if (res.notModified) return client.getQueryData<AppConfig | null>(qk.config()) ?? null;
+      const res = await loadContractValue(etag => loadConfig(api, undefined, etag), await rememberedEtag(account.id, 'config'), () => client.getQueryData<AppConfig | null>(queryKey));
       await rememberEtag(account.id, 'config', res.etag);
       return res.value;
     },
@@ -73,11 +73,11 @@ export function useConfig(): AppConfig {
 
 export function useManifest() {
   const { api, account, client } = useScope();
+  const queryKey = account.authKind === 'demo' ? [...qk.manifest(), getDemoLocale()] : qk.manifest();
   return useQuery<ManifestBundle>({
-    queryKey: qk.manifest(),
+    queryKey,
     queryFn: async () => {
-      const res = await loadManifests(api, undefined, await rememberedEtag(account.id, 'manifest'));
-      if (res.notModified) return client.getQueryData<ManifestBundle>(qk.manifest()) ?? withCore({ modules: {} });
+      const res = await loadContractValue(etag => loadManifests(api, undefined, etag), await rememberedEtag(account.id, 'manifest'), () => client.getQueryData<ManifestBundle>(queryKey));
       await rememberEtag(account.id, 'manifest', res.etag);
       return res.value;
     },
