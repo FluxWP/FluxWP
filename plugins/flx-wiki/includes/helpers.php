@@ -67,7 +67,7 @@ function flxwk_title() {
 
 function flxwk_intro() {
 	$t = trim( (string) flxwk_opt( 'intro' ) );
-	return '' !== $t ? $t : __( 'FluxWP için eklenti ve tema yazma, AI destekli özellikler ve ortak altyapı rehberleri.', 'flx-wiki' );
+	return (string) apply_filters( 'flxwk_intro', '' !== $t ? $t : __( 'FluxWP için eklenti ve tema yazma, AI destekli özellikler ve ortak altyapı rehberleri.', 'flx-wiki' ) );
 }
 
 /** Sayfanın Markdown kaynağı. */
@@ -140,9 +140,10 @@ function flxwk_root( $post ) {
  * @return WP_Post[]
  */
 function flxwk_all_pages() {
-	static $cache = null;
-	if ( null === $cache ) {
-		$cache = get_posts(
+	static $cache = array();
+	$key = flxwk_cache_key( 'pages' );
+	if ( ! isset( $cache[ $key ] ) ) {
+		$cache[ $key ] = get_posts(
 			array(
 				'post_type'        => FLXWK_PT,
 				'post_status'      => 'publish',
@@ -150,10 +151,11 @@ function flxwk_all_pages() {
 				'orderby'          => array( 'menu_order' => 'ASC', 'title' => 'ASC' ),
 				'has_password'     => false,
 				'suppress_filters' => false,
+				'flxl_lang'        => function_exists( 'flxl_current_language' ) ? flxl_current_language() : '',
 			)
 		);
 	}
-	return $cache;
+	return $cache[ $key ];
 }
 
 /**
@@ -276,4 +278,10 @@ function flxwk_ai_ready() {
 /** Tarih: FluxWP ortak yardımcısı (dil karışmasın). */
 function flxwk_ago( $time ) {
 	return flx_time_ago( $time );
+}
+
+/** Language and generation isolate public documentation caches. */
+function flxwk_cache_key( $name ) {
+	$lang = function_exists( 'flxl_current_language' ) ? flxl_current_language() : determine_locale();
+	return 'flxwk_' . $name . '_' . md5( $lang . ':' . get_option( 'flxwk_gen', 0 ) );
 }

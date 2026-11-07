@@ -111,6 +111,9 @@ function flxwk_seed_import( $update = true ) {
 		}
 		if ( ! is_wp_error( $id ) ) {
 			update_post_meta( $id, '_flxwk_seed_hash', $hash );
+			if ( function_exists( 'flxl_set_post_language' ) ) {
+				flxl_set_post_language( $id, $meta['language'] ?? 'tr' );
+			}
 			++$stat[ $key ];
 		}
 	}

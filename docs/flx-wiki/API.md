@@ -105,3 +105,12 @@ kullanıcı ya da IP başına (yöneticiler hariç).
 ## Uygulama
 
 Sayfa listesi `wp/v2/flx_wiki`. Okuma alanı `html` (CPT editör desteği yok; HTML `post_content` kopyası). Düzenleme alanı `markdown` (`_flxwk_md`; kayıt HTML kopyasını da günceller). Arama `GET /wp-json/flx-wiki/v1/search?q=` — boş `q` boş sonuç döner.
+
+
+## Multilingual preset content
+
+With Flux Lang active, `flx_wiki` is a translatable post type. Wiki preset items accept `language` (e.g. `tr`, `en`) and `translation_of` (the source item's unique preset key). Import the source before its translations. Use distinct keys/slugs and translated parent paths for each language. Each translation contains its own `title`, `excerpt` and `md`. Omitting these language fields preserves single-language presets.
+
+`wiki_section` accepts `translations: {"en": {"name": "Setup", "description": "..."}, "tr": {"name": "Kurulum"}}`. Sections keep a shared slug. Page lists and search caches follow the requested Flux Lang language; live REST search carries `lang`.
+
+`flxwk_intro` filters the displayed introduction string. Presets can localize their supplied introduction while preserving administrator edits.

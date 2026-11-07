@@ -23,7 +23,7 @@ function flxwk_preset_path( array $item ) {
 	if ( '' === $parent ) {
 		return $slug;
 	}
-	$p = flxwk_find_page( $parent );
+	$p = get_page_by_path( $parent, OBJECT, FLXWK_PT ) ?: flxwk_find_page( $parent );
 	return ( $p ? get_page_uri( $p ) : $parent ) . '/' . $slug;
 }
 
@@ -38,10 +38,11 @@ function flxwk_preset_importers( $t ) {
 		},
 		'data'    => function ( $item ) {
 			return array(
-				'name'        => (string) ( $item['name'] ?? $item['key'] ),
+				'name'        => (string) ( $item['translations'][ function_exists( 'flxl_default_language' ) ? flxl_default_language() : 'tr' ]['name'] ?? $item['name'] ?? $item['key'] ),
 				'slug'        => sanitize_title( (string) ( $item['slug'] ?? $item['key'] ) ),
-				'description' => (string) ( $item['description'] ?? '' ),
+				'description' => (string) ( $item['translations'][ function_exists( 'flxl_default_language' ) ? flxl_default_language() : 'tr' ]['description'] ?? $item['description'] ?? '' ),
 				'order'       => (int) ( $item['order'] ?? 0 ),
+				'translations' => (array) ( $item['translations'] ?? array() ),
 			);
 		},
 		'read'    => function ( $id ) {
@@ -50,21 +51,28 @@ function flxwk_preset_importers( $t ) {
 				'name'        => $term->name,
 				'slug'        => $term->slug,
 				'description' => $term->description,
+				'translations' => (array) get_term_meta( $id, '_flxwk_translations', true ),
 				'order'       => (int) get_term_meta( $term->term_id, 'flxwk_order', true ),
 			) : array();
 		},
 		'save'    => function ( $item, $id ) {
 			flxwk_register_types();
-			$name = (string) ( $item['name'] ?? $item['key'] );
+			$name = (string) ( $item['translations'][ function_exists( 'flxl_default_language' ) ? flxl_default_language() : 'tr' ]['name'] ?? $item['name'] ?? $item['key'] );
 			$args = array(
 				'slug'        => sanitize_title( (string) ( $item['slug'] ?? $item['key'] ) ),
-				'description' => (string) ( $item['description'] ?? '' ),
+				'description' => (string) ( $item['translations'][ function_exists( 'flxl_default_language' ) ? flxl_default_language() : 'tr' ]['description'] ?? $item['description'] ?? '' ),
 			);
 			$r    = $id ? wp_update_term( (int) $id, FLXWK_TAX, $args + array( 'name' => $name ) ) : wp_insert_term( $name, FLXWK_TAX, $args );
 			if ( is_wp_error( $r ) ) {
 				return $r;
 			}
 			update_term_meta( (int) $r['term_id'], 'flxwk_order', (int) ( $item['order'] ?? 0 ) );
+			$translations = (array) ( $item['translations'] ?? array() );
+			update_term_meta( $r['term_id'], '_flxwk_translations', $translations );
+			foreach ( $translations as $code => $text ) {
+				update_term_meta( $r['term_id'], '_flxl_name_' . sanitize_key( $code ), sanitize_text_field( $text['name'] ?? '' ) );
+				update_term_meta( $r['term_id'], '_flxl_desc_' . sanitize_key( $code ), sanitize_textarea_field( $text['description'] ?? '' ) );
+			}
 			flxwk_bump();
 			return (int) $r['term_id'];
 		},
@@ -79,7 +87,7 @@ function flxwk_preset_importers( $t ) {
 		'label'   => __( 'Wiki sayfası', 'flx-wiki' ),
 		'find'    => function ( $item ) {
 			if ( function_exists( 'flxk_find_by_key' ) ) {
-				$id = flxk_find_by_key( FLXWK_PT, (string) $item['key'] );
+				$id = flxwk_preset_key( (string) $item['key'] );
 				if ( $id ) {
 					return $id;
 				}
@@ -89,6 +97,8 @@ function flxwk_preset_importers( $t ) {
 		},
 		'data'    => function ( $item ) {
 			return array(
+				'language' => (string) ( $item['language'] ?? '' ),
+				'translation_of' => (string) ( $item['translation_of'] ?? '' ),
 				'title'   => (string) ( $item['title'] ?? $item['key'] ),
 				'slug'    => sanitize_title( (string) ( $item['slug'] ?? $item['key'] ) ),
 				'md'      => str_replace( "\r\n", "\n", (string) ( $item['md'] ?? '' ) ),
@@ -107,6 +117,8 @@ function flxwk_preset_importers( $t ) {
 			$par   = $p->post_parent ? get_post( $p->post_parent ) : null;
 			$terms = get_the_terms( $p, FLXWK_TAX );
 			return array(
+				'language' => (string) get_post_meta( $id, '_flxwk_language', true ),
+				'translation_of' => (string) get_post_meta( $id, '_flxwk_translation_of', true ),
 				'title'   => $p->post_title,
 				'slug'    => $p->post_name,
 				'md'      => flxwk_md( $p ),
@@ -144,6 +156,17 @@ function flxwk_preset_importers( $t ) {
 			$new = flxwk_save_page( $d );
 			if ( ! is_wp_error( $new ) ) {
 				update_post_meta( $new, '_flxk_key', (string) $item['key'] );
+				$language = sanitize_key( $item['language'] ?? '' );
+				$source = (string) ( $item['translation_of'] ?? '' );
+				update_post_meta( $new, '_flxwk_language', $language );
+				update_post_meta( $new, '_flxwk_translation_of', $source );
+				if ( $language && function_exists( 'flxl_set_post_language' ) ) {
+					flxl_set_post_language( $new, $language );
+					$original = $source ? flxwk_preset_key( $source ) : 0;
+					if ( $original ) {
+						flxl_link_translations( array( flxl_post_language( $original ) => $original, $language => $new ) );
+					}
+				}
 			}
 			return $new;
 		},
@@ -160,4 +183,18 @@ function flxwk_preset_importers( $t ) {
 	);
 
 	return $t;
+}
+
+/** Preset keys are global; imports must find records across all languages. */
+function flxwk_preset_key( $key ) {
+	$ids = get_posts( array(
+		'post_type' => FLXWK_PT,
+		'post_status' => 'any',
+		'meta_key' => '_flxk_key',
+		'meta_value' => $key,
+		'fields' => 'ids',
+		'posts_per_page' => 1,
+		'flxl_lang' => 'all',
+	) );
+	return $ids ? (int) $ids[0] : 0;
 }

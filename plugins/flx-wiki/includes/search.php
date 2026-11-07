@@ -37,7 +37,7 @@ function flxwk_plain( $md ) {
 
 /** Arama dizini (önbellekli). */
 function flxwk_index() {
-	$idx = get_transient( 'flxwk_index' );
+	$idx = get_transient( flxwk_cache_key( 'index' ) );
 	if ( is_array( $idx ) ) {
 		return $idx;
 	}
@@ -80,7 +80,7 @@ function flxwk_index() {
 			'mod'     => get_post_modified_time( 'U', true, $p ),
 		);
 	}
-	set_transient( 'flxwk_index', $idx, DAY_IN_SECONDS );
+	set_transient( flxwk_cache_key( 'index' ), $idx, DAY_IN_SECONDS );
 	return $idx;
 }
 
@@ -251,7 +251,7 @@ function flxwk_search( $q, $args = array() ) {
 
 /** Dizindeki kelimeler ve sıklıkları (katlanmış, 3+ harf; önbellekli). */
 function flxwk_vocab() {
-	$v = get_transient( 'flxwk_vocab' );
+	$v = get_transient( flxwk_cache_key( 'vocab' ) );
 	if ( is_array( $v ) ) {
 		return $v;
 	}
@@ -264,7 +264,7 @@ function flxwk_vocab() {
 			}
 		}
 	}
-	set_transient( 'flxwk_vocab', $v, DAY_IN_SECONDS );
+	set_transient( flxwk_cache_key( 'vocab' ), $v, DAY_IN_SECONDS );
 	return $v;
 }
 
