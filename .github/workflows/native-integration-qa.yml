@@ -3,6 +3,10 @@ on:
   pull_request:
     paths:
       - 'plugins/flx-ai/**'
+      - 'plugins/flx-app/includes/settings-bridge.php'
+      - 'plugins/flx-chat/includes/ai.php'
+      - 'plugins/flx-tasks/includes/ai.php'
+      - 'plugins/flx-tasks/includes/rest.php'
       - 'tools/native-audit/staging/**'
       - '.github/workflows/native-integration-qa.yml'
   workflow_dispatch:
@@ -26,6 +30,8 @@ jobs:
         run: docker compose -p fluxwp-native-qa --env-file "$RUNNER_TEMP/fluxwp-native-qa/qa.env" -f tools/native-audit/staging/compose.yaml run --rm cli eval-file /opt/fluxwp-public/tools/native-audit/staging/ai-mcp-test.php
       - name: Verify legacy MCP compatibility without granting access
         run: docker compose -p fluxwp-native-qa --env-file "$RUNNER_TEMP/fluxwp-native-qa/qa.env" -f tools/native-audit/staging/compose.yaml run --rm cli --require=/opt/fluxwp-public/tools/native-audit/staging/ai-mcp-legacy-fixture.php eval-file /opt/fluxwp-public/tools/native-audit/staging/ai-mcp-legacy-test.php
+      - name: Verify full AI settings, secrets, fractional budgets and migration safety
+        run: docker compose -p fluxwp-native-qa --env-file "$RUNNER_TEMP/fluxwp-native-qa/qa.env" -f tools/native-audit/staging/compose.yaml run --rm cli eval-file /opt/fluxwp-public/tools/native-audit/staging/ai-settings-test.php --context=admin
       - name: Stop isolated QA containers
         if: always()
         run: python3 tools/native-audit/staging/site.py stop --state-dir "$RUNNER_TEMP/fluxwp-native-qa"

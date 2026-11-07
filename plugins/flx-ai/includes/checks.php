@@ -152,7 +152,8 @@ add_filter(
 					if ( ! is_numeric( $v ) || (float) $v < 0 || (float) $v > 100000 ) {
 						throw new Exception( __( 'Geçerli bir tutar girin (0 veya pozitif sayı).', 'flx-ai' ) );
 					}
-					flxai_update_settings( array( 'limit_' . $p => round( (float) $v, 2 ) ) );
+					$result = flxai_update_settings( array( 'limit_' . $p => round( (float) $v, 2 ) ) );
+					if ( is_wp_error( $result ) ) { throw new Exception( $result->get_error_message() ); }
 					/* translators: %s: amount */
 					return sprintf( __( 'Sınır %s olarak kaydedildi.', 'flx-ai' ), flxai_usd( (float) $v, 2 ) );
 				},

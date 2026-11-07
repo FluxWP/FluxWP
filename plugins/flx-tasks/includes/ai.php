@@ -46,12 +46,13 @@ function flxg_ai_migrate() {
 	if ( ! function_exists( 'flxai_import_config' ) ) {
 		return array();
 	}
-	$done = (array) flxai_import_config( 'flx-tasks', array_filter( array( 'key_openrouter' => $key, 'source_model' => $mod ), 'strlen' ) );
+	$done = flxai_import_config( 'flx-tasks', array_filter( array( 'key_openrouter' => $key, 'source_model' => $mod ), 'strlen' ) );
+	if ( is_wp_error( $done ) ) { return array(); } // Retry later; never delete the only copy after a busy/failed save.
 	unset( $raw['ai_key'], $raw['ai_model'] );
 	update_option( 'flxg_settings', $raw, false );
 	flxg_settings( true );
 	delete_transient( 'flxg_ai_models' );
-	return $done;
+	return (array) $done;
 }
 add_action( 'admin_init', 'flxg_ai_migrate' );
 

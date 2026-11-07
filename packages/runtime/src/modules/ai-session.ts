@@ -2,7 +2,7 @@ import { createStore } from 'zustand/vanilla';
 import { ApiError, type ApiClient } from '@fluxwp/core';
 import type { AiChat } from './ai';
 
-export interface AiBoot { ready: boolean; model: string; modelLabel: string; canManage: boolean; mode?: 'bubble' | 'dock' }
+export interface AiBoot { ready: boolean; model: string; modelLabel: string; canManage: boolean; mode?: 'bubble' | 'dock'; showAdmin?:boolean }
 export interface AiSummary { id: number; title: string; status: string }
 export interface AiSessionState {
   boot: AiBoot | null; chats: AiSummary[]; chat: AiChat | null; loading: boolean; busy: boolean; error: string; denied: boolean;

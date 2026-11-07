@@ -41,7 +41,8 @@ function flxai_admin_mcp_update( array $body ) {
 		$action = $body['action'] ?? null; $created = null; $keys = flxai_mcp_keys();
 		if ( 'toggle' === $action ) {
 			if ( array_diff( array_keys( $body ), array( 'action', 'revision', 'enabled' ) ) || ! is_bool( $body['enabled'] ?? null ) ) { return $invalid; }
-			flxai_update_settings( array( 'mcp_enabled' => $body['enabled'] ? 1 : 0 ) );
+			$saved = flxai_update_settings( array( 'mcp_enabled' => $body['enabled'] ? 1 : 0 ) );
+			if ( is_wp_error( $saved ) ) { return $saved; }
 		} elseif ( 'create' === $action ) {
 			if ( array_diff( array_keys( $body ), array( 'action', 'revision', 'name', 'scope', 'tools' ) ) || ! is_string( $body['name'] ?? null ) || ! in_array( $body['scope'] ?? null, array( 'selected', 'all' ), true ) || ! is_array( $body['tools'] ?? null ) ) { return $invalid; }
 			if ( ! current_user_can( 'edit_posts' ) ) { return new WP_Error( 'mcp_cap', __( 'Anahtar sahibi içerik düzenleme yetkisine sahip olmalıdır.', 'flx-ai' ), array( 'status' => 403 ) ); }

@@ -71,7 +71,8 @@ function flxai_admin_systems_toggle( array $body ) {
 		foreach ( $body['changes'] as $source => $enabled ) { if ( ! in_array( $source, $known, true ) || ! is_bool( $enabled ) ) { return new WP_Error( 'flxai_system_field', __( 'Geçersiz sistem ayarı.', 'flx-ai' ), array( 'status' => 400 ) ); } }
 		$off = array_fill_keys( (array) flxai_setting( 'sources_off', array() ), true );
 		foreach ( $body['changes'] as $source => $enabled ) { if ( $enabled ) { unset( $off[ $source ] ); } else { $off[ $source ] = true; } }
-		flxai_update_settings( array( 'sources_off' => array_keys( $off ) ) );
+		$saved = flxai_update_settings( array( 'sources_off' => array_keys( $off ) ) );
+		if ( is_wp_error( $saved ) ) { return $saved; }
 		return array( 'ok' => true );
 	} finally { $wpdb->get_var( $wpdb->prepare( 'SELECT RELEASE_LOCK(%s)', $lock ) ); }
 }
@@ -112,7 +113,8 @@ function flxai_admin_system_update( $source, array $body ) {
 		$model = sanitize_text_field( $body['model'] );
 		if ( '' === $model ) { unset( $models[ $source ] ); } else { $models[ $source ] = $model; }
 		if ( $values ) { flx_ai_set( $source, $values ); }
-		flxai_update_settings( array( 'sources_off' => array_values( array_unique( $off ) ), 'source_models' => $models ) );
+		$saved = flxai_update_settings( array( 'sources_off' => array_values( array_unique( $off ) ), 'source_models' => $models ) );
+		if ( is_wp_error( $saved ) ) { return $saved; }
 		return flxai_admin_system_detail( $source );
 	} finally { $wpdb->get_var( $wpdb->prepare( 'SELECT RELEASE_LOCK(%s)', $lock ) ); }
 }

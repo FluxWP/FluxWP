@@ -150,8 +150,7 @@ function flxai_admin_tools_get( WP_REST_Request $request ) {
 }
 
 function flxai_admin_tools_lock_name() {
-	global $wpdb;
-	return 'flx-ai-tools-' . md5( DB_NAME . '|' . $wpdb->prefix );
+	return flxai_settings_lock_name();
 }
 
 /** Validate the complete change before writing; inactive-plugin disabled names are retained. */
@@ -195,7 +194,8 @@ function flxai_admin_tools_update( array $body ) {
 		}
 		$off = array_fill_keys( flxai_tools_off(), true );
 		foreach ( $changes as $name => $enabled ) { if ( $enabled ) { unset( $off[ $name ] ); } else { $off[ $name ] = true; } }
-		flxai_update_settings( array( 'tools_off' => array_keys( $off ), 'tool_pick' => $picks ) );
+		$saved = flxai_update_settings( array( 'tools_off' => array_keys( $off ), 'tool_pick' => $picks ) );
+		if ( is_wp_error( $saved ) ) { return $saved; }
 		return array( 'ok' => true, 'changed' => count( $changes ) + ( isset( $body['pick'] ) ? 1 : 0 ) );
 	} finally {
 		$wpdb->get_var( $wpdb->prepare( 'SELECT RELEASE_LOCK(%s)', $lock ) );

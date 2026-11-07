@@ -1135,7 +1135,8 @@ function flxg_rest_settings_save( WP_REST_Request $r ) {
 		}
 	}
 	if ( isset( $b['ai_model'] ) && function_exists( 'flxai_set_source_model' ) ) {
-		flxai_set_source_model( 'flx-tasks', sanitize_text_field( (string) $b['ai_model'] ) );
+		$result = flxai_set_source_model( 'flx-tasks', sanitize_text_field( (string) $b['ai_model'] ) );
+		if ( is_wp_error( $result ) ) { return $result; }
 	}
 	if ( isset( $b['ai_temperature'] ) ) {
 		$set['ai_temperature'] = max( 0, min( 1.5, (float) $b['ai_temperature'] ) );

@@ -26,70 +26,7 @@
     }
   },
   "screens": {
-    "settings": {
-      "type": "settings",
-      "title": "Ayarlar",
-      "option": "flxai_settings",
-      "write_cap": "manage_options",
-      "fields": [
-        { "name": "model", "type": "text", "label": "Varsayılan model" },
-        { "name": "chat_model", "type": "text", "label": "Sohbet modeli" },
-        {
-          "name": "cache",
-          "type": "select",
-          "label": "Önbellek",
-          "options": [
-            { "value": "off", "label": "Kapalı" },
-            { "value": "5m", "label": "5 dakika" },
-            { "value": "1h", "label": "1 saat" }
-          ]
-        },
-        {
-          "name": "effort",
-          "type": "segmented",
-          "label": "Çaba",
-          "options": [
-            { "value": "low", "label": "Düşük" },
-            { "value": "medium", "label": "Orta" },
-            { "value": "high", "label": "Yüksek" }
-          ]
-        },
-        { "name": "thinking", "type": "switch", "label": "Düşünme özeti" },
-        { "name": "limit_day", "type": "number", "label": "Günlük sınır (USD)", "min": 0, "help": "0 sınırsız." },
-        { "name": "limit_month", "type": "number", "label": "Aylık sınır (USD)", "min": 0 },
-        {
-          "name": "limit_action",
-          "type": "segmented",
-          "label": "Sınır aşılınca",
-          "options": [
-            { "value": "block", "label": "Durdur" },
-            { "value": "warn", "label": "Uyar" }
-          ]
-        },
-        { "name": "chat_admin", "type": "switch", "label": "Yönetimde sohbet" },
-        { "name": "chat_front", "type": "switch", "label": "Sitede sohbet" },
-        {
-          "name": "chat_mode",
-          "type": "segmented",
-          "label": "Sohbet yerleşimi",
-          "options": [
-            { "value": "bubble", "label": "Pencere" },
-            { "value": "dock", "label": "Yana sabit" }
-          ]
-        },
-        { "name": "chat_instructions", "type": "textarea", "label": "Sohbet yönergesi" },
-        { "name": "log_bodies", "type": "switch", "label": "İstek içeriğini kaydet" },
-        { "name": "log_days", "type": "number", "label": "Kayıt saklama (gün)", "min": 0, "help": "0 sınırsız." },
-        { "name": "log_body_days", "type": "number", "label": "İçerik saklama (gün)", "min": 0, "help": "0 sınırsız." },
-        { "name": "key_openrouter", "type": "secret", "label": "OpenRouter anahtarı" },
-        { "name": "key_anthropic", "type": "secret", "label": "Anthropic anahtarı" },
-        { "name": "key_openai", "type": "secret", "label": "OpenAI anahtarı" },
-        { "name": "key_gemini", "type": "secret", "label": "Gemini anahtarı" },
-        { "name": "key_fal", "type": "secret", "label": "Fal anahtarı" },
-        { "name": "key_evolink", "type": "secret", "label": "Evolink anahtarı" },
-        { "name": "key_render", "type": "secret", "label": "Gotenberg anahtarı" }
-      ]
-    },
+    "settings": { "type": "native", "title": "$t:aiSettings.title", "component": "flxai-settings", "fallback": { "web": "admin.php?page=flx-ai-settings" } },
     "log": {
       "type": "list",
       "title": "Kayıtlar",

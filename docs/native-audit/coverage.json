@@ -224,12 +224,12 @@
       "plugin": "flx-ai",
       "module": "ai",
       "screen": "settings",
-      "type": "settings",
+      "type": "native",
       "source": "plugins/flx-ai/app/manifest.json",
       "minimumApp": "1.0.0",
       "versionGated": true,
-      "component": null,
-      "componentRegistered": null,
+      "component": "flxai-settings",
+      "componentRegistered": true,
       "path": null,
       "routes": [
         "admin.php?page=flx-ai-settings"

@@ -18,7 +18,7 @@ Current app version: `0.3.0`. Modules: 19; screens: 87; explicit web screens: 14
 | analytics / sources | tabs | Version gate; Manifest renderer; API/actions/runtime QA pending | plugins/flx-analytics/app/manifest.json |
 | analytics / referrers | list | Version gate; Manifest renderer; API/actions/runtime QA pending | plugins/flx-analytics/app/manifest.json |
 | analytics / channels | list | Version gate; Manifest renderer; API/actions/runtime QA pending | plugins/flx-analytics/app/manifest.json |
-| ai / settings | settings | Version gate; Manifest renderer; API/actions/runtime QA pending | plugins/flx-ai/app/manifest.json |
+| ai / settings | native | Version gate; Component registered; runtime QA pending | plugins/flx-ai/app/manifest.json |
 | ai / log | list | Version gate; Manifest renderer; API/actions/runtime QA pending | plugins/flx-ai/app/manifest.json |
 | ai / chat | native | Version gate; Component registered; runtime QA pending | plugins/flx-ai/app/manifest.json |
 | ai / billing | native | Version gate; Component registered; runtime QA pending | plugins/flx-ai/app/manifest.json |

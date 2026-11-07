@@ -13,6 +13,7 @@ import { aiBillingDemoRoutes } from './ai-billing';
 import { aiToolsDemoRoutes } from './ai-tools';
 import { aiSystemsDemoRoutes } from './ai-systems';
 import { aiMcpDemoRoutes } from './ai-mcp';
+import { aiSettingsDemoRoutes } from './ai-settings';
 
 export const DEMO_SITE = DEMO_ORIGIN;
 
@@ -37,7 +38,7 @@ const statusIn = (status: string, q: Q) => {
   return !want || want === 'all' || want.split(',').includes(status);
 };
 
-const ETAGS: Record<string, string> = { 'flxapp/v1/config': 'demo-config-native-admin-032-menu', 'flxapp/v1/manifest': 'demo-manifest-ai-mcp' };
+const ETAGS: Record<string, string> = { 'flxapp/v1/config': 'demo-config-native-admin-032-menu', 'flxapp/v1/manifest': 'demo-manifest-ai-settings' };
 
 let prefs: Record<string, unknown> = {
   order: [], hidden: [], pinned: [], forceWeb: [], tabs: [], cardOrder: [], cardHidden: [],
@@ -48,6 +49,7 @@ let prefs: Record<string, unknown> = {
 let devices: { id: number; device_id?: string; token?: string; current: boolean }[] = [];
 
 const routes: [string, RegExp, Handler][] = [
+  ...aiSettingsDemoRoutes,
   ...aiMcpDemoRoutes,
   ...aiSystemsDemoRoutes,
   ...aiToolsDemoRoutes,

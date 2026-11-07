@@ -8,6 +8,7 @@ import { useRoute } from '../state/route';
 import './ai.css';
 import { useSidebar } from '../state/sidebar';
 import { Select } from '@fluxwp/ui';
+import { bindAiConfigurationRefresh } from '@fluxwp/runtime/src/modules/ai-configuration';
 
 type Mode = 'bubble' | 'dock';
 interface Workspace { engine: AiSession; open: boolean; mode: Mode; setOpen: (open: boolean) => void; setMode: (mode: Mode) => void; text: string; setText: Dispatch<SetStateAction<string>> }
@@ -26,6 +27,7 @@ export function AiProvider({ children }: { children: ReactNode }) {
     const route = useRoute.getState().route;
     return { url: account.siteUrl, title: account.siteName, app: 'FluxWP', route };
   }), [api, account.id]);
+  const defaultMode = useStore(engine.store, (s) => s.boot?.mode);
   const key = `flux.ai.${account.id}`;
   const readMode = (): Mode => { try { return localStorage.getItem(key) === 'dock' ? 'dock' : 'bubble'; } catch { return 'bubble'; } };
   const [mode, changeMode] = useState<Mode>(readMode);
@@ -34,8 +36,14 @@ export function AiProvider({ children }: { children: ReactNode }) {
   const setMode = (value: Mode) => { changeMode(value); try { localStorage.setItem(key, value); } catch { /* storage unavailable */ } };
   useEffect(() => {
     if (enabled) void engine.initialize();
-    return () => engine.dispose();
-  }, [engine, enabled]);
+    const unsubscribe = enabled ? bindAiConfigurationRefresh(account.id, engine) : () => {};
+    return () => { unsubscribe(); engine.dispose(); };
+  }, [engine, enabled, account.id]);
+  useEffect(() => {
+    if (!defaultMode) return;
+    try { const saved = localStorage.getItem(key); changeMode(saved === 'bubble' || saved === 'dock' ? saved : defaultMode); }
+    catch { changeMode(defaultMode); }
+  }, [defaultMode, key]);
   useEffect(() => {
     const keydown = (e: KeyboardEvent) => {
       if (enabled && (e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'j') { e.preventDefault(); setOpen((v) => !v); }
@@ -52,12 +60,13 @@ export function AiDock() {
   const { engine, open, mode, setOpen, setMode } = useWorkspace();
   const { t } = useTranslation();
   const denied = useStore(engine.store, (s) => s.denied);
+  const showAdmin = useStore(engine.store, (s) => s.boot?.showAdmin);
   const enabled = !!useManifest().data?.modules.ai;
   const account = useAccount();
   const route = useRoute((s) => s.route);
   const sidebarWidth = useSidebar((s) => s.width);
   const sidebarCollapsed = useSidebar((s) => s.collapsed);
-  if (!enabled || denied || route.kind === 'native' && route.component === 'flxai-chat') return null;
+  if (!enabled || denied || showAdmin === false || route.kind === 'native' && route.component === 'flxai-chat') return null;
   if (!open) return <button type="button" className="ai-launcher" aria-label={t('ai.title')} title={t('ai.shortcut')} onClick={() => setOpen(true)}><Bot size={24} /></button>;
   return (
     <ResizablePane storageKey={`flux.ai.width.${account.id}`} initialWidth={420} minWidth={320} maxWidth={780} minContentWidth={(sidebarCollapsed ? 0 : sidebarWidth) + 360} edge="left" label={t('ai.resize')} className={`ai-workspace ai-${mode}`}>

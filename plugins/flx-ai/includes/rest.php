@@ -54,6 +54,8 @@ function flxai_rest_routes() {
 	$r( '/admin/systems', 'GET', 'flxai_admin_systems_get', $mng );
 	$r( '/admin/mcp', 'GET', 'flxai_admin_mcp_get', $mng );
 	$r( '/admin/mcp', 'POST', 'flxai_admin_mcp_post', $mng );
+	$r( '/admin/settings', 'GET', 'flxai_admin_settings_get', $mng );
+	$r( '/admin/settings', 'POST', 'flxai_admin_settings_post', $mng );
 	$r( '/admin/systems/(?P<source>[a-z0-9_-]+)', 'GET', 'flxai_admin_system_get', $mng );
 	$r( '/admin/systems/(?P<source>[a-z0-9_-]+)', 'POST', 'flxai_admin_system_post', $mng );
 }
@@ -85,6 +87,8 @@ function flxai_rest_boot() {
 		'model'      => $model,
 		'modelLabel' => flxai_model_label( $model ),
 		'canManage'  => flxai_can_manage(),
+		'mode'       => 'dock' === flxai_setting( 'chat_mode' ) ? 'dock' : 'bubble',
+		'showAdmin'  => (bool) flxai_setting( 'chat_admin' ),
 		'counts'     => flxai_chat_counts(),
 		'budget'     => flxai_can_manage() ? flxai_budget_status() : null,
 	);
