@@ -31,7 +31,7 @@
   },
   "addSite": {
     "title": "Siteni bağla",
-    "hint": "WordPress sitenin adresini yaz. Birden çok site ekleyebilirsin.",
+    "hint": "WordPress sitenizin adresini girin.",
     "continue": "Devam",
     "browserHint": "Giriş, uygulama içindeki güvenli tarayıcıda yapılır. Şifren uygulamaya gelmez.",
     "notAllowed": "Bu uygulama bu siteye bağlanamaz.",
@@ -115,7 +115,13 @@
       "back": "Sohbetlere dön",
       "botOn": "Asistan açık",
       "botOff": "Asistan kapalı",
-      "filters": { "all": "Açık", "unread": "Okunmamış", "mine": "Bana atanan", "unassigned": "Atanmamış", "closed": "Kapalı" },
+      "filters": {
+        "all": "Açık",
+        "unread": "Okunmamış",
+        "mine": "Bana atanan",
+        "unassigned": "Atanmamış",
+        "closed": "Kapalı"
+      },
       "offline": "Bağlantı yok",
       "auth": "Oturum düştü"
     },
@@ -239,8 +245,9 @@
   "privacy": {
     "connection": "Giriş ve site işlemleri seçtiğiniz WordPress sitesine gider. Site işletmecisinin kendi gizlilik politikası da geçerlidir.",
     "share": "Toplam uygulama kullanımını paylaş (isteğe bağlı)",
-    "usage": "Varsayılan kapalıdır. Sizin tercihiniz ve site yöneticisinin izniyle site, günlük aktif hesapları iOS/Android bazında sayar. En az beş kişilik grupların toplamı, sitenin ayarlı ülkesiyle FluxWP’ye gönderilir. Ad, içerik veya GPS konumu gönderilmez. Buradan ya da Ayarlar’dan istediğiniz zaman kapatabilirsiniz.",
+    "usage": "Varsayılan kapalıdır. Sizin tercihiniz ve site yöneticisinin izniyle site, günlük aktif hesapları iOS/Android bazında sayar. En az beş kişilik grupların toplamı, sitenin ayarlı ülkesiyle FluxWP’ye gönderilir. Ad, içerik veya GPS konumu gönderilmez. Bu tercihi istediğiniz zaman değiştirebilirsiniz.",
     "policy": "Gizlilik",
-    "terms": "Kullanım şartları"
+    "terms": "Kullanım şartları",
+    "continueTerms": "Devam ederek <terms>Kullanım Şartları</terms>’nı kabul edersiniz. <privacy>Gizlilik Politikası</privacy>."
   }
 }

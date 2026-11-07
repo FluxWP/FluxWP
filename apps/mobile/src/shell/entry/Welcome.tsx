@@ -1,10 +1,12 @@
 // First-run frames for the site form. `onboarding` is three pages then the form.
-// `card` and `band` are the other two entry designs (open with /add-site?giris=card|band).
+// The default is a compact card shared in spirit with desktop; onboarding/band remain explicit previews.
 import { useState, type ReactNode } from 'react';
 import { Pressable, ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
+import { SvgXml } from 'react-native-svg';
+import { LOGO, LOGO_DARK, brand } from '@/brand';
 import { Icon } from '@/ui/Icon';
 import { Button, Text } from '@/ui/primitives';
 
@@ -12,7 +14,7 @@ export type EntryVariant = 'onboarding' | 'card' | 'band';
 
 export function entryVariant(raw: string | string[] | undefined): EntryVariant {
   const v = Array.isArray(raw) ? raw[0] : raw;
-  return v === 'card' || v === 'band' ? v : 'onboarding';
+  return v === 'onboarding' || v === 'band' ? v : 'card';
 }
 
 const PAGES = ['sites', 'look', 'safe'] as const;
@@ -74,17 +76,18 @@ export function Welcome({ variant, children, footer }: { variant: EntryVariant; 
 
   if (variant === 'card') {
     return (
-      <ScrollView style={styles.screen} contentContainerStyle={[styles.formScreen, styles.cardScreen, { paddingTop: insets.top + 28, paddingBottom: bottom }]} keyboardShouldPersistTaps="handled">
-        <Mark size={26} />
-        <Text variant="title" style={styles.center}>{t('mobile.welcome.cardTitle')}</Text>
-        <Text tone="muted" style={styles.center}>{t('mobile.welcome.cardBody')}</Text>
-        <View style={styles.card}>
-          <View style={[styles.amber, { backgroundColor: theme.colors.accent }]} />
-          <Text variant="heading">{t('mobile.addSite.title')}</Text>
-          {children}
+      <ScrollView style={styles.screen} contentContainerStyle={[styles.cardScreen, { paddingTop: insets.top + 24, paddingBottom: bottom + 16 }]} keyboardShouldPersistTaps="handled" keyboardDismissMode="on-drag">
+        <View style={styles.cardColumn}>
+          <View style={styles.card}>
+            <View style={styles.brand} accessible accessibilityRole="image" accessibilityLabel={brand.name}>
+              <SvgXml xml={(theme.mode === 'dark' ? LOGO_DARK : LOGO).replace(/\s(?:aria-label|role)="[^"]*"/g, '')} width={190} height={56} />
+            </View>
+            <Text variant="title" style={styles.center}>{t('auth.addSiteTitle')}</Text>
+            <View style={styles.cardForm}>{children}</View>
+            {footer ? <View style={styles.demo}>{footer}</View> : null}
+          </View>
+          <Text variant="caption" tone="muted" style={styles.center}>{t('auth.footer', { name: brand.name })}</Text>
         </View>
-        <View style={styles.flex} />
-        {footer ? <View style={styles.footer}>{footer}</View> : null}
       </ScrollView>
     );
   }
@@ -158,9 +161,12 @@ const styles = StyleSheet.create((theme) => ({
   formGap: { gap: 12, marginTop: 8, alignSelf: 'stretch' },
   band: { paddingHorizontal: 28, paddingTop: 28, paddingBottom: 36, gap: 12, alignItems: 'flex-start' },
   sheet: { flex: 1, minHeight: 0, marginTop: -20, backgroundColor: theme.colors.bg, borderTopLeftRadius: 28, borderTopRightRadius: 28, paddingHorizontal: 24, paddingTop: 24, gap: 12 },
-  cardScreen: { paddingHorizontal: 24, gap: 12, alignItems: 'center' },
-  card: { alignSelf: 'stretch', width: '100%', backgroundColor: theme.colors.surface, borderRadius: theme.radius.xl, borderWidth: 1, borderColor: theme.colors.border, padding: 18, gap: 12, overflow: 'hidden' },
-  amber: { height: 4, borderRadius: 2, alignSelf: 'stretch', marginHorizontal: -18, marginTop: -18, marginBottom: 4 },
+  cardScreen: { flexGrow: 1, justifyContent: 'center', paddingHorizontal: 20 },
+  cardColumn: { width: '100%', maxWidth: 440, alignSelf: 'center', gap: 20 },
+  card: { backgroundColor: theme.colors.surface, borderRadius: 28, borderWidth: 1, borderColor: theme.colors.border, paddingHorizontal: 24, paddingTop: 32, paddingBottom: 20, gap: 20, boxShadow: theme.mode === 'dark' ? '0 16px 48px rgba(0,0,0,0.2)' : '0 16px 48px rgba(27,17,64,0.06)' },
+  brand: { alignSelf: 'center', marginBottom: 4 },
+  cardForm: { gap: 18 },
+  demo: { borderTopWidth: 1, borderTopColor: theme.colors.border, paddingTop: 12 },
   listArt: { width: 220, borderRadius: 18, borderWidth: 1, paddingVertical: 6 },
   listRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 14, paddingVertical: 12 },
   mini: { width: 28, height: 28, borderRadius: 8 },

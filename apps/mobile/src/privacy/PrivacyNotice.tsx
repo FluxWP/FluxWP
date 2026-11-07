@@ -3,11 +3,11 @@ import * as WebBrowser from 'expo-web-browser';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { Button, Text } from '@/ui/primitives';
-import { APP_PRIVACY_URL, APP_TERMS_URL, usePrivacy } from './index';
+import { privacyUrl, termsUrl, usePrivacy } from './index';
 
 /** Available before sign-in and in Settings; declining metrics never blocks connection. */
 export function PrivacyNotice({ introduction = false }: { introduction?: boolean }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { theme } = useUnistyles();
   const { usage, setUsage } = usePrivacy();
   return (
@@ -19,8 +19,8 @@ export function PrivacyNotice({ introduction = false }: { introduction?: boolean
       </View>
       <Text variant="caption" tone="muted">{t('mobile.privacy.usage')}</Text>
       <View style={styles.links}>
-        <Button kind="ghost" label={t('mobile.privacy.policy')} onPress={() => void WebBrowser.openBrowserAsync(APP_PRIVACY_URL)} />
-        <Button kind="ghost" label={t('mobile.privacy.terms')} onPress={() => void WebBrowser.openBrowserAsync(APP_TERMS_URL)} />
+        <Button kind="ghost" label={t('mobile.privacy.policy')} onPress={() => void WebBrowser.openBrowserAsync(privacyUrl(i18n.language))} />
+        <Button kind="ghost" label={t('mobile.privacy.terms')} onPress={() => void WebBrowser.openBrowserAsync(termsUrl(i18n.language))} />
       </View>
     </View>
   );
