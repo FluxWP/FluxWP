@@ -62,7 +62,7 @@
         "id": "more",
         "target": "more",
         "icon": "menu",
-        "label": "Menü"
+        "label": "$t:shell.nav.more"
       }
     ],
     "drawer": {
