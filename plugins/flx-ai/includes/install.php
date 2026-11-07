@@ -115,6 +115,17 @@ function flxai_maybe_upgrade() {
 	}
 }
 
+/**
+ * Kayıt saklama süresi (gün). 0 = sınırsız. Boş/0 dışındaki değerler 1..3650 aralığına çekilir.
+ *
+ * @param string $key log_days | log_body_days
+ * @return int
+ */
+function flxai_log_days( $key ) {
+	$d = (int) flxai_setting( $key, 0 );
+	return $d > 0 ? min( 3650, $d ) : 0;
+}
+
 /** Eski kayıtlar günde bir kez silinir (cron'a bağlı değil). */
 add_action(
 	'admin_init',
@@ -124,10 +135,15 @@ add_action(
 		}
 		set_transient( 'flxai_prune', 1, DAY_IN_SECONDS );
 		global $wpdb;
-		$days = max( 30, (int) flxai_setting( 'log_days', 365 ) );
-		$wpdb->query( $wpdb->prepare( 'DELETE FROM ' . flxai_table( 'log' ) . ' WHERE ts < %d', time() - $days * DAY_IN_SECONDS ) ); // phpcs:ignore
-		$bdays = max( 1, min( 365, (int) flxai_setting( 'log_body_days', 30 ) ) );
-		$wpdb->query( $wpdb->prepare( 'DELETE FROM ' . flxai_table( 'log_body' ) . ' WHERE ts < %d', time() - $bdays * DAY_IN_SECONDS ) ); // phpcs:ignore
+		// 0 = sınırsız (varsayılan): kayıt silinmez.
+		$days = flxai_log_days( 'log_days' );
+		if ( $days ) {
+			$wpdb->query( $wpdb->prepare( 'DELETE FROM ' . flxai_table( 'log' ) . ' WHERE ts < %d', time() - $days * DAY_IN_SECONDS ) ); // phpcs:ignore
+		}
+		$bdays = flxai_log_days( 'log_body_days' );
+		if ( $bdays ) {
+			$wpdb->query( $wpdb->prepare( 'DELETE FROM ' . flxai_table( 'log_body' ) . ' WHERE ts < %d', time() - $bdays * DAY_IN_SECONDS ) ); // phpcs:ignore
+		}
 		// Görsel/video iş kayıtları; üretilen dosyalar uploads/flxai-media'da kalır.
 		$mdays = max( 7, (int) flxai_setting( 'media_days', 90 ) );
 		$wpdb->query( $wpdb->prepare( 'DELETE FROM ' . flxai_table( 'media' ) . ' WHERE ts < %d', time() - $mdays * DAY_IN_SECONDS ) ); // phpcs:ignore

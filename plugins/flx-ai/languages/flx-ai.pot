@@ -771,7 +771,13 @@ msgstr ""
 msgid "Kullanım kayıtlarını sakla"
 msgstr ""
 
+msgid "Sınırsız"
+msgstr ""
+
 msgid "gün"
+msgstr ""
+
+msgid "Boş bırakın: kayıtlar sınırsız saklanır. Gün girerseniz daha eski kayıtlar günde bir kez silinir."
 msgstr ""
 
 msgid "İçerik kaydı"
@@ -781,6 +787,9 @@ msgid "Giden/gelen içeriği de sakla (kısaltılmış; e-posta, telefon, IBAN v
 msgstr ""
 
 msgid "gün sakla"
+msgstr ""
+
+msgid "Boş bırakın: içerik de sınırsız saklanır."
 msgstr ""
 
 msgid "Kaldırınca"
