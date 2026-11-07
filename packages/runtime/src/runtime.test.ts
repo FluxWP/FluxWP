@@ -220,10 +220,10 @@ describe('prefs, devices and etag', () => {
   it('keeps the cached config on 304 and reads wp paging headers', async () => {
     const first = await loadConfig(api);
     expect(first.notModified).toBe(false);
-    expect(first.etag).toBe('"demo-config-032"');
+    expect(first.etag).toBe('"demo-config-032-menu"');
     expect(first.value?.schema).toBe('flx-app-config/1');
     const again = await loadConfig(api, undefined, first.etag);
-    expect(again).toMatchObject({ notModified: true, value: null, etag: '"demo-config-032"' });
+    expect(again).toMatchObject({ notModified: true, value: null, etag: '"demo-config-032-menu"' });
     const page = await api<unknown[]>('wp/v2/posts', { raw: true, query: { per_page: 3, page: 1 } });
     expect(page.headers.get('X-WP-TotalPages')).toBe('3');
     expect(page.headers.get('x-wp-total')).toBe('8');

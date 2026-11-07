@@ -19,8 +19,16 @@ describe('localized fictional demo transport', () => {
     expect(posts[0].title.rendered).toBe('Our new product collection is live');
     expect(manifest.modules.crm.screens.contacts.title).toBe('Contacts');
     expect(config.shell.drawer.groups[0].label).toBe('Content');
+    expect(config.shell.tabs.find((tab: {id: string}) => tab.id === 'more').label).toBe('$t:shell.nav.more');
     expect(JSON.stringify([me, dashboard, posts, config])).not.toMatch(/Dernek|Vakıf|Foundation|Association/);
     expect(demoMe.user.name).toBe('Demo Kullanıcı'); // A translation never mutates source fixtures.
+  });
+
+  it('refreshes a demo config cached before the Menu localization fix', async () => {
+    setDemoLocale('en');
+    const response = await request('flxapp/v1/config', { headers: { 'If-None-Match': '"en-demo-config-032"' } });
+    expect(response.status).toBe(200);
+    expect((await response.json()).shell.tabs.find((tab: {id: string}) => tab.id === 'more').label).toBe('$t:shell.nav.more');
   });
 
   it('keeps WordPress pagination headers while localizing Response handlers', async () => {
