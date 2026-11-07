@@ -7,6 +7,7 @@ import { AccountCard } from './AccountCard';
 import { BrandLogo } from './BrandLogo';
 import { TitleBar } from './TitleBar';
 import { UpdateBanner } from './UpdateBanner';
+import { SidebarRail } from './SidebarRail';
 import { useSidebar, SIDEBAR_MIN, SIDEBAR_MAX } from '../state/sidebar';
 import type { Route } from '../state/route';
 import type { SideGroup, SideLink } from '../shell/links';
@@ -24,7 +25,7 @@ export function Sidebar({ account, pins, groups, activeId, childId, onSearch, on
   actions?: SideLink[];
 }) {
   const { t } = useTranslation();
-  const { width, collapsed, open, closedGroups, setWidth, toggleOpen, toggleGroup } = useSidebar();
+  const { width, collapsed, open, closedGroups, setWidth, toggle, toggleOpen, toggleGroup } = useSidebar();
   const [resizing, setResizing] = useState(false);
 
   useEffect(() => {
@@ -42,19 +43,31 @@ export function Sidebar({ account, pins, groups, activeId, childId, onSearch, on
     setResizing(true);
     document.documentElement.classList.add('flux-resizing');
   };
-  const onResizeMove = (e: React.PointerEvent) => resizing && setWidth(startW.current + e.clientX - startX.current);
+  const onResizeMove = (e: React.PointerEvent) => {
+    if (!resizing) return;
+    const next = startW.current + e.clientX - startX.current;
+    if (next < 150) {
+      const handle = e.currentTarget as HTMLElement;
+      if (handle.hasPointerCapture(e.pointerId)) handle.releasePointerCapture(e.pointerId);
+      onResizeUp();
+      setWidth(startW.current);
+      toggle();
+      return;
+    }
+    setWidth(next);
+  };
   const onResizeUp = () => (setResizing(false), document.documentElement.classList.remove('flux-resizing'));
   useEffect(() => () => document.documentElement.classList.remove('flux-resizing'), []);
   const bell = actions.find((a) => a.route.kind === 'shell' && a.route.name === 'notifications');
 
   return (
-    <aside className={'sidebar' + (resizing ? ' resizing' : '') + (collapsed ? ' collapsed' : '')} style={{ width: collapsed ? 0 : width }} aria-hidden={collapsed}>
-      <div className="sidebar-in" style={{ width }}>
+    <aside id="flux-sidebar" className={'sidebar' + (resizing ? ' resizing' : '') + (collapsed ? ' collapsed' : '')} style={{ width: collapsed ? 72 : width }} aria-label={t('nav.menu')}>
+      <div className="sidebar-in" style={{ width: collapsed ? 72 : width }}>
         <div className="sidebar-top" data-tauri-drag-region>
-          <TitleBar />
-          <div className="brand-logo" data-tauri-drag-region><BrandLogo /></div>
+          {!collapsed && <TitleBar />}
+          <div className="brand-logo" data-tauri-drag-region>{collapsed ? <img src="./brand/icon.svg" alt="" width={36} height={36}/> : <BrandLogo />}</div>
           <div className="fx-row">
-            <button className="search-btn" onClick={onSearch}>
+            <button className="search-btn" onClick={onSearch} aria-label={t('nav.search')} title={t('nav.search')}>
               <Search size={15} />
               <span className="grow">{t('nav.search')}</span>
               <kbd>{MOD_KEY}K</kbd>
@@ -64,7 +77,7 @@ export function Sidebar({ account, pins, groups, activeId, childId, onSearch, on
             </button>
           </div>
         </div>
-        <nav className="nav" aria-label={t('nav.menu')}>
+        <>{collapsed ? <SidebarRail key={account.id} pins={pins} groups={groups} activeId={activeId} childId={childId} onOpen={onOpen}/> : <nav className="nav" aria-label={t('nav.menu')}>
           {pins.length > 0 && <Pins pins={pins} activeId={activeId} childId={childId} onOpen={onOpen} />}
           {groups.map((g) => {
             const shut = g.collapsed ? !closedGroups.includes(g.id) : closedGroups.includes(g.id);
@@ -119,7 +132,7 @@ export function Sidebar({ account, pins, groups, activeId, childId, onSearch, on
               </section>
             );
           })}
-        </nav>
+        </nav>}</>
         <div className="sidebar-foot">
           <UpdateBanner />
           <AccountCard active={account} />
@@ -140,6 +153,7 @@ export function Sidebar({ account, pins, groups, activeId, childId, onSearch, on
           onLostPointerCapture={onResizeUp}
           onDoubleClick={() => setWidth(260)}
           onKeyDown={(e) => {
+            if (e.key === 'ArrowLeft' && width === SIDEBAR_MIN) { e.preventDefault(); toggle(); return; }
             const next = e.key === 'Home' ? SIDEBAR_MIN : e.key === 'End' ? SIDEBAR_MAX : e.key === 'Enter' ? 260 : e.key === 'ArrowLeft' ? width - (e.shiftKey ? 40 : 10) : e.key === 'ArrowRight' ? width + (e.shiftKey ? 40 : 10) : null;
             if (next !== null) { e.preventDefault(); setWidth(next); }
           }}
