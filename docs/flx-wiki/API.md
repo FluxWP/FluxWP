@@ -114,3 +114,5 @@ With Flux Lang active, `flx_wiki` is a translatable post type. Wiki preset items
 `wiki_section` accepts `translations: {"en": {"name": "Setup", "description": "..."}, "tr": {"name": "Kurulum"}}`. Sections keep a shared slug. Page lists and search caches follow the requested Flux Lang language; live REST search carries `lang`.
 
 `flxwk_intro` filters the displayed introduction string. Presets can localize their supplied introduction while preserving administrator edits.
+
+Translated items may set `source_language` explicitly (e.g. `tr`) when linking an existing source whose language was not previously assigned. This sets the language relationship without replacing manually edited source content.

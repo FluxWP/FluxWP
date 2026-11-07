@@ -164,7 +164,7 @@ function flxwk_preset_importers( $t ) {
 					flxl_set_post_language( $new, $language );
 					$original = $source ? flxwk_preset_key( $source ) : 0;
 					if ( $original ) {
-						flxl_link_translations( array( flxl_post_language( $original ) => $original, $language => $new ) );
+						flxl_link_translations( array( sanitize_key( $item['source_language'] ?? flxl_post_language( $original ) ) => $original, $language => $new ) );
 					}
 				}
 			}
