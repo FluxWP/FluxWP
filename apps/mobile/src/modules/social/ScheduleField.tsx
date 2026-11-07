@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {Platform,View} from 'react-native';
-import DateTimePicker from '@expo/ui/community/datetime-picker';
+import {DateTimePicker} from '@expo/ui/community/datetime-picker';
 import {useTranslation} from 'react-i18next';
 import {useUnistyles} from 'react-native-unistyles';
 import {Sheet} from '@/ui/Sheet';
