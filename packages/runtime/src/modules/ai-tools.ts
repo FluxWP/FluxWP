@@ -18,11 +18,11 @@ interface ToolChange { revision: string; changes: Record<string, boolean>; bulk?
 const emptyFilter: AiToolFilter = { q: '', source: '', kind: '', state: '' };
 
 /** Mount the view with an account key; no state or draft is shared between account views. */
-export function useAiTools() {
+export function useAiTools(initialSource='') {
   const { account, api, renderer } = useScope(); const client = useQueryClient();
   const active = useRef(true);
   useEffect(() => { active.current = true; return () => { active.current = false; }; }, []);
-  const [filter, changeFilter] = useState<AiToolFilter>(emptyFilter); const [search, changeSearch] = useState(''); const [page, setPage] = useState(1);
+  const [filter, changeFilter] = useState<AiToolFilter>({...emptyFilter,source:initialSource}); const [search, changeSearch] = useState(''); const [page, setPage] = useState(1);
   const [draft, setDraft] = useState<Record<string, boolean>>({}); const [revision, setRevision] = useState('');
   const [selected, setSelected] = useState<string[]>([]); const [matching, setMatching] = useState(false);
   const [excluded, setExcluded] = useState<string[]>([]);

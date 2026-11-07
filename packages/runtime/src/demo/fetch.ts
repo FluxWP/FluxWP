@@ -11,6 +11,7 @@ import { comments, contacts, crm, pages, posts } from './data';
 import { nativeAdminDemoRoutes } from './native-admin';
 import { aiBillingDemoRoutes } from './ai-billing';
 import { aiToolsDemoRoutes } from './ai-tools';
+import { aiSystemsDemoRoutes } from './ai-systems';
 
 export const DEMO_SITE = DEMO_ORIGIN;
 
@@ -35,7 +36,7 @@ const statusIn = (status: string, q: Q) => {
   return !want || want === 'all' || want.split(',').includes(status);
 };
 
-const ETAGS: Record<string, string> = { 'flxapp/v1/config': 'demo-config-native-admin-032-menu', 'flxapp/v1/manifest': 'demo-manifest-ai-tools' };
+const ETAGS: Record<string, string> = { 'flxapp/v1/config': 'demo-config-native-admin-032-menu', 'flxapp/v1/manifest': 'demo-manifest-ai-systems' };
 
 let prefs: Record<string, unknown> = {
   order: [], hidden: [], pinned: [], forceWeb: [], tabs: [], cardOrder: [], cardHidden: [],
@@ -46,6 +47,7 @@ let prefs: Record<string, unknown> = {
 let devices: { id: number; device_id?: string; token?: string; current: boolean }[] = [];
 
 const routes: [string, RegExp, Handler][] = [
+  ...aiSystemsDemoRoutes,
   ...aiToolsDemoRoutes,
   ...aiBillingDemoRoutes,
   ...nativeAdminDemoRoutes(),

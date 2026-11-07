@@ -3,7 +3,7 @@
   "appVersion": "0.3.0",
   "moduleCount": 19,
   "screenCount": 87,
-  "explicitWebCount": 16,
+  "explicitWebCount": 15,
   "versionGatedScreenCount": 81,
   "missingNativeComponents": [],
   "pluginsWithoutPublishedManifest": [
@@ -294,13 +294,13 @@
       "plugin": "flx-ai",
       "module": "ai",
       "screen": "systems",
-      "type": "web",
+      "type": "native",
       "source": "plugins/flx-ai/app/manifest.json",
       "minimumApp": "1.0.0",
       "versionGated": true,
-      "component": null,
-      "componentRegistered": null,
-      "path": "admin.php?page=flx-ai-systems",
+      "component": "flxai-systems",
+      "componentRegistered": true,
+      "path": null,
       "routes": [
         "admin.php?page=flx-ai-systems"
       ],

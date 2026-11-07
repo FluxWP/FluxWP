@@ -6,10 +6,11 @@ import { useAiTools, type AiToolFilter, type AiToolRow } from '@fluxwp/runtime/s
 import { ResizablePane, Select } from '@fluxwp/ui';
 import './native-admin.css';
 import './ai-tools.css';
+import { useRoute } from '../state/route';
 
-export function AiToolsScreen() { const account = useAccount(); return <AiToolsView key={account.id}/>; }
-function AiToolsView() {
-  const { t } = useTranslation(); const account = useAccount(); const c = useAiTools(); const data = c.query.data;
+export function AiToolsScreen() { const account = useAccount(); const route = useRoute(s=>s.route); const source = 'params' in route ? route.params?.source ?? '' : ''; return <AiToolsView key={`${account.id}|${source}`} source={source}/>; }
+function AiToolsView({source}:{source:string}) {
+  const { t } = useTranslation(); const account = useAccount(); const c = useAiTools(source); const data = c.query.data;
   const unavailable = c.busy || c.query.isPlaceholderData;
   const visible = data?.items.filter(row => !row.dupe) ?? [];
   const selectedPage = visible.length > 0 && visible.every(row => c.isSelected(row.name));

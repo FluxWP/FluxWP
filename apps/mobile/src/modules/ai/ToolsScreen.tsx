@@ -9,9 +9,9 @@ import { Select } from '@/ui/Select';
 import { Sheet } from '@/ui/Sheet';
 import { useScreenTitle } from '../kit';
 
-export default function ToolsScreen(_props: { params: Record<string, string> }) { const account = useAccount(); return <ToolsView key={account.id}/>; }
-function ToolsView() {
-  const { t } = useTranslation(); const c = useAiTools(); const data = c.query.data; const { height } = useWindowDimensions();
+export default function ToolsScreen({params}: { params: Record<string, string> }) { const account = useAccount(); return <ToolsView key={`${account.id}|${params.source??''}`} source={params.source??''}/>; }
+function ToolsView({source}:{source:string}) {
+  const { t } = useTranslation(); const c = useAiTools(source); const data = c.query.data; const { height } = useWindowDimensions();
   useScreenTitle(t('aiTools.title'));
   const unavailable = c.busy || c.query.isPlaceholderData;
   const enabled = (row: AiToolRow) => c.draft[row.name] ?? !row.off;

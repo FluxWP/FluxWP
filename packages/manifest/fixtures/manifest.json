@@ -879,6 +879,14 @@
           "fallback": {
             "web": "admin.php?page=flx-ai-tools"
           }
+        },
+        "systems": {
+          "type": "native",
+          "title": "$t:aiSystems.title",
+          "component": "flxai-systems",
+          "fallback": {
+            "web": "admin.php?page=flx-ai-systems"
+          }
         }
       },
       "routes": {
@@ -890,6 +898,9 @@
         },
         "admin.php?page=flx-ai-tools": {
           "screen": "tools"
+        },
+        "admin.php?page=flx-ai-systems": {
+          "screen": "systems"
         }
       },
       "schema": "flx-app-manifest/1",
