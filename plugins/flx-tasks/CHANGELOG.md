@@ -1,7 +1,11 @@
 # Flux Tasks — Değişiklikler
 
-## 0.8.11
+## 0.8.12
 - Güvenlik (CodeQL): `h()` çocukları yalnız DOM düğümü ya da düz metin olarak eklenir.
+
+## 0.8.11
+- Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
+
 
 ## 0.8.10
 - Güvenlik (CodeQL): dosya adresi yalnız sayısal dosya kimliğiyle kurulur (`Y.fileUrl`); DOM'dan okunan `data-file` değeri adrese ham girmez.

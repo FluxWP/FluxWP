@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.1.6
+- Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
+
+
 ## 0.1.5
 - Yeni eklenti aktarımdan önce etkinleştirilip kendi tablolarını doldurduysa (ör. Flux Tasks hoş geldin görevi) eski tablo artık atlanmıyor: yeni tablo `<ad>_bakAAGG` adıyla yedeklenir, eski veri onun yerine taşınır. Eski tablo boşsa yeni tabloya dokunulmaz. Aktarım yeniden çalıştırılınca önceden atlanan tablolar da taşınır.
 - Yeni adım **Şifreli ayarlar**: eski önekten türetilen anahtarla şifrelenmiş değerler (Flux Mail SMTP/IMAP parolaları ve WhatsApp/SMS bağlantı anahtarları, Flux AI anahtarları, Flux Social hesap jetonları, iyzico kart referansları) yeni anahtarla yeniden şifrelenir. Önceden ad eşlemesi şifreli metnin içini de değiştirebiliyordu; artık şifreli değerlere dokunmaz.

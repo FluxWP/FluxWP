@@ -17,7 +17,7 @@ const FLXAPP_PREFIX = array(
  * Yeni belirteç kaydeder, düz metni döndürür (yalnız bu anda görünür).
  *
  * @param string $kind access|refresh|key
- * @param array  $a    user_id, client_id, grant_id, name, scope, ttl (sn; 0 = süresiz)
+ * @param array  $a    user_id, client_id, app_id, grant_id, name, scope, ttl (sn; 0 = süresiz)
  * @return string
  */
 function flxapp_issue( $kind, array $a ) {
@@ -33,6 +33,7 @@ function flxapp_issue( $kind, array $a ) {
 			'hint'      => substr( $token, -4 ),
 			'user_id'   => (int) $a['user_id'],
 			'client_id' => substr( (string) ( $a['client_id'] ?? '' ), 0, 100 ),
+			'app_id'    => substr( (string) ( $a['app_id'] ?? '' ), 0, 100 ),
 			'grant_id'  => (string) ( $a['grant_id'] ?? '' ),
 			'name'      => substr( (string) ( $a['name'] ?? '' ), 0, 190 ),
 			'scope'     => substr( (string) ( $a['scope'] ?? '' ), 0, 190 ),
@@ -69,12 +70,15 @@ function flxapp_revoke_grant( $grant_id ) {
 		return;
 	}
 	$wpdb->update( flxapp_table(), array( 'revoked' => 1 ), array( 'grant_id' => (string) $grant_id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
+	/** Oturum kapandı (cihaz kaydı ve push belirteci de silinir). */
+	do_action( 'flxapp_grant_revoked', (string) $grant_id );
 }
 
 /** Kullanıcı silinince ya da parolası değişince tüm belirteçleri iptal. */
 function flxapp_revoke_user( $user_id ) {
 	global $wpdb;
 	$wpdb->update( flxapp_table(), array( 'revoked' => 1 ), array( 'user_id' => (int) $user_id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
+	do_action( 'flxapp_user_revoked', (int) $user_id );
 }
 add_action( 'delete_user', 'flxapp_revoke_user' );
 add_action(
@@ -102,7 +106,7 @@ function flxapp_request_token() {
 			}
 		}
 	}
-	$token = 0 === stripos( $auth, 'Bearer ' ) ? trim( substr( $auth, 7 ) ) : trim( (string) wp_unslash( $_SERVER['HTTP_X_FLX_TOKEN'] ?? '' ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+	$token = 0 === stripos( $auth, 'Bearer ' ) ? trim( substr( $auth, 7 ) ) : trim( (string) wp_unslash( $_SERVER['HTTP_X_FLUXWP_TOKEN'] ?? $_SERVER['HTTP_X_FLX_TOKEN'] ?? '' ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	if ( 0 === strpos( $token, FLXAPP_PREFIX['access'] ) || 0 === strpos( $token, FLXAPP_PREFIX['key'] ) ) {
 		return preg_replace( '/[^A-Za-z0-9_\-]/', '', $token );
 	}

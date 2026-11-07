@@ -1,0 +1,81 @@
+{
+  "schema": "flx-app-bootstrap/1",
+  "site": {
+    "name": "Demo Site",
+    "description": "",
+    "url": "https://demo.fluxapp.local",
+    "admin_url": "https://demo.fluxapp.local/wp-admin/",
+    "rest_url": "https://demo.fluxapp.local/wp-json/",
+    "icon": "",
+    "locale": "tr_TR",
+    "timezone": "Europe/Istanbul",
+    "https": true
+  },
+  "auth": {
+    "methods": [
+      "oauth",
+      "otp",
+      "apikey"
+    ],
+    "clients": {
+      "mobile": "flx-mobil",
+      "desktop": "flx-masaustu"
+    },
+    "redirects": {
+      "mobile": [
+        "fluxwp://oauth/callback"
+      ],
+      "desktop": [
+        "http://127.0.0.1/callback",
+        "fluxapp://oauth/callback"
+      ],
+      "loopback_any_port": true
+    },
+    "authorize": "https://demo.fluxapp.local/wp-login.php?action=flxapp_authorize",
+    "login_url": "https://demo.fluxapp.local/fluxadmin/",
+    "scopes": [
+      "flx",
+      "mcp",
+      "offline_access"
+    ],
+    "pkce": "S256",
+    "prompt_login": true
+  },
+  "apps": {
+    "generic": true,
+    "clients": [],
+    "preset": null
+  },
+  "theme": {
+    "light": {
+      "primary": "#1F2937",
+      "accent": "#3B82F6",
+      "bg": "#FBF9F6",
+      "surface": "#FFFFFF",
+      "surface2": "#F8F5F0",
+      "border": "#E6E0D6",
+      "text": "#111827",
+      "textMuted": "#4B5563"
+    },
+    "dark": {
+      "primary": "#3B82F6",
+      "accent": "#F59E0B"
+    }
+  },
+  "packages": [
+    {
+      "slug": "flx-crm",
+      "name": "Flux CRM",
+      "type": "plugin"
+    },
+    {
+      "slug": "fluxwp",
+      "name": "FluxWP",
+      "type": "theme"
+    }
+  ],
+  "min_app": "0.1.0",
+  "min_app_desktop": "0.3.0",
+  "flx_app": "0.4.0",
+  "api": "flxapp/v1"
+}

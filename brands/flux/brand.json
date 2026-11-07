@@ -27,5 +27,30 @@
   "appIcon": {
     "background": null
   },
-  "updateUrl": "https://updater.fluxwp.com"
+  "updateUrl": "https://updater.fluxwp.com",
+  "ios": {
+    "bundleIdentifier": "com.fluxwp.app"
+  },
+  "android": {
+    "package": "com.fluxwp.app"
+  },
+  "mobile": {
+    "scheme": "fluxwp",
+    "oauthClientId": "flx-mobil",
+    "loginMethods": [
+      "oauth",
+      "apikey"
+    ],
+    "splash": {
+      "background": "#F3F2EF",
+      "backgroundDark": "#101114"
+    }
+  },
+  "allowedSites": [],
+  "locked": [],
+  "eas": {
+    "projectId": null,
+    "owner": "fluxwp",
+    "updatesChannel": "production"
+  }
 }

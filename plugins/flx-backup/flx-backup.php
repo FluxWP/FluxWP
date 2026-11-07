@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Backup
  * Description:       Her eklenti/tema güncellemesinden önce otomatik yedek alır, zamanlanmış tam yedekler, kota ve saklama süresi yönetimi, grafikli depolama paneli ve seçerek geri yükleme. Hostinger paylaşımlı barındırma ile uyumludur.
- * Version:           1.3.1
+ * Version:           1.4.1
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -20,7 +20,7 @@ if ( defined( 'FLXY_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXY_VERSION', '1.3.1' );
+define( 'FLXY_VERSION', '1.4.1' );
 define( 'FLXY_FILE', __FILE__ );
 define( 'FLXY_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXY_URL', plugin_dir_url( __FILE__ ) );
@@ -39,12 +39,25 @@ require_once FLXY_DIR . 'includes/class-flxy-pre-update.php';
 require_once FLXY_DIR . 'includes/class-flxy-cron.php';
 require_once FLXY_DIR . 'includes/class-flxy-checks.php';
 require_once FLXY_DIR . 'includes/api.php';
+require_once FLXY_DIR . 'includes/app.php';
 
 add_action(
 	'init',
 	static function () {
 		load_plugin_textdomain( 'flx-backup', false, dirname( plugin_basename( FLXY_FILE ) ) . '/languages' );
-	}
+	},
+	1
+);
+add_filter(
+	'load_textdomain_mofile',
+	static function ( $mofile, $domain ) {
+		if ( 'flx-backup' === $domain && ! is_readable( $mofile ) && ! is_readable( str_replace( '.mo', '.l10n.php', $mofile ) ) && preg_match( '/-en_[A-Z]{2}\.mo$/', $mofile ) ) {
+			return FLXY_DIR . 'languages/flx-backup-en_US.mo';
+		}
+		return $mofile;
+	},
+	10,
+	2
 );
 
 register_activation_hook( FLXY_FILE, array( 'FLXY_Cron', 'activate' ) );

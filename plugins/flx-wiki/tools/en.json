@@ -169,5 +169,19 @@
 "Sayfa düzeni": "Page layout",
 "Solda sayfa menüsü ve arama": "Page menu and search on the left",
 "Sağda \"Bu sayfada\" (içindekiler)": "\"On this page\" (contents) on the right",
-"Wiki bölümü": "Wiki section"
+"Wiki bölümü": "Wiki section",
+"Bir kelime yazın.": "Type a word.",
+"Durum": "Status",
+"Kaydedildi": "Saved",
+"Panelde aç": "Open in panel",
+"Sayfa": "Page",
+"Sayfa yok": "No pages",
+"Sayfalarda ara": "Search pages",
+"Sonuç yok": "No results",
+"Taslak": "Draft",
+"Yayımlandı": "Published",
+"İlk wiki sayfasını buradan ekleyin.": "Add the first wiki page here.",
+"İçerik": "Content",
+"\"%1$s\" bulunamadı; \"%2$s\" için sonuçlar gösteriliyor.": "No results for \"%1$s\"; showing results for \"%2$s\".",
+"%d sonucun hepsini gör": "See all %d results"
 }

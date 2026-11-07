@@ -31,9 +31,16 @@ function flxseo_defaults() {
 		'email'          => '',
 		'same_as'        => '',
 		'twitter'        => '',
+		'knows_about'    => '',
+		'area_served'    => '',
+		'donate_label'   => '',
+		'donate_url'     => '',
 		'verify_google'  => '',
 		'verify_bing'    => '',
 		'verify_yandex'  => '',
+		'verify_naver'   => '',
+		'verify_seznam'  => '',
+		'verify_baidu'   => '',
 		'noindex_shop'   => 1,
 		'noindex_search' => 1,
 		'noindex_author' => 1,
@@ -140,6 +147,81 @@ function flxseo_admin_url( $tab = '' ) {
 	return admin_url( 'admin.php?page=flxseo' . ( $tab && 'genel' !== $tab ? '&tab=' . $tab : '' ) );
 }
 
+/**
+ * Doğrulama alanı olan arama motorları: ayar anahtarı => ad, panel adresi, açıklama.
+ * Meta etiket adları head.php'de (flxseo_head).
+ */
+function flxseo_search_engines() {
+	return array(
+		'verify_google' => array(
+			'name'        => 'Google Search Console',
+			'url'         => 'https://search.google.com/search-console',
+			'link'        => __( 'Search Console\'u aç', 'flx-seo' ),
+			'placeholder' => '<meta name="google-site-verification" …>',
+			'help'        => __( 'Özellik ekle › URL öneki › HTML etiketi. DNS ile doğruladıysanız boş bırakın.', 'flx-seo' ),
+		),
+		'verify_bing'   => array(
+			'name'        => 'Bing Webmaster Tools',
+			'url'         => 'https://www.bing.com/webmasters',
+			'link'        => __( 'Bing Webmaster\'ı aç', 'flx-seo' ),
+			'placeholder' => '<meta name="msvalidate.01" …>',
+			'help'        => __( 'En kolayı "Google Search Console\'dan içe aktar": doğrulama ve sitemap kendiliğinden gelir, kod gerekmez. Elle eklerken HTML Meta Tag kodunu yapıştırın. DuckDuckGo, Yahoo ve Ecosia sonuçları Bing\'den gelir.', 'flx-seo' ),
+		),
+		'verify_yandex' => array(
+			'name'        => 'Yandex Webmaster',
+			'url'         => 'https://webmaster.yandex.com/sites/add/',
+			'link'        => __( 'Yandex Webmaster\'ı aç', 'flx-seo' ),
+			'placeholder' => '<meta name="yandex-verification" …>',
+			'help'        => __( 'Site ekle › Meta etiketi. Doğruladıktan sonra Indexing › Sitemap files bölümüne sitemap adresini ekleyin.', 'flx-seo' ),
+		),
+		'verify_naver'  => array(
+			'name'        => 'Naver Search Advisor',
+			'url'         => 'https://searchadvisor.naver.com/',
+			'link'        => __( 'Naver Search Advisor\'ı aç', 'flx-seo' ),
+			'placeholder' => '<meta name="naver-site-verification" …>',
+			'help'        => __( 'Kore\'nin en büyük arama motoru. Site ekle › HTML etiketi; sonra Request › Submit sitemap. İsteğe bağlı.', 'flx-seo' ),
+		),
+		'verify_seznam' => array(
+			'name'        => 'Seznam Webmaster',
+			'url'         => 'https://search.seznam.cz/',
+			'link'        => __( 'Seznam Webmaster\'ı aç', 'flx-seo' ),
+			'placeholder' => '<meta name="seznam-wmt" …>',
+			'help'        => __( 'Çekya\'nın arama motoru (Webmaster bağlantısı sayfa altında). Meta etiketi yöntemi. İsteğe bağlı.', 'flx-seo' ),
+		),
+		'verify_baidu'  => array(
+			'name'        => 'Baidu Webmaster',
+			'url'         => 'https://ziyuan.baidu.com/site/index',
+			'link'        => __( 'Baidu Webmaster\'ı aç', 'flx-seo' ),
+			'placeholder' => '<meta name="baidu-site-verification" …>',
+			'help'        => __( 'Çin\'in arama motoru; kayıt için Çin telefon numarası gerekebilir. Çin\'e hitap etmiyorsanız gerek yok.', 'flx-seo' ),
+		),
+	);
+}
+
+/** Makale (Article schema, og:type article) sayılan yazı türleri. Ön ayarlar kendi türlerini ekler (ör. etkinlik, proje). */
+function flxseo_article_types() {
+	return array_values( array_unique( (array) apply_filters( 'flxseo_article_types', array( 'post' ) ) ) );
+}
+
+/** Google Site Kit kurulu ve bir yönetici Google hesabını bağlamış mı. */
+function flxseo_sitekit_connected() {
+	return defined( 'GOOGLESITEKIT_VERSION' ) && (bool) get_option( 'googlesitekit_has_connected_admins', false );
+}
+
+/** Son IndexNow toplu bildiriminin kısa metni. */
+function flxseo_indexnow_last_text( $last ) {
+	if ( empty( $last['time'] ) ) {
+		return '';
+	}
+	$code = (int) ( $last['code'] ?? 0 );
+	/* translators: 1: tarih, 2: adres sayısı, 3: HTTP kodu */
+	$t = sprintf( __( '%1$s · %2$d adres · HTTP %3$d', 'flx-seo' ), flx_date( (int) $last['time'], 'datetime' ), (int) ( $last['count'] ?? 0 ), $code );
+	if ( $code >= 400 ) {
+		$t .= ' · ' . ( 403 === $code ? __( 'anahtar dosyası doğrulanamadı', 'flx-seo' ) : ( 422 === $code ? __( 'adresler site alan adıyla eşleşmiyor', 'flx-seo' ) : ( 429 === $code ? __( 'çok sık istek, sonra tekrar deneyin', 'flx-seo' ) : __( 'hata', 'flx-seo' ) ) ) );
+	}
+	return $t;
+}
+
 function flxseo_tabs() {
 	return array(
 		'genel'   => __( 'Genel', 'flx-seo' ),
@@ -235,9 +317,9 @@ function flxseo_sanitize( $in ) {
 	foreach ( $d as $k => $v ) {
 		if ( is_int( $v ) ) {
 			$out[ $k ] = empty( $in[ $k ] ) ? 0 : 1;
-		} elseif ( in_array( $k, array( 'logo', 'og_image' ), true ) ) {
+		} elseif ( in_array( $k, array( 'logo', 'og_image', 'donate_url' ), true ) ) {
 			$out[ $k ] = esc_url_raw( $in[ $k ] ?? '' );
-		} elseif ( in_array( $k, array( 'home_desc', 'same_as', 'llms_intro' ), true ) ) {
+		} elseif ( in_array( $k, array( 'home_desc', 'same_as', 'llms_intro', 'knows_about' ), true ) ) {
 			$out[ $k ] = sanitize_textarea_field( $in[ $k ] ?? '' );
 		} elseif ( 0 === strpos( $k, 'verify_' ) ) {
 			// Doğrulama: tam <meta> etiketi yapıştırılırsa yalnızca content değeri alınır.
@@ -303,8 +385,8 @@ function flxseo_settings_page() {
 		// Diğer sekmedeki değerler kaybolmasın.
 		foreach ( $o as $k => $v ) {
 			$here = 'genel' === $tab
-				? in_array( $k, array( 'enabled', 'site_name', 'alt_name', 'sep', 'home_title', 'home_desc', 'og_image', 'verify_google', 'verify_bing', 'verify_yandex', 'noindex_shop', 'noindex_search', 'noindex_author', 'noindex_tags', 'auto_alt', 'indexnow' ), true )
-				: in_array( $k, array( 'org_name', 'org_type', 'founding', 'logo', 'street', 'locality', 'postal', 'phone', 'email', 'same_as', 'twitter' ), true );
+				? in_array( $k, array( 'enabled', 'site_name', 'alt_name', 'sep', 'home_title', 'home_desc', 'og_image', 'verify_google', 'verify_bing', 'verify_yandex', 'verify_naver', 'verify_seznam', 'verify_baidu', 'noindex_shop', 'noindex_search', 'noindex_author', 'noindex_tags', 'auto_alt', 'indexnow' ), true )
+				: in_array( $k, array( 'org_name', 'org_type', 'founding', 'logo', 'street', 'locality', 'postal', 'phone', 'email', 'same_as', 'twitter', 'knows_about', 'area_served', 'donate_label', 'donate_url' ), true );
 			if ( ! $here ) {
 				printf( '<input type="hidden" name="%s[%s]" value="%s">', esc_attr( $n ), esc_attr( $k ), esc_attr( $v ) );
 			} elseif ( is_int( flxseo_defaults()[ $k ] ) ) {
@@ -322,10 +404,23 @@ function flxseo_settings_page() {
 			<tr><th scope="row"><label for="ys-ht">Ana sayfa başlığı</label></th><td><input id="ys-ht" class="large-text" maxlength="70" name="<?php echo esc_attr( $n ); ?>[home_title]" value="<?php echo esc_attr( $o['home_title'] ); ?>" placeholder="<?php echo esc_attr( flxseo_opt( 'home_title' ) ); ?>"></td></tr>
 			<tr><th scope="row"><label for="ys-hd">Ana sayfa açıklaması</label></th><td><textarea id="ys-hd" class="large-text" rows="3" maxlength="320" name="<?php echo esc_attr( $n ); ?>[home_desc]" placeholder="<?php echo esc_attr( flxseo_opt( 'home_desc' ) ); ?>"><?php echo esc_textarea( $o['home_desc'] ); ?></textarea><p class="description">150–160 karakter ideal. Boşsa site sloganı kullanılır.</p></td></tr>
 			<tr><th scope="row"><label for="ys-og">Varsayılan paylaşım görseli</label></th><td><input id="ys-og" class="large-text code" name="<?php echo esc_attr( $n ); ?>[og_image]" value="<?php echo esc_attr( $o['og_image'] ); ?>" placeholder="<?php echo esc_attr( FLXSEO_URL . 'assets/icons/og-varsayilan.jpg' ); ?>"><p class="description">Öne çıkan görseli olmayan sayfalarda kullanılır. 1200×630 JPG/PNG. Boşsa eklentinin görseli.</p></td></tr>
-			<tr><th scope="row">Arama motoru doğrulama</th><td>
-				<p><label>Google Search Console <input class="regular-text code" name="<?php echo esc_attr( $n ); ?>[verify_google]" value="<?php echo esc_attr( $o['verify_google'] ); ?>" placeholder="meta etiketini yapıştırın"></label></p>
-				<p><label>Bing Webmaster <input class="regular-text code" name="<?php echo esc_attr( $n ); ?>[verify_bing]" value="<?php echo esc_attr( $o['verify_bing'] ); ?>"></label></p>
-				<p><label>Yandex <input class="regular-text code" name="<?php echo esc_attr( $n ); ?>[verify_yandex]" value="<?php echo esc_attr( $o['verify_yandex'] ); ?>"></label></p></td></tr>
+			<tr id="search-engines"><th scope="row"><?php esc_html_e( 'Arama motorları', 'flx-seo' ); ?></th><td>
+				<p class="description"><?php esc_html_e( 'Google dışındaki arama motorları (Bing, Yandex, DuckDuckGo, Yahoo, Ecosia) siteyi ancak tanıtılınca hızlı tarar. Her birinin kendi panelinde siteyi ekleyin; doğrulama kodunu aşağıya yapıştırın, sitemap adresini gönderin.', 'flx-seo' ); ?></p>
+				<p><label for="flxseo-sitemap-url"><strong><?php esc_html_e( 'Sitemap adresi', 'flx-seo' ); ?></strong></label><br>
+					<input id="flxseo-sitemap-url" class="regular-text code" readonly value="<?php echo esc_attr( home_url( '/wp-sitemap.xml' ) ); ?>" onclick="this.select()">
+					<span class="description"><?php esc_html_e( 'robots.txt\'de de yazılı; Search Console, Bing ve Yandex panellerine bu adresi ekleyin.', 'flx-seo' ); ?></span></p>
+				<table class="widefat striped" style="max-width:760px;margin-top:8px"><tbody>
+				<?php foreach ( flxseo_search_engines() as $k => $e ) : ?>
+					<tr>
+						<td style="width:180px"><label for="flxseo-<?php echo esc_attr( $k ); ?>"><strong><?php echo esc_html( $e['name'] ); ?></strong></label><br>
+							<a href="<?php echo esc_url( $e['url'] ); ?>" target="_blank" rel="noopener"><?php echo esc_html( $e['link'] ); ?> ↗</a></td>
+						<td><input id="flxseo-<?php echo esc_attr( $k ); ?>" class="regular-text code" name="<?php echo esc_attr( $n ); ?>[<?php echo esc_attr( $k ); ?>]" value="<?php echo esc_attr( $o[ $k ] ); ?>" placeholder="<?php echo esc_attr( $e['placeholder'] ); ?>">
+							<?php echo $o[ $k ] ? '<span class="dashicons dashicons-yes-alt" style="color:#008a20" title="' . esc_attr__( 'Doğrulama etiketi sitede', 'flx-seo' ) . '"></span>' : ''; ?>
+							<?php if ( 'verify_google' === $k && flxseo_sitekit_connected() ) : ?><p><span class="dashicons dashicons-yes-alt" style="color:#008a20"></span> <?php esc_html_e( 'Google Site Kit ile bağlı; Search Console doğrulaması ve sitemap Site Kit\'te. Bu alanı boş bırakabilirsiniz.', 'flx-seo' ); ?></p><?php endif; ?>
+							<p class="description"><?php echo esc_html( $e['help'] ); ?></p></td>
+					</tr>
+				<?php endforeach; ?>
+				</tbody></table></td></tr>
 			<tr id="indexnow"><th scope="row">IndexNow</th><td>
 				<?php
 				$imsg = get_transient( 'flxseo_indexnow_msg_' . get_current_user_id() );
@@ -335,10 +430,11 @@ function flxseo_settings_page() {
 				}
 				$ilast = (array) get_option( 'flxseo_indexnow_last', array() );
 				?>
-				<p><label><input type="checkbox" name="<?php echo esc_attr( $n ); ?>[indexnow]" value="1" <?php checked( $o['indexnow'] ); ?>> Yayınlanan ve güncellenen sayfaları Bing, Yandex, DuckDuckGo (Bing üzerinden), Seznam ve Naver'e anında bildir</label></p>
-				<p class="description">Anahtar dosyası: <a href="<?php echo esc_url( home_url( '/' . flxseo_indexnow_key() . '.txt' ) ); ?>" target="_blank" rel="noopener"><?php echo esc_html( flxseo_indexnow_key() ); ?>.txt</a>. Google IndexNow kullanmaz; Google için Search Console'a sitemap ekleyin.
-				<?php if ( ! empty( $ilast['time'] ) ) : ?><br>Son toplu bildirim: <?php echo esc_html( wp_date( 'd.m.Y H:i', $ilast['time'] ) . ' · ' . (int) $ilast['count'] . ' adres · HTTP ' . (int) $ilast['code'] ); ?><?php endif; ?></p>
-				<p><a class="button" href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=flxseo_indexnow_all' ), 'flxseo_indexnow_all' ) ); ?>">Tüm siteyi şimdi bildir</a></p></td></tr>
+				<p><label><input type="checkbox" name="<?php echo esc_attr( $n ); ?>[indexnow]" value="1" <?php checked( $o['indexnow'] ); ?>> <?php esc_html_e( 'Yayınlanan ve güncellenen sayfaları Bing, Yandex, DuckDuckGo (Bing üzerinden), Seznam ve Naver\'e anında bildir', 'flx-seo' ); ?></label></p>
+				<p class="description"><?php esc_html_e( 'Anahtar dosyası:', 'flx-seo' ); ?> <a href="<?php echo esc_url( home_url( '/' . flxseo_indexnow_key() . '.txt' ) ); ?>" target="_blank" rel="noopener"><?php echo esc_html( flxseo_indexnow_key() ); ?>.txt</a>. <?php esc_html_e( 'Açıkken tüm site bir kez kendiliğinden bildirilir. Google IndexNow kullanmaz; Google için Search Console\'a sitemap ekleyin.', 'flx-seo' ); ?>
+				<?php if ( ! get_option( 'blog_public' ) ) : ?><br><strong><?php esc_html_e( 'Site arama motorlarına kapalı (Ayarlar › Okuma); IndexNow bildirim göndermez.', 'flx-seo' ); ?></strong><?php endif; ?>
+				<?php if ( ! empty( $ilast['time'] ) ) : ?><br><?php esc_html_e( 'Son toplu bildirim:', 'flx-seo' ); ?> <?php echo esc_html( flxseo_indexnow_last_text( $ilast ) ); ?><?php endif; ?></p>
+				<p><a class="button" href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=flxseo_indexnow_all' ), 'flxseo_indexnow_all' ) ); ?>"><?php esc_html_e( 'Tüm siteyi şimdi bildir', 'flx-seo' ); ?></a></p></td></tr>
 			<tr><th scope="row">Dizine ekleme</th><td>
 				<p><label><input type="checkbox" name="<?php echo esc_attr( $n ); ?>[noindex_shop]" value="1" <?php checked( $o['noindex_shop'] ); ?>> Sepet, ödeme ve Hesabım sayfaları dizine eklenmesin</label></p>
 				<p><label><input type="checkbox" name="<?php echo esc_attr( $n ); ?>[noindex_search]" value="1" <?php checked( $o['noindex_search'] ); ?>> Site içi arama sonuçları dizine eklenmesin</label></p>
@@ -350,11 +446,14 @@ function flxseo_settings_page() {
 			<tr><th scope="row"><label for="ys-on">Kurum adı</label></th><td><input id="ys-on" class="large-text" name="<?php echo esc_attr( $n ); ?>[org_name]" value="<?php echo esc_attr( $o['org_name'] ); ?>"></td></tr>
 			<tr><th scope="row"><label for="ys-ot">Kurum türü</label></th><td><select id="ys-ot" name="<?php echo esc_attr( $n ); ?>[org_type]"><?php foreach ( array( 'NGO' => 'Dernek / STK (NGO)', 'Organization' => 'Kurum (Organization)' ) as $k => $l ) : ?><option value="<?php echo esc_attr( $k ); ?>" <?php selected( $o['org_type'], $k ); ?>><?php echo esc_html( $l ); ?></option><?php endforeach; ?></select>
 				Kuruluş yılı <input class="small-text" name="<?php echo esc_attr( $n ); ?>[founding]" value="<?php echo esc_attr( $o['founding'] ); ?>"></td></tr>
-			<tr><th scope="row"><label for="ys-lg">Logo (kare)</label></th><td><input id="ys-lg" class="large-text code" name="<?php echo esc_attr( $n ); ?>[logo]" value="<?php echo esc_attr( $o['logo'] ); ?>" placeholder="<?php echo esc_attr( FLXSEO_URL . 'assets/icons/icon-512.png' ); ?>"><p class="description">Google bilgi paneli için. En az 112×112 PNG. Boşsa yaprak simgesi.</p></td></tr>
+			<tr><th scope="row"><label for="ys-lg">Logo (kare)</label></th><td><input id="ys-lg" class="large-text code" name="<?php echo esc_attr( $n ); ?>[logo]" value="<?php echo esc_attr( $o['logo'] ); ?>" placeholder="<?php echo esc_attr( FLXSEO_URL . 'assets/icons/icon-512.png' ); ?>"><p class="description">Google bilgi paneli için. En az 112×112 PNG. Boşsa Flux SEO simgesi.</p></td></tr>
 			<tr><th scope="row">Adres</th><td><input class="regular-text" name="<?php echo esc_attr( $n ); ?>[street]" value="<?php echo esc_attr( $o['street'] ); ?>" placeholder="Sokak, no"> <input class="regular-text" name="<?php echo esc_attr( $n ); ?>[locality]" value="<?php echo esc_attr( $o['locality'] ); ?>" placeholder="İlçe, il"> <input class="small-text" name="<?php echo esc_attr( $n ); ?>[postal]" value="<?php echo esc_attr( $o['postal'] ); ?>" placeholder="Posta kodu"></td></tr>
 			<tr><th scope="row">İletişim</th><td><input class="regular-text" name="<?php echo esc_attr( $n ); ?>[phone]" value="<?php echo esc_attr( $o['phone'] ); ?>" placeholder="+90 ..."> <input class="regular-text" name="<?php echo esc_attr( $n ); ?>[email]" value="<?php echo esc_attr( $o['email'] ); ?>" placeholder="e-posta"></td></tr>
 			<tr><th scope="row"><label for="ys-sa">Sosyal medya profilleri</label></th><td><textarea id="ys-sa" class="large-text code" rows="5" name="<?php echo esc_attr( $n ); ?>[same_as]" placeholder="https://www.instagram.com/...&#10;https://www.youtube.com/@..."><?php echo esc_textarea( $o['same_as'] ); ?></textarea><p class="description">Her satıra bir adres. Google kurum bilgisini bu profillerle eşleştirir.</p></td></tr>
 			<tr><th scope="row"><label for="ys-tw">X (Twitter) kullanıcı adı</label></th><td><input id="ys-tw" class="regular-text" name="<?php echo esc_attr( $n ); ?>[twitter]" value="<?php echo esc_attr( $o['twitter'] ); ?>" placeholder="@kullanici"></td></tr>
+			<tr><th scope="row"><label for="ys-ka"><?php esc_html_e( 'Uzmanlık konuları', 'flx-seo' ); ?></label></th><td><textarea id="ys-ka" class="large-text" rows="4" name="<?php echo esc_attr( $n ); ?>[knows_about]" placeholder="<?php esc_attr_e( 'Her satıra bir konu', 'flx-seo' ); ?>"><?php echo esc_textarea( $o['knows_about'] ); ?></textarea><p class="description"><?php esc_html_e( 'Kurumun uzman olduğu konular (schema knowsAbout). Arama motorları ve yapay zekâ asistanları kurumu bu konularla eşleştirir. Boşsa eklenmez.', 'flx-seo' ); ?></p></td></tr>
+			<tr><th scope="row"><label for="ys-as"><?php esc_html_e( 'Hizmet bölgesi', 'flx-seo' ); ?></label></th><td><input id="ys-as" class="regular-text" name="<?php echo esc_attr( $n ); ?>[area_served]" value="<?php echo esc_attr( $o['area_served'] ); ?>" placeholder="<?php esc_attr_e( 'ör. Türkiye', 'flx-seo' ); ?>"><p class="description"><?php esc_html_e( 'Hizmet verilen ülke (schema areaServed). Boşsa eklenmez.', 'flx-seo' ); ?></p></td></tr>
+			<tr><th scope="row"><label for="ys-dl"><?php esc_html_e( 'Bağış çağrısı', 'flx-seo' ); ?></label></th><td><input id="ys-dl" class="regular-text" name="<?php echo esc_attr( $n ); ?>[donate_label]" value="<?php echo esc_attr( $o['donate_label'] ); ?>" placeholder="<?php esc_attr_e( 'ör. Bağış yap', 'flx-seo' ); ?>"> <input class="regular-text code" name="<?php echo esc_attr( $n ); ?>[donate_url]" value="<?php echo esc_attr( $o['donate_url'] ); ?>" placeholder="<?php echo esc_attr( home_url( '/…/' ) ); ?>"><p class="description"><?php esc_html_e( 'Bağış kabul eden kurumlar için (schema DonateAction). Ad boşsa eklenmez; adres boşsa bağış sayfası kendiliğinden bulunur.', 'flx-seo' ); ?></p></td></tr>
 		<?php endif; ?>
 		</table>
 		<?php submit_button(); ?>

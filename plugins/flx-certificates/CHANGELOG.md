@@ -1,7 +1,15 @@
 # Changelog
 
-## 1.8.8
+## 1.8.10
 - Güvenlik (CodeQL): yönetim adresleri ve harita sorgusu `encodeURI` ile temizlenir.
+
+## 1.8.9
+- Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
+
+
+## 1.8.8
+- Uygulama manifesti: sertifika listesi ve detayı, gönder, iptal, kişiler, gönderim kuyruğu ve yeniden deneme. Şablonlar ve yeni sertifika (PDF önizleme) web görünümünde açılır.
+- Yeni okuma uçları: `GET /certificates` (liste), `GET /directory`, `GET /messages`, `GET /overview`. Yetki mevcut `flxs_use` / `flxs_dashboard` kurallarıyla aynıdır.
 
 ## 1.8.7
 - Güvenlik (CodeQL): şablon, etkinlik, personel ve alan kimlikleri HTML'e kaçışlanarak yazılır; harita yalnız https adresiyle yüklenir, "yeni" yönlendirmesi adresi doğrular.

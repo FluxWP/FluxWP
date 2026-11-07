@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name:       Flux App
- * Description:       Masaüstü uygulaması ve diğer istemciler için giriş: OAuth 2.0 (PKCE), kişisel API anahtarları, rol bazlı menü ve tek tıkla panel oturumu. MCP istemcileri de OAuth ile bağlanır.
- * Version:           0.3.10
+ * Description:       FluxWP masaüstü ve mobil uygulamasının sunucu tarafı: OAuth 2.0 (PKCE) giriş, cihazlar ve push, uygulama görünümü (config), eklenti ekranları (manifest), panel oturumu. MCP istemcileri de OAuth ile bağlanır.
+ * Version:           0.4.2
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -20,8 +20,8 @@ if ( defined( 'FLXAPP_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXAPP_VERSION', '0.3.10' );
-define( 'FLXAPP_DB_VERSION', 1 );
+define( 'FLXAPP_VERSION', '0.4.2' );
+define( 'FLXAPP_DB_VERSION', 2 );
 define( 'FLXAPP_FILE', __FILE__ );
 define( 'FLXAPP_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXAPP_URL', plugin_dir_url( __FILE__ ) );
@@ -29,15 +29,24 @@ define( 'FLXAPP_URL', plugin_dir_url( __FILE__ ) );
 require_once FLXAPP_DIR . 'includes/settings.php';
 require_once FLXAPP_DIR . 'includes/tokens.php';
 require_once FLXAPP_DIR . 'includes/clients.php';
+require_once FLXAPP_DIR . 'includes/apps.php';
 require_once FLXAPP_DIR . 'includes/oauth.php';
 require_once FLXAPP_DIR . 'includes/otp.php';
 require_once FLXAPP_DIR . 'includes/menu.php';
 require_once FLXAPP_DIR . 'includes/embed.php';
 require_once FLXAPP_DIR . 'includes/rest.php';
+require_once FLXAPP_DIR . 'includes/devices.php';
+require_once FLXAPP_DIR . 'includes/usage.php';
+require_once FLXAPP_DIR . 'includes/push.php';
+require_once FLXAPP_DIR . 'includes/manifest.php';
+require_once FLXAPP_DIR . 'includes/config.php';
+require_once FLXAPP_DIR . 'includes/bootstrap.php';
+require_once FLXAPP_DIR . 'includes/settings-bridge.php';
 require_once FLXAPP_DIR . 'includes/dashboard.php';
 require_once FLXAPP_DIR . 'includes/system-checks.php';
 if ( is_admin() ) {
 	require_once FLXAPP_DIR . 'includes/admin.php';
+	require_once FLXAPP_DIR . 'includes/admin-appearance.php';
 }
 
 add_action(
@@ -67,6 +76,11 @@ function flxapp_table() {
 	return $wpdb->prefix . 'flxapp_tokens';
 }
 
+function flxapp_devices_table() {
+	global $wpdb;
+	return $wpdb->prefix . 'flxapp_devices';
+}
+
 function flxapp_install() {
 	global $wpdb;
 	require_once ABSPATH . 'wp-admin/includes/upgrade.php';
@@ -80,6 +94,7 @@ function flxapp_install() {
 		hint varchar(12) NOT NULL DEFAULT '',
 		user_id bigint(20) unsigned NOT NULL DEFAULT 0,
 		client_id varchar(100) NOT NULL DEFAULT '',
+		app_id varchar(100) NOT NULL DEFAULT '',
 		grant_id varchar(32) NOT NULL DEFAULT '',
 		name varchar(190) NOT NULL DEFAULT '',
 		scope varchar(190) NOT NULL DEFAULT '',
@@ -92,6 +107,32 @@ function flxapp_install() {
 		UNIQUE KEY hash (hash),
 		KEY user_kind (user_id, kind),
 		KEY grant_id (grant_id)
+		) {$cs};"
+	);
+	$d = flxapp_devices_table();
+	dbDelta(
+		"CREATE TABLE {$d} (
+		id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+		user_id bigint(20) unsigned NOT NULL DEFAULT 0,
+		grant_id varchar(32) NOT NULL DEFAULT '',
+		client_id varchar(100) NOT NULL DEFAULT '',
+		device_id varchar(64) NOT NULL DEFAULT '',
+		name varchar(190) NOT NULL DEFAULT '',
+		platform varchar(20) NOT NULL DEFAULT '',
+		model varchar(100) NOT NULL DEFAULT '',
+		brand varchar(100) NOT NULL DEFAULT '',
+		app_version varchar(30) NOT NULL DEFAULT '',
+		locale varchar(20) NOT NULL DEFAULT '',
+		provider varchar(10) NOT NULL DEFAULT '',
+		token_hash char(64) NOT NULL DEFAULT '',
+		token_enc text NULL,
+		events text NULL,
+		created int(10) unsigned NOT NULL DEFAULT 0,
+		last_seen int(10) unsigned NOT NULL DEFAULT 0,
+		PRIMARY KEY  (id),
+		KEY user_id (user_id),
+		KEY grant_id (grant_id),
+		KEY token_hash (token_hash)
 		) {$cs};"
 	);
 	update_option( 'flxapp_db_version', FLXAPP_DB_VERSION, false );

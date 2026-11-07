@@ -183,6 +183,26 @@ final class FLXB_Donations {
 		return true;
 	}
 
+	/**
+	 * 2.14.0: an admin sets the status by hand (Donations › detail). Unlike the provider paths this may
+	 * also put a paid gift back on hold. Refunds go through the payment provider, not here.
+	 *
+	 * @return bool
+	 */
+	public static function set_status( $id, $status ) {
+		$row = self::get( $id );
+		if ( ! $row || ! in_array( $status, array( 'completed', 'pending', 'canceled', 'failed' ), true ) || $status === $row['status'] || in_array( $row['status'], array( 'refunded', 'partially_refunded', 'trash' ), true ) ) {
+			return false;
+		}
+		global $wpdb;
+		$wpdb->update( flxb_table( 'donations' ), array( 'status' => $status, 'updated_at' => flxb_now() ), array( 'id' => (int) $row['id'] ) );
+		FLXB_Donors::recalc( (int) $row['donor_id'] );
+		FLXB_Types::flush_progress( (int) $row['type_id'] );
+		self::add_audit( (int) $row['id'], 'status', array( 'status' => array( $row['status'], $status ) ) );
+		do_action( 'flxb_donation_updated', (int) $row['id'], array( 'status' => $status, 'manual' => 1 ) );
+		return true;
+	}
+
 	public static function meta( array $d ) {
 		$m = json_decode( (string) ( $d['meta'] ?? '' ), true );
 		return is_array( $m ) ? $m : array();

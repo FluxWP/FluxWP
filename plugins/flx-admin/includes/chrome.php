@@ -145,6 +145,8 @@ function flxa_boot() {
 			'modeAuto'    => __( 'Tema: otomatik (cihaza göre)', 'flx-admin' ),
 			'modeLight'   => __( 'Tema: açık', 'flx-admin' ),
 			'modeDark'    => __( 'Tema: koyu', 'flx-admin' ),
+			'foldMenu'    => __( 'Menüyü daralt', 'flx-admin' ),
+			'expandMenu'  => __( 'Menüyü genişlet', 'flx-admin' ),
 			'subToggle'   => __( 'Alt menüyü aç/kapat', 'flx-admin' ),
 			'close'       => __( 'Kapat', 'flx-admin' ),
 			'hint'        => __( '↑↓ seç · Enter aç · Esc kapat', 'flx-admin' ),
@@ -243,7 +245,7 @@ function flxa_sidebar_blocks() {
 			<img class="flxa-brand-logo" src="<?php echo esc_url( flxa_logo_url( 96 ) ); ?>" alt="" width="36" height="36" fetchpriority="high" decoding="sync">
 			<span class="flxa-brand-text"><strong><?php echo esc_html( flxa_brand() ); ?></strong><small><?php echo esc_html( flxa_subtitle() ); ?></small></span>
 		</a>
-		<button type="button" class="flxa-fold-btn" data-flxa-fold title="<?php esc_attr_e( 'Menüyü daralt / genişlet ([)', 'flx-admin' ); ?>" aria-label="<?php esc_attr_e( 'Menüyü daralt / genişlet', 'flx-admin' ); ?>"><?php echo flxa_icon( 'sidebar', 18 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></button>
+		<button type="button" class="flxa-fold-btn" data-flxa-fold aria-controls="adminmenu" aria-expanded="true" title="<?php esc_attr_e( 'Menüyü daralt / genişlet ([)', 'flx-admin' ); ?>" aria-label="<?php esc_attr_e( 'Menüyü daralt / genişlet', 'flx-admin' ); ?>"><?php echo flxa_icon( 'sidebar', 18 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></button>
 		<?php if ( flxa_setting( 'palette' ) ) : ?>
 		<button type="button" class="flxa-search" data-flxa-palette>
 			<?php echo flxa_icon( 'search', 16 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
@@ -298,7 +300,7 @@ function flxa_menu_early_paint() {
 		for(var i=it.length-1;i>=0;i--){if(!it[i].classList.contains('flxa-noweb')){it[i].classList.add('flxa-glast');break;}}
 	});
 	try{var ss=JSON.parse(localStorage.getItem('flxa-subshut')||'null')||{};Object.keys(ss).forEach(function(id){var li=d.getElementById(id);if(li&&li.classList.contains('wp-has-current-submenu'))li.classList.add('flxa-sub-shut');});}catch(e){}
-	if(d.documentElement.classList.contains('flxa-app-open')&&d.body.classList.contains('flxa-appmode'))d.body.classList.remove('folded');
+	if(d.documentElement.classList.contains('flxa-app-open')&&d.body.classList.contains('flxa-appmode'))d.body.classList.remove('folded','auto-fold');
 	try{var w=d.getElementById('adminmenuwrap'),y=+sessionStorage.getItem('flxa-ms');if(w&&y>0&&innerWidth>782)w.scrollTop=y;}catch(e){}})(document);</script>
 	<?php
 }

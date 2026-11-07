@@ -1,0 +1,98 @@
+{
+  "id": "studio",
+  "plugin": "flx-studio",
+  "min_app": "1.0.0",
+  "title": "Stüdyo",
+  "icon": "image",
+  "menu": "flx-studio",
+  "entry": "gallery",
+  "tabs": ["gallery"],
+  "fallback": { "web": "admin.php?page=flx-studio" },
+  "routes": {
+    "admin.php?page=flx-studio": { "screen": "gallery" }
+  },
+  "sources": {
+    "items": {
+      "path": "flx-studio/v1/items",
+      "query": { "folder": "all", "limit": 40 },
+      "paging": { "mode": "wp", "param": "page", "size_param": "limit", "size": 40 },
+      "key": "id",
+      "cache": { "stale": 30 }
+    },
+    "item": {
+      "path": "flx-studio/v1/items/{{params.id}}",
+      "cache": { "stale": 30 }
+    }
+  },
+  "screens": {
+    "gallery": {
+      "type": "list",
+      "title": "Galeri",
+      "source": "items",
+      "layout": "grid",
+      "search": { "param": "q", "placeholder": "Galeride ara" },
+      "filters": [
+        {
+          "param": "kind",
+          "label": "Tür",
+          "type": "select",
+          "options": [
+            { "value": "", "label": "Tümü" },
+            { "value": "image", "label": "Görsel" },
+            { "value": "video", "label": "Video" }
+          ]
+        },
+        { "param": "fav", "label": "Yıldızlı", "type": "toggle" }
+      ],
+      "item": {
+        "title": "{{title|default:prompt}}",
+        "subtitle": "{{model}}",
+        "image": "{{thumb|default:url}}",
+        "badges": [
+          { "text": "Yıldız", "tone": "accent", "when": { "path": "favorite", "op": "truthy" } },
+          { "text": "Hata", "tone": "danger", "when": { "path": "state", "op": "eq", "value": "failed" } },
+          { "text": "Hazırlanıyor", "tone": "warn", "when": { "path": "state", "op": "in", "value": ["queued", "running"] } }
+        ]
+      },
+      "onPress": { "target": "screen:studio/item", "params": { "id": "{{id}}" } },
+      "actions": { "header": ["open_panel"] },
+      "empty": { "title": "Galeri boş", "body": "Üretilen görseller burada listelenir. Üretim paneli uygulamada sonra açılır." }
+    },
+    "item": {
+      "type": "detail",
+      "title": "Görsel",
+      "source": "item",
+      "header": {
+        "title": "{{title|default:prompt}}",
+        "subtitle": "{{model}}",
+        "image": "{{url|default:thumb}}"
+      },
+      "sections": [
+        {
+          "type": "fields",
+          "fields": [
+            { "label": "İstem", "value": "{{prompt}}", "when": { "path": "prompt", "op": "filled" } },
+            { "label": "Durum", "value": "{{state}}" },
+            { "label": "Sahip", "value": "{{owner_name}}" },
+            { "label": "Hata", "value": "{{error}}", "when": { "path": "error", "op": "filled" } }
+          ]
+        }
+      ],
+      "actions": { "header": ["favorite", "open_panel"] }
+    }
+  },
+  "actions": {
+    "favorite": {
+      "label": "Yıldızla",
+      "icon": "star",
+      "request": { "method": "POST", "path": "flx-studio/v1/items/{{id}}", "body": { "favorite": true } },
+      "optimistic": { "path": "favorite", "value": true },
+      "after": { "toast": "Yıldızlandı", "invalidate": ["items", "item"] }
+    },
+    "open_panel": {
+      "label": "Panelde aç",
+      "icon": "globe",
+      "web": "admin.php?page=flx-studio"
+    }
+  }
+}

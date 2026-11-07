@@ -64,6 +64,11 @@ function flxseo_audit_catalog() {
 		'http-status-code'             => array( 'seo', __( 'Ana sayfa başarılı durum kodu döndürmüyor', 'flx-seo' ), __( 'Sayfa 200 dönmeli. Bakım modu, yönlendirme döngüsü ya da PHP hatası olabilir; Sistem Kontrolü ve hata günlüğüne bakın.', 'flx-seo' ), 'server' ),
 		'is-crawlable'                 => array( 'seo', __( 'Sayfa arama motorlarına kapalı', 'flx-seo' ), __( 'Ayarlar › Okuma › "Arama motorlarının siteyi dizine eklemesini engelle" kutusunu kaldırın; sayfanın kendi SEO panelindeki noindex işaretini kapatın.', 'flx-seo' ), 'setting' ),
 		'robots-txt'                   => array( 'seo', __( 'robots.txt tüm siteyi engelliyor', 'flx-seo' ), __( 'Kökteki robots.txt dosyasında "User-agent: *" altında "Disallow: /" olmamalı. Dosyayı silin ya da düzeltin; WordPress kendi robots.txt\'sini üretir.', 'flx-seo' ), 'server' ),
+		'search-bots-blocked'          => array( 'seo', __( 'robots.txt Bing ya da Yandex tarayıcısını engelliyor', 'flx-seo' ), __( 'Bingbot, YandexBot, DuckDuckBot gibi arama motoru tarayıcıları için "Disallow: /" olmamalı; site yalnız Google\'da görünür. Kökteki robots.txt dosyasını düzeltin.', 'flx-seo' ), 'server' ),
+		'robots-sitemap'               => array( 'seo', __( 'robots.txt\'de Sitemap satırı yok', 'flx-seo' ), __( 'Bing ve Yandex sitemap\'i robots.txt\'deki "Sitemap:" satırından bulur. Kökte elle konmuş bir robots.txt varsa silin (Flux SEO satırı ekler) ya da satırı elle ekleyin.', 'flx-seo' ), 'server' ),
+		'indexnow'                     => array( 'seo', __( 'IndexNow kapalı', 'flx-seo' ), __( 'IndexNow yeni ve güncellenen sayfaları Bing, Yandex, Seznam ve Naver\'e anında bildirir; Google dışındaki arama motorlarında görünmenin en hızlı yolu. Açmak için tek tık.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_indexnow' ),
+		'indexnow-error'               => array( 'seo', __( 'IndexNow bildirimi başarısız', 'flx-seo' ), __( 'Anahtar dosyası (/<anahtar>.txt) dışarıdan açılabilmeli. Önbellek ya da güvenlik eklentisi engelliyorsa istisna ekleyin, sonra SEO › Genel › IndexNow › "Tüm siteyi şimdi bildir".', 'flx-seo' ), 'flx-seo' ),
+		'search-verify'                => array( 'seo', __( 'Bing / Yandex doğrulama kodu girilmemiş', 'flx-seo' ), __( 'Site Bing Webmaster Tools ve Yandex Webmaster\'a eklenmemiş olabilir; eklenmezse bu arama motorlarında geç ya da hiç görünmez. Bing\'de "Google Search Console\'dan içe aktar" ile kod gerekmez; o yolla eklediyseniz yok sayın. Kodlar SEO › Genel › Arama motorları\'nda.', 'flx-seo' ), 'setting' ),
 		'document-title'               => array( 'seo', __( 'Sayfa başlığı (<title>) yok', 'flx-seo' ), __( 'Tema add_theme_support( \'title-tag\' ) desteklemeli; SEO › Genel\'de ana sayfa başlığını doldurun.', 'flx-seo' ), 'theme', array( 'accessibility' ) ),
 		'title-length'                 => array( 'seo', __( 'Sayfa başlığı uzun', 'flx-seo' ), __( 'Başlığı 60 karakter civarında tutun; Google sonrasını keser.', 'flx-seo' ), 'content' ),
 		'meta-description'             => array( 'seo', __( 'Meta açıklama yok', 'flx-seo' ), __( 'SEO çıktısını açın ve ana sayfa açıklamasını (150–160 karakter) yazın.', 'flx-seo' ), 'flx-seo' ),
@@ -769,6 +774,38 @@ function flxseo_audit_site_checks() {
 		$ai = array_values( array_intersect( $block, array( 'gptbot', 'claudebot', 'anthropic-ai', 'google-extended', 'perplexitybot', 'ccbot', 'oai-searchbot', 'chatgpt-user', 'claude-searchbot', 'applebot-extended' ) ) );
 		if ( $ai && ! in_array( '*', $block, true ) ) {
 			$f[] = flxseo_audit_finding( 'ai-crawlers-blocked', 'low', $ai );
+		}
+	}
+	if ( ! is_wp_error( $robot ) && 200 === $robot['code'] ) {
+		$se = array_values( array_intersect( $block, array( 'bingbot', 'msnbot', 'yandex', 'yandexbot', 'duckduckbot', 'slurp', 'seznambot', 'yeti', 'applebot' ) ) );
+		if ( $se && ! in_array( '*', $block, true ) ) {
+			$f[] = flxseo_audit_finding( 'search-bots-blocked', 'high', $se );
+		}
+		if ( ! preg_match( '/^\s*sitemap:\s*\S+/mi', $txt ) ) {
+			$f[] = flxseo_audit_finding( 'robots-sitemap', 'low' );
+		}
+	}
+	if ( get_option( 'blog_public' ) ) {
+		if ( ! flxseo_opt( 'indexnow' ) ) {
+			$f[] = flxseo_audit_finding( 'indexnow', 'medium' );
+		} else {
+			$last = (array) get_option( 'flxseo_indexnow_last', array() );
+			if ( ! empty( $last['code'] ) && (int) $last['code'] >= 400 ) {
+				$f[] = flxseo_audit_finding( 'indexnow-error', 'medium', array( flxseo_indexnow_last_text( $last ) ) );
+			}
+			$key = flxseo_audit_fetch( home_url( '/' . flxseo_indexnow_key() . '.txt' ) );
+			if ( ! is_wp_error( $key ) && ( 200 !== $key['code'] || trim( $key['body'] ) !== flxseo_indexnow_key() ) ) {
+				$f[] = flxseo_audit_finding( 'indexnow-error', 'medium', array( home_url( '/' . flxseo_indexnow_key() . '.txt' ) . ' → HTTP ' . (int) $key['code'] ) );
+			}
+		}
+		$miss = array();
+		foreach ( array( 'verify_bing' => 'Bing', 'verify_yandex' => 'Yandex' ) as $k => $label ) {
+			if ( '' === trim( (string) flxseo_opt( $k ) ) ) {
+				$miss[] = $label;
+			}
+		}
+		if ( $miss ) {
+			$f[] = flxseo_audit_finding( 'search-verify', 'low', $miss );
 		}
 	}
 	$llms = flxseo_audit_fetch( home_url( '/llms.txt' ) );

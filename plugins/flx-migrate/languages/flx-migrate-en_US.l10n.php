@@ -59,5 +59,6 @@ return array(
 		'Yükleme klasörleri' => 'Upload folders',
 		'Çalışıyor…' => 'Working…',
 		'Önce şu yeni paketleri yükleyin (etkinleştirmeyin):' => 'Upload these new packages first (do not activate them):',
-	),
+			'Eski güncelleme sunucusu adresi ve site anahtarı silindi. FluxWP Panel › Ayarlar\'da yeni sunucunun anahtarını girin.' => 'The old update-server address and site key were removed. Enter the new server\'s key under FluxWP Panel › Settings.',
+),
 );

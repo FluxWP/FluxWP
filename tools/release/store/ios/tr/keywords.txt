@@ -1,0 +1,1 @@
+site,admin,panel,içerik,medya,yazı,blog,sayfa,görev,crm,müşteri,çoklu,hesap,web,yönetici,editör

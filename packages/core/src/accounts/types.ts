@@ -1,4 +1,4 @@
-export type AuthKind = 'oauth' | 'apikey' | 'demo';
+export type AuthKind = 'oauth' | 'otp' | 'apikey' | 'apppass' | 'demo';
 
 export interface Account {
   /** `<host>#<userId>`: aynı siteye iki farklı kullanıcıyla bağlanılabilir. */

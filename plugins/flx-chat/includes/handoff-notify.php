@@ -126,7 +126,8 @@ function flxc_notify_handoff( $chat, $reason ) {
 	}
 	foreach ( $nums as $n ) {
 		flxc_notify_remember( '', $text );
-		$r = flxc_evo_send_text( $chat['conn'], $n, $text, null, false );
+		// Site sohbeti gibi sanal kanallarda bildirim ilk WhatsApp hattından gider.
+		$r = flxc_evo_send_text( flxc_is_virtual_conn( $chat['conn'] ) ? flxc_mirror_conn( '' ) : $chat['conn'], $n, $text, null, false );
 		if ( empty( $r['ok'] ) ) {
 			$bad[] = '+' . $n . ' (' . ( '' !== (string) $r['error'] ? $r['error'] : 'HTTP ' . $r['code'] ) . ')';
 			continue;

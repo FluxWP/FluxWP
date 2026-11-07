@@ -1,5 +1,8 @@
 # Flux Studio — Değişiklikler
 
+## 0.4.0
+- Uygulama galeri listesi. Üretim ekranı sonra açılır. Galeri sayfalama `page` parametresini kabul eder.
+
 ## 0.3.7
 - Metinler: MCP sunucusu artık Flux AI & MCP eklentisinde; "Flux SEO & MCP" ve "Flux AI ›" adresleri "Flux AI & MCP" oldu.
 

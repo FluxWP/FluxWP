@@ -78,3 +78,7 @@ Doğrudan çağrı (kurulu olduğundan eminseniz): `flx_captcha_enabled( $ctx )`
   reCAPTCHA seçeneği ile aynı anda açılmamalı.
 - **Flux Speed**: özel giriş adresi (`/fluxadmin`) wp-login.php'yi yüklediği için ek iş gerekmez. `flx_captcha_failed` ile
   engellenen girişler güvenlik kaydına yazılabilir.
+
+## Uygulama
+
+Ayarlar `flxrc_settings` köprüsünden. `site_key` ve `secret` write-only. `secret` düz metin gelirse `flxrc_seal` ile mühürlenir (`s1:` / `p1:` olan değer tekrar mühürlenmez). Korunan formlar paneldedir.

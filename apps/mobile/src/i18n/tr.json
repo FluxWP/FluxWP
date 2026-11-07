@@ -1,0 +1,253 @@
+{
+  "welcome": {
+    "skip": "Atla",
+    "next": "İleri",
+    "enter": "Girişe geç",
+    "sites": {
+      "title": "Siteni cebinden yönet",
+      "body": "Yazılar, görevler, bağışlar ve gelen kutusu tek yerde. Menü, sitenin kendi Flux Admin düzeni."
+    },
+    "look": {
+      "title": "Aynı dil, açık ve koyu",
+      "body": "Antrasit ve bej zemin, indigo düğmeler. Site bağlanınca tema renklerin gelir."
+    },
+    "safe": {
+      "title": "Şifren uygulamada durmaz",
+      "body": "Giriş tarayıcıda onaylanır. İstediğin zaman başka bir site daha eklersin."
+    },
+    "bandTitle": "Yönetim, cebinde",
+    "bandBody": "Flux Admin’in sakin düzeni. Üç adımda bak, sonra siteni bağla.",
+    "cardTitle": "FluxWP",
+    "cardBody": "WordPress sitenin adresi yeterli. Gerisi sitenin kendi teması."
+  },
+  "editor": {
+    "title": "Metin",
+    "placeholder": "Yazmaya başlayın…",
+    "expand": "Tam ekran",
+    "done": "Bitti",
+    "link": "Bağlantı",
+    "image": "Görsel",
+    "insert": "Ekle"
+  },
+  "addSite": {
+    "title": "Siteni bağla",
+    "hint": "WordPress sitenizin adresini girin.",
+    "continue": "Devam",
+    "browserHint": "Giriş, uygulama içindeki güvenli tarayıcıda yapılır. Şifren uygulamaya gelmez.",
+    "notAllowed": "Bu uygulama bu siteye bağlanamaz.",
+    "allowedHint": "Bu uygulama yalnız aşağıdaki sitelere bağlanır.",
+    "wildcard": "{{host}} alt alan adları",
+    "cancelled": "Giriş iptal edildi.",
+    "demo": "Demo hesabıyla dene",
+    "methods": "Giriş yolu",
+    "noFluxApp": "Bu sitede Flux App yok. Uygulama şifresiyle sınırlı modda bağlanabilirsin; tam deneyim için Flux App'i kur.",
+    "appPassword": "Uygulama şifresiyle bağlan",
+    "otp": "Kodla giriş",
+    "apiKey": "API anahtarı",
+    "secondAccount": "Bu sitede başka bir hesapla giriş yap",
+    "insecure": "Uygulama şifresi yalnız HTTPS sitelerde kullanılabilir.",
+    "appNotAllowed": "Bu site FluxWP uygulamasını kapatmış; yalnız sitenin kendi uygulamasıyla girilebilir."
+  },
+  "otp": {
+    "title": "Kodla giriş",
+    "login": "E-posta ya da telefon",
+    "send": "Kod gönder",
+    "sent": "Kod {{via}} gönderildi.",
+    "code": "6 haneli kod",
+    "verify": "Giriş yap",
+    "resend": "Kodu yeniden gönder"
+  },
+  "apikey": {
+    "title": "API anahtarıyla bağlan"
+  },
+  "switcher": {
+    "title": "Hesaplar",
+    "add": "Site ya da hesap ekle",
+    "manage": "Hesapları yönet",
+    "remove": "Hesabı kaldır",
+    "removeConfirm": "{{site}} hesabı bu cihazdan kaldırılsın mı?",
+    "current": "Açık hesap",
+    "relogin": "Yeniden giriş yap",
+    "limited": "Sınırlı mod"
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "theme": "Tema",
+    "language": "Dil",
+    "languageDevice": "Cihaz dili",
+    "cache": "Önbelleği temizle",
+    "cacheCleared": "Önbellek temizlendi.",
+    "version": "Sürüm {{version}}",
+    "about": "Hakkında",
+    "support": "Destek",
+    "notifications": "Bildirimler"
+  },
+  "web": {
+    "loading": "Panel sayfası açılıyor…",
+    "error": "Sayfa açılamadı.",
+    "openBrowser": "Tarayıcıda aç",
+    "reload": "Yenile",
+    "relogin": "Panel oturumu düştü, yeniden açılıyor…",
+    "demo": "Demo: örnek panel sayfası (gerçek sitede oturum açık gelir)"
+  },
+  "shell": {
+    "openDrawer": "Menüyü aç",
+    "back": "Geri",
+    "offline": "Çevrimdışı: kayıtlı veriler gösteriliyor",
+    "more": "Tüm menü",
+    "notFound": "Bu ekran bulunamadı.",
+    "native": "Bu ekran yakında uygulamaya gelecek."
+  },
+  "states": {
+    "retry": "Tekrar dene",
+    "loading": "Yükleniyor…"
+  },
+  "screens": {
+    "inbox": {
+      "title": "WhatsApp",
+      "search": "Sohbet ara",
+      "empty": "Sohbet yok",
+      "emptyBody": "Bu görünümde sohbet bulunmuyor.",
+      "placeholder": "Mesaj yazın",
+      "send": "Gönder",
+      "note": "Not",
+      "attach": "Fotoğraf ekle",
+      "back": "Sohbetlere dön",
+      "botOn": "Asistan açık",
+      "botOff": "Asistan kapalı",
+      "filters": {
+        "all": "Açık",
+        "unread": "Okunmamış",
+        "mine": "Bana atanan",
+        "unassigned": "Atanmamış",
+        "closed": "Kapalı"
+      },
+      "offline": "Bağlantı yok",
+      "auth": "Oturum düştü"
+    },
+    "tasks": {
+      "title": "Görevler",
+      "search": "Görev ara",
+      "empty": "Görev yok",
+      "emptyBody": "Bu görünümde görev bulunmuyor.",
+      "list": "Liste",
+      "board": "Pano",
+      "home": "Tümü",
+      "add": "Yeni görev",
+      "addTitle": "Görev adı",
+      "comment": "Yorum yazın",
+      "send": "Gönder",
+      "checklist": "Kontrol listesi",
+      "comments": "Yorumlar",
+      "noChecklist": "Kontrol listesi yok",
+      "close": "Kapat",
+      "overdue": "Gecikmiş"
+    },
+    "review": {
+      "title": "Onay bekleyenler",
+      "empty": "Onay bekleyen bağış yok",
+      "emptyBody": "Yeni bir dekont gelince burada görünür.",
+      "count": "{{count}} bağış",
+      "approve": "Onayla",
+      "reject": "Reddet",
+      "approveAsk": "{{name}} · {{amount}} onaylansın mı?",
+      "approved": "Bağış onaylandı",
+      "approvedCert": "Bağış onaylandı, {{count}} sertifika gönderildi",
+      "rejected": "Bağış reddedildi",
+      "reason": "Gerekçe",
+      "reasonPh": "İsteğe bağlı",
+      "notify": "Bağışçıya bildir",
+      "receipt": "Dekont",
+      "noReceipt": "Dekont yok",
+      "back": "Listeye dön"
+    },
+    "post": {
+      "title": "Yeni yazı",
+      "name": "Başlık",
+      "excerpt": "Özet",
+      "status": "Durum",
+      "draft": "Taslak",
+      "pending": "İnceleme",
+      "publish": "Yayınla",
+      "save": "Kaydet",
+      "saved": "Yazı kaydedildi",
+      "blocks": "Blokları tarayıcıda düzenle",
+      "hint": "Metni aşağıdaki düzenleyicide yazın. Tam ekranda başlık, liste ve görsel eklenir."
+    },
+    "media": {
+      "title": "Ortam",
+      "empty": "Ortam boş",
+      "emptyBody": "Kameradan ya da galeriden bir görsel ekleyin.",
+      "camera": "Kamera",
+      "gallery": "Galeri",
+      "alt": "Alt metin",
+      "altPh": "Görseli anlatın",
+      "uploading": "Yükleniyor…",
+      "done": "Yüklendi",
+      "denied": "Fotoğraf izni verilmedi"
+    },
+    "social": {
+      "title": "Yeni gönderi",
+      "placeholder": "Ne paylaşmak istiyorsunuz?",
+      "accounts": "Hesaplar",
+      "noAccounts": "Bağlı hesap yok",
+      "attach": "Görsel ekle",
+      "publish": "Yayınla",
+      "schedule": "Zamanla",
+      "sent": "Gönderi kuyruğa alındı",
+      "need": "Bir hesap seçin ve bir metin yazın"
+    },
+    "studio": {
+      "title": "Stüdyo",
+      "prompt": "Ne üretileceğini yazın",
+      "image": "Görsel",
+      "video": "Video",
+      "generate": "Üret",
+      "gallery": "Galeri",
+      "empty": "Henüz üretim yok",
+      "running": "Üretiliyor…",
+      "failed": "Üretim başarısız",
+      "need": "Bir istem yazın"
+    },
+    "ai": {
+      "title": "Flux AI",
+      "empty": "Sohbet yok",
+      "emptyBody": "Bir soru yazarak başlayın.",
+      "placeholder": "Bir şey sorun",
+      "send": "Gönder",
+      "you": "Siz",
+      "assistant": "Flux AI",
+      "thinking": "Düşünüyor…",
+      "new": "Yeni sohbet",
+      "approve": "Onayla",
+      "deny": "Reddet",
+      "tool": "Araç onayı",
+      "notReady": "Flux AI henüz ayarlanmadı"
+    },
+    "tv": {
+      "title": "TV Kumandası",
+      "wifi": "Aynı Wi-Fi’da",
+      "wifiOff": "Aynı Wi-Fi’da değilsiniz. Komut gönderilmedi.",
+      "offline": "TV çevrimdışı",
+      "power": "Güç",
+      "ok": "Tamam",
+      "back": "Geri",
+      "home": "Ana sayfa",
+      "mute": "Sessiz",
+      "volUp": "Ses +",
+      "volDown": "Ses −",
+      "apps": "Uygulamalar",
+      "text": "TV’de yaz",
+      "textPh": "Metin",
+      "type": "Yaz"
+    }
+  },
+  "privacy": {
+    "connection": "Giriş ve site işlemleri seçtiğiniz WordPress sitesine gider. Site işletmecisinin kendi gizlilik politikası da geçerlidir.",
+    "share": "Toplam uygulama kullanımını paylaş (isteğe bağlı)",
+    "usage": "Varsayılan kapalıdır. Sizin tercihiniz ve site yöneticisinin izniyle site, günlük aktif hesapları iOS/Android bazında sayar. En az beş kişilik grupların toplamı, sitenin ayarlı ülkesiyle FluxWP’ye gönderilir. Ad, içerik veya GPS konumu gönderilmez. Bu tercihi istediğiniz zaman değiştirebilirsiniz.",
+    "policy": "Gizlilik",
+    "terms": "Kullanım şartları",
+    "continueTerms": "Devam ederek <terms>Kullanım Şartları</terms>’nı kabul edersiniz. <privacy>Gizlilik Politikası</privacy>."
+  }
+}

@@ -1,7 +1,10 @@
 # Değişiklik günlüğü
 
-## 0.1.9
+## 0.2.1
 - Güvenlik (CodeQL): `h()` çocukları yalnız DOM düğümü ya da düz metin olarak eklenir.
+
+## 0.2.0
+- Uygulama: gönderiler, takvim ve hesaplar. Medya yazarı yerelde sonra açılır (`flxsm-composer`). Takvim ucu: `flx-social/v1/calendar`.
 
 ## 0.1.8
 - Güvenlik (CodeQL): `h()` yardımcısındaki kullanılmayan `html` özniteliği kaldırıldı; adres çubuğundan gelen değerler hiçbir yolla HTML olarak eklenmez.

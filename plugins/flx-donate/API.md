@@ -207,7 +207,33 @@ Kısa WhatsApp/SMS: `FLXB_Mail::message( $channel, $phone, $text )`: önce Flux 
 
 ### Ayarlar (seçenek `flxb_wc`)
 
-`template_id, event_id, cert_channels, print_mode ('soon' varsayılan | 'on' | 'off'), print_fee, auto_complete, simple_address, after_add ('cart' | 'checkout' | 'stay'), page_id, notify_channels, notify_wa, notify_sms, receipt_max_mb, receipt_notify, forms_checkout, card_gateway`.
+`template_id, event_id, cert_channels, print_mode ('soon' varsayılan | 'on' | 'off'), print_fee, auto_complete, simple_address, after_add ('cart' | 'checkout' | 'stay'), page_id, notify_channels, notify_wa, notify_sms, receipt_max_mb, receipt_notify, forms_checkout, card_gateway, currencies (2.15: ek para birimi kodları)`.
+
+### Para birimi seçimi (2.15.0)
+
+Kur çevrimi yok; fiyatlar para birimi başına elle girilir. Seçim çerezde (`flxb_currency`), yalnız ön yüzde WooCommerce para birimi olur (`woocommerce_currency`, öncelik 50). Yönetim, cron, WP-CLI, admin-ajax ve `wc/store` / `flxb-wc` dışındaki REST istekleri mağaza para biriminde kalır.
+
+| Fonksiyon | Dönen |
+|---|---|
+| `flxb_currencies()` | `[ CODE => { code, symbol, label, current, url } ]`, mağaza para birimi ilk. WooCommerce yoksa yalnız varsayılan |
+| `flxb_current_currency()` | Bu istekteki para birimi (`EUR`) |
+| `flxb_set_currency_url( $code, $url = '' )` | Para birimini değiştirip aynı sayfaya dönen bağlantı (`?flxb_currency=EUR`; çerez yazılır, parametresiz adrese yönlenir) |
+| `FLXB_Types::option_price( $t, $o, $code )` | Seçeneğin o para birimindeki fiyatı (0 = sunulmuyor) |
+| `FLXB_Types::min_amount_in( $t, $code )` | Serbest tutarın o para birimindeki en azı |
+
+Kısa kod `[flx_bagis_para_birimi]`: küçük seçici (select). Filtreler: `flxb_currency_codes` (sunulan kodlar), `flxb_current_currency` (seçilen kod, `$codes`). Tema örneği:
+
+```php
+if ( function_exists( 'flxb_currencies' ) && count( flxb_currencies() ) > 1 ) {
+	foreach ( flxb_currencies() as $c ) {
+		printf( '<option value="%s"%s>%s %s</option>', esc_url( $c['url'] ), selected( $c['current'], true, false ), esc_html( $c['symbol'] ), esc_html( $c['code'] ) );
+	}
+}
+```
+
+Çeviri (2.15.1, Flux Lang): tür meta `i18n` `{ "en": { "title": "…", "description": "…", "options": { "fidan": "Sapling" } } }`. `FLXB_Types::localize( $t, $lang = null )` (varsayılan: ziyaretçinin dili) gösterim için çevirir; form, sepet, ödeme ve `flxb_type_public()` bunu ön yüzde kullanır. Kayıtlar varsayılan dildeki metni tutar.
+
+Seçenek: `prices` `{ "EUR": 120, "USD": 130 }` (türün kendi para birimi `price`). Tür meta: `min_by_currency` `{ "EUR": 10 }`, `presets_by_currency` `{ "EUR": [10, 25, 50] }`. `flxb_type_public()` seçeneklerde `prices` döner. Sepet satırı `currency` taşır; serbest tutar ve form satırı yalnız kendi para biriminde ödenir.
 
 ### Sürüme duyarlı yerler (WooCommerce güncellemesinden sonra deneyin)
 

@@ -251,7 +251,7 @@ final class FLXB_WC_Form {
 			foreach ( preg_split( '/[\s,]+/', (string) $args['types'] ) as $ref ) {
 				$t = is_numeric( $ref ) ? FLXB_Types::get( (int) $ref ) : FLXB_Types::get_by_slug( $ref );
 				if ( $t && FLXB_Types::is_open( $t ) ) {
-					$out[ (int) $t['id'] ] = $t;
+					$out[ (int) $t['id'] ] = FLXB_Types::localize( $t );
 				}
 			}
 			return $out;
@@ -259,7 +259,7 @@ final class FLXB_WC_Form {
 		/* Default: the types marked "Show in the Donation options block", in type order. */
 		foreach ( FLXB_Types::all( 'active' ) as $t ) {
 			if ( FLXB_WC_Cart::in_form( $t ) && FLXB_Types::is_open( $t ) && self::has_choices( $t ) ) {
-				$out[ (int) $t['id'] ] = $t;
+				$out[ (int) $t['id'] ] = FLXB_Types::localize( $t );
 			}
 		}
 		return $out;
@@ -275,7 +275,7 @@ final class FLXB_WC_Form {
 			return true;
 		}
 		foreach ( $t['options'] as $o ) {
-			if ( FLXB_Types::option_on_sale( $o ) ) {
+			if ( FLXB_Types::option_on_sale_in( $t, $o, FLXB_WC_Cart::currency() ) ) {
 				return true;
 			}
 		}
@@ -319,20 +319,21 @@ final class FLXB_WC_Form {
 			}
 		}
 		$me      = self::me();
-		$fee     = FLXB_WC::print_on() ? (float) FLXB_WC::setting( 'print_fee' ) : 0;
+		$fee     = FLXB_WC_Cart::print_here() ? (float) FLXB_WC::setting( 'print_fee' ) : 0;
+		$money   = FLXB_WC_Cart::currency();
 		$monthly = FLXB_WC_Cart::monthly_available();
 		$data    = array( 'fee' => $fee, 'types' => array(), 'me' => array( 'phone' => (string) $me['phone'], 'email' => (string) $me['email'] ) );
 		foreach ( $types as $id => $t ) {
 			$opts = array();
 			foreach ( $t['options'] as $o ) {
-				if ( FLXB_Types::option_on_sale( $o ) ) {
-					$opts[ $o['key'] ] = array( 'price' => (float) $o['price'], 'n' => (int) $o['units_per'], 'unit' => (string) $o['unit'], 'qty' => FLXB_WC_Cart::option_takes_units( $t, $o['key'] ) );
+				if ( FLXB_Types::option_on_sale_in( $t, $o, $money ) ) {
+					$opts[ $o['key'] ] = array( 'price' => FLXB_Types::option_price( $t, $o, $money ), 'n' => (int) $o['units_per'], 'unit' => (string) $o['unit'], 'qty' => FLXB_WC_Cart::option_takes_units( $t, $o['key'] ) );
 				}
 			}
 			$data['types'][ $id ] = array(
 				'opts'    => $opts,
 				'free'    => (bool) $t['allow_free'],
-				'min'     => (float) $t['min_amount'],
+				'min'     => FLXB_Types::min_amount_in( $t, $money ),
 				'max'     => FLXB_WC_Cart::max_units( $t ),
 				'cert'    => FLXB_WC_Cart::type_has_certificate( $t ),
 				'proxy'   => FLXB_Types::requires_proxy( $t ),
@@ -340,7 +341,7 @@ final class FLXB_WC_Form {
 			);
 		}
 		$uid = 'flxwb-' . wp_rand( 1000, 99999 );
-		$sel_cert  = 'print' === ( $old['cert'] ?? '' ) && FLXB_WC::print_on() ? 'print' : 'online';
+		$sel_cert  = 'print' === ( $old['cert'] ?? '' ) && FLXB_WC_Cart::print_here() ? 'print' : 'online';
 		$for_other = ! empty( $old['for_other'] );
 		$cur_d     = $data['types'][ $cur ];
 		ob_start();
@@ -354,6 +355,7 @@ final class FLXB_WC_Form {
 	<form class="flxwb-form" method="post" action="" novalidate>
 		<input type="hidden" name="flxb_action" value="add">
 		<input type="hidden" name="flxb_type" value="<?php echo esc_attr( $cur ); ?>" data-flxwb-type>
+		<?php echo FLXB_WC_Currency::switcher(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped inside ?>
 		<?php if ( count( $types ) > 1 ) : ?>
 		<div class="flxwb-tabs" role="tablist" aria-label="<?php esc_attr_e( 'Donation type', 'flx-donate' ); ?>">
 			<?php foreach ( $types as $id => $t ) : ?>
@@ -406,7 +408,7 @@ final class FLXB_WC_Form {
 					<span class="flxwb-opt__text"><strong><?php esc_html_e( 'Online certificate', 'flx-donate' ); ?></strong>
 						<small><?php esc_html_e( 'Sent by WhatsApp and e-mail once the payment is confirmed, ready to download.', 'flx-donate' ); ?></small></span>
 				</label>
-				<?php if ( FLXB_WC::print_on() ) : ?>
+				<?php if ( FLXB_WC_Cart::print_here() ) : ?>
 				<label class="flxwb-opt">
 					<input type="radio" name="cert" value="print" <?php checked( $sel_cert, 'print' ); ?>>
 					<span class="flxwb-opt__icon"><?php echo FLXB_WC::icon( 'print' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
@@ -424,7 +426,7 @@ final class FLXB_WC_Form {
 				</label>
 				<?php endif; ?>
 			</div>
-			<?php if ( FLXB_WC::print_on() ) : ?>
+			<?php if ( FLXB_WC_Cart::print_here() ) : ?>
 			<label class="flxwb-field" data-flxwb-address<?php echo 'print' === $sel_cert ? '' : ' hidden'; ?>>
 				<span class="flxwb-field__label"><?php esc_html_e( 'Postal address for the printed certificate', 'flx-donate' ); ?></span>
 				<textarea name="address" rows="3" maxlength="400" autocomplete="street-address" placeholder="<?php esc_attr_e( 'Name, full address, district / city, phone', 'flx-donate' ); ?>"><?php echo esc_textarea( (string) ( $old['address'] ?? '' ) ); ?></textarea>
@@ -503,7 +505,8 @@ final class FLXB_WC_Form {
 		if ( '' === $sel ) {
 			$sel = $cards ? $cards[0]['key'] : '__free';
 		}
-		$presets = array_values( array_filter( array_map( 'floatval', (array) FLXB_Types::meta( $t, 'presets', array() ) ) ) );
+		$money   = FLXB_WC_Cart::currency();
+		$presets = FLXB_WC_Currency::presets( $t, $money );
 		$units   = max( 1, absint( $old['u'][ $id ] ?? ( isset( $_GET['flxb_qty'] ) ? absint( $_GET['flxb_qty'] ) : 1 ) ) ); // phpcs:ignore WordPress.Security.NonceVerification
 		$name_o  = 'o[' . $id . ']';
 		if ( '' !== (string) $t['description'] ) {
@@ -527,14 +530,14 @@ final class FLXB_WC_Form {
 					<span class="flxwb-pkg__icon"><?php echo FLXB_WC::icon( 'fidan' === $o['unit'] ? 'sprout' : 'gift' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
 					<span class="flxwb-pkg__count"<?php echo $qty && 'fidan' === $o['unit'] ? ' data-flxwb-count-label="' . esc_attr( (string) $n ) . '"' : ''; ?>><?php echo esc_html( $qty && 'fidan' === $o['unit'] ? sprintf( /* translators: %s: number of saplings */ _n( '%s Sapling', '%s Saplings', $n * $units, 'flx-donate' ), number_format_i18n( $n * $units ) ) : ( $isu && 'fidan' === $o['unit'] ? sprintf( /* translators: %s: number of saplings */ _n( '%s Sapling', '%s Saplings', $n, 'flx-donate' ), number_format_i18n( $n ) ) : $o['label'] ) ); ?></span>
 					<?php if ( $qty ) : ?>
-					<span class="flxwb-pkg__price" data-flxwb-line="<?php echo esc_attr( $o['key'] ); ?>" aria-live="polite"><?php echo wp_kses_post( wc_price( (float) $o['price'] * $units ) ); ?></span>
+					<span class="flxwb-pkg__price" data-flxwb-line="<?php echo esc_attr( $o['key'] ); ?>" aria-live="polite"><?php echo wp_kses_post( wc_price( FLXB_Types::option_price( $t, $o, $money ) * $units ) ); ?></span>
 					<span class="flxwb-stepper flxwb-stepper--inline" role="group" aria-label="<?php esc_attr_e( 'Quantity', 'flx-donate' ); ?>">
 						<button type="button" class="flxwb-stepper__btn" data-flxwb-step="-1" aria-controls="<?php echo esc_attr( $cid ); ?>" aria-label="<?php esc_attr_e( 'Fewer', 'flx-donate' ); ?>"<?php echo $units <= 1 ? ' aria-disabled="true"' : ''; ?>><?php echo FLXB_WC::icon( 'minus' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></button>
 						<input type="number" id="<?php echo esc_attr( $cid ); ?>" name="u[<?php echo esc_attr( $id ); ?>]" min="1" max="<?php echo esc_attr( $d['max'] ); ?>" step="1" inputmode="numeric" value="<?php echo esc_attr( $units ); ?>" aria-label="<?php echo esc_attr( 'fidan' === $o['unit'] ? __( 'Number of saplings', 'flx-donate' ) : __( 'Quantity', 'flx-donate' ) ); ?>" data-flxwb-count>
 						<button type="button" class="flxwb-stepper__btn" data-flxwb-step="1" aria-controls="<?php echo esc_attr( $cid ); ?>" aria-label="<?php esc_attr_e( 'More', 'flx-donate' ); ?>"<?php echo $units >= $d['max'] ? ' aria-disabled="true"' : ''; ?>><?php echo FLXB_WC::icon( 'plus' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></button>
 					</span>
 					<?php else : ?>
-					<span class="flxwb-pkg__price"><?php echo wp_kses_post( wc_price( $o['price'] ) ); ?></span>
+					<span class="flxwb-pkg__price"><?php echo wp_kses_post( wc_price( FLXB_Types::option_price( $t, $o, $money ) ) ); ?></span>
 					<?php endif; ?>
 					<span class="flxwb-pkg__tick" aria-hidden="true"><?php echo FLXB_WC::icon( 'check' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
 				</label>
@@ -554,7 +557,7 @@ final class FLXB_WC_Form {
 			echo '<input type="hidden" name="' . esc_attr( $name_o ) . '" value="__free">';
 		endif;
 		if ( $t['allow_free'] ) :
-			$min = (float) $t['min_amount'];
+			$min = FLXB_Types::min_amount_in( $t, $money );
 			?>
 		<fieldset class="flxwb-fs flxwb-free" data-flxwb-free<?php echo $cards && '__free' !== $sel ? ' hidden' : ''; ?>>
 			<legend class="flxwb-legend"><?php esc_html_e( 'Donation amount', 'flx-donate' ); ?></legend>

@@ -79,12 +79,84 @@ function flxc_staff_identity( $chat, array $state ) {
 	} else {
 		$phone = flxc_staff_phone( $chat, $state );
 		$id    = '' !== $phone ? flxr_phone_identity( $phone ) : null;
-		if ( ! $id ) {
-			return null;
+		if ( $id ) {
+			$id['phone'] = $phone;
+		} else {
+			// 1.36.0: WhatsApp hides the number (@lid, no real number yet): a manager linked the chat to a staff user.
+			$id = flxc_staff_linked_identity( $chat );
+			if ( ! $id ) {
+				return null;
+			}
 		}
-		$id['phone'] = $phone;
 	}
 	return flxc_staff_can( $id, 'flxc_staff_tools' ) ? $id : null;
+}
+
+/** 1.36.0: staff user a manager linked to this chat in the panel (chat meta staff_user), 0 = none. */
+function flxc_staff_linked_user( $chat ) {
+	$meta = flxc_decode( $chat['meta'] ?? '' );
+	return (int) ( $meta['staff_user'] ?? 0 );
+}
+
+/**
+ * 1.36.0: identity of the linked staff user. Used only when the chat's number does not belong to a site user: a
+ * number that does always wins (its owner is who writes).
+ */
+function flxc_staff_linked_identity( $chat ) {
+	$uid = flxc_staff_linked_user( $chat );
+	$u   = $uid ? get_userdata( $uid ) : null;
+	if ( ! $u || flxc_is_group_jid( (string) ( $chat['jid'] ?? '' ) ) ) {
+		return null;
+	}
+	$phone = function_exists( 'flxr_user_phone' ) ? (string) flxr_user_phone( $u->ID ) : '';
+	$id    = '' !== $phone ? flxr_phone_identity( $phone ) : null;
+	if ( ! $id || (int) $id['user_id'] !== (int) $u->ID ) {
+		$role = function_exists( 'flxr_user_role' ) ? (string) flxr_user_role( $u ) : '';
+		$all  = function_exists( 'flxr_roles' ) ? flxr_roles() : array();
+		$id   = array( 'user_id' => (int) $u->ID, 'name' => (string) $u->display_name, 'role' => $role, 'role_label' => $role && isset( $all[ $role ] ) ? (string) $all[ $role ]['label'] : '', 'caps' => array(), 'is_admin' => user_can( $u, 'manage_options' ) );
+	}
+	$id['phone']  = $phone;
+	$id['linked'] = true;
+	return $id;
+}
+
+/** 1.36.0: the chat's number is hidden by WhatsApp and not known yet (staff cannot be recognised by number). */
+function flxc_chat_number_hidden( $chat ) {
+	$jid = (string) ( $chat['jid'] ?? '' );
+	if ( '@lid' !== substr( $jid, -4 ) ) {
+		return false;
+	}
+	$cp = (string) ( $chat['phone'] ?? '' );
+	return '' === $cp || flxc_lid_digits( $jid ) === $cp;
+}
+
+/**
+ * 1.36.0: link (or unlink, 0) a chat to a staff user. Manager only; the user must be allowed staff tools.
+ *
+ * @return bool|WP_Error
+ */
+function flxc_staff_link_chat( $chat, $user_id ) {
+	$user_id = (int) $user_id;
+	if ( $user_id && ! in_array( $user_id, wp_list_pluck( flxc_staff_link_users(), 'id' ), true ) ) {
+		return new WP_Error( 'flxc_staff', __( 'Bu kullanıcının personel araçları yetkisi yok.', 'flx-chat' ), array( 'status' => 400 ) );
+	}
+	$fresh = flxc_get_chat( (int) $chat['id'] );
+	$meta  = flxc_decode( $fresh['meta'] ?? '' );
+	$old   = (int) ( $meta['staff_user'] ?? 0 );
+	if ( $old === $user_id ) {
+		return true;
+	}
+	if ( $user_id ) {
+		$meta['staff_user'] = $user_id;
+	} else {
+		unset( $meta['staff_user'] );
+	}
+	flxc_update_chat( (int) $chat['id'], array( 'meta' => flxc_json( $meta ) ) );
+	$me = flxc_user_name( get_current_user_id() );
+	/* translators: 1: manager, 2: staff user */
+	// 1.36.1: the line carries staff_link so the assistant sees in the history when it was linked (flxc_bot_messages).
+	flxc_system_message( $fresh, $user_id ? sprintf( __( '%1$s bu sohbeti personel olarak bağladı: %2$s', 'flx-chat' ), $me, flxc_user_name( $user_id ) ) : sprintf( __( '%s sohbetin personel bağlantısını kaldırdı', 'flx-chat' ), $me ), array( 'staff_link' => $user_id ) );
+	return true;
 }
 
 /** Yetki kontrolü: rol sonradan değişebilir, her seferinde kullanıcıdan okunur. */
@@ -206,7 +278,7 @@ function flxc_staff_prompt( $chat, array $state ) {
 	}
 	$names = wp_list_pluck( wp_list_pluck( flxc_staff_tools_for( $chat, $state ), 'function' ), 'name' );
 	$lines = array(
-		'Bu numara ekibimizden ' . $id['name'] . ( '' !== $id['role_label'] ? ' (' . $id['role_label'] . ')' : '' ) . '. Bu kişi bağışçı değil, personel: ona müşteri gibi bağış teklif etme, kısa ve iş odaklı yaz, adıyla hitap et (' . flxc_staff_first_name( $id['name'] ) . '; kişi kendisi başka bir hitap istemedikçe sertifika, bağış kaydı ya da hafızadaki başka bir isimle hitap etme, onlar başkası adına olabilir). Kendi adına bağış yapmak isterse normal bağış akışını kullan.',
+		( ! empty( $id['linked'] ) ? 'Bu sohbetteki kişi ekibimizden ' : 'Bu numara ekibimizden ' ) . $id['name'] . ( '' !== $id['role_label'] ? ' (' . $id['role_label'] . ')' : '' ) . '. Bu kişi bağışçı değil, personel: ona müşteri gibi bağış teklif etme, kısa ve iş odaklı yaz, adıyla hitap et (' . flxc_staff_first_name( $id['name'] ) . '; kişi kendisi başka bir hitap istemedikçe sertifika, bağış kaydı ya da hafızadaki başka bir isimle hitap etme, onlar başkası adına olabilir). Kendi adına bağış yapmak isterse normal bağış akışını kullan.',
 	);
 	if ( in_array( 'staff_create_donation', $names, true ) ) {
 		$lines[] = '- "Ahmet Yılmaz adına 1 fidan" gibi isteklerde staff_create_donation kullan: bağışçının adı soyadı ve WhatsApp numarası gerekir (numara yoksa sor; personel "link bana gelsin" derse send_to_donor=false). Sertifikada başka isim yazacaksa beneficiaries; farklı isimlere ayrı sertifika istenirse yine TEK kayıt (quantity=adet, her isim beneficiaries\'te ayrı öğe, adedi count ile), tek ödeme linki. Ayrı ayrı ödeme açıkça istenmedikçe aynı bağışçıya birden çok kayıt açma. Personel az önce açılan bağışı düzeltirse ("pardon 100 olacak") yeni kaydı replaces=eski no ile aç, eskisi iptal olur. Önce donation_options ile türü bul, özeti (bağışçı, numara, tür, adet, tutar, sertifika ismi) personele göster, onaylayınca confirmed=true. Bağışçıya mesajı sistem gönderir; sen personele kısa sonuç yaz.';
@@ -220,6 +292,8 @@ function flxc_staff_prompt( $chat, array $state ) {
 	if ( in_array( 'staff_report', $names, true ) ) {
 		$lines[] = '- Genel rapor, toplamlar, personel performansı sorulursa staff_report.';
 	}
+	// 1.36.1: earlier replies in this chat may say "not recognised as staff"; they no longer hold.
+	$lines[] = '- Bu sohbette daha önce "personel olarak tanınmıyor", "başkası adına bağış açamıyorum" gibi cevaplar verdiysen onlar artık geçersiz: kişi şimdi personel olarak tanındı' . ( ! empty( $id['linked'] ) ? ' (yönetici sohbeti panelden personele bağladı)' : '' ) . '. Yetkisini sorgulamak ya da rol/yetki kontrolü için ekibe devretme; doğrulama kodu isteme. Kişinin yarım kalan isteği varsa (ör. başkası adına bağış) kaldığın yerden personel araçlarıyla devam et: özeti göster, onay al.';
 	if ( ! empty( $id['test'] ) ) {
 		$lines[] = '- (Test sohbeti: kayıt açılmaz, bağışçıya mesaj gitmez.)';
 	}
@@ -235,13 +309,36 @@ function flxc_staff_unknown_rule( $chat ) {
 		return '';
 	}
 	$verify = function_exists( 'flxc_verify_on' ) && flxc_verify_on();
+	$hidden = flxc_chat_number_hidden( $chat );
 	return "## Personel olduğunu söyleyen kişi
 "
-		. '- Bu numara personel olarak tanınmıyor. Kişi personel, referans ya da ekipten olduğunu söyleyip başkası (bağışçı) adına bağış açmak isterse normal bağış akışına geçme. '
+		. ( $hidden
+			// 1.36.0: in a hidden-number chat the role is not the problem; say why and what helps, do not repeat "this number".
+			? '- WhatsApp bu sohbette kişinin telefon numarasını göstermiyor (gizli numara). Personel numaradan tanındığı için rolü ne olursa olsun şu an tanınamıyor; "bu numara personel olarak tanınmıyor" deme, sebebi bu. Kişi personel, referans ya da ekipten olduğunu söyleyip başkası (bağışçı) adına bağış açmak isterse normal bağış akışına geçme. '
+			: '- Bu numara personel olarak tanınmıyor. Kişi personel, referans ya da ekipten olduğunu söyleyip başkası (bağışçı) adına bağış açmak isterse normal bağış akışına geçme. ' )
 		. ( $verify
-			? 'Ona bu numaranın personel numarası olarak görünmediğini söyle ve Flux Roles profilindeki telefon numarasını iste; verirse verify_send type=phone ile kod gönder, kodu verify_check ile kontrol et. Doğrulanınca personel araçları açılır, sonra staff_create_donation ile devam et. '
-			: 'Ona bu numaranın personel numarası olarak görünmediğini, kayıtlı personel numarasından yazması gerektiğini söyle. ' )
+			? ( $hidden
+				? 'Ona WhatsApp\'ın numarasını gizlediğini kısaca söyle ve profilinde kayıtlı telefon numarasını yazmasını iste; o numaraya kod gönderip doğrulayınca personel araçları açılır. Yönetici panelde bu sohbeti personele bağlarsa da tanınır. '
+				: 'Ona bu numaranın personel numarası olarak görünmediğini söyle ve profilindeki telefon numarasını iste (rolü yeni değiştiyse sorun rol değil numara olabilir). ' )
+				. 'Kişi mesajında bir telefon numarası yazarsa başka bir şey sormadan hemen verify_send type=phone value=o numara ile kod gönder, gelen kodu verify_check ile kontrol et. Doğrulanınca personel araçları açılır, sonra staff_create_donation ile devam et. "Tekrar dene", "kontrol et" derse aynı cümleyi tekrarlama: numarasını yazarsa kod göndereceğini söyle. '
+			: ( $hidden
+				? 'Ona WhatsApp\'ın numarasını gizlediğini, yöneticinin panelde bu sohbeti personele bağlaması gerektiğini söyle. '
+				: 'Ona bu numaranın personel numarası olarak görünmediğini, kayıtlı personel numarasından yazması gerektiğini söyle. ' ) )
 		. 'Personel araçları yokken ödeme linki ve bilgiler yalnız bu sohbete gider: "bağışçının numarasına gönderilecek" deme, save_details ile bağışçının adını bu kişinin adı gibi kaydetme.';
+}
+
+/** 1.36.0: users a chat can be linked to (staff tools, or site admins who always have them). */
+function flxc_staff_link_users() {
+	if ( ! flxc_staff_on() ) {
+		return array();
+	}
+	$out = array();
+	foreach ( get_users( array( 'capability__in' => array( 'flxc_staff_tools', 'manage_options' ), 'number' => 200, 'orderby' => 'display_name' ) ) as $u ) {
+		$role  = function_exists( 'flxr_user_role' ) ? (string) flxr_user_role( $u ) : '';
+		$roles = $role && function_exists( 'flxr_roles' ) ? flxr_roles() : array();
+		$out[] = array( 'id' => (int) $u->ID, 'name' => $u->display_name . ( isset( $roles[ $role ] ) ? ' · ' . $roles[ $role ]['label'] : '' ) );
+	}
+	return $out;
 }
 
 /** Test sohbetinde "kim gibi yaz" listesi: personel araçları yetkili kullanıcılar. */

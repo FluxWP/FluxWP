@@ -34,6 +34,7 @@ function flxc_js_strings() {
 		'Telefon çevrimdışı olabilir ya da QR yeniden okutulmalı.' => __( 'Telefon çevrimdışı olabilir ya da QR yeniden okutulmalı.', 'flx-chat' ),
 		'Ayarlara git' => __( 'Ayarlara git', 'flx-chat' ),
 		'Gelen WhatsApp mesajları burada canlı görünür. Soldan bir sohbet seçin ya da yeni bir sohbet başlatın.' => __( 'Gelen WhatsApp mesajları burada canlı görünür. Soldan bir sohbet seçin ya da yeni bir sohbet başlatın.', 'flx-chat' ),
+		'WhatsApp, site sohbeti ve diğer kanallardan gelen tüm mesajlar burada canlı görünür. Soldan bir sohbet seçin.' => __( 'WhatsApp, site sohbeti ve diğer kanallardan gelen tüm mesajlar burada canlı görünür. Soldan bir sohbet seçin.', 'flx-chat' ),
 		'Mesajlar yalnız yetkili temsilcilere görünür.' => __( 'Mesajlar yalnız yetkili temsilcilere görünür.', 'flx-chat' ),
 		'Sonuç bulunamadı.' => __( 'Sonuç bulunamadı.', 'flx-chat' ),
 		'Okunmamış mesaj yok. 🎉' => __( 'Okunmamış mesaj yok. 🎉', 'flx-chat' ),
@@ -384,5 +385,11 @@ function flxc_js_strings() {
 		'Kurum' => __( 'Kurum', 'flx-chat' ),
 		'Web sitesi' => __( 'Web sitesi', 'flx-chat' ),
 		'Tarih' => __( 'Tarih', 'flx-chat' ),
+		'Personel' => __( 'Personel', 'flx-chat' ),
+		'Sohbet personele bağlandı' => __( 'Sohbet personele bağlandı', 'flx-chat' ),
+		'Personel bağlantısı kaldırıldı' => __( 'Personel bağlantısı kaldırıldı', 'flx-chat' ),
+		'— Personel değil —' => __( '— Personel değil —', 'flx-chat' ),
+		'WhatsApp bu kişinin numarasını gizliyor, asistan personeli numaradan tanıyamaz. Bu kişi ekibinizdense buradan bağlayın; asistan personel araçlarını açar.' => __( 'WhatsApp bu kişinin numarasını gizliyor, asistan personeli numaradan tanıyamaz. Bu kişi ekibinizdense buradan bağlayın; asistan personel araçlarını açar.', 'flx-chat' ),
+		'Asistan personeli Flux Roles profilindeki numaradan tanır. Numara eşleşmiyorsa buradan bağlayabilirsiniz; numarası bilinen sohbette numara önceliklidir.' => __( 'Asistan personeli Flux Roles profilindeki numaradan tanır. Numara eşleşmiyorsa buradan bağlayabilirsiniz; numarası bilinen sohbette numara önceliklidir.', 'flx-chat' ),
 	);
 }

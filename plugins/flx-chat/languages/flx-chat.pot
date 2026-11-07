@@ -4758,3 +4758,36 @@ msgstr ""
 msgid "Merhaba {first_name}, bağışınız kaydedildi: {donation}, toplam {amount}.\n\nDesteğiniz için teşekkür ederiz."
 msgstr ""
 
+
+msgid "Bu kullanıcının personel araçları yetkisi yok."
+msgstr ""
+
+msgid "%1$s bu sohbeti personel olarak bağladı: %2$s"
+msgstr ""
+
+msgid "%s sohbetin personel bağlantısını kaldırdı"
+msgstr ""
+
+msgid "Sohbet personele bağlandı"
+msgstr ""
+
+msgid "Personel bağlantısı kaldırıldı"
+msgstr ""
+
+msgid "— Personel değil —"
+msgstr ""
+
+msgid "WhatsApp bu kişinin numarasını gizliyor, asistan personeli numaradan tanıyamaz. Bu kişi ekibinizdense buradan bağlayın; asistan personel araçlarını açar."
+msgstr ""
+
+msgid "Asistan personeli Flux Roles profilindeki numaradan tanır. Numara eşleşmiyorsa buradan bağlayabilirsiniz; numarası bilinen sohbette numara önceliklidir."
+msgstr ""
+
+msgid "Bu kanal şu an kullanılamıyor."
+msgstr ""
+
+msgid "Site sohbeti"
+msgstr ""
+
+msgid "WhatsApp, site sohbeti ve diğer kanallardan gelen tüm mesajlar burada canlı görünür. Soldan bir sohbet seçin."
+msgstr ""

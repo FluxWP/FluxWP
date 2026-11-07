@@ -52,12 +52,15 @@ function flxwk_view_html() {
 function flxwk_search_form( $big = false, $value = '' ) {
 	$k = '<kbd class="flxwk-kbd">' . ( isset( $_SERVER['HTTP_USER_AGENT'] ) && false !== stripos( (string) $_SERVER['HTTP_USER_AGENT'], 'Mac' ) ? '⌘' : 'Ctrl' ) . ' K</kbd>'; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 	?>
-	<form class="flxwk-search<?php echo $big ? ' is-big' : ''; ?>" role="search" action="<?php echo esc_url( flxwk_home_url() ); ?>" method="get" data-flxwk-open>
+	<div class="flxwk-sbox<?php echo $big ? ' is-big' : ''; ?>" data-flxwk-live>
+	<form class="flxwk-search<?php echo $big ? ' is-big' : ''; ?>" role="search" action="<?php echo esc_url( flxwk_home_url() ); ?>" method="get">
 		<?php echo flxwk_icon( 'search' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 		<label class="screen-reader-text" for="flxwk-q<?php echo $big ? '-big' : ''; ?>"><?php esc_html_e( 'Wiki\'de ara', 'flx-wiki' ); ?></label>
-		<input id="flxwk-q<?php echo $big ? '-big' : ''; ?>" type="search" name="q" value="<?php echo esc_attr( $value ); ?>" placeholder="<?php echo esc_attr( $big ? __( 'Ne arıyorsunuz? Ör. MCP aracı, flx_settings_schema, tema…', 'flx-wiki' ) : __( 'Wiki\'de ara…', 'flx-wiki' ) ); ?>" autocomplete="off">
+		<input id="flxwk-q<?php echo $big ? '-big' : ''; ?>" type="search" name="q" value="<?php echo esc_attr( $value ); ?>" placeholder="<?php echo esc_attr( $big ? __( 'Ne arıyorsunuz? Ör. MCP aracı, flx_settings_schema, tema…', 'flx-wiki' ) : __( 'Wiki\'de ara…', 'flx-wiki' ) ); ?>" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" data-flxwk-q>
 		<?php echo $k; // phpcs:ignore WordPress.Security.EscapeOutput ?>
 	</form>
+	<div class="flxwk-drop" data-flxwk-drop hidden></div>
+	</div>
 	<?php
 }
 
@@ -186,10 +189,16 @@ function flxwk_view_search( $q ) {
 			<?php flxwk_view_crumbs(); ?>
 			<h1 class="flxwk-title"><?php esc_html_e( 'Arama', 'flx-wiki' ); ?></h1>
 			<?php flxwk_search_form( true, $q ); ?>
+			<div class="flxwk-sres" data-flxwk-page-results aria-live="polite">
 			<p class="flxwk-muted">
 				<?php
-				/* translators: 1: sonuç sayısı, 2: sorgu */
-				echo esc_html( sprintf( _n( '"%2$s" için %1$s sonuç', '"%2$s" için %1$s sonuç', $r['total'], 'flx-wiki' ), number_format_i18n( $r['total'] ), $q ) );
+				if ( ! empty( $r['fixed'] ) ) {
+					/* translators: 1: aranan, 2: düzeltilmiş sorgu */
+					echo esc_html( sprintf( __( '"%1$s" bulunamadı; "%2$s" için sonuçlar gösteriliyor.', 'flx-wiki' ), $q, $r['fixed'] ) );
+				} else {
+					/* translators: 1: sonuç sayısı, 2: sorgu */
+					echo esc_html( sprintf( _n( '"%2$s" için %1$s sonuç', '"%2$s" için %1$s sonuç', $r['total'], 'flx-wiki' ), number_format_i18n( $r['total'] ), $q ) );
+				}
 				?>
 			</p>
 			<?php if ( ! $r['results'] ) : ?>
@@ -206,6 +215,7 @@ function flxwk_view_search( $q ) {
 					</li>
 				<?php endforeach; ?>
 			</ol>
+			</div>
 		</main>
 	</div>
 	<?php

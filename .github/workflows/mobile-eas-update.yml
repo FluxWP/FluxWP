@@ -1,0 +1,51 @@
+name: FluxWP mobile brand update
+# OTA (EAS Update) for one brand channel. Needs eas.projectId in that brand.json and EXPO_TOKEN.
+on:
+  workflow_dispatch:
+    inputs:
+      brand:
+        description: brands/<slug>
+        default: flux
+        required: true
+      profile:
+        description: production or preview channel
+        type: choice
+        default: production
+        options: [production, preview]
+      message:
+        description: Update message
+        default: brand update
+        required: true
+permissions:
+  contents: read
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: oven-sh/setup-bun@v2
+        with: { bun-version: 1.4.4 }
+      - uses: actions/setup-node@v5
+        with: { node-version: 22 }
+      - run: bun install --frozen-lockfile
+      - name: Apply brand
+        env:
+          FLUX_BRAND: ${{ inputs.brand }}
+        run: bun tools/fluxapp/brand.mjs && node apps/mobile/scripts/brand.cjs
+      - name: EAS Update
+        working-directory: apps/mobile
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          FLUX_BRAND: ${{ inputs.brand }}
+          BRAND: ${{ inputs.brand }}
+          PROFILE: ${{ inputs.profile }}
+          UPDATE_MESSAGE: ${{ inputs.message }}
+        run: |
+          if [ "$BRAND" = "flux" ]; then
+            channel="$PROFILE"
+          elif [ "$PROFILE" = "preview" ]; then
+            channel="preview-$BRAND"
+          else
+            channel="production-$BRAND"
+          fi
+          bunx eas-cli update --non-interactive --channel "$channel" --message "$UPDATE_MESSAGE"

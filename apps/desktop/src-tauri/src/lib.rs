@@ -1,3 +1,4 @@
+mod embed;
 mod oauth;
 mod secure;
 
@@ -11,11 +12,15 @@ fn webview_reload(app: tauri::AppHandle, label: String) -> Result<(), String> {
 }
 
 pub fn run() {
-    tauri::Builder::default()
+    let builder = tauri::Builder::default()
         .plugin(tauri_plugin_http::init())
-        .plugin(tauri_plugin_opener::init())
+        .plugin(tauri_plugin_opener::init());
+    #[cfg(not(feature = "app-store"))]
+    let builder = builder
         .plugin(tauri_plugin_updater::Builder::new().build())
-        .plugin(tauri_plugin_process::init())
+        .plugin(tauri_plugin_process::init());
+    builder
+        .plugin(tauri_plugin_notification::init())
         .manage(oauth::OAuthState::default())
         .invoke_handler(tauri::generate_handler![
             secure::secure_get,
@@ -24,6 +29,8 @@ pub fn run() {
             oauth::oauth_listen,
             oauth::oauth_cancel,
             webview_reload,
+            embed::embed_open,
+            embed::embed_message,
         ])
         .run(tauri::generate_context!())
         .expect("tauri çalıştırılamadı");

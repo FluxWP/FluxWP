@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Wiki
  * Description:       Sitede /wiki altında geliştirici wiki'si: Markdown sayfalar, bölümler, sayfa ağacı ve içindekiler, ayrıntılı anlık arama, SEO uyumlu çıktı. LLM dostu: her sayfa .md olarak açılır ve kopyalanır, /wiki/llms.txt ve llms-full.txt, ChatGPT / Claude'da aç. Flux AI ile "Wiki'ye sor" ve MCP araçları (ara, oku, listele, yaz). Eklenti ve tema yazma, eklentileri AI destekli yapma rehberleriyle gelir.
- * Version:           0.1.1
+ * Version:           0.2.2
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -23,7 +23,7 @@ if ( defined( 'FLXWK_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXWK_VERSION', '0.1.1' );
+define( 'FLXWK_VERSION', '0.2.2' );
 define( 'FLXWK_FILE', __FILE__ );
 define( 'FLXWK_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXWK_URL', plugin_dir_url( __FILE__ ) );
@@ -42,6 +42,7 @@ require_once FLXWK_DIR . 'includes/mcp.php';
 require_once FLXWK_DIR . 'includes/seed.php';
 require_once FLXWK_DIR . 'includes/preset.php'; // Flux Setup ön ayarları wiki sayfası yazabilir.
 require_once FLXWK_DIR . 'includes/system-checks.php';
+require_once FLXWK_DIR . 'includes/app.php';
 if ( is_admin() ) {
 	require_once FLXWK_DIR . 'includes/admin.php';
 }

@@ -70,7 +70,7 @@ function flxwk_index() {
 		$sec      = flxwk_section_of( $p );
 		$idx[]    = array(
 			'id'      => $p->ID,
-			'title'   => get_the_title( $p ),
+			'title'   => html_entity_decode( get_the_title( $p ), ENT_QUOTES, 'UTF-8' ),
 			'url'     => get_permalink( $p ),
 			'section' => $sec ? $sec->name : '',
 			'sslug'   => $sec ? $sec->slug : '',
@@ -216,6 +216,17 @@ function flxwk_search( $q, $args = array() ) {
 		$score  = $all ? $score + 50 : $score * $matched / count( $tokens );
 		$hits[] = array( $doc, $score, $best[0], $all );
 	}
+	/* Sonuç yoksa yazım hatası düzeltilir ("kurlum" → "kurulum") ve bir kez daha aranır. */
+	if ( ! $hits && empty( $args['_fixed'] ) ) {
+		$fixed = flxwk_fix_tokens( $tokens );
+		if ( $fixed !== $tokens ) {
+			$res = flxwk_search( implode( ' ', $fixed ), array( '_fixed' => 1 ) + $args );
+			if ( $res['total'] ) {
+				$res['fixed'] = implode( ' ', $fixed );
+			}
+			return $res;
+		}
+	}
 	$any_all = (bool) array_filter( $hits, fn( $h ) => $h[3] );
 	if ( $any_all ) {
 		$hits = array_values( array_filter( $hits, fn( $h ) => $h[3] ) );
@@ -236,6 +247,54 @@ function flxwk_search( $q, $args = array() ) {
 		);
 	}
 	return array( 'total' => count( $hits ), 'results' => $out );
+}
+
+/** Dizindeki kelimeler ve sıklıkları (katlanmış, 3+ harf; önbellekli). */
+function flxwk_vocab() {
+	$v = get_transient( 'flxwk_vocab' );
+	if ( is_array( $v ) ) {
+		return $v;
+	}
+	$v = array();
+	foreach ( flxwk_index() as $doc ) {
+		$text = $doc['title'] . ' ' . $doc['excerpt'] . ' ' . implode( ' ', array_column( $doc['heads'], 1 ) ) . ' ' . implode( ' ', array_column( $doc['chunks'], 1 ) );
+		foreach ( preg_split( '/[^\p{L}\p{N}_]+/u', flxwk_fold( $text ), -1, PREG_SPLIT_NO_EMPTY ) as $w ) {
+			if ( strlen( $w ) >= 3 && strlen( $w ) <= 30 ) {
+				$v[ $w ] = ( $v[ $w ] ?? 0 ) + 1;
+			}
+		}
+	}
+	set_transient( 'flxwk_vocab', $v, DAY_IN_SECONDS );
+	return $v;
+}
+
+/**
+ * Dizinde geçmeyen kelimeyi en yakın dizin kelimesiyle değiştirir (Levenshtein: 4-5 harfte 1, daha uzunda 2 fark).
+ * Eşitlikte sık geçen kelime seçilir. Bulunamazsa kelime aynen kalır.
+ */
+function flxwk_fix_tokens( array $tokens ) {
+	$vocab = flxwk_vocab();
+	$out   = array();
+	foreach ( $tokens as $t ) {
+		$len = strlen( $t );
+		if ( isset( $vocab[ $t ] ) || $len < 4 ) {
+			$out[] = $t;
+			continue;
+		}
+		$max  = $len <= 5 ? 1 : 2;
+		$best = array( $t, $max + 1, 0 );
+		foreach ( $vocab as $w => $n ) {
+			if ( abs( strlen( $w ) - $len ) > $max ) {
+				continue;
+			}
+			$d = levenshtein( $t, (string) $w );
+			if ( $d <= $max && ( $d < $best[1] || ( $d === $best[1] && $n > $best[2] ) ) ) {
+				$best = array( (string) $w, $d, $n );
+			}
+		}
+		$out[] = $best[0];
+	}
+	return $out;
 }
 
 /** Eşleşen kelimeyi çevreleyen ~180 karakterlik alıntı; kelimeler <mark> ile (HTML güvenli). */

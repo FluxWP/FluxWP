@@ -257,6 +257,7 @@ function flxseo_fix_map() {
 		'flxseo_webmcp'  => array( 'webmcp' ),
 		'flxseo_headers' => array( 'hdr_frame', 'hdr_coop', 'hdr_csp' ),
 		'flxseo_hsts'    => array( 'hsts_sub' ),
+		'flxseo_indexnow' => array( 'indexnow' ),
 	);
 }
 
@@ -303,6 +304,7 @@ add_filter(
 			'flxseo_webmcp'  => array( __( 'WebMCP arama aracını aç', 'flx-seo' ), __( 'Arama formuna toolname/tooldescription eklenir; tarayıcıdaki ajanlar formu araç olarak görür.', 'flx-seo' ) ),
 			'flxseo_headers' => array( __( 'Güvenlik başlıklarını aç', 'flx-seo' ), __( 'X-Frame-Options: SAMEORIGIN, COOP same-origin-allow-popups ve temel CSP (object-src \'none\'; base-uri \'self\'; frame-ancestors \'self\'). Site başka sitelerde iframe ile gösteriliyorsa açmayın.', 'flx-seo' ) ),
 			'flxseo_hsts'    => array( __( 'HSTS includeSubDomains', 'flx-seo' ), __( 'Tüm alt alan adları HTTPS ise HSTS alt alan adlarını da kapsar.', 'flx-seo' ) ),
+			'flxseo_indexnow' => array( __( 'IndexNow\'u aç', 'flx-seo' ), __( 'Yeni ve güncellenen sayfalar Bing, Yandex, Seznam ve Naver\'e anında bildirilir; tüm site bir kez kendiliğinden gönderilir.', 'flx-seo' ) ),
 		);
 		foreach ( $labels as $id => $l ) {
 			$fixes[ $id ] = array(

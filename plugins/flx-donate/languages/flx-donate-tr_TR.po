@@ -5241,3 +5241,102 @@ msgstr "Tek seferlik kart ödemelerini %s alır; iyzico ödeme sayfasında göst
 
 msgid "Payment logos on the site"
 msgstr "Sitedeki ödeme logoları"
+
+msgid "Manage"
+msgstr "İşlemler"
+
+msgid "This gift is one basket: every item in it changes together."
+msgstr "Bu bağış tek sepet: içindeki her kalem birlikte değişir."
+
+msgid "Change the status of this gift? Its WooCommerce order follows; when you mark it paid, the certificate is made and sent to the donor."
+msgstr "Bu bağışın durumu değişsin mi? WooCommerce siparişi de değişir; ödendi yaparsanız sertifika oluşturulup bağışçıya gönderilir."
+
+msgid "Change the status of this gift?"
+msgstr "Bu bağışın durumu değişsin mi?"
+
+msgid "Change status"
+msgstr "Durumu değiştir"
+
+msgid "Restore this gift from the trash?"
+msgstr "Bu bağış çöpten geri alınsın mı?"
+
+msgid "Move this gift and its WooCommerce order to the trash? You can restore it later."
+msgstr "Bu bağış ve WooCommerce siparişi çöpe taşınsın mı? Sonra geri alabilirsiniz."
+
+msgid "Move this gift to the trash? You can restore it later."
+msgstr "Bu bağış çöpe taşınsın mı? Sonra geri alabilirsiniz."
+
+msgid "Delete this gift permanently? This cannot be undone."
+msgstr "Bu bağış kalıcı olarak silinsin mi? Geri alınamaz."
+
+msgid "Pending (on hold)"
+msgstr "Ödeme bekleniyor (askıda)"
+
+msgid "Completed (paid)"
+msgstr "Tamamlandı (ödendi)"
+
+msgid "Status changed to \"%s\"."
+msgstr "Durum \"%s\" olarak değişti."
+
+msgid "The status was not changed."
+msgstr "Durum değişmedi."
+
+msgid "Put on hold in Flux Donate."
+msgstr "Flux Donate'te askıya alındı."
+
+msgid "Pending (payment not received yet)"
+msgstr "Ödeme bekleniyor (para henüz gelmedi)"
+
+msgid "Completed (payment received)"
+msgstr "Tamamlandı (ödeme alındı)"
+
+msgid "You can change it later on the donation page."
+msgstr "Sonra bağış sayfasından değiştirebilirsiniz."
+
+msgid "Record a gift paid or promised by bank transfer, in cash or another way."
+msgstr "Havale, nakit ya da başka bir yolla ödenen veya ödenecek bağışı kaydedin."
+
+#, php-format
+msgid "This option cannot be donated in %s. Please choose another currency."
+msgstr "Bu seçenek %s ile bağışlanamıyor. Lütfen başka bir para birimi seçin."
+
+#, php-format
+msgid "Donations in %s cannot be paid here at the moment."
+msgstr "%s ile bağış şu anda burada ödenemiyor."
+
+#, php-format
+msgid "A donation in your cart cannot be paid in %s and was removed."
+msgstr "Sepetinizdeki bir bağış %s ile ödenemediği için çıkarıldı."
+
+#, php-format
+msgid "Products in your cart can only be paid in %1$s. <a href=\"%2$s\">Switch to %1$s</a>"
+msgstr "Sepetinizdeki ürünler yalnızca %1$s ile ödenebilir. <a href=\"%2$s\">%1$s'ye geç</a>"
+
+msgid "Printed certificates can only be paid in the store currency; your certificate will be sent online."
+msgstr "Basılı sertifika yalnızca mağaza para birimiyle ödenebilir; sertifikanız çevrim içi gönderilecek."
+
+msgid "Currencies donors can choose"
+msgstr "Bağışçının seçebileceği para birimleri"
+
+msgid "(store currency)"
+msgstr "(mağaza para birimi)"
+
+msgid "With more than one, donors pick the currency (shortcode [flx_bagis_para_birimi] or the theme). There are no exchange rates: set each option's price per currency on the donation type; options without a price in a currency are not offered in it. Check that your payment methods take these currencies."
+msgstr "Birden fazla seçiliyse bağışçı para birimini seçer ([flx_bagis_para_birimi] kısa kodu ya da tema). Kur çevrimi yoktur: her seçeneğin fiyatını bağış türünde para birimi başına girin; bir para biriminde fiyatı olmayan seçenek o para biriminde sunulmaz. Ödeme yöntemlerinizin bu para birimlerini aldığını kontrol edin."
+
+msgid "not offered"
+msgstr "sunulmuyor"
+
+#, php-format
+msgid "Preset amounts in %s"
+msgstr "%s hazır tutarları"
+
+msgid "Translations"
+msgstr "Çeviriler"
+
+msgid "Shown on the donation page, the cart and the checkout in that language (Flux Lang). Empty fields use the texts above. Records keep the texts above. Save once after adding options to translate their names."
+msgstr "Bağış sayfasında, sepette ve ödeme sayfasında o dilde gösterilir (Flux Lang). Boş alanlarda yukarıdaki metin kullanılır. Kayıtlar yukarıdaki metinle tutulur. Yeni eklenen seçeneklerin adını çevirmek için önce bir kez kaydedin."
+
+#, php-format
+msgid "Option: %s"
+msgstr "Seçenek: %s"

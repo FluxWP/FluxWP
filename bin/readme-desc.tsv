@@ -7,6 +7,7 @@ flx-donate	WooCommerce üzerinde fidan ve kampanya bağışları; kart, havale v
 flx-commerce	WooCommerce mağazası için satış paneli, müşteriler ve satış raporları. Dekont yüklemeli Havale/EFT, sade ödeme sayfası, ücretsiz kargo çubuğu ve Google Merchant feed'i.
 flx-crm	Bağışçı, müşteri, gönüllü ve adayları tek kişi kartında toplayan CRM. Zaman tüneli, RFM skorlama, kayıp riski ve Flux Mail gönderimine hazır segmentler.
 flx-chat	WhatsApp çağrı merkezi: sohbetler, hazır cevaplar, etiketler ve atama. Sohbetten bağış ve sertifika kaydı, AI asistanı.
+flx-chatbot	Siteye yapay zekâ sohbet penceresi: Flux AI ile içerikten ve ürünlerden cevap, gerekince Flux Chat'teki canlı temsilciye devir. Renk, konum, avatar ve metinler panelden canlı önizlemeyle özelleştirilir.
 flx-lang	Siteyi çok dilli yapar: /en/ adresleri, içerik başına çeviri, hreflang ve dil seçici.
 flx-forms	Sürükle-bırak form oluşturucu: çok adımlı formlar, ödemeler, koşullu mantık ve otomasyonlar. Gelen kayıtlar tek panelde.
 flx-tasks	Görev takibi: projeler, listeler, pano ve takvim görünümleri. Toplantı raporları, bildirimler ve MCP araçları.

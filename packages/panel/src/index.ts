@@ -14,3 +14,4 @@ export function mountApp(el: HTMLElement, p: Platform) {
 export { webPlatform } from './platform/web';
 export { App };
 export { usePrefs } from './state/prefs';
+export { APP_VERSION } from './version';

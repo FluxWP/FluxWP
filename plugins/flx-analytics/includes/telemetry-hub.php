@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || exit;
 
 class FLXAN_Telemetry_Hub {
 
-	const DB_VERSION   = 2;
+	const DB_VERSION   = 3;
 	const SLUG         = 'flx-analytics-telemetry';
 	const KEEP_DAYS    = 90;
 	const MAX_BODY     = 131072;
@@ -76,6 +76,7 @@ class FLXAN_Telemetry_Hub {
 				panel varchar(32) NOT NULL DEFAULT '',
 				pk text NOT NULL,
 				ob text NOT NULL,
+				app_usage text NULL,
 				ob_ts int(10) unsigned NOT NULL DEFAULT 0,
 				PRIMARY KEY  (iid),
 				KEY last_ts (last_ts),
@@ -188,6 +189,7 @@ class FLXAN_Telemetry_Hub {
 			'panel'    => self::ver( $b['panel'] ?? '' ),
 			'pk'       => wp_json_encode( $pk ),
 			'ob'       => $ob ? wp_json_encode( $ob ) : (string) ( $cur['ob'] ?? '' ),
+			'app_usage' => wp_json_encode( self::app_usage( $b['app_usage'] ?? array() ) ),
 			'ob_ts'    => $ob ? $now : (int) ( $cur['ob_ts'] ?? 0 ),
 		);
 		$wpdb->replace( $ti, $row ); // phpcs:ignore WordPress.DB
@@ -230,6 +232,27 @@ class FLXAN_Telemetry_Hub {
 		$wpdb->query( $wpdb->prepare( 'INSERT INTO ' . self::t( 'days' ) . ' (d, r, e) VALUES (%s, 1, %d) ON DUPLICATE KEY UPDATE r = r + 1, e = e + VALUES(e)', $day, $events ) ); // phpcs:ignore WordPress.DB
 		delete_transient( 'flxan_tm_sum' );
 		return 'ok';
+	}
+
+	/** Strict aggregate schema; unknown keys, current/future days and small cohorts are discarded. */
+	public static function app_usage( $input ) {
+		$out = array();
+		if ( ! is_array( $input ) ) {
+			return $out;
+		}
+		for ( $i = 1; $i <= 7; ++$i ) {
+			$day = gmdate( 'Y-m-d', time() - $i * DAY_IN_SECONDS );
+			if ( ! isset( $input[ $day ] ) || ! is_array( $input[ $day ] ) ) {
+				continue;
+			}
+			foreach ( array( 'ios', 'android' ) as $platform ) {
+				$n = $input[ $day ][ $platform ] ?? null;
+				if ( is_int( $n ) && $n >= 5 && $n <= 1000000 ) {
+					$out[ $day ][ $platform ] = $n;
+				}
+			}
+		}
+		return $out;
 	}
 
 	/** Ülke kodu (gönderen site ayarlarından; IP'ye bakılmaz). Geçersizse boş. */
@@ -374,7 +397,7 @@ class FLXAN_Telemetry_Hub {
 		}
 		global $wpdb;
 		$cut  = time() - $days * DAY_IN_SECONDS;
-		$sql  = 'SELECT wp, php, loc, cc, pk, ob, ob_ts FROM ' . self::t( 'installs' ) . ' WHERE last_ts >= %d';
+		$sql  = 'SELECT wp, php, loc, cc, pk, ob, ob_ts, app_usage FROM ' . self::t( 'installs' ) . ' WHERE last_ts >= %d';
 		$rows = '' !== $cc ? $wpdb->get_results( $wpdb->prepare( $sql . ' AND cc = %s', $cut, $cc ), ARRAY_A ) : $wpdb->get_results( $wpdb->prepare( $sql, $cut ), ARRAY_A ); // phpcs:ignore WordPress.DB
 		$S    = array(
 			'installs' => count( $rows ),
@@ -386,6 +409,7 @@ class FLXAN_Telemetry_Hub {
 			'wp'       => array(),
 			'locale'   => array(),
 			'country'  => array(),
+			'app_usage' => array(),
 			'ob'       => array(
 				'runs'    => 0,
 				'out'     => array( 'done' => 0, 'skip' => 0, 'left' => 0 ),
@@ -403,6 +427,11 @@ class FLXAN_Telemetry_Hub {
 			$arr[ $k ] = ( $arr[ $k ] ?? 0 ) + $n;
 		};
 		foreach ( $rows as $r ) {
+			foreach ( self::app_usage( json_decode( (string) ( $r['app_usage'] ?? '' ), true ) ) as $day => $platforms ) {
+				foreach ( $platforms as $platform => $count ) {
+					$S['app_usage'][ $day ][ $platform ] = ( $S['app_usage'][ $day ][ $platform ] ?? 0 ) + $count;
+				}
+			}
 			$pk = json_decode( (string) $r['pk'], true );
 			$pk = is_array( $pk ) ? $pk : array();
 			unset( $pk['flx-setup'] ); // Her sitede var; kombinasyonlarda gürültü.
@@ -739,6 +768,14 @@ class FLXAN_Telemetry_Hub {
 			echo '<div class="flxan-panel flxan-empty--big"><b>' . esc_html__( 'Henüz rapor yok.', 'flx-analytics' ) . '</b><p>' . esc_html__( 'Sitelerdeki FluxWP Panel bu adrese gönderir:', 'flx-analytics' ) . '</p><code>' . esc_html( self::endpoint() ) . '</code></div>';
 			return;
 		}
+		$usage_rows = array();
+		krsort( $S['app_usage'] );
+		foreach ( $S['app_usage'] as $day => $platforms ) {
+			foreach ( $platforms as $platform => $count ) {
+				$usage_rows[ esc_html( $day . ' · ' . $platform ) ] = array( (int) $count );
+			}
+		}
+		self::bars( __( 'Mobil uygulama: günlük aktif hesaplar', 'flx-analytics' ), $usage_rows, array( __( 'UTC gün / platform', 'flx-analytics' ), __( 'İzin veren hesaplar', 'flx-analytics' ) ), 0, __( 'Henüz uygun toplam yok. Kullanıcı ve site izni gerekir; site/platform/gün başına beşten az hesap paylaşılmaz. Ülke filtresi sitenin ayarlı ülkesidir; kişilerin konumu değildir. Aynı kişi farklı sitelerde veya platformlarda tekrar sayılabilir.', 'flx-analytics' ) );
 		echo '<div class="flxan-grid">';
 		$rows = array();
 		foreach ( $S['usage'] as $s => $c ) {
