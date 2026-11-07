@@ -34,6 +34,7 @@ function flxc_js_strings() {
 		'Telefon çevrimdışı olabilir ya da QR yeniden okutulmalı.' => __( 'Telefon çevrimdışı olabilir ya da QR yeniden okutulmalı.', 'flx-chat' ),
 		'Ayarlara git' => __( 'Ayarlara git', 'flx-chat' ),
 		'Gelen WhatsApp mesajları burada canlı görünür. Soldan bir sohbet seçin ya da yeni bir sohbet başlatın.' => __( 'Gelen WhatsApp mesajları burada canlı görünür. Soldan bir sohbet seçin ya da yeni bir sohbet başlatın.', 'flx-chat' ),
+		'WhatsApp, site sohbeti ve diğer kanallardan gelen tüm mesajlar burada canlı görünür. Soldan bir sohbet seçin.' => __( 'WhatsApp, site sohbeti ve diğer kanallardan gelen tüm mesajlar burada canlı görünür. Soldan bir sohbet seçin.', 'flx-chat' ),
 		'Mesajlar yalnız yetkili temsilcilere görünür.' => __( 'Mesajlar yalnız yetkili temsilcilere görünür.', 'flx-chat' ),
 		'Sonuç bulunamadı.' => __( 'Sonuç bulunamadı.', 'flx-chat' ),
 		'Okunmamış mesaj yok. 🎉' => __( 'Okunmamış mesaj yok. 🎉', 'flx-chat' ),

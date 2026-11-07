@@ -126,7 +126,7 @@ function flxa_pwa_manifest() {
 		array( 'name' => __( 'Panel', 'flx-admin' ), 'url' => $admin ),
 	);
 	if ( defined( 'FLXC_VERSION' ) ) {
-		$short[] = array( 'name' => __( 'WhatsApp', 'flx-admin' ), 'url' => admin_url( 'admin.php?page=flx-chat' ) );
+		$short[] = array( 'name' => __( 'Mesajlar', 'flx-admin' ), 'url' => admin_url( 'admin.php?page=flx-chat' ) );
 	}
 	if ( defined( 'FLXG_VERSION' ) ) {
 		$short[] = array( 'name' => __( 'Görevler', 'flx-admin' ), 'url' => admin_url( 'admin.php?page=flx-tasks' ) );

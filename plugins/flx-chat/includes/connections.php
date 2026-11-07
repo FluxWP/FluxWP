@@ -60,6 +60,108 @@ function flxc_evo_compatible_type( $type ) {
 	return in_array( (string) $type, (array) apply_filters( 'flxc_evo_compatible_types', array( 'evolution', 'flxwpapi', 'flx-wpapi' ) ), true );
 }
 
+/**
+ * 1.37.0: Sanal kanal mı (ör. Flux AI Chatbot'un site sohbeti, `flx-web`). Bu bağlantılarda Evolution'a istek gitmez;
+ * flxc_evo() isteği `flxc_virtual_request` filtresine verir, kanalı sağlayan eklenti cevaplar.
+ *
+ * @param string|array $conn Bağlantı id'si ya da bağlantı.
+ */
+function flxc_is_virtual_conn( $conn ) {
+	$id = is_array( $conn ) ? (string) ( $conn['id'] ?? '' ) : (string) $conn;
+	return '' !== $id && (bool) apply_filters( 'flxc_virtual_conn', false, $id );
+}
+
+/**
+ * 1.37.0: Gelen kutusu kanalları. Çağrı merkezi tek gelen kutusudur; WhatsApp dışındaki kanallar (site sohbeti, ileride
+ * Instagram, e-posta…) `flxc_channels` filtresiyle kendini kaydeder ve sohbetler listede kanal ikonuyla görünür.
+ * Her kanal: label, icon (24'lük viewBox içi SVG; stroke çizgi), color, active (kanal açık mı), conns (sanal bağlantı id'leri).
+ *
+ * @return array<string,array>
+ */
+function flxc_channels() {
+	static $memo = null;
+	if ( null !== $memo ) {
+		return $memo;
+	}
+	$wa = 0;
+	foreach ( flxc_connections() as $c ) {
+		if ( ! flxc_is_virtual_conn( $c ) ) {
+			++$wa;
+		}
+	}
+	$list = array(
+		'whatsapp' => array(
+			'label'  => __( 'WhatsApp', 'flx-chat' ),
+			'icon'   => '<path d="M3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 8 19.4z"/><path d="M9 8.6c0 3.3 3 6.4 6.4 6.4l1.1-1.6-2-1-1 .9a5 5 0 0 1-2.8-2.8l.9-1-1-2z"/>',
+			'color'  => '#25d366',
+			'active' => $wa > 0,
+			'conns'  => array(),
+		),
+		'web'      => array(
+			'label'  => __( 'Site sohbeti', 'flx-chat' ),
+			'icon'   => '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+			'color'  => '#5b8def',
+			'active' => false,
+			'conns'  => array(),
+		),
+	);
+	$list = (array) apply_filters( 'flxc_channels', $list );
+	$out  = array();
+	foreach ( $list as $id => $ch ) {
+		$id = sanitize_key( (string) $id );
+		if ( '' === $id || ! is_array( $ch ) ) {
+			continue;
+		}
+		$out[ $id ] = array(
+			'label'  => (string) ( $ch['label'] ?? $id ),
+			'icon'   => (string) ( $ch['icon'] ?? '' ),
+			'color'  => sanitize_hex_color( (string) ( $ch['color'] ?? '' ) ) ? (string) $ch['color'] : '#8696a0',
+			'active' => ! empty( $ch['active'] ),
+			'conns'  => array_values( array_filter( array_map( 'strval', (array) ( $ch['conns'] ?? array() ) ) ) ),
+		);
+	}
+	$memo = $out;
+	return $out;
+}
+
+/** Sohbetin kanalı: sanal bağlantıyı kaydeden kanal, yoksa sanal ise 'web', değilse 'whatsapp'. */
+function flxc_chat_channel( $chat ) {
+	$conn = (string) ( is_array( $chat ) ? ( $chat['conn'] ?? '' ) : $chat );
+	if ( ! flxc_is_virtual_conn( $conn ) ) {
+		return 'whatsapp';
+	}
+	foreach ( flxc_channels() as $id => $ch ) {
+		if ( in_array( $conn, $ch['conns'], true ) ) {
+			return $id;
+		}
+	}
+	return 'web';
+}
+
+/** Arayüze giden kanal listesi (ikon dahil). */
+function flxc_channels_for_js() {
+	$out = array();
+	foreach ( flxc_channels() as $id => $ch ) {
+		$out[] = array(
+			'id'     => $id,
+			'label'  => $ch['label'],
+			'icon'   => wp_kses(
+				$ch['icon'],
+				array(
+					'path'     => array( 'd' => true, 'fill' => true, 'stroke' => true ),
+					'circle'   => array( 'cx' => true, 'cy' => true, 'r' => true, 'fill' => true ),
+					'rect'     => array( 'x' => true, 'y' => true, 'width' => true, 'height' => true, 'rx' => true, 'fill' => true ),
+					'polyline' => array( 'points' => true ),
+					'line'     => array( 'x1' => true, 'y1' => true, 'x2' => true, 'y2' => true ),
+				)
+			),
+			'color'  => $ch['color'],
+			'active' => $ch['active'],
+		);
+	}
+	return $out;
+}
+
 /** Flux Mail etkin mi (WhatsApp/SMS bağlantıları orada yönetilir). */
 function flxc_flxi_on() {
 	return function_exists( 'flxi_get_channel_connection' ) && function_exists( 'flxi_connection_choices' );

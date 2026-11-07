@@ -131,6 +131,7 @@ function flxc_rest_bootstrap() {
 		'agents'      => flxc_agents(),
 		'labels'      => flxc_labels_for_js(),
 		'connections' => flxc_connections_for_js(),
+		'channels'    => flxc_channels_for_js(),
 		'replies'     => flxc_replies_for_js(),
 		'unread'      => flxc_unread_total(),
 		'ai'          => $ai ? array( 'id' => $ai['id'], 'label' => (string) ( $ai['label'] ?? $ai['id'] ), 'auto' => (bool) flxc_setting( 'ai_auto_suggest' ) ) : null,
@@ -147,6 +148,7 @@ function flxc_rest_chats( WP_REST_Request $req ) {
 			'filter' => sanitize_key( (string) $req->get_param( 'filter' ) ),
 			'q'      => sanitize_text_field( (string) $req->get_param( 'q' ) ),
 			'label'  => sanitize_key( (string) $req->get_param( 'label' ) ),
+			'channel' => sanitize_key( (string) $req->get_param( 'channel' ) ),
 			'offset' => max( 0, (int) $req->get_param( 'offset' ) ),
 			'limit'  => min( 100, max( 10, (int) ( $req->get_param( 'limit' ) ? $req->get_param( 'limit' ) : 50 ) ) ),
 		)
