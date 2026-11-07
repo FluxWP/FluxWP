@@ -489,6 +489,7 @@
 "Günlük sınır (USD)": "Daily limit (USD)",
 "Kayıt": "Record",
 "Kayıt saklama (gün)": "Keep records (days)",
+"İçerik saklama (gün)": "Keep content (days)",
 "Kayıt yok": "No records",
 "MCP": "MCP",
 "Model ve araç çağrıları burada listelenir. İstek içeriği uygulamaya gelmez.": "Model and tool calls are listed here. Request bodies are not sent to the app.",
@@ -505,5 +506,8 @@
 "Yönetimde sohbet": "Chat in admin",
 "Yüksek": "High",
 "Çaba": "Effort",
-"İstek içeriğini kaydet": "Store request bodies"
+"İstek içeriğini kaydet": "Store request bodies",
+ "Sınırsız": "Unlimited",
+ "Boş bırakın: kayıtlar sınırsız saklanır. Gün girerseniz daha eski kayıtlar günde bir kez silinir.": "Leave empty to keep logs forever. If you enter days, older logs are deleted once a day.",
+ "Boş bırakın: içerik de sınırsız saklanır.": "Leave empty to keep content forever too."
 }
