@@ -9,6 +9,75 @@ msgstr ""
 msgid "Güncelleme sunucusunu WordPress panelinden yönetir"
 msgstr ""
 
+msgid "Kaydedildi."
+msgstr ""
+
+msgid "Anahtar üretildi. Güvenlik için burada gösterilmez: 5 dakika içinde Updater › Siteler ekranını açın, anahtar orada bir kez görünür."
+msgstr ""
+
+msgid "Site bulunamadı. Önce anahtarlı siteleri listeleyin."
+msgstr ""
+
+msgid "Güncelleme sunucusunun istatistikleri, siteleri, paketleri ve güvenlik ayarları."
+msgstr ""
+
+msgid "Sunucu genel bakış"
+msgstr ""
+
+msgid "Bağlanan siteler"
+msgstr ""
+
+msgid "Anahtarlı siteler"
+msgstr ""
+
+msgid "Sunucudaki paketler"
+msgstr ""
+
+msgid "Sunucu güvenliği"
+msgstr ""
+
+msgid "Sunucu kaynakları"
+msgstr ""
+
+msgid "Site anahtarını test et"
+msgstr ""
+
+msgid "Site ekle (anahtar üret)"
+msgstr ""
+
+msgid "Site erişimini düzenle"
+msgstr ""
+
+msgid "Siteyi aktif/pasif yap"
+msgstr ""
+
+msgid "Siteyi sil"
+msgstr ""
+
+msgid "Bağlanan siteye anahtar ver"
+msgstr ""
+
+msgid "Acil durdurma / anahtarsız dağıtım"
+msgstr ""
+
+msgid "Ülke erişimi"
+msgstr ""
+
+msgid "Herkese açık paketler"
+msgstr ""
+
+msgid "Paketleri yeniden oku"
+msgstr ""
+
+msgid "Zip saklama"
+msgstr ""
+
+msgid "Değişiklik yok."
+msgstr ""
+
+msgid "Ülke veritabanını güncelle"
+msgstr ""
+
 msgid "Genel bakış"
 msgstr ""
 
@@ -76,9 +145,6 @@ msgid "Bu işlem için yetkiniz yok."
 msgstr ""
 
 msgid "Yönetici anahtarı bu siteden silindi. Sunucudaki anahtar duruyor; sunucu panelinden silebilirsiniz."
-msgstr ""
-
-msgid "Kaydedildi."
 msgstr ""
 
 msgid "Yönetici anahtarı \"flxm_\" ile başlar ve 53 karakterdir. Sunucu panelinde Updater Manager kartından üretin."
@@ -240,9 +306,6 @@ msgstr ""
 msgid "%s site"
 msgstr ""
 
-msgid "Bağlanan siteler"
-msgstr ""
-
 msgid "%1$s site bu aralıkta, toplam %2$s kayıtlı"
 msgstr ""
 
@@ -360,9 +423,6 @@ msgstr ""
 msgid "Test et"
 msgstr ""
 
-msgid "Anahtarlı siteler"
-msgstr ""
-
 msgid "Henüz site yok. \"Site ekle\" ile ilk anahtarı üretin."
 msgstr ""
 
@@ -405,16 +465,10 @@ msgstr ""
 msgid "Bu site silinsin mi? Anahtarı hemen geçersiz olur."
 msgstr ""
 
-msgid "Siteyi sil"
-msgstr ""
-
 msgid "Sunucu dosyasından (config.php)"
 msgstr ""
 
 msgid "Sunucu anahtarın yalnız özetini (sha256) saklar. Kaybolan anahtar geri alınamaz: siteyi silip yeni anahtar üretin. Anahtarsız bağlanan bir siteye Genel bakış › Bağlanan siteler › \"Anahtar ver\" ile de anahtar verebilirsiniz."
-msgstr ""
-
-msgid "Paketleri yeniden oku"
 msgstr ""
 
 msgid "Paket yok. GitHub sekmesinde depoları ve (private depo için) token'ı girin; depoda release yoksa bir pakete sürüm çıkın."
@@ -466,9 +520,6 @@ msgid "Public depolar"
 msgstr ""
 
 msgid "(paketleri herkese anahtarsız; boşsa public güncelleme kapalı)"
-msgstr ""
-
-msgid "Herkese açık paketler"
 msgstr ""
 
 msgid "(private depodaki bu paketler anahtarsız iner; ör. web sitesindeki indirme butonu için flx-setup)"
@@ -610,9 +661,6 @@ msgid "Ülkesini bul"
 msgstr ""
 
 msgid "IP harici bir servise gönderilmez; arama güncelleme sunucusunda yapılır. Veritabanı ayda bir kendiliğinden yenilenir."
-msgstr ""
-
-msgid "Ülke erişimi"
 msgstr ""
 
 msgid "Seçilen ülkeleri engelle"

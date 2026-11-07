@@ -21,3 +21,7 @@ wp-config.php'deki `FLXUM_SERVER` ve `FLXUM_KEY` alanları ezer. Yönetici anaht
 WordPress 6.4+, PHP 7.4+. Yalnız `manage_options` yetkisi olan kullanıcılar.
 
 English: [README.md](README.md)
+
+## Yapay zekâ araçları
+
+**Flux AI & MCP** etkinse eklenti ortak sohbete ve MCP sunucusuna `flxum_*` araçlarını ekler (Flux AI SDK). Okuma: `overview`, `connected_sites`, `keyed_sites`, `packages`, `security`, `resources`, `test_key`. Değiştirme (her seferinde onaylı): `add_site`, `update_site`, `toggle_site`, `delete_site`, `issue_key`, `set_switch`, `set_country_access`, `set_public_packages`, `refresh_packages`, `set_zip_retention`, `update_country_db`. Yeni site anahtarı modele gönderilmez; Updater › Siteler ekranında bir kez gösterilir. Yönetici anahtarları, panel parolası, GitHub token'ı ve webhook secret'ı araçlarda yok.
