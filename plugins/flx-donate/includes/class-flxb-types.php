@@ -56,6 +56,71 @@ final class FLXB_Types {
 		);
 	}
 
+	/**
+	 * 2.15: translations of a type for Flux Lang: { en: { title, description, options: { key: label } } }.
+	 * Empty strings are dropped; the type's own texts are the default language.
+	 */
+	public static function clean_i18n( array $raw ) {
+		$out = array();
+		foreach ( $raw as $lang => $tr ) {
+			$lang = strtolower( sanitize_key( (string) $lang ) );
+			if ( ! preg_match( '/^[a-z]{2,3}(-[a-z0-9]{2,8})?$/', $lang ) || ! is_array( $tr ) ) {
+				continue;
+			}
+			$row = array();
+			foreach ( array( 'title' => 191, 'description' => 2000 ) as $k => $max ) {
+				$v = 'description' === $k ? sanitize_textarea_field( (string) ( $tr[ $k ] ?? '' ) ) : sanitize_text_field( (string) ( $tr[ $k ] ?? '' ) );
+				if ( '' !== trim( $v ) ) {
+					$row[ $k ] = mb_substr( trim( $v ), 0, $max );
+				}
+			}
+			foreach ( (array) ( $tr['options'] ?? array() ) as $key => $label ) {
+				$label = trim( sanitize_text_field( (string) $label ) );
+				if ( '' !== $label ) {
+					$row['options'][ sanitize_key( (string) $key ) ] = mb_substr( $label, 0, 120 );
+				}
+			}
+			if ( $row ) {
+				ksort( $row );
+				$out[ $lang ] = $row;
+			}
+		}
+		ksort( $out );
+		return $out;
+	}
+
+	/** 2.15: the visitor's language (Flux Lang), '' for the default language or without Flux Lang. */
+	public static function lang() {
+		if ( ! function_exists( 'flxl_current_language' ) || ! function_exists( 'flxl_default_language' ) ) {
+			return '';
+		}
+		$l = (string) flxl_current_language();
+		return $l === (string) flxl_default_language() ? '' : $l;
+	}
+
+	/**
+	 * 2.15: a type with its title, description and option labels in a language (default: the visitor's,
+	 * Flux Lang). For display only; records keep the type's own texts.
+	 */
+	public static function localize( array $t, $lang = null ) {
+		$lang = null === $lang ? self::lang() : strtolower( (string) $lang );
+		$tr   = '' !== $lang ? (array) ( ( (array) self::meta( $t, 'i18n', array() ) )[ $lang ] ?? array() ) : array();
+		if ( ! $tr ) {
+			return $t;
+		}
+		foreach ( array( 'title', 'description' ) as $k ) {
+			if ( ! empty( $tr[ $k ] ) ) {
+				$t[ $k ] = (string) $tr[ $k ];
+			}
+		}
+		foreach ( $t['options'] as $i => $o ) {
+			if ( ! empty( $tr['options'][ $o['key'] ] ) ) {
+				$t['options'][ $i ]['label'] = (string) $tr['options'][ $o['key'] ];
+			}
+		}
+		return $t;
+	}
+
 	/** 2.15: { CODE: price > 0 } prices of an option in currencies other than the type's own. */
 	public static function clean_prices( $raw ) {
 		$out = array();
@@ -353,6 +418,9 @@ final class FLXB_Types {
 		}
 		if ( array_key_exists( 'lock_preselect', $m ) ) {
 			$out['lock_preselect'] = ! empty( $m['lock_preselect'] );
+		}
+		if ( array_key_exists( 'i18n', $m ) ) {
+			$out['i18n'] = self::clean_i18n( (array) $m['i18n'] );
 		}
 		if ( array_key_exists( 'grouping', $m ) ) {
 			$g               = sanitize_key( (string) $m['grouping'] );

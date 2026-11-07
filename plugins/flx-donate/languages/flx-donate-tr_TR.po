@@ -5330,3 +5330,13 @@ msgstr "sunulmuyor"
 #, php-format
 msgid "Preset amounts in %s"
 msgstr "%s hazır tutarları"
+
+msgid "Translations"
+msgstr "Çeviriler"
+
+msgid "Shown on the donation page, the cart and the checkout in that language (Flux Lang). Empty fields use the texts above. Records keep the texts above. Save once after adding options to translate their names."
+msgstr "Bağış sayfasında, sepette ve ödeme sayfasında o dilde gösterilir (Flux Lang). Boş alanlarda yukarıdaki metin kullanılır. Kayıtlar yukarıdaki metinle tutulur. Yeni eklenen seçeneklerin adını çevirmek için önce bir kez kaydedin."
+
+#, php-format
+msgid "Option: %s"
+msgstr "Seçenek: %s"

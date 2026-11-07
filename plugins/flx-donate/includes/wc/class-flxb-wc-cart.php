@@ -382,6 +382,13 @@ final class FLXB_WC_Cart {
 				$item['data']->set_price( $price );
 				/* 2.15: the product's list price is in the store currency; without this the block cart shows a "discount". */
 				$item['data']->set_regular_price( $price );
+				/* 2.15.1: the hidden product's name in the visitor's language (block cart, checkout, order line). */
+				if ( '' !== FLXB_Types::lang() ) {
+					$t = FLXB_Types::get( (int) ( $item[ self::KEY ]['type_id'] ?? 0 ) );
+					if ( $t ) {
+						$item['data']->set_name( FLXB_Types::localize( $t )['title'] );
+					}
+				}
 			}
 		}
 	}
@@ -467,6 +474,7 @@ final class FLXB_WC_Cart {
 	public static function summary( array $line, $qty = 1 ) {
 		$out = array();
 		$t   = FLXB_Types::get( (int) ( $line['type_id'] ?? 0 ) );
+		$t   = $t && ! is_admin() ? FLXB_Types::localize( $t ) : $t;
 		list( $n, $unit ) = self::units( $line, $qty );
 		if ( $n && '' !== $unit ) {
 			$out[ __( 'Quantity', 'flx-donate' ) ] = FLXB_WC::units_text( $n, $unit );
@@ -530,6 +538,7 @@ final class FLXB_WC_Cart {
 		if ( ! $t ) {
 			return '';
 		}
+		$t = is_admin() ? $t : FLXB_Types::localize( $t ); // 2.15: shop pages in the visitor's language
 		list( $n, $unit ) = self::units( $line, 1 );
 		if ( 'fidan' === $unit && $n ) {
 			/* translators: %s: number of saplings */

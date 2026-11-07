@@ -13,6 +13,7 @@ Flux Donate 2.11.0, Flux Setup ön ayarlarının `content` listesinde dört tür
             "labels": { "partner": "Dikim alanı", "st_done": "Dikildi" },
             "requires_proxy": false, "intention": "", "meat_to_needy": false, "grouping": "none" } }
 ```
+2.15.1: meta `i18n` `{ "en": { "title": "Sapling donation", "description": "", "options": { "f1": "1 sapling" } } }` (Flux Lang dilleri). Seçenekte `units_per` (1'den büyükse) ve `badge` de taşınır.
 2.15: seçenekte `prices` (türün kendi para birimi dışındaki fiyatlar, kur çevrimi yok) ve meta'da `min_by_currency` `{ "EUR": 10 }`, `presets_by_currency` `{ "EUR": [10, 25] }` isteğe bağlı.
 `labels` anahtarları: `menu, title, item, partner, files, st_pending, st_approved, st_sent, st_done, st_delivered, st_canceled, do_assign, do_revoke, do_done, caption`. Form bağlantıları (`form_ids`) ön ayarla taşınmaz, sitede kalır.
 

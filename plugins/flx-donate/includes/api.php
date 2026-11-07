@@ -94,6 +94,7 @@ function flxb_type_state( $t ) {
 
 /** @internal Public shape of an internal type row. */
 function flxb_type_public( array $t, $with_progress = true ) {
+	$t       = is_admin() ? $t : FLXB_Types::localize( $t ); // 2.15: Flux Lang translations on the front end
 	$cats    = flxb_categories();
 	$options = array();
 	foreach ( $t['options'] as $o ) {

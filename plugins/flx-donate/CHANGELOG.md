@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 2.15.1
+- Bağış türü çevirisi (Flux Lang): tür düzenlemede yeni "Çeviriler" kartı; her dil için başlık, kısa açıklama ve seçenek adları. Bağış sayfası, sepet, ödeme sayfası ve `flxb_type_public()` ziyaretçinin dilinde gösterir; kayıtlar varsayılan dildeki metni tutar. Tür meta `i18n` `{ "en": { "title", "description", "options": { "anahtar": "Ad" } } }`, ön ayarlarla taşınır. `FLXB_Types::localize( $t, $lang = null )`.
+- Düzeltme: ön ayar yeniden uygulanınca "Array to string conversion" uyarısı (bağlı formlar). Ön ayar türü yeniden uygulanınca seçeneklerin "seçim başına birim" ve rozet değerleri artık korunuyor.
+
 ## 2.15.0
 - Para birimi seçimi: bağışçı TRY / EUR / USD (ve GBP) arasında seçer. Ayarlar › WooCommerce › "Bağışçının seçebileceği para birimleri"; mağaza para birimi hep sunulur. Kur çevrimi yok: bağış türünde her seçeneğe para birimi başına fiyat girilir (boş = o para biriminde sunulmaz). Serbest tutar için para birimi başına en az tutar ve hazır tutarlar.
 - Bağış formunun üstünde "Para birimi" seçici (TL / EUR / USD düğmeleri); birden fazla para birimi açıksa görünür. Kısa kod `[flx_bagis_para_birimi]` aynı seçicinin küçük hâli (tema üst satırı için).
