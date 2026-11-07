@@ -125,6 +125,12 @@ add_action(
 					'askFail'     => __( 'Cevap alınamadı. Biraz sonra tekrar deneyin.', 'flx-wiki' ),
 					'searchTab'   => __( 'Ara', 'flx-wiki' ),
 					'loginToAsk'  => __( 'Soru sormak için giriş yapın.', 'flx-wiki' ),
+					/* translators: 1: aranan, 2: düzeltilmiş sorgu */
+					'fixed'       => __( '"%1$s" bulunamadı; "%2$s" için sonuçlar gösteriliyor.', 'flx-wiki' ),
+					/* translators: 1: sonuç sayısı, 2: sorgu */
+					'countFor'    => _n( '"%2$s" için %1$s sonuç', '"%2$s" için %1$s sonuç', 2, 'flx-wiki' ),
+					/* translators: %d: sonuç sayısı */
+					'seeAll'      => __( '%d sonucun hepsini gör', 'flx-wiki' ),
 				),
 			)
 		);

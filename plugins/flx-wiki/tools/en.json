@@ -181,5 +181,7 @@
 "Taslak": "Draft",
 "Yayımlandı": "Published",
 "İlk wiki sayfasını buradan ekleyin.": "Add the first wiki page here.",
-"İçerik": "Content"
+"İçerik": "Content",
+"\"%1$s\" bulunamadı; \"%2$s\" için sonuçlar gösteriliyor.": "No results for \"%1$s\"; showing results for \"%2$s\".",
+"%d sonucun hepsini gör": "See all %d results"
 }
