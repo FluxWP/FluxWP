@@ -7,6 +7,7 @@ import config from '@fluxwp/manifest/fixtures/config.json';
 import manifest from '@fluxwp/manifest/fixtures/manifest.json';
 import { moduleDemoRoutes } from '../modules/demo';
 import { comments, contacts, crm, pages, posts } from './data';
+import { nativeAdminDemoRoutes } from './native-admin';
 
 export const DEMO_SITE = DEMO_ORIGIN;
 
@@ -31,7 +32,7 @@ const statusIn = (status: string, q: Q) => {
   return !want || want === 'all' || want.split(',').includes(status);
 };
 
-const ETAGS: Record<string, string> = { 'flxapp/v1/config': '"demo-config"', 'flxapp/v1/manifest': '"demo-manifest-ai"' };
+const ETAGS: Record<string, string> = { 'flxapp/v1/config': '"demo-config-native-admin"', 'flxapp/v1/manifest': '"demo-manifest-ai"' };
 
 let prefs: Record<string, unknown> = {
   order: [], hidden: [], pinned: [], forceWeb: [], tabs: [], cardOrder: [], cardHidden: [],
@@ -42,6 +43,7 @@ let prefs: Record<string, unknown> = {
 let devices: { id: number; device_id?: string; token?: string; current: boolean }[] = [];
 
 const routes: [string, RegExp, Handler][] = [
+  ...nativeAdminDemoRoutes(),
   ...moduleDemoRoutes,
   ['GET', /^flxapp\/v1\/app\/bootstrap$/, () => bootstrap],
   ['GET', /^flxapp\/v1\/config$/, () => config],

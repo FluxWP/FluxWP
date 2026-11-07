@@ -110,7 +110,7 @@ describe('screen engines', () => {
   it('builds post, social and studio requests', () => {
     expect(postBody({ title: '  Afiş ', excerpt: 'Kısa', status: 'draft' })).toEqual({ title: 'Afiş', excerpt: 'Kısa', status: 'draft', content: '' });
     expect(postEditPath(12)).toBe('post.php?post=12&action=edit');
-    expect(socialPostBody({ content: 'Bugün dikiyoruz', accountIds: [1, 2] }).action).toBe('publish');
+    expect(socialPostBody({ content: 'Bugün dikiyoruz', accountIds: [1, 2] }).action).toBe('now');
     expect(socialPostBody({ content: 'Yarın', accountIds: [1], scheduledAt: 1_700_000_000 }).action).toBe('schedule');
     expect(studioGenerateBody({ prompt: ' orman ', kind: 'video', n: 3 }).n).toBe(1);
     expect(studioBusy([{ id: 1, kind: 'image', state: 'running', prompt: '', job: 'flxmd_1' }, { id: 2, kind: 'image', state: 'done', prompt: '' }])).toEqual(['flxmd_1']);

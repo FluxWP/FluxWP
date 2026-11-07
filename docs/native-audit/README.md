@@ -2,11 +2,11 @@
 
 Generated from all shipped JSON manifests, pure PHP manifest builders and the shared WordPress core manifest. This is an inventory, **not proof of completed native behavior**. Permission checks, API completeness and native runtime QA remain required.
 
-Current app version: `0.3.0`. Modules: 19; screens: 87; explicit web screens: 20; blocked by minimum app version: 81.
+Current app version: `0.3.0`. Modules: 19; screens: 87; explicit web screens: 18; blocked by minimum app version: 81.
 
 | Module / screen | Type | Current source-level status | Source |
 | --- | --- | --- | --- |
-| lang / settings | web | Version gate; Requires native implementation | plugins/flx-lang/app/manifest.json |
+| lang / settings | native | Version gate; Component registered; runtime QA pending | plugins/flx-lang/app/manifest.json |
 | recaptcha / settings | settings | Version gate; Manifest renderer; API/actions/runtime QA pending | plugins/flx-recaptcha/app/manifest.json |
 | recaptcha / forms | web | Version gate; Requires native implementation | plugins/flx-recaptcha/app/manifest.json |
 | backup / list | list | Version gate; Manifest renderer; API/actions/runtime QA pending | plugins/flx-backup/app/manifest.json |
@@ -33,7 +33,7 @@ Current app version: `0.3.0`. Modules: 19; screens: 87; explicit web screens: 20
 | social / calendar | list | Version gate; Manifest renderer; API/actions/runtime QA pending | plugins/flx-social/app/manifest.json |
 | social / accounts | list | Version gate; Manifest renderer; API/actions/runtime QA pending | plugins/flx-social/app/manifest.json |
 | social / composer | native | Version gate; Missing component flxsm-composer | plugins/flx-social/app/manifest.json |
-| roles / matrix | web | Version gate; Requires native implementation | plugins/flx-roles/app/manifest.json |
+| roles / matrix | native | Version gate; Component registered; runtime QA pending | plugins/flx-roles/app/manifest.json |
 | wiki / pages | list | Version gate; Manifest renderer; API/actions/runtime QA pending | plugins/flx-wiki/app/manifest.json |
 | wiki / page | content | Version gate; Manifest renderer; API/actions/runtime QA pending | plugins/flx-wiki/app/manifest.json |
 | wiki / page_form | form | Version gate; Manifest renderer; API/actions/runtime QA pending | plugins/flx-wiki/app/manifest.json |

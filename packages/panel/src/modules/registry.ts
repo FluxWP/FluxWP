@@ -4,6 +4,8 @@ import type { ModuleInfo } from '@fluxwp/core';
 import { moduleScreens } from '@fluxwp/modules';
 import { Dashboard } from '../screens/Dashboard';
 import { AiScreen } from '../ai/AiWorkspace';
+import { RolesScreen } from '../native/RolesScreen';
+import { LanguagesScreen } from '../native/LanguagesScreen';
 
 /** Sunucuda kaydı olmayan, uygulamanın kendi modülleri (WP çekirdek menülerine bağlanır). */
 export const builtinModules: Record<string, ModuleInfo> = {
@@ -14,6 +16,8 @@ export const screens: Record<string, ComponentType> = {
   'core-dashboard': Dashboard,
   ...moduleScreens,
   'flxai-chat': AiScreen,
+  'flxr-roles': RolesScreen,
+  'flxl-languages': LanguagesScreen,
 };
 
 export const implemented: ReadonlySet<string> = new Set(Object.keys(screens));

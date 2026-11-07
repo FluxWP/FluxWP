@@ -3,7 +3,7 @@
   "appVersion": "0.3.0",
   "moduleCount": 19,
   "screenCount": 87,
-  "explicitWebCount": 20,
+  "explicitWebCount": 18,
   "versionGatedScreenCount": 81,
   "missingNativeComponents": [
     {
@@ -35,13 +35,13 @@
       "plugin": "flx-lang",
       "module": "lang",
       "screen": "settings",
-      "type": "web",
+      "type": "native",
       "source": "plugins/flx-lang/app/manifest.json",
       "minimumApp": "1.0.0",
       "versionGated": true,
-      "component": null,
-      "componentRegistered": null,
-      "path": "options-general.php?page=flx-lang",
+      "component": "flxl-languages",
+      "componentRegistered": true,
+      "path": null,
       "routes": [
         "options-general.php?page=flx-lang"
       ],
@@ -497,13 +497,13 @@
       "plugin": "flx-roles",
       "module": "roles",
       "screen": "matrix",
-      "type": "web",
+      "type": "native",
       "source": "plugins/flx-roles/app/manifest.json",
       "minimumApp": "1.0.0",
       "versionGated": true,
-      "component": null,
-      "componentRegistered": null,
-      "path": "users.php?page=flx-roles",
+      "component": "flxr-roles",
+      "componentRegistered": true,
+      "path": null,
       "routes": [
         "users.php?page=flx-roles"
       ],
