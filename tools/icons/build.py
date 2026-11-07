@@ -54,6 +54,7 @@ PKGS = [
   ('flx-menu-theme', 'Flux Menu Theme', 'commerce', 'utensils-crossed'),
   # wp-extras
   ('flx-qurban', 'Flux Qurban', 'commerce', 'beef'),
+  ('flx-zakat', 'Flux Zakat', 'commerce', 'hand-coins'),
   ('flx-staff', 'Flux Staff', 'platform', 'users-round'),
   ('flx-tv-board', 'Flux TV Board', 'comms', 'tv-minimal'),
   ('flx-tv-remote', 'Flux TV Remote', 'comms', 'cast'),
