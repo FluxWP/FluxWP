@@ -54,8 +54,8 @@ export interface RequestOptions {
   headers?: Record<string, string>;
   /** Multipart yüklemede 0..1. Platform `XMLHttpRequest` verirse ara değerler gelir. */
   onUploadProgress?: (ratio: number) => void;
-  /** 'blob': medya gibi ham cevap. */
-  as?: 'json' | 'blob';
+  /* 'response' leaves a successful body unread for authenticated streaming. Cannot combine with raw. */
+  as?: 'json' | 'blob' | 'response';
   /**
    * true: gövdeyle birlikte durum ve yanıt başlıkları (`ETag`, `X-WP-TotalPages`).
    * 304 gövdesiz başarıdır (`data: null`), hata değildir.
@@ -167,12 +167,20 @@ export function createClient(o: ClientOptions): ApiClient {
   };
 
   async function request<T>(path: string, opts: RequestOptions = {}): Promise<T | ApiResult<T>> {
+    if (opts.as === 'response' && opts.raw) throw new ApiError(0, 'invalid_options', 'response and raw are mutually exclusive');
+    const checkAbort = () => { if (opts.signal?.aborted) throw new ApiError(0, 'aborted', 'aborted'); };
+    checkAbort();
     let cred = opts.anonymous ? null : await o.getCredentials();
+    checkAbort();
     let res = await send(path, opts, cred);
+    checkAbort();
     if (res.status === 401 && !opts.anonymous && o.onUnauthorized) {
       cred = await o.onUnauthorized();
+      checkAbort();
       if (cred) res = await send(path, opts, cred);
+      checkAbort();
     }
+    if (opts.as === 'response' && (res.ok || res.status === 304)) return res as T;
     const headers = responseHeaders(res);
     const etag = headers.get('etag');
     // 304 Not Modified: empty body, cache stays. Not an error.

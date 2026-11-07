@@ -16,6 +16,7 @@ import { DrawerContent } from '@/shell/DrawerContent';
 import { accountIdFromKey, accountKey } from '@/shell/routes';
 import { SimpleHeader } from '@/shell/SimpleHeader';
 import { applySiteTheme } from '@/theme/unistyles';
+import { MobileAiProvider } from '@/modules/ai/AiProvider';
 import { SessionExpiredNotice } from '@/shell/SessionExpiredNotice';
 
 export default function AccountLayout() {
@@ -35,10 +36,10 @@ export default function AccountLayout() {
     <AccountScope account={account} renderer={renderer} app={app} store={accountStore(account.id)}>
       <SiteTheme />
       <DeviceSync />
-      <View style={styles.frame}>
+      <MobileAiProvider key={account.id}><View style={styles.frame}>
         <AccountDrawer />
         <SessionGate />
-      </View>
+      </View></MobileAiProvider>
     </AccountScope>
   );
 }

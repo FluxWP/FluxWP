@@ -1,12 +1,13 @@
 import { getDemoLocale } from '@fluxwp/core/src/demo/locale';
 import schema from './ai-settings-schema.json';
+import { aiChatDemoTools } from './ai-chat';
 import type { AiSettingsState } from '../modules/ai-settings';
 type Route=[string,RegExp,(match:RegExpMatchArray,query:URLSearchParams,body:Record<string,unknown>)=>unknown];
 const stored=structuredClone(schema) as AiSettingsState;let revision=1;
 const snapshot=():AiSettingsState=>{const s=structuredClone(stored);s.revision=String(revision);for(const [id,provider] of Object.entries(s.media.providers))provider.ready=!!s.secrets[`key_${id}`]?.configured;for(const model of s.media.models)model.auto=model.routes.find(id=>s.media.providers[id]?.ready)||'';if(getDemoLocale()==='tr')s.roles=s.roles.map(role=>({...role,label:role.value==='administrator'?'Yönetici':'Editör'}));return s;};
 const failure=(status:number,message:string)=>new Response(JSON.stringify({code:'demo_ai_settings',message}),{status,headers:{'Content-Type':'application/json'}});
 export const aiSettingsDemoRoutes:Route[]=[
- ['GET',/^flx-ai\/v1\/boot$/,()=>({ready:true,model:stored.values.chat_model||stored.values.model||'demo/model-1',modelLabel:'Demo model',tools:{},canManage:true,counts:{chats:1},mode:stored.values.chat_mode,showAdmin:stored.values.chat_admin})],
+ ['GET',/^flx-ai\/v1\/boot$/,()=>({ready:true,model:stored.values.chat_model||stored.values.model||'demo/model-1',modelLabel:'Demo model',tools:aiChatDemoTools(),widgets:!!stored.values.chat_widgets,canManage:true,counts:{chats:1},mode:stored.values.chat_mode,showAdmin:stored.values.chat_admin})],
  ['GET',/^flx-ai\/v1\/admin\/settings$/,()=>snapshot()],
  ['POST',/^flx-ai\/v1\/admin\/settings$/,(_m,_q,body)=>{
   if(body.revision!==String(revision))return failure(409,'Settings changed. Refresh before saving.');

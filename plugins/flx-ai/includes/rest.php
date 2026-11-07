@@ -65,7 +65,8 @@ function flxai_rest_chat_or_404( WP_REST_Request $req ) {
 	return $c ? $c : new WP_Error( 'flxai_not_found', __( 'Sohbet bulunamadı.', 'flx-ai' ), array( 'status' => 404 ) );
 }
 
-function flxai_rest_result( array $res, $since ) {
+function flxai_rest_result( $res, $since ) {
+	if ( is_wp_error( $res ) ) { return $res; }
 	return array(
 		'state' => $res['state'],
 		'chat'  => flxai_chat_public( $res['chat'], $since ),
@@ -89,6 +90,7 @@ function flxai_rest_boot() {
 		'canManage'  => flxai_can_manage(),
 		'mode'       => 'dock' === flxai_setting( 'chat_mode' ) ? 'dock' : 'bubble',
 		'showAdmin'  => (bool) flxai_setting( 'chat_admin' ),
+		'widgets' => (bool) flxai_setting( 'chat_widgets', 1 ),
 		'counts'     => flxai_chat_counts(),
 		'budget'     => flxai_can_manage() ? flxai_budget_status() : null,
 	);
@@ -112,29 +114,25 @@ function flxai_rest_chat_get( WP_REST_Request $req ) {
 	return is_wp_error( $c ) ? $c : flxai_chat_public( $c, (int) $req->get_param( 'since' ) );
 }
 
-function flxai_rest_chat_update( WP_REST_Request $req ) {
-	$c = flxai_rest_chat_or_404( $req );
-	if ( is_wp_error( $c ) ) {
-		return $c;
-	}
-	if ( null !== $req->get_param( 'title' ) ) {
-		$c['title'] = sanitize_text_field( (string) $req->get_param( 'title' ) );
-	}
-	if ( null !== $req->get_param( 'archived' ) ) {
-		$c['archived'] = $req->get_param( 'archived' ) ? 1 : 0;
-	}
-	if ( null !== $req->get_param( 'model' ) && flxai_can_manage() ) {
-		$c['model'] = sanitize_text_field( (string) $req->get_param( 'model' ) );
-	}
-	flxai_chat_save( $c );
-	return flxai_chat_public( flxai_chat_get( $c['id'] ), (int) $req->get_param( 'since' ) );
+/** Serialize metadata/deletion with the same lock as message writers. */
+function flxai_rest_chat_metadata( WP_REST_Request $req, $delete = false ) {
+	$c = flxai_rest_chat_or_404( $req ); if ( is_wp_error( $c ) ) { return $c; }
+	$id = $c['id'];
+	if ( ! flxai_agent_lock( $id ) ) { return new WP_Error( 'flxai_busy', __( 'Asistan şu an çalışıyor; önce durdurun.', 'flx-ai' ), array( 'status' => 409 ) ); }
+	try {
+		$c = flxai_agent_current( $c ); if ( is_wp_error( $c ) ) { return $c; }
+		if ( $delete ) { return array( 'deleted' => flxai_chat_delete( $id ) ); }
+		if ( null !== $req->get_param( 'title' ) ) { if ( ! is_string( $req->get_param( 'title' ) ) ) { return new WP_Error( 'flxai_invalid', __( 'Başlık geçersiz.', 'flx-ai' ), array( 'status' => 400 ) ); } $c['title'] = sanitize_text_field( $req->get_param( 'title' ) ); }
+		if ( null !== $req->get_param( 'archived' ) ) { $raw = $req->get_param( 'archived' ); if ( ! in_array( $raw, array( 0, 1, '0', '1', false, true ), true ) ) { return new WP_Error( 'flxai_invalid', __( 'Arşiv durumu geçersiz.', 'flx-ai' ), array( 'status' => 400 ) ); } $c['archived'] = $raw ? 1 : 0; }
+		if ( null !== $req->get_param( 'model' ) ) { if ( ! flxai_can_manage() ) { return new WP_Error( 'flxai_forbidden', __( 'Bu işlem için yetkiniz yok.', 'flx-ai' ), array( 'status' => 403 ) ); } if ( ! is_string( $req->get_param( 'model' ) ) ) { return new WP_Error( 'flxai_invalid', __( 'Model geçersiz.', 'flx-ai' ), array( 'status' => 400 ) ); } $c['model'] = sanitize_text_field( $req->get_param( 'model' ) ); }
+		flxai_chat_save( $c ); return flxai_chat_public( flxai_chat_get( $id ), (int) $req->get_param( 'since' ) );
+	} finally { flxai_agent_unlock( $id ); }
 }
-
-function flxai_rest_chat_delete( WP_REST_Request $req ) {
-	return array( 'deleted' => flxai_chat_delete( (int) $req['id'] ) );
-}
+function flxai_rest_chat_update( WP_REST_Request $req ) { return flxai_rest_chat_metadata( $req ); }
+function flxai_rest_chat_delete( WP_REST_Request $req ) { return flxai_rest_chat_metadata( $req, true ); }
 
 function flxai_rest_chat_send( WP_REST_Request $req ) {
+	if ( ! is_string( $req->get_param( 'text' ) ) || '' === trim( $req->get_param( 'text' ) ) || ( null !== $req->get_param( 'page' ) && ! is_array( $req->get_param( 'page' ) ) ) || ( null !== $req->get_param( 'model' ) && ! is_string( $req->get_param( 'model' ) ) ) ) { return new WP_Error( 'flxai_invalid', __( 'Mesaj geçersiz.', 'flx-ai' ), array( 'status' => 400 ) ); }
 	if ( ! flxai_ready( 'flx-ai' ) ) {
 		return new WP_Error( 'flxai_not_ready', __( 'Flux AI henüz ayarlanmadı: Flux AI & MCP › Ayarlar\'dan bir API anahtarı ve model girin.', 'flx-ai' ), array( 'status' => 400 ) );
 	}
@@ -145,6 +143,7 @@ function flxai_rest_chat_send( WP_REST_Request $req ) {
 	}
 	if ( ! $id && null !== $req->get_param( 'model' ) && flxai_can_manage() ) {
 		$c['model'] = sanitize_text_field( (string) $req->get_param( 'model' ) );
+		flxai_chat_save( $c );
 	}
 	$since = $id ? (int) $req->get_param( 'since' ) : 0;
 	$res   = flxai_agent_send( $c, (string) $req->get_param( 'text' ), (array) $req->get_param( 'page' ) );
@@ -228,7 +227,8 @@ function flxai_rest_stream_step( array $c, $since ) {
 	};
 	$res = flxai_agent_step( $c, $emit );
 	$send_pending();
-	$out( array_merge( array( 't' => 'result' ), flxai_rest_result( $res, $since ) ) );
+	if ( is_wp_error( $res ) ) { $out( array( 't' => 'error', 'code' => $res->get_error_code(), 'message' => $res->get_error_message(), 'status' => (int) ( $res->get_error_data()['status'] ?? 500 ) ) ); }
+	else { $out( array_merge( array( 't' => 'result' ), flxai_rest_result( $res, $since ) ) ); }
 	exit;
 }
 
@@ -237,7 +237,9 @@ function flxai_rest_chat_decide( WP_REST_Request $req ) {
 	if ( is_wp_error( $c ) ) {
 		return $c;
 	}
-	$d   = array_map( 'sanitize_key', (array) $req->get_param( 'decisions' ) );
+	$d = $req->get_param( 'decisions' );
+	if ( ! is_array( $d ) ) { return new WP_Error( 'flxai_invalid', __( 'Onay kararları geçersiz.', 'flx-ai' ), array( 'status' => 400 ) ); }
+	foreach ( $d as $decision ) { if ( ! in_array( $decision, array( 'approve', 'reject' ), true ) ) { return new WP_Error( 'flxai_invalid', __( 'Onay kararları geçersiz.', 'flx-ai' ), array( 'status' => 400 ) ); } }
 	$res = flxai_agent_decide( $c, $d );
 	return flxai_rest_result( $res, (int) $req->get_param( 'since' ) );
 }
@@ -247,7 +249,8 @@ function flxai_rest_chat_stop( WP_REST_Request $req ) {
 	if ( is_wp_error( $c ) ) {
 		return $c;
 	}
-	return array( 'state' => 'done', 'chat' => flxai_chat_public( flxai_agent_stop( $c ), (int) $req->get_param( 'since' ) ) );
+	$stopped = flxai_agent_stop( $c );
+	return is_wp_error( $stopped ) ? $stopped : array( 'state' => 'done', 'chat' => flxai_chat_public( $stopped, (int) $req->get_param( 'since' ) ) );
 }
 
 function flxai_rest_chat_rewind( WP_REST_Request $req ) {

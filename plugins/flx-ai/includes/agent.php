@@ -75,6 +75,12 @@ function flxai_agent_history( array $messages ) {
 
 /** Kullanıcı mesajı ekler ve ilk adımı çalıştırır. */
 function flxai_agent_send( array $chat, $text, $page = array() ) {
+	$id = $chat['id'];
+	if ( ! flxai_agent_lock( $id ) ) { return new WP_Error( 'flxai_busy', __( 'Asistan şu an çalışıyor; önce durdurun.', 'flx-ai' ), array( 'status' => 409 ) ); }
+	try {
+		$chat = flxai_agent_current( $chat );
+		if ( is_wp_error( $chat ) ) { return $chat; }
+
 	$text = trim( (string) $text );
 	if ( '' === $text ) {
 		return new WP_Error( 'flxai_empty', __( 'Mesaj boş.', 'flx-ai' ), array( 'status' => 400 ) );
@@ -101,6 +107,7 @@ function flxai_agent_send( array $chat, $text, $page = array() ) {
 	flxai_chat_save( $chat );
 	// İlk adım ayrı istekte: istemci sohbet kimliğini hemen alır, sayfa yenilense de sohbet kaybolmaz.
 	return array( 'state' => 'continue', 'chat' => $chat );
+	} finally { flxai_agent_unlock( $id ); }
 }
 
 /** Bekleyen/sıradaki araç çağrılarına "yapılmadı" sonucu yazar (tur bütünlüğü için). */
@@ -122,17 +129,29 @@ function flxai_agent_cancel_pending( array &$chat, $why ) {
 }
 
 /** Kilit: aynı sohbette iki adım aynı anda çalışmaz. */
+function flxai_agent_lock_name( $id ) {
+	global $wpdb;
+	return 'flx-ai-chat-' . md5( DB_NAME . '|' . $wpdb->prefix . '|' . (int) $id );
+}
 function flxai_agent_lock( $id ) {
-	$k = 'flxai_lock_' . (int) $id;
-	if ( get_transient( $k ) ) {
-		return false;
-	}
-	set_transient( $k, 1, 70 );
+	global $wpdb;
+	$name = flxai_agent_lock_name( $id );
+	if ( ! empty( $GLOBALS['flxai_agent_locks'][ $name ] ) ) { return false; }
+	if ( 1 !== (int) $wpdb->get_var( $wpdb->prepare( 'SELECT GET_LOCK(%s,0)', $name ) ) ) { return false; }
+	$GLOBALS['flxai_agent_locks'][ $name ] = true;
 	return true;
 }
-
 function flxai_agent_unlock( $id ) {
-	delete_transient( 'flxai_lock_' . (int) $id );
+	global $wpdb;
+	$name = flxai_agent_lock_name( $id );
+	if ( empty( $GLOBALS['flxai_agent_locks'][ $name ] ) ) { return; }
+	unset( $GLOBALS['flxai_agent_locks'][ $name ] );
+	$wpdb->get_var( $wpdb->prepare( 'SELECT RELEASE_LOCK(%s)', $name ) );
+}
+/** Re-read after acquiring the lock: a prior request may have saved or deleted the chat. */
+function flxai_agent_current( array $chat ) {
+	$fresh = flxai_chat_get( $chat['id'], $chat['user_id'] );
+	return $fresh ?: new WP_Error( 'flxai_not_found', __( 'Sohbet bulunamadı.', 'flx-ai' ), array( 'status' => 404 ) );
 }
 
 /** Sohbetin veritabanındaki güncel durumu (önbelleksiz): başka bir istek durdurduysa adım bunu görür. */
@@ -167,6 +186,10 @@ function flxai_agent_step( array $chat, $emit = null ) {
 	if ( ! flxai_agent_lock( $chat['id'] ) ) {
 		return array( 'state' => 'busy', 'chat' => $chat );
 	}
+	$fresh = flxai_agent_current( $chat );
+	if ( is_wp_error( $fresh ) ) { flxai_agent_unlock( $chat['id'] ); return $fresh; }
+	$chat = $fresh;
+	if ( 'running' !== $chat['status'] ) { flxai_agent_unlock( $chat['id'] ); return array( 'state' => 'approval' === $chat['status'] ? 'approval' : 'done', 'chat' => $chat ); }
 	// Sayfa yenilense ya da kapansa da adım yarıda kalmaz; durum kaydedilir, sonraki sayfa kaldığı yerden sürdürür.
 	ignore_user_abort( true );
 	$t0      = microtime( true );
@@ -350,52 +373,60 @@ function flxai_agent_step( array $chat, $emit = null ) {
 		flxai_agent_unlock( $chat['id'] );
 	}
 	if ( 'done' === $state && '' === $chat['title'] ) {
-		$chat['title'] = flxai_agent_title( $chat );
-		flxai_chat_save( $chat );
+		$title = flxai_agent_title( $chat );
+		global $wpdb;
+		// A title request can finish after a new turn or manual rename. Never re-save stale messages.
+		$wpdb->query( $wpdb->prepare( 'UPDATE ' . flxai_table( 'chats' ) . " SET title = %s WHERE id = %d AND user_id = %d AND title = ''", mb_substr( $title, 0, 190 ), $chat['id'], $chat['user_id'] ) );
+		$chat = flxai_agent_current( $chat );
+		if ( is_wp_error( $chat ) ) { return $chat; }
 	}
 	return array( 'state' => $state, 'chat' => $chat );
 }
 
 /** Onay kararlarını uygular: onaylananlar çalışır, reddedilenlere "reddedildi" sonucu yazılır. */
 function flxai_agent_decide( array $chat, array $decisions ) {
-	if ( ! $chat['state']['pending'] ) {
-		return array( 'state' => 'running' === $chat['status'] ? 'continue' : 'done', 'chat' => $chat );
-	}
-	if ( ! flxai_agent_lock( $chat['id'] ) ) {
-		return array( 'state' => 'busy', 'chat' => $chat );
-	}
-	$ctx = array( 'user_id' => (int) $chat['user_id'], 'chat_id' => (int) $chat['id'], 'source' => 'flx-ai', 'purpose' => 'chat' );
-	foreach ( flxai_chat_tool_calls( $chat, $chat['state']['pending'] ) as $c ) {
-		$id = (string) $c['id'];
-		$d  = $decisions[ $id ] ?? '';
-		if ( 'approve' === $d || true === $d ) {
-			flxai_agent_tool_result( $chat, $c, flxai_run_tool( (string) $c['function']['name'], json_decode( (string) $c['function']['arguments'], true ), $ctx ) );
-		} else {
-			$chat['messages'][] = array(
-				'role'         => 'tool',
-				'tool_call_id' => $id,
-				'content'      => wp_json_encode( array( 'error' => 'Kullanıcı bu işlemi reddetti; yapılmadı.' ), JSON_UNESCAPED_UNICODE ),
-				'_name'        => (string) $c['function']['name'],
-				'_ok'          => false,
-				'_rejected'    => true,
-				'_ms'          => 0,
-			);
+	$id = $chat['id'];
+	if ( ! flxai_agent_lock( $id ) ) { return array( 'state' => 'busy', 'chat' => $chat ); }
+	try {
+		$chat = flxai_agent_current( $chat );
+		if ( is_wp_error( $chat ) ) { return $chat; }
+		if ( ! $chat['state']['pending'] || 'approval' !== $chat['status'] ) { return array( 'state' => 'running' === $chat['status'] ? 'continue' : 'done', 'chat' => $chat ); }
+		$pending = $chat['state']['pending'];
+		if ( array_diff( $pending, array_keys( $decisions ) ) || array_diff( array_keys( $decisions ), $pending ) ) { return new WP_Error( 'flxai_stale_decisions', __( 'Bekleyen işlemler değişti. Sohbeti yenileyip kararları tekrar gözden geçirin.', 'flx-ai' ), array( 'status' => 409 ) ); }
+		foreach ( $decisions as $decision ) { if ( ! in_array( $decision, array( 'approve', 'reject', true, false ), true ) ) { return new WP_Error( 'flxai_invalid', __( 'Onay kararları geçersiz.', 'flx-ai' ), array( 'status' => 400 ) ); } }
+		$ctx = array( 'user_id' => (int) $chat['user_id'], 'chat_id' => (int) $chat['id'], 'source' => 'flx-ai', 'purpose' => 'chat' );
+		foreach ( flxai_chat_tool_calls( $chat, $chat['state']['pending'] ) as $call ) {
+			if ( 'approval' !== flxai_chat_status_fresh( $id ) ) {
+				flxai_agent_cancel_pending( $chat, __( 'Kullanıcı durdurdu; yapılmadı.', 'flx-ai' ) );
+				$chat['status'] = 'idle'; flxai_chat_save( $chat );
+				return array( 'state' => 'done', 'chat' => $chat );
+			}
+			$call_id = (string) $call['id'];
+			if ( 'approve' === ( $decisions[ $call_id ] ?? '' ) || true === ( $decisions[ $call_id ] ?? '' ) ) {
+				flxai_agent_tool_result( $chat, $call, flxai_run_tool( (string) $call['function']['name'], json_decode( (string) $call['function']['arguments'], true ), $ctx ) );
+			} else {
+				$chat['messages'][] = array( 'role' => 'tool', 'tool_call_id' => $call_id, 'content' => wp_json_encode( array( 'error' => 'Kullanıcı bu işlemi reddetti; yapılmadı.' ), JSON_UNESCAPED_UNICODE ), '_name' => (string) $call['function']['name'], '_ok' => false, '_rejected' => true, '_ms' => 0 );
+			}
+			$chat['state']['pending'] = array_values( array_diff( $chat['state']['pending'], array( $call_id ) ) );
 		}
-	}
-	$chat['state']['pending'] = array();
-	$chat['status']           = 'running';
-	flxai_chat_save( $chat );
-	flxai_agent_unlock( $chat['id'] );
-	// Model ayrı (akışlı) adımda çağrılır.
-	return array( 'state' => 'continue', 'chat' => $chat );
+		$chat['state']['pending'] = array();
+		$chat['status'] = 'approval' === flxai_chat_status_fresh( $id ) ? 'running' : 'idle';
+		flxai_chat_save( $chat );
+		return array( 'state' => 'running' === $chat['status'] ? 'continue' : 'done', 'chat' => $chat );
+	} finally { flxai_agent_unlock( $id ); }
 }
 
 /** Turu durdurur. */
 function flxai_agent_stop( array $chat ) {
-	flxai_agent_cancel_pending( $chat, __( 'Kullanıcı durdurdu; yapılmadı.', 'flx-ai' ) );
-	$chat['status'] = 'idle';
-	flxai_chat_save( $chat );
-	return $chat;
+	$id = $chat['id'];
+	if ( flxai_agent_lock( $id ) ) {
+		try { $chat = flxai_agent_current( $chat ); if ( is_wp_error( $chat ) ) { return $chat; } flxai_agent_cancel_pending( $chat, __( 'Kullanıcı durdurdu; yapılmadı.', 'flx-ai' ) ); $chat['status'] = 'idle'; flxai_chat_save( $chat ); return $chat; }
+		finally { flxai_agent_unlock( $id ); }
+	}
+	// An active step owns the message snapshot. Signal cancellation without overwriting it.
+	global $wpdb;
+	$wpdb->update( flxai_table( 'chats' ), array( 'status' => 'idle', 'updated' => time() ), array( 'id' => (int) $id, 'user_id' => (int) $chat['user_id'] ) );
+	return flxai_agent_current( $chat );
 }
 
 /**
@@ -408,6 +439,10 @@ function flxai_agent_rewind( array $chat, $mid, $mode ) {
 	if ( ! flxai_agent_lock( $chat['id'] ) ) {
 		return new WP_Error( 'flxai_busy', __( 'Asistan şu an çalışıyor; önce durdurun.', 'flx-ai' ), array( 'status' => 409 ) );
 	}
+	$id = $chat['id'];
+	try {
+	$chat = flxai_agent_current( $chat );
+	if ( is_wp_error( $chat ) ) { return $chat; }
 	$at = null;
 	foreach ( $chat['messages'] as $i => $m ) {
 		if ( 'user' === ( $m['role'] ?? '' ) && (string) ( $m['_id'] ?? '' ) === (string) $mid ) {
@@ -416,7 +451,6 @@ function flxai_agent_rewind( array $chat, $mid, $mode ) {
 		}
 	}
 	if ( null === $at ) {
-		flxai_agent_unlock( $chat['id'] );
 		return new WP_Error( 'flxai_not_found', __( 'Mesaj bulunamadı.', 'flx-ai' ), array( 'status' => 404 ) );
 	}
 	$cut = $at;
@@ -435,8 +469,8 @@ function flxai_agent_rewind( array $chat, $mid, $mode ) {
 	$chat['state']['turn']    = array();
 	$chat['status']           = 'idle';
 	flxai_chat_save( $chat );
-	flxai_agent_unlock( $chat['id'] );
 	return $chat;
+	} finally { flxai_agent_unlock( $id ); }
 }
 
 /** İlk turdan sonra otomatik başlık (ucuz istek; olmazsa ilk kelimeler). */

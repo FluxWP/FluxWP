@@ -13,6 +13,7 @@ import { aiBillingDemoRoutes } from './ai-billing';
 import { aiToolsDemoRoutes } from './ai-tools';
 import { aiSystemsDemoRoutes } from './ai-systems';
 import { aiMcpDemoRoutes } from './ai-mcp';
+import { aiChatDemoRoutes } from './ai-chat';
 import { aiLogDemoRoutes } from './ai-log';
 import { aiSettingsDemoRoutes } from './ai-settings';
 
@@ -50,6 +51,7 @@ let prefs: Record<string, unknown> = {
 let devices: { id: number; device_id?: string; token?: string; current: boolean }[] = [];
 
 const routes: [string, RegExp, Handler][] = [
+  ...aiChatDemoRoutes,
   ...aiLogDemoRoutes,
   ...aiSettingsDemoRoutes,
   ...aiMcpDemoRoutes,

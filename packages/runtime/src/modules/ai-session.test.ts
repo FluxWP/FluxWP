@@ -7,7 +7,8 @@ const chat = (patch: Partial<AiChat> = {}): AiChat => ({ id: 7, title: 'Test', s
 const boot = { ready: true, model: 'test', modelLabel: 'Test model', canManage: true };
 function transport(handler: (path: string, options: Record<string, unknown>) => unknown = () => undefined) {
   const fn = vi.fn(async (path: string, options = {}) => {
-    const custom = handler(path, options);
+    const custom = await handler(path, options);
+    if ((options as {as?:string}).as === 'response' && custom !== undefined) return new Response(JSON.stringify(custom), { headers: {'Content-Type':'application/json'} });
     if (custom !== undefined) return custom;
     if (path.endsWith('/boot')) return boot;
     if (path.endsWith('/chats')) return { chats: [] };
