@@ -33,7 +33,7 @@ const statusIn = (status: string, q: Q) => {
   return !want || want === 'all' || want.split(',').includes(status);
 };
 
-const ETAGS: Record<string, string> = { 'flxapp/v1/config': 'demo-config-native-admin-032', 'flxapp/v1/manifest': 'demo-manifest-ai' };
+const ETAGS: Record<string, string> = { 'flxapp/v1/config': 'demo-config-native-admin-032-menu', 'flxapp/v1/manifest': 'demo-manifest-ai' };
 
 let prefs: Record<string, unknown> = {
   order: [], hidden: [], pinned: [], forceWeb: [], tabs: [], cardOrder: [], cardHidden: [],

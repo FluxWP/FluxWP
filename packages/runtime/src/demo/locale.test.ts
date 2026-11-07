@@ -24,6 +24,13 @@ describe('localized fictional demo transport', () => {
     expect(demoMe.user.name).toBe('Demo Kullanıcı'); // A translation never mutates source fixtures.
   });
 
+  it('refreshes a demo config cached before the Menu localization fix', async () => {
+    setDemoLocale('en');
+    const response = await request('flxapp/v1/config', { headers: { 'If-None-Match': '"en-demo-config-032"' } });
+    expect(response.status).toBe(200);
+    expect((await response.json()).shell.tabs.find((tab: {id: string}) => tab.id === 'more').label).toBe('$t:shell.nav.more');
+  });
+
   it('keeps WordPress pagination headers while localizing Response handlers', async () => {
     setDemoLocale('en');
     const response = await request('wp/v2/posts?per_page=3&page=1');
