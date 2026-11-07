@@ -32,7 +32,7 @@ const statusIn = (status: string, q: Q) => {
   return !want || want === 'all' || want.split(',').includes(status);
 };
 
-const ETAGS: Record<string, string> = { 'flxapp/v1/config': '"demo-config-032"', 'flxapp/v1/manifest': '"demo-manifest"' };
+const ETAGS: Record<string, string> = { 'flxapp/v1/config': 'demo-config-032', 'flxapp/v1/manifest': 'demo-manifest' };
 
 let prefs: Record<string, unknown> = {
   order: [], hidden: [], pinned: [], forceWeb: [], tabs: [], cardOrder: [], cardHidden: [],
@@ -127,7 +127,7 @@ export const demoShellFetch: typeof fetch = async (input, init) => {
     const out = h(match, url.searchParams, body);
     if (out instanceof Response) return localizedDemoResponse(out, language);
     if (out === null || out === undefined) return new Response(JSON.stringify({ code: 'rest_not_found', message: path }), { status: 404 });
-    const etag = language === 'en' && ETAGS[path] ? ETAGS[path]!.replace('"', '"en-') : ETAGS[path];
+    const etag = ETAGS[path] ? `"${language === 'en' ? 'en-' : ''}${ETAGS[path]}"` : undefined;
     if (etag && new Headers(init?.headers).get('if-none-match') === etag) return new Response(null, { status: 304, headers: { ETag: etag } });
     return json(localizeDemo(out, language), etag ? { ETag: etag } : {});
   }
