@@ -36,7 +36,7 @@ if not env_file.exists():
         if '\n' in value or "'" in value:
             parser.error('QA paths must not contain newlines or single quotes.')
         return "'" + value + "'"
-    with env_file.open('x', opener=lambda path, flags: __import__('os').open(path, flags, 0o600)) as file:
+    with open(env_file, 'x', opener=lambda path, flags: __import__('os').open(path, flags, 0o600)) as file:
         file.write(''.join(key + '=' + dotenv(value) + '\n' for key, value in values.items()))
 env_file.chmod(0o600)
 command = ['docker', 'compose', '--env-file', str(env_file), '-f', str(Path(__file__).with_name('compose.yaml'))]
