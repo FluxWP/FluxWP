@@ -67,6 +67,21 @@
 		return (bySlug[slug] && bySlug[slug].icon) || D.setupIcon;
 	}
 
+	// Sunucudan gelen görsel açılmazsa: önizleme yerine ikonlu yer tutucu, ikon yerine FluxWP Panel logosu.
+	root.addEventListener('error', function (e) {
+		var img = e.target;
+		if (!img || img.tagName !== 'IMG' || img.getAttribute('data-fb')) { return; }
+		img.setAttribute('data-fb', '1');
+		var shot = img.parentNode && img.parentNode.classList && img.parentNode.classList.contains('shot') ? img.parentNode : null;
+		var ic = shot && shot.parentNode ? shot.parentNode.querySelector('.body .ic') : null;
+		if (shot) {
+			shot.classList.remove('art');
+			shot.innerHTML = '<div class="ph-shot"><img src="' + esc((ic && ic.getAttribute('src')) || D.setupIcon) + '" alt=""></div>';
+		} else if (D.setupIcon && img.getAttribute('src') !== D.setupIcon) {
+			img.src = D.setupIcon;
+		}
+	}, true);
+
 	/* ---------- skeleton ---------- */
 	root.innerHTML =
 		'<div class="wrap">' +

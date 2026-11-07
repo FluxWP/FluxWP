@@ -1,4 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="flx-app"><path d="M128 0C35 0 0 35 0 128s35 128 128 128 128-35 128-128S221 0 128 0Z" fill="#EEF2FF"/><path d="M128 0C35 0 0 35 0 128s35 128 128 128 128-35 128-128S221 0 128 0Z" fill="none" stroke="#818CF8" stroke-opacity=".55" stroke-width="5"/><g transform="translate(64.0 64.0) scale(5.333)" fill="none" stroke="#4338CA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h8" />
-  <path d="M10 19v-3.96 3.15" />
-  <path d="M7 19h5" />
-  <rect width="6" height="10" x="16" y="12" rx="2" /></g></svg>
