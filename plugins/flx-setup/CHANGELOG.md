@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.1.6
+- Paketler: güncelleme sunucusundaki ikon açılmazsa kırık görsel yerine standart eklenti/tema ikonu görünür.
+
 ## 1.1.5
 - Kurulum sihirbazının eklenti ekranları güncelleme sunucusundan gelir (updater 1.13.0+): kategoriler ve sırası (TR/EN ad ve açıklama), her paketin kategorisi, sırası, "önerilen" işareti ve kısa açıklaması. Sunucu kategori vermezse tek bir "Eklentiler" ekranı gösterilir.
 - Sunucunun private dediği paketler sihirbazda hiç görünmez (QR Menü, TV Remote, Staff gibi adlar artık elle yazılmaz).

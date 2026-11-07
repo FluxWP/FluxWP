@@ -695,7 +695,8 @@ final class FLXU_Admin {
 								}
 								?>
 								<?php if ( ! empty( $icon['svg'] ) ) : ?>
-									<img src="<?php echo esc_url( $icon['svg'] ); ?>" width="40" height="40" alt="">
+									<?php // Sunucudaki ikon açılmazsa standart yer tutucu. ?>
+									<img src="<?php echo esc_url( $icon['svg'] ); ?>" width="40" height="40" alt="" onerror="this.onerror=null;this.outerHTML='&lt;span class=&quot;flxu-pkg__ph dashicons <?php echo 'theme' === $row['type'] ? 'dashicons-admin-appearance' : 'dashicons-admin-plugins'; ?>&quot;&gt;&lt;/span&gt;'">
 								<?php else : ?>
 									<span class="flxu-pkg__ph dashicons <?php echo 'theme' === $row['type'] ? 'dashicons-admin-appearance' : 'dashicons-admin-plugins'; ?>"></span>
 								<?php endif; ?>

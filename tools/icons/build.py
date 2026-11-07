@@ -62,6 +62,7 @@ PKGS = [
   ('flx-preset-yesilturkiye', 'Yeşil Türkiye Preset', 'system', 'trees'),
   ('flx-preset-hayirkapisi', 'Hayır Kapısı Preset', 'commerce', 'door-open'),
   ('flx-preset-fluxwp', 'FluxWP Site Preset', 'platform', 'layout-template'),
+  ('flx-preset-qurbanglobal', 'Qurban Global Preset', 'commerce', 'globe'),
 ]
 
 def glyph_inner(name):

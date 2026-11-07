@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.11
+- Qurban Global Preset logosu eklendi (degrade + pastel).
+
 ## 1.7.10
 - Kullanılmayan bir paket logosu kaldırıldı.
 
