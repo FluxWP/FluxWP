@@ -45,9 +45,9 @@ svg{display:block;flex:none}
 .teaser .x:hover{background:var(--cb-s2)}
 
 /* ---------- Panel ---------- */
-.panel{position:absolute;bottom:calc(var(--cb-ls) + 14px);right:0;width:var(--cb-w);height:min(700px,calc(100vh - var(--cb-ls) - var(--cb-oy) - 40px));min-height:420px;background:var(--cb-bg);border-radius:var(--cb-r);box-shadow:var(--cb-shadow);overflow:hidden;display:flex;flex-direction:column;transform-origin:bottom right;animation:panelin .32s cubic-bezier(.2,.9,.3,1.05) both}
-:host([data-pos=left]) .panel{right:auto;left:0;transform-origin:bottom left}
-:host([data-preview]) .panel{height:min(640px,calc(var(--flxcb-stage-h,640px) - var(--cb-ls) - var(--cb-oy) - 34px));max-width:calc(var(--flxcb-stage-w,480px) - var(--cb-ox) * 2)}
+.panel{position:absolute;bottom:0;right:calc(var(--cb-ls) + 12px);width:var(--cb-w);height:min(580px,calc(100vh - var(--cb-oy) - 24px));min-height:380px;background:var(--cb-bg);border-radius:var(--cb-r);box-shadow:var(--cb-shadow);overflow:hidden;display:flex;flex-direction:column;transform-origin:bottom right;animation:panelin .32s cubic-bezier(.2,.9,.3,1.05) both}
+:host([data-pos=left]) .panel{right:auto;left:calc(var(--cb-ls) + 12px);transform-origin:bottom left;animation-name:panelinl}
+:host([data-preview]) .panel{height:min(560px,calc(var(--flxcb-stage-h,640px) - var(--cb-oy) - 24px));max-width:calc(var(--flxcb-stage-w,480px) - var(--cb-ox) * 2 - var(--cb-ls) - 12px)}
 .view{flex:1;display:flex;flex-direction:column;min-height:0;position:relative}
 
 /* Avatar */
@@ -64,21 +64,21 @@ svg{display:block;flex:none}
 
 /* ---------- Ana ekran ---------- */
 .home{overflow-y:auto;overscroll-behavior:contain;flex:1;background:var(--cb-s1)}
-.hero{background:var(--cb-c);color:var(--cb-ct);padding:22px 22px 70px;position:relative}
+.hero{background:var(--cb-c);color:var(--cb-ct);padding:18px 18px 62px;position:relative}
 .root.grad .hero{background:radial-gradient(120% 90% at 0% 0%,color-mix(in srgb,var(--cb-c) 70%,#fff) 0%,transparent 55%),linear-gradient(160deg,var(--cb-c) 0%,color-mix(in srgb,var(--cb-c) 78%,#000) 100%)}
-.hero-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px}
+.hero-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
 .hero .brand{display:flex;align-items:center;gap:10px;font-weight:650;font-size:15px}
 .hero .av{background:rgba(255,255,255,.18);color:inherit}
 .hero .avs .av{box-shadow:0 0 0 2px var(--cb-c)}
-.hero h2{margin:0 0 6px;font-size:27px;line-height:1.15;font-weight:750;letter-spacing:-.01em}
-.hero p{margin:0;opacity:.86;font-size:15px;line-height:1.5}
+.hero h2{margin:0 0 5px;font-size:22px;line-height:1.15;font-weight:750;letter-spacing:-.01em}
+.hero p{margin:0;opacity:.86;font-size:14px;line-height:1.5}
 .icon-btn{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:inherit;opacity:.85;transition:background .15s,opacity .15s}
 .icon-btn:hover{opacity:1;background:rgba(127,127,127,.16)}
 .icon-btn svg{width:19px;height:19px}
-.cards{margin:-52px 14px 14px;display:flex;flex-direction:column;gap:10px;position:relative}
+.cards{margin:-46px 12px 12px;display:flex;flex-direction:column;gap:10px;position:relative}
 .card{background:var(--cb-bg);border-radius:16px;box-shadow:0 1px 2px rgba(0,0,0,.05),0 0 0 1px var(--cb-bd);overflow:hidden;animation:fadeup .35s ease both}
 .card:nth-child(2){animation-delay:.04s}.card:nth-child(3){animation-delay:.08s}
-.start{display:flex;align-items:center;gap:12px;padding:15px 16px;width:100%;text-align:left;transition:background .15s}
+.start{display:flex;align-items:center;gap:11px;padding:12px 14px;width:100%;text-align:left;transition:background .15s}
 .start:hover{background:var(--cb-s1)}
 .start .t{flex:1;min-width:0}
 .start strong{display:block;font-size:15px;font-weight:650}
@@ -240,11 +240,15 @@ audio{max-width:230px;height:36px}
 @media (max-width:520px){
   :host(:not([data-preview])) .root.mfull .panel{position:fixed;inset:0;width:100%;height:100%;max-height:none;min-height:0;border-radius:0;animation:mobin .3s cubic-bezier(.2,.9,.3,1) both}
   :host(:not([data-preview])) .root.mfull.open .launch-row{display:none}
-  .panel{width:calc(100vw - 2 * var(--cb-ox))}
+  /* Dar ekranda yanda yer yok: pencere butonun üstünde açılır. */
+  :host(:not([data-preview])) .panel{right:0;bottom:calc(var(--cb-ls) + 12px);width:calc(100vw - 2 * var(--cb-ox));height:min(580px,calc(100vh - var(--cb-ls) - var(--cb-oy) - 28px));transform-origin:bottom right;animation-name:panelup}
+  :host(:not([data-preview])[data-pos=left]) .panel{right:auto;left:0;transform-origin:bottom left}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
-@keyframes panelin{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes panelin{from{opacity:0;transform:translateX(14px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes panelinl{from{opacity:0;transform:translateX(-14px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes panelup{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
 @keyframes mobin{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
 @keyframes fadeup{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @keyframes msgin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}

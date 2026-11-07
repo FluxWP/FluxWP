@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux AI Chatbot, Live Chat & Customer Support
  * Description:       Siteye yapay zekâ destekli sohbet penceresi: Flux AI ile sitenizin içeriğinden ve ürünlerinden 7/24 cevap, potansiyel müşteri toplama, WooCommerce bilgisi, tek tıkla canlı temsilciye devir (Flux Chat gelen kutusu ya da eklentinin kendi gelen kutusu), dosya paylaşımı, okundu bilgisi, sohbet sonu puanlama ve mesai dışında mesaj bırakma. Renk, konum, avatar, metinler ve görünürlük panelden özelleştirilir.
- * Version:           0.1.0
+ * Version:           0.1.1
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -24,7 +24,7 @@ if ( defined( 'FLXCB_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXCB_VERSION', '0.1.0' );
+define( 'FLXCB_VERSION', '0.1.1' );
 define( 'FLXCB_DB_VERSION', '1' );
 define( 'FLXCB_FILE', __FILE__ );
 define( 'FLXCB_DIR', plugin_dir_path( __FILE__ ) );
