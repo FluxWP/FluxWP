@@ -400,9 +400,9 @@
 			el.connWarn.hidden = false;
 			el.connWarn.appendChild(icon('warn'));
 			el.connWarn.appendChild(h('div', null,
-				h('strong', { text: state === 'none' ? t('WhatsApp bağlantısı kurulmadı') : t('WhatsApp bağlantısı koptu') }),
-				h('span', { text: state === 'none' ? t('Mesaj almak için bağlantı ekleyin.') : t('Telefon çevrimdışı olabilir ya da QR yeniden okutulmalı.') }),
-				S.me.manage ? h('a', { href: B.settingsUrl, text: t('Ayarlara git') }) : null
+				h('strong', { text: state === 'none' ? t('Henüz iletişim kanalı kurulmadı') : t('WhatsApp bağlantısı koptu') }),
+				h('span', { text: state === 'none' ? t('Mesaj almak için iletişim ayarlarından bir kanal kurun.') : t('Telefon çevrimdışı olabilir ya da QR yeniden okutulmalı.') }),
+				S.me.manage ? h('a', { href: B.settingsUrl, text: state === 'none' ? t('İletişim ayarlarına git') : t('Ayarlara git') }) : null
 			));
 		} else el.connWarn.hidden = true;
 	}

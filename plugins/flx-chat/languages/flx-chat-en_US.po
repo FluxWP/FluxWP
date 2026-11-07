@@ -1271,17 +1271,20 @@ msgstr "WhatsApp not connected"
 msgid "Durum bilinmiyor"
 msgstr "Status unknown"
 
-msgid "WhatsApp bağlantısı kurulmadı"
-msgstr "WhatsApp connection not set up"
+msgid "Henüz iletişim kanalı kurulmadı"
+msgstr "No communication channel set up yet"
 
 msgid "WhatsApp bağlantısı koptu"
 msgstr "WhatsApp connection lost"
 
-msgid "Mesaj almak için bağlantı ekleyin."
-msgstr "Add a connection to receive messages."
+msgid "Mesaj almak için iletişim ayarlarından bir kanal kurun."
+msgstr "Set up a channel in the communication settings to receive messages."
 
 msgid "Telefon çevrimdışı olabilir ya da QR yeniden okutulmalı."
 msgstr "The phone may be offline or the QR code needs to be scanned again."
+
+msgid "İletişim ayarlarına git"
+msgstr "Go to communication settings"
 
 msgid "Ayarlara git"
 msgstr "Go to settings"

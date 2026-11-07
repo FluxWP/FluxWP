@@ -46,7 +46,7 @@ Her eklenti kendi AI bağlantısını getirince anahtarlar beş ayar sayfasına 
 ### Maliyet ve sınırlar
 - **Genel bakış:** sınırlara karşı günlük, haftalık ve aylık harcama; maliyet, istek, token (giriş, çıkış, önbellekten), model ve araç diye bölünmüş toplam süre, hatalar; 7 ile 180 gün arası günlük grafikler, eklenti süzgeci.
 - **Faturalandırma:** önbellek tasarruflu aylık döküm; sağlayıcıya, eklentiye ve modele göre; CSV indirme.
-- **Kayıtlar:** her model isteği ve araç çağrısı (nerede, kim, model ya da araç, token, önbellek, süre, maliyet); içerik maskeli saklanır (e-posta, telefon, IBAN, anahtar), varsayılan 30 gün.
+- **Kayıtlar:** her model isteği ve araç çağrısı (nerede, kim, model ya da araç, token, önbellek, süre, maliyet); içerik maskeli saklanır (e-posta, telefon, IBAN, anahtar); kayıtlar ve içerik varsayılan olarak sınırsız saklanır, istenirse Ayarlar › Kayıtlar'dan gün girilir.
 - Harcama sınırında engelle ya da yalnız uyar; uyarı yüzdesi.
 
 ### Ortak sohbet

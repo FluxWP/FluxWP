@@ -46,7 +46,7 @@ When every plugin brings its own AI connection, you end up with keys in five set
 ### Costs and limits
 - **Overview:** daily, weekly and monthly spend against limits, cost, requests, tokens (input, output, from cache), total time split into model vs tools, errors; daily charts for 7 to 180 days, per plugin.
 - **Billing:** month by month with cache savings, per provider, per plugin and per model, CSV download.
-- **Logs:** every model request and tool call (where, who, model or tool, tokens, cache, duration, cost); content stored masked (e-mail, phone, IBAN, keys) and kept 30 days by default.
+- **Logs:** every model request and tool call (where, who, model or tool, tokens, cache, duration, cost); content stored masked (e-mail, phone, IBAN, keys); logs and content are kept forever by default, or enter a number of days under Settings › Logs.
 - Spending limit action: block or only warn, with a warning percentage.
 
 ### Shared chat

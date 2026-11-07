@@ -15,7 +15,7 @@
 ## Ekranlar
 Sol menüde **Flux AI** (Flux Admin'de "Diğer" grubunda, İletişim'in yanında):
 - **Genel bakış**: harcama sınırları, maliyet, istek, token, toplam süre, hata. Grafikler: günlük maliyet, **süre nereye gidiyor (model/düşünme ve araçlar, dikey bar)**, günlük token, araç başına ortalama süre. Eklentiye / modele / amaca göre tablolar.
-- **Kayıtlar**: her model isteği ve araç çağrısı. Nerede (sistem · amaç · sohbet no), kim, model, token, süre, maliyet, hata. Süzgeç: 24 saat / 7 / 30 / 90 gün, tür, sistem, yalnız hatalar. **İçerik** düğmesi giden son mesajları ve gelen cevabı gösterir; e-posta, telefon, kart/TC, IBAN ve anahtarlar maskeli. İçerik 30 gün saklanır (Ayarlar › Kayıtlar › İçerik kaydı, kapatılabilir).
+- **Kayıtlar**: her model isteği ve araç çağrısı. Nerede (sistem · amaç · sohbet no), kim, model, token, süre, maliyet, hata. Süzgeç: 24 saat / 7 / 30 / 90 gün, tür, sistem, yalnız hatalar. **İçerik** düğmesi giden son mesajları ve gelen cevabı gösterir; e-posta, telefon, kart/TC, IBAN ve anahtarlar maskeli. İçerik varsayılan olarak sınırsız saklanır; Ayarlar › Kayıtlar › İçerik kaydı'ndan gün girilebilir ya da kapatılabilir.
 - **Bağlı sistemler**: Flux AI'yı kullanan eklentiler (sohbet, Çağrı Merkezi, Görev …). Durum, model, 30 günlük kullanım, son kullanım. **Açık** kutusunu kaldırıp Kaydet: o sistem yapay zekâ isteği gönderemez (kayıtlarda "Kapalı" görünür). Eklentinin kendi ayarları değişmez; tekrar açınca kaldığı yerden devam eder. Sohbet kapatılırsa "AI'ya sor" düğmesi gizlenir.
 - **Faturalandırma**: ay listesi, ay toplamı, önbellek tasarrufu, sağlayıcıya göre döküm, CSV indir, OpenRouter kalan kredi (Yenile). Anthropic bakiye API'si sunmuyor; bakiye console.anthropic.com › Billing.
 - **Araçlar**: ortak sohbetin kullandığı araçlar (MCP araçları dahil: Flux SEO, CRM, Mail, Speed…); aç/kapat, 30 günlük kullanım ve süre.
@@ -45,6 +45,6 @@ Flux AI kuruluyken Çağrı Merkezi, Görev, Sertifika vb. güncellendikçe anah
 
 ## Notlar
 - Hostinger ~60 sn'de isteği kestiği için uzun sohbet turları 45 sn'lik adımlarla ilerler; ekranda kesinti olmaz.
-- Kullanım kayıtları varsayılan 365 gün saklanır (Ayarlar › Kayıtlar).
+- Kullanım kayıtları varsayılan olarak sınırsız saklanır; süre isterseniz Ayarlar › Kayıtlar'dan gün girin (boş = sınırsız).
 - Kaldırırken veriler yalnız "Eklenti silinirken kayıtları ve sohbetleri de sil" açıksa silinir.
 - Sistem kontrolünde Flux AI satırları: anahtarlar, model, harcama sınırı (oradan da girilebilir), son 24 saat hata oranı, sohbet araçları.

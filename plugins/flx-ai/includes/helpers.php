@@ -48,8 +48,8 @@ function flxai_defaults() {
 		'tool_pick'           => array(),   // ad çakışmasında açık olacak kaynak: ad => eklenti
 		'sources_off'         => array(),   // Flux AI & MCP › Bağlı sistemler'de kapatılan kaynaklar
 		'log_bodies'          => 1,         // istek/cevap içeriği (maskeli, kısaltılmış)
-		'log_body_days'       => 30,
-		'log_days'            => 365,
+		'log_body_days'       => 0,         // 0 = sınırsız
+		'log_days'            => 0,         // 0 = sınırsız
 		'delete_data'         => 0,
 	);
 }

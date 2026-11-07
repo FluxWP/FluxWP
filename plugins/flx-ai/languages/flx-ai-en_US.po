@@ -772,8 +772,14 @@ msgstr "If Gotenberg is protected with basic authentication."
 msgid "Kullanım kayıtlarını sakla"
 msgstr "Keep usage logs for"
 
+msgid "Sınırsız"
+msgstr "Unlimited"
+
 msgid "gün"
 msgstr "days"
+
+msgid "Boş bırakın: kayıtlar sınırsız saklanır. Gün girerseniz daha eski kayıtlar günde bir kez silinir."
+msgstr "Leave empty to keep logs forever. If you enter days, older logs are deleted once a day."
 
 msgid "İçerik kaydı"
 msgstr "Content log"
@@ -783,6 +789,9 @@ msgstr "Also store outgoing/incoming content (shortened; e-mail, phone, IBAN and
 
 msgid "gün sakla"
 msgstr "days to keep"
+
+msgid "Boş bırakın: içerik de sınırsız saklanır."
+msgstr "Leave empty to keep content forever too."
 
 msgid "Kaldırınca"
 msgstr "On uninstall"

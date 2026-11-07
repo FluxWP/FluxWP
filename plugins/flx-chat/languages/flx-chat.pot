@@ -1269,16 +1269,19 @@ msgstr ""
 msgid "Durum bilinmiyor"
 msgstr ""
 
-msgid "WhatsApp bağlantısı kurulmadı"
+msgid "Henüz iletişim kanalı kurulmadı"
 msgstr ""
 
 msgid "WhatsApp bağlantısı koptu"
 msgstr ""
 
-msgid "Mesaj almak için bağlantı ekleyin."
+msgid "Mesaj almak için iletişim ayarlarından bir kanal kurun."
 msgstr ""
 
 msgid "Telefon çevrimdışı olabilir ya da QR yeniden okutulmalı."
+msgstr ""
+
+msgid "İletişim ayarlarına git"
 msgstr ""
 
 msgid "Ayarlara git"

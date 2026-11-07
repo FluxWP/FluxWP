@@ -513,9 +513,10 @@ function flxai_save_settings() {
 		}
 	}
 	$new['media_days']     = max( 7, min( 1825, (int) ( $p['media_days'] ?? 90 ) ) );
-	$new['log_days']       = max( 30, min( 1825, (int) ( $p['log_days'] ?? 365 ) ) );
+	// Boş ya da 0 = sınırsız.
+	$new['log_days']       = max( 0, min( 3650, (int) ( $p['log_days'] ?? 0 ) ) );
 	$new['log_bodies']     = empty( $p['log_bodies'] ) ? 0 : 1;
-	$new['log_body_days']  = max( 1, min( 365, (int) ( $p['log_body_days'] ?? 30 ) ) );
+	$new['log_body_days']  = max( 0, min( 3650, (int) ( $p['log_body_days'] ?? 0 ) ) );
 	$new['delete_data']    = empty( $p['delete_data'] ) ? 0 : 1;
 	$old_keys              = array( flxai_setting( 'key_openrouter' ), flxai_setting( 'key_anthropic' ), flxai_setting( 'anthropic_workspace' ) );
 	flxai_update_settings( $new );
@@ -725,9 +726,12 @@ function flxai_page_settings() {
 		<section class="flxai-card">
 			<h2><?php esc_html_e( 'Kayıtlar', 'flx-ai' ); ?></h2>
 			<table class="form-table" role="presentation">
-				<tr><th><?php esc_html_e( 'Kullanım kayıtlarını sakla', 'flx-ai' ); ?></th><td><input type="number" min="30" max="1825" class="small-text" name="log_days" value="<?php echo esc_attr( $s['log_days'] ); ?>"> <?php esc_html_e( 'gün', 'flx-ai' ); ?></td></tr>
+				<?php $flxai_ld = (int) ( $s['log_days'] ?? 0 ); $flxai_bd = (int) ( $s['log_body_days'] ?? 0 ); ?>
+				<tr><th><?php esc_html_e( 'Kullanım kayıtlarını sakla', 'flx-ai' ); ?></th><td><input type="number" min="0" max="3650" class="small-text" name="log_days" value="<?php echo esc_attr( $flxai_ld > 0 ? $flxai_ld : '' ); ?>" placeholder="<?php esc_attr_e( 'Sınırsız', 'flx-ai' ); ?>" style="width:90px"> <?php esc_html_e( 'gün', 'flx-ai' ); ?>
+					<p class="description"><?php esc_html_e( 'Boş bırakın: kayıtlar sınırsız saklanır. Gün girerseniz daha eski kayıtlar günde bir kez silinir.', 'flx-ai' ); ?></p></td></tr>
 				<tr><th><?php esc_html_e( 'İçerik kaydı', 'flx-ai' ); ?></th><td><label class="flxai-check"><input type="checkbox" name="log_bodies" value="1" <?php checked( $s['log_bodies'] ?? 1 ); ?>> <?php esc_html_e( 'Giden/gelen içeriği de sakla (kısaltılmış; e-posta, telefon, IBAN ve anahtarlar maskeli)', 'flx-ai' ); ?></label>
-					<p><input type="number" min="1" max="365" class="small-text" name="log_body_days" value="<?php echo esc_attr( $s['log_body_days'] ?? 30 ); ?>"> <?php esc_html_e( 'gün sakla', 'flx-ai' ); ?></p></td></tr>
+					<p><input type="number" min="0" max="3650" class="small-text" name="log_body_days" value="<?php echo esc_attr( $flxai_bd > 0 ? $flxai_bd : '' ); ?>" placeholder="<?php esc_attr_e( 'Sınırsız', 'flx-ai' ); ?>" style="width:90px"> <?php esc_html_e( 'gün sakla', 'flx-ai' ); ?></p>
+					<p class="description"><?php esc_html_e( 'Boş bırakın: içerik de sınırsız saklanır.', 'flx-ai' ); ?></p></td></tr>
 				<tr><th><?php esc_html_e( 'Kaldırınca', 'flx-ai' ); ?></th><td><label class="flxai-check"><input type="checkbox" name="delete_data" value="1" <?php checked( $s['delete_data'] ); ?>> <?php esc_html_e( 'Eklenti silinirken kayıtları ve sohbetleri de sil', 'flx-ai' ); ?></label></td></tr>
 			</table>
 		</section>

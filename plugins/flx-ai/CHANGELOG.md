@@ -1,9 +1,12 @@
 # Flux AI — Değişiklikler
 
-## 0.9.2
+## 0.9.3
 - Uygulama sözleşmesine yerel faturalandırma ekranı eklendi: aylık geçmiş, bütçe sınırları, günlük grafik, sağlayıcı/eklenti/model dökümleri ve kredi kontrolü.
 - Yetkili uygulama oturumları için aylık CSV dışa aktarma API’si. WordPress indirmesi ve uygulama aynı çıktıyı kullanır; veriler 500 satırlık gruplarla ve aynı zaman damgasındaki kayıtlar atlanmadan okunur.
 - Günlük raporlar, yaz/kış saati geçişlerinde ve sabit kesirli saat dilimlerinde site takvimini doğru izler. Geçersiz ay değerleri API hatasına neden olmaz.
+
+## 0.9.2
+- Kayıt saklama süresi varsayılan olarak **sınırsız**: Ayarlar › Kayıtlar'da kullanım kayıtları ve içerik kaydı (giden/gelen içerik, kısaltılmış ve maskeli) için gün alanı boş bırakılırsa hiçbir kayıt silinmez. Gün girilirse daha eski kayıtlar günde bir kez silinir (1–3650 gün). Uygulama ayarlarında da 0 = sınırsız; içerik saklama süresi uygulamadan da ayarlanabilir.
 
 ## 0.9.1
 - Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
