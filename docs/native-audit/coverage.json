@@ -5,23 +5,7 @@
   "screenCount": 87,
   "explicitWebCount": 18,
   "versionGatedScreenCount": 81,
-  "missingNativeComponents": [
-    {
-      "plugin": "flx-social",
-      "module": "social",
-      "screen": "composer",
-      "type": "native",
-      "source": "plugins/flx-social/app/manifest.json",
-      "minimumApp": "1.0.0",
-      "versionGated": true,
-      "component": "flxsm-composer",
-      "componentRegistered": false,
-      "path": null,
-      "routes": [],
-      "sources": [],
-      "runtimeVerified": false
-    }
-  ],
+  "missingNativeComponents": [],
   "pluginsWithoutPublishedManifest": [
     "flx-migrate",
     "flx-app",
@@ -487,7 +471,7 @@
       "minimumApp": "1.0.0",
       "versionGated": true,
       "component": "flxsm-composer",
-      "componentRegistered": false,
+      "componentRegistered": true,
       "path": null,
       "routes": [],
       "sources": [],

@@ -32,7 +32,7 @@ Current app version: `0.3.0`. Modules: 19; screens: 87; explicit web screens: 18
 | social / post | detail | Version gate; Manifest renderer; API/actions/runtime QA pending | plugins/flx-social/app/manifest.json |
 | social / calendar | list | Version gate; Manifest renderer; API/actions/runtime QA pending | plugins/flx-social/app/manifest.json |
 | social / accounts | list | Version gate; Manifest renderer; API/actions/runtime QA pending | plugins/flx-social/app/manifest.json |
-| social / composer | native | Version gate; Missing component flxsm-composer | plugins/flx-social/app/manifest.json |
+| social / composer | native | Version gate; Component registered; runtime QA pending | plugins/flx-social/app/manifest.json |
 | roles / matrix | native | Version gate; Component registered; runtime QA pending | plugins/flx-roles/app/manifest.json |
 | wiki / pages | list | Version gate; Manifest renderer; API/actions/runtime QA pending | plugins/flx-wiki/app/manifest.json |
 | wiki / page | content | Version gate; Manifest renderer; API/actions/runtime QA pending | plugins/flx-wiki/app/manifest.json |
