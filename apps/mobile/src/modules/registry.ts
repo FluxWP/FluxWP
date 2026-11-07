@@ -19,6 +19,7 @@ export const NATIVE: Record<string, ComponentType<{ params: Record<string, strin
   'core-post': post,
   'core-media': media,
   'flxsm-compose': social,
+  'flxsm-composer': social,
   studio,
   'flx-studio': studio,
   'flx-ai': ai,

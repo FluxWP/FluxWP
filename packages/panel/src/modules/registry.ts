@@ -6,6 +6,7 @@ import { Dashboard } from '../screens/Dashboard';
 import { AiScreen } from '../ai/AiWorkspace';
 import { RolesScreen } from '../native/RolesScreen';
 import { LanguagesScreen } from '../native/LanguagesScreen';
+import { SocialComposerScreen } from '../native/SocialComposerScreen';
 
 /** Sunucuda kaydı olmayan, uygulamanın kendi modülleri (WP çekirdek menülerine bağlanır). */
 export const builtinModules: Record<string, ModuleInfo> = {
@@ -18,6 +19,8 @@ export const screens: Record<string, ComponentType> = {
   'flxai-chat': AiScreen,
   'flxr-roles': RolesScreen,
   'flxl-languages': LanguagesScreen,
+  'flxsm-composer': SocialComposerScreen,
+  'flxsm-compose': SocialComposerScreen,
 };
 
 export const implemented: ReadonlySet<string> = new Set(Object.keys(screens));

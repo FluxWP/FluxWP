@@ -28,6 +28,7 @@ describe('native screen ids', () => {
     expect(resolveTarget('module:flx-tv-remote', env)).toMatchObject({ kind: 'native', component: 'flx-tv-remote' });
     expect(resolveTarget('native:core-post', env)).toMatchObject({ kind: 'native', component: 'core-post' });
     expect(resolveTarget('native:core-media', env)).toMatchObject({ kind: 'native', component: 'core-media' });
+    expect(resolveTarget('native:flxsm-composer', env)).toMatchObject({ kind: 'native', component: 'flxsm-composer' });
     expect(resolveTarget('native:flxsm-compose', env)).toMatchObject({ kind: 'native', component: 'flxsm-compose' });
   });
 });

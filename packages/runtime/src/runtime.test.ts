@@ -274,7 +274,9 @@ describe('platform neutrality', () => {
       for (const f of files(dir)) {
         const src = readFileSync(f, 'utf8');
         expect(src, f).not.toMatch(/from ['"](react-native|react-dom|expo[\w-]*)['"/]/);
-        expect(src, f).not.toMatch(/\b(document|window|localStorage)\./);
+        // Member names such as state.document are domain models, not browser globals.
+        expect(src, f).not.toMatch(/(?:^|[^\w$.])(document|window|localStorage)\./);
+        expect(src, f).not.toMatch(/\bglobalThis\.(document|window|localStorage)\b/);
       }
     }
   });
