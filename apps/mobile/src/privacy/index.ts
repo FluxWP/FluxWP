@@ -16,5 +16,6 @@ export function usageHeaders(): Record<string, string> {
   return { 'X-FluxWP-Usage': usePrivacy.getState().usage ? '1' : '0' };
 }
 
-export const APP_PRIVACY_URL = 'https://github.com/FluxWP/FluxWP/blob/main/docs/fluxapp/APP-PRIVACY.md';
-export const APP_TERMS_URL = 'https://fluxwp.com/terms/';
+const policyBase = (language: string) => language.startsWith('tr') ? 'https://fluxwp.com/tr/' : 'https://fluxwp.com/';
+export const privacyUrl = (language: string) => policyBase(language) + 'privacy/';
+export const termsUrl = (language: string) => policyBase(language) + 'terms/';

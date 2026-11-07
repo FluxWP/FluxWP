@@ -14,7 +14,7 @@ import { LOGO, LOGO_DARK, brand, gate } from '@/brand';
 import { accountKey } from '@/shell/routes';
 import { Welcome, entryVariant } from '@/shell/entry/Welcome';
 import { Avatar, Button, Field, IconButton, Text } from '@/ui/primitives';
-import { PrivacyNotice } from '@/privacy/PrivacyNotice';
+import { ConnectionTerms } from '@/privacy/ConnectionTerms';
 
 type Step = 'url' | 'method' | 'otp' | 'apikey';
 type Busy = null | 'discover' | 'oauth' | 'oauth2' | 'otp' | 'verify' | 'key' | 'apppass' | 'demo';
@@ -129,7 +129,7 @@ export default function AddSite() {
           footer={!restricted ? <Button kind="ghost" label={t('mobile.addSite.demo')} loading={busy === 'demo'} disabled={!!busy} onPress={() => void run('demo', async () => done(await loginDemo()))} testID="demo" /> : null}
         >
           {urlForm}
-          <PrivacyNotice introduction />
+          <ConnectionTerms />
         </Welcome>
       </KeyboardAvoidingView>
     );
@@ -142,7 +142,7 @@ export default function AddSite() {
           <Text variant="title">{t('auth.welcome', { name: brand.name })}</Text>
           <Text tone="muted">{restricted ? t('mobile.addSite.allowedHint') : t('mobile.addSite.hint')}</Text>
           {urlForm}
-          <PrivacyNotice introduction />
+          <ConnectionTerms />
         </View>
       </KeyboardAvoidingView>
     );
@@ -219,7 +219,7 @@ export default function AddSite() {
         ) : null}
 
         {error ? <Text tone="danger" accessibilityRole="alert" style={styles.center}>{t(error)}</Text> : null}
-        <PrivacyNotice introduction />
+        <ConnectionTerms />
         <Text variant="caption" style={styles.center}>{t('auth.footer', { name: brand.name })}</Text>
       </ScrollView>
     </KeyboardAvoidingView>

@@ -30,9 +30,8 @@ final class CaptureTests: XCTestCase {
             tap("welcome-skip")
         }
         XCTAssertTrue(element("demo").waitForExistence(timeout: 60))
-        let consent = element("usage-consent")
-        XCTAssertTrue(consent.waitForExistence(timeout: 15), "Privacy choice must be available before login")
-        XCTAssertEqual(consent.value as? String, "0", "Usage sharing must default off")
+        XCTAssertTrue(element("connection-terms").waitForExistence(timeout: 15), "Connection must display policy links")
+        XCTAssertFalse(element("usage-consent").exists, "Detailed usage choice belongs in Settings")
         shot("01-connect")
         tap("demo")
         XCTAssertTrue(element("open-drawer").waitForExistence(timeout: 60))
@@ -46,5 +45,9 @@ final class CaptureTests: XCTestCase {
         app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.15)).tap()
         tap("open-drawer")
         shot("05-menu")
+        tab(["Settings", "Ayarlar"])
+        let consent = element("usage-consent")
+        XCTAssertTrue(consent.waitForExistence(timeout: 15), "Usage choice must remain available in Settings")
+        XCTAssertEqual(consent.value as? String, "0", "Demo entry must not enable optional usage sharing")
     }
 }
