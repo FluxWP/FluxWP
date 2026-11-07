@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 2.15.0
+- Para birimi seçimi: bağışçı TRY / EUR / USD (ve GBP) arasında seçer. Ayarlar › WooCommerce › "Bağışçının seçebileceği para birimleri"; mağaza para birimi hep sunulur. Kur çevrimi yok: bağış türünde her seçeneğe para birimi başına fiyat girilir (boş = o para biriminde sunulmaz). Serbest tutar için para birimi başına en az tutar ve hazır tutarlar.
+- Bağış formunun üstünde "Para birimi" seçici (TL / EUR / USD düğmeleri); birden fazla para birimi açıksa görünür. Kısa kod `[flx_bagis_para_birimi]` aynı seçicinin küçük hâli (tema üst satırı için).
+- Seçim `flxb_currency` çerezinde (bir yıl); `?flxb_currency=EUR` ile değişir. Ön yüzde WooCommerce para birimi olur: sepet, ödeme sayfası ve sipariş o para biriminde. Yönetim, cron, webhook ve diğer REST istekleri mağaza para biriminde kalır. LiteSpeed önbelleği para birimine göre ayrı kopya tutar.
+- Para birimi değişince seçenekli satırlar yeni fiyatla hesaplanır; serbest tutar ve form satırları kendi para biriminde kalır, değilse sepetten bildirimle çıkar. Mağaza ürünleri yalnız mağaza para biriminde ödenir. Basılı sertifika ücreti yalnız mağaza para biriminde.
+- Ortak API (2.1): `flxb_currencies()`, `flxb_current_currency()`, `flxb_set_currency_url( $code, $url = '' )`; kısa kod `[flx_bagis_para_birimi]`; filtreler `flxb_currency_codes`, `flxb_current_currency`. Tür seçeneklerinde `prices` (`{ "EUR": 120 }`), tür meta `min_by_currency`, `presets_by_currency`; ön ayar türlerinde de taşınır.
+
 ## 2.14.0
 - Bağış ekle: yeni "Durum" alanı. Varsayılan "Ödeme bekleniyor"; ödeme alındıysa "Tamamlandı" seçilir. Önceden eklenen her bağış doğrudan ödendi oluyordu. Bekleyen havale bağışı onay kartına düşer.
 - Bağış detayı: yeni "İşlemler" kartı. Durumu değiştir (askıya al / ödendi / iptal / başarısız), çöpe taşı ya da geri al, kalıcı sil (yalnız yönetici). Sepet (tek sipariş) birlikte değişir; WooCommerce siparişi durumu izler (askıya alınca Beklemede, ödendi yapılınca sertifika oluşur). Değişiklik geçmişe yazılır.

@@ -5295,3 +5295,38 @@ msgstr "Sonra bağış sayfasından değiştirebilirsiniz."
 
 msgid "Record a gift paid or promised by bank transfer, in cash or another way."
 msgstr "Havale, nakit ya da başka bir yolla ödenen veya ödenecek bağışı kaydedin."
+
+#, php-format
+msgid "This option cannot be donated in %s. Please choose another currency."
+msgstr "Bu seçenek %s ile bağışlanamıyor. Lütfen başka bir para birimi seçin."
+
+#, php-format
+msgid "Donations in %s cannot be paid here at the moment."
+msgstr "%s ile bağış şu anda burada ödenemiyor."
+
+#, php-format
+msgid "A donation in your cart cannot be paid in %s and was removed."
+msgstr "Sepetinizdeki bir bağış %s ile ödenemediği için çıkarıldı."
+
+#, php-format
+msgid "Products in your cart can only be paid in %1$s. <a href=\"%2$s\">Switch to %1$s</a>"
+msgstr "Sepetinizdeki ürünler yalnızca %1$s ile ödenebilir. <a href=\"%2$s\">%1$s'ye geç</a>"
+
+msgid "Printed certificates can only be paid in the store currency; your certificate will be sent online."
+msgstr "Basılı sertifika yalnızca mağaza para birimiyle ödenebilir; sertifikanız çevrim içi gönderilecek."
+
+msgid "Currencies donors can choose"
+msgstr "Bağışçının seçebileceği para birimleri"
+
+msgid "(store currency)"
+msgstr "(mağaza para birimi)"
+
+msgid "With more than one, donors pick the currency (shortcode [flx_bagis_para_birimi] or the theme). There are no exchange rates: set each option's price per currency on the donation type; options without a price in a currency are not offered in it. Check that your payment methods take these currencies."
+msgstr "Birden fazla seçiliyse bağışçı para birimini seçer ([flx_bagis_para_birimi] kısa kodu ya da tema). Kur çevrimi yoktur: her seçeneğin fiyatını bağış türünde para birimi başına girin; bir para biriminde fiyatı olmayan seçenek o para biriminde sunulmaz. Ödeme yöntemlerinizin bu para birimlerini aldığını kontrol edin."
+
+msgid "not offered"
+msgstr "sunulmuyor"
+
+#, php-format
+msgid "Preset amounts in %s"
+msgstr "%s hazır tutarları"

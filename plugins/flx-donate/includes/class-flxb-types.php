@@ -52,7 +52,49 @@ final class FLXB_Types {
 			'active'    => ! isset( $o['active'] ) || ! empty( $o['active'] ),
 			'units_per' => max( 1, (int) ( $o['units_per'] ?? 1 ) ),
 			'badge'     => sanitize_key( (string) ( $o['badge'] ?? '' ) ), // 2.0: card badge on the donation page ('' = none)
+			'prices'    => self::clean_prices( $o['prices'] ?? array() ), // 2.15: { EUR: 120, USD: 130 } prices in other currencies
 		);
+	}
+
+	/** 2.15: { CODE: price > 0 } prices of an option in currencies other than the type's own. */
+	public static function clean_prices( $raw ) {
+		$out = array();
+		foreach ( (array) $raw as $code => $v ) {
+			$code = strtoupper( sanitize_text_field( (string) $code ) );
+			$v    = is_numeric( $v ) ? (float) $v : (float) str_replace( ',', '.', (string) $v );
+			if ( preg_match( '/^[A-Z]{3}$/', $code ) && $v > 0 ) {
+				$out[ $code ] = round( $v, 2 );
+			}
+		}
+		ksort( $out );
+		return $out;
+	}
+
+	/**
+	 * 2.15: price of an option in a currency. The type's own currency uses `price`; any other currency
+	 * uses the hand-set `prices[CODE]` (no exchange rates), 0 = not offered in that currency.
+	 */
+	public static function option_price( array $t, array $o, $currency = '' ) {
+		$cur = '' === (string) $currency ? strtoupper( (string) $t['currency'] ) : strtoupper( (string) $currency );
+		if ( strtoupper( (string) $t['currency'] ) === $cur ) {
+			return (float) $o['price'];
+		}
+		return (float) ( $o['prices'][ $cur ] ?? 0 );
+	}
+
+	/** 2.15: can this option be charged now in this currency? */
+	public static function option_on_sale_in( array $t, array $o, $currency = '' ) {
+		return ! empty( $o['active'] ) && self::option_price( $t, $o, $currency ) > 0;
+	}
+
+	/** 2.15: lowest free amount in a currency (type meta min_by_currency for other currencies; none = 0). */
+	public static function min_amount_in( array $t, $currency = '' ) {
+		$cur = '' === (string) $currency ? strtoupper( (string) $t['currency'] ) : strtoupper( (string) $currency );
+		if ( strtoupper( (string) $t['currency'] ) === $cur ) {
+			return (float) $t['min_amount'];
+		}
+		$m = (array) self::meta( $t, 'min_by_currency', array() );
+		return (float) ( $m[ $cur ] ?? 0 );
 	}
 
 	/** Can this option be charged now? Inactive options and options without a price (0 = "price not announced") cannot. */
@@ -155,6 +197,7 @@ final class FLXB_Types {
 				'active'    => ! isset( $o['active'] ) || ! empty( $o['active'] ),
 				'units_per' => max( 1, min( 1000, absint( $o['units_per'] ?? 1 ) ) ),
 				'badge'     => substr( sanitize_key( (string) ( $o['badge'] ?? '' ) ), 0, 32 ),
+				'prices'    => self::clean_prices( $o['prices'] ?? array() ),
 			);
 		}
 		return $out;

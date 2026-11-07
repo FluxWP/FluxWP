@@ -8,11 +8,12 @@ Flux Donate 2.11.0, Flux Setup ön ayarlarının `content` listesinde dört tür
 { "type": "flxb_type", "key": "fidan", "title": "Fidan bağışı", "category": "", "description": "",
   "currency": "TRY", "status": "active", "goal_amount": 0, "start_date": "", "end_date": "",
   "allow_free": 0, "min_amount": 0, "allow_quantity": 1, "max_quantity": 0, "allow_recurring": 0,
-  "options": [ { "key": "f1", "label": "1 fidan", "price": 150, "unit": "", "active": 1 } ],
+  "options": [ { "key": "f1", "label": "1 fidan", "price": 150, "unit": "", "active": 1, "prices": { "EUR": 5, "USD": 5 } } ],
   "meta": { "track_items": true, "file_completes": false,
             "labels": { "partner": "Dikim alanı", "st_done": "Dikildi" },
             "requires_proxy": false, "intention": "", "meat_to_needy": false, "grouping": "none" } }
 ```
+2.15: seçenekte `prices` (türün kendi para birimi dışındaki fiyatlar, kur çevrimi yok) ve meta'da `min_by_currency` `{ "EUR": 10 }`, `presets_by_currency` `{ "EUR": [10, 25] }` isteğe bağlı.
 `labels` anahtarları: `menu, title, item, partner, files, st_pending, st_approved, st_sent, st_done, st_delivered, st_canceled, do_assign, do_revoke, do_done, caption`. Form bağlantıları (`form_ids`) ön ayarla taşınmaz, sitede kalır.
 
 ## `flxb_partner`: iş ortağı ve anlaşmaları
