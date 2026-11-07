@@ -14,9 +14,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/** API version ('2.0'). Bumped (minor) when keys or functions are added. 2.0 adds the WooCommerce functions at the end of this file; nothing of 1.x was removed. */
+/** API version ('2.1'). Bumped (minor) when keys or functions are added. 2.0 adds the WooCommerce functions at the end of this file, 2.1 the currency functions; nothing of 1.x was removed. */
 function flxb_api_version() {
-	return '2.0';
+	return '2.1';
 }
 
 /**
@@ -101,6 +101,7 @@ function flxb_type_public( array $t, $with_progress = true ) {
 			'key'               => $o['key'],
 			'label'             => $o['label'],
 			'price'             => (float) $o['price'] > 0 ? (float) $o['price'] : null,
+			'prices'            => (array) ( $o['prices'] ?? array() ), // 2.15: { CODE: price } in other currencies
 			'unit'              => '' !== $o['unit'] ? $o['unit'] : null, // null = no unit set
 			'unit_set'          => '' !== $o['unit'],
 			'unit_label'        => '' !== $o['unit'] ? flxb_unit_label( $o['unit'], 1 ) : null,
@@ -367,3 +368,37 @@ function flxb_create_ref_request( array $args ) {
 	return FLXB_Refs::create_request( $args );
 }
 
+
+/**
+ * 2.15.0: currencies a donor can choose on the donation page, in offer order (store currency first).
+ * Without the WooCommerce layer only the default currency is returned.
+ *
+ * @return array[] [ CODE => { code, symbol, label, current (bool), url (switch link for this page) } ]
+ */
+function flxb_currencies() {
+	if ( flxb_wc_active() && class_exists( 'FLXB_WC_Currency' ) ) {
+		return FLXB_WC_Currency::all();
+	}
+	$c = flxb_default_currency();
+	return array( $c => array( 'code' => $c, 'symbol' => flxb_currency_symbol( $c ), 'label' => $c, 'current' => true, 'url' => '' ) );
+}
+
+/**
+ * 2.15.0: the donor's currency in this request (cookie flxb_currency; the store currency otherwise).
+ *
+ * @return string ISO 4217 code, upper case.
+ */
+function flxb_current_currency() {
+	return flxb_wc_active() && class_exists( 'FLXB_WC_Currency' ) ? FLXB_WC_Currency::current() : flxb_default_currency();
+}
+
+/**
+ * 2.15.0: link that switches the donor to a currency and comes back to the same page.
+ *
+ * @param string $code ISO 4217 code (one of flxb_currencies()).
+ * @param string $url  Page to come back to (default: the current page).
+ * @return string
+ */
+function flxb_set_currency_url( $code, $url = '' ) {
+	return class_exists( 'FLXB_WC_Currency' ) ? FLXB_WC_Currency::url( $code, $url ) : (string) ( '' !== (string) $url ? $url : home_url( '/' ) );
+}

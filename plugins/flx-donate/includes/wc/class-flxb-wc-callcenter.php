@@ -89,7 +89,7 @@ class FLXB_WC_Callcenter {
 				$key    = sanitize_key( (string) ( $l['option'] ?? '' ) );
 				$opt    = '' !== $key ? FLXB_Types::option( $t, $key ) : null;
 				$units  = max( 1, absint( $l['units'] ?? 1 ) );
-				$amount = isset( $l['amount'] ) ? round( (float) $l['amount'], 2 ) : ( $opt ? round( (float) $opt['price'] * $units, 2 ) : 0 );
+				$amount = isset( $l['amount'] ) ? round( (float) $l['amount'], 2 ) : ( $opt ? round( FLXB_Types::option_price( $t, $opt, $order->get_currency() ) * $units, 2 ) : 0 );
 				if ( $amount <= 0 ) {
 					$order->delete( true );
 					return new WP_Error( 'flxb_amount', __( 'Enter an amount.', 'flx-donate' ) );

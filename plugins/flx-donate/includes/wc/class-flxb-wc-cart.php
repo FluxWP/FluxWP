@@ -126,13 +126,18 @@ final class FLXB_WC_Cart {
 			$msg = FLXB_Types::closed_message( $t );
 			return new WP_Error( 'flxb_closed', '' !== $msg ? $msg : __( 'Donations for this cause are closed at the moment.', 'flx-donate' ) );
 		}
-		$line = array( 'type_id' => (int) $t['id'], 'option' => '', 'units' => 1 );
+		$cur  = self::currency();
+		$line = array( 'type_id' => (int) $t['id'], 'option' => '', 'units' => 1, 'currency' => $cur );
 
 		$key = sanitize_key( (string) ( $in['option'] ?? '' ) );
 		$free = '' === $key;
 		if ( '' !== $key ) {
 			$opt = FLXB_Types::option( $t, $key );
-			if ( ! $opt || ! FLXB_Types::option_on_sale( $opt ) ) {
+			if ( $opt && FLXB_Types::option_on_sale( $opt ) && ! FLXB_Types::option_on_sale_in( $t, $opt, $cur ) ) {
+				/* translators: %s: currency code */
+				return new WP_Error( 'flxb_currency', sprintf( __( 'This option cannot be donated in %s. Please choose another currency.', 'flx-donate' ), $cur ) );
+			}
+			if ( ! $opt || ! FLXB_Types::option_on_sale_in( $t, $opt, $cur ) ) {
 				return new WP_Error( 'flxb_option', __( 'This option cannot be donated online at the moment.', 'flx-donate' ) );
 			}
 			$line['option'] = $key;
@@ -147,7 +152,7 @@ final class FLXB_WC_Cart {
 			}
 		} elseif ( $free && $t['allow_free'] ) {
 			$amount = FLXB_WC::parse_amount( $in['amount'] ?? '' );
-			$min    = (float) $t['min_amount'];
+			$min    = FLXB_Types::min_amount_in( $t, $cur );
 			if ( $amount <= 0 || $amount < $min ) {
 				/* translators: %s: lowest amount */
 				return new WP_Error( 'flxb_amount', $min > 0 ? sprintf( __( 'The amount must be at least %s.', 'flx-donate' ), FLXB_WC::money_text( $min ) ) : __( 'Please enter an amount.', 'flx-donate' ) );
@@ -161,7 +166,7 @@ final class FLXB_WC_Cart {
 		}
 
 		if ( self::type_has_certificate( $t ) ) {
-			if ( 'print' === ( $in['cert'] ?? '' ) && ! FLXB_WC::print_on() ) {
+			if ( 'print' === ( $in['cert'] ?? '' ) && ! self::print_here() ) {
 				return new WP_Error( 'flxb_print', __( 'Printed certificates are not available yet. Please choose the online certificate.', 'flx-donate' ) );
 			}
 			$line['cert'] = 'print' === ( $in['cert'] ?? '' ) ? 'print' : 'online';
@@ -254,24 +259,54 @@ final class FLXB_WC_Cart {
 		return (array) apply_filters( 'flxb_wc_line', $line, $in, $t );
 	}
 
-	/** Unit price of a line (server side). */
-	public static function line_price( array $line ) {
+	/** 2.15: the donor's currency now (store currency without the currency choice). */
+	public static function currency() {
+		return class_exists( 'FLXB_WC_Currency' ) ? FLXB_WC_Currency::current() : strtoupper( (string) get_woocommerce_currency() );
+	}
+
+	/**
+	 * 2.15: the currency a line's amount was written in. Option lines are priced again in any currency;
+	 * free and fixed amounts only count in their own currency (lines from before 2.15: the type's).
+	 */
+	public static function line_currency( array $line, $t = null ) {
+		if ( ! empty( $line['currency'] ) ) {
+			return strtoupper( (string) $line['currency'] );
+		}
+		$t = is_array( $t ) ? $t : FLXB_Types::get( (int) ( $line['type_id'] ?? 0 ) );
+		return $t ? strtoupper( (string) $t['currency'] ) : self::currency();
+	}
+
+	/** 2.15: "Online + printed certificate" can be chosen (its fee is set in the store currency only). */
+	public static function print_here() {
+		if ( ! FLXB_WC::print_on() ) {
+			return false;
+		}
+		return (float) FLXB_WC::setting( 'print_fee' ) <= 0 || ! class_exists( 'FLXB_WC_Currency' ) || FLXB_WC_Currency::current() === FLXB_WC_Currency::base();
+	}
+
+	/** Unit price of a line (server side) in the current currency; 0 = cannot be paid in it. */
+	public static function line_price( array $line, $currency = '' ) {
 		$t = FLXB_Types::get( (int) ( $line['type_id'] ?? 0 ) );
 		if ( ! $t ) {
 			return 0.0;
 		}
-		if ( ! empty( $line['fixed'] ) && (float) ( $line['amount'] ?? 0 ) > 0 ) {
-			/* Priced on the server before it reached the cart (Flux Forms hand-off), never by the browser. */
-			return round( (float) $line['amount'], 2 );
-		}
-		if ( '' === (string) ( $line['option'] ?? '' ) ) {
+		$cur   = '' !== (string) $currency ? strtoupper( (string) $currency ) : self::currency();
+		$fixed = ! empty( $line['fixed'] ) && (float) ( $line['amount'] ?? 0 ) > 0;
+		if ( $fixed || '' === (string) ( $line['option'] ?? '' ) ) {
+			if ( self::line_currency( $line, $t ) !== $cur ) {
+				return 0.0;
+			}
+			if ( $fixed ) {
+				/* Priced on the server before it reached the cart (Flux Forms hand-off), never by the browser. */
+				return round( (float) $line['amount'], 2 );
+			}
 			return $t['allow_free'] ? max( 0, (float) ( $line['amount'] ?? 0 ) ) : 0.0;
 		}
 		$o = FLXB_Types::option( $t, (string) $line['option'] );
-		if ( ! $o ) {
+		if ( ! $o || empty( $o['active'] ) ) {
 			return 0.0;
 		}
-		return round( (float) $o['price'] * max( 1, (int) ( $line['units'] ?? 1 ) ), 2 );
+		return round( FLXB_Types::option_price( $t, $o, $cur ) * max( 1, (int) ( $line['units'] ?? 1 ) ), 2 );
 	}
 
 	/** Add a choice to the cart. @return string|WP_Error cart item key */
@@ -286,6 +321,14 @@ final class FLXB_WC_Cart {
 	public static function add_line( array $line ) {
 		if ( ! WC()->cart && function_exists( 'wc_load_cart' ) ) {
 			wc_load_cart();
+		}
+		if ( ! empty( $line['fixed'] ) && class_exists( 'FLXB_WC_Currency' ) ) {
+			/* 2.15: a form charges in its type's currency; the cart follows it when that currency is on offer. */
+			$line['currency'] = self::line_currency( $line );
+			if ( $line['currency'] !== FLXB_WC_Currency::current() && ! FLXB_WC_Currency::set( $line['currency'] ) ) {
+				/* translators: %s: currency code */
+				return new WP_Error( 'flxb_currency', sprintf( __( 'Donations in %s cannot be paid here at the moment.', 'flx-donate' ), $line['currency'] ) );
+			}
 		}
 		$pid = FLXB_WC_Products::product_id( (int) $line['type_id'] );
 		if ( ! $pid ) {
@@ -317,13 +360,13 @@ final class FLXB_WC_Cart {
 		}
 		$in = array( 'type_id' => $tid );
 		foreach ( $t['options'] as $o ) {
-			if ( FLXB_Types::option_on_sale( $o ) ) {
+			if ( FLXB_Types::option_on_sale_in( $t, $o, self::currency() ) ) {
 				$in['option'] = $o['key'];
 				break;
 			}
 		}
 		if ( empty( $in['option'] ) ) {
-			$in['amount'] = max( 1, (float) $t['min_amount'] );
+			$in['amount'] = max( 1, FLXB_Types::min_amount_in( $t, self::currency() ) );
 		}
 		$line = self::build_line( $in );
 		if ( ! is_wp_error( $line ) ) {
@@ -335,7 +378,10 @@ final class FLXB_WC_Cart {
 	public static function prices( $cart ) {
 		foreach ( $cart->get_cart() as $item ) {
 			if ( ! empty( $item[ self::KEY ] ) && isset( $item['data'] ) && $item['data'] instanceof WC_Product ) {
-				$item['data']->set_price( self::line_price( $item[ self::KEY ] ) );
+				$price = self::line_price( $item[ self::KEY ] );
+				$item['data']->set_price( $price );
+				/* 2.15: the product's list price is in the store currency; without this the block cart shows a "discount". */
+				$item['data']->set_regular_price( $price );
 			}
 		}
 	}
@@ -352,21 +398,38 @@ final class FLXB_WC_Cart {
 		if ( ! WC()->cart ) {
 			return;
 		}
+		$cur   = self::currency();
+		$other = false;
 		foreach ( WC()->cart->get_cart() as $key => $item ) {
 			if ( empty( $item[ self::KEY ] ) ) {
+				$other = true;
 				continue;
 			}
 			if ( self::line_price( $item[ self::KEY ] ) <= 0 ) {
+				$here = self::line_price( $item[ self::KEY ], self::line_currency( $item[ self::KEY ] ) ) > 0;
 				WC()->cart->remove_cart_item( $key );
-				wc_add_notice( __( 'A donation in your cart is no longer available and was removed.', 'flx-donate' ), 'error' );
+				/* translators: %s: currency code */
+				wc_add_notice( $here ? sprintf( __( 'A donation in your cart cannot be paid in %s and was removed.', 'flx-donate' ), $cur ) : __( 'A donation in your cart is no longer available and was removed.', 'flx-donate' ), 'error' );
+				continue;
 			}
+			if ( 'print' === ( $item[ self::KEY ]['cert'] ?? '' ) && ! self::print_here() ) {
+				/* 2.15: the printed certificate fee is in the store currency only. */
+				WC()->cart->cart_contents[ $key ][ self::KEY ]['cert'] = 'online';
+				WC()->cart->set_session();
+				wc_add_notice( __( 'Printed certificates can only be paid in the store currency; your certificate will be sent online.', 'flx-donate' ), 'notice' );
+			}
+		}
+		if ( $other && class_exists( 'FLXB_WC_Currency' ) && FLXB_WC_Currency::base() !== $cur ) {
+			/* Shop products have one price, in the store currency. */
+			/* translators: 1: store currency, 2: switch link */
+			wc_add_notice( sprintf( __( 'Products in your cart can only be paid in %1$s. <a href="%2$s">Switch to %1$s</a>', 'flx-donate' ), esc_html( FLXB_WC_Currency::base() ), esc_url( FLXB_WC_Currency::url( FLXB_WC_Currency::base() ) ) ), 'error' );
 		}
 	}
 
 	/** Printed certificate fee (per line; none when 0). */
 	public static function fees( $cart ) {
 		$fee = (float) FLXB_WC::setting( 'print_fee' );
-		if ( $fee <= 0 || ! FLXB_WC::print_on() ) {
+		if ( $fee <= 0 || ! self::print_here() ) {
 			return;
 		}
 		$n = 0;

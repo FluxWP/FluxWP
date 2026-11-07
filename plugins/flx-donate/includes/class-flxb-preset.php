@@ -95,7 +95,7 @@ final class FLXB_Preset {
 				'price'  => (float) $o['price'],
 				'unit'   => (string) ( $o['unit'] ?? '' ),
 				'active' => (int) ! empty( $o['active'] ),
-			);
+			) + ( ! empty( $o['prices'] ) ? array( 'prices' => $o['prices'] ) : array() ); // 2.15: { CODE: price }
 		}
 		ksort( $out['meta'] );
 		return $out;
@@ -106,7 +106,7 @@ final class FLXB_Preset {
 		if ( ! $t ) {
 			return array();
 		}
-		$keys = array_keys( FLXB_Types::clean_meta( array( 'requires_proxy' => 0, 'meat_to_needy' => 0, 'intention' => '', 'track_items' => 0, 'file_completes' => 0, 'labels' => array(), 'lock_preselect' => 0, 'grouping' => 'none' ) ) );
+		$keys = array_keys( FLXB_Types::clean_meta( array( 'requires_proxy' => 0, 'meat_to_needy' => 0, 'intention' => '', 'track_items' => 0, 'file_completes' => 0, 'labels' => array(), 'lock_preselect' => 0, 'grouping' => 'none', 'min_by_currency' => array(), 'presets_by_currency' => array() ) ) );
 		$meta = array_intersect_key( (array) $t['meta'], array_flip( $keys ) );
 		return self::type_data(
 			array(

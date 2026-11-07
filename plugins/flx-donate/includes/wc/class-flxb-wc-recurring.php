@@ -106,7 +106,7 @@ class FLXB_WC_Recurring {
 							'key'        => $opt ? (string) $opt['key'] : '',
 							'label'      => $label,
 							'units'      => $units,
-							'unit_price' => $opt ? (float) $opt['price'] : $amount,
+							'unit_price' => $opt ? FLXB_Types::option_price( $t, $opt, $order->get_currency() ) : $amount,
 							'amount'     => $amount,
 							'unit'       => $opt ? (string) $opt['unit'] : '',
 							'units_per'  => $opt ? (int) $opt['units_per'] : 1,
