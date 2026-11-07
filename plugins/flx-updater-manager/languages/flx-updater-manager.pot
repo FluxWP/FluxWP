@@ -1,0 +1,805 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Flux Updater Manager\n"
+
+msgid "Yönet"
+msgstr ""
+
+msgid "Güncelleme sunucusunu WordPress panelinden yönetir"
+msgstr ""
+
+msgid "Genel bakış"
+msgstr ""
+
+msgid "Ülkeler"
+msgstr ""
+
+msgid "Siteler"
+msgstr ""
+
+msgid "Paketler"
+msgstr ""
+
+msgid "Güvenlik"
+msgstr ""
+
+msgid "Kaynaklar"
+msgstr ""
+
+msgid "Bağlantı"
+msgstr ""
+
+msgid "Updater Manager"
+msgstr ""
+
+msgid "Updater"
+msgstr ""
+
+msgid "Site"
+msgstr ""
+
+msgid "Kontrol"
+msgstr ""
+
+msgid "İndirme"
+msgstr ""
+
+msgid "Kopyalandı"
+msgstr ""
+
+msgid "Kaldır"
+msgstr ""
+
+msgid "Depo ekle…"
+msgstr ""
+
+msgid "Depo seçin"
+msgstr ""
+
+msgid "Yükleniyor…"
+msgstr ""
+
+msgid "Liste alınamadı"
+msgstr ""
+
+msgid "Enter ile ekleyin"
+msgstr ""
+
+msgid "Listeyi yenile"
+msgstr ""
+
+msgid "Sunucuda yapılıyor…"
+msgstr ""
+
+msgid "Bu işlem için yetkiniz yok."
+msgstr ""
+
+msgid "Yönetici anahtarı bu siteden silindi. Sunucudaki anahtar duruyor; sunucu panelinden silebilirsiniz."
+msgstr ""
+
+msgid "Kaydedildi."
+msgstr ""
+
+msgid "Yönetici anahtarı \"flxm_\" ile başlar ve 53 karakterdir. Sunucu panelinde Updater Manager kartından üretin."
+msgstr ""
+
+msgid "Bağlandı: Flux Update Server %1$s, anahtar \"%2$s\"."
+msgstr ""
+
+msgid "Yönetici anahtarı girilmemiş."
+msgstr ""
+
+msgid "Sunucu adresi geçersiz."
+msgstr ""
+
+msgid "Sunucuya ulaşılamadı: %s"
+msgstr ""
+
+msgid "Bu sunucuda yönetici API'si yok. Güncelleme sunucusunu 1.12.0 ya da üstüne yükseltin."
+msgstr ""
+
+msgid "Sunucudan beklenmeyen yanıt (HTTP %d)."
+msgstr ""
+
+msgid "Yönetici anahtarı geçersiz ya da sunucuda silinmiş."
+msgstr ""
+
+msgid "Sunucu hatası."
+msgstr ""
+
+msgid "Önceki eşit döneme göre"
+msgstr ""
+
+msgid "FluxWP güncelleme sunucusunu buradan yönetin: istatistikler, siteler, anahtarlar, paketler ve güvenlik."
+msgstr ""
+
+msgid "%1$s · Flux Update Server %2$s"
+msgstr ""
+
+msgid "Sunucu paneli"
+msgstr ""
+
+msgid "Bölümler"
+msgstr ""
+
+msgid "Acil durdurma açık."
+msgstr ""
+
+msgid "Hiçbir siteye güncelleme, paket ya da uygulama dağıtılmıyor (503)."
+msgstr ""
+
+msgid "Anahtarsız dağıtım kapalı."
+msgstr ""
+
+msgid "Yalnız aktif site anahtarı olan siteler paket alıyor."
+msgstr ""
+
+msgid "Yeni site anahtarı: %s"
+msgstr ""
+
+msgid "Site bu anahtarı bir sonraki güncelleme kontrolünde kendiliğinden alır (7 gün içinde; hemen almak için sitede FluxWP Panel › Ayarlar › \"Bağlantıyı test et\"). Elle girmeniz gerekmez. Şimdi Siteler sekmesinden erişimini seçin; seçene kadar site yalnız public paketleri görür."
+msgstr ""
+
+msgid "Bu anahtar bir daha gösterilmez. Şimdi kopyalayın ve sitenin FluxWP Panel › Ayarlar ekranında \"Site anahtarı\" alanına yapıştırın."
+msgstr ""
+
+msgid "Kopyala"
+msgstr ""
+
+msgid "Geçerli bir IP adresi girin."
+msgstr ""
+
+msgid "Bulunamadı"
+msgstr ""
+
+msgid "Anahtar testi"
+msgstr ""
+
+msgid "Geçersiz"
+msgstr ""
+
+msgid "Pasif"
+msgstr ""
+
+msgid "Geçerli"
+msgstr ""
+
+msgid "Beta dahil"
+msgstr ""
+
+msgid "Kararlı"
+msgstr ""
+
+msgid "Görebileceği paketler (%d):"
+msgstr ""
+
+msgid "Site en son %s bağlandı."
+msgstr ""
+
+msgid "Site henüz bağlanmadı."
+msgstr ""
+
+msgid "%d gün"
+msgstr ""
+
+msgid "Aktif site"
+msgstr ""
+
+msgid "Önceki dönem: %s"
+msgstr ""
+
+msgid "Anahtarlı"
+msgstr ""
+
+msgid "%s site anahtarsız (public)"
+msgstr ""
+
+msgid "Kontrol isteği"
+msgstr ""
+
+msgid "%s anahtarsız"
+msgstr ""
+
+msgid "Aktarılan"
+msgstr ""
+
+msgid "Zip indirmeleri"
+msgstr ""
+
+msgid "Ülke"
+msgstr ""
+
+msgid "%s sitenin ülkesi bilinmiyor"
+msgstr ""
+
+msgid "İstekten, IP saklanmadan"
+msgstr ""
+
+msgid "Günlük kullanım"
+msgstr ""
+
+msgid "Tekil site"
+msgstr ""
+
+msgid "Bu aralıkta kayıt yok."
+msgstr ""
+
+msgid "Paket"
+msgstr ""
+
+msgid "Kurulu site"
+msgstr ""
+
+msgid "Az"
+msgstr ""
+
+msgid "Çok"
+msgstr ""
+
+msgid "%s site"
+msgstr ""
+
+msgid "Bağlanan siteler"
+msgstr ""
+
+msgid "%1$s site bu aralıkta, toplam %2$s kayıtlı"
+msgstr ""
+
+msgid "Bu aralıkta güncelleme denetleyen site yok."
+msgstr ""
+
+msgid "Erişim"
+msgstr ""
+
+msgid "Ortam"
+msgstr ""
+
+msgid "İstek"
+msgstr ""
+
+msgid "Son"
+msgstr ""
+
+msgid "Adres bildirmedi"
+msgstr ""
+
+msgid "Tümünü göster (%s)"
+msgstr ""
+
+msgid "Zorunlu kayıt yalnız site adresi ve ülkedir. IP saklanmaz: ülke, istek anında IP'den bulunur ve yalnız ülke kodu tutulur. WordPress/PHP sürümü yalnız kullanım verisi izniyle."
+msgstr ""
+
+msgid "Teslim bekliyor"
+msgstr ""
+
+msgid "FluxWP Panel gerekli"
+msgstr ""
+
+msgid "Anahtar ver"
+msgstr ""
+
+msgid "Ülke trafiği"
+msgstr ""
+
+msgid "%1$s ülke · %2$s engellenen istek"
+msgstr ""
+
+msgid "Ülke veritabanı yok"
+msgstr ""
+
+msgid "Cloudflare arkasında değilseniz ülkeler bilinmiyor görünür."
+msgstr ""
+
+msgid "Veritabanını indir"
+msgstr ""
+
+msgid "Veri"
+msgstr ""
+
+msgid "Engellenen"
+msgstr ""
+
+msgid "En çok inen"
+msgstr ""
+
+msgid "Kontrol ve indirmeler her istekte sayılır; kullanım verisi izni gerekmez. Satıra tıklayınca o ülkedeki paketler açılır."
+msgstr ""
+
+msgid "Private erişim"
+msgstr ""
+
+msgid "(public paketler her siteye açık)"
+msgstr ""
+
+msgid "Tüm private paketler (yeni eklenenler dahil)"
+msgstr ""
+
+msgid "Seçilen depolar ve paketler"
+msgstr ""
+
+msgid "Private depo yok."
+msgstr ""
+
+msgid "tümü, %d paket + sonradan eklenenler"
+msgstr ""
+
+msgid "Tüm private paketler"
+msgstr ""
+
+msgid "(tümü)"
+msgstr ""
+
+msgid "Yalnız public paketler"
+msgstr ""
+
+msgid "Site ekle"
+msgstr ""
+
+msgid "Site adı"
+msgstr ""
+
+msgid "ör. Örnek Site"
+msgstr ""
+
+msgid "Kanal"
+msgstr ""
+
+msgid "Kararlı sürümler"
+msgstr ""
+
+msgid "Anahtar üret"
+msgstr ""
+
+msgid "Var olan bir anahtarı test et"
+msgstr ""
+
+msgid "Anahtarın hangi siteye ait olduğunu ve hangi paketleri görebildiğini gösterir."
+msgstr ""
+
+msgid "Test et"
+msgstr ""
+
+msgid "Anahtarlı siteler"
+msgstr ""
+
+msgid "Henüz site yok. \"Site ekle\" ile ilk anahtarı üretin."
+msgstr ""
+
+msgid "Durum"
+msgstr ""
+
+msgid "Kurulu paketler"
+msgstr ""
+
+msgid "İzin"
+msgstr ""
+
+msgid "Teslim süresi doldu"
+msgstr ""
+
+msgid "Hiç bağlanmadı"
+msgstr ""
+
+msgid "%d gündür yok"
+msgstr ""
+
+msgid "Bağlı"
+msgstr ""
+
+msgid "Pasif yap"
+msgstr ""
+
+msgid "Aktif yap"
+msgstr ""
+
+msgid "Erişimi düzenle"
+msgstr ""
+
+msgid "Ad"
+msgstr ""
+
+msgid "Kaydet"
+msgstr ""
+
+msgid "Bu site silinsin mi? Anahtarı hemen geçersiz olur."
+msgstr ""
+
+msgid "Siteyi sil"
+msgstr ""
+
+msgid "Sunucu dosyasından (config.php)"
+msgstr ""
+
+msgid "Sunucu anahtarın yalnız özetini (sha256) saklar. Kaybolan anahtar geri alınamaz: siteyi silip yeni anahtar üretin. Anahtarsız bağlanan bir siteye Genel bakış › Bağlanan siteler › \"Anahtar ver\" ile de anahtar verebilirsiniz."
+msgstr ""
+
+msgid "Paketleri yeniden oku"
+msgstr ""
+
+msgid "Paket yok. GitHub sekmesinde depoları ve (private depo için) token'ı girin; depoda release yoksa bir pakete sürüm çıkın."
+msgstr ""
+
+msgid "Tür"
+msgstr ""
+
+msgid "Son sürüm"
+msgstr ""
+
+msgid "Boyut"
+msgstr ""
+
+msgid "Yayın"
+msgstr ""
+
+msgid "Anahtarla"
+msgstr ""
+
+msgid "Tema"
+msgstr ""
+
+msgid "Eklenti"
+msgstr ""
+
+msgid "Yeni sürüm en geç 5 dakikada görünür; webhook ayarlıysa hemen. Private depodaki bir paketi anahtarsız açmak için GitHub sekmesinde \"Herkese açık paketler\"i işaretleyin."
+msgstr ""
+
+msgid "Bağlı değil"
+msgstr ""
+
+msgid "%1$d paket okundu (%2$d private, %3$d public)"
+msgstr ""
+
+msgid "Token yok: yalnız public depolar okunuyor."
+msgstr ""
+
+msgid "Okunamadı"
+msgstr ""
+
+msgid "Private depolar"
+msgstr ""
+
+msgid "(paketleri yalnız site anahtarıyla)"
+msgstr ""
+
+msgid "Public depolar"
+msgstr ""
+
+msgid "(paketleri herkese anahtarsız; boşsa public güncelleme kapalı)"
+msgstr ""
+
+msgid "Herkese açık paketler"
+msgstr ""
+
+msgid "(private depodaki bu paketler anahtarsız iner; ör. web sitesindeki indirme butonu için flx-setup)"
+msgstr ""
+
+msgid "Uygulama deposu"
+msgstr ""
+
+msgid "(masaüstü/mobil uygulama, tag v<sürüm>)"
+msgstr ""
+
+msgid "FluxWP masaüstü deposu"
+msgstr ""
+
+msgid "(fluxapp-v<sürüm> yayınları; boşsa ilk private depo)"
+msgstr ""
+
+msgid "Liste GitHub'dan gelir: token'ın erişebildiği depolar ve bu sahiplerin public depoları. Listede olmayanı owner/repo yazıp Enter ile ekleyin."
+msgstr ""
+
+msgid "(fine-grained, private depolar + uygulama deposu, Contents: Read-only)"
+msgstr ""
+
+msgid "Kayıtlı: …%s (değiştirmek için yenisini yazın)"
+msgstr ""
+
+msgid "Token yalnız güncelleme sunucusunda saklanır; bu siteye geri okunmaz."
+msgstr ""
+
+msgid "Kaydet ve test et"
+msgstr ""
+
+msgid "Anında yayın (isteğe bağlı)"
+msgstr ""
+
+msgid "Yeni sürüm en geç 5 dakikada görünür. Anında görünsün isterseniz bu secret'ı paket deposunun Settings › Secrets › Actions bölümüne <code>UPDATE_WEBHOOK_SECRET</code> adıyla ekleyin; repo değişkeni <code>UPDATE_SERVER</code> = <code>%s</code>."
+msgstr ""
+
+msgid "Yeni secret üretilsin mi? Eskisi hemen çalışmaz; GitHub'daki secret'ı da değiştirmeniz gerekir."
+msgstr ""
+
+msgid "Secret üret"
+msgstr ""
+
+msgid "Yeni secret üret"
+msgstr ""
+
+msgid "Dağıtım anahtarları"
+msgstr ""
+
+msgid "Acil durdurma"
+msgstr ""
+
+msgid "Durduruldu"
+msgstr ""
+
+msgid "Dağıtım açık"
+msgstr ""
+
+msgid "Tüm güncelleme kontrolleri, paket ve uygulama indirmeleri 503 ile durur (anahtarlı siteler dahil). Sunucu paneli, webhook ve bu ekran çalışmaya devam eder."
+msgstr ""
+
+msgid "Dağıtım yeniden açılsın mı?"
+msgstr ""
+
+msgid "Tüm dağıtım durdurulsun mu? Hiçbir site güncelleme alamaz."
+msgstr ""
+
+msgid "Dağıtımı aç"
+msgstr ""
+
+msgid "Tümünü durdur"
+msgstr ""
+
+msgid "Anahtarsız dağıtım"
+msgstr ""
+
+msgid "Kapalı"
+msgstr ""
+
+msgid "Açık"
+msgstr ""
+
+msgid "Public depo yok"
+msgstr ""
+
+msgid "Kapatınca anahtarsız ve pasif anahtarlı istekler (public paketler, latest.zip indirme butonu, masaüstü/mobil uygulama) 401 alır. Aktif anahtarlı siteler etkilenmez."
+msgstr ""
+
+msgid "Anahtarsız dağıtım yeniden açılsın mı?"
+msgstr ""
+
+msgid "Anahtarsız dağıtım kapatılsın mı? Anahtarı olmayan siteler ve uygulamalar güncelleme alamaz."
+msgstr ""
+
+msgid "Anahtarsız dağıtımı aç"
+msgstr ""
+
+msgid "Anahtarsızları kapat"
+msgstr ""
+
+msgid "Her değişiklik sunucunun erişim günlüğüne yönetici anahtarının adıyla yazılır."
+msgstr ""
+
+msgid "Ülke veritabanı"
+msgstr ""
+
+msgid "Kurulu"
+msgstr ""
+
+msgid "Kaynak"
+msgstr ""
+
+msgid "Veri tarihi"
+msgstr ""
+
+msgid "İndirildi"
+msgstr ""
+
+msgid "Yok"
+msgstr ""
+
+msgid "İndirin ya da sunucu panelinden .mmdb dosyası yükleyin."
+msgstr ""
+
+msgid "Son deneme başarısız"
+msgstr ""
+
+msgid "Şimdi güncelle"
+msgstr ""
+
+msgid "Ülke veritabanı silinsin mi?"
+msgstr ""
+
+msgid "Sil"
+msgstr ""
+
+msgid "Ülkesini bul"
+msgstr ""
+
+msgid "IP harici bir servise gönderilmez; arama güncelleme sunucusunda yapılır. Veritabanı ayda bir kendiliğinden yenilenir."
+msgstr ""
+
+msgid "Ülke erişimi"
+msgstr ""
+
+msgid "Seçilen ülkeleri engelle"
+msgstr ""
+
+msgid "Yalnız seçilen ülkelere izin ver"
+msgstr ""
+
+msgid "Ülke ekle… (ad ya da TR gibi kod)"
+msgstr ""
+
+msgid "Aktif anahtarlı siteler muaf (yalnız anahtarsız istekler kurala tabi)"
+msgstr ""
+
+msgid "Ülke veritabanını ayda bir kendiliğinden güncelle"
+msgstr ""
+
+msgid "Engellenen istek 403 (region_blocked) alır ve yalnız ülke koduyla sayılır. Ülkesi bulunamayan istek \"engelle\" kipinde geçer, \"yalnız izin ver\" kipinde engellenir. Kural güncelleme kontrolü, paket ve uygulama indirmelerine uygulanır; panel ve bu ekran etkilenmez."
+msgstr ""
+
+msgid "Zip dosyaları"
+msgstr ""
+
+msgid "GitHub önbelleği"
+msgstr ""
+
+msgid "İstatistik"
+msgstr ""
+
+msgid "Günlük"
+msgstr ""
+
+msgid "Ayarlar ve diğer"
+msgstr ""
+
+msgid "Depolama"
+msgstr ""
+
+msgid "Makine diski (paylaşımlı)"
+msgstr ""
+
+msgid "%s boş"
+msgstr ""
+
+msgid "Paylaşımlı hosting'de PHP sunucudaki tüm hesapların ortak diskini görür; bu sizin kotanız değil."
+msgstr ""
+
+msgid "Disk"
+msgstr ""
+
+msgid "Sunucu verisi (data/)"
+msgstr ""
+
+msgid "Eski zipleri temizle"
+msgstr ""
+
+msgid "Erişim günlüğü silinsin mi?"
+msgstr ""
+
+msgid "Günlüğü temizle"
+msgstr ""
+
+msgid "API kotası (saatlik)"
+msgstr ""
+
+msgid "Kullanılan %1$s · yenilenme %2$s"
+msgstr ""
+
+msgid "Paket önbelleği"
+msgstr ""
+
+msgid "boş"
+msgstr ""
+
+msgid "Her %d dakikada bir GitHub'dan yenilenir; webhook gelirse hemen."
+msgstr ""
+
+msgid "Sürüm"
+msgstr ""
+
+msgid "Bellek sınırı"
+msgstr ""
+
+msgid "sınırsız"
+msgstr ""
+
+msgid "Süre sınırı"
+msgstr ""
+
+msgid "%d sn"
+msgstr ""
+
+msgid "yok"
+msgstr ""
+
+msgid "Sunucu yükü (1/5/15 dk)"
+msgstr ""
+
+msgid "intl (ülke adları)"
+msgstr ""
+
+msgid "var"
+msgstr ""
+
+msgid "Dosyalar"
+msgstr ""
+
+msgid "%1$d zip, %2$s"
+msgstr ""
+
+msgid "Her paketin son sürümleri sunucuda saklanır. Daha eski bir sürüm istenirse GitHub release'ten yeniden indirilir ve son indirmeden sonra belirtilen süre dolunca silinir. Temizlik saatte bir kendiliğinden yapılır."
+msgstr ""
+
+msgid "Paket başına saklanan sürüm"
+msgstr ""
+
+msgid "Eski sürüm kaç saat sonra silinsin"
+msgstr ""
+
+msgid "Sunucu bağlantısı"
+msgstr ""
+
+msgid "Anahtar: %s"
+msgstr ""
+
+msgid "Sunucu adresi"
+msgstr ""
+
+msgid "Yönetici anahtarı"
+msgstr ""
+
+msgid "Kayıtlı (değiştirmek için yenisini yazın)"
+msgstr ""
+
+msgid "Anahtarı sunucu panelinde (/admin › Updater Manager) \"Yönetici anahtarı üret\" ile alın. Anahtar bu sitede şifreli saklanır ve bir daha gösterilmez."
+msgstr ""
+
+msgid "Kaydet ve bağlan"
+msgstr ""
+
+msgid "Yönetici anahtarı bu siteden silinsin mi?"
+msgstr ""
+
+msgid "Bağlantıyı kaldır"
+msgstr ""
+
+msgid "wp-config.php'de <code>FLXUM_SERVER</code> ve <code>FLXUM_KEY</code> sabitleri bu alanları ezer."
+msgstr ""
+
+msgid "Nasıl bağlanır?"
+msgstr ""
+
+msgid "Güncelleme sunucusunu 1.12.0 ya da üstüne yükseltin."
+msgstr ""
+
+msgid "Sunucu panelinde (/admin) en alttaki \"Updater Manager\" kartında bir ad yazıp \"Yönetici anahtarı üret\"e basın."
+msgstr ""
+
+msgid "Anahtarı (flxm_…) buraya yapıştırıp \"Kaydet ve bağlan\"a basın."
+msgstr ""
+
+msgid "Anahtar sunucudaki tüm ayarlara ve istatistiklere erişir; yönetici anahtarı üretme ve ülke veritabanı dosyası yükleme sunucu panelinde kalır. Sunucu panelinden silinen anahtar hemen çalışmaz olur."
+msgstr ""
+
+msgid "Yönetici anahtarları"
+msgstr ""
+
+msgid "Bu site"
+msgstr ""
+
+msgid "Son kullanım: %s"
+msgstr ""
+
+msgid "Bu yönetici anahtarı silinsin mi?"
+msgstr ""
+
+msgid "Yeni anahtar yalnız sunucu panelinde üretilir. Bu sitenin anahtarını sunucu panelinden silebilirsiniz."
+msgstr ""
+
+msgid "Sunucu paneli parolası"
+msgstr ""
+
+msgid "Yeni parola"
+msgstr ""
+
+msgid "Tekrar"
+msgstr ""
+
+msgid "Değiştir"
+msgstr ""

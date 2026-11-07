@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="flx-updater-manager"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2DD4BF"/><stop offset=".5" stop-color="#0D9488"/><stop offset="1" stop-color="#134E4A"/></linearGradient><radialGradient id="h" cx=".2" cy=".1" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs><path d="M128 0C35 0 0 35 0 128s35 128 128 128 128-35 128-128S221 0 128 0Z" fill="url(#g)"/><path d="M128 0C35 0 0 35 0 128s35 128 128 128 128-35 128-128S221 0 128 0Z" fill="url(#h)"/><g transform="translate(64.0 64.0) scale(5.333)" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3" />
+  <path d="M4.5 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-.5" />
+  <path d="M4.5 14H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-.5" />
+  <path d="M6 6h.01" />
+  <path d="M6 18h.01" />
+  <path d="m15.7 13.4-.9-.3" />
+  <path d="m9.2 10.9-.9-.3" />
+  <path d="m10.6 15.7.3-.9" />
+  <path d="m13.6 15.7-.4-1" />
+  <path d="m10.8 9.3-.4-1" />
+  <path d="m8.3 13.6 1-.4" />
+  <path d="m14.7 10.8 1-.4" />
+  <path d="m13.4 8.3-.3.9" /></g></svg>
