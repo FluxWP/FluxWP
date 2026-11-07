@@ -43,6 +43,7 @@ Flux Chat'e WhatsApp dışı kanal eklemek için (Flux AI Chatbot bu yolla bağl
 | `flxc_virtual_conn` ( bool, $conn_id ) | Bu bağlantı id'si sanal mı. Chatbot: `flx-web`. |
 | `flxc_virtual_request` ( $res, $conn_id, $method, $path, $body ) | `flxc_evo()` isteğini kanal cevaplar. Evolution v2 yolları: `message/sendText`, `message/sendMedia`, `message/sendWhatsAppAudio`, `chat/sendPresence`, `chat/markMessageAsRead`, `message/sendReaction`, `chat/fetchProfilePictureUrl`. Dönüş `array( 'ok' => bool, 'code' => int, 'json' => array( 'key' => array( 'id' => '…' ) ) )`. |
 | `flxc_virtual_label` ( string, $chat_row ) | Listede numara yerine görünen etiket ("Site sohbeti · e-posta"). |
+| `flxc_channels` ( array ) | Tek gelen kutusu kanal kaydı: `id => [ label, icon (24'lük viewBox SVG içi, çizgi), color, active, conns (sanal bağlantı id'leri) ]`. Varsayılan `whatsapp` ve `web`. Instagram, e-posta gibi yeni kanal buraya eklenir; listede avatar ikonu ve kanal süzgeci buradan gelir. |
 
-`flxc_is_virtual_conn( $conn )`. Sanal sohbetlerde ekip bildirimi ve grup aynası ilk WhatsApp hattını kullanır, çağrı merkezi
+`flxc_is_virtual_conn( $conn )`, `flxc_channels()`, `flxc_chat_channel( $chat )`. Chatbot tek gelen kutusunda (`flxcb_fc_unified()`) her sohbeti ilk ziyaretçi mesajında `flxcb_fc_attach()` ile açar. Sanal sohbetlerde ekip bildirimi ve grup aynası ilk WhatsApp hattını kullanır, çağrı merkezi
 asistanı karışmaz. Chatbot jid biçimi `site-{id}@web`, mesaj wa_id `cb{mesaj id}`.

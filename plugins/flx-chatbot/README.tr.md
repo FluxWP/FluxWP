@@ -1,8 +1,8 @@
 # Flux AI Chatbot, Live Chat & Customer Support
 
 Siteye yapay zekâ destekli sohbet penceresi. Asistan **Flux AI & MCP** üzerinden sayfalarınızdan, yazılarınızdan,
-WooCommerce ürünlerinizden ve Flux Wiki'den cevap verir; gerekince sohbeti canlı temsilciye devreder. Devredilen sohbetler
-**Flux Chat** gelen kutusunda WhatsApp sohbetlerinin yanında ya da eklentinin kendi gelen kutusunda açılır.
+WooCommerce ürünlerinizden ve Flux Wiki'den cevap verir; gerekince sohbeti canlı temsilciye devreder. **Flux Chat**
+kuruluysa her site sohbeti çağrı merkezinin tek gelen kutusunda WhatsApp'ın yanında kanal ikonuyla görünür; yoksa eklentinin kendi gelen kutusu kullanılır.
 
 - Akışlı cevap, ürün kartları (İncele / Sepete ekle), giriş yapmış müşteriye sipariş durumu, iletişim bilgisi kaydı (Flux CRM).
 - Çalışma şekli: AI + canlı destek, yalnız AI, yalnız canlı destek. Mesai saatleri, mesai dışında "mesaj bırakın", e-postayla cevap.

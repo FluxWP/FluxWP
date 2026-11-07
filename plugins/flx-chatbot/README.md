@@ -1,8 +1,8 @@
 # Flux AI Chatbot, Live Chat & Customer Support
 
 An AI chat window for your site. The assistant answers from your pages, posts, WooCommerce products and Flux Wiki through
-**Flux AI & MCP**, and hands the chat to a live agent when needed. Handed-over chats open in the **Flux Chat** inbox next to
-WhatsApp chats, or in the plugin's own inbox.
+**Flux AI & MCP**, and hands the chat to a live agent when needed. With **Flux Chat** installed, every site chat shows up in the
+call center's single inbox next to WhatsApp (marked with a channel icon); otherwise the plugin's own inbox is used.
 
 - Streaming answers, product cards (View / Add to cart), order status for logged-in customers, lead capture (Flux CRM).
 - Modes: AI + live chat, AI only, live chat only. Working hours, "leave a message" outside hours, email replies.

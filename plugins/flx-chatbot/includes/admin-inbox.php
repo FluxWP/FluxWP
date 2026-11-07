@@ -1,6 +1,7 @@
 <?php
 /**
- * Yönetim: site sohbetleri gelen kutusu (Flux Chat kurulu değilse ya da devir hedefi "inbox" ise temsilciler buradan cevaplar).
+ * Yönetim: site sohbetleri gelen kutusu. Yalnız Flux Chat kurulu değilse ya da ayarda "Eklentinin gelen kutusu" seçildiyse
+ * görünür; Flux Chat varken tüm sohbetler çağrı merkezinin tek gelen kutusundadır.
  * Ekran iskeletini PHP basar; liste, sohbet ve cevap assets/inbox.js ile REST agent/* uçlarından gelir.
  *
  * @package FLX_Chatbot
@@ -72,9 +73,6 @@ final class FLXCB_Inbox {
 			echo '<a class="button" href="' . esc_url( flxcb_admin_url() ) . '">' . flxcb_icon( 'settings', 14 ) . esc_html__( 'Ayarlar', 'flx-chatbot' ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 		echo '</div></div>';
-		if ( $fc ) {
-			echo '<div class="flxcb-callout is-info">' . flxcb_icon( 'info', 18 ) . '<div>' . esc_html__( 'Temsilciye devredilen sohbetler Flux Chat gelen kutusuna gider; ekip oradan cevaplar. Bu ekran tüm site sohbetlerinin (asistanın cevapladıkları dahil) kaydıdır.', 'flx-chatbot' ) . '</div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
-		}
 		echo '<div class="flxcb-inbox" data-flxcb-inbox>';
 		echo '<aside class="flxcb-ilist"><div class="flxcb-ilist__top"><div class="flxcb-seg" role="tablist" data-filters></div><input type="search" class="flxcb-isearch" data-search></div><ul class="flxcb-iitems" data-items></ul></aside>';
 		echo '<section class="flxcb-iconv" data-conv><div class="flxcb-iempty">' . flxcb_icon( 'chat', 28 ) . '<p data-pick></p></div></section>'; // phpcs:ignore WordPress.Security.EscapeOutput

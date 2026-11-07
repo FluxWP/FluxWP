@@ -182,7 +182,7 @@ function flxc_user_can_see_chat( $chat, $user_id = 0 ) {
  */
 function flxc_query_chats( $args = array() ) {
 	global $wpdb;
-	$args  = wp_parse_args( $args, array( 'filter' => 'all', 'q' => '', 'label' => '', 'since' => 0, 'limit' => 60, 'offset' => 0, 'conn' => '', 'count' => false ) );
+	$args  = wp_parse_args( $args, array( 'filter' => 'all', 'q' => '', 'label' => '', 'since' => 0, 'limit' => 60, 'offset' => 0, 'conn' => '', 'channel' => '', 'count' => false ) );
 	$t     = flxc_table( 'chats' );
 	$where = array( '1=1' );
 	$prm   = array();
@@ -236,6 +236,24 @@ function flxc_query_chats( $args = array() ) {
 	if ( '' !== $args['conn'] ) {
 		$where[] = 'conn = %s';
 		$prm[]   = $args['conn'];
+	}
+	if ( '' !== $args['channel'] && ! $args['since'] ) {
+		// 1.37.0: kanal süzgeci. WhatsApp = sanal olmayan bağlantılar; diğerleri kanalın kaydettiği sanal bağlantılar.
+		$chs     = flxc_channels();
+		$virtual = array();
+		foreach ( $chs as $ch ) {
+			$virtual = array_merge( $virtual, $ch['conns'] );
+		}
+		if ( 'whatsapp' === $args['channel'] ) {
+			if ( $virtual ) {
+				$where[] = 'conn NOT IN (' . implode( ',', array_fill( 0, count( $virtual ), '%s' ) ) . ')';
+				$prm     = array_merge( $prm, $virtual );
+			}
+		} else {
+			$own     = $chs[ $args['channel'] ]['conns'] ?? array();
+			$where[] = $own ? 'conn IN (' . implode( ',', array_fill( 0, count( $own ), '%s' ) ) . ')' : '1=0';
+			$prm     = array_merge( $prm, $own );
+		}
 	}
 	if ( ! flxc_setting( 'show_groups' ) ) {
 		$where[] = "jid NOT LIKE '%@g.us'";
@@ -303,7 +321,7 @@ function flxc_chat_for_js( $r, $last = null ) {
 		'jid'       => $r['jid'],
 		'phone'     => $r['phone'],
 		'phoneFmt'  => flxc_is_virtual_conn( $r['conn'] ) ? (string) apply_filters( 'flxc_virtual_label', __( 'Site sohbeti', 'flx-chat' ), $r ) : ( '' === (string) $r['phone'] && '@lid' === substr( (string) $r['jid'], -4 ) ? __( 'Gizli numara (WhatsApp)', 'flx-chat' ) : flxc_format_phone( $r['phone'] ) ),
-		'channel'   => flxc_is_virtual_conn( $r['conn'] ) ? 'web' : 'whatsapp',
+		'channel'   => flxc_chat_channel( $r ),
 		'title'     => flxc_chat_title( $r ),
 		'name'      => $r['name'],
 		'pushName'  => $r['push_name'],

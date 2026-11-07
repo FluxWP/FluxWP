@@ -140,14 +140,11 @@ msgstr "Conversations from the chat window on your site. Chats the assistant ans
 msgid "Flux Chat"
 msgstr "Flux Chat"
 
-msgid "Temsilciye devredilen sohbetler Flux Chat gelen kutusuna gider; ekip oradan cevaplar. Bu ekran tüm site sohbetlerinin (asistanın cevapladıkları dahil) kaydıdır."
-msgstr "Chats handed to a person go to the Flux Chat inbox and the team replies there. This screen is the record of all site chats, including those the assistant answered."
+msgid "Flux AI Chatbot"
+msgstr "Flux AI Chatbot"
 
 msgid "Chatbot"
 msgstr "Chatbot"
-
-msgid "Flux AI Chatbot"
-msgstr "Flux AI Chatbot"
 
 msgid "Sohbetler"
 msgstr "Chats"
@@ -296,8 +293,8 @@ msgstr "Mode is \"AI only\"."
 msgid "Flux Chat gelen kutusu"
 msgstr "Flux Chat inbox"
 
-msgid "Devredilen sohbetler çağrı merkezinde \"Site sohbeti\" olarak açılır; temsilciler WhatsApp sohbetleriyle aynı ekrandan cevaplar."
-msgstr "Handed-over chats open in the call center as \"Site chat\"; agents reply from the same screen as WhatsApp chats."
+msgid "Tüm site sohbetleri (asistanın cevapladıkları dahil) çağrı merkezinde site sohbeti ikonuyla görünür; temsilciler WhatsApp ve diğer kanallarla aynı ekrandan cevaplar."
+msgstr "All site chats (including the ones the assistant answered) appear in the call center with the site chat icon; agents reply from the same screen as WhatsApp and other channels."
 
 msgid "Eklentinin gelen kutusu"
 msgstr "Plugin inbox"

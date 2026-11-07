@@ -171,6 +171,11 @@ final class FLXCB_Admin {
 	}
 
 	public static function menu() {
+		if ( flxcb_fc_unified() ) {
+			// Tek gelen kutusu: sohbetler Flux Chat'te; burada yalnız ayarlar.
+			add_menu_page( __( 'Flux AI Chatbot', 'flx-chatbot' ), __( 'Chatbot', 'flx-chatbot' ), 'manage_options', 'flx-chatbot', array( __CLASS__, 'render' ), 'none', 27 );
+			return;
+		}
 		$open  = flxcb_stats_open_count();
 		$label = __( 'Chatbot', 'flx-chatbot' ) . ( $open ? ' <span class="awaiting-mod">' . (int) $open . '</span>' : '' );
 		add_menu_page( __( 'Flux AI Chatbot', 'flx-chatbot' ), $label, 'flxcb_reply', 'flx-chatbot-inbox', array( 'FLXCB_Inbox', 'render' ), 'none', 27 );
@@ -179,7 +184,7 @@ final class FLXCB_Admin {
 	}
 
 	public static function menu_logo() {
-		echo '<style>#toplevel_page_flx-chatbot-inbox .wp-menu-image{background:url(' . esc_url( FLXCB_URL . 'assets/icon.svg?ver=' . FLXCB_VERSION ) . ') center/20px 20px no-repeat}</style>';
+		echo '<style>#toplevel_page_flx-chatbot-inbox .wp-menu-image,#toplevel_page_flx-chatbot .wp-menu-image{background:url(' . esc_url( FLXCB_URL . 'assets/icon.svg?ver=' . FLXCB_VERSION ) . ') center/20px 20px no-repeat}</style>';
 	}
 
 	private static function page() {
@@ -402,7 +407,7 @@ final class FLXCB_Admin {
 		if ( 'ai' === $s['mode'] ) {
 			self::status_row( null, __( 'Canlı destek kapalı', 'flx-chatbot' ), __( 'Çalışma şekli "Yalnız AI".', 'flx-chatbot' ) );
 		} elseif ( 'flx-chat' === flxcb_handoff_target() ) {
-			self::status_row( true, __( 'Flux Chat gelen kutusu', 'flx-chatbot' ), __( 'Devredilen sohbetler çağrı merkezinde "Site sohbeti" olarak açılır; temsilciler WhatsApp sohbetleriyle aynı ekrandan cevaplar.', 'flx-chatbot' ), admin_url( 'admin.php?page=flx-chat' ), __( 'Flux Chat', 'flx-chatbot' ) );
+			self::status_row( true, __( 'Flux Chat gelen kutusu', 'flx-chatbot' ), __( 'Tüm site sohbetleri (asistanın cevapladıkları dahil) çağrı merkezinde site sohbeti ikonuyla görünür; temsilciler WhatsApp ve diğer kanallarla aynı ekrandan cevaplar.', 'flx-chatbot' ), admin_url( 'admin.php?page=flx-chat' ), __( 'Flux Chat', 'flx-chatbot' ) );
 		} else {
 			self::status_row( true, __( 'Eklentinin gelen kutusu', 'flx-chatbot' ), $fc || flxcb_flux_chat_active() ? __( 'Devredilen sohbetler Chatbot › Sohbetler ekranına düşer.', 'flx-chatbot' ) : __( 'Devredilen sohbetler Chatbot › Sohbetler ekranına düşer. Flux Chat (1.37+) kurulursa çağrı merkezinden de cevaplanır.', 'flx-chatbot' ), flxcb_inbox_url(), __( 'Sohbetler', 'flx-chatbot' ) );
 		}

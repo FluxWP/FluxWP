@@ -209,7 +209,12 @@ function flxcb_admin_url( $tab = '' ) {
 	return admin_url( 'admin.php?page=flx-chatbot' . ( $tab ? '&tab=' . rawurlencode( $tab ) : '' ) );
 }
 
+/** Sohbetlerin yönetildiği yer: tek gelen kutusunda Flux Chat, değilse eklentinin gelen kutusu. */
 function flxcb_inbox_url( $conv_id = 0 ) {
+	if ( function_exists( 'flxcb_fc_unified' ) && flxcb_fc_unified() ) {
+		$conv = $conv_id ? flxcb_get_conversation( (int) $conv_id ) : null;
+		return admin_url( 'admin.php?page=flx-chat' . ( $conv && (int) $conv['flxc_chat'] ? '&chat=' . (int) $conv['flxc_chat'] : '' ) );
+	}
 	return admin_url( 'admin.php?page=flx-chatbot-inbox' . ( $conv_id ? '&conv=' . (int) $conv_id : '' ) );
 }
 

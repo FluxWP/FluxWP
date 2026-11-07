@@ -1626,5 +1626,6 @@ Thank you for your support.',
     'Asistan personeli Flux Roles profilindeki numaradan tanır. Numara eşleşmiyorsa buradan bağlayabilirsiniz; numarası bilinen sohbette numara önceliklidir.' => 'The assistant recognises staff by the number in their Flux Roles profile. If the number does not match, you can link them here; in a chat with a known number the number comes first.',
     'Bu kanal şu an kullanılamıyor.' => 'This channel is not available right now.',
     'Site sohbeti' => 'Site chat',
+    'WhatsApp, site sohbeti ve diğer kanallardan gelen tüm mesajlar burada canlı görünür. Soldan bir sohbet seçin.' => 'All messages from WhatsApp, site chat and other channels appear here live. Pick a chat on the left.',
 ),
 );

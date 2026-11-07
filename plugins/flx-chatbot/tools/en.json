@@ -385,10 +385,7 @@
 "Dosya bulunamadı.": "File not found.",
 "Ziyaretçi puanı: %1$s %2$s": "Visitor rating: %1$s %2$s",
 "Ziyaretçi #%d": "Visitor #%d",
-"%d sohbet cevap bekliyor.": [
-"%d chat is waiting for a reply.",
-"%d chats are waiting for a reply."
-],
+"%d sohbet cevap bekliyor.": ["%d chat is waiting for a reply.", "%d chats are waiting for a reply."],
 "Site sohbet penceresi": "Site chat window",
 "Pencere kapalı; ziyaretçiler görmüyor.": "The window is off; visitors don't see it.",
 "Sohbet asistanı": "Chat assistant",
@@ -401,5 +398,6 @@
 "Sesle yaz": "Dictate",
 "Dinlemeyi durdur": "Stop listening",
 "Sesli dikte": "Voice dictation",
-"Yazma alanında mikrofon düğmesi: ziyaretçi konuşur, metin yazma alanına düşer. Tarayıcının konuşma tanıması kullanılır; desteklemeyen tarayıcıda düğme görünmez.": "A microphone button in the message field: the visitor speaks and the text lands in the field. Uses the browser's speech recognition; the button is hidden where it isn't supported."
+"Yazma alanında mikrofon düğmesi: ziyaretçi konuşur, metin yazma alanına düşer. Tarayıcının konuşma tanıması kullanılır; desteklemeyen tarayıcıda düğme görünmez.": "A microphone button in the message field: the visitor speaks and the text lands in the field. Uses the browser's speech recognition; the button is hidden where it isn't supported.",
+"Tüm site sohbetleri (asistanın cevapladıkları dahil) çağrı merkezinde site sohbeti ikonuyla görünür; temsilciler WhatsApp ve diğer kanallarla aynı ekrandan cevaplar.": "All site chats (including the ones the assistant answered) appear in the call center with the site chat icon; agents reply from the same screen as WhatsApp and other channels."
 }

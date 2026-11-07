@@ -4788,3 +4788,6 @@ msgstr ""
 
 msgid "Site sohbeti"
 msgstr ""
+
+msgid "WhatsApp, site sohbeti ve diğer kanallardan gelen tüm mesajlar burada canlı görünür. Soldan bir sohbet seçin."
+msgstr ""

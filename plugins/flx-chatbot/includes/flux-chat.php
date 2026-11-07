@@ -1,6 +1,7 @@
 <?php
 /**
- * Flux Chat (çağrı merkezi) köprüsü: devredilen site sohbeti Flux Chat gelen kutusunda "Site sohbeti" olarak açılır.
+ * Flux Chat (çağrı merkezi) köprüsü. Flux Chat kuruluysa çağrı merkezi tek gelen kutusudur: her site sohbeti ilk mesajdan
+ * itibaren orada "Site sohbeti" kanalıyla (kanal ikonuyla) görünür, devirde ekip bildirilir.
  * Ziyaretçi mesajları oraya yazılır; temsilcinin cevabı, dosyası, "yazıyor…" ve okundu bilgisi Flux Chat'in sanal kanal
  * filtresiyle (`flxc_virtual_request`, Flux Chat 1.37.0+) buraya döner.
  *
@@ -15,6 +16,27 @@ const FLXCB_FC_CONN = 'flx-web';
 function flxcb_fc_ready() {
 	return flxcb_flux_chat_active() && function_exists( 'flxc_is_virtual_conn' );
 }
+
+/** Tek gelen kutusu: tüm site sohbetleri Flux Chat'te (ayarda "Eklentinin gelen kutusu" seçilmediyse). */
+function flxcb_fc_unified() {
+	return flxcb_fc_ready() && 'inbox' !== (string) flxcb_setting( 'handoff_to' );
+}
+
+/* Flux Chat'in kanal listesinde site sohbeti. */
+add_filter(
+	'flxc_channels',
+	function ( $list ) {
+		$list['web'] = array_merge(
+			(array) ( $list['web'] ?? array() ),
+			array(
+				'label'  => __( 'Site sohbeti', 'flx-chatbot' ),
+				'conns'  => array( FLXCB_FC_CONN ),
+				'active' => flxcb_fc_unified() && (bool) flxcb_setting( 'enabled' ),
+			)
+		);
+		return $list;
+	}
+);
 
 function flxcb_fc_jid( $conv ) {
 	return 'site-' . (int) $conv['id'] . '@web';
@@ -63,7 +85,6 @@ function flxcb_fc_quiet( $set = null ) {
 	return $q;
 }
 
-/** Bir mesajı Flux Chat sohbetine yazar. */
 /** Asistanın Markdown'ını WhatsApp biçimine çevirir (Flux Chat aynı biçimi gösterir). */
 function flxcb_md_to_wa( $t ) {
 	$t = preg_replace( '/\[([^\]]+)\]\((https?:[^\s)]+)\)/', '$1: $2', (string) $t );
@@ -72,6 +93,7 @@ function flxcb_md_to_wa( $t ) {
 	return preg_replace( '/^[ \t]*[-*][ \t]+/m', '• ', $t );
 }
 
+/** Bir mesajı Flux Chat sohbetine yazar. */
 function flxcb_fc_copy( array $chat, array $m ) {
 	if ( 'system' === $m['role'] ) {
 		return 0;
@@ -99,6 +121,13 @@ function flxcb_fc_copy( array $chat, array $m ) {
 			$body .= "\n• " . $c['title'] . ( '' !== (string) ( $c['price'] ?? '' ) ? ' (' . $c['price'] . ')' : '' ) . ' ' . $c['url'];
 		}
 	}
+	if ( 'bot' === $m['role'] && function_exists( 'flxc_bot_state' ) && function_exists( 'flxc_bot_save_state' ) ) {
+		$st = flxc_bot_state( $chat );
+		if ( empty( $st['ai'] ) ) {
+			$st['ai'] = 1; // Flux Chat "Asistan" süzgeci
+			flxc_bot_save_state( (int) $chat['id'], $st );
+		}
+	}
 	return (int) flxc_insert_message(
 		array(
 			'chat_id'    => (int) $chat['id'],
@@ -119,10 +148,16 @@ function flxcb_fc_copy( array $chat, array $m ) {
 	);
 }
 
-/** Sohbeti Flux Chat'e taşır (ilk devirde geçmişiyle). */
-function flxcb_fc_push( $conv, $summary = '' ) {
+/** Site sohbetini Flux Chat'te açar (yoksa) ve ilk açılışta geçmişi kopyalar. Flux Chat sohbetini döndürür. */
+function flxcb_fc_attach( $conv ) {
 	if ( ! flxcb_fc_ready() || ! $conv ) {
-		return 0;
+		return null;
+	}
+	if ( (int) $conv['flxc_chat'] ) {
+		$chat = flxc_get_chat( (int) $conv['flxc_chat'] );
+		if ( $chat ) {
+			return $chat;
+		}
 	}
 	$chat = flxc_ensure_chat(
 		FLXCB_FC_CONN,
@@ -133,14 +168,20 @@ function flxcb_fc_push( $conv, $summary = '' ) {
 		)
 	);
 	if ( ! $chat || empty( $chat['id'] ) ) {
-		return 0;
+		return null;
 	}
-	$first = ! (int) $conv['flxc_chat'];
-	if ( $first ) {
-		flxcb_update_conversation( (int) $conv['id'], array( 'flxc_chat' => (int) $chat['id'] ) );
-		foreach ( flxcb_messages( (int) $conv['id'], 0, 60 ) as $m ) {
-			flxcb_fc_copy( $chat, $m );
-		}
+	flxcb_update_conversation( (int) $conv['id'], array( 'flxc_chat' => (int) $chat['id'] ) );
+	foreach ( flxcb_messages( (int) $conv['id'], 0, 60 ) as $m ) {
+		flxcb_fc_copy( $chat, $m );
+	}
+	return flxc_get_chat( (int) $chat['id'] );
+}
+
+/** Devir: sohbet Flux Chat'te açılır (yoksa), not düşülür ve ekip bildirilir. */
+function flxcb_fc_push( $conv, $summary = '' ) {
+	$chat = flxcb_fc_attach( $conv );
+	if ( ! $chat ) {
+		return 0;
 	}
 	$lines = array( __( 'Site sohbeti temsilci bekliyor.', 'flx-chatbot' ) );
 	if ( '' !== (string) $conv['page_url'] ) {
@@ -161,7 +202,7 @@ function flxcb_fc_push( $conv, $summary = '' ) {
 	return (int) $chat['id'];
 }
 
-/* Devirden sonra yeni mesajlar Flux Chat'e de yazılır. */
+/* Yeni mesajlar Flux Chat'e de yazılır: tek gelen kutusunda ilk mesajdan, değilse devirden sonra. */
 add_action(
 	'flxcb_message_added',
 	function ( $m ) {
@@ -169,7 +210,13 @@ add_action(
 			return;
 		}
 		$conv = flxcb_get_conversation( (int) $m['conv_id'] );
-		if ( ! $conv || ! (int) $conv['flxc_chat'] ) {
+		if ( ! $conv ) {
+			return;
+		}
+		if ( ! (int) $conv['flxc_chat'] ) {
+			if ( flxcb_fc_unified() && 'visitor' === $m['role'] ) {
+				flxcb_fc_attach( $conv ); // geçmişle birlikte bu mesaj da kopyalanır
+			}
 			return;
 		}
 		$chat = flxc_get_chat( (int) $conv['flxc_chat'] );

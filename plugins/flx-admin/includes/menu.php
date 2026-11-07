@@ -760,7 +760,7 @@ function flxa_bottom_items() {
 	);
 	$short = array(
 		'index.php'     => __( 'Panel', 'flx-admin' ),
-		'flx-chat'      => __( 'WhatsApp', 'flx-admin' ),
+		'flx-chat'      => __( 'Mesajlar', 'flx-admin' ),
 		'flxb-dashboard' => __( 'Bağışlar', 'flx-admin' ),
 	);
 	$names = array();

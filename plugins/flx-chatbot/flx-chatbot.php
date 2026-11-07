@@ -121,6 +121,7 @@ add_filter(
 	'flxa_menu_logos',
 	function ( $m ) {
 		$m['flx-chatbot-inbox'] = 'flx-chatbot.svg';
+		$m['flx-chatbot']       = 'flx-chatbot.svg';
 		return $m;
 	}
 );
@@ -129,7 +130,7 @@ add_filter(
 	function ( $groups ) {
 		if ( isset( $groups['comms'][1] ) && is_array( $groups['comms'][1] ) && ! in_array( 'flx-chatbot', $groups['comms'][1], true ) ) {
 			$at = array_search( 'flx-chat', $groups['comms'][1], true );
-			array_splice( $groups['comms'][1], false === $at ? 0 : $at + 1, 0, array( 'flx-chatbot' ) );
+			array_splice( $groups['comms'][1], false === $at ? 0 : $at + 1, 0, array( 'flx-chatbot-inbox', 'flx-chatbot' ) );
 		}
 		return $groups;
 	}
@@ -137,6 +138,9 @@ add_filter(
 add_filter(
 	'flxa_apps',
 	function ( $apps ) {
+		if ( function_exists( 'flxcb_fc_unified' ) && flxcb_fc_unified() ) {
+			return $apps; // sohbetler Flux Chat uygulamasında
+		}
 		$apps['chatbot'] = array(
 			'label' => __( 'Site sohbetleri', 'flx-chatbot' ),
 			'url'   => admin_url( 'admin.php?page=flx-chatbot-inbox' ),

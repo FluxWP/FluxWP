@@ -138,13 +138,10 @@ msgstr ""
 msgid "Flux Chat"
 msgstr ""
 
-msgid "Temsilciye devredilen sohbetler Flux Chat gelen kutusuna gider; ekip oradan cevaplar. Bu ekran tüm site sohbetlerinin (asistanın cevapladıkları dahil) kaydıdır."
+msgid "Flux AI Chatbot"
 msgstr ""
 
 msgid "Chatbot"
-msgstr ""
-
-msgid "Flux AI Chatbot"
 msgstr ""
 
 msgid "Sohbetler"
@@ -294,7 +291,7 @@ msgstr ""
 msgid "Flux Chat gelen kutusu"
 msgstr ""
 
-msgid "Devredilen sohbetler çağrı merkezinde \"Site sohbeti\" olarak açılır; temsilciler WhatsApp sohbetleriyle aynı ekrandan cevaplar."
+msgid "Tüm site sohbetleri (asistanın cevapladıkları dahil) çağrı merkezinde site sohbeti ikonuyla görünür; temsilciler WhatsApp ve diğer kanallarla aynı ekrandan cevaplar."
 msgstr ""
 
 msgid "Eklentinin gelen kutusu"

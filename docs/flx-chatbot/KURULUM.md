@@ -5,7 +5,7 @@ canlı temsilciye (ya da eklentinin kendi gelen kutusuna) devreder.
 
 ## Gerekenler
 - **Flux AI & MCP** (asistan için). Yoksa pencere yalnız canlı destek olarak çalışır.
-- **Flux Chat 1.37.0+** (devredilen sohbetler çağrı merkezinde açılsın diye). Yoksa Chatbot › Sohbetler + e-posta bildirimi.
+- **Flux Chat 1.37.0+**: çağrı merkezi tek gelen kutusu olur; tüm site sohbetleri ilk mesajdan orada, kanal ikonuyla görünür, ayrı "Sohbetler" ekranı açılmaz. Yoksa Chatbot › Sohbetler + e-posta bildirimi.
 - İsteğe bağlı: WooCommerce (ürün kartları, sipariş durumu, sohbet sonrası sipariş), Flux CRM (iletişim bırakan kişi), Flux Wiki.
 
 ## Kurulum
@@ -21,7 +21,7 @@ canlı temsilciye (ya da eklentinin kendi gelen kutusuna) devreder.
 4. **Kaydet** → **Sitede dene** ile ön yüzde dene. LiteSpeed › Purge All.
 
 ## Notlar
-- Önizleme ve "Sitede dene" gerçek asistanı kullanır; denemeler Sohbetler'de görünür, silinebilir.
+- Önizleme ve "Sitede dene" gerçek asistanı kullanır; denemeler Flux Chat'te (yoksa Sohbetler'de) görünür, silinebilir.
 - Herkese açık AI: Flux AI'daki günlük harcama sınırı ana koruma; ayrıca sohbet başına cevap, saatlik ve günlük toplam sınırları var.
 - IP saklanmaz. Dosyalar `uploads/flx-chatbot/` altında, doğrudan erişime kapalı; yalnız sohbet sahibi ve temsilci açar.
 - Hostinger: cevaplar akışlı (NDJSON) gelir, istek ~40 sn'de kesilir. LiteSpeed REST'i önbelleğe almaz (no-store başlıkları).
