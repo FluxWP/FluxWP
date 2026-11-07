@@ -1,0 +1,1194 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Flux AI Chatbot\n"
+
+msgid "Ayarlar"
+msgstr ""
+
+msgid "Yapay zekâ sohbet penceresi, canlı destek ve müşteri hizmetleri"
+msgstr ""
+
+msgid "Site sohbetleri"
+msgstr ""
+
+msgid "Açık"
+msgstr ""
+
+msgid "Tümü"
+msgstr ""
+
+msgid "Asistanda"
+msgstr ""
+
+msgid "Kapalı"
+msgstr ""
+
+msgid "Ad, e-posta, telefon ya da sayfa ara"
+msgstr ""
+
+msgid "Bu görünümde sohbet yok."
+msgstr ""
+
+msgid "Soldan bir sohbet seçin."
+msgstr ""
+
+msgid "Yükleniyor…"
+msgstr ""
+
+msgid "Cevabınızı yazın… (Enter gönderir, Shift+Enter yeni satır)"
+msgstr ""
+
+msgid "Gönder"
+msgstr ""
+
+msgid "Dosya ekle"
+msgstr ""
+
+msgid "Sohbeti kapat"
+msgstr ""
+
+msgid "Sil"
+msgstr ""
+
+msgid "Bu sohbet ve dosyaları kalıcı olarak silinsin mi?"
+msgstr ""
+
+msgid "Sohbet kapatılsın mı? Ziyaretçi yeni mesaj yazarsa yeniden açılır."
+msgstr ""
+
+msgid "Flux Chat'te aç"
+msgstr ""
+
+msgid "Bu sohbet Flux Chat gelen kutusuna da düştü; iki yerden yazılan cevaplar ziyaretçiye gider."
+msgstr ""
+
+msgid "Ziyaretçi"
+msgstr ""
+
+msgid "Siz"
+msgstr ""
+
+msgid "Sayfada"
+msgstr ""
+
+msgid "Ayrıldı"
+msgstr ""
+
+msgid "yazıyor…"
+msgstr ""
+
+msgid "Sayfa"
+msgstr ""
+
+msgid "E-posta"
+msgstr ""
+
+msgid "Telefon"
+msgstr ""
+
+msgid "Üye"
+msgstr ""
+
+msgid "Sipariş"
+msgstr ""
+
+msgid "Puan"
+msgstr ""
+
+msgid "Asistanın notu"
+msgstr ""
+
+msgid "Potansiyel müşteri"
+msgstr ""
+
+msgid "Temsilci"
+msgstr ""
+
+msgid "Bir hata oluştu. Tekrar deneyin."
+msgstr ""
+
+msgid "Temsilci bekliyor"
+msgstr ""
+
+msgid "Görüşülüyor"
+msgstr ""
+
+msgid "Mesaj bıraktı"
+msgstr ""
+
+msgid "Daha fazla"
+msgstr ""
+
+msgid "Listeye dön"
+msgstr ""
+
+msgid "Ayrıntılar"
+msgstr ""
+
+msgid "Önerilen ürünler"
+msgstr ""
+
+msgid "Bu işlem için yetkiniz yok."
+msgstr ""
+
+msgid "Sitenizdeki sohbet penceresinden gelen konuşmalar. Asistanın cevapladıkları da burada; temsilci isteyenler üstte."
+msgstr ""
+
+msgid "Flux Chat"
+msgstr ""
+
+msgid "Temsilciye devredilen sohbetler Flux Chat gelen kutusuna gider; ekip oradan cevaplar. Bu ekran tüm site sohbetlerinin (asistanın cevapladıkları dahil) kaydıdır."
+msgstr ""
+
+msgid "Chatbot"
+msgstr ""
+
+msgid "Flux AI Chatbot"
+msgstr ""
+
+msgid "Sohbetler"
+msgstr ""
+
+msgid "Chatbot ayarları"
+msgstr ""
+
+msgid "Avatar seç"
+msgstr ""
+
+msgid "Bu görseli kullan"
+msgstr ""
+
+msgid "Kaydedilmemiş değişiklikler var"
+msgstr ""
+
+msgid "Merhaba, kargo ne kadar sürüyor?"
+msgstr ""
+
+msgid "Siparişler **1-3 iş günü** içinde kargoya verilir. İlginizi çekebilecek bir ürün:"
+msgstr ""
+
+msgid "Siparişler **1-3 iş günü** içinde kargoya verilir; 500 TL üzeri kargo ücretsiz. Başka bir konuda yardımcı olabilir miyim?"
+msgstr ""
+
+msgid "Genel"
+msgstr ""
+
+msgid "Görünüm"
+msgstr ""
+
+msgid "Metinler"
+msgstr ""
+
+msgid "Yapay zekâ"
+msgstr ""
+
+msgid "Canlı destek"
+msgstr ""
+
+msgid "Görünürlük"
+msgstr ""
+
+msgid "Sitenize yapay zekâ destekli sohbet penceresi: sorulara içeriğinizden ve ürünlerinizden cevap verir, gerekince sohbeti canlı temsilciye devreder. Değişiklikleri sağdaki önizlemede hemen görürsünüz."
+msgstr ""
+
+msgid "Sitede dene"
+msgstr ""
+
+msgid "Ayarlar kaydedildi."
+msgstr ""
+
+msgid "Sohbet"
+msgstr ""
+
+msgid "son 30 gün"
+msgstr ""
+
+msgid "Asistanın çözdüğü"
+msgstr ""
+
+msgid "temsilciye geçmeden"
+msgstr ""
+
+msgid "iletişim bilgisi bıraktı"
+msgstr ""
+
+msgid "Sohbet sonrası sipariş"
+msgstr ""
+
+msgid "7 gün içinde"
+msgstr ""
+
+msgid "Memnuniyet"
+msgstr ""
+
+msgid "%s puan"
+msgstr ""
+
+msgid "henüz puan yok"
+msgstr ""
+
+msgid "Sohbet penceresi"
+msgstr ""
+
+msgid "Sitede göster"
+msgstr ""
+
+msgid "Kapalıyken pencere ziyaretçilere görünmez; yöneticiler \"Sitede dene\" ile önizleyebilir."
+msgstr ""
+
+msgid "Çalışma şekli"
+msgstr ""
+
+msgid "AI + canlı destek"
+msgstr ""
+
+msgid "Asistan cevaplar, gerekince temsilciye devreder. Önerilen."
+msgstr ""
+
+msgid "Yalnız AI"
+msgstr ""
+
+msgid "Temsilciye devir yok; asistan iletişim bilgilerinizi verir."
+msgstr ""
+
+msgid "Yalnız canlı destek"
+msgstr ""
+
+msgid "Asistan yok; mesajlar doğrudan temsilcilere gider."
+msgstr ""
+
+msgid "Bağlantılar"
+msgstr ""
+
+msgid "Flux AI & MCP bağlı"
+msgstr ""
+
+msgid "Anahtar, model, harcama sınırı ve kayıtlar Flux AI'dan gelir."
+msgstr ""
+
+msgid "Model seç"
+msgstr ""
+
+msgid "Flux AI hazır değil"
+msgstr ""
+
+msgid "Flux AI & MCP'de bir API anahtarı girin ya da Bağlı sistemler'de Flux AI Chatbot'u açın."
+msgstr ""
+
+msgid "Flux AI"
+msgstr ""
+
+msgid "Flux AI & MCP kurulu değil"
+msgstr ""
+
+msgid "Asistan için Flux AI & MCP eklentisini kurun. O zamana kadar pencere yalnız canlı destek olarak çalışır."
+msgstr ""
+
+msgid "Canlı destek kapalı"
+msgstr ""
+
+msgid "Çalışma şekli \"Yalnız AI\"."
+msgstr ""
+
+msgid "Flux Chat gelen kutusu"
+msgstr ""
+
+msgid "Devredilen sohbetler çağrı merkezinde \"Site sohbeti\" olarak açılır; temsilciler WhatsApp sohbetleriyle aynı ekrandan cevaplar."
+msgstr ""
+
+msgid "Eklentinin gelen kutusu"
+msgstr ""
+
+msgid "Devredilen sohbetler Chatbot › Sohbetler ekranına düşer."
+msgstr ""
+
+msgid "Devredilen sohbetler Chatbot › Sohbetler ekranına düşer. Flux Chat (1.37+) kurulursa çağrı merkezinden de cevaplanır."
+msgstr ""
+
+msgid "Şu an çevrim içi"
+msgstr ""
+
+msgid "Şu an mesai dışı"
+msgstr ""
+
+msgid "Çalışma saatleri: %s"
+msgstr ""
+
+msgid "Mesai saatleri Flux Chat ayarından."
+msgstr ""
+
+msgid "Temsilciler her zaman çevrim içi sayılır."
+msgstr ""
+
+msgid "Saatler"
+msgstr ""
+
+msgid "Sayfadan açma"
+msgstr ""
+
+msgid "Herhangi bir düğme ya da bağlantı pencereyi açabilir."
+msgstr ""
+
+msgid "Bize yazın"
+msgstr ""
+
+msgid "Kısa kod: sayfa içinde düğme."
+msgstr ""
+
+msgid "Bağlantı adresi #flxcb-open olunca pencere açılır."
+msgstr ""
+
+msgid "Düğmeye eklenirse pencere bu mesajla açılır."
+msgstr ""
+
+msgid "JavaScript ile açma."
+msgstr ""
+
+msgid "Renk ve tema"
+msgstr ""
+
+msgid "Ana renk"
+msgstr ""
+
+msgid "Tema rengi"
+msgstr ""
+
+msgid "Temayı izle"
+msgstr ""
+
+msgid "Boşsa sitenin tema rengi kullanılır."
+msgstr ""
+
+msgid "Yazı rengi (başlık ve düğmeler)"
+msgstr ""
+
+msgid "Otomatik"
+msgstr ""
+
+msgid "Boşsa ana renge göre okunaklı renk seçilir."
+msgstr ""
+
+msgid "Açık / koyu"
+msgstr ""
+
+msgid "Otomatik (cihaza ve siteye uyar)"
+msgstr ""
+
+msgid "Hep açık"
+msgstr ""
+
+msgid "Hep koyu"
+msgstr ""
+
+msgid "Başlık"
+msgstr ""
+
+msgid "Degrade"
+msgstr ""
+
+msgid "Düz renk"
+msgstr ""
+
+msgid "Yazı tipi"
+msgstr ""
+
+msgid "Siteyle aynı"
+msgstr ""
+
+msgid "Sistem yazı tipi"
+msgstr ""
+
+msgid "Asistan"
+msgstr ""
+
+msgid "Asistanın adı"
+msgstr ""
+
+msgid "Sohbet başlığında görünür."
+msgstr ""
+
+msgid "Avatar görseli"
+msgstr ""
+
+msgid "Seç"
+msgstr ""
+
+msgid "Kaldır"
+msgstr ""
+
+msgid "Kare görsel önerilir. Seçilmezse aşağıdaki simge kullanılır."
+msgstr ""
+
+msgid "Avatar simgesi"
+msgstr ""
+
+msgid "Robot"
+msgstr ""
+
+msgid "Pırıltı"
+msgstr ""
+
+msgid "Kulaklık"
+msgstr ""
+
+msgid "Gülen yüz"
+msgstr ""
+
+msgid "Site simgesi"
+msgstr ""
+
+msgid "Başlatıcı düğme ve konum"
+msgstr ""
+
+msgid "Düğme simgesi"
+msgstr ""
+
+msgid "Balon"
+msgstr ""
+
+msgid "Soru"
+msgstr ""
+
+msgid "Avatar"
+msgstr ""
+
+msgid "Düğme yanı etiketi"
+msgstr ""
+
+msgid "Boşsa yalnız düğme görünür. Örnek: Yardım lazım mı?"
+msgstr ""
+
+msgid "Yok"
+msgstr ""
+
+msgid "Konum"
+msgstr ""
+
+msgid "Sağ alt"
+msgstr ""
+
+msgid "Sol alt"
+msgstr ""
+
+msgid "Düğme boyutu"
+msgstr ""
+
+msgid "Kenar boşluğu"
+msgstr ""
+
+msgid "Alt boşluk"
+msgstr ""
+
+msgid "Pencere genişliği"
+msgstr ""
+
+msgid "Köşe yuvarlaklığı"
+msgstr ""
+
+msgid "Mobilde tam ekran"
+msgstr ""
+
+msgid "Küçük ekranlarda pencere tüm ekranı kaplar."
+msgstr ""
+
+msgid "Bildirim sesi"
+msgstr ""
+
+msgid "Pencere kapalıyken yeni cevap gelince kısa ses."
+msgstr ""
+
+msgid "\"FluxWP ile çalışır\" yazısı"
+msgstr ""
+
+msgid "Pencerenin altında küçük imza."
+msgstr ""
+
+msgid "Ana ekran"
+msgstr ""
+
+msgid "Pencere açılınca ilk görünen karşılama ekranı. Boş bırakılan metinler dile göre (TR/EN) varsayılanı kullanır."
+msgstr ""
+
+msgid "Ana ekranı göster"
+msgstr ""
+
+msgid "Kapalıysa pencere doğrudan sohbetle açılır."
+msgstr ""
+
+msgid "Yazma alanı"
+msgstr ""
+
+msgid "Alt metin"
+msgstr ""
+
+msgid "Ekip avatarları"
+msgstr ""
+
+msgid "Son cevap veren temsilcilerin fotoğrafları başlıkta görünür."
+msgstr ""
+
+msgid "Hazır sorular"
+msgstr ""
+
+msgid "Satır başına bir soru (en fazla 6). Ana ekranda ve sohbet başında tıklanabilir."
+msgstr ""
+
+msgid "Kargo ne kadar sürer?\nİade nasıl yapılır?\nSiparişim nerede?"
+msgstr ""
+
+msgid "İletişim bağlantıları"
+msgstr ""
+
+msgid "Satır başına: Etiket | adres. https, mailto:, tel: ve wa.me desteklenir."
+msgstr ""
+
+msgid "Sohbet metinleri"
+msgstr ""
+
+msgid "Karşılama mesajı"
+msgstr ""
+
+msgid "Asistanın ilk mesajı."
+msgstr ""
+
+msgid "Tanıtım balonu"
+msgstr ""
+
+msgid "Ziyaretçi bir süre sayfada kalınca düğmenin üstünde kısa bir mesaj belirir (oturum başına bir kez)."
+msgstr ""
+
+msgid "Tanıtım balonunu göster"
+msgstr ""
+
+msgid "Mesaj"
+msgstr ""
+
+msgid "Kaç saniye sonra"
+msgstr ""
+
+msgid "Asistan şu an çalışmıyor."
+msgstr ""
+
+msgid "Yapay zekâ çağrıları Flux AI & MCP üzerinden yapılır; anahtar, model ve harcama sınırı orada. Flux AI hazır olana kadar ziyaretçi mesajları temsilciye gider."
+msgstr ""
+
+msgid "Anahtar, model, harcama sınırı ve kayıtlar Flux AI & MCP'de. Bu eklentiye özel model seçmek için:"
+msgstr ""
+
+msgid "Flux AI › Bağlı sistemler › Flux AI Chatbot"
+msgstr ""
+
+msgid "Kişilik ve talimat"
+msgstr ""
+
+msgid "Kişilik ve üslup"
+msgstr ""
+
+msgid "Örnek: Samimi ama kibar konuş, \"siz\" diye hitap et, kısa yaz."
+msgstr ""
+
+msgid "Kurallar"
+msgstr ""
+
+msgid "Asistanın uyması gerekenler. Örnek: İndirim kodu verme. Kurumsal satış sorularını temsilciye devret."
+msgstr ""
+
+msgid "Bilgi bankası"
+msgstr ""
+
+msgid "Sitede yazmayan bilgiler: kargo, iade, çalışma saatleri, sık sorulan sorular. Düz metin; asistan yalnız buradan ve sitenizden cevap verir."
+msgstr ""
+
+msgid "Kargo: 1-3 iş günü, 500 TL üzeri ücretsiz.\nİade: 14 gün içinde, faturayla.\nS: Mağazanız var mı?\nC: Yalnız online satış yapıyoruz."
+msgstr ""
+
+msgid "Kaynaklar ve araçlar"
+msgstr ""
+
+msgid "Asistan cevap vermeden önce bunları arar. Yalnız yayımlanmış, şifresiz içerik okunur."
+msgstr ""
+
+msgid "Sayfalar"
+msgstr ""
+
+msgid "Yazılar"
+msgstr ""
+
+msgid "WooCommerce ürünleri"
+msgstr ""
+
+msgid "Fiyat, stok ve bağlantı; ürünler pencerede kart olarak görünür."
+msgstr ""
+
+msgid "Ürün kartları"
+msgstr ""
+
+msgid "Görsel, fiyat, \"İncele\" ve \"Sepete ekle\"."
+msgstr ""
+
+msgid "Flux Wiki sayfaları"
+msgstr ""
+
+msgid "Sipariş durumu"
+msgstr ""
+
+msgid "Giriş yapmış müşteri yalnız kendi siparişlerini sorabilir."
+msgstr ""
+
+msgid "İletişim bilgisi kaydı"
+msgstr ""
+
+msgid "Ziyaretçi e-posta ya da telefon verirse sohbete (ve varsa Flux CRM'e) yazılır."
+msgstr ""
+
+msgid "Sınırlar"
+msgstr ""
+
+msgid "Herkese açık AI bütçeyi hızla tüketebilir. Genel harcama sınırı Flux AI'da; bunlar ek koruma."
+msgstr ""
+
+msgid "Sohbet başına cevap"
+msgstr ""
+
+msgid "Dolunca temsilciye devredilir."
+msgstr ""
+
+msgid "Sohbet başına saatlik"
+msgstr ""
+
+msgid "0 = sınırsız"
+msgstr ""
+
+msgid "Sitede günlük toplam"
+msgstr ""
+
+msgid "Temsilciye devir"
+msgstr ""
+
+msgid "Flux Chat varsa orası, yoksa eklentinin gelen kutusu."
+msgstr ""
+
+msgid "Çağrı merkezi gelen kutusu; WhatsApp sohbetleriyle birlikte."
+msgstr ""
+
+msgid "Flux Chat 1.37+ kurulu değil; gelen kutusu kullanılır."
+msgstr ""
+
+msgid "Chatbot › Sohbetler ekranı; e-posta bildirimiyle."
+msgstr ""
+
+msgid "E-posta sor"
+msgstr ""
+
+msgid "Yalnız mesai dışında"
+msgstr ""
+
+msgid "Temsilciye geçmeden önce"
+msgstr ""
+
+msgid "Hiç sorma"
+msgstr ""
+
+msgid "Bildirim e-postası"
+msgstr ""
+
+msgid "Yeni devir ve mesai dışı mesajlar. Boşsa site yöneticisi."
+msgstr ""
+
+msgid "Mesai dışı mesajı"
+msgstr ""
+
+msgid "Cevapları e-postayla da gönder"
+msgstr ""
+
+msgid "Ziyaretçi sayfadan ayrıldıysa temsilci cevabı e-postasına gider."
+msgstr ""
+
+msgid "Sohbet sonu puanlama"
+msgstr ""
+
+msgid "1-5 yıldız ve isteğe bağlı not."
+msgstr ""
+
+msgid "Dosya gönderimi"
+msgstr ""
+
+msgid "Resim, PDF ve ofis belgeleri; dosyalar herkese açık klasöre konmaz."
+msgstr ""
+
+msgid "En büyük dosya (MB)"
+msgstr ""
+
+msgid "Çalışma saatleri"
+msgstr ""
+
+msgid "Mesai dışında ziyaretçiye \"mesaj bırakın\" gösterilir, temsilci e-postayla döner. Saatler site saat dilimine göredir."
+msgstr ""
+
+msgid "Her zaman açık"
+msgstr ""
+
+msgid "Haftalık saatler"
+msgstr ""
+
+msgid "Flux Chat mesaisi"
+msgstr ""
+
+msgid "Flux Chat kurulu değil"
+msgstr ""
+
+msgid "Nerede görünsün"
+msgstr ""
+
+msgid "Kimlere"
+msgstr ""
+
+msgid "Herkese"
+msgstr ""
+
+msgid "Yalnız ziyaretçilere (giriş yapmamış)"
+msgstr ""
+
+msgid "Yalnız üyelere (giriş yapmış)"
+msgstr ""
+
+msgid "Cihaz"
+msgstr ""
+
+msgid "Masaüstü"
+msgstr ""
+
+msgid "Mobil"
+msgstr ""
+
+msgid "Gösterilmeyecek adresler"
+msgstr ""
+
+msgid "Satır başına bir yol. * joker karakterdir. Örnek: /odeme/* ya da /kampanya"
+msgstr ""
+
+msgid "Gizlilik"
+msgstr ""
+
+msgid "Ziyaretçinin IP adresi saklanmaz; sohbet tarayıcıdaki rastgele bir anahtarla eşleşir."
+msgstr ""
+
+msgid "Yazma alanı altındaki not"
+msgstr ""
+
+msgid "Örnek: Sohbet kayıtları <a href=\"/gizlilik\">Gizlilik Politikası</a> kapsamında saklanır. Bağlantı yazılabilir."
+msgstr ""
+
+msgid "Saklama süresi (gün)"
+msgstr ""
+
+msgid "Süresi dolan sohbetler ve dosyaları silinir. 0 = silme."
+msgstr ""
+
+msgid "Kaydet"
+msgstr ""
+
+msgid "Önizleme"
+msgstr ""
+
+msgid "Önizlemede yazdığınız mesajlar gerçek asistana gider ve Sohbetler'de görünür."
+msgstr ""
+
+msgid "Sitedeki sohbet penceresinin asistanı ve site sohbetleri."
+msgstr ""
+
+msgid "Asistan modeli"
+msgstr ""
+
+msgid "Ziyaretçilere cevap veren model. Hızlı ve ucuz bir model önerilir; boşsa Flux AI varsayılanı."
+msgstr ""
+
+msgid "Site sohbeti dökümü"
+msgstr ""
+
+msgid "Sohbet bulunamadı."
+msgstr ""
+
+msgid "Sohbet istatistikleri"
+msgstr ""
+
+msgid "Site sohbeti"
+msgstr ""
+
+msgid "Site sohbeti · %s"
+msgstr ""
+
+msgid "Site sohbeti temsilci bekliyor."
+msgstr ""
+
+msgid "Sayfa:"
+msgstr ""
+
+msgid "İletişim:"
+msgstr ""
+
+msgid "Asistan notu:"
+msgstr ""
+
+msgid "Site sohbeti bulunamadı."
+msgstr ""
+
+msgid "Dosya okunamadı."
+msgstr ""
+
+msgid "Bu işlem site sohbetinde kullanılamaz."
+msgstr ""
+
+msgid "Mesaj kaydedilemedi."
+msgstr ""
+
+msgid "Sohbeti aç"
+msgstr ""
+
+msgid "Kapat"
+msgstr ""
+
+msgid "Küçült"
+msgstr ""
+
+msgid "Geri"
+msgstr ""
+
+msgid "Ana sayfa"
+msgstr ""
+
+msgid "Mesajlar"
+msgstr ""
+
+msgid "Sohbete devam edin"
+msgstr ""
+
+msgid "Genelde birkaç dakika içinde cevap veririz"
+msgstr ""
+
+msgid "Asistanımız hemen cevap verir"
+msgstr ""
+
+msgid "Çevrim içi"
+msgstr ""
+
+msgid "Şu an çevrim dışı"
+msgstr ""
+
+msgid "Düşünüyor…"
+msgstr ""
+
+msgid "Sitede arıyor…"
+msgstr ""
+
+msgid "Ürünlere bakıyor…"
+msgstr ""
+
+msgid "Siparişlerinize bakıyor…"
+msgstr ""
+
+msgid "Temsilciyle görüş"
+msgstr ""
+
+msgid "Bir temsilciyle görüşmek ister misiniz?"
+msgstr ""
+
+msgid "Sıradaki yeriniz: %d"
+msgstr ""
+
+msgid "Temsilci bekleniyor"
+msgstr ""
+
+msgid "Görüldü"
+msgstr ""
+
+msgid "Gönderildi"
+msgstr ""
+
+msgid "Sohbeti sonlandır"
+msgstr ""
+
+msgid "Sohbet sonlandırılsın mı?"
+msgstr ""
+
+msgid "Evet"
+msgstr ""
+
+msgid "Hayır"
+msgstr ""
+
+msgid "Yeni sohbet"
+msgstr ""
+
+msgid "Sohbeti nasıl buldunuz?"
+msgstr ""
+
+msgid "Eklemek istediğiniz bir şey var mı? (isteğe bağlı)"
+msgstr ""
+
+msgid "Teşekkürler, geri bildiriminiz bize ulaştı."
+msgstr ""
+
+msgid "Adınız"
+msgstr ""
+
+msgid "E-posta adresiniz"
+msgstr ""
+
+msgid "Telefon (isteğe bağlı)"
+msgstr ""
+
+msgid "Mesajınız"
+msgstr ""
+
+msgid "Mesaj bırakın"
+msgstr ""
+
+msgid "Size dönebilmemiz için e-posta adresinizi bırakın."
+msgstr ""
+
+msgid "Geçerli bir e-posta adresi yazın."
+msgstr ""
+
+msgid "Bağlantı sorunu. Tekrar deneyin."
+msgstr ""
+
+msgid "Tekrar dene"
+msgstr ""
+
+msgid "Dosya çok büyük."
+msgstr ""
+
+msgid "Sepete ekle"
+msgstr ""
+
+msgid "İncele"
+msgstr ""
+
+msgid "Stokta yok"
+msgstr ""
+
+msgid "FluxWP ile çalışır"
+msgstr ""
+
+msgid "Bugün"
+msgstr ""
+
+msgid "yeni mesaj"
+msgstr ""
+
+msgid "Bir soru sorun"
+msgstr ""
+
+msgid "Bize ulaşın"
+msgstr ""
+
+msgid "Mağaza ve ürünler"
+msgstr ""
+
+msgid "Sepet"
+msgstr ""
+
+msgid "Ödeme"
+msgstr ""
+
+msgid "Hesabım"
+msgstr ""
+
+msgid "Diğer (arşiv, arama, 404…)"
+msgstr ""
+
+msgid "Merhaba 👋"
+msgstr ""
+
+msgid "Size nasıl yardımcı olabiliriz? Sorularınızı hemen yanıtlıyoruz."
+msgstr ""
+
+msgid "Merhaba! Ben bu sitenin asistanıyım. Ürünler, siparişler ya da aklınıza takılan her konuda sorabilirsiniz."
+msgstr ""
+
+msgid "Mesajınızı yazın…"
+msgstr ""
+
+msgid "Merhaba! Yardımcı olabileceğim bir şey var mı?"
+msgstr ""
+
+msgid "Şu an çevrim içi temsilcimiz yok. Mesajınızı bırakın, e-postanızdan size dönelim."
+msgstr ""
+
+msgid "Hafta içi %s"
+msgstr ""
+
+msgid "Her gün %s"
+msgstr ""
+
+msgid "Pzt"
+msgstr ""
+
+msgid "Sal"
+msgstr ""
+
+msgid "Çar"
+msgstr ""
+
+msgid "Per"
+msgstr ""
+
+msgid "Cum"
+msgstr ""
+
+msgid "Cmt"
+msgstr ""
+
+msgid "Paz"
+msgstr ""
+
+msgid "Pazartesi"
+msgstr ""
+
+msgid "Salı"
+msgstr ""
+
+msgid "Çarşamba"
+msgstr ""
+
+msgid "Perşembe"
+msgstr ""
+
+msgid "Cuma"
+msgstr ""
+
+msgid "Cumartesi"
+msgstr ""
+
+msgid "Pazar"
+msgstr ""
+
+msgid "Sizi bir temsilciye bağlıyoruz…"
+msgstr ""
+
+msgid "%s sohbete katıldı"
+msgstr ""
+
+msgid "Sohbeti sonlandırdınız."
+msgstr ""
+
+msgid "Sohbet sonlandırıldı."
+msgstr ""
+
+msgid "Ziyaretçi site sohbetini sonlandırdı."
+msgstr ""
+
+msgid "Site sohbeti #%d"
+msgstr ""
+
+msgid "[%1$s] Site sohbetinden mesaj: %2$s"
+msgstr ""
+
+msgid "[%1$s] Temsilci bekleyen site sohbeti: %2$s"
+msgstr ""
+
+msgid "Cevaplamak için:"
+msgstr ""
+
+msgid "%s: sohbetinize cevap geldi"
+msgstr ""
+
+msgid "Sohbete devam etmek için siteyi aynı tarayıcıda açın:"
+msgstr ""
+
+msgid "Dosya yüklenemedi."
+msgstr ""
+
+msgid "Dosya en fazla %d MB olabilir."
+msgstr ""
+
+msgid "Bu dosya türü gönderilemez. Resim, PDF ya da ofis belgesi gönderin."
+msgstr ""
+
+msgid "Dosya kaydedilemedi."
+msgstr ""
+
+msgid "Çok sık istek. Biraz bekleyin."
+msgstr ""
+
+msgid "Sohbet şu an kapalı."
+msgstr ""
+
+msgid "Mesaj boş."
+msgstr ""
+
+msgid "Çok hızlı yazıyorsunuz. Biraz bekleyip tekrar deneyin."
+msgstr ""
+
+msgid "Çok fazla yeni sohbet açıldı. Biraz sonra tekrar deneyin."
+msgstr ""
+
+msgid "Sohbet başlatılamadı."
+msgstr ""
+
+msgid "Şu an cevap veremiyorum. Lütfen biraz sonra tekrar yazın ya da iletişim bilgilerimizden bize ulaşın."
+msgstr ""
+
+msgid "Canlı destek kapalı."
+msgstr ""
+
+msgid "Çok fazla istek. Biraz sonra tekrar deneyin."
+msgstr ""
+
+msgid "Teşekkürler! Mesajınızı aldık, e-postanıza dönüş yapacağız."
+msgstr ""
+
+msgid "Önce bir mesaj yazın."
+msgstr ""
+
+msgid "Dosya gönderimi kapalı."
+msgstr ""
+
+msgid "Çok fazla dosya gönderildi. Biraz sonra tekrar deneyin."
+msgstr ""
+
+msgid "Dosya seçilmedi."
+msgstr ""
+
+msgid "Dosya bulunamadı."
+msgstr ""
+
+msgid "Ziyaretçi puanı: %1$s %2$s"
+msgstr ""
+
+msgid "Ziyaretçi #%d"
+msgstr ""
+
+msgid "%d sohbet cevap bekliyor."
+msgid_plural "%d sohbet cevap bekliyor."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Site sohbet penceresi"
+msgstr ""
+
+msgid "Pencere kapalı; ziyaretçiler görmüyor."
+msgstr ""
+
+msgid "Sohbet asistanı"
+msgstr ""
+
+msgid "Flux AI bağlı; asistan cevap veriyor."
+msgstr ""
+
+msgid "Flux AI hazır değil; mesajlar asistan yerine temsilciye gidiyor."
+msgstr ""
+
+msgid "Devirler Flux Chat gelen kutusuna gidiyor."
+msgstr ""
+
+msgid "Devirler eklentinin gelen kutusuna gidiyor."
+msgstr ""
+
+msgid "Sipariş verildi: #%1$s (%2$s)"
+msgstr ""
+
+msgid "Site sohbeti #%d sonrasında verildi"
+msgstr ""

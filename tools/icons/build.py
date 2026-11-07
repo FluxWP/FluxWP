@@ -38,6 +38,7 @@ PKGS = [
   ('flx-migrate', 'Flux Migrate', 'system', 'arrow-right-left'),
   ('flx-recaptcha', 'Flux reCAPTCHA', 'system', 'shield-check'),
   ('flx-chat', 'Flux Chat', 'comms', 'message-circle-more'),
+  ('flx-chatbot', 'Flux AI Chatbot', 'comms', 'bot-message-square'),
   ('flx-mail', 'Flux Mail', 'comms', 'mail'),
   ('flx-social', 'Flux Social', 'comms', 'share-2'),
   ('flx-forms', 'Flux Forms', 'comms', 'clipboard-list'),
