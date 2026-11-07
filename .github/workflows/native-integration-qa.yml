@@ -18,6 +18,8 @@ jobs:
         run: python3 tools/native-audit/staging/site.py up --state-dir "$RUNNER_TEMP/fluxwp-native-qa"
       - name: Verify billing against the real REST server and database
         run: docker compose -p fluxwp-native-qa --env-file "$RUNNER_TEMP/fluxwp-native-qa/qa.env" -f tools/native-audit/staging/compose.yaml run --rm cli eval-file /opt/fluxwp-public/tools/native-audit/staging/billing-test.php
+      - name: Verify native tool administration and concurrency
+        run: docker compose -p fluxwp-native-qa --env-file "$RUNNER_TEMP/fluxwp-native-qa/qa.env" -f tools/native-audit/staging/compose.yaml run --rm cli eval-file /opt/fluxwp-public/tools/native-audit/staging/ai-tools-test.php
       - name: Stop isolated QA containers
         if: always()
         run: python3 tools/native-audit/staging/site.py stop --state-dir "$RUNNER_TEMP/fluxwp-native-qa"

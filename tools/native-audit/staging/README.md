@@ -21,3 +21,13 @@ docker compose -p fluxwp-native-qa --env-file /absolute/private/qa-state/qa.env 
 ```
 
 This exercises the actual REST permission callbacks and database: anonymous/subscriber denial, admin totals, a 501-row export with duplicate timestamps, CSV quoting/Unicode/formula handling, month validation, a DST transition month and a fixed quarter-hour timezone. Generated log rows and the disposable subscriber are removed, and the original timezone/current user are restored even if an assertion fails. The test refuses to run outside the isolated local QA environment.
+
+AI tool administration regression:
+
+```sh
+docker compose -p fluxwp-native-qa --env-file /absolute/private/qa-state/qa.env -f tools/native-audit/staging/compose.yaml run --rm cli eval-file /opt/fluxwp-public/tools/native-audit/staging/ai-tools-test.php
+```
+
+This registers 68 disposable tool definitions without executing their callbacks. It checks permissions, three-page traversal, Unicode search, weighted usage across aliases, provider-secret isolation, complete validation before writes, stale revisions, disabled-state preservation when choosing a competing definition, matching-filter bulk operations with exclusions across pages, inactive-plugin preferences and concurrent-save locking. All test log rows, settings, filters and the temporary subscriber are restored/removed in `finally`. Running with `--context=admin` additionally checks the WordPress tools page against the same catalogue and revision when its renderer is loaded; WordPress CLI may emit core menu warnings in that context.
+
+The native desktop `flxai-tools` screen and mobile Tools screen share their account-scoped query/edit controller. The API exposes tool metadata and a revision; it does not return callbacks, argument schemas or provider keys. Matching-filter selection is resolved by the server rather than only affecting the visible page. Definitions/settings changed elsewhere produce a stale-revision error so they cannot be silently overwritten. The desktop detail pane is resizable; mobile details use the shared dismissible sheet. Demo fixtures exercise the renderer offline; they are not evidence of device behavior or production version-gate activation.

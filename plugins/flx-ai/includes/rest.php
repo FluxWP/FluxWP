@@ -49,6 +49,8 @@ function flxai_rest_routes() {
 	$r( '/billing', 'GET', 'flxai_rest_billing', $mng );
 	$r( '/billing/export', 'GET', 'flxai_rest_billing_export', $mng );
 	$r( '/credits', 'POST', 'flxai_rest_credits', $mng );
+	$r( '/admin/tools', 'GET', 'flxai_admin_tools_get', $mng );
+	$r( '/admin/tools', 'POST', 'flxai_admin_tools_post', $mng );
 }
 
 function flxai_rest_chat_or_404( WP_REST_Request $req ) {

@@ -41,6 +41,7 @@ require_once FLXAI_DIR . 'includes/widgets.php';
 require_once FLXAI_DIR . 'includes/media.php';
 require_once FLXAI_DIR . 'includes/agent.php';
 require_once FLXAI_DIR . 'includes/reports.php';
+require_once FLXAI_DIR . 'includes/app-admin.php';
 require_once FLXAI_DIR . 'includes/rest.php';
 require_once FLXAI_DIR . 'includes/app.php';
 require_once FLXAI_DIR . 'includes/dock.php';

@@ -871,6 +871,14 @@
           "fallback": {
             "web": "admin.php?page=flx-ai-billing"
           }
+        },
+        "tools": {
+          "type": "native",
+          "title": "$t:aiTools.title",
+          "component": "flxai-tools",
+          "fallback": {
+            "web": "admin.php?page=flx-ai-tools"
+          }
         }
       },
       "routes": {
@@ -879,6 +887,9 @@
         },
         "admin.php?page=flx-ai-billing": {
           "screen": "billing"
+        },
+        "admin.php?page=flx-ai-tools": {
+          "screen": "tools"
         }
       },
       "schema": "flx-app-manifest/1",

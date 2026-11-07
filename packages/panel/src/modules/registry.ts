@@ -8,6 +8,7 @@ import { RolesScreen } from '../native/RolesScreen';
 import { LanguagesScreen } from '../native/LanguagesScreen';
 import { SocialComposerScreen } from '../native/SocialComposerScreen';
 import { AiBillingScreen } from '../native/AiBillingScreen';
+import { AiToolsScreen } from '../native/AiToolsScreen';
 
 /** Sunucuda kaydı olmayan, uygulamanın kendi modülleri (WP çekirdek menülerine bağlanır). */
 export const builtinModules: Record<string, ModuleInfo> = {
@@ -19,6 +20,7 @@ export const screens: Record<string, ComponentType> = {
   ...moduleScreens,
   'flxai-chat': AiScreen,
   'flxai-billing': AiBillingScreen,
+  'flxai-tools': AiToolsScreen,
   'flxr-roles': RolesScreen,
   'flxl-languages': LanguagesScreen,
   'flxsm-composer': SocialComposerScreen,
