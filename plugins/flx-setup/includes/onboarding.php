@@ -21,6 +21,7 @@ final class FLXK_Onboarding {
 		add_action( 'admin_init', array( __CLASS__, 'maybe_redirect' ), 20 );
 		add_action( 'wp_ajax_flxk_onboarding_step', array( __CLASS__, 'ajax_step' ) );
 		add_action( 'wp_ajax_flxk_onboarding_logo', array( __CLASS__, 'ajax_logo' ) );
+		add_action( 'wp_ajax_flxk_onboarding_updates', array( __CLASS__, 'ajax_updates' ) );
 	}
 
 	/** Sihirbazın "Sayfalar" sekmesindeki sayfalar: anahtar => [başlık, içerik]. */
@@ -481,6 +482,49 @@ final class FLXK_Onboarding {
 		wp_send_json_success( $res );
 	}
 
+	/**
+	 * Kuruluma başlamadan önce: sunucuya sorar, yüklü paketlerden güncellemesi bekleyenleri döndürür.
+	 * FluxWP Panel'in kendisi varsa en başta ve self: true ile gelir (güncellenince sihirbaz yeniden açılır).
+	 */
+	public static function ajax_updates(): void {
+		check_ajax_referer( self::NONCE, 'nonce' );
+		if ( ! current_user_can( self::cap() ) ) {
+			wp_send_json_error( array( 'message' => __( 'Yetkiniz yok.', 'flx-setup' ) ), 403 );
+		}
+		@set_time_limit( 120 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+		FLXU_Updater::instance()->check_now();
+		$status = FLXU_Updater::status();
+		$items  = array();
+		if ( ! empty( $status['ok'] ) ) {
+			foreach ( FLXU_Admin::rows( FLXU_Updater::instance()->catalog() ) as $r ) {
+				if ( 'update' !== $r['state'] || ! current_user_can( 'theme' === $r['type'] ? 'update_themes' : 'update_plugins' ) ) {
+					continue;
+				}
+				$items[] = array(
+					'slug' => $r['slug'],
+					'name' => $r['name'],
+					'from' => $r['installed'],
+					'to'   => $r['latest'],
+					'icon' => (string) ( FLXU_Updater::icons( $r['slug'] )['svg'] ?? '' ),
+					'self' => 'flx-setup' === $r['slug'],
+				);
+			}
+			usort(
+				$items,
+				static function ( $a, $b ) {
+					return array( ! $a['self'], $a['name'] ) <=> array( ! $b['self'], $b['name'] );
+				}
+			);
+		}
+		wp_send_json_success(
+			array(
+				'ok'    => ! empty( $status['ok'] ),
+				'error' => (string) ( $status['error'] ?? '' ),
+				'items' => $items,
+			)
+		);
+	}
+
 	private static function run( string $kind, string $value ): array {
 		switch ( $kind ) {
 			case 'name':
@@ -763,6 +807,17 @@ final class FLXK_Onboarding {
 			/* translators: %s: number of plugins */
 			'selectedNT' => __( '%s eklenti', 'flx-setup' ),
 			'keep'       => __( 'Sekmeyi kapatmayın.', 'flx-setup' ),
+			'gH'         => __( 'Önce güncellemeler', 'flx-setup' ),
+			'gP'         => __( 'Kuruluma geçmeden önce yüklü uygulamalar güncelleniyor. Böylece her şey en yeni sürümle kurulur.', 'flx-setup' ),
+			'gCheck'     => __( 'Güncellemeler kontrol ediliyor…', 'flx-setup' ),
+			'gUpdating'  => __( 'güncelleniyor', 'flx-setup' ),
+			'gUpdated'   => __( 'güncellendi', 'flx-setup' ),
+			'gSelf'      => __( 'FluxWP Panel güncellendi. Sihirbaz yeni sürümle yeniden açılıyor…', 'flx-setup' ),
+			/* translators: %s: error message */
+			'gErr'       => __( 'Güncellemeler tamamlanamadı: %s Güncellemeler bitmeden kuruluma geçilmez.', 'flx-setup' ),
+			'gRetry'     => __( 'Tekrar dene', 'flx-setup' ),
+			'gPk'        => __( 'Paketler ekranına git', 'flx-setup' ),
+			'gUnknown'   => __( 'Bilinmeyen hata.', 'flx-setup' ),
 			'waiting'    => __( 'sırada', 'flx-setup' ),
 			'installing' => __( 'kuruluyor', 'flx-setup' ),
 			'installed'  => __( 'kuruldu', 'flx-setup' ),
