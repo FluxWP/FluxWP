@@ -1133,7 +1133,7 @@ function create_form_by_type_emsfb(id, s) {
     json = [{ "type": "register", "steps": 1, "formName": efb_var.text.register, "email": "", "trackingCode": "", "EfbVersion": 2, "button_single_text": efb_var.text.register, "button_color": "btn-primary", "icon": "bXXX", "button_Next_text": efb_var.text.next, "button_Previous_text": efb_var.text.previous, "button_Next_icon": "bi-chevron-right", "button_Previous_icon": "bi-chevron-left", "button_state": "single",  "label_text_color": "text-light", "el_text_color": "text-light", "message_text_color": "text-muted", "icon_color": "text-light", "el_height": "h-d-efb", "email_to": "emailRegisterEFB", "show_icon": true, "show_pro_bar": true, "captcha": false, "private": false, "thank_you":"msg", "thank_you_message":textThankUEFB('register'), "email_temp": "", "stateForm": false },
     { "id_": "1", "type": "step", "dataId": "1", "classes": "", "id": "1", "name": efb_var.text.registerForm, "icon": "bi-box-arrow-in-right", "step": 1, "amount": 2, "EfbVersion": 2, "message": "", "label_text_size": "fs-5",  "el_text_size": "fs-5",  "label_text_color": "text-darkb", "el_text_color": "text-labelEfb", "message_text_color": "text-muted", "icon_color": "text-danger", "visible": 1 },
     { "id_": "usernameRegisterEFB", "dataId": "usernameRegisterEFB-id", "type": "text", "placeholder": efb_var.text.username, "value": "", "size": 100, "message": "", "id": "", "classes": "", "name": efb_var.text.username, "required": true, "amount": 3, "step": 1,  "label_text_size": "fs-6", "label_position": "beside",  "el_text_size": "fs-6", "label_text_color": "text-labelEfb", "el_border_color": "border-d", "el_text_color": "text-labelEfb", "message_text_color": "text-muted", "el_height": "h-d-efb", "label_align": label_align, "message_align": "justify-content-start", "el_align": "justify-content-start", "pro": false },
-    { "id_": "passwordRegisterEFB", "dataId": "passwordRegisterEFB-id", "type": "password", "placeholder": efb_var.text.password, "value": "", "size": "100", "message": "", "id": "", "classes": "", "name": efb_var.text.password, "required": true, "amount": 5, "step": 1,  "label_text_size": "fs-6", "label_position": "beside",  "el_text_size": "fs-6", "label_text_color": "text-labelEfb", "el_border_color": "border-d", "el_text_color": "text-labelEfb", "message_text_color": "text-muted", "el_height": "h-d-efb", "label_align": label_align, "message_align": "justify-content-start", "el_align": "justify-content-start", "pro": false },
+    { "id_": "passwordRegisterEFB", "dataId": "passwordRegisterEFB-id", "type": "password", "placeholder": ((k) => efb_var.text[k])('password'), "value": "", "size": "100", "message": "", "id": "", "classes": "", "name": ((k) => efb_var.text[k])('password'), "required": true, "amount": 5, "step": 1,  "label_text_size": "fs-6", "label_position": "beside",  "el_text_size": "fs-6", "label_text_color": "text-labelEfb", "el_border_color": "border-d", "el_text_color": "text-labelEfb", "message_text_color": "text-muted", "el_height": "h-d-efb", "label_align": label_align, "message_align": "justify-content-start", "el_align": "justify-content-start", "pro": false },
     { "id_": "emailRegisterEFB", "dataId": "emailRegisterEFB-id", "type": "email", "placeholder": efb_var.text.email, "value": "", "size": "100", "message": "", "id": "", "classes": "", "name": efb_var.text.email, "required": true, "amount": 9, "step": 1,  "label_text_size": "fs-6", "label_position": "beside",  "el_text_size": "fs-6", "label_text_color": "text-labelEfb", "el_border_color": "border-d", "el_text_color": "text-labelEfb", "message_text_color": "text-muted", "el_height": "h-d-efb", "label_align": label_align, "message_align": "justify-content-start", "el_align": "justify-content-start", "pro": false , "noti":1 }]
     valj_efb = json;
     sessionStorage.setItem('valj_efb', JSON.stringify(json))
@@ -1142,7 +1142,7 @@ function create_form_by_type_emsfb(id, s) {
     json = [{ "type": "login", "steps": 1, "formName": efb_var.text.login, "email": "", "trackingCode": "", "EfbVersion": 2, "button_single_text": efb_var.text.login, "button_color": "btn-darkb", "icon": "bXXX", "button_Next_text": efb_var.text.next, "button_Previous_text": efb_var.text.previous, "button_Next_icon": "bi-chevron-right", "button_Previous_icon": "bi-chevron-left", "button_state": "single",  "label_text_color": "text-light", "el_text_color": "text-light", "message_text_color": "text-muted", "icon_color": "text-light", "el_height": "h-d-efb", "email_to": false, "show_icon": true, "show_pro_bar": true, "captcha": false, "private": false, "thank_you":"msg", "thank_you_message": textThankUEFB(), "email_temp": "", "stateForm": false },
     { "id_": "1", "type": "step", "dataId": "1", "classes": "", "id": "1", "name": efb_var.text.loginForm, "icon": "bi-box-arrow-in-right", "step": 1, "amount": 1, "EfbVersion": 2, "message": "", "label_text_size": "fs-5",  "el_text_size": "fs-5",  "label_text_color": "text-darkb", "el_text_color": "text-labelEfb", "message_text_color": "text-dark", "icon_color": "text-danger", "visible": 1 },
     { "id_": "emaillogin", "dataId": "emaillogin-id", "type": "text", "placeholder": efb_var.text.emailOrUsername, "value": "", "size": 100, "message": "", "id": "", "classes": "", "name": efb_var.text.emailOrUsername, "required": true, "amount": 3, "step": 1,  "label_text_size": "fs-6", "label_position": "up",  "el_text_size": "fs-6", "label_text_color": "text-labelEfb", "el_border_color": "border-d", "el_text_color": "text-labelEfb", "message_text_color": "text-muted", "el_height": "h-d-efb", "label_align": label_align, "message_align": "justify-content-start", "el_align": "justify-content-start", "pro": false },
-    { "id_": "passwordlogin", "dataId": "passwordlogin-id", "type": "password", "placeholder": efb_var.text.password, "value": "", "size": 100, "message": "", "id": "", "classes": "", "name": efb_var.text.password, "required": true, "amount": 5, "step": 1,  "label_text_size": "fs-6", "label_position": "up",  "el_text_size": "fs-6", "label_text_color": "text-labelEfb", "el_border_color": "border-d", "el_text_color": "text-labelEfb", "message_text_color": "text-muted", "el_height": "h-d-efb", "label_align": label_align, "message_align": "justify-content-start", "el_align": "justify-content-start", "pro": false }]
+    { "id_": "passwordlogin", "dataId": "passwordlogin-id", "type": "password", "placeholder": ((k) => efb_var.text[k])('password'), "value": "", "size": 100, "message": "", "id": "", "classes": "", "name": ((k) => efb_var.text[k])('password'), "required": true, "amount": 5, "step": 1,  "label_text_size": "fs-6", "label_position": "up",  "el_text_size": "fs-6", "label_text_color": "text-labelEfb", "el_border_color": "border-d", "el_text_color": "text-labelEfb", "message_text_color": "text-muted", "el_height": "h-d-efb", "label_align": label_align, "message_align": "justify-content-start", "el_align": "justify-content-start", "pro": false }]
     valj_efb = json;
 
     sessionStorage.setItem('valj_efb', JSON.stringify(json))
@@ -3078,7 +3078,7 @@ let change_el_edit_Efb = (el) => {
         postId = valj_efb.findIndex(x => x.id_ == el.dataset.id);
         if (el.value.length > 2) {
 
-          document.getElementById(idhtml).innerHTML = el.value;
+          document.getElementById(idhtml).innerHTML = efb_safe_html_efb(el.value);
           document.getElementById(idhtml).classList.remove('sign-efb')
           valj_efb[postId].value = el.value.replace(/\r?\n|\r/g, "@efb@nq#");
           valj_efb[postId].value = valj_efb[postId].value.replace(/"/g, `@!`);
@@ -3241,7 +3241,11 @@ let change_el_edit_Efb = (el) => {
         {
           // Only http(s) or same-site image addresses; the value always starts with a fixed prefix.
           const iu = String(el.value).trim(), il = iu.toLowerCase();
-          document.getElementById(valj_efb[indx].id_+'_img').src = il.startsWith('https://') ? 'https://' + iu.slice(8) : il.startsWith('http://') ? 'http://' + iu.slice(7) : (iu.startsWith('/') && !iu.startsWith('//')) ? location.origin + iu : '';
+          let isrc = '';
+          if (il.startsWith('https://') || il.startsWith('http://') || (iu.startsWith('/') && !iu.startsWith('//'))) {
+            try { isrc = encodeURI(decodeURI(iu)); } catch (er) { isrc = ''; }
+          }
+          document.getElementById(valj_efb[indx].id_+'_img').src = isrc;
         }
         break;
       case 'imgRadio_sub_value':
@@ -8947,4 +8951,121 @@ function efb_builder_init_logic_preview_efb() {
 function flxf_finish_label_efb() {
   const t = typeof valj_efb !== 'undefined' && valj_efb[0] && valj_efb[0].thank_you_message ? valj_efb[0].thank_you_message.finish : '';
   return (typeof t === 'string' && t.trim() !== '') ? t : efb_var.text.finish;
+}
+
+/* ---- Flux Forms 2.1.13: shared output helpers (declared in every builder file; identical bodies) ---- */
+// Text for an HTML context: & < > " ' become entities.
+function efb_esc_html_efb(v) {
+  return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+// Decodes the common named and numeric entities once (plain text out).
+function efb_decode_ent_efb(s) {
+  return String(s).replace(/&(#x[0-9a-f]{1,6}|#[0-9]{1,7}|amp|lt|gt|quot|apos|nbsp);/gi, function (m, e) {
+    const k = e.toLowerCase();
+    if (k === 'amp') return '&';
+    if (k === 'lt') return '<';
+    if (k === 'gt') return '>';
+    if (k === 'quot') return '"';
+    if (k === 'apos') return "'";
+    if (k === 'nbsp') return ' ';
+    const n = k.charAt(1) === 'x' ? parseInt(k.slice(2), 16) : parseInt(k.slice(1), 10);
+    return n > 0 && n <= 0x10ffff ? String.fromCodePoint(n) : '';
+  });
+}
+// Visible text of an HTML/entity string: tags dropped, entities decoded. For textContent, not innerHTML.
+function efb_text_html_efb(v) {
+  const s = String(v == null ? '' : v);
+  let out = '', inTag = false;
+  for (let i = 0; i < s.length; i++) {
+    const ch = s.charAt(i);
+    if (inTag) { if (ch === '>') inTag = false; continue; }
+    if (ch === '<' && /[a-zA-Z\/!?]/.test(s.charAt(i + 1))) { inTag = true; continue; }
+    out += ch;
+  }
+  return efb_decode_ent_efb(out);
+}
+// Allow-listed tag name -> its literal (unknown tags give '').
+function efb_safe_tag_efb(t) {
+  switch (t) {
+    case 'a': return 'a'; case 'abbr': return 'abbr'; case 'b': return 'b'; case 'blockquote': return 'blockquote';
+    case 'br': return 'br'; case 'caption': return 'caption'; case 'center': return 'center'; case 'code': return 'code';
+    case 'div': return 'div'; case 'em': return 'em'; case 'font': return 'font'; case 'h1': return 'h1';
+    case 'h2': return 'h2'; case 'h3': return 'h3'; case 'h4': return 'h4'; case 'h5': return 'h5'; case 'h6': return 'h6';
+    case 'hr': return 'hr'; case 'i': return 'i'; case 'img': return 'img'; case 'label': return 'label';
+    case 'li': return 'li'; case 'ol': return 'ol'; case 'p': return 'p'; case 'pre': return 'pre'; case 's': return 's';
+    case 'small': return 'small'; case 'span': return 'span'; case 'strong': return 'strong'; case 'sub': return 'sub';
+    case 'sup': return 'sup'; case 'table': return 'table'; case 'tbody': return 'tbody'; case 'td': return 'td';
+    case 'tfoot': return 'tfoot'; case 'th': return 'th'; case 'thead': return 'thead'; case 'tr': return 'tr';
+    case 'u': return 'u'; case 'ul': return 'ul';
+    default: return '';
+  }
+}
+// Allow-listed attribute name -> its literal (unknown attributes give '').
+function efb_safe_attr_efb(a) {
+  switch (a) {
+    case 'href': return 'href'; case 'src': return 'src'; case 'alt': return 'alt'; case 'title': return 'title';
+    case 'class': return 'class'; case 'style': return 'style'; case 'width': return 'width'; case 'height': return 'height';
+    case 'align': return 'align'; case 'valign': return 'valign'; case 'colspan': return 'colspan'; case 'rowspan': return 'rowspan';
+    case 'border': return 'border'; case 'cellpadding': return 'cellpadding'; case 'cellspacing': return 'cellspacing';
+    case 'bgcolor': return 'bgcolor'; case 'color': return 'color'; case 'dir': return 'dir'; case 'target': return 'target';
+    case 'rel': return 'rel'; case 'role': return 'role'; case 'id': return 'id';
+    default: return '';
+  }
+}
+// URL for href/src: http(s), mailto, tel, relative, or (src only) data:image; otherwise ''.
+function efb_safe_link_efb(u, isSrc) {
+  u = String(u).trim();
+  const l = u.replace(/[\u0000- ]+/g, '').toLowerCase();
+  const scheme = /^([a-z][a-z0-9+.-]*):/.exec(l);
+  if (scheme) {
+    const s = scheme[1];
+    const okData = isSrc && (l.indexOf('data:image/png;') === 0 || l.indexOf('data:image/jpeg;') === 0 || l.indexOf('data:image/jpg;') === 0 || l.indexOf('data:image/gif;') === 0 || l.indexOf('data:image/webp;') === 0);
+    if (s !== 'http' && s !== 'https' && s !== 'mailto' && s !== 'tel' && !okData) return '';
+  }
+  try { return encodeURI(decodeURI(u)); } catch (e) { return ''; }
+}
+// Admin-authored HTML (custom HTML block, e-mail preview, alerts), rebuilt from an allow-list without
+// parsing it into the DOM: tags/attributes are matched to literals, every value and text run is escaped.
+// Scripts, frames, inline handlers and non-http(s) URLs never survive.
+function efb_safe_html_efb(html) {
+  let src = String(html == null ? '' : html);
+  for (let c = src.indexOf('<!--'); c !== -1; c = src.indexOf('<!--', c)) {
+    const e = src.indexOf('-->', c + 4);
+    src = src.slice(0, c) + (e === -1 ? '' : src.slice(e + 3));
+  }
+  const tagRe = /<(\/?)([a-zA-Z][a-zA-Z0-9]*)([^<>]*)>/g;
+  const attrRe = /([a-zA-Z_:][-a-zA-Z0-9_:.]*)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g;
+  let out = '', last = 0, skip = '', m;
+  const text = (s) => { if (!skip) out += efb_esc_html_efb(efb_decode_ent_efb(s)); };
+  while ((m = tagRe.exec(src)) !== null) {
+    text(src.slice(last, m.index));
+    last = tagRe.lastIndex;
+    const close = m[1] === '/';
+    const name = m[2].toLowerCase();
+    if (skip) { if (close && name === skip) skip = ''; continue; }
+    if (name === 'script' || name === 'style' || name === 'iframe' || name === 'object' || name === 'embed' || name === 'textarea' || name === 'title' || name === 'noscript' || name === 'template') {
+      if (!close && !/\/\s*$/.test(m[3])) skip = name;
+      continue;
+    }
+    const tag = efb_safe_tag_efb(name);
+    if (!tag) continue;
+    if (close) { out += '</' + tag + '>'; continue; }
+    let attrs = '', a;
+    attrRe.lastIndex = 0;
+    while ((a = attrRe.exec(m[3])) !== null) {
+      const raw = a[1].toLowerCase();
+      const an = efb_safe_attr_efb(raw);
+      if (!an && raw.indexOf('data-') !== 0 && raw.indexOf('aria-') !== 0) continue;
+      let val = efb_decode_ent_efb(a[2] != null ? a[2] : a[3] != null ? a[3] : a[4] != null ? a[4] : '');
+      if (an === 'href' || an === 'src') { val = efb_safe_link_efb(val, an === 'src'); if (!val) continue; }
+      if (an === 'style' && /expression\s*\(|url\s*\(|javascript:|behavior\s*:/i.test(val)) continue;
+      const nm = an || ((raw.indexOf('data-') === 0 ? 'data-' : 'aria-') + raw.slice(5).replace(/[^a-z0-9_-]/g, ''));
+      attrs += ' ' + nm + '="' + efb_esc_html_efb(val) + '"';
+    }
+    out += '<' + tag + attrs + '>';
+  }
+  text(src.slice(last));
+  return out;
 }

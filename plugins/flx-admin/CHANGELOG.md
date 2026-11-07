@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.9
+- Çağrı merkezi artık tüm kanalların (WhatsApp, site sohbeti…) tek gelen kutusu: uygulama değiştiricide, mobil alt çubukta, hızlı işlemlerde ve PWA kısayolunda "WhatsApp" yerine "Mesajlar"; panel kutucuğu "Okunmamış mesaj".
+
 ## 1.7.8
 - Sol menüyü daralt/genişlet düğmesi 783–960 piksel ekranlarda da görünür. Düğmenin adı ve erişilebilir durumu açık/kapalı menüyü izler; uygulama ekranlarında genişletme otomatik daralmaya takılmaz.
 - Dar menüde grup ve eklenti alt bağlantıları tek bir ortak açılır panelde gösterilir. Simge değişince panelin başlığı, bağlantıları ve konumu güncellenir; WordPress’in ayrı alt menü kartları üst üste açılmaz.

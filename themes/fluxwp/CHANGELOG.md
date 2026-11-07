@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.7.10
+- Güvenlik (CodeQL): YouTube kimliği adrese `encodeURIComponent` ile girer.
+
 ## 0.7.9
 - Güvenlik (CodeQL): YouTube oynatıcı yalnız geçerli video kimliğiyle yüklenir.
 

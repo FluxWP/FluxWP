@@ -5,6 +5,15 @@ defined( 'ABSPATH' ) || exit;
  * Evolution API v2 istemcisi. Tüm çağrılar array( ok, code, json, body, error ) döner.
  */
 function flxc_evo( $conn, $method, $path, $body = null, $timeout = 25 ) {
+	if ( flxc_is_virtual_conn( $conn ) ) {
+		/**
+		 * 1.37.0: sanal kanal (site sohbeti) isteği. Evolution v2 yolu ve gövdesi aynen gelir
+		 * (/message/sendText/{instance}, /message/sendMedia/{instance}, /chat/sendPresence/{instance}, /chat/markMessageAsRead/{instance} …).
+		 * Kanal eklentisi array( ok, code, json, body, error ) döner; json.key.id mesajın kanal kimliği olur.
+		 */
+		$r = apply_filters( 'flxc_virtual_request', null, is_array( $conn ) ? (string) $conn['id'] : (string) $conn, $method, $path, $body );
+		return is_array( $r ) ? wp_parse_args( $r, array( 'ok' => false, 'code' => 0, 'json' => null, 'body' => '', 'error' => '' ) ) : array( 'ok' => false, 'code' => 0, 'json' => null, 'body' => '', 'error' => __( 'Bu kanal şu an kullanılamıyor.', 'flx-chat' ) );
+	}
 	$cfg = flxc_connection_config( $conn );
 	if ( is_wp_error( $cfg ) ) {
 		return array( 'ok' => false, 'code' => 0, 'json' => null, 'body' => '', 'error' => $cfg->get_error_message() );
@@ -155,6 +164,9 @@ function flxc_evo_typing( $conn, $number, $ms = 20000 ) {
 		}
 		$handles = array();
 		return true;
+	}
+	if ( flxc_is_virtual_conn( $conn ) ) {
+		return flxc_evo_presence( $conn, $number, 'composing', $ms )['ok'];
 	}
 	$cfg = flxc_connection_config( $conn );
 	if ( is_wp_error( $cfg ) || '' === (string) $number ) {

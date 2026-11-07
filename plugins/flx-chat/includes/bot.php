@@ -66,8 +66,8 @@ function flxc_bot_save_state( $chat_id, array $state ) {
 
 /** Sohbet için asistan durumu: on | paused | off | '' (asistan kapalı ya da kapsam dışı). */
 function flxc_bot_chat_status( $chat ) {
-	if ( ! flxc_bot_enabled() || flxc_is_group_jid( $chat['jid'] ) ) {
-		return '';
+	if ( ! flxc_bot_enabled() || flxc_is_group_jid( $chat['jid'] ) || flxc_is_virtual_conn( $chat['conn'] ) ) {
+		return ''; // 1.37.0: site sohbetinde kanalın kendi asistanı var.
 	}
 	$b = flxc_bot_state( $chat );
 	if ( $b['off'] ) {

@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.37.1
+- Güvenlik (CodeQL): stüdyo sekmesi `switch` ile seçilir.
+
+## 1.37.0
+- Site sohbeti kanalı: Flux AI Chatbot'ta asistan ziyaretçiyi temsilciye devredince sohbet gelen kutusuna "Site sohbeti" olarak düşer; temsilcinin cevabı, dosyası, "yazıyor…" ve okundu bilgisi sitedeki sohbet penceresine gider. Ekip bildirimi ve grup aynası bu sohbetlerde ilk WhatsApp hattını kullanır; çağrı merkezi asistanı site sohbetlerine karışmaz.
+- Tek gelen kutusu: çağrı merkezi tüm kanalları (WhatsApp, site sohbeti, ileride Instagram, e-posta…) aynı listede gösterir. Birden çok kanal açıkken her sohbetin avatarında kanal ikonu, sohbet başlığında ve kişi bilgisinde kanal etiketi, süzgeç şeridinde kanal düğmeleri (yalnız WhatsApp / yalnız site sohbeti) var. WhatsApp kurulmamış ama site sohbeti açıksa "WhatsApp bağlantısı kurulmadı" uyarısı çıkmaz; boş ekran metni kanallara göre.
+- Geliştirici: yeni kanallar `flxc_channels` filtresiyle kaydolur (label, icon, color, active, conns); `flxc_channels()`, `flxc_chat_channel()`, bootstrap'te `channels`, `chats` ucunda `channel` süzgeci.
+- Geliştirici: sanal kanallar için `flxc_virtual_conn` (bağlantı id'si sanal mı) , `flxc_virtual_request` (Evolution v2 isteğini kanal eklentisi cevaplar) ve `flxc_virtual_label` (listede numara yerine görünen etiket) filtreleri, `flxc_is_virtual_conn()`; sohbet satırında `channel` (whatsapp | web).
+
 ## 1.36.1
 - Personel bağlama: sohbet personele bağlansa da asistan önceki "personel olarak tanınmıyor" cevaplarına bakıp yine reddediyor, ekibe devrediyordu. Bağlama anı artık konuşma geçmişinde asistana not olarak görünür; personel talimatı önceki ret cevaplarının geçersiz olduğunu, yetki sorgulayıp devretmemesini ve yarım kalan isteğe (ör. başkası adına bağış) devam etmesini söyler.
 - Sohbet ekranı: yapışkan tarih etiketi ("Bugün") altındaki balonun başlığını örtüyordu. Etiket artık yalnız kaydırırken görünür (WhatsApp gibi), durunca kaybolur.

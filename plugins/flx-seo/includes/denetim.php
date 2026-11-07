@@ -69,6 +69,8 @@ function flxseo_audit_catalog() {
 		'indexnow'                     => array( 'seo', __( 'IndexNow kapalı', 'flx-seo' ), __( 'IndexNow yeni ve güncellenen sayfaları Bing, Yandex, Seznam ve Naver\'e anında bildirir; Google dışındaki arama motorlarında görünmenin en hızlı yolu. Açmak için tek tık.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_indexnow' ),
 		'indexnow-error'               => array( 'seo', __( 'IndexNow bildirimi başarısız', 'flx-seo' ), __( 'Anahtar dosyası (/<anahtar>.txt) dışarıdan açılabilmeli. Önbellek ya da güvenlik eklentisi engelliyorsa istisna ekleyin, sonra SEO › Genel › IndexNow › "Tüm siteyi şimdi bildir".', 'flx-seo' ), 'flx-seo' ),
 		'search-verify'                => array( 'seo', __( 'Bing / Yandex doğrulama kodu girilmemiş', 'flx-seo' ), __( 'Site Bing Webmaster Tools ve Yandex Webmaster\'a eklenmemiş olabilir; eklenmezse bu arama motorlarında geç ya da hiç görünmez. Bing\'de "Google Search Console\'dan içe aktar" ile kod gerekmez; o yolla eklediyseniz yok sayın. Kodlar SEO › Genel › Arama motorları\'nda.', 'flx-seo' ), 'setting' ),
+		'php-unpatched'                => array( 'best-practices', __( 'PHP sürümü güvenlik yaması almamış', 'flx-seo' ), __( 'Sunucudaki PHP bilinen bir açığa karşı yamasız ya da artık desteklenmiyor. Hosting panelinden PHP\'yi güncel yama sürümüne yükseltin.', 'flx-seo' ), 'server' ),
+		'php-upload-progress'          => array( 'best-practices', __( 'session.upload_progress açık', 'flx-seo' ), __( 'WordPress bu PHP özelliğini kullanmaz; PHP2Shell gibi açıklarda istismar yolu olur. php.ini ya da hosting panelinde session.upload_progress.enabled = Off yapın.', 'flx-seo' ), 'server' ),
 		'document-title'               => array( 'seo', __( 'Sayfa başlığı (<title>) yok', 'flx-seo' ), __( 'Tema add_theme_support( \'title-tag\' ) desteklemeli; SEO › Genel\'de ana sayfa başlığını doldurun.', 'flx-seo' ), 'theme', array( 'accessibility' ) ),
 		'title-length'                 => array( 'seo', __( 'Sayfa başlığı uzun', 'flx-seo' ), __( 'Başlığı 60 karakter civarında tutun; Google sonrasını keser.', 'flx-seo' ), 'content' ),
 		'meta-description'             => array( 'seo', __( 'Meta açıklama yok', 'flx-seo' ), __( 'SEO çıktısını açın ve ana sayfa açıklamasını (150–160 karakter) yazın.', 'flx-seo' ), 'flx-seo' ),
@@ -807,6 +809,13 @@ function flxseo_audit_site_checks() {
 		if ( $miss ) {
 			$f[] = flxseo_audit_finding( 'search-verify', 'low', $miss );
 		}
+	}
+	$php = flxseo_php_security_status();
+	if ( 'ok' !== $php['status'] ) {
+		$f[] = flxseo_audit_finding( 'php-unpatched', 'critical', array( 'PHP ' . $php['version'] . ' → ' . $php['fixed'] ), flxseo_php_security_message( $php ) );
+	}
+	if ( flxseo_php_upload_progress_on() ) {
+		$f[] = flxseo_audit_finding( 'php-upload-progress', 'ok' !== $php['status'] ? 'high' : 'medium', array( 'session.upload_progress.enabled = On' ) );
 	}
 	$llms = flxseo_audit_fetch( home_url( '/llms.txt' ) );
 	if ( is_wp_error( $llms ) || 200 !== $llms['code'] || '' === trim( $llms['body'] ) || false !== stripos( $llms['body'], '<html' ) ) {

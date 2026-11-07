@@ -1118,3 +1118,39 @@ msgstr "e.g. Donate"
 
 msgid "Bağış kabul eden kurumlar için (schema DonateAction). Ad boşsa eklenmez; adres boşsa bağış sayfası kendiliğinden bulunur."
 msgstr "For organizations that accept donations (schema DonateAction). Left out when the label is empty; when the URL is empty the donation page is found automatically."
+
+#, php-format
+msgid "PHP %1$s, %2$s açığına karşı yamasız. En az %3$s sürümüne güncelleyin (hosting paneli › PHP sürümü). Dağıtım paketi yamayı sürüm numarasını değiştirmeden almış olabilir; emin değilseniz sağlayıcınıza sorun."
+msgstr "PHP %1$s is not patched against %2$s. Update to at least %3$s (hosting panel › PHP version). A distribution package may carry the fix without changing the version number; ask your provider if unsure."
+
+#, php-format
+msgid "PHP %1$s artık güvenlik yaması almıyor; %2$s gibi açıklar kapatılmaz. PHP %3$s ya da yamalı daha yeni bir sürüme geçin."
+msgstr "PHP %1$s no longer gets security fixes; holes such as %2$s stay open. Move to PHP %3$s or another patched, newer version."
+
+#, php-format
+msgid "PHP %1$s, %2$s için yamalı."
+msgstr "PHP %1$s is patched against %2$s."
+
+msgid "Güvenlik"
+msgstr "Security"
+
+msgid "PHP güvenlik yaması"
+msgstr "PHP security patch"
+
+msgid "Sürüm notları"
+msgstr "Release notes"
+
+msgid "session.upload_progress.enabled açık. WordPress bunu kullanmaz; kapatmak saldırı yüzeyini küçültür. php.ini ya da hosting panelinde \"session.upload_progress.enabled = Off\" yapın."
+msgstr "session.upload_progress.enabled is on. WordPress does not use it; turning it off shrinks the attack surface. Set \"session.upload_progress.enabled = Off\" in php.ini or the hosting panel."
+
+msgid "PHP sürümü güvenlik yaması almamış"
+msgstr "PHP version is missing a security patch"
+
+msgid "Sunucudaki PHP bilinen bir açığa karşı yamasız ya da artık desteklenmiyor. Hosting panelinden PHP'yi güncel yama sürümüne yükseltin."
+msgstr "The server's PHP is unpatched against a known hole or no longer supported. Upgrade PHP to the current patch release from the hosting panel."
+
+msgid "session.upload_progress açık"
+msgstr "session.upload_progress is on"
+
+msgid "WordPress bu PHP özelliğini kullanmaz; PHP2Shell gibi açıklarda istismar yolu olur. php.ini ya da hosting panelinde session.upload_progress.enabled = Off yapın."
+msgstr "WordPress does not use this PHP feature; it is the exploit path for holes such as PHP2Shell. Set session.upload_progress.enabled = Off in php.ini or the hosting panel."

@@ -37,7 +37,9 @@ PKGS = [
   ('flx-speed', 'Flux Speed', 'system', 'gauge'),
   ('flx-migrate', 'Flux Migrate', 'system', 'arrow-right-left'),
   ('flx-recaptcha', 'Flux reCAPTCHA', 'system', 'shield-check'),
+  ('flx-updater-manager', 'Flux Updater Manager', 'system', 'server-cog'),
   ('flx-chat', 'Flux Chat', 'comms', 'message-circle-more'),
+  ('flx-chatbot', 'Flux AI Chatbot', 'comms', 'bot-message-square'),
   ('flx-mail', 'Flux Mail', 'comms', 'mail'),
   ('flx-social', 'Flux Social', 'comms', 'share-2'),
   ('flx-forms', 'Flux Forms', 'comms', 'clipboard-list'),
@@ -54,6 +56,7 @@ PKGS = [
   ('flx-menu-theme', 'Flux Menu Theme', 'commerce', 'utensils-crossed'),
   # wp-extras
   ('flx-qurban', 'Flux Qurban', 'commerce', 'beef'),
+  ('flx-zakat', 'Flux Zakat', 'commerce', 'hand-coins'),
   ('flx-staff', 'Flux Staff', 'platform', 'users-round'),
   ('flx-tv-board', 'Flux TV Board', 'comms', 'tv-minimal'),
   ('flx-tv-remote', 'Flux TV Remote', 'comms', 'cast'),

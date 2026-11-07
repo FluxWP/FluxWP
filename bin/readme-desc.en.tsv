@@ -6,6 +6,7 @@ flx-donate	Flux Donation	Sapling and campaign donations on WooCommerce with card
 flx-commerce	Flux Commerce	A sales dashboard, customers and sales reports for any WooCommerce store. Bank transfer with receipt upload, a leaner checkout, a free-shipping bar and a Google Merchant feed.
 flx-crm	Flux CRM	A CRM that brings donors, customers, volunteers and leads together in one contact card. Timeline, RFM scoring, churn risk and segments ready for Flux Mail sends.
 flx-chat	Flux Call Center	A WhatsApp inbox with canned replies, tags and assignment. An AI assistant that records donations and certificates.
+flx-chatbot	Flux AI Chatbot	AI chat window for your site: answers from your content and products with Flux AI and hands over to a live agent in Flux Chat. Color, position, avatar and texts are set in the panel with a live preview.
 flx-lang	Flux Language	Makes the site multilingual: /en/ addresses, per-post translations, hreflang and a language switcher.
 flx-forms	Flux Forms	Drag-and-drop form builder with multi-step forms, payments, conditional logic and automations.
 flx-tasks	Flux Tasks	Task tracking with projects, lists, boards and calendars. Meeting reports, notifications and MCP tools.
@@ -23,3 +24,4 @@ flx-setup	FluxWP Panel	Setup wizard, presets and updates: installs the theme and
 flx-migrate	Flux Migrate	Moves site data saved under the old package names (settings, tables, meta, content, theme, upload folders) to the FluxWP names.
 flx-recaptcha	Flux reCAPTCHA	Protects login, registration, comments, checkout, donations and form submissions from bots with Google reCAPTCHA v3 or v2. Pick the forms to protect in the panel.
 flx-wiki	Flux Wiki	Developer wiki at /wiki: Markdown pages, detailed search, SEO, .md and llms.txt for LLMs, "Ask the wiki" with Flux AI and MCP tools. Ships with plugin and theme development guides.
+flx-updater-manager	Flux Updater Manager	Manages your FluxWP update server from the WordPress admin: usage and country stats, connected sites, site keys, packages, GitHub repositories, security switches and server resources.

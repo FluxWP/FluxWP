@@ -1624,5 +1624,8 @@ Thank you for your support.',
     '— Personel değil —' => '— Not staff —',
     'WhatsApp bu kişinin numarasını gizliyor, asistan personeli numaradan tanıyamaz. Bu kişi ekibinizdense buradan bağlayın; asistan personel araçlarını açar.' => 'WhatsApp hides this person\'s number, so the assistant cannot recognise staff by number. If this person is on your team, link them here and the assistant opens the staff tools.',
     'Asistan personeli Flux Roles profilindeki numaradan tanır. Numara eşleşmiyorsa buradan bağlayabilirsiniz; numarası bilinen sohbette numara önceliklidir.' => 'The assistant recognises staff by the number in their Flux Roles profile. If the number does not match, you can link them here; in a chat with a known number the number comes first.',
+    'Bu kanal şu an kullanılamıyor.' => 'This channel is not available right now.',
+    'Site sohbeti' => 'Site chat',
+    'WhatsApp, site sohbeti ve diğer kanallardan gelen tüm mesajlar burada canlı görünür. Soldan bir sohbet seçin.' => 'All messages from WhatsApp, site chat and other channels appear here live. Pick a chat on the left.',
 ),
 );

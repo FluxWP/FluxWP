@@ -108,7 +108,7 @@ function flxa_dash_stats() {
 		$c = flxa_counts();
 		if ( isset( $c['whatsapp'] ) ) {
 			$stats['whatsapp'] = array(
-				'label'     => __( 'Okunmamış WhatsApp', 'flx-admin' ),
+				'label'     => __( 'Okunmamış mesaj', 'flx-admin' ),
 				'value'     => number_format_i18n( $c['whatsapp'] ),
 				'meta'      => __( 'Çağrı Merkezi\'ni aç →', 'flx-admin' ),
 				'url'       => admin_url( 'admin.php?page=flx-chat' ),
@@ -336,7 +336,7 @@ function flxa_quick_links() {
 		$l[] = array( __( 'Görev oluştur', 'flx-admin' ), admin_url( 'admin.php?page=flx-tasks' ), 'check', 'task' );
 	}
 	if ( defined( 'FLXC_VERSION' ) && function_exists( 'flxc_can_use' ) && flxc_can_use() ) {
-		$l[] = array( __( 'WhatsApp', 'flx-admin' ), admin_url( 'admin.php?page=flx-chat' ), 'chat' );
+		$l[] = array( __( 'Mesajlar', 'flx-admin' ), admin_url( 'admin.php?page=flx-chat' ), 'chat' );
 	}
 	if ( current_user_can( 'edit_pages' ) ) {
 		$l[] = array( __( 'Sayfa ekle', 'flx-admin' ), admin_url( 'post-new.php?post_type=page' ), 'file' );

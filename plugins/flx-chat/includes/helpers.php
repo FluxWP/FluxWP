@@ -215,8 +215,8 @@ function flxc_format_phone( $phone ) {
 /** "905321234567@s.whatsapp.net" => "905321234567" */
 function flxc_jid_phone( $jid ) {
 	$jid = (string) $jid;
-	// @lid gizli kimliktir, telefon numarası değildir.
-	if ( '@lid' === substr( $jid, -4 ) ) {
+	// @lid gizli kimliktir, telefon numarası değildir; @web (site sohbeti, 1.37.0) de numara taşımaz.
+	if ( '@lid' === substr( $jid, -4 ) || '@web' === substr( $jid, -4 ) ) {
 		return '';
 	}
 	$at  = strpos( $jid, '@' );
