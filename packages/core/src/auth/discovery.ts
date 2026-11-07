@@ -38,30 +38,47 @@ export function normalizeSiteUrl(input: string): string {
   return `${u.protocol}//${u.host}${path}`;
 }
 
+type RestIndex = {
+  name?: string; description?: string; url?: string; namespaces: string[]; site_icon_url?: string;
+  authentication?: { 'application-passwords'?: { endpoints?: { authorization?: string } } };
+};
+
+async function readIndex(endpoint: string): Promise<RestIndex> {
+  let res: Response;
+  try { res = await platform().fetch(endpoint, { headers: { Accept: 'application/json' } }); }
+  catch { throw new DiscoveryError('unreachable'); }
+  if (!res.ok) throw new DiscoveryError(res.status === 404 ? 'not_wordpress' : 'unreachable');
+  let data: RestIndex;
+  try { data = await res.json(); }
+  catch { throw new DiscoveryError('not_wordpress'); }
+  if (!data || !Array.isArray(data.namespaces) || !data.namespaces.every(value => typeof value === 'string')) throw new DiscoveryError('not_wordpress');
+  return data;
+}
+
 export async function discoverSite(input: string): Promise<SiteInfo> {
   const url = normalizeSiteUrl(input);
-  let res: Response;
-  try {
-    res = await platform().fetch(restBase(url), { headers: { Accept: 'application/json' } });
-  } catch {
-    throw new DiscoveryError('unreachable');
+  let last: DiscoveryError = new DiscoveryError('not_wordpress');
+  let unreachable = false;
+  // WordPress supports the query route even when pretty REST URLs are not rewritten correctly.
+  for (const endpoint of [restBase(url), `${url}/?rest_route=/`]) {
+    let data: RestIndex;
+    try { data = await readIndex(endpoint); }
+    catch (error) {
+      last = error instanceof DiscoveryError ? error : new DiscoveryError('unreachable');
+      unreachable ||= last.reason === 'unreachable';
+      continue;
+    }
+    const authorization = data.authentication?.['application-passwords']?.endpoints?.authorization;
+    return {
+      url: typeof data.url === 'string' && data.url ? trimEnd(data.url) : url,
+      name: typeof data.name === 'string' && data.name ? data.name : new URL(url).host,
+      description: typeof data.description === 'string' ? data.description : '',
+      icon: typeof data.site_icon_url === 'string' ? data.site_icon_url : '',
+      hasFluxApp: data.namespaces.includes('flxapp/v1'),
+      hasYtApp: data.namespaces.includes('flxapp/v1'),
+      appPasswordsUrl: typeof authorization === 'string' ? authorization : null,
+      namespaces: data.namespaces,
+    };
   }
-  if (!res.ok) throw new DiscoveryError(res.status === 404 ? 'not_wordpress' : 'unreachable');
-  let j: { name?: string; description?: string; home?: string; url?: string; namespaces?: string[]; site_icon_url?: string; authentication?: { 'application-passwords'?: { endpoints?: { authorization?: string } } } };
-  try {
-    j = await res.json();
-  } catch {
-    throw new DiscoveryError('not_wordpress');
-  }
-  if (!Array.isArray(j.namespaces)) throw new DiscoveryError('not_wordpress');
-  return {
-    url: trimEnd(j.url || url),
-    name: j.name || new URL(url).host,
-    description: j.description || '',
-    icon: j.site_icon_url || '',
-    hasFluxApp: j.namespaces.includes('flxapp/v1'),
-    hasYtApp: j.namespaces.includes('flxapp/v1'),
-    appPasswordsUrl: j.authentication?.['application-passwords']?.endpoints?.authorization ?? null,
-    namespaces: j.namespaces,
-  };
+  throw unreachable ? new DiscoveryError('unreachable') : last;
 }
