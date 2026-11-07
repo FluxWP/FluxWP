@@ -4,7 +4,7 @@
 Glyphs come from Lucide (ISC, lucide-static). Run from the repo root:
   cd tools/icons && bun install && cd ../.. && python3 tools/icons/build.py
 Writes every package's assets/icon.svg (+ icon-pastel.svg), docs/logo.svg,
-flx-setup/assets/icons/{,pastel/}<slug>.svg and flx-admin/assets/logos/{,pastel/}<slug>.svg.
+flx-admin/assets/logos/{,pastel/}<slug>.svg. FluxWP Panel reads icons from the update server.
 Pass --extras <wp-extras checkout> to also write the wp-extras packages, --skip a,b to leave
 those packages' own copies alone.
 """
@@ -123,8 +123,8 @@ def put(path, data):
 
 for slug, nm, g, gl in PKGS:
     a, c = style_a(slug, g, gl), style_c(slug, g, gl)
-    # central copies: updater (package list, Updates screen) and admin (menu, FluxApp)
-    for base in ('plugins/flx-setup/assets/icons', 'plugins/flx-admin/assets/logos'):
+    # central copy for Flux Admin (menu, FluxApp). FluxWP Panel gets icons from the update server.
+    for base in ('plugins/flx-admin/assets/logos',):
         put(os.path.join(ROOT, base, slug + '.svg'), a)
         put(os.path.join(ROOT, base, 'pastel', slug + '.svg'), c)
     home = ''
@@ -139,6 +139,9 @@ for slug, nm, g, gl in PKGS:
         continue
     if slug != 'fluxwp':  # the theme's README uses the FluxWP brand mark
         put(os.path.join(home, 'docs', 'logo.svg'), a)
+    else:  # the update server reads the theme's package icon from here
+        put(os.path.join(home, 'docs', 'icon.svg'), a)
+        put(os.path.join(home, 'docs', 'icon-pastel.svg'), c)
     if os.path.isdir(os.path.join(home, 'assets')) and not slug.startswith('flx-preset-') and slug not in ('fluxwp', 'flx-menu-theme'):
         put(os.path.join(home, 'assets', 'icon.svg'), a)
         put(os.path.join(home, 'assets', 'icon-pastel.svg'), c)

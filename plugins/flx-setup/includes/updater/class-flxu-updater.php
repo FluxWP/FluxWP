@@ -221,10 +221,10 @@ final class FLXU_Updater {
 		return $out;
 	}
 
-	/** Sunucunun ikon adresleri (svg, pastel); yalnız o sunucunun kendi host'unda olanlar. */
-	private static function icon_list( $v, string $host ): array {
+	/** Sunucunun medya adresleri (ikon: svg, pastel; önizleme: tr, en); yalnız o sunucunun kendi host'unda olanlar. */
+	private static function media_list( $v, string $host, array $keys ): array {
 		$out = array();
-		foreach ( array( 'svg', 'pastel' ) as $k ) {
+		foreach ( $keys as $k ) {
 			$u = is_array( $v ) ? (string) ( $v[ $k ] ?? '' ) : '';
 			if ( '' !== $u && strtolower( (string) wp_parse_url( $u, PHP_URL_HOST ) ) === $host ) {
 				$out[ $k ] = esc_url_raw( $u );
@@ -366,7 +366,8 @@ final class FLXU_Updater {
 				'order'            => isset( $p['order'] ) && is_numeric( $p['order'] ) ? (int) $p['order'] : null,
 				'rec'              => ! empty( $p['rec'] ),
 				'desc'             => self::texts( $p['desc'] ?? array() ),
-				'icons'            => self::icon_list( $p['icons'] ?? array(), $host ),
+				'icons'            => self::media_list( $p['icons'] ?? array(), $host, array( 'svg', 'pastel' ) ),
+				'shots'            => self::media_list( $p['shots'] ?? array(), $host, array( 'tr', 'en' ) ),
 			);
 		}
 		if ( $is_main ) {
@@ -643,7 +644,8 @@ final class FLXU_Updater {
 	}
 
 	/**
-	 * Paketin logosu (assets/icons/<slug>.svg, pastel stilde assets/icons/pastel/<slug>.svg). Güncellemeler ekranında görünür.
+	 * Paketin logosu: güncelleme sunucusunun verdiği (paketin kendi assets/icon.svg'si, sürüm başına önbellekli),
+	 * sunucu vermediyse kurulu paketin kendi dosyası. FluxWP Panel hiçbir paketin logosunu kendi içinde taşımaz.
 	 * Başka bir paket kendi logosunu `flxu_package_icons` filtresiyle verebilir.
 	 */
 	public static function icons( string $slug ): array {
@@ -651,23 +653,23 @@ final class FLXU_Updater {
 		$slug   = sanitize_key( $slug );
 		$url    = '';
 		$pastel = 'pastel' === self::logo_style();
-		// Önce güncelleme sunucusunun verdiği ikon (paketin kendi zip'indeki assets/icon.svg).
 		$cat    = '' !== $slug ? get_site_option( 'flxu_catalog_last', array() ) : array();
 		$remote = is_array( $cat ) ? (array) ( $cat[ $slug ]['icons'] ?? array() ) : array();
 		if ( $pastel && ! empty( $remote['pastel'] ) ) {
 			$url = (string) $remote['pastel'];
 		} elseif ( ! empty( $remote['svg'] ) ) {
 			$url = (string) $remote['svg'];
-		} elseif ( '' !== $slug && $pastel && is_readable( FLXU_DIR . 'assets/icons/pastel/' . $slug . '.svg' ) ) {
-			$url = plugins_url( 'assets/icons/pastel/' . $slug . '.svg', FLXU_FILE ) . '?ver=' . FLXU_VERSION;
-		} elseif ( '' !== $slug && is_readable( FLXU_DIR . 'assets/icons/' . $slug . '.svg' ) ) {
-			$url = plugins_url( 'assets/icons/' . $slug . '.svg', FLXU_FILE ) . '?ver=' . FLXU_VERSION;
 		} elseif ( '' !== $slug ) {
-			// Burada logosu olmayan yeni paket: kurulu eklentinin kendi menü logosu (assets/icon.svg / icon-pastel.svg).
-			foreach ( $pastel ? array( 'icon-pastel.svg', 'icon.svg' ) : array( 'icon.svg' ) as $f ) {
-				if ( is_readable( WP_PLUGIN_DIR . '/' . $slug . '/assets/' . $f ) ) {
-					$url = plugins_url( $slug . '/assets/' . $f ) . '?ver=' . filemtime( WP_PLUGIN_DIR . '/' . $slug . '/assets/' . $f );
-					break;
+			// Sunucu vermediyse kurulu eklentinin ya da temanın kendi logosu (assets/icon.svg / icon-pastel.svg).
+			$dirs = array(
+				array( WP_PLUGIN_DIR . '/' . $slug, plugins_url( $slug ) ),
+				array( get_theme_root() . '/' . $slug, get_theme_root_uri() . '/' . $slug ),
+			);
+			foreach ( $dirs as $d ) {
+				foreach ( $pastel ? array( 'icon-pastel.svg', 'icon.svg' ) : array( 'icon.svg' ) as $f ) {
+					if ( '' === $url && is_readable( $d[0] . '/assets/' . $f ) ) {
+						$url = $d[1] . '/assets/' . $f . '?ver=' . filemtime( $d[0] . '/assets/' . $f );
+					}
 				}
 			}
 		}

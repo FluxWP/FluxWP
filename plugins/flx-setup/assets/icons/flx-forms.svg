@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="flx-forms"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#38BDF8"/><stop offset=".5" stop-color="#0284C7"/><stop offset="1" stop-color="#0C4A6E"/></linearGradient><radialGradient id="h" cx=".2" cy=".1" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs><path d="M128 0C35 0 0 35 0 128s35 128 128 128 128-35 128-128S221 0 128 0Z" fill="url(#g)"/><path d="M128 0C35 0 0 35 0 128s35 128 128 128 128-35 128-128S221 0 128 0Z" fill="url(#h)"/><g transform="translate(64.0 64.0) scale(5.333)" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
-  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-  <path d="M12 11h4" />
-  <path d="M12 16h4" />
-  <path d="M8 11h.01" />
-  <path d="M8 16h.01" /></g></svg>

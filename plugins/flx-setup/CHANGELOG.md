@@ -1,9 +1,10 @@
 # Değişiklikler
 
 ## 1.1.5
-- Kurulum sihirbazının eklenti ekranları güncelleme sunucusundan gelir (updater 1.11.0+): kategoriler ve sırası (TR/EN ad ve açıklama), her paketin kategorisi, sırası, "önerilen" işareti ve kısa açıklaması. Sunucu bu bilgiyi vermezse yerleşik liste kullanılır.
+- Kurulum sihirbazının eklenti ekranları güncelleme sunucusundan gelir (updater 1.13.0+): kategoriler ve sırası (TR/EN ad ve açıklama), her paketin kategorisi, sırası, "önerilen" işareti ve kısa açıklaması. Sunucu kategori vermezse tek bir "Eklentiler" ekranı gösterilir.
 - Sunucunun private dediği paketler sihirbazda hiç görünmez (QR Menü, TV Remote, Staff gibi adlar artık elle yazılmaz).
-- Paket ikonları da sunucudan (paketin kendi zip'indeki assets/icon.svg, icon-pastel.svg); sunucu vermezse eklentideki yerleşik ikon.
+- Paket ikonları ve sihirbaz önizlemeleri FluxWP Panel'e gömülü değil: ikon paketin kendi zip'inden (assets/icon.svg, icon-pastel.svg), önizleme paketin deposundaki docs/wizard-tr.jpg / wizard-en.jpg dosyasından; sunucu bunları sürüm başına önbelleğe alıp imzalı adresten verir. Sunucu vermezse kurulu paketin kendi ikonu, o da yoksa FluxWP Panel logosu. Açılmayan önizleme yerine ikonlu yer tutucu çıkar.
+- Yerleşik ikonlar (assets/icons), önizlemeler (assets/onboarding/thumbs), tanıtım metinleri ve `flxk_onboarding_intro` filtresi kaldırıldı. Eklenti 1.8 MB küçüldü.
 
 ## 1.1.4
 - Kurulum sihirbazından yalnız özel depoda dağıtılan bir paketin tanıtım metni, ikonu ve ekran görüntüsü kaldırıldı. Böyle paketler katalogda varsa adlarıyla ve kendi ikonlarıyla listelenmeye devam eder.

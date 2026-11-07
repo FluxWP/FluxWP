@@ -19,7 +19,8 @@ mkdir -p "$out" "$stage/$SLUG"
 
 # Hariç tutulanlar: varsayılanlar + paketin .distignore dosyası.
 excludes=(--exclude='.git*' --exclude='.github' --exclude='.distignore' --exclude='.DS_Store'
-          --exclude='node_modules' --exclude='tests' --exclude='phpunit.xml*' --exclude='CHANGELOG.md')
+          --exclude='node_modules' --exclude='tests' --exclude='phpunit.xml*' --exclude='CHANGELOG.md'
+          --exclude='docs/wizard*.jpg')
 if [ -f "$root/$dir/.distignore" ]; then
   while IFS= read -r line || [ -n "$line" ]; do
     line="${line%%#*}"; line="$(echo "$line" | xargs)"

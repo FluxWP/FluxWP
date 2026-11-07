@@ -69,7 +69,7 @@ final class FLXU_Admin {
 
 	/** WordPress menü SVG'lerini tek renge boyar; renkli logo CSS ile. */
 	public function menu_icon_css(): void {
-		$url = plugins_url( 'assets/icons/flx-setup.svg', FLXU_FILE ) . '?ver=' . FLXU_VERSION;
+		$url = plugins_url( 'assets/icon.svg', FLXU_FILE ) . '?ver=' . FLXU_VERSION;
 		echo '<style>#toplevel_page_' . esc_attr( self::SLUG ) . ' .wp-menu-image{background:url(' . esc_url( $url ) . ') center/20px 20px no-repeat}</style>';
 	}
 

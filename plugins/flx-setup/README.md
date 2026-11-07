@@ -112,7 +112,7 @@ WordPress sites (FluxWP Panel)
 - The update server is a separate repository: [FluxWP/updater](https://github.com/FluxWP/updater).
 - A new release is published by bumping a package's `Version:` header on `main`; see the repository [README](../../README.md).
 - Package logos: filter `flxu_package_icons`, or ship `assets/icon.svg` in the package.
-- Wizard filters: `flxk_onboarding_intro`, `flxk_onboarding_core`, `flxk_onboarding_presets`, `flxk_onboarding_cap`.
+- Wizard filters: `flxk_onboarding_core`, `flxk_onboarding_presets`, `flxk_onboarding_cap`.
 - Preset format: [docs/flx-setup/FORMAT.md](../../docs/flx-setup/FORMAT.md) · For packages: [API.md](API.md).
 - Upgrading from Flux Updater: the old plugin is deactivated on activation; settings (`flxu_*`) are kept.
 

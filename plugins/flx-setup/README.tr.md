@@ -112,7 +112,7 @@ WordPress siteleri (FluxWP Panel)
 - Güncelleme sunucusu ayrı bir depoda: [FluxWP/updater](https://github.com/FluxWP/updater).
 - Yeni sürüm, paketin `Version:` başlığı artırılıp `main`'e gönderilince yayınlanır; bkz. deponun [README](../../README.md) dosyası.
 - Paket logoları: `flxu_package_icons` filtresi ya da paketteki `assets/icon.svg`.
-- Sihirbaz filtreleri: `flxk_onboarding_intro`, `flxk_onboarding_core`, `flxk_onboarding_presets`, `flxk_onboarding_cap`.
+- Sihirbaz filtreleri: `flxk_onboarding_core`, `flxk_onboarding_presets`, `flxk_onboarding_cap`.
 - Ön ayar biçimi: [docs/flx-setup/FORMAT.md](../../docs/flx-setup/FORMAT.md) · Paketler için: [API.md](API.md).
 - Flux Updater'dan geçiş: etkinleştirince eski eklenti kapatılır; ayarlar (`flxu_*`) korunur.
 

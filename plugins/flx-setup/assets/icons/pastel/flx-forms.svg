@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="flx-forms"><path d="M128 0C35 0 0 35 0 128s35 128 128 128 128-35 128-128S221 0 128 0Z" fill="#F0F9FF"/><path d="M128 0C35 0 0 35 0 128s35 128 128 128 128-35 128-128S221 0 128 0Z" fill="none" stroke="#38BDF8" stroke-opacity=".55" stroke-width="5"/><g transform="translate(64.0 64.0) scale(5.333)" fill="none" stroke="#0369A1" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
-  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-  <path d="M12 11h4" />
-  <path d="M12 16h4" />
-  <path d="M8 11h.01" />
-  <path d="M8 16h.01" /></g></svg>
