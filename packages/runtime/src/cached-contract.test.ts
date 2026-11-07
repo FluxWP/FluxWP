@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { createClient, memoryStore, setPlatform } from '@fluxwp/core';
-import { DEFAULT_CONFIG } from '@fluxwp/manifest';
+import { DEFAULT_CONFIG, parseManifestBundle } from '@fluxwp/manifest';
 import config from '@fluxwp/manifest/fixtures/config.json';
 import manifest from '@fluxwp/manifest/fixtures/manifest.json';
 import { loadConfig, loadContractValue, loadManifests, rememberedEtag, rememberEtag } from './api';
@@ -34,7 +34,8 @@ describe('persisted contract validators after cache reset', () => {
     fetchMock.mockResolvedValueOnce(notModified()).mockResolvedValueOnce(json(manifest));
     const client = api();
     const got = await loadContractValue(etag => loadManifests(client, undefined, etag), '"same"', () => undefined);
-    expect(got.value.modules.ai?.screens.chat?.type).toBe('native');
+    expect(Object.keys(manifest.modules).length).toBeGreaterThan(0);
+    expect(got.value.modules).toMatchObject(parseManifestBundle(manifest).modules);
     expect(got.value.modules.core).toBeDefined();
     expect(fetchMock).toHaveBeenCalledTimes(2);
   });
