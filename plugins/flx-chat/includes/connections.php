@@ -60,6 +60,17 @@ function flxc_evo_compatible_type( $type ) {
 	return in_array( (string) $type, (array) apply_filters( 'flxc_evo_compatible_types', array( 'evolution', 'flxwpapi', 'flx-wpapi' ) ), true );
 }
 
+/**
+ * 1.37.0: Sanal kanal mı (ör. Flux AI Chatbot'un site sohbeti, `flx-web`). Bu bağlantılarda Evolution'a istek gitmez;
+ * flxc_evo() isteği `flxc_virtual_request` filtresine verir, kanalı sağlayan eklenti cevaplar.
+ *
+ * @param string|array $conn Bağlantı id'si ya da bağlantı.
+ */
+function flxc_is_virtual_conn( $conn ) {
+	$id = is_array( $conn ) ? (string) ( $conn['id'] ?? '' ) : (string) $conn;
+	return '' !== $id && (bool) apply_filters( 'flxc_virtual_conn', false, $id );
+}
+
 /** Flux Mail etkin mi (WhatsApp/SMS bağlantıları orada yönetilir). */
 function flxc_flxi_on() {
 	return function_exists( 'flxi_get_channel_connection' ) && function_exists( 'flxi_connection_choices' );

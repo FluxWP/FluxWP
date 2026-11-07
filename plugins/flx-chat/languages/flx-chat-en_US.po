@@ -4784,3 +4784,9 @@ msgstr "WhatsApp hides this person's number, so the assistant cannot recognise s
 
 msgid "Asistan personeli Flux Roles profilindeki numaradan tanır. Numara eşleşmiyorsa buradan bağlayabilirsiniz; numarası bilinen sohbette numara önceliklidir."
 msgstr "The assistant recognises staff by the number in their Flux Roles profile. If the number does not match, you can link them here; in a chat with a known number the number comes first."
+
+msgid "Bu kanal şu an kullanılamıyor."
+msgstr "This channel is not available right now."
+
+msgid "Site sohbeti"
+msgstr "Site chat"

@@ -4782,3 +4782,9 @@ msgstr ""
 
 msgid "Asistan personeli Flux Roles profilindeki numaradan tanır. Numara eşleşmiyorsa buradan bağlayabilirsiniz; numarası bilinen sohbette numara önceliklidir."
 msgstr ""
+
+msgid "Bu kanal şu an kullanılamıyor."
+msgstr ""
+
+msgid "Site sohbeti"
+msgstr ""

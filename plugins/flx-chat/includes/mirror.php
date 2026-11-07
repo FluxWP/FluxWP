@@ -20,7 +20,7 @@ function flxc_mirror_group() {
  * ilk Evolution / Flux WPAPI hattı kullanılır. Hiç yoksa ''.
  */
 function flxc_mirror_conn( $conn ) {
-	if ( '' !== (string) $conn && ! flxc_conn_wacloud( $conn ) ) {
+	if ( '' !== (string) $conn && ! flxc_conn_wacloud( $conn ) && ! flxc_is_virtual_conn( $conn ) ) {
 		return (string) $conn;
 	}
 	foreach ( flxc_connections() as $c ) {
