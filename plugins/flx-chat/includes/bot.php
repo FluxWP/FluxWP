@@ -1020,7 +1020,18 @@ function flxc_bot_system_prompt( $chat, array $state, $template = null ) {
 function flxc_bot_messages( $chat ) {
 	$out  = array( array( 'role' => 'system', 'content' => flxc_bot_system_prompt( $chat, flxc_bot_state( $chat ) ) ) );
 	$prev = null;
+	$note = '';
 	foreach ( flxc_recent_messages( $chat['id'], max( 1, (int) flxc_setting( 'bot_context_hours' ) ), 12, 120 ) as $m ) {
+		// 1.36.1: a manager linked / unlinked the chat to a staff user: the model sees it at that point of the history.
+		if ( 'system' === $m['direction'] ) {
+			$sm = flxc_decode( $m['meta'] );
+			if ( isset( $sm['staff_link'] ) ) {
+				$note = (int) $sm['staff_link']
+					? '[Sistem notu: yönetici bu sohbeti personel olarak bağladı (' . flxc_user_name( (int) $sm['staff_link'] ) . '). Bundan önceki "personel olarak tanınmıyor" cevapları artık geçersiz.]'
+					: '[Sistem notu: yönetici bu sohbetin personel bağlantısını kaldırdı.]';
+			}
+			continue;
+		}
 		if ( ! in_array( $m['direction'], array( 'in', 'out' ), true ) || 'deleted' === $m['type'] ) {
 			continue;
 		}
@@ -1045,6 +1056,10 @@ function flxc_bot_messages( $chat ) {
 		if ( 'out' === $m['direction'] && 'bot' !== $m['source'] && (int) $m['user_id'] ) {
 			$text = '(' . __( 'temsilci', 'flx-chat' ) . ') ' . $text;
 		}
+		if ( '' !== $note && 'user' === $role ) {
+			$text = $note . "\n" . $text;
+			$note = '';
+		}
 		if ( $prev === $role ) {
 			$out[ count( $out ) - 1 ]['content'] .= "\n\n" . $text;
 		} else {
@@ -1053,7 +1068,9 @@ function flxc_bot_messages( $chat ) {
 		$prev = $role;
 	}
 	if ( 'user' !== $prev ) {
-		$out[] = array( 'role' => 'user', 'content' => '…' );
+		$out[] = array( 'role' => 'user', 'content' => '' !== $note ? $note : '…' );
+	} elseif ( '' !== $note ) {
+		$out[ count( $out ) - 1 ]['content'] .= "\n\n" . $note;
 	}
 	return $out;
 }

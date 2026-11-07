@@ -17,10 +17,10 @@ const people: [string, string, string, string, number, number][] = [
   ['Nazlı Erdem', 'nazli@example.org', '', 'donor', 150, 8],
 ];
 
-const roleLabel: Record<string, string> = { donor: 'Bağışçı', volunteer: 'Gönüllü', customer: 'Müşteri' };
+const roleLabel: Record<string, string> = { donor: 'Kişi', volunteer: 'Editör', customer: 'Müşteri' };
 const segments = [
-  { id: 1, key: 'loyal', name: 'Sadık bağışçılar', summary: '3+ bağış, son 6 ay', count: 4 },
-  { id: 2, key: 'new', name: 'Yeni gelenler', summary: 'Son 30 günde eklendi', count: 3 },
+  { id: 1, key: 'loyal', name: 'Düzenli müşteriler', summary: 'Son altı ayda üç veya daha fazla işlem', count: 4 },
+  { id: 2, key: 'new', name: 'Yeni kişiler', summary: 'Son 30 günde eklendi', count: 3 },
   { id: 3, key: 'risk', name: 'Kayıp riski', summary: '90 gündür etkileşim yok', count: 2 },
 ];
 
@@ -29,15 +29,15 @@ export const contacts = people.map(([name, email, phone, role, ltv, churn], i) =
   name,
   email,
   phone,
-  company: i % 4 === 0 ? 'Örnek Vakfı' : '',
+  company: i % 4 === 0 ? 'Örnek Site' : '',
   city: ['İstanbul', 'Ankara', 'İzmir', 'Bursa'][i % 4],
   ltv,
   currency: 'TRY',
   churn,
   roles: [{ key: role, label: roleLabel[role] }],
-  segment_label: ltv > 2000 ? 'Sadık bağışçılar' : i % 3 === 0 ? 'Yeni gelenler' : '',
+  segment_label: ltv > 2000 ? 'Düzenli müşteriler' : i % 3 === 0 ? 'Yeni kişiler' : '',
   source: ['Bağış', 'Form', 'Sipariş'][i % 3],
-  note: i === 0 ? 'Annesinin adına bağış yapıyor.' : '',
+  note: i === 0 ? 'Yeni içeriklerle ilgili bilgi istiyor.' : '',
   last_activity_at: ago(30 + i * 400),
   consent: { email: !!email, sms: i % 2 === 0, whatsapp: !!phone, ads: false },
   stats: { donations: Math.round(ltv / 150), orders: i % 3 },
@@ -62,14 +62,14 @@ export const crm = {
 };
 
 const titles: [string, string][] = [
-  ['Fidan dikim şenliği 23 Kasım’da', 'publish'],
-  ['Gönüllü buluşması: kış programı', 'publish'],
-  ['Hatıra ormanı için yeni alan', 'draft'],
-  ['Okul kampanyasında 5.000 fidan', 'publish'],
-  ['Sertifika tasarımları yenilendi', 'pending'],
-  ['Yıl sonu faaliyet raporu', 'draft'],
+  ['Yeni ürün koleksiyonu yayında', 'publish'],
+  ['Ekibimizle tanışın', 'publish'],
+  ['Kasım içerik planı', 'draft'],
+  ['Web siteniz için beş içerik fikri', 'publish'],
+  ['Ürün görsellerimiz yenilendi', 'pending'],
+  ['Yıl sonu değerlendirmesi', 'draft'],
   ['Basında biz: Ekim 2026', 'publish'],
-  ['Bağışçılarımıza teşekkür mektubu', 'future'],
+  ['Müşterilerimize teşekkürler', 'future'],
 ];
 
 export const posts = titles.map(([t, status], i) => ({
@@ -79,10 +79,10 @@ export const posts = titles.map(([t, status], i) => ({
   link: `https://demo.fluxapp.local/?p=${500 + i}`,
   author: 1,
   title: { raw: t, rendered: t },
-  excerpt: { raw: '', rendered: i === 0 ? '<p>Bu yıl şenlikte 2.000 fidan toprakla buluşacak. Gönüllü kaydı açıldı.</p>' : '' },
+  excerpt: { raw: '', rendered: i === 0 ? '<p>Yeni koleksiyonumuzu keşfedin. Ürünleri ve ayrıntıları bu yazıda bulabilirsiniz.</p>' : '' },
 }));
 
-export const pages = ['Hakkımızda', 'Bağış yap', 'İletişim', 'KVKK aydınlatma metni'].map((t, i) => ({
+export const pages = ['Hakkımızda', 'Hizmetler', 'İletişim', 'KVKK aydınlatma metni'].map((t, i) => ({
   id: 700 + i,
   date: ago(60 * 24 * 40 * (i + 1)),
   status: 'publish',

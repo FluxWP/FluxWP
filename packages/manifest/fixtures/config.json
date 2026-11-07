@@ -2,7 +2,7 @@
   "schema": "flx-app-config/1",
   "hash": "demo-1",
   "brand": {
-    "name": "Demo Dernek",
+    "name": "Demo Site",
     "short_name": "Demo"
   },
   "theme": {

@@ -31,7 +31,7 @@
   },
   "addSite": {
     "title": "Connect your site",
-    "hint": "Enter your WordPress site address. You can add more than one site.",
+    "hint": "Enter your WordPress site address.",
     "continue": "Continue",
     "browserHint": "You sign in inside the app's secure browser. Your password never reaches the app.",
     "notAllowed": "This app cannot connect to that site.",
@@ -115,7 +115,13 @@
       "back": "Back to chats",
       "botOn": "Assistant on",
       "botOff": "Assistant off",
-      "filters": { "all": "Open", "unread": "Unread", "mine": "Mine", "unassigned": "Unassigned", "closed": "Closed" },
+      "filters": {
+        "all": "Open",
+        "unread": "Unread",
+        "mine": "Mine",
+        "unassigned": "Unassigned",
+        "closed": "Closed"
+      },
       "offline": "You are offline",
       "auth": "Session expired"
     },
@@ -239,8 +245,9 @@
   "privacy": {
     "connection": "Sign-in and site actions go to the WordPress site you choose. Your site operator has its own privacy policy.",
     "share": "Share aggregate app usage (optional)",
-    "usage": "Off by default. With your choice and the site administrator’s permission, the site counts daily active accounts by iOS/Android. Only totals for groups of at least five are shared with FluxWP, with the site’s configured country. No names, content or GPS location are sent. Turn this off here or in Settings at any time.",
+    "usage": "Off by default. With your choice and the site administrator’s permission, the site counts daily active accounts by iOS/Android. Only totals for groups of at least five are shared with FluxWP, with the site’s configured country. No names, content or GPS location are sent. You can change this choice at any time.",
     "policy": "Privacy",
-    "terms": "Terms of use"
+    "terms": "Terms of use",
+    "continueTerms": "By continuing, you agree to the <terms>Terms of Use</terms>. <privacy>Privacy Policy</privacy>."
   }
 }

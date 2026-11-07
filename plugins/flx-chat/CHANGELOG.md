@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.36.1
+- Personel bağlama: sohbet personele bağlansa da asistan önceki "personel olarak tanınmıyor" cevaplarına bakıp yine reddediyor, ekibe devrediyordu. Bağlama anı artık konuşma geçmişinde asistana not olarak görünür; personel talimatı önceki ret cevaplarının geçersiz olduğunu, yetki sorgulayıp devretmemesini ve yarım kalan isteğe (ör. başkası adına bağış) devam etmesini söyler.
+- Sohbet ekranı: yapışkan tarih etiketi ("Bugün") altındaki balonun başlığını örtüyordu. Etiket artık yalnız kaydırırken görünür (WhatsApp gibi), durunca kaybolur.
+
 ## 1.36.0
 - Personel tanıma: WhatsApp numarayı gizlediğinde (gizli numara, @lid) asistan personeli numaradan tanıyamıyordu; rol güncellense de "bu numara personel olarak tanınmıyor" deyip duruyordu. Kişi bilgisi panelinde yeni "Personel" alanı: yönetici sohbeti bir personele bağlar, asistan personel araçlarını (başkası adına bağış, bağışçılarım, rapor) açar. Numarası bilinen sohbette numara önceliklidir. Bağlama/kaldırma sohbete sistem satırı olarak yazılır.
 - Gizli numaralı sohbette asistan sebebi söyler (WhatsApp numarayı gizliyor), "tekrar dene" denince aynı cümleyi tekrarlamaz; kişi mesajında numara yazarsa hemen o numaraya doğrulama kodu gönderir.

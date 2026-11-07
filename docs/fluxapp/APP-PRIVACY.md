@@ -4,7 +4,7 @@ Last updated: 6 November 2026. Mobile usage reporting below requires a mobile bu
 
 FluxWP is maintained by Ahmet Yılmaz. This notice covers the FluxWP iOS, Android and desktop companion apps. It does not replace the privacy policies of the WordPress sites you choose to connect.
 
-FluxWP-operated website, update and optional telemetry services are provided by **HEYSAN MÜHENDİSLİK SANAYİ VE TİCARET ANONİM ŞİRKETİ**, Yenigün Mahallesi, Kurbanlar Sokak No: 21, İç Kapı No: 101, Adapazarı / Sakarya, Türkiye. Contact: [hello@fluxwp.com](mailto:hello@fluxwp.com). The sites you connect remain responsible for the accounts and content they host.
+FluxWP-operated website, update and optional telemetry services are provided by **HEYSAN MÜHENDİSLİK SANAYİ VE TİCARET ANONİM ŞİRKETİ**, Yenigün Mahallesi, Kurbanlar Sokak No: 21, İç Kapı No: 101, Adapazarı / Sakarya, Türkiye. Contact: [info@fluxwp.com](mailto:info@fluxwp.com). The sites you connect remain responsible for the accounts and content they host.
 
 ## Connecting a site
 
@@ -28,7 +28,7 @@ The app code does not integrate an advertising SDK or cross-app advertising iden
 
 ### Optional aggregate mobile usage
 
-Sharing is off by default. You can enable or disable **Share aggregate app usage** before sign-in or in Settings. Connecting a site, signing in, using features and pricing do not depend on this choice. Your choice is stored only on your device and is sent as a yes/no header to the WordPress site you connect. The mobile app does not send an analytics request directly to FluxWP.
+Sharing is off by default. You can enable or disable **Share aggregate app usage** in Settings. Connecting a site, signing in, using features and pricing do not depend on this choice. Your choice is stored only on your device and is sent as a yes/no header to the WordPress site you connect. The mobile app does not send an analytics request directly to FluxWP.
 
 Counting requires both your choice and a separate permission from the site administrator, in addition to the site's general FluxWP telemetry permission. A previous general telemetry opt-in does not enable the new mobile-usage scope. Only successful authenticated iOS/Android app requests contribute. On the connected site, a keyed digest of the account, UTC day and platform avoids counting the same account repeatedly that day. These temporary digests have a one-day expiry and are removed by scheduled cleanup. Daily totals are scheduled for deletion after 30 days; cleanup may be delayed when a site's WordPress scheduler is not running.
 
@@ -50,7 +50,7 @@ The built-in demo uses fictitious sample data and does not require a real WordPr
 
 ## Contact
 
-For questions about the FluxWP app, use [the project's support page](https://github.com/FluxWP/FluxWP/issues). Do not include passwords, access tokens or private site data in a public issue.
+For questions about the FluxWP app, use [FluxWP support](https://fluxwp.com/?r=appstore). Do not include passwords, access tokens or private site data in a public issue.
 
 ---
 
@@ -66,7 +66,7 @@ Hesapları uygulamadan ayırabilir, kimlik bilgilerini WordPress sitenizden ipta
 
 ### İsteğe bağlı mobil kullanım toplamları
 
-Paylaşım varsayılan kapalıdır; girişten önce veya Ayarlar'dan açıp kapatabilirsiniz. Giriş, özellikler ve ücretler bu tercihe bağlı değildir. Tercih cihazda tutulur ve yalnız bağlandığınız siteye evet/hayır başlığı olarak iletilir; mobil uygulama FluxWP'ye doğrudan analiz isteği göndermez.
+Paylaşım varsayılan kapalıdır; Ayarlar'dan açıp kapatabilirsiniz. Giriş, özellikler ve ücretler bu tercihe bağlı değildir. Tercih cihazda tutulur ve yalnız bağlandığınız siteye evet/hayır başlığı olarak iletilir; mobil uygulama FluxWP'ye doğrudan analiz isteği göndermez.
 
 Sayım için sizin izniniz, site yöneticisinin yeni mobil kullanım izni ve sitenin genel telemetri izni birlikte gerekir. Eski genel izin, yeni mobil kullanım izni yerine geçmez. Yalnız başarılı, oturum açılmış iOS/Android istekleri sayılır. Aynı hesabı aynı UTC günü ve platformda tekrar saymamak için sitenizde anahtarlı, günlük bir özet tutulur. Bu geçici özetlerin süresi bir gündür; zamanlanmış temizlikle silinir. Yerel günlük toplamlar 30 gün sonra silinmek üzere temizlenir. Sitenin WordPress zamanlayıcısı çalışmıyorsa silme gecikebilir.
 

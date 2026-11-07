@@ -2,6 +2,7 @@
 // falling back to @fluxwp/core's demo routes (me, dashboard, tasks, chat). No server needed.
 import { demoFetch } from '@fluxwp/core/src/demo/fetch';
 import { DEMO_ORIGIN } from '@fluxwp/core/src/demo/origin';
+import { getDemoLocale, localizeDemo, localizedDemoResponse } from '@fluxwp/core/src/demo/locale';
 import bootstrap from '@fluxwp/manifest/fixtures/bootstrap.json';
 import config from '@fluxwp/manifest/fixtures/config.json';
 import manifest from '@fluxwp/manifest/fixtures/manifest.json';
@@ -32,7 +33,7 @@ const statusIn = (status: string, q: Q) => {
   return !want || want === 'all' || want.split(',').includes(status);
 };
 
-const ETAGS: Record<string, string> = { 'flxapp/v1/config': '"demo-config-native-admin"', 'flxapp/v1/manifest': '"demo-manifest-ai"' };
+const ETAGS: Record<string, string> = { 'flxapp/v1/config': 'demo-config-native-admin-032', 'flxapp/v1/manifest': 'demo-manifest-ai' };
 
 let prefs: Record<string, unknown> = {
   order: [], hidden: [], pinned: [], forceWeb: [], tabs: [], cardOrder: [], cardHidden: [],
@@ -109,6 +110,7 @@ const routes: [string, RegExp, Handler][] = [
 ];
 
 export const demoShellFetch: typeof fetch = async (input, init) => {
+  const language = getDemoLocale();
   const url = new URL(typeof input === 'string' ? input : input instanceof URL ? input.href : input.url);
   const path = url.pathname.replace(/^\/wp-json\//, '');
   const method = (init?.method ?? 'GET').toUpperCase();
@@ -125,11 +127,11 @@ export const demoShellFetch: typeof fetch = async (input, init) => {
     }
     await new Promise((r) => setTimeout(r, 150));
     const out = h(match, url.searchParams, body);
-    if (out instanceof Response) return out;
+    if (out instanceof Response) return localizedDemoResponse(out, language);
     if (out === null || out === undefined) return new Response(JSON.stringify({ code: 'rest_not_found', message: path }), { status: 404 });
-    const etag = ETAGS[path];
+    const etag = ETAGS[path] ? `"${language === 'en' ? 'en-' : ''}${ETAGS[path]}"` : undefined;
     if (etag && new Headers(init?.headers).get('if-none-match') === etag) return new Response(null, { status: 304, headers: { ETag: etag } });
-    return json(out, etag ? { ETag: etag } : {});
+    return json(localizeDemo(out, language), etag ? { ETag: etag } : {});
   }
   return demoFetch(input, init);
 };

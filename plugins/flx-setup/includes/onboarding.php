@@ -693,7 +693,7 @@ final class FLXK_Onboarding {
 			'cPrivL'     => __( 'Gizlilik Politikası', 'flx-setup' ),
 			'cKvkkL'     => __( 'KVKK Aydınlatma Metni', 'flx-setup' ),
 			'cUsage'     => __( 'Ürünü geliştirmemize yardımcı olun (kullanım verisi gönder)', 'flx-setup' ),
-			'cUsageS'    => __( 'İsteğe bağlı. Site adresi, WordPress ve PHP sürümü, dil ve saat dilimi ile FluxWP eklentilerinin anonim sürüm ve hata bilgisi. Kapalıyken de güncellemeler çalışır; FluxWP Panel › Ayarlar\'dan değiştirebilirsiniz.', 'flx-setup' ),
+			'cUsageS'    => __( 'İsteğe bağlı. WordPress ve PHP sürümü, dil ve saat dilimi ile FluxWP eklentilerinin anonim sürüm ve hata bilgisi. Site adresi ve ülke güncelleme için her zaman kaydedilir (IP saklanmaz). Kapalıyken de güncellemeler çalışır; FluxWP Panel › Ayarlar\'dan değiştirebilirsiniz.', 'flx-setup' ),
 			'cNeed'      => __( 'Devam etmek için şartları onaylayın.', 'flx-setup' ),
 			'skipSelf'   => __( 'Kendim kurarım', 'flx-setup' ),
 			'time'       => __( 'Yaklaşık 3 dakika', 'flx-setup' ),

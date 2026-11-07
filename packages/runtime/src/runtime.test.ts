@@ -220,7 +220,7 @@ describe('prefs, devices and etag', () => {
   it('keeps the cached config on 304 and reads wp paging headers', async () => {
     const first = await loadConfig(api);
     expect(first.notModified).toBe(false);
-    expect(first.etag).toBe('"demo-config-native-admin"');
+    expect(first.etag).toBe('"demo-config-native-admin-032"');
     expect(first.value?.schema).toBe('flx-app-config/1');
     const again = await loadConfig(api, undefined, first.etag);
     expect(again).toMatchObject({ notModified: true, value: null, etag: first.etag });

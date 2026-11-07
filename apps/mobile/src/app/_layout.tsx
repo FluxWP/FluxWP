@@ -1,7 +1,7 @@
 // Root: platform + brand + i18n, account list, navigation theme from the active Unistyles theme,
 // global overlays (toast/confirm/prompt/menu) and the account switcher.
 import '@/platform';
-import '@/i18n';
+import { refreshDemoAccounts } from '@/i18n';
 import { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -22,7 +22,7 @@ export default function RootLayout() {
   useAppFonts();
   const ready = useStore(accountsStore, (s) => s.ready);
   const { theme } = useUnistyles();
-  useEffect(() => void accountsStore.getState().load(), []);
+  useEffect(() => { void accountsStore.getState().load().then(refreshDemoAccounts); }, []);
   useEffect(() => {
     if (ready) void SplashScreen.hideAsync();
   }, [ready]);
