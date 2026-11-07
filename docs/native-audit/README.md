@@ -121,9 +121,11 @@ Screen types alone miss actions that open a panel page. These are also migration
 
 Some have bespoke registered screens; others have no app UI contract. Audit their full admin menu and REST capabilities before implementing.
 
+- flx-updater-manager
 - flx-migrate
 - flx-app
 - flx-forms
+- flx-chatbot
 - flx-tasks
 - flx-chat
 - flx-admin

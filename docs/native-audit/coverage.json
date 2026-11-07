@@ -7,9 +7,11 @@
   "versionGatedScreenCount": 81,
   "missingNativeComponents": [],
   "pluginsWithoutPublishedManifest": [
+    "flx-updater-manager",
     "flx-migrate",
     "flx-app",
     "flx-forms",
+    "flx-chatbot",
     "flx-tasks",
     "flx-chat",
     "flx-admin"
