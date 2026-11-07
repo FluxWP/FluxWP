@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.37.2
+- Mesajlar: hiç kanal kurulu değilken WhatsApp'a özel uyarı yerine genel not ("Henüz iletişim kanalı kurulmadı — iletişim ayarlarından bir kanal kurun"). WhatsApp koptuysa eski uyarı kalır.
+
 ## 1.37.1
 - Güvenlik (CodeQL): stüdyo sekmesi `switch` ile seçilir.
 
