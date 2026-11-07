@@ -235,6 +235,14 @@ if ( function_exists( 'flxb_currencies' ) && count( flxb_currencies() ) > 1 ) {
 
 Seçenek: `prices` `{ "EUR": 120, "USD": 130 }` (türün kendi para birimi `price`). Tür meta: `min_by_currency` `{ "EUR": 10 }`, `presets_by_currency` `{ "EUR": [10, 25, 50] }`. `flxb_type_public()` seçeneklerde `prices` döner. Sepet satırı `currency` taşır; serbest tutar ve form satırı yalnız kendi para biriminde ödenir.
 
+### Görünüm (2.16.0, seçenek `flxb_look`)
+- Alanlar: `form_style` classic|steps|panel|cards, `pay_style` theme|cards|list|tabs, `primary`, `accent` (hex, boş = tema), `radius` (0–28 px, boş = tema), `order` (options, who, cert, design, monthly), `type_label`, `option_label`, `share_phone` (0/1). Şemada (`flx_settings_schema`), ön ayar `settings.flxb_look` ile yazar.
+- `FLXB_WC_Look::get( $key )`, `FLXB_WC_Look::label( 'type_label'|'option_label' )`.
+- Filtreler: `flxb_look_label( $text, $key, $locale )`, `flxb_pay_icons( array( 'bank' => [gateway id], 'paypal' => [...], 'cash' => [...] ) )`, `flxb_icons( $paths )`.
+- Ödeme sayfasında body sınıfı `flxb-pay flxb-pay-<stil>`; CSS değişkenleri `--flxb-l-p`, `--flxb-l-a`, `--flxb-l-r`.
+- Form alanları: `owner_mode[<tür>]` self|other, `owners[<tür>][]`, `owner_phones[<tür>][]` (E.164). Satır meta `beneficiary_phones` (adlarla aynı sırada).
+- Tür meta: `subtitle` (80), `icon` (sheep, cow, camel, heart, gift; boş = otomatik).
+
 ### Sürüme duyarlı yerler (WooCommerce güncellemesinden sonra deneyin)
 
 Hepsi herkese açık API, ama blok tarafı WooCommerce'te en hızlı değişen kısım:

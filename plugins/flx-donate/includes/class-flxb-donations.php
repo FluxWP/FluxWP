@@ -52,7 +52,8 @@ final class FLXB_Donations {
 	 *                 donor (name/email/phone/consents), donor_id, subscription_id, type_id,
 	 *                 option_key, option_label, quantity, unit_price (snapshot of the type's price),
 	 *                 certificate_code, source, wc_order_id (WooCommerce order), created_at (UTC), meta (array),
-	 *                 lines (line items, see FLXB_Items::create()), beneficiaries (names, proxy types).
+	 *                 lines (line items, see FLXB_Items::create()), beneficiaries (names, proxy types),
+	 *                 beneficiary_phones (2.16.0: phone per name, same order).
 	 * @return int Donation id (0 on failure).
 	 */
 	public static function record( array $d ) {
@@ -150,7 +151,7 @@ final class FLXB_Donations {
 		FLXB_Donors::recalc( $donor_id );
 		$row = self::get( $id );
 		if ( $row ) {
-			FLXB_Items::create( $row, isset( $d['lines'] ) && is_array( $d['lines'] ) ? $d['lines'] : array(), isset( $d['beneficiaries'] ) && is_array( $d['beneficiaries'] ) ? $d['beneficiaries'] : array() );
+			FLXB_Items::create( $row, isset( $d['lines'] ) && is_array( $d['lines'] ) ? $d['lines'] : array(), isset( $d['beneficiaries'] ) && is_array( $d['beneficiaries'] ) ? $d['beneficiaries'] : array(), isset( $d['beneficiary_phones'] ) && is_array( $d['beneficiary_phones'] ) ? $d['beneficiary_phones'] : array() );
 		}
 		if ( $type_id ) {
 			FLXB_Types::flush_progress( $type_id );

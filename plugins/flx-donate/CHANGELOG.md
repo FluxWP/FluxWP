@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 2.16.0
+- Yeni Ayarlar › **Görünüm** sekmesi (seçenek `flxb_look`): bağış formu için 4 şablon (Klasik, A · Adım adım + özet, B · İki panel, C · Görselli kartlar), ödeme sayfasındaki ödeme seçenekleri için 4 şablon (Tema, A · Yan yana kartlar, B · Sade liste, C · Sekmeler), ana/vurgu rengi, köşe yuvarlaklığı, bölüm sırası, tür ve seçenek başlıkları. Ön ayarlar `flx_settings_schema` ile varsayılan yazar.
+- "Kimler adına" bölümü (vekâletli türler): Kendim için / Başkası adına sekmesi; başkası adına her hisse için ad + telefon kartı, ilk kartta "Hepsine uygula". Hisse telefonları kalemlere (`beneficiary_phone`) kaydedilir.
+- Telefon alanları ortak flx-brand telefon elementini kullanır (bayraklı ülke seçici, arama, numara doğrulama, E.164 kaydı).
+- Tür kartı alt başlığı ve ikon (koyun, sığır, deve, kalp, hediye), tür meta `subtitle` / `icon`, `i18n.<dil>.subtitle`.
+- Filtreler: `flxb_pay_icons` (ödeme yöntemi ikonları), `flxb_icons` (ek ikonlar), `flxb_look_label` (başlıkların ziyaretçi diline çevirisi).
+
 ## 2.15.2
 - Güvenlik (CodeQL): yönetim adresleri `encodeURI` ile temizlenir; dekont önizlemesi yalnız sitenin kendi adresinden, göreli yolla açılır.
 

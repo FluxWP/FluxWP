@@ -25,6 +25,17 @@
 		return parseFloat(s) || 0;
 	}
 
+	/* 2.16.0: the number of a phone field (E.164 from the shared FluxWP phone field, else as typed). */
+	function phoneOf(el) {
+		var w = el && el.closest ? el.closest('.flx-ph') : null, v = w ? w.querySelector('.flx-ph__val') : null;
+		return v ? v.value.trim() : (el ? String(el.value || '').trim() : '');
+	}
+	function phoneBad(scope) {
+		var bad = null;
+		(scope || document).querySelectorAll('.flx-ph.is-bad').forEach(function (w) { if (!bad && w.offsetParent !== null) bad = w.querySelector('.flx-ph__num'); });
+		return bad;
+	}
+
 	/* ---------- Donation form ---------- */
 	function setupForm(root) {
 		var data;
@@ -42,6 +53,65 @@
 		function panel() { return form.querySelector('[data-flxwb-panel="' + tid() + '"]'); }
 		function checked(scope, name) { var el = scope.querySelector('input[name="' + name + '"]:checked') || scope.querySelector('input[type="hidden"][name="' + name + '"]'); return el ? el.value : ''; }
 		function forOther() { return checked(form, 'for_other') === '1'; }
+		/* Units of the picked option (1 for options without a − / + quantity). */
+		function unitsOf(P, T, opt) {
+			if (!opt || opt === '__free' || !T.opts || !T.opts[opt] || !T.opts[opt].qty) return 1;
+			var rr = P.querySelector('input[name="o[' + tid() + ']"][value="' + opt + '"]');
+			var cc = rr && rr.closest('label') ? rr.closest('label').querySelector('[data-flxwb-count]') : null;
+			return Math.max(1, Math.min(+T.max || 1000, parseInt(cc && cc.value, 10) || 1));
+		}
+		/* 2.16.0: share cards (proxy types): one per unit, "Apply to all" on the first when there are more. */
+		function syncShares(T, opt) {
+			form.querySelectorAll('[data-flxwb-proxy]').forEach(function (fs) { fs.hidden = fs.getAttribute('data-flxwb-proxy') !== String(tid()); });
+			var fs = form.querySelector('[data-flxwb-proxy="' + tid() + '"]');
+			if (!fs) return;
+			var other = (fs.querySelector('[data-flxwb-owner-mode]:checked') || {}).value === 'other';
+			var box = fs.querySelector('[data-flxwb-shares]'), help = fs.querySelector('[data-flxwb-self-help]');
+			if (help) help.hidden = other;
+			if (!box) return;
+			box.hidden = !other;
+			var want = unitsOf(panel(), T, opt), cards = box.querySelectorAll('[data-flxwb-share]'), tpl = fs.querySelector('[data-flxwb-share-tpl]');
+			var last = cards.length ? cards[cards.length - 1] : null;
+			for (var i = cards.length; i < want && tpl; i++) {
+				var n = String(i + 1), wrap = document.createElement('div');
+				wrap.innerHTML = tpl.innerHTML.replace(/__NO__/g, (i + 1).toLocaleString(document.documentElement.lang || undefined)).replace(/__N__/g, n);
+				var card = wrap.firstElementChild;
+				card.querySelectorAll('[id]').forEach(function (x) {
+					var nid = x.id + '-' + Math.random().toString(36).slice(2, 7), lab = card.querySelector('label[for="' + x.id + '"]');
+					if (lab) lab.setAttribute('for', nid);
+					x.id = nid;
+				});
+				if (last) last.after(card); else box.prepend(card);
+				last = card;
+			}
+			cards = box.querySelectorAll('[data-flxwb-share]');
+			for (var j = cards.length - 1; j >= want; j--) cards[j].remove();
+			var first = box.querySelector('[data-flxwb-apply-all]');
+			if (first) first.hidden = want < 2;
+		}
+
+		/* 2.16.0: summary lines (steps layout): what is picked, how many, the price. */
+		function summary(T, P, opt, sum) {
+			var box = form.querySelector('[data-flxwb-sum-lines]');
+			if (!box) return;
+			var tab = form.querySelector('[data-flxwb-tab][aria-selected="true"] .flxwb-tab__title');
+			var title = tab ? tab.textContent : '';
+			var rows = [];
+			if (opt && opt !== '__free' && T.opts && T.opts[opt]) {
+				var r = P.querySelector('input[name="o[' + tid() + ']"][value="' + opt + '"]');
+				var lb = r && r.closest('label') ? r.closest('label').querySelector('.flxwb-pkg__count') : null;
+				var u = unitsOf(P, T, opt);
+				rows.push([title + (lb ? ' · ' + lb.textContent.trim() : ''), (u > 1 ? u + ' × ' : '') + money(T.opts[opt].price)]);
+			} else if (title) {
+				rows.push([title, sum > 0 ? money(sum) : '—']);
+			}
+			box.innerHTML = '';
+			rows.forEach(function (x) {
+				var dt = document.createElement('dt'), dd = document.createElement('dd');
+				dt.textContent = x[0]; dd.textContent = x[1];
+				box.appendChild(dt); box.appendChild(dd);
+			});
+		}
 
 		function update() {
 			var T = data.types[tid()] || {}, P = panel(), sum = 0, label = '';
@@ -79,6 +149,8 @@
 				});
 			});
 			var monthly = form.querySelector('input[name="m[' + tid() + ']"]');
+			syncShares(T, opt);
+			summary(T, P, opt, sum);
 			if (cert) cert.hidden = !T.cert;
 			var print = T.cert && checked(form, 'cert') === 'print';
 			if (addr) addr.hidden = !print;
@@ -106,7 +178,7 @@
 			if (nf) nf.hidden = !T.cert && !other;
 			var ph = form.querySelector('[data-flxwb-phone]'), em = form.querySelector('[data-flxwb-email]');
 			var sm = form.querySelector('[data-flxwb-sendme]');
-			if (sm) sm.hidden = !(T.cert && other && ((ph && ph.value.trim()) || (em && em.value.trim())));
+			if (sm) sm.hidden = !(T.cert && other && ((ph && phoneOf(ph)) || (em && em.value.trim())));
 		}
 
 		/* Switching "for myself" / "someone else": account defaults in or out of the delivery fields. */
@@ -116,10 +188,37 @@
 				var other = forOther();
 				[[ph, me.phone], [em, me.email]].forEach(function (p) {
 					if (!p[0]) return;
-					if (other && p[1] && p[0].value === p[1]) p[0].value = '';
-					else if (!other && !p[0].value && p[1]) p[0].value = p[1];
+					var dg = function (x) { return String(x || '').replace(/\D+/g, '').replace(/^0+/, ''); };
+					var same = p[0] === ph ? (p[1] && dg(phoneOf(ph)).slice(-9) === dg(p[1]).slice(-9)) : p[0].value === p[1];
+					if (other && p[1] && same) { p[0].value = ''; if (p[0] === ph && ph.closest('.flx-ph') && ph.closest('.flx-ph').flxPhone) ph.closest('.flx-ph').flxPhone.check(); }
+					else if (!other && !p[0].value && p[1]) { p[0].value = p[1]; if (p[0] === ph && ph.closest('.flx-ph') && ph.closest('.flx-ph').flxPhone) ph.closest('.flx-ph').flxPhone.check(); }
 				});
 			});
+		});
+
+		form.addEventListener('click', function (e) {
+			var b = e.target.closest && e.target.closest('[data-flxwb-apply-all]');
+			if (!b) return;
+			e.preventDefault();
+			var box = b.closest('[data-flxwb-shares]'), cards = box ? box.querySelectorAll('[data-flxwb-share]') : [];
+			if (cards.length < 2) return;
+			var nm = cards[0].querySelector('[data-flxwb-owner-name]'), ph = cards[0].querySelector('.flx-ph');
+			var pv = ph ? ph.querySelector('.flx-ph__num').value : '', iso = ph && ph.flxPhone ? ph.flxPhone.iso : '';
+			for (var i = 1; i < cards.length; i++) {
+				var n2 = cards[i].querySelector('[data-flxwb-owner-name]');
+				if (n2 && nm) n2.value = nm.value;
+				var p2 = cards[i].querySelector('.flx-ph');
+				if (p2 && p2.flxPhone) {
+					if (iso) p2.flxPhone.setCountry(iso, true);
+					p2.flxPhone.num.value = pv;
+					p2.flxPhone.check();
+				} else {
+					var t2 = cards[i].querySelector('[data-flxwb-owner-phone]'), t1 = cards[0].querySelector('[data-flxwb-owner-phone]');
+					if (t2 && t1) t2.value = t1.value;
+				}
+			}
+			b.classList.add('is-done');
+			setTimeout(function () { b.classList.remove('is-done'); }, 1200);
 		});
 
 		form.addEventListener('change', update);
@@ -192,25 +291,20 @@
 			var nm = form.querySelector('input[name="ben_name"]');
 			if (!msg && !T.proxy && forOther() && nm && !nm.value.trim()) { msg = L.needName || ''; focus = nm; }
 			if (!msg && T.proxy && P) {
-				var own = P.querySelector('textarea[name^="owners"]'), ok = P.querySelector('[data-flxwb-consent]');
-				var names = own ? own.value.split(/[\r\n;]+/).filter(function (x) { return x.trim(); }).length : 0;
-				var shares = 1;
-				if (opt && opt !== '__free' && T.opts && T.opts[opt] && T.opts[opt].qty) {
-					var rr = P.querySelector('input[name="o[' + tid() + ']"][value="' + opt + '"]');
-					var cc = rr && rr.closest('label') ? rr.closest('label').querySelector('[data-flxwb-count]') : null;
-					shares = Math.max(1, parseInt(cc && cc.value, 10) || 1);
-				}
-				if (names > shares) { msg = L.tooMany || ''; focus = own; }
+				var pfs = form.querySelector('[data-flxwb-proxy="' + tid() + '"]');
+				var ok = pfs ? pfs.querySelector('[data-flxwb-consent]') : null;
+				var badp = pfs ? phoneBad(pfs) : null;
+				if (badp) { msg = L.badPhone || ''; focus = badp; }
 				else if (!ok || !ok.checked) { msg = L.needConsent || ''; focus = ok; }
 			}
 			/* 2.0.5: at least one of WhatsApp / e-mail (the account's own count when donating for yourself). */
 			var dv = form.querySelector('[data-flxwb-deliver]'), who = form.querySelector('[data-flxwb-who]');
 			if (!msg && dv && !dv.hidden && !(who && who.hidden)) {
 				var ph = dv.querySelector('[data-flxwb-phone]'), em = dv.querySelector('[data-flxwb-email]');
-				var pv = ph ? ph.value.trim() : '', ev = em ? em.value.trim() : '';
+				var pv = phoneOf(ph), ev = em ? em.value.trim() : '';
 				var mine = !forOther() && ((data.me && (data.me.phone || data.me.email)) ? true : false);
 				if (ev && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(ev)) { msg = L.badEmail || ''; focus = em; }
-				else if (pv && pv.replace(/\D+/g, '').length < 10) { msg = L.badPhone || ''; focus = ph; }
+				else if ((pv && pv.replace(/\D+/g, '').length < 10) || phoneBad(dv)) { msg = L.badPhone || ''; focus = ph; }
 				else if (!pv && !ev && !mine) { msg = L.needContact || ''; focus = ph || em; }
 			}
 			if (!msg) {
@@ -238,7 +332,7 @@
 				var dv2 = form.querySelector('[data-flxwb-deliver]');
 				if (dv2 && !dv2.hidden && !forOther()) {
 					var p2 = dv2.querySelector('[data-flxwb-phone]'), e2 = dv2.querySelector('[data-flxwb-email]');
-					window.sessionStorage.setItem('flxb_contact', JSON.stringify({ p: p2 ? p2.value.trim() : '', e: e2 ? e2.value.trim() : '' }));
+					window.sessionStorage.setItem('flxb_contact', JSON.stringify({ p: phoneOf(p2), e: e2 ? e2.value.trim() : '' }));
 				}
 			} catch (x) {}
 			form.querySelectorAll('[data-flxwb-dfields]').forEach(function (b) {
@@ -246,6 +340,9 @@
 			});
 			form.querySelectorAll('[data-flxwb-panel]').forEach(function (p) {
 				if (p.hidden) p.querySelectorAll('input,select,textarea').forEach(function (x) { if (!x.disabled) { x.disabled = true; x.setAttribute('data-flxwb-off', ''); } });
+			});
+			form.querySelectorAll('[data-flxwb-proxy], [data-flxwb-shares]').forEach(function (f) {
+				if (f.hidden) f.querySelectorAll('input,select,textarea').forEach(function (x) { if (!x.disabled) { x.disabled = true; x.setAttribute('data-flxwb-off', ''); } });
 			});
 			[form.querySelector('[data-flxwb-who]')].forEach(function (f) {
 				if (f && f.hidden) f.querySelectorAll('input,textarea').forEach(function (x) { if (!x.disabled) { x.disabled = true; x.setAttribute('data-flxwb-off', ''); } });

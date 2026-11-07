@@ -143,7 +143,7 @@ final class FLXB_WC {
 			return;
 		}
 		$dir = FLXB_DIR . 'includes/wc/';
-		foreach ( array( 'currency', 'products', 'cart', 'form', 'havale', 'iyzico', 'iyzico-card', 'receipts', 'certificates', 'notify', 'account', 'ledger', 'recurring', 'feed', 'callcenter', 'flxform', 'admin', 'checks', 'addresses', 'contact', 'designs', 'terms', 'gateways', 'esnekpos' ) as $f ) {
+		foreach ( array( 'currency', 'products', 'cart', 'form', 'havale', 'iyzico', 'iyzico-card', 'receipts', 'certificates', 'notify', 'account', 'ledger', 'recurring', 'feed', 'callcenter', 'flxform', 'admin', 'checks', 'addresses', 'contact', 'designs', 'terms', 'gateways', 'esnekpos', 'look' ) as $f ) {
 			require_once $dir . 'class-flxb-wc-' . $f . '.php';
 		}
 		if ( ! defined( 'FLXWB_VERSION' ) ) {
@@ -173,6 +173,7 @@ final class FLXB_WC {
 		FLXB_WC_Terms::init();
 		FLXB_WC_Gateways::init();
 		FLXB_WC_Esnekpos::init();
+		FLXB_WC_Look::init();
 		define( 'FLXB_WC_READY', true );
 		do_action( 'flxb_wc_loaded' );
 	}
@@ -406,7 +407,12 @@ final class FLXB_WC {
 			'wa'     => '<path d="M4 20l1.3-4A8 8 0 1 1 8 18.8z"/><path d="M9 9.5c.3 2 2.5 4.2 4.5 4.5l1-1.2 2 1-.5 1.5c-3.5.5-8-4-7.5-7.5L10 7.3l1 2z"/>',
 			'mail'   => '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/>',
 			'repeat' => '<path d="M4 12a8 8 0 0 1 13.7-5.6L20 8.7M20 4v4.7h-4.7M20 12a8 8 0 0 1-13.7 5.6L4 15.3M4 20v-4.7h4.7"/>',
+			/* 2.16.0: animals for sacrifice types (type meta "icon"). */
+			'sheep'  => '<g transform="translate(-2.4 -3) scale(1.2)"><path d="M8.6 8.4a2.4 2.4 0 0 1 3.9-1.2 2.4 2.4 0 0 1 3.8.4 2.3 2.3 0 0 1 2.6 2.6 2.2 2.2 0 0 1-.3 3.8 2.3 2.3 0 0 1-3 2 2.4 2.4 0 0 1-3.8.3 2.4 2.4 0 0 1-3.6-.9 2.2 2.2 0 0 1-1-2.7"/><path d="M7.2 9.2c-1.6 0-2.7 1.1-2.7 2.5 0 1.2.9 2.1 2.1 2.1h.6c1 0 1.7-.8 1.7-1.8V11c0-1-.7-1.8-1.7-1.8z"/><path d="M10.5 16.6v2.6M13.5 16.8v2.4M16 16.4v2.8"/></g>',
+			'cow'    => '<g transform="translate(-1.04 -2.13) scale(1.04)"><path d="M4 9h11c1.7 0 3 1.3 3 3v3.5H6.5C5.1 15.5 4 14.4 4 13z"/><path d="M15.5 9V7.5h4l1.5 2.5v2.5h-3"/><path d="M16 7.5l-1-2M20 7.5l1-2"/><path d="M6.5 15.5V19M9 15.5V19M14 15.5V19M16.5 15.5V19"/><path d="M4 10l-1.5 3"/></g>',
+			'camel'  => '<g transform="translate(-1.04 -2.13) scale(1.04)"><path d="M3.5 15c0-2.5 1.6-4.2 3.5-4.2.8-2.1 3.2-2.1 4 0 .8-2.1 3.2-2.1 4 0 1.2 0 2 .8 2 2v2.2z"/><path d="M17 13l1.5-6h2.5l.5 1.5h-1.5"/><path d="M5.5 15v4.5M8.5 15v4.5M13.5 15v4.5M16 15v4.5"/></g>',
 		);
+		$p = (array) apply_filters( 'flxb_icons', $p );
 		return isset( $p[ $name ] ) ? '<svg class="flxwb-ic" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' . $p[ $name ] . '</svg>' : '';
 	}
 

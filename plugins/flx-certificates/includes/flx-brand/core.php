@@ -354,3 +354,160 @@ function flx_date( $time, $format = 'date' ) {
 	}
 	return wp_date( $out, $ts );
 }
+
+/* ---------- Telefon alanı (her FluxWP paketi kullanır) ----------
+ *
+ * Tek bileşen: bayraklı ülke seçici + ülke arama + numara alanı + sağda gecikmeli ✓ / ✗ doğrulama
+ * (libphonenumber, phone/utils.js, ilk alan görününce yüklenir). Değer gizli alanda E.164 (+4915123456789).
+ *
+ *   echo flx_phone_field( array( 'name' => 'phone', 'value' => '+905321234567' ) );
+ *   $e164 = flx_phone_normalize( $_POST['phone'] );   // '' = geçersiz
+ *
+ * Filtreler: flx_phone_country (varsayılan ülke, iso2), flx_phone_preferred (listenin üstündeki ülkeler),
+ * flx_phone_strings (metinler). JS: window.flxPhone.init(root), "flx-phone:change" olayı {valid, e164, country}.
+ */
+
+/** phone/ klasörünün adresi (eklenti, mu-plugin ya da tema kopyası). */
+function flx_phone_url( $file = '' ) {
+	$dir = wp_normalize_path( __DIR__ . '/phone' );
+	$tpl = wp_normalize_path( get_theme_root() );
+	if ( 0 === strpos( $dir, $tpl ) ) {
+		$url = get_theme_root_uri() . substr( $dir, strlen( $tpl ) );
+	} else {
+		$url = plugins_url( '', $dir . '/x' );
+	}
+	return trailingslashit( $url ) . ltrim( $file, '/' );
+}
+
+/** Metinler (TR / EN gömülü, diğer dillerde EN). */
+function flx_phone_strings() {
+	$tr = 'tr' === flx_lang();
+	return (array) apply_filters(
+		'flx_phone_strings',
+		array(
+			'search'  => $tr ? 'Ülke ara' : 'Search country',
+			'none'    => $tr ? 'Ülke bulunamadı' : 'No country found',
+			'country' => $tr ? 'Ülke kodu' : 'Country code',
+			'ok'      => $tr ? 'Numara geçerli' : 'Valid number',
+			'bad'     => $tr ? 'Numara geçersiz görünüyor, lütfen kontrol edin.' : 'This number does not look right, please check it.',
+			'label'   => $tr ? 'Telefon numarası' : 'Phone number',
+		)
+	);
+}
+
+/** Varsayılan ülke (iso2): filtre → WooCommerce mağaza ülkesi → site dili → tr. */
+function flx_phone_country() {
+	$c = '';
+	if ( function_exists( 'WC' ) && WC()->countries ) {
+		$c = (string) WC()->countries->get_base_country();
+	}
+	if ( '' === $c ) {
+		$l = (string) get_locale();
+		$c = false !== strpos( $l, '_' ) ? substr( $l, strpos( $l, '_' ) + 1, 2 ) : ( 'tr' === flx_lang() ? 'TR' : '' );
+	}
+	$c = strtolower( (string) apply_filters( 'flx_phone_country', $c ) );
+	return preg_match( '/^[a-z]{2}$/', $c ) ? $c : 'tr';
+}
+
+/** Listenin üstündeki ülkeler (iso2). */
+function flx_phone_preferred() {
+	$p = apply_filters( 'flx_phone_preferred', array( flx_phone_country() ) );
+	return array_values( array_unique( array_filter( array_map( 'strtolower', (array) $p ), static function ( $c ) { return (bool) preg_match( '/^[a-z]{2}$/', $c ); } ) ) );
+}
+
+/** CSS + JS (bir kez). Alanı kendi HTML'iyle basan paketler de çağırabilir. */
+function flx_phone_enqueue() {
+	if ( wp_script_is( 'flx-phone', 'enqueued' ) ) {
+		return;
+	}
+	$v = defined( 'FLX_BRAND_VERSION' ) ? FLX_BRAND_VERSION : '1';
+	wp_enqueue_style( 'flx-phone', flx_phone_url( 'phone.css' ), array(), $v );
+	wp_add_inline_style( 'flx-phone', ':root{--flx-ph-flags:url("' . esc_url( flx_phone_url( 'flags.webp' ) ) . '")}' );
+	wp_enqueue_script( 'flx-phone', flx_phone_url( 'phone.js' ), array(), $v, true );
+	wp_localize_script(
+		'flx-phone',
+		'FLX_PHONE',
+		array(
+			'utils'     => flx_phone_url( 'utils.js' ) . '?ver=' . rawurlencode( $v ),
+			'lang'      => '' !== flx_lang() ? flx_lang() : substr( (string) determine_locale(), 0, 2 ),
+			'country'   => flx_phone_country(),
+			'preferred' => implode( ',', flx_phone_preferred() ),
+			'i18n'      => flx_phone_strings(),
+		)
+	);
+}
+
+/**
+ * Telefon alanı HTML'i.
+ *
+ * @param array $args name (gerekli), value (E.164 ya da ham), id, country (iso2), preferred (iso2 dizisi ya da "de,fr"),
+ *                    placeholder (boş = ülkenin örnek numarası), required, label (görünmez etiket), class, attrs (ek nitelikler),
+ *                    message (true: hatalı numarada altta uyarı satırı).
+ */
+function flx_phone_field( array $args ) {
+	flx_phone_enqueue();
+	$s    = flx_phone_strings();
+	$a    = wp_parse_args(
+		$args,
+		array(
+			'name'        => 'phone',
+			'value'       => '',
+			'id'          => '',
+			'country'     => '',
+			'preferred'   => '',
+			'placeholder' => '',
+			'required'    => false,
+			'label'       => $s['label'],
+			'class'       => '',
+			'attrs'       => array(),
+			'message'     => true,
+		)
+	);
+	$id   = '' !== $a['id'] ? $a['id'] : 'flx-ph-' . wp_rand( 10000, 99999 );
+	$pref = is_array( $a['preferred'] ) ? implode( ',', $a['preferred'] ) : (string) $a['preferred'];
+	$cc   = '' !== $a['country'] ? strtolower( $a['country'] ) : flx_phone_country();
+	$val  = trim( (string) $a['value'] );
+	$attr = '';
+	foreach ( (array) $a['attrs'] as $k => $v ) {
+		$attr .= ' ' . esc_attr( $k ) . '="' . esc_attr( $v ) . '"';
+	}
+	$h  = '<div class="flx-ph' . ( '' !== $a['class'] ? ' ' . esc_attr( $a['class'] ) : '' ) . '" data-flx-phone data-country="' . esc_attr( $cc ) . '"' . ( '' !== $pref ? ' data-preferred="' . esc_attr( $pref ) . '"' : '' ) . ( '' !== $a['placeholder'] ? ' data-placeholder' : '' ) . '>';
+	$h .= '<button type="button" class="flx-ph__cc" aria-haspopup="listbox" aria-expanded="false" aria-label="' . esc_attr( $s['country'] ) . '"><span class="flx-ph__flag" aria-hidden="true"></span><span class="flx-ph__dial"></span><svg class="flx-ph__chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></button>';
+	$h .= '<span class="flx-ph__box"><input type="tel" class="flx-ph__num" id="' . esc_attr( $id ) . '" name="' . esc_attr( $a['name'] ) . '" value="' . esc_attr( $val ) . '" inputmode="tel" autocomplete="tel-national" aria-label="' . esc_attr( $a['label'] ) . '"' . ( '' !== $a['placeholder'] ? ' placeholder="' . esc_attr( $a['placeholder'] ) . '"' : '' ) . ( $a['required'] ? ' required' : '' ) . $attr . '><span class="flx-ph__state" aria-hidden="true"></span></span>';
+	$h .= '<input type="hidden" class="flx-ph__val" data-name="' . esc_attr( $a['name'] ) . '" value="' . esc_attr( $val ) . '">';
+	if ( $a['message'] ) {
+		$h .= '<p class="flx-ph__msg" role="alert" hidden></p>';
+	}
+	return $h . '</div>';
+}
+
+/**
+ * Numarayı E.164'e çevirir (+905321234567). Ülke kodsuz yazılmışsa $country (iso2, boş = varsayılan ülke) eklenir.
+ * Sunucu tarafı yalnız biçim ve uzunluk denetler (8–15 hane); asıl doğrulama alandaki libphonenumber'dadır.
+ *
+ * @return string '' = geçersiz ya da boş.
+ */
+function flx_phone_normalize( $raw, $country = '' ) {
+	$raw = trim( (string) $raw );
+	$dg  = preg_replace( '/\D+/', '', $raw );
+	if ( '' === $dg ) {
+		return '';
+	}
+	if ( '+' === substr( $raw, 0, 1 ) ) {
+		$out = $dg;
+	} elseif ( 0 === strpos( $dg, '00' ) ) {
+		$out = substr( $dg, 2 );
+	} else {
+		$cc   = '' !== $country ? strtolower( $country ) : flx_phone_country();
+		$dial = array( 'tr' => '90', 'de' => '49', 'at' => '43', 'ch' => '41', 'nl' => '31', 'be' => '32', 'fr' => '33', 'gb' => '44', 'us' => '1', 'it' => '39', 'es' => '34', 'se' => '46', 'dk' => '45', 'no' => '47', 'az' => '994' );
+		$dial = (array) apply_filters( 'flx_phone_dial_codes', $dial );
+		if ( ! isset( $dial[ $cc ] ) ) {
+			return strlen( $dg ) >= 8 && strlen( $dg ) <= 15 ? '+' . ltrim( $dg, '0' ) : '';
+		}
+		$out = $dial[ $cc ] . ( '1' === $dial[ $cc ] ? $dg : ltrim( $dg, '0' ) );
+		if ( 0 === strpos( $dg, $dial[ $cc ] ) && strlen( $dg ) > 10 ) {
+			$out = $dg; // 905321234567 yazılmış
+		}
+	}
+	return strlen( $out ) >= 8 && strlen( $out ) <= 15 ? '+' . $out : '';
+}

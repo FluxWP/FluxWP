@@ -4114,3 +4114,162 @@ msgstr ""
 #, php-format
 msgid "Option: %s"
 msgstr ""
+
+msgid "Automatic"
+msgstr ""
+
+msgid "Heart"
+msgstr ""
+
+msgid "Gift"
+msgstr ""
+
+msgid "Sheep"
+msgstr ""
+
+msgid "Cattle"
+msgstr ""
+
+msgid "Camel"
+msgstr ""
+
+msgid "Card subtitle"
+msgstr ""
+
+msgid "One short line under the title on the type cards, e.g. \"Sheep or goat\"."
+msgstr ""
+
+msgid "Icon"
+msgstr ""
+
+msgid "Shown when the type has no image."
+msgstr ""
+
+msgid "from %s"
+msgstr ""
+
+msgid "Given in your name, as you write it at the checkout."
+msgstr ""
+
+msgid "Shares without a name are given in the name from the checkout. With a phone number we can also send that person the news on WhatsApp."
+msgstr ""
+
+msgid "Shares without a name are given in the name from the checkout."
+msgstr ""
+
+msgid "Apply to all"
+msgstr ""
+
+msgid "Phone (optional)"
+msgstr ""
+
+msgid "Classic"
+msgstr ""
+
+msgid "One card: type tabs on top, the choices under them, the total at the bottom."
+msgstr ""
+
+msgid "A · Steps + summary"
+msgstr ""
+
+msgid "Numbered steps on the left, a summary with the total and the button on the right."
+msgstr ""
+
+msgid "B · Two panels"
+msgstr ""
+
+msgid "Types as a list on the left, the details on the right; a dark total bar."
+msgstr ""
+
+msgid "C · Picture cards"
+msgstr ""
+
+msgid "Large cards with the type picture or icon; the details open below."
+msgstr ""
+
+msgid "Theme"
+msgstr ""
+
+msgid "The look of WooCommerce and the theme."
+msgstr ""
+
+msgid "A · Side-by-side cards"
+msgstr ""
+
+msgid "Methods as cards with icons; the details of the picked one below."
+msgstr ""
+
+msgid "B · Plain list"
+msgstr ""
+
+msgid "Rows one under the other; the picked row opens."
+msgstr ""
+
+msgid "C · Segmented tabs"
+msgstr ""
+
+msgid "One row of tab buttons; the details of the picked one below."
+msgstr ""
+
+msgid "Options and amount"
+msgstr ""
+
+msgid "On whose behalf"
+msgstr ""
+
+msgid "Certificate design"
+msgstr ""
+
+msgid "Appearance"
+msgstr ""
+
+msgid "Donation form"
+msgstr ""
+
+msgid "How the \"Donation options\" block looks on the site. Prices, options and names are set under Donation types."
+msgstr ""
+
+msgid "View the page"
+msgstr ""
+
+msgid "Heading over the types"
+msgstr ""
+
+msgid "Shown in the A and C layouts."
+msgstr ""
+
+msgid "Heading over the options"
+msgstr ""
+
+msgid "Order of the sections"
+msgstr ""
+
+msgid "The type choice is always first and the total always last. Sections a type does not use are skipped."
+msgstr ""
+
+msgid "Ask a phone number for every share (types with a proxy). The video or certificate of that share can be sent there too."
+msgstr ""
+
+msgid "Payment options at the checkout"
+msgstr ""
+
+msgid "How card, PayPal, bank transfer and the other methods are shown. The methods themselves are turned on under WooCommerce › Settings › Payments."
+msgstr ""
+
+msgid "Colours and corners"
+msgstr ""
+
+msgid "Used by the form and the payment options. Empty fields follow the theme."
+msgstr ""
+
+msgid "Main colour"
+msgstr ""
+
+msgid "Accent colour"
+msgstr ""
+
+msgid "Corner radius (px)"
+msgstr ""
+
+msgid "0 = square, 4 = plain corporate, 16 = round."
+msgstr ""

@@ -260,6 +260,8 @@ class FLXB_WC_Ledger {
 				),
 			),
 			'beneficiaries'   => $names ? $names : ( '' !== $ben ? array_fill( 0, $units, $ben ) : array() ),
+			/* 2.16.0: phones of the share cards, next to the names. */
+			'beneficiary_phones' => $names && isset( $l['beneficiary_phones'] ) && is_array( $l['beneficiary_phones'] ) ? array_values( array_map( 'strval', $l['beneficiary_phones'] ) ) : array(),
 		);
 		$d  = (array) apply_filters( 'flxb_wc_ledger_row', $d, $order, $item );
 		$id = FLXB_Donations::record( $d );

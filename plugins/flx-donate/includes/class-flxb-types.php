@@ -68,7 +68,7 @@ final class FLXB_Types {
 				continue;
 			}
 			$row = array();
-			foreach ( array( 'title' => 191, 'description' => 2000 ) as $k => $max ) {
+			foreach ( array( 'title' => 191, 'description' => 2000, 'subtitle' => 80 ) as $k => $max ) {
 				$v = 'description' === $k ? sanitize_textarea_field( (string) ( $tr[ $k ] ?? '' ) ) : sanitize_text_field( (string) ( $tr[ $k ] ?? '' ) );
 				if ( '' !== trim( $v ) ) {
 					$row[ $k ] = mb_substr( trim( $v ), 0, $max );
@@ -112,6 +112,9 @@ final class FLXB_Types {
 			if ( ! empty( $tr[ $k ] ) ) {
 				$t[ $k ] = (string) $tr[ $k ];
 			}
+		}
+		if ( ! empty( $tr['subtitle'] ) ) {
+			$t['meta']['subtitle'] = (string) $tr['subtitle']; // 2.16.0
 		}
 		foreach ( $t['options'] as $i => $o ) {
 			if ( ! empty( $tr['options'][ $o['key'] ] ) ) {
@@ -421,6 +424,13 @@ final class FLXB_Types {
 		}
 		if ( array_key_exists( 'i18n', $m ) ) {
 			$out['i18n'] = self::clean_i18n( (array) $m['i18n'] );
+		}
+		/* 2.16.0: card subtitle and icon in the form layouts (Settings › Appearance). */
+		if ( array_key_exists( 'subtitle', $m ) ) {
+			$out['subtitle'] = mb_substr( sanitize_text_field( (string) $m['subtitle'] ), 0, 80 );
+		}
+		if ( array_key_exists( 'icon', $m ) ) {
+			$out['icon'] = sanitize_key( (string) $m['icon'] );
 		}
 		if ( array_key_exists( 'grouping', $m ) ) {
 			$g               = sanitize_key( (string) $m['grouping'] );

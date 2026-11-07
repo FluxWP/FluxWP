@@ -1,0 +1,95 @@
+/* FluxWP phone field (flx-brand). Colours follow the theme's --flx-* variables; override --flx-ph-* to restyle. GPL v2 or later. */
+.flx-ph {
+	--flx-ph-line: var(--flx-line, #D9DEE4);
+	--flx-ph-bg: var(--flx-surface, #fff);
+	--flx-ph-soft: var(--flx-mint-soft, #F5F7F9);
+	--flx-ph-ink: var(--flx-ink, #1F2937);
+	--flx-ph-muted: var(--flx-text, #6B7280);
+	--flx-ph-accent: var(--flx-primary, #1F4E79);
+	--flx-ph-ok: #16A34A;
+	--flx-ph-bad: #DC2626;
+	--flx-ph-radius: 12px;
+	--flx-ph-h: 48px;
+	position: relative;
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	gap: 8px;
+	width: 100%;
+	box-sizing: border-box;
+	font: inherit;
+}
+.flx-ph *, .flx-ph *::before { box-sizing: border-box; }
+.flx-ph__cc {
+	display: inline-flex; align-items: center; gap: 10px;
+	height: var(--flx-ph-h); padding: 0 14px;
+	border: 1px solid var(--flx-ph-line); border-radius: var(--flx-ph-radius);
+	background: var(--flx-ph-bg); color: var(--flx-ph-ink);
+	font: inherit; font-size: 1rem; line-height: 1; cursor: pointer; white-space: nowrap;
+	transition: border-color .15s, box-shadow .15s;
+}
+.flx-ph__cc:hover { border-color: color-mix(in srgb, var(--flx-ph-accent) 45%, var(--flx-ph-line)); }
+.flx-ph__cc:focus-visible, .flx-ph.is-open .flx-ph__cc { outline: none; border-color: var(--flx-ph-accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--flx-ph-accent) 15%, transparent); }
+.flx-ph__chev { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; opacity: .6; transition: transform .15s; }
+.flx-ph.is-open .flx-ph__chev { transform: rotate(180deg); }
+.flx-ph__flag {
+	display: inline-block; flex: none; width: 20px; height: 15px; border-radius: 2px;
+	background-image: var(--flx-ph-flags); background-repeat: no-repeat;
+	background-size: calc(244 * 20px) 15px; background-position: calc(var(--flx-ph-o, 0) * -20px) 0;
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, .08);
+}
+.flx-ph__box { position: relative; display: block; min-width: 0; }
+.flx-ph .flx-ph__num {
+	display: block; width: 100%; height: var(--flx-ph-h); margin: 0;
+	padding: 0 44px 0 16px !important;
+	border: 1px solid var(--flx-ph-line) !important; border-radius: var(--flx-ph-radius) !important;
+	background: var(--flx-ph-bg) !important; color: var(--flx-ph-ink); box-shadow: none !important;
+	font: inherit; font-size: 1rem; letter-spacing: .01em;
+	transition: border-color .15s, box-shadow .15s;
+}
+.flx-ph .flx-ph__num::placeholder { color: color-mix(in srgb, var(--flx-ph-muted) 70%, transparent); }
+.flx-ph .flx-ph__num:focus { outline: none; border-color: var(--flx-ph-accent) !important; box-shadow: 0 0 0 3px color-mix(in srgb, var(--flx-ph-accent) 15%, transparent) !important; }
+.flx-ph.is-bad .flx-ph__num { border-color: var(--flx-ph-bad) !important; }
+.flx-ph.is-bad .flx-ph__num:focus { box-shadow: 0 0 0 3px color-mix(in srgb, var(--flx-ph-bad) 15%, transparent) !important; }
+.flx-ph__state {
+	position: absolute; top: 50%; right: 14px; width: 20px; height: 20px; margin-top: -10px;
+	display: grid; place-items: center; border-radius: 50%; pointer-events: none;
+	transform: scale(.6); opacity: 0; transition: transform .18s, opacity .18s;
+}
+.flx-ph__state svg { width: 12px; height: 12px; fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.flx-ph.is-ok .flx-ph__state { background: var(--flx-ph-ok); opacity: 1; transform: none; }
+.flx-ph.is-bad .flx-ph__state { background: var(--flx-ph-bad); opacity: 1; transform: none; }
+.flx-ph__msg { grid-column: 1 / -1; margin: -2px 0 0; color: var(--flx-ph-bad); font-size: .85rem; }
+
+/* Country list */
+.flx-ph__pop {
+	position: absolute; z-index: 1000; top: calc(var(--flx-ph-h) + 6px); left: 0; right: 0;
+	display: flex; flex-direction: column; max-height: 360px;
+	background: var(--flx-ph-bg); border: 1px solid var(--flx-ph-line); border-radius: var(--flx-ph-radius);
+	box-shadow: 0 16px 40px rgba(15, 23, 42, .14); overflow: hidden;
+}
+.flx-ph__pop[hidden] { display: none; }
+.flx-ph__search { position: relative; display: block; margin: 8px; }
+.flx-ph__search svg { position: absolute; top: 50%; left: 14px; width: 18px; height: 18px; margin-top: -9px; fill: none; stroke: var(--flx-ph-muted); stroke-width: 1.8; stroke-linecap: round; pointer-events: none; }
+.flx-ph .flx-ph__search input {
+	display: block; width: 100%; height: 44px; margin: 0; padding: 0 12px 0 42px !important;
+	border: 1px solid var(--flx-ph-line) !important; border-radius: calc(var(--flx-ph-radius) - 2px) !important;
+	background: var(--flx-ph-soft) !important; color: var(--flx-ph-ink); box-shadow: none !important; font: inherit; font-size: .95rem;
+}
+.flx-ph .flx-ph__search input:focus { outline: none; border-color: var(--flx-ph-accent) !important; background: var(--flx-ph-bg) !important; }
+.flx-ph__list { list-style: none; margin: 0; padding: 4px 0 6px; overflow-y: auto; border-top: 1px solid var(--flx-ph-line); overscroll-behavior: contain; }
+.flx-ph__list li[data-iso] {
+	display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; align-items: center; gap: 14px;
+	margin: 0; padding: 11px 16px; cursor: pointer; color: var(--flx-ph-ink); font-size: .98rem; line-height: 1.2;
+}
+.flx-ph__list li[data-iso]:hover, .flx-ph__list li.is-hi { background: var(--flx-ph-soft); }
+.flx-ph__list li.is-on .flx-ph__name { color: var(--flx-ph-accent); font-weight: 700; }
+.flx-ph__list li.is-on .flx-ph__code { color: var(--flx-ph-ink); font-weight: 700; }
+.flx-ph__name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.flx-ph__code { color: var(--flx-ph-muted); font-variant-numeric: tabular-nums; }
+.flx-ph__sep { height: 1px; margin: 4px 0; background: var(--flx-ph-line); }
+.flx-ph__none { padding: 14px 16px; color: var(--flx-ph-muted); font-size: .95rem; }
+@media (max-width: 480px) {
+	.flx-ph__cc { padding: 0 10px; gap: 8px; }
+	.flx-ph__pop { position: fixed; top: auto; bottom: 0; left: 0; right: 0; max-height: 70vh; border-radius: 16px 16px 0 0; }
+}
+body.flx-dark .flx-ph { --flx-ph-bg: #111827; --flx-ph-soft: #1F2937; --flx-ph-line: #374151; --flx-ph-ink: #F3F4F6; --flx-ph-muted: #9CA3AF; }
