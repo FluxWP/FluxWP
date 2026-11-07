@@ -1,0 +1,807 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Flux Updater Manager\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Yönet"
+msgstr "Manage"
+
+msgid "Güncelleme sunucusunu WordPress panelinden yönetir"
+msgstr "Manages the update server from the WordPress admin"
+
+msgid "Genel bakış"
+msgstr "Overview"
+
+msgid "Ülkeler"
+msgstr "Countries"
+
+msgid "Siteler"
+msgstr "Sites"
+
+msgid "Paketler"
+msgstr "Packages"
+
+msgid "Güvenlik"
+msgstr "Security"
+
+msgid "Kaynaklar"
+msgstr "Resources"
+
+msgid "Bağlantı"
+msgstr "Connection"
+
+msgid "Updater Manager"
+msgstr "Updater Manager"
+
+msgid "Updater"
+msgstr "Updater"
+
+msgid "Site"
+msgstr "Site"
+
+msgid "Kontrol"
+msgstr "Checks"
+
+msgid "İndirme"
+msgstr "Downloads"
+
+msgid "Kopyalandı"
+msgstr "Copied"
+
+msgid "Kaldır"
+msgstr "Remove"
+
+msgid "Depo ekle…"
+msgstr "Add repository…"
+
+msgid "Depo seçin"
+msgstr "Pick a repository"
+
+msgid "Yükleniyor…"
+msgstr "Loading…"
+
+msgid "Liste alınamadı"
+msgstr "Could not load the list"
+
+msgid "Enter ile ekleyin"
+msgstr "Press Enter to add"
+
+msgid "Listeyi yenile"
+msgstr "Refresh list"
+
+msgid "Sunucuda yapılıyor…"
+msgstr "Working on the server…"
+
+msgid "Bu işlem için yetkiniz yok."
+msgstr "You are not allowed to do this."
+
+msgid "Yönetici anahtarı bu siteden silindi. Sunucudaki anahtar duruyor; sunucu panelinden silebilirsiniz."
+msgstr "Manager key removed from this site. The key still exists on the server; you can delete it in the server panel."
+
+msgid "Kaydedildi."
+msgstr "Saved."
+
+msgid "Yönetici anahtarı \"flxm_\" ile başlar ve 53 karakterdir. Sunucu panelinde Updater Manager kartından üretin."
+msgstr "A manager key starts with \"flxm_\" and is 53 characters long. Generate one in the Updater Manager card of the server panel."
+
+msgid "Bağlandı: Flux Update Server %1$s, anahtar \"%2$s\"."
+msgstr "Connected: Flux Update Server %1$s, key \"%2$s\"."
+
+msgid "Yönetici anahtarı girilmemiş."
+msgstr "No manager key entered."
+
+msgid "Sunucu adresi geçersiz."
+msgstr "Invalid server address."
+
+msgid "Sunucuya ulaşılamadı: %s"
+msgstr "Could not reach the server: %s"
+
+msgid "Bu sunucuda yönetici API'si yok. Güncelleme sunucusunu 1.12.0 ya da üstüne yükseltin."
+msgstr "This server has no admin API. Upgrade the update server to 1.12.0 or later."
+
+msgid "Sunucudan beklenmeyen yanıt (HTTP %d)."
+msgstr "Unexpected response from the server (HTTP %d)."
+
+msgid "Yönetici anahtarı geçersiz ya da sunucuda silinmiş."
+msgstr "The manager key is invalid or was deleted on the server."
+
+msgid "Sunucu hatası."
+msgstr "Server error."
+
+msgid "Önceki eşit döneme göre"
+msgstr "Compared with the previous period of the same length"
+
+msgid "FluxWP güncelleme sunucusunu buradan yönetin: istatistikler, siteler, anahtarlar, paketler ve güvenlik."
+msgstr "Manage the FluxWP update server from here: statistics, sites, keys, packages and security."
+
+msgid "%1$s · Flux Update Server %2$s"
+msgstr "%1$s · Flux Update Server %2$s"
+
+msgid "Sunucu paneli"
+msgstr "Server panel"
+
+msgid "Bölümler"
+msgstr "Sections"
+
+msgid "Acil durdurma açık."
+msgstr "Emergency stop is on."
+
+msgid "Hiçbir siteye güncelleme, paket ya da uygulama dağıtılmıyor (503)."
+msgstr "No updates, packages or apps are served to any site (503)."
+
+msgid "Anahtarsız dağıtım kapalı."
+msgstr "Keyless distribution is off."
+
+msgid "Yalnız aktif site anahtarı olan siteler paket alıyor."
+msgstr "Only sites with an active site key receive packages."
+
+msgid "Yeni site anahtarı: %s"
+msgstr "New site key: %s"
+
+msgid "Site bu anahtarı bir sonraki güncelleme kontrolünde kendiliğinden alır (7 gün içinde; hemen almak için sitede FluxWP Panel › Ayarlar › \"Bağlantıyı test et\"). Elle girmeniz gerekmez. Şimdi Siteler sekmesinden erişimini seçin; seçene kadar site yalnız public paketleri görür."
+msgstr "The site picks up this key on its next update check (within 7 days; to get it now, use FluxWP Panel › Settings › \"Test connection\" on the site). No need to enter it by hand. Now choose its access on the Sites tab; until then the site only sees public packages."
+
+msgid "Bu anahtar bir daha gösterilmez. Şimdi kopyalayın ve sitenin FluxWP Panel › Ayarlar ekranında \"Site anahtarı\" alanına yapıştırın."
+msgstr "This key will not be shown again. Copy it now and paste it into the \"Site key\" field under FluxWP Panel › Settings on the site."
+
+msgid "Kopyala"
+msgstr "Copy"
+
+msgid "Geçerli bir IP adresi girin."
+msgstr "Enter a valid IP address."
+
+msgid "Bulunamadı"
+msgstr "Not found"
+
+msgid "Anahtar testi"
+msgstr "Key test"
+
+msgid "Geçersiz"
+msgstr "Invalid"
+
+msgid "Pasif"
+msgstr "Disabled"
+
+msgid "Geçerli"
+msgstr "Valid"
+
+msgid "Beta dahil"
+msgstr "Beta included"
+
+msgid "Kararlı"
+msgstr "Stable"
+
+msgid "Görebileceği paketler (%d):"
+msgstr "Packages it can see (%d):"
+
+msgid "Site en son %s bağlandı."
+msgstr "The site last connected %s."
+
+msgid "Site henüz bağlanmadı."
+msgstr "The site has not connected yet."
+
+msgid "%d gün"
+msgstr "%d days"
+
+msgid "Aktif site"
+msgstr "Active sites"
+
+msgid "Önceki dönem: %s"
+msgstr "Previous period: %s"
+
+msgid "Anahtarlı"
+msgstr "Keyed"
+
+msgid "%s site anahtarsız (public)"
+msgstr "%s sites without a key (public)"
+
+msgid "Kontrol isteği"
+msgstr "Update checks"
+
+msgid "%s anahtarsız"
+msgstr "%s without a key"
+
+msgid "Aktarılan"
+msgstr "Transferred"
+
+msgid "Zip indirmeleri"
+msgstr "Zip downloads"
+
+msgid "Ülke"
+msgstr "Country"
+
+msgid "%s sitenin ülkesi bilinmiyor"
+msgstr "%s sites with unknown country"
+
+msgid "İstekten, IP saklanmadan"
+msgstr "From the request, IPs not stored"
+
+msgid "Günlük kullanım"
+msgstr "Daily usage"
+
+msgid "Tekil site"
+msgstr "Unique sites"
+
+msgid "Bu aralıkta kayıt yok."
+msgstr "No records in this range."
+
+msgid "Paket"
+msgstr "Package"
+
+msgid "Kurulu site"
+msgstr "Installed on"
+
+msgid "Az"
+msgstr "Fewer"
+
+msgid "Çok"
+msgstr "More"
+
+msgid "%s site"
+msgstr "%s sites"
+
+msgid "Bağlanan siteler"
+msgstr "Connected sites"
+
+msgid "%1$s site bu aralıkta, toplam %2$s kayıtlı"
+msgstr "%1$s sites in this range, %2$s recorded in total"
+
+msgid "Bu aralıkta güncelleme denetleyen site yok."
+msgstr "No site checked for updates in this range."
+
+msgid "Erişim"
+msgstr "Access"
+
+msgid "Ortam"
+msgstr "Environment"
+
+msgid "İstek"
+msgstr "Requests"
+
+msgid "Son"
+msgstr "Last"
+
+msgid "Adres bildirmedi"
+msgstr "No address sent"
+
+msgid "Tümünü göster (%s)"
+msgstr "Show all (%s)"
+
+msgid "Zorunlu kayıt yalnız site adresi ve ülkedir. IP saklanmaz: ülke, istek anında IP'den bulunur ve yalnız ülke kodu tutulur. WordPress/PHP sürümü yalnız kullanım verisi izniyle."
+msgstr "Only the site address and country are recorded by default. IPs are not stored: the country is looked up from the IP while the request is handled and only the country code is kept. WordPress/PHP versions only with the usage-data opt-in."
+
+msgid "Teslim bekliyor"
+msgstr "Waiting for pickup"
+
+msgid "FluxWP Panel gerekli"
+msgstr "FluxWP Panel needed"
+
+msgid "Anahtar ver"
+msgstr "Issue key"
+
+msgid "Ülke trafiği"
+msgstr "Traffic by country"
+
+msgid "%1$s ülke · %2$s engellenen istek"
+msgstr "%1$s countries · %2$s blocked requests"
+
+msgid "Ülke veritabanı yok"
+msgstr "No country database"
+
+msgid "Cloudflare arkasında değilseniz ülkeler bilinmiyor görünür."
+msgstr "Unless you are behind Cloudflare, countries show as unknown."
+
+msgid "Veritabanını indir"
+msgstr "Download the database"
+
+msgid "Veri"
+msgstr "Data"
+
+msgid "Engellenen"
+msgstr "Blocked"
+
+msgid "En çok inen"
+msgstr "Most downloaded"
+
+msgid "Kontrol ve indirmeler her istekte sayılır; kullanım verisi izni gerekmez. Satıra tıklayınca o ülkedeki paketler açılır."
+msgstr "Checks and downloads are counted on every request; no usage-data opt-in needed. Click a row to see that country's packages."
+
+msgid "Private erişim"
+msgstr "Private access"
+
+msgid "(public paketler her siteye açık)"
+msgstr "(public packages are open to every site)"
+
+msgid "Tüm private paketler (yeni eklenenler dahil)"
+msgstr "All private packages (including new ones)"
+
+msgid "Seçilen depolar ve paketler"
+msgstr "Selected repositories and packages"
+
+msgid "Private depo yok."
+msgstr "No private repositories."
+
+msgid "tümü, %d paket + sonradan eklenenler"
+msgstr "all, %d packages + ones added later"
+
+msgid "Tüm private paketler"
+msgstr "All private packages"
+
+msgid "(tümü)"
+msgstr "(all)"
+
+msgid "Yalnız public paketler"
+msgstr "Public packages only"
+
+msgid "Site ekle"
+msgstr "Add site"
+
+msgid "Site adı"
+msgstr "Site name"
+
+msgid "ör. Örnek Site"
+msgstr "e.g. Example Site"
+
+msgid "Kanal"
+msgstr "Channel"
+
+msgid "Kararlı sürümler"
+msgstr "Stable releases"
+
+msgid "Anahtar üret"
+msgstr "Generate key"
+
+msgid "Var olan bir anahtarı test et"
+msgstr "Test an existing key"
+
+msgid "Anahtarın hangi siteye ait olduğunu ve hangi paketleri görebildiğini gösterir."
+msgstr "Shows which site the key belongs to and which packages it can see."
+
+msgid "Test et"
+msgstr "Test"
+
+msgid "Anahtarlı siteler"
+msgstr "Keyed sites"
+
+msgid "Henüz site yok. \"Site ekle\" ile ilk anahtarı üretin."
+msgstr "No sites yet. Generate the first key with \"Add site\"."
+
+msgid "Durum"
+msgstr "Status"
+
+msgid "Kurulu paketler"
+msgstr "Installed packages"
+
+msgid "İzin"
+msgstr "Permissions"
+
+msgid "Teslim süresi doldu"
+msgstr "Pickup expired"
+
+msgid "Hiç bağlanmadı"
+msgstr "Never connected"
+
+msgid "%d gündür yok"
+msgstr "Missing for %d days"
+
+msgid "Bağlı"
+msgstr "Connected"
+
+msgid "Pasif yap"
+msgstr "Disable"
+
+msgid "Aktif yap"
+msgstr "Enable"
+
+msgid "Erişimi düzenle"
+msgstr "Edit access"
+
+msgid "Ad"
+msgstr "Name"
+
+msgid "Kaydet"
+msgstr "Save"
+
+msgid "Bu site silinsin mi? Anahtarı hemen geçersiz olur."
+msgstr "Delete this site? Its key stops working at once."
+
+msgid "Siteyi sil"
+msgstr "Delete site"
+
+msgid "Sunucu dosyasından (config.php)"
+msgstr "From the server file (config.php)"
+
+msgid "Sunucu anahtarın yalnız özetini (sha256) saklar. Kaybolan anahtar geri alınamaz: siteyi silip yeni anahtar üretin. Anahtarsız bağlanan bir siteye Genel bakış › Bağlanan siteler › \"Anahtar ver\" ile de anahtar verebilirsiniz."
+msgstr "The server stores only the key's hash (sha256). A lost key cannot be recovered: delete the site and generate a new key. You can also give a key to a site that connected without one under Overview › Connected sites › \"Issue key\"."
+
+msgid "Paketleri yeniden oku"
+msgstr "Reload packages"
+
+msgid "Paket yok. GitHub sekmesinde depoları ve (private depo için) token'ı girin; depoda release yoksa bir pakete sürüm çıkın."
+msgstr "No packages. Enter the repositories (and a token for private ones) on the GitHub tab; if a repository has no releases, release a package."
+
+msgid "Tür"
+msgstr "Type"
+
+msgid "Son sürüm"
+msgstr "Latest version"
+
+msgid "Boyut"
+msgstr "Size"
+
+msgid "Yayın"
+msgstr "Published"
+
+msgid "Anahtarla"
+msgstr "With key"
+
+msgid "Tema"
+msgstr "Theme"
+
+msgid "Eklenti"
+msgstr "Plugin"
+
+msgid "Yeni sürüm en geç 5 dakikada görünür; webhook ayarlıysa hemen. Private depodaki bir paketi anahtarsız açmak için GitHub sekmesinde \"Herkese açık paketler\"i işaretleyin."
+msgstr "New versions show up within 5 minutes, at once with the webhook. To serve a package from a private repository without a key, tick it under \"Public packages\" on the GitHub tab."
+
+msgid "Bağlı değil"
+msgstr "Not connected"
+
+msgid "%1$d paket okundu (%2$d private, %3$d public)"
+msgstr "%1$d packages read (%2$d private, %3$d public)"
+
+msgid "Token yok: yalnız public depolar okunuyor."
+msgstr "No token: only public repositories are read."
+
+msgid "Okunamadı"
+msgstr "Unreadable"
+
+msgid "Private depolar"
+msgstr "Private repositories"
+
+msgid "(paketleri yalnız site anahtarıyla)"
+msgstr "(packages only with a site key)"
+
+msgid "Public depolar"
+msgstr "Public repositories"
+
+msgid "(paketleri herkese anahtarsız; boşsa public güncelleme kapalı)"
+msgstr "(packages for everyone without a key; empty turns public updates off)"
+
+msgid "Herkese açık paketler"
+msgstr "Public packages"
+
+msgid "(private depodaki bu paketler anahtarsız iner; ör. web sitesindeki indirme butonu için flx-setup)"
+msgstr "(these packages from private repositories download without a key; e.g. flx-setup for a website download button)"
+
+msgid "Uygulama deposu"
+msgstr "App repository"
+
+msgid "(masaüstü/mobil uygulama, tag v<sürüm>)"
+msgstr "(desktop/mobile app, tag v<version>)"
+
+msgid "FluxWP masaüstü deposu"
+msgstr "FluxWP desktop repository"
+
+msgid "(fluxapp-v<sürüm> yayınları; boşsa ilk private depo)"
+msgstr "(fluxapp-v<version> releases; empty uses the first private repository)"
+
+msgid "Liste GitHub'dan gelir: token'ın erişebildiği depolar ve bu sahiplerin public depoları. Listede olmayanı owner/repo yazıp Enter ile ekleyin."
+msgstr "The list comes from GitHub: repositories the token can reach and public repositories of the same owners. Type owner/repo and press Enter to add one that is not listed."
+
+msgid "(fine-grained, private depolar + uygulama deposu, Contents: Read-only)"
+msgstr "(fine-grained, private repositories + app repository, Contents: Read-only)"
+
+msgid "Kayıtlı: …%s (değiştirmek için yenisini yazın)"
+msgstr "Saved: …%s (type a new one to change it)"
+
+msgid "Token yalnız güncelleme sunucusunda saklanır; bu siteye geri okunmaz."
+msgstr "The token is stored only on the update server; it is never read back to this site."
+
+msgid "Kaydet ve test et"
+msgstr "Save and test"
+
+msgid "Anında yayın (isteğe bağlı)"
+msgstr "Instant publish (optional)"
+
+msgid "Yeni sürüm en geç 5 dakikada görünür. Anında görünsün isterseniz bu secret'ı paket deposunun Settings › Secrets › Actions bölümüne <code>UPDATE_WEBHOOK_SECRET</code> adıyla ekleyin; repo değişkeni <code>UPDATE_SERVER</code> = <code>%s</code>."
+msgstr "New versions show up within 5 minutes. To make them show up at once, add this secret to the package repository under Settings › Secrets › Actions as <code>UPDATE_WEBHOOK_SECRET</code>; repository variable <code>UPDATE_SERVER</code> = <code>%s</code>."
+
+msgid "Yeni secret üretilsin mi? Eskisi hemen çalışmaz; GitHub'daki secret'ı da değiştirmeniz gerekir."
+msgstr "Generate a new secret? The old one stops working at once; you must change the secret on GitHub too."
+
+msgid "Secret üret"
+msgstr "Generate secret"
+
+msgid "Yeni secret üret"
+msgstr "Generate new secret"
+
+msgid "Dağıtım anahtarları"
+msgstr "Distribution switches"
+
+msgid "Acil durdurma"
+msgstr "Emergency stop"
+
+msgid "Durduruldu"
+msgstr "Stopped"
+
+msgid "Dağıtım açık"
+msgstr "Distribution on"
+
+msgid "Tüm güncelleme kontrolleri, paket ve uygulama indirmeleri 503 ile durur (anahtarlı siteler dahil). Sunucu paneli, webhook ve bu ekran çalışmaya devam eder."
+msgstr "All update checks, package and app downloads stop with 503 (keyed sites included). The server panel, the webhook and this screen keep working."
+
+msgid "Dağıtım yeniden açılsın mı?"
+msgstr "Turn distribution back on?"
+
+msgid "Tüm dağıtım durdurulsun mu? Hiçbir site güncelleme alamaz."
+msgstr "Stop all distribution? No site can get updates."
+
+msgid "Dağıtımı aç"
+msgstr "Turn distribution on"
+
+msgid "Tümünü durdur"
+msgstr "Stop everything"
+
+msgid "Anahtarsız dağıtım"
+msgstr "Keyless distribution"
+
+msgid "Kapalı"
+msgstr "Off"
+
+msgid "Açık"
+msgstr "On"
+
+msgid "Public depo yok"
+msgstr "No public repository"
+
+msgid "Kapatınca anahtarsız ve pasif anahtarlı istekler (public paketler, latest.zip indirme butonu, masaüstü/mobil uygulama) 401 alır. Aktif anahtarlı siteler etkilenmez."
+msgstr "When off, keyless requests and disabled keys (public packages, the latest.zip download button, desktop/mobile app) get 401. Sites with an active key are not affected."
+
+msgid "Anahtarsız dağıtım yeniden açılsın mı?"
+msgstr "Turn keyless distribution back on?"
+
+msgid "Anahtarsız dağıtım kapatılsın mı? Anahtarı olmayan siteler ve uygulamalar güncelleme alamaz."
+msgstr "Turn keyless distribution off? Sites and apps without a key will not get updates."
+
+msgid "Anahtarsız dağıtımı aç"
+msgstr "Turn keyless distribution on"
+
+msgid "Anahtarsızları kapat"
+msgstr "Turn keyless off"
+
+msgid "Her değişiklik sunucunun erişim günlüğüne yönetici anahtarının adıyla yazılır."
+msgstr "Every change is written to the server's access log with the manager key's name."
+
+msgid "Ülke veritabanı"
+msgstr "Country database"
+
+msgid "Kurulu"
+msgstr "Installed"
+
+msgid "Kaynak"
+msgstr "Source"
+
+msgid "Veri tarihi"
+msgstr "Data date"
+
+msgid "İndirildi"
+msgstr "Downloaded"
+
+msgid "Yok"
+msgstr "None"
+
+msgid "İndirin ya da sunucu panelinden .mmdb dosyası yükleyin."
+msgstr "Download it, or upload an .mmdb file in the server panel."
+
+msgid "Son deneme başarısız"
+msgstr "Last attempt failed"
+
+msgid "Şimdi güncelle"
+msgstr "Update now"
+
+msgid "Ülke veritabanı silinsin mi?"
+msgstr "Delete the country database?"
+
+msgid "Sil"
+msgstr "Delete"
+
+msgid "Ülkesini bul"
+msgstr "Find country"
+
+msgid "IP harici bir servise gönderilmez; arama güncelleme sunucusunda yapılır. Veritabanı ayda bir kendiliğinden yenilenir."
+msgstr "The IP is not sent to any outside service; the lookup runs on the update server. The database refreshes itself monthly."
+
+msgid "Ülke erişimi"
+msgstr "Country access"
+
+msgid "Seçilen ülkeleri engelle"
+msgstr "Block selected countries"
+
+msgid "Yalnız seçilen ülkelere izin ver"
+msgstr "Allow only selected countries"
+
+msgid "Ülke ekle… (ad ya da TR gibi kod)"
+msgstr "Add country… (name or a code like TR)"
+
+msgid "Aktif anahtarlı siteler muaf (yalnız anahtarsız istekler kurala tabi)"
+msgstr "Sites with an active key are exempt (only keyless requests follow the rule)"
+
+msgid "Ülke veritabanını ayda bir kendiliğinden güncelle"
+msgstr "Update the country database monthly on its own"
+
+msgid "Engellenen istek 403 (region_blocked) alır ve yalnız ülke koduyla sayılır. Ülkesi bulunamayan istek \"engelle\" kipinde geçer, \"yalnız izin ver\" kipinde engellenir. Kural güncelleme kontrolü, paket ve uygulama indirmelerine uygulanır; panel ve bu ekran etkilenmez."
+msgstr "A blocked request gets 403 (region_blocked) and is counted by country code only. A request with an unknown country passes in block mode and is blocked in allow mode. The rule applies to update checks, package and app downloads; the panel and this screen are not affected."
+
+msgid "Zip dosyaları"
+msgstr "Zip files"
+
+msgid "GitHub önbelleği"
+msgstr "GitHub cache"
+
+msgid "İstatistik"
+msgstr "Statistics"
+
+msgid "Günlük"
+msgstr "Log"
+
+msgid "Ayarlar ve diğer"
+msgstr "Settings and other"
+
+msgid "Depolama"
+msgstr "Storage"
+
+msgid "Makine diski (paylaşımlı)"
+msgstr "Machine disk (shared)"
+
+msgid "%s boş"
+msgstr "%s free"
+
+msgid "Paylaşımlı hosting'de PHP sunucudaki tüm hesapların ortak diskini görür; bu sizin kotanız değil."
+msgstr "On shared hosting PHP sees the disk shared by every account on the machine; this is not your quota."
+
+msgid "Disk"
+msgstr "Disk"
+
+msgid "Sunucu verisi (data/)"
+msgstr "Server data (data/)"
+
+msgid "Eski zipleri temizle"
+msgstr "Clean old zips"
+
+msgid "Erişim günlüğü silinsin mi?"
+msgstr "Delete the access log?"
+
+msgid "Günlüğü temizle"
+msgstr "Clear log"
+
+msgid "API kotası (saatlik)"
+msgstr "API quota (hourly)"
+
+msgid "Kullanılan %1$s · yenilenme %2$s"
+msgstr "Used %1$s · resets %2$s"
+
+msgid "Paket önbelleği"
+msgstr "Package cache"
+
+msgid "boş"
+msgstr "empty"
+
+msgid "Her %d dakikada bir GitHub'dan yenilenir; webhook gelirse hemen."
+msgstr "Refreshed from GitHub every %d minutes; at once when the webhook fires."
+
+msgid "Sürüm"
+msgstr "Version"
+
+msgid "Bellek sınırı"
+msgstr "Memory limit"
+
+msgid "sınırsız"
+msgstr "unlimited"
+
+msgid "Süre sınırı"
+msgstr "Time limit"
+
+msgid "%d sn"
+msgstr "%d s"
+
+msgid "yok"
+msgstr "none"
+
+msgid "Sunucu yükü (1/5/15 dk)"
+msgstr "Server load (1/5/15 min)"
+
+msgid "intl (ülke adları)"
+msgstr "intl (country names)"
+
+msgid "var"
+msgstr "yes"
+
+msgid "Dosyalar"
+msgstr "Files"
+
+msgid "%1$d zip, %2$s"
+msgstr "%1$d zips, %2$s"
+
+msgid "Her paketin son sürümleri sunucuda saklanır. Daha eski bir sürüm istenirse GitHub release'ten yeniden indirilir ve son indirmeden sonra belirtilen süre dolunca silinir. Temizlik saatte bir kendiliğinden yapılır."
+msgstr "The latest versions of each package are kept on the server. An older version is fetched from the GitHub release again when asked for and deleted once the set time after its last download has passed. Cleanup runs every hour on its own."
+
+msgid "Paket başına saklanan sürüm"
+msgstr "Versions kept per package"
+
+msgid "Eski sürüm kaç saat sonra silinsin"
+msgstr "Delete older versions after (hours)"
+
+msgid "Sunucu bağlantısı"
+msgstr "Server connection"
+
+msgid "Anahtar: %s"
+msgstr "Key: %s"
+
+msgid "Sunucu adresi"
+msgstr "Server address"
+
+msgid "Yönetici anahtarı"
+msgstr "Manager key"
+
+msgid "Kayıtlı (değiştirmek için yenisini yazın)"
+msgstr "Saved (type a new one to change it)"
+
+msgid "Anahtarı sunucu panelinde (/admin › Updater Manager) \"Yönetici anahtarı üret\" ile alın. Anahtar bu sitede şifreli saklanır ve bir daha gösterilmez."
+msgstr "Get the key in the server panel (/admin › Updater Manager) with \"Generate manager key\". The key is stored encrypted on this site and is never shown again."
+
+msgid "Kaydet ve bağlan"
+msgstr "Save and connect"
+
+msgid "Yönetici anahtarı bu siteden silinsin mi?"
+msgstr "Remove the manager key from this site?"
+
+msgid "Bağlantıyı kaldır"
+msgstr "Remove connection"
+
+msgid "wp-config.php'de <code>FLXUM_SERVER</code> ve <code>FLXUM_KEY</code> sabitleri bu alanları ezer."
+msgstr "The <code>FLXUM_SERVER</code> and <code>FLXUM_KEY</code> constants in wp-config.php override these fields."
+
+msgid "Nasıl bağlanır?"
+msgstr "How to connect"
+
+msgid "Güncelleme sunucusunu 1.12.0 ya da üstüne yükseltin."
+msgstr "Upgrade the update server to 1.12.0 or later."
+
+msgid "Sunucu panelinde (/admin) en alttaki \"Updater Manager\" kartında bir ad yazıp \"Yönetici anahtarı üret\"e basın."
+msgstr "In the server panel (/admin), type a name in the \"Updater Manager\" card at the bottom and press \"Generate manager key\"."
+
+msgid "Anahtarı (flxm_…) buraya yapıştırıp \"Kaydet ve bağlan\"a basın."
+msgstr "Paste the key (flxm_…) here and press \"Save and connect\"."
+
+msgid "Anahtar sunucudaki tüm ayarlara ve istatistiklere erişir; yönetici anahtarı üretme ve ülke veritabanı dosyası yükleme sunucu panelinde kalır. Sunucu panelinden silinen anahtar hemen çalışmaz olur."
+msgstr "The key reaches every setting and statistic on the server; creating manager keys and uploading the country database file stay in the server panel. A key deleted in the server panel stops working at once."
+
+msgid "Yönetici anahtarları"
+msgstr "Manager keys"
+
+msgid "Bu site"
+msgstr "This site"
+
+msgid "Son kullanım: %s"
+msgstr "Last used: %s"
+
+msgid "Bu yönetici anahtarı silinsin mi?"
+msgstr "Delete this manager key?"
+
+msgid "Yeni anahtar yalnız sunucu panelinde üretilir. Bu sitenin anahtarını sunucu panelinden silebilirsiniz."
+msgstr "New keys are generated only in the server panel. You can delete this site's key there."
+
+msgid "Sunucu paneli parolası"
+msgstr "Server panel password"
+
+msgid "Yeni parola"
+msgstr "New password"
+
+msgid "Tekrar"
+msgstr "Repeat"
+
+msgid "Değiştir"
+msgstr "Change"
