@@ -1,0 +1,145 @@
+{
+  "id": "backup",
+  "plugin": "flx-backup",
+  "min_app": "1.0.0",
+  "title": "Yedekler",
+  "icon": "box",
+  "menu": "flx-backup",
+  "entry": "list",
+  "tabs": ["list"],
+  "fallback": { "web": "admin.php?page=flx-backup" },
+  "routes": {
+    "admin.php?page=flx-backup": { "screen": "list" },
+    "admin.php?page=flx-backup-list": { "screen": "list" }
+  },
+  "sources": {
+    "backups": {
+      "path": "flx-backup/v1/backups",
+      "paging": { "mode": "page", "param": "page", "size_param": "per_page", "size": 20, "items": "items", "total": "total", "pages": "pages" },
+      "key": "id",
+      "cache": { "stale": 15 }
+    },
+    "backup": {
+      "path": "flx-backup/v1/backups/{{params.id}}",
+      "cache": { "stale": 10 },
+      "poll": 10
+    }
+  },
+  "screens": {
+    "list": {
+      "type": "list",
+      "title": "Yedekler",
+      "source": "backups",
+      "layout": "rows",
+      "columns": [
+        { "label": "Yedek", "value": "{{title}}", "width": 3 },
+        { "label": "Tür", "value": "{{type_label}}" },
+        { "label": "Durum", "value": "{{status_label}}" },
+        { "label": "Boyut", "value": "{{size_label}}", "align": "end" }
+      ],
+      "filters": [
+        {
+          "param": "status",
+          "label": "Durum",
+          "type": "select",
+          "options": [
+            { "value": "", "label": "Tümü" },
+            { "value": "running", "label": "Sürüyor" },
+            { "value": "done", "label": "Tamam" },
+            { "value": "ok", "label": "Tamam" },
+            { "value": "failed", "label": "Hata" }
+          ]
+        },
+        {
+          "param": "type",
+          "label": "Tür",
+          "type": "select",
+          "options": [
+            { "value": "", "label": "Tümü" },
+            { "value": "full", "label": "Tam yedek" },
+            { "value": "db", "label": "Veritabanı" },
+            { "value": "files", "label": "Dosyalar" },
+            { "value": "pre_update", "label": "Güncelleme öncesi" }
+          ]
+        }
+      ],
+      "item": {
+        "title": "{{title}}",
+        "subtitle": "{{type_label}}",
+        "meta": "{{size_label}}",
+        "caption": "{{created_label}}",
+        "badges": [
+          { "text": "Sürüyor", "tone": "warn", "when": { "path": "status", "op": "eq", "value": "running" } },
+          { "text": "Hata", "tone": "danger", "when": { "path": "status", "op": "eq", "value": "failed" } },
+          { "text": "Tamam", "tone": "ok", "when": { "path": "status", "op": "in", "value": ["done", "ok"] } }
+        ]
+      },
+      "onPress": { "target": "screen:backup/backup", "params": { "id": "{{id}}" } },
+      "actions": { "header": ["backup_now"], "row": ["backup_delete"], "fab": "backup_now" },
+      "empty": { "title": "Yedek yok", "body": "Şimdi yedekle ile ilk yedeği alın. Geri yükleme panelde yapılır." }
+    },
+    "backup": {
+      "type": "detail",
+      "title": "Yedek",
+      "source": "backup",
+      "header": {
+        "title": "{{title}}",
+        "subtitle": "{{created_label}}",
+        "badges": [
+          { "text": "{{status_label}}", "tone": "warn", "when": { "path": "status", "op": "eq", "value": "running" } },
+          { "text": "{{status_label}}", "tone": "danger", "when": { "path": "status", "op": "eq", "value": "failed" } },
+          { "text": "{{status_label}}", "tone": "ok", "when": { "path": "status", "op": "in", "value": ["done", "ok"] } }
+        ]
+      },
+      "sections": [
+        {
+          "type": "stats",
+          "items": [
+            { "label": "Boyut", "value": "{{size_label|default:'—'}}" },
+            { "label": "Dosya", "value": "{{files|number}}" },
+            { "label": "İlerleme", "value": "{{percent|number}}", "when": { "path": "percent", "op": "filled" } }
+          ]
+        },
+        {
+          "type": "fields",
+          "title": "Ayrıntı",
+          "fields": [
+            { "label": "Tür", "value": "{{type_label}}" },
+            { "label": "Durum", "value": "{{progress|default:status_label}}" },
+            { "label": "Hata", "value": "{{error}}", "when": { "path": "error", "op": "filled" } }
+          ]
+        },
+        { "type": "notice", "tone": "info", "text": "Geri yükleme yalnız panelde yapılır." }
+      ],
+      "actions": { "header": ["restore_web", "backup_delete"] }
+    },
+    "restore": {
+      "type": "web",
+      "title": "Geri yükle",
+      "path": "admin.php?page=flx-backup"
+    }
+  },
+  "actions": {
+    "backup_now": {
+      "label": "Şimdi yedekle",
+      "icon": "plus",
+      "confirm": { "title": "Tam yedek alınsın mı?", "body": "Yedek arka planda hazırlanır. Bitince listede görünür.", "ok": "Yedekle" },
+      "request": { "method": "POST", "path": "flx-backup/v1/backups", "body": { "type": "full" } },
+      "after": { "toast": "Yedek başladı", "invalidate": ["backups"] }
+    },
+    "backup_delete": {
+      "label": "Sil",
+      "icon": "trash",
+      "tone": "danger",
+      "confirm": { "title": "Yedek silinsin mi?", "body": "Arşiv dosyası da silinir.", "ok": "Sil" },
+      "request": { "method": "POST", "path": "flx-backup/v1/backups/{{id}}/delete" },
+      "after": { "toast": "Silindi", "back": true, "invalidate": ["backups"] },
+      "haptic": "warning"
+    },
+    "restore_web": {
+      "label": "Geri yükle",
+      "icon": "globe",
+      "web": "admin.php?page=flx-backup"
+    }
+  }
+}

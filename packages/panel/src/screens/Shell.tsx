@@ -1,31 +1,62 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { clientFor, layoutStore, platform, type Account } from '@fluxwp/core';
+import { clientFor, platform, type Account } from '@fluxwp/core';
 import { ModuleHostProvider, type ModuleHost } from '@fluxwp/modules';
+import { ManifestScreen } from '@fluxwp/render-web';
+import { useAccount, useMe, useShellModel, useSiteConfig } from '@fluxwp/runtime';
 import { Sidebar } from '../components/Sidebar';
 import { TitleBar } from '../components/TitleBar';
 import { useSidebar } from '../state/sidebar';
 import { startUpdateChecks } from '../state/update';
 import { CommandPalette } from '../components/CommandPalette';
-import { useMe, useNav } from '../state/hooks';
+import { useNav } from '../state/hooks';
 import { useRoute } from '../state/route';
 import { screens } from '../modules/registry';
 import { WebPanel } from './WebPanel';
 import { Settings } from './Settings';
 import { AddSite } from './AddSite';
+import { Dashboard } from './Dashboard';
+import { Notifications } from './Notifications';
+import { buildMenu } from '../lib/menuGroups';
+import { activeOf, fromEntry, fromNav, labelOf, type SideGroup, type SideLink } from '../shell/links';
+import { PrefsBridge, SyncNotifier } from '../shell/bridges';
+import { homeRoute, type Route } from '../state/route';
 
-export function Shell({ account }: { account: Account }) {
+export function Shell() {
+  const account = useAccount();
   const { t } = useTranslation();
-  const me = useMe(account);
-  const nav = useNav(account);
+  const me = useMe();
+  const site = useSiteConfig();
+  const shell = useShellModel();
+  const legacy = useNav(account);
   const { route, go } = useRoute();
   const [palette, setPalette] = useState(false);
-  const [editing, setEditing] = useState(false);
   const collapsed = useSidebar((s) => s.collapsed);
+  const booted = useRef(false);
   const host = useMemo<ModuleHost>(() => ({ mode: 'app', client: clientFor(account), scope: account.id, siteUrl: account.siteUrl, siteName: account.siteName, openUrl: (u) => void platform().openExternal(u) }), [account]);
 
-  useEffect(() => void layoutStore.getState().load(account.id), [account.id]);
+  const configShell = site.isSuccess && !!site.data;
+  const menu = useMemo(() => {
+    if (configShell) {
+      return {
+        pins: shell.sidebar.pins.map((e) => fromEntry(e, t)),
+        groups: shell.sidebar.groups.map((g) => ({ id: g.id, label: labelOf(g.label, t), collapsed: g.collapsed, items: g.items.map((e) => fromEntry(e, t)) })),
+      };
+    }
+    const built = buildMenu(legacy);
+    return { pins: built.pins.map(fromNav), groups: built.groups.map((g) => ({ ...g, items: g.items.map(fromNav) })) };
+  }, [configShell, shell.sidebar, legacy, t]);
+
+  const commands = useMemo(() => shell.commands.map((e) => fromEntry(e, t)), [shell.commands, t]);
+  const active = activeOf(menu.pins, menu.groups, route);
+
   useEffect(() => startUpdateChecks(), []);
+  useEffect(() => {
+    if (booted.current || me.isLoading || !configShell && site.isLoading) return;
+    booted.current = true;
+    if (useRoute.getState().past.length) return;
+    useRoute.getState().replace(configShell ? shell.home.route : homeRoute());
+  }, [me.isLoading, site.isLoading, configShell, shell.home]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -48,31 +79,80 @@ export function Shell({ account }: { account: Account }) {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
-  if (route.kind === 'add-account') return <AddSite onCancel={() => go({ kind: 'nav', id: 'dashboard' })} />;
+  const open = (next: Route) => {
+    if (next.kind === 'shell' && next.name === 'search') {
+      setPalette(true);
+      return;
+    }
+    if (next.kind === 'url') {
+      void platform().openExternal(next.url);
+      return;
+    }
+    go(next);
+  };
 
-  const item = route.kind === 'nav' ? (nav.find((n) => n.id === route.id) ?? nav.find((n) => n.moduleId === 'core-dashboard')) : undefined;
-  let content: React.ReactNode;
-  if (me.isLoading) content = <div className="page"><div className="card skeleton tall" /></div>;
-  else if (me.isError) content = <div className="page"><p className="error">{t(account.needsLogin ? 'accounts.needsLogin' : 'errors.server')}</p></div>;
-  else if (route.kind === 'settings') content = <Settings />;
-  // Yerel ekranın alt sayfaları (ör. Görevler › Ayarlar) web panelinde açılır; ilk alt sayfa yerel ekranın kendisi.
-  else if (item?.kind === 'native' && item.moduleId && screens[item.moduleId] && !(route.kind === 'nav' && route.sub && route.sub !== item.slug && route.sub !== item.children[0]?.id)) {
-    const S = screens[item.moduleId]!;
-    content = <S />;
-  } else if (item) content = <WebPanel item={item} sub={route.kind === 'nav' ? route.sub : undefined} />;
-  else {
-    const S = screens['core-dashboard']!;
-    content = <S />;
-  }
+  if (route.kind === 'add-account') return <AddSite initialUrl={route.siteUrl} onCancel={() => go(homeRoute())} />;
 
   return (
     <div className="shell">
-      <Sidebar account={account} nav={nav} activeId={item?.id ?? null} onSearch={() => setPalette(true)} editing={editing} onEditDone={() => setEditing(false)} />
+      <PrefsBridge />
+      <SyncNotifier />
+      <Sidebar
+        account={account}
+        pins={menu.pins}
+        groups={menu.groups}
+        activeId={active.id}
+        childId={active.child}
+        onSearch={() => setPalette(true)}
+        onOpen={open}
+        actions={shell.topbar.actionEntries.map((e) => fromEntry(e, t))}
+      />
       <main className={'main' + (collapsed ? ' with-bar' : '')}>
         {collapsed && <TitleBar className="main-bar" />}
-        <div className="main-scroll"><ModuleHostProvider value={host}>{content}</ModuleHostProvider></div>
+        <div className="main-scroll">
+          <ModuleHostProvider value={host}>
+            {me.isLoading ? <div className="page"><div className="card skeleton tall" /></div> : me.isError ? <div className="page"><p className="error">{t(account.needsLogin ? 'accounts.needsLogin' : 'errors.server')}</p></div> : <Stage route={route} groups={menu.groups} />}
+          </ModuleHostProvider>
+        </div>
       </main>
-      {palette && <CommandPalette nav={nav} onClose={() => setPalette(false)} />}
+      {palette && <CommandPalette links={[...menu.pins, ...menu.groups.flatMap((g) => g.items)]} commands={commands} onClose={() => setPalette(false)} onOpen={open} />}
     </div>
   );
 }
+
+function Stage({ route, groups }: { route: Route; groups: SideGroup[] }) {
+  if (route.kind === 'shell') {
+    if (route.name === 'settings' || route.name === 'accounts') return <Settings />;
+    if (route.name === 'notifications') return <Notifications />;
+    if (route.name === 'more') return <More groups={groups} />;
+    if (route.name === 'search') return null;
+  }
+  if (route.kind === 'native') {
+    const id = route.component === 'dashboard' ? 'core-dashboard' : route.component;
+    const Screen = screens[id];
+    if (Screen) return <Screen />;
+  }
+  if (route.kind === 'manifest') return <ManifestScreen module={route.module} screen={route.screen} params={route.params} />;
+  if (route.kind === 'web') return <WebPanel path={route.path} title={route.title ?? route.path} />;
+  return <Dashboard />;
+}
+
+function More({ groups }: { groups: SideGroup[] }) {
+  const { t } = useTranslation();
+  const go = useRoute((s) => s.go);
+  return (
+    <div className="page">
+      <header className="page-head"><h1>{t('nav.menu')}</h1></header>
+      {groups.map((g) => (
+        <section key={g.id} className="panel">
+          {g.label && <h2>{g.label}</h2>}
+          {g.items.map((item) => (
+            <button key={item.id} className="btn-ghost" onClick={() => go(item.route)}>{item.title}</button>
+          ))}
+        </section>
+      ))}
+    </div>
+  );
+}
+
+export type { Account, SideLink };

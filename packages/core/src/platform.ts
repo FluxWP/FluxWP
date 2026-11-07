@@ -23,17 +23,32 @@ export interface Platform {
   /** Gizli olmayan ayarlar (hesap listesi, düzen, tema). */
   storage: KeyValueStore;
   openExternal(url: string): Promise<void>;
-  /** OAuth dönüşü için loopback sunucu ya da deep link hazırlar. */
-  prepareOAuthRedirect(): Promise<OAuthRedirect>;
+  /** OAuth dönüşü için loopback sunucu ya da deep link hazırlar. `path` (mobil): "oauth/callback" | "appauth/callback". */
+  prepareOAuthRedirect(path?: string): Promise<OAuthRedirect>;
   /** Yerel ekranı olmayan panel sayfasını ayrı pencerede açar. */
   openWebView?(url: string, title: string): Promise<void>;
+  /** `openWebView` ile aynı kapı; başlık isteğe bağlı (runtime `openWeb`). */
+  openWeb?(url: string, title?: string): Promise<void>;
   /**
    * Panel sayfasını uygulama penceresinin içine, verilen alana gömer (masaüstü).
    * Sayfa "FLXApp/" user agent'ıyla açılır; Flux App panelin üst/sol barını gizler.
+   * `hooks` (masaüstü): gezinti ve köprü mesajı. Eski çağrılar yalnız url + rect verir.
    */
-  embedWebView?(url: string, rect: EmbedRect): Promise<EmbeddedView>;
+  embedWebView?(url: string, rect: EmbedRect, hooks?: EmbedHooks): Promise<EmbeddedView>;
   /** Uygulama güncellemesi (masaüstü). Yeni sürüm yoksa null. */
   checkUpdate?(): Promise<AppUpdate | null>;
+  /** Uygulama ön planda mı (polling yalnız görünürken). Yoksa hep görünür sayılır. */
+  visibility?: Visibility;
+  /** Yerel bildirim (masaüstü /sync olayları; mobilde push dışı uyarılar). */
+  notify?(n: { title: string; body?: string; data?: Record<string, unknown> }): Promise<void>;
+  /** Her isteğe eklenecek platform başlıkları (ör. X-FluxWP-Platform). */
+  headers?(): Record<string, string>;
+}
+
+export interface Visibility {
+  visible(): boolean;
+  /** Dinleyiciyi kaldıran fonksiyon döner. */
+  subscribe(fn: (visible: boolean) => void): () => void;
 }
 
 export interface AppUpdate {
@@ -65,6 +80,12 @@ export function newerVersion(a: string, b: string): boolean {
 }
 
 export interface EmbedRect { x: number; y: number; width: number; height: number }
+
+/** Optional embed callbacks. `onNavigate` fires before the load is shown; return false to cancel when the host can. */
+export interface EmbedHooks {
+  onNavigate?(url: string): boolean | void;
+  onMessage?(raw: unknown): void;
+}
 
 export interface EmbeddedView {
   setRect(r: EmbedRect): Promise<void>;

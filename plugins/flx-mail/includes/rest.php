@@ -20,6 +20,7 @@ add_action(
 		register_rest_route( $ns, '/queue/run', array( 'methods' => 'POST', 'callback' => 'flxi_rest_queue_run', 'permission_callback' => $perm ) );
 		register_rest_route( $ns, '/recipients', array( 'methods' => 'POST', 'callback' => 'flxi_rest_recipients', 'permission_callback' => $perm ) );
 		register_rest_route( $ns, '/connection-test', array( 'methods' => 'POST', 'callback' => 'flxi_rest_connection_test', 'permission_callback' => $perm ) );
+		register_rest_route( $ns, '/log', array( 'methods' => 'GET', 'callback' => 'flxi_rest_log_list', 'permission_callback' => $perm ) );
 		register_rest_route( $ns, '/log/(?P<id>\d+)', array( 'methods' => 'GET', 'callback' => 'flxi_rest_log_item', 'permission_callback' => $perm ) );
 		register_rest_route( $ns, '/dns', array( 'methods' => 'POST', 'callback' => 'flxi_rest_dns', 'permission_callback' => $perm ) );
 	}
@@ -246,6 +247,66 @@ function flxi_rest_connection_test( WP_REST_Request $r ) {
 	return flxi_test_connection( (int) $r['id'], sanitize_text_field( (string) $r['to'] ) );
 }
 
+/** Gönderim kaydı listesi. */
+function flxi_rest_log_list( WP_REST_Request $r ) {
+	global $wpdb;
+	$t     = flxi_table( 'log' );
+	$per   = min( 100, max( 1, absint( $r->get_param( 'per_page' ) ? $r->get_param( 'per_page' ) : 25 ) ) );
+	$page  = max( 1, absint( $r->get_param( 'page' ) ) );
+	$where = array( '1=1' );
+	$prm   = array();
+	$status  = sanitize_key( (string) $r->get_param( 'status' ) );
+	$channel = sanitize_key( (string) $r->get_param( 'channel' ) );
+	$search  = sanitize_text_field( (string) $r->get_param( 's' ) );
+	if ( $status ) {
+		$where[] = 'status = %s';
+		$prm[]   = $status;
+	}
+	if ( $channel ) {
+		$where[] = 'channel = %s';
+		$prm[]   = $channel;
+	}
+	if ( '' !== $search ) {
+		$like    = '%' . $wpdb->esc_like( $search ) . '%';
+		$where[] = '(recipient LIKE %s OR subject LIKE %s)';
+		array_push( $prm, $like, $like );
+	}
+	$w     = implode( ' AND ', $where );
+	$total = (int) ( $prm ? $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$t} WHERE {$w}", $prm ) ) : $wpdb->get_var( "SELECT COUNT(*) FROM {$t} WHERE {$w}" ) ); // phpcs:ignore WordPress.DB.PreparedSQL
+	$sql   = "SELECT id, created_at, channel, template, recipient, subject, status, error FROM {$t} WHERE {$w} ORDER BY id DESC" . $wpdb->prepare( ' LIMIT %d OFFSET %d', $per, ( $page - 1 ) * $per );
+	$rows  = $prm ? $wpdb->get_results( $wpdb->prepare( $sql, $prm ), ARRAY_A ) : $wpdb->get_results( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
+	$labels = array(
+		'sent'    => __( 'Gönderildi', 'flx-mail' ),
+		'failed'  => __( 'Başarısız', 'flx-mail' ),
+		'blocked' => __( 'Kapalı, gitmedi', 'flx-mail' ),
+		'sending' => __( 'Gönderiliyor', 'flx-mail' ),
+	);
+	$items  = array();
+	foreach ( (array) $rows as $row ) {
+		$ts      = strtotime( $row['created_at'] . ' UTC' );
+		$items[] = array(
+			'id'           => (int) $row['id'],
+			'channel'      => (string) $row['channel'],
+			'template'     => (string) $row['template'],
+			'recipient'    => (string) $row['recipient'],
+			'subject'      => (string) $row['subject'],
+			'status'       => (string) $row['status'],
+			'status_label' => isset( $labels[ $row['status'] ] ) ? $labels[ $row['status'] ] : $row['status'],
+			'error'        => (string) $row['error'],
+			'date_label'   => $ts && function_exists( 'flx_date' ) ? flx_date( $ts, 'datetime' ) : (string) $row['created_at'],
+		);
+	}
+	$res = rest_ensure_response(
+		array(
+			'items' => $items,
+			'total' => $total,
+			'pages' => max( 1, (int) ceil( $total / $per ) ),
+		)
+	);
+	$res->header( 'Cache-Control', 'no-store' );
+	return $res;
+}
+
 function flxi_rest_log_item( WP_REST_Request $r ) {
 	global $wpdb;
 	$row = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . flxi_table( 'log' ) . ' WHERE id = %d', (int) $r['id'] ), ARRAY_A ); // phpcs:ignore
@@ -256,8 +317,12 @@ function flxi_rest_log_item( WP_REST_Request $r ) {
 	if ( 'email' !== $row['channel'] || ! preg_match( '~<(html|p|div|table|br)[\s>/]~i', $body ) ) {
 		$body = '<pre style="white-space:pre-wrap;font:14px/1.5 -apple-system,Segoe UI,sans-serif;margin:16px">' . esc_html( $body ) . '</pre>';
 	}
-	$row['body'] = $body;
-	return $row;
+	$row['body']    = $body;
+	$ts             = strtotime( $row['created_at'] . ' UTC' );
+	$row['date_label'] = $ts && function_exists( 'flx_date' ) ? flx_date( $ts, 'datetime' ) : (string) $row['created_at'];
+	$res            = rest_ensure_response( $row );
+	$res->header( 'Cache-Control', 'no-store' );
+	return $res;
 }
 
 /** Alan adının SPF / DMARC / MX kayıtları (yalnız düğmeyle; sonuç saklanır). */

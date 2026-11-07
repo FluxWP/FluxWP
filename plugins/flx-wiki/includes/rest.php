@@ -17,13 +17,17 @@ add_action(
 				'methods'             => 'GET',
 				'permission_callback' => 'flxwk_visible',
 				'args'                => array(
-					'q'       => array( 'type' => 'string', 'required' => true ),
+					'q'       => array( 'type' => 'string', 'default' => '' ),
 					'section' => array( 'type' => 'string' ),
 					'limit'   => array( 'type' => 'integer', 'default' => 10 ),
 				),
 				'callback'            => function ( WP_REST_Request $r ) {
+					$q = trim( (string) $r['q'] );
+					if ( '' === $q ) {
+						return rest_ensure_response( array( 'total' => 0, 'results' => array() ) );
+					}
 					$res = flxwk_search(
-						mb_substr( (string) $r['q'], 0, 200 ),
+						mb_substr( $q, 0, 200 ),
 						array(
 							'limit'   => (int) $r['limit'],
 							'section' => sanitize_title( (string) $r['section'] ),

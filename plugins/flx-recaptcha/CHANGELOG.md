@@ -1,5 +1,8 @@
 # Flux reCAPTCHA
 
+## 0.2.0
+- Uygulama ayarları. Site anahtarı ve gizli anahtar write-only; gizli anahtar şifreli saklanır.
+
 ## 0.1.0
 
 - İlk sürüm: Google reCAPTCHA v3 (görünmez, puanlı) ya da v2 ("Ben robot değilim" kutucuğu).

@@ -1,0 +1,22 @@
+{
+  "id": "roles",
+  "plugin": "flx-roles",
+  "min_app": "1.0.0",
+  "title": "Roller",
+  "icon": "users",
+  "menu": "users.php?page=flx-roles",
+  "entry": "matrix",
+  "fallback": { "web": "users.php?page=flx-roles" },
+  "routes": {
+    "users.php?page=flx-roles": { "screen": "matrix" }
+  },
+  "sources": {},
+  "screens": {
+    "matrix": {
+      "type": "web",
+      "title": "Roller ve erişim",
+      "path": "users.php?page=flx-roles"
+    }
+  },
+  "actions": {}
+}

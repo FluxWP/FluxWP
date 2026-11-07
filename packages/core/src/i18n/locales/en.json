@@ -112,7 +112,8 @@
     "app": "App",
     "support": "Support",
     "contact": "Contact us",
-    "logoutConfirm": "Sign out of {{site}}?"
+    "logoutConfirm": "Sign out of {{site}}?",
+    "logoutFailed": "Could not sign out. Please try again."
   },
   "oauth": {
     "doneTitle": "Signed in",
@@ -304,5 +305,10 @@
     "download": "Download",
     "installing": "Installing…",
     "failed": "Could not check"
+  },
+  "legal": {
+    "title": "Legal information",
+    "privacy": "Privacy policy",
+    "terms": "Terms of use"
   }
 }

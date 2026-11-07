@@ -1,0 +1,251 @@
+{
+  "$id": "https://fluxwp.com/schema/brand.schema.json",
+  "title": "brands/<slug>/brand.json",
+  "type": "object",
+  "properties": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[\\w-]+$"
+    },
+    "name": {
+      "type": "string"
+    },
+    "shortName": {
+      "type": "string"
+    },
+    "bundleId": {
+      "type": "string"
+    },
+    "scheme": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9+.-]*$"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "logo": {
+      "type": "string"
+    },
+    "logoDark": {
+      "type": "string"
+    },
+    "colors": {
+      "type": "object",
+      "properties": {
+        "primary": {
+          "type": "string",
+          "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+        },
+        "primaryContrast": {
+          "type": "string",
+          "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+        },
+        "accent": {
+          "type": "string",
+          "pattern": "^(#[0-9a-fA-F]{3,8}|rgba?\\([\\d\\s.,%]+\\))$"
+        }
+      },
+      "required": [
+        "primary",
+        "primaryContrast",
+        "accent"
+      ]
+    },
+    "defaultSite": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "lockSite": {
+      "type": "boolean"
+    },
+    "loginMethods": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "oauth",
+          "otp",
+          "apikey",
+          "apppass"
+        ],
+        "type": "string"
+      }
+    },
+    "defaultLocale": {
+      "type": "string"
+    },
+    "locales": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "oauthClientId": {
+      "type": "string"
+    },
+    "ios": {
+      "type": "object",
+      "properties": {
+        "bundleIdentifier": {
+          "type": "string"
+        },
+        "appleTeamId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "bundleIdentifier"
+      ]
+    },
+    "android": {
+      "type": "object",
+      "properties": {
+        "package": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$"
+        }
+      },
+      "required": [
+        "package"
+      ]
+    },
+    "mobile": {
+      "type": "object",
+      "properties": {
+        "scheme": {
+          "type": "string"
+        },
+        "oauthClientId": {
+          "type": "string"
+        },
+        "loginMethods": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "oauth",
+              "otp",
+              "apikey",
+              "apppass"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "required": []
+    },
+    "allowedSites": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "locked": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "slug",
+    "name",
+    "bundleId",
+    "scheme",
+    "icon",
+    "logo",
+    "colors",
+    "defaultSite",
+    "lockSite",
+    "loginMethods",
+    "defaultLocale",
+    "locales"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$defs": {
+    "Condition": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "op": {
+              "enum": [
+                "eq",
+                "ne",
+                "in",
+                "nin",
+                "gt",
+                "gte",
+                "lt",
+                "lte",
+                "filled",
+                "empty",
+                "truthy",
+                "falsy"
+              ],
+              "type": "string"
+            },
+            "value": {}
+          },
+          "required": [
+            "path",
+            "op"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "all": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Condition"
+              }
+            }
+          },
+          "required": [
+            "all"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "any": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Condition"
+              }
+            }
+          },
+          "required": [
+            "any"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "not": {
+              "$ref": "#/$defs/Condition"
+            }
+          },
+          "required": [
+            "not"
+          ]
+        }
+      ]
+    }
+  }
+}

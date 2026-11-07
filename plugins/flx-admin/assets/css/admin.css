@@ -725,7 +725,7 @@ body.flxa #collapse-menu { display: none !important; }
 }
 @media screen and (min-width: 783px) and (max-width: 960px) {
 	body.flxa.auto-fold #adminmenu li.flxa-side-head { grid-template-columns: 1fr; justify-items: center; }
-	body.flxa.auto-fold .flxa-fold-btn { display: none; }
+	body.flxa.auto-fold .flxa-fold-btn { display: inline-flex; transform: scaleX(-1); }
 	body.flxa.auto-fold #adminmenu a.flxa-brand .flxa-brand-text { display: none; }
 	body.flxa.auto-fold #adminmenu a.flxa-brand { justify-content: center; padding: 2px 0; }
 }
@@ -1507,3 +1507,21 @@ html.flxa-dark body.flxa:not(.flxa-appmode) .googlesitekit-logo__logo-text :is(p
 	/* Flux AI düğmesi menünün soluna kayar (chat.css --flxai-edge) */
 	body.flxa:not(.flxa-appmode) #flxai-host { --flxai-edge: calc(var(--flxa-rail-w) + env(safe-area-inset-right)); }
 }
+
+/* One reusable rail flyout replaces WordPress's separate per-plugin cards. */
+@media screen and (min-width: 783px) {
+	html.flxa-unified-flyout body.flxa.folded #adminmenu > li.menu-top > .wp-submenu { display: none !important; }
+}
+@media screen and (min-width: 783px) and (max-width: 960px) {
+	html.flxa-unified-flyout body.flxa.auto-fold #adminmenu > li.menu-top > .wp-submenu { display: none !important; }
+}
+#flxa-gfly { width: 260px; min-width: 0; padding: 0; }
+#flxa-gfly.is-on { display: flex; flex-direction: column; }
+#flxa-gfly .flxa-gfly-head { flex: none; padding: 12px 14px 8px; text-transform: none; letter-spacing: normal; font-size: 13px; }
+#flxa-gfly .flxa-gfly-body { min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 0 6px 6px; scrollbar-width: thin; }
+#flxa-gfly a.flxa-gfly-item { min-height: 38px; box-sizing: border-box; }
+#flxa-gfly a.flxa-gfly-item[aria-current=page] { background: var(--flxa-accent-soft); color: var(--flxa-accent-strong); }
+#flxa-gfly a.flxa-gfly-item:focus-visible { outline: 2px solid var(--flxa-accent); outline-offset: -2px; }
+#flxa-gfly.is-right-rail::before { left: auto; right: -7px; border-left: 0; border-bottom: 0; border-top: 1px solid var(--flxa-border); border-right: 1px solid var(--flxa-border); }
+#flxa-gfly.is-right-rail::after { left: auto; right: -22px; }
+.flxa-fold-btn:focus-visible { outline: 2px solid var(--flxa-accent); outline-offset: 2px; }

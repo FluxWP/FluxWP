@@ -1,5 +1,5 @@
 /* Flux Donate · WooCommerce front end (ported from Flux WooCommerce Bağış). Colours come from the theme's --flx-* variables (with defaults); body.flx-dark = dark mode. GPL v2 or later. */
-.flxwb, .flxwb-havale, .flxwb-certs, .flxwb-pending, .flxwb-remind, .flxwb-note {
+.flxwb, .flxwb-havale, .flxwb-certs, .flxwb-pending, .flxwb-remind, .flxwb-note, .flxwb-cur {
 	--w-primary: var(--flx-primary, #1F2937);
 	--w-primary-dark: var(--flx-primary-dark, #111827);
 	--w-leaf: var(--flx-leaf, #F59E0B);
@@ -52,6 +52,23 @@
 }
 .flxwb-tabs button[aria-selected="true"] { background: var(--w-surface); color: var(--w-primary); box-shadow: 0 2px 10px rgba(20, 50, 74, .1); }
 .flxwb-tabs button:focus-visible { outline: 2px solid var(--w-primary); outline-offset: 2px; }
+
+/* 2.15: currency switcher (in the form and [flx_bagis_para_birimi]) */
+.flxwb-cur { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.flxwb-cur__label { font-weight: 700; color: var(--w-ink); }
+.flxwb-cur__opts { display: inline-flex; gap: 4px; padding: 4px; background: var(--w-mint-soft); border: 1px solid var(--w-line); border-radius: 999px; }
+.flxwb-cur__opt { display: inline-flex; align-items: center; gap: 6px; min-height: 38px; padding: 6px 14px; border-radius: 999px; color: var(--w-text); font-weight: 700; font-size: .95rem; line-height: 1; text-decoration: none; transition: background .18s, color .18s, box-shadow .18s; }
+.flxwb-cur__opt:hover { color: var(--w-primary); }
+.flxwb-cur__opt.is-on { background: var(--w-primary); color: #fff; box-shadow: 0 2px 8px rgba(20, 50, 74, .18); }
+.flxwb-cur__opt:focus-visible { outline: 2px solid var(--w-primary); outline-offset: 2px; }
+.flxwb-cur__sym { opacity: .75; font-weight: 600; }
+.flxwb-cur__opt.is-on .flxwb-cur__sym { opacity: .9; }
+.flxwb-cur--compact .flxwb-cur__opt { min-height: 30px; padding: 4px 10px; font-size: .85rem; }
+@media (max-width: 560px) {
+	.flxwb-cur:not(.flxwb-cur--compact) { flex-direction: column; align-items: stretch; gap: 8px; }
+	.flxwb-cur:not(.flxwb-cur--compact) .flxwb-cur__opts { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; }
+	.flxwb-cur:not(.flxwb-cur--compact) .flxwb-cur__opt { justify-content: center; }
+}
 
 .flxwb .flxwb-fs { border: 0 !important; margin: 0 !important; padding: 0 !important; min-width: 0; background: none !important; box-shadow: none !important; border-radius: 0 !important; }
 .flxwb .flxwb-legend { float: left; width: 100%; padding: 0; margin: 0 0 12px; font-weight: 800; font-size: 1.05rem; color: var(--w-ink); }

@@ -1,0 +1,142 @@
+{
+  "schema": "flx-app-config/1",
+  "hash": "demo-1",
+  "brand": {
+    "name": "Demo Site",
+    "short_name": "Demo"
+  },
+  "theme": {
+    "mode": "system",
+    "light": {
+      "primary": "#1F2937",
+      "accent": "#3B82F6",
+      "bg": "#FBF9F6",
+      "surface": "#FFFFFF",
+      "surface2": "#F8F5F0",
+      "border": "#E6E0D6",
+      "text": "#111827",
+      "textMuted": "#4B5563"
+    },
+    "dark": {
+      "primary": "#3B82F6",
+      "accent": "#F59E0B"
+    },
+    "radius": "medium",
+    "density": "comfortable",
+    "font": {
+      "body": "Nunito Sans",
+      "heading": "Nunito",
+      "files": null
+    }
+  },
+  "shell": {
+    "nav": "tabs+drawer",
+    "home": "screen:core/dashboard",
+    "tabs": [
+      {
+        "id": "home",
+        "target": "screen:core/dashboard",
+        "icon": "home",
+        "label": "Başlangıç"
+      },
+      {
+        "id": "crm",
+        "target": "screen:crm/contacts",
+        "icon": "users",
+        "label": "Kişiler"
+      },
+      {
+        "id": "chat",
+        "target": "module:flxc-inbox",
+        "icon": "whatsapp",
+        "label": "WhatsApp",
+        "badge": "flx-chat"
+      },
+      {
+        "id": "posts",
+        "target": "screen:core/posts",
+        "icon": "post",
+        "label": "Yazılar"
+      },
+      {
+        "id": "more",
+        "target": "more",
+        "icon": "menu",
+        "label": "$t:shell.nav.more"
+      }
+    ],
+    "drawer": {
+      "enabled": true,
+      "header": "account",
+      "pins": [
+        "module:crm"
+      ],
+      "groups": [
+        {
+          "id": "content",
+          "label": "İçerik",
+          "items": [
+            "menu:edit.php",
+            "menu:edit.php?post_type=page",
+            "menu:upload.php",
+            "screen:core/comments"
+          ]
+        },
+        {
+          "id": "fluxwp",
+          "label": "FluxWP",
+          "items": [
+            "menu:flx-chat",
+            "menu:flx-tasks",
+            "menu:flxb-dashboard",
+            "menu:flxs",
+            "menu:flxi-posta"
+          ]
+        },
+        {
+          "id": "other",
+          "label": "Diğer",
+          "collapsed": true,
+          "items": [
+            "menu:options-general.php",
+            "menu:users.php",
+            "menu:plugins.php"
+          ]
+        }
+      ],
+      "footer": [
+        "accounts",
+        "settings"
+      ]
+    },
+    "topbar": {
+      "style": "compact",
+      "show_logo": false,
+      "site_switcher": true,
+      "actions": []
+    }
+  },
+  "features": {
+    "web_session": true,
+    "push": false,
+    "otp": true,
+    "search": false,
+    "biometric_lock": false
+  },
+  "transport": {
+    "method_override": true,
+    "poll_min": 10,
+    "token_header": "authorization"
+  },
+  "webview": {
+    "allow_hosts": [],
+    "external": "in_app_browser"
+  },
+  "links": {
+    "support": "mailto:info@fluxwp.com"
+  },
+  "versions": {
+    "flx-app": "0.4.0",
+    "min_app": "0.1.0"
+  }
+}

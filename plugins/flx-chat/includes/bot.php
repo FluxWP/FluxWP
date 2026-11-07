@@ -66,8 +66,8 @@ function flxc_bot_save_state( $chat_id, array $state ) {
 
 /** Sohbet için asistan durumu: on | paused | off | '' (asistan kapalı ya da kapsam dışı). */
 function flxc_bot_chat_status( $chat ) {
-	if ( ! flxc_bot_enabled() || flxc_is_group_jid( $chat['jid'] ) ) {
-		return '';
+	if ( ! flxc_bot_enabled() || flxc_is_group_jid( $chat['jid'] ) || flxc_is_virtual_conn( $chat['conn'] ) ) {
+		return ''; // 1.37.0: site sohbetinde kanalın kendi asistanı var.
 	}
 	$b = flxc_bot_state( $chat );
 	if ( $b['off'] ) {
@@ -1020,7 +1020,18 @@ function flxc_bot_system_prompt( $chat, array $state, $template = null ) {
 function flxc_bot_messages( $chat ) {
 	$out  = array( array( 'role' => 'system', 'content' => flxc_bot_system_prompt( $chat, flxc_bot_state( $chat ) ) ) );
 	$prev = null;
+	$note = '';
 	foreach ( flxc_recent_messages( $chat['id'], max( 1, (int) flxc_setting( 'bot_context_hours' ) ), 12, 120 ) as $m ) {
+		// 1.36.1: a manager linked / unlinked the chat to a staff user: the model sees it at that point of the history.
+		if ( 'system' === $m['direction'] ) {
+			$sm = flxc_decode( $m['meta'] );
+			if ( isset( $sm['staff_link'] ) ) {
+				$note = (int) $sm['staff_link']
+					? '[Sistem notu: yönetici bu sohbeti personel olarak bağladı (' . flxc_user_name( (int) $sm['staff_link'] ) . '). Bundan önceki "personel olarak tanınmıyor" cevapları artık geçersiz.]'
+					: '[Sistem notu: yönetici bu sohbetin personel bağlantısını kaldırdı.]';
+			}
+			continue;
+		}
 		if ( ! in_array( $m['direction'], array( 'in', 'out' ), true ) || 'deleted' === $m['type'] ) {
 			continue;
 		}
@@ -1045,6 +1056,10 @@ function flxc_bot_messages( $chat ) {
 		if ( 'out' === $m['direction'] && 'bot' !== $m['source'] && (int) $m['user_id'] ) {
 			$text = '(' . __( 'temsilci', 'flx-chat' ) . ') ' . $text;
 		}
+		if ( '' !== $note && 'user' === $role ) {
+			$text = $note . "\n" . $text;
+			$note = '';
+		}
 		if ( $prev === $role ) {
 			$out[ count( $out ) - 1 ]['content'] .= "\n\n" . $text;
 		} else {
@@ -1053,7 +1068,9 @@ function flxc_bot_messages( $chat ) {
 		$prev = $role;
 	}
 	if ( 'user' !== $prev ) {
-		$out[] = array( 'role' => 'user', 'content' => '…' );
+		$out[] = array( 'role' => 'user', 'content' => '' !== $note ? $note : '…' );
+	} elseif ( '' !== $note ) {
+		$out[ count( $out ) - 1 ]['content'] .= "\n\n" . $note;
 	}
 	return $out;
 }
@@ -1274,7 +1291,7 @@ function flxc_bot_tool( $name, array $a, $chat, array &$ctx ) {
 			}
 			$state['order'] = $o;
 			$save( $state );
-			return array( 'ok' => true, 'summary' => flxc_bot_order_summary( $o, $state ), 'note' => 'Özeti kişiye satırlarıyla aynen göster: satır çıkarma, ekleme, dağılımı değiştirme. Dağılım kişinin dediğine uymuyorsa özeti göstermeden set_order\'ı düzeltip yeniden çağır.' );
+			return array( 'ok' => true, 'summary' => flxc_bot_order_summary( $o, $state ), 'note' => 'Özeti kişiye satırlarıyla aynen göster: satır çıkarma (Bağışçı satırı da kalır; kayıt ve havale açıklaması bu adla açılır, kişi düzeltirse save_details(full_name) ile düzelt), ekleme, dağılımı değiştirme. Dağılım kişinin dediğine uymuyorsa özeti göstermeden set_order\'ı düzeltip yeniden çağır.' );
 
 		case 'create_donation':
 			if ( empty( $a['confirmed'] ) ) {
@@ -1342,7 +1359,7 @@ function flxc_bot_tool( $name, array $a, $chat, array &$ctx ) {
 				$ctx['after'][] = $t;
 			}
 			$ctx['preview'] = false;
-			return array( 'ok' => true, 'donation' => $state['donation'], 'method' => $state['pay_method'], 'note' => 'Kayıt açıldı. Kişinin kendi ödeme linki ve bilgiler senin mesajından sonra ayrı mesajlarla gidecek; sen bunları yazma. Kişi sonra yöntemi değiştirmek isterse payment_link çağır.' );
+			return array( 'ok' => true, 'donation' => $state['donation'], 'method' => $state['pay_method'], 'note' => 'Kayıt açıldı. Kişinin kendi ödeme linki ve bilgiler senin mesajından sonra ayrı mesajlarla YALNIZ BU SOHBETE gidecek (başka bir numaraya gitmez; "X\'in numarasına gönderilecek" deme); sen bunları yazma. Kişi sonra yöntemi değiştirmek isterse payment_link çağır.' );
 
 		case 'payment_link':
 			if ( ! $state['donation'] ) {

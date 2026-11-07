@@ -3,6 +3,7 @@ import * as M from './modules';
 import * as Y from './flxc';
 import { flxgRoutes } from './flxg';
 import { DEMO_ORIGIN } from './origin';
+import { getDemoLocale, localizeDemo, localizedDemoResponse } from './locale';
 
 export const DEMO_SITE = DEMO_ORIGIN;
 
@@ -108,12 +109,13 @@ const routes: [string, RegExp, Handler][] = [
 ];
 
 export const demoFetch: typeof fetch = async (input, init) => {
+  const language = getDemoLocale();
   const url = new URL(typeof input === 'string' ? input : input instanceof URL ? input.href : input.url);
   const path = url.pathname.replace(/^\/wp-json\//, '');
   const method = (init?.method ?? 'GET').toUpperCase();
   let body: Record<string, unknown> = {};
   if (init?.body instanceof FormData) {
-    body = Object.fromEntries([...init.body.entries()].filter(([, v]) => typeof v === 'string'));
+    body = Object.fromEntries([...(init.body as unknown as { entries(): Iterable<[string, unknown]> }).entries()].filter(([, v]) => typeof v === 'string'));
   } else if (typeof init?.body === 'string') {
     try {
       body = JSON.parse(init.body);
@@ -126,9 +128,9 @@ export const demoFetch: typeof fetch = async (input, init) => {
     const match = method === m ? path.match(re) : null;
     if (match) {
       const out = h(match, url.searchParams, body);
-      if (out instanceof Response) return out;
+      if (out instanceof Response) return localizedDemoResponse(out, language);
       if (out === null || out === undefined) return new Response(JSON.stringify({ code: 'not_found', message: path }), { status: 404 });
-      return new Response(JSON.stringify(out), { status: 200, headers: { 'Content-Type': 'application/json' } });
+      return new Response(JSON.stringify(localizeDemo(out, language)), { status: 200, headers: { 'Content-Type': 'application/json' } });
     }
   }
   return new Response(JSON.stringify({ code: 'rest_no_route', message: path }), { status: 404 });

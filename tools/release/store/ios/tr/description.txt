@@ -1,0 +1,17 @@
+FluxWP, WordPress sitelerinize bağlanan bir mobil yönetim uygulamasıdır.
+
+SİTELERİNİZ VE HESAPLARINIZ BİR ARADA
+Birden fazla site ve hesap ekleyin. Üst çubuktan hesap değiştirin; her sitenin izinlerine ve kurulu modüllerine göre çalışın.
+
+İÇERİK VE MEDYA
+Yazı listelerini görüntüleyin, içerik ekranlarını açın ve medya kitaplığınıza erişin. Desteklenen FluxWP modüllerini mobil ekranlardan, diğer yönetim sayfalarını oturum açılmış web görünümünden kullanın.
+
+SİTENİZE UYARLANAN GEZİNME
+Sekmeler, menüler ve modül ekranları sitenizin yapılandırmasına göre gelir. Açık ve koyu tema desteği bulunur.
+
+DEMO İLE DENEYİN
+Giriş ekranındaki demo hesabı, kendi sitenizi bağlamadan örnek verilerle uygulamayı keşfetmenizi sağlar.
+
+Tam entegrasyon için sitenizde Flux App ve ilgili FluxWP eklentileri gerekir. Uyumlu WordPress sitelerinde Uygulama Parolaları ile sınırlı bağlantı da desteklenir. Kullanılabilir özellikler sitenizin kurulumuna ve hesabınızın yetkilerine bağlıdır.
+
+FluxWP, bağımsız bir projedir; WordPress veya Automattic tarafından sunulmaz.

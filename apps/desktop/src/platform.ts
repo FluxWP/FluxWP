@@ -10,8 +10,9 @@ import { openUrl } from '@tauri-apps/plugin-opener';
 import { check, type Update } from '@tauri-apps/plugin-updater';
 import { relaunch } from '@tauri-apps/plugin-process';
 import { getVersion } from '@tauri-apps/api/app';
-import { brand, createI18n, newerVersion, type AppUpdate, type EmbedRect, type EmbeddedView, type KeyValueStore, type OAuthRedirect, type Platform } from '@fluxwp/core';
-import { usePrefs } from '@fluxwp/panel';
+import { brand, createI18n, newerVersion, type AppUpdate, type EmbedHooks, type EmbedRect, type EmbeddedView, type KeyValueStore, type OAuthRedirect, type Platform } from '@fluxwp/core';
+import { APP_VERSION, usePrefs } from '@fluxwp/panel';
+import { embedUserAgent } from '@fluxwp/runtime';
 
 const secure: KeyValueStore = {
   get: (key) => invoke<string | null>('secure_get', { key }),
@@ -49,34 +50,89 @@ async function prepareOAuthRedirect(): Promise<OAuthRedirect> {
 }
 
 let panelSeq = 0;
-// "FLXApp/" user agent'ı Flux App'nın gömülü görünümünü (panel üst/sol barı gizli) açar.
-const embedUA = () => `Mozilla/5.0 (Macintosh) AppleWebKit/605.1.15 FLXApp/0.2.2 ${brand.slug}`;
+const osName = () => (/Windows/i.test(navigator.userAgent) ? 'windows' : /Mac/i.test(navigator.userAgent) ? 'macos' : 'linux');
+/** Flux App hides admin chrome for this UA (`FLXApp/<version> (desktop; <brand>; <os>)`). */
+const embedUA = () => `Mozilla/5.0 ${embedUserAgent({ version: APP_VERSION, surface: 'desktop', brand: brand.slug, os: osName() })}`;
 
-async function embedWebView(url: string, r: EmbedRect): Promise<EmbeddedView> {
+let focused = true;
+const focusListeners = new Set<(visible: boolean) => void>();
+void getCurrentWindow().onFocusChanged(({ payload }) => {
+  focused = payload;
+  const visible = payload && document.visibilityState !== 'hidden';
+  focusListeners.forEach((fn) => fn(visible));
+}).catch(() => undefined);
+
+const appVisible = () => focused && document.visibilityState !== 'hidden';
+
+let notifyWired = false;
+async function notifyDesktop(n: { title: string; body?: string; data?: Record<string, unknown> }) {
+  const detail = n.data ?? {};
+  try {
+    const mod = await import('@tauri-apps/plugin-notification');
+    let granted = await mod.isPermissionGranted();
+    if (!granted) granted = (await mod.requestPermission()) === 'granted';
+    if (granted) {
+      if (!notifyWired && 'onAction' in mod && typeof mod.onAction === 'function') {
+        notifyWired = true;
+        await mod.onAction(() => window.dispatchEvent(new CustomEvent('flux-notify', { detail })));
+      }
+      mod.sendNotification({ title: n.title, body: n.body });
+      return;
+    }
+  } catch {
+    /* plugin missing or permission blocked: fall through to the web notification */
+  }
+  if (typeof Notification === 'undefined') return;
+  if (Notification.permission === 'default') await Notification.requestPermission();
+  if (Notification.permission !== 'granted') return;
+  const note = new Notification(n.title, { body: n.body });
+  note.onclick = () => window.dispatchEvent(new CustomEvent('flux-notify', { detail }));
+}
+
+async function embedWebView(url: string, r: EmbedRect, hooks?: EmbedHooks): Promise<EmbeddedView> {
   // Tauri "unstable" özelliği: ana pencereye çocuk webview. wp-admin iframe'e izin vermediği için gerekli.
-  const wv = new Webview(getCurrentWindow(), `embed-${++panelSeq}`, {
-    url,
-    x: r.x,
-    y: r.y,
-    width: r.width,
-    height: r.height,
-    userAgent: embedUA(),
-  });
-  await new Promise<void>((res, rej) => {
-    void wv.once('tauri://created', () => res());
-    void wv.once('tauri://error', (e) => rej(new Error(String(e.payload))));
-  });
+  const label = `embed-${++panelSeq}`;
+  let wv: Webview | null = null;
+  try {
+    await invoke('embed_open', {
+      args: { label, url, x: r.x, y: r.y, width: Math.max(1, r.width), height: Math.max(1, r.height), userAgent: embedUA() },
+    });
+    wv = await Webview.getByLabel(label);
+  } catch {
+    wv = new Webview(getCurrentWindow(), label, { url, x: r.x, y: r.y, width: r.width, height: r.height, userAgent: embedUA() });
+    await new Promise<void>((res, rej) => {
+      void wv!.once('tauri://created', () => res());
+      void wv!.once('tauri://error', (e) => rej(new Error(String(e.payload))));
+    });
+  }
+  if (!wv) throw new Error('embed');
+  const view = wv;
+  const unlisten: Array<() => void> = [];
+  if (hooks?.onNavigate) {
+    const off = await listen<{ label: string; url: string }>('embed://navigate', (e) => {
+      if (e.payload.label === label) hooks.onNavigate!(e.payload.url);
+    });
+    unlisten.push(off);
+  }
+  if (hooks?.onMessage) {
+    const off = await listen<{ label: string; raw: string }>('embed://message', (e) => {
+      if (e.payload.label === label) hooks.onMessage!(e.payload.raw);
+    });
+    unlisten.push(off);
+  }
   return {
     setRect: async (n) => {
-      await wv.setPosition(new LogicalPosition(n.x, n.y));
-      await wv.setSize(new LogicalSize(Math.max(1, n.width), Math.max(1, n.height)));
+      await view.setPosition(new LogicalPosition(n.x, n.y));
+      await view.setSize(new LogicalSize(Math.max(1, n.width), Math.max(1, n.height)));
     },
-    setVisible: (v) => (v ? wv.show() : wv.hide()),
+    setVisible: (v) => (v ? view.show() : view.hide()),
     reload: async () => {
-      // Oturum adresi tek seferlik; yeniden yüklemede webview'in kendi geçmişi kullanılır.
-      await invoke('webview_reload', { label: wv.label }).catch(() => wv.setFocus());
+      await invoke('webview_reload', { label: view.label }).catch(() => view.setFocus());
     },
-    close: () => wv.close(),
+    close: async () => {
+      unlisten.forEach((off) => off());
+      await view.close();
+    },
   };
 }
 
@@ -137,11 +193,32 @@ export const desktopPlatform: Platform = {
   fetch: tauriFetch as typeof fetch,
   secure,
   storage,
+  headers: () => ({ 'X-FluxWP-Platform': 'desktop' }),
+  visibility: {
+    visible: appVisible,
+    subscribe(fn) {
+      focusListeners.add(fn);
+      const on = () => fn(appVisible());
+      document.addEventListener('visibilitychange', on);
+      return () => {
+        focusListeners.delete(fn);
+        document.removeEventListener('visibilitychange', on);
+      };
+    },
+  },
+  notify: notifyDesktop,
   openExternal: (url) => openUrl(url),
   prepareOAuthRedirect,
   embedWebView,
-  checkUpdate,
+  openWeb: (url, title) => openPanel(url, title ?? brand.name),
+  // Store builds receive application updates through the Mac App Store.
+  ...(import.meta.env.VITE_APP_STORE === 'true' ? {} : { checkUpdate }),
   async openWebView(url, title) {
+    return openPanel(url, title);
+  },
+};
+
+async function openPanel(url: string, title: string) {
     // wp-admin iframe'e izin vermez (X-Frame-Options); ayrı pencere açılır.
     // "FLXApp/" user agent'ı Flux App'nın gömülü görünümünü (menüsüz panel) açar.
     const w = new WebviewWindow(`panel-${++panelSeq}`, {
@@ -155,5 +232,4 @@ export const desktopPlatform: Platform = {
       void w.once('tauri://created', () => res());
       void w.once('tauri://error', (e) => rej(new Error(String(e.payload))));
     });
-  },
-};
+}

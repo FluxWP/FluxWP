@@ -118,7 +118,7 @@ Otomasyonlar (0.2) bu eylemleri tetikleyici olarak kullanacak.
 
 - **Flux Mail**: `flxi_recipient_sources` altında "CRM segmenti" (`flxcrm_seg:ID`) ve "CRM rolü" (`flxcrm_role:KEY`); kanalın iznini veren kişiler alıcı olur.
 - **Flux AI ve MCP**: aşağıda "Yapay zekâ ve MCP araçları".
-- **Flux App**: `crm` modülü. **Flux Roles**: `crm` grubu. **Sistem**: `flxcrm.sources`, `flxcrm.sync`, `flxcrm.scoring`, `flxcrm.currency`.
+- **Flux App**: `crm` modülü ve uygulama manifesti (0.2.2): genel bakış, kişiler, kişi kartı, form, segmentler. Segment kuralları `admin.php?page=flx-crm-segments` web görünümünde. **Flux Roles**: `crm` grubu. **Sistem**: `flxcrm.sources`, `flxcrm.sync`, `flxcrm.scoring`, `flxcrm.currency`.
 
 ## Yapay zekâ ve MCP araçları (0.2.0)
 

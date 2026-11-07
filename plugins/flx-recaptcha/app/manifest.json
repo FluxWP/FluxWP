@@ -1,0 +1,82 @@
+{
+  "id": "recaptcha",
+  "plugin": "flx-recaptcha",
+  "min_app": "1.0.0",
+  "title": "reCAPTCHA",
+  "icon": "lock",
+  "menu": "flx-recaptcha",
+  "entry": "settings",
+  "tabs": ["settings", "forms"],
+  "fallback": { "web": "admin.php?page=flx-recaptcha" },
+  "routes": {
+    "admin.php?page=flx-recaptcha": { "screen": "settings" }
+  },
+  "sources": {},
+  "screens": {
+    "settings": {
+      "type": "settings",
+      "title": "Ayarlar",
+      "option": "flxrc_settings",
+      "write_cap": "manage_options",
+      "fields": [
+        {
+          "name": "version",
+          "type": "segmented",
+          "label": "reCAPTCHA türü",
+          "options": [
+            { "value": "v3", "label": "v3 görünmez" },
+            { "value": "v2", "label": "v2 kutucuk" }
+          ]
+        },
+        { "name": "site_key", "type": "secret", "label": "Site anahtarı", "help": "Boş bırakılırsa kayıtlı anahtar kalır. Değer geri okunmaz." },
+        { "name": "secret", "type": "secret", "label": "Gizli anahtar", "help": "Bir kez yazılır, şifreli saklanır ve bir daha gösterilmez." },
+        { "name": "threshold", "type": "text", "label": "Bot eşiği (v3)", "help": "0,1 ile 0,9 arası. Altında kalan gönderim engellenir.", "when": { "path": "version", "op": "eq", "value": "v3" } },
+        {
+          "name": "domain",
+          "type": "select",
+          "label": "Google adresi",
+          "options": [
+            { "value": "google", "label": "google.com" },
+            { "value": "recaptcha", "label": "recaptcha.net" }
+          ]
+        },
+        {
+          "name": "v2_theme",
+          "type": "select",
+          "label": "Kutucuk görünümü",
+          "when": { "path": "version", "op": "eq", "value": "v2" },
+          "options": [
+            { "value": "auto", "label": "Otomatik" },
+            { "value": "light", "label": "Açık" },
+            { "value": "dark", "label": "Koyu" }
+          ]
+        },
+        {
+          "name": "v2_size",
+          "type": "select",
+          "label": "Kutucuk boyutu",
+          "when": { "path": "version", "op": "eq", "value": "v2" },
+          "options": [
+            { "value": "normal", "label": "Normal" },
+            { "value": "compact", "label": "Küçük" }
+          ]
+        },
+        { "name": "hide_badge", "type": "switch", "label": "v3 rozetini gizle", "when": { "path": "version", "op": "eq", "value": "v3" } },
+        { "name": "skip_logged_in", "type": "switch", "label": "Giriş yapmış kullanıcılara sorma" },
+        { "name": "fail_open", "type": "switch", "label": "Google'a ulaşılamazsa gönderimi geçir" }
+      ]
+    },
+    "forms": {
+      "type": "web",
+      "title": "Korunan formlar",
+      "path": "admin.php?page=flx-recaptcha"
+    }
+  },
+  "actions": {
+    "open_forms": {
+      "label": "Formlar",
+      "icon": "globe",
+      "web": "admin.php?page=flx-recaptcha"
+    }
+  }
+}

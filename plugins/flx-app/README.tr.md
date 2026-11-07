@@ -47,9 +47,11 @@ Bir WordPress sitesi için telefon ya da masaüstü uygulaması genelde elle yap
 - **Modüller:** `flxapp_modules` ile kaydedilen yerel ekranlar; her biri kapatılabilir.
 - **Platforma göre menü:** Flux Admin menü düzenleyicisinde öğeler Web, Mobil ve Masaüstü için işaretlenir; uygulama `X-FluxWP-Platform` gönderir, yalnız kendisininkini alır.
 - Uygulamada açılan panel sayfalarında üst çubuk, sol menü ve altlık gizlenir.
+- **Masaüstü ve mobil için tek sözleşme:** `/app/bootstrap` (keşif), `/config` (platforma göre tema ve kabuk), `/manifest` (eklenti ekranları JSON), `/sync`, `/prefs`, `/devices` ve Expo push. WordPress, WooCommerce ve Flux Donate bağışçı ekranları hazır gelir.
+- **White-label:** markalı OAuth istemcileri (`app_clients`, preset yazar) ve yalnız sitenin kendi uygulamasına izin verme.
 
 ### Uygulama sayfası
-- Sekmeler: Genel, Modüller, Menü, Bağlı uygulamalar, Tüm erişimler; kişiler kendi oturum ve anahtarlarını Kullanıcılar › Uygulama erişimi'nde görür ve kaldırır.
+- Sekmeler: Genel, Görünüm, Uygulamalar, Modüller, Menü, OAuth istemcileri, Tüm erişimler; kişiler kendi cihaz, oturum ve anahtarlarını Kullanıcılar › Uygulama erişimi'nde görür ve kaldırır.
 
 ## Ekran görüntüleri
 
@@ -89,7 +91,8 @@ Ayrıntılı kurulum notları: [KURULUM.md](../../docs/flx-app/KURULUM.md) · AP
 ## Geliştiriciler için
 
 - Yerel ekran kaydı: `title`, `menu`, `api`, `icon`, `version` ile `add_filter( 'flxapp_modules', … )`.
-- Uçlar `/flxapp/v1/me`, `/counts`, `/session`, `/logout`, `/otp/start`, `/otp/verify`; bkz. [API.md](../../docs/flx-app/API.md).
+- Uygulama ekranlarını JSON ile kaydetme: `flxapp_manifest_file()` ile `add_filter( 'flxapp_manifest', … )`; bildirim: `do_action( 'flxapp_push', $user_ids, $message )`.
+- Uçlar `/flxapp/v1/app/bootstrap`, `/config`, `/manifest`, `/me`, `/sync`, `/prefs`, `/devices`, `/session`, `/settings/<option>`, `/otp/*`, `/oauth/*`; bkz. [API.md](../../docs/flx-app/API.md).
 
 ## Yol haritası
 

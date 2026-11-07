@@ -152,6 +152,16 @@ class FLXB_WC_Admin {
 			echo '<option value="' . esc_attr( $k ) . '"' . selected( $s['after_add'], $k, false ) . '>' . esc_html( $l ) . '</option>';
 		}
 		echo '</select></div>';
+		$base = FLXB_WC_Currency::base();
+		echo '<fieldset class="flxb-field"><legend class="flxb-label">' . esc_html__( 'Currencies donors can choose', 'flx-donate' ) . '</legend><div class="flxb-checks">';
+		foreach ( FLXB_WC_Currency::known() as $code => $label ) {
+			if ( $code === $base ) {
+				echo '<label class="flxb-check"><input type="checkbox" checked disabled> ' . esc_html( $label ) . ' <span class="flxb-muted">' . esc_html__( '(store currency)', 'flx-donate' ) . '</span></label>';
+				continue;
+			}
+			echo self::box( 'currencies[]', in_array( $code, (array) $s['currencies'], true ), $label, $code ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		}
+		echo '</div><p class="flxb-help">' . esc_html__( 'With more than one, donors pick the currency (shortcode [flx_bagis_para_birimi] or the theme). There are no exchange rates: set each option\'s price per currency on the donation type; options without a price in a currency are not offered in it. Check that your payment methods take these currencies.', 'flx-donate' ) . '</p></fieldset>';
 		echo '<div class="flxb-field">' . self::check( 'simple_address', (bool) $s['simple_address'], __( 'Do not ask for an address at the checkout when the cart holds only donations', 'flx-donate' ) ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<div class="flxb-field"><label for="flxbwc-support">' . esc_html__( 'Support WhatsApp number', 'flx-donate' ) . '</label><input type="tel" id="flxbwc-support" name="support_wa" value="' . esc_attr( $s['support_wa'] ) . '" placeholder="+90 530 000 00 00"><p class="flxb-help">' . esc_html__( 'Shown at the checkout and with the bank transfer details as "Any trouble? Write to us on WhatsApp". Leave empty to hide.', 'flx-donate' ) . '</p></div>';
 		echo '<div class="flxb-field"><label for="page_id">' . esc_html__( 'Donation page', 'flx-donate' ) . '</label>';
@@ -231,6 +241,7 @@ class FLXB_WC_Admin {
 			'card_ui'         => in_array( $in['card_ui'] ?? '', array( 'fields', 'form', 'official' ), true ) ? $in['card_ui'] : 'fields',
 			'card_installments' => min( 12, max( 1, absint( $in['card_installments'] ?? 12 ) ) ),
 			'block_fallback'  => empty( $in['block_fallback'] ) ? 0 : 1,
+			'currencies'      => array_values( array_diff( array_intersect( array_map( 'strtoupper', array_map( 'sanitize_text_field', (array) ( $in['currencies'] ?? array() ) ) ), array_keys( FLXB_WC_Currency::known() ) ), array( FLXB_WC_Currency::base() ) ) ),
 			'card_method'     => preg_match( '/^[a-z0-9_-]{1,60}$/', (string) ( $in['card_method'] ?? '' ) ) ? (string) $in['card_method'] : 'auto',
 		);
 		/* Same as the default text: keep it empty so a language change shows the translation. */
@@ -294,6 +305,12 @@ class FLXB_WC_Admin {
 		}
 		echo '</select><p class="flxb-help">' . esc_html__( 'This option\'s card gets − / + buttons (e.g. "1 sapling"); price = number × this option\'s price, checked again on the server. The other options stay fixed packages. Use "Maximum quantity" above for the limit.', 'flx-donate' ) . '</p></div>';
 		echo '<div class="flxb-field"><label for="flxb-presets">' . esc_html__( 'Preset amounts (free amount)', 'flx-donate' ) . '</label><input type="text" id="flxb-presets" name="meta[presets]" value="' . esc_attr( $presets ) . '"><p class="flxb-help">' . esc_html__( 'Separated by spaces, e.g. 250 500 1000.', 'flx-donate' ) . '</p></div>';
+		$by = (array) ( $m['presets_by_currency'] ?? array() );
+		foreach ( ( class_exists( 'FLXB_Page_Types' ) ? FLXB_Page_Types::extra_currencies( $t ) : array() ) as $code ) {
+			$val = implode( ' ', array_map( 'wc_format_localized_price', (array) ( $by[ $code ] ?? array() ) ) );
+			/* translators: %s: currency code */
+			echo '<div class="flxb-field"><label for="flxb-presets-' . esc_attr( $code ) . '">' . esc_html( sprintf( __( 'Preset amounts in %s', 'flx-donate' ), $code ) ) . '</label><input type="text" id="flxb-presets-' . esc_attr( $code ) . '" name="meta[presets_by_currency][' . esc_attr( $code ) . ']" value="' . esc_attr( $val ) . '"></div>';
+		}
 		echo '<div class="flxb-field"><label for="flxb-purl">' . esc_html__( 'Page address', 'flx-donate' ) . '</label><input type="url" id="flxb-purl" name="meta[page_url]" value="' . esc_attr( FLXB_WC::type_page_url( $t ) ) . '" placeholder="' . esc_attr( FLXB_WC::page_url() ) . '"><p class="flxb-help">' . esc_html__( 'Optional: where its product page and the product XML link go. Empty = the donation page in the WooCommerce settings.', 'flx-donate' ) . '</p></div>';
 		if ( $pid && get_post( $pid ) ) {
 			/* translators: %d: product id */

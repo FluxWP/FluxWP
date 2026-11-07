@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Donate
  * Description:       Donations on WooCommerce: donation types and sapling packages sold as hidden products, cart and checkout (iyzico, bank transfer with receipt upload), monthly donations, online and printed certificates, donors, campaigns and a donation dashboard. Includes Flux WooCommerce Bağış.
- * Version:           2.13.1
+ * Version:           2.15.1
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Requires Plugins:  woocommerce
@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLXB_VERSION', '2.13.1' );
+define( 'FLXB_VERSION', '2.15.1' );
 define( 'FLXB_FILE', __FILE__ );
 define( 'FLXB_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXB_URL', plugin_dir_url( __FILE__ ) );
@@ -58,6 +58,8 @@ require_once FLXB_DIR . 'includes/class-flxb-preselect.php';
 require_once FLXB_DIR . 'includes/class-flxb-rest.php';
 require_once FLXB_DIR . 'includes/class-flxb-app.php';
 require_once FLXB_DIR . 'includes/class-flxb-app-review.php';
+require_once FLXB_DIR . 'includes/class-flxb-app-admin.php';
+require_once FLXB_DIR . 'includes/app-manifest.php';
 require_once FLXB_DIR . 'includes/api.php';
 /* E-mails: templates registered with Flux Mail (flxi_email_types), plain wp_mail without it. */
 require_once FLXB_DIR . 'includes/class-flxb-mail.php';
@@ -89,6 +91,17 @@ add_action( 'init', 'flxb_load_textdomain', 0 );
 function flxb_load_textdomain() {
 	load_plugin_textdomain( 'flx-donate', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
+add_filter(
+	'load_textdomain_mofile',
+	static function ( $mofile, $domain ) {
+		if ( 'flx-donate' === $domain && ! is_readable( $mofile ) && ! is_readable( str_replace( '.mo', '.l10n.php', $mofile ) ) && preg_match( '/-en_[A-Z]{2}\.mo$/', $mofile ) ) {
+			return FLXB_DIR . 'languages/flx-donate-en_US.mo';
+		}
+		return $mofile;
+	},
+	10,
+	2
+);
 
 /*
  * Payment providers. Flux Donate owns Flux Forms's payment layer when both are active: Flux Forms asks
@@ -122,6 +135,7 @@ FLXB_Preselect::init();
 FLXB_Rest::init();
 FLXB_App::init();
 FLXB_App_Review::init();
+FLXB_App_Admin::init();
 
 if ( is_admin() ) {
 	require_once FLXB_DIR . 'includes/admin/class-flxb-admin.php';

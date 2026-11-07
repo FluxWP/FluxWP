@@ -18,7 +18,9 @@ export interface Brand {
   /** true: site ekleme/değiştirme gizli, uygulama yalnız defaultSite'tır. */
   lockSite: boolean;
   /** Giriş ekranında gösterilecek yollar. Kilitli markada genelde yalnız "oauth". */
-  loginMethods: ('oauth' | 'apikey')[];
+  loginMethods: ('oauth' | 'apikey' | 'otp' | 'apppass')[];
+  /** Beyaz etiket: bağlanılabilecek siteler (host ya da "*.alanadi"); boş = her site. */
+  allowedSites?: string[];
   defaultLocale: string;
   locales: string[];
   supportUrl: string | null;
@@ -30,5 +32,13 @@ export interface Brand {
   oauthClientId?: string;
 }
 
-export const brand: Brand = current as Brand;
+/** Active brand. Desktop/web read the generated current.json; the mobile app calls setBrand() at startup. */
+export const brand: Brand = { ...(current as Brand) };
+
+/** Replaces the active brand in place, so modules that imported `brand` see the new values. */
+export function setBrand(next: Brand): void {
+  for (const k of Object.keys(brand)) delete (brand as unknown as Record<string, unknown>)[k];
+  Object.assign(brand, next);
+}
+
 export const oauthClientId = (): string => brand.oauthClientId || 'flx-masaustu';

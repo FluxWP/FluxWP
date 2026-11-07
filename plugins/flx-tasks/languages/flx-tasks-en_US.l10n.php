@@ -924,5 +924,6 @@ return array(
 		'Yeni toplantı' => 'New meeting',
 		'Yeni görev' => 'New task',
 		'Oluştur ve aç' => 'Create and open',
-	),
+			'Ne yapmak istersiniz? Örn: "Bu listede yarın biten görevleri göster" ya da "Ayşe\'ye cuma günü bitecek afiş görevi aç"' => 'What do you want to do? e.g. "Show tasks in this list due tomorrow" or "Open a poster task for Ayşe due Friday"',
+),
 );

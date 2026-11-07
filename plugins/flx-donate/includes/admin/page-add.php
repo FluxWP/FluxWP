@@ -57,7 +57,7 @@ final class FLXB_Page_Add {
 		}
 		$proxy = flxb_proxy_text();
 		$accs  = self::accounts();
-		FLXB_Admin::header( __( 'Add donation', 'flx-donate' ), __( 'Record a gift received by bank transfer, in cash or another way.', 'flx-donate' ), array(), array( __( 'Donations', 'flx-donate' ), FLXB_Admin_Url::page( 'flxb-donations' ) ) );
+		FLXB_Admin::header( __( 'Add donation', 'flx-donate' ), __( 'Record a gift paid or promised by bank transfer, in cash or another way.', 'flx-donate' ), array(), array( __( 'Donations', 'flx-donate' ), FLXB_Admin_Url::page( 'flxb-donations' ) ) );
 		echo '<form class="flxb-form flxb-addform" method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" data-flxb-add="' . esc_attr( wp_json_encode( $data ) ) . '"><input type="hidden" name="action" value="flxb_add_donation">';
 		wp_nonce_field( 'flxb_add_donation' );
 		echo '<div class="flxb-grid flxb-grid--2-1"><div class="flxb-stack">';
@@ -110,6 +110,12 @@ final class FLXB_Page_Add {
 			}
 			echo '</select></div>';
 		}
+		/* 2.14.0: a gift can be recorded before the money arrives (pending) and marked paid later. */
+		echo '<div class="flxb-field"><label for="flxb-a-status">' . esc_html__( 'Status', 'flx-donate' ) . '</label><select id="flxb-a-status" name="status">';
+		foreach ( array( 'pending' => __( 'Pending (payment not received yet)', 'flx-donate' ), 'completed' => __( 'Completed (payment received)', 'flx-donate' ) ) as $k => $l ) {
+			echo '<option value="' . esc_attr( $k ) . '"' . selected( 'pending', $k, false ) . '>' . esc_html( $l ) . '</option>';
+		}
+		echo '</select><p class="flxb-help">' . esc_html__( 'You can change it later on the donation page.', 'flx-donate' ) . '</p></div>';
 		echo '<div class="flxb-field"><label for="flxb-a-date">' . esc_html__( 'Date', 'flx-donate' ) . '</label><input type="datetime-local" id="flxb-a-date" name="date" value="' . esc_attr( wp_date( 'Y-m-d\TH:i' ) ) . '"></div>';
 		echo '<div class="flxb-field"><label for="flxb-a-ref">' . esc_html__( 'Receipt or transaction no.', 'flx-donate' ) . '</label><input type="text" id="flxb-a-ref" name="reference" maxlength="120"></div>';
 		$refs = FLXB_Refs::users();
@@ -217,7 +223,7 @@ final class FLXB_Page_Add {
 				'amount'        => $amount,
 				'currency'      => $currency,
 				'type'          => 'one_time',
-				'status'        => 'completed',
+				'status'        => 'completed' === ( $p['status'] ?? '' ) ? 'completed' : 'pending',
 				'donor_id'      => FLXB_Donors::upsert( $donor ),
 				'type_id'       => $type ? (int) $type['id'] : 0,
 				'option_key'    => $opt ? $opt['key'] : '',

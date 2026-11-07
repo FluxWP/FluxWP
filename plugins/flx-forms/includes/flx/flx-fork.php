@@ -176,6 +176,17 @@ function flxf_fork_load_textdomain() {
 	load_plugin_textdomain( 'flx-forms', false, dirname( plugin_basename( EMSFB_PLUGIN_FILE ) ) . '/languages' );
 }
 add_action( 'init', 'flxf_fork_load_textdomain', 0 );
+add_filter(
+	'load_textdomain_mofile',
+	static function ( $mofile, $domain ) {
+		if ( 'flx-forms' === $domain && ! is_readable( $mofile ) && ! is_readable( str_replace( '.mo', '.l10n.php', $mofile ) ) && preg_match( '/-en_[A-Z]{2}\.mo$/', $mofile ) ) {
+			return trailingslashit( dirname( EMSFB_PLUGIN_FILE ) ) . 'languages/flx-forms-en_US.mo';
+		}
+		return $mofile;
+	},
+	10,
+	2
+);
 
 /* System check: shared `flx_system_checks` screen (Flux Donate hosts it; without Flux Donate: Forms › System check). */
 require_once __DIR__ . '/system-checks/flx-system-checks.php';

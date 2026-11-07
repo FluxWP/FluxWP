@@ -47,9 +47,11 @@ A phone or desktop app for a WordPress site usually means application passwords 
 - **Modules:** native screens registered with `flxapp_modules`, each one can be switched off.
 - **Menu per platform:** Flux Admin's menu editor marks items for Web, Mobile and Desktop; the app sends `X-FluxWP-Platform` and gets only its own.
 - Admin pages opened in the app hide the top bar, side menu and footer.
+- **One contract for desktop and mobile:** `/app/bootstrap` (discovery), `/config` (theme and shell per platform), `/manifest` (plugin screens as JSON), `/sync`, `/prefs`, `/devices` and Expo push. Built-in manifests for WordPress, WooCommerce and Flux Donate donors.
+- **White-label:** brand OAuth clients (`app_clients`, written by the preset) and an option to allow only the site's own app.
 
 ### Application page
-- Tabs: General, Modules, Menu, Connected apps, All access; people see and revoke their own sessions and keys under Users › App access.
+- Tabs: General, Appearance, Apps, Modules, Menu, OAuth clients, All access; people see and revoke their own devices, sessions and keys under Users › App access.
 
 ## Screenshots
 
@@ -89,7 +91,8 @@ Full setup notes (Turkish): [KURULUM.md](../../docs/flx-app/KURULUM.md) · API r
 ## For developers
 
 - Register a native screen: `add_filter( 'flxapp_modules', … )` with `title`, `menu`, `api`, `icon`, `version`.
-- Endpoints `/flxapp/v1/me`, `/counts`, `/session`, `/logout`, `/otp/start`, `/otp/verify`; see [API.md](../../docs/flx-app/API.md).
+- Register app screens as JSON: `add_filter( 'flxapp_manifest', … )` with `flxapp_manifest_file()`; send notifications with `do_action( 'flxapp_push', $user_ids, $message )`.
+- Endpoints `/flxapp/v1/app/bootstrap`, `/config`, `/manifest`, `/me`, `/sync`, `/prefs`, `/devices`, `/session`, `/settings/<option>`, `/otp/*`, `/oauth/*`; see [API.md](../../docs/flx-app/API.md).
 
 ## Roadmap
 

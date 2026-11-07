@@ -6,8 +6,8 @@
  *   bilgisi. Kayıt `flxk_terms` (metin sürümü, zaman, kullanıcı). Güncellemeleri engellemez.
  * - Kullanım verisi (açık rıza, varsayılan KAPALI): `flxk_telemetry` = '1' ise açık, `flxk_telemetry_at` izin
  *   ya da geri alma zamanı. Kapalıyken güncelleme denetimi (/v1/check) yalnız paketleri, FluxWP Panel sürümünü,
- *   kurulum kimliğini ve varsa site anahtarını gönderir; site adresi, WordPress/PHP sürümü, saat dilimi ve dil
- *   gitmez, sunucuya "usage": false bildirilir. Anonim telemetri de aynı seçeneği okur.
+ *   kurulum kimliğini, site adresini (zorunlu kayıt, zorunlu çerez gibi) ve varsa site anahtarını gönderir;
+ *   WordPress/PHP sürümü, saat dilimi ve dil gitmez, sunucuya "usage": false bildirilir. Anonim telemetri de aynı seçeneği okur.
  *
  * @package flx-setup
  */
@@ -74,7 +74,8 @@ function flxk_legal_urls(): array {
 
 /**
  * WordPress'in varsayılan User-Agent'ı site adresini taşır ("WordPress/6.8; https://ornek.com").
- * İzin yokken FluxWP güncelleme sunucularına giden isteklerde (denetim ve zip indirme) adres çıkarılır.
+ * İzin yokken FluxWP güncelleme sunucularına giden isteklerde (denetim ve zip indirme) WordPress sürümü gitmesin diye
+ * User-Agent sadeleşir; site adresi denetim gövdesinde zorunlu kayıt olarak zaten gider.
  */
 add_filter(
 	'http_request_args',

@@ -1,5 +1,14 @@
 # Değişiklikler
 
+## 0.3.0
+- Panel artık mobil uygulamayla aynı `@fluxwp/runtime` çekirdeğini kullanır. Kenar çubuğu ve üst çubuk `flxapp/v1/config` cevabından gelir (`X-FluxWP-Platform: desktop`); config yoksa eskisi gibi `/me` menüsü durur.
+- Tema hesap başına sitenin WordPress temasından (ve override'lardan) gelir. Hesap değiştirince kabuk ve tema birlikte değişir.
+- Giriş: masaüstü loopback OAuth istemcisi `flx-masaustu`. Aynı siteye ikinci hesapta `prompt=login`. Kodla giriş ve uygulama şifresi de açılır.
+- Yeni `@fluxwp/render-web`: manifest listeleri 1100 px ve üzerinde tablo + master-detail, sanal kaydırma; form, detay ve aksiyonlar.
+- ⌘K komut paleti kabuk komutlarını ve manifest aramasını tarar. `/sync` olayları masaüstü bildirimine düşer. Menü tercihleri `/prefs` ile senkron olur.
+- Gömülü wp-admin: SSO, gezinti yakalama ve köprü mesajı runtime kararını kullanır. Tauri çocuk webview `FLXApp/… (desktop; …)` user agent'ı ile açılır.
+- wp-admin içine manifest ekranı: `FluxModules.mountManifest`.
+
 ## 0.2.5
 - Windows sürümü: GitHub Actions macOS'la birlikte Windows'ta da derler; release'te `…-windows-x64-setup.exe` (NSIS) ve `.msi`. İmzalı güncelleme paketi varsa Windows'ta da arka planda kurulur, yoksa setup.exe açılır.
 - Windows'ta yerel başlık çubuğu: macOS trafik ışıkları için bırakılan sol boşluk yalnız macOS'ta. Arama kısayolu Windows'ta "Ctrl K" yazar.

@@ -1,4 +1,4 @@
-/* Flux Chat — WhatsApp tarzı temsilci arayüzü. Bağımlılık yok. */
+/* Flux Chat — tüm kanalların (WhatsApp, site sohbeti…) tek gelen kutusu, temsilci arayüzü. Bağımlılık yok. */
 (function () {
 	'use strict';
 
@@ -229,6 +229,27 @@
 		} else fallback();
 		return wrap;
 	}
+	/* 1.37.0: kanal (WhatsApp, site sohbeti, ileride Instagram, e-posta…). Birden çok kanal açıkken avatarda kanal ikonu görünür. */
+	function chanById(id) {
+		for (var i = 0; i < S.channels.length; i++) if (S.channels[i].id === id) return S.channels[i];
+		return null;
+	}
+	function activeChannels() { return S.channels.filter(function (x) { return x.active; }); }
+	function multiChannel() { return activeChannels().length > 1; }
+	function chanIcon(ch, cls) {
+		var s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+		s.setAttribute('viewBox', '0 0 24 24');
+		s.setAttribute('aria-hidden', 'true');
+		s.setAttribute('class', 'flxc-chi' + (cls ? ' ' + cls : ''));
+		s.innerHTML = ch && ch.icon ? ch.icon : '';
+		return s;
+	}
+	function avatarCh(chat, size) {
+		var ch = chanById(chat.channel || 'whatsapp');
+		var av = avatar(chat, size);
+		if (!ch || (!multiChannel() && (chat.channel || 'whatsapp') === 'whatsapp')) return av;
+		return h('span', { class: 'flxc-avw' }, av, h('span', { class: 'flxc-chb', title: ch.label, style: { '--chc': ch.color } }, chanIcon(ch)));
+	}
 	function hash(s) { var x = 0; for (var i = 0; i < s.length; i++) { x = ((x << 5) - x + s.charCodeAt(i)) | 0; } return x; }
 
 	/* ---------- API ---------- */
@@ -272,8 +293,8 @@
 	/* ---------- durum ---------- */
 
 	var S = {
-		me: {}, agents: [], labels: [], conns: [], replies: [], ai: null,
-		chats: new Map(), order: [], filter: store('filter') || 'all', label: '', q: '',
+		me: {}, agents: [], labels: [], conns: [], channels: [], replies: [], ai: null,
+		chats: new Map(), order: [], filter: store('filter') || 'all', label: '', channel: '', q: '',
 		active: 0, msgs: new Map(), rev: 0, unread: 0, quoted: null, note: false,
 		info: false, loadingList: false, listMore: false, notified: new Set(), sections: {}, fresh: {}
 	};
@@ -357,6 +378,15 @@
 		var open = conns.filter(function (c) { return c.state === 'open'; }).length;
 		var state = !conns.length ? 'none' : (open === conns.length ? 'open' : (open ? 'partial' : (conns.some(function (c) { return c.state; }) ? 'close' : 'unknown')));
 		el.connDot.className = 'flxc-conn-dot flxc-conn-' + state;
+		var others = activeChannels().filter(function (x) { return x.id !== 'whatsapp'; });
+		if (state === 'none' && others.length) {
+			// WhatsApp kurulmamış ama başka kanal açık: gelen kutusu çalışıyor, uyarı gösterilmez.
+			el.connDot.className = 'flxc-conn-dot flxc-conn-open';
+			el.connText.textContent = others.map(function (x) { return x.label; }).join(', ');
+			clear(el.connWarn);
+			el.connWarn.hidden = true;
+			return;
+		}
 		var txt = {
 			none: t('Bağlantı yok'),
 			open: conns.length > 1 ? t('{n} hat bağlı', { n: open }) : t('WhatsApp bağlı'),
@@ -364,7 +394,7 @@
 			close: t('WhatsApp bağlı değil'),
 			unknown: t('Durum bilinmiyor')
 		}[state];
-		el.connText.textContent = txt;
+		el.connText.textContent = txt + (state === 'open' && others.length ? ' · ' + others.map(function (x) { return x.label; }).join(', ') : '');
 		clear(el.connWarn);
 		if (state === 'none' || state === 'close') {
 			el.connWarn.hidden = false;
@@ -386,6 +416,12 @@
 				onclick: function () { S.filter = f[0]; S.label = ''; store('filter', f[0]); renderFilters(); loadChats(); }
 			}, t(f[1])));
 		});
+		if (multiChannel()) activeChannels().forEach(function (ch) {
+			el.filters.appendChild(h('button', {
+				type: 'button', class: 'flxc-chip flxc-chip-ch' + (S.channel === ch.id ? ' is-on' : ''), style: { '--chc': ch.color }, 'aria-pressed': S.channel === ch.id ? 'true' : 'false',
+				onclick: function () { S.channel = S.channel === ch.id ? '' : ch.id; renderFilters(); loadChats(); }
+			}, chanIcon(ch), ch.label));
+		});
 		S.labels.forEach(function (l) {
 			el.filters.appendChild(h('button', {
 				type: 'button', class: 'flxc-chip flxc-chip-label' + (S.label === l.id ? ' is-on' : ''), style: { '--lc': l.color },
@@ -400,7 +436,7 @@
 		el.main.appendChild(h('div', { class: 'flxc-empty' },
 			h('div', { class: 'flxc-empty-art', html: EMPTY_ART }),
 			h('h2', { text: B.brand ? B.brand : t('Çağrı Merkezi') }),
-			h('p', { text: t('Gelen WhatsApp mesajları burada canlı görünür. Soldan bir sohbet seçin ya da yeni bir sohbet başlatın.') }),
+			h('p', { text: multiChannel() ? t('WhatsApp, site sohbeti ve diğer kanallardan gelen tüm mesajlar burada canlı görünür. Soldan bir sohbet seçin.') : t('Gelen WhatsApp mesajları burada canlı görünür. Soldan bir sohbet seçin ya da yeni bir sohbet başlatın.') }),
 			h('button', { type: 'button', class: 'flxc-btn', onclick: function () { openNewChat(); } }, icon('newchat'), t('Yeni sohbet')),
 			h('p', { class: 'flxc-empty-foot' }, icon('lock'), t('Mesajlar yalnız yetkili temsilcilere görünür.'))
 		));
@@ -417,6 +453,7 @@
 	function chatMatchesView(c) {
 		if (S.q) return true; // arama sonuçlarını sunucu belirler
 		if (S.label && c.labels.indexOf(S.label) < 0) return false;
+		if (S.channel && (c.channel || 'whatsapp') !== S.channel) return false;
 		switch (S.filter) {
 			case 'unread': return c.unread > 0 && c.status !== 'closed';
 			case 'mine': return c.assigned === S.me.id && c.status !== 'closed';
@@ -440,7 +477,7 @@
 		S.loadingList = true;
 		if (!more) el.list.classList.add('is-loading');
 		var offset = more ? S.order.length : 0;
-		return api('chats', { query: { filter: S.filter, q: S.q, label: S.label, offset: offset, limit: 50 } }).then(function (r) {
+		return api('chats', { query: { filter: S.filter, q: S.q, label: S.label, channel: S.channel, offset: offset, limit: 50 } }).then(function (r) {
 			if (!more) S.order = [];
 			r.chats.forEach(function (c) { upsertChat(c); if (S.order.indexOf(c.id) < 0) S.order.push(c.id); });
 			S.listMore = r.chats.length >= 50;
@@ -506,7 +543,7 @@
 			onclick: function () { openChat(c.id); },
 			onkeydown: function (e) { if (e.key === 'Enter') openChat(c.id); }
 		},
-			avatar(c),
+			avatarCh(c),
 			h('div', { class: 'flxc-row-main' },
 				h('div', { class: 'flxc-row-top' },
 					h('span', { class: 'flxc-row-name' }, h('span', { text: c.title }), labels),
@@ -1038,7 +1075,7 @@
 		clear(el.head);
 		el.head.appendChild(btn('back', t('Geri'), function () { if (isMobile()) history.back(); else closeChat(); }, 'flxc-back'));
 		el.head.appendChild(h('button', { type: 'button', class: 'flxc-head-who', onclick: function () { S.info ? closeInfo() : openInfo(); } },
-			avatar(c),
+			avatarCh(c),
 			h('span', { class: 'flxc-head-t' }, h('strong', { text: c.title }), sub)
 		));
 		var acts = h('div', { class: 'flxc-head-actions' });
@@ -1126,9 +1163,31 @@
 	function onMsgsScroll() {
 		if (el.msgs.scrollTop < 80) loadOlder();
 		if (nearBottom()) { newBelow = 0; markRead(); }
+		// 1.36.1: the sticky day label shows only while scrolling, so it does not cover a bubble when the list rests.
+		el.msgs.classList.add('is-scrolling');
+		clearTimeout(daysT);
+		daysT = setTimeout(function () { if (el.msgs) el.msgs.classList.remove('is-scrolling'); }, 1200);
 		updateDown();
 	}
+	var daysT = 0, daysRaf = 0;
+	function syncDays() {
+		if (daysRaf || !el.inner) return;
+		daysRaf = requestAnimationFrame(function () {
+			daysRaf = 0;
+			if (!el.inner) return;
+			var days = el.inner.querySelectorAll('.flxc-day'), last = -1;
+			Array.prototype.forEach.call(days, function (d, i) {
+				var nx = d.nextElementSibling, sp = d.firstChild;
+				var stuck = !!(nx && sp && nx.getBoundingClientRect().top < sp.getBoundingClientRect().bottom + 2);
+				d.classList.toggle('is-stuck', stuck);
+				if (stuck) last = i;
+			});
+			// Stuck labels pile up at the top: only the newest one is shown.
+			Array.prototype.forEach.call(days, function (d, i) { d.classList.toggle('is-past', d.classList.contains('is-stuck') && i < last); });
+		});
+	}
 	function updateDown() {
+		syncDays();
 		if (!el.down) return;
 		el.down.hidden = nearBottom();
 		el.downN.hidden = !newBelow;
@@ -2244,6 +2303,18 @@
 		var assign = h('select', { class: 'flxc-field', onchange: function () { patchChat(c.id, { assigned: +assign.value }); } },
 			h('option', { value: '0', text: t('— Atanmadı —') }));
 		S.agents.forEach(function (a) { assign.appendChild(h('option', { value: a.id, text: a.name, selected: a.id === c.assigned })); });
+		// 1.36.0: personel bağlantısı (yönetici). WhatsApp numarayı gizlerse asistan personeli numaradan tanıyamaz.
+		var staffSec = null;
+		if (S.me && S.me.manage && S.staff && S.staff.length && !c.group) {
+			var staff = h('select', { class: 'flxc-field', 'aria-label': t('Personel'), onchange: function () { patchChat(c.id, { staff_user: +staff.value }).then(function () { toast(+staff.value ? t('Sohbet personele bağlandı') : t('Personel bağlantısı kaldırıldı')); }); } },
+				h('option', { value: '0', text: t('— Personel değil —') }));
+			S.staff.forEach(function (u) { staff.appendChild(h('option', { value: u.id, text: u.name, selected: u.id === c.staffUser })); });
+			var hidden = !c.phone && /@lid$/.test(c.jid || '');
+			staffSec = h('div', { class: 'flxc-info-sec' }, h('h4', null, icon('person'), t('Personel')), staff,
+				h('small', { class: 'flxc-help', text: hidden
+					? t('WhatsApp bu kişinin numarasını gizliyor, asistan personeli numaradan tanıyamaz. Bu kişi ekibinizdense buradan bağlayın; asistan personel araçlarını açar.')
+					: t('Asistan personeli Flux Roles profilindeki numaradan tanır. Numara eşleşmiyorsa buradan bağlayabilirsiniz; numarası bilinen sohbette numara önceliklidir.') }));
+		}
 
 		var sec = h('div');
 		(S.sections[c.id] || []).forEach(function (s) {
@@ -2264,7 +2335,8 @@
 			h('div', { class: 'flxc-info-hero' },
 				avatar(c, 'xl'),
 				h('label', { class: 'flxc-info-name' }, nameIn, icon('edit')),
-				c.pushName && c.pushName !== c.name ? h('small', { class: 'flxc-muted', text: t('WhatsApp adı: {n}', { n: c.pushName }) }) : null,
+				c.pushName && c.pushName !== c.name && (c.channel || 'whatsapp') === 'whatsapp' ? h('small', { class: 'flxc-muted', text: t('WhatsApp adı: {n}', { n: c.pushName }) }) : null,
+				(c.channel || 'whatsapp') !== 'whatsapp' && chanById(c.channel) ? h('span', { class: 'flxc-chtag', style: { '--chc': chanById(c.channel).color } }, chanIcon(chanById(c.channel)), chanById(c.channel).label) : null,
 				h('div', { class: 'flxc-info-phone' }, h('span', { text: c.phoneFmt || c.jid }),
 					c.phone ? btn('copy', t('Numarayı kopyala'), function () { copyText('+' + c.phone); }) : null,
 					c.phone ? h('a', { class: 'flxc-ib', href: 'tel:+' + c.phone, title: t('Ara') }, icon('phone')) : null
@@ -2272,6 +2344,7 @@
 			),
 			h('div', { class: 'flxc-info-sec' }, h('h4', null, icon('label'), t('Etiketler')), labels),
 			h('div', { class: 'flxc-info-sec' }, h('h4', null, icon('assign'), t('Atanan temsilci')), assign),
+			staffSec,
 			h('div', { class: 'flxc-info-sec' }, h('h4', null, icon('note'), t('Kişi notları')), notes),
 			recOn() ? h('div', { class: 'flxc-info-sec flxc-info-actions' },
 				S.rec.donations ? h('button', { type: 'button', class: 'flxc-info-act', onclick: function () { openDonation({ chat: c.id }); } }, icon('gift'), t('Bağış kaydı oluştur')) : null,
@@ -2997,9 +3070,10 @@
 	buildShell();
 	setView('list');
 	api('bootstrap').then(function (b) {
-		S.me = b.me; S.agents = b.agents; S.labels = b.labels; S.conns = b.connections; S.replies = b.replies; S.ai = b.ai; S.bot = !!b.bot; S.unread = b.unread; S.rev = b.rev; S.rec = b.records || {};
+		S.me = b.me; S.agents = b.agents; S.labels = b.labels; S.conns = b.connections; S.channels = b.channels || []; S.replies = b.replies; S.ai = b.ai; S.bot = !!b.bot; S.unread = b.unread; S.rev = b.rev; S.rec = b.records || {}; S.staff = b.staff || [];
 		renderSideActions();
 		renderMe(); renderConn(); renderFilters();
+		if (!S.active && multiChannel()) renderEmptyMain(); // kanal bilgisiyle boş ekran metni
 		return loadChats();
 	}).then(function () {
 		var want = +(new URLSearchParams(location.search).get('chat') || 0);

@@ -211,6 +211,7 @@ final class FLXB_Page_Types {
 		/* Pricing */
 		echo '<section class="flxb-card"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Prices and options', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( 'One option is a fixed price per unit (e.g. one sapling). Several options give the donor a choice (e.g. adak, akika, şifa). The amount charged is always computed on the server from these prices.', 'flx-donate' ) . ' ' . esc_html__( 'A price of 0 means the price is not announced yet: the option is shown but cannot be paid. An inactive option is hidden and cannot be paid.', 'flx-donate' ) . '</p></div></div><div class="flxb-form">';
 		echo '<div class="flxb-repeater" data-flxb-repeater><div class="flxb-optrows" data-rows>';
+		self::$extra_currencies = self::extra_currencies( $t );
 		$rows = $t['options'] ? $t['options'] : array( array( 'key' => '', 'label' => '', 'price' => '', 'unit' => '', 'active' => true, 'units_per' => 1 ) );
 		foreach ( $rows as $i => $o ) {
 			self::option_row( $i, $o, $sym );
@@ -220,6 +221,14 @@ final class FLXB_Page_Types {
 		echo '</template><button type="button" class="flxb-btn flxb-btn--sm" data-add>' . FLXB_Admin::icon( 'plus', 14 ) . esc_html__( 'Add option', 'flx-donate' ) . '</button></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<div class="flxb-fields-2"><label class="flxb-switch"><input type="checkbox" name="allow_free" value="1"' . checked( (int) $t['allow_free'], 1, false ) . '><span class="flxb-switch__ui" aria-hidden="true"></span>' . esc_html__( 'Free amount allowed', 'flx-donate' ) . '</label>';
 		echo '<div class="flxb-field"><label for="flxb-min">' . esc_html__( 'Minimum amount', 'flx-donate' ) . ' (' . esc_html( $sym ) . ')</label><input type="number" id="flxb-min" name="min_amount" min="0" step="0.01" value="' . esc_attr( (float) $t['min_amount'] ? (string) (float) $t['min_amount'] : '' ) . '"></div></div>';
+		if ( self::$extra_currencies ) {
+			$mins = (array) FLXB_Types::meta( $t, 'min_by_currency', array() );
+			echo '<div class="flxb-fields-2">';
+			foreach ( self::$extra_currencies as $code ) {
+				echo '<div class="flxb-field"><label for="flxb-min-' . esc_attr( $code ) . '">' . esc_html__( 'Minimum amount', 'flx-donate' ) . ' (' . esc_html( $code ) . ')</label><input type="number" id="flxb-min-' . esc_attr( $code ) . '" name="meta[min_by_currency][' . esc_attr( $code ) . ']" min="0" step="0.01" value="' . esc_attr( (float) ( $mins[ $code ] ?? 0 ) ? (string) (float) $mins[ $code ] : '' ) . '"></div>';
+			}
+			echo '</div>';
+		}
 		echo '<div class="flxb-fields-2"><label class="flxb-switch"><input type="checkbox" name="allow_quantity" value="1"' . checked( (int) $t['allow_quantity'], 1, false ) . '><span class="flxb-switch__ui" aria-hidden="true"></span>' . esc_html__( 'Quantity allowed', 'flx-donate' ) . '</label>';
 		echo '<div class="flxb-field"><label for="flxb-maxq">' . esc_html__( 'Maximum quantity', 'flx-donate' ) . '</label><input type="number" id="flxb-maxq" name="max_quantity" min="0" step="1" value="' . esc_attr( (int) $t['max_quantity'] ? (string) (int) $t['max_quantity'] : '' ) . '"><p class="flxb-help">' . esc_html__( 'Empty = no limit.', 'flx-donate' ) . '</p></div></div>';
 		echo '<label class="flxb-switch"><input type="checkbox" name="allow_recurring" value="1"' . checked( (int) $t['allow_recurring'], 1, false ) . '><span class="flxb-switch__ui" aria-hidden="true"></span>' . esc_html__( 'Recurring giving allowed', 'flx-donate' ) . '</label>';
@@ -264,6 +273,7 @@ final class FLXB_Page_Types {
 		if ( flxb_kurban_enabled() ) {
 			self::kurban_card( $t );
 		}
+		self::i18n_card( $t );
 		/* Add-ons print their own cards here (save their keys through `flxb_type_meta_clean`). */
 		do_action( 'flxb_type_fields', $t );
 		echo '</div>';
@@ -297,9 +307,22 @@ final class FLXB_Page_Types {
 		FLXB_Admin::footer();
 	}
 
+	/** @var string[] 2.15: other currencies donors can choose (prices per option, see FLXB_WC_Currency). */
+	private static $extra_currencies = array();
+
+	/** 2.15: currencies on offer other than the type's own, plus any that already have a price. */
+	public static function extra_currencies( array $t ) {
+		$codes = class_exists( 'FLXB_WC_Currency' ) && class_exists( 'FLXB_WC' ) && FLXB_WC::ready() ? FLXB_WC_Currency::codes() : array();
+		foreach ( (array) ( $t['options'] ?? array() ) as $o ) {
+			$codes = array_merge( $codes, array_keys( (array) ( $o['prices'] ?? array() ) ) );
+		}
+		$codes = array_merge( $codes, array_keys( (array) FLXB_Types::meta( $t, 'min_by_currency', array() ) ) );
+		return array_values( array_diff( array_unique( $codes ), array( strtoupper( (string) ( $t['currency'] ?? '' ) ) ) ) );
+	}
+
 	private static function option_row( $i, array $o, $sym ) {
 		$i = esc_attr( (string) $i );
-		$o = array_merge( array( 'key' => '', 'label' => '', 'price' => '', 'unit' => '', 'active' => true, 'units_per' => 1, 'badge' => '' ), $o );
+		$o = array_merge( array( 'key' => '', 'label' => '', 'price' => '', 'unit' => '', 'active' => true, 'units_per' => 1, 'badge' => '', 'prices' => array() ), $o );
 		echo '<div class="flxb-optrow flxb-optrow--full" data-row>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<label class="flxb-field"><span class="flxb-label">' . esc_html__( 'Option name', 'flx-donate' ) . '</span><input type="text" name="options[' . $i . '][label]" value="' . esc_attr( $o['label'] ) . '" placeholder="' . esc_attr__( 'e.g. Sapling, Adak, Iftar', 'flx-donate' ) . '"></label>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<label class="flxb-field"><span class="flxb-label">' . esc_html__( 'Key', 'flx-donate' ) . '</span><input type="text" name="options[' . $i . '][key]" maxlength="48" pattern="[a-z0-9_\-]*" value="' . esc_attr( $o['key'] ) . '" placeholder="' . esc_attr__( 'from the name', 'flx-donate' ) . '"></label>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -325,7 +348,51 @@ final class FLXB_Page_Types {
 			echo '<option value="' . esc_attr( $k ) . '"' . selected( (string) ( $o['badge'] ?? '' ), (string) $k, false ) . '>' . esc_html( $l ) . '</option>';
 		}
 		echo '</select></label>';
-		echo '<input type="hidden" name="options[' . $i . '][active]" value="0"><label class="flxb-switch"><input type="checkbox" name="options[' . $i . '][active]" value="1"' . checked( ! empty( $o['active'] ), true, false ) . '><span class="flxb-switch__ui" aria-hidden="true"></span>' . esc_html__( 'Active', 'flx-donate' ) . '</label></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<input type="hidden" name="options[' . $i . '][active]" value="0"><label class="flxb-switch"><input type="checkbox" name="options[' . $i . '][active]" value="1"' . checked( ! empty( $o['active'] ), true, false ) . '><span class="flxb-switch__ui" aria-hidden="true"></span>' . esc_html__( 'Active', 'flx-donate' ) . '</label></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		if ( self::$extra_currencies ) {
+			echo '<div class="flxb-optrow__more flxb-optrow__cur">';
+			foreach ( self::$extra_currencies as $code ) {
+				$v = (float) ( $o['prices'][ $code ] ?? 0 );
+				echo '<label class="flxb-field"><span class="flxb-label">' . esc_html__( 'Price', 'flx-donate' ) . ' (' . esc_html( $code ) . ')</span><input type="number" min="0" step="0.01" name="options[' . $i . '][prices][' . esc_attr( $code ) . ']" value="' . esc_attr( $v > 0 ? (string) $v : '' ) . '" placeholder="' . esc_attr__( 'not offered', 'flx-donate' ) . '"></label>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			}
+			echo '</div>';
+		}
+		echo '</div>';
+	}
+
+	/** 2.15: title, description and option names in the other Flux Lang languages. */
+	private static function i18n_card( array $t ) {
+		if ( ! function_exists( 'flxl_languages' ) || ! function_exists( 'flxl_default_language' ) ) {
+			return;
+		}
+		$def   = (string) flxl_default_language();
+		$langs = array_diff_key( (array) flxl_languages(), array( $def => 1 ) );
+		if ( ! $langs ) {
+			return;
+		}
+		$all = (array) FLXB_Types::meta( $t, 'i18n', array() );
+		echo '<section class="flxb-card"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Translations', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( 'Shown on the donation page, the cart and the checkout in that language (Flux Lang). Empty fields use the texts above. Records keep the texts above. Save once after adding options to translate their names.', 'flx-donate' ) . '</p></div></div><div class="flxb-form">';
+		foreach ( $langs as $code => $l ) {
+			$tr  = (array) ( $all[ $code ] ?? array() );
+			$pre = 'meta[i18n][' . esc_attr( $code ) . ']';
+			$id  = 'flxb-i18n-' . esc_attr( $code );
+			echo '<fieldset class="flxb-field flxb-i18n"><legend class="flxb-label">' . esc_html( trim( ( $l['flag'] ?? '' ) . ' ' . ( $l['name'] ?? $code ) ) ) . '</legend>';
+			echo '<div class="flxb-field"><label for="' . $id . '-title">' . esc_html__( 'Title', 'flx-donate' ) . '</label><input type="text" id="' . $id . '-title" name="' . $pre . '[title]" maxlength="191" value="' . esc_attr( (string) ( $tr['title'] ?? '' ) ) . '" placeholder="' . esc_attr( $t['title'] ) . '"></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<div class="flxb-field"><label for="' . $id . '-desc">' . esc_html__( 'Short description', 'flx-donate' ) . '</label><textarea id="' . $id . '-desc" name="' . $pre . '[description]" rows="2" placeholder="' . esc_attr( (string) $t['description'] ) . '">' . esc_textarea( (string) ( $tr['description'] ?? '' ) ) . '</textarea></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			if ( $t['options'] ) {
+				echo '<div class="flxb-fields-2">';
+				foreach ( $t['options'] as $o ) {
+					if ( '' === (string) $o['key'] ) {
+						continue;
+					}
+					/* translators: %s: option name in the default language */
+					echo '<div class="flxb-field"><label for="' . $id . '-o-' . esc_attr( $o['key'] ) . '">' . esc_html( sprintf( __( 'Option: %s', 'flx-donate' ), $o['label'] ) ) . '</label><input type="text" id="' . $id . '-o-' . esc_attr( $o['key'] ) . '" name="' . $pre . '[options][' . esc_attr( $o['key'] ) . ']" maxlength="120" value="' . esc_attr( (string) ( $tr['options'][ $o['key'] ] ?? '' ) ) . '" placeholder="' . esc_attr( $o['label'] ) . '"></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				}
+				echo '</div>';
+			}
+			echo '</fieldset>';
+		}
+		echo '</div></section>';
 	}
 
 	/** 2.11: tracking fields (Settings › General › Tracking module). */

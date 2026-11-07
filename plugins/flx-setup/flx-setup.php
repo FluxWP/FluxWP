@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       FluxWP Panel
  * Description:       FluxWP'nin kurulum ve güncelleme eklentisi. İlk açılışta kurulum sihirbazı (tanıtım, eklenti seçimi, görünüm, kurulum); FluxWP tema ve eklentilerini güncelleme sunucusundan (varsayılan updater.fluxwp.com) WordPress'in güncelleme ekranına getirir; ön ayar motoru (preset.json) siteyi tek adımda kurar, onaylı yamalarla değiştirir, geri alır.
- * Version:           1.0.24
+ * Version:           1.1.2
  * Requires at least: 6.6
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -20,7 +20,7 @@ if ( defined( 'FLXK_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXK_VERSION', '1.0.24' );
+define( 'FLXK_VERSION', '1.1.2' );
 define( 'FLXK_FORMAT', 'flx-preset/1' );
 define( 'FLXK_FILE', __FILE__ );
 define( 'FLXK_DIR', plugin_dir_path( __FILE__ ) );
@@ -47,6 +47,7 @@ if ( is_admin() ) {
 
 /* ---------- Güncelleyici (eski Flux Updater; sınıf ve ayar öneki flxu_ korunur) ---------- */
 require_once FLXK_DIR . 'includes/legacy.php';
+require_once FLXK_DIR . 'includes/app.php';
 
 if ( ! flxk_legacy_updater_active() ) {
 	define( 'FLXU_VERSION', FLXK_VERSION );
@@ -78,5 +79,17 @@ add_action(
 	'init',
 	function () {
 		load_plugin_textdomain( 'flx-setup', false, dirname( plugin_basename( FLXK_FILE ) ) . '/languages' );
-	}
+	},
+	1
+);
+add_filter(
+	'load_textdomain_mofile',
+	static function ( $mofile, $domain ) {
+		if ( 'flx-setup' === $domain && ! is_readable( $mofile ) && ! is_readable( str_replace( '.mo', '.l10n.php', $mofile ) ) && preg_match( '/-en_[A-Z]{2}\.mo$/', $mofile ) ) {
+			return FLXK_DIR . 'languages/flx-setup-en_US.mo';
+		}
+		return $mofile;
+	},
+	10,
+	2
 );

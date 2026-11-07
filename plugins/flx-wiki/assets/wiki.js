@@ -1,4 +1,4 @@
-/* Flux Wiki – ön yüz: arama penceresi (Ctrl/⌘+K), Wiki'ye sor, kopyalama, içindekiler takibi, mobil menü. */
+/* Flux Wiki – ön yüz: canlı arama (Ctrl/⌘+K), Wiki'ye sor penceresi, kopyalama, içindekiler takibi, mobil menü. */
 ( function () {
 	'use strict';
 	var W = window.flxWiki || {};
@@ -183,7 +183,172 @@
 	}
 
 	/* ------------------------------------------------------------ */
-	/* Arama / soru penceresi                                        */
+	/* Canlı arama: yazdıkça (debounce) sonuçlar kutunun hemen altında  */
+	/* açılır, sayfa aşağı uzar; pencere açılmaz. Arama sayfasında     */
+	/* büyük kutu sayfadaki sonuç listesini yerinde günceller.         */
+	/* ------------------------------------------------------------ */
+	var fmt = function ( s, a, b ) {
+		return String( s || '' ).replace( '%1$s', a ).replace( '%2$s', b ).replace( '%s', a ).replace( '%d', a );
+	};
+	var searchUrl = function ( q ) {
+		return W.home + ( W.home.indexOf( '?' ) > -1 ? '&' : '?' ) + 'q=' + encodeURIComponent( q );
+	};
+	function hitHtml( r ) {
+		return '<a class="flxwk-hit" role="option" href="' + esc( r.url ) + '"><span class="flxwk-hit__t">' + esc( r.title ) +
+			( r.heading ? ' <small>› ' + esc( r.heading ) + '</small>' : '' ) +
+			( r.section ? ' <span class="flxwk-chip">' + esc( r.section ) + '</span>' : '' ) +
+			'</span><span class="flxwk-hit__s">' + r.snippet + '</span></a>';
+	}
+	function pageHtml( q, d ) {
+		var list = ( d && d.results ) || [];
+		var head = d && d.fixed ? fmt( T.fixed, q, d.fixed ) : fmt( T.countFor, ( d && d.total ) || 0, q );
+		var body = list.length ? '<ol class="flxwk-results">' + list.map( function ( r ) {
+			return '<li><a class="flxwk-results__t" href="' + esc( r.url ) + '">' + esc( r.title ) + ( r.heading ? ' <span>› ' + esc( r.heading ) + '</span>' : '' ) + '</a>' +
+				( r.section ? '<span class="flxwk-chip">' + esc( r.section ) + '</span>' : '' ) + '<p>' + r.snippet + '</p></li>';
+		} ).join( '' ) + '</ol>' : '<p class="flxwk-empty">' + esc( T.noResults || '' ) + '</p>';
+		return '<p class="flxwk-muted">' + esc( head ) + '</p>' + body;
+	}
+	var pageRes = $( '[data-flxwk-page-results]' );
+	$$( '[data-flxwk-live]' ).forEach( function ( box ) {
+		var inp = $( '[data-flxwk-q]', box );
+		var drop = $( '[data-flxwk-drop]', box );
+		var frm = $( 'form', box );
+		if ( ! inp || ! drop || ! frm ) {
+			return;
+		}
+		var inPage = !! ( pageRes && box.classList.contains( 'is-big' ) );
+		var t = null;
+		var n = 0;
+		var at = -1;
+		var last = inPage ? inp.value.trim() : '';
+		function shut() {
+			drop.hidden = true;
+			drop.innerHTML = '';
+			inp.setAttribute( 'aria-expanded', 'false' );
+			at = -1;
+			last = '';
+		}
+		function pick( i ) {
+			var h = $$( '.flxwk-hit', drop );
+			if ( ! h.length ) {
+				at = -1;
+				return;
+			}
+			at = ( i + h.length ) % h.length;
+			h.forEach( function ( el, k ) {
+				el.classList.toggle( 'is-sel', k === at );
+			} );
+			h[ at ].scrollIntoView( { block: 'nearest' } );
+		}
+		function go() {
+			var q = inp.value.trim();
+			clearTimeout( t );
+			if ( q === last ) {
+				return;
+			}
+			if ( ! q ) {
+				if ( ! inPage ) {
+					shut();
+				}
+				return;
+			}
+			t = setTimeout( function () {
+				var my = ++n;
+				last = q;
+				box.classList.add( 'is-busy' );
+				fetch( W.rest + 'search?limit=' + ( inPage ? 50 : 8 ) + '&q=' + encodeURIComponent( q ) )
+					.then( function ( r ) { return r.json(); } )
+					.then( function ( d ) {
+						if ( my !== n ) {
+							return;
+						}
+						box.classList.remove( 'is-busy' );
+						if ( inPage ) {
+							pageRes.innerHTML = pageHtml( q, d );
+							try {
+								history.replaceState( null, '', searchUrl( q ) );
+							} catch ( e ) {}
+							return;
+						}
+						var list = ( d && d.results ) || [];
+						var top = d && d.fixed ? '<p class="flxwk-drop__note">' + esc( fmt( T.fixed, q, d.fixed ) ) + '</p>' : '';
+						if ( ! list.length ) {
+							drop.innerHTML = '<p class="flxwk-drop__note">' + esc( T.noResults || '' ) + '</p>' +
+								( W.canAsk ? '<button type="button" class="flxwk-link flxwk-drop__ask" data-flxwk-ask-q>' + esc( T.askAi || '' ) + ' →</button>' : '' );
+						} else {
+							drop.innerHTML = top + '<div role="listbox">' + list.map( hitHtml ).join( '' ) + '</div>' +
+								( d.total > list.length ? '<a class="flxwk-drop__all" href="' + esc( searchUrl( q ) ) + '">' + esc( fmt( T.seeAll, d.total ) ) + ' →</a>' : '' );
+						}
+						drop.hidden = false;
+						inp.setAttribute( 'aria-expanded', 'true' );
+						at = -1;
+					} )
+					.catch( function () {
+						box.classList.remove( 'is-busy' );
+					} );
+			}, 220 );
+		}
+		inp.addEventListener( 'input', go );
+		inp.addEventListener( 'focus', go );
+		inp.addEventListener( 'keydown', function ( e ) {
+			if ( 'ArrowDown' === e.key && ! drop.hidden ) {
+				e.preventDefault();
+				pick( at + 1 );
+			} else if ( 'ArrowUp' === e.key && ! drop.hidden ) {
+				e.preventDefault();
+				pick( at - 1 );
+			} else if ( 'Escape' === e.key ) {
+				if ( ! drop.hidden ) {
+					shut();
+				} else {
+					inp.blur();
+				}
+			}
+		} );
+		frm.addEventListener( 'submit', function ( e ) {
+			var h = $$( '.flxwk-hit', drop );
+			if ( at >= 0 && h[ at ] ) {
+				e.preventDefault();
+				window.location.href = h[ at ].href;
+			} else if ( inPage ) {
+				e.preventDefault();
+				last = '';
+				go();
+			}
+		} );
+		drop.addEventListener( 'click', function ( e ) {
+			if ( e.target.closest( '[data-flxwk-ask-q]' ) && window.flxwkOpenAsk ) {
+				window.flxwkOpenAsk( inp.value.trim() );
+			}
+		} );
+		document.addEventListener( 'click', function ( e ) {
+			if ( ! box.contains( e.target ) && ! drop.hidden ) {
+				shut();
+			}
+		} );
+	} );
+	/* Ctrl/⌘+K ve "/" sayfadaki arama kutusuna odaklanır (yan menü görünürse o, yoksa büyük kutu). */
+	document.addEventListener( 'keydown', function ( e ) {
+		var tag = ( e.target && e.target.tagName ) || '';
+		var typing = /INPUT|TEXTAREA|SELECT/.test( tag ) || ( e.target && e.target.isContentEditable );
+		if ( ( ( e.metaKey || e.ctrlKey ) && 'k' === e.key.toLowerCase() ) || ( '/' === e.key && ! typing ) ) {
+			var side = $( '#flxwk-nav [data-flxwk-q]' );
+			var target = ( side && side.offsetParent ? side : null ) || $( '.flxwk-sbox.is-big [data-flxwk-q]' ) || side;
+			if ( target ) {
+				e.preventDefault();
+				var nv = $( '#flxwk-nav' );
+				if ( target === side && nv && ! side.offsetParent && navBtn ) {
+					nav.classList.add( 'is-open' );
+					navBtn.setAttribute( 'aria-expanded', 'true' );
+				}
+				target.focus();
+				target.select();
+			}
+		}
+	} );
+
+	/* ------------------------------------------------------------ */
+	/* Wiki'ye sor penceresi                                         */
 	/* ------------------------------------------------------------ */
 	var modal = $( '[data-flxwk-modal]' );
 	if ( ! modal ) {
@@ -370,28 +535,17 @@
 		b.addEventListener( 'click', close );
 	} );
 
-	/* Sayfadaki arama kutuları pencereyi açar (JS kapalıysa form /wiki/?q= ile çalışır). */
-	$$( '[data-flxwk-open] input' ).forEach( function ( el ) {
-		el.addEventListener( 'focus', function () {
-			open( 'search', el.value );
-		} );
-	} );
 	$$( '[data-flxwk-ask]' ).forEach( function ( b ) {
 		b.addEventListener( 'click', function () {
 			open( 'ask', '' );
 		} );
 	} );
+	window.flxwkOpenAsk = function ( q ) {
+		open( 'ask', q || '' );
+	};
 
 	document.addEventListener( 'keydown', function ( e ) {
-		var tag = ( e.target && e.target.tagName ) || '';
-		var typing = /INPUT|TEXTAREA|SELECT/.test( tag ) || ( e.target && e.target.isContentEditable );
-		if ( ( e.metaKey || e.ctrlKey ) && 'k' === e.key.toLowerCase() ) {
-			e.preventDefault();
-			modal.hidden ? open( 'search' ) : close();
-		} else if ( '/' === e.key && ! typing && modal.hidden ) {
-			e.preventDefault();
-			open( 'search' );
-		} else if ( 'Escape' === e.key && ! modal.hidden ) {
+		if ( 'Escape' === e.key && ! modal.hidden ) {
 			close();
 		}
 	} );

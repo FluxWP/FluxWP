@@ -1,5 +1,29 @@
 # Değişiklikler
 
+## 2.15.1
+- Bağış türü çevirisi (Flux Lang): tür düzenlemede yeni "Çeviriler" kartı; her dil için başlık, kısa açıklama ve seçenek adları. Bağış sayfası, sepet, ödeme sayfası ve `flxb_type_public()` ziyaretçinin dilinde gösterir; kayıtlar varsayılan dildeki metni tutar. Tür meta `i18n` `{ "en": { "title", "description", "options": { "anahtar": "Ad" } } }`, ön ayarlarla taşınır. `FLXB_Types::localize( $t, $lang = null )`.
+- Düzeltme: ön ayar yeniden uygulanınca "Array to string conversion" uyarısı (bağlı formlar). Ön ayar türü yeniden uygulanınca seçeneklerin "seçim başına birim" ve rozet değerleri artık korunuyor.
+
+## 2.15.0
+- Para birimi seçimi: bağışçı TRY / EUR / USD (ve GBP) arasında seçer. Ayarlar › WooCommerce › "Bağışçının seçebileceği para birimleri"; mağaza para birimi hep sunulur. Kur çevrimi yok: bağış türünde her seçeneğe para birimi başına fiyat girilir (boş = o para biriminde sunulmaz). Serbest tutar için para birimi başına en az tutar ve hazır tutarlar.
+- Bağış formunun üstünde "Para birimi" seçici (TL / EUR / USD düğmeleri); birden fazla para birimi açıksa görünür. Kısa kod `[flx_bagis_para_birimi]` aynı seçicinin küçük hâli (tema üst satırı için).
+- Seçim `flxb_currency` çerezinde (bir yıl); `?flxb_currency=EUR` ile değişir. Ön yüzde WooCommerce para birimi olur: sepet, ödeme sayfası ve sipariş o para biriminde. Yönetim, cron, webhook ve diğer REST istekleri mağaza para biriminde kalır. LiteSpeed önbelleği para birimine göre ayrı kopya tutar.
+- Para birimi değişince seçenekli satırlar yeni fiyatla hesaplanır; serbest tutar ve form satırları kendi para biriminde kalır, değilse sepetten bildirimle çıkar. Mağaza ürünleri yalnız mağaza para biriminde ödenir. Basılı sertifika ücreti yalnız mağaza para biriminde.
+- Ortak API (2.1): `flxb_currencies()`, `flxb_current_currency()`, `flxb_set_currency_url( $code, $url = '' )`; kısa kod `[flx_bagis_para_birimi]`; filtreler `flxb_currency_codes`, `flxb_current_currency`. Tür seçeneklerinde `prices` (`{ "EUR": 120 }`), tür meta `min_by_currency`, `presets_by_currency`; ön ayar türlerinde de taşınır.
+
+## 2.14.0
+- Bağış ekle: yeni "Durum" alanı. Varsayılan "Ödeme bekleniyor"; ödeme alındıysa "Tamamlandı" seçilir. Önceden eklenen her bağış doğrudan ödendi oluyordu. Bekleyen havale bağışı onay kartına düşer.
+- Bağış detayı: yeni "İşlemler" kartı. Durumu değiştir (askıya al / ödendi / iptal / başarısız), çöpe taşı ya da geri al, kalıcı sil (yalnız yönetici). Sepet (tek sipariş) birlikte değişir; WooCommerce siparişi durumu izler (askıya alınca Beklemede, ödendi yapılınca sertifika oluşur). Değişiklik geçmişe yazılır.
+- `FLXB_Donations::set_status( $id, $status )`: yöneticinin elle durum değişikliği (ödenmiş bağışı da askıya alabilir).
+
+## 2.13.3
+- Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
+
+
+## 2.13.2
+- Uygulama manifesti: bağışçı ekranları (özet, bağışlarım, bağış detayı, sertifikalarım) `flxb-donations` kimliğiyle paketin kendi kaydı oldu. Personel için bağış, bağışçı ve abonelik listeleri ile onay ekranı (`flxb-review`) eklendi. Bağış türleri ve ayarlar web görünümünde açılır.
+- Yeni okuma uçları `flxb/v1/admin/*` (özet, bağışlar, bağışçılar, abonelikler). Yetki `flx_bagis_view`.
+
 ## 2.13.1
 - Güvenlik (CodeQL): yönetim ekranında satır bağlantısı, dekont önizlemesi ve CSV adresi yalnız http(s)/göreli adresse açılır. Ödeme sayfasında telefon yer tutucu e-posta kontrolü regex kurmadan yapılır.
 

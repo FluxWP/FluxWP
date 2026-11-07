@@ -52,7 +52,114 @@ final class FLXB_Types {
 			'active'    => ! isset( $o['active'] ) || ! empty( $o['active'] ),
 			'units_per' => max( 1, (int) ( $o['units_per'] ?? 1 ) ),
 			'badge'     => sanitize_key( (string) ( $o['badge'] ?? '' ) ), // 2.0: card badge on the donation page ('' = none)
+			'prices'    => self::clean_prices( $o['prices'] ?? array() ), // 2.15: { EUR: 120, USD: 130 } prices in other currencies
 		);
+	}
+
+	/**
+	 * 2.15: translations of a type for Flux Lang: { en: { title, description, options: { key: label } } }.
+	 * Empty strings are dropped; the type's own texts are the default language.
+	 */
+	public static function clean_i18n( array $raw ) {
+		$out = array();
+		foreach ( $raw as $lang => $tr ) {
+			$lang = strtolower( sanitize_key( (string) $lang ) );
+			if ( ! preg_match( '/^[a-z]{2,3}(-[a-z0-9]{2,8})?$/', $lang ) || ! is_array( $tr ) ) {
+				continue;
+			}
+			$row = array();
+			foreach ( array( 'title' => 191, 'description' => 2000 ) as $k => $max ) {
+				$v = 'description' === $k ? sanitize_textarea_field( (string) ( $tr[ $k ] ?? '' ) ) : sanitize_text_field( (string) ( $tr[ $k ] ?? '' ) );
+				if ( '' !== trim( $v ) ) {
+					$row[ $k ] = mb_substr( trim( $v ), 0, $max );
+				}
+			}
+			foreach ( (array) ( $tr['options'] ?? array() ) as $key => $label ) {
+				$label = trim( sanitize_text_field( (string) $label ) );
+				if ( '' !== $label ) {
+					$row['options'][ sanitize_key( (string) $key ) ] = mb_substr( $label, 0, 120 );
+				}
+			}
+			if ( $row ) {
+				ksort( $row );
+				$out[ $lang ] = $row;
+			}
+		}
+		ksort( $out );
+		return $out;
+	}
+
+	/** 2.15: the visitor's language (Flux Lang), '' for the default language or without Flux Lang. */
+	public static function lang() {
+		if ( ! function_exists( 'flxl_current_language' ) || ! function_exists( 'flxl_default_language' ) ) {
+			return '';
+		}
+		$l = (string) flxl_current_language();
+		return $l === (string) flxl_default_language() ? '' : $l;
+	}
+
+	/**
+	 * 2.15: a type with its title, description and option labels in a language (default: the visitor's,
+	 * Flux Lang). For display only; records keep the type's own texts.
+	 */
+	public static function localize( array $t, $lang = null ) {
+		$lang = null === $lang ? self::lang() : strtolower( (string) $lang );
+		$tr   = '' !== $lang ? (array) ( ( (array) self::meta( $t, 'i18n', array() ) )[ $lang ] ?? array() ) : array();
+		if ( ! $tr ) {
+			return $t;
+		}
+		foreach ( array( 'title', 'description' ) as $k ) {
+			if ( ! empty( $tr[ $k ] ) ) {
+				$t[ $k ] = (string) $tr[ $k ];
+			}
+		}
+		foreach ( $t['options'] as $i => $o ) {
+			if ( ! empty( $tr['options'][ $o['key'] ] ) ) {
+				$t['options'][ $i ]['label'] = (string) $tr['options'][ $o['key'] ];
+			}
+		}
+		return $t;
+	}
+
+	/** 2.15: { CODE: price > 0 } prices of an option in currencies other than the type's own. */
+	public static function clean_prices( $raw ) {
+		$out = array();
+		foreach ( (array) $raw as $code => $v ) {
+			$code = strtoupper( sanitize_text_field( (string) $code ) );
+			$v    = is_numeric( $v ) ? (float) $v : (float) str_replace( ',', '.', (string) $v );
+			if ( preg_match( '/^[A-Z]{3}$/', $code ) && $v > 0 ) {
+				$out[ $code ] = round( $v, 2 );
+			}
+		}
+		ksort( $out );
+		return $out;
+	}
+
+	/**
+	 * 2.15: price of an option in a currency. The type's own currency uses `price`; any other currency
+	 * uses the hand-set `prices[CODE]` (no exchange rates), 0 = not offered in that currency.
+	 */
+	public static function option_price( array $t, array $o, $currency = '' ) {
+		$cur = '' === (string) $currency ? strtoupper( (string) $t['currency'] ) : strtoupper( (string) $currency );
+		if ( strtoupper( (string) $t['currency'] ) === $cur ) {
+			return (float) $o['price'];
+		}
+		return (float) ( $o['prices'][ $cur ] ?? 0 );
+	}
+
+	/** 2.15: can this option be charged now in this currency? */
+	public static function option_on_sale_in( array $t, array $o, $currency = '' ) {
+		return ! empty( $o['active'] ) && self::option_price( $t, $o, $currency ) > 0;
+	}
+
+	/** 2.15: lowest free amount in a currency (type meta min_by_currency for other currencies; none = 0). */
+	public static function min_amount_in( array $t, $currency = '' ) {
+		$cur = '' === (string) $currency ? strtoupper( (string) $t['currency'] ) : strtoupper( (string) $currency );
+		if ( strtoupper( (string) $t['currency'] ) === $cur ) {
+			return (float) $t['min_amount'];
+		}
+		$m = (array) self::meta( $t, 'min_by_currency', array() );
+		return (float) ( $m[ $cur ] ?? 0 );
 	}
 
 	/** Can this option be charged now? Inactive options and options without a price (0 = "price not announced") cannot. */
@@ -155,6 +262,7 @@ final class FLXB_Types {
 				'active'    => ! isset( $o['active'] ) || ! empty( $o['active'] ),
 				'units_per' => max( 1, min( 1000, absint( $o['units_per'] ?? 1 ) ) ),
 				'badge'     => substr( sanitize_key( (string) ( $o['badge'] ?? '' ) ), 0, 32 ),
+				'prices'    => self::clean_prices( $o['prices'] ?? array() ),
 			);
 		}
 		return $out;
@@ -310,6 +418,9 @@ final class FLXB_Types {
 		}
 		if ( array_key_exists( 'lock_preselect', $m ) ) {
 			$out['lock_preselect'] = ! empty( $m['lock_preselect'] );
+		}
+		if ( array_key_exists( 'i18n', $m ) ) {
+			$out['i18n'] = self::clean_i18n( (array) $m['i18n'] );
 		}
 		if ( array_key_exists( 'grouping', $m ) ) {
 			$g               = sanitize_key( (string) $m['grouping'] );

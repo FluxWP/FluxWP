@@ -306,19 +306,20 @@ final class FLXU_Updater {
 	}
 
 	/**
-	 * /v1/check gövdesi. Güncelleme için gereken: paketler, FluxWP Panel sürümü, kurulum kimliği.
-	 * Site adresi, WordPress/PHP sürümü, saat dilimi ve dil yalnız kullanım verisi izni varsa eklenir.
+	 * /v1/check gövdesi. Güncelleme için gereken: paketler, FluxWP Panel sürümü, kurulum kimliği ve site adresi
+	 * (zorunlu kayıt; sunucu ülkeyi IP'den bulur, IP'yi saklamaz). WordPress/PHP sürümü, saat dilimi ve dil yalnız
+	 * kullanım verisi izni varsa eklenir.
 	 */
 	private function check_body( string $host ): array {
 		$body = array(
 			'updater'  => FLXU_VERSION,
 			'install'  => self::install_id( $host ),
 			'packages' => $this->installed_versions(),
+			'site'     => home_url( '/' ),
 			'usage'    => function_exists( 'flxk_telemetry_enabled' ) && flxk_telemetry_enabled(),
 		);
 		if ( $body['usage'] ) {
 			$body += array(
-				'site'   => home_url( '/' ),
 				'wp'     => get_bloginfo( 'version' ),
 				'php'    => PHP_VERSION,
 				'tz'     => (string) get_option( 'timezone_string' ),
