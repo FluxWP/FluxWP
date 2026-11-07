@@ -120,6 +120,10 @@ function flxwk_find_page( $ref ) {
 	}
 	$p = get_page_by_path( $ref, OBJECT, FLXWK_PT );
 	if ( $p ) {
+		if ( ! is_admin() && function_exists( 'flxl_get_translation' ) ) {
+			$id = flxl_get_translation( $p->ID, flxl_current_language(), true );
+			return $id ? get_post( $id ) : $p;
+		}
 		return $p;
 	}
 	$slug = sanitize_title( $ref );
@@ -186,7 +190,7 @@ function flxwk_page_html( $post ) {
 		return array( 'html' => '', 'toc' => array() );
 	}
 	$md    = flxwk_md( $post );
-	$key   = FLXWK_RENDER_VER . ':' . (int) get_option( 'flxwk_gen', 0 ) . ':' . md5( $md );
+	$key   = flxwk_cache_key( 'html' ) . ':' . FLXWK_RENDER_VER . ':' . (int) get_option( 'flxwk_gen', 0 ) . ':' . md5( $md );
 	$cache = get_post_meta( $post->ID, '_flxwk_html', true );
 	if ( is_array( $cache ) && ( $cache['key'] ?? '' ) === $key ) {
 		return $cache;

@@ -256,7 +256,7 @@
 				var my = ++n;
 				last = q;
 				box.classList.add( 'is-busy' );
-				fetch( W.rest + 'search?limit=' + ( inPage ? 50 : 8 ) + '&q=' + encodeURIComponent( q ) )
+				fetch( W.rest + 'search?lang=' + encodeURIComponent( W.lang || '' ) + '&limit=' + ( inPage ? 50 : 8 ) + '&q=' + encodeURIComponent( q ) )
 					.then( function ( r ) { return r.json(); } )
 					.then( function ( d ) {
 						if ( my !== n ) {
@@ -438,7 +438,7 @@
 		}
 		timer = setTimeout( function () {
 			var my = ++seq;
-			fetch( W.rest + 'search?limit=10&q=' + encodeURIComponent( q ) )
+			fetch( W.rest + 'search?lang=' + encodeURIComponent( W.lang || '' ) + '&limit=10&q=' + encodeURIComponent( q ) )
 				.then( function ( r ) { return r.json(); } )
 				.then( function ( d ) {
 					if ( my !== seq ) {
@@ -475,7 +475,7 @@
 		if ( W.nonce ) {
 			headers[ 'X-WP-Nonce' ] = W.nonce;
 		}
-		fetch( W.rest + 'ask', { method: 'POST', credentials: 'same-origin', headers: headers, body: JSON.stringify( { q: q, page: W.page || 0 } ) } )
+		fetch( W.rest + 'ask?lang=' + encodeURIComponent( W.lang || '' ), { method: 'POST', credentials: 'same-origin', headers: headers, body: JSON.stringify( { q: q, page: W.page || 0 } ) } )
 			.then( function ( r ) {
 				return r.json().then( function ( d ) { return { ok: r.ok, d: d }; } );
 			} )

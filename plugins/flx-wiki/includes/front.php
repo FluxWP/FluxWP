@@ -105,6 +105,7 @@ add_action(
 			'flxWiki',
 			array(
 				'rest'   => esc_url_raw( rest_url( 'flx-wiki/v1/' ) ),
+				'lang'   => function_exists( 'flxl_current_language' ) ? flxl_current_language() : '',
 				'nonce'  => is_user_logged_in() ? wp_create_nonce( 'wp_rest' ) : '',
 				'home'   => flxwk_home_url(),
 				'canAsk' => flxwk_can_ask() ? 1 : 0,

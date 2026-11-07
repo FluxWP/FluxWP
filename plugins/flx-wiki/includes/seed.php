@@ -95,6 +95,9 @@ function flxwk_seed_import( $update = true ) {
 			$args['section'] = $meta['section'];
 		}
 		if ( $existing ) {
+			if ( function_exists( 'flxl_set_post_language' ) ) {
+				flxl_set_post_language( $existing->ID, $meta['language'] ?? 'tr' );
+			}
 			$seeded = get_post_meta( $existing->ID, '_flxwk_seed_hash', true );
 			$same   = $seeded && md5( flxwk_md( $existing ) ) === $seeded;
 			if ( ! $update || ! $same || $seeded === $hash ) {
@@ -111,6 +114,9 @@ function flxwk_seed_import( $update = true ) {
 		}
 		if ( ! is_wp_error( $id ) ) {
 			update_post_meta( $id, '_flxwk_seed_hash', $hash );
+			if ( function_exists( 'flxl_set_post_language' ) ) {
+				flxl_set_post_language( $id, $meta['language'] ?? 'tr' );
+			}
 			++$stat[ $key ];
 		}
 	}
