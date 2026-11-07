@@ -45,7 +45,23 @@ class FLXB_WC_Terms {
 	}
 
 	public static function checkbox_text() {
-		return __( 'I have read and accept the [terms] and the [privacy_policy].', 'flx-donate' );
+		return self::text();
+	}
+
+	/**
+	 * 2.17.0: one sentence for the one box, with links to the privacy policy and the donation agreement
+	 * (WooCommerce terms page). Filter: flxb_terms_text.
+	 */
+	public static function text() {
+		$link = static function ( $id ) {
+			$u = $id ? get_permalink( (int) $id ) : '';
+			return $u ? array( '<a href="' . esc_url( $u ) . '" target="_blank" rel="noopener">', '</a>' ) : array( '', '' );
+		};
+		$p = $link( (int) get_option( 'wp_page_for_privacy_policy' ) );
+		$t = $link( function_exists( 'wc_terms_and_conditions_page_id' ) ? wc_terms_and_conditions_page_id() : (int) get_option( 'woocommerce_terms_page_id' ) );
+		/* translators: 1, 2: privacy policy link; 3, 4: donation agreement link */
+		$txt = sprintf( __( 'I have read and accept the %1$sprivacy policy%2$s and the %3$sdonation agreement%4$s.', 'flx-donate' ), $p[0], $p[1], $t[0], $t[1] );
+		return (string) apply_filters( 'flxb_terms_text', $txt );
 	}
 
 	public static function pay_button() {
@@ -174,10 +190,12 @@ class FLXB_WC_Terms {
 
 	/** The checkout's terms block: a required checkbox. */
 	public static function block( $html, $block ) {
-		if ( 'woocommerce/checkout-terms-block' !== ( $block['blockName'] ?? '' ) || false !== strpos( $html, 'data-checkbox=' ) ) {
+		if ( 'woocommerce/checkout-terms-block' !== ( $block['blockName'] ?? '' ) ) {
 			return $html;
 		}
-		return preg_replace( '/<div\b/', '<div data-checkbox="true"', $html, 1 );
+		$add = false === strpos( $html, 'data-checkbox=' ) ? ' data-checkbox="true"' : '';
+		$add .= false === strpos( $html, 'data-text=' ) ? ' data-text="' . esc_attr( self::text() ) . '"' : '';
+		return '' === $add ? $html : preg_replace( '/<div\b/', '<div' . $add, $html, 1 );
 	}
 
 	public static function enqueue() {
@@ -216,6 +234,11 @@ class FLXB_WC_Terms {
 
 	public static function store_api_check( $order, $request ) {
 		if ( ! $order instanceof WC_Order || ! self::required() ) {
+			return;
+		}
+		/* 2.17.0: newer WooCommerce re-calculates the totals through this route when the payment method changes
+		   (?__experimental_calc_totals=true, no order is placed); only the real "Place order" needs the tick. */
+		if ( is_object( $request ) && method_exists( $request, 'get_param' ) && $request->get_param( '__experimental_calc_totals' ) ) {
 			return;
 		}
 		$ext = $request['extensions'] ?? array();

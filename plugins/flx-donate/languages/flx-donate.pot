@@ -4273,3 +4273,59 @@ msgstr ""
 
 msgid "0 = square, 4 = plain corporate, 16 = round."
 msgstr ""
+
+msgid "I will also cover the transaction fee"
+msgstr ""
+
+msgid "So your whole donation reaches its purpose. The exact fee depends on the payment method and is shown at the checkout."
+msgstr ""
+
+msgid "Transaction fee (covered by you)"
+msgstr ""
+
+msgid "I have read and accept the %1$sprivacy policy%2$s and the %3$sdonation agreement%4$s."
+msgstr ""
+
+msgid "(up to %s)"
+msgstr ""
+
+msgid "Transaction fee"
+msgstr ""
+
+msgid "List"
+msgstr ""
+
+msgid "All options one under the other."
+msgstr ""
+
+msgid "Drop-down"
+msgstr ""
+
+msgid "One row: the option in a drop-down menu and the quantity beside it."
+msgstr ""
+
+msgid "List, then one row"
+msgstr ""
+
+msgid "The list first; after a pick it folds into one row (drop-down + quantity) and the rest of the form opens."
+msgstr ""
+
+msgid "How the options are shown"
+msgstr ""
+
+msgid "Donors can choose to also pay the fee of the payment method, so the whole donation reaches you. The fee is added at the checkout for the method they pick."
+msgstr ""
+
+msgid "Show \"I will cover the transaction fee\" on the donation form"
+msgstr ""
+
+msgid "Ticked by default"
+msgstr ""
+
+msgid "Fixed"
+msgstr ""
+
+msgid "Empty or 0 = no fee for that method (for example bank transfer). Fee = donation × % + fixed."
+msgstr ""
+
+

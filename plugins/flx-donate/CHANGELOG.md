@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 2.17.0
+- Seçeneklerin görünümü (Ayarlar › Görünüm, `flxb_look.opt_view`): Liste (eski), Açılır menü (tek satır: seçenek açılır menüde + adet), Önce liste sonra tek satır (ilk seçimde liste animasyonla tek satıra toplanır, formun geri kalanı seçimden sonra açılır).
+- "İşlem ücretini de ben karşılamak istiyorum" kutusu (`fee_on`, `fee_checked`, `fee_rates` yöntem başına % + sabit). Formda en yüksek ücret "en fazla" olarak gösterilir; ödeme sayfasında seçilen yönteme göre "İşlem ücreti" satırı eklenir (blok ödeme sayfasında yöntem değişince yeniden hesaplanır). Ücret bağış tutarına girmez; siparişte `_flxb_fee_cover`.
+- Tek onay kutusu metni: "Gizlilik politikasını ve bağış sözleşmesini okudum, kabul ediyorum." (bağlantılı; filtre `flxb_terms_text`), blok ve klasik ödeme sayfasında aynı.
+- Düzeltme: yeni WooCommerce ödeme yöntemi değişince toplamı ödeme rotasından yeniden hesaplatıyor (`__experimental_calc_totals`); şartlar kontrolü bu istekte hata verip "koşulları kabul edin" uyarısı gösteriyordu.
+
 ## 2.16.0
 - Yeni Ayarlar › **Görünüm** sekmesi (seçenek `flxb_look`): bağış formu için 4 şablon (Klasik, A · Adım adım + özet, B · İki panel, C · Görselli kartlar), ödeme sayfasındaki ödeme seçenekleri için 4 şablon (Tema, A · Yan yana kartlar, B · Sade liste, C · Sekmeler), ana/vurgu rengi, köşe yuvarlaklığı, bölüm sırası, tür ve seçenek başlıkları. Ön ayarlar `flx_settings_schema` ile varsayılan yazar.
 - "Kimler adına" bölümü (vekâletli türler): Kendim için / Başkası adına sekmesi; başkası adına her hisse için ad + telefon kartı, ilk kartta "Hepsine uygula". Hisse telefonları kalemlere (`beneficiary_phone`) kaydedilir.

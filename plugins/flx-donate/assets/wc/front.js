@@ -113,9 +113,43 @@
 			});
 		}
 
+		/* 2.17.0: option view "select" / "smart": a drop-down mirrors the radios; "smart" folds the list into one
+		   row after the first pick and opens the rest of the form. */
+		function pickSync() {
+			form.querySelectorAll('[data-flxwb-optview]').forEach(function (fs) {
+				if (fs.getAttribute('data-flxwb-optview') === 'list') return;
+				var r = fs.querySelector('input[type="radio"]:checked'), sel = fs.querySelector('[data-flxwb-pick]');
+				if (sel && r && sel.value !== r.value) sel.value = r.value;
+				var was = fs.classList.contains('is-picked');
+				fs.classList.toggle('is-picked', !!r);
+				if (r && !was) {
+					fs.classList.add('is-anim');
+					setTimeout(function () { fs.classList.remove('is-anim'); }, 700);
+				}
+			});
+			var P = panel(), sm = P && P.querySelector('[data-flxwb-optview="smart"]');
+			var wait = !!(sm && !sm.querySelector('input[type="radio"]:checked'));
+			var waited = root.classList.contains('is-await');
+			root.classList.toggle('is-await', wait);
+			if (waited && !wait) {
+				root.classList.add('is-reveal');
+				setTimeout(function () { root.classList.remove('is-reveal'); }, 900);
+			}
+		}
+		form.querySelectorAll('[data-flxwb-pick]').forEach(function (sel) {
+			var pick = function () {
+				var fs = sel.closest('[data-flxwb-optview]');
+				var r = fs && fs.querySelector('input[type="radio"][value="' + sel.value + '"]');
+				if (r) r.checked = true;
+			};
+			sel.addEventListener('input', pick);
+			sel.addEventListener('change', pick);
+		});
+
 		function update() {
 			var T = data.types[tid()] || {}, P = panel(), sum = 0, label = '';
 			if (!P) return;
+			pickSync();
 			var opt = checked(P, 'o[' + tid() + ']');
 			var free = P.querySelector('[data-flxwb-free]');
 			if (free) free.hidden = !!(P.querySelector('input[type="radio"][name="o[' + tid() + ']"]')) && opt !== '__free';
@@ -154,6 +188,15 @@
 			if (cert) cert.hidden = !T.cert;
 			var print = T.cert && checked(form, 'cert') === 'print';
 			if (addr) addr.hidden = !print;
+			/* 2.17.0: "I will cover the transaction fee": the highest fee of the payment methods. */
+			var fb = form.querySelector('[data-flxwb-fee]');
+			if (fb) {
+				var tx = data.txfee || [], hi = 0;
+				tx.forEach(function (r) { hi = Math.max(hi, sum * (+r.pct || 0) / 100 + (+r.fixed || 0)); });
+				fb.hidden = !(sum > 0) || !(hi > 0);
+				var fa = fb.querySelector('[data-flxwb-fee-amount]');
+				if (fa) fa.textContent = String(L.feeUpTo || '(%s)').replace('%s', money(hi));
+			}
 			if (print && +data.fee > 0) sum += +data.fee;
 			if (total) total.textContent = money(sum) + (monthly && monthly.checked ? ' ' + (L.monthly || '') : '');
 			if (meta) meta.textContent = label;
@@ -279,7 +322,10 @@
 			var err = form.querySelector('.flxwb-note--err'), msg = '', focus = null;
 			var T = data.types[tid()] || {}, P = panel();
 			var opt = P ? checked(P, 'o[' + tid() + ']') : '';
-			if (P && (opt === '__free' || opt === '')) {
+			if (P && opt === '' && P.querySelector('input[type="radio"][name="o[' + tid() + ']"]')) {
+				msg = L.needOption || '';
+				focus = P.querySelector('[data-flxwb-pick]') || P.querySelector('input[type="radio"][name="o[' + tid() + ']"]');
+			} else if (P && (opt === '__free' || opt === '')) {
 				var ai = P.querySelector('[data-flxwb-amount-input]');
 				var a = parseAmount(ai && ai.value);
 				if (!(a > 0) || a < (+T.min || 0)) {
