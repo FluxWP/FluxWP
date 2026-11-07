@@ -36,19 +36,20 @@ export function Sidebar({ account, pins, groups, activeId, childId, onSearch, on
     if (a && a.children.length > 1) toggleOpen(a.id, true);
   }, [activeId]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const startX = useRef(0);
-  const startW = useRef(0);
+  const drag = useRef<{ x: number; width: number; preferredWidth: number } | null>(null);
   const onResizeDown = (e: React.PointerEvent) => {
+    if (e.button !== 0 || drag.current) return;
     e.preventDefault();
     e.currentTarget.setPointerCapture(e.pointerId);
-    startX.current = e.clientX;
-    startW.current = collapsed ? RAIL_WIDTH : width;
+    const state = useSidebar.getState();
+    drag.current = { x: e.clientX, width: state.collapsed ? RAIL_WIDTH : state.width, preferredWidth: state.width };
     setResizing(true);
     document.documentElement.classList.add('flux-resizing');
   };
   const onResizeMove = (e: React.PointerEvent) => {
-    if (!resizing) return;
-    const next = startW.current + e.clientX - startX.current;
+    const current = drag.current;
+    if (!current) return;
+    const next = current.width + e.clientX - current.x;
     const state = useSidebar.getState();
     if (state.collapsed) {
       if (next >= EXPAND_WIDTH) { setWidth(next); toggle(); }
@@ -57,13 +58,17 @@ export function Sidebar({ account, pins, groups, activeId, childId, onSearch, on
     if (next < COLLAPSE_WIDTH) {
       // Keep the preferred expanded width, and keep capturing the drag so
       // reversing direction can expand the rail without another gesture.
-      setWidth(startW.current);
+      setWidth(current.preferredWidth);
       toggle();
       return;
     }
     setWidth(next);
   };
-  const onResizeUp = () => (setResizing(false), document.documentElement.classList.remove('flux-resizing'));
+  const onResizeUp = () => {
+    drag.current = null;
+    setResizing(false);
+    document.documentElement.classList.remove('flux-resizing');
+  };
   useEffect(() => () => document.documentElement.classList.remove('flux-resizing'), []);
   const bell = actions.find((a) => a.route.kind === 'shell' && a.route.name === 'notifications');
 
