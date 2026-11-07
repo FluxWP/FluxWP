@@ -360,7 +360,7 @@ function flxc_rest_update_chat( WP_REST_Request $req ) {
 }
 
 /** Sohbet akışına sistem satırı (atama, kapatma). Son mesaj önizlemesini değiştirmez. */
-function flxc_system_message( $chat, $text ) {
+function flxc_system_message( $chat, $text, array $meta = array() ) {
 	global $wpdb;
 	$wpdb->insert(
 		flxc_table( 'messages' ),
@@ -375,7 +375,7 @@ function flxc_system_message( $chat, $text ) {
 			'ts'         => (int) floor( microtime( true ) * 1000 ),
 			'rev'        => flxc_rev(),
 			'created_at' => flxc_now(),
-			'meta'       => '{}',
+			'meta'       => $meta ? flxc_json( $meta ) : '{}',
 		)
 	);
 }

@@ -154,7 +154,8 @@ function flxc_staff_link_chat( $chat, $user_id ) {
 	flxc_update_chat( (int) $chat['id'], array( 'meta' => flxc_json( $meta ) ) );
 	$me = flxc_user_name( get_current_user_id() );
 	/* translators: 1: manager, 2: staff user */
-	flxc_system_message( $fresh, $user_id ? sprintf( __( '%1$s bu sohbeti personel olarak bağladı: %2$s', 'flx-chat' ), $me, flxc_user_name( $user_id ) ) : sprintf( __( '%s sohbetin personel bağlantısını kaldırdı', 'flx-chat' ), $me ) );
+	// 1.36.1: the line carries staff_link so the assistant sees in the history when it was linked (flxc_bot_messages).
+	flxc_system_message( $fresh, $user_id ? sprintf( __( '%1$s bu sohbeti personel olarak bağladı: %2$s', 'flx-chat' ), $me, flxc_user_name( $user_id ) ) : sprintf( __( '%s sohbetin personel bağlantısını kaldırdı', 'flx-chat' ), $me ), array( 'staff_link' => $user_id ) );
 	return true;
 }
 
@@ -277,7 +278,7 @@ function flxc_staff_prompt( $chat, array $state ) {
 	}
 	$names = wp_list_pluck( wp_list_pluck( flxc_staff_tools_for( $chat, $state ), 'function' ), 'name' );
 	$lines = array(
-		'Bu numara ekibimizden ' . $id['name'] . ( '' !== $id['role_label'] ? ' (' . $id['role_label'] . ')' : '' ) . '. Bu kişi bağışçı değil, personel: ona müşteri gibi bağış teklif etme, kısa ve iş odaklı yaz, adıyla hitap et (' . flxc_staff_first_name( $id['name'] ) . '; kişi kendisi başka bir hitap istemedikçe sertifika, bağış kaydı ya da hafızadaki başka bir isimle hitap etme, onlar başkası adına olabilir). Kendi adına bağış yapmak isterse normal bağış akışını kullan.',
+		( ! empty( $id['linked'] ) ? 'Bu sohbetteki kişi ekibimizden ' : 'Bu numara ekibimizden ' ) . $id['name'] . ( '' !== $id['role_label'] ? ' (' . $id['role_label'] . ')' : '' ) . '. Bu kişi bağışçı değil, personel: ona müşteri gibi bağış teklif etme, kısa ve iş odaklı yaz, adıyla hitap et (' . flxc_staff_first_name( $id['name'] ) . '; kişi kendisi başka bir hitap istemedikçe sertifika, bağış kaydı ya da hafızadaki başka bir isimle hitap etme, onlar başkası adına olabilir). Kendi adına bağış yapmak isterse normal bağış akışını kullan.',
 	);
 	if ( in_array( 'staff_create_donation', $names, true ) ) {
 		$lines[] = '- "Ahmet Yılmaz adına 1 fidan" gibi isteklerde staff_create_donation kullan: bağışçının adı soyadı ve WhatsApp numarası gerekir (numara yoksa sor; personel "link bana gelsin" derse send_to_donor=false). Sertifikada başka isim yazacaksa beneficiaries; farklı isimlere ayrı sertifika istenirse yine TEK kayıt (quantity=adet, her isim beneficiaries\'te ayrı öğe, adedi count ile), tek ödeme linki. Ayrı ayrı ödeme açıkça istenmedikçe aynı bağışçıya birden çok kayıt açma. Personel az önce açılan bağışı düzeltirse ("pardon 100 olacak") yeni kaydı replaces=eski no ile aç, eskisi iptal olur. Önce donation_options ile türü bul, özeti (bağışçı, numara, tür, adet, tutar, sertifika ismi) personele göster, onaylayınca confirmed=true. Bağışçıya mesajı sistem gönderir; sen personele kısa sonuç yaz.';
@@ -291,6 +292,8 @@ function flxc_staff_prompt( $chat, array $state ) {
 	if ( in_array( 'staff_report', $names, true ) ) {
 		$lines[] = '- Genel rapor, toplamlar, personel performansı sorulursa staff_report.';
 	}
+	// 1.36.1: earlier replies in this chat may say "not recognised as staff"; they no longer hold.
+	$lines[] = '- Bu sohbette daha önce "personel olarak tanınmıyor", "başkası adına bağış açamıyorum" gibi cevaplar verdiysen onlar artık geçersiz: kişi şimdi personel olarak tanındı' . ( ! empty( $id['linked'] ) ? ' (yönetici sohbeti panelden personele bağladı)' : '' ) . '. Yetkisini sorgulamak ya da rol/yetki kontrolü için ekibe devretme; doğrulama kodu isteme. Kişinin yarım kalan isteği varsa (ör. başkası adına bağış) kaldığın yerden personel araçlarıyla devam et: özeti göster, onay al.';
 	if ( ! empty( $id['test'] ) ) {
 		$lines[] = '- (Test sohbeti: kayıt açılmaz, bağışçıya mesaj gitmez.)';
 	}

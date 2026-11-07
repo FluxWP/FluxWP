@@ -822,3 +822,8 @@ html.flxc-lock #wpfooter, html.flxc-lock .notice, html.flxc-lock #screen-meta-li
 #flxc-app .flxc-prec-dlg { width: min(560px, 100%); }
 #flxc-app .flxc-prec-dlg .flxc-filters { padding: 0 0 8px; }
 #flxc-app .flxc-prec-list { max-height: min(60vh, 520px); overflow-y: auto; margin: 0 -22px; }
+/* 1.36.1: a stuck day label covers the bubble under it; it shows only while the list scrolls (like WhatsApp). */
+#flxc-app .flxc-day span { transition: opacity .25s ease; }
+#flxc-app .flxc-day.is-stuck span { opacity: 0; pointer-events: none; }
+#flxc-app .flxc-msgs.is-scrolling .flxc-day.is-stuck span { opacity: 1; }
+#flxc-app .flxc-day.is-past span, #flxc-app .flxc-msgs.is-scrolling .flxc-day.is-stuck.is-past span { opacity: 0; }
