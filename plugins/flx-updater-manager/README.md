@@ -21,3 +21,7 @@ Manage your FluxWP update server ([Flux Update Server](https://github.com/FluxWP
 Requires WordPress 6.4+, PHP 7.4+. Only users with `manage_options`.
 
 Türkçe: [README.tr.md](README.tr.md)
+
+## AI tools
+
+With **Flux AI & MCP** active, the plugin adds `flxum_*` tools to the shared chat and the MCP server (Flux AI SDK). Read: `overview`, `connected_sites`, `keyed_sites`, `packages`, `security`, `resources`, `test_key`. Change (approval every time): `add_site`, `update_site`, `toggle_site`, `delete_site`, `issue_key`, `set_switch`, `set_country_access`, `set_public_packages`, `refresh_packages`, `set_zip_retention`, `update_country_db`. New site keys are never sent to the model; they are shown once on Updater › Sites. Manager keys, the panel password, the GitHub token and the webhook secret are not exposed.

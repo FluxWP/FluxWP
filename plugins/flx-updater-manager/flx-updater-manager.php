@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Updater Manager
  * Description:       FluxWP güncelleme sunucusunu (Flux Update Server) bu WordPress panelinden yönetir: genel bakış ve ülke istatistikleri, bağlanan siteler, site anahtarları, paketler, GitHub depoları, güvenlik anahtarları, ülke erişimi ve sunucu kaynakları. Sunucunun /admin panelinde üretilen yönetici anahtarıyla bağlanır.
- * Version:           0.1.0
+ * Version:           0.2.0
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -18,12 +18,13 @@
 defined( 'ABSPATH' ) || exit;
 
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
+require_once __DIR__ . '/includes/flx-ai-sdk/loader.php'; // Flux AI SDK (tools/ai-sdk).
 
 if ( defined( 'FLXUM_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXUM_VERSION', '0.1.0' );
+define( 'FLXUM_VERSION', '0.2.0' );
 define( 'FLXUM_FILE', __FILE__ );
 define( 'FLXUM_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXUM_URL', plugin_dir_url( __FILE__ ) );
@@ -31,6 +32,7 @@ define( 'FLXUM_DEFAULT_SERVER', 'https://updater.fluxwp.com' );
 
 require_once FLXUM_DIR . 'includes/helpers.php';
 require_once FLXUM_DIR . 'includes/class-flxum-client.php';
+require_once FLXUM_DIR . 'includes/ai.php';
 if ( is_admin() ) {
 	require_once FLXUM_DIR . 'includes/class-flxum-admin.php';
 	require_once FLXUM_DIR . 'includes/class-flxum-views.php';

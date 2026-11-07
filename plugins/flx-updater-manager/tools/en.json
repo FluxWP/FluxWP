@@ -265,5 +265,21 @@
 "Sunucu paneli parolası": "Server panel password",
 "Yeni parola": "New password",
 "Tekrar": "Repeat",
-"Değiştir": "Change"
+"Değiştir": "Change",
+"Anahtar üretildi. Güvenlik için burada gösterilmez: 5 dakika içinde Updater › Siteler ekranını açın, anahtar orada bir kez görünür.": "Key created. For security it is not shown here: open Updater › Sites within 5 minutes, the key is shown there once.",
+"Site bulunamadı. Önce anahtarlı siteleri listeleyin.": "Site not found. List the keyed sites first.",
+"Güncelleme sunucusunun istatistikleri, siteleri, paketleri ve güvenlik ayarları.": "Update server statistics, sites, packages and security settings.",
+"Sunucu genel bakış": "Server overview",
+"Sunucudaki paketler": "Server packages",
+"Sunucu güvenliği": "Server security",
+"Sunucu kaynakları": "Server resources",
+"Site anahtarını test et": "Test site key",
+"Site ekle (anahtar üret)": "Add site (create key)",
+"Site erişimini düzenle": "Edit site access",
+"Siteyi aktif/pasif yap": "Turn site on/off",
+"Bağlanan siteye anahtar ver": "Issue key to connected site",
+"Acil durdurma / anahtarsız dağıtım": "Emergency stop / keyless distribution",
+"Zip saklama": "Zip retention",
+"Değişiklik yok.": "No changes.",
+"Ülke veritabanını güncelle": "Update country database"
 }

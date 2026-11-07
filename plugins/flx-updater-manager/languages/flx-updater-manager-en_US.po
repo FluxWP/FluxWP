@@ -11,6 +11,75 @@ msgstr "Manage"
 msgid "Güncelleme sunucusunu WordPress panelinden yönetir"
 msgstr "Manages the update server from the WordPress admin"
 
+msgid "Kaydedildi."
+msgstr "Saved."
+
+msgid "Anahtar üretildi. Güvenlik için burada gösterilmez: 5 dakika içinde Updater › Siteler ekranını açın, anahtar orada bir kez görünür."
+msgstr "Key created. For security it is not shown here: open Updater › Sites within 5 minutes, the key is shown there once."
+
+msgid "Site bulunamadı. Önce anahtarlı siteleri listeleyin."
+msgstr "Site not found. List the keyed sites first."
+
+msgid "Güncelleme sunucusunun istatistikleri, siteleri, paketleri ve güvenlik ayarları."
+msgstr "Update server statistics, sites, packages and security settings."
+
+msgid "Sunucu genel bakış"
+msgstr "Server overview"
+
+msgid "Bağlanan siteler"
+msgstr "Connected sites"
+
+msgid "Anahtarlı siteler"
+msgstr "Keyed sites"
+
+msgid "Sunucudaki paketler"
+msgstr "Server packages"
+
+msgid "Sunucu güvenliği"
+msgstr "Server security"
+
+msgid "Sunucu kaynakları"
+msgstr "Server resources"
+
+msgid "Site anahtarını test et"
+msgstr "Test site key"
+
+msgid "Site ekle (anahtar üret)"
+msgstr "Add site (create key)"
+
+msgid "Site erişimini düzenle"
+msgstr "Edit site access"
+
+msgid "Siteyi aktif/pasif yap"
+msgstr "Turn site on/off"
+
+msgid "Siteyi sil"
+msgstr "Delete site"
+
+msgid "Bağlanan siteye anahtar ver"
+msgstr "Issue key to connected site"
+
+msgid "Acil durdurma / anahtarsız dağıtım"
+msgstr "Emergency stop / keyless distribution"
+
+msgid "Ülke erişimi"
+msgstr "Country access"
+
+msgid "Herkese açık paketler"
+msgstr "Public packages"
+
+msgid "Paketleri yeniden oku"
+msgstr "Reload packages"
+
+msgid "Zip saklama"
+msgstr "Zip retention"
+
+msgid "Değişiklik yok."
+msgstr "No changes."
+
+msgid "Ülke veritabanını güncelle"
+msgstr "Update country database"
+
 msgid "Genel bakış"
 msgstr "Overview"
 
@@ -79,9 +148,6 @@ msgstr "You are not allowed to do this."
 
 msgid "Yönetici anahtarı bu siteden silindi. Sunucudaki anahtar duruyor; sunucu panelinden silebilirsiniz."
 msgstr "Manager key removed from this site. The key still exists on the server; you can delete it in the server panel."
-
-msgid "Kaydedildi."
-msgstr "Saved."
 
 msgid "Yönetici anahtarı \"flxm_\" ile başlar ve 53 karakterdir. Sunucu panelinde Updater Manager kartından üretin."
 msgstr "A manager key starts with \"flxm_\" and is 53 characters long. Generate one in the Updater Manager card of the server panel."
@@ -242,9 +308,6 @@ msgstr "More"
 msgid "%s site"
 msgstr "%s sites"
 
-msgid "Bağlanan siteler"
-msgstr "Connected sites"
-
 msgid "%1$s site bu aralıkta, toplam %2$s kayıtlı"
 msgstr "%1$s sites in this range, %2$s recorded in total"
 
@@ -362,9 +425,6 @@ msgstr "Shows which site the key belongs to and which packages it can see."
 msgid "Test et"
 msgstr "Test"
 
-msgid "Anahtarlı siteler"
-msgstr "Keyed sites"
-
 msgid "Henüz site yok. \"Site ekle\" ile ilk anahtarı üretin."
 msgstr "No sites yet. Generate the first key with \"Add site\"."
 
@@ -407,17 +467,11 @@ msgstr "Save"
 msgid "Bu site silinsin mi? Anahtarı hemen geçersiz olur."
 msgstr "Delete this site? Its key stops working at once."
 
-msgid "Siteyi sil"
-msgstr "Delete site"
-
 msgid "Sunucu dosyasından (config.php)"
 msgstr "From the server file (config.php)"
 
 msgid "Sunucu anahtarın yalnız özetini (sha256) saklar. Kaybolan anahtar geri alınamaz: siteyi silip yeni anahtar üretin. Anahtarsız bağlanan bir siteye Genel bakış › Bağlanan siteler › \"Anahtar ver\" ile de anahtar verebilirsiniz."
 msgstr "The server stores only the key's hash (sha256). A lost key cannot be recovered: delete the site and generate a new key. You can also give a key to a site that connected without one under Overview › Connected sites › \"Issue key\"."
-
-msgid "Paketleri yeniden oku"
-msgstr "Reload packages"
 
 msgid "Paket yok. GitHub sekmesinde depoları ve (private depo için) token'ı girin; depoda release yoksa bir pakete sürüm çıkın."
 msgstr "No packages. Enter the repositories (and a token for private ones) on the GitHub tab; if a repository has no releases, release a package."
@@ -469,9 +523,6 @@ msgstr "Public repositories"
 
 msgid "(paketleri herkese anahtarsız; boşsa public güncelleme kapalı)"
 msgstr "(packages for everyone without a key; empty turns public updates off)"
-
-msgid "Herkese açık paketler"
-msgstr "Public packages"
 
 msgid "(private depodaki bu paketler anahtarsız iner; ör. web sitesindeki indirme butonu için flx-setup)"
 msgstr "(these packages from private repositories download without a key; e.g. flx-setup for a website download button)"
@@ -613,9 +664,6 @@ msgstr "Find country"
 
 msgid "IP harici bir servise gönderilmez; arama güncelleme sunucusunda yapılır. Veritabanı ayda bir kendiliğinden yenilenir."
 msgstr "The IP is not sent to any outside service; the lookup runs on the update server. The database refreshes itself monthly."
-
-msgid "Ülke erişimi"
-msgstr "Country access"
 
 msgid "Seçilen ülkeleri engelle"
 msgstr "Block selected countries"
