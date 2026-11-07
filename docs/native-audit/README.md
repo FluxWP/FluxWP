@@ -2,7 +2,7 @@
 
 Generated from all shipped JSON manifests, pure PHP manifest builders and the shared WordPress core manifest. This is an inventory, **not proof of completed native behavior**. Permission checks, API completeness and native runtime QA remain required.
 
-Current app version: `0.3.0`. Modules: 19; screens: 87; explicit web screens: 15; blocked by minimum app version: 81.
+Current app version: `0.3.0`. Modules: 19; screens: 87; explicit web screens: 14; blocked by minimum app version: 81.
 
 | Module / screen | Type | Current source-level status | Source |
 | --- | --- | --- | --- |
@@ -24,7 +24,7 @@ Current app version: `0.3.0`. Modules: 19; screens: 87; explicit web screens: 15
 | ai / billing | native | Version gate; Component registered; runtime QA pending | plugins/flx-ai/app/manifest.json |
 | ai / systems | native | Version gate; Component registered; runtime QA pending | plugins/flx-ai/app/manifest.json |
 | ai / tools | native | Version gate; Component registered; runtime QA pending | plugins/flx-ai/app/manifest.json |
-| ai / mcp | web | Version gate; Requires native implementation | plugins/flx-ai/app/manifest.json |
+| ai / mcp | native | Version gate; Component registered; runtime QA pending | plugins/flx-ai/app/manifest.json |
 | seo / audit | dashboard | Version gate; Manifest renderer; API/actions/runtime QA pending | plugins/flx-seo/app/manifest.json |
 | seo / findings | list | Version gate; Manifest renderer; API/actions/runtime QA pending | plugins/flx-seo/app/manifest.json |
 | seo / settings | settings | Version gate; Manifest renderer; API/actions/runtime QA pending | plugins/flx-seo/app/manifest.json |

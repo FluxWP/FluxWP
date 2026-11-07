@@ -135,7 +135,7 @@
     "billing": { "type": "native", "title": "Faturalandırma", "component": "flxai-billing", "fallback": { "web": "admin.php?page=flx-ai-billing" } },
     "systems": { "type": "native", "title": "$t:aiSystems.title", "component": "flxai-systems", "fallback": { "web": "admin.php?page=flx-ai-systems" } },
     "tools": { "type": "native", "title": "Araçlar", "component": "flxai-tools", "fallback": { "web": "admin.php?page=flx-ai-tools" } },
-    "mcp": { "type": "web", "title": "MCP", "path": "admin.php?page=flx-ai-mcp" }
+    "mcp": { "type": "native", "title": "$t:aiMcp.title", "component": "flxai-mcp", "fallback": { "web": "admin.php?page=flx-ai-mcp" } }
   },
   "actions": {
     "open_chat": {

@@ -10,6 +10,7 @@ import { SocialComposerScreen } from '../native/SocialComposerScreen';
 import { AiBillingScreen } from '../native/AiBillingScreen';
 import { AiToolsScreen } from '../native/AiToolsScreen';
 import { AiSystemsScreen } from '../native/AiSystemsScreen';
+import { AiMcpScreen } from '../native/AiMcpScreen';
 
 /** Sunucuda kaydı olmayan, uygulamanın kendi modülleri (WP çekirdek menülerine bağlanır). */
 export const builtinModules: Record<string, ModuleInfo> = {
@@ -23,6 +24,7 @@ export const screens: Record<string, ComponentType> = {
   'flxai-billing': AiBillingScreen,
   'flxai-tools': AiToolsScreen,
   'flxai-systems': AiSystemsScreen,
+  'flxai-mcp': AiMcpScreen,
   'flxr-roles': RolesScreen,
   'flxl-languages': LanguagesScreen,
   'flxsm-composer': SocialComposerScreen,

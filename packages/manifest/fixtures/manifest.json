@@ -887,6 +887,14 @@
           "fallback": {
             "web": "admin.php?page=flx-ai-systems"
           }
+        },
+        "mcp": {
+          "type": "native",
+          "title": "$t:aiMcp.title",
+          "component": "flxai-mcp",
+          "fallback": {
+            "web": "admin.php?page=flx-ai-mcp"
+          }
         }
       },
       "routes": {
@@ -901,6 +909,9 @@
         },
         "admin.php?page=flx-ai-systems": {
           "screen": "systems"
+        },
+        "admin.php?page=flx-ai-mcp": {
+          "screen": "mcp"
         }
       },
       "schema": "flx-app-manifest/1",

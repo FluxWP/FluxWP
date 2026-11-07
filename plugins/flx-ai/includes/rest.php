@@ -52,6 +52,8 @@ function flxai_rest_routes() {
 	$r( '/admin/tools', 'GET', 'flxai_admin_tools_get', $mng );
 	$r( '/admin/tools', 'POST', 'flxai_admin_tools_post', $mng );
 	$r( '/admin/systems', 'GET', 'flxai_admin_systems_get', $mng );
+	$r( '/admin/mcp', 'GET', 'flxai_admin_mcp_get', $mng );
+	$r( '/admin/mcp', 'POST', 'flxai_admin_mcp_post', $mng );
 	$r( '/admin/systems/(?P<source>[a-z0-9_-]+)', 'GET', 'flxai_admin_system_get', $mng );
 	$r( '/admin/systems/(?P<source>[a-z0-9_-]+)', 'POST', 'flxai_admin_system_post', $mng );
 }
