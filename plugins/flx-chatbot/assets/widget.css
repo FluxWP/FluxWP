@@ -224,6 +224,8 @@ audio{max-width:230px;height:36px}
 .cbtn{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:var(--cb-mut);flex:none;transition:background .15s,color .15s,transform .15s}
 .cbtn:hover{background:var(--cb-s2);color:var(--cb-tx)}
 .cbtn svg{width:19px;height:19px}
+.cbtn.mic.rec{background:#ef4444;color:#fff;animation:recpulse 1.4s ease-in-out infinite}
+@keyframes recpulse{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.45)}50%{box-shadow:0 0 0 7px rgba(239,68,68,0)}}
 .cbtn.send{background:var(--cb-c);color:var(--cb-ct)}
 .cbtn.send:hover{background:var(--cb-c);transform:scale(1.05)}
 .cbtn.send:disabled{opacity:.35;transform:none;cursor:default}

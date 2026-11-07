@@ -123,6 +123,7 @@
 			rating: !!val('rating'),
 			uploads: !!val('uploads'),
 			uploadMb: num('upload_mb', 5),
+			dictation: !!val('dictation'),
 			privacy: (val('privacy_text') || '').trim()
 		};
 	}

@@ -717,6 +717,12 @@ msgstr ""
 msgid "Resim, PDF ve ofis belgeleri; dosyalar herkese açık klasöre konmaz."
 msgstr ""
 
+msgid "Sesli dikte"
+msgstr ""
+
+msgid "Yazma alanında mikrofon düğmesi: ziyaretçi konuşur, metin yazma alanına düşer. Tarayıcının konuşma tanıması kullanılır; desteklemeyen tarayıcıda düğme görünmez."
+msgstr ""
+
 msgid "En büyük dosya (MB)"
 msgstr ""
 
@@ -859,6 +865,12 @@ msgid "Ana sayfa"
 msgstr ""
 
 msgid "Mesajlar"
+msgstr ""
+
+msgid "Sesle yaz"
+msgstr ""
+
+msgid "Dinlemeyi durdur"
 msgstr ""
 
 msgid "Sohbete devam edin"

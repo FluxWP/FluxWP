@@ -20,6 +20,7 @@
 		x: '<path d="M18 6 6 18M6 6l12 12"/>',
 		down: '<path d="m6 9 6 6 6-6"/>',
 		send: '<path d="M14.54 21.69a.5.5 0 0 0 .94-.03l6.5-19a.5.5 0 0 0-.64-.64l-19 6.5a.5.5 0 0 0-.03.94l7.93 3.18a2 2 0 0 1 1.11 1.11Z"/><path d="m21.85 2.15-10.94 10.94"/>',
+		mic: '<path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/>',
 		clip: '<path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/>',
 		back: '<path d="m15 18-6-6 6-6"/>',
 		next: '<path d="m9 18 6-6-6-6"/>',
@@ -351,6 +352,7 @@
 			'<div class="extras"></div>' +
 			'<div class="composer"><div class="cbox">' +
 			'<textarea rows="1" placeholder="' + esc(C.placeholder) + '" aria-label="' + esc(C.placeholder) + '" maxlength="2000"></textarea>' +
+			(C.dictation && SR ? '<button class="cbtn mic" type="button" data-act="dictate" aria-label="' + esc(T.dictate) + '" title="' + esc(T.dictate) + '">' + ic('mic') + '</button>' : '') +
 			(C.uploads ? '<button class="cbtn" type="button" data-act="attach" aria-label="' + esc(T.attach) + '">' + ic('clip') + '</button><input type="file" hidden accept="image/*,.pdf,.txt,.doc,.docx,.xls,.xlsx">' : '') +
 			'<button class="cbtn send" type="button" data-act="send" aria-label="' + esc(T.send) + '" disabled>' + ic('send') + '</button>' +
 			'</div>' + footHtml(true) + '</div></div>';
@@ -430,6 +432,8 @@
 					renderChat();
 				} else if (a === 'send') {
 					sendText();
+				} else if (a === 'dictate') {
+					dictate(b);
 				} else if (a === 'attach') {
 					el.file && el.file.click();
 				} else if (a === 'menu') {
@@ -961,6 +965,46 @@
 		});
 	}
 
+	/* Sesli dikte: tarayıcının konuşma tanıması; metin yazma alanına düşer, gönderme ziyaretçide. */
+	var SR = W.SpeechRecognition || W.webkitSpeechRecognition;
+	var rec = null;
+	function dictate(btn) {
+		if (rec) {
+			rec.stop();
+			return;
+		}
+		var base = el.ta.value ? el.ta.value.replace(/\s*$/, ' ') : '';
+		rec = new SR();
+		rec.lang = String(C.locale || D.documentElement.lang || 'tr-TR').replace('_', '-');
+		rec.interimResults = true;
+		rec.continuous = true;
+		rec.onresult = function (e) {
+			var t = '';
+			for (var i = 0; i < e.results.length; i++) {
+				t += e.results[i][0].transcript;
+			}
+			el.ta.value = base + t;
+			onInput();
+		};
+		var done = function () {
+			rec = null;
+			btn.classList.remove('rec');
+			btn.setAttribute('aria-label', T.dictate);
+			btn.title = T.dictate;
+			el.ta && el.ta.focus();
+		};
+		rec.onend = done;
+		rec.onerror = done;
+		btn.classList.add('rec');
+		btn.setAttribute('aria-label', T.dictateStop);
+		btn.title = T.dictateStop;
+		try {
+			rec.start();
+		} catch (err) {
+			done();
+		}
+	}
+
 	/* Gönderme */
 	function onInput() {
 		var ta = el.ta;
@@ -979,6 +1023,9 @@
 		var t = el.ta.value.trim();
 		if (!t || S.busy) {
 			return;
+		}
+		if (rec) {
+			rec.stop();
 		}
 		el.ta.value = '';
 		onInput();

@@ -82,6 +82,7 @@ function flxcb_defaults() {
 		'rating'           => 1,
 		'uploads'          => 1,
 		'upload_mb'        => 5,
+		'dictation'        => 1,
 		'offline_text'     => '',
 		// Görünürlük.
 		'audience'         => 'all', // all | guests | members

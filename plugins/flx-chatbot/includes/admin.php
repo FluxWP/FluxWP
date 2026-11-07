@@ -67,6 +67,7 @@ function flxcb_fields() {
 		'rating'          => array( 'bool', 'live' ),
 		'uploads'         => array( 'bool', 'live' ),
 		'upload_mb'       => array( 'int', 'live', array( 1, 20 ) ),
+		'dictation'       => array( 'bool', 'live' ),
 		'offline_text'    => array( 'textarea', 'live' ),
 		'audience'        => array( 'enum', 'visibility', array( 'all', 'guests', 'members' ) ),
 		'device_desktop'  => array( 'bool', 'visibility' ),
@@ -555,6 +556,7 @@ final class FLXCB_Admin {
 		self::sw( 'email_replies', __( 'Cevapları e-postayla da gönder', 'flx-chatbot' ), __( 'Ziyaretçi sayfadan ayrıldıysa temsilci cevabı e-postasına gider.', 'flx-chatbot' ) );
 		self::sw( 'rating', __( 'Sohbet sonu puanlama', 'flx-chatbot' ), __( '1-5 yıldız ve isteğe bağlı not.', 'flx-chatbot' ) );
 		self::sw( 'uploads', __( 'Dosya gönderimi', 'flx-chatbot' ), __( 'Resim, PDF ve ofis belgeleri; dosyalar herkese açık klasöre konmaz.', 'flx-chatbot' ) );
+		self::sw( 'dictation', __( 'Sesli dikte', 'flx-chatbot' ), __( 'Yazma alanında mikrofon düğmesi: ziyaretçi konuşur, metin yazma alanına düşer. Tarayıcının konuşma tanıması kullanılır; desteklemeyen tarayıcıda düğme görünmez.', 'flx-chatbot' ) );
 		echo '</div><div class="flxcb-grid3">';
 		self::text( 'upload_mb', __( 'En büyük dosya (MB)', 'flx-chatbot' ), '', '5', 'number', 'min="1" max="20"' );
 		echo '</div></section>';

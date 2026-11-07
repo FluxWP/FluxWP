@@ -719,6 +719,12 @@ msgstr "File sharing"
 msgid "Resim, PDF ve ofis belgeleri; dosyalar herkese açık klasöre konmaz."
 msgstr "Images, PDFs and office documents; files are not put in a public folder."
 
+msgid "Sesli dikte"
+msgstr "Voice dictation"
+
+msgid "Yazma alanında mikrofon düğmesi: ziyaretçi konuşur, metin yazma alanına düşer. Tarayıcının konuşma tanıması kullanılır; desteklemeyen tarayıcıda düğme görünmez."
+msgstr "A microphone button in the message field: the visitor speaks and the text lands in the field. Uses the browser's speech recognition; the button is hidden where it isn't supported."
+
 msgid "En büyük dosya (MB)"
 msgstr "Largest file (MB)"
 
@@ -862,6 +868,12 @@ msgstr "Home"
 
 msgid "Mesajlar"
 msgstr "Messages"
+
+msgid "Sesle yaz"
+msgstr "Dictate"
+
+msgid "Dinlemeyi durdur"
+msgstr "Stop listening"
 
 msgid "Sohbete devam edin"
 msgstr "Continue the chat"

@@ -397,5 +397,9 @@
 "Devirler Flux Chat gelen kutusuna gidiyor.": "Handoffs go to the Flux Chat inbox.",
 "Devirler eklentinin gelen kutusuna gidiyor.": "Handoffs go to the plugin inbox.",
 "Sipariş verildi: #%1$s (%2$s)": "Order placed: #%1$s (%2$s)",
-"Site sohbeti #%d sonrasında verildi": "Placed after site chat #%d"
+"Site sohbeti #%d sonrasında verildi": "Placed after site chat #%d",
+"Sesle yaz": "Dictate",
+"Dinlemeyi durdur": "Stop listening",
+"Sesli dikte": "Voice dictation",
+"Yazma alanında mikrofon düğmesi: ziyaretçi konuşur, metin yazma alanına düşer. Tarayıcının konuşma tanıması kullanılır; desteklemeyen tarayıcıda düğme görünmez.": "A microphone button in the message field: the visitor speaks and the text lands in the field. Uses the browser's speech recognition; the button is hidden where it isn't supported."
 }
