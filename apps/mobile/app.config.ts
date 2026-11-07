@@ -18,6 +18,7 @@ interface MobileBrand {
   oauthClientId: string;
   allowedSites: string[];
   lockSite: boolean;
+  locales: string[];
 }
 
 export default ({ config }: ConfigContext): ExpoConfig => {
@@ -72,7 +73,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
         },
       ],
       'expo-secure-store',
-      'expo-localization',
+      ['expo-localization', { supportedLocales: brand.locales }],
       'expo-web-browser',
       ['expo-notifications', { icon: asset('notification.png'), color: brand.colors.primary }],
       [
