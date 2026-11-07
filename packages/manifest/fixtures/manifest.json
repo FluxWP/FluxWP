@@ -863,11 +863,22 @@
           "fallback": {
             "web": "admin.php?page=flx-ai"
           }
+        },
+        "billing": {
+          "type": "native",
+          "title": "Faturalandırma",
+          "component": "flxai-billing",
+          "fallback": {
+            "web": "admin.php?page=flx-ai-billing"
+          }
         }
       },
       "routes": {
         "admin.php?page=flx-ai": {
           "screen": "chat"
+        },
+        "admin.php?page=flx-ai-billing": {
+          "screen": "billing"
         }
       },
       "schema": "flx-app-manifest/1",

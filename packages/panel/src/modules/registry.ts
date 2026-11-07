@@ -7,6 +7,7 @@ import { AiScreen } from '../ai/AiWorkspace';
 import { RolesScreen } from '../native/RolesScreen';
 import { LanguagesScreen } from '../native/LanguagesScreen';
 import { SocialComposerScreen } from '../native/SocialComposerScreen';
+import { AiBillingScreen } from '../native/AiBillingScreen';
 
 /** Sunucuda kaydı olmayan, uygulamanın kendi modülleri (WP çekirdek menülerine bağlanır). */
 export const builtinModules: Record<string, ModuleInfo> = {
@@ -17,6 +18,7 @@ export const screens: Record<string, ComponentType> = {
   'core-dashboard': Dashboard,
   ...moduleScreens,
   'flxai-chat': AiScreen,
+  'flxai-billing': AiBillingScreen,
   'flxr-roles': RolesScreen,
   'flxl-languages': LanguagesScreen,
   'flxsm-composer': SocialComposerScreen,

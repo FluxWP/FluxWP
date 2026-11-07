@@ -23,6 +23,8 @@ export const NATIVE: Record<string, ComponentType<{ params: Record<string, strin
   studio,
   'flx-studio': studio,
   'flx-ai': ai,
+  'flxai-chat': ai,
+  'flxai-billing': lazy(() => import('./ai/BillingScreen')),
   'tv-remote': tv,
   'flx-tv-remote': tv,
 };

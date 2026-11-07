@@ -38,4 +38,4 @@ export { studioBusy, studioGenerateBody, type StudioItem, type StudioKind, type 
 export { TV_KEYS, tvCommandAllowed, type TvApp, type TvCommand, type TvState } from './modules/tv';
 
 /** Native screen ids manifests and module targets can open (plan §13 N rows). */
-export const NATIVE_SCREEN_IDS = ['flxc-inbox', 'flxg-tasks', 'flxb-review', 'core-post', 'core-media', 'flxsm-compose', 'flxsm-composer', 'studio', 'flx-studio', 'flx-ai', 'tv-remote', 'flx-tv-remote'] as const;
+export const NATIVE_SCREEN_IDS = ['flxc-inbox', 'flxg-tasks', 'flxb-review', 'core-post', 'core-media', 'flxsm-compose', 'flxsm-composer', 'studio', 'flx-studio', 'flx-ai', 'flxai-chat', 'flxai-billing', 'tv-remote', 'flx-tv-remote'] as const;

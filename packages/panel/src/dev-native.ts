@@ -10,7 +10,8 @@ await loginDemo();
 mountApp(document.getElementById('root')!,webPlatform);
 
 const launch=document.createElement('button');
-launch.textContent='Sosyal gönderi önizlemesi';launch.className='btn-primary';
+const preview = new URLSearchParams(location.search).get('component') === 'flxai-billing' ? 'flxai-billing' : 'flxsm-composer';
+launch.textContent=preview==='flxai-billing'?'AI faturalandırma önizlemesi':'Sosyal gönderi önizlemesi';launch.className='btn-primary';
 Object.assign(launch.style,{position:'fixed',right:'16px',top:'12px',zIndex:'10000'});
-launch.onclick=()=>{useRoute.getState().go({kind:'native',component:'flxsm-composer',params:{}});launch.remove();};
+launch.onclick=()=>{useRoute.getState().go({kind:'native',component:preview,params:{}});launch.remove();};
 document.body.appendChild(launch);

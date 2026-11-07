@@ -3,7 +3,7 @@
   "appVersion": "0.3.0",
   "moduleCount": 19,
   "screenCount": 87,
-  "explicitWebCount": 18,
+  "explicitWebCount": 17,
   "versionGatedScreenCount": 81,
   "missingNativeComponents": [],
   "pluginsWithoutPublishedManifest": [
@@ -275,13 +275,13 @@
       "plugin": "flx-ai",
       "module": "ai",
       "screen": "billing",
-      "type": "web",
+      "type": "native",
       "source": "plugins/flx-ai/app/manifest.json",
       "minimumApp": "1.0.0",
       "versionGated": true,
-      "component": null,
-      "componentRegistered": null,
-      "path": "admin.php?page=flx-ai-billing",
+      "component": "flxai-billing",
+      "componentRegistered": true,
+      "path": null,
       "routes": [
         "admin.php?page=flx-ai-billing"
       ],

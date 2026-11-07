@@ -13,3 +13,11 @@ The source plugins are mounted read-only and linked into WordPress. No productio
 The provisioner activates App, Roles, Languages, Social, AI, Admin, Chat, Tasks and Setup. It does not accept the Setup wizard's legal declaration, enable telemetry, connect external providers or publish social posts. The test administrator is `fluxqa`; its generated password remains in the state file. Do not copy that file into a repository or support report.
 
 Validated on WordPress 7.1.4 / PHP 8.3 / MariaDB 11.4. This environment supports real WordPress/DB regression tests; starting it alone is not proof that every native module has passed integration tests.
+
+Billing regression (after `up`, use the same private state directory):
+
+```sh
+docker compose -p fluxwp-native-qa --env-file /absolute/private/qa-state/qa.env -f tools/native-audit/staging/compose.yaml run --rm cli eval-file /opt/fluxwp-public/tools/native-audit/staging/billing-test.php
+```
+
+This exercises the actual REST permission callbacks and database: anonymous/subscriber denial, admin totals, a 501-row export with duplicate timestamps, CSV quoting/Unicode/formula handling, month validation, a DST transition month and a fixed quarter-hour timezone. Generated log rows and the disposable subscriber are removed, and the original timezone/current user are restored even if an assertion fails. The test refuses to run outside the isolated local QA environment.
