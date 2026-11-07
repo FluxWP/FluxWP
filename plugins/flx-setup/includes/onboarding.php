@@ -167,8 +167,34 @@ final class FLXK_Onboarding {
 		return $out;
 	}
 
-	/** Eklenti adımının kategorileri; her biri ayrı ekran. Listede olmayan paket "Diğer"e düşer. */
+	/**
+	 * Eklenti adımının kategorileri; her biri ayrı ekran. Sunucu kategori bildirdiyse onlar (sırası ve TR/EN adlarıyla)
+	 * ve paketlerin sunucudaki kategorisi kullanılır; bildirmediyse yerleşik liste. Kategorisi olmayan paket "Diğer"e düşer.
+	 */
 	private static function groups(): array {
+		$remote = FLXU_Updater::categories();
+		if ( $remote ) {
+			usort(
+				$remote,
+				static function ( $a, $b ) {
+					return array( $a['order'], $a['key'] ) <=> array( $b['order'], $b['key'] );
+				}
+			);
+			$pick = static function ( array $t ): string {
+				$lang = self::lang();
+				return (string) ( $t[ $lang ] ?? ( $t['en'] ?? ( $t ? reset( $t ) : '' ) ) );
+			};
+			$g = array();
+			foreach ( $remote as $c ) {
+				if ( 'other' === $c['key'] ) {
+					continue;
+				}
+				$g[] = array( 'key' => $c['key'], 'name' => $pick( $c['name'] ), 'lead' => $pick( $c['lead'] ), 'slugs' => array(), 'remote' => true );
+			}
+			$g   = array_values( (array) apply_filters( 'flxk_onboarding_groups', $g ) );
+			$g[] = array( 'key' => 'other', 'name' => __( 'Diğer', 'flx-setup' ), 'lead' => __( 'Diğer FluxWP paketleri.', 'flx-setup' ), 'slugs' => array() );
+			return $g;
+		}
 		$g = array(
 			array( 'key' => 'manage', 'name' => __( 'Yönetim', 'flx-setup' ), 'lead' => __( 'Ekip yetkileri, görevler ve masaüstü/mobil uygulama.', 'flx-setup' ), 'slugs' => array( 'flx-roles', 'flx-tasks', 'flx-app' ) ),
 			array( 'key' => 'contact', 'name' => __( 'İletişim', 'flx-setup' ), 'lead' => __( 'WhatsApp, e-posta ve formlar tek panelde.', 'flx-setup' ), 'slugs' => array( 'flx-chat', 'flx-mail', 'flx-forms' ) ),
@@ -181,7 +207,14 @@ final class FLXK_Onboarding {
 		return $g;
 	}
 
-	private static function group_of( string $slug, array $groups ): string {
+	private static function group_of( string $slug, array $groups, string $remote = '' ): string {
+		if ( '' !== $remote ) {
+			foreach ( $groups as $g ) {
+				if ( $g['key'] === $remote ) {
+					return $remote;
+				}
+			}
+		}
 		foreach ( $groups as $g ) {
 			if ( in_array( $slug, (array) $g['slugs'], true ) ) {
 				return (string) $g['key'];
@@ -190,9 +223,15 @@ final class FLXK_Onboarding {
 		return 'other';
 	}
 
-	/** Sihirbazda gösterilmeyen katalog paketleri (kendisi, ön ayarlar, geçiş araçları, özel paketler). Filtre: flxk_onboarding_hidden. */
-	private static function hidden( string $slug ): bool {
-		$list = (array) apply_filters( 'flxk_onboarding_hidden', array( 'flx-setup', 'flx-migrate', 'flx-qr-menu' ) );
+	/**
+	 * Sihirbazda gösterilmeyen katalog paketleri: sunucunun private dediği her paket, kendisi, ön ayarlar, geçiş araçları.
+	 * Filtre: flxk_onboarding_hidden.
+	 */
+	private static function hidden( string $slug, array $p = array() ): bool {
+		if ( isset( $p['public'] ) && ! $p['public'] ) {
+			return true;
+		}
+		$list = (array) apply_filters( 'flxk_onboarding_hidden', array( 'flx-setup', 'flx-migrate' ) );
 		return in_array( $slug, $list, true ) || 0 === strpos( $slug, 'flx-preset-' );
 	}
 
@@ -207,7 +246,7 @@ final class FLXK_Onboarding {
 		$core   = self::core_slugs();
 		$groups = self::groups();
 		foreach ( $catalog as $slug => $p ) {
-			if ( 'plugin' !== $p['type'] || self::hidden( $slug ) ) {
+			if ( 'plugin' !== $p['type'] || self::hidden( $slug, $p ) ) {
 				continue;
 			}
 			$thumb = FLXK_DIR . 'assets/onboarding/thumbs/' . $slug . '-' . $lang . '.jpg';
@@ -216,14 +255,16 @@ final class FLXK_Onboarding {
 				'slug'    => $slug,
 				'name'    => $p['name'],
 				'version' => $p['version'],
-				'desc'    => $intro[ $slug ][1] ?? '',
-				'rec'     => ! empty( $intro[ $slug ][0] ),
+				// Kısa açıklama: sunucudan (sitenin dilinde), yoksa yerleşik tanıtım metni.
+				'desc'    => (string) ( $p['desc'][ $lang ] ?? ( $intro[ $slug ][1] ?? ( $p['desc']['en'] ?? '' ) ) ),
+				'rec'     => ! empty( $p['rec'] ) || ! empty( $intro[ $slug ][0] ),
 				'icon'    => (string) ( $icons['svg'] ?? ( $icons['1x'] ?? '' ) ),
 				'thumb'   => is_readable( $thumb ) ? FLXK_URL . 'assets/onboarding/thumbs/' . $slug . '-' . $lang . '.jpg' : '',
 				'active'  => ! empty( $state[ $slug ]['active'] ),
 				'core'    => in_array( $slug, $core, true ),
-				'group'   => self::group_of( $slug, $groups ),
-				'order'   => isset( $intro[ $slug ] ) ? array_search( $slug, array_keys( $intro ), true ) : 99,
+				'group'   => self::group_of( $slug, $groups, (string) ( $p['category'] ?? '' ) ),
+				// Sıra: sunucunun bildirdiği, yoksa tanıtım listesindeki yer.
+				'order'   => isset( $p['order'] ) ? (int) $p['order'] : ( isset( $intro[ $slug ] ) ? 1000 + array_search( $slug, array_keys( $intro ), true ) : 9999 ),
 			);
 		}
 		usort(
