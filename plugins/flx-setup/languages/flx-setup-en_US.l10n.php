@@ -432,7 +432,6 @@ return array(
 		'Sitede AI sohbet penceresi, gerektiğinde canlı temsilciye devir.' => 'AI chat window on your site, with handoff to a live agent when needed.',
 		'/wiki altında Markdown belgeler, arama ve llms.txt.' => 'Markdown docs under /wiki, with search and llms.txt.',
 		'Giriş, kayıt, yorum ve formları botlara karşı korur.' => 'Protects login, sign-up, comments and forms from bots.',
-		'Kendi güncelleme sunucunuzu bu panelden yönetir.' => 'Manage your own update server from this dashboard.',
 		'Görev panosu, takvim ve toplantı notları.' => 'Task board, calendar and meeting notes.',
 		'Ekip için ortak AI modelleri ve günlük bütçe.' => 'Shared AI models for the team with a daily budget.',
 		'Sayfa ve menüleri İngilizce ve diğer dillere çevirir.' => 'Translates pages and menus into English and other languages.',
