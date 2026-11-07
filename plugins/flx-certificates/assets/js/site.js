@@ -9,7 +9,9 @@
 		// Yalnız Google Haritalar gömme adresi; sorgu kısmı korunur, adres sabit önekle kurulur.
 		var raw = b.getAttribute('data-map') || '', q = raw.indexOf('?');
 		if (raw.toLowerCase().indexOf('https://maps.google.com/maps?') !== 0 || q < 0) return;
-		f.src = 'https://maps.google.com/maps' + raw.slice(q);
+		var qs;
+		try { qs = encodeURI(decodeURI(raw.slice(q))); } catch (er) { return; }
+		f.src = 'https://maps.google.com/maps' + qs;
 		f.loading = 'lazy';
 		f.title = L.mapTitle || 'Etkinlik konumu';
 		f.referrerPolicy = 'no-referrer-when-downgrade';

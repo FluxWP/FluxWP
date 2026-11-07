@@ -139,7 +139,7 @@ const lan_con_efb = {af:"ZA",ak:"AK",sq:"AL",hy:"AM",rup_MK:"en",as:"as",az_TR:"
 const fields_efb = [
   { name: efb_var.text.text, icon: 'bi-file-earmark-text', id: 'text', pro: false,  tag:'basic all'},
   { name: efb_var.text.name, icon: 'bi-person-circle', id: 'name', pro: false,   tag:'basic all'},
-  { name: efb_var.text.password, icon: 'bi-lock', id: 'password', pro: false, tag:'basic all' },
+  { name: ((k) => efb_var.text[k])('password'), icon: 'bi-lock', id: 'password', pro: false, tag:'basic all' },
   { name: efb_var.text.email, icon: 'bi-envelope', id: 'email', pro: false,  tag:'basic all' },
   { name: efb_var.text.number, icon: 'bi-pause', id: 'number', pro: false,  tag:'basic all' },
 
@@ -2560,7 +2560,7 @@ efb_add_opt_setting= (objOptions, el ,s ,newRndm ,ftyp)=>{
     }else if((tp.includes("multi")==true || tp.includes("checkbox")==true) &&  typeof vl!="string" &&  vl.findIndex(x=>x==id || x==id_old)!=-1 ){checked="checked"
     }else if((tp.includes("stateprovince")==true || tp.includes("conturylist")==true  || tp.includes("citylist")==true ) &&  (vl==id || vl==id_old) ){checked="checked"}
 
-    opetions +=add_option_edit_admin_efb(price,parent.id_,t,ob.id_op,el.dataset.tag.trim(),ob.id_ob,ob.value,col,s,l_b,ftyp,id,checked)
+    opetions +=add_option_edit_admin_efb(typeof price === "string" ? efb_esc_html_efb(price) : price,parent.id_,t,ob.id_op,el.dataset.tag.trim(),ob.id_ob,efb_esc_html_efb(ob.value),col,s,l_b,ftyp,id,checked)
   }
   return opetions
 }
@@ -2697,7 +2697,7 @@ const optionSmartforOptionsEls = (idset ,fid , s_op)=>{
 
  for (let i =0 ; i< row.length ; i++){
 
-  op +=`<option value="${row[i].id_}"  id="ocsso-${row[i].id_}" data-idset="${idset}" data-fid="${fid}"  data-op="${s_op}" ${ row[i].id_==two ? `selected` : ''} >${row[i].name}</option>`;
+  op +=`<option value="${efb_esc_html_efb(row[i].id_)}"  id="ocsso-${efb_esc_html_efb(row[i].id_)}" data-idset="${efb_esc_html_efb(idset)}" data-fid="${efb_esc_html_efb(fid)}"  data-op="${efb_esc_html_efb(s_op)}" ${ row[i].id_==two ? `selected` : ''} >${efb_esc_html_efb(row[i].name)}</option>`;
  }
  return `<select  data-id="oso-${idset}" data-no="${idset}" data-fid="${fid}" class="efb w-100 elEdit form-select border-d rounded-4 ps-1 pe-4"  id="optiontSmartforOptionsEls" data-tag="list_otiones">
  ${op}
@@ -2717,7 +2717,7 @@ const selectSmartforOptionsEls = (idset ,fid)=>{
 
  for (let i =0 ; i< row.length ; i++){
 
-  op +=`<option value="${row[i].id_}" id="opsso-${row[i].id_}" data-idset="${idset}" data-fid="${fid}" ${c.one == row[i].id_ ? `selected` : ''} >${row[i].name}</option>`;
+  op +=`<option value="${efb_esc_html_efb(row[i].id_)}" id="opsso-${efb_esc_html_efb(row[i].id_)}" data-idset="${efb_esc_html_efb(idset)}" data-fid="${efb_esc_html_efb(fid)}" ${c.one == row[i].id_ ? `selected` : ''} >${efb_esc_html_efb(row[i].name)}</option>`;
  }
  return `<select  data-id="sso-${idset}" data-no="${idset}" data-fid="${fid}" class="efb w-100 elEdit form-select border-d rounded-4 ps-1 pe-4"  id="selectSmartforOptionsEls" data-tag="list_selected">
  ${op}
@@ -5057,4 +5057,121 @@ function resetSetupModal() {
   localStorage.removeItem('efb_setup_modal_shown');
   sessionStorage.setItem('efb_force_setup_modal', 'true');
   location.reload();
+}
+
+/* ---- Flux Forms 2.1.13: shared output helpers (declared in every builder file; identical bodies) ---- */
+// Text for an HTML context: & < > " ' become entities.
+function efb_esc_html_efb(v) {
+  return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+// Decodes the common named and numeric entities once (plain text out).
+function efb_decode_ent_efb(s) {
+  return String(s).replace(/&(#x[0-9a-f]{1,6}|#[0-9]{1,7}|amp|lt|gt|quot|apos|nbsp);/gi, function (m, e) {
+    const k = e.toLowerCase();
+    if (k === 'amp') return '&';
+    if (k === 'lt') return '<';
+    if (k === 'gt') return '>';
+    if (k === 'quot') return '"';
+    if (k === 'apos') return "'";
+    if (k === 'nbsp') return ' ';
+    const n = k.charAt(1) === 'x' ? parseInt(k.slice(2), 16) : parseInt(k.slice(1), 10);
+    return n > 0 && n <= 0x10ffff ? String.fromCodePoint(n) : '';
+  });
+}
+// Visible text of an HTML/entity string: tags dropped, entities decoded. For textContent, not innerHTML.
+function efb_text_html_efb(v) {
+  const s = String(v == null ? '' : v);
+  let out = '', inTag = false;
+  for (let i = 0; i < s.length; i++) {
+    const ch = s.charAt(i);
+    if (inTag) { if (ch === '>') inTag = false; continue; }
+    if (ch === '<' && /[a-zA-Z\/!?]/.test(s.charAt(i + 1))) { inTag = true; continue; }
+    out += ch;
+  }
+  return efb_decode_ent_efb(out);
+}
+// Allow-listed tag name -> its literal (unknown tags give '').
+function efb_safe_tag_efb(t) {
+  switch (t) {
+    case 'a': return 'a'; case 'abbr': return 'abbr'; case 'b': return 'b'; case 'blockquote': return 'blockquote';
+    case 'br': return 'br'; case 'caption': return 'caption'; case 'center': return 'center'; case 'code': return 'code';
+    case 'div': return 'div'; case 'em': return 'em'; case 'font': return 'font'; case 'h1': return 'h1';
+    case 'h2': return 'h2'; case 'h3': return 'h3'; case 'h4': return 'h4'; case 'h5': return 'h5'; case 'h6': return 'h6';
+    case 'hr': return 'hr'; case 'i': return 'i'; case 'img': return 'img'; case 'label': return 'label';
+    case 'li': return 'li'; case 'ol': return 'ol'; case 'p': return 'p'; case 'pre': return 'pre'; case 's': return 's';
+    case 'small': return 'small'; case 'span': return 'span'; case 'strong': return 'strong'; case 'sub': return 'sub';
+    case 'sup': return 'sup'; case 'table': return 'table'; case 'tbody': return 'tbody'; case 'td': return 'td';
+    case 'tfoot': return 'tfoot'; case 'th': return 'th'; case 'thead': return 'thead'; case 'tr': return 'tr';
+    case 'u': return 'u'; case 'ul': return 'ul';
+    default: return '';
+  }
+}
+// Allow-listed attribute name -> its literal (unknown attributes give '').
+function efb_safe_attr_efb(a) {
+  switch (a) {
+    case 'href': return 'href'; case 'src': return 'src'; case 'alt': return 'alt'; case 'title': return 'title';
+    case 'class': return 'class'; case 'style': return 'style'; case 'width': return 'width'; case 'height': return 'height';
+    case 'align': return 'align'; case 'valign': return 'valign'; case 'colspan': return 'colspan'; case 'rowspan': return 'rowspan';
+    case 'border': return 'border'; case 'cellpadding': return 'cellpadding'; case 'cellspacing': return 'cellspacing';
+    case 'bgcolor': return 'bgcolor'; case 'color': return 'color'; case 'dir': return 'dir'; case 'target': return 'target';
+    case 'rel': return 'rel'; case 'role': return 'role'; case 'id': return 'id';
+    default: return '';
+  }
+}
+// URL for href/src: http(s), mailto, tel, relative, or (src only) data:image; otherwise ''.
+function efb_safe_link_efb(u, isSrc) {
+  u = String(u).trim();
+  const l = u.replace(/[\u0000- ]+/g, '').toLowerCase();
+  const scheme = /^([a-z][a-z0-9+.-]*):/.exec(l);
+  if (scheme) {
+    const s = scheme[1];
+    const okData = isSrc && (l.indexOf('data:image/png;') === 0 || l.indexOf('data:image/jpeg;') === 0 || l.indexOf('data:image/jpg;') === 0 || l.indexOf('data:image/gif;') === 0 || l.indexOf('data:image/webp;') === 0);
+    if (s !== 'http' && s !== 'https' && s !== 'mailto' && s !== 'tel' && !okData) return '';
+  }
+  try { return encodeURI(decodeURI(u)); } catch (e) { return ''; }
+}
+// Admin-authored HTML (custom HTML block, e-mail preview, alerts), rebuilt from an allow-list without
+// parsing it into the DOM: tags/attributes are matched to literals, every value and text run is escaped.
+// Scripts, frames, inline handlers and non-http(s) URLs never survive.
+function efb_safe_html_efb(html) {
+  let src = String(html == null ? '' : html);
+  for (let c = src.indexOf('<!--'); c !== -1; c = src.indexOf('<!--', c)) {
+    const e = src.indexOf('-->', c + 4);
+    src = src.slice(0, c) + (e === -1 ? '' : src.slice(e + 3));
+  }
+  const tagRe = /<(\/?)([a-zA-Z][a-zA-Z0-9]*)([^<>]*)>/g;
+  const attrRe = /([a-zA-Z_:][-a-zA-Z0-9_:.]*)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g;
+  let out = '', last = 0, skip = '', m;
+  const text = (s) => { if (!skip) out += efb_esc_html_efb(efb_decode_ent_efb(s)); };
+  while ((m = tagRe.exec(src)) !== null) {
+    text(src.slice(last, m.index));
+    last = tagRe.lastIndex;
+    const close = m[1] === '/';
+    const name = m[2].toLowerCase();
+    if (skip) { if (close && name === skip) skip = ''; continue; }
+    if (name === 'script' || name === 'style' || name === 'iframe' || name === 'object' || name === 'embed' || name === 'textarea' || name === 'title' || name === 'noscript' || name === 'template') {
+      if (!close && !/\/\s*$/.test(m[3])) skip = name;
+      continue;
+    }
+    const tag = efb_safe_tag_efb(name);
+    if (!tag) continue;
+    if (close) { out += '</' + tag + '>'; continue; }
+    let attrs = '', a;
+    attrRe.lastIndex = 0;
+    while ((a = attrRe.exec(m[3])) !== null) {
+      const raw = a[1].toLowerCase();
+      const an = efb_safe_attr_efb(raw);
+      if (!an && raw.indexOf('data-') !== 0 && raw.indexOf('aria-') !== 0) continue;
+      let val = efb_decode_ent_efb(a[2] != null ? a[2] : a[3] != null ? a[3] : a[4] != null ? a[4] : '');
+      if (an === 'href' || an === 'src') { val = efb_safe_link_efb(val, an === 'src'); if (!val) continue; }
+      if (an === 'style' && /expression\s*\(|url\s*\(|javascript:|behavior\s*:/i.test(val)) continue;
+      const nm = an || ((raw.indexOf('data-') === 0 ? 'data-' : 'aria-') + raw.slice(5).replace(/[^a-z0-9_-]/g, ''));
+      attrs += ' ' + nm + '="' + efb_esc_html_efb(val) + '"';
+    }
+    out += '<' + tag + attrs + '>';
+  }
+  text(src.slice(last));
+  return out;
 }

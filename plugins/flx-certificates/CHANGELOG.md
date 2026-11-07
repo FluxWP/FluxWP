@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.8.10
+- Güvenlik (CodeQL): yönetim adresleri ve harita sorgusu `encodeURI` ile temizlenir.
+
 ## 1.8.9
 - Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
 

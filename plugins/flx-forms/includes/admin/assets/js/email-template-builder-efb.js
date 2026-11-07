@@ -1573,11 +1573,17 @@ ${blocksHtml}
     'shortcode_admin_email':   () => t_efb('ebSCAdminEmail', 'Admin Email')
   };
 
-  const _SHORTCODE_LABEL_MAP_efb = new Map(Object.entries(_SHORTCODE_LABELS_efb));
 
   function _shortcodeChipHtml_efb(code) {
-    const labelFn = _SHORTCODE_LABEL_MAP_efb.get(code);
-    const label = labelFn ? labelFn() : code;
+    let label;
+    switch (code) {
+      case 'shortcode_message':      label = t_efb('ebSCMessage', 'Message *'); break;
+      case 'shortcode_title':        label = t_efb('ebSCTitle', 'Title'); break;
+      case 'shortcode_website_name': label = t_efb('ebSCSiteName', 'Site Name'); break;
+      case 'shortcode_website_url':  label = t_efb('ebSCSiteURL', 'Site URL'); break;
+      case 'shortcode_admin_email':  label = t_efb('ebSCAdminEmail', 'Admin Email'); break;
+      default: return escHtml_efb(code);
+    }
     return `<span class="efb-chip" contenteditable="false" data-shortcode="${escHtml_efb(code)}"><i class="efb bi-braces me-1"></i>${escHtml_efb(label)}<button type="button" class="efb-chip-remove" tabindex="-1">&times;</button></span>`;
   }
 
@@ -2177,7 +2183,9 @@ ${blocksHtml}
 
   function escHtml_efb(str) {
     if (!str) return '';
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    return String(str).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
   }
 
   function insertShortcodeFromPanel_efb(shortcode) {
@@ -2551,10 +2559,10 @@ ${blocksHtml}
     const _btnBgInit = document.getElementById('emailBtnBgColor_emsFormBuilder');
     const _btnTxtInit = document.getElementById('emailBtnTextColor_emsFormBuilder');
     if (!builderState_efb.globalSettings.btnBgColor || builderState_efb.globalSettings.btnBgColor === '#111827') {
-      if (_btnBgInit && _btnBgInit.value && _btnBgInit.value !== '#111827') builderState_efb.globalSettings.btnBgColor = _btnBgInit.value;
+      if (_btnBgInit && _btnBgInit.value && _btnBgInit.value !== '#111827') builderState_efb.globalSettings.btnBgColor = escHtml_efb(_btnBgInit.value);
     }
     if (!builderState_efb.globalSettings.btnTextColor || builderState_efb.globalSettings.btnTextColor === '#ffffff') {
-      if (_btnTxtInit && _btnTxtInit.value && _btnTxtInit.value !== '#ffffff') builderState_efb.globalSettings.btnTextColor = _btnTxtInit.value;
+      if (_btnTxtInit && _btnTxtInit.value && _btnTxtInit.value !== '#ffffff') builderState_efb.globalSettings.btnTextColor = escHtml_efb(_btnTxtInit.value);
     }
 
     renderBlocksPanel_efb();

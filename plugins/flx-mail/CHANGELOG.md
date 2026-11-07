@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.13.10
+- Güvenlik (CodeQL): logo ve posta kutusu adresleri `encodeURI` ile temizlenir.
+
 ## 1.13.9
 - Eksik çeviriler eklendi. Arayüz WordPress dilini izler: Türkçe sitede Türkçe, İngilizce sitede (en_US ve en_GB gibi) İngilizce metin gelir.
 

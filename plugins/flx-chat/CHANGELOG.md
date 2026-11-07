@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.37.1
+- Güvenlik (CodeQL): stüdyo sekmesi `switch` ile seçilir.
+
 ## 1.37.0
 - Site sohbeti kanalı: Flux AI Chatbot'ta asistan ziyaretçiyi temsilciye devredince sohbet gelen kutusuna "Site sohbeti" olarak düşer; temsilcinin cevabı, dosyası, "yazıyor…" ve okundu bilgisi sitedeki sohbet penceresine gider. Ekip bildirimi ve grup aynası bu sohbetlerde ilk WhatsApp hattını kullanır; çağrı merkezi asistanı site sohbetlerine karışmaz.
 - Tek gelen kutusu: çağrı merkezi tüm kanalları (WhatsApp, site sohbeti, ileride Instagram, e-posta…) aynı listede gösterir. Birden çok kanal açıkken her sohbetin avatarında kanal ikonu, sohbet başlığında ve kişi bilgisinde kanal etiketi, süzgeç şeridinde kanal düğmeleri (yalnız WhatsApp / yalnız site sohbeti) var. WhatsApp kurulmamış ama site sohbeti açıksa "WhatsApp bağlantısı kurulmadı" uyarısı çıkmaz; boş ekran metni kanallara göre.
