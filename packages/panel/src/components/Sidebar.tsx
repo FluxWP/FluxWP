@@ -13,6 +13,9 @@ import type { Route } from '../state/route';
 import type { SideGroup, SideLink } from '../shell/links';
 
 const MOD_KEY = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/i.test(navigator.userAgent) ? '⌘' : 'Ctrl ';
+const RAIL_WIDTH = 72;
+const COLLAPSE_WIDTH = 150;
+const EXPAND_WIDTH = 190;
 
 export function Sidebar({ account, pins, groups, activeId, childId, onSearch, onOpen, actions = [] }: {
   account: Account;
@@ -37,19 +40,23 @@ export function Sidebar({ account, pins, groups, activeId, childId, onSearch, on
   const startW = useRef(0);
   const onResizeDown = (e: React.PointerEvent) => {
     e.preventDefault();
-    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+    e.currentTarget.setPointerCapture(e.pointerId);
     startX.current = e.clientX;
-    startW.current = width;
+    startW.current = collapsed ? RAIL_WIDTH : width;
     setResizing(true);
     document.documentElement.classList.add('flux-resizing');
   };
   const onResizeMove = (e: React.PointerEvent) => {
     if (!resizing) return;
     const next = startW.current + e.clientX - startX.current;
-    if (next < 150) {
-      const handle = e.currentTarget as HTMLElement;
-      if (handle.hasPointerCapture(e.pointerId)) handle.releasePointerCapture(e.pointerId);
-      onResizeUp();
+    const state = useSidebar.getState();
+    if (state.collapsed) {
+      if (next >= EXPAND_WIDTH) { setWidth(next); toggle(); }
+      return;
+    }
+    if (next < COLLAPSE_WIDTH) {
+      // Keep the preferred expanded width, and keep capturing the drag so
+      // reversing direction can expand the rail without another gesture.
       setWidth(startW.current);
       toggle();
       return;
@@ -61,8 +68,8 @@ export function Sidebar({ account, pins, groups, activeId, childId, onSearch, on
   const bell = actions.find((a) => a.route.kind === 'shell' && a.route.name === 'notifications');
 
   return (
-    <aside id="flux-sidebar" className={'sidebar' + (resizing ? ' resizing' : '') + (collapsed ? ' collapsed' : '')} style={{ width: collapsed ? 72 : width }} aria-label={t('nav.menu')}>
-      <div className="sidebar-in" style={{ width: collapsed ? 72 : width }}>
+    <aside id="flux-sidebar" className={'sidebar' + (resizing ? ' resizing' : '') + (collapsed ? ' collapsed' : '')} style={{ width: collapsed ? RAIL_WIDTH : width }} aria-label={t('nav.menu')}>
+      <div className="sidebar-in" style={{ width: collapsed ? RAIL_WIDTH : width }}>
         <div className="sidebar-top" data-tauri-drag-region>
           {!collapsed && <TitleBar />}
           <div className="brand-logo" data-tauri-drag-region>{collapsed ? <img src="./brand/icon.svg" alt="" width={36} height={36}/> : <BrandLogo />}</div>
@@ -143,16 +150,25 @@ export function Sidebar({ account, pins, groups, activeId, childId, onSearch, on
           aria-orientation="vertical"
           aria-label={t('nav.resize')}
           tabIndex={0}
-          aria-valuemin={SIDEBAR_MIN}
+          aria-valuemin={RAIL_WIDTH}
           aria-valuemax={SIDEBAR_MAX}
-          aria-valuenow={width}
+          aria-valuenow={collapsed ? RAIL_WIDTH : width}
           onPointerDown={onResizeDown}
           onPointerMove={onResizeMove}
           onPointerUp={onResizeUp}
           onPointerCancel={onResizeUp}
           onLostPointerCapture={onResizeUp}
-          onDoubleClick={() => setWidth(260)}
+          onDoubleClick={() => { setWidth(260); if (collapsed) toggle(); }}
           onKeyDown={(e) => {
+            if (collapsed) {
+              if (['ArrowRight', 'Home', 'End', 'Enter'].includes(e.key)) {
+                e.preventDefault();
+                if (e.key === 'Home') setWidth(SIDEBAR_MIN);
+                if (e.key === 'End') setWidth(SIDEBAR_MAX);
+                toggle();
+              }
+              return;
+            }
             if (e.key === 'ArrowLeft' && width === SIDEBAR_MIN) { e.preventDefault(); toggle(); return; }
             const next = e.key === 'Home' ? SIDEBAR_MIN : e.key === 'End' ? SIDEBAR_MAX : e.key === 'Enter' ? 260 : e.key === 'ArrowLeft' ? width - (e.shiftKey ? 40 : 10) : e.key === 'ArrowRight' ? width + (e.shiftKey ? 40 : 10) : null;
             if (next !== null) { e.preventDefault(); setWidth(next); }

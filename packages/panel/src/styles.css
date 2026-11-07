@@ -177,7 +177,7 @@ html.flux-resizing,html.flux-resizing *{cursor:col-resize!important;user-select:
 .sidebar.collapsed .brand-logo img{width:36px;height:36px;border-radius:9px}
 .sidebar.collapsed .sidebar-top .fx-row{flex-direction:column;align-items:center;gap:6px}
 .sidebar.collapsed .search-btn{width:40px;height:36px;padding:0;justify-content:center;flex:none}
-.sidebar.collapsed .search-btn span,.sidebar.collapsed .search-btn kbd,.sidebar.collapsed .sidebar-resizer{display:none}
+.sidebar.collapsed .search-btn span,.sidebar.collapsed .search-btn kbd{display:none}
 .sidebar.collapsed .sidebar-foot{padding:6px}
 .sidebar.collapsed .account-card{padding:6px;justify-content:center}
 .sidebar.collapsed .account-card>.account-text,.sidebar.collapsed .account-card>svg{display:none}
