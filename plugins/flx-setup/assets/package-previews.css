@@ -17,3 +17,5 @@
 .flxu-preview :is(button,a):focus-visible{outline:2px solid var(--flxa-info,#2271b1);outline-offset:3px}
 @media(max-width:600px){.flxu-preview{width:calc(100vw - 20px);max-height:calc(100dvh - 28px);border-radius:14px}.flxu-preview__head{padding:20px 18px 10px}.flxu-preview__head h2{font-size:21px}.flxu-preview__description{padding:0 18px 18px;font-size:14px}.flxu-preview__gallery{padding:0 18px 18px}.flxu-preview__foot{padding:16px 18px;align-items:stretch;flex-direction:column;gap:12px}.flxu-preview__website{justify-content:center;white-space:normal}}
 @media(prefers-reduced-motion:reduce){.flxu-preview::backdrop{backdrop-filter:none}}
+
+.flxu-preview__stage.is-empty{aspect-ratio:auto;min-height:100px}

@@ -424,11 +424,13 @@
 		website.removeAttribute('href');
 		if (info.website) { website.href = info.website; }
 		dialog.querySelector('.flxu-preview__foot').hidden = !info.website;
+		var stage = dialog.querySelector('.flxu-preview__stage');
 		var image = dialog.querySelector('.flxu-preview__stage img'), empty = dialog.querySelector('.flxu-preview__empty');
 		var thumbs = dialog.querySelector('.flxu-preview__thumbs');
 		thumbs.replaceChildren();
 		var images = info.images || [], failed = {};
 		function show(index) {
+			stage.classList.remove('is-empty');
 			image.hidden = false; empty.hidden = true;
 			image.alt = (info.name || name(slug)) + ' — ' + fmt(L.previewImage, index + 1);
 			image.referrerPolicy = 'no-referrer'; image.decoding = 'async';
@@ -436,7 +438,7 @@
 				failed[index] = true;
 				if (thumbs.children[index]) { thumbs.children[index].hidden = true; }
 				var next = images.findIndex(function (_, i) { return !failed[i]; });
-				if (next >= 0) { show(next); } else { image.hidden = true; empty.hidden = false; }
+				if (next >= 0) { show(next); } else { image.hidden = true; empty.hidden = false; stage.classList.add('is-empty'); }
 			};
 			image.src = images[index];
 			Array.prototype.forEach.call(thumbs.children, function (button, i) { button.setAttribute('aria-pressed', i === index ? 'true' : 'false'); });
@@ -448,6 +450,7 @@
 			thumb.onerror = function () { button.hidden = true; };
 			button.appendChild(thumb); button.addEventListener('click', function () { show(index); }); thumbs.appendChild(button);
 		});
+		stage.classList.toggle('is-empty', !images.length);
 		thumbs.hidden = images.length < 2;
 		image.onerror = null; image.removeAttribute('src'); image.hidden = !images.length; empty.hidden = !!images.length;
 		if (images.length) { show(0); }
