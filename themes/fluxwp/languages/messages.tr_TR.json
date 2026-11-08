@@ -475,6 +475,12 @@
     "Automatic now: the iyzico band and the logos of enabled virtual POS plugins. Once you add or remove a logo, the list is your own choice.": "Şu an otomatik: iyzico bandı ve etkin sanal POS eklentilerinin logoları. Bir logo ekleyip kaldırdığınızda liste sizin seçiminiz olur.",
     "Hand-picked list. \"Back to automatic\" returns to the iyzico band and the logos of enabled virtual POS plugins.": "Elle seçilmiş liste. \"Otomatiğe dön\" ile iyzico bandı ve etkin sanal POS logolarına döner.",
     "SVG or transparent PNG is best; colored logos are shown in a white box on a dark footer.": "SVG ya da şeffaf PNG önerilir; renkli logolar koyu footer'da beyaz kutu içinde gösterilir.",
-    "\\n%s. Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin.\\n": "%s. Hostinger › PHP Yapılandırması'ndan 8.2 veya üstünü seçin."
+    "\\n%s. Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin.\\n": "%s. Hostinger › PHP Yapılandırması'ndan 8.2 veya üstünü seçin.",
+    "Background pattern": "Arka plan deseni",
+    "\\nDots\\n": "Dots",
+    "Leaves": "Yapraklar",
+    "None": "Yok",
+    "News introduction": "Haberler açıklaması",
+    "Latest news, updates and articles.": "Son haberler, güncellemeler ve yazılar."
   }
 }

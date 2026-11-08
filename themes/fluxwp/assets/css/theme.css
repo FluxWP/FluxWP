@@ -1,3 +1,6 @@
+:root{--flx-decoration-pattern:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22120%22%20height%3D%22120%22%20viewBox%3D%220%200%20120%20120%22%3E%3Cg%20fill%3D%22white%22%3E%3Ccircle%20cx%3D%2215%22%20cy%3D%2215%22%20r%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2275%22%20cy%3D%2215%22%20r%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2215%22%20cy%3D%2275%22%20r%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2275%22%20cy%3D%2275%22%20r%3D%221.6%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")}
+.flx-decoration--leaves{--flx-decoration-pattern:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120' fill='none' stroke='white' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 44c0-14 9-22 23-22 0 14-8 23-22 23z'/%3E%3Cpath d='M18 44l12-12'/%3E%3Cpath d='M86 104V90M86 90c-7 0-10-4-10-10 7 0 10 4 10 10zM86 87c6 0 10-3 10-9-6 0-10 3-10 9z'/%3E%3Ccircle cx='96' cy='26' r='2.2'/%3E%3Ccircle cx='34' cy='92' r='1.6'/%3E%3C/svg%3E")}
+.flx-decoration--none{--flx-decoration-pattern:none}
 :root{
   --flx-i-leaf:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 19c0-9 6-14 15-14 0 9-5 15-14 15z'/%3E%3Cpath d='M5 19l8-8'/%3E%3C/svg%3E");
   --flx-i-sprout:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21v-9'/%3E%3Cpath d='M12 12C7 12 5 9 5 5c5 0 7 3 7 7z'/%3E%3Cpath d='M12 10c4 0 7-2 7-6-4 0-7 2-7 6z'/%3E%3C/svg%3E");
@@ -332,7 +335,7 @@ html{scroll-behavior:smooth}
 
 /* ---------- Desenli şerit (detay ve liste başlığı) ---------- */
 .flx-band{
-  --flx-band-pattern:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120' fill='none' stroke='white' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 44c0-14 9-22 23-22 0 14-8 23-22 23z'/%3E%3Cpath d='M18 44l12-12'/%3E%3Cpath d='M86 104V90M86 90c-7 0-10-4-10-10 7 0 10 4 10 10zM86 87c6 0 10-3 10-9-6 0-10 3-10 9z'/%3E%3Ccircle cx='96' cy='26' r='2.2'/%3E%3Ccircle cx='34' cy='92' r='1.6'/%3E%3C/svg%3E");
+  --flx-band-pattern:var(--flx-decoration-pattern);
   position:relative;isolation:isolate;overflow:hidden;color:#fff;text-align:center;
   background:
     radial-gradient(1200px 380px at 15% -10%,color-mix(in srgb,var(--flx-leaf) 35%,transparent),transparent 60%),
@@ -482,7 +485,7 @@ html.flx-modal-open{overflow:hidden}
 
 /* Açılan panel */
 .flx-header .wp-block-navigation__responsive-container.is-menu-open{
-  --flx-menu-pattern:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 44c0-14 9-22 23-22 0 14-8 23-22 23z'/%3E%3Cpath d='M18 44l12-12'/%3E%3Cpath d='M86 104V90M86 90c-7 0-10-4-10-10 7 0 10 4 10 10zM86 87c6 0 10-3 10-9-6 0-10 3-10 9z'/%3E%3Ccircle cx='96' cy='26' r='2.2'/%3E%3Ccircle cx='34' cy='92' r='1.6'/%3E%3C/svg%3E");
+  --flx-menu-pattern:var(--flx-decoration-pattern);
   padding:0!important;color:var(--flx-ink)!important;
   background:
     radial-gradient(600px 300px at 110% -10%,color-mix(in srgb,var(--flx-leaf) 28%,transparent),transparent 60%),
@@ -649,7 +652,7 @@ html.has-modal-open .flx-header-part{z-index:100000}
 .flx-cookie--card{inset-inline-start:1.2rem;bottom:1.2rem;max-width:420px;border-radius:22px;padding:1.2rem 1.2rem 1.1rem;flex-wrap:wrap;align-items:flex-start}
 .flx-cookie--bar{inset-inline-start:0;inset-inline-end:0;bottom:0;border-radius:22px 22px 0 0;padding:1rem clamp(1rem,4vw,3rem);border-width:1.5px 0 0}
 .flx-cookie::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:.06;background:var(--flx-primary);-webkit-mask:var(--flx-menu-pattern) 0 0/90px 90px repeat;mask:var(--flx-menu-pattern) 0 0/90px 90px repeat}
-.flx-cookie{--flx-menu-pattern:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 44c0-14 9-22 23-22 0 14-8 23-22 23z'/%3E%3Cpath d='M18 44l12-12'/%3E%3Cpath d='M86 104V90M86 90c-7 0-10-4-10-10 7 0 10 4 10 10zM86 87c6 0 10-3 10-9-6 0-10 3-10 9z'/%3E%3Ccircle cx='96' cy='26' r='2.2'/%3E%3Ccircle cx='34' cy='92' r='1.6'/%3E%3C/svg%3E")}
+.flx-cookie{--flx-menu-pattern:var(--flx-decoration-pattern)}
 .flx-cookie__icon{flex:none;width:2.6rem;height:2.6rem;border-radius:14px;background:var(--flx-mint);position:relative}
 .flx-cookie__icon::before{content:"";position:absolute;inset:.55rem;background:var(--flx-primary);-webkit-mask:var(--flx-i-sprout) center/contain no-repeat;mask:var(--flx-i-sprout) center/contain no-repeat}
 .flx-cookie__body{flex:1;min-width:0}

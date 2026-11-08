@@ -1428,3 +1428,21 @@ msgstr ""
 
 msgid "\\n%s. Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin.\\n"
 msgstr ""
+
+msgid "Background pattern"
+msgstr ""
+
+msgid "\\nDots\\n"
+msgstr ""
+
+msgid "Leaves"
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "News introduction"
+msgstr ""
+
+msgid "Latest news, updates and articles."
+msgstr ""

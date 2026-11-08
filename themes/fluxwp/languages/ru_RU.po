@@ -1428,3 +1428,21 @@ msgstr "SVG or transparent PNG is best; цветные логотипы пока
 
 msgid "\\n%s. Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin.\\n"
 msgstr "\\n%s. Hostinger › Версия PHP 8.2 будет установлена.\\n"
+
+msgid "Background pattern"
+msgstr "Фоновый узор"
+
+msgid "\\nDots\\n"
+msgstr "\\nТочки\\n"
+
+msgid "Leaves"
+msgstr "Листья"
+
+msgid "None"
+msgstr "Нет"
+
+msgid "News introduction"
+msgstr "Введение новостей"
+
+msgid "Latest news, updates and articles."
+msgstr "Последние новости, обновления и статьи."

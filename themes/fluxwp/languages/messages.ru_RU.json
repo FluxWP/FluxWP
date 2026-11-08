@@ -476,6 +476,12 @@
     "Automatic now: the iyzico band and the logos of enabled virtual POS plugins. Once you add or remove a logo, the list is your own choice.": "Теперь автоматически: полоса iyzico и логотипы включенных виртуальных POS-плагинов. После того как вы добавите или удалите логотип, список будет выбран вами самостоятельно.",
     "Hand-picked list. \"Back to automatic\" returns to the iyzico band and the logos of enabled virtual POS plugins.": "Список, подобранный вручную. «Назад к автоматическому режиму» возвращает полосу iyzico и логотипы включенных виртуальных POS-плагинов.",
     "SVG or transparent PNG is best; colored logos are shown in a white box on a dark footer.": "SVG or transparent PNG is best; цветные логотипы показаны в белой рамке в темном нижнем колонтитуле.",
-    "\\n%s. Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin.\\n": "\\n%s. Hostinger › Версия PHP 8.2 будет установлена.\\n"
+    "\\n%s. Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin.\\n": "\\n%s. Hostinger › Версия PHP 8.2 будет установлена.\\n",
+    "Background pattern": "Фоновый узор",
+    "\\nDots\\n": "\\nТочки\\n",
+    "Leaves": "Листья",
+    "None": "Нет",
+    "News introduction": "Введение новостей",
+    "Latest news, updates and articles.": "Последние новости, обновления и статьи."
   }
 }

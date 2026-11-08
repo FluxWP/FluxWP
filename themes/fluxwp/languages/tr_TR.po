@@ -1428,3 +1428,21 @@ msgstr "SVG ya da şeffaf PNG önerilir; renkli logolar koyu footer'da beyaz kut
 
 msgid "\\n%s. Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin.\\n"
 msgstr "%s. Hostinger › PHP Yapılandırması'ndan 8.2 veya üstünü seçin."
+
+msgid "Background pattern"
+msgstr "Arka plan deseni"
+
+msgid "\\nDots\\n"
+msgstr "Dots"
+
+msgid "Leaves"
+msgstr "Yapraklar"
+
+msgid "None"
+msgstr "Yok"
+
+msgid "News introduction"
+msgstr "Haberler açıklaması"
+
+msgid "Latest news, updates and articles."
+msgstr "Son haberler, güncellemeler ve yazılar."

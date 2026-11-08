@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.7.14
+- Default title bands, navigation and consent cards to a neutral dot pattern. Let presets and Theme Settings select dots, leaves or no decoration.
+- Use a generic translated news introduction, with an optional preset-specific override.
+
 ## 0.7.13
 - Add native WordPress language packs for German, Spanish, French, Brazilian Portuguese, Japanese, Simplified Chinese, Arabic and Russian. English-keyed JSON catalogs preserve legacy gettext compatibility; no Flux Lang dependency.
 

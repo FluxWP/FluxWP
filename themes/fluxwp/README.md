@@ -32,3 +32,5 @@ On switch, templates, template parts, global styles, theme mods and custom CSS s
 ## Requirements
 
 WordPress 6.6+, PHP 7.4+, WooCommerce, FluxWP Panel (the setup wizard installs it with the theme).
+
+Manage the background pattern and news introduction through Theme Settings or preset fields `flx_ayarlar.decoration_pattern` (`dots`, `leaves`, `none`) and `news_intro`. The default pattern is neutral dots.

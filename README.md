@@ -189,7 +189,7 @@ Percentage of English source entries with a nonempty, structurally valid transla
 | flx-studio | 316 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-tasks | 913 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-wiki | 175 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
-| fluxwp | 471 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| fluxwp | 477 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 
 ```sh
 python3 tools/site-translations/coverage.py --repo . --scan-source --write-readme

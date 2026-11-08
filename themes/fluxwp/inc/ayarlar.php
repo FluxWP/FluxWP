@@ -23,6 +23,8 @@ function flx_ayar_defaults() {
 		'ga4_id'          => '',
 		'ga_mode'         => 'consent',
 		'dark_mode'       => 'auto',
+		'decoration_pattern' => 'dots',
+		'news_intro' => '',
 		'animasyon'       => 'on',
 		'sayfalama'       => 'sonsuz',
 		'site_mod'        => 'shop',
@@ -184,6 +186,8 @@ function flx_ayar_sanitize( $in ) {
 	}
 	unset( $in['_form'] );
 	$out = array(
+		'decoration_pattern' => in_array( $in['decoration_pattern'] ?? '', array( 'dots', 'leaves', 'none' ), true ) ? $in['decoration_pattern'] : 'dots',
+		'news_intro' => sanitize_text_field( $in['news_intro'] ?? '' ),
 		'cookie_enabled'  => $on( $in['cookie_enabled'] ?? 0 ) ? 1 : 0,
 		'cookie_title'    => sanitize_text_field( $in['cookie_title'] ?? $d['cookie_title'] ),
 		'cookie_text'     => wp_kses_post( $in['cookie_text'] ?? $d['cookie_text'] ),
@@ -260,6 +264,9 @@ function flx_ayar_page() {
 					<label><input type="radio" name="<?php echo esc_attr( $n ); ?>[site_mod]" value="shop" <?php checked( $o['site_mod'], 'shop' ); ?>> <?php esc_html_e( 'Shop: Orders, Return to shop', 'fluxwp' ); ?></label><br>
 					<label><input type="radio" name="<?php echo esc_attr( $n ); ?>[site_mod]" value="donation" <?php checked( $o['site_mod'], 'donation' ); ?>> <?php esc_html_e( 'Donation: Donations, Donate button, return to the donation page', 'fluxwp' ); ?></label>
 					<p class="description"><?php esc_html_e( 'Sets the wording in My account, the cart and the mobile menu.', 'fluxwp' ); ?></p></td></tr>
+				<tr><th scope="row"><?php esc_html_e( 'Background pattern', 'fluxwp' ); ?></th><td><select name="<?php echo esc_attr( $n ); ?>[decoration_pattern]">
+                    <?php foreach ( array( 'dots' => __( 'Dots', 'fluxwp' ), 'leaves' => __( 'Leaves', 'fluxwp' ), 'none' => __( 'None', 'fluxwp' ) ) as $value => $label ) : ?><option value="<?php echo esc_attr( $value ); ?>" <?php selected( $o['decoration_pattern'], $value ); ?>><?php echo esc_html( $label ); ?></option><?php endforeach; ?></select></td></tr>
+                <tr><th scope="row"><?php esc_html_e( 'News introduction', 'fluxwp' ); ?></th><td><input class="large-text" name="<?php echo esc_attr( $n ); ?>[news_intro]" value="<?php echo esc_attr( $o['news_intro'] ); ?>" placeholder="<?php esc_attr_e( 'Latest news, updates and articles.', 'fluxwp' ); ?>"></td></tr>
 				<tr><th scope="row">Dark mode</th><td>
 					<label><input type="radio" name="<?php echo esc_attr( $n ); ?>[dark_mode]" value="auto" <?php checked( $o['dark_mode'], 'auto' ); ?>> Otomatik: cihaz koyu moddaysa site de koyu</label><br>
 					<label><input type="radio" name="<?php echo esc_attr( $n ); ?>[dark_mode]" value="off" <?php checked( $o['dark_mode'], 'off' ); ?>> Kapalı: site her zaman açık renk</label>
@@ -501,6 +508,8 @@ add_filter(
 			) + $extra;
 		};
 		$fields           = array(
+			'decoration_pattern' => $f( 'enum', 'Background decoration for title bands, menus and consent cards.', array( 'enum' => array( 'dots', 'leaves', 'none' ) ) ),
+			'news_intro' => $f( 'string', 'Optional news archive introduction. Empty uses the translated generic theme text.' ),
 			'cookie_enabled'  => $f( 'bool', 'Show the cookie consent banner on the first visit.' ),
 			'cookie_title'    => $f( 'string', 'Banner title (Flux Lang: texts.<lang>.tema_cookie_title).' ),
 			'cookie_text'     => $f( 'html', 'Banner text; links allowed (Flux Lang: tema_cookie_text).' ),
@@ -530,3 +539,10 @@ add_filter(
 		return $s;
 	}
 );
+
+/** Presets and the theme panel share the same allowlisted decoration setting. */
+add_filter( 'body_class', function ( $classes ) {
+    $pattern = flx_ayar( 'decoration_pattern' );
+    $classes[] = 'flx-decoration--' . ( in_array( $pattern, array( 'dots', 'leaves', 'none' ), true ) ? $pattern : 'dots' );
+    return $classes;
+} );

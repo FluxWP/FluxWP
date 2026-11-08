@@ -1428,3 +1428,21 @@ msgstr "SVG または透過 PNG が最適です。色付きのロゴは、暗い
 
 msgid "\\n%s. Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin.\\n"
 msgstr "\\n%s。 Hostinger › PHP ヤプラン 8.2 は最新のセキュリティを備えています。\\n"
+
+msgid "Background pattern"
+msgstr "背景パターン"
+
+msgid "\\nDots\\n"
+msgstr "\\nドット\\n"
+
+msgid "Leaves"
+msgstr "葉"
+
+msgid "None"
+msgstr "なし"
+
+msgid "News introduction"
+msgstr "ニュース紹介"
+
+msgid "Latest news, updates and articles."
+msgstr "最新のニュース、更新情報、記事。"

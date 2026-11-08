@@ -1428,3 +1428,21 @@ msgstr "SVG or transparent PNG is best; colored logos are shown in a white box o
 
 msgid "\\n%s. Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin.\\n"
 msgstr "\\n%s. Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin.\\n"
+
+msgid "Background pattern"
+msgstr "Background pattern"
+
+msgid "\\nDots\\n"
+msgstr "\\nDots\\n"
+
+msgid "Leaves"
+msgstr "Leaves"
+
+msgid "None"
+msgstr "None"
+
+msgid "News introduction"
+msgstr "News introduction"
+
+msgid "Latest news, updates and articles."
+msgstr "Latest news, updates and articles."

@@ -476,6 +476,12 @@
     "Automatic now: the iyzico band and the logos of enabled virtual POS plugins. Once you add or remove a logo, the list is your own choice.": "现在自动:iyzico 乐队和启用的虚拟 POS 插件的徽标。添加或删除徽标后,列表就是您自己的选择。",
     "Hand-picked list. \"Back to automatic\" returns to the iyzico band and the logos of enabled virtual POS plugins.": "亲手挑选的清单。 “返回自动”返回 iyzico 乐队和启用的虚拟 POS 插件的徽标。",
     "SVG or transparent PNG is best; colored logos are shown in a white box on a dark footer.": "SVG 或透明 PNG 最好;彩色徽标显示在深色页脚上的白色框中。",
-    "\\n%s. Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin.\\n": "\\n%s。 Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin。\\n"
+    "\\n%s. Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin.\\n": "\\n%s。 Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin。\\n",
+    "Background pattern": "背景图案",
+    "\\nDots\\n": "\\n点\\n",
+    "Leaves": "叶子",
+    "None": "无",
+    "News introduction": "新闻介绍",
+    "Latest news, updates and articles.": "最新新闻、更新和文章。"
   }
 }
