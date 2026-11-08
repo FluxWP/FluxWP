@@ -61,6 +61,7 @@ function flxl_switch_language( $code ) {
 	$GLOBALS['flxl_state']['current']  = $code;
 	$GLOBALS['flxl_state']['explicit'] = true;
 	switch_to_locale( flxl_language_locale( $code ) );
+	flxl_apply_text_direction();
 	return true;
 }
 
@@ -70,6 +71,7 @@ function flxl_restore_language() {
 	}
 	list( $GLOBALS['flxl_state']['current'], $GLOBALS['flxl_state']['explicit'] ) = array_pop( $GLOBALS['flxl_state']['stack'] );
 	restore_previous_locale();
+	flxl_apply_text_direction();
 	return true;
 }
 
