@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.3.3
+- Keep shared locale selection type-safe across ten languages; use English mobile-only copy when a dedicated translation is unavailable.
+
 ## 0.3.2
 - Alt pencereler (hesaplar, onay, seçim) iOS'ta düzgün: içerik yerel pencereye `RNHostView` ile bağlanır. Önceden satırlar tıklanmıyordu, metin dar alanda kesiliyordu ve başlık tutamacın altına giriyordu.
 - Hesap listesinde boşluklar ve hizalama düzeltildi; uzun liste kayar.

@@ -1,4 +1,4 @@
-// i18next: shared strings (@fluxwp/core + @fluxwp/runtime) + mobile-only strings. TR default, EN.
+// Shared ten-locale strings; mobile-only copy currently has TR/EN with English fallback.
 import { createInstance } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { getLocales } from 'expo-localization';
@@ -21,9 +21,9 @@ i18n.on('languageChanged', (language) => {
   for (const account of accountsStore.getState().accounts) if (account.authKind === 'demo') void queryClientFor(account.id).resetQueries();
 });
 void i18n.use(initReactI18next).init({
-  resources: Object.fromEntries((Object.keys(appResources) as Locale[]).map((l) => [l, { translation: { ...appResources[l].translation, mobile: mobile[l] } }])),
+  resources: Object.fromEntries((Object.keys(appResources) as Locale[]).map((l) => [l, { translation: { ...appResources[l].translation, mobile: mobile[l === 'tr' ? 'tr' : 'en'] } }])),
   lng: initialLocale,
-  fallbackLng: 'tr',
+  fallbackLng: 'en',
   interpolation: { escapeValue: false },
   initAsync: false,
 });
