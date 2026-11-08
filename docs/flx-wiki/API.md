@@ -116,3 +116,13 @@ With Flux Lang active, `flx_wiki` is a translatable post type. Wiki preset items
 `flxwk_intro` filters the displayed introduction string. Presets can localize their supplied introduction while preserving administrator edits.
 
 Translated items may set `source_language` explicitly (e.g. `tr`) when linking an existing source whose language was not previously assigned. This sets the language relationship without replacing manually edited source content.
+
+## Ask Wiki retrieval and controls
+
+Ask Wiki searches every configured Flux Lang language using the normal spelling-aware Wiki search. Weak or missing lexical matches may trigger one bounded English query rewrite through Flux AI (`source=flx-wiki`, `purpose=wiki_ask`, 120 output tokens, 12 seconds), followed by one answer call (1,200 tokens, 45 seconds). Source context is capped at five translation groups and 28,000 characters. Answers are instructed to follow the question's language. Model answer quality still depends on source coverage and the configured model; these controls do not guarantee factual correctness.
+
+Only `flx_wiki` posts with `publish` status and no password can enter model context, including when an editor supplies the current page ID. Page content is untrusted user data rather than system instructions. No tools are supplied or executed. Rendered output is sanitized; clickable links are limited to supplied source URLs and their fragments. This is a read-only answer path, not a code execution sandbox.
+
+The REST endpoint validates 3–1,000 character questions and nonnegative page IDs. Existing `ask=off|users|all` access settings apply. `ask_limit` defaults to 20 per clock hour per user or salted IP identity (administrators remain exempt). An atomic database-backed in-flight gate prevents simultaneous requests for one visitor and serializes quota updates; abandoned gates expire after 90 seconds. Raw IP addresses are not stored by these controls. Shared Flux AI budgets remain enforced by `flxai_chat`. These are application controls, not distributed abuse protection.
+
+Regression checks: run `FLXWK_TEST_SITE=1 php plugins/flx-wiki/tests/integration.php /path/to/wordpress` on a disposable WordPress site with Wiki, Lang and Setup active, English default and seeded TR/EN guides; keep the real Flux AI plugin inactive because the test supplies a deterministic provider stub. Tests verify retrieval and boundary behavior without spending an API budget.

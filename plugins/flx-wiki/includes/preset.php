@@ -46,7 +46,9 @@ function flxwk_preset_importers( $t ) {
 		},
 		'read'    => function ( $id ) {
 			$term = get_term( (int) $id, FLXWK_TAX );
-			return $term && ! is_wp_error( $term ) ? ( (array) get_term_meta( $id, '_flxwk_translations', true ) ? array( 'translations' => (array) get_term_meta( $id, '_flxwk_translations', true ) ) : array() ) + array(
+			$translations = get_term_meta( $id, '_flxwk_translations', true );
+			$translations = is_array( $translations ) ? $translations : array();
+			return $term && ! is_wp_error( $term ) ? ( $translations ? array( 'translations' => $translations ) : array() ) + array(
 				'name'        => $term->name,
 				'slug'        => $term->slug,
 				'description' => $term->description,

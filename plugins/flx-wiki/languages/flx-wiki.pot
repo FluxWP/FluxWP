@@ -255,6 +255,9 @@ msgstr ""
 msgid "Flux AI hazır değil."
 msgstr ""
 
+msgid "Bu soruyu yanıtlayan bir rehber bulamadım. Eklenti adını ya da yapmak istediğiniz işlemi yazarak tekrar deneyin."
+msgstr ""
+
 msgid "Cevap alınamadı. Biraz sonra tekrar deneyin."
 msgstr ""
 
@@ -419,6 +422,9 @@ msgstr ""
 msgid "Bu saat için soru sınırına ulaştınız. Biraz sonra tekrar deneyin."
 msgstr ""
 
+msgid "Önceki sorunuz yanıtlanıyor. Biraz sonra tekrar deneyin."
+msgstr ""
+
 msgid "Wiki adresleri"
 msgstr ""
 
@@ -453,6 +459,15 @@ msgstr ""
 msgid "Wiki'de ara…"
 msgstr ""
 
+msgid "Dokümantasyon"
+msgstr ""
+
+msgid "Buradan başlayın"
+msgstr ""
+
+msgid "Rehberleri keşfedin"
+msgstr ""
+
 msgid "Henüz yayımlanmış sayfa yok."
 msgstr ""
 
@@ -466,9 +481,6 @@ msgid "LLM ve AI ajanları için"
 msgstr ""
 
 msgid "Her sayfa adresin sonuna .md eklenerek düz Markdown olarak açılır. Ajanlar dizini llms.txt'den, tüm içeriği tek dosyada llms-full.txt'den okur."
-msgstr ""
-
-msgid "MCP: Flux AI sunucusundaki flxwk_search, flxwk_get_page ve flxwk_list_pages araçlarıyla wiki doğrudan okunur."
 msgstr ""
 
 msgid "Arama"

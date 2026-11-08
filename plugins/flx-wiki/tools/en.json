@@ -183,5 +183,10 @@
 "İlk wiki sayfasını buradan ekleyin.": "Add the first wiki page here.",
 "İçerik": "Content",
 "\"%1$s\" bulunamadı; \"%2$s\" için sonuçlar gösteriliyor.": "No results for \"%1$s\"; showing results for \"%2$s\".",
-"%d sonucun hepsini gör": "See all %d results"
+"%d sonucun hepsini gör": "See all %d results",
+"Dokümantasyon": "Documentation",
+"Buradan başlayın": "Start here",
+"Rehberleri keşfedin": "Explore the guides",
+"Bu soruyu yanıtlayan bir rehber bulamadım. Eklenti adını ya da yapmak istediğiniz işlemi yazarak tekrar deneyin.": "I could not find a guide answering this question. Try again with the plugin name or the task you want to complete.",
+"Önceki sorunuz yanıtlanıyor. Biraz sonra tekrar deneyin.": "Your previous question is still being answered. Please try again shortly."
 }
