@@ -391,6 +391,13 @@
 	}
 
 	/* ---------------- Read-only package previews ---------------- */
+	function previewURL(value) {
+		try {
+			var url = new URL(String(value || ''), location.href);
+			if (url.protocol !== 'https:' || url.username || url.password) { return ''; }
+			return url.href;
+		} catch (error) { return ''; }
+	}
 	var previewDialog, previewTrigger;
 	function makePreview() {
 		if (previewDialog) { return previewDialog; }
@@ -422,13 +429,14 @@
 		dialog.querySelector('.flxu-preview__description').textContent = info.description || L.previewDescription;
 		var website = dialog.querySelector('.flxu-preview__website');
 		website.removeAttribute('href');
-		if (info.website) { website.href = info.website; }
-		dialog.querySelector('.flxu-preview__foot').hidden = !info.website;
+		var websiteURL = previewURL(info.website);
+		if (websiteURL) { website.href = websiteURL; }
+		dialog.querySelector('.flxu-preview__foot').hidden = !websiteURL;
 		var stage = dialog.querySelector('.flxu-preview__stage');
 		var image = dialog.querySelector('.flxu-preview__stage img'), empty = dialog.querySelector('.flxu-preview__empty');
 		var thumbs = dialog.querySelector('.flxu-preview__thumbs');
 		thumbs.replaceChildren();
-		var images = info.images || [], failed = {};
+		var images = (info.images || []).map(previewURL).filter(Boolean), failed = {};
 		function show(index) {
 			stage.classList.remove('is-empty');
 			image.hidden = false; empty.hidden = true;
