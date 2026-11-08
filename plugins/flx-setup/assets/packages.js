@@ -393,7 +393,8 @@
 	/* ---------------- Read-only package previews ---------------- */
 	function previewURL(value) {
 		try {
-			var url = new URL(String(value || ''), location.href);
+			if (typeof value !== 'string') { return ''; }
+			var url = new URL(value);
 			if (url.protocol !== 'https:' || url.username || url.password) { return ''; }
 			return url.href;
 		} catch (error) { return ''; }
