@@ -90,6 +90,7 @@ export function App() {
   useEffect(() => {
     void ready.changeLanguage(locale);
     document.documentElement.lang = locale;
+    document.documentElement.dir = locale === 'ar' ? 'rtl' : 'ltr';
   }, [ready, locale]);
 
   useEffect(() => {

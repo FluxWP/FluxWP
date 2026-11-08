@@ -61,7 +61,7 @@ function flxseo_indexnow_send( $urls, $blocking = false ) {
 	$host = (string) wp_parse_url( home_url(), PHP_URL_HOST );
 	$urls = array_values( array_unique( array_filter( (array) $urls, fn( $u ) => wp_parse_url( $u, PHP_URL_HOST ) === $host ) ) );
 	if ( ! $urls ) {
-		return new WP_Error( 'flxseo_indexnow_empty', __( 'Gönderilecek adres yok.', 'flx-seo' ) );
+		return new WP_Error( 'flxseo_indexnow_empty', __( 'No URLs to submit.', 'flx-seo' ) );
 	}
 	$key = flxseo_indexnow_key();
 	$r   = wp_remote_post(
@@ -88,7 +88,7 @@ function flxseo_indexnow_send( $urls, $blocking = false ) {
 		update_option( 'flxseo_indexnow_last', array( 'time' => time(), 'code' => $code, 'count' => count( $urls ) ), false );
 		if ( $code >= 400 ) {
 			/* translators: %d: HTTP durum kodu */
-			return new WP_Error( 'flxseo_indexnow_http', sprintf( __( 'IndexNow %d döndü.', 'flx-seo' ), $code ) );
+			return new WP_Error( 'flxseo_indexnow_http', sprintf( __( 'IndexNow returned %d.', 'flx-seo' ), $code ) );
 		}
 	}
 	return true;
@@ -204,11 +204,11 @@ add_action(
 	'admin_post_flxseo_indexnow_all',
 	function () {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Yetki yok.', 'flx-seo' ) );
+			wp_die( esc_html__( 'Not allowed.', 'flx-seo' ) );
 		}
 		check_admin_referer( 'flxseo_indexnow_all' );
 		if ( ! flxseo_indexnow_enabled() ) {
-			$msg = array( 'error', __( 'IndexNow kapalı ya da site arama motorlarına kapalı (Ayarlar › Okuma).', 'flx-seo' ) );
+			$msg = array( 'error', __( 'IndexNow is off or the site is hidden from search engines (Settings › Reading).', 'flx-seo' ) );
 		} else {
 			$urls = flxseo_indexnow_all_urls();
 			$r    = flxseo_indexnow_send( $urls, true );
@@ -216,7 +216,7 @@ add_action(
 				update_option( 'flxseo_indexnow_init', time(), false );
 			}
 			/* translators: %d: adres sayısı */
-			$msg = is_wp_error( $r ) ? array( 'error', $r->get_error_message() ) : array( 'success', sprintf( __( '%d adres Bing, Yandex ve diğer IndexNow arama motorlarına bildirildi.', 'flx-seo' ), count( $urls ) ) );
+			$msg = is_wp_error( $r ) ? array( 'error', $r->get_error_message() ) : array( 'success', sprintf( __( '%d URLs submitted to Bing, Yandex and the other IndexNow search engines.', 'flx-seo' ), count( $urls ) ) );
 		}
 		set_transient( 'flxseo_indexnow_msg_' . get_current_user_id(), $msg, 60 );
 		wp_safe_redirect( flxseo_admin_url() . '#indexnow' );

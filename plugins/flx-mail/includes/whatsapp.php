@@ -23,7 +23,7 @@ function flxi_is_wa_type( $type ) {
 function flxi_wa_conn( $id ) {
 	$c = flxi_get_connection( (int) $id );
 	if ( ! $c || 'whatsapp' !== $c['channel'] || ! flxi_is_evo_type( $c['type'] ) ) {
-		return new WP_Error( 'flxi_wa', __( 'WhatsApp bağlantısı bulunamadı.', 'flx-mail' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxi_wa', __( 'WhatsApp connection not found.', 'flx-mail' ), array( 'status' => 404 ) );
 	}
 	return $c;
 }
@@ -35,7 +35,7 @@ function flxi_wa_inst( $c ) {
 /** Sunucu hata gövdesinden okunur metin. */
 function flxi_wa_error( $r ) {
 	if ( $r['error'] ) {
-		return __( 'Sunucuya ulaşılamadı:', 'flx-mail' ) . ' ' . $r['error'];
+		return __( 'Couldn\'t reach the server:', 'flx-mail' ) . ' ' . $r['error'];
 	}
 	$j   = is_array( $r['json'] ) ? $r['json'] : array();
 	$msg = $j['response']['message'] ?? ( $j['message'] ?? ( $j['error'] ?? '' ) );
@@ -43,7 +43,7 @@ function flxi_wa_error( $r ) {
 		$msg = implode( ' ', array_map( 'strval', array_filter( $msg, 'is_scalar' ) ) );
 	}
 	if ( 401 === $r['code'] || 403 === $r['code'] ) {
-		$msg = __( 'API key kabul edilmedi.', 'flx-mail' );
+		$msg = __( 'API key was not accepted.', 'flx-mail' );
 	}
 	return 'HTTP ' . $r['code'] . ( $msg ? ': ' . mb_substr( (string) $msg, 0, 240 ) : '' );
 }
@@ -255,11 +255,11 @@ function flxi_wa_server_get( $id ) {
 		return $c;
 	}
 	if ( 'flxwpapi' !== $c['type'] ) {
-		return new WP_Error( 'flxi_wa', __( 'Sunucu ayarları yalnız Flux WPAPI bağlantısında var.', 'flx-mail' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxi_wa', __( 'Server settings exist only for Flux WPAPI connections.', 'flx-mail' ), array( 'status' => 400 ) );
 	}
 	$r = flxi_evolution_request( $c['config'], '/flxw/server', null, 'GET' );
 	if ( 404 === $r['code'] ) {
-		return new WP_Error( 'flxi_wa', __( 'Bu Flux WPAPI sürümü sunucu ayarlarını WordPress\'ten değiştirmeyi desteklemiyor. Köprüyü güncelleyin.', 'flx-mail' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxi_wa', __( 'This Flux WPAPI version doesn\'t support changing server settings from WordPress. Update the bridge.', 'flx-mail' ), array( 'status' => 400 ) );
 	}
 	if ( ! $r['ok'] ) {
 		return new WP_Error( 'flxi_wa', flxi_wa_error( $r ), array( 'status' => 400 ) );
@@ -276,7 +276,7 @@ function flxi_wa_server_save( $id, array $in ) {
 		return $c;
 	}
 	if ( 'flxwpapi' !== $c['type'] ) {
-		return new WP_Error( 'flxi_wa', __( 'Sunucu ayarları yalnız Flux WPAPI bağlantısında var.', 'flx-mail' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxi_wa', __( 'Server settings exist only for Flux WPAPI connections.', 'flx-mail' ), array( 'status' => 400 ) );
 	}
 	$body = array();
 	if ( isset( $in['publicUrl'] ) ) {
@@ -303,7 +303,7 @@ function flxi_wa_server_save( $id, array $in ) {
 	$test = ! empty( $in['test'] );
 	$r    = flxi_evolution_request( $c['config'], $test ? '/flxw/server/db/test' : '/flxw/server', $test ? array( 'db' => $body['db'] ?? array() ) : $body );
 	if ( 409 === $r['code'] ) {
-		return new WP_Error( 'flxi_wa', __( 'Veritabanı köprünün ortam değişkenlerinden geliyor; buradan değiştirilemez.', 'flx-mail' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxi_wa', __( 'The database comes from the bridge\'s environment variables; it can\'t be changed here.', 'flx-mail' ), array( 'status' => 400 ) );
 	}
 	if ( ! $r['ok'] ) {
 		return new WP_Error( 'flxi_wa', flxi_wa_error( $r ), array( 'status' => 400 ) );

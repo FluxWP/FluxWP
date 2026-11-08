@@ -141,7 +141,7 @@ final class FLXY_DB {
 		global $wpdb;
 		$gz = gzopen( $gz_path, 'ab6' );
 		if ( ! $gz ) {
-			return new WP_Error( 'flxy_gz', __( 'SQL dosyası yazılamadı.', 'flx-backup' ) );
+			return new WP_Error( 'flxy_gz', __( 'Could not write the SQL file.', 'flx-backup' ) );
 		}
 		if ( ! $st['header'] ) {
 			$head  = '-- Flux Backup ' . FLXY_VERSION . " SQL\n";
@@ -174,7 +174,7 @@ final class FLXY_DB {
 				$error = new WP_Error(
 					'flxy_db_read',
 					/* translators: 1: table, 2: database error */
-					sprintf( __( '%1$s tablosu okunamadı: %2$s', 'flx-backup' ), $name, $wpdb->last_error )
+					sprintf( __( 'Could not read table %1$s: %2$s', 'flx-backup' ), $name, $wpdb->last_error )
 				);
 				break;
 			}
@@ -233,7 +233,7 @@ final class FLXY_DB {
 			return new WP_Error(
 				'flxy_db_create',
 				/* translators: 1: table, 2: database error */
-				sprintf( __( '%1$s tablosunun yapısı alınamadı: %2$s', 'flx-backup' ), $name, $wpdb->last_error )
+				sprintf( __( 'Could not get the structure of table %1$s: %2$s', 'flx-backup' ), $name, $wpdb->last_error )
 			);
 		}
 		// MySQL: [Table, Create Table]; SQLite çevirmeni: [Create Table].
@@ -369,7 +369,7 @@ final class FLXY_DB {
 		global $wpdb;
 		$fh = fopen( $sql_path, 'rb' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 		if ( ! $fh ) {
-			return new WP_Error( 'flxy_sql_open', __( 'SQL dosyası açılamadı.', 'flx-backup' ) );
+			return new WP_Error( 'flxy_sql_open', __( 'Could not open the SQL file.', 'flx-backup' ) );
 		}
 		fseek( $fh, (int) $st['offset'] );
 		$suppress = $wpdb->suppress_errors( true );

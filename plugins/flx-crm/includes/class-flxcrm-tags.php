@@ -103,19 +103,19 @@ final class FLXCRM_Tags {
 		$t   = flxcrm_table( 'tags' );
 		$all = self::all();
 		if ( ! isset( $all[ (int) $tag_id ] ) ) {
-			return new WP_Error( 'flxcrm_tag', __( 'Etiket bulunamadı.', 'flx-crm' ) );
+			return new WP_Error( 'flxcrm_tag', __( 'Tag not found.', 'flx-crm' ) );
 		}
 		$upd = array();
 		if ( isset( $d['name'] ) ) {
 			$name = mb_substr( trim( sanitize_text_field( (string) $d['name'] ) ), 0, 100 );
 			if ( '' === $name ) {
-				return new WP_Error( 'flxcrm_tag', __( 'Etiket adı boş olamaz.', 'flx-crm' ) );
+				return new WP_Error( 'flxcrm_tag', __( 'Tag name cannot be empty.', 'flx-crm' ) );
 			}
 			$slug = sanitize_title( $name );
 			$slug = '' !== $slug ? $slug : 't' . substr( md5( $name ), 0, 10 );
 			$dup  = (int) $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $t WHERE slug = %s AND id <> %d", $slug, (int) $tag_id ) ); // phpcs:ignore WordPress.DB
 			if ( $dup ) {
-				return new WP_Error( 'flxcrm_tag', __( 'Bu adla başka bir etiket var.', 'flx-crm' ) );
+				return new WP_Error( 'flxcrm_tag', __( 'Another tag already has this name.', 'flx-crm' ) );
 			}
 			$upd['name'] = $name;
 			$upd['slug'] = $slug;
@@ -123,7 +123,7 @@ final class FLXCRM_Tags {
 		if ( isset( $d['color'] ) ) {
 			$color = sanitize_hex_color( (string) $d['color'] );
 			if ( ! $color ) {
-				return new WP_Error( 'flxcrm_tag', __( 'Renk geçersiz (#16a34a gibi).', 'flx-crm' ) );
+				return new WP_Error( 'flxcrm_tag', __( 'Invalid color (use e.g. #16a34a).', 'flx-crm' ) );
 			}
 			$upd['color'] = $color;
 		}

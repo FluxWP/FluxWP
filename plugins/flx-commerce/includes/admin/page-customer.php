@@ -38,8 +38,8 @@ final class FLXCM_Page_Customer {
 	public static function render( $id = 0, $email = '' ) {
 		$row = $id ? FLXCM_Customers::get( $id ) : FLXCM_Customers::by_email( $email );
 		if ( ! $row ) {
-			FLXCM_Admin::open( __( 'Müşteri bulunamadı', 'flx-commerce' ) );
-			echo '<p><a href="' . esc_url( flxcm_admin_url( 'customers' ) ) . '">' . esc_html__( 'Müşterilere dön', 'flx-commerce' ) . '</a></p>';
+			FLXCM_Admin::open( __( 'Customer not found', 'flx-commerce' ) );
+			echo '<p><a href="' . esc_url( flxcm_admin_url( 'customers' ) ) . '">' . esc_html__( 'Back to customers', 'flx-commerce' ) . '</a></p>';
 			FLXCM_Admin::close();
 			return;
 		}
@@ -92,7 +92,7 @@ final class FLXCM_Page_Customer {
 			array(
 				'context' => 'commerce',
 				'base'    => self::url( $row['id'] ),
-				'back'    => array( flxcm_admin_url( 'customers' ), __( 'Müşteriler', 'flx-commerce' ) ),
+				'back'    => array( flxcm_admin_url( 'customers' ), __( 'Customers', 'flx-commerce' ) ),
 			)
 		);
 		$html = (string) ob_get_clean();
@@ -139,7 +139,7 @@ final class FLXCM_Page_Customer {
 		if ( ! $row ) {
 			return;
 		}
-		echo '<a class="button" href="' . esc_url( self::orders_url( $row['email'] ) ) . '">' . flxcm_icon( 'bag', 15 ) . ' ' . esc_html__( 'Siparişler', 'flx-commerce' ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<a class="button" href="' . esc_url( self::orders_url( $row['email'] ) ) . '">' . flxcm_icon( 'bag', 15 ) . ' ' . esc_html__( 'Orders', 'flx-commerce' ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
 	}
 
 	public static function crm_main( $contact, $context ) {
@@ -148,10 +148,10 @@ final class FLXCM_Page_Customer {
 			return;
 		}
 		$d = self::data( $row );
-		echo '<section class="flxcrm-card flxcm-sec" id="flxcm-orders"><div class="flxcrm-card__head"><h2>' . flxcm_icon( 'bag', 16 ) . ' ' . esc_html__( 'Siparişler', 'flx-commerce' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
-		echo '<a href="' . esc_url( self::orders_url( $row['email'] ) ) . '">' . esc_html__( 'WooCommerce\'te aç', 'flx-commerce' ) . ' ' . flxcm_icon( 'arrow', 13 ) . '</a></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<section class="flxcrm-card flxcm-sec" id="flxcm-orders"><div class="flxcrm-card__head"><h2>' . flxcm_icon( 'bag', 16 ) . ' ' . esc_html__( 'Orders', 'flx-commerce' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<a href="' . esc_url( self::orders_url( $row['email'] ) ) . '">' . esc_html__( 'Open in WooCommerce', 'flx-commerce' ) . ' ' . flxcm_icon( 'arrow', 13 ) . '</a></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		if ( ! $d['orders'] ) {
-			echo '<p class="flxcrm-muted">' . esc_html__( 'Sipariş yok.', 'flx-commerce' ) . '</p></section>';
+			echo '<p class="flxcrm-muted">' . esc_html__( 'No orders.', 'flx-commerce' ) . '</p></section>';
 			return;
 		}
 		echo '<ul class="flxcrm-list">';
@@ -161,7 +161,7 @@ final class FLXCM_Page_Customer {
 		echo '</ul>';
 		if ( count( $d['orders'] ) > 10 ) {
 			/* translators: %s: order count */
-			echo '<p class="flxcrm-muted flxcm-sec__more"><a href="' . esc_url( self::orders_url( $row['email'] ) ) . '">' . esc_html( sprintf( __( 'Tüm siparişler (%s)', 'flx-commerce' ), number_format_i18n( count( $d['orders'] ) ) ) ) . '</a></p>';
+			echo '<p class="flxcrm-muted flxcm-sec__more"><a href="' . esc_url( self::orders_url( $row['email'] ) ) . '">' . esc_html( sprintf( __( 'All orders (%s)', 'flx-commerce' ), number_format_i18n( count( $d['orders'] ) ) ) ) . '</a></p>';
 		}
 		echo '</section>';
 	}
@@ -172,9 +172,9 @@ final class FLXCM_Page_Customer {
 			return;
 		}
 		$d = self::data( $row );
-		echo '<section class="flxcrm-card flxcm-sec"><div class="flxcrm-card__head"><h2>' . flxcm_icon( 'bag', 16 ) . ' ' . esc_html__( 'Mağaza', 'flx-commerce' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<section class="flxcrm-card flxcm-sec"><div class="flxcrm-card__head"><h2>' . flxcm_icon( 'bag', 16 ) . ' ' . esc_html__( 'Store', 'flx-commerce' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		if ( 'commerce' !== $context ) {
-			echo '<a href="' . esc_url( self::url( $row['id'] ) ) . '">' . esc_html__( 'Müşteri sayfası', 'flx-commerce' ) . ' ' . flxcm_icon( 'arrow', 13 ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '<a href="' . esc_url( self::url( $row['id'] ) ) . '">' . esc_html__( 'Customer page', 'flx-commerce' ) . ' ' . flxcm_icon( 'arrow', 13 ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 		echo '</div>';
 		$badges = self::badges( $row, 'flxcrm' );
@@ -197,10 +197,10 @@ final class FLXCM_Page_Customer {
 	/** Zaman tüneli filtreleri: anahtar => ad, türler. */
 	private static function tl_filters() {
 		return array(
-			''       => array( __( 'Tümü', 'flx-commerce' ), array() ),
-			'orders' => array( __( 'Siparişler', 'flx-commerce' ), array( 'order' ) ),
-			'paid'   => array( __( 'Ödemeler', 'flx-commerce' ), array( 'paid', 'refund', 'order_paid' ) ),
-			'notes'  => array( __( 'Notlar', 'flx-commerce' ), array( 'note', 'customer_note' ) ),
+			''       => array( __( 'All', 'flx-commerce' ), array() ),
+			'orders' => array( __( 'Orders', 'flx-commerce' ), array( 'order' ) ),
+			'paid'   => array( __( 'Payments', 'flx-commerce' ), array( 'paid', 'refund', 'order_paid' ) ),
+			'notes'  => array( __( 'Notes', 'flx-commerce' ), array( 'note', 'customer_note' ) ),
 		);
 	}
 
@@ -210,7 +210,7 @@ final class FLXCM_Page_Customer {
 		$can  = current_user_can( FLXCM_Admin::CAP_MANAGE );
 
 		echo '<div class="wrap flxcm flxcm--customer">';
-		echo '<a class="flxcm-back" href="' . esc_url( flxcm_admin_url( 'customers' ) ) . '">' . flxcm_icon( 'back', 15 ) . esc_html__( 'Müşteriler', 'flx-commerce' ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<a class="flxcm-back" href="' . esc_url( flxcm_admin_url( 'customers' ) ) . '">' . flxcm_icon( 'back', 15 ) . esc_html__( 'Customers', 'flx-commerce' ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
 
 		/* Başlık kartı */
 		echo '<header class="flxcm-card flxcm-hero"><span class="flxcm-avatar is-lg" aria-hidden="true">' . esc_html( self::initial( $name ) ) . '</span><div class="flxcm-hero__main">';
@@ -231,44 +231,44 @@ final class FLXCM_Page_Customer {
 		}
 		if ( $row['first_at'] ) {
 			/* translators: %s: date */
-			$bits[] = '<span class="flxcm-muted">' . esc_html( sprintf( __( '%s tarihinden beri müşteri', 'flx-commerce' ), self::date( $row['first_at'] ) ) ) . '</span>';
+			$bits[] = '<span class="flxcm-muted">' . esc_html( sprintf( __( 'Customer since %s', 'flx-commerce' ), self::date( $row['first_at'] ) ) ) . '</span>';
 		}
 		echo '<p class="flxcm-hero__meta">' . implode( '', $bits ) . '</p></div><div class="flxcm-hero__actions">'; // phpcs:ignore WordPress.Security.EscapeOutput
 		if ( $row['phone'] ) {
 			echo '<a class="button" href="' . esc_url( 'https://wa.me/' . flxcm_phone( $row['phone'] ) ) . '" target="_blank" rel="noopener">' . flxcm_icon( 'message', 15 ) . ' ' . esc_html__( 'WhatsApp', 'flx-commerce' ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 		if ( $row['email'] ) {
-			echo '<a class="button" href="' . esc_url( 'mailto:' . $row['email'] ) . '">' . flxcm_icon( 'mail', 15 ) . ' ' . esc_html__( 'E-posta', 'flx-commerce' ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '<a class="button" href="' . esc_url( 'mailto:' . $row['email'] ) . '">' . flxcm_icon( 'mail', 15 ) . ' ' . esc_html__( 'E-mail', 'flx-commerce' ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
-		echo '<a class="button" href="' . esc_url( self::orders_url( $row['email'] ) ) . '">' . flxcm_icon( 'bag', 15 ) . ' ' . esc_html__( 'Siparişler', 'flx-commerce' ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<a class="button" href="' . esc_url( self::orders_url( $row['email'] ) ) . '">' . flxcm_icon( 'bag', 15 ) . ' ' . esc_html__( 'Orders', 'flx-commerce' ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		echo '</div></header>';
 
 		/* Özet */
 		$n   = (int) $row['orders'];
 		$gap = $n >= 2 && $row['first_at'] && $row['last_at'] ? ( strtotime( $row['last_at'] . ' UTC' ) - strtotime( $row['first_at'] . ' UTC' ) ) / DAY_IN_SECONDS / ( $n - 1 ) : 0;
 		echo '<div class="flxcm-kpis flxcm-kpis--6">';
-		FLXCM_Admin::kpi( 'coins', __( 'Toplam harcama', 'flx-commerce' ), $n ? flxcm_money_short( $row['total'] ) : '—' );
-		FLXCM_Admin::kpi( 'bag', __( 'Sipariş', 'flx-commerce' ), number_format_i18n( $n ), null, $d['open'] ? sprintf( /* translators: %s: count */ __( '%s açık sipariş', 'flx-commerce' ), number_format_i18n( $d['open'] ) ) : '' );
-		FLXCM_Admin::kpi( 'receipt', __( 'Ortalama sepet', 'flx-commerce' ), $n ? flxcm_money( (float) $row['total'] / $n ) : '—' );
-		FLXCM_Admin::kpi( 'calendar', __( 'İlk sipariş', 'flx-commerce' ), $row['first_at'] ? self::date( $row['first_at'] ) : '—' );
-		FLXCM_Admin::kpi( 'clock', __( 'Son sipariş', 'flx-commerce' ), $row['last_at'] ? self::ago( $row['last_at'] ) : '—' );
-		FLXCM_Admin::kpi( 'refresh', __( 'Sipariş sıklığı', 'flx-commerce' ), $gap ? sprintf( /* translators: %s: days */ __( '%s günde bir', 'flx-commerce' ), number_format_i18n( max( 1, round( $gap ) ) ) ) : '—' );
+		FLXCM_Admin::kpi( 'coins', __( 'Total spent', 'flx-commerce' ), $n ? flxcm_money_short( $row['total'] ) : '—' );
+		FLXCM_Admin::kpi( 'bag', __( 'Orders', 'flx-commerce' ), number_format_i18n( $n ), null, $d['open'] ? sprintf( /* translators: %s: count */ __( '%s open orders', 'flx-commerce' ), number_format_i18n( $d['open'] ) ) : '' );
+		FLXCM_Admin::kpi( 'receipt', __( 'Average order', 'flx-commerce' ), $n ? flxcm_money( (float) $row['total'] / $n ) : '—' );
+		FLXCM_Admin::kpi( 'calendar', __( 'First order', 'flx-commerce' ), $row['first_at'] ? self::date( $row['first_at'] ) : '—' );
+		FLXCM_Admin::kpi( 'clock', __( 'Last order', 'flx-commerce' ), $row['last_at'] ? self::ago( $row['last_at'] ) : '—' );
+		FLXCM_Admin::kpi( 'refresh', __( 'Order frequency', 'flx-commerce' ), $gap ? sprintf( /* translators: %s: days */ __( 'Every %s days', 'flx-commerce' ), number_format_i18n( max( 1, round( $gap ) ) ) ) : '—' );
 		echo '</div>';
 
 		echo '<div class="flxcm-profile"><div class="flxcm-profile__main">';
 		self::timeline( $row, $d );
 		echo '</div><aside class="flxcm-profile__side">';
 
-		echo '<section class="flxcm-card"><div class="flxcm-card__head"><h2>' . flxcm_icon( 'user', 16 ) . ' ' . esc_html__( 'Bilgiler', 'flx-commerce' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<section class="flxcm-card"><div class="flxcm-card__head"><h2>' . flxcm_icon( 'user', 16 ) . ' ' . esc_html__( 'Details', 'flx-commerce' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		if ( (int) $row['user_id'] && current_user_can( 'edit_user', (int) $row['user_id'] ) ) {
-			echo '<a href="' . esc_url( admin_url( 'user-edit.php?user_id=' . (int) $row['user_id'] ) ) . '">' . esc_html__( 'Üye profili', 'flx-commerce' ) . ' ' . flxcm_icon( 'arrow', 13 ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '<a href="' . esc_url( admin_url( 'user-edit.php?user_id=' . (int) $row['user_id'] ) ) . '">' . esc_html__( 'User profile', 'flx-commerce' ) . ' ' . flxcm_icon( 'arrow', 13 ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 		echo '</div><dl class="flxcm-dl">';
 		$info = array(
-			array( __( 'E-posta', 'flx-commerce' ), $row['email'] ),
-			array( __( 'Telefon', 'flx-commerce' ), $row['phone'] ),
-			array( __( 'Şehir', 'flx-commerce' ), $row['city'] ),
-			array( __( 'Hesap', 'flx-commerce' ), (int) $row['user_id'] ? __( 'Site üyesi', 'flx-commerce' ) : __( 'Misafir', 'flx-commerce' ) ),
+			array( __( 'E-mail', 'flx-commerce' ), $row['email'] ),
+			array( __( 'Phone', 'flx-commerce' ), $row['phone'] ),
+			array( __( 'City', 'flx-commerce' ), $row['city'] ),
+			array( __( 'Account', 'flx-commerce' ), (int) $row['user_id'] ? __( 'Registered member', 'flx-commerce' ) : __( 'Guest', 'flx-commerce' ) ),
 		);
 		foreach ( $info as $s ) {
 			echo '<dt>' . esc_html( $s[0] ) . '</dt><dd>' . esc_html( '' !== (string) $s[1] ? $s[1] : '—' ) . '</dd>';
@@ -295,14 +295,14 @@ final class FLXCM_Page_Customer {
 			)
 		) : $d['events'];
 
-		echo '<section class="flxcm-card" id="timeline"><div class="flxcm-card__head"><h2>' . flxcm_icon( 'clock', 16 ) . ' ' . esc_html__( 'Zaman tüneli', 'flx-commerce' ) . '</h2><nav class="flxcm-seg" aria-label="' . esc_attr__( 'Zaman tüneli filtresi', 'flx-commerce' ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<section class="flxcm-card" id="timeline"><div class="flxcm-card__head"><h2>' . flxcm_icon( 'clock', 16 ) . ' ' . esc_html__( 'Timeline', 'flx-commerce' ) . '</h2><nav class="flxcm-seg" aria-label="' . esc_attr__( 'Timeline filter', 'flx-commerce' ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput
 		foreach ( $filters as $k => $fl ) {
 			$on = $k === $tl;
 			echo '<a class="flxcm-seg__btn' . ( $on ? ' is-on' : '' ) . '" href="' . esc_url( add_query_arg( 'tl', $k, self::url( $row['id'] ) ) . '#timeline' ) . '"' . ( $on ? ' aria-current="true"' : '' ) . '>' . esc_html( $fl[0] ) . '</a>';
 		}
 		echo '</nav></div>';
 		if ( ! $events ) {
-			echo '<p class="flxcm-empty">' . esc_html__( 'Bu filtrede kayıt yok.', 'flx-commerce' ) . '</p></section>';
+			echo '<p class="flxcm-empty">' . esc_html__( 'Nothing in this filter.', 'flx-commerce' ) . '</p></section>';
 			return;
 		}
 		$show  = isset( $_GET['n'] ) ? max( 25, min( 500, absint( $_GET['n'] ) ) ) : 25; // phpcs:ignore WordPress.Security.NonceVerification
@@ -347,7 +347,7 @@ final class FLXCM_Page_Customer {
 				$args['tl'] = $tl;
 			}
 			/* translators: 1: shown, 2: total */
-			echo '<p class="flxcm-tl-more"><a class="button" href="' . esc_url( add_query_arg( $args, self::url( $row['id'] ) ) . '#timeline' ) . '">' . esc_html__( 'Daha eskileri göster', 'flx-commerce' ) . '</a> <span class="flxcm-muted">' . esc_html( sprintf( __( '%1$s / %2$s kayıt', 'flx-commerce' ), number_format_i18n( $show ), number_format_i18n( $total ) ) ) . '</span></p>';
+			echo '<p class="flxcm-tl-more"><a class="button" href="' . esc_url( add_query_arg( $args, self::url( $row['id'] ) ) . '#timeline' ) . '">' . esc_html__( 'Show older', 'flx-commerce' ) . '</a> <span class="flxcm-muted">' . esc_html( sprintf( __( '%1$s of %2$s entries', 'flx-commerce' ), number_format_i18n( $show ), number_format_i18n( $total ) ) ) . '</span></p>';
 		}
 		echo '</section>';
 	}
@@ -397,11 +397,11 @@ final class FLXCM_Page_Customer {
 			$created = $o->get_date_created();
 			if ( $created ) {
 				/* translators: %s: order number */
-				$title    = sprintf( __( 'Sipariş #%s', 'flx-commerce' ), $o->get_order_number() );
+				$title    = sprintf( __( 'Order #%s', 'flx-commerce' ), $o->get_order_number() );
 				$events[] = array(
 					'type'   => 'order',
 					'ts'     => $created->getTimestamp(),
-					'label'  => __( 'Yeni sipariş', 'flx-commerce' ),
+					'label'  => __( 'New order', 'flx-commerce' ),
 					'title'  => $title . ( $items ? ': ' . implode( ', ', array_slice( $items, 0, 3 ) ) . ( count( $items ) > 3 ? '…' : '' ) : '' ),
 					'url'    => $o->get_edit_order_url(),
 					'amount' => flxcm_money( $o->get_total(), $o->get_currency() ),
@@ -416,9 +416,9 @@ final class FLXCM_Page_Customer {
 				$events[] = array(
 					'type'   => 'paid',
 					'ts'     => $pd->getTimestamp(),
-					'label'  => __( 'Ödeme alındı', 'flx-commerce' ),
+					'label'  => __( 'Payment received', 'flx-commerce' ),
 					/* translators: 1: order number, 2: payment method */
-					'title'  => trim( sprintf( __( 'Sipariş #%1$s · %2$s', 'flx-commerce' ), $o->get_order_number(), $o->get_payment_method_title() ), ' ·' ),
+					'title'  => trim( sprintf( __( 'Order #%1$s · %2$s', 'flx-commerce' ), $o->get_order_number(), $o->get_payment_method_title() ), ' ·' ),
 					'url'    => $o->get_edit_order_url(),
 					'amount' => flxcm_money( $o->get_total(), $o->get_currency() ),
 					'badge'  => '',
@@ -441,9 +441,9 @@ final class FLXCM_Page_Customer {
 				$events[] = array(
 					'type'   => 'refund',
 					'ts'     => $rd->getTimestamp(),
-					'label'  => __( 'İade yapıldı', 'flx-commerce' ),
+					'label'  => __( 'Refund issued', 'flx-commerce' ),
 					/* translators: %s: order number */
-					'title'  => sprintf( __( 'Sipariş #%s', 'flx-commerce' ), $o->get_order_number() ),
+					'title'  => sprintf( __( 'Order #%s', 'flx-commerce' ), $o->get_order_number() ),
 					'url'    => $o->get_edit_order_url(),
 					'amount' => '−' . flxcm_money( abs( (float) $rf->get_amount() ), $o->get_currency() ),
 					'badge'  => '',
@@ -468,9 +468,9 @@ final class FLXCM_Page_Customer {
 				$events[] = array(
 					'type'   => $n->customer_note ? 'customer_note' : 'note',
 					'ts'     => $n->date_created ? $n->date_created->getTimestamp() : 0,
-					'label'  => $n->customer_note ? __( 'Müşteriye not', 'flx-commerce' ) : __( 'Sipariş notu', 'flx-commerce' ),
+					'label'  => $n->customer_note ? __( 'Note to customer', 'flx-commerce' ) : __( 'Order note', 'flx-commerce' ),
 					/* translators: 1: order number, 2: author */
-					'title'  => $on ? trim( sprintf( __( 'Sipariş #%1$s · %2$s', 'flx-commerce' ), $on->get_order_number(), 'system' === $n->added_by ? '' : $n->added_by ), ' ·' ) : '',
+					'title'  => $on ? trim( sprintf( __( 'Order #%1$s · %2$s', 'flx-commerce' ), $on->get_order_number(), 'system' === $n->added_by ? '' : $n->added_by ), ' ·' ) : '',
 					'url'    => $on ? $on->get_edit_order_url() : '',
 					'amount' => null,
 					'badge'  => '',
@@ -515,7 +515,7 @@ final class FLXCM_Page_Customer {
 		}
 		$date = $o->get_date_created() ? flxcm_date( $o->get_date_created()->getTimestamp() ) : '';
 		/* translators: %s: order number */
-		echo '<li><a href="' . esc_url( $o->get_edit_order_url() ) . '"><span class="' . esc_attr( $ns ) . '-list__main"><strong>' . esc_html( sprintf( __( 'Sipariş #%s', 'flx-commerce' ), $o->get_order_number() ) ) . '</strong>';
+		echo '<li><a href="' . esc_url( $o->get_edit_order_url() ) . '"><span class="' . esc_attr( $ns ) . '-list__main"><strong>' . esc_html( sprintf( __( 'Order #%s', 'flx-commerce' ), $o->get_order_number() ) ) . '</strong>';
 		echo '<small>' . esc_html( trim( $date . ( $items ? ' · ' . implode( ', ', array_slice( $items, 0, 2 ) ) . ( count( $items ) > 2 ? '…' : '' ) : '' ), ' ·' ) ) . '</small></span>';
 		echo '<span class="' . esc_attr( $ns ) . '-list__side"><strong>' . esc_html( flxcm_money( $o->get_total(), $o->get_currency() ) ) . '</strong>' . self::status_badge( $o->get_status(), $ns ) . '</span></a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput
 	}
@@ -525,26 +525,26 @@ final class FLXCM_Page_Customer {
 			return;
 		}
 		$allowed = array( 'br' => array() );
-		echo '<section class="' . esc_attr( $ns ) . '-card flxcm-sec"><div class="' . esc_attr( $ns ) . '-card__head"><h2>' . flxcm_icon( 'pin', 16 ) . ' ' . esc_html__( 'Adresler', 'flx-commerce' ) . '</h2></div><div class="flxcm-addr">'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<section class="' . esc_attr( $ns ) . '-card flxcm-sec"><div class="' . esc_attr( $ns ) . '-card__head"><h2>' . flxcm_icon( 'pin', 16 ) . ' ' . esc_html__( 'Addresses', 'flx-commerce' ) . '</h2></div><div class="flxcm-addr">'; // phpcs:ignore WordPress.Security.EscapeOutput
 		if ( '' !== $d['billing'] ) {
-			echo '<div><h3>' . esc_html( $d['same'] ? __( 'Fatura ve teslimat', 'flx-commerce' ) : __( 'Fatura', 'flx-commerce' ) ) . '</h3><address>' . wp_kses( $d['billing'], $allowed ) . '</address></div>';
+			echo '<div><h3>' . esc_html( $d['same'] ? __( 'Billing and shipping', 'flx-commerce' ) : __( 'Billing', 'flx-commerce' ) ) . '</h3><address>' . wp_kses( $d['billing'], $allowed ) . '</address></div>';
 		}
 		if ( '' !== $d['shipping'] ) {
-			echo '<div><h3>' . esc_html__( 'Teslimat', 'flx-commerce' ) . '</h3><address>' . wp_kses( $d['shipping'], $allowed ) . '</address></div>';
+			echo '<div><h3>' . esc_html__( 'Shipping', 'flx-commerce' ) . '</h3><address>' . wp_kses( $d['shipping'], $allowed ) . '</address></div>';
 		}
-		echo '</div><p class="' . esc_attr( $ns ) . '-muted flxcm-addr__src">' . esc_html__( 'Son siparişten', 'flx-commerce' ) . '</p></section>';
+		echo '</div><p class="' . esc_attr( $ns ) . '-muted flxcm-addr__src">' . esc_html__( 'From the latest order', 'flx-commerce' ) . '</p></section>';
 	}
 
 	private static function products_card( array $d, $ns ) {
 		if ( ! $d['products'] ) {
 			return;
 		}
-		echo '<section class="' . esc_attr( $ns ) . '-card flxcm-sec"><div class="' . esc_attr( $ns ) . '-card__head"><h2>' . flxcm_icon( 'box', 16 ) . ' ' . esc_html__( 'Sık aldığı ürünler', 'flx-commerce' ) . '</h2></div><ul class="' . esc_attr( $ns ) . '-list">'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<section class="' . esc_attr( $ns ) . '-card flxcm-sec"><div class="' . esc_attr( $ns ) . '-card__head"><h2>' . flxcm_icon( 'box', 16 ) . ' ' . esc_html__( 'Frequently bought', 'flx-commerce' ) . '</h2></div><ul class="' . esc_attr( $ns ) . '-list">'; // phpcs:ignore WordPress.Security.EscapeOutput
 		foreach ( $d['products'] as $p ) {
 			$url   = $p['id'] && current_user_can( 'edit_post', $p['id'] ) ? get_edit_post_link( $p['id'], 'raw' ) : '';
 			$inner = '<span class="' . esc_attr( $ns ) . '-list__main"><strong>' . esc_html( $p['name'] ) . '</strong>' .
 				/* translators: %s: quantity */
-				'<small>' . esc_html( sprintf( _n( '%s adet', '%s adet', $p['qty'], 'flx-commerce' ), number_format_i18n( $p['qty'] ) ) ) . '</small></span><span class="' . esc_attr( $ns ) . '-list__side">' . esc_html( flxcm_money( $p['total'] ) ) . '</span>';
+				'<small>' . esc_html( sprintf( _n( '%s pc', '%s pcs', $p['qty'], 'flx-commerce' ), number_format_i18n( $p['qty'] ) ) ) . '</small></span><span class="' . esc_attr( $ns ) . '-list__side">' . esc_html( flxcm_money( $p['total'] ) ) . '</span>';
 			echo $url ? '<li><a href="' . esc_url( $url ) . '">' . $inner . '</a></li>' : '<li><span class="flxcm-li">' . $inner . '</span></li>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 		echo '</ul></section>';
@@ -554,30 +554,30 @@ final class FLXCM_Page_Customer {
 		$note = (string) $row['note'];
 		if ( ! $editable ) {
 			if ( '' !== $note ) {
-				echo '<div class="flxcm-note"><span class="flxcm-note__label">' . esc_html__( 'Mağaza notu', 'flx-commerce' ) . '</span><p>' . esc_html( $note ) . '</p></div>';
+				echo '<div class="flxcm-note"><span class="flxcm-note__label">' . esc_html__( 'Store note', 'flx-commerce' ) . '</span><p>' . esc_html( $note ) . '</p></div>';
 			}
 			return;
 		}
-		echo '<div class="flxcm-note"><label class="flxcm-note__label" for="flxcm-note-' . (int) $row['id'] . '">' . esc_html__( 'Mağaza notu', 'flx-commerce' ) . '</label>';
-		echo '<textarea id="flxcm-note-' . (int) $row['id'] . '" class="flxcm-note-area" rows="2" data-flxcm-note="' . (int) $row['id'] . '" placeholder="' . esc_attr__( 'Ör. hediye paketi ister, kapıda teslim…', 'flx-commerce' ) . '">' . esc_textarea( $note ) . '</textarea>';
-		echo '<small class="flxcm-muted">' . esc_html__( 'Alandan çıkınca kaydedilir.', 'flx-commerce' ) . '</small></div>';
+		echo '<div class="flxcm-note"><label class="flxcm-note__label" for="flxcm-note-' . (int) $row['id'] . '">' . esc_html__( 'Store note', 'flx-commerce' ) . '</label>';
+		echo '<textarea id="flxcm-note-' . (int) $row['id'] . '" class="flxcm-note-area" rows="2" data-flxcm-note="' . (int) $row['id'] . '" placeholder="' . esc_attr__( 'E.g. wants gift wrapping, leave at the door…', 'flx-commerce' ) . '">' . esc_textarea( $note ) . '</textarea>';
+		echo '<small class="flxcm-muted">' . esc_html__( 'Saved when you leave the field.', 'flx-commerce' ) . '</small></div>';
 	}
 
 	/** Mağaza özeti satırları (kişi kartı yan sütunu). */
 	private static function summary( array $row ) {
 		$n   = (int) $row['orders'];
 		$out = array(
-			array( __( 'Sipariş', 'flx-commerce' ), number_format_i18n( $n ) ),
-			array( __( 'Toplam harcama', 'flx-commerce' ), flxcm_money( $row['total'] ) ),
+			array( __( 'Orders', 'flx-commerce' ), number_format_i18n( $n ) ),
+			array( __( 'Total spent', 'flx-commerce' ), flxcm_money( $row['total'] ) ),
 		);
 		if ( $n ) {
-			$out[] = array( __( 'Ortalama sepet', 'flx-commerce' ), flxcm_money( (float) $row['total'] / $n ) );
+			$out[] = array( __( 'Average order', 'flx-commerce' ), flxcm_money( (float) $row['total'] / $n ) );
 		}
 		if ( $row['first_at'] ) {
-			$out[] = array( __( 'İlk sipariş', 'flx-commerce' ), self::date( $row['first_at'] ) );
+			$out[] = array( __( 'First order', 'flx-commerce' ), self::date( $row['first_at'] ) );
 		}
 		if ( $row['last_at'] ) {
-			$out[] = array( __( 'Son sipariş', 'flx-commerce' ), self::ago( $row['last_at'] ) );
+			$out[] = array( __( 'Last order', 'flx-commerce' ), self::ago( $row['last_at'] ) );
 		}
 		return $out;
 	}
@@ -585,16 +585,16 @@ final class FLXCM_Page_Customer {
 	private static function badges( array $row, $ns ) {
 		$out = '';
 		if ( (int) $row['user_id'] ) {
-			$out .= '<span class="' . esc_attr( $ns ) . '-badge">' . esc_html__( 'Üye', 'flx-commerce' ) . '</span>';
+			$out .= '<span class="' . esc_attr( $ns ) . '-badge">' . esc_html__( 'Member', 'flx-commerce' ) . '</span>';
 		}
 		if ( (int) $row['orders'] >= 2 ) {
-			$out .= '<span class="' . esc_attr( $ns ) . '-badge is-ok">' . esc_html__( 'Tekrar alan', 'flx-commerce' ) . '</span>';
+			$out .= '<span class="' . esc_attr( $ns ) . '-badge is-ok">' . esc_html__( 'Repeat buyers', 'flx-commerce' ) . '</span>';
 		}
 		if ( (int) $row['orders'] && (float) $row['total'] >= FLXCM_Customers::vip_threshold() ) {
-			$out .= '<span class="' . esc_attr( $ns ) . '-badge is-vip">' . esc_html__( 'En çok harcayan %10', 'flx-commerce' ) . '</span>';
+			$out .= '<span class="' . esc_attr( $ns ) . '-badge is-vip">' . esc_html__( 'Top 10% spenders', 'flx-commerce' ) . '</span>';
 		}
 		if ( $row['last_at'] && strtotime( $row['last_at'] . ' UTC' ) < time() - 90 * DAY_IN_SECONDS ) {
-			$out .= '<span class="' . esc_attr( $ns ) . '-badge ' . ( 'flxcrm' === $ns ? 'is-warn' : 'is-wait' ) . '">' . esc_html__( 'Uzaklaşan', 'flx-commerce' ) . '</span>';
+			$out .= '<span class="' . esc_attr( $ns ) . '-badge ' . ( 'flxcrm' === $ns ? 'is-warn' : 'is-wait' ) . '">' . esc_html__( 'Lapsed', 'flx-commerce' ) . '</span>';
 		}
 		return $out;
 	}

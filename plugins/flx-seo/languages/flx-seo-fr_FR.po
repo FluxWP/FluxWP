@@ -1,0 +1,1211 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: fr_FR\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Pages"
+msgstr "Pages"
+
+msgid "Recent posts"
+msgstr "Articles récents"
+
+msgid "Products"
+msgstr "Produits"
+
+msgid "Optional"
+msgstr "Facultatif"
+
+msgid "Sitemap"
+msgstr "Plan du site"
+
+msgid "List of all public pages"
+msgstr "Liste de toutes les pages publiques"
+
+msgid "RSS feed"
+msgstr "Flux RSS"
+
+msgid "Searches the site and opens the results page."
+msgstr "Recherche sur le site et ouvre la page de résultats."
+
+msgid "Words to search for"
+msgstr "Mots à rechercher"
+
+msgid "Unknown fix."
+msgstr "Correctif inconnu."
+
+msgid "Turn on llms.txt"
+msgstr "Activez llms.txt"
+
+msgid "Flux SEO builds /llms.txt from the site name, description, menu and recent content."
+msgstr "Flux SEO construit /llms.txt à partir du nom du site, de la description, du menu et du contenu récent."
+
+msgid "Turn on the WebMCP search tool"
+msgstr "Activez l'outil de recherche WebMCP"
+
+msgid "Adds toolname/tooldescription to the search form so browser agents see it as a tool."
+msgstr "Adds toolname/tooldescription to the search form so browser agents see it as a tool."
+
+msgid "Turn on security headers"
+msgstr "Activer les en-têtes de sécurité"
+
+msgid "X-Frame-Options: SAMEORIGIN, COOP same-origin-allow-popups and a basic CSP (object-src 'none'; base-uri 'self'; frame-ancestors 'self'). Do not turn on if the site is embedded in other sites with an iframe."
+msgstr "X-Frame-Options : SAMEORIGIN, COOP de même origine-autoriser-popups et un CSP de base (objet-src 'aucun' ; base-uri 'self' ; frame-ancestors 'self'). Ne l'activez pas si le site est intégré à d'autres sites avec une iframe."
+
+msgid "HSTS includeSubDomains"
+msgstr "HSTS inclut des sous-domaines"
+
+msgid "If every subdomain is HTTPS, HSTS also covers subdomains."
+msgstr "Si chaque sous-domaine est HTTPS, HSTS couvre également les sous-domaines."
+
+msgid "Turned on. Run the site audit again."
+msgstr "Allumé. Exécutez à nouveau l’audit du site."
+
+msgid "General"
+msgstr "Général"
+
+msgid "Organization and social"
+msgstr "Organisationnel et social"
+
+msgid "SEO check"
+msgstr "Vérification SEO"
+
+msgid "Site audit"
+msgstr "Audit de chantier"
+
+msgid "AI (MCP)"
+msgstr "IA (MCP)"
+
+msgid "llms.txt follows recommendations"
+msgstr "llms.txt suit les recommandations"
+
+msgid "Accessibility tree is well-formed"
+msgstr "L'arbre d'accessibilité est bien formé"
+
+msgid "Forms are WebMCP tools"
+msgstr "Les formulaires sont des outils WebMCP"
+
+msgid "Low layout shift (CLS)"
+msgstr "Faible décalage de mise en page (CLS)"
+
+msgid "On-site"
+msgstr "Sur place"
+
+msgid "PageSpeed mobile"
+msgstr "PageSpeed mobile"
+
+msgid "PageSpeed desktop"
+msgstr "Bureau PageSpeed"
+
+msgid "The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key and runs by itself every day; a PageSpeed run adds Google's real Lighthouse result."
+msgstr "Les cinq sections PageSpeed Insights (Performance, Accessibilité, Meilleures pratiques, SEO, Navigation agentique) par priorité. L'audit sur site ne nécessite aucune clé et s'exécute automatiquement tous les jours ; une exécution de PageSpeed ​​ajoute le véritable résultat Lighthouse de Google."
+
+msgid "On-site audit: %1$s · %2$s"
+msgstr "Audit sur site :%1$s·%2$s"
+
+msgid "No audit has run yet."
+msgstr "Aucun audit n'a encore été réalisé."
+
+msgid "Address to audit"
+msgstr "Adresse à auditer"
+
+msgid "On-site audit"
+msgstr "Audit sur site"
+
+msgid "Measure with PageSpeed"
+msgstr "Mesurer avec PageSpeed"
+
+msgid "Mobile"
+msgstr "Mobile"
+
+msgid "Desktop"
+msgstr "Bureau"
+
+msgid "No PageSpeed run yet. Press \"Measure with PageSpeed\" (mobile + desktop takes about 1 minute)."
+msgstr "Aucune exécution de PageSpeed pour l'instant. Appuyez sur « Mesurer avec PageSpeed ​​» (mobile + ordinateur prend environ 1 minute)."
+
+msgid "Agentic browsing"
+msgstr "Navigation agent"
+
+msgid "MCP server on"
+msgstr "Serveur MCP activé"
+
+msgid "MCP server off"
+msgstr "Serveur MCP éteint"
+
+msgid "Recommendations"
+msgstr "Recommandations"
+
+msgid "Filter by priority"
+msgstr "Filtrer par priorité"
+
+msgid "All"
+msgstr "Tout"
+
+msgid "Section"
+msgstr "Section"
+
+msgid "All sections"
+msgstr "Toutes les rubriques"
+
+msgid "Start the audit; recommendations are listed here by priority."
+msgstr "Démarrer l'audit ; les recommandations sont répertoriées ici par priorité."
+
+msgid "No recommendations. All good."
+msgstr "Aucune recommandation. Tout va bien."
+
+msgid "How to fix:"
+msgstr "Comment réparer :"
+
+msgid "Where to fix: %s"
+msgstr "Où réparer :%s"
+
+msgid "Fix"
+msgstr "Corriger"
+
+msgid "Settings"
+msgstr "Paramètres"
+
+msgid "PageSpeed Insights API key"
+msgstr "Clé API PageSpeed Insights"
+
+msgid "Saved (type to replace)"
+msgstr "Enregistré (type à remplacer)"
+
+msgid "Delete key"
+msgstr "Supprimer la clé"
+
+msgid "Optional but recommended: the keyless quota is shared and runs out quickly. In Google Cloud Console › APIs, enable \"PageSpeed Insights API\" and create a free key."
+msgstr "Facultatif mais recommandé : le quota sans clé est partagé et s'épuise rapidement. Dans Google Cloud Console › API, activez « API PageSpeed ​​Insights » et créez une clé gratuite."
+
+msgid "Generate /llms.txt (site name, description, menu pages, recent content)"
+msgstr "Générer /llms.txt (nom du site, description, pages de menu, contenu récent)"
+
+msgid "llms.txt intro text (optional)"
+msgstr "Texte d'introduction llms.txt (facultatif)"
+
+msgid "E.g. who your organization is, what it does, which pages agents should read first."
+msgstr "Par ex. qui est votre organisation, ce qu'elle fait, quelles pages les agents doivent lire en premier."
+
+msgid "WebMCP: expose the search form to browser agents as a tool"
+msgstr "WebMCP : exposer le formulaire de recherche aux agents du navigateur en tant qu'outil"
+
+msgid "Security headers"
+msgstr "En-têtes de sécurité"
+
+msgid "Clickjacking protection (X-Frame-Options: SAMEORIGIN, frame-ancestors 'self')"
+msgstr "Protection contre le détournement de clic (X-Frame-Options : SAMEORIGIN, frame-ancetors 'self')"
+
+msgid "Origin isolation (Cross-Origin-Opener-Policy: same-origin-allow-popups)"
+msgstr "Isolement de l'origine (Cross-Origin-Opener-Policy : même-origine-autoriser-popups)"
+
+msgid "Basic CSP (object-src 'none'; base-uri 'self'; upgrade-insecure-requests)"
+msgstr "CSP de base (object-src 'aucun'; base-uri 'self'; mises à niveau-insecure-requests)"
+
+msgid "HSTS covers subdomains (includeSubDomains)"
+msgstr "HSTS couvre les sous-domaines (includeSubDomains)"
+
+msgid "HSTS preload (takes months to undo; every subdomain must be HTTPS)"
+msgstr "Préchargement HSTS (l'annulation prend des mois ; chaque sous-domaine doit être HTTPS)"
+
+msgid "Save"
+msgstr "Enregistrer"
+
+msgid "New site build guide"
+msgstr "Guide de création d'un nouveau site"
+
+msgid "Rules and a checklist for SEO, performance, accessibility, security and agent readiness when you build a new page, theme or preset. AI agents get the same guide with the MCP tool flxseo_site_build_guide, and Flux AI chat gets it as a tool."
+msgstr "Règles et liste de contrôle pour le référencement, les performances, l'accessibilité, la sécurité et la préparation des agents lorsque vous créez une nouvelle page, un nouveau thème ou un nouveau préréglage. Les agents IA reçoivent le même guide avec l'outil MCP flxseo_site_build_guide, et le chat Flux AI l'obtient en tant qu'outil."
+
+msgid "Download Turkish (.md)"
+msgstr "Télécharger le turc (.md)"
+
+msgid "Download English (.md)"
+msgstr "Télécharger l'anglais (.md)"
+
+msgid "On-site audit running…"
+msgstr "Audit sur site en cours..."
+
+msgid "Measuring PageSpeed mobile (30–40 s)…"
+msgstr "Mesurer PageSpeed mobile (30 à 40 s)..."
+
+msgid "Measuring PageSpeed desktop…"
+msgstr "Mesurer PageSpeed sur le bureau..."
+
+msgid "Done, reloading…"
+msgstr "Terminé, rechargement..."
+
+msgid "Failed:"
+msgstr "Échec :"
+
+msgid "You do not have permission."
+msgstr "Vous n'avez pas l'autorisation."
+
+msgid "Saved."
+msgstr "Enregistré."
+
+msgid "Turned on and the audit was refreshed. If a page cache (LiteSpeed) is on, run Purge All."
+msgstr "Allumé et l'audit a été actualisé. Si un cache de pages (LiteSpeed) est activé, exécutez Purge All."
+
+msgid "Critical"
+msgstr "Critique"
+
+msgid "High"
+msgstr "Élevé"
+
+msgid "Medium"
+msgstr "Moyen"
+
+msgid "Low"
+msgstr "Faible"
+
+msgid "Performance"
+msgstr "Performances"
+
+msgid "Accessibility"
+msgstr "Accessibilité"
+
+msgid "Best practices"
+msgstr "Meilleures pratiques"
+
+msgid "SEO"
+msgstr "Référencement"
+
+msgid "Theme / preset"
+msgstr "Thème/préréglage"
+
+msgid "Content"
+msgstr "Contenu"
+
+msgid "Server"
+msgstr "Serveur"
+
+msgid "Flux SEO (one click)"
+msgstr "Flux SEO (un clic)"
+
+msgid "WordPress setting"
+msgstr "Paramètres WordPress"
+
+msgid "Home page does not return a successful status code"
+msgstr "La page d'accueil ne renvoie pas de code d'état réussi"
+
+msgid "The page must return 200. It may be maintenance mode, a redirect loop or a PHP error; check System Check and the error log."
+msgstr "La page doit renvoyer 200. Il peut s'agir d'un mode maintenance, d'une boucle de redirection ou d'une erreur PHP ; vérifiez la vérification du système et le journal des erreurs."
+
+msgid "Page is blocked from search engines"
+msgstr "La page est bloquée des moteurs de recherche"
+
+msgid "Untick Settings › Reading › \"Discourage search engines from indexing this site\" and turn off noindex in the page's own SEO panel."
+msgstr "Décochez Paramètres › Lecture › « Dissuader les moteurs de recherche d'indexer ce site » et désactivez noindex dans le panneau SEO de la page."
+
+msgid "robots.txt blocks the whole site"
+msgstr "robots.txt bloque tout le site"
+
+msgid "The robots.txt file in the site root must not have \"Disallow: /\" under \"User-agent: *\". Delete or fix the file; WordPress generates its own robots.txt."
+msgstr "Le fichier robots.txt à la racine du site ne doit pas contenir « Disallow : / » sous « User-agent : * ». Supprimez ou corrigez le fichier ; WordPress génère son propre robots.txt."
+
+msgid "Page has no <title>"
+msgstr "La page n'a pas de<title>"
+
+msgid "The theme must declare add_theme_support( 'title-tag' ); fill in the home title in SEO › General."
+msgstr "Le thème doit déclarer add_theme_support( 'title-tag' ); remplissez le titre de la maison dans SEO › Général."
+
+msgid "Page title is long"
+msgstr "Le titre de la page est long"
+
+msgid "Keep the title around 60 characters; Google cuts the rest."
+msgstr "Gardez le titre autour de 60 caractères ; Google coupe le reste."
+
+msgid "No meta description"
+msgstr "Pas de méta description"
+
+msgid "Turn on SEO output and write the home description (150–160 characters)."
+msgstr "Activez la sortie SEO et rédigez la description de la maison (150 à 160 caractères)."
+
+msgid "Canonical link missing or duplicated"
+msgstr "Canonical link missing or duplicated"
+
+msgid "Each page needs exactly one rel=canonical. If another plugin or the theme also adds one, turn one off."
+msgstr "Chaque page a besoin d’exactement un rel=canonical. Si un autre plugin ou le thème en ajoute également un, désactivez-en un."
+
+msgid "No hreflang on a multilingual site"
+msgstr "Pas de hreflang sur un site multilingue"
+
+msgid "With Flux Lang active, language versions must be linked with hreflang; check the language pairs in Flux Lang settings."
+msgstr "Avec Flux Lang actif, les versions linguistiques doivent être liées avec hreflang ; vérifiez les paires de langues dans les paramètres Flux Lang."
+
+msgid "Main heading (H1) missing or repeated"
+msgstr "Titre principal (H1) manquant ou répété"
+
+msgid "Each page needs one H1 that names the topic; subheadings are H2/H3."
+msgstr "Chaque page a besoin d'un H1 qui nomme le sujet ; les sous-titres sont H2/H3."
+
+msgid "Structured data (JSON-LD) missing or broken"
+msgstr "Données structurées (JSON-LD) manquantes ou cassées"
+
+msgid "With Flux SEO output on, Organization, WebSite and Breadcrumb schema are added. Find the block or plugin that outputs broken JSON-LD."
+msgstr "Avec la sortie Flux SEO activée, les schémas Organisation, Site Web et Fil d'Ariane sont ajoutés. Recherchez le bloc ou le plugin qui génère un JSON-LD cassé."
+
+msgid "Link texts are not descriptive"
+msgstr "Les textes des liens ne sont pas descriptifs"
+
+msgid "Write text that names the target instead of \"click here\", \"more\", \"here\" (e.g. \"See donation options\")."
+msgstr "Écrivez un texte qui nomme la cible au lieu de « cliquez ici », « plus », « ici » (par exemple « Voir les options de don »)."
+
+msgid "More than one post with the same title"
+msgstr "Plus d'un article avec le même titre"
+
+msgid "Delete the duplicate (usually the address ending in -2) or redirect it to the original; give different titles if both are needed. When links with the same text go to different addresses, the \"Identical links have the same purpose\" audit also fails."
+msgstr "Supprimez le doublon (généralement l'adresse se terminant par -2) ou redirigez-le vers l'original ; donnez des titres différents si les deux sont nécessaires. Lorsque des liens avec le même texte pointent vers des adresses différentes, l'audit « Les liens identiques ont le même objectif » échoue également."
+
+msgid "WordPress version is visible on the page"
+msgstr "La version WordPress est visible sur la page"
+
+msgid "The meta generator tag reveals the version. The theme should call remove_action( 'wp_head', 'wp_generator' ); Flux SEO removes it when security headers are on."
+msgstr "La balise méta générateur révèle la version. Le thème doit appeler remove_action( 'wp_head', 'wp_generator' ); Flux SEO le supprime lorsque les en-têtes de sécurité sont activés."
+
+msgid "Zoom is blocked (user-scalable=no / maximum-scale)"
+msgstr "Le zoom est bloqué (user-scalable=no / maximum-scale)"
+
+msgid "Remove user-scalable=no and maximum-scale=1 from the viewport tag: <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\">. Users with low vision cannot zoom; the Accessibility score drops directly."
+msgstr "Supprimez user-scalable=no et maximum-scale=1 de la balise viewport :<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\">. Les utilisateurs malvoyants ne peuvent pas zoomer ; le score d’accessibilité chute directement."
+
+msgid "No viewport tag"
+msgstr "Aucune balise de fenêtre"
+
+msgid "The theme must add <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> to <head>; otherwise the page opens at desktop width on mobile."
+msgstr "Le thème doit ajouter<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">à<head>; sinon, la page s'ouvre à la largeur du bureau sur mobile."
+
+msgid "ARIA role is missing required children"
+msgstr "Il manque des enfants requis dans le rôle ARIA"
+
+msgid "E.g. role=\"tablist\" may only contain role=\"tab\" elements. Use <div role=\"tablist\"><button role=\"tab\"> instead of <ol role=\"tablist\"><li><button role=\"tab\">, or give the li elements role=\"presentation\". The accessibility tree breaks and Lighthouse also lowers the Agentic Browsing score."
+msgstr "Par ex. role=\"tablist\" ne peut contenir que des éléments role=\"tab\". Utilisez<div role=\"tablist\"><button role=\"tab\">au lieu de<ol role=\"tablist\"><li><button role=\"tab\">, ou donnez aux éléments li role=\"presentation\". L'arbre d'accessibilité se brise et Lighthouse abaisse également le score de navigation agent."
+
+msgid "ARIA role is not inside its required parent"
+msgstr "Le rôle ARIA n'est pas à l'intérieur de son parent requis"
+
+msgid "role=\"tab\" must sit directly inside role=\"tablist\", role=\"option\" inside role=\"listbox\". Remove the li/div elements in between or give them role=\"presentation\"."
+msgstr "role=\"tab\" doit se trouver directement à l'intérieur de role=\"tablist\", role=\"option\" à l'intérieur de role=\"listbox\". Supprimez les éléments li/div entre les deux ou attribuez-leur role=\"presentation\"."
+
+msgid "List items (<li>) are not inside a list"
+msgstr "Les éléments de liste (<li>) ne se trouvent pas dans une liste"
+
+msgid "<li> may only sit inside <ul>, <ol> or <menu>, and the parent list must not get a non-list role (e.g. <ol role=\"tablist\">)."
+msgstr "<li>ne peut se trouver qu'à l'intérieur de<ul>,<ol>ou<menu>, et la liste parent ne doit pas avoir de rôle hors liste (par exemple<ol role=\"tablist\">)."
+
+msgid "Images without alt text"
+msgstr "Images sans texte alternatif"
+
+msgid "Give every meaningful image alt text that describes it; decorative images get alt=\"\". Fill in alt text in the media library or turn on SEO › General › Images."
+msgstr "Donnez à chaque image significative un texte alternatif qui la décrit ; les images décoratives obtiennent alt=\"\". Remplissez le texte alternatif dans la médiathèque ou activez SEO > Général > Images."
+
+msgid "Links without a name"
+msgstr "Liens sans nom"
+
+msgid "Add aria-label or hidden text (screen-reader-text) to icon-only links."
+msgstr "Ajoutez une étiquette aria ou du texte masqué (texte de lecteur d'écran) aux liens contenant uniquement des icônes."
+
+msgid "Buttons without a name"
+msgstr "Boutons sans nom"
+
+msgid "Give icon buttons an aria-label (e.g. \"Open menu\"). Agents and screen readers cannot tell what the button does."
+msgstr "Donnez aux boutons d'icônes une étiquette aria (par exemple \"Ouvrir le menu\"). Les agents et les lecteurs d'écran ne peuvent pas savoir ce que fait le bouton."
+
+msgid "Form fields without a label"
+msgstr "Champs de formulaire sans étiquette"
+
+msgid "Each field needs a name through <label for> or aria-label; a placeholder is not a label."
+msgstr "Chaque champ nécessite un nom via<label for>ou aria-label ; un espace réservé n'est pas une étiquette."
+
+msgid "<html> has no lang attribute"
+msgstr "<html>n'a pas d'attribut lang"
+
+msgid "The theme should use <html <?php language_attributes(); ?>>."
+msgstr "Le thème doit utiliser<html <?php language_attributes(); ?>>."
+
+msgid "Duplicate or missing id references"
+msgstr "Références d'identification en double ou manquantes"
+
+msgid "No id may be used twice; aria-controls, aria-labelledby and label for must point to an existing id."
+msgstr "Aucune pièce d'identité ne peut être utilisée deux fois ; aria-controls, aria-labelledby et label for doivent pointer vers un identifiant existant."
+
+msgid "Heading levels skip"
+msgstr "Saut des niveaux de titre"
+
+msgid "Headings should step down in order (H2 → H3); do not skip levels for looks, size them with CSS."
+msgstr "Les titres doivent descendre dans l'ordre (H2 → H3) ; ne sautez pas les niveaux pour l'apparence, dimensionnez-les avec CSS."
+
+msgid "tabindex greater than 0"
+msgstr "tabindex supérieur à 0"
+
+msgid "Values like tabindex=\"1\" break keyboard order; use 0 or -1."
+msgstr "Des valeurs telles que tabindex=\"1\" rompent l'ordre du clavier ; utilisez 0 ou -1."
+
+msgid "Links with the same text go to different addresses"
+msgstr "Les liens avec le même texte mènent à des adresses différentes"
+
+msgid "Links with the same name should go to the same page. Remove the duplicate page or make the link texts different."
+msgstr "Les liens portant le même nom doivent pointer vers la même page. Supprimez la page en double ou modifiez les textes des liens."
+
+msgid "iframe without a title"
+msgstr "iframe sans titre"
+
+msgid "Every <iframe> needs a title (e.g. \"Location map\")."
+msgstr "Chaque<iframe>a besoin d'un titre (par exemple \"Carte de localisation\")."
+
+msgid "No <main> landmark on the page"
+msgstr "Aucun repère<main>sur la page"
+
+msgid "Main content must be inside <main>; screen readers and agents find the main content this way."
+msgstr "Le contenu principal doit être à l'intérieur de<main>; les lecteurs d'écran et les agents trouvent ainsi le contenu principal."
+
+msgid "Insufficient text/background contrast"
+msgstr "Contraste texte/arrière-plan insuffisant"
+
+msgid "At least 4.5:1 for normal text and 3:1 for large text. Darken the pale colors in the theme palette."
+msgstr "Au moins 4,5:1 pour le texte normal et 3:1 pour le texte volumineux. Assombrir les couleurs pâles de la palette thématique."
+
+msgid "Render-blocking requests"
+msgstr "Requêtes bloquant le rendu"
+
+msgid "Inline the critical CSS for the first screen, load the rest with media=\"print\" onload or at the end of the page, and defer JS. LiteSpeed Cache › Page Optimization › CSS/JS settings, or the theme's own combined CSS."
+msgstr "Insérez le CSS critique pour le premier écran, chargez le reste avec media=\"print\" onload ou à la fin de la page, et différez JS. LiteSpeed ​​Cache › Optimisation de page › Paramètres CSS/JS, ou le CSS combiné du thème."
+
+msgid "Unused CSS"
+msgstr "CSS inutilisé"
+
+msgid "Split the one large CSS file by page type, or drop unused rules (LiteSpeed \"Remove Unused CSS\"). The gain usually shows up in LCP."
+msgstr "Divisez le gros fichier CSS par type de page ou supprimez les règles inutilisées (LiteSpeed \"Supprimer les CSS inutilisés\"). Le gain apparaît généralement dans LCP."
+
+msgid "Unminified JavaScript"
+msgstr "JavaScript non minifié"
+
+msgid "Ship .min versions of theme/plugin JS or turn on LiteSpeed \"JS Minify\"."
+msgstr "Expédiez les versions .min du thème/plugin JS ou activez LiteSpeed « JS Minify »."
+
+msgid "Unminified CSS"
+msgstr "CSS non minifié"
+
+msgid "Minify CSS (LiteSpeed \"CSS Minify\" or a build step)."
+msgstr "Minify CSS (LiteSpeed \"CSS Minify\" ou une étape de construction)."
+
+msgid "Non-composited animations"
+msgstr "Animations non composites"
+
+msgid "Animate with transform and opacity; properties like stroke-dashoffset, top/left and width repaint on every frame. Stop them under prefers-reduced-motion."
+msgstr "Animer avec transformation et opacité ; des propriétés telles que le décalage de trait, le haut/gauche et la largeur sont repeints sur chaque image. Arrêtez-les sous préférences-mouvement réduit."
+
+msgid "DOM is too large"
+msgstr "DOM est trop grand"
+
+msgid "Aim for under 1,500 elements. Reduce copies in marquees, build hidden menus and long lists on demand, simplify nested wrappers."
+msgstr "Visez moins de 1 500 éléments. Réduisez les copies dans les zones de sélection, créez des menus cachés et de longues listes à la demande, simplifiez les wrappers imbriqués."
+
+msgid "Largest content (LCP) paints late"
+msgstr "Le plus grand contenu (LCP) peint en retard"
+
+msgid "If the LCP element is text, preload its font, use font-display: swap and do not hide it behind an entrance animation on the first frame; if it is an image, give it fetchpriority=\"high\" and do not lazy load it."
+msgstr "Si l'élément LCP est du texte, préchargez sa police, utilisez font-display: swap et ne le cachez pas derrière une animation d'entrée sur la première image ; s'il s'agit d'une image, donnez-lui fetchpriority=\"high\" et ne la chargez pas paresseusement."
+
+msgid "Layout shift (CLS) culprits"
+msgstr "Les coupables du changement de mise en page (CLS)"
+
+msgid "Give images width/height and late blocks a fixed height; use size-adjust/fallback metrics for web fonts; absolutely positioned animated layers must not push the layout."
+msgstr "Donnez aux images une hauteur/largeur et aux blocs tardifs une hauteur fixe ; utiliser des métriques d'ajustement de taille/de secours pour les polices Web ; les calques animés positionnés de manière absolue ne doivent pas pousser la mise en page."
+
+msgid "Fonts delay text"
+msgstr "Les polices retardent le texte"
+
+msgid "Use font-display: swap in @font-face, preload the 1-2 fonts used on the first screen with <link rel=\"preload\" as=\"font\" crossorigin>, remove unused weights."
+msgstr "Utilisez font-display : échangez @font-face, préchargez les 1-2 polices utilisées sur le premier écran avec<link rel=\"preload\" as=\"font\" crossorigin>, supprimez les poids inutilisés."
+
+msgid "Critical request chain is long"
+msgstr "La chaîne de requêtes critiques est longue"
+
+msgid "Fonts loaded from CSS lengthen the chain; preload first-screen fonts and defer unneeded requests in the chain (e.g. guest.vary.php)."
+msgstr "Les polices chargées depuis CSS allongent la chaîne ; préchargez les polices du premier écran et différez les requêtes inutiles dans la chaîne (par exemple guest.vary.php)."
+
+msgid "Forced reflow"
+msgstr "Refusion forcée"
+
+msgid "Do not read offsetWidth/getBoundingClientRect after changing styles in JS; read first, then write inside requestAnimationFrame."
+msgstr "Ne lisez pas offsetWidth/getBoundingClientRect après avoir modifié les styles dans JS ; lisez d'abord, puis écrivez dans requestAnimationFrame."
+
+msgid "Long main-thread tasks"
+msgstr "Tâches longues sur le thread principal"
+
+msgid "Split JS that runs at startup and defer work for off-screen sections with IntersectionObserver."
+msgstr "Divisez JS qui s'exécute au démarrage et différez le travail pour les sections hors écran avec IntersectionObserver."
+
+msgid "Images are large or in an old format"
+msgstr "Les images sont grandes ou dans un ancien format"
+
+msgid "Use WebP/AVIF, never send images larger than displayed (srcset), turn on image compression."
+msgstr "Utilisez WebP/AVIF, n'envoyez jamais d'images plus grandes que celles affichées (srcset), activez la compression d'image."
+
+msgid "Images without width/height"
+msgstr "Images sans largeur/hauteur"
+
+msgid "Give <img> tags width and height; the browser reserves space and the page does not shift."
+msgstr "Donnez la largeur et la hauteur des balises<img>; le navigateur réserve de l'espace et la page ne bouge pas."
+
+msgid "First-screen image is lazy loaded"
+msgstr "L'image du premier écran est chargée paresseusement"
+
+msgid "Do not give the page's first image loading=\"lazy\"; give it fetchpriority=\"high\". If LiteSpeed lazy load is on, exclude the first image (data-no-lazy or \"Lazy Load Image Excludes\")."
+msgstr "Ne donnez pas la première image de la page chargement=\"lazy\"; donnez-lui fetchpriority=\"high\". Si le chargement paresseux LiteSpeed ​​est activé, excluez la première image (data-no-lazy ou \"Lazy Load Image Excludes\")."
+
+msgid "Slow server response"
+msgstr "Réponse lente du serveur"
+
+msgid "Turn on page cache (LiteSpeed Cache); check slow plugins and the cron report in Flux Speed."
+msgstr "Activer le cache de pages (LiteSpeed Cache) ; vérifiez les plugins lents et le rapport cron dans Flux Speed."
+
+msgid "No text compression (gzip/brotli)"
+msgstr "Pas de compression de texte (gzip/brotli)"
+
+msgid "Turn on gzip or brotli on the server (on by default on Hostinger/LiteSpeed; check the CDN settings)."
+msgstr "Activez gzip ou brotli sur le serveur (activé par défaut sur Hostinger/LiteSpeed ; vérifiez les paramètres CDN)."
+
+msgid "HTML document is large"
+msgstr "Le document HTML est volumineux"
+
+msgid "Move inline SVG icons into a sprite and large inline CSS/JSON into files."
+msgstr "Déplacez les icônes SVG en ligne dans un sprite et les grands CSS/JSON en ligne dans des fichiers."
+
+msgid "WordPress emoji script is loaded"
+msgstr "Le script emoji WordPress est chargé"
+
+msgid "Modern browsers draw emoji themselves; the theme can remove print_emoji_detection_script."
+msgstr "Les navigateurs modernes dessinent eux-mêmes des emoji ; le thème peut supprimer print_emoji_detection_script."
+
+msgid "Largest Contentful Paint (LCP) is slow"
+msgstr "La plus grande peinture de contenu (LCP) est lente"
+
+msgid "Target under 2.5 s. Reduce render-blocking CSS, preload the LCP font/image, turn on the server cache."
+msgstr "Cible en moins de 2,5 s. Réduisez les CSS bloquant le rendu, préchargez la police/l'image LCP, activez le cache du serveur."
+
+msgid "Cumulative Layout Shift (CLS) is high"
+msgstr "Le décalage de mise en page cumulatif (CLS) est élevé"
+
+msgid "Target under 0.1. Size images, prevent font shifts, reserve space for elements added later."
+msgstr "Cible inférieure à 0,1. Redimensionnez les images, évitez les changements de police, réservez de l'espace pour les éléments ajoutés ultérieurement."
+
+msgid "Total Blocking Time (TBT) is high"
+msgstr "Le temps de blocage total (TBT) est élevé"
+
+msgid "Target under 200 ms. Reduce startup JS and defer third-party scripts."
+msgstr "Cible inférieure à 200 ms. Réduisez le JS de démarrage et différez les scripts tiers."
+
+msgid "First Contentful Paint (FCP) is slow"
+msgstr "First Contentful Paint (FCP) est lent"
+
+msgid "Target under 1.8 s. Reduce render-blocking CSS/JS and server response time."
+msgstr "Cible en moins de 1,8 s. Réduisez les CSS/JS bloquant le rendu et le temps de réponse du serveur."
+
+msgid "Speed Index is slow"
+msgstr "L'indice de vitesse est lent"
+
+msgid "Prioritize critical CSS and fonts so the first screen fills quickly; shorten entrance animations."
+msgstr "Donnez la priorité aux CSS et aux polices critiques afin que le premier écran se remplisse rapidement ; raccourcir les animations d’entrée."
+
+msgid "Site is not HTTPS or has mixed content"
+msgstr "Le site n'est pas HTTPS ou a un contenu mixte"
+
+msgid "Set the addresses to https:// in Settings › General and fix images/scripts loaded over http://."
+msgstr "Définissez les adresses sur https:// dans Paramètres › Général et corrigez les images/scripts chargés sur http://."
+
+msgid "Weak HSTS policy"
+msgstr "Faible politique HSTS"
+
+msgid "Strict-Transport-Security: max-age=31536000; includeSubDomains. If every subdomain is HTTPS, you can also add \"preload\" and submit to hstspreload.org."
+msgstr "Sécurité stricte des transports : âge maximum = 3 153 6000 ; includeSubDomains. Si chaque sous-domaine est HTTPS, vous pouvez également ajouter « précharger » et soumettre à hstspreload.org."
+
+msgid "No or incomplete Content Security Policy (CSP)"
+msgstr "Politique de sécurité du contenu (CSP) inexistante ou incomplète"
+
+msgid "Flux SEO can add a basic CSP (object-src 'none'; base-uri 'self'; frame-ancestors 'self'). A full script-src policy can break plugins on WordPress; try Content-Security-Policy-Report-Only first."
+msgstr "Flux SEO peut ajouter un CSP de base (object-src « aucun » ; base-uri « self » ; frame-ancestors « self »). Une politique script-src complète peut casser les plugins sur WordPress ; essayez d'abord Content-Security-Policy-Report-Only."
+
+msgid "No clickjacking protection"
+msgstr "Aucune protection contre le détournement de clic"
+
+msgid "Send X-Frame-Options: SAMEORIGIN and CSP frame-ancestors 'self'. Do not turn on if your site is embedded in other sites with an iframe."
+msgstr "Envoyer les options X-Frame : SAMEORIGIN et les ancêtres du cadre CSP « soi ». Ne l'activez pas si votre site est intégré à d'autres sites avec une iframe."
+
+msgid "No origin isolation (COOP)"
+msgstr "Pas d'isolement d'origine (COOP)"
+
+msgid "Send Cross-Origin-Opener-Policy: same-origin-allow-popups; payment and login popups keep working."
+msgstr "Envoyer la politique d'ouverture d'origine croisée : les popups d'autorisation de même origine ; les popups de paiement et de connexion continuent de fonctionner."
+
+msgid "Trusted Types not set"
+msgstr "Types approuvés non définis"
+
+msgid "Advanced protection against DOM-based XSS. Most WordPress plugins are not compatible yet; try it with Report-Only only on custom-theme sites with few plugins."
+msgstr "Protection avancée contre XSS basé sur DOM. La plupart des plugins WordPress ne sont pas encore compatibles ; try it with Report-Only only on custom-theme sites with few plugins."
+
+msgid "No X-Content-Type-Options header"
+msgstr "Pas d'en-tête X-Content-Type-Options"
+
+msgid "X-Content-Type-Options: nosniff. Flux SEO sends it by default; the server or a cache plugin may be removing it."
+msgstr "X-Content-Type-Options : nosniff. Flux SEO l'envoie par défaut ; le serveur ou un plugin de cache le supprime peut-être."
+
+msgid "HTML doctype or charset missing"
+msgstr "Doctype ou jeu de caractères HTML manquant"
+
+msgid "The page must start with <!DOCTYPE html> and have <meta charset=\"UTF-8\"> in the first lines."
+msgstr "La page doit commencer par<!DOCTYPE html>et avoir<meta charset=\"UTF-8\">dans les premières lignes."
+
+msgid "No llms.txt"
+msgstr "Pas de fichier llms.txt"
+
+msgid "AI agents summarize a site through /llms.txt. Flux SEO builds it from the site name, description, menu pages and recent content; one click to turn it on."
+msgstr "Les agents IA résument un site via /llms.txt. Flux SEO le construit à partir du nom du site, de la description, des pages de menu et du contenu récent ; un clic pour l'allumer."
+
+msgid "llms.txt is not in the recommended format"
+msgstr "llms.txt n'est pas au format recommandé"
+
+msgid "The first line must be \"# Site name\", then \"> short summary\" and link lists in [title](url) form. If an old hand-made file sits in the root, delete it; Flux SEO generates one."
+msgstr "La première ligne doit être \"# Nom du site\", puis \"> résumé court\" et des listes de liens sous la forme [titre](url). Si un ancien fichier créé à la main se trouve à la racine, supprimez-le ; Flux SEO en génère un."
+
+msgid "Forms are not declared as WebMCP tools"
+msgstr "Les formulaires ne sont pas déclarés comme outils WebMCP"
+
+msgid "WebMCP lets browser agents call forms as tools (form toolname/tooldescription). Flux SEO adds it to the search form; add it to your own forms too."
+msgstr "WebMCP permet aux agents de navigateur d'appeler des formulaires en tant qu'outils (nom de l'outil du formulaire/description de l'outil). Flux SEO l'ajoute au formulaire de recherche ; ajoutez-le également à vos propres formulaires."
+
+msgid "robots.txt blocks AI crawlers"
+msgstr "robots.txt bloque les robots d'exploration IA"
+
+msgid "If crawlers like GPTBot, ClaudeBot, Google-Extended, PerplexityBot are blocked, your content does not show up in AI answers. Remove them from robots.txt unless you block them on purpose."
+msgstr "Si les robots d'exploration comme GPTBot, ClaudeBot, Google-Extended, PerplexityBot sont bloqués, votre contenu n'apparaît pas dans les réponses de l'IA. Supprimez-les du fichier robots.txt, sauf si vous les bloquez volontairement."
+
+msgid "Returned HTTP %d."
+msgstr "HTTP%drenvoyé."
+
+msgid "Settings › Reading: search engines discouraged"
+msgstr "Paramètres › Lecture : les moteurs de recherche découragés"
+
+msgid "%d characters."
+msgstr "%dcaractères."
+
+msgid "%d H1 headings."
+msgstr "%dRubriques H1."
+
+msgid "JSON-LD could not be parsed."
+msgstr "JSON-LD n'a pas pu être analysé."
+
+msgid "not found"
+msgstr "pas trouvé"
+
+msgid "%d render-blocking CSS/JS requests in <head>."
+msgstr "%drequêtes CSS/JS bloquant le rendu dans<head>."
+
+msgid "%d render-blocking CSS/JS requests in <head>. Measure the estimated saving with PageSpeed."
+msgstr "%drequêtes CSS/JS bloquant le rendu dans<head>. Mesurez l'économie estimée avec PageSpeed."
+
+msgid "The page has %s elements."
+msgstr "La page contient des éléments%s."
+
+msgid "Response measured from the server: %d ms (may bypass the cache)."
+msgstr "Réponse mesurée depuis le serveur :%dms (peut contourner le cache)."
+
+msgid "HTML is %s."
+msgstr "HTML est%s."
+
+msgid "The HTTPS page loads content over http://."
+msgstr "La page HTTPS charge le contenu via http://."
+
+msgid "No Content-Security-Policy header."
+msgstr "Aucun en-tête Content-Security-Policy."
+
+msgid "Missing directive: %s."
+msgstr "Directive manquante :%s."
+
+msgid "first line is not \"# Title\""
+msgstr "la première ligne n'est pas \"#Titre\""
+
+msgid "no \"> summary\" line"
+msgstr "pas de ligne \"> résumé\""
+
+msgid "no link list"
+msgstr "pas de liste de liens"
+
+msgid "PageSpeed Insights can only measure addresses reachable from the internet."
+msgstr "PageSpeed Insights ne peut mesurer que les adresses accessibles depuis Internet."
+
+msgid "The PageSpeed daily quota is used up. Enter a free Google API key in SEO › Settings."
+msgstr "Le quota quotidien de PageSpeed est épuisé. Entrez une clé API Google gratuite dans SEO > Paramètres."
+
+msgid "Open audit"
+msgstr "Audit ouvert"
+
+msgid "Not run yet. Check performance, accessibility, SEO, security and agent readiness."
+msgstr "Pas encore couru. Vérifiez les performances, l’accessibilité, le référencement, la sécurité et la préparation des agents."
+
+msgid "Critical %1$d, high %2$d, medium %3$d, low %4$d recommendations."
+msgstr "Recommandations%1$dcritiques,%2$délevées,%3$dmoyennes,%4$dfaibles."
+
+msgid "Site build guide"
+msgstr "Guide de création de site"
+
+msgid "SEO output"
+msgstr "Sortie SEO"
+
+msgid "Another SEO plugin is active; meta, Open Graph and schema come from it. Flux SEO turned its own output off to avoid conflicts."
+msgstr "Un autre plugin SEO est actif ; méta, Open Graph et schéma en proviennent. Flux SEO a désactivé sa propre sortie pour éviter les conflits."
+
+msgid "Meta description, Open Graph and schema are added to every page."
+msgstr "La méta description, l'Open Graph et le schéma sont ajoutés à chaque page."
+
+msgid "Off. Page descriptions, images and organization details will not show on Google and social shares. Turn it on if you want to be found on Google."
+msgstr "Éteint. Les descriptions de pages, les images et les détails de l'organisation ne s'afficheront pas sur Google et sur les partages sociaux. Activez-le si vous souhaitez être trouvé sur Google."
+
+msgid "SEO settings"
+msgstr "Paramètres de référencement"
+
+msgid "Daily"
+msgstr "Quotidiennement"
+
+msgid "Weekly"
+msgstr "Hebdomadaire"
+
+msgid "Off"
+msgstr "Désactivé"
+
+msgid "Monday"
+msgstr "lundi"
+
+msgid "Tuesday"
+msgstr "mardi"
+
+msgid "Wednesday"
+msgstr "mercredi"
+
+msgid "Thursday"
+msgstr "jeudi"
+
+msgid "Friday"
+msgstr "vendredi"
+
+msgid "Saturday"
+msgstr "samedi"
+
+msgid "Sunday"
+msgstr "dimanche"
+
+msgid "[%1$s] Site audit: %2$d new critical/high recommendations"
+msgstr "[%1$s] Audit du site :%2$dnouvelles recommandations critiques/élevées"
+
+msgid "The automatic site audit found new recommendations:"
+msgstr "L'audit automatique du site a révélé de nouvelles recommandations :"
+
+msgid "Total: critical %1$d, high %2$d, medium %3$d, low %4$d."
+msgstr "Total : critique%1$d, élevé%2$d, moyen%3$d, faible%4$d."
+
+msgid "Resolved since the previous audit: %d."
+msgstr "Résolu depuis l'audit précédent :%d."
+
+msgid "Details and fixes:"
+msgstr "Détails et correctifs :"
+
+msgid "Automatic"
+msgstr "Automatique"
+
+msgid "Manual"
+msgstr "Manuel"
+
+msgid "AI"
+msgstr "IA"
+
+msgid "After fix"
+msgstr "Après correction"
+
+msgid "Report history"
+msgstr "Historique du rapport"
+
+msgid "Next automatic audit: %s"
+msgstr "Prochain audit automatique :%s"
+
+msgid "Automatic audit is off."
+msgstr "L'audit automatique est désactivé."
+
+msgid "No reports yet. Every audit (manual, automatic or by AI) is saved here."
+msgstr "Aucun rapport pour l'instant. Chaque audit (manuel, automatique ou par IA) est enregistré ici."
+
+msgid "Number of recommendations over time"
+msgstr "Nombre de recommandations au fil du temps"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Trigger"
+msgstr "Déclencheur"
+
+msgid "Mobile scores"
+msgstr "Partitions mobiles"
+
+msgid "Change"
+msgstr "Changement"
+
+msgid "No change"
+msgstr "Aucun changement"
+
+msgid "new"
+msgstr "nouveau"
+
+msgid "resolved"
+msgstr "résolu"
+
+msgid "Site audit history"
+msgstr "Historique d'audit du site"
+
+msgid "Automatic audit"
+msgstr "Audit automatique"
+
+msgid "Frequency"
+msgstr "Fréquence"
+
+msgid "Day"
+msgstr "Jour"
+
+msgid "Time"
+msgstr "Temps"
+
+msgid "Runs in the background and saves the result to Report history. The time uses the site time zone; if the site gets no visit at that time, it starts on the next request."
+msgstr "S'exécute en arrière-plan et enregistre le résultat dans l'historique des rapports. L'heure utilise le fuseau horaire du site ; si le site ne reçoit aucune visite à ce moment-là, il démarre à la demande suivante."
+
+msgid "Also run PageSpeed Insights (mobile + desktop; needs the API key)"
+msgstr "Exécutez également PageSpeed ​​Insights (mobile + ordinateur de bureau ; nécessite la clé API)"
+
+msgid "Send an email when a new critical or high priority recommendation appears"
+msgstr "Envoyer un e-mail lorsqu'une nouvelle recommandation critique ou hautement prioritaire apparaît"
+
+msgid "Email address (empty: site admin)"
+msgstr "Adresse email (vide : administrateur du site)"
+
+msgid "Flux Speed (one click)"
+msgstr "Vitesse de flux (un clic)"
+
+msgid "The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key; a PageSpeed run adds Google's real Lighthouse result. Automatic audit, API key and security headers are in the Settings tab."
+msgstr "Les cinq sections PageSpeed Insights (Performance, Accessibilité, Meilleures pratiques, SEO, Navigation agentique) par priorité. L'audit sur site ne nécessite aucune clé ; une exécution de PageSpeed ​​ajoute le véritable résultat Lighthouse de Google. L'audit automatique, la clé API et les en-têtes de sécurité se trouvent dans l'onglet Paramètres."
+
+msgid "PageSpeed scores"
+msgstr "Scores PageSpeed"
+
+msgid "PageSpeed not run"
+msgstr "PageSpeed ne fonctionne pas"
+
+msgid "Device"
+msgstr "Appareil"
+
+msgid "No report with a PageSpeed run yet. Enter the API key and turn on PageSpeed in the automatic audit."
+msgstr "Aucun rapport avec une exécution de PageSpeed pour l'instant. Entrez la clé API et activez PageSpeed ​​dans l'audit automatique."
+
+msgid "%s PageSpeed scores over time"
+msgstr "%sScores de PageSpeed au fil du temps"
+
+msgid "Site audit and agent readiness"
+msgstr "Audit du site et préparation des agents"
+
+msgid "Flux SEO's AI (MCP) tools run through the shared MCP server. The server, keys and settings are in Flux AI & MCP › MCP; install and activate Flux AI 0.7.0 or later."
+msgstr "Les outils d'IA (MCP) de Flux SEO fonctionnent via le serveur MCP partagé. Le serveur, les clés et les paramètres se trouvent dans Flux AI & MCP › MCP ; installez et activez Flux AI 0.7.0 ou version ultérieure."
+
+msgid "No URLs to submit."
+msgstr "Aucune URL à soumettre."
+
+msgid "IndexNow returned %d."
+msgstr "IndexNow a renvoyé%d."
+
+msgid "Not allowed."
+msgstr "Non autorisé."
+
+msgid "IndexNow is off or the site is hidden from search engines (Settings › Reading)."
+msgstr "IndexNow est désactivé ou le site est masqué des moteurs de recherche (Paramètres › Lecture)."
+
+msgid "%d URLs submitted to Bing, Yandex and the other IndexNow search engines."
+msgstr "%dURL soumises à Bing, Yandex et aux autres moteurs de recherche IndexNow."
+
+msgid "Open Search Console"
+msgstr "Ouvrir la console de recherche"
+
+msgid "Add property › URL prefix › HTML tag. Leave empty if you verified with DNS."
+msgstr "Ajouter une propriété › Préfixe d'URL › Balise HTML. Laissez vide si vous avez vérifié avec DNS."
+
+msgid "Open Bing Webmaster"
+msgstr "Ouvrir Bing Webmaster"
+
+msgid "The easiest path is \"Import from Google Search Console\": verification and the sitemap arrive on their own, no code. If you add it by hand, paste the HTML meta tag. DuckDuckGo, Yahoo and Ecosia results come from Bing."
+msgstr "Le chemin le plus simple est « Importer depuis Google Search Console » : la vérification et le plan du site arrivent d'eux-mêmes, sans code. Si vous l'ajoutez à la main, collez la balise méta HTML. Les résultats DuckDuckGo, Yahoo et Ecosia proviennent de Bing."
+
+msgid "Open Yandex Webmaster"
+msgstr "Ouvrir Yandex Webmaster"
+
+msgid "Add site › Meta tag. After verifying, add the sitemap URL under Indexing › Sitemap files."
+msgstr "Ajouter un site › Balise Meta. Après vérification, ajoutez l'URL du plan du site sous Indexation › Fichiers de plan du site."
+
+msgid "%1$s · %2$d URLs · HTTP %3$d"
+msgstr "%1$s·%2$dURL · HTTP%3$d"
+
+msgid "key file could not be verified"
+msgstr "le fichier clé n'a pas pu être vérifié"
+
+msgid "URLs do not match the site domain"
+msgstr "Les URL ne correspondent pas au domaine du site"
+
+msgid "too many requests, try again later"
+msgstr "trop de demandes, réessayez plus tard"
+
+msgid "error"
+msgstr "erreur"
+
+msgid "Search engines"
+msgstr "Moteurs de recherche"
+
+msgid "Search engines other than Google (Bing, Yandex, DuckDuckGo, Yahoo, Ecosia) crawl a site quickly only once it is introduced to them. Add the site in each one's webmaster panel, paste the verification code below and submit the sitemap URL."
+msgstr "Les moteurs de recherche autres que Google (Bing, Yandex, DuckDuckGo, Yahoo, Ecosia) explorent rapidement un site une fois qu'il leur est présenté. Ajoutez le site dans le panneau des webmasters de chacun, collez le code de vérification ci-dessous et soumettez l'URL du plan du site."
+
+msgid "Sitemap URL"
+msgstr "URL du plan du site"
+
+msgid "Also listed in robots.txt; add this URL in Search Console, Bing and Yandex."
+msgstr "Également répertorié dans robots.txt ; ajoutez cette URL dans Search Console, Bing et Yandex."
+
+msgid "Verification tag is on the site"
+msgstr "La balise de vérification est sur le site"
+
+msgid "Instantly notify Bing, Yandex, DuckDuckGo (via Bing), Seznam and Naver about published and updated pages"
+msgstr "Informez instantanément Bing, Yandex, DuckDuckGo (via Bing), Seznam et Naver des pages publiées et mises à jour"
+
+msgid "Key file:"
+msgstr "Fichier clé :"
+
+msgid "When on, the whole site is submitted once automatically. Google does not use IndexNow; add your sitemap in Search Console for Google."
+msgstr "Lorsque cette option est activée, l'ensemble du site est soumis une fois automatiquement. Google n'utilise pas IndexNow ; ajoutez votre plan de site dans la Search Console pour Google."
+
+msgid "The site is hidden from search engines (Settings › Reading); IndexNow sends nothing."
+msgstr "Le site est masqué des moteurs de recherche (Paramètres › Lecture) ; IndexNow n'envoie rien."
+
+msgid "Last bulk submission:"
+msgstr "Dernière soumission groupée :"
+
+msgid "Submit the whole site now"
+msgstr "Soumettez l'intégralité du site maintenant"
+
+msgid "robots.txt blocks the Bing or Yandex crawler"
+msgstr "robots.txt bloque le robot d'exploration Bing ou Yandex"
+
+msgid "Search crawlers such as Bingbot, YandexBot and DuckDuckBot must not have \"Disallow: /\"; otherwise the site only appears on Google. Fix the robots.txt file in the site root."
+msgstr "Les robots de recherche tels que Bingbot, YandexBot et DuckDuckBot ne doivent pas avoir « Disallow : / » ; sinon le site apparaît uniquement sur Google. Corrigez le fichier robots.txt à la racine du site."
+
+msgid "robots.txt has no Sitemap line"
+msgstr "robots.txt n'a pas de ligne de plan de site"
+
+msgid "Bing and Yandex find the sitemap from the \"Sitemap:\" line in robots.txt. If a hand-written robots.txt sits in the root, delete it (Flux SEO adds the line) or add the line yourself."
+msgstr "Bing et Yandex trouvent le plan du site à partir de la ligne « Sitemap : » dans robots.txt. Si un robots.txt écrit à la main se trouve à la racine, supprimez-le (Flux SEO ajoute la ligne) ou ajoutez la ligne vous-même."
+
+msgid "IndexNow is off"
+msgstr "IndexNow est désactivé"
+
+msgid "IndexNow instantly notifies Bing, Yandex, Seznam and Naver about new and updated pages; it is the fastest way to show up outside Google. One click to turn it on."
+msgstr "IndexNow informe instantanément Bing, Yandex, Seznam et Naver des pages nouvelles et mises à jour ; c'est le moyen le plus rapide d'apparaître en dehors de Google. Un clic pour l'allumer."
+
+msgid "IndexNow submission failed"
+msgstr "Échec de la soumission IndexNow"
+
+msgid "The key file (/<key>.txt) must be reachable from outside. If a cache or security plugin blocks it, add an exception, then use SEO › General › IndexNow › \"Submit the whole site now\"."
+msgstr "Le fichier clé (/<key>.txt) doit être accessible de l'extérieur. Si un cache ou un plugin de sécurité le bloque, ajoutez une exception, puis utilisez SEO › Général › IndexNow › « Soumettre l'intégralité du site maintenant »."
+
+msgid "No Bing / Yandex verification code"
+msgstr "Pas de code de vérification Bing/Yandex"
+
+msgid "The site may not be added to Bing Webmaster Tools and Yandex Webmaster; without that it appears late or not at all there. On Bing, \"Import from Google Search Console\" needs no code; ignore this if you already imported. The codes are under SEO › General › Search engines."
+msgstr "Le site ne peut pas être ajouté aux outils Bing pour les webmasters et à Yandex Webmaster ; sans cela il apparaît tard ou pas du tout là. Sur Bing, « Importer depuis Google Search Console » ne nécessite aucun code ; ignorez ceci si vous avez déjà importé. Les codes se trouvent sous SEO › Général › Moteurs de recherche."
+
+msgid "Turn on IndexNow"
+msgstr "Activer IndexNow"
+
+msgid "New and updated pages are sent instantly to Bing, Yandex, Seznam and Naver; the whole site is submitted once automatically."
+msgstr "Les pages nouvelles et mises à jour sont envoyées instantanément à Bing, Yandex, Seznam et Naver ; l'ensemble du site est soumis une fois automatiquement."
+
+msgid "Bing and Yandex"
+msgstr "Bing et Yandex"
+
+msgid "No verification code: %s. Add the site in these search engines' webmaster panels (Bing's import from Google Search Console needs no code)."
+msgstr "Aucun code de vérification :%s. Ajoutez le site dans les panneaux des webmasters de ces moteurs de recherche (l'importation de Bing depuis Google Search Console ne nécessite aucun code)."
+
+msgid "Bing and Yandex verification codes are set."
+msgstr "Les codes de vérification Bing et Yandex sont définis."
+
+msgid "On; the site has been submitted to Bing and Yandex."
+msgstr "Allumé ; le site a été soumis à Bing et Yandex."
+
+msgid "On; the first bulk submission is sent on the next admin page load."
+msgstr "Allumé ; la première soumission groupée est envoyée lors du prochain chargement de la page d'administration."
+
+msgid "Off; new pages are not sent to Bing and Yandex."
+msgstr "Désactivé ; les nouvelles pages ne sont pas envoyées à Bing et Yandex."
+
+msgid "Open Naver Search Advisor"
+msgstr "Ouvrir le conseiller de recherche Naver"
+
+msgid "Korea's largest search engine. Add site › HTML tag; then Request › Submit sitemap. Optional."
+msgstr "Le plus grand moteur de recherche de Corée. Ajouter un site › Balise HTML ; puis Demander › Soumettre le plan du site. Facultatif."
+
+msgid "Open Seznam Webmaster"
+msgstr "Ouvrir Seznam Webmaster"
+
+msgid "Czech search engine (Webmaster link at the bottom of the page). Meta tag method. Optional."
+msgstr "Moteur de recherche tchèque (lien Webmaster en bas de page). Méthode de balise méta. Facultatif."
+
+msgid "Open Baidu Webmaster"
+msgstr "Ouvrir Baidu Webmaster"
+
+msgid "China's search engine; sign-up may need a Chinese phone number. Not needed unless you target China."
+msgstr "Le moteur de recherche chinois ; l'inscription peut nécessiter un numéro de téléphone chinois. Pas nécessaire sauf si vous ciblez la Chine."
+
+msgid "Connected with Google Site Kit; Search Console verification and the sitemap are handled there. You can leave this empty."
+msgstr "Connecté à Google Site Kit ; La vérification de la Search Console et le plan du site y sont gérés. Vous pouvez laisser ce champ vide."
+
+msgid "Connected with Google Site Kit."
+msgstr "Connecté avec Google Site Kit."
+
+msgid "Areas of expertise"
+msgstr "Domaines d'expertise"
+
+msgid "One topic per line"
+msgstr "Un sujet par ligne"
+
+msgid "Topics the organization is an expert in (schema knowsAbout). Search engines and AI assistants match the organization to these topics. Left out when empty."
+msgstr "Sujets dans lesquels l'organisation est experte (le schéma connaît À propos). Les moteurs de recherche et les assistants IA adaptent l’organisation à ces sujets. Laissé de côté lorsqu'il est vide."
+
+msgid "Area served"
+msgstr "Zone desservie"
+
+msgid "e.g. United States"
+msgstr "par ex. États-Unis"
+
+msgid "Country served (schema areaServed). Left out when empty."
+msgstr "Pays desservi (zone de schémaServed). Laissé de côté lorsqu'il est vide."
+
+msgid "Donation call to action"
+msgstr "Appel à l’action au don"
+
+msgid "e.g. Donate"
+msgstr "par ex. Faire un don"
+
+msgid "For organizations that accept donations (schema DonateAction). Left out when the label is empty; when the URL is empty the donation page is found automatically."
+msgstr "Pour les organisations qui acceptent les dons (schéma DonateAction). Oublié lorsque l'étiquette est vide ; lorsque l'URL est vide, la page de don est trouvée automatiquement."
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Homepage description"
+msgstr "Description de la page d'accueil"
+
+msgid "Homepage title"
+msgstr "Titre de la page d'accueil"
+
+msgid "Don't index search"
+msgstr "Ne pas indexer la recherche"
+
+msgid "Separator"
+msgstr "Séparateur"
+
+msgid "No findings"
+msgstr "Aucun résultat"
+
+msgid "Findings"
+msgstr "Résultats"
+
+msgid "Audit email"
+msgstr "E-mail d'audit"
+
+msgid "Audit updated"
+msgstr "Vérification mise à jour"
+
+msgid "Audit schedule"
+msgstr "Calendrier des audits"
+
+msgid "Findings show up here after an audit runs."
+msgstr "Les résultats s'affichent ici après l'exécution d'un audit."
+
+msgid "Run audit"
+msgstr "Exécuter un audit"
+
+msgid "Email"
+msgstr "Courriel"
+
+msgid "Don't index tags"
+msgstr "Ne pas indexer les balises"
+
+msgid "IndexNow"
+msgstr "IndexerMaintenant"
+
+msgid "Organization"
+msgstr "Organisation"
+
+msgid "Organization name"
+msgstr "Nom de l'organisation"
+
+msgid "Organization type"
+msgstr "Type d'organisation"
+
+msgid "Open in panel"
+msgstr "Ouvrir dans le panneau"
+
+msgid "Scores"
+msgstr "Partitions"
+
+msgid "NGO"
+msgstr "ONG"
+
+msgid "Site name"
+msgstr "Nom du site"
+
+msgid "Last local audit"
+msgstr "Dernier audit local"
+
+msgid "Phone"
+msgstr "Téléphone"
+
+msgid "WebMCP"
+msgstr "WebMCP"
+
+msgid "llms.txt"
+msgstr "llms.txt"
+
+msgid "PHP %1$s is not patched against %2$s. Update to at least %3$s (hosting panel › PHP version). A distribution package may carry the fix without changing the version number; ask your provider if unsure."
+msgstr "PHP%1$sn'est pas patché contre%2$s. Mettez à jour vers au moins%3$s(panneau d'hébergement › version PHP). Un package de distribution peut contenir le correctif sans changer le numéro de version ; demandez à votre fournisseur en cas de doute."
+
+msgid "PHP %1$s no longer gets security fixes; holes such as %2$s stay open. Move to PHP %3$s or another patched, newer version."
+msgstr "PHP%1$sne reçoit plus de correctifs de sécurité ; les trous tels que%2$srestent ouverts. Passez à PHP%3$sou à une autre version corrigée et plus récente."
+
+msgid "PHP %1$s is patched against %2$s."
+msgstr "PHP%1$sest patché contre%2$s."
+
+msgid "Security"
+msgstr "Sécurité"
+
+msgid "PHP security patch"
+msgstr "Correctif de sécurité PHP"
+
+msgid "Release notes"
+msgstr "Notes de version"
+
+msgid "session.upload_progress.enabled is on. WordPress does not use it; turning it off shrinks the attack surface. Set \"session.upload_progress.enabled = Off\" in php.ini or the hosting panel."
+msgstr "session.upload_progress.enabled est activé. WordPress ne l'utilise pas ; le désactiver réduit la surface d’attaque. Définissez \"session.upload_progress.enabled = Off\" dans php.ini ou dans le panneau d'hébergement."
+
+msgid "PHP version is missing a security patch"
+msgstr "La version PHP ne dispose pas d'un correctif de sécurité"
+
+msgid "The server's PHP is unpatched against a known hole or no longer supported. Upgrade PHP to the current patch release from the hosting panel."
+msgstr "Le PHP du serveur n'a pas été corrigé contre un trou connu ou n'est plus pris en charge. Mettez à niveau PHP vers la version actuelle du correctif à partir du panneau d'hébergement."
+
+msgid "session.upload_progress is on"
+msgstr "session.upload_progress est activé"
+
+msgid "WordPress does not use this PHP feature; it is the exploit path for holes such as PHP2Shell. Set session.upload_progress.enabled = Off in php.ini or the hosting panel."
+msgstr "WordPress n'utilise pas cette fonctionnalité PHP ; c'est le chemin d'exploitation pour des trous tels que PHP2Shell. Définissez session.upload_progress.enabled = Off dans php.ini ou dans le panneau d'hébergement."
+
+msgid "[['Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI).', 'tr']]"
+msgstr "[['Meta titre/description, canonique, Open Graph, schéma (organisation, site Web, fil d'Ariane, article), paramètres du plan du site, favicon et contrôle SEO. Outils de contenu et de référencement pour les assistants IA (sur le serveur MCP Flux AI).', 'tr']]"

@@ -10,8 +10,16 @@
     "send": "Gönder"
   },
   "languages": {
+    "en": "English",
     "tr": "Türkçe",
-    "en": "English"
+    "de": "Deutsch",
+    "es": "Español",
+    "fr": "Français",
+    "pt-br": "Português do Brasil",
+    "ja": "日本語",
+    "zh": "简体中文",
+    "ar": "العربية",
+    "ru": "Русский"
   },
   "auth": {
     "welcome": "{{name}}",

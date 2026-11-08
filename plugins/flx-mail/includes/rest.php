@@ -100,10 +100,10 @@ function flxi_rest_preview( WP_REST_Request $r ) {
 			flxi_settings( true );
 		}
 		$args = array(
-			'subject'     => __( 'Örnek e-posta', 'flx-mail' ),
-			'heading'     => __( 'Kurumsal e-posta görünümü', 'flx-mail' ),
-			'body'        => __( '<p>Merhaba Ayşe,</p><p>Sitemizden giden bütün e-postalar bu düzende görünür: üstte logomuz, ortada içerik, altta kurum bilgilerimiz ve sosyal medya hesaplarımız.</p>', 'flx-mail' ),
-			'button_text' => __( 'Siteyi ziyaret et', 'flx-mail' ),
+			'subject'     => __( 'Sample email', 'flx-mail' ),
+			'heading'     => __( 'Branded email layout', 'flx-mail' ),
+			'body'        => __( '<p>Hello Ayşe,</p><p>Every email sent from our site uses this layout: our logo on top, the content in the middle, and our organization details and social media accounts at the bottom.</p>', 'flx-mail' ),
+			'button_text' => __( 'Visit the site', 'flx-mail' ),
 			'button_url'  => home_url( '/' ),
 			'sender'      => 'info',
 		);
@@ -165,15 +165,15 @@ function flxi_rest_test_email( WP_REST_Request $r ) {
 				'to'          => $to,
 				'template'    => 'flx-mail/test',
 				'sender'      => $sender,
-				'subject'     => __( 'Test e-postası', 'flx-mail' ),
-				'heading'     => __( 'E-posta ayarlarınız çalışıyor 🎉', 'flx-mail' ),
+				'subject'     => __( 'Test email', 'flx-mail' ),
+				'heading'     => __( 'Your email settings are working 🎉', 'flx-mail' ),
 				'body'        => sprintf(
 					/* translators: 1: gönderen adresi, 2: yöntem */
-					__( '<p>Bu e-postayı görüyorsanız sitenin e-posta gönderimi çalışıyor.</p><table class="flxi-kv"><tr><td>Gönderen</td><td><strong>%1$s</strong></td></tr><tr><td>Yöntem</td><td>%2$s</td></tr></table>', 'flx-mail' ),
+					__( '<p>If you can see this email, your site\'s email sending is working.</p><table class="flxi-kv"><tr><td>Sender</td><td><strong>%1$s</strong></td></tr><tr><td>Method</td><td>%2$s</td></tr></table>', 'flx-mail' ),
 					esc_html( flxi_sender_address( $sender )[0] ),
-					esc_html( flxi_smtp_ready() ? 'SMTP · ' . flxi_setting( 'smtp_host' ) : ( flxi_other_smtp_plugin() ? flxi_other_smtp_plugin() : __( 'Sunucunun PHP mail()', 'flx-mail' ) ) )
+					esc_html( flxi_smtp_ready() ? 'SMTP · ' . flxi_setting( 'smtp_host' ) : ( flxi_other_smtp_plugin() ? flxi_other_smtp_plugin() : __( 'Server PHP mail()', 'flx-mail' ) ) )
 				),
-				'button_text' => __( 'Siteye git', 'flx-mail' ),
+				'button_text' => __( 'Go to the site', 'flx-mail' ),
 				'button_url'  => home_url( '/' ),
 			)
 		);
@@ -203,7 +203,7 @@ function flxi_rest_queue_run( WP_REST_Request $r ) {
 	if ( $paused > time() ) {
 		$stats['paused_until'] = $paused;
 		/* translators: %s: time */
-		$stats['paused_text'] = sprintf( __( 'Posta kutusunun günlük gönderim sınırı doldu. Gönderim %s civarında kendiliğinden devam edecek.', 'flx-mail' ), flx_date( $paused, 'time' ) . ', ' . flx_date( $paused, 'short' ) );
+		$stats['paused_text'] = sprintf( __( 'The mailbox\'s daily sending limit has been reached. Sending will resume automatically around %s.', 'flx-mail' ), flx_date( $paused, 'time' ) . ', ' . flx_date( $paused, 'short' ) );
 	}
 	return $stats;
 }
@@ -215,7 +215,7 @@ function flxi_rest_recipients( WP_REST_Request $r ) {
 		$days = flxi_quota_days_for( count( $list ), 'noreply' === (string) $r['sender'] ? 'noreply' : 'info' );
 		if ( $days ) {
 			/* translators: 1: daily limit, 2: days */
-			$note = sprintf( _n( 'Günlük %1$s gönderim sınırı nedeniyle tamamı yaklaşık %2$s günde gider.', 'Günlük %1$s gönderim sınırı nedeniyle tamamı yaklaşık %2$s günde gider.', $days, 'flx-mail' ), number_format_i18n( flxi_limits()['daily'] ), number_format_i18n( $days ) );
+			$note = sprintf( _n( 'Because of the daily limit of %1$s, sending all will take about %2$s day.', 'Because of the daily limit of %1$s, sending all will take about %2$s days.', $days, 'flx-mail' ), number_format_i18n( flxi_limits()['daily'] ), number_format_i18n( $days ) );
 		}
 	}
 	return array(
@@ -276,10 +276,10 @@ function flxi_rest_log_list( WP_REST_Request $r ) {
 	$sql   = "SELECT id, created_at, channel, template, recipient, subject, status, error FROM {$t} WHERE {$w} ORDER BY id DESC" . $wpdb->prepare( ' LIMIT %d OFFSET %d', $per, ( $page - 1 ) * $per );
 	$rows  = $prm ? $wpdb->get_results( $wpdb->prepare( $sql, $prm ), ARRAY_A ) : $wpdb->get_results( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
 	$labels = array(
-		'sent'    => __( 'Gönderildi', 'flx-mail' ),
-		'failed'  => __( 'Başarısız', 'flx-mail' ),
-		'blocked' => __( 'Kapalı, gitmedi', 'flx-mail' ),
-		'sending' => __( 'Gönderiliyor', 'flx-mail' ),
+		'sent'    => __( 'Sent', 'flx-mail' ),
+		'failed'  => __( 'Failed', 'flx-mail' ),
+		'blocked' => __( 'Disabled, not sent', 'flx-mail' ),
+		'sending' => __( 'Sending', 'flx-mail' ),
 	);
 	$items  = array();
 	foreach ( (array) $rows as $row ) {

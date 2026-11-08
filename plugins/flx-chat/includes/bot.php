@@ -225,7 +225,7 @@ function flxc_bot_run( $chat_id ) {
 	// Önceki tur bu sohbette yarıda öldüyse kaydı kapatılır; bu tur cevaplanmamış soruyu da görür ve cevaplar
 	// (artık süre sınırı ve yedek mesaj var, aynı yerde takılmaz).
 	global $wpdb;
-	$wpdb->query( $wpdb->prepare( 'UPDATE ' . flxc_table( 'jobs' ) . " SET status = 'error', locked_until = 0, finished_at = %d, note = %s WHERE kind = 'reply' AND chat_id = %d AND status = 'running' AND locked_until < %d", time(), __( 'İş yarıda kaldı.', 'flx-chat' ), $chat_id, time() ) ); // phpcs:ignore
+	$wpdb->query( $wpdb->prepare( 'UPDATE ' . flxc_table( 'jobs' ) . " SET status = 'error', locked_until = 0, finished_at = %d, note = %s WHERE kind = 'reply' AND chat_id = %d AND status = 'running' AND locked_until < %d", time(), __( 'The job was interrupted.', 'flx-chat' ), $chat_id, time() ) ); // phpcs:ignore
 	set_transient( $lock, 1, flxc_bot_budget() + 20 );
 	flxc_bot_guard();
 	try {
@@ -259,7 +259,7 @@ function flxc_bot_run( $chat_id ) {
 						)
 					);
 				}
-				flxc_bot_handoff( $chat, $state, __( 'Günlük asistan cevap sınırına ulaşıldı.', 'flx-chat' ) );
+				flxc_bot_handoff( $chat, $state, __( 'Daily assistant reply limit reached.', 'flx-chat' ) );
 				break;
 			}
 			$prev_in          = (int) $state['last_in'];
@@ -314,7 +314,7 @@ function flxc_bot_fallback_wait() {
 
 function flxc_bot_fallback_text() {
 	$t = trim( (string) flxc_setting( 'bot_fallback_text' ) );
-	return '' !== $t ? $t : __( 'Beklettiğimiz için üzgünüz. En kısa sürede size dönüş yapacağız. Anlayışınız için teşekkürler.', 'flx-chat' );
+	return '' !== $t ? $t : __( 'We are sorry to keep you waiting. We will get back to you as soon as possible. Thank you for your understanding.', 'flx-chat' );
 }
 
 /**
@@ -374,7 +374,7 @@ function flxc_bot_fallback( $chat, $reason = '' ) {
 	);
 	flxc_bot_stat_add( array( 'fallbacks' => 1 ) );
 	/* translators: %s: reason */
-	$why   = sprintf( __( 'Asistan cevap veremedi, kişiye bekleme mesajı gitti (%s).', 'flx-chat' ), '' !== $reason ? mb_substr( $reason, 0, 160 ) : '-' );
+	$why   = sprintf( __( 'The assistant could not answer; a waiting message was sent to the person (%s).', 'flx-chat' ), '' !== $reason ? mb_substr( $reason, 0, 160 ) : '-' );
 	$fresh = flxc_get_chat( $chat['id'] );
 	flxc_system_message( $fresh, $why );
 	flxc_update_chat( $chat['id'], array( 'unread' => max( 1, (int) $fresh['unread'] ), 'status' => 'open' ) );
@@ -424,7 +424,7 @@ function flxc_bot_busy( $chat_id, $on ) {
 
 /** Temsilci isteğini anlatan ifadeler (ayardan değiştirilebilir). */
 function flxc_bot_handoff_words_default() {
-	return array_map( 'trim', explode( ',', __( 'temsilci, yetkili, canlı destek, müşteri hizmetleri, gerçek kişi, gerçek biri, bir insanla, insanla görüş, insanla konuş, operatör, yapay zekayı kapat, yapay zekâyı kapat, yapay zeka sohbetini kapat, botu kapat, asistanı kapat, biriyle görüş, biriyle konuş, beni arayın, human, real person, representative, live agent', 'flx-chat' ) ) );
+	return array_map( 'trim', explode( ',', __( 'agent, representative, live support, customer service, real person, a human, talk to a person, speak to a person, operator, turn off the ai, turn off the bot, stop the bot, call me, temsilci, yetkili, canlı destek, gerçek kişi, operatör', 'flx-chat' ) ) );
 }
 
 function flxc_bot_handoff_words() {
@@ -504,7 +504,7 @@ function flxc_bot_human_now( $chat ) {
 	$state['ai']  = 1;
 	flxc_bot_save_state( $chat['id'], $state );
 	flxc_update_chat( $chat['id'], array( 'unread' => max( 1, (int) $fresh['unread'] ), 'status' => 'open' ) );
-	flxc_system_message( $fresh, __( 'Kişi temsilci istedi; asistan bu sohbette kapatıldı.', 'flx-chat' ) );
+	flxc_system_message( $fresh, __( 'The contact asked for an agent; the assistant was turned off in this chat.', 'flx-chat' ) );
 	do_action( 'flxc_bot_handoff', $fresh, 'human' );
 }
 
@@ -562,7 +562,7 @@ function flxc_bot_turn( $chat ) {
 	}
 	if ( is_wp_error( $reply ) ) {
 		flxc_evo_typing( null, 'stop' );
-		flxc_system_message( $chat, __( 'Asistan cevap veremedi: ', 'flx-chat' ) . $reply->get_error_message() );
+		flxc_system_message( $chat, __( 'The assistant could not reply: ', 'flx-chat' ) . $reply->get_error_message() );
 		// Araç zaten mesaj hazırladıysa (ör. ödeme bilgileri) onlar gider; yoksa yedek mesaj.
 		if ( ! $ctx['after'] ) {
 			flxc_bot_fallback( flxc_get_chat( $chat['id'] ), $reply->get_error_message() );
@@ -577,7 +577,7 @@ function flxc_bot_turn( $chat ) {
 	if ( ! $fresh || ( empty( $ctx['handoff'] ) && empty( $ctx['optout'] ) && 'on' !== flxc_bot_chat_status( $fresh ) ) ) {
 		flxc_evo_typing( null, 'stop' );
 		if ( $fresh ) {
-			flxc_system_message( $fresh, __( 'Asistanın hazırladığı cevap gönderilmedi: sohbete temsilci yazdı.', 'flx-chat' ) );
+			flxc_system_message( $fresh, __( 'The assistant\'s prepared reply was not sent: an agent wrote in the chat.', 'flx-chat' ) );
 		}
 		return;
 	}
@@ -623,7 +623,7 @@ function flxc_bot_turn( $chat ) {
 	flxc_evo_typing( null, 'stop' );
 	if ( ! $sent && empty( $ctx['stop'] ) ) {
 		// Model boş döndü: kişi "yazıyor…" görüp sessiz kalmasın.
-		flxc_bot_fallback( $fresh, __( 'yapay zekâ boş cevap verdi', 'flx-chat' ) );
+		flxc_bot_fallback( $fresh, __( 'the AI returned an empty answer', 'flx-chat' ) );
 		return;
 	}
 	if ( $sent ) {
@@ -679,7 +679,7 @@ function flxc_bot_complete( array $messages, $chat, array &$ctx, $tick = null ) 
 		if ( ! empty( $ctx['deadline'] ) ) {
 			$left = (int) $ctx['deadline'] - time();
 			if ( $left < 8 ) {
-				return new WP_Error( 'flxc_bot_deadline', __( 'Yapay zekâ zamanında cevap vermedi.', 'flx-chat' ) );
+				return new WP_Error( 'flxc_bot_deadline', __( 'The AI did not respond in time.', 'flx-chat' ) );
 			}
 			$opts['timeout'] = min( 40, $left );
 		}
@@ -792,7 +792,7 @@ function flxc_bot_bank_after( array &$ctx ) {
 	$acc = flxc_bot_bank_account();
 	$add = array();
 	if ( '' !== $acc['iban'] ) {
-		$add[] = __( 'Havale/EFT bilgilerimiz 👇 Her birine basılı tutup kopyalayabilirsiniz.', 'flx-chat' );
+		$add[] = __( 'Our bank transfer details 👇 Press and hold each one to copy it.', 'flx-chat' );
 		if ( '' !== $acc['holder'] ) {
 			$add[] = $acc['holder'];
 		}
@@ -1044,17 +1044,17 @@ function flxc_bot_messages( $chat ) {
 				$text = flxc_voice_model_text( $m, $rcm );
 			}
 			if ( 'contact' === $m['type'] ) {
-				$text = '[' . __( 'Kişi kartı', 'flx-chat' ) . '] ' . flxc_contact_card_text( $m['body'], $rcm );
+				$text = '[' . __( 'Contact card', 'flx-chat' ) . '] ' . flxc_contact_card_text( $m['body'], $rcm );
 			}
 			if ( ! empty( $rcm['rcheck']['verdict'] ) && 'skipped' !== $rcm['rcheck']['verdict'] ) {
-				$text .= ' (' . __( 'otomatik dekont kontrolü', 'flx-chat' ) . ': ' . flxc_rcheck_summary( $rcm['rcheck'] ) . ')';
+				$text .= ' (' . __( 'automatic receipt check', 'flx-chat' ) . ': ' . flxc_rcheck_summary( $rcm['rcheck'] ) . ')';
 			}
 		}
 		if ( 'out' === $m['direction'] ) {
 			$text = flxc_bot_mask_urls( $text );
 		}
 		if ( 'out' === $m['direction'] && 'bot' !== $m['source'] && (int) $m['user_id'] ) {
-			$text = '(' . __( 'temsilci', 'flx-chat' ) . ') ' . $text;
+			$text = '(' . __( 'agent', 'flx-chat' ) . ') ' . $text;
 		}
 		if ( '' !== $note && 'user' === $role ) {
 			$text = $note . "\n" . $text;
@@ -1339,7 +1339,7 @@ function flxc_bot_tool( $name, array $a, $chat, array &$ctx ) {
 					'email'                => 'hayır' === ( $state['email_notify'] ?? '' ) ? '' : $state['email'],
 					'beneficiaries'        => implode( "\n", $names ),
 					'beneficiary_contacts' => $contacts,
-					'note'                 => __( 'WhatsApp asistanı ile oluşturuldu.', 'flx-chat' ),
+					'note'                 => __( 'Created with the WhatsApp assistant.', 'flx-chat' ),
 					'user_id'              => 0,
 					'source_detail'        => 'flx-chat-bot',
 				),
@@ -1525,7 +1525,7 @@ function flxc_bot_tool( $name, array $a, $chat, array &$ctx ) {
 
 function flxc_bot_optout_text() {
 	$t = trim( (string) flxc_setting( 'bot_optout_text' ) );
-	return '' !== $t ? $t : __( 'Anlaşıldı, bundan sonra size bizden mesaj gelmeyecek. İyi günler dileriz.', 'flx-chat' );
+	return '' !== $t ? $t : __( 'Understood, you will not receive any more messages from us. Have a nice day.', 'flx-chat' );
 }
 
 /** Kişinin kendi kayıtları, asistana kısa biçimde. */
@@ -1623,9 +1623,9 @@ function flxc_bot_own_records( $chat, array $emails = array(), array $phones = a
 function flxc_bot_cancel_ask( $what, $money ) {
 	$t = trim( (string) flxc_setting( 'bot_cancel_text' ) );
 	if ( '' === $t ) {
-		$t = __( 'Neden iptal etmek istediğinizi paylaşmak isterseniz biz buradayız, sizi dinlemekten memnuniyet duyarız 🌱', 'flx-chat' ) . "\n\n"
+		$t = __( 'If you\'d like to share why you want to cancel, we\'re here and happy to listen 🌱', 'flx-chat' ) . "\n\n"
 			/* translators: 1: donation, 2: amount */
-			. __( '*{bagis}* ({tutar}) kaydınızı iptal etmemi onaylıyor musunuz?', 'flx-chat' );
+			. __( 'Shall I cancel *{bagis}* ({tutar})? Please confirm.', 'flx-chat' );
 	}
 	return strtr( $t, array( '{bagis}' => $what, '{tutar}' => $money ) );
 }
@@ -1653,7 +1653,7 @@ function flxc_bot_cancel_donation( $chat, array $a, array &$state, array &$ctx, 
 		foreach ( flxc_bot_own_records( $chat, $emails, $phones, $state )['donations'] as $d ) {
 			$order  = function_exists( 'flxc_pay_order' ) ? flxc_pay_order( (int) $d['id'] ) : null;
 			/* translators: 1: donation title, 2: quantity */
-			$title  = (int) ( $d['qty'] ?? 0 ) > 1 ? sprintf( __( '%1$s · %2$d adet', 'flx-chat' ), $d['title'], (int) $d['qty'] ) : $d['title'];
+			$title  = (int) ( $d['qty'] ?? 0 ) > 1 ? sprintf( __( '%1$s · %2$d pcs', 'flx-chat' ), $d['title'], (int) $d['qty'] ) : $d['title'];
 			$list[] = array( 'id' => (int) $d['id'], 'title' => $title, 'money' => $d['money'], 'no' => $order ? (string) $order->get_order_number() : (string) $d['id'], 'status' => $d['status'], 'order' => $order );
 		}
 	}
@@ -1728,7 +1728,7 @@ function flxc_bot_cancel_donation( $chat, array $a, array &$state, array &$ctx, 
 		return array( 'ok' => true, 'canceled' => $pick['no'], 'note' => 'İptal edildi (test). Kişiye kısaca bildir, nazikçe teşekkür et; fikrini değiştirirse yeniden yardımcı olabileceğini söyle.' );
 	}
 	/* translators: %s: reason */
-	$note = __( 'Kişi WhatsApp\'tan iptal istedi; asistan onay alarak iptal etti.', 'flx-chat' ) . ( '' !== $reason ? ' ' . sprintf( __( 'Neden: %s', 'flx-chat' ), $reason ) : '' );
+	$note = __( 'The person asked on WhatsApp to cancel; the assistant cancelled it after confirmation.', 'flx-chat' ) . ( '' !== $reason ? ' ' . sprintf( __( 'Reason: %s', 'flx-chat' ), $reason ) : '' );
 	if ( $order ) {
 		$order->update_status( 'cancelled', $note );
 	} else {
@@ -1740,7 +1740,7 @@ function flxc_bot_cancel_donation( $chat, array $a, array &$state, array &$ctx, 
 		FLXB_Donations::add_audit( $pick['id'], 'status', array( 'note' => $note ) );
 	}
 	/* translators: 1: donation, 2: order number, 3: reason */
-	flxc_system_message( $chat, sprintf( __( 'Asistan bağışı iptal etti: %1$s (#%2$s)', 'flx-chat' ), $pick['title'], $pick['no'] ) . ( '' !== $reason ? ' · ' . sprintf( __( 'Neden: %s', 'flx-chat' ), $reason ) : '' ) );
+	flxc_system_message( $chat, sprintf( __( 'The assistant cancelled the donation: %1$s (#%2$s)', 'flx-chat' ), $pick['title'], $pick['no'] ) . ( '' !== $reason ? ' · ' . sprintf( __( 'Reason: %s', 'flx-chat' ), $reason ) : '' ) );
 	flxc_bot_stat_add( array( 'canceled' => 1 ) );
 	return array( 'ok' => true, 'canceled' => $pick['no'], 'note' => 'İptal edildi. Kişiye kısaca bildir, nazikçe teşekkür et; fikrini değiştirirse yeniden yardımcı olabileceğini söyle.' );
 }
@@ -1816,7 +1816,7 @@ function flxc_bot_cert_resend( $chat, array $a, array &$state, array &$ctx, $san
 		}
 	} else {
 		/* translators: 1: certificate title, 2: certificate number, 3: url */
-		$ctx['after'][] = sprintf( __( 'Sertifikanız 🌱 %1$s (%2$s)', 'flx-chat' ), $cert['title'], $cert['number'] ) . "\n" . $cert['url'];
+		$ctx['after'][] = sprintf( __( 'Your certificate 🌱 %1$s (%2$s)', 'flx-chat' ), $cert['title'], $cert['number'] ) . "\n" . $cert['url'];
 		$ctx['preview'] = true;
 	}
 	$sent[]             = $now;
@@ -1825,7 +1825,7 @@ function flxc_bot_cert_resend( $chat, array $a, array &$state, array &$ctx, $san
 	if ( ! $sandbox ) {
 		flxc_bot_stat_add( array( 'cert_resent' => 1 ) );
 		/* translators: 1: certificate number, 2: channel */
-		flxc_system_message( $chat, sprintf( __( 'Asistan %1$s sertifikasını yeniden gönderdi (%2$s).', 'flx-chat' ), $cert['number'], 'email' === $channel ? __( 'e-posta', 'flx-chat' ) : 'WhatsApp' ) );
+		flxc_system_message( $chat, sprintf( __( 'The assistant resent certificate %1$s (%2$s).', 'flx-chat' ), $cert['number'], 'email' === $channel ? __( 'e-mail', 'flx-chat' ) : 'WhatsApp' ) );
 	}
 	return array( 'ok' => true, 'note' => 'email' === $channel ? 'Sertifika e-postasına gönderildi; birkaç dakika içinde ulaşır, spam klasörüne de bakmasını söyle.' : 'Sertifika linki senin mesajından sonra ayrı mesajla gidecek; linki sen yazma.' );
 }
@@ -1902,7 +1902,7 @@ function flxc_bot_sandbox_seed( array &$state ) {
 	if ( ! empty( $state['tdons'] ) ) {
 		return false;
 	}
-	$o     = array( 'title' => __( 'Bağış', 'flx-chat' ), 'unit' => '', 'amount' => 150.0, 'currency' => 'TRY' );
+	$o     = array( 'title' => __( 'Donation', 'flx-chat' ), 'unit' => '', 'amount' => 150.0, 'currency' => 'TRY' );
 	$types = function_exists( 'flxc_ai_types' ) ? flxc_ai_types() : array();
 	if ( $types ) {
 		$op = $types[0]['options'][0] ?? array();
@@ -1970,12 +1970,12 @@ function flxc_bot_daily_limit() {
 
 function flxc_bot_limit_text() {
 	$t = trim( (string) flxc_setting( 'bot_limit_text' ) );
-	return '' !== $t ? $t : __( 'Mesajınızı aldık, size en kısa sürede dönüş yapacağız 🌱', 'flx-chat' );
+	return '' !== $t ? $t : __( 'We\'ve received your message and will get back to you as soon as possible 🌱', 'flx-chat' );
 }
 
 function flxc_bot_handoff_text() {
 	$t = trim( (string) flxc_setting( 'bot_handoff_text' ) );
-	return '' !== $t ? $t : __( 'Sizi ekibimizden bir arkadaşımıza aktarıyorum, en kısa sürede buradan dönüş yapacak 🌱', 'flx-chat' );
+	return '' !== $t ? $t : __( 'I\'m passing you to a colleague from our team, they will get back to you here shortly 🌱', 'flx-chat' );
 }
 
 function flxc_bot_handoff( $chat, array $state, $reason ) {
@@ -1984,7 +1984,7 @@ function flxc_bot_handoff( $chat, array $state, $reason ) {
 	$fresh = flxc_get_chat( $chat['id'] );
 	flxc_update_chat( $chat['id'], array( 'unread' => max( 1, (int) $fresh['unread'] ), 'status' => 'open' ) );
 	/* translators: %s: reason */
-	flxc_system_message( $chat, sprintf( __( 'Asistan sohbeti ekibe devretti: %s', 'flx-chat' ), '' !== $reason ? $reason : '-' ) );
+	flxc_system_message( $chat, sprintf( __( 'The assistant handed the chat to the team: %s', 'flx-chat' ), '' !== $reason ? $reason : '-' ) );
 	do_action( 'flxc_bot_handoff', $chat, $reason );
 }
 
@@ -2061,7 +2061,7 @@ function flxc_bot_build_order( array $a ) {
 		'type'     => $type['id'],
 		'title'    => $type['title'],
 		'option'   => $opt ? $opt['key'] : '',
-		'label'    => $opt ? $opt['label'] : __( 'Serbest tutar', 'flx-chat' ),
+		'label'    => $opt ? $opt['label'] : __( 'Custom amount', 'flx-chat' ),
 		'unit'     => $opt ? ( $qty > 1 ? $opt['units'] : $opt['unit'] ) : '',
 		'qty'      => $qty,
 		'amount'   => $amount,
@@ -2107,7 +2107,7 @@ function flxc_bot_order_summary( array $o, array $state = array() ) {
 		if ( (int) $o['qty'] > 1 ) {
 			// 1.27.0 (Ahmet): onaydan önce her sertifika kimin adına, ayrı satırda. Flux Donate 2.4.1: her isme bir
 			// sertifika (aynı isim tekrar ederse fidan sayısı artar), isimsiz kalan adetler bağışçı adına tek sertifika.
-			$unit  = '' !== (string) $o['unit'] ? $o['unit'] : __( 'adet', 'flx-chat' );
+			$unit  = '' !== (string) $o['unit'] ? $o['unit'] : __( 'unit', 'flx-chat' );
 			$certs = array();
 			$used  = 0;
 			foreach ( $o['benef'] as $i => $b ) {
@@ -2117,18 +2117,18 @@ function flxc_bot_order_summary( array $o, array $state = array() ) {
 			}
 			$rest = (int) $o['qty'] - $used;
 			if ( $rest > 0 ) {
-				$certs[] = array( ! empty( $state['full'] ) ? $state['full'] : __( 'bağışçının adı', 'flx-chat' ), $rest );
+				$certs[] = array( ! empty( $state['full'] ) ? $state['full'] : __( 'donor\'s name', 'flx-chat' ), $rest );
 			}
-			$lines[] = __( 'Sertifikalar (her isme ayrı):', 'flx-chat' );
+			$lines[] = __( 'Certificates (one per name):', 'flx-chat' );
 			$i       = 0;
 			foreach ( $certs as $c ) {
 				$lines[] = ( ++$i ) . '. ' . $c[0] . ' · ' . number_format_i18n( $c[1] ) . ' ' . $unit;
 			}
 		} else {
-			$lines[] = __( 'Sertifika: ', 'flx-chat' ) . $names[0];
+			$lines[] = __( 'Certificate: ', 'flx-chat' ) . $names[0];
 		}
 		if ( flxc_benef_cert_on() && array_filter( array_column( $o['benef'], 'phone' ) ) ) {
-			$lines[] = __( 'Ödeme onaylanınca sertifika bu numaraya da WhatsApp\'tan gönderilir.', 'flx-chat' );
+			$lines[] = __( 'Once the payment is approved, the certificate is also sent to this number on WhatsApp.', 'flx-chat' );
 		}
 	}
 	if ( ! empty( $state['full'] ) ) {
@@ -2172,7 +2172,7 @@ function flxc_bot_price_text( $type_id = 0 ) {
 			}
 		}
 		if ( $t['free'] ) {
-			$rows[] = '• ' . __( 'Dilediğiniz tutar', 'flx-chat' ) . ( $t['min'] > 0 ? ' (en az ' . flxc_money( $t['min'], $t['currency'] ) . ')' : '' );
+			$rows[] = '• ' . __( 'Any amount you like', 'flx-chat' ) . ( $t['min'] > 0 ? ' (en az ' . flxc_money( $t['min'], $t['currency'] ) . ')' : '' );
 		}
 		$blocks[] = $b . "\n\n" . implode( "\n", $rows );
 	}
@@ -2180,7 +2180,7 @@ function flxc_bot_price_text( $type_id = 0 ) {
 		return '';
 	}
 	$foot = trim( (string) flxc_setting( 'bot_price_footer' ) );
-	$foot = '' !== $foot ? $foot : __( 'Hangisini ve kaç adet istediğinizi yazmanız yeterli.', 'flx-chat' );
+	$foot = '' !== $foot ? $foot : __( 'Just write which one and how many you would like.', 'flx-chat' );
 	return implode( "\n\n", $blocks ) . "\n\n" . $foot;
 }
 
@@ -2202,29 +2202,29 @@ function flxc_bot_pay( $donation_id, $asked = '' ) {
 function flxc_bot_payment_messages( array $o, $name, $pay = null, $relink = false ) {
 	$out   = array();
 	$after = trim( (string) flxc_setting( 'bot_after_payment' ) );
-	$after = '' !== $after ? $after : __( 'Ödemeyi yaptıktan sonra dekontu buradan gönderebilirsiniz. Desteğiniz için çok teşekkür ederiz 🤲', 'flx-chat' );
+	$after = '' !== $after ? $after : __( 'After paying, you can send the receipt here. Thank you so much for your support 🤲', 'flx-chat' );
 	if ( $pay && 'card' === $pay['method'] ) {
 		/* translators: %s: url */
-		$out[] = sprintf( __( 'Kartla ödeme sayfanız hazır 💳 %s', 'flx-chat' ), $pay['url'] ) . "\n\n" . __( 'Sayfada kart bilgilerinizi girip ödemeyi tamamlayabilirsiniz; ödeme 3D Secure ile korunur.', 'flx-chat' );
+		$out[] = sprintf( __( 'Your card payment page is ready 💳 %s', 'flx-chat' ), $pay['url'] ) . "\n\n" . __( 'Enter your card details on the page to complete the payment; it is protected by 3D Secure.', 'flx-chat' );
 		if ( ! $relink ) {
-			$out[] = __( 'Ödeme tamamlanınca bağışınız kendiliğinden onaylanır. Desteğiniz için çok teşekkür ederiz 🤲', 'flx-chat' );
+			$out[] = __( 'Your donation is confirmed automatically once the payment goes through. Thank you so much for your support 🤲', 'flx-chat' );
 		}
 		return $out;
 	}
 	if ( $pay ) {
 		$head = 'choose' === $pay['method']
 			/* translators: %s: url */
-			? sprintf( __( 'Ödeme sayfanız hazır: %s', 'flx-chat' ), $pay['url'] ) . "\n\n" . __( 'Bu sayfada kartla ödeyebilir ya da havale/EFT seçebilirsiniz. Havale ile ödemek isterseniz bilgiler aşağıda; her birine basılı tutup kopyalayabilirsiniz 👇', 'flx-chat' )
+			? sprintf( __( 'Your payment page is ready: %s', 'flx-chat' ), $pay['url'] ) . "\n\n" . __( 'On this page you can pay by card or choose bank transfer. If you prefer a bank transfer, the details are below; press and hold each one to copy 👇', 'flx-chat' )
 			/* translators: %s: url */
-			: sprintf( __( 'Bağışınızın havale bilgileri bu sayfada: %s', 'flx-chat' ), $pay['url'] ) . "\n\n" . __( 'Bilgiler aşağıda da var; her birine basılı tutup kopyalayabilirsiniz 👇', 'flx-chat' );
+			: sprintf( __( 'The bank transfer details of your donation are on this page: %s', 'flx-chat' ), $pay['url'] ) . "\n\n" . __( 'They are also below; press and hold each one to copy 👇', 'flx-chat' );
 	} else {
 		$link = $o ? flxc_donate_url( null, $o['option'], $o['qty'] ) : '';
-		$head = __( 'Havale/EFT ile ödeyebilirsiniz.', 'flx-chat' );
+		$head = __( 'You can pay by bank transfer.', 'flx-chat' );
 		if ( '' !== $link ) {
 			/* translators: %s: url */
-			$head .= "\n\n" . sprintf( __( 'Bağış sayfamız: %s', 'flx-chat' ), $link );
+			$head .= "\n\n" . sprintf( __( 'Our donation page: %s', 'flx-chat' ), $link );
 		}
-		$head .= "\n\n" . __( 'Havale bilgileri aşağıda; her birine basılı tutup kopyalayabilirsiniz 👇', 'flx-chat' );
+		$head .= "\n\n" . __( 'Bank details are below; long-press each one to copy 👇', 'flx-chat' );
 	}
 	$out[] = $head;
 	$acc   = flxc_bot_bank_account();
@@ -2350,7 +2350,7 @@ add_action(
 						flxc_bot_queue( (int) $chat['id'] );
 					}
 					/* translators: %s: user */
-					flxc_system_message( $chat, sprintf( 'on' === $req->get_param( 'state' ) ? __( 'Asistan açıldı (%s)', 'flx-chat' ) : __( 'Asistan kapatıldı (%s)', 'flx-chat' ), flxc_user_name( get_current_user_id() ) ) );
+					flxc_system_message( $chat, sprintf( 'on' === $req->get_param( 'state' ) ? __( 'Assistant turned on (%s)', 'flx-chat' ) : __( 'Assistant turned off (%s)', 'flx-chat' ), flxc_user_name( get_current_user_id() ) ) );
 					return array( 'chat' => flxc_chat_for_js( flxc_get_chat( $chat['id'] ) ) );
 				},
 			)

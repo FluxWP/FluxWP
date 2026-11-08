@@ -1,0 +1,1902 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "FluxWP packages."
+msgstr "Пакеты FluxWP."
+
+msgid "Install and activate missing plugins"
+msgstr "Установите и активируйте недостающие плагины"
+
+msgid "The missing plugins could not be installed. Install them from FluxWP Panel › Packages."
+msgstr "Не удалось установить недостающие плагины. Установите их из панели FluxWP › Пакеты."
+
+msgid "Presets"
+msgstr "Пресеты"
+
+msgid "Preset applied to the empty site."
+msgstr "Пресет применен к пустому сайту."
+
+msgid "%s preset is ready. It was not applied automatically because the site has content: preview and apply it."
+msgstr "Пресет%sготов. Он не был применен автоматически, поскольку на сайте есть контент: просмотрите и примените его."
+
+msgid "Presets: %1$d pending updates, %2$d patches awaiting approval."
+msgstr "Предустановки:%1$dожидают обновления, исправления%2$dожидают утверждения."
+
+msgid "You are not allowed to do this."
+msgstr "Вам не разрешено это делать."
+
+msgid "Done."
+msgstr "Готово."
+
+msgid "Applied: %d changes."
+msgstr "Применено: изменения%d."
+
+msgid "%d manually changed values were kept."
+msgstr "%dизмененные вручную значения были сохранены."
+
+msgid "Undone: %1$d. Left untouched because they changed later: %2$d."
+msgstr "Отменено:%1$d. Оставлено нетронутым, поскольку позже они изменились:%2$d."
+
+msgid "\"%s\" imported. You can preview and apply it."
+msgstr "«%s» импортирован. Вы можете просмотреть и применить его."
+
+msgid "An imported preset cannot contain \"$file\" references; write bodies inline or install the preset as a plugin."
+msgstr "Импортированный стиль не может содержать ссылки «$file»; напишите тела встроенными или установите пресет в виде плагина."
+
+msgid "Organisation profile edited in the admin"
+msgstr "Профиль организации редактируется в админке"
+
+msgid "A preset sets up the site in one step: organisation profile, plugin settings, colours, header/footer, templates, pages and menus. Changes you make in the admin are never overwritten; updates are applied below one by one with your approval."
+msgstr "Пресет настраивает сайт за один шаг: профиль организации, настройки плагина, цвета, верхний/нижний колонтитул, шаблоны, страницы и меню. Изменения, внесенные вами в администраторе, никогда не перезаписываются; обновления применяются ниже одно за другим с вашего одобрения."
+
+msgid "Organisation profile"
+msgstr "Профиль организации"
+
+msgid "History"
+msgstr "История"
+
+msgid "Export / import"
+msgstr "Экспорт/импорт"
+
+msgid "No presets installed. Install a preset plugin (e.g. Örnek Preset) or import JSON from the \"Export / import\" tab."
+msgstr "Никаких пресетов не установлено. Установите предустановленный плагин (например, Örnek Preset) или импортируйте JSON со вкладки «Экспорт/импорт»."
+
+msgid "Invalid"
+msgstr "Недействительный"
+
+msgid "Applied · %s"
+msgstr "Применено ·%s"
+
+msgid "Not applied"
+msgstr "Не применяется"
+
+msgid "Missing: %s. These parts are skipped."
+msgstr "Отсутствует:%s. Эти части пропускаются."
+
+msgid "Preview and apply"
+msgstr "Предварительный просмотр и применение"
+
+msgid "Fill empty values only"
+msgstr "Заполняйте только пустые значения"
+
+msgid "Compare again"
+msgstr "Сравнить еще раз"
+
+msgid "Remove the preset? Settings it wrote go back to their old values (your manual changes stay), pages it created become drafts."
+msgstr "Удалить предустановку? Записанные им настройки возвращаются к своим старым значениям (внесенные вами вручную изменения остаются), созданные им страницы становятся черновиками."
+
+msgid "Remove preset"
+msgstr "Удалить предустановку"
+
+msgid "Pending updates"
+msgstr "Ожидаемые обновления"
+
+msgid "Preview"
+msgstr "Предварительный просмотр"
+
+msgid "Skip"
+msgstr "Пропустить"
+
+msgid "Patches awaiting approval"
+msgstr "Патчи, ожидающие одобрения"
+
+msgid "Change proposals from the Flux AI chat or an external MCP client wait here for approval."
+msgstr "Предложения по изменению из чата Flux AI или внешнего клиента MCP ждут одобрения здесь."
+
+msgid "Reject"
+msgstr "Отклонить"
+
+msgid "Site patches"
+msgstr "Патчи сайта"
+
+msgid "theme %s"
+msgstr "тема%s"
+
+msgid "Will be added"
+msgstr "Будет добавлено"
+
+msgid "Will change"
+msgstr "изменится"
+
+msgid "Same"
+msgstr "То же самое"
+
+msgid "Filled, kept"
+msgstr "Заполнено, сохранено"
+
+msgid "Changed manually, skipped"
+msgstr "Изменено вручную, пропущено"
+
+msgid "Media"
+msgstr "СМИ"
+
+msgid "Content and theme"
+msgstr "Содержание и тема"
+
+msgid "WordPress settings"
+msgstr "настройки WordPress"
+
+msgid "Plugin settings"
+msgstr "Настройки плагина"
+
+msgid "Patch not found."
+msgstr "Патч не найден."
+
+msgid "Sync"
+msgstr "Синхронизировать"
+
+msgid "Settings synced (%s)"
+msgstr "Настройки синхронизированы (%s)"
+
+msgid "%1$s: \"%2$s\" is not in the settings schema; it is written but the plugin may not use it."
+msgstr "%1$s: «%2$s» отсутствует в схеме настроек; написано, но плагин может его не использовать."
+
+msgid "Patch"
+msgstr "Патч"
+
+msgid "Preset not found."
+msgstr "Предустановка не найдена."
+
+msgid "Apply"
+msgstr "Применить"
+
+msgid "What"
+msgstr "Что"
+
+msgid "Now"
+msgstr "Сейчас"
+
+msgid "Preset"
+msgstr "Предустановка"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Value of the %s preset. Once applied, that preset's updates will not overwrite it."
+msgstr "Значение предустановки%s. После применения обновления этого пресета не перезапишут его."
+
+msgid "Conflict: %s also writes this value; the last one applied wins."
+msgstr "Конфликт:%sтакже записывает это значение; побеждает тот, кто применил последний."
+
+msgid "Apply anyway"
+msgstr "Подать заявку в любом случае"
+
+msgid "Apply (%d changes)"
+msgstr "Применить (изменения%d)"
+
+msgid "Show unchanged rows too"
+msgstr "Показать неизмененные строки тоже"
+
+msgid "Organisation identity. Plugins read the name, signature, WhatsApp, IBAN and similar details from here. The preset fills it on first install; preset updates never overwrite values you change here."
+msgstr "Идентичность организации. Плагины считывают отсюда имя, подпись, WhatsApp, IBAN и тому подобные детали. Пресет заполняет его при первой установке; Обновления предустановок никогда не перезаписывают значения, которые вы меняете здесь."
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Nothing applied yet."
+msgstr "Пока ничего не применялось."
+
+msgid "Update"
+msgstr "Обновить"
+
+msgid "Undo"
+msgstr "Отменить"
+
+msgid "Removal"
+msgstr "Удаление"
+
+msgid "Skipped"
+msgstr "Пропущено"
+
+msgid "Profile"
+msgstr "Профиль"
+
+msgid "Time"
+msgstr "Время"
+
+msgid "Action"
+msgstr "Действие"
+
+msgid "Source"
+msgstr "Источник"
+
+msgid "Result"
+msgstr "Результат"
+
+msgid "Undo this change?"
+msgstr "Отменить это изменение?"
+
+msgid "Export this site as a preset"
+msgstr "Экспортировать этот сайт как предустановку"
+
+msgid "Downloads the site's current state as a flx-preset/1 JSON file. Secrets such as passwords, API keys and tokens are never written to the file."
+msgstr "Загружает текущее состояние сайта в виде файла JSON flx-preset/1. Секреты, такие как пароли, ключи API и токены, никогда не записываются в файл."
+
+msgid "Styles, templates and parts"
+msgstr "Стили, шаблоны и детали"
+
+msgid "Menus"
+msgstr "Меню"
+
+msgid "Logo and site icon"
+msgstr "Логотип и значок сайта"
+
+msgid "Pages"
+msgstr "Страницы"
+
+msgid "Download JSON"
+msgstr "Скачать JSON"
+
+msgid "Import preset"
+msgstr "Импортировать пресет"
+
+msgid "Import"
+msgstr "Импорт"
+
+msgid "An imported preset is not applied; preview and apply it in the Presets tab."
+msgstr "Импортированный набор настроек не применяется; просмотреть и применить его на вкладке «Наборы настроек»."
+
+msgid "AI and MCP"
+msgstr "ИИ и MCP"
+
+msgid "The Flux AI chat and Flux MCP tools (preset_schema, preset_export, preset_patch_preview, preset_patch_apply, preset_revert, preset_history) edit the site through patches. In the chat every patch asks for approval before it is applied."
+msgstr "Чат Flux AI и инструменты Flux MCP (preset_schema, Preset_export, Preset_patch_preview, Preset_patch_apply, Preset_revert, Preset_history) редактируют сайт с помощью патчей. В чате каждый патч запрашивает одобрение перед применением."
+
+msgid "Apply patches from external MCP clients without waiting for approval"
+msgstr "Применяйте исправления от внешних клиентов MCP, не дожидаясь одобрения."
+
+msgid "More closing comments than opening ones."
+msgstr "Заключительных комментариев больше, чем вступительных."
+
+msgid "Unregistered block: %s"
+msgstr "Незарегистрированный блок:%s."
+
+msgid "Media file missing: %s"
+msgstr "Медиа-файл отсутствует:%s."
+
+msgid "Media needs \"file\" or \"url\"."
+msgstr "Медиа-файлу нужен «файл» или «url»."
+
+msgid "Content type \"%s\" does not exist on this site, skipped."
+msgstr "Тип контента «%s» не существует на этом сайте, он пропущен."
+
+msgid "\"%s\" cannot be written, skipped."
+msgstr "«%s» нельзя записать, пропустить."
+
+msgid "The %s language pack is not installed; the site language was not set (Settings › General)."
+msgstr "Языковой пакет%sне установлен; язык сайта не установлен (Настройки › Общие)."
+
+msgid "Migration not found."
+msgstr "Миграция не обнаружена."
+
+msgid "Record not found."
+msgstr "Запись не найдена."
+
+msgid "Exported from %1$s on %2$s."
+msgstr "Экспортировано из%1$sв%2$s."
+
+msgid "Page"
+msgstr "Страница"
+
+msgid "Post"
+msgstr "Сообщение"
+
+msgid "Term"
+msgstr "Срок"
+
+msgid "Taxonomy not found: %s"
+msgstr "Таксономия не найдена:%s."
+
+msgid "Menu"
+msgstr "Меню"
+
+msgid "Template"
+msgstr "Шаблон"
+
+msgid "Template part"
+msgstr "Часть шаблона"
+
+msgid "Global styles"
+msgstr "Глобальные стили"
+
+msgid "Product"
+msgstr "Продукт"
+
+msgid "Product not found."
+msgstr "Товар не найден."
+
+msgid "This patch has already been processed."
+msgstr "Этот патч уже обработан."
+
+msgid "Short name"
+msgstr "Короткое имя"
+
+msgid "Legal name"
+msgstr "Юридическое название"
+
+msgid "Tagline"
+msgstr "Слоган"
+
+msgid "Short introduction"
+msgstr "Краткое введение"
+
+msgid "Message signature"
+msgstr "Подпись сообщения"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "WhatsApp support line"
+msgstr "Линия поддержки WhatsApp"
+
+msgid "Email"
+msgstr "электронная почта"
+
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Map link"
+msgstr "Ссылка на карту"
+
+msgid "IBAN"
+msgstr "IBAN"
+
+msgid "Bank"
+msgstr "Банк"
+
+msgid "Account holder"
+msgstr "Владелец счета"
+
+msgid "Tax office"
+msgstr "Налоговая инспекция"
+
+msgid "Tax number"
+msgstr "Налоговый номер"
+
+msgid "Year founded"
+msgstr "Год основания"
+
+msgid "Logo (media ID)"
+msgstr "Логотип (идентификатор носителя)"
+
+msgid "Light logo (media ID)"
+msgstr "Световой логотип (идентификатор носителя)"
+
+msgid "Site icon (media ID)"
+msgstr "Значок сайта (идентификатор носителя)"
+
+msgid "Colours"
+msgstr "Цвета"
+
+msgid "Social media"
+msgstr "Социальные сети"
+
+msgid "Could not read the preset file."
+msgstr "Не удалось прочитать файл настроек."
+
+msgid "The preset is not valid JSON: %s"
+msgstr "Недопустимая предустановка JSON:%s."
+
+msgid "Not valid JSON: %s"
+msgstr "Недействительный JSON:%s."
+
+msgid "File not found: %s"
+msgstr "Файл не найден:%s"
+
+msgid "\"format\" must be \"%s\"."
+msgstr "«формат» должен быть «%s»."
+
+msgid "\"id\" must use lowercase letters, digits, - and _."
+msgstr "«id» должен содержать строчные буквы, цифры, - и _."
+
+msgid "\"name\" cannot be empty."
+msgstr "«имя» не может быть пустым."
+
+msgid "\"%s\" must be an object."
+msgstr "«%s» должен быть объектом."
+
+msgid "\"%s\" must be a list."
+msgstr "«%s» должен быть списком."
+
+msgid "content[%d]: \"type\" and \"key\" are required."
+msgstr "content[%d]: требуются «тип» и «ключ»."
+
+msgid "content[%1$d]: no active plugin registers the \"%2$s\" type; it will be skipped."
+msgstr "content[%1$d]: ни один активный плагин не регистрирует тип «%2$s»; оно будет пропущено."
+
+msgid "%s: secret fields (password, key, token) cannot be in a preset."
+msgstr "%s: секретные поля (пароль, ключ, токен) не могут быть в предустановке."
+
+msgid "The \"%s\" option cannot be written by a preset."
+msgstr "Опция «%s» не может быть записана с помощью предустановки."
+
+msgid "Preset engine: sets up the site in one step from a preset file (preset.json) or changes it through approved patches. Organisation profile, plugin settings, global styles, templates, header/footer, pages, menus and media. Preview, apply, undo, migrations, export this site as a preset; approved edits from the Flux AI chat and Flux MCP."
+msgstr "Предустановленный механизм: настраивает сайт за один шаг из предустановленного файла (preset.json) или изменяет его с помощью утвержденных патчей. Профиль организации, настройки плагина, глобальные стили, шаблоны, верхний/нижний колонтитул, страницы, меню и медиа. Предварительный просмотр, применение, отмена миграции, экспорт этого сайта в качестве предустановки; одобренные изменения из чата Flux AI и Flux MCP."
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "Package not found."
+msgstr "Пакет не найден."
+
+msgid "Installing %s"
+msgstr "Установка%s"
+
+msgid "FluxWP themes and plugins are updated from your own update server instead of wordpress.org. New versions appear on Dashboard › Updates as usual."
+msgstr "Темы и плагины FluxWP обновляются с вашего собственного сервера обновлений, а не с wordpress.org. Новые версии появляются на панели управления › Обновления как обычно."
+
+msgid "Settings saved and updates checked."
+msgstr "Настройки сохранены, обновления проверены."
+
+msgid "Updates checked."
+msgstr "Обновления проверены."
+
+msgid "Connected to the server as \"%1$s\". Last check: %2$s ago."
+msgstr "Подключился к серверу как «%1$s». Последняя проверка:%2$sназад."
+
+msgid "Packages"
+msgstr "Пакеты"
+
+msgid "Package"
+msgstr "Пакет"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Installed"
+msgstr "Установлено"
+
+msgid "Latest version"
+msgstr "Последняя версия"
+
+msgid "Could not get the package list from the server. Enter the key and press \"Check now\"."
+msgstr "Не удалось получить список пакетов с сервера. Введите ключ и нажмите «Проверить сейчас»."
+
+msgid "Theme"
+msgstr "Тема"
+
+msgid "Plugin"
+msgstr "Плагин"
+
+msgid "Update available"
+msgstr "Доступно обновление"
+
+msgid "Up to date"
+msgstr "Актуально"
+
+msgid "Not installed"
+msgstr "Не установлено"
+
+msgid "Install"
+msgstr "Установить"
+
+msgid "Check now"
+msgstr "Проверьте сейчас"
+
+msgid "Check for updates"
+msgstr "Проверьте наличие обновлений"
+
+msgid "Last check: %s"
+msgstr "Последняя проверка:%s"
+
+msgid "Checking…"
+msgstr "Проверка..."
+
+msgid "Could not connect to the server."
+msgstr "Не удалось подключиться к серверу."
+
+msgid "%d update available"
+msgid_plural "%d updates available"
+msgstr[0] "Доступно обновление%d"
+msgstr[1] "%dдоступны обновления"
+msgstr[2] "%dдоступны обновления"
+
+msgid "All up to date ✓"
+msgstr "Все актуально ✓"
+
+msgid "Connection"
+msgstr "Подключение"
+
+msgid "Server URL"
+msgstr "URL-адрес сервера"
+
+msgid "Set by the FLX_UPDATE_SERVER constant in wp-config.php."
+msgstr "Устанавливается константой FLX_UPDATE_SERVER в wp-config.php."
+
+msgid "Leave empty to use the default server. https only."
+msgstr "Оставьте пустым, чтобы использовать сервер по умолчанию. только https."
+
+msgid "Site key"
+msgstr "Ключ сайта"
+
+msgid "Set by the FLX_UPDATE_KEY constant in wp-config.php."
+msgstr "Устанавливается константой FLX_UPDATE_KEY в wp-config.php."
+
+msgid "Saved (type a new key to change it)"
+msgstr "Сохранено (введите новый ключ, чтобы изменить его)"
+
+msgid "Remove key"
+msgstr "Удалить ключ"
+
+msgid "Get it from the update server's admin panel (/admin) with \"Add site\". Give each site its own key."
+msgstr "Получите его из админ-панели сервера обновлений (/admin) с помощью «Добавить сайт». Дайте каждому сайту свой ключ."
+
+msgid "Automatic updates"
+msgstr "Автоматические обновления"
+
+msgid "Install new versions of FluxWP packages automatically"
+msgstr "Автоматически устанавливать новые версии пакетов FluxWP"
+
+msgid "When this is off, WordPress's per-plugin \"Enable auto-updates\" setting applies."
+msgstr "Если этот параметр отключен, применяется настройка WordPress для каждого плагина «Включить автоматические обновления»."
+
+msgid "Save and check"
+msgstr "Сохраните и проверьте"
+
+msgid "No site key entered."
+msgstr "Ключ сайта не введен."
+
+msgid "Could not reach the server: %s"
+msgstr "Не удалось связаться с сервером:%s."
+
+msgid "Invalid site key. Compare it with config.php on the server."
+msgstr "Неверный ключ сайта. Сравните его с config.php на сервере."
+
+msgid "The server returned an unexpected response (HTTP %d)."
+msgstr "Сервер вернул неожиданный ответ (HTTP%d)."
+
+msgid "No notes for this version."
+msgstr "Нет примечаний к этой версии."
+
+msgid "Could not rename the package folder."
+msgstr "Не удалось переименовать папку пакета."
+
+msgid "Update key"
+msgstr "Обновить ключ"
+
+msgid "No site key entered; FluxWP packages will not receive updates."
+msgstr "Не введен ключ сайта; Пакеты FluxWP не будут получать обновления."
+
+msgid "Not checked yet."
+msgstr "Еще не проверено."
+
+msgid "Server connection works. Last check: %s."
+msgstr "Соединение с сервером работает. Последняя проверка:%s."
+
+msgid "Update server"
+msgstr "Обновление сервера"
+
+msgid "FluxWP package updates"
+msgstr "Обновления пакета FluxWP"
+
+msgid "Waiting for update: %s"
+msgstr "Ожидание обновления:%s"
+
+msgid "Updates"
+msgstr "Обновления"
+
+msgid "Connected"
+msgstr "Подключено"
+
+msgid "Connection error"
+msgstr "Ошибка подключения"
+
+msgid "Not connected"
+msgstr "Не подключено"
+
+msgid "Not checked yet"
+msgstr "Еще не проверено"
+
+msgid "Recognized by the server as \"%1$s\" (%2$s)."
+msgstr "Распознается сервером как «%1$s» (%2$s)."
+
+msgid "No site key entered. Get one from the update server's admin panel (/admin)."
+msgstr "Ключ сайта не введен. Получите его из административной панели сервера обновлений (/admin)."
+
+msgid "Connect to the server with \"Test connection\"."
+msgstr "Подключитесь к серверу с помощью «Тестового соединения»."
+
+msgid "Last check: %s ago"
+msgstr "Последняя проверка:%sназад"
+
+msgid "%1$d packages, %2$d updates"
+msgstr "Пакеты%1$d, обновления%2$d"
+
+msgid "Test connection"
+msgstr "Тестовое соединение"
+
+msgid "Flux Packages"
+msgstr "Пакеты флюса"
+
+msgid "Update settings"
+msgstr "Обновить настройки"
+
+msgid "No package selected for update."
+msgstr "Пакет для обновления не выбран."
+
+msgid "Updating plugins"
+msgstr "Обновление плагинов"
+
+msgid "Updating themes"
+msgstr "Обновление тем"
+
+msgid "Installing %1$s version %2$s"
+msgstr "Установка версии%1$s%2$s"
+
+msgid "No records."
+msgstr "Никаких записей."
+
+msgid "Back to updates"
+msgstr "Вернуться к обновлениям"
+
+msgid "version changed (%s)"
+msgstr "версия изменена (%s)"
+
+msgid "rolled back automatically (%s)"
+msgstr "автоматически откатился (%s)"
+
+msgid "update failed (%s)"
+msgstr "обновление не выполнено (%s)"
+
+msgid "updated (%s)"
+msgstr "обновлено (%s)"
+
+msgid "Post-update check"
+msgstr "Проверка после обновления"
+
+msgid "Check that the site still loads after updating; roll the package back if it fails"
+msgstr "Убедитесь, что сайт по-прежнему загружается после обновления; откатить пакет обратно, если он не удался"
+
+msgid "Only HTTP 500 (critical error) triggers a rollback; network or firewall errors do not."
+msgstr "Только HTTP 500 (критическая ошибка) вызывает откат; ошибок сети или брандмауэра нет."
+
+msgid "FluxWP packages"
+msgstr "Пакеты FluxWP"
+
+msgid "Update selected"
+msgstr "Обновление выбрано"
+
+msgid "Update all (%s)"
+msgstr "Обновить все (%s)"
+
+msgid "Select all"
+msgstr "Выбрать все"
+
+msgid "Could not get the package list. Enter the key in Settings and click \"Test connection\"."
+msgstr "Не удалось получить список пакетов. Введите ключ в Настройках и нажмите «Проверить соединение»."
+
+msgid "Change version"
+msgstr "Изменить версию"
+
+msgid "Version"
+msgstr "Версия"
+
+msgid "older"
+msgstr "старше"
+
+msgid "Install this version"
+msgstr "Установить эту версию"
+
+msgid "A backup is taken first."
+msgstr "Сначала создается резервная копия."
+
+msgid "Flux Backup is not installed: no backup will be taken."
+msgstr "Flux Backup не установлен: резервная копия создаваться не будет."
+
+msgid "WordPress updates"
+msgstr "Обновления WordPress"
+
+msgid "FluxWP themes and plugins are updated from your own update server instead of wordpress.org."
+msgstr "Темы и плагины FluxWP обновляются с вашего собственного сервера обновлений, а не с wordpress.org."
+
+msgid "A backup is taken before every update (Flux Backup)."
+msgstr "Резервная копия создается перед каждым обновлением (Flux Backup)."
+
+msgid "Backups"
+msgstr "Резервные копии"
+
+msgid "No backup before updates: the Flux Backup plugin is not installed or active."
+msgstr "Никакого резервного копирования перед обновлениями: плагин Flux Backup не установлен и не активен."
+
+msgid "Activate"
+msgstr "Активировать"
+
+msgid "Install Flux Backup"
+msgstr "Установить резервную копию Flux"
+
+msgid "No FluxWP package updates yet."
+msgstr "Обновлений пакета FluxWP пока нет."
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "By"
+msgstr "Автор"
+
+msgid "Backup"
+msgstr "Резервное копирование"
+
+msgid "Success"
+msgstr "Успех"
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid "Automatic"
+msgstr "Автоматический"
+
+msgid "Open backup"
+msgstr "Открыть резервную копию"
+
+msgid "Install version %2$s of %1$s?"
+msgstr "Установить версию%2$sиз%1$s?"
+
+msgid "Package did not change; the installation may have failed."
+msgstr "Пакет не изменился; установка могла завершиться неудачно."
+
+msgid "Success ✓"
+msgstr "Успех ✓"
+
+msgid "Rolled back to the previous version automatically."
+msgstr "Автоматически откатился на предыдущую версию."
+
+msgid "Previous version not found; restore it manually."
+msgstr "Предыдущая версия не найдена; восстановите его вручную."
+
+msgid "This version is not on the server."
+msgstr "Этой версии нет на сервере."
+
+msgid "Package is not installed on this site."
+msgstr "Пакет не установлен на этом сайте."
+
+msgid "Before %1$s %2$s → %3$s"
+msgstr "До%1$s%2$s→%3$s"
+
+msgid "Backup failed, nothing was changed: %s"
+msgstr "Не удалось выполнить резервное копирование, ничего не изменилось:%s"
+
+msgid "Installation failed."
+msgstr "Установка не удалась."
+
+msgid "The site failed after the update (HTTP 500: %s)."
+msgstr "На сайте произошел сбой после обновления (HTTP 500:%s)."
+
+msgid "Site check could not run (no connection)."
+msgstr "Не удалось выполнить проверку сайта (нет соединения)."
+
+msgid "Site check returned HTTP %d; not treated as a failure."
+msgstr "Проверка сайта вернула HTTP%d; не рассматривается как неудача."
+
+msgid "%d backup deleted."
+msgid_plural "%d backups deleted."
+msgstr[0] "Резервная копия%dудалена."
+msgstr[1] "Резервные копии%dудалены."
+msgstr[2] "Резервные копии%dудалены."
+
+msgid "Retention saved and applied to existing update backups."
+msgstr "Срок хранения сохраняется и применяется к существующим резервным копиям обновлений."
+
+msgid "%d expired backup deleted."
+msgid_plural "%d expired backups deleted."
+msgstr[0] "Резервная копия с истекшим сроком действия%dудалена."
+msgstr[1] "%dрезервные копии с истекшим сроком действия удалены."
+msgstr[2] "%dрезервные копии с истекшим сроком действия удалены."
+
+msgid "Update backups are deleted automatically after"
+msgstr "Резервные копии обновлений автоматически удаляются после"
+
+msgid "%d day"
+msgid_plural "%d days"
+msgstr[0] "%dдень"
+msgstr[1] "%dдней"
+msgstr[2] "%dдней"
+
+msgid "."
+msgstr "."
+
+msgid "Flux Backup settings"
+msgstr "Настройки резервного копирования Flux"
+
+msgid "Update backup retention is set on the %s page (with Flux Backup 1.2.0 you can also change it here)."
+msgstr "Срок хранения резервных копий обновлений устанавливается на странице%s(в Flux Backup 1.2.0 вы также можете изменить это здесь)."
+
+msgid "Currently %1$d update backup, %2$s."
+msgid_plural "Currently %1$d update backups, %2$s."
+msgstr[0] "В настоящее время резервная копия обновления%1$d,%2$s."
+msgstr[1] "В настоящее время%1$dобновляет резервные копии,%2$s."
+msgstr[2] "В настоящее время%1$dобновляет резервные копии,%2$s."
+
+msgid "Delete all unlocked update backups? This cannot be undone."
+msgstr "Удалить все разблокированные резервные копии обновлений? Это невозможно отменить."
+
+msgid "Delete all"
+msgstr "Удалить все"
+
+msgid "Deleted"
+msgstr "Удалено"
+
+msgid "Locked backups are never deleted automatically."
+msgstr "Заблокированные резервные копии никогда не удаляются автоматически."
+
+msgid "Locked"
+msgstr "Заблокировано"
+
+msgid "Deleted on %s"
+msgstr "Удален%s"
+
+msgid "Open"
+msgstr "Открыть"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Delete the selected update backups? This cannot be undone."
+msgstr "Удалить выбранные резервные копии обновлений? Это невозможно отменить."
+
+msgid "Delete selected backups"
+msgstr "Удалить выбранные резервные копии"
+
+msgid "%s item"
+msgid_plural "%s items"
+msgstr[0] "%sэлемент"
+msgstr[1] "%sэлементы"
+msgstr[2] "%sэлементы"
+
+msgid "First page"
+msgstr "Первая страница"
+
+msgid "Previous page"
+msgstr "Предыдущая страница"
+
+msgid "Next page"
+msgstr "Следующая страница"
+
+msgid "Last page"
+msgstr "Последняя страница"
+
+msgid "%1$d of %2$d"
+msgstr "%1$dиз%2$d"
+
+msgid "Delete this backup? It also holds the backup of the other packages in the same bulk update. This cannot be undone."
+msgstr "Удалить эту резервную копию? Он также содержит резервные копии других пакетов в том же массовом обновлении. Это невозможно отменить."
+
+msgid "No package selected to install or update."
+msgstr "Пакет для установки или обновления не выбран."
+
+msgid "installed %s"
+msgstr "установлен%s"
+
+msgid "install failed"
+msgstr "установка не удалась"
+
+msgid "Hide log"
+msgstr "Скрыть журнал"
+
+msgid "Show log"
+msgstr "Показать журнал"
+
+msgid "Activate installed"
+msgstr "Активировать установленное"
+
+msgid "Install / update selected"
+msgstr "Установить/обновить выбрано"
+
+msgid "Requires:"
+msgstr "Требуется:"
+
+msgid "Active"
+msgstr "Активный"
+
+msgid "Installed, inactive"
+msgstr "Установлен, неактивен"
+
+msgid "%1$s requires %2$s (%3$s)."
+msgstr "Для%1$sтребуется%2$s(%3$s)."
+
+msgid "not installed"
+msgstr "не установлен"
+
+msgid "installed, inactive"
+msgstr "установлен, неактивен"
+
+msgid "Add %s too"
+msgstr "Добавьте также%s"
+
+msgid "Will also be installed / activated:"
+msgstr "Также будут установлены/активированы:"
+
+msgid "wordpress.org"
+msgstr "WordPress.org"
+
+msgid "Remove"
+msgstr "Удалить"
+
+msgid "%1$s was deselected: it does not work without %2$s."
+msgstr "Выбор%1$sотменен: без%2$sон не работает."
+
+msgid "For %1$s these will also be installed and activated: %2$s. Continue?"
+msgstr "Для%1$sтакже будут установлены и активированы:%2$s. Продолжать?"
+
+msgid "Preparing…"
+msgstr "Подготовка..."
+
+msgid "Working, please stay on this page…"
+msgstr "Работаем, пожалуйста, оставайтесь на этой странице..."
+
+msgid "Stay on this page until it finishes"
+msgstr "Оставайтесь на этой странице, пока она не закончится"
+
+msgid "Reload"
+msgstr "Перезагрузить"
+
+msgid "Reload the page to see the latest changes."
+msgstr "Перезагрузите страницу, чтобы увидеть последние изменения."
+
+msgid "Dismiss"
+msgstr "Уволить"
+
+msgid "Nothing to do."
+msgstr "Нечего делать."
+
+msgid "Done: %1$d succeeded, %2$d failed."
+msgstr "Готово:%1$dвыполнен успешно,%2$dне выполнен."
+
+msgid "The server did not respond (%s). Check the history and system checks."
+msgstr "Сервер не ответил (%s). Проверьте историю и системные проверки."
+
+msgid "An install/update is running. Leaving the page may interrupt it."
+msgstr "Выполняется установка/обновление. Выход со страницы может прервать ее."
+
+msgid "Installing %s…"
+msgstr "Установка%s..."
+
+msgid "Installing %s from wordpress.org…"
+msgstr "Установка%sс wordpress.org..."
+
+msgid "Activating %s…"
+msgstr "Активация%s..."
+
+msgid "Updating %s (backup first)…"
+msgstr "Обновление%s(сначала резервное копирование)..."
+
+msgid "Changing the version of %s (backup first)…"
+msgstr "Изменение версии%s(сначала сделайте резервную копию)..."
+
+msgid "Installing…"
+msgstr "Установка..."
+
+msgid "Activating…"
+msgstr "Активация..."
+
+msgid "Updating…"
+msgstr "Обновление..."
+
+msgid "Changing version…"
+msgstr "Changing version..."
+
+msgid "Queued"
+msgstr "В очереди"
+
+msgid "Done"
+msgstr "Готово"
+
+msgid "(required by %s)"
+msgstr "(требуется%s)"
+
+msgid "%1$s installed%2$s."
+msgstr "%1$sустановлен%2$s."
+
+msgid "%1$s was not activated: %2$s must be installed and active first."
+msgstr "%1$sне был активирован: сначала необходимо установить и активировать%2$s."
+
+msgid "%1$s could not be activated: %2$s"
+msgstr "%1$sне удалось активировать:%2$s"
+
+msgid "%s activated."
+msgstr "%sактивирован."
+
+msgid "%s: you are not allowed to install."
+msgstr "%s: вам не разрешено устанавливать."
+
+msgid "Could not download %1$s from wordpress.org: %2$s"
+msgstr "Не удалось загрузить%1$sс wordpress.org:%2$s."
+
+msgid "no download link"
+msgstr "нет ссылки для скачивания"
+
+msgid "unknown error"
+msgstr "неизвестная ошибка"
+
+msgid "%1$s could not be installed: %2$s"
+msgstr "%1$sне удалось установить:%2$s"
+
+msgid "%s is already installed."
+msgstr "%sуже установлен."
+
+msgid "%1$s %2$s installed."
+msgstr "%1$s%2$sустановлен."
+
+msgid "This plugin is not required by any FluxWP package."
+msgstr "Этот плагин не требуется ни для одного пакета FluxWP."
+
+msgid "%s was installed from wordpress.org."
+msgstr "%sбыл установлен с wordpress.org."
+
+msgid "%s is not installed, so it could not be activated."
+msgstr "%sне установлен, поэтому его невозможно активировать."
+
+msgid "%s is already active."
+msgstr "%sуже активен."
+
+msgid "Unknown action."
+msgstr "Неизвестное действие."
+
+msgid "The package is not installed."
+msgstr "Пакет не установлен."
+
+msgid "%s was not updated: WordPress sees no update for it. Click \"Check for updates\" and try again."
+msgstr "%sне был обновлен: WordPress не видит для него обновлений. Нажмите «Проверить наличие обновлений» и повторите попытку."
+
+msgid "Source: %s"
+msgstr "Источник:%s"
+
+msgid "available from %d sources"
+msgstr "доступно из источников%d"
+
+msgid "Remove this source? Packages installed from it stay on the site; they just stop receiving updates."
+msgstr "Удалить этот источник? Установленные с него пакеты остаются на сайте; они просто перестают получать обновления."
+
+msgid "Off"
+msgstr "Выкл."
+
+msgid "Connected · %d package"
+msgid_plural "Connected · %d packages"
+msgstr[0] "Подключено · Пакет%d"
+msgstr[1] "Подключено · Пакеты%d"
+msgstr[2] "Подключено · Пакеты%d"
+
+msgid "Other sources"
+msgstr "Другие источники"
+
+msgid "Packages are collected from these sources as well as the main server. If a package is in more than one source, it updates from the source it was installed from; if it is not installed, the source higher in the list wins."
+msgstr "Пакеты собираются из этих источников, а также с основного сервера. Если пакет находится более чем в одном источнике, он обновляется из источника, из которого был установлен; если он не установлен, побеждает источник, расположенный выше в списке."
+
+msgid "Source not added: %s"
+msgstr "Источник не добавлен:%s."
+
+msgid "Source added and its packages loaded."
+msgstr "Добавлен исходный код и загружены его пакеты."
+
+msgid "Source removed."
+msgstr "Источник удален."
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Main server"
+msgstr "Главный сервер"
+
+msgid "Server"
+msgstr "Сервер"
+
+msgid "Set under Connection above"
+msgstr "Установите в разделе «Соединение» выше."
+
+msgid "Key saved"
+msgstr "Ключ сохранен."
+
+msgid "GitHub (public)"
+msgstr "GitHub (общедоступный)"
+
+msgid "Move up"
+msgstr "Вверх"
+
+msgid "Turn off"
+msgstr "Выключить"
+
+msgid "Turn on"
+msgstr "Включи"
+
+msgid "Add source"
+msgstr "Добавить источник"
+
+msgid "A public GitHub repository (with <slug>.zip on its releases) or a FluxWP update-server address. https only."
+msgstr "Публичный репозиторий GitHub (с<slug>.zip в выпусках) или адрес сервера обновлений FluxWP. только https."
+
+msgid "Taken from the address if empty"
+msgstr "Взято с адреса, если пусто"
+
+msgid "Optional"
+msgstr "Необязательно"
+
+msgid "Only for servers that require a key. The key is sent only to that server's address."
+msgstr "Только для серверов, которым требуется ключ. Ключ отправляется только на адрес этого сервера."
+
+msgid "Code from this source runs on your site; only add sources you trust."
+msgstr "Код из этого источника работает на вашем сайте; Добавляйте только те источники, которым вы доверяете."
+
+msgid "Test and add"
+msgstr "Тестируйте и добавляйте"
+
+msgid "Could not reach %1$s: %2$s Its packages are shown from the last known data."
+msgstr "Не удалось связаться с%1$s:%2$s. Его пакеты показаны на основе последних известных данных."
+
+msgid "Sources"
+msgstr "Источники"
+
+msgid "Update source: %s"
+msgstr "Источник обновления:%s."
+
+msgid "The GitHub address is not in owner/repo form."
+msgstr "Адрес GitHub не указан в форме владельца/репозитория."
+
+msgid "Could not reach the source: %s"
+msgstr "Не удалось связаться с источником:%s."
+
+msgid "Repository not found or not public."
+msgstr "Репозиторий не найден или не является общедоступным."
+
+msgid "GitHub returned an unexpected response (HTTP %d)."
+msgstr "GitHub вернул неожиданный ответ (HTTP%d)."
+
+msgid "The address must start with https://."
+msgstr "Адрес должен начинаться с https://."
+
+msgid "This source is already in the list."
+msgstr "Этот источник уже есть в списке."
+
+msgid "The source could not be tested."
+msgstr "Источник не удалось проверить."
+
+msgid "Connected without a key (%s): public packages are available. Enter a site key for private packages."
+msgstr "Подключается без ключа (%s): доступны публичные пакеты. Введите ключ сайта для частных пакетов."
+
+msgid "Optional. Public packages need no key; for private packages, get one from the update server panel (/admin) with \"Add site\". Give each site its own key."
+msgstr "Необязательно. Публичным пакетам не нужен ключ; для частных пакетов получите его на панели сервера обновлений (/admin) с помощью «Добавить сайт». Дайте каждому сайту свой ключ."
+
+msgid "The package list could not be fetched. Check the server address and key (if any) in Settings and press \"Test connection\"."
+msgstr "Не удалось получить список пакетов. Проверьте адрес сервера и ключ (если есть) в Настройках и нажмите «Проверить соединение»."
+
+msgid "This server does not serve updates without a key; enter a site key."
+msgstr "Этот сервер не предоставляет обновления без ключа; введите ключ сайта."
+
+msgid "Invalid site key. Try it with \"Test an existing key\" in the update server panel (/admin)."
+msgstr "Неверный ключ сайта. Попробуйте сделать это с помощью «Проверить существующий ключ» на панели сервера обновлений (/admin)."
+
+msgid "No key: only public packages are available."
+msgstr "Нет ключа: доступны только общедоступные пакеты."
+
+msgid "The site key is disabled on the server; only public packages are available."
+msgstr "Ключ сайта отключен на сервере; доступны только общедоступные пакеты."
+
+msgid "Bulk action"
+msgstr "Массовое действие"
+
+msgid "Bulk actions"
+msgstr "Массовые действия"
+
+msgid "Deactivate"
+msgstr "Деактивировать"
+
+msgid "Inactive"
+msgstr "Неактивный"
+
+msgid "%d package activated."
+msgid_plural "%d packages activated."
+msgstr[0] "Пакет%dактивирован."
+msgstr[1] "Пакеты%dактивированы."
+msgstr[2] "Пакеты%dактивированы."
+
+msgid "%d package deactivated."
+msgid_plural "%d packages deactivated."
+msgstr[0] "Пакет%dдеактивирован."
+msgstr[1] "Пакеты%dдеактивированы."
+msgstr[2] "Пакеты%dдеактивированы."
+
+msgid "%d package deleted."
+msgid_plural "%d packages deleted."
+msgstr[0] "Пакет%dудален."
+msgstr[1] "Пакеты%dудалены."
+msgstr[2] "Пакеты%dудалены."
+
+msgid "Skipped (already in that state, active theme or FluxWP Panel): %s."
+msgstr "Пропущено (уже в этом состоянии, активная тема или панель FluxWP):%s."
+
+msgid "Failed: %s."
+msgstr "Ошибка:%s."
+
+msgid "Delete these packages from the site? Their files will be removed. %s"
+msgstr "Удалить эти пакеты с сайта? Их файлы будут удалены.%s"
+
+msgid "Setup wizard"
+msgstr "Мастер настройки"
+
+msgid "FluxWP demo"
+msgstr "Демо-версия FluxWP"
+
+msgid "Sample home page, products and menus."
+msgstr "Пример домашней страницы, продуктов и меню."
+
+msgid "Blank"
+msgstr "Пустой"
+
+msgid "Theme and colour only"
+msgstr "Только тема и цвет"
+
+msgid "Anthracite"
+msgstr "Антрацит"
+
+msgid "Blue"
+msgstr "Синий"
+
+msgid "Teal"
+msgstr "Бирюзовый"
+
+msgid "Indigo"
+msgstr "Индиго"
+
+msgid "Forest"
+msgstr "Лес"
+
+msgid "Connect e-mail"
+msgstr "Подключить электронную почту"
+
+msgid "Without SMTP, receipts and notifications are not delivered."
+msgstr "Без SMTP квитанции и уведомления не доставляются."
+
+msgid "Flux Mail › Settings"
+msgstr "Flux Mail › Настройки"
+
+msgid "Upload your logo"
+msgstr "Загрузите свой логотип"
+
+msgid "Used in the admin and in e-mails."
+msgstr "Используется в админке и в электронной почте."
+
+msgid "Settings › Admin theme"
+msgstr "Настройки › Тема администратора"
+
+msgid "Add an AI key"
+msgstr "Добавить ключ AI"
+
+msgid "Needed for assistants and AI tools."
+msgstr "Нужен для помощников и инструментов ИИ."
+
+msgid "Flux AI & MCP › Settings"
+msgstr "Flux AI и MCP › Настройки"
+
+msgid "The setup wizard needs JavaScript."
+msgstr "Мастеру установки требуется JavaScript."
+
+msgid "Go to the Packages screen."
+msgstr "Перейдите на экран «Пакеты»."
+
+msgid "Site name: %s"
+msgstr "Название сайта:%s"
+
+msgid "The FluxWP theme is not installed."
+msgstr "Тема FluxWP не установлена."
+
+msgid "You are not allowed to switch themes."
+msgstr "Вам не разрешено переключать темы."
+
+msgid "FluxWP theme is active."
+msgstr "Тема FluxWP активна."
+
+msgid "No preset applied (Blank)."
+msgstr "Никакой предустановки не применено (пусто)."
+
+msgid "You are not allowed to apply presets."
+msgstr "Вам не разрешено применять пресеты."
+
+msgid "The preset is already applied."
+msgstr "Предустановка уже применена."
+
+msgid "Preset not found. If the package is installed, apply it under Appearance › Presets."
+msgstr "Предустановка не найдена. Если пакет установлен, примените его в разделе «Внешний вид» > «Пресеты»."
+
+msgid "%s preset applied."
+msgstr "Применена предустановка%s."
+
+msgid "Setup finished."
+msgstr "Настройка завершена."
+
+msgid "Wizard skipped."
+msgstr "Мастер пропустил."
+
+msgid "Colour unchanged."
+msgstr "Цвет без изменений."
+
+msgid "You are not allowed to edit the appearance."
+msgstr "Вы не имеете права редактировать внешний вид."
+
+msgid "The active theme does not support colour styles."
+msgstr "Активная тема не поддерживает цветовые стили."
+
+msgid "The theme has no %s colour style."
+msgstr "В теме нет цветового стиля%s."
+
+msgid "Could not create the global styles record."
+msgstr "Не удалось создать запись глобальных стилей."
+
+msgid "Colour style: %s"
+msgstr "Цветовой стиль:%s"
+
+msgid "Step %1$s of %2$s"
+msgstr "Шаг%1$sиз%2$s"
+
+msgid "Welcome to FluxWP"
+msgstr "Добро пожаловать в FluxWP"
+
+msgid "Let's set up your site in three steps. Pick the plugins, choose the look, and FluxWP Panel installs the rest."
+msgstr "Давайте настроим ваш сайт в три шага. Выберите плагины, выберите внешний вид, а FluxWP Panel установит все остальное."
+
+msgid "%d plugins"
+msgstr "Плагины%d"
+
+msgid "Donations, forms, WhatsApp, e-mail, SEO and backups work from one admin."
+msgstr "Пожертвования, формы, WhatsApp, электронная почта, SEO и резервное копирование работают под управлением одного администратора."
+
+msgid "New versions appear on WordPress's Updates screen."
+msgstr "Новые версии появляются на экране обновлений WordPress."
+
+msgid "Change later"
+msgstr "Изменить позже"
+
+msgid "You can change the preset and colour later under Appearance › Theme settings."
+msgstr "Вы можете изменить настройки и цвет позже в разделе «Внешний вид» > «Настройки темы»."
+
+msgid "Get started"
+msgstr "Начать"
+
+msgid "I'll set it up myself"
+msgstr "Я настрою это сам"
+
+msgid "About 3 minutes"
+msgstr "Около 3 минут"
+
+msgid "Plugins"
+msgstr "Плагины"
+
+msgid "Updates first"
+msgstr "Сначала обновления"
+
+msgid "Your installed apps are being updated before setup, so everything is installed on the latest version."
+msgstr "Установленные вами приложения обновляются перед установкой, поэтому все устанавливается в последней версии."
+
+msgid "Checking for updates…"
+msgstr "Проверка обновлений..."
+
+msgid "updating"
+msgstr "обновление"
+
+msgid "updated"
+msgstr "обновлено"
+
+msgid "FluxWP Panel was updated. Reopening the wizard on the new version…"
+msgstr "Панель FluxWP обновлена. Повторное открытие мастера в новой версии..."
+
+msgid "Updates could not be completed: %s Setup does not continue until the updates are done."
+msgstr "Не удалось выполнить обновление:%sУстановка не продолжится, пока не будут установлены обновления."
+
+msgid "Try again"
+msgstr "Попробуйте еще раз"
+
+msgid "Go to Packages"
+msgstr "Перейти в Пакеты"
+
+msgid "Unknown error."
+msgstr "Неизвестная ошибка."
+
+msgid "Clear selection"
+msgstr "Очистить выбор"
+
+msgid "Essentials"
+msgstr "Основы"
+
+msgid "What should we start with?"
+msgstr "С чего нам следует начать?"
+
+msgid "Continue without these"
+msgstr "Продолжить без них"
+
+msgid "Recommended"
+msgstr "Рекомендуется"
+
+msgid "Block theme with shop, donation and company page templates."
+msgstr "Блокируйте тему с шаблонами страниц магазина, пожертвований и компании."
+
+msgid "Appearance"
+msgstr "Внешний вид"
+
+msgid "How should your site look?"
+msgstr "Как должен выглядеть ваш сайт?"
+
+msgid "Pages and menus are created from it."
+msgstr "Из него создаются страницы и меню."
+
+msgid "Colour"
+msgstr "Цвет"
+
+msgid "The theme and plugins share this colour."
+msgstr "Тема и плагины имеют этот цвет."
+
+msgid "Site name"
+msgstr "Название сайта"
+
+msgid "Also shown in e-mails and certificates."
+msgstr "Также отображается в электронных письмах и сертификатах."
+
+msgid "Your site is ready"
+msgstr "Ваш сайт готов"
+
+msgid "Plugins installed, preset and colour applied."
+msgstr "Плагины установлены, настроены и цвета применены."
+
+msgid "Setup finished, some steps did not complete"
+msgstr "Настройка завершена, некоторые шаги не выполнены"
+
+msgid "The failed steps are below. You can try again from FluxWP Panel › Packages."
+msgstr "Неудачные шаги приведены ниже. Вы можете попробовать еще раз из панели FluxWP › Пакеты."
+
+msgid "plugins"
+msgstr "плагины"
+
+msgid "pages"
+msgstr "страницы"
+
+msgid "colour"
+msgstr "цвет"
+
+msgid "Open site"
+msgstr "Открыть сайт"
+
+msgid "Go to dashboard"
+msgstr "Перейти на панель управления"
+
+msgid "Back"
+msgstr "Назад"
+
+msgid "Continue"
+msgstr "Продолжить"
+
+msgid "Skip setup?"
+msgstr "Пропустить настройку?"
+
+msgid "Nothing is installed. You can open the wizard later from FluxWP Panel › Setup wizard."
+msgstr "Ничего не установлено. Вы можете открыть мастер позже из панели FluxWP › Мастер установки."
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "%s plugins + FluxWP theme"
+msgstr "Плагины%s+ тема FluxWP"
+
+msgid "%s plugins"
+msgstr "Плагины%s"
+
+msgid "Keep this tab open."
+msgstr "Держите эту вкладку открытой."
+
+msgid "queued"
+msgstr "в очереди"
+
+msgid "installing"
+msgstr "установка"
+
+msgid "installed"
+msgstr "установлен"
+
+msgid "applying"
+msgstr "применение"
+
+msgid "applied"
+msgstr "прикладной"
+
+msgid "error"
+msgstr "ошибка"
+
+msgid "Downloading packages"
+msgstr "Загрузка пакетов"
+
+msgid "Installing plugins"
+msgstr "Установка плагинов"
+
+msgid "Getting your site ready"
+msgstr "Готовим ваш сайт"
+
+msgid "Creating pages and menus"
+msgstr "Создание страниц и меню"
+
+msgid "Almost there, final touches"
+msgstr "Почти готово, последние штрихи"
+
+msgid "FluxWP theme"
+msgstr "Тема FluxWP"
+
+msgid "Activating the theme"
+msgstr "Активация темы"
+
+msgid "Ready"
+msgstr "Готово"
+
+msgid "Opening the final screen."
+msgstr "Открытие финального экрана."
+
+msgid "Could not reach the server. Check your connection and try again."
+msgstr "Не удалось связаться с сервером. Проверьте подключение и повторите попытку."
+
+msgid "Could not reach the update server; the package list is empty. Check the server under FluxWP Panel › Settings. The theme and preset can still be applied."
+msgstr "Не удалось связаться с сервером обновлений; список пакетов пуст. Проверьте сервер в разделе Панель FluxWP › Настройки. Тему и пресет по-прежнему можно применить."
+
+msgid "Flux Updater is now part of FluxWP Panel; the old plugin was deactivated and its settings were kept. You can delete it from the Plugins screen."
+msgstr "Flux Updater теперь является частью FluxWP Panel; старый плагин был деактивирован, а его настройки сохранены. Вы можете удалить его с экрана плагинов."
+
+msgid "Store"
+msgstr "Магазин"
+
+msgid "Flux Commerce: sales dashboard, customers, reports and bank transfer with receipts."
+msgstr "Flux Commerce: панель продаж, клиенты, отчеты и банковские переводы с квитанциями."
+
+msgid "Nonprofit and donations"
+msgstr "Некоммерческая организация и пожертвования"
+
+msgid "Flux Donate and Flux Certificates: donation types, a one-page checkout and a certificate in every donor's name."
+msgstr "Пожертвование Flux и сертификаты Flux: типы пожертвований, одностраничная форма оформления заказа и сертификат на имя каждого донора."
+
+msgid "Admin theme"
+msgstr "Админ-тема"
+
+msgid "Flux Admin: a redesigned admin panel with a command palette, mobile menu and light/dark mode."
+msgstr "Flux Admin: обновленная панель администратора с палитрой команд, мобильным меню и светлым/темным режимом."
+
+msgid "Communication"
+msgstr "Общение"
+
+msgid "Other"
+msgstr "Другое"
+
+msgid "Other FluxWP packages."
+msgstr "Другие пакеты FluxWP."
+
+msgid "Plugins · %1$s of %2$s"
+msgstr "Плагины ·%1$sиз%2$s"
+
+msgid "%s packages queued"
+msgstr "Пакеты%sпоставлены в очередь"
+
+msgid "activating"
+msgstr "активация"
+
+msgid "The admin theme and the kind of site: a store or a nonprofit. Pick one kind; you can install the other later."
+msgstr "Тема администратора и тип сайта: магазин или некоммерческая организация. Выберите один вид; другой можно установить позже."
+
+msgid "Blog"
+msgstr "Блог"
+
+msgid "About us"
+msgstr "О нас"
+
+msgid "FAQ"
+msgstr "Часто задаваемые вопросы"
+
+msgid "Tell visitors who you are and what you do."
+msgstr "Расскажите посетителям, кто вы и чем занимаетесь."
+
+msgid "Add your address, phone and e-mail here."
+msgstr "Добавьте сюда свой адрес, телефон и электронную почту."
+
+msgid "Add common questions and their answers here."
+msgstr "Добавляйте сюда общие вопросы и ответы на них."
+
+msgid "Upload a PNG, JPG, WebP or GIF."
+msgstr "Загрузите PNG, JPG, WebP или GIF."
+
+msgid "Tagline: %s"
+msgstr "Слоган:%s"
+
+msgid "Could not set the logo."
+msgstr "Не удалось установить логотип."
+
+msgid "Logo set."
+msgstr "Набор логотипов."
+
+msgid "You are not allowed to create pages."
+msgstr "Вам не разрешено создавать страницы."
+
+msgid "Page: %s"
+msgstr "Страница:%s"
+
+msgid "No new pages."
+msgstr "Никаких новых страниц."
+
+msgid "Identity"
+msgstr "идентичность"
+
+msgid "Shown under the name on the home page and in search results."
+msgstr "Отображается под именем на главной странице и в результатах поиска."
+
+msgid "Logo"
+msgstr "Логотип"
+
+msgid "A square or wide image (PNG, JPG, WebP). You can change it later."
+msgstr "Квадратное или широкое изображение (PNG, JPG, WebP). Вы можете изменить его позже."
+
+msgid "Upload logo"
+msgstr "Загрузить логотип"
+
+msgid "Change"
+msgstr "Изменить"
+
+msgid "Uploading…"
+msgstr "Загрузка..."
+
+msgid "Selected pages are created empty for you to fill in later. Existing pages are not created again."
+msgstr "Выбранные страницы создаются пустыми, чтобы вы могли заполнить их позже. Существующие страницы не создаются заново."
+
+msgid "Donate"
+msgstr "Пожертвовать"
+
+msgid "Latest posts"
+msgstr "Последние сообщения"
+
+msgid "Home"
+msgstr "Главная"
+
+msgid "Calm and serious; fits anything."
+msgstr "Спокойный и серьезный; подойдет что угодно."
+
+msgid "Trustworthy, corporate."
+msgstr "Надежный, корпоративный."
+
+msgid "Quiet and modern."
+msgstr "Тихий и современный."
+
+msgid "Lively; tech and education."
+msgstr "Живой; технологии и образование."
+
+msgid "Nature; for nonprofits and foundations."
+msgstr "Природа; для некоммерческих организаций и фондов."
+
+msgid "Your name and logo first, then preset, colour and pages. The preview on the right updates right away."
+msgstr "Сначала ваше имя и логотип, затем настройки, цвет и страницы. Предварительный просмотр справа обновляется сразу."
+
+msgctxt "context_ac58193b5653"
+msgid "Contact"
+msgstr "Контакт"
+
+msgid "I accept the %1$s and %2$s; I have read the %3$s."
+msgstr "Я принимаю%1$sи%2$s; Я прочитал%3$s."
+
+msgid "Terms of Use"
+msgstr "Условия использования"
+
+msgid "Privacy Policy"
+msgstr "Политика конфиденциальности"
+
+msgid "KVKK Privacy Notice"
+msgstr "Уведомление о конфиденциальности KVKK"
+
+msgid "Help us improve FluxWP (send usage data)"
+msgstr "Помогите нам улучшить FluxWP (отправьте данные об использовании)"
+
+msgid "Optional. WordPress and PHP version, language and time zone, plus anonymous version and error data for FluxWP plugins. The site address and country are always recorded for updates (IPs are not stored). Updates work when this is off; change it under FluxWP Panel › Settings."
+msgstr "Необязательно. Версия WordPress и PHP, язык и часовой пояс, а также анонимная версия и данные об ошибках для плагинов FluxWP. Адрес сайта и страна всегда записываются для обновлений (IP-адреса не сохраняются). Обновления работают, когда эта опция отключена; измените его в панели FluxWP > Настройки."
+
+msgid "Accept the terms to continue."
+msgstr "Примите условия, чтобы продолжить."
+
+msgid "Usage data consent saved."
+msgstr "Согласие на использование данных сохранено."
+
+msgid "Usage data will not be sent."
+msgstr "Данные об использовании не будут отправлены."
+
+msgid "Usage data"
+msgstr "Данные об использовании"
+
+msgid "Update checks always send the site address; the server also looks up the country from the IP and does not store the IP (mandatory record). When on, update checks also send the WordPress and PHP version, time zone and language, and FluxWP plugin versions and errors are sent anonymously. When off, only what updates need is sent and updates work the same. You can withdraw consent here at any time."
+msgstr "При проверке обновлений всегда отправляется адрес сайта; сервер также ищет страну по IP и не сохраняет IP (обязательная запись). Если этот параметр включен, проверки обновлений также отправляют версию WordPress и PHP, часовой пояс и язык, а версии и ошибки плагина FluxWP отправляются анонимно. Когда этот параметр отключен, отправляются только те обновления, которые необходимы, и обновления работают так же. Вы можете отозвать согласие здесь в любое время."
+
+msgid "Anonymous usage data"
+msgstr "Анонимные данные об использовании"
+
+msgid "On"
+msgstr "Вкл."
+
+msgid "Sent."
+msgstr "Отправлено."
+
+msgid "Show the data that will be sent"
+msgstr "Показать данные, которые будут отправлены"
+
+msgid "Could not send. Check the URL and that the Flux Analytics telemetry hub is on at the target site."
+msgstr "Не удалось отправить. Проверьте URL-адрес и убедитесь, что на целевом сайте включен концентратор телеметрии Flux Analytics."
+
+msgid "Sent: a random install ID, WordPress and PHP version, site language, country (from the time zone or store country), active FluxWP plugins and theme, PHP errors from FluxWP (with paths, domain, emails and IPs removed), setup wizard progress and choices. Site address, IP, users and content are never sent."
+msgstr "Отправлено: случайный идентификатор установки, версия WordPress и PHP, язык сайта, страна (из часового пояса или страны магазина), активные плагины и темы FluxWP, ошибки PHP из FluxWP (с удаленными путями, доменом, адресами электронной почты и IP-адресами), ход работы мастера установки и выбор. Адрес сайта, IP, пользователи и контент никогда не передаются."
+
+msgid "Not sent yet. Sent at most once a day."
+msgstr "Еще не отправлено. Отправляется максимум раз в день."
+
+msgid "Nothing is sent. Tick \"Help us improve the product\" to turn it on."
+msgstr "Ничего не отправляется. Установите флажок «Помогите нам улучшить продукт», чтобы включить эту функцию."
+
+msgid "Saved."
+msgstr "Сохранено."
+
+msgid "Last sent %s. Sent at most once a day."
+msgstr "Последний отправленный%s. Отправляется максимум раз в день."
+
+msgid "Telemetry URL"
+msgstr "URL-адрес телеметрии"
+
+msgid "Send now"
+msgstr "Отправить сейчас"
+
+msgid "Leave empty to send to FluxWP. To run your own hub, turn on Flux Analytics › Settings › Telemetry hub on one site and paste that address here. https only."
+msgstr "Оставьте пустым, чтобы отправить в FluxWP. Чтобы запустить собственный хаб, включите Flux Analytics › Настройки › Хаб телеметрии на одном сайте и вставьте этот адрес сюда. только https."
+
+msgid "Be found on Google"
+msgstr "Быть найденным в Google"
+
+msgid "Watch from the panel how the site looks in Google search, how many people arrive, and how fast pages open. Google Site Kit brings Search Console, Analytics and PageSpeed into one screen."
+msgstr "Наблюдайте с панели, как сайт выглядит в поиске Google, сколько людей на него заходит и как быстро открываются страницы. Google Site Kit объединяет Search Console, Analytics и PageSpeed ​​на одном экране."
+
+msgid "Install Google Site Kit"
+msgstr "Установите Google Сайт-кит"
+
+msgid "Activate Google Site Kit"
+msgstr "Активировать Google Site Kit"
+
+msgid "Show your products on Google"
+msgstr "Показывайте свои товары в Google"
+
+msgid "Your Google account is connected. With Google for WooCommerce your products are listed for free on Google Shopping, Search, YouTube and Images; you can also run ads."
+msgstr "Ваша учетная запись Google подключена. Благодаря Google for WooCommerce ваши продукты бесплатно размещаются в Google Shopping, Search, YouTube и изображениях; вы также можете запускать рекламу."
+
+msgid "Install Google for WooCommerce"
+msgstr "Установите Google для WooCommerce"
+
+msgid "Activate Google for WooCommerce"
+msgstr "Активируйте Google для WooCommerce"
+
+msgid "Not needed"
+msgstr "Не требуется"
+
+msgid "Could not download %s from wordpress.org."
+msgstr "Не удалось загрузить%sс wordpress.org."
+
+msgid "Try from Plugins › Add New"
+msgstr "Попробуйте из плагинов › Добавить новый"
+
+msgid "Next attempt: %s."
+msgstr "Следующая попытка:%s."
+
+msgid "Update distribution is temporarily paused on the server. Nothing is wrong with your site; updates will resume when distribution is turned back on."
+msgstr "Распространение обновлений на сервере временно приостановлено. С вашим сайтом все в порядке; обновления возобновятся, когда распространение снова будет включено."
+
+msgid "The update server does not accept requests from this site's country. Contact the server administrator for access."
+msgstr "Сервер обновлений не принимает запросы из страны, в которой находится этот сайт. Для получения доступа обратитесь к администратору сервера."
+
+msgid "The update server does not accept keyless requests from this site's country. Enter a site key or contact the server administrator."
+msgstr "Сервер обновлений не принимает бесключевые запросы из страны, в которой находится этот сайт. Введите ключ сайта или обратитесь к администратору сервера."
+
+msgid "This server has turned off keyless updates. Enter a site key to keep receiving packages."
+msgstr "Этот сервер отключил обновления без ключа. Введите ключ сайта, чтобы продолжать получать посылки."
+
+msgid "The site key is disabled on the server and keyless updates are off, so no packages are available. Ask the server administrator to re-enable the key."
+msgstr "Ключ сайта отключен на сервере, а обновления без ключа отключены, поэтому пакеты недоступны. Попросите администратора сервера повторно активировать ключ."
+
+msgid "The server cannot respond right now (HTTP %d)."
+msgstr "Сервер не может ответить прямо сейчас (HTTP%d)."
+
+msgid "Distribution paused"
+msgstr "Распространение приостановлено"
+
+msgid "Blocked in this region"
+msgstr "Заблокировано в этом регионе"
+
+msgid "Site key required"
+msgstr "Требуется ключ сайта"
+
+msgid "Site key disabled"
+msgstr "Ключ сайта отключен"
+
+msgid "Support and feedback: %s"
+msgstr "Поддержка и обратная связь:%s"
+
+msgid "FluxWP Panel"
+msgstr "Панель FluxWP"
+
+msgid "[['%dthere is an update', 'tr']]"
+msgid_plural "[['%dthere is an update', 'tr']]"
+msgstr[0] "[['%dесть обновление', 'tr']]"
+msgstr[1] "[['%dесть обновление', 'tr']]"
+msgstr[2] "[['%dесть обновление', 'tr']]"
+
+msgid "[['%dpackage activated.', 'tr']]"
+msgid_plural "[['%dpackage activated.', 'tr']]"
+msgstr[0] "[[' Пакет%dактивирован.', 'tr']]"
+msgstr[1] "[[' Пакет%dактивирован.', 'tr']]"
+msgstr[2] "[[' Пакет%dактивирован.', 'tr']]"
+
+msgid "[['%dpackage has been disabled.', 'tr']]"
+msgid_plural "[['%dpackage has been disabled.', 'tr']]"
+msgstr[0] "[['Пакет%dотключен.', 'tr']]"
+msgstr[1] "[['Пакет%dотключен.', 'tr']]"
+msgstr[2] "[['Пакет%dотключен.', 'tr']]"
+
+msgid "[['%dpackage removed.', 'tr']]"
+msgid_plural "[['%dpackage removed.', 'tr']]"
+msgstr[0] "[[' Пакет%dудален.', 'tr']]"
+msgstr[1] "[[' Пакет%dудален.', 'tr']]"
+msgstr[2] "[[' Пакет%dудален.', 'tr']]"
+
+msgid "[['%dbackup deleted.', 'tr']]"
+msgid_plural "[['%dbackup deleted.', 'tr']]"
+msgstr[0] "[[' Резервная копия%dудалена.', 'tr']]"
+msgstr[1] "[[' Резервная копия%dудалена.', 'tr']]"
+msgstr[2] "[[' Резервная копия%dудалена.', 'tr']]"
+
+msgid "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
+msgstr "\\nРезервная копия%dс истекшим сроком действия удалена. Резервная копия%dс истекшим сроком действия удалена.\\n"
+
+msgid "\\nConnected ·%dpackage Connected ·%dpackage\\n"
+msgstr "\\nПодключено · Пакет%dПодключено · Пакет%d\\n"
+
+msgid "[['%dday', 'tr']]"
+msgid_plural "[['%dday', 'tr']]"
+msgstr[0] "[['%dдень', 'tr']]"
+msgstr[1] "[['%dдень', 'tr']]"
+msgstr[2] "[['%dдень', 'tr']]"
+
+msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
+msgstr "\\nВ настоящее время резервная копия обновления%1$d—%2$s. В настоящее время резервная копия обновления%1$d—%2$s.\\n"
+
+msgid "[['%sregistration', 'tr']]"
+msgid_plural "[['%sregistration', 'tr']]"
+msgstr[0] "[['Регистрация%s', 'tr']]"
+msgstr[1] "[['Регистрация%s', 'tr']]"
+msgstr[2] "[['Регистрация%s', 'tr']]"
+
+msgid "[[\"FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back.\", 'tr']]"
+msgstr "[[\"Плагин установки и обновления FluxWP. Мастер установки при первом запуске (введение, выбор плагина, внешний вид, установка); Переносит темы и плагины FluxWP с сервера обновлений (по умолчанию updater.fluxwp.com) на экран обновлений WordPress; Механизм предустановок (preset.json) настраивает сайт за один шаг, заменяет его одобренными исправлениями и откатывает его.\", 'tr']]"
+
+msgid "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
+msgid_plural "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
+msgstr[0] "\\nРезервная копия%dс истекшим сроком действия удалена. Резервная копия%dс истекшим сроком действия удалена.\\n"
+msgstr[1] "\\nРезервная копия%dс истекшим сроком действия удалена. Резервная копия%dс истекшим сроком действия удалена.\\n"
+msgstr[2] "\\nРезервная копия%dс истекшим сроком действия удалена. Резервная копия%dс истекшим сроком действия удалена.\\n"
+
+msgid "\\nConnected ·%dpackage Connected ·%dpackage\\n"
+msgid_plural "\\nConnected ·%dpackage Connected ·%dpackage\\n"
+msgstr[0] "\\nПодключено · Пакет%dПодключено · Пакет%d\\n"
+msgstr[1] "\\nПодключено · Пакет%dПодключено · Пакет%d\\n"
+msgstr[2] "\\nПодключено · Пакет%dПодключено · Пакет%d\\n"
+
+msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
+msgid_plural "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
+msgstr[0] "\\nВ настоящее время резервная копия обновления%1$d—%2$s. В настоящее время резервная копия обновления%1$d—%2$s.\\n"
+msgstr[1] "\\nВ настоящее время резервная копия обновления%1$d—%2$s. В настоящее время резервная копия обновления%1$d—%2$s.\\n"
+msgstr[2] "\\nВ настоящее время резервная копия обновления%1$d—%2$s. В настоящее время резервная копия обновления%1$d—%2$s.\\n"

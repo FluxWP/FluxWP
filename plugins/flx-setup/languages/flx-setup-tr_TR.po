@@ -1,0 +1,1882 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "FluxWP packages."
+msgstr "FluxWP paketleri."
+
+msgid "Install and activate missing plugins"
+msgstr "Eksik eklentileri kur ve etkinleştir"
+
+msgid "The missing plugins could not be installed. Install them from FluxWP Panel › Packages."
+msgstr "Eksik eklentiler kurulamadı. FluxWP Panel › Paketler'den kurun."
+
+msgid "Presets"
+msgstr "Ön ayarlar"
+
+msgid "Preset applied to the empty site."
+msgstr "Ön ayar boş siteye uygulandı."
+
+msgid "%s preset is ready. It was not applied automatically because the site has content: preview and apply it."
+msgstr "%s ön ayarı hazır. Sitede içerik olduğu için kendiliğinden uygulanmadı: önizleyip uygulayın."
+
+msgid "Presets: %1$d pending updates, %2$d patches awaiting approval."
+msgstr "Ön ayarlar: %1$d bekleyen güncelleme, %2$d onay bekleyen yama."
+
+msgid "You are not allowed to do this."
+msgstr "Yetkiniz yok."
+
+msgid "Done."
+msgstr "Tamam."
+
+msgid "Applied: %d changes."
+msgstr "Uygulandı: %d değişiklik."
+
+msgid "%d manually changed values were kept."
+msgstr "%d elle değiştirilmiş değer korundu."
+
+msgid "Undone: %1$d. Left untouched because they changed later: %2$d."
+msgstr "Geri alındı: %1$d. Sonradan değiştirildiği için dokunulmayan: %2$d."
+
+msgid "\"%s\" imported. You can preview and apply it."
+msgstr "\"%s\" içe aktarıldı. Önizleyip uygulayabilirsiniz."
+
+msgid "An imported preset cannot contain \"$file\" references; write bodies inline or install the preset as a plugin."
+msgstr "İçe aktarılan şablonda \"$file\" referansı olamaz; gövdeleri satır içi yazın ya da ön ayarı eklenti olarak kurun."
+
+msgid "Organisation profile edited in the admin"
+msgstr "Kurum profili panelden düzenlendi"
+
+msgid "A preset sets up the site in one step: organisation profile, plugin settings, colours, header/footer, templates, pages and menus. Changes you make in the admin are never overwritten; updates are applied below one by one with your approval."
+msgstr "Ön ayar; kurum profili, eklenti ayarları, renkler, header/footer, şablonlar, sayfalar ve menülerle siteyi tek adımda kurar. Panelden yaptığınız değişikliklerin üzerine yazılmaz; güncellemeler aşağıda tek tek onayınızla uygulanır."
+
+msgid "Organisation profile"
+msgstr "Kurum profili"
+
+msgid "History"
+msgstr "Geçmiş"
+
+msgid "Export / import"
+msgstr "Dışa / içe aktar"
+
+msgid "No presets installed. Install a preset plugin (e.g. Örnek Preset) or import JSON from the \"Export / import\" tab."
+msgstr "Kurulu ön ayar yok. Bir ön ayar eklentisi (ör. Örnek Preset) kurun ya da \"Dışa / içe aktar\" sekmesinden JSON içe aktarın."
+
+msgid "Invalid"
+msgstr "Hatalı"
+
+msgid "Applied · %s"
+msgstr "Uygulandı · %s"
+
+msgid "Not applied"
+msgstr "Uygulanmadı"
+
+msgid "Missing: %s. These parts are skipped."
+msgstr "Eksik: %s. Bu kısımlar atlanır."
+
+msgid "Preview and apply"
+msgstr "Önizle ve uygula"
+
+msgid "Fill empty values only"
+msgstr "Yalnız boşları doldur"
+
+msgid "Compare again"
+msgstr "Yeniden karşılaştır"
+
+msgid "Remove the preset? Settings it wrote go back to their old values (your manual changes stay), pages it created become drafts."
+msgstr "Ön ayar kaldırılsın mı? Yazdığı ayarlar eski haline döner (elle değiştirdikleriniz kalır), oluşturduğu sayfalar taslağa alınır."
+
+msgid "Remove preset"
+msgstr "Ön ayarı kaldır"
+
+msgid "Pending updates"
+msgstr "Bekleyen güncellemeler"
+
+msgid "Preview"
+msgstr "Önizle"
+
+msgid "Skip"
+msgstr "Atla"
+
+msgid "Patches awaiting approval"
+msgstr "Onay bekleyen yamalar"
+
+msgid "Change proposals from the Flux AI chat or an external MCP client wait here for approval."
+msgstr "Flux AI sohbetinden ya da dış MCP istemcisinden gelen değişiklik önerileri burada onay bekler."
+
+msgid "Reject"
+msgstr "Reddet"
+
+msgid "Site patches"
+msgstr "Site yamaları"
+
+msgid "theme %s"
+msgstr "tema %s"
+
+msgid "Will be added"
+msgstr "Eklenecek"
+
+msgid "Will change"
+msgstr "Değişecek"
+
+msgid "Same"
+msgstr "Aynı"
+
+msgid "Filled, kept"
+msgstr "Dolu, korunacak"
+
+msgid "Changed manually, skipped"
+msgstr "Elle değiştirilmiş, atlanacak"
+
+msgid "Media"
+msgstr "Medya"
+
+msgid "Content and theme"
+msgstr "İçerik ve tema"
+
+msgid "WordPress settings"
+msgstr "WordPress ayarları"
+
+msgid "Plugin settings"
+msgstr "Eklenti ayarları"
+
+msgid "Patch not found."
+msgstr "Yama bulunamadı."
+
+msgid "Sync"
+msgstr "Eşitleme"
+
+msgid "Settings synced (%s)"
+msgstr "Ayarlar eşitlendi (%s)"
+
+msgid "%1$s: \"%2$s\" is not in the settings schema; it is written but the plugin may not use it."
+msgstr "%1$s: \"%2$s\" alanı ayar şemasında yok; yazılır ama eklenti kullanmayabilir."
+
+msgid "Patch"
+msgstr "Yama"
+
+msgid "Preset not found."
+msgstr "Ön ayar bulunamadı."
+
+msgid "Apply"
+msgstr "Uygula"
+
+msgid "What"
+msgstr "Ne"
+
+msgid "Now"
+msgstr "Şu an"
+
+msgid "Preset"
+msgstr "Ön ayar"
+
+msgid "Status"
+msgstr "Durum"
+
+msgid "Value of the %s preset. Once applied, that preset's updates will not overwrite it."
+msgstr "%s ön ayarının değeri. Uygulanınca o ön ayarın güncellemeleri bunu ezmez."
+
+msgid "Conflict: %s also writes this value; the last one applied wins."
+msgstr "Çakışma: %s de bu değeri yazıyor, son uygulanan kazanır."
+
+msgid "Apply anyway"
+msgstr "Yine de uygula"
+
+msgid "Apply (%d changes)"
+msgstr "Uygula (%d değişiklik)"
+
+msgid "Show unchanged rows too"
+msgstr "Aynı olanları da göster"
+
+msgid "Organisation identity. Plugins read the name, signature, WhatsApp, IBAN and similar details from here. The preset fills it on first install; preset updates never overwrite values you change here."
+msgstr "Kurum kimliği. Eklentiler ad, imza, WhatsApp, IBAN gibi bilgileri buradan okur. Ön ayar ilk kurulumda doldurur; buradan değiştirdiğiniz değerlerin üzerine ön ayar güncellemeleri yazmaz."
+
+msgid "Save"
+msgstr "Kaydet"
+
+msgid "Nothing applied yet."
+msgstr "Henüz bir şey uygulanmadı."
+
+msgid "Update"
+msgstr "Güncelle"
+
+msgid "Undo"
+msgstr "Geri al"
+
+msgid "Removal"
+msgstr "Kaldırma"
+
+msgid "Skipped"
+msgstr "Atlandı"
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Time"
+msgstr "Zaman"
+
+msgid "Action"
+msgstr "İşlem"
+
+msgid "Source"
+msgstr "Kaynak"
+
+msgid "Result"
+msgstr "Sonuç"
+
+msgid "Undo this change?"
+msgstr "Bu değişiklik geri alınsın mı?"
+
+msgid "Export this site as a preset"
+msgstr "Bu siteden şablon çıkar"
+
+msgid "Downloads the site's current state as a flx-preset/1 JSON file. Secrets such as passwords, API keys and tokens are never written to the file."
+msgstr "Sitenin şu anki halini flx-preset/1 JSON dosyası olarak indirir. Şifre, API key ve token gibi gizli alanlar dosyaya yazılmaz."
+
+msgid "Styles, templates and parts"
+msgstr "Stil, şablon ve parçalar"
+
+msgid "Menus"
+msgstr "Menüler"
+
+msgid "Logo and site icon"
+msgstr "Logo ve site simgesi"
+
+msgid "Pages"
+msgstr "Sayfalar"
+
+msgid "Download JSON"
+msgstr "JSON indir"
+
+msgid "Import preset"
+msgstr "Şablon içe aktar"
+
+msgid "Import"
+msgstr "İçe aktar"
+
+msgid "An imported preset is not applied; preview and apply it in the Presets tab."
+msgstr "İçe aktarılan ön ayar uygulanmaz; Ön ayarlar sekmesinde önizleyip uygularsınız."
+
+msgid "AI and MCP"
+msgstr "AI ve MCP"
+
+msgid "The Flux AI chat and Flux MCP tools (preset_schema, preset_export, preset_patch_preview, preset_patch_apply, preset_revert, preset_history) edit the site through patches. In the chat every patch asks for approval before it is applied."
+msgstr "Flux AI sohbeti ve Flux MCP araçları (preset_schema, preset_export, preset_patch_preview, preset_patch_apply, preset_revert, preset_history) siteyi yamalarla düzenler. Sohbette her yama uygulanmadan önce onay ister."
+
+msgid "Apply patches from external MCP clients without waiting for approval"
+msgstr "Dış MCP istemcilerinin yamaları onay beklemeden uygulansın"
+
+msgid "More closing comments than opening ones."
+msgstr "Kapanış yorumu açılıştan fazla."
+
+msgid "Unregistered block: %s"
+msgstr "Kayıtlı olmayan blok: %s"
+
+msgid "Media file missing: %s"
+msgstr "Medya dosyası yok: %s"
+
+msgid "Media needs \"file\" or \"url\"."
+msgstr "Medya için \"file\" ya da \"url\" gerekli."
+
+msgid "Content type \"%s\" does not exist on this site, skipped."
+msgstr "\"%s\" içerik türü bu sitede yok, atlandı."
+
+msgid "\"%s\" cannot be written, skipped."
+msgstr "\"%s\" yazılamaz, atlandı."
+
+msgid "The %s language pack is not installed; the site language was not set (Settings › General)."
+msgstr "%s dil paketi kurulu değil; site dili ayarlanmadı (Ayarlar › Genel)."
+
+msgid "Migration not found."
+msgstr "Migration bulunamadı."
+
+msgid "Record not found."
+msgstr "Kayıt bulunamadı."
+
+msgid "Exported from %1$s on %2$s."
+msgstr "%1$s sitesinden %2$s tarihinde çıkarıldı."
+
+msgid "Page"
+msgstr "Sayfa"
+
+msgid "Post"
+msgstr "Yazı"
+
+msgid "Term"
+msgstr "Terim"
+
+msgid "Taxonomy not found: %s"
+msgstr "Taksonomi yok: %s"
+
+msgid "Menu"
+msgstr "Menü"
+
+msgid "Template"
+msgstr "Şablon"
+
+msgid "Template part"
+msgstr "Şablon parçası"
+
+msgid "Global styles"
+msgstr "Global stil"
+
+msgid "Product"
+msgstr "Ürün"
+
+msgid "Product not found."
+msgstr "Ürün bulunamadı."
+
+msgid "This patch has already been processed."
+msgstr "Bu yama zaten işlenmiş."
+
+msgid "Short name"
+msgstr "Kısa ad"
+
+msgid "Legal name"
+msgstr "Resmî ad"
+
+msgid "Tagline"
+msgstr "Slogan"
+
+msgid "Short introduction"
+msgstr "Kısa tanıtım"
+
+msgid "Message signature"
+msgstr "Mesaj imzası"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "WhatsApp support line"
+msgstr "WhatsApp destek hattı"
+
+msgid "Email"
+msgstr "E-posta"
+
+msgid "Address"
+msgstr "Adres"
+
+msgid "Map link"
+msgstr "Harita linki"
+
+msgid "IBAN"
+msgstr "IBAN"
+
+msgid "Bank"
+msgstr "Banka"
+
+msgid "Account holder"
+msgstr "Hesap sahibi"
+
+msgid "Tax office"
+msgstr "Vergi dairesi"
+
+msgid "Tax number"
+msgstr "Vergi no"
+
+msgid "Year founded"
+msgstr "Kuruluş yılı"
+
+msgid "Logo (media ID)"
+msgstr "Logo (medya ID)"
+
+msgid "Light logo (media ID)"
+msgstr "Açık logo (medya ID)"
+
+msgid "Site icon (media ID)"
+msgstr "Site simgesi (medya ID)"
+
+msgid "Colours"
+msgstr "Renkler"
+
+msgid "Social media"
+msgstr "Sosyal medya"
+
+msgid "Could not read the preset file."
+msgstr "Şablon dosyası okunamadı."
+
+msgid "The preset is not valid JSON: %s"
+msgstr "Şablon geçerli JSON değil: %s"
+
+msgid "Not valid JSON: %s"
+msgstr "Geçerli JSON değil: %s"
+
+msgid "File not found: %s"
+msgstr "Dosya bulunamadı: %s"
+
+msgid "\"format\" must be \"%s\"."
+msgstr "\"format\" alanı \"%s\" olmalı."
+
+msgid "\"id\" must use lowercase letters, digits, - and _."
+msgstr "\"id\" küçük harf, rakam, - ve _ olmalı."
+
+msgid "\"name\" cannot be empty."
+msgstr "\"name\" boş olamaz."
+
+msgid "\"%s\" must be an object."
+msgstr "\"%s\" bir nesne olmalı."
+
+msgid "\"%s\" must be a list."
+msgstr "\"%s\" bir liste olmalı."
+
+msgid "content[%d]: \"type\" and \"key\" are required."
+msgstr "content[%d]: \"type\" ve \"key\" gerekli."
+
+msgid "content[%1$d]: no active plugin registers the \"%2$s\" type; it will be skipped."
+msgstr "content[%1$d]: \"%2$s\" türünü kaydeden eklenti etkin değil, atlanacak."
+
+msgid "%s: secret fields (password, key, token) cannot be in a preset."
+msgstr "%s: gizli alanlar (şifre, anahtar, token) şablonda olamaz."
+
+msgid "The \"%s\" option cannot be written by a preset."
+msgstr "\"%s\" ayarı ön ayarla yazılamaz."
+
+msgid "Preset engine: sets up the site in one step from a preset file (preset.json) or changes it through approved patches. Organisation profile, plugin settings, global styles, templates, header/footer, pages, menus and media. Preview, apply, undo, migrations, export this site as a preset; approved edits from the Flux AI chat and Flux MCP."
+msgstr "Ön ayar motoru: bir ön ayar şablonuyla (preset.json) siteyi tek adımda kurar ya da onaylı yamalarla değiştirir. Kurum profili, eklenti ayarları, global stil, şablonlar, header/footer, sayfalar, menüler ve medya. Önizle, uygula, geri al, migration'lar, bu siteden şablon çıkar; Flux AI sohbetinden ve Flux MCP'den onaylı düzenleme."
+
+msgid "Settings"
+msgstr "Ayarlar"
+
+msgid "Package not found."
+msgstr "Paket bulunamadı."
+
+msgid "Installing %s"
+msgstr "%s kuruluyor"
+
+msgid "FluxWP themes and plugins are updated from your own update server instead of wordpress.org. New versions appear on Dashboard › Updates as usual."
+msgstr "FluxWP tema ve eklentileri wordpress.org yerine kendi güncelleme sunucunuzdan güncellenir. Yeni sürümler Başlangıç › Güncellemeler ekranında her zamanki gibi görünür."
+
+msgid "Settings saved and updates checked."
+msgstr "Ayarlar kaydedildi ve kontrol yapıldı."
+
+msgid "Updates checked."
+msgstr "Güncellemeler kontrol edildi."
+
+msgid "Connected to the server as \"%1$s\". Last check: %2$s ago."
+msgstr "Sunucuya \"%1$s\" olarak bağlı. Son kontrol: %2$s önce."
+
+msgid "Packages"
+msgstr "Paketler"
+
+msgid "Package"
+msgstr "Paket"
+
+msgid "Type"
+msgstr "Tür"
+
+msgid "Installed"
+msgstr "Kurulu"
+
+msgid "Latest version"
+msgstr "Son sürüm"
+
+msgid "Could not get the package list from the server. Enter the key and press \"Check now\"."
+msgstr "Sunucudan paket listesi alınamadı. Anahtarı girip \"Şimdi kontrol et\"e basın."
+
+msgid "Theme"
+msgstr "Tema"
+
+msgid "Plugin"
+msgstr "Eklenti"
+
+msgid "Update available"
+msgstr "Güncelleme var"
+
+msgid "Up to date"
+msgstr "Güncel"
+
+msgid "Not installed"
+msgstr "Kurulu değil"
+
+msgid "Install"
+msgstr "Kur"
+
+msgid "Check now"
+msgstr "Şimdi kontrol et"
+
+msgid "Check for updates"
+msgstr "Güncellemeleri kontrol et"
+
+msgid "Last check: %s"
+msgstr "Son kontrol: %s"
+
+msgid "Checking…"
+msgstr "Kontrol ediliyor…"
+
+msgid "Could not connect to the server."
+msgstr "Sunucuya bağlanılamadı."
+
+msgid "%d update available"
+msgid_plural "%d updates available"
+msgstr[0] "%d güncelleme var"
+msgstr[1] "%d güncelleme var"
+
+msgid "All up to date ✓"
+msgstr "Hepsi güncel ✓"
+
+msgid "Connection"
+msgstr "Bağlantı"
+
+msgid "Server URL"
+msgstr "Sunucu adresi"
+
+msgid "Set by the FLX_UPDATE_SERVER constant in wp-config.php."
+msgstr "wp-config.php içindeki FLX_UPDATE_SERVER sabitinden geliyor."
+
+msgid "Leave empty to use the default server. https only."
+msgstr "Boş bırakılırsa varsayılan sunucu kullanılır. Yalnız https."
+
+msgid "Site key"
+msgstr "Site anahtarı"
+
+msgid "Set by the FLX_UPDATE_KEY constant in wp-config.php."
+msgstr "wp-config.php içindeki FLX_UPDATE_KEY sabitinden geliyor."
+
+msgid "Saved (type a new key to change it)"
+msgstr "Kayıtlı (değiştirmek için yeni anahtarı yazın)"
+
+msgid "Remove key"
+msgstr "Anahtarı sil"
+
+msgid "Get it from the update server's admin panel (/admin) with \"Add site\". Give each site its own key."
+msgstr "Güncelleme sunucusunun yönetim panelinde (/admin) \"Site ekle\" ile alınır. Her siteye ayrı anahtar verin."
+
+msgid "Automatic updates"
+msgstr "Otomatik güncelleme"
+
+msgid "Install new versions of FluxWP packages automatically"
+msgstr "FluxWP paketlerinin yeni sürümleri kendiliğinden kurulsun"
+
+msgid "When this is off, WordPress's per-plugin \"Enable auto-updates\" setting applies."
+msgstr "Kapalıyken WordPress'in eklenti başına \"Otomatik güncellemeyi etkinleştir\" ayarı geçerlidir."
+
+msgid "Save and check"
+msgstr "Kaydet ve kontrol et"
+
+msgid "No site key entered."
+msgstr "Site anahtarı girilmemiş."
+
+msgid "Could not reach the server: %s"
+msgstr "Sunucuya ulaşılamadı: %s"
+
+msgid "Invalid site key. Compare it with config.php on the server."
+msgstr "Site anahtarı geçersiz. Sunucudaki config.php ile karşılaştırın."
+
+msgid "The server returned an unexpected response (HTTP %d)."
+msgstr "Sunucu beklenmeyen yanıt verdi (HTTP %d)."
+
+msgid "No notes for this version."
+msgstr "Bu sürüm için not yok."
+
+msgid "Could not rename the package folder."
+msgstr "Paket klasörü yeniden adlandırılamadı."
+
+msgid "Update key"
+msgstr "Güncelleme anahtarı"
+
+msgid "No site key entered; FluxWP packages will not receive updates."
+msgstr "Site anahtarı girilmemiş; FluxWP paketleri güncelleme almaz."
+
+msgid "Not checked yet."
+msgstr "Henüz kontrol yapılmadı."
+
+msgid "Server connection works. Last check: %s."
+msgstr "Sunucu bağlantısı çalışıyor. Son kontrol: %s."
+
+msgid "Update server"
+msgstr "Güncelleme sunucusu"
+
+msgid "FluxWP package updates"
+msgstr "FluxWP paket güncellemeleri"
+
+msgid "Waiting for update: %s"
+msgstr "Güncelleme bekleyenler: %s"
+
+msgid "Updates"
+msgstr "Güncellemeler"
+
+msgid "Connected"
+msgstr "Bağlı"
+
+msgid "Connection error"
+msgstr "Bağlantı hatası"
+
+msgid "Not connected"
+msgstr "Bağlı değil"
+
+msgid "Not checked yet"
+msgstr "Henüz kontrol edilmedi"
+
+msgid "Recognized by the server as \"%1$s\" (%2$s)."
+msgstr "Sunucuda \"%1$s\" olarak tanınıyor (%2$s)."
+
+msgid "No site key entered. Get one from the update server's admin panel (/admin)."
+msgstr "Site anahtarı girilmemiş. Anahtarı güncelleme sunucusunun yönetim panelinden (/admin) alın."
+
+msgid "Connect to the server with \"Test connection\"."
+msgstr "\"Bağlantıyı test et\" ile sunucuya bağlanın."
+
+msgid "Last check: %s ago"
+msgstr "Son kontrol: %s önce"
+
+msgid "%1$d packages, %2$d updates"
+msgstr "%1$d paket, %2$d güncelleme"
+
+msgid "Test connection"
+msgstr "Bağlantıyı test et"
+
+msgid "Flux Packages"
+msgstr "Flux Paketleri"
+
+msgid "Update settings"
+msgstr "Güncelleme ayarları"
+
+msgid "No package selected for update."
+msgstr "Güncellenecek paket seçilmedi."
+
+msgid "Updating plugins"
+msgstr "Eklentiler güncelleniyor"
+
+msgid "Updating themes"
+msgstr "Temalar güncelleniyor"
+
+msgid "Installing %1$s version %2$s"
+msgstr "%1$s %2$s sürümü kuruluyor"
+
+msgid "No records."
+msgstr "Kayıt yok."
+
+msgid "Back to updates"
+msgstr "Güncellemelere dön"
+
+msgid "version changed (%s)"
+msgstr "sürüm değiştirildi (%s)"
+
+msgid "rolled back automatically (%s)"
+msgstr "otomatik geri alındı (%s)"
+
+msgid "update failed (%s)"
+msgstr "güncelleme sorunlu (%s)"
+
+msgid "updated (%s)"
+msgstr "güncellendi (%s)"
+
+msgid "Post-update check"
+msgstr "Güncelleme sonrası kontrol"
+
+msgid "Check that the site still loads after updating; roll the package back if it fails"
+msgstr "Güncellemeden sonra site açılıyor mu kontrol et; hata verirse paketi önceki sürüme döndür"
+
+msgid "Only HTTP 500 (critical error) triggers a rollback; network or firewall errors do not."
+msgstr "Yalnız HTTP 500 (kritik hata) geri alınır; ağ veya güvenlik duvarı hataları geri alma sebebi sayılmaz."
+
+msgid "FluxWP packages"
+msgstr "FluxWP paketleri"
+
+msgid "Update selected"
+msgstr "Seçilenleri güncelle"
+
+msgid "Update all (%s)"
+msgstr "Tümünü güncelle (%s)"
+
+msgid "Select all"
+msgstr "Tümünü seç"
+
+msgid "Could not get the package list. Enter the key in Settings and click \"Test connection\"."
+msgstr "Sunucudan paket listesi alınamadı. Ayarlar'dan anahtarı girip \"Bağlantıyı test et\"e basın."
+
+msgid "Change version"
+msgstr "Sürüm değiştir"
+
+msgid "Version"
+msgstr "Sürüm"
+
+msgid "older"
+msgstr "eski"
+
+msgid "Install this version"
+msgstr "Bu sürümü kur"
+
+msgid "A backup is taken first."
+msgstr "Önce yedek alınır."
+
+msgid "Flux Backup is not installed: no backup will be taken."
+msgstr "Flux Backup kurulu değil: yedek alınmaz."
+
+msgid "WordPress updates"
+msgstr "WordPress güncellemeleri"
+
+msgid "FluxWP themes and plugins are updated from your own update server instead of wordpress.org."
+msgstr "FluxWP tema ve eklentileri wordpress.org yerine kendi güncelleme sunucunuzdan güncellenir."
+
+msgid "A backup is taken before every update (Flux Backup)."
+msgstr "Her güncellemeden önce yedek alınır (Flux Backup)."
+
+msgid "Backups"
+msgstr "Yedekler"
+
+msgid "No backup before updates: the Flux Backup plugin is not installed or active."
+msgstr "Güncelleme öncesi yedek alınmıyor: Flux Backup eklentisi kurulu ya da etkin değil."
+
+msgid "Activate"
+msgstr "Etkinleştir"
+
+msgid "Install Flux Backup"
+msgstr "Flux Backup'i kur"
+
+msgid "No FluxWP package updates yet."
+msgstr "Henüz FluxWP paket güncellemesi yapılmadı."
+
+msgid "Date"
+msgstr "Tarih"
+
+msgid "By"
+msgstr "Kim"
+
+msgid "Backup"
+msgstr "Yedek"
+
+msgid "Success"
+msgstr "Başarılı"
+
+msgid "Error"
+msgstr "Hata"
+
+msgid "Automatic"
+msgstr "Otomatik"
+
+msgid "Open backup"
+msgstr "Yedeği aç"
+
+msgid "Install version %2$s of %1$s?"
+msgstr "%1$s için %2$s sürümü kurulsun mu?"
+
+msgid "Package did not change; the installation may have failed."
+msgstr "Paket değişmedi; kurulum başarısız olmuş olabilir."
+
+msgid "Success ✓"
+msgstr "Başarılı ✓"
+
+msgid "Rolled back to the previous version automatically."
+msgstr "Önceki sürüme otomatik dönüldü."
+
+msgid "Previous version not found; restore it manually."
+msgstr "Eski sürüm bulunamadı; elle geri yükleyin."
+
+msgid "This version is not on the server."
+msgstr "Bu sürüm sunucuda yok."
+
+msgid "Package is not installed on this site."
+msgstr "Paket bu sitede kurulu değil."
+
+msgid "Before %1$s %2$s → %3$s"
+msgstr "%1$s %2$s → %3$s öncesi"
+
+msgid "Backup failed, nothing was changed: %s"
+msgstr "Yedek alınamadı, işlem yapılmadı: %s"
+
+msgid "Installation failed."
+msgstr "Kurulum başarısız."
+
+msgid "The site failed after the update (HTTP 500: %s)."
+msgstr "Güncellemeden sonra site hata verdi (HTTP 500: %s)."
+
+msgid "Site check could not run (no connection)."
+msgstr "Site kontrolü yapılamadı (bağlantı kurulamadı)."
+
+msgid "Site check returned HTTP %d; not treated as a failure."
+msgstr "Site kontrolü HTTP %d döndü; hata sayılmadı."
+
+msgid "%d backup deleted."
+msgid_plural "%d backups deleted."
+msgstr[0] "%d yedek silindi."
+msgstr[1] "%d yedek silindi."
+
+msgid "Retention saved and applied to existing update backups."
+msgstr "Saklama süresi kaydedildi; mevcut güncelleme yedeklerine de uygulandı."
+
+msgid "%d expired backup deleted."
+msgid_plural "%d expired backups deleted."
+msgstr[0] "Süresi dolan %d yedek silindi."
+msgstr[1] "Süresi dolan %d yedek silindi."
+
+msgid "Update backups are deleted automatically after"
+msgstr "Güncelleme yedekleri"
+
+msgid "%d day"
+msgid_plural "%d days"
+msgstr[0] "%d gün"
+msgstr[1] "%d gün"
+
+msgid "."
+msgstr "sonra otomatik silinir."
+
+msgid "Flux Backup settings"
+msgstr "Flux Backup ayarları"
+
+msgid "Update backup retention is set on the %s page (with Flux Backup 1.2.0 you can also change it here)."
+msgstr "Güncelleme yedeklerinin saklama süresi %s sayfasından değiştirilir (Flux Backup 1.2.0 ile buradan da değiştirilebilir)."
+
+msgid "Currently %1$d update backup, %2$s."
+msgid_plural "Currently %1$d update backups, %2$s."
+msgstr[0] "Şu an %1$d güncelleme yedeği, %2$s."
+msgstr[1] "Şu an %1$d güncelleme yedeği, %2$s."
+
+msgid "Delete all unlocked update backups? This cannot be undone."
+msgstr "Kilitli olmayan tüm güncelleme yedekleri silinsin mi? Bu geri alınamaz."
+
+msgid "Delete all"
+msgstr "Tümünü sil"
+
+msgid "Deleted"
+msgstr "Silindi"
+
+msgid "Locked backups are never deleted automatically."
+msgstr "Kilitli yedekler otomatik silinmez."
+
+msgid "Locked"
+msgstr "Kilitli"
+
+msgid "Deleted on %s"
+msgstr "%s silinir"
+
+msgid "Open"
+msgstr "Aç"
+
+msgid "Delete"
+msgstr "Kaldır"
+
+msgid "Delete the selected update backups? This cannot be undone."
+msgstr "Seçilen güncelleme yedekleri silinsin mi? Bu geri alınamaz."
+
+msgid "Delete selected backups"
+msgstr "Seçili yedekleri sil"
+
+msgid "%s item"
+msgid_plural "%s items"
+msgstr[0] "%s kayıt"
+msgstr[1] "%s kayıt"
+
+msgid "First page"
+msgstr "İlk sayfa"
+
+msgid "Previous page"
+msgstr "Önceki sayfa"
+
+msgid "Next page"
+msgstr "Sonraki sayfa"
+
+msgid "Last page"
+msgstr "Son sayfa"
+
+msgid "%1$d of %2$d"
+msgstr "%1$d / %2$d"
+
+msgid "Delete this backup? It also holds the backup of the other packages in the same bulk update. This cannot be undone."
+msgstr "Bu yedek silinsin mi? Aynı toplu güncellemedeki diğer paketlerin yedeği de bu dosyadadır. Geri alınamaz."
+
+msgid "No package selected to install or update."
+msgstr "Kurulacak ya da güncellenecek paket seçilmedi."
+
+msgid "installed %s"
+msgstr "kuruldu %s"
+
+msgid "install failed"
+msgstr "kurulamadı"
+
+msgid "Hide log"
+msgstr "Kaydı gizle"
+
+msgid "Show log"
+msgstr "Kaydı göster"
+
+msgid "Activate installed"
+msgstr "Kurulanları etkinleştir"
+
+msgid "Install / update selected"
+msgstr "Seçilenleri kur / güncelle"
+
+msgid "Requires:"
+msgstr "Gerekli:"
+
+msgid "Active"
+msgstr "Etkin"
+
+msgid "Installed, inactive"
+msgstr "Kurulu, etkin değil"
+
+msgid "%1$s requires %2$s (%3$s)."
+msgstr "%1$s için %2$s gerekli (%3$s)."
+
+msgid "not installed"
+msgstr "kurulu değil"
+
+msgid "installed, inactive"
+msgstr "kurulu, etkin değil"
+
+msgid "Add %s too"
+msgstr "%s eklentisini de ekle"
+
+msgid "Will also be installed / activated:"
+msgstr "Birlikte kurulacak / etkinleştirilecek:"
+
+msgid "wordpress.org"
+msgstr "wordpress.org"
+
+msgid "Remove"
+msgstr "Çıkar"
+
+msgid "%1$s was deselected: it does not work without %2$s."
+msgstr "%1$s seçimden çıkarıldı: %2$s olmadan çalışmaz."
+
+msgid "For %1$s these will also be installed and activated: %2$s. Continue?"
+msgstr "%1$s için şunlar da kurulup etkinleştirilecek: %2$s. Devam edilsin mi?"
+
+msgid "Preparing…"
+msgstr "Hazırlanıyor…"
+
+msgid "Working, please stay on this page…"
+msgstr "İşlem sürüyor, sayfadan ayrılmayın…"
+
+msgid "Stay on this page until it finishes"
+msgstr "Bitene kadar bu sayfadan ayrılmayın"
+
+msgid "Reload"
+msgstr "Yeniden başlat"
+
+msgid "Reload the page to see the latest changes."
+msgstr "Son değişiklikleri görmek için sayfayı yeniden başlatın."
+
+msgid "Dismiss"
+msgstr "Uyarıyı kapat"
+
+msgid "Nothing to do."
+msgstr "Yapılacak bir şey yok."
+
+msgid "Done: %1$d succeeded, %2$d failed."
+msgstr "Bitti: %1$d başarılı, %2$d hatalı."
+
+msgid "The server did not respond (%s). Check the history and system checks."
+msgstr "Sunucu yanıt vermedi (%s). Geçmiş ve sistem kontrolüne bakın."
+
+msgid "An install/update is running. Leaving the page may interrupt it."
+msgstr "Kurulum/güncelleme sürüyor. Sayfadan ayrılırsanız yarım kalabilir."
+
+msgid "Installing %s…"
+msgstr "%s kuruluyor…"
+
+msgid "Installing %s from wordpress.org…"
+msgstr "%s wordpress.org'dan kuruluyor…"
+
+msgid "Activating %s…"
+msgstr "%s etkinleştiriliyor…"
+
+msgid "Updating %s (backup first)…"
+msgstr "%s güncelleniyor (önce yedek alınır)…"
+
+msgid "Changing the version of %s (backup first)…"
+msgstr "%s sürümü değiştiriliyor (önce yedek alınır)…"
+
+msgid "Installing…"
+msgstr "Kuruluyor…"
+
+msgid "Activating…"
+msgstr "Etkinleştiriliyor…"
+
+msgid "Updating…"
+msgstr "Güncelleniyor…"
+
+msgid "Changing version…"
+msgstr "Sürüm değiştiriliyor…"
+
+msgid "Queued"
+msgstr "Sırada"
+
+msgid "Done"
+msgstr "Tamam"
+
+msgid "(required by %s)"
+msgstr "(%s için gerekli)"
+
+msgid "%1$s installed%2$s."
+msgstr "%1$s kuruldu%2$s."
+
+msgid "%1$s was not activated: %2$s must be installed and active first."
+msgstr "%1$s etkinleştirilmedi: önce %2$s kurulup etkinleştirilmeli."
+
+msgid "%1$s could not be activated: %2$s"
+msgstr "%1$s etkinleştirilemedi: %2$s"
+
+msgid "%s activated."
+msgstr "%s etkinleştirildi."
+
+msgid "%s: you are not allowed to install."
+msgstr "%s: kurma yetkiniz yok."
+
+msgid "Could not download %1$s from wordpress.org: %2$s"
+msgstr "%1$s wordpress.org'dan alınamadı: %2$s"
+
+msgid "no download link"
+msgstr "indirme adresi yok"
+
+msgid "unknown error"
+msgstr "bilinmeyen hata"
+
+msgid "%1$s could not be installed: %2$s"
+msgstr "%1$s kurulamadı: %2$s"
+
+msgid "%s is already installed."
+msgstr "%s zaten kurulu."
+
+msgid "%1$s %2$s installed."
+msgstr "%1$s %2$s kuruldu."
+
+msgid "This plugin is not required by any FluxWP package."
+msgstr "Bu eklenti hiçbir FluxWP paketinin gereksinimi değil."
+
+msgid "%s was installed from wordpress.org."
+msgstr "%s wordpress.org'dan kuruldu."
+
+msgid "%s is not installed, so it could not be activated."
+msgstr "%s kurulu olmadığı için etkinleştirilemedi."
+
+msgid "%s is already active."
+msgstr "%s zaten etkin."
+
+msgid "Unknown action."
+msgstr "Bilinmeyen işlem."
+
+msgid "The package is not installed."
+msgstr "Paket kurulu değil."
+
+msgid "%s was not updated: WordPress sees no update for it. Click \"Check for updates\" and try again."
+msgstr "%s güncellenmedi: WordPress bu paket için güncelleme görmüyor. \"Güncellemeleri kontrol et\" deyip yeniden deneyin."
+
+msgid "Source: %s"
+msgstr "Kaynak: %s"
+
+msgid "available from %d sources"
+msgstr "%d kaynakta var"
+
+msgid "Remove this source? Packages installed from it stay on the site; they just stop receiving updates."
+msgstr "Bu kaynak silinsin mi? Ondan kurulan paketler sitede kalır, yalnız güncelleme gelmez."
+
+msgid "Off"
+msgstr "Kapalı"
+
+msgid "Connected · %d package"
+msgid_plural "Connected · %d packages"
+msgstr[0] "Bağlı · %d paket"
+msgstr[1] "Bağlı · %d paket"
+
+msgid "Other sources"
+msgstr "Diğer kaynaklar"
+
+msgid "Packages are collected from these sources as well as the main server. If a package is in more than one source, it updates from the source it was installed from; if it is not installed, the source higher in the list wins."
+msgstr "Paketler ana sunucuyla birlikte bu kaynaklardan da toplanır. Aynı paket birden çok kaynakta varsa kurulu olduğu kaynaktan güncellenir; kurulu değilse listede üstteki kaynak kazanır."
+
+msgid "Source not added: %s"
+msgstr "Kaynak eklenmedi: %s"
+
+msgid "Source added and its packages loaded."
+msgstr "Kaynak eklendi ve paketleri alındı."
+
+msgid "Source removed."
+msgstr "Kaynak silindi."
+
+msgid "Name"
+msgstr "Ad"
+
+msgid "Main server"
+msgstr "Ana sunucu"
+
+msgid "Server"
+msgstr "Sunucu"
+
+msgid "Set under Connection above"
+msgstr "Yukarıdaki Bağlantı ayarı"
+
+msgid "Key saved"
+msgstr "Anahtar kayıtlı"
+
+msgid "GitHub (public)"
+msgstr "GitHub (public)"
+
+msgid "Move up"
+msgstr "Yukarı"
+
+msgid "Turn off"
+msgstr "Kapat"
+
+msgid "Turn on"
+msgstr "Kaynağı aç"
+
+msgid "Add source"
+msgstr "Kaynak ekle"
+
+msgid "A public GitHub repository (with <slug>.zip on its releases) or a FluxWP update-server address. https only."
+msgstr "Public GitHub deposu (release'lerinde <slug>.zip olan) ya da FluxWP güncelleme sunucusu adresi. Yalnız https."
+
+msgid "Taken from the address if empty"
+msgstr "Boşsa adresten alınır"
+
+msgid "Optional"
+msgstr "İsteğe bağlı"
+
+msgid "Only for servers that require a key. The key is sent only to that server's address."
+msgstr "Yalnız anahtar isteyen sunucularda. Anahtar sadece o sunucunun adresine gönderilir."
+
+msgid "Code from this source runs on your site; only add sources you trust."
+msgstr "Bu kaynaktan gelen kod sitende çalışır; yalnız güvendiğin kaynağı ekle."
+
+msgid "Test and add"
+msgstr "Test et ve ekle"
+
+msgid "Could not reach %1$s: %2$s Its packages are shown from the last known data."
+msgstr "%1$s kaynağına ulaşılamadı: %2$s Bu kaynağın paketleri son bilinen veriden gösteriliyor."
+
+msgid "Sources"
+msgstr "Kaynaklar"
+
+msgid "Update source: %s"
+msgstr "Güncelleme kaynağı: %s"
+
+msgid "The GitHub address is not in owner/repo form."
+msgstr "GitHub adresi owner/repo biçiminde değil."
+
+msgid "Could not reach the source: %s"
+msgstr "Kaynağa ulaşılamadı: %s"
+
+msgid "Repository not found or not public."
+msgstr "Depo bulunamadı ya da public değil."
+
+msgid "GitHub returned an unexpected response (HTTP %d)."
+msgstr "GitHub beklenmeyen yanıt verdi (HTTP %d)."
+
+msgid "The address must start with https://."
+msgstr "Adres  https://.  ile başlamalıdır"
+
+msgid "This source is already in the list."
+msgstr "Bu kaynak zaten listede."
+
+msgid "The source could not be tested."
+msgstr "Kaynak test edilemedi."
+
+msgid "Connected without a key (%s): public packages are available. Enter a site key for private packages."
+msgstr "Anahtarsız bağlı (%s): public paketler geliyor. Private paketler için site anahtarı girin."
+
+msgid "Optional. Public packages need no key; for private packages, get one from the update server panel (/admin) with \"Add site\". Give each site its own key."
+msgstr "İsteğe bağlı. Public paketler anahtarsız gelir; private paketler için güncelleme sunucusunun panelinde (/admin) \"Site ekle\" ile alınır. Her siteye ayrı anahtar verin."
+
+msgid "The package list could not be fetched. Check the server address and key (if any) in Settings and press \"Test connection\"."
+msgstr "Sunucudan paket listesi alınamadı. Ayarlar'dan sunucu adresini ve (varsa) anahtarı kontrol edip \"Bağlantıyı test et\"e basın."
+
+msgid "This server does not serve updates without a key; enter a site key."
+msgstr "Bu sunucu anahtarsız güncelleme vermiyor; site anahtarı girin."
+
+msgid "Invalid site key. Try it with \"Test an existing key\" in the update server panel (/admin)."
+msgstr "Site anahtarı geçersiz. Güncelleme sunucusunun panelinde (/admin) \"Var olan bir anahtarı test et\" ile deneyin."
+
+msgid "No key: only public packages are available."
+msgstr "Anahtar yok: yalnız public paketler gelir."
+
+msgid "The site key is disabled on the server; only public packages are available."
+msgstr "Site anahtarı sunucuda pasif; yalnız public paketler geliyor."
+
+msgid "Bulk action"
+msgstr "Toplu işlem"
+
+msgid "Bulk actions"
+msgstr "Toplu işlemler"
+
+msgid "Deactivate"
+msgstr "Devre dışı bırak"
+
+msgid "Inactive"
+msgstr "Devre dışı"
+
+msgid "%d package activated."
+msgid_plural "%d packages activated."
+msgstr[0] "%d paket etkinleştirildi."
+msgstr[1] "%d paket etkinleştirildi."
+
+msgid "%d package deactivated."
+msgid_plural "%d packages deactivated."
+msgstr[0] "%d paket devre dışı bırakıldı."
+msgstr[1] "%d paket devre dışı bırakıldı."
+
+msgid "%d package deleted."
+msgid_plural "%d packages deleted."
+msgstr[0] "%d paket kaldırıldı."
+msgstr[1] "%d paket kaldırıldı."
+
+msgid "Skipped (already in that state, active theme or FluxWP Panel): %s."
+msgstr "Atlananlar (zaten bu durumda, etkin tema ya da FluxWP Panel): %s."
+
+msgid "Failed: %s."
+msgstr "Yapılamayanlar: %s."
+
+msgid "Delete these packages from the site? Their files will be removed. %s"
+msgstr "Şu paketler siteden kaldırılsın mı? Dosyaları silinir. %s"
+
+msgid "Setup wizard"
+msgstr "Kurulum sihirbazı"
+
+msgid "FluxWP demo"
+msgstr "FluxWP demo"
+
+msgid "Sample home page, products and menus."
+msgstr "Örnek ana sayfa, ürünler ve menüler."
+
+msgid "Blank"
+msgstr "Boş"
+
+msgid "Theme and colour only"
+msgstr "Yalnız tema ve renk"
+
+msgid "Anthracite"
+msgstr "Antrasit"
+
+msgid "Blue"
+msgstr "Mavi"
+
+msgid "Teal"
+msgstr "Petrol"
+
+msgid "Indigo"
+msgstr "İndigo"
+
+msgid "Forest"
+msgstr "Orman"
+
+msgid "Connect e-mail"
+msgstr "E-postayı bağlayın"
+
+msgid "Without SMTP, receipts and notifications are not delivered."
+msgstr "SMTP olmadan bağış makbuzları ve bildirimler gitmez."
+
+msgid "Flux Mail › Settings"
+msgstr "Flux Mail › Ayarlar"
+
+msgid "Upload your logo"
+msgstr "Logonuzu yükleyin"
+
+msgid "Used in the admin and in e-mails."
+msgstr "Panelde ve e-postalarda kullanılır."
+
+msgid "Settings › Admin theme"
+msgstr "Ayarlar › Yönetim teması"
+
+msgid "Add an AI key"
+msgstr "AI anahtarı ekleyin"
+
+msgid "Needed for assistants and AI tools."
+msgstr "Asistanlar ve AI araçları için gerekli."
+
+msgid "Flux AI & MCP › Settings"
+msgstr "Flux AI & MCP › Ayarlar"
+
+msgid "The setup wizard needs JavaScript."
+msgstr "Kurulum sihirbazı JavaScript ister."
+
+msgid "Go to the Packages screen."
+msgstr "Paketler ekranına geçin."
+
+msgid "Site name: %s"
+msgstr "Site adı: %s"
+
+msgid "The FluxWP theme is not installed."
+msgstr "FluxWP teması kurulu değil."
+
+msgid "You are not allowed to switch themes."
+msgstr "Tema değiştirme yetkiniz yok."
+
+msgid "FluxWP theme is active."
+msgstr "FluxWP teması etkin."
+
+msgid "No preset applied (Blank)."
+msgstr "Ön ayar uygulanmadı (Boş)."
+
+msgid "You are not allowed to apply presets."
+msgstr "Ön ayar uygulama yetkiniz yok."
+
+msgid "The preset is already applied."
+msgstr "Ön ayar zaten uygulanmış."
+
+msgid "Preset not found. If the package is installed, apply it under Appearance › Presets."
+msgstr "Ön ayar bulunamadı. Paketi kurulduysa Görünüm › Ön ayarlar'dan uygulayın."
+
+msgid "%s preset applied."
+msgstr "%s ön ayarı uygulandı."
+
+msgid "Setup finished."
+msgstr "Kurulum tamamlandı."
+
+msgid "Wizard skipped."
+msgstr "Sihirbaz atlandı."
+
+msgid "Colour unchanged."
+msgstr "Renk değişmedi."
+
+msgid "You are not allowed to edit the appearance."
+msgstr "Görünüm düzenleme yetkiniz yok."
+
+msgid "The active theme does not support colour styles."
+msgstr "Etkin tema renk stillerini desteklemiyor."
+
+msgid "The theme has no %s colour style."
+msgstr "%s renk stili temada yok."
+
+msgid "Could not create the global styles record."
+msgstr "Global stil kaydı oluşturulamadı."
+
+msgid "Colour style: %s"
+msgstr "Renk stili: %s"
+
+msgid "Step %1$s of %2$s"
+msgstr "Adım %1$s / %2$s"
+
+msgid "Welcome to FluxWP"
+msgstr "FluxWP'ye hoş geldiniz"
+
+msgid "Let's set up your site in three steps. Pick the plugins, choose the look, and FluxWP Panel installs the rest."
+msgstr "Sitenizi üç adımda kuralım. Eklentileri seçin, görünümü belirleyin; kurulumu FluxWP Panel yapar."
+
+msgid "%d plugins"
+msgstr "%d eklenti"
+
+msgid "Donations, forms, WhatsApp, e-mail, SEO and backups work from one admin."
+msgstr "Bağış, form, WhatsApp, e-posta, SEO ve yedek aynı panelde çalışır."
+
+msgid "New versions appear on WordPress's Updates screen."
+msgstr "Yeni sürümler WordPress'in Güncellemeler ekranına gelir."
+
+msgid "Change later"
+msgstr "Geri dönüş"
+
+msgid "You can change the preset and colour later under Appearance › Theme settings."
+msgstr "Ön ayarı ve rengi sonra Görünüm › Tema Ayarları'ndan değiştirirsiniz."
+
+msgid "Get started"
+msgstr "Başlayalım"
+
+msgid "I'll set it up myself"
+msgstr "Kendim kurarım"
+
+msgid "About 3 minutes"
+msgstr "Yaklaşık 3 dakika"
+
+msgid "Plugins"
+msgstr "Eklentiler"
+
+msgid "Updates first"
+msgstr "Önce güncellemeler"
+
+msgid "Your installed apps are being updated before setup, so everything is installed on the latest version."
+msgstr "Kuruluma geçmeden önce yüklü uygulamalar güncelleniyor. Böylece her şey en yeni sürümle kurulur."
+
+msgid "Checking for updates…"
+msgstr "Güncellemeler kontrol ediliyor…"
+
+msgid "updating"
+msgstr "güncelleniyor"
+
+msgid "updated"
+msgstr "güncellendi"
+
+msgid "FluxWP Panel was updated. Reopening the wizard on the new version…"
+msgstr "FluxWP Panel güncellendi. Sihirbaz yeni sürümle yeniden açılıyor…"
+
+msgid "Updates could not be completed: %s Setup does not continue until the updates are done."
+msgstr "Güncellemeler tamamlanamadı: %s Güncellemeler bitmeden kuruluma geçilmez."
+
+msgid "Try again"
+msgstr "Yeniden dene"
+
+msgid "Go to Packages"
+msgstr "Paketler ekranına git"
+
+msgid "Unknown error."
+msgstr "Bilinmeyen hata."
+
+msgid "Clear selection"
+msgstr "Seçimi temizle"
+
+msgid "Essentials"
+msgstr "Temel"
+
+msgid "What should we start with?"
+msgstr "Neyle başlayalım?"
+
+msgid "Continue without these"
+msgstr "Seçmeden devam et"
+
+msgid "Recommended"
+msgstr "Önerilen"
+
+msgid "Block theme with shop, donation and company page templates."
+msgstr "Blok tabanlı tema: mağaza, bağış ve kurumsal sayfa şablonları."
+
+msgid "Appearance"
+msgstr "Görünüm"
+
+msgid "How should your site look?"
+msgstr "Siteniz nasıl görünsün?"
+
+msgid "Pages and menus are created from it."
+msgstr "Sayfalar ve menüler buna göre oluşur."
+
+msgid "Colour"
+msgstr "Renk"
+
+msgid "The theme and plugins share this colour."
+msgstr "Tema ve eklentiler aynı rengi kullanır."
+
+msgid "Site name"
+msgstr "Site adı"
+
+msgid "Also shown in e-mails and certificates."
+msgstr "E-postalarda ve sertifikalarda da görünür."
+
+msgid "Your site is ready"
+msgstr "Siteniz hazır"
+
+msgid "Plugins installed, preset and colour applied."
+msgstr "Eklentiler kuruldu, ön ayar ve renk uygulandı."
+
+msgid "Setup finished, some steps did not complete"
+msgstr "Kurulum bitti, bazı adımlar tamamlanmadı"
+
+msgid "The failed steps are below. You can try again from FluxWP Panel › Packages."
+msgstr "Hatalı adımlar aşağıda. FluxWP Panel › Paketler'den yeniden deneyebilirsiniz."
+
+msgid "plugins"
+msgstr "eklenti"
+
+msgid "pages"
+msgstr "sayfa"
+
+msgid "colour"
+msgstr "renk"
+
+msgid "Open site"
+msgstr "Siteyi aç"
+
+msgid "Go to dashboard"
+msgstr "Panele git"
+
+msgid "Back"
+msgstr "Geri"
+
+msgid "Continue"
+msgstr "Devam"
+
+msgid "Skip setup?"
+msgstr "Kurulum atlansın mı?"
+
+msgid "Nothing is installed. You can open the wizard later from FluxWP Panel › Setup wizard."
+msgstr "Hiçbir şey kurulmaz. Sihirbazı sonra FluxWP Panel › Kurulum sihirbazı'ndan açabilirsiniz."
+
+msgid "Cancel"
+msgstr "Vazgeç"
+
+msgid "%s plugins + FluxWP theme"
+msgstr "%s eklenti + FluxWP teması"
+
+msgid "%s plugins"
+msgstr "%s eklenti"
+
+msgid "Keep this tab open."
+msgstr "Sekmeyi kapatmayın."
+
+msgid "queued"
+msgstr "sırada"
+
+msgid "installing"
+msgstr "kuruluyor"
+
+msgid "installed"
+msgstr "kuruldu"
+
+msgid "applying"
+msgstr "uygulanıyor"
+
+msgid "applied"
+msgstr "uygulandı"
+
+msgid "error"
+msgstr "hata"
+
+msgid "Downloading packages"
+msgstr "Paketler indiriliyor"
+
+msgid "Installing plugins"
+msgstr "Eklentiler kuruluyor"
+
+msgid "Getting your site ready"
+msgstr "Siteniz sizin için hazırlanıyor"
+
+msgid "Creating pages and menus"
+msgstr "Sayfalar ve menüler oluşturuluyor"
+
+msgid "Almost there, final touches"
+msgstr "Az kaldı, son rötuşlar"
+
+msgid "FluxWP theme"
+msgstr "FluxWP teması"
+
+msgid "Activating the theme"
+msgstr "Tema etkinleştiriliyor"
+
+msgid "Ready"
+msgstr "Hazır"
+
+msgid "Opening the final screen."
+msgstr "Son ekran açılıyor."
+
+msgid "Could not reach the server. Check your connection and try again."
+msgstr "Sunucuya ulaşılamadı. Bağlantınızı kontrol edip yeniden deneyin."
+
+msgid "Could not reach the update server; the package list is empty. Check the server under FluxWP Panel › Settings. The theme and preset can still be applied."
+msgstr "Güncelleme sunucusuna bağlanılamadı, paket listesi boş. FluxWP Panel › Ayarlar'dan sunucuyu kontrol edin; tema ve ön ayar yine de uygulanabilir."
+
+msgid "Flux Updater is now part of FluxWP Panel; the old plugin was deactivated and its settings were kept. You can delete it from the Plugins screen."
+msgstr "Flux Updater artık FluxWP Panel'in parçası; eski eklenti kapatıldı, ayarları korundu. Eklentiler ekranından silebilirsiniz."
+
+msgid "Store"
+msgstr "Mağaza"
+
+msgid "Flux Commerce: sales dashboard, customers, reports and bank transfer with receipts."
+msgstr "Flux Commerce: satış paneli, müşteriler, raporlar ve dekontlu Havale/EFT."
+
+msgid "Nonprofit and donations"
+msgstr "Dernek ve bağış"
+
+msgid "Flux Donate and Flux Certificates: donation types, a one-page checkout and a certificate in every donor's name."
+msgstr "Flux Donate ve Flux Certificates: bağış türleri, tek sayfalık ödeme ve her bağışçıya adına sertifika."
+
+msgid "Admin theme"
+msgstr "Yönetim teması"
+
+msgid "Flux Admin: a redesigned admin panel with a command palette, mobile menu and light/dark mode."
+msgstr "Flux Admin: yenilenmiş yönetim paneli, komut paleti, mobil menü ve açık/koyu tema."
+
+msgid "Communication"
+msgstr "İletişim"
+
+msgid "Other"
+msgstr "Diğer"
+
+msgid "Other FluxWP packages."
+msgstr "Diğer FluxWP paketleri."
+
+msgid "Plugins · %1$s of %2$s"
+msgstr "Eklentiler · %1$s / %2$s"
+
+msgid "%s packages queued"
+msgstr "%s paket sıraya alındı"
+
+msgid "activating"
+msgstr "etkinleştiriliyor"
+
+msgid "The admin theme and the kind of site: a store or a nonprofit. Pick one kind; you can install the other later."
+msgstr "Yönetim teması ve sitenin türü: mağaza ya da dernek. Türlerden biri seçilir; diğerini sonra da kurabilirsiniz."
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "About us"
+msgstr "Hakkımızda"
+
+msgid "FAQ"
+msgstr "Sık sorulan sorular"
+
+msgid "Tell visitors who you are and what you do."
+msgstr "Kim olduğunuzu ve ne yaptığınızı burada anlatın."
+
+msgid "Add your address, phone and e-mail here."
+msgstr "Adres, telefon ve e-posta bilgilerinizi buraya yazın."
+
+msgid "Add common questions and their answers here."
+msgstr "Sık gelen soruları ve cevaplarını buraya ekleyin."
+
+msgid "Upload a PNG, JPG, WebP or GIF."
+msgstr "PNG, JPG, WebP ya da GIF yükleyin."
+
+msgid "Tagline: %s"
+msgstr "Slogan: %s"
+
+msgid "Could not set the logo."
+msgstr "Logo ayarlanamadı."
+
+msgid "Logo set."
+msgstr "Logo ayarlandı."
+
+msgid "You are not allowed to create pages."
+msgstr "Sayfa oluşturma yetkiniz yok."
+
+msgid "Page: %s"
+msgstr "Sayfa: %s"
+
+msgid "No new pages."
+msgstr "Yeni sayfa yok."
+
+msgid "Identity"
+msgstr "Kimlik"
+
+msgid "Shown under the name on the home page and in search results."
+msgstr "Ana sayfada ve arama sonuçlarında adın altında görünür."
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "A square or wide image (PNG, JPG, WebP). You can change it later."
+msgstr "Kare ya da yatay bir görsel (PNG, JPG, WebP). Sonra değiştirebilirsiniz."
+
+msgid "Upload logo"
+msgstr "Logo yükle"
+
+msgid "Change"
+msgstr "Değiştir"
+
+msgid "Uploading…"
+msgstr "Yükleniyor…"
+
+msgid "Selected pages are created empty for you to fill in later. Existing pages are not created again."
+msgstr "Seçtikleriniz boş sayfa olarak açılır, içini sonra doldurursunuz. Var olan sayfalar tekrar açılmaz."
+
+msgid "Donate"
+msgstr "Bağış yap"
+
+msgid "Latest posts"
+msgstr "Son yazılar"
+
+msgid "Home"
+msgstr "Ana sayfa"
+
+msgid "Calm and serious; fits anything."
+msgstr "Sade ve ciddi, her işe uyar."
+
+msgid "Trustworthy, corporate."
+msgstr "Güven veren, kurumsal."
+
+msgid "Quiet and modern."
+msgstr "Sakin ve modern."
+
+msgid "Lively; tech and education."
+msgstr "Canlı, teknoloji ve eğitim."
+
+msgid "Nature; for nonprofits and foundations."
+msgstr "Doğa; dernek ve vakıflar için."
+
+msgid "Your name and logo first, then preset, colour and pages. The preview on the right updates right away."
+msgstr "Önce adınız ve logonuz, sonra ön ayar, renk ve sayfalar. Sağdaki önizleme hemen değişir."
+
+msgctxt "context_ac58193b5653"
+msgid "Contact"
+msgstr "İletişim"
+
+msgid "I accept the %1$s and %2$s; I have read the %3$s."
+msgstr "%1$s ve %2$s'nı kabul ediyorum; %3$s'ni okudum."
+
+msgid "Terms of Use"
+msgstr "Kullanım Şartları"
+
+msgid "Privacy Policy"
+msgstr "Gizlilik Politikası"
+
+msgid "KVKK Privacy Notice"
+msgstr "KVKK Aydınlatma Metni"
+
+msgid "Help us improve FluxWP (send usage data)"
+msgstr "Ürünü geliştirmemize yardımcı olun (kullanım verisi gönder)"
+
+msgid "Optional. WordPress and PHP version, language and time zone, plus anonymous version and error data for FluxWP plugins. The site address and country are always recorded for updates (IPs are not stored). Updates work when this is off; change it under FluxWP Panel › Settings."
+msgstr "İsteğe bağlı. WordPress ve PHP sürümü, dil ve saat dilimi ile FluxWP eklentilerinin anonim sürüm ve hata bilgisi. Site adresi ve ülke güncelleme için her zaman kaydedilir (IP saklanmaz). Kapalıyken de güncellemeler çalışır; FluxWP Panel › Ayarlar'dan değiştirebilirsiniz."
+
+msgid "Accept the terms to continue."
+msgstr "Devam etmek için şartları onaylayın."
+
+msgid "Usage data consent saved."
+msgstr "Kullanım verisi izni kaydedildi."
+
+msgid "Usage data will not be sent."
+msgstr "Kullanım verisi gönderilmeyecek."
+
+msgid "Usage data"
+msgstr "Kullanım verisi"
+
+msgid "Update checks always send the site address; the server also looks up the country from the IP and does not store the IP (mandatory record). When on, update checks also send the WordPress and PHP version, time zone and language, and FluxWP plugin versions and errors are sent anonymously. When off, only what updates need is sent and updates work the same. You can withdraw consent here at any time."
+msgstr "Güncelleme denetimi her zaman site adresini gönderir; sunucu ayrıca IP'den ülkeyi bulur ve IP'yi saklamaz (zorunlu kayıt). Açıkken WordPress ve PHP sürümü, saat dilimi ve dil eklenir; FluxWP eklentilerinin sürümleri ve hataları anonim olarak gönderilir. Kapalıyken yalnız güncelleme için gereken bilgi gider, güncellemeler aynı çalışır. İzni istediğiniz zaman buradan geri alabilirsiniz."
+
+msgid "Anonymous usage data"
+msgstr "Anonim kullanım verisi"
+
+msgid "On"
+msgstr "Açık"
+
+msgid "Sent."
+msgstr "Gönderildi."
+
+msgid "Show the data that will be sent"
+msgstr "Gönderilecek veriyi göster"
+
+msgid "Could not send. Check the URL and that the Flux Analytics telemetry hub is on at the target site."
+msgstr "Gönderilemedi. Adresi ve hedef sitede Flux Analytics telemetri merkezinin açık olduğunu kontrol edin."
+
+msgid "Sent: a random install ID, WordPress and PHP version, site language, country (from the time zone or store country), active FluxWP plugins and theme, PHP errors from FluxWP (with paths, domain, emails and IPs removed), setup wizard progress and choices. Site address, IP, users and content are never sent."
+msgstr "Gönderilen: rastgele kurulum kimliği, WordPress ve PHP sürümü, site dili, ülke (saat diliminden ya da mağaza ülkesinden), etkin FluxWP eklentileri ve teması, FluxWP kaynaklı PHP hataları (yollar, alan adı, e-posta ve IP silinmiş), kurulum sihirbazında ilerleme ve seçimler. Site adresi, IP, kullanıcı ve içerik gönderilmez."
+
+msgid "Not sent yet. Sent at most once a day."
+msgstr "Henüz gönderilmedi. Günde en fazla bir kez gönderilir."
+
+msgid "Nothing is sent. Tick \"Help us improve the product\" to turn it on."
+msgstr "Hiçbir veri gönderilmez. \"Ürünü geliştirmemize yardımcı olun\" kutusunu işaretlerseniz açılır."
+
+msgid "Saved."
+msgstr "Kaydedildi."
+
+msgid "Last sent %s. Sent at most once a day."
+msgstr "Son gönderim %s. Günde en fazla bir kez gönderilir."
+
+msgid "Telemetry URL"
+msgstr "Telemetri adresi"
+
+msgid "Send now"
+msgstr "Şimdi gönder"
+
+msgid "Leave empty to send to FluxWP. To run your own hub, turn on Flux Analytics › Settings › Telemetry hub on one site and paste that address here. https only."
+msgstr "Boş bırakılırsa FluxWP'ye gider. Kendi merkezinizi kurmak için bir sitede Flux Analytics › Ayarlar › Telemetri merkezi'ni açın ve oradaki adresi buraya yazın. Yalnız https."
+
+msgid "Be found on Google"
+msgstr "Google'da bulunun"
+
+msgid "Watch from the panel how the site looks in Google search, how many people arrive, and how fast pages open. Google Site Kit brings Search Console, Analytics and PageSpeed into one screen."
+msgstr "Sitenizin Google aramalarında nasıl göründüğünü, kaç kişinin geldiğini ve sayfalarınızın ne kadar hızlı açıldığını panelden izleyin. Google Site Kit Search Console, Analytics ve PageSpeed'i tek ekranda toplar."
+
+msgid "Install Google Site Kit"
+msgstr "Google Site Kit'i kur"
+
+msgid "Activate Google Site Kit"
+msgstr "Google Site Kit'i etkinleştir"
+
+msgid "Show your products on Google"
+msgstr "Ürünlerinizi Google'da gösterin"
+
+msgid "Your Google account is connected. With Google for WooCommerce your products are listed for free on Google Shopping, Search, YouTube and Images; you can also run ads."
+msgstr "Google hesabınız bağlı. Google for WooCommerce ile ürünleriniz Google Alışveriş, Arama, YouTube ve Görseller'de ücretsiz listelenir; isterseniz reklam da verebilirsiniz."
+
+msgid "Install Google for WooCommerce"
+msgstr "Google for WooCommerce'ı kur"
+
+msgid "Activate Google for WooCommerce"
+msgstr "Google for WooCommerce'ı etkinleştir"
+
+msgid "Not needed"
+msgstr "Gerekli değil"
+
+msgid "Could not download %s from wordpress.org."
+msgstr "%s wordpress.org'dan alınamadı."
+
+msgid "Try from Plugins › Add New"
+msgstr "Eklentiler › Yeni ekle'den deneyin"
+
+msgid "Next attempt: %s."
+msgstr "Sonraki deneme: %s."
+
+msgid "Update distribution is temporarily paused on the server. Nothing is wrong with your site; updates will resume when distribution is turned back on."
+msgstr "Güncelleme dağıtımı sunucuda geçici olarak durduruldu. Siteniz bir sorun yaşamıyor; dağıtım açılınca güncellemeler yeniden gelir."
+
+msgid "The update server does not accept requests from this site's country. Contact the server administrator for access."
+msgstr "Güncelleme sunucusu bu sitenin bulunduğu ülkeden gelen isteklere kapalı. Erişim için sunucu yöneticisiyle görüşün."
+
+msgid "The update server does not accept keyless requests from this site's country. Enter a site key or contact the server administrator."
+msgstr "Güncelleme sunucusu bu sitenin bulunduğu ülkeden gelen anahtarsız isteklere kapalı. Site anahtarı girin ya da sunucu yöneticisiyle görüşün."
+
+msgid "This server has turned off keyless updates. Enter a site key to keep receiving packages."
+msgstr "Bu sunucu anahtarsız güncellemeyi kapattı. Paketleri almaya devam etmek için site anahtarı girin."
+
+msgid "The site key is disabled on the server and keyless updates are off, so no packages are available. Ask the server administrator to re-enable the key."
+msgstr "Site anahtarı sunucuda pasif ve anahtarsız güncelleme kapalı; hiçbir paket gelmiyor. Sunucu yöneticisinden anahtarı yeniden etkinleştirmesini isteyin."
+
+msgid "The server cannot respond right now (HTTP %d)."
+msgstr "Sunucu şu an yanıt veremiyor (HTTP %d)."
+
+msgid "Distribution paused"
+msgstr "Dağıtım durduruldu"
+
+msgid "Blocked in this region"
+msgstr "Bölge engeli"
+
+msgid "Site key required"
+msgstr "Site anahtarı gerekli"
+
+msgid "Site key disabled"
+msgstr "Site anahtarı pasif"
+
+msgid "Support and feedback: %s"
+msgstr "Destek ve öneri: %s"
+
+msgid "FluxWP Panel"
+msgstr "FluxWP Panel"
+
+msgid "[['%dthere is an update', 'tr']]"
+msgid_plural "[['%dthere is an update', 'tr']]"
+msgstr[0] "%d güncelleme var"
+msgstr[1] "%d güncelleme var"
+
+msgid "[['%dpackage activated.', 'tr']]"
+msgid_plural "[['%dpackage activated.', 'tr']]"
+msgstr[0] "%d paket etkinleştirildi."
+msgstr[1] "%d paket etkinleştirildi."
+
+msgid "[['%dpackage has been disabled.', 'tr']]"
+msgid_plural "[['%dpackage has been disabled.', 'tr']]"
+msgstr[0] "%d paket devre dışı bırakıldı."
+msgstr[1] "%d paket devre dışı bırakıldı."
+
+msgid "[['%dpackage removed.', 'tr']]"
+msgid_plural "[['%dpackage removed.', 'tr']]"
+msgstr[0] "%d paket kaldırıldı."
+msgstr[1] "%d paket kaldırıldı."
+
+msgid "[['%dbackup deleted.', 'tr']]"
+msgid_plural "[['%dbackup deleted.', 'tr']]"
+msgstr[0] "%d yedek silindi."
+msgstr[1] "%d yedek silindi."
+
+msgid "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
+msgstr "\\nSüresi dolmuş %d yedekleme silindi. Süresi dolmuş %d yedekleme silindi.\\n"
+
+msgid "\\nConnected ·%dpackage Connected ·%dpackage\\n"
+msgstr "\\nBağlandı · %d paket Bağlandı · %d paket\\n"
+
+msgid "[['%dday', 'tr']]"
+msgid_plural "[['%dday', 'tr']]"
+msgstr[0] "%d gün"
+msgstr[1] "%d gün"
+
+msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
+msgstr "\\nŞu anda %1$d güncelleme yedeği: %2$s . Şu anda %1$d güncelleme yedeği: %2$s .\\n"
+
+msgid "[['%sregistration', 'tr']]"
+msgid_plural "[['%sregistration', 'tr']]"
+msgstr[0] "%s kayıt"
+msgstr[1] "%s kayıt"
+
+msgid "[[\"FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back.\", 'tr']]"
+msgstr "FluxWP'nin kurulum ve güncelleme eklentisi. İlk açılışta kurulum sihirbazı (tanıtım, eklenti seçimi, görünüm, kurulum); FluxWP tema ve eklentilerini güncelleme sunucusundan (varsayılan updater.fluxwp.com) WordPress'in güncelleme ekranına getirir; ön ayar motoru (preset.json) siteyi tek adımda kurar, onaylı yamalarla değiştirir, geri alır."
+
+msgid "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
+msgid_plural "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
+msgstr[0] "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
+msgstr[1] "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
+
+msgid "\\nConnected ·%dpackage Connected ·%dpackage\\n"
+msgid_plural "\\nConnected ·%dpackage Connected ·%dpackage\\n"
+msgstr[0] "\\nConnected ·%dpackage Connected ·%dpackage\\n"
+msgstr[1] "\\nConnected ·%dpackage Connected ·%dpackage\\n"
+
+msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
+msgid_plural "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
+msgstr[0] "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
+msgstr[1] "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"

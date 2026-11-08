@@ -1,0 +1,530 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "Open wiki"
+msgstr "ウィキを開く"
+
+msgid "Developer wiki: Markdown pages, search, LLM and MCP support"
+msgstr "開発者 Wiki: マークダウン ページ、検索、LLM および MCP のサポート"
+
+msgid "Wiki settings"
+msgstr "Wikiの設定"
+
+msgid "Preparing preview…"
+msgstr "プレビューを準備しています..."
+
+msgid "Could not load the preview."
+msgstr "プレビューを読み込めませんでした。"
+
+msgid "Nothing to preview."
+msgstr "プレビューするものはありません。"
+
+msgid "Link URL"
+msgstr "リンクURL"
+
+msgid "Heading"
+msgstr "見出し"
+
+msgid "text"
+msgstr "テキスト"
+
+msgid "code"
+msgstr "コード"
+
+msgid "link"
+msgstr "リンク"
+
+msgid "page-slug"
+msgstr "ページスラッグ"
+
+msgid "item"
+msgstr "アイテム"
+
+msgid "Note"
+msgstr "注記"
+
+msgid "Subheading"
+msgstr "小見出し"
+
+msgid "Bold"
+msgstr "太字"
+
+msgid "Italic"
+msgstr "イタリック体"
+
+msgid "Inline code"
+msgstr "インラインコード"
+
+msgid "Code block"
+msgstr "コードブロック"
+
+msgid "Link"
+msgstr "リンク"
+
+msgid "Wiki link"
+msgstr "ウィキリンク"
+
+msgid "List"
+msgstr "リスト"
+
+msgid "Callout"
+msgstr "吹き出し"
+
+msgid "Table"
+msgstr "テーブル"
+
+msgid "Write"
+msgstr "書く"
+
+msgid "Preview"
+msgstr "プレビュー"
+
+msgid "Side by side"
+msgstr "並んで"
+
+msgid "Write Markdown. ## Heading, ```php code```, [[page-slug]] wiki link, > [!NOTE] callout."
+msgstr "マークダウンを書きます。 ## 見出し、 ```php code``` 、 [[page-slug]] wiki リンク、 > [!NOTE] コールアウト。"
+
+msgid "Markdown: GitHub flavour (tables, code blocks). Wiki links [[slug]] or [[slug|label]]. Callouts: > [!NOTE], [!TIP], [!IMPORTANT], [!WARNING], [!CAUTION]. Do not repeat the title in the content."
+msgstr "Markdown: GitHub フレーバー (テーブル、コード ブロック)。 Wiki リンク [[slug]] または [[slug|label]]。コールアウト: > [!NOTE]、[!TIP]、[!IMPORTANT]、[!WARNING]、[!CAUTION]。コンテンツ内でタイトルを繰り返さないでください。"
+
+msgid "Open as .md"
+msgstr ".mdとして開く"
+
+msgid "Order"
+msgstr "注文"
+
+msgid "Lower numbers come first on the wiki home and in the menu."
+msgstr "Wiki ホームとメニューでは、小さい番号が最初に表示されます。"
+
+msgid "General"
+msgstr "一般"
+
+msgid "Appearance"
+msgstr "外観"
+
+msgid "AI"
+msgstr "AI"
+
+msgid "Add page"
+msgstr "ページを追加"
+
+msgid "The wiki is closed to visitors; only people who can write pages see it."
+msgstr "Wiki は訪問者に対して閉鎖されています。ページを作成できる人だけがそれを表示します。"
+
+msgid "Settings saved."
+msgstr "設定が保存されました。"
+
+msgid "Guides imported: %1$d new, %2$d updated, %3$d skipped (edited by hand or up to date)."
+msgstr "インポートされたガイド: 新しい%1$d、更新された%2$d、スキップされた%3$d(手動で編集または最新のもの)。"
+
+msgid "Wiki"
+msgstr "ウィキ"
+
+msgid "Wiki open to visitors"
+msgstr "Wiki を訪問者に公開"
+
+msgid "When closed, wiki addresses, .md and llms.txt return 404 to visitors and leave the sitemap. People who can write pages still see it."
+msgstr "閉じると、Wiki アドレス、.md および llms.txt は訪問者に 404 を返し、サイトマップから離れます。ページを書ける人はまだ見ています。"
+
+msgid "Wiki name"
+msgstr "ウィキ名"
+
+msgid "Developer Wiki"
+msgstr "開発者ウィキ"
+
+msgid "Intro"
+msgstr "イントロ"
+
+msgid "Used on the wiki home, in the search engine description and in llms.txt."
+msgstr "Wiki ホーム、検索エンジンの説明、llms.txt で使用されます。"
+
+msgid "Address"
+msgstr "住所"
+
+msgid "Lowercase letters, digits and hyphens. Old addresses stop working when you change it."
+msgstr "小文字、数字、ハイフン。古いアドレスを変更すると機能しなくなります。"
+
+msgid "Page buttons"
+msgstr "ページボタン"
+
+msgid "ChatGPT, Claude, Google AI and Perplexity links in the \"Ask AI\" menu"
+msgstr "「Ask AI」メニューの ChatGPT、Claude、Google AI、および Perplexity のリンク"
+
+msgid "\"Edit\" button for editors"
+msgstr "編集者用の「編集」ボタン"
+
+msgid "Accent colour"
+msgstr "アクセントカラー"
+
+msgid "Use the theme colour"
+msgstr "テーマカラーを使用する"
+
+msgid "Links, the selected menu item and accent buttons."
+msgstr "リンク、選択したメニュー項目、およびアクセント ボタン。"
+
+msgid "Width"
+msgstr "幅"
+
+msgid "Normal"
+msgstr "ノーマル"
+
+msgid "Wide (for long code and tables)"
+msgstr "ワイド (長いコードとテーブル用)"
+
+msgid "Page layout"
+msgstr "ページレイアウト"
+
+msgid "Page menu and search on the left"
+msgstr "左側のページメニューと検索"
+
+msgid "\"On this page\" (contents) on the right"
+msgstr "右の「このページについて」(目次)"
+
+msgid "Flux AI is not installed. Once installed, visitors can use \"Ask the wiki\", which answers from the wiki content."
+msgstr "Flux AIはインストールされていません。インストールすると、訪問者は Wiki のコンテンツから回答する「Ask the wiki」を利用できるようになります。"
+
+msgid "Flux AI has no key or the Flux Wiki system is off (Flux AI › Connected systems)."
+msgstr "Flux AI にキーがないか、Flux Wiki システムがオフになっています (Flux AI › 接続されたシステム)。"
+
+msgid "Who can ask"
+msgstr "誰が尋ねることができますか"
+
+msgid "Off"
+msgstr "オフ"
+
+msgid "Logged-in users"
+msgstr "ログインしているユーザー"
+
+msgid "Everyone (including visitors)"
+msgstr "全員(来場者含む)"
+
+msgid "Every question counts towards the Flux AI spending limit; keep the hourly limit low with \"Everyone\"."
+msgstr "すべての質問は Flux AI の支出制限にカウントされます。 「全員」で時間制限を低く抑えます。"
+
+msgid "Hourly question limit"
+msgstr "1時間あたりの質問制限"
+
+msgid "per person (unlimited for administrators)"
+msgstr "1人あたり(管理者は無制限)"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Addresses"
+msgstr "住所"
+
+msgid "Search API"
+msgstr "検索API"
+
+msgid "Flux AI › MCP is off"
+msgstr "Flux AI › MCP はオフです"
+
+msgid "Add .md to any page address to get it as Markdown. With Flux SEO installed, a \"Wiki\" section is added to the site's /llms.txt."
+msgstr "マークダウンとして取得するには、任意のページ アドレスに .md を追加します。 Flux SEO がインストールされていると、「Wiki」セクションがサイトの /llms.txt に追加されます。"
+
+msgid "Bundled guides"
+msgstr "同梱ガイド"
+
+msgid "The plugin ships %d guides: writing plugins and themes, AI-enabled plugins, MCP tools, settings schema, translation, versions and releases. Missing pages are added; pages you have not edited are updated to the new version."
+msgstr "プラグインには%dガイドが付属しています: プラグインとテーマの作成、AI 対応プラグイン、MCP ツール、設定スキーマ、翻訳、バージョンとリリース。不足しているページが追加されます。編集していないページは新しいバージョンに更新されます。"
+
+msgid "Import / update guides"
+msgstr "インポート/アップデートガイド"
+
+msgid "%d published pages."
+msgstr "%d公開ページ。"
+
+msgid "You are not allowed to do this."
+msgstr "これを行うことは許可されていません。"
+
+msgid "Ask the wiki"
+msgstr "ウィキに質問してください"
+
+msgid "Wiki draft"
+msgstr "ウィキの草稿"
+
+msgid "Flux AI is not ready."
+msgstr "Flux AI の準備ができていません。"
+
+msgid "I could not find a guide answering this question. Try again with the plugin name or the task you want to complete."
+msgstr "この質問に答えるガイドは見つかりませんでした。プラグイン名または完了したいタスクを指定して再試行してください。"
+
+msgid "Could not get an answer. Try again in a moment."
+msgstr "答えは得られませんでした。しばらくしてからもう一度試してください。"
+
+msgid "%1$s result for \"%2$s\""
+msgid_plural "%1$s results for \"%2$s\""
+msgstr[0] "「%2$s」の%1$sの結果"
+
+msgid "Copied"
+msgstr "コピーされました"
+
+msgid "Copy"
+msgstr "コピー"
+
+msgid "Could not copy"
+msgstr "コピーできませんでした"
+
+msgid "Searching…"
+msgstr "検索中..."
+
+msgid "No results. Try another word."
+msgstr "結果はありません。別の言葉を試してください。"
+
+msgid "Type to search"
+msgstr "入力して検索します"
+
+msgid "%d results"
+msgstr "%dの結果"
+
+msgid "Ask AI"
+msgstr "AIに聞く"
+
+msgid "Type your question; the answer comes only from the wiki pages."
+msgstr "質問を入力してください。答えは wiki ページからのみ得られます。"
+
+msgid "Reading the wiki, preparing an answer…"
+msgstr "ウィキを読んで答えを準備しています..."
+
+msgid "Sources"
+msgstr "情報源"
+
+msgid "Search"
+msgstr "検索"
+
+msgid "Log in to ask a question."
+msgstr "質問するにはログインしてください。"
+
+msgid "No results for \"%1$s\"; showing results for \"%2$s\"."
+msgstr "「%1$s」の結果はありません。 「%2$s」の検索結果を表示しています。"
+
+msgid "See all %d results"
+msgstr "%dの結果をすべて表示"
+
+msgid "Wiki search for \"%s\""
+msgstr "「%s」のWiki検索"
+
+msgid "Guides for writing FluxWP plugins and themes, AI-enabled features and the shared platform."
+msgstr "FluxWP プラグインとテーマ、AI 対応機能、共有プラットフォームを作成するためのガイド。"
+
+msgid "Source"
+msgstr "ソース"
+
+msgid "Section"
+msgstr "セクション"
+
+msgid "Last updated"
+msgstr "最終更新日"
+
+msgid "Add .md to any page address to get its Markdown. The whole wiki in one file: %1$s"
+msgstr "マークダウンを取得するには、任意のページ アドレスに .md を追加します。 Wiki 全体を 1 つのファイルにまとめたもの:%1$s"
+
+msgid "MCP server (key required): %s, tools flxwk_search, flxwk_get_page, flxwk_list_pages."
+msgstr "MCP サーバー (キーが必要):%s、ツール flxwk_search、flxwk_get_page、flxwk_list_pages。"
+
+msgid "Other pages"
+msgstr "他のページ"
+
+msgid "Whole wiki (one file)"
+msgstr "ウィキ全体 (1 つのファイル)"
+
+msgid "This page does not exist yet"
+msgstr "このページはまだ存在しません"
+
+msgid "Tip"
+msgstr "ヒント"
+
+msgid "Important"
+msgstr "重要"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "Caution"
+msgstr "注意"
+
+msgid "Search the wiki"
+msgstr "ウィキを検索してください"
+
+msgid "Read wiki page"
+msgstr "ウィキページを読む"
+
+msgid "List wiki pages"
+msgstr "Wiki ページのリストを表示する"
+
+msgid "Write wiki page"
+msgstr "Wikiページを書く"
+
+msgid "Write a FluxWP plugin (with the wiki guides)"
+msgstr "FluxWP プラグインを作成する (Wiki ガイドを使用)"
+
+msgid "Sections"
+msgstr "セクション"
+
+msgid "New section"
+msgstr "新しいセクション"
+
+msgid "Edit section"
+msgstr "編集セクション"
+
+msgid "Search sections"
+msgstr "検索セクション"
+
+msgid "All sections"
+msgstr "すべてのセクション"
+
+msgid "Wiki page"
+msgstr "ウィキページ"
+
+msgid "All pages"
+msgstr "すべてのページ"
+
+msgid "New wiki page"
+msgstr "新しいウィキページ"
+
+msgid "Edit wiki page"
+msgstr "ウィキページを編集する"
+
+msgid "View page"
+msgstr "ページを見る"
+
+msgid "No pages found"
+msgstr "ページが見つかりませんでした"
+
+msgid "No pages in trash"
+msgstr "ゴミ箱にページがありません"
+
+msgid "Parent page:"
+msgstr "親ページ:"
+
+msgid "Wiki page not found."
+msgstr "Wiki ページが見つかりません。"
+
+msgid "A title is required."
+msgstr "タイトルは必須です。"
+
+msgid "Wiki section"
+msgstr "ウィキセクション"
+
+msgid "The question is too short."
+msgstr "質問が短すぎます。"
+
+msgid "You have reached the question limit for this hour. Try again later."
+msgstr "この時間の質問制限に達しました。後でもう一度試してください。"
+
+msgid "Your previous question is still being answered. Please try again shortly."
+msgstr "前回の質問はまだ回答中です。しばらくしてからもう一度お試しください。"
+
+msgid "Wiki addresses"
+msgstr "Wiki アドレス"
+
+msgid "The wiki is at %s; .md and llms.txt addresses work."
+msgstr "Wiki は%sにあります。 .md および llms.txt アドレスは機能します。"
+
+msgid "Permalinks are set to \"Plain\"; /wiki, .md and llms.txt addresses do not work. Choose \"Post name\" in Settings › Permalinks."
+msgstr "パーマリンクは「プレーン」に設定されています。 /wiki、.md、および llms.txt アドレスは機能しません。設定 › パーマリンク で [投稿名] を選択します。"
+
+msgid "Permalinks"
+msgstr "パーマリンク"
+
+msgid "Flux AI is ready; visitors can get answers from the wiki content."
+msgstr "Flux AI は準備ができています。訪問者は Wiki コンテンツから答えを得ることができます。"
+
+msgid "Flux AI is not installed, has no key or the Flux Wiki system is off; \"Ask the wiki\" is hidden."
+msgstr "Flux AI がインストールされていないか、キーがないか、Flux Wiki システムがオフになっています。 「wikiに質問」は非表示になります。"
+
+msgid "%s page"
+msgid_plural "%s pages"
+msgstr[0] "%sページ"
+
+msgid "%s min read"
+msgid_plural "%s min read"
+msgstr[0] "%s分読み取り"
+
+msgid "What are you looking for? E.g. MCP tool, flx_settings_schema, theme…"
+msgstr "何を探していますか?例えば。 MCP ツール、flx_settings_schema、テーマ..."
+
+msgid "Search the wiki…"
+msgstr "ウィキを検索して..."
+
+msgid "Documentation"
+msgstr "ドキュメント"
+
+msgid "Start here"
+msgstr "ここから始めましょう"
+
+msgid "Explore the guides"
+msgstr "ガイドを調べる"
+
+msgid "No published pages yet."
+msgstr "まだ公開されているページはありません。"
+
+msgid "See all"
+msgstr "全て見る"
+
+msgid "Recently updated"
+msgstr "最近更新された"
+
+msgid "For LLMs and AI agents"
+msgstr "LLM および AI エージェント向け"
+
+msgid "Add .md to any page address to open it as plain Markdown. Agents read the index from llms.txt and the whole content in one file from llms-full.txt."
+msgstr "任意のページ アドレスに .md を追加すると、プレーンな Markdown として開きます。エージェントは、llms.txt からインデックスを読み取り、llms-full.txt から 1 つのファイル内のコンテンツ全体を読み取ります。"
+
+msgid "On this page"
+msgstr "このページでは"
+
+msgid "Subpages"
+msgstr "サブページ"
+
+msgid "Updated %s"
+msgstr "%sを更新しました"
+
+msgid "Previous and next page"
+msgstr "前と次のページ"
+
+msgid "Previous"
+msgstr "前へ"
+
+msgid "Next"
+msgstr "次へ"
+
+msgid "Markdown"
+msgstr "マークダウン"
+
+msgid "Read the document at %s, then answer my questions about it."
+msgstr "%sにあるドキュメントを読んで、それに関する質問に答えてください。"
+
+msgid "Copy Markdown"
+msgstr "マークダウンのコピー"
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "Breadcrumb"
+msgstr "ブレッドクラム"
+
+msgid "Pages"
+msgstr "ページ"
+
+msgid "Wiki pages"
+msgstr "ウィキページ"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "select"
+msgstr "選択する"
+
+msgid "open"
+msgstr "開く"
+
+msgid "close"
+msgstr "閉じる"
+
+msgid "[['Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.', 'tr']]"
+msgstr "[['/wiki の下のサイト上の開発者 wiki: マークダウン ページ、セクション、ページ ツリーと目次、詳細なインスタント検索、SEO に優しい出力。 LLM フレンドリー: 各ページを開いて .md、/wiki/llms.txt、llms-full.txt としてコピーし、ChatGPT / Claude で開きます。 Flux AI を使用した「Ask the Wiki」および MCP ツール (検索、読み取り、リスト、書き込み)。プラグインとテーマを作成し、プラグインを AI 搭載にするためのガイドが付属しています。', 'tr']]"

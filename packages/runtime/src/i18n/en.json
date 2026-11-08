@@ -156,5 +156,28 @@
     "open": "Open menu",
     "close": "Close menu",
     "expand": "Toggle submenu"
+  },
+  "tasks": {
+    "engineLabels": {
+      "Status": "Status",
+      "Priority": "Priority",
+      "Assignee": "Assignee",
+      "Due date": "Due date",
+      "Tag": "Tag",
+      "List": "List",
+      "No grouping": "No grouping",
+      "No priority": "No priority",
+      "Deleted user": "Deleted user",
+      "Unassigned": "Unassigned",
+      "Overdue": "Overdue",
+      "Today": "Today",
+      "Tomorrow": "Tomorrow",
+      "This week": "This week",
+      "Later": "Later",
+      "No date": "No date",
+      "No tag": "No tag",
+      "Empty": "Empty",
+      "All tasks": "All tasks"
+    }
   }
 }

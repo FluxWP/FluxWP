@@ -27,7 +27,7 @@ final class FLXCRM_Sync {
 			if ( $cls::enabled() && method_exists( $cls, 'backfill' ) ) {
 				$out[ $cls::KEY ] = array( $cls::label(), $cls );
 				if ( 'FLXCRM_Adapter_Chat' === $cls && flxcrm_setting( 'chat_events' ) ) {
-					$out['chat_msgs'] = array( __( 'WhatsApp mesajları', 'flx-crm' ), $cls, 'backfill_messages' );
+					$out['chat_msgs'] = array( __( 'WhatsApp messages', 'flx-crm' ), $cls, 'backfill_messages' );
 				}
 			}
 		}
@@ -49,11 +49,11 @@ final class FLXCRM_Sync {
 			$label = $sources[ $step ][0];
 		} elseif ( 'recalc' === $step ) {
 			$r     = self::recalc_page( $page );
-			$label = __( 'Toplamlar', 'flx-crm' );
+			$label = __( 'Totals', 'flx-crm' );
 		} else {
 			$s     = FLXCRM_Scoring::run();
 			$r     = array( 'done' => true, 'scanned' => $s['scored'], 'total' => $s['scored'] );
-			$label = __( 'RFM skoru', 'flx-crm' );
+			$label = __( 'RFM score', 'flx-crm' );
 			update_option( 'flxcrm_synced_at', time(), false );
 			FLXCRM_Segments::seed();
 			FLXCRM_Contacts::flush_stats();

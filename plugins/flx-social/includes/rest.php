@@ -8,13 +8,13 @@ defined( 'ABSPATH' ) || exit;
 
 function flxsm_perm() {
 	if ( ! is_user_logged_in() ) {
-		return new WP_Error( 'rest_forbidden', __( 'Giriş gerekli.', 'flx-social' ), array( 'status' => 401 ) );
+		return new WP_Error( 'rest_forbidden', __( 'Login required.', 'flx-social' ), array( 'status' => 401 ) );
 	}
-	return flxsm_can_post() ? true : new WP_Error( 'rest_forbidden', __( 'Sosyal medya için yetkiniz yok.', 'flx-social' ), array( 'status' => 403 ) );
+	return flxsm_can_post() ? true : new WP_Error( 'rest_forbidden', __( 'You do not have social media permission.', 'flx-social' ), array( 'status' => 403 ) );
 }
 
 function flxsm_perm_manage() {
-	return flxsm_can_manage() ? true : new WP_Error( 'rest_forbidden', __( 'Bu işlem için yetkiniz yok.', 'flx-social' ), array( 'status' => 403 ) );
+	return flxsm_can_manage() ? true : new WP_Error( 'rest_forbidden', __( 'You do not have permission for this action.', 'flx-social' ), array( 'status' => 403 ) );
 }
 
 function flxsm_route( $path, $methods, $cb, $perm = 'flxsm_perm' ) {
@@ -30,7 +30,7 @@ function flxsm_route( $path, $methods, $cb, $perm = 'flxsm_perm' ) {
 }
 
 function flxsm_nf() {
-	return new WP_Error( 'flxsm_not_found', __( 'Kayıt bulunamadı.', 'flx-social' ), array( 'status' => 404 ) );
+	return new WP_Error( 'flxsm_not_found', __( 'Record not found.', 'flx-social' ), array( 'status' => 404 ) );
 }
 
 /** Yayın yetkisi olmayan kullanıcı yalnız kendi taslağını/onay bekleyenini değiştirir. */
@@ -326,7 +326,7 @@ add_action(
 					return flxsm_nf();
 				}
 				if ( ! flxsm_can_edit_post( $p ) ) {
-					return new WP_Error( 'rest_forbidden', __( 'Bu gönderiyi değiştiremezsiniz.', 'flx-social' ), array( 'status' => 403 ) );
+					return new WP_Error( 'rest_forbidden', __( 'You cannot change this post.', 'flx-social' ), array( 'status' => 403 ) );
 				}
 				$id = flxsm_save_post( flxsm_post_input( $r ), (int) $p['id'] );
 				if ( is_wp_error( $id ) ) {
@@ -345,7 +345,7 @@ add_action(
 				}
 				$act = sanitize_key( (string) $r->get_param( 'action' ) );
 				if ( ( 'approve' === $act && ! flxsm_can_publish() ) || ! flxsm_can_edit_post( $p ) ) {
-					return new WP_Error( 'rest_forbidden', __( 'Bu işlem için yetkiniz yok.', 'flx-social' ), array( 'status' => 403 ) );
+					return new WP_Error( 'rest_forbidden', __( 'You do not have permission for this action.', 'flx-social' ), array( 'status' => 403 ) );
 				}
 				if ( 'reject' === $act ) {
 					global $wpdb;
@@ -377,11 +377,11 @@ add_action(
 					return flxsm_nf();
 				}
 				if ( ! flxsm_can_edit_post( $p ) ) {
-					return new WP_Error( 'rest_forbidden', __( 'Bu gönderiyi silemezsiniz.', 'flx-social' ), array( 'status' => 403 ) );
+					return new WP_Error( 'rest_forbidden', __( 'You cannot delete this post.', 'flx-social' ), array( 'status' => 403 ) );
 				}
 				$left = flxsm_delete_post( (int) $p['id'], (bool) $r->get_param( 'remote' ) );
 				if ( $left ) {
-					return new WP_Error( 'flxsm_remote', __( 'Bazı ağlarda silinemedi; gönderi listede kaldı.', 'flx-social' ) . "\n" . implode( "\n", $left ), array( 'status' => 400 ) );
+					return new WP_Error( 'flxsm_remote', __( 'Could not delete on some networks; the post stays in the list.', 'flx-social' ) . "\n" . implode( "\n", $left ), array( 'status' => 400 ) );
 				}
 				return rest_ensure_response( array( 'deleted' => true ) );
 			}
@@ -438,7 +438,7 @@ add_action(
 				$id = flxsm_save_post(
 					array(
 						/* translators: %s: title */
-						'title'   => $p['title'] ? sprintf( __( '%s (kopya)', 'flx-social' ), $p['title'] ) : '',
+						'title'   => $p['title'] ? sprintf( __( '%s (copy)', 'flx-social' ), $p['title'] ) : '',
 						'content' => $p['content'],
 						'media'   => flxsm_dec( $p['media'] ),
 						'tags'    => explode( ',', (string) $p['tags'] ),
@@ -456,7 +456,7 @@ add_action(
 			'POST',
 			function ( WP_REST_Request $r ) {
 				if ( ! flxsm_can_publish() ) {
-					return new WP_Error( 'rest_forbidden', __( 'Bu işlem için yetkiniz yok.', 'flx-social' ), array( 'status' => 403 ) );
+					return new WP_Error( 'rest_forbidden', __( 'You do not have permission for this action.', 'flx-social' ), array( 'status' => 403 ) );
 				}
 				$res = flxsm_retry_target( (int) $r['id'] );
 				if ( is_wp_error( $res ) ) {
@@ -471,7 +471,7 @@ add_action(
 			'POST',
 			function ( WP_REST_Request $r ) {
 				if ( ! flxsm_can_publish() ) {
-					return new WP_Error( 'rest_forbidden', __( 'Bu işlem için yetkiniz yok.', 'flx-social' ), array( 'status' => 403 ) );
+					return new WP_Error( 'rest_forbidden', __( 'You do not have permission for this action.', 'flx-social' ), array( 'status' => 403 ) );
 				}
 				$res = flxsm_remote_edit( (int) $r['id'], null === $r->get_param( 'content' ) ? null : (string) $r->get_param( 'content' ), (array) $r->get_param( 'options' ) );
 				if ( is_wp_error( $res ) ) {
@@ -486,7 +486,7 @@ add_action(
 			'POST',
 			function ( WP_REST_Request $r ) {
 				if ( ! flxsm_can_publish() ) {
-					return new WP_Error( 'rest_forbidden', __( 'Bu işlem için yetkiniz yok.', 'flx-social' ), array( 'status' => 403 ) );
+					return new WP_Error( 'rest_forbidden', __( 'You do not have permission for this action.', 'flx-social' ), array( 'status' => 403 ) );
 				}
 				$res = flxsm_remote_delete( (int) $r['id'] );
 				if ( is_wp_error( $res ) ) {
@@ -574,7 +574,7 @@ add_action(
 			'POST',
 			function ( WP_REST_Request $r ) {
 				if ( ! current_user_can( 'upload_files' ) ) {
-					return new WP_Error( 'rest_forbidden', __( 'Dosya yükleme yetkiniz yok.', 'flx-social' ), array( 'status' => 403 ) );
+					return new WP_Error( 'rest_forbidden', __( 'You do not have permission to upload files.', 'flx-social' ), array( 'status' => 403 ) );
 				}
 				require_once ABSPATH . 'wp-admin/includes/file.php';
 				require_once ABSPATH . 'wp-admin/includes/media.php';
@@ -598,7 +598,7 @@ add_action(
 				} else {
 					$files = $r->get_file_params();
 					if ( empty( $files['file'] ) ) {
-						return new WP_Error( 'flxsm_media', __( 'Dosya gelmedi.', 'flx-social' ), array( 'status' => 400 ) );
+						return new WP_Error( 'flxsm_media', __( 'No file received.', 'flx-social' ), array( 'status' => 400 ) );
 					}
 					$id = media_handle_sideload( $files['file'], 0 );
 				}

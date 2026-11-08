@@ -104,16 +104,16 @@ function flxai_page_tools() {
 	foreach ( flxai_report( 30 )['by_tool'] as $s ) {
 		$stats[ $s['k'] ] = $s;
 	}
-	flxai_page_head( __( 'Araçlar', 'flx-ai' ), __( 'Eklentilerin yapay zekâya sunduğu araçlar: ortak sohbet ve MCP sunucusu. Kapatılan araç ikisinde de kullanılamaz; değişiklik yapan araçlar her seferinde onay ister.', 'flx-ai' ) );
+	flxai_page_head( __( 'Tools', 'flx-ai' ), __( 'Tools that plugins offer to AI: the shared chat and the MCP server. A tool turned off is unavailable in both; tools that change data ask for approval every time.', 'flx-ai' ) );
 	// phpcs:disable WordPress.Security.NonceVerification.Recommended
 	if ( isset( $_GET['saved'] ) ) {
 		$msg = isset( $_GET['bulk'] )
 			/* translators: %s: number of tools */
-			? sprintf( _n( '%s araç güncellendi.', '%s araç güncellendi.', (int) $_GET['bulk'], 'flx-ai' ), number_format_i18n( (int) $_GET['bulk'] ) )
+			? sprintf( _n( '[[\'%stool updated.\', \'tr\']]', '[[\'%stool updated.\', \'tr\']]', (int) $_GET['bulk'], 'flx-ai' ), number_format_i18n( (int) $_GET['bulk'] ) )
 			: ( isset( $_GET['picked'] )
 				/* translators: %s: tool name */
-				? sprintf( __( '%s için kullanılacak eklenti değişti.', 'flx-ai' ), sanitize_text_field( wp_unslash( $_GET['picked'] ) ) )
-				: __( 'Kaydedildi.', 'flx-ai' ) );
+				? sprintf( __( 'The plugin used for %s was changed.', 'flx-ai' ), sanitize_text_field( wp_unslash( $_GET['picked'] ) ) )
+				: __( 'Saved.', 'flx-ai' ) );
 		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html( $msg ) . '</p></div>';
 	}
 	// phpcs:enable
@@ -135,18 +135,18 @@ function flxai_page_tools() {
 	uasort( $by_src, fn( $a, $b ) => $b['n'] <=> $a['n'] ?: strcmp( $a['label'], $b['label'] ) );
 
 	echo '<div class="flxai-kpis flxai-tools-kpis">';
-	flxai_kpi( __( 'Araç', 'flx-ai' ), number_format_i18n( count( $active ) ), sprintf( /* translators: %s: number of plugins */ _n( '%s eklenti', '%s eklenti', count( $by_src ), 'flx-ai' ), number_format_i18n( count( $by_src ) ) ) );
-	flxai_kpi( __( 'Açık', 'flx-ai' ), number_format_i18n( $n_on ), sprintf( /* translators: %s: number of tools */ __( '%s kapalı', 'flx-ai' ), number_format_i18n( count( $active ) - $n_on ) ) );
-	flxai_kpi( __( 'Ad çakışması', 'flx-ai' ), number_format_i18n( $n_dupe ), $n_dupe ? __( 'Her adda yalnız biri açık', 'flx-ai' ) : __( 'Yok', 'flx-ai' ), null, $n_dupe > 0 );
-	flxai_kpi( __( 'Öneksiz ad', 'flx-ai' ), number_format_i18n( $n_noprfx ), __( 'Eklenti öneki olmayan araç', 'flx-ai' ) );
+	flxai_kpi( __( 'Tool', 'flx-ai' ), number_format_i18n( count( $active ) ), sprintf( /* translators: %s: number of plugins */ _n( '[[\'%splugin\', \'tr\']]', '[[\'%splugin\', \'tr\']]', count( $by_src ), 'flx-ai' ), number_format_i18n( count( $by_src ) ) ) );
+	flxai_kpi( __( 'On', 'flx-ai' ), number_format_i18n( $n_on ), sprintf( /* translators: %s: number of tools */ __( '%s off', 'flx-ai' ), number_format_i18n( count( $active ) - $n_on ) ) );
+	flxai_kpi( __( 'Name conflicts', 'flx-ai' ), number_format_i18n( $n_dupe ), $n_dupe ? __( 'Only one is on per name', 'flx-ai' ) : __( 'None', 'flx-ai' ), null, $n_dupe > 0 );
+	flxai_kpi( __( 'Unprefixed names', 'flx-ai' ), number_format_i18n( $n_noprfx ), __( 'Tools without a plugin prefix', 'flx-ai' ) );
 	echo '</div>';
 
 	echo '<form method="post" class="flxai-card flxai-toolsui" data-flxai-tools>';
 	wp_nonce_field( 'flxai_tools', 'flxai_tools_nonce' );
 
 	// Eklenti çipleri: tıklayınca o eklentiye süzer.
-	echo '<div class="flxai-chips" role="group" aria-label="' . esc_attr__( 'Eklentiye göre', 'flx-ai' ) . '">';
-	printf( '<button type="button" class="flxai-chip is-on" data-src=""><span>%1$s</span><b>%2$s</b></button>', esc_html__( 'Tümü', 'flx-ai' ), esc_html( number_format_i18n( count( $active ) ) ) );
+	echo '<div class="flxai-chips" role="group" aria-label="' . esc_attr__( 'By plugin', 'flx-ai' ) . '">';
+	printf( '<button type="button" class="flxai-chip is-on" data-src=""><span>%1$s</span><b>%2$s</b></button>', esc_html__( 'All', 'flx-ai' ), esc_html( number_format_i18n( count( $active ) ) ) );
 	foreach ( $by_src as $id => $s ) {
 		printf(
 			'<button type="button" class="flxai-chip" data-src="%1$s" title="%1$s"><span>%2$s</span><b>%3$s</b></button>',
@@ -159,8 +159,8 @@ function flxai_page_tools() {
 
 	// Arama ve süzgeçler.
 	echo '<div class="flxai-filters flxai-tools-filters">';
-	echo '<label class="flxai-search"><span class="screen-reader-text">' . esc_html__( 'Araç ara', 'flx-ai' ) . '</span><input type="search" data-f="q" placeholder="' . esc_attr__( 'Ad, açıklama, eklenti ara…', 'flx-ai' ) . '"></label>';
-	echo '<label><span class="screen-reader-text">' . esc_html__( 'Kaynak', 'flx-ai' ) . '</span><select data-f="src"><option value="">' . esc_html__( 'Tüm eklentiler', 'flx-ai' ) . '</option>';
+	echo '<label class="flxai-search"><span class="screen-reader-text">' . esc_html__( 'Search tools', 'flx-ai' ) . '</span><input type="search" data-f="q" placeholder="' . esc_attr__( 'Search name, description, plugin…', 'flx-ai' ) . '"></label>';
+	echo '<label><span class="screen-reader-text">' . esc_html__( 'Source', 'flx-ai' ) . '</span><select data-f="src"><option value="">' . esc_html__( 'All plugins', 'flx-ai' ) . '</option>';
 	foreach ( $by_src as $id => $s ) {
 		printf( '<option value="%1$s">%2$s (%3$s)</option>', esc_attr( $id ), esc_html( $s['label'] ), esc_html( number_format_i18n( $s['n'] ) ) );
 	}
@@ -177,19 +177,19 @@ function flxai_page_tools() {
 	$seg(
 		'kind',
 		array(
-			''      => __( 'Tümü', 'flx-ai' ),
-			'read'  => __( 'Okur', 'flx-ai' ),
-			'write' => __( 'Değiştirir', 'flx-ai' ),
+			''      => __( 'All', 'flx-ai' ),
+			'read'  => __( 'Reads', 'flx-ai' ),
+			'write' => __( 'Changes', 'flx-ai' ),
 		)
 	);
 	$seg(
 		'state',
 		array(
-			''         => __( 'Tümü', 'flx-ai' ),
-			'on'       => __( 'Açık', 'flx-ai' ),
-			'off'      => __( 'Kapalı', 'flx-ai' ),
-			'conflict' => __( 'Çakışma', 'flx-ai' ),
-			'noprefix' => __( 'Öneksiz', 'flx-ai' ),
+			''         => __( 'All', 'flx-ai' ),
+			'on'       => __( 'On', 'flx-ai' ),
+			'off'      => __( 'Off', 'flx-ai' ),
+			'conflict' => __( 'Conflict', 'flx-ai' ),
+			'noprefix' => __( 'Unprefixed', 'flx-ai' ),
 		)
 	);
 	echo '<span class="flxai-note" data-count aria-live="polite"></span>';
@@ -197,13 +197,13 @@ function flxai_page_tools() {
 
 	// Toplu işlem çubuğu.
 	echo '<div class="flxai-bulk" data-bulk hidden><span data-sel-count></span>';
-	echo '<button type="submit" name="do" value="on" class="button">' . esc_html__( 'Aç', 'flx-ai' ) . '</button>';
-	echo '<button type="submit" name="do" value="off" class="button">' . esc_html__( 'Kapat', 'flx-ai' ) . '</button>';
-	echo '<button type="button" class="button-link" data-sel-clear>' . esc_html__( 'Seçimi kaldır', 'flx-ai' ) . '</button></div>';
+	echo '<button type="submit" name="do" value="on" class="button">' . esc_html__( 'Turn on', 'flx-ai' ) . '</button>';
+	echo '<button type="submit" name="do" value="off" class="button">' . esc_html__( 'Close', 'flx-ai' ) . '</button>';
+	echo '<button type="button" class="button-link" data-sel-clear>' . esc_html__( 'Clear selection', 'flx-ai' ) . '</button></div>';
 
 	echo '<div class="flxai-tscroll"><table class="flxai-table flxai-tools"><thead><tr>';
-	echo '<th class="flxai-col-sel"><input type="checkbox" data-sel-all aria-label="' . esc_attr__( 'Görünenlerin hepsini seç', 'flx-ai' ) . '"></th>';
-	echo '<th>' . esc_html__( 'Açık', 'flx-ai' ) . '</th><th>' . esc_html__( 'Araç', 'flx-ai' ) . '</th><th>' . esc_html__( 'Kaynak', 'flx-ai' ) . '</th><th>' . esc_html__( 'Tür', 'flx-ai' ) . '</th><th>' . esc_html__( 'Nerede', 'flx-ai' ) . '</th><th>' . esc_html__( 'Yetki', 'flx-ai' ) . '</th><th class="num">' . esc_html__( '30 gün', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Ort. süre', 'flx-ai' ) . '</th></tr></thead><tbody>';
+	echo '<th class="flxai-col-sel"><input type="checkbox" data-sel-all aria-label="' . esc_attr__( 'Select all visible', 'flx-ai' ) . '"></th>';
+	echo '<th>' . esc_html__( 'On', 'flx-ai' ) . '</th><th>' . esc_html__( 'Tool', 'flx-ai' ) . '</th><th>' . esc_html__( 'Source', 'flx-ai' ) . '</th><th>' . esc_html__( 'Type', 'flx-ai' ) . '</th><th>' . esc_html__( 'Where', 'flx-ai' ) . '</th><th>' . esc_html__( 'Capability', 'flx-ai' ) . '</th><th class="num">' . esc_html__( '30 days', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Avg. time', 'flx-ai' ) . '</th></tr></thead><tbody>';
 
 	foreach ( $rows as $r ) {
 		$s     = $stats[ $r['name'] ] ?? null;
@@ -214,22 +214,22 @@ function flxai_page_tools() {
 		if ( $r['dupe'] ) {
 			$winner  = flxai_source_info( $r['rivals'][0] ?? '' )['label'];
 			/* translators: %s: plugin name */
-			$badges .= '<span class="flxai-pill is-err">' . esc_html( sprintf( __( 'Çakışma: kapalı, %s kullanılıyor', 'flx-ai' ), $winner ) ) . '</span> ';
+			$badges .= '<span class="flxai-pill is-err">' . esc_html( sprintf( __( 'Conflict: off, %s is used', 'flx-ai' ), $winner ) ) . '</span> ';
 		} elseif ( $r['rivals'] ) {
 			$others  = implode( ', ', array_map( fn( $x ) => flxai_source_info( $x )['label'], $r['rivals'] ) );
 			/* translators: %s: plugin names */
-			$badges .= '<span class="flxai-pill is-warn">' . esc_html( sprintf( __( 'Çakışma: bu açık, %s kapalı', 'flx-ai' ), $others ) ) . '</span> ';
+			$badges .= '<span class="flxai-pill is-warn">' . esc_html( sprintf( __( 'Conflict: this one is on, %s is off', 'flx-ai' ), $others ) ) . '</span> ';
 		}
 		if ( ! $r['prefixed'] ) {
-			$badges .= '<span class="flxai-pill" title="' . esc_attr__( 'Ad eklenti önekiyle başlamıyor; başka eklentinin aracıyla karışabilir.', 'flx-ai' ) . '">' . esc_html__( 'öneksiz', 'flx-ai' ) . '</span> ';
+			$badges .= '<span class="flxai-pill" title="' . esc_attr__( 'The name does not start with a plugin prefix; it may clash with another plugin\'s tool.', 'flx-ai' ) . '">' . esc_html__( 'unprefixed', 'flx-ai' ) . '</span> ';
 		}
 		$alias = $r['aliases']
 			/* translators: %s: old tool names */
-			? '<div class="flxai-alias">' . esc_html( sprintf( __( 'Eski ad: %s', 'flx-ai' ), implode( ', ', $r['aliases'] ) ) ) . '</div>'
+			? '<div class="flxai-alias">' . esc_html( sprintf( __( 'Old name: %s', 'flx-ai' ), implode( ', ', $r['aliases'] ) ) ) . '</div>'
 			: '';
 
 		if ( $r['dupe'] ) {
-			$toggle = '<button type="submit" class="button button-small" name="pick" value="' . esc_attr( $r['name'] . '|' . $r['source'] ) . '">' . esc_html__( 'Bunu kullan', 'flx-ai' ) . '</button>';
+			$toggle = '<button type="submit" class="button button-small" name="pick" value="' . esc_attr( $r['name'] . '|' . $r['source'] ) . '">' . esc_html__( 'Use this one', 'flx-ai' ) . '</button>';
 			$sel    = '';
 		} else {
 			$toggle = sprintf(
@@ -237,9 +237,9 @@ function flxai_page_tools() {
 				esc_attr( $r['name'] ),
 				checked( ! $r['off'], true, false ),
 				/* translators: %s: tool title */
-				esc_html( sprintf( __( '%s açık', 'flx-ai' ), $r['title'] ) )
+				esc_html( sprintf( __( '%s on', 'flx-ai' ), $r['title'] ) )
 			);
-			$sel    = sprintf( '<input type="checkbox" name="sel[]" value="%1$s" data-sel aria-label="%2$s">', esc_attr( $r['name'] ), esc_attr( sprintf( /* translators: %s: tool title */ __( '%s seç', 'flx-ai' ), $r['title'] ) ) );
+			$sel    = sprintf( '<input type="checkbox" name="sel[]" value="%1$s" data-sel aria-label="%2$s">', esc_attr( $r['name'] ), esc_attr( sprintf( /* translators: %s: tool title */ __( 'Select %s', 'flx-ai' ), $r['title'] ) ) );
 		}
 
 		$where = array();
@@ -247,7 +247,7 @@ function flxai_page_tools() {
 			$where[] = 'MCP';
 		}
 		if ( $r['chat'] ) {
-			$where[] = __( 'Sohbet', 'flx-ai' );
+			$where[] = __( 'Chat', 'flx-ai' );
 		}
 
 		printf(
@@ -272,7 +272,7 @@ function flxai_page_tools() {
 			esc_html( wp_trim_words( $r['description'], 30 ) ),
 			'' !== $badges ? '<div class="flxai-badges">' . $badges . '</div>' : '', // phpcs:ignore -- escaped above
 			esc_html( $r['label'] ),
-			$r['approval'] ? '<span class="flxai-pill is-warn">' . esc_html__( 'değiştirir · onaylı', 'flx-ai' ) . '</span>' : '<span class="flxai-pill">' . esc_html__( 'okur', 'flx-ai' ) . '</span>',
+			$r['approval'] ? '<span class="flxai-pill is-warn">' . esc_html__( 'writes · needs approval', 'flx-ai' ) . '</span>' : '<span class="flxai-pill">' . esc_html__( 'reads', 'flx-ai' ) . '</span>',
 			esc_html( $where ? implode( ' · ', $where ) : '—' ),
 			esc_html( $r['cap'] ),
 			esc_html( $s ? number_format_i18n( (int) $s['n'] ) : '—' ),
@@ -280,17 +280,17 @@ function flxai_page_tools() {
 		);
 	}
 	if ( ! $rows ) {
-		echo '<tr><td colspan="9" class="flxai-empty">' . esc_html__( 'Kayıtlı araç yok.', 'flx-ai' ) . '</td></tr>';
+		echo '<tr><td colspan="9" class="flxai-empty">' . esc_html__( 'No tools registered.', 'flx-ai' ) . '</td></tr>';
 	}
-	echo '<tr class="flxai-nomatch" hidden><td colspan="9" class="flxai-empty">' . esc_html__( 'Süzgece uyan araç yok.', 'flx-ai' ) . '</td></tr>';
+	echo '<tr class="flxai-nomatch" hidden><td colspan="9" class="flxai-empty">' . esc_html__( 'No tools match the filters.', 'flx-ai' ) . '</td></tr>';
 	echo '</tbody></table></div>';
-	echo '<div class="flxai-savebar"><button type="submit" name="do" value="save" class="button button-primary">' . esc_html__( 'Kaydet', 'flx-ai' ) . '</button><span class="flxai-note" data-dirty hidden>' . esc_html__( 'Kaydedilmemiş değişiklik var.', 'flx-ai' ) . '</span></div>';
+	echo '<div class="flxai-savebar"><button type="submit" name="do" value="save" class="button button-primary">' . esc_html__( 'Save', 'flx-ai' ) . '</button><span class="flxai-note" data-dirty hidden>' . esc_html__( 'There are unsaved changes.', 'flx-ai' ) . '</span></div>';
 	echo '</form>';
 	echo '<p class="flxai-note">' . wp_kses(
 		sprintf(
 			/* translators: %s: link to Connected systems */
-			__( 'Eklentiler araçlarını Flux AI SDK (<code>flx_ai_tool</code>) ya da <code>flx_mcp_tools</code> / <code>flxai_tools</code> filtreleriyle ekler. Aynı adı iki eklenti kaydederse ilk kaydeden açık kalır, diğeri kapalı bekler; "Bunu kullan" ile değiştirebilirsiniz. Eklenti ayarları: %s.', 'flx-ai' ),
-			'<a href="' . esc_url( admin_url( 'admin.php?page=flx-ai-systems' ) ) . '">' . esc_html__( 'Bağlı sistemler', 'flx-ai' ) . '</a>'
+			__( 'Plugins add tools with the Flux AI SDK (<code>flx_ai_tool</code>) or the <code>flx_mcp_tools</code> / <code>flxai_tools</code> filters. If two plugins register the same name, the first stays on and the other waits turned off; switch with "Use this one". Plugin settings: %s.', 'flx-ai' ),
+			'<a href="' . esc_url( admin_url( 'admin.php?page=flx-ai-systems' ) ) . '">' . esc_html__( 'Connected systems', 'flx-ai' ) . '</a>'
 		),
 		array(
 			'code' => array(),

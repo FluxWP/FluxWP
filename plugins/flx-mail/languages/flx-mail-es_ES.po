@@ -1,0 +1,2511 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: es_ES\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Sample email"
+msgstr "correo electrónico de muestra"
+
+msgid "Branded email layout"
+msgstr "Diseño de correo electrónico de marca"
+
+msgid "<p>Hello Ayşe,</p><p>Every email sent from our site uses this layout: our logo on top, the content in the middle, and our organization details and social media accounts at the bottom.</p>"
+msgstr "<p>Hola Ayşe,</p><p>Cada correo electrónico enviado desde nuestro sitio utiliza este diseño: nuestro logotipo en la parte superior, el contenido en el medio y los detalles de nuestra organización y cuentas de redes sociales en la parte inferior.</p>"
+
+msgid "Visit the site"
+msgstr "Visita el sitio"
+
+msgid "Test"
+msgstr "prueba"
+
+msgid "Test email"
+msgstr "correo electrónico de prueba"
+
+msgid "Your email settings are working 🎉"
+msgstr "Tu configuración de correo electrónico está funcionando 🎉"
+
+msgid "<p>If you can see this email, your site's email sending is working.</p><table class=\"flxi-kv\"><tr><td>Sender</td><td><strong>%1$s</strong></td></tr><tr><td>Method</td><td>%2$s</td></tr></table>"
+msgstr "<p>Si puede ver este correo electrónico, el envío de correo electrónico de su sitio está funcionando.</p><table class=\"flxi-kv\"><tr><td>Remitente</td><td><strong>%1$s</strong></td></tr><tr><td>Método</td><td>%2$s</td></tr></table>"
+
+msgid "Server PHP mail()"
+msgstr "Correo PHP del servidor()"
+
+msgid "Go to the site"
+msgstr "ir al sitio"
+
+msgid "Send"
+msgstr "enviar"
+
+msgid "Send an email, WhatsApp or SMS message to one person or a list using the branded template. Bulk sends are processed in the background, one after another."
+msgstr "Envíe un correo electrónico, WhatsApp o mensaje SMS a una persona o una lista utilizando la plantilla de marca. Los envíos masivos se procesan en segundo plano, uno tras otro."
+
+msgid "%1$s / %2$s sent · %3$s failed"
+msgstr "%1$s/%2$senviado ·%3$sfallido"
+
+msgid "Sending is faster while this page is open; if you close it, it continues in the background."
+msgstr "El envío es más rápido mientras esta página está abierta; si lo cierras, continúa en segundo plano."
+
+msgid "Stop"
+msgstr "Detener"
+
+msgid "View log"
+msgstr "Ver registro"
+
+msgid "Channel"
+msgstr "canal"
+
+msgid "no connection"
+msgstr "sin conexión"
+
+msgid "Recipients"
+msgstr "Destinatarios"
+
+msgid "ayse@ornek.com\nMehmet Demir <mehmet@ornek.com>\nZeynep Kaya, 0532 123 45 67"
+msgstr "ayse@ornek.com\nMehmet Demir<mehmet@ornek.com>Zeynep Kaya, 0532 123 45 67"
+
+msgid "One person per line: email, phone, or \"Full Name <email>\" / \"Full Name, email, phone\"."
+msgstr "Una persona por línea: correo electrónico, teléfono o \"Nombre completo<email>\" / \"Nombre completo, correo electrónico, teléfono\"."
+
+msgid "Subject"
+msgstr "Asunto"
+
+msgid "Heading"
+msgstr "rumbo"
+
+msgid "Hello {ad}"
+msgstr "Hola{ad}"
+
+msgid "Content"
+msgstr "Contenido"
+
+msgid "Button text"
+msgstr "Texto del botón"
+
+msgid "Donate"
+msgstr "Donar"
+
+msgid "Button link"
+msgstr "Enlace de botón"
+
+msgid "From"
+msgstr "De"
+
+msgid "Add an \"unsubscribe\" link (recommended for bulk sends)"
+msgstr "Agregue un enlace para \"cancelar suscripción\" (recomendado para envíos masivos)"
+
+msgid "Variables"
+msgstr "variables"
+
+msgid "First name"
+msgstr "nombre"
+
+msgid "Full name"
+msgstr "nombre completo"
+
+msgid "Email"
+msgstr "Correo electrónico"
+
+msgid "Site name"
+msgstr "Nombre del sitio"
+
+msgid "Message"
+msgstr "Mensaje"
+
+msgid "Hello {ad} 🌱 …"
+msgstr "Hola{ad}🌱..."
+
+msgid "Variables: {ad}, {ad_soyad}, {telefon}. *Bold* and _italic_ work in WhatsApp."
+msgstr "Variables:{ad},{ad_soyad},{telefon}. *Negrita* y _cursiva_ funcionan en WhatsApp."
+
+msgid "Link"
+msgstr "Enlace"
+
+msgid "Campaign name (only visible to you)"
+msgstr "Nombre de la campaña (solo visible para usted)"
+
+msgid "E.g. November sapling planting invitation"
+msgstr "Por ej. Invitación a plantar árboles jóvenes en noviembre."
+
+msgid "Start sending?"
+msgstr "¿Empezar a enviar?"
+
+msgid "Send me a test"
+msgstr "Envíame una prueba"
+
+msgid "Subject:"
+msgstr "Asunto:"
+
+msgid "Preview size"
+msgstr "Tamaño de vista previa"
+
+msgid "Desktop"
+msgstr "Escritorio"
+
+msgid "Phone"
+msgstr "Teléfono"
+
+msgid "Dark mode"
+msgstr "modo oscuro"
+
+msgid "Email preview"
+msgstr "Vista previa de correo electrónico"
+
+msgid "Queued"
+msgstr "En cola"
+
+msgid "Sending"
+msgstr "Enviando"
+
+msgid "Done"
+msgstr "hecho"
+
+msgid "Stopped"
+msgstr "Detenido"
+
+msgid "Recent sends"
+msgstr "Envíos recientes"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Sent"
+msgstr "Enviado"
+
+msgid "Failed"
+msgstr "Fallido"
+
+msgid "Date"
+msgstr "Fecha"
+
+msgid "Sending started for %s recipients."
+msgstr "Se inició el envío para los destinatarios%s."
+
+msgid "Sending stopped."
+msgstr "El envío se detuvo."
+
+msgid "Disabled, not sent"
+msgstr "Deshabilitado, no enviado"
+
+msgid "Log"
+msgstr "Iniciar sesión"
+
+msgid "Every email, WhatsApp and SMS message sent from the site. Click a row to see its content."
+msgstr "Cada correo electrónico, WhatsApp y mensaje SMS enviado desde el sitio. Haga clic en una fila para ver su contenido."
+
+msgid "All statuses"
+msgstr "Todos los estados"
+
+msgid "All channels"
+msgstr "Todos los canales"
+
+msgid "Recipient or subject"
+msgstr "Destinatario o sujeto"
+
+msgid "Filter"
+msgstr "Filtrar"
+
+msgid "Clear"
+msgstr "Borrar"
+
+msgid "%s entries"
+msgstr "Entradas%s"
+
+msgid "Time"
+msgstr "tiempo"
+
+msgid "Recipient"
+msgstr "Destinatario"
+
+msgid "Subject / email"
+msgstr "Asunto/correo electrónico"
+
+msgid "No entries."
+msgstr "Sin entradas."
+
+msgid "Bulk send"
+msgstr "envío masivo"
+
+msgid "Close"
+msgstr "Cerrar"
+
+msgid "Emails"
+msgstr "Correos electrónicos"
+
+msgid "All emails sent by the site. You can turn them on or off, edit their content, and choose who they are sent from."
+msgstr "Todos los correos electrónicos enviados por el sitio. Puedes activarlos o desactivarlos, editar su contenido y elegir desde quién se envían."
+
+msgid "PHP mail() (not recommended)"
+msgstr "Correo PHP() (no recomendado)"
+
+msgid "sent (7 days)"
+msgstr "enviado (7 días)"
+
+msgid "failed"
+msgstr "falló"
+
+msgid "not sent because disabled"
+msgstr "no enviado porque está deshabilitado"
+
+msgid "Sender"
+msgstr "Remitente"
+
+msgid "To admin"
+msgstr "al administrador"
+
+msgid "To user"
+msgstr "al usuario"
+
+msgid "Sent %1$s times, last: %2$s. The content is generated by the plugin that sends it; here you can turn it on or off and choose the sender address and the branded layout."
+msgstr "Enviado%1$sveces, último:%2$s. El contenido lo genera el complemento que lo envía; aquí puedes activarlo o desactivarlo y elegir la dirección del remitente y el diseño de la marca."
+
+msgid "Search emails…"
+msgstr "Buscar correos electrónicos..."
+
+msgid "Search emails"
+msgstr "Buscar correos electrónicos"
+
+msgid "Cannot be disabled"
+msgstr "No se puede desactivar"
+
+msgid "%s enabled"
+msgstr "%shabilitado"
+
+msgid "Disabled"
+msgstr "Discapacitado"
+
+msgid "Edit in WooCommerce"
+msgstr "Editar en WooCommerce"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Settings"
+msgstr "Configuración"
+
+msgid "Could not load WooCommerce emails."
+msgstr "No se pudieron cargar los correos electrónicos de WooCommerce."
+
+msgid "When a plugin not in the list sends an email for the first time, it is added here automatically."
+msgstr "Cuando un complemento que no está en la lista envía un correo electrónico por primera vez, se agrega aquí automáticamente."
+
+msgid "No emails found"
+msgstr "No se encontraron correos electrónicos"
+
+msgid "All emails"
+msgstr "Todos los correos electrónicos"
+
+msgid "Sender: %1$s (%2$s). The content is generated by that plugin."
+msgstr "Remitente:%1$s(%2$s). El contenido es generado por ese complemento."
+
+msgid "Last subject: %s"
+msgstr "Último asunto:%s"
+
+msgid "Send this email"
+msgstr "Enviar este correo electrónico"
+
+msgid "Always sent"
+msgstr "siempre enviado"
+
+msgid "Send from"
+msgstr "Enviar desde"
+
+msgid "no reply expected"
+msgstr "no se espera respuesta"
+
+msgid "The large heading inside the email."
+msgstr "El encabezado grande dentro del correo electrónico."
+
+msgid "If empty, the button is not shown."
+msgstr "Si está vacío, el botón no se muestra."
+
+msgid "Variables (click to insert at the cursor)"
+msgstr "Variables (haga clic para insertar en el cursor)"
+
+msgid "Organization name"
+msgstr "Nombre de la organización"
+
+msgid "Organization email"
+msgstr "Correo electrónico de la organización"
+
+msgid "Organization phone"
+msgstr "Teléfono de la organización"
+
+msgid "Wrap in branded template (logo, organization details). HTML emails with their own design are left untouched."
+msgstr "Envuélvalo en una plantilla de marca (logotipo, detalles de la organización). Los correos electrónicos HTML con su propio diseño no se modifican."
+
+msgid "Save"
+msgstr "Guardar"
+
+msgid "Reset content to default?"
+msgstr "¿Restablecer el contenido a los valores predeterminados?"
+
+msgid "Reset to default"
+msgstr "Restablecer los valores predeterminados"
+
+msgid "Sample values are used in the preview."
+msgstr "Los valores de muestra se utilizan en la vista previa."
+
+msgid "Email enabled."
+msgstr "Correo electrónico habilitado."
+
+msgid "Email disabled; it will not be sent."
+msgstr "Correo electrónico deshabilitado; no será enviado."
+
+msgid "Default content restored."
+msgstr "Contenido predeterminado restaurado."
+
+msgid "Saved."
+msgstr "Guardado."
+
+msgid "Sender name and addresses, sending method, and email appearance."
+msgstr "Nombre y direcciones del remitente, método de envío y apariencia del correo electrónico."
+
+msgid "Sections"
+msgstr "Secciones"
+
+msgid "Sending method"
+msgstr "Método de envío"
+
+msgid "Appearance"
+msgstr "Apariencia"
+
+msgid "Google sign-in"
+msgstr "inicio de sesión de google"
+
+msgid "Log and bulk send"
+msgstr "Registro y envío masivo"
+
+msgid "In the inbox, your organization's name and address appear instead of \"WordPress <wordpress@…>\". Emails that expect a reply are sent from the bilgi@ address; emails that don't, such as passwords and notifications, are sent from the no-reply@ address. You can choose which one to use for each email separately."
+msgstr "En la bandeja de entrada, aparecen el nombre y la dirección de su organización en lugar de \"WordPress<wordpress@…>\". Los correos electrónicos que esperan respuesta se envían desde la dirección bilgi@; los correos electrónicos que no lo hacen, como contraseñas y notificaciones, se envían desde la dirección no-reply@. Puedes elegir cuál usar para cada correo electrónico por separado."
+
+msgid "Sender name"
+msgstr "Nombre del remitente"
+
+msgid "Sender address"
+msgstr "Dirección del remitente"
+
+msgid "No-reply name"
+msgstr "Nombre sin respuesta"
+
+msgid "No-reply address"
+msgstr "dirección sin respuesta"
+
+msgid "Reply-to address (optional)"
+msgstr "Dirección de respuesta (opcional)"
+
+msgid "If empty, replies go to the sender address."
+msgstr "Si está vacío, las respuestas van a la dirección del remitente."
+
+msgid "Also change the sender address of other plugins to this (recommended; for SPF/DKIM, all emails should be sent from the same domain)"
+msgstr "También cambie la dirección del remitente de otros complementos a este (recomendado; para SPF/DKIM, todos los correos electrónicos deben enviarse desde el mismo dominio)"
+
+msgid "%s is active; it sends the emails and the SMTP settings here are not used. Do not use both at the same time: turn one off."
+msgstr "%sestá activo; envía los correos electrónicos y la configuración SMTP aquí no se utiliza. No utilices ambos al mismo tiempo: apaga uno."
+
+msgid "SMTP (recommended)"
+msgstr "SMTP (recomendado)"
+
+msgid "With emails sent via PHP mail(), Gmail shows \"via srv….main-hosting.eu\" and the risk of landing in spam is high."
+msgstr "Con los correos electrónicos enviados a través de PHP mail(), Gmail muestra \"vía srv....main-hosting.eu\" y el riesgo de terminar en spam es alto."
+
+msgid "In hPanel › Emails › Email accounts, create the bilgi@ account (a separate account or an alias for no-reply@). Server smtp.hostinger.com, port 465, SSL; the username is the full email address."
+msgstr "En hPanel › Correos electrónicos › Cuentas de correo electrónico, cree la cuenta bilgi@ (una cuenta separada o un alias para no-reply@). Servidor smtp.hostinger.com, puerto 465, SSL; el nombre de usuario es la dirección de correo electrónico completa."
+
+msgid "Fill in Hostinger settings"
+msgstr "Complete la configuración de Hostinger"
+
+msgid "SMTP server"
+msgstr "servidor SMTP"
+
+msgid "Port"
+msgstr "Puerto"
+
+msgid "Encryption"
+msgstr "Cifrado"
+
+msgid "None"
+msgstr "Ninguno"
+
+msgid "Authentication"
+msgstr "Autenticación"
+
+msgid "Username (bilgi@)"
+msgstr "Nombre de usuario (bilgi@)"
+
+msgid "Password"
+msgstr "Contraseña"
+
+msgid "defined in wp-config.php"
+msgstr "definido en wp-config.php"
+
+msgid "type to change"
+msgstr "escriba para cambiar"
+
+msgid "Stored encrypted, not shown in the panel."
+msgstr "Se almacena cifrado, no se muestra en el panel."
+
+msgid "Separate user for no-reply (optional)"
+msgstr "Usuario separado para no respuesta (opcional)"
+
+msgid "If no-reply@ is a separate account. If empty, no-reply emails are also sent with the account above (no-reply@ must be an alias of the bilgi@ account)."
+msgstr "Si no-reply@ es una cuenta separada. Si están vacíos, los correos electrónicos sin respuesta también se envían con la cuenta anterior (no-reply@ debe ser un alias de la cuenta bilgi@)."
+
+msgid "No-reply password"
+msgstr "Contraseña sin respuesta"
+
+msgid "Set Return-Path to the sender address (recommended for SPF alignment)"
+msgstr "Establezca Return-Path en la dirección del remitente (recomendado para la alineación SPF)"
+
+msgid "Save settings"
+msgstr "Guardar configuración"
+
+msgid "Save the settings first, then test."
+msgstr "Guarde la configuración primero y luego pruebe."
+
+msgid "Test address"
+msgstr "Dirección de prueba"
+
+msgid "Send test email"
+msgstr "Enviar correo electrónico de prueba"
+
+msgid "Last test: %1$s · %2$s"
+msgstr "Última prueba:%1$s·%2$s"
+
+msgid "sent"
+msgstr "enviado"
+
+msgid "Domain records (SPF / DMARC)"
+msgstr "Registros de dominio (SPF/DMARC)"
+
+msgid "To keep emails out of spam, the domain's DNS must have SPF, DKIM and DMARC records. When you create an email account on Hostinger, SPF and DKIM are usually added automatically."
+msgstr "Para mantener los correos electrónicos fuera del spam, el DNS del dominio debe tener registros SPF, DKIM y DMARC. Cuando creas una cuenta de correo electrónico en Hostinger, SPF y DKIM generalmente se agregan automáticamente."
+
+msgid "Check DNS"
+msgstr "Comprobar DNS"
+
+msgid "none"
+msgstr "ninguno"
+
+msgid "Logo"
+msgstr "Logotipo"
+
+msgid "Change"
+msgstr "Cambiar"
+
+msgid "Default"
+msgstr "Predeterminado"
+
+msgid "PNG or JPG (email clients do not display SVG). Default: the theme's logo."
+msgstr "PNG o JPG (los clientes de correo electrónico no muestran SVG). Predeterminado: el logotipo del tema."
+
+msgid "Dark background logo"
+msgstr "Logotipo de fondo oscuro"
+
+msgid "Shown in dark mode (Apple Mail, iOS)."
+msgstr "Se muestra en modo oscuro (Apple Mail, iOS)."
+
+msgid "Logo width (px)"
+msgstr "Ancho del logotipo (px)"
+
+msgid "Primary color"
+msgstr "color primario"
+
+msgid "Dark color"
+msgstr "color oscuro"
+
+msgid "Background"
+msgstr "Antecedentes"
+
+msgid "Heading color"
+msgstr "color del encabezado"
+
+msgid "Footer (organization)"
+msgstr "Pie de página (organización)"
+
+msgid "Empty fields are taken from SEO › Organization and social settings."
+msgstr "Los campos vacíos se toman de SEO › Organización y configuración social."
+
+msgid "Tagline"
+msgstr "Lema"
+
+msgid "Address"
+msgstr "Dirección"
+
+msgid "Contact email"
+msgstr "Correo electrónico de contacto"
+
+msgid "Website"
+msgstr "Sitio web"
+
+msgid "Footnote (optional)"
+msgstr "Nota al pie (opcional)"
+
+msgid "E.g. the association registration number or a data protection (KVKK) note. Shown in small print at the very bottom of all emails."
+msgstr "Por ej. el número de registro de la asociación o una nota de protección de datos (KVKK). Se muestra en letra pequeña en la parte inferior de todos los correos electrónicos."
+
+msgid "Emails from other plugins"
+msgstr "Correos electrónicos de otros complementos"
+
+msgid "Wrap plain-text emails in the branded template"
+msgstr "Envuelva correos electrónicos de texto sin formato en la plantilla de marca"
+
+msgid "Also wrap simple HTML emails (those with their own full design are left untouched)"
+msgstr "También envuelva correos electrónicos HTML simples (aquellos con su propio diseño completo no se modifican)"
+
+msgid "Preview"
+msgstr "Vista previa"
+
+msgid "Appearance changes are applied to all emails when you save."
+msgstr "Los cambios de apariencia se aplican a todos los correos electrónicos cuando los guarda."
+
+msgid "Because Google has already verified the email address, people who sign up with Google do not receive the \"set your password / login details\" email, and their account is treated as verified."
+msgstr "Debido a que Google ya ha verificado la dirección de correo electrónico, las personas que se registran en Google no reciben el correo electrónico \"establezca su contraseña/detalles de inicio de sesión\" y su cuenta se considera verificada."
+
+msgid "Detected plugin: %s"
+msgstr "Complemento detectado:%s"
+
+msgid "No known Google sign-in plugin was detected; a Google return is also recognized from the request."
+msgstr "No se detectó ningún complemento de inicio de sesión de Google conocido; También se reconoce una devolución de Google a partir de la solicitud."
+
+msgid "Do not send the WordPress \"login details / set password\" email"
+msgstr "No envíe el correo electrónico \"detalles de inicio de sesión/establecer contraseña\" de WordPress"
+
+msgid "Do not send the WooCommerce \"your account has been created\" email"
+msgstr "No envíe el correo electrónico de WooCommerce \"su cuenta ha sido creada\""
+
+msgid "Mark the email as verified (for verification plugins)"
+msgstr "Marcar el correo electrónico como verificado (para complementos de verificación)"
+
+msgid "WooCommerce emails use their own template. You can apply our logo, colors, sender name and organization footer to WooCommerce › Settings › Emails with one click."
+msgstr "Los correos electrónicos de WooCommerce utilizan su propia plantilla. Puede aplicar nuestro logotipo, colores, nombre del remitente y pie de página de la organización a WooCommerce › Configuración › Correos electrónicos con un solo clic."
+
+msgid "Last applied: %s"
+msgstr "Última aplicación:%s"
+
+msgid "Apply appearance to WooCommerce"
+msgstr "Aplicar apariencia a WooCommerce"
+
+msgid "WooCommerce is not active."
+msgstr "WooCommerce no está activo."
+
+msgid "Log outgoing emails and messages"
+msgstr "Registrar correos electrónicos y mensajes salientes"
+
+msgid "Also store the content (to view the email in the log)"
+msgstr "Almacene también el contenido (para ver el correo electrónico en el registro)"
+
+msgid "Keep log for how many days"
+msgstr "Mantener registro durante cuántos días"
+
+msgid "Number to send per round in bulk email"
+msgstr "Número a enviar por ronda en correo electrónico masivo"
+
+msgid "Hostinger shared hosting has an hourly sending limit; the default is 20 (one round per minute)."
+msgstr "El hosting compartido de Hostinger tiene un límite de envío por horas; el valor predeterminado es 20 (una ronda por minuto)."
+
+msgid "Add an \"unsubscribe\" link to bulk emails"
+msgstr "Agregue un enlace para \"cancelar suscripción\" a los correos electrónicos masivos"
+
+msgid "Unsubscribed: %s people"
+msgstr "Cancelación de suscripción: personas%s"
+
+msgid "Settings saved."
+msgstr "Configuración guardada."
+
+msgid "Logo, colors, sender and footer applied to WooCommerce emails."
+msgstr "Logotipo, colores, remitente y pie de página aplicados a los correos electrónicos de WooCommerce."
+
+msgid "Connections"
+msgstr "Conexiones"
+
+msgid "WhatsApp and SMS accounts in one place. Flux Certificates, Flux Chat and other plugins use these connections. Email settings are on the Settings tab."
+msgstr "Cuentas de WhatsApp y SMS en un solo lugar. Los certificados Flux, Flux Chat y otros complementos utilizan estas conexiones. La configuración de correo electrónico se encuentra en la pestaña Configuración."
+
+msgid "Active"
+msgstr "Activo"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "No connections yet."
+msgstr "Aún no hay conexiones."
+
+msgid "Test successful"
+msgstr "Prueba exitosa"
+
+msgid "Migrated from Flux Certificates"
+msgstr "Migrado desde certificados Flux"
+
+msgid "Test number (if empty, connection only)"
+msgstr "Número de prueba (si está vacío, solo conexión)"
+
+msgid "Test number"
+msgstr "Número de prueba"
+
+msgid "More actions"
+msgstr "Más acciones"
+
+msgid "Make default"
+msgstr "Hacer predeterminado"
+
+msgid "Delete"
+msgstr "Eliminar"
+
+msgid "Delete this connection?"
+msgstr "¿Eliminar esta conexión?"
+
+msgid "Providers were migrated on %s. Flux Certificates now sends WhatsApp and SMS through the connections here; emails are sent with the branded template."
+msgstr "Los proveedores se migraron en%s. Flux Certificates ahora envía WhatsApp y SMS a través de las conexiones aquí; Los correos electrónicos se envían con la plantilla de marca."
+
+msgid "The old provider records were not deleted, only disabled (Flux Chat continues to read from that record)."
+msgstr "Los registros de proveedores antiguos no se eliminaron, solo se desactivaron (Flux Chat continúa leyendo de ese registro)."
+
+msgid "Undo migration"
+msgstr "Deshacer migración"
+
+msgid "Switch Flux Certificates back to its old providers?"
+msgstr "¿Cambiar los certificados Flux a sus antiguos proveedores?"
+
+msgid "Copies the WhatsApp (Evolution) and SMS (Netgsm) settings from Flux Certificates here and connects Flux Certificates to these connections. Nothing is deleted; you can undo it at any time."
+msgstr "Copia aquí la configuración de WhatsApp (Evolution) y SMS (Netgsm) de los Certificados Flux y conecta los Certificados Flux a estas conexiones. No se elimina nada; puedes deshacerlo en cualquier momento."
+
+msgid "disabled"
+msgstr "discapacitado"
+
+msgid "Migrate from Flux Certificates"
+msgstr "Migrar desde certificados Flux"
+
+msgid "Connection saved. Try it with \"Test\"."
+msgstr "Conexión guardada. Pruébelo con \"Prueba\"."
+
+msgid "Connection deleted."
+msgstr "Conexión eliminada."
+
+msgid "Default connection changed."
+msgstr "La conexión predeterminada cambió."
+
+msgid "Migrated: %s connections. Flux Certificates now uses these connections."
+msgstr "Migrado: conexiones%s. Certificados Flux ahora utiliza estas conexiones."
+
+msgid "Undone: Flux Certificates is using its old providers."
+msgstr "Deshacer: Flux Certificates está utilizando sus proveedores antiguos."
+
+msgid "Communication"
+msgstr "comunicación"
+
+msgid "Email templates"
+msgstr "Plantillas de correo electrónico"
+
+msgid "WhatsApp and SMS connections"
+msgstr "Conexiones WhatsApp y SMS"
+
+msgid "Communication settings"
+msgstr "Configuración de comunicación"
+
+msgid "System check"
+msgstr "Verificación del sistema"
+
+msgid "Sending…"
+msgstr "Enviando..."
+
+msgid "Sent to %s. Check your inbox (and spam folder)."
+msgstr "Enviado a%s. Revisa tu bandeja de entrada (y tu carpeta de spam)."
+
+msgid "Could not send"
+msgstr "No se pudo enviar"
+
+msgid "Trying…"
+msgstr "Intentando..."
+
+msgid "Success"
+msgstr "Éxito"
+
+msgid "Error"
+msgstr "error"
+
+msgid "%s recipients"
+msgstr "Destinatarios%s"
+
+msgid "No recipients"
+msgstr "Sin destinatarios"
+
+msgid "Choose logo"
+msgstr "Elige logotipo"
+
+msgid "Use"
+msgstr "uso"
+
+msgid "Checking…"
+msgstr "Comprobando..."
+
+msgid "Copied"
+msgstr "Copiado"
+
+msgid "You do not have permission."
+msgstr "No tienes permiso."
+
+msgid "Rows related to email, WhatsApp and SMS. Checks for all plugins are on the Appearance › System Check screen."
+msgstr "Filas relacionadas con correo electrónico, WhatsApp y SMS. Las comprobaciones de todos los complementos se encuentran en la pantalla Apariencia > Verificación del sistema."
+
+msgid "WhatsApp · Evolution API"
+msgstr "WhatsApp · API de evolución"
+
+msgid "The Evolution API on your own server. The address is e.g. https://wa.yourdomain.com; instance is the connection name in the Evolution panel; API key is the global AUTHENTICATION_API_KEY or the instance token."
+msgstr "La API de Evolution en tu propio servidor. La dirección es p.e.  La instancia https://wa.yourdomain.com; es el nombre de la conexión en el panel Evolution; La clave API es la AUTHENTICATION_API_KEY global o el token de instancia."
+
+msgid "API address"
+msgstr "dirección API"
+
+msgid "API key (apikey)"
+msgstr "Clave API (apikey)"
+
+msgid "Instance name"
+msgstr "Nombre de instancia"
+
+msgid "API version"
+msgstr "Versión API"
+
+msgid "Show link preview"
+msgstr "Mostrar vista previa del enlace"
+
+msgid "Delay between messages in bulk send (sec)"
+msgstr "Retraso entre mensajes en envío masivo (seg)"
+
+msgid "To avoid the number being blocked, messages are sent at intervals in bulk sends."
+msgstr "Para evitar que el número sea bloqueado, los mensajes se envían a intervalos en envíos masivos."
+
+msgid "\"Typing…\" duration (ms)"
+msgstr "Duración de \"Escribiendo...\" (ms)"
+
+msgid "Invalid phone: %s"
+msgstr "Teléfono no válido:%s"
+
+msgid "Connection error:"
+msgstr "Error de conexión:"
+
+msgid "This number does not have WhatsApp."
+msgstr "Este número no tiene WhatsApp."
+
+msgid "Instance is not connected (status: %s). Scan the QR code in the Evolution panel."
+msgstr "La instancia no está conectada (estado:%s). Escanea el código QR en el panel de Evolution."
+
+msgid "Test message · %s 🌱"
+msgstr "Mensaje de prueba ·%s🌱"
+
+msgid "SMS · Netgsm"
+msgstr "SMS · Netgsm"
+
+msgid "Netgsm REST v2. The username is usually the subscriber number starting with 850/312…. The message header must be approved in the Netgsm panel."
+msgstr "Netgsm DESCANSO v2. El nombre de usuario suele ser el número de suscriptor que comienza con 850/312.... El encabezado del mensaje debe ser aprobado en el panel de Netgsm."
+
+msgid "Username (usercode)"
+msgstr "Nombre de usuario (código de usuario)"
+
+msgid "Password (API sub-user password)"
+msgstr "Contraseña (contraseña de subusuario API)"
+
+msgid "Message header (msgheader)"
+msgstr "Encabezado del mensaje (msgheader)"
+
+msgid "İYS filter"
+msgstr "Filtro İYS"
+
+msgid "0 · Informational (non-commercial)"
+msgstr "0 · Informativo (no comercial)"
+
+msgid "11 · Commercial, individual recipient (İYS-checked)"
+msgstr "11 · Destinatario comercial individual (marcado por İYS)"
+
+msgid "12 · Commercial, merchant recipient (İYS-checked)"
+msgstr "12 · Comercial, destinatario comerciante (İYS-comprobado)"
+
+msgid "Turkish characters"
+msgstr "caracteres turcos"
+
+msgid "On (ş, ğ, ı…) · SMS length 155"
+msgstr "Encendido (ş, ğ, ı...) · Longitud del SMS 155"
+
+msgid "Off (ASCII) · SMS length 160"
+msgstr "Apagado (ASCII) · Longitud del SMS 160"
+
+msgid "Partner code (optional)"
+msgstr "Código de socio (opcional)"
+
+msgid "Message text is invalid or too long"
+msgstr "El texto del mensaje no es válido o es demasiado largo."
+
+msgid "Invalid username/password, no API permission, or IP restriction"
+msgstr "Nombre de usuario/contraseña no válidos, sin permiso de API o restricción de IP"
+
+msgid "Message header (msgheader) is not defined in the system"
+msgstr "El encabezado del mensaje (msgheader) no está definido en el sistema"
+
+msgid "İYS-checked sending is not possible with a subscriber account"
+msgstr "El envío verificado por İYS no es posible con una cuenta de suscriptor"
+
+msgid "No İYS brand information for the subscription"
+msgstr "No hay información de marca İYS para la suscripción"
+
+msgid "Invalid query / missing parameter"
+msgstr "Consulta no válida/parámetro faltante"
+
+msgid "Sending rate limit exceeded"
+msgstr "Se superó el límite de velocidad de envío"
+
+msgid "More than 20 tasks to the same number in 1 minute"
+msgstr "Más de 20 tareas al mismo número en 1 minuto"
+
+msgid "Netgsm system error"
+msgstr "error del sistema netgsm"
+
+msgid "Unknown error"
+msgstr "Error desconocido"
+
+msgid "Test SMS · %s"
+msgstr "SMS de prueba ·%s"
+
+msgid "Balance query failed:"
+msgstr "Error en la consulta de saldo:"
+
+msgid "Our sapling planting event is complete"
+msgstr "Nuestro evento de plantación de árboles jóvenes está completo."
+
+msgid "Post title"
+msgstr "Título de la publicación"
+
+msgid "Post URL"
+msgstr "URL de publicación"
+
+msgid "Commenter"
+msgstr "Comentarista"
+
+msgid "Commenter's email"
+msgstr "Correo electrónico del comentarista"
+
+msgid "Comment text"
+msgstr "Texto del comentario"
+
+msgid "Comment URL"
+msgstr "URL del comentario"
+
+msgid "Approval link"
+msgstr "Enlace de aprobación"
+
+msgid "Trash link"
+msgstr "Enlace a la papelera"
+
+msgid "Mark-as-spam link"
+msgstr "Enlace marcado como spam"
+
+msgid "Number of comments awaiting approval"
+msgstr "Número de comentarios pendientes de aprobación"
+
+msgid "Thanks to everyone who helped; we will join the next planting as a family!"
+msgstr "Gracias a todos los que ayudaron; ¡Nos sumaremos a la próxima siembra en familia!"
+
+msgid "Person's name"
+msgstr "nombre de la persona"
+
+msgid "Username"
+msgstr "Nombre de usuario"
+
+msgid "Email address"
+msgstr "Dirección de correo electrónico"
+
+msgid "New registration: set password"
+msgstr "Nuevo registro: establecer contraseña"
+
+msgid "Sent to the person when someone registers or an admin adds a user. Not sent to people who sign up with Google (Settings › Google sign-in)."
+msgstr "Enviado a la persona cuando alguien se registra o un administrador agrega un usuario. No se envía a las personas que se registran en Google (Configuración › Inicio de sesión de Google)."
+
+msgid "Set password link"
+msgstr "Establecer enlace de contraseña"
+
+msgid "Login page"
+msgstr "Página de inicio de sesión"
+
+msgid "Your account is ready, set your password"
+msgstr "Tu cuenta está lista, configura tu contraseña"
+
+msgid "Welcome aboard, {ad}"
+msgstr "Bienvenido a bordo,{ad}"
+
+msgid "<p>Your {site} account has been created. Your username: <strong>{kullanici_adi}</strong></p><p>Use the button below to set your password and sign in to your account. For your security, this link expires after a short time.</p>"
+msgstr "<p>Se ha creado su cuenta{site}. Su nombre de usuario:<strong>{kullanici_adi}</strong></p><p>Utilice el botón a continuación para configurar su contraseña e iniciar sesión en su cuenta. Por su seguridad, este enlace caduca al poco tiempo.</p>"
+
+msgid "Set my password"
+msgstr "Establecer mi contraseña"
+
+msgid "New registration (to admin)"
+msgstr "Nuevo registro (al administrador)"
+
+msgid "User profile (dashboard)"
+msgstr "Perfil de usuario (panel de control)"
+
+msgid "New member: {kullanici_adi}"
+msgstr "Nuevo miembro:{kullanici_adi}"
+
+msgid "There is a new member on the site"
+msgstr "Hay un nuevo miembro en el sitio."
+
+msgid "<table class=\"flxi-kv\"><tr><td>Username</td><td><strong>{kullanici_adi}</strong></td></tr><tr><td>Email</td><td>{eposta}</td></tr></table>"
+msgstr "<table class=\"flxi-kv\"><tr><td>Nombre de usuario</td><td><strong>{kullanici_adi}</strong></td></tr><tr><td>Correo electrónico</td><td>{eposta}</td></tr></table>"
+
+msgid "Open profile"
+msgstr "Abrir perfil"
+
+msgid "Password reset"
+msgstr "Restablecer contraseña"
+
+msgid "New password link"
+msgstr "Nuevo enlace de contraseña"
+
+msgid "IP address of the request"
+msgstr "Dirección IP de la solicitud"
+
+msgid "Password reset request"
+msgstr "Solicitud de restablecimiento de contraseña"
+
+msgid "Reset your password"
+msgstr "Restablece tu contraseña"
+
+msgid "<p>Hello {ad},</p><p>A password reset was requested for your account <strong>{kullanici_adi}</strong>. You can set a new password with the button below.</p><p>If you did not make this request, you can ignore this email; nothing will change in your account.</p>"
+msgstr "<p>Hola{ad},</p><p>Se solicitó un restablecimiento de contraseña para su cuenta<strong>{kullanici_adi}</strong>. Puede establecer una nueva contraseña con el botón a continuación.</p><p>Si no realizó esta solicitud, puede ignorar este correo electrónico; nada cambiará en su cuenta.</p>"
+
+msgid "Set new password"
+msgstr "Establecer nueva contraseña"
+
+msgid "Password changed"
+msgstr "Contraseña cambiada"
+
+msgid "Your password has been changed"
+msgstr "Tu contraseña ha sido cambiada"
+
+msgid "<p>Hello {ad},</p><p>The password of your {site} account was just changed.</p><p>If you did not make this change, write to {kurum_eposta} right away.</p>"
+msgstr "<p>Hola{ad},</p><p>La contraseña de su cuenta{site}acaba de cambiarse.</p><p>Si no realizó este cambio, escriba a{kurum_eposta}de inmediato.</p>"
+
+msgid "Sign in"
+msgstr "Iniciar sesión"
+
+msgid "Email address changed"
+msgstr "Dirección de correo electrónico cambiada"
+
+msgid "New email address"
+msgstr "Nueva dirección de correo electrónico"
+
+msgid "Your email address has been changed"
+msgstr "Su dirección de correo electrónico ha sido cambiada"
+
+msgid "Your email address has changed"
+msgstr "Tu dirección de correo electrónico ha cambiado"
+
+msgid "<p>Hello {ad},</p><p>The email address of your {site} account has been changed to <strong>{yeni_eposta}</strong>. Notifications will be sent to this address from now on.</p><p>If you did not make this change, write to {kurum_eposta} right away.</p>"
+msgstr "<p>Hola{ad},</p><p>La dirección de correo electrónico de su cuenta{site}se ha cambiado a<strong>{yeni_eposta}</strong>. Las notificaciones se enviarán a esta dirección a partir de ahora.</p><p>Si no realizó este cambio, escriba a{kurum_eposta}de inmediato.</p>"
+
+msgid "A member changed their password (to admin)"
+msgstr "Un miembro cambió su contraseña (a administrador)"
+
+msgid "{kullanici_adi} changed their password"
+msgstr "{kullanici_adi}cambió su contraseña"
+
+msgid "Password change"
+msgstr "cambio de contraseña"
+
+msgid "<p><strong>{kullanici_adi}</strong> ({eposta}) changed their password.</p>"
+msgstr "<p><strong>{kullanici_adi}</strong>({eposta}) cambiaron su contraseña.</p>"
+
+msgid "New comment on a post (to author)"
+msgstr "Nuevo comentario en una publicación (al autor)"
+
+msgid "Notification of a new comment sent to the post's author."
+msgstr "Notificación de un nuevo comentario enviado al autor de la publicación."
+
+msgid "New comment: {yazi}"
+msgstr "Nuevo comentario:{yazi}"
+
+msgid "New comment on “{yazi}”"
+msgstr "Nuevo comentario en “{yazi}”"
+
+msgid "<p><strong>{yorum_yazari}</strong> wrote:</p><blockquote>{yorum}</blockquote>"
+msgstr "<p><strong>{yorum_yazari}</strong>escribió:</p><blockquote>{yorum}</blockquote>"
+
+msgid "View comment"
+msgstr "Ver comentario"
+
+msgid "Comment awaiting approval"
+msgstr "Comentario pendiente de aprobación"
+
+msgid "Sent to the site admin while a comment awaits approval."
+msgstr "Enviado al administrador del sitio mientras un comentario espera aprobación."
+
+msgid "Comment awaiting approval: {yazi}"
+msgstr "Comentario pendiente de aprobación:{yazi}"
+
+msgid "A comment is waiting for your approval"
+msgstr "Un comentario está esperando su aprobación."
+
+msgid "<p><strong>{yorum_yazari}</strong> ({yorum_eposta}) commented on <a href=\"{yazi_linki}\">{yazi}</a>:</p><blockquote>{yorum}</blockquote><p><a href=\"{cop_linki}\">Trash</a> &nbsp;·&nbsp; <a href=\"{spam_linki}\">Mark as spam</a></p><p>Total comments awaiting approval: {bekleyen_sayisi}</p>"
+msgstr "<p><strong>{yorum_yazari}</strong>({yorum_eposta}) comentó en<a href=\"{yazi_linki}\">{yazi}</a>:</p><blockquote>{yorum}</blockquote><p><a href=\"{cop_linki}\">Papelera</a>·<a href=\"{spam_linki}\">Marcar como spam</a></p><p>Total de comentarios en espera de aprobación:{bekleyen_sayisi}</p>"
+
+msgid "Approve comment"
+msgstr "Aprobar comentario"
+
+msgid "Automatic update report"
+msgstr "Informe de actualización automática"
+
+msgid "Admin email change confirmation"
+msgstr "Confirmación de cambio de correo electrónico del administrador"
+
+msgid "Admin email changed"
+msgstr "El correo electrónico del administrador cambió"
+
+msgid "Confirm new email address"
+msgstr "Confirmar nueva dirección de correo electrónico"
+
+msgid "Personal data request confirmation"
+msgstr "Confirmación de solicitud de datos personales"
+
+msgid "Personal data export ready"
+msgstr "Exportación de datos personales lista"
+
+msgid "Personal data erased"
+msgstr "Datos personales borrados"
+
+msgid "Site error: recovery mode"
+msgstr "Error del sitio: modo de recuperación"
+
+msgid "The content is generated by WordPress; here you can turn it on or off and choose the branded layout."
+msgstr "El contenido es generado por WordPress; aquí puedes activarlo o desactivarlo y elegir el diseño de la marca."
+
+msgid "Cannot be disabled for security. The content is generated by WordPress and sent with the branded layout."
+msgstr "No se puede desactivar por seguridad. El contenido es generado por WordPress y enviado con el diseño de la marca."
+
+msgid "Anonymous"
+msgstr "Anónimo"
+
+msgid "The sender email address is invalid. Enter your bilgi@ address in Communication › Settings."
+msgstr "La dirección de correo electrónico del remitente no es válida. Ingrese su dirección bilgi@ en Comunicación › Configuración."
+
+msgid "%1$s is not on the site's domain (%2$s). Services like Gmail may mark emails from another domain as spam."
+msgstr "%1$sno está en el dominio del sitio (%2$s). Servicios como Gmail pueden marcar los correos electrónicos de otro dominio como spam."
+
+msgid "%1$s <%2$s>; emails that don't expect a reply are sent from %3$s."
+msgstr "%1$s<%2$s>; Los correos electrónicos que no esperan respuesta se envían desde%3$s."
+
+msgid "Emails are sent by the %s plugin; the SMTP settings here are not used. The template, sender name and log still come from Flux Mail."
+msgstr "Los correos electrónicos se envían mediante el complemento%s; la configuración SMTP aquí no se utiliza. La plantilla, el nombre del remitente y el registro aún provienen de Flux Mail."
+
+msgid "SMTP is selected but the server, username or password is missing. Emails may not be sent."
+msgstr "Se selecciona SMTP pero falta el servidor, el nombre de usuario o la contraseña. Es posible que no se envíen correos electrónicos."
+
+msgid "SMTP settings"
+msgstr "Configuración SMTP"
+
+msgid "SMTP: %1$s:%2$s"
+msgstr "SMTP:%1$s:%2$s"
+
+msgid "Mail is sent with the server's PHP mail(). Gmail shows \"via srv….main-hosting.eu\" next to the sender and it is more likely to land in spam. Open a info@ mailbox on Hostinger and choose SMTP."
+msgstr "El correo se envía con el correo PHP del servidor(). Gmail muestra \"vía srv....main-hosting.eu\" junto al remitente y es más probable que llegue a ser spam. Abra un buzón info@ en Hostinger y elija SMTP."
+
+msgid "Sent to %1$s (%2$s). Check that it reached the inbox."
+msgstr "Enviado a%1$s(%2$s). Comprueba que llegó a la bandeja de entrada."
+
+msgid "Test again"
+msgstr "Prueba de nuevo"
+
+msgid "Could not send (%1$s): %2$s"
+msgstr "No se pudo enviar (%1$s):%2$s"
+
+msgid "Not tested yet."
+msgstr "Aún no probado."
+
+msgid "Last 24 hours"
+msgstr "Últimas 24 horas"
+
+msgid "%1$s sends failed, %2$s sent. Last error: %3$s"
+msgstr "Los envíos de%1$sfallaron,%2$sse envió. Último error:%3$s"
+
+msgid "%s sent, no errors."
+msgstr "%senviado, sin errores."
+
+msgid "Bulk send queue"
+msgstr "Cola de envío masivo"
+
+msgid "%s messages have been waiting for more than 30 minutes. WP-Cron may not be running; keeping the Send page open advances the queue. A real cron is recommended on Hostinger."
+msgstr "Los mensajes%shan estado esperando durante más de 30 minutos. Es posible que WP-Cron no se esté ejecutando; mantener abierta la página de envío avanza la cola. Se recomienda un cron real en Hostinger."
+
+msgid "Sends"
+msgstr "Envía"
+
+msgid "Database tables"
+msgstr "tablas de base de datos"
+
+msgid "Log tables are missing. Deactivate and reactivate the plugin."
+msgstr "Faltan tablas de registro. Desactiva y reactiva el complemento."
+
+msgid "No SPF record was found for %s. Hostinger adds it to DNS when you open a mailbox; if the domain is elsewhere, add \"v=spf1 include:_spf.mail.hostinger.com ~all\"."
+msgstr "No se encontró ningún registro SPF para%s. Hostinger lo agrega al DNS cuando abres un buzón; si el dominio está en otro lugar, agregue \"v=spf1 include:_spf.mail.hostinger.com ~all\"."
+
+msgid "Check again"
+msgstr "comprobar de nuevo"
+
+msgid "The SPF record does not include Hostinger: "
+msgstr "El registro SPF no incluye Hostinger:"
+
+msgid "There is no DMARC record. Gmail and Yahoo require DMARC for bulk mail; add a \"_dmarc\" TXT record: \"v=DMARC1; p=none; rua=mailto:info@…\"."
+msgstr "No existe ningún registro DMARC. Gmail y Yahoo requieren DMARC para correo masivo; agregue un registro TXT \"_dmarc\": \"v=DMARC1; p=none; rua=mailto:info@...\"."
+
+msgid "SPF / DMARC (DNS)"
+msgstr "SPF/DMARC (DNS)"
+
+msgid "Not checked."
+msgstr "No comprobado."
+
+msgid "Google sign-in plugin: %s."
+msgstr "Complemento de inicio de sesión de Google:%s."
+
+msgid "People who sign up with Google do not receive the set-password email, and their emails are treated as verified."
+msgstr "Las personas que se registran en Google no reciben el correo electrónico con la contraseña establecida y sus correos electrónicos se tratan como verificados."
+
+msgid "People who sign up with Google receive the set-password email (setting is off)."
+msgstr "Las personas que se registran en Google reciben el correo electrónico con la contraseña establecida (la configuración está desactivada)."
+
+msgid "Setting"
+msgstr "Configuración"
+
+msgid "No known Google sign-in plugin is active. If you use another plugin, a Google return is still detected and the password email is stopped."
+msgstr "No hay ningún complemento de inicio de sesión de Google conocido activo. Si utiliza otro complemento, aún se detecta una devolución de Google y se detiene el correo electrónico de contraseña."
+
+msgid "No %s connection."
+msgstr "No hay conexión%s."
+
+msgid "Settings entered, not tested yet."
+msgstr "Configuración ingresada, aún no probada."
+
+msgid "Test successful (%s)."
+msgstr "Prueba exitosa (%s)."
+
+msgid "Test failed (%1$s): %2$s"
+msgstr "Prueba fallida (%1$s):%2$s"
+
+msgid "Flux Certificates providers"
+msgstr "Proveedores de certificados de flujo"
+
+msgid "The WhatsApp/SMS settings are still in Flux Certificates. To manage them in one place, use the \"Migrate from Flux Certificates\" button in Communication › Connections (it can be undone)."
+msgstr "La configuración de WhatsApp/SMS todavía está en Certificados Flux. Para administrarlos en un solo lugar, use el botón \"Migrar desde certificados Flux\" en Comunicación › Conexiones (se puede deshacer)."
+
+msgid "Migrate"
+msgstr "Migrar"
+
+msgid "Flux Certificates"
+msgstr "Certificados de flujo"
+
+msgid "Certificate emails use the corporate template; WhatsApp/SMS go through the connections here."
+msgstr "Los correos electrónicos de certificados utilizan la plantilla corporativa; WhatsApp/SMS pasa por las conexiones aquí."
+
+msgid "%1$s: \"%2$s\" → \"%3$s\""
+msgstr "%1$s: \"%2$s\" → \"%3$s\""
+
+msgid "Enter a valid email address."
+msgstr "Ingrese una dirección de correo electrónico válida."
+
+msgid "Cannot be empty."
+msgstr "No puede estar vacío."
+
+msgid "Sender email address"
+msgstr "Dirección de correo electrónico del remitente"
+
+msgid "Address for emails that expect a reply (e.g. bilgi@yourdomain)."
+msgstr "Dirección para correos electrónicos que esperan una respuesta (por ejemplo, bilgi@tudominio)."
+
+msgid "Name shown in the inbox."
+msgstr "Nombre que aparece en la bandeja de entrada."
+
+msgid "Address for emails that don't expect a reply (passwords, notifications)."
+msgstr "Dirección para correos electrónicos que no esperan respuesta (contraseñas, notificaciones)."
+
+msgid "Reply-to address (Reply-To)"
+msgstr "Dirección de respuesta (Responder a)"
+
+msgid "Empty: replies go to the sender address."
+msgstr "Vacío: las respuestas van a la dirección del remitente."
+
+msgid "SMTP server (excluding password)"
+msgstr "Servidor SMTP (excluyendo contraseña)"
+
+msgid "The value is in the format \"server:port:ssl|tls|none:user\", e.g. \"smtp.hostinger.com:465:ssl:bilgi@yourdomain\". The password is entered by the admin in the dashboard."
+msgstr "El valor tiene el formato \"servidor:puerto:ssl|tls|none:user\", p.e. \"smtp.hostinger.com:465:ssl:bilgi@tudominio\". La contraseña la ingresa el administrador en el panel."
+
+msgid "Format: server:port:ssl|tls|none:user"
+msgstr "Formato: servidor:puerto:ssl|tls|ninguno:usuario"
+
+msgid "SMTP server details saved. The method did not change; the admin must select \"SMTP\" after entering the password."
+msgstr "Se guardaron los detalles del servidor SMTP. El método no cambió; el administrador debe seleccionar \"SMTP\" después de ingresar la contraseña."
+
+msgid "php: the server's mail() function; smtp: an SMTP account (the server and password must be entered)."
+msgstr "php: la función mail() del servidor; smtp: una cuenta SMTP (se debe introducir el servidor y la contraseña)."
+
+msgid "The SMTP server or password is missing; the admin must enter it in the dashboard first."
+msgstr "Falta el servidor SMTP o la contraseña; el administrador debe ingresarlo primero en el panel."
+
+msgid "SMTP selected."
+msgstr "SMTP seleccionado."
+
+msgid "PHP mail() selected."
+msgstr "Correo PHP() seleccionado."
+
+msgid "Stop the password email on Google sign-up"
+msgstr "Detener el correo electrónico de contraseña en el registro de Google"
+
+msgid "Enabled."
+msgstr "Habilitado."
+
+msgid "Disabled."
+msgstr "Discapacitado."
+
+msgid "The value is the recipient address; if empty, the site admin's address."
+msgstr "El valor es la dirección del destinatario; si está vacío, la dirección del administrador del sitio."
+
+msgid "Could not send: "
+msgstr "No se pudo enviar:"
+
+msgid "Sent to %s."
+msgstr "Enviado a%s."
+
+msgid "Recheck SPF / DMARC records"
+msgstr "Vuelva a verificar los registros SPF/DMARC"
+
+msgid "Each row shows something the site needs and whether it is in place. Fix errors first; also review the warnings."
+msgstr "Cada fila muestra algo que el sitio necesita y si está implementado. Primero corrija los errores; Revise también las advertencias."
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Warning"
+msgstr "Advertencia"
+
+msgid "Info"
+msgstr "Información"
+
+msgid "%1$d OK · %2$d warnings · %3$d errors"
+msgstr "%1$dOK · Advertencias%2$d· Errores%3$d"
+
+msgid "Show only these (click again to show all)"
+msgstr "Mostrar solo estos (haga clic nuevamente para mostrar todos)"
+
+msgid "Check: %s"
+msgstr "Verificar:%s"
+
+msgid "Members: %1$s (%2$s)"
+msgstr "Miembros:%1$s(%2$s)"
+
+msgid "Flux Certificates contacts (%s)"
+msgstr "Contactos de Certificados Flux (%s)"
+
+msgid "There are no recipients to send to."
+msgstr "No hay destinatarios a los que enviar."
+
+msgid "Subject is required."
+msgstr "Se requiere sujeto."
+
+msgid "Message text is required."
+msgstr "El texto del mensaje es obligatorio."
+
+msgid "There is no active connection for this channel. Add one in Communication › Connections."
+msgstr "No hay ninguna conexión activa para este canal. Agregue uno en Comunicación › Conexiones."
+
+msgid "Sending was canceled."
+msgstr "El envío fue cancelado."
+
+msgid "Unsubscribed."
+msgstr "Cancelado la suscripción."
+
+msgid "The link is invalid."
+msgstr "El enlace no es válido."
+
+msgid "You have been unsubscribed"
+msgstr "Te has dado de baja"
+
+msgid "We will no longer send bulk emails to %s. Transactional emails such as donation and certificate emails will continue to be sent."
+msgstr "Ya no enviaremos correos electrónicos masivos a%s. Se seguirán enviando correos electrónicos transaccionales, como correos electrónicos de donaciones y certificados."
+
+msgid "Do you want to unsubscribe from bulk emails?"
+msgstr "¿Quieres darte de baja de los correos electrónicos masivos?"
+
+msgid "Yes, unsubscribe me"
+msgstr "Si, darme de baja"
+
+msgid "Unsubscribe"
+msgstr "Darse de baja"
+
+msgid "Verified by Google. No set-password email is sent to this account."
+msgstr "Verificado por Google. No se envía ningún correo electrónico con contraseña establecida a esta cuenta."
+
+msgid "This email was sent automatically; please do not reply. For questions, you can write to %s."
+msgstr "Este correo electrónico fue enviado automáticamente; por favor no respondas. Si tiene preguntas, puede escribir a%s."
+
+msgid "I do not want to receive these kinds of emails"
+msgstr "No quiero recibir este tipo de correos electrónicos"
+
+msgid "Other"
+msgstr "Otro"
+
+msgid "Theme"
+msgstr "Tema"
+
+msgid "Certificate email"
+msgstr "Correo electrónico del certificado"
+
+msgid "Receipt uploaded (to admin)"
+msgstr "Recibo cargado (al administrador)"
+
+msgid "New comment on a post"
+msgstr "Nuevo comentario en una publicación."
+
+msgid "Certificate ready"
+msgstr "Certificado listo"
+
+msgid "Sent to the person when the certificate is emailed. The certificate image appears in the email, and clicking it opens the certificate page (where it can be downloaded and shared). {mesaj_html} is the email text from Flux Certificates › Settings or the template."
+msgstr "Enviado a la persona cuando se envía el certificado por correo electrónico. La imagen del certificado aparece en el correo electrónico y, al hacer clic en ella, se abre la página del certificado (donde se puede descargar y compartir).{mesaj_html}es el texto del correo electrónico de Certificados Flux › Configuración o la plantilla."
+
+msgid "Certificate name"
+msgstr "Nombre del certificado"
+
+msgid "Certificate number"
+msgstr "Número de certificado"
+
+msgid "Number of saplings (for sapling certificates)"
+msgstr "Número de árboles jóvenes (para certificados de árboles jóvenes)"
+
+msgid "Certificate date"
+msgstr "Fecha del certificado"
+
+msgid "Certificate page"
+msgstr "Página de certificado"
+
+msgid "Email subject from Flux Certificates"
+msgstr "Asunto del correo electrónico de Certificados Flux"
+
+msgid "Email text from Flux Certificates"
+msgstr "Texto de correo electrónico desde certificados Flux"
+
+msgid "Sapling Donation Certificate"
+msgstr "Certificado de donación de retoños"
+
+msgid "Your Sapling Donation Certificate is ready 🌱"
+msgstr "Tu Certificado de Donación de Retoño está listo 🌱"
+
+msgid "Hello Ahmet,\n\nYour Sapling Donation Certificate is ready. Thank you very much for your support."
+msgstr "Hola Ahmet,\n\nSu Certificado de Donación de Retoño está listo. Muchas gracias por su apoyo."
+
+msgid "Your certificate is ready 🌱"
+msgstr "Tu certificado está listo 🌱"
+
+msgid "View my certificate"
+msgstr "Ver mi certificado"
+
+msgid "Tap the image to open your certificate"
+msgstr "Toca la imagen para abrir tu certificado"
+
+msgid "Sapling"
+msgstr "retoño"
+
+msgid "%s saplings"
+msgstr "%sretoños"
+
+msgid "Certificate no."
+msgstr "Certificado no."
+
+msgid "You can download it as a PDF from the certificate page and share it on WhatsApp and social media."
+msgstr "Puede descargarlo como PDF desde la página del certificado y compartirlo en WhatsApp y redes sociales."
+
+msgid "Flux Mail is active: the email is sent with the branded template and the sender address from Communication › Settings."
+msgstr "Flux Mail está activo: el correo electrónico se envía con la plantilla de marca y la dirección del remitente desde Comunicación › Configuración."
+
+msgid "Default connection"
+msgstr "Conexión predeterminada"
+
+msgid "Flux Mail connection"
+msgstr "Conexión de correo Flux"
+
+msgid "Also send the PDF as a document"
+msgstr "Envía también el PDF como documento."
+
+msgid "WhatsApp · Flux Mail"
+msgstr "WhatsApp · Correo Flux"
+
+msgid "SMS · Flux Mail"
+msgstr "SMS · Correo Flux"
+
+msgid "Connection settings (Evolution / Netgsm) are kept in Communication › Connections; here you only choose which one to use."
+msgstr "La configuración de conexión (Evolution / Netgsm) se guarda en Comunicación › Conexiones; aquí solo eliges cuál usar."
+
+msgid "There is no active connection for this channel in Flux Mail."
+msgstr "No hay ninguna conexión activa para este canal en Flux Mail."
+
+msgid "Invalid email: %s"
+msgstr "Correo electrónico no válido:%s"
+
+msgid "wp_mail returned false (the server may be unable to send email)."
+msgstr "wp_mail devolvió falso (es posible que el servidor no pueda enviar correo electrónico)."
+
+msgid "Flux Certificates is not active."
+msgstr "Los certificados Flux no están activos."
+
+msgid "There is no migration to undo."
+msgstr "No hay migración que deshacer."
+
+msgid "Unknown connection type."
+msgstr "Tipo de conexión desconocido."
+
+msgid "%s is required."
+msgstr "Se requiere%s."
+
+msgid "There is no active connection for %s. Add one in Communication › Connections."
+msgstr "No hay ninguna conexión activa para%s. Agregue uno en Comunicación › Conexiones."
+
+msgid "Connection not found."
+msgstr "Conexión no encontrada."
+
+msgid "This type cannot be tested."
+msgstr "Este tipo no se puede probar."
+
+msgid "Google sign-up: not sent"
+msgstr "Registro de Google: no enviado"
+
+msgid "Template disabled: not sent"
+msgstr "Plantilla deshabilitada: no enviada"
+
+msgid "Another email plugin could not send it."
+msgstr "Otro complemento de correo electrónico no pudo enviarlo."
+
+msgid "Flux Certificates sends WhatsApp and SMS through the active connections here; certificate emails use the corporate template."
+msgstr "Flux Certificates envía WhatsApp y SMS a través de las conexiones activas aquí; Los correos electrónicos de certificados utilizan la plantilla corporativa."
+
+msgid "The mailbox's daily sending limit has been reached. Sending will resume automatically around %s."
+msgstr "Se ha alcanzado el límite de envío diario del buzón. El envío se reanudará automáticamente alrededor de%s."
+
+msgid "Daily email allowance"
+msgstr "Asignación diaria de correo electrónico"
+
+msgid "Mailbox limits"
+msgstr "Límites del buzón"
+
+msgid "The limits of your Hostinger email plan. The send counter uses them; bulk sends never exceed the daily limit, and the rest go out as allowance frees up. If you hit the limits often, upgrade to a higher email plan at Hostinger and update the values here."
+msgstr "Los límites de tu plan de correo electrónico de Hostinger. El contador de envío los utiliza; Los envíos masivos nunca exceden el límite diario y el resto se envía a medida que se libera la asignación. Si alcanzas los límites con frecuencia, actualiza a un plan de correo electrónico superior en Hostinger y actualiza los valores aquí."
+
+msgid "Daily sending (per 24 hours, per mailbox)"
+msgstr "Envío diario (por 24 horas, por buzón)"
+
+msgid "Each To, Cc and Bcc recipient counts as one. 0 = no limit."
+msgstr "Cada destinatario Para, CC y CCO cuenta como uno. 0 = sin límite."
+
+msgid "Reserve for individual emails"
+msgstr "Reservar para correos electrónicos individuales"
+
+msgid "Bulk sending leaves this many sends for password reset, donation and certificate emails."
+msgstr "El envío masivo deja esta cantidad de envíos para restablecimiento de contraseña, donaciones y correos electrónicos de certificados."
+
+msgid "Recipients per message (To, Cc, Bcc)"
+msgstr "Destinatarios por mensaje (Para, CC, CCO)"
+
+msgid "Outgoing email size (MB)"
+msgstr "Tamaño del correo electrónico saliente (MB)"
+
+msgid "Attachment size (MB)"
+msgstr "Tamaño del archivo adjunto (MB)"
+
+msgid "Storage per mailbox (GB)"
+msgstr "Almacenamiento por buzón (GB)"
+
+msgid "Emails per mailbox"
+msgstr "Correos electrónicos por buzón"
+
+msgid "Aliases per mailbox"
+msgstr "Alias por buzón"
+
+msgid "Mailbox forwarders"
+msgstr "Reenviadores de buzones"
+
+msgid "Last 24 hours: %1$s / %2$s"
+msgstr "Últimas 24 horas:%1$s/%2$s"
+
+msgid "Next free slot: %s"
+msgstr "Siguiente espacio libre:%s"
+
+msgid "%1$s: %2$s / %3$s recipients in the last 24 hours."
+msgstr "%1$s: destinatarios%2$s/%3$sen las últimas 24 horas."
+
+msgid "Daily sending limit"
+msgstr "Límite de envío diario"
+
+msgid "Limit reached; emails from this address may not go out until around %s. If this happens often, upgrade to a higher email plan at Hostinger."
+msgstr "Límite alcanzado; Es posible que los correos electrónicos de esta dirección no se envíen hasta aproximadamente%s. Si esto sucede con frecuencia, actualice a un plan de correo electrónico superior en Hostinger."
+
+msgid "Limits"
+msgstr "Límites"
+
+msgid "Close to the limit; bulk sending pauses and leaves room for individual emails."
+msgstr "Cerca del límite; El envío masivo se detiene y deja espacio para correos electrónicos individuales."
+
+msgid "The limit was hit on %s days in the last 30 days; consider upgrading to a higher email plan at Hostinger."
+msgstr "El límite se alcanzó en los días%sde los últimos 30 días; considere actualizar a un plan de correo electrónico superior en Hostinger."
+
+msgid "Because of the daily limit of %1$s, sending all will take about %2$s day."
+msgid_plural "Because of the daily limit of %1$s, sending all will take about %2$s days."
+msgstr[0] "Debido al límite diario de%1$s, enviar todo tardará aproximadamente el día%2$s."
+msgstr[1] "Debido al límite diario de%1$s, enviar todo tardará aproximadamente%2$sdías."
+
+msgid "The daily limit was hit on %s day in the last 30 days."
+msgid_plural "The daily limit was hit on %s days in the last 30 days."
+msgstr[0] "El límite diario se alcanzó el día%sen los últimos 30 días."
+msgstr[1] "El límite diario se alcanzó en los días%sde los últimos 30 días."
+
+msgid "On the blocklist: not sent"
+msgstr "En la lista de bloqueo: no enviado"
+
+msgid "Blocklist"
+msgstr "Lista de bloqueo"
+
+msgid "Active: people on the blocklist get no email, WhatsApp or SMS (except account security emails such as password reset)."
+msgstr "Activo: las personas en la lista de bloqueo no reciben correo electrónico, WhatsApp o SMS (excepto correos electrónicos de seguridad de la cuenta, como restablecimiento de contraseña)."
+
+msgid "No-reply account"
+msgstr "Cuenta sin respuesta"
+
+msgid "SMTP account"
+msgstr "cuenta SMTP"
+
+msgid "Resent from bilgi@."
+msgstr "Resentido de bilgi@."
+
+msgid "Could not sign in to %1$s (%2$s): %3$s Check the username and password; if the password changed in hPanel, enter it here too."
+msgstr "No se pudo iniciar sesión en%1$s(%2$s):%3$sVerifique el nombre de usuario y la contraseña; Si la contraseña cambió en hPanel, ingrésela aquí también."
+
+msgid "%1$s: sign-in OK (last send %2$s)."
+msgstr "%1$s: iniciar sesión correctamente (último envío%2$s)."
+
+msgid "No password entered for %1$s; no-reply emails are sent from %2$s for now. Enter the password, or clear the username field if no-reply@ is an alias of the bilgi@ account."
+msgstr "No se ingresó ninguna contraseña para%1$s; Los correos electrónicos sin respuesta se envían desde%2$spor ahora. Ingrese la contraseña o borre el campo de nombre de usuario si no-reply@ es un alias de la cuenta bilgi@."
+
+msgid "Could not sign in to %1$s (%2$s): %3$s no-reply emails are sent from %4$s for now. Fix and save the password (if the account does not exist, create it in hPanel or clear the username field), then send a test email from no-reply@."
+msgstr "No se pudo iniciar sesión en%1$s(%2$s): Los correos electrónicos sin respuesta de%3$sse envían desde%4$spor ahora. Corrija y guarde la contraseña (si la cuenta no existe, créela en hPanel o borre el campo de nombre de usuario), luego envíe un correo electrónico de prueba desde no-reply@."
+
+msgid "Sent from %2$s because signing in to %1$s failed."
+msgstr "Enviado desde%2$sporque falló el inicio de sesión en%1$s."
+
+msgid "Images"
+msgstr "Imágenes"
+
+msgid "Make images work in every email app (WebP/AVIF → JPG/PNG, full URLs)"
+msgstr "Haga que las imágenes funcionen en todas las aplicaciones de correo electrónico (WebP/AVIF → JPG/PNG, URL completas)"
+
+msgid "Embed the site's images in the email (recipients see them without clicking \"show images\")"
+msgstr "Incrustar las imágenes del sitio en el correo electrónico (los destinatarios las ven sin hacer clic en \"mostrar imágenes\")"
+
+msgid "Forest"
+msgstr "bosque"
+
+msgid "Hills"
+msgstr "colinas"
+
+msgid "Line art"
+msgstr "Arte lineal"
+
+msgid "Footer illustration"
+msgstr "Ilustración de pie de página"
+
+msgid "A tree silhouette at the very bottom of every email. A darker drawing is shown in dark mode."
+msgstr "Una silueta de árbol en la parte inferior de cada correo electrónico. En el modo oscuro se muestra un dibujo más oscuro."
+
+msgid "Inbox"
+msgstr "Bandeja de entrada"
+
+msgid "Awaiting approval"
+msgstr "En espera de aprobación"
+
+msgid "Drafts"
+msgstr "Borradores"
+
+msgid "Layouts"
+msgstr "Diseños"
+
+msgid "New email"
+msgstr "Nuevo correo electrónico"
+
+msgid "Search: person, subject…"
+msgstr "Buscar: persona, tema..."
+
+msgid "System emails"
+msgstr "Correos electrónicos del sistema"
+
+msgid "Unread"
+msgstr "No leído"
+
+msgid "Load more"
+msgstr "Cargar más"
+
+msgid "No emails here."
+msgstr "No hay correos electrónicos aquí."
+
+msgid "No drafts."
+msgstr "Sin borradores."
+
+msgid "Select an email on the left to read it."
+msgstr "Seleccione un correo electrónico a la izquierda para leerlo."
+
+msgid "Sync"
+msgstr "Sincronizar"
+
+msgid "Syncing…"
+msgstr "Sincronizando..."
+
+msgid "Last sync: %s"
+msgstr "Última sincronización:%s"
+
+msgid "Fetching older emails…"
+msgstr "Recuperando correos electrónicos antiguos..."
+
+msgid "Mailbox is off or IMAP details are missing. Fill in Settings › Mailbox to see incoming email. Writing and sending drafts still works."
+msgstr "El buzón está desactivado o faltan detalles IMAP. Complete Configuración > Buzón para ver el correo electrónico entrante. Escribir y enviar borradores todavía funciona."
+
+msgid "Open settings"
+msgstr "Abrir configuración"
+
+msgid "Reply"
+msgstr "Responder"
+
+msgid "Reply all"
+msgstr "Responder a todos"
+
+msgid "Forward"
+msgstr "Adelante"
+
+msgid "Write reply with AI"
+msgstr "Escribir respuesta con IA"
+
+msgid "Write with AI"
+msgstr "Escribe con IA"
+
+msgid "Fix with AI"
+msgstr "Arreglar con IA"
+
+msgid "Optional instruction: \"thank them, invite them to the 11 November event\""
+msgstr "Instrucción opcional: \"agradéceles, invítalos al evento del 11 de noviembre\""
+
+msgid "What should it say? e.g. \"A short, warm tree-planting partnership offer to company X\""
+msgstr "¿Qué debería decir? p.ej. \"Una breve y cálida oferta de colaboración para la plantación de árboles para la empresa X\""
+
+msgid "AI is writing…"
+msgstr "La IA está escribiendo..."
+
+msgid "AI needs the Flux AI & MCP plugin and its key."
+msgstr "AI necesita el complemento Flux AI & MCP y su clave."
+
+msgid "AI draft: check and edit it, then send. Nothing goes out until you send it."
+msgstr "Borrador AI: verifíquelo, edítelo y luego envíelo. No sale nada hasta que lo envías."
+
+msgid "Mark unread"
+msgstr "Marcar como no leído"
+
+msgid "Star"
+msgstr "estrella"
+
+msgid "To"
+msgstr "a"
+
+msgid "Cc"
+msgstr "cc"
+
+msgid "Layout"
+msgstr "Diseño"
+
+msgid "Saved"
+msgstr "Guardado"
+
+msgid "Delete?"
+msgstr "¿Eliminar?"
+
+msgid "Send this email now? To: %s"
+msgstr "¿Enviar este correo electrónico ahora? Para:%s"
+
+msgid "Replying to"
+msgstr "Respondiendo a"
+
+msgid "The earlier conversation is added below the email automatically."
+msgstr "La conversación anterior se agrega debajo del correo electrónico automáticamente."
+
+msgid "Show external images"
+msgstr "Mostrar imágenes externas"
+
+msgid "External images were not shown for privacy."
+msgstr "Las imágenes externas no se mostraron por motivos de privacidad."
+
+msgid "This conversation"
+msgstr "esta conversación"
+
+msgid "Attachments"
+msgstr "Adjuntos"
+
+msgid "Back"
+msgstr "Atrás"
+
+msgid "(no subject)"
+msgstr "(sin tema)"
+
+msgid "me"
+msgstr "yo"
+
+msgid "System"
+msgstr "Sistema"
+
+msgid "Replied"
+msgstr "Respondido"
+
+msgid "Bold"
+msgstr "Negrita"
+
+msgid "Italic"
+msgstr "cursiva"
+
+msgid "Link address:"
+msgstr "Dirección del enlace:"
+
+msgid "List"
+msgstr "Lista"
+
+msgid "Clear formatting"
+msgstr "Borrar formato"
+
+msgid "Open in logs"
+msgstr "Abrir en registros"
+
+msgid "Layouts chosen when sending from the mailbox. In sub-layouts like \"Örnek Vakfı × Company\" the company logo appears at the top; the preset subject and content fill a new email."
+msgstr "Diseños elegidos al enviar desde el buzón. En subdiseños como \"Örnek Vakfı × Company\", el logotipo de la empresa aparece en la parte superior; el asunto y el contenido preestablecidos llenan un nuevo correo electrónico."
+
+msgid "New sub-layout"
+msgstr "Nuevo subdiseño"
+
+msgid "Built-in layout (cannot be changed)"
+msgstr "Diseño integrado (no se puede cambiar)"
+
+msgid "Layout name"
+msgstr "Nombre del diseño"
+
+msgid "Short description"
+msgstr "Breve descripción"
+
+msgid "Corporate (card)"
+msgstr "Corporativo (tarjeta)"
+
+msgid "Plain (letter)"
+msgstr "simple (carta)"
+
+msgid "Company name"
+msgstr "Nombre de la empresa"
+
+msgid "Company logo"
+msgstr "Logotipo de la empresa"
+
+msgid "Company website"
+msgstr "Sitio web de la empresa"
+
+msgid "Accent color"
+msgstr "Color de acento"
+
+msgid "Heading (large heading in corporate)"
+msgstr "Título (título grande en corporativo)"
+
+msgid "Preset subject"
+msgstr "Asunto preestablecido"
+
+msgid "Preset content"
+msgstr "Contenido preestablecido"
+
+msgid "New email with this layout"
+msgstr "Nuevo correo electrónico con este diseño"
+
+msgid "Mailbox"
+msgstr "buzón"
+
+msgid "Incoming and outgoing email for bilgi@, drafts and AI replies."
+msgstr "Correo electrónico entrante y saliente para bilgi@, borradores y respuestas AI."
+
+msgid "Loading…"
+msgstr "Cargando…"
+
+msgid "Dark"
+msgstr "oscuro"
+
+msgid "Email arriving at bilgi@ and email sent from webmail appear on the Mailbox screen in the left menu, where you can reply. The site connects over IMAP and fetches a few emails every few minutes (light on shared hosting). Attachments are not stored on the site; they are read from the server when opened."
+msgstr "El correo electrónico que llega a bilgi@ y el correo electrónico enviado desde webmail aparecen en la pantalla Buzón en el menú de la izquierda, donde puedes responder. El sitio se conecta a través de IMAP y recupera algunos correos electrónicos cada pocos minutos (ligero en alojamiento compartido). Los archivos adjuntos no se almacenan en el sitio; se leen desde el servidor cuando se abren."
+
+msgid "Enable mailbox"
+msgstr "Habilitar buzón"
+
+msgid "IMAP server"
+msgstr "servidor IMAP"
+
+msgid "If empty, the SMTP user (bilgi@) is used."
+msgstr "Si está vacío, se utiliza el usuario SMTP (bilgi@)."
+
+msgid "If empty, the SMTP password is used"
+msgstr "Si está vacío, se utiliza la contraseña SMTP."
+
+msgid "How many days of email to fetch on first setup"
+msgstr "¿Cuántos días de correo electrónico se deben recuperar en la primera configuración?"
+
+msgid "How many days to keep on the site"
+msgstr "¿Cuántos días permanecer en el sitio?"
+
+msgid "Emails on the server are not deleted; only the copy on the site."
+msgstr "Los correos electrónicos del servidor no se eliminan; sólo la copia en el sitio."
+
+msgid "Signature (optional)"
+msgstr "Firma (opcional)"
+
+msgid "Kind regards,\n{ad_soyad}"
+msgstr "Saludos cordiales,{ad_soyad}"
+
+msgid "Added to the end of emails written from the mailbox, followed by the organization details with logo. {ad_soyad} becomes the writer's name. If empty, \"Kind regards,\"."
+msgstr "Se agrega al final de los correos electrónicos escritos desde el buzón, seguido de los detalles de la organización con el logotipo.{ad_soyad}se convierte en el nombre del escritor. Si está vacío, \"Saludos cordiales\"."
+
+msgid "Test connection"
+msgstr "Conexión de prueba"
+
+msgid "Save first, then test."
+msgstr "Primero guarde y luego pruebe."
+
+msgid "On, but the IMAP server, user or password is missing (Communication › Settings › Mailbox)."
+msgstr "Encendido, pero falta el servidor IMAP, el usuario o la contraseña (Comunicación › Configuración › Buzón)."
+
+msgid "Last sync %s. Scheduled tasks (WP-Cron) may not be running; syncing still happens while the Mailbox screen is open."
+msgstr "Última sincronización%s. Es posible que las tareas programadas (WP-Cron) no se estén ejecutando; la sincronización aún ocurre mientras la pantalla del Buzón está abierta."
+
+msgid "Syncing; last sync %s."
+msgstr "Sincronización; última sincronización%s."
+
+msgid "Sent folder not found: email sent from webmail will not appear."
+msgstr "Carpeta de enviados no encontrada: el correo electrónico enviado desde webmail no aparecerá."
+
+msgid "Email not found."
+msgstr "Correo electrónico no encontrado."
+
+msgid "Content was not stored (Settings › Log › content logging is off)."
+msgstr "El contenido no se almacenó (Configuración › Registro › el registro de contenido está desactivado)."
+
+msgid "The action could not be completed."
+msgstr "La acción no se pudo completar."
+
+msgid "Connection successful. The inbox has %1$s emails. Sent folder: %2$s"
+msgstr "Conexión exitosa. La bandeja de entrada tiene correos electrónicos%1$s. Carpeta enviada:%2$s"
+
+msgid "not found"
+msgstr "no encontrado"
+
+msgid "Draft not found."
+msgstr "Borrador no encontrado."
+
+msgid "Draft not found or already sent."
+msgstr "Borrador no encontrado o ya enviado."
+
+msgid "Forwarded email"
+msgstr "correo electrónico reenviado"
+
+msgid "On %1$s, %2$s wrote:"
+msgstr "En%1$s,%2$sescribió:"
+
+msgid "This draft was already sent."
+msgstr "Este borrador ya fue enviado."
+
+msgid "No recipient (To) or the address is invalid."
+msgstr "Ningún destinatario (Para) o la dirección no es válida."
+
+msgid "Subject is empty."
+msgstr "El asunto está vacío."
+
+msgid "An email can have at most %s recipients."
+msgstr "Un correo electrónico puede tener como máximo destinatarios%s."
+
+msgid "Recipient is blocklisted: email not sent."
+msgstr "El destinatario está en la lista bloqueada: correo electrónico no enviado."
+
+msgid "Email not sent (template is off)."
+msgstr "Correo electrónico no enviado (la plantilla está desactivada)."
+
+msgid "Could not send. Details in Logs."
+msgstr "No se pudo enviar. Detalles en Registros."
+
+msgid "Draft"
+msgstr "Borrador"
+
+msgid "IMAP server, user or password is missing (Settings › Mailbox)."
+msgstr "Falta el servidor IMAP, el usuario o la contraseña (Configuración › Buzón)."
+
+msgid "Mailbox is off."
+msgstr "El buzón está desactivado."
+
+msgid "Attachment not found."
+msgstr "Adjunto no encontrado."
+
+msgid "Message not found on the server (it may have been deleted or moved)."
+msgstr "Mensaje no encontrado en el servidor (puede que haya sido eliminado o movido)."
+
+msgid "Corporate"
+msgstr "Corporativo"
+
+msgid "Logo card, button, corporate footer. For announcements and new emails."
+msgstr "Tarjeta con logotipo, botón, pie de página corporativo. Para anuncios y nuevos correos electrónicos."
+
+msgid "Plain"
+msgstr "Llano"
+
+msgid "Personal letter look with a small logo signature below. For replies."
+msgstr "Aspecto de letra personal con un pequeño logotipo debajo. Para respuestas."
+
+msgid "Untitled layout"
+msgstr "Diseño sin título"
+
+msgid "Kind regards,"
+msgstr "Saludos cordiales,"
+
+msgid "Could not connect to %1$s: %2$s"
+msgstr "No se pudo conectar a%1$s:%2$s"
+
+msgid "The server sent no IMAP greeting."
+msgstr "El servidor no envió ningún saludo IMAP."
+
+msgid "STARTTLS failed."
+msgstr "STARTTLS falló."
+
+msgid "IMAP login failed: wrong user name or password."
+msgstr "Error al iniciar sesión IMAP: nombre de usuario o contraseña incorrectos."
+
+msgid "Could not open folder %s."
+msgstr "No se pudo abrir la carpeta%s."
+
+msgid "IMAP connection lost."
+msgstr "Se perdió la conexión IMAP."
+
+msgid "IMAP server did not respond (timeout)."
+msgstr "El servidor IMAP no respondió (tiempo de espera agotado)."
+
+msgid "Flux AI & MCP is not installed or has no key (Flux AI & MCP › Settings)."
+msgstr "Flux AI & MCP no está instalado o no tiene clave (Flux AI & MCP › Configuración)."
+
+msgid "List emails"
+msgstr "Listar correos electrónicos"
+
+msgid "Read email"
+msgstr "Leer correo electrónico"
+
+msgid "List email layouts"
+msgstr "Listar diseños de correo electrónico"
+
+msgid "Write email draft"
+msgstr "Escribir borrador de correo electrónico"
+
+msgid "Send draft"
+msgstr "Enviar borrador"
+
+msgid "Communication (mailbox)"
+msgstr "Comunicación (buzón)"
+
+msgid "Flux Mail"
+msgstr "Correo de flujo"
+
+msgid "Email reply"
+msgstr "Respuesta por correo electrónico"
+
+msgid "Email draft"
+msgstr "Borrador de correo electrónico"
+
+msgid "No PDF converter on the server (Flux AI & MCP › Settings › Images › Gotenberg)."
+msgstr "No hay convertidor de PDF en el servidor (Flux AI y MCP › Configuración › Imágenes › Gotenberg)."
+
+msgid "Could not reach the PDF converter: %s"
+msgstr "No se pudo acceder al convertidor de PDF:%s"
+
+msgid "Could not create the PDF (HTTP %d)."
+msgstr "No se pudo crear el PDF (HTTP%d)."
+
+msgid "Download PDF"
+msgstr "Descargar PDF"
+
+msgid "Preparing PDF…"
+msgstr "Preparando PDF..."
+
+msgid "Email parser"
+msgstr "analizador de correo electrónico"
+
+msgid "PHP mailparse extension is on: headers and addresses of incoming email are read with it."
+msgstr "La extensión PHP mailparse está activada: los encabezados y direcciones de los correos electrónicos entrantes se leen con ella."
+
+msgid "The PHP mailparse extension is missing; the plugin's own parser is used (it works). You can turn on \"mailparse\" in hPanel › PHP Configuration › PHP Extensions."
+msgstr "Falta la extensión PHP mailparse; Se utiliza el propio analizador del complemento (funciona). Puede activar \"mailparse\" en hPanel › Configuración PHP › Extensiones PHP."
+
+msgid "Built-in"
+msgstr "Incorporado"
+
+msgid "AI"
+msgstr "IA"
+
+msgid "There are unsaved changes. Close anyway?"
+msgstr "Hay cambios no guardados. ¿Cerrar de todos modos?"
+
+msgid "The draft is empty."
+msgstr "El borrador está vacío."
+
+msgid "Added to the end of emails written from the mailbox; the organization info with logo comes below it. {ad_soyad} becomes the writer's name. If empty, nothing is added."
+msgstr "Agregado al final de los correos electrónicos escritos desde el buzón; La información de la organización con el logotipo aparece debajo.{ad_soyad}se convierte en el nombre del escritor. Si está vacío, no se agrega nada."
+
+msgid "Server"
+msgstr "Servidor"
+
+msgid "I'll enter new server details"
+msgstr "Introduciré nuevos detalles del servidor."
+
+msgid "Same server: %1$s (%2$s)"
+msgstr "Mismo servidor:%1$s(%2$s)"
+
+msgid "When adding a second number to the same server, the address and API key aren't entered again; just type the new instance name."
+msgstr "Al agregar un segundo número al mismo servidor, la dirección y la clave API no se vuelven a ingresar; simplemente escriba el nuevo nombre de la instancia."
+
+msgid "Each row is one number. Press \"Connect\" to link a number, see its status or reconnect it; no separate panel needed."
+msgstr "Cada fila es un número. Presione \"Conectar\" para vincular un número, ver su estado o volver a conectarlo; no se necesita un panel separado."
+
+msgid "Connect"
+msgstr "Conectar"
+
+msgid "Restart"
+msgstr "Reiniciar"
+
+msgid "Log the number out"
+msgstr "Cerrar sesión en el número"
+
+msgid "Server settings"
+msgstr "Configuración del servidor"
+
+msgid "Delete (number stays on the server)"
+msgstr "Eliminar (el número permanece en el servidor)"
+
+msgid "Also delete from the server"
+msgstr "Eliminar también del servidor."
+
+msgid "Also delete the number from the server? The session, message history and contacts are deleted on the server; adding it again needs a QR scan."
+msgstr "¿Eliminar también el número del servidor? La sesión, el historial de mensajes y los contactos se eliminan en el servidor; agregarlo nuevamente necesita un escaneo QR."
+
+msgid "Connection saved. On the phone, scan the QR in WhatsApp › Linked devices › Link a device."
+msgstr "Conexión guardada. En el teléfono escanea el QR en WhatsApp › Dispositivos vinculados › Vincular un dispositivo."
+
+msgid "Connected"
+msgstr "Conectado"
+
+msgid "Waiting for QR"
+msgstr "Esperando QR"
+
+msgid "Not connected"
+msgstr "No conectado"
+
+msgid "Not on the server"
+msgstr "No en el servidor"
+
+msgid "Server unreachable"
+msgstr "Servidor inalcanzable"
+
+msgid "Status unknown"
+msgstr "Estado desconocido"
+
+msgid "WhatsApp QR code"
+msgstr "código qr whatsapp"
+
+msgid "Open WhatsApp on the phone."
+msgstr "Abre WhatsApp en el teléfono."
+
+msgid "Settings › Linked devices › Link a device."
+msgstr "Configuración › Dispositivos vinculados › Vincular un dispositivo."
+
+msgid "Scan this QR. The code refreshes by itself."
+msgstr "Escanea este QR. El código se actualiza solo."
+
+msgid "Can't scan the QR: get a code with the phone number"
+msgstr "No puedo escanear el QR: obtiene un código con el número de teléfono"
+
+msgid "Phone number"
+msgstr "Número de teléfono"
+
+msgid "Get code"
+msgstr "Obtener código"
+
+msgid "Type this code in WhatsApp › Linked devices › Link a device › \"Link with phone number instead\"."
+msgstr "Escriba este código en WhatsApp › Dispositivos vinculados › Vincular un dispositivo › \"En su lugar, vincular con número de teléfono\"."
+
+msgid "Flux WPAPI server"
+msgstr "Servidor WPAPI de flujo"
+
+msgid "Please wait…"
+msgstr "Por favor espera..."
+
+msgid "Scan the QR with the phone."
+msgstr "Escanea el QR con el teléfono."
+
+msgid "Type this code in WhatsApp on the phone."
+msgstr "Escribe este código en WhatsApp en el teléfono."
+
+msgid "Connected."
+msgstr "Conectado."
+
+msgid "Log the number out? Messages won't arrive; reconnecting needs a QR scan."
+msgstr "¿Cerrar sesión en el número? Los mensajes no llegarán; la reconexión necesita un escaneo QR."
+
+msgid "Version"
+msgstr "Versión"
+
+msgid "Data store"
+msgstr "almacén de datos"
+
+msgid "File"
+msgstr "Archivo"
+
+msgid "Last keep-alive"
+msgstr "último mantenimiento con vida"
+
+msgid "none yet"
+msgstr "ninguno todavía"
+
+msgid "Voice message converter"
+msgstr "Conversor de mensajes de voz"
+
+msgid "Yes"
+msgstr "si"
+
+msgid "Bridge public address"
+msgstr "megafonía del puente"
+
+msgid "Keep-alive sends requests to this address. E.g. https://example.org"
+msgstr "Keep-alive envía solicitudes a esta dirección. P.ej.https://example.org"
+
+msgid "Keep awake (so Hostinger doesn't put the app to sleep)"
+msgstr "Mantenerse despierto (para que Hostinger no ponga la aplicación en suspensión)"
+
+msgid "Database"
+msgstr "Base de datos"
+
+msgid "The database comes from the bridge's environment variables; it can't be changed here."
+msgstr "La base de datos proviene de las variables de entorno del puente; No se puede cambiar aquí."
+
+msgid "Store"
+msgstr "Tienda"
+
+msgid "Database name"
+msgstr "Nombre de la base de datos"
+
+msgid "User"
+msgstr "Usuario"
+
+msgid "Saved · type to change"
+msgstr "Guardado · escribe para cambiar"
+
+msgid "Table prefix"
+msgstr "Prefijo de tabla"
+
+msgid "The password is only sent to the bridge; it isn't stored in WordPress."
+msgstr "La contraseña sólo se envía al puente; no está almacenado en WordPress."
+
+msgid "Changing the store closes the numbers' connections and they need a new QR scan. Continue?"
+msgstr "Al cambiar de tienda se cierran las conexiones de los números y necesitan un nuevo escaneo QR. ¿Continuar?"
+
+msgid "Test database"
+msgstr "Base de datos de prueba"
+
+msgid "WhatsApp connection not found."
+msgstr "Conexión de WhatsApp no encontrada."
+
+msgid "Couldn't reach the server:"
+msgstr "No se pudo acceder al servidor:"
+
+msgid "API key was not accepted."
+msgstr "No se aceptó la clave API."
+
+msgid "Server settings exist only for Flux WPAPI connections."
+msgstr "La configuración del servidor existe solo para conexiones Flux WPAPI."
+
+msgid "This Flux WPAPI version doesn't support changing server settings from WordPress. Update the bridge."
+msgstr "Esta versión de Flux WPAPI no admite cambiar la configuración del servidor desde WordPress. Actualiza el puente."
+
+msgid "WhatsApp · Flux WPAPI"
+msgstr "WhatsApp · Flujo WPAPI"
+
+msgid "The Flux WPAPI bridge installed as a Node.js app on Hostinger. The address is e.g. https://wa.example.com; the API key is the bridge panel's general API key; the instance is the name you give this number (created on \"Connect\" if it does not exist)."
+msgstr "El puente Flux WPAPI instalado como una aplicación Node.js en Hostinger. La dirección es p.e.https://wa.example.com; la clave API es la clave API general del panel puente; la instancia es el nombre que le das a este número (creado en \"Conectar\" si no existe)."
+
+msgid "Number not connected (status: %s). Scan the QR with \"Connect\"."
+msgstr "Número no conectado (estado:%s). Escanea el QR con \"Conectar\"."
+
+msgid "Setup"
+msgstr "Configuración"
+
+msgid "Connection saved. Now enter the webhook address in your Meta app."
+msgstr "Conexión guardada. Ahora ingrese la dirección del webhook en su aplicación Meta."
+
+msgid "What's different in Cloud API"
+msgstr "¿Qué es diferente en la API de la nube?"
+
+msgid "24-hour rule: if the person hasn't written in the last 24 hours, only a Meta-approved template can be sent."
+msgstr "Regla de las 24 horas: si la persona no ha escrito en las últimas 24 horas, sólo se podrá enviar una plantilla Metaaprobada."
+
+msgid "No group messages: Call Center's team group mirror doesn't work on this line."
+msgstr "No hay mensajes grupales: el espejo del grupo del equipo de Call Center no funciona en esta línea."
+
+msgid "Sent messages can't be edited; past chats can't be imported."
+msgstr "Los mensajes enviados no se pueden editar; Los chats pasados ​​no se pueden importar."
+
+msgid "\"Typing…\" only shows while replying to an incoming message."
+msgstr "\"Escribiendo...\" solo aparece al responder a un mensaje entrante."
+
+msgid "Cost: template messages and replies beyond 1000 a month are charged by Meta."
+msgstr "Costo: Meta cobra los mensajes de plantilla y las respuestas superiores a 1000 por mes."
+
+msgid "No ban risk; the number can stay in the WhatsApp Business app on the phone too (coexistence)."
+msgstr "Sin riesgo de prohibición; el número también puede permanecer en la aplicación WhatsApp Business del teléfono (convivencia)."
+
+msgid "Copy"
+msgstr "Copiar"
+
+msgid "Number quality"
+msgstr "Calidad numérica"
+
+msgid "High"
+msgstr "Alto"
+
+msgid "Medium"
+msgstr "Medio"
+
+msgid "Low"
+msgstr "Bajo"
+
+msgid "Webhook (incoming messages)"
+msgstr "Webhook (mensajes entrantes)"
+
+msgid "Meta for Developers › your app › WhatsApp › Configuration › Webhook: enter the address and verify token below, press \"Verify and save\", then subscribe to the \"messages\" field."
+msgstr "Meta para desarrolladores › tu aplicación › WhatsApp › Configuración › Webhook: ingresa la dirección y verifica el token a continuación, presiona \"Verificar y guardar\", luego suscríbete al campo \"mensajes\"."
+
+msgid "Callback URL"
+msgstr "URL de devolución de llamada"
+
+msgid "Verify token"
+msgstr "Verificar token"
+
+msgid "Meta verification"
+msgstr "Metaverificación"
+
+msgid "Last incoming event"
+msgstr "Último evento entrante"
+
+msgid "Request with a bad signature"
+msgstr "Solicitud con mala firma"
+
+msgid "Open 24-hour windows"
+msgstr "Ventanas abiertas las 24 horas"
+
+msgid "App Secret not entered: incoming requests aren't verified as coming from Meta. Add it under Edit."
+msgstr "Secreto de aplicación no ingresado: no se verifica que las solicitudes entrantes provengan de Meta. Agréguelo en Editar."
+
+msgid "Approved templates"
+msgstr "Plantillas aprobadas"
+
+msgid "WABA ID is required for templates."
+msgstr "Se requiere WABA ID para las plantillas."
+
+msgid "No templates. Add them in WhatsApp Manager › Message templates."
+msgstr "Sin plantillas. Agréguelos en WhatsApp Manager › Plantillas de mensajes."
+
+msgid "WhatsApp · Cloud API (Meta)"
+msgstr "WhatsApp · API en la nube (Meta)"
+
+msgid "Meta's official WhatsApp Cloud API; no extra server. From Meta Business › WhatsApp Manager copy the Phone Number ID and WhatsApp Business account (WABA) ID, and from Business settings › System users copy a permanent access token. After saving, paste the webhook URL from \"Setup\" into the Meta app."
+msgstr "API oficial de WhatsApp Cloud de Meta; sin servidor adicional. Desde Meta Business › WhatsApp Manager copie el ID del número de teléfono y el ID de la cuenta de WhatsApp Business (WABA), y desde la configuración de Business › Los usuarios del sistema copian un token de acceso permanente. Después de guardar, pegue la URL del webhook de \"Configuración\" en la aplicación Meta."
+
+msgid "Phone Number ID"
+msgstr "Identificación del número de teléfono"
+
+msgid "WhatsApp Business account ID (WABA)"
+msgstr "ID de cuenta de WhatsApp Business (WABA)"
+
+msgid "Needed for the template list."
+msgstr "Necesario para la lista de plantillas."
+
+msgid "Permanent access token (System User token)"
+msgstr "Token de acceso permanente (token de usuario del sistema)"
+
+msgid "App Secret"
+msgstr "Secreto de la aplicación"
+
+msgid "Verifies that incoming webhooks come from Meta. If empty, the signature isn't checked (not recommended)."
+msgstr "Verifica que los webhooks entrantes provengan de Meta. Si está vacía, la firma no se verifica (no recomendado)."
+
+msgid "Graph API version"
+msgstr "Versión de API gráfica"
+
+msgid "Couldn't reach Meta:"
+msgstr "No se pudo llegar a Meta:"
+
+msgid "24-hour window closed: the person hasn't written in the last 24 hours. Only an approved template can be sent."
+msgstr "Ventana de 24 horas cerrada: la persona no ha escrito en las últimas 24 horas. Sólo se puede enviar una plantilla aprobada."
+
+msgid "Message not delivered: the number has no WhatsApp or has blocked you."
+msgstr "Mensaje no entregado: el número no tiene WhatsApp o te ha bloqueado."
+
+msgid "Access token is invalid or expired."
+msgstr "El token de acceso no es válido o ha caducado."
+
+msgid "This number isn't on the test list (Meta test account)."
+msgstr "Este número no está en la lista de prueba (cuenta de metaprueba)."
+
+msgid "Messages sent to the same person too fast; wait a little."
+msgstr "Mensajes enviados a la misma persona demasiado rápido; espera un poco."
+
+msgid "Template not found or not approved in this language."
+msgstr "Plantilla no encontrada o no aprobada en este idioma."
+
+msgid "Cloud API connection is incomplete."
+msgstr "La conexión a la API de la nube está incompleta."
+
+msgid "To test, first send a message from that number to this line."
+msgstr "Para probar, primero envíe un mensaje desde ese número a esta línea."
+
+msgid "Cloud API connection not found."
+msgstr "No se encontró la conexión API de la nube."
+
+msgid "Status / reconnect (QR)"
+msgstr "Estado/reconexión (QR)"
+
+msgid "Check connection"
+msgstr "Comprobar conexión"
+
+msgid "Sends no message; only checks the connection."
+msgstr "No envía ningún mensaje; Sólo comprueba la conexión."
+
+msgid "Recipient number"
+msgstr "Número de destinatario"
+
+msgid "With country code, e.g. 905301234567. Messages go to this number."
+msgstr "Con código de país, p.e. 905301234567. Los mensajes van a este número."
+
+msgid "What to send?"
+msgstr "¿Qué enviar?"
+
+msgid "Text"
+msgstr "Texto"
+
+msgid "Image"
+msgstr "Imagen"
+
+msgid "Voice message"
+msgstr "Mensaje de voz"
+
+msgid "Document (PDF)"
+msgstr "Documento (PDF)"
+
+msgid "Message text"
+msgstr "Texto del mensaje"
+
+msgid "Image / document caption"
+msgstr "Título de imagen/documento"
+
+msgid "Hello, this is a %s test message. 🌱"
+msgstr "Hola, este es un mensaje de prueba%s. 🌱"
+
+msgid "Test image · %s"
+msgstr "Imagen de prueba ·%s"
+
+msgid "Send %d messages"
+msgstr "Enviar mensajes%d"
+
+msgid "Enter the recipient number first."
+msgstr "Ingrese primero el número del destinatario."
+
+msgid "Pick at least one scenario."
+msgstr "Elija al menos un escenario."
+
+msgid "The number is not connected; messages will not go out. Scan the QR with \"Connect\" first."
+msgstr "El número no está conectado; Los mensajes no saldrán. Primero escanee el QR con \"Conectar\"."
+
+msgid "24-hour rule: if the person has not written to this line in the last 24 hours, text, image, audio and documents will not go out; only approved templates. Send a message to this line from that number first."
+msgstr "Regla de las 24 horas: si la persona no ha escrito a esta línea en las últimas 24 horas, no saldrán textos, imágenes, audios y documentos; Sólo plantillas aprobadas. Envíe primero un mensaje a esta línea desde ese número."
+
+msgid "Choose a template"
+msgstr "Elige una plantilla"
+
+msgid "Loading templates…"
+msgstr "Cargando plantillas..."
+
+msgid "No approved templates."
+msgstr "No hay plantillas aprobadas."
+
+msgid "Variable {{%d}}"
+msgstr "Variable {{%d}}"
+
+msgid "SMS is paid; each message is deducted from the balance."
+msgstr "Los SMS se pagan; cada mensaje se descuenta del saldo."
+
+msgid "1 page · PDF"
+msgstr "1 página · PDF"
+
+msgid "%1$d / %2$d sent."
+msgstr "%1$d/%2$denviado."
+
+msgid "Check the phone."
+msgstr "Revisa el teléfono."
+
+msgid "SMS"
+msgstr "SMS"
+
+msgid "This connection does not support this scenario."
+msgstr "Esta conexión no admite este escenario."
+
+msgid "Enter a valid recipient number."
+msgstr "Ingrese un número de destinatario válido."
+
+msgid "Choose a template."
+msgstr "Elija una plantilla."
+
+msgid "To try, first send a message to this line from that number, or send a template."
+msgstr "Para intentarlo, primero envía un mensaje a esta línea desde ese número o envía una plantilla."
+
+msgid "The file could not be read."
+msgstr "No se pudo leer el archivo."
+
+msgid "The file could not be uploaded to Meta:"
+msgstr "El archivo no se pudo cargar en Meta:"
+
+msgid "Incoming e-mail appears here."
+msgstr "El correo electrónico entrante aparece aquí."
+
+msgid "Inbox is empty"
+msgstr "La bandeja de entrada está vacía"
+
+msgid "Could not send."
+msgstr "No se pudo enviar."
+
+msgid "Sent e-mail, WhatsApp and SMS appear here."
+msgstr "Aquí aparecen el correo electrónico enviado, WhatsApp y SMS."
+
+msgid "Send log"
+msgstr "Enviar registro"
+
+msgid "Log entry"
+msgstr "Entrada de registro"
+
+msgid "No log entries"
+msgstr "Sin entradas de registro"
+
+msgid "From or subject"
+msgstr "De o sujeto"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "The reply cannot be empty."
+msgstr "La respuesta no puede estar vacía."
+
+msgid "[['All emails of the site in one place: sender name/address (info@ / no-reply@), SMTP, corporate templates with logo and mobile-friendly, viewing, editing, opening/closing emails of WordPress + WooCommerce + FluxWP plugins, sending records, individual and bulk sending. WhatsApp (Evolution API) and SMS (Netgsm) connections are also here; Other plugins use it with public API.', 'tr']]"
+msgstr "[['Todos los correos electrónicos del sitio en un solo lugar: nombre/dirección del remitente (info@ / no-reply@), SMTP, plantillas corporativas con logo y optimizadas para dispositivos móviles, visualización, edición, apertura/cierre de correos electrónicos de WordPress + WooCommerce + complementos FluxWP, envío de registros, envío individual y masivo. Las conexiones de WhatsApp (Evolution API) y SMS (Netgsm) también están aquí; Otros complementos lo usan con API pública.', 'tr']]"

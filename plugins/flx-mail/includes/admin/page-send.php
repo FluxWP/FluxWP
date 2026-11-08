@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit;
 function flxi_page_send() {
 	global $wpdb;
 	$cid = isset( $_GET['campaign'] ) ? (int) $_GET['campaign'] : 0; // phpcs:ignore
-	flxi_page_head( __( 'Gönder', 'flx-mail' ), __( 'Bir kişiye ya da bir listeye kurumsal şablonla e-posta, WhatsApp veya SMS gönderin. Toplu gönderim arka planda sırayla gider.', 'flx-mail' ) );
+	flxi_page_head( __( 'Send', 'flx-mail' ), __( 'Send an email, WhatsApp or SMS message to one person or a list using the branded template. Bulk sends are processed in the background, one after another.', 'flx-mail' ) );
 
 	if ( $cid ) {
 		$c = flxi_get_campaign( $cid );
@@ -21,28 +21,28 @@ function flxi_page_send() {
 			$pct = $c['total'] ? round( 100 * ( $c['sent'] + $c['failed'] + $c['skipped'] ) / $c['total'] ) : 0;
 			echo '<div class="flxi-bar"><span style="width:' . (int) $pct . '%"></span></div>';
 			/* translators: 1: gönderilen, 2: toplam, 3: hatalı */
-			echo '<p data-progress-text>' . esc_html( sprintf( __( '%1$s / %2$s gönderildi · %3$s hatalı', 'flx-mail' ), number_format_i18n( $c['sent'] ), number_format_i18n( $c['total'] ), number_format_i18n( $c['failed'] ) ) ) . '</p>';
+			echo '<p data-progress-text>' . esc_html( sprintf( __( '%1$s / %2$s sent · %3$s failed', 'flx-mail' ), number_format_i18n( $c['sent'] ), number_format_i18n( $c['total'] ), number_format_i18n( $c['failed'] ) ) ) . '</p>';
 			if ( $open ) {
 				$paused = (int) get_option( 'flxi_quota_paused' );
 				$ptext  = '';
 				if ( 'email' === $c['channel'] && $paused > time() ) {
 					/* translators: %s: time */
-					$ptext = sprintf( __( 'Posta kutusunun günlük gönderim sınırı doldu. Gönderim %s civarında kendiliğinden devam edecek.', 'flx-mail' ), flx_date( $paused, 'time' ) . ', ' . flx_date( $paused, 'short' ) );
+					$ptext = sprintf( __( 'The mailbox\'s daily sending limit has been reached. Sending will resume automatically around %s.', 'flx-mail' ), flx_date( $paused, 'time' ) . ', ' . flx_date( $paused, 'short' ) );
 				}
 				echo '<p class="flxi-notice-inline" data-quota-paused' . ( $ptext ? '' : ' hidden' ) . '>' . esc_html( $ptext ) . '</p>';
-				echo '<p class="flxi-muted">' . esc_html__( 'Bu sayfa açıkken gönderim hızlanır; kapatırsanız arka planda devam eder.', 'flx-mail' ) . '</p>';
+				echo '<p class="flxi-muted">' . esc_html__( 'Sending is faster while this page is open; if you close it, it continues in the background.', 'flx-mail' ) . '</p>';
 				echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
 				wp_nonce_field( 'flxi_cancel_campaign' );
-				echo '<input type="hidden" name="action" value="flxi_cancel_campaign"><input type="hidden" name="id" value="' . (int) $cid . '"><button class="button">' . esc_html__( 'Durdur', 'flx-mail' ) . '</button></form>';
+				echo '<input type="hidden" name="action" value="flxi_cancel_campaign"><input type="hidden" name="id" value="' . (int) $cid . '"><button class="button">' . esc_html__( 'Stop', 'flx-mail' ) . '</button></form>';
 			}
-			echo ' <a class="button" href="' . esc_url( flxi_admin_url( 'flxi-kayitlar', array( 'campaign' => $cid ) ) ) . '">' . esc_html__( 'Kayıtları gör', 'flx-mail' ) . '</a></div>';
+			echo ' <a class="button" href="' . esc_url( flxi_admin_url( 'flxi-kayitlar', array( 'campaign' => $cid ) ) ) . '">' . esc_html__( 'View log', 'flx-mail' ) . '</a></div>';
 		}
 	}
 
 	if ( flxi_limits()['daily'] ) {
-		echo '<details class="flxi-card flxi-quota-card"><summary class="flxi-card__title">' . esc_html__( 'Günlük e-posta hakkı', 'flx-mail' ) . '</summary>';
+		echo '<details class="flxi-card flxi-quota-card"><summary class="flxi-card__title">' . esc_html__( 'Daily email allowance', 'flx-mail' ) . '</summary>';
 		echo flxi_quota_meter_html(); // phpcs:ignore
-		echo '<a href="' . esc_url( flxi_admin_url( 'flxi-ayarlar' ) . '#sinirlar' ) . '">' . esc_html__( 'Posta kutusu sınırları', 'flx-mail' ) . '</a></details>';
+		echo '<a href="' . esc_url( flxi_admin_url( 'flxi-ayarlar' ) . '#sinirlar' ) . '">' . esc_html__( 'Mailbox limits', 'flx-mail' ) . '</a></details>';
 	}
 
 	$sources = flxi_recipient_sources();
@@ -53,17 +53,17 @@ function flxi_page_send() {
 	echo '<input type="hidden" name="action" value="flxi_create_campaign">';
 	echo '<div class="flxi-editor__form"><div class="flxi-card">';
 
-	echo '<fieldset class="flxi-field"><legend>' . esc_html__( 'Kanal', 'flx-mail' ) . '</legend><div class="flxi-seg flxi-seg--wide" data-channel-seg>';
+	echo '<fieldset class="flxi-field"><legend>' . esc_html__( 'Channel', 'flx-mail' ) . '</legend><div class="flxi-seg flxi-seg--wide" data-channel-seg>';
 	foreach ( flxi_channels() as $ch => $label ) {
 		$dis = 'email' !== $ch && ! $conns[ $ch ];
-		printf( '<label class="%s"><input type="radio" name="channel" value="%s"%s%s> %s%s</label>', $dis ? 'is-disabled' : '', esc_attr( $ch ), checked( $ch, 'email', false ), disabled( $dis, true, false ), esc_html( $label ), $dis ? ' <small>(' . esc_html__( 'bağlantı yok', 'flx-mail' ) . ')</small>' : '' );
+		printf( '<label class="%s"><input type="radio" name="channel" value="%s"%s%s> %s%s</label>', $dis ? 'is-disabled' : '', esc_attr( $ch ), checked( $ch, 'email', false ), disabled( $dis, true, false ), esc_html( $label ), $dis ? ' <small>(' . esc_html__( 'no connection', 'flx-mail' ) . ')</small>' : '' );
 	}
 	echo '</div></fieldset>';
 
 	// Alıcılar
-	echo '<div class="flxi-field"><span>' . esc_html__( 'Alıcılar', 'flx-mail' ) . '</span>';
+	echo '<div class="flxi-field"><span>' . esc_html__( 'Recipients', 'flx-mail' ) . '</span>';
 	echo '<textarea name="manual" rows="4" data-recipients placeholder="' . esc_attr__( "ayse@ornek.com\nMehmet Demir <mehmet@ornek.com>\nZeynep Kaya, 0532 123 45 67", 'flx-mail' ) . '"></textarea>';
-	echo '<small>' . esc_html__( 'Her satıra bir kişi: e-posta, telefon ya da "Ad Soyad <e-posta>" / "Ad Soyad, e-posta, telefon".', 'flx-mail' ) . '</small>';
+	echo '<small>' . esc_html__( 'One person per line: email, phone, or "Full Name <email>" / "Full Name, email, phone".', 'flx-mail' ) . '</small>';
 	if ( $sources ) {
 		echo '<div class="flxi-checks">';
 		foreach ( $sources as $k => $label ) {
@@ -75,9 +75,9 @@ function flxi_page_send() {
 
 	// E-posta alanları
 	echo '<div data-for-channel="email">';
-	echo '<label class="flxi-field"><span>' . esc_html__( 'Konu', 'flx-mail' ) . '</span><input type="text" name="subject" data-preview data-insert-target></label>';
-	echo '<label class="flxi-field"><span>' . esc_html__( 'Başlık', 'flx-mail' ) . '</span><input type="text" name="heading" data-preview data-insert-target placeholder="' . esc_attr__( 'Merhaba {ad}', 'flx-mail' ) . '"></label>';
-	echo '<div class="flxi-field"><span>' . esc_html__( 'İçerik', 'flx-mail' ) . '</span>';
+	echo '<label class="flxi-field"><span>' . esc_html__( 'Subject', 'flx-mail' ) . '</span><input type="text" name="subject" data-preview data-insert-target></label>';
+	echo '<label class="flxi-field"><span>' . esc_html__( 'Heading', 'flx-mail' ) . '</span><input type="text" name="heading" data-preview data-insert-target placeholder="' . esc_attr__( 'Hello {ad}', 'flx-mail' ) . '"></label>';
+	echo '<div class="flxi-field"><span>' . esc_html__( 'Content', 'flx-mail' ) . '</span>';
 	wp_editor(
 		'',
 		'flxi_body',
@@ -91,23 +91,23 @@ function flxi_page_send() {
 		)
 	);
 	echo '</div><div class="flxi-grid2">';
-	echo '<label class="flxi-field"><span>' . esc_html__( 'Düğme yazısı', 'flx-mail' ) . '</span><input type="text" name="button_text" data-preview placeholder="' . esc_attr__( 'Bağış yap', 'flx-mail' ) . '"></label>';
-	echo '<label class="flxi-field"><span>' . esc_html__( 'Düğme bağlantısı', 'flx-mail' ) . '</span><input type="url" name="button_url" data-preview placeholder="' . esc_attr( home_url( '/bagis/' ) ) . '"></label>';
-	echo '</div><div class="flxi-grid2"><label class="flxi-field"><span>' . esc_html__( 'Kimden', 'flx-mail' ) . '</span><select name="sender" data-preview>';
+	echo '<label class="flxi-field"><span>' . esc_html__( 'Button text', 'flx-mail' ) . '</span><input type="text" name="button_text" data-preview placeholder="' . esc_attr__( 'Donate', 'flx-mail' ) . '"></label>';
+	echo '<label class="flxi-field"><span>' . esc_html__( 'Button link', 'flx-mail' ) . '</span><input type="url" name="button_url" data-preview placeholder="' . esc_attr( home_url( '/bagis/' ) ) . '"></label>';
+	echo '</div><div class="flxi-grid2"><label class="flxi-field"><span>' . esc_html__( 'From', 'flx-mail' ) . '</span><select name="sender" data-preview>';
 	printf( '<option value="info">%s</option><option value="noreply">%s</option>', esc_html( flxi_setting( 'from_email' ) ), esc_html( flxi_setting( 'noreply_email' ) ) );
-	echo '</select></label><div class="flxi-field"><span>&nbsp;</span>' . flxi_switch( 'unsubscribe', true, __( '"Listeden çık" bağlantısı ekle (toplu gönderimde önerilir)', 'flx-mail' ), 'data-preview' ) . '</div></div>'; // phpcs:ignore
-	echo '<div class="flxi-vars"><span>' . esc_html__( 'Değişkenler', 'flx-mail' ) . '</span><div class="flxi-chips">';
-	foreach ( array( 'ad' => __( 'Ad', 'flx-mail' ), 'ad_soyad' => __( 'Ad soyad', 'flx-mail' ), 'eposta' => __( 'E-posta', 'flx-mail' ), 'site' => __( 'Site adı', 'flx-mail' ) ) as $v => $d ) {
+	echo '</select></label><div class="flxi-field"><span>&nbsp;</span>' . flxi_switch( 'unsubscribe', true, __( 'Add an "unsubscribe" link (recommended for bulk sends)', 'flx-mail' ), 'data-preview' ) . '</div></div>'; // phpcs:ignore
+	echo '<div class="flxi-vars"><span>' . esc_html__( 'Variables', 'flx-mail' ) . '</span><div class="flxi-chips">';
+	foreach ( array( 'ad' => __( 'First name', 'flx-mail' ), 'ad_soyad' => __( 'Full name', 'flx-mail' ), 'eposta' => __( 'Email', 'flx-mail' ), 'site' => __( 'Site name', 'flx-mail' ) ) as $v => $d ) {
 		echo '<button type="button" class="flxi-chip" data-var="{' . esc_attr( $v ) . '}" title="' . esc_attr( $d ) . '">{' . esc_html( $v ) . '}</button>';
 	}
 	echo '</div></div></div>';
 
 	// WhatsApp / SMS alanları
 	echo '<div data-for-channel="whatsapp sms" hidden>';
-	echo '<label class="flxi-field"><span>' . esc_html__( 'Mesaj', 'flx-mail' ) . '</span><textarea name="text" rows="6" data-insert-target placeholder="' . esc_attr__( 'Merhaba {ad} 🌱 …', 'flx-mail' ) . '"></textarea><small>' . esc_html__( 'Değişkenler: {ad}, {ad_soyad}, {telefon}. WhatsApp\'ta *kalın* ve _italik_ çalışır.', 'flx-mail' ) . '</small></label>';
+	echo '<label class="flxi-field"><span>' . esc_html__( 'Message', 'flx-mail' ) . '</span><textarea name="text" rows="6" data-insert-target placeholder="' . esc_attr__( 'Hello {ad} 🌱 …', 'flx-mail' ) . '"></textarea><small>' . esc_html__( 'Variables: {ad}, {ad_soyad}, {telefon}. *Bold* and _italic_ work in WhatsApp.', 'flx-mail' ) . '</small></label>';
 	foreach ( $conns as $ch => $list ) {
 		if ( count( $list ) > 1 ) {
-			echo '<label class="flxi-field" data-for-channel="' . esc_attr( $ch ) . '"><span>' . esc_html__( 'Bağlantı', 'flx-mail' ) . '</span><select name="connection_' . esc_attr( $ch ) . '">';
+			echo '<label class="flxi-field" data-for-channel="' . esc_attr( $ch ) . '"><span>' . esc_html__( 'Link', 'flx-mail' ) . '</span><select name="connection_' . esc_attr( $ch ) . '">';
 			foreach ( $list as $c ) {
 				printf( '<option value="%d"%s>%s</option>', (int) $c['id'], selected( $c['default'], true, false ), esc_html( $c['name'] ) );
 			}
@@ -116,25 +116,25 @@ function flxi_page_send() {
 	}
 	echo '</div>';
 
-	echo '<label class="flxi-field"><span>' . esc_html__( 'Gönderim adı (yalnız sizin için)', 'flx-mail' ) . '</span><input type="text" name="name" placeholder="' . esc_attr__( 'Ör. Kasım fidan dikimi daveti', 'flx-mail' ) . '"></label>';
-	echo '<div class="flxi-actions"><button type="submit" class="button button-primary button-large" data-confirm="' . esc_attr__( 'Gönderim başlasın mı?', 'flx-mail' ) . '">' . esc_html__( 'Gönder', 'flx-mail' ) . '</button> <button type="button" class="button button-large" data-test-free>' . esc_html__( 'Bana test gönder', 'flx-mail' ) . '</button><span class="flxi-status" aria-live="polite"></span></div>';
+	echo '<label class="flxi-field"><span>' . esc_html__( 'Campaign name (only visible to you)', 'flx-mail' ) . '</span><input type="text" name="name" placeholder="' . esc_attr__( 'E.g. November sapling planting invitation', 'flx-mail' ) . '"></label>';
+	echo '<div class="flxi-actions"><button type="submit" class="button button-primary button-large" data-confirm="' . esc_attr__( 'Start sending?', 'flx-mail' ) . '">' . esc_html__( 'Send', 'flx-mail' ) . '</button> <button type="button" class="button button-large" data-test-free>' . esc_html__( 'Send me a test', 'flx-mail' ) . '</button><span class="flxi-status" aria-live="polite"></span></div>';
 	echo '</div></div>';
 
-	echo '<div class="flxi-editor__preview" data-for-channel="email"><div class="flxi-preview"><div class="flxi-preview__bar"><div class="flxi-preview__subject"><span class="flxi-muted">' . esc_html__( 'Konu:', 'flx-mail' ) . '</span> <strong data-preview-subject></strong></div>';
-	echo '<div class="flxi-seg" role="group" aria-label="' . esc_attr__( 'Önizleme boyutu', 'flx-mail' ) . '"><button type="button" class="is-active" data-device="desktop" aria-pressed="true"><span class="dashicons dashicons-desktop"></span><span class="screen-reader-text">' . esc_html__( 'Masaüstü', 'flx-mail' ) . '</span></button><button type="button" data-device="mobile" aria-pressed="false"><span class="dashicons dashicons-smartphone"></span><span class="screen-reader-text">' . esc_html__( 'Telefon', 'flx-mail' ) . '</span></button><button type="button" data-device="dark" aria-pressed="false"><span class="dashicons dashicons-admin-appearance"></span><span class="screen-reader-text">' . esc_html__( 'Koyu mod', 'flx-mail' ) . '</span></button></div></div>';
-	echo '<div class="flxi-preview__frame"><iframe title="' . esc_attr__( 'E-posta önizlemesi', 'flx-mail' ) . '" data-preview-frame sandbox="allow-same-origin"></iframe></div></div></div>';
+	echo '<div class="flxi-editor__preview" data-for-channel="email"><div class="flxi-preview"><div class="flxi-preview__bar"><div class="flxi-preview__subject"><span class="flxi-muted">' . esc_html__( 'Subject:', 'flx-mail' ) . '</span> <strong data-preview-subject></strong></div>';
+	echo '<div class="flxi-seg" role="group" aria-label="' . esc_attr__( 'Preview size', 'flx-mail' ) . '"><button type="button" class="is-active" data-device="desktop" aria-pressed="true"><span class="dashicons dashicons-desktop"></span><span class="screen-reader-text">' . esc_html__( 'Desktop', 'flx-mail' ) . '</span></button><button type="button" data-device="mobile" aria-pressed="false"><span class="dashicons dashicons-smartphone"></span><span class="screen-reader-text">' . esc_html__( 'Phone', 'flx-mail' ) . '</span></button><button type="button" data-device="dark" aria-pressed="false"><span class="dashicons dashicons-admin-appearance"></span><span class="screen-reader-text">' . esc_html__( 'Dark mode', 'flx-mail' ) . '</span></button></div></div>';
+	echo '<div class="flxi-preview__frame"><iframe title="' . esc_attr__( 'Email preview', 'flx-mail' ) . '" data-preview-frame sandbox="allow-same-origin"></iframe></div></div></div>';
 	echo '</form>';
 
 	// Geçmiş
 	$rows = $wpdb->get_results( 'SELECT * FROM ' . flxi_table( 'campaigns' ) . ' ORDER BY id DESC LIMIT 20', ARRAY_A ); // phpcs:ignore
 	if ( $rows ) {
 		$st = array(
-			'queued'    => __( 'Sırada', 'flx-mail' ),
-			'running'   => __( 'Gönderiliyor', 'flx-mail' ),
-			'done'      => __( 'Bitti', 'flx-mail' ),
-			'cancelled' => __( 'Durduruldu', 'flx-mail' ),
+			'queued'    => __( 'Queued', 'flx-mail' ),
+			'running'   => __( 'Sending', 'flx-mail' ),
+			'done'      => __( 'Done', 'flx-mail' ),
+			'cancelled' => __( 'Stopped', 'flx-mail' ),
 		);
-		echo '<div class="flxi-card"><h2 class="flxi-card__title">' . esc_html__( 'Son gönderimler', 'flx-mail' ) . '</h2><div class="flxi-tablewrap"><table class="flxi-table"><thead><tr><th>' . esc_html__( 'Ad', 'flx-mail' ) . '</th><th>' . esc_html__( 'Kanal', 'flx-mail' ) . '</th><th>' . esc_html__( 'Durum', 'flx-mail' ) . '</th><th class="num">' . esc_html__( 'Gönderilen', 'flx-mail' ) . '</th><th class="num">' . esc_html__( 'Hatalı', 'flx-mail' ) . '</th><th>' . esc_html__( 'Tarih', 'flx-mail' ) . '</th></tr></thead><tbody>';
+		echo '<div class="flxi-card"><h2 class="flxi-card__title">' . esc_html__( 'Recent sends', 'flx-mail' ) . '</h2><div class="flxi-tablewrap"><table class="flxi-table"><thead><tr><th>' . esc_html__( 'First name', 'flx-mail' ) . '</th><th>' . esc_html__( 'Channel', 'flx-mail' ) . '</th><th>' . esc_html__( 'Status', 'flx-mail' ) . '</th><th class="num">' . esc_html__( 'Sent', 'flx-mail' ) . '</th><th class="num">' . esc_html__( 'Failed', 'flx-mail' ) . '</th><th>' . esc_html__( 'Date', 'flx-mail' ) . '</th></tr></thead><tbody>';
 		foreach ( $rows as $r ) {
 			echo '<tr><td><a href="' . esc_url( flxi_admin_url( 'flxi-gonder', array( 'campaign' => $r['id'] ) ) ) . '">' . esc_html( $r['name'] ) . '</a></td><td>' . esc_html( flxi_channels()[ $r['channel'] ] ?? $r['channel'] ) . '</td><td>' . esc_html( $st[ $r['status'] ] ?? $r['status'] ) . '</td><td class="num">' . esc_html( number_format_i18n( $r['sent'] ) . ' / ' . number_format_i18n( $r['total'] ) ) . '</td><td class="num">' . esc_html( number_format_i18n( $r['failed'] ) ) . '</td><td>' . esc_html( flx_date( $r['created_at'], 'datetime' ) ) . '</td></tr>';
 		}
@@ -174,7 +174,7 @@ add_action(
 			flxi_run_queue( 15 );
 		}
 		/* translators: %s: alıcı sayısı */
-		flxi_redirect( flxi_admin_url( 'flxi-gonder', array( 'campaign' => $id ) ), sprintf( __( '%s alıcı için gönderim başladı.', 'flx-mail' ), number_format_i18n( count( $list ) ) ) );
+		flxi_redirect( flxi_admin_url( 'flxi-gonder', array( 'campaign' => $id ) ), sprintf( __( 'Sending started for %s recipients.', 'flx-mail' ), number_format_i18n( count( $list ) ) ) );
 	}
 );
 
@@ -184,6 +184,6 @@ add_action(
 		flxi_check( 'flxi_cancel_campaign' );
 		$id = (int) ( $_POST['id'] ?? 0 );
 		flxi_cancel_campaign( $id );
-		flxi_redirect( flxi_admin_url( 'flxi-gonder', array( 'campaign' => $id ) ), __( 'Gönderim durduruldu.', 'flx-mail' ) );
+		flxi_redirect( flxi_admin_url( 'flxi-gonder', array( 'campaign' => $id ) ), __( 'Sending stopped.', 'flx-mail' ) );
 	}
 );

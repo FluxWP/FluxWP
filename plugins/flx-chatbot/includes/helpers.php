@@ -10,14 +10,14 @@ defined( 'ABSPATH' ) || exit;
 /** Sayfa türleri (görünürlük). */
 function flxcb_page_types() {
 	return array(
-		'home'     => __( 'Ana sayfa', 'flx-chatbot' ),
-		'posts'    => __( 'Yazılar', 'flx-chatbot' ),
-		'pages'    => __( 'Sayfalar', 'flx-chatbot' ),
-		'shop'     => __( 'Mağaza ve ürünler', 'flx-chatbot' ),
-		'cart'     => __( 'Sepet', 'flx-chatbot' ),
-		'checkout' => __( 'Ödeme', 'flx-chatbot' ),
-		'account'  => __( 'Hesabım', 'flx-chatbot' ),
-		'other'    => __( 'Diğer (arşiv, arama, 404…)', 'flx-chatbot' ),
+		'home'     => __( 'Home', 'flx-chatbot' ),
+		'posts'    => __( 'Posts', 'flx-chatbot' ),
+		'pages'    => __( 'Pages', 'flx-chatbot' ),
+		'shop'     => __( 'Shop and products', 'flx-chatbot' ),
+		'cart'     => __( 'Cart', 'flx-chatbot' ),
+		'checkout' => __( 'Checkout', 'flx-chatbot' ),
+		'account'  => __( 'My account', 'flx-chatbot' ),
+		'other'    => __( 'Other (archives, search, 404…)', 'flx-chatbot' ),
 	);
 }
 
@@ -135,19 +135,19 @@ function flxcb_update_settings( array $values ) {
 function flxcb_default_text( $key ) {
 	switch ( $key ) {
 		case 'bot_name':
-			return __( 'Asistan', 'flx-chatbot' );
+			return __( 'Assistant', 'flx-chatbot' );
 		case 'home_title':
-			return __( 'Merhaba 👋', 'flx-chatbot' );
+			return __( 'Hi there 👋', 'flx-chatbot' );
 		case 'home_text':
-			return __( 'Size nasıl yardımcı olabiliriz? Sorularınızı hemen yanıtlıyoruz.', 'flx-chatbot' );
+			return __( 'How can we help? We answer your questions right away.', 'flx-chatbot' );
 		case 'welcome':
-			return __( 'Merhaba! Ben bu sitenin asistanıyım. Ürünler, siparişler ya da aklınıza takılan her konuda sorabilirsiniz.', 'flx-chatbot' );
+			return __( 'Hi! I\'m this site\'s assistant. Ask me about products, orders or anything else.', 'flx-chatbot' );
 		case 'placeholder':
-			return __( 'Mesajınızı yazın…', 'flx-chatbot' );
+			return __( 'Type your message…', 'flx-chatbot' );
 		case 'teaser_text':
-			return __( 'Merhaba! Yardımcı olabileceğim bir şey var mı?', 'flx-chatbot' );
+			return __( 'Hi! Is there anything I can help with?', 'flx-chatbot' );
 		case 'offline_text':
-			return __( 'Şu an çevrim içi temsilcimiz yok. Mesajınızı bırakın, e-postanızdan size dönelim.', 'flx-chatbot' );
+			return __( 'No agents are online right now. Leave a message and we\'ll get back to you by email.', 'flx-chatbot' );
 		case 'launcher_label':
 			return '';
 		case 'privacy_text':

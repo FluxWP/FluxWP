@@ -23,12 +23,12 @@ final class FLXY_Breakdown {
 
 	public static function labels(): array {
 		return array(
-			'db'      => __( 'Veritabanı', 'flx-backup' ),
-			'core'    => __( 'WordPress çekirdeği', 'flx-backup' ),
-			'plugins' => __( 'Eklentiler', 'flx-backup' ),
-			'themes'  => __( 'Temalar', 'flx-backup' ),
-			'uploads' => __( 'Medya (uploads)', 'flx-backup' ),
-			'other'   => __( 'Diğer wp-content', 'flx-backup' ),
+			'db'      => __( 'Database', 'flx-backup' ),
+			'core'    => __( 'WordPress core', 'flx-backup' ),
+			'plugins' => __( 'Plugins', 'flx-backup' ),
+			'themes'  => __( 'Themes', 'flx-backup' ),
+			'uploads' => __( 'Media (uploads)', 'flx-backup' ),
+			'other'   => __( 'Other wp-content', 'flx-backup' ),
 		);
 	}
 

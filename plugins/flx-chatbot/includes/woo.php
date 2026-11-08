@@ -23,7 +23,7 @@ function flxcb_attribute_order( $order ) {
 	$order->save_meta_data();
 	flxcb_update_conversation( (int) $conv['id'], array( 'order_id' => (int) $order->get_id() ) );
 	/* translators: 1: order number, 2: total */
-	flxcb_event( (int) $conv['id'], 'order', sprintf( __( 'Sipariş verildi: #%1$s (%2$s)', 'flx-chatbot' ), $order->get_order_number(), flxcb_plain( $order->get_formatted_order_total() ) ) );
+	flxcb_event( (int) $conv['id'], 'order', sprintf( __( 'Order placed: #%1$s (%2$s)', 'flx-chatbot' ), $order->get_order_number(), flxcb_plain( $order->get_formatted_order_total() ) ) );
 	do_action( 'flxcb_order_attributed', $conv, $order );
 }
 
@@ -44,7 +44,7 @@ add_action(
 		if ( $id && flxcb_can_reply() ) {
 			echo '<p class="form-field form-field-wide"><a href="' . esc_url( flxcb_inbox_url( $id ) ) . '">' . esc_html(
 				/* translators: %d: conversation number */
-				sprintf( __( 'Site sohbeti #%d sonrasında verildi', 'flx-chatbot' ), $id )
+				sprintf( __( 'Placed after site chat #%d', 'flx-chatbot' ), $id )
 			) . '</a></p>';
 		}
 	}

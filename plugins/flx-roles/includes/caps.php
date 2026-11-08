@@ -22,18 +22,18 @@ function flxr_builtin_roles() {
 	return array(
 		FLXR_ROLE_ADMIN   => array(
 			'name'  => 'Yönetici',
-			'label' => __( 'Yönetici', 'flx-roles' ),
-			'desc'  => __( 'Bu sayfadaki her yetkiye sahip: tüm bağışlar, sertifika ve görev yönetimi, raporlar. WordPress yöneticisi gibi eklenti kurup site ayarlarını değiştiremez.', 'flx-roles' ),
+			'label' => __( 'Director', 'flx-roles' ),
+			'desc'  => __( 'Has every permission on this page: all donations, certificate and task management, reports. Unlike the WordPress administrator, can\'t install plugins or change site settings.', 'flx-roles' ),
 		),
 		FLXR_ROLE_MANAGER => array(
 			'name'  => 'İdareci',
-			'label' => __( 'İdareci', 'flx-roles' ),
-			'desc'  => __( 'Personelin yapabildiği her şey, ek olarak bağış ve sertifika dashboard\'larını (genel toplamlar) ve raporları görür, rapor zamanlamalarını ayarlar.', 'flx-roles' ),
+			'label' => __( 'Manager', 'flx-roles' ),
+			'desc'  => __( 'Everything Staff can do, plus the donation and certificate dashboards (overall totals) and reports, and sets report schedules.', 'flx-roles' ),
 		),
 		FLXR_ROLE_STAFF   => array(
 			'name'  => 'Personel',
-			'label' => __( 'Personel', 'flx-roles' ),
-			'desc'  => __( 'Görevlerde normal kullanıcı, sertifika oluşturur, başkası adına bağış açar, kendi referans olduğu bağışları, bağışçıları ve sertifikaları görür.', 'flx-roles' ),
+			'label' => __( 'Staff', 'flx-roles' ),
+			'desc'  => __( 'Regular user in Tasks, creates certificates, opens donations on behalf of others, sees the donations, donors and certificates they referred.', 'flx-roles' ),
 		),
 	);
 }
@@ -45,7 +45,7 @@ function flxr_custom_roles() {
 		$out[ sanitize_key( $key ) ] = array(
 			'name'   => (string) $name,
 			'label'  => (string) $name,
-			'desc'   => __( 'Panelden eklenen rol.', 'flx-roles' ),
+			'desc'   => __( 'Role added from the panel.', 'flx-roles' ),
 			'custom' => true,
 		);
 	}
@@ -61,7 +61,7 @@ function flxr_roles() {
 function flxr_add_custom_role( $name ) {
 	$name = trim( wp_strip_all_tags( (string) $name ) );
 	if ( '' === $name || mb_strlen( $name ) > 40 ) {
-		return new WP_Error( 'flxr_name', __( 'Rol adı 1-40 karakter olmalı.', 'flx-roles' ) );
+		return new WP_Error( 'flxr_name', __( 'Role name must be 1-40 characters.', 'flx-roles' ) );
 	}
 	$base = 'flx_' . sanitize_title( remove_accents( str_replace( array( 'ı', 'İ' ), array( 'i', 'I' ), $name ) ) );
 	$key  = substr( str_replace( '-', '_', $base ), 0, 40 );
@@ -105,76 +105,76 @@ function flxr_delete_custom_role( $key ) {
 function flxr_catalog() {
 	$groups = array(
 		'general' => array(
-			'label'  => __( 'Genel', 'flx-roles' ),
+			'label'  => __( 'General', 'flx-roles' ),
 			'active' => true,
 			'caps'   => array(
-				'read'      => array( 'label' => __( 'Yönetim paneline girer', 'flx-roles' ), 'locked' => true ),
-				FLXR_CAP_REF => array( 'label' => __( 'Referans olabilir (kişisel referans linki alır, sertifika ve bağışlarda referans seçilebilir)', 'flx-roles' ) ),
+				'read'      => array( 'label' => __( 'Can enter the admin panel', 'flx-roles' ), 'locked' => true ),
+				FLXR_CAP_REF => array( 'label' => __( 'Can be a referrer (gets a personal referral link, can be chosen as referrer on certificates and donations)', 'flx-roles' ) ),
 			),
 		),
 		'gorev'   => array(
-			'label'  => __( 'Görevler', 'flx-roles' ),
+			'label'  => __( 'Tasks', 'flx-roles' ),
 			'plugin' => 'Flux Tasks',
 			'active' => defined( 'FLXG_VERSION' ),
 			'caps'   => array(
-				'flxg_use'    => array( 'label' => __( 'Görevleri kullanır; erişimi olduğu proje ve listeleri görür', 'flx-roles' ), 'gorev' => 'roles_use' ),
-				'flxg_create' => array( 'label' => __( 'Proje, klasör ve liste oluşturur', 'flx-roles' ), 'gorev' => 'roles_create' ),
-				'flxg_ai'     => array( 'label' => __( 'Görevlerde AI özelliklerini kullanır', 'flx-roles' ), 'gorev' => 'ai_roles' ),
-				'flxg_manage' => array( 'label' => __( 'Görevleri yönetir (her projeyi görür, kullanım panosu, ayarlar)', 'flx-roles' ), 'warn' => true ),
+				'flxg_use'    => array( 'label' => __( 'Uses Tasks; sees the projects and lists they have access to', 'flx-roles' ), 'gorev' => 'roles_use' ),
+				'flxg_create' => array( 'label' => __( 'Creates projects, folders and lists', 'flx-roles' ), 'gorev' => 'roles_create' ),
+				'flxg_ai'     => array( 'label' => __( 'Uses AI features in Tasks', 'flx-roles' ), 'gorev' => 'ai_roles' ),
+				'flxg_manage' => array( 'label' => __( 'Manages Tasks (sees every project, usage board, settings)', 'flx-roles' ), 'warn' => true ),
 			),
 		),
 		'sertifika' => array(
-			'label'  => __( 'Sertifikalar', 'flx-roles' ),
+			'label'  => __( 'Certificates', 'flx-roles' ),
 			'plugin' => 'Flux Certificates',
 			'active' => defined( 'FLXS_VERSION' ),
 			'caps'   => array(
-				'flxs_use'       => array( 'label' => __( 'Sertifika oluşturur', 'flx-roles' ) ),
-				'flxs_own_ref'   => array( 'label' => __( 'Yalnız kendi oluşturduğu ve referansı olduğu sertifikaları görür', 'flx-roles' ), 'new' => true ),
-				'flxs_bulk'      => array( 'label' => __( 'Toplu gönderim yapar', 'flx-roles' ) ),
-				'flxs_dashboard' => array( 'label' => __( 'Sertifika dashboard\'unu görür', 'flx-roles' ), 'new' => true ),
-				'flxs_manage'    => array( 'label' => __( 'Sertifikaları yönetir (tümü, şablonlar, etkinlikler, ayarlar)', 'flx-roles' ), 'warn' => true ),
+				'flxs_use'       => array( 'label' => __( 'Creates certificates', 'flx-roles' ) ),
+				'flxs_own_ref'   => array( 'label' => __( 'Sees only certificates they created or referred', 'flx-roles' ), 'new' => true ),
+				'flxs_bulk'      => array( 'label' => __( 'Sends in bulk', 'flx-roles' ) ),
+				'flxs_dashboard' => array( 'label' => __( 'Sees the certificate dashboard', 'flx-roles' ), 'new' => true ),
+				'flxs_manage'    => array( 'label' => __( 'Manages certificates (all, templates, events, settings)', 'flx-roles' ), 'warn' => true ),
 			),
 		),
 		'bagis'   => array(
-			'label'  => __( 'Bağışlar', 'flx-roles' ),
+			'label'  => __( 'Donations', 'flx-roles' ),
 			'plugin' => 'Flux Donate',
 			'active' => defined( 'FLXB_VERSION' ),
 			'caps'   => array(
-				'flxb_view_own'  => array( 'label' => __( 'Referansı olduğu bağışları görür', 'flx-roles' ), 'new' => true ),
-				'flxb_donors_own' => array( 'label' => __( 'Kendi bağışçılarını listeler (referansı olduğu bağışların bağışçıları)', 'flx-roles' ), 'new' => true ),
-				'flxb_create_ref' => array( 'label' => __( 'Başkası adına bağış oluşturur, referans kendisi olur (panelden ya da WhatsApp asistanından)', 'flx-roles' ), 'new' => true ),
-				'flxb_ref_notify' => array( 'label' => __( 'Referansı olduğu bağış ödenince ya da iptal olunca haber alır', 'flx-roles' ), 'new' => true ),
-				'flxb_dashboard' => array( 'label' => __( 'Bağış dashboard\'unu görür (genel toplamlar)', 'flx-roles' ), 'new' => true ),
-				'flx_bagis_view' => array( 'label' => __( 'Tüm bağışları ve bağışçıları görür', 'flx-roles' ), 'warn' => true ),
+				'flxb_view_own'  => array( 'label' => __( 'Sees donations they referred', 'flx-roles' ), 'new' => true ),
+				'flxb_donors_own' => array( 'label' => __( 'Lists their own donors (donors of donations they referred)', 'flx-roles' ), 'new' => true ),
+				'flxb_create_ref' => array( 'label' => __( 'Creates donations on behalf of others, with themselves as referrer (from the panel or the WhatsApp assistant)', 'flx-roles' ), 'new' => true ),
+				'flxb_ref_notify' => array( 'label' => __( 'Gets notified when a donation they referred is paid or cancelled', 'flx-roles' ), 'new' => true ),
+				'flxb_dashboard' => array( 'label' => __( 'Sees the donation dashboard (overall totals)', 'flx-roles' ), 'new' => true ),
+				'flx_bagis_view' => array( 'label' => __( 'Sees all donations and donors', 'flx-roles' ), 'warn' => true ),
 			),
 		),
 		'cagri'   => array(
-			'label'  => __( 'Çağrı Merkezi', 'flx-roles' ),
+			'label'  => __( 'Call Center', 'flx-roles' ),
 			'plugin' => 'Flux Chat',
 			'active' => defined( 'FLXC_VERSION' ),
 			'caps'   => array(
-				'flxc_use'         => array( 'label' => __( 'WhatsApp sohbetlerini kullanır', 'flx-roles' ) ),
-				'flxc_staff_tools' => array( 'label' => __( 'WhatsApp asistanında rolüne göre personel araçlarını kullanır (numarası profilde kayıtlıysa)', 'flx-roles' ), 'new' => true ),
-				'flxc_manage'      => array( 'label' => __( 'Çağrı Merkezini yönetir (AI asistan, ayarlar)', 'flx-roles' ), 'warn' => true ),
+				'flxc_use'         => array( 'label' => __( 'Uses WhatsApp chats', 'flx-roles' ) ),
+				'flxc_staff_tools' => array( 'label' => __( 'Uses staff tools in the WhatsApp assistant according to their role (if their number is on their profile)', 'flx-roles' ), 'new' => true ),
+				'flxc_manage'      => array( 'label' => __( 'Manages the Call Center (AI assistant, settings)', 'flx-roles' ), 'warn' => true ),
 			),
 		),
 		'studyo'  => array(
-			'label'  => __( 'Stüdyo', 'flx-roles' ),
+			'label'  => __( 'Studio', 'flx-roles' ),
 			'plugin' => 'Flux Studio',
 			'active' => defined( 'FLXST_VERSION' ),
 			'caps'   => array(
-				'flxst_use'    => array( 'label' => __( 'Stüdyo\'yu kullanır (kendi galerisi ve paylaşılan klasörler)', 'flx-roles' ), 'new' => true ),
-				'flxst_manage' => array( 'label' => __( 'Stüdyo\'yu yönetir (herkesin galerisi, ayarlar)', 'flx-roles' ), 'new' => true, 'warn' => true ),
+				'flxst_use'    => array( 'label' => __( 'Uses Studio (own gallery and shared folders)', 'flx-roles' ), 'new' => true ),
+				'flxst_manage' => array( 'label' => __( 'Manages Studio (everyone\'s gallery, settings)', 'flx-roles' ), 'new' => true, 'warn' => true ),
 			),
 		),
 		'rapor'   => array(
-			'label'  => __( 'Raporlar', 'flx-roles' ),
+			'label'  => __( 'Reports', 'flx-roles' ),
 			'plugin' => 'Flux Chat',
 			'active' => defined( 'FLXC_VERSION' ),
 			'caps'   => array(
-				'flx_reports_receive' => array( 'label' => __( 'Kendisine günlük/dönemsel rapor gönderilebilir', 'flx-roles' ), 'new' => true ),
-				'flx_reports_view'    => array( 'label' => __( 'Genel raporları görür (tüm personel, toplamlar)', 'flx-roles' ), 'new' => true ),
-				'flx_reports_manage'  => array( 'label' => __( 'Personel ve idareci rapor zamanlamalarını ve motivasyon metinlerini ayarlar', 'flx-roles' ), 'new' => true ),
+				'flx_reports_receive' => array( 'label' => __( 'Can receive daily/periodic reports', 'flx-roles' ), 'new' => true ),
+				'flx_reports_view'    => array( 'label' => __( 'Sees overall reports (all staff, totals)', 'flx-roles' ), 'new' => true ),
+				'flx_reports_manage'  => array( 'label' => __( 'Sets staff and manager report schedules and motivation messages', 'flx-roles' ), 'new' => true ),
 			),
 		),
 	);

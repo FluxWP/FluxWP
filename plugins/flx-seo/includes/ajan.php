@@ -75,15 +75,15 @@ function flxseo_llms_txt( $fresh = false ) {
 		}
 	}
 	if ( $pages ) {
-		$out[] = '## ' . __( 'Sayfalar', 'flx-seo' );
+		$out[] = '## ' . __( 'Pages', 'flx-seo' );
 		$out[] = '';
 		$out   = array_merge( $out, array_slice( $pages, 0, 30 ) );
 		$out[] = '';
 	}
 
 	$sections = array(
-		'post'    => __( 'Son yazılar', 'flx-seo' ),
-		'product' => __( 'Ürünler', 'flx-seo' ),
+		'post'    => __( 'Recent posts', 'flx-seo' ),
+		'product' => __( 'Products', 'flx-seo' ),
 	);
 	foreach ( flxseo_post_types() as $t ) {
 		if ( ! isset( $sections[ $t ] ) && 'page' !== $t ) {
@@ -118,12 +118,12 @@ function flxseo_llms_txt( $fresh = false ) {
 		}
 	}
 
-	$out[] = '## ' . __( 'İsteğe bağlı', 'flx-seo' );
+	$out[] = '## ' . __( 'Optional', 'flx-seo' );
 	$out[] = '';
 	if ( function_exists( 'wp_sitemaps_get_server' ) && wp_sitemaps_get_server()->sitemaps_enabled() ) {
-		$out[] = $line( __( 'Site haritası', 'flx-seo' ), home_url( '/wp-sitemap.xml' ), __( 'Tüm herkese açık sayfaların listesi', 'flx-seo' ) );
+		$out[] = $line( __( 'Sitemap', 'flx-seo' ), home_url( '/wp-sitemap.xml' ), __( 'List of all public pages', 'flx-seo' ) );
 	}
-	$out[] = $line( __( 'RSS beslemesi', 'flx-seo' ), get_feed_link(), __( 'Son yazılar', 'flx-seo' ) );
+	$out[] = $line( __( 'RSS feed', 'flx-seo' ), get_feed_link(), __( 'Recent posts', 'flx-seo' ) );
 	$text  = (string) apply_filters( 'flxseo_llms_txt', implode( "\n", $out ) . "\n" );
 	set_transient( 'flxseo_llms', $text, 12 * HOUR_IN_SECONDS );
 	return $text;
@@ -169,9 +169,9 @@ add_filter(
 		if ( ! flxseo_opt( 'webmcp' ) || ! is_string( $form ) || false !== stripos( $form, 'toolname=' ) ) {
 			return $form;
 		}
-		$attrs = sprintf( ' toolname="search_site" tooldescription="%s"', esc_attr__( 'Sitede arama yapar ve sonuç sayfasını açar.', 'flx-seo' ) );
+		$attrs = sprintf( ' toolname="search_site" tooldescription="%s"', esc_attr__( 'Searches the site and opens the results page.', 'flx-seo' ) );
 		$form  = preg_replace( '/<form\b/i', '<form' . $attrs, $form, 1 );
-		return preg_replace( '/(<input\b[^>]*name=["\']s["\'])/i', '$1 toolparamdescription="' . esc_attr__( 'Aranacak kelimeler', 'flx-seo' ) . '"', $form, 1 );
+		return preg_replace( '/(<input\b[^>]*name=["\']s["\'])/i', '$1 toolparamdescription="' . esc_attr__( 'Words to search for', 'flx-seo' ) . '"', $form, 1 );
 	},
 	20
 );
@@ -183,7 +183,7 @@ add_filter(
 		if ( ! flxseo_opt( 'webmcp' ) || false !== stripos( $html, 'toolname=' ) ) {
 			return $html;
 		}
-		return preg_replace( '/<form\b/i', '<form toolname="search_site" tooldescription="' . esc_attr__( 'Sitede arama yapar ve sonuç sayfasını açar.', 'flx-seo' ) . '"', $html, 1 );
+		return preg_replace( '/<form\b/i', '<form toolname="search_site" tooldescription="' . esc_attr__( 'Searches the site and opens the results page.', 'flx-seo' ) . '"', $html, 1 );
 	}
 );
 
@@ -282,7 +282,7 @@ function flxseo_fix_apply( $fix_id ) {
 	if ( ! $keys ) {
 		$f = flxseo_system_fixes()[ $fix_id ] ?? null;
 		if ( ! $f ) {
-			throw new Exception( __( 'Bilinmeyen düzeltme.', 'flx-seo' ) );
+			throw new Exception( __( 'Unknown fix.', 'flx-seo' ) );
 		}
 		call_user_func( $f['run'], null );
 		return array( $fix_id );
@@ -300,11 +300,11 @@ add_filter(
 	'flx_system_fixes',
 	function ( $fixes ) {
 		$labels = array(
-			'flxseo_llms'    => array( __( 'llms.txt\'i aç', 'flx-seo' ), __( 'Flux SEO /llms.txt dosyasını site adı, açıklama, menü ve son içeriklerden üretir.', 'flx-seo' ) ),
-			'flxseo_webmcp'  => array( __( 'WebMCP arama aracını aç', 'flx-seo' ), __( 'Arama formuna toolname/tooldescription eklenir; tarayıcıdaki ajanlar formu araç olarak görür.', 'flx-seo' ) ),
-			'flxseo_headers' => array( __( 'Güvenlik başlıklarını aç', 'flx-seo' ), __( 'X-Frame-Options: SAMEORIGIN, COOP same-origin-allow-popups ve temel CSP (object-src \'none\'; base-uri \'self\'; frame-ancestors \'self\'). Site başka sitelerde iframe ile gösteriliyorsa açmayın.', 'flx-seo' ) ),
-			'flxseo_hsts'    => array( __( 'HSTS includeSubDomains', 'flx-seo' ), __( 'Tüm alt alan adları HTTPS ise HSTS alt alan adlarını da kapsar.', 'flx-seo' ) ),
-			'flxseo_indexnow' => array( __( 'IndexNow\'u aç', 'flx-seo' ), __( 'Yeni ve güncellenen sayfalar Bing, Yandex, Seznam ve Naver\'e anında bildirilir; tüm site bir kez kendiliğinden gönderilir.', 'flx-seo' ) ),
+			'flxseo_llms'    => array( __( 'Turn on llms.txt', 'flx-seo' ), __( 'Flux SEO builds /llms.txt from the site name, description, menu and recent content.', 'flx-seo' ) ),
+			'flxseo_webmcp'  => array( __( 'Turn on the WebMCP search tool', 'flx-seo' ), __( 'Adds toolname/tooldescription to the search form so browser agents see it as a tool.', 'flx-seo' ) ),
+			'flxseo_headers' => array( __( 'Turn on security headers', 'flx-seo' ), __( 'X-Frame-Options: SAMEORIGIN, COOP same-origin-allow-popups and a basic CSP (object-src \'none\'; base-uri \'self\'; frame-ancestors \'self\'). Do not turn on if the site is embedded in other sites with an iframe.', 'flx-seo' ) ),
+			'flxseo_hsts'    => array( __( 'HSTS includeSubDomains', 'flx-seo' ), __( 'If every subdomain is HTTPS, HSTS also covers subdomains.', 'flx-seo' ) ),
+			'flxseo_indexnow' => array( __( 'Turn on IndexNow', 'flx-seo' ), __( 'New and updated pages are sent instantly to Bing, Yandex, Seznam and Naver; the whole site is submitted once automatically.', 'flx-seo' ) ),
 		);
 		foreach ( $labels as $id => $l ) {
 			$fixes[ $id ] = array(
@@ -316,7 +316,7 @@ add_filter(
 				'current'     => fn() => flxseo_fix_is_on( $id ),
 				'run'         => function () use ( $id ) {
 					flxseo_fix_apply( $id );
-					return __( 'Açıldı. Site denetimini yeniden çalıştırın.', 'flx-seo' );
+					return __( 'Turned on. Run the site audit again.', 'flx-seo' );
 				},
 			);
 		}

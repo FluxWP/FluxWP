@@ -30,8 +30,8 @@ function flxf_payment_quote_script_data() {
 	}
 
 	$strings = array(
-		'updating' => __( 'Updating amount…', 'flx-forms' ),
-		'failed'   => __( 'The amount could not be verified. Please check your selections and try again.', 'flx-forms' ),
+		'updating' => __( '\\nUpdating amount...\\n', 'flx-forms' ),
+		'failed'   => __( '\\nThe amount could not be verified. Please check your selections and try again.\\n', 'flx-forms' ),
 	);
 	wp_add_inline_script( 'stripe_js', 'window.flxfPayI18n = ' . wp_json_encode( $strings ) . ';', 'before' );
 }

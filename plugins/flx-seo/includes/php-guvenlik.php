@@ -80,14 +80,14 @@ function flxseo_php_upload_progress_on() {
 function flxseo_php_security_message( $s ) {
 	if ( 'unpatched' === $s['status'] ) {
 		/* translators: 1: çalışan PHP sürümü, 2: açık adı, 3: yamalı sürüm */
-		return sprintf( __( 'PHP %1$s, %2$s açığına karşı yamasız. En az %3$s sürümüne güncelleyin (hosting paneli › PHP sürümü). Dağıtım paketi yamayı sürüm numarasını değiştirmeden almış olabilir; emin değilseniz sağlayıcınıza sorun.', 'flx-seo' ), $s['version'], $s['advisory'], $s['fixed'] );
+		return sprintf( __( 'PHP %1$s is not patched against %2$s. Update to at least %3$s (hosting panel › PHP version). A distribution package may carry the fix without changing the version number; ask your provider if unsure.', 'flx-seo' ), $s['version'], $s['advisory'], $s['fixed'] );
 	}
 	if ( 'unsupported' === $s['status'] ) {
 		/* translators: 1: çalışan PHP sürümü, 2: açık adı, 3: önerilen sürüm */
-		return sprintf( __( 'PHP %1$s artık güvenlik yaması almıyor; %2$s gibi açıklar kapatılmaz. PHP %3$s ya da yamalı daha yeni bir sürüme geçin.', 'flx-seo' ), $s['version'], $s['advisory'], $s['fixed'] );
+		return sprintf( __( 'PHP %1$s no longer gets security fixes; holes such as %2$s stay open. Move to PHP %3$s or another patched, newer version.', 'flx-seo' ), $s['version'], $s['advisory'], $s['fixed'] );
 	}
 	/* translators: 1: çalışan PHP sürümü, 2: açık adı */
-	return sprintf( __( 'PHP %1$s, %2$s için yamalı.', 'flx-seo' ), $s['version'], $s['advisory'] );
+	return sprintf( __( 'PHP %1$s is patched against %2$s.', 'flx-seo' ), $s['version'], $s['advisory'] );
 }
 
 add_filter(
@@ -97,24 +97,24 @@ add_filter(
 		$row = array(
 			'id'      => 'flxseo.php-security',
 			'source'  => 'flx-seo',
-			'group'   => __( 'Güvenlik', 'flx-seo' ),
-			'label'   => __( 'PHP güvenlik yaması', 'flx-seo' ),
+			'group'   => __( 'Security', 'flx-seo' ),
+			'label'   => __( 'PHP security patch', 'flx-seo' ),
 			'status'  => 'ok' === $s['status'] ? 'ok' : 'error',
 			'message' => flxseo_php_security_message( $s ),
 		);
 		if ( 'ok' !== $s['status'] && $s['url'] ) {
 			$row['action_url']   = $s['url'];
-			$row['action_label'] = __( 'Sürüm notları', 'flx-seo' );
+			$row['action_label'] = __( 'Release notes', 'flx-seo' );
 		}
 		$checks[] = $row;
 		if ( flxseo_php_upload_progress_on() ) {
 			$checks[] = array(
 				'id'      => 'flxseo.php-upload-progress',
 				'source'  => 'flx-seo',
-				'group'   => __( 'Güvenlik', 'flx-seo' ),
+				'group'   => __( 'Security', 'flx-seo' ),
 				'label'   => 'session.upload_progress',
 				'status'  => 'ok' === $s['status'] ? 'warning' : 'error',
-				'message' => __( 'session.upload_progress.enabled açık. WordPress bunu kullanmaz; kapatmak saldırı yüzeyini küçültür. php.ini ya da hosting panelinde "session.upload_progress.enabled = Off" yapın.', 'flx-seo' ),
+				'message' => __( 'session.upload_progress.enabled is on. WordPress does not use it; turning it off shrinks the attack surface. Set "session.upload_progress.enabled = Off" in php.ini or the hosting panel.', 'flx-seo' ),
 			);
 		}
 		return $checks;

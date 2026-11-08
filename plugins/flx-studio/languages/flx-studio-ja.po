@@ -1,0 +1,950 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "General"
+msgstr "一般"
+
+msgid "Person (face/identity)"
+msgstr "人物(顔/正体)"
+
+msgid "Style"
+msgstr "スタイル"
+
+msgid "Product"
+msgstr "製品"
+
+msgid "Background"
+msgstr "背景"
+
+msgid "Composition"
+msgstr "構成"
+
+msgid "First frame"
+msgstr "最初のフレーム"
+
+msgid "Last frame"
+msgstr "最後のフレーム"
+
+msgid "Auto"
+msgstr "自動"
+
+msgid "Low"
+msgstr "低い"
+
+msgid "Medium"
+msgstr "中"
+
+msgid "High"
+msgstr "高"
+
+msgid "Theme: system"
+msgstr "テーマ:システム"
+
+msgid "Theme: light"
+msgstr "テーマ:光"
+
+msgid "Theme: dark"
+msgstr "テーマ: ダーク"
+
+msgid "Opening Studio…"
+msgstr "スタジオ開設..."
+
+msgid "Try again"
+msgstr "もう一度試してください"
+
+msgid "Search prompt, title or model"
+msgstr "プロンプト、タイトル、またはモデルを検索"
+
+msgid "Search"
+msgstr "検索"
+
+msgid "Menu"
+msgstr "メニュー"
+
+msgid "Select"
+msgstr "選択"
+
+msgid "To generate images and videos, enter at least one key (fal.ai, EvoLink…) in Flux AI & MCP › Settings › Images and video."
+msgstr "画像とビデオを生成するには、Flux AI & MCP › 設定 › 画像とビデオ に少なくとも 1 つのキー (fal.ai、EvoLink...) を入力します。"
+
+msgid "Flux AI (0.6.0+) is not installed. Generation runs through Flux AI."
+msgstr "Flux AI (0.6.0+) がインストールされていません。生成は Flux AI を通じて実行されます。"
+
+msgid "Flux AI settings"
+msgstr "Flux AI 設定"
+
+msgid "Mine"
+msgstr "私のもの"
+
+msgid "Everyone"
+msgstr "みんな"
+
+msgid "Studio"
+msgstr "スタジオ"
+
+msgid "All"
+msgstr "すべて"
+
+msgid "Favorites"
+msgstr "お気に入り"
+
+msgid "Images"
+msgstr "画像"
+
+msgid "Videos"
+msgstr "動画"
+
+msgid "Dashboard"
+msgstr "ダッシュボード"
+
+msgid "Folders"
+msgstr "フォルダー"
+
+msgid "New folder"
+msgstr "新しいフォルダー"
+
+msgid "Unfiled"
+msgstr "未ファイル"
+
+msgid "Shared with the team"
+msgstr "チームと共有"
+
+msgid "Folder actions"
+msgstr "フォルダーアクション"
+
+msgid "People"
+msgstr "人々"
+
+msgid "Add person"
+msgstr "人を追加"
+
+msgid "{name} — add to generation"
+msgstr "{name}— 生成に追加"
+
+msgid "Add people for face references; use them by typing @name in the prompt."
+msgstr "顔参照用に人物を追加します。プロンプトに @name と入力して使用します。"
+
+msgid "Manage people"
+msgstr "人を管理する"
+
+msgid "Back to dashboard"
+msgstr "ダッシュボードに戻る"
+
+msgid "Theme"
+msgstr "テーマ"
+
+msgid "Studio settings"
+msgstr "スタジオ設定"
+
+msgid "Flux AI spending limit"
+msgstr "Flux AI の支出制限"
+
+msgid "Folder"
+msgstr "フォルダー"
+
+msgid "Subfolder"
+msgstr "サブフォルダー"
+
+msgid "Create"
+msgstr "作成"
+
+msgid "Folder created"
+msgstr "フォルダが作成されました"
+
+msgid "Rename"
+msgstr "名前の変更"
+
+msgid "Folder name"
+msgstr "フォルダ名"
+
+msgid "Stop sharing"
+msgstr "共有を停止する"
+
+msgid "Share with team"
+msgstr "チームと共有する"
+
+msgid "Folder is shared with the team"
+msgstr "フォルダーはチームで共有されています"
+
+msgid "Folder is private"
+msgstr "フォルダーは非公開です"
+
+msgid "Delete folder"
+msgstr "フォルダの削除"
+
+msgid "Delete folder?"
+msgstr "フォルダを削除しますか?"
+
+msgid "Its items and subfolders move up one level; no files are deleted."
+msgstr "そのアイテムとサブフォルダーは 1 レベル上に移動します。ファイルは削除されません。"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "{n} items moved"
+msgstr "{n}アイテムが移動されました"
+
+msgid "Nothing here"
+msgstr "ここには何もありません"
+
+msgid "Create your first image"
+msgstr "最初のイメージを作成する"
+
+msgid "Change the filter or start a new generation below."
+msgstr "フィルターを変更するか、以下で新しい世代を開始してください。"
+
+msgid "Describe what you want below. Drag in reference images or add people with @."
+msgstr "以下に必要なものを説明してください。参照画像をドラッグするか、@ を付けて人物を追加します。"
+
+msgid "Remove from favorites"
+msgstr "お気に入りから削除"
+
+msgid "Add to favorites"
+msgstr "お気に入りに追加"
+
+msgid "Queued"
+msgstr "キューに入れられました"
+
+msgid "Generating"
+msgstr "生成中"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "Cancelled"
+msgstr "キャンセルされました"
+
+msgid "Failed"
+msgstr "失敗しました"
+
+msgid "Reuse settings"
+msgstr "設定を再利用する"
+
+msgid "{n} selected"
+msgstr "{n}が選択されました"
+
+msgid "Tap items to select"
+msgstr "項目をタップして選択します"
+
+msgid "Use as reference"
+msgstr "参考として使用する"
+
+msgid "Move"
+msgstr "移動"
+
+msgid "Exit selection"
+msgstr "選択を終了する"
+
+msgid "New folder…"
+msgstr "新しいフォルダ..."
+
+msgid "Delete {n} items?"
+msgstr "{n}アイテムを削除しますか?"
+
+msgid "Delete item?"
+msgstr "項目を削除しますか?"
+
+msgid "Files are deleted from the server. Copies added to the Media Library stay."
+msgstr "ファイルはサーバーから削除されます。メディア ライブラリに追加されたコピーはそのまま残ります。"
+
+msgid "{n} items ready"
+msgstr "{n}アイテムの準備完了"
+
+msgid "Generation ready"
+msgstr "ジェネレーション対応"
+
+msgid "A generation failed"
+msgstr "世代が失敗しました"
+
+msgid "Remove"
+msgstr "削除"
+
+msgid "Add reference"
+msgstr "参照の追加"
+
+msgid "What happens in the video? Subject, motion, camera… (add people with @)"
+msgstr "ビデオでは何が起こっているのでしょうか?被写体、モーション、カメラ...(@で人を追加)"
+
+msgid "What do you want to create? (add people with @, drop images here)"
+msgstr "何を作りたいですか? (@で人を追加し、ここに画像をドロップしてください)"
+
+msgid "Image"
+msgstr "画像"
+
+msgid "Video"
+msgstr "ビデオ"
+
+msgid "Aspect ratio"
+msgstr "アスペクト比"
+
+msgid "Adaptive"
+msgstr "アダプティブ"
+
+msgid "Resolution"
+msgstr "解像度"
+
+msgid "Quality"
+msgstr "品質"
+
+msgid "Count"
+msgstr "カウント"
+
+msgid "Duration"
+msgstr "期間"
+
+msgid "Audio"
+msgstr "オーディオ"
+
+msgid "Provider and model"
+msgstr "プロバイダーとモデル"
+
+msgid "Choose model"
+msgstr "モデルを選択してください"
+
+msgid "No models"
+msgstr "モデルがありません"
+
+msgid "Generate (Ctrl/⌘+Enter)"
+msgstr "生成 (Ctrl/⌘+Enter)"
+
+msgid "Generate"
+msgstr "生成する"
+
+msgid "Templates"
+msgstr "テンプレート"
+
+msgid "Several different prompts from one idea"
+msgstr "1 つのアイデアから複数の異なるプロンプトが生成される"
+
+msgid "Flux AI text model is not ready"
+msgstr "Flux AI テキスト モデルの準備ができていません"
+
+msgid "Brainstorm"
+msgstr "ブレーンストーミング"
+
+msgid "Turn the draft into a detailed prompt for the model"
+msgstr "ドラフトをモデルの詳細なプロンプトに変える"
+
+msgid "Enhance"
+msgstr "強化する"
+
+msgid "Provider"
+msgstr "プロバイダー"
+
+msgid "{n} models"
+msgstr "{n}モデル"
+
+msgid "no key"
+msgstr "鍵がありません"
+
+msgid "No {p} key (Flux AI & MCP › Settings › Images and video)."
+msgstr "{p}キーはありません (Flux AI と MCP › 設定 › 画像とビデオ)。"
+
+msgid "This reference is already added"
+msgstr "この参照はすでに追加されています"
+
+msgid "This model accepts at most {n} references"
+msgstr "このモデルは最大でも{n}参照を受け入れます"
+
+msgid "Save to references"
+msgstr "参照に保存"
+
+msgid "Saved"
+msgstr "保存されました"
+
+msgid "Upload file"
+msgstr "ファイルをアップロードする"
+
+msgid "Pick from gallery"
+msgstr "ギャラリーから選ぶ"
+
+msgid "{n} photos"
+msgstr "{n}の写真"
+
+msgid "no photos"
+msgstr "写真はありません"
+
+msgid "Saved references"
+msgstr "保存された参照"
+
+msgid "Reference"
+msgstr "参考資料"
+
+msgid "Only PNG, JPEG, WebP or GIF can be added."
+msgstr "PNG、JPEG、WebP、または GIF のみを追加できます。"
+
+msgid "Pick references from gallery"
+msgstr "ギャラリーから参考資料を選択する"
+
+msgid "Add"
+msgstr "追加"
+
+msgid "No images yet."
+msgstr "まだ画像がありません。"
+
+msgid "{name} has no photos; add some in Manage people"
+msgstr "{name}には写真がありません。 「人の管理」にいくつか追加"
+
+msgid "Write a short draft first."
+msgstr "まず短い草稿を書きます。"
+
+msgid "Prompt enhanced"
+msgstr "プロンプトの強化"
+
+msgid "Back to draft"
+msgstr "ドラフトに戻る"
+
+msgid "Describe what to generate."
+msgstr "何を生成するかを説明します。"
+
+msgid "References are uploading, one moment…"
+msgstr "参考資料をアップロードしています。しばらくお待ちください..."
+
+msgid "team"
+msgstr "チーム"
+
+msgid "No templates yet"
+msgstr "まだテンプレートがありません"
+
+msgid "Save current settings"
+msgstr "現在の設定を保存する"
+
+msgid "Delete template…"
+msgstr "テンプレートを削除..."
+
+msgid "E.g. Event poster 4:5"
+msgstr "例:イベントポスター 4:5"
+
+msgid "Save as template"
+msgstr "テンプレートとして保存"
+
+msgid "Name"
+msgstr "名前"
+
+msgid "Prompt, model, ratio, resolution and references are saved."
+msgstr "プロンプト、モデル、比率、解像度、参照が保存されます。"
+
+msgid "Template saved"
+msgstr "テンプレートが保存されました"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Previous"
+msgstr "前へ"
+
+msgid "Next"
+msgstr "次へ"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Model"
+msgstr "モデル"
+
+msgid "Size"
+msgstr "サイズ"
+
+msgid "Cost"
+msgstr "コスト"
+
+msgid "Date"
+msgstr "日付"
+
+msgid "Created by"
+msgstr "作成者"
+
+msgid "Favorited"
+msgstr "お気に入りに追加しました"
+
+msgid "Favorite"
+msgstr "お気に入り"
+
+msgid "Download"
+msgstr "ダウンロード"
+
+msgid "Added to references"
+msgstr "参考文献に追加"
+
+msgid "Edit area"
+msgstr "編集エリア"
+
+msgid "This model does not support area editing"
+msgstr "このモデルはエリア編集をサポートしていません"
+
+msgid "Close comparison"
+msgstr "厳密な比較"
+
+msgid "Compare with original"
+msgstr "オリジナルと比較"
+
+msgid "In library"
+msgstr "図書館内"
+
+msgid "Add to Media Library"
+msgstr "メディアライブラリに追加"
+
+msgid "Add title"
+msgstr "タイトルを追加"
+
+msgid "Title"
+msgstr "タイトル"
+
+msgid "Copy prompt"
+msgstr "プロンプトのコピー"
+
+msgid "Original draft"
+msgstr "原案"
+
+msgid "Already in the Media Library"
+msgstr "すでにメディア ライブラリにあります"
+
+msgid "Added to the Media Library"
+msgstr "メディアライブラリに追加されました"
+
+msgid "No model with area editing and a configured key."
+msgstr "エリア編集とキー設定が可能なモデルはありません。"
+
+msgid "Edit started; the result will appear in the gallery"
+msgstr "編集が開始されました。結果はギャラリーに表示されます"
+
+msgid "Describe the idea: e.g. Instagram post for the 11 November tree planting event"
+msgstr "アイデアを説明してください: 例: 11月11日の植樹イベントのInstagram投稿"
+
+msgid "Number of ideas"
+msgstr "アイデアの数"
+
+msgid "{n} ideas"
+msgstr "{n}のアイデア"
+
+msgid "YouTube thumbnail"
+msgstr "YouTubeのサムネイル"
+
+msgid "Generate ideas"
+msgstr "アイデアを生み出す"
+
+msgid "Preparing ideas…"
+msgstr "アイデアを準備中..."
+
+msgid "Generate selected ({n})"
+msgstr "選択されたものを生成 ({n})"
+
+msgid "{n} generations started"
+msgstr "{n}世代が開始されました"
+
+msgid "Sending {i}/{n}"
+msgstr "{i}/{n}の送信"
+
+msgid "Creates distinct prompts from one idea. Pick the ones you like and generate them in one go. Model and ratio come from the generation bar."
+msgstr "1 つのアイデアから異なるプロンプトを作成します。好きなものを選択して、一度に生成します。モデルと比率は世代バーから取得されます。"
+
+msgid "Idea"
+msgstr "アイデア"
+
+msgid "No people yet. Add a person and upload 1-4 clear face photos; typing @name in the prompt sends them as identity references."
+msgstr "まだ人がいません。人物を追加し、1 ~ 4 枚の鮮明な顔写真をアップロードします。プロンプトに @name を入力すると、それらが ID 参照として送信されます。"
+
+msgid "Delete photo"
+msgstr "写真を削除"
+
+msgid "Add photo"
+msgstr "写真を追加"
+
+msgid "Person name"
+msgstr "人名"
+
+msgid "Delete person"
+msgstr "人物を削除する"
+
+msgid "Delete {name}?"
+msgstr "{name}を削除しますか?"
+
+msgid "The person and their photos are deleted. Earlier generations stay."
+msgstr "その人物とその写真は削除されます。以前の世代は残ります。"
+
+msgid "New person"
+msgstr "新しい人"
+
+msgid "Default image model"
+msgstr "デフォルトのイメージモデル"
+
+msgid "Default video model"
+msgstr "デフォルトのビデオモデル"
+
+msgid "Empty: Flux AI default"
+msgstr "空: Flux AI のデフォルト"
+
+msgid "Enhance / Brainstorm text model"
+msgstr "テキストモデルの強化/ブレインストーミング"
+
+msgid "Max images per request"
+msgstr "リクエストあたりの最大画像数"
+
+msgid "Max brainstorm ideas"
+msgstr "最大のブレインストーミングのアイデア"
+
+msgid "Share people with all Studio users"
+msgstr "すべての Studio ユーザーとメンバーを共有する"
+
+msgid "Keys, providers and the spending limit are in Flux AI & MCP › Settings."
+msgstr "キー、プロバイダー、および使用制限は、Flux AI と MCP › 設定にあります。"
+
+msgid "Settings saved"
+msgstr "設定が保存されました"
+
+msgid "just now"
+msgstr "たった今"
+
+msgid "{n} min ago"
+msgstr "{n}分前"
+
+msgid "{n} h ago"
+msgstr "{n}1 時間前"
+
+msgid "Server error ({n})."
+msgstr "サーバーエラー ({n})。"
+
+msgid "Unexpected response from the server."
+msgstr "サーバーからの予期しない応答。"
+
+msgid "Something went wrong."
+msgstr "何か問題が発生しました。"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Copied"
+msgstr "コピーされました"
+
+msgid "7 days"
+msgstr "7日間"
+
+msgid "30 days"
+msgstr "30日"
+
+msgid "90 days"
+msgstr "90日"
+
+msgid "Spend from Flux AI logs"
+msgstr "Flux AI ログからの支出"
+
+msgid "Flux AI logs unavailable; Studio amounts"
+msgstr "Flux AI ログは利用できません。スタジオ金額"
+
+msgid "Refresh"
+msgstr "リフレッシュ"
+
+msgid "(estimated)"
+msgstr "(推定)"
+
+msgid "Generations"
+msgstr "世代"
+
+msgid "{i} images · {v} videos"
+msgstr "{i}画像 ·{v}ビデオ"
+
+msgid "Spend"
+msgstr "支出する"
+
+msgid "Image/video {m} · text {x}"
+msgstr "画像/ビデオ{m}· テキスト{x}"
+
+msgid "Average"
+msgstr "平均"
+
+msgid "per generation"
+msgstr "世代ごとに"
+
+msgid "{p}% error rate"
+msgstr "{p}% エラー率"
+
+msgid "no attempts yet"
+msgstr "まだ試行はありません"
+
+msgid "Storage {b}"
+msgstr "ストレージ{b}"
+
+msgid "Daily generations"
+msgstr "毎日の世代"
+
+msgid "No generations in this period."
+msgstr "この期間に世代はありません。"
+
+msgid "Daily spend"
+msgstr "毎日の支出"
+
+msgid "No spend in this period."
+msgstr "この期間は支出はありません。"
+
+msgid "Flux AI logs"
+msgstr "Flux AI ログ"
+
+msgid "Models"
+msgstr "モデル"
+
+msgid "Errors"
+msgstr "エラー"
+
+msgid "Amount"
+msgstr "金額"
+
+msgid "No records."
+msgstr "記録はありません。"
+
+msgid "Providers"
+msgstr "プロバイダー"
+
+msgid "Person"
+msgstr "人"
+
+msgid "Recent errors"
+msgstr "最近のエラー"
+
+msgid "Brush"
+msgstr "ブラシ"
+
+msgid "Rectangle"
+msgstr "長方形"
+
+msgid "Eraser"
+msgstr "消しゴム"
+
+msgid "Brush size"
+msgstr "ブラシサイズ"
+
+msgid "Undo"
+msgstr "元に戻す"
+
+msgid "Clear"
+msgstr "クリア"
+
+msgid "What should change in the selected area? E.g. make the T-shirt green, change the text to \"Plant a Tree\""
+msgstr "選択した領域で何を変更する必要がありますか?例えば。 T シャツを緑色にし、テキストを「Plant a Tree」に変更します"
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "Describe the change."
+msgstr "変更について説明します。"
+
+msgid "Tool"
+msgstr "ツール"
+
+msgid "Paint the area to change. Unpainted areas are kept."
+msgstr "変更したい部分をペイントします。塗装されていない部分はそのままにしてあります。"
+
+msgid "Change"
+msgstr "変更"
+
+msgid "Before"
+msgstr "以前"
+
+msgid "After"
+msgstr "後"
+
+msgid "Studio requires JavaScript."
+msgstr "Studio には JavaScript が必要です。"
+
+msgid "Flux AI (0.6.0+) is not installed or image generation is off."
+msgstr "Flux AI (0.6.0+) がインストールされていないか、画像生成がオフになっています。"
+
+msgid "Model not found. Check the keys in Flux AI & MCP › Settings › Images and video."
+msgstr "モデルが見つかりません。 Flux AI & MCP › 設定 › 画像とビデオ でキーを確認します。"
+
+msgid "Image to edit not found."
+msgstr "編集する画像が見つかりません。"
+
+msgid "This model does not support area editing."
+msgstr "このモデルはエリア編集には対応していません。"
+
+msgid "Mask must be a PNG."
+msgstr "マスクは PNG である必要があります。"
+
+msgid "The request may have reached the provider; check the provider's history before sending again."
+msgstr "リクエストはプロバイダーに届いている可能性があります。再送信する前にプロバイダーの履歴を確認してください。"
+
+msgid "Sending did not complete, please try again."
+msgstr "送信が完了しませんでした。もう一度お試しください。"
+
+msgid "The provider returned fewer results than requested."
+msgstr "プロバイダーは要求した結果よりも少ない結果を返しました。"
+
+msgid "The file is hosted temporarily by the provider; add it to the Media Library or download it."
+msgstr "ファイルはプロバイダーによって一時的にホストされます。メディア ライブラリに追加するか、ダウンロードします。"
+
+msgid "Cancelled."
+msgstr "キャンセルされました。"
+
+msgid "Generation failed."
+msgstr "生成に失敗しました。"
+
+msgid "Flux AI text model is not ready (Flux AI & MCP › Settings)."
+msgstr "Flux AI テキスト モデルの準備ができていません (Flux AI と MCP › 設定)。"
+
+msgid "Briefly describe the idea first."
+msgstr "最初にアイデアを簡単に説明します。"
+
+msgid "The model did not return a valid idea list. Try again."
+msgstr "モデルは有効なアイデア リストを返しませんでした。もう一度やり直してください。"
+
+msgid "Open"
+msgstr "開く"
+
+msgid "Database tables"
+msgstr "データベーステーブル"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "テーブルがありません:%s。プラグインを非アクティブ化し、再度アクティブ化します。"
+
+msgid "Tables are ready."
+msgstr "テーブルの準備ができています。"
+
+msgid "File folder"
+msgstr "ファイルフォルダ"
+
+msgid "wp-content/uploads/flx-studio is writable."
+msgstr "wp-content/uploads/flx-studio は書き込み可能です。"
+
+msgid "wp-content/uploads/flx-studio could not be created or is not writable; references and thumbnails cannot be saved."
+msgstr "wp-content/uploads/flx-studio を作成できなかったか、書き込み可能ではありません。参照とサムネイルは保存できません。"
+
+msgid "Image and video backend"
+msgstr "画像とビデオのバックエンド"
+
+msgid "Flux AI 0.6.0 or newer is required (image/video generation runs through Flux AI)."
+msgstr "Flux AI 0.6.0 以降が必要です (画像/ビデオの生成は Flux AI を通じて実行されます)。"
+
+msgid "Plugins"
+msgstr "プラグイン"
+
+msgid "No model has a key. Enter a fal.ai, EvoLink or other key in Flux AI & MCP › Settings › Images and video."
+msgstr "キーが付いているモデルはありません。 Flux AI & MCP › 設定 › 画像とビデオ に fal.ai、EvoLink、またはその他のキーを入力します。"
+
+msgid "Flux AI"
+msgstr "フラックスAI"
+
+msgid "%1$d models available (%2$s)."
+msgstr "%1$dモデルが利用可能 (%2$s)。"
+
+msgid "Enhance and Brainstorm"
+msgstr "強化とブレインストーミング"
+
+msgid "Flux AI text model is ready."
+msgstr "Flux AI テキスト モデルが準備できました。"
+
+msgid "Flux AI text model is not ready; prompt enhancement and ideas are unavailable, generation still works."
+msgstr "Flux AI テキスト モデルは準備ができていません。迅速な強化やアイデアは利用できませんが、生成はまだ機能します。"
+
+msgid "Reference images"
+msgstr "参考画像"
+
+msgid "References are sent to the provider by site URL."
+msgstr "参照はサイト URL によってプロバイダーに送信されます。"
+
+msgid "The site is not HTTPS; references are sent inline (base64), making requests larger."
+msgstr "サイトは HTTPS ではありません。参照はインライン (base64) で送信されるため、リクエストが大きくなります。"
+
+msgid "Studio: generate images/videos"
+msgstr "スタジオ: 画像/ビデオを生成します"
+
+msgid "Studio: all galleries and settings"
+msgstr "スタジオ: すべてのギャラリーと設定"
+
+msgid "The file is empty."
+msgstr "ファイルは空です。"
+
+msgid "The file exceeds the %d MB limit."
+msgstr "ファイルは%dMB 制限を超えています。"
+
+msgid "This file type is not supported."
+msgstr "このファイル形式はサポートされていません。"
+
+msgid "The file could not be saved."
+msgstr "ファイルを保存できませんでした。"
+
+msgid "Reference image not found."
+msgstr "参照画像が見つかりません。"
+
+msgid "Person not found."
+msgstr "人物が見つかりません。"
+
+msgid "At most %d reference images can be used."
+msgstr "最大で%d参照イメージを使用できます。"
+
+msgid "The file is not on the server."
+msgstr "ファイルはサーバー上にありません。"
+
+msgid "Login required."
+msgstr "ログインが必要です。"
+
+msgid "You do not have access to Studio."
+msgstr "スタジオにアクセスできません。"
+
+msgid "You are not allowed to do this."
+msgstr "これを行うことは許可されていません。"
+
+msgid "Record not found."
+msgstr "レコードが見つかりません。"
+
+msgid "The file could not be uploaded."
+msgstr "ファイルをアップロードできませんでした。"
+
+msgid "No file received."
+msgstr "ファイルを受信しませんでした。"
+
+msgid "You cannot move items to this folder."
+msgstr "このフォルダーにアイテムを移動することはできません。"
+
+msgid "You are not allowed to add to the Media Library."
+msgstr "メディア ライブラリに追加することはできません。"
+
+msgid "Folder name is required."
+msgstr "フォルダー名は必須です。"
+
+msgid "Person name is required."
+msgstr "個人名は必須です。"
+
+msgid "Template name is required."
+msgstr "テンプレート名は必須です。"
+
+msgid "Deleted user"
+msgstr "削除されたユーザー"
+
+msgid "Status"
+msgstr "ステータス"
+
+msgid "Gallery"
+msgstr "ギャラリー"
+
+msgid "Gallery is empty"
+msgstr "ギャラリーは空です"
+
+msgid "Search the gallery"
+msgstr "ギャラリーを検索"
+
+msgid "Working"
+msgstr "働く"
+
+msgid "Open in panel"
+msgstr "パネルで開く"
+
+msgid "Owner"
+msgstr "オーナー"
+
+msgid "Type"
+msgstr "タイプ"
+
+msgid "Star"
+msgstr "スター"
+
+msgid "Starred"
+msgstr "スター付き"
+
+msgid "Generated images are listed here. The production screen opens in the app later."
+msgstr "生成された画像はここにリストされます。後ほどアプリ内で制作画面が開きます。"
+
+msgid "Prompt"
+msgstr "プロンプト"
+
+msgid "[['Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).', 'tr']]"
+msgstr "[['AI を使用したビジュアルおよびビデオ スタジオ: 制作、参考資料と連絡先、フィールド編集、開発とブレインストーミング、フォルダー付きギャラリー。 Flux AI (fal.ai、EvoLink、OpenAI、Gemini、OpenRouter) によるプロダクション。', 'tr']]"

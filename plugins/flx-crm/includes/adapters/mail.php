@@ -69,7 +69,7 @@ final class FLXCRM_Adapter_Mail {
 				array(
 					'source' => self::KEY,
 					'uniq'   => 'mail:log:' . (int) $r['id'] . ':' . $cid,
-					'title'  => 'email' === $ch ? (string) $r['subject'] : ( 'sms' === $ch ? __( 'SMS gönderildi', 'flx-crm' ) : __( 'WhatsApp bildirimi', 'flx-crm' ) ),
+					'title'  => 'email' === $ch ? (string) $r['subject'] : ( 'sms' === $ch ? __( 'SMS sent', 'flx-crm' ) : __( 'WhatsApp notification', 'flx-crm' ) ),
 					'url'    => 'admin.php?page=flxi-kayitlar&channel=' . rawurlencode( $ch ) . '&s=' . rawurlencode( 'email' === $ch ? (string) ( self::emails( $r['recipient'] )[0] ?? '' ) : (string) $r['recipient'] ),
 					'at'     => (string) $r['created_at'],
 					'data'   => array( 'body' => self::snippet( $r['body'] ), 'template' => (string) $r['template'], 'by' => (string) $r['source'] ),
@@ -115,7 +115,7 @@ final class FLXCRM_Adapter_Mail {
 						array(
 							'source' => self::KEY,
 							'uniq'   => 'mail:msg:' . md5( $channel . $to . $text . flxcrm_now() ),
-							'title'  => 'sms' === $channel ? __( 'SMS gönderildi', 'flx-crm' ) : __( 'WhatsApp bildirimi', 'flx-crm' ),
+							'title'  => 'sms' === $channel ? __( 'SMS sent', 'flx-crm' ) : __( 'WhatsApp notification', 'flx-crm' ),
 							'data'   => array( 'body' => self::snippet( $text ), 'by' => (string) ( $args['source'] ?? '' ) ),
 						)
 					);

@@ -1,1310 +1,949 @@
-# Copyright (C) 2026 Örnek Vakfı
-# This file is distributed under the GPL-2.0-or-later.
 msgid ""
-msgstr ""
-"Project-Id-Version: Flux Certificates 1.8.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/flx-certificates\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-23T16:55:36+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.12.0\n"
-"X-Domain: flx-certificates\n"
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. Plugin Name of the plugin
-#: flx-certificates.php
-msgid "Flux Certificates"
+msgid "Sapling goal progress"
 msgstr ""
 
-#. Description of the plugin
-#: flx-certificates.php
-msgid "Sertifika şablonları, canlı PDF önizlemeli sertifika oluşturma, /sertifika/{kod} doğrulama sayfası, e-posta / SMS (Netgsm) / WhatsApp (Evolution API) gönderimi, asenkron kuyruk, kişi kaydı ve detaylı loglar."
+msgid "No record"
 msgstr ""
 
-#. Author of the plugin
-#: flx-certificates.php
-msgid "Örnek Vakfı"
+msgid "Certificate not found"
 msgstr ""
 
-#: includes/admin/admin.php:46
-#: includes/admin/page-system.php:16
-msgid "Sistem kontrolü"
+msgid "The link may have been copied incompletely. Check the code or request your certificate below."
 msgstr ""
 
-#: includes/admin/admin.php:105
-msgid "Flux Mail'de bağlantı yok"
+msgid "Revoked certificate"
 msgstr ""
 
-#: includes/admin/admin.php:105
-msgid "Flux Mail etkin değil"
+msgid "Verified certificate"
 msgstr ""
 
-#: includes/admin/admin.php:106
-msgid "ekle"
+msgid "REVOKED"
 msgstr ""
 
-#. translators: %s: comma separated table names
-#: includes/admin/admin.php:106
-#: includes/system-checks.php:77
-#: includes/system-checks.php:130
-#: includes/system-checks.php:170
-msgid "Eklentiler"
+msgid "Full name"
 msgstr ""
 
-#: includes/admin/admin.php:203
-#, php-format
-msgid "%d kayıt"
-msgid_plural "%d kayıt"
+msgid "Certificate no."
+msgstr ""
+
+msgid "Issue date"
+msgstr ""
+
+msgid "Issued by"
+msgstr ""
+
+msgid "Verification code"
+msgstr ""
+
+msgid "Download PDF"
+msgstr ""
+
+msgid "Share"
+msgstr ""
+
+msgid "Add to LinkedIn"
+msgstr ""
+
+msgid "Copy link"
+msgstr ""
+
+msgid "This certificate has been revoked by the issuing organization and is no longer valid."
+msgstr ""
+
+msgid "This page confirms that the certificate is on record at %s."
+msgstr ""
+
+msgid "Lookup is disabled."
+msgstr ""
+
+msgid "Too many attempts. Please try again later."
+msgstr ""
+
+msgid "Enter a valid phone number or email address."
+msgstr ""
+
+msgid "Hello %1$s,\n\nYour %2$s certificates:\n%3$s"
+msgstr ""
+
+msgid "Your certificates"
+msgstr ""
+
+msgid "If a certificate is registered with these details, its link will be sent to you within a few minutes."
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Info"
+msgstr ""
+
+msgid "Test WhatsApp/SMS connections"
+msgstr ""
+
+msgid "System check"
+msgstr ""
+
+msgid "Whether setup, cron and sending are in place. Checked again each time this page opens. WhatsApp/SMS connections and tests live in Flux Mail."
+msgstr ""
+
+msgid "Not allowed"
+msgstr ""
+
+msgid "Valid"
+msgstr ""
+
+msgid "Revoked"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Phone"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "Event"
+msgstr ""
+
+msgid "Template"
+msgstr ""
+
+msgid "Referrer"
+msgstr ""
+
+msgid "Created by"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Views"
+msgstr ""
+
+msgid "Messages sent"
+msgstr ""
+
+msgid "Certificate link"
+msgstr ""
+
+msgctxt "context_e363ab036dc9"
+msgid "certificates"
+msgstr ""
+
+msgid "Certificates"
+msgstr ""
+
+msgid "The server has no ZipArchive (PHP zip extension); the Excel file could not be created."
+msgstr ""
+
+msgid "The Excel file could not be created."
+msgstr ""
+
+msgid "On donation page"
+msgstr ""
+
+msgid "Donation page"
+msgstr ""
+
+msgid "Donors can choose this design on the donation page"
+msgstr ""
+
+msgid "Heading (group)"
+msgstr ""
+
+msgid "Order"
+msgstr ""
+
+msgid "The donor picks the design and fills in the template's text, date and choice fields (e.g. recipient name, message). The price comes from the donation type."
+msgstr ""
+
+msgid "No certificates selected."
+msgstr ""
+
+msgid "%d messages queued."
+msgstr ""
+
+msgid "%d certificates updated."
+msgstr ""
+
+msgid "Download Excel"
+msgstr ""
+
+msgid "New certificate"
+msgstr ""
+
+msgid "Name, phone, email, certificate no…"
+msgstr ""
+
+msgid "All statuses"
+msgstr ""
+
+msgid "Cancelled"
+msgstr ""
+
+msgid "All events"
+msgstr ""
+
+msgid "No event (%d)"
+msgstr ""
+
+msgid "archived"
+msgstr ""
+
+msgid "All templates"
+msgstr ""
+
+msgid "All referrers"
+msgstr ""
+
+msgid "No referrer (%d)"
+msgstr ""
+
+msgid "Created by: anyone"
+msgstr ""
+
+msgid "Filter"
+msgstr ""
+
+msgid "Bulk actions…"
+msgstr ""
+
+msgid "Send via WhatsApp"
+msgstr ""
+
+msgid "Send via SMS"
+msgstr ""
+
+msgid "Send via email"
+msgstr ""
+
+msgid "Revoke"
+msgstr ""
+
+msgid "Make valid"
+msgstr ""
+
+msgid "Assign to event…"
+msgstr ""
+
+msgid "Assign referrer…"
+msgstr ""
+
+msgid "Delete permanently"
+msgstr ""
+
+msgid "— No event —"
+msgstr ""
+
+msgid "— No referrer —"
+msgstr ""
+
+msgid "Apply to the selected items?"
+msgstr ""
+
+msgid "Apply"
+msgstr ""
+
+msgid "Certificate"
+msgstr ""
+
+msgid "Person"
+msgstr ""
+
+msgid "Event / Template"
+msgstr ""
+
+msgid "Deliveries"
+msgstr ""
+
+msgid "Referrer / Created by"
+msgstr ""
+
+msgid "No certificates yet."
+msgstr ""
+
+msgid "Create the first certificate"
+msgstr ""
+
+msgid "Actually created: %s"
+msgstr ""
+
+msgid "backdated"
+msgstr ""
+
+msgid "%d view"
+msgid_plural "%d views"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/admin.php:207
-#: includes/admin/export.php:52
-#: includes/admin/page-certificates.php:102
-msgid "Geçerli"
+msgid "Registered person: %s"
 msgstr ""
 
-#: includes/admin/admin.php:207
-#: includes/admin/page-certificates.php:103
-#: includes/helpers.php:245
-msgid "İptal"
+msgid "created by: %s"
 msgstr ""
 
-#: includes/admin/admin.php:207
-msgid "Pasif"
+msgid "Actions"
 msgstr ""
 
-#: includes/admin/ecards.php:18
-msgid "Babalar Günü Sertifikası"
+msgid "Open page"
 msgstr ""
 
-#: includes/admin/ecards.php:19
-msgid "İçimden Geldi Sertifikası"
-msgstr ""
-
-#: includes/admin/ecards.php:20
-msgid "Doğum Günü Hediyesi"
-msgstr ""
-
-#: includes/admin/ecards.php:21
-msgid "Geçmiş Olsun"
-msgstr ""
-
-#: includes/admin/ecards.php:22
-msgid "İlk İş Günü"
-msgstr ""
-
-#: includes/admin/ecards.php:23
-msgid "Taziye Sertifikası"
-msgstr ""
-
-#: includes/admin/ecards.php:24
-msgid "Anneler Günü Sertifikası"
-msgstr ""
-
-#: includes/admin/ecards.php:25
-msgid "Düğün Fidan Bağışı"
-msgstr ""
-
-#: includes/admin/ecards.php:26
-msgid "Öğretmenler Günü Sertifikası"
-msgstr ""
-
-#: includes/admin/ecards.php:27
-msgid "Teşekkür Ederim Sertifikası"
-msgstr ""
-
-#: includes/admin/ecards.php:28
-msgid "Hoş Geldin Bebek Sertifikası"
-msgstr ""
-
-#: includes/admin/ecards.php:29
-msgid "Düğün Tebrik Sertifikası"
-msgstr ""
-
-#: includes/admin/ecards.php:30
-msgid "Evlilik Yıldönümü Sertifikası"
-msgstr ""
-
-#: includes/admin/ecards.php:31
-msgid "Fidan Bağış Sertifikası (tek isimli)"
-msgstr ""
-
-#: includes/admin/ecards.php:32
-msgid "Fidan Bağışı (çift isimli, fidan sayılı)"
-msgstr ""
-
-#: includes/admin/ecards.php:33
-msgid "Fidan Bağış Sertifikası (çift isimli)"
-msgstr ""
-
-#: includes/admin/ecards.php:47
-#: includes/admin/ecards.php:55
-#: includes/admin/ecards.php:63
-#: includes/admin/ecards.php:71
-#: includes/admin/ecards.php:79
-#: includes/admin/ecards.php:87
-#: includes/admin/ecards.php:96
-#: includes/admin/ecards.php:104
-#: includes/admin/ecards.php:113
-#: includes/admin/ecards.php:121
-#: includes/admin/ecards.php:128
-#: includes/admin/ecards.php:136
-#: includes/admin/ecards.php:143
-#: includes/admin/ecards.php:150
-#: includes/admin/ecards.php:157
-#: includes/admin/ecards.php:166
-msgid "Alıcı adı"
-msgstr ""
-
-#: includes/admin/ecards.php:48
-#: includes/admin/ecards.php:56
-#: includes/admin/ecards.php:64
-#: includes/admin/ecards.php:72
-#: includes/admin/ecards.php:80
-#: includes/admin/ecards.php:89
-#: includes/admin/ecards.php:97
-#: includes/admin/ecards.php:105
-#: includes/admin/ecards.php:114
-#: includes/admin/ecards.php:129
-#: includes/admin/ecards.php:158
-#: includes/admin/ecards.php:167
-msgid "Bağışlayan (sizin adınız)"
-msgstr ""
-
-#: includes/admin/ecards.php:88
-msgid "Anılan kişi"
-msgstr ""
-
-#: includes/admin/ecards.php:106
-#: includes/admin/ecards.php:159
-msgid "Fidan sayısı"
-msgstr ""
-
-#: includes/admin/ecards.php:255
-#: includes/admin/ecards.php:272
-#: includes/admin/export.php:40
-#: includes/admin/page-certificates.php:9
-#: includes/system-checks.php:283
-msgid "Yetki yok"
-msgstr ""
-
-#. translators: %d: number of templates
-#: includes/admin/ecards.php:261
-#, php-format
-msgid "%d e-kart tasarımı pasif şablon olarak eklendi. Aktif yaptığınız tasarımlar bağış sayfasında seçilebilir."
-msgstr ""
-
-#: includes/admin/ecards.php:263
-msgid "Tüm e-kart tasarımları zaten ekli."
-msgstr ""
-
-#: includes/admin/ecards.php:275
-msgid "Sunucuda ZipArchive (PHP zip eklentisi) yok."
-msgstr ""
-
-#: includes/admin/ecards.php:301
-msgid "Hazır e-kartlar"
-msgstr ""
-
-#. translators: 1: imported count, 2: total
-#: includes/admin/ecards.php:303
-#, php-format
-msgid "(%1$d/%2$d eklendi)"
-msgstr ""
-
-#: includes/admin/ecards.php:305
-msgid "Eksik e-kart tasarımları pasif şablon olarak eklensin mi?"
-msgstr ""
-
-#: includes/admin/ecards.php:305
-msgid "İçe aktar"
-msgstr ""
-
-#: includes/admin/ecards.php:307
-msgid "Görselleri zip indir"
-msgstr ""
-
-#: includes/admin/export.php:53
-msgid "İptal edildi"
-msgstr ""
-
-#: includes/admin/export.php:69
-#: templates/sertifika.php:103
-msgid "Sertifika No"
-msgstr ""
-
-#: includes/admin/export.php:70
-msgid "Tarih"
-msgstr ""
-
-#: includes/admin/export.php:71
-#: templates/sertifika.php:102
-msgid "Ad Soyad"
-msgstr ""
-
-#: includes/admin/export.php:72
-msgid "Telefon"
-msgstr ""
-
-#: includes/admin/export.php:73
-#: includes/helpers.php:228
-#: includes/system-checks.php:168
-msgid "E-posta"
-msgstr ""
-
-#: includes/admin/export.php:74
-#: includes/admin/page-certificates.php:105
-#: includes/admin/page-certificates.php:201
-msgid "Etkinlik"
-msgstr ""
-
-#: includes/admin/export.php:75
-#: includes/admin/page-certificates.php:112
-msgid "Şablon"
-msgstr ""
-
-#: includes/admin/export.php:76
-#: includes/admin/page-certificates.php:118
-#: includes/admin/page-certificates.php:219
-msgid "Referans"
-msgstr ""
-
-#: includes/admin/export.php:77
-#: includes/admin/page-certificates.php:126
-msgid "Oluşturan"
-msgstr ""
-
-#: includes/admin/export.php:78
-#: includes/admin/page-certificates.php:100
-#: includes/admin/page-certificates.php:172
-#: includes/admin/page-certificates.php:223
-msgid "Durum"
-msgstr ""
-
-#: includes/admin/export.php:79
-msgid "Görüntülenme"
-msgstr ""
-
-#: includes/admin/export.php:80
-msgid "Gönderilen mesaj"
-msgstr ""
-
-#: includes/admin/export.php:81
-msgid "Sertifika linki"
-msgstr ""
-
-#. translators: file name prefix of the certificate Excel export
-#: includes/admin/export.php:109
-msgctxt "excel file name"
-msgid "sertifikalar"
-msgstr ""
-
-#: includes/admin/export.php:111
-#: includes/admin/page-certificates.php:90
-#: includes/admin/page-templates.php:210
-#: includes/templates.php:227
-msgid "Sertifikalar"
-msgstr ""
-
-#: includes/admin/export.php:134
-msgid "Sunucuda ZipArchive (PHP zip eklentisi) yok; Excel dosyası oluşturulamadı."
-msgstr ""
-
-#: includes/admin/export.php:189
-msgid "Excel dosyası oluşturulamadı."
-msgstr ""
-
-#: includes/admin/page-certificates.php:14
-msgid "Sertifika seçmediniz."
-msgstr ""
-
-#: includes/admin/page-certificates.php:29
-#, php-format
-msgid "%d mesaj kuyruğa alındı."
-msgstr ""
-
-#: includes/admin/page-certificates.php:51
-#, php-format
-msgid "%d sertifika güncellendi."
-msgstr ""
-
-#: includes/admin/page-certificates.php:92
-msgid "Excel indir"
-msgstr ""
-
-#: includes/admin/page-certificates.php:93
-msgid "Yeni sertifika"
-msgstr ""
-
-#: includes/admin/page-certificates.php:99
-msgid "Ad, telefon, e-posta, sertifika no…"
-msgstr ""
-
-#: includes/admin/page-certificates.php:101
-msgid "Tüm durumlar"
-msgstr ""
-
-#: includes/admin/page-certificates.php:106
-#: includes/site.php:259
-msgid "Tüm etkinlikler"
-msgstr ""
-
-#: includes/admin/page-certificates.php:107
-#, php-format
-msgid "Etkinliksiz (%d)"
-msgstr ""
-
-#: includes/admin/page-certificates.php:109
-msgid "arşiv"
-msgstr ""
-
-#: includes/admin/page-certificates.php:113
-msgid "Tüm şablonlar"
-msgstr ""
-
-#: includes/admin/page-certificates.php:119
-msgid "Tüm referanslar"
-msgstr ""
-
-#: includes/admin/page-certificates.php:120
-#, php-format
-msgid "Referanssız (%d)"
-msgstr ""
-
-#: includes/admin/page-certificates.php:127
-msgid "Oluşturan: herkes"
-msgstr ""
-
-#: includes/admin/page-certificates.php:133
-msgid "Filtrele"
-msgstr ""
-
-#: includes/admin/page-certificates.php:141
-msgid "Seçilenlere…"
-msgstr ""
-
-#: includes/admin/page-certificates.php:142
-#: includes/admin/page-certificates.php:232
-msgid "WhatsApp ile gönder"
-msgstr ""
-
-#: includes/admin/page-certificates.php:143
-#: includes/admin/page-certificates.php:233
-msgid "SMS ile gönder"
-msgstr ""
-
-#: includes/admin/page-certificates.php:144
-#: includes/admin/page-certificates.php:234
-msgid "E-posta ile gönder"
-msgstr ""
-
-#: includes/admin/page-certificates.php:145
-#: includes/admin/page-certificates.php:243
-msgid "İptal et"
-msgstr ""
-
-#: includes/admin/page-certificates.php:146
-#: includes/admin/page-certificates.php:245
-msgid "Geçerli yap"
-msgstr ""
-
-#: includes/admin/page-certificates.php:147
-msgid "Etkinliğe ata…"
-msgstr ""
-
-#: includes/admin/page-certificates.php:148
-msgid "Referans ata…"
-msgstr ""
-
-#: includes/admin/page-certificates.php:150
-msgid "Kalıcı sil"
-msgstr ""
-
-#: includes/admin/page-certificates.php:154
-msgid "— Etkinliksiz —"
-msgstr ""
-
-#: includes/admin/page-certificates.php:162
-msgid "— Referans yok —"
-msgstr ""
-
-#: includes/admin/page-certificates.php:167
-msgid "Seçilenlere uygulansın mı?"
-msgstr ""
-
-#: includes/admin/page-certificates.php:167
-msgid "Uygula"
-msgstr ""
-
-#: includes/admin/page-certificates.php:172
-#: includes/admin/page-certificates.php:187
-msgid "Sertifika"
-msgstr ""
-
-#: includes/admin/page-certificates.php:172
-#: includes/admin/page-certificates.php:196
-msgid "Kişi"
-msgstr ""
-
-#: includes/admin/page-certificates.php:172
-msgid "Etkinlik / Şablon"
-msgstr ""
-
-#: includes/admin/page-certificates.php:172
-#: includes/admin/page-certificates.php:205
-msgid "Gönderimler"
-msgstr ""
-
-#: includes/admin/page-certificates.php:172
-msgid "Referans / Oluşturan"
-msgstr ""
-
-#: includes/admin/page-certificates.php:176
-msgid "Henüz sertifika yok."
-msgstr ""
-
-#: includes/admin/page-certificates.php:176
-msgid "İlk sertifikayı oluşturun"
-msgstr ""
-
-#: includes/admin/page-certificates.php:192
-#, php-format
-msgid "Gerçek oluşturma: %s"
-msgstr ""
-
-#: includes/admin/page-certificates.php:192
-msgid "geçmiş tarihli"
-msgstr ""
-
-#: includes/admin/page-certificates.php:192
-#, php-format
-msgid "%d görüntülenme"
-msgid_plural "%d görüntülenme"
-msgstr[0] ""
-msgstr[1] ""
-
-#: includes/admin/page-certificates.php:198
-#, php-format
-msgid "Kayıtlı kişi: %s"
-msgstr ""
-
-#: includes/admin/page-certificates.php:221
-#, php-format
-msgid "oluşturan: %s"
-msgstr ""
-
-#: includes/admin/page-certificates.php:226
-msgid "İşlemler"
-msgstr ""
-
-#: includes/admin/page-certificates.php:228
-msgid "Sayfayı aç"
-msgstr ""
-
-#: includes/admin/page-certificates.php:229
-#: templates/sertifika.php:125
-msgid "Linki kopyala"
-msgstr ""
-
-#: includes/admin/page-certificates.php:230
 msgid "PDF"
 msgstr ""
 
-#: includes/admin/page-certificates.php:235
-msgid "Başka birine gönder…"
+msgid "Send to someone else…"
 msgstr ""
 
-#: includes/admin/page-certificates.php:237
-msgid "Referansı güncelle…"
+msgid "Update referrer…"
 msgstr ""
 
-#: includes/admin/page-certificates.php:241
-msgid "Düzenle"
+msgid "Edit"
 msgstr ""
 
-#: includes/admin/page-certificates.php:243
-msgid "Sertifika iptal edilsin mi? Link açılınca \"iptal edildi\" yazar."
+msgid "Revoke this certificate? The link will show \"revoked\"."
 msgstr ""
 
-#: includes/admin/page-certificates.php:248
-msgid "Gönderim geçmişi"
+msgid "Delivery history"
 msgstr ""
 
-#: includes/admin/page-system.php:9
-msgid "Tamam"
+msgid "No connection in Flux Mail"
 msgstr ""
 
-#: includes/admin/page-system.php:10
-msgid "Uyarı"
+msgid "Flux Mail is not active"
 msgstr ""
 
-#: includes/admin/page-system.php:11
-msgid "Hata"
+msgid "add"
 msgstr ""
 
-#: includes/admin/page-system.php:12
-msgid "Bilgi"
+msgid "Plugins"
 msgstr ""
 
-#: includes/admin/page-system.php:14
-msgid "WhatsApp/SMS bağlantılarını test et"
-msgstr ""
-
-#: includes/admin/page-system.php:18
-msgid "Kurulumun, cron'un ve gönderimin yerli yerinde olup olmadığı. Sayfa her açıldığında yeniden kontrol edilir. WhatsApp/SMS bağlantıları ve testleri Flux Mail'dedir."
-msgstr ""
-
-#: includes/admin/page-templates.php:109
-msgid "Bağış sayfasında"
-msgstr ""
-
-#: includes/admin/page-templates.php:207
-msgid "Bağış sayfası"
-msgstr ""
-
-#: includes/admin/page-templates.php:208
-msgid "Bağışçı bu tasarımı bağış sayfasında seçebilir"
-msgstr ""
-
-#: includes/admin/page-templates.php:210
-msgid "Başlık (grup)"
-msgstr ""
-
-#: includes/admin/page-templates.php:211
-msgid "Sıra"
-msgstr ""
-
-#: includes/admin/page-templates.php:213
-msgid "Bağışçı tasarımı seçer, şablondaki metin, tarih ve seçim alanlarını (ör. alıcı adı, mesaj) doldurur. Fiyat bağış türünden gelir."
-msgstr ""
-
-#: includes/helpers.php:176
-msgid "Sistem"
-msgstr ""
-
-#: includes/helpers.php:229
-msgid "SMS"
-msgstr ""
-
-#: includes/helpers.php:230
-msgid "WhatsApp"
-msgstr ""
-
-#: includes/helpers.php:241
-msgid "Bekliyor"
-msgstr ""
-
-#: includes/helpers.php:242
-msgid "Gönderiliyor"
-msgstr ""
-
-#: includes/helpers.php:243
-msgid "Gönderildi"
-msgstr ""
-
-#: includes/helpers.php:244
-msgid "Başarısız"
-msgstr ""
-
-#: includes/providers.php:169
-msgid "Flux Mail (kurumsal şablon)"
-msgstr ""
-
-#: includes/public.php:136
-#: templates/sertifika.php:67
-msgid "Sertifika bulunamadı"
-msgstr ""
-
-#: includes/public.php:158
-#: templates/sertifika.php:78
-msgid "İptal edilmiş sertifika"
-msgstr ""
-
-#: includes/public.php:272
-msgid "Link kopyalandı"
-msgstr ""
-
-#: includes/public.php:273
-msgid "Linki kopyalayın:"
-msgstr ""
-
-#: includes/public.php:274
-msgid "Gönderiliyor…"
-msgstr ""
-
-#: includes/public.php:275
-msgid "Tamam."
-msgstr ""
-
-#: includes/public.php:276
-msgid "Bir hata oluştu."
-msgstr ""
-
-#: includes/public.php:277
-msgid "Bağlantı hatası. Lütfen tekrar deneyin."
-msgstr ""
-
-#. translators: %s: missing library names
-#: includes/public.php:325
-#, php-format
-msgid "PDF kütüphanesi yüklenemedi (%s). Sayfayı yenileyip tekrar deneyin."
-msgstr ""
-
-#: includes/public.php:356
-msgid "Sertifikanızı bulun"
-msgstr ""
-
-#: includes/public.php:357
-msgid "Kayıt olurken verdiğiniz telefon numarasını ya da e-posta adresini yazın. Sertifika bağlantınızı yalnızca o adrese göndeririz."
-msgstr ""
-
-#: includes/public.php:359
-msgid "0532 123 45 67 ya da ornek@eposta.com"
-msgstr ""
-
-#: includes/public.php:361
-msgid "Gönder"
-msgstr ""
-
-#: includes/render.php:46
-msgid "Sunucuda GD (FreeType) eklentisi yok."
-msgstr ""
-
-#: includes/render.php:54
-msgid "Bu sertifikanın dosyaları şu an hazırlanıyor."
-msgstr ""
-
-#: includes/render.php:75
-msgid "Şablon bulunamadı."
-msgstr ""
-
-#: includes/render.php:489
-msgid "Arka plan PDF'i sunucuda okunamadı."
-msgstr ""
-
-#: includes/render.php:780
-#: templates/sertifika.php:80
-msgid "Doğrulanmış sertifika"
-msgstr ""
-
-#: includes/rest.php:333
-msgid "Sorgulama kapalı."
-msgstr ""
-
-#: includes/rest.php:344
-msgid "Çok fazla deneme. Lütfen daha sonra tekrar deneyin."
-msgstr ""
-
-#: includes/rest.php:351
-msgid "Geçerli bir telefon numarası ya da e-posta girin."
-msgstr ""
-
-#. translators: 1: ad, 2: site adı, 3: sertifika linkleri (satır satır)
-#: includes/rest.php:371
-#, php-format
-msgid ""
-"Merhaba %1$s,\n"
-"\n"
-"%2$s sertifikalarınız:\n"
-"%3$s"
-msgstr ""
-
-#: includes/rest.php:378
-msgid "Sertifikalarınız"
-msgstr ""
-
-#: includes/rest.php:392
-msgid "Bu bilgiyle kayıtlı bir sertifika varsa bağlantısı birkaç dakika içinde size gönderilecek."
-msgstr ""
-
-#: includes/site.php:28
-msgid "Devam Eden Etkinlikler"
-msgstr ""
-
-#: includes/site.php:28
-msgid "Fidanlarınız bu etkinliklerde toprakla buluşuyor. Siz de bu süreçte fidan bağışıyla bir katkıda bulunabilirsiniz."
-msgstr ""
-
-#: includes/site.php:82
-msgid "Etkinlik konumu"
-msgstr ""
-
-#. translators: tarih biçimi (PHP date), örn. 11 Kasım 2026, Çarşamba
-#: includes/site.php:115
-msgctxt "event date format"
-msgid "j F Y, l"
-msgstr ""
-
-#. translators: sayının yanındaki ifade, örn. "250 fidan dikildi"
-#: includes/site.php:125
-msgid "fidan dikildi"
-msgid_plural "fidan dikildi"
+msgid "%d record"
+msgid_plural "%d records"
 msgstr[0] ""
 msgstr[1] ""
 
-#. translators: sayının yanındaki ifade, örn. "250 fidan toplandı"
-#: includes/site.php:127
-msgid "fidan toplandı"
-msgid_plural "fidan toplandı"
+msgid "Inactive"
+msgstr ""
+
+msgid "Father's Day Certificate"
+msgstr ""
+
+msgid "Just Because Certificate"
+msgstr ""
+
+msgid "Birthday Gift"
+msgstr ""
+
+msgid "Get Well Soon"
+msgstr ""
+
+msgid "First Day at Work"
+msgstr ""
+
+msgid "Condolence Certificate"
+msgstr ""
+
+msgid "Mother's Day Certificate"
+msgstr ""
+
+msgid "Wedding Sapling Donation"
+msgstr ""
+
+msgid "Teachers' Day Certificate"
+msgstr ""
+
+msgid "Thank You Certificate"
+msgstr ""
+
+msgid "Welcome Baby Certificate"
+msgstr ""
+
+msgid "Wedding Congratulations Certificate"
+msgstr ""
+
+msgid "Wedding Anniversary Certificate"
+msgstr ""
+
+msgid "Sapling Donation Certificate (one name)"
+msgstr ""
+
+msgid "Sapling Donation (two names, sapling count)"
+msgstr ""
+
+msgid "Sapling Donation Certificate (two names)"
+msgstr ""
+
+msgid "Recipient name"
+msgstr ""
+
+msgid "Donor (your name)"
+msgstr ""
+
+msgid "Person remembered"
+msgstr ""
+
+msgid "Number of saplings"
+msgstr ""
+
+msgid "%d e-card designs were added as inactive templates. Designs you activate can be picked on the donation page."
+msgstr ""
+
+msgid "All e-card designs are already added."
+msgstr ""
+
+msgid "The server has no ZipArchive (PHP zip extension)."
+msgstr ""
+
+msgid "Ready-made e-cards"
+msgstr ""
+
+msgid "(%1$d/%2$d added)"
+msgstr ""
+
+msgid "Add the missing e-card designs as inactive templates?"
+msgstr ""
+
+msgid "Import"
+msgstr ""
+
+msgid "Download images as zip"
+msgstr ""
+
+msgid "Flux Mail (organization template)"
+msgstr ""
+
+msgid "%s ago"
+msgstr ""
+
+msgid "Certificates · Setup"
+msgstr ""
+
+msgid "Certificates · Sending and cron"
+msgstr ""
+
+msgid "Certificates · Site"
+msgstr ""
+
+msgid "Database tables"
+msgstr ""
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr ""
+
+msgid "A database update is pending; it completes when an admin page is opened."
+msgstr ""
+
+msgid "All tables exist. Plugin %1$s, database version %2$s."
+msgstr ""
+
+msgid "Files folder"
+msgstr ""
+
+msgid "The folder for certificate PDFs and images is writable."
+msgstr ""
+
+msgid "%s is not writable; certificate files cannot be saved. Check folder permissions (755)."
+msgstr ""
+
+msgid "Certificate page address"
+msgstr ""
+
+msgid "Permalinks are set to \"Plain\"; certificate links work as ?flxs_kod=. \"Post name\" is recommended."
+msgstr ""
+
+msgid "Permalinks"
+msgstr ""
+
+msgid "The certificate URL rule is not registered; links may return 404. Press \"Save Changes\" on the Permalinks page."
+msgstr ""
+
+msgid "Certificates open at %s{code}."
+msgstr ""
+
+msgid "Certificate templates"
+msgstr ""
+
+msgid "%d active template."
+msgid_plural "%d active templates."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/site.php:133
-msgctxt "short date format"
-msgid "j F"
+msgid "No active template; certificates cannot be created."
 msgstr ""
 
-#. translators: %s: tarih, örn. 1 Kasım
-#: includes/site.php:136
-#, php-format
-msgid "Dikim alanı yetkili kurumlarca etkinlikten 10 gün önce bildirilir, %s civarında burada paylaşacağız."
+msgid "Templates"
 msgstr ""
 
-#: includes/site.php:137
-msgid "Dikim alanı yetkili kurumlarca etkinlikten 10 gün önce bildirilir, burada paylaşacağız."
+msgid "Plugin files"
 msgstr ""
 
-#: includes/site.php:138
-msgid "Konum yakında"
+msgid "Missing file: %s. Upload the plugin zip again."
 msgstr ""
 
-#: includes/site.php:141
-msgid "Etkinlik alanı"
+msgid "PDF renderer, QR and fonts are in place."
 msgstr ""
 
-#: includes/site.php:144
-msgid "Yol tarifi al"
+msgid "Staff role"
 msgstr ""
 
-#: includes/site.php:148
-msgid "Haritayı göster"
+msgid "The \"Certificate Staff\" role exists."
 msgstr ""
 
-#: includes/site.php:148
-msgid "Google Haritalar yüklenir"
+msgid "The \"Certificate Staff\" role is missing. Deactivate and reactivate the plugin."
 msgstr ""
 
-#. translators: %s: hedef fidan sayısı
-#: includes/site.php:157
-#, php-format
-msgid "Hedef %s fidan"
+msgid "Sending queue (cron)"
 msgstr ""
 
-#. translators: %s: yüzde değeri; Türkçede işaret başta (%63)
-#: includes/site.php:157
-msgid "%%%s"
+msgid "The per-minute queue task is not scheduled. Reload any admin page; if it persists, reactivate the plugin."
 msgstr ""
 
-#: includes/site.php:167
-msgid "Tamamlanan etkinlik"
+msgid "Queue"
 msgstr ""
 
-#: includes/site.php:167
-msgid "Fidan sayacı"
-msgstr ""
-
-#: includes/site.php:168
-msgid "fidan toprakla buluştu"
-msgstr ""
-
-#. translators: %s: kişi sayısı
-#: includes/site.php:168
-#, php-format
-msgid "%s kişi katkıda bulundu"
-msgid_plural "%s kişi katkıda bulundu"
+msgid "%1$d message has been waiting for more than 10 minutes; the queue may not be running. Runner: %2$s, last run: %3$s."
+msgid_plural "%1$d messages have been waiting for more than 10 minutes; the queue may not be running. Runner: %2$s, last run: %3$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/site.php:174
-#: includes/site.php:220
-msgctxt "card date format"
-msgid "j F Y"
+msgid "never"
 msgstr ""
 
-#. translators: %s: saat
-#: includes/site.php:175
-#, php-format
-msgid "Saat %s"
+msgid "WP-Cron is disabled (DISABLE_WP_CRON); a per-minute cron for wp-cron.php must be set in the hosting panel."
 msgstr ""
 
-#: includes/site.php:181
-msgid "Bu etkinlik tamamlandı. Katkı veren herkese teşekkür ederiz."
+msgid "Runner: %1$s. Last run %2$s; cron fires rarely. No messages waiting. Without regular traffic, a per-minute cron for wp-cron.php in the hosting panel is recommended."
 msgstr ""
 
-#: includes/site.php:183
-msgid "Bu etkinlik için fidan bağışla"
+msgid "Runner: %1$s. Last run: %2$s. No old messages waiting."
 msgstr ""
 
-#: includes/site.php:183
-msgid "Bağışınız sayaca anında eklenir."
+msgid "not recorded yet"
 msgstr ""
 
-#: includes/site.php:216
-msgid "Fidan dikim etkinlikleri"
+msgid "Sending in the last 24 hours"
 msgstr ""
 
-#: includes/site.php:221
-msgid "Konum yakında açıklanacak"
-msgstr ""
-
-#: includes/site.php:226
-msgid "Detaylar"
-msgstr ""
-
-#: includes/site.php:227
-msgid "Fidan bağışla"
-msgstr ""
-
-#. translators: %s: human readable time difference, e.g. "5 mins"
-#: includes/system-checks.php:47
-#, php-format
-msgid "%s önce"
-msgstr ""
-
-#: includes/system-checks.php:54
-msgid "Sertifika · Kurulum"
-msgstr ""
-
-#: includes/system-checks.php:55
-msgid "Sertifika · Gönderim ve cron"
-msgstr ""
-
-#: includes/system-checks.php:56
-msgid "Sertifika · Site"
-msgstr ""
-
-#. translators: %s: comma separated table names
-#. translators: 1: plugin version, 2: database version
-#: includes/system-checks.php:77
-#: includes/system-checks.php:79
-#: includes/system-checks.php:82
-msgid "Veritabanı tabloları"
-msgstr ""
-
-#. translators: %s: comma separated table names
-#: includes/system-checks.php:77
-#, php-format
-msgid "Eksik tablo: %s. Eklentiyi devre dışı bırakıp yeniden etkinleştirin."
-msgstr ""
-
-#: includes/system-checks.php:79
-msgid "Veritabanı güncellemesi bekliyor; bir yönetici sayfası açıldığında tamamlanır."
-msgstr ""
-
-#. translators: 1: plugin version, 2: database version
-#: includes/system-checks.php:82
-#, php-format
-msgid "Tüm tablolar var. Eklenti %1$s, veritabanı sürümü %2$s."
-msgstr ""
-
-#. translators: %s: folder path relative to wp-content
-#: includes/system-checks.php:87
-#: includes/system-checks.php:90
-msgid "Dosya klasörü"
-msgstr ""
-
-#: includes/system-checks.php:87
-msgid "Sertifika PDF ve görselleri için klasör yazılabilir."
-msgstr ""
-
-#. translators: %s: folder path relative to wp-content
-#: includes/system-checks.php:90
-#, php-format
-msgid "%s yazılamıyor; sertifika dosyaları kaydedilemez. Klasör izinlerini (755) kontrol edin."
-msgstr ""
-
-#. translators: %s: certificate base URL
-#: includes/system-checks.php:97
-#: includes/system-checks.php:99
-#: includes/system-checks.php:102
-msgid "Sertifika sayfası adresi"
-msgstr ""
-
-#: includes/system-checks.php:97
-msgid "Kalıcı bağlantılar \"Düz\" ayarında; sertifika linkleri ?flxs_kod= biçiminde çalışır. \"Yazı adı\" önerilir."
-msgstr ""
-
-#: includes/system-checks.php:97
-#: includes/system-checks.php:99
-msgid "Kalıcı bağlantılar"
-msgstr ""
-
-#: includes/system-checks.php:99
-msgid "Sertifika adres kuralı kayıtlı değil; linkler 404 verebilir. Kalıcı bağlantılar sayfasında \"Değişiklikleri kaydet\"e basın."
-msgstr ""
-
-#. translators: %s: certificate base URL
-#: includes/system-checks.php:102
-#, php-format
-msgid "Sertifikalar %s{kod} adresinde açılır."
-msgstr ""
-
-#. translators: %d: number of templates
-#: includes/system-checks.php:108
-#: includes/system-checks.php:110
-msgid "Sertifika şablonları"
-msgstr ""
-
-#. translators: %d: number of templates
-#: includes/system-checks.php:108
-#, php-format
-msgid "%d aktif şablon var."
-msgid_plural "%d aktif şablon var."
+msgid "%d message failed."
+msgid_plural "%d messages failed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/system-checks.php:110
-msgid "Aktif şablon yok; sertifika oluşturulamaz."
+msgid "View failed"
 msgstr ""
 
-#: includes/system-checks.php:110
-msgid "Şablonlar"
-msgstr ""
-
-#. translators: %s: comma separated file names
-#: includes/system-checks.php:122
-#: includes/system-checks.php:124
-msgid "Eklenti dosyaları"
-msgstr ""
-
-#. translators: %s: comma separated file names
-#: includes/system-checks.php:122
-#, php-format
-msgid "Eksik dosya: %s. Eklenti zip'ini yeniden yükleyin."
-msgstr ""
-
-#: includes/system-checks.php:124
-msgid "PDF çizici, QR ve yazı tipleri yerinde."
-msgstr ""
-
-#: includes/system-checks.php:128
-#: includes/system-checks.php:130
-msgid "Personel rolü"
-msgstr ""
-
-#: includes/system-checks.php:128
-msgid "\"Sertifika Personeli\" rolü tanımlı."
-msgstr ""
-
-#: includes/system-checks.php:130
-msgid "\"Sertifika Personeli\" rolü yok. Eklentiyi devre dışı bırakıp yeniden etkinleştirin."
-msgstr ""
-
-#. translators: 1: number of messages, 2: queue runner name, 3: "x mins ago" or "never"
-#. translators: 1: queue runner name, 2: "x hours ago"
-#. translators: 1: queue runner name, 2: "x mins ago" or "not yet"
-#: includes/system-checks.php:141
-#: includes/system-checks.php:144
-#: includes/system-checks.php:147
-#: includes/system-checks.php:150
-msgid "Gönderim kuyruğu (cron)"
-msgstr ""
-
-#: includes/system-checks.php:141
-msgid "Dakikalık kuyruk görevi zamanlanmamış. Herhangi bir yönetici sayfasını yenileyin; düzelmezse eklentiyi yeniden etkinleştirin."
-msgstr ""
-
-#. translators: 1: number of messages, 2: queue runner name, 3: "x mins ago" or "never"
-#: includes/system-checks.php:141
-#: includes/system-checks.php:144
-msgid "Kuyruk"
-msgstr ""
-
-#. translators: 1: number of messages, 2: queue runner name, 3: "x mins ago" or "never"
-#: includes/system-checks.php:144
-#, php-format
-msgid "%1$d mesaj 10 dakikadan uzun süredir bekliyor; kuyruk çalışmıyor olabilir. İşleyici: %2$s, son çalışma: %3$s."
-msgid_plural "%1$d mesaj 10 dakikadan uzun süredir bekliyor; kuyruk çalışmıyor olabilir. İşleyici: %2$s, son çalışma: %3$s."
+msgid "%d message sent, none failed."
+msgid_plural "%d messages sent, none failed."
 msgstr[0] ""
 msgstr[1] ""
 
-#. translators: 1: number of messages, 2: queue runner name, 3: "x mins ago" or "never"
-#: includes/system-checks.php:144
-msgid "hiç"
+msgid "Daily cleanup task"
 msgstr ""
 
-#. translators: 1: number of messages, 2: queue runner name, 3: "x mins ago" or "never"
-#: includes/system-checks.php:144
-msgid "WP-Cron kapalı (DISABLE_WP_CRON); hosting panelinde wp-cron.php için dakikalık cron tanımlı olmalı."
+msgid "The daily task (old log cleanup) is not scheduled; reload an admin page."
 msgstr ""
 
-#. translators: 1: queue runner name, 2: "x hours ago"
-#: includes/system-checks.php:147
-#, php-format
-msgid "İşleyici: %1$s. Son çalışma %2$s; cron seyrek tetikleniyor. Bekleyen mesaj yok. Düzenli trafik yoksa hosting panelinden wp-cron.php için dakikalık cron önerilir."
-msgstr ""
-
-#. translators: 1: queue runner name, 2: "x mins ago" or "not yet"
-#: includes/system-checks.php:150
-#, php-format
-msgid "İşleyici: %1$s. Son çalışma: %2$s. Bekleyen eski mesaj yok."
-msgstr ""
-
-#. translators: 1: queue runner name, 2: "x mins ago" or "not yet"
-#: includes/system-checks.php:150
-msgid "henüz kaydedilmedi"
-msgstr ""
-
-#. translators: %d: number of failed messages
-#. translators: %d: number of sent messages
-#: includes/system-checks.php:156
-#: includes/system-checks.php:160
-msgid "Son 24 saatte gönderim"
-msgstr ""
-
-#. translators: %d: number of failed messages
-#: includes/system-checks.php:156
-#, php-format
-msgid "%d mesaj gönderilemedi."
-msgid_plural "%d mesaj gönderilemedi."
-msgstr[0] ""
-msgstr[1] ""
-
-#. translators: %d: number of failed messages
-#: includes/system-checks.php:156
-msgid "Başarısızları gör"
-msgstr ""
-
-#. translators: %d: number of sent messages
-#: includes/system-checks.php:160
-#, php-format
-msgid "%d mesaj gönderildi, başarısız yok."
-msgid_plural "%d mesaj gönderildi, başarısız yok."
-msgstr[0] ""
-msgstr[1] ""
-
-#: includes/system-checks.php:164
-msgid "Günlük temizlik görevi"
-msgstr ""
-
-#: includes/system-checks.php:164
-msgid "Günlük görev (eski kayıtların temizliği) zamanlanmamış; bir yönetici sayfasını yenileyin."
-msgstr ""
-
-#: includes/system-checks.php:170
 msgid "Flux Mail"
 msgstr ""
 
-#: includes/system-checks.php:170
-msgid "Flux Mail etkin değil. Sertifikalar WhatsApp ve SMS ile gönderilemez; e-posta WordPress'in kendi gönderimiyle (wp_mail) gider. Flux Mail eklentisini kurup etkinleştirin."
+msgid "Flux Mail is not active. Certificates cannot be sent by WhatsApp or SMS; email goes through WordPress (wp_mail). Install and activate Flux Mail."
 msgstr ""
 
-#. translators: %s: channel name (WhatsApp / SMS)
-#: includes/system-checks.php:175
-#, php-format
-msgid "%s gönderimi"
+msgid "%s sending"
 msgstr ""
 
-#. translators: %s: comma separated connection names
-#: includes/system-checks.php:180
-#, php-format
-msgid "Flux Mail bağlantısıyla gönderiliyor: %s."
+msgid "Sent through the Flux Mail connection: %s."
 msgstr ""
 
-#. translators: %s: "x mins ago"
-#: includes/system-checks.php:183
-#, php-format
-msgid "Son başarılı gönderim %s."
+msgid "Last successful send %s."
 msgstr ""
 
-#. translators: %s: channel name
-#: includes/system-checks.php:185
-#: includes/system-checks.php:189
-#: includes/system-checks.php:192
-msgid "Bağlantılar"
+msgid "Connections"
 msgstr ""
 
-#. translators: %s: channel name
-#: includes/system-checks.php:189
-#, php-format
-msgid "%1$s bağlantısı kurulmamış; %1$s ile sertifika gönderilmez."
+msgid "No %1$s connection is set up; certificates are not sent by %1$s."
 msgstr ""
 
-#. translators: %s: channel name
-#: includes/system-checks.php:192
-#, php-format
-msgid "Flux Mail'de etkin %s bağlantısı yok; bu kanaldan sertifika gönderilemez."
+msgid "Flux Mail has no active %s connection; certificates cannot be sent on that channel."
 msgstr ""
 
-#: includes/system-checks.php:195
-msgid "Sertifika e-postaları Flux Mail üzerinden kurumsal şablonla gider (İletişim › E-postalar)."
+msgid "Certificate emails go through Flux Mail with the organization template (Communication › Emails)."
 msgstr ""
 
-#: includes/system-checks.php:195
-msgid "E-postalar"
+msgid "Emails"
 msgstr ""
 
-#. translators: %s: theme version
-#. translators: %s: active theme name
-#: includes/system-checks.php:202
-#: includes/system-checks.php:205
-msgid "Tema uyumu"
+msgid "Theme compatibility"
 msgstr ""
 
-#. translators: %s: theme version
-#: includes/system-checks.php:202
-#, php-format
-msgid "FluxWP teması (%s) aktif; etkinlik bölümü ve sertifika sayfası tema ile uyumlu."
+msgid "The FluxWP theme (%s) is active; the events section and certificate page match the theme."
 msgstr ""
 
-#. translators: %s: active theme name
-#: includes/system-checks.php:205
-#, php-format
-msgid "Aktif tema: %s. Etkinlik bölümü yalnızca FluxWP temasında kendiliğinden görünür; diğer temalarda kısa kodla eklenir."
+msgid "Active theme: %s. The events section appears automatically only in the Örnek Vakfı theme; in other themes add it with a shortcode."
 msgstr ""
 
-#. translators: %s: comma separated event names
-#. translators: %d: number of open events
-#: includes/system-checks.php:210
-#: includes/system-checks.php:220
-#: includes/system-checks.php:223
-msgid "Devam eden etkinlikler"
+msgid "Ongoing events"
 msgstr ""
 
-#: includes/system-checks.php:210
-msgid "Açık etkinlik yok; sitede etkinlik bölümü gizlenir."
+msgid "No open events; the events section is hidden on the site."
 msgstr ""
 
-#. translators: %s: comma separated event names
-#: includes/system-checks.php:210
-#: includes/system-checks.php:220
-msgid "Etkinlikler"
+msgid "Events"
 msgstr ""
 
-#. translators: %s: comma separated event names
-#: includes/system-checks.php:220
-#, php-format
-msgid "Sitede sayfası yayında olmayan açık etkinlik: %s. Etkinlik düzenleme ekranındaki \"Sitede yayınla\" ile düzeltin."
+msgid "Open event without a published page: %s. Fix it with \"Publish on site\" in the event edit screen."
 msgstr ""
 
-#. translators: %d: number of open events
-#: includes/system-checks.php:223
-#, php-format
-msgid "%d açık etkinlik var, sayfası sitede yayında."
-msgid_plural "%d açık etkinlik var, sayfaları sitede yayında."
+msgid "%d open event, its page is published."
+msgid_plural "%d open events, their pages are published."
 msgstr[0] ""
 msgstr[1] ""
 
-#. translators: %s: page URL
-#: includes/system-checks.php:231
-#: includes/system-checks.php:233
-msgid "Sertifika sorgulama"
+msgid "Certificate lookup"
 msgstr ""
 
-#. translators: %s: page URL
-#: includes/system-checks.php:231
-#, php-format
-msgid "Sorgulama formu %s sayfasında."
+msgid "The lookup form is on %s."
 msgstr ""
 
-#: includes/system-checks.php:233
-msgid "Sorgulama açık ama [flx_sertifika_sorgula] kısa kodu yayında bir sayfada yok."
+msgid "Lookup is on, but no published page has the [flx_sertifika_sorgula] shortcode."
 msgstr ""
 
-#: includes/system-checks.php:238
-msgid "Flux Forms entegrasyonu"
+msgid "Flux Forms integration"
 msgstr ""
 
-#: includes/system-checks.php:238
-msgid "Flux Forms yüklü; form otomasyonları sertifika oluşturup gönderebilir."
+msgid "Flux Forms is installed; form automations can create and send certificates."
 msgstr ""
 
-#. translators: %d: number of certificates
-#: includes/system-checks.php:243
-#: includes/system-checks.php:248
-#: includes/system-checks.php:250
-msgid "Sunucuda PDF üretimi"
+msgid "PDF generation on the server"
 msgstr ""
 
-#: includes/system-checks.php:243
-msgid "PHP GD (FreeType) eklentisi yok: PDF ve görseller yalnız tarayıcıda, sertifika sayfası ilk açıldığında oluşur."
+msgid "PHP GD (FreeType) extension is missing: PDFs and images are only made in the browser, when the certificate page is first opened."
 msgstr ""
 
-#. translators: %d: number of certificates
-#: includes/system-checks.php:248
-#, php-format
-msgid "%d sertifikanın PDF'i ya da görseli eksik."
+msgid "%d certificate is missing its PDF or image."
 msgstr ""
 
-#. translators: %d: number of certificates
-#: includes/system-checks.php:248
-msgid "Eksikleri oluştur"
+msgid "Create missing files"
 msgstr ""
 
-#: includes/system-checks.php:250
-msgid "Açık. Yeni sertifikaların PDF'i ve görselleri sunucuda arka planda oluşur."
+msgid "On. PDFs and images for new certificates are generated in the background on the server."
 msgstr ""
 
-#: includes/system-checks.php:263
-msgid "Eksik sertifika dosyalarını oluştur"
+msgid "Create missing certificate files"
 msgstr ""
 
-#: includes/system-checks.php:264
-msgid "PDF'i ya da görseli eksik en çok 25 sertifikanın dosyalarını sunucuda üretir."
+msgid "Generates files on the server for up to 25 certificates that are missing a PDF or image."
 msgstr ""
 
-#. translators: 1: done count, 2: failed count
-#: includes/system-checks.php:273
-#: includes/system-checks.php:288
-#, php-format
-msgid "%1$d sertifikanın dosyaları oluşturuldu, %2$d hata."
+msgid "Files created for %1$d certificates, %2$d errors."
 msgstr ""
 
-#. translators: %d: remaining count
-#: includes/system-checks.php:291
-#, php-format
-msgid "%d sertifika kaldı, tekrar basın."
+msgid "%d certificates left, press again."
 msgstr ""
 
-#: templates/sertifika.php:66
-msgid "Kayıt yok"
+msgid "Ongoing Events"
 msgstr ""
 
-#: templates/sertifika.php:68
-msgid "Bağlantıyı eksik kopyalamış olabilirsiniz. Kodu kontrol edin ya da aşağıdan sertifikanızı isteyin."
+msgid "Your saplings are planted at these events. You too can contribute by donating saplings."
 msgstr ""
 
-#: templates/sertifika.php:96
-msgid "İPTAL"
+msgid "Event location"
 msgstr ""
 
-#: templates/sertifika.php:104
-msgid "Düzenlenme tarihi"
+msgctxt "context_39c93914dff5"
+msgid "l, F j, Y"
 msgstr ""
 
-#: templates/sertifika.php:105
-msgid "Düzenleyen"
+msgid "sapling planted"
+msgid_plural "saplings planted"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "sapling collected"
+msgid_plural "saplings collected"
+msgstr[0] ""
+msgstr[1] ""
+
+msgctxt "context_a43dbd63afaf"
+msgid "F j"
 msgstr ""
 
-#: templates/sertifika.php:106
-msgid "Doğrulama kodu"
+msgid "The planting site is announced by the authorities 10 days before the event. We will share it here around %s."
 msgstr ""
 
-#: templates/sertifika.php:113
-msgid "PDF indir"
+msgid "The planting site is announced by the authorities 10 days before the event. We will share it here."
 msgstr ""
 
-#: templates/sertifika.php:117
-msgid "Paylaş"
+msgid "Location coming soon"
 msgstr ""
 
-#: templates/sertifika.php:122
-msgid "LinkedIn'e ekle"
+msgid "Event site"
 msgstr ""
 
-#: templates/sertifika.php:128
-msgid "Bu sertifika düzenleyen kurum tarafından iptal edilmiştir ve geçerli değildir."
+msgid "Get directions"
 msgstr ""
 
-#. translators: %s: site adı
-#: templates/sertifika.php:130
-#, php-format
-msgid "Bu sayfa sertifikanın %s kayıtlarında bulunduğunu doğrular."
+msgid "Show map"
 msgstr ""
 
-msgid "Fidan hedefi ilerlemesi"
+msgid "Loads Google Maps"
 msgstr ""
+
+msgid "Goal: %s saplings"
+msgstr ""
+
+msgid "%s%%"
+msgstr ""
+
+msgid "Completed event"
+msgstr ""
+
+msgid "Sapling counter"
+msgstr ""
+
+msgid "saplings planted"
+msgstr ""
+
+msgid "%s person contributed"
+msgid_plural "%s people contributed"
+msgstr[0] ""
+msgstr[1] ""
+
+msgctxt "context_a104e4060425"
+msgid "F j, Y"
+msgstr ""
+
+msgid "Time: %s"
+msgstr ""
+
+msgid "This event is complete. Thank you to everyone who contributed."
+msgstr ""
+
+msgid "Donate saplings for this event"
+msgstr ""
+
+msgid "Your donation is added to the counter instantly."
+msgstr ""
+
+msgid "Tree planting events"
+msgstr ""
+
+msgid "Location to be announced"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid "Donate saplings"
+msgstr ""
+
+msgid "System"
+msgstr ""
+
+msgid "SMS"
+msgstr ""
+
+msgid "WhatsApp"
+msgstr ""
+
+msgid "Queued"
+msgstr ""
+
+msgid "Sending"
+msgstr ""
+
+msgid "Sent"
+msgstr ""
+
+msgid "Failed"
+msgstr ""
+
+msgid "The server has no GD (FreeType) extension."
+msgstr ""
+
+msgid "This certificate's files are being prepared right now."
+msgstr ""
+
+msgid "Template not found."
+msgstr ""
+
+msgid "The background PDF could not be read on the server."
+msgstr ""
+
+msgid "Link copied"
+msgstr ""
+
+msgid "Copy the link:"
+msgstr ""
+
+msgid "Sending…"
+msgstr ""
+
+msgid "Done."
+msgstr ""
+
+msgid "Something went wrong."
+msgstr ""
+
+msgid "Connection error. Please try again."
+msgstr ""
+
+msgid "The PDF library could not be loaded (%s). Reload the page and try again."
+msgstr ""
+
+msgid "Find your certificate"
+msgstr ""
+
+msgid "Enter the phone number or email address you registered with. We will send your certificate link only to that address."
+msgstr ""
+
+msgid "0532 123 45 67 or name@example.com"
+msgstr ""
+
+msgid "Send"
+msgstr ""
+
+msgid "Name, e-mail or phone"
+msgstr ""
+
+msgid "Name, number or code"
+msgstr ""
+
+msgid "Recipient or subject"
+msgstr ""
+
+msgid "Saplings"
+msgstr ""
+
+msgid "Queued to send"
+msgstr ""
+
+msgid "Send queue"
+msgstr ""
+
+msgid "Sends appear here."
+msgstr ""
+
+msgid "Channel"
+msgstr ""
+
+msgid "No people"
+msgstr ""
+
+msgid "People"
+msgstr ""
+
+msgid "Code"
+msgstr ""
+
+msgid "Queue is empty"
+msgstr ""
+
+msgid "Number"
+msgstr ""
+
+msgid "Cancel this certificate?"
+msgstr ""
+
+msgid "People who received a certificate appear here."
+msgstr ""
+
+msgid "No certificates"
+msgstr ""
+
+msgid "Send the certificate"
+msgstr ""
+
+msgid "New certificates appear here."
+msgstr ""
+
+msgid "Restore"
+msgstr ""
+
+msgid "Restored"
+msgstr ""
+
+msgid "Retry"
+msgstr ""
+
+msgid "Will be retried"
+msgstr ""
+
+msgid "Summary"
+msgstr ""
+
+msgid "A cancelled certificate is hidden on the public page."
+msgstr ""
+
+msgid "%d open event, its page is published."
+msgstr ""
+
+msgid "[['%dviews', 'tr']]"
+msgid_plural "[['%dviews', 'tr']]"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "[['%dregistration', 'tr']]"
+msgid_plural "[['%dregistration', 'tr']]"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "\\n There is active template%d. There is active template%d.\\n"
+msgstr ""
+
+msgid "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"
+msgstr ""
+
+msgid "[['%dmessage could not be sent.', 'tr']]"
+msgid_plural "[['%dmessage could not be sent.', 'tr']]"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "[['%dmessage sent, no failure.', 'tr']]"
+msgid_plural "[['%dmessage sent, no failure.', 'tr']]"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "[['%dhas an open event, its page is live on the site.', 'tr']]"
+msgid_plural "[['%dhas open events, its pages are live on the site.', 'tr']]"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "[['saplings were planted', 'tr']]"
+msgid_plural "[['saplings were planted', 'tr']]"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "[['saplings were collected', 'tr']]"
+msgid_plural "[['saplings were collected', 'tr']]"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "[['%scontributed by', 'tr']]"
+msgid_plural "[['%scontributed by', 'tr']]"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "[['Certificate templates, certificate creation with live PDF preview, /certificate/{kod}verification page, email / SMS (Netgsm) / WhatsApp (Evolution API) sending, asynchronous queue, contact registration and detailed logs.', 'tr']]"
+msgstr ""
+
+msgid "\\n There is active template%d. There is active template%d.\\n"
+msgid_plural "\\n There is active template%d. There is active template%d.\\n"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"
+msgid_plural "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"
+msgstr[0] ""
+msgstr[1] ""

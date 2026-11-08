@@ -14,7 +14,7 @@ function flxi_recipient_sources() {
 		$count = count_users()['avail_roles'][ $role ] ?? 0;
 		if ( $count ) {
 			/* translators: 1: rol adı, 2: kişi sayısı */
-			$out[ 'role:' . $role ] = sprintf( __( 'Üyeler: %1$s (%2$s)', 'flx-mail' ), translate_user_role( $name ), number_format_i18n( $count ) );
+			$out[ 'role:' . $role ] = sprintf( __( 'Members: %1$s (%2$s)', 'flx-mail' ), translate_user_role( $name ), number_format_i18n( $count ) );
 		}
 	}
 	if ( function_exists( 'flxs_table' ) ) {
@@ -23,7 +23,7 @@ function flxi_recipient_sources() {
 		if ( $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $t ) ) === $t ) { // phpcs:ignore
 			$n = (int) $wpdb->get_var( "SELECT COUNT(*) FROM $t" ); // phpcs:ignore
 			/* translators: %s: kişi sayısı */
-			$out['flxs_people'] = sprintf( __( 'Flux Certificates kişileri (%s)', 'flx-mail' ), number_format_i18n( $n ) );
+			$out['flxs_people'] = sprintf( __( 'Flux Certificates contacts (%s)', 'flx-mail' ), number_format_i18n( $n ) );
 		}
 	}
 	return apply_filters( 'flxi_recipient_sources', $out );
@@ -110,18 +110,18 @@ function flxi_collect_recipients( array $sources, $manual, $channel ) {
 function flxi_create_campaign( array $data, array $recipients ) {
 	global $wpdb;
 	if ( ! $recipients ) {
-		return new WP_Error( 'flxi_empty', __( 'Gönderilecek alıcı yok.', 'flx-mail' ) );
+		return new WP_Error( 'flxi_empty', __( 'There are no recipients to send to.', 'flx-mail' ) );
 	}
 	$channel = in_array( $data['channel'] ?? 'email', array( 'email', 'whatsapp', 'sms' ), true ) ? $data['channel'] : 'email';
 	if ( 'email' === $channel && '' === trim( (string) ( $data['subject'] ?? '' ) ) ) {
-		return new WP_Error( 'flxi_subject', __( 'Konu gerekli.', 'flx-mail' ) );
+		return new WP_Error( 'flxi_subject', __( 'Subject is required.', 'flx-mail' ) );
 	}
 	if ( 'email' !== $channel ) {
 		if ( '' === trim( (string) ( $data['text'] ?? '' ) ) ) {
-			return new WP_Error( 'flxi_text', __( 'Mesaj metni gerekli.', 'flx-mail' ) );
+			return new WP_Error( 'flxi_text', __( 'Message text is required.', 'flx-mail' ) );
 		}
 		if ( ! flxi_resolve_connection( $channel, (int) ( $data['connection_id'] ?? 0 ) ) ) {
-			return new WP_Error( 'flxi_conn', __( 'Bu kanal için etkin bağlantı yok. İletişim › Bağlantılar\'dan ekleyin.', 'flx-mail' ) );
+			return new WP_Error( 'flxi_conn', __( 'There is no active connection for this channel. Add one in Communication › Connections.', 'flx-mail' ) );
 		}
 	}
 	$name = sanitize_text_field( $data['name'] ?? '' );
@@ -311,7 +311,7 @@ function flxi_refresh_campaign( $cid ) {
 /** Tek kuyruk satırını gönderir. */
 function flxi_send_queue_item( $row, $camp ) {
 	if ( ! $camp || 'cancelled' === $camp['status'] ) {
-		return array( 'ok' => false, 'error' => __( 'Gönderim iptal edildi.', 'flx-mail' ), 'retry' => false );
+		return array( 'ok' => false, 'error' => __( 'Sending was canceled.', 'flx-mail' ), 'retry' => false );
 	}
 	$d    = $camp['data'];
 	$name = (string) $row['name'];
@@ -322,11 +322,11 @@ function flxi_send_queue_item( $row, $camp ) {
 		'telefon'  => 'email' !== $row['channel'] ? $row['recipient'] : '',
 	);
 	if ( flxi_contact_blocked( 'email' === $row['channel'] ? '' : $row['recipient'], 'email' === $row['channel'] ? $row['recipient'] : '', $row['channel'] ) ) {
-		return array( 'ok' => false, 'error' => __( 'Kara listede: gönderilmedi', 'flx-mail' ), 'retry' => false, 'skip' => true );
+		return array( 'ok' => false, 'error' => __( 'On the blocklist: not sent', 'flx-mail' ), 'retry' => false, 'skip' => true );
 	}
 	if ( 'email' === $row['channel'] ) {
 		if ( in_array( $row['recipient'], flxi_unsubscribed(), true ) ) {
-			return array( 'ok' => false, 'error' => __( 'Abonelikten çıkmış.', 'flx-mail' ), 'retry' => false );
+			return array( 'ok' => false, 'error' => __( 'Unsubscribed.', 'flx-mail' ), 'retry' => false );
 		}
 		$unsub   = ! empty( $d['unsubscribe'] ) && flxi_setting( 'bulk_unsubscribe' ) ? flxi_unsubscribe_url( $row['recipient'] ) : '';
 		$headers = array();
@@ -402,7 +402,7 @@ add_action(
 		$key   = sanitize_text_field( wp_unslash( $_GET['k'] ) ); // phpcs:ignore
 		$want  = $legacy ? substr( hash_hmac( 'sha256', $email, wp_salt( 'auth' ) . 'yti-unsub' ), 0, 20 ) : flxi_unsubscribe_token( $email );
 		if ( ! is_email( $email ) || ! hash_equals( $want, $key ) ) {
-			wp_die( esc_html__( 'Bağlantı geçersiz.', 'flx-mail' ), '', array( 'response' => 400 ) );
+			wp_die( esc_html__( 'The link is invalid.', 'flx-mail' ), '', array( 'response' => 400 ) );
 		}
 		$post = 'POST' === ( $_SERVER['REQUEST_METHOD'] ?? '' ); // phpcs:ignore
 		if ( $post ) {
@@ -416,9 +416,9 @@ add_action(
 				status_header( 200 );
 				exit;
 			}
-			wp_die( '<h1>' . esc_html__( 'Listeden çıkarıldınız', 'flx-mail' ) . '</h1><p>' . esc_html( sprintf( /* translators: %s: e-posta */ __( '%s adresine artık toplu e-posta göndermeyeceğiz. Bağış ve sertifika gibi işlem e-postaları gitmeye devam eder.', 'flx-mail' ), $email ) ) . '</p>', esc_html__( 'Listeden çıkarıldınız', 'flx-mail' ), array( 'response' => 200 ) );
+			wp_die( '<h1>' . esc_html__( 'You have been unsubscribed', 'flx-mail' ) . '</h1><p>' . esc_html( sprintf( /* translators: %s: e-posta */ __( 'We will no longer send bulk emails to %s. Transactional emails such as donation and certificate emails will continue to be sent.', 'flx-mail' ), $email ) ) . '</p>', esc_html__( 'You have been unsubscribed', 'flx-mail' ), array( 'response' => 200 ) );
 		}
-		$form = '<h1>' . esc_html__( 'Toplu e-postalardan çıkmak istiyor musunuz?', 'flx-mail' ) . '</h1><p>' . esc_html( $email ) . '</p><form method="post"><button type="submit" class="button button-primary" style="padding:10px 20px;font-size:15px">' . esc_html__( 'Evet, listeden çıkar', 'flx-mail' ) . '</button></form>';
-		wp_die( $form, esc_html__( 'Abonelikten çık', 'flx-mail' ), array( 'response' => 200 ) ); // phpcs:ignore
+		$form = '<h1>' . esc_html__( 'Do you want to unsubscribe from bulk emails?', 'flx-mail' ) . '</h1><p>' . esc_html( $email ) . '</p><form method="post"><button type="submit" class="button button-primary" style="padding:10px 20px;font-size:15px">' . esc_html__( 'Yes, unsubscribe me', 'flx-mail' ) . '</button></form>';
+		wp_die( $form, esc_html__( 'Unsubscribe', 'flx-mail' ), array( 'response' => 200 ) ); // phpcs:ignore
 	}
 );

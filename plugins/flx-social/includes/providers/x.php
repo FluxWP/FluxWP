@@ -26,10 +26,10 @@ class FLXSM_X extends FLXSM_Provider {
 
 	public static function tiers() {
 		return array(
-			'free'          => __( 'Free (ücretsiz, düşük yazma sınırı, metrik yok)', 'flx-social' ),
-			'basic'         => __( 'Basic (aylık ücretli)', 'flx-social' ),
-			'pro'           => __( 'Pro (aylık ücretli)', 'flx-social' ),
-			'pay_as_you_go' => __( 'Pay-as-you-go (kullandıkça öde)', 'flx-social' ),
+			'free'          => __( 'Free (no cost, low write limit, no metrics)', 'flx-social' ),
+			'basic'         => __( 'Basic (paid monthly)', 'flx-social' ),
+			'pro'           => __( 'Pro (paid monthly)', 'flx-social' ),
+			'pay_as_you_go' => __( 'Pay-as-you-go', 'flx-social' ),
 		);
 	}
 
@@ -57,12 +57,12 @@ class FLXSM_X extends FLXSM_Provider {
 		$n = count( $pl['media'] );
 		$v = array_filter( $pl['media'], fn( $m ) => in_array( $m['kind'], array( 'video', 'gif' ), true ) );
 		if ( $v && $n > 1 ) {
-			$errs[] = __( 'X: video ya da GIF tek başına paylaşılır.', 'flx-social' );
+			$errs[] = __( 'X: a video or GIF is shared on its own.', 'flx-social' );
 		}
 		$lim = (int) flxsm_setting( 'x_month_limit', 0 );
 		if ( $lim && flxsm_x_month_count() >= $lim ) {
 			/* translators: %d: monthly limit */
-			$errs[] = sprintf( __( 'X için ayarlanan aylık %d gönderi sınırı doldu.', 'flx-social' ), $lim );
+			$errs[] = sprintf( __( 'The monthly limit of %d posts set for X has been reached.', 'flx-social' ), $lim );
 		}
 		return $errs;
 	}
@@ -133,7 +133,7 @@ class FLXSM_X extends FLXSM_Provider {
 
 	public function auth_url( array $ctx ) {
 		if ( '' === flxsm_app( 'x', 'api_key' ) || ! flxsm_has_secret( 'x_secret' ) ) {
-			return new WP_Error( 'flxsm_app', __( 'Önce Ayarlar › Uygulamalar › X bölümüne API Key ve API Key Secret girin.', 'flx-social' ), array( 'status' => 400 ) );
+			return new WP_Error( 'flxsm_app', __( 'First enter the API Key and API Key Secret under Settings › Apps › X.', 'flx-social' ), array( 'status' => 400 ) );
 		}
 		$url = self::API . '/oauth/request_token';
 		$r   = flxsm_http(
@@ -180,7 +180,7 @@ class FLXSM_X extends FLXSM_Provider {
 
 	public function exchange( array $params, array $ctx ) {
 		if ( ! empty( $params['denied'] ) ) {
-			return new WP_Error( 'flxsm_denied', __( 'Bağlantı reddedildi.', 'flx-social' ) );
+			return new WP_Error( 'flxsm_denied', __( 'Connection refused.', 'flx-social' ) );
 		}
 		$rt   = get_transient( 'flxsm_xrt_' . md5( (string) ( $params['oauth_token'] ?? '' ) ) );
 		$url  = self::API . '/oauth/access_token';
@@ -280,7 +280,7 @@ class FLXSM_X extends FLXSM_Provider {
 					$len  = (int) min( self::CHUNK, $m['bytes'] - $up['off'] );
 					$data = flxsm_read_chunk( $m['path'], $up['off'], $len );
 					if ( false === $data ) {
-						return new WP_Error( 'flxsm_media', __( 'Medya dosyası okunamadı.', 'flx-social' ), array( 'retry' => false ) );
+						return new WP_Error( 'flxsm_media', __( 'Could not read the media file.', 'flx-social' ), array( 'retry' => false ) );
 					}
 					$mp = flxsm_multipart(
 						array( 'segment_index' => (string) $up['seg'] ),
@@ -340,7 +340,7 @@ class FLXSM_X extends FLXSM_Provider {
 				}
 				$pi = $r['json']['data']['processing_info'] ?? null;
 				if ( $pi && 'failed' === $pi['state'] ) {
-					return new WP_Error( 'flxsm_api', 'X: ' . ( $pi['error']['message'] ?? __( 'video işlenemedi', 'flx-social' ) ), array( 'retry' => false ) );
+					return new WP_Error( 'flxsm_api', 'X: ' . ( $pi['error']['message'] ?? __( 'video could not be processed', 'flx-social' ) ), array( 'retry' => false ) );
 				}
 				if ( $pi && 'succeeded' !== $pi['state'] ) {
 					return array(

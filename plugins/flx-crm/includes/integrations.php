@@ -37,13 +37,13 @@ add_filter(
 		}
 		foreach ( FLXCRM_Segments::all() as $s ) {
 			/* translators: 1: segment name, 2: contact count */
-			$out[ 'flxcrm_seg:' . (int) $s['id'] ] = sprintf( __( 'CRM segmenti: %1$s (%2$s)', 'flx-crm' ), $s['name'], number_format_i18n( (int) $s['count'] ) );
+			$out[ 'flxcrm_seg:' . (int) $s['id'] ] = sprintf( __( 'CRM segment: %1$s (%2$s)', 'flx-crm' ), $s['name'], number_format_i18n( (int) $s['count'] ) );
 		}
 		$stats = FLXCRM_Contacts::stats();
 		foreach ( flxcrm_roles() as $k => $r ) {
 			if ( ! empty( $stats['roles'][ $k ] ) ) {
 				/* translators: 1: role name, 2: contact count */
-				$out[ 'flxcrm_role:' . $k ] = sprintf( __( 'CRM rolü: %1$s (%2$s)', 'flx-crm' ), $r['label'], number_format_i18n( $stats['roles'][ $k ] ) );
+				$out[ 'flxcrm_role:' . $k ] = sprintf( __( 'CRM role: %1$s (%2$s)', 'flx-crm' ), $r['label'], number_format_i18n( $stats['roles'][ $k ] ) );
 			}
 		}
 		return $out;
@@ -102,8 +102,8 @@ add_filter(
 			'plugin' => 'Flux CRM',
 			'active' => true,
 			'caps'   => array(
-				FLXCRM_CAP_VIEW   => array( 'label' => __( 'Kişileri, segmentleri ve zaman tünelini görür', 'flx-crm' ), 'new' => true ),
-				FLXCRM_CAP_MANAGE => array( 'label' => __( 'Kişi ekler, düzenler, siler; segment ve CRM ayarlarını yönetir', 'flx-crm' ), 'new' => true, 'warn' => true ),
+				FLXCRM_CAP_VIEW   => array( 'label' => __( 'Sees contacts, segments and the timeline', 'flx-crm' ), 'new' => true ),
+				FLXCRM_CAP_MANAGE => array( 'label' => __( 'Adds, edits and deletes contacts; manages segments and CRM settings', 'flx-crm' ), 'new' => true, 'warn' => true ),
 			),
 		);
 		return $groups;

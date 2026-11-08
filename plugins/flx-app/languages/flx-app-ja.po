@@ -1,0 +1,1302 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Aggregate mobile app usage"
+msgstr "モバイルアプリの使用状況を集計する"
+
+msgid "Optional and off by default. Only accounts that also opt in inside the app are counted. Completed UTC-day iOS/Android totals go to your telemetry hub only for cohorts of at least five accounts. No names, account IDs, content, site URLs or GPS location are included. Country comes from site settings. General usage sharing must also be on. Sign-in and app features do not depend on this choice."
+msgstr "オプションで、デフォルトではオフになっています。アプリ内でもオプトインしているアカウントのみがカウントされます。完了した UTC 日の iOS/Android 合計は、少なくとも 5 つのアカウントのコホートについてのみテレメトリ ハブに送られます。名前、アカウント ID、コンテンツ、サイト URL、GPS 位置情報は含まれません。国はサイトの設定から決まります。一般的な使用量の共有もオンにする必要があります。サインインとアプリの機能は、この選択に依存しません。"
+
+msgid "Share aggregate mobile app usage"
+msgstr "モバイルアプリの総使用量を共有する"
+
+msgid "Application"
+msgstr "アプリケーション"
+
+msgid "Menu (all items)"
+msgstr "メニュー(全品)"
+
+msgid "Search"
+msgstr "検索"
+
+msgid "Notifications"
+msgstr "通知"
+
+msgid "Accounts"
+msgstr "アカウント"
+
+msgid "App settings"
+msgstr "アプリの設定"
+
+msgid "Screens"
+msgstr "スクリーン"
+
+msgid "Native modules"
+msgstr "ネイティブモジュール"
+
+msgid "Admin menu"
+msgstr "管理者メニュー"
+
+msgid "Primary"
+msgstr "プライマリー"
+
+msgid "Accent"
+msgstr "アクセント"
+
+msgid "Background"
+msgstr "背景"
+
+msgid "Surface"
+msgstr "表面"
+
+msgid "Text"
+msgstr "テキスト"
+
+msgid "Appearance of the desktop and mobile app. Empty colours come from the theme (theme.json) and the Flux Admin colour. Menus are filtered by the user's role: an item they cannot see in the admin does not show in the app either."
+msgstr "デスクトップとモバイルアプリの外観。空の色はテーマ (theme.json) と Flux Admin カラーから来ています。メニューはユーザーの役割によってフィルタリングされます。管理者に表示できない項目はアプリにも表示されません。"
+
+msgid "Theme"
+msgstr "テーマ"
+
+msgid "Mode"
+msgstr "モード"
+
+msgid "Follow device"
+msgstr "デバイスをフォローする"
+
+msgid "On"
+msgstr "オン"
+
+msgid "Dark"
+msgstr "暗い"
+
+msgid "Corners"
+msgstr "コーナー"
+
+msgid "From theme"
+msgstr "テーマから"
+
+msgid "Sharp"
+msgstr "シャープ"
+
+msgid "Slight"
+msgstr "わずかに"
+
+msgid "Medium"
+msgstr "中"
+
+msgid "Round"
+msgstr "ラウンド"
+
+msgid "Density"
+msgstr "密度"
+
+msgid "Comfortable"
+msgstr "快適"
+
+msgid "Compact"
+msgstr "コンパクト"
+
+msgid "Font"
+msgstr "フォント"
+
+msgid "Heading font"
+msgstr "見出しフォント"
+
+msgid "From theme (%s)"
+msgstr "テーマから (%s)"
+
+msgid "Mobile"
+msgstr "モバイル"
+
+msgid "Navigation"
+msgstr "ナビゲーション"
+
+msgid "Tab bar + drawer"
+msgstr "タブバー + ドロワー"
+
+msgid "Tab bar only"
+msgstr "タブバーのみ"
+
+msgid "Drawer only"
+msgstr "引き出しのみ"
+
+msgid "Home screen"
+msgstr "ホーム画面"
+
+msgid "Home"
+msgstr "ホーム"
+
+msgid "Tab bar (up to 5)"
+msgstr "タブバー(最大5つ)"
+
+msgid "If empty, the Flux Admin mobile bottom bar setting is used. Tabs the user cannot open are hidden; \"Menu\" always stays reachable."
+msgstr "空の場合、Flux Admin モバイルの下部バー設定が使用されます。ユーザーが開けないタブは非表示になります。 「メニュー」は常にアクセス可能な状態にあります。"
+
+msgid "Label"
+msgstr "ラベル"
+
+msgid "Icon (home, chat…)"
+msgstr "アイコン(ホーム、チャットなど)"
+
+msgid "Badge"
+msgstr "バッジ"
+
+msgid "Drawer (role menu groups)"
+msgstr "ドロワー(役割メニューグループ)"
+
+msgid "Logo in the top bar"
+msgstr "トップバーのロゴ"
+
+msgid "Site switcher"
+msgstr "サイトスイッチャー"
+
+msgid "Top bar"
+msgstr "トップバー"
+
+msgid "Large title"
+msgstr "大きいタイトル"
+
+msgid "Desktop"
+msgstr "デスクトップ"
+
+msgid "The sidebar follows the role's Flux Admin menu layout (pins and groups). Shortcuts always shown in the command palette (⌘K):"
+msgstr "サイドバーは、ロールの Flux Admin メニュー レイアウト (ピンとグループ) に従います。コマンド パレット (⌘K) に常に表示されるショートカット:"
+
+msgid "A disabled screen does not open natively in the app; that page opens in the web view."
+msgstr "無効化された画面はアプリでネイティブに開きません。そのページが Web ビューで開きます。"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Preview"
+msgstr "プレビュー"
+
+msgid "Preview uses your role; other roles see their own menus."
+msgstr "プレビューではあなたのロールが使用されます。他のロールには独自のメニューが表示されます。"
+
+msgid "Which apps may connect to this site, store links and notifications."
+msgstr "このサイトに接続できるアプリ、リンクと通知を保存できるアプリ。"
+
+msgid "Main FluxWP app"
+msgstr "メインの FluxWP アプリ"
+
+msgid "Allow the FluxWP desktop and mobile app (flx-masaustu, flx-mobil)"
+msgstr "FluxWP デスクトップおよびモバイル アプリ (flx-masaustu、flx-mobile) を許可する"
+
+msgid "When off, only the branded apps below can connect; open sessions of the main app end at their next refresh."
+msgstr "オフの場合、以下のブランドのアプリのみが接続できます。メイン アプリの開いているセッションは、次回の更新時に終了します。"
+
+msgid "Store links"
+msgstr "ストアリンク"
+
+msgid "Send push notifications to mobile devices (Expo)"
+msgstr "モバイルデバイスにプッシュ通知を送信する (Expo)"
+
+msgid "Hide content on the lock screen (only the notification type shows)"
+msgstr "ロック画面のコンテンツを非表示にする (通知の種類のみが表示されます)"
+
+msgid "Saved (type to replace)"
+msgstr "保存済み (置き換える文字を入力)"
+
+msgid "Expo access token (optional)"
+msgstr "Expo アクセス トークン (オプション)"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Only needed when enhanced push security is on in the Expo account. The desktop app does not receive push; it shows notifications through sync while open."
+msgstr "Expo アカウントで拡張プッシュ セキュリティがオンになっている場合にのみ必要です。デスクトップ アプリはプッシュを受け取りません。開いている間は同期を通じて通知が表示されます。"
+
+msgid "Devices: %1$d · notifications on: %2$d"
+msgstr "デバイス:%1$d· 通知:%2$d"
+
+msgid "Last send %1$s: %2$d sent, %3$d failed"
+msgstr "最終送信%1$s:%2$dが送信されましたが、%3$dは失敗しました"
+
+msgid "Web view"
+msgstr "ウェブビュー"
+
+msgid "Hide the admin bar on site pages opened in the app"
+msgstr "アプリで開いたサイトページの管理バーを非表示にする"
+
+msgid "Developer mode"
+msgstr "開発者モード"
+
+msgid "Allow Expo development redirects (exp://…/--/oauth/callback)"
+msgstr "Expo 開発リダイレクトを許可する (exp://.../--/oauth/callback)"
+
+msgid "Turn on only on test sites."
+msgstr "テスト サイトでのみオンにします。"
+
+msgid "Branded apps"
+msgstr "ブランドアプリ"
+
+msgid "An app published under the organisation's own name connects to this site only if it is listed here. Usually filled in by the preset."
+msgstr "組織自身の名前で公開されたアプリは、ここにリストされている場合にのみこのサイトに接続します。通常はプリセットによって埋められます。"
+
+msgid "Name"
+msgstr "名前"
+
+msgid "Platform"
+msgstr "プラットフォーム"
+
+msgid "Redirect URIs (one per line)"
+msgstr "リダイレクト URI (1 行に 1 つ)"
+
+msgid "Redirect URIs"
+msgstr "リダイレクト URI"
+
+msgid "Connection details"
+msgstr "接続の詳細"
+
+msgid "Active preset"
+msgstr "アクティブなプリセット"
+
+msgid "Send me a test notification"
+msgstr "テスト通知を送信してください"
+
+msgid "Test notification: this device receives notifications."
+msgstr "テスト通知: このデバイスは通知を受信します。"
+
+msgid "No device is signed in to the app."
+msgstr "デバイスがアプリにサインインしていません。"
+
+msgid "User"
+msgstr "ユーザー"
+
+msgid "Device"
+msgstr "デバイス"
+
+msgid "Last seen"
+msgstr "最後に見た"
+
+msgid "Unnamed device"
+msgstr "名前のないデバイス"
+
+msgid "Off"
+msgstr "オフ"
+
+msgid "Sign this device out?"
+msgstr "このデバイスをサインアウトしますか?"
+
+msgid "Sign out"
+msgstr "サインアウト"
+
+msgid "%d screen"
+msgid_plural "%d screens"
+msgstr[0] "%d画面"
+
+msgid "General"
+msgstr "一般"
+
+msgid "Appearance"
+msgstr "外観"
+
+msgid "Applications"
+msgstr "アプリケーション"
+
+msgid "Modules"
+msgstr "モジュール"
+
+msgid "Menu"
+msgstr "メニュー"
+
+msgid "OAuth clients"
+msgstr "OAuth クライアント"
+
+msgid "All access"
+msgstr "すべてのアクセス"
+
+msgid "App access"
+msgstr "アプリへのアクセス"
+
+msgid "You are not allowed to do this."
+msgstr "これを行うことは許可されていません。"
+
+msgid "All users"
+msgstr "すべてのユーザー"
+
+msgid "Users who can edit content"
+msgstr "コンテンツを編集できるユーザー"
+
+msgid "Administrators only"
+msgstr "管理者のみ"
+
+msgid "Nothing here yet."
+msgstr "ここにはまだ何もありません。"
+
+msgid "Type"
+msgstr "タイプ"
+
+msgid "Created"
+msgstr "作成されました"
+
+msgid "Last used"
+msgstr "最後に使用した"
+
+msgid "Expires"
+msgstr "有効期限が切れます"
+
+msgid "API key"
+msgstr "APIキー"
+
+msgid "App session"
+msgstr "アプリセッション"
+
+msgid "Never"
+msgstr "決してしない"
+
+msgid "Remove this access?"
+msgstr "このアクセスを削除しますか?"
+
+msgid "Remove"
+msgstr "削除"
+
+msgid "Copy it now; it will not be shown again."
+msgstr "今すぐコピーしてください。再び表示されることはありません。"
+
+msgid "Saved."
+msgstr "保存されました。"
+
+msgid "Test notification: %1$d sent, %2$d failed, %3$d skipped."
+msgstr "テスト通知:%1$dが送信され、%2$dは失敗し、%3$dはスキップされました。"
+
+msgid "Give the key a name."
+msgstr "キーに名前を付けます。"
+
+msgid "Could not save."
+msgstr "保存できませんでした。"
+
+msgid "Desktop app"
+msgstr "デスクトップアプリ"
+
+msgid "Use the panel as a separate app on your Mac or Windows computer. New versions install themselves."
+msgstr "パネルを Mac または Windows コンピューター上で別のアプリとして使用します。新しいバージョンは自動的にインストールされます。"
+
+msgid "Download for macOS"
+msgstr "macOS 用のダウンロード"
+
+msgid "Download for Windows"
+msgstr "Windows 用のダウンロード"
+
+msgid "macOS 11 or later (Apple Silicon and Intel). Windows 10 and 11 (64-bit)."
+msgstr "macOS 11 以降 (Apple Silicon および Intel)。 Windows 10 および 11 (64 ビット)。"
+
+msgid "Windows MSI package (managed deployment)"
+msgstr "Windows MSI パッケージ (管理された展開)"
+
+msgid "In the Flux Desktop app, press \"Sign in\": you sign in to this site in the browser and approve; the app then works with your permissions. For other tools (MCP clients, scripts) you can create a personal API key."
+msgstr "Flux デスクトップ アプリで、「サインイン」を押します。ブラウザーでこのサイトにサインインし、承認します。その後、アプリはあなたの権限に従って動作します。他のツール (MCP クライアント、スクリプト) の場合は、個人用 API キーを作成できます。"
+
+msgid "My devices"
+msgstr "私のデバイス"
+
+msgid "Connected apps"
+msgstr "接続されたアプリ"
+
+msgid "API keys"
+msgstr "APIキー"
+
+msgid "e.g. Claude MCP"
+msgstr "例:クロードMCP"
+
+msgid "Valid for"
+msgstr "有効期限"
+
+msgid "%d days"
+msgstr "%d日"
+
+msgid "Create key"
+msgstr "キーの作成"
+
+msgid "Usage: send Authorization: Bearer flxak_… to any REST endpoint and MCP (/wp-json/flx-mcp/v1/mcp). The key acts with your permissions."
+msgstr "使用法: 認可: ベアラー flxak_... を任意の REST エンドポイントおよび MCP (/wp-json/flx-mcp/v1/mcp) に送信します。キーはあなたの許可に従って機能します。"
+
+msgid "Sign-in, session and panel settings for the desktop (macOS, Windows) and mobile (iOS, Android) app."
+msgstr "デスクトップ (macOS、Windows) およびモバイル (iOS、Android) アプリのサインイン、セッション、パネル設定。"
+
+msgid "Access token lifetime"
+msgstr "アクセストークンの有効期間"
+
+msgid "minutes"
+msgstr "分"
+
+msgid "Session lifetime (when unused)"
+msgstr "セッションの有効期間 (未使用時)"
+
+msgid "days"
+msgstr "日"
+
+msgid "The period renews while the app is used; after this many days without use, sign-in is required again."
+msgstr "期間はアプリの使用中に更新されます。この数日間使用しない場合は、再度サインインが必要になります。"
+
+msgid "MCP clients"
+msgstr "MCPクライアント"
+
+msgid "Allow self-registration (MCP clients such as Claude connect via OAuth; every connection still needs your approval)"
+msgstr "自己登録を許可します (Claude などの MCP クライアントは OAuth 経由で接続します。すべての接続には依然として承認が必要です)"
+
+msgid "Admin session"
+msgstr "管理者セッション"
+
+msgid "Let the app open menus without a native screen as admin pages (one-time sign-in link)"
+msgstr "アプリが管理ページとしてネイティブ画面なしでメニューを開くようにします (ワンタイム サインイン リンク)"
+
+msgid "Sign in with code"
+msgstr "コードを使用してサインインする"
+
+msgid "Let donors sign in to the app with a code sent to their email or phone"
+msgstr "寄付者がメールまたは電話に送信されたコードを使用してアプリにサインインできるようにする"
+
+msgid "Create a customer account if none exists but there is a donation with these details"
+msgstr "顧客アカウントが存在しないが、これらの詳細を含む寄付がある場合は、顧客アカウントを作成します"
+
+msgid "Let staff sign in with a code too (not recommended; staff use OAuth in the browser)"
+msgstr "スタッフもコードを使用してサインインできるようにします (推奨されません。スタッフはブラウザーで OAuth を使用します)。"
+
+msgid "Phone codes are sent via Flux Call Center (WhatsApp); without it, email only."
+msgstr "電話コードは Flux コールセンター (WhatsApp) 経由で送信されます。それがなければ、電子メールのみ。"
+
+msgid "Can create API keys"
+msgstr "APIキーを作成できる"
+
+msgid "Devices"
+msgstr "デバイス"
+
+msgid "Sessions and keys"
+msgstr "セッションとキー"
+
+msgid "Built-in"
+msgstr "内蔵"
+
+msgid "Self-registered (MCP)"
+msgstr "自己登録 (MCP)"
+
+msgid "Added manually"
+msgstr "手動で追加"
+
+msgid "with secret"
+msgstr "秘密で"
+
+msgid "Delete the application and all of its sessions?"
+msgstr "アプリケーションとそのすべてのセッションを削除しますか?"
+
+msgid "Add application"
+msgstr "Add application"
+
+msgid "Generate a client secret (for server-side apps; not needed for desktop/mobile)"
+msgstr "クライアント シークレットを生成します (サーバー側アプリの場合。デスクトップ/モバイルには必要ありません)。"
+
+msgid "Add"
+msgstr "追加"
+
+msgid "Manifest"
+msgstr "マニフェスト"
+
+msgid "Native screen"
+msgstr "ネイティブ画面"
+
+msgid "Plugin screens in the app. Manifest modules are drawn from the same definition on desktop and mobile; native modules open with the app's own screen. A disabled module's menu opens as an admin page in the app. Who sees what follows capabilities and the role menu."
+msgstr "アプリ内のプラグイン画面。マニフェスト モジュールはデスクトップとモバイルで同じ定義から描画されます。ネイティブ モジュールはアプリ独自の画面で開きます。無効化されたモジュールのメニューは、アプリの管理ページとして開きます。機能とロール メニューに続く内容は誰に表示されます。"
+
+msgid "No modules registered."
+msgstr "モジュールが登録されていません。"
+
+msgid "Module"
+msgstr "モジュール"
+
+msgid "In the app"
+msgstr "アプリ内"
+
+msgid "Capability"
+msgstr "能力"
+
+msgid "Version"
+msgstr "バージョン"
+
+msgid "Manifest error: %s"
+msgstr "マニフェスト エラー:%s"
+
+msgid "Separate item"
+msgstr "別項目"
+
+msgid "The app's side menu is the same as the panel menu for the user's role (order, groups, names, hidden items). Whether each item shows on web, mobile or desktop is chosen in the menu editor. An item with Web off shows only in the app."
+msgstr "アプリのサイド メニューは、ユーザーの役割 (順序、グループ、名前、非表示項目) のパネル メニューと同じです。各項目を Web、モバイル、デスクトップのいずれに表示するかは、メニュー エディターで選択します。 Web オフの項目はアプリ内でのみ表示されます。"
+
+msgid "Platform selection needs Flux Admin 1.3.0 or later."
+msgstr "プラットフォームの選択には、Flux Admin 1.3.0 以降が必要です。"
+
+msgid "Open menu editor"
+msgstr "メニューエディタを開く"
+
+msgid "Default"
+msgstr "デフォルト"
+
+msgid "Items hidden by platform"
+msgstr "プラットフォームによって隠されたアイテム"
+
+msgid "None: every item shows everywhere."
+msgstr "なし: すべての項目がどこにでも表示されます。"
+
+msgid "Role"
+msgstr "役割"
+
+msgid "Visible"
+msgstr "見える"
+
+msgid "Hidden"
+msgstr "隠された"
+
+msgid "FluxWP Mobile"
+msgstr "FluxWP モバイル"
+
+msgid "No mobile brand client (app_clients) is defined; a branded mobile app cannot connect to this site."
+msgstr "モバイル ブランド クライアント (app_clients) は定義されていません。ブランドのモバイル アプリはこのサイトに接続できません。"
+
+msgid "No site icon; the store icon needs a 1024 px image."
+msgstr "サイトアイコンはありません。ストアのアイコンには 1024 ピクセルの画像が必要です。"
+
+msgid "Flux Desktop"
+msgstr "フラックスデスクトップ"
+
+msgid "A name and at least one redirect URI are required (at most 10)."
+msgstr "名前と少なくとも 1 つのリダイレクト URI が必要です (最大 10)。"
+
+msgid "Redirect URI rejected: %s (must be https, 127.0.0.1 or an app scheme)."
+msgstr "リダイレクト URI が拒否されました:%s(https、127.0.0.1、またはアプリ スキームである必要があります)。"
+
+msgid "Dynamic client limit reached; delete old ones."
+msgstr "動的クライアント制限に達しました。古いものを削除します。"
+
+msgid "Comments"
+msgstr "コメント"
+
+msgid "Posts"
+msgstr "投稿"
+
+msgid "%s drafts"
+msgstr "%sドラフト"
+
+msgid "My drafts"
+msgstr "私のドラフト"
+
+msgid "(no title)"
+msgstr "(タイトルなし)"
+
+msgid "Pages"
+msgstr "ページ"
+
+msgid "Pending comments"
+msgstr "保留中のコメント"
+
+msgid "%s approved"
+msgstr "%s承認済み"
+
+msgid "Recent comments"
+msgstr "最近のコメント"
+
+msgid "Pending"
+msgstr "保留中"
+
+msgid "Media"
+msgstr "メディア"
+
+msgid "Users"
+msgstr "ユーザー"
+
+msgid "Updates"
+msgstr "アップデート"
+
+msgid "Today's orders"
+msgstr "今日の注文"
+
+msgid "%s orders"
+msgstr "%s注文"
+
+msgid "Awaiting payment"
+msgstr "支払い待ち"
+
+msgid "Recent orders"
+msgstr "最近の注文"
+
+msgid "Web"
+msgstr "ウェブ"
+
+msgid "Sign-in required."
+msgstr "サインインが必要です。"
+
+msgid "This works only with an app session (OAuth)."
+msgstr "これはアプリ セッション (OAuth) でのみ機能します。"
+
+msgid "Push token not recognised."
+msgstr "プッシュトークンが認識されません。"
+
+msgid "Device not found."
+msgstr "デバイスが見つかりません。"
+
+msgid "Manifest not found."
+msgstr "マニフェストが見つかりません。"
+
+msgid "App connection"
+msgstr "アプリ接続"
+
+msgid "← Back to site"
+msgstr "← サイトに戻る"
+
+msgid "Unknown application (client_id)."
+msgstr "不明なアプリケーション (client_id)。"
+
+msgid "This redirect URI is not registered for the application."
+msgstr "このリダイレクト URI はアプリケーションに登録されていません。"
+
+msgid "Your session expired. Try again from the app."
+msgstr "セッションの有効期限が切れました。アプリから再度お試しください。"
+
+msgid "%s wants to access your account"
+msgstr "%sがあなたのアカウントへのアクセスを求めています"
+
+msgid "Change"
+msgstr "変更"
+
+msgid "The app works with your permissions: the menus and actions your role can see."
+msgstr "アプリは、ユーザーの権限、つまりユーザーの役割が表示できるメニューとアクションに従って動作します。"
+
+msgid "You can revoke access at any time under Users › App access."
+msgstr "You can revoke access at any time under Users › App access."
+
+msgid "After approval you will return to %s."
+msgstr "承認後、%sに戻ります。"
+
+msgid "Deny"
+msgstr "拒否する"
+
+msgid "Allow"
+msgstr "許可する"
+
+msgid "Back to site"
+msgstr "サイトに戻る"
+
+msgid "This link has expired. Open it again from the app."
+msgstr "このリンクの有効期限は切れています。アプリから再度開きます。"
+
+msgid "%1$s is your sign-in code for the %2$s app. Valid for 10 minutes. Do not share this code with anyone."
+msgstr "%1$sは、%2$sアプリのサインイン コードです。有効期限は10分間です。このコードを誰とも共有しないでください。"
+
+msgid "%s sign-in code"
+msgstr "%sサインイン コード"
+
+msgid "Your app sign-in code:"
+msgstr "アプリのサインイン コード:"
+
+msgid "The code is valid for 10 minutes. If you did not request it, ignore this email."
+msgstr "コードの有効期限は 10 分間です。リクエストしていない場合は、このメールを無視してください。"
+
+msgid "Email"
+msgstr "電子メール"
+
+msgid "Sign in with code is turned off."
+msgstr "コードによるサインインはオフになっています。"
+
+msgid "Enter a valid email or phone number."
+msgstr "有効な電子メールまたは電話番号を入力してください。"
+
+msgid "Too many attempts. Try again in a little while."
+msgstr "試行回数が多すぎます。しばらくしてからもう一度お試しください。"
+
+msgid "The code is wrong or has expired."
+msgstr "コードが間違っているか、有効期限が切れています。"
+
+msgid "Other"
+msgstr "その他"
+
+msgid "Admin sessions are turned off in settings."
+msgstr "管理者セッションは設定でオフになっています。"
+
+msgid "Too many requests. Please wait a moment."
+msgstr "リクエストが多すぎます。しばらくお待ちください。"
+
+msgid "Invalid admin path."
+msgstr "無効な管理者パスです。"
+
+msgid "This setting cannot be opened from the app."
+msgstr "この設定はアプリから開くことはできません。"
+
+msgid "Invalid value."
+msgstr "無効な値です。"
+
+msgid "Some fields are invalid."
+msgstr "一部のフィールドは無効です。"
+
+msgid "Flux App"
+msgstr "フラックスアプリ"
+
+msgid "Token table"
+msgstr "トークンテーブル"
+
+msgid "Ready."
+msgstr "準備完了。"
+
+msgid "Table missing. Deactivate and reactivate the plugin."
+msgstr "テーブルがありません。プラグインを非アクティブ化し、再度アクティブ化します。"
+
+msgid "HTTPS"
+msgstr "HTTPS"
+
+msgid "The site address is https; app sign-in is secure."
+msgstr "サイトのアドレスは https です。アプリのサインインは安全です。"
+
+msgid "The site address is not https; OAuth tokens travel unencrypted. Use https in production."
+msgstr "サイトのアドレスが https ではありません。 OAuth トークンは暗号化されずに送信されます。運用環境では https を使用します。"
+
+msgid "Active access"
+msgstr "アクティブアクセス"
+
+msgid "App sessions: %1$s · API keys: %2$s"
+msgstr "アプリセッション:%1$s· API キー:%2$s"
+
+msgid "Push notifications"
+msgstr "プッシュ通知"
+
+msgid "Off."
+msgstr "オフ。"
+
+msgid "Nothing sent yet. Registered devices: %s"
+msgstr "まだ何も送信されていません。登録デバイス:%s"
+
+msgid "Last send %1$s: %2$s sent, %3$s failed. %4$s"
+msgstr "最終送信%1$s:%2$sが送信されましたが、%3$sは失敗しました。%4$s"
+
+msgid "App screens (manifest)"
+msgstr "アプリ画面(マニフェスト)"
+
+msgid "Modules with schema errors: %s. They may open in the web view in the app."
+msgstr "スキーマエラーのあるモジュール:%s。アプリの Web ビューで開く場合があります。"
+
+msgid "%s modules valid."
+msgstr "%sモジュールが有効です。"
+
+msgid "App clients"
+msgstr "アプリクライアント"
+
+msgid "Main FluxWP app: %1$s · branded apps: %2$s"
+msgstr "メインの FluxWP アプリ:%1$s· ブランドのアプリ:%2$s"
+
+msgid "on"
+msgstr "に"
+
+msgid "off"
+msgstr "オフ"
+
+msgid "Developer mode is on (exp:// redirects); turn it off on the live site."
+msgstr "開発者モードがオンになっています (exp:// リダイレクト)。ライブサイトではオフにしてください。"
+
+msgid "The token is invalid or expired."
+msgstr "トークンが無効か期限切れです。"
+
+msgid "Draft"
+msgstr "草案"
+
+msgid "Pending review"
+msgstr "審査待ち"
+
+msgid "Scheduled"
+msgstr "予定されている"
+
+msgid "Private"
+msgstr "プライベート"
+
+msgid "Published"
+msgstr "発行済み"
+
+msgid "All"
+msgstr "すべて"
+
+msgid "Trash"
+msgstr "ゴミ箱"
+
+msgid "Title"
+msgstr "タイトル"
+
+msgid "Summary"
+msgstr "概要"
+
+msgid "Content"
+msgstr "内容"
+
+msgid "Edit formatted content and blocks in the admin."
+msgstr "管理画面でフォーマットされたコンテンツとブロックを編集します。"
+
+msgid "Status"
+msgstr "ステータス"
+
+msgid "Publish date"
+msgstr "発行日"
+
+msgid "Categories"
+msgstr "カテゴリー"
+
+msgid "Tags"
+msgstr "タグ"
+
+msgid "Featured image"
+msgstr "アイキャッチ画像"
+
+msgid "Author"
+msgstr "著者"
+
+msgid "Modified"
+msgstr "修正済み"
+
+msgid "Last modified"
+msgstr "最終更新日"
+
+msgid "Date"
+msgstr "日付"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Saved"
+msgstr "保存されました"
+
+msgid "Quick edit"
+msgstr "クイック編集"
+
+msgid "Open in editor"
+msgstr "エディタで開く"
+
+msgid "View on site"
+msgstr "現地で見る"
+
+msgid "Publish"
+msgstr "発行する"
+
+msgid "Move to trash"
+msgstr "ゴミ箱に移動"
+
+msgid "Moved to trash"
+msgstr "ゴミ箱に移動しました"
+
+msgid "New post"
+msgstr "新しい投稿"
+
+msgid "Search posts"
+msgstr "投稿の検索"
+
+msgid "No posts"
+msgstr "投稿がありません"
+
+msgid "Add your first post here."
+msgstr "最初の投稿をここに追加します。"
+
+msgid "Move this post to the trash?"
+msgstr "この投稿をゴミ箱に移動しますか?"
+
+msgid "Page"
+msgstr "ページ"
+
+msgid "New page"
+msgstr "新しいページ"
+
+msgid "Search pages"
+msgstr "ページの検索"
+
+msgid "No pages"
+msgstr "ページがありません"
+
+msgid "Add your first page here."
+msgstr "最初のページをここに追加します。"
+
+msgid "Move this page to the trash?"
+msgstr "このページをゴミ箱に移動しますか?"
+
+msgid "Approved"
+msgstr "承認済み"
+
+msgid "Spam"
+msgstr "スパムメール"
+
+msgid "Site"
+msgstr "サイト"
+
+msgid "Search media"
+msgstr "メディアを検索する"
+
+msgid "Image"
+msgstr "画像"
+
+msgid "Video"
+msgstr "ビデオ"
+
+msgid "Audio"
+msgstr "オーディオ"
+
+msgid "Document"
+msgstr "文書"
+
+msgid "No media"
+msgstr "メディアなし"
+
+msgid "Upload from the camera or gallery."
+msgstr "カメラまたはギャラリーからアップロードします。"
+
+msgid "Alt text"
+msgstr "代替テキスト"
+
+msgid "Size"
+msgstr "サイズ"
+
+msgid "Uploaded"
+msgstr "アップロードされました"
+
+msgid "A short description for screen readers and search engines."
+msgstr "スクリーン リーダーと検索エンジンの簡単な説明。"
+
+msgid "Caption"
+msgstr "キャプション"
+
+msgid "Search comments"
+msgstr "コメントの検索"
+
+msgid "No comments"
+msgstr "コメントはありません"
+
+msgid "No comments with this status."
+msgstr "このステータスに関するコメントはありません。"
+
+msgid "Comment"
+msgstr "コメント"
+
+msgid "IP"
+msgstr "IP"
+
+msgid "Name or email"
+msgstr "名前またはメールアドレス"
+
+msgid "Username"
+msgstr "ユーザー名"
+
+msgid "Website"
+msgstr "ウェブサイト"
+
+msgid "Registered"
+msgstr "登録済み"
+
+msgid "Last name"
+msgstr "姓"
+
+msgid "Display name"
+msgstr "表示名"
+
+msgid "Password"
+msgstr "パスワード"
+
+msgid "Leave empty to keep it."
+msgstr "保持するには空のままにしておきます。"
+
+msgid "General settings"
+msgstr "一般設定"
+
+msgid "Site title"
+msgstr "サイトタイトル"
+
+msgid "Tagline"
+msgstr "キャッチフレーズ"
+
+msgid "Administration email"
+msgstr "管理メール"
+
+msgid "Timezone"
+msgstr "タイムゾーン"
+
+msgid "Example: Europe/Istanbul"
+msgstr "例: ヨーロッパ/イスタンブール"
+
+msgid "Date format"
+msgstr "日付形式"
+
+msgid "Time format"
+msgstr "時刻形式"
+
+msgid "Week starts on"
+msgstr "週の始まりは"
+
+msgid "Monday"
+msgstr "月曜日"
+
+msgid "Sunday"
+msgstr "日曜日"
+
+msgid "Saturday"
+msgstr "土曜日"
+
+msgid "Reading settings"
+msgstr "読み取り設定"
+
+msgid "Your homepage displays"
+msgstr "ホームページが表示されます"
+
+msgid "Latest posts"
+msgstr "最新の投稿"
+
+msgid "A static page"
+msgstr "静的ページ"
+
+msgid "Homepage"
+msgstr "ホームページ"
+
+msgid "Posts page"
+msgstr "投稿ページ"
+
+msgid "Posts per page"
+msgstr "ページごとの投稿数"
+
+msgid "Discussion settings"
+msgstr "ディスカッション設定"
+
+msgid "Comments on new posts"
+msgstr "新しい投稿へのコメント"
+
+msgid "Pingbacks"
+msgstr "ピンバック"
+
+msgid "Plugins"
+msgstr "プラグイン"
+
+msgid "Search plugins"
+msgstr "プラグインの検索"
+
+msgid "Active"
+msgstr "アクティブ"
+
+msgid "Inactive"
+msgstr "非アクティブ"
+
+msgid "Upload"
+msgstr "アップロード"
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "Share"
+msgstr "シェアする"
+
+msgid "Delete permanently"
+msgstr "完全に削除"
+
+msgid "Delete this file permanently?"
+msgstr "このファイルを完全に削除しますか?"
+
+msgid "It disappears from the pages that use it."
+msgstr "それを使用しているページから消えます。"
+
+msgid "Deleted"
+msgstr "削除されました"
+
+msgid "Reply"
+msgstr "返信"
+
+msgid "Reply sent"
+msgstr "返信を送信しました"
+
+msgid "Open in admin"
+msgstr "管理者で開く"
+
+msgid "New user"
+msgstr "新規ユーザー"
+
+msgid "Activate"
+msgstr "アクティブ化する"
+
+msgid "Activated"
+msgstr "アクティブ化された"
+
+msgid "Deactivate"
+msgstr "非アクティブ化"
+
+msgid "Deactivate this plugin?"
+msgstr "このプラグインを無効にしますか?"
+
+msgid "Deactivated"
+msgstr "無効化されました"
+
+msgid "Approve"
+msgstr "承認する"
+
+msgid "Unapprove"
+msgstr "不承認"
+
+msgid "Moved to pending"
+msgstr "保留中へ移行しました"
+
+msgid "Marked as spam"
+msgstr "スパムとしてマークされる"
+
+msgid "My donations"
+msgstr "私の寄付"
+
+msgid "Total donated"
+msgstr "寄付総額"
+
+msgid "Donations"
+msgstr "寄付"
+
+msgid "Certificates"
+msgstr "証明書"
+
+msgid "No donations yet"
+msgstr "まだ寄付はありません"
+
+msgid "Your donations show up here."
+msgstr "あなたの寄付がここに表示されます。"
+
+msgid "Amount"
+msgstr "金額"
+
+msgid "Items"
+msgstr "アイテム"
+
+msgid "My certificates"
+msgstr "私の証明書"
+
+msgid "No certificates"
+msgstr "証明書がありません"
+
+msgid "Certificates for your sapling donations show up here."
+msgstr "苗木の寄付の証明書がここに表示されます。"
+
+msgid "Donate"
+msgstr "寄付する"
+
+msgid "View order"
+msgstr "注文を見る"
+
+msgid "PDF"
+msgstr "PDF"
+
+msgid "Store"
+msgstr "ストア"
+
+msgid "Orders"
+msgstr "注文"
+
+msgid "Order"
+msgstr "注文"
+
+msgid "Customer"
+msgstr "お客様"
+
+msgid "Order number, name or email"
+msgstr "注文番号、名前またはメールアドレス"
+
+msgid "Processing"
+msgstr "処理中"
+
+msgid "Cancelled"
+msgstr "キャンセルされました"
+
+msgid "No orders"
+msgstr "注文はありません"
+
+msgid "No orders with this status."
+msgstr "このステータスの注文はありません。"
+
+msgid "Payment"
+msgstr "お支払い"
+
+msgid "Products"
+msgstr "製品"
+
+msgid "Phone"
+msgstr "電話"
+
+msgid "Customer note"
+msgstr "お客様メモ"
+
+msgid "Order notes"
+msgstr "注文メモ"
+
+msgid "Sent to customer"
+msgstr "顧客に送信"
+
+msgid "No notes"
+msgstr "メモはありません"
+
+msgid "Product name or SKU"
+msgstr "製品名またはSKU"
+
+msgid "Stock"
+msgstr "在庫"
+
+msgid "In stock"
+msgstr "在庫あり"
+
+msgid "Out of stock"
+msgstr "在庫切れ"
+
+msgid "On backorder"
+msgstr "バックオーダー中"
+
+msgid "Product"
+msgstr "製品"
+
+msgid "Price"
+msgstr "価格"
+
+msgid "Sale price"
+msgstr "販売価格"
+
+msgid "Manage stock"
+msgstr "在庫の管理"
+
+msgid "Stock status"
+msgstr "在庫状況"
+
+msgid "Customers"
+msgstr "お客様"
+
+msgid "City"
+msgstr "市"
+
+msgid "Completed"
+msgstr "完了"
+
+msgid "Order completed"
+msgstr "注文完了"
+
+msgid "Change status"
+msgstr "ステータス変更"
+
+msgid "Order status"
+msgstr "注文状況"
+
+msgid "Updated"
+msgstr "更新されました"
+
+msgid "Add note"
+msgstr "メモを追加"
+
+msgid "Order note"
+msgstr "注文メモ"
+
+msgid "Note"
+msgstr "注記"
+
+msgid "Send to customer"
+msgstr "顧客に送る"
+
+msgid "Note added"
+msgstr "注記を追加しました"
+
+msgid "Notes"
+msgstr "注意事項"
+
+msgid "Call"
+msgstr "電話をかける"
+
+msgid "\\nYetkiniz yok.\\n"
+msgstr "\\nそれでもいいよ。\\n"
+
+msgid "[['Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.', 'tr']]"
+msgstr "[['FluxWP デスクトップおよびモバイル アプリのサーバー側: OAuth 2.0 (PKCE) ログイン、デバイスとプッシュ、アプリ ビュー (構成)、プラグイン表示 (マニフェスト)、パネル セッション。 MCP クライアントも OAuth 経由で接続します。', 'tr']]"

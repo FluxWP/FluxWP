@@ -279,3 +279,12 @@ describe('platform neutrality', () => {
     }
   });
 });
+
+
+describe('shared language resources', () => {
+ it('keeps every supported locale in the same resource shape', () => {
+  const keysOf = (tree: Record<string, unknown>, prefix = ''): string[] => Object.entries(tree).flatMap(([key,value]) => value && typeof value === 'object' ? keysOf(value as Record<string,unknown>, prefix+key+'.') : [prefix+key]);
+  const reference = keysOf(appResources.en.translation).sort();
+  for (const resource of Object.values(appResources)) expect(keysOf(resource.translation).sort()).toEqual(reference);
+ });
+});

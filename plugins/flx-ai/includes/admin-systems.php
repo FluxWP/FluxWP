@@ -78,10 +78,10 @@ function flxai_page_system_settings( $slug ) {
 	$info   = flxai_source_info( $slug );
 	$back   = admin_url( 'admin.php?page=flx-ai-systems' );
 
-	flxai_page_head( $info['label'], '' !== (string) ( $plugin['description'] ?? '' ) ? $plugin['description'] : __( 'Bu eklentinin yapay zekâ ayarları. Değerler Flux AI\'da saklanır, eklenti kendisi okur.', 'flx-ai' ) );
-	echo '<p><a href="' . esc_url( $back ) . '">← ' . esc_html__( 'Bağlı sistemler', 'flx-ai' ) . '</a></p>';
+	flxai_page_head( $info['label'], '' !== (string) ( $plugin['description'] ?? '' ) ? $plugin['description'] : __( 'AI settings of this plugin. Values are stored in Flux AI and read by the plugin.', 'flx-ai' ) );
+	echo '<p><a href="' . esc_url( $back ) . '">← ' . esc_html__( 'Connected systems', 'flx-ai' ) . '</a></p>';
 	if ( isset( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Kaydedildi.', 'flx-ai' ) . '</p></div>';
+		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Saved.', 'flx-ai' ) . '</p></div>';
 	}
 
 	$tools = array_filter( flxai_tools_rows(), fn( $r ) => $r['source'] === $slug && ! $r['dupe'] );
@@ -92,12 +92,12 @@ function flxai_page_system_settings( $slug ) {
 	echo '<input type="hidden" name="system" value="' . esc_attr( $slug ) . '">';
 	echo '<table class="form-table" role="presentation"><tbody>';
 
-	echo '<tr><th scope="row">' . esc_html__( 'Yapay zekâ', 'flx-ai' ) . '</th><td><label class="flxai-check"><input type="checkbox" name="ai_on" value="1"' . checked( flxai_source_enabled( $slug ), true, false ) . '> ' . esc_html__( 'Bu eklenti yapay zekâ kullanabilir', 'flx-ai' ) . '</label><p class="description">' . esc_html__( 'Kapalıyken eklentinin model istekleri reddedilir; araçları ayrıca Araçlar ekranından kapatılır.', 'flx-ai' ) . '</p></td></tr>';
+	echo '<tr><th scope="row">' . esc_html__( 'AI', 'flx-ai' ) . '</th><td><label class="flxai-check"><input type="checkbox" name="ai_on" value="1"' . checked( flxai_source_enabled( $slug ), true, false ) . '> ' . esc_html__( 'This plugin may use AI', 'flx-ai' ) . '</label><p class="description">' . esc_html__( 'When off, the plugin\'s model requests are rejected; its tools are turned off separately on the Tools screen.', 'flx-ai' ) . '</p></td></tr>';
 
 	$sm = (string) ( ( (array) flxai_setting( 'source_models', array() ) )[ $slug ] ?? '' );
 	echo '<tr><th scope="row">' . esc_html__( 'Model', 'flx-ai' ) . '</th><td>';
 	flxai_model_field( 'source_model', $sm, flxai_model_for( '' ) );
-	echo '<p class="description">' . esc_html__( 'Boşsa varsayılan model kullanılır.', 'flx-ai' ) . '</p></td></tr>';
+	echo '<p class="description">' . esc_html__( 'Empty uses the default model.', 'flx-ai' ) . '</p></td></tr>';
 
 	foreach ( $fields as $key => $f ) {
 		$name = 'f[' . $key . ']';
@@ -106,7 +106,7 @@ function flxai_page_system_settings( $slug ) {
 		echo '<tr><th scope="row">' . ( 'toggle' === $f['type'] ? esc_html( $f['label'] ) : '<label for="' . esc_attr( $id ) . '">' . esc_html( $f['label'] ) . '</label>' ) . '</th><td>';
 		switch ( $f['type'] ) {
 			case 'toggle':
-				printf( '<label class="flxai-check"><input type="checkbox" id="%1$s" name="%2$s" value="1"%3$s> %4$s</label>', esc_attr( $id ), esc_attr( $name ), checked( (bool) $val, true, false ), esc_html__( 'Açık', 'flx-ai' ) );
+				printf( '<label class="flxai-check"><input type="checkbox" id="%1$s" name="%2$s" value="1"%3$s> %4$s</label>', esc_attr( $id ), esc_attr( $name ), checked( (bool) $val, true, false ), esc_html__( 'On', 'flx-ai' ) );
 				break;
 			case 'textarea':
 				printf( '<textarea id="%1$s" name="%2$s" rows="4" class="large-text">%3$s</textarea>', esc_attr( $id ), esc_attr( $name ), esc_textarea( (string) $val ) );
@@ -133,23 +133,23 @@ function flxai_page_system_settings( $slug ) {
 		echo '</td></tr>';
 	}
 
-	echo '<tr><th scope="row">' . esc_html__( 'Araçlar', 'flx-ai' ) . '</th><td>';
+	echo '<tr><th scope="row">' . esc_html__( 'Tools', 'flx-ai' ) . '</th><td>';
 	if ( $tools ) {
 		/* translators: 1: open tools, 2: all tools */
-		echo esc_html( sprintf( __( '%1$s / %2$s araç açık', 'flx-ai' ), number_format_i18n( $n_on ), number_format_i18n( count( $tools ) ) ) );
-		echo ' · <a href="' . esc_url( admin_url( 'admin.php?page=flx-ai-tools#src=' . rawurlencode( $slug ) ) ) . '">' . esc_html__( 'Araçları yönet', 'flx-ai' ) . '</a>';
+		echo esc_html( sprintf( __( '%1$s / %2$s tools on', 'flx-ai' ), number_format_i18n( $n_on ), number_format_i18n( count( $tools ) ) ) );
+		echo ' · <a href="' . esc_url( admin_url( 'admin.php?page=flx-ai-tools#src=' . rawurlencode( $slug ) ) ) . '">' . esc_html__( 'Manage tools', 'flx-ai' ) . '</a>';
 	} else {
-		echo esc_html__( 'Bu eklentinin aracı yok.', 'flx-ai' );
+		echo esc_html__( 'This plugin has no tools.', 'flx-ai' );
 	}
 	echo '</td></tr>';
 	echo '</tbody></table>';
 	if ( ! $fields && ! $plugin ) {
-		echo '<p class="flxai-note">' . esc_html__( 'Bu eklenti Flux AI SDK ile ayar tanımlamamış; yalnız aç/kapa ve model seçilebilir.', 'flx-ai' ) . '</p>';
+		echo '<p class="flxai-note">' . esc_html__( 'This plugin declares no settings with the Flux AI SDK; only on/off and the model can be set.', 'flx-ai' ) . '</p>';
 	}
 	if ( defined( 'FLX_AI_SDK_VERSION' ) ) {
 		/* translators: %s: SDK version */
-		echo '<p class="flxai-note">' . esc_html( sprintf( __( 'Flux AI SDK %s yüklü.', 'flx-ai' ), FLX_AI_SDK_VERSION ) ) . '</p>';
+		echo '<p class="flxai-note">' . esc_html( sprintf( __( 'Flux AI SDK %s loaded.', 'flx-ai' ), FLX_AI_SDK_VERSION ) ) . '</p>';
 	}
-	echo '<p class="submit"><button type="submit" class="button button-primary">' . esc_html__( 'Kaydet', 'flx-ai' ) . '</button></p>';
+	echo '<p class="submit"><button type="submit" class="button button-primary">' . esc_html__( 'Save', 'flx-ai' ) . '</button></p>';
 	echo '</form></div>';
 }

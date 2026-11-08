@@ -1,0 +1,533 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Settings"
+msgstr "Ayarlar"
+
+msgid "Open wiki"
+msgstr "Wiki'yi aç"
+
+msgid "Developer wiki: Markdown pages, search, LLM and MCP support"
+msgstr "Geliştirici wiki'si: Markdown sayfalar, arama, LLM ve MCP desteği"
+
+msgid "Wiki settings"
+msgstr "Wiki ayarları"
+
+msgid "Preparing preview…"
+msgstr "Önizleme hazırlanıyor…"
+
+msgid "Could not load the preview."
+msgstr "Önizleme alınamadı."
+
+msgid "Nothing to preview."
+msgstr "Önizlenecek içerik yok."
+
+msgid "Link URL"
+msgstr "Bağlantı adresi"
+
+msgid "Heading"
+msgstr "Ara başlık"
+
+msgid "text"
+msgstr "metin"
+
+msgid "code"
+msgstr "kod"
+
+msgid "link"
+msgstr "bağlantı"
+
+msgid "page-slug"
+msgstr "sayfa-adi"
+
+msgid "item"
+msgstr "madde"
+
+msgid "Note"
+msgstr "Not"
+
+msgid "Subheading"
+msgstr "Alt başlık"
+
+msgid "Bold"
+msgstr "Kalın"
+
+msgid "Italic"
+msgstr "İtalik"
+
+msgid "Inline code"
+msgstr "Satır içi kod"
+
+msgid "Code block"
+msgstr "Kod bloğu"
+
+msgid "Link"
+msgstr "Bağlantı"
+
+msgid "Wiki link"
+msgstr "Wiki bağlantısı"
+
+msgid "List"
+msgstr "Liste"
+
+msgid "Callout"
+msgstr "Not kutusu"
+
+msgid "Table"
+msgstr "Tablo"
+
+msgid "Write"
+msgstr "Yaz"
+
+msgid "Preview"
+msgstr "Önizle"
+
+msgid "Side by side"
+msgstr "Yan yana"
+
+msgid "Write Markdown. ## Heading, ```php code```, [[page-slug]] wiki link, > [!NOTE] callout."
+msgstr "Markdown'ı yazın. ## Başlık, ```php code``` , [[page-slug]] wiki bağlantısı, > [!NOTE] belirtme çizgisi."
+
+msgid "Markdown: GitHub flavour (tables, code blocks). Wiki links [[slug]] or [[slug|label]]. Callouts: > [!NOTE], [!TIP], [!IMPORTANT], [!WARNING], [!CAUTION]. Do not repeat the title in the content."
+msgstr "Markdown: GitHub biçimi (tablo, kod bloğu). Wiki bağlantısı [[kisa-ad]] ya da [[kisa-ad|etiket]]. Not kutuları: > [!NOTE], [!TIP], [!IMPORTANT], [!WARNING], [!CAUTION]. Başlığı içerikte tekrar yazmayın."
+
+msgid "Open as .md"
+msgstr ".md olarak aç"
+
+msgid "Order"
+msgstr "Sıra"
+
+msgid "Lower numbers come first on the wiki home and in the menu."
+msgstr "Wiki ana sayfasında ve menüde küçük sayı önce gelir."
+
+msgid "General"
+msgstr "Genel"
+
+msgid "Appearance"
+msgstr "Görünüm"
+
+msgid "AI"
+msgstr "AI"
+
+msgid "Add page"
+msgstr "Yeni sayfa"
+
+msgid "The wiki is closed to visitors; only people who can write pages see it."
+msgstr "Wiki ziyaretçilere kapalı; yalnız sayfa yazabilenler görüyor."
+
+msgid "Settings saved."
+msgstr "Ayarlar kaydedildi."
+
+msgid "Guides imported: %1$d new, %2$d updated, %3$d skipped (edited by hand or up to date)."
+msgstr "Rehberler aktarıldı: %1$d yeni, %2$d güncellendi, %3$d atlandı (elle değiştirilmiş ya da güncel)."
+
+msgid "Wiki"
+msgstr "Wiki"
+
+msgid "Wiki open to visitors"
+msgstr "Wiki ziyaretçilere açık"
+
+msgid "When closed, wiki addresses, .md and llms.txt return 404 to visitors and leave the sitemap. People who can write pages still see it."
+msgstr "Kapalıyken wiki adresleri, .md ve llms.txt ziyaretçilere 404 döner, site haritasından çıkar. Sayfa yazabilenler görmeye devam eder."
+
+msgid "Wiki name"
+msgstr "Wiki adı"
+
+msgid "Developer Wiki"
+msgstr "Geliştirici Wiki"
+
+msgid "Intro"
+msgstr "Tanıtım"
+
+msgid "Used on the wiki home, in the search engine description and in llms.txt."
+msgstr "Ana sayfada, arama motoru açıklamasında ve llms.txt'de kullanılır."
+
+msgid "Address"
+msgstr "Adres"
+
+msgid "Lowercase letters, digits and hyphens. Old addresses stop working when you change it."
+msgstr "Küçük harf, rakam ve tire. Değiştirince eski adresler çalışmaz."
+
+msgid "Page buttons"
+msgstr "Sayfa düğmeleri"
+
+msgid "ChatGPT, Claude, Google AI and Perplexity links in the \"Ask AI\" menu"
+msgstr "\"AI'a sor\" menüsünde ChatGPT, Claude, Google AI, Perplexity bağlantıları"
+
+msgid "\"Edit\" button for editors"
+msgstr "Yetkililere \"Düzenle\" düğmesi"
+
+msgid "Accent colour"
+msgstr "Vurgu rengi"
+
+msgid "Use the theme colour"
+msgstr "Temanın rengini kullan"
+
+msgid "Links, the selected menu item and accent buttons."
+msgstr "Bağlantılar, seçili menü ve vurgulu düğmeler."
+
+msgid "Width"
+msgstr "Genişlik"
+
+msgid "Normal"
+msgstr "Normal"
+
+msgid "Wide (for long code and tables)"
+msgstr "Geniş (uzun kod ve tablolar için)"
+
+msgid "Page layout"
+msgstr "Sayfa düzeni"
+
+msgid "Page menu and search on the left"
+msgstr "Solda sayfa menüsü ve arama"
+
+msgid "\"On this page\" (contents) on the right"
+msgstr "Sağda \"Bu sayfada\" (içindekiler)"
+
+msgid "Flux AI is not installed. Once installed, visitors can use \"Ask the wiki\", which answers from the wiki content."
+msgstr "Flux AI kurulu değil. Kurulunca ziyaretçiler wiki içeriğinden cevap alan \"Wiki'ye sor\" penceresini kullanabilir."
+
+msgid "Flux AI has no key or the Flux Wiki system is off (Flux AI › Connected systems)."
+msgstr "Flux AI'de anahtar yok ya da Flux Wiki sistemi kapalı (Flux AI › Bağlı sistemler)."
+
+msgid "Who can ask"
+msgstr "Kimler sorabilir"
+
+msgid "Off"
+msgstr "Kapalı"
+
+msgid "Logged-in users"
+msgstr "Giriş yapmış kullanıcılar"
+
+msgid "Everyone (including visitors)"
+msgstr "Herkes (ziyaretçiler dahil)"
+
+msgid "Every question counts towards the Flux AI spending limit; keep the hourly limit low with \"Everyone\"."
+msgstr "Her soru Flux AI harcama sınırına sayılır; \"Herkes\" seçeneğinde saatlik sınırı düşük tutun."
+
+msgid "Hourly question limit"
+msgstr "Saatlik soru sınırı"
+
+msgid "per person (unlimited for administrators)"
+msgstr "kişi başı (yöneticiler sınırsız)"
+
+msgid "Save"
+msgstr "Kaydet"
+
+msgid "Addresses"
+msgstr "Adresler"
+
+msgid "Search API"
+msgstr "Arama API"
+
+msgid "Flux AI › MCP is off"
+msgstr "Flux AI › MCP kapalı"
+
+msgid "Add .md to any page address to get it as Markdown. With Flux SEO installed, a \"Wiki\" section is added to the site's /llms.txt."
+msgstr "Her sayfa adresin sonuna .md eklenerek Markdown olarak açılır. Flux SEO kuruluysa sitenin /llms.txt dosyasına \"Wiki\" bölümü eklenir."
+
+msgid "Bundled guides"
+msgstr "Hazır rehberler"
+
+msgid "The plugin ships %d guides: writing plugins and themes, AI-enabled plugins, MCP tools, settings schema, translation, versions and releases. Missing pages are added; pages you have not edited are updated to the new version."
+msgstr "Eklentiyle %d rehber gelir: eklenti ve tema yazma, AI destekli eklenti, MCP aracı, ayar şeması, çeviri, sürüm ve yayın. Eksikler eklenir; elle değiştirmediğiniz sayfalar yeni sürümle güncellenir."
+
+msgid "Import / update guides"
+msgstr "Rehberleri içe aktar / güncelle"
+
+msgid "%d published pages."
+msgstr "Yayında %d sayfa."
+
+msgid "You are not allowed to do this."
+msgstr "Yetkiniz yok."
+
+msgid "Ask the wiki"
+msgstr "Wiki'ye sor"
+
+msgid "Wiki draft"
+msgstr "Wiki taslağı"
+
+msgid "Flux AI is not ready."
+msgstr "Flux AI hazır değil."
+
+msgid "I could not find a guide answering this question. Try again with the plugin name or the task you want to complete."
+msgstr "Bu soruyu yanıtlayan bir rehber bulamadım. Eklenti adını ya da yapmak istediğiniz işlemi yazarak tekrar deneyin."
+
+msgid "Could not get an answer. Try again in a moment."
+msgstr "Cevap alınamadı. Biraz sonra tekrar deneyin."
+
+msgid "%1$s result for \"%2$s\""
+msgid_plural "%1$s results for \"%2$s\""
+msgstr[0] "\"%2$s\" için %1$s sonuç"
+msgstr[1] "\"%2$s\" için %1$s sonuç"
+
+msgid "Copied"
+msgstr "Kopyalandı"
+
+msgid "Copy"
+msgstr "Kopyala"
+
+msgid "Could not copy"
+msgstr "Kopyalanamadı"
+
+msgid "Searching…"
+msgstr "Aranıyor…"
+
+msgid "No results. Try another word."
+msgstr "Sonuç yok. Başka bir kelime deneyin."
+
+msgid "Type to search"
+msgstr "Aramak için yazın"
+
+msgid "%d results"
+msgstr "%d sonuç"
+
+msgid "Ask AI"
+msgstr "AI'a sor"
+
+msgid "Type your question; the answer comes only from the wiki pages."
+msgstr "Sorunuzu yazın; cevap yalnız wiki sayfalarından verilir."
+
+msgid "Reading the wiki, preparing an answer…"
+msgstr "Wiki okunuyor, cevap hazırlanıyor…"
+
+msgid "Sources"
+msgstr "Kaynaklar"
+
+msgid "Search"
+msgstr "Arama"
+
+msgid "Log in to ask a question."
+msgstr "Soru sormak için giriş yapın."
+
+msgid "No results for \"%1$s\"; showing results for \"%2$s\"."
+msgstr "\"%1$s\" bulunamadı; \"%2$s\" için sonuçlar gösteriliyor."
+
+msgid "See all %d results"
+msgstr "%d sonucun hepsini gör"
+
+msgid "Wiki search for \"%s\""
+msgstr "\"%s\" için wiki araması"
+
+msgid "Guides for writing FluxWP plugins and themes, AI-enabled features and the shared platform."
+msgstr "FluxWP için eklenti ve tema yazma, AI destekli özellikler ve ortak altyapı rehberleri."
+
+msgid "Source"
+msgstr "Kaynak"
+
+msgid "Section"
+msgstr "Bölüm"
+
+msgid "Last updated"
+msgstr "Son güncelleme"
+
+msgid "Add .md to any page address to get its Markdown. The whole wiki in one file: %1$s"
+msgstr "Her sayfanın Markdown hâli adresin sonuna .md eklenerek alınır. Tüm wiki tek dosyada: %1$s"
+
+msgid "MCP server (key required): %s, tools flxwk_search, flxwk_get_page, flxwk_list_pages."
+msgstr "MCP sunucusu (anahtar gerekir): %s, araçlar flxwk_search, flxwk_get_page, flxwk_list_pages."
+
+msgid "Other pages"
+msgstr "Diğer sayfalar"
+
+msgid "Whole wiki (one file)"
+msgstr "Tüm wiki (tek dosya)"
+
+msgid "This page does not exist yet"
+msgstr "Bu sayfa henüz yok"
+
+msgid "Tip"
+msgstr "İpucu"
+
+msgid "Important"
+msgstr "Önemli"
+
+msgid "Warning"
+msgstr "Uyarı"
+
+msgid "Caution"
+msgstr "Dikkat"
+
+msgid "Search the wiki"
+msgstr "Wiki'de ara"
+
+msgid "Read wiki page"
+msgstr "Wiki sayfasını oku"
+
+msgid "List wiki pages"
+msgstr "Wiki sayfalarını listele"
+
+msgid "Write wiki page"
+msgstr "Wiki sayfası yaz"
+
+msgid "Write a FluxWP plugin (with the wiki guides)"
+msgstr "FluxWP eklentisi yaz (wiki rehberiyle)"
+
+msgid "Sections"
+msgstr "Bölümler"
+
+msgid "New section"
+msgstr "Yeni bölüm"
+
+msgid "Edit section"
+msgstr "Bölümü düzenle"
+
+msgid "Search sections"
+msgstr "Bölüm ara"
+
+msgid "All sections"
+msgstr "Tüm bölümler"
+
+msgid "Wiki page"
+msgstr "Wiki sayfası"
+
+msgid "All pages"
+msgstr "Tüm sayfalar"
+
+msgid "New wiki page"
+msgstr "Yeni wiki sayfası"
+
+msgid "Edit wiki page"
+msgstr "Wiki sayfasını düzenle"
+
+msgid "View page"
+msgstr "Sayfayı görüntüle"
+
+msgid "No pages found"
+msgstr "Sayfa bulunamadı"
+
+msgid "No pages in trash"
+msgstr "Çöpte sayfa yok"
+
+msgid "Parent page:"
+msgstr "Üst sayfa:"
+
+msgid "Wiki page not found."
+msgstr "Wiki sayfası bulunamadı."
+
+msgid "A title is required."
+msgstr "Başlık gerekli."
+
+msgid "Wiki section"
+msgstr "Wiki bölümü"
+
+msgid "The question is too short."
+msgstr "Soru çok kısa."
+
+msgid "You have reached the question limit for this hour. Try again later."
+msgstr "Bu saat için soru sınırına ulaştınız. Biraz sonra tekrar deneyin."
+
+msgid "Your previous question is still being answered. Please try again shortly."
+msgstr "Önceki sorunuz yanıtlanıyor. Biraz sonra tekrar deneyin."
+
+msgid "Wiki addresses"
+msgstr "Wiki adresleri"
+
+msgid "The wiki is at %s; .md and llms.txt addresses work."
+msgstr "Wiki %s adresinde; .md ve llms.txt adresleri çalışıyor."
+
+msgid "Permalinks are set to \"Plain\"; /wiki, .md and llms.txt addresses do not work. Choose \"Post name\" in Settings › Permalinks."
+msgstr "Kalıcı bağlantılar \"Düz\" ayarında; /wiki, .md ve llms.txt adresleri çalışmaz. Ayarlar › Kalıcı bağlantılar'dan \"Yazı adı\"nı seçin."
+
+msgid "Permalinks"
+msgstr "Kalıcı bağlantılar"
+
+msgid "Flux AI is ready; visitors can get answers from the wiki content."
+msgstr "Flux AI hazır; ziyaretçiler wiki içeriğinden cevap alabilir."
+
+msgid "Flux AI is not installed, has no key or the Flux Wiki system is off; \"Ask the wiki\" is hidden."
+msgstr "Flux AI kurulu değil, anahtar yok ya da Flux Wiki sistemi kapalı; \"Wiki'ye sor\" gizli."
+
+msgid "%s page"
+msgid_plural "%s pages"
+msgstr[0] "%s sayfa"
+msgstr[1] "%s sayfa"
+
+msgid "%s min read"
+msgid_plural "%s min read"
+msgstr[0] "%s dk okuma"
+msgstr[1] "%s dk okuma"
+
+msgid "What are you looking for? E.g. MCP tool, flx_settings_schema, theme…"
+msgstr "Ne arıyorsunuz? Ör. MCP aracı, flx_settings_schema, tema…"
+
+msgid "Search the wiki…"
+msgstr "Wiki'de ara…"
+
+msgid "Documentation"
+msgstr "Dokümantasyon"
+
+msgid "Start here"
+msgstr "Buradan başlayın"
+
+msgid "Explore the guides"
+msgstr "Rehberleri keşfedin"
+
+msgid "No published pages yet."
+msgstr "Henüz yayımlanmış sayfa yok."
+
+msgid "See all"
+msgstr "Tümünü gör"
+
+msgid "Recently updated"
+msgstr "Son güncellenenler"
+
+msgid "For LLMs and AI agents"
+msgstr "LLM ve AI ajanları için"
+
+msgid "Add .md to any page address to open it as plain Markdown. Agents read the index from llms.txt and the whole content in one file from llms-full.txt."
+msgstr "Her sayfa adresin sonuna .md eklenerek düz Markdown olarak açılır. Ajanlar dizini llms.txt'den, tüm içeriği tek dosyada llms-full.txt'den okur."
+
+msgid "On this page"
+msgstr "Bu sayfada"
+
+msgid "Subpages"
+msgstr "Alt sayfalar"
+
+msgid "Updated %s"
+msgstr "Güncellendi: %s"
+
+msgid "Previous and next page"
+msgstr "Önceki ve sonraki sayfa"
+
+msgid "Previous"
+msgstr "Önceki"
+
+msgid "Next"
+msgstr "Sonraki"
+
+msgid "Markdown"
+msgstr "Markdown"
+
+msgid "Read the document at %s, then answer my questions about it."
+msgstr "%s adresindeki belgeyi oku; sonra bu konuda sorularımı yanıtla."
+
+msgid "Copy Markdown"
+msgstr "Markdown'u kopyala"
+
+msgid "Edit"
+msgstr "Düzenle"
+
+msgid "Breadcrumb"
+msgstr "Konum"
+
+msgid "Pages"
+msgstr "Sayfalar"
+
+msgid "Wiki pages"
+msgstr "Wiki sayfaları"
+
+msgid "Close"
+msgstr "Kapat"
+
+msgid "select"
+msgstr "seç"
+
+msgid "open"
+msgstr "aç"
+
+msgid "close"
+msgstr "kapat"
+
+msgid "[['Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.', 'tr']]"
+msgstr "Sitede /wiki altında geliştirici wiki'si: Markdown sayfalar, bölümler, sayfa ağacı ve içindekiler, ayrıntılı anlık arama, SEO uyumlu çıktı. LLM dostu: her sayfa .md olarak açılır ve kopyalanır, /wiki/llms.txt ve llms-full.txt, ChatGPT / Claude'da aç. Flux AI ile \"Wiki'ye sor\" ve MCP araçları (ara, oku, listele, yaz). Eklenti ve tema yazma, eklentileri AI destekli yapma rehberleriyle gelir."

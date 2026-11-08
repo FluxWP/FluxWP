@@ -47,7 +47,7 @@ function flxc_bot_prompt_template( $id = null ) {
 function flxc_bot_prompt_add( $text, $note = '', $activate = true ) {
 	$text = trim( str_replace( "\r\n", "\n", (string) $text ) );
 	if ( '' === $text ) {
-		return new WP_Error( 'flxc_prompt_empty', __( 'Talimat boş olamaz.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_prompt_empty', __( 'Instructions cannot be empty.', 'flx-chat' ) );
 	}
 	$s = flxc_bot_prompt_store();
 	$v = array(
@@ -103,7 +103,7 @@ function flxc_bot_doc_save( array $in ) {
 	$title = mb_substr( sanitize_text_field( (string) ( $in['title'] ?? '' ) ), 0, 120 );
 	$body  = mb_substr( str_replace( "\r\n", "\n", wp_kses_no_null( (string) ( $in['body'] ?? '' ) ) ), 0, 40000 );
 	if ( '' === $title || '' === trim( $body ) ) {
-		return new WP_Error( 'flxc_doc', __( 'Başlık ve içerik gerekli.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_doc', __( 'Title and content are required.', 'flx-chat' ) );
 	}
 	$docs = flxc_bot_docs();
 	$id   = sanitize_key( (string) ( $in['id'] ?? '' ) );
@@ -186,13 +186,13 @@ function flxc_bot_templates_preview() {
 		$built = flxc_bot_build_order( array( 'type_id' => $types[0]['id'], 'option' => $types[0]['options'][0]['key'], 'quantity' => 2 ) );
 		$o     = is_wp_error( $built ) ? null : $built;
 	}
-	$name = __( 'Ayşe Yılmaz', 'flx-chat' );
+	$name = __( 'Jane Smith', 'flx-chat' );
 	return array(
-		array( 'key' => 'price', 'label' => __( 'Fiyat listesi', 'flx-chat' ), 'text' => flxc_bot_price_text() ),
-		array( 'key' => 'summary', 'label' => __( 'Bağış özeti', 'flx-chat' ), 'text' => $o ? flxc_bot_order_summary( $o, array( 'full' => $name, 'email' => '' ) ) : '' ),
-		array( 'key' => 'payment', 'label' => __( 'Onaydan sonra giden ödeme mesajları', 'flx-chat' ), 'text' => $o ? implode( "\n\n— — —\n\n", flxc_bot_payment_messages( $o, $name ) ) : '' ),
-		array( 'key' => 'handoff', 'label' => __( 'Ekibe devir mesajı', 'flx-chat' ), 'text' => flxc_bot_handoff_text() ),
-		array( 'key' => 'words', 'label' => __( 'Temsilci isteği ifadeleri', 'flx-chat' ), 'text' => implode( ', ', flxc_bot_handoff_words() ) ),
+		array( 'key' => 'price', 'label' => __( 'Price list', 'flx-chat' ), 'text' => flxc_bot_price_text() ),
+		array( 'key' => 'summary', 'label' => __( 'Donation summary', 'flx-chat' ), 'text' => $o ? flxc_bot_order_summary( $o, array( 'full' => $name, 'email' => '' ) ) : '' ),
+		array( 'key' => 'payment', 'label' => __( 'Payment messages sent after confirmation', 'flx-chat' ), 'text' => $o ? implode( "\n\n— — —\n\n", flxc_bot_payment_messages( $o, $name ) ) : '' ),
+		array( 'key' => 'handoff', 'label' => __( 'Hand-off message', 'flx-chat' ), 'text' => flxc_bot_handoff_text() ),
+		array( 'key' => 'words', 'label' => __( 'Agent request phrases', 'flx-chat' ), 'text' => implode( ', ', flxc_bot_handoff_words() ) ),
 	);
 }
 
@@ -262,7 +262,7 @@ function flxc_bot_sandbox_turn( array $history, array $state, $template, $model 
 		$prev = $role;
 	}
 	if ( 'user' !== $prev ) {
-		return new WP_Error( 'flxc_test', __( 'Önce bir mesaj yazın.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_test', __( 'Write a message first.', 'flx-chat' ) );
 	}
 	// Gerçek hatta olduğu gibi: temsilci ifadesi geçerse model çağrılmadan devredilir.
 	$last = flxc_bot_lower( (string) $messages[ count( $messages ) - 1 ]['content'] );
@@ -306,7 +306,7 @@ function flxc_bot_sandbox_turn( array $history, array $state, $template, $model 
 	foreach ( array_merge( $parts, flxc_widgets_on() ? $wg['codes'] : array(), $ctx['after'] ) as $i => $t ) {
 		if ( $i >= count( $parts ) && $i < count( $parts ) + ( flxc_widgets_on() ? count( $wg['codes'] ) : 0 ) ) {
 			$png    = flxc_widget_png( $t );
-			$out[]  = is_wp_error( $png ) ? '[' . __( 'Görsel gönderilemedi', 'flx-chat' ) . ': ' . $png->get_error_message() . ']' : '[' . __( 'Görsel', 'flx-chat' ) . ']';
+			$out[]  = is_wp_error( $png ) ? '[' . __( 'Image could not be sent', 'flx-chat' ) . ': ' . $png->get_error_message() . ']' : '[' . __( 'Image', 'flx-chat' ) . ']';
 			$auto[] = false;
 			$imgs[ count( $out ) - 1 ] = is_wp_error( $png ) ? '' : 'data:image/png;base64,' . base64_encode( $png['data'] );
 			continue;
@@ -351,7 +351,7 @@ function flxc_bot_sandbox_files( array $files, array &$history, array &$state, $
 			continue;
 		}
 		$img    = 0 === strpos( $mime, 'image/' );
-		$tags[] = '[' . ( $img ? __( 'Fotoğraf', 'flx-chat' ) : __( 'Belge', 'flx-chat' ) . ': ' . $name ) . ']';
+		$tags[] = '[' . ( $img ? __( 'Photo', 'flx-chat' ) : __( 'Document', 'flx-chat' ) . ': ' . $name ) . ']';
 		$check[] = array( 'i' => count( $tags ) - 1, 'name' => $name, 'mime' => $mime, 'data' => $data );
 	}
 	$last    = count( $history ) - 1;
@@ -375,7 +375,7 @@ function flxc_bot_sandbox_files( array $files, array &$history, array &$state, $
 			if ( ! in_array( $res['verdict'], array( 'not_receipt', 'unclear' ), true ) ) {
 				$res = flxc_bot_sandbox_receipt_dup( $res, sha1( (string) base64_decode( substr( $c['data'], strpos( $c['data'], ',' ) + 1 ) ) ), $state );
 			}
-			$tags[ $c['i'] ] .= ' (' . __( 'otomatik dekont kontrolü', 'flx-chat' ) . ': ' . flxc_rcheck_summary( $res ) . ')';
+			$tags[ $c['i'] ] .= ' (' . __( 'automatic receipt check', 'flx-chat' ) . ': ' . flxc_rcheck_summary( $res ) . ')';
 			$log[] = array(
 				'tool'   => 'receipt_ai',
 				'args'   => array( 'file' => $c['name'], 'mime' => $c['mime'], 'model' => $res['model'] ?? '' ),
@@ -646,7 +646,7 @@ function flxc_rest_bot_prompt_activate( WP_REST_Request $req ) {
 	$id = (string) $req->get_param( 'id' );
 	$s  = flxc_bot_prompt_store();
 	if ( '' !== $id && ! flxc_bot_prompt_version( $id ) ) {
-		return new WP_Error( 'flxc_prompt', __( 'Sürüm bulunamadı.', 'flx-chat' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxc_prompt', __( 'Version not found.', 'flx-chat' ), array( 'status' => 404 ) );
 	}
 	$s['active'] = $id; // '' = yerleşik metin
 	update_option( 'flxc_bot_prompt', $s, false );
@@ -674,7 +674,7 @@ function flxc_rest_bot_doc_delete( WP_REST_Request $req ) {
 
 function flxc_rest_bot_editor( WP_REST_Request $req ) {
 	if ( ! flxc_ai_ready() ) {
-		return new WP_Error( 'flxc_ai', __( 'Önce Ayarlar › Yapay zekâ bölümünden anahtar ve model girin.', 'flx-chat' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxc_ai', __( 'First enter an API key and model under Settings › AI.', 'flx-chat' ), array( 'status' => 400 ) );
 	}
 	$current = (string) $req->get_param( 'current' );
 	$r       = flxc_bot_editor_turn( (array) $req->get_param( 'history' ), '' !== trim( $current ) ? $current : flxc_bot_prompt_template(), flxc_clean_model_id( $req->get_param( 'model' ) ) );
@@ -688,7 +688,7 @@ function flxc_rest_bot_editor( WP_REST_Request $req ) {
 
 function flxc_rest_bot_test( WP_REST_Request $req ) {
 	if ( ! flxc_ai_ready() ) {
-		return new WP_Error( 'flxc_ai', __( 'Önce Ayarlar › Yapay zekâ bölümünden anahtar ve model girin.', 'flx-chat' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxc_ai', __( 'First enter an API key and model under Settings › AI.', 'flx-chat' ), array( 'status' => 400 ) );
 	}
 	$text = $req->get_param( 'text' );
 	$r    = flxc_bot_sandbox_turn(

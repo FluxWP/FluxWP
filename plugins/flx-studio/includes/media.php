@@ -90,11 +90,11 @@ function flxst_store_file( array $src, $sub, array $allowed = FLXST_IMAGE_MIMES,
 	$name  = sanitize_file_name( (string) ( $src['name'] ?? 'dosya' ) );
 	$bytes = isset( $src['data'] ) ? strlen( $src['data'] ) : ( isset( $src['tmp'] ) && is_file( $src['tmp'] ) ? filesize( $src['tmp'] ) : 0 );
 	if ( ! $bytes ) {
-		return new WP_Error( 'flxst_file', __( 'Dosya boş.', 'flx-studio' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxst_file', __( 'The file is empty.', 'flx-studio' ), array( 'status' => 400 ) );
 	}
 	if ( $bytes > $max_mb * MB_IN_BYTES ) {
 		/* translators: %d: megabytes */
-		return new WP_Error( 'flxst_file', sprintf( __( 'Dosya %d MB sınırını aşıyor.', 'flx-studio' ), $max_mb ), array( 'status' => 413 ) );
+		return new WP_Error( 'flxst_file', sprintf( __( 'The file exceeds the %d MB limit.', 'flx-studio' ), $max_mb ), array( 'status' => 413 ) );
 	}
 	$tmp = isset( $src['tmp'] ) ? $src['tmp'] : wp_tempnam( $name );
 	if ( isset( $src['data'] ) ) {
@@ -106,7 +106,7 @@ function flxst_store_file( array $src, $sub, array $allowed = FLXST_IMAGE_MIMES,
 		if ( isset( $src['data'] ) ) {
 			wp_delete_file( $tmp );
 		}
-		return new WP_Error( 'flxst_file', __( 'Bu dosya türü desteklenmiyor.', 'flx-studio' ), array( 'status' => 415 ) );
+		return new WP_Error( 'flxst_file', __( 'This file type is not supported.', 'flx-studio' ), array( 'status' => 415 ) );
 	}
 	$ext  = array_search( $mime, array( 'png' => 'image/png', 'jpg' => 'image/jpeg', 'webp' => 'image/webp', 'gif' => 'image/gif', 'mp4' => 'video/mp4', 'webm' => 'video/webm', 'mov' => 'video/quicktime', 'mp3' => 'audio/mpeg', 'wav' => 'audio/wav', 'm4a' => 'audio/mp4' ), true );
 	$ext  = $ext ? $ext : 'bin';
@@ -114,7 +114,7 @@ function flxst_store_file( array $src, $sub, array $allowed = FLXST_IMAGE_MIMES,
 	$dest = $dir . '/' . strtolower( wp_generate_password( 20, false ) ) . '.' . $ext;
 	$ok   = isset( $src['data'] ) ? rename( $tmp, $dest ) : ( is_uploaded_file( $tmp ) ? move_uploaded_file( $tmp, $dest ) : copy( $tmp, $dest ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 	if ( ! $ok ) {
-		return new WP_Error( 'flxst_file', __( 'Dosya kaydedilemedi.', 'flx-studio' ), array( 'status' => 500 ) );
+		return new WP_Error( 'flxst_file', __( 'The file could not be saved.', 'flx-studio' ), array( 'status' => 500 ) );
 	}
 	$w = 0;
 	$h = 0;
@@ -176,21 +176,21 @@ function flxst_resolve_refs( array $refs, $user_id, $max = 14 ) {
 		if ( 'item' === $type ) {
 			$row = flxst_item( $id );
 			if ( ! flxst_item_visible( $row, $user_id ) || 'done' !== $row['state'] || 'image' !== $row['kind'] ) {
-				return new WP_Error( 'flxst_ref', __( 'Referans görsel bulunamadı.', 'flx-studio' ), array( 'status' => 400 ) );
+				return new WP_Error( 'flxst_ref', __( 'Reference image not found.', 'flx-studio' ), array( 'status' => 400 ) );
 			}
 			$inputs[]  = flxst_ai_input( $row['url'], $row['path'] );
 			$summary[] = array( 'type' => 'item', 'id' => $id, 'role' => sanitize_key( $r['role'] ?? '' ), 'thumb' => $row['thumb'] ? $row['thumb'] : $row['url'] );
 		} elseif ( 'ref' === $type ) {
 			$row = flxst_ref( $id );
 			if ( ! flxst_ref_visible( $row, $user_id ) ) {
-				return new WP_Error( 'flxst_ref', __( 'Referans görsel bulunamadı.', 'flx-studio' ), array( 'status' => 400 ) );
+				return new WP_Error( 'flxst_ref', __( 'Reference image not found.', 'flx-studio' ), array( 'status' => 400 ) );
 			}
 			$inputs[]  = flxst_ai_input( $row['url'], $row['path'] );
 			$summary[] = array( 'type' => 'ref', 'id' => $id, 'role' => sanitize_key( $r['role'] ?? $row['role'] ), 'thumb' => $row['thumb'] ? $row['thumb'] : $row['url'] );
 		} elseif ( 'person' === $type ) {
 			$p = flxst_person( $id );
 			if ( ! flxst_person_visible( $p, $user_id ) ) {
-				return new WP_Error( 'flxst_ref', __( 'Kişi bulunamadı.', 'flx-studio' ), array( 'status' => 400 ) );
+				return new WP_Error( 'flxst_ref', __( 'Person not found.', 'flx-studio' ), array( 'status' => 400 ) );
 			}
 			$photos = flxst_refs( $user_id, array( 'person' => $id ) );
 			foreach ( array_slice( $photos, 0, 4 ) as $ph ) {
@@ -201,7 +201,7 @@ function flxst_resolve_refs( array $refs, $user_id, $max = 14 ) {
 		}
 		if ( count( $inputs ) > $max ) {
 			/* translators: %d: max reference images */
-			return new WP_Error( 'flxst_ref', sprintf( __( 'En çok %d referans görsel kullanılabilir.', 'flx-studio' ), $max ), array( 'status' => 400 ) );
+			return new WP_Error( 'flxst_ref', sprintf( __( 'At most %d reference images can be used.', 'flx-studio' ), $max ), array( 'status' => 400 ) );
 		}
 	}
 	return array( $inputs, $summary );
@@ -213,7 +213,7 @@ function flxst_to_library( $row ) {
 		return (int) $row['attachment_id'];
 	}
 	if ( empty( $row['path'] ) || ! is_file( $row['path'] ) ) {
-		return new WP_Error( 'flxst_file', __( 'Dosya sunucuda yok.', 'flx-studio' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxst_file', __( 'The file is not on the server.', 'flx-studio' ), array( 'status' => 404 ) );
 	}
 	require_once ABSPATH . 'wp-admin/includes/file.php';
 	require_once ABSPATH . 'wp-admin/includes/media.php';

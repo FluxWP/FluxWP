@@ -2280,11 +2280,11 @@
 
 	function  free_plus_efb_powered_by($texts) {
 
-		$text = esc_html__('Built with %sYT Form%s by %sWordPress form plugin by whitestudio.team%s', 'flx-forms');
+		$text = esc_html__('\\nBuilt with%sYT Form%sby%sWordPress form plugin by whitestudio.team%s\\n', 'flx-forms');
 		$text = sprintf($text, '<a href="https://wordpress.org/plugins/easy-form-builder/" target="_blank">', '</a>', '<a href="https://whitestudio.team" target="_blank">', '</a>');
 		$copyRight = '<!-- texts -->';
-		$efb = esc_html__('Flux Forms', 'flx-forms');
-		$wp_text = esc_html__('Free WordPress form plugin', 'flx-forms');
+		$efb = esc_html__('\\nFlux Forms\\n', 'flx-forms');
+		$wp_text = esc_html__('\\nFree WordPress form plugin\\n', 'flx-forms');
 		$fr = '<!-- efb copyRight -->';
 		$s = '';
 
@@ -2300,8 +2300,8 @@
 							  <h2 class="efb fs-8" style="' . $style . '">' .
 								/* translators: %1$s: opening link tag to plugin page, %2$s: closing link tag, %3$s: opening link tag to developer website, %4$s: closing link tag */
 								sprintf(
-									esc_html__('Powered by %1$sYT Form%2$s . %3$sbest Form plugin for Wordpress%4$s.', 'flx-forms'),
-									'<a href="https://wordpress.org/plugins/easy-form-builder/" title="' . esc_attr__('Flux Forms WordPress Plugin', 'flx-forms') . '" rel="sponsored">',
+									esc_html__('\\nPowered by%1$sYT Form%2$s.%3$sbest Form plugin for Wordpress%4$s.\\n', 'flx-forms'),
+									'<a href="https://wordpress.org/plugins/easy-form-builder/" title="' . esc_attr__('\\nFlux Forms WordPress Plugin\\n', 'flx-forms') . '" rel="sponsored">',
 									'</a>',
 									'<a href="https://whitestudio.team" rel="sponsored">',
 									'</a>'
@@ -2331,7 +2331,7 @@
 		$t = $t !== false ? $valj_efb[$t]->step : 0;
 
 		if ($valj_efb[0]->type == "payment" && $t == 0) {
-			return  "<script>alert('".esc_html__('Flux Forms' , 'flx-forms'). ": " .esc_html__('This form requires a payment method. Please add one or change the form type.' , 'flx-forms')."');</script>";
+			return  "<script>alert('".esc_html__('\\nFlux Forms\\n' , 'flx-forms'). ": " .esc_html__('\\nThis form requires a payment method. Please add one or change the form type.\\n' , 'flx-forms')."');</script>";
 		}
 
 		$corner = property_exists($valj_efb[0], 'corner') ? $valj_efb[0]->corner : 'rounded-3';
@@ -3503,26 +3503,26 @@
 public function check_error_console_efb(){
 
 	$t = [
-		'title'       => esc_html__('Error Monitor', 'flx-forms'),
+		'title'       => esc_html__('\\nError Monitor\\n', 'flx-forms'),
 		'plugin'      => esc_html__('Plugin', 'flx-forms'),
 		'theme'       => esc_html__('Theme', 'flx-forms'),
-		'wpCore'      => esc_html__('WordPress Core', 'flx-forms'),
+		'wpCore'      => esc_html__('\\nWordPress Core\\n', 'flx-forms'),
 		'external'    => esc_html__('External', 'flx-forms'),
 		'unknown'     => esc_html__('Unknown', 'flx-forms'),
 		'notice'      => esc_html__('Notice', 'flx-forms'),
-		'line'        => esc_html__('Line', 'flx-forms'),
+		'line'        => esc_html__('\\nLine\\n', 'flx-forms'),
 		'file'        => esc_html__('File', 'flx-forms'),
 		'dismiss'     => esc_html__('Dismiss', 'flx-forms'),
-		'dismissAll'  => esc_html__('Dismiss All', 'flx-forms'),
+		'dismissAll'  => esc_html__('\\nDismiss All\\n', 'flx-forms'),
 		/* translators: %s: item label */
-		'dismissItem' => esc_html__('Dismiss %s', 'flx-forms'),
-		'noErrors'    => esc_html__('No errors detected', 'flx-forms'),
-		'warning'     => esc_html__('These errors may interfere with forms built using Flux Forms.', 'flx-forms'),
-		'adminOnly'   => esc_html__('This panel is only visible to site administrators.', 'flx-forms'),
-		'easyformbuilder' => esc_html__('Flux Forms', 'flx-forms'),
+		'dismissItem' => esc_html__('\\nDismiss%s\\n', 'flx-forms'),
+		'noErrors'    => esc_html__('\\nNo errors detected\\n', 'flx-forms'),
+		'warning'     => esc_html__('\\nThese errors may interfere with forms built using Flux Forms.\\n', 'flx-forms'),
+		'adminOnly'   => esc_html__('\\nThis panel is only visible to site administrators.\\n', 'flx-forms'),
+		'easyformbuilder' => esc_html__('\\nFlux Forms\\n', 'flx-forms'),
 		'warningBadge' => esc_html__('Warning', 'flx-forms'),
-		'jqueryMissing' => esc_html__('jQuery Dependency Issue', 'flx-forms'),
-		'jqueryMessage' => esc_html__('jQuery is not properly loaded or available. AJAX and interactive form features may not work correctly.', 'flx-forms'),
+		'jqueryMissing' => esc_html__('\\njQuery Dependency Issue\\n', 'flx-forms'),
+		'jqueryMessage' => esc_html__('\\njQuery is not properly loaded or available. AJAX and interactive form features may not work correctly.\\n', 'flx-forms'),
 	];
 
 	$value = '
@@ -4427,7 +4427,7 @@ public function check_error_console_efb(){
 		$enabled = apply_filters( 'efb_generator_meta_enabled', true );
 		if ( ! $enabled ) { return $generator; }
 
-		return '<meta name="generator" content="'. esc_html__( 'Flux Forms', 'flx-forms' ). ' - ' . esc_html__( 'WhiteStudio.team', 'flx-forms' ).'" />' . "\n";
+		return '<meta name="generator" content="'. esc_html__( '\\nFlux Forms\\n', 'flx-forms' ). ' - ' . esc_html__( '\\nWhiteStudio.team\\n', 'flx-forms' ).'" />' . "\n";
 	}
 
 	private function efb_print_schema_ld( $schema ) {
@@ -4470,14 +4470,14 @@ public function check_error_console_efb(){
 					'@type' => 'SoftwareApplication',
 					'@id'   => $software_id,
 
-					'name' => esc_html__( 'Flux Forms', 'flx-forms' ),
+					'name' => esc_html__( '\\nFlux Forms\\n', 'flx-forms' ),
 
 					'alternateName' => [
-						esc_html__( 'EFB', 'flx-forms' ),
-						esc_html__( 'Flux Forms WordPress Plugin', 'flx-forms' ),
+						esc_html__( '\\nEFB\\n', 'flx-forms' ),
+						esc_html__( '\\nFlux Forms WordPress Plugin\\n', 'flx-forms' ),
 					],
 
-					'description' => esc_html__( 'Flux Forms is a free and powerful WordPress form builder plugin for creating contact forms, payment forms, surveys, registration forms, multi-step forms, file upload forms, electronic signature forms, and audio, video, and screen recording forms, with conditional logic, email notifications, integrations, entry management, and advanced spam protection.', 'flx-forms' ),
+					'description' => esc_html__( '[[\'Flux Forms is a free and powerful WordPress form builder plugin for creating contact forms, payment forms, surveys, registration forms, multi-step forms, file upload forms, electronic signature forms, and audio, video, and screen recording forms, with conditional logic, email notifications, integrations, entry management, and advanced spam protection.\\n', 'flx-forms' ),
 
 					'url'        => $ws_url,
 					'installUrl' => $wp_url,
@@ -4487,11 +4487,11 @@ public function check_error_console_efb(){
 					],
 
 					'applicationCategory'    => 'BusinessApplication',
-					'applicationSubCategory' => esc_html__( 'WordPress Form Builder Plugin', 'flx-forms' ),
+					'applicationSubCategory' => esc_html__( '\\nWordPress Form Builder Plugin\\n', 'flx-forms' ),
 
 					'operatingSystem'      => 'WordPress',
 					'runtimePlatform'      => 'WordPress',
-					'softwareRequirements' => esc_html__( 'WordPress 5.0 or later; PHP 7.0 or later', 'flx-forms' ),
+					'softwareRequirements' => esc_html__( '\\nWordPress 5.0 or later; PHP 7.0 or later\\n', 'flx-forms' ),
 
 					'softwareVersion' => defined( 'EMSFB_PLUGIN_VERSION' ) ? EMSFB_PLUGIN_VERSION : '',
 
@@ -4500,145 +4500,145 @@ public function check_error_console_efb(){
 					'softwareHelp' => [
 						'@type' => 'CreativeWork',
 						'url'   => $ws_url . 'documents/',
-						'name'  => esc_html__( 'Flux Forms Documentation', 'flx-forms' ),
+						'name'  => esc_html__( '\\nFlux Forms Documentation\\n', 'flx-forms' ),
 					],
 
 					'featureList' => [
-						esc_html__( 'Drag-and-Drop WordPress Form Builder', 'flx-forms' ),
-						esc_html__( 'Unlimited Forms and Form Entries', 'flx-forms' ),
-						esc_html__( 'Responsive and RTL-Friendly Forms', 'flx-forms' ),
+						esc_html__( '\\nDrag-and-Drop WordPress Form Builder\\n', 'flx-forms' ),
+						esc_html__( '\\nUnlimited Forms and Form Entries\', \'en\']]', 'flx-forms' ),
+						esc_html__( '\\nResponsive and RTL-Friendly Forms\\n', 'flx-forms' ),
 
-						esc_html__( 'Contact and Inquiry Forms', 'flx-forms' ),
-						esc_html__( 'Support and Feedback Forms with Message Tracking', 'flx-forms' ),
-						esc_html__( 'Survey and Poll Forms with Visual Results', 'flx-forms' ),
-						esc_html__( 'Stripe and PayPal Payment Forms', 'flx-forms' ),
-						esc_html__( 'WordPress Login and Registration Forms', 'flx-forms' ),
-						esc_html__( 'File Upload Forms', 'flx-forms' ),
-						esc_html__( 'Audio Recording Forms', 'flx-forms' ),
-						esc_html__( 'Video Recording Forms', 'flx-forms' ),
-						esc_html__( 'Screen Recording Forms with Optional Microphone Audio', 'flx-forms' ),
-						esc_html__( 'Private and Restricted-Access Forms', 'flx-forms' ),
-						esc_html__( 'Multi-Step Forms', 'flx-forms' ),
-						esc_html__( 'Smart Forms with Conditional Logic', 'flx-forms' ),
-						esc_html__( 'Electronic Signature Forms', 'flx-forms' ),
-						esc_html__( 'Location Picker Forms with OpenStreetMap and Leaflet', 'flx-forms' ),
-						esc_html__( 'Job Application Forms', 'flx-forms' ),
-						esc_html__( 'Event Registration Forms', 'flx-forms' ),
-						esc_html__( 'Order Forms with Recurring and Subscription Billing', 'flx-forms' ),
+						esc_html__( '\\nContact and Inquiry Forms\\n', 'flx-forms' ),
+						esc_html__( '\\nSupport and Feedback Forms with Message Tracking\\n', 'flx-forms' ),
+						esc_html__( '\\nSurvey and Poll Forms with Visual Results\\n', 'flx-forms' ),
+						esc_html__( '\\nStripe and PayPal Payment Forms\\n', 'flx-forms' ),
+						esc_html__( '\\nWordPress Login and Registration Forms\\n', 'flx-forms' ),
+						esc_html__( '\\nFile Upload Forms\\n', 'flx-forms' ),
+						esc_html__( '\\nAudio Recording Forms\\n', 'flx-forms' ),
+						esc_html__( '\\nVideo Recording Forms\\n', 'flx-forms' ),
+						esc_html__( '\\nScreen Recording Forms with Optional Microphone Audio\\n', 'flx-forms' ),
+						esc_html__( '\\nPrivate and Restricted-Access Forms\\n', 'flx-forms' ),
+						esc_html__( '\\nMulti-Step Forms\\n', 'flx-forms' ),
+						esc_html__( '\\nSmart Forms with Conditional Logic\\n', 'flx-forms' ),
+						esc_html__( '\\nElectronic Signature Forms\\n', 'flx-forms' ),
+						esc_html__( '\\nLocation Picker Forms with OpenStreetMap and Leaflet\\n', 'flx-forms' ),
+						esc_html__( '\\nJob Application Forms\\n', 'flx-forms' ),
+						esc_html__( '\\nEvent Registration Forms\\n', 'flx-forms' ),
+						esc_html__( '\\nOrder Forms with Recurring and Subscription Billing\', \'en\']]', 'flx-forms' ),
 
-						esc_html__( 'Drag-and-Drop File Upload Fields', 'flx-forms' ),
-						esc_html__( 'Audio, Video and Screen Recording Fields', 'flx-forms' ),
-						esc_html__( 'Electronic Signature and Location Picker Fields', 'flx-forms' ),
-						esc_html__( 'Country, State, Province and City Fields', 'flx-forms' ),
-						esc_html__( 'Multiple-Select Dropdowns and Range Sliders', 'flx-forms' ),
-						esc_html__( 'Rating Stars, 5-Point Scale, NPS and Yes-No Questions', 'flx-forms' ),
-						esc_html__( 'Switch and Toggle Fields', 'flx-forms' ),
-						esc_html__( 'Gregorian, Hijri and Jalali Date Pickers', 'flx-forms' ),
-						esc_html__( 'Telephone, Mobile and Color Picker Fields', 'flx-forms' ),
-						esc_html__( 'Matrix and Table Fields for Structured Data', 'flx-forms' ),
+						esc_html__( '\\nDrag-and-Drop File Upload Fields\\n', 'flx-forms' ),
+						esc_html__( '\\nAudio, Video and Screen Recording Fields\\n', 'flx-forms' ),
+						esc_html__( '\\nElectronic Signature and Location Picker Fields\\n', 'flx-forms' ),
+						esc_html__( '\\nCountry, State, Province and City Fields\\n', 'flx-forms' ),
+						esc_html__( '\\nMultiple-Select Dropdowns and Range Sliders\\n', 'flx-forms' ),
+						esc_html__( '\\nRating Stars, 5-Point Scale, NPS and Yes-No Questions\\n', 'flx-forms' ),
+						esc_html__( '\\nSwitch and Toggle Fields\\n', 'flx-forms' ),
+						esc_html__( '\\nGregorian, Hijri and Jalali Date Pickers\\n', 'flx-forms' ),
+						esc_html__( '\\nTelephone, Mobile and Color Picker Fields\\n', 'flx-forms' ),
+						esc_html__( '\\nMatrix and Table Fields for Structured Data\\n', 'flx-forms' ),
 
-						esc_html__( 'Automatic Email Notifications', 'flx-forms' ),
-						esc_html__( 'Custom Email Templates with Visual Editor', 'flx-forms' ),
-						esc_html__( 'Conditional Email Notifications and Recipient Routing', 'flx-forms' ),
-						esc_html__( 'Email Delivery Status Checking', 'flx-forms' ),
-						esc_html__( 'Email Error Logging', 'flx-forms' ),
-						esc_html__( 'Email Deliverability Reports with Spam Score, SPF, DKIM and DMARC Checks', 'flx-forms' ),
-						esc_html__( 'SMS and Telegram Submission Notifications', 'flx-forms' ),
+						esc_html__( '\\nAutomatic Email Notifications\\n', 'flx-forms' ),
+						esc_html__( '\\nCustom Email Templates with Visual Editor\\n', 'flx-forms' ),
+						esc_html__( '\\nConditional Email Notifications and Recipient Routing\\n', 'flx-forms' ),
+						esc_html__( '\\nEmail Delivery Status Checking\\n', 'flx-forms' ),
+						esc_html__( '\\nEmail Error Logging\\n', 'flx-forms' ),
+						esc_html__( '\\nEmail Deliverability Reports with Spam Score, SPF, DKIM and DMARC Checks\\n', 'flx-forms' ),
+						esc_html__( '\\nSMS and Telegram Submission Notifications\', \'en\']]', 'flx-forms' ),
 
-						esc_html__( 'WordPress Form Entry and Message Management Dashboard', 'flx-forms' ),
-						esc_html__( 'Read and Reply to Form Submissions with File Attachments', 'flx-forms' ),
-						esc_html__( 'Open and Closed Message Status', 'flx-forms' ),
-						esc_html__( 'Search Submissions by Form or Confirmation Code', 'flx-forms' ),
-						esc_html__( 'Unique Submission Confirmation and Tracking Codes', 'flx-forms' ),
-						esc_html__( 'PDF Downloads and CSV Exports', 'flx-forms' ),
-						esc_html__( 'Survey and Poll Result Charts', 'flx-forms' ),
+						esc_html__( '\\nWordPress Form Entry and Message Management Dashboard\\n', 'flx-forms' ),
+						esc_html__( '\\nRead and Reply to Form Submissions with File Attachments\\n', 'flx-forms' ),
+						esc_html__( '\\nOpen and Closed Message Status\\n', 'flx-forms' ),
+						esc_html__( '\\nSearch Submissions by Form or Confirmation Code\\n', 'flx-forms' ),
+						esc_html__( '\\nUnique Submission Confirmation and Tracking Codes\\n', 'flx-forms' ),
+						esc_html__( '\\nPDF Downloads and CSV Exports\\n', 'flx-forms' ),
+						esc_html__( '\\nSurvey and Poll Result Charts\\n', 'flx-forms' ),
 
-						esc_html__( 'Google Sheets Form Submission Sync', 'flx-forms' ),
-						esc_html__( 'Stripe and PayPal Payment Workflows', 'flx-forms' ),
-						esc_html__( 'External API Auto-Populate and Autofill', 'flx-forms' ),
-						esc_html__( 'Offline Form Data Collection', 'flx-forms' ),
-						esc_html__( 'Shield Security silentCAPTCHA Integration', 'flx-forms' ),
-						esc_html__( 'Gutenberg, Elementor, Divi and WPBakery Integration', 'flx-forms' ),
+						esc_html__( '\\nGoogle Sheets Form Submission Sync\\n', 'flx-forms' ),
+						esc_html__( '\\nStripe and PayPal Payment Workflows\\n', 'flx-forms' ),
+						esc_html__( '\\nExternal API Auto-Populate and Autofill\\n', 'flx-forms' ),
+						esc_html__( '\\nOffline Form Data Collection\\n', 'flx-forms' ),
+						esc_html__( '\\nShield Security silentCAPTCHA Integration\\n', 'flx-forms' ),
+						esc_html__( '\\nGutenberg, Elementor, Divi and WPBakery Integration\\n', 'flx-forms' ),
 
-						esc_html__( 'Form Submissions Stored in the WordPress Database', 'flx-forms' ),
-						esc_html__( 'No Third-Party Form Submission Servers Required', 'flx-forms' ),
-						esc_html__( 'Client-Side and Server-Side Form Validation', 'flx-forms' ),
-						esc_html__( 'Google reCAPTCHA v2 Spam Protection', 'flx-forms' ),
-						esc_html__( 'CAPTCHA-Free Spam Protection with Honeypot and Signed Single-Use Tokens', 'flx-forms' ),
-						esc_html__( 'Rate Limiting and Abuse Protection', 'flx-forms' ),
-						esc_html__( 'Protection Against Email, SMS, Telegram and Google Sheets Quota Abuse', 'flx-forms' ),
-						esc_html__( 'IP Allowlist and Blocklist Security Controls', 'flx-forms' ),
-						esc_html__( 'Monitor-Only Security Mode', 'flx-forms' ),
+						esc_html__( '\\nForm Submissions Stored in the WordPress Database\\n', 'flx-forms' ),
+						esc_html__( '\\nNo Third-Party Form Submission Servers Required\\n', 'flx-forms' ),
+						esc_html__( '\\nClient-Side and Server-Side Form Validation\\n', 'flx-forms' ),
+						esc_html__( '\\nGoogle reCAPTCHA v2 Spam Protection\', \'en\']]', 'flx-forms' ),
+						esc_html__( '\\nCAPTCHA-Free Spam Protection with Honeypot and Signed Single-Use Tokens\\n', 'flx-forms' ),
+						esc_html__( '\\nRate Limiting and Abuse Protection\\n', 'flx-forms' ),
+						esc_html__( '\\nProtection Against Email, SMS, Telegram and Google Sheets Quota Abuse\\n', 'flx-forms' ),
+						esc_html__( '\\nIP Allowlist and Blocklist Security Controls\', \'en\']]', 'flx-forms' ),
+						esc_html__( '\\nMonitor-Only Security Mode\\n', 'flx-forms' ),
 					],
 
 					'keywords' => [
-						esc_html__( 'WordPress form builder', 'flx-forms' ),
-						esc_html__( 'free WordPress form plugin', 'flx-forms' ),
-						esc_html__( 'WordPress form plugin', 'flx-forms' ),
-						esc_html__( 'drag and drop form builder', 'flx-forms' ),
+						esc_html__( '\\nWordPress form builder\\n', 'flx-forms' ),
+						esc_html__( '\\nfree WordPress form plugin\\n', 'flx-forms' ),
+						esc_html__( '\\nWordPress form plugin\\n', 'flx-forms' ),
+						esc_html__( '\\ndrag and drop form builder\\n', 'flx-forms' ),
 
-						esc_html__( 'contact form plugin', 'flx-forms' ),
-						esc_html__( 'WordPress contact form', 'flx-forms' ),
-						esc_html__( 'survey form plugin', 'flx-forms' ),
-						esc_html__( 'WordPress survey plugin', 'flx-forms' ),
-						esc_html__( 'WordPress poll plugin', 'flx-forms' ),
+						esc_html__( '\\ncontact form plugin\\n', 'flx-forms' ),
+						esc_html__( '\\nWordPress contact form\\n', 'flx-forms' ),
+						esc_html__( '\\nsurvey form plugin\', \'en\']]', 'flx-forms' ),
+						esc_html__( '\\nWordPress survey plugin\\n', 'flx-forms' ),
+						esc_html__( '\\nWordPress poll plugin\\n', 'flx-forms' ),
 
-						esc_html__( 'payment form plugin', 'flx-forms' ),
-						esc_html__( 'WordPress payment forms', 'flx-forms' ),
-						esc_html__( 'Stripe payment forms', 'flx-forms' ),
-						esc_html__( 'PayPal payment forms', 'flx-forms' ),
-						esc_html__( 'subscription payment forms', 'flx-forms' ),
-						esc_html__( 'recurring payment forms', 'flx-forms' ),
+						esc_html__( '\\npayment form plugin\\n', 'flx-forms' ),
+						esc_html__( '\\nWordPress payment forms\\n', 'flx-forms' ),
+						esc_html__( '\\nStripe payment forms\\n', 'flx-forms' ),
+						esc_html__( '\\nPayPal payment forms\\n', 'flx-forms' ),
+						esc_html__( '\\nsubscription payment forms\\n', 'flx-forms' ),
+						esc_html__( '\\nrecurring payment forms\\n', 'flx-forms' ),
 
 						esc_html__( 'WordPress registration form', 'flx-forms' ),
-						esc_html__( 'WordPress login form', 'flx-forms' ),
-						esc_html__( 'multi-step form plugin', 'flx-forms' ),
-						esc_html__( 'conditional logic forms', 'flx-forms' ),
-						esc_html__( 'smart forms WordPress', 'flx-forms' ),
+						esc_html__( '\\nWordPress login form\\n', 'flx-forms' ),
+						esc_html__( '\\nmulti-step form plugin\\n', 'flx-forms' ),
+						esc_html__( '\\nconditional logic forms\\n', 'flx-forms' ),
+						esc_html__( '\\nsmart forms WordPress\\n', 'flx-forms' ),
 
-						esc_html__( 'file upload form plugin', 'flx-forms' ),
-						esc_html__( 'electronic signature forms', 'flx-forms' ),
-						esc_html__( 'e-signature form plugin', 'flx-forms' ),
-						esc_html__( 'location picker form', 'flx-forms' ),
+						esc_html__( '\\nfile upload form plugin\\n', 'flx-forms' ),
+						esc_html__( '\\nelectronic signature forms\\n', 'flx-forms' ),
+						esc_html__( '\\ne-signature form plugin\\n', 'flx-forms' ),
+						esc_html__( '\\nlocation picker form\\n', 'flx-forms' ),
 
-						esc_html__( 'WordPress audio recorder form', 'flx-forms' ),
-						esc_html__( 'WordPress video recorder form', 'flx-forms' ),
-						esc_html__( 'WordPress screen recorder form', 'flx-forms' ),
+						esc_html__( '\\nWordPress audio recorder form\\n', 'flx-forms' ),
+						esc_html__( '\\nWordPress video recorder form\\n', 'flx-forms' ),
+						esc_html__( '\\nWordPress screen recorder form\\n', 'flx-forms' ),
 
-						esc_html__( 'job application forms', 'flx-forms' ),
-						esc_html__( 'WordPress job application form', 'flx-forms' ),
-						esc_html__( 'event registration forms', 'flx-forms' ),
-						esc_html__( 'WordPress event registration form', 'flx-forms' ),
+						esc_html__( '\\njob application forms\\n', 'flx-forms' ),
+						esc_html__( '\\nWordPress job application form\\n', 'flx-forms' ),
+						esc_html__( '\\nevent registration forms\\n', 'flx-forms' ),
+						esc_html__( '\\nWordPress event registration form\\n', 'flx-forms' ),
 
-						esc_html__( 'email notification forms', 'flx-forms' ),
-						esc_html__( 'WordPress email notifications', 'flx-forms' ),
-						esc_html__( 'conditional email notifications', 'flx-forms' ),
-						esc_html__( 'form email deliverability', 'flx-forms' ),
-						esc_html__( 'SPF DKIM DMARC WordPress forms', 'flx-forms' ),
+						esc_html__( '\\nemail notification forms\\n', 'flx-forms' ),
+						esc_html__( '[[\'WordPress email notifications\\n', 'flx-forms' ),
+						esc_html__( '\\nconditional email notifications\\n', 'flx-forms' ),
+						esc_html__( '\\nform email deliverability\\n', 'flx-forms' ),
+						esc_html__( '\\nSPF DKIM DMARC WordPress forms\\n', 'flx-forms' ),
 
-						esc_html__( 'WordPress form entries', 'flx-forms' ),
-						esc_html__( 'form submission management', 'flx-forms' ),
-						esc_html__( 'WordPress form message management', 'flx-forms' ),
-						esc_html__( 'form submissions PDF export', 'flx-forms' ),
-						esc_html__( 'form submissions CSV export', 'flx-forms' ),
+						esc_html__( '\\nWordPress form entries\\n', 'flx-forms' ),
+						esc_html__( '\\nform submission management\', \'en\']]', 'flx-forms' ),
+						esc_html__( '\\nWordPress form message management\\n', 'flx-forms' ),
+						esc_html__( '\\nform submissions PDF export\\n', 'flx-forms' ),
+						esc_html__( '[[\'form submissions CSV export\\n', 'flx-forms' ),
 
-						esc_html__( 'Google Sheets form integration', 'flx-forms' ),
-						esc_html__( 'WordPress forms API integration', 'flx-forms' ),
-						esc_html__( 'form autofill API', 'flx-forms' ),
-						esc_html__( 'offline WordPress forms', 'flx-forms' ),
+						esc_html__( '\\nGoogle Sheets form integration\\n', 'flx-forms' ),
+						esc_html__( '\\nWordPress forms API integration\\n', 'flx-forms' ),
+						esc_html__( '\\nform autofill API\\n', 'flx-forms' ),
+						esc_html__( '\\noffline WordPress forms\\n', 'flx-forms' ),
 
-						esc_html__( 'secure WordPress forms', 'flx-forms' ),
-						esc_html__( 'WordPress form spam protection', 'flx-forms' ),
-						esc_html__( 'CAPTCHA-free form spam protection', 'flx-forms' ),
-						esc_html__( 'honeypot spam protection WordPress', 'flx-forms' ),
-						esc_html__( 'WordPress form rate limiting', 'flx-forms' ),
-						esc_html__( 'self-hosted WordPress forms', 'flx-forms' ),
-						esc_html__( 'WordPress forms stored locally', 'flx-forms' ),
+						esc_html__( '\\nsecure WordPress forms\\n', 'flx-forms' ),
+						esc_html__( '\\nWordPress form spam protection\\n', 'flx-forms' ),
+						esc_html__( '\\nCAPTCHA-free form spam protection\\n', 'flx-forms' ),
+						esc_html__( '\\nhoneypot spam protection WordPress\\n', 'flx-forms' ),
+						esc_html__( '\\nWordPress form rate limiting\\n', 'flx-forms' ),
+						esc_html__( '\\nself-hosted WordPress forms\\n', 'flx-forms' ),
+						esc_html__( '\\nWordPress forms stored locally\\n', 'flx-forms' ),
 
-						esc_html__( 'Gutenberg form builder', 'flx-forms' ),
-						esc_html__( 'Elementor form plugin', 'flx-forms' ),
-						esc_html__( 'Divi form plugin', 'flx-forms' ),
-						esc_html__( 'WPBakery form plugin', 'flx-forms' ),
+						esc_html__( '\\nGutenberg form builder\\n', 'flx-forms' ),
+						esc_html__( '\\nElementor form plugin\\n', 'flx-forms' ),
+						esc_html__( '\\nDivi form plugin\\n', 'flx-forms' ),
+						esc_html__( '\\nWPBakery form plugin\\n', 'flx-forms' ),
 					],
 
 					'publisher' => [

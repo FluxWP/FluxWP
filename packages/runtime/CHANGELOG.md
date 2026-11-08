@@ -1,5 +1,8 @@
 # @fluxwp/runtime
 
+## 0.2.3
+- Support ten shared locales, English translation keys and Arabic direction for WordPress embeds and shared screens.
+
 ## 0.2.2
 
 - Hesabın simgesi `/me` ya da bootstrap markasından güncellenir. Site simgesi boşsa tema veya Flux Admin logosu kayda yazılır; hesabı silmeden logo gelir.

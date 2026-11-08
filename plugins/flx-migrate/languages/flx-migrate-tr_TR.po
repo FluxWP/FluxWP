@@ -1,0 +1,177 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "%d rows"
+msgstr "%d satır"
+
+msgid "%1$d files, %2$s"
+msgstr "%1$d dosya, %2$s"
+
+msgid "Content may still use image URLs from this theme; check your pages first."
+msgstr "İçerikte bu temanın görsel adresleri kalmış olabilir; önce sayfaları kontrol edin."
+
+msgid "%d old settings"
+msgstr "%d eski ayar"
+
+msgid "Old tables"
+msgstr "Eski tablolar"
+
+msgid "Backup tables (sample data of the new plugins)"
+msgstr "Yedek tablolar (yeni eklentilerin örnek verisi)"
+
+msgid "Old upload folders"
+msgstr "Eski yükleme klasörleri"
+
+msgid "Old plugins (inactive)"
+msgstr "Eski eklentiler (etkin olmayan)"
+
+msgid "Old themes"
+msgstr "Eski temalar"
+
+msgid "Old settings"
+msgstr "Eski ayarlar"
+
+msgid "Leftovers"
+msgstr "Eski kalıntılar"
+
+msgid "%d items deleted."
+msgstr "%d öğe silindi."
+
+msgid "Could not delete:"
+msgstr "Silinemeyenler:"
+
+msgid "No tables, folders, plugins or settings with old names are left."
+msgstr "Eski adlı tablo, klasör, eklenti veya ayar kalmadı."
+
+msgid "What is left under the old names after the migration. Delete it once you have checked that the site works with the new plugins; deleting cannot be undone, take a backup first."
+msgstr "Aktarımdan sonra eski adlarla kalanlar. Sitenin yeni eklentilerle düzgün çalıştığını kontrol ettikten sonra silin; silme geri alınamaz, önce yedek alın."
+
+msgid "The selected items will be deleted permanently. Did you take a backup?"
+msgstr "Seçilenler kalıcı olarak silinecek. Yedek aldınız mı?"
+
+msgid "What"
+msgstr "Ne"
+
+msgid "Details"
+msgstr "Ayrıntı"
+
+msgid "Delete selected"
+msgstr "Seçilenleri sil"
+
+msgid "Finish the migration first."
+msgstr "Önce aktarımı tamamlayın."
+
+msgid "WooCommerce orders"
+msgstr "WooCommerce siparişleri"
+
+msgid "Order items"
+msgstr "Sipariş kalemleri"
+
+msgid "Encrypted settings (passwords, keys)"
+msgstr "Şifreli ayarlar (parolalar, anahtarlar)"
+
+msgid "Sodium is missing: encrypted settings could not be moved, enter them again in the panel."
+msgstr "Sodium yok: şifreli ayarlar taşınamadı, panelden yeniden girin."
+
+msgid "%d encrypted values could not be opened (the site keys may have changed); enter them again in the panel."
+msgstr "%d şifreli değer açılamadı (site anahtarları değişmiş olabilir); bunları panelden yeniden girin."
+
+msgid "Moves site data saved under the old package names (settings, tables, meta, content, theme, upload folders) to the FluxWP names. The name map is in map.json."
+msgstr "Eski paket adlarıyla kaydedilmiş site verilerini (ayarlar, tablolar, meta, içerik, tema, yükleme klasörleri) FluxWP adlarına taşır. Ad eşlemesi map.json'dadır."
+
+msgid "%1$s is empty, %2$s was left as it is."
+msgstr "%1$s boş, %2$s olduğu gibi bırakıldı."
+
+msgid "%1$s was not empty: it was backed up as %2$s and replaced by %3$s."
+msgstr "%1$s doluydu: %2$s adıyla yedeklendi, yerine %3$s taşındı."
+
+msgid "%3$d items from %1$s were moved into %2$s."
+msgstr "%1$s içindeki %3$d öğe %2$s klasörüne taşındı."
+
+msgid "%2$d files in %1$s already existed in the new folder; the old copies were left in place."
+msgstr "%1$s içinde aynı adlı %2$d dosya yeni klasörde zaten vardı, eski kopyaları yerinde bırakıldı."
+
+msgid "Step"
+msgstr "Adım"
+
+msgid "The old update-server address and site key were removed. Enter the new server's key under FluxWP Panel › Settings."
+msgstr "Eski güncelleme sunucusu adresi ve site anahtarı silindi. FluxWP Panel › Ayarlar'da yeni sunucunun anahtarını girin."
+
+msgid "Migrate"
+msgstr "Aktar"
+
+msgid "Migration finished on %s. You can delete this plugin now."
+msgstr "Aktarım %s tarihinde tamamlandı. Bu eklentiyi artık silebilirsiniz."
+
+msgid "Migration finished. Check that the new plugins are active and clear the cache."
+msgstr "Aktarım bitti. Yeni eklentileri etkin listesinde kontrol edin, önbelleği temizleyin."
+
+msgid "Settings (options)"
+msgstr "Ayarlar (options)"
+
+msgid "Finish"
+msgstr "Bitiş"
+
+msgid "To change"
+msgstr "Değişecek"
+
+msgid "Status"
+msgstr "Durum"
+
+msgid "Moves data saved under the old names to the new names. Take a backup first, upload the new plugins and theme (do not activate them), then click \"Scan\" and after that \"Migrate\"."
+msgstr "Eski adlarla kaydedilmiş verileri yeni adlara taşır. Önce yedek alın, sonra yeni eklentileri ve temayı yükleyin (etkinleştirmeden), ardından burada önce \"Tara\", sonra \"Aktar\" deyin."
+
+msgid "Error"
+msgstr "Hata"
+
+msgid "User meta"
+msgstr "Kullanıcı meta verileri"
+
+msgid "Table contents"
+msgstr "Tablo içerikleri"
+
+msgid "Tables"
+msgstr "Tablolar"
+
+msgid "Taxonomies"
+msgstr "Taksonomiler"
+
+msgid "Done"
+msgstr "Tamam"
+
+msgid "Scan"
+msgstr "Tara"
+
+msgid "Theme"
+msgstr "Tema"
+
+msgid "Term meta"
+msgstr "Terim meta verileri"
+
+msgid "Data will be moved to the new names. Did you take a backup?"
+msgstr "Veriler yeni adlara taşınacak. Yedek aldınız mı?"
+
+msgid "Post meta"
+msgstr "Yazı meta verileri"
+
+msgid "Posts and pages"
+msgstr "Yazılar ve sayfalar"
+
+msgid "Upload folders"
+msgstr "Yükleme klasörleri"
+
+msgid "Working…"
+msgstr "Çalışıyor…"
+
+msgid "Upload these new packages first (do not activate them):"
+msgstr "Önce şu yeni paketleri yükleyin (etkinleştirmeyin):"
+
+msgid "[['%drow', 'tr']]"
+msgid_plural "[['%drow', 'tr']]"
+msgstr[0] "%d satır"
+msgstr[1] "%d satır"
+
+msgid "[['%dold setting', 'tr']]"
+msgid_plural "[['%dold setting', 'tr']]"
+msgstr[0] "%d eski ayar"
+msgstr[1] "%d eski ayar"

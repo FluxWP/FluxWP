@@ -98,7 +98,7 @@ function flxc_channels() {
 			'conns'  => array(),
 		),
 		'web'      => array(
-			'label'  => __( 'Site sohbeti', 'flx-chat' ),
+			'label'  => __( 'Site chat', 'flx-chat' ),
 			'icon'   => '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
 			'color'  => '#5b8def',
 			'active' => false,
@@ -256,18 +256,18 @@ function flxc_connection_config( $conn ) {
 		$conn = flxc_get_connection( $conn );
 	}
 	if ( ! $conn ) {
-		return new WP_Error( 'flxc_conn', __( 'WhatsApp bağlantısı bulunamadı. Ayarlar › Bağlantılar bölümünden ekleyin.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_conn', __( 'WhatsApp connection not found. Add one under Settings › Connections.', 'flx-chat' ) );
 	}
 	$origin = flxc_connection_origin( $conn );
 	if ( 'flxi' === $origin ) {
 		if ( ! flxc_flxi_on() ) {
-			return new WP_Error( 'flxc_flxi', __( 'Bu bağlantı Flux Mail eklentisinin ayarını kullanıyor ama eklenti etkin değil.', 'flx-chat' ) );
+			return new WP_Error( 'flxc_flxi', __( 'This connection uses the Flux Mail plugin\'s settings but the plugin is not active.', 'flx-chat' ) );
 		}
 		$c = flxi_get_channel_connection( 'whatsapp', (int) $conn['provider_id'] );
 		// Verilen id kapalıysa Flux Mail varsayılana düşer; başka bir hattan gönderilmesin diye id eşleşmeli.
 		$cloud = $c && flxc_wacloud_type( $c['type'] ?? '' );
 		if ( ! $c || (int) $c['id'] !== (int) $conn['provider_id'] || ( ! $cloud && ! flxc_evo_compatible_type( $c['type'] ) ) ) {
-			return new WP_Error( 'flxc_flxi', __( 'Flux Mail\'deki WhatsApp bağlantısı bulunamadı ya da kapalı (İletişim › Bağlantılar).', 'flx-chat' ) );
+			return new WP_Error( 'flxc_flxi', __( 'The WhatsApp connection in Flux Mail was not found or is disabled (Communication › Connections).', 'flx-chat' ) );
 		}
 		if ( $cloud ) {
 			// Resmi Cloud API: istekler flxc_wacloud_evo() ile Flux Mail üzerinden gider.
@@ -282,11 +282,11 @@ function flxc_connection_config( $conn ) {
 	}
 	if ( 'flxs' === $origin ) {
 		if ( ! function_exists( 'flxs_get_provider' ) ) {
-			return new WP_Error( 'flxc_flxs', __( 'Bu bağlantı Flux Certificates eklentisinin ayarını kullanıyor ama eklenti etkin değil.', 'flx-chat' ) );
+			return new WP_Error( 'flxc_flxs', __( 'This connection uses the Flux Certificates plugin\'s settings, but that plugin is not active.', 'flx-chat' ) );
 		}
 		$p = flxs_get_provider( (int) ( 'flxi' === $conn['source'] ? $conn['flxs_id'] : $conn['provider_id'] ) );
 		if ( ! $p || ! flxc_evo_compatible_type( $p['type'] ) ) {
-			return new WP_Error( 'flxc_flxs', __( 'Flux Certificates\'daki Evolution sağlayıcısı bulunamadı.', 'flx-chat' ) );
+			return new WP_Error( 'flxc_flxs', __( 'The Evolution provider in Flux Certificates was not found.', 'flx-chat' ) );
 		}
 		$cfg = (array) $p['config'];
 		return array(
@@ -296,7 +296,7 @@ function flxc_connection_config( $conn ) {
 		);
 	}
 	if ( '' === $conn['base_url'] || '' === $conn['api_key'] || '' === $conn['instance'] ) {
-		return new WP_Error( 'flxc_conf', __( 'Bağlantının API adresi, API key veya instance adı eksik.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_conf', __( 'The connection\'s API URL, API key or instance name is missing.', 'flx-chat' ) );
 	}
 	return array(
 		'base_url' => $conn['base_url'],

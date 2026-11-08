@@ -33,7 +33,7 @@ function flxsm_wa_config( $conn_id = 0 ) {
 			);
 		}
 	}
-	return new WP_Error( 'flxsm_wa', __( 'WhatsApp bağlantısı yok. Flux Mail ya da Flux Chat’nde Evolution bağlantısı kurun.', 'flx-social' ), array( 'status' => 400 ) );
+	return new WP_Error( 'flxsm_wa', __( 'No WhatsApp connection. Set up an Evolution connection in Flux Mail or Flux Chat.', 'flx-social' ), array( 'status' => 400 ) );
 }
 
 function flxsm_wa_choices() {
@@ -94,7 +94,7 @@ class FLXSM_WhatsApp extends FLXSM_Provider {
 		$out = array(
 			array(
 				'ext_id' => 'status@' . $cfg['instance'],
-				'name'   => __( 'WhatsApp Durum', 'flx-social' ),
+				'name'   => __( 'WhatsApp Status', 'flx-social' ),
 				'kind'   => 'status',
 			),
 		);

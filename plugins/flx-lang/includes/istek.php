@@ -61,6 +61,7 @@ function flxl_switch_language( $code ) {
 	$GLOBALS['flxl_state']['current']  = $code;
 	$GLOBALS['flxl_state']['explicit'] = true;
 	switch_to_locale( flxl_language_locale( $code ) );
+	flxl_apply_text_direction();
 	return true;
 }
 
@@ -70,6 +71,7 @@ function flxl_restore_language() {
 	}
 	list( $GLOBALS['flxl_state']['current'], $GLOBALS['flxl_state']['explicit'] ) = array_pop( $GLOBALS['flxl_state']['stack'] );
 	restore_previous_locale();
+	flxl_apply_text_direction();
 	return true;
 }
 
@@ -141,7 +143,7 @@ function flxl_detect_request() {
 	} else {
 		$rest = $uri;
 	}
-	if ( ! preg_match( '#^/([a-z]{2,3})(/|\?|$)#', $rest, $m ) || ! in_array( $m[1], $codes, true ) ) {
+	if ( ! preg_match( '#^/([a-z]{2,3}(?:-[a-z0-9]{2,8})*)(/|\?|$)#', $rest, $m ) || ! in_array( $m[1], $codes, true ) ) {
 		return;
 	}
 	$code     = $m[1];
@@ -205,7 +207,7 @@ function flxl_url_language( $url ) {
 		}
 		$path = substr( $noscheme_url, strlen( $noscheme_root ) );
 	}
-	if ( preg_match( '#^/([a-z]{2,3})(/|\?|\#|$)#', $path, $m ) && flxl_is_language( $m[1] ) ) {
+	if ( preg_match( '#^/([a-z]{2,3}(?:-[a-z0-9]{2,8})*)(/|\?|\#|$)#', $path, $m ) && flxl_is_language( $m[1] ) ) {
 		return $m[1];
 	}
 	return flxl_default_language();
@@ -237,7 +239,7 @@ function flxl_url_for_language( $url, $code ) {
 			return $url; // Başka alt alan/yol (ör. kök "site", adres "site2").
 		}
 	}
-	if ( preg_match( '#^/([a-z]{2,3})(?=/|\?|\#|$)#', $path, $m ) && flxl_is_language( $m[1] ) ) {
+	if ( preg_match( '#^/([a-z]{2,3}(?:-[a-z0-9]{2,8})*)(?=/|\?|\#|$)#', $path, $m ) && flxl_is_language( $m[1] ) ) {
 		$path = substr( $path, strlen( $m[0] ) );
 	}
 	if ( '' === $path || '?' === $path[0] || '#' === $path[0] ) {

@@ -75,37 +75,37 @@ final class FLXB_WC_Look {
 
 	public static function form_styles() {
 		return array(
-			'classic' => array( __( 'Classic', 'flx-donate' ), __( 'One card: type tabs on top, the choices under them, the total at the bottom.', 'flx-donate' ) ),
-			'steps'   => array( __( 'A · Steps + summary', 'flx-donate' ), __( 'Numbered steps on the left, a summary with the total and the button on the right.', 'flx-donate' ) ),
-			'panel'   => array( __( 'B · Two panels', 'flx-donate' ), __( 'Types as a list on the left, the details on the right; a dark total bar.', 'flx-donate' ) ),
-			'cards'   => array( __( 'C · Picture cards', 'flx-donate' ), __( 'Large cards with the type picture or icon; the details open below.', 'flx-donate' ) ),
+			'classic' => array( __( '\\nClassic\\n', 'flx-donate' ), __( '\\nOne card: type tabs on top, the choices under them, the total at the bottom.\\n', 'flx-donate' ) ),
+			'steps'   => array( __( '\\nA · Steps + summary\\n', 'flx-donate' ), __( '\\nNumbered steps on the left, a summary with the total and the button on the right.\\n', 'flx-donate' ) ),
+			'panel'   => array( __( '\\nB · Two panels\\n', 'flx-donate' ), __( '\\nTypes as a list on the left, the details on the right; a dark total bar.\\n', 'flx-donate' ) ),
+			'cards'   => array( __( '\\nC · Picture cards\\n', 'flx-donate' ), __( '[[\'Large cards with the type picture or icon; the details open below.\\n', 'flx-donate' ) ),
 		);
 	}
 
 	public static function opt_views() {
 		return array(
-			'list'   => array( __( 'List', 'flx-donate' ), __( 'All options one under the other.', 'flx-donate' ) ),
-			'select' => array( __( 'Drop-down', 'flx-donate' ), __( 'One row: the option in a drop-down menu and the quantity beside it.', 'flx-donate' ) ),
-			'smart'  => array( __( 'List, then one row', 'flx-donate' ), __( 'The list first; after a pick it folds into one row (drop-down + quantity) and the rest of the form opens.', 'flx-donate' ) ),
+			'list'   => array( __( 'List', 'flx-donate' ), __( '\\nAll options one under the other.\\n', 'flx-donate' ) ),
+			'select' => array( __( '\\nDrop-down\\n', 'flx-donate' ), __( '\\nOne row: the option in a drop-down menu and the quantity beside it.\\n', 'flx-donate' ) ),
+			'smart'  => array( __( '\\nList, then one row\\n', 'flx-donate' ), __( '\\nThe list first; after a pick it folds into one row (drop-down + quantity) and the rest of the form opens.\\n', 'flx-donate' ) ),
 		);
 	}
 
 	public static function pay_styles() {
 		return array(
-			'theme' => array( __( 'Theme', 'flx-donate' ), __( 'The look of WooCommerce and the theme.', 'flx-donate' ) ),
-			'cards' => array( __( 'A · Side-by-side cards', 'flx-donate' ), __( 'Methods as cards with icons; the details of the picked one below.', 'flx-donate' ) ),
-			'list'  => array( __( 'B · Plain list', 'flx-donate' ), __( 'Rows one under the other; the picked row opens.', 'flx-donate' ) ),
-			'tabs'  => array( __( 'C · Segmented tabs', 'flx-donate' ), __( 'One row of tab buttons; the details of the picked one below.', 'flx-donate' ) ),
+			'theme' => array( __( 'Theme', 'flx-donate' ), __( '\\nThe look of WooCommerce and the theme.\\n', 'flx-donate' ) ),
+			'cards' => array( __( 'A · Side-by-side cards', 'flx-donate' ), __( '\\nMethods as cards with icons; the details of the picked one below.\\n', 'flx-donate' ) ),
+			'list'  => array( __( 'B · Plain list', 'flx-donate' ), __( '\\nRows one under the other; the picked row opens.\\n', 'flx-donate' ) ),
+			'tabs'  => array( __( 'C · Segmented tabs', 'flx-donate' ), __( '\\nOne row of tab buttons; the details of the picked one below.\\n', 'flx-donate' ) ),
 		);
 	}
 
 	public static function section_labels() {
 		return array(
-			'options' => __( 'Options and amount', 'flx-donate' ),
-			'who'     => __( 'On whose behalf', 'flx-donate' ),
+			'options' => __( '\\nOptions and amount\\n', 'flx-donate' ),
+			'who'     => __( '\\nOn whose behalf\\n', 'flx-donate' ),
 			'cert'    => __( 'Certificate', 'flx-donate' ),
-			'design'  => __( 'Certificate design', 'flx-donate' ),
-			'monthly' => __( 'Repeat every month', 'flx-donate' ),
+			'design'  => __( '\\nCertificate design\\n', 'flx-donate' ),
+			'monthly' => __( '\\nRepeat every month\\n', 'flx-donate' ),
 		);
 	}
 
@@ -275,9 +275,9 @@ final class FLXB_WC_Look {
 		echo '<form class="flxb-form flxb-look" method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="flxb_look_save">';
 		wp_nonce_field( 'flxb_look_save' );
 
-		echo '<section class="flxb-card"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Donation form', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( 'How the "Donation options" block looks on the site. Prices, options and names are set under Donation types.', 'flx-donate' ) . '</p></div>';
+		echo '<section class="flxb-card"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Donation form', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( '\\nHow the "Donation options" block looks on the site. Prices, options and names are set under Donation types.\\n', 'flx-donate' ) . '</p></div>';
 		if ( $page && get_permalink( $page ) ) {
-			echo '<a class="flxb-btn flxb-btn--sm" href="' . esc_url( get_permalink( $page ) ) . '" target="_blank" rel="noopener">' . esc_html__( 'View the page', 'flx-donate' ) . '</a>';
+			echo '<a class="flxb-btn flxb-btn--sm" href="' . esc_url( get_permalink( $page ) ) . '" target="_blank" rel="noopener">' . esc_html__( '\\nView the page\\n', 'flx-donate' ) . '</a>';
 		}
 		echo '</div><div class="flxb-look__grid">';
 		foreach ( self::form_styles() as $k => $v ) {
@@ -286,47 +286,47 @@ final class FLXB_WC_Look {
 		echo '</div>';
 
 		echo '<div class="flxb-fields-2">';
-		echo '<div class="flxb-field"><label for="flxb-look-tl">' . esc_html__( 'Heading over the types', 'flx-donate' ) . '</label><input id="flxb-look-tl" type="text" name="type_label" maxlength="60" value="' . esc_attr( $s['type_label'] ) . '" placeholder="' . esc_attr__( 'Donation type', 'flx-donate' ) . '"><p class="flxb-help">' . esc_html__( 'Shown in the A and C layouts.', 'flx-donate' ) . '</p></div>';
-		echo '<div class="flxb-field"><label for="flxb-look-ol">' . esc_html__( 'Heading over the options', 'flx-donate' ) . '</label><input id="flxb-look-ol" type="text" name="option_label" maxlength="60" value="' . esc_attr( $s['option_label'] ) . '" placeholder="' . esc_attr__( 'Choose an option', 'flx-donate' ) . '"></div>';
+		echo '<div class="flxb-field"><label for="flxb-look-tl">' . esc_html__( '\\nHeading over the types\\n', 'flx-donate' ) . '</label><input id="flxb-look-tl" type="text" name="type_label" maxlength="60" value="' . esc_attr( $s['type_label'] ) . '" placeholder="' . esc_attr__( 'Donation type', 'flx-donate' ) . '"><p class="flxb-help">' . esc_html__( '\\nShown in the A and C layouts.\\n', 'flx-donate' ) . '</p></div>';
+		echo '<div class="flxb-field"><label for="flxb-look-ol">' . esc_html__( '\\nHeading over the options\\n', 'flx-donate' ) . '</label><input id="flxb-look-ol" type="text" name="option_label" maxlength="60" value="' . esc_attr( $s['option_label'] ) . '" placeholder="' . esc_attr__( '\\nChoose an option\\n', 'flx-donate' ) . '"></div>';
 		echo '</div>';
 
-		echo '<div class="flxb-field"><span class="flxb-label">' . esc_html__( 'How the options are shown', 'flx-donate' ) . '</span><div class="flxb-look__grid flxb-look__grid--text">';
+		echo '<div class="flxb-field"><span class="flxb-label">' . esc_html__( '\\nHow the options are shown\\n', 'flx-donate' ) . '</span><div class="flxb-look__grid flxb-look__grid--text">';
 		foreach ( self::opt_views() as $k => $v ) {
 			echo '<label class="flxb-look__opt"><input type="radio" name="opt_view" value="' . esc_attr( $k ) . '"' . checked( $s['opt_view'], $k, false ) . '><strong>' . esc_html( $v[0] ) . '</strong><span>' . esc_html( $v[1] ) . '</span></label>';
 		}
 		echo '</div></div>';
 
-		echo '<div class="flxb-field"><span class="flxb-label">' . esc_html__( 'Order of the sections', 'flx-donate' ) . '</span><ol class="flxb-look__order" data-flxb-look-order>';
+		echo '<div class="flxb-field"><span class="flxb-label">' . esc_html__( '\\nOrder of the sections\\n', 'flx-donate' ) . '</span><ol class="flxb-look__order" data-flxb-look-order>';
 		$labels = self::section_labels();
 		foreach ( $s['order'] as $k ) {
 			echo '<li><input type="hidden" name="order[]" value="' . esc_attr( $k ) . '"><span>' . esc_html( $labels[ $k ] ) . '</span><button type="button" class="flxb-iconbtn" data-up aria-label="' . esc_attr__( 'Move up', 'flx-donate' ) . '">↑</button><button type="button" class="flxb-iconbtn" data-down aria-label="' . esc_attr__( 'Move down', 'flx-donate' ) . '">↓</button></li>';
 		}
-		echo '</ol><p class="flxb-help">' . esc_html__( 'The type choice is always first and the total always last. Sections a type does not use are skipped.', 'flx-donate' ) . '</p></div>';
-		echo '<label class="flxb-check"><input type="checkbox" name="share_phone" value="1"' . checked( (int) $s['share_phone'], 1, false ) . '> ' . esc_html__( 'Ask a phone number for every share (types with a proxy). The video or certificate of that share can be sent there too.', 'flx-donate' ) . '</label>';
+		echo '</ol><p class="flxb-help">' . esc_html__( '\\nThe type choice is always first and the total always last. Sections a type does not use are skipped.\\n', 'flx-donate' ) . '</p></div>';
+		echo '<label class="flxb-check"><input type="checkbox" name="share_phone" value="1"' . checked( (int) $s['share_phone'], 1, false ) . '> ' . esc_html__( '\\nAsk a phone number for every share (types with a proxy). The video or certificate of that share can be sent there too.\\n', 'flx-donate' ) . '</label>';
 		echo '</section>';
 
-		echo '<section class="flxb-card"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Payment options at the checkout', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( 'How card, PayPal, bank transfer and the other methods are shown. The methods themselves are turned on under WooCommerce › Settings › Payments.', 'flx-donate' ) . '</p></div></div><div class="flxb-look__grid">';
+		echo '<section class="flxb-card"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( '\\nPayment options at the checkout\\n', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( '\\nHow card, PayPal, bank transfer and the other methods are shown. The methods themselves are turned on under WooCommerce › Settings › Payments.\\n', 'flx-donate' ) . '</p></div></div><div class="flxb-look__grid">';
 		foreach ( self::pay_styles() as $k => $v ) {
 			echo '<label class="flxb-look__opt"><input type="radio" name="pay_style" value="' . esc_attr( $k ) . '"' . checked( $s['pay_style'], $k, false ) . '>' . self::thumb( 'pay', $k ) . '<strong>' . esc_html( $v[0] ) . '</strong><span>' . esc_html( $v[1] ) . '</span></label>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		echo '</div></section>';
 
-		echo '<section class="flxb-card"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Colours and corners', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( 'Used by the form and the payment options. Empty fields follow the theme.', 'flx-donate' ) . '</p></div></div><div class="flxb-fields-2">';
+		echo '<section class="flxb-card"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( '\\nColours and corners\\n', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( '\\nUsed by the form and the payment options. Empty fields follow the theme.\\n', 'flx-donate' ) . '</p></div></div><div class="flxb-fields-2">';
 		foreach ( array( 'primary' => __( 'Main colour', 'flx-donate' ), 'accent' => __( 'Accent colour', 'flx-donate' ) ) as $k => $l ) {
 			echo '<div class="flxb-field"><label for="flxb-look-' . esc_attr( $k ) . '">' . esc_html( $l ) . '</label><span class="flxb-look__color"><input type="color" value="' . esc_attr( '' !== $s[ $k ] ? $s[ $k ] : '#1F2937' ) . '" data-flxb-color="flxb-look-' . esc_attr( $k ) . '" aria-hidden="true" tabindex="-1"><input id="flxb-look-' . esc_attr( $k ) . '" type="text" name="' . esc_attr( $k ) . '" value="' . esc_attr( $s[ $k ] ) . '" maxlength="7" placeholder="' . esc_attr__( 'Theme', 'flx-donate' ) . '" pattern="#[0-9a-fA-F]{6}"></span></div>';
 		}
-		echo '<div class="flxb-field"><label for="flxb-look-r">' . esc_html__( 'Corner radius (px)', 'flx-donate' ) . '</label><input id="flxb-look-r" type="number" name="radius" min="0" max="28" step="1" style="width:110px" value="' . esc_attr( $s['radius'] ) . '" placeholder="' . esc_attr__( 'Theme', 'flx-donate' ) . '"><p class="flxb-help">' . esc_html__( '0 = square, 4 = plain corporate, 16 = round.', 'flx-donate' ) . '</p></div>';
+		echo '<div class="flxb-field"><label for="flxb-look-r">' . esc_html__( '\\nCorner radius (px)\\n', 'flx-donate' ) . '</label><input id="flxb-look-r" type="number" name="radius" min="0" max="28" step="1" style="width:110px" value="' . esc_attr( $s['radius'] ) . '" placeholder="' . esc_attr__( 'Theme', 'flx-donate' ) . '"><p class="flxb-help">' . esc_html__( '\\n0 = square, 4 = plain corporate, 16 = round.\\n', 'flx-donate' ) . '</p></div>';
 		echo '</div></section>';
 
-		echo '<section class="flxb-card"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Transaction fee', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( 'Donors can choose to also pay the fee of the payment method, so the whole donation reaches you. The fee is added at the checkout for the method they pick.', 'flx-donate' ) . '</p></div></div>';
-		echo '<label class="flxb-check"><input type="checkbox" name="fee_on" value="1"' . checked( (int) $s['fee_on'], 1, false ) . '> ' . esc_html__( 'Show "I will cover the transaction fee" on the donation form', 'flx-donate' ) . '</label>';
-		echo '<label class="flxb-check"><input type="checkbox" name="fee_checked" value="1"' . checked( (int) $s['fee_checked'], 1, false ) . '> ' . esc_html__( 'Ticked by default', 'flx-donate' ) . '</label>';
-		echo '<table class="flxb-look__fees"><thead><tr><th>' . esc_html__( 'Payment method', 'flx-donate' ) . '</th><th>%</th><th>' . esc_html__( 'Fixed', 'flx-donate' ) . ' (' . esc_html( html_entity_decode( get_woocommerce_currency_symbol(), ENT_QUOTES, 'UTF-8' ) ) . ')</th></tr></thead><tbody>';
+		echo '<section class="flxb-card"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( '\\nTransaction fee\\n', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( '\\nDonors can choose to also pay the fee of the payment method, so the whole donation reaches you. The fee is added at the checkout for the method they pick.\\n', 'flx-donate' ) . '</p></div></div>';
+		echo '<label class="flxb-check"><input type="checkbox" name="fee_on" value="1"' . checked( (int) $s['fee_on'], 1, false ) . '> ' . esc_html__( '\\nShow "I will cover the transaction fee" on the donation form\\n', 'flx-donate' ) . '</label>';
+		echo '<label class="flxb-check"><input type="checkbox" name="fee_checked" value="1"' . checked( (int) $s['fee_checked'], 1, false ) . '> ' . esc_html__( '\\nTicked by default\\n', 'flx-donate' ) . '</label>';
+		echo '<table class="flxb-look__fees"><thead><tr><th>' . esc_html__( 'Payment method', 'flx-donate' ) . '</th><th>%</th><th>' . esc_html__( '\\nFixed\\n', 'flx-donate' ) . ' (' . esc_html( html_entity_decode( get_woocommerce_currency_symbol(), ENT_QUOTES, 'UTF-8' ) ) . ')</th></tr></thead><tbody>';
 		foreach ( FLXB_WC_Fee::gateways() as $id => $title ) {
 			$r = $s['fee_rates'][ $id ] ?? array( 'pct' => '', 'fixed' => '' );
 			echo '<tr><td>' . esc_html( $title ) . ' <code>' . esc_html( $id ) . '</code></td><td><input type="number" step="0.01" min="0" max="20" name="fee_rates[' . esc_attr( $id ) . '][pct]" value="' . esc_attr( (string) $r['pct'] ) . '" placeholder="0"></td><td><input type="number" step="0.01" min="0" max="100" name="fee_rates[' . esc_attr( $id ) . '][fixed]" value="' . esc_attr( (string) $r['fixed'] ) . '" placeholder="0"></td></tr>';
 		}
-		echo '</tbody></table><p class="flxb-help">' . esc_html__( 'Empty or 0 = no fee for that method (for example bank transfer). Fee = donation × % + fixed.', 'flx-donate' ) . '</p></section>';
+		echo '</tbody></table><p class="flxb-help">' . esc_html__( '\\nEmpty or 0 = no fee for that method (for example bank transfer). Fee = donation × % + fixed.\\n', 'flx-donate' ) . '</p></section>';
 
 		echo '<div class="flxb-formactions"><button type="submit" class="flxb-btn flxb-btn--primary">' . esc_html__( 'Save settings', 'flx-donate' ) . '</button></div></form>';
 		?>

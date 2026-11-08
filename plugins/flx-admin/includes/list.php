@@ -22,9 +22,9 @@ function flxa_list_enqueue() {
 		'FLXA_LIST',
 		array(
 			'i18n' => array(
-				'filters' => __( 'Filtreler', 'flx-admin' ),
-				'clear'   => __( 'Temizle', 'flx-admin' ),
-				'search'  => __( 'Ara', 'flx-admin' ),
+				'filters' => __( 'Filters', 'flx-admin' ),
+				'clear'   => __( 'Clear', 'flx-admin' ),
+				'search'  => __( 'Search', 'flx-admin' ),
 			),
 		)
 	);
@@ -116,9 +116,9 @@ function flxa_list_pagination( $total, $per_page, $current, $args = array() ) {
 		sort( $opts );
 	}
 
-	$html  = '<nav class="flxa-pages" aria-label="' . esc_attr__( 'Sayfalama', 'flx-admin' ) . '">';
+	$html  = '<nav class="flxa-pages" aria-label="' . esc_attr__( 'Pagination', 'flx-admin' ) . '">';
 	/* translators: 1: first row number, 2: last row number, 3: total */
-	$html .= '<span class="flxa-pages__info">' . esc_html( sprintf( __( '%1$s–%2$s / %3$s', 'flx-admin' ), number_format_i18n( $from ), number_format_i18n( $to ), number_format_i18n( $total ) ) ) . '</span>';
+	$html .= '<span class="flxa-pages__info">' . esc_html( sprintf( __( '%1$s–%2$s of %3$s', 'flx-admin' ), number_format_i18n( $from ), number_format_i18n( $to ), number_format_i18n( $total ) ) ) . '</span>';
 	if ( $pages > 1 ) {
 		$base  = remove_query_arg( array( $args['page_arg'] ) );
 		$links = paginate_links(
@@ -129,8 +129,8 @@ function flxa_list_pagination( $total, $per_page, $current, $args = array() ) {
 				'total'     => $pages,
 				'mid_size'  => 1,
 				'end_size'  => 1,
-				'prev_text' => '<span aria-hidden="true">‹</span><span class="screen-reader-text">' . esc_html__( 'Önceki sayfa', 'flx-admin' ) . '</span>',
-				'next_text' => '<span aria-hidden="true">›</span><span class="screen-reader-text">' . esc_html__( 'Sonraki sayfa', 'flx-admin' ) . '</span>',
+				'prev_text' => '<span aria-hidden="true">‹</span><span class="screen-reader-text">' . esc_html__( 'Previous page', 'flx-admin' ) . '</span>',
+				'next_text' => '<span aria-hidden="true">›</span><span class="screen-reader-text">' . esc_html__( 'Next page', 'flx-admin' ) . '</span>',
 			)
 		);
 		$html .= '<span class="flxa-pages__links">' . $links . '</span>';
@@ -140,11 +140,11 @@ function flxa_list_pagination( $total, $per_page, $current, $args = array() ) {
 		foreach ( flxa_list_query_hidden( array( $args['page_arg'], 'per_page' ) ) as $k => $v ) {
 			$html .= '<input type="hidden" name="' . esc_attr( $k ) . '" value="' . esc_attr( $v ) . '">';
 		}
-		$html .= '<label><span>' . esc_html__( 'Sayfa başı', 'flx-admin' ) . '</span><select name="per_page" data-flxa-perpage>';
+		$html .= '<label><span>' . esc_html__( 'Per page', 'flx-admin' ) . '</span><select name="per_page" data-flxa-perpage>';
 		foreach ( $opts as $o ) {
 			$html .= '<option value="' . (int) $o . '"' . selected( $per_page, $o, false ) . '>' . esc_html( number_format_i18n( $o ) ) . '</option>';
 		}
-		$html .= '</select></label><noscript><button class="button">' . esc_html__( 'Uygula', 'flx-admin' ) . '</button></noscript></form>';
+		$html .= '</select></label><noscript><button class="button">' . esc_html__( 'Apply', 'flx-admin' ) . '</button></noscript></form>';
 	}
 	$html .= '</nav>';
 

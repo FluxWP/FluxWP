@@ -48,7 +48,7 @@ function flxk_core_importers() {
 	};
 	$post_like = function ( $default ) use ( $post_type ) {
 		return array(
-			'label'   => 'page' === $default ? __( 'Sayfa', 'flx-setup' ) : __( 'Yazı', 'flx-setup' ),
+			'label'   => 'page' === $default ? __( 'Page', 'flx-setup' ) : __( 'Post', 'flx-setup' ),
 			'find'    => function ( $item ) use ( $post_type, $default ) {
 				$pt = $post_type( $item, $default );
 				$id = flxk_find_by_key( $pt, $item['key'] );
@@ -144,7 +144,7 @@ function flxk_core_importers() {
 
 	/* Terim (kategori, etiket, özel taksonomi) */
 	$t['term'] = array(
-		'label'   => __( 'Terim', 'flx-setup' ),
+		'label'   => __( 'Term', 'flx-setup' ),
 		'find'    => function ( $item ) {
 			$tax  = (string) ( $item['taxonomy'] ?? 'category' );
 			$term = get_term_by( 'slug', (string) ( $item['slug'] ?? $item['key'] ), $tax );
@@ -169,7 +169,7 @@ function flxk_core_importers() {
 			$tax = (string) ( $item['taxonomy'] ?? 'category' );
 			if ( ! taxonomy_exists( $tax ) ) {
 				/* translators: %s: taksonomi */
-				return new WP_Error( 'tax', sprintf( __( 'Taksonomi yok: %s', 'flx-setup' ), $tax ) );
+				return new WP_Error( 'tax', sprintf( __( 'Taxonomy not found: %s', 'flx-setup' ), $tax ) );
 			}
 			$args = array(
 				'slug'        => (string) ( $item['slug'] ?? $item['key'] ),
@@ -188,7 +188,7 @@ function flxk_core_importers() {
 
 	/* Gezinme menüsü (blok teması: wp_navigation) */
 	$t['navigation'] = array(
-		'label'   => __( 'Menü', 'flx-setup' ),
+		'label'   => __( 'Menu', 'flx-setup' ),
 		'find'    => function ( $item ) {
 			return flxk_find_by_key( 'wp_navigation', $item['key'] );
 		},
@@ -232,8 +232,8 @@ function flxk_core_importers() {
 
 	/* Blok şablonu ve şablon parçası (header, footer…): aktif tema için kullanıcı katmanı */
 	foreach ( array(
-		'template' => array( 'wp_template', __( 'Şablon', 'flx-setup' ) ),
-		'part'     => array( 'wp_template_part', __( 'Şablon parçası', 'flx-setup' ) ),
+		'template' => array( 'wp_template', __( 'Template', 'flx-setup' ) ),
+		'part'     => array( 'wp_template_part', __( 'Template part', 'flx-setup' ) ),
 	) as $type => $def ) {
 		list( $pt, $label ) = $def;
 		$t[ $type ]         = array(
@@ -297,7 +297,7 @@ function flxk_core_importers() {
 
 	/* Global stil (theme.json biçimi, kullanıcı katmanı). Mevcut stillerle derin birleşir. */
 	$t['styles'] = array(
-		'label'   => __( 'Global stil', 'flx-setup' ),
+		'label'   => __( 'Global styles', 'flx-setup' ),
 		'find'    => function () {
 			return class_exists( 'WP_Theme_JSON_Resolver' ) ? (int) WP_Theme_JSON_Resolver::get_user_global_styles_post_id() : 0;
 		},
@@ -342,7 +342,7 @@ function flxk_core_importers() {
 	/* WooCommerce ürünü (demo veriler için) */
 	if ( class_exists( 'WooCommerce' ) ) {
 		$t['product'] = array(
-			'label'   => __( 'Ürün', 'flx-setup' ),
+			'label'   => __( 'Product', 'flx-setup' ),
 			'find'    => function ( $item ) {
 				$id = flxk_find_by_key( 'product', $item['key'] );
 				if ( ! $id && ! empty( $item['sku'] ) && function_exists( 'wc_get_product_id_by_sku' ) ) {
@@ -375,7 +375,7 @@ function flxk_core_importers() {
 				$d = flxk_importers()['product']['data']( $item );
 				$p = $id ? wc_get_product( $id ) : new WC_Product_Simple();
 				if ( ! $p ) {
-					return new WP_Error( 'product', __( 'Ürün bulunamadı.', 'flx-setup' ) );
+					return new WP_Error( 'product', __( 'Product not found.', 'flx-setup' ) );
 				}
 				$p->set_name( $d['name'] );
 				$p->set_regular_price( $d['price'] );

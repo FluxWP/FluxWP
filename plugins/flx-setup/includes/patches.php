@@ -99,7 +99,7 @@ function flxk_patch_apply( $id_or_patch, $source = 'panel', $note = '', array $o
 	$pid = is_string( $id_or_patch ) && isset( $all[ $id_or_patch ] ) ? $id_or_patch : '';
 	if ( $pid ) {
 		if ( 'pending' !== $all[ $pid ]['status'] ) {
-			return new WP_Error( 'patch', __( 'Bu yama zaten işlenmiş.', 'flx-setup' ) );
+			return new WP_Error( 'patch', __( 'This patch has already been processed.', 'flx-setup' ) );
 		}
 		$data   = $all[ $pid ]['data'];
 		$source = $all[ $pid ]['source'];
@@ -116,7 +116,7 @@ function flxk_patch_apply( $id_or_patch, $source = 'panel', $note = '', array $o
 		$opts + array( 'mode' => 'apply' ),
 		array(
 			'kind'   => 'patch',
-			'title'  => $note ? $note : __( 'Yama', 'flx-setup' ),
+			'title'  => $note ? $note : __( 'Patch', 'flx-setup' ),
 			'source' => $source,
 		)
 	);

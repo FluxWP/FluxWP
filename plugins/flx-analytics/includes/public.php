@@ -73,9 +73,9 @@ add_action(
 			array(
 				'id'    => 'flxan-views',
 				/* translators: %s: görüntülenme sayısı */
-				'title' => '<span class="ab-icon dashicons dashicons-chart-bar" style="top:2px"></span>' . esc_html( sprintf( __( '%s görüntülenme', 'flx-analytics' ), number_format_i18n( $n ) ) ),
+				'title' => '<span class="ab-icon dashicons dashicons-chart-bar" style="top:2px"></span>' . esc_html( sprintf( __( '%s views', 'flx-analytics' ), number_format_i18n( $n ) ) ),
 				'href'  => admin_url( 'admin.php?page=flx-analytics#page=' . rawurlencode( (string) wp_parse_url( get_permalink( $id ), PHP_URL_PATH ) ) ),
-				'meta'  => array( 'title' => __( 'Son 30 gün (Site Analitik)', 'flx-analytics' ) ),
+				'meta'  => array( 'title' => __( 'Last 30 days (Site Analytics)', 'flx-analytics' ) ),
 			)
 		);
 	},
@@ -93,7 +93,7 @@ add_action(
 			add_filter(
 				"manage_{$type}_posts_columns",
 				function ( $cols ) {
-					$cols['flxan_views'] = '<span title="' . esc_attr__( 'Son 30 gün görüntülenme', 'flx-analytics' ) . '">' . esc_html__( 'Görüntülenme', 'flx-analytics' ) . '</span>';
+					$cols['flxan_views'] = '<span title="' . esc_attr__( 'Views in the last 30 days', 'flx-analytics' ) . '">' . esc_html__( 'Views', 'flx-analytics' ) . '</span>';
 					return $cols;
 				}
 			);
@@ -136,10 +136,10 @@ add_filter(
 		$t     = FLXAN_Stats::totals( $today, $today );
 		$stats = (array) $stats;
 		$stats['flxan_visitors'] = array(
-			'label' => __( 'Bugün ziyaretçi', 'flx-analytics' ),
+			'label' => __( 'Visitors today', 'flx-analytics' ),
 			'value' => number_format_i18n( $t['visitors'] ),
 			/* translators: %s: görüntülenme sayısı */
-			'meta'  => sprintf( __( '%s görüntülenme', 'flx-analytics' ), number_format_i18n( $t['pageviews'] ) ),
+			'meta'  => sprintf( __( '%s views', 'flx-analytics' ), number_format_i18n( $t['pageviews'] ) ),
 			'url'   => admin_url( 'admin.php?page=flx-analytics' ),
 			'tone'  => 'ok',
 		);
@@ -160,9 +160,9 @@ add_filter(
 		}
 		return array_merge(
 			array(
-				__( 'Bu haftanın trafiğini geçen haftayla karşılaştır', 'flx-analytics' ),
-				__( 'Ziyaretçiler en çok nereden geliyor?', 'flx-analytics' ),
-				__( 'Bağış sayfası kaç kişiye ulaştı, kaç bağışa döndü?', 'flx-analytics' ),
+				__( 'Compare this week\'s traffic with last week', 'flx-analytics' ),
+				__( 'Where do most visitors come from?', 'flx-analytics' ),
+				__( 'How many people reached the donation page, and how many donated?', 'flx-analytics' ),
 			),
 			(array) $s
 		);

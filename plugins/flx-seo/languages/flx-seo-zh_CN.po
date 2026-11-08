@@ -1,0 +1,1211 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: zh_CN\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Pages"
+msgstr "页数"
+
+msgid "Recent posts"
+msgstr "最近的帖子"
+
+msgid "Products"
+msgstr "产品展示"
+
+msgid "Optional"
+msgstr "可选"
+
+msgid "Sitemap"
+msgstr "网站地图"
+
+msgid "List of all public pages"
+msgstr "所有公共页面列表"
+
+msgid "RSS feed"
+msgstr "RSS 提要"
+
+msgid "Searches the site and opens the results page."
+msgstr "搜索站点并打开结果页面。"
+
+msgid "Words to search for"
+msgstr "要搜索的词"
+
+msgid "Unknown fix."
+msgstr "未知修复。"
+
+msgid "Turn on llms.txt"
+msgstr "打开 llms.txt"
+
+msgid "Flux SEO builds /llms.txt from the site name, description, menu and recent content."
+msgstr "Flux SEO 根据网站名称、描述、菜单和最近内容构建 /llms.txt。"
+
+msgid "Turn on the WebMCP search tool"
+msgstr "打开WebMCP搜索工具"
+
+msgid "Adds toolname/tooldescription to the search form so browser agents see it as a tool."
+msgstr "将工具名称/工具描述添加到搜索表单,以便浏览器代理将其视为工具。"
+
+msgid "Turn on security headers"
+msgstr "打开安全标头"
+
+msgid "X-Frame-Options: SAMEORIGIN, COOP same-origin-allow-popups and a basic CSP (object-src 'none'; base-uri 'self'; frame-ancestors 'self'). Do not turn on if the site is embedded in other sites with an iframe."
+msgstr "X-Frame-Options:SAMEORIGIN、COOP same-origin-allow-popups 和基本 CSP(object-src 'none';base-uri 'self';frame-ancestors 'self')。如果该网站嵌入到具有 iframe 的其他网站中,请勿打开。"
+
+msgid "HSTS includeSubDomains"
+msgstr "HSTS 包括子域"
+
+msgid "If every subdomain is HTTPS, HSTS also covers subdomains."
+msgstr "如果每个子域都是 HTTPS,则 HSTS 也覆盖子域。"
+
+msgid "Turned on. Run the site audit again."
+msgstr "已开启。再次运行现场审核。"
+
+msgid "General"
+msgstr "一般"
+
+msgid "Organization and social"
+msgstr "组织和社会"
+
+msgid "SEO check"
+msgstr "搜索引擎优化检查"
+
+msgid "Site audit"
+msgstr "现场审核"
+
+msgid "AI (MCP)"
+msgstr "人工智能(MCP)"
+
+msgid "llms.txt follows recommendations"
+msgstr "llms.txt 遵循建议"
+
+msgid "Accessibility tree is well-formed"
+msgstr "无障碍树结构良好"
+
+msgid "Forms are WebMCP tools"
+msgstr "表单是 WebMCP 工具"
+
+msgid "Low layout shift (CLS)"
+msgstr "低布局偏移 (CLS)"
+
+msgid "On-site"
+msgstr "现场"
+
+msgid "PageSpeed mobile"
+msgstr "PageSpeed 移动版"
+
+msgid "PageSpeed desktop"
+msgstr "PageSpeed 桌面版"
+
+msgid "The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key and runs by itself every day; a PageSpeed run adds Google's real Lighthouse result."
+msgstr "按优先级排列的五个 PageSpeed Insights 部分(性能、可访问性、最佳实践、SEO、代理浏览)。现场审核无需钥匙,每天自动运行; PageSpeed 运行添加了 Google 的真实 Lighthouse 结果。"
+
+msgid "On-site audit: %1$s · %2$s"
+msgstr "现场审核:%1$s·%2$s"
+
+msgid "No audit has run yet."
+msgstr "尚未进行任何审核。"
+
+msgid "Address to audit"
+msgstr "审计地址"
+
+msgid "On-site audit"
+msgstr "现场审核"
+
+msgid "Measure with PageSpeed"
+msgstr "使用 PageSpeed 进行测量"
+
+msgid "Mobile"
+msgstr "手机"
+
+msgid "Desktop"
+msgstr "桌面"
+
+msgid "No PageSpeed run yet. Press \"Measure with PageSpeed\" (mobile + desktop takes about 1 minute)."
+msgstr "尚未运行 PageSpeed。按“Measure with PageSpeed”(移动设备 + 桌面设备大约需要 1 分钟)。"
+
+msgid "Agentic browsing"
+msgstr "代理浏览"
+
+msgid "MCP server on"
+msgstr "MCP 服务器开启"
+
+msgid "MCP server off"
+msgstr "MCP 服务器关闭"
+
+msgid "Recommendations"
+msgstr "建议"
+
+msgid "Filter by priority"
+msgstr "按优先级过滤"
+
+msgid "All"
+msgstr "全部"
+
+msgid "Section"
+msgstr "部分"
+
+msgid "All sections"
+msgstr "所有部分"
+
+msgid "Start the audit; recommendations are listed here by priority."
+msgstr "开始审核;此处按优先级列出了建议。"
+
+msgid "No recommendations. All good."
+msgstr "没有建议。一切都好。"
+
+msgid "How to fix:"
+msgstr "如何修复:"
+
+msgid "Where to fix: %s"
+msgstr "修复位置:%s"
+
+msgid "Fix"
+msgstr "修复"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "PageSpeed Insights API key"
+msgstr "PageSpeed Insights API 密钥"
+
+msgid "Saved (type to replace)"
+msgstr "已保存(要替换的类型)"
+
+msgid "Delete key"
+msgstr "删除键"
+
+msgid "Optional but recommended: the keyless quota is shared and runs out quickly. In Google Cloud Console › APIs, enable \"PageSpeed Insights API\" and create a free key."
+msgstr "可选但推荐:无钥匙配额是共享的,很快就会用完。在 Google Cloud Console › API 中,启用“PageSpeed Insights API”并创建免费密钥。"
+
+msgid "Generate /llms.txt (site name, description, menu pages, recent content)"
+msgstr "生成/llms.txt(站点名称、描述、菜单页面、最近内容)"
+
+msgid "llms.txt intro text (optional)"
+msgstr "llms.txt 介绍文本(可选)"
+
+msgid "E.g. who your organization is, what it does, which pages agents should read first."
+msgstr "例如您的组织是谁、做什么的、代理应该首先阅读哪些页面。"
+
+msgid "WebMCP: expose the search form to browser agents as a tool"
+msgstr "WebMCP:将搜索表单作为工具公开给浏览器代理"
+
+msgid "Security headers"
+msgstr "安全标头"
+
+msgid "Clickjacking protection (X-Frame-Options: SAMEORIGIN, frame-ancestors 'self')"
+msgstr "点击劫持保护(X-Frame-Options:SAMEORIGIN,frame-ancestors 'self')"
+
+msgid "Origin isolation (Cross-Origin-Opener-Policy: same-origin-allow-popups)"
+msgstr "源隔离(Cross-Origin-Opener-Policy:same-origin-allow-popups)"
+
+msgid "Basic CSP (object-src 'none'; base-uri 'self'; upgrade-insecure-requests)"
+msgstr "基本 CSP(object-src 'none';base-uri 'self';upgrade-insecure-requests)"
+
+msgid "HSTS covers subdomains (includeSubDomains)"
+msgstr "HSTS覆盖子域(includeSubDomains)"
+
+msgid "HSTS preload (takes months to undo; every subdomain must be HTTPS)"
+msgstr "HSTS 预加载(需要数月时间才能撤消;每个子域都必须是 HTTPS)"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "New site build guide"
+msgstr "新网站建设指南"
+
+msgid "Rules and a checklist for SEO, performance, accessibility, security and agent readiness when you build a new page, theme or preset. AI agents get the same guide with the MCP tool flxseo_site_build_guide, and Flux AI chat gets it as a tool."
+msgstr "当您构建新页面、主题或预设时,有关 SEO、性能、可访问性、安全性和代理准备情况的规则和清单。 AI 代理使用 MCP 工具 flxseo_site_build_guide 获得相同的指南,Flux AI 聊天将其作为工具获得。"
+
+msgid "Download Turkish (.md)"
+msgstr "下载土耳其语 (.md)"
+
+msgid "Download English (.md)"
+msgstr "下载英文版 (.md)"
+
+msgid "On-site audit running…"
+msgstr "现场审核运行..."
+
+msgid "Measuring PageSpeed mobile (30–40 s)…"
+msgstr "测量移动 PageSpeed(30–40 秒)..."
+
+msgid "Measuring PageSpeed desktop…"
+msgstr "测量桌面 PageSpeed..."
+
+msgid "Done, reloading…"
+msgstr "完成,正在重新加载..."
+
+msgid "Failed:"
+msgstr "失败:"
+
+msgid "You do not have permission."
+msgstr "您没有权限。"
+
+msgid "Saved."
+msgstr "已保存。"
+
+msgid "Turned on and the audit was refreshed. If a page cache (LiteSpeed) is on, run Purge All."
+msgstr "打开审核就刷新了。如果页面缓存 (LiteSpeed) 已打开,请运行全部清除。"
+
+msgid "Critical"
+msgstr "关键"
+
+msgid "High"
+msgstr "高"
+
+msgid "Medium"
+msgstr "中等"
+
+msgid "Low"
+msgstr "低"
+
+msgid "Performance"
+msgstr "性能"
+
+msgid "Accessibility"
+msgstr "无障碍"
+
+msgid "Best practices"
+msgstr "最佳实践"
+
+msgid "SEO"
+msgstr "搜索引擎优化"
+
+msgid "Theme / preset"
+msgstr "主题/预设"
+
+msgid "Content"
+msgstr "内容"
+
+msgid "Server"
+msgstr "服务器"
+
+msgid "Flux SEO (one click)"
+msgstr "Flux SEO(一键)"
+
+msgid "WordPress setting"
+msgstr "WordPress 设置"
+
+msgid "Home page does not return a successful status code"
+msgstr "主页未返回成功状态代码"
+
+msgid "The page must return 200. It may be maintenance mode, a redirect loop or a PHP error; check System Check and the error log."
+msgstr "页面必须返回200。可能是维护模式、重定向循环或PHP错误;检查系统检查和错误日志。"
+
+msgid "Page is blocked from search engines"
+msgstr "页面被搜索引擎屏蔽"
+
+msgid "Untick Settings › Reading › \"Discourage search engines from indexing this site\" and turn off noindex in the page's own SEO panel."
+msgstr "取消勾选设置 › 阅读 › “阻止搜索引擎对此网站建立索引”,并在页面自己的 SEO 面板中关闭 noindex。"
+
+msgid "robots.txt blocks the whole site"
+msgstr "robots.txt 阻止整个网站"
+
+msgid "The robots.txt file in the site root must not have \"Disallow: /\" under \"User-agent: *\". Delete or fix the file; WordPress generates its own robots.txt."
+msgstr "站点根目录中的 robots.txt 文件的“User-agent: *”下不得包含“Disallow: /”。删除或修复文件; WordPress 生成自己的 robots.txt。"
+
+msgid "Page has no <title>"
+msgstr "页面没有<title>"
+
+msgid "The theme must declare add_theme_support( 'title-tag' ); fill in the home title in SEO › General."
+msgstr "主题必须声明 add_theme_support( 'title-tag' );在 SEO › General 中填写首页标题。"
+
+msgid "Page title is long"
+msgstr "页面标题很长"
+
+msgid "Keep the title around 60 characters; Google cuts the rest."
+msgstr "标题保持在 60 个字符左右;谷歌削减了其余部分。"
+
+msgid "No meta description"
+msgstr "没有元描述"
+
+msgid "Turn on SEO output and write the home description (150–160 characters)."
+msgstr "打开 SEO 输出并编写主页描述(150–160 个字符)。"
+
+msgid "Canonical link missing or duplicated"
+msgstr "规范链接丢失或重复"
+
+msgid "Each page needs exactly one rel=canonical. If another plugin or the theme also adds one, turn one off."
+msgstr "每一页都需要一个 rel=canonical。如果另一个插件或主题也添加了一个,请将其关闭。"
+
+msgid "No hreflang on a multilingual site"
+msgstr "多语言网站上没有 hreflang"
+
+msgid "With Flux Lang active, language versions must be linked with hreflang; check the language pairs in Flux Lang settings."
+msgstr "当 Flux Lang 处于活动状态时,语言版本必须与 hreflang 链接;检查 Flux Lang 设置中的语言对。"
+
+msgid "Main heading (H1) missing or repeated"
+msgstr "主标题 (H1) 缺失或重复"
+
+msgid "Each page needs one H1 that names the topic; subheadings are H2/H3."
+msgstr "每个页面需要一个H1来命名主题;副标题为 H2/H3。"
+
+msgid "Structured data (JSON-LD) missing or broken"
+msgstr "结构化数据 (JSON-LD) 丢失或损坏"
+
+msgid "With Flux SEO output on, Organization, WebSite and Breadcrumb schema are added. Find the block or plugin that outputs broken JSON-LD."
+msgstr "打开 Flux SEO 输出后,将添加组织、网站和面包屑架构。找到输出损坏的 JSON-LD 的块或插件。"
+
+msgid "Link texts are not descriptive"
+msgstr "链接文本不是描述性的"
+
+msgid "Write text that names the target instead of \"click here\", \"more\", \"here\" (e.g. \"See donation options\")."
+msgstr "编写指定目标的文本,而不是“单击此处”、“更多”、“此处”(例如“查看捐赠选项”)。"
+
+msgid "More than one post with the same title"
+msgstr "多于一篇具有相同标题的帖子"
+
+msgid "Delete the duplicate (usually the address ending in -2) or redirect it to the original; give different titles if both are needed. When links with the same text go to different addresses, the \"Identical links have the same purpose\" audit also fails."
+msgstr "删除重复项(通常是-2结尾的地址)或重定向到原始地址;如果需要两个标题,请给出不同的标题。当具有相同文本的链接转到不同地址时,“相同链接具有相同目的”审核也会失败。"
+
+msgid "WordPress version is visible on the page"
+msgstr "WordPress版本在页面上可见"
+
+msgid "The meta generator tag reveals the version. The theme should call remove_action( 'wp_head', 'wp_generator' ); Flux SEO removes it when security headers are on."
+msgstr "元生成器标签显示版本。主题应该调用remove_action('wp_head','wp_generator');当安全标头打开时,Flux SEO 会删除它。"
+
+msgid "Zoom is blocked (user-scalable=no / maximum-scale)"
+msgstr "缩放被阻止(用户可缩放=否/最大缩放)"
+
+msgid "Remove user-scalable=no and maximum-scale=1 from the viewport tag: <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\">. Users with low vision cannot zoom; the Accessibility score drops directly."
+msgstr "从视口标签中删除 user-scalable=no 和 Maximum-scale=1 :<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\">。弱视用户无法变焦;无障碍得分直接下降。"
+
+msgid "No viewport tag"
+msgstr "没有视口标签"
+
+msgid "The theme must add <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> to <head>; otherwise the page opens at desktop width on mobile."
+msgstr "主题必须将<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">添加到<head>;否则,页面在移动设备上以桌面宽度打开。"
+
+msgid "ARIA role is missing required children"
+msgstr "ARIA 角色缺少必需的子项"
+
+msgid "E.g. role=\"tablist\" may only contain role=\"tab\" elements. Use <div role=\"tablist\"><button role=\"tab\"> instead of <ol role=\"tablist\"><li><button role=\"tab\">, or give the li elements role=\"presentation\". The accessibility tree breaks and Lighthouse also lowers the Agentic Browsing score."
+msgstr "例如。 role=\"tablist\" 只能包含 role=\"tab\" 元素。使用<div role=\"tablist\"><button role=\"tab\">而不是<ol role=\"tablist\"><li><button role=\"tab\">,或为 li 元素指定 role=\"presentation\"。可访问性树断裂和灯塔也会降低代理浏览得分。"
+
+msgid "ARIA role is not inside its required parent"
+msgstr "ARIA 角色不在其所需的父级内部"
+
+msgid "role=\"tab\" must sit directly inside role=\"tablist\", role=\"option\" inside role=\"listbox\". Remove the li/div elements in between or give them role=\"presentation\"."
+msgstr "role=\"tab\" 必须直接位于 role=\"tablist\" 内,role=\"option\" 位于 role=\"listbox\" 内。删除中间的 li/div 元素或赋予它们 role=\"presentation\"。"
+
+msgid "List items (<li>) are not inside a list"
+msgstr "列表项 (<li>) 不在列表内"
+
+msgid "<li> may only sit inside <ul>, <ol> or <menu>, and the parent list must not get a non-list role (e.g. <ol role=\"tablist\">)."
+msgstr "<li>只能位于<ul>、<ol>或<menu>内部,并且父列表不得获得非列表角色(例如<ol role=\"tablist\">)。"
+
+msgid "Images without alt text"
+msgstr "没有替代文本的图像"
+
+msgid "Give every meaningful image alt text that describes it; decorative images get alt=\"\". Fill in alt text in the media library or turn on SEO › General › Images."
+msgstr "给出每一个有意义的图像替代文本来描述它;装饰图像得到 alt=\"\"。在媒体库中填写替代文本或打开 SEO › 常规 › 图片。"
+
+msgid "Links without a name"
+msgstr "没有名字的链接"
+
+msgid "Add aria-label or hidden text (screen-reader-text) to icon-only links."
+msgstr "将 aria-label 或隐藏文本(屏幕阅读器文本)添加到仅图标链接。"
+
+msgid "Buttons without a name"
+msgstr "没有名称的按钮"
+
+msgid "Give icon buttons an aria-label (e.g. \"Open menu\"). Agents and screen readers cannot tell what the button does."
+msgstr "给图标按钮一个咏叹调标签(例如“打开菜单”)。代理和屏幕阅读器无法分辨该按钮的用途。"
+
+msgid "Form fields without a label"
+msgstr "没有标签的表单字段"
+
+msgid "Each field needs a name through <label for> or aria-label; a placeholder is not a label."
+msgstr "每个字段需要通过<label for>或 aria-label 命名;占位符不是标签。"
+
+msgid "<html> has no lang attribute"
+msgstr "<html>没有 lang 属性"
+
+msgid "The theme should use <html <?php language_attributes(); ?>>."
+msgstr "主题应使用<html <?php language_attributes(); ?>>。"
+
+msgid "Duplicate or missing id references"
+msgstr "重复或缺失的 ID 引用"
+
+msgid "No id may be used twice; aria-controls, aria-labelledby and label for must point to an existing id."
+msgstr "任何 id 不得使用两次; aria-controls、aria-labelledby 和 label for 必须指向现有 id。"
+
+msgid "Heading levels skip"
+msgstr "标题级别跳过"
+
+msgid "Headings should step down in order (H2 → H3); do not skip levels for looks, size them with CSS."
+msgstr "标题应按顺序下降(H2 → H3);不要跳过外观级别,用 CSS 调整它们的大小。"
+
+msgid "tabindex greater than 0"
+msgstr "选项卡索引大于 0"
+
+msgid "Values like tabindex=\"1\" break keyboard order; use 0 or -1."
+msgstr "像 tabindex=\"1\" 这样的值会破坏键盘顺序;使用 0 或 -1。"
+
+msgid "Links with the same text go to different addresses"
+msgstr "具有相同文本的链接会转到不同的地址"
+
+msgid "Links with the same name should go to the same page. Remove the duplicate page or make the link texts different."
+msgstr "具有相同名称的链接应该转到同一页面。删除重复的页面或使链接文本不同。"
+
+msgid "iframe without a title"
+msgstr "没有标题的 iframe"
+
+msgid "Every <iframe> needs a title (e.g. \"Location map\")."
+msgstr "每个<iframe>都需要一个标题(例如“位置地图”)。"
+
+msgid "No <main> landmark on the page"
+msgstr "页面上没有<main>地标"
+
+msgid "Main content must be inside <main>; screen readers and agents find the main content this way."
+msgstr "主要内容必须在<main>内;屏幕阅读器和代理通过这种方式查找主要内容。"
+
+msgid "Insufficient text/background contrast"
+msgstr "文本/背景对比度不足"
+
+msgid "At least 4.5:1 for normal text and 3:1 for large text. Darken the pale colors in the theme palette."
+msgstr "普通文本至少为 4.5:1,大文本至少为 3:1。使主题调色板中的浅色变暗。"
+
+msgid "Render-blocking requests"
+msgstr "渲染阻塞请求"
+
+msgid "Inline the critical CSS for the first screen, load the rest with media=\"print\" onload or at the end of the page, and defer JS. LiteSpeed Cache › Page Optimization › CSS/JS settings, or the theme's own combined CSS."
+msgstr "内联第一个屏幕的关键 CSS,使用 media=\"print\" onload 或在页面末尾加载其余部分,并推迟 JS。 LiteSpeed Cache › 页面优化 › CSS/JS 设置,或主题自己的组合 CSS。"
+
+msgid "Unused CSS"
+msgstr "未使用的CSS"
+
+msgid "Split the one large CSS file by page type, or drop unused rules (LiteSpeed \"Remove Unused CSS\"). The gain usually shows up in LCP."
+msgstr "按页面类型拆分一个大型 CSS 文件,或删除未使用的规则(LiteSpeed“删除未使用的 CSS”)。增益通常显示在 LCP 中。"
+
+msgid "Unminified JavaScript"
+msgstr "未缩小的 JavaScript"
+
+msgid "Ship .min versions of theme/plugin JS or turn on LiteSpeed \"JS Minify\"."
+msgstr "发布 .min 版本的主题/插件 JS 或打开 LiteSpeed“JS Minify”。"
+
+msgid "Unminified CSS"
+msgstr "未缩小的 CSS"
+
+msgid "Minify CSS (LiteSpeed \"CSS Minify\" or a build step)."
+msgstr "Minify CSS(LiteSpeed“CSS Minify”或构建步骤)。"
+
+msgid "Non-composited animations"
+msgstr "非合成动画"
+
+msgid "Animate with transform and opacity; properties like stroke-dashoffset, top/left and width repaint on every frame. Stop them under prefers-reduced-motion."
+msgstr "使用变换和不透明度进行动画处理;每帧上的笔画偏移、顶部/左侧和宽度等属性。在首选减少运动下阻止它们。"
+
+msgid "DOM is too large"
+msgstr "DOM 太大"
+
+msgid "Aim for under 1,500 elements. Reduce copies in marquees, build hidden menus and long lists on demand, simplify nested wrappers."
+msgstr "目标是少于 1,500 个元素。减少选取框中的副本,按需构建隐藏菜单和长列表,简化嵌套包装器。"
+
+msgid "Largest content (LCP) paints late"
+msgstr "最大含量(LCP)涂料晚"
+
+msgid "If the LCP element is text, preload its font, use font-display: swap and do not hide it behind an entrance animation on the first frame; if it is an image, give it fetchpriority=\"high\" and do not lazy load it."
+msgstr "如果 LCP 元素是文本,则预加载其字体,使用 font-display: swap 并且不要将其隐藏在第一帧的入口动画后面;如果是图像,则给它 fetchpriority=\"high\" 并且不要延迟加载它。"
+
+msgid "Layout shift (CLS) culprits"
+msgstr "布局转变 (CLS) 罪魁祸首"
+
+msgid "Give images width/height and late blocks a fixed height; use size-adjust/fallback metrics for web fonts; absolutely positioned animated layers must not push the layout."
+msgstr "给图像宽度/高度和后期块一个固定的高度;对网络字体使用尺寸调整/后备指标;绝对定位的动画层不得推动布局。"
+
+msgid "Fonts delay text"
+msgstr "字体延迟文本"
+
+msgid "Use font-display: swap in @font-face, preload the 1-2 fonts used on the first screen with <link rel=\"preload\" as=\"font\" crossorigin>, remove unused weights."
+msgstr "使用 font-display:交换 @font-face,使用<link rel=\"preload\" as=\"font\" crossorigin>预加载第一个屏幕上使用的 1-2 种字体,删除未使用的粗细。"
+
+msgid "Critical request chain is long"
+msgstr "关键请求链长"
+
+msgid "Fonts loaded from CSS lengthen the chain; preload first-screen fonts and defer unneeded requests in the chain (e.g. guest.vary.php)."
+msgstr "从 CSS 加载的字体延长了链条;预加载第一屏幕字体并推迟链中不需要的请求(例如 guest.vary.php)。"
+
+msgid "Forced reflow"
+msgstr "强制回流焊"
+
+msgid "Do not read offsetWidth/getBoundingClientRect after changing styles in JS; read first, then write inside requestAnimationFrame."
+msgstr "JS中改变样式后不要读取offsetWidth/getBoundingClientRect;先读取,然后在 requestAnimationFrame 中写入。"
+
+msgid "Long main-thread tasks"
+msgstr "长主线程任务"
+
+msgid "Split JS that runs at startup and defer work for off-screen sections with IntersectionObserver."
+msgstr "Split JS 在启动时运行,并使用 IntersectionObserver 推迟屏幕外部分的工作。"
+
+msgid "Images are large or in an old format"
+msgstr "图片较大或格式较旧"
+
+msgid "Use WebP/AVIF, never send images larger than displayed (srcset), turn on image compression."
+msgstr "使用 WebP/AVIF,切勿发送大于显示的图像 (srcset),打开图像压缩。"
+
+msgid "Images without width/height"
+msgstr "没有宽度/高度的图像"
+
+msgid "Give <img> tags width and height; the browser reserves space and the page does not shift."
+msgstr "赋予<img>标签宽度和高度;浏览器保留空间并且页面不会移动。"
+
+msgid "First-screen image is lazy loaded"
+msgstr "第一屏图像是延迟加载的"
+
+msgid "Do not give the page's first image loading=\"lazy\"; give it fetchpriority=\"high\". If LiteSpeed lazy load is on, exclude the first image (data-no-lazy or \"Lazy Load Image Excludes\")."
+msgstr "不要给页面的第一个图片loading=\"lazy\";给它 fetchpriority=\"high\"。如果 LiteSpeed 延迟加载已打开,则排除第一个图像(data-no-lazy 或“延迟加载图像排除”)。"
+
+msgid "Slow server response"
+msgstr "服务器响应慢"
+
+msgid "Turn on page cache (LiteSpeed Cache); check slow plugins and the cron report in Flux Speed."
+msgstr "开启页面缓存(LiteSpeed Cache);检查慢速插件和 Flux Speed 中的 cron 报告。"
+
+msgid "No text compression (gzip/brotli)"
+msgstr "无文本压缩 (gzip/brotli)"
+
+msgid "Turn on gzip or brotli on the server (on by default on Hostinger/LiteSpeed; check the CDN settings)."
+msgstr "在服务器上打开 gzip 或 brotli(在 Hostinger/LiteSpeed 上默认打开;检查 CDN 设置)。"
+
+msgid "HTML document is large"
+msgstr "HTML 文档很大"
+
+msgid "Move inline SVG icons into a sprite and large inline CSS/JSON into files."
+msgstr "将内联 SVG 图标移至精灵中,并将大型内联 CSS/JSON 移至文件中。"
+
+msgid "WordPress emoji script is loaded"
+msgstr "WordPress 表情符号脚本已加载"
+
+msgid "Modern browsers draw emoji themselves; the theme can remove print_emoji_detection_script."
+msgstr "现代浏览器自己绘制表情符号;主题可以删除 print_emoji_detection_script。"
+
+msgid "Largest Contentful Paint (LCP) is slow"
+msgstr "最大内容绘制 (LCP) 速度慢"
+
+msgid "Target under 2.5 s. Reduce render-blocking CSS, preload the LCP font/image, turn on the server cache."
+msgstr "目标低于 2.5 秒。减少渲染阻塞 CSS、预加载 LCP 字体/图像、打开服务器缓存。"
+
+msgid "Cumulative Layout Shift (CLS) is high"
+msgstr "累积布局偏移 (CLS) 高"
+
+msgid "Target under 0.1. Size images, prevent font shifts, reserve space for elements added later."
+msgstr "目标低于 0.1。调整图像大小,防止字体变化,为以后添加的元素保留空间。"
+
+msgid "Total Blocking Time (TBT) is high"
+msgstr "总阻塞时间 (TBT) 较高"
+
+msgid "Target under 200 ms. Reduce startup JS and defer third-party scripts."
+msgstr "目标低于 200 毫秒。减少启动JS并推迟第三方脚本。"
+
+msgid "First Contentful Paint (FCP) is slow"
+msgstr "首次内容绘制 (FCP) 速度慢"
+
+msgid "Target under 1.8 s. Reduce render-blocking CSS/JS and server response time."
+msgstr "目标低于 1.8 秒。减少渲染阻塞 CSS/JS 和服务器响应时间。"
+
+msgid "Speed Index is slow"
+msgstr "速度指数慢"
+
+msgid "Prioritize critical CSS and fonts so the first screen fills quickly; shorten entrance animations."
+msgstr "优先考虑关键的 CSS 和字体,以便第一个屏幕快速填满;缩短入口动画。"
+
+msgid "Site is not HTTPS or has mixed content"
+msgstr "网站不是 HTTPS 或包含混合内容"
+
+msgid "Set the addresses to https:// in Settings › General and fix images/scripts loaded over http://."
+msgstr "在设置 › 常规中将地址设置为 https:// 并修复通过 http://. 加载的图像/脚本"
+
+msgid "Weak HSTS policy"
+msgstr "HSTS 政策薄弱"
+
+msgid "Strict-Transport-Security: max-age=31536000; includeSubDomains. If every subdomain is HTTPS, you can also add \"preload\" and submit to hstspreload.org."
+msgstr "严格传输安全:max-age=31536000;包括子域。如果每个子域都是HTTPS,您还可以添加“preload”并提交到hstspreload.org。"
+
+msgid "No or incomplete Content Security Policy (CSP)"
+msgstr "没有或不完整的内容安全策略 (CSP)"
+
+msgid "Flux SEO can add a basic CSP (object-src 'none'; base-uri 'self'; frame-ancestors 'self'). A full script-src policy can break plugins on WordPress; try Content-Security-Policy-Report-Only first."
+msgstr "Flux SEO 可以添加基本的 CSP(object-src 'none';base-uri 'self';frame-ancestors 'self')。完整的 script-src 策略可能会破坏 WordPress 上的插件;首先尝试 Content-Security-Policy-Report-On。"
+
+msgid "No clickjacking protection"
+msgstr "没有点击劫持保护"
+
+msgid "Send X-Frame-Options: SAMEORIGIN and CSP frame-ancestors 'self'. Do not turn on if your site is embedded in other sites with an iframe."
+msgstr "发送 X 帧选项:SAMEORIGIN 和 CSP 帧祖先“自身”。如果您的网站嵌入到带有 iframe 的其他网站中,请勿打开。"
+
+msgid "No origin isolation (COOP)"
+msgstr "无源头隔离 (COOP)"
+
+msgid "Send Cross-Origin-Opener-Policy: same-origin-allow-popups; payment and login popups keep working."
+msgstr "发送 Cross-Origin-Opener-Policy:same-origin-allow-popups;付款和登录弹出窗口继续工作。"
+
+msgid "Trusted Types not set"
+msgstr "未设置可信类型"
+
+msgid "Advanced protection against DOM-based XSS. Most WordPress plugins are not compatible yet; try it with Report-Only only on custom-theme sites with few plugins."
+msgstr "针对基于 DOM 的 XSS 的高级防护。大多数 WordPress 插件尚不兼容;仅在带有少量插件的自定义主题网站上尝试仅报告。"
+
+msgid "No X-Content-Type-Options header"
+msgstr "没有 X-Content-Type-Options 标头"
+
+msgid "X-Content-Type-Options: nosniff. Flux SEO sends it by default; the server or a cache plugin may be removing it."
+msgstr "X-Content-Type-Options:nosniff。 Flux SEO默认发送;服务器或缓存插件可能会删除它。"
+
+msgid "HTML doctype or charset missing"
+msgstr "HTML 文档类型或字符集丢失"
+
+msgid "The page must start with <!DOCTYPE html> and have <meta charset=\"UTF-8\"> in the first lines."
+msgstr "该页必须以<!DOCTYPE html>开头,并且第一行中包含<meta charset=\"UTF-8\">。"
+
+msgid "No llms.txt"
+msgstr "没有 llms.txt"
+
+msgid "AI agents summarize a site through /llms.txt. Flux SEO builds it from the site name, description, menu pages and recent content; one click to turn it on."
+msgstr "AI代理通过/llms.txt总结站点。 Flux SEO 根据网站名称、描述、菜单页面和最近的内容构建它;单击即可将其打开。"
+
+msgid "llms.txt is not in the recommended format"
+msgstr "llms.txt 不是推荐的格式"
+
+msgid "The first line must be \"# Site name\", then \"> short summary\" and link lists in [title](url) form. If an old hand-made file sits in the root, delete it; Flux SEO generates one."
+msgstr "第一行必须是“#站点名称”,然后是“>简短摘要”和[标题](url)形式的链接列表。如果根目录中有旧的手工文件,请将其删除; Flux SEO 会生成一个。"
+
+msgid "Forms are not declared as WebMCP tools"
+msgstr "表单未声明为 WebMCP 工具"
+
+msgid "WebMCP lets browser agents call forms as tools (form toolname/tooldescription). Flux SEO adds it to the search form; add it to your own forms too."
+msgstr "WebMCP 允许浏览器代理将表单作为工具调用(表单工具名称/工具描述)。 Flux SEO 将其添加到搜索表单中;也将其添加到您自己的表单中。"
+
+msgid "robots.txt blocks AI crawlers"
+msgstr "robots.txt阻止AI爬虫"
+
+msgid "If crawlers like GPTBot, ClaudeBot, Google-Extended, PerplexityBot are blocked, your content does not show up in AI answers. Remove them from robots.txt unless you block them on purpose."
+msgstr "如果 GPTBot、ClaudeBot、Google-Extended、PerplexityBot 等抓取工具被阻止,您的内容不会显示在 AI 答案中。从 robots.txt 中删除它们,除非您故意阻止它们。"
+
+msgid "Returned HTTP %d."
+msgstr "返回 HTTP%d。"
+
+msgid "Settings › Reading: search engines discouraged"
+msgstr "设置 › 阅读:不鼓励搜索引擎"
+
+msgid "%d characters."
+msgstr "%d字符。"
+
+msgid "%d H1 headings."
+msgstr "%dH1 标题。"
+
+msgid "JSON-LD could not be parsed."
+msgstr "JSON-LD 无法解析。"
+
+msgid "not found"
+msgstr "未找到"
+
+msgid "%d render-blocking CSS/JS requests in <head>."
+msgstr "%d<head>中的渲染阻塞 CSS/JS 请求。"
+
+msgid "%d render-blocking CSS/JS requests in <head>. Measure the estimated saving with PageSpeed."
+msgstr "%d<head>中的渲染阻塞 CSS/JS 请求。使用 PageSpeed 衡量预计节省的费用。"
+
+msgid "The page has %s elements."
+msgstr "该页面具有%s元素。"
+
+msgid "Response measured from the server: %d ms (may bypass the cache)."
+msgstr "从服务器测量的响应:%dms(可能绕过缓存)。"
+
+msgid "HTML is %s."
+msgstr "HTML 是%s。"
+
+msgid "The HTTPS page loads content over http://."
+msgstr "HTTPS 页面通过 http://. 加载内容"
+
+msgid "No Content-Security-Policy header."
+msgstr "没有 Content-Security-Policy 标头。"
+
+msgid "Missing directive: %s."
+msgstr "缺少指令:%s。"
+
+msgid "first line is not \"# Title\""
+msgstr "第一行不是“# Title”"
+
+msgid "no \"> summary\" line"
+msgstr "没有“>摘要”行"
+
+msgid "no link list"
+msgstr "没有链接列表"
+
+msgid "PageSpeed Insights can only measure addresses reachable from the internet."
+msgstr "PageSpeed Insights 只能测量可从 Internet 访问的地址。"
+
+msgid "The PageSpeed daily quota is used up. Enter a free Google API key in SEO › Settings."
+msgstr "PageSpeed 每日配额已用完。在 SEO › 设置中输入免费的 Google API 密钥。"
+
+msgid "Open audit"
+msgstr "公开审核"
+
+msgid "Not run yet. Check performance, accessibility, SEO, security and agent readiness."
+msgstr "还没跑。检查性能、可访问性、SEO、安全性和代理准备情况。"
+
+msgid "Critical %1$d, high %2$d, medium %3$d, low %4$d recommendations."
+msgstr "建议使用严重%1$d、高%2$d、中等%3$d、低%4$d。"
+
+msgid "Site build guide"
+msgstr "网站建设指南"
+
+msgid "SEO output"
+msgstr "搜索引擎优化输出"
+
+msgid "Another SEO plugin is active; meta, Open Graph and schema come from it. Flux SEO turned its own output off to avoid conflicts."
+msgstr "另一个 SEO 插件处于活动状态;元、开放图谱和模式都来自它。 Flux SEO 关闭了自己的输出以避免冲突。"
+
+msgid "Meta description, Open Graph and schema are added to every page."
+msgstr "元描述、开放图和模式被添加到每个页面。"
+
+msgid "Off. Page descriptions, images and organization details will not show on Google and social shares. Turn it on if you want to be found on Google."
+msgstr "关闭。页面说明、图像和组织详细信息不会显示在 Google 和社交分享上。如果您想在 Google 上找到您,请将其打开。"
+
+msgid "SEO settings"
+msgstr "搜索引擎优化设置"
+
+msgid "Daily"
+msgstr "每日"
+
+msgid "Weekly"
+msgstr "每周"
+
+msgid "Off"
+msgstr "关闭"
+
+msgid "Monday"
+msgstr "星期一"
+
+msgid "Tuesday"
+msgstr "星期二"
+
+msgid "Wednesday"
+msgstr "星期三"
+
+msgid "Thursday"
+msgstr "星期四"
+
+msgid "Friday"
+msgstr "周五"
+
+msgid "Saturday"
+msgstr "星期六"
+
+msgid "Sunday"
+msgstr "周日"
+
+msgid "[%1$s] Site audit: %2$d new critical/high recommendations"
+msgstr "[%1$s] 现场审核:%2$d新的严重/高度建议"
+
+msgid "The automatic site audit found new recommendations:"
+msgstr "自动站点审核发现了新的建议:"
+
+msgid "Total: critical %1$d, high %2$d, medium %3$d, low %4$d."
+msgstr "总计:严重%1$d、高%2$d、中等%3$d、低%4$d。"
+
+msgid "Resolved since the previous audit: %d."
+msgstr "自上次审核以来已解决:%d。"
+
+msgid "Details and fixes:"
+msgstr "详细信息和修复:"
+
+msgid "Automatic"
+msgstr "自动"
+
+msgid "Manual"
+msgstr "手册"
+
+msgid "AI"
+msgstr "人工智能"
+
+msgid "After fix"
+msgstr "修复后"
+
+msgid "Report history"
+msgstr "报告历史记录"
+
+msgid "Next automatic audit: %s"
+msgstr "下一次自动审核:%s"
+
+msgid "Automatic audit is off."
+msgstr "自动审核已关闭。"
+
+msgid "No reports yet. Every audit (manual, automatic or by AI) is saved here."
+msgstr "还没有报道。每次审核(手动、自动或人工智能)都保存在这里。"
+
+msgid "Number of recommendations over time"
+msgstr "一段时间内的推荐数量"
+
+msgid "Date"
+msgstr "日期"
+
+msgid "Trigger"
+msgstr "触发"
+
+msgid "Mobile scores"
+msgstr "移动分数"
+
+msgid "Change"
+msgstr "改变"
+
+msgid "No change"
+msgstr "没有变化"
+
+msgid "new"
+msgstr "新的"
+
+msgid "resolved"
+msgstr "已解决"
+
+msgid "Site audit history"
+msgstr "现场审核历史记录"
+
+msgid "Automatic audit"
+msgstr "自动审核"
+
+msgid "Frequency"
+msgstr "频率"
+
+msgid "Day"
+msgstr "日"
+
+msgid "Time"
+msgstr "时间"
+
+msgid "Runs in the background and saves the result to Report history. The time uses the site time zone; if the site gets no visit at that time, it starts on the next request."
+msgstr "在后台运行并将结果保存到报告历史记录中。时间使用站点时区;如果该网站当时没有访问,它将在下一个请求时开始。"
+
+msgid "Also run PageSpeed Insights (mobile + desktop; needs the API key)"
+msgstr "同时运行 PageSpeed Insights(移动 + 桌面;需要 API 密钥)"
+
+msgid "Send an email when a new critical or high priority recommendation appears"
+msgstr "当出现新的关键或高优先级建议时发送电子邮件"
+
+msgid "Email address (empty: site admin)"
+msgstr "电子邮件地址(空:站点管理员)"
+
+msgid "Flux Speed (one click)"
+msgstr "通量速度(一键)"
+
+msgid "The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key; a PageSpeed run adds Google's real Lighthouse result. Automatic audit, API key and security headers are in the Settings tab."
+msgstr "按优先级排列的五个 PageSpeed Insights 部分(性能、可访问性、最佳实践、SEO、代理浏览)。现场审核无需钥匙; PageSpeed 运行添加了 Google 的真实 Lighthouse 结果。自动审核、API 密钥和安全标头位于“设置”选项卡中。"
+
+msgid "PageSpeed scores"
+msgstr "PageSpeed 分数"
+
+msgid "PageSpeed not run"
+msgstr "PageSpeed 未运行"
+
+msgid "Device"
+msgstr "设备"
+
+msgid "No report with a PageSpeed run yet. Enter the API key and turn on PageSpeed in the automatic audit."
+msgstr "尚无 PageSpeed 运行的报告。输入 API 密钥并在自动审核中打开 PageSpeed。"
+
+msgid "%s PageSpeed scores over time"
+msgstr "%s随着时间的推移 PageSpeed 得分"
+
+msgid "Site audit and agent readiness"
+msgstr "现场审核和代理准备情况"
+
+msgid "Flux SEO's AI (MCP) tools run through the shared MCP server. The server, keys and settings are in Flux AI & MCP › MCP; install and activate Flux AI 0.7.0 or later."
+msgstr "Flux SEO 的 AI (MCP) 工具通过共享 MCP 服务器运行。服务器、密钥和设置位于 Flux AI & MCP › MCP;安装并激活 Flux AI 0.7.0 或更高版本。"
+
+msgid "No URLs to submit."
+msgstr "没有要提交的 URL。"
+
+msgid "IndexNow returned %d."
+msgstr "IndexNow 返回%d。"
+
+msgid "Not allowed."
+msgstr "不允许。"
+
+msgid "IndexNow is off or the site is hidden from search engines (Settings › Reading)."
+msgstr "IndexNow 已关闭或该网站对搜索引擎隐藏(设置 › 阅读)。"
+
+msgid "%d URLs submitted to Bing, Yandex and the other IndexNow search engines."
+msgstr "%d提交给 Bing、Yandex 和其他 IndexNow 搜索引擎的 URL。"
+
+msgid "Open Search Console"
+msgstr "打开搜索控制台"
+
+msgid "Add property › URL prefix › HTML tag. Leave empty if you verified with DNS."
+msgstr "添加属性 › URL 前缀 › HTML 标记。如果您使用 DNS 进行验证,请留空。"
+
+msgid "Open Bing Webmaster"
+msgstr "打开 Bing 网站管理员"
+
+msgid "The easiest path is \"Import from Google Search Console\": verification and the sitemap arrive on their own, no code. If you add it by hand, paste the HTML meta tag. DuckDuckGo, Yahoo and Ecosia results come from Bing."
+msgstr "最简单的路径是“从 Google Search Console 导入”:验证和站点地图自行到达,无需代码。如果您手动添加,请粘贴 HTML 元标记。 DuckDuckGo、Yahoo 和 Ecosia 的结果来自 Bing。"
+
+msgid "Open Yandex Webmaster"
+msgstr "打开 Yandex 网站管理员"
+
+msgid "Add site › Meta tag. After verifying, add the sitemap URL under Indexing › Sitemap files."
+msgstr "添加站点 › 元标记。验证后,在索引 › 站点地图文件下添加站点地图 URL。"
+
+msgid "%1$s · %2$d URLs · HTTP %3$d"
+msgstr "%1$s·%2$dURL · HTTP%3$d"
+
+msgid "key file could not be verified"
+msgstr "密钥文件无法验证"
+
+msgid "URLs do not match the site domain"
+msgstr "URL 与站点域不匹配"
+
+msgid "too many requests, try again later"
+msgstr "请求太多,请稍后重试"
+
+msgid "error"
+msgstr "错误"
+
+msgid "Search engines"
+msgstr "搜索引擎"
+
+msgid "Search engines other than Google (Bing, Yandex, DuckDuckGo, Yahoo, Ecosia) crawl a site quickly only once it is introduced to them. Add the site in each one's webmaster panel, paste the verification code below and submit the sitemap URL."
+msgstr "Google 以外的搜索引擎(Bing、Yandex、DuckDuckGo、Yahoo、Ecosia)仅在网站被引入后才快速对其进行爬行。在每个人的网站管理员面板中添加站点,粘贴下面的验证码并提交站点地图 URL。"
+
+msgid "Sitemap URL"
+msgstr "站点地图网址"
+
+msgid "Also listed in robots.txt; add this URL in Search Console, Bing and Yandex."
+msgstr "也列在robots.txt中;在 Search Console、Bing 和 Yandex 中添加此 URL。"
+
+msgid "Verification tag is on the site"
+msgstr "验证标签位于网站上"
+
+msgid "Instantly notify Bing, Yandex, DuckDuckGo (via Bing), Seznam and Naver about published and updated pages"
+msgstr "立即通知 Bing、Yandex、DuckDuckGo(通过 Bing)、Seznam 和 Naver 有关已发布和更新的页面"
+
+msgid "Key file:"
+msgstr "密钥文件:"
+
+msgid "When on, the whole site is submitted once automatically. Google does not use IndexNow; add your sitemap in Search Console for Google."
+msgstr "启用后,整个站点会自动提交一次。 Google 不使用 IndexNow;在 Google 的 Search Console 中添加站点地图。"
+
+msgid "The site is hidden from search engines (Settings › Reading); IndexNow sends nothing."
+msgstr "该网站对搜索引擎隐藏(设置 > 阅读); IndexNow 不发送任何内容。"
+
+msgid "Last bulk submission:"
+msgstr "最后批量提交:"
+
+msgid "Submit the whole site now"
+msgstr "立即提交整个网站"
+
+msgid "robots.txt blocks the Bing or Yandex crawler"
+msgstr "robots.txt 阻止 Bing 或 Yandex 爬虫"
+
+msgid "Search crawlers such as Bingbot, YandexBot and DuckDuckBot must not have \"Disallow: /\"; otherwise the site only appears on Google. Fix the robots.txt file in the site root."
+msgstr "Bingbot、YandexBot 和 DuckDuckBot 等搜索爬虫不得有“Disallow: /”;否则该网站只会出现在 Google 上。修复站点根目录中的 robots.txt 文件。"
+
+msgid "robots.txt has no Sitemap line"
+msgstr "robots.txt 没有 Sitemap 行"
+
+msgid "Bing and Yandex find the sitemap from the \"Sitemap:\" line in robots.txt. If a hand-written robots.txt sits in the root, delete it (Flux SEO adds the line) or add the line yourself."
+msgstr "Bing 和 Yandex 从 robots.txt 中的“Sitemap:”行查找站点地图。如果手写的 robots.txt 位于根目录中,请将其删除(Flux SEO 添加该行)或自己添加该行。"
+
+msgid "IndexNow is off"
+msgstr "现在索引已关闭"
+
+msgid "IndexNow instantly notifies Bing, Yandex, Seznam and Naver about new and updated pages; it is the fastest way to show up outside Google. One click to turn it on."
+msgstr "IndexNow 立即通知 Bing、Yandex、Seznam 和 Naver 有关新页面和更新页面的信息;这是在 Google 之外出现的最快方式。单击即可将其打开。"
+
+msgid "IndexNow submission failed"
+msgstr "IndexNow 提交失败"
+
+msgid "The key file (/<key>.txt) must be reachable from outside. If a cache or security plugin blocks it, add an exception, then use SEO › General › IndexNow › \"Submit the whole site now\"."
+msgstr "密钥文件 (/<key>.txt) 必须可从外部访问。如果缓存或安全插件阻止了它,请添加例外,然后使用 SEO › 常规 › IndexNow › “立即提交整个网站”。"
+
+msgid "No Bing / Yandex verification code"
+msgstr "没有 Bing / Yandex 验证码"
+
+msgid "The site may not be added to Bing Webmaster Tools and Yandex Webmaster; without that it appears late or not at all there. On Bing, \"Import from Google Search Console\" needs no code; ignore this if you already imported. The codes are under SEO › General › Search engines."
+msgstr "该网站不得添加至 Bing 网站管理员工具和 Yandex 网站管理员;如果没有的话,它就会显得迟到或根本不存在。在 Bing 上,“从 Google Search Console 导入”不需要代码;如果您已经导入,请忽略此内容。这些代码位于 SEO › 一般 › 搜索引擎下。"
+
+msgid "Turn on IndexNow"
+msgstr "打开 IndexNow"
+
+msgid "New and updated pages are sent instantly to Bing, Yandex, Seznam and Naver; the whole site is submitted once automatically."
+msgstr "新的和更新的页面会立即发送到 Bing、Yandex、Seznam 和 Naver;整个站点自动提交一次。"
+
+msgid "Bing and Yandex"
+msgstr "必应和 Yandex"
+
+msgid "No verification code: %s. Add the site in these search engines' webmaster panels (Bing's import from Google Search Console needs no code)."
+msgstr "无验证码:%s。在这些搜索引擎的网站管理员面板中添加网站(Bing 从 Google Search Console 导入不需要代码)。"
+
+msgid "Bing and Yandex verification codes are set."
+msgstr "Bing 和 Yandex 验证码已设置。"
+
+msgid "On; the site has been submitted to Bing and Yandex."
+msgstr "开;该网站已提交给 Bing 和 Yandex。"
+
+msgid "On; the first bulk submission is sent on the next admin page load."
+msgstr "开;第一个批量提交将在下一次管理页面加载时发送。"
+
+msgid "Off; new pages are not sent to Bing and Yandex."
+msgstr "关闭;新页面不会发送到 Bing 和 Yandex。"
+
+msgid "Open Naver Search Advisor"
+msgstr "打开 Naver 搜索顾问"
+
+msgid "Korea's largest search engine. Add site › HTML tag; then Request › Submit sitemap. Optional."
+msgstr "韩国最大的搜索引擎。添加站点 › HTML 标签;然后请求 › 提交站点地图。选修的。"
+
+msgid "Open Seznam Webmaster"
+msgstr "打开 Seznam 网站管理员"
+
+msgid "Czech search engine (Webmaster link at the bottom of the page). Meta tag method. Optional."
+msgstr "捷克搜索引擎(网站管理员链接位于页面底部)。元标记方法。选修的。"
+
+msgid "Open Baidu Webmaster"
+msgstr "打开百度站长"
+
+msgid "China's search engine; sign-up may need a Chinese phone number. Not needed unless you target China."
+msgstr "中国搜索引擎;注册可能需要中国电话号码。除非您针对中国,否则不需要。"
+
+msgid "Connected with Google Site Kit; Search Console verification and the sitemap are handled there. You can leave this empty."
+msgstr "与Google Site Kit连接; Search Console 验证和站点地图都在那里处理。您可以将其留空。"
+
+msgid "Connected with Google Site Kit."
+msgstr "与 Google Site Kit 连接。"
+
+msgid "Areas of expertise"
+msgstr "专业领域"
+
+msgid "One topic per line"
+msgstr "每行一个主题"
+
+msgid "Topics the organization is an expert in (schema knowsAbout). Search engines and AI assistants match the organization to these topics. Left out when empty."
+msgstr "该组织是专家的主题(模式knowsAbout)。搜索引擎和人工智能助手将组织与这些主题相匹配。空时留出。"
+
+msgid "Area served"
+msgstr "服务区域"
+
+msgid "e.g. United States"
+msgstr "例如美国"
+
+msgid "Country served (schema areaServed). Left out when empty."
+msgstr "服务国家/地区(服务架构区域)。空时留出。"
+
+msgid "Donation call to action"
+msgstr "捐款号召行动"
+
+msgid "e.g. Donate"
+msgstr "例如捐赠"
+
+msgid "For organizations that accept donations (schema DonateAction). Left out when the label is empty; when the URL is empty the donation page is found automatically."
+msgstr "对于接受捐赠的组织(架构 DonateAction)。当标签为空时省略;当 URL 为空时,会自动找到捐赠页面。"
+
+msgid "Address"
+msgstr "地址"
+
+msgid "Homepage description"
+msgstr "主页说明"
+
+msgid "Homepage title"
+msgstr "主页标题"
+
+msgid "Don't index search"
+msgstr "不索引搜索"
+
+msgid "Separator"
+msgstr "分离器"
+
+msgid "No findings"
+msgstr "没有发现"
+
+msgid "Findings"
+msgstr "研究结果"
+
+msgid "Audit email"
+msgstr "审核邮件"
+
+msgid "Audit updated"
+msgstr "审计已更新"
+
+msgid "Audit schedule"
+msgstr "审核时间表"
+
+msgid "Findings show up here after an audit runs."
+msgstr "审计运行后,调查结果将显示在此处。"
+
+msgid "Run audit"
+msgstr "运行审核"
+
+msgid "Email"
+msgstr "电子邮件"
+
+msgid "Don't index tags"
+msgstr "不索引标签"
+
+msgid "IndexNow"
+msgstr "现在指数"
+
+msgid "Organization"
+msgstr "组织机构"
+
+msgid "Organization name"
+msgstr "组织名称"
+
+msgid "Organization type"
+msgstr "组织类型"
+
+msgid "Open in panel"
+msgstr "在面板中打开"
+
+msgid "Scores"
+msgstr "分数"
+
+msgid "NGO"
+msgstr "非政府组织"
+
+msgid "Site name"
+msgstr "站点名称"
+
+msgid "Last local audit"
+msgstr "上次本地审核"
+
+msgid "Phone"
+msgstr "电话"
+
+msgid "WebMCP"
+msgstr "网络MCP"
+
+msgid "llms.txt"
+msgstr "llms.txt"
+
+msgid "PHP %1$s is not patched against %2$s. Update to at least %3$s (hosting panel › PHP version). A distribution package may carry the fix without changing the version number; ask your provider if unsure."
+msgstr "PHP%1$s未针对%2$s进行修补。至少更新至%3$s(托管面板 › PHP 版本)。发行包可能会在不更改版本号的情况下进行修复;如果不确定,请询问您的提供商。"
+
+msgid "PHP %1$s no longer gets security fixes; holes such as %2$s stay open. Move to PHP %3$s or another patched, newer version."
+msgstr "PHP%1$s不再获得安全修复;%2$s等孔保持打开状态。迁移到 PHP%3$s或其他已修补的更新版本。"
+
+msgid "PHP %1$s is patched against %2$s."
+msgstr "PHP%1$s针对%2$s进行了修补。"
+
+msgid "Security"
+msgstr "安全性"
+
+msgid "PHP security patch"
+msgstr "PHP安全补丁"
+
+msgid "Release notes"
+msgstr "发行说明"
+
+msgid "session.upload_progress.enabled is on. WordPress does not use it; turning it off shrinks the attack surface. Set \"session.upload_progress.enabled = Off\" in php.ini or the hosting panel."
+msgstr "session.upload_progress.enabled 已启用。 WordPress 不使用它;关闭它会缩小攻击面。在 php.ini 或托管面板中设置“session.upload_progress.enabled = Off”。"
+
+msgid "PHP version is missing a security patch"
+msgstr "PHP 版本缺少安全补丁"
+
+msgid "The server's PHP is unpatched against a known hole or no longer supported. Upgrade PHP to the current patch release from the hosting panel."
+msgstr "服务器的 PHP 未针对已知漏洞进行修补或不再受支持。从托管面板将 PHP 升级到当前补丁版本。"
+
+msgid "session.upload_progress is on"
+msgstr "session.upload_progress 已开启"
+
+msgid "WordPress does not use this PHP feature; it is the exploit path for holes such as PHP2Shell. Set session.upload_progress.enabled = Off in php.ini or the hosting panel."
+msgstr "WordPress 不使用此 PHP 功能;它是 PHP2Shell 等漏洞的利用路径。在 php.ini 或托管面板中设置 session.upload_progress.enabled = Off。"
+
+msgid "[['Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI).', 'tr']]"
+msgstr "[['元标题/描述、规范、开放图谱、架构(组织、网站、面包屑、文章)、站点地图设置、网站图标和 SEO 控制。 AI 助手的内容和 SEO 工具(在 MCP 服务器 Flux AI 上)。', 'tr']]"

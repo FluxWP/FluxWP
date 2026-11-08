@@ -62,12 +62,12 @@ function flxwk_admin_url() {
 
 function flxwk_title() {
 	$t = trim( (string) flxwk_opt( 'title' ) );
-	return '' !== $t ? $t : __( 'Geliştirici Wiki', 'flx-wiki' );
+	return '' !== $t ? $t : __( 'Developer Wiki', 'flx-wiki' );
 }
 
 function flxwk_intro() {
 	$t = trim( (string) flxwk_opt( 'intro' ) );
-	return (string) apply_filters( 'flxwk_intro', '' !== $t ? $t : __( 'FluxWP için eklenti ve tema yazma, AI destekli özellikler ve ortak altyapı rehberleri.', 'flx-wiki' ) );
+	return (string) apply_filters( 'flxwk_intro', '' !== $t ? $t : __( 'Guides for writing FluxWP plugins and themes, AI-enabled features and the shared platform.', 'flx-wiki' ) );
 }
 
 /** Sayfanın Markdown kaynağı. */

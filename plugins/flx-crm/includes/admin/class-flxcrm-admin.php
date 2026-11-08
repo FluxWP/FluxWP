@@ -41,10 +41,10 @@ final class FLXCRM_Admin {
 	public static function menu() {
 		$view = self::cap_view();
 		add_menu_page( __( 'CRM', 'flx-crm' ), __( 'CRM', 'flx-crm' ), $view, 'flx-crm', array( 'FLXCRM_Page_Overview', 'render' ), self::menu_icon(), 57 );
-		add_submenu_page( 'flx-crm', __( 'Genel bakış', 'flx-crm' ), __( 'Genel bakış', 'flx-crm' ), $view, 'flx-crm', array( 'FLXCRM_Page_Overview', 'render' ) );
-		add_submenu_page( 'flx-crm', __( 'Kişiler', 'flx-crm' ), __( 'Kişiler', 'flx-crm' ), $view, 'flx-crm-contacts', array( __CLASS__, 'route_contacts' ) );
-		add_submenu_page( 'flx-crm', __( 'Segmentler', 'flx-crm' ), __( 'Segmentler', 'flx-crm' ), $view, 'flx-crm-segments', array( 'FLXCRM_Page_Segments', 'render' ) );
-		add_submenu_page( 'flx-crm', __( 'CRM ayarları', 'flx-crm' ), __( 'Ayarlar', 'flx-crm' ), self::cap_manage(), 'flx-crm-settings', array( 'FLXCRM_Page_Settings', 'render' ) );
+		add_submenu_page( 'flx-crm', __( 'Overview', 'flx-crm' ), __( 'Overview', 'flx-crm' ), $view, 'flx-crm', array( 'FLXCRM_Page_Overview', 'render' ) );
+		add_submenu_page( 'flx-crm', __( 'Contacts', 'flx-crm' ), __( 'Contacts', 'flx-crm' ), $view, 'flx-crm-contacts', array( __CLASS__, 'route_contacts' ) );
+		add_submenu_page( 'flx-crm', __( 'Segments', 'flx-crm' ), __( 'Segments', 'flx-crm' ), $view, 'flx-crm-segments', array( 'FLXCRM_Page_Segments', 'render' ) );
+		add_submenu_page( 'flx-crm', __( 'CRM settings', 'flx-crm' ), __( 'Settings', 'flx-crm' ), self::cap_manage(), 'flx-crm-settings', array( 'FLXCRM_Page_Settings', 'render' ) );
 	}
 
 	public static function route_contacts() {
@@ -84,20 +84,20 @@ final class FLXCRM_Admin {
 				'restNonce' => wp_create_nonce( 'wp_rest' ),
 				'i18n'      => array(
 					'working'  => __( '%1$s: %2$s / %3$s', 'flx-crm' ),
-					'done'     => __( 'Bitti. Sayfa yenileniyor…', 'flx-crm' ),
-					'fail'     => __( 'Bir şey ters gitti. Tekrar deneyin.', 'flx-crm' ),
-					'confirm'  => __( 'Emin misiniz? Bu işlem geri alınamaz.', 'flx-crm' ),
-					'matches'  => __( '%s kişi uyuyor', 'flx-crm' ),
-					'counting' => __( 'Sayılıyor…', 'flx-crm' ),
-					'scoring'  => __( 'Hesaplanıyor…', 'flx-crm' ),
-					'scored'   => __( '%s kişi skorlandı. Sayfa yenileniyor…', 'flx-crm' ),
-					'selected' => __( '%s kişi seçildi', 'flx-crm' ),
-					'remove'   => __( 'Kuralı kaldır', 'flx-crm' ),
-					'and'      => __( 've', 'flx-crm' ),
-					'or'       => __( 'veya', 'flx-crm' ),
-					'days'     => __( 'gün', 'flx-crm' ),
-					'empty'    => __( 'Kural yok: tüm kişiler', 'flx-crm' ),
-					'none'     => __( 'Uyan kişi yok.', 'flx-crm' ),
+					'done'     => __( 'Done. Reloading the page…', 'flx-crm' ),
+					'fail'     => __( 'Something went wrong. Please try again.', 'flx-crm' ),
+					'confirm'  => __( 'Are you sure? This cannot be undone.', 'flx-crm' ),
+					'matches'  => __( '%s contacts match', 'flx-crm' ),
+					'counting' => __( 'Counting…', 'flx-crm' ),
+					'scoring'  => __( 'Calculating…', 'flx-crm' ),
+					'scored'   => __( '%s contacts scored. Reloading the page…', 'flx-crm' ),
+					'selected' => __( '%s contacts selected', 'flx-crm' ),
+					'remove'   => __( 'Remove rule', 'flx-crm' ),
+					'and'      => __( 'and', 'flx-crm' ),
+					'or'       => __( 'or', 'flx-crm' ),
+					'days'     => __( 'days', 'flx-crm' ),
+					'empty'    => __( 'No rules: every contact', 'flx-crm' ),
+					'none'     => __( 'No contacts match.', 'flx-crm' ),
 				),
 			)
 		);
@@ -110,7 +110,7 @@ final class FLXCRM_Admin {
 	private static function guard( $action ) {
 		check_admin_referer( 'flxcrm_' . $action );
 		if ( ! flxcrm_can( true ) ) {
-			wp_die( esc_html__( 'Bu işlem için yetkiniz yok.', 'flx-crm' ), 403 );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-crm' ), 403 );
 		}
 	}
 
@@ -159,7 +159,7 @@ final class FLXCRM_Admin {
 			$email = flxcrm_email( $data['email'] );
 			$phone = flxcrm_phone( $data['phone'] );
 			if ( '' === $email && '' === $phone ) {
-				self::back( flxcrm_admin_url( 'contacts', array( 'action' => 'new' ) ), '', __( 'E-posta ya da telefon gerekli.', 'flx-crm' ) );
+				self::back( flxcrm_admin_url( 'contacts', array( 'action' => 'new' ) ), '', __( 'An e-mail or phone number is required.', 'flx-crm' ) );
 			}
 			$existing = FLXCRM_Contacts::find( array( 'email' => $email, 'phone' => $phone ) );
 			if ( $existing ) {
@@ -167,7 +167,7 @@ final class FLXCRM_Admin {
 			}
 			$id = FLXCRM_Contacts::upsert( array_merge( $data, array( 'source' => 'manual', 'roles' => array() ) ) );
 			if ( ! $id ) {
-				self::back( flxcrm_admin_url( 'contacts', array( 'action' => 'new' ) ), '', __( 'Kişi kaydedilemedi.', 'flx-crm' ) );
+				self::back( flxcrm_admin_url( 'contacts', array( 'action' => 'new' ) ), '', __( 'The contact could not be saved.', 'flx-crm' ) );
 			}
 			FLXCRM_Contacts::set_roles( $id, $data['roles'] );
 			$tags = array_filter( array_map( 'trim', explode( ',', (string) self::post( 'tags' ) ) ) );
@@ -335,7 +335,7 @@ final class FLXCRM_Admin {
 	public static function post_csv() {
 		check_admin_referer( 'flxcrm_csv' );
 		if ( ! flxcrm_can( true ) ) {
-			wp_die( esc_html__( 'Bu işlem için yetkiniz yok.', 'flx-crm' ), 403 );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-crm' ), 403 );
 		}
 		$f   = FLXCRM_Page_Contacts::filters_from( wp_unslash( $_POST ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 		$sid = absint( self::post( 'segment_id', 0 ) );
@@ -348,7 +348,7 @@ final class FLXCRM_Admin {
 		header( 'Content-Disposition: attachment; filename=crm-' . gmdate( 'Ymd-His' ) . '.csv' );
 		$out = fopen( 'php://output', 'w' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 		fwrite( $out, "\xEF\xBB\xBF" ); // phpcs:ignore WordPress.WP.AlternativeFunctions
-		fputcsv( $out, array( 'id', __( 'Ad', 'flx-crm' ), __( 'E-posta', 'flx-crm' ), __( 'Telefon', 'flx-crm' ), __( 'Roller', 'flx-crm' ), __( 'Segment', 'flx-crm' ), __( 'Toplam değer', 'flx-crm' ), __( 'Bağış', 'flx-crm' ), __( 'Sipariş', 'flx-crm' ), __( 'Son ödeme', 'flx-crm' ), __( 'Kayıp riski', 'flx-crm' ), __( 'Şehir', 'flx-crm' ), __( 'E-posta izni', 'flx-crm' ), __( 'SMS izni', 'flx-crm' ), __( 'WhatsApp izni', 'flx-crm' ), __( 'Etiketler', 'flx-crm' ) ) );
+		fputcsv( $out, array( 'id', __( 'Name', 'flx-crm' ), __( 'E-mail', 'flx-crm' ), __( 'Phone', 'flx-crm' ), __( 'Roles', 'flx-crm' ), __( 'Segment', 'flx-crm' ), __( 'Total value', 'flx-crm' ), __( 'Donation', 'flx-crm' ), __( 'Order', 'flx-crm' ), __( 'Last payment', 'flx-crm' ), __( 'Churn risk', 'flx-crm' ), __( 'City', 'flx-crm' ), __( 'E-mail consent', 'flx-crm' ), __( 'SMS consent', 'flx-crm' ), __( 'WhatsApp consent', 'flx-crm' ), __( 'Tags', 'flx-crm' ) ) );
 		global $wpdb;
 		foreach ( array_chunk( $ids, 500 ) as $chunk ) {
 			$rows = $wpdb->get_results( 'SELECT * FROM ' . flxcrm_table( 'contacts' ) . ' WHERE id IN (' . implode( ',', $chunk ) . ') ORDER BY id', ARRAY_A ); // phpcs:ignore WordPress.DB
@@ -440,12 +440,12 @@ final class FLXCRM_Admin {
 	public static function tabs() {
 		$page = isset( $_GET['page'] ) ? sanitize_key( $_GET['page'] ) : 'flx-crm'; // phpcs:ignore WordPress.Security.NonceVerification
 		$tabs = array(
-			'flx-crm'          => __( 'Genel bakış', 'flx-crm' ),
-			'flx-crm-contacts' => __( 'Kişiler', 'flx-crm' ),
-			'flx-crm-segments' => __( 'Segmentler', 'flx-crm' ),
+			'flx-crm'          => __( 'Overview', 'flx-crm' ),
+			'flx-crm-contacts' => __( 'Contacts', 'flx-crm' ),
+			'flx-crm-segments' => __( 'Segments', 'flx-crm' ),
 		);
 		if ( flxcrm_can( true ) ) {
-			$tabs['flx-crm-settings'] = __( 'Ayarlar', 'flx-crm' );
+			$tabs['flx-crm-settings'] = __( 'Settings', 'flx-crm' );
 		}
 		echo '<nav class="flxcrm-tabs" aria-label="' . esc_attr__( 'CRM', 'flx-crm' ) . '">';
 		foreach ( $tabs as $slug => $label ) {
@@ -466,15 +466,15 @@ final class FLXCRM_Admin {
 		$err = isset( $_GET['flxcrm_err'] ) ? sanitize_text_field( rawurldecode( wp_unslash( $_GET['flxcrm_err'] ) ) ) : '';
 		// phpcs:enable
 		$map = array(
-			'saved'   => __( 'Kaydedildi.', 'flx-crm' ),
-			'created' => __( 'Kişi eklendi.', 'flx-crm' ),
-			'deleted' => __( 'Silindi.', 'flx-crm' ),
-			'noted'   => __( 'Zaman tüneline eklendi.', 'flx-crm' ),
-			'exists'  => __( 'Bu e-posta ya da telefonla kayıtlı kişi zaten var; kartı açıldı.', 'flx-crm' ),
+			'saved'   => __( 'Saved.', 'flx-crm' ),
+			'created' => __( 'Contact added.', 'flx-crm' ),
+			'deleted' => __( 'Deleted.', 'flx-crm' ),
+			'noted'   => __( 'Added to the timeline.', 'flx-crm' ),
+			'exists'  => __( 'A contact with this e-mail or phone already exists; their card is open.', 'flx-crm' ),
 		);
 		if ( 0 === strpos( $msg, 'bulk' ) ) {
 			/* translators: %s: number of contacts */
-			$map[ $msg ] = sprintf( __( '%s kişi güncellendi.', 'flx-crm' ), number_format_i18n( (int) substr( $msg, 4 ) ) );
+			$map[ $msg ] = sprintf( __( '%s contacts updated.', 'flx-crm' ), number_format_i18n( (int) substr( $msg, 4 ) ) );
 		}
 		if ( isset( $map[ $msg ] ) ) {
 			echo '<div class="flxcrm-notice is-ok" role="status">' . flxcrm_icon( 'check', 16 ) . esc_html( $map[ $msg ] ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput
@@ -500,7 +500,7 @@ final class FLXCRM_Admin {
 
 	public static function segment_badge( $seg ) {
 		if ( '' === (string) $seg ) {
-			return '<span class="flxcrm-badge">' . esc_html__( 'Ödemesi yok', 'flx-crm' ) . '</span>';
+			return '<span class="flxcrm-badge">' . esc_html__( 'No payments', 'flx-crm' ) . '</span>';
 		}
 		$s    = flxcrm_rfm_segments();
 		$tone = $s[ $seg ][2] ?? '';
@@ -512,7 +512,7 @@ final class FLXCRM_Admin {
 			return '<span class="flxcrm-muted">—</span>';
 		}
 		$tone = $churn >= (int) flxcrm_setting( 'risk_threshold' ) ? 'bad' : ( $churn >= 40 ? 'warn' : 'ok' );
-		return '<span class="flxcrm-meter is-' . $tone . '" title="' . esc_attr( sprintf( /* translators: %s: percent */ __( 'Kayıp riski %%%s', 'flx-crm' ), $churn ) ) . '"><span style="width:' . (int) $churn . '%"></span></span><span class="flxcrm-meter__val">%' . (int) $churn . '</span>';
+		return '<span class="flxcrm-meter is-' . $tone . '" title="' . esc_attr( sprintf( /* translators: %s: percent */ __( 'Churn risk %s%%', 'flx-crm' ), $churn ) ) . '"><span style="width:' . (int) $churn . '%"></span></span><span class="flxcrm-meter__val">%' . (int) $churn . '</span>';
 	}
 
 	public static function avatar( array $c, $size = '' ) {

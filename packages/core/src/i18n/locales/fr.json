@@ -1,0 +1,322 @@
+{
+  "common": {
+    "back": "Retour",
+    "done": "Terminé",
+    "empty": "Rien ici encore.",
+    "refresh": "Actualiser",
+    "retry": "Réessayez",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "send": "Envoyer"
+  },
+  "languages": {
+    "en": "English",
+    "tr": "Türkçe",
+    "de": "Deutsch",
+    "es": "Español",
+    "fr": "Français",
+    "pt-br": "Português do Brasil",
+    "ja": "日本語",
+    "zh": "简体中文",
+    "ar": "العربية",
+    "ru": "Русский"
+  },
+  "auth": {
+    "welcome": "{{name}}",
+    "connecting": "Connexion à votre compte...",
+    "addSiteTitle": "Connectez votre site",
+    "addSiteHint": "Entrez l'adresse de votre site WordPress. Vous pouvez ajouter plusieurs sites.",
+    "siteUrl": "Adresse du site",
+    "siteUrlPlaceholder": "exemple.org",
+    "continue": "Continuer",
+    "change": "Changement",
+    "loginBrowser": "Connectez-vous avec le navigateur",
+    "waitingBrowser": "En attente d'approbation dans le navigateur...",
+    "useApiKey": "Connectez-vous avec une clé API",
+    "apiKey": "Clé API",
+    "apiKeyHint": "Dans le tableau de bord : Utilisateurs › Accès aux applications › Créer une clé.",
+    "login": "Connectez-vous",
+    "noYtApp": "Le plugin Flux App n'est pas installé sur ce site. Installez-le pour vous connecter depuis l'application.",
+    "tryDemo": "Essayez la démo",
+    "footer": "{{name}} · connexion sécurisée, votre mot de passe n'est jamais stocké dans l'application"
+  },
+  "errors": {
+    "invalid_url": "Cette adresse n'est pas valide.",
+    "unreachable": "Impossible d'accéder au site. Vérifiez l'adresse et votre connexion.",
+    "not_wordpress": "Aucune API REST WordPress trouvée à cette adresse.",
+    "access_denied": "La connexion n'a pas été approuvée.",
+    "oauth_failed": "La connexion n'a pas pu être complétée. Veuillez réessayer.",
+    "oauth_unsupported": "Cette méthode de connexion n'est pas encore disponible dans le navigateur ; utilisez l'application de bureau.",
+    "bad_credentials": "La clé ou la session n'est pas valide.",
+    "server": "Aucune réponse du serveur.",
+    "unknown": "Quelque chose s'est mal passé."
+  },
+  "accounts": {
+    "title": "Comptes",
+    "add": "Ajouter un site ou un compte",
+    "active": "Actif",
+    "logout": "Se déconnecter",
+    "relogin": "Connectez-vous à nouveau",
+    "needsLogin": "Votre session a expiré, veuillez vous reconnecter.",
+    "kind": {
+      "oauth": "Connexion au navigateur",
+      "apikey": "Clé API",
+      "demo": "Démo"
+    }
+  },
+  "nav": {
+    "menu": "Menu principal",
+    "search": "Recherchez ou accédez à",
+    "edit": "Menu Modifier",
+    "reset": "Réinitialiser",
+    "show": "Afficher",
+    "hide": "Masquer",
+    "webView": "S'ouvre dans la vue du tableau de bord",
+    "collapse": "Masquer la barre latérale",
+    "expand": "Afficher la barre latérale",
+    "back": "Retour",
+    "forward": "En avant",
+    "resize": "Largeur de la barre latérale",
+    "submenu": "Basculer le sous-menu",
+    "groups": {
+      "general": "Général",
+      "comms": "Communications",
+      "donate": "Dons",
+      "content": "Contenu",
+      "growth": "Croissance",
+      "screens": "Écrans",
+      "system": "Système",
+      "other": "Autre",
+      "apps": "Applications"
+    }
+  },
+  "palette": {
+    "placeholder": "Rechercher des écrans ou des commandes...",
+    "empty": "Aucun résultat."
+  },
+  "dashboard": {
+    "morning": "Bonjour {{name}}",
+    "afternoon": "Bonjour {{name}}",
+    "evening": "Bonsoir {{name}}",
+    "customize": "Personnaliser"
+  },
+  "web": {
+    "title": "Cet écran s'ouvre dans la vue tableau de bord",
+    "body": "Sa version native n'est pas encore prête. Vous pouvez ouvrir la page du tableau de bord, déjà connecté, dans une fenêtre séparée.",
+    "open": "Ouvrir dans le tableau de bord",
+    "openBrowser": "Ouvrir dans le navigateur"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "appearance": "Apparence",
+    "theme": "Thème",
+    "themes": {
+      "system": "Système",
+      "light": "Lumière",
+      "dark": "Sombre"
+    },
+    "language": "Langue",
+    "about": "À propos",
+    "app": "Application",
+    "support": "Assistance",
+    "contact": "Contactez-nous",
+    "logoutConfirm": "Vous déconnecter de {{site}} ?",
+    "logoutFailed": "Impossible de se déconnecter. Veuillez réessayer."
+  },
+  "oauth": {
+    "doneTitle": "Connecté",
+    "doneBody": "Vous pouvez fermer cet onglet et revenir à l'application."
+  },
+  "review": {
+    "title": "En attente d'approbation",
+    "count_one": "{{count}} don",
+    "count_other": "{{count}} dons",
+    "noReceipt": "Pas de reçu",
+    "noReceiptBody": "Aucun reçu n'est encore arrivé pour ce don.",
+    "emptyTitle": "Aucun don en attente",
+    "emptyBody": "Les nouveaux reçus apparaîtront ici.",
+    "allDone": "Tout est fait",
+    "ref": "Référence",
+    "receipt": "Reçu",
+    "approve": "Approuver",
+    "reject": "Annuler le don",
+    "approveConfirm": "Approuver le don {{amount}} de {{name}} ? Des certificats seront envoyés.",
+    "approved": "Don approuvé.",
+    "approvedCert_one": "Don approuvé, certificat {{count}} envoyé.",
+    "approvedCert_other": "Don approuvé, {{count}} certificats envoyés.",
+    "rejected": "Don annulé.",
+    "rejectTitle": "Annuler le don de {{name}}",
+    "reason": "Raison",
+    "reasonPlaceholder": "par ex. le montant du reçu ne correspond pas",
+    "notify": "Aviser le donateur"
+  },
+  "tasks": {
+    "title": "Tâches",
+    "views": {
+      "mine": "M'a été attribué",
+      "today": "Aujourd'hui",
+      "overdue": "En retard"
+    },
+    "projects": "Projets",
+    "search": "Tâches de recherche",
+    "quickAdd": "Ajoutez une tâche, appuyez sur Entrée",
+    "empty": "Aucune tâche",
+    "complete": "Terminé",
+    "reopen": "Réouvrir",
+    "unassigned": "Non attribué",
+    "checklist": "Liste de contrôle",
+    "comments": "Commentaires",
+    "noComments": "Pas encore de commentaires.",
+    "addComment": "Écrivez un commentaire"
+  },
+  "inbox": {
+    "title": "WhatsApp",
+    "search": "Rechercher un nom ou un numéro",
+    "filters": {
+      "open": "Ouvert",
+      "unread": "Non lu",
+      "mine": "Le mien",
+      "all": "Tout"
+    },
+    "empty": "Pas de discussion",
+    "pick": "Sélectionnez une discussion",
+    "assigned": "Géré par {{name}}",
+    "donations_one": "{{count}} don",
+    "donations_other": "{{count}} dons",
+    "botOn": "Assistant sur",
+    "botOff": "Assistant désactivé",
+    "botHint": "Activer/désactiver l'assistant IA pour ce chat",
+    "assistant": "Assistante",
+    "write": "Tapez un message, entrez pour envoyer",
+    "blocked": "Ce contact est bloqué, les messages ne peuvent pas être envoyés."
+  },
+  "wa": {
+    "search": "Rechercher un nom, un numéro, une note ou un message",
+    "filters": {
+      "all": "Ouvert",
+      "unread": "Non lu",
+      "mine": "M'a été attribué",
+      "unassigned": "Non attribué",
+      "closed": "Fermé"
+    },
+    "today": "Aujourd'hui",
+    "yesterday": "Hier",
+    "reply": "Répondre",
+    "copy": "Copier",
+    "retry": "Réessayer",
+    "deleteNote": "Supprimer la note",
+    "menu": "Menu des messages",
+    "react": "Réagir",
+    "src": {
+      "bot": "Assistante",
+      "ai": "Suggestion d'IA",
+      "phone": "Depuis le téléphone",
+      "auto": "Automatique",
+      "api": "API",
+      "cert": "Certificat"
+    },
+    "message": "Envoyer un message",
+    "deletedMsg": "Ce message a été supprimé",
+    "deletedBadge": "Supprimé par l'expéditeur",
+    "poll": "Sondage (voir dans WhatsApp)",
+    "unsupported": "Message non pris en charge",
+    "note": "Note interne",
+    "customer": "Client",
+    "you": "Vous",
+    "edited": "édité",
+    "failed": "Non envoyé",
+    "types": {
+      "text": "Message",
+      "note": "Remarque",
+      "image": "Photos",
+      "video": "Vidéo",
+      "audio": "Message vocal",
+      "document": "Documenter",
+      "sticker": "Autocollant",
+      "location": "Emplacement",
+      "contact": "Fiche de contact",
+      "poll": "Sondage",
+      "deleted": "Message supprimé",
+      "unknown": "Message"
+    },
+    "noteHint": "Note interne : seule votre équipe le voit, pas le client.",
+    "attach": "Joindre un fichier",
+    "noteMode": "Note interne",
+    "quickReplies": "Réponses rapides",
+    "aiSuggest": "Suggestion d'IA",
+    "notePlaceholder": "Écrire une note pour l'équipe",
+    "caption": "Ajouter une légende (facultatif)",
+    "write": "Tapez un message, entrez pour envoyer",
+    "sessionExpired": "Session expirée. Veuillez vous reconnecter.",
+    "offline": "Impossible d'accéder au serveur, nouvelle tentative...",
+    "connDown": "La connexion {{name}} est interrompue",
+    "typing": "en tapant...",
+    "recording": "enregistrement audio...",
+    "botTyping": "L'assistant est en train de taper...",
+    "bootError": "Impossible de charger WhatsApp",
+    "quoteNotLoaded": "Le message cité n'est pas encore chargé, faites défiler vers le haut.",
+    "closed": "Fermé",
+    "bot": {
+      "on": "Assistant sur",
+      "off": "Assistant désactivé",
+      "paused": "L'Assistant a été mis en pause"
+    },
+    "assign": "Attribuer une discussion",
+    "unassigned": "Non attribué",
+    "pin": "Épingle",
+    "unpin": "Désépingler",
+    "close": "Fermer le chat",
+    "reopen": "Rouvrir le chat",
+    "emoji": "Émoji",
+    "voice": {
+      "start": "Enregistrer un message vocal",
+      "recording": "Enregistrement",
+      "denied": "Autorisation du microphone refusée."
+    },
+    "info": {
+      "title": "Coordonnées",
+      "labels": "Étiquettes",
+      "notes": "Remarques",
+      "notesHint": "Seule votre équipe voit ça",
+      "saved": "enregistré",
+      "insert": "Insérer",
+      "copied": "Numéro copié",
+      "firstSeen": "Premier message : {{date}}"
+    },
+    "new": {
+      "title": "Nouvelle discussion",
+      "phone": "Numéro de téléphone",
+      "name": "Nom (facultatif)",
+      "line": "Ligne",
+      "invalid": "Numéro invalide",
+      "exists": "Il existe une conversation avec ce numéro : {{name}}",
+      "hasWa": "Utilise WhatsApp",
+      "noWa": "Pas de WhatsApp sur ce numéro",
+      "go": "Aller discuter",
+      "start": "Démarrer le chat"
+    }
+  },
+  "account": {
+    "menu": "Compte",
+    "profile": "Mon profil",
+    "switch": "Changer de compte",
+    "web": "Site ouvert"
+  },
+  "update": {
+    "title": "Mises à jour",
+    "check": "Vérifier",
+    "checking": "Vérification...",
+    "upToDate": "À jour",
+    "newVersion": "Nouvelle version {{version}}",
+    "downloading": "Téléchargement de {{version}} {{pct}}",
+    "restart": "Redémarrer pour mettre à jour",
+    "download": "Télécharger",
+    "installing": "Installation...",
+    "failed": "Impossible de vérifier"
+  },
+  "legal": {
+    "title": "Mentions légales",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation"
+  }
+}

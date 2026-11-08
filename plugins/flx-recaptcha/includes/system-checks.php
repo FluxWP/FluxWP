@@ -23,26 +23,26 @@ function flxrc_system_checks( $checks ) {
 
 	if ( flxrc_disabled_by_constant() ) {
 		$status  = 'warning';
-		$message = __( 'Koruma wp-config.php\'deki FLXRC_DISABLE sabitiyle kapalı. Sorun çözüldüyse satırı silin.', 'flx-recaptcha' );
+		$message = __( 'Protection is turned off by the FLXRC_DISABLE constant in wp-config.php. Remove the line once the issue is fixed.', 'flx-recaptcha' );
 	} elseif ( ! flxrc_has_keys() ) {
 		$status  = 'warning';
-		$message = __( 'Google reCAPTCHA anahtarları girilmemiş; formlar korunmuyor.', 'flx-recaptcha' );
+		$message = __( 'Google reCAPTCHA keys are not set; forms are not protected.', 'flx-recaptcha' );
 	} elseif ( ! flxrc_keys_verified() ) {
 		$status  = 'warning';
-		$message = __( 'Anahtarlar test edilmemiş; test geçene kadar koruma kapalı.', 'flx-recaptcha' );
+		$message = __( 'The keys have not been tested; protection stays off until the test passes.', 'flx-recaptcha' );
 	} else {
 		$status  = 'ok';
-		$message = sprintf( /* translators: %s: v2 or v3 */ __( 'Koruma açık (%s).', 'flx-recaptcha' ), 'v3' === flxrc_version() ? __( 'v3 görünmez', 'flx-recaptcha' ) : __( 'v2 kutucuk', 'flx-recaptcha' ) );
+		$message = sprintf( /* translators: %s: v2 or v3 */ __( 'Protection is on (%s).', 'flx-recaptcha' ), 'v3' === flxrc_version() ? __( 'v3 invisible', 'flx-recaptcha' ) : __( 'v2 checkbox', 'flx-recaptcha' ) );
 	}
 	$checks[] = array(
 		'id'           => 'flxrc.keys',
 		'source'       => $src,
 		'group'        => 'Security',
-		'label'        => __( 'reCAPTCHA anahtarları', 'flx-recaptcha' ),
+		'label'        => __( 'reCAPTCHA keys', 'flx-recaptcha' ),
 		'status'       => $status,
 		'message'      => $message,
 		'action_url'   => $url . '#flxrc-keys',
-		'action_label' => __( 'Ayarlar', 'flx-recaptcha' ),
+		'action_label' => __( 'Settings', 'flx-recaptcha' ),
 	);
 
 	if ( flxrc_active() ) {
@@ -62,11 +62,11 @@ function flxrc_system_checks( $checks ) {
 			'id'           => 'flxrc.forms',
 			'source'       => $src,
 			'group'        => 'Security',
-			'label'        => __( 'Korunan formlar', 'flx-recaptcha' ),
+			'label'        => __( 'Protected forms', 'flx-recaptcha' ),
 			'status'       => $off ? 'warning' : ( $names ? 'ok' : 'info' ),
-			'message'      => ( $names ? implode( ', ', $names ) : __( 'Hiçbir form seçilmemiş.', 'flx-recaptcha' ) ) . ( $off ? ' · ' . sprintf( /* translators: %s: form names */ __( 'Korunmuyor: %s', 'flx-recaptcha' ), implode( ', ', $off ) ) : '' ),
+			'message'      => ( $names ? implode( ', ', $names ) : __( 'No form is selected.', 'flx-recaptcha' ) ) . ( $off ? ' · ' . sprintf( /* translators: %s: form names */ __( 'Not protected: %s', 'flx-recaptcha' ), implode( ', ', $off ) ) : '' ),
 			'action_url'   => $url . '#flxrc-forms',
-			'action_label' => __( 'Formlar', 'flx-recaptcha' ),
+			'action_label' => __( 'Forms', 'flx-recaptcha' ),
 		);
 
 		$err = flxrc_status( 'last_error' );
@@ -75,16 +75,16 @@ function flxrc_system_checks( $checks ) {
 				'id'           => 'flxrc.remote',
 				'source'       => $src,
 				'group'        => 'Security',
-				'label'        => __( 'Google doğrulaması', 'flx-recaptcha' ),
+				'label'        => __( 'Google verification', 'flx-recaptcha' ),
 				'status'       => 'config' === ( $err['kind'] ?? '' ) ? 'error' : 'warning',
 				'message'      => sprintf(
 					/* translators: 1: date, 2: error */
-					__( '%1$s: %2$s. Anahtarları yeniden test edin; Google erişilemiyorsa Ayarlar > Google adresi: recaptcha.net.', 'flx-recaptcha' ),
+					__( '%1$s: %2$s. Test the keys again; if Google is unreachable, set Settings > Google host to recaptcha.net.', 'flx-recaptcha' ),
 					wp_date( 'd.m.Y H:i', (int) $err['time'] ),
 					(string) ( $err['why'] ?? '' )
 				),
 				'action_url'   => $url,
-				'action_label' => __( 'Test et', 'flx-recaptcha' ),
+				'action_label' => __( 'Test', 'flx-recaptcha' ),
 			);
 		}
 	}

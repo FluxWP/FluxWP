@@ -1,0 +1,2741 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: fr_FR\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Tasks"
+msgstr "Tâches"
+
+msgid "Usage dashboard"
+msgstr "Tableau de bord d'utilisation"
+
+msgid "Task Settings"
+msgstr "Paramètres de tâche"
+
+msgid "Settings"
+msgstr "Paramètres"
+
+msgid "JavaScript is required for Tasks."
+msgstr "JavaScript est requis pour les tâches."
+
+msgid "Task notifications"
+msgstr "Notifications de tâches"
+
+msgid "AI needs the Flux AI & MCP plugin. An administrator must install Flux AI and enter a key."
+msgstr "L'IA a besoin du plugin Flux AI & MCP. Un administrateur doit installer Flux AI et saisir une clé."
+
+msgid "AI is not set up. An administrator must enter a key and choose a model in Flux AI & MCP › Settings."
+msgstr "L'IA n'est pas configurée. Un administrateur doit saisir une clé et choisir un modèle dans Flux AI & MCP › Paramètres."
+
+msgid "The operation took too long; split the request into smaller steps."
+msgstr "L'opération a duré trop longtemps ; divisez la demande en étapes plus petites."
+
+msgid "Deleted user"
+msgstr "Utilisateur supprimé"
+
+msgid "List not found or you don't have access."
+msgstr "Liste introuvable ou vous n'y avez pas accès."
+
+msgid "Task not found or you don't have access."
+msgstr "Tâche introuvable ou vous n'y avez pas accès."
+
+msgid "You don't have permission to add tasks to this list."
+msgstr "Vous n'êtes pas autorisé à ajouter des tâches à cette liste."
+
+msgid "You don't have permission to edit this task."
+msgstr "Vous n'êtes pas autorisé à modifier cette tâche."
+
+msgid "You don't have permission to add tasks to the target list."
+msgstr "Vous n'êtes pas autorisé à ajouter des tâches à la liste cible."
+
+msgid "This list has no such status."
+msgstr "Cette liste n'a pas un tel statut."
+
+msgid "You don't have permission to comment on this task."
+msgstr "Vous n'êtes pas autorisé à commenter cette tâche."
+
+msgid "Item not found."
+msgstr "Article introuvable."
+
+msgid "Open"
+msgstr "Ouvert"
+
+msgid "Setup"
+msgstr "Configuration"
+
+msgid "WordPress and PHP version"
+msgstr "Version WordPress et PHP"
+
+msgid "WordPress %1$s, PHP %2$s. Required: WordPress 6.5+, PHP 7.4+."
+msgstr "WordPress%1$s, PHP%2$s. Requis : WordPress 6.5+, PHP 7.4+."
+
+msgid "Database tables"
+msgstr "Tableaux de base de données"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "Table manquante :%s. Désactivez et réactivez le plugin."
+
+msgid "Plugins"
+msgstr "Plugins"
+
+msgid "Tables are ready (schema %s)."
+msgstr "Les tables sont prêtes (schéma%s)."
+
+msgid "File folder"
+msgstr "Dossier de fichiers"
+
+msgid "wp-content/uploads/flx-tasks is missing or not writable. Files and images cannot be uploaded; check folder permissions (755)."
+msgstr "wp-content/uploads/flx-tasks est manquant ou n'est pas accessible en écriture. Les fichiers et les images ne peuvent pas être téléchargés ; vérifiez les autorisations du dossier (755)."
+
+msgid "The folder is writable but the protection file (.htaccess) is missing; files can be opened by direct URL. Reactivate the plugin."
+msgstr "Le dossier est accessible en écriture mais le fichier de protection (.htaccess) est manquant ; les fichiers peuvent être ouverts par URL directe. Réactivez le plugin."
+
+msgid "Writable and closed to direct access."
+msgstr "Inscriptible et fermé pour accès direct."
+
+msgid "Upload limit"
+msgstr "Limite de téléchargement"
+
+msgid "Effective limit %1$s (server limit %2$s)."
+msgstr "Limite effective%1$s(limite serveur%2$s)."
+
+msgid "The setting is larger than the server limit; upload_max_filesize and post_max_size can be raised in the hosting panel."
+msgstr "Le paramètre est supérieur à la limite du serveur ; upload_max_filesize et post_max_size peuvent être générés dans le panneau d'hébergement."
+
+msgid "Scheduled jobs"
+msgstr "Travaux planifiés"
+
+msgid "Daily task reminders"
+msgstr "Rappels de tâches quotidiennes"
+
+msgid "Not scheduled: overdue/upcoming task notifications and old temporary file cleanup will not run. Opening the Tasks page once reschedules it."
+msgstr "Non planifié : les notifications de tâches en retard/à venir et le nettoyage des anciens fichiers temporaires ne seront pas exécutés. L'ouverture de la page Tâches la replanifie une fois."
+
+msgid "The scheduled job is late (due %s). WP-Cron may not be triggering (if the site gets few visits, a real cron in the hosting panel is recommended)."
+msgstr "La tâche planifiée est en retard (due à%s). WP-Cron peut ne pas se déclencher (si le site reçoit peu de visites, un vrai cron dans le panneau d'hébergement est recommandé)."
+
+msgid "Next run: %s."
+msgstr "Exécution suivante :%s."
+
+msgid "WP-Cron mode"
+msgstr "Mode WP-Cron"
+
+msgid "DISABLE_WP_CRON is on: scheduled jobs only run if a server cron calls wp-cron.php. This cron must be set up in the hosting panel."
+msgstr "DISABLE_WP_CRON est activé : les tâches planifiées ne s'exécutent que si un cron du serveur appelle wp-cron.php. Ce cron doit être configuré dans le panneau d'hébergement."
+
+msgid "Live updates"
+msgstr "Mises à jour en direct"
+
+msgid "Update interval"
+msgstr "Intervalle de mise à jour"
+
+msgid "10 s while on screen, %d s after 2 min idle; background tabs send no requests."
+msgstr "10 s à l'écran,%ds après 2 min d'inactivité ; les onglets d'arrière-plan n'envoient aucune demande."
+
+msgid "API cache"
+msgstr "Cache API"
+
+msgid "LiteSpeed Cache is active; task API responses are marked so they are not cached."
+msgstr "Le cache LiteSpeed est actif ; Les réponses de l'API de tâche sont marquées afin qu'elles ne soient pas mises en cache."
+
+msgid "Task API responses are not cached."
+msgstr "Les réponses de l'API de tâches ne sont pas mises en cache."
+
+msgid "Notifications"
+msgstr "Notifications"
+
+msgid "Email notifications"
+msgstr "Notifications par courrier électronique"
+
+msgid "On. Emails are sent with WordPress's mail setup (an SMTP plugin is recommended)."
+msgstr "Allumé. Les e-mails sont envoyés avec la configuration de messagerie de WordPress (un plugin SMTP est recommandé)."
+
+msgid "Off; notifications are in-app only."
+msgstr "Désactivé ; les notifications sont uniquement dans l'application."
+
+msgid "AI and MCP"
+msgstr "IA et MCP"
+
+msgid "AI"
+msgstr "IA"
+
+msgid "Via Flux AI, model: %s."
+msgstr "Via Flux AI, modèle :%s."
+
+msgid "Flux AI"
+msgstr "Flux IA"
+
+msgid "MCP server"
+msgstr "Serveur MCP"
+
+msgid "On, %d personal key(s)."
+msgstr "Allumé,%dclé(s) personnelle(s)."
+
+msgid "Off."
+msgstr "Éteint."
+
+msgid "Untitled document"
+msgstr "Document sans titre"
+
+msgid "List task projects"
+msgstr "Répertorier les projets de tâches"
+
+msgid "List task people"
+msgstr "Répertorier les personnes chargées de la tâche"
+
+msgid "Search tasks"
+msgstr "Tâches de recherche"
+
+msgid "Read task"
+msgstr "Lire la tâche"
+
+msgid "Create task"
+msgstr "Créer une tâche"
+
+msgid "Update task"
+msgstr "Tâche de mise à jour"
+
+msgid "Comment on task"
+msgstr "Commentaire sur la tâche"
+
+msgid "List task fields"
+msgstr "Répertorier les champs de tâches"
+
+msgid "Create task list"
+msgstr "Créer une liste de tâches"
+
+msgid "Delete task"
+msgstr "Supprimer la tâche"
+
+msgid "List task notifications"
+msgstr "Répertorier les notifications de tâches"
+
+msgid "List documents"
+msgstr "Liste des documents"
+
+msgid "Read document page"
+msgstr "Lire la page du document"
+
+msgid "Edit document page"
+msgstr "Modifier la page du document"
+
+msgid "Create document"
+msgstr "Créer un document"
+
+msgid "Add page to document"
+msgstr "Ajouter une page au document"
+
+msgid "Document: %s"
+msgstr "Document :%s"
+
+msgid "Improve"
+msgstr "Améliorer"
+
+msgid "Fix spelling & grammar"
+msgstr "Corriger l'orthographe et la grammaire"
+
+msgid "Shorten"
+msgstr "Raccourcir"
+
+msgid "Make longer"
+msgstr "Rallonger"
+
+msgid "Simplify"
+msgstr "Simplifier"
+
+msgid "More formal"
+msgstr "Plus formel"
+
+msgid "More friendly"
+msgstr "Plus convivial"
+
+msgid "Turn into bullets"
+msgstr "Transformez-vous en balles"
+
+msgid "Turn into table"
+msgstr "Se transforme en table"
+
+msgid "Translate"
+msgstr "Traduire"
+
+msgid "Explain"
+msgstr "Expliquez"
+
+msgid "Custom request"
+msgstr "Demande personnalisée"
+
+msgid "Write"
+msgstr "Écrire"
+
+msgid "Continue writing"
+msgstr "Continuer à écrire"
+
+msgid "Summarize"
+msgstr "Résumer"
+
+msgid "Extract action items"
+msgstr "Extraire les éléments d'action"
+
+msgid "Draft an outline"
+msgstr "Rédiger un aperçu"
+
+msgid "Suggest a title"
+msgstr "Proposer un titre"
+
+msgid "Ask the page"
+msgstr "Demandez la page"
+
+msgid "Page not found or you have no access."
+msgstr "Page introuvable ou vous n'y avez pas accès."
+
+msgid "Unknown action."
+msgstr "Action inconnue."
+
+msgid "Write what should be done."
+msgstr "Écrivez ce qui doit être fait."
+
+msgid "The AI could not extract items. Try again or describe what you need."
+msgstr "L'IA n'a pas pu extraire les éléments. Réessayez ou décrivez ce dont vous avez besoin."
+
+msgid "The AI returned an empty answer. Try again."
+msgstr "L’IA a renvoyé une réponse vide. Essayer à nouveau."
+
+msgid "You are not allowed to create documents in this project."
+msgstr "Vous n'êtes pas autorisé à créer des documents dans ce projet."
+
+msgid "Document not found or you have no access."
+msgstr "Document introuvable ou vous n'y avez pas accès."
+
+msgid "You are not allowed to edit this document."
+msgstr "Vous n'êtes pas autorisé à modifier ce document."
+
+msgid "Only the owner or a project admin can delete the document."
+msgstr "Seul le propriétaire ou un administrateur du projet peut supprimer le document."
+
+msgid "A page cannot be moved under its own subpage."
+msgstr "Une page ne peut pas être déplacée sous sa propre sous-page."
+
+msgid "The last page of a document cannot be deleted. You can delete the document instead."
+msgstr "La dernière page d'un document ne peut pas être supprimée. Vous pouvez supprimer le document à la place."
+
+msgid "An email draft needs Flux Communication and mailbox permission."
+msgstr "Un brouillon d’e-mail nécessite l’autorisation de Flux Communication et de la boîte aux lettres."
+
+msgid "File is too large. The maximum upload size is %s."
+msgstr "Le fichier est trop volumineux. La taille maximale de téléchargement est%s."
+
+msgid "Could not upload the file."
+msgstr "Impossible de télécharger le fichier."
+
+msgid "This file type is not allowed."
+msgstr "Ce type de fichier n'est pas autorisé."
+
+msgid "Could not save the file."
+msgstr "Impossible d'enregistrer le fichier."
+
+msgid "Urgent"
+msgstr "Urgent"
+
+msgid "High"
+msgstr "Élevé"
+
+msgid "Normal"
+msgstr "Normale"
+
+msgid "Low"
+msgstr "Faible"
+
+msgid "To do"
+msgstr "Faire"
+
+msgid "In progress"
+msgstr "En cours"
+
+msgid "In review"
+msgstr "En revue"
+
+msgid "Done"
+msgstr "Terminé"
+
+msgid "Short text"
+msgstr "Texte court"
+
+msgid "Long text"
+msgstr "Texte long"
+
+msgid "Number"
+msgstr "Numéro"
+
+msgid "Amount"
+msgstr "Montant"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Checkbox"
+msgstr "Case à cocher"
+
+msgid "Dropdown"
+msgstr "Liste déroulante"
+
+msgid "Tags (multi-select)"
+msgstr "Balises (sélection multiple)"
+
+msgid "Star rating"
+msgstr "Nombre d'étoiles"
+
+msgid "Person"
+msgstr "Personne"
+
+msgid "File"
+msgstr "Fichier"
+
+msgid "Web address"
+msgstr "Adresse Internet"
+
+msgid "Email"
+msgstr "Courriel"
+
+msgid "Phone"
+msgstr "Téléphone"
+
+msgid "Welcome to Flux Tasks: open this task and write a comment"
+msgstr "Bienvenue dans Flux Tasks : ouvrez cette tâche et écrivez un commentaire"
+
+msgid "Track tasks in list, board and calendar views. Add new lists or folders from the left menu, and set up custom fields and permissions in list settings."
+msgstr "Suivez les tâches dans des vues de liste, de tableau et de calendrier. Ajoutez de nouvelles listes ou dossiers à partir du menu de gauche et configurez des champs personnalisés et des autorisations dans les paramètres de liste."
+
+msgid "MCP is off. Turn it on under Flux Tasks › Settings."
+msgstr "MCP est éteint. Activez-le sous Flux Tasks > Paramètres."
+
+msgid "Invalid or missing MCP key."
+msgstr "Clé MCP invalide ou manquante."
+
+msgid "This user is not allowed to use Flux Tasks."
+msgstr "Cet utilisateur n'est pas autorisé à utiliser les tâches Flux."
+
+msgid "%s assigned you to a task"
+msgstr "%svous a assigné une tâche"
+
+msgid "%s mentioned you in a comment"
+msgstr "%svous a mentionné dans un commentaire"
+
+msgid "%s wrote a comment"
+msgstr "%sa écrit un commentaire"
+
+msgid "%1$s changed the status to \"%2$s\""
+msgstr "%1$sa changé le statut en \"%2$s\""
+
+msgid "Due tomorrow"
+msgstr "À rendre demain"
+
+msgid "Overdue"
+msgstr "En retard"
+
+msgid "[%1$s] %2$s"
+msgstr "[ %1$s ] %2$s"
+
+msgid "You can turn off email notifications under Flux Tasks › Profile."
+msgstr "Vous pouvez désactiver les notifications par e-mail sous Tâches Flux > Profil."
+
+msgid "Recipient name"
+msgstr "Nom du destinataire"
+
+msgid "Person who acted"
+msgstr "Personne qui a agi"
+
+msgid "Task name"
+msgstr "Nom de la tâche"
+
+msgid "List"
+msgstr "Liste"
+
+msgid "Notification sentence"
+msgstr "Phrase de notification"
+
+msgid "Comment excerpt"
+msgstr "Extrait du commentaire"
+
+msgid "Due date"
+msgstr "Date d'échéance"
+
+msgid "Task link"
+msgstr "Lien de tâche"
+
+msgid "Booth supplies list"
+msgstr "Liste des fournitures pour le stand"
+
+msgid "Mehmet assigned you to a task"
+msgstr "Mehmet vous a assigné une tâche"
+
+msgid "Can you look at it by Friday?"
+msgstr "Pouvez-vous le regarder d'ici vendredi ?"
+
+msgid "You were assigned to a task"
+msgstr "Vous avez été affecté à une tâche"
+
+msgid "Sent when someone assigns you to a task."
+msgstr "Envoyé lorsque quelqu'un vous assigne une tâche."
+
+msgid "{kisi} assigned you to a task: {gorev}"
+msgstr "{kisi}vous a assigné une tâche :{gorev}"
+
+msgid "New task: {gorev}"
+msgstr "Nouvelle tâche :{gorev}"
+
+msgid "Hi {ad},"
+msgstr "Bonjour{ad},"
+
+msgid "{kisi} assigned you to <strong>{gorev}</strong> in the <strong>{liste}</strong> list."
+msgstr "{kisi}vous a attribué<strong>{gorev}</strong>dans la liste<strong>{liste}</strong>."
+
+msgid "Open task"
+msgstr "Tâche ouverte"
+
+msgid "You were mentioned in a comment"
+msgstr "Vous avez été mentionné dans un commentaire"
+
+msgid "Sent when someone @mentions you in a comment."
+msgstr "Envoyé lorsque quelqu'un vous @mentionne dans un commentaire."
+
+msgid "{kisi} mentioned you in a comment: {gorev}"
+msgstr "{kisi}vous a mentionné dans un commentaire :{gorev}"
+
+msgid "{kisi} mentioned you"
+msgstr "{kisi}vous a mentionné"
+
+msgid "Comment on <strong>{gorev}</strong>:"
+msgstr "Commenter<strong>{gorev}</strong>:"
+
+msgid "Go to comment"
+msgstr "Aller au commentaire"
+
+msgid "Task due date is coming up"
+msgstr "La date d'échéance de la tâche approche"
+
+msgid "Sent one day before the due date of a task assigned to you."
+msgstr "Envoyé un jour avant la date d'échéance d'une tâche qui vous est assignée."
+
+msgid "Due tomorrow: {gorev}"
+msgstr "À rendre demain :{gorev}"
+
+msgid "<strong>{gorev}</strong> is due on {tarih}."
+msgstr "<strong>{gorev}</strong>est dû le{tarih}."
+
+msgid "Can view"
+msgstr "Peut voir"
+
+msgid "Can comment"
+msgstr "Peut commenter"
+
+msgid "Can edit"
+msgstr "Peut modifier"
+
+msgid "Can manage"
+msgstr "Peut gérer"
+
+msgid "Display preferences are too large."
+msgstr "Les préférences d'affichage sont trop grandes."
+
+msgid "You don't have permission to create projects."
+msgstr "Vous n'êtes pas autorisé à créer des projets."
+
+msgid "Name cannot be empty."
+msgstr "Le nom ne peut pas être vide."
+
+msgid "Project not found."
+msgstr "Projet introuvable."
+
+msgid "You don't have permission to manage this project."
+msgstr "Vous n'êtes pas autorisé à gérer ce projet."
+
+msgid "You don't have permission to create folders in this project."
+msgstr "Vous n'êtes pas autorisé à créer des dossiers dans ce projet."
+
+msgid "You don't have permission to edit this folder."
+msgstr "Vous n'êtes pas autorisé à modifier ce dossier."
+
+msgid "You don't have permission to delete this folder."
+msgstr "Vous n'êtes pas autorisé à supprimer ce dossier."
+
+msgid "You don't have permission to create lists in this project."
+msgstr "Vous n'êtes pas autorisé à créer des listes dans ce projet."
+
+msgid "You don't have permission to manage this list."
+msgstr "Vous n'êtes pas autorisé à gérer cette liste."
+
+msgid "You don't have access to the target project."
+msgstr "Vous n'avez pas accès au projet cible."
+
+msgid "You must be a list manager to add fields."
+msgstr "Vous devez être un gestionnaire de liste pour ajouter des champs."
+
+msgid "You must be a list manager to edit fields."
+msgstr "Vous devez être un gestionnaire de liste pour modifier les champs."
+
+msgid "You must be a list manager to delete fields."
+msgstr "Vous devez être un gestionnaire de liste pour supprimer des champs."
+
+msgid "You don't have access."
+msgstr "Vous n'y avez pas accès."
+
+msgid "New view"
+msgstr "Nouvelle vue"
+
+msgid "You don't have permission to change this view."
+msgstr "Vous n'êtes pas autorisé à modifier cette vue."
+
+msgid "You don't have permission to delete this view."
+msgstr "Vous n'êtes pas autorisé à supprimer cette vue."
+
+msgid "Project managers edit tags."
+msgstr "Les chefs de projet modifient les balises."
+
+msgid "You don't have permission to delete this task."
+msgstr "Vous n'êtes pas autorisé à supprimer cette tâche."
+
+msgid "You can only edit your own comments."
+msgstr "Vous ne pouvez modifier que vos propres commentaires."
+
+msgid "Comment cannot be empty."
+msgstr "Le commentaire ne peut pas être vide."
+
+msgid "You don't have permission to delete this comment."
+msgstr "Vous n'êtes pas autorisé à supprimer ce commentaire."
+
+msgid "You are not allowed to add files to this document."
+msgstr "Vous n'êtes pas autorisé à ajouter des fichiers à ce document."
+
+msgid "You don't have permission to attach files to this task."
+msgstr "Vous n'êtes pas autorisé à joindre des fichiers à cette tâche."
+
+msgid "File not found."
+msgstr "Fichier introuvable."
+
+msgid "You don't have permission to delete this file."
+msgstr "Vous n'êtes pas autorisé à supprimer ce fichier."
+
+msgid "You don't have permission to delete this key."
+msgstr "Vous n'êtes pas autorisé à supprimer cette clé."
+
+msgid "Planned"
+msgstr "Prévu"
+
+msgid "Held"
+msgstr "Tenu"
+
+msgid "Cancelled"
+msgstr "Annulé"
+
+msgid "Board"
+msgstr "Conseil"
+
+msgid "Calendar"
+msgstr "Calendrier"
+
+msgid "Parent task not found."
+msgstr "Tâche parent introuvable."
+
+msgid "A task cannot be moved under its own subtask."
+msgstr "Une tâche ne peut pas être déplacée sous sa propre sous-tâche."
+
+msgid "Subtasks can be nested at most %d levels in this project. You can change the limit in project settings."
+msgstr "Les sous-tâches peuvent être imbriquées à la plupart des niveaux%ddans ce projet. Vous pouvez modifier la limite dans les paramètres du projet."
+
+msgid "Task name cannot be empty."
+msgstr "Le nom de la tâche ne peut pas être vide."
+
+msgid "List not found."
+msgstr "Liste introuvable."
+
+msgid "Task not found."
+msgstr "Tâche introuvable."
+
+msgid "Choose an image for the cover."
+msgstr "Choisissez une image pour la couverture."
+
+msgid "Today"
+msgstr "Aujourd'hui"
+
+msgid "Tomorrow"
+msgstr "Demain"
+
+msgid "Yesterday"
+msgstr "Hier"
+
+msgid "just now"
+msgstr "juste maintenant"
+
+msgid "The server sent an unexpected response. Refresh the page and try again."
+msgstr "Le serveur a envoyé une réponse inattendue. Actualisez la page et réessayez."
+
+msgid "The server is busy right now, try again shortly."
+msgstr "Le serveur est actuellement occupé, réessayez sous peu."
+
+msgid "Connection error"
+msgstr "Erreur de connexion"
+
+msgid "Deleting comment"
+msgstr "Suppression du commentaire"
+
+msgid "Sending comment"
+msgstr "Envoi du commentaire"
+
+msgid "Deleting file"
+msgstr "Suppression du fichier"
+
+msgid "Saving file"
+msgstr "Enregistrement du fichier"
+
+msgid "Deleting task"
+msgstr "Supprimer une tâche"
+
+msgid "Saving task"
+msgstr "Sauvegarde de la tâche"
+
+msgid "AI is working"
+msgstr "L'IA fonctionne"
+
+msgid "Saving"
+msgstr "Économiser"
+
+msgid "Loading"
+msgstr "Chargement"
+
+msgid "{n} failed"
+msgstr "Échec de{n}"
+
+msgid "{n} in progress"
+msgstr "{n}en cours"
+
+msgid "server busy, waiting"
+msgstr "serveur occupé, en attente"
+
+msgid "Saved"
+msgstr "Enregistré"
+
+msgid "Background tasks"
+msgstr "Tâches en arrière-plan"
+
+msgid "Server busy, waiting"
+msgstr "Serveur occupé, en attente"
+
+msgid "Retry"
+msgstr "Réessayer"
+
+msgid "Close"
+msgstr "Fermer"
+
+msgid "Uploading: {n}"
+msgstr "Téléchargement :{n}"
+
+msgid "Upload timed out."
+msgstr "Le délai de téléchargement a expiré."
+
+msgid "Cancel"
+msgstr "Annuler"
+
+msgid "OK"
+msgstr "D'accord"
+
+msgid "Save"
+msgstr "Enregistrer"
+
+msgid "Copied"
+msgstr "Copié"
+
+msgid "Download"
+msgstr "Télécharger"
+
+msgid "Someone"
+msgstr "Quelqu'un"
+
+msgid "Document name"
+msgstr "Nom du document"
+
+msgid "Create"
+msgstr "Créer"
+
+msgid "Delete document"
+msgstr "Supprimer le document"
+
+msgid "\"{n}\" will be permanently deleted with all its pages and images."
+msgstr "\"{n}\" sera définitivement supprimé avec toutes ses pages et images."
+
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "Rename"
+msgstr "Renommer"
+
+msgid "Copy link"
+msgstr "Copier le lien"
+
+msgid "Pop-up blocked. Allow pop-ups for this site in your browser."
+msgstr "Pop-up bloqué. Autorisez les pop-ups pour ce site dans votre navigateur."
+
+msgid "My tasks"
+msgstr "Mes tâches"
+
+msgid "Email draft created."
+msgstr "Brouillon d'e-mail créé."
+
+msgid "Open in mailbox"
+msgstr "Ouvrir dans la boîte aux lettres"
+
+msgid "Pages"
+msgstr "Pages"
+
+msgid "Other"
+msgstr "Autre"
+
+msgid "Rename document"
+msgstr "Renommer le document"
+
+msgid "Add subpage"
+msgstr "Ajouter une sous-page"
+
+msgid "Print / PDF"
+msgstr "Imprimer / PDF"
+
+msgid "Create email draft"
+msgstr "Créer un brouillon d'e-mail"
+
+msgid "Create an email draft from this page"
+msgstr "Créer un brouillon d'e-mail à partir de cette page"
+
+msgid "Email draft"
+msgstr "Brouillon d'e-mail"
+
+msgid "AI (Ctrl+J)"
+msgstr "IA (Ctrl+J)"
+
+msgid "Untitled"
+msgstr "Sans titre"
+
+msgid "Start writing… type \"/\" for blocks, \"#\" to link a task"
+msgstr "Commencez à écrire... tapez \"/\" pour les blocs, \"#\" pour lier une tâche"
+
+msgid "Open as full page"
+msgstr "Ouvrir en pleine page"
+
+msgid "Full page"
+msgstr "Pleine page"
+
+msgid "Saving…"
+msgstr "Sauvegarde..."
+
+msgid "Not saved, will retry"
+msgstr "Non enregistré, je vais réessayer"
+
+msgid "Offline"
+msgstr "Hors ligne"
+
+msgid "Add page"
+msgstr "Ajouter une page"
+
+msgid "Collapse"
+msgstr "Réduire"
+
+msgid "Page menu"
+msgstr "Menu des pages"
+
+msgid "Page name"
+msgstr "Nom de la page"
+
+msgid "Move under the page above"
+msgstr "Se déplacer sous la page ci-dessus"
+
+msgid "Move up a level"
+msgstr "Monter d'un niveau"
+
+msgid "Delete page"
+msgstr "Supprimer la page"
+
+msgid "\"{p}\" and its {n} subpages will be deleted."
+msgstr "\"{p}\" et ses sous-pages{n}seront supprimées."
+
+msgid "\"{p}\" will be deleted."
+msgstr "\"{p}\" sera supprimé."
+
+msgid "Last edited by {n}, {t}"
+msgstr "Dernière modification par{n},{t}"
+
+msgid "typing"
+msgstr "taper"
+
+msgid "Edit"
+msgstr "Modifier"
+
+msgid "Remove link"
+msgstr "Supprimer le lien"
+
+msgid "Small"
+msgstr "Petit"
+
+msgid "Medium"
+msgstr "Moyen"
+
+msgid "Full width"
+msgstr "Pleine largeur"
+
+msgid "Enlarge"
+msgstr "Agrandir"
+
+msgid "Remove image"
+msgstr "Supprimer l'image"
+
+msgid "Link address"
+msgstr "Adresse du lien"
+
+msgid "Add"
+msgstr "Ajouter"
+
+msgid "Search tasks…"
+msgstr "Rechercher des tâches..."
+
+msgid "No results"
+msgstr "Aucun résultat"
+
+msgid "Type to search"
+msgstr "Tapez pour rechercher"
+
+msgid "Basic blocks"
+msgstr "Blocs de base"
+
+msgid "Media & links"
+msgstr "Médias et liens"
+
+msgid "Item"
+msgstr "Article"
+
+msgid "Text"
+msgstr "Texte"
+
+msgid "Plain paragraph"
+msgstr "Paragraphe simple"
+
+msgid "Page"
+msgstr "Pages"
+
+msgid "A sub-page inside this page"
+msgstr "Une sous-page à l'intérieur de cette page"
+
+msgid "Sub-page"
+msgstr "Sous-page"
+
+msgid "Heading 1"
+msgstr "Titre 1"
+
+msgid "Large section heading"
+msgstr "Titre de grande section"
+
+msgid "Heading"
+msgstr "Rubrique"
+
+msgid "Heading 2"
+msgstr "Titre 2"
+
+msgid "Medium section heading"
+msgstr "Titre de la section moyenne"
+
+msgid "Heading 3"
+msgstr "Titre 3"
+
+msgid "Small section heading"
+msgstr "Titre de petite section"
+
+msgid "Bulleted list"
+msgstr "Liste à puces"
+
+msgid "Simple bulleted list"
+msgstr "Liste à puces simple"
+
+msgid "Numbered list"
+msgstr "Liste numérotée"
+
+msgid "Checklist"
+msgstr "Liste de contrôle"
+
+msgid "Checkable to-dos"
+msgstr "Tâches vérifiables"
+
+msgid "Quote"
+msgstr "Citation"
+
+msgid "Quote or note"
+msgstr "Citation ou note"
+
+msgid "Code"
+msgstr "Coder"
+
+msgid "Code block"
+msgstr "Bloc de code"
+
+msgid "Table"
+msgstr "Tableau"
+
+msgid "3×3 table"
+msgstr "tableau 3×3"
+
+msgid "Divider"
+msgstr "Diviseur"
+
+msgid "Separates sections"
+msgstr "Sépare les sections"
+
+msgid "Images"
+msgstr "Images"
+
+msgid "Upload an image"
+msgstr "Télécharger une image"
+
+msgid "Add file"
+msgstr "Ajouter un fichier"
+
+msgid "Link a task (#)"
+msgstr "Lier une tâche (#)"
+
+msgid "Link"
+msgstr "Lien"
+
+msgid "Add a web link"
+msgstr "Ajouter un lien Web"
+
+msgid "Write with AI"
+msgstr "Écrire avec l'IA"
+
+msgid "Have it write anything"
+msgstr "Demandez-lui d'écrire n'importe quoi"
+
+msgid "Continues the page"
+msgstr "Continue la page"
+
+msgid "Summary of the page"
+msgstr "Résumé de la page"
+
+msgid "Turn items into tasks"
+msgstr "Transformez les éléments en tâches"
+
+msgid "Close menu"
+msgstr "Fermer le menu"
+
+msgid "Gray"
+msgstr "Gris"
+
+msgid "Brown"
+msgstr "Marron"
+
+msgid "Orange"
+msgstr "Orange"
+
+msgid "Yellow"
+msgstr "Jaune"
+
+msgid "Green"
+msgstr "Vert"
+
+msgid "Blue"
+msgstr "Bleu"
+
+msgid "Purple"
+msgstr "Violet"
+
+msgid "Pink"
+msgstr "Rose"
+
+msgid "Red"
+msgstr "Rouge"
+
+msgid "Default"
+msgstr "Par défaut"
+
+msgid "Column: click for menu, drag to move"
+msgstr "Colonne : cliquez pour le menu, faites glisser pour déplacer"
+
+msgid "Row: click for menu, drag to move"
+msgstr "Ligne : cliquez pour le menu, faites glisser pour déplacer"
+
+msgid "Insert row above"
+msgstr "Insérer la ligne ci-dessus"
+
+msgid "Add column left"
+msgstr "Ajouter une colonne à gauche"
+
+msgid "Insert row below"
+msgstr "Insérer une ligne ci-dessous"
+
+msgid "Add column right"
+msgstr "Ajouter une colonne à droite"
+
+msgid "Move up"
+msgstr "Monter"
+
+msgid "Move left"
+msgstr "Déplacer vers la gauche"
+
+msgid "Move down"
+msgstr "Descendre"
+
+msgid "Move right"
+msgstr "Déplacer à droite"
+
+msgid "Background"
+msgstr "Contexte"
+
+msgid "Text color"
+msgstr "Couleur du texte"
+
+msgid "Delete row"
+msgstr "Supprimer la ligne"
+
+msgid "Delete column"
+msgstr "Supprimer la colonne"
+
+msgid "Delete table"
+msgstr "Supprimer le tableau"
+
+msgid "Click to add a block below. Alt-click to add above"
+msgstr "Cliquez pour ajouter un bloc ci-dessous. Alt-cliquez pour ajouter ci-dessus"
+
+msgid "Drag to move. Click for menu"
+msgstr "Faites glisser pour vous déplacer. Cliquez pour le menu"
+
+msgid "Turn into"
+msgstr "Transformez-vous en"
+
+msgid "Edit with AI"
+msgstr "Modifier avec l'IA"
+
+msgid "Duplicate"
+msgstr "Dupliquer"
+
+msgid "Add row below"
+msgstr "Ajouter une ligne ci-dessous"
+
+msgid "Add row above"
+msgstr "Ajouter une ligne ci-dessus"
+
+msgid "Undo"
+msgstr "Annuler"
+
+msgid "Redo"
+msgstr "Refaire"
+
+msgid "Bold"
+msgstr "Audacieux"
+
+msgid "Italic"
+msgstr "Italique"
+
+msgid "Underline"
+msgstr "Souligner"
+
+msgid "Strikethrough"
+msgstr "Barré"
+
+msgid "Link (Ctrl+K)"
+msgstr "Lien (Ctrl+K)"
+
+msgid "Alignment"
+msgstr "Alignement"
+
+msgid "Left"
+msgstr "Gauche"
+
+msgid "Center"
+msgstr "Centre"
+
+msgid "Right"
+msgstr "À droite"
+
+msgid "Add image"
+msgstr "Ajouter une image"
+
+msgid "Add table"
+msgstr "Ajouter un tableau"
+
+msgid "Task link (#)"
+msgstr "Lien de tâche (#)"
+
+msgid "Translate to English"
+msgstr "Traduire en anglais"
+
+msgid "Translate to Turkish"
+msgstr "Traduire en Turc"
+
+msgid "Turn into heading"
+msgstr "Tourner en titre"
+
+msgid "Selected text"
+msgstr "Texte sélectionné"
+
+msgid "This page"
+msgstr "Cette page"
+
+msgid "Describe the change… (e.g. make it shorter)"
+msgstr "Décrivez le changement... (par exemple, raccourcissez-le)"
+
+msgid "What should be done with the selection?"
+msgstr "Que faire de la sélection ?"
+
+msgid "What should be written? E.g. a meeting agenda draft"
+msgstr "Que faut-il écrire ? Par ex. un projet d'ordre du jour de réunion"
+
+msgid "Ask a question about this page"
+msgstr "Poser une question sur cette page"
+
+msgid "Ask the page (the answer is not written into it)"
+msgstr "Demandez à la page (la réponse n'y est pas écrite)"
+
+msgid "Ask"
+msgstr "Demander"
+
+msgid "Send"
+msgstr "Envoyer"
+
+msgid "Chat with the assistant"
+msgstr "Discutez avec l'assistant"
+
+msgid "AI is writing…"
+msgstr "L’IA écrit..."
+
+msgid "Replace"
+msgstr "Remplacer"
+
+msgid "Insert below"
+msgstr "Insérer ci-dessous"
+
+msgid "Use as title"
+msgstr "Utiliser comme titre"
+
+msgid "Page title changed."
+msgstr "Le titre de la page a changé."
+
+msgid "Insert below cursor"
+msgstr "Insérer sous le curseur"
+
+msgid "Append"
+msgstr "Ajouter"
+
+msgid "Insert at top"
+msgstr "Insérer en haut"
+
+msgid "Add as new page"
+msgstr "Ajouter comme nouvelle page"
+
+msgid "Add to page"
+msgstr "Ajouter à la page"
+
+msgid "Copy"
+msgstr "Copier"
+
+msgid "Regenerate"
+msgstr "Régénérer"
+
+msgid "Back"
+msgstr "Retour"
+
+msgid "Select"
+msgstr "Sélectionnez"
+
+msgid "Due"
+msgstr "Due"
+
+msgid "Add item"
+msgstr "Ajouter un article"
+
+msgid "Add as tasks ({n})"
+msgstr "Ajouter en tant que tâches ({n})"
+
+msgid "{n} tasks added to \"{l}\"."
+msgstr "Tâches{n}ajoutées à \"{l}\"."
+
+msgid "Open list"
+msgstr "Ouvrir la liste"
+
+msgid "There is no list you can add tasks to."
+msgstr "Il n'y a pas de liste à laquelle vous pouvez ajouter des tâches."
+
+msgid "To-dos"
+msgstr "À faire"
+
+msgid "New page created."
+msgstr "Nouvelle page créée."
+
+msgid "The selection changed meanwhile; the result was inserted below."
+msgstr "La sélection a changé entre-temps ; le résultat a été inséré ci-dessous."
+
+msgid "Replaced."
+msgstr "Remplacé."
+
+msgid "Added to the page."
+msgstr "Ajouté à la page."
+
+msgid "Drag to resize, double-click to reset"
+msgstr "Faites glisser pour redimensionner, double-cliquez pour réinitialiser"
+
+msgid "Hide sidebar"
+msgstr "Masquer la barre latérale"
+
+msgid "AI assistant"
+msgstr "Assistant IA"
+
+msgid "Projects"
+msgstr "Projets"
+
+msgid "New project"
+msgstr "Nouveau projet"
+
+msgid "Project menu"
+msgstr "Menu Projet"
+
+msgid "Empty folder"
+msgstr "Dossier vide"
+
+msgid "You have no visible projects."
+msgstr "Vous n'avez aucun projet visible."
+
+msgid "Theme"
+msgstr "Thème"
+
+msgid "System"
+msgstr "Système"
+
+msgid "Light"
+msgstr "Lumière"
+
+msgid "Dark"
+msgstr "Sombre"
+
+msgid "Back to WordPress admin"
+msgstr "Retour à l'administrateur WordPress"
+
+msgid "List menu"
+msgstr "Menu liste"
+
+msgid "Moves within the same project; statuses, fields and tags stay the same."
+msgstr "Se déplace au sein du même projet; les statuts, les champs et les balises restent les mêmes."
+
+msgid "Keep the list's own statuses"
+msgstr "Conserver les propres statuts de la liste"
+
+msgid "Use the statuses of \"{n}\""
+msgstr "Utiliser les statuts de \"{n}\""
+
+msgid "Statuses"
+msgstr "Statuts"
+
+msgid "Pick a match for each status; tasks move to that status."
+msgstr "Choisissez une correspondance pour chaque statut ; les tâches passent à ce statut."
+
+msgid "Statuses and custom fields move with the list; tasks keep their status."
+msgstr "Les statuts et les champs personnalisés se déplacent avec la liste ; les tâches conservent leur statut."
+
+msgid "Tags"
+msgstr "Balises"
+
+msgid "{n} tags are linked by name in the target project: {e} already exist, {c} will be created."
+msgstr "Les balises{n}sont liées par leur nom dans le projet cible :{e}existe déjà,{c}sera créé."
+
+msgid "People who will lose access"
+msgstr "Personnes qui perdront l'accès"
+
+msgid "These people are not members of the target project; checked ones are added as members."
+msgstr "Ces personnes ne sont pas membres du projet cible ; ceux cochés sont ajoutés en tant que membres."
+
+msgid "Target project or folder"
+msgstr "Projet ou dossier cible"
+
+msgid "Move \"{n}\""
+msgstr "Déplacer \"{n}\""
+
+msgid "Move"
+msgstr "Déplacer"
+
+msgid "Moving list"
+msgstr "Liste de déménagement"
+
+msgid "\"{n}\" moved."
+msgstr "\"{n}\" déplacé."
+
+msgid "Document menu"
+msgstr "Menu Documents"
+
+msgid "Task list"
+msgstr "Liste des tâches"
+
+msgid "Meeting list"
+msgstr "Liste des réunions"
+
+msgid "Document"
+msgstr "Documenter"
+
+msgid "New list"
+msgstr "Nouvelle liste"
+
+msgid "New meeting list"
+msgstr "Nouvelle liste de réunions"
+
+msgid "New document"
+msgstr "Nouveau document"
+
+msgid "New folder"
+msgstr "Nouveau dossier"
+
+msgid "Folder name"
+msgstr "Nom du dossier"
+
+msgid "Project settings and members"
+msgstr "Paramètres et membres du projet"
+
+msgid "Delete project"
+msgstr "Supprimer le projet"
+
+msgid "All lists, tasks, comments and files in the project \"{n}\" will be permanently deleted."
+msgstr "Toutes les listes, tâches, commentaires et fichiers du projet «{n}» seront définitivement supprimés."
+
+msgid "Add a list to this folder"
+msgstr "Ajouter une liste à ce dossier"
+
+msgid "Add a meeting list to this folder"
+msgstr "Ajouter une liste de réunions à ce dossier"
+
+msgid "Add a document to this folder"
+msgstr "Ajouter un document à ce dossier"
+
+msgid "Delete folder"
+msgstr "Supprimer le dossier"
+
+msgid "The folder will be deleted; its lists will move to the project root."
+msgstr "Le dossier sera supprimé ; ses listes seront déplacées vers la racine du projet."
+
+msgid "List settings"
+msgstr "Paramètres de la liste"
+
+msgid "Custom fields"
+msgstr "Champs personnalisés"
+
+msgid "Permissions"
+msgstr "Autorisations"
+
+msgid "Move…"
+msgstr "Déplacer..."
+
+msgid "Delete list"
+msgstr "Supprimer la liste"
+
+msgid "All tasks, comments and files in the list \"{n}\" will be permanently deleted."
+msgstr "Toutes les tâches, commentaires et fichiers de la liste «{n}» seront définitivement supprimés."
+
+msgid "Show sidebar"
+msgstr "Afficher la barre latérale"
+
+msgid "Menu"
+msgstr "Menus"
+
+msgid "All lists"
+msgstr "Toutes les listes"
+
+msgid "Visible to members only"
+msgstr "Visible uniquement par les membres"
+
+msgid "Private"
+msgstr "Privé"
+
+msgid "Share"
+msgstr "Partager"
+
+msgid "View menu"
+msgstr "Afficher le menu"
+
+msgid "View"
+msgstr "Voir"
+
+msgid "View name"
+msgstr "Afficher le nom"
+
+msgid "Create a copy"
+msgstr "Créer une copie"
+
+msgid "Share with everyone"
+msgstr "Partager avec tout le monde"
+
+msgid "Make private to me"
+msgstr "Rendre privé pour moi"
+
+msgid "Delete view"
+msgstr "Supprimer la vue"
+
+msgid "The view \"{n}\" will be deleted. Tasks are not affected."
+msgstr "La vue «{n}» sera supprimée. Les tâches ne sont pas affectées."
+
+msgid "{n} assigned you to a task"
+msgstr "{n}vous a assigné une tâche"
+
+msgid "{n} mentioned you in a comment"
+msgstr "{n}vous a mentionné dans un commentaire"
+
+msgid "{n} wrote a comment"
+msgstr "{n}a écrit un commentaire"
+
+msgid "{n} changed the status to \"{s}\""
+msgstr "{n}a changé le statut en \"{s}\""
+
+msgid "All"
+msgstr "Tout"
+
+msgid "Unread"
+msgstr "Non lu"
+
+msgid "Mark all as read"
+msgstr "Marquer tout comme lu"
+
+msgid "No unread notifications. 🎉"
+msgstr "Aucune notification non lue. 🎉"
+
+msgid "No notifications yet."
+msgstr "Aucune notification pour l'instant."
+
+msgid "(deleted task)"
+msgstr "(tâche supprimée)"
+
+msgid "More"
+msgstr "Plus"
+
+msgid "Refresh"
+msgstr "Actualiser"
+
+msgid "File storage"
+msgstr "Stockage de fichiers"
+
+msgid "{n} files"
+msgstr "Fichiers{n}"
+
+msgid "previews {s}"
+msgstr "aperçus{s}"
+
+msgid "Open tasks"
+msgstr "Tâches ouvertes"
+
+msgid "{n} completed"
+msgstr "{n}terminé"
+
+msgid "open tasks past their due date"
+msgstr "tâches ouvertes après leur date d'échéance"
+
+msgid "Last 30 days"
+msgstr "30 derniers jours"
+
+msgid "{n} tasks completed"
+msgstr "Tâches{n}terminées"
+
+msgid "Comments"
+msgstr "Commentaires"
+
+msgid "{n} active users (30 days)"
+msgstr "{n}utilisateurs actifs (30 jours)"
+
+msgid "Structure"
+msgstr "Structure"
+
+msgid "projects / lists · {n} users"
+msgstr "projets / listes · Utilisateurs{n}"
+
+msgid "PDF"
+msgstr "PDF"
+
+msgid "Documents"
+msgstr "Documents"
+
+msgid "Video"
+msgstr "Vidéo"
+
+msgid "Audio"
+msgstr "Audio"
+
+msgid "Archives"
+msgstr "Archives"
+
+msgid "Storage"
+msgstr "Stockage"
+
+msgid "No files uploaded yet."
+msgstr "Aucun fichier téléchargé pour l'instant."
+
+msgid "Task files (uploads/flx-tasks)"
+msgstr "Fichiers de tâches (téléchargements/tâches flx)"
+
+msgid "Unsent comment attachments (deleted after 24 hours)"
+msgstr "Pièces jointes aux commentaires non envoyées (supprimées après 24 heures)"
+
+msgid "Single file limit"
+msgstr "Limite de fichier unique"
+
+msgid "Free space on server"
+msgstr "Espace libre sur le serveur"
+
+msgid "Entire media folder (wp-content/uploads)"
+msgstr "Dossier multimédia entier (wp-content/uploads)"
+
+msgid "Calculating…"
+msgstr "Calcul..."
+
+msgid "Recalculate"
+msgstr "Recalculer"
+
+msgid "Calculate"
+msgstr "Calculer"
+
+msgid "By list"
+msgstr "Par liste"
+
+msgid "Project"
+msgstr "Projet"
+
+msgid "Task"
+msgstr "Tâche"
+
+msgid "Size"
+msgstr "Taille"
+
+msgid "Uploaded by person"
+msgstr "Téléversé par personne"
+
+msgid "No data."
+msgstr "Aucune donnée."
+
+msgid "Monthly uploads"
+msgstr "Téléchargements mensuels"
+
+msgid "Largest files"
+msgstr "Fichiers les plus volumineux"
+
+msgid "Uploader"
+msgstr "Téléchargeur"
+
+msgid "unlinked"
+msgstr "sans lien"
+
+msgid "Delete file"
+msgstr "Supprimer le fichier"
+
+msgid "Database"
+msgstr "Base de données"
+
+msgid "Rows"
+msgstr "Lignes"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "AI usage"
+msgstr "Utilisation de l'IA"
+
+msgid "Month"
+msgstr "Mois"
+
+msgid "Requests"
+msgstr "Demandes"
+
+msgid "Tokens"
+msgstr "Jetons"
+
+msgid "Cost (OpenRouter)"
+msgstr "Coût (OpenRouter)"
+
+msgid "No usage this month."
+msgstr "Aucune utilisation ce mois-ci."
+
+msgid "Warning"
+msgstr "Avertissement"
+
+msgid "Error"
+msgstr "Erreur"
+
+msgid "Info"
+msgstr "Informations"
+
+msgid "{n} problem(s)"
+msgstr "Problème(s){n}"
+
+msgid "{n} warning(s)"
+msgstr "{n}avertissement(s)"
+
+msgid "Everything is in place"
+msgstr "Tout est en place"
+
+msgid "System check"
+msgstr "Vérification du système"
+
+msgid "Check again"
+msgstr "Vérifiez à nouveau"
+
+msgid "{n} item(s)"
+msgstr "{n}article(s)"
+
+msgid "Flux AI default: {m}"
+msgstr "Flux AI par défaut :{m}"
+
+msgid "Flux AI default"
+msgstr "Flux AI par défaut"
+
+msgid "Access"
+msgstr "Accès"
+
+msgid "Choose which WordPress roles can use Tasks. Administrators always see all projects."
+msgstr "Choisissez quels rôles WordPress peuvent utiliser les tâches. Les administrateurs voient toujours tous les projets."
+
+msgid "Can use Tasks"
+msgstr "Peut utiliser des tâches"
+
+msgid "Can create projects, folders and lists"
+msgstr "Peut créer des projets, des dossiers et des listes"
+
+msgid "Can use AI"
+msgstr "Peut utiliser l'IA"
+
+msgid "Notifications and updates"
+msgstr "Notifications et mises à jour"
+
+msgid "Live update interval (seconds)"
+msgstr "Intervalle de mise à jour en direct (secondes)"
+
+msgid "An open tab sends a single lightweight request at this interval; a background tab sends none. Increase it if the server is busy (default 45)."
+msgstr "Un onglet ouvert envoie une seule requête légère à cet intervalle ; un onglet d'arrière-plan n'en envoie aucun. Augmentez-le si le serveur est occupé (45 par défaut)."
+
+msgid "Emails are sent for assignments, mentions and upcoming due dates. People can turn them off in their profile."
+msgstr "Des e-mails sont envoyés pour les missions, les mentions et les dates d'échéance à venir. Les gens peuvent les désactiver dans leur profil."
+
+msgid "Files"
+msgstr "Fichiers"
+
+msgid "Single file limit (MB)"
+msgstr "Limite de fichier unique (Mo)"
+
+msgid "If the server's PHP limit is lower, that limit applies."
+msgstr "Si la limite PHP du serveur est inférieure, cette limite s'applique."
+
+msgid "Keys, spending limit and reports come from the Flux AI & MCP plugin. Leave the model empty to use the Flux AI default."
+msgstr "Les clés, les limites de dépenses et les rapports proviennent du plugin Flux AI & MCP. Laissez le modèle vide pour utiliser la valeur par défaut de Flux AI."
+
+msgid "Flux AI settings"
+msgstr "Paramètres de Flux AI"
+
+msgid "AI is off: a key or model is missing in Flux AI."
+msgstr "L'IA est désactivée : une clé ou un modèle est manquant dans Flux AI."
+
+msgid "AI is off: the Flux AI & MCP plugin is not installed. The assistant and quick actions work through Flux AI."
+msgstr "AI est désactivé : le plugin Flux AI & MCP n'est pas installé. L'assistant et les actions rapides fonctionnent via Flux AI."
+
+msgid "Model (optional)"
+msgstr "Modèle (facultatif)"
+
+msgid "Creativity (temperature)"
+msgstr "Créativité (température)"
+
+msgid "Organization notes (the assistant knows this on every request)"
+msgstr "Notes d'organisation (l'assistant le sait à chaque demande)"
+
+msgid "E.g. Association Istanbul branch. Add the \"Event\" tag to event tasks. Write dates as day.month.year."
+msgstr "Par ex. Branche de l'Association Istanbul. Ajoutez la balise « Événement » aux tâches événementielles. Écrivez les dates sous la forme jour.mois.année."
+
+msgid "This month: {c} requests, {t} tokens, ${m}"
+msgstr "Ce mois-ci : requêtes{c}, jetons{t}, ${m}"
+
+msgid "Enable MCP server"
+msgstr "Activer le serveur MCP"
+
+msgid "AI clients such as Claude and Cursor can read and write tasks. Each person generates their own key on their Profile page."
+msgstr "Les clients IA tels que Claude et Cursor peuvent lire et écrire des tâches. Chaque personne génère sa propre clé sur sa page Profil."
+
+msgid "Manage keys"
+msgstr "Gérer les clés"
+
+msgid "Data"
+msgstr "Données"
+
+msgid "Also delete all task data when the plugin is deleted"
+msgstr "Supprimez également toutes les données de tâche lorsque le plugin est supprimé"
+
+msgid "When off, deleting the plugin leaves your data untouched."
+msgstr "Lorsqu'elle est désactivée, la suppression du plugin laisse vos données intactes."
+
+msgid "Settings saved"
+msgstr "Paramètres enregistrés"
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Your profile photo and name come from your WordPress profile."
+msgstr "Votre photo de profil et votre nom proviennent de votre profil WordPress."
+
+msgid "Get emails when you are assigned, mentioned, or a due date approaches."
+msgstr "Recevez des e-mails lorsque vous êtes affecté, mentionné ou qu'une date d'échéance approche."
+
+msgid "The browser did not allow it."
+msgstr "Le navigateur ne l'a pas autorisé."
+
+msgid "Desktop notifications"
+msgstr "Notifications sur le bureau"
+
+msgid "While the Tasks tab is open, new notifications also arrive as browser notifications."
+msgstr "Lorsque l'onglet Tâches est ouvert, les nouvelles notifications arrivent également sous forme de notifications du navigateur."
+
+msgid "MCP connection"
+msgstr "Connexion MCP"
+
+msgid "The MCP server is off. An admin can turn it on from the Settings page."
+msgstr "Le serveur MCP est éteint. Un administrateur peut l'activer à partir de la page Paramètres."
+
+msgid "Add this address and your personal key to an MCP-capable client such as Claude, ChatGPT or Cursor. The assistant works only in lists you can see, with your permissions."
+msgstr "Ajoutez cette adresse et votre clé personnelle à un client compatible MCP tel que Claude, ChatGPT ou Cursor. L'assistant fonctionne uniquement dans les listes que vous pouvez voir, avec vos autorisations."
+
+msgid "Your new key (shown only now):"
+msgstr "Votre nouvelle clé (affichée uniquement maintenant) :"
+
+msgid "In the client, use \"Authorization: Bearer <key>\" as the header. If you can't add a header, append ?key=<key> to the end of the address."
+msgstr "Dans le client, utilisez « Autorisation : Bearer<key>» comme en-tête. Si vous ne pouvez pas ajouter d'en-tête, ajoutez ?key=<key>à la fin de l'adresse."
+
+msgid "Unnamed"
+msgstr "Sans nom"
+
+msgid "Last used: {d}"
+msgstr "Dernière utilisation :{d}"
+
+msgid "never"
+msgstr "jamais"
+
+msgid "Delete key"
+msgstr "Supprimer la clé"
+
+msgid "Clients using this key will lose their connection."
+msgstr "Les clients utilisant cette clé perdront leur connexion."
+
+msgid "Key name (e.g. Claude desktop)"
+msgstr "Nom de la clé (par exemple, bureau Claude)"
+
+msgid "Create new key"
+msgstr "Créer une nouvelle clé"
+
+msgid "Custom color"
+msgstr "Couleur personnalisée"
+
+msgid "No access"
+msgstr "Pas d'accès"
+
+msgid "Remove"
+msgstr "Supprimer"
+
+msgid "No members added yet."
+msgstr "Aucun membre ajouté pour l'instant."
+
+msgid "Add person"
+msgstr "Ajouter une personne"
+
+msgid "Project name"
+msgstr "Nom du projet"
+
+msgid "Everyone"
+msgstr "Tout le monde"
+
+msgid "Everyone who can use Tasks can enter this project."
+msgstr "Toute personne pouvant utiliser Tasks peut participer à ce projet."
+
+msgid "Members only"
+msgstr "Membres seulement"
+
+msgid "Only the people added below can see it."
+msgstr "Seules les personnes ajoutées ci-dessous peuvent le voir."
+
+msgid "Default role for everyone"
+msgstr "Rôle par défaut pour tout le monde"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Color"
+msgstr "Couleur"
+
+msgid "Members and their roles"
+msgstr "Les membres et leurs rôles"
+
+msgid "Subtask nesting limit"
+msgstr "Limite d'imbrication des sous-tâches"
+
+msgid "How many levels of subtasks can be nested under a task (1–10). Default is 3."
+msgstr "Combien de niveaux de sous-tâches peuvent être imbriqués sous une tâche (1 à 10). La valeur par défaut est 3."
+
+msgid "First list"
+msgstr "Première liste"
+
+msgid "You will be added as a manager."
+msgstr "Vous serez ajouté en tant que gestionnaire."
+
+msgid "Project settings"
+msgstr "Paramètres du projet"
+
+msgid "Project saved"
+msgstr "Projet enregistré"
+
+msgid "List name"
+msgstr "Nom de la liste"
+
+msgid "Tasks, subtasks, statuses"
+msgstr "Tâches, sous-tâches, statuts"
+
+msgid "Meetings, agenda, decisions, PDF report"
+msgstr "Réunions, ordre du jour, décisions, rapport PDF"
+
+msgid "e.g. Board meetings"
+msgstr "par ex. Réunions du conseil d'administration"
+
+msgid "Template"
+msgstr "Modèle"
+
+msgid "Folder"
+msgstr "Dossier"
+
+msgid "No folder (under the project)"
+msgstr "Aucun dossier (sous le projet)"
+
+msgid "Private list"
+msgstr "Liste privée"
+
+msgid "Only the people you add can see it. When off, project members can see it."
+msgstr "Seules les personnes que vous ajoutez peuvent le voir. Lorsqu'elle est désactivée, les membres du projet peuvent le voir."
+
+msgid "General"
+msgstr "Général"
+
+msgid "List type"
+msgstr "Type de liste"
+
+msgid "New status"
+msgstr "Nouveau statut"
+
+msgid "Add status"
+msgstr "Ajouter un statut"
+
+msgid "Tasks in a deleted status move to the first status. Statuses of the \"Done\" type count the task as finished."
+msgstr "Les tâches ayant un statut supprimé passent au premier statut. Les statuts de type « Terminé » comptent la tâche comme terminée."
+
+msgid "Statuses saved"
+msgstr "Statuts enregistrés"
+
+msgid "Delete field"
+msgstr "Supprimer le champ"
+
+msgid "The field \"{n}\" and its values on all tasks will be deleted."
+msgstr "Le champ «{n}» et ses valeurs sur toutes les tâches seront supprimés."
+
+msgid "This list has no custom fields. You can add fields such as text, number, date, dropdown, star rating or file."
+msgstr "Cette liste ne comporte aucun champ personnalisé. Vous pouvez ajouter des champs tels que du texte, un numéro, une date, une liste déroulante, un nombre d'étoiles ou un fichier."
+
+msgid "Add field"
+msgstr "Ajouter un champ"
+
+msgid "Field name"
+msgstr "Nom du champ"
+
+msgid "Option"
+msgstr "Options"
+
+msgid "Add option"
+msgstr "Ajouter une option"
+
+msgid "Options"
+msgstr "Possibilités"
+
+msgid "Max stars"
+msgstr "Nombre maximum d'étoiles"
+
+msgid "Currency"
+msgstr "Devise"
+
+msgid "Decimal places"
+msgstr "Décimales"
+
+msgid "Description (optional)"
+msgstr "Description (facultatif)"
+
+msgid "Type"
+msgstr "Tapez"
+
+msgid "The type cannot be changed later."
+msgstr "Le type ne peut pas être modifié ultérieurement."
+
+msgid "Add the field"
+msgstr "Ajouter le champ"
+
+msgid "Project members"
+msgstr "Membres du projet"
+
+msgid "Everyone who can use Tasks ({r})."
+msgstr "Tous ceux qui peuvent utiliser les tâches ({r})."
+
+msgid "The project's members, with their project roles."
+msgstr "Les membres du projet, avec leurs rôles dans le projet."
+
+msgid "Selected people only"
+msgstr "Personnes sélectionnées uniquement"
+
+msgid "Private list: only the people below and project managers can see it."
+msgstr "Liste privée : seules les personnes ci-dessous et les chefs de projet peuvent la voir."
+
+msgid "Who can see it"
+msgstr "Qui peut le voir"
+
+msgid "Per-person roles"
+msgstr "Rôles par personne"
+
+msgid "Can view: read only. Can comment: read and comment. Can edit: add and change tasks. Can manage: list settings, fields and permissions."
+msgstr "Peut afficher : lecture seule. Peut commenter : lire et commenter. Can edit: add and change tasks. Peut gérer : les paramètres de liste, les champs et les autorisations."
+
+msgid "Permissions saved"
+msgstr "Autorisations enregistrées"
+
+msgid "List settings: {n}"
+msgstr "Paramètres de liste :{n}"
+
+msgid "What do you want to do? e.g. \"Show tasks in this list due tomorrow\" or \"Open a poster task for Ayşe due Friday\""
+msgstr "Que veux-tu faire ? par ex. \"Afficher les tâches de cette liste à rendre demain\" ou \"Ouvrir une tâche d'affiche pour Ayşe à rendre vendredi\""
+
+msgid "Hi! What shall we do with your tasks?"
+msgstr "Salut ! Que ferons-nous de vos tâches ?"
+
+msgid "List my overdue tasks assigned to me"
+msgstr "Lister mes tâches en retard qui m'ont été assignées"
+
+msgid "Add 3 tasks to this list: …"
+msgstr "Ajoutez 3 tâches à cette liste : ..."
+
+msgid "Summarize this week"
+msgstr "Résumer cette semaine"
+
+msgid "Task created"
+msgstr "Tâche créée"
+
+msgid "Task updated"
+msgstr "Tâche mise à jour"
+
+msgid "Comment added"
+msgstr "Commentaire ajouté"
+
+msgid "Task deleted"
+msgstr "Tâche supprimée"
+
+msgid "List created"
+msgstr "Liste créée"
+
+msgid "Document page edited"
+msgstr "Page du document modifiée"
+
+msgid "Document created"
+msgstr "Document créé"
+
+msgid "Page added to document"
+msgstr "Page ajoutée au document"
+
+msgid "Clear chat"
+msgstr "Effacer le chat"
+
+msgid "The assistant adds and changes tasks with your permissions."
+msgstr "L'assistant ajoute et modifie des tâches avec vos autorisations."
+
+msgid "Status"
+msgstr "Statut"
+
+msgid "Priority"
+msgstr "Priorité"
+
+msgid "Assignee"
+msgstr "Cessionnaire"
+
+msgid "Tag"
+msgstr "Étiquette"
+
+msgid "No grouping"
+msgstr "Aucun regroupement"
+
+msgid "No priority"
+msgstr "Aucune priorité"
+
+msgid "Unassigned"
+msgstr "Non attribué"
+
+msgid "This week"
+msgstr "Cette semaine"
+
+msgid "Later"
+msgstr "Plus tard"
+
+msgid "No date"
+msgstr "Pas de date"
+
+msgid "No tag"
+msgstr "Aucune étiquette"
+
+msgid "Empty"
+msgstr "Vide"
+
+msgid "All tasks"
+msgstr "Toutes les tâches"
+
+msgid "Details"
+msgstr "Détails"
+
+msgid "Back to meeting"
+msgstr "Retour à la réunion"
+
+msgid "Back to parent task"
+msgstr "Retour à la tâche parent"
+
+msgid "Unfollow"
+msgstr "Ne plus suivre"
+
+msgid "Follow (get notifications)"
+msgstr "Suivre (recevoir des notifications)"
+
+msgid "You will get notifications for this task"
+msgstr "Vous recevrez des notifications pour cette tâche"
+
+msgid "Notifications for this task are turned off"
+msgstr "Les notifications pour cette tâche sont désactivées"
+
+msgid "Move to another list"
+msgstr "Passer à une autre liste"
+
+msgid "Task moved"
+msgstr "Tâche déplacée"
+
+msgid "Add subtask"
+msgstr "Ajouter une sous-tâche"
+
+msgid "Unarchive"
+msgstr "Désarchiver"
+
+msgid "Archive"
+msgstr "Archiver"
+
+msgid "The task \"{n}\" will be permanently deleted along with its comments and files."
+msgstr "La tâche «{n}» sera définitivement supprimée ainsi que ses commentaires et fichiers."
+
+msgid "(copy)"
+msgstr "(copie)"
+
+msgid "Copy created"
+msgstr "Copie créée"
+
+msgid "Change cover"
+msgstr "Changer de couverture"
+
+msgid "Complete"
+msgstr "Terminé"
+
+msgid "Completed: {d}"
+msgstr "Terminé :{d}"
+
+msgid "You can only comment"
+msgstr "Vous pouvez seulement commenter"
+
+msgid "View only"
+msgstr "Visualisation uniquement"
+
+msgid "Print the meeting report or save it as PDF"
+msgstr "Imprimez le rapport de la réunion ou enregistrez-le au format PDF"
+
+msgid "PDF report"
+msgstr "Rapport PDF"
+
+msgid "Hide customization"
+msgstr "Masquer la personnalisation"
+
+msgid "Customize this screen"
+msgstr "Personnaliser cet écran"
+
+msgid "Assignees"
+msgstr "Destinataires"
+
+msgid "Dates"
+msgstr "Dates"
+
+msgid "Start"
+msgstr "Commencer"
+
+msgid "Add / edit custom field"
+msgstr "Ajouter/modifier un champ personnalisé"
+
+msgid "Description"
+msgstr "Descriptif"
+
+msgid "Expand"
+msgstr "Développer"
+
+msgid "Attachments"
+msgstr "Pièces jointes"
+
+msgid "Show less"
+msgstr "Afficher moins"
+
+msgid "{n} more fields"
+msgstr "{n}plus de champs"
+
+msgid "Participants"
+msgstr "Participants"
+
+msgid "Agenda"
+msgstr "Ordre du jour"
+
+msgid "Decisions"
+msgstr "Décisions"
+
+msgid "Subtasks"
+msgstr "Sous-tâches"
+
+msgid "Shown on screen"
+msgstr "Montré à l'écran"
+
+msgid "Saved in this browser."
+msgstr "Enregistré dans ce navigateur."
+
+msgid "Edit statuses"
+msgstr "Modifier les statuts"
+
+msgid "Pick a date"
+msgstr "Choisissez une date"
+
+msgid "Add people"
+msgstr "Ajouter des personnes"
+
+msgid "Decision"
+msgstr "Décision"
+
+msgid "Add decision… (assignable like a task, with date and tags)"
+msgstr "Ajouter une décision... (assignable comme une tâche, avec date et tags)"
+
+msgid "Mark as not discussed"
+msgstr "Marquer comme non discuté"
+
+msgid "Mark as discussed"
+msgstr "Marquer comme discuté"
+
+msgid "No agenda items."
+msgstr "Aucun point à l'ordre du jour."
+
+msgid "Add agenda item…"
+msgstr "Ajouter un point à l’ordre du jour..."
+
+msgid "Add a note…"
+msgstr "Ajouter une note..."
+
+msgid "Add image / file"
+msgstr "Ajouter une image/un fichier"
+
+msgid "Details and comments"
+msgstr "Détails et commentaires"
+
+msgid "Delete agenda item"
+msgstr "Supprimer un point de l'ordre du jour"
+
+msgid "\"{n}\" will be deleted."
+msgstr "\"{n}\" sera supprimé."
+
+msgid "Meeting report"
+msgstr "Rapport de réunion"
+
+msgid "agenda items discussed"
+msgstr "points de l'ordre du jour discutés"
+
+msgid "decisions made"
+msgstr "décisions prises"
+
+msgid "subtasks completed"
+msgstr "sous-tâches terminées"
+
+msgid "Discussed"
+msgstr "Discuté"
+
+msgid "Owner"
+msgstr "Propriétaire"
+
+msgid "Report: {d} · {n}"
+msgstr "Rapport :{d}·{n}"
+
+msgid "Add subtask…"
+msgstr "Ajouter une sous-tâche..."
+
+msgid "Show / hide columns"
+msgstr "Afficher/masquer les colonnes"
+
+msgid "Subtask"
+msgstr "Sous-tâche"
+
+msgid "Decision columns"
+msgstr "Colonnes de décision"
+
+msgid "Subtask columns"
+msgstr "Colonnes de sous-tâches"
+
+msgid "Add a description… (list, checklist, link)"
+msgstr "Ajouter une description... (liste, checklist, lien)"
+
+msgid "Make cover image"
+msgstr "Créer une image de couverture"
+
+msgid "Remove from cover"
+msgstr "Retirer du couvercle"
+
+msgid "Drag files here or choose"
+msgstr "Faites glisser les fichiers ici ou choisissez"
+
+msgid "Up to {s}"
+msgstr "Jusqu'à{s}"
+
+msgid "{n} is too large (up to {s})."
+msgstr "{n}est trop grand (jusqu'à{s})."
+
+msgid "Upload new image"
+msgstr "Télécharger une nouvelle image"
+
+msgid "Cover image"
+msgstr "Image de couverture"
+
+msgid "No images on this task yet."
+msgstr "Aucune image sur cette tâche pour l'instant."
+
+msgid "created the task"
+msgstr "créé la tâche"
+
+msgid "changed the status:"
+msgstr "changé le statut:"
+
+msgid "renamed it:"
+msgstr "je l'ai renommé :"
+
+msgid "updated the description"
+msgstr "mis à jour la description"
+
+msgid "set the priority to \"{p}\""
+msgstr "définir la priorité sur \"{p}\""
+
+msgid "removed the priority"
+msgstr "supprimé la priorité"
+
+msgid "set the due date to {d}"
+msgstr "définir la date d'échéance sur{d}"
+
+msgid "removed the due date"
+msgstr "supprimé la date d'échéance"
+
+msgid "set the start date to {d}"
+msgstr "définir la date de début sur{d}"
+
+msgid "removed the start date"
+msgstr "supprimé la date de début"
+
+msgid "took the task"
+msgstr "a pris la tâche"
+
+msgid "assigned {n}"
+msgstr "attribué{n}"
+
+msgid "unassigned {n}"
+msgstr "non attribué{n}"
+
+msgid "added a tag:"
+msgstr "j'ai ajouté une balise :"
+
+msgid "removed the tag:"
+msgstr "supprimé la balise :"
+
+msgid "updated the field \"{f}\""
+msgstr "mis à jour le champ \"{f}\""
+
+msgid "moved the task:"
+msgstr "déplacé la tâche :"
+
+msgid "changed the cover image"
+msgstr "changé l'image de couverture"
+
+msgid "removed the cover image"
+msgstr "j'ai supprimé l'image de couverture"
+
+msgid "attached a file:"
+msgstr "ci-joint un fichier :"
+
+msgid "deleted a file:"
+msgstr "supprimé un fichier :"
+
+msgid "archived the task"
+msgstr "archivé la tâche"
+
+msgid "unarchived the task"
+msgstr "désarchivé la tâche"
+
+msgid "Sending…"
+msgstr "Envoi..."
+
+msgid "edited"
+msgstr "édité"
+
+msgid "Delete comment"
+msgstr "Supprimer le commentaire"
+
+msgid "The comment and its attachments will be deleted."
+msgstr "Le commentaire et ses pièces jointes seront supprimés."
+
+msgid "Show comments and activity"
+msgstr "Afficher les commentaires et l'activité"
+
+msgid "Comments and activity"
+msgstr "Commentaires et activité"
+
+msgid "Show activity"
+msgstr "Afficher l'activité"
+
+msgid "Hide comments and activity"
+msgstr "Masquer les commentaires et l'activité"
+
+msgid "No comments yet. Be the first to comment."
+msgstr "Pas encore de commentaires. Soyez le premier à commenter."
+
+msgid "You don't have permission to comment in this list."
+msgstr "Vous n'êtes pas autorisé à commenter cette liste."
+
+msgid "Write a comment… mention someone with @, drag in files"
+msgstr "Écrivez un commentaire... mentionnez quelqu'un avec @, faites glisser les fichiers"
+
+msgid "Mention someone"
+msgstr "Mentionner quelqu'un"
+
+msgid "Send with Ctrl+Enter"
+msgstr "Envoyer avec Ctrl+Entrée"
+
+msgid "Drop to add to the comment"
+msgstr "Déposer pour ajouter au commentaire"
+
+msgid "Comment could not be saved."
+msgstr "Le commentaire n'a pas pu être enregistré."
+
+msgid "Write / improve description"
+msgstr "Rédiger/améliorer la description"
+
+msgid "Turn into checklist"
+msgstr "Transformer en liste de contrôle"
+
+msgid "Fix spelling"
+msgstr "Corriger l'orthographe"
+
+msgid "Add more detail"
+msgstr "Ajouter plus de détails"
+
+msgid "Improve task name"
+msgstr "Améliorer le nom de la tâche"
+
+msgid "Split into subtasks"
+msgstr "Divisé en sous-tâches"
+
+msgid "Summarize comments"
+msgstr "Résumer les commentaires"
+
+msgid "Say what to change… (e.g. make it more formal)"
+msgstr "Dites ce qu'il faut changer... (par exemple, rendez-le plus formel)"
+
+msgid "What should it do? E.g. add the target audience, write as bullet points"
+msgstr "Que devrait-il faire ? Par ex. ajoutez le public cible, écrivez sous forme de puces"
+
+msgid "Chat"
+msgstr "Discuter"
+
+msgid "AI is thinking…"
+msgstr "L’IA pense..."
+
+msgid "Other options"
+msgstr "Autres options"
+
+msgid "Task name updated."
+msgstr "Nom de la tâche mis à jour."
+
+msgid "Apply"
+msgstr "Postuler"
+
+msgid "Description updated."
+msgstr "Descriptif mis à jour."
+
+msgid "Added to the end of the description."
+msgstr "Ajouté à la fin de la description."
+
+msgid "{n} subtasks created"
+msgstr "{n}sous-tâches créées"
+
+msgid "Create subtasks"
+msgstr "Créer des sous-tâches"
+
+msgid "Summary"
+msgstr "Résumé"
+
+msgid "Added as a comment."
+msgstr "Ajouté en commentaire."
+
+msgid "Add as comment"
+msgstr "Ajouter comme commentaire"
+
+msgid "Remove priority"
+msgstr "Supprimer la priorité"
+
+msgid "Search people…"
+msgstr "Rechercher des personnes..."
+
+msgid "me"
+msgstr "moi"
+
+msgid "Next week"
+msgstr "La semaine prochaine"
+
+msgid "In 2 weeks"
+msgstr "Dans 2 semaines"
+
+msgid "Time (optional)"
+msgstr "Heure (facultatif)"
+
+msgid "Clear"
+msgstr "Effacer"
+
+msgid "Search or create a tag…"
+msgstr "Rechercher ou créer une balise..."
+
+msgid "Create: {n}"
+msgstr "Créer :{n}"
+
+msgid "No tags yet. Type to create one."
+msgstr "Pas encore de balises. Tapez pour en créer un."
+
+msgid "There are no lists you can add tasks to."
+msgstr "Il n'existe aucune liste à laquelle vous pouvez ajouter des tâches."
+
+msgid "Created"
+msgstr "Créé"
+
+msgid "Updated"
+msgstr "Mis à jour"
+
+msgid "Filter"
+msgstr "Filtrer"
+
+msgid "Group"
+msgstr "Groupe"
+
+msgid "Group: {n}"
+msgstr "Groupe :{n}"
+
+msgid "Manual order"
+msgstr "Commande manuelle"
+
+msgid "Start date"
+msgstr "Date de début"
+
+msgid "Sort"
+msgstr "Trier"
+
+msgid "Ascending"
+msgstr "Ascendant"
+
+msgid "Descending"
+msgstr "Décroissant"
+
+msgid "Fields"
+msgstr "Champs"
+
+msgid "Save view"
+msgstr "Enregistrer la vue"
+
+msgid "Meeting"
+msgstr "Réunion"
+
+msgid "Under the task, expanded"
+msgstr "Sous la tâche, élargie"
+
+msgid "Under the task, collapsed"
+msgstr "Sous la tâche, effondré"
+
+msgid "Don't show"
+msgstr "Ne montre pas"
+
+msgid "Apply filters to subtasks too"
+msgstr "Appliquer également des filtres aux sous-tâches"
+
+msgid "Save to this view"
+msgstr "Enregistrer dans cette vue"
+
+msgid "View saved"
+msgstr "Vue enregistrée"
+
+msgid "Save as new view"
+msgstr "Enregistrer comme nouvelle vue"
+
+msgid "filtered"
+msgstr "filtré"
+
+msgid "Revert changes"
+msgstr "Annuler les modifications"
+
+msgid "Assigned to me"
+msgstr "M'a été attribué"
+
+msgid "None"
+msgstr "Aucun"
+
+msgid "Within 7 days"
+msgstr "Dans les 7 jours"
+
+msgid "Has date"
+msgstr "A une date"
+
+msgid "Checked"
+msgstr "Vérifié"
+
+msgid "Unchecked"
+msgstr "Décoché"
+
+msgid "Filled"
+msgstr "Rempli"
+
+msgid "Show completed tasks"
+msgstr "Afficher les tâches terminées"
+
+msgid "When off, all subtasks of matching tasks are shown. When on, only matching subtasks are shown; their parent appears dimmed even if it doesn't match."
+msgstr "Lorsqu'elle est désactivée, toutes les sous-tâches des tâches correspondantes sont affichées. Lorsque cette option est activée, seules les sous-tâches correspondantes sont affichées ; leur parent apparaît grisé même s'il ne correspond pas."
+
+msgid "Clear filters"
+msgstr "Effacer les filtres"
+
+msgid "Show cover image"
+msgstr "Afficher l'image de couverture"
+
+msgid "Wrap text"
+msgstr "Envelopper le texte"
+
+msgid "Long text shows up to 3 lines, the rest is cut with …"
+msgstr "Le texte long affiche jusqu'à 3 lignes, le reste est coupé avec..."
+
+msgid "Date to use in the calendar"
+msgstr "Date à utiliser dans le calendrier"
+
+msgid "Columns"
+msgstr "Colonnes"
+
+msgid "Fields shown on the card"
+msgstr "Champs affichés sur la carte"
+
+msgid "Add custom field"
+msgstr "Ajouter un champ personnalisé"
+
+msgid "Can't be moved to this group."
+msgstr "Can't be moved to this group."
+
+msgid "No suitable status in this list."
+msgstr "Aucun statut approprié dans cette liste."
+
+msgid "Drag to reorder"
+msgstr "Faites glisser pour réorganiser"
+
+msgid "Type a subtask name and press Enter"
+msgstr "Tapez un nom de sous-tâche et appuyez sur Entrée"
+
+msgid "This task no longer matches this view's filter. It will be hidden when you change page."
+msgstr "Cette tâche ne correspond plus au filtre de cette vue. Il sera masqué lorsque vous changerez de page."
+
+msgid "Assigned: {n}"
+msgstr "Attribué :{n}"
+
+msgid "Outside filter"
+msgstr "Filtre extérieur"
+
+msgid "Hide subtasks"
+msgstr "Masquer les sous-tâches"
+
+msgid "Show subtasks"
+msgstr "Afficher les sous-tâches"
+
+msgid "Agenda item"
+msgstr "Point de l'ordre du jour"
+
+msgid "Has description"
+msgstr "A une description"
+
+msgid "Shown because it has a subtask that matches the filter"
+msgstr "Affiché car il comporte une sous-tâche qui correspond au filtre"
+
+msgid "Add meeting"
+msgstr "Ajouter une réunion"
+
+msgid "Add task"
+msgstr "Ajouter une tâche"
+
+msgid "Type a task name and press Enter"
+msgstr "Tapez un nom de tâche et appuyez sur Entrée"
+
+msgid "No tasks match the filter."
+msgstr "Aucune tâche ne correspond au filtre."
+
+msgid "You have no open tasks assigned. 🎉"
+msgstr "Aucune tâche ouverte ne vous est assignée. 🎉"
+
+msgid "No tasks in this list yet."
+msgstr "Aucune tâche dans cette liste pour le moment."
+
+msgid "{n} selected"
+msgstr "{n}sélectionné"
+
+msgid "Assign"
+msgstr "Attribuer"
+
+msgid "Delete tasks"
+msgstr "Supprimer des tâches"
+
+msgid "{n} tasks will be permanently deleted along with their comments and files."
+msgstr "Les tâches{n}seront définitivement supprimées avec leurs commentaires et fichiers."
+
+msgid "Clear selection"
+msgstr "Effacer la sélection"
+
+msgid "{n} tasks updated"
+msgstr "Tâches{n}mises à jour"
+
+msgid "Previous"
+msgstr "Précédent"
+
+msgid "Next"
+msgstr "Suivant"
+
+msgid "Week"
+msgstr "Semaine"
+
+msgid "No date: {n}"
+msgstr "Sans date :{n}"
+
+msgid "Tasks without a date"
+msgstr "Tâches sans date"
+
+msgid "No dated tasks this month."
+msgstr "Aucune tâche datée ce mois-ci."
+
+msgid "+{n} more"
+msgstr "+{n}plus"
+
+msgid "Meeting name"
+msgstr "Nom de la réunion"
+
+msgid "Meeting created"
+msgstr "Réunion créée"
+
+msgid "New meeting"
+msgstr "Nouvelle réunion"
+
+msgid "New task"
+msgstr "Nouvelle tâche"
+
+msgid "Create and open"
+msgstr "Créer et ouvrir"
+
+msgid "[['ClickUp-like task tracking: projects, folders, lists; list, board (kanban) and calendar views, saved filtered views, custom fields, comment and file attachments, notifications, list authorizations, admin dashboard, MCP server and artificial intelligence with OpenRouter.', 'tr']]"
+msgstr "[[Suivi des tâches de type ClickUp : projets, dossiers, listes ; vues de liste, de tableau (kanban) et de calendrier, vues filtrées enregistrées, champs personnalisés, commentaires et pièces jointes, notifications, autorisations de liste, tableau de bord d'administration, serveur MCP et intelligence artificielle avec OpenRouter.', 'tr']]"

@@ -1,0 +1,1043 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: zh_CN\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Backups"
+msgstr "备份"
+
+msgid "Backups › Dashboard"
+msgstr "备份 › 仪表板"
+
+msgid "Dashboard"
+msgstr "仪表板"
+
+msgid "Backups › Settings"
+msgstr "备份 › 设置"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Permanently delete this backup?"
+msgstr "永久删除此备份吗?"
+
+msgid "Permanently delete the selected backups?"
+msgstr "永久删除选定的备份吗?"
+
+msgid "The selected parts will be returned to their state in the backup and their current state will be overwritten. Continue?"
+msgstr "选定的部分将返回到备份中的状态,并且其当前状态将被覆盖。继续?"
+
+msgid "Cancel the running job?"
+msgstr "取消正在运行的作业?"
+
+msgid "Starting…"
+msgstr "开始..."
+
+msgid "Backing up"
+msgstr "正在备份"
+
+msgid "Restoring"
+msgstr "正在恢复"
+
+msgid "Completed"
+msgstr "已完成"
+
+msgid "Failed"
+msgstr "失败"
+
+msgid "Reload page"
+msgstr "重新加载页面"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "An error occurred."
+msgstr "发生错误。"
+
+msgid "Connection lost, retrying…"
+msgstr "连接丢失,正在重试..."
+
+msgid "Database (all tables)"
+msgstr "数据库(所有表)"
+
+msgid "Select at least one part."
+msgstr "至少选择一个部分。"
+
+msgid "You can keep this page open; if you close it, the job continues in the background."
+msgstr "您可以保持此页面打开;如果关闭它,该作业将在后台继续进行。"
+
+msgid "Do not close this page until the restore finishes."
+msgstr "在恢复完成之前请勿关闭此页面。"
+
+msgid "The backup is running in the background. Follow its progress in the toolbar indicator at the top; you can leave this page."
+msgstr "备份在后台运行。在顶部的工具栏指示器中跟踪其进度;您可以离开此页面。"
+
+msgid "The restore has started in the background. Progress is shown in the toolbar indicator; do not change the site until it finishes."
+msgstr "恢复已在后台开始。进度显示在工具栏指示器中;在完成之前不要更改站点。"
+
+msgid "Backup ready."
+msgstr "备份准备好了。"
+
+msgid "Refresh list"
+msgstr "刷新列表"
+
+msgid "Details"
+msgstr "详情"
+
+msgid "Dismiss this notice."
+msgstr "驳回此通知。"
+
+msgid "Uploading %1$s…"
+msgstr "正在上传%1$s..."
+
+msgid "%1$s / %2$s"
+msgstr "%1$s/%2$s"
+
+msgid "Verifying…"
+msgstr "正在验证..."
+
+msgid "Only .zip backup files made with Flux Backup can be uploaded."
+msgstr "只能上传使用 Flux Backup 制作的 .zip 备份文件。"
+
+msgid "Upload cancelled."
+msgstr "上传已取消。"
+
+msgid "Upload failed: %s"
+msgstr "上传失败:%s"
+
+msgid "This backup was taken on another site: %s. If you restore the database, the content comes from that site; this site's address (siteurl/home) is kept, but links to the old address inside the content are not changed automatically."
+msgstr "此备份是在另一个站点上进行的:%s。如果恢复数据库,内容来自该站点;该网站的地址 (siteurl/home) 会保留,但内容中指向旧地址的链接不会自动更改。"
+
+msgid "The table prefix in the backup (%1$s) differs from this site's prefix (%2$s); the database cannot be restored to this site, only files can be selected."
+msgstr "备份中的表前缀 (%1$s) 与此站点的前缀 (%2$s) 不同;数据库无法恢复到此站点,只能选择文件。"
+
+msgid "Flux Backup"
+msgstr "助焊剂备份"
+
+msgid "Automatic pre-update backups, scheduled backups and restore"
+msgstr "自动更新前备份、计划备份和恢复"
+
+msgid "Upload backup"
+msgstr "上传备份"
+
+msgid "Back up now"
+msgstr "立即备份"
+
+msgid "Settings saved."
+msgstr "设置已保存。"
+
+msgid "ZipArchive (PHP zip extension) is not available on the server."
+msgstr "ZipArchive(PHP zip 扩展)在服务器上不可用。"
+
+msgid "The backup folder is not writable: %s"
+msgstr "备份文件夹不可写:%s"
+
+msgid "Backup type"
+msgstr "备份类型"
+
+msgid "Full backup"
+msgstr "完整备份"
+
+msgid "Database + wp-content (plugins, themes, uploads)"
+msgstr "数据库+ wp-content(插件、主题、上传)"
+
+msgid "Database only"
+msgstr "仅数据库"
+
+msgid "Posts, pages, settings, users"
+msgstr "帖子、页面、设置、用户"
+
+msgid "Files only"
+msgstr "仅文件"
+
+msgid "The wp-content folder"
+msgstr "wp 内容文件夹"
+
+msgid "Also include WordPress core files (wp-admin, wp-includes)"
+msgstr "还包括 WordPress 核心文件(wp-admin、wp-includes)"
+
+msgid "Description (optional)"
+msgstr "说明(可选)"
+
+msgid "e.g. Before the theme change"
+msgstr "例如主题变更前"
+
+msgid "Lock: never delete automatically, even when the quota is full"
+msgstr "锁定:即使配额已满,也不会自动删除"
+
+msgid "Start backup"
+msgstr "开始备份"
+
+msgid "Restore"
+msgstr "恢复"
+
+msgid "First take a safety backup of the current database (recommended)"
+msgstr "首先对当前数据库进行安全备份(推荐)"
+
+msgid "The site address (siteurl/home), Flux Backup settings and the backup list are kept. Plugin and theme folders are replaced with their backed-up version; in other folders files are overwritten."
+msgstr "站点地址 (siteurl/home)、Flux 备份设置和备份列表将被保留。插件和主题文件夹将替换为其备份版本;其他文件夹中的文件将被覆盖。"
+
+msgid "Start restore"
+msgstr "开始恢复"
+
+msgid "You are not allowed to do this."
+msgstr "你不可以这样做。"
+
+msgid "Storage"
+msgstr "存储"
+
+msgid "%s%% of the quota is used"
+msgstr "%s%% 的配额已使用"
+
+msgid "%1$s%% used · %2$s free"
+msgstr "%1$s%% 使用 ·%2$s空闲"
+
+msgid "Last successful backup"
+msgstr "上次成功备份"
+
+msgid "%s ago"
+msgstr "%s前"
+
+msgid "No backups yet."
+msgstr "还没有备份。"
+
+msgid "Next scheduled"
+msgstr "下次预定"
+
+msgid "Weekly full backup"
+msgstr "每周完整备份"
+
+msgid "Daily full backup"
+msgstr "每日完整备份"
+
+msgid "Off"
+msgstr "关闭"
+
+msgid "Turn on schedule"
+msgstr "打开时间表"
+
+msgid "Pre-update backup: off"
+msgstr "更新前备份:关闭"
+
+msgid "Pre-update backup: FluxWP packages"
+msgstr "更新前备份:FluxWP 软件包"
+
+msgid "Pre-update backup: on"
+msgstr "更新前备份:开"
+
+msgid "Storage history"
+msgstr "存储历史"
+
+msgid "Time range"
+msgstr "时间范围"
+
+msgid "%s days"
+msgstr "%s天"
+
+msgid "Quota"
+msgstr "配额"
+
+msgid "By type"
+msgstr "按类型"
+
+msgid "Recent backups"
+msgstr "最近的备份"
+
+msgid "View all"
+msgstr "查看全部"
+
+msgid "No backups yet. Take the first one with \"Back up now\"; a backup is taken automatically before plugin and theme updates."
+msgstr "还没有备份。选择第一个“立即备份”;在插件和主题更新之前会自动进行备份。"
+
+msgid "Running"
+msgstr "跑步"
+
+msgid "Recent events"
+msgstr "近期活动"
+
+msgid "No events yet."
+msgstr "还没有活动。"
+
+msgid "Total"
+msgstr "合计"
+
+msgid "Not enough data yet: one measurement is recorded each day."
+msgstr "数据还不够:每天记录一次测量结果。"
+
+msgid "No measurement for this day"
+msgstr "当天没有测量"
+
+msgid "Storage by type"
+msgstr "按类型存储"
+
+msgid "total"
+msgstr "总计"
+
+msgid "All"
+msgstr "全部"
+
+msgid "Delete selected"
+msgstr "删除所选内容"
+
+msgid "Total %s"
+msgstr "总计%s"
+
+msgid "Select all"
+msgstr "选择全部"
+
+msgid "Date"
+msgstr "日期"
+
+msgid "Type"
+msgstr "类型"
+
+msgid "Description"
+msgstr "描述"
+
+msgid "Contents"
+msgstr "内容"
+
+msgid "Size"
+msgstr "尺寸"
+
+msgid "Retention"
+msgstr "保留率"
+
+msgid "Actions"
+msgstr "行动"
+
+msgid "No backups."
+msgstr "没有备份。"
+
+msgid "Backups are stored in %s. Hostinger does not include this folder in its own backups: download important backups to your computer."
+msgstr "备份存储在%s中。 Hostinger 不会将此文件夹包含在其自己的备份中:将重要备份下载到您的计算机上。"
+
+msgid "Database"
+msgstr "数据库"
+
+msgid "Plugin"
+msgstr "插件"
+
+msgid "Theme"
+msgstr "主题"
+
+msgid "WordPress core"
+msgstr "WordPress 核心"
+
+msgid "Select"
+msgstr "选择"
+
+msgid "Running…"
+msgstr "正在运行..."
+
+msgid "Locked: never deleted automatically. Click to unlock."
+msgstr "锁定:永远不会自动删除。点击解锁。"
+
+msgid "Lock: the quota and retention period will not delete this backup."
+msgstr "锁定:配额和保留期限内不会删除此备份。"
+
+msgid "Unlock"
+msgstr "解锁"
+
+msgid "Lock"
+msgstr "锁"
+
+msgid "Locked"
+msgstr "锁定"
+
+msgid "Until %s"
+msgstr "直到%s"
+
+msgid "Last %s scheduled"
+msgstr "最后安排的%s"
+
+msgid "Until the quota is full"
+msgstr "直至名额满为止"
+
+msgid "Download"
+msgstr "下载"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "All backups"
+msgstr "所有备份"
+
+msgid "Backup not found."
+msgstr "找不到备份。"
+
+msgid "Backup file"
+msgstr "备份文件"
+
+msgid "Uncompressed size"
+msgstr "未压缩大小"
+
+msgid "Files"
+msgstr "文件"
+
+msgid "%1$s tables, %2$s rows"
+msgstr "%1$s表,%2$s行"
+
+msgid "Included"
+msgstr "包含"
+
+msgid "Source"
+msgstr "来源"
+
+msgid "Taken on site"
+msgstr "现场拍摄"
+
+msgid "Originally taken"
+msgstr "最初拍摄的"
+
+msgid "WordPress"
+msgstr "WordPress"
+
+msgid "The backup is running; details will appear here when it finishes."
+msgstr "备份正在运行;完成后,详细信息将显示在此处。"
+
+msgid "The backup file could not be read; the size breakdown cannot be shown."
+msgstr "无法读取备份文件;无法显示尺寸细目。"
+
+msgid "Size breakdown"
+msgstr "尺寸细目"
+
+msgid "Measure"
+msgstr "测量"
+
+msgid "Original size"
+msgstr "原始尺寸"
+
+msgid "Size in archive"
+msgstr "存档大小"
+
+msgid "uncompressed"
+msgstr "未压缩的"
+
+msgid "inside the zip"
+msgstr "拉链内"
+
+msgid "Size breakdown by category"
+msgstr "按类别划分的尺寸细分"
+
+msgid "Section"
+msgstr "部分"
+
+msgid "Files / rows"
+msgstr "文件/行"
+
+msgid "In archive"
+msgstr "存档中"
+
+msgid "Share"
+msgstr "分享"
+
+msgid "Original size: the size of the files on the site (for the database, the size of the SQL dump). In archive: the compressed size inside the zip. Images and videos are already compressed, so they do not get smaller in the archive."
+msgstr "原始大小:站点上文件的大小(对于数据库,是 SQL 转储的大小)。存档中:zip 内的压缩大小。图像和视频已经被压缩,因此它们在存档中不会变小。"
+
+msgid "Root files (wp-config.php, index.php …)"
+msgstr "根文件(wp-config.php、index.php ...)"
+
+msgid "Files directly in this folder"
+msgstr "文件直接放在这个文件夹里"
+
+msgid "Plugins"
+msgstr "插件"
+
+msgid "Themes"
+msgstr "主题"
+
+msgid "Other folders"
+msgstr "其他文件夹"
+
+msgid "wp-content (all)"
+msgstr "wp-内容(全部)"
+
+msgid "Monday"
+msgstr "星期一"
+
+msgid "Tuesday"
+msgstr "星期二"
+
+msgid "Wednesday"
+msgstr "星期三"
+
+msgid "Thursday"
+msgstr "星期四"
+
+msgid "Friday"
+msgstr "周五"
+
+msgid "Saturday"
+msgstr "星期六"
+
+msgid "Sunday"
+msgstr "周日"
+
+msgid "The total size of backups never exceeds this: before a new backup, the oldest unlocked backups are deleted. Locked backups are never deleted automatically; if no room can be made, the backup is not taken."
+msgstr "备份的总大小永远不会超过此值:在新备份之前,最旧的未锁定备份将被删除。锁定的备份永远不会自动删除;如果无法腾出空间,则不进行备份。"
+
+msgid "Currently using %1$s. Folder: %2$s"
+msgstr "目前使用%1$s。文件夹:%2$s"
+
+msgid "Pre-update backup"
+msgstr "更新前备份"
+
+msgid "Scope"
+msgstr "适用范围"
+
+msgid "All plugin and theme updates"
+msgstr "所有插件和主题更新"
+
+msgid "FluxWP packages only (flx-… plugins and FluxWP themes)"
+msgstr "仅 FluxWP 软件包(flx-...插件和 FluxWP 主题)"
+
+msgid "In manual, bulk and automatic updates, the database and the updated package's folder are backed up right before the package is installed. A bulk update produces a single backup."
+msgstr "在手动、批量和自动更新中,数据库和更新包的文件夹会在安装包之前备份。批量更新会生成单个备份。"
+
+msgid "Retention period"
+msgstr "保留期限"
+
+msgid "days"
+msgstr "天"
+
+msgid "If the update went fine, the backup is deleted after this period. Lock the ones you want to keep in the list."
+msgstr "如果更新顺利,备份将在此期限后删除。锁定您想要保留在列表中的内容。"
+
+msgid "Scheduled full backup"
+msgstr "计划的完整备份"
+
+msgid "Frequency"
+msgstr "频率"
+
+msgid "Daily"
+msgstr "每日"
+
+msgid "Weekly"
+msgstr "每周"
+
+msgid "Day"
+msgstr "日"
+
+msgid "Time"
+msgstr "时间"
+
+msgid "In the site's time zone. Choose night hours; WP-Cron is triggered by visits, so it may run a few minutes late."
+msgstr "在网站的时区。选择夜间时间; WP-Cron 由访问触发,因此可能会延迟几分钟运行。"
+
+msgid "Number to keep"
+msgstr "保留数量"
+
+msgid "Only this many of the latest scheduled backups are kept (locked ones are not counted)."
+msgstr "仅保留这么多最新的计划备份(锁定的备份不计算在内)。"
+
+msgid "Add wp-admin, wp-includes and root files (including wp-config.php) to full backups"
+msgstr "将 wp-admin、wp-includes 和根文件(包括 wp-config.php)添加到完整备份"
+
+msgid "WordPress core can always be downloaded again from wordpress.org; leaving it out saves space."
+msgstr "WordPress 核心始终可以从 wordpress.org 再次下载;将其保留可以节省空间。"
+
+msgid "Exclusions"
+msgstr "排除情况"
+
+msgid "Extra paths"
+msgstr "额外路径"
+
+msgid "One path per line, relative to the WordPress root folder. The * wildcard can be used."
+msgstr "每行一个路径,相对于 WordPress 根文件夹。可以使用 * 通配符。"
+
+msgid "Always excluded: the backup folder, wp-snapshots, other backup plugins' folders (ai1wm-backups, updraft, wpvividbackups, backups-dup-*), cache, litespeed, upgrade, upgrade-temp-backup."
+msgstr "始终排除:备份文件夹、wp-snapshots、其他备份插件文件夹(ai1wm-backups、updraft、wpvividbackups、backups-dup-*)、缓存、litespeed、upgrade、upgrade-temp-backup。"
+
+msgid "Restore and uninstall"
+msgstr "恢复和卸载"
+
+msgid "Safety backup"
+msgstr "安全备份"
+
+msgid "Back up the current database before restoring the database (kept for 7 days)"
+msgstr "恢复数据库前备份当前数据库(保留7天)"
+
+msgid "When the plugin is deleted"
+msgstr "当插件被删除时"
+
+msgid "Also delete backup files"
+msgstr "也删除备份文件"
+
+msgid "When off (default), deleting the plugin removes only its settings; the zip files stay in the folder."
+msgstr "关闭(默认)时,删除插件仅删除其设置; zip 文件保留在该文件夹中。"
+
+msgid "Save settings"
+msgstr "保存设置"
+
+msgid "Could not delete."
+msgstr "无法删除。"
+
+msgid "No operation is running."
+msgstr "没有任何操作正在运行。"
+
+msgid "Nothing was selected to back up."
+msgstr "未选择任何内容进行备份。"
+
+msgid "zlib (gzip) is not available on the server."
+msgstr "zlib (gzip) 在服务器上不可用。"
+
+msgid "Another backup or restore is running. Wait for it to finish."
+msgstr "另一个备份或恢复正在运行。 Wait for it to finish."
+
+msgid "Backup record not found."
+msgstr "未找到备份记录。"
+
+msgid "Invalid path."
+msgstr "无效路径。"
+
+msgid "Path not found: %s"
+msgstr "未找到路径:%s"
+
+msgid "Could not write a temporary file."
+msgstr "无法写入临时文件。"
+
+msgid "Could not read the file list."
+msgstr "无法读取文件列表。"
+
+msgid "Could not open the zip file (code %s)."
+msgstr "无法打开 zip 文件(代码%s)。"
+
+msgid "Could not write the zip: %s"
+msgstr "无法写入 zip:%s"
+
+msgid "The backup record was deleted."
+msgstr "备份记录被删除。"
+
+msgid "Could not open the zip file."
+msgstr "无法打开 zip 文件。"
+
+msgid "Could not add the database dump to the archive."
+msgstr "无法将数据库转储添加到存档中。"
+
+msgid "Could not write the zip (the disk may be full)."
+msgstr "无法写入 zip(磁盘可能已满)。"
+
+msgid "The backup was cut off %s times at the same point (server time limit). Try with fewer folders or add large folders to the exclusions."
+msgstr "备份在同一点(服务器时间限制)被切断%s次。尝试使用较少的文件夹或将大文件夹添加到排除项。"
+
+msgid "Backup taken: %1$s (%2$s)"
+msgstr "已进行备份:%1$s(%2$s)"
+
+msgid "Backup failed (%1$s): %2$s"
+msgstr "备份失败(%1$s):%2$s"
+
+msgid "Scanning files… %s files"
+msgstr "正在扫描文件...%s文件"
+
+msgid "Checking quota…"
+msgstr "检查配额..."
+
+msgid "Backing up database: %1$s (%2$s rows)"
+msgstr "正在备份数据库:%1$s(%2$s行)"
+
+msgid "Archiving files: %1$s / %2$s files (%3$s / %4$s)"
+msgstr "归档文件:%1$s/%2$s文件 (%3$s/%4$s)"
+
+msgid "Finishing…"
+msgstr "整理中......"
+
+msgid "Backup completed."
+msgstr "备份完成。"
+
+msgid "Media (uploads)"
+msgstr "媒体(上传)"
+
+msgid "Other wp-content"
+msgstr "其他可湿性粉剂内容"
+
+msgid "Backup folder writable"
+msgstr "备份文件夹可写"
+
+msgid "Backups are written to %s."
+msgstr "备份写入%s。"
+
+msgid "The %s folder cannot be created or written. Check the file permissions (755)."
+msgstr "无法创建或写入%s文件夹。检查文件权限 (755)。"
+
+msgid "ZipArchive and zlib"
+msgstr "ZipArchive 和 zlib"
+
+msgid "The PHP zip and zlib extensions are installed."
+msgstr "PHP zip 和 zlib 扩展已安装。"
+
+msgid "The PHP zip (ZipArchive) or zlib extension is missing; backups cannot be created. On Hostinger, turn on \"zip\" under PHP Configuration › PHP Extensions."
+msgstr "PHP zip (ZipArchive) 或 zlib 扩展丢失;无法创建备份。在 Hostinger 上,在 PHP 配置 › PHP 扩展下打开“zip”。"
+
+msgid "Backup quota"
+msgstr "备份配额"
+
+msgid "%1$s / %2$s used (%3$s%%)."
+msgstr "已使用%1$s/%2$s(%3$s%%)。"
+
+msgid "The oldest unlocked backups will be deleted to make room for new ones; increase the quota or review the locked backups."
+msgstr "最旧的未锁定备份将被删除,以便为新备份腾出空间;增加配额或查看锁定的备份。"
+
+msgid "There are no backups yet. Take the first one from the dashboard with \"Back up now\"."
+msgstr "还没有备份。从仪表板上选择第一个“立即备份”。"
+
+msgid "%1$s (%2$s): %3$s"
+msgstr "%1$s(%2$s):%3$s"
+
+msgid "for all plugin and theme updates"
+msgstr "对于所有插件和主题更新"
+
+msgid "for FluxWP package updates only"
+msgstr "仅适用于 FluxWP 包更新"
+
+msgid "Off: no backup is taken before updates."
+msgstr "关:更新前不进行备份。"
+
+msgid "On, %1$s. Backups are kept for %2$s days."
+msgstr "打开,%1$s。备份保留%2$s天。"
+
+msgid "The daily cleanup task ran %s."
+msgstr "每日清理任务运行%s。"
+
+msgid "The daily task is scheduled but has not run yet."
+msgstr "每日任务已安排但尚未运行。"
+
+msgid "DISABLE_WP_CRON is on and the daily job has not run for 2 days. In the Hostinger panel, call wp-cron.php every 5–15 minutes under Advanced › Cron Jobs."
+msgstr "DISABLE_WP_CRON 已打开,并且日常作业已 2 天没有运行。在 Hostinger 面板中,在“高级”>“Cron 作业”下每 5-15 分钟调用一次 wp-cron.php。"
+
+msgid "The daily task has not run for 2 days; WP-Cron is triggered by visits. Old backups may not be getting deleted."
+msgstr "每日任务已经2天没有运行; WP-Cron 由访问触发。旧的备份可能不会被删除。"
+
+msgid "Flux Backup scheduled tasks"
+msgstr "Flux备份计划任务"
+
+msgid "Could not start the scheduled backup: %s"
+msgstr "无法启动计划备份:%s"
+
+msgid "Left unfinished (timed out)."
+msgstr "未完成(超时)。"
+
+msgid "Could not write the SQL file."
+msgstr "无法写入 SQL 文件。"
+
+msgid "Could not read table %1$s: %2$s"
+msgstr "无法读取表%1$s:%2$s"
+
+msgid "Could not get the structure of table %1$s: %2$s"
+msgstr "无法获取表%1$s的结构:%2$s"
+
+msgid "Could not open the SQL file."
+msgstr "无法打开 SQL 文件。"
+
+msgid "Flux Backup: click for details"
+msgstr "Flux备份:点击查看详情"
+
+msgid "Restoring %s"
+msgstr "恢复%s"
+
+msgid "Backing up %s"
+msgstr "备份%s"
+
+msgid "Restore complete"
+msgstr "恢复完成"
+
+msgid "Backup ready · %s"
+msgstr "备份就绪 ·%s"
+
+msgid "Backup ready"
+msgstr "备份准备就绪"
+
+msgid "Restore failed"
+msgstr "恢复失败"
+
+msgid "Backup failed"
+msgstr "备份失败"
+
+msgid "Cancelled"
+msgstr "取消"
+
+msgid "Cancelling…"
+msgstr "取消..."
+
+msgid "Elapsed: %s"
+msgstr "已过:%s"
+
+msgid "Remaining: about %s"
+msgstr "剩余:约%s"
+
+msgid "Backup"
+msgstr "备份"
+
+msgid "You can leave the page; it keeps running in the background."
+msgstr "您可以离开该页面;它一直在后台运行。"
+
+msgid "Do not change the site while the restore is running."
+msgstr "恢复运行时请勿更改站点。"
+
+msgid "Could not back up before updating %1$s; the update continued without a backup: %2$s"
+msgstr "更新%1$s之前无法备份;更新在没有备份的情况下继续:%2$s"
+
+msgid "Could not add the %1$s folder to the pre-update backup: %2$s"
+msgstr "无法将%1$s文件夹添加到更新前备份:%2$s"
+
+msgid "The backup file is missing from disk."
+msgstr "磁盘中缺少备份文件。"
+
+msgid "This path is not in the backup: %s"
+msgstr "此路径不在备份中:%s"
+
+msgid "This backup has no database."
+msgstr "此备份没有数据库。"
+
+msgid "Nothing was selected to restore."
+msgstr "没有选择恢复任何内容。"
+
+msgid "Safety backup before restore (%s)"
+msgstr "恢复前安全备份 (%s)"
+
+msgid "The safety backup failed, so nothing was restored: %s"
+msgstr "安全备份失败,因此没有恢复任何内容:%s"
+
+msgid "The backup has no database.sql.gz."
+msgstr "备份没有database.sql.gz。"
+
+msgid "The database file's checksum does not match; the backup may be corrupt."
+msgstr "数据库文件的校验和不匹配;备份可能已损坏。"
+
+msgid "The table prefix in the backup (%1$s) differs from this site's prefix (%2$s); the database was not restored."
+msgstr "备份中的表前缀 (%1$s) 与此站点的前缀 (%2$s) 不同;数据库没有恢复。"
+
+msgid "Not found in the backup: %s"
+msgstr "在备份中找不到:%s"
+
+msgid "Could not move the folder (permission problem?): %s"
+msgstr "无法移动文件夹(权限问题?):%s"
+
+msgid "Could not create the folder: %s"
+msgstr "无法创建文件夹:%s"
+
+msgid "Could not write the file: %s"
+msgstr "无法写入文件:%s"
+
+msgid "database"
+msgstr "数据库"
+
+msgid "Restored: %1$s (%2$s)."
+msgstr "恢复:%1$s(%2$s)。"
+
+msgid "%s SQL statements failed; details are in the log."
+msgstr "%sSQL 语句失败;详细信息在日志中。"
+
+msgid "%s The database may be partially restored; restore the \"Safety backup before restore\"."
+msgstr "%s数据库可能已部分恢复;恢复“恢复前的安全备份”。"
+
+msgid "Restore failed (%1$s): %2$s"
+msgstr "恢复失败(%1$s):%2$s"
+
+msgid "Taking safety backup: %s"
+msgstr "进行安全备份:%s"
+
+msgid "Unpacking the database file…"
+msgstr "解压数据库文件..."
+
+msgid "Restoring database: %s"
+msgstr "正在恢复数据库:%s"
+
+msgid "Preparing files…"
+msgstr "正在准备文件..."
+
+msgid "Restoring files: %1$s / %2$s"
+msgstr "恢复文件:%1$s/%2$s"
+
+msgid "%s s"
+msgstr "%ss"
+
+msgid "%1$s min %2$s s"
+msgstr "%1$s分钟%2$s秒"
+
+msgid "%1$s h %2$s min"
+msgstr "%1$s小时%2$s分钟"
+
+msgid "Cancelled."
+msgstr "已取消。"
+
+msgid "Could not verify the session. Reload the page."
+msgstr "无法验证会话。重新加载页面。"
+
+msgid "Backup deleted: %s"
+msgstr "备份已删除:%s"
+
+msgid "Before %1$s %2$s → %3$s"
+msgstr "%1$s之前%2$s→%3$s"
+
+msgid "Before updating %s"
+msgstr "更新%s之前"
+
+msgid "Pre-update"
+msgstr "预更新"
+
+msgid "Manual"
+msgstr "手册"
+
+msgid "Scheduled"
+msgstr "预定"
+
+msgid "Automatic update"
+msgstr "自动更新"
+
+msgid "Update"
+msgstr "更新"
+
+msgid "WP-CLI"
+msgstr "WP-CLI"
+
+msgid "Before restore"
+msgstr "恢复前"
+
+msgid "Plugin (API)"
+msgstr "插件(API)"
+
+msgid "Uploaded"
+msgstr "已上传"
+
+msgid "The estimated backup size (%1$s) is larger than the quota (%2$s). Raise the quota in Settings."
+msgstr "估计备份大小 (%1$s) 大于配额 (%2$s)。在“设置”中提高配额。"
+
+msgid "Not enough quota: the new backup is about %1$s, used %2$s, quota %3$s. The remaining backups are locked; unlock or delete some, or increase the quota."
+msgstr "配额不足:新备份约为%1$s,已使用%2$s,配额%3$s。其余备份被锁定;解锁或删除一些,或增加配额。"
+
+msgid "The file is empty or too small."
+msgstr "文件为空或太小。"
+
+msgid "The file (%1$s) is larger than the backup quota (%2$s). Raise the quota in Settings."
+msgstr "文件 (%1$s) 大于备份配额 (%2$s)。在“设置”中提高配额。"
+
+msgid "There is not enough free disk space on the server (free: %s)."
+msgstr "服务器上没有足够的可用磁盘空间(可用:%s)。"
+
+msgid "Upload not found; start again."
+msgstr "未找到上传;重新开始。"
+
+msgid "A chunk did not reach the server (error %d)."
+msgstr "块未到达服务器(错误%d)。"
+
+msgid "Chunks arrived out of order."
+msgstr "块到达时没有顺序。"
+
+msgid "The file is larger than the declared size."
+msgstr "文件大于声明的大小。"
+
+msgid "Could not write the temporary file (the disk may be full)."
+msgstr "无法写入临时文件(磁盘可能已满)。"
+
+msgid "%1$s was uploaded (%2$s) and added to the backup list."
+msgstr "%1$s已上传 (%2$s) 并添加到备份列表中。"
+
+msgid "The file was uploaded incompletely (%1$s / %2$s). Try again."
+msgstr "文件上传不完整 (%1$s/%2$s)。再试一次。"
+
+msgid "Could not move the file to the backup folder."
+msgstr "无法将文件移动到备份文件夹。"
+
+msgid "Uploaded: %s"
+msgstr "已上传:%s"
+
+msgid "Backup uploaded: %1$s (%2$s, %3$s)"
+msgstr "备份上传:%1$s(%2$s,%3$s)"
+
+msgid "This file is not a Flux Backup backup (the zip could not be opened or has no manifest.json)."
+msgstr "此文件不是 Flux Backup 备份(zip 无法打开或没有 manifest.json)。"
+
+msgid "The backup contains an unexpected or unsafe path: %s"
+msgstr "备份包含意外或不安全的路径:%s"
+
+msgid "The manifest says the backup includes the database but database.sql.gz is missing; the file may be corrupt."
+msgstr "清单显示备份包含数据库,但缺少database.sql.gz;该文件可能已损坏。"
+
+msgid "The backup appears to be empty."
+msgstr "备份似乎是空的。"
+
+msgid "The uncompressed size of the backup is not plausible; the file was not accepted."
+msgstr "未压缩的备份大小不合理;该文件未被接受。"
+
+msgid "%s file"
+msgid_plural "%s files"
+msgstr[0] "%s文件"
+
+msgid "%s locked"
+msgid_plural "%s locked"
+msgstr[0] "%s已锁定"
+
+msgid "Before updating %s package"
+msgid_plural "Before updating %s packages"
+msgstr[0] "更新%s包之前"
+
+msgid "%s row"
+msgid_plural "%s rows"
+msgstr[0] "%s行"
+
+msgid "%s backup"
+msgid_plural "%s backups"
+msgstr[0] "%s备份"
+
+msgid "%s other item"
+msgid_plural "%s other items"
+msgstr[0] "%s其他项目"
+
+msgid "%1$s old backup deleted for the quota: %2$s"
+msgid_plural "%1$s old backups deleted for the quota: %2$s"
+msgstr[0] "%1$s已删除配额的旧备份:%2$s"
+
+msgid "%s backup past its retention period was deleted."
+msgid_plural "%s backups past their retention period were deleted."
+msgstr[0] "超过保留期的%s备份已被删除。"
+
+msgid "Takes an automatic backup before every plugin/theme update, scheduled full backups, quota and retention management, a storage dashboard with charts and selective restore. Compatible with Hostinger shared hosting."
+msgstr "在每次插件/主题更新、计划的完整备份、配额和保留管理、带有图表和选择性恢复的存储仪表板之前进行自动备份。与 Hostinger 共享主机兼容。"
+
+msgctxt "context_fd86717aca41"
+msgid "%s%%"
+msgstr "%s%%"
+
+msgid "The archive file is deleted too."
+msgstr "存档文件也被删除。"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Restore is only available in the panel."
+msgstr "恢复仅在面板中可用。"
+
+msgid "Error"
+msgstr "错误"
+
+msgid "Deleted"
+msgstr "已删除"
+
+msgid "Take a full backup?"
+msgstr "进行完整备份?"
+
+msgid "Done"
+msgstr "完成"
+
+msgid "The backup runs in the background and shows up in the list when it finishes."
+msgstr "备份在后台运行并在完成后显示在列表中。"
+
+msgid "Backup started"
+msgstr "备份开始"
+
+msgid "Delete this backup?"
+msgstr "删除这个备份吗?"
+
+msgid "No backups"
+msgstr "无备份"
+
+msgid "Back up"
+msgstr "备份"
+
+msgid "Progress"
+msgstr "进展"
+
+msgid "Take the first backup with Back up now. Restore is done in the panel."
+msgstr "使用“立即备份”进行第一次备份。恢复是在面板中完成的。"

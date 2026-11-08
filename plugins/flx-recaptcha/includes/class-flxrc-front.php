@@ -52,7 +52,7 @@ final class FLXRC_Front {
 			$html .= '<div class="flxrc-v2"></div>';
 		}
 		$html .= self::notice_html();
-		$html .= '<noscript><p class="flxrc-noscript">' . esc_html__( 'Bu formu göndermek için tarayıcınızda JavaScript açık olmalı.', 'flx-recaptcha' ) . '</p></noscript>';
+		$html .= '<noscript><p class="flxrc-noscript">' . esc_html__( 'JavaScript must be enabled in your browser to send this form.', 'flx-recaptcha' ) . '</p></noscript>';
 		$html .= '</div>';
 		return $html;
 	}
@@ -64,9 +64,9 @@ final class FLXRC_Front {
 		}
 		return '<p class="flxrc-terms">' . sprintf(
 			/* translators: 1: Google privacy policy link, 2: Google terms link */
-			esc_html__( 'Bu form reCAPTCHA ile korunur; Google %1$s ve %2$s geçerlidir.', 'flx-recaptcha' ),
-			'<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">' . esc_html__( 'Gizlilik Politikası', 'flx-recaptcha' ) . '</a>',
-			'<a href="https://policies.google.com/terms" target="_blank" rel="noopener">' . esc_html__( 'Hizmet Şartları', 'flx-recaptcha' ) . '</a>'
+			esc_html__( 'This form is protected by reCAPTCHA and the Google %1$s and %2$s apply.', 'flx-recaptcha' ),
+			'<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">' . esc_html__( 'Privacy Policy', 'flx-recaptcha' ) . '</a>',
+			'<a href="https://policies.google.com/terms" target="_blank" rel="noopener">' . esc_html__( 'Terms of Service', 'flx-recaptcha' ) . '</a>'
 		) . '</p>';
 	}
 

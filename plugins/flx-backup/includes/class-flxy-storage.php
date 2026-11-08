@@ -135,7 +135,7 @@ final class FLXY_Storage {
 			}
 		}
 		self::forget( $id );
-		self::log( 'delete', sprintf( /* translators: %s: backup label */ __( 'Yedek silindi: %s', 'flx-backup' ), self::title( $r ) ) );
+		self::log( 'delete', sprintf( /* translators: %s: backup label */ __( 'Backup deleted: %s', 'flx-backup' ), self::title( $r ) ) );
 		self::sample();
 		/**
 		 * Bir yedek silindikten sonra.
@@ -200,13 +200,13 @@ final class FLXY_Storage {
 				$name = '' !== (string) ( $p['name'] ?? '' ) ? $p['name'] : $p['slug'];
 				if ( ! empty( $p['from_version'] ) && ! empty( $p['to_version'] ) ) {
 					/* translators: 1: package name, 2: old version, 3: new version */
-					return sprintf( __( '%1$s %2$s → %3$s öncesi', 'flx-backup' ), $name, $p['from_version'], $p['to_version'] );
+					return sprintf( __( 'Before %1$s %2$s → %3$s', 'flx-backup' ), $name, $p['from_version'], $p['to_version'] );
 				}
 				/* translators: %s: package name */
-				return sprintf( __( '%s güncellemesi öncesi', 'flx-backup' ), $name );
+				return sprintf( __( 'Before updating %s', 'flx-backup' ), $name );
 			}
 			/* translators: %s: number of packages */
-			return sprintf( _n( '%s paket güncellemesi öncesi', '%s paket güncellemesi öncesi', count( $pkgs ), 'flx-backup' ), number_format_i18n( count( $pkgs ) ) );
+			return sprintf( _n( 'Before updating %s package', 'Before updating %s packages', count( $pkgs ), 'flx-backup' ), number_format_i18n( count( $pkgs ) ) );
 		}
 		$labels = self::type_labels();
 		return $labels[ $r['type'] ] ?? (string) $r['type'];
@@ -214,11 +214,11 @@ final class FLXY_Storage {
 
 	public static function type_labels(): array {
 		return array(
-			'full'       => __( 'Tam yedek', 'flx-backup' ),
-			'pre_update' => __( 'Güncelleme öncesi', 'flx-backup' ),
-			'db'         => __( 'Veritabanı', 'flx-backup' ),
-			'files'      => __( 'Dosyalar', 'flx-backup' ),
-			'manual'     => __( 'Elle', 'flx-backup' ),
+			'full'       => __( 'Full backup', 'flx-backup' ),
+			'pre_update' => __( 'Pre-update', 'flx-backup' ),
+			'db'         => __( 'Database', 'flx-backup' ),
+			'files'      => __( 'Files', 'flx-backup' ),
+			'manual'     => __( 'Manual', 'flx-backup' ),
 		);
 	}
 
@@ -235,14 +235,14 @@ final class FLXY_Storage {
 
 	public static function source_labels(): array {
 		return array(
-			'manual'   => __( 'Elle', 'flx-backup' ),
-			'schedule' => __( 'Zamanlanmış', 'flx-backup' ),
-			'auto'     => __( 'Otomatik güncelleme', 'flx-backup' ),
-			'update'   => __( 'Güncelleme', 'flx-backup' ),
+			'manual'   => __( 'Manual', 'flx-backup' ),
+			'schedule' => __( 'Scheduled', 'flx-backup' ),
+			'auto'     => __( 'Automatic update', 'flx-backup' ),
+			'update'   => __( 'Update', 'flx-backup' ),
 			'cli'      => __( 'WP-CLI', 'flx-backup' ),
-			'safety'   => __( 'Geri yükleme öncesi', 'flx-backup' ),
-			'api'      => __( 'Eklenti (API)', 'flx-backup' ),
-			'upload'   => __( 'Dışarıdan yüklendi', 'flx-backup' ),
+			'safety'   => __( 'Before restore', 'flx-backup' ),
+			'api'      => __( 'Plugin (API)', 'flx-backup' ),
+			'upload'   => __( 'Uploaded', 'flx-backup' ),
 		);
 	}
 
@@ -285,7 +285,7 @@ final class FLXY_Storage {
 				'flxy_quota',
 				sprintf(
 					/* translators: 1: estimated size, 2: quota */
-					__( 'Yedeğin tahmini boyutu (%1$s) kotadan (%2$s) büyük. Ayarlar\'dan kotayı artırın.', 'flx-backup' ),
+					__( 'The estimated backup size (%1$s) is larger than the quota (%2$s). Raise the quota in Settings.', 'flx-backup' ),
 					size_format( $needed, 1 ),
 					size_format( $quota, 1 )
 				)
@@ -314,7 +314,7 @@ final class FLXY_Storage {
 				'quota',
 				sprintf(
 					/* translators: 1: number of deleted backups, 2: list */
-					_n( 'Kota için %1$s eski yedek silindi: %2$s', 'Kota için %1$s eski yedek silindi: %2$s', count( $deleted ), 'flx-backup' ),
+					_n( '%1$s old backup deleted for the quota: %2$s', '%1$s old backups deleted for the quota: %2$s', count( $deleted ), 'flx-backup' ),
 					number_format_i18n( count( $deleted ) ),
 					implode( ', ', $deleted )
 				)
@@ -325,7 +325,7 @@ final class FLXY_Storage {
 				'flxy_quota',
 				sprintf(
 					/* translators: 1: estimated size, 2: used, 3: quota */
-					__( 'Kotada yer yok: yeni yedek yaklaşık %1$s, kullanılan %2$s, kota %3$s. Kalan yedekler kilitli; kilidi açın, silin veya kotayı artırın.', 'flx-backup' ),
+					__( 'Not enough quota: the new backup is about %1$s, used %2$s, quota %3$s. The remaining backups are locked; unlock or delete some, or increase the quota.', 'flx-backup' ),
 					size_format( $needed, 1 ),
 					size_format( $used, 1 ),
 					size_format( $quota, 1 )

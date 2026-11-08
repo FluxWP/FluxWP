@@ -11,13 +11,13 @@ add_action( 'admin_menu', 'flxai_admin_menu' );
 
 function flxai_admin_menu() {
 	add_menu_page( 'Flux AI & MCP', 'Flux AI & MCP', 'manage_options', 'flx-ai', 'flxai_page_overview', 'none', 59 );
-	add_submenu_page( 'flx-ai', __( 'Genel bakış', 'flx-ai' ), __( 'Genel bakış', 'flx-ai' ), 'manage_options', 'flx-ai', 'flxai_page_overview' );
-	add_submenu_page( 'flx-ai', __( 'Kayıtlar', 'flx-ai' ), __( 'Kayıtlar', 'flx-ai' ), 'manage_options', 'flx-ai-log', 'flxai_page_log' );
-	add_submenu_page( 'flx-ai', __( 'Bağlı sistemler', 'flx-ai' ), __( 'Bağlı sistemler', 'flx-ai' ), 'manage_options', 'flx-ai-systems', 'flxai_page_systems' );
-	add_submenu_page( 'flx-ai', __( 'Faturalandırma', 'flx-ai' ), __( 'Faturalandırma', 'flx-ai' ), 'manage_options', 'flx-ai-billing', 'flxai_page_billing' );
-	add_submenu_page( 'flx-ai', __( 'Araçlar', 'flx-ai' ), __( 'Araçlar', 'flx-ai' ), 'manage_options', 'flx-ai-tools', 'flxai_page_tools' );
+	add_submenu_page( 'flx-ai', __( 'Overview', 'flx-ai' ), __( 'Overview', 'flx-ai' ), 'manage_options', 'flx-ai', 'flxai_page_overview' );
+	add_submenu_page( 'flx-ai', __( 'Logs', 'flx-ai' ), __( 'Logs', 'flx-ai' ), 'manage_options', 'flx-ai-log', 'flxai_page_log' );
+	add_submenu_page( 'flx-ai', __( 'Connected systems', 'flx-ai' ), __( 'Connected systems', 'flx-ai' ), 'manage_options', 'flx-ai-systems', 'flxai_page_systems' );
+	add_submenu_page( 'flx-ai', __( 'Billing', 'flx-ai' ), __( 'Billing', 'flx-ai' ), 'manage_options', 'flx-ai-billing', 'flxai_page_billing' );
+	add_submenu_page( 'flx-ai', __( 'Tools', 'flx-ai' ), __( 'Tools', 'flx-ai' ), 'manage_options', 'flx-ai-tools', 'flxai_page_tools' );
 	add_submenu_page( 'flx-ai', 'MCP', 'MCP', 'manage_options', 'flx-ai-mcp', 'flxai_page_mcp' );
-	add_submenu_page( 'flx-ai', __( 'Ayarlar', 'flx-ai' ), __( 'Ayarlar', 'flx-ai' ), 'manage_options', 'flx-ai-settings', 'flxai_page_settings' );
+	add_submenu_page( 'flx-ai', __( 'Settings', 'flx-ai' ), __( 'Settings', 'flx-ai' ), 'manage_options', 'flx-ai-settings', 'flxai_page_settings' );
 }
 
 /** Flux Admin alt bar / komut paleti çizgi simgesi. */
@@ -91,8 +91,8 @@ function flxai_budget_cards() {
 	foreach ( flxai_budget_status() as $row ) {
 		$sub = $row['limit'] > 0
 			/* translators: 1: limit, 2: reset date */
-			? sprintf( __( 'Sınır %1$s · %2$s yenilenir', 'flx-ai' ), flxai_usd( $row['limit'], 2 ), flx_date( $row['resets'], 'j M H:i' ) )
-			: __( 'Sınır yok', 'flx-ai' );
+			? sprintf( __( 'Limit %1$s · resets %2$s', 'flx-ai' ), flxai_usd( $row['limit'], 2 ), flx_date( $row['resets'], 'j M H:i' ) )
+			: __( 'No limit', 'flx-ai' );
 		flxai_kpi( $row['label'], flxai_usd( $row['spent'] ), $sub, $row['limit'] > 0 ? $row['pct'] : null, $row['over'] );
 	}
 	echo '</div>';
@@ -107,7 +107,7 @@ function flxai_page_overview() {
 		flxai_page_log();
 		return;
 	}
-	flxai_page_head( 'Flux AI', __( 'Tüm eklentilerin yapay zekâ kullanımı: maliyet, süre, önbellek ve araçlar.', 'flx-ai' ) );
+	flxai_page_head( 'Flux AI', __( 'AI usage across all plugins: cost, time, cache and tools.', 'flx-ai' ) );
 	$days   = (int) ( $_GET['days'] ?? 30 ); // phpcs:ignore
 	$days   = in_array( $days, array( 7, 14, 30, 90, 180 ), true ) ? $days : 30;
 	$source = sanitize_key( $_GET['source'] ?? '' ); // phpcs:ignore
@@ -115,7 +115,7 @@ function flxai_page_overview() {
 	$t      = $rep['totals'];
 
 	if ( ! flxai_providers_ready() ) {
-		echo '<div class="notice notice-warning inline"><p>' . esc_html__( 'Henüz API anahtarı girilmedi.', 'flx-ai' ) . ' <a href="' . esc_url( admin_url( 'admin.php?page=flx-ai-settings' ) ) . '">' . esc_html__( 'Ayarlar', 'flx-ai' ) . '</a></p></div>';
+		echo '<div class="notice notice-warning inline"><p>' . esc_html__( 'No API key entered yet.', 'flx-ai' ) . ' <a href="' . esc_url( admin_url( 'admin.php?page=flx-ai-settings' ) ) . '">' . esc_html__( 'Settings', 'flx-ai' ) . '</a></p></div>';
 	}
 	flxai_budget_cards();
 
@@ -123,21 +123,21 @@ function flxai_page_overview() {
 	echo '<form class="flxai-filters" method="get"><input type="hidden" name="page" value="flx-ai"><div class="flxai-seg">';
 	foreach ( array( 7, 30, 90, 180 ) as $d ) {
 		/* translators: %d: days */
-		printf( '<button type="submit" name="days" value="%1$d" class="%2$s">%3$s</button>', (int) $d, $d === $days ? 'is-on' : '', esc_html( sprintf( __( '%d gün', 'flx-ai' ), $d ) ) );
+		printf( '<button type="submit" name="days" value="%1$d" class="%2$s">%3$s</button>', (int) $d, $d === $days ? 'is-on' : '', esc_html( sprintf( __( '%d days', 'flx-ai' ), $d ) ) );
 	}
-	echo '</div><label><span class="screen-reader-text">' . esc_html__( 'Kaynak', 'flx-ai' ) . '</span><select name="source" onchange="this.form.submit()"><option value="">' . esc_html__( 'Tüm eklentiler', 'flx-ai' ) . '</option>';
+	echo '</div><label><span class="screen-reader-text">' . esc_html__( 'Source', 'flx-ai' ) . '</span><select name="source" onchange="this.form.submit()"><option value="">' . esc_html__( 'All plugins', 'flx-ai' ) . '</option>';
 	foreach ( flxai_sources() as $id => $label ) {
 		printf( '<option value="%s"%s>%s</option>', esc_attr( $id ), selected( $source, $id, false ), esc_html( $label ) );
 	}
 	echo '</select></label><input type="hidden" name="days" value="' . esc_attr( $days ) . '"></form>';
 
 	echo '<div class="flxai-kpis">';
-	flxai_kpi( __( 'Maliyet', 'flx-ai' ), flxai_usd( $t['cost'] ), sprintf( /* translators: %s: amount */ __( 'Önbellek tasarrufu %s', 'flx-ai' ), flxai_usd( $t['saved'] ) ) );
-	flxai_kpi( __( 'Model istekleri', 'flx-ai' ), number_format_i18n( $t['calls'] ), sprintf( /* translators: %s: count */ __( '%s araç çağrısı', 'flx-ai' ), number_format_i18n( $t['tools'] ) ) );
-	flxai_kpi( __( 'Token', 'flx-ai' ), number_format_i18n( $t['in_tok'] + $t['out_tok'] ), sprintf( /* translators: 1: in, 2: out, 3: cached */ __( 'Giriş %1$s · çıkış %2$s · önbellekten %3$s', 'flx-ai' ), number_format_i18n( $t['in_tok'] ), number_format_i18n( $t['out_tok'] ), number_format_i18n( $t['cr'] ) ) );
+	flxai_kpi( __( 'Cost', 'flx-ai' ), flxai_usd( $t['cost'] ), sprintf( /* translators: %s: amount */ __( 'Cache savings %s', 'flx-ai' ), flxai_usd( $t['saved'] ) ) );
+	flxai_kpi( __( 'Model requests', 'flx-ai' ), number_format_i18n( $t['calls'] ), sprintf( /* translators: %s: count */ __( '%s tool calls', 'flx-ai' ), number_format_i18n( $t['tools'] ) ) );
+	flxai_kpi( __( 'Tokens', 'flx-ai' ), number_format_i18n( $t['in_tok'] + $t['out_tok'] ), sprintf( /* translators: 1: in, 2: out, 3: cached */ __( 'Input %1$s · output %2$s · from cache %3$s', 'flx-ai' ), number_format_i18n( $t['in_tok'] ), number_format_i18n( $t['out_tok'] ), number_format_i18n( $t['cr'] ) ) );
 	$tot_ms = max( 1, $t['model_ms'] + $t['tool_ms'] );
-	flxai_kpi( __( 'Toplam süre', 'flx-ai' ), flxai_ms( $tot_ms ), sprintf( /* translators: 1: percent model, 2: percent tools */ __( 'Model/düşünme %%%1$s · araçlar %%%2$s', 'flx-ai' ), number_format_i18n( $t['model_ms'] / $tot_ms * 100, 0 ), number_format_i18n( $t['tool_ms'] / $tot_ms * 100, 0 ) ) );
-	flxai_kpi( __( 'Hata', 'flx-ai' ), number_format_i18n( $t['errors'] ), $t['calls'] ? sprintf( /* translators: %s: percent */ __( 'İsteklerin %%%s', 'flx-ai' ), number_format_i18n( $t['errors'] / max( 1, $t['calls'] + $t['tools'] ) * 100, 1 ) ) : '' );
+	flxai_kpi( __( 'Total time', 'flx-ai' ), flxai_ms( $tot_ms ), sprintf( /* translators: 1: percent model, 2: percent tools */ __( 'Model/thinking %1$s%% · tools %2$s%%', 'flx-ai' ), number_format_i18n( $t['model_ms'] / $tot_ms * 100, 0 ), number_format_i18n( $t['tool_ms'] / $tot_ms * 100, 0 ) ) );
+	flxai_kpi( __( 'Errors', 'flx-ai' ), number_format_i18n( $t['errors'] ), $t['calls'] ? sprintf( /* translators: %s: percent */ __( '%s%% of requests', 'flx-ai' ), number_format_i18n( $t['errors'] / max( 1, $t['calls'] + $t['tools'] ) * 100, 1 ) ) : '' );
 	echo '</div>';
 
 	$chart = array(
@@ -150,18 +150,18 @@ function flxai_page_overview() {
 		),
 	);
 	echo '<div class="flxai-grid">';
-	echo '<section class="flxai-card flxai-span2"><h2>' . esc_html__( 'Günlük maliyet (USD)', 'flx-ai' ) . '</h2><div class="flxai-chart" data-chart="cost"></div></section>';
-	echo '<section class="flxai-card flxai-span2"><h2>' . esc_html__( 'Süre nereye gidiyor: model/düşünme ve araçlar', 'flx-ai' ) . '</h2><div class="flxai-chart" data-chart="time"></div></section>';
-	echo '<section class="flxai-card"><h2>' . esc_html__( 'Günlük token', 'flx-ai' ) . '</h2><div class="flxai-chart" data-chart="tokens"></div></section>';
-	echo '<section class="flxai-card"><h2>' . esc_html__( 'Araç başına ortalama süre', 'flx-ai' ) . '</h2><div class="flxai-chart" data-chart="tools"></div></section>';
+	echo '<section class="flxai-card flxai-span2"><h2>' . esc_html__( 'Daily cost (USD)', 'flx-ai' ) . '</h2><div class="flxai-chart" data-chart="cost"></div></section>';
+	echo '<section class="flxai-card flxai-span2"><h2>' . esc_html__( 'Where time goes: model/thinking vs tools', 'flx-ai' ) . '</h2><div class="flxai-chart" data-chart="time"></div></section>';
+	echo '<section class="flxai-card"><h2>' . esc_html__( 'Daily tokens', 'flx-ai' ) . '</h2><div class="flxai-chart" data-chart="tokens"></div></section>';
+	echo '<section class="flxai-card"><h2>' . esc_html__( 'Average time per tool', 'flx-ai' ) . '</h2><div class="flxai-chart" data-chart="tools"></div></section>';
 	echo '</div>';
 	echo '<script type="application/json" id="flxai-chart-data">' . wp_json_encode( $chart ) . '</script>';
 
 	echo '<div class="flxai-grid">';
-	flxai_breakdown_table( __( 'Eklentiye göre', 'flx-ai' ), $rep['by_source'] );
-	flxai_breakdown_table( __( 'Modele göre', 'flx-ai' ), $rep['by_model'] );
+	flxai_breakdown_table( __( 'By plugin', 'flx-ai' ), $rep['by_source'] );
+	flxai_breakdown_table( __( 'By model', 'flx-ai' ), $rep['by_model'] );
 	echo '</div>';
-	flxai_breakdown_table( __( 'Amaca göre', 'flx-ai' ), $rep['by_purpose'] );
+	flxai_breakdown_table( __( 'By purpose', 'flx-ai' ), $rep['by_purpose'] );
 	echo '</div>';
 }
 
@@ -169,10 +169,10 @@ function flxai_page_overview() {
 function flxai_breakdown_table( $title, $rows, $raw_label = false ) {
 	echo '<section class="flxai-card"><h2>' . esc_html( $title ) . '</h2>';
 	if ( ! $rows ) {
-		echo '<p class="flxai-empty">' . esc_html__( 'Bu aralıkta kayıt yok.', 'flx-ai' ) . '</p></section>';
+		echo '<p class="flxai-empty">' . esc_html__( 'No records in this range.', 'flx-ai' ) . '</p></section>';
 		return;
 	}
-	echo '<div class="flxai-tscroll"><table class="flxai-table"><thead><tr><th>' . esc_html__( 'Ad', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'İstek', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Token', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Model süresi', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Araç süresi', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Maliyet', 'flx-ai' ) . '</th></tr></thead><tbody>';
+	echo '<div class="flxai-tscroll"><table class="flxai-table"><thead><tr><th>' . esc_html__( 'Name', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Requests', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Tokens', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Model time', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Tool time', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Cost', 'flx-ai' ) . '</th></tr></thead><tbody>';
 	foreach ( $rows as $r ) {
 		$label = $raw_label ? (string) $r['k'] : (string) ( $r['label'] ?? $r['k'] );
 		printf(
@@ -183,7 +183,7 @@ function flxai_breakdown_table( $title, $rows, $raw_label = false ) {
 			esc_html( flxai_ms( (int) $r['model_ms'] ) ),
 			esc_html( flxai_ms( (int) $r['tool_ms'] ) ),
 			esc_html( flxai_usd( (float) $r['cost'] ) ),
-			(int) $r['errors'] ? ' <span class="flxai-pill is-err">' . esc_html( sprintf( /* translators: %s: count */ __( '%s hata', 'flx-ai' ), number_format_i18n( (int) $r['errors'] ) ) ) . '</span>' : ''
+			(int) $r['errors'] ? ' <span class="flxai-pill is-err">' . esc_html( sprintf( /* translators: %s: count */ __( '%s errors', 'flx-ai' ), number_format_i18n( (int) $r['errors'] ) ) ) . '</span>' : ''
 		);
 	}
 	echo '</tbody></table></div></section>';
@@ -195,7 +195,7 @@ function flxai_breakdown_table( $title, $rows, $raw_label = false ) {
 
 function flxai_page_log() {
 	global $wpdb;
-	flxai_page_head( __( 'Kayıtlar', 'flx-ai' ), __( 'Her model isteği ve araç çağrısı: hangi sistemden, kim için, hangi model, token, süre, maliyet. İçerik kişisel veriler maskelenerek saklanır.', 'flx-ai' ) );
+	flxai_page_head( __( 'Logs', 'flx-ai' ), __( 'Every model request and tool call: which system, for whom, which model, tokens, time and cost. Content is stored with personal data masked.', 'flx-ai' ) );
 	$kind   = sanitize_key( $_GET['kind'] ?? '' ); // phpcs:ignore
 	$source = sanitize_key( $_GET['source'] ?? '' ); // phpcs:ignore
 	$errs   = ! empty( $_GET['errors'] ); // phpcs:ignore
@@ -223,31 +223,31 @@ function flxai_page_log() {
 	foreach ( flxai_systems() as $sys ) {
 		$sources[ $sys['source'] ] = $sys['label'];
 	}
-	$kind_sel = '<select name="kind"%s><option value="">' . esc_html__( 'Tümü', 'flx-ai' ) . '</option><option value="model"' . selected( $kind, 'model', false ) . '>' . esc_html__( 'Model istekleri', 'flx-ai' ) . '</option><option value="tool"' . selected( $kind, 'tool', false ) . '>' . esc_html__( 'Araç çağrıları', 'flx-ai' ) . '</option></select>';
-	$src_sel  = '<select name="source"%s><option value="">' . esc_html__( 'Tüm sistemler', 'flx-ai' ) . '</option>';
+	$kind_sel = '<select name="kind"%s><option value="">' . esc_html__( 'All', 'flx-ai' ) . '</option><option value="model"' . selected( $kind, 'model', false ) . '>' . esc_html__( 'Model requests', 'flx-ai' ) . '</option><option value="tool"' . selected( $kind, 'tool', false ) . '>' . esc_html__( 'Tool calls', 'flx-ai' ) . '</option></select>';
+	$src_sel  = '<select name="source"%s><option value="">' . esc_html__( 'All systems', 'flx-ai' ) . '</option>';
 	foreach ( $sources as $id => $label ) {
 		$src_sel .= sprintf( '<option value="%s"%s>%s</option>', esc_attr( $id ), selected( $source, $id, false ), esc_html( $label ) );
 	}
 	$src_sel .= '</select>';
-	$err_chk  = '<label class="flxai-check"%s><input type="checkbox" name="errors" value="1"' . checked( $errs, true, false ) . '%s> ' . esc_html__( 'Yalnız hatalar', 'flx-ai' ) . '</label>';
+	$err_chk  = '<label class="flxai-check"%s><input type="checkbox" name="errors" value="1"' . checked( $errs, true, false ) . '%s> ' . esc_html__( 'Errors only', 'flx-ai' ) . '</label>';
 	if ( $lib ) {
 		// Flux Admin ortak liste çubuğu: dönem + tür görünür, diğerleri "Filtreler" panelinde.
 		echo '<form class="flxai-filters flxai-filters-lib" method="get"' . flxa_list_form_attrs( array( 'key' => 'flxai-log' ) ) . '><input type="hidden" name="page" value="flx-ai-log">'; // phpcs:ignore
 		echo '<select name="days" data-flxa-primary>';
 		foreach ( array( 1, 7, 30, 90, 365 ) as $d ) {
 			/* translators: %d: days */
-			printf( '<option value="%1$d"%2$s>%3$s</option>', (int) $d, selected( $days, $d, false ), esc_html( 1 === $d ? __( '24 saat', 'flx-ai' ) : sprintf( __( '%d gün', 'flx-ai' ), $d ) ) );
+			printf( '<option value="%1$d"%2$s>%3$s</option>', (int) $d, selected( $days, $d, false ), esc_html( 1 === $d ? __( '24 hours', 'flx-ai' ) : sprintf( __( '%d days', 'flx-ai' ), $d ) ) );
 		}
 		echo '</select>';
 		printf( $kind_sel, ' data-flxa-primary' ); // phpcs:ignore -- escaped above
 		printf( $src_sel, '' ); // phpcs:ignore
 		printf( $err_chk, '', '' ); // phpcs:ignore
-		echo '<button class="button">' . esc_html__( 'Filtrele', 'flx-ai' ) . '</button></form>';
+		echo '<button class="button">' . esc_html__( 'Filter', 'flx-ai' ) . '</button></form>';
 	} else {
 		echo '<form class="flxai-filters" method="get"><input type="hidden" name="page" value="flx-ai-log"><div class="flxai-seg">';
 		foreach ( array( 1, 7, 30, 90 ) as $d ) {
 			/* translators: %d: days */
-			printf( '<button type="submit" name="days" value="%1$d" class="%2$s">%3$s</button>', (int) $d, $d === $days ? 'is-on' : '', esc_html( 1 === $d ? __( '24 saat', 'flx-ai' ) : sprintf( __( '%d gün', 'flx-ai' ), $d ) ) );
+			printf( '<button type="submit" name="days" value="%1$d" class="%2$s">%3$s</button>', (int) $d, $d === $days ? 'is-on' : '', esc_html( 1 === $d ? __( '24 hours', 'flx-ai' ) : sprintf( __( '%d days', 'flx-ai' ), $d ) ) );
 		}
 		echo '</div><input type="hidden" name="days" value="' . esc_attr( $days ) . '">';
 		printf( $kind_sel, ' onchange="this.form.submit()"' ); // phpcs:ignore
@@ -257,18 +257,18 @@ function flxai_page_log() {
 	}
 	if ( ! $lib ) {
 		/* translators: %s: count */
-		echo '<p class="flxai-note flxai-count">' . esc_html( sprintf( __( '%s kayıt', 'flx-ai' ), number_format_i18n( $total ) ) ) . '</p>';
+		echo '<p class="flxai-note flxai-count">' . esc_html( sprintf( __( '%s records', 'flx-ai' ), number_format_i18n( $total ) ) ) . '</p>';
 	}
 	if ( ! $rows ) {
-		echo '<p class="flxai-empty">' . esc_html__( 'Kayıt yok.', 'flx-ai' ) . '</p></div>';
+		echo '<p class="flxai-empty">' . esc_html__( 'No records.', 'flx-ai' ) . '</p></div>';
 		return;
 	}
 	$users = array();
-	echo '<div class="flxai-card"><div class="flxai-tscroll"><table class="flxai-table flxai-log"><thead><tr><th>' . esc_html__( 'Zaman', 'flx-ai' ) . '</th><th>' . esc_html__( 'Nerede', 'flx-ai' ) . '</th><th>' . esc_html__( 'Kim', 'flx-ai' ) . '</th><th>' . esc_html__( 'Model / araç', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Giriş', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Çıkış', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Önbellek', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Süre', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Maliyet', 'flx-ai' ) . '</th><th></th></tr></thead><tbody>';
+	echo '<div class="flxai-card"><div class="flxai-tscroll"><table class="flxai-table flxai-log"><thead><tr><th>' . esc_html__( 'Time', 'flx-ai' ) . '</th><th>' . esc_html__( 'Where', 'flx-ai' ) . '</th><th>' . esc_html__( 'Who', 'flx-ai' ) . '</th><th>' . esc_html__( 'Model / tool', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Input', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Output', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Cache', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Duration', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Cost', 'flx-ai' ) . '</th><th></th></tr></thead><tbody>';
 	foreach ( $rows as $r ) {
-		$what = 'tool' === $r['kind'] ? '<span class="flxai-pill">' . esc_html__( 'araç', 'flx-ai' ) . '</span> ' . esc_html( $r['tool'] ) : esc_html( flxai_model_label( $r['model'] ) );
+		$what = 'tool' === $r['kind'] ? '<span class="flxai-pill">' . esc_html__( 'tool', 'flx-ai' ) . '</span> ' . esc_html( $r['tool'] ) : esc_html( flxai_model_label( $r['model'] ) );
 		if ( ! (int) $r['ok'] ) {
-			$err   = 'limit' === $r['error'] ? __( 'Harcama sınırı doldu', 'flx-ai' ) : ( 'off' === $r['error'] ? __( 'Kapalı (Bağlı sistemler)', 'flx-ai' ) : $r['error'] );
+			$err   = 'limit' === $r['error'] ? __( 'Spending limit reached', 'flx-ai' ) : ( 'off' === $r['error'] ? __( 'Off (Connected systems)', 'flx-ai' ) : $r['error'] );
 			$what .= '<div class="flxai-err">' . esc_html( $err ) . '</div>';
 		}
 		$uid = (int) $r['user_id'];
@@ -281,7 +281,7 @@ function flxai_page_log() {
 			'<tr class="%10$s"><td>%1$s</td><td>%2$s</td><td>%3$s</td><td>%4$s</td><td class="num">%5$s</td><td class="num">%6$s</td><td class="num">%7$s</td><td class="num">%8$s</td><td class="num">%9$s</td><td>%11$s</td></tr>',
 			esc_html( flx_date( (int) $r['ts'], 'j M H:i:s' ) ),
 			esc_html( $where_txt ),
-			esc_html( $uid ? $users[ $uid ] : __( 'Sistem', 'flx-ai' ) ),
+			esc_html( $uid ? $users[ $uid ] : __( 'System', 'flx-ai' ) ),
 			$what, // phpcs:ignore -- escaped above
 			esc_html( number_format_i18n( (int) $r['in_tok'] ) ),
 			esc_html( number_format_i18n( (int) $r['out_tok'] ) ),
@@ -289,7 +289,7 @@ function flxai_page_log() {
 			esc_html( flxai_ms( (int) $r['ms'] ) ),
 			esc_html( 'tool' === $r['kind'] ? '—' : flxai_usd( (float) $r['cost'], 5 ) . ( (int) $r['est'] ? ' ~' : '' ) ),
 			(int) $r['ok'] ? '' : 'is-err',
-			(int) $r['has_body'] ? '<button type="button" class="button button-small" data-flxai-body="' . (int) $r['id'] . '">' . esc_html__( 'İçerik', 'flx-ai' ) . '</button>' : ''
+			(int) $r['has_body'] ? '<button type="button" class="button button-small" data-flxai-body="' . (int) $r['id'] . '">' . esc_html__( 'Content', 'flx-ai' ) . '</button>' : ''
 		);
 	}
 	echo '</tbody></table></div>';
@@ -304,14 +304,14 @@ function flxai_page_log() {
 				echo '<a class="button" href="' . esc_url( add_query_arg( 'pg', $pg - 1, $base ) ) . '">‹</a> ';
 			}
 			/* translators: 1: page, 2: pages */
-			echo '<span>' . esc_html( sprintf( __( 'Sayfa %1$s / %2$s', 'flx-ai' ), number_format_i18n( $pg ), number_format_i18n( $pages ) ) ) . '</span>';
+			echo '<span>' . esc_html( sprintf( __( 'Page %1$s / %2$s', 'flx-ai' ), number_format_i18n( $pg ), number_format_i18n( $pages ) ) ) . '</span>';
 			if ( $pg < $pages ) {
 				echo ' <a class="button" href="' . esc_url( add_query_arg( 'pg', $pg + 1, $base ) ) . '">›</a>';
 			}
 			echo '</p>';
 		}
 	}
-	echo '<p class="flxai-note">' . esc_html__( 'Önbellek sütunu: okunan / yazılan token. "~" fiyat listesinden tahmin. İçerik: giden son mesajlar ve gelen cevap, kısaltılmış; e-posta, telefon, IBAN ve anahtarlar maskeli.', 'flx-ai' ) . '</p></div></div>';
+	echo '<p class="flxai-note">' . esc_html__( 'Cache column: tokens read / written. "~" is estimated from the price list. Content: last outgoing messages and the incoming reply, shortened; e-mail, phone, IBAN and keys are masked.', 'flx-ai' ) . '</p></div></div>';
 }
 
 /* ---------------------------------------------------------------------------
@@ -333,30 +333,30 @@ function flxai_page_systems() {
 		flxai_update_settings( array( 'sources_off' => array_values( array_unique( array_merge( $keep, $off ) ) ) ) );
 		$saved = true;
 	}
-	flxai_page_head( __( 'Bağlı sistemler', 'flx-ai' ), __( 'Flux AI\'yı kullanan eklentiler. Buradan kapatılan sistem yapay zekâ isteği gönderemez; kendi ayarları da olduğu gibi kalır.', 'flx-ai' ) );
+	flxai_page_head( __( 'Connected systems', 'flx-ai' ), __( 'Plugins that use Flux AI. A system switched off here cannot send AI requests; its own settings stay as they are.', 'flx-ai' ) );
 	if ( $saved ) {
-		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Kaydedildi.', 'flx-ai' ) . '</p></div>';
+		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Saved.', 'flx-ai' ) . '</p></div>';
 	}
 	$rows = flxai_systems();
 	echo '<form method="post">';
 	wp_nonce_field( 'flxai_systems', 'flxai_systems_nonce' );
-	echo '<div class="flxai-card"><div class="flxai-tscroll"><table class="flxai-table flxai-systems"><thead><tr><th>' . esc_html__( 'Açık', 'flx-ai' ) . '</th><th>' . esc_html__( 'Sistem', 'flx-ai' ) . '</th><th>' . esc_html__( 'Durum', 'flx-ai' ) . '</th><th>' . esc_html__( 'Model', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'İstek (30 gün)', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Token', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Maliyet', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Hata', 'flx-ai' ) . '</th><th>' . esc_html__( 'Son kullanım', 'flx-ai' ) . '</th><th></th></tr></thead><tbody>';
+	echo '<div class="flxai-card"><div class="flxai-tscroll"><table class="flxai-table flxai-systems"><thead><tr><th>' . esc_html__( 'On', 'flx-ai' ) . '</th><th>' . esc_html__( 'System', 'flx-ai' ) . '</th><th>' . esc_html__( 'Status', 'flx-ai' ) . '</th><th>' . esc_html__( 'Model', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Requests (30 days)', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Tokens', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Cost', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Errors', 'flx-ai' ) . '</th><th>' . esc_html__( 'Last used', 'flx-ai' ) . '</th><th></th></tr></thead><tbody>';
 	foreach ( $rows as $r ) {
 		if ( ! $r['installed'] ) {
-			$state = '<span class="flxai-pill">' . esc_html__( 'kurulu değil', 'flx-ai' ) . '</span>';
+			$state = '<span class="flxai-pill">' . esc_html__( 'not installed', 'flx-ai' ) . '</span>';
 		} elseif ( ! $r['active'] ) {
-			$state = '<span class="flxai-pill">' . esc_html__( 'eklenti pasif', 'flx-ai' ) . '</span>';
+			$state = '<span class="flxai-pill">' . esc_html__( 'plugin inactive', 'flx-ai' ) . '</span>';
 		} elseif ( ! $r['on'] ) {
-			$state = '<span class="flxai-pill is-err">' . esc_html__( 'AI kapalı', 'flx-ai' ) . '</span>';
+			$state = '<span class="flxai-pill is-err">' . esc_html__( 'AI off', 'flx-ai' ) . '</span>';
 		} else {
-			$state = '<span class="flxai-pill is-ok">' . esc_html__( 'çalışıyor', 'flx-ai' ) . '</span>';
+			$state = '<span class="flxai-pill is-ok">' . esc_html__( 'working', 'flx-ai' ) . '</span>';
 		}
-		$links = '<a href="' . esc_url( admin_url( 'admin.php?page=flx-ai-log&days=30&source=' . rawurlencode( $r['source'] ) ) ) . '">' . esc_html__( 'Kayıtlar', 'flx-ai' ) . '</a>';
+		$links = '<a href="' . esc_url( admin_url( 'admin.php?page=flx-ai-log&days=30&source=' . rawurlencode( $r['source'] ) ) ) . '">' . esc_html__( 'Logs', 'flx-ai' ) . '</a>';
 		if ( flxai_system_has_settings( $r['source'] ) ) {
-			$links .= ' · <a href="' . esc_url( admin_url( 'admin.php?page=flx-ai-systems&system=' . rawurlencode( $r['source'] ) ) ) . '">' . esc_html__( 'AI ayarları', 'flx-ai' ) . '</a>';
+			$links .= ' · <a href="' . esc_url( admin_url( 'admin.php?page=flx-ai-systems&system=' . rawurlencode( $r['source'] ) ) ) . '">' . esc_html__( 'AI settings', 'flx-ai' ) . '</a>';
 		}
 		if ( '' !== $r['page'] && $r['active'] ) {
-			$links .= ' · <a href="' . esc_url( admin_url( $r['page'] ) ) . '">' . esc_html__( 'Ayarları', 'flx-ai' ) . '</a>';
+			$links .= ' · <a href="' . esc_url( admin_url( $r['page'] ) ) . '">' . esc_html__( 'Its settings', 'flx-ai' ) . '</a>';
 		}
 		printf(
 			'<tr><td><input type="hidden" name="sys[]" value="%1$s"><label class="flxai-switch"><input type="checkbox" name="sys_on[]" value="%1$s"%2$s><span class="screen-reader-text">%3$s</span></label></td><td><strong>%3$s</strong><div class="flxai-kpi-s"><code>%1$s</code></div></td><td>%4$s</td><td>%5$s</td><td class="num">%6$s</td><td class="num">%7$s</td><td class="num">%8$s</td><td class="num">%9$s</td><td>%10$s</td><td>%11$s</td></tr>',
@@ -374,8 +374,8 @@ function flxai_page_systems() {
 		);
 	}
 	echo '</tbody></table></div>';
-	echo '<p class="flxai-note">' . esc_html__( 'Model sütunu: o sistemin kullandığı model. Değiştirmek için Ayarlar › Eklentiye özel model. Kapalı sistemin istekleri reddedilir ve Kayıtlar\'da "Kapalı" olarak görünür.', 'flx-ai' ) . ' <a href="' . esc_url( admin_url( 'admin.php?page=flx-ai-settings' ) ) . '">' . esc_html__( 'Ayarlar', 'flx-ai' ) . '</a></p></div>';
-	echo '<p class="submit"><button type="submit" class="button button-primary">' . esc_html__( 'Kaydet', 'flx-ai' ) . '</button></p></form></div>';
+	echo '<p class="flxai-note">' . esc_html__( 'The Model column is the model that system uses. Change it under Settings › Per-plugin model. Requests to a disabled system are rejected and show as "Disabled" in the log.', 'flx-ai' ) . ' <a href="' . esc_url( admin_url( 'admin.php?page=flx-ai-settings' ) ) . '">' . esc_html__( 'Settings', 'flx-ai' ) . '</a></p></div>';
+	echo '<p class="submit"><button type="submit" class="button button-primary">' . esc_html__( 'Save', 'flx-ai' ) . '</button></p></form></div>';
 }
 
 /* ---------------------------------------------------------------------------
@@ -387,11 +387,11 @@ function flxai_page_billing() {
 	$bill = flxai_billing( $ym );
 	$ym   = $bill['ym'];
 	$t    = $bill['totals'];
-	flxai_page_head( __( 'Faturalandırma', 'flx-ai' ), __( 'Aylık döküm, harcama sınırları ve sağlayıcı kredisi. Tutarlar USD; OpenRouter gerçek maliyeti, Anthropic fiyat listesinden hesaplanır.', 'flx-ai' ) );
+	flxai_page_head( __( 'Billing', 'flx-ai' ), __( 'Monthly breakdown, spending limits and provider credit. Amounts in USD; OpenRouter reports actual cost, Anthropic is computed from the price list.', 'flx-ai' ) );
 	flxai_budget_cards();
 
 	echo '<div class="flxai-grid flxai-bill">';
-	echo '<section class="flxai-card"><h2>' . esc_html__( 'Aylar', 'flx-ai' ) . '</h2><ul class="flxai-months">';
+	echo '<section class="flxai-card"><h2>' . esc_html__( 'Months', 'flx-ai' ) . '</h2><ul class="flxai-months">';
 	foreach ( flxai_months( 12 ) as $m ) {
 		printf(
 			'<li><a href="%1$s" class="%2$s"><span>%3$s</span><strong>%4$s</strong></a></li>',
@@ -404,15 +404,15 @@ function flxai_page_billing() {
 	echo '</ul></section>';
 
 	echo '<section class="flxai-card flxai-span2"><div class="flxai-bill-head"><h2>' . esc_html( flx_date( $bill['from'], 'F Y' ) ) . '</h2>';
-	echo '<a class="button" href="' . esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=flxai_csv&ym=' . $ym ), 'flxai_csv' ) ) . '">' . esc_html__( 'CSV indir', 'flx-ai' ) . '</a></div>';
+	echo '<a class="button" href="' . esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=flxai_csv&ym=' . $ym ), 'flxai_csv' ) ) . '">' . esc_html__( 'Download CSV', 'flx-ai' ) . '</a></div>';
 	echo '<div class="flxai-kpis">';
-	flxai_kpi( __( 'Toplam', 'flx-ai' ), flxai_usd( $t['cost'], 4 ), sprintf( /* translators: %s: amount */ __( 'Önbelleksiz olsaydı %s', 'flx-ai' ), flxai_usd( $t['full_cost'], 4 ) ) );
-	flxai_kpi( __( 'Önbellek tasarrufu', 'flx-ai' ), flxai_usd( $t['saved'], 4 ), $t['full_cost'] > 0 ? sprintf( /* translators: %s: percent */ __( '%%%s daha az', 'flx-ai' ), number_format_i18n( $t['saved'] / $t['full_cost'] * 100, 1 ) ) : '' );
-	flxai_kpi( __( 'Model istekleri', 'flx-ai' ), number_format_i18n( $t['calls'] ), '' );
+	flxai_kpi( __( 'Total', 'flx-ai' ), flxai_usd( $t['cost'], 4 ), sprintf( /* translators: %s: amount */ __( '%s without cache', 'flx-ai' ), flxai_usd( $t['full_cost'], 4 ) ) );
+	flxai_kpi( __( 'Cache savings', 'flx-ai' ), flxai_usd( $t['saved'], 4 ), $t['full_cost'] > 0 ? sprintf( /* translators: %s: percent */ __( '%s%% less', 'flx-ai' ), number_format_i18n( $t['saved'] / $t['full_cost'] * 100, 1 ) ) : '' );
+	flxai_kpi( __( 'Model requests', 'flx-ai' ), number_format_i18n( $t['calls'] ), '' );
 	echo '</div><div class="flxai-chart" data-chart="cost"></div>';
 	echo '<script type="application/json" id="flxai-chart-data">' . wp_json_encode( array( 'daily' => $bill['daily'], 'tools' => array() ) ) . '</script>';
 
-	echo '<h3>' . esc_html__( 'Sağlayıcıya göre', 'flx-ai' ) . '</h3><div class="flxai-tscroll"><table class="flxai-table"><thead><tr><th>' . esc_html__( 'Sağlayıcı', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'İstek', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Giriş', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Çıkış', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Önbelleksiz', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Tutar', 'flx-ai' ) . '</th></tr></thead><tbody>';
+	echo '<h3>' . esc_html__( 'By provider', 'flx-ai' ) . '</h3><div class="flxai-tscroll"><table class="flxai-table"><thead><tr><th>' . esc_html__( 'Provider', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Requests', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Input', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Output', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Without cache', 'flx-ai' ) . '</th><th class="num">' . esc_html__( 'Amount', 'flx-ai' ) . '</th></tr></thead><tbody>';
 	foreach ( $bill['by_provider'] as $r ) {
 		printf(
 			'<tr><td>%1$s%7$s</td><td class="num">%2$s</td><td class="num">%3$s</td><td class="num">%4$s</td><td class="num">%5$s</td><td class="num"><strong>%6$s</strong></td></tr>',
@@ -422,35 +422,35 @@ function flxai_page_billing() {
 			esc_html( number_format_i18n( (int) $r['out_tok'] ) ),
 			esc_html( flxai_usd( (float) $r['full_cost'], 4 ) ),
 			esc_html( flxai_usd( (float) $r['cost'], 4 ) ),
-			(int) $r['est'] ? ' <span class="flxai-pill">' . esc_html__( 'kısmen tahmini', 'flx-ai' ) . '</span>' : ''
+			(int) $r['est'] ? ' <span class="flxai-pill">' . esc_html__( 'partly estimated', 'flx-ai' ) . '</span>' : ''
 		);
 	}
 	if ( ! $bill['by_provider'] ) {
-		echo '<tr><td colspan="6" class="flxai-empty">' . esc_html__( 'Bu ay kayıt yok.', 'flx-ai' ) . '</td></tr>';
+		echo '<tr><td colspan="6" class="flxai-empty">' . esc_html__( 'No records this month.', 'flx-ai' ) . '</td></tr>';
 	}
 	echo '</tbody></table></div></section></div>';
 
 	echo '<div class="flxai-grid">';
-	flxai_breakdown_table( __( 'Eklentiye göre', 'flx-ai' ), $bill['by_source'] );
-	flxai_breakdown_table( __( 'Modele göre', 'flx-ai' ), $bill['by_model'] );
+	flxai_breakdown_table( __( 'By plugin', 'flx-ai' ), $bill['by_source'] );
+	flxai_breakdown_table( __( 'By model', 'flx-ai' ), $bill['by_model'] );
 	echo '</div>';
 
 	$cr = get_option( 'flxai_or_credits', null );
-	echo '<section class="flxai-card"><div class="flxai-bill-head"><h2>' . esc_html__( 'OpenRouter hesabı', 'flx-ai' ) . '</h2><button type="button" class="button" data-flxai-credits>' . esc_html__( 'Yenile', 'flx-ai' ) . '</button></div><div id="flxai-credits">';
+	echo '<section class="flxai-card"><div class="flxai-bill-head"><h2>' . esc_html__( 'OpenRouter account', 'flx-ai' ) . '</h2><button type="button" class="button" data-flxai-credits>' . esc_html__( 'Refresh', 'flx-ai' ) . '</button></div><div id="flxai-credits">';
 	if ( is_array( $cr ) ) {
 		echo '<dl class="flxai-dl">';
 		if ( null !== $cr['credits'] ) {
-			echo '<dt>' . esc_html__( 'Kalan kredi', 'flx-ai' ) . '</dt><dd>' . esc_html( flxai_usd( $cr['credits'], 2 ) ) . '</dd>';
+			echo '<dt>' . esc_html__( 'Remaining credit', 'flx-ai' ) . '</dt><dd>' . esc_html( flxai_usd( $cr['credits'], 2 ) ) . '</dd>';
 		}
 		if ( null !== $cr['usage'] ) {
-			echo '<dt>' . esc_html__( 'Bu anahtarın toplam kullanımı', 'flx-ai' ) . '</dt><dd>' . esc_html( flxai_usd( $cr['usage'], 2 ) ) . '</dd>';
+			echo '<dt>' . esc_html__( 'Total usage of this key', 'flx-ai' ) . '</dt><dd>' . esc_html( flxai_usd( $cr['usage'], 2 ) ) . '</dd>';
 		}
 		if ( null !== $cr['limit'] ) {
-			echo '<dt>' . esc_html__( 'Anahtar sınırı / kalan', 'flx-ai' ) . '</dt><dd>' . esc_html( flxai_usd( $cr['limit'], 2 ) . ' / ' . flxai_usd( (float) $cr['remaining'], 2 ) ) . '</dd>';
+			echo '<dt>' . esc_html__( 'Key limit / remaining', 'flx-ai' ) . '</dt><dd>' . esc_html( flxai_usd( $cr['limit'], 2 ) . ' / ' . flxai_usd( (float) $cr['remaining'], 2 ) ) . '</dd>';
 		}
-		echo '<dt>' . esc_html__( 'Kontrol', 'flx-ai' ) . '</dt><dd>' . esc_html( flx_date( (int) $cr['checked'], 'j M H:i' ) ) . '</dd></dl>';
+		echo '<dt>' . esc_html__( 'Checked', 'flx-ai' ) . '</dt><dd>' . esc_html( flx_date( (int) $cr['checked'], 'j M H:i' ) ) . '</dd></dl>';
 	} else {
-		echo '<p class="flxai-empty">' . esc_html__( 'Kalan krediyi görmek için Yenile\'ye basın. (Anthropic bakiye API\'si sunmuyor; console.anthropic.com › Billing.)', 'flx-ai' ) . '</p>';
+		echo '<p class="flxai-empty">' . esc_html__( 'Press Refresh to see remaining credit. (Anthropic has no balance API; see console.anthropic.com › Billing.)', 'flx-ai' ) . '</p>';
 	}
 	echo '</div></section></div>';
 }
@@ -538,9 +538,9 @@ function flxai_model_field( $name, $value, $placeholder = '' ) {
 
 function flxai_page_settings() {
 	$saved = flxai_save_settings();
-	flxai_page_head( __( 'Flux AI ayarları', 'flx-ai' ), __( 'Anahtarlar burada bir kez girilir; tüm FluxWP eklentileri bu bağlantıyı kullanır.', 'flx-ai' ) );
+	flxai_page_head( __( 'Flux AI settings', 'flx-ai' ), __( 'Enter keys here once; all FluxWP plugins use this connection.', 'flx-ai' ) );
 	if ( $saved ) {
-		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Ayarlar kaydedildi.', 'flx-ai' ) . '</p></div>';
+		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Settings saved.', 'flx-ai' ) . '</p></div>';
 	}
 	$s   = flxai_settings();
 	$or  = flxai_setting( 'key_openrouter' );
@@ -550,35 +550,35 @@ function flxai_page_settings() {
 	<form method="post" class="flxai-settings" autocomplete="off">
 		<?php wp_nonce_field( 'flxai_settings', 'flxai_settings_nonce' ); ?>
 		<section class="flxai-card">
-			<h2><?php esc_html_e( 'Sağlayıcılar', 'flx-ai' ); ?></h2>
+			<h2><?php esc_html_e( 'Providers', 'flx-ai' ); ?></h2>
 			<table class="form-table" role="presentation">
-				<tr><th><label for="flxai-or"><?php esc_html_e( 'OpenRouter API anahtarı', 'flx-ai' ); ?></label></th><td>
+				<tr><th><label for="flxai-or"><?php esc_html_e( 'OpenRouter API key', 'flx-ai' ); ?></label></th><td>
 					<input id="flxai-or" type="password" class="regular-text" name="key_openrouter" value="" placeholder="<?php echo esc_attr( $or ? flxai_mask( $or ) : 'sk-or-…' ); ?>" autocomplete="new-password">
-					<?php if ( $or ) : ?><label class="flxai-check"><input type="checkbox" name="key_openrouter_clear" value="1"> <?php esc_html_e( 'Sil', 'flx-ai' ); ?></label><?php endif; ?>
-					<p class="description"><?php esc_html_e( 'openrouter.ai › Keys. Yüzlerce model tek anahtarla; gerçek maliyet her istekte bildirilir.', 'flx-ai' ); ?></p></td></tr>
-				<tr><th><label for="flxai-an"><?php esc_html_e( 'Anthropic (Claude) API anahtarı', 'flx-ai' ); ?></label></th><td>
+					<?php if ( $or ) : ?><label class="flxai-check"><input type="checkbox" name="key_openrouter_clear" value="1"> <?php esc_html_e( 'Remove', 'flx-ai' ); ?></label><?php endif; ?>
+					<p class="description"><?php esc_html_e( 'openrouter.ai › Keys. Hundreds of models with one key; actual cost is reported with every request.', 'flx-ai' ); ?></p></td></tr>
+				<tr><th><label for="flxai-an"><?php esc_html_e( 'Anthropic (Claude) API key', 'flx-ai' ); ?></label></th><td>
 					<input id="flxai-an" type="password" class="regular-text" name="key_anthropic" value="" placeholder="<?php echo esc_attr( $an ? flxai_mask( $an ) : 'sk-ant-…' ); ?>" autocomplete="new-password">
-					<?php if ( $an ) : ?><label class="flxai-check"><input type="checkbox" name="key_anthropic_clear" value="1"> <?php esc_html_e( 'Sil', 'flx-ai' ); ?></label><?php endif; ?>
-					<p class="description"><?php esc_html_e( 'console.anthropic.com › API Keys. Claude modelleri "claude:" önekiyle listelenir.', 'flx-ai' ); ?></p></td></tr>
+					<?php if ( $an ) : ?><label class="flxai-check"><input type="checkbox" name="key_anthropic_clear" value="1"> <?php esc_html_e( 'Remove', 'flx-ai' ); ?></label><?php endif; ?>
+					<p class="description"><?php esc_html_e( 'console.anthropic.com › API Keys. Claude models are listed with the "claude:" prefix.', 'flx-ai' ); ?></p></td></tr>
 				<tr><th><label for="flxai-ws"><?php esc_html_e( 'Anthropic workspace ID', 'flx-ai' ); ?></label></th><td>
 					<input id="flxai-ws" type="text" class="regular-text" name="anthropic_workspace" value="<?php echo esc_attr( $s['anthropic_workspace'] ); ?>" placeholder="wrkspc_…">
-					<p class="description"><?php esc_html_e( 'Yalnız anahtar bir workspace\'e bağlı değilse gerekir (hata mesajı "anthropic-workspace-id" isterse).', 'flx-ai' ); ?></p></td></tr>
+					<p class="description"><?php esc_html_e( 'Only needed when the key is not tied to a workspace (if the error asks for "anthropic-workspace-id").', 'flx-ai' ); ?></p></td></tr>
 			</table>
 		</section>
 
 		<section class="flxai-card">
-			<h2><?php esc_html_e( 'Modeller', 'flx-ai' ); ?></h2>
+			<h2><?php esc_html_e( 'Models', 'flx-ai' ); ?></h2>
 			<table class="form-table" role="presentation">
-				<tr><th><?php esc_html_e( 'Varsayılan model', 'flx-ai' ); ?></th><td><?php flxai_model_field( 'model', $s['model'], $def ); ?>
-					<button type="button" class="button" data-flxai-test="model"><?php esc_html_e( 'Test et', 'flx-ai' ); ?></button><span class="flxai-test-out"></span>
-					<p class="description"><?php esc_html_e( 'Eklentiler kendi modelini vermezse bu kullanılır.', 'flx-ai' ); ?></p></td></tr>
-				<tr><th><?php esc_html_e( 'Ortak sohbet modeli', 'flx-ai' ); ?></th><td><?php flxai_model_field( 'chat_model', $s['chat_model'], __( 'Varsayılan', 'flx-ai' ) ); ?>
-					<p class="description"><?php esc_html_e( 'Araç kullanabilen bir model seçin.', 'flx-ai' ); ?></p></td></tr>
-				<tr><th><?php esc_html_e( 'Sohbet adı modeli', 'flx-ai' ); ?></th><td><?php flxai_model_field( 'title_model', $s['title_model'], __( 'Sohbet modeli', 'flx-ai' ) ); ?>
-					<p class="description"><?php esc_html_e( 'Sohbete otomatik isim vermek için ucuz bir model yeterli.', 'flx-ai' ); ?></p></td></tr>
+				<tr><th><?php esc_html_e( 'Default model', 'flx-ai' ); ?></th><td><?php flxai_model_field( 'model', $s['model'], $def ); ?>
+					<button type="button" class="button" data-flxai-test="model"><?php esc_html_e( 'Test', 'flx-ai' ); ?></button><span class="flxai-test-out"></span>
+					<p class="description"><?php esc_html_e( 'Used when a plugin does not specify its own model.', 'flx-ai' ); ?></p></td></tr>
+				<tr><th><?php esc_html_e( 'Shared chat model', 'flx-ai' ); ?></th><td><?php flxai_model_field( 'chat_model', $s['chat_model'], __( 'Default', 'flx-ai' ) ); ?>
+					<p class="description"><?php esc_html_e( 'Choose a model that supports tools.', 'flx-ai' ); ?></p></td></tr>
+				<tr><th><?php esc_html_e( 'Chat title model', 'flx-ai' ); ?></th><td><?php flxai_model_field( 'title_model', $s['title_model'], __( 'Chat model', 'flx-ai' ) ); ?>
+					<p class="description"><?php esc_html_e( 'A cheap model is enough for automatic chat titles.', 'flx-ai' ); ?></p></td></tr>
 			</table>
-			<h3><?php esc_html_e( 'Eklentiye özel model', 'flx-ai' ); ?></h3>
-			<p class="description"><?php esc_html_e( 'Eklenti istekte model belirtmezse buradaki model kullanılır; boşsa varsayılan.', 'flx-ai' ); ?></p>
+			<h3><?php esc_html_e( 'Per-plugin model', 'flx-ai' ); ?></h3>
+			<p class="description"><?php esc_html_e( 'Used when the plugin\'s request names no model; empty means the default.', 'flx-ai' ); ?></p>
 			<table class="form-table" role="presentation">
 				<?php foreach ( flxai_sources() as $src => $label ) : ?>
 					<?php
@@ -586,71 +586,71 @@ function flxai_page_settings() {
 						continue;
 					}
 					?>
-					<tr><th><?php echo esc_html( $label ); ?></th><td><?php flxai_model_field( 'source_models[' . $src . ']', (string) ( $s['source_models'][ $src ] ?? '' ), __( 'Varsayılan', 'flx-ai' ) ); ?></td></tr>
+					<tr><th><?php echo esc_html( $label ); ?></th><td><?php flxai_model_field( 'source_models[' . $src . ']', (string) ( $s['source_models'][ $src ] ?? '' ), __( 'Default', 'flx-ai' ) ); ?></td></tr>
 				<?php endforeach; ?>
 			</table>
 		</section>
 
 		<section class="flxai-card">
-			<h2><?php esc_html_e( 'Önbellek ve düşünme', 'flx-ai' ); ?></h2>
+			<h2><?php esc_html_e( 'Cache and thinking', 'flx-ai' ); ?></h2>
 			<table class="form-table" role="presentation">
-				<tr><th><?php esc_html_e( 'Claude prompt önbelleği', 'flx-ai' ); ?></th><td>
+				<tr><th><?php esc_html_e( 'Claude prompt cache', 'flx-ai' ); ?></th><td>
 					<select name="cache">
-						<option value="off" <?php selected( $s['cache'], 'off' ); ?>><?php esc_html_e( 'Kapalı', 'flx-ai' ); ?></option>
-						<option value="5m" <?php selected( $s['cache'], '5m' ); ?>><?php esc_html_e( 'Açık, 5 dakika', 'flx-ai' ); ?></option>
-						<option value="1h" <?php selected( $s['cache'], '1h' ); ?>><?php esc_html_e( 'Açık, 1 saat', 'flx-ai' ); ?></option>
+						<option value="off" <?php selected( $s['cache'], 'off' ); ?>><?php esc_html_e( 'Off', 'flx-ai' ); ?></option>
+						<option value="5m" <?php selected( $s['cache'], '5m' ); ?>><?php esc_html_e( 'On, 5 minutes', 'flx-ai' ); ?></option>
+						<option value="1h" <?php selected( $s['cache'], '1h' ); ?>><?php esc_html_e( 'On, 1 hour', 'flx-ai' ); ?></option>
 					</select>
-					<p class="description"><?php esc_html_e( 'Aynı talimat ve araçlar tekrar gönderilince giriş ücretinin çoğu düşer (okuma 0,1x; yazma 5 dk 1,25x, 1 saat 2x). Eklentiler istek başına değiştirebilir. OpenRouter önbelleği sağlayıcıda otomatik.', 'flx-ai' ); ?></p></td></tr>
-				<tr><th><?php esc_html_e( 'Claude çaba (effort)', 'flx-ai' ); ?></th><td>
+					<p class="description"><?php esc_html_e( 'When the same instructions and tools are sent again most of the input cost drops (read 0.1x; write 5 min 1.25x, 1 hour 2x). Plugins can override per request. OpenRouter caching is automatic at the provider.', 'flx-ai' ); ?></p></td></tr>
+				<tr><th><?php esc_html_e( 'Claude effort', 'flx-ai' ); ?></th><td>
 					<select name="effort">
-						<option value="low" <?php selected( $s['effort'], 'low' ); ?>><?php esc_html_e( 'Düşük: hızlı ve ucuz', 'flx-ai' ); ?></option>
-						<option value="medium" <?php selected( $s['effort'], 'medium' ); ?>><?php esc_html_e( 'Orta', 'flx-ai' ); ?></option>
-						<option value="high" <?php selected( $s['effort'], 'high' ); ?>><?php esc_html_e( 'Yüksek: daha derin düşünür', 'flx-ai' ); ?></option>
+						<option value="low" <?php selected( $s['effort'], 'low' ); ?>><?php esc_html_e( 'Low: fast and cheap', 'flx-ai' ); ?></option>
+						<option value="medium" <?php selected( $s['effort'], 'medium' ); ?>><?php esc_html_e( 'Medium', 'flx-ai' ); ?></option>
+						<option value="high" <?php selected( $s['effort'], 'high' ); ?>><?php esc_html_e( 'High: thinks deeper', 'flx-ai' ); ?></option>
 					</select></td></tr>
-				<tr><th><?php esc_html_e( 'Düşünme adımları', 'flx-ai' ); ?></th><td><label class="flxai-check"><input type="checkbox" name="thinking" value="1" <?php checked( $s['thinking'] ); ?>> <?php esc_html_e( 'Sohbette modelin düşünme özetini göster', 'flx-ai' ); ?></label></td></tr>
+				<tr><th><?php esc_html_e( 'Thinking steps', 'flx-ai' ); ?></th><td><label class="flxai-check"><input type="checkbox" name="thinking" value="1" <?php checked( $s['thinking'] ); ?>> <?php esc_html_e( 'Show the model\'s thinking summary in chat', 'flx-ai' ); ?></label></td></tr>
 			</table>
 		</section>
 
 		<section class="flxai-card" id="limits">
-			<h2><?php esc_html_e( 'Harcama sınırı', 'flx-ai' ); ?></h2>
+			<h2><?php esc_html_e( 'Spending limit', 'flx-ai' ); ?></h2>
 			<table class="form-table" role="presentation">
-				<?php foreach ( array( 'day' => __( 'Günlük (her gün 00:00\'da yenilenir)', 'flx-ai' ), 'week' => __( 'Haftalık (Pazartesi yenilenir)', 'flx-ai' ), 'month' => __( 'Aylık (ayın 1\'inde yenilenir)', 'flx-ai' ) ) as $p => $label ) : ?>
-					<tr><th><?php echo esc_html( $label ); ?></th><td>$ <input type="number" step="0.01" min="0" class="small-text" name="limit_<?php echo esc_attr( $p ); ?>" value="<?php echo esc_attr( $s[ 'limit_' . $p ] ); ?>"> <span class="description"><?php esc_html_e( '0 = sınırsız', 'flx-ai' ); ?></span></td></tr>
+				<?php foreach ( array( 'day' => __( 'Daily (resets every day at 00:00)', 'flx-ai' ), 'week' => __( 'Weekly (resets on Monday)', 'flx-ai' ), 'month' => __( 'Monthly (resets on the 1st)', 'flx-ai' ) ) as $p => $label ) : ?>
+					<tr><th><?php echo esc_html( $label ); ?></th><td>$ <input type="number" step="0.01" min="0" class="small-text" name="limit_<?php echo esc_attr( $p ); ?>" value="<?php echo esc_attr( $s[ 'limit_' . $p ] ); ?>"> <span class="description"><?php esc_html_e( '0 = unlimited', 'flx-ai' ); ?></span></td></tr>
 				<?php endforeach; ?>
-				<tr><th><?php esc_html_e( 'Sınır dolunca', 'flx-ai' ); ?></th><td>
-					<label class="flxai-check"><input type="radio" name="limit_action" value="block" <?php checked( $s['limit_action'], 'block' ); ?>> <?php esc_html_e( 'İstekleri durdur (eklentiler kendi yedek davranışına geçer)', 'flx-ai' ); ?></label><br>
-					<label class="flxai-check"><input type="radio" name="limit_action" value="warn" <?php checked( $s['limit_action'], 'warn' ); ?>> <?php esc_html_e( 'Yalnız uyar', 'flx-ai' ); ?></label></td></tr>
-				<tr><th><?php esc_html_e( 'Uyarı eşiği', 'flx-ai' ); ?></th><td>% <input type="number" min="10" max="99" class="small-text" name="limit_warn_pct" value="<?php echo esc_attr( $s['limit_warn_pct'] ); ?>">
-					<label class="flxai-check"><input type="checkbox" name="limit_notify" value="1" <?php checked( $s['limit_notify'] ); ?>> <?php esc_html_e( 'Eşikte ve dolunca yöneticiye e-posta', 'flx-ai' ); ?></label></td></tr>
+				<tr><th><?php esc_html_e( 'When the limit is reached', 'flx-ai' ); ?></th><td>
+					<label class="flxai-check"><input type="radio" name="limit_action" value="block" <?php checked( $s['limit_action'], 'block' ); ?>> <?php esc_html_e( 'Stop requests (plugins switch to their fallback behaviour)', 'flx-ai' ); ?></label><br>
+					<label class="flxai-check"><input type="radio" name="limit_action" value="warn" <?php checked( $s['limit_action'], 'warn' ); ?>> <?php esc_html_e( 'Warn only', 'flx-ai' ); ?></label></td></tr>
+				<tr><th><?php esc_html_e( 'Warning threshold', 'flx-ai' ); ?></th><td>% <input type="number" min="10" max="99" class="small-text" name="limit_warn_pct" value="<?php echo esc_attr( $s['limit_warn_pct'] ); ?>">
+					<label class="flxai-check"><input type="checkbox" name="limit_notify" value="1" <?php checked( $s['limit_notify'] ); ?>> <?php esc_html_e( 'Email the admin at the threshold and when reached', 'flx-ai' ); ?></label></td></tr>
 			</table>
 		</section>
 
 		<section class="flxai-card">
-			<h2><?php esc_html_e( 'Ortak sohbet', 'flx-ai' ); ?></h2>
+			<h2><?php esc_html_e( 'Shared chat', 'flx-ai' ); ?></h2>
 			<table class="form-table" role="presentation">
-				<tr><th><?php esc_html_e( 'Kimler kullanır', 'flx-ai' ); ?></th><td>
+				<tr><th><?php esc_html_e( 'Who can use it', 'flx-ai' ); ?></th><td>
 					<?php foreach ( wp_roles()->get_names() as $role => $name ) : ?>
 						<label class="flxai-check flxai-role"><input type="checkbox" name="chat_roles[]" value="<?php echo esc_attr( $role ); ?>" <?php checked( in_array( $role, (array) $s['chat_roles'], true ) ); ?>> <?php echo esc_html( translate_user_role( $name ) ); ?></label>
 					<?php endforeach; ?>
-					<p class="description"><?php esc_html_e( 'Herkes yalnız kendi yetkisinin izin verdiği araçları kullanır. Tek tek kullanıcıya "flxai_chat" yetkisi de verilebilir.', 'flx-ai' ); ?></p></td></tr>
-				<tr><th><?php esc_html_e( 'Nerede görünsün', 'flx-ai' ); ?></th><td>
-					<label class="flxai-check"><input type="checkbox" name="chat_admin" value="1" <?php checked( $s['chat_admin'] ); ?>> <?php esc_html_e( 'Yönetim paneli', 'flx-ai' ); ?></label>
-					<label class="flxai-check"><input type="checkbox" name="chat_front" value="1" <?php checked( $s['chat_front'] ); ?>> <?php esc_html_e( 'Site (giriş yapmış yetkili kullanıcıya)', 'flx-ai' ); ?></label></td></tr>
-				<tr><th><?php esc_html_e( 'Varsayılan görünüm', 'flx-ai' ); ?></th><td>
+					<p class="description"><?php esc_html_e( 'Everyone only uses tools their own capabilities allow. Individual users can also be given the "flxai_chat" capability.', 'flx-ai' ); ?></p></td></tr>
+				<tr><th><?php esc_html_e( 'Where to show', 'flx-ai' ); ?></th><td>
+					<label class="flxai-check"><input type="checkbox" name="chat_admin" value="1" <?php checked( $s['chat_admin'] ); ?>> <?php esc_html_e( 'Admin panel', 'flx-ai' ); ?></label>
+					<label class="flxai-check"><input type="checkbox" name="chat_front" value="1" <?php checked( $s['chat_front'] ); ?>> <?php esc_html_e( 'Site (for logged-in permitted users)', 'flx-ai' ); ?></label></td></tr>
+				<tr><th><?php esc_html_e( 'Default layout', 'flx-ai' ); ?></th><td>
 					<select name="chat_mode">
-						<option value="bubble" <?php selected( $s['chat_mode'], 'bubble' ); ?>><?php esc_html_e( 'Yüzen pencere', 'flx-ai' ); ?></option>
-						<option value="dock" <?php selected( $s['chat_mode'], 'dock' ); ?>><?php esc_html_e( 'Sağa yerleşik (sayfayı iter)', 'flx-ai' ); ?></option>
+						<option value="bubble" <?php selected( $s['chat_mode'], 'bubble' ); ?>><?php esc_html_e( 'Floating window', 'flx-ai' ); ?></option>
+						<option value="dock" <?php selected( $s['chat_mode'], 'dock' ); ?>><?php esc_html_e( 'Docked right (pushes the page)', 'flx-ai' ); ?></option>
 					</select>
-					<p class="description"><?php esc_html_e( 'Kullanıcı panelden değiştirebilir; seçimi kendi tarayıcısında kalır.', 'flx-ai' ); ?></p></td></tr>
-				<tr><th><?php esc_html_e( 'Tur başına en fazla adım', 'flx-ai' ); ?></th><td><input type="number" min="2" max="30" class="small-text" name="chat_max_rounds" value="<?php echo esc_attr( $s['chat_max_rounds'] ); ?>"></td></tr>
-				<tr><th><?php esc_html_e( 'Modele giden en fazla mesaj', 'flx-ai' ); ?></th><td><input type="number" min="6" max="200" class="small-text" name="chat_history" value="<?php echo esc_attr( $s['chat_history'] ); ?>"></td></tr>
-				<tr><th><?php esc_html_e( 'Ek talimatlar', 'flx-ai' ); ?></th><td><textarea name="chat_instructions" rows="5" class="large-text" placeholder="<?php esc_attr_e( 'Ör. Kurum dili resmi olsun; yeni sayfaları her zaman taslak aç.', 'flx-ai' ); ?>"><?php echo esc_textarea( $s['chat_instructions'] ); ?></textarea></td></tr>
+					<p class="description"><?php esc_html_e( 'Users can switch from the panel; the choice stays in their browser.', 'flx-ai' ); ?></p></td></tr>
+				<tr><th><?php esc_html_e( 'Max steps per turn', 'flx-ai' ); ?></th><td><input type="number" min="2" max="30" class="small-text" name="chat_max_rounds" value="<?php echo esc_attr( $s['chat_max_rounds'] ); ?>"></td></tr>
+				<tr><th><?php esc_html_e( 'Max messages sent to the model', 'flx-ai' ); ?></th><td><input type="number" min="6" max="200" class="small-text" name="chat_history" value="<?php echo esc_attr( $s['chat_history'] ); ?>"></td></tr>
+				<tr><th><?php esc_html_e( 'Extra instructions', 'flx-ai' ); ?></th><td><textarea name="chat_instructions" rows="5" class="large-text" placeholder="<?php esc_attr_e( 'E.g. Use a formal tone; always create new pages as drafts.', 'flx-ai' ); ?>"><?php echo esc_textarea( $s['chat_instructions'] ); ?></textarea></td></tr>
 			</table>
 		</section>
 
 		<section class="flxai-card" id="media">
-			<h2><?php esc_html_e( 'Görsel ve video üretimi', 'flx-ai' ); ?></h2>
-			<p class="description"><?php esc_html_e( 'Görsel ve video üreten eklentiler (Flux Studio vb.) bu anahtarları kullanır. Otomatik seçimde model için anahtarı girilmiş ilk sağlayıcı kullanılır; ücretli olabilecek bir istek başka sağlayıcıya tekrar gönderilmez. Harcama sınırı ve Kayıtlar burada da geçerlidir.', 'flx-ai' ); ?></p>
+			<h2><?php esc_html_e( 'Image and video generation', 'flx-ai' ); ?></h2>
+			<p class="description"><?php esc_html_e( 'Plugins that generate images and video (Flux Studio etc.) use these keys. In automatic mode the first provider with a key for the model is used; a request that may have been charged is never resent to another provider. The spending limit and Logs apply here too.', 'flx-ai' ); ?></p>
 			<table class="form-table" role="presentation">
 				<?php
 				$flxai_mkeys = array(
@@ -665,17 +665,17 @@ function flxai_page_settings() {
 					<tr><th><label for="flxai-<?php echo esc_attr( $flxai_k ); ?>">
 						<?php
 						/* translators: %s: provider */
-						echo esc_html( sprintf( __( '%s API anahtarı', 'flx-ai' ), $flxai_m[0] ) );
+						echo esc_html( sprintf( __( '%s API key', 'flx-ai' ), $flxai_m[0] ) );
 						?>
 					</label></th><td>
 						<input id="flxai-<?php echo esc_attr( $flxai_k ); ?>" type="password" class="regular-text" name="<?php echo esc_attr( $flxai_k ); ?>" value="" placeholder="<?php echo esc_attr( $flxai_v ? flxai_mask( $flxai_v ) : $flxai_m[2] ); ?>" autocomplete="new-password">
-						<?php if ( $flxai_v ) : ?><label class="flxai-check"><input type="checkbox" name="<?php echo esc_attr( $flxai_k ); ?>_clear" value="1"> <?php esc_html_e( 'Sil', 'flx-ai' ); ?></label><?php endif; ?>
+						<?php if ( $flxai_v ) : ?><label class="flxai-check"><input type="checkbox" name="<?php echo esc_attr( $flxai_k ); ?>_clear" value="1"> <?php esc_html_e( 'Remove', 'flx-ai' ); ?></label><?php endif; ?>
 						<p class="description"><?php echo esc_html( $flxai_m[1] ); ?></p></td></tr>
 				<?php endforeach; ?>
-				<tr><th><?php esc_html_e( 'OpenRouter', 'flx-ai' ); ?></th><td><p class="description"><?php esc_html_e( 'Sağlayıcılar bölümündeki OpenRouter anahtarı görsel ve video için de kullanılır.', 'flx-ai' ); ?></p></td></tr>
+				<tr><th><?php esc_html_e( 'OpenRouter', 'flx-ai' ); ?></th><td><p class="description"><?php esc_html_e( 'The OpenRouter key in Providers is also used for images and video.', 'flx-ai' ); ?></p></td></tr>
 				<?php
 				$flxai_mp = flxai_media_providers();
-				foreach ( array( 'media_image_model' => array( 'image', __( 'Varsayılan görsel modeli', 'flx-ai' ) ), 'media_video_model' => array( 'video', __( 'Varsayılan video modeli', 'flx-ai' ) ) ) as $flxai_k => $flxai_d ) :
+				foreach ( array( 'media_image_model' => array( 'image', __( 'Default image model', 'flx-ai' ) ), 'media_video_model' => array( 'video', __( 'Default video model', 'flx-ai' ) ) ) as $flxai_k => $flxai_d ) :
 					?>
 					<tr><th><?php echo esc_html( $flxai_d[1] ); ?></th><td><select name="<?php echo esc_attr( $flxai_k ); ?>">
 						<?php foreach ( $flxai_mp['models'] as $flxai_id => $flxai_mm ) : ?>
@@ -688,54 +688,54 @@ function flxai_page_settings() {
 						<?php endforeach; ?>
 					</select></td></tr>
 				<?php endforeach; ?>
-				<tr><th><?php esc_html_e( 'Model › sağlayıcı', 'flx-ai' ); ?></th><td>
-					<table class="widefat striped flxai-media-routes"><thead><tr><th><?php esc_html_e( 'Model', 'flx-ai' ); ?></th><th><?php esc_html_e( 'Sıra', 'flx-ai' ); ?></th><th><?php esc_html_e( 'Otomatik', 'flx-ai' ); ?></th></tr></thead><tbody>
+				<tr><th><?php esc_html_e( 'Model › provider', 'flx-ai' ); ?></th><td>
+					<table class="widefat striped flxai-media-routes"><thead><tr><th><?php esc_html_e( 'Model', 'flx-ai' ); ?></th><th><?php esc_html_e( 'Order', 'flx-ai' ); ?></th><th><?php esc_html_e( 'Automatic', 'flx-ai' ); ?></th></tr></thead><tbody>
 					<?php foreach ( $flxai_mp['models'] as $flxai_mm ) : ?>
 						<tr><td><?php echo esc_html( $flxai_mm['label'] . ( 'video' === $flxai_mm['kind'] ? ' · ' . __( 'video', 'flx-ai' ) : '' ) ); ?></td>
 							<td><?php echo esc_html( implode( ' → ', array_map( fn( $x ) => $flxai_mp['providers'][ $x ]['label'] ?? $x, $flxai_mm['routes'] ) ) ); ?></td>
-							<td><?php echo $flxai_mm['auto'] ? esc_html( $flxai_mp['providers'][ $flxai_mm['auto'] ]['label'] ) : '<span class="description">' . esc_html__( 'Anahtar yok', 'flx-ai' ) . '</span>'; ?></td></tr>
+							<td><?php echo $flxai_mm['auto'] ? esc_html( $flxai_mp['providers'][ $flxai_mm['auto'] ]['label'] ) : '<span class="description">' . esc_html__( 'No key', 'flx-ai' ) . '</span>'; ?></td></tr>
 					<?php endforeach; ?>
 					</tbody></table></td></tr>
-				<tr><th><?php esc_html_e( 'İş kayıtları', 'flx-ai' ); ?></th><td><input type="number" min="7" max="1825" class="small-text" name="media_days" value="<?php echo esc_attr( $s['media_days'] ?? 90 ); ?>"> <?php esc_html_e( 'gün saklanır (üretilen dosyalar silinmez)', 'flx-ai' ); ?></td></tr>
+				<tr><th><?php esc_html_e( 'Job records', 'flx-ai' ); ?></th><td><input type="number" min="7" max="1825" class="small-text" name="media_days" value="<?php echo esc_attr( $s['media_days'] ?? 90 ); ?>"> <?php esc_html_e( 'days kept (generated files are not deleted)', 'flx-ai' ); ?></td></tr>
 			</table>
 		</section>
 
 		<section class="flxai-card" id="widgets">
-			<h2><?php esc_html_e( 'Görseller', 'flx-ai' ); ?></h2>
+			<h2><?php esc_html_e( 'Visuals', 'flx-ai' ); ?></h2>
 			<?php
 			$flxai_rnd = flxai_widget_renderer();
 			$flxai_rk  = flxai_setting( 'key_render' );
 			?>
 			<table class="form-table" role="presentation">
-				<tr><th><?php esc_html_e( 'Sohbette görsel', 'flx-ai' ); ?></th><td><label class="flxai-check"><input type="checkbox" name="chat_widgets" value="1" <?php checked( $s['chat_widgets'] ?? 1 ); ?>> <?php esc_html_e( 'Model tablo, kart, şema ve grafikleri görsel olarak çizebilsin (```widget ve ```mermaid)', 'flx-ai' ); ?></label>
-					<p class="description"><?php esc_html_e( 'Her model ile çalışır. Görseller ayrı, izole bir çerçevede çizilir; dış bağlantı, form ve siteye erişim yoktur.', 'flx-ai' ); ?></p></td></tr>
-				<tr><th><?php esc_html_e( 'Sunucuda görsel çevirici', 'flx-ai' ); ?></th><td>
-					<p><?php echo esc_html( 'gotenberg' === $flxai_rnd ? __( 'Gotenberg: HTML ve SVG görseller PNG olarak gönderilebilir.', 'flx-ai' ) : ( 'imagick' === $flxai_rnd ? __( 'Imagick: yalnız SVG görseller PNG olarak gönderilebilir.', 'flx-ai' ) : __( 'Yok: WhatsApp gibi kanallarda görsel yerine metin gider.', 'flx-ai' ) ) ); ?></p>
+				<tr><th><?php esc_html_e( 'Visuals in chat', 'flx-ai' ); ?></th><td><label class="flxai-check"><input type="checkbox" name="chat_widgets" value="1" <?php checked( $s['chat_widgets'] ?? 1 ); ?>> <?php esc_html_e( 'Let the model draw tables, cards, diagrams and charts as visuals (```widget and ```mermaid)', 'flx-ai' ); ?></label>
+					<p class="description"><?php esc_html_e( 'Works with any model. Visuals are drawn in a separate, isolated frame with no external links, forms or access to the site.', 'flx-ai' ); ?></p></td></tr>
+				<tr><th><?php esc_html_e( 'Server-side visual renderer', 'flx-ai' ); ?></th><td>
+					<p><?php echo esc_html( 'gotenberg' === $flxai_rnd ? __( 'Gotenberg: HTML and SVG visuals can be sent as PNG.', 'flx-ai' ) : ( 'imagick' === $flxai_rnd ? __( 'Imagick: only SVG visuals can be sent as PNG.', 'flx-ai' ) : __( 'None: channels like WhatsApp get text instead of visuals.', 'flx-ai' ) ) ); ?></p>
 					<input type="url" class="regular-text" name="render_url" value="<?php echo esc_attr( $s['render_url'] ?? '' ); ?>" placeholder="https://gotenberg.ornek.com">
-					<p class="description"><?php esc_html_e( 'İsteğe bağlı. WhatsApp ve e-posta gibi kanallar HTML gösteremez; görseller PNG\'ye çevrilir. Paylaşımlı sunucuda tarayıcı olmadığı için HTML görseller Docker sunucusundaki Gotenberg ile çevrilir (gotenberg/gotenberg:8).', 'flx-ai' ); ?></p></td></tr>
-				<tr><th><?php esc_html_e( 'Gotenberg kullanıcı / şifre', 'flx-ai' ); ?></th><td>
+					<p class="description"><?php esc_html_e( 'Optional. Channels like WhatsApp and email cannot show HTML; visuals are converted to PNG. Shared hosting has no browser, so HTML visuals are converted by Gotenberg on a Docker server (gotenberg/gotenberg:8).', 'flx-ai' ); ?></p></td></tr>
+				<tr><th><?php esc_html_e( 'Gotenberg user / password', 'flx-ai' ); ?></th><td>
 					<input type="text" class="regular-text" name="render_user" value="<?php echo esc_attr( $s['render_user'] ?? '' ); ?>" autocomplete="off" style="max-width:180px">
 					<input type="password" class="regular-text" name="key_render" value="" placeholder="<?php echo esc_attr( $flxai_rk ? flxai_mask( $flxai_rk ) : '' ); ?>" autocomplete="new-password" style="max-width:220px">
-					<?php if ( $flxai_rk ) : ?><label class="flxai-check"><input type="checkbox" name="key_render_clear" value="1"> <?php esc_html_e( 'Sil', 'flx-ai' ); ?></label><?php endif; ?>
-					<p class="description"><?php esc_html_e( 'Gotenberg temel kimlik doğrulama ile korunuyorsa.', 'flx-ai' ); ?></p>
-					<p><button type="button" class="button" data-flxai-render-test><?php esc_html_e( 'Test et', 'flx-ai' ); ?></button><span class="flxai-test-out"></span></p>
+					<?php if ( $flxai_rk ) : ?><label class="flxai-check"><input type="checkbox" name="key_render_clear" value="1"> <?php esc_html_e( 'Remove', 'flx-ai' ); ?></label><?php endif; ?>
+					<p class="description"><?php esc_html_e( 'If Gotenberg is protected with basic authentication.', 'flx-ai' ); ?></p>
+					<p><button type="button" class="button" data-flxai-render-test><?php esc_html_e( 'Test', 'flx-ai' ); ?></button><span class="flxai-test-out"></span></p>
 					<div class="flxai-render-prev" hidden></div></td></tr>
 			</table>
 		</section>
 
 		<section class="flxai-card">
-			<h2><?php esc_html_e( 'Kayıtlar', 'flx-ai' ); ?></h2>
+			<h2><?php esc_html_e( 'Logs', 'flx-ai' ); ?></h2>
 			<table class="form-table" role="presentation">
 				<?php $flxai_ld = (int) ( $s['log_days'] ?? 0 ); $flxai_bd = (int) ( $s['log_body_days'] ?? 0 ); ?>
-				<tr><th><?php esc_html_e( 'Kullanım kayıtlarını sakla', 'flx-ai' ); ?></th><td><input type="number" min="0" max="3650" class="small-text" name="log_days" value="<?php echo esc_attr( $flxai_ld > 0 ? $flxai_ld : '' ); ?>" placeholder="<?php esc_attr_e( 'Sınırsız', 'flx-ai' ); ?>" style="width:90px"> <?php esc_html_e( 'gün', 'flx-ai' ); ?>
-					<p class="description"><?php esc_html_e( 'Boş bırakın: kayıtlar sınırsız saklanır. Gün girerseniz daha eski kayıtlar günde bir kez silinir.', 'flx-ai' ); ?></p></td></tr>
-				<tr><th><?php esc_html_e( 'İçerik kaydı', 'flx-ai' ); ?></th><td><label class="flxai-check"><input type="checkbox" name="log_bodies" value="1" <?php checked( $s['log_bodies'] ?? 1 ); ?>> <?php esc_html_e( 'Giden/gelen içeriği de sakla (kısaltılmış; e-posta, telefon, IBAN ve anahtarlar maskeli)', 'flx-ai' ); ?></label>
-					<p><input type="number" min="0" max="3650" class="small-text" name="log_body_days" value="<?php echo esc_attr( $flxai_bd > 0 ? $flxai_bd : '' ); ?>" placeholder="<?php esc_attr_e( 'Sınırsız', 'flx-ai' ); ?>" style="width:90px"> <?php esc_html_e( 'gün sakla', 'flx-ai' ); ?></p>
-					<p class="description"><?php esc_html_e( 'Boş bırakın: içerik de sınırsız saklanır.', 'flx-ai' ); ?></p></td></tr>
-				<tr><th><?php esc_html_e( 'Kaldırınca', 'flx-ai' ); ?></th><td><label class="flxai-check"><input type="checkbox" name="delete_data" value="1" <?php checked( $s['delete_data'] ); ?>> <?php esc_html_e( 'Eklenti silinirken kayıtları ve sohbetleri de sil', 'flx-ai' ); ?></label></td></tr>
+				<tr><th><?php esc_html_e( 'Keep usage logs for', 'flx-ai' ); ?></th><td><input type="number" min="0" max="3650" class="small-text" name="log_days" value="<?php echo esc_attr( $flxai_ld > 0 ? $flxai_ld : '' ); ?>" placeholder="<?php esc_attr_e( 'Unlimited', 'flx-ai' ); ?>" style="width:90px"> <?php esc_html_e( 'days', 'flx-ai' ); ?>
+					<p class="description"><?php esc_html_e( 'Leave empty to keep logs forever. If you enter days, older logs are deleted once a day.', 'flx-ai' ); ?></p></td></tr>
+				<tr><th><?php esc_html_e( 'Content log', 'flx-ai' ); ?></th><td><label class="flxai-check"><input type="checkbox" name="log_bodies" value="1" <?php checked( $s['log_bodies'] ?? 1 ); ?>> <?php esc_html_e( 'Also store outgoing/incoming content (shortened; e-mail, phone, IBAN and keys masked)', 'flx-ai' ); ?></label>
+					<p><input type="number" min="0" max="3650" class="small-text" name="log_body_days" value="<?php echo esc_attr( $flxai_bd > 0 ? $flxai_bd : '' ); ?>" placeholder="<?php esc_attr_e( 'Unlimited', 'flx-ai' ); ?>" style="width:90px"> <?php esc_html_e( 'days to keep', 'flx-ai' ); ?></p>
+					<p class="description"><?php esc_html_e( 'Leave empty to keep content forever too.', 'flx-ai' ); ?></p></td></tr>
+				<tr><th><?php esc_html_e( 'On uninstall', 'flx-ai' ); ?></th><td><label class="flxai-check"><input type="checkbox" name="delete_data" value="1" <?php checked( $s['delete_data'] ); ?>> <?php esc_html_e( 'Delete logs and chats when the plugin is deleted', 'flx-ai' ); ?></label></td></tr>
 			</table>
 		</section>
-		<p class="submit"><button type="submit" class="button button-primary button-hero"><?php esc_html_e( 'Kaydet', 'flx-ai' ); ?></button></p>
+		<p class="submit"><button type="submit" class="button button-primary button-hero"><?php esc_html_e( 'Save', 'flx-ai' ); ?></button></p>
 	</form>
 	</div>
 	<?php

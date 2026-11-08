@@ -157,3 +157,43 @@ Issues and pull requests are welcome. Contributors will be listed here.
 ## License
 
 All packages are released under the [GNU General Public License v2 or later](https://www.gnu.org/licenses/gpl-2.0.html).<br>Made by FluxWP.
+
+<!-- translation-coverage:start -->
+## Translation coverage
+
+Percentage of English source entries with a nonempty, structurally valid translation. This measures file coverage, not linguistic quality. Source-identical values (such as brand names) count as valid and are listed separately in the JSON report. Rerun after adding messages.
+
+| Package | EN strings | TR | DE | ES | FR | PT-BR | JA | ZH | AR | RU |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| flx-admin | 387 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-ai | 506 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-analytics | 491 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-app | 433 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-backup | 344 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-certificates | 301 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-chat | 1581 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-chatbot | 398 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-commerce | 300 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-crm | 387 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-donate | 1787 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-forms | 3039 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-lang | 109 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-mail | 835 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-migrate | 57 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-recaptcha | 141 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-roles | 106 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-seo | 403 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-setup | 613 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-social | 553 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-speed | 501 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-studio | 316 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-tasks | 913 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-wiki | 175 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| fluxwp | 477 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+
+```sh
+python3 tools/site-translations/coverage.py --repo . --scan-source --write-readme
+```
+
+[Language guide](tools/site-translations/LANGUAGES.md)
+<!-- translation-coverage:end -->

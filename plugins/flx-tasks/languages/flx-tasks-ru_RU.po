@@ -1,0 +1,2741 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "Tasks"
+msgstr "Задачи"
+
+msgid "Usage dashboard"
+msgstr "Панель управления использованием"
+
+msgid "Task Settings"
+msgstr "Настройки задачи"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "JavaScript is required for Tasks."
+msgstr "Для задач необходим JavaScript."
+
+msgid "Task notifications"
+msgstr "Уведомления о задачах"
+
+msgid "AI needs the Flux AI & MCP plugin. An administrator must install Flux AI and enter a key."
+msgstr "ИИ нужен плагин Flux AI & MCP. Администратор должен установить Flux AI и ввести ключ."
+
+msgid "AI is not set up. An administrator must enter a key and choose a model in Flux AI & MCP › Settings."
+msgstr "ИИ не настроен. Администратор должен ввести ключ и выбрать модель в Flux AI & MCP › Настройки."
+
+msgid "The operation took too long; split the request into smaller steps."
+msgstr "Операция заняла слишком много времени; разбить запрос на более мелкие шаги."
+
+msgid "Deleted user"
+msgstr "Удаленный пользователь"
+
+msgid "List not found or you don't have access."
+msgstr "Список не найден или у вас нет доступа."
+
+msgid "Task not found or you don't have access."
+msgstr "Задача не найдена или у вас нет доступа."
+
+msgid "You don't have permission to add tasks to this list."
+msgstr "У вас недостаточно прав для добавления задач в этот список."
+
+msgid "You don't have permission to edit this task."
+msgstr "У вас недостаточно прав для редактирования этой задачи."
+
+msgid "You don't have permission to add tasks to the target list."
+msgstr "У вас недостаточно прав для добавления задач в целевой список."
+
+msgid "This list has no such status."
+msgstr "Этот список не имеет такого статуса."
+
+msgid "You don't have permission to comment on this task."
+msgstr "У вас нет разрешения комментировать эту задачу."
+
+msgid "Item not found."
+msgstr "Товар не найден."
+
+msgid "Open"
+msgstr "Открыть"
+
+msgid "Setup"
+msgstr "Настройка"
+
+msgid "WordPress and PHP version"
+msgstr "Версия WordPress и PHP"
+
+msgid "WordPress %1$s, PHP %2$s. Required: WordPress 6.5+, PHP 7.4+."
+msgstr "WordPress%1$s, PHP%2$s. Требуется: WordPress 6.5+, PHP 7.4+."
+
+msgid "Database tables"
+msgstr "Таблицы базы данных"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "Отсутствует таблица:%s. Деактивируйте и повторно активируйте плагин."
+
+msgid "Plugins"
+msgstr "Плагины"
+
+msgid "Tables are ready (schema %s)."
+msgstr "Таблицы готовы (схема%s)."
+
+msgid "File folder"
+msgstr "Папка с файлами"
+
+msgid "wp-content/uploads/flx-tasks is missing or not writable. Files and images cannot be uploaded; check folder permissions (755)."
+msgstr "wp-content/uploads/flx-tasks отсутствует или недоступен для записи. Файлы и изображения не могут быть загружены; проверьте права доступа к папке (755)."
+
+msgid "The folder is writable but the protection file (.htaccess) is missing; files can be opened by direct URL. Reactivate the plugin."
+msgstr "Папка доступна для записи, но файл защиты (.htaccess) отсутствует; файлы можно открыть по прямому URL-адресу. Повторно активируйте плагин."
+
+msgid "Writable and closed to direct access."
+msgstr "Доступен для записи и закрыт для прямого доступа."
+
+msgid "Upload limit"
+msgstr "Лимит загрузки"
+
+msgid "Effective limit %1$s (server limit %2$s)."
+msgstr "Действующий лимит%1$s(лимит сервера%2$s)."
+
+msgid "The setting is larger than the server limit; upload_max_filesize and post_max_size can be raised in the hosting panel."
+msgstr "Значение параметра превышает лимит сервера; upload_max_filesize и post_max_size можно поднять в панели хостинга."
+
+msgid "Scheduled jobs"
+msgstr "Запланированные задания"
+
+msgid "Daily task reminders"
+msgstr "Напоминания о ежедневных задачах"
+
+msgid "Not scheduled: overdue/upcoming task notifications and old temporary file cleanup will not run. Opening the Tasks page once reschedules it."
+msgstr "Не запланировано: уведомления о просроченных/предстоящих задачах и очистка старых временных файлов не будут запускаться. Однократное открытие страницы «Задачи» приводит к ее перепланированию."
+
+msgid "The scheduled job is late (due %s). WP-Cron may not be triggering (if the site gets few visits, a real cron in the hosting panel is recommended)."
+msgstr "Запланированное задание задерживается (из-за%s). Возможно, WP-Cron не запускается (если сайт посещается мало, рекомендуется использовать настоящий cron на панели хостинга)."
+
+msgid "Next run: %s."
+msgstr "Следующий запуск:%s."
+
+msgid "WP-Cron mode"
+msgstr "Режим WP-Cron"
+
+msgid "DISABLE_WP_CRON is on: scheduled jobs only run if a server cron calls wp-cron.php. This cron must be set up in the hosting panel."
+msgstr "DISABLE_WP_CRON включен: запланированные задания запускаются только в том случае, если cron сервера вызывает wp-cron.php. Этот cron должен быть настроен в панели хостинга."
+
+msgid "Live updates"
+msgstr "Живые обновления"
+
+msgid "Update interval"
+msgstr "Интервал обновления"
+
+msgid "10 s while on screen, %d s after 2 min idle; background tabs send no requests."
+msgstr "10 секунд при отображении на экране,%dчерез 2 минуты бездействия; фоновые вкладки не отправляют запросы."
+
+msgid "API cache"
+msgstr "Кэш API"
+
+msgid "LiteSpeed Cache is active; task API responses are marked so they are not cached."
+msgstr "LiteSpeed Cache активен; Ответы API задач помечаются, поэтому они не кэшируются."
+
+msgid "Task API responses are not cached."
+msgstr "Ответы API задач не кэшируются."
+
+msgid "Notifications"
+msgstr "Уведомления"
+
+msgid "Email notifications"
+msgstr "Уведомления по электронной почте"
+
+msgid "On. Emails are sent with WordPress's mail setup (an SMTP plugin is recommended)."
+msgstr "Вкл. Электронные письма отправляются с настройкой почты WordPress (рекомендуется плагин SMTP)."
+
+msgid "Off; notifications are in-app only."
+msgstr "Выкл.; уведомления доступны только в приложении."
+
+msgid "AI and MCP"
+msgstr "ИИ и MCP"
+
+msgid "AI"
+msgstr "ИИ"
+
+msgid "Via Flux AI, model: %s."
+msgstr "Через Flux AI, модель:%s."
+
+msgid "Flux AI"
+msgstr "Поток ИИ"
+
+msgid "MCP server"
+msgstr "MCP-сервер"
+
+msgid "On, %d personal key(s)."
+msgstr "Включено, персональные ключи%d."
+
+msgid "Off."
+msgstr "Выкл."
+
+msgid "Untitled document"
+msgstr "Документ без названия"
+
+msgid "List task projects"
+msgstr "Список проектов задач"
+
+msgid "List task people"
+msgstr "Список людей, выполняющих задачи"
+
+msgid "Search tasks"
+msgstr "Поиск задач"
+
+msgid "Read task"
+msgstr "Чтение задачи"
+
+msgid "Create task"
+msgstr "Создать задачу"
+
+msgid "Update task"
+msgstr "Обновить задачу"
+
+msgid "Comment on task"
+msgstr "Комментарий к задаче"
+
+msgid "List task fields"
+msgstr "Список полей задачи"
+
+msgid "Create task list"
+msgstr "Создать список задач"
+
+msgid "Delete task"
+msgstr "Удалить задачу"
+
+msgid "List task notifications"
+msgstr "Получение списка уведомлений о задачах"
+
+msgid "List documents"
+msgstr "Список документов"
+
+msgid "Read document page"
+msgstr "Прочитать страницу документа"
+
+msgid "Edit document page"
+msgstr "Редактировать страницу документа"
+
+msgid "Create document"
+msgstr "Создать документ"
+
+msgid "Add page to document"
+msgstr "Добавить страницу в документ"
+
+msgid "Document: %s"
+msgstr "Документ:%s"
+
+msgid "Improve"
+msgstr "Улучшить"
+
+msgid "Fix spelling & grammar"
+msgstr "Исправьте орфографию и грамматику"
+
+msgid "Shorten"
+msgstr "Сократить"
+
+msgid "Make longer"
+msgstr "Делайте дольше"
+
+msgid "Simplify"
+msgstr "Упростить"
+
+msgid "More formal"
+msgstr "Более формальный"
+
+msgid "More friendly"
+msgstr "Более дружелюбный"
+
+msgid "Turn into bullets"
+msgstr "Превратиться в пули"
+
+msgid "Turn into table"
+msgstr "Превратиться в стол"
+
+msgid "Translate"
+msgstr "Перевести"
+
+msgid "Explain"
+msgstr "Объясни"
+
+msgid "Custom request"
+msgstr "Индивидуальный запрос"
+
+msgid "Write"
+msgstr "Написать"
+
+msgid "Continue writing"
+msgstr "Продолжить писать"
+
+msgid "Summarize"
+msgstr "Подвести итог"
+
+msgid "Extract action items"
+msgstr "Извлечение элементов действий"
+
+msgid "Draft an outline"
+msgstr "Набросайте план"
+
+msgid "Suggest a title"
+msgstr "Предложить название"
+
+msgid "Ask the page"
+msgstr "Спросить страницу"
+
+msgid "Page not found or you have no access."
+msgstr "Страница не найдена или у вас нет доступа."
+
+msgid "Unknown action."
+msgstr "Неизвестное действие."
+
+msgid "Write what should be done."
+msgstr "Напишите, что нужно сделать."
+
+msgid "The AI could not extract items. Try again or describe what you need."
+msgstr "ИИ не мог извлекать предметы. Попробуйте еще раз или опишите, что вам нужно."
+
+msgid "The AI returned an empty answer. Try again."
+msgstr "ИИ вернул пустой ответ. Попробуйте еще раз."
+
+msgid "You are not allowed to create documents in this project."
+msgstr "Вам не разрешено создавать документы в этом проекте."
+
+msgid "Document not found or you have no access."
+msgstr "Документ не найден или у вас нет доступа."
+
+msgid "You are not allowed to edit this document."
+msgstr "Вам не разрешено редактировать этот документ."
+
+msgid "Only the owner or a project admin can delete the document."
+msgstr "Удалить документ может только владелец или администратор проекта."
+
+msgid "A page cannot be moved under its own subpage."
+msgstr "Страницу нельзя переместить под собственную подстраницу."
+
+msgid "The last page of a document cannot be deleted. You can delete the document instead."
+msgstr "Последнюю страницу документа удалить невозможно. Вместо этого вы можете удалить документ."
+
+msgid "An email draft needs Flux Communication and mailbox permission."
+msgstr "Черновик электронного письма требует разрешения Flux Communication и почтового ящика."
+
+msgid "File is too large. The maximum upload size is %s."
+msgstr "Файл слишком большой. Максимальный размер загрузки —%s."
+
+msgid "Could not upload the file."
+msgstr "Не удалось загрузить файл."
+
+msgid "This file type is not allowed."
+msgstr "Этот тип файла недопустим."
+
+msgid "Could not save the file."
+msgstr "Не удалось сохранить файл."
+
+msgid "Urgent"
+msgstr "Срочно"
+
+msgid "High"
+msgstr "Высокий"
+
+msgid "Normal"
+msgstr "Нормальный"
+
+msgid "Low"
+msgstr "Низкий"
+
+msgid "To do"
+msgstr "Делать"
+
+msgid "In progress"
+msgstr "В процессе"
+
+msgid "In review"
+msgstr "На рассмотрении"
+
+msgid "Done"
+msgstr "Готово"
+
+msgid "Short text"
+msgstr "Краткий текст"
+
+msgid "Long text"
+msgstr "Длинный текст"
+
+msgid "Number"
+msgstr "Номер"
+
+msgid "Amount"
+msgstr "Сумма"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Checkbox"
+msgstr "Флажок"
+
+msgid "Dropdown"
+msgstr "Раскрывающийся список"
+
+msgid "Tags (multi-select)"
+msgstr "Теги (множественный выбор)"
+
+msgid "Star rating"
+msgstr "Звездный рейтинг"
+
+msgid "Person"
+msgstr "Человек"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "Web address"
+msgstr "Веб-адрес"
+
+msgid "Email"
+msgstr "электронная почта"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "Welcome to Flux Tasks: open this task and write a comment"
+msgstr "Добро пожаловать в Flux Tasks: откройте эту задачу и напишите комментарий."
+
+msgid "Track tasks in list, board and calendar views. Add new lists or folders from the left menu, and set up custom fields and permissions in list settings."
+msgstr "Отслеживайте задачи в виде списка, доски и календаря. Добавляйте новые списки или папки из меню слева, а также настраивайте настраиваемые поля и разрешения в настройках списка."
+
+msgid "MCP is off. Turn it on under Flux Tasks › Settings."
+msgstr "МКП выключен. Включите его в разделе «Задачи Flux» > «Настройки»."
+
+msgid "Invalid or missing MCP key."
+msgstr "Неверный или отсутствующий ключ MCP."
+
+msgid "This user is not allowed to use Flux Tasks."
+msgstr "Этому пользователю не разрешено использовать задачи Flux."
+
+msgid "%s assigned you to a task"
+msgstr "%sназначил вам задачу"
+
+msgid "%s mentioned you in a comment"
+msgstr "%sупомянул вас в комментарии"
+
+msgid "%s wrote a comment"
+msgstr "%sнаписал комментарий"
+
+msgid "%1$s changed the status to \"%2$s\""
+msgstr "%1$sизменил статус на «%2$s»"
+
+msgid "Due tomorrow"
+msgstr "Срок завтра"
+
+msgid "Overdue"
+msgstr "Просрочено"
+
+msgid "[%1$s] %2$s"
+msgstr "[%1$s]%2$s"
+
+msgid "You can turn off email notifications under Flux Tasks › Profile."
+msgstr "Вы можете отключить уведомления по электронной почте в разделе «Задачи Flux» › «Профиль»."
+
+msgid "Recipient name"
+msgstr "Имя получателя"
+
+msgid "Person who acted"
+msgstr "Человек, который действовал"
+
+msgid "Task name"
+msgstr "Название задачи"
+
+msgid "List"
+msgstr "Список"
+
+msgid "Notification sentence"
+msgstr "Уведомительное предложение"
+
+msgid "Comment excerpt"
+msgstr "Отрывок комментария"
+
+msgid "Due date"
+msgstr "Срок сдачи"
+
+msgid "Task link"
+msgstr "Ссылка на задачу"
+
+msgid "Booth supplies list"
+msgstr "Список расходных материалов для стенда"
+
+msgid "Mehmet assigned you to a task"
+msgstr "Мехмет поручил вам задание"
+
+msgid "Can you look at it by Friday?"
+msgstr "Сможешь посмотреть к пятнице?"
+
+msgid "You were assigned to a task"
+msgstr "Вам назначили задачу"
+
+msgid "Sent when someone assigns you to a task."
+msgstr "Отправляется, когда кто-то назначает вам задачу."
+
+msgid "{kisi} assigned you to a task: {gorev}"
+msgstr "{kisi}назначил вам задачу:{gorev}"
+
+msgid "New task: {gorev}"
+msgstr "Новая задача:{gorev}."
+
+msgid "Hi {ad},"
+msgstr "Привет,{ad},"
+
+msgid "{kisi} assigned you to <strong>{gorev}</strong> in the <strong>{liste}</strong> list."
+msgstr "{kisi}назначил вам<strong>{gorev}</strong>в списке<strong>{liste}</strong>."
+
+msgid "Open task"
+msgstr "Открыть задачу"
+
+msgid "You were mentioned in a comment"
+msgstr "Вас упомянули в комментарии"
+
+msgid "Sent when someone @mentions you in a comment."
+msgstr "Отправляется, когда кто-то @упоминает вас в комментарии."
+
+msgid "{kisi} mentioned you in a comment: {gorev}"
+msgstr "{kisi}упомянул вас в комментарии:{gorev}"
+
+msgid "{kisi} mentioned you"
+msgstr "{kisi}упомянул вас"
+
+msgid "Comment on <strong>{gorev}</strong>:"
+msgstr "Комментарий к<strong>{gorev}</strong>:"
+
+msgid "Go to comment"
+msgstr "Перейти к комментированию"
+
+msgid "Task due date is coming up"
+msgstr "Срок выполнения задачи приближается"
+
+msgid "Sent one day before the due date of a task assigned to you."
+msgstr "Отправляется за день до срока выполнения назначенной вам задачи."
+
+msgid "Due tomorrow: {gorev}"
+msgstr "Срок сдачи завтра:{gorev}"
+
+msgid "<strong>{gorev}</strong> is due on {tarih}."
+msgstr "<strong>{gorev}</strong>подлежит оплате{tarih}."
+
+msgid "Can view"
+msgstr "Можно просмотреть"
+
+msgid "Can comment"
+msgstr "Могу комментировать"
+
+msgid "Can edit"
+msgstr "Можно редактировать"
+
+msgid "Can manage"
+msgstr "Может управлять"
+
+msgid "Display preferences are too large."
+msgstr "Настройки отображения слишком велики."
+
+msgid "You don't have permission to create projects."
+msgstr "У вас недостаточно прав для создания проектов."
+
+msgid "Name cannot be empty."
+msgstr "Имя не может быть пустым."
+
+msgid "Project not found."
+msgstr "Проект не найден."
+
+msgid "You don't have permission to manage this project."
+msgstr "У вас нет разрешения на управление этим проектом."
+
+msgid "You don't have permission to create folders in this project."
+msgstr "У вас недостаточно прав для создания папок в этом проекте."
+
+msgid "You don't have permission to edit this folder."
+msgstr "У вас нет разрешения на редактирование этой папки."
+
+msgid "You don't have permission to delete this folder."
+msgstr "У вас нет разрешения на удаление этой папки."
+
+msgid "You don't have permission to create lists in this project."
+msgstr "У вас недостаточно прав для создания списков в этом проекте."
+
+msgid "You don't have permission to manage this list."
+msgstr "У вас нет разрешения на управление этим списком."
+
+msgid "You don't have access to the target project."
+msgstr "У вас нет доступа к целевому проекту."
+
+msgid "You must be a list manager to add fields."
+msgstr "Чтобы добавлять поля, вы должны быть менеджером списков."
+
+msgid "You must be a list manager to edit fields."
+msgstr "Чтобы редактировать поля, вы должны быть менеджером списка."
+
+msgid "You must be a list manager to delete fields."
+msgstr "Чтобы удалять поля, вы должны быть менеджером списков."
+
+msgid "You don't have access."
+msgstr "У вас нет доступа."
+
+msgid "New view"
+msgstr "Новый вид"
+
+msgid "You don't have permission to change this view."
+msgstr "У вас недостаточно прав для изменения этого представления."
+
+msgid "You don't have permission to delete this view."
+msgstr "У вас недостаточно прав для удаления этого представления."
+
+msgid "Project managers edit tags."
+msgstr "Менеджеры проектов редактируют теги."
+
+msgid "You don't have permission to delete this task."
+msgstr "У вас недостаточно прав для удаления этой задачи."
+
+msgid "You can only edit your own comments."
+msgstr "Вы можете редактировать только свои комментарии."
+
+msgid "Comment cannot be empty."
+msgstr "Комментарий не может быть пустым."
+
+msgid "You don't have permission to delete this comment."
+msgstr "У вас нет разрешения на удаление этого комментария."
+
+msgid "You are not allowed to add files to this document."
+msgstr "Вам не разрешено добавлять файлы в этот документ."
+
+msgid "You don't have permission to attach files to this task."
+msgstr "У вас недостаточно прав для прикрепления файлов к этой задаче."
+
+msgid "File not found."
+msgstr "Файл не найден."
+
+msgid "You don't have permission to delete this file."
+msgstr "У вас нет разрешения на удаление этого файла."
+
+msgid "You don't have permission to delete this key."
+msgstr "У вас нет разрешения на удаление этого ключа."
+
+msgid "Planned"
+msgstr "Планируется"
+
+msgid "Held"
+msgstr "Состоялся"
+
+msgid "Cancelled"
+msgstr "Отменено"
+
+msgid "Board"
+msgstr "Совет"
+
+msgid "Calendar"
+msgstr "Календарь"
+
+msgid "Parent task not found."
+msgstr "Родительская задача не найдена."
+
+msgid "A task cannot be moved under its own subtask."
+msgstr "Задачу нельзя переместить в отдельную подзадачу."
+
+msgid "Subtasks can be nested at most %d levels in this project. You can change the limit in project settings."
+msgstr "Подзадачи в этом проекте могут быть вложены на большинстве уровней%d. Изменить лимит можно в настройках проекта."
+
+msgid "Task name cannot be empty."
+msgstr "Название задачи не может быть пустым."
+
+msgid "List not found."
+msgstr "Список не найден."
+
+msgid "Task not found."
+msgstr "Задача не найдена."
+
+msgid "Choose an image for the cover."
+msgstr "Выберите изображение для обложки."
+
+msgid "Today"
+msgstr "Сегодня"
+
+msgid "Tomorrow"
+msgstr "Завтра"
+
+msgid "Yesterday"
+msgstr "Вчера"
+
+msgid "just now"
+msgstr "только что"
+
+msgid "The server sent an unexpected response. Refresh the page and try again."
+msgstr "Сервер отправил неожиданный ответ. Обновите страницу и повторите попытку."
+
+msgid "The server is busy right now, try again shortly."
+msgstr "Сервер сейчас занят, повторите попытку позже."
+
+msgid "Connection error"
+msgstr "Ошибка подключения"
+
+msgid "Deleting comment"
+msgstr "Удаление комментария"
+
+msgid "Sending comment"
+msgstr "Отправка комментария"
+
+msgid "Deleting file"
+msgstr "Удаление файла"
+
+msgid "Saving file"
+msgstr "Сохранение файла"
+
+msgid "Deleting task"
+msgstr "Удаление задачи"
+
+msgid "Saving task"
+msgstr "Сохранение задачи"
+
+msgid "AI is working"
+msgstr "ИИ работает"
+
+msgid "Saving"
+msgstr "Сохранение"
+
+msgid "Loading"
+msgstr "Загрузка"
+
+msgid "{n} failed"
+msgstr "Ошибка{n}"
+
+msgid "{n} in progress"
+msgstr "{n}в процессе"
+
+msgid "server busy, waiting"
+msgstr "сервер занят, жду"
+
+msgid "Saved"
+msgstr "Сохранено"
+
+msgid "Background tasks"
+msgstr "Фоновые задачи"
+
+msgid "Server busy, waiting"
+msgstr "Сервер занят, ждём"
+
+msgid "Retry"
+msgstr "Повторить попытку"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Uploading: {n}"
+msgstr "Загрузка:{n}"
+
+msgid "Upload timed out."
+msgstr "Время загрузки истекло."
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "OK"
+msgstr "ОК"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Copied"
+msgstr "Скопировано"
+
+msgid "Download"
+msgstr "Скачать"
+
+msgid "Someone"
+msgstr "Кто-то"
+
+msgid "Document name"
+msgstr "Название документа"
+
+msgid "Create"
+msgstr "Создать"
+
+msgid "Delete document"
+msgstr "Удалить документ"
+
+msgid "\"{n}\" will be permanently deleted with all its pages and images."
+msgstr "«{n}» будет безвозвратно удален со всеми страницами и изображениями."
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Rename"
+msgstr "Переименовать"
+
+msgid "Copy link"
+msgstr "Копировать ссылку"
+
+msgid "Pop-up blocked. Allow pop-ups for this site in your browser."
+msgstr "Всплывающее окно заблокировано. Разрешите всплывающие окна для этого сайта в вашем браузере."
+
+msgid "My tasks"
+msgstr "Мои задачи"
+
+msgid "Email draft created."
+msgstr "Черновик электронного письма создан."
+
+msgid "Open in mailbox"
+msgstr "Открыть в почтовом ящике"
+
+msgid "Pages"
+msgstr "Страницы"
+
+msgid "Other"
+msgstr "Другое"
+
+msgid "Rename document"
+msgstr "Переименовать документ"
+
+msgid "Add subpage"
+msgstr "Добавить подстраницу"
+
+msgid "Print / PDF"
+msgstr "Распечатать / PDF"
+
+msgid "Create email draft"
+msgstr "Создать черновик письма"
+
+msgid "Create an email draft from this page"
+msgstr "Создайте черновик электронного письма на этой странице."
+
+msgid "Email draft"
+msgstr "Черновик электронного письма"
+
+msgid "AI (Ctrl+J)"
+msgstr "ИИ (Ctrl+J)"
+
+msgid "Untitled"
+msgstr "Без названия"
+
+msgid "Start writing… type \"/\" for blocks, \"#\" to link a task"
+msgstr "Начните писать... введите «/» для блоков, «#», чтобы связать задачу."
+
+msgid "Open as full page"
+msgstr "Открыть на всю страницу"
+
+msgid "Full page"
+msgstr "Полная страница"
+
+msgid "Saving…"
+msgstr "Сохранение..."
+
+msgid "Not saved, will retry"
+msgstr "Не сохранено, повторю попытку"
+
+msgid "Offline"
+msgstr "Оффлайн"
+
+msgid "Add page"
+msgstr "Добавить страницу"
+
+msgid "Collapse"
+msgstr "Свернуть"
+
+msgid "Page menu"
+msgstr "Меню страниц"
+
+msgid "Page name"
+msgstr "Название страницы"
+
+msgid "Move under the page above"
+msgstr "Перейти под страницу выше"
+
+msgid "Move up a level"
+msgstr "Перейти на уровень выше"
+
+msgid "Delete page"
+msgstr "Удалить страницу"
+
+msgid "\"{p}\" and its {n} subpages will be deleted."
+msgstr "«{p}» и его подстраницы{n}будут удалены."
+
+msgid "\"{p}\" will be deleted."
+msgstr "«{p}» будет удален."
+
+msgid "Last edited by {n}, {t}"
+msgstr "Последний раз редактировалось{n},{t}."
+
+msgid "typing"
+msgstr "печатание"
+
+msgid "Edit"
+msgstr "Редактировать"
+
+msgid "Remove link"
+msgstr "Удалить ссылку"
+
+msgid "Small"
+msgstr "Маленький"
+
+msgid "Medium"
+msgstr "Средний"
+
+msgid "Full width"
+msgstr "Полная ширина"
+
+msgid "Enlarge"
+msgstr "Увеличить"
+
+msgid "Remove image"
+msgstr "Удалить изображение"
+
+msgid "Link address"
+msgstr "Адрес ссылки"
+
+msgid "Add"
+msgstr "Добавить"
+
+msgid "Search tasks…"
+msgstr "Поиск задач..."
+
+msgid "No results"
+msgstr "Нет результатов"
+
+msgid "Type to search"
+msgstr "Введите для поиска"
+
+msgid "Basic blocks"
+msgstr "Базовые блоки"
+
+msgid "Media & links"
+msgstr "Медиа и ссылки"
+
+msgid "Item"
+msgstr "Товар"
+
+msgid "Text"
+msgstr "Текст"
+
+msgid "Plain paragraph"
+msgstr "Простой абзац"
+
+msgid "Page"
+msgstr "Страница"
+
+msgid "A sub-page inside this page"
+msgstr "Подстраница внутри этой страницы"
+
+msgid "Sub-page"
+msgstr "Подстраница"
+
+msgid "Heading 1"
+msgstr "Заголовок 1"
+
+msgid "Large section heading"
+msgstr "Большой заголовок раздела"
+
+msgid "Heading"
+msgstr "Заголовок"
+
+msgid "Heading 2"
+msgstr "Заголовок 2"
+
+msgid "Medium section heading"
+msgstr "Средний заголовок раздела"
+
+msgid "Heading 3"
+msgstr "Заголовок 3"
+
+msgid "Small section heading"
+msgstr "Небольшой заголовок раздела"
+
+msgid "Bulleted list"
+msgstr "Маркированный список"
+
+msgid "Simple bulleted list"
+msgstr "Простой маркированный список"
+
+msgid "Numbered list"
+msgstr "Нумерованный список"
+
+msgid "Checklist"
+msgstr "Контрольный список"
+
+msgid "Checkable to-dos"
+msgstr "Проверяемые задачи"
+
+msgid "Quote"
+msgstr "Цитата"
+
+msgid "Quote or note"
+msgstr "Цитата или примечание"
+
+msgid "Code"
+msgstr "Код"
+
+msgid "Code block"
+msgstr "Кодовый блок"
+
+msgid "Table"
+msgstr "Таблица"
+
+msgid "3×3 table"
+msgstr "Стол 3х3"
+
+msgid "Divider"
+msgstr "Разделитель"
+
+msgid "Separates sections"
+msgstr "Отдельные разделы"
+
+msgid "Images"
+msgstr "Изображения"
+
+msgid "Upload an image"
+msgstr "Загрузите изображение"
+
+msgid "Add file"
+msgstr "Добавить файл"
+
+msgid "Link a task (#)"
+msgstr "Связать задачу (#)"
+
+msgid "Link"
+msgstr "Ссылка"
+
+msgid "Add a web link"
+msgstr "Добавить веб-ссылку"
+
+msgid "Write with AI"
+msgstr "Пишите с помощью ИИ"
+
+msgid "Have it write anything"
+msgstr "пусть напишет что-нибудь"
+
+msgid "Continues the page"
+msgstr "Продолжает страницу"
+
+msgid "Summary of the page"
+msgstr "Краткое описание страницы"
+
+msgid "Turn items into tasks"
+msgstr "Превратите предметы в задачи"
+
+msgid "Close menu"
+msgstr "Закрыть меню"
+
+msgid "Gray"
+msgstr "Серый"
+
+msgid "Brown"
+msgstr "Браун"
+
+msgid "Orange"
+msgstr "Оранжевый"
+
+msgid "Yellow"
+msgstr "Желтый"
+
+msgid "Green"
+msgstr "Зеленый"
+
+msgid "Blue"
+msgstr "Синий"
+
+msgid "Purple"
+msgstr "Фиолетовый"
+
+msgid "Pink"
+msgstr "Розовый"
+
+msgid "Red"
+msgstr "Красный"
+
+msgid "Default"
+msgstr "По умолчанию"
+
+msgid "Column: click for menu, drag to move"
+msgstr "Столбец: нажмите, чтобы открыть меню, перетащите, чтобы переместить"
+
+msgid "Row: click for menu, drag to move"
+msgstr "Строка: нажмите, чтобы открыть меню, перетащите, чтобы переместить"
+
+msgid "Insert row above"
+msgstr "Вставить строку выше"
+
+msgid "Add column left"
+msgstr "Добавить столбец слева"
+
+msgid "Insert row below"
+msgstr "Вставить строку ниже"
+
+msgid "Add column right"
+msgstr "Добавить столбец справа"
+
+msgid "Move up"
+msgstr "Вверх"
+
+msgid "Move left"
+msgstr "Двигаться влево"
+
+msgid "Move down"
+msgstr "Двигаться вниз"
+
+msgid "Move right"
+msgstr "Двигайтесь вправо"
+
+msgid "Background"
+msgstr "Фон"
+
+msgid "Text color"
+msgstr "Цвет текста"
+
+msgid "Delete row"
+msgstr "Удалить строку"
+
+msgid "Delete column"
+msgstr "Удалить столбец"
+
+msgid "Delete table"
+msgstr "Удалить таблицу"
+
+msgid "Click to add a block below. Alt-click to add above"
+msgstr "Нажмите, чтобы добавить блок ниже. Удерживая клавишу Alt, нажмите, чтобы добавить выше"
+
+msgid "Drag to move. Click for menu"
+msgstr "Перетащите, чтобы переместить. Нажмите, чтобы открыть меню"
+
+msgid "Turn into"
+msgstr "Превратиться в"
+
+msgid "Edit with AI"
+msgstr "Редактировать с помощью ИИ"
+
+msgid "Duplicate"
+msgstr "Дублировать"
+
+msgid "Add row below"
+msgstr "Добавить строку ниже"
+
+msgid "Add row above"
+msgstr "Добавить строку выше"
+
+msgid "Undo"
+msgstr "Отменить"
+
+msgid "Redo"
+msgstr "Повторить"
+
+msgid "Bold"
+msgstr "Жирный"
+
+msgid "Italic"
+msgstr "Курсив"
+
+msgid "Underline"
+msgstr "Подчеркнуть"
+
+msgid "Strikethrough"
+msgstr "Зачеркивание"
+
+msgid "Link (Ctrl+K)"
+msgstr "Ссылка (Ctrl+K)"
+
+msgid "Alignment"
+msgstr "Выравнивание"
+
+msgid "Left"
+msgstr "Левый"
+
+msgid "Center"
+msgstr "Центр"
+
+msgid "Right"
+msgstr "Правильно"
+
+msgid "Add image"
+msgstr "Добавить изображение"
+
+msgid "Add table"
+msgstr "Добавить таблицу"
+
+msgid "Task link (#)"
+msgstr "Ссылка на задачу (#)"
+
+msgid "Translate to English"
+msgstr "Перевести на английский"
+
+msgid "Translate to Turkish"
+msgstr "Перевести на турецкий"
+
+msgid "Turn into heading"
+msgstr "Превратить в заголовок"
+
+msgid "Selected text"
+msgstr "Выделенный текст"
+
+msgid "This page"
+msgstr "Эта страница"
+
+msgid "Describe the change… (e.g. make it shorter)"
+msgstr "Опишите изменение... (например, сделайте его короче)"
+
+msgid "What should be done with the selection?"
+msgstr "Что делать с выбором?"
+
+msgid "What should be written? E.g. a meeting agenda draft"
+msgstr "Что следует написать? Например. проект повестки дня собрания"
+
+msgid "Ask a question about this page"
+msgstr "Задайте вопрос об этой странице"
+
+msgid "Ask the page (the answer is not written into it)"
+msgstr "Задать страницу (ответ в ней не написан)"
+
+msgid "Ask"
+msgstr "Спросить"
+
+msgid "Send"
+msgstr "Отправить"
+
+msgid "Chat with the assistant"
+msgstr "Chat with the assistant"
+
+msgid "AI is writing…"
+msgstr "ИИ пишет..."
+
+msgid "Replace"
+msgstr "Заменить"
+
+msgid "Insert below"
+msgstr "Вставьте ниже"
+
+msgid "Use as title"
+msgstr "Использовать как заголовок"
+
+msgid "Page title changed."
+msgstr "Название страницы изменено."
+
+msgid "Insert below cursor"
+msgstr "Вставить под курсором"
+
+msgid "Append"
+msgstr "Добавить"
+
+msgid "Insert at top"
+msgstr "Вставка сверху"
+
+msgid "Add as new page"
+msgstr "Добавить как новую страницу"
+
+msgid "Add to page"
+msgstr "Добавить на страницу"
+
+msgid "Copy"
+msgstr "Копировать"
+
+msgid "Regenerate"
+msgstr "Регенерировать"
+
+msgid "Back"
+msgstr "Назад"
+
+msgid "Select"
+msgstr "Выбрать"
+
+msgid "Due"
+msgstr "Срок погашения"
+
+msgid "Add item"
+msgstr "Добавить элемент"
+
+msgid "Add as tasks ({n})"
+msgstr "Добавить как задачи ({n})"
+
+msgid "{n} tasks added to \"{l}\"."
+msgstr "Задачи{n}добавлены в «{l}»."
+
+msgid "Open list"
+msgstr "Открыть список"
+
+msgid "There is no list you can add tasks to."
+msgstr "Нет списка, в который можно добавлять задачи."
+
+msgid "To-dos"
+msgstr "Дела"
+
+msgid "New page created."
+msgstr "Новая страница создана."
+
+msgid "The selection changed meanwhile; the result was inserted below."
+msgstr "Тем временем выбор изменился; результат был вставлен ниже."
+
+msgid "Replaced."
+msgstr "Заменено."
+
+msgid "Added to the page."
+msgstr "Добавлено на страницу."
+
+msgid "Drag to resize, double-click to reset"
+msgstr "Перетащите, чтобы изменить размер, дважды щелкните, чтобы сбросить"
+
+msgid "Hide sidebar"
+msgstr "Скрыть боковую панель"
+
+msgid "AI assistant"
+msgstr "ИИ-помощник"
+
+msgid "Projects"
+msgstr "Проекты"
+
+msgid "New project"
+msgstr "Новый проект"
+
+msgid "Project menu"
+msgstr "Меню проекта"
+
+msgid "Empty folder"
+msgstr "Пустая папка"
+
+msgid "You have no visible projects."
+msgstr "У вас нет видимых проектов."
+
+msgid "Theme"
+msgstr "Тема"
+
+msgid "System"
+msgstr "Система"
+
+msgid "Light"
+msgstr "Свет"
+
+msgid "Dark"
+msgstr "Темный"
+
+msgid "Back to WordPress admin"
+msgstr "Вернуться к администратору WordPress"
+
+msgid "List menu"
+msgstr "Список меню"
+
+msgid "Moves within the same project; statuses, fields and tags stay the same."
+msgstr "Перемещается в рамках одного проекта; статусы, поля и теги остаются прежними."
+
+msgid "Keep the list's own statuses"
+msgstr "Сохраняйте собственные статусы списка"
+
+msgid "Use the statuses of \"{n}\""
+msgstr "Используйте статусы «{n}»"
+
+msgid "Statuses"
+msgstr "Статусы"
+
+msgid "Pick a match for each status; tasks move to that status."
+msgstr "Выберите соответствие для каждого статуса; задачи переходят в этот статус."
+
+msgid "Statuses and custom fields move with the list; tasks keep their status."
+msgstr "Статусы и настраиваемые поля перемещаются вместе со списком; задачи сохраняют свой статус."
+
+msgid "Tags"
+msgstr "Теги"
+
+msgid "{n} tags are linked by name in the target project: {e} already exist, {c} will be created."
+msgstr "Теги{n}связаны по имени в целевом проекте:{e}уже существует,{c}будет создан."
+
+msgid "People who will lose access"
+msgstr "Люди, которые потеряют доступ"
+
+msgid "These people are not members of the target project; checked ones are added as members."
+msgstr "Эти люди не являются участниками целевого проекта; отмеченные элементы добавляются в качестве участников."
+
+msgid "Target project or folder"
+msgstr "Целевой проект или папка"
+
+msgid "Move \"{n}\""
+msgstr "Переместить \"{n}\""
+
+msgid "Move"
+msgstr "Переместить"
+
+msgid "Moving list"
+msgstr "Перемещение списка"
+
+msgid "\"{n}\" moved."
+msgstr "«{n}» перемещен."
+
+msgid "Document menu"
+msgstr "Меню документа"
+
+msgid "Task list"
+msgstr "Список задач"
+
+msgid "Meeting list"
+msgstr "Список встреч"
+
+msgid "Document"
+msgstr "Документ"
+
+msgid "New list"
+msgstr "Новый список"
+
+msgid "New meeting list"
+msgstr "Новый список встреч"
+
+msgid "New document"
+msgstr "Новый документ"
+
+msgid "New folder"
+msgstr "Новая папка"
+
+msgid "Folder name"
+msgstr "Имя папки"
+
+msgid "Project settings and members"
+msgstr "Настройки проекта и участники"
+
+msgid "Delete project"
+msgstr "Удалить проект"
+
+msgid "All lists, tasks, comments and files in the project \"{n}\" will be permanently deleted."
+msgstr "Все списки, задачи, комментарии и файлы в проекте «{n}» будут безвозвратно удалены."
+
+msgid "Add a list to this folder"
+msgstr "Добавить список в эту папку"
+
+msgid "Add a meeting list to this folder"
+msgstr "Добавить список встреч в эту папку"
+
+msgid "Add a document to this folder"
+msgstr "Добавить документ в эту папку"
+
+msgid "Delete folder"
+msgstr "Удалить папку"
+
+msgid "The folder will be deleted; its lists will move to the project root."
+msgstr "Папка будет удалена; его списки будут перемещены в корень проекта."
+
+msgid "List settings"
+msgstr "Список настроек"
+
+msgid "Custom fields"
+msgstr "Пользовательские поля"
+
+msgid "Permissions"
+msgstr "Разрешения"
+
+msgid "Move…"
+msgstr "Двигайся..."
+
+msgid "Delete list"
+msgstr "Удалить список"
+
+msgid "All tasks, comments and files in the list \"{n}\" will be permanently deleted."
+msgstr "Все задачи, комментарии и файлы в списке «{n}» будут безвозвратно удалены."
+
+msgid "Show sidebar"
+msgstr "Показать боковую панель"
+
+msgid "Menu"
+msgstr "Меню"
+
+msgid "All lists"
+msgstr "Все списки"
+
+msgid "Visible to members only"
+msgstr "Видно только участникам"
+
+msgid "Private"
+msgstr "Частный"
+
+msgid "Share"
+msgstr "Поделиться"
+
+msgid "View menu"
+msgstr "Посмотреть меню"
+
+msgid "View"
+msgstr "Посмотреть"
+
+msgid "View name"
+msgstr "Посмотреть имя"
+
+msgid "Create a copy"
+msgstr "Создать копию"
+
+msgid "Share with everyone"
+msgstr "Поделитесь со всеми"
+
+msgid "Make private to me"
+msgstr "Сделать личным для меня"
+
+msgid "Delete view"
+msgstr "Удалить представление"
+
+msgid "The view \"{n}\" will be deleted. Tasks are not affected."
+msgstr "Представление «{n}» будет удалено. Задачи не затрагиваются."
+
+msgid "{n} assigned you to a task"
+msgstr "{n}назначил вам задачу"
+
+msgid "{n} mentioned you in a comment"
+msgstr "{n}упомянул вас в комментарии"
+
+msgid "{n} wrote a comment"
+msgstr "{n}написал комментарий"
+
+msgid "{n} changed the status to \"{s}\""
+msgstr "{n}изменил статус на «{s}»"
+
+msgid "All"
+msgstr "Все"
+
+msgid "Unread"
+msgstr "Непрочитано"
+
+msgid "Mark all as read"
+msgstr "Отметить все как прочитанное"
+
+msgid "No unread notifications. 🎉"
+msgstr "Никаких непрочитанных уведомлений. 🎉"
+
+msgid "No notifications yet."
+msgstr "Уведомлений пока нет."
+
+msgid "(deleted task)"
+msgstr "(удалена задача)"
+
+msgid "More"
+msgstr "Подробнее"
+
+msgid "Refresh"
+msgstr "Обновить"
+
+msgid "File storage"
+msgstr "Хранение файлов"
+
+msgid "{n} files"
+msgstr "Файлы{n}"
+
+msgid "previews {s}"
+msgstr "превью{s}"
+
+msgid "Open tasks"
+msgstr "Открытые задачи"
+
+msgid "{n} completed"
+msgstr "{n}завершено"
+
+msgid "open tasks past their due date"
+msgstr "открытые задачи с истекшим сроком выполнения"
+
+msgid "Last 30 days"
+msgstr "Последние 30 дней"
+
+msgid "{n} tasks completed"
+msgstr "{n}задачи выполнены"
+
+msgid "Comments"
+msgstr "Комментарии"
+
+msgid "{n} active users (30 days)"
+msgstr "{n}активных пользователей (30 дней)"
+
+msgid "Structure"
+msgstr "Структура"
+
+msgid "projects / lists · {n} users"
+msgstr "проекты/списки · Пользователи{n}"
+
+msgid "PDF"
+msgstr "PDF"
+
+msgid "Documents"
+msgstr "Документы"
+
+msgid "Video"
+msgstr "Видео"
+
+msgid "Audio"
+msgstr "Аудио"
+
+msgid "Archives"
+msgstr "Архивы"
+
+msgid "Storage"
+msgstr "Хранение"
+
+msgid "No files uploaded yet."
+msgstr "Файлы еще не загружены."
+
+msgid "Task files (uploads/flx-tasks)"
+msgstr "Файлы задач (загрузки/flx-задачи)"
+
+msgid "Unsent comment attachments (deleted after 24 hours)"
+msgstr "Неотправленные вложения комментариев (удаляются через 24 часа)"
+
+msgid "Single file limit"
+msgstr "Ограничение на один файл"
+
+msgid "Free space on server"
+msgstr "Свободное место на сервере"
+
+msgid "Entire media folder (wp-content/uploads)"
+msgstr "Вся папка мультимедиа (wp-content/uploads)"
+
+msgid "Calculating…"
+msgstr "Расчет..."
+
+msgid "Recalculate"
+msgstr "Пересчитать"
+
+msgid "Calculate"
+msgstr "Рассчитать"
+
+msgid "By list"
+msgstr "По списку"
+
+msgid "Project"
+msgstr "Проект"
+
+msgid "Task"
+msgstr "Задача"
+
+msgid "Size"
+msgstr "Размер"
+
+msgid "Uploaded by person"
+msgstr "Загружено пользователем"
+
+msgid "No data."
+msgstr "Нет данных."
+
+msgid "Monthly uploads"
+msgstr "Ежемесячные загрузки"
+
+msgid "Largest files"
+msgstr "Самые большие файлы"
+
+msgid "Uploader"
+msgstr "Загрузчик"
+
+msgid "unlinked"
+msgstr "несвязанный"
+
+msgid "Delete file"
+msgstr "Удалить файл"
+
+msgid "Database"
+msgstr "База данных"
+
+msgid "Rows"
+msgstr "Строки"
+
+msgid "Total"
+msgstr "Итого"
+
+msgid "AI usage"
+msgstr "Использование ИИ"
+
+msgid "Month"
+msgstr "Месяц"
+
+msgid "Requests"
+msgstr "Запросы"
+
+msgid "Tokens"
+msgstr "Токены"
+
+msgid "Cost (OpenRouter)"
+msgstr "Стоимость (OpenRouter)"
+
+msgid "No usage this month."
+msgstr "В этом месяце использования не было."
+
+msgid "Warning"
+msgstr "Предупреждение"
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid "Info"
+msgstr "Информация"
+
+msgid "{n} problem(s)"
+msgstr "{n}проблемы"
+
+msgid "{n} warning(s)"
+msgstr "Предупреждения{n}"
+
+msgid "Everything is in place"
+msgstr "Все на месте"
+
+msgid "System check"
+msgstr "Проверка системы"
+
+msgid "Check again"
+msgstr "Проверьте еще раз"
+
+msgid "{n} item(s)"
+msgstr "{n}элемент(ы)"
+
+msgid "Flux AI default: {m}"
+msgstr "По умолчанию Flux AI:{m}"
+
+msgid "Flux AI default"
+msgstr "Поток AI по умолчанию"
+
+msgid "Access"
+msgstr "Доступ"
+
+msgid "Choose which WordPress roles can use Tasks. Administrators always see all projects."
+msgstr "Выберите, какие роли WordPress могут использовать задачи. Администраторы всегда видят все проекты."
+
+msgid "Can use Tasks"
+msgstr "Можно использовать задачи"
+
+msgid "Can create projects, folders and lists"
+msgstr "Может создавать проекты, папки и списки."
+
+msgid "Can use AI"
+msgstr "Можно использовать ИИ"
+
+msgid "Notifications and updates"
+msgstr "Уведомления и обновления"
+
+msgid "Live update interval (seconds)"
+msgstr "Интервал обновления в реальном времени (секунды)"
+
+msgid "An open tab sends a single lightweight request at this interval; a background tab sends none. Increase it if the server is busy (default 45)."
+msgstr "Открытая вкладка отправляет один облегченный запрос через этот интервал; фоновая вкладка ничего не отправляет. Увеличьте его, если сервер занят (по умолчанию 45)."
+
+msgid "Emails are sent for assignments, mentions and upcoming due dates. People can turn them off in their profile."
+msgstr "Электронные письма отправляются с заданиями, упоминаниями и предстоящими сроками выполнения. Люди могут отключить их в своем профиле."
+
+msgid "Files"
+msgstr "Файлы"
+
+msgid "Single file limit (MB)"
+msgstr "Ограничение на один файл (МБ)"
+
+msgid "If the server's PHP limit is lower, that limit applies."
+msgstr "Если предел PHP сервера ниже, применяется этот предел."
+
+msgid "Keys, spending limit and reports come from the Flux AI & MCP plugin. Leave the model empty to use the Flux AI default."
+msgstr "Ключи, лимит расходов и отчеты поступают из плагина Flux AI & MCP. Оставьте модель пустой, чтобы использовать значение Flux AI по умолчанию."
+
+msgid "Flux AI settings"
+msgstr "Настройки Flux AI"
+
+msgid "AI is off: a key or model is missing in Flux AI."
+msgstr "AI выключен: в Flux AI отсутствует ключ или модель."
+
+msgid "AI is off: the Flux AI & MCP plugin is not installed. The assistant and quick actions work through Flux AI."
+msgstr "AI выключен: плагин Flux AI & MCP не установлен. Помощник и быстрые действия работают через Flux AI."
+
+msgid "Model (optional)"
+msgstr "Модель (необязательно)"
+
+msgid "Creativity (temperature)"
+msgstr "Творчество (температура)"
+
+msgid "Organization notes (the assistant knows this on every request)"
+msgstr "Организационные заметки (помощник знает это по каждому запросу)"
+
+msgid "E.g. Association Istanbul branch. Add the \"Event\" tag to event tasks. Write dates as day.month.year."
+msgstr "например Стамбульский филиал Ассоциации. Добавляйте тег «Событие» к ивент-задачам. Даты записывайте в формате день.месяц.год."
+
+msgid "This month: {c} requests, {t} tokens, ${m}"
+msgstr "В этом месяце: запросы{c}, токены{t}, ${m}."
+
+msgid "Enable MCP server"
+msgstr "Включить MCP-сервер"
+
+msgid "AI clients such as Claude and Cursor can read and write tasks. Each person generates their own key on their Profile page."
+msgstr "Клиенты ИИ, такие как Claude и Cursor, могут читать и записывать задачи. Каждый человек генерирует свой собственный ключ на странице своего профиля."
+
+msgid "Manage keys"
+msgstr "Управление ключами"
+
+msgid "Data"
+msgstr "Данные"
+
+msgid "Also delete all task data when the plugin is deleted"
+msgstr "Также удалите все данные задачи при удалении плагина."
+
+msgid "When off, deleting the plugin leaves your data untouched."
+msgstr "Если этот параметр отключен, удаление плагина оставляет ваши данные нетронутыми."
+
+msgid "Settings saved"
+msgstr "Настройки сохранены."
+
+msgid "Profile"
+msgstr "Профиль"
+
+msgid "Your profile photo and name come from your WordPress profile."
+msgstr "Фотография и имя вашего профиля взяты из вашего профиля WordPress."
+
+msgid "Get emails when you are assigned, mentioned, or a due date approaches."
+msgstr "Получайте электронные письма, когда вас назначают, упоминают или приближается дата сдачи."
+
+msgid "The browser did not allow it."
+msgstr "Браузер этого не позволил."
+
+msgid "Desktop notifications"
+msgstr "Уведомления на рабочем столе"
+
+msgid "While the Tasks tab is open, new notifications also arrive as browser notifications."
+msgstr "Пока вкладка «Задачи» открыта, новые уведомления также приходят в виде уведомлений браузера."
+
+msgid "MCP connection"
+msgstr "MCP-соединение"
+
+msgid "The MCP server is off. An admin can turn it on from the Settings page."
+msgstr "Сервер MCP выключен. Администратор может включить его на странице настроек."
+
+msgid "Add this address and your personal key to an MCP-capable client such as Claude, ChatGPT or Cursor. The assistant works only in lists you can see, with your permissions."
+msgstr "Добавьте этот адрес и свой личный ключ в клиент с поддержкой MCP, например Claude, ChatGPT или Cursor. Помощник работает только в списках, которые вы можете видеть, с вашего разрешения."
+
+msgid "Your new key (shown only now):"
+msgstr "Ваш новый ключ (показан только сейчас):"
+
+msgid "In the client, use \"Authorization: Bearer <key>\" as the header. If you can't add a header, append ?key=<key> to the end of the address."
+msgstr "В клиенте используйте «Authorization: Bearer<key>» в качестве заголовка. Если вы не можете добавить заголовок, добавьте ?key=<key>в конец адреса."
+
+msgid "Unnamed"
+msgstr "Безымянный"
+
+msgid "Last used: {d}"
+msgstr "Последнее использование:{d}"
+
+msgid "never"
+msgstr "никогда"
+
+msgid "Delete key"
+msgstr "Удалить ключ"
+
+msgid "Clients using this key will lose their connection."
+msgstr "Клиенты, использующие этот ключ, потеряют соединение."
+
+msgid "Key name (e.g. Claude desktop)"
+msgstr "Имя ключа (например, рабочий стол Claude)"
+
+msgid "Create new key"
+msgstr "Создать новый ключ"
+
+msgid "Custom color"
+msgstr "Пользовательский цвет"
+
+msgid "No access"
+msgstr "Нет доступа"
+
+msgid "Remove"
+msgstr "Удалить"
+
+msgid "No members added yet."
+msgstr "Никто еще не добавил участников."
+
+msgid "Add person"
+msgstr "Добавить человека"
+
+msgid "Project name"
+msgstr "Название проекта"
+
+msgid "Everyone"
+msgstr "Все"
+
+msgid "Everyone who can use Tasks can enter this project."
+msgstr "В этот проект может войти каждый, кто умеет пользоваться Задачами."
+
+msgid "Members only"
+msgstr "Только для участников"
+
+msgid "Only the people added below can see it."
+msgstr "Его могут видеть только люди, добавленные ниже."
+
+msgid "Default role for everyone"
+msgstr "Роль по умолчанию для всех"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Color"
+msgstr "Цвет"
+
+msgid "Members and their roles"
+msgstr "Участники и их роли"
+
+msgid "Subtask nesting limit"
+msgstr "Предел вложенности подзадач"
+
+msgid "How many levels of subtasks can be nested under a task (1–10). Default is 3."
+msgstr "Сколько уровней подзадач можно вложить в задачу (1–10). По умолчанию — 3."
+
+msgid "First list"
+msgstr "Первый список"
+
+msgid "You will be added as a manager."
+msgstr "Вы будете добавлены в качестве менеджера."
+
+msgid "Project settings"
+msgstr "Настройки проекта"
+
+msgid "Project saved"
+msgstr "Проект сохранен."
+
+msgid "List name"
+msgstr "Имя списка"
+
+msgid "Tasks, subtasks, statuses"
+msgstr "Задачи, подзадачи, статусы"
+
+msgid "Meetings, agenda, decisions, PDF report"
+msgstr "Заседания, повестка дня, решения, отчет в формате PDF"
+
+msgid "e.g. Board meetings"
+msgstr "например Заседания совета директоров"
+
+msgid "Template"
+msgstr "Шаблон"
+
+msgid "Folder"
+msgstr "Папка"
+
+msgid "No folder (under the project)"
+msgstr "Нет папки (в рамках проекта)"
+
+msgid "Private list"
+msgstr "Частный список"
+
+msgid "Only the people you add can see it. When off, project members can see it."
+msgstr "Его смогут увидеть только люди, которых вы добавите. Если параметр отключен, участники проекта могут его видеть."
+
+msgid "General"
+msgstr "Общий"
+
+msgid "List type"
+msgstr "Тип списка"
+
+msgid "New status"
+msgstr "Новый статус"
+
+msgid "Add status"
+msgstr "Добавить статус"
+
+msgid "Tasks in a deleted status move to the first status. Statuses of the \"Done\" type count the task as finished."
+msgstr "Задачи в удаленном статусе переходят в первый статус. Статусы типа «Выполнено» считают задачу завершенной."
+
+msgid "Statuses saved"
+msgstr "Статусы сохранены"
+
+msgid "Delete field"
+msgstr "Удалить поле"
+
+msgid "The field \"{n}\" and its values on all tasks will be deleted."
+msgstr "Поле «{n}» и его значения во всех задачах будут удалены."
+
+msgid "This list has no custom fields. You can add fields such as text, number, date, dropdown, star rating or file."
+msgstr "В этом списке нет настраиваемых полей. Вы можете добавить такие поля, как текст, число, дата, раскрывающийся список, звездный рейтинг или файл."
+
+msgid "Add field"
+msgstr "Добавить поле"
+
+msgid "Field name"
+msgstr "Имя поля"
+
+msgid "Option"
+msgstr "Вариант"
+
+msgid "Add option"
+msgstr "Добавить вариант"
+
+msgid "Options"
+msgstr "Опции"
+
+msgid "Max stars"
+msgstr "Макс звезд"
+
+msgid "Currency"
+msgstr "Валюта"
+
+msgid "Decimal places"
+msgstr "Десятичные знаки"
+
+msgid "Description (optional)"
+msgstr "Описание (необязательно)"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "The type cannot be changed later."
+msgstr "Тип не может быть изменен позже."
+
+msgid "Add the field"
+msgstr "Добавить поле"
+
+msgid "Project members"
+msgstr "Участники проекта"
+
+msgid "Everyone who can use Tasks ({r})."
+msgstr "Все, кто может использовать Задачи ({r})."
+
+msgid "The project's members, with their project roles."
+msgstr "Участники проекта с их ролями в проекте."
+
+msgid "Selected people only"
+msgstr "Только избранные люди"
+
+msgid "Private list: only the people below and project managers can see it."
+msgstr "Частный список: его могут видеть только люди ниже и менеджеры проектов."
+
+msgid "Who can see it"
+msgstr "Кто может это увидеть"
+
+msgid "Per-person roles"
+msgstr "Роли на человека"
+
+msgid "Can view: read only. Can comment: read and comment. Can edit: add and change tasks. Can manage: list settings, fields and permissions."
+msgstr "Можно просматривать: только чтение. Можете комментировать: читайте и комментируйте. Можно редактировать: добавлять и изменять задачи. Можно управлять: настройками списка, полями и разрешениями."
+
+msgid "Permissions saved"
+msgstr "Разрешения сохранены."
+
+msgid "List settings: {n}"
+msgstr "Настройки списка:{n}."
+
+msgid "What do you want to do? e.g. \"Show tasks in this list due tomorrow\" or \"Open a poster task for Ayşe due Friday\""
+msgstr "Что ты хочешь сделать? например «Показать задачи в этом списке, которые должны быть выполнены завтра» или «Открыть плакат с заданием для Айше, срок выполнения в пятницу»"
+
+msgid "Hi! What shall we do with your tasks?"
+msgstr "Привет! Что нам делать с вашими задачами?"
+
+msgid "List my overdue tasks assigned to me"
+msgstr "Перечислите назначенные мне просроченные задачи"
+
+msgid "Add 3 tasks to this list: …"
+msgstr "Добавьте к этому списку 3 задачи: ..."
+
+msgid "Summarize this week"
+msgstr "Подведем итоги этой недели"
+
+msgid "Task created"
+msgstr "Задача создана"
+
+msgid "Task updated"
+msgstr "Задача обновлена"
+
+msgid "Comment added"
+msgstr "Комментарий добавлен"
+
+msgid "Task deleted"
+msgstr "Задача удалена"
+
+msgid "List created"
+msgstr "Список создан"
+
+msgid "Document page edited"
+msgstr "Страница документа изменена"
+
+msgid "Document created"
+msgstr "Документ создан"
+
+msgid "Page added to document"
+msgstr "Страница добавлена в документ"
+
+msgid "Clear chat"
+msgstr "Очистить чат"
+
+msgid "The assistant adds and changes tasks with your permissions."
+msgstr "Помощник добавляет и изменяет задачи с вашего разрешения."
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Priority"
+msgstr "Приоритет"
+
+msgid "Assignee"
+msgstr "Правопреемник"
+
+msgid "Tag"
+msgstr "Тег"
+
+msgid "No grouping"
+msgstr "Нет группировки"
+
+msgid "No priority"
+msgstr "Нет приоритета"
+
+msgid "Unassigned"
+msgstr "Неназначенный"
+
+msgid "This week"
+msgstr "На этой неделе"
+
+msgid "Later"
+msgstr "Позже"
+
+msgid "No date"
+msgstr "Без даты"
+
+msgid "No tag"
+msgstr "Нет тега"
+
+msgid "Empty"
+msgstr "Пустой"
+
+msgid "All tasks"
+msgstr "Все задачи"
+
+msgid "Details"
+msgstr "Подробности"
+
+msgid "Back to meeting"
+msgstr "Вернуться к встрече"
+
+msgid "Back to parent task"
+msgstr "Вернуться к родительской задаче"
+
+msgid "Unfollow"
+msgstr "Отписаться"
+
+msgid "Follow (get notifications)"
+msgstr "Следовать (получать уведомления)"
+
+msgid "You will get notifications for this task"
+msgstr "Вы будете получать уведомления об этой задаче"
+
+msgid "Notifications for this task are turned off"
+msgstr "Уведомления для этой задачи отключены"
+
+msgid "Move to another list"
+msgstr "Перейти в другой список"
+
+msgid "Task moved"
+msgstr "Задача перемещена"
+
+msgid "Add subtask"
+msgstr "Добавить подзадачу"
+
+msgid "Unarchive"
+msgstr "Разархивировать"
+
+msgid "Archive"
+msgstr "Архив"
+
+msgid "The task \"{n}\" will be permanently deleted along with its comments and files."
+msgstr "Задача «{n}» будет безвозвратно удалена вместе с ее комментариями и файлами."
+
+msgid "(copy)"
+msgstr "(копия)"
+
+msgid "Copy created"
+msgstr "Копия создана"
+
+msgid "Change cover"
+msgstr "Сменить обложку"
+
+msgid "Complete"
+msgstr "Завершить"
+
+msgid "Completed: {d}"
+msgstr "Завершено:{d}"
+
+msgid "You can only comment"
+msgstr "Вы можете только комментировать"
+
+msgid "View only"
+msgstr "Только просмотр"
+
+msgid "Print the meeting report or save it as PDF"
+msgstr "Распечатайте отчет о встрече или сохраните его в формате PDF."
+
+msgid "PDF report"
+msgstr "PDF-отчет"
+
+msgid "Hide customization"
+msgstr "Скрыть настройку"
+
+msgid "Customize this screen"
+msgstr "Настроить этот экран"
+
+msgid "Assignees"
+msgstr "Правопреемники"
+
+msgid "Dates"
+msgstr "Даты"
+
+msgid "Start"
+msgstr "Старт"
+
+msgid "Add / edit custom field"
+msgstr "Добавить/изменить настраиваемое поле"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Expand"
+msgstr "Развернуть"
+
+msgid "Attachments"
+msgstr "Вложения"
+
+msgid "Show less"
+msgstr "Показать меньше"
+
+msgid "{n} more fields"
+msgstr "{n}дополнительные поля"
+
+msgid "Participants"
+msgstr "Участники"
+
+msgid "Agenda"
+msgstr "Повестка дня"
+
+msgid "Decisions"
+msgstr "Решения"
+
+msgid "Subtasks"
+msgstr "Подзадачи"
+
+msgid "Shown on screen"
+msgstr "Показано на экране"
+
+msgid "Saved in this browser."
+msgstr "Сохранено в этом браузере."
+
+msgid "Edit statuses"
+msgstr "Редактировать статусы"
+
+msgid "Pick a date"
+msgstr "Выберите дату"
+
+msgid "Add people"
+msgstr "Добавить людей"
+
+msgid "Decision"
+msgstr "Решение"
+
+msgid "Add decision… (assignable like a task, with date and tags)"
+msgstr "Добавить решение... (назначается как задача, с датой и тегами)"
+
+msgid "Mark as not discussed"
+msgstr "Отметить как не обсуждаемое"
+
+msgid "Mark as discussed"
+msgstr "Отметить как обсуждаемое"
+
+msgid "No agenda items."
+msgstr "Никаких пунктов повестки дня."
+
+msgid "Add agenda item…"
+msgstr "Добавить пункт повестки дня..."
+
+msgid "Add a note…"
+msgstr "Добавить примечание..."
+
+msgid "Add image / file"
+msgstr "Добавить изображение/файл"
+
+msgid "Details and comments"
+msgstr "Подробности и комментарии"
+
+msgid "Delete agenda item"
+msgstr "Удалить пункт повестки дня"
+
+msgid "\"{n}\" will be deleted."
+msgstr "«{n}» будет удален."
+
+msgid "Meeting report"
+msgstr "Отчет о встрече"
+
+msgid "agenda items discussed"
+msgstr "обсуждались пункты повестки дня"
+
+msgid "decisions made"
+msgstr "принятые решения"
+
+msgid "subtasks completed"
+msgstr "подзадачи завершены"
+
+msgid "Discussed"
+msgstr "Обсуждено"
+
+msgid "Owner"
+msgstr "Владелец"
+
+msgid "Report: {d} · {n}"
+msgstr "Отчет:{d}·{n}"
+
+msgid "Add subtask…"
+msgstr "Добавить подзадачу..."
+
+msgid "Show / hide columns"
+msgstr "Показать/скрыть столбцы"
+
+msgid "Subtask"
+msgstr "Подзадача"
+
+msgid "Decision columns"
+msgstr "Столбцы решений"
+
+msgid "Subtask columns"
+msgstr "Столбцы подзадач"
+
+msgid "Add a description… (list, checklist, link)"
+msgstr "Добавить описание... (список, чек-лист, ссылка)"
+
+msgid "Make cover image"
+msgstr "Сделать обложку"
+
+msgid "Remove from cover"
+msgstr "Снимите с крышки"
+
+msgid "Drag files here or choose"
+msgstr "Перетащите файлы сюда или выберите"
+
+msgid "Up to {s}"
+msgstr "До{s}"
+
+msgid "{n} is too large (up to {s})."
+msgstr "{n}слишком велик (вплоть до{s})."
+
+msgid "Upload new image"
+msgstr "Загрузить новое изображение"
+
+msgid "Cover image"
+msgstr "Обложка"
+
+msgid "No images on this task yet."
+msgstr "Для этой задачи пока нет изображений."
+
+msgid "created the task"
+msgstr "создал задачу"
+
+msgid "changed the status:"
+msgstr "изменил статус:"
+
+msgid "renamed it:"
+msgstr "переименовал его:"
+
+msgid "updated the description"
+msgstr "обновил описание"
+
+msgid "set the priority to \"{p}\""
+msgstr "установите приоритет «{p}»"
+
+msgid "removed the priority"
+msgstr "удалил приоритет"
+
+msgid "set the due date to {d}"
+msgstr "установите срок выполнения{d}"
+
+msgid "removed the due date"
+msgstr "удалил срок сдачи"
+
+msgid "set the start date to {d}"
+msgstr "установите дату начала{d}"
+
+msgid "removed the start date"
+msgstr "удалил дату начала"
+
+msgid "took the task"
+msgstr "взял задание"
+
+msgid "assigned {n}"
+msgstr "назначен{n}"
+
+msgid "unassigned {n}"
+msgstr "неназначенный{n}"
+
+msgid "added a tag:"
+msgstr "добавил тег:"
+
+msgid "removed the tag:"
+msgstr "удалил тег:"
+
+msgid "updated the field \"{f}\""
+msgstr "обновлено поле \"{f}\""
+
+msgid "moved the task:"
+msgstr "перенес задачу:"
+
+msgid "changed the cover image"
+msgstr "изменил изображение обложки"
+
+msgid "removed the cover image"
+msgstr "удалил обложку"
+
+msgid "attached a file:"
+msgstr "прикрепил файл:"
+
+msgid "deleted a file:"
+msgstr "удалил файл:"
+
+msgid "archived the task"
+msgstr "заархивировал задачу"
+
+msgid "unarchived the task"
+msgstr "разархивировал задачу"
+
+msgid "Sending…"
+msgstr "Отправка..."
+
+msgid "edited"
+msgstr "отредактировано"
+
+msgid "Delete comment"
+msgstr "Удалить комментарий"
+
+msgid "The comment and its attachments will be deleted."
+msgstr "Комментарий и вложения к нему будут удалены."
+
+msgid "Show comments and activity"
+msgstr "Показать комментарии и активность"
+
+msgid "Comments and activity"
+msgstr "Комментарии и активность"
+
+msgid "Show activity"
+msgstr "Показать активность"
+
+msgid "Hide comments and activity"
+msgstr "Скрыть комментарии и действия"
+
+msgid "No comments yet. Be the first to comment."
+msgstr "Комментариев пока нет. Будьте первым, кто оставит комментарий."
+
+msgid "You don't have permission to comment in this list."
+msgstr "У вас нет разрешения оставлять комментарии в этом списке."
+
+msgid "Write a comment… mention someone with @, drag in files"
+msgstr "Напишите комментарий... упомяните кого-нибудь с помощью @, перетащите файлы"
+
+msgid "Mention someone"
+msgstr "Упомянуть кого-нибудь"
+
+msgid "Send with Ctrl+Enter"
+msgstr "Отправить с помощью Ctrl+Enter"
+
+msgid "Drop to add to the comment"
+msgstr "Перетащите, чтобы добавить к комментарию"
+
+msgid "Comment could not be saved."
+msgstr "Не удалось сохранить комментарий."
+
+msgid "Write / improve description"
+msgstr "Написать/улучшить описание"
+
+msgid "Turn into checklist"
+msgstr "Превратить в контрольный список"
+
+msgid "Fix spelling"
+msgstr "Исправить орфографию"
+
+msgid "Add more detail"
+msgstr "Добавить больше деталей"
+
+msgid "Improve task name"
+msgstr "Улучшить название задачи"
+
+msgid "Split into subtasks"
+msgstr "Разбить на подзадачи"
+
+msgid "Summarize comments"
+msgstr "Обобщение комментариев"
+
+msgid "Say what to change… (e.g. make it more formal)"
+msgstr "Скажите, что изменить... (например, сделать более формальным)"
+
+msgid "What should it do? E.g. add the target audience, write as bullet points"
+msgstr "Что ему делать? Например. добавьте целевую аудиторию, напишите пунктами списка"
+
+msgid "Chat"
+msgstr "Чат"
+
+msgid "AI is thinking…"
+msgstr "ИИ думает..."
+
+msgid "Other options"
+msgstr "Другие варианты"
+
+msgid "Task name updated."
+msgstr "Название задачи обновлено."
+
+msgid "Apply"
+msgstr "Применить"
+
+msgid "Description updated."
+msgstr "Описание обновлено."
+
+msgid "Added to the end of the description."
+msgstr "Добавлено в конец описания."
+
+msgid "{n} subtasks created"
+msgstr "{n}созданы подзадачи"
+
+msgid "Create subtasks"
+msgstr "Создание подзадач"
+
+msgid "Summary"
+msgstr "Резюме"
+
+msgid "Added as a comment."
+msgstr "Добавлено как комментарий."
+
+msgid "Add as comment"
+msgstr "Добавить как комментарий"
+
+msgid "Remove priority"
+msgstr "Удалить приоритет"
+
+msgid "Search people…"
+msgstr "Поиск людей..."
+
+msgid "me"
+msgstr "я"
+
+msgid "Next week"
+msgstr "На следующей неделе"
+
+msgid "In 2 weeks"
+msgstr "Через 2 недели"
+
+msgid "Time (optional)"
+msgstr "Время (необязательно)"
+
+msgid "Clear"
+msgstr "Очистить"
+
+msgid "Search or create a tag…"
+msgstr "Найдите или создайте тег..."
+
+msgid "Create: {n}"
+msgstr "Создать:{n}"
+
+msgid "No tags yet. Type to create one."
+msgstr "Тегов пока нет. Введите, чтобы создать его."
+
+msgid "There are no lists you can add tasks to."
+msgstr "Нет списков, в которые можно добавлять задачи."
+
+msgid "Created"
+msgstr "Создано"
+
+msgid "Updated"
+msgstr "Обновлено"
+
+msgid "Filter"
+msgstr "Фильтр"
+
+msgid "Group"
+msgstr "Группа"
+
+msgid "Group: {n}"
+msgstr "Группа:{n}"
+
+msgid "Manual order"
+msgstr "Ручной заказ"
+
+msgid "Start date"
+msgstr "Дата начала"
+
+msgid "Sort"
+msgstr "Сортировать"
+
+msgid "Ascending"
+msgstr "восходящий"
+
+msgid "Descending"
+msgstr "По убыванию"
+
+msgid "Fields"
+msgstr "Поля"
+
+msgid "Save view"
+msgstr "Сохранить вид"
+
+msgid "Meeting"
+msgstr "Встреча"
+
+msgid "Under the task, expanded"
+msgstr "По заданию расширено"
+
+msgid "Under the task, collapsed"
+msgstr "Под заданием свернулось"
+
+msgid "Don't show"
+msgstr "Не показывать"
+
+msgid "Apply filters to subtasks too"
+msgstr "Применяйте фильтры и к подзадачам"
+
+msgid "Save to this view"
+msgstr "Сохранить в этом представлении"
+
+msgid "View saved"
+msgstr "Посмотреть сохраненные"
+
+msgid "Save as new view"
+msgstr "Сохранить как новый вид"
+
+msgid "filtered"
+msgstr "фильтрованный"
+
+msgid "Revert changes"
+msgstr "Отменить изменения"
+
+msgid "Assigned to me"
+msgstr "Назначено мне"
+
+msgid "None"
+msgstr "Нет"
+
+msgid "Within 7 days"
+msgstr "В течение 7 дней"
+
+msgid "Has date"
+msgstr "Имеет дату"
+
+msgid "Checked"
+msgstr "Проверено"
+
+msgid "Unchecked"
+msgstr "Не отмечено"
+
+msgid "Filled"
+msgstr "Заполненный"
+
+msgid "Show completed tasks"
+msgstr "Показать выполненные задачи"
+
+msgid "When off, all subtasks of matching tasks are shown. When on, only matching subtasks are shown; their parent appears dimmed even if it doesn't match."
+msgstr "Если этот параметр выключен, отображаются все подзадачи соответствующих задач. Если этот параметр включен, отображаются только соответствующие подзадачи; их родительский элемент отображается затемненным, даже если он не соответствует."
+
+msgid "Clear filters"
+msgstr "Очистить фильтры"
+
+msgid "Show cover image"
+msgstr "Показать обложку"
+
+msgid "Wrap text"
+msgstr "Перенос текста"
+
+msgid "Long text shows up to 3 lines, the rest is cut with …"
+msgstr "Длинный текст показывает до 3 строк, остальное обрезается..."
+
+msgid "Date to use in the calendar"
+msgstr "Дата для использования в календаре"
+
+msgid "Columns"
+msgstr "Столбцы"
+
+msgid "Fields shown on the card"
+msgstr "Поля, отображаемые на карточке"
+
+msgid "Add custom field"
+msgstr "Добавить пользовательское поле"
+
+msgid "Can't be moved to this group."
+msgstr "Невозможно переместить в эту группу."
+
+msgid "No suitable status in this list."
+msgstr "В этом списке нет подходящего статуса."
+
+msgid "Drag to reorder"
+msgstr "Перетащите, чтобы изменить порядок"
+
+msgid "Type a subtask name and press Enter"
+msgstr "Введите имя подзадачи и нажмите Enter."
+
+msgid "This task no longer matches this view's filter. It will be hidden when you change page."
+msgstr "Эта задача больше не соответствует фильтру этого представления. Он будет скрыт при смене страницы."
+
+msgid "Assigned: {n}"
+msgstr "Назначено:{n}"
+
+msgid "Outside filter"
+msgstr "Внешний фильтр"
+
+msgid "Hide subtasks"
+msgstr "Скрыть подзадачи"
+
+msgid "Show subtasks"
+msgstr "Показать подзадачи"
+
+msgid "Agenda item"
+msgstr "Пункт повестки дня"
+
+msgid "Has description"
+msgstr "Есть описание"
+
+msgid "Shown because it has a subtask that matches the filter"
+msgstr "Отображается, потому что у нее есть подзадача, соответствующая фильтру."
+
+msgid "Add meeting"
+msgstr "Добавить встречу"
+
+msgid "Add task"
+msgstr "Добавить задачу"
+
+msgid "Type a task name and press Enter"
+msgstr "Введите имя задачи и нажмите Enter."
+
+msgid "No tasks match the filter."
+msgstr "Нет задач, соответствующих фильтру."
+
+msgid "You have no open tasks assigned. 🎉"
+msgstr "У вас нет назначенных открытых задач. 🎉"
+
+msgid "No tasks in this list yet."
+msgstr "В этом списке пока нет задач."
+
+msgid "{n} selected"
+msgstr "{n}выбрано"
+
+msgid "Assign"
+msgstr "Назначить"
+
+msgid "Delete tasks"
+msgstr "Удаление задач"
+
+msgid "{n} tasks will be permanently deleted along with their comments and files."
+msgstr "Задачи{n}будут безвозвратно удалены вместе с их комментариями и файлами."
+
+msgid "Clear selection"
+msgstr "Очистить выбор"
+
+msgid "{n} tasks updated"
+msgstr "Задачи{n}обновлены."
+
+msgid "Previous"
+msgstr "Предыдущий"
+
+msgid "Next"
+msgstr "Далее"
+
+msgid "Week"
+msgstr "неделя"
+
+msgid "No date: {n}"
+msgstr "Без даты:{n}"
+
+msgid "Tasks without a date"
+msgstr "Задачи без даты"
+
+msgid "No dated tasks this month."
+msgstr "В этом месяце нет датированных задач."
+
+msgid "+{n} more"
+msgstr "+{n}еще"
+
+msgid "Meeting name"
+msgstr "Название встречи"
+
+msgid "Meeting created"
+msgstr "Встреча создана"
+
+msgid "New meeting"
+msgstr "Новая встреча"
+
+msgid "New task"
+msgstr "Новая задача"
+
+msgid "Create and open"
+msgstr "Создать и открыть"
+
+msgid "[['ClickUp-like task tracking: projects, folders, lists; list, board (kanban) and calendar views, saved filtered views, custom fields, comment and file attachments, notifications, list authorizations, admin dashboard, MCP server and artificial intelligence with OpenRouter.', 'tr']]"
+msgstr "[['Отслеживание задач в стиле ClickUp: проекты, папки, списки; представления списка, доски (канбан) и календаря, сохраненные отфильтрованные представления, настраиваемые поля, комментарии и вложения файлов, уведомления, авторизация списков, панель администратора, сервер MCP и искусственный интеллект с OpenRouter.', 'tr']]"

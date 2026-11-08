@@ -107,13 +107,13 @@ function flxl_term_fields( $term ) {
 		}
 		?>
 		<tr class="form-field">
-			<th scope="row"><label for="flxl-name-<?php echo esc_attr( $code ); ?>"><?php /* translators: %s: language name */ printf( esc_html__( 'Ad (%s)', 'flx-lang' ), esc_html( $l['name'] ) ); ?></label></th>
+			<th scope="row"><label for="flxl-name-<?php echo esc_attr( $code ); ?>"><?php /* translators: %s: language name */ printf( esc_html__( 'Name (%s)', 'flx-lang' ), esc_html( $l['name'] ) ); ?></label></th>
 			<td><input id="flxl-name-<?php echo esc_attr( $code ); ?>" name="flxl_name[<?php echo esc_attr( $code ); ?>]" value="<?php echo esc_attr( flxl_term_text( $term->term_id, 'name', $code ) ); ?>" lang="<?php echo esc_attr( $code ); ?>"></td>
 		</tr>
 		<tr class="form-field">
-			<th scope="row"><label for="flxl-desc-<?php echo esc_attr( $code ); ?>"><?php /* translators: %s: language name */ printf( esc_html__( 'Açıklama (%s)', 'flx-lang' ), esc_html( $l['name'] ) ); ?></label></th>
+			<th scope="row"><label for="flxl-desc-<?php echo esc_attr( $code ); ?>"><?php /* translators: %s: language name */ printf( esc_html__( 'Description (%s)', 'flx-lang' ), esc_html( $l['name'] ) ); ?></label></th>
 			<td><textarea id="flxl-desc-<?php echo esc_attr( $code ); ?>" name="flxl_desc[<?php echo esc_attr( $code ); ?>]" rows="3" lang="<?php echo esc_attr( $code ); ?>"><?php echo esc_textarea( flxl_term_text( $term->term_id, 'desc', $code ) ); ?></textarea>
-			<p class="description"><?php esc_html_e( 'Boş bırakılırsa Türkçe ad ve açıklama gösterilir.', 'flx-lang' ); ?></p></td>
+			<p class="description"><?php esc_html_e( 'If left empty, the Turkish name and description are shown.', 'flx-lang' ); ?></p></td>
 		</tr>
 		<?php
 	}

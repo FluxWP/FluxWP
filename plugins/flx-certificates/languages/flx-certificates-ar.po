@@ -1,0 +1,1029 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Sapling goal progress"
+msgstr "تقدم هدف الشتلة"
+
+msgid "No record"
+msgstr "لا يوجد سجل"
+
+msgid "Certificate not found"
+msgstr "لم يتم العثور على الشهادة"
+
+msgid "The link may have been copied incompletely. Check the code or request your certificate below."
+msgstr "ربما تم نسخ الرابط بشكل غير كامل. تحقق من الرمز أو اطلب شهادتك أدناه."
+
+msgid "Revoked certificate"
+msgstr "الشهادة الملغاة"
+
+msgid "Verified certificate"
+msgstr "شهادة تم التحقق منها"
+
+msgid "REVOKED"
+msgstr "تم الإلغاء"
+
+msgid "Full name"
+msgstr "الاسم الكامل"
+
+msgid "Certificate no."
+msgstr "رقم الشهادة"
+
+msgid "Issue date"
+msgstr "تاريخ الإصدار"
+
+msgid "Issued by"
+msgstr "صادرة عن"
+
+msgid "Verification code"
+msgstr "رمز التحقق"
+
+msgid "Download PDF"
+msgstr "تحميل قوات الدفاع الشعبي"
+
+msgid "Share"
+msgstr "شارك"
+
+msgid "Add to LinkedIn"
+msgstr "أضف إلى لينكدإن"
+
+msgid "Copy link"
+msgstr "انسخ الرابط"
+
+msgid "This certificate has been revoked by the issuing organization and is no longer valid."
+msgstr "لقد تم إبطال هذه الشهادة من قبل المنظمة المصدرة لها ولم تعد صالحة."
+
+msgid "This page confirms that the certificate is on record at %s."
+msgstr "تؤكد هذه الصفحة أن الشهادة مسجلة في%s."
+
+msgid "Lookup is disabled."
+msgstr "تم تعطيل البحث."
+
+msgid "Too many attempts. Please try again later."
+msgstr "محاولات كثيرة جدًا. يرجى المحاولة مرة أخرى في وقت لاحق."
+
+msgid "Enter a valid phone number or email address."
+msgstr "أدخل رقم هاتف أو عنوان بريد إلكتروني صالحًا."
+
+msgid "Hello %1$s,\n\nYour %2$s certificates:\n%3$s"
+msgstr "مرحبًا%1$s،\n\nشهادات%2$sالخاصة بك:%3$s"
+
+msgid "Your certificates"
+msgstr "شهاداتك"
+
+msgid "If a certificate is registered with these details, its link will be sent to you within a few minutes."
+msgstr "إذا تم تسجيل شهادة بهذه التفاصيل، فسيتم إرسال رابطها إليك خلال دقائق قليلة."
+
+msgid "OK"
+msgstr "حسنًا"
+
+msgid "Warning"
+msgstr "تحذير"
+
+msgid "Error"
+msgstr "خطأ"
+
+msgid "Info"
+msgstr "معلومات"
+
+msgid "Test WhatsApp/SMS connections"
+msgstr "اختبار اتصالات WhatsApp/SMS"
+
+msgid "System check"
+msgstr "فحص النظام"
+
+msgid "Whether setup, cron and sending are in place. Checked again each time this page opens. WhatsApp/SMS connections and tests live in Flux Mail."
+msgstr "ما إذا كان الإعداد والكرون والإرسال موجودين أم لا. يتم التحقق مرة أخرى في كل مرة تفتح فيها هذه الصفحة. اتصالات واختبارات WhatsApp/SMS مباشرة في Flux Mail."
+
+msgid "Not allowed"
+msgstr "غير مسموح"
+
+msgid "Valid"
+msgstr "صالح"
+
+msgid "Revoked"
+msgstr "تم إبطاله"
+
+msgid "Date"
+msgstr "التاريخ"
+
+msgid "Phone"
+msgstr "الهاتف"
+
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+msgid "Event"
+msgstr "حدث"
+
+msgid "Template"
+msgstr "القالب"
+
+msgid "Referrer"
+msgstr "المُحيل"
+
+msgid "Created by"
+msgstr "تم إنشاؤها بواسطة"
+
+msgid "Status"
+msgstr "الحالة"
+
+msgid "Views"
+msgstr "وجهات النظر"
+
+msgid "Messages sent"
+msgstr "الرسائل المرسلة"
+
+msgid "Certificate link"
+msgstr "رابط الشهادة"
+
+msgctxt "context_e363ab036dc9"
+msgid "certificates"
+msgstr "شهادات"
+
+msgid "Certificates"
+msgstr "الشهادات"
+
+msgid "The server has no ZipArchive (PHP zip extension); the Excel file could not be created."
+msgstr "لا يحتوي الخادم على ZipArchive (امتداد PHP المضغوط)؛ لا يمكن إنشاء ملف Excel."
+
+msgid "The Excel file could not be created."
+msgstr "لا يمكن إنشاء ملف Excel."
+
+msgid "On donation page"
+msgstr "على صفحة التبرع"
+
+msgid "Donation page"
+msgstr "صفحة التبرع"
+
+msgid "Donors can choose this design on the donation page"
+msgstr "يمكن للمانحين اختيار هذا التصميم على صفحة التبرع"
+
+msgid "Heading (group)"
+msgstr "العنوان (المجموعة)"
+
+msgid "Order"
+msgstr "النظام"
+
+msgid "The donor picks the design and fills in the template's text, date and choice fields (e.g. recipient name, message). The price comes from the donation type."
+msgstr "يختار المانح التصميم ويملأ حقول النص والتاريخ والاختيار الخاصة بالقالب (على سبيل المثال، اسم المستلم، الرسالة). السعر يأتي من نوع التبرع."
+
+msgid "No certificates selected."
+msgstr "لم يتم تحديد أي شهادات."
+
+msgid "%d messages queued."
+msgstr "رسائل%dفي قائمة الانتظار."
+
+msgid "%d certificates updated."
+msgstr "تم تحديث شهادات%d."
+
+msgid "Download Excel"
+msgstr "تحميل اكسل"
+
+msgid "New certificate"
+msgstr "شهادة جديدة"
+
+msgid "Name, phone, email, certificate no…"
+msgstr "الاسم، الهاتف، البريد الإلكتروني، رقم الشهادة..."
+
+msgid "All statuses"
+msgstr "جميع الحالات"
+
+msgid "Cancelled"
+msgstr "تم الإلغاء"
+
+msgid "All events"
+msgstr "جميع الأحداث"
+
+msgid "No event (%d)"
+msgstr "لا يوجد حدث (%d)"
+
+msgid "archived"
+msgstr "مؤرشف"
+
+msgid "All templates"
+msgstr "جميع القوالب"
+
+msgid "All referrers"
+msgstr "جميع المراجعين"
+
+msgid "No referrer (%d)"
+msgstr "لا يوجد مُحيل (%d)"
+
+msgid "Created by: anyone"
+msgstr "أنشئ بواسطة: أي شخص"
+
+msgid "Filter"
+msgstr "تصفية"
+
+msgid "Bulk actions…"
+msgstr "الإجراءات الجماعية..."
+
+msgid "Send via WhatsApp"
+msgstr "إرسال عبر الواتساب"
+
+msgid "Send via SMS"
+msgstr "إرسال عبر الرسائل القصيرة"
+
+msgid "Send via email"
+msgstr "إرسال عبر البريد الإلكتروني"
+
+msgid "Revoke"
+msgstr "إبطال"
+
+msgid "Make valid"
+msgstr "جعل صالحة"
+
+msgid "Assign to event…"
+msgstr "إسناد إلى الحدث..."
+
+msgid "Assign referrer…"
+msgstr "تعيين المُحيل..."
+
+msgid "Delete permanently"
+msgstr "حذف نهائيا"
+
+msgid "— No event —"
+msgstr "— لا يوجد حدث —"
+
+msgid "— No referrer —"
+msgstr "- لا يوجد مرجع -"
+
+msgid "Apply to the selected items?"
+msgstr "تنطبق على العناصر المحددة؟"
+
+msgid "Apply"
+msgstr "تطبيق"
+
+msgid "Certificate"
+msgstr "شهادة"
+
+msgid "Person"
+msgstr "شخص"
+
+msgid "Event / Template"
+msgstr "الحدث / القالب"
+
+msgid "Deliveries"
+msgstr "التسليم"
+
+msgid "Referrer / Created by"
+msgstr "المُحيل / تم الإنشاء بواسطة"
+
+msgid "No certificates yet."
+msgstr "لا توجد شهادات بعد."
+
+msgid "Create the first certificate"
+msgstr "إنشاء الشهادة الأولى"
+
+msgid "Actually created: %s"
+msgstr "تم إنشاؤه بالفعل:%s"
+
+msgid "backdated"
+msgstr "بأثر رجعي"
+
+msgid "%d view"
+msgid_plural "%d views"
+msgstr[0] "%dمشاهدات"
+msgstr[1] "عرض%d"
+msgstr[2] "%dمشاهدات"
+msgstr[3] "%dمشاهدات"
+msgstr[4] "%dمشاهدات"
+msgstr[5] "%dمشاهدات"
+
+msgid "Registered person: %s"
+msgstr "الشخص المسجل:%s"
+
+msgid "created by: %s"
+msgstr "تم إنشاؤها بواسطة:%s"
+
+msgid "Actions"
+msgstr "الإجراءات"
+
+msgid "Open page"
+msgstr "افتح الصفحة"
+
+msgid "PDF"
+msgstr "قوات الدفاع الشعبي"
+
+msgid "Send to someone else…"
+msgstr "أرسل إلى شخص آخر..."
+
+msgid "Update referrer…"
+msgstr "تحديث المرجع..."
+
+msgid "Edit"
+msgstr "تحرير"
+
+msgid "Revoke this certificate? The link will show \"revoked\"."
+msgstr "هل تريد إلغاء هذه الشهادة؟ سيظهر الرابط \"تم إبطاله\"."
+
+msgid "Delivery history"
+msgstr "تاريخ التسليم"
+
+msgid "No connection in Flux Mail"
+msgstr "لا يوجد اتصال في Flux Mail"
+
+msgid "Flux Mail is not active"
+msgstr "Flux Mail غير نشط"
+
+msgid "add"
+msgstr "إضافة"
+
+msgid "Plugins"
+msgstr "الإضافات"
+
+msgid "%d record"
+msgid_plural "%d records"
+msgstr[0] "سجلات%d"
+msgstr[1] "سجل%d"
+msgstr[2] "سجلات%d"
+msgstr[3] "سجلات%d"
+msgstr[4] "سجلات%d"
+msgstr[5] "سجلات%d"
+
+msgid "Inactive"
+msgstr "غير نشط"
+
+msgid "Father's Day Certificate"
+msgstr "شهادة عيد الأب"
+
+msgid "Just Because Certificate"
+msgstr "فقط لأن الشهادة"
+
+msgid "Birthday Gift"
+msgstr "هدية عيد ميلاد"
+
+msgid "Get Well Soon"
+msgstr "شفاء قريبا"
+
+msgid "First Day at Work"
+msgstr "اليوم الأول في العمل"
+
+msgid "Condolence Certificate"
+msgstr "شهادة عزاء"
+
+msgid "Mother's Day Certificate"
+msgstr "شهادة عيد الأم"
+
+msgid "Wedding Sapling Donation"
+msgstr "التبرع بشتلة الزفاف"
+
+msgid "Teachers' Day Certificate"
+msgstr "شهادة يوم المعلم"
+
+msgid "Thank You Certificate"
+msgstr "شهادة شكر"
+
+msgid "Welcome Baby Certificate"
+msgstr "مرحبا بكم شهادة الطفل"
+
+msgid "Wedding Congratulations Certificate"
+msgstr "شهادة تهنئة بالزواج"
+
+msgid "Wedding Anniversary Certificate"
+msgstr "شهادة ذكرى الزواج"
+
+msgid "Sapling Donation Certificate (one name)"
+msgstr "شهادة التبرع بالشتلات (اسم واحد)"
+
+msgid "Sapling Donation (two names, sapling count)"
+msgstr "التبرع بالشتلات (اسمان، عدد الشتلات)"
+
+msgid "Sapling Donation Certificate (two names)"
+msgstr "شهادة التبرع بالشتلات (اسمين)"
+
+msgid "Recipient name"
+msgstr "اسم المستلم"
+
+msgid "Donor (your name)"
+msgstr "الجهة المانحة (اسمك)"
+
+msgid "Person remembered"
+msgstr "تذكرت الشخص"
+
+msgid "Number of saplings"
+msgstr "عدد الشتلات"
+
+msgid "%d e-card designs were added as inactive templates. Designs you activate can be picked on the donation page."
+msgstr "تمت إضافة تصميمات البطاقة الإلكترونية%dكقوالب غير نشطة. يمكن اختيار التصاميم التي تقوم بتنشيطها من صفحة التبرع."
+
+msgid "All e-card designs are already added."
+msgstr "تمت إضافة جميع تصميمات البطاقات الإلكترونية بالفعل."
+
+msgid "The server has no ZipArchive (PHP zip extension)."
+msgstr "لا يحتوي الخادم على ZipArchive (امتداد PHP المضغوط)."
+
+msgid "Ready-made e-cards"
+msgstr "البطاقات الإلكترونية الجاهزة"
+
+msgid "(%1$d/%2$d added)"
+msgstr "(تمت إضافة%1$d/%2$d)"
+
+msgid "Add the missing e-card designs as inactive templates?"
+msgstr "هل ترغب في إضافة تصميمات البطاقة الإلكترونية المفقودة كقوالب غير نشطة؟"
+
+msgid "Import"
+msgstr "استيراد"
+
+msgid "Download images as zip"
+msgstr "تحميل الصور بصيغة zip"
+
+msgid "Flux Mail (organization template)"
+msgstr "Flux Mail (قالب المؤسسة)"
+
+msgid "%s ago"
+msgstr "منذ%s"
+
+msgid "Certificates · Setup"
+msgstr "الشهادات · الإعداد"
+
+msgid "Certificates · Sending and cron"
+msgstr "الشهادات · إرسال وكرون"
+
+msgid "Certificates · Site"
+msgstr "الشهادات · الموقع"
+
+msgid "Database tables"
+msgstr "جداول قاعدة البيانات"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "الجدول المفقود:%s. قم بإلغاء تنشيط البرنامج المساعد وإعادة تنشيطه."
+
+msgid "A database update is pending; it completes when an admin page is opened."
+msgstr "تحديث قاعدة البيانات معلق؛ يكتمل عند فتح صفحة المسؤول."
+
+msgid "All tables exist. Plugin %1$s, database version %2$s."
+msgstr "جميع الجداول موجودة البرنامج المساعد%1$s، إصدار قاعدة البيانات%2$s."
+
+msgid "Files folder"
+msgstr "مجلد الملفات"
+
+msgid "The folder for certificate PDFs and images is writable."
+msgstr "المجلد الخاص بملفات PDF والصور الخاصة بالشهادات قابل للكتابة."
+
+msgid "%s is not writable; certificate files cannot be saved. Check folder permissions (755)."
+msgstr "%sغير قابل للكتابة؛ لا يمكن حفظ ملفات الشهادة. تحقق من أذونات المجلد (755)."
+
+msgid "Certificate page address"
+msgstr "عنوان صفحة الشهادة"
+
+msgid "Permalinks are set to \"Plain\"; certificate links work as ?flxs_kod=. \"Post name\" is recommended."
+msgstr "تم ضبط الروابط الدائمة على \"عادي\"؛ تعمل روابط الشهادات كـ ?flxs_kod=. يوصى باستخدام \"اسم المشاركة\"."
+
+msgid "Permalinks"
+msgstr "الروابط الدائمة"
+
+msgid "The certificate URL rule is not registered; links may return 404. Press \"Save Changes\" on the Permalinks page."
+msgstr "لم يتم تسجيل قاعدة URL للشهادة؛ قد ترجع الروابط 404. اضغط على \"حفظ التغييرات\" في صفحة الروابط الدائمة."
+
+msgid "Certificates open at %s{code}."
+msgstr "الشهادات مفتوحة في%s{code}."
+
+msgid "Certificate templates"
+msgstr "قوالب الشهادات"
+
+msgid "%d active template."
+msgid_plural "%d active templates."
+msgstr[0] "قوالب%dالنشطة."
+msgstr[1] "قالب%dالنشط."
+msgstr[2] "قوالب%dالنشطة."
+msgstr[3] "قوالب%dالنشطة."
+msgstr[4] "قوالب%dالنشطة."
+msgstr[5] "قوالب%dالنشطة."
+
+msgid "No active template; certificates cannot be created."
+msgstr "لا يوجد قالب نشط؛ لا يمكن إنشاء الشهادات."
+
+msgid "Templates"
+msgstr "قوالب"
+
+msgid "Plugin files"
+msgstr "ملفات البرنامج المساعد"
+
+msgid "Missing file: %s. Upload the plugin zip again."
+msgstr "الملف المفقود:%s. قم بتحميل البرنامج المساعد المضغوط مرة أخرى."
+
+msgid "PDF renderer, QR and fonts are in place."
+msgstr "يتوفر عارض PDF وQR والخطوط."
+
+msgid "Staff role"
+msgstr "دور الموظفين"
+
+msgid "The \"Certificate Staff\" role exists."
+msgstr "يوجد دور \"طاقم عمل الشهادة\"."
+
+msgid "The \"Certificate Staff\" role is missing. Deactivate and reactivate the plugin."
+msgstr "دور \"فريق عمل الشهادة\" مفقود. قم بإلغاء تنشيط البرنامج المساعد وإعادة تنشيطه."
+
+msgid "Sending queue (cron)"
+msgstr "قائمة انتظار الإرسال (كرون)"
+
+msgid "The per-minute queue task is not scheduled. Reload any admin page; if it persists, reactivate the plugin."
+msgstr "لم تتم جدولة مهمة قائمة الانتظار لكل دقيقة. إعادة تحميل أي صفحة إدارية؛ إذا استمرت المشكلة، قم بإعادة تنشيط البرنامج المساعد."
+
+msgid "Queue"
+msgstr "قائمة الانتظار"
+
+msgid "%1$d message has been waiting for more than 10 minutes; the queue may not be running. Runner: %2$s, last run: %3$s."
+msgid_plural "%1$d messages have been waiting for more than 10 minutes; the queue may not be running. Runner: %2$s, last run: %3$s."
+msgstr[0] "رسائل%1$dتنتظر أكثر من 10 دقائق؛ قد لا تكون قائمة الانتظار قيد التشغيل. العداء:%2$s، التشغيل الأخير:%3$s."
+msgstr[1] "رسالة%1$dتنتظر أكثر من 10 دقائق؛ قد لا تكون قائمة الانتظار قيد التشغيل. العداء:%2$s، التشغيل الأخير:%3$s."
+msgstr[2] "رسائل%1$dتنتظر أكثر من 10 دقائق؛ قد لا تكون قائمة الانتظار قيد التشغيل. العداء:%2$s، التشغيل الأخير:%3$s."
+msgstr[3] "رسائل%1$dتنتظر أكثر من 10 دقائق؛ قد لا تكون قائمة الانتظار قيد التشغيل. العداء:%2$s، التشغيل الأخير:%3$s."
+msgstr[4] "رسائل%1$dتنتظر أكثر من 10 دقائق؛ قد لا تكون قائمة الانتظار قيد التشغيل. العداء:%2$s، التشغيل الأخير:%3$s."
+msgstr[5] "رسائل%1$dتنتظر أكثر من 10 دقائق؛ قد لا تكون قائمة الانتظار قيد التشغيل. العداء:%2$s، التشغيل الأخير:%3$s."
+
+msgid "never"
+msgstr "أبدا"
+
+msgid "WP-Cron is disabled (DISABLE_WP_CRON); a per-minute cron for wp-cron.php must be set in the hosting panel."
+msgstr "تم تعطيل WP-Cron (DISABLE_WP_CRON)؛ يجب تعيين cron لكل دقيقة لـ wp-cron.php في لوحة الاستضافة."
+
+msgid "Runner: %1$s. Last run %2$s; cron fires rarely. No messages waiting. Without regular traffic, a per-minute cron for wp-cron.php in the hosting panel is recommended."
+msgstr "العداء:%1$s. آخر تشغيل لـ%2$s؛ حرائق كرون نادرا. لا توجد رسائل في انتظار. بدون حركة مرور منتظمة، يوصى بإجراء عملية cron لكل دقيقة لـ wp-cron.php في لوحة الاستضافة."
+
+msgid "Runner: %1$s. Last run: %2$s. No old messages waiting."
+msgstr "العداء:%1$s. التشغيل الأخير:%2$s. لا توجد رسائل قديمة في انتظار."
+
+msgid "not recorded yet"
+msgstr "لم تسجل بعد"
+
+msgid "Sending in the last 24 hours"
+msgstr "إرسال في آخر 24 ساعة"
+
+msgid "%d message failed."
+msgid_plural "%d messages failed."
+msgstr[0] "فشلت رسائل%d."
+msgstr[1] "فشلت رسالة%d."
+msgstr[2] "فشلت رسائل%d."
+msgstr[3] "فشلت رسائل%d."
+msgstr[4] "فشلت رسائل%d."
+msgstr[5] "فشلت رسائل%d."
+
+msgid "View failed"
+msgstr "فشل العرض"
+
+msgid "%d message sent, none failed."
+msgid_plural "%d messages sent, none failed."
+msgstr[0] "تم إرسال رسائل%d، ولم يفشل أي منها."
+msgstr[1] "تم إرسال رسالة%d، ولم يفشل أي منها."
+msgstr[2] "تم إرسال رسائل%d، ولم يفشل أي منها."
+msgstr[3] "تم إرسال رسائل%d، ولم يفشل أي منها."
+msgstr[4] "تم إرسال رسائل%d، ولم يفشل أي منها."
+msgstr[5] "تم إرسال رسائل%d، ولم يفشل أي منها."
+
+msgid "Daily cleanup task"
+msgstr "مهمة التنظيف اليومية"
+
+msgid "The daily task (old log cleanup) is not scheduled; reload an admin page."
+msgstr "لم تتم جدولة المهمة اليومية (تنظيف السجل القديم)؛ إعادة تحميل صفحة المسؤول."
+
+msgid "Flux Mail"
+msgstr "تدفق البريد"
+
+msgid "Flux Mail is not active. Certificates cannot be sent by WhatsApp or SMS; email goes through WordPress (wp_mail). Install and activate Flux Mail."
+msgstr "Flux Mail غير نشط. لا يمكن إرسال الشهادات عن طريق الواتساب أو الرسائل النصية القصيرة. يمر البريد الإلكتروني عبر WordPress (wp_mail). تثبيت وتفعيل Flux Mail."
+
+msgid "%s sending"
+msgstr "إرسال%s"
+
+msgid "Sent through the Flux Mail connection: %s."
+msgstr "تم الإرسال عبر اتصال Flux Mail:%s."
+
+msgid "Last successful send %s."
+msgstr "آخر إرسال ناجح%s."
+
+msgid "Connections"
+msgstr "اتصالات"
+
+msgid "No %1$s connection is set up; certificates are not sent by %1$s."
+msgstr "لم يتم إعداد اتصال%1$s؛ لا يتم إرسال الشهادات بواسطة%1$s."
+
+msgid "Flux Mail has no active %s connection; certificates cannot be sent on that channel."
+msgstr "ليس لدى Flux Mail اتصال%sنشط؛ لا يمكن إرسال الشهادات على تلك القناة."
+
+msgid "Certificate emails go through Flux Mail with the organization template (Communication › Emails)."
+msgstr "تمر رسائل البريد الإلكتروني الخاصة بالشهادة عبر Flux Mail باستخدام قالب المؤسسة (الاتصالات › رسائل البريد الإلكتروني)."
+
+msgid "Emails"
+msgstr "رسائل البريد الإلكتروني"
+
+msgid "Theme compatibility"
+msgstr "توافق الموضوع"
+
+msgid "The FluxWP theme (%s) is active; the events section and certificate page match the theme."
+msgstr "سمة FluxWP (%s) نشطة؛ يتطابق قسم الأحداث وصفحة الشهادة مع الموضوع."
+
+msgid "Active theme: %s. The events section appears automatically only in the Örnek Vakfı theme; in other themes add it with a shortcode."
+msgstr "الموضوع النشط:%s. يظهر قسم الأحداث تلقائيًا في موضوع Örnek Vakfı فقط؛ في المواضيع الأخرى قم بإضافته برمز قصير."
+
+msgid "Ongoing events"
+msgstr "الأحداث الجارية"
+
+msgid "No open events; the events section is hidden on the site."
+msgstr "لا توجد أحداث مفتوحة. قسم الأحداث مخفي على الموقع."
+
+msgid "Events"
+msgstr "الأحداث"
+
+msgid "Open event without a published page: %s. Fix it with \"Publish on site\" in the event edit screen."
+msgstr "حدث مفتوح بدون صفحة منشورة:%s. قم بإصلاحه من خلال \"النشر في الموقع\" في شاشة تعديل الحدث."
+
+msgid "%d open event, its page is published."
+msgid_plural "%d open events, their pages are published."
+msgstr[0] "أحداث%dمفتوحة، ويتم نشر صفحاتها."
+msgstr[1] "حدث%dمفتوح، وتم نشر صفحته."
+msgstr[2] "أحداث%dمفتوحة، ويتم نشر صفحاتها."
+msgstr[3] "أحداث%dمفتوحة، ويتم نشر صفحاتها."
+msgstr[4] "أحداث%dمفتوحة، ويتم نشر صفحاتها."
+msgstr[5] "أحداث%dمفتوحة، ويتم نشر صفحاتها."
+
+msgid "Certificate lookup"
+msgstr "بحث عن الشهادة"
+
+msgid "The lookup form is on %s."
+msgstr "نموذج البحث موجود على%s."
+
+msgid "Lookup is on, but no published page has the [flx_sertifika_sorgula] shortcode."
+msgstr "البحث قيد التشغيل، ولكن لا توجد صفحة منشورة تحتوي على الرمز القصير [flx_sertifika_sorgula]."
+
+msgid "Flux Forms integration"
+msgstr "تكامل نماذج التدفق"
+
+msgid "Flux Forms is installed; form automations can create and send certificates."
+msgstr "تم تثبيت Flux Forms؛ يمكن لأتمتة النماذج إنشاء الشهادات وإرسالها."
+
+msgid "PDF generation on the server"
+msgstr "توليد PDF على الخادم"
+
+msgid "PHP GD (FreeType) extension is missing: PDFs and images are only made in the browser, when the certificate page is first opened."
+msgstr "ملحق PHP GD (FreeType) مفقود: يتم إنشاء ملفات PDF والصور في المتصفح فقط، عند فتح صفحة الشهادة لأول مرة."
+
+msgid "%d certificate is missing its PDF or image."
+msgstr "تفتقد شهادة%dملف PDF أو الصورة الخاصة بها."
+
+msgid "Create missing files"
+msgstr "إنشاء الملفات المفقودة"
+
+msgid "On. PDFs and images for new certificates are generated in the background on the server."
+msgstr "على. يتم إنشاء ملفات PDF وصور الشهادات الجديدة في الخلفية على الخادم."
+
+msgid "Create missing certificate files"
+msgstr "إنشاء ملفات الشهادات المفقودة"
+
+msgid "Generates files on the server for up to 25 certificates that are missing a PDF or image."
+msgstr "يُنشئ ملفات على الخادم لما يصل إلى 25 شهادة تفتقد إلى ملف PDF أو صورة."
+
+msgid "Files created for %1$d certificates, %2$d errors."
+msgstr "الملفات التي تم إنشاؤها لشهادات%1$d، أخطاء%2$d."
+
+msgid "%d certificates left, press again."
+msgstr "شهادات%dمتبقية، اضغط مرة أخرى."
+
+msgid "Ongoing Events"
+msgstr "الأحداث الجارية"
+
+msgid "Your saplings are planted at these events. You too can contribute by donating saplings."
+msgstr "يتم زرع شتلاتك في هذه الأحداث. أنت أيضاً يمكنك المساهمة من خلال التبرع بالشتلات."
+
+msgid "Event location"
+msgstr "موقع الحدث"
+
+msgctxt "context_39c93914dff5"
+msgid "l, F j, Y"
+msgstr "ل، ف ي، ي"
+
+msgid "sapling planted"
+msgid_plural "saplings planted"
+msgstr[0] "زرعت شتلات"
+msgstr[1] "زرعت شتلة"
+msgstr[2] "زرعت شتلات"
+msgstr[3] "زرعت شتلات"
+msgstr[4] "زرعت شتلات"
+msgstr[5] "زرعت شتلات"
+
+msgid "sapling collected"
+msgid_plural "saplings collected"
+msgstr[0] "الشتلات التي تم جمعها"
+msgstr[1] "شتلة تم جمعها"
+msgstr[2] "الشتلات التي تم جمعها"
+msgstr[3] "الشتلات التي تم جمعها"
+msgstr[4] "الشتلات التي تم جمعها"
+msgstr[5] "الشتلات التي تم جمعها"
+
+msgctxt "context_a43dbd63afaf"
+msgid "F j"
+msgstr "ف ي"
+
+msgid "The planting site is announced by the authorities 10 days before the event. We will share it here around %s."
+msgstr "يتم الإعلان عن موقع الزراعة من قبل السلطات قبل 10 أيام من الحدث. سنشاركه هنا حول%s."
+
+msgid "The planting site is announced by the authorities 10 days before the event. We will share it here."
+msgstr "يتم الإعلان عن موقع الزراعة من قبل السلطات قبل 10 أيام من الحدث. سوف نشاركها هنا"
+
+msgid "Location coming soon"
+msgstr "الموقع قريبا"
+
+msgid "Event site"
+msgstr "موقع الحدث"
+
+msgid "Get directions"
+msgstr "احصل على الاتجاهات"
+
+msgid "Show map"
+msgstr "عرض الخريطة"
+
+msgid "Loads Google Maps"
+msgstr "يقوم بتحميل خرائط جوجل"
+
+msgid "Goal: %s saplings"
+msgstr "الهدف: شتلات%s"
+
+msgid "%s%%"
+msgstr "%s%%"
+
+msgid "Completed event"
+msgstr "حدث مكتمل"
+
+msgid "Sapling counter"
+msgstr "عداد الشتلة"
+
+msgid "saplings planted"
+msgstr "زرعت شتلات"
+
+msgid "%s person contributed"
+msgid_plural "%s people contributed"
+msgstr[0] "ساهم%sمن الأشخاص"
+msgstr[1] "ساهم شخص%s"
+msgstr[2] "ساهم%sمن الأشخاص"
+msgstr[3] "ساهم%sمن الأشخاص"
+msgstr[4] "ساهم%sمن الأشخاص"
+msgstr[5] "ساهم%sمن الأشخاص"
+
+msgctxt "context_a104e4060425"
+msgid "F j, Y"
+msgstr "ف ي، ي"
+
+msgid "Time: %s"
+msgstr "الوقت:%s"
+
+msgid "This event is complete. Thank you to everyone who contributed."
+msgstr "هذا الحدث كامل. شكرا لكل من ساهم."
+
+msgid "Donate saplings for this event"
+msgstr "التبرع بالشتلات لهذا الحدث"
+
+msgid "Your donation is added to the counter instantly."
+msgstr "تتم إضافة تبرعك إلى العداد على الفور."
+
+msgid "Tree planting events"
+msgstr "فعاليات زراعة الأشجار"
+
+msgid "Location to be announced"
+msgstr "سيتم الإعلان عن المكان"
+
+msgid "Details"
+msgstr "التفاصيل"
+
+msgid "Donate saplings"
+msgstr "تبرع بالشتلات"
+
+msgid "System"
+msgstr "النظام"
+
+msgid "SMS"
+msgstr "الرسائل القصيرة"
+
+msgid "WhatsApp"
+msgstr "واتساب"
+
+msgid "Queued"
+msgstr "في قائمة الانتظار"
+
+msgid "Sending"
+msgstr "إرسال"
+
+msgid "Sent"
+msgstr "تم الإرسال"
+
+msgid "Failed"
+msgstr "فشل"
+
+msgid "The server has no GD (FreeType) extension."
+msgstr "لا يحتوي الخادم على امتداد GD (FreeType)."
+
+msgid "This certificate's files are being prepared right now."
+msgstr "يتم الآن إعداد ملفات هذه الشهادة."
+
+msgid "Template not found."
+msgstr "لم يتم العثور على القالب."
+
+msgid "The background PDF could not be read on the server."
+msgstr "تعذرت قراءة ملف PDF الخاص بالخلفية على الخادم."
+
+msgid "Link copied"
+msgstr "تم نسخ الرابط"
+
+msgid "Copy the link:"
+msgstr "انسخ الرابط:"
+
+msgid "Sending…"
+msgstr "جارٍ الإرسال..."
+
+msgid "Done."
+msgstr "تم."
+
+msgid "Something went wrong."
+msgstr "حدث خطأ ما."
+
+msgid "Connection error. Please try again."
+msgstr "خطأ في الاتصال. يرجى المحاولة مرة أخرى."
+
+msgid "The PDF library could not be loaded (%s). Reload the page and try again."
+msgstr "لا يمكن تحميل مكتبة PDF (%s). أعد تحميل الصفحة ثم حاول مرة أخرى."
+
+msgid "Find your certificate"
+msgstr "ابحث عن شهادتك"
+
+msgid "Enter the phone number or email address you registered with. We will send your certificate link only to that address."
+msgstr "أدخل رقم الهاتف أو عنوان البريد الإلكتروني الذي قمت بالتسجيل به. وسنرسل رابط شهادتك إلى هذا العنوان فقط."
+
+msgid "0532 123 45 67 or name@example.com"
+msgstr "0532 123 45 67 أو name@example.com"
+
+msgid "Send"
+msgstr "أرسل"
+
+msgid "Name, e-mail or phone"
+msgstr "الاسم أو البريد الإلكتروني أو الهاتف"
+
+msgid "Name, number or code"
+msgstr "الاسم أو الرقم أو الرمز"
+
+msgid "Recipient or subject"
+msgstr "المتلقي أو الموضوع"
+
+msgid "Saplings"
+msgstr "شتلات"
+
+msgid "Queued to send"
+msgstr "في قائمة الانتظار للإرسال"
+
+msgid "Send queue"
+msgstr "إرسال قائمة الانتظار"
+
+msgid "Sends appear here."
+msgstr "تظهر عمليات الإرسال هنا."
+
+msgid "Channel"
+msgstr "قناة"
+
+msgid "No people"
+msgstr "لا يوجد أشخاص"
+
+msgid "People"
+msgstr "الناس"
+
+msgid "Code"
+msgstr "الكود"
+
+msgid "Queue is empty"
+msgstr "قائمة الانتظار فارغة"
+
+msgid "Number"
+msgstr "رقم"
+
+msgid "Cancel this certificate?"
+msgstr "هل تريد إلغاء هذه الشهادة؟"
+
+msgid "People who received a certificate appear here."
+msgstr "يظهر هنا الأشخاص الذين حصلوا على الشهادة."
+
+msgid "No certificates"
+msgstr "لا شهادات"
+
+msgid "Send the certificate"
+msgstr "أرسل الشهادة"
+
+msgid "New certificates appear here."
+msgstr "تظهر الشهادات الجديدة هنا."
+
+msgid "Restore"
+msgstr "استعادة"
+
+msgid "Restored"
+msgstr "المستعادة"
+
+msgid "Retry"
+msgstr "أعد المحاولة"
+
+msgid "Will be retried"
+msgstr "سيتم إعادة المحاولة"
+
+msgid "Summary"
+msgstr "ملخص"
+
+msgid "A cancelled certificate is hidden on the public page."
+msgstr "يتم إخفاء الشهادة الملغاة على الصفحة العامة."
+
+msgid "%d open event, its page is published."
+msgstr "حدث%dمفتوح، وتم نشر صفحته."
+
+msgid "[['%dviews', 'tr']]"
+msgid_plural "[['%dviews', 'tr']]"
+msgstr[0] "[['مشاهدات%d', 'tr']]"
+msgstr[1] "[['مشاهدات%d', 'tr']]"
+msgstr[2] "[['مشاهدات%d', 'tr']]"
+msgstr[3] "[['مشاهدات%d', 'tr']]"
+msgstr[4] "[['مشاهدات%d', 'tr']]"
+msgstr[5] "[['مشاهدات%d', 'tr']]"
+
+msgid "[['%dregistration', 'tr']]"
+msgid_plural "[['%dregistration', 'tr']]"
+msgstr[0] "[['تسجيل%d', 'tr']]"
+msgstr[1] "[['تسجيل%d', 'tr']]"
+msgstr[2] "[['تسجيل%d', 'tr']]"
+msgstr[3] "[['تسجيل%d', 'tr']]"
+msgstr[4] "[['تسجيل%d', 'tr']]"
+msgstr[5] "[['تسجيل%d', 'tr']]"
+
+msgid "\\n There is active template%d. There is active template%d.\\n"
+msgstr "\\n يوجد قالب نشط%d. يوجد قالب نشط%d.\\n"
+
+msgid "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"
+msgstr "\\n رسالة%1$dتنتظر أكثر من 10 دقائق؛ قد لا تعمل قائمة الانتظار. المعالج:%2$s، التشغيل الأخير:%3$s. رسالة%1$dمعلقة لأكثر من 10 دقائق؛ قد لا تعمل قائمة الانتظار. المعالج:%2$s، التشغيل الأخير:%3$s.\\n"
+
+msgid "[['%dmessage could not be sent.', 'tr']]"
+msgid_plural "[['%dmessage could not be sent.', 'tr']]"
+msgstr[0] "[['تعذر إرسال رسالة%d.', 'tr']]"
+msgstr[1] "[['تعذر إرسال رسالة%d.', 'tr']]"
+msgstr[2] "[['تعذر إرسال رسالة%d.', 'tr']]"
+msgstr[3] "[['تعذر إرسال رسالة%d.', 'tr']]"
+msgstr[4] "[['تعذر إرسال رسالة%d.', 'tr']]"
+msgstr[5] "[['تعذر إرسال رسالة%d.', 'tr']]"
+
+msgid "[['%dmessage sent, no failure.', 'tr']]"
+msgid_plural "[['%dmessage sent, no failure.', 'tr']]"
+msgstr[0] "[['تم إرسال رسالة%d، لم يحدث فشل.', 'tr']]"
+msgstr[1] "[['تم إرسال رسالة%d، لم يحدث فشل.', 'tr']]"
+msgstr[2] "[['تم إرسال رسالة%d، لم يحدث فشل.', 'tr']]"
+msgstr[3] "[['تم إرسال رسالة%d، لم يحدث فشل.', 'tr']]"
+msgstr[4] "[['تم إرسال رسالة%d، لم يحدث فشل.', 'tr']]"
+msgstr[5] "[['تم إرسال رسالة%d، لم يحدث فشل.', 'tr']]"
+
+msgid "[['%dhas an open event, its page is live on the site.', 'tr']]"
+msgid_plural "[['%dhas open events, its pages are live on the site.', 'tr']]"
+msgstr[0] "[[' لدى%dأحداث مفتوحة، وصفحاتها موجودة مباشرة على الموقع.', 'tr']]"
+msgstr[1] "[[' لدى%dحدث مفتوح، وصفحته موجودة على الموقع مباشرة.', 'tr']]"
+msgstr[2] "[[' لدى%dأحداث مفتوحة، وصفحاتها موجودة مباشرة على الموقع.', 'tr']]"
+msgstr[3] "[[' لدى%dأحداث مفتوحة، وصفحاتها موجودة مباشرة على الموقع.', 'tr']]"
+msgstr[4] "[[' لدى%dأحداث مفتوحة، وصفحاتها موجودة مباشرة على الموقع.', 'tr']]"
+msgstr[5] "[[' لدى%dأحداث مفتوحة، وصفحاتها موجودة مباشرة على الموقع.', 'tr']]"
+
+msgid "[['saplings were planted', 'tr']]"
+msgid_plural "[['saplings were planted', 'tr']]"
+msgstr[0] "[[\"تم زرع الشتلات\"، \"tr\"]]"
+msgstr[1] "[[\"تم زرع الشتلات\"، \"tr\"]]"
+msgstr[2] "[[\"تم زرع الشتلات\"، \"tr\"]]"
+msgstr[3] "[[\"تم زرع الشتلات\"، \"tr\"]]"
+msgstr[4] "[[\"تم زرع الشتلات\"، \"tr\"]]"
+msgstr[5] "[[\"تم زرع الشتلات\"، \"tr\"]]"
+
+msgid "[['saplings were collected', 'tr']]"
+msgid_plural "[['saplings were collected', 'tr']]"
+msgstr[0] "[['تم جمع الشتلات', 'tr']]"
+msgstr[1] "[['تم جمع الشتلات', 'tr']]"
+msgstr[2] "[['تم جمع الشتلات', 'tr']]"
+msgstr[3] "[['تم جمع الشتلات', 'tr']]"
+msgstr[4] "[['تم جمع الشتلات', 'tr']]"
+msgstr[5] "[['تم جمع الشتلات', 'tr']]"
+
+msgid "[['%scontributed by', 'tr']]"
+msgid_plural "[['%scontributed by', 'tr']]"
+msgstr[0] "[['مساهمة%sبواسطة', 'tr']]"
+msgstr[1] "[['مساهمة%sبواسطة', 'tr']]"
+msgstr[2] "[['مساهمة%sبواسطة', 'tr']]"
+msgstr[3] "[['مساهمة%sبواسطة', 'tr']]"
+msgstr[4] "[['مساهمة%sبواسطة', 'tr']]"
+msgstr[5] "[['مساهمة%sبواسطة', 'tr']]"
+
+msgid "[['Certificate templates, certificate creation with live PDF preview, /certificate/{kod}verification page, email / SMS (Netgsm) / WhatsApp (Evolution API) sending, asynchronous queue, contact registration and detailed logs.', 'tr']]"
+msgstr "[['قوالب الشهادات، إنشاء الشهادة من خلال معاينة PDF مباشرة، صفحة التحقق /الشهادة/{kod}، إرسال البريد الإلكتروني / الرسائل القصيرة (Netgsm) / WhatsApp (Evolution API)، قائمة الانتظار غير المتزامنة، تسجيل جهات الاتصال والسجلات التفصيلية.', 'tr']]"
+
+msgid "\\n There is active template%d. There is active template%d.\\n"
+msgid_plural "\\n There is active template%d. There is active template%d.\\n"
+msgstr[0] "\\n يوجد قالب نشط%d. يوجد قالب نشط%d.\\n"
+msgstr[1] "\\n يوجد قالب نشط%d. يوجد قالب نشط%d.\\n"
+msgstr[2] "\\n يوجد قالب نشط%d. يوجد قالب نشط%d.\\n"
+msgstr[3] "\\n يوجد قالب نشط%d. يوجد قالب نشط%d.\\n"
+msgstr[4] "\\n يوجد قالب نشط%d. يوجد قالب نشط%d.\\n"
+msgstr[5] "\\n يوجد قالب نشط%d. يوجد قالب نشط%d.\\n"
+
+msgid "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"
+msgid_plural "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"
+msgstr[0] "\\n رسالة%1$dتنتظر أكثر من 10 دقائق؛ قد لا تعمل قائمة الانتظار. المعالج:%2$s، التشغيل الأخير:%3$s. رسالة%1$dمعلقة لأكثر من 10 دقائق؛ قد لا تعمل قائمة الانتظار. المعالج:%2$s، التشغيل الأخير:%3$s.\\n"
+msgstr[1] "\\n رسالة%1$dتنتظر أكثر من 10 دقائق؛ قد لا تعمل قائمة الانتظار. المعالج:%2$s، التشغيل الأخير:%3$s. رسالة%1$dمعلقة لأكثر من 10 دقائق؛ قد لا تعمل قائمة الانتظار. المعالج:%2$s، التشغيل الأخير:%3$s.\\n"
+msgstr[2] "\\n رسالة%1$dتنتظر أكثر من 10 دقائق؛ قد لا تعمل قائمة الانتظار. المعالج:%2$s، التشغيل الأخير:%3$s. رسالة%1$dمعلقة لأكثر من 10 دقائق؛ قد لا تعمل قائمة الانتظار. المعالج:%2$s، التشغيل الأخير:%3$s.\\n"
+msgstr[3] "\\n رسالة%1$dتنتظر أكثر من 10 دقائق؛ قد لا تعمل قائمة الانتظار. المعالج:%2$s، التشغيل الأخير:%3$s. رسالة%1$dمعلقة لأكثر من 10 دقائق؛ قد لا تعمل قائمة الانتظار. المعالج:%2$s، التشغيل الأخير:%3$s.\\n"
+msgstr[4] "\\n رسالة%1$dتنتظر أكثر من 10 دقائق؛ قد لا تعمل قائمة الانتظار. المعالج:%2$s، التشغيل الأخير:%3$s. رسالة%1$dمعلقة لأكثر من 10 دقائق؛ قد لا تعمل قائمة الانتظار. المعالج:%2$s، التشغيل الأخير:%3$s.\\n"
+msgstr[5] "\\n رسالة%1$dتنتظر أكثر من 10 دقائق؛ قد لا تعمل قائمة الانتظار. المعالج:%2$s، التشغيل الأخير:%3$s. رسالة%1$dمعلقة لأكثر من 10 دقائق؛ قد لا تعمل قائمة الانتظار. المعالج:%2$s، التشغيل الأخير:%3$s.\\n"

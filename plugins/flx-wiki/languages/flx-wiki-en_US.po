@@ -1,540 +1,533 @@
 msgid ""
-msgstr ""
-"Content-Type: text/plain; charset=UTF-8\n"
-"Project-Id-Version: Flux Wiki\n"
-"Language: en_US\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Ayarlar"
+msgid "Settings"
 msgstr "Settings"
 
-msgid "Wiki'yi aç"
+msgid "Open wiki"
 msgstr "Open wiki"
 
-msgid "Geliştirici wiki'si: Markdown sayfalar, arama, LLM ve MCP desteği"
+msgid "Developer wiki: Markdown pages, search, LLM and MCP support"
 msgstr "Developer wiki: Markdown pages, search, LLM and MCP support"
 
-msgid "Wiki ayarları"
+msgid "Wiki settings"
 msgstr "Wiki settings"
 
-msgid "Önizleme hazırlanıyor…"
+msgid "Preparing preview…"
 msgstr "Preparing preview…"
 
-msgid "Önizleme alınamadı."
+msgid "Could not load the preview."
 msgstr "Could not load the preview."
 
-msgid "Önizlenecek içerik yok."
+msgid "Nothing to preview."
 msgstr "Nothing to preview."
 
-msgid "Bağlantı adresi"
+msgid "Link URL"
 msgstr "Link URL"
 
-msgid "Başlık"
+msgid "Heading"
 msgstr "Heading"
 
-msgid "metin"
+msgid "text"
 msgstr "text"
 
-msgid "kod"
+msgid "code"
 msgstr "code"
 
-msgid "bağlantı"
+msgid "link"
 msgstr "link"
 
-msgid "sayfa-adi"
+msgid "page-slug"
 msgstr "page-slug"
 
-msgid "madde"
+msgid "item"
 msgstr "item"
 
-msgid "Not"
+msgid "Note"
 msgstr "Note"
 
-msgid "Ara başlık"
-msgstr "Heading"
-
-msgid "Alt başlık"
+msgid "Subheading"
 msgstr "Subheading"
 
-msgid "Kalın"
+msgid "Bold"
 msgstr "Bold"
 
-msgid "İtalik"
+msgid "Italic"
 msgstr "Italic"
 
-msgid "Satır içi kod"
+msgid "Inline code"
 msgstr "Inline code"
 
-msgid "Kod bloğu"
+msgid "Code block"
 msgstr "Code block"
 
-msgid "Bağlantı"
+msgid "Link"
 msgstr "Link"
 
-msgid "Wiki bağlantısı"
+msgid "Wiki link"
 msgstr "Wiki link"
 
-msgid "Liste"
+msgid "List"
 msgstr "List"
 
-msgid "Not kutusu"
+msgid "Callout"
 msgstr "Callout"
 
-msgid "Tablo"
+msgid "Table"
 msgstr "Table"
 
-msgid "Yaz"
+msgid "Write"
 msgstr "Write"
 
-msgid "Önizle"
+msgid "Preview"
 msgstr "Preview"
 
-msgid "Yan yana"
+msgid "Side by side"
 msgstr "Side by side"
 
-msgid "Markdown yazın. ## Ara başlık, ```php kod```, [[sayfa-adi]] wiki bağlantısı, > [!NOTE] not kutusu."
+msgid "Write Markdown. ## Heading, ```php code```, [[page-slug]] wiki link, > [!NOTE] callout."
 msgstr "Write Markdown. ## Heading, ```php code```, [[page-slug]] wiki link, > [!NOTE] callout."
 
-msgid "Markdown: GitHub biçimi (tablo, kod bloğu). Wiki bağlantısı [[kisa-ad]] ya da [[kisa-ad|etiket]]. Not kutuları: > [!NOTE], [!TIP], [!IMPORTANT], [!WARNING], [!CAUTION]. Başlığı içerikte tekrar yazmayın."
+msgid "Markdown: GitHub flavour (tables, code blocks). Wiki links [[slug]] or [[slug|label]]. Callouts: > [!NOTE], [!TIP], [!IMPORTANT], [!WARNING], [!CAUTION]. Do not repeat the title in the content."
 msgstr "Markdown: GitHub flavour (tables, code blocks). Wiki links [[slug]] or [[slug|label]]. Callouts: > [!NOTE], [!TIP], [!IMPORTANT], [!WARNING], [!CAUTION]. Do not repeat the title in the content."
 
-msgid ".md olarak aç"
+msgid "Open as .md"
 msgstr "Open as .md"
 
-msgid "Sıra"
+msgid "Order"
 msgstr "Order"
 
-msgid "Wiki ana sayfasında ve menüde küçük sayı önce gelir."
+msgid "Lower numbers come first on the wiki home and in the menu."
 msgstr "Lower numbers come first on the wiki home and in the menu."
 
-msgid "Genel"
+msgid "General"
 msgstr "General"
 
-msgid "Görünüm"
+msgid "Appearance"
 msgstr "Appearance"
 
 msgid "AI"
 msgstr "AI"
 
-msgid "Yeni sayfa"
+msgid "Add page"
 msgstr "Add page"
 
-msgid "Wiki ziyaretçilere kapalı; yalnız sayfa yazabilenler görüyor."
+msgid "The wiki is closed to visitors; only people who can write pages see it."
 msgstr "The wiki is closed to visitors; only people who can write pages see it."
 
-msgid "Ayarlar kaydedildi."
+msgid "Settings saved."
 msgstr "Settings saved."
 
-msgid "Rehberler aktarıldı: %1$d yeni, %2$d güncellendi, %3$d atlandı (elle değiştirilmiş ya da güncel)."
+msgid "Guides imported: %1$d new, %2$d updated, %3$d skipped (edited by hand or up to date)."
 msgstr "Guides imported: %1$d new, %2$d updated, %3$d skipped (edited by hand or up to date)."
 
 msgid "Wiki"
 msgstr "Wiki"
 
-msgid "Wiki ziyaretçilere açık"
+msgid "Wiki open to visitors"
 msgstr "Wiki open to visitors"
 
-msgid "Kapalıyken wiki adresleri, .md ve llms.txt ziyaretçilere 404 döner, site haritasından çıkar. Sayfa yazabilenler görmeye devam eder."
+msgid "When closed, wiki addresses, .md and llms.txt return 404 to visitors and leave the sitemap. People who can write pages still see it."
 msgstr "When closed, wiki addresses, .md and llms.txt return 404 to visitors and leave the sitemap. People who can write pages still see it."
 
-msgid "Wiki adı"
+msgid "Wiki name"
 msgstr "Wiki name"
 
-msgid "Geliştirici Wiki"
+msgid "Developer Wiki"
 msgstr "Developer Wiki"
 
-msgid "Tanıtım"
+msgid "Intro"
 msgstr "Intro"
 
-msgid "Ana sayfada, arama motoru açıklamasında ve llms.txt'de kullanılır."
+msgid "Used on the wiki home, in the search engine description and in llms.txt."
 msgstr "Used on the wiki home, in the search engine description and in llms.txt."
 
-msgid "Adres"
+msgid "Address"
 msgstr "Address"
 
-msgid "Küçük harf, rakam ve tire. Değiştirince eski adresler çalışmaz."
+msgid "Lowercase letters, digits and hyphens. Old addresses stop working when you change it."
 msgstr "Lowercase letters, digits and hyphens. Old addresses stop working when you change it."
 
-msgid "Sayfa düğmeleri"
+msgid "Page buttons"
 msgstr "Page buttons"
 
-msgid "\"AI'a sor\" menüsünde ChatGPT, Claude, Google AI, Perplexity bağlantıları"
+msgid "ChatGPT, Claude, Google AI and Perplexity links in the \"Ask AI\" menu"
 msgstr "ChatGPT, Claude, Google AI and Perplexity links in the \"Ask AI\" menu"
 
-msgid "Yetkililere \"Düzenle\" düğmesi"
+msgid "\"Edit\" button for editors"
 msgstr "\"Edit\" button for editors"
 
-msgid "Vurgu rengi"
+msgid "Accent colour"
 msgstr "Accent colour"
 
-msgid "Temanın rengini kullan"
+msgid "Use the theme colour"
 msgstr "Use the theme colour"
 
-msgid "Bağlantılar, seçili menü ve vurgulu düğmeler."
+msgid "Links, the selected menu item and accent buttons."
 msgstr "Links, the selected menu item and accent buttons."
 
-msgid "Genişlik"
+msgid "Width"
 msgstr "Width"
 
 msgid "Normal"
 msgstr "Normal"
 
-msgid "Geniş (uzun kod ve tablolar için)"
+msgid "Wide (for long code and tables)"
 msgstr "Wide (for long code and tables)"
 
-msgid "Sayfa düzeni"
+msgid "Page layout"
 msgstr "Page layout"
 
-msgid "Solda sayfa menüsü ve arama"
+msgid "Page menu and search on the left"
 msgstr "Page menu and search on the left"
 
-msgid "Sağda \"Bu sayfada\" (içindekiler)"
+msgid "\"On this page\" (contents) on the right"
 msgstr "\"On this page\" (contents) on the right"
 
-msgid "Flux AI kurulu değil. Kurulunca ziyaretçiler wiki içeriğinden cevap alan \"Wiki'ye sor\" penceresini kullanabilir."
+msgid "Flux AI is not installed. Once installed, visitors can use \"Ask the wiki\", which answers from the wiki content."
 msgstr "Flux AI is not installed. Once installed, visitors can use \"Ask the wiki\", which answers from the wiki content."
 
-msgid "Flux AI'de anahtar yok ya da Flux Wiki sistemi kapalı (Flux AI › Bağlı sistemler)."
+msgid "Flux AI has no key or the Flux Wiki system is off (Flux AI › Connected systems)."
 msgstr "Flux AI has no key or the Flux Wiki system is off (Flux AI › Connected systems)."
 
-msgid "Kimler sorabilir"
+msgid "Who can ask"
 msgstr "Who can ask"
 
-msgid "Kapalı"
+msgid "Off"
 msgstr "Off"
 
-msgid "Giriş yapmış kullanıcılar"
+msgid "Logged-in users"
 msgstr "Logged-in users"
 
-msgid "Herkes (ziyaretçiler dahil)"
+msgid "Everyone (including visitors)"
 msgstr "Everyone (including visitors)"
 
-msgid "Her soru Flux AI harcama sınırına sayılır; \"Herkes\" seçeneğinde saatlik sınırı düşük tutun."
+msgid "Every question counts towards the Flux AI spending limit; keep the hourly limit low with \"Everyone\"."
 msgstr "Every question counts towards the Flux AI spending limit; keep the hourly limit low with \"Everyone\"."
 
-msgid "Saatlik soru sınırı"
+msgid "Hourly question limit"
 msgstr "Hourly question limit"
 
-msgid "kişi başı (yöneticiler sınırsız)"
+msgid "per person (unlimited for administrators)"
 msgstr "per person (unlimited for administrators)"
 
-msgid "Kaydet"
+msgid "Save"
 msgstr "Save"
 
-msgid "Adresler"
+msgid "Addresses"
 msgstr "Addresses"
 
-msgid "Arama API"
+msgid "Search API"
 msgstr "Search API"
 
-msgid "Flux AI › MCP kapalı"
+msgid "Flux AI › MCP is off"
 msgstr "Flux AI › MCP is off"
 
-msgid "Her sayfa adresin sonuna .md eklenerek Markdown olarak açılır. Flux SEO kuruluysa sitenin /llms.txt dosyasına \"Wiki\" bölümü eklenir."
+msgid "Add .md to any page address to get it as Markdown. With Flux SEO installed, a \"Wiki\" section is added to the site's /llms.txt."
 msgstr "Add .md to any page address to get it as Markdown. With Flux SEO installed, a \"Wiki\" section is added to the site's /llms.txt."
 
-msgid "Hazır rehberler"
+msgid "Bundled guides"
 msgstr "Bundled guides"
 
-msgid "Eklentiyle %d rehber gelir: eklenti ve tema yazma, AI destekli eklenti, MCP aracı, ayar şeması, çeviri, sürüm ve yayın. Eksikler eklenir; elle değiştirmediğiniz sayfalar yeni sürümle güncellenir."
+msgid "The plugin ships %d guides: writing plugins and themes, AI-enabled plugins, MCP tools, settings schema, translation, versions and releases. Missing pages are added; pages you have not edited are updated to the new version."
 msgstr "The plugin ships %d guides: writing plugins and themes, AI-enabled plugins, MCP tools, settings schema, translation, versions and releases. Missing pages are added; pages you have not edited are updated to the new version."
 
-msgid "Rehberleri içe aktar / güncelle"
+msgid "Import / update guides"
 msgstr "Import / update guides"
 
-msgid "Yayında %d sayfa."
+msgid "%d published pages."
 msgstr "%d published pages."
 
-msgid "Yetkiniz yok."
+msgid "You are not allowed to do this."
 msgstr "You are not allowed to do this."
 
-msgid "Wiki'ye sor"
+msgid "Ask the wiki"
 msgstr "Ask the wiki"
 
-msgid "Wiki taslağı"
+msgid "Wiki draft"
 msgstr "Wiki draft"
 
-msgid "Flux AI hazır değil."
+msgid "Flux AI is not ready."
 msgstr "Flux AI is not ready."
 
-msgid "Bu soruyu yanıtlayan bir rehber bulamadım. Eklenti adını ya da yapmak istediğiniz işlemi yazarak tekrar deneyin."
+msgid "I could not find a guide answering this question. Try again with the plugin name or the task you want to complete."
 msgstr "I could not find a guide answering this question. Try again with the plugin name or the task you want to complete."
 
-msgid "Cevap alınamadı. Biraz sonra tekrar deneyin."
+msgid "Could not get an answer. Try again in a moment."
 msgstr "Could not get an answer. Try again in a moment."
 
-msgid "\"%2$s\" için %1$s sonuç"
-msgid_plural "\"%2$s\" için %1$s sonuç"
+msgid "%1$s result for \"%2$s\""
+msgid_plural "%1$s results for \"%2$s\""
 msgstr[0] "%1$s result for \"%2$s\""
 msgstr[1] "%1$s results for \"%2$s\""
 
-msgid "Kopyalandı"
+msgid "Copied"
 msgstr "Copied"
 
-msgid "Kopyala"
+msgid "Copy"
 msgstr "Copy"
 
-msgid "Kopyalanamadı"
+msgid "Could not copy"
 msgstr "Could not copy"
 
-msgid "Aranıyor…"
+msgid "Searching…"
 msgstr "Searching…"
 
-msgid "Sonuç yok. Başka bir kelime deneyin."
+msgid "No results. Try another word."
 msgstr "No results. Try another word."
 
-msgid "Aramak için yazın"
+msgid "Type to search"
 msgstr "Type to search"
 
-msgid "%d sonuç"
+msgid "%d results"
 msgstr "%d results"
 
-msgid "AI'a sor"
+msgid "Ask AI"
 msgstr "Ask AI"
 
-msgid "Sorunuzu yazın; cevap yalnız wiki sayfalarından verilir."
+msgid "Type your question; the answer comes only from the wiki pages."
 msgstr "Type your question; the answer comes only from the wiki pages."
 
-msgid "Wiki okunuyor, cevap hazırlanıyor…"
+msgid "Reading the wiki, preparing an answer…"
 msgstr "Reading the wiki, preparing an answer…"
 
-msgid "Kaynaklar"
+msgid "Sources"
 msgstr "Sources"
 
-msgid "Ara"
+msgid "Search"
 msgstr "Search"
 
-msgid "Soru sormak için giriş yapın."
+msgid "Log in to ask a question."
 msgstr "Log in to ask a question."
 
-msgid "\"%1$s\" bulunamadı; \"%2$s\" için sonuçlar gösteriliyor."
+msgid "No results for \"%1$s\"; showing results for \"%2$s\"."
 msgstr "No results for \"%1$s\"; showing results for \"%2$s\"."
 
-msgid "%d sonucun hepsini gör"
+msgid "See all %d results"
 msgstr "See all %d results"
 
-msgid "\"%s\" için wiki araması"
+msgid "Wiki search for \"%s\""
 msgstr "Wiki search for \"%s\""
 
-msgid "FluxWP için eklenti ve tema yazma, AI destekli özellikler ve ortak altyapı rehberleri."
+msgid "Guides for writing FluxWP plugins and themes, AI-enabled features and the shared platform."
 msgstr "Guides for writing FluxWP plugins and themes, AI-enabled features and the shared platform."
 
-msgid "Kaynak"
+msgid "Source"
 msgstr "Source"
 
-msgid "Bölüm"
+msgid "Section"
 msgstr "Section"
 
-msgid "Son güncelleme"
+msgid "Last updated"
 msgstr "Last updated"
 
-msgid "Her sayfanın Markdown hâli adresin sonuna .md eklenerek alınır. Tüm wiki tek dosyada: %1$s"
+msgid "Add .md to any page address to get its Markdown. The whole wiki in one file: %1$s"
 msgstr "Add .md to any page address to get its Markdown. The whole wiki in one file: %1$s"
 
-msgid "MCP sunucusu (anahtar gerekir): %s, araçlar flxwk_search, flxwk_get_page, flxwk_list_pages."
+msgid "MCP server (key required): %s, tools flxwk_search, flxwk_get_page, flxwk_list_pages."
 msgstr "MCP server (key required): %s, tools flxwk_search, flxwk_get_page, flxwk_list_pages."
 
-msgid "Diğer sayfalar"
+msgid "Other pages"
 msgstr "Other pages"
 
-msgid "Tüm wiki (tek dosya)"
+msgid "Whole wiki (one file)"
 msgstr "Whole wiki (one file)"
 
-msgid "Bu sayfa henüz yok"
+msgid "This page does not exist yet"
 msgstr "This page does not exist yet"
 
-msgid "İpucu"
+msgid "Tip"
 msgstr "Tip"
 
-msgid "Önemli"
+msgid "Important"
 msgstr "Important"
 
-msgid "Uyarı"
+msgid "Warning"
 msgstr "Warning"
 
-msgid "Dikkat"
+msgid "Caution"
 msgstr "Caution"
 
-msgid "Wiki'de ara"
+msgid "Search the wiki"
 msgstr "Search the wiki"
 
-msgid "Wiki sayfasını oku"
+msgid "Read wiki page"
 msgstr "Read wiki page"
 
-msgid "Wiki sayfalarını listele"
+msgid "List wiki pages"
 msgstr "List wiki pages"
 
-msgid "Wiki sayfası yaz"
+msgid "Write wiki page"
 msgstr "Write wiki page"
 
-msgid "FluxWP eklentisi yaz (wiki rehberiyle)"
+msgid "Write a FluxWP plugin (with the wiki guides)"
 msgstr "Write a FluxWP plugin (with the wiki guides)"
 
-msgid "Bölümler"
+msgid "Sections"
 msgstr "Sections"
 
-msgid "Yeni bölüm"
+msgid "New section"
 msgstr "New section"
 
-msgid "Bölümü düzenle"
+msgid "Edit section"
 msgstr "Edit section"
 
-msgid "Bölüm ara"
+msgid "Search sections"
 msgstr "Search sections"
 
-msgid "Tüm bölümler"
+msgid "All sections"
 msgstr "All sections"
 
-msgid "Wiki sayfası"
+msgid "Wiki page"
 msgstr "Wiki page"
 
-msgid "Tüm sayfalar"
+msgid "All pages"
 msgstr "All pages"
 
-msgid "Yeni wiki sayfası"
+msgid "New wiki page"
 msgstr "New wiki page"
 
-msgid "Wiki sayfasını düzenle"
+msgid "Edit wiki page"
 msgstr "Edit wiki page"
 
-msgid "Sayfayı görüntüle"
+msgid "View page"
 msgstr "View page"
 
-msgid "Sayfa bulunamadı"
+msgid "No pages found"
 msgstr "No pages found"
 
-msgid "Çöpte sayfa yok"
+msgid "No pages in trash"
 msgstr "No pages in trash"
 
-msgid "Üst sayfa:"
+msgid "Parent page:"
 msgstr "Parent page:"
 
-msgid "Wiki sayfası bulunamadı."
+msgid "Wiki page not found."
 msgstr "Wiki page not found."
 
-msgid "Başlık gerekli."
+msgid "A title is required."
 msgstr "A title is required."
 
-msgid "Wiki bölümü"
+msgid "Wiki section"
 msgstr "Wiki section"
 
-msgid "Soru çok kısa."
+msgid "The question is too short."
 msgstr "The question is too short."
 
-msgid "Bu saat için soru sınırına ulaştınız. Biraz sonra tekrar deneyin."
+msgid "You have reached the question limit for this hour. Try again later."
 msgstr "You have reached the question limit for this hour. Try again later."
 
-msgid "Önceki sorunuz yanıtlanıyor. Biraz sonra tekrar deneyin."
+msgid "Your previous question is still being answered. Please try again shortly."
 msgstr "Your previous question is still being answered. Please try again shortly."
 
-msgid "Wiki adresleri"
+msgid "Wiki addresses"
 msgstr "Wiki addresses"
 
-msgid "Wiki %s adresinde; .md ve llms.txt adresleri çalışıyor."
+msgid "The wiki is at %s; .md and llms.txt addresses work."
 msgstr "The wiki is at %s; .md and llms.txt addresses work."
 
-msgid "Kalıcı bağlantılar \"Düz\" ayarında; /wiki, .md ve llms.txt adresleri çalışmaz. Ayarlar › Kalıcı bağlantılar'dan \"Yazı adı\"nı seçin."
+msgid "Permalinks are set to \"Plain\"; /wiki, .md and llms.txt addresses do not work. Choose \"Post name\" in Settings › Permalinks."
 msgstr "Permalinks are set to \"Plain\"; /wiki, .md and llms.txt addresses do not work. Choose \"Post name\" in Settings › Permalinks."
 
-msgid "Kalıcı bağlantılar"
+msgid "Permalinks"
 msgstr "Permalinks"
 
-msgid "Flux AI hazır; ziyaretçiler wiki içeriğinden cevap alabilir."
+msgid "Flux AI is ready; visitors can get answers from the wiki content."
 msgstr "Flux AI is ready; visitors can get answers from the wiki content."
 
-msgid "Flux AI kurulu değil, anahtar yok ya da Flux Wiki sistemi kapalı; \"Wiki'ye sor\" gizli."
+msgid "Flux AI is not installed, has no key or the Flux Wiki system is off; \"Ask the wiki\" is hidden."
 msgstr "Flux AI is not installed, has no key or the Flux Wiki system is off; \"Ask the wiki\" is hidden."
 
-msgid "%s sayfa"
-msgid_plural "%s sayfa"
+msgid "%s page"
+msgid_plural "%s pages"
 msgstr[0] "%s page"
 msgstr[1] "%s pages"
 
-msgid "%s dk okuma"
-msgid_plural "%s dk okuma"
+msgid "%s min read"
+msgid_plural "%s min read"
 msgstr[0] "%s min read"
 msgstr[1] "%s min read"
 
-msgid "Ne arıyorsunuz? Ör. MCP aracı, flx_settings_schema, tema…"
+msgid "What are you looking for? E.g. MCP tool, flx_settings_schema, theme…"
 msgstr "What are you looking for? E.g. MCP tool, flx_settings_schema, theme…"
 
-msgid "Wiki'de ara…"
+msgid "Search the wiki…"
 msgstr "Search the wiki…"
 
-msgid "Dokümantasyon"
+msgid "Documentation"
 msgstr "Documentation"
 
-msgid "Buradan başlayın"
+msgid "Start here"
 msgstr "Start here"
 
-msgid "Rehberleri keşfedin"
+msgid "Explore the guides"
 msgstr "Explore the guides"
 
-msgid "Henüz yayımlanmış sayfa yok."
+msgid "No published pages yet."
 msgstr "No published pages yet."
 
-msgid "Tümünü gör"
+msgid "See all"
 msgstr "See all"
 
-msgid "Son güncellenenler"
+msgid "Recently updated"
 msgstr "Recently updated"
 
-msgid "LLM ve AI ajanları için"
+msgid "For LLMs and AI agents"
 msgstr "For LLMs and AI agents"
 
-msgid "Her sayfa adresin sonuna .md eklenerek düz Markdown olarak açılır. Ajanlar dizini llms.txt'den, tüm içeriği tek dosyada llms-full.txt'den okur."
+msgid "Add .md to any page address to open it as plain Markdown. Agents read the index from llms.txt and the whole content in one file from llms-full.txt."
 msgstr "Add .md to any page address to open it as plain Markdown. Agents read the index from llms.txt and the whole content in one file from llms-full.txt."
 
-msgid "Arama"
-msgstr "Search"
-
-msgid "Bu sayfada"
+msgid "On this page"
 msgstr "On this page"
 
-msgid "Alt sayfalar"
+msgid "Subpages"
 msgstr "Subpages"
 
-msgid "Güncellendi: %s"
+msgid "Updated %s"
 msgstr "Updated %s"
 
-msgid "Önceki ve sonraki sayfa"
+msgid "Previous and next page"
 msgstr "Previous and next page"
 
-msgid "Önceki"
+msgid "Previous"
 msgstr "Previous"
 
-msgid "Sonraki"
+msgid "Next"
 msgstr "Next"
 
 msgid "Markdown"
 msgstr "Markdown"
 
-msgid "%s adresindeki belgeyi oku; sonra bu konuda sorularımı yanıtla."
+msgid "Read the document at %s, then answer my questions about it."
 msgstr "Read the document at %s, then answer my questions about it."
 
-msgid "Markdown'u kopyala"
+msgid "Copy Markdown"
 msgstr "Copy Markdown"
 
-msgid "Düzenle"
+msgid "Edit"
 msgstr "Edit"
 
-msgid "Konum"
+msgid "Breadcrumb"
 msgstr "Breadcrumb"
 
-msgid "Sayfalar"
+msgid "Pages"
 msgstr "Pages"
 
-msgid "Wiki sayfaları"
+msgid "Wiki pages"
 msgstr "Wiki pages"
 
-msgid "Kapat"
+msgid "Close"
 msgstr "Close"
 
-msgid "seç"
+msgid "select"
 msgstr "select"
 
-msgid "aç"
+msgid "open"
 msgstr "open"
 
-msgid "kapat"
+msgid "close"
 msgstr "close"
+
+msgid "[['Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.', 'tr']]"
+msgstr "[['Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.', 'tr']]"

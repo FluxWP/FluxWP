@@ -48,7 +48,7 @@ class FLXB_WC_Recurring {
 				$item->update_meta_data( '_flxb_monthly_not_saved', 1 );
 				$item->save();
 				/* translators: %s: line name */
-				$order->add_order_note( sprintf( __( '"%s" was paid once: the card was not stored, so it will not repeat monthly.', 'flx-donate' ), $item->get_name() ) );
+				$order->add_order_note( sprintf( __( '\\n"%s" was paid once: the card was not stored, so it will not repeat monthly.\\n', 'flx-donate' ), $item->get_name() ) );
 				continue;
 			}
 			self::start_line( $order, $item, $card );
@@ -62,7 +62,7 @@ class FLXB_WC_Recurring {
 		$t      = FLXB_Types::get( (int) $l['type_id'] );
 		$opt    = $t && '' !== (string) ( $l['option'] ?? '' ) ? FLXB_Types::option( $t, (string) $l['option'] ) : null;
 		$units  = max( 1, (int) ( $l['units'] ?? 1 ) ) * max( 1, (int) $item->get_quantity() );
-		$label  = $opt ? (string) $opt['label'] : __( 'Free amount', 'flx-donate' );
+		$label  = $opt ? (string) $opt['label'] : __( '\\nFree amount\', \'en\']]', 'flx-donate' );
 		$buyer  = array(
 			'name'  => trim( $order->get_billing_first_name() . ' ' . $order->get_billing_last_name() ),
 			'email' => FLXB_WC_Contact::email( $order ),
@@ -132,7 +132,7 @@ class FLXB_WC_Recurring {
 		$item->update_meta_data( '_flxb_subscription_id', $id );
 		$item->save();
 		/* translators: 1: line name, 2: recurring donation id */
-		$order->add_order_note( sprintf( __( '"%1$s" repeats monthly (recurring donation #%2$d); the card is stored at iyzico.', 'flx-donate' ), $item->get_name(), $id ) );
+		$order->add_order_note( sprintf( __( '\\n"%1$s" repeats monthly (recurring donation #%2$d); the card is stored at iyzico.\\n', 'flx-donate' ), $item->get_name(), $id ) );
 		FLXB_Iyzico_Recurring::mail_donor( FLXB_Subscriptions::get( $id ), 'started' );
 		do_action( 'flxb_wc_recurring_started', $id, $order, $item );
 		return $id;
@@ -206,14 +206,14 @@ class FLXB_WC_Recurring {
 		}
 		$order->set_currency( (string) $s['currency'] );
 		$order->set_payment_method( FLXB_WC_Iyzico::ID );
-		$order->set_payment_method_title( __( 'Card (iyzico), monthly', 'flx-donate' ) );
+		$order->set_payment_method_title( __( '\\nCard (iyzico), monthly\\n', 'flx-donate' ) );
 		$order->update_meta_data( '_flxb_subscription_id', (int) $s['id'] );
 		$order->update_meta_data( '_flxb_renewal_of', (int) ( $wc['order'] ?? 0 ) );
 		$order->update_meta_data( '_flxb_renewal_period', (string) $period );
 		$order->calculate_totals( false );
 		$order->set_status( 'pending' );
 		/* translators: 1: recurring donation id, 2: parent order number */
-		$order->add_order_note( sprintf( __( 'Monthly renewal of recurring donation #%1$d (first order #%2$s).', 'flx-donate' ), (int) $s['id'], $parent ? $parent->get_order_number() : '-' ) );
+		$order->add_order_note( sprintf( __( '\\nMonthly renewal of recurring donation #%1$d(first order #%2$s).\\n', 'flx-donate' ), (int) $s['id'], $parent ? $parent->get_order_number() : '-' ) );
 		$order->save();
 		$open[ $period ] = (int) $order->get_id();
 		FLXB_Subscriptions::update( (int) $s['id'], array( 'wc_renewal' => array_slice( $open, -6, null, true ) ) );
@@ -235,7 +235,7 @@ class FLXB_WC_Recurring {
 			$order->update_meta_data( '_flxb_iyzico', $info );
 			$order->save_meta_data();
 			/* translators: 1: card, 2: payment id */
-			$order->add_order_note( sprintf( __( 'Monthly charge accepted by iyzico: %1$s, payment id %2$s.', 'flx-donate' ), '' !== $info['card'] ? $info['card'] : '-', $info['paymentId'] ) );
+			$order->add_order_note( sprintf( __( '\\nMonthly charge accepted by iyzico:%1$s, payment id%2$s.\\n', 'flx-donate' ), '' !== $info['card'] ? $info['card'] : '-', $info['paymentId'] ) );
 			$order->payment_complete( $info['paymentId'] );
 		}
 		$ids = FLXB_WC_Ledger::sync( wc_get_order( $order->get_id() ) );
@@ -254,10 +254,10 @@ class FLXB_WC_Recurring {
 		}
 		if ( $final ) {
 			/* translators: %s: error */
-			$order->update_status( 'failed', sprintf( __( 'Monthly charge failed after the last attempt: %s', 'flx-donate' ), $error ) );
+			$order->update_status( 'failed', sprintf( __( '\\nMonthly charge failed after the last attempt:%s\\n', 'flx-donate' ), $error ) );
 		} else {
 			/* translators: %s: error */
-			$order->add_order_note( sprintf( __( 'Monthly charge failed, it will be retried: %s', 'flx-donate' ), $error ) );
+			$order->add_order_note( sprintf( __( '\\nMonthly charge failed, it will be retried:%s\\n', 'flx-donate' ), $error ) );
 		}
 	}
 }

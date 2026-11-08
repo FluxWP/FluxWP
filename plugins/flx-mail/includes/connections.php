@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit;
 
 function flxi_channels() {
 	return array(
-		'email'    => __( 'E-posta', 'flx-mail' ),
+		'email'    => __( 'Email', 'flx-mail' ),
 		'whatsapp' => 'WhatsApp',
 		'sms'      => 'SMS',
 	);
@@ -89,7 +89,7 @@ function flxi_save_connection( $id, $type, $name, array $input, $active, $is_def
 	global $wpdb;
 	$types = flxi_connection_types();
 	if ( ! isset( $types[ $type ] ) ) {
-		return new WP_Error( 'flxi_type', __( 'Bilinmeyen bağlantı tipi.', 'flx-mail' ) );
+		return new WP_Error( 'flxi_type', __( 'Unknown connection type.', 'flx-mail' ) );
 	}
 	$def    = $types[ $type ];
 	$old    = $id ? flxi_get_connection( $id ) : null;
@@ -121,7 +121,7 @@ function flxi_save_connection( $id, $type, $name, array $input, $active, $is_def
 		}
 		if ( ! empty( $f['required'] ) && '' === (string) $v ) {
 			/* translators: %s: alan adı */
-			return new WP_Error( 'flxi_required', sprintf( __( '%s gerekli.', 'flx-mail' ), $f['label'] ) );
+			return new WP_Error( 'flxi_required', sprintf( __( '%s is required.', 'flx-mail' ), $f['label'] ) );
 		}
 		$config[ $k ] = 'password' === $f['type'] ? flxi_encrypt( $v ) : $v;
 	}
@@ -175,7 +175,7 @@ function flxi_delete_connection( $id ) {
  */
 function flxi_send_message( $channel, $to, $text, array $args = array() ) {
 	if ( empty( $args['ignore_blocklist'] ) && flxi_contact_blocked( $to, '', $channel ) ) {
-		$r = array( 'ok' => false, 'blocked' => true, 'error' => __( 'Kara listede: gönderilmedi', 'flx-mail' ), 'retry' => false );
+		$r = array( 'ok' => false, 'blocked' => true, 'error' => __( 'On the blocklist: not sent', 'flx-mail' ), 'retry' => false );
 		if ( ! isset( $args['log'] ) || $args['log'] ) {
 			flxi_log_message( $channel, $to, $text, false, $r['error'], array( 'source' => $args['source'] ?? '', 'template' => $args['template'] ?? '', 'campaign_id' => $args['campaign_id'] ?? 0, 'status' => 'blocked' ) );
 		}
@@ -184,7 +184,7 @@ function flxi_send_message( $channel, $to, $text, array $args = array() ) {
 	$conn = flxi_resolve_connection( $channel, (int) ( $args['connection_id'] ?? 0 ) );
 	if ( ! $conn ) {
 		/* translators: %s: kanal adı */
-		$r = array( 'ok' => false, 'error' => sprintf( __( '%s için etkin bağlantı yok. İletişim › Bağlantılar\'dan ekleyin.', 'flx-mail' ), flxi_channels()[ $channel ] ?? $channel ), 'retry' => false );
+		$r = array( 'ok' => false, 'error' => sprintf( __( 'There is no active connection for %s. Add one in Communication › Connections.', 'flx-mail' ), flxi_channels()[ $channel ] ?? $channel ), 'retry' => false );
 		return $r;
 	}
 	$type = flxi_connection_types()[ $conn['type'] ] ?? null;
@@ -228,11 +228,11 @@ function flxi_send_message( $channel, $to, $text, array $args = array() ) {
 function flxi_test_connection( $id, $to = '' ) {
 	$conn = flxi_get_connection( $id );
 	if ( ! $conn ) {
-		return array( 'ok' => false, 'error' => __( 'Bağlantı bulunamadı.', 'flx-mail' ) );
+		return array( 'ok' => false, 'error' => __( 'Connection not found.', 'flx-mail' ) );
 	}
 	$type = flxi_connection_types()[ $conn['type'] ] ?? null;
 	if ( ! $type || empty( $type['test'] ) ) {
-		return array( 'ok' => false, 'error' => __( 'Bu tip test edilemiyor.', 'flx-mail' ) );
+		return array( 'ok' => false, 'error' => __( 'This type cannot be tested.', 'flx-mail' ) );
 	}
 	try {
 		$r = call_user_func( $type['test'], $conn['config'], $to, $conn );

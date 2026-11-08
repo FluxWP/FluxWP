@@ -8,13 +8,13 @@ defined( 'ABSPATH' ) || exit;
 
 function flxst_perm() {
 	if ( ! is_user_logged_in() ) {
-		return new WP_Error( 'rest_forbidden', __( 'Giriş gerekli.', 'flx-studio' ), array( 'status' => 401 ) );
+		return new WP_Error( 'rest_forbidden', __( 'Login required.', 'flx-studio' ), array( 'status' => 401 ) );
 	}
-	return flxst_can_use() ? true : new WP_Error( 'rest_forbidden', __( 'Stüdyo için yetkiniz yok.', 'flx-studio' ), array( 'status' => 403 ) );
+	return flxst_can_use() ? true : new WP_Error( 'rest_forbidden', __( 'You do not have access to Studio.', 'flx-studio' ), array( 'status' => 403 ) );
 }
 
 function flxst_perm_manage() {
-	return flxst_can_manage() ? true : new WP_Error( 'rest_forbidden', __( 'Bu işlem için yetkiniz yok.', 'flx-studio' ), array( 'status' => 403 ) );
+	return flxst_can_manage() ? true : new WP_Error( 'rest_forbidden', __( 'You are not allowed to do this.', 'flx-studio' ), array( 'status' => 403 ) );
 }
 
 function flxst_route( $path, $methods, $cb, $perm = 'flxst_perm' ) {
@@ -22,7 +22,7 @@ function flxst_route( $path, $methods, $cb, $perm = 'flxst_perm' ) {
 }
 
 function flxst_nf() {
-	return new WP_Error( 'flxst_not_found', __( 'Kayıt bulunamadı.', 'flx-studio' ), array( 'status' => 404 ) );
+	return new WP_Error( 'flxst_not_found', __( 'Record not found.', 'flx-studio' ), array( 'status' => 404 ) );
 }
 
 function flxst_boot_data() {
@@ -75,13 +75,13 @@ function flxst_request_file( WP_REST_Request $req, array $allowed, $sub, $max_mb
 	$files = $req->get_file_params();
 	if ( ! empty( $files['file']['tmp_name'] ) ) {
 		if ( ! empty( $files['file']['error'] ) ) {
-			return new WP_Error( 'flxst_file', __( 'Dosya yüklenemedi.', 'flx-studio' ), array( 'status' => 400 ) );
+			return new WP_Error( 'flxst_file', __( 'The file could not be uploaded.', 'flx-studio' ), array( 'status' => 400 ) );
 		}
 		return flxst_store_file( array( 'tmp' => $files['file']['tmp_name'], 'name' => $files['file']['name'] ), $sub, $allowed, $max_mb );
 	}
 	$d = flxst_parse_data_url( (string) $req->get_param( 'data' ), $max_mb );
 	if ( ! $d ) {
-		return new WP_Error( 'flxst_file', __( 'Dosya gelmedi.', 'flx-studio' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxst_file', __( 'No file received.', 'flx-studio' ), array( 'status' => 400 ) );
 	}
 	$ext = explode( '/', $d[1] )[1] ?? 'bin';
 	return flxst_store_file( array( 'data' => $d[0], 'name' => sanitize_file_name( (string) $req->get_param( 'name' ) ) . '.' . $ext ), $sub, $allowed, $max_mb );
@@ -189,7 +189,7 @@ add_action(
 				$uid    = get_current_user_id();
 				$folder = (int) $r->get_param( 'folder' );
 				if ( ! flxst_folder_writable( $folder, $uid ) ) {
-					return new WP_Error( 'rest_forbidden', __( 'Bu klasöre taşıyamazsınız.', 'flx-studio' ), array( 'status' => 403 ) );
+					return new WP_Error( 'rest_forbidden', __( 'You cannot move items to this folder.', 'flx-studio' ), array( 'status' => 403 ) );
 				}
 				$n = 0;
 				foreach ( flxst_editable_rows( $r->get_param( 'ids' ), $uid ) as $row ) {
@@ -204,7 +204,7 @@ add_action(
 			'POST',
 			function ( WP_REST_Request $r ) {
 				if ( ! current_user_can( 'upload_files' ) ) {
-					return new WP_Error( 'rest_forbidden', __( 'Medya kitaplığına ekleme yetkiniz yok.', 'flx-studio' ), array( 'status' => 403 ) );
+					return new WP_Error( 'rest_forbidden', __( 'You are not allowed to add to the Media Library.', 'flx-studio' ), array( 'status' => 403 ) );
 				}
 				$row = flxst_item( (int) $r['id'] );
 				if ( ! flxst_item_visible( $row, get_current_user_id() ) || 'done' !== $row['state'] ) {
@@ -250,7 +250,7 @@ add_action(
 				}
 				if ( 0 === strpos( $row['job'], 'flxd_' ) ) {
 					// Henüz gönderilmedi: kayıtlar iptal, gönderim yapılmaz (gönderim sürüyorsa iş ardından durdurulur).
-					$wpdb->query( $wpdb->prepare( "UPDATE {$t} SET state = 'cancelled', error = %s WHERE job = %s AND state IN ('queued','running')", __( 'İptal edildi.', 'flx-studio' ), $row['job'] ) ); // phpcs:ignore WordPress.DB
+					$wpdb->query( $wpdb->prepare( "UPDATE {$t} SET state = 'cancelled', error = %s WHERE job = %s AND state IN ('queued','running')", __( 'Cancelled.', 'flx-studio' ), $row['job'] ) ); // phpcs:ignore WordPress.DB
 					delete_transient( 'flxst_' . $row['job'] );
 					return array( 'items' => flxst_poll( array( $row['job'] ), get_current_user_id() ) );
 				}
@@ -290,7 +290,7 @@ add_action(
 				$uid  = get_current_user_id();
 				$name = mb_substr( sanitize_text_field( (string) $r->get_param( 'name' ) ), 0, 120 );
 				if ( '' === $name ) {
-					return new WP_Error( 'flxst_name', __( 'Klasör adı gerekli.', 'flx-studio' ), array( 'status' => 400 ) );
+					return new WP_Error( 'flxst_name', __( 'Folder name is required.', 'flx-studio' ), array( 'status' => 400 ) );
 				}
 				$parent = (int) $r->get_param( 'parent' );
 				$wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
@@ -371,7 +371,7 @@ add_action(
 				global $wpdb;
 				$name = mb_substr( sanitize_text_field( (string) $r->get_param( 'name' ) ), 0, 120 );
 				if ( '' === $name ) {
-					return new WP_Error( 'flxst_name', __( 'Kişi adı gerekli.', 'flx-studio' ), array( 'status' => 400 ) );
+					return new WP_Error( 'flxst_name', __( 'Person name is required.', 'flx-studio' ), array( 'status' => 400 ) );
 				}
 				$wpdb->insert( flxst_table( 'people' ), array( 'user_id' => get_current_user_id(), 'name' => $name, 'shared' => 1, 'created' => time() ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
 				return array( 'id' => (int) $wpdb->insert_id, 'name' => $name, 'owner' => get_current_user_id(), 'photos' => array() );
@@ -484,7 +484,7 @@ add_action(
 				global $wpdb;
 				$name = mb_substr( sanitize_text_field( (string) $r->get_param( 'name' ) ), 0, 120 );
 				if ( '' === $name ) {
-					return new WP_Error( 'flxst_name', __( 'Şablon adı gerekli.', 'flx-studio' ), array( 'status' => 400 ) );
+					return new WP_Error( 'flxst_name', __( 'Template name is required.', 'flx-studio' ), array( 'status' => 400 ) );
 				}
 				$params = (array) $r->get_param( 'params' );
 				$keep   = array_intersect_key( $params, array_flip( array( 'kind', 'model', 'aspect', 'resolution', 'quality', 'size', 'n', 'duration', 'audio', 'mode', 'refs' ) ) );

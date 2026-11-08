@@ -99,14 +99,14 @@ function flxapp_rest_settings( WP_REST_Request $req ) {
 	$opt     = sanitize_key( (string) $req['option'] );
 	$screens = flxapp_settings_screens();
 	if ( ! isset( $screens[ $opt ] ) ) {
-		return new WP_Error( 'flxapp_not_found', __( 'Bu ayar uygulamadan açılamaz.', 'flx-app' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxapp_not_found', __( 'This setting cannot be opened from the app.', 'flx-app' ), array( 'status' => 404 ) );
 	}
 	$screen = $screens[ $opt ];
 	if ( 'GET' === $req->get_method() ) {
 		return flxapp_settings_get( $opt, $screen );
 	}
 	if ( ! current_user_can( $screen['write_cap'] ) ) {
-		return new WP_Error( 'rest_forbidden', __( 'Bu işlem için yetkiniz yok.', 'flx-app' ), array( 'status' => 403 ) );
+		return new WP_Error( 'rest_forbidden', __( 'You are not allowed to do this.', 'flx-app' ), array( 'status' => 403 ) );
 	}
 	$in     = (array) $req->get_json_params() + (array) $req->get_body_params();
 	$in     = isset( $in['values'] ) && is_array( $in['values'] ) ? $in['values'] : $in;
@@ -123,13 +123,13 @@ function flxapp_rest_settings( WP_REST_Request $req ) {
 		}
 		$v = flxapp_settings_clean_value( $in[ $k ], (array) ( $schema[ $k ] ?? array() ) );
 		if ( null === $v ) {
-			$errors[ $k ] = __( 'Geçersiz değer.', 'flx-app' );
+			$errors[ $k ] = __( 'Invalid value.', 'flx-app' );
 			continue;
 		}
 		$cur[ $k ] = $v;
 	}
 	if ( $errors ) {
-		return new WP_Error( 'rest_invalid_param', __( 'Bazı alanlar geçersiz.', 'flx-app' ), array( 'status' => 400, 'params' => $errors ) );
+		return new WP_Error( 'rest_invalid_param', __( 'Some fields are invalid.', 'flx-app' ), array( 'status' => 400, 'params' => $errors ) );
 	}
 	update_option( $opt, $cur );
 	return flxapp_settings_get( $opt, $screen );

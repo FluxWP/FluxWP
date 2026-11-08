@@ -148,7 +148,7 @@ function flxg_users( $refresh = false ) {
 
 function flxg_user_name( $id ) {
 	$u = get_userdata( (int) $id );
-	return $u ? ( $u->display_name ? $u->display_name : $u->user_login ) : __( 'Silinmiş kullanıcı', 'flx-tasks' );
+	return $u ? ( $u->display_name ? $u->display_name : $u->user_login ) : __( 'Deleted user', 'flx-tasks' );
 }
 
 function flxg_brand_name() {
@@ -163,38 +163,38 @@ function flxg_app_url( $task_id = 0 ) {
 
 function flxg_priorities() {
 	return array(
-		1 => array( 'label' => __( 'Acil', 'flx-tasks' ), 'color' => '#dc2626' ),
-		2 => array( 'label' => __( 'Yüksek', 'flx-tasks' ), 'color' => '#f59e0b' ),
+		1 => array( 'label' => __( 'Urgent', 'flx-tasks' ), 'color' => '#dc2626' ),
+		2 => array( 'label' => __( 'High', 'flx-tasks' ), 'color' => '#f59e0b' ),
 		3 => array( 'label' => __( 'Normal', 'flx-tasks' ), 'color' => '#3b82f6' ),
-		4 => array( 'label' => __( 'Düşük', 'flx-tasks' ), 'color' => '#94a3b8' ),
+		4 => array( 'label' => __( 'Low', 'flx-tasks' ), 'color' => '#94a3b8' ),
 	);
 }
 
 function flxg_default_statuses() {
 	return array(
-		array( 'key' => 'todo', 'label' => __( 'Yapılacak', 'flx-tasks' ), 'color' => '#94a3b8', 'type' => 'open' ),
-		array( 'key' => 'doing', 'label' => __( 'Devam ediyor', 'flx-tasks' ), 'color' => '#3b82f6', 'type' => 'open' ),
-		array( 'key' => 'review', 'label' => __( 'İncelemede', 'flx-tasks' ), 'color' => '#a855f7', 'type' => 'open' ),
-		array( 'key' => 'done', 'label' => __( 'Tamamlandı', 'flx-tasks' ), 'color' => '#16a34a', 'type' => 'done' ),
+		array( 'key' => 'todo', 'label' => __( 'To do', 'flx-tasks' ), 'color' => '#94a3b8', 'type' => 'open' ),
+		array( 'key' => 'doing', 'label' => __( 'In progress', 'flx-tasks' ), 'color' => '#3b82f6', 'type' => 'open' ),
+		array( 'key' => 'review', 'label' => __( 'In review', 'flx-tasks' ), 'color' => '#a855f7', 'type' => 'open' ),
+		array( 'key' => 'done', 'label' => __( 'Done', 'flx-tasks' ), 'color' => '#16a34a', 'type' => 'done' ),
 	);
 }
 
 function flxg_field_types() {
 	return array(
-		'text'     => __( 'Kısa metin', 'flx-tasks' ),
-		'textarea' => __( 'Uzun metin', 'flx-tasks' ),
-		'number'   => __( 'Sayı', 'flx-tasks' ),
-		'money'    => __( 'Tutar', 'flx-tasks' ),
-		'date'     => __( 'Tarih', 'flx-tasks' ),
-		'checkbox' => __( 'Onay kutusu', 'flx-tasks' ),
-		'dropdown' => __( 'Açılır liste', 'flx-tasks' ),
-		'labels'   => __( 'Etiketler (çoklu seçim)', 'flx-tasks' ),
-		'rating'   => __( 'Yıldız', 'flx-tasks' ),
-		'people'   => __( 'Kişi', 'flx-tasks' ),
-		'file'     => __( 'Dosya', 'flx-tasks' ),
-		'url'      => __( 'Web adresi', 'flx-tasks' ),
-		'email'    => __( 'E-posta', 'flx-tasks' ),
-		'phone'    => __( 'Telefon', 'flx-tasks' ),
+		'text'     => __( 'Short text', 'flx-tasks' ),
+		'textarea' => __( 'Long text', 'flx-tasks' ),
+		'number'   => __( 'Number', 'flx-tasks' ),
+		'money'    => __( 'Amount', 'flx-tasks' ),
+		'date'     => __( 'Date', 'flx-tasks' ),
+		'checkbox' => __( 'Checkbox', 'flx-tasks' ),
+		'dropdown' => __( 'Dropdown', 'flx-tasks' ),
+		'labels'   => __( 'Tags (multi-select)', 'flx-tasks' ),
+		'rating'   => __( 'Star rating', 'flx-tasks' ),
+		'people'   => __( 'Person', 'flx-tasks' ),
+		'file'     => __( 'File', 'flx-tasks' ),
+		'url'      => __( 'Web address', 'flx-tasks' ),
+		'email'    => __( 'Email', 'flx-tasks' ),
+		'phone'    => __( 'Phone', 'flx-tasks' ),
 	);
 }
 

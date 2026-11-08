@@ -11,7 +11,7 @@ final class FLXCRM_Page_Segments {
 
 	public static function render() {
 		if ( ! flxcrm_can() ) {
-			wp_die( esc_html__( 'Bu işlem için yetkiniz yok.', 'flx-crm' ), 403 );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-crm' ), 403 );
 		}
 		$edit = isset( $_GET['edit'] ) ? sanitize_key( $_GET['edit'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 		if ( '' !== $edit && flxcrm_can( true ) ) {
@@ -19,12 +19,12 @@ final class FLXCRM_Page_Segments {
 			return;
 		}
 		$can     = flxcrm_can( true );
-		$actions = $can ? '<a class="button button-primary" href="' . esc_url( flxcrm_admin_url( 'segments', array( 'edit' => 'new' ) ) ) . '">' . flxcrm_icon( 'plus', 15 ) . ' ' . esc_html__( 'Yeni segment', 'flx-crm' ) . '</a>' : '';
-		FLXCRM_Admin::open( __( 'Segmentler', 'flx-crm' ), __( 'Kurallarla tanımlanan canlı listeler: kişi kurala uyunca girer, uymayınca çıkar. Flux Mail\'de toplu gönderimin alıcısı olur.', 'flx-crm' ), $actions );
+		$actions = $can ? '<a class="button button-primary" href="' . esc_url( flxcrm_admin_url( 'segments', array( 'edit' => 'new' ) ) ) . '">' . flxcrm_icon( 'plus', 15 ) . ' ' . esc_html__( 'New segment', 'flx-crm' ) . '</a>' : '';
+		FLXCRM_Admin::open( __( 'Segments', 'flx-crm' ), __( 'Live lists defined by rules: a contact joins when they match and leaves when they no longer do. Use them as recipients for bulk sends in Flux Mail.', 'flx-crm' ), $actions );
 
 		$list = FLXCRM_Segments::all();
 		if ( ! $list ) {
-			echo '<div class="flxcrm-card flxcrm-empty-state">' . flxcrm_icon( 'layers', 28 ) . '<p><strong>' . esc_html__( 'Henüz segment yok.', 'flx-crm' ) . '</strong></p><p class="flxcrm-muted">' . esc_html__( 'Örnek: "Geçen yıl kurban bağışı yapıp bu yıl yapmayanlar", "İstanbul\'daki gönüllüler", "3 aydır alışveriş yapmayan müşteriler".', 'flx-crm' ) . '</p></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '<div class="flxcrm-card flxcrm-empty-state">' . flxcrm_icon( 'layers', 28 ) . '<p><strong>' . esc_html__( 'No segments yet.', 'flx-crm' ) . '</strong></p><p class="flxcrm-muted">' . esc_html__( 'Examples: "Gave a qurban donation last year but not this year", "Volunteers in Istanbul", "Customers with no purchase for 3 months".', 'flx-crm' ) . '</p></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
 			FLXCRM_Admin::close();
 			return;
 		}
@@ -35,16 +35,16 @@ final class FLXCRM_Page_Segments {
 			if ( '' !== $s['description'] ) {
 				echo '<p class="flxcrm-muted">' . esc_html( $s['description'] ) . '</p>';
 			}
-			echo '</div><strong class="flxcrm-segcard__count">' . esc_html( number_format_i18n( (int) $s['count'] ) ) . '<small>' . esc_html__( 'kişi', 'flx-crm' ) . '</small></strong></div>';
+			echo '</div><strong class="flxcrm-segcard__count">' . esc_html( number_format_i18n( (int) $s['count'] ) ) . '<small>' . esc_html__( 'contacts', 'flx-crm' ) . '</small></strong></div>';
 			echo '<p class="flxcrm-rule-sum">' . flxcrm_icon( 'filter', 14 ) . esc_html( FLXCRM_Segments::describe( $s['rules'] ) ) . '</p>'; // phpcs:ignore WordPress.Security.EscapeOutput
-			echo '<div class="flxcrm-segcard__actions"><a class="button button-small" href="' . esc_url( flxcrm_admin_url( 'contacts', array( 'sid' => (int) $s['id'] ) ) ) . '">' . esc_html__( 'Kişileri gör', 'flx-crm' ) . '</a>';
+			echo '<div class="flxcrm-segcard__actions"><a class="button button-small" href="' . esc_url( flxcrm_admin_url( 'contacts', array( 'sid' => (int) $s['id'] ) ) ) . '">' . esc_html__( 'View contacts', 'flx-crm' ) . '</a>';
 			if ( $can ) {
-				echo '<a class="button button-small" href="' . esc_url( flxcrm_admin_url( 'segments', array( 'edit' => (int) $s['id'] ) ) ) . '">' . esc_html__( 'Düzenle', 'flx-crm' ) . '</a>';
+				echo '<a class="button button-small" href="' . esc_url( flxcrm_admin_url( 'segments', array( 'edit' => (int) $s['id'] ) ) ) . '">' . esc_html__( 'Edit', 'flx-crm' ) . '</a>';
 				if ( $mail ) {
-					echo '<a class="button button-small" href="' . esc_url( $mail ) . '" title="' . esc_attr__( 'Flux Mail › Gönder: Alıcılar altında bu segmenti seçin. Yalnız ilgili kanala izin verenler alıcı olur.', 'flx-crm' ) . '">' . flxcrm_icon( 'send', 14 ) . ' ' . esc_html__( 'Gönderim yap', 'flx-crm' ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
+					echo '<a class="button button-small" href="' . esc_url( $mail ) . '" title="' . esc_attr__( 'Flux Mail › Send: pick this segment under Recipients. Only people who allowed that channel receive it.', 'flx-crm' ) . '">' . flxcrm_icon( 'send', 14 ) . ' ' . esc_html__( 'Send a campaign', 'flx-crm' ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
 				}
 				echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxcrm-inline">' . wp_nonce_field( 'flxcrm_csv', '_wpnonce', true, false ) . '<input type="hidden" name="action" value="flxcrm_csv"><input type="hidden" name="segment_id" value="' . (int) $s['id'] . '"><button class="button button-small">' . esc_html__( 'CSV', 'flx-crm' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput
-				echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxcrm-inline" data-flxcrm-confirm>' . wp_nonce_field( 'flxcrm_segment_delete', '_wpnonce', true, false ) . '<input type="hidden" name="action" value="flxcrm_segment_delete"><input type="hidden" name="id" value="' . (int) $s['id'] . '"><button class="button-link button-link-delete">' . esc_html__( 'Sil', 'flx-crm' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput
+				echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxcrm-inline" data-flxcrm-confirm>' . wp_nonce_field( 'flxcrm_segment_delete', '_wpnonce', true, false ) . '<input type="hidden" name="action" value="flxcrm_segment_delete"><input type="hidden" name="id" value="' . (int) $s['id'] . '"><button class="button-link button-link-delete">' . esc_html__( 'Delete', 'flx-crm' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput
 			}
 			echo '</div></article>';
 		}
@@ -70,7 +70,7 @@ final class FLXCRM_Page_Segments {
 		foreach ( flxcrm_rfm_segments() as $k => $s ) {
 			$opts['rfm'][] = array( $k, $s[0] );
 		}
-		$opts['rfm'][] = array( 'none', __( 'Ödemesi yok', 'flx-crm' ) );
+		$opts['rfm'][] = array( 'none', __( 'No payments', 'flx-crm' ) );
 		foreach ( FLXCRM_Contacts::consent_labels() as $k => $l ) {
 			$opts['consent'][] = array( $k, $l );
 		}
@@ -87,22 +87,22 @@ final class FLXCRM_Page_Segments {
 	private static function editor( $s ) {
 		$is_new = ! $s;
 		$s      = $s ? $s : array( 'id' => 0, 'name' => '', 'description' => '', 'rules' => array( 'match' => 'all', 'rules' => array( array( 'field' => 'role', 'op' => 'has', 'value' => 'donor' ) ) ) );
-		FLXCRM_Admin::open( $is_new ? __( 'Yeni segment', 'flx-crm' ) : __( 'Segmenti düzenle', 'flx-crm' ), __( 'Kuralları ekleyin; sağda kaç kişinin uyduğunu anında görürsünüz.', 'flx-crm' ) );
+		FLXCRM_Admin::open( $is_new ? __( 'New segment', 'flx-crm' ) : __( 'Edit segment', 'flx-crm' ), __( 'Add rules; the number of matching contacts updates on the right as you go.', 'flx-crm' ) );
 		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxcrm-segedit" data-flxcrm-segedit>';
 		wp_nonce_field( 'flxcrm_segment_save' );
 		echo '<input type="hidden" name="action" value="flxcrm_segment_save"><input type="hidden" name="id" value="' . (int) $s['id'] . '">';
 		echo '<input type="hidden" name="rules_json" value="' . esc_attr( wp_json_encode( $s['rules'] ) ) . '" data-flxcrm-rules>';
 		echo '<script type="application/json" data-flxcrm-schema>' . wp_json_encode( self::schema() ) . '</script>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		echo '<div class="flxcrm-segedit__main"><div class="flxcrm-card"><div class="flxcrm-form">';
-		echo '<label><span>' . esc_html__( 'Ad', 'flx-crm' ) . '</span><input type="text" name="name" value="' . esc_attr( $s['name'] ) . '" required placeholder="' . esc_attr__( 'Örn. Uzaklaşan bağışçılar', 'flx-crm' ) . '"></label>';
-		echo '<label><span>' . esc_html__( 'Açıklama', 'flx-crm' ) . '</span><input type="text" name="description" value="' . esc_attr( $s['description'] ) . '"></label>';
+		echo '<label><span>' . esc_html__( 'Name', 'flx-crm' ) . '</span><input type="text" name="name" value="' . esc_attr( $s['name'] ) . '" required placeholder="' . esc_attr__( 'E.g. Donors drifting away', 'flx-crm' ) . '"></label>';
+		echo '<label><span>' . esc_html__( 'Description', 'flx-crm' ) . '</span><input type="text" name="description" value="' . esc_attr( $s['description'] ) . '"></label>';
 		echo '</div></div>';
-		echo '<div class="flxcrm-card"><div class="flxcrm-card__head"><h2>' . flxcrm_icon( 'filter', 16 ) . esc_html__( 'Kurallar', 'flx-crm' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
-		echo '<label class="flxcrm-match">' . esc_html__( 'Kişi', 'flx-crm' ) . ' <select data-flxcrm-match><option value="all"' . selected( $s['rules']['match'] ?? 'all', 'all', false ) . '>' . esc_html__( 'tüm kurallara', 'flx-crm' ) . '</option><option value="any"' . selected( $s['rules']['match'] ?? 'all', 'any', false ) . '>' . esc_html__( 'en az birine', 'flx-crm' ) . '</option></select> ' . esc_html__( 'uysun', 'flx-crm' ) . '</label></div>';
+		echo '<div class="flxcrm-card"><div class="flxcrm-card__head"><h2>' . flxcrm_icon( 'filter', 16 ) . esc_html__( 'Rules', 'flx-crm' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<label class="flxcrm-match">' . esc_html__( 'Contact', 'flx-crm' ) . ' <select data-flxcrm-match><option value="all"' . selected( $s['rules']['match'] ?? 'all', 'all', false ) . '>' . esc_html__( 'all rules', 'flx-crm' ) . '</option><option value="any"' . selected( $s['rules']['match'] ?? 'all', 'any', false ) . '>' . esc_html__( 'at least one', 'flx-crm' ) . '</option></select> ' . esc_html__( 'Contact matches', 'flx-crm' ) . '</label></div>';
 		echo '<ol class="flxcrm-rules" data-flxcrm-rulelist></ol>';
-		echo '<button type="button" class="button" data-flxcrm-addrule>' . flxcrm_icon( 'plus', 14 ) . ' ' . esc_html__( 'Kural ekle', 'flx-crm' ) . '</button></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
-		echo '<p class="flxcrm-actions"><button class="button button-primary">' . esc_html__( 'Segmenti kaydet', 'flx-crm' ) . '</button> <a class="button" href="' . esc_url( flxcrm_admin_url( 'segments' ) ) . '">' . esc_html__( 'Vazgeç', 'flx-crm' ) . '</a></p></div>';
-		echo '<aside class="flxcrm-card flxcrm-segedit__side" aria-live="polite"><span class="flxcrm-kpi__label">' . esc_html__( 'Uyan kişi', 'flx-crm' ) . '</span><strong class="flxcrm-preview__count" data-flxcrm-count>…</strong><p class="flxcrm-muted" data-flxcrm-summary></p><ul class="flxcrm-preview__list" data-flxcrm-sample></ul></aside>';
+		echo '<button type="button" class="button" data-flxcrm-addrule>' . flxcrm_icon( 'plus', 14 ) . ' ' . esc_html__( 'Add rule', 'flx-crm' ) . '</button></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<p class="flxcrm-actions"><button class="button button-primary">' . esc_html__( 'Save segment', 'flx-crm' ) . '</button> <a class="button" href="' . esc_url( flxcrm_admin_url( 'segments' ) ) . '">' . esc_html__( 'Cancel', 'flx-crm' ) . '</a></p></div>';
+		echo '<aside class="flxcrm-card flxcrm-segedit__side" aria-live="polite"><span class="flxcrm-kpi__label">' . esc_html__( 'Matching contacts', 'flx-crm' ) . '</span><strong class="flxcrm-preview__count" data-flxcrm-count>…</strong><p class="flxcrm-muted" data-flxcrm-summary></p><ul class="flxcrm-preview__list" data-flxcrm-sample></ul></aside>';
 		echo '</form>';
 		FLXCRM_Admin::close();
 	}

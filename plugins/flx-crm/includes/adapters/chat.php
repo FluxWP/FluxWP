@@ -69,7 +69,7 @@ final class FLXCRM_Adapter_Chat {
 					array(
 						'source' => self::KEY,
 						'uniq'   => 'chat:started:' . (int) $row['id'],
-						'title'  => __( 'WhatsApp sohbeti açıldı', 'flx-crm' ),
+						'title'  => __( 'WhatsApp chat opened', 'flx-crm' ),
 						'url'    => 'admin.php?page=flx-chat&chat=' . (int) $row['id'],
 						'at'     => $row['created_at'] ?? flxcrm_now(),
 					)
@@ -123,7 +123,7 @@ final class FLXCRM_Adapter_Chat {
 				array(
 					'source'  => self::KEY,
 					'uniq'    => 'chat:msg:' . (int) $m['id'],
-					'title'   => $out ? __( 'WhatsApp yanıtı', 'flx-crm' ) : __( 'WhatsApp mesajı', 'flx-crm' ),
+					'title'   => $out ? __( 'WhatsApp reply', 'flx-crm' ) : __( 'WhatsApp message', 'flx-crm' ),
 					'url'     => 'admin.php?page=flx-chat&chat=' . (int) $chat['id'],
 					'user_id' => $out ? (int) $m['user_id'] : 0,
 					'at'      => self::msg_at( $m ),

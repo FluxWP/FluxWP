@@ -177,17 +177,17 @@ function flxai_media_providers() {
 function flxai_media_route( $model, $choice = 'auto' ) {
 	$cat = flxai_media_catalog();
 	if ( ! isset( $cat[ $model ] ) ) {
-		return new WP_Error( 'flxai_media_model', __( 'Desteklenmeyen model.', 'flx-ai' ) );
+		return new WP_Error( 'flxai_media_model', __( 'Unsupported model.', 'flx-ai' ) );
 	}
 	$routes = (array) $cat[ $model ]['routes'];
 	$labels = flxai_media_provider_labels();
 	if ( '' !== (string) $choice && 'auto' !== $choice ) {
 		if ( ! in_array( $choice, $routes, true ) ) {
-			return new WP_Error( 'flxai_media_provider', __( 'Bu sağlayıcı seçilen modeli sunmuyor.', 'flx-ai' ) );
+			return new WP_Error( 'flxai_media_provider', __( 'This provider does not offer the selected model.', 'flx-ai' ) );
 		}
 		if ( '' === flxai_media_key( $choice ) ) {
 			/* translators: %s: provider */
-			return new WP_Error( 'flxai_key', sprintf( __( '%s anahtarı girilmemiş (Flux AI & MCP › Ayarlar › Görsel ve video).', 'flx-ai' ), $labels[ $choice ] ?? $choice ) );
+			return new WP_Error( 'flxai_key', sprintf( __( '%s key is not set (Flux AI & MCP › Settings › Image and video).', 'flx-ai' ), $labels[ $choice ] ?? $choice ) );
 		}
 		return $choice;
 	}
@@ -197,7 +197,7 @@ function flxai_media_route( $model, $choice = 'auto' ) {
 		}
 	}
 	/* translators: %s: providers */
-	return new WP_Error( 'flxai_key', sprintf( __( 'Bu model için şu anahtarlardan biri gerekli: %s (Flux AI & MCP › Ayarlar › Görsel ve video).', 'flx-ai' ), implode( ', ', array_map( fn( $p ) => $labels[ $p ] ?? $p, $routes ) ) ) );
+	return new WP_Error( 'flxai_key', sprintf( __( 'This model needs one of these keys: %s (Flux AI & MCP › Settings › Image and video).', 'flx-ai' ), implode( ', ', array_map( fn( $p ) => $labels[ $p ] ?? $p, $routes ) ) ) );
 }
 
 /** Tahmini maliyet (USD). */
@@ -318,7 +318,7 @@ function flxai_media_submit( array $req ) {
 	$source = '' !== $source ? $source : 'unknown';
 	if ( ! flxai_source_enabled( $source ) ) {
 		/* translators: %s: plugin name */
-		return new WP_Error( 'flxai_source_off', sprintf( __( '%s için yapay zekâ kapalı (Flux AI & MCP › Bağlı sistemler).', 'flx-ai' ), flxai_source_label( $source ) ) );
+		return new WP_Error( 'flxai_source_off', sprintf( __( 'AI is off for %s (Flux AI & MCP › Connected systems).', 'flx-ai' ), flxai_source_label( $source ) ) );
 	}
 	$req = flxai_media_normalize( $req );
 	if ( is_wp_error( $req ) ) {
@@ -487,12 +487,12 @@ function flxai_media_normalize( array $req ) {
 		$model = (string) flxai_setting( 'video' === $kind ? 'media_video_model' : 'media_image_model', 'video' === $kind ? 'seedance-2.5' : 'gemini-nano-banana-2.1' );
 	}
 	if ( ! isset( $cat[ $model ] ) ) {
-		return new WP_Error( 'flxai_media_model', __( 'Desteklenmeyen model.', 'flx-ai' ) );
+		return new WP_Error( 'flxai_media_model', __( 'Unsupported model.', 'flx-ai' ) );
 	}
 	$m      = $cat[ $model ];
 	$prompt = trim( (string) ( $req['prompt'] ?? '' ) );
 	if ( '' === $prompt || mb_strlen( $prompt ) > 20000 ) {
-		return new WP_Error( 'flxai_media_prompt', __( 'İstem gerekli (en çok 20.000 karakter).', 'flx-ai' ) );
+		return new WP_Error( 'flxai_media_prompt', __( 'A prompt is required (up to 20,000 characters).', 'flx-ai' ) );
 	}
 	$list = function ( $v ) {
 		return array_values( array_filter( (array) $v, fn( $x ) => ( is_int( $x ) || ctype_digit( (string) $x ) ) ? (int) $x > 0 : ( is_string( $x ) && '' !== $x ) ) );
@@ -524,13 +524,13 @@ function flxai_media_normalize( array $req ) {
 	}
 	if ( count( $out['refs'] ) > (int) $m['max_refs'] ) {
 		/* translators: %d: max */
-		return new WP_Error( 'flxai_media_refs', sprintf( __( 'Bu model en çok %d referans görsel alır.', 'flx-ai' ), (int) $m['max_refs'] ) );
+		return new WP_Error( 'flxai_media_refs', sprintf( __( 'This model accepts at most %d reference images.', 'flx-ai' ), (int) $m['max_refs'] ) );
 	}
 	if ( '' === $out['aspect'] ) {
 		$out['aspect'] = 'video' === $m['kind'] ? '16:9' : '1:1';
 	}
 	if ( ! in_array( $out['aspect'], (array) $m['aspects'], true ) && ! ( 'image' === $m['kind'] && 'auto' === $out['aspect'] ) ) {
-		return new WP_Error( 'flxai_media_aspect', __( 'Bu model bu en-boy oranını desteklemiyor.', 'flx-ai' ) );
+		return new WP_Error( 'flxai_media_aspect', __( 'This model does not support this aspect ratio.', 'flx-ai' ) );
 	}
 	$out['resolution'] = '' !== $out['resolution'] ? $out['resolution'] : ( 'video' === $m['kind'] ? '720p' : '1K' );
 	$res_ok            = array_map( 'strtolower', (array) $m['resolutions'] );
@@ -546,7 +546,7 @@ function flxai_media_normalize( array $req ) {
 		$d = (array) $m['duration'];
 		if ( $out['duration'] < $d[0] || $out['duration'] > $d[1] ) {
 			/* translators: 1: min, 2: max */
-			return new WP_Error( 'flxai_media_duration', sprintf( __( 'Süre %1$d–%2$d saniye olmalı.', 'flx-ai' ), $d[0], $d[1] ) );
+			return new WP_Error( 'flxai_media_duration', sprintf( __( 'Duration must be %1$d–%2$d seconds.', 'flx-ai' ), $d[0], $d[1] ) );
 		}
 		if ( ! in_array( $out['mode'], array( 'auto', 'text', 'frames', 'reference' ), true ) ) {
 			$out['mode'] = 'auto';
@@ -555,10 +555,10 @@ function flxai_media_normalize( array $req ) {
 			$out['mode'] = $out['video_refs'] || $out['audio_refs'] || count( $out['refs'] ) > 2 ? 'reference' : ( $out['refs'] ? 'frames' : 'text' );
 		}
 		if ( 'frames' === $out['mode'] && ( ! $out['refs'] || count( $out['refs'] ) > 2 ) ) {
-			return new WP_Error( 'flxai_media_refs', __( 'İlk/son kare için 1 ya da 2 görsel seçin.', 'flx-ai' ) );
+			return new WP_Error( 'flxai_media_refs', __( 'Pick 1 or 2 images for the first/last frame.', 'flx-ai' ) );
 		}
 		if ( 'reference' === $out['mode'] && ! $out['refs'] && ! $out['video_refs'] ) {
-			return new WP_Error( 'flxai_media_refs', __( 'Referans modu için görsel ya da video gerekli.', 'flx-ai' ) );
+			return new WP_Error( 'flxai_media_refs', __( 'Reference mode needs an image or a video.', 'flx-ai' ) );
 		}
 		$out['mask'] = null;
 	} else {
@@ -570,10 +570,10 @@ function flxai_media_normalize( array $req ) {
 		}
 		if ( null !== $out['mask'] && '' !== $out['mask'] ) {
 			if ( empty( $m['mask'] ) ) {
-				return new WP_Error( 'flxai_media_mask', __( 'Bu model alan düzenlemeyi desteklemiyor.', 'flx-ai' ) );
+				return new WP_Error( 'flxai_media_mask', __( 'This model does not support area editing.', 'flx-ai' ) );
 			}
 			if ( ! $out['refs'] ) {
-				return new WP_Error( 'flxai_media_mask', __( 'Alan düzenleme için düzenlenecek görsel (refs[0]) gerekli.', 'flx-ai' ) );
+				return new WP_Error( 'flxai_media_mask', __( 'Area editing needs the image to edit (refs[0]).', 'flx-ai' ) );
 			}
 		} else {
 			$out['mask'] = null;
@@ -613,7 +613,7 @@ function flxai_media_ref_bytes( $ref, $max = 20971520 ) {
 	$ref = (string) $ref;
 	if ( preg_match( '#^data:([a-z]+/[a-z0-9.+-]+);base64,(.+)$#is', $ref, $mm ) ) {
 		$b = base64_decode( $mm[2], true ); // phpcs:ignore
-		return false === $b ? new WP_Error( 'flxai_media_ref', __( 'Referans okunamadı.', 'flx-ai' ) ) : array( $b, strtolower( $mm[1] ) );
+		return false === $b ? new WP_Error( 'flxai_media_ref', __( 'Could not read the reference.', 'flx-ai' ) ) : array( $b, strtolower( $mm[1] ) );
 	}
 	// Kendi sitemizdeki dosya ise diskten oku.
 	$up = wp_upload_dir();
@@ -626,7 +626,7 @@ function flxai_media_ref_bytes( $ref, $max = 20971520 ) {
 		}
 	}
 	if ( ! preg_match( '#^https?://#i', $ref ) ) {
-		return new WP_Error( 'flxai_media_ref', __( 'Referans okunamadı.', 'flx-ai' ) );
+		return new WP_Error( 'flxai_media_ref', __( 'Could not read the reference.', 'flx-ai' ) );
 	}
 	$r = wp_safe_remote_get(
 		$ref,
@@ -636,7 +636,7 @@ function flxai_media_ref_bytes( $ref, $max = 20971520 ) {
 		)
 	);
 	if ( is_wp_error( $r ) || 200 !== wp_remote_retrieve_response_code( $r ) ) {
-		return new WP_Error( 'flxai_media_ref', __( 'Referans indirilemedi.', 'flx-ai' ) );
+		return new WP_Error( 'flxai_media_ref', __( 'Could not download the reference.', 'flx-ai' ) );
 	}
 	$mime = strtolower( trim( explode( ';', (string) wp_remote_retrieve_header( $r, 'content-type' ) )[0] ) );
 	return array( (string) wp_remote_retrieve_body( $r ), '' !== $mime ? $mime : 'image/png' );
@@ -700,7 +700,7 @@ function flxai_media_error_text( $provider, $code, $json, $raw ) {
 function flxai_media_ambiguous( $provider, $e ) {
 	$labels = flxai_media_provider_labels();
 	/* translators: 1: provider, 2: error */
-	return new WP_Error( 'flxai_media_ambiguous', sprintf( __( '%1$s cevabı alınamadı (%2$s). İstek ücretlendirilmiş olabilir; tekrar göndermeden önce sağlayıcı geçmişine bakın.', 'flx-ai' ), $labels[ $provider ] ?? $provider, is_wp_error( $e ) ? $e->get_error_message() : (string) $e ), array( 'maybe_charged' => true ) );
+	return new WP_Error( 'flxai_media_ambiguous', sprintf( __( 'No response from %1$s (%2$s). The request may have been charged; check the provider\'s history before sending again.', 'flx-ai' ), $labels[ $provider ] ?? $provider, is_wp_error( $e ) ? $e->get_error_message() : (string) $e ), array( 'maybe_charged' => true ) );
 }
 
 /* ---------------------------------------------------------------------------
@@ -739,7 +739,7 @@ function flxai_media_send( $provider, $model, array $req ) {
 		case 'openrouter':
 			return 'video' === $req['kind'] ? flxai_media_send_openrouter_video( $key, $model, $req ) : flxai_media_send_openrouter_image( $key, $model, $req );
 	}
-	return new WP_Error( 'flxai_media_provider', __( 'Desteklenmeyen sağlayıcı.', 'flx-ai' ) );
+	return new WP_Error( 'flxai_media_provider', __( 'Unsupported provider.', 'flx-ai' ) );
 }
 
 /** fal.ai uç noktası ve girdi. */
@@ -842,7 +842,7 @@ function flxai_media_fal_input( $model, array $req ) {
 		}
 		return array( 'minimax/h3-max/text-to-video', $in );
 	}
-	return new WP_Error( 'flxai_media_model', __( 'Desteklenmeyen model.', 'flx-ai' ) );
+	return new WP_Error( 'flxai_media_model', __( 'Unsupported model.', 'flx-ai' ) );
 }
 
 /** fal.ai kuyruğuna gönderir (asenkron). */
@@ -862,7 +862,7 @@ function flxai_media_send_fal( $key, $model, array $req ) {
 	}
 	$rid = (string) ( $json['request_id'] ?? '' );
 	if ( ! preg_match( '/^[A-Za-z0-9_-]{1,128}$/', $rid ) ) {
-		return flxai_media_ambiguous( 'fal', __( 'iş kimliği yok', 'flx-ai' ) );
+		return flxai_media_ambiguous( 'fal', __( 'no request id', 'flx-ai' ) );
 	}
 	// Durum adresi uygulama yolundadır (…/edit gibi alt yollar olmadan); fal döndürdüyse onu kullan.
 	$parts = explode( '/', $endpoint );
@@ -889,7 +889,7 @@ function flxai_media_send_evolink( $key, $model, array $req ) {
 	$auds = array_values( array_filter( array_map( 'flxai_media_ref_url', $req['audio_refs'] ) ) );
 	foreach ( array_merge( $refs, $vids, $auds ) as $u ) {
 		if ( ! preg_match( '#^https?://#i', $u ) ) {
-			return new WP_Error( 'flxai_media_ref', __( 'EvoLink yalnız herkese açık http(s) adreslerini kabul eder; referansı siteye yükleyin.', 'flx-ai' ) );
+			return new WP_Error( 'flxai_media_ref', __( 'EvoLink only accepts public http(s) URLs; upload the reference to the site.', 'flx-ai' ) );
 		}
 	}
 	$mode = array(
@@ -928,7 +928,7 @@ function flxai_media_send_evolink( $key, $model, array $req ) {
 	}
 	$id = (string) ( $json['id'] ?? '' );
 	if ( ! preg_match( '/^[A-Za-z0-9_.:-]{1,128}$/', $id ) ) {
-		return flxai_media_ambiguous( 'evolink', __( 'görev kimliği yok', 'flx-ai' ) );
+		return flxai_media_ambiguous( 'evolink', __( 'no task id', 'flx-ai' ) );
 	}
 	return array(
 		'outputs' => array(),
@@ -939,13 +939,13 @@ function flxai_media_send_evolink( $key, $model, array $req ) {
 /** OpenRouter video (Seedance) gönderir. */
 function flxai_media_send_openrouter_video( $key, $model, array $req ) {
 	if ( $req['video_refs'] || $req['audio_refs'] ) {
-		return new WP_Error( 'flxai_media_ref', __( 'OpenRouter video/ses referansı almaz; fal.ai ya da EvoLink seçin.', 'flx-ai' ) );
+		return new WP_Error( 'flxai_media_ref', __( 'OpenRouter does not accept video/audio references; choose fal.ai or EvoLink.', 'flx-ai' ) );
 	}
 	if ( 'adaptive' === $req['aspect'] ) {
-		return new WP_Error( 'flxai_media_aspect', __( 'OpenRouter için en-boy oranı seçin.', 'flx-ai' ) );
+		return new WP_Error( 'flxai_media_aspect', __( 'Choose an aspect ratio for OpenRouter.', 'flx-ai' ) );
 	}
 	if ( 'seedance-2.5' === $model && '1080p' === $req['resolution'] ) {
-		return new WP_Error( 'flxai_media_res', __( 'OpenRouter\'da Seedance 2.5 en çok 720p; 1080p için fal.ai ya da EvoLink seçin.', 'flx-ai' ) );
+		return new WP_Error( 'flxai_media_res', __( 'Seedance 2.5 on OpenRouter is limited to 720p; choose fal.ai or EvoLink for 1080p.', 'flx-ai' ) );
 	}
 	$refs = array_values( array_filter( array_map( 'flxai_media_ref_url', $req['refs'] ) ) );
 	$body = array(
@@ -980,7 +980,7 @@ function flxai_media_send_openrouter_video( $key, $model, array $req ) {
 	}
 	$id = (string) ( $json['id'] ?? '' );
 	if ( ! preg_match( '/^[A-Za-z0-9_-]{1,128}$/', $id ) ) {
-		return flxai_media_ambiguous( 'openrouter', __( 'görev kimliği yok', 'flx-ai' ) );
+		return flxai_media_ambiguous( 'openrouter', __( 'no task id', 'flx-ai' ) );
 	}
 	return array(
 		'outputs' => array(),
@@ -1040,7 +1040,7 @@ function flxai_media_send_openai( $key, $model, array $req ) {
 		foreach ( $req['refs'] as $ref ) {
 			$u = flxai_media_ref_url( $ref );
 			if ( '' === $u ) {
-				return new WP_Error( 'flxai_media_ref', __( 'Referans okunamadı.', 'flx-ai' ) );
+				return new WP_Error( 'flxai_media_ref', __( 'Could not read the reference.', 'flx-ai' ) );
 			}
 			$body['images'][] = array( 'image_url' => $u );
 		}
@@ -1062,7 +1062,7 @@ function flxai_media_send_openai( $key, $model, array $req ) {
 	}
 	$outs = flxai_media_b64_outputs( $json );
 	if ( ! $outs ) {
-		return new WP_Error( 'flxai_media_empty', __( 'OpenAI görsel döndürmedi. Tekrar göndermeden önce kullanım geçmişine bakın.', 'flx-ai' ), array( 'maybe_charged' => true ) );
+		return new WP_Error( 'flxai_media_empty', __( 'OpenAI returned no image. Check usage history before sending again.', 'flx-ai' ), array( 'maybe_charged' => true ) );
 	}
 	return array(
 		'outputs'   => $outs,
@@ -1103,7 +1103,7 @@ function flxai_media_send_openrouter_image( $key, $model, array $req ) {
 		foreach ( $req['refs'] as $ref ) {
 			$u = flxai_media_ref_url( $ref );
 			if ( '' === $u ) {
-				return new WP_Error( 'flxai_media_ref', __( 'Referans okunamadı.', 'flx-ai' ) );
+				return new WP_Error( 'flxai_media_ref', __( 'Could not read the reference.', 'flx-ai' ) );
 			}
 			$body['input_references'][] = array(
 				'type'      => 'image_url',
@@ -1121,7 +1121,7 @@ function flxai_media_send_openrouter_image( $key, $model, array $req ) {
 	}
 	$outs = flxai_media_b64_outputs( $json );
 	if ( ! $outs ) {
-		return new WP_Error( 'flxai_media_empty', __( 'OpenRouter görsel döndürmedi. Tekrar göndermeden önce kullanım geçmişine bakın.', 'flx-ai' ), array( 'maybe_charged' => true ) );
+		return new WP_Error( 'flxai_media_empty', __( 'OpenRouter returned no image. Check usage history before sending again.', 'flx-ai' ), array( 'maybe_charged' => true ) );
 	}
 	$c = $json['usage']['cost'] ?? null;
 	return array(
@@ -1191,7 +1191,7 @@ function flxai_media_send_gemini( $key, $model, array $req ) {
 		$tok += (int) ( $json['usageMetadata']['totalTokenCount'] ?? 0 );
 	}
 	if ( ! $outs ) {
-		return new WP_Error( 'flxai_media_empty', __( 'Gemini görsel döndürmedi (içerik filtresi olabilir).', 'flx-ai' ), array( 'maybe_charged' => true ) );
+		return new WP_Error( 'flxai_media_empty', __( 'Gemini returned no image (possibly the content filter).', 'flx-ai' ), array( 'maybe_charged' => true ) );
 	}
 	return array(
 		'outputs' => $outs,
@@ -1213,7 +1213,7 @@ function flxai_media_send_gemini( $key, $model, array $req ) {
 function flxai_media_status( $job ) {
 	$row = flxai_media_job_get( $job );
 	if ( ! $row ) {
-		return new WP_Error( 'flxai_media_job', __( 'İş bulunamadı.', 'flx-ai' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxai_media_job', __( 'Job not found.', 'flx-ai' ), array( 'status' => 404 ) );
 	}
 	if ( ! in_array( $row['state'], array( 'queued', 'running' ), true ) ) {
 		return flxai_media_public( $row );
@@ -1227,7 +1227,7 @@ function flxai_media_status( $job ) {
 	$meta = is_array( $meta ) ? $meta : array();
 	$key  = flxai_media_key( $row['provider'] );
 	if ( '' === $key ) {
-		return flxai_media_public( array_merge( $row, array( 'error' => __( 'Sağlayıcı anahtarı silinmiş; iş korunuyor. Anahtarı geri girince devam eder.', 'flx-ai' ) ) ) );
+		return flxai_media_public( array_merge( $row, array( 'error' => __( 'The provider key was removed; the job is kept and continues once the key is entered again.', 'flx-ai' ) ) ) );
 	}
 	switch ( $row['provider'] ) {
 		case 'fal':
@@ -1242,7 +1242,7 @@ function flxai_media_status( $job ) {
 		default:
 			$st = array(
 				'state' => 'failed',
-				'error' => __( 'İş yarıda kaldı.', 'flx-ai' ),
+				'error' => __( 'The job was interrupted.', 'flx-ai' ),
 			);
 	}
 	if ( is_wp_error( $st ) ) {
@@ -1379,7 +1379,7 @@ function flxai_media_poll_fal( $key, array $meta ) {
 	if ( ! $outs ) {
 		return array(
 			'state' => 'failed',
-			'error' => __( 'fal.ai çıktı döndürmedi (içerik filtresi olabilir).', 'flx-ai' ),
+			'error' => __( 'fal.ai returned no output (possibly the content filter).', 'flx-ai' ),
 		);
 	}
 	return array(
@@ -1411,7 +1411,7 @@ function flxai_media_poll_evolink( $key, array $meta ) {
 	}
 	if ( in_array( $s, array( 'completed', 'succeeded', 'success' ), true ) ) {
 		if ( ! $urls ) {
-			return new WP_Error( 'flxai_media_poll', __( 'EvoLink görevi bitti ama sonuç adresi henüz yok.', 'flx-ai' ) );
+			return new WP_Error( 'flxai_media_poll', __( 'The EvoLink task finished but has no result URL yet.', 'flx-ai' ) );
 		}
 		$cost = $json['usage']['cost'] ?? ( $json['usage']['total_cost'] ?? null );
 		return array(
@@ -1495,7 +1495,7 @@ function flxai_media_poll_openrouter( $key, array $meta ) {
 function flxai_media_cancel( $job ) {
 	$row = flxai_media_job_get( $job );
 	if ( ! $row ) {
-		return new WP_Error( 'flxai_media_job', __( 'İş bulunamadı.', 'flx-ai' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxai_media_job', __( 'Job not found.', 'flx-ai' ), array( 'status' => 404 ) );
 	}
 	if ( ! in_array( $row['state'], array( 'queued', 'running' ), true ) ) {
 		return flxai_media_public( $row );
@@ -1506,10 +1506,10 @@ function flxai_media_cancel( $job ) {
 		$key = flxai_media_key( 'fal' );
 		$r   = '' !== $key ? flxai_media_http( 'PUT', $meta['result'] . '/cancel', array( 'Authorization' => 'Key ' . $key ), null, 15 ) : null;
 		$ok  = is_array( $r ) && $r[0] < 300;
-		$note = $ok ? '' : __( 'Sağlayıcı iptali onaylamadı; iş tamamlanırsa ücretlendirilebilir.', 'flx-ai' );
+		$note = $ok ? '' : __( 'The provider did not confirm the cancellation; the job may be charged if it completes.', 'flx-ai' );
 		$cost = $ok ? 0 : (float) $row['cost'];
 	} else {
-		$note = __( 'Yerel olarak iptal edildi; sağlayıcıda başlamış iş ücretlendirilebilir.', 'flx-ai' );
+		$note = __( 'Cancelled locally; a job already started at the provider may be charged.', 'flx-ai' );
 		$cost = (float) $row['cost'];
 	}
 	flxai_media_job_update(
@@ -1572,12 +1572,12 @@ function flxai_media_write( $bytes, $mime ) {
 		$ext  = flxai_media_ext( $mime );
 	}
 	if ( '' === $ext ) {
-		return new WP_Error( 'flxai_media_type', __( 'Çıktı türü desteklenmiyor.', 'flx-ai' ) );
+		return new WP_Error( 'flxai_media_type', __( 'Unsupported output type.', 'flx-ai' ) );
 	}
 	list( $dir, $url ) = flxai_media_dir();
 	$name = bin2hex( random_bytes( 10 ) ) . '.' . $ext;
 	if ( false === file_put_contents( $dir . '/' . $name, $bytes ) ) { // phpcs:ignore
-		return new WP_Error( 'flxai_media_write', __( 'Çıktı kaydedilemedi.', 'flx-ai' ) );
+		return new WP_Error( 'flxai_media_write', __( 'Could not save the output.', 'flx-ai' ) );
 	}
 	$out = array(
 		'url'    => $url . '/' . $name,
@@ -1624,7 +1624,7 @@ function flxai_media_download( array $o, $provider ) {
 	);
 	if ( is_wp_error( $r ) || 200 !== wp_remote_retrieve_response_code( $r ) || ! file_exists( $tmp ) ) {
 		@unlink( $tmp ); // phpcs:ignore
-		return new WP_Error( 'flxai_media_dl', __( 'Çıktı indirilemedi; sağlayıcı adresi geçici olarak kullanılıyor.', 'flx-ai' ) );
+		return new WP_Error( 'flxai_media_dl', __( 'Could not download the output; the provider URL is used for now.', 'flx-ai' ) );
 	}
 	$mime = strtolower( trim( explode( ';', (string) wp_remote_retrieve_header( $r, 'content-type' ) )[0] ) );
 	$f    = finfo_open( FILEINFO_MIME_TYPE );
@@ -1633,7 +1633,7 @@ function flxai_media_download( array $o, $provider ) {
 	$ext  = flxai_media_ext( $mime );
 	if ( '' === $ext ) {
 		@unlink( $tmp ); // phpcs:ignore
-		return new WP_Error( 'flxai_media_type', __( 'Çıktı türü desteklenmiyor.', 'flx-ai' ) );
+		return new WP_Error( 'flxai_media_type', __( 'Unsupported output type.', 'flx-ai' ) );
 	}
 	$name = bin2hex( random_bytes( 10 ) ) . '.' . $ext;
 	rename( $tmp, $dir . '/' . $name ); // phpcs:ignore
@@ -1791,7 +1791,7 @@ add_action(
 			return function ( WP_REST_Request $r ) use ( $fn ) {
 				$row = flxai_media_job_get( (string) $r['job'] );
 				if ( ! $row || ! flxai_media_can_view( $row ) ) {
-					return new WP_Error( 'flxai_media_job', __( 'İş bulunamadı.', 'flx-ai' ), array( 'status' => 404 ) );
+					return new WP_Error( 'flxai_media_job', __( 'Job not found.', 'flx-ai' ), array( 'status' => 404 ) );
 				}
 				$res = $fn( $row['job'] );
 				return is_wp_error( $res ) ? $res : rest_ensure_response( $res );

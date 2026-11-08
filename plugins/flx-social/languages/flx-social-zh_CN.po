@@ -1,0 +1,1661 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: zh_CN\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Draft"
+msgstr "吃水"
+
+msgid "Awaiting approval"
+msgstr "等待批准"
+
+msgid "Scheduled"
+msgstr "预定"
+
+msgid "Publishing"
+msgstr "出版"
+
+msgid "Published"
+msgstr "已发表"
+
+msgid "Partially published"
+msgstr "部分发表"
+
+msgid "Failed"
+msgstr "失败"
+
+msgid "Cancelled"
+msgstr "取消"
+
+msgid "Sending"
+msgstr "发送"
+
+msgid "Deleted from network"
+msgstr "已从网络删除"
+
+msgid "Theme: system"
+msgstr "主题:系统"
+
+msgid "Theme: light"
+msgstr "主题:光"
+
+msgid "Theme: dark"
+msgstr "主题:黑暗"
+
+msgid "Opening Social Media…"
+msgstr "打开社交媒体..."
+
+msgid "Try again"
+msgstr "再试一次"
+
+msgid "Menu"
+msgstr "菜单"
+
+msgid "Social Media"
+msgstr "社交媒体"
+
+msgid "New post"
+msgstr "新帖子"
+
+msgid "Dashboard"
+msgstr "仪表板"
+
+msgid "Posts"
+msgstr "帖子"
+
+msgid "Calendar"
+msgstr "日历"
+
+msgid "Accounts"
+msgstr "账户"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "{n} posts with errors"
+msgstr "{n}帖子有错误"
+
+msgid "Theme"
+msgstr "主题"
+
+msgid "Back to dashboard"
+msgstr "返回仪表板"
+
+msgid "(no text)"
+msgstr "(无文字)"
+
+msgid "Details"
+msgstr "详情"
+
+msgid "Edit"
+msgstr "编辑"
+
+msgid "Duplicate"
+msgstr "重复"
+
+msgid "Copy created as a draft."
+msgstr "作为草稿创建的副本。"
+
+msgid "Approve"
+msgstr "批准"
+
+msgid "Approved."
+msgstr "已批准。"
+
+msgid "Reject"
+msgstr "拒绝"
+
+msgid "Share now"
+msgstr "立即分享"
+
+msgid "Share now?"
+msgstr "现在分享?"
+
+msgid "The post is published on the selected accounts right away."
+msgstr "该帖子立即发布在选定的帐户上。"
+
+msgid "Share"
+msgstr "分享"
+
+msgid "Queued, it will be live shortly."
+msgstr "排队,很快就会上线。"
+
+msgid "Submit for approval"
+msgstr "提交审批"
+
+msgid "Submitted for approval."
+msgstr "已提交审批。"
+
+msgid "Unschedule (back to draft)"
+msgstr "取消安排(回到草稿)"
+
+msgid "Moved to drafts."
+msgstr "移至草稿。"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Why? (visible to the author)"
+msgstr "为什么? (作者可见)"
+
+msgid "Reject post"
+msgstr "拒绝发帖"
+
+msgid "The post goes back to draft; the author sees the note."
+msgstr "该帖子回到草稿;作者看到了注释。"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Rejected."
+msgstr "拒绝了。"
+
+msgid "Delete post"
+msgstr "删除帖子"
+
+msgid "The post is removed from the list."
+msgstr "该帖子已从列表中删除。"
+
+msgid "Also delete from the networks it was published on ({n} accounts)"
+msgstr "同时从发布该内容的网络中删除({n}帐户)"
+
+msgid "Instagram and TikTok posts cannot be deleted via the API; delete them there manually."
+msgstr "Instagram 和 TikTok 帖子无法通过 API 删除;手动删除它们。"
+
+msgid "Deleted."
+msgstr "已删除。"
+
+msgid "All"
+msgstr "全部"
+
+msgid "Drafts"
+msgstr "草稿"
+
+msgid "With errors"
+msgstr "有错误"
+
+msgid "Load more"
+msgstr "加载更多"
+
+msgid "Search text, title or tag"
+msgstr "搜索文本、标题或标签"
+
+msgid "Search"
+msgstr "搜索"
+
+msgid "Account"
+msgstr "账户"
+
+msgid "All accounts"
+msgstr "所有账户"
+
+msgid "Only mine"
+msgstr "只有我的"
+
+msgid "Posts prepared by people without publishing permission. Once approved they are shared at their time (or right away)."
+msgstr "由未经发布许可的人编写的帖子。一旦获得批准,它们就会在适当的时间(或立即)共享。"
+
+msgid "{n} selected"
+msgstr "已选择{n}"
+
+msgid "Schedule"
+msgstr "时间表"
+
+msgid "Scheduled."
+msgstr "已安排。"
+
+msgid "Move to drafts"
+msgstr "移至草稿"
+
+msgid "Delete selected?"
+msgstr "删除所选内容?"
+
+msgid "Only removed from the list; posts on the networks are not touched."
+msgstr "仅从列表中删除;网络上的帖子没有被触及。"
+
+msgid "Clear selection"
+msgstr "清除选择"
+
+msgid "Select"
+msgstr "选择"
+
+msgid "every {n} days"
+msgstr "每{n}天"
+
+msgid "Actions"
+msgstr "行动"
+
+msgid "No posts awaiting approval"
+msgstr "没有等待批准的帖子"
+
+msgid "No posts"
+msgstr "没有帖子"
+
+msgid "Create your first post; share to several accounts at once, with separate text for each."
+msgstr "创建您的第一篇文章;一次共享到多个帐户,每个帐户都有单独的文本。"
+
+msgid "Month"
+msgstr "月份"
+
+msgid "List"
+msgstr "列表"
+
+msgid "Previous month"
+msgstr "上个月"
+
+msgid "Next month"
+msgstr "下个月"
+
+msgid "Today"
+msgstr "今天"
+
+msgid "Time zone: {tz}"
+msgstr "时区:{tz}"
+
+msgid "Post on this day"
+msgstr "这天发帖"
+
+msgid "+{n} more"
+msgstr "+{n}更多"
+
+msgid "New time: {t}"
+msgstr "新时间:{t}"
+
+msgid "No posts this month."
+msgstr "这个月没有帖子。"
+
+msgid "Connect account"
+msgstr "连接账户"
+
+msgid "Account added."
+msgstr "帐户已添加。"
+
+msgid "{n} account connections refreshed."
+msgstr "{n}帐户连接已刷新。"
+
+msgid "No accounts yet"
+msgstr "还没有账户"
+
+msgid "First enter the network keys under Settings › Apps, then connect the account here."
+msgstr "首先在“设置”>“应用程序”下输入网络密钥,然后在此处连接帐户。"
+
+msgid "Accounts are connected by an administrator."
+msgstr "帐户由管理员连接。"
+
+msgid "App keys"
+msgstr "App keys"
+
+msgid "{n} characters"
+msgstr "{n}字符"
+
+msgid "{n} images"
+msgstr "{n}图像"
+
+msgid "video"
+msgstr "视频"
+
+msgid "editing"
+msgstr "编辑"
+
+msgid "deleting"
+msgstr "删除"
+
+msgid "Active"
+msgstr "活跃"
+
+msgid "Needs reconnecting"
+msgstr "需要重新连接"
+
+msgid "Off"
+msgstr "关闭"
+
+msgid "Reconnect"
+msgstr "重新连接"
+
+msgid "Page"
+msgstr "页面"
+
+msgid "Profile"
+msgstr "公司简介"
+
+msgid "Company page"
+msgstr "公司页面"
+
+msgid "Channel"
+msgstr "频道"
+
+msgid "Location"
+msgstr "地点"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Group"
+msgstr "集团"
+
+msgid "Business"
+msgstr "商务"
+
+msgid "Creator"
+msgstr "创作者"
+
+msgid "Test and refresh connection"
+msgstr "测试并刷新连接"
+
+msgid "Trying…"
+msgstr "尝试..."
+
+msgid "Connection works."
+msgstr "连接有效。"
+
+msgid "Rename"
+msgstr "重命名"
+
+msgid "Account name"
+msgstr "账户名称"
+
+msgid "Enable"
+msgstr "启用"
+
+msgid "Turn off (hidden in post account picker)"
+msgstr "关闭(隐藏在帖子帐户选择器中)"
+
+msgid "Remove"
+msgstr "删除"
+
+msgid "Remove account?"
+msgstr "删除帐户?"
+
+msgid "The token is deleted; posts scheduled for this account will not be shared. Published posts stay on the network."
+msgstr "令牌被删除;不会共享为此帐户安排的帖子。发布的帖子保留在网络上。"
+
+msgid "Removed."
+msgstr "已删除。"
+
+msgid "Enter keys first: {app}"
+msgstr "首先输入密钥:{app}"
+
+msgid "The network's sign-in page opens; after you allow access you come back here. If there are several pages/channels you choose which to add."
+msgstr "网络的登录页面打开;允许访问后,您将返回此处。如果有多个页面/频道,您可以选择添加哪些页面/频道。"
+
+msgid "Choose accounts to add"
+msgstr "选择要添加的帐户"
+
+msgid "{n} accounts added."
+msgstr "已添加{n}帐户。"
+
+msgid "Add"
+msgstr "添加"
+
+msgid "WhatsApp: Status and groups"
+msgstr "WhatsApp:状态和群组"
+
+msgid "The connection comes from the Evolution line in Flux Mail. Status: the line's WhatsApp Status (24 hours). Group: groups the line is a member of."
+msgstr "该连接来自 Flux Mail 中的 Evolution 线路。状态:线路的 WhatsApp 状态(24 小时)。组:线路所属的组。"
+
+msgid "{n} members"
+msgstr "{n}会员"
+
+msgid "added"
+msgstr "添加了"
+
+msgid "Video title"
+msgstr "视频标题"
+
+msgid "Pin title"
+msgstr "引脚标题"
+
+msgid "Link title"
+msgstr "链接标题"
+
+msgid "Title (photo post)"
+msgstr "标题(照片帖子)"
+
+msgid "Title"
+msgstr "标题"
+
+msgid "Pin link"
+msgstr "固定链接"
+
+msgid "Link (preview card)"
+msgstr "链接(预览卡)"
+
+msgid "Reply thread (first reply)"
+msgstr "回复主题(第一个回复)"
+
+msgid "First comment"
+msgstr "第一条评论"
+
+msgid "Added as a comment right after publishing (e.g. a link or hashtags)."
+msgstr "发布后立即添加为评论(例如链接或主题标签)。"
+
+msgid "Visibility"
+msgstr "能见度"
+
+msgid "Public"
+msgstr "公共"
+
+msgid "Unlisted"
+msgstr "未上市"
+
+msgid "Private"
+msgstr "私人"
+
+msgid "Video tags (comma separated)"
+msgstr "视频标签(逗号分隔)"
+
+msgid "Category"
+msgstr "类别"
+
+msgid "Default"
+msgstr "默认"
+
+msgid "Nonprofits & Activism"
+msgstr "非营利组织与行动主义"
+
+msgid "People & Blogs"
+msgstr "人物与博客"
+
+msgid "Education"
+msgstr "教育"
+
+msgid "Travel & Events"
+msgstr "旅行与活动"
+
+msgid "News & Politics"
+msgstr "新闻与政治"
+
+msgid "Entertainment"
+msgstr "娱乐"
+
+msgid "Playlist"
+msgstr "播放列表"
+
+msgid "None"
+msgstr "无"
+
+msgid "Made for kids"
+msgstr "专为儿童打造"
+
+msgid "Notify subscribers"
+msgstr "通知订阅者"
+
+msgid "Shorts (vertical, under 60 s)"
+msgstr "短裤(垂直,60 秒以下)"
+
+msgid "AI-generated content"
+msgstr "人工智能生成的内容"
+
+msgid "Post type"
+msgstr "岗位类型"
+
+msgid "Post (feed)"
+msgstr "帖子(提要)"
+
+msgid "Reels"
+msgstr "卷轴"
+
+msgid "Story"
+msgstr "故事"
+
+msgid "Also show the Reel in the feed"
+msgstr "还可以在 feed 中显示卷轴"
+
+msgid "Cover image URL (Reels)"
+msgstr "封面图片 URL(卷)"
+
+msgid "Connections only"
+msgstr "仅连接"
+
+msgid "Image description (alt text)"
+msgstr "图像描述(替代文本)"
+
+msgid "Who can reply"
+msgstr "谁可以回复"
+
+msgid "Everyone"
+msgstr "大家"
+
+msgid "People I follow"
+msgstr "我关注的人"
+
+msgid "People I mention"
+msgstr "我提到的人"
+
+msgid "Verified accounts"
+msgstr "已验证帐户"
+
+msgid "Choose a board"
+msgstr "选择一块板"
+
+msgid "Who can view"
+msgstr "谁可以查看"
+
+msgid "Friends"
+msgstr "朋友"
+
+msgid "Followers"
+msgstr "追随者"
+
+msgid "Only me"
+msgstr "只有我"
+
+msgid "Turn off comments"
+msgstr "关闭评论"
+
+msgid "Duet off"
+msgstr "二重唱结束"
+
+msgid "Stitch off"
+msgstr "缝合"
+
+msgid "Paid partnership (branded content)"
+msgstr "付费合作伙伴(品牌内容)"
+
+msgid "Promoting our own brand"
+msgstr "推广我们自己的品牌"
+
+msgid "Automatic music for photos"
+msgstr "照片自动音乐"
+
+msgid "Update"
+msgstr "更新"
+
+msgid "Event"
+msgstr "活动"
+
+msgid "Offer"
+msgstr "优惠"
+
+msgid "Button"
+msgstr "按钮"
+
+msgid "Learn more"
+msgstr "了解更多"
+
+msgid "Book"
+msgstr "预订"
+
+msgid "Order"
+msgstr "订单"
+
+msgid "Shop"
+msgstr "商店"
+
+msgid "Sign up"
+msgstr "注册"
+
+msgid "Button link"
+msgstr "按钮链接"
+
+msgid "Event/offer title"
+msgstr "活动/优惠标题"
+
+msgid "Start"
+msgstr "开始"
+
+msgid "End"
+msgstr "结束"
+
+msgid "Coupon code"
+msgstr "优惠券代码"
+
+msgid "Text or media is required."
+msgstr "需要文字或媒体。"
+
+msgid "Text is {n} characters too long (limit {max})."
+msgstr "文本{n}个字符太长(限制{max})。"
+
+msgid "This network requires an image or video."
+msgstr "该网络需要图像或视频。"
+
+msgid "This network does not accept images."
+msgstr "该网络不接受图像。"
+
+msgid "This network does not accept video."
+msgstr "该网络不接受视频。"
+
+msgid "GIF is not supported."
+msgstr "不支持 GIF。"
+
+msgid "At most {n} images."
+msgstr "最多{n}个图像。"
+
+msgid "At most {n} videos."
+msgstr "最多{n}个视频。"
+
+msgid "Images and video cannot be sent together."
+msgstr "图片和视频不能一起发送。"
+
+msgid "YouTube requires a video."
+msgstr "YouTube 需要视频。"
+
+msgid "Choose a Pinterest board."
+msgstr "选择一个 Pinterest 板。"
+
+msgid "Reels require a video."
+msgstr "卷轴需要视频。"
+
+msgid "The account connection dropped; reconnect it under Accounts."
+msgstr "帐户连接断开;在“帐户”下重新连接它。"
+
+msgid "There are unsaved changes. Close anyway?"
+msgstr "有未保存的更改。还是关闭吧?"
+
+msgid "No connected accounts"
+msgstr "没有关联账户"
+
+msgid "Connect a social media account first."
+msgstr "首先连接一个社交媒体帐户。"
+
+msgid "Ask an administrator to connect an account."
+msgstr "请求管理员连接帐户。"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Edit post"
+msgstr "编辑帖子"
+
+msgid "The approver left a note: {n}"
+msgstr "审批人留下备注:{n}"
+
+msgid "Published on {n} accounts; to change it there use Details › Edit on network."
+msgstr "发布在{n}帐户上;要更改它,请使用“详细信息”>“在网络上编辑”。"
+
+msgid "Preview"
+msgstr "预览"
+
+msgid "Shared to all selected accounts; you can write separate text for each."
+msgstr "共享给所有选定的帐户;您可以为每个内容编写单独的文本。"
+
+msgid "Common text"
+msgstr "常用文本"
+
+msgid "Custom text"
+msgstr "自定义文本"
+
+msgid "What would you like to share?"
+msgstr "您想分享什么?"
+
+msgid "Add signature"
+msgstr "添加签名"
+
+msgid "Custom text for this account"
+msgstr "此帐户的自定义文本"
+
+msgid "Separate image/video for this account"
+msgstr "此帐户的单独图像/视频"
+
+msgid "{net} options"
+msgstr "{net}选项"
+
+msgid "Direct post: the video is published on TikTok with the chosen visibility."
+msgstr "直接发布:视频以选定的可见度发布在 TikTok 上。"
+
+msgid "Draft mode: the video lands in your TikTok app inbox and you publish it from there."
+msgstr "草稿模式:视频到达您的 TikTok 应用收件箱,您可以从那里发布它。"
+
+msgid "Board list is empty. Refresh it under Accounts › Test connection."
+msgstr "董事会列表为空。在“帐户”>“测试连接”下刷新它。"
+
+msgid "Write some text first."
+msgstr "先写一些文字。"
+
+msgid "What should AI write?"
+msgstr "AI应该写什么?"
+
+msgid "Write"
+msgstr "写"
+
+msgid "Write with AI"
+msgstr "用人工智能写作"
+
+msgid "Fix and polish"
+msgstr "修复和抛光"
+
+msgid "Shorten"
+msgstr "缩短"
+
+msgid "Suggest hashtags"
+msgstr "建议主题标签"
+
+msgid "Translate to English"
+msgstr "翻译成英文"
+
+msgid "Writes separate text for each account in its network's style"
+msgstr "以网络风格为每个帐户编写单独的文本"
+
+msgid "Separate text written for each account; check the tabs."
+msgstr "为每个帐户编写单独的文本;检查选项卡。"
+
+msgid "Adapt to networks"
+msgstr "适应网络"
+
+msgid "Move left"
+msgstr "向左移动"
+
+msgid "Image / video"
+msgstr "图片/视频"
+
+msgid "Tip: Instagram, TikTok and YouTube require an image/video; X allows up to 4 images."
+msgstr "提示:Instagram、TikTok 和 YouTube 需要图像/视频; X 最多允许 4 个图像。"
+
+msgid "More (internal title, tags, repeat)"
+msgstr "更多(内部标题、标签、重复)"
+
+msgid "Internal title (only shown in the list)"
+msgstr "内部标题(仅在列表中显示)"
+
+msgid "Tags (comma separated; for filtering)"
+msgstr "标签(逗号分隔;用于过滤)"
+
+msgid "Share again how many days after publishing (0 = no)"
+msgstr "再次分享发布后多少天(0=否)"
+
+msgid "Select an account to see the preview here."
+msgstr "选择一个帐户以在此处查看预览。"
+
+msgid "+{n} more accounts; check the tabs."
+msgstr "+{n}个帐户;检查选项卡。"
+
+msgid "No image/video"
+msgstr "无图像/视频"
+
+msgid "No video"
+msgstr "没有视频"
+
+msgid "(untitled)"
+msgstr "(无标题)"
+
+msgid "Limit exceeded: {n} characters over"
+msgstr "超出限制:超过{n}个字符"
+
+msgid "{n} issues"
+msgstr "{n}问题"
+
+msgid "Share time"
+msgstr "分享时间"
+
+msgid "Quick time"
+msgstr "时间快"
+
+msgid "In 1 hour"
+msgstr "1小时内"
+
+msgid "Today 19:00"
+msgstr "今天 19:00"
+
+msgid "Tomorrow 10:00"
+msgstr "明天 10:00"
+
+msgid "Tomorrow 19:00"
+msgstr "明天 19:00"
+
+msgid "Weekend 11:00"
+msgstr "周末 11:00"
+
+msgid "Clear time"
+msgstr "清除时间"
+
+msgid "Select at least one account."
+msgstr "至少选择一个帐户。"
+
+msgid "Choose a time in the future."
+msgstr "选择未来的一个时间。"
+
+msgid "Draft saved."
+msgstr "草稿已保存。"
+
+msgid "Scheduled: {t}"
+msgstr "已安排:{t}"
+
+msgid "Saved."
+msgstr "已保存。"
+
+msgid "Sent for approval because you do not have publishing permission."
+msgstr "由于您没有发布权限,已发送以供批准。"
+
+msgid "Save draft"
+msgstr "保存草稿"
+
+msgid "Media library"
+msgstr "媒体库"
+
+msgid "Flux Studio"
+msgstr "通量工作室"
+
+msgid "Upload"
+msgstr "上传"
+
+msgid "Add from URL"
+msgstr "从网址添加"
+
+msgid "Image or video URL (https://…)"
+msgstr "图像或视频 URL (https://…)"
+
+msgid "Downloading…"
+msgstr "正在下载..."
+
+msgid "Uploading {n} files…"
+msgstr "正在上传{n}文件..."
+
+msgid "Choose image / video"
+msgstr "选择图片/视频"
+
+msgid "Importing Studio files into the library…"
+msgstr "将 Studio 文件导入到库中..."
+
+msgid "No files."
+msgstr "没有文件。"
+
+msgid "Post"
+msgstr "邮政"
+
+msgid "Open"
+msgstr "打开"
+
+msgid "Retry"
+msgstr "重试"
+
+msgid "Queued again."
+msgstr "又排队了。"
+
+msgid "Edit on network"
+msgstr "在网络上编辑"
+
+msgid "Delete from network"
+msgstr "从网络中删除"
+
+msgid "Delete the post on {n}?"
+msgstr "删除{n}上的帖子吗?"
+
+msgid "The post on the network is deleted permanently."
+msgstr "网络上的帖子将被永久删除。"
+
+msgid "Deleted from network."
+msgstr "已从网络删除。"
+
+msgid "Engagement numbers are updated twice a day (last 30 days)."
+msgstr "参与度数字每天更新两次(过去 30 天)。"
+
+msgid "Edit post on network"
+msgstr "编辑网络上的帖子"
+
+msgid "The change is written directly to the post on the network."
+msgstr "更改直接写入网络上的帖子中。"
+
+msgid "Updated on network."
+msgstr "已在网络上更新。"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "just now"
+msgstr "刚才"
+
+msgid "{n} min ago"
+msgstr "{n}分钟前"
+
+msgid "{n} h ago"
+msgstr "{n}小时前"
+
+msgid "Server error ({n})."
+msgstr "服务器错误({n})。"
+
+msgid "Unexpected response from the server."
+msgstr "来自服务器的意外响应。"
+
+msgid "Something went wrong."
+msgstr "出了点问题。"
+
+msgid "OK"
+msgstr "好的"
+
+msgid "Copied"
+msgstr "已复制"
+
+msgid "Daily posts"
+msgstr "每日帖子"
+
+msgid "Total: {n}"
+msgstr "总计:{n}"
+
+msgid "{n} days"
+msgstr "{n}天"
+
+msgid "Update metrics now"
+msgstr "立即更新指标"
+
+msgid "{n} records updated."
+msgstr "{n}记录已更新。"
+
+msgid "No accounts connected yet. Enter the app keys first, then connect accounts."
+msgstr "尚未连接任何帐户。首先输入应用程序密钥,然后连接帐户。"
+
+msgid "Success {n}%"
+msgstr "成功{n}%"
+
+msgid "last {n} days"
+msgstr "最后{n}天"
+
+msgid "Engagement"
+msgstr "参与度"
+
+msgid "likes + comments + shares"
+msgstr "点赞+评论+分享"
+
+msgid "Views"
+msgstr "意见"
+
+msgid "reach / impressions"
+msgstr "覆盖面/展示次数"
+
+msgid "this period"
+msgstr "这个时期"
+
+msgid "no change"
+msgstr "没有变化"
+
+msgid "{n} awaiting approval"
+msgstr "{n}等待批准"
+
+msgid "{n} drafts"
+msgstr "{n}草稿"
+
+msgid "details below"
+msgstr "详情如下"
+
+msgid "no issues"
+msgstr "没问题"
+
+msgid "Network"
+msgstr "网络"
+
+msgid "Errors"
+msgstr "错误"
+
+msgid "By network"
+msgstr "通过网络"
+
+msgid "No posts in this period."
+msgstr "此期间没有帖子。"
+
+msgid "Follower counts are collected once a day; first data appears tomorrow."
+msgstr "关注者数量每天收集一次;第一份数据将于明天出现。"
+
+msgid "Top engaging posts"
+msgstr "最吸引人的帖子"
+
+msgid "Metrics are collected twice a day after a post is published."
+msgstr "发布帖子后,每天收集两次指标。"
+
+msgid "Upcoming posts"
+msgstr "即将发布的帖子"
+
+msgid "No scheduled posts."
+msgstr "没有预定的帖子。"
+
+msgid "Recent errors"
+msgstr "最近的错误"
+
+msgid "Metrics last updated: {t}"
+msgstr "指标上次更新:{t}"
+
+msgid "Metrics not collected yet (once a day, at night)."
+msgstr "尚未收集指标(每天一次,晚上)。"
+
+msgid "General"
+msgstr "一般"
+
+msgid "Apps"
+msgstr "应用程序"
+
+msgid "Network settings"
+msgstr "网络设置"
+
+msgid "Auto sharing"
+msgstr "自动分享"
+
+msgid "Log"
+msgstr "日志"
+
+msgid "never"
+msgstr "从不"
+
+msgid "Approval and signature"
+msgstr "批准并签字"
+
+msgid "Posts by people without publishing permission go to approval"
+msgstr "未经发布许可的人发布的帖子需经过审批"
+
+msgid "Permissions come from Flux Roles: Social media: prepare / publish / manage."
+msgstr "权限来自 Flux 角色:社交媒体:准备/发布/管理。"
+
+msgid "Add UTM to site links (utm_source=network)"
+msgstr "将 UTM 添加到站点链接 (utm_source=network)"
+
+msgid "See how many visits each network brings in Analytics."
+msgstr "在 Analytics 中查看每个网络带来的访问量。"
+
+msgid "Saved signature (added with one click in the composer)"
+msgstr "保存的签名(在作曲家中一键添加)"
+
+msgid "Save signature"
+msgstr "保存签名"
+
+msgid "Scheduled posts"
+msgstr "预定帖子"
+
+msgid "WP-Cron is unreliable on Hostinger, so scheduled posts should be triggered from outside every minute. Create a job on cron-job.org (free) that calls this URL every minute. It also runs on its own while the panel is open and when a post is saved."
+msgstr "WP-Cron 在 Hostinger 上不可靠,因此应每分钟从外部触发预定的帖子。在 cron-job.org(免费)上创建一个每分钟调用此 URL 的作业。当面板打开和保存帖子时,它也会自行运行。"
+
+msgid "Trigger URL (keep it secret)"
+msgstr "触发 URL(保密)"
+
+msgid "Copy"
+msgstr "复制"
+
+msgid "New key"
+msgstr "新钥匙"
+
+msgid "Regenerate the key?"
+msgstr "重新生成密钥?"
+
+msgid "The old URL stops working; you must also change the URL on cron-job.org."
+msgstr "旧的 URL 停止工作;您还必须更改 cron-job.org 上的 URL。"
+
+msgid "Regenerate"
+msgstr "再生"
+
+msgid "New key created."
+msgstr "新密钥已创建。"
+
+msgid "External trigger"
+msgstr "外部触发"
+
+msgid "Background request"
+msgstr "后台请求"
+
+msgid "Panel"
+msgstr "面板"
+
+msgid "Create your own developer app for each network and enter its keys here. Secret keys are stored encrypted and never shown again; type a new one to change it."
+msgstr "为每个网络创建您自己的开发人员应用程序,并在此处输入其密钥。密钥以加密方式存储,并且不会再次显示;输入一个新的来更改它。"
+
+msgid "Saved (type to change)"
+msgstr "已保存(要更改的类型)"
+
+msgid "Not entered"
+msgstr "未输入"
+
+msgid "optional"
+msgstr "可选的"
+
+msgid "Delete the key?"
+msgstr "删除密钥?"
+
+msgid "Accounts on this network cannot post until reconnected."
+msgstr "在重新连接之前,该网络上的帐户无法发帖。"
+
+msgid "Delete saved key"
+msgstr "删除已保存的密钥"
+
+msgid "Ready"
+msgstr "准备好"
+
+msgid "No key"
+msgstr "没有钥匙"
+
+msgid "No connection"
+msgstr "无连接"
+
+msgid "Open developer console"
+msgstr "打开开发者控制台"
+
+msgid "Redirect (callback) URL"
+msgstr "重定向(回调)URL"
+
+msgid "API tier"
+msgstr "API层"
+
+msgid "On the free tier only a few posts can be written per month and metrics are not read. Paid tiers (Basic/Pro or pay-as-you-go) also return metrics."
+msgstr "在免费套餐中,每月只能编写几篇文章,并且不会读取指标。付费等级(基本/专业或即用即付)也会返回指标。"
+
+msgid "X Premium account (long posts, 25,000 characters)"
+msgstr "X 高级帐户(长帖子,25,000 个字符)"
+
+msgid "Monthly post limit (0 = unlimited)"
+msgstr "每月发帖限额(0 = 无限制)"
+
+msgid "Sent this month: {n}. When the limit is reached new X posts are refused (to stay within the tier quota)."
+msgstr "本月发送:{n}。当达到限制时,新的 X 帖子将被拒绝(以保持在层配额内)。"
+
+msgid "Draft (lands in the TikTok app)"
+msgstr "草案(登陆 TikTok 应用)"
+
+msgid "Direct post"
+msgstr "直接邮寄"
+
+msgid "Sharing mode"
+msgstr "共享模式"
+
+msgid "Direct posting requires your TikTok app to pass the audit; until then posted videos are visible only to you. Draft mode needs no audit."
+msgstr "直接发布需要您的TikTok应用程序通过审核;在此之前,发布的视频只有您自己可见。草稿模式无需审核。"
+
+msgid "Sandbox (trial access)"
+msgstr "沙盒(试用版)"
+
+msgid "Turn on if your Pinterest app does not have Standard access yet; pins are created only in the sandbox."
+msgstr "如果您的 Pinterest 应用程序还没有标准访问权限,请打开;引脚仅在沙箱中创建。"
+
+msgid "Also fetch company pages I manage"
+msgstr "还获取我管理的公司页面"
+
+msgid "Requires Community Management API approval. Turn off if not approved; only the personal profile is connected."
+msgstr "需要社区管理 API 批准。未获批准则关闭;仅连接个人资料。"
+
+msgid "Graph API version"
+msgstr "图API版本"
+
+msgid "Meta retires old versions after two years; upgrade here if needed (e.g. v25.0)."
+msgstr "Meta 两年后淘汰旧版本;如果需要,请在此处升级(例如 v25.0)。"
+
+msgid "Default connection"
+msgstr "默认连接"
+
+msgid "default"
+msgstr "默认"
+
+msgid "Evolution connection (Flux Mail)"
+msgstr "进化连接(Flux Mail)"
+
+msgid "No WhatsApp (Evolution) connection found in Flux Mail; Flux Chat settings are used."
+msgstr "Flux Mail 中未发现 WhatsApp (Evolution) 连接;使用 Flux 聊天设置。"
+
+msgid "Create a draft (I review and send it)"
+msgstr "创建草稿(我审阅并发送)"
+
+msgid "Schedule automatically"
+msgstr "自动安排"
+
+msgid "Share when a post is published on the site"
+msgstr "在网站上发布帖子时分享"
+
+msgid "On"
+msgstr "开"
+
+msgid "Which content types"
+msgstr "哪些内容类型"
+
+msgid "Which accounts"
+msgstr "哪些账户"
+
+msgid "Connect an account first."
+msgstr "首先连接一个帐户。"
+
+msgid "Text template"
+msgstr "文本模板"
+
+msgid "Available: {title} {excerpt} {link} {site} {author} {category} {tags}. The link creates the network's preview card."
+msgstr "可用:{title}{excerpt}{link}{site}{author}{category}{tags}。该链接创建网络的预览卡。"
+
+msgid "Add the featured image"
+msgstr "添加特色图像"
+
+msgid "What to do"
+msgstr "该怎么办"
+
+msgid "Share after how many minutes (if scheduling)"
+msgstr "多少分钟后分享(如果有安排)"
+
+msgid "Runs once per post. Accounts that break a network rule (e.g. Instagram without an image) stay as drafts."
+msgstr "每个帖子运行一次。违反网络规则的帐户(例如没有图像的 Instagram)将保留为草稿。"
+
+msgid "Last 200 entries (kept for 45 days)."
+msgstr "最后 200 个条目(保留 45 天)。"
+
+msgid "No entries."
+msgstr "没有条目。"
+
+msgid "Social Media requires JavaScript."
+msgstr "社交媒体需要 JavaScript。"
+
+msgid "Flux AI & MCP is not installed or no key has been entered."
+msgstr "Flux AI 和 MCP 未安装或未输入密钥。"
+
+msgid "Could not read the AI response, please try again."
+msgstr "无法读取 AI 回复,请重试。"
+
+msgid "Social media"
+msgstr "社交媒体"
+
+msgid "Database tables"
+msgstr "数据库表"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "缺少表:%s。停用并重新激活插件。"
+
+msgid "Tables are ready."
+msgstr "桌子已经准备好了。"
+
+msgid "Key encryption"
+msgstr "密钥加密"
+
+msgid "Keys and tokens are stored encrypted (sodium)."
+msgstr "密钥和令牌以加密方式存储(钠)。"
+
+msgid "The PHP sodium extension is off; keys are stored with a weaker method. Turn on sodium under Hostinger › PHP extensions."
+msgstr "PHP 钠扩展已关闭;密钥使用较弱的方法存储。在 Hostinger › PHP 扩展下打开钠。"
+
+msgid "Network apps"
+msgstr "网络应用程序"
+
+msgid "Keys entered: %s."
+msgstr "输入的键:%s。"
+
+msgid "No network app keys entered. Social Media › Settings › Apps."
+msgstr "未输入网络应用程序密钥。社交媒体 › 设置 › 应用程序。"
+
+msgid "Connected accounts"
+msgstr "关联账户"
+
+msgid "No accounts connected yet."
+msgstr "尚未连接任何帐户。"
+
+msgid "Accounts that need reconnecting: %s."
+msgstr "需要重新连接的帐户:%s。"
+
+msgid "%d accounts connected and active."
+msgstr "%d帐户已连接且处于活动状态。"
+
+msgid "External per-minute trigger is running."
+msgstr "外部每分钟触发器正在运行。"
+
+msgid "%d posts have been waiting for more than 5 minutes. Add the trigger URL from Settings › General to cron-job.org (every minute)."
+msgstr "%d帖子已等待超过 5 分钟。将触发 URL 从“设置”>“常规”添加到 cron-job.org(每分钟)。"
+
+msgid "Posts are processed via WP-Cron and background requests; to publish on time, adding the trigger URL from Settings › General to cron-job.org (every minute) is recommended."
+msgstr "帖子通过 WP-Cron 和后台请求进行处理;要按时发布,建议将触发 URL 从“设置”>“常规”添加到 cron-job.org(每分钟)。"
+
+msgid "The trigger has never run. Add the trigger URL from Settings › General to cron-job.org (every minute)."
+msgstr "触发器从未运行过。将触发 URL 从“设置”>“常规”添加到 cron-job.org(每分钟)。"
+
+msgid "Background request error:"
+msgstr "后台请求错误:"
+
+msgid "Failed shares"
+msgstr "失败的股票"
+
+msgid "%d shares failed in the last 7 days. Posts › Failed."
+msgstr "%d股票在过去 7 天内失败。帖子 › 失败。"
+
+msgid "No failed shares in the last 7 days."
+msgstr "近7天内无失败股票。"
+
+msgid "Media URLs"
+msgstr "媒体网址"
+
+msgid "Instagram, TikTok and Facebook fetch images from the site's HTTPS address."
+msgstr "Instagram、TikTok 和 Facebook 从网站的 HTTPS 地址获取图像。"
+
+msgid "The site is not HTTPS; Instagram/TikTok/Facebook cannot fetch images and videos."
+msgstr "该网站不是 HTTPS; Instagram/TikTok/Facebook 无法获取图像和视频。"
+
+msgid "Files folder"
+msgstr "文件夹"
+
+msgid "wp-content/uploads/flxsm is writable (JPEG copies for Instagram)."
+msgstr "wp-content/uploads/flxsm 是可写的(Instagram 的 JPEG 副本)。"
+
+msgid "wp-content/uploads/flxsm is not writable; PNG/WebP images cannot be sent to Instagram."
+msgstr "wp-content/uploads/flxsm 不可写; PNG/WebP 图像无法发送到 Instagram。"
+
+msgid "AI writing help"
+msgstr "AI写作帮助"
+
+msgid "Flux AI ready: writing, shortening, adapting to networks."
+msgstr "Flux AI 就绪:写作、缩短、适应网络。"
+
+msgid "Flux AI & MCP is not installed or has no key; AI buttons are hidden, sharing still works."
+msgstr "Flux AI & MCP未安装或无密钥; AI按钮被隐藏,分享仍然有效。"
+
+msgid "Account or post not found."
+msgstr "未找到帐户或帖子。"
+
+msgid "Account is off."
+msgstr "帐户已关闭。"
+
+msgid "The connection expired; reconnect it under Accounts."
+msgstr "连接已过期;在“帐户”下重新连接它。"
+
+msgid "The post was published but the first comment could not be added: %s"
+msgstr "帖子已发布,但无法添加第一条评论:%s"
+
+msgid "Only a failed target can be retried."
+msgstr "只有失败的目标才能重试。"
+
+msgid "This target is not published on the network."
+msgstr "该目标未在网络上发布。"
+
+msgid "Account not found."
+msgstr "未找到帐户。"
+
+msgid "Social media: prepare posts"
+msgstr "社交媒体:准备帖子"
+
+msgid "Social media: publish and approve"
+msgstr "社交媒体:发布并批准"
+
+msgid "Social media: accounts and settings"
+msgstr "社交媒体:帐户和设置"
+
+msgid "Unknown network."
+msgstr "未知网络。"
+
+msgid "Connection session not found or expired; please try again."
+msgstr "连接会话未找到或已过期;请再试一次。"
+
+msgid "The selection list expired; please reconnect."
+msgstr "评选名单已过期;请重新连接。"
+
+msgid "Login for Business configuration ID (optional)"
+msgstr "登录获取业务配置 ID(可选)"
+
+msgid "developers.facebook.com › Create app (Business type) › Facebook Login product › add the address below to Valid OAuth redirect URIs. For your own pages being an admin/developer of the app is enough; no App Review needed. An Instagram professional account linked to a Facebook page comes with the same login."
+msgstr "Developers.facebook.com › 创建应用程序(企业类型) › Facebook 登录产品 › 将以下地址添加到有效的 OAuth 重定向 URI。对于您自己的页面,作为应用程序的管理员/开发人员就足够了;无需应用程序审查。链接到 Facebook 页面的 Instagram 专业帐户具有相同的登录信息。"
+
+msgid "Facebook page (+ linked Instagram)"
+msgstr "Facebook 页面(+ 链接的 Instagram)"
+
+msgid "Instagram login (without a Facebook page)"
+msgstr "Instagram 登录(没有 Facebook 页面)"
+
+msgid "Add the \"Instagram\" product to the Meta app (API setup with Instagram login). Put the Instagram App ID/Secret from the product page here; the redirect URL is below. The account must be Business or Creator."
+msgstr "将“Instagram”产品添加到 Meta 应用程序(使用 Instagram 登录进行 API 设置)。将产品页面中的 Instagram App ID/Secret 放在这里;重定向 URL 如下。该帐户必须是企业帐户或创建者帐户。"
+
+msgid "Instagram (Instagram login)"
+msgstr "Instagram(Instagram 登录)"
+
+msgid "Google Cloud › APIs: enable YouTube Data API v3 (and for Business: My Business Account Management, Business Information, Google My Business API) › OAuth client (Web application) › authorized redirect URL below. In an unaudited project videos uploaded to YouTube stay \"Private\"; apply for the Google API audit to make them public. The Business Profile API requires access approval from Google."
+msgstr "Google Cloud › API:启用 YouTube 数据 API v3(对于企业:我的企业帐户管理、企业信息、Google 我的企业 API) › OAuth 客户端(网络应用程序) › 下面授权的重定向 URL。在未经审核的项目中,上传到 YouTube 的视频保持“私密”状态;申请Google API审核并公开。商家资料 API 需要获得 Google 的访问批准。"
+
+msgid "YouTube channel"
+msgstr "YouTube 频道"
+
+msgid "Google Business location"
+msgstr "Google 商家地点"
+
+msgid "developer.x.com › Project › App › User authentication settings: permission \"Read and write\", type \"Web App\", Callback URI the address below. Put the API Key and Secret from Keys and tokens here. Choose the tier below (the free tier has a low write limit and metrics are not read)."
+msgstr "developer.x.com › 项目 › 应用程序 › 用户身份验证设置:权限“读写”,输入“Web App”,回调 URI 地址如下。将 Keys and tokens 中的 API Key 和 Secret 放入此处。选择下面的层(免费层的写入限制较低,并且不读取指标)。"
+
+msgid "X account"
+msgstr "X账户"
+
+msgid "API version (YYYYMM)"
+msgstr "API 版本 (YYYYMM)"
+
+msgid "linkedin.com/developers › App (linked to the organization page) › Products: \"Sign In with LinkedIn using OpenID Connect\" and \"Share on LinkedIn\" (personal); for company pages \"Community Management API\" (needs approval). Auth › Authorized redirect URL below."
+msgstr "linkedin.com/developers › 应用程序(链接到组织页面) › 产品:“使用 OpenID Connect 通过 LinkedIn 登录”和“在 LinkedIn 上共享”(个人);对于公司页面“社区管理 API”(需要批准)。授权 › 下面授权的重定向 URL。"
+
+msgid "LinkedIn profile / page"
+msgstr "LinkedIn 个人资料/页面"
+
+msgid "developers.tiktok.com › App › add Login Kit + Content Posting API, Redirect URI below. Without the audit \"Draft\" mode is recommended: the video lands in the TikTok app and is published from there. For photo posts verify the site domain in TikTok (URL properties)."
+msgstr "Developers.tiktok.com › 应用程序 › 添加登录套件 + 内容发布 API,重定向 URI 下面。如果没有审核,建议使用“草稿”模式:视频登陆 TikTok 应用程序并从那里发布。对于照片帖子,请验证 TikTok 中的网站域(URL 属性)。"
+
+msgid "TikTok account"
+msgstr "抖音账号"
+
+msgid "developers.pinterest.com › App › Redirect URI below. Trial access works only in the sandbox; apply for Standard access."
+msgstr "Developers.pinterest.com › 应用程序 › 重定向下面的 URI。试用访问仅在沙盒中有效;申请标准访问。"
+
+msgid "Pinterest account"
+msgstr "Pinterest 帐户"
+
+msgid "The Evolution connection comes from Flux Mail (or Flux Chat); no key is entered here. Shares go to Status and groups."
+msgstr "Evolution 连接来自 Flux Mail(或 Flux Chat);这里没有输入密钥。共享进入状态和组。"
+
+msgid "WhatsApp Status / group"
+msgstr "WhatsApp 状态/组"
+
+msgid "Unknown app."
+msgstr "未知的应用程序。"
+
+msgid "Login required."
+msgstr "需要登录。"
+
+msgid "You do not have social media permission."
+msgstr "您没有社交媒体许可。"
+
+msgid "You do not have permission for this action."
+msgstr "您没有执行此操作的权限。"
+
+msgid "Record not found."
+msgstr "未找到记录。"
+
+msgid "You cannot change this post."
+msgstr "您无法更改此帖子。"
+
+msgid "You cannot delete this post."
+msgstr "您无法删除此帖子。"
+
+msgid "Could not delete on some networks; the post stays in the list."
+msgstr "在某些网络上无法删除;该帖子保留在列表中。"
+
+msgid "%s (copy)"
+msgstr "%s(复制)"
+
+msgid "You do not have permission to upload files."
+msgstr "您没有上传文件的权限。"
+
+msgid "No file received."
+msgstr "没有收到文件。"
+
+msgid "Account removed."
+msgstr "帐户已删除。"
+
+msgid "(deleted account)"
+msgstr "(已删除账户)"
+
+msgid "Post not found."
+msgstr "找不到帖子。"
+
+msgid "Unknown action."
+msgstr "未知的行动。"
+
+msgid "%s: the connection expired, reconnect it under Accounts."
+msgstr "%s:连接已过期,请在“帐户”下重新连接。"
+
+msgid "Text can be at most %1$d characters (currently %2$d)."
+msgstr "文本最多可以是%1$d个字符(当前为%2$d)。"
+
+msgid "This network does not accept GIFs; use an image or video."
+msgstr "该网络不接受 GIF;使用图像或视频。"
+
+msgid "At most %d images."
+msgstr "最多%d个图像。"
+
+msgid "At most %d videos."
+msgstr "最多%d个视频。"
+
+msgid "Images and video cannot be used together in one post."
+msgstr "图片和视频不能在一篇文章中一起使用。"
+
+msgid "Media files must be reachable at a public https address."
+msgstr "媒体文件必须可通过公共 https 地址访问。"
+
+msgid "This network does not connect via OAuth."
+msgstr "该网络不通过 OAuth 连接。"
+
+msgid "The connection expired, please reconnect."
+msgstr "连接已过期,请重新连接。"
+
+msgid "This network does not allow editing a published post."
+msgstr "该网络不允许编辑已发布的帖子。"
+
+msgid "This network does not allow deleting posts via the API; delete it in the app."
+msgstr "该网络不允许通过 API 删除帖子;在应用程序中将其删除。"
+
+msgid "First comment is not supported on this network."
+msgstr "该网络不支持第一条评论。"
+
+msgid "First enter this network's keys under Settings › Apps."
+msgstr "首先在“设置”>“应用程序”下输入该网络的密钥。"
+
+msgid "Choose a video for YouTube."
+msgstr "选择 YouTube 视频。"
+
+msgid "YouTube title can be at most 100 characters."
+msgstr "YouTube 标题最多可以有 100 个字符。"
+
+msgid "YouTube does not accept < and > in the title and description."
+msgstr "YouTube 不接受标题和说明中包含< and >。"
+
+msgid "This Google account has no YouTube channel."
+msgstr "此 Google 帐户没有 YouTube 频道。"
+
+msgid "Video file not found on the server."
+msgstr "在服务器上找不到视频文件。"
+
+msgid "Could not read the video file."
+msgstr "无法读取视频文件。"
+
+msgid "Video not found on YouTube."
+msgstr "在 YouTube 上找不到视频。"
+
+msgid "An event/offer post needs a title and a start date."
+msgstr "活动/优惠帖子需要标题和开始日期。"
+
+msgid "Could not get business accounts (requires Google's Business Profile API access approval)"
+msgstr "无法获取企业帐户(需要 Google 的商家资料 API 访问批准)"
+
+msgid "No managed business location found on this Google account."
+msgstr "在此 Google 帐户中找不到受管理的营业地点。"
+
+msgid "LinkedIn could not process the video."
+msgstr "LinkedIn 无法处理该视频。"
+
+msgid "LinkedIn video processing took too long."
+msgstr "LinkedIn 视频处理时间太长。"
+
+msgid "No Facebook page you manage was found. Make sure you selected the pages during login."
+msgstr "找不到您管理的 Facebook 页面。确保您在登录期间选择了页面。"
+
+msgid "A story has a single image or video."
+msgstr "一个故事只有一个图像或视频。"
+
+msgid "Instagram accepts at most 30 hashtags."
+msgstr "Instagram 最多接受 30 个主题标签。"
+
+msgid "Instagram feed image aspect ratio must be between 4:5 and 1.91:1 (except stories)."
+msgstr "Instagram feed 图像的长宽比必须介于 4:5 和 1.91:1 之间(故事除外)。"
+
+msgid "First enter the keys under Settings › Apps › Instagram login."
+msgstr "首先在设置 › 应用程序 › Instagram 登录下输入按键。"
+
+msgid "Instagram could not process a carousel item (format/size not suitable)."
+msgstr "Instagram 无法处理轮播项目(格式/大小不合适)。"
+
+msgid "Instagram could not process the media. Video: MP4 (H.264/AAC), 3–90 s (Reels 15 min), up to 1 GB; image: JPEG, up to 8 MB."
+msgstr "Instagram 无法处理媒体。视频:MP4 (H.264/AAC),3–90 秒(每卷 15 分钟),最大 1 GB;图像:JPEG,最大 8 MB。"
+
+msgid "Instagram video processing did not finish in 30 minutes."
+msgstr "Instagram 视频处理未在 30 分钟内完成。"
+
+msgid "Pinterest title can be at most 100 characters."
+msgstr "Pinterest 标题最多可包含 100 个字符。"
+
+msgid "Pinterest could not process the video."
+msgstr "Pinterest 无法处理该视频。"
+
+msgid "Pinterest video processing took too long."
+msgstr "Pinterest 视频处理时间太长。"
+
+msgid "Because the TikTok app has not been audited yet, only \"Only me\" visibility can be used."
+msgstr "由于 TikTok 应用尚未经过审核,因此只能使用“Only me”可见性。"
+
+msgid "Draft sent to the TikTok app; publish it from the notification in the app."
+msgstr "草稿发送至 TikTok 应用;从应用程序中的通知发布。"
+
+msgid "TikTok processing took too long; check in the TikTok app."
+msgstr "TikTok处理时间太长;检查 TikTok 应用程序。"
+
+msgid "No WhatsApp connection. Set up an Evolution connection in Flux Mail or Flux Chat."
+msgstr "没有 WhatsApp 连接。在 Flux Mail 或 Flux Chat 中设置 Evolution 连接。"
+
+msgid "WhatsApp Status"
+msgstr "WhatsApp 状态"
+
+msgid "Free (no cost, low write limit, no metrics)"
+msgstr "免费(无成本、低写入限制、无指标)"
+
+msgid "Basic (paid monthly)"
+msgstr "基本(按月付费)"
+
+msgid "Pro (paid monthly)"
+msgstr "专业版(按月付费)"
+
+msgid "Pay-as-you-go"
+msgstr "按量付费"
+
+msgid "X: a video or GIF is shared on its own."
+msgstr "X:单独共享视频或 GIF。"
+
+msgid "The monthly limit of %d posts set for X has been reached."
+msgstr "已达到为 X 设置的每月%d帖子限制。"
+
+msgid "First enter the API Key and API Key Secret under Settings › Apps › X."
+msgstr "首先在设置 › 应用程序 › X 下输入 API Key 和 API Key Secret。"
+
+msgid "Connection refused."
+msgstr "连接被拒绝。"
+
+msgid "Could not read the media file."
+msgstr "无法读取媒体文件。"
+
+msgid "video could not be processed"
+msgstr "视频无法处理"
+
+msgid "Nothing this month"
+msgstr "这个月没什么事"
+
+msgid "Delete this post?"
+msgstr "删除这个帖子吗?"
+
+msgid "Search posts"
+msgstr "搜索帖子"
+
+msgid "Account enabled"
+msgstr "帐户已启用"
+
+msgid "Open the panel to connect an account."
+msgstr "打开面板以连接帐户。"
+
+msgid "Account disabled"
+msgstr "帐户已停用"
+
+msgid "No accounts"
+msgstr "没有账户"
+
+msgid "Note"
+msgstr "注意事项"
+
+msgid "Review"
+msgstr "评论"
+
+msgid "Approved"
+msgstr "已批准"
+
+msgid "Open in panel"
+msgstr "在面板中打开"
+
+msgid "Deleted"
+msgstr "已删除"
+
+msgid "New posts are composed in the media composer."
+msgstr "新帖子是在媒体编辑器中编写的。"
+
+msgid "Scheduled and published posts show up here."
+msgstr "已安排和已发布的帖子显示在此处。"
+
+msgid "[['Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.', 'tr']]"
+msgstr "[['网站内的社交媒体管理:帐户链接(面板上的按键)、每个帐户的内容、日程安排、网络编辑/删除、日历、仪表板、Flux AI 写作辅助和 MCP 工具。 Facebook、Instagram、YouTube、X、LinkedIn、TikTok、Pinterest、Google Business、WhatsApp。', 'tr']]"

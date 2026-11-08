@@ -123,22 +123,22 @@ function flxa_pwa_manifest() {
 	$admin = admin_url();
 	$path  = (string) wp_parse_url( $admin, PHP_URL_PATH );
 	$short = array(
-		array( 'name' => __( 'Panel', 'flx-admin' ), 'url' => $admin ),
+		array( 'name' => __( 'Dashboard', 'flx-admin' ), 'url' => $admin ),
 	);
 	if ( defined( 'FLXC_VERSION' ) ) {
-		$short[] = array( 'name' => __( 'Mesajlar', 'flx-admin' ), 'url' => admin_url( 'admin.php?page=flx-chat' ) );
+		$short[] = array( 'name' => __( 'Messages', 'flx-admin' ), 'url' => admin_url( 'admin.php?page=flx-chat' ) );
 	}
 	if ( defined( 'FLXG_VERSION' ) ) {
-		$short[] = array( 'name' => __( 'Görevler', 'flx-admin' ), 'url' => admin_url( 'admin.php?page=flx-tasks' ) );
+		$short[] = array( 'name' => __( 'Tasks', 'flx-admin' ), 'url' => admin_url( 'admin.php?page=flx-tasks' ) );
 	}
 	if ( function_exists( 'flxb_table' ) ) {
-		$short[] = array( 'name' => __( 'Bağışlar', 'flx-admin' ), 'url' => admin_url( 'admin.php?page=flxb-donations' ) );
+		$short[] = array( 'name' => __( 'Donations', 'flx-admin' ), 'url' => admin_url( 'admin.php?page=flxb-donations' ) );
 	}
 	$m = array(
 		'id'               => $path,
 		'name'             => flxa_pwa_name(),
 		'short_name'       => flxa_pwa_short(),
-		'description'      => __( 'Yönetim paneli', 'flx-admin' ),
+		'description'      => __( 'Admin dashboard', 'flx-admin' ),
 		'lang'             => str_replace( '_', '-', get_locale() ),
 		'dir'              => is_rtl() ? 'rtl' : 'ltr',
 		// Açılışta service worker önce önbellekteki hafif açılış ekranını hemen gösterir, panel arkada yüklenir.
@@ -197,7 +197,7 @@ function flxa_pwa_offline() {
 	?>
 <!doctype html>
 <html lang="<?php echo esc_attr( str_replace( '_', '-', get_locale() ) ); ?>">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?php esc_html_e( 'Bağlantı yok', 'flx-admin' ); ?></title>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?php esc_html_e( 'No connection', 'flx-admin' ); ?></title>
 <style>
 :root{color-scheme:light dark;--a:<?php echo esc_html( $accent ); ?>}
 body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;background:#F3F2EF;color:#16181D;padding:24px;box-sizing:border-box}
@@ -207,9 +207,9 @@ img{width:64px;height:64px;border-radius:16px}h1{font-size:22px;margin:16px 0 8p
 button{font:inherit;font-weight:700;border:0;border-radius:12px;padding:12px 20px;background:var(--a);color:#fff;cursor:pointer}
 </style></head>
 <body><div class="c"><img src="<?php echo esc_url( FLXA_URL . 'assets/icons/icon-192.png?v=' . FLXA_VERSION ); ?>" alt="">
-<h1><?php esc_html_e( 'Bağlantı yok', 'flx-admin' ); ?></h1>
-<p><?php esc_html_e( 'İnternet bağlantısı gelince panel kaldığı yerden açılır.', 'flx-admin' ); ?></p>
-<button type="button" onclick="location.reload()"><?php esc_html_e( 'Yeniden dene', 'flx-admin' ); ?></button></div></body></html>
+<h1><?php esc_html_e( 'No connection', 'flx-admin' ); ?></h1>
+<p><?php esc_html_e( 'The dashboard reopens where you left off when the connection is back.', 'flx-admin' ); ?></p>
+<button type="button" onclick="location.reload()"><?php esc_html_e( 'Try again', 'flx-admin' ); ?></button></div></body></html>
 	<?php
 	exit;
 }

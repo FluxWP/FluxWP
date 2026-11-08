@@ -122,7 +122,7 @@
             }, [forms, searchTerm]);
 
             const formOptions = [
-                { value: '', label: __('— Select a Form —', 'flx-forms') }
+                { value: '', label: __("\\n— Select a Form —\\n", 'flx-forms') }
             ];
 
             forms.forEach(form => {
@@ -139,7 +139,7 @@
                 wp.element.createElement(
                     PanelBody,
                     {
-                        title: __('Form Settings', 'flx-forms'),
+                        title: __("\\nForm Settings\\n", 'flx-forms'),
                         initialOpen: true
                     },
                     isLoading
@@ -152,7 +152,7 @@
                         : wp.element.createElement(
                             SelectControl,
                             {
-                                label: __('Select Form', 'flx-forms'),
+                                label: __("\\nSelect Form\\n", 'flx-forms'),
                                 value: formId,
                                 options: formOptions,
                                 onChange: onFormChange,
@@ -233,7 +233,7 @@
                         wp.element.createElement(
                             'h3',
                             { style: { margin: '0 0 5px 0', fontSize: '18px', fontWeight: '600' } },
-                            __('Flux Forms', 'flx-forms')
+                            __("\\nFlux Forms\\n", 'flx-forms')
                         ),
                         wp.element.createElement(
                             'p',
@@ -341,7 +341,7 @@
                                     },
                                     form.type === 'tracking'
                                         ? form.name
-                                        : form.name + ' (' + __('Form Code', 'flx-forms') + ': ' + form.id + ')'
+                                        : form.name + ' (' + __("\\nForm Code\\n", 'flx-forms') + ': ' + form.id + ')'
                                 )
                             ))
                         ) : wp.element.createElement(
@@ -450,7 +450,7 @@
                             wp.element.createElement(
                                 'p',
                                 { style: { margin: '0 0 10px 0', fontSize: '14px' } },
-                                __('Form will be displayed here on the frontend.', 'flx-forms')
+                                __("\\nForm will be displayed here on the frontend.\\n", 'flx-forms')
                             ),
                             wp.element.createElement(
                                 'code',

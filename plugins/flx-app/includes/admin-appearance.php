@@ -10,12 +10,12 @@ defined( 'ABSPATH' ) || exit;
 /** Seçim kutuları için hedef kataloğu: grup => [ hedef => ad ]. */
 function flxapp_target_catalog() {
 	$out = array(
-		__( 'Uygulama', 'flx-app' ) => array(
-			'more'          => __( 'Menü (tüm öğeler)', 'flx-app' ),
-			'search'        => __( 'Arama', 'flx-app' ),
-			'notifications' => __( 'Bildirimler', 'flx-app' ),
-			'accounts'      => __( 'Hesaplar', 'flx-app' ),
-			'settings'      => __( 'Uygulama ayarları', 'flx-app' ),
+		__( 'Application', 'flx-app' ) => array(
+			'more'          => __( 'Menu (all items)', 'flx-app' ),
+			'search'        => __( 'Search', 'flx-app' ),
+			'notifications' => __( 'Notifications', 'flx-app' ),
+			'accounts'      => __( 'Accounts', 'flx-app' ),
+			'settings'      => __( 'App settings', 'flx-app' ),
 		),
 	);
 	$scr = array();
@@ -26,20 +26,20 @@ function flxapp_target_catalog() {
 			}
 		}
 	}
-	$out[ __( 'Ekranlar', 'flx-app' ) ] = $scr;
+	$out[ __( 'Screens', 'flx-app' ) ] = $scr;
 	$mods = array();
 	foreach ( (array) apply_filters( 'flxapp_modules', array() ) as $id => $m ) {
 		$mods[ 'module:' . sanitize_key( $id ) ] = (string) ( $m['title'] ?? $id );
 	}
 	if ( $mods ) {
-		$out[ __( 'Yerel modüller', 'flx-app' ) ] = $mods;
+		$out[ __( 'Native modules', 'flx-app' ) ] = $mods;
 	}
 	$menu = array();
 	foreach ( flxapp_user_menu( get_current_user_id() ) as $m ) {
 		$menu[ 'menu:' . $m['slug'] ] = $m['title'];
 	}
 	if ( $menu ) {
-		$out[ __( 'Panel menüsü', 'flx-app' ) ] = $menu;
+		$out[ __( 'Admin menu', 'flx-app' ) ] = $menu;
 	}
 	return $out;
 }
@@ -59,11 +59,11 @@ function flxapp_target_select( $name, $value, $empty = '' ) {
 
 function flxapp_color_labels() {
 	return array(
-		'primary' => __( 'Ana renk', 'flx-app' ),
-		'accent'  => __( 'Vurgu', 'flx-app' ),
-		'bg'      => __( 'Zemin', 'flx-app' ),
-		'surface' => __( 'Kart', 'flx-app' ),
-		'text'    => __( 'Yazı', 'flx-app' ),
+		'primary' => __( 'Primary', 'flx-app' ),
+		'accent'  => __( 'Accent', 'flx-app' ),
+		'bg'      => __( 'Background', 'flx-app' ),
+		'surface' => __( 'Surface', 'flx-app' ),
+		'text'    => __( 'Text', 'flx-app' ),
 	);
 }
 
@@ -76,29 +76,29 @@ function flxapp_render_appearance_tab() {
 	$user  = wp_get_current_user();
 	$cfgm  = flxapp_config( $user, 'mobile' );
 	$cfgd  = flxapp_config( $user, 'desktop' );
-	echo '<p class="flxapp-lead">' . esc_html__( 'Masaüstü ve mobil uygulamanın görünümü. Renkler boş bırakılırsa tema (theme.json) ve Flux Admin renginden gelir. Menüler kullanıcının rolüne göre süzülür: göremediği öğe uygulamada da çıkmaz.', 'flx-app' ) . '</p>';
+	echo '<p class="flxapp-lead">' . esc_html__( 'Appearance of the desktop and mobile app. Empty colours come from the theme (theme.json) and the Flux Admin colour. Menus are filtered by the user\'s role: an item they cannot see in the admin does not show in the app either.', 'flx-app' ) . '</p>';
 	echo '<div class="flxapp-appearance"><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxapp-ap-form"><input type="hidden" name="action" value="flxapp_appearance">';
 	wp_nonce_field( 'flxapp_appearance' );
 
 	// Tema.
-	echo '<section class="flxapp-card"><h2>' . esc_html__( 'Tema', 'flx-app' ) . '</h2>';
-	echo '<p class="flxapp-row"><label>' . esc_html__( 'Mod', 'flx-app' ) . ' <select name="theme[mode]">';
-	foreach ( array( 'system' => __( 'Cihaza göre', 'flx-app' ), 'light' => __( 'Açık', 'flx-app' ), 'dark' => __( 'Koyu', 'flx-app' ) ) as $k => $l ) {
+	echo '<section class="flxapp-card"><h2>' . esc_html__( 'Theme', 'flx-app' ) . '</h2>';
+	echo '<p class="flxapp-row"><label>' . esc_html__( 'Mode', 'flx-app' ) . ' <select name="theme[mode]">';
+	foreach ( array( 'system' => __( 'Follow device', 'flx-app' ), 'light' => __( 'On', 'flx-app' ), 'dark' => __( 'Dark', 'flx-app' ) ) as $k => $l ) {
 		echo '<option value="' . esc_attr( $k ) . '"' . selected( $theme['mode'], $k, false ) . '>' . esc_html( $l ) . '</option>';
 	}
 	echo '</select></label>';
-	echo '<label>' . esc_html__( 'Köşe', 'flx-app' ) . ' <select name="theme[radius]"><option value="">' . esc_html__( 'Temadan', 'flx-app' ) . '</option>';
-	foreach ( array( 'none' => __( 'Keskin', 'flx-app' ), 'small' => __( 'Az', 'flx-app' ), 'medium' => __( 'Orta', 'flx-app' ), 'large' => __( 'Yuvarlak', 'flx-app' ) ) as $k => $l ) {
+	echo '<label>' . esc_html__( 'Corners', 'flx-app' ) . ' <select name="theme[radius]"><option value="">' . esc_html__( 'From theme', 'flx-app' ) . '</option>';
+	foreach ( array( 'none' => __( 'Sharp', 'flx-app' ), 'small' => __( 'Slight', 'flx-app' ), 'medium' => __( 'Medium', 'flx-app' ), 'large' => __( 'Round', 'flx-app' ) ) as $k => $l ) {
 		echo '<option value="' . esc_attr( $k ) . '"' . selected( $o['theme']['radius'] ?? '', $k, false ) . '>' . esc_html( $l ) . '</option>';
 	}
 	echo '</select></label>';
-	echo '<label>' . esc_html__( 'Yoğunluk', 'flx-app' ) . ' <select name="theme[density]"><option value="">' . esc_html__( 'Temadan', 'flx-app' ) . '</option>';
-	foreach ( array( 'comfortable' => __( 'Rahat', 'flx-app' ), 'compact' => __( 'Sıkı', 'flx-app' ) ) as $k => $l ) {
+	echo '<label>' . esc_html__( 'Density', 'flx-app' ) . ' <select name="theme[density]"><option value="">' . esc_html__( 'From theme', 'flx-app' ) . '</option>';
+	foreach ( array( 'comfortable' => __( 'Comfortable', 'flx-app' ), 'compact' => __( 'Compact', 'flx-app' ) ) as $k => $l ) {
 		echo '<option value="' . esc_attr( $k ) . '"' . selected( $o['theme']['density'] ?? '', $k, false ) . '>' . esc_html( $l ) . '</option>';
 	}
 	echo '</select></label>';
-	foreach ( array( 'body' => __( 'Yazı tipi', 'flx-app' ), 'heading' => __( 'Başlık yazı tipi', 'flx-app' ) ) as $fk => $fl ) {
-		echo '<label>' . esc_html( $fl ) . ' <select name="theme[font][' . esc_attr( $fk ) . ']"><option value="">' . esc_html( sprintf( /* translators: %s: font name */ __( 'Temadan (%s)', 'flx-app' ), $theme['font'][ $fk ] ) ) . '</option>';
+	foreach ( array( 'body' => __( 'Font', 'flx-app' ), 'heading' => __( 'Heading font', 'flx-app' ) ) as $fk => $fl ) {
+		echo '<label>' . esc_html( $fl ) . ' <select name="theme[font][' . esc_attr( $fk ) . ']"><option value="">' . esc_html( sprintf( /* translators: %s: font name */ __( 'From theme (%s)', 'flx-app' ), $theme['font'][ $fk ] ) ) . '</option>';
 		foreach ( flxapp_fonts() as $f ) {
 			echo '<option' . selected( $o['theme']['font'][ $fk ] ?? '', $f, false ) . '>' . esc_html( $f ) . '</option>';
 		}
@@ -109,7 +109,7 @@ function flxapp_render_appearance_tab() {
 		echo '<th>' . esc_html( $l ) . '</th>';
 	}
 	echo '</tr></thead><tbody>';
-	foreach ( array( 'light' => __( 'Açık', 'flx-app' ), 'dark' => __( 'Koyu', 'flx-app' ) ) as $m => $ml ) {
+	foreach ( array( 'light' => __( 'On', 'flx-app' ), 'dark' => __( 'Dark', 'flx-app' ) ) as $m => $ml ) {
 		echo '<tr><th>' . esc_html( $ml ) . '</th>';
 		foreach ( flxapp_theme_color_keys() as $k ) {
 			$set = (string) ( $o['theme'][ $m ][ $k ] ?? '' );
@@ -121,36 +121,36 @@ function flxapp_render_appearance_tab() {
 
 	// Mobil.
 	$tabs = array_values( (array) ( $mob['tabs'] ?? array() ) );
-	echo '<section class="flxapp-card"><h2>' . esc_html__( 'Mobil', 'flx-app' ) . '</h2>';
-	echo '<p class="flxapp-row"><label>' . esc_html__( 'Gezinme', 'flx-app' ) . ' <select name="mobile[nav]">';
-	foreach ( array( 'tabs+drawer' => __( 'Alt bar + yan menü', 'flx-app' ), 'tabs' => __( 'Yalnız alt bar', 'flx-app' ), 'drawer' => __( 'Yalnız yan menü', 'flx-app' ) ) as $k => $l ) {
+	echo '<section class="flxapp-card"><h2>' . esc_html__( 'Mobile', 'flx-app' ) . '</h2>';
+	echo '<p class="flxapp-row"><label>' . esc_html__( 'Navigation', 'flx-app' ) . ' <select name="mobile[nav]">';
+	foreach ( array( 'tabs+drawer' => __( 'Tab bar + drawer', 'flx-app' ), 'tabs' => __( 'Tab bar only', 'flx-app' ), 'drawer' => __( 'Drawer only', 'flx-app' ) ) as $k => $l ) {
 		echo '<option value="' . esc_attr( $k ) . '"' . selected( $mob['nav'] ?? 'tabs+drawer', $k, false ) . '>' . esc_html( $l ) . '</option>';
 	}
-	echo '</select></label><label>' . esc_html__( 'Açılış ekranı', 'flx-app' ) . ' ' . flxapp_target_select( 'mobile[home]', (string) ( $mob['home'] ?? '' ), __( 'Başlangıç', 'flx-app' ) ) . '</label></p>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	echo '<h3>' . esc_html__( 'Alt bar (en çok 5)', 'flx-app' ) . '</h3><p class="description">' . esc_html__( 'Boş bırakılırsa Flux Admin mobil alt bar ayarı kullanılır. Kullanıcının göremediği sekme gizlenir; "Menü" her zaman erişilebilir kalır.', 'flx-app' ) . '</p><table class="flxapp-tabs">';
+	echo '</select></label><label>' . esc_html__( 'Home screen', 'flx-app' ) . ' ' . flxapp_target_select( 'mobile[home]', (string) ( $mob['home'] ?? '' ), __( 'Home', 'flx-app' ) ) . '</label></p>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo '<h3>' . esc_html__( 'Tab bar (up to 5)', 'flx-app' ) . '</h3><p class="description">' . esc_html__( 'If empty, the Flux Admin mobile bottom bar setting is used. Tabs the user cannot open are hidden; "Menu" always stays reachable.', 'flx-app' ) . '</p><table class="flxapp-tabs">';
 	for ( $i = 0; $i < 5; $i++ ) {
 		$t = (array) ( $tabs[ $i ] ?? array() );
 		echo '<tr><th>' . (int) ( $i + 1 ) . '</th><td>' . flxapp_target_select( 'mobile[tabs][' . $i . '][target]', (string) ( $t['target'] ?? '' ) ) . '</td>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo '<td><input type="text" name="mobile[tabs][' . (int) $i . '][label]" value="' . esc_attr( (string) ( $t['label'] ?? '' ) ) . '" placeholder="' . esc_attr__( 'Etiket', 'flx-app' ) . '" class="regular-text flxapp-short"></td>';
-		echo '<td><input type="text" name="mobile[tabs][' . (int) $i . '][icon]" value="' . esc_attr( (string) ( $t['icon'] ?? '' ) ) . '" placeholder="' . esc_attr__( 'İkon (home, chat…)', 'flx-app' ) . '" class="flxapp-short"></td>';
-		echo '<td><input type="text" name="mobile[tabs][' . (int) $i . '][badge]" value="' . esc_attr( (string) ( $t['badge'] ?? '' ) ) . '" placeholder="' . esc_attr__( 'Sayaç', 'flx-app' ) . '" class="flxapp-short"></td></tr>';
+		echo '<td><input type="text" name="mobile[tabs][' . (int) $i . '][label]" value="' . esc_attr( (string) ( $t['label'] ?? '' ) ) . '" placeholder="' . esc_attr__( 'Label', 'flx-app' ) . '" class="regular-text flxapp-short"></td>';
+		echo '<td><input type="text" name="mobile[tabs][' . (int) $i . '][icon]" value="' . esc_attr( (string) ( $t['icon'] ?? '' ) ) . '" placeholder="' . esc_attr__( 'Icon (home, chat…)', 'flx-app' ) . '" class="flxapp-short"></td>';
+		echo '<td><input type="text" name="mobile[tabs][' . (int) $i . '][badge]" value="' . esc_attr( (string) ( $t['badge'] ?? '' ) ) . '" placeholder="' . esc_attr__( 'Badge', 'flx-app' ) . '" class="flxapp-short"></td></tr>';
 	}
 	echo '</table><p class="flxapp-row">';
-	echo '<label class="flxapp-check"><input type="checkbox" name="mobile[drawer][enabled]" value="1"' . checked( ! isset( $mob['drawer']['enabled'] ) || ! empty( $mob['drawer']['enabled'] ), true, false ) . '> ' . esc_html__( 'Yan menü (rol menüsü grupları)', 'flx-app' ) . '</label>';
-	echo '<label class="flxapp-check"><input type="checkbox" name="mobile[topbar][show_logo]" value="1"' . checked( ! isset( $mob['topbar']['show_logo'] ) || ! empty( $mob['topbar']['show_logo'] ), true, false ) . '> ' . esc_html__( 'Üst barda logo', 'flx-app' ) . '</label>';
-	echo '<label class="flxapp-check"><input type="checkbox" name="mobile[topbar][site_switcher]" value="1"' . checked( ! isset( $mob['topbar']['site_switcher'] ) || ! empty( $mob['topbar']['site_switcher'] ), true, false ) . '> ' . esc_html__( 'Site değiştirici', 'flx-app' ) . '</label>';
-	echo '<label>' . esc_html__( 'Üst bar', 'flx-app' ) . ' <select name="mobile[topbar][style]">';
-	foreach ( array( 'large' => __( 'Büyük başlık', 'flx-app' ), 'compact' => __( 'Sade', 'flx-app' ) ) as $k => $l ) {
+	echo '<label class="flxapp-check"><input type="checkbox" name="mobile[drawer][enabled]" value="1"' . checked( ! isset( $mob['drawer']['enabled'] ) || ! empty( $mob['drawer']['enabled'] ), true, false ) . '> ' . esc_html__( 'Drawer (role menu groups)', 'flx-app' ) . '</label>';
+	echo '<label class="flxapp-check"><input type="checkbox" name="mobile[topbar][show_logo]" value="1"' . checked( ! isset( $mob['topbar']['show_logo'] ) || ! empty( $mob['topbar']['show_logo'] ), true, false ) . '> ' . esc_html__( 'Logo in the top bar', 'flx-app' ) . '</label>';
+	echo '<label class="flxapp-check"><input type="checkbox" name="mobile[topbar][site_switcher]" value="1"' . checked( ! isset( $mob['topbar']['site_switcher'] ) || ! empty( $mob['topbar']['site_switcher'] ), true, false ) . '> ' . esc_html__( 'Site switcher', 'flx-app' ) . '</label>';
+	echo '<label>' . esc_html__( 'Top bar', 'flx-app' ) . ' <select name="mobile[topbar][style]">';
+	foreach ( array( 'large' => __( 'Large title', 'flx-app' ), 'compact' => __( 'Compact', 'flx-app' ) ) as $k => $l ) {
 		echo '<option value="' . esc_attr( $k ) . '"' . selected( $mob['topbar']['style'] ?? 'large', $k, false ) . '>' . esc_html( $l ) . '</option>';
 	}
 	echo '</select></label></p></section>';
 
 	// Masaüstü.
 	$cmds = (array) ( $desk['commands'] ?? array() );
-	echo '<section class="flxapp-card"><h2>' . esc_html__( 'Masaüstü', 'flx-app' ) . '</h2>';
-	echo '<p class="flxapp-row"><label>' . esc_html__( 'Açılış ekranı', 'flx-app' ) . ' ' . flxapp_target_select( 'desktop[home]', (string) ( $desk['home'] ?? '' ), __( 'Başlangıç', 'flx-app' ) ) . '</label>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	echo '<label class="flxapp-check"><input type="checkbox" name="desktop[topbar][site_switcher]" value="1"' . checked( ! isset( $desk['topbar']['site_switcher'] ) || ! empty( $desk['topbar']['site_switcher'] ), true, false ) . '> ' . esc_html__( 'Site değiştirici', 'flx-app' ) . '</label></p>';
-	echo '<p class="description">' . esc_html__( 'Kenar çubuğu, rolün Flux Admin menü düzenini (sabitlenenler ve gruplar) izler. Komut paletinde (⌘K) her zaman görünecek kısayollar:', 'flx-app' ) . '</p><p class="flxapp-row">';
+	echo '<section class="flxapp-card"><h2>' . esc_html__( 'Desktop', 'flx-app' ) . '</h2>';
+	echo '<p class="flxapp-row"><label>' . esc_html__( 'Home screen', 'flx-app' ) . ' ' . flxapp_target_select( 'desktop[home]', (string) ( $desk['home'] ?? '' ), __( 'Home', 'flx-app' ) ) . '</label>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo '<label class="flxapp-check"><input type="checkbox" name="desktop[topbar][site_switcher]" value="1"' . checked( ! isset( $desk['topbar']['site_switcher'] ) || ! empty( $desk['topbar']['site_switcher'] ), true, false ) . '> ' . esc_html__( 'Site switcher', 'flx-app' ) . '</label></p>';
+	echo '<p class="description">' . esc_html__( 'The sidebar follows the role\'s Flux Admin menu layout (pins and groups). Shortcuts always shown in the command palette (⌘K):', 'flx-app' ) . '</p><p class="flxapp-row">';
 	for ( $i = 0; $i < 4; $i++ ) {
 		echo flxapp_target_select( 'desktop[commands][' . $i . ']', (string) ( $cmds[ $i ] ?? '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
@@ -158,16 +158,16 @@ function flxapp_render_appearance_tab() {
 
 	// Ekranlar.
 	$off = (array) flxapp_opt( 'screens_off' );
-	echo '<section class="flxapp-card"><h2>' . esc_html__( 'Ekranlar', 'flx-app' ) . '</h2><p class="description">' . esc_html__( 'Kapatılan ekran uygulamada yerel olarak açılmaz; o sayfa web görünümünde açılır.', 'flx-app' ) . '</p><div class="flxapp-screens">';
+	echo '<section class="flxapp-card"><h2>' . esc_html__( 'Screens', 'flx-app' ) . '</h2><p class="description">' . esc_html__( 'A disabled screen does not open natively in the app; that page opens in the web view.', 'flx-app' ) . '</p><div class="flxapp-screens">';
 	foreach ( flxapp_screen_catalog() as $k => $l ) {
 		echo '<label class="flxapp-check"><input type="checkbox" name="screens_on[]" value="' . esc_attr( $k ) . '"' . checked( ! in_array( $k, $off, true ), true, false ) . '> ' . esc_html( $l ) . '</label>';
 	}
 	echo '<input type="hidden" name="screens_all" value="' . esc_attr( implode( ',', array_keys( flxapp_screen_catalog() ) ) ) . '"></div></section>';
-	submit_button( __( 'Kaydet', 'flx-app' ) );
+	submit_button( __( 'Save', 'flx-app' ) );
 	echo '</form>';
 
 	// Önizleme.
-	echo '<aside class="flxapp-preview"><h2>' . esc_html__( 'Önizleme', 'flx-app' ) . '</h2>';
+	echo '<aside class="flxapp-preview"><h2>' . esc_html__( 'Preview', 'flx-app' ) . '</h2>';
 	flxapp_render_preview( $cfgm, $cfgd );
 	echo '</aside></div>';
 }
@@ -216,7 +216,7 @@ function flxapp_render_preview( array $m, array $d ) {
 		}
 	}
 	echo '</div><div class="flxapp-desk-main"><div class="flxapp-desk-top">⌘K</div><div class="flxapp-ph-card"></div><div class="flxapp-ph-row"></div><div class="flxapp-ph-row"></div><div class="flxapp-ph-row"></div></div></div>';
-	echo '<p class="description">' . esc_html__( 'Önizleme sizin rolünüzle; diğer roller kendi menülerini görür.', 'flx-app' ) . '</p>';
+	echo '<p class="description">' . esc_html__( 'Preview uses your role; other roles see their own menus.', 'flx-app' ) . '</p>';
 }
 
 function flxapp_handle_appearance() {
@@ -264,54 +264,54 @@ function flxapp_render_mobile_tab( array $s ) {
 	$last    = (array) get_option( 'flxapp_push_last', array() );
 	$devices = flxapp_user_devices( 0 );
 	$push    = count( array_filter( $devices, fn( $d ) => '' !== (string) $d['token_hash'] ) );
-	echo '<p class="flxapp-lead">' . esc_html__( 'Bu siteye hangi uygulamaların bağlanabileceği, mağaza bağlantıları ve bildirimler.', 'flx-app' ) . '</p>';
+	echo '<p class="flxapp-lead">' . esc_html__( 'Which apps may connect to this site, store links and notifications.', 'flx-app' ) . '</p>';
 	echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="flxapp_mobile">';
 	wp_nonce_field( 'flxapp_mobile' );
 	echo '<table class="form-table">';
-	echo '<tr><th>' . esc_html__( 'Ana FluxWP uygulaması', 'flx-app' ) . '</th><td><label><input type="checkbox" name="generic_app" value="1"' . checked( $s['generic_app'], 1, false ) . '> ' . esc_html__( 'Masaüstü ve mobil FluxWP uygulaması bağlanabilsin (flx-masaustu, flx-mobil)', 'flx-app' ) . '</label><p class="description">' . esc_html__( 'Kapatılırsa yalnız aşağıdaki markalı uygulamalar bağlanır; ana uygulamanın açık oturumları bir sonraki yenilemede kapanır.', 'flx-app' ) . '</p></td></tr>';
-	echo '<tr><th>' . esc_html__( 'Mağaza bağlantıları', 'flx-app' ) . '</th><td><p><input type="url" class="regular-text" name="store_ios" value="' . esc_attr( (string) $s['store_ios'] ) . '" placeholder="https://apps.apple.com/…"> App Store</p><p><input type="url" class="regular-text" name="store_android" value="' . esc_attr( (string) $s['store_android'] ) . '" placeholder="https://play.google.com/…"> Google Play</p></td></tr>';
-	echo '<tr><th>' . esc_html__( 'Bildirimler', 'flx-app' ) . '</th><td><label><input type="checkbox" name="push_enabled" value="1"' . checked( $s['push_enabled'], 1, false ) . '> ' . esc_html__( 'Mobil cihazlara push bildirimi gönder (Expo)', 'flx-app' ) . '</label><br><label><input type="checkbox" name="push_hide" value="1"' . checked( $s['push_hide'], 1, false ) . '> ' . esc_html__( 'Kilit ekranında içeriği gizle (yalnız bildirim türü görünür)', 'flx-app' ) . '</label>';
-	echo '<p><input type="password" class="regular-text" name="push_expo_token" value="" autocomplete="new-password" placeholder="' . esc_attr( flxapp_secret_has( 'push_expo_token' ) ? __( 'Kayıtlı (değiştirmek için yazın)', 'flx-app' ) : __( 'Expo erişim belirteci (isteğe bağlı)', 'flx-app' ) ) . '"> <label><input type="checkbox" name="push_expo_token_clear" value="1"> ' . esc_html__( 'Sil', 'flx-app' ) . '</label></p>';
-	echo '<p class="description">' . esc_html__( 'Yalnız Expo hesabında gelişmiş push güvenliği açıksa gerekir. Masaüstü uygulaması push almaz; bildirimleri açıkken eşitleme ile gösterir.', 'flx-app' ) . '</p>';
+	echo '<tr><th>' . esc_html__( 'Main FluxWP app', 'flx-app' ) . '</th><td><label><input type="checkbox" name="generic_app" value="1"' . checked( $s['generic_app'], 1, false ) . '> ' . esc_html__( 'Allow the FluxWP desktop and mobile app (flx-masaustu, flx-mobil)', 'flx-app' ) . '</label><p class="description">' . esc_html__( 'When off, only the branded apps below can connect; open sessions of the main app end at their next refresh.', 'flx-app' ) . '</p></td></tr>';
+	echo '<tr><th>' . esc_html__( 'Store links', 'flx-app' ) . '</th><td><p><input type="url" class="regular-text" name="store_ios" value="' . esc_attr( (string) $s['store_ios'] ) . '" placeholder="https://apps.apple.com/…"> App Store</p><p><input type="url" class="regular-text" name="store_android" value="' . esc_attr( (string) $s['store_android'] ) . '" placeholder="https://play.google.com/…"> Google Play</p></td></tr>';
+	echo '<tr><th>' . esc_html__( 'Notifications', 'flx-app' ) . '</th><td><label><input type="checkbox" name="push_enabled" value="1"' . checked( $s['push_enabled'], 1, false ) . '> ' . esc_html__( 'Send push notifications to mobile devices (Expo)', 'flx-app' ) . '</label><br><label><input type="checkbox" name="push_hide" value="1"' . checked( $s['push_hide'], 1, false ) . '> ' . esc_html__( 'Hide content on the lock screen (only the notification type shows)', 'flx-app' ) . '</label>';
+	echo '<p><input type="password" class="regular-text" name="push_expo_token" value="" autocomplete="new-password" placeholder="' . esc_attr( flxapp_secret_has( 'push_expo_token' ) ? __( 'Saved (type to replace)', 'flx-app' ) : __( 'Expo access token (optional)', 'flx-app' ) ) . '"> <label><input type="checkbox" name="push_expo_token_clear" value="1"> ' . esc_html__( 'Delete', 'flx-app' ) . '</label></p>';
+	echo '<p class="description">' . esc_html__( 'Only needed when enhanced push security is on in the Expo account. The desktop app does not receive push; it shows notifications through sync while open.', 'flx-app' ) . '</p>';
 	/* translators: 1: device count, 2: devices with push */
-	echo '<p>' . esc_html( sprintf( __( 'Cihaz: %1$d · bildirim açık: %2$d', 'flx-app' ), count( $devices ), $push ) );
+	echo '<p>' . esc_html( sprintf( __( 'Devices: %1$d · notifications on: %2$d', 'flx-app' ), count( $devices ), $push ) );
 	if ( ! empty( $last['at'] ) ) {
 		/* translators: 1: time ago, 2: sent, 3: failed */
-		echo ' · ' . esc_html( sprintf( __( 'Son gönderim %1$s: %2$d gönderildi, %3$d hata', 'flx-app' ), flx_time_ago( (int) $last['at'] ), (int) ( $last['sent'] ?? 0 ), (int) ( $last['failed'] ?? 0 ) ) );
+		echo ' · ' . esc_html( sprintf( __( 'Last send %1$s: %2$d sent, %3$d failed', 'flx-app' ), flx_time_ago( (int) $last['at'] ), (int) ( $last['sent'] ?? 0 ), (int) ( $last['failed'] ?? 0 ) ) );
 		if ( ! empty( $last['error'] ) ) {
 			echo ' <span class="flxapp-bad">' . esc_html( (string) $last['error'] ) . '</span>';
 		}
 	}
 	echo '</p></td></tr>';
-	echo '<tr><th>' . esc_html__( 'Web görünümü', 'flx-app' ) . '</th><td><label><input type="checkbox" name="embed_front" value="1"' . checked( $s['embed_front'], 1, false ) . '> ' . esc_html__( 'Uygulamada açılan site sayfalarında yönetim çubuğunu gizle', 'flx-app' ) . '</label></td></tr>';
-	echo '<tr><th>' . esc_html__( 'Geliştirici modu', 'flx-app' ) . '</th><td><label><input type="checkbox" name="dev_redirects" value="1"' . checked( $s['dev_redirects'], 1, false ) . '> ' . esc_html__( 'Expo geliştirme dönüş adreslerine (exp://…/--/oauth/callback) izin ver', 'flx-app' ) . '</label><p class="description">' . esc_html__( 'Yalnız test sitelerinde açın.', 'flx-app' ) . '</p></td></tr>';
+	echo '<tr><th>' . esc_html__( 'Web view', 'flx-app' ) . '</th><td><label><input type="checkbox" name="embed_front" value="1"' . checked( $s['embed_front'], 1, false ) . '> ' . esc_html__( 'Hide the admin bar on site pages opened in the app', 'flx-app' ) . '</label></td></tr>';
+	echo '<tr><th>' . esc_html__( 'Developer mode', 'flx-app' ) . '</th><td><label><input type="checkbox" name="dev_redirects" value="1"' . checked( $s['dev_redirects'], 1, false ) . '> ' . esc_html__( 'Allow Expo development redirects (exp://…/--/oauth/callback)', 'flx-app' ) . '</label><p class="description">' . esc_html__( 'Turn on only on test sites.', 'flx-app' ) . '</p></td></tr>';
 	echo '</table>';
 
-	echo '<h2>' . esc_html__( 'Markalı uygulamalar', 'flx-app' ) . '</h2><p class="description">' . esc_html__( 'Kurumun kendi adıyla yayımlanan uygulaması bu siteye yalnız burada tanımlıysa bağlanır. Genelde ön ayar (preset) doldurur.', 'flx-app' ) . '</p>';
-	echo '<table class="widefat striped flxapp-table flxapp-clients"><thead><tr><th>client_id</th><th>' . esc_html__( 'Ad', 'flx-app' ) . '</th><th>' . esc_html__( 'Platform', 'flx-app' ) . '</th><th>' . esc_html__( 'Dönüş adresleri (satır başına bir)', 'flx-app' ) . '</th></tr></thead><tbody>';
+	echo '<h2>' . esc_html__( 'Branded apps', 'flx-app' ) . '</h2><p class="description">' . esc_html__( 'An app published under the organisation\'s own name connects to this site only if it is listed here. Usually filled in by the preset.', 'flx-app' ) . '</p>';
+	echo '<table class="widefat striped flxapp-table flxapp-clients"><thead><tr><th>client_id</th><th>' . esc_html__( 'Name', 'flx-app' ) . '</th><th>' . esc_html__( 'Platform', 'flx-app' ) . '</th><th>' . esc_html__( 'Redirect URIs (one per line)', 'flx-app' ) . '</th></tr></thead><tbody>';
 	$rows   = array_values( (array) $s['app_clients'] );
 	$rows[] = array();
 	foreach ( $rows as $i => $c ) {
 		echo '<tr><td data-label="client_id"><input type="text" name="app_clients[' . (int) $i . '][id]" value="' . esc_attr( (string) ( $c['id'] ?? '' ) ) . '" placeholder="flx-mobil-marka" class="flxapp-short"></td>';
-		echo '<td data-label="' . esc_attr__( 'Ad', 'flx-app' ) . '"><input type="text" name="app_clients[' . (int) $i . '][name]" value="' . esc_attr( (string) ( $c['name'] ?? '' ) ) . '" class="flxapp-short"></td>';
+		echo '<td data-label="' . esc_attr__( 'Name', 'flx-app' ) . '"><input type="text" name="app_clients[' . (int) $i . '][name]" value="' . esc_attr( (string) ( $c['name'] ?? '' ) ) . '" class="flxapp-short"></td>';
 		echo '<td data-label="' . esc_attr__( 'Platform', 'flx-app' ) . '"><select name="app_clients[' . (int) $i . '][platform]">';
-		foreach ( array( 'mobile' => __( 'Mobil', 'flx-app' ), 'desktop' => __( 'Masaüstü', 'flx-app' ) ) as $k => $l ) {
+		foreach ( array( 'mobile' => __( 'Mobile', 'flx-app' ), 'desktop' => __( 'Desktop', 'flx-app' ) ) as $k => $l ) {
 			echo '<option value="' . esc_attr( $k ) . '"' . selected( $c['platform'] ?? 'mobile', $k, false ) . '>' . esc_html( $l ) . '</option>';
 		}
-		echo '</select></td><td data-label="' . esc_attr__( 'Dönüş adresleri', 'flx-app' ) . '"><textarea name="app_clients[' . (int) $i . '][redirect_uris]" rows="2" class="large-text" placeholder="marka://oauth/callback">' . esc_textarea( implode( "\n", (array) ( $c['redirect_uris'] ?? array() ) ) ) . '</textarea></td></tr>';
+		echo '</select></td><td data-label="' . esc_attr__( 'Redirect URIs', 'flx-app' ) . '"><textarea name="app_clients[' . (int) $i . '][redirect_uris]" rows="2" class="large-text" placeholder="marka://oauth/callback">' . esc_textarea( implode( "\n", (array) ( $c['redirect_uris'] ?? array() ) ) ) . '</textarea></td></tr>';
 	}
 	echo '</tbody></table>';
-	submit_button( __( 'Kaydet', 'flx-app' ) );
+	submit_button( __( 'Save', 'flx-app' ) );
 	echo '</form>';
 
-	echo '<h2>' . esc_html__( 'Bağlantı bilgileri', 'flx-app' ) . '</h2><table class="form-table flxapp-meta">';
+	echo '<h2>' . esc_html__( 'Connection details', 'flx-app' ) . '</h2><table class="form-table flxapp-meta">';
 	echo '<tr><th>bootstrap</th><td><code>' . esc_html( rest_url( 'flxapp/v1/app/bootstrap' ) ) . '</code></td></tr>';
 	echo '<tr><th>flx-mobil</th><td><code>fluxwp://oauth/callback</code></td></tr>';
 	echo '<tr><th>flx-masaustu</th><td><code>http://127.0.0.1:&lt;port&gt;/callback</code> · <code>fluxapp://oauth/callback</code></td></tr>';
-	echo '<tr><th>' . esc_html__( 'Etkin ön ayar', 'flx-app' ) . '</th><td><code>' . esc_html( flxapp_site_preset() ? flxapp_site_preset() : '—' ) . '</code></td></tr></table>';
+	echo '<tr><th>' . esc_html__( 'Active preset', 'flx-app' ) . '</th><td><code>' . esc_html( flxapp_site_preset() ? flxapp_site_preset() : '—' ) . '</code></td></tr></table>';
 	echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="flxapp_push_test">';
 	wp_nonce_field( 'flxapp_push_test' );
-	echo '<p><button class="button">' . esc_html__( 'Kendime deneme bildirimi gönder', 'flx-app' ) . '</button></p></form>';
+	echo '<p><button class="button">' . esc_html__( 'Send me a test notification', 'flx-app' ) . '</button></p></form>';
 }
 
 function flxapp_handle_mobile() {
@@ -359,7 +359,7 @@ function flxapp_handle_push_test() {
 		get_current_user_id(),
 		array(
 			'title'  => get_bloginfo( 'name' ),
-			'body'   => __( 'Deneme bildirimi: bu cihaz bildirim alıyor.', 'flx-app' ),
+			'body'   => __( 'Test notification: this device receives notifications.', 'flx-app' ),
 			'target' => 'notifications',
 			'now'    => true,
 			'test'   => true,
@@ -375,29 +375,29 @@ function flxapp_handle_push_test() {
 
 function flxapp_render_devices( array $rows, $show_user ) {
 	if ( ! $rows ) {
-		echo '<p class="flxapp-empty">' . esc_html__( 'Uygulamada oturum açılmış cihaz yok.', 'flx-app' ) . '</p>';
+		echo '<p class="flxapp-empty">' . esc_html__( 'No device is signed in to the app.', 'flx-app' ) . '</p>';
 		return;
 	}
 	echo '<table class="widefat striped flxapp-table"><thead><tr>';
 	if ( $show_user ) {
-		echo '<th>' . esc_html__( 'Kullanıcı', 'flx-app' ) . '</th>';
+		echo '<th>' . esc_html__( 'User', 'flx-app' ) . '</th>';
 	}
-	echo '<th>' . esc_html__( 'Cihaz', 'flx-app' ) . '</th><th>' . esc_html__( 'Uygulama', 'flx-app' ) . '</th><th>' . esc_html__( 'Bildirim', 'flx-app' ) . '</th><th>' . esc_html__( 'Son görülme', 'flx-app' ) . '</th><th></th></tr></thead><tbody>';
+	echo '<th>' . esc_html__( 'Device', 'flx-app' ) . '</th><th>' . esc_html__( 'Application', 'flx-app' ) . '</th><th>' . esc_html__( 'Notifications', 'flx-app' ) . '</th><th>' . esc_html__( 'Last seen', 'flx-app' ) . '</th><th></th></tr></thead><tbody>';
 	foreach ( $rows as $r ) {
 		$o = flxapp_device_out( $r );
 		echo '<tr>';
 		if ( $show_user ) {
 			$u = get_userdata( (int) $r['user_id'] );
-			echo '<td data-label="' . esc_attr__( 'Kullanıcı', 'flx-app' ) . '">' . esc_html( $u ? $u->display_name : '#' . $r['user_id'] ) . '</td>';
+			echo '<td data-label="' . esc_attr__( 'User', 'flx-app' ) . '">' . esc_html( $u ? $u->display_name : '#' . $r['user_id'] ) . '</td>';
 		}
-		$name = '' !== $o['name'] ? $o['name'] : ( '' !== $o['model'] ? $o['model'] : __( 'Adsız cihaz', 'flx-app' ) );
-		echo '<td data-label="' . esc_attr__( 'Cihaz', 'flx-app' ) . '"><strong>' . esc_html( $name ) . '</strong> <span class="flxapp-muted">' . esc_html( trim( $o['platform_label'] . ' ' . $o['model'] ) ) . '</span></td>';
-		echo '<td data-label="' . esc_attr__( 'Uygulama', 'flx-app' ) . '">' . esc_html( trim( $o['app'] . ' ' . $o['app_version'] ) ) . ( '' !== $o['brand'] ? ' <code>' . esc_html( $o['brand'] ) . '</code>' : '' ) . '</td>';
-		echo '<td data-label="' . esc_attr__( 'Bildirim', 'flx-app' ) . '"><span class="flxapp-pf' . ( $o['push'] ? ' is-on' : '' ) . '">' . ( $o['push'] ? esc_html__( 'Açık', 'flx-app' ) : esc_html__( 'Kapalı', 'flx-app' ) ) . '</span></td>';
-		echo '<td data-label="' . esc_attr__( 'Son görülme', 'flx-app' ) . '">' . esc_html( $o['last_seen_label'] ) . '</td>';
-		echo '<td><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" onsubmit="return confirm(\'' . esc_js( __( 'Bu cihazdaki oturum kapatılsın mı?', 'flx-app' ) ) . '\')"><input type="hidden" name="action" value="flxapp_device"><input type="hidden" name="id" value="' . (int) $r['id'] . '">';
+		$name = '' !== $o['name'] ? $o['name'] : ( '' !== $o['model'] ? $o['model'] : __( 'Unnamed device', 'flx-app' ) );
+		echo '<td data-label="' . esc_attr__( 'Device', 'flx-app' ) . '"><strong>' . esc_html( $name ) . '</strong> <span class="flxapp-muted">' . esc_html( trim( $o['platform_label'] . ' ' . $o['model'] ) ) . '</span></td>';
+		echo '<td data-label="' . esc_attr__( 'Application', 'flx-app' ) . '">' . esc_html( trim( $o['app'] . ' ' . $o['app_version'] ) ) . ( '' !== $o['brand'] ? ' <code>' . esc_html( $o['brand'] ) . '</code>' : '' ) . '</td>';
+		echo '<td data-label="' . esc_attr__( 'Notifications', 'flx-app' ) . '"><span class="flxapp-pf' . ( $o['push'] ? ' is-on' : '' ) . '">' . ( $o['push'] ? esc_html__( 'On', 'flx-app' ) : esc_html__( 'Off', 'flx-app' ) ) . '</span></td>';
+		echo '<td data-label="' . esc_attr__( 'Last seen', 'flx-app' ) . '">' . esc_html( $o['last_seen_label'] ) . '</td>';
+		echo '<td><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" onsubmit="return confirm(\'' . esc_js( __( 'Sign this device out?', 'flx-app' ) ) . '\')"><input type="hidden" name="action" value="flxapp_device"><input type="hidden" name="id" value="' . (int) $r['id'] . '">';
 		wp_nonce_field( 'flxapp_device' );
-		echo '<button class="button button-link-delete">' . esc_html__( 'Oturumu kapat', 'flx-app' ) . '</button></form></td></tr>';
+		echo '<button class="button button-link-delete">' . esc_html__( 'Sign out', 'flx-app' ) . '</button></form></td></tr>';
 	}
 	echo '</tbody></table>';
 }

@@ -43,7 +43,7 @@ final class Flx_Migrate_Cleanup {
 				'group'   => $bak ? 'backup' : 'table',
 				'label'   => $t,
 				/* translators: %d: satır sayısı */
-				'detail'  => sprintf( _n( '%d satır', '%d satır', $rows, 'flx-migrate' ), $rows ),
+				'detail'  => sprintf( _n( '[[\'%drow\', \'tr\']]', '[[\'%drow\', \'tr\']]', $rows, 'flx-migrate' ), $rows ),
 				'checked' => true,
 			);
 		}
@@ -60,7 +60,7 @@ final class Flx_Migrate_Cleanup {
 					'group'   => 'upload',
 					'label'   => 'uploads/' . $d,
 					/* translators: 1: dosya sayısı, 2: boyut */
-					'detail'  => sprintf( __( '%1$d dosya, %2$s', 'flx-migrate' ), $files, size_format( $bytes ) ),
+					'detail'  => sprintf( __( '%1$d files, %2$s', 'flx-migrate' ), $files, size_format( $bytes ) ),
 					'checked' => true,
 				);
 			}
@@ -90,7 +90,7 @@ final class Flx_Migrate_Cleanup {
 			$out[ 'theme:' . $th ] = array(
 				'group'   => 'theme',
 				'label'   => $th,
-				'detail'  => __( 'İçerikte bu temanın görsel adresleri kalmış olabilir; önce sayfaları kontrol edin.', 'flx-migrate' ),
+				'detail'  => __( 'Content may still use image URLs from this theme; check your pages first.', 'flx-migrate' ),
 				'checked' => false,
 			);
 		}
@@ -106,7 +106,7 @@ final class Flx_Migrate_Cleanup {
 			$out['options:old'] = array(
 				'group'   => 'options',
 				/* translators: %d: ayar sayısı */
-				'label'   => sprintf( _n( '%d eski ayar', '%d eski ayar', count( $names ), 'flx-migrate' ), count( $names ) ),
+				'label'   => sprintf( _n( '[[\'%dold setting\', \'tr\']]', '[[\'%dold setting\', \'tr\']]', count( $names ), 'flx-migrate' ), count( $names ) ),
 				'detail'  => implode( ', ', array_slice( $names, 0, 12 ) ) . ( count( $names ) > 12 ? ', …' : '' ),
 				'checked' => true,
 				'names'   => $names,

@@ -162,7 +162,7 @@ function flxc_app_message( $r, $chat ) {
 		'id'       => (int) $r['id'],
 		'dir'      => 'in' === $r['direction'] ? 'in' : 'out',
 		'by'       => $by,
-		'author'   => 'customer' === $by ? flxc_chat_title( $chat ) : ( 'bot' === $by ? __( 'Asistan', 'flx-chat' ) : flxc_user_name( $r['user_id'] ) ),
+		'author'   => 'customer' === $by ? flxc_chat_title( $chat ) : ( 'bot' === $by ? __( 'Assistant', 'flx-chat' ) : flxc_user_name( $r['user_id'] ) ),
 		'text'     => $text,
 		'media'    => $media,
 		'at'       => $at[0],
@@ -196,11 +196,11 @@ function flxc_app_rest_media( WP_REST_Request $req ) {
 	$exp = (int) $req->get_param( 'e' );
 	$sig = (string) $req->get_param( 's' );
 	if ( ! $uid || $exp < time() || ! hash_equals( flxc_app_media_sig( $id, $exp, $uid ), $sig ) ) {
-		return new WP_Error( 'flxc_media', __( 'Bağlantının süresi dolmuş.', 'flx-chat' ), array( 'status' => 403 ) );
+		return new WP_Error( 'flxc_media', __( 'This link has expired.', 'flx-chat' ), array( 'status' => 403 ) );
 	}
 	wp_set_current_user( $uid );
 	if ( ! flxc_can_use() ) {
-		return new WP_Error( 'flxc_media', __( 'Bu işlem için yetkiniz yok.', 'flx-chat' ), array( 'status' => 403 ) );
+		return new WP_Error( 'flxc_media', __( 'You do not have permission for this action.', 'flx-chat' ), array( 'status' => 403 ) );
 	}
 	return flxc_rest_media( $req );
 }
@@ -290,7 +290,7 @@ function flxc_app_rest_send( WP_REST_Request $req ) {
 	}
 	$text = str_replace( "\r\n", "\n", wp_check_invalid_utf8( (string) $req->get_param( 'text' ) ) );
 	if ( '' === trim( $text ) ) {
-		return new WP_Error( 'flxc_empty', __( 'Mesaj boş.', 'flx-chat' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxc_empty', __( 'Message is empty.', 'flx-chat' ), array( 'status' => 400 ) );
 	}
 	$m = flxc_send(
 		$chat,
@@ -317,7 +317,7 @@ function flxc_app_rest_bot( WP_REST_Request $req ) {
 		return $chat;
 	}
 	if ( ! function_exists( 'flxc_bot_enabled' ) || ! flxc_bot_enabled() ) {
-		return new WP_Error( 'flxc_bot_off', __( 'Asistan kapalı.', 'flx-chat' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxc_bot_off', __( 'The assistant is off.', 'flx-chat' ), array( 'status' => 400 ) );
 	}
 	// Paneldeki aç/kapat ile aynı iş (bot.php).
 	$sub = new WP_REST_Request( 'POST', '/flx-chat/v1/chats/' . (int) $chat['id'] . '/bot' );

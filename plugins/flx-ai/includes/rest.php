@@ -52,7 +52,7 @@ function flxai_rest_routes() {
 
 function flxai_rest_chat_or_404( WP_REST_Request $req ) {
 	$c = flxai_chat_get( (int) $req['id'] );
-	return $c ? $c : new WP_Error( 'flxai_not_found', __( 'Sohbet bulunamadı.', 'flx-ai' ), array( 'status' => 404 ) );
+	return $c ? $c : new WP_Error( 'flxai_not_found', __( 'Chat not found.', 'flx-ai' ), array( 'status' => 404 ) );
 }
 
 function flxai_rest_result( array $res, $since ) {
@@ -124,12 +124,12 @@ function flxai_rest_chat_delete( WP_REST_Request $req ) {
 
 function flxai_rest_chat_send( WP_REST_Request $req ) {
 	if ( ! flxai_ready( 'flx-ai' ) ) {
-		return new WP_Error( 'flxai_not_ready', __( 'Flux AI henüz ayarlanmadı: Flux AI & MCP › Ayarlar\'dan bir API anahtarı ve model girin.', 'flx-ai' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxai_not_ready', __( 'Flux AI is not set up yet: enter an API key and model in Flux AI & MCP › Settings.', 'flx-ai' ), array( 'status' => 400 ) );
 	}
 	$id = (int) $req['id'];
 	$c  = $id ? flxai_chat_get( $id ) : flxai_chat_create();
 	if ( ! $c ) {
-		return new WP_Error( 'flxai_not_found', __( 'Sohbet bulunamadı.', 'flx-ai' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxai_not_found', __( 'Chat not found.', 'flx-ai' ), array( 'status' => 404 ) );
 	}
 	if ( ! $id && null !== $req->get_param( 'model' ) && flxai_can_manage() ) {
 		$c['model'] = sanitize_text_field( (string) $req->get_param( 'model' ) );
@@ -295,8 +295,8 @@ function flxai_rest_render_test( WP_REST_Request $req ) {
 	$url  = esc_url_raw( trim( (string) $req->get_param( 'url' ) ), array( 'http', 'https' ) );
 	$user = sanitize_text_field( (string) $req->get_param( 'user' ) );
 	$pass = (string) $req->get_param( 'pass' );
-	$code = '<div style="padding:16px;border-radius:12px;background:var(--accent);color:#fff;font:600 16px/1.4 sans-serif">🌳 Flux AI · ' . esc_html__( 'Görsel çevirici çalışıyor', 'flx-ai' ) . '</div>';
-	$svg  = '<svg viewBox="0 0 320 60" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="60" rx="12" fill="#2f7d4f"/><text x="20" y="37" font-family="sans-serif" font-size="16" fill="#fff">Flux AI · ' . esc_html__( 'Görsel çevirici çalışıyor', 'flx-ai' ) . '</text></svg>';
+	$code = '<div style="padding:16px;border-radius:12px;background:var(--accent);color:#fff;font:600 16px/1.4 sans-serif">🌳 Flux AI · ' . esc_html__( 'Image renderer works', 'flx-ai' ) . '</div>';
+	$svg  = '<svg viewBox="0 0 320 60" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="60" rx="12" fill="#2f7d4f"/><text x="20" y="37" font-family="sans-serif" font-size="16" fill="#fff">Flux AI · ' . esc_html__( 'Image renderer works', 'flx-ai' ) . '</text></svg>';
 	$t    = microtime( true );
 	if ( '' !== $url ) {
 		$res = flxai_render_gotenberg(
@@ -311,7 +311,7 @@ function flxai_rest_render_test( WP_REST_Request $req ) {
 	} elseif ( 'imagick' === flxai_widget_renderer() ) {
 		$res = flxai_render_imagick( $svg, 360, false );
 	} else {
-		$res = new WP_Error( 'flxai_render_unavailable', __( 'Önce Gotenberg adresini girin.', 'flx-ai' ) );
+		$res = new WP_Error( 'flxai_render_unavailable', __( 'Enter the Gotenberg address first.', 'flx-ai' ) );
 	}
 	if ( is_wp_error( $res ) ) {
 		$res->add_data( array( 'status' => 400 ) );
@@ -329,7 +329,7 @@ function flxai_rest_render_test( WP_REST_Request $req ) {
 function flxai_rest_log_body( WP_REST_Request $req ) {
 	$b = flxai_log_body_get( (int) $req['id'] );
 	if ( ! $b ) {
-		return new WP_Error( 'flxai_no_body', __( 'Bu kaydın içeriği saklanmamış.', 'flx-ai' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxai_no_body', __( 'Content was not stored for this record.', 'flx-ai' ), array( 'status' => 404 ) );
 	}
 	return $b;
 }

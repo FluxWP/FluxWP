@@ -173,7 +173,7 @@ function flxs_fill( $text, array $vars ) {
 
 function flxs_user_label( $user_id ) {
 	if ( ! $user_id ) {
-		return __( 'Sistem', 'flx-certificates' );
+		return __( 'System', 'flx-certificates' );
 	}
 	$u = get_userdata( $user_id );
 	return $u ? $u->display_name : '#' . (int) $user_id;
@@ -225,7 +225,7 @@ function flxs_upload_dir() {
 
 function flxs_channels() {
 	return array(
-		'email'    => __( 'E-posta', 'flx-certificates' ),
+		'email'    => __( 'Email', 'flx-certificates' ),
 		'sms'      => __( 'SMS', 'flx-certificates' ),
 		'whatsapp' => __( 'WhatsApp', 'flx-certificates' ),
 	);
@@ -238,11 +238,11 @@ function flxs_channel_label( $c ) {
 
 function flxs_status_labels() {
 	return array(
-		'queued'     => __( 'Bekliyor', 'flx-certificates' ),
-		'processing' => __( 'Gönderiliyor', 'flx-certificates' ),
-		'sent'       => __( 'Gönderildi', 'flx-certificates' ),
-		'failed'     => __( 'Başarısız', 'flx-certificates' ),
-		'cancelled'  => __( 'İptal', 'flx-certificates' ),
+		'queued'     => __( 'Queued', 'flx-certificates' ),
+		'processing' => __( 'Sending', 'flx-certificates' ),
+		'sent'       => __( 'Sent', 'flx-certificates' ),
+		'failed'     => __( 'Failed', 'flx-certificates' ),
+		'cancelled'  => __( 'Cancelled', 'flx-certificates' ),
 	);
 }
 

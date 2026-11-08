@@ -1,0 +1,322 @@
+{
+  "common": {
+    "back": "Voltar",
+    "done": "Concluído",
+    "empty": "Nada aqui ainda.",
+    "refresh": "Atualizar",
+    "retry": "Tente novamente",
+    "cancel": "Cancelar",
+    "close": "Fechar",
+    "send": "Enviar"
+  },
+  "languages": {
+    "en": "English",
+    "tr": "Türkçe",
+    "de": "Deutsch",
+    "es": "Español",
+    "fr": "Français",
+    "pt-br": "Português do Brasil",
+    "ja": "日本語",
+    "zh": "简体中文",
+    "ar": "العربية",
+    "ru": "Русский"
+  },
+  "auth": {
+    "welcome": "{{name}}",
+    "connecting": "Conectando à sua conta...",
+    "addSiteTitle": "Conecte seu site",
+    "addSiteHint": "Digite o endereço do seu site WordPress. Você pode adicionar mais de um site.",
+    "siteUrl": "Endereço do site",
+    "siteUrlPlaceholder": "exemplo.org",
+    "continue": "Continuar",
+    "change": "Mudança",
+    "loginBrowser": "Faça login com o navegador",
+    "waitingBrowser": "Aguardando aprovação no navegador...",
+    "useApiKey": "Conecte-se com uma chave de API",
+    "apiKey": "Chave de API",
+    "apiKeyHint": "No painel: Usuários › Acesso ao aplicativo › Criar chave.",
+    "login": "Faça login",
+    "noYtApp": "O plugin Flux App não está instalado neste site. Instale-o para fazer login no aplicativo.",
+    "tryDemo": "Experimente a demonstração",
+    "footer": "{{name}} · conexão segura, sua senha nunca é armazenada no aplicativo"
+  },
+  "errors": {
+    "invalid_url": "Este endereço não é válido.",
+    "unreachable": "Não foi possível acessar o site. Verifique o endereço e sua conexão.",
+    "not_wordpress": "Nenhuma API REST do WordPress encontrada neste endereço.",
+    "access_denied": "O login não foi aprovado.",
+    "oauth_failed": "Não foi possível concluir o login. Por favor, tente novamente.",
+    "oauth_unsupported": "Este método de login ainda não está disponível no navegador; use o aplicativo de desktop.",
+    "bad_credentials": "A chave ou sessão é inválida.",
+    "server": "Nenhuma resposta do servidor.",
+    "unknown": "Algo deu errado."
+  },
+  "accounts": {
+    "title": "Contas",
+    "add": "Adicionar site ou conta",
+    "active": "Ativo",
+    "logout": "Sair",
+    "relogin": "Faça login novamente",
+    "needsLogin": "Sua sessão expirou. Faça login novamente.",
+    "kind": {
+      "oauth": "Login do navegador",
+      "apikey": "Chave de API",
+      "demo": "Demonstração"
+    }
+  },
+  "nav": {
+    "menu": "Menu principal",
+    "search": "Pesquise ou pule para",
+    "edit": "Editar menu",
+    "reset": "Redefinir",
+    "show": "Mostrar",
+    "hide": "Esconder",
+    "webView": "Abre na visualização do painel",
+    "collapse": "Ocultar barra lateral",
+    "expand": "Mostrar barra lateral",
+    "back": "Voltar",
+    "forward": "Avançar",
+    "resize": "Largura da barra lateral",
+    "submenu": "Alternar submenu",
+    "groups": {
+      "general": "Geral",
+      "comms": "Comunicação",
+      "donate": "Doações",
+      "content": "Conteúdo",
+      "growth": "Crescimento",
+      "screens": "Telas",
+      "system": "Sistema",
+      "other": "Outro",
+      "apps": "Aplicativos"
+    }
+  },
+  "palette": {
+    "placeholder": "Pesquisar telas ou comandos...",
+    "empty": "Sem resultados."
+  },
+  "dashboard": {
+    "morning": "Bom dia {{name}}",
+    "afternoon": "Boa tarde {{name}}",
+    "evening": "Boa noite {{name}}",
+    "customize": "Personalizar"
+  },
+  "web": {
+    "title": "Esta tela é aberta na visualização do painel",
+    "body": "Sua versão nativa ainda não está pronta. Você pode abrir a página do painel, já conectado, em uma janela separada.",
+    "open": "Abrir no painel",
+    "openBrowser": "Abrir no navegador"
+  },
+  "settings": {
+    "title": "Configurações",
+    "appearance": "Aparência",
+    "theme": "Tema",
+    "themes": {
+      "system": "Sistema",
+      "light": "Luz",
+      "dark": "Escuro"
+    },
+    "language": "Idioma",
+    "about": "Sobre",
+    "app": "Aplicativo",
+    "support": "Suporte",
+    "contact": "Contate-nos",
+    "logoutConfirm": "Sair de {{site}}?",
+    "logoutFailed": "Não foi possível sair. Por favor, tente novamente."
+  },
+  "oauth": {
+    "doneTitle": "Conectado",
+    "doneBody": "Você pode fechar esta guia e retornar ao aplicativo."
+  },
+  "review": {
+    "title": "Aguardando aprovação",
+    "count_one": "Doação de {{count}}",
+    "count_other": "{{count}} doações",
+    "noReceipt": "Sem recibo",
+    "noReceiptBody": "Ainda não chegou nenhum recibo desta doação.",
+    "emptyTitle": "Nenhuma doação pendente",
+    "emptyBody": "Novos recibos aparecerão aqui.",
+    "allDone": "Tudo pronto",
+    "ref": "Referência",
+    "receipt": "Recibo",
+    "approve": "Aprovar",
+    "reject": "Cancelar doação",
+    "approveConfirm": "Aprova a doação de {{amount}} de {{name}}? Certificados serão enviados.",
+    "approved": "Doação aprovada.",
+    "approvedCert_one": "Doação aprovada, certificado {{count}} enviado.",
+    "approvedCert_other": "Doação aprovada, certificados {{count}} enviados.",
+    "rejected": "Doação cancelada.",
+    "rejectTitle": "Cancelar a doação de {{name}}",
+    "reason": "Razão",
+    "reasonPlaceholder": "por exemplo o valor do recibo não corresponde",
+    "notify": "Notifique o doador"
+  },
+  "tasks": {
+    "title": "Tarefas",
+    "views": {
+      "mine": "Atribuído a mim",
+      "today": "Hoje",
+      "overdue": "Atrasado"
+    },
+    "projects": "Projetos",
+    "search": "Tarefas de pesquisa",
+    "quickAdd": "Adicione uma tarefa, pressione Enter",
+    "empty": "Nenhuma tarefa",
+    "complete": "Completo",
+    "reopen": "Reabrir",
+    "unassigned": "Não atribuído",
+    "checklist": "Lista de verificação",
+    "comments": "Comentários",
+    "noComments": "Nenhum comentário ainda.",
+    "addComment": "Escreva um comentário"
+  },
+  "inbox": {
+    "title": "WhatsApp",
+    "search": "Pesquisar nome ou número",
+    "filters": {
+      "open": "Abrir",
+      "unread": "Não lido",
+      "mine": "Meu",
+      "all": "Todos"
+    },
+    "empty": "Sem bate-papos",
+    "pick": "Selecione um bate-papo",
+    "assigned": "Gerenciado por {{name}}",
+    "donations_one": "Doação de {{count}}",
+    "donations_other": "{{count}} doações",
+    "botOn": "Assistente ativado",
+    "botOff": "Assistente desativado",
+    "botHint": "Ative/desative o assistente de IA para este bate-papo",
+    "assistant": "Assistente",
+    "write": "Digite uma mensagem, digite para enviar",
+    "blocked": "Este contato está bloqueado, as mensagens não podem ser enviadas."
+  },
+  "wa": {
+    "search": "Pesquise nome, número, nota ou mensagem",
+    "filters": {
+      "all": "Abrir",
+      "unread": "Não lido",
+      "mine": "Atribuído a mim",
+      "unassigned": "Não atribuído",
+      "closed": "Fechado"
+    },
+    "today": "Hoje",
+    "yesterday": "Ontem",
+    "reply": "Responder",
+    "copy": "Copiar",
+    "retry": "Tentar novamente",
+    "deleteNote": "Excluir nota",
+    "menu": "Menu de mensagens",
+    "react": "Reagir",
+    "src": {
+      "bot": "Assistente",
+      "ai": "Sugestão de IA",
+      "phone": "Do telefone",
+      "auto": "Automático",
+      "api": "API",
+      "cert": "Certificado"
+    },
+    "message": "Enviar mensagem",
+    "deletedMsg": "Esta mensagem foi excluída",
+    "deletedBadge": "Excluído pelo remetente",
+    "poll": "Enquete (ver no WhatsApp)",
+    "unsupported": "Mensagem não suportada",
+    "note": "Nota interna",
+    "customer": "Cliente",
+    "you": "Você",
+    "edited": "editado",
+    "failed": "Não enviado",
+    "types": {
+      "text": "Mensagem",
+      "note": "Nota",
+      "image": "Foto",
+      "video": "Vídeo",
+      "audio": "Mensagem de voz",
+      "document": "Documento",
+      "sticker": "Adesivo",
+      "location": "Localização",
+      "contact": "Cartão de contato",
+      "poll": "Enquete",
+      "deleted": "Mensagem excluída",
+      "unknown": "Mensagem"
+    },
+    "noteHint": "Nota interna: apenas sua equipe vê, não o cliente.",
+    "attach": "Anexar arquivo",
+    "noteMode": "Nota interna",
+    "quickReplies": "Respostas rápidas",
+    "aiSuggest": "Sugestão de IA",
+    "notePlaceholder": "Escreva uma nota para a equipe",
+    "caption": "Adicione uma legenda (opcional)",
+    "write": "Digite uma mensagem, digite para enviar",
+    "sessionExpired": "A sessão expirou. Faça login novamente.",
+    "offline": "Não é possível acessar o servidor, tentando novamente...",
+    "connDown": "A conexão {{name}} está inoperante",
+    "typing": "digitando...",
+    "recording": "gravando áudio...",
+    "botTyping": "O assistente está digitando...",
+    "bootError": "Não foi possível carregar o WhatsApp",
+    "quoteNotLoaded": "A mensagem citada ainda não foi carregada, role para cima.",
+    "closed": "Fechado",
+    "bot": {
+      "on": "Assistente ativado",
+      "off": "Assistente desativado",
+      "paused": "Assistente pausado"
+    },
+    "assign": "Atribuir bate-papo",
+    "unassigned": "Não atribuído",
+    "pin": "Fixar",
+    "unpin": "Liberar",
+    "close": "Fechar bate-papo",
+    "reopen": "Reabrir bate-papo",
+    "emoji": "Emoji",
+    "voice": {
+      "start": "Gravar mensagem de voz",
+      "recording": "Gravação",
+      "denied": "Permissão de microfone negada."
+    },
+    "info": {
+      "title": "Informações de contato",
+      "labels": "Etiquetas",
+      "notes": "Notas",
+      "notesHint": "Somente sua equipe vê isso",
+      "saved": "salvo",
+      "insert": "Inserir",
+      "copied": "Número copiado",
+      "firstSeen": "Primeira mensagem: {{date}}"
+    },
+    "new": {
+      "title": "Novo bate-papo",
+      "phone": "Número de telefone",
+      "name": "Nome (opcional)",
+      "line": "Linha",
+      "invalid": "Número inválido",
+      "exists": "Existe um bate-papo com este número: {{name}}",
+      "hasWa": "Usa WhatsApp",
+      "noWa": "Não há WhatsApp neste número",
+      "go": "Vá para o bate-papo",
+      "start": "Iniciar bate-papo"
+    }
+  },
+  "account": {
+    "menu": "Conta",
+    "profile": "Meu perfil",
+    "switch": "Trocar de conta",
+    "web": "Abrir site"
+  },
+  "update": {
+    "title": "Atualizações",
+    "check": "Verifique",
+    "checking": "Verificando...",
+    "upToDate": "Atualizado",
+    "newVersion": "Nova versão {{version}}",
+    "downloading": "Baixando {{version}} {{pct}}",
+    "restart": "Reinicie para atualizar",
+    "download": "Baixar",
+    "installing": "Instalando...",
+    "failed": "Não foi possível verificar"
+  },
+  "legal": {
+    "title": "Informações legais",
+    "privacy": "Política de privacidade",
+    "terms": "Termos de uso"
+  }
+}

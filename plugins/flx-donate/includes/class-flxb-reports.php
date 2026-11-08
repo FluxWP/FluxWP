@@ -44,7 +44,7 @@ final class FLXB_Reports {
 	public static function sources() {
 		return array(
 			'donations' => __( 'Donations', 'flx-donate' ),
-			'items'     => __( 'Tracked records', 'flx-donate' ),
+			'items'     => __( '\\nTracked records\\n', 'flx-donate' ),
 		);
 	}
 
@@ -94,9 +94,9 @@ final class FLXB_Reports {
 				'option'        => array( __( 'Option', 'flx-donate' ), 'i.option_label', 'text' ),
 				'status'        => array( __( 'Status', 'flx-donate' ), 'i.status', 'item_status' ),
 				'partner'       => array( FLXB_Track::label( 'partner' ), 'i.partner_id', 'partner' ),
-				'partner_group' => array( __( 'Partner group', 'flx-donate' ), 'p.group_name', 'text' ),
-				'source'        => array( __( 'Brought in by', 'flx-donate' ), 'i.source_id', 'partner' ),
-				'region'        => array( __( 'Region', 'flx-donate' ), 'i.region', 'text' ),
+				'partner_group' => array( __( '\\nPartner group\\n', 'flx-donate' ), 'p.group_name', 'text' ),
+				'source'        => array( __( '\\nBrought in by\\n', 'flx-donate' ), 'i.source_id', 'partner' ),
+				'region'        => array( __( '\\nRegion\\n', 'flx-donate' ), 'i.region', 'text' ),
 				'payment'       => array( __( 'Payment method', 'flx-donate' ), 'd.provider', 'provider' ),
 				'ref_user'      => array( __( 'Referral', 'flx-donate' ), 'd.ref_user_id', 'user' ),
 				'currency'      => array( __( 'Currency', 'flx-donate' ), 'i.currency', 'text' ),
@@ -109,7 +109,7 @@ final class FLXB_Reports {
 			'type'     => array( __( 'Donation type', 'flx-donate' ), 'd.type_id', 'type' ),
 			'option'   => array( __( 'Option', 'flx-donate' ), 'd.option_label', 'text' ),
 			'status'   => array( __( 'Status', 'flx-donate' ), 'd.status', 'donation_status' ),
-			'kind'     => array( __( 'One-time / regular', 'flx-donate' ), 'd.type', 'kind' ),
+			'kind'     => array( __( '\\nOne-time / regular\\n', 'flx-donate' ), 'd.type', 'kind' ),
 			'payment'  => array( __( 'Payment method', 'flx-donate' ), 'd.provider', 'provider' ),
 			'channel'  => array( __( 'Channel', 'flx-donate' ), 'd.source', 'text' ),
 			'ref_user' => array( __( 'Referral', 'flx-donate' ), 'd.ref_user_id', 'user' ),
@@ -132,7 +132,7 @@ final class FLXB_Reports {
 				'donors'   => array( __( 'Donors', 'flx-donate' ), 'COUNT(DISTINCT d.donor_id)', false ),
 				'amount'   => array( __( 'Amount', 'flx-donate' ), 'SUM(i.amount)', true ),
 				'cost'     => array( __( 'Cost', 'flx-donate' ), "SUM(CASE WHEN $same THEN i.cost ELSE 0 END)", true ),
-				'margin'   => array( __( 'Margin', 'flx-donate' ), "SUM(i.amount - CASE WHEN $same THEN i.cost ELSE 0 END)", true ),
+				'margin'   => array( __( '[[\'Margin\\n', 'flx-donate' ), "SUM(i.amount - CASE WHEN $same THEN i.cost ELSE 0 END)", true ),
 			);
 		}
 		return array(
@@ -148,7 +148,7 @@ final class FLXB_Reports {
 		return array(
 			'created' => array( __( 'Created', 'flx-donate' ), 'i.created_at' ),
 			'done'    => array( __( 'Completed', 'flx-donate' ), 'i.done_at' ),
-			'target'  => array( __( 'Target date', 'flx-donate' ), 'i.target_date' ),
+			'target'  => array( __( '\\nTarget date\\n', 'flx-donate' ), 'i.target_date' ),
 		);
 	}
 
@@ -161,17 +161,17 @@ final class FLXB_Reports {
 	 */
 	public static function clean( $r, array &$errors = array() ) {
 		if ( ! is_array( $r ) ) {
-			$errors[] = __( 'The report must be a JSON object.', 'flx-donate' );
+			$errors[] = __( '\\nThe report must be a JSON object.\\n', 'flx-donate' );
 			return null;
 		}
 		$id = sanitize_key( (string) ( $r['id'] ?? '' ) );
 		if ( '' === $id ) {
-			$errors[] = __( 'The report needs an "id" (letters, digits, dash).', 'flx-donate' );
+			$errors[] = __( '\\nThe report needs an "id" (letters, digits, dash).\\n', 'flx-donate' );
 		}
 		$source = (string) ( $r['source'] ?? 'donations' );
 		if ( ! isset( self::sources()[ $source ] ) ) {
 			/* translators: %s: value given */
-			$errors[] = sprintf( __( 'Unknown "source": %s. Use donations or items.', 'flx-donate' ), $source );
+			$errors[] = sprintf( __( '\\nUnknown "source":%s. Use donations or items.\\n', 'flx-donate' ), $source );
 			$source   = 'donations';
 		}
 		$dims  = self::dims( $source );
@@ -180,13 +180,13 @@ final class FLXB_Reports {
 			$g = (string) $g;
 			if ( ! isset( $dims[ $g ] ) ) {
 				/* translators: %s: value given */
-				$errors[] = sprintf( __( 'Unknown "group" value: %s', 'flx-donate' ), $g );
+				$errors[] = sprintf( __( '\\nUnknown "group" value:%s\\n', 'flx-donate' ), $g );
 			} elseif ( ! in_array( $g, $group, true ) ) {
 				$group[] = $g;
 			}
 		}
 		if ( count( $group ) > 2 ) {
-			$errors[] = __( 'Group by at most two dimensions.', 'flx-donate' );
+			$errors[] = __( '\\nGroup by at most two dimensions.\\n', 'flx-donate' );
 			$group    = array_slice( $group, 0, 2 );
 		}
 		$mets    = self::metrics( $source );
@@ -195,7 +195,7 @@ final class FLXB_Reports {
 			$m = (string) $m;
 			if ( ! isset( $mets[ $m ] ) ) {
 				/* translators: %s: value given */
-				$errors[] = sprintf( __( 'Unknown "metrics" value: %s', 'flx-donate' ), $m );
+				$errors[] = sprintf( __( '\\nUnknown "metrics" value:%s\\n', 'flx-donate' ), $m );
 			} elseif ( ! in_array( $m, $metrics, true ) ) {
 				$metrics[] = $m;
 			}
@@ -229,7 +229,7 @@ final class FLXB_Reports {
 		$sk     = ltrim( $sort, '-' );
 		if ( '' !== $sort && ! in_array( $sk, $group, true ) && ! in_array( $sk, $metrics, true ) ) {
 			/* translators: %s: value given */
-			$errors[] = sprintf( __( '"sort" must be one of the group or metrics values: %s', 'flx-donate' ), $sort );
+			$errors[] = sprintf( __( '\\n"sort" must be one of the group or metrics values:%s\\n', 'flx-donate' ), $sort );
 			$sort     = '';
 		}
 		$date = (string) ( $r['date'] ?? 'created' );
@@ -341,7 +341,7 @@ final class FLXB_Reports {
 		$raw = is_array( $json ) ? $json : json_decode( (string) $json, true );
 		if ( null === $raw ) {
 			/* translators: %s: JSON error message */
-			return new WP_Error( 'flxb_json', sprintf( __( 'The JSON could not be read: %s', 'flx-donate' ), json_last_error_msg() ) );
+			return new WP_Error( 'flxb_json', sprintf( __( '\\nThe JSON could not be read:%s\\n', 'flx-donate' ), json_last_error_msg() ) );
 		}
 		$e = array();
 		$r = self::clean( $raw, $e );

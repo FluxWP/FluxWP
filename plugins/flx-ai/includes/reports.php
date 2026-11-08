@@ -190,7 +190,7 @@ function flxai_billing( $ym ) {
 function flxai_openrouter_credits() {
 	$key = flxai_setting( 'key_openrouter' );
 	if ( '' === $key ) {
-		return new WP_Error( 'flxai_key', __( 'OpenRouter anahtarı girilmemiş.', 'flx-ai' ) );
+		return new WP_Error( 'flxai_key', __( 'No OpenRouter key entered.', 'flx-ai' ) );
 	}
 	$out = array();
 	foreach ( array( 'key' => '/key', 'credits' => '/credits' ) as $k => $path ) {
@@ -224,7 +224,7 @@ add_action(
 	'admin_post_flxai_csv',
 	function () {
 		if ( ! flxai_can_manage() ) {
-			wp_die( esc_html__( 'Yetkiniz yok.', 'flx-ai' ), 403 );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-ai' ), 403 );
 		}
 		check_admin_referer( 'flxai_csv' );
 		global $wpdb;

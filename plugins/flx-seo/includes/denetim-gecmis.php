@@ -78,22 +78,22 @@ add_action( 'flxseo_audit_done', 'flxseo_audit_snapshot' );
 
 function flxseo_audit_freqs() {
 	return array(
-		'daily'  => __( 'Her gün', 'flx-seo' ),
-		'weekly' => __( 'Her hafta', 'flx-seo' ),
-		'off'    => __( 'Kapalı', 'flx-seo' ),
+		'daily'  => __( 'Daily', 'flx-seo' ),
+		'weekly' => __( 'Weekly', 'flx-seo' ),
+		'off'    => __( 'Off', 'flx-seo' ),
 	);
 }
 
 /** Pazartesi=1 … Pazar=7. */
 function flxseo_audit_days() {
 	return array(
-		'1' => __( 'Pazartesi', 'flx-seo' ),
-		'2' => __( 'Salı', 'flx-seo' ),
-		'3' => __( 'Çarşamba', 'flx-seo' ),
-		'4' => __( 'Perşembe', 'flx-seo' ),
-		'5' => __( 'Cuma', 'flx-seo' ),
-		'6' => __( 'Cumartesi', 'flx-seo' ),
-		'7' => __( 'Pazar', 'flx-seo' ),
+		'1' => __( 'Monday', 'flx-seo' ),
+		'2' => __( 'Tuesday', 'flx-seo' ),
+		'3' => __( 'Wednesday', 'flx-seo' ),
+		'4' => __( 'Thursday', 'flx-seo' ),
+		'5' => __( 'Friday', 'flx-seo' ),
+		'6' => __( 'Saturday', 'flx-seo' ),
+		'7' => __( 'Sunday', 'flx-seo' ),
 	);
 }
 
@@ -289,21 +289,21 @@ function flxseo_audit_mail( array $entry ) {
 	$to = is_email( $to ) ? $to : get_option( 'admin_email' );
 	$p  = flxseo_audit_priorities();
 	/* translators: 1: site adı, 2: bulgu sayısı */
-	$subject = sprintf( __( '[%1$s] Site denetimi: %2$d yeni kritik/yüksek öneri', 'flx-seo' ), wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ), count( $new ) );
-	$lines   = array( __( 'Otomatik site denetiminde yeni öneriler çıktı:', 'flx-seo' ), '' );
+	$subject = sprintf( __( '[%1$s] Site audit: %2$d new critical/high recommendations', 'flx-seo' ), wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ), count( $new ) );
+	$lines   = array( __( 'The automatic site audit found new recommendations:', 'flx-seo' ), '' );
 	foreach ( $new as $it ) {
 		$lines[] = '- [' . ( $p[ $it[1] ][1] ?? $it[1] ) . '] ' . flxseo_audit_title( $it[0], $it[2] );
 	}
 	$c       = $entry['counts'];
 	$lines[] = '';
 	/* translators: 1: kritik, 2: yüksek, 3: orta, 4: düşük bulgu sayısı */
-	$lines[] = sprintf( __( 'Toplam: kritik %1$d, yüksek %2$d, orta %3$d, düşük %4$d.', 'flx-seo' ), $c['critical'], $c['high'], $c['medium'], $c['low'] );
+	$lines[] = sprintf( __( 'Total: critical %1$d, high %2$d, medium %3$d, low %4$d.', 'flx-seo' ), $c['critical'], $c['high'], $c['medium'], $c['low'] );
 	if ( $entry['fixed'] ) {
 		/* translators: %d: çözülen öneri sayısı */
-		$lines[] = sprintf( __( 'Önceki denetimden bu yana çözülen: %d.', 'flx-seo' ), count( $entry['fixed'] ) );
+		$lines[] = sprintf( __( 'Resolved since the previous audit: %d.', 'flx-seo' ), count( $entry['fixed'] ) );
 	}
 	$lines[] = '';
-	$lines[] = __( 'Ayrıntılar ve düzeltmeler:', 'flx-seo' ) . ' ' . flxseo_admin_url( 'denetim' );
+	$lines[] = __( 'Details and fixes:', 'flx-seo' ) . ' ' . flxseo_admin_url( 'denetim' );
 	return wp_mail( $to, $subject, implode( "\n", $lines ) );
 }
 
@@ -313,10 +313,10 @@ function flxseo_audit_mail( array $entry ) {
 
 function flxseo_audit_triggers() {
 	return array(
-		'auto'   => __( 'Otomatik', 'flx-seo' ),
-		'manual' => __( 'Elle', 'flx-seo' ),
-		'mcp'    => __( 'Yapay zekâ', 'flx-seo' ),
-		'fix'    => __( 'Düzeltme sonrası', 'flx-seo' ),
+		'auto'   => __( 'Automatic', 'flx-seo' ),
+		'manual' => __( 'Manual', 'flx-seo' ),
+		'mcp'    => __( 'AI', 'flx-seo' ),
+		'fix'    => __( 'After fix', 'flx-seo' ),
 	);
 }
 
@@ -330,14 +330,14 @@ function flxseo_audit_history_card() {
 	?>
 	<section class="au-card au-history" id="au-history">
 		<div class="au-bar">
-			<h2><?php esc_html_e( 'Rapor geçmişi', 'flx-seo' ); ?> <span class="au-meta"><?php echo esc_html( number_format_i18n( count( flxseo_audit_history() ) ) ); ?></span></h2>
+			<h2><?php esc_html_e( 'Report history', 'flx-seo' ); ?> <span class="au-meta"><?php echo esc_html( number_format_i18n( count( flxseo_audit_history() ) ) ); ?></span></h2>
 			<p class="au-meta">
 				<?php
 				if ( $next ) {
 					/* translators: %s: tarih ve saat */
-					printf( esc_html__( 'Sonraki otomatik denetim: %s', 'flx-seo' ), esc_html( flx_date( $next, 'datetime' ) ) );
+					printf( esc_html__( 'Next automatic audit: %s', 'flx-seo' ), esc_html( flx_date( $next, 'datetime' ) ) );
 				} else {
-					esc_html_e( 'Otomatik denetim kapalı.', 'flx-seo' );
+					esc_html_e( 'Automatic audit is off.', 'flx-seo' );
 				}
 				$errs = (array) get_option( 'flxseo_audit_last_errors', array() );
 				if ( $errs ) {
@@ -347,7 +347,7 @@ function flxseo_audit_history_card() {
 			</p>
 		</div>
 		<?php if ( ! $hist ) : ?>
-			<p class="au-empty"><?php esc_html_e( 'Henüz rapor yok. Her denetim (elle, otomatik ya da yapay zekâ ile) burada saklanır.', 'flx-seo' ); ?></p>
+			<p class="au-empty"><?php esc_html_e( 'No reports yet. Every audit (manual, automatic or by AI) is saved here.', 'flx-seo' ); ?></p>
 		<?php else : ?>
 			<div class="au-charts">
 				<?php flxseo_audit_chart_counts( $hist ); ?>
@@ -357,11 +357,11 @@ function flxseo_audit_history_card() {
 				<table class="au-table">
 					<thead>
 						<tr>
-							<th scope="col"><?php esc_html_e( 'Tarih', 'flx-seo' ); ?></th>
-							<th scope="col"><?php esc_html_e( 'Nasıl', 'flx-seo' ); ?></th>
-							<th scope="col"><?php esc_html_e( 'Öneriler', 'flx-seo' ); ?></th>
-							<th scope="col"><?php esc_html_e( 'PageSpeed puanları', 'flx-seo' ); ?></th>
-							<th scope="col"><?php esc_html_e( 'Değişim', 'flx-seo' ); ?></th>
+							<th scope="col"><?php esc_html_e( 'Date', 'flx-seo' ); ?></th>
+							<th scope="col"><?php esc_html_e( 'Trigger', 'flx-seo' ); ?></th>
+							<th scope="col"><?php esc_html_e( 'Recommendations', 'flx-seo' ); ?></th>
+							<th scope="col"><?php esc_html_e( 'PageSpeed scores', 'flx-seo' ); ?></th>
+							<th scope="col"><?php esc_html_e( 'Change', 'flx-seo' ); ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -385,15 +385,15 @@ function flxseo_audit_history_card() {
 							</td>
 							<td class="au-td-diff">
 								<?php if ( ! $e['new'] && ! $e['fixed'] ) : ?>
-									<span class="au-meta"><?php esc_html_e( 'Değişiklik yok', 'flx-seo' ); ?></span>
+									<span class="au-meta"><?php esc_html_e( 'No change', 'flx-seo' ); ?></span>
 								<?php else : ?>
 									<details>
 										<summary>
 											<?php if ( $e['new'] ) : ?>
-												<span class="au-tone-bad">+<?php echo count( $e['new'] ); ?> <?php esc_html_e( 'yeni', 'flx-seo' ); ?></span>
+												<span class="au-tone-bad">+<?php echo count( $e['new'] ); ?> <?php esc_html_e( 'new', 'flx-seo' ); ?></span>
 											<?php endif; ?>
 											<?php if ( $e['fixed'] ) : ?>
-												<span class="au-tone-good">−<?php echo count( $e['fixed'] ); ?> <?php esc_html_e( 'çözüldü', 'flx-seo' ); ?></span>
+												<span class="au-tone-good">−<?php echo count( $e['fixed'] ); ?> <?php esc_html_e( 'resolved', 'flx-seo' ); ?></span>
 											<?php endif; ?>
 										</summary>
 										<ul class="au-diff">
@@ -438,14 +438,14 @@ function flxseo_audit_score_rows( array $e ) {
 		echo '</span>';
 	}
 	if ( ! $any ) {
-		echo '<span class="au-meta">' . esc_html__( 'PageSpeed çalışmadı', 'flx-seo' ) . '</span>';
+		echo '<span class="au-meta">' . esc_html__( 'PageSpeed not run', 'flx-seo' ) . '</span>';
 	}
 }
 
 function flxseo_audit_strategies() {
 	return array(
-		'mobile'  => __( 'Mobil', 'flx-seo' ),
-		'desktop' => __( 'Masaüstü', 'flx-seo' ),
+		'mobile'  => __( 'Mobile', 'flx-seo' ),
+		'desktop' => __( 'Desktop', 'flx-seo' ),
 	);
 }
 
@@ -470,8 +470,8 @@ function flxseo_audit_chart_counts( array $hist ) {
 	$step  = $max > 20 ? 10 : ( $max > 8 ? 5 : 2 );
 	?>
 	<figure class="au-chart">
-		<figcaption><?php esc_html_e( 'Öneri sayısı', 'flx-seo' ); ?></figcaption>
-		<svg viewBox="0 0 <?php echo (int) $w; ?> <?php echo (int) $h; ?>" role="img" aria-label="<?php esc_attr_e( 'Öneri sayısının zaman içindeki değişimi', 'flx-seo' ); ?>">
+		<figcaption><?php esc_html_e( 'Recommendations', 'flx-seo' ); ?></figcaption>
+		<svg viewBox="0 0 <?php echo (int) $w; ?> <?php echo (int) $h; ?>" role="img" aria-label="<?php esc_attr_e( 'Number of recommendations over time', 'flx-seo' ); ?>">
 			<?php
 			for ( $g = 0; $g <= $max; $g += $step ) {
 				$y = $h - $bot - ( $h - $top - $bot ) * $g / $max;
@@ -509,9 +509,9 @@ function flxseo_audit_chart_scores( array $hist ) {
 	?>
 	<figure class="au-chart au-chart--scores">
 		<figcaption>
-			<?php esc_html_e( 'PageSpeed puanları', 'flx-seo' ); ?>
+			<?php esc_html_e( 'PageSpeed scores', 'flx-seo' ); ?>
 			<?php if ( count( $sts ) > 1 ) : ?>
-				<span class="au-seg" role="group" aria-label="<?php esc_attr_e( 'Cihaz', 'flx-seo' ); ?>">
+				<span class="au-seg" role="group" aria-label="<?php esc_attr_e( 'Device', 'flx-seo' ); ?>">
 					<?php $first = true; foreach ( $sts as $sk => $sl ) : ?>
 						<button type="button" class="au-chip<?php echo $first ? ' is-on' : ''; ?>" data-strat="<?php echo esc_attr( $sk ); ?>" aria-pressed="<?php echo $first ? 'true' : 'false'; ?>"><?php echo esc_html( $sl ); ?></button>
 					<?php $first = false; endforeach; ?>
@@ -519,7 +519,7 @@ function flxseo_audit_chart_scores( array $hist ) {
 			<?php endif; ?>
 		</figcaption>
 		<?php if ( ! $sts ) : ?>
-			<p class="au-empty"><?php esc_html_e( 'PageSpeed ölçümü olan rapor yok. API anahtarı girip otomatik denetimde PageSpeed\'i açın.', 'flx-seo' ); ?></p>
+			<p class="au-empty"><?php esc_html_e( 'No report with a PageSpeed run yet. Enter the API key and turn on PageSpeed in the automatic audit.', 'flx-seo' ); ?></p>
 		<?php endif; ?>
 		<?php
 		$first = true;
@@ -543,7 +543,7 @@ function flxseo_audit_chart_scores( array $hist ) {
 			$sy   = fn( $v ) => $h - $bot - ( $h - $top - $bot ) * ( $v - $min ) / ( 100 - $min );
 			$sx   = fn( $i ) => flxseo_audit_chart_x( $i, $n, $w - $left, 10 ) + $left;
 			/* translators: %s: Mobil / Masaüstü */
-			$aria = sprintf( __( '%s PageSpeed puanlarının zaman içindeki değişimi', 'flx-seo' ), $sl );
+			$aria = sprintf( __( '%s PageSpeed scores over time', 'flx-seo' ), $sl );
 			printf( '<svg viewBox="0 0 %d %d" role="img" aria-label="%s" data-strat="%s"%s>', (int) $w, (int) $h, esc_attr( $aria ), esc_attr( $sk ), $first ? '' : ' hidden' );
 			$gstep = ( 100 - $min ) > 40 ? 20 : 10;
 			for ( $g = $min; $g <= 100; $g += $gstep ) {
@@ -609,7 +609,7 @@ add_filter(
 		$tools['flxseo_site_audit_history'] = array(
 			'aliases'     => array( 'site_audit_history' ), // Flux SEO 1.5.x ve öncesindeki ad.
 			'source'      => 'flx-seo',
-			'title'       => __( 'Site denetimi geçmişi', 'flx-seo' ),
+			'title'       => __( 'Site audit history', 'flx-seo' ),
 			'description' => 'Past site audit reports, newest first: time, trigger (auto|manual|mcp|fix), counts by priority, PageSpeed scores and Core Web Vitals per strategy, agentic x/y, new and fixed finding ids since the previous report. Also returns the automatic schedule (next_run). Use it to show trends or to check whether a fix stuck.',
 			'readonly'    => true,
 			'cap'         => 'manage_options',

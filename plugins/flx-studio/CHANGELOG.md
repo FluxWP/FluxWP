@@ -1,5 +1,8 @@
 # Flux Studio — Değişiklikler
 
+## 0.4.1
+- Add native WordPress language packs for German, Spanish, French, Brazilian Portuguese, Japanese, Simplified Chinese, Arabic and Russian. English-keyed JSON catalogs preserve legacy gettext compatibility; no Flux Lang dependency.
+
 ## 0.4.0
 - Uygulama galeri listesi. Üretim ekranı sonra açılır. Galeri sayfalama `page` parametresini kabul eder.
 

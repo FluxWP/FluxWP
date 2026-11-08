@@ -1,5 +1,15 @@
 # Değişiklikler
 
+## 0.7.14
+- Default title bands, navigation and consent cards to a neutral dot pattern. Let presets and Theme Settings select dots, leaves or no decoration.
+- Use a generic translated news introduction, with an optional preset-specific override.
+
+## 0.7.13
+- Add native WordPress language packs for German, Spanish, French, Brazilian Portuguese, Japanese, Simplified Chinese, Arabic and Russian. English-keyed JSON catalogs preserve legacy gettext compatibility; no Flux Lang dependency.
+
+## 0.7.12
+- Support RTL across shared WordPress layouts, navigation, forms and WooCommerce styles using logical spacing and positions; keep technical syntax LTR and preserve the LTR layout.
+
 ## 0.7.11
 - Hesabım: içerik bağlantı rengi artık düğmelere (`*btn*` sınıflı bağlantılar, ör. Flux Donate "Bağış yap") geçmiyor; boş "Bekleyen bağışlar" ekranındaki düğme yazısı zeminle aynı renk olup görünmez oluyordu.
 - Hesabım genel temada nötr: telefon hatırlatması ve telefon alanı ipucu "fidan sertifikası" yerine genel bildirim metni; eklentilerin eklediği sekmelerin simgesi (menü ve pano kartı) fidan yerine nötr liste simgesi. Derneğe özel metin/simge ön ayardan: yeni filtreler `flx_phone_nudge_text`, `flx_phone_hint_text`, `flx_wc_endpoint_meta`; menü simgesi CSS değişkeni `--flx-wc-i-default`.

@@ -50,16 +50,16 @@ function flxc_mirror_line( $m ) {
 		return '';
 	}
 	if ( 'in' === $m['direction'] ) {
-		$who = __( 'Müşteri', 'flx-chat' );
+		$who = __( 'Customer', 'flx-chat' );
 	} elseif ( 'bot' === $m['source'] ) {
 		$who = __( 'AI Chat', 'flx-chat' );
 	} elseif ( (int) $m['user_id'] ) {
 		/* translators: %s: agent name */
-		$who = sprintf( __( 'Ekip (%s)', 'flx-chat' ), flxc_user_name( (int) $m['user_id'] ) );
+		$who = sprintf( __( 'Team (%s)', 'flx-chat' ), flxc_user_name( (int) $m['user_id'] ) );
 	} elseif ( 'phone' === $m['source'] ) {
-		$who = __( 'Ekip (telefon)', 'flx-chat' );
+		$who = __( 'Team (phone)', 'flx-chat' );
 	} else {
-		$who = __( 'Otomatik', 'flx-chat' );
+		$who = __( 'Automatic', 'flx-chat' );
 	}
 	if ( mb_strlen( $text ) > 1200 ) {
 		$text = mb_substr( $text, 0, 1200 ) . '…';
@@ -69,7 +69,7 @@ function flxc_mirror_line( $m ) {
 
 function flxc_mirror_head( $chat ) {
 	$name  = flxc_chat_title( $chat );
-	$phone = '' !== (string) $chat['phone'] ? '+' . $chat['phone'] : __( 'Gizli numara (WhatsApp)', 'flx-chat' );
+	$phone = '' !== (string) $chat['phone'] ? '+' . $chat['phone'] : __( 'Hidden number (WhatsApp)', 'flx-chat' );
 	$head  = '💬 *' . $name . '*' . ( $name !== $phone && false === strpos( $name, (string) $chat['phone'] ) ? ' · ' . $phone : '' );
 	return (string) apply_filters( 'flxc_mirror_head', $head . "\n" . admin_url( 'admin.php?page=flx-chat&chat=' . (int) $chat['id'] ), $chat );
 }

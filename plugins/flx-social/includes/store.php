@@ -115,7 +115,7 @@ function flxsm_account_failed( $id, $msg, $expired = false ) {
 function flxsm_delete_account( $id ) {
 	global $wpdb;
 	$id = (int) $id;
-	$wpdb->query( $wpdb->prepare( 'UPDATE ' . flxsm_table( 'targets' ) . " SET status = 'cancelled', error = %s WHERE account_id = %d AND status IN ('draft','scheduled','processing')", __( 'Hesap kaldırıldı.', 'flx-social' ), $id ) ); // phpcs:ignore WordPress.DB
+	$wpdb->query( $wpdb->prepare( 'UPDATE ' . flxsm_table( 'targets' ) . " SET status = 'cancelled', error = %s WHERE account_id = %d AND status IN ('draft','scheduled','processing')", __( 'Account removed.', 'flx-social' ), $id ) ); // phpcs:ignore WordPress.DB
 	$wpdb->delete( flxsm_table( 'accounts' ), array( 'id' => $id ) ); // phpcs:ignore WordPress.DB
 	$wpdb->delete( flxsm_table( 'metrics' ), array( 'account_id' => $id ) ); // phpcs:ignore WordPress.DB
 }
@@ -175,7 +175,7 @@ function flxsm_post_public( array $p, $full = true ) {
 			'id'           => (int) $t['id'],
 			'account_id'   => (int) $t['account_id'],
 			'provider'     => $a ? $a['provider'] : '',
-			'account'      => $a ? $a['name'] : __( '(silinmiş hesap)', 'flx-social' ),
+			'account'      => $a ? $a['name'] : __( '(deleted account)', 'flx-social' ),
 			'avatar'       => $a ? $a['avatar'] : '',
 			'status'       => $t['status'],
 			'remote_id'    => $t['remote_id'],
@@ -235,7 +235,7 @@ function flxsm_save_post( array $d, $id = 0 ) {
 	$table = flxsm_table( 'posts' );
 	$old   = $id ? flxsm_post_row( $id ) : null;
 	if ( $id && ! $old ) {
-		return new WP_Error( 'flxsm_not_found', __( 'Gönderi bulunamadı.', 'flx-social' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxsm_not_found', __( 'Post not found.', 'flx-social' ), array( 'status' => 404 ) );
 	}
 	$row = array(
 		'title'       => mb_substr( sanitize_text_field( (string) ( $d['title'] ?? ( $old['title'] ?? '' ) ) ), 0, 190 ),
@@ -354,13 +354,13 @@ function flxsm_apply_action( $post_id, $action, array $d = array() ) {
 	global $wpdb;
 	$p = flxsm_post_row( $post_id );
 	if ( ! $p ) {
-		return new WP_Error( 'flxsm_not_found', __( 'Gönderi bulunamadı.', 'flx-social' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxsm_not_found', __( 'Post not found.', 'flx-social' ), array( 'status' => 404 ) );
 	}
 	$table   = flxsm_table( 'targets' );
 	$open    = "('draft','scheduled','failed','cancelled')";
 	$targets = flxsm_targets_of( $post_id );
 	if ( in_array( $action, array( 'schedule', 'now', 'submit', 'approve' ), true ) && ! array_filter( $targets, fn( $t ) => in_array( $t['status'], array( 'draft', 'scheduled', 'failed', 'cancelled' ), true ) ) ) {
-		return new WP_Error( 'flxsm_no_target', __( 'En az bir hesap seçin.', 'flx-social' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxsm_no_target', __( 'Select at least one account.', 'flx-social' ), array( 'status' => 400 ) );
 	}
 	$can_publish = flxsm_can_publish() || ! empty( $d['_system'] );
 	if ( in_array( $action, array( 'schedule', 'now' ), true ) && ! $can_publish ) {
@@ -407,7 +407,7 @@ function flxsm_apply_action( $post_id, $action, array $d = array() ) {
 			$wpdb->query( $wpdb->prepare( "UPDATE {$table} SET status = 'cancelled', next_at = 0 WHERE post_id = %d AND status IN ('draft','scheduled')", $post_id ) ); // phpcs:ignore WordPress.DB
 			break;
 		default:
-			return new WP_Error( 'flxsm_action', __( 'Bilinmeyen işlem.', 'flx-social' ), array( 'status' => 400 ) );
+			return new WP_Error( 'flxsm_action', __( 'Unknown action.', 'flx-social' ), array( 'status' => 400 ) );
 	}
 	return true;
 }
@@ -427,7 +427,7 @@ function flxsm_validate_post( $post_id ) {
 		}
 		if ( 'expired' === $acc['status'] ) {
 			/* translators: %s: account name */
-			$errs[] = sprintf( __( '%s: bağlantının süresi dolmuş, Hesaplar’dan yeniden bağlayın.', 'flx-social' ), $acc['name'] );
+			$errs[] = sprintf( __( '%s: the connection expired, reconnect it under Accounts.', 'flx-social' ), $acc['name'] );
 			continue;
 		}
 		$pl = flxsm_target_payload( $t, $p );

@@ -30,19 +30,19 @@ final class FLXCM_Page_Settings {
 
 	public static function render() {
 		if ( ! current_user_can( FLXCM_Admin::CAP_MANAGE ) ) {
-			wp_die( esc_html__( 'Bu işlem için yetkiniz yok.', 'flx-commerce' ), 403 );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-commerce' ), 403 );
 		}
-		FLXCM_Admin::open( __( 'Ayarlar', 'flx-commerce' ), __( 'Panel, ödeme sayfası, Havale/EFT, ürün feed\'i ve bildirimler.', 'flx-commerce' ) );
+		FLXCM_Admin::open( __( 'Settings', 'flx-commerce' ), __( 'Dashboard, checkout, bank transfer, product feed and notifications.', 'flx-commerce' ) );
 		if ( isset( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-			echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Ayarlar kaydedildi.', 'flx-commerce' ) . '</p></div>';
+			echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Settings saved.', 'flx-commerce' ) . '</p></div>';
 		}
 		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxcm-settings">';
 		wp_nonce_field( 'flxcm_save' );
 		echo '<input type="hidden" name="action" value="flxcm_save">';
 
 		// Panel ve raporlar.
-		echo '<section class="flxcm-card"><h2>' . flxcm_icon( 'trend', 18 ) . ' ' . esc_html__( 'Panel ve raporlar', 'flx-commerce' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
-		echo '<fieldset class="flxcm-field"><legend class="flxcm-field__label">' . esc_html__( 'Ciroya sayılan sipariş durumları', 'flx-commerce' ) . '</legend><div class="flxcm-checks">';
+		echo '<section class="flxcm-card"><h2>' . flxcm_icon( 'trend', 18 ) . ' ' . esc_html__( 'Dashboard and reports', 'flx-commerce' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<fieldset class="flxcm-field"><legend class="flxcm-field__label">' . esc_html__( 'Order statuses counted as revenue', 'flx-commerce' ) . '</legend><div class="flxcm-checks">';
 		$paid = flxcm_paid_statuses();
 		foreach ( wc_get_order_statuses() as $k => $label ) {
 			$k = substr( $k, 3 );
@@ -51,73 +51,73 @@ final class FLXCM_Page_Settings {
 			}
 			echo '<label><input type="checkbox" name="paid_statuses[]" value="' . esc_attr( $k ) . '"' . checked( in_array( $k, $paid, true ), true, false ) . '> ' . esc_html( $label ) . '</label>';
 		}
-		echo '</div><span class="flxcm-field__hint">' . esc_html__( 'Beklemede (havale) siparişler ödeme onaylanınca sayılır.', 'flx-commerce' ) . '</span></fieldset>';
+		echo '</div><span class="flxcm-field__hint">' . esc_html__( 'On-hold (bank transfer) orders count once the payment is confirmed.', 'flx-commerce' ) . '</span></fieldset>';
 		if ( class_exists( 'FLXB_WC_Cart' ) ) {
-			self::toggle( 'exclude_donations', __( 'Bağış siparişlerini mağaza istatistiklerine katma', 'flx-commerce' ), __( 'Flux Donate kurulu: yalnız bağış içeren siparişler Bağışlar panelinde kalır.', 'flx-commerce' ) );
+			self::toggle( 'exclude_donations', __( 'Leave donation orders out of the store statistics', 'flx-commerce' ), __( 'Flux Donate is installed: orders with only donations stay in the Donations dashboard.', 'flx-commerce' ) );
 		}
-		self::input( 'low_stock', __( 'Düşük stok eşiği', 'flx-commerce' ), 'number', __( 'Stoğu bu sayı ya da altına inen ürünler Genel bakış\'ta listelenir.', 'flx-commerce' ), 'min="0" max="9999" class="small-text"' );
+		self::input( 'low_stock', __( 'Low stock threshold', 'flx-commerce' ), 'number', __( 'Products whose stock falls to this number or below are listed on the Overview.', 'flx-commerce' ), 'min="0" max="9999" class="small-text"' );
 		echo '</section>';
 
 		// Ödeme sayfası.
-		echo '<section class="flxcm-card"><h2>' . flxcm_icon( 'cart', 18 ) . ' ' . esc_html__( 'Sepet ve ödeme sayfası', 'flx-commerce' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
-		self::toggle( 'hide_company', __( 'Şirket adı alanını gizle', 'flx-commerce' ) );
-		self::toggle( 'hide_address_2', __( 'Adres 2. satırını gizle', 'flx-commerce' ) );
-		self::toggle( 'virtual_no_address', __( 'Yalnız sanal/indirilebilir ürün varsa adres sorma', 'flx-commerce' ), __( 'Klasik ödeme sayfasında. Ülke, ad, e-posta ve telefon kalır.', 'flx-commerce' ) );
-		self::toggle( 'order_notes', __( 'Sipariş notu alanı', 'flx-commerce' ) );
-		self::toggle( 'sticky_pay', __( 'Mobilde "Siparişi ver" düğmesi altta sabit', 'flx-commerce' ) );
-		self::toggle( 'free_ship_bar', __( 'Ücretsiz kargo çubuğu', 'flx-commerce' ), __( 'Sepette ve ödemede "X ₺ daha ekleyin, kargo bedava".', 'flx-commerce' ) );
+		echo '<section class="flxcm-card"><h2>' . flxcm_icon( 'cart', 18 ) . ' ' . esc_html__( 'Cart and checkout', 'flx-commerce' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		self::toggle( 'hide_company', __( 'Hide the company name field', 'flx-commerce' ) );
+		self::toggle( 'hide_address_2', __( 'Hide the second address line', 'flx-commerce' ) );
+		self::toggle( 'virtual_no_address', __( 'Do not ask for an address when the cart only has virtual/downloadable products', 'flx-commerce' ), __( 'On the classic checkout. Country, name, e-mail and phone stay.', 'flx-commerce' ) );
+		self::toggle( 'order_notes', __( 'Order notes field', 'flx-commerce' ) );
+		self::toggle( 'sticky_pay', __( 'On mobile, keep the "Place order" button fixed at the bottom', 'flx-commerce' ) );
+		self::toggle( 'free_ship_bar', __( 'Free shipping bar', 'flx-commerce' ), __( '"Add X more for free shipping" in the cart and at checkout.', 'flx-commerce' ) );
 		$auto = FLXCM_Checkout::free_threshold();
 		self::input(
 			'free_ship_amount',
-			__( 'Ücretsiz kargo tutarı', 'flx-commerce' ),
+			__( 'Free shipping amount', 'flx-commerce' ),
 			'number',
 			(float) flxcm_setting( 'free_ship_amount' ) > 0 || $auto <= 0
-				? __( 'Boş ya da 0 = WooCommerce "Ücretsiz kargo" yönteminin en az tutarı.', 'flx-commerce' )
+				? __( 'Empty or 0 = the minimum amount of WooCommerce\'s "Free shipping" method.', 'flx-commerce' )
 				/* translators: %s: amount */
-				: sprintf( __( 'Boş = WooCommerce "Ücretsiz kargo" yönteminden: %s', 'flx-commerce' ), flxcm_money( $auto ) ),
+				: sprintf( __( 'Empty = from WooCommerce\'s "Free shipping" method: %s', 'flx-commerce' ), flxcm_money( $auto ) ),
 			'min="0" step="0.01" class="regular-text"'
 		);
 		echo '</section>';
 
 		// Havale/EFT.
 		$gw_url = admin_url( 'admin.php?page=wc-settings&tab=checkout&section=' . FLXCM_Bank::ID );
-		echo '<section class="flxcm-card"><h2>' . flxcm_icon( 'bank', 18 ) . ' ' . esc_html__( 'Havale/EFT', 'flx-commerce' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
-		echo '<p class="flxcm-muted">' . esc_html__( 'Yöntemi açmak, IBAN ve açıklama biçimi WooCommerce › Ayarlar › Ödemeler › Havale/EFT\'de.', 'flx-commerce' ) . ' <a href="' . esc_url( $gw_url ) . '">' . esc_html__( 'Ödeme yöntemini aç', 'flx-commerce' ) . '</a></p>';
+		echo '<section class="flxcm-card"><h2>' . flxcm_icon( 'bank', 18 ) . ' ' . esc_html__( 'Bank transfer', 'flx-commerce' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<p class="flxcm-muted">' . esc_html__( 'Turning the method on, the IBAN and the reference format are in WooCommerce › Settings › Payments › Bank transfer.', 'flx-commerce' ) . ' <a href="' . esc_url( $gw_url ) . '">' . esc_html__( 'Open the payment method', 'flx-commerce' ) . '</a></p>';
 		if ( class_exists( 'FLXB_WC_Havale' ) ) {
-			self::toggle( 'defer_to_donate', __( 'Flux Donate\'in havale yöntemi açıksa bunu gösterme', 'flx-commerce' ), __( 'Ödeme sayfasında iki ayrı "Havale" seçeneği görünmesin.', 'flx-commerce' ) );
+			self::toggle( 'defer_to_donate', __( 'Hide this method when Flux Donate\'s bank transfer is on', 'flx-commerce' ), __( 'So the checkout does not show two separate "Bank transfer" options.', 'flx-commerce' ) );
 		}
-		self::input( 'receipt_max_mb', __( 'En büyük dekont (MB)', 'flx-commerce' ), 'number', '', 'min="1" max="20" class="small-text"' );
-		self::input( 'receipt_notify', __( 'Dekont bildirimi e-postası', 'flx-commerce' ), 'email', __( 'Boş = site yöneticisinin e-postası.', 'flx-commerce' ), 'class="regular-text"' );
-		self::input( 'cancel_after_days', __( 'Ödenmeyen havaleyi iptal et (gün)', 'flx-commerce' ), 'number', __( '0 = iptal etme. Dekont yüklenmiş siparişler iptal edilmez; stok geri döner.', 'flx-commerce' ), 'min="0" max="60" class="small-text"' );
+		self::input( 'receipt_max_mb', __( 'Largest receipt (MB)', 'flx-commerce' ), 'number', '', 'min="1" max="20" class="small-text"' );
+		self::input( 'receipt_notify', __( 'Receipt notification e-mail', 'flx-commerce' ), 'email', __( 'Empty = the site admin e-mail.', 'flx-commerce' ), 'class="regular-text"' );
+		self::input( 'cancel_after_days', __( 'Cancel unpaid bank transfers after (days)', 'flx-commerce' ), 'number', __( '0 = never cancel. Orders with a receipt are not cancelled; stock is restored.', 'flx-commerce' ), 'min="0" max="60" class="small-text"' );
 		echo '</section>';
 
 		// Feed.
-		echo '<section class="flxcm-card"><h2>' . flxcm_icon( 'rss', 18 ) . ' ' . esc_html__( 'Ürün feed\'i (Google Merchant)', 'flx-commerce' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
-		self::toggle( 'feed', __( 'Feed açık', 'flx-commerce' ), __( 'Google Merchant Center, Meta katalog ve benzerleri bu adresi okur.', 'flx-commerce' ) );
+		echo '<section class="flxcm-card"><h2>' . flxcm_icon( 'rss', 18 ) . ' ' . esc_html__( 'Product feed (Google Merchant)', 'flx-commerce' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		self::toggle( 'feed', __( 'Feed on', 'flx-commerce' ), __( 'Google Merchant Center, Meta catalog and similar services read this address.', 'flx-commerce' ) );
 		if ( flxcm_setting( 'feed' ) ) {
 			$url = FLXCM_Feed::url();
-			echo '<div class="flxcm-field"><span class="flxcm-field__label">' . esc_html__( 'Feed adresi', 'flx-commerce' ) . '</span><span class="flxcm-copyline"><input type="text" readonly value="' . esc_attr( $url ) . '" class="large-text" onfocus="this.select()"><button type="button" class="button" data-flxcm-copy="' . esc_attr( $url ) . '">' . flxcm_icon( 'copy', 15 ) . ' ' . esc_html__( 'Kopyala', 'flx-commerce' ) . '</button></span></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '<div class="flxcm-field"><span class="flxcm-field__label">' . esc_html__( 'Feed address', 'flx-commerce' ) . '</span><span class="flxcm-copyline"><input type="text" readonly value="' . esc_attr( $url ) . '" class="large-text" onfocus="this.select()"><button type="button" class="button" data-flxcm-copy="' . esc_attr( $url ) . '">' . flxcm_icon( 'copy', 15 ) . ' ' . esc_html__( 'Copy', 'flx-commerce' ) . '</button></span></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
-		self::input( 'feed_brand', __( 'Marka', 'flx-commerce' ), 'text', __( 'Boş = site adı.', 'flx-commerce' ), 'class="regular-text"' );
+		self::input( 'feed_brand', __( 'Brand', 'flx-commerce' ), 'text', __( 'Empty = site name.', 'flx-commerce' ), 'class="regular-text"' );
 		echo '</section>';
 
 		// Bildirimler.
 		$wa = FLXCM_Notify::whatsapp_ready();
-		echo '<section class="flxcm-card"><h2>' . flxcm_icon( 'alert', 18 ) . ' ' . esc_html__( 'Bildirimler', 'flx-commerce' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
-		echo '<p class="flxcm-muted">' . ( $wa ? esc_html__( 'WhatsApp mesajları Flux Mail\'in WhatsApp bağlantısıyla gider.', 'flx-commerce' ) : esc_html__( 'WhatsApp için Flux Mail ve bir WhatsApp bağlantısı gerekir; şu an yalnız e-posta gider.', 'flx-commerce' ) ) . '</p>';
-		self::toggle( 'notify_customer_wa', __( 'Havale bilgilerini ve ödeme onayını müşteriye WhatsApp ile gönder', 'flx-commerce' ) );
-		self::input( 'notify_admin_phone', __( 'Yönetici WhatsApp numarası', 'flx-commerce' ), 'tel', __( 'Dekont geldiğinde (ve açıksa yeni siparişte) bu numaraya yazılır.', 'flx-commerce' ), 'class="regular-text" placeholder="+90 5xx xxx xx xx"' );
-		self::toggle( 'notify_admin_order', __( 'Ödenmiş her yeni siparişte yöneticiye WhatsApp', 'flx-commerce' ) );
+		echo '<section class="flxcm-card"><h2>' . flxcm_icon( 'alert', 18 ) . ' ' . esc_html__( 'Notifications', 'flx-commerce' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<p class="flxcm-muted">' . ( $wa ? esc_html__( 'WhatsApp messages go through Flux Mail\'s WhatsApp connection.', 'flx-commerce' ) : esc_html__( 'WhatsApp needs Flux Mail and a WhatsApp connection; only e-mail is sent for now.', 'flx-commerce' ) ) . '</p>';
+		self::toggle( 'notify_customer_wa', __( 'Send the bank details and the payment confirmation to the customer by WhatsApp', 'flx-commerce' ) );
+		self::input( 'notify_admin_phone', __( 'Admin WhatsApp number', 'flx-commerce' ), 'tel', __( 'Gets a message when a receipt arrives (and, if on, for every new order).', 'flx-commerce' ), 'class="regular-text" placeholder="+90 5xx xxx xx xx"' );
+		self::toggle( 'notify_admin_order', __( 'WhatsApp the admin for every new paid order', 'flx-commerce' ) );
 		echo '</section>';
 
-		echo '<p class="flxcm-save"><button type="submit" class="button button-primary button-large">' . esc_html__( 'Kaydet', 'flx-commerce' ) . '</button></p></form>';
+		echo '<p class="flxcm-save"><button type="submit" class="button button-primary button-large">' . esc_html__( 'Save', 'flx-commerce' ) . '</button></p></form>';
 		FLXCM_Admin::close();
 	}
 
 	public static function save() {
 		check_admin_referer( 'flxcm_save' );
 		if ( ! current_user_can( FLXCM_Admin::CAP_MANAGE ) ) {
-			wp_die( esc_html__( 'Bu işlem için yetkiniz yok.', 'flx-commerce' ), 403 );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-commerce' ), 403 );
 		}
 		$in   = wp_unslash( $_POST );
 		$bool = array( 'exclude_donations', 'hide_company', 'hide_address_2', 'virtual_no_address', 'order_notes', 'sticky_pay', 'free_ship_bar', 'defer_to_donate', 'feed', 'notify_customer_wa', 'notify_admin_order' );

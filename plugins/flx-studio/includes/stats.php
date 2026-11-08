@@ -114,7 +114,7 @@ function flxst_stats( $days = 30 ) {
 		$u       = get_userdata( (int) $r['user_id'] );
 		$users[] = array(
 			'id'     => (int) $r['user_id'],
-			'name'   => $u ? $u->display_name : __( 'Silinmiş kullanıcı', 'flx-studio' ),
+			'name'   => $u ? $u->display_name : __( 'Deleted user', 'flx-studio' ),
 			'avatar' => get_avatar_url( (int) $r['user_id'], array( 'size' => 48 ) ),
 			'image'  => (int) $r['image'],
 			'video'  => (int) $r['video'],

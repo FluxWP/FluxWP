@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.8.11
+- Add native WordPress language packs for German, Spanish, French, Brazilian Portuguese, Japanese, Simplified Chinese, Arabic and Russian. English-keyed JSON catalogs preserve legacy gettext compatibility; no Flux Lang dependency.
+
 ## 1.8.10
 - Güvenlik (CodeQL): yönetim adresleri ve harita sorgusu `encodeURI` ile temizlenir.
 

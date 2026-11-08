@@ -12,24 +12,24 @@ class FLXP_Store {
 	/** Bayrak listesi (filtrelerde ve MCP'de). */
 	public static function flag_labels() {
 		return array(
-			'slow'       => __( 'Yavaş', 'flx-speed' ),
-			'error'      => __( 'PHP hatası', 'flx-speed' ),
-			'fatal'      => __( 'Ölümcül hata', 'flx-speed' ),
-			'5xx'        => __( 'Sunucu hatası (5xx)', 'flx-speed' ),
-			'http_fail'  => __( 'Başarısız dış istek', 'flx-speed' ),
-			'slow_query' => __( 'Yavaş sorgu', 'flx-speed' ),
-			'db_error'   => __( 'Sorgu hatası', 'flx-speed' ),
-			'log_error'  => __( 'Hata logu', 'flx-speed' ),
-			'sample'     => __( 'Örnek', 'flx-speed' ),
-			'profile'    => __( 'Profil', 'flx-speed' ),
+			'slow'       => __( 'Slow', 'flx-speed' ),
+			'error'      => __( 'PHP error', 'flx-speed' ),
+			'fatal'      => __( 'Fatal error', 'flx-speed' ),
+			'5xx'        => __( 'Server error (5xx)', 'flx-speed' ),
+			'http_fail'  => __( 'Failed HTTP call', 'flx-speed' ),
+			'slow_query' => __( 'Slow query', 'flx-speed' ),
+			'db_error'   => __( 'Query error', 'flx-speed' ),
+			'log_error'  => __( 'Error log', 'flx-speed' ),
+			'sample'     => __( 'Sample', 'flx-speed' ),
+			'profile'    => __( 'Profile', 'flx-speed' ),
 		);
 	}
 
 	/** İstek türü etiketleri. */
 	public static function type_labels() {
 		return array(
-			'front'  => __( 'Ön yüz', 'flx-speed' ),
-			'admin'  => __( 'Yönetim', 'flx-speed' ),
+			'front'  => __( 'Front end', 'flx-speed' ),
+			'admin'  => __( 'Admin', 'flx-speed' ),
 			'ajax'   => 'Ajax',
 			'rest'   => 'REST',
 			'cron'   => 'Cron',
@@ -581,10 +581,10 @@ function flxp_profile_url( $url ) {
 	$home = wp_parse_url( home_url() );
 	$p    = wp_parse_url( $url );
 	if ( empty( $p['host'] ) || strtolower( $p['host'] ) !== strtolower( $home['host'] ) ) {
-		return new WP_Error( 'flxp_host', __( 'Yalnız bu sitenin adresleri ölçülebilir.', 'flx-speed' ) );
+		return new WP_Error( 'flxp_host', __( 'Only URLs on this site can be profiled.', 'flx-speed' ) );
 	}
 	if ( (int) get_option( 'flxp_db_version', 0 ) < 1 ) {
-		return new WP_Error( 'flxp_table', __( 'Kayıt tablosu kurulmamış.', 'flx-speed' ) );
+		return new WP_Error( 'flxp_table', __( 'The records table is not installed.', 'flx-speed' ) );
 	}
 	global $wpdb;
 	$before = (int) $wpdb->get_var( 'SELECT MAX(id) FROM ' . flxp_table() ); // phpcs:ignore
@@ -607,7 +607,7 @@ function flxp_profile_url( $url ) {
 	}
 	$id = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT id FROM ' . flxp_table() . " WHERE id > %d AND FIND_IN_SET('profile', flags) ORDER BY id DESC LIMIT 1", $before ) ); // phpcs:ignore
 	if ( ! $id ) {
-		return new WP_Error( 'flxp_no_record', __( 'Sayfa açıldı ama ölçüm kaydı oluşmadı. Sayfa önbellekten gelmiş ya da Flux Speed o istekte yüklenmemiş olabilir.', 'flx-speed' ), array( 'status' => wp_remote_retrieve_response_code( $res ) ) );
+		return new WP_Error( 'flxp_no_record', __( 'The page loaded but no record was created. It may have been served from cache, or Flux Performance did not load on that request.', 'flx-speed' ), array( 'status' => wp_remote_retrieve_response_code( $res ) ) );
 	}
 	return array(
 		'id'     => $id,

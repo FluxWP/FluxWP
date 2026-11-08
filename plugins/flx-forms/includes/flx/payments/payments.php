@@ -171,7 +171,7 @@ function flxf_payments_nonce_permission( $request ) {
 	if ( $nonce && wp_verify_nonce( $nonce, 'wp_rest' ) ) {
 		return true;
 	}
-	return new WP_Error( 'rest_forbidden', __( 'Invalid or expired nonce', 'flx-forms' ), array( 'status' => 403 ) );
+	return new WP_Error( 'rest_forbidden', __( '\\nInvalid or expired nonce\\n', 'flx-forms' ), array( 'status' => 403 ) );
 }
 
 /** Same envelope the legacy Stripe endpoint answers with ({success:true, data:{...}}). */
@@ -201,19 +201,19 @@ function flxf_payment_rate_limited( $bucket, $default ) {
 function flxf_payment_rest_start( $request, $public ) {
 	$provider = flxf_payment_active_provider();
 	if ( ! $provider ) {
-		return flxf_payment_reply( array( 'success' => false, 'm' => __( 'No payment provider is available on this site. Please contact the site administrator.', 'flx-forms' ) ) );
+		return flxf_payment_reply( array( 'success' => false, 'm' => __( '\\nNo payment provider is available on this site. Please contact the site administrator.\\n', 'flx-forms' ) ) );
 	}
 	if ( $provider instanceof FLXF_Payment_Provider_Custom_Start ) {
 		return $provider->start_request( $request, $public );
 	}
 	if ( flxf_payment_rate_limited( 'start', 20 ) ) {
-		return flxf_payment_reply( array( 'success' => false, 'm' => __( 'Too many payment attempts. Please wait a few minutes and try again.', 'flx-forms' ) ), 429 );
+		return flxf_payment_reply( array( 'success' => false, 'm' => __( '\\nToo many payment attempts. Please wait a few minutes and try again.\\n', 'flx-forms' ) ), 429 );
 	}
 	if ( ! class_exists( '\Emsfb\StripeHandlerEfb' ) && is_readable( EMSFB_PLUGIN_DIRECTORY . 'vendor/stripe/class-Emsfb-stripe-handler.php' ) ) {
 		require_once EMSFB_PLUGIN_DIRECTORY . 'vendor/stripe/class-Emsfb-stripe-handler.php';
 	}
 	if ( ! class_exists( '\Emsfb\StripeHandlerEfb' ) || ! is_object( $public ) || ! method_exists( $public, 'insert_message_db' ) ) {
-		return flxf_payment_reply( array( 'success' => false, 'm' => __( 'Invalid payment data. Please refresh the page and try again.', 'flx-forms' ) ) );
+		return flxf_payment_reply( array( 'success' => false, 'm' => __( '\\nInvalid payment data. Please refresh the page and try again.\\n', 'flx-forms' ) ) );
 	}
 	$params = $request->get_json_params();
 	$check  = \Emsfb\StripeHandlerEfb::validate_card_add( $params, false, $provider->id() );
@@ -221,7 +221,7 @@ function flxf_payment_rest_start( $request, $public ) {
 		return flxf_payment_reply( array( 'success' => false, 'm' => $check ) );
 	}
 	if ( ! $provider->is_configured() ) {
-		return flxf_payment_reply( array( 'success' => false, 'm' => __( 'The payment provider is not configured on this site. Please contact the site administrator.', 'flx-forms' ) ) );
+		return flxf_payment_reply( array( 'success' => false, 'm' => __( '\\nThe payment provider is not configured on this site. Please contact the site administrator.\\n', 'flx-forms' ) ) );
 	}
 
 	$form_id = absint( $params['id'] );
@@ -230,7 +230,7 @@ function flxf_payment_rest_start( $request, $public ) {
 	$obj     = \Emsfb\StripeHandlerEfb::server_amount( $public, is_array( $rows ) ? $rows : array(), $fs, false, $form_id );
 	$amount  = round( (float) ( $obj['price_total'] ?? 0 ), 2 );
 	if ( ! is_finite( $amount ) || $amount <= 0 ) {
-		return flxf_payment_reply( array( 'success' => false, 'm' => __( 'No payment amount detected. Please review your selected items and try again. If the problem persists, contact support.', 'flx-forms' ) ) );
+		return flxf_payment_reply( array( 'success' => false, 'm' => __( '\\nNo payment amount detected. Please review your selected items and try again. If the problem persists, contact support.\\n', 'flx-forms' ) ) );
 	}
 	$currency = isset( $fs[0]['currency'] ) && strlen( (string) $fs[0]['currency'] ) > 2 ? strtoupper( (string) $fs[0]['currency'] ) : 'USD';
 	$method   = isset( $fs[0]['paymentmethod'] ) ? (string) $fs[0]['paymentmethod'] : 'charge';
@@ -260,10 +260,10 @@ function flxf_payment_rest_start( $request, $public ) {
 		$result = FLXF_Payment_Result::failed( $provider->label() . ': ' . $e->getMessage() );
 	}
 	if ( ! $result instanceof FLXF_Payment_Result ) {
-		$result = FLXF_Payment_Result::failed( __( 'The payment could not be started. Please try again.', 'flx-forms' ) );
+		$result = FLXF_Payment_Result::failed( __( '\\nThe payment could not be started. Please try again.\\n', 'flx-forms' ) );
 	}
 	if ( ! $result->is_ok() ) {
-		return flxf_payment_reply( array( 'success' => false, 'm' => '' !== $result->message ? $result->message : __( 'The payment could not be started. Please try again.', 'flx-forms' ) ) );
+		return flxf_payment_reply( array( 'success' => false, 'm' => '' !== $result->message ? $result->message : __( '\\nThe payment could not be started. Please try again.\\n', 'flx-forms' ) ) );
 	}
 
 	/* Pending entry (read_=2) with the priced rows + one payment row, the shape the
@@ -341,12 +341,12 @@ function flxf_payment_rest_confirm( $request ) {
 	$p     = is_array( $p ) ? $p : array();
 	$track = isset( $p['track'] ) && is_scalar( $p['track'] ) ? sanitize_text_field( (string) $p['track'] ) : '';
 	if ( flxf_payment_rate_limited( 'confirm', 60 ) ) {
-		return flxf_payment_reply( array( 'success' => false, 'm' => __( 'Too many requests. Please wait a moment and try again.', 'flx-forms' ) ), 429 );
+		return flxf_payment_reply( array( 'success' => false, 'm' => __( '\\nToo many requests. Please wait a moment and try again.\\n', 'flx-forms' ) ), 429 );
 	}
 	$row      = '' !== $track ? FLXF_Payment_Records::get_by_track( $track ) : null;
 	$provider = $row ? flxf_payment_provider( $row->gateway ) : null;
 	if ( ! $row || ! $provider ) {
-		return flxf_payment_reply( array( 'success' => false, 'm' => __( 'Payment not found.', 'flx-forms' ) ), 404 );
+		return flxf_payment_reply( array( 'success' => false, 'm' => __( '\\nPayment not found.\\n', 'flx-forms' ) ), 404 );
 	}
 	$result = $provider->verify( $row, array_diff_key( $p, array( 'track' => 1 ) ) );
 	if ( $result->is_paid() && 'completed' !== $row->status ) {
@@ -356,7 +356,7 @@ function flxf_payment_rest_confirm( $request ) {
 		'success' => $result->is_paid(),
 		'status'  => $result->status,
 		'trackid' => $row->track,
-		'm'       => $result->is_paid() ? '' : ( '' !== $result->message ? $result->message : __( 'The payment could not be verified yet.', 'flx-forms' ) ),
+		'm'       => $result->is_paid() ? '' : ( '' !== $result->message ? $result->message : __( '\\nThe payment could not be verified yet.\\n', 'flx-forms' ) ),
 	) );
 }
 
@@ -426,7 +426,7 @@ function flxf_payment_block_submit() {
 		'success' => true,
 		'data'    => array(
 			'success' => false,
-			'm'       => __( 'Your payment has not been confirmed yet. Please wait a moment and try again. If the problem persists, contact the site administrator.', 'flx-forms' ),
+			'm'       => __( '\\nYour payment has not been confirmed yet. Please wait a moment and try again. If the problem persists, contact the site administrator.\\n', 'flx-forms' ),
 		),
 	), 200 );
 }
@@ -469,7 +469,7 @@ function flxf_payments_wire_scripts() {
 		'provider'    => $id,
 		'label'       => $provider ? $provider->label() : '',
 		'configured'  => $provider && $provider->is_configured(),
-		'unavailable' => __( 'Online payment is not available at the moment. Please try again later or contact us.', 'flx-forms' ),
+		'unavailable' => __( '\\nOnline payment is not available at the moment. Please try again later or contact us.\\n', 'flx-forms' ),
 	);
 	wp_add_inline_script( 'flxf-pay', 'window.flxfPayCfg = ' . wp_json_encode( $cfg ) . ';', 'before' );
 
@@ -544,13 +544,13 @@ function flxf_payments_admin_settings_assets() {
 		'active'     => flxf_payment_active_provider_id(),
 		'providers'  => $providers,
 		'i18n'       => array(
-			'activeProvider' => __( 'Active payment provider', 'flx-forms' ),
-			'activeHelp'     => __( 'Payment forms take card payments through this provider. Only installed providers are listed.', 'flx-forms' ),
-			'configured'     => __( 'Configured', 'flx-forms' ),
-			'notConfigured'  => __( 'Not configured', 'flx-forms' ),
+			'activeProvider' => __( '\\nActive payment provider\\n', 'flx-forms' ),
+			'activeHelp'     => __( '\\nPayment forms take card payments through this provider. Only installed providers are listed.\\n', 'flx-forms' ),
+			'configured'     => __( '\\nConfigured\\n', 'flx-forms' ),
+			'notConfigured'  => __( '\\nNot configured\', \'en\']]', 'flx-forms' ),
 			'active'         => __( 'Active', 'flx-forms' ),
-			'savedSecret'    => __( 'Saved — leave empty to keep', 'flx-forms' ),
-			'settingsOf'     => __( '%s settings', 'flx-forms' ),
+			'savedSecret'    => __( '\\nSaved — leave empty to keep\\n', 'flx-forms' ),
+			'settingsOf'     => __( '\\n%ssettings\\n', 'flx-forms' ),
 		),
 	) );
 }

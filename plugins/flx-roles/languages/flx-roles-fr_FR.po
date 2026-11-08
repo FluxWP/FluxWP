@@ -1,0 +1,322 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: fr_FR\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Roles and access"
+msgstr "Rôles et accès"
+
+msgid "Automatic (first available: Tasks, Certificates, Donations)"
+msgstr "Automatique (premier disponible : tâches, certificats, dons)"
+
+msgid "Tasks"
+msgstr "Tâches"
+
+msgid "Certificates"
+msgstr "Certificats"
+
+msgid "Donations"
+msgstr "Dons"
+
+msgid "Dashboard (admin home)"
+msgstr "Tableau de bord (accueil de l'administrateur)"
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "%s person"
+msgid_plural "%s people"
+msgstr[0] "%spersonne"
+msgstr[1] "%spersonnes"
+
+msgid "You are not allowed to do this."
+msgstr "Vous n'êtes pas autorisé à faire cela."
+
+msgid "Saved. Permission changes apply immediately."
+msgstr "Enregistré. Les modifications d’autorisation s’appliquent immédiatement."
+
+msgid "The role is back to its default permissions."
+msgstr "Le rôle retrouve ses autorisations par défaut."
+
+msgid "Person added to the role."
+msgstr "Personne ajoutée au rôle."
+
+msgid "Person removed from the role."
+msgstr "Personne retirée du rôle."
+
+msgid "No user with this username or email. Create the user first."
+msgstr "Aucun utilisateur avec ce nom d'utilisateur ou cette adresse email. Créez d'abord l'utilisateur."
+
+msgid "Administrators can't get this role; they already see everything."
+msgstr "Les administrateurs ne peuvent pas obtenir ce rôle ; ils voient déjà tout."
+
+msgid "The action could not be completed."
+msgstr "L'action n'a pas pu être complétée."
+
+msgid "Role added; it starts with admin panel access only. Turn on its permissions in the table."
+msgstr "Rôle ajouté ; cela commence uniquement par l’accès au panneau d’administration. Activez ses autorisations dans le tableau."
+
+msgid "Role deleted; its people moved to the default role."
+msgstr "Rôle supprimé ; ses gens sont passés au rôle par défaut."
+
+msgid "Role name must be 1-40 characters."
+msgstr "Le nom du rôle doit comporter entre 1 et 40 caractères."
+
+msgid "Turn on and off what each role can access. A disabled action disappears from the menu and can't be done even by URL. The WordPress Administrator sees everything."
+msgstr "Activez et désactivez ce à quoi chaque rôle peut accéder. Une action désactivée disparaît du menu et ne peut pas être effectuée même par URL. L'administrateur WordPress voit tout."
+
+msgid "Delete this role? Its people move to the default role."
+msgstr "Supprimer ce rôle ? Ses collaborateurs occupent le rôle par défaut."
+
+msgid "Delete role"
+msgstr "Supprimer le rôle"
+
+msgid "New role"
+msgstr "Nouveau rôle"
+
+msgid "For example Volunteer or Accounting. Starts with admin panel access only."
+msgstr "Par exemple Bénévole ou Comptabilité. Commence avec l'accès au panneau d'administration uniquement."
+
+msgid "Role name"
+msgstr "Nom du rôle"
+
+msgid "Add role"
+msgstr "Ajouter un rôle"
+
+msgid "Access"
+msgstr "Accès"
+
+msgid "%s is not installed"
+msgstr "%sn'est pas installé"
+
+msgid "The setting is saved; it takes effect once the plugin is updated to a version that enforces this permission."
+msgstr "Le paramètre est enregistré ; cela prend effet une fois que le plugin est mis à jour vers une version qui applique cette autorisation."
+
+msgid "Waiting for %s update"
+msgstr "En attente de la mise à jour%s"
+
+msgid "broad access"
+msgstr "accès large"
+
+msgid "Settings"
+msgstr "Paramètres"
+
+msgid "%s: screen after login"
+msgstr "%s: écran après connexion"
+
+msgid "Referral link lifetime"
+msgstr "Durée de vie du lien de parrainage"
+
+msgid "days"
+msgstr "jours"
+
+msgid "If a visitor who came through a referral link donates within this period, the donation is credited to that person. If they come through another referral link, the latest one wins."
+msgstr "Si un visiteur venu via un lien de parrainage fait un don dans ce délai, le don est crédité à cette personne. S'ils passent par un autre lien de parrainage, le dernier gagne."
+
+msgid "Save"
+msgstr "Enregistrer"
+
+msgid "Reset this role's permissions to the defaults?"
+msgstr "Réinitialiser les autorisations par défaut de ce rôle ?"
+
+msgid "%s: reset to defaults"
+msgstr "%s: réinitialiser les paramètres par défaut"
+
+msgid "People"
+msgstr "Les gens"
+
+msgid "Add WhatsApp number"
+msgstr "Ajouter un numéro WhatsApp"
+
+msgid "Referral link"
+msgstr "Lien de parrainage"
+
+msgid "Copy"
+msgstr "Copier"
+
+msgid "Remove this person from the role?"
+msgstr "Supprimer cette personne du rôle ?"
+
+msgid "Remove from role"
+msgstr "Supprimer du rôle"
+
+msgid "Nobody yet."
+msgstr "Personne pour l'instant."
+
+msgid "Username or email"
+msgstr "Nom d'utilisateur ou email"
+
+msgid "Add"
+msgstr "Ajouter"
+
+msgid "For a new person, first <a href=\"%s\">create a user</a> and choose one of these roles."
+msgstr "Pour une nouvelle personne,<a href=\"%s\">créez d'abord un utilisateur</a>et choisissez l'un de ces rôles."
+
+msgid "For every permission of every role, see <a href=\"%s\">Admin theme › Permissions</a>."
+msgstr "Pour chaque autorisation de chaque rôle, consultez<a href=\"%s\">Thème d'administration › Autorisations</a>."
+
+msgid "Copied"
+msgstr "Copié"
+
+msgid "Director"
+msgstr "Directeur"
+
+msgid "Has every permission on this page: all donations, certificate and task management, reports. Unlike the WordPress administrator, can't install plugins or change site settings."
+msgstr "A toutes les autorisations sur cette page : tous les dons, gestion des certificats et des tâches, rapports. Contrairement à l'administrateur WordPress, il ne peut pas installer de plugins ni modifier les paramètres du site."
+
+msgid "Manager"
+msgstr "Gestionnaire"
+
+msgid "Everything Staff can do, plus the donation and certificate dashboards (overall totals) and reports, and sets report schedules."
+msgstr "Tout ce que le personnel peut faire, ainsi que les tableaux de bord et les rapports sur les dons et les certificats (totaux globaux), et définit les calendriers des rapports."
+
+msgid "Staff"
+msgstr "Personnel"
+
+msgid "Regular user in Tasks, creates certificates, opens donations on behalf of others, sees the donations, donors and certificates they referred."
+msgstr "Utilisateur régulier dans Tâches, crée des certificats, ouvre des dons au nom d'autrui, voit les dons, les donateurs et les certificats auxquels ils ont fait référence."
+
+msgid "Role added from the panel."
+msgstr "Rôle ajouté depuis le panneau."
+
+msgid "General"
+msgstr "Général"
+
+msgid "Can enter the admin panel"
+msgstr "Peut accéder au panneau d'administration"
+
+msgid "Can be a referrer (gets a personal referral link, can be chosen as referrer on certificates and donations)"
+msgstr "Peut être parrain (obtient un lien de parrainage personnel, peut être choisi comme parrain sur les certificats et les dons)"
+
+msgid "Uses Tasks; sees the projects and lists they have access to"
+msgstr "Utilise des tâches ; voit les projets et les listes auxquels ils ont accès"
+
+msgid "Creates projects, folders and lists"
+msgstr "Crée des projets, des dossiers et des listes"
+
+msgid "Uses AI features in Tasks"
+msgstr "Utilise les fonctionnalités d'IA dans les tâches"
+
+msgid "Manages Tasks (sees every project, usage board, settings)"
+msgstr "Gère les tâches (voit chaque projet, tableau d'utilisation, paramètres)"
+
+msgid "Creates certificates"
+msgstr "Crée des certificats"
+
+msgid "Sees only certificates they created or referred"
+msgstr "Ne voit que les certificats qu'ils ont créés ou référencés"
+
+msgid "Sends in bulk"
+msgstr "Envoie en masse"
+
+msgid "Sees the certificate dashboard"
+msgstr "Affiche le tableau de bord du certificat"
+
+msgid "Manages certificates (all, templates, events, settings)"
+msgstr "Gère les certificats (tous, modèles, événements, paramètres)"
+
+msgid "Sees donations they referred"
+msgstr "Voit les dons qu'ils ont référés"
+
+msgid "Lists their own donors (donors of donations they referred)"
+msgstr "Répertorie leurs propres donateurs (donateurs de dons qu'ils ont référés)"
+
+msgid "Creates donations on behalf of others, with themselves as referrer (from the panel or the WhatsApp assistant)"
+msgstr "Crée des dons pour le compte d'autrui, avec lui-même comme référent (depuis le panel ou l'assistant WhatsApp)"
+
+msgid "Gets notified when a donation they referred is paid or cancelled"
+msgstr "Reçoit une notification lorsqu'un don qu'ils ont recommandé est payé ou annulé"
+
+msgid "Sees the donation dashboard (overall totals)"
+msgstr "Voir le tableau de bord des dons (totaux globaux)"
+
+msgid "Sees all donations and donors"
+msgstr "Voir tous les dons et donateurs"
+
+msgid "Call Center"
+msgstr "Centre d'appels"
+
+msgid "Uses WhatsApp chats"
+msgstr "Utilise les discussions WhatsApp"
+
+msgid "Uses staff tools in the WhatsApp assistant according to their role (if their number is on their profile)"
+msgstr "Utilise les outils du personnel dans l'assistant WhatsApp en fonction de son rôle (si son numéro est sur son profil)"
+
+msgid "Manages the Call Center (AI assistant, settings)"
+msgstr "Gère le Call Center (Assistant IA, paramètres)"
+
+msgid "Studio"
+msgstr "Atelier"
+
+msgid "Uses Studio (own gallery and shared folders)"
+msgstr "Utilise Studio (propre galerie et dossiers partagés)"
+
+msgid "Manages Studio (everyone's gallery, settings)"
+msgstr "Gère Studio (la galerie de chacun, les paramètres)"
+
+msgid "Reports"
+msgstr "Rapports"
+
+msgid "Can receive daily/periodic reports"
+msgstr "Peut recevoir des rapports quotidiens/périodiques"
+
+msgid "Sees overall reports (all staff, totals)"
+msgstr "Voir les rapports globaux (tout le personnel, totaux)"
+
+msgid "Sets staff and manager report schedules and motivation messages"
+msgstr "Définit les calendriers des rapports du personnel et du gestionnaire et les messages de motivation"
+
+msgid "Invalid phone number. Write it with the country code or as 05xx."
+msgstr "Numéro de téléphone invalide. Écrivez-le avec le code du pays ou sous la forme 05xx."
+
+msgid "This number belongs to another user: %s."
+msgstr "Ce numéro appartient à un autre utilisateur :%s."
+
+msgid "WhatsApp number"
+msgstr "Numéro WhatsApp"
+
+msgid "Phone"
+msgstr "Téléphone"
+
+msgid "The WhatsApp assistant recognizes whoever writes from this number as this user and enables what their role allows (e.g. donations on behalf of others, their own donors). Only an administrator can change the number."
+msgstr "L'assistant WhatsApp reconnaît celui qui écrit à partir de ce numéro comme cet utilisateur et active ce que son rôle permet (par exemple, les dons au nom d'autrui, ses propres donateurs). Seul un administrateur peut modifier le numéro."
+
+msgid "Personal link"
+msgstr "Lien personnel"
+
+msgid "Donations from visitors who come through this link show you as the referrer."
+msgstr "Les dons des visiteurs qui passent par ce lien vous indiquent comme référent."
+
+msgid "To share another page, add %s to the end of its address."
+msgstr "Pour partager une autre page, ajoutez%sà la fin de son adresse."
+
+msgid "Flux Roles"
+msgstr "Rôles de flux"
+
+msgid "FluxWP roles"
+msgstr "Rôles FluxWP"
+
+msgid "Missing role: %s. Deactivate and reactivate the plugin."
+msgstr "Rôle manquant :%s. Désactivez et réactivez le plugin."
+
+msgid "Staff WhatsApp numbers"
+msgstr "Numéros WhatsApp du personnel"
+
+msgid "%s people have no WhatsApp number on their profile; the assistant won't recognize them."
+msgstr "Les personnes%sn'ont pas de numéro WhatsApp sur leur profil ; l'assistant ne les reconnaîtra pas."
+
+msgid "Everyone in the roles has a number."
+msgstr "Chacun dans les rôles a un numéro."
+
+msgid "Plugins enforcing role permissions"
+msgstr "Plugins appliquant les autorisations de rôle"
+
+msgid "Some enabled permissions aren't enforced yet; waiting for updates of: %s. Until then these people can't see the related screen."
+msgstr "Certaines autorisations activées ne sont pas encore appliquées ; en attente des mises à jour de :%s. Jusque-là, ces personnes ne peuvent pas voir l'écran correspondant."
+
+msgid "All enabled permissions are enforced."
+msgstr "Toutes les autorisations activées sont appliquées."
+
+msgid "Roles"
+msgstr "Rôles"
+
+msgid "[['Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.', 'tr']]"
+msgstr "[['Ajoute les rôles de personnel, d'administrateur et de gestionnaire (un nouveau rôle est également ajouté à partir du panneau) ; Vous pouvez activer et désactiver l'accès aux tâches, certificats, dons, centre d'appels, Studio et rapports pour les rôles à partir d'une seule page. Le lien de référence personnel et le numéro de téléphone de l'utilisateur (pour l'assistant WhatsApp) sont ici.', 'tr']]"

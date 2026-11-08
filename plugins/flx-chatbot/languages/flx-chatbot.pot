@@ -1,138 +1,136 @@
 msgid ""
-msgstr ""
-"Content-Type: text/plain; charset=UTF-8\n"
-"Project-Id-Version: Flux AI Chatbot\n"
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Ayarlar"
+msgid "Settings"
 msgstr ""
 
-msgid "Yapay zekâ sohbet penceresi, canlı destek ve müşteri hizmetleri"
+msgid "AI chat window, live chat and customer support"
 msgstr ""
 
-msgid "Site sohbetleri"
+msgid "Site chats"
 msgstr ""
 
-msgid "Açık"
+msgid "Open"
 msgstr ""
 
-msgid "Tümü"
+msgid "All"
 msgstr ""
 
-msgid "Asistanda"
+msgid "With assistant"
 msgstr ""
 
-msgid "Kapalı"
+msgid "Closed"
 msgstr ""
 
-msgid "Ad, e-posta, telefon ya da sayfa ara"
+msgid "Search name, email, phone or page"
 msgstr ""
 
-msgid "Bu görünümde sohbet yok."
+msgid "No chats in this view."
 msgstr ""
 
-msgid "Soldan bir sohbet seçin."
+msgid "Pick a chat on the left."
 msgstr ""
 
-msgid "Yükleniyor…"
+msgid "Loading…"
 msgstr ""
 
-msgid "Cevabınızı yazın… (Enter gönderir, Shift+Enter yeni satır)"
+msgid "Type your reply… (Enter sends, Shift+Enter for a new line)"
 msgstr ""
 
-msgid "Gönder"
+msgid "Send"
 msgstr ""
 
-msgid "Dosya ekle"
+msgid "Attach file"
 msgstr ""
 
-msgid "Sohbeti kapat"
+msgid "Close chat"
 msgstr ""
 
-msgid "Sil"
+msgid "Delete"
 msgstr ""
 
-msgid "Bu sohbet ve dosyaları kalıcı olarak silinsin mi?"
+msgid "Delete this chat and its files permanently?"
 msgstr ""
 
-msgid "Sohbet kapatılsın mı? Ziyaretçi yeni mesaj yazarsa yeniden açılır."
+msgid "Close the chat? It reopens if the visitor writes again."
 msgstr ""
 
-msgid "Flux Chat'te aç"
+msgid "Open in Flux Chat"
 msgstr ""
 
-msgid "Bu sohbet Flux Chat gelen kutusuna da düştü; iki yerden yazılan cevaplar ziyaretçiye gider."
+msgid "This chat is also in the Flux Chat inbox; replies from either place reach the visitor."
 msgstr ""
 
-msgid "Ziyaretçi"
+msgid "Visitor"
 msgstr ""
 
-msgid "Siz"
+msgid "You"
 msgstr ""
 
-msgid "Sayfada"
+msgid "On the page"
 msgstr ""
 
-msgid "Ayrıldı"
+msgid "Left"
 msgstr ""
 
-msgid "yazıyor…"
+msgid "typing…"
 msgstr ""
 
-msgid "Sayfa"
+msgid "Page"
 msgstr ""
 
-msgid "E-posta"
+msgid "Email"
 msgstr ""
 
-msgid "Telefon"
+msgid "Phone"
 msgstr ""
 
-msgid "Üye"
+msgid "Member"
 msgstr ""
 
-msgid "Sipariş"
+msgid "Order"
 msgstr ""
 
-msgid "Puan"
+msgid "Rating"
 msgstr ""
 
-msgid "Asistanın notu"
+msgid "Assistant's note"
 msgstr ""
 
-msgid "Potansiyel müşteri"
+msgid "Lead"
 msgstr ""
 
-msgid "Temsilci"
+msgid "Agent"
 msgstr ""
 
-msgid "Bir hata oluştu. Tekrar deneyin."
+msgid "Something went wrong. Please try again."
 msgstr ""
 
-msgid "Temsilci bekliyor"
+msgid "Waiting for an agent"
 msgstr ""
 
-msgid "Görüşülüyor"
+msgid "In conversation"
 msgstr ""
 
-msgid "Mesaj bıraktı"
+msgid "Left a message"
 msgstr ""
 
-msgid "Daha fazla"
+msgid "More"
 msgstr ""
 
-msgid "Listeye dön"
+msgid "Back to list"
 msgstr ""
 
-msgid "Ayrıntılar"
+msgid "Details"
 msgstr ""
 
-msgid "Önerilen ürünler"
+msgid "Suggested products"
 msgstr ""
 
-msgid "Bu işlem için yetkiniz yok."
+msgid "You are not allowed to do this."
 msgstr ""
 
-msgid "Sitenizdeki sohbet penceresinden gelen konuşmalar. Asistanın cevapladıkları da burada; temsilci isteyenler üstte."
+msgid "Conversations from the chat window on your site. Chats the assistant answered are here too; visitors asking for an agent are on top."
 msgstr ""
 
 msgid "Flux Chat"
@@ -144,1060 +142,1057 @@ msgstr ""
 msgid "Chatbot"
 msgstr ""
 
-msgid "Sohbetler"
+msgid "Chats"
 msgstr ""
 
-msgid "Chatbot ayarları"
+msgid "Chatbot settings"
 msgstr ""
 
-msgid "Avatar seç"
+msgid "Choose avatar"
 msgstr ""
 
-msgid "Bu görseli kullan"
+msgid "Use this image"
 msgstr ""
 
-msgid "Kaydedilmemiş değişiklikler var"
+msgid "You have unsaved changes"
 msgstr ""
 
-msgid "Merhaba, kargo ne kadar sürüyor?"
+msgid "Hi, how long does shipping take?"
 msgstr ""
 
-msgid "Siparişler **1-3 iş günü** içinde kargoya verilir. İlginizi çekebilecek bir ürün:"
+msgid "Orders ship within **1-3 business days**. Here is a product you might like:"
 msgstr ""
 
-msgid "Siparişler **1-3 iş günü** içinde kargoya verilir; 500 TL üzeri kargo ücretsiz. Başka bir konuda yardımcı olabilir miyim?"
+msgid "Orders ship within **1-3 business days**; shipping is free over $50. Anything else I can help with?"
 msgstr ""
 
-msgid "Genel"
+msgid "General"
 msgstr ""
 
-msgid "Görünüm"
+msgid "Appearance"
 msgstr ""
 
-msgid "Metinler"
+msgid "Texts"
 msgstr ""
 
-msgid "Yapay zekâ"
+msgid "AI"
 msgstr ""
 
-msgid "Canlı destek"
+msgid "Live chat"
 msgstr ""
 
-msgid "Görünürlük"
+msgid "Visibility"
 msgstr ""
 
-msgid "Sitenize yapay zekâ destekli sohbet penceresi: sorulara içeriğinizden ve ürünlerinizden cevap verir, gerekince sohbeti canlı temsilciye devreder. Değişiklikleri sağdaki önizlemede hemen görürsünüz."
+msgid "An AI chat window for your site: it answers from your content and products and hands the chat to a live agent when needed. Changes show up in the preview on the right right away."
 msgstr ""
 
-msgid "Sitede dene"
+msgid "Try on site"
 msgstr ""
 
-msgid "Ayarlar kaydedildi."
+msgid "Settings saved."
 msgstr ""
 
-msgid "Sohbet"
+msgid "last 30 days"
 msgstr ""
 
-msgid "son 30 gün"
+msgid "Solved by the assistant"
 msgstr ""
 
-msgid "Asistanın çözdüğü"
+msgid "without an agent"
 msgstr ""
 
-msgid "temsilciye geçmeden"
+msgid "left contact details"
 msgstr ""
 
-msgid "iletişim bilgisi bıraktı"
+msgid "Orders after chat"
 msgstr ""
 
-msgid "Sohbet sonrası sipariş"
+msgid "within 7 days"
 msgstr ""
 
-msgid "7 gün içinde"
+msgid "Satisfaction"
 msgstr ""
 
-msgid "Memnuniyet"
+msgid "%s ratings"
 msgstr ""
 
-msgid "%s puan"
+msgid "no ratings yet"
 msgstr ""
 
-msgid "henüz puan yok"
+msgid "Chat window"
 msgstr ""
 
-msgid "Sohbet penceresi"
+msgid "Show on site"
 msgstr ""
 
-msgid "Sitede göster"
+msgid "While off, visitors don't see the window; admins can preview it with \"Try on site\"."
 msgstr ""
 
-msgid "Kapalıyken pencere ziyaretçilere görünmez; yöneticiler \"Sitede dene\" ile önizleyebilir."
+msgid "Mode"
 msgstr ""
 
-msgid "Çalışma şekli"
+msgid "AI + live chat"
 msgstr ""
 
-msgid "AI + canlı destek"
+msgid "The assistant answers and hands over to an agent when needed. Recommended."
 msgstr ""
 
-msgid "Asistan cevaplar, gerekince temsilciye devreder. Önerilen."
+msgid "AI only"
 msgstr ""
 
-msgid "Yalnız AI"
+msgid "No handoff; the assistant shares your contact details."
 msgstr ""
 
-msgid "Temsilciye devir yok; asistan iletişim bilgilerinizi verir."
+msgid "Live chat only"
 msgstr ""
 
-msgid "Yalnız canlı destek"
+msgid "No assistant; messages go straight to agents."
 msgstr ""
 
-msgid "Asistan yok; mesajlar doğrudan temsilcilere gider."
+msgid "Connections"
 msgstr ""
 
-msgid "Bağlantılar"
+msgid "Flux AI & MCP connected"
 msgstr ""
 
-msgid "Flux AI & MCP bağlı"
+msgid "Key, model, spending limit and logs come from Flux AI."
 msgstr ""
 
-msgid "Anahtar, model, harcama sınırı ve kayıtlar Flux AI'dan gelir."
+msgid "Choose model"
 msgstr ""
 
-msgid "Model seç"
+msgid "Flux AI is not ready"
 msgstr ""
 
-msgid "Flux AI hazır değil"
-msgstr ""
-
-msgid "Flux AI & MCP'de bir API anahtarı girin ya da Bağlı sistemler'de Flux AI Chatbot'u açın."
+msgid "Enter an API key in Flux AI & MCP or turn on Flux AI Chatbot under Connected systems."
 msgstr ""
 
 msgid "Flux AI"
 msgstr ""
 
-msgid "Flux AI & MCP kurulu değil"
+msgid "Flux AI & MCP is not installed"
 msgstr ""
 
-msgid "Asistan için Flux AI & MCP eklentisini kurun. O zamana kadar pencere yalnız canlı destek olarak çalışır."
+msgid "Install the Flux AI & MCP plugin for the assistant. Until then the window works as live chat only."
 msgstr ""
 
-msgid "Canlı destek kapalı"
+msgid "Live chat off"
 msgstr ""
 
-msgid "Çalışma şekli \"Yalnız AI\"."
+msgid "Mode is \"AI only\"."
 msgstr ""
 
-msgid "Flux Chat gelen kutusu"
+msgid "Flux Chat inbox"
 msgstr ""
 
-msgid "Tüm site sohbetleri (asistanın cevapladıkları dahil) çağrı merkezinde site sohbeti ikonuyla görünür; temsilciler WhatsApp ve diğer kanallarla aynı ekrandan cevaplar."
+msgid "All site chats (including the ones the assistant answered) appear in the call center with the site chat icon; agents reply from the same screen as WhatsApp and other channels."
 msgstr ""
 
-msgid "Eklentinin gelen kutusu"
+msgid "Plugin inbox"
 msgstr ""
 
-msgid "Devredilen sohbetler Chatbot › Sohbetler ekranına düşer."
+msgid "Handed-over chats land on the Chatbot › Chats screen."
 msgstr ""
 
-msgid "Devredilen sohbetler Chatbot › Sohbetler ekranına düşer. Flux Chat (1.37+) kurulursa çağrı merkezinden de cevaplanır."
+msgid "Handed-over chats land on the Chatbot › Chats screen. With Flux Chat (1.37+) installed they can also be answered from the call center."
 msgstr ""
 
-msgid "Şu an çevrim içi"
+msgid "Online now"
 msgstr ""
 
-msgid "Şu an mesai dışı"
+msgid "Outside working hours now"
 msgstr ""
 
-msgid "Çalışma saatleri: %s"
+msgid "Working hours: %s"
 msgstr ""
 
-msgid "Mesai saatleri Flux Chat ayarından."
+msgid "Working hours come from the Flux Chat settings."
 msgstr ""
 
-msgid "Temsilciler her zaman çevrim içi sayılır."
+msgid "Agents always count as online."
 msgstr ""
 
-msgid "Saatler"
+msgid "Hours"
 msgstr ""
 
-msgid "Sayfadan açma"
+msgid "Open from a page"
 msgstr ""
 
-msgid "Herhangi bir düğme ya da bağlantı pencereyi açabilir."
+msgid "Any button or link can open the window."
 msgstr ""
 
-msgid "Bize yazın"
+msgid "Message us"
 msgstr ""
 
-msgid "Kısa kod: sayfa içinde düğme."
+msgid "Shortcode: a button inside the page."
 msgstr ""
 
-msgid "Bağlantı adresi #flxcb-open olunca pencere açılır."
+msgid "A link to #flxcb-open opens the window."
 msgstr ""
 
-msgid "Düğmeye eklenirse pencere bu mesajla açılır."
+msgid "Added to a button, the window opens with this message."
 msgstr ""
 
-msgid "JavaScript ile açma."
+msgid "Open with JavaScript."
 msgstr ""
 
-msgid "Renk ve tema"
+msgid "Color and theme"
 msgstr ""
 
-msgid "Ana renk"
+msgid "Main color"
 msgstr ""
 
-msgid "Tema rengi"
+msgid "Theme color"
 msgstr ""
 
-msgid "Temayı izle"
+msgid "Follow theme"
 msgstr ""
 
-msgid "Boşsa sitenin tema rengi kullanılır."
+msgid "When empty, the site's theme color is used."
 msgstr ""
 
-msgid "Yazı rengi (başlık ve düğmeler)"
+msgid "Text color (header and buttons)"
 msgstr ""
 
-msgid "Otomatik"
+msgid "Automatic"
 msgstr ""
 
-msgid "Boşsa ana renge göre okunaklı renk seçilir."
+msgid "When empty, a readable color is picked from the main color."
 msgstr ""
 
-msgid "Açık / koyu"
+msgid "Light / dark"
 msgstr ""
 
-msgid "Otomatik (cihaza ve siteye uyar)"
+msgid "Automatic (follows device and site)"
 msgstr ""
 
-msgid "Hep açık"
+msgid "Always light"
 msgstr ""
 
-msgid "Hep koyu"
+msgid "Always dark"
 msgstr ""
 
-msgid "Başlık"
+msgid "Header"
 msgstr ""
 
-msgid "Degrade"
+msgid "Gradient"
 msgstr ""
 
-msgid "Düz renk"
+msgid "Solid color"
 msgstr ""
 
-msgid "Yazı tipi"
+msgid "Font"
 msgstr ""
 
-msgid "Siteyle aynı"
+msgid "Same as site"
 msgstr ""
 
-msgid "Sistem yazı tipi"
+msgid "System font"
 msgstr ""
 
-msgid "Asistan"
+msgid "Assistant"
 msgstr ""
 
-msgid "Asistanın adı"
+msgid "Assistant name"
 msgstr ""
 
-msgid "Sohbet başlığında görünür."
+msgid "Shown in the chat header."
 msgstr ""
 
-msgid "Avatar görseli"
+msgid "Avatar image"
 msgstr ""
 
-msgid "Seç"
+msgid "Choose"
 msgstr ""
 
-msgid "Kaldır"
+msgid "Remove"
 msgstr ""
 
-msgid "Kare görsel önerilir. Seçilmezse aşağıdaki simge kullanılır."
+msgid "A square image works best. Without one, the icon below is used."
 msgstr ""
 
-msgid "Avatar simgesi"
+msgid "Avatar icon"
 msgstr ""
 
 msgid "Robot"
 msgstr ""
 
-msgid "Pırıltı"
+msgid "Sparkles"
 msgstr ""
 
-msgid "Kulaklık"
+msgid "Headset"
 msgstr ""
 
-msgid "Gülen yüz"
+msgid "Smiley"
 msgstr ""
 
-msgid "Site simgesi"
+msgid "Site icon"
 msgstr ""
 
-msgid "Başlatıcı düğme ve konum"
+msgid "Launcher button and position"
 msgstr ""
 
-msgid "Düğme simgesi"
+msgid "Button icon"
 msgstr ""
 
-msgid "Balon"
+msgid "Bubble"
 msgstr ""
 
-msgid "Soru"
+msgid "Question"
 msgstr ""
 
 msgid "Avatar"
 msgstr ""
 
-msgid "Düğme yanı etiketi"
+msgid "Label next to the button"
 msgstr ""
 
-msgid "Boşsa yalnız düğme görünür. Örnek: Yardım lazım mı?"
+msgid "When empty only the button shows. Example: Need help?"
 msgstr ""
 
-msgid "Yok"
+msgid "None"
 msgstr ""
 
-msgid "Konum"
+msgid "Position"
 msgstr ""
 
-msgid "Sağ alt"
+msgid "Bottom right"
 msgstr ""
 
-msgid "Sol alt"
+msgid "Bottom left"
 msgstr ""
 
-msgid "Düğme boyutu"
+msgid "Button size"
 msgstr ""
 
-msgid "Kenar boşluğu"
+msgid "Side spacing"
 msgstr ""
 
-msgid "Alt boşluk"
+msgid "Bottom spacing"
 msgstr ""
 
-msgid "Pencere genişliği"
+msgid "Window width"
 msgstr ""
 
-msgid "Köşe yuvarlaklığı"
+msgid "Corner radius"
 msgstr ""
 
-msgid "Mobilde tam ekran"
+msgid "Full screen on mobile"
 msgstr ""
 
-msgid "Küçük ekranlarda pencere tüm ekranı kaplar."
+msgid "On small screens the window covers the whole screen."
 msgstr ""
 
-msgid "Bildirim sesi"
+msgid "Notification sound"
 msgstr ""
 
-msgid "Pencere kapalıyken yeni cevap gelince kısa ses."
+msgid "A short sound for a new reply while the window is closed."
 msgstr ""
 
-msgid "\"FluxWP ile çalışır\" yazısı"
+msgid "\"Powered by FluxWP\" note"
 msgstr ""
 
-msgid "Pencerenin altında küçük imza."
+msgid "A small signature at the bottom of the window."
 msgstr ""
 
-msgid "Ana ekran"
+msgid "Home screen"
 msgstr ""
 
-msgid "Pencere açılınca ilk görünen karşılama ekranı. Boş bırakılan metinler dile göre (TR/EN) varsayılanı kullanır."
+msgid "The welcome screen shown when the window opens. Empty texts use the default for the visitor's language (TR/EN)."
 msgstr ""
 
-msgid "Ana ekranı göster"
+msgid "Show home screen"
 msgstr ""
 
-msgid "Kapalıysa pencere doğrudan sohbetle açılır."
+msgid "When off, the window opens straight into the chat."
 msgstr ""
 
-msgid "Yazma alanı"
+msgid "Message field"
 msgstr ""
 
-msgid "Alt metin"
+msgid "Subtitle"
 msgstr ""
 
-msgid "Ekip avatarları"
+msgid "Team avatars"
 msgstr ""
 
-msgid "Son cevap veren temsilcilerin fotoğrafları başlıkta görünür."
+msgid "Photos of agents who replied recently show in the header."
 msgstr ""
 
-msgid "Hazır sorular"
+msgid "Suggested questions"
 msgstr ""
 
-msgid "Satır başına bir soru (en fazla 6). Ana ekranda ve sohbet başında tıklanabilir."
+msgid "One question per line (up to 6). Clickable on the home screen and at the start of a chat."
 msgstr ""
 
-msgid "Kargo ne kadar sürer?\nİade nasıl yapılır?\nSiparişim nerede?"
+msgid "How long does shipping take?\nHow do returns work?\nWhere is my order?"
 msgstr ""
 
-msgid "İletişim bağlantıları"
+msgid "Contact links"
 msgstr ""
 
-msgid "Satır başına: Etiket | adres. https, mailto:, tel: ve wa.me desteklenir."
+msgid "One per line: Label | address. https, mailto:, tel: and wa.me are supported."
 msgstr ""
 
-msgid "Sohbet metinleri"
+msgid "Chat texts"
 msgstr ""
 
-msgid "Karşılama mesajı"
+msgid "Welcome message"
 msgstr ""
 
-msgid "Asistanın ilk mesajı."
+msgid "The assistant's first message."
 msgstr ""
 
-msgid "Tanıtım balonu"
+msgid "Teaser bubble"
 msgstr ""
 
-msgid "Ziyaretçi bir süre sayfada kalınca düğmenin üstünde kısa bir mesaj belirir (oturum başına bir kez)."
+msgid "After the visitor stays on the page a while, a short message pops up above the button (once per session)."
 msgstr ""
 
-msgid "Tanıtım balonunu göster"
+msgid "Show teaser bubble"
 msgstr ""
 
-msgid "Mesaj"
+msgid "Message"
 msgstr ""
 
-msgid "Kaç saniye sonra"
+msgid "After how many seconds"
 msgstr ""
 
-msgid "Asistan şu an çalışmıyor."
+msgid "The assistant is not working right now."
 msgstr ""
 
-msgid "Yapay zekâ çağrıları Flux AI & MCP üzerinden yapılır; anahtar, model ve harcama sınırı orada. Flux AI hazır olana kadar ziyaretçi mesajları temsilciye gider."
+msgid "AI calls go through Flux AI & MCP, where the key, model and spending limit live. Until Flux AI is ready, visitor messages go to an agent."
 msgstr ""
 
-msgid "Anahtar, model, harcama sınırı ve kayıtlar Flux AI & MCP'de. Bu eklentiye özel model seçmek için:"
+msgid "Key, model, spending limit and logs are in Flux AI & MCP. To pick a model just for this plugin:"
 msgstr ""
 
-msgid "Flux AI › Bağlı sistemler › Flux AI Chatbot"
+msgid "Flux AI › Connected systems › Flux AI Chatbot"
 msgstr ""
 
-msgid "Kişilik ve talimat"
+msgid "Personality and instructions"
 msgstr ""
 
-msgid "Kişilik ve üslup"
+msgid "Personality and tone"
 msgstr ""
 
-msgid "Örnek: Samimi ama kibar konuş, \"siz\" diye hitap et, kısa yaz."
+msgid "Example: Be friendly but polite, keep answers short."
 msgstr ""
 
-msgid "Kurallar"
+msgid "Rules"
 msgstr ""
 
-msgid "Asistanın uyması gerekenler. Örnek: İndirim kodu verme. Kurumsal satış sorularını temsilciye devret."
+msgid "What the assistant must follow. Example: Don't give discount codes. Hand business sales questions to an agent."
 msgstr ""
 
-msgid "Bilgi bankası"
+msgid "Knowledge base"
 msgstr ""
 
-msgid "Sitede yazmayan bilgiler: kargo, iade, çalışma saatleri, sık sorulan sorular. Düz metin; asistan yalnız buradan ve sitenizden cevap verir."
+msgid "Information not on your site: shipping, returns, opening hours, FAQs. Plain text; the assistant answers only from here and your site."
 msgstr ""
 
-msgid "Kargo: 1-3 iş günü, 500 TL üzeri ücretsiz.\nİade: 14 gün içinde, faturayla.\nS: Mağazanız var mı?\nC: Yalnız online satış yapıyoruz."
+msgid "Shipping: 1-3 business days, free over $50.\nReturns: within 14 days with the invoice.\nQ: Do you have a store?\nA: We sell online only."
 msgstr ""
 
-msgid "Kaynaklar ve araçlar"
+msgid "Sources and tools"
 msgstr ""
 
-msgid "Asistan cevap vermeden önce bunları arar. Yalnız yayımlanmış, şifresiz içerik okunur."
+msgid "The assistant searches these before answering. Only published, non-password-protected content is read."
 msgstr ""
 
-msgid "Sayfalar"
+msgid "Pages"
 msgstr ""
 
-msgid "Yazılar"
+msgid "Posts"
 msgstr ""
 
-msgid "WooCommerce ürünleri"
+msgid "WooCommerce products"
 msgstr ""
 
-msgid "Fiyat, stok ve bağlantı; ürünler pencerede kart olarak görünür."
+msgid "Price, stock and link; products appear as cards in the window."
 msgstr ""
 
-msgid "Ürün kartları"
+msgid "Product cards"
 msgstr ""
 
-msgid "Görsel, fiyat, \"İncele\" ve \"Sepete ekle\"."
+msgid "Image, price, \"View\" and \"Add to cart\"."
 msgstr ""
 
-msgid "Flux Wiki sayfaları"
+msgid "Flux Wiki pages"
 msgstr ""
 
-msgid "Sipariş durumu"
+msgid "Order status"
 msgstr ""
 
-msgid "Giriş yapmış müşteri yalnız kendi siparişlerini sorabilir."
+msgid "A logged-in customer can only ask about their own orders."
 msgstr ""
 
-msgid "İletişim bilgisi kaydı"
+msgid "Save contact details"
 msgstr ""
 
-msgid "Ziyaretçi e-posta ya da telefon verirse sohbete (ve varsa Flux CRM'e) yazılır."
+msgid "If the visitor gives an email or phone, it is saved to the chat (and to Flux CRM when installed)."
 msgstr ""
 
-msgid "Sınırlar"
+msgid "Limits"
 msgstr ""
 
-msgid "Herkese açık AI bütçeyi hızla tüketebilir. Genel harcama sınırı Flux AI'da; bunlar ek koruma."
+msgid "A public AI can burn through the budget fast. The overall spending limit is in Flux AI; these are extra protection."
 msgstr ""
 
-msgid "Sohbet başına cevap"
+msgid "Replies per chat"
 msgstr ""
 
-msgid "Dolunca temsilciye devredilir."
+msgid "When reached, the chat goes to an agent."
 msgstr ""
 
-msgid "Sohbet başına saatlik"
+msgid "Per chat per hour"
 msgstr ""
 
-msgid "0 = sınırsız"
+msgid "0 = unlimited"
 msgstr ""
 
-msgid "Sitede günlük toplam"
+msgid "Daily total on the site"
 msgstr ""
 
-msgid "Temsilciye devir"
+msgid "Handoff to a person"
 msgstr ""
 
-msgid "Flux Chat varsa orası, yoksa eklentinin gelen kutusu."
+msgid "Flux Chat when available, otherwise the plugin inbox."
 msgstr ""
 
-msgid "Çağrı merkezi gelen kutusu; WhatsApp sohbetleriyle birlikte."
+msgid "Call center inbox, together with WhatsApp chats."
 msgstr ""
 
-msgid "Flux Chat 1.37+ kurulu değil; gelen kutusu kullanılır."
+msgid "Flux Chat 1.37+ is not installed; the inbox is used."
 msgstr ""
 
-msgid "Chatbot › Sohbetler ekranı; e-posta bildirimiyle."
+msgid "Chatbot › Chats screen, with email notification."
 msgstr ""
 
-msgid "E-posta sor"
+msgid "Ask for email"
 msgstr ""
 
-msgid "Yalnız mesai dışında"
+msgid "Only outside working hours"
 msgstr ""
 
-msgid "Temsilciye geçmeden önce"
+msgid "Before handing over"
 msgstr ""
 
-msgid "Hiç sorma"
+msgid "Never"
 msgstr ""
 
-msgid "Bildirim e-postası"
+msgid "Notification email"
 msgstr ""
 
-msgid "Yeni devir ve mesai dışı mesajlar. Boşsa site yöneticisi."
+msgid "New handoffs and after-hours messages. When empty, the site admin."
 msgstr ""
 
-msgid "Mesai dışı mesajı"
+msgid "After-hours message"
 msgstr ""
 
-msgid "Cevapları e-postayla da gönder"
+msgid "Also send replies by email"
 msgstr ""
 
-msgid "Ziyaretçi sayfadan ayrıldıysa temsilci cevabı e-postasına gider."
+msgid "If the visitor has left the page, the agent's reply goes to their email."
 msgstr ""
 
-msgid "Sohbet sonu puanlama"
+msgid "End-of-chat rating"
 msgstr ""
 
-msgid "1-5 yıldız ve isteğe bağlı not."
+msgid "1-5 stars and an optional note."
 msgstr ""
 
-msgid "Dosya gönderimi"
+msgid "File sharing"
 msgstr ""
 
-msgid "Resim, PDF ve ofis belgeleri; dosyalar herkese açık klasöre konmaz."
+msgid "Images, PDFs and office documents; files are not put in a public folder."
 msgstr ""
 
-msgid "Sesli dikte"
+msgid "Voice dictation"
 msgstr ""
 
-msgid "Yazma alanında mikrofon düğmesi: ziyaretçi konuşur, metin yazma alanına düşer. Tarayıcının konuşma tanıması kullanılır; desteklemeyen tarayıcıda düğme görünmez."
+msgid "A microphone button in the message field: the visitor speaks and the text lands in the field. Uses the browser's speech recognition; the button is hidden where it isn't supported."
 msgstr ""
 
-msgid "En büyük dosya (MB)"
+msgid "Largest file (MB)"
 msgstr ""
 
-msgid "Çalışma saatleri"
+msgid "Working hours"
 msgstr ""
 
-msgid "Mesai dışında ziyaretçiye \"mesaj bırakın\" gösterilir, temsilci e-postayla döner. Saatler site saat dilimine göredir."
+msgid "Outside working hours visitors see \"leave a message\" and the agent replies by email. Hours follow the site time zone."
 msgstr ""
 
-msgid "Her zaman açık"
+msgid "Always open"
 msgstr ""
 
-msgid "Haftalık saatler"
+msgid "Weekly hours"
 msgstr ""
 
-msgid "Flux Chat mesaisi"
+msgid "Flux Chat hours"
 msgstr ""
 
-msgid "Flux Chat kurulu değil"
+msgid "Flux Chat is not installed"
 msgstr ""
 
-msgid "Nerede görünsün"
+msgid "Where to show"
 msgstr ""
 
-msgid "Kimlere"
+msgid "Who sees it"
 msgstr ""
 
-msgid "Herkese"
+msgid "Everyone"
 msgstr ""
 
-msgid "Yalnız ziyaretçilere (giriş yapmamış)"
+msgid "Only visitors (not logged in)"
 msgstr ""
 
-msgid "Yalnız üyelere (giriş yapmış)"
+msgid "Only members (logged in)"
 msgstr ""
 
-msgid "Cihaz"
+msgid "Device"
 msgstr ""
 
-msgid "Masaüstü"
+msgid "Desktop"
 msgstr ""
 
-msgid "Mobil"
+msgid "Mobile"
 msgstr ""
 
-msgid "Gösterilmeyecek adresler"
+msgid "Hidden on these addresses"
 msgstr ""
 
-msgid "Satır başına bir yol. * joker karakterdir. Örnek: /odeme/* ya da /kampanya"
+msgid "One path per line. * is a wildcard. Example: /checkout/* or /campaign"
 msgstr ""
 
-msgid "Gizlilik"
+msgid "Privacy"
 msgstr ""
 
-msgid "Ziyaretçinin IP adresi saklanmaz; sohbet tarayıcıdaki rastgele bir anahtarla eşleşir."
+msgid "The visitor's IP address is not stored; the chat is matched by a random key in the browser."
 msgstr ""
 
-msgid "Yazma alanı altındaki not"
+msgid "Note under the message field"
 msgstr ""
 
-msgid "Örnek: Sohbet kayıtları <a href=\"/gizlilik\">Gizlilik Politikası</a> kapsamında saklanır. Bağlantı yazılabilir."
+msgid "Example: Chats are kept under our <a href=\"/privacy\">Privacy Policy</a>. Links are allowed."
 msgstr ""
 
-msgid "Saklama süresi (gün)"
+msgid "Retention (days)"
 msgstr ""
 
-msgid "Süresi dolan sohbetler ve dosyaları silinir. 0 = silme."
+msgid "Expired chats and their files are deleted. 0 = keep."
 msgstr ""
 
-msgid "Kaydet"
+msgid "Save"
 msgstr ""
 
-msgid "Önizleme"
+msgid "Preview"
 msgstr ""
 
-msgid "Önizlemede yazdığınız mesajlar gerçek asistana gider ve Sohbetler'de görünür."
+msgid "Messages you type in the preview go to the real assistant and show up in Chats."
 msgstr ""
 
-msgid "Sitedeki sohbet penceresinin asistanı ve site sohbetleri."
+msgid "The assistant of the chat window on the site, and site chats."
 msgstr ""
 
-msgid "Asistan modeli"
+msgid "Assistant model"
 msgstr ""
 
-msgid "Ziyaretçilere cevap veren model. Hızlı ve ucuz bir model önerilir; boşsa Flux AI varsayılanı."
+msgid "The model that answers visitors. A fast, low-cost model is recommended; when empty, the Flux AI default."
 msgstr ""
 
-msgid "Site sohbeti dökümü"
+msgid "Site chat transcript"
 msgstr ""
 
-msgid "Sohbet bulunamadı."
+msgid "Chat not found."
 msgstr ""
 
-msgid "Sohbet istatistikleri"
+msgid "Chat statistics"
 msgstr ""
 
-msgid "Site sohbeti"
+msgid "Site chat"
 msgstr ""
 
-msgid "Site sohbeti · %s"
+msgid "Site chat · %s"
 msgstr ""
 
-msgid "Site sohbeti temsilci bekliyor."
+msgid "A site chat is waiting for an agent."
 msgstr ""
 
-msgid "Sayfa:"
+msgid "Page:"
 msgstr ""
 
-msgid "İletişim:"
+msgid "Contact:"
 msgstr ""
 
-msgid "Asistan notu:"
+msgid "Assistant note:"
 msgstr ""
 
-msgid "Site sohbeti bulunamadı."
+msgid "Site chat not found."
 msgstr ""
 
-msgid "Dosya okunamadı."
+msgid "Could not read the file."
 msgstr ""
 
-msgid "Bu işlem site sohbetinde kullanılamaz."
+msgid "This action isn't available in site chats."
 msgstr ""
 
-msgid "Mesaj kaydedilemedi."
+msgid "Could not save the message."
 msgstr ""
 
-msgid "Sohbeti aç"
+msgid "Open chat"
 msgstr ""
 
-msgid "Kapat"
+msgid "Close"
 msgstr ""
 
-msgid "Küçült"
+msgid "Minimize"
 msgstr ""
 
-msgid "Geri"
+msgid "Back"
 msgstr ""
 
-msgid "Ana sayfa"
+msgid "Home"
 msgstr ""
 
-msgid "Mesajlar"
+msgid "Messages"
 msgstr ""
 
-msgid "Sesle yaz"
+msgid "Dictate"
 msgstr ""
 
-msgid "Dinlemeyi durdur"
+msgid "Stop listening"
 msgstr ""
 
-msgid "Sohbete devam edin"
+msgid "Continue the chat"
 msgstr ""
 
-msgid "Genelde birkaç dakika içinde cevap veririz"
+msgid "We usually reply within a few minutes"
 msgstr ""
 
-msgid "Asistanımız hemen cevap verir"
+msgid "Our assistant replies instantly"
 msgstr ""
 
-msgid "Çevrim içi"
+msgid "Online"
 msgstr ""
 
-msgid "Şu an çevrim dışı"
+msgid "Offline right now"
 msgstr ""
 
-msgid "Düşünüyor…"
+msgid "Thinking…"
 msgstr ""
 
-msgid "Sitede arıyor…"
+msgid "Searching the site…"
 msgstr ""
 
-msgid "Ürünlere bakıyor…"
+msgid "Looking at products…"
 msgstr ""
 
-msgid "Siparişlerinize bakıyor…"
+msgid "Looking at your orders…"
 msgstr ""
 
-msgid "Temsilciyle görüş"
+msgid "Talk to a person"
 msgstr ""
 
-msgid "Bir temsilciyle görüşmek ister misiniz?"
+msgid "Would you like to talk to a person?"
 msgstr ""
 
-msgid "Sıradaki yeriniz: %d"
+msgid "Your place in line: %d"
 msgstr ""
 
-msgid "Temsilci bekleniyor"
+msgid "Seen"
 msgstr ""
 
-msgid "Görüldü"
+msgid "Sent"
 msgstr ""
 
-msgid "Gönderildi"
+msgid "End chat"
 msgstr ""
 
-msgid "Sohbeti sonlandır"
+msgid "End the chat?"
 msgstr ""
 
-msgid "Sohbet sonlandırılsın mı?"
+msgid "Yes"
 msgstr ""
 
-msgid "Evet"
+msgid "No"
 msgstr ""
 
-msgid "Hayır"
+msgid "New chat"
 msgstr ""
 
-msgid "Yeni sohbet"
+msgid "How was the chat?"
 msgstr ""
 
-msgid "Sohbeti nasıl buldunuz?"
+msgid "Anything you'd like to add? (optional)"
 msgstr ""
 
-msgid "Eklemek istediğiniz bir şey var mı? (isteğe bağlı)"
+msgid "Thanks, we got your feedback."
 msgstr ""
 
-msgid "Teşekkürler, geri bildiriminiz bize ulaştı."
+msgid "Your name"
 msgstr ""
 
-msgid "Adınız"
+msgid "Your email"
 msgstr ""
 
-msgid "E-posta adresiniz"
+msgid "Phone (optional)"
 msgstr ""
 
-msgid "Telefon (isteğe bağlı)"
+msgid "Your message"
 msgstr ""
 
-msgid "Mesajınız"
+msgid "Leave a message"
 msgstr ""
 
-msgid "Mesaj bırakın"
+msgid "Leave your email so we can get back to you."
 msgstr ""
 
-msgid "Size dönebilmemiz için e-posta adresinizi bırakın."
+msgid "Enter a valid email address."
 msgstr ""
 
-msgid "Geçerli bir e-posta adresi yazın."
+msgid "Connection problem. Please try again."
 msgstr ""
 
-msgid "Bağlantı sorunu. Tekrar deneyin."
+msgid "Try again"
 msgstr ""
 
-msgid "Tekrar dene"
+msgid "The file is too large."
 msgstr ""
 
-msgid "Dosya çok büyük."
+msgid "Add to cart"
 msgstr ""
 
-msgid "Sepete ekle"
+msgid "View"
 msgstr ""
 
-msgid "İncele"
+msgid "Out of stock"
 msgstr ""
 
-msgid "Stokta yok"
+msgid "Powered by FluxWP"
 msgstr ""
 
-msgid "FluxWP ile çalışır"
+msgid "Today"
 msgstr ""
 
-msgid "Bugün"
+msgid "new message"
 msgstr ""
 
-msgid "yeni mesaj"
+msgid "Ask a question"
 msgstr ""
 
-msgid "Bir soru sorun"
+msgid "Contact us"
 msgstr ""
 
-msgid "Bize ulaşın"
+msgid "Shop and products"
 msgstr ""
 
-msgid "Mağaza ve ürünler"
+msgid "Cart"
 msgstr ""
 
-msgid "Sepet"
+msgid "Checkout"
 msgstr ""
 
-msgid "Ödeme"
+msgid "My account"
 msgstr ""
 
-msgid "Hesabım"
+msgid "Other (archives, search, 404…)"
 msgstr ""
 
-msgid "Diğer (arşiv, arama, 404…)"
+msgid "Hi there 👋"
 msgstr ""
 
-msgid "Merhaba 👋"
+msgid "How can we help? We answer your questions right away."
 msgstr ""
 
-msgid "Size nasıl yardımcı olabiliriz? Sorularınızı hemen yanıtlıyoruz."
+msgid "Hi! I'm this site's assistant. Ask me about products, orders or anything else."
 msgstr ""
 
-msgid "Merhaba! Ben bu sitenin asistanıyım. Ürünler, siparişler ya da aklınıza takılan her konuda sorabilirsiniz."
+msgid "Type your message…"
 msgstr ""
 
-msgid "Mesajınızı yazın…"
+msgid "Hi! Is there anything I can help with?"
 msgstr ""
 
-msgid "Merhaba! Yardımcı olabileceğim bir şey var mı?"
+msgid "No agents are online right now. Leave a message and we'll get back to you by email."
 msgstr ""
 
-msgid "Şu an çevrim içi temsilcimiz yok. Mesajınızı bırakın, e-postanızdan size dönelim."
+msgid "Weekdays %s"
 msgstr ""
 
-msgid "Hafta içi %s"
+msgid "Every day %s"
 msgstr ""
 
-msgid "Her gün %s"
+msgid "Mon"
 msgstr ""
 
-msgid "Pzt"
+msgid "Tue"
 msgstr ""
 
-msgid "Sal"
+msgid "Wed"
 msgstr ""
 
-msgid "Çar"
+msgid "Thu"
 msgstr ""
 
-msgid "Per"
+msgid "Fri"
 msgstr ""
 
-msgid "Cum"
+msgid "Sat"
 msgstr ""
 
-msgid "Cmt"
+msgid "Sun"
 msgstr ""
 
-msgid "Paz"
+msgid "Monday"
 msgstr ""
 
-msgid "Pazartesi"
+msgid "Tuesday"
 msgstr ""
 
-msgid "Salı"
+msgid "Wednesday"
 msgstr ""
 
-msgid "Çarşamba"
+msgid "Thursday"
 msgstr ""
 
-msgid "Perşembe"
+msgid "Friday"
 msgstr ""
 
-msgid "Cuma"
+msgid "Saturday"
 msgstr ""
 
-msgid "Cumartesi"
+msgid "Sunday"
 msgstr ""
 
-msgid "Pazar"
+msgid "Connecting you to an agent…"
 msgstr ""
 
-msgid "Sizi bir temsilciye bağlıyoruz…"
+msgid "%s joined the chat"
 msgstr ""
 
-msgid "%s sohbete katıldı"
+msgid "You ended the chat."
 msgstr ""
 
-msgid "Sohbeti sonlandırdınız."
+msgid "The chat has ended."
 msgstr ""
 
-msgid "Sohbet sonlandırıldı."
+msgid "The visitor ended the site chat."
 msgstr ""
 
-msgid "Ziyaretçi site sohbetini sonlandırdı."
+msgid "Site chat #%d"
 msgstr ""
 
-msgid "Site sohbeti #%d"
+msgid "[%1$s] Message from site chat: %2$s"
 msgstr ""
 
-msgid "[%1$s] Site sohbetinden mesaj: %2$s"
+msgid "[%1$s] Site chat waiting for an agent: %2$s"
 msgstr ""
 
-msgid "[%1$s] Temsilci bekleyen site sohbeti: %2$s"
+msgid "To reply:"
 msgstr ""
 
-msgid "Cevaplamak için:"
+msgid "%s: you have a reply to your chat"
 msgstr ""
 
-msgid "%s: sohbetinize cevap geldi"
+msgid "To continue the chat, open the site in the same browser:"
 msgstr ""
 
-msgid "Sohbete devam etmek için siteyi aynı tarayıcıda açın:"
+msgid "The file could not be uploaded."
 msgstr ""
 
-msgid "Dosya yüklenemedi."
+msgid "Files can be up to %d MB."
 msgstr ""
 
-msgid "Dosya en fazla %d MB olabilir."
+msgid "This file type can't be sent. Send an image, PDF or office document."
 msgstr ""
 
-msgid "Bu dosya türü gönderilemez. Resim, PDF ya da ofis belgesi gönderin."
+msgid "Could not save the file."
 msgstr ""
 
-msgid "Dosya kaydedilemedi."
+msgid "Too many requests. Please wait a moment."
 msgstr ""
 
-msgid "Çok sık istek. Biraz bekleyin."
+msgid "Chat is closed right now."
 msgstr ""
 
-msgid "Sohbet şu an kapalı."
+msgid "The message is empty."
 msgstr ""
 
-msgid "Mesaj boş."
+msgid "You're typing too fast. Wait a moment and try again."
 msgstr ""
 
-msgid "Çok hızlı yazıyorsunuz. Biraz bekleyip tekrar deneyin."
+msgid "Too many new chats were started. Please try again later."
 msgstr ""
 
-msgid "Çok fazla yeni sohbet açıldı. Biraz sonra tekrar deneyin."
+msgid "Could not start the chat."
 msgstr ""
 
-msgid "Sohbet başlatılamadı."
+msgid "I can't answer right now. Please write again in a moment or reach us through our contact details."
 msgstr ""
 
-msgid "Şu an cevap veremiyorum. Lütfen biraz sonra tekrar yazın ya da iletişim bilgilerimizden bize ulaşın."
+msgid "Live chat is off."
 msgstr ""
 
-msgid "Canlı destek kapalı."
+msgid "Too many requests. Please try again later."
 msgstr ""
 
-msgid "Çok fazla istek. Biraz sonra tekrar deneyin."
+msgid "Thanks! We got your message and will reply to your email."
 msgstr ""
 
-msgid "Teşekkürler! Mesajınızı aldık, e-postanıza dönüş yapacağız."
+msgid "Write a message first."
 msgstr ""
 
-msgid "Önce bir mesaj yazın."
+msgid "File sharing is off."
 msgstr ""
 
-msgid "Dosya gönderimi kapalı."
+msgid "Too many files were sent. Please try again later."
 msgstr ""
 
-msgid "Çok fazla dosya gönderildi. Biraz sonra tekrar deneyin."
+msgid "No file selected."
 msgstr ""
 
-msgid "Dosya seçilmedi."
+msgid "File not found."
 msgstr ""
 
-msgid "Dosya bulunamadı."
+msgid "Visitor rating: %1$s %2$s"
 msgstr ""
 
-msgid "Ziyaretçi puanı: %1$s %2$s"
+msgid "Visitor #%d"
 msgstr ""
 
-msgid "Ziyaretçi #%d"
-msgstr ""
-
-msgid "%d sohbet cevap bekliyor."
-msgid_plural "%d sohbet cevap bekliyor."
+msgid "%d chat is waiting for a reply."
+msgid_plural "%d chats are waiting for a reply."
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Site sohbet penceresi"
+msgid "Site chat window"
 msgstr ""
 
-msgid "Pencere kapalı; ziyaretçiler görmüyor."
+msgid "The window is off; visitors don't see it."
 msgstr ""
 
-msgid "Sohbet asistanı"
+msgid "Chat assistant"
 msgstr ""
 
-msgid "Flux AI bağlı; asistan cevap veriyor."
+msgid "Flux AI connected; the assistant is answering."
 msgstr ""
 
-msgid "Flux AI hazır değil; mesajlar asistan yerine temsilciye gidiyor."
+msgid "Flux AI is not ready; messages go to an agent instead of the assistant."
 msgstr ""
 
-msgid "Devirler Flux Chat gelen kutusuna gidiyor."
+msgid "Handoffs go to the Flux Chat inbox."
 msgstr ""
 
-msgid "Devirler eklentinin gelen kutusuna gidiyor."
+msgid "Handoffs go to the plugin inbox."
 msgstr ""
 
-msgid "Sipariş verildi: #%1$s (%2$s)"
+msgid "Order placed: #%1$s (%2$s)"
 msgstr ""
 
-msgid "Site sohbeti #%d sonrasında verildi"
+msgid "Placed after site chat #%d"
+msgstr ""
+
+msgid "[[\"Artificial intelligence-supported chat window to the site: With Flux AI, 24/7 responses from your site's content and products, potential customer collection, WooCommerce information, one-click transfer to a live representative (Flux Chat inbox or the plugin's own inbox), file sharing, read receipts, end-of-chat scoring and leaving messages after hours. Color, position, avatar, texts and visibility are customized from the panel.\", 'tr']]"
 msgstr ""

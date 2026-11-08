@@ -43,7 +43,7 @@ function flxs_render_files_job( $id ) {
  */
 function flxs_render_certificate_files( $cert, $types = null ) {
 	if ( ! flxs_render_available() ) {
-		return new WP_Error( 'flxs_render', __( 'Sunucuda GD (FreeType) eklentisi yok.', 'flx-certificates' ) );
+		return new WP_Error( 'flxs_render', __( 'The server has no GD (FreeType) extension.', 'flx-certificates' ) );
 	}
 	$types = null === $types ? flxs_certificate_missing_files( $cert ) : (array) $types;
 	if ( ! $types ) {
@@ -51,7 +51,7 @@ function flxs_render_certificate_files( $cert, $types = null ) {
 	}
 	$lock = 'flxs_render_' . (int) $cert['id'];
 	if ( get_transient( $lock ) ) {
-		return new WP_Error( 'flxs_render_busy', __( 'Bu sertifikanın dosyaları şu an hazırlanıyor.', 'flx-certificates' ) );
+		return new WP_Error( 'flxs_render_busy', __( 'This certificate\'s files are being prepared right now.', 'flx-certificates' ) );
 	}
 	set_transient( $lock, 1, 120 );
 	if ( function_exists( 'set_time_limit' ) ) {
@@ -72,7 +72,7 @@ function flxs_render_certificate_files( $cert, $types = null ) {
 function flxs_render_certificate_files_now( $cert, $types ) {
 	$template = flxs_get_template( $cert['template_id'] );
 	if ( ! $template ) {
-		return new WP_Error( 'flxs_template', __( 'Şablon bulunamadı.', 'flx-certificates' ) );
+		return new WP_Error( 'flxs_template', __( 'Template not found.', 'flx-certificates' ) );
 	}
 	require_once ABSPATH . 'wp-admin/includes/file.php';
 	$config = $template['config'];
@@ -484,7 +484,7 @@ class FLXS_Renderer {
 			if ( ! $done ) {
 				$raster = flxs_background_raster_file( $bg );
 				if ( ! $raster ) {
-					throw new Exception( __( 'Arka plan PDF\'i sunucuda okunamadı.', 'flx-certificates' ) );
+					throw new Exception( __( 'The background PDF could not be read on the server.', 'flx-certificates' ) );
 				}
 				$pdf->Image( $raster, 0, 0, $this->w, $this->h, '', '', '', true, 300 );
 				$done = true;
@@ -775,7 +775,7 @@ function flxs_render_share_image( $page, $title, $name, $org ) {
 	$tmax  = $cx - $tx - 40;
 
 	// rozet: ✓ Doğrulanmış sertifika
-	$badge = __( 'Doğrulanmış sertifika', 'flx-certificates' );
+	$badge = __( 'Verified certificate', 'flx-certificates' );
 	$bw    = $tw( $bold, 20, $badge ) + 36 + 28;
 	$pill = imagecreatetruecolor( $bw + 1, 45 );
 	imagealphablending( $pill, false );

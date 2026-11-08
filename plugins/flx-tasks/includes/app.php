@@ -13,7 +13,7 @@ add_filter(
 	function ( $m ) {
 		$m              = is_array( $m ) ? $m : array();
 		$m['flxg-tasks'] = array(
-			'title'   => __( 'Görevler', 'flx-tasks' ),
+			'title'   => __( 'Tasks', 'flx-tasks' ),
 			'cap'     => 'flxg_use',
 			'menu'    => 'flx-tasks',
 			'api'     => rest_url( FLXG_NS . '/app' ),
@@ -50,7 +50,7 @@ function flxg_app_user( $uid ) {
 	$u = get_userdata( (int) $uid );
 	return array(
 		'id'     => (int) $uid,
-		'name'   => $u ? $u->display_name : __( 'Silinmiş kullanıcı', 'flx-tasks' ),
+		'name'   => $u ? $u->display_name : __( 'Deleted user', 'flx-tasks' ),
 		'avatar' => get_avatar_url( (int) $uid, array( 'size' => 96 ) ),
 	);
 }
@@ -223,7 +223,7 @@ function flxg_app_tasks( WP_REST_Request $r ) {
 	$proj = (int) ( $r['project'] ?? 0 );
 	if ( $list ) {
 		if ( ! flxg_can_list( $list, 'view', $uid ) ) {
-			return flxg_error( 'flxg_404', __( 'Liste bulunamadı ya da erişiminiz yok.', 'flx-tasks' ), 404 );
+			return flxg_error( 'flxg_404', __( 'List not found or you don\'t have access.', 'flx-tasks' ), 404 );
 		}
 		$q['lists'] = array( $list );
 	} else {
@@ -291,7 +291,7 @@ function flxg_app_comment_out( array $c ) {
 function flxg_app_task_get( WP_REST_Request $r ) {
 	$id = (int) $r['id'];
 	if ( ! flxg_can_task( $id ) ) {
-		return flxg_error( 'flxg_404', __( 'Görev bulunamadı ya da erişiminiz yok.', 'flx-tasks' ), 404 );
+		return flxg_error( 'flxg_404', __( 'Task not found or you don\'t have access.', 'flx-tasks' ), 404 );
 	}
 	flxg_mark_read( get_current_user_id(), null, $id );
 	$t = flxg_app_task_detail( $id );
@@ -320,7 +320,7 @@ function flxg_app_task_create( WP_REST_Request $r ) {
 		}
 	}
 	if ( ! $list || ! flxg_can_list( $list, 'edit', $uid ) ) {
-		return flxg_error( 'flxg_forbidden', __( 'Bu listeye görev ekleme yetkiniz yok.', 'flx-tasks' ), 403 );
+		return flxg_error( 'flxg_forbidden', __( 'You don\'t have permission to add tasks to this list.', 'flx-tasks' ), 403 );
 	}
 	$d = array(
 		'list_id'   => (int) $list['id'],
@@ -348,7 +348,7 @@ function flxg_app_task_update( WP_REST_Request $r ) {
 	$uid = get_current_user_id();
 	$row = flxg_get_task_row( $id );
 	if ( ! $row || ! flxg_can_task( $row, 'edit', $uid ) ) {
-		return flxg_error( 'flxg_forbidden', __( 'Bu görevi düzenleme yetkiniz yok.', 'flx-tasks' ), 403 );
+		return flxg_error( 'flxg_forbidden', __( 'You don\'t have permission to edit this task.', 'flx-tasks' ), 403 );
 	}
 	$b = flxg_body( $r );
 	$d = array();
@@ -370,14 +370,14 @@ function flxg_app_task_update( WP_REST_Request $r ) {
 	if ( isset( $b['list'] ) && (int) $b['list'] !== (int) $row['list_id'] ) {
 		$target = flxg_get_list( (int) $b['list'] );
 		if ( ! $target || ! flxg_can_list( $target, 'edit', $uid ) ) {
-			return flxg_error( 'flxg_forbidden', __( 'Hedef listeye görev ekleme yetkiniz yok.', 'flx-tasks' ), 403 );
+			return flxg_error( 'flxg_forbidden', __( 'You don\'t have permission to add tasks to the target list.', 'flx-tasks' ), 403 );
 		}
 		$d['list'] = (int) $target['id'];
 	}
 	if ( isset( $b['status'] ) ) {
 		$key = flxg_app_status_key( $target, $b['status'] );
 		if ( null === $key ) {
-			return flxg_error( 'flxg_status', __( 'Bu listede böyle bir durum yok.', 'flx-tasks' ), 400 );
+			return flxg_error( 'flxg_status', __( 'This list has no such status.', 'flx-tasks' ), 400 );
 		}
 		$d['status'] = $key;
 	}
@@ -391,7 +391,7 @@ function flxg_app_task_update( WP_REST_Request $r ) {
 function flxg_app_comment_add( WP_REST_Request $r ) {
 	$id = (int) $r['id'];
 	if ( ! flxg_can_task( $id, 'comment' ) ) {
-		return flxg_error( 'flxg_forbidden', __( 'Bu göreve yorum yazma yetkiniz yok.', 'flx-tasks' ), 403 );
+		return flxg_error( 'flxg_forbidden', __( 'You don\'t have permission to comment on this task.', 'flx-tasks' ), 403 );
 	}
 	$b = flxg_body( $r );
 	$c = flxg_add_comment( $id, (string) ( $b['text'] ?? '' ), array(), get_current_user_id() );
@@ -407,7 +407,7 @@ function flxg_app_checklist( WP_REST_Request $r ) {
 	$uid  = get_current_user_id();
 	$row  = flxg_get_task_row( $id );
 	if ( ! $row || ! flxg_can_task( $row, 'edit', $uid ) ) {
-		return flxg_error( 'flxg_forbidden', __( 'Bu görevi düzenleme yetkiniz yok.', 'flx-tasks' ), 403 );
+		return flxg_error( 'flxg_forbidden', __( 'You don\'t have permission to edit this task.', 'flx-tasks' ), 403 );
 	}
 	$done = ! empty( flxg_body( $r )['done'] );
 	$n    = 0;
@@ -432,7 +432,7 @@ function flxg_app_checklist( WP_REST_Request $r ) {
 		(string) $row['description']
 	);
 	if ( ! $hit ) {
-		return flxg_error( 'flxg_404', __( 'Madde bulunamadı.', 'flx-tasks' ), 404 );
+		return flxg_error( 'flxg_404', __( 'Item not found.', 'flx-tasks' ), 404 );
 	}
 	$t = flxg_update_task( $id, array( 'description' => $html ), $uid );
 	if ( is_wp_error( $t ) ) {

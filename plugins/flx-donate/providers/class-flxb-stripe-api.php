@@ -50,7 +50,7 @@ class FLXB_Stripe_Api {
 	 */
 	public function request( $method, $path, array $params = array(), $idem = '' ) {
 		if ( '' === $this->secret ) {
-			throw new FLXB_Stripe_Error( __( 'The Stripe secret key is not configured.', 'flx-donate' ) );
+			throw new FLXB_Stripe_Error( __( '\\nThe Stripe secret key is not configured.\\n', 'flx-donate' ) );
 		}
 		$method  = strtoupper( (string) $method );
 		$headers = array(
@@ -79,7 +79,7 @@ class FLXB_Stripe_Api {
 		$res             = wp_remote_request( $url, $args );
 		if ( is_wp_error( $res ) ) {
 			/* translators: %s: transport error */
-			throw new FLXB_Stripe_Error( sprintf( __( 'Could not connect to Stripe: %s', 'flx-donate' ), $res->get_error_message() ) );
+			throw new FLXB_Stripe_Error( sprintf( __( '\\nCould not connect to Stripe:%s\', \'en\']]', 'flx-donate' ), $res->get_error_message() ) );
 		}
 		$code = (int) wp_remote_retrieve_response_code( $res );
 		$body = json_decode( (string) wp_remote_retrieve_body( $res ), true );
@@ -88,7 +88,7 @@ class FLXB_Stripe_Api {
 		}
 		$err = is_array( $body ) && isset( $body['error'] ) && is_array( $body['error'] ) ? $body['error'] : array();
 		/* translators: %d: HTTP status */
-		$e              = new FLXB_Stripe_Error( ! empty( $err['message'] ) ? (string) $err['message'] : sprintf( __( 'Stripe API error (HTTP %d).', 'flx-donate' ), $code ) );
+		$e              = new FLXB_Stripe_Error( ! empty( $err['message'] ) ? (string) $err['message'] : sprintf( __( '\\nStripe API error (HTTP%d).\', \'en\']]', 'flx-donate' ), $code ) );
 		$e->http_status = $code;
 		$e->error_type  = (string) ( $err['type'] ?? '' );
 		$e->stripe_code = (string) ( $err['code'] ?? '' );

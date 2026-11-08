@@ -43,8 +43,8 @@ final class FLXB_WC_Iyzico_Blocks extends AbstractPaymentMethodType {
 		$desc  = trim( (string) ( $this->settings['description'] ?? '' ) );
 		$desc  = FLXB_WC_Iyzico_Card::on() && ( '' === $desc || FLXB_WC_Gateway_Iyzico::default_description() === $desc ) ? '' : $desc;
 		return array(
-			'title'       => '' !== $title ? $title : __( 'Credit / debit card (iyzico)', 'flx-donate' ),
-			'description' => '' !== $desc || FLXB_WC_Iyzico_Card::on() ? $desc : __( 'You will pay on iyzico\'s secure page. For monthly donations your card is stored by iyzico and charged once a month; you can cancel at any time.', 'flx-donate' ),
+			'title'       => '' !== $title ? $title : __( '\\nCredit / debit card (iyzico)\\n', 'flx-donate' ),
+			'description' => '' !== $desc || FLXB_WC_Iyzico_Card::on() ? $desc : __( '\\nYou will pay on iyzico\'s secure page. For monthly donations your card is stored by iyzico and charged once a month; you can cancel at any time.\\n', 'flx-donate' ),
 			'fields'      => FLXB_WC_Iyzico_Card::on(),
 			'supports'    => array( 'products' ),
 		);

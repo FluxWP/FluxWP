@@ -13,49 +13,49 @@ add_action( 'admin_post_flxa_caps_restore', 'flxa_caps_restore' );
 function flxa_caps_known() {
 	return array(
 		'content' => array(
-			'label' => __( 'İçerik', 'flx-admin' ),
+			'label' => __( 'Content', 'flx-admin' ),
 			'caps'  => array(
-				'read'                 => __( 'Panele girebilir', 'flx-admin' ),
-				'edit_posts'           => __( 'Yazı yazabilir', 'flx-admin' ),
-				'publish_posts'        => __( 'Yazı yayımlayabilir', 'flx-admin' ),
-				'edit_others_posts'    => __( 'Başkasının yazısını düzenleyebilir', 'flx-admin' ),
-				'delete_posts'         => __( 'Yazı silebilir', 'flx-admin' ),
-				'delete_others_posts'  => __( 'Başkasının yazısını silebilir', 'flx-admin' ),
-				'edit_pages'           => __( 'Sayfa düzenleyebilir', 'flx-admin' ),
-				'publish_pages'        => __( 'Sayfa yayımlayabilir', 'flx-admin' ),
-				'edit_others_pages'    => __( 'Başkasının sayfasını düzenleyebilir', 'flx-admin' ),
-				'delete_pages'         => __( 'Sayfa silebilir', 'flx-admin' ),
-				'upload_files'         => __( 'Dosya yükleyebilir', 'flx-admin' ),
-				'manage_categories'    => __( 'Kategorileri yönetebilir', 'flx-admin' ),
-				'moderate_comments'    => __( 'Yorumları onaylayabilir', 'flx-admin' ),
-				'unfiltered_html'      => __( 'Filtresiz HTML yazabilir', 'flx-admin' ),
+				'read'                 => __( 'Can access the dashboard', 'flx-admin' ),
+				'edit_posts'           => __( 'Can write posts', 'flx-admin' ),
+				'publish_posts'        => __( 'Can publish posts', 'flx-admin' ),
+				'edit_others_posts'    => __( 'Can edit others\' posts', 'flx-admin' ),
+				'delete_posts'         => __( 'Can delete posts', 'flx-admin' ),
+				'delete_others_posts'  => __( 'Can delete others\' posts', 'flx-admin' ),
+				'edit_pages'           => __( 'Can edit pages', 'flx-admin' ),
+				'publish_pages'        => __( 'Can publish pages', 'flx-admin' ),
+				'edit_others_pages'    => __( 'Can edit others\' pages', 'flx-admin' ),
+				'delete_pages'         => __( 'Can delete pages', 'flx-admin' ),
+				'upload_files'         => __( 'Can upload files', 'flx-admin' ),
+				'manage_categories'    => __( 'Can manage categories', 'flx-admin' ),
+				'moderate_comments'    => __( 'Can moderate comments', 'flx-admin' ),
+				'unfiltered_html'      => __( 'Can post unfiltered HTML', 'flx-admin' ),
 			),
 		),
 		'site'    => array(
 			'label' => __( 'Site', 'flx-admin' ),
 			'caps'  => array(
-				'manage_options'     => __( 'Site ayarlarını değiştirebilir', 'flx-admin' ),
-				'edit_theme_options' => __( 'Menü ve görünümü düzenleyebilir', 'flx-admin' ),
-				'list_users'         => __( 'Kullanıcıları görebilir', 'flx-admin' ),
-				'create_users'       => __( 'Kullanıcı ekleyebilir', 'flx-admin' ),
-				'edit_users'         => __( 'Kullanıcı düzenleyebilir', 'flx-admin' ),
-				'delete_users'       => __( 'Kullanıcı silebilir', 'flx-admin' ),
-				'promote_users'      => __( 'Rol değiştirebilir', 'flx-admin' ),
-				'activate_plugins'   => __( 'Eklenti açıp kapatabilir', 'flx-admin' ),
-				'install_plugins'    => __( 'Eklenti kurabilir', 'flx-admin' ),
-				'update_plugins'     => __( 'Eklenti güncelleyebilir', 'flx-admin' ),
-				'update_core'        => __( 'WordPress\'i güncelleyebilir', 'flx-admin' ),
-				'export'             => __( 'Dışa aktarabilir', 'flx-admin' ),
-				'import'             => __( 'İçe aktarabilir', 'flx-admin' ),
+				'manage_options'     => __( 'Can change site settings', 'flx-admin' ),
+				'edit_theme_options' => __( 'Can edit menus and appearance', 'flx-admin' ),
+				'list_users'         => __( 'Can see users', 'flx-admin' ),
+				'create_users'       => __( 'Can add users', 'flx-admin' ),
+				'edit_users'         => __( 'Can edit users', 'flx-admin' ),
+				'delete_users'       => __( 'Can delete users', 'flx-admin' ),
+				'promote_users'      => __( 'Can change roles', 'flx-admin' ),
+				'activate_plugins'   => __( 'Can activate/deactivate plugins', 'flx-admin' ),
+				'install_plugins'    => __( 'Can install plugins', 'flx-admin' ),
+				'update_plugins'     => __( 'Can update plugins', 'flx-admin' ),
+				'update_core'        => __( 'Can update WordPress', 'flx-admin' ),
+				'export'             => __( 'Can export', 'flx-admin' ),
+				'import'             => __( 'Can import', 'flx-admin' ),
 			),
 		),
 		'woo'     => array(
 			'label' => 'WooCommerce',
 			'caps'  => array(
-				'manage_woocommerce'       => __( 'WooCommerce\'i yönetebilir', 'flx-admin' ),
-				'view_woocommerce_reports' => __( 'Raporları görebilir', 'flx-admin' ),
-				'edit_shop_orders'         => __( 'Siparişleri düzenleyebilir', 'flx-admin' ),
-				'edit_products'            => __( 'Ürünleri düzenleyebilir', 'flx-admin' ),
+				'manage_woocommerce'       => __( 'Can manage WooCommerce', 'flx-admin' ),
+				'view_woocommerce_reports' => __( 'Can see reports', 'flx-admin' ),
+				'edit_shop_orders'         => __( 'Can edit orders', 'flx-admin' ),
+				'edit_products'            => __( 'Can edit products', 'flx-admin' ),
 			),
 		),
 	);
@@ -96,7 +96,7 @@ function flxa_caps_rows() {
 		$flx[ $cap ] = isset( $names[ $cap ] ) ? (string) $names[ $cap ] : '';
 	}
 	if ( $flx ) {
-		$groups['flx'] = array( 'label' => __( 'FluxWP eklentileri', 'flx-admin' ), 'caps' => $flx );
+		$groups['flx'] = array( 'label' => __( 'FluxWP plugins', 'flx-admin' ), 'caps' => $flx );
 	}
 	return $groups;
 }
@@ -108,20 +108,20 @@ function flxa_caps_render() {
 	$users  = (array) ( $counts['avail_roles'] ?? array() );
 	$backup = get_option( 'flxa_caps_backup' );
 
-	echo '<p class="flxa-lead">' . esc_html__( 'Burada yapılan değişiklik gerçek yetkidir: kapatılan işlem menüden gizlenmekle kalmaz, adresle girilse de yapılamaz. Yönetici rolü değiştirilemez.', 'flx-admin' ) . '</p>';
+	echo '<p class="flxa-lead">' . esc_html__( 'Changes here are real permissions: a disabled action is not just hidden from the menu, it can\'t be done even by URL. The Administrator role can\'t be changed.', 'flx-admin' ) . '</p>';
 	if ( is_array( $backup ) ) {
 		$url = wp_nonce_url( admin_url( 'admin-post.php?action=flxa_caps_restore' ), 'flxa_caps_restore' );
 		echo '<div class="notice notice-info inline flxa-caps-backup"><p>' . esc_html(
 			sprintf(
 				/* translators: %s: date */
-				__( 'İlk değişiklikten önceki yetkiler yedekli (%s).', 'flx-admin' ),
+				__( 'Permissions before the first change are backed up (%s).', 'flx-admin' ),
 				flx_date( (int) ( $backup['_time'] ?? 0 ), 'datetime' )
 			)
-		) . ' <a href="' . esc_url( $url ) . '" onclick="return confirm(this.dataset.c)" data-c="' . esc_attr__( 'Tüm roller yedekteki hâline dönsün mü?', 'flx-admin' ) . '">' . esc_html__( 'Yedeği geri yükle', 'flx-admin' ) . '</a></p></div>';
+		) . ' <a href="' . esc_url( $url ) . '" onclick="return confirm(this.dataset.c)" data-c="' . esc_attr__( 'Restore all roles to the backup?', 'flx-admin' ) . '">' . esc_html__( 'Restore backup', 'flx-admin' ) . '</a></p></div>';
 	}
-	echo '<div class="flxa-card flxa-caps-wrap"><div class="flxa-caps-scroll"><table class="flxa-caps"><thead><tr><th class="flxa-caps-name"><input type="search" class="flxa-caps-filter" placeholder="' . esc_attr__( 'Yetki ara…', 'flx-admin' ) . '" data-flxa-caps-filter></th>';
+	echo '<div class="flxa-card flxa-caps-wrap"><div class="flxa-caps-scroll"><table class="flxa-caps"><thead><tr><th class="flxa-caps-name"><input type="search" class="flxa-caps-filter" placeholder="' . esc_attr__( 'Search permissions…', 'flx-admin' ) . '" data-flxa-caps-filter></th>';
 	foreach ( $roles as $rk => $r ) {
-		echo '<th class="flxa-caps-role' . ( 'administrator' === $rk ? ' is-admin' : '' ) . '"><span>' . esc_html( translate_user_role( $r['name'] ) ) . '</span><small>' . (int) ( $users[ $rk ] ?? 0 ) . ' ' . esc_html__( 'kişi', 'flx-admin' ) . '</small></th>';
+		echo '<th class="flxa-caps-role' . ( 'administrator' === $rk ? ' is-admin' : '' ) . '"><span>' . esc_html( translate_user_role( $r['name'] ) ) . '</span><small>' . (int) ( $users[ $rk ] ?? 0 ) . ' ' . esc_html__( 'users', 'flx-admin' ) . '</small></th>';
 	}
 	echo '</tr></thead>';
 	foreach ( $groups as $g ) {
@@ -181,7 +181,7 @@ function flxa_caps_save() {
 
 function flxa_caps_restore() {
 	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( esc_html__( 'Yetkiniz yok.', 'flx-admin' ), 403 );
+		wp_die( esc_html__( 'You do not have permission.', 'flx-admin' ), 403 );
 	}
 	check_admin_referer( 'flxa_caps_restore' );
 	$b = get_option( 'flxa_caps_backup' );

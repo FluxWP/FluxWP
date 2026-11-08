@@ -5,7 +5,7 @@ import { brand, platform } from '@fluxwp/core';
 export function LegalLinks() {
   const { t, i18n } = useTranslation();
   if (brand.slug !== 'flux') return null;
-  const base = i18n.language.startsWith('tr') ? 'https://fluxwp.com/tr/' : 'https://fluxwp.com/';
+  const base = 'https://fluxwp.com/' + (i18n.language === 'en' ? '' : i18n.language + '/');
   return (
     <nav className="legal-links small" aria-label={t('legal.title')}>
       <button type="button" className="btn-link" onClick={() => void platform().openExternal(base + 'privacy/')}>{t('legal.privacy')}</button>

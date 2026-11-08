@@ -1,0 +1,425 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: de_DE\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Protects forms against spam and bot attacks"
+msgstr "Schützt Formulare vor Spam- und Bot-Angriffen"
+
+msgid "reCAPTCHA"
+msgstr "reCAPTCHA"
+
+msgid "Enter the site key first."
+msgstr "Geben Sie zuerst den Site-Schlüssel ein."
+
+msgid "Enter the secret key."
+msgstr "Geben Sie den geheimen Schlüssel ein."
+
+msgid "Loading Google reCAPTCHA…"
+msgstr "Google reCAPTCHA wird geladen..."
+
+msgid "Tick the box; the test continues on its own once it is ticked."
+msgstr "Markieren Sie das Kästchen; Der Test wird nach dem Ankreuzen selbstständig fortgesetzt."
+
+msgid "Verifying with Google…"
+msgstr "Verifizierung mit Google..."
+
+msgid "Google reCAPTCHA could not be loaded. Check the site key and the domain; if Google is unreachable, try the \"recaptcha.net\" option."
+msgstr "Google reCAPTCHA konnte nicht geladen werden. Überprüfen Sie den Site-Schlüssel und die Domain; Wenn Google nicht erreichbar ist, versuchen Sie es mit der Option „recaptcha.net“."
+
+msgid "The site key changed; reloading the page to test with the new key…"
+msgstr "Der Site-Schlüssel hat sich geändert; Laden Sie die Seite neu, um sie mit dem neuen Schlüssel zu testen."
+
+msgid "Something went wrong. Please try again."
+msgstr "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
+
+msgid "Keys saved; protection is on."
+msgstr "Schlüssel gespeichert; Der Schutz ist aktiviert."
+
+msgid "Forms are not protected yet. Enter your Google reCAPTCHA keys and test them."
+msgstr "Formulare sind noch nicht geschützt. Geben Sie Ihre Google reCAPTCHA-Schlüssel ein und testen Sie sie."
+
+msgid "Go to settings"
+msgstr "Gehen Sie zu den Einstellungen"
+
+msgid "You are not allowed to do this."
+msgstr "Dies ist Ihnen nicht gestattet."
+
+msgid "Protects login, registration, comments, checkout, donations and form submissions from bots with Google reCAPTCHA. Choose below which forms to protect."
+msgstr "Schützt Anmeldung, Registrierung, Kommentare, Checkout, Spenden und Formularübermittlungen vor Bots mit Google reCAPTCHA. Wählen Sie unten aus, welche Formulare geschützt werden sollen."
+
+msgid "Protection is turned off by the recovery constant."
+msgstr "Der Schutz wird durch die Wiederherstellungskonstante ausgeschaltet."
+
+msgid "Remove the FLXRC_DISABLE line from wp-config.php to turn protection back on."
+msgstr "Entfernen Sie die Zeile FLXRC_DISABLE aus wp-config.php, um den Schutz wieder zu aktivieren."
+
+msgid "Protection is not running yet."
+msgstr "Der Schutz läuft noch nicht."
+
+msgid "Enter your keys and press \"Test\". No form is checked until the test passes, so a wrong key can never lock you out of the login screen."
+msgstr "Geben Sie Ihre Schlüssel ein und drücken Sie „Test“. Es wird kein Formular überprüft, bis der Test bestanden wurde. Ein falscher Schlüssel kann Sie also niemals vom Anmeldebildschirm ausschließen."
+
+msgid "Google rejected the secret key"
+msgstr "Google hat den geheimen Schlüssel abgelehnt"
+
+msgid "Google could not be reached"
+msgstr "Google konnte nicht erreicht werden"
+
+msgid "Submissions were let through without a check at that time."
+msgstr "Einsendungen wurden damals ohne Scheck durchgelassen."
+
+msgid "Submissions were blocked at that time."
+msgstr "Zu diesem Zeitpunkt waren Einsendungen gesperrt."
+
+msgid "Off"
+msgstr "Aus"
+
+msgid "On"
+msgstr "Auf"
+
+msgid "v3 · invisible"
+msgstr "v3 · unsichtbar"
+
+msgid "v2 · checkbox"
+msgstr "v2 · Kontrollkästchen"
+
+msgid "Awaiting test"
+msgstr "Warten auf den Test"
+
+msgid "Test your keys"
+msgstr "Testen Sie Ihre Schlüssel"
+
+msgid "Protection"
+msgstr "Schutz"
+
+msgid "Protected forms"
+msgstr "Geschützte Formulare"
+
+msgid "%1$s / %2$s"
+msgstr "%1$s/%2$s"
+
+msgid "forms of installed plugins"
+msgstr "Formen installierter Plugins"
+
+msgid "Passed"
+msgstr "Bestanden"
+
+msgid "last 30 days"
+msgstr "letzten 30 Tage"
+
+msgid "Blocked"
+msgstr "Blockiert"
+
+msgid "Keys"
+msgstr "Schlüssel"
+
+msgid "Tested"
+msgstr "Getestet"
+
+msgid "Not tested"
+msgstr "Nicht getestet"
+
+msgid "Get your keys %s: choose the reCAPTCHA type and add your domain. The site key and the secret key must belong to the same entry."
+msgstr "Holen Sie sich Ihre Schlüssel%s: Wählen Sie den reCAPTCHA-Typ und fügen Sie Ihre Domain hinzu. Der Site-Schlüssel und der geheime Schlüssel müssen zum selben Eintrag gehören."
+
+msgid "from the Google reCAPTCHA console"
+msgstr "über die Google reCAPTCHA-Konsole"
+
+msgid "reCAPTCHA type"
+msgstr "reCAPTCHA-Typ"
+
+msgid "v3 · Invisible"
+msgstr "v3 · Unsichtbar"
+
+msgid "Visitors are never asked anything; Google returns a score from 0 to 1. Recommended."
+msgstr "Besucher werden nie um etwas gebeten; Google gibt eine Punktzahl von 0 bis 1 zurück. Empfohlen."
+
+msgid "v2 · \"I'm not a robot\""
+msgstr "v2 · „Ich bin kein Roboter“"
+
+msgid "A checkbox appears on the form; suspicious visitors get an image challenge."
+msgstr "Auf dem Formular wird ein Kontrollkästchen angezeigt. Verdächtige Besucher erhalten eine Image-Herausforderung."
+
+msgid "Site key"
+msgstr "Site-Schlüssel"
+
+msgid "Secret key"
+msgstr "Geheimer Schlüssel"
+
+msgid "Saved (%s). Type to replace it."
+msgstr "Gespeichert (%s). Geben Sie ein, um es zu ersetzen."
+
+msgid "Paste the secret key"
+msgstr "Fügen Sie den geheimen Schlüssel ein"
+
+msgid "Entered once, stored encrypted and never shown again."
+msgstr "Einmal eingegeben, verschlüsselt gespeichert und nie wieder angezeigt."
+
+msgid "One of the keys comes from a wp-config.php constant (FLXRC_SITE_KEY / FLXRC_SECRET_KEY); the value in this panel is not used."
+msgstr "Einer der Schlüssel stammt von einer wp-config.php-Konstante (FLXRC_SITE_KEY / FLXRC_SECRET_KEY); Der Wert in diesem Bereich wird nicht verwendet."
+
+msgid "Test and save"
+msgstr "Testen und speichern"
+
+msgid "Runs a real check with Google; if it passes, the keys are saved and protection turns on."
+msgstr "Führt eine echte Überprüfung bei Google durch; Wenn die Prüfung erfolgreich ist, werden die Schlüssel gespeichert und der Schutz aktiviert."
+
+msgid "Last test: %1$s · %2$s"
+msgstr "Letzter Test:%1$s·%2$s"
+
+msgid "Last 30 days: passed / blocked"
+msgstr "Letzte 30 Tage: vergangen / gesperrt"
+
+msgid "not installed"
+msgstr "nicht installiert"
+
+msgid "If a form has its own reCAPTCHA option turned on in Flux Forms, turn it off; two checks on one page conflict."
+msgstr "Wenn für ein Formular in Flux Forms eine eigene reCAPTCHA-Option aktiviert ist, deaktivieren Sie diese. Konflikt zwischen zwei Prüfungen auf einer Seite."
+
+msgid "Bot threshold (v3)"
+msgstr "Bot-Schwellenwert (v3)"
+
+msgid "Submissions scoring below this are blocked. 0.5 suits most sites; lower it if real people get stuck."
+msgstr "Einsendungen mit einer Wertung darunter werden gesperrt. 0,5 passt für die meisten Websites; Reduzieren Sie es, wenn echte Menschen stecken bleiben."
+
+msgid "Checkbox theme (v2)"
+msgstr "Checkbox-Thema (v2)"
+
+msgid "Automatic (follows the site's dark mode)"
+msgstr "Automatisch (folgt dem Dunkelmodus der Website)"
+
+msgid "Light"
+msgstr "Licht"
+
+msgid "Dark"
+msgstr "Dunkel"
+
+msgid "Checkbox size (v2)"
+msgstr "Kontrollkästchengröße (v2)"
+
+msgid "Normal"
+msgstr "Normal"
+
+msgid "Compact"
+msgstr "Kompakt"
+
+msgid "Google host"
+msgstr "Google-Host"
+
+msgid "Use recaptcha.net on networks where google.com is blocked."
+msgstr "Verwenden Sie recaptcha.net in Netzwerken, in denen google.com blockiert ist."
+
+msgid "Skip signed-in users"
+msgstr "Angemeldete Benutzer überspringen"
+
+msgid "Members are not checked on comments, checkout, donations and forms. Login and registration forms are always protected."
+msgstr "Mitglieder werden nicht auf Kommentare, Checkout, Spenden und Formulare überprüft. Anmelde- und Registrierungsformulare sind stets geschützt."
+
+msgid "Let submissions through if Google is unreachable"
+msgstr "Lassen Sie Einsendungen durch, wenn Google nicht erreichbar ist"
+
+msgid "Recommended. When off, no protected form can be sent during a Google outage (admin login included)."
+msgstr "Empfohlen. Wenn diese Option deaktiviert ist, kann während eines Google-Ausfalls kein geschütztes Formular gesendet werden (einschließlich Administratoranmeldung)."
+
+msgid "Hide the v3 badge"
+msgstr "Blenden Sie das v3-Abzeichen aus"
+
+msgid "The reCAPTCHA badge in the bottom corner is hidden; the notice Google requires is added under protected forms."
+msgstr "Das reCAPTCHA-Abzeichen in der unteren Ecke ist ausgeblendet; Der von Google geforderte Hinweis wird unter geschützte Formulare hinzugefügt."
+
+msgid "IP addresses that skip the check"
+msgstr "IP-Adressen, die die Prüfung überspringen"
+
+msgid "One IP or range (CIDR) per line. For your office, tests and monitoring services. Your current IP address: %s"
+msgstr "Eine IP oder ein Bereich (CIDR) pro Zeile. Für Ihr Büro, Tests und Überwachungsdienste. Ihre aktuelle IP-Adresse:%s"
+
+msgid "If you get locked out of the login screen, add define( 'FLXRC_DISABLE', true ); to wp-config.php; protection turns off completely."
+msgstr "Wenn Sie vom Anmeldebildschirm ausgeschlossen werden, fügen Sie define( 'FLXRC_DISABLE', true ); zu wp-config.php; Der Schutz wird vollständig ausgeschaltet."
+
+msgid "Save settings"
+msgstr "Einstellungen speichern"
+
+msgid "Saved."
+msgstr "Gespeichert."
+
+msgid "Saved. The keys changed, so protection stays off until they are tested."
+msgstr "Gespeichert. Da sich die Schlüssel geändert haben, bleibt der Schutz deaktiviert, bis sie getestet werden."
+
+msgid "The site key and the secret key are required."
+msgstr "Der Site-Schlüssel und der geheime Schlüssel sind erforderlich."
+
+msgid "These are v2 (checkbox) keys. Choose v2, or create v3 keys in the Google console."
+msgstr "Dies sind v2-Schlüssel (Kontrollkästchen). Wählen Sie v2 oder erstellen Sie v3-Schlüssel in der Google-Konsole."
+
+msgid "These are v3 keys. Choose v3, or create v2 keys in the Google console."
+msgstr "Dies sind v3-Schlüssel. Wählen Sie v3 oder erstellen Sie v2-Schlüssel in der Google-Konsole."
+
+msgid "JavaScript must be enabled in your browser to send this form."
+msgstr "Um dieses Formular senden zu können, muss in Ihrem Browser JavaScript aktiviert sein."
+
+msgid "This form is protected by reCAPTCHA and the Google %1$s and %2$s apply."
+msgstr "Dieses Formular ist durch reCAPTCHA geschützt und es gelten die Google%1$sund%2$s."
+
+msgid "Privacy Policy"
+msgstr "Datenschutzrichtlinie"
+
+msgid "Terms of Service"
+msgstr "Nutzungsbedingungen"
+
+msgid "Please tick the \"I'm not a robot\" box."
+msgstr "Bitte kreuzen Sie das Kästchen „Ich bin kein Roboter“ an."
+
+msgid "The security check could not load. Refresh the page and try again."
+msgstr "Die Sicherheitsüberprüfung konnte nicht geladen werden. Aktualisieren Sie die Seite und versuchen Sie es erneut."
+
+msgid "The security check failed. Refresh the page and try again."
+msgstr "Die Sicherheitsüberprüfung ist fehlgeschlagen. Aktualisieren Sie die Seite und versuchen Sie es erneut."
+
+msgid "Could not reach Google: %s"
+msgstr "Google konnte nicht erreicht werden:%s"
+
+msgid "Google returned an unexpected response."
+msgstr "Google hat eine unerwartete Antwort zurückgegeben."
+
+msgid "The secret key is invalid. Copy the \"Secret key\" from the Google reCAPTCHA console."
+msgstr "Der geheime Schlüssel ist ungültig. Kopieren Sie den „Geheimen Schlüssel“ aus der Google reCAPTCHA-Konsole."
+
+msgid "The site key and the secret key do not belong to the same entry, or the wrong reCAPTCHA type (v2/v3) is selected."
+msgstr "Der Site-Schlüssel und der geheime Schlüssel gehören nicht zum selben Eintrag oder es wurde der falsche reCAPTCHA-Typ (v2/v3) ausgewählt."
+
+msgid "Could not verify (%s)."
+msgstr "Konnte nicht überprüft werden (%s)."
+
+msgid "The keys work. Score: %1$s, domain: %2$s"
+msgstr "Die Schlüssel funktionieren. Ergebnis:%1$s, Domäne:%2$s"
+
+msgid "The keys work. Domain: %s"
+msgstr "Die Schlüssel funktionieren. Domäne:%s"
+
+msgid "Login"
+msgstr "Anmelden"
+
+msgid "wp-login.php and the Flux Speed custom login address (e.g. /fluxadmin)"
+msgstr "wp-login.php und die benutzerdefinierte Flux Speed-Anmeldeadresse (z. B. /fluxadmin)"
+
+msgid "Registration"
+msgstr "Registrierung"
+
+msgid "WordPress registration form"
+msgstr "WordPress-Registrierungsformular"
+
+msgid "WordPress registration form (registration is currently closed on this site)"
+msgstr "WordPress-Registrierungsformular (die Registrierung auf dieser Website ist derzeit geschlossen)"
+
+msgid "Password reset"
+msgstr "Passwort zurücksetzen"
+
+msgid "Lost password form: WordPress and WooCommerce My Account"
+msgstr "Formular „Passwort verloren“: WordPress und WooCommerce Mein Konto"
+
+msgid "Comments"
+msgstr "Kommentare"
+
+msgid "Post and page comment form"
+msgstr "Formular für Beitrags- und Seitenkommentare"
+
+msgid "Account login"
+msgstr "Kontoanmeldung"
+
+msgid "WooCommerce My Account login form"
+msgstr "WooCommerce-Anmeldeformular „Mein Konto“."
+
+msgid "Account registration"
+msgstr "Kontoregistrierung"
+
+msgid "WooCommerce My Account registration form"
+msgstr "WooCommerce-Registrierungsformular für mein Konto"
+
+msgid "Checkout"
+msgstr "Kasse"
+
+msgid "Checkout page (classic and block): store orders, Flux Donate and Flux Commerce payments"
+msgstr "Checkout-Seite (klassisch und blockiert): Shop-Bestellungen, Flux Donate- und Flux Commerce-Zahlungen"
+
+msgid "Donation form"
+msgstr "Spendenformular"
+
+msgid "Flux Donate \"Donation options\" form (add to cart)"
+msgstr "Formular „Spendenoptionen“ von Flux Donate (in den Warenkorb legen)"
+
+msgid "Forms"
+msgstr "Formulare"
+
+msgid "Flux Forms submissions (contact, applications, login/registration forms)"
+msgstr "Einreichung von Flux-Formularen (Kontakt, Bewerbungen, Anmelde-/Registrierungsformulare)"
+
+msgid "Other plugins"
+msgstr "Andere Plugins"
+
+msgid "Error"
+msgstr "Fehler"
+
+msgid "Comment not sent"
+msgstr "Kommentar nicht gesendet"
+
+msgid "Protection is turned off by the FLXRC_DISABLE constant in wp-config.php. Remove the line once the issue is fixed."
+msgstr "Der Schutz wird durch die FLXRC_DISABLE-Konstante in wp-config.php deaktiviert. Entfernen Sie die Zeile, sobald das Problem behoben ist."
+
+msgid "Google reCAPTCHA keys are not set; forms are not protected."
+msgstr "Google reCAPTCHA-Schlüssel sind nicht festgelegt; Formulare sind nicht geschützt."
+
+msgid "The keys have not been tested; protection stays off until the test passes."
+msgstr "Die Schlüssel wurden nicht getestet; Der Schutz bleibt ausgeschaltet, bis der Test bestanden wurde."
+
+msgid "Protection is on (%s)."
+msgstr "Der Schutz ist aktiviert (%s)."
+
+msgid "v3 invisible"
+msgstr "v3 unsichtbar"
+
+msgid "v2 checkbox"
+msgstr "v2-Kontrollkästchen"
+
+msgid "reCAPTCHA keys"
+msgstr "reCAPTCHA-Schlüssel"
+
+msgid "No form is selected."
+msgstr "Es ist kein Formular ausgewählt."
+
+msgid "Not protected: %s"
+msgstr "Nicht geschützt:%s"
+
+msgid "Google verification"
+msgstr "Google-Bestätigung"
+
+msgid "%1$s: %2$s. Test the keys again; if Google is unreachable, set Settings > Google host to recaptcha.net."
+msgstr "%1$s:%2$s. Testen Sie die Tasten erneut. Wenn Google nicht erreichbar ist, stellen Sie Einstellungen > Google-Host auf recaptcha.net ein."
+
+msgid "Test"
+msgstr "Testen"
+
+msgid "Between 0.1 and 0.9. Submissions scoring below this are blocked."
+msgstr "Zwischen 0,1 und 0,9. Einsendungen mit einer Wertung darunter werden gesperrt."
+
+msgid "Leave blank to keep the saved key. The value is never read back."
+msgstr "Lassen Sie das Feld leer, um den gespeicherten Schlüssel zu behalten. Der Wert wird nie zurückgelesen."
+
+msgid "Checkbox size"
+msgstr "Kontrollkästchengröße"
+
+msgid "Checkbox theme"
+msgstr "Kontrollkästchen-Thema"
+
+msgid "Automatic"
+msgstr "Automatisch"
+
+msgid "google.com"
+msgstr "google.com"
+
+msgid "recaptcha.net"
+msgstr "recaptcha.net"
+
+msgid "[['It protects login, registration, password reset, comment, WooCommerce account and payment, Flux Donate donation form and Flux Forms submissions against spam and bot attacks with Google reCAPTCHA (v3 invisible or v2 tile). Which form will be maintained is switched on and off from the panel; Flux Speed \\u200b\\u200bis compatible with custom login address.', 'tr']]"
+msgstr "[['Es schützt Anmeldung, Registrierung, Passwort-Zurücksetzung, Kommentar, WooCommerce-Konto und -Zahlung, Flux Donate-Spendenformular und Flux Forms-Einsendungen vor Spam und Bot-Angriffen mit Google reCAPTCHA (v3 unsichtbar oder v2-Kachel). Welches Formular beibehalten wird, wird über das Panel ein- und ausgeschaltet; Flux Speed \\u200b\\u200bist mit benutzerdefinierten Anmeldeadressen kompatibel.', 'tr']]"

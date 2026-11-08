@@ -84,7 +84,7 @@ function flxi_mailbox_thread_text( array $m ) {
  */
 function flxi_mailbox_ai_write( array $a ) {
 	if ( ! flxi_mailbox_ai_ready() ) {
-		return new WP_Error( 'flxi_ai', __( 'Flux AI & MCP kurulu değil ya da anahtarı girilmemiş (Flux AI & MCP › Ayarlar).', 'flx-mail' ) );
+		return new WP_Error( 'flxi_ai', __( 'Flux AI & MCP is not installed or has no key (Flux AI & MCP › Settings).', 'flx-mail' ) );
 	}
 	$user = array();
 	$m    = ! empty( $a['mail_id'] ) ? flxi_mailbox_get( $a['mail_id'] ) : null;
@@ -178,7 +178,7 @@ add_filter(
 		$cap = 'flxi_manage';
 
 		$tools['flxi_mail_list'] = array(
-			'title'       => __( 'E-postaları listele', 'flx-mail' ),
+			'title'       => __( 'List emails', 'flx-mail' ),
 			'description' => 'bilgi@ posta kutusundaki e-postaları listeler (gelen ya da gönderilen). Sistem/otomatik e-postalar varsayılan gizli.',
 			'schema'      => array(
 				'type'       => 'object',
@@ -211,7 +211,7 @@ add_filter(
 		);
 
 		$tools['flxi_mail_read'] = array(
-			'title'       => __( 'E-postayı oku', 'flx-mail' ),
+			'title'       => __( 'Read email', 'flx-mail' ),
 			'description' => 'Bir e-postanın tam metnini, eklerinin adlarını ve aynı yazışmadaki diğer e-postaları verir.',
 			'schema'      => array(
 				'type'       => 'object',
@@ -242,7 +242,7 @@ add_filter(
 		);
 
 		$tools['flxi_mail_layouts'] = array(
-			'title'       => __( 'E-posta şablonlarını listele', 'flx-mail' ),
+			'title'       => __( 'List email layouts', 'flx-mail' ),
 			'description' => 'Posta kutusundan gönderimde seçilebilen şablonlar (Kurumsal, Sade ve "Örnek Vakfı × Firma" gibi alt şablonlar).',
 			'schema'      => array( 'type' => 'object', 'properties' => new stdClass() ),
 			'readonly'    => true,
@@ -264,7 +264,7 @@ add_filter(
 		);
 
 		$tools['flxi_mail_draft'] = array(
-			'title'       => __( 'E-posta taslağı yaz', 'flx-mail' ),
+			'title'       => __( 'Write email draft', 'flx-mail' ),
 			'description' => 'Posta kutusuna taslak kaydeder ("Onay bekliyor"); GÖNDERMEZ. Cevap için reply_to_id verin (alıcı ve konu otomatik). Var olan taslağı düzeltmek için draft_id verin. Gövde basit HTML (<p>, <ul>, <strong>); imza otomatik eklenir.',
 			'schema'      => array(
 				'type'       => 'object',
@@ -320,7 +320,7 @@ add_filter(
 		);
 
 		$tools['flxi_mail_send_draft'] = array(
-			'title'       => __( 'Taslağı gönder', 'flx-mail' ),
+			'title'       => __( 'Send draft', 'flx-mail' ),
 			'description' => 'Kaydedilmiş bir taslağı bilgi@ adresinden gönderir. Yalnız kullanıcı açıkça "gönder" dediyse kullanın.',
 			'schema'      => array(
 				'type'       => 'object',
@@ -348,7 +348,7 @@ add_filter(
 	function ( $s ) {
 		if ( ! isset( $s['flx-mail'] ) ) {
 			$s['flx-mail'] = array(
-				'label'  => __( 'İletişim (posta kutusu)', 'flx-mail' ),
+				'label'  => __( 'Communication (mailbox)', 'flx-mail' ),
 				'plugin' => plugin_basename( FLXI_FILE ),
 				'page'   => 'admin.php?page=flxi-posta',
 			);
@@ -370,8 +370,8 @@ add_filter(
 add_filter(
 	'flxai_purpose_labels',
 	function ( $l ) {
-		$l['mail_reply']   = __( 'E-posta cevabı', 'flx-mail' );
-		$l['mail_compose'] = __( 'E-posta taslağı', 'flx-mail' );
+		$l['mail_reply']   = __( 'Email reply', 'flx-mail' );
+		$l['mail_compose'] = __( 'Email draft', 'flx-mail' );
 		return $l;
 	}
 );

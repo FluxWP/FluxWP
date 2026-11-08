@@ -320,7 +320,7 @@ function flxc_chat_for_js( $r, $last = null ) {
 		'conn'      => $r['conn'],
 		'jid'       => $r['jid'],
 		'phone'     => $r['phone'],
-		'phoneFmt'  => flxc_is_virtual_conn( $r['conn'] ) ? (string) apply_filters( 'flxc_virtual_label', __( 'Site sohbeti', 'flx-chat' ), $r ) : ( '' === (string) $r['phone'] && '@lid' === substr( (string) $r['jid'], -4 ) ? __( 'Gizli numara (WhatsApp)', 'flx-chat' ) : flxc_format_phone( $r['phone'] ) ),
+		'phoneFmt'  => flxc_is_virtual_conn( $r['conn'] ) ? (string) apply_filters( 'flxc_virtual_label', __( 'Site chat', 'flx-chat' ), $r ) : ( '' === (string) $r['phone'] && '@lid' === substr( (string) $r['jid'], -4 ) ? __( 'Hidden number (WhatsApp)', 'flx-chat' ) : flxc_format_phone( $r['phone'] ) ),
 		'channel'   => flxc_chat_channel( $r ),
 		'title'     => flxc_chat_title( $r ),
 		'name'      => $r['name'],
@@ -532,16 +532,16 @@ function flxc_new_incoming_since( $since ) {
 function flxc_preview_text( $m ) {
 	$body = trim( (string) $m['body'] );
 	$labels = array(
-		'image'    => __( 'Fotoğraf', 'flx-chat' ),
+		'image'    => __( 'Photo', 'flx-chat' ),
 		'video'    => __( 'Video', 'flx-chat' ),
-		'audio'    => __( 'Sesli mesaj', 'flx-chat' ),
-		'document' => __( 'Belge', 'flx-chat' ),
-		'sticker'  => __( 'Çıkartma', 'flx-chat' ),
-		'location' => __( 'Konum', 'flx-chat' ),
-		'contact'  => __( 'Kişi kartı', 'flx-chat' ),
-		'poll'     => __( 'Anket', 'flx-chat' ),
-		'deleted'  => __( 'Bu mesaj silindi', 'flx-chat' ),
-		'unknown'  => __( 'Desteklenmeyen mesaj', 'flx-chat' ),
+		'audio'    => __( 'Voice message', 'flx-chat' ),
+		'document' => __( 'Document', 'flx-chat' ),
+		'sticker'  => __( 'Sticker', 'flx-chat' ),
+		'location' => __( 'Location', 'flx-chat' ),
+		'contact'  => __( 'Contact card', 'flx-chat' ),
+		'poll'     => __( 'Poll', 'flx-chat' ),
+		'deleted'  => __( 'This message was deleted', 'flx-chat' ),
+		'unknown'  => __( 'Unsupported message', 'flx-chat' ),
 	);
 	$type = $m['type'];
 	if ( 'note' === ( $m['direction'] ?? '' ) ) {

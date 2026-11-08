@@ -1,0 +1,329 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: pt_BR\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Languages"
+msgstr "Idiomas"
+
+msgid "Shared page: the same in every language, interface in the visitor's language."
+msgstr "Página compartilhada: igual em todos os idiomas, interface no idioma do visitante."
+
+msgid "Shared"
+msgstr "Compartilhado"
+
+msgid "%1$s translation (%2$s)"
+msgstr "Tradução%1$s(%2$s)"
+
+msgid "Create %s translation"
+msgstr "Criar tradução%s"
+
+msgid "You are not allowed to do this."
+msgstr "Você não tem permissão para fazer isso."
+
+msgid "Filter by language"
+msgstr "Filtrar por idioma"
+
+msgid "All languages"
+msgstr "Todos os idiomas"
+
+msgid "Language"
+msgstr "Idioma"
+
+msgid "Language of this content"
+msgstr "Idioma deste conteúdo"
+
+msgid "After saving you can create translations in other languages."
+msgstr "Depois de salvar você pode criar traduções em outros idiomas."
+
+msgid "Re-translate with AI"
+msgstr "Traduza novamente com IA"
+
+msgid "Copy and translate"
+msgstr "Copie e traduza"
+
+msgid "Translate with AI"
+msgstr "Traduzir com IA"
+
+msgid "With Flux AI installed, translation is one click; AI agents connected over MCP can also translate with the flxl_save_translation tool."
+msgstr "Com o Flux AI instalado, a tradução é feita com um clique; Os agentes de IA conectados pelo MCP também podem traduzir com a ferramenta flxl_save_translation."
+
+msgid "Preparing translation…"
+msgstr "Preparando tradução..."
+
+msgid "AI is translating: %1$d / %2$d"
+msgstr "AI está traduzindo:%1$d/%2$d"
+
+msgid "Translation ready, opening the editor…"
+msgstr "Tradução pronta, abrindo o editor..."
+
+msgid "Some sections could not be translated and stayed in Turkish. Check them in the editor."
+msgstr "Algumas seções não puderam ser traduzidas e permaneceram em turco. Verifique-os no editor."
+
+msgid "Translation stopped:"
+msgstr "Tradução interrompida:"
+
+msgid "Replace the title, excerpt and body of the existing translation with an AI translation?"
+msgstr "Substituir o título, trecho e corpo da tradução existente por uma tradução AI?"
+
+msgid "Translate with AI? If you choose No, a draft copy is created for you to translate yourself."
+msgstr "Traduzir com IA? Se você escolher Não, um rascunho será criado para você traduzir."
+
+msgid "Settings"
+msgstr "Configurações"
+
+msgid "Saved."
+msgstr "Salvo."
+
+msgid "The default language has no prefix in the address (example.org/hakkimizda/); other languages open with a prefix such as /en/. Each language version of a content is a separate page/post: create it from the language badge in the list or from the Language box in the editor. Theme and plugin interface texts use their own translations."
+msgstr "O idioma padrão não possui prefixo no endereço (example.org/hakkimizda/); outros idiomas abrem com um prefixo como /en/. Cada versão de idioma de um conteúdo é uma página/postagem separada: crie-a a partir do selo de idioma na lista ou na caixa Idioma no editor. Os textos da interface do tema e do plugin usam suas próprias traduções."
+
+msgid "Active"
+msgstr "Ativo"
+
+msgid "Code / address"
+msgstr "Código/endereço"
+
+msgid "Name"
+msgstr "Nome"
+
+msgid "Flag"
+msgstr "Bandeira"
+
+msgid "WordPress locale"
+msgstr "Localidade do WordPress"
+
+msgid "Default"
+msgstr "Padrão"
+
+msgid "Remove"
+msgstr "Remover"
+
+msgid "Add language"
+msgstr "Adicionar idioma"
+
+msgid "— choose —"
+msgstr "- escolha -"
+
+msgid "A new language is added inactive: prepare its content, then activate it. Languages other than English also need the WordPress language pack (System check warns)."
+msgstr "Um novo idioma é adicionado inativo: prepare seu conteúdo e depois ative-o. Outros idiomas além do inglês também precisam do pacote de idiomas do WordPress (avisos de verificação do sistema)."
+
+msgid "Content"
+msgstr "Conteúdo"
+
+msgid "Translated content types"
+msgstr "Tipos de conteúdo traduzido"
+
+msgid "Cart, checkout and my account pages are shared by all languages. Categories are shared; their names are translated per language on the category edit screen. Language-specific alt text and replacement images are on the media edit screen."
+msgstr "As páginas de carrinho, checkout e minha conta são compartilhadas por todos os idiomas. As categorias são compartilhadas; seus nomes são traduzidos por idioma na tela de edição de categoria. O texto alternativo específico do idioma e as imagens de substituição estão na tela de edição de mídia."
+
+msgid "Content without a translation"
+msgstr "Conteúdo sem tradução"
+
+msgid "Show the Turkish version in other languages (menu and interface stay in that language; search engines get the Turkish canonical address)"
+msgstr "Mostrar a versão em turco em outros idiomas (o menu e a interface permanecem nesse idioma; os mecanismos de pesquisa obtêm o endereço canônico em turco)"
+
+msgid "When off, the English site lists only content that has an English version."
+msgstr "Quando desativado, o site em inglês lista apenas o conteúdo que possui uma versão em inglês."
+
+msgid "Language switcher"
+msgstr "Alternador de idioma"
+
+msgid "Elsewhere: the \"Flux Language Switcher\" block or the [flx_dil_secici] shortcode."
+msgstr "Em outro lugar: o bloco \"Flux Language Switcher\" ou o shortcode [flx_dil_secici]."
+
+msgid "Switcher position"
+msgstr "Posição do comutador"
+
+msgid "Footer"
+msgstr "Rodapé"
+
+msgid "Header and mobile menu"
+msgstr "Cabeçalho e menu móvel"
+
+msgid "Both"
+msgstr "Ambos"
+
+msgid "Language suggestion for visitors"
+msgstr "Sugestão de idioma para visitantes"
+
+msgid "Visitors from outside Türkiye"
+msgstr "Visitantes de fora da Turquia"
+
+msgid "Open directly in their language (recommended)"
+msgstr "Abra diretamente no idioma deles (recomendado)"
+
+msgid "Show a suggestion bar at the top of the page"
+msgstr "Mostrar uma barra de sugestões no topo da página"
+
+msgid "Off"
+msgstr "Desligado"
+
+msgid "Visitors from outside Türkiye open the version in their language (English if none) before the page renders, and stay in it on later visits. A visitor who picks another language in the switcher stays in it. Search engine bots are never redirected. If the country or time zone is Türkiye, the visitor stays in Turkish. Not applied to logged-in users; use a private window to test."
+msgstr "Visitantes de fora de Türkiye abrem a versão em seu idioma (inglês, se não houver) antes da página ser renderizada e permanecem nela em visitas posteriores. Um visitante que escolhe outro idioma no switcher permanece nele. Os bots dos mecanismos de pesquisa nunca são redirecionados. Se o país ou fuso horário for Türkiye, o visitante permanecerá em turco. Não se aplica a usuários logados; use uma janela privada para testar."
+
+msgid "Suggested language"
+msgstr "Idioma sugerido"
+
+msgid "If the browser language is one of the active languages (e.g. German once added), that one is suggested; otherwise this one."
+msgstr "Se o idioma do navegador for um dos idiomas ativos (por exemplo, alemão, uma vez adicionado), esse será sugerido; caso contrário, este."
+
+msgid "Countries that see Turkish"
+msgstr "Países que veem turco"
+
+msgid "Two-letter country codes (TR, CY…)."
+msgstr "Códigos de país com duas letras (TR, CY...)."
+
+msgid "Country information"
+msgstr "Informações do país"
+
+msgid "Country in your request: %1$s (%2$s header). Country-based suggestion works."
+msgstr "País em sua solicitação:%1$s(cabeçalho%2$s). A sugestão baseada no país funciona."
+
+msgid "The server sends no country information; the browser's time zone is used (Türkiye time = Turkish). For more accurate results, put the domain behind Cloudflare (free plan, the CF-IPCountry header is used automatically) or enable your host's GeoIP header."
+msgstr "O servidor não envia informações sobre o país; o fuso horário do navegador é usado (horário de Türkiye = turco). Para resultados mais precisos, coloque o domínio atrás do Cloudflare (plano gratuito, o cabeçalho CF-IPCountry é usado automaticamente) ou habilite o cabeçalho GeoIP do seu host."
+
+msgid "Site texts per language"
+msgstr "Textos do site por idioma"
+
+msgid "Empty fields are shown in Turkish."
+msgstr "Os campos vazios são mostrados em turco."
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Translation with AI"
+msgstr "Tradução com IA"
+
+msgid "With Flux AI installed, a \"Translate with AI\" button appears in the list and the editor. AI agents connected over MCP (Claude etc.) and the Flux AI chat use these tools: flxl_languages, flxl_untranslated, flxl_translations, flxl_save_translation, flxl_set_language, flxl_image_language, flxl_term_translation, flxl_site_texts. Flux SEO tools (list_content, create_content, update_content) have a lang parameter."
+msgstr "Com o Flux AI instalado, um botão “Traduzir com AI” aparece na lista e no editor. Agentes de IA conectados via MCP (Claude etc.) e o chat Flux AI usam estas ferramentas: flxl_languages, flxl_untranslated, flxl_translations, flxl_save_translation, flxl_set_language, flxl_image_language, flxl_term_translation, flxl_site_texts. As ferramentas Flux SEO (list_content, create_content, update_content) possuem um parâmetro lang."
+
+msgid "Source content not found or this type is not translated."
+msgstr "Conteúdo de origem não encontrado ou este tipo não foi traduzido."
+
+msgid "Language is not active."
+msgstr "O idioma não está ativo."
+
+msgid "The content is already in this language."
+msgstr "O conteúdo já está neste idioma."
+
+msgid "Flux Language (translation)"
+msgstr "Linguagem Flux (tradução)"
+
+msgid "Flux Language"
+msgstr "Linguagem de fluxo"
+
+msgid "Flux AI & MCP is not installed or not ready."
+msgstr "Flux AI & MCP não está instalado ou não está pronto."
+
+msgid "AI returned an empty answer."
+msgstr "AI retornou uma resposta vazia."
+
+msgid "The AI answer was cut off."
+msgstr "A resposta da IA ​​foi cortada."
+
+msgid "Translation job not found or expired."
+msgstr "O trabalho de tradução não foi encontrado ou expirou."
+
+msgid "Alternative text (%s)"
+msgstr "Texto alternativo (%s)"
+
+msgid "Image (%s)"
+msgstr "Imagem (%s)"
+
+msgid "ID of the image shown instead of this one in this language (e.g. the translated version of a poster with text). Empty: same image."
+msgstr "ID da imagem mostrada em vez desta neste idioma (por exemplo, a versão traduzida de um pôster com texto). Vazio: mesma imagem."
+
+msgid "This page is available in %s."
+msgstr "Esta página está disponível em%s."
+
+msgid "Switch to %s"
+msgstr "Mudar para%s"
+
+msgid "Stay on this version"
+msgstr "Fique nesta versão"
+
+msgid "Close"
+msgstr "Fechar"
+
+msgid "Language selection"
+msgstr "Seleção de idioma"
+
+msgid "Flux Language Switcher"
+msgstr "Alternador de idioma de fluxo"
+
+msgid "Site title"
+msgstr "Título do site"
+
+msgid "Tagline"
+msgstr "Slogan"
+
+msgid "Flux SEO: site name"
+msgstr "Flux SEO: nome do site"
+
+msgid "Flux SEO: alternate name"
+msgstr "Flux SEO: nome alternativo"
+
+msgid "Flux SEO: home page title"
+msgstr "Flux SEO: título da página inicial"
+
+msgid "Flux SEO: home page description"
+msgstr "Flux SEO: descrição da página inicial"
+
+msgid "Only the default language is active; the site is single-language."
+msgstr "Apenas o idioma padrão está ativo; o site é de idioma único."
+
+msgid "WordPress language packs"
+msgstr "Pacotes de idiomas WordPress"
+
+msgid "Not installed: %s. Pick it once in Settings › General › Site Language and save (the pack downloads), then switch back."
+msgstr "Não instalado:%s. Escolha-o uma vez em Configurações › Geral › Idioma do site e salve (o pacote é baixado) e depois volte."
+
+msgid "All active languages have WordPress translations."
+msgstr "Todos os idiomas ativos possuem traduções para WordPress."
+
+msgid "General settings"
+msgstr "Configurações gerais"
+
+msgid "Page translations: %s"
+msgstr "Traduções de páginas:%s"
+
+msgid "%1$d / %2$d pages translated. %3$s"
+msgstr "%1$d/%2$dpáginas traduzidas.%3$s"
+
+msgid "Untranslated ones are shown in Turkish (canonical address is Turkish)."
+msgstr "Os não traduzidos são mostrados em turco (o endereço canônico é turco)."
+
+msgid "Untranslated ones are hidden in this language."
+msgstr "Os não traduzidos estão ocultos neste idioma."
+
+msgid "Pages"
+msgstr "Páginas"
+
+msgid "Visitor country"
+msgstr "País do visitante"
+
+msgid "No visitor has been checked for a language suggestion yet."
+msgstr "Nenhum visitante foi verificado quanto a uma sugestão de idioma ainda."
+
+msgid "The server sends no country information; the browser time zone is used (Türkiye time = Turkish). If Cloudflare is enabled, the country code is used automatically."
+msgstr "O servidor não envia informações sobre o país; o fuso horário do navegador é usado (horário de Türkiye = turco). Se o Cloudflare estiver habilitado, o código do país será usado automaticamente."
+
+msgid "Country information comes from the %s header."
+msgstr "As informações do país vêm do cabeçalho%s."
+
+msgid "Permalinks"
+msgstr "Links permanentes"
+
+msgid "Plain (?p=) links are in use; choose the \"Post name\" structure for language addresses."
+msgstr "Links simples (?p=) estão em uso; escolha a estrutura \"Nome do post\" para endereços de idiomas."
+
+msgid "Name (%s)"
+msgstr "Nome (%s)"
+
+msgid "Description (%s)"
+msgstr "Descrição (%s)"
+
+msgid "If left empty, the Turkish name and description are shown."
+msgstr "Se deixado em branco, o nome e a descrição em turco serão mostrados."
+
+msgid "[['Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.', 'tr']]"
+msgstr "[['Torna o site multilíngue: endereços de idiomas como /en/, tradução por página, postagem, projeto e evento, visual específico do idioma, hreflang e canônico, recomendação em inglês para quem vem de fora da Turquia, seletor de idioma; Suporte de idioma para ferramentas Flux AI e MCP e Flux AI.', 'tr']]"

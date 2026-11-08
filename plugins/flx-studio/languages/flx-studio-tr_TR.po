@@ -1,0 +1,950 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "General"
+msgstr "Genel"
+
+msgid "Person (face/identity)"
+msgstr "Kişi (yüz/kimlik)"
+
+msgid "Style"
+msgstr "Tarz"
+
+msgid "Product"
+msgstr "Ürün"
+
+msgid "Background"
+msgstr "Arka plan"
+
+msgid "Composition"
+msgstr "Kompozisyon"
+
+msgid "First frame"
+msgstr "İlk kare"
+
+msgid "Last frame"
+msgstr "Son kare"
+
+msgid "Auto"
+msgstr "Otomatik"
+
+msgid "Low"
+msgstr "Düşük"
+
+msgid "Medium"
+msgstr "Orta"
+
+msgid "High"
+msgstr "Yüksek"
+
+msgid "Theme: system"
+msgstr "Tema: sistem"
+
+msgid "Theme: light"
+msgstr "Tema: açık"
+
+msgid "Theme: dark"
+msgstr "Tema: koyu"
+
+msgid "Opening Studio…"
+msgstr "Stüdyo açılıyor…"
+
+msgid "Try again"
+msgstr "Yeniden dene"
+
+msgid "Search prompt, title or model"
+msgstr "İstem, başlık ya da model ara"
+
+msgid "Search"
+msgstr "Ara"
+
+msgid "Menu"
+msgstr "Menü"
+
+msgid "Select"
+msgstr "Seç"
+
+msgid "To generate images and videos, enter at least one key (fal.ai, EvoLink…) in Flux AI & MCP › Settings › Images and video."
+msgstr "Görsel ve video üretimi için Flux AI & MCP › Ayarlar › Görsel ve video bölümünden en az bir anahtar (fal.ai, EvoLink…) girin."
+
+msgid "Flux AI (0.6.0+) is not installed. Generation runs through Flux AI."
+msgstr "Flux AI (0.6.0+) kurulu değil. Üretim Flux AI üzerinden yapılır."
+
+msgid "Flux AI settings"
+msgstr "Flux AI ayarları"
+
+msgid "Mine"
+msgstr "Benim"
+
+msgid "Everyone"
+msgstr "Herkes"
+
+msgid "Studio"
+msgstr "Stüdyo"
+
+msgid "All"
+msgstr "Tümü"
+
+msgid "Favorites"
+msgstr "Favoriler"
+
+msgid "Images"
+msgstr "Görseller"
+
+msgid "Videos"
+msgstr "Videolar"
+
+msgid "Dashboard"
+msgstr "Pano"
+
+msgid "Folders"
+msgstr "Klasörler"
+
+msgid "New folder"
+msgstr "Yeni klasör"
+
+msgid "Unfiled"
+msgstr "Klasörsüz"
+
+msgid "Shared with the team"
+msgstr "Ekiple paylaşılıyor"
+
+msgid "Folder actions"
+msgstr "Klasör işlemleri"
+
+msgid "People"
+msgstr "Kişiler"
+
+msgid "Add person"
+msgstr "Kişi ekle"
+
+msgid "{name} — add to generation"
+msgstr "{name} — üretime ekle"
+
+msgid "Add people for face references; use them by typing @name in the prompt."
+msgstr "Yüz referansı için kişi ekleyin; istemde @ad yazarak kullanın."
+
+msgid "Manage people"
+msgstr "Kişileri yönet"
+
+msgid "Back to dashboard"
+msgstr "Panele dön"
+
+msgid "Theme"
+msgstr "Tema"
+
+msgid "Studio settings"
+msgstr "Stüdyo ayarları"
+
+msgid "Flux AI spending limit"
+msgstr "Flux AI harcama sınırı"
+
+msgid "Folder"
+msgstr "Klasör"
+
+msgid "Subfolder"
+msgstr "Alt klasör"
+
+msgid "Create"
+msgstr "Oluştur"
+
+msgid "Folder created"
+msgstr "Klasör oluşturuldu"
+
+msgid "Rename"
+msgstr "Yeniden adlandır"
+
+msgid "Folder name"
+msgstr "Klasör adı"
+
+msgid "Stop sharing"
+msgstr "Paylaşımı kapat"
+
+msgid "Share with team"
+msgstr "Ekiple paylaş"
+
+msgid "Folder is shared with the team"
+msgstr "Klasör ekiple paylaşılıyor"
+
+msgid "Folder is private"
+msgstr "Klasör yalnız sizin"
+
+msgid "Delete folder"
+msgstr "Klasörü sil"
+
+msgid "Delete folder?"
+msgstr "Klasör silinsin mi?"
+
+msgid "Its items and subfolders move up one level; no files are deleted."
+msgstr "İçindeki üretimler ve alt klasörler bir üst klasöre taşınır; hiçbir dosya silinmez."
+
+msgid "Delete"
+msgstr "Sil"
+
+msgid "{n} items moved"
+msgstr "{n} üretim taşındı"
+
+msgid "Nothing here"
+msgstr "Burada üretim yok"
+
+msgid "Create your first image"
+msgstr "İlk görselinizi üretin"
+
+msgid "Change the filter or start a new generation below."
+msgstr "Filtreyi değiştirin ya da aşağıdan yeni bir üretim başlatın."
+
+msgid "Describe what you want below. Drag in reference images or add people with @."
+msgstr "Aşağıya ne istediğinizi yazın. Referans görsel sürükleyip bırakabilir, @ ile kişi ekleyebilirsiniz."
+
+msgid "Remove from favorites"
+msgstr "Favoriden çıkar"
+
+msgid "Add to favorites"
+msgstr "Favorilere ekle"
+
+msgid "Queued"
+msgstr "Sırada"
+
+msgid "Generating"
+msgstr "Üretiliyor"
+
+msgid "Cancel"
+msgstr "Vazgeç"
+
+msgid "Cancelled"
+msgstr "İptal edildi"
+
+msgid "Failed"
+msgstr "Başarısız"
+
+msgid "Reuse settings"
+msgstr "Ayarları kullan"
+
+msgid "{n} selected"
+msgstr "{n} seçili"
+
+msgid "Tap items to select"
+msgstr "Üretimlere dokunarak seçin"
+
+msgid "Use as reference"
+msgstr "Referans yap"
+
+msgid "Move"
+msgstr "Taşı"
+
+msgid "Exit selection"
+msgstr "Seçimi kapat"
+
+msgid "New folder…"
+msgstr "Yeni klasör…"
+
+msgid "Delete {n} items?"
+msgstr "{n} üretim silinsin mi?"
+
+msgid "Delete item?"
+msgstr "Üretim silinsin mi?"
+
+msgid "Files are deleted from the server. Copies added to the Media Library stay."
+msgstr "Dosyalar sunucudan silinir. Medya kitaplığına eklenmiş kopyalar kalır."
+
+msgid "{n} items ready"
+msgstr "{n} üretim hazır"
+
+msgid "Generation ready"
+msgstr "Üretim hazır"
+
+msgid "A generation failed"
+msgstr "Bir üretim başarısız oldu"
+
+msgid "Remove"
+msgstr "Kaldır"
+
+msgid "Add reference"
+msgstr "Referans ekle"
+
+msgid "What happens in the video? Subject, motion, camera… (add people with @)"
+msgstr "Videoda ne olsun? Konu, hareket, kamera… (@ ile kişi ekleyin)"
+
+msgid "What do you want to create? (add people with @, drop images here)"
+msgstr "Ne üretmek istiyorsunuz? (@ ile kişi ekleyin, görsel sürükleyip bırakın)"
+
+msgid "Image"
+msgstr "Görsel"
+
+msgid "Video"
+msgstr "Video"
+
+msgid "Aspect ratio"
+msgstr "En-boy oranı"
+
+msgid "Adaptive"
+msgstr "Uyarlanır"
+
+msgid "Resolution"
+msgstr "Çözünürlük"
+
+msgid "Quality"
+msgstr "Kalite"
+
+msgid "Count"
+msgstr "Adet"
+
+msgid "Duration"
+msgstr "Süre"
+
+msgid "Audio"
+msgstr "Ses"
+
+msgid "Provider and model"
+msgstr "Sağlayıcı ve model"
+
+msgid "Choose model"
+msgstr "Model seç"
+
+msgid "No models"
+msgstr "Model yok"
+
+msgid "Generate (Ctrl/⌘+Enter)"
+msgstr "Üret (Ctrl/⌘+Enter)"
+
+msgid "Generate"
+msgstr "Üret"
+
+msgid "Templates"
+msgstr "Şablonlar"
+
+msgid "Several different prompts from one idea"
+msgstr "Bir fikirden birden çok farklı istem"
+
+msgid "Flux AI text model is not ready"
+msgstr "Flux AI metin modeli hazır değil"
+
+msgid "Brainstorm"
+msgstr "Beyin fırtınası"
+
+msgid "Turn the draft into a detailed prompt for the model"
+msgstr "Taslağı modele uygun ayrıntılı isteme çevir"
+
+msgid "Enhance"
+msgstr "Geliştir"
+
+msgid "Provider"
+msgstr "Sağlayıcı"
+
+msgid "{n} models"
+msgstr "{n} model"
+
+msgid "no key"
+msgstr "anahtar yok"
+
+msgid "No {p} key (Flux AI & MCP › Settings › Images and video)."
+msgstr "{p} anahtarı girilmemiş (Flux AI & MCP › Ayarlar › Görsel ve video)."
+
+msgid "This reference is already added"
+msgstr "Bu referans zaten ekli"
+
+msgid "This model accepts at most {n} references"
+msgstr "Bu model en çok {n} referans alır"
+
+msgid "Save to references"
+msgstr "Kayıtlı referanslara ekle"
+
+msgid "Saved"
+msgstr "Kaydedildi"
+
+msgid "Upload file"
+msgstr "Dosyadan yükle"
+
+msgid "Pick from gallery"
+msgstr "Galeriden seç"
+
+msgid "{n} photos"
+msgstr "{n} foto"
+
+msgid "no photos"
+msgstr "foto yok"
+
+msgid "Saved references"
+msgstr "Kayıtlı referanslar"
+
+msgid "Reference"
+msgstr "Referans"
+
+msgid "Only PNG, JPEG, WebP or GIF can be added."
+msgstr "Yalnız PNG, JPEG, WebP ya da GIF eklenebilir."
+
+msgid "Pick references from gallery"
+msgstr "Galeriden referans seç"
+
+msgid "Add"
+msgstr "Ekle"
+
+msgid "No images yet."
+msgstr "Henüz görsel yok."
+
+msgid "{name} has no photos; add some in Manage people"
+msgstr "{name} için fotoğraf yok; Kişileri yönet’ten ekleyin"
+
+msgid "Write a short draft first."
+msgstr "Önce kısa bir taslak yazın."
+
+msgid "Prompt enhanced"
+msgstr "İstem geliştirildi"
+
+msgid "Back to draft"
+msgstr "Taslağa dön"
+
+msgid "Describe what to generate."
+msgstr "Ne üretileceğini yazın."
+
+msgid "References are uploading, one moment…"
+msgstr "Referanslar yükleniyor, bir saniye…"
+
+msgid "team"
+msgstr "ekip"
+
+msgid "No templates yet"
+msgstr "Henüz şablon yok"
+
+msgid "Save current settings"
+msgstr "Şu anki ayarları kaydet"
+
+msgid "Delete template…"
+msgstr "Şablon sil…"
+
+msgid "E.g. Event poster 4:5"
+msgstr "Örn: Etkinlik afişi 4:5"
+
+msgid "Save as template"
+msgstr "Şablon olarak kaydet"
+
+msgid "Name"
+msgstr "Ad"
+
+msgid "Prompt, model, ratio, resolution and references are saved."
+msgstr "İstem, model, oran, çözünürlük ve referanslar kaydedilir."
+
+msgid "Template saved"
+msgstr "Şablon kaydedildi"
+
+msgid "Save"
+msgstr "Kaydet"
+
+msgid "Previous"
+msgstr "Önceki"
+
+msgid "Next"
+msgstr "Sonraki"
+
+msgid "Close"
+msgstr "Kapat"
+
+msgid "Model"
+msgstr "Model"
+
+msgid "Size"
+msgstr "Boyut"
+
+msgid "Cost"
+msgstr "Maliyet"
+
+msgid "Date"
+msgstr "Tarih"
+
+msgid "Created by"
+msgstr "Üreten"
+
+msgid "Favorited"
+msgstr "Favoride"
+
+msgid "Favorite"
+msgstr "Favori"
+
+msgid "Download"
+msgstr "İndir"
+
+msgid "Added to references"
+msgstr "Referanslara eklendi"
+
+msgid "Edit area"
+msgstr "Alanı düzenle"
+
+msgid "This model does not support area editing"
+msgstr "Bu model alan düzenlemeyi desteklemiyor"
+
+msgid "Close comparison"
+msgstr "Karşılaştırmayı kapat"
+
+msgid "Compare with original"
+msgstr "Önceki ile karşılaştır"
+
+msgid "In library"
+msgstr "Kitaplıkta"
+
+msgid "Add to Media Library"
+msgstr "Medya kitaplığına ekle"
+
+msgid "Add title"
+msgstr "Başlık ekle"
+
+msgid "Title"
+msgstr "Başlık"
+
+msgid "Copy prompt"
+msgstr "İstemi kopyala"
+
+msgid "Original draft"
+msgstr "İlk taslak"
+
+msgid "Already in the Media Library"
+msgstr "Zaten medya kitaplığında"
+
+msgid "Added to the Media Library"
+msgstr "Medya kitaplığına eklendi"
+
+msgid "No model with area editing and a configured key."
+msgstr "Alan düzenlemeyi destekleyen ve anahtarı girilmiş model yok."
+
+msgid "Edit started; the result will appear in the gallery"
+msgstr "Düzenleme başladı; sonuç galeride görünecek"
+
+msgid "Describe the idea: e.g. Instagram post for the 11 November tree planting event"
+msgstr "Fikri anlatın: Örn. 11 Kasım fidan dikim etkinliği için Instagram görseli"
+
+msgid "Number of ideas"
+msgstr "Fikir sayısı"
+
+msgid "{n} ideas"
+msgstr "{n} fikir"
+
+msgid "YouTube thumbnail"
+msgstr "YouTube küçük resmi"
+
+msgid "Generate ideas"
+msgstr "Fikir üret"
+
+msgid "Preparing ideas…"
+msgstr "Fikirler hazırlanıyor…"
+
+msgid "Generate selected ({n})"
+msgstr "Seçilenleri üret ({n})"
+
+msgid "{n} generations started"
+msgstr "{n} üretim başladı"
+
+msgid "Sending {i}/{n}"
+msgstr "Gönderiliyor {i}/{n}"
+
+msgid "Creates distinct prompts from one idea. Pick the ones you like and generate them in one go. Model and ratio come from the generation bar."
+msgstr "Bir fikirden birbirinden farklı istemler üretir. Beğendiklerinizi seçip tek seferde üretin. Model ve oran üretim çubuğundaki ayarlardan alınır."
+
+msgid "Idea"
+msgstr "Fikir"
+
+msgid "No people yet. Add a person and upload 1-4 clear face photos; typing @name in the prompt sends them as identity references."
+msgstr "Henüz kişi yok. Kişi ekleyip 1-4 net yüz fotoğrafı yükleyin; istemde @ad yazınca bu fotoğraflar kimlik referansı olarak gider."
+
+msgid "Delete photo"
+msgstr "Fotoğrafı sil"
+
+msgid "Add photo"
+msgstr "Fotoğraf ekle"
+
+msgid "Person name"
+msgstr "Kişi adı"
+
+msgid "Delete person"
+msgstr "Kişiyi sil"
+
+msgid "Delete {name}?"
+msgstr "{name} silinsin mi?"
+
+msgid "The person and their photos are deleted. Earlier generations stay."
+msgstr "Kişi ve fotoğrafları silinir. Önceki üretimler kalır."
+
+msgid "New person"
+msgstr "Yeni kişi"
+
+msgid "Default image model"
+msgstr "Varsayılan görsel modeli"
+
+msgid "Default video model"
+msgstr "Varsayılan video modeli"
+
+msgid "Empty: Flux AI default"
+msgstr "Boş: Flux AI varsayılanı"
+
+msgid "Enhance / Brainstorm text model"
+msgstr "Geliştir / Beyin fırtınası metin modeli"
+
+msgid "Max images per request"
+msgstr "Bir seferde en çok görsel"
+
+msgid "Max brainstorm ideas"
+msgstr "Beyin fırtınasında en çok fikir"
+
+msgid "Share people with all Studio users"
+msgstr "Kişiler tüm Stüdyo kullanıcılarıyla paylaşılsın"
+
+msgid "Keys, providers and the spending limit are in Flux AI & MCP › Settings."
+msgstr "Anahtarlar, sağlayıcılar ve harcama sınırı Flux AI & MCP › Ayarlar’dadır."
+
+msgid "Settings saved"
+msgstr "Ayarlar kaydedildi"
+
+msgid "just now"
+msgstr "az önce"
+
+msgid "{n} min ago"
+msgstr "{n} dk önce"
+
+msgid "{n} h ago"
+msgstr "{n} sa önce"
+
+msgid "Server error ({n})."
+msgstr "Sunucu hatası ({n})."
+
+msgid "Unexpected response from the server."
+msgstr "Sunucudan beklenmeyen cevap geldi."
+
+msgid "Something went wrong."
+msgstr "Bir hata oluştu."
+
+msgid "OK"
+msgstr "Tamam"
+
+msgid "Copied"
+msgstr "Kopyalandı"
+
+msgid "7 days"
+msgstr "7 gün"
+
+msgid "30 days"
+msgstr "30 gün"
+
+msgid "90 days"
+msgstr "90 gün"
+
+msgid "Spend from Flux AI logs"
+msgstr "Harcama Flux AI kayıtlarından"
+
+msgid "Flux AI logs unavailable; Studio amounts"
+msgstr "Flux AI kayıtları okunamadı; Stüdyo tutarları"
+
+msgid "Refresh"
+msgstr "Yenile"
+
+msgid "(estimated)"
+msgstr "(tahmini)"
+
+msgid "Generations"
+msgstr "Üretim"
+
+msgid "{i} images · {v} videos"
+msgstr "{i} görsel · {v} video"
+
+msgid "Spend"
+msgstr "Harcama"
+
+msgid "Image/video {m} · text {x}"
+msgstr "Görsel/video {m} · metin {x}"
+
+msgid "Average"
+msgstr "Ortalama"
+
+msgid "per generation"
+msgstr "üretim başına"
+
+msgid "{p}% error rate"
+msgstr "%{p} hata oranı"
+
+msgid "no attempts yet"
+msgstr "henüz deneme yok"
+
+msgid "Storage {b}"
+msgstr "Depolama {b}"
+
+msgid "Daily generations"
+msgstr "Günlük üretim"
+
+msgid "No generations in this period."
+msgstr "Bu dönemde üretim yok."
+
+msgid "Daily spend"
+msgstr "Günlük harcama"
+
+msgid "No spend in this period."
+msgstr "Bu dönemde harcama yok."
+
+msgid "Flux AI logs"
+msgstr "Flux AI kayıtları"
+
+msgid "Models"
+msgstr "Modeller"
+
+msgid "Errors"
+msgstr "Hata"
+
+msgid "Amount"
+msgstr "Tutar"
+
+msgid "No records."
+msgstr "Kayıt yok."
+
+msgid "Providers"
+msgstr "Sağlayıcılar"
+
+msgid "Person"
+msgstr "Kişi"
+
+msgid "Recent errors"
+msgstr "Son hatalar"
+
+msgid "Brush"
+msgstr "Fırça"
+
+msgid "Rectangle"
+msgstr "Dikdörtgen"
+
+msgid "Eraser"
+msgstr "Silgi"
+
+msgid "Brush size"
+msgstr "Fırça boyutu"
+
+msgid "Undo"
+msgstr "Geri al"
+
+msgid "Clear"
+msgstr "Temizle"
+
+msgid "What should change in the selected area? E.g. make the T-shirt green, change the text to \"Plant a Tree\""
+msgstr "Seçili alanda ne değişsin? Örn: tişörtü yeşil yap, yazıyı \"Fidan Dik\" olarak değiştir"
+
+msgid "Edit"
+msgstr "Düzenle"
+
+msgid "Describe the change."
+msgstr "Ne değişeceğini yazın."
+
+msgid "Tool"
+msgstr "Araç"
+
+msgid "Paint the area to change. Unpainted areas are kept."
+msgstr "Değişecek alanı boyayın. Boyanmayan yerler korunur."
+
+msgid "Change"
+msgstr "Değişiklik"
+
+msgid "Before"
+msgstr "Önce"
+
+msgid "After"
+msgstr "Sonra"
+
+msgid "Studio requires JavaScript."
+msgstr "Stüdyo için JavaScript gerekli."
+
+msgid "Flux AI (0.6.0+) is not installed or image generation is off."
+msgstr "Flux AI (0.6.0+) kurulu değil ya da görsel üretimi kapalı."
+
+msgid "Model not found. Check the keys in Flux AI & MCP › Settings › Images and video."
+msgstr "Model bulunamadı. Flux AI & MCP › Ayarlar › Görsel ve video anahtarlarını kontrol edin."
+
+msgid "Image to edit not found."
+msgstr "Düzenlenecek görsel bulunamadı."
+
+msgid "This model does not support area editing."
+msgstr "Bu model alan düzenlemeyi desteklemiyor."
+
+msgid "Mask must be a PNG."
+msgstr "Maske PNG olmalı."
+
+msgid "The request may have reached the provider; check the provider's history before sending again."
+msgstr "İstek sağlayıcıya ulaşmış olabilir; tekrar göndermeden önce sağlayıcı geçmişine bakın."
+
+msgid "Sending did not complete, please try again."
+msgstr "Gönderim tamamlanamadı, yeniden deneyin."
+
+msgid "The provider returned fewer results than requested."
+msgstr "Sağlayıcı istenenden az sonuç döndürdü."
+
+msgid "The file is hosted temporarily by the provider; add it to the Media Library or download it."
+msgstr "Dosya sağlayıcıda duruyor ve geçici; Medya kitaplığına ekleyin ya da indirin."
+
+msgid "Cancelled."
+msgstr "İptal edildi."
+
+msgid "Generation failed."
+msgstr "Üretim başarısız."
+
+msgid "Flux AI text model is not ready (Flux AI & MCP › Settings)."
+msgstr "Flux AI metin modeli hazır değil (Flux AI & MCP › Ayarlar)."
+
+msgid "Briefly describe the idea first."
+msgstr "Önce fikri kısaca yazın."
+
+msgid "The model did not return a valid idea list. Try again."
+msgstr "Model geçerli fikir listesi döndürmedi. Tekrar deneyin."
+
+msgid "Open"
+msgstr "Aç"
+
+msgid "Database tables"
+msgstr "Veritabanı tabloları"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "Eksik tablo: %s. Eklentiyi devre dışı bırakıp yeniden etkinleştirin."
+
+msgid "Tables are ready."
+msgstr "Tablolar hazır."
+
+msgid "File folder"
+msgstr "Dosya klasörü"
+
+msgid "wp-content/uploads/flx-studio is writable."
+msgstr "wp-content/uploads/flx-studio yazılabilir."
+
+msgid "wp-content/uploads/flx-studio could not be created or is not writable; references and thumbnails cannot be saved."
+msgstr "wp-content/uploads/flx-studio oluşturulamadı ya da yazılamıyor; referans ve küçük resimler kaydedilemez."
+
+msgid "Image and video backend"
+msgstr "Görsel ve video altyapısı"
+
+msgid "Flux AI 0.6.0 or newer is required (image/video generation runs through Flux AI)."
+msgstr "Flux AI 0.6.0 veya üstü gerekli (görsel/video üretimi Flux AI üzerinden yapılır)."
+
+msgid "Plugins"
+msgstr "Eklentiler"
+
+msgid "No model has a key. Enter a fal.ai, EvoLink or other key in Flux AI & MCP › Settings › Images and video."
+msgstr "Hiçbir model için anahtar yok. Flux AI & MCP › Ayarlar › Görsel ve video bölümünden fal.ai, EvoLink ya da başka bir anahtar girin."
+
+msgid "Flux AI"
+msgstr "Flux AI"
+
+msgid "%1$d models available (%2$s)."
+msgstr "%1$d model kullanılabilir (%2$s)."
+
+msgid "Enhance and Brainstorm"
+msgstr "Geliştir ve Beyin fırtınası"
+
+msgid "Flux AI text model is ready."
+msgstr "Flux AI metin modeli hazır."
+
+msgid "Flux AI text model is not ready; prompt enhancement and ideas are unavailable, generation still works."
+msgstr "Flux AI metin modeli hazır değil; istem geliştirme ve fikir üretme çalışmaz, üretim çalışır."
+
+msgid "Reference images"
+msgstr "Referans görselleri"
+
+msgid "References are sent to the provider by site URL."
+msgstr "Referanslar sağlayıcıya site adresiyle gönderilir."
+
+msgid "The site is not HTTPS; references are sent inline (base64), making requests larger."
+msgstr "Site HTTPS değil; referanslar dosya içeriğiyle (base64) gönderilir, istek büyür."
+
+msgid "Studio: generate images/videos"
+msgstr "Stüdyo: görsel/video üret"
+
+msgid "Studio: all galleries and settings"
+msgstr "Stüdyo: tüm galeriler ve ayarlar"
+
+msgid "The file is empty."
+msgstr "Dosya boş."
+
+msgid "The file exceeds the %d MB limit."
+msgstr "Dosya %d MB sınırını aşıyor."
+
+msgid "This file type is not supported."
+msgstr "Bu dosya türü desteklenmiyor."
+
+msgid "The file could not be saved."
+msgstr "Dosya kaydedilemedi."
+
+msgid "Reference image not found."
+msgstr "Referans görsel bulunamadı."
+
+msgid "Person not found."
+msgstr "Kişi bulunamadı."
+
+msgid "At most %d reference images can be used."
+msgstr "En çok %d referans görsel kullanılabilir."
+
+msgid "The file is not on the server."
+msgstr "Dosya sunucuda yok."
+
+msgid "Login required."
+msgstr "Giriş gerekli."
+
+msgid "You do not have access to Studio."
+msgstr "Stüdyo için yetkiniz yok."
+
+msgid "You are not allowed to do this."
+msgstr "Bu işlem için yetkiniz yok."
+
+msgid "Record not found."
+msgstr "Kayıt bulunamadı."
+
+msgid "The file could not be uploaded."
+msgstr "Dosya yüklenemedi."
+
+msgid "No file received."
+msgstr "Dosya gelmedi."
+
+msgid "You cannot move items to this folder."
+msgstr "Bu klasöre taşıyamazsınız."
+
+msgid "You are not allowed to add to the Media Library."
+msgstr "Medya kitaplığına ekleme yetkiniz yok."
+
+msgid "Folder name is required."
+msgstr "Klasör adı gerekli."
+
+msgid "Person name is required."
+msgstr "Kişi adı gerekli."
+
+msgid "Template name is required."
+msgstr "Şablon adı gerekli."
+
+msgid "Deleted user"
+msgstr "Silinmiş kullanıcı"
+
+msgid "Status"
+msgstr "Durum"
+
+msgid "Gallery"
+msgstr "Galeri"
+
+msgid "Gallery is empty"
+msgstr "Galeri boş"
+
+msgid "Search the gallery"
+msgstr "Galeride ara"
+
+msgid "Working"
+msgstr "Hazırlanıyor"
+
+msgid "Open in panel"
+msgstr "Panelde aç"
+
+msgid "Owner"
+msgstr "Sahip"
+
+msgid "Type"
+msgstr "Tür"
+
+msgid "Star"
+msgstr "Yıldızla"
+
+msgid "Starred"
+msgstr "Yıldızlı"
+
+msgid "Generated images are listed here. The production screen opens in the app later."
+msgstr "Üretilen görseller burada listelenir. Üretim paneli uygulamada sonra açılır."
+
+msgid "Prompt"
+msgstr "İstem"
+
+msgid "[['Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).', 'tr']]"
+msgstr "Yapay zekâ ile görsel ve video stüdyosu: üretim, referanslar ve kişiler, alan düzenleme, Geliştir ve Beyin fırtınası, klasörlü galeri. Üretim Flux AI üzerinden (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter)."

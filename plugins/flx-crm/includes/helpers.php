@@ -106,13 +106,13 @@ function flxcrm_to_base( $amount, $currency, $date = '' ) {
  */
 function flxcrm_roles() {
 	$roles  = array(
-		'donor'       => array( __( 'Bağışçı', 'flx-crm' ), '#16a34a' ),
-		'customer'    => array( __( 'Müşteri', 'flx-crm' ), '#ea580c' ),
-		'lead'        => array( __( 'Aday', 'flx-crm' ), '#0284c7' ),
-		'volunteer'   => array( __( 'Gönüllü', 'flx-crm' ), '#9333ea' ),
-		'member'      => array( __( 'Üye', 'flx-crm' ), '#4f46e5' ),
-		'partner'     => array( __( 'Kurumsal', 'flx-crm' ), '#0d9488' ),
-		'beneficiary' => array( __( 'Yararlanıcı', 'flx-crm' ), '#db2777' ),
+		'donor'       => array( __( 'Donor', 'flx-crm' ), '#16a34a' ),
+		'customer'    => array( __( 'Customer', 'flx-crm' ), '#ea580c' ),
+		'lead'        => array( __( 'Lead', 'flx-crm' ), '#0284c7' ),
+		'volunteer'   => array( __( 'Volunteer', 'flx-crm' ), '#9333ea' ),
+		'member'      => array( __( 'Member', 'flx-crm' ), '#4f46e5' ),
+		'partner'     => array( __( 'Partner', 'flx-crm' ), '#0d9488' ),
+		'beneficiary' => array( __( 'Beneficiary', 'flx-crm' ), '#db2777' ),
 	);
 	$out = array();
 	foreach ( $roles as $k => $r ) {
@@ -146,24 +146,24 @@ function flxcrm_event_types() {
 	return (array) apply_filters(
 		'flxcrm_event_types',
 		array(
-			'donation'        => array( __( 'Bağış', 'flx-crm' ), 'heart' ),
-			'order'           => array( __( 'Sipariş', 'flx-crm' ), 'bag' ),
+			'donation'        => array( __( 'Donation', 'flx-crm' ), 'heart' ),
+			'order'           => array( __( 'Order', 'flx-crm' ), 'bag' ),
 			'form'            => array( __( 'Form', 'flx-crm' ), 'form' ),
-			'message_in'      => array( __( 'Gelen mesaj', 'flx-crm' ), 'message' ),
-			'message_out'     => array( __( 'Giden mesaj', 'flx-crm' ), 'send' ),
-			'chat_started'    => array( __( 'Sohbet başladı', 'flx-crm' ), 'message' ),
-			'email_sent'      => array( __( 'E-posta', 'flx-crm' ), 'mail' ),
-			'email_in'        => array( __( 'Gelen e-posta', 'flx-crm' ), 'mail' ),
+			'message_in'      => array( __( 'Incoming message', 'flx-crm' ), 'message' ),
+			'message_out'     => array( __( 'Outgoing message', 'flx-crm' ), 'send' ),
+			'chat_started'    => array( __( 'Chat started', 'flx-crm' ), 'message' ),
+			'email_sent'      => array( __( 'E-mail', 'flx-crm' ), 'mail' ),
+			'email_in'        => array( __( 'Incoming e-mail', 'flx-crm' ), 'mail' ),
 			'sms_sent'        => array( __( 'SMS', 'flx-crm' ), 'message' ),
-			'note'            => array( __( 'Not', 'flx-crm' ), 'note' ),
-			'call'            => array( __( 'Arama', 'flx-crm' ), 'phone' ),
-			'meeting'         => array( __( 'Görüşme', 'flx-crm' ), 'users' ),
-			'signup'          => array( __( 'Üyelik', 'flx-crm' ), 'user' ),
-			'created'         => array( __( 'Kişi eklendi', 'flx-crm' ), 'plus' ),
-			'role_added'      => array( __( 'Rol eklendi', 'flx-crm' ), 'badge' ),
-			'segment_entered' => array( __( 'Segment değişti', 'flx-crm' ), 'chart' ),
-			'consent'         => array( __( 'İzin değişti', 'flx-crm' ), 'shield' ),
-			'merged'          => array( __( 'Kişiler birleştirildi', 'flx-crm' ), 'users' ),
+			'note'            => array( __( 'Note', 'flx-crm' ), 'note' ),
+			'call'            => array( __( 'Call', 'flx-crm' ), 'phone' ),
+			'meeting'         => array( __( 'Meeting', 'flx-crm' ), 'users' ),
+			'signup'          => array( __( 'Sign-up', 'flx-crm' ), 'user' ),
+			'created'         => array( __( 'Contact added', 'flx-crm' ), 'plus' ),
+			'role_added'      => array( __( 'Role added', 'flx-crm' ), 'badge' ),
+			'segment_entered' => array( __( 'Segment changed', 'flx-crm' ), 'chart' ),
+			'consent'         => array( __( 'Consent changed', 'flx-crm' ), 'shield' ),
+			'merged'          => array( __( 'Contacts merged', 'flx-crm' ), 'users' ),
 		)
 	);
 }
@@ -185,19 +185,19 @@ function flxcrm_manual_event_types() {
  */
 function flxcrm_rfm_segments() {
 	return array(
-		'new'         => array( __( 'Yeni', 'flx-crm' ), __( 'İlk kez yakın zamanda ödeme yaptı. Hoş geldin akışı için uygun.', 'flx-crm' ), 'info' ),
-		'champion'    => array( __( 'Şampiyon', 'flx-crm' ), __( 'Sık ve yakın zamanda ödeme yapıyor. Özel teşekkür ve ilgi.', 'flx-crm' ), 'ok' ),
-		'loyal'       => array( __( 'Sadık', 'flx-crm' ), __( 'Düzenli destek veriyor. Yeni proje ve ürünler önce bunlara.', 'flx-crm' ), 'ok' ),
-		'promising'   => array( __( 'Umut vadeden', 'flx-crm' ), __( 'Yakın zamanda geldi, sıklığı henüz düşük.', 'flx-crm' ), 'info' ),
-		'at_risk'     => array( __( 'Risk altında', 'flx-crm' ), __( 'Eskiden sıktı, son zamanlarda uzaklaştı. Geri kazanım hedefi.', 'flx-crm' ), 'warn' ),
-		'hibernating' => array( __( 'Uykuda', 'flx-crm' ), __( 'Uzun süredir yok ve sıklığı düşük.', 'flx-crm' ), 'mute' ),
-		'lost'        => array( __( 'Kaybedilen', 'flx-crm' ), __( 'En uzun süredir ödeme yapmayan dilim.', 'flx-crm' ), 'bad' ),
+		'new'         => array( __( 'New', 'flx-crm' ), __( 'Paid for the first time recently. A good fit for a welcome flow.', 'flx-crm' ), 'info' ),
+		'champion'    => array( __( 'Champion', 'flx-crm' ), __( 'Pays often and recently. Worth a personal thank-you and attention.', 'flx-crm' ), 'ok' ),
+		'loyal'       => array( __( 'Loyal', 'flx-crm' ), __( 'Gives regular support. Tell them first about new projects and products.', 'flx-crm' ), 'ok' ),
+		'promising'   => array( __( 'Promising', 'flx-crm' ), __( 'Arrived recently; frequency is still low.', 'flx-crm' ), 'info' ),
+		'at_risk'     => array( __( 'At risk', 'flx-crm' ), __( 'Used to be frequent, has drifted away lately. A win-back target.', 'flx-crm' ), 'warn' ),
+		'hibernating' => array( __( 'Hibernating', 'flx-crm' ), __( 'Away for a long time with low frequency.', 'flx-crm' ), 'mute' ),
+		'lost'        => array( __( 'Lost', 'flx-crm' ), __( 'The slice that has gone longest without paying.', 'flx-crm' ), 'bad' ),
 	);
 }
 
 function flxcrm_segment_label( $key ) {
 	$s = flxcrm_rfm_segments();
-	return $s[ $key ][0] ?? ( '' === (string) $key ? __( 'Ödemesi yok', 'flx-crm' ) : $key );
+	return $s[ $key ][0] ?? ( '' === (string) $key ? __( 'No payments', 'flx-crm' ) : $key );
 }
 
 /** Kaynak adları (bağlantılar, ilk kaynak). */
@@ -205,13 +205,13 @@ function flxcrm_sources() {
 	return (array) apply_filters(
 		'flxcrm_sources',
 		array(
-			'manual'   => __( 'Elle', 'flx-crm' ),
-			'import'   => __( 'İçe aktarma', 'flx-crm' ),
+			'manual'   => __( 'Manual', 'flx-crm' ),
+			'import'   => __( 'Import', 'flx-crm' ),
 			'donate'   => 'Flux Donate',
 			'commerce' => 'WooCommerce',
 			'chat'     => 'WhatsApp',
 			'forms'    => 'Flux Forms',
-			'users'    => __( 'Site üyeliği', 'flx-crm' ),
+			'users'    => __( 'Site account', 'flx-crm' ),
 			'mail'     => 'Flux Mail',
 			'api'      => 'API',
 		)
@@ -273,10 +273,10 @@ function flxcrm_money_short( $amount ) {
 	$amount = (float) $amount;
 	if ( abs( $amount ) >= 1000000 ) {
 		/* translators: %s: amount in millions */
-		$txt = sprintf( __( '%s Mn', 'flx-crm' ), number_format_i18n( $amount / 1000000, 1 ) );
+		$txt = sprintf( __( '%s M', 'flx-crm' ), number_format_i18n( $amount / 1000000, 1 ) );
 	} elseif ( abs( $amount ) >= 10000 ) {
 		/* translators: %s: amount in thousands */
-		$txt = sprintf( __( '%s B', 'flx-crm' ), number_format_i18n( $amount / 1000, 1 ) );
+		$txt = sprintf( __( '%s K', 'flx-crm' ), number_format_i18n( $amount / 1000, 1 ) );
 	} else {
 		return flxcrm_money( $amount );
 	}
@@ -326,7 +326,7 @@ function flxcrm_display_name( $c ) {
 	if ( ! empty( $c['phone'] ) ) {
 		return flxcrm_phone_display( $c['phone'] );
 	}
-	return __( '(adsız kişi)', 'flx-crm' );
+	return __( '(unnamed contact)', 'flx-crm' );
 }
 
 /** Rol dizisini depolama biçimine çevirir: ",donor,customer,". */

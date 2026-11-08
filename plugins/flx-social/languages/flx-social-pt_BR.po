@@ -1,0 +1,1661 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: pt_BR\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Draft"
+msgstr "Rascunho"
+
+msgid "Awaiting approval"
+msgstr "Aguardando aprovação"
+
+msgid "Scheduled"
+msgstr "Agendado"
+
+msgid "Publishing"
+msgstr "Publicação"
+
+msgid "Published"
+msgstr "Publicado"
+
+msgid "Partially published"
+msgstr "Parcialmente publicado"
+
+msgid "Failed"
+msgstr "Falha"
+
+msgid "Cancelled"
+msgstr "Cancelado"
+
+msgid "Sending"
+msgstr "Enviando"
+
+msgid "Deleted from network"
+msgstr "Excluído da rede"
+
+msgid "Theme: system"
+msgstr "Tema: sistema"
+
+msgid "Theme: light"
+msgstr "Tema: luz"
+
+msgid "Theme: dark"
+msgstr "Tema: escuro"
+
+msgid "Opening Social Media…"
+msgstr "Abrindo mídias sociais..."
+
+msgid "Try again"
+msgstr "Tente novamente"
+
+msgid "Menu"
+msgstr "Cardápio"
+
+msgid "Social Media"
+msgstr "Mídias Sociais"
+
+msgid "New post"
+msgstr "Nova postagem"
+
+msgid "Dashboard"
+msgstr "Painel"
+
+msgid "Posts"
+msgstr "Postagens"
+
+msgid "Calendar"
+msgstr "Calendário"
+
+msgid "Accounts"
+msgstr "Contas"
+
+msgid "Settings"
+msgstr "Configurações"
+
+msgid "{n} posts with errors"
+msgstr "{n}postagens com erros"
+
+msgid "Theme"
+msgstr "Tema"
+
+msgid "Back to dashboard"
+msgstr "Voltar ao painel"
+
+msgid "(no text)"
+msgstr "(sem texto)"
+
+msgid "Details"
+msgstr "Detalhes"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Duplicate"
+msgstr "Duplicar"
+
+msgid "Copy created as a draft."
+msgstr "Cópia criada como rascunho."
+
+msgid "Approve"
+msgstr "Aprovar"
+
+msgid "Approved."
+msgstr "Aprovado."
+
+msgid "Reject"
+msgstr "Rejeitar"
+
+msgid "Share now"
+msgstr "Compartilhe agora"
+
+msgid "Share now?"
+msgstr "Compartilhar agora?"
+
+msgid "The post is published on the selected accounts right away."
+msgstr "A postagem é publicada nas contas selecionadas imediatamente."
+
+msgid "Share"
+msgstr "Compartilhar"
+
+msgid "Queued, it will be live shortly."
+msgstr "Na fila, estará no ar em breve."
+
+msgid "Submit for approval"
+msgstr "Enviar para aprovação"
+
+msgid "Submitted for approval."
+msgstr "Enviado para aprovação."
+
+msgid "Unschedule (back to draft)"
+msgstr "Cancelar agendamento (voltar ao rascunho)"
+
+msgid "Moved to drafts."
+msgstr "Movido para rascunhos."
+
+msgid "Delete"
+msgstr "Excluir"
+
+msgid "Why? (visible to the author)"
+msgstr "Por quê? (visível para o autor)"
+
+msgid "Reject post"
+msgstr "Rejeitar postagem"
+
+msgid "The post goes back to draft; the author sees the note."
+msgstr "A postagem volta ao rascunho; o autor vê a nota."
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Rejected."
+msgstr "Rejeitado."
+
+msgid "Delete post"
+msgstr "Excluir postagem"
+
+msgid "The post is removed from the list."
+msgstr "A postagem é removida da lista."
+
+msgid "Also delete from the networks it was published on ({n} accounts)"
+msgstr "Exclua também das redes em que foi publicado (contas{n})"
+
+msgid "Instagram and TikTok posts cannot be deleted via the API; delete them there manually."
+msgstr "As postagens do Instagram e do TikTok não podem ser excluídas por meio da API; exclua-os manualmente."
+
+msgid "Deleted."
+msgstr "Excluído."
+
+msgid "All"
+msgstr "Todos"
+
+msgid "Drafts"
+msgstr "Rascunhos"
+
+msgid "With errors"
+msgstr "Com erros"
+
+msgid "Load more"
+msgstr "Carregar mais"
+
+msgid "Search text, title or tag"
+msgstr "Pesquise texto, título ou tag"
+
+msgid "Search"
+msgstr "Pesquisar"
+
+msgid "Account"
+msgstr "Conta"
+
+msgid "All accounts"
+msgstr "Todas as contas"
+
+msgid "Only mine"
+msgstr "Só meu"
+
+msgid "Posts prepared by people without publishing permission. Once approved they are shared at their time (or right away)."
+msgstr "Postagens preparadas por pessoas sem permissão de publicação. Depois de aprovados, eles são compartilhados na hora (ou imediatamente)."
+
+msgid "{n} selected"
+msgstr "{n}selecionado"
+
+msgid "Schedule"
+msgstr "Cronograma"
+
+msgid "Scheduled."
+msgstr "Agendado."
+
+msgid "Move to drafts"
+msgstr "Mover para rascunhos"
+
+msgid "Delete selected?"
+msgstr "Excluir selecionado?"
+
+msgid "Only removed from the list; posts on the networks are not touched."
+msgstr "Removido apenas da lista; postagens nas redes não são tocadas."
+
+msgid "Clear selection"
+msgstr "Limpar seleção"
+
+msgid "Select"
+msgstr "Selecione"
+
+msgid "every {n} days"
+msgstr "a cada{n}dias"
+
+msgid "Actions"
+msgstr "Ações"
+
+msgid "No posts awaiting approval"
+msgstr "Nenhuma postagem aguardando aprovação"
+
+msgid "No posts"
+msgstr "Nenhuma postagem"
+
+msgid "Create your first post; share to several accounts at once, with separate text for each."
+msgstr "Crie sua primeira postagem; compartilhe com várias contas ao mesmo tempo, com texto separado para cada uma."
+
+msgid "Month"
+msgstr "Mês"
+
+msgid "List"
+msgstr "Lista"
+
+msgid "Previous month"
+msgstr "Mês anterior"
+
+msgid "Next month"
+msgstr "No próximo mês"
+
+msgid "Today"
+msgstr "Hoje"
+
+msgid "Time zone: {tz}"
+msgstr "Fuso horário:{tz}"
+
+msgid "Post on this day"
+msgstr "Postar neste dia"
+
+msgid "+{n} more"
+msgstr "+{n}mais"
+
+msgid "New time: {t}"
+msgstr "Novo horário:{t}"
+
+msgid "No posts this month."
+msgstr "Nenhuma postagem este mês."
+
+msgid "Connect account"
+msgstr "Conectar conta"
+
+msgid "Account added."
+msgstr "Conta adicionada."
+
+msgid "{n} account connections refreshed."
+msgstr "Conexões de conta{n}atualizadas."
+
+msgid "No accounts yet"
+msgstr "Nenhuma conta ainda"
+
+msgid "First enter the network keys under Settings › Apps, then connect the account here."
+msgstr "Primeiro insira as chaves de rede em Configurações › Aplicativos e conecte a conta aqui."
+
+msgid "Accounts are connected by an administrator."
+msgstr "As contas são conectadas por um administrador."
+
+msgid "App keys"
+msgstr "Chaves de aplicativos"
+
+msgid "{n} characters"
+msgstr "Caracteres{n}"
+
+msgid "{n} images"
+msgstr "Imagens{n}"
+
+msgid "video"
+msgstr "vídeo"
+
+msgid "editing"
+msgstr "edição"
+
+msgid "deleting"
+msgstr "excluindo"
+
+msgid "Active"
+msgstr "Ativo"
+
+msgid "Needs reconnecting"
+msgstr "Precisa ser reconectado"
+
+msgid "Off"
+msgstr "Desligado"
+
+msgid "Reconnect"
+msgstr "Reconectar"
+
+msgid "Page"
+msgstr "Página"
+
+msgid "Profile"
+msgstr "Perfil"
+
+msgid "Company page"
+msgstr "Página da empresa"
+
+msgid "Channel"
+msgstr "Canal"
+
+msgid "Location"
+msgstr "Localização"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Group"
+msgstr "Grupo"
+
+msgid "Business"
+msgstr "Negócios"
+
+msgid "Creator"
+msgstr "Criador"
+
+msgid "Test and refresh connection"
+msgstr "Testar e atualizar a conexão"
+
+msgid "Trying…"
+msgstr "Tentando..."
+
+msgid "Connection works."
+msgstr "A conexão funciona."
+
+msgid "Rename"
+msgstr "Renomear"
+
+msgid "Account name"
+msgstr "Nome da conta"
+
+msgid "Enable"
+msgstr "Habilitar"
+
+msgid "Turn off (hidden in post account picker)"
+msgstr "Desativar (oculto no seletor de conta de postagem)"
+
+msgid "Remove"
+msgstr "Remover"
+
+msgid "Remove account?"
+msgstr "Remover conta?"
+
+msgid "The token is deleted; posts scheduled for this account will not be shared. Published posts stay on the network."
+msgstr "O token é excluído; postagens agendadas para esta conta não serão compartilhadas. As postagens publicadas permanecem na rede."
+
+msgid "Removed."
+msgstr "Removido."
+
+msgid "Enter keys first: {app}"
+msgstr "Insira as chaves primeiro:{app}"
+
+msgid "The network's sign-in page opens; after you allow access you come back here. If there are several pages/channels you choose which to add."
+msgstr "A página de login da rede é aberta; depois de permitir o acesso, você volta aqui. Se houver várias páginas/canais você escolhe quais adicionar."
+
+msgid "Choose accounts to add"
+msgstr "Escolha contas para adicionar"
+
+msgid "{n} accounts added."
+msgstr "Contas{n}adicionadas."
+
+msgid "Add"
+msgstr "Adicionar"
+
+msgid "WhatsApp: Status and groups"
+msgstr "WhatsApp: status e grupos"
+
+msgid "The connection comes from the Evolution line in Flux Mail. Status: the line's WhatsApp Status (24 hours). Group: groups the line is a member of."
+msgstr "A conexão vem da linha Evolution no Flux Mail. Status: Status do WhatsApp da linha (24 horas). Grupo: grupos dos quais a linha é membro."
+
+msgid "{n} members"
+msgstr "Membros{n}"
+
+msgid "added"
+msgstr "adicionado"
+
+msgid "Video title"
+msgstr "Título do vídeo"
+
+msgid "Pin title"
+msgstr "Título do alfinete"
+
+msgid "Link title"
+msgstr "Título do link"
+
+msgid "Title (photo post)"
+msgstr "Título (postagem da foto)"
+
+msgid "Title"
+msgstr "Título"
+
+msgid "Pin link"
+msgstr "Fixar link"
+
+msgid "Link (preview card)"
+msgstr "Link (cartão de visualização)"
+
+msgid "Reply thread (first reply)"
+msgstr "Tópico de resposta (primeira resposta)"
+
+msgid "First comment"
+msgstr "Primeiro comentário"
+
+msgid "Added as a comment right after publishing (e.g. a link or hashtags)."
+msgstr "Adicionado como comentário logo após a publicação (por exemplo, um link ou hashtags)."
+
+msgid "Visibility"
+msgstr "Visibilidade"
+
+msgid "Public"
+msgstr "Público"
+
+msgid "Unlisted"
+msgstr "Não listado"
+
+msgid "Private"
+msgstr "Privado"
+
+msgid "Video tags (comma separated)"
+msgstr "Tags de vídeo (separadas por vírgula)"
+
+msgid "Category"
+msgstr "Categoria"
+
+msgid "Default"
+msgstr "Padrão"
+
+msgid "Nonprofits & Activism"
+msgstr "Organizações sem fins lucrativos e ativismo"
+
+msgid "People & Blogs"
+msgstr "Pessoas e blogs"
+
+msgid "Education"
+msgstr "Educação"
+
+msgid "Travel & Events"
+msgstr "Viagens e Eventos"
+
+msgid "News & Politics"
+msgstr "Notícias e Política"
+
+msgid "Entertainment"
+msgstr "Entretenimento"
+
+msgid "Playlist"
+msgstr "Lista de reprodução"
+
+msgid "None"
+msgstr "Nenhum"
+
+msgid "Made for kids"
+msgstr "Feito para crianças"
+
+msgid "Notify subscribers"
+msgstr "Notificar assinantes"
+
+msgid "Shorts (vertical, under 60 s)"
+msgstr "Shorts (verticais, abaixo de 60 s)"
+
+msgid "AI-generated content"
+msgstr "Conteúdo gerado por IA"
+
+msgid "Post type"
+msgstr "Tipo de postagem"
+
+msgid "Post (feed)"
+msgstr "Postagem (feed)"
+
+msgid "Reels"
+msgstr "Carretéis"
+
+msgid "Story"
+msgstr "História"
+
+msgid "Also show the Reel in the feed"
+msgstr "Mostre também o Reel no feed"
+
+msgid "Cover image URL (Reels)"
+msgstr "URL da imagem da capa (momentos)"
+
+msgid "Connections only"
+msgstr "Somente conexões"
+
+msgid "Image description (alt text)"
+msgstr "Descrição da imagem (texto alternativo)"
+
+msgid "Who can reply"
+msgstr "Quem pode responder"
+
+msgid "Everyone"
+msgstr "Todos"
+
+msgid "People I follow"
+msgstr "Pessoas que eu sigo"
+
+msgid "People I mention"
+msgstr "Pessoas que menciono"
+
+msgid "Verified accounts"
+msgstr "Contas verificadas"
+
+msgid "Choose a board"
+msgstr "Escolha um tabuleiro"
+
+msgid "Who can view"
+msgstr "Quem pode visualizar"
+
+msgid "Friends"
+msgstr "Amigos"
+
+msgid "Followers"
+msgstr "Seguidores"
+
+msgid "Only me"
+msgstr "Só eu"
+
+msgid "Turn off comments"
+msgstr "Desativar comentários"
+
+msgid "Duet off"
+msgstr "Dueto desativado"
+
+msgid "Stitch off"
+msgstr "Costurar"
+
+msgid "Paid partnership (branded content)"
+msgstr "Parceria paga (conteúdo de marca)"
+
+msgid "Promoting our own brand"
+msgstr "Promover a nossa própria marca"
+
+msgid "Automatic music for photos"
+msgstr "Música automática para fotos"
+
+msgid "Update"
+msgstr "Atualizar"
+
+msgid "Event"
+msgstr "Evento"
+
+msgid "Offer"
+msgstr "Oferta"
+
+msgid "Button"
+msgstr "Botão"
+
+msgid "Learn more"
+msgstr "Saiba mais"
+
+msgid "Book"
+msgstr "Livro"
+
+msgid "Order"
+msgstr "Pedido"
+
+msgid "Shop"
+msgstr "Loja"
+
+msgid "Sign up"
+msgstr "Inscreva-se"
+
+msgid "Button link"
+msgstr "Link do botão"
+
+msgid "Event/offer title"
+msgstr "Título do evento/oferta"
+
+msgid "Start"
+msgstr "Começar"
+
+msgid "End"
+msgstr "Fim"
+
+msgid "Coupon code"
+msgstr "Código do cupom"
+
+msgid "Text or media is required."
+msgstr "Texto ou mídia é obrigatório."
+
+msgid "Text is {n} characters too long (limit {max})."
+msgstr "O texto{n}tem caracteres muito longos (limite{max})."
+
+msgid "This network requires an image or video."
+msgstr "Esta rede requer uma imagem ou vídeo."
+
+msgid "This network does not accept images."
+msgstr "Esta rede não aceita imagens."
+
+msgid "This network does not accept video."
+msgstr "Esta rede não aceita vídeo."
+
+msgid "GIF is not supported."
+msgstr "GIF não é compatível."
+
+msgid "At most {n} images."
+msgstr "No máximo imagens{n}."
+
+msgid "At most {n} videos."
+msgstr "No máximo vídeos{n}."
+
+msgid "Images and video cannot be sent together."
+msgstr "Imagens e vídeos não podem ser enviados juntos."
+
+msgid "YouTube requires a video."
+msgstr "O YouTube requer um vídeo."
+
+msgid "Choose a Pinterest board."
+msgstr "Escolha um painel do Pinterest."
+
+msgid "Reels require a video."
+msgstr "Os rolos requerem um vídeo."
+
+msgid "The account connection dropped; reconnect it under Accounts."
+msgstr "A conexão da conta caiu; reconecte-o em Contas."
+
+msgid "There are unsaved changes. Close anyway?"
+msgstr "Existem alterações não salvas. Fechar mesmo assim?"
+
+msgid "No connected accounts"
+msgstr "Nenhuma conta conectada"
+
+msgid "Connect a social media account first."
+msgstr "Conecte uma conta de mídia social primeiro."
+
+msgid "Ask an administrator to connect an account."
+msgstr "Peça a um administrador para conectar uma conta."
+
+msgid "Close"
+msgstr "Fechar"
+
+msgid "Edit post"
+msgstr "Editar postagem"
+
+msgid "The approver left a note: {n}"
+msgstr "O aprovador deixou uma nota:{n}"
+
+msgid "Published on {n} accounts; to change it there use Details › Edit on network."
+msgstr "Publicado em contas{n}; para alterá-lo, use Detalhes › Editar na rede."
+
+msgid "Preview"
+msgstr "Visualização"
+
+msgid "Shared to all selected accounts; you can write separate text for each."
+msgstr "Compartilhado com todas as contas selecionadas; você pode escrever um texto separado para cada um."
+
+msgid "Common text"
+msgstr "Texto comum"
+
+msgid "Custom text"
+msgstr "Texto personalizado"
+
+msgid "What would you like to share?"
+msgstr "O que você gostaria de compartilhar?"
+
+msgid "Add signature"
+msgstr "Adicionar assinatura"
+
+msgid "Custom text for this account"
+msgstr "Texto personalizado para esta conta"
+
+msgid "Separate image/video for this account"
+msgstr "Imagem/vídeo separado para esta conta"
+
+msgid "{net} options"
+msgstr "Opções{net}"
+
+msgid "Direct post: the video is published on TikTok with the chosen visibility."
+msgstr "Postagem direta: o vídeo é publicado no TikTok com a visibilidade escolhida."
+
+msgid "Draft mode: the video lands in your TikTok app inbox and you publish it from there."
+msgstr "Modo rascunho: o vídeo chega à caixa de entrada do aplicativo TikTok e você o publica a partir daí."
+
+msgid "Board list is empty. Refresh it under Accounts › Test connection."
+msgstr "A lista do quadro está vazia. Atualize-o em Contas › Testar conexão."
+
+msgid "Write some text first."
+msgstr "Escreva algum texto primeiro."
+
+msgid "What should AI write?"
+msgstr "O que a IA deveria escrever?"
+
+msgid "Write"
+msgstr "Escreva"
+
+msgid "Write with AI"
+msgstr "Escreva com IA"
+
+msgid "Fix and polish"
+msgstr "Corrigir e polir"
+
+msgid "Shorten"
+msgstr "Encurtar"
+
+msgid "Suggest hashtags"
+msgstr "Sugerir hashtags"
+
+msgid "Translate to English"
+msgstr "Traduzir para inglês"
+
+msgid "Writes separate text for each account in its network's style"
+msgstr "Escreve texto separado para cada conta no estilo de sua rede"
+
+msgid "Separate text written for each account; check the tabs."
+msgstr "Texto separado escrito para cada conta; verifique as guias."
+
+msgid "Adapt to networks"
+msgstr "Adapte-se às redes"
+
+msgid "Move left"
+msgstr "Mover para a esquerda"
+
+msgid "Image / video"
+msgstr "Imagem/vídeo"
+
+msgid "Tip: Instagram, TikTok and YouTube require an image/video; X allows up to 4 images."
+msgstr "Dica: Instagram, TikTok e YouTube exigem imagem/vídeo; X permite até 4 imagens."
+
+msgid "More (internal title, tags, repeat)"
+msgstr "Mais (título interno, tags, repetição)"
+
+msgid "Internal title (only shown in the list)"
+msgstr "Título interno (mostrado apenas na lista)"
+
+msgid "Tags (comma separated; for filtering)"
+msgstr "Tags (separadas por vírgula; para filtragem)"
+
+msgid "Share again how many days after publishing (0 = no)"
+msgstr "Compartilhe novamente quantos dias após a publicação (0 = não)"
+
+msgid "Select an account to see the preview here."
+msgstr "Selecione uma conta para ver a prévia aqui."
+
+msgid "+{n} more accounts; check the tabs."
+msgstr "+{n}mais contas; verifique as guias."
+
+msgid "No image/video"
+msgstr "Sem imagem/vídeo"
+
+msgid "No video"
+msgstr "Nenhum vídeo"
+
+msgid "(untitled)"
+msgstr "(sem título)"
+
+msgid "Limit exceeded: {n} characters over"
+msgstr "Limite excedido: caracteres{n}ultrapassados"
+
+msgid "{n} issues"
+msgstr "Problemas{n}"
+
+msgid "Share time"
+msgstr "Compartilhar tempo"
+
+msgid "Quick time"
+msgstr "Tempo rápido"
+
+msgid "In 1 hour"
+msgstr "Em 1 hora"
+
+msgid "Today 19:00"
+msgstr "Hoje 19:00"
+
+msgid "Tomorrow 10:00"
+msgstr "Amanhã 10:00"
+
+msgid "Tomorrow 19:00"
+msgstr "Amanhã 19:00"
+
+msgid "Weekend 11:00"
+msgstr "Fim de semana 11h"
+
+msgid "Clear time"
+msgstr "Limpar tempo"
+
+msgid "Select at least one account."
+msgstr "Selecione pelo menos uma conta."
+
+msgid "Choose a time in the future."
+msgstr "Escolha um momento no futuro."
+
+msgid "Draft saved."
+msgstr "Rascunho salvo."
+
+msgid "Scheduled: {t}"
+msgstr "Programado:{t}"
+
+msgid "Saved."
+msgstr "Salvo."
+
+msgid "Sent for approval because you do not have publishing permission."
+msgstr "Enviado para aprovação porque você não tem permissão de publicação."
+
+msgid "Save draft"
+msgstr "Salvar rascunho"
+
+msgid "Media library"
+msgstr "Biblioteca de mídia"
+
+msgid "Flux Studio"
+msgstr "Estúdio Fluxo"
+
+msgid "Upload"
+msgstr "Carregar"
+
+msgid "Add from URL"
+msgstr "Adicionar do URL"
+
+msgid "Image or video URL (https://…)"
+msgstr "URL de imagem ou vídeo (https://…)"
+
+msgid "Downloading…"
+msgstr "Baixando..."
+
+msgid "Uploading {n} files…"
+msgstr "Fazendo upload de arquivos{n}..."
+
+msgid "Choose image / video"
+msgstr "Escolha imagem/vídeo"
+
+msgid "Importing Studio files into the library…"
+msgstr "Importando arquivos do Studio para a biblioteca..."
+
+msgid "No files."
+msgstr "Nenhum arquivo."
+
+msgid "Post"
+msgstr "Postar"
+
+msgid "Open"
+msgstr "Abrir"
+
+msgid "Retry"
+msgstr "Tentar novamente"
+
+msgid "Queued again."
+msgstr "Na fila novamente."
+
+msgid "Edit on network"
+msgstr "Editar na rede"
+
+msgid "Delete from network"
+msgstr "Excluir da rede"
+
+msgid "Delete the post on {n}?"
+msgstr "Excluir a postagem em{n}?"
+
+msgid "The post on the network is deleted permanently."
+msgstr "A postagem na rede é excluída permanentemente."
+
+msgid "Deleted from network."
+msgstr "Excluído da rede."
+
+msgid "Engagement numbers are updated twice a day (last 30 days)."
+msgstr "Os números de engajamento são atualizados duas vezes por dia (últimos 30 dias)."
+
+msgid "Edit post on network"
+msgstr "Editar postagem na rede"
+
+msgid "The change is written directly to the post on the network."
+msgstr "A alteração é gravada diretamente na postagem na rede."
+
+msgid "Updated on network."
+msgstr "Atualizado na rede."
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "just now"
+msgstr "agora mesmo"
+
+msgid "{n} min ago"
+msgstr "{n}minutos atrás"
+
+msgid "{n} h ago"
+msgstr "{n}horas atrás"
+
+msgid "Server error ({n})."
+msgstr "Erro do servidor ({n})."
+
+msgid "Unexpected response from the server."
+msgstr "Resposta inesperada do servidor."
+
+msgid "Something went wrong."
+msgstr "Algo deu errado."
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Copied"
+msgstr "Copiado"
+
+msgid "Daily posts"
+msgstr "Postagens diárias"
+
+msgid "Total: {n}"
+msgstr "Total:{n}"
+
+msgid "{n} days"
+msgstr "{n}dias"
+
+msgid "Update metrics now"
+msgstr "Atualizar métricas agora"
+
+msgid "{n} records updated."
+msgstr "Registros{n}atualizados."
+
+msgid "No accounts connected yet. Enter the app keys first, then connect accounts."
+msgstr "Nenhuma conta conectada ainda. Insira as chaves do aplicativo primeiro e depois conecte as contas."
+
+msgid "Success {n}%"
+msgstr "Sucesso{n}%"
+
+msgid "last {n} days"
+msgstr "últimos{n}dias"
+
+msgid "Engagement"
+msgstr "Engajamento"
+
+msgid "likes + comments + shares"
+msgstr "curtidas + comentários + compartilhamentos"
+
+msgid "Views"
+msgstr "Visualizações"
+
+msgid "reach / impressions"
+msgstr "alcance/impressões"
+
+msgid "this period"
+msgstr "este período"
+
+msgid "no change"
+msgstr "nenhuma mudança"
+
+msgid "{n} awaiting approval"
+msgstr "{n}aguardando aprovação"
+
+msgid "{n} drafts"
+msgstr "Rascunhos{n}"
+
+msgid "details below"
+msgstr "detalhes abaixo"
+
+msgid "no issues"
+msgstr "sem problemas"
+
+msgid "Network"
+msgstr "Rede"
+
+msgid "Errors"
+msgstr "Erros"
+
+msgid "By network"
+msgstr "Por rede"
+
+msgid "No posts in this period."
+msgstr "Nenhuma postagem neste período."
+
+msgid "Follower counts are collected once a day; first data appears tomorrow."
+msgstr "As contagens de seguidores são coletadas uma vez por dia; os primeiros dados aparecem amanhã."
+
+msgid "Top engaging posts"
+msgstr "Postagens mais envolventes"
+
+msgid "Metrics are collected twice a day after a post is published."
+msgstr "As métricas são coletadas duas vezes por dia após a publicação de uma postagem."
+
+msgid "Upcoming posts"
+msgstr "Próximas postagens"
+
+msgid "No scheduled posts."
+msgstr "Nenhuma postagem agendada."
+
+msgid "Recent errors"
+msgstr "Erros recentes"
+
+msgid "Metrics last updated: {t}"
+msgstr "Última atualização das métricas:{t}"
+
+msgid "Metrics not collected yet (once a day, at night)."
+msgstr "Métricas ainda não coletadas (uma vez por dia, à noite)."
+
+msgid "General"
+msgstr "Geral"
+
+msgid "Apps"
+msgstr "Aplicativos"
+
+msgid "Network settings"
+msgstr "Configurações de rede"
+
+msgid "Auto sharing"
+msgstr "Compartilhamento automático"
+
+msgid "Log"
+msgstr "Registro"
+
+msgid "never"
+msgstr "nunca"
+
+msgid "Approval and signature"
+msgstr "Aprovação e assinatura"
+
+msgid "Posts by people without publishing permission go to approval"
+msgstr "Postagens de pessoas sem permissão de publicação vão para aprovação"
+
+msgid "Permissions come from Flux Roles: Social media: prepare / publish / manage."
+msgstr "As permissões vêm do Flux. Funções: Mídia social: preparar/publicar/gerenciar."
+
+msgid "Add UTM to site links (utm_source=network)"
+msgstr "Adicionar UTM aos links do site (utm_source=network)"
+
+msgid "See how many visits each network brings in Analytics."
+msgstr "Veja quantas visitas cada rede traz no Analytics."
+
+msgid "Saved signature (added with one click in the composer)"
+msgstr "Assinatura salva (adicionada com um clique no compositor)"
+
+msgid "Save signature"
+msgstr "Salvar assinatura"
+
+msgid "Scheduled posts"
+msgstr "Postagens agendadas"
+
+msgid "WP-Cron is unreliable on Hostinger, so scheduled posts should be triggered from outside every minute. Create a job on cron-job.org (free) that calls this URL every minute. It also runs on its own while the panel is open and when a post is saved."
+msgstr "WP-Cron não é confiável na Hostinger, então postagens agendadas devem ser acionadas externamente a cada minuto. Crie um trabalho em cron-job.org (gratuito) que chame esse URL a cada minuto. Ele também funciona sozinho enquanto o painel está aberto e quando uma postagem é salva."
+
+msgid "Trigger URL (keep it secret)"
+msgstr "URL de gatilho (mantenha em segredo)"
+
+msgid "Copy"
+msgstr "Copiar"
+
+msgid "New key"
+msgstr "Nova chave"
+
+msgid "Regenerate the key?"
+msgstr "Regenerar a chave?"
+
+msgid "The old URL stops working; you must also change the URL on cron-job.org."
+msgstr "A URL antiga para de funcionar; você também deve alterar o URL em cron-job.org."
+
+msgid "Regenerate"
+msgstr "Regenerar"
+
+msgid "New key created."
+msgstr "Nova chave criada."
+
+msgid "External trigger"
+msgstr "Gatilho externo"
+
+msgid "Background request"
+msgstr "Solicitação em segundo plano"
+
+msgid "Panel"
+msgstr "Painel"
+
+msgid "Create your own developer app for each network and enter its keys here. Secret keys are stored encrypted and never shown again; type a new one to change it."
+msgstr "Crie seu próprio aplicativo de desenvolvedor para cada rede e insira suas chaves aqui. As chaves secretas são armazenadas criptografadas e nunca mais mostradas; digite um novo para alterá-lo."
+
+msgid "Saved (type to change)"
+msgstr "Salvo (digite para alterar)"
+
+msgid "Not entered"
+msgstr "Não inserido"
+
+msgid "optional"
+msgstr "opcional"
+
+msgid "Delete the key?"
+msgstr "Excluir a chave?"
+
+msgid "Accounts on this network cannot post until reconnected."
+msgstr "As contas nesta rede não podem postar até serem reconectadas."
+
+msgid "Delete saved key"
+msgstr "Excluir chave salva"
+
+msgid "Ready"
+msgstr "Pronto"
+
+msgid "No key"
+msgstr "Sem chave"
+
+msgid "No connection"
+msgstr "Sem conexão"
+
+msgid "Open developer console"
+msgstr "Abra o console do desenvolvedor"
+
+msgid "Redirect (callback) URL"
+msgstr "URL de redirecionamento (retorno de chamada)"
+
+msgid "API tier"
+msgstr "Camada de API"
+
+msgid "On the free tier only a few posts can be written per month and metrics are not read. Paid tiers (Basic/Pro or pay-as-you-go) also return metrics."
+msgstr "No nível gratuito, apenas algumas postagens podem ser escritas por mês e as métricas não são lidas. Os níveis pagos (Básico/Pro ou pré-pago) também retornam métricas."
+
+msgid "X Premium account (long posts, 25,000 characters)"
+msgstr "Conta X Premium (postagens longas, 25.000 caracteres)"
+
+msgid "Monthly post limit (0 = unlimited)"
+msgstr "Limite de postagem mensal (0 = ilimitado)"
+
+msgid "Sent this month: {n}. When the limit is reached new X posts are refused (to stay within the tier quota)."
+msgstr "Enviado este mês:{n}. Quando o limite é atingido, novos X posts são recusados ​​(para permanecer dentro da cota do nível)."
+
+msgid "Draft (lands in the TikTok app)"
+msgstr "Rascunho (chega ao aplicativo TikTok)"
+
+msgid "Direct post"
+msgstr "Postagem direta"
+
+msgid "Sharing mode"
+msgstr "Modo de compartilhamento"
+
+msgid "Direct posting requires your TikTok app to pass the audit; until then posted videos are visible only to you. Draft mode needs no audit."
+msgstr "A postagem direta exige que seu aplicativo TikTok seja aprovado na auditoria; até então, os vídeos postados são visíveis apenas para você. O modo rascunho não precisa de auditoria."
+
+msgid "Sandbox (trial access)"
+msgstr "Sandbox (acesso experimental)"
+
+msgid "Turn on if your Pinterest app does not have Standard access yet; pins are created only in the sandbox."
+msgstr "Ative caso seu aplicativo Pinterest ainda não tenha acesso Padrão; os pinos são criados apenas na sandbox."
+
+msgid "Also fetch company pages I manage"
+msgstr "Buscar também as páginas da empresa que eu gerencio"
+
+msgid "Requires Community Management API approval. Turn off if not approved; only the personal profile is connected."
+msgstr "Requer aprovação da API de gerenciamento de comunidade. Desligue se não for aprovado; apenas o perfil pessoal está conectado."
+
+msgid "Graph API version"
+msgstr "Versão da API gráfica"
+
+msgid "Meta retires old versions after two years; upgrade here if needed (e.g. v25.0)."
+msgstr "Meta retira versões antigas após dois anos; atualize aqui se necessário (por exemplo, v25.0)."
+
+msgid "Default connection"
+msgstr "Conexão padrão"
+
+msgid "default"
+msgstr "padrão"
+
+msgid "Evolution connection (Flux Mail)"
+msgstr "Conexão de evolução (Flux Mail)"
+
+msgid "No WhatsApp (Evolution) connection found in Flux Mail; Flux Chat settings are used."
+msgstr "Nenhuma conexão WhatsApp (Evolution) encontrada no Flux Mail; As configurações do Flux Chat são usadas."
+
+msgid "Create a draft (I review and send it)"
+msgstr "Crie um rascunho (eu reviso e envio)"
+
+msgid "Schedule automatically"
+msgstr "Agendar automaticamente"
+
+msgid "Share when a post is published on the site"
+msgstr "Compartilhe quando uma postagem for publicada no site"
+
+msgid "On"
+msgstr "Ligado"
+
+msgid "Which content types"
+msgstr "Quais tipos de conteúdo"
+
+msgid "Which accounts"
+msgstr "Quais contas"
+
+msgid "Connect an account first."
+msgstr "Conecte uma conta primeiro."
+
+msgid "Text template"
+msgstr "Modelo de texto"
+
+msgid "Available: {title} {excerpt} {link} {site} {author} {category} {tags}. The link creates the network's preview card."
+msgstr "Disponível:{title}{excerpt}{link}{site}{author}{category}{tags}. O link cria o cartão de visualização da rede."
+
+msgid "Add the featured image"
+msgstr "Adicione a imagem em destaque"
+
+msgid "What to do"
+msgstr "O que fazer"
+
+msgid "Share after how many minutes (if scheduling)"
+msgstr "Compartilhe depois de quantos minutos (se agendar)"
+
+msgid "Runs once per post. Accounts that break a network rule (e.g. Instagram without an image) stay as drafts."
+msgstr "É executado uma vez por postagem. Contas que violam uma regra da rede (por exemplo, Instagram sem imagem) permanecem como rascunhos."
+
+msgid "Last 200 entries (kept for 45 days)."
+msgstr "Últimas 200 entradas (mantidas por 45 dias)."
+
+msgid "No entries."
+msgstr "Nenhuma entrada."
+
+msgid "Social Media requires JavaScript."
+msgstr "A mídia social requer JavaScript."
+
+msgid "Flux AI & MCP is not installed or no key has been entered."
+msgstr "Flux AI & MCP não está instalado ou nenhuma chave foi inserida."
+
+msgid "Could not read the AI response, please try again."
+msgstr "Não foi possível ler a resposta da IA. Tente novamente."
+
+msgid "Social media"
+msgstr "Redes sociais"
+
+msgid "Database tables"
+msgstr "Tabelas de banco de dados"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "Tabela ausente:%s. Desative e reative o plugin."
+
+msgid "Tables are ready."
+msgstr "As mesas estão prontas."
+
+msgid "Key encryption"
+msgstr "Criptografia de chave"
+
+msgid "Keys and tokens are stored encrypted (sodium)."
+msgstr "Chaves e tokens são armazenados criptografados (sódio)."
+
+msgid "The PHP sodium extension is off; keys are stored with a weaker method. Turn on sodium under Hostinger › PHP extensions."
+msgstr "A extensão PHP sódio está desativada; as chaves são armazenadas com um método mais fraco. Ative o sódio em Hostinger › Extensões PHP."
+
+msgid "Network apps"
+msgstr "Aplicativos de rede"
+
+msgid "Keys entered: %s."
+msgstr "Chaves inseridas:%s."
+
+msgid "No network app keys entered. Social Media › Settings › Apps."
+msgstr "Nenhuma chave de aplicativo de rede foi inserida. Mídia social › Configurações › Aplicativos."
+
+msgid "Connected accounts"
+msgstr "Contas conectadas"
+
+msgid "No accounts connected yet."
+msgstr "Nenhuma conta conectada ainda."
+
+msgid "Accounts that need reconnecting: %s."
+msgstr "Contas que precisam ser reconectadas:%s."
+
+msgid "%d accounts connected and active."
+msgstr "Contas%dconectadas e ativas."
+
+msgid "External per-minute trigger is running."
+msgstr "O acionador externo por minuto está em execução."
+
+msgid "%d posts have been waiting for more than 5 minutes. Add the trigger URL from Settings › General to cron-job.org (every minute)."
+msgstr "As postagens%destão aguardando há mais de 5 minutos. Adicione o URL do gatilho em Configurações › Geral a cron-job.org (a cada minuto)."
+
+msgid "Posts are processed via WP-Cron and background requests; to publish on time, adding the trigger URL from Settings › General to cron-job.org (every minute) is recommended."
+msgstr "As postagens são processadas via WP-Cron e solicitações em segundo plano; para publicar no prazo, é recomendável adicionar o URL do acionador em Configurações › Geral a cron-job.org (a cada minuto)."
+
+msgid "The trigger has never run. Add the trigger URL from Settings › General to cron-job.org (every minute)."
+msgstr "O gatilho nunca foi executado. Adicione o URL do gatilho em Configurações › Geral a cron-job.org (a cada minuto)."
+
+msgid "Background request error:"
+msgstr "Erro de solicitação em segundo plano:"
+
+msgid "Failed shares"
+msgstr "Falha nos compartilhamentos"
+
+msgid "%d shares failed in the last 7 days. Posts › Failed."
+msgstr "Os compartilhamentos%dfalharam nos últimos 7 dias. Postagens › Falha."
+
+msgid "No failed shares in the last 7 days."
+msgstr "Nenhum compartilhamento com falha nos últimos 7 dias."
+
+msgid "Media URLs"
+msgstr "URLs de mídia"
+
+msgid "Instagram, TikTok and Facebook fetch images from the site's HTTPS address."
+msgstr "Instagram, TikTok e Facebook buscam imagens do endereço HTTPS do site."
+
+msgid "The site is not HTTPS; Instagram/TikTok/Facebook cannot fetch images and videos."
+msgstr "O site não é HTTPS; Instagram/TikTok/Facebook não pode buscar imagens e vídeos."
+
+msgid "Files folder"
+msgstr "Pasta de arquivos"
+
+msgid "wp-content/uploads/flxsm is writable (JPEG copies for Instagram)."
+msgstr "wp-content/uploads/flxsm é gravável (cópias JPEG para Instagram)."
+
+msgid "wp-content/uploads/flxsm is not writable; PNG/WebP images cannot be sent to Instagram."
+msgstr "wp-content/uploads/flxsm não é gravável; Imagens PNG/WebP não podem ser enviadas para o Instagram."
+
+msgid "AI writing help"
+msgstr "Ajuda para escrever IA"
+
+msgid "Flux AI ready: writing, shortening, adapting to networks."
+msgstr "Pronto para Flux AI: escrever, encurtar, adaptar às redes."
+
+msgid "Flux AI & MCP is not installed or has no key; AI buttons are hidden, sharing still works."
+msgstr "Flux AI & MCP não está instalado ou não possui chave; Os botões AI estão ocultos, o compartilhamento ainda funciona."
+
+msgid "Account or post not found."
+msgstr "Conta ou postagem não encontrada."
+
+msgid "Account is off."
+msgstr "A conta está desativada."
+
+msgid "The connection expired; reconnect it under Accounts."
+msgstr "A conexão expirou; reconecte-o em Contas."
+
+msgid "The post was published but the first comment could not be added: %s"
+msgstr "A postagem foi publicada, mas não foi possível adicionar o primeiro comentário:%s"
+
+msgid "Only a failed target can be retried."
+msgstr "Somente um destino com falha pode ser tentado novamente."
+
+msgid "This target is not published on the network."
+msgstr "Este alvo não é publicado na rede."
+
+msgid "Account not found."
+msgstr "Conta não encontrada."
+
+msgid "Social media: prepare posts"
+msgstr "Redes sociais: prepare postagens"
+
+msgid "Social media: publish and approve"
+msgstr "Mídia social: publicar e aprovar"
+
+msgid "Social media: accounts and settings"
+msgstr "Mídia social: contas e configurações"
+
+msgid "Unknown network."
+msgstr "Rede desconhecida."
+
+msgid "Connection session not found or expired; please try again."
+msgstr "Sessão de conexão não encontrada ou expirada; por favor tente novamente."
+
+msgid "The selection list expired; please reconnect."
+msgstr "A lista de seleção expirou; por favor reconecte."
+
+msgid "Login for Business configuration ID (optional)"
+msgstr "Login para ID de configuração comercial (opcional)"
+
+msgid "developers.facebook.com › Create app (Business type) › Facebook Login product › add the address below to Valid OAuth redirect URIs. For your own pages being an admin/developer of the app is enough; no App Review needed. An Instagram professional account linked to a Facebook page comes with the same login."
+msgstr "developers.facebook.com › Criar aplicativo (tipo empresarial) › Produto de login do Facebook › adicione o endereço abaixo aos URIs de redirecionamento OAuth válidos. Para suas próprias páginas, basta ser administrador/desenvolvedor do aplicativo; nenhuma revisão do aplicativo é necessária. Uma conta profissional do Instagram vinculada a uma página do Facebook vem com o mesmo login."
+
+msgid "Facebook page (+ linked Instagram)"
+msgstr "Página do Facebook (+ Instagram vinculado)"
+
+msgid "Instagram login (without a Facebook page)"
+msgstr "Login no Instagram (sem página no Facebook)"
+
+msgid "Add the \"Instagram\" product to the Meta app (API setup with Instagram login). Put the Instagram App ID/Secret from the product page here; the redirect URL is below. The account must be Business or Creator."
+msgstr "Adicione o produto \"Instagram\" ao aplicativo Meta (configuração da API com login do Instagram). Coloque aqui o ID/segredo do aplicativo Instagram da página do produto; o URL de redirecionamento está abaixo. A conta deve ser Business ou Creator."
+
+msgid "Instagram (Instagram login)"
+msgstr "Instagram (login no Instagram)"
+
+msgid "Google Cloud › APIs: enable YouTube Data API v3 (and for Business: My Business Account Management, Business Information, Google My Business API) › OAuth client (Web application) › authorized redirect URL below. In an unaudited project videos uploaded to YouTube stay \"Private\"; apply for the Google API audit to make them public. The Business Profile API requires access approval from Google."
+msgstr "Google Cloud › APIs: ativar a API de dados do YouTube v3 (e para empresas: gerenciamento de contas do My Business, informações comerciais, API do Google My Business) › cliente OAuth (aplicativo da Web) › URL de redirecionamento autorizado abaixo. Em um projeto não auditado, os vídeos enviados ao YouTube permanecem \"Privados\"; inscreva-se para a auditoria da API do Google para torná-los públicos. A API Business Profile requer aprovação de acesso do Google."
+
+msgid "YouTube channel"
+msgstr "Canal do YouTube"
+
+msgid "Google Business location"
+msgstr "Localização da empresa Google"
+
+msgid "developer.x.com › Project › App › User authentication settings: permission \"Read and write\", type \"Web App\", Callback URI the address below. Put the API Key and Secret from Keys and tokens here. Choose the tier below (the free tier has a low write limit and metrics are not read)."
+msgstr "developer.x.com › Projeto › Aplicativo › Configurações de autenticação do usuário: permissão \"Leitura e gravação\", digite \"Web App\", URI de retorno de chamada no endereço abaixo. Coloque a chave de API e o segredo de chaves e tokens aqui. Escolha o nível abaixo (o nível gratuito tem um limite de gravação baixo e as métricas não são lidas)."
+
+msgid "X account"
+msgstr "Conta X"
+
+msgid "API version (YYYYMM)"
+msgstr "Versão da API (AAAAMM)"
+
+msgid "linkedin.com/developers › App (linked to the organization page) › Products: \"Sign In with LinkedIn using OpenID Connect\" and \"Share on LinkedIn\" (personal); for company pages \"Community Management API\" (needs approval). Auth › Authorized redirect URL below."
+msgstr "linkedin.com/developers › Aplicativo (vinculado à página da organização) › Produtos: “Entrar no LinkedIn usando OpenID Connect” e “Compartilhar no LinkedIn” (pessoal); para páginas da empresa \"API de gerenciamento de comunidade\" (requer aprovação). Autenticação › URL de redirecionamento autorizado abaixo."
+
+msgid "LinkedIn profile / page"
+msgstr "Perfil/página do LinkedIn"
+
+msgid "developers.tiktok.com › App › add Login Kit + Content Posting API, Redirect URI below. Without the audit \"Draft\" mode is recommended: the video lands in the TikTok app and is published from there. For photo posts verify the site domain in TikTok (URL properties)."
+msgstr "Developers.tiktok.com › Aplicativo › adicionar kit de login + API de postagem de conteúdo, URI de redirecionamento abaixo. Sem a auditoria, o modo “Rascunho” é recomendado: o vídeo chega ao aplicativo TikTok e é publicado a partir daí. Para postagens de fotos, verifique o domínio do site no TikTok (propriedades de URL)."
+
+msgid "TikTok account"
+msgstr "Conta TikTok"
+
+msgid "developers.pinterest.com › App › Redirect URI below. Trial access works only in the sandbox; apply for Standard access."
+msgstr "Developers.pinterest.com › Aplicativo › Redirecionar URI abaixo. O acesso de teste funciona apenas no sandbox; solicite acesso padrão."
+
+msgid "Pinterest account"
+msgstr "Conta do Pinterest"
+
+msgid "The Evolution connection comes from Flux Mail (or Flux Chat); no key is entered here. Shares go to Status and groups."
+msgstr "A conexão do Evolution vem do Flux Mail (ou Flux Chat); nenhuma chave é inserida aqui. Os compartilhamentos vão para Status e grupos."
+
+msgid "WhatsApp Status / group"
+msgstr "Status/grupo do WhatsApp"
+
+msgid "Unknown app."
+msgstr "Aplicativo desconhecido."
+
+msgid "Login required."
+msgstr "Login necessário."
+
+msgid "You do not have social media permission."
+msgstr "Você não tem permissão de mídia social."
+
+msgid "You do not have permission for this action."
+msgstr "Você não tem permissão para esta ação."
+
+msgid "Record not found."
+msgstr "Registro não encontrado."
+
+msgid "You cannot change this post."
+msgstr "Você não pode alterar esta postagem."
+
+msgid "You cannot delete this post."
+msgstr "Você não pode excluir esta postagem."
+
+msgid "Could not delete on some networks; the post stays in the list."
+msgstr "Não foi possível excluir em algumas redes; a postagem permanece na lista."
+
+msgid "%s (copy)"
+msgstr "%s(cópia)"
+
+msgid "You do not have permission to upload files."
+msgstr "Você não tem permissão para fazer upload de arquivos."
+
+msgid "No file received."
+msgstr "Nenhum arquivo recebido."
+
+msgid "Account removed."
+msgstr "Conta removida."
+
+msgid "(deleted account)"
+msgstr "(conta excluída)"
+
+msgid "Post not found."
+msgstr "Postagem não encontrada."
+
+msgid "Unknown action."
+msgstr "Ação desconhecida."
+
+msgid "%s: the connection expired, reconnect it under Accounts."
+msgstr "%s: a conexão expirou, reconecte-a em Contas."
+
+msgid "Text can be at most %1$d characters (currently %2$d)."
+msgstr "O texto pode ter no máximo caracteres%1$d(atualmente%2$d)."
+
+msgid "This network does not accept GIFs; use an image or video."
+msgstr "Esta rede não aceita GIFs; use uma imagem ou vídeo."
+
+msgid "At most %d images."
+msgstr "No máximo imagens%d."
+
+msgid "At most %d videos."
+msgstr "No máximo vídeos%d."
+
+msgid "Images and video cannot be used together in one post."
+msgstr "Imagens e vídeos não podem ser usados juntos em uma postagem."
+
+msgid "Media files must be reachable at a public https address."
+msgstr "Os arquivos de mídia devem estar acessíveis em um endereço https público."
+
+msgid "This network does not connect via OAuth."
+msgstr "Esta rede não se conecta via OAuth."
+
+msgid "The connection expired, please reconnect."
+msgstr "A conexão expirou, reconecte."
+
+msgid "This network does not allow editing a published post."
+msgstr "Esta rede não permite a edição de uma postagem publicada."
+
+msgid "This network does not allow deleting posts via the API; delete it in the app."
+msgstr "Esta rede não permite a exclusão de postagens via API; exclua-o no aplicativo."
+
+msgid "First comment is not supported on this network."
+msgstr "O primeiro comentário não é suportado nesta rede."
+
+msgid "First enter this network's keys under Settings › Apps."
+msgstr "Primeiro insira as chaves desta rede em Configurações › Aplicativos."
+
+msgid "Choose a video for YouTube."
+msgstr "Escolha um vídeo para o YouTube."
+
+msgid "YouTube title can be at most 100 characters."
+msgstr "O título do YouTube pode ter no máximo 100 caracteres."
+
+msgid "YouTube does not accept < and > in the title and description."
+msgstr "O YouTube não aceita< and >no título e na descrição."
+
+msgid "This Google account has no YouTube channel."
+msgstr "Esta conta do Google não possui canal no YouTube."
+
+msgid "Video file not found on the server."
+msgstr "Arquivo de vídeo não encontrado no servidor."
+
+msgid "Could not read the video file."
+msgstr "Não foi possível ler o arquivo de vídeo."
+
+msgid "Video not found on YouTube."
+msgstr "Vídeo não encontrado no YouTube."
+
+msgid "An event/offer post needs a title and a start date."
+msgstr "Uma postagem de evento/oferta precisa de um título e uma data de início."
+
+msgid "Could not get business accounts (requires Google's Business Profile API access approval)"
+msgstr "Não foi possível obter contas comerciais (requer aprovação de acesso à API do Perfil Empresarial do Google)"
+
+msgid "No managed business location found on this Google account."
+msgstr "Nenhum local de empresa gerenciado foi encontrado nesta Conta do Google."
+
+msgid "LinkedIn could not process the video."
+msgstr "O LinkedIn não conseguiu processar o vídeo."
+
+msgid "LinkedIn video processing took too long."
+msgstr "O processamento de vídeo do LinkedIn demorou muito."
+
+msgid "No Facebook page you manage was found. Make sure you selected the pages during login."
+msgstr "Nenhuma página do Facebook que você gerencia foi encontrada. Certifique-se de selecionar as páginas durante o login."
+
+msgid "A story has a single image or video."
+msgstr "Uma história tem uma única imagem ou vídeo."
+
+msgid "Instagram accepts at most 30 hashtags."
+msgstr "O Instagram aceita no máximo 30 hashtags."
+
+msgid "Instagram feed image aspect ratio must be between 4:5 and 1.91:1 (except stories)."
+msgstr "A proporção da imagem do feed do Instagram deve estar entre 4:5 e 1,91:1 (exceto histórias)."
+
+msgid "First enter the keys under Settings › Apps › Instagram login."
+msgstr "Primeiro insira as chaves em Configurações › Aplicativos › Login do Instagram."
+
+msgid "Instagram could not process a carousel item (format/size not suitable)."
+msgstr "O Instagram não conseguiu processar um item do carrossel (formato/tamanho inadequado)."
+
+msgid "Instagram could not process the media. Video: MP4 (H.264/AAC), 3–90 s (Reels 15 min), up to 1 GB; image: JPEG, up to 8 MB."
+msgstr "O Instagram não conseguiu processar a mídia. Vídeo: MP4 (H.264/AAC), 3–90 s (Bobinas 15 min), até 1 GB; imagem: JPEG, até 8 MB."
+
+msgid "Instagram video processing did not finish in 30 minutes."
+msgstr "O processamento de vídeo do Instagram não terminou em 30 minutos."
+
+msgid "Pinterest title can be at most 100 characters."
+msgstr "O título do Pinterest pode ter no máximo 100 caracteres."
+
+msgid "Pinterest could not process the video."
+msgstr "O Pinterest não conseguiu processar o vídeo."
+
+msgid "Pinterest video processing took too long."
+msgstr "O processamento de vídeo do Pinterest demorou muito."
+
+msgid "Because the TikTok app has not been audited yet, only \"Only me\" visibility can be used."
+msgstr "Como o aplicativo TikTok ainda não foi auditado, apenas a visibilidade “Somente eu” pode ser usada."
+
+msgid "Draft sent to the TikTok app; publish it from the notification in the app."
+msgstr "Rascunho enviado para o aplicativo TikTok; publique-o a partir da notificação no aplicativo."
+
+msgid "TikTok processing took too long; check in the TikTok app."
+msgstr "O processamento do TikTok demorou muito; verifique no aplicativo TikTok."
+
+msgid "No WhatsApp connection. Set up an Evolution connection in Flux Mail or Flux Chat."
+msgstr "Sem conexão com WhatsApp. Configure uma conexão Evolution no Flux Mail ou Flux Chat."
+
+msgid "WhatsApp Status"
+msgstr "Status do WhatsApp"
+
+msgid "Free (no cost, low write limit, no metrics)"
+msgstr "Gratuito (sem custo, baixo limite de gravação, sem métricas)"
+
+msgid "Basic (paid monthly)"
+msgstr "Básico (pago mensalmente)"
+
+msgid "Pro (paid monthly)"
+msgstr "Pró (pago mensalmente)"
+
+msgid "Pay-as-you-go"
+msgstr "Pague conforme o uso"
+
+msgid "X: a video or GIF is shared on its own."
+msgstr "X: um vídeo ou GIF é compartilhado sozinho."
+
+msgid "The monthly limit of %d posts set for X has been reached."
+msgstr "O limite mensal de postagens%ddefinido para X foi atingido."
+
+msgid "First enter the API Key and API Key Secret under Settings › Apps › X."
+msgstr "Primeiro insira a chave de API e o segredo da chave de API em Configurações › Aplicativos › X."
+
+msgid "Connection refused."
+msgstr "Conexão recusada."
+
+msgid "Could not read the media file."
+msgstr "Não foi possível ler o arquivo de mídia."
+
+msgid "video could not be processed"
+msgstr "não foi possível processar o vídeo"
+
+msgid "Nothing this month"
+msgstr "Nada este mês"
+
+msgid "Delete this post?"
+msgstr "Excluir esta postagem?"
+
+msgid "Search posts"
+msgstr "Pesquisar postagens"
+
+msgid "Account enabled"
+msgstr "Conta ativada"
+
+msgid "Open the panel to connect an account."
+msgstr "Abra o painel para conectar uma conta."
+
+msgid "Account disabled"
+msgstr "Conta desativada"
+
+msgid "No accounts"
+msgstr "Nenhuma conta"
+
+msgid "Note"
+msgstr "Nota"
+
+msgid "Review"
+msgstr "Revisão"
+
+msgid "Approved"
+msgstr "Aprovado"
+
+msgid "Open in panel"
+msgstr "Abrir no painel"
+
+msgid "Deleted"
+msgstr "Excluído"
+
+msgid "New posts are composed in the media composer."
+msgstr "Novas postagens são compostas no compositor de mídia."
+
+msgid "Scheduled and published posts show up here."
+msgstr "Postagens agendadas e publicadas aparecem aqui."
+
+msgid "[['Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.', 'tr']]"
+msgstr "[['Gerenciamento de mídia social dentro do site: vinculação de contas (teclas do painel), conteúdo por conta, agendamento, edição/exclusão de rede, calendário, painel, assistência de escrita Flux AI e ferramentas MCP. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.', 'tr']]"

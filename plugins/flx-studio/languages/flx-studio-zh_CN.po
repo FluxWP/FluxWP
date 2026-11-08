@@ -1,0 +1,950 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: zh_CN\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "General"
+msgstr "一般"
+
+msgid "Person (face/identity)"
+msgstr "人(面孔/身份)"
+
+msgid "Style"
+msgstr "风格"
+
+msgid "Product"
+msgstr "产品展示"
+
+msgid "Background"
+msgstr "背景"
+
+msgid "Composition"
+msgstr "成分"
+
+msgid "First frame"
+msgstr "第一帧"
+
+msgid "Last frame"
+msgstr "最后一帧"
+
+msgid "Auto"
+msgstr "汽车"
+
+msgid "Low"
+msgstr "低"
+
+msgid "Medium"
+msgstr "中等"
+
+msgid "High"
+msgstr "高"
+
+msgid "Theme: system"
+msgstr "主题:系统"
+
+msgid "Theme: light"
+msgstr "主题:光"
+
+msgid "Theme: dark"
+msgstr "主题:黑暗"
+
+msgid "Opening Studio…"
+msgstr "开放工作室..."
+
+msgid "Try again"
+msgstr "再试一次"
+
+msgid "Search prompt, title or model"
+msgstr "搜索提示、标题或型号"
+
+msgid "Search"
+msgstr "搜索"
+
+msgid "Menu"
+msgstr "菜单"
+
+msgid "Select"
+msgstr "选择"
+
+msgid "To generate images and videos, enter at least one key (fal.ai, EvoLink…) in Flux AI & MCP › Settings › Images and video."
+msgstr "要生成图像和视频,请在 Flux AI & MCP › 设置 › 图像和视频中输入至少一个密钥(fal.ai、EvoLink...)。"
+
+msgid "Flux AI (0.6.0+) is not installed. Generation runs through Flux AI."
+msgstr "Flux AI (0.6.0+) 未安装。一代通过 Flux AI 运行。"
+
+msgid "Flux AI settings"
+msgstr "通量AI设置"
+
+msgid "Mine"
+msgstr "我的"
+
+msgid "Everyone"
+msgstr "大家"
+
+msgid "Studio"
+msgstr "工作室"
+
+msgid "All"
+msgstr "全部"
+
+msgid "Favorites"
+msgstr "收藏夹"
+
+msgid "Images"
+msgstr "图片"
+
+msgid "Videos"
+msgstr "视频"
+
+msgid "Dashboard"
+msgstr "仪表板"
+
+msgid "Folders"
+msgstr "文件夹"
+
+msgid "New folder"
+msgstr "新建文件夹"
+
+msgid "Unfiled"
+msgstr "未归档"
+
+msgid "Shared with the team"
+msgstr "与团队共享"
+
+msgid "Folder actions"
+msgstr "文件夹操作"
+
+msgid "People"
+msgstr "人"
+
+msgid "Add person"
+msgstr "添加人员"
+
+msgid "{name} — add to generation"
+msgstr "{name}— 添加到生成"
+
+msgid "Add people for face references; use them by typing @name in the prompt."
+msgstr "添加人脸参考;通过在提示中输入@name 来使用它们。"
+
+msgid "Manage people"
+msgstr "管理人员"
+
+msgid "Back to dashboard"
+msgstr "返回仪表板"
+
+msgid "Theme"
+msgstr "主题"
+
+msgid "Studio settings"
+msgstr "工作室设置"
+
+msgid "Flux AI spending limit"
+msgstr "Flux AI 支出限制"
+
+msgid "Folder"
+msgstr "文件夹"
+
+msgid "Subfolder"
+msgstr "子文件夹"
+
+msgid "Create"
+msgstr "创建"
+
+msgid "Folder created"
+msgstr "文件夹已创建"
+
+msgid "Rename"
+msgstr "重命名"
+
+msgid "Folder name"
+msgstr "文件夹名称"
+
+msgid "Stop sharing"
+msgstr "停止分享"
+
+msgid "Share with team"
+msgstr "与团队分享"
+
+msgid "Folder is shared with the team"
+msgstr "文件夹已与团队共享"
+
+msgid "Folder is private"
+msgstr "文件夹是私人的"
+
+msgid "Delete folder"
+msgstr "删除文件夹"
+
+msgid "Delete folder?"
+msgstr "删除文件夹?"
+
+msgid "Its items and subfolders move up one level; no files are deleted."
+msgstr "其项目和子文件夹上移一级;没有文件被删除。"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "{n} items moved"
+msgstr "{n}项目已移动"
+
+msgid "Nothing here"
+msgstr "这里什么都没有"
+
+msgid "Create your first image"
+msgstr "创建您的第一张图片"
+
+msgid "Change the filter or start a new generation below."
+msgstr "更改过滤器或在下面开始新一代。"
+
+msgid "Describe what you want below. Drag in reference images or add people with @."
+msgstr "请在下面描述您想要什么。拖入参考图像或使用 @ 添加人员。"
+
+msgid "Remove from favorites"
+msgstr "从收藏夹中删除"
+
+msgid "Add to favorites"
+msgstr "添加到收藏夹"
+
+msgid "Queued"
+msgstr "排队"
+
+msgid "Generating"
+msgstr "生成"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Cancelled"
+msgstr "取消"
+
+msgid "Failed"
+msgstr "失败"
+
+msgid "Reuse settings"
+msgstr "重用设置"
+
+msgid "{n} selected"
+msgstr "已选择{n}"
+
+msgid "Tap items to select"
+msgstr "点击要选择的项目"
+
+msgid "Use as reference"
+msgstr "用作参考"
+
+msgid "Move"
+msgstr "移动"
+
+msgid "Exit selection"
+msgstr "退出选择"
+
+msgid "New folder…"
+msgstr "新文件夹..."
+
+msgid "Delete {n} items?"
+msgstr "删除{n}项目吗?"
+
+msgid "Delete item?"
+msgstr "删除项目?"
+
+msgid "Files are deleted from the server. Copies added to the Media Library stay."
+msgstr "文件已从服务器中删除。添加到媒体库的副本将保留。"
+
+msgid "{n} items ready"
+msgstr "{n}项目已准备就绪"
+
+msgid "Generation ready"
+msgstr "一代已准备好"
+
+msgid "A generation failed"
+msgstr "一代人失败了"
+
+msgid "Remove"
+msgstr "删除"
+
+msgid "Add reference"
+msgstr "添加参考"
+
+msgid "What happens in the video? Subject, motion, camera… (add people with @)"
+msgstr "视频中发生了什么?主题、动作、相机......(用@添加人员)"
+
+msgid "What do you want to create? (add people with @, drop images here)"
+msgstr "你想创造什么? (用@添加人员,将图像拖放到此处)"
+
+msgid "Image"
+msgstr "图片"
+
+msgid "Video"
+msgstr "视频"
+
+msgid "Aspect ratio"
+msgstr "纵横比"
+
+msgid "Adaptive"
+msgstr "自适应"
+
+msgid "Resolution"
+msgstr "分辨率"
+
+msgid "Quality"
+msgstr "品质"
+
+msgid "Count"
+msgstr "计数"
+
+msgid "Duration"
+msgstr "持续时间"
+
+msgid "Audio"
+msgstr "音频"
+
+msgid "Provider and model"
+msgstr "提供商和型号"
+
+msgid "Choose model"
+msgstr "选择型号"
+
+msgid "No models"
+msgstr "没有型号"
+
+msgid "Generate (Ctrl/⌘+Enter)"
+msgstr "生成(Ctrl/⌘+Enter)"
+
+msgid "Generate"
+msgstr "生成"
+
+msgid "Templates"
+msgstr "模板"
+
+msgid "Several different prompts from one idea"
+msgstr "一个想法产生多种不同的提示"
+
+msgid "Flux AI text model is not ready"
+msgstr "Flux AI 文本模型尚未准备好"
+
+msgid "Brainstorm"
+msgstr "头脑风暴"
+
+msgid "Turn the draft into a detailed prompt for the model"
+msgstr "将草稿变成模型的详细提示"
+
+msgid "Enhance"
+msgstr "增强"
+
+msgid "Provider"
+msgstr "提供者"
+
+msgid "{n} models"
+msgstr "{n}型号"
+
+msgid "no key"
+msgstr "没有钥匙"
+
+msgid "No {p} key (Flux AI & MCP › Settings › Images and video)."
+msgstr "无{p}键(Flux AI 和 MCP › 设置 › 图像和视频)。"
+
+msgid "This reference is already added"
+msgstr "此参考已添加"
+
+msgid "This model accepts at most {n} references"
+msgstr "该模型最多接受{n}引用"
+
+msgid "Save to references"
+msgstr "保存到参考文献"
+
+msgid "Saved"
+msgstr "已保存"
+
+msgid "Upload file"
+msgstr "上传文件"
+
+msgid "Pick from gallery"
+msgstr "从图库中挑选"
+
+msgid "{n} photos"
+msgstr "{n}照片"
+
+msgid "no photos"
+msgstr "没有照片"
+
+msgid "Saved references"
+msgstr "已保存的参考文献"
+
+msgid "Reference"
+msgstr "参考"
+
+msgid "Only PNG, JPEG, WebP or GIF can be added."
+msgstr "只能添加 PNG、JPEG、WebP 或 GIF。"
+
+msgid "Pick references from gallery"
+msgstr "从图库中选择参考文献"
+
+msgid "Add"
+msgstr "添加"
+
+msgid "No images yet."
+msgstr "还没有图像。"
+
+msgid "{name} has no photos; add some in Manage people"
+msgstr "{name}没有照片;在管理人员中添加一些"
+
+msgid "Write a short draft first."
+msgstr "先写一个小草稿。"
+
+msgid "Prompt enhanced"
+msgstr "提示增强"
+
+msgid "Back to draft"
+msgstr "返回草稿"
+
+msgid "Describe what to generate."
+msgstr "描述要生成什么。"
+
+msgid "References are uploading, one moment…"
+msgstr "参考文献正在上传,稍等..."
+
+msgid "team"
+msgstr "团队"
+
+msgid "No templates yet"
+msgstr "还没有模板"
+
+msgid "Save current settings"
+msgstr "保存当前设置"
+
+msgid "Delete template…"
+msgstr "删除模板..."
+
+msgid "E.g. Event poster 4:5"
+msgstr "例如活动海报 4:5"
+
+msgid "Save as template"
+msgstr "另存为模板"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "Prompt, model, ratio, resolution and references are saved."
+msgstr "保存提示、型号、比率、分辨率和参考。"
+
+msgid "Template saved"
+msgstr "模板已保存"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Previous"
+msgstr "上一页"
+
+msgid "Next"
+msgstr "下一步"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Model"
+msgstr "型号"
+
+msgid "Size"
+msgstr "尺寸"
+
+msgid "Cost"
+msgstr "成本"
+
+msgid "Date"
+msgstr "日期"
+
+msgid "Created by"
+msgstr "创建者:"
+
+msgid "Favorited"
+msgstr "已收藏"
+
+msgid "Favorite"
+msgstr "最爱"
+
+msgid "Download"
+msgstr "下载"
+
+msgid "Added to references"
+msgstr "添加到参考文献"
+
+msgid "Edit area"
+msgstr "编辑区"
+
+msgid "This model does not support area editing"
+msgstr "该机型不支持区域编辑"
+
+msgid "Close comparison"
+msgstr "近距离比较"
+
+msgid "Compare with original"
+msgstr "与原版比较"
+
+msgid "In library"
+msgstr "在图书馆"
+
+msgid "Add to Media Library"
+msgstr "添加到媒体库"
+
+msgid "Add title"
+msgstr "添加标题"
+
+msgid "Title"
+msgstr "标题"
+
+msgid "Copy prompt"
+msgstr "复制提示"
+
+msgid "Original draft"
+msgstr "原稿"
+
+msgid "Already in the Media Library"
+msgstr "已在媒体库中"
+
+msgid "Added to the Media Library"
+msgstr "添加到媒体库"
+
+msgid "No model with area editing and a configured key."
+msgstr "没有具有区域编辑和配置键的模型。"
+
+msgid "Edit started; the result will appear in the gallery"
+msgstr "编辑开始;结果将出现在图库中"
+
+msgid "Describe the idea: e.g. Instagram post for the 11 November tree planting event"
+msgstr "描述这个想法:例如11 月 11 日植树活动的 Instagram 帖子"
+
+msgid "Number of ideas"
+msgstr "想法数量"
+
+msgid "{n} ideas"
+msgstr "{n}想法"
+
+msgid "YouTube thumbnail"
+msgstr "YouTube 缩略图"
+
+msgid "Generate ideas"
+msgstr "产生想法"
+
+msgid "Preparing ideas…"
+msgstr "准备想法..."
+
+msgid "Generate selected ({n})"
+msgstr "生成选定的({n})"
+
+msgid "{n} generations started"
+msgstr "{n}代开始"
+
+msgid "Sending {i}/{n}"
+msgstr "发送{i}/{n}"
+
+msgid "Creates distinct prompts from one idea. Pick the ones you like and generate them in one go. Model and ratio come from the generation bar."
+msgstr "从一个想法创建不同的提示。选择您喜欢的并一次性生成它们。型号和比例来自生成栏。"
+
+msgid "Idea"
+msgstr "理念"
+
+msgid "No people yet. Add a person and upload 1-4 clear face photos; typing @name in the prompt sends them as identity references."
+msgstr "还没有人。添加人员并上传1-4张清晰人脸照片;在提示中输入 @name 将它们作为身份引用发送。"
+
+msgid "Delete photo"
+msgstr "删除照片"
+
+msgid "Add photo"
+msgstr "添加照片"
+
+msgid "Person name"
+msgstr "人名"
+
+msgid "Delete person"
+msgstr "删除人"
+
+msgid "Delete {name}?"
+msgstr "删除{name}吗?"
+
+msgid "The person and their photos are deleted. Earlier generations stay."
+msgstr "The person and their photos are deleted. Earlier generations stay."
+
+msgid "New person"
+msgstr "新人"
+
+msgid "Default image model"
+msgstr "默认图像模型"
+
+msgid "Default video model"
+msgstr "默认视频模型"
+
+msgid "Empty: Flux AI default"
+msgstr "空:Flux AI 默认"
+
+msgid "Enhance / Brainstorm text model"
+msgstr "增强/头脑风暴文本模型"
+
+msgid "Max images per request"
+msgstr "每个请求的最大图像数"
+
+msgid "Max brainstorm ideas"
+msgstr "最大集思广益的想法"
+
+msgid "Share people with all Studio users"
+msgstr "与所有 Studio 用户共享人员"
+
+msgid "Keys, providers and the spending limit are in Flux AI & MCP › Settings."
+msgstr "密钥、提供商和支出限额位于 Flux AI 和 MCP › 设置中。"
+
+msgid "Settings saved"
+msgstr "设置已保存"
+
+msgid "just now"
+msgstr "刚才"
+
+msgid "{n} min ago"
+msgstr "{n}分钟前"
+
+msgid "{n} h ago"
+msgstr "{n}小时前"
+
+msgid "Server error ({n})."
+msgstr "服务器错误({n})。"
+
+msgid "Unexpected response from the server."
+msgstr "来自服务器的意外响应。"
+
+msgid "Something went wrong."
+msgstr "出了点问题。"
+
+msgid "OK"
+msgstr "好的"
+
+msgid "Copied"
+msgstr "已复制"
+
+msgid "7 days"
+msgstr "7天"
+
+msgid "30 days"
+msgstr "30天"
+
+msgid "90 days"
+msgstr "90天"
+
+msgid "Spend from Flux AI logs"
+msgstr "Flux AI 日志中的支出"
+
+msgid "Flux AI logs unavailable; Studio amounts"
+msgstr "Flux AI 日志不可用;工作室金额"
+
+msgid "Refresh"
+msgstr "刷新"
+
+msgid "(estimated)"
+msgstr "(估计)"
+
+msgid "Generations"
+msgstr "几代人"
+
+msgid "{i} images · {v} videos"
+msgstr "{i}图像 ·{v}视频"
+
+msgid "Spend"
+msgstr "花费"
+
+msgid "Image/video {m} · text {x}"
+msgstr "图片/视频{m}· 文本{x}"
+
+msgid "Average"
+msgstr "平均"
+
+msgid "per generation"
+msgstr "每一代"
+
+msgid "{p}% error rate"
+msgstr "{p}% 错误率"
+
+msgid "no attempts yet"
+msgstr "尚未尝试"
+
+msgid "Storage {b}"
+msgstr "存储{b}"
+
+msgid "Daily generations"
+msgstr "每日世代"
+
+msgid "No generations in this period."
+msgstr "此时期无后代。"
+
+msgid "Daily spend"
+msgstr "日常消费"
+
+msgid "No spend in this period."
+msgstr "在此期间没有花费。"
+
+msgid "Flux AI logs"
+msgstr "Flux AI 日志"
+
+msgid "Models"
+msgstr "型号"
+
+msgid "Errors"
+msgstr "错误"
+
+msgid "Amount"
+msgstr "金额"
+
+msgid "No records."
+msgstr "没有记录。"
+
+msgid "Providers"
+msgstr "供应商"
+
+msgid "Person"
+msgstr "人"
+
+msgid "Recent errors"
+msgstr "最近的错误"
+
+msgid "Brush"
+msgstr "刷子"
+
+msgid "Rectangle"
+msgstr "矩形"
+
+msgid "Eraser"
+msgstr "橡皮擦"
+
+msgid "Brush size"
+msgstr "刷子尺寸"
+
+msgid "Undo"
+msgstr "撤消"
+
+msgid "Clear"
+msgstr "清除"
+
+msgid "What should change in the selected area? E.g. make the T-shirt green, change the text to \"Plant a Tree\""
+msgstr "所选区域应该改变什么?例如。将 T 恤设为绿色,将文字更改为“种植一棵树”"
+
+msgid "Edit"
+msgstr "编辑"
+
+msgid "Describe the change."
+msgstr "描述一下变化。"
+
+msgid "Tool"
+msgstr "工具"
+
+msgid "Paint the area to change. Unpainted areas are kept."
+msgstr "绘制要更改的区域。保留未涂漆的区域。"
+
+msgid "Change"
+msgstr "改变"
+
+msgid "Before"
+msgstr "之前"
+
+msgid "After"
+msgstr "之后"
+
+msgid "Studio requires JavaScript."
+msgstr "Studio 需要 JavaScript。"
+
+msgid "Flux AI (0.6.0+) is not installed or image generation is off."
+msgstr "Flux AI (0.6.0+) 未安装或图像生成已关闭。"
+
+msgid "Model not found. Check the keys in Flux AI & MCP › Settings › Images and video."
+msgstr "未找到型号。检查 Flux AI & MCP › 设置 › 图像和视频中的按键。"
+
+msgid "Image to edit not found."
+msgstr "找不到要编辑的图像。"
+
+msgid "This model does not support area editing."
+msgstr "该型号不支持区域编辑。"
+
+msgid "Mask must be a PNG."
+msgstr "蒙版必须是 PNG。"
+
+msgid "The request may have reached the provider; check the provider's history before sending again."
+msgstr "请求可能已到达提供商;再次发送之前请检查提供商的历史记录。"
+
+msgid "Sending did not complete, please try again."
+msgstr "发送未完成,请重试。"
+
+msgid "The provider returned fewer results than requested."
+msgstr "提供商返回的结果少于请求的结果。"
+
+msgid "The file is hosted temporarily by the provider; add it to the Media Library or download it."
+msgstr "文件由提供商临时托管;将其添加到媒体库或下载。"
+
+msgid "Cancelled."
+msgstr "已取消。"
+
+msgid "Generation failed."
+msgstr "一代失败。"
+
+msgid "Flux AI text model is not ready (Flux AI & MCP › Settings)."
+msgstr "Flux AI 文本模型尚未准备好(Flux AI 和 MCP › 设置)。"
+
+msgid "Briefly describe the idea first."
+msgstr "先简单描述一下想法。"
+
+msgid "The model did not return a valid idea list. Try again."
+msgstr "该模型未返回有效的想法列表。再试一次。"
+
+msgid "Open"
+msgstr "打开"
+
+msgid "Database tables"
+msgstr "数据库表"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "缺少表:%s。停用并重新激活插件。"
+
+msgid "Tables are ready."
+msgstr "桌子已经准备好了。"
+
+msgid "File folder"
+msgstr "文件夹"
+
+msgid "wp-content/uploads/flx-studio is writable."
+msgstr "wp-content/uploads/flx-studio 是可写的。"
+
+msgid "wp-content/uploads/flx-studio could not be created or is not writable; references and thumbnails cannot be saved."
+msgstr "wp-content/uploads/flx-studio 无法创建或不可写;无法保存参考和缩略图。"
+
+msgid "Image and video backend"
+msgstr "图片和视频后端"
+
+msgid "Flux AI 0.6.0 or newer is required (image/video generation runs through Flux AI)."
+msgstr "需要 Flux AI 0.6.0 或更高版本(图像/视频生成通过 Flux AI 运行)。"
+
+msgid "Plugins"
+msgstr "插件"
+
+msgid "No model has a key. Enter a fal.ai, EvoLink or other key in Flux AI & MCP › Settings › Images and video."
+msgstr "没有模型有钥匙。在 Flux AI & MCP › 设置 › 图像和视频中输入 fal.ai、EvoLink 或其他密钥。"
+
+msgid "Flux AI"
+msgstr "通量人工智能"
+
+msgid "%1$d models available (%2$s)."
+msgstr "提供%1$d型号 (%2$s)。"
+
+msgid "Enhance and Brainstorm"
+msgstr "强化和集思广益"
+
+msgid "Flux AI text model is ready."
+msgstr "Flux AI 文本模型已准备就绪。"
+
+msgid "Flux AI text model is not ready; prompt enhancement and ideas are unavailable, generation still works."
+msgstr "Flux AI文本模型尚未准备好;即时增强和想法不可用,生成仍然有效。"
+
+msgid "Reference images"
+msgstr "参考图片"
+
+msgid "References are sent to the provider by site URL."
+msgstr "参考资料通过站点 URL 发送给提供商。"
+
+msgid "The site is not HTTPS; references are sent inline (base64), making requests larger."
+msgstr "该网站不是 HTTPS;引用是内联发送的(base64),使得请求更大。"
+
+msgid "Studio: generate images/videos"
+msgstr "Studio:生成图像/视频"
+
+msgid "Studio: all galleries and settings"
+msgstr "工作室:所有画廊和设置"
+
+msgid "The file is empty."
+msgstr "文件为空。"
+
+msgid "The file exceeds the %d MB limit."
+msgstr "文件超出%dMB 限制。"
+
+msgid "This file type is not supported."
+msgstr "不支持此文件类型。"
+
+msgid "The file could not be saved."
+msgstr "无法保存文件。"
+
+msgid "Reference image not found."
+msgstr "未找到参考图像。"
+
+msgid "Person not found."
+msgstr "未找到人。"
+
+msgid "At most %d reference images can be used."
+msgstr "最多可以使用%d参考图像。"
+
+msgid "The file is not on the server."
+msgstr "该文件不在服务器上。"
+
+msgid "Login required."
+msgstr "需要登录。"
+
+msgid "You do not have access to Studio."
+msgstr "您无权访问 Studio。"
+
+msgid "You are not allowed to do this."
+msgstr "你不可以这样做。"
+
+msgid "Record not found."
+msgstr "未找到记录。"
+
+msgid "The file could not be uploaded."
+msgstr "文件无法上传。"
+
+msgid "No file received."
+msgstr "没有收到文件。"
+
+msgid "You cannot move items to this folder."
+msgstr "您无法将项目移至此文件夹。"
+
+msgid "You are not allowed to add to the Media Library."
+msgstr "不允许您添加到媒体库。"
+
+msgid "Folder name is required."
+msgstr "文件夹名称为必填项。"
+
+msgid "Person name is required."
+msgstr "人名是必填项。"
+
+msgid "Template name is required."
+msgstr "模板名称为必填项。"
+
+msgid "Deleted user"
+msgstr "已删除用户"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Gallery"
+msgstr "画廊"
+
+msgid "Gallery is empty"
+msgstr "画廊是空的"
+
+msgid "Search the gallery"
+msgstr "搜索画廊"
+
+msgid "Working"
+msgstr "工作"
+
+msgid "Open in panel"
+msgstr "在面板中打开"
+
+msgid "Owner"
+msgstr "业主"
+
+msgid "Type"
+msgstr "类型"
+
+msgid "Star"
+msgstr "明星"
+
+msgid "Starred"
+msgstr "已加星标"
+
+msgid "Generated images are listed here. The production screen opens in the app later."
+msgstr "此处列出了生成的图像。稍后会在应用程序中打开生产屏幕。"
+
+msgid "Prompt"
+msgstr "提示"
+
+msgid "[['Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).', 'tr']]"
+msgstr "[['具有人工智能的视觉和视频工作室:制作、参考和联系人、现场编辑、开发和头脑风暴、带有文件夹的画廊。通过 Flux AI 进行生产(fal.ai、EvoLink、OpenAI、Gemini、OpenRouter)。', 'tr']]"

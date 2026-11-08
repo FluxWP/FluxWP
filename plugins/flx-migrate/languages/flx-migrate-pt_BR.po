@@ -1,0 +1,177 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: pt_BR\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "%d rows"
+msgstr "Linhas%d"
+
+msgid "%1$d files, %2$s"
+msgstr "Arquivos%1$d,%2$s"
+
+msgid "Content may still use image URLs from this theme; check your pages first."
+msgstr "O conteúdo ainda pode usar URLs de imagens deste tema; verifique suas páginas primeiro."
+
+msgid "%d old settings"
+msgstr "%dconfigurações antigas"
+
+msgid "Old tables"
+msgstr "Mesas antigas"
+
+msgid "Backup tables (sample data of the new plugins)"
+msgstr "Tabelas de backup (dados de amostra dos novos plugins)"
+
+msgid "Old upload folders"
+msgstr "Pastas de upload antigas"
+
+msgid "Old plugins (inactive)"
+msgstr "Plug-ins antigos (inativos)"
+
+msgid "Old themes"
+msgstr "Temas antigos"
+
+msgid "Old settings"
+msgstr "Configurações antigas"
+
+msgid "Leftovers"
+msgstr "Sobras"
+
+msgid "%d items deleted."
+msgstr "Itens%dexcluídos."
+
+msgid "Could not delete:"
+msgstr "Não foi possível excluir:"
+
+msgid "No tables, folders, plugins or settings with old names are left."
+msgstr "Não sobraram tabelas, pastas, plugins ou configurações com nomes antigos."
+
+msgid "What is left under the old names after the migration. Delete it once you have checked that the site works with the new plugins; deleting cannot be undone, take a backup first."
+msgstr "O que resta com os nomes antigos após a migração. Exclua-o depois de verificar se o site funciona com os novos plugins; a exclusão não pode ser desfeita, faça um backup primeiro."
+
+msgid "The selected items will be deleted permanently. Did you take a backup?"
+msgstr "Os itens selecionados serão excluídos permanentemente. Você fez um backup?"
+
+msgid "What"
+msgstr "O que"
+
+msgid "Details"
+msgstr "Detalhes"
+
+msgid "Delete selected"
+msgstr "Excluir selecionado"
+
+msgid "Finish the migration first."
+msgstr "Conclua a migração primeiro."
+
+msgid "WooCommerce orders"
+msgstr "Pedidos WooCommerce"
+
+msgid "Order items"
+msgstr "Encomendar itens"
+
+msgid "Encrypted settings (passwords, keys)"
+msgstr "Configurações criptografadas (senhas, chaves)"
+
+msgid "Sodium is missing: encrypted settings could not be moved, enter them again in the panel."
+msgstr "Falta sódio: as configurações criptografadas não puderam ser movidas, insira-as novamente no painel."
+
+msgid "%d encrypted values could not be opened (the site keys may have changed); enter them again in the panel."
+msgstr "Os valores criptografados%dnão puderam ser abertos (as chaves do site podem ter sido alteradas); insira-os novamente no painel."
+
+msgid "Moves site data saved under the old package names (settings, tables, meta, content, theme, upload folders) to the FluxWP names. The name map is in map.json."
+msgstr "Move os dados do site salvos com os nomes de pacotes antigos (configurações, tabelas, meta, conteúdo, tema, pastas de upload) para os nomes do FluxWP. O mapa de nomes está em map.json."
+
+msgid "%1$s is empty, %2$s was left as it is."
+msgstr "%1$sestá vazio,%2$sfoi deixado como está."
+
+msgid "%1$s was not empty: it was backed up as %2$s and replaced by %3$s."
+msgstr "%1$snão estava vazio: foi feito backup como%2$se substituído por%3$s."
+
+msgid "%3$d items from %1$s were moved into %2$s."
+msgstr "%3$ditens de%1$sforam movidos para%2$s."
+
+msgid "%2$d files in %1$s already existed in the new folder; the old copies were left in place."
+msgstr "Os arquivos%2$dem%1$sjá existiam na nova pasta; as cópias antigas foram deixadas no lugar."
+
+msgid "Step"
+msgstr "Passo"
+
+msgid "The old update-server address and site key were removed. Enter the new server's key under FluxWP Panel › Settings."
+msgstr "O antigo endereço do servidor de atualização e a chave do site foram removidos. Insira a chave do novo servidor em Painel FluxWP › Configurações."
+
+msgid "Migrate"
+msgstr "Migrar"
+
+msgid "Migration finished on %s. You can delete this plugin now."
+msgstr "A migração foi concluída em%s. Você pode excluir este plugin agora."
+
+msgid "Migration finished. Check that the new plugins are active and clear the cache."
+msgstr "Migração concluída. Verifique se os novos plugins estão ativos e limpe o cache."
+
+msgid "Settings (options)"
+msgstr "Configurações (opções)"
+
+msgid "Finish"
+msgstr "Concluir"
+
+msgid "To change"
+msgstr "Para mudar"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Moves data saved under the old names to the new names. Take a backup first, upload the new plugins and theme (do not activate them), then click \"Scan\" and after that \"Migrate\"."
+msgstr "Move os dados salvos com os nomes antigos para os novos nomes. Faça um backup primeiro, carregue os novos plugins e tema (não os ative), depois clique em “Scan” e depois em “Migrar”."
+
+msgid "Error"
+msgstr "Erro"
+
+msgid "User meta"
+msgstr "Meta do usuário"
+
+msgid "Table contents"
+msgstr "Conteúdo da tabela"
+
+msgid "Tables"
+msgstr "Tabelas"
+
+msgid "Taxonomies"
+msgstr "Taxonomias"
+
+msgid "Done"
+msgstr "Concluído"
+
+msgid "Scan"
+msgstr "Digitalizar"
+
+msgid "Theme"
+msgstr "Tema"
+
+msgid "Term meta"
+msgstr "Termo meta"
+
+msgid "Data will be moved to the new names. Did you take a backup?"
+msgstr "Os dados serão movidos para os novos nomes. Você fez um backup?"
+
+msgid "Post meta"
+msgstr "Postar meta"
+
+msgid "Posts and pages"
+msgstr "Postagens e páginas"
+
+msgid "Upload folders"
+msgstr "Carregar pastas"
+
+msgid "Working…"
+msgstr "Trabalhando..."
+
+msgid "Upload these new packages first (do not activate them):"
+msgstr "Faça upload desses novos pacotes primeiro (não os ative):"
+
+msgid "[['%drow', 'tr']]"
+msgid_plural "[['%drow', 'tr']]"
+msgstr[0] "[['%dlinha', 'tr']]"
+msgstr[1] "[['%dlinha', 'tr']]"
+
+msgid "[['%dold setting', 'tr']]"
+msgid_plural "[['%dold setting', 'tr']]"
+msgstr[0] "[['%dconfiguração antiga', 'tr']]"
+msgstr[1] "[['%dconfiguração antiga', 'tr']]"

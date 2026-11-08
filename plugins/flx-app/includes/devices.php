@@ -217,9 +217,9 @@ add_action(
 
 function flxapp_grant_permission() {
 	if ( ! is_user_logged_in() ) {
-		return new WP_Error( 'rest_forbidden', __( 'Giriş gerekli.', 'flx-app' ), array( 'status' => 401 ) );
+		return new WP_Error( 'rest_forbidden', __( 'Sign-in required.', 'flx-app' ), array( 'status' => 401 ) );
 	}
-	return flxapp_current_grant() ? true : new WP_Error( 'flxapp_no_grant', __( 'Bu işlem yalnız uygulama oturumuyla (OAuth) yapılır.', 'flx-app' ), array( 'status' => 403 ) );
+	return flxapp_current_grant() ? true : new WP_Error( 'flxapp_no_grant', __( 'This works only with an app session (OAuth).', 'flx-app' ), array( 'status' => 403 ) );
 }
 
 function flxapp_rest_device_save( WP_REST_Request $req ) {
@@ -228,7 +228,7 @@ function flxapp_rest_device_save( WP_REST_Request $req ) {
 	if ( array_key_exists( 'token', $b ) ) {
 		$p = flxapp_push_clean( $b['token'], $b['provider'] ?? '' );
 		if ( null === $p ) {
-			return new WP_Error( 'flxapp_push_token', __( 'Push belirteci tanınmadı.', 'flx-app' ), array( 'status' => 400 ) );
+			return new WP_Error( 'flxapp_push_token', __( 'Push token not recognised.', 'flx-app' ), array( 'status' => 400 ) );
 		}
 		list( $data['token'], $data['provider'] ) = $p;
 	}
@@ -243,7 +243,7 @@ function flxapp_rest_devices() {
 function flxapp_rest_device_delete( WP_REST_Request $req ) {
 	$row = flxapp_device_get( (int) $req['id'] );
 	if ( ! $row || ( (int) $row['user_id'] !== get_current_user_id() && ! current_user_can( 'manage_options' ) ) ) {
-		return new WP_Error( 'flxapp_not_found', __( 'Cihaz bulunamadı.', 'flx-app' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxapp_not_found', __( 'Device not found.', 'flx-app' ), array( 'status' => 404 ) );
 	}
 	flxapp_device_revoke( $row );
 	return array( 'ok' => true );

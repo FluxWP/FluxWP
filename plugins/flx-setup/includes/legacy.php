@@ -54,7 +54,7 @@ add_action(
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
 		deactivate_plugins( FLXK_LEGACY_UPDATER, true, is_plugin_active_for_network( FLXK_LEGACY_UPDATER ) );
-		set_transient( 'flxk_notice', array( 'ok', __( 'Flux Updater artık FluxWP Panel\'in parçası; eski eklenti kapatıldı, ayarları korundu. Eklentiler ekranından silebilirsiniz.', 'flx-setup' ) ), 120 );
+		set_transient( 'flxk_notice', array( 'ok', __( 'Flux Updater is now part of FluxWP Panel; the old plugin was deactivated and its settings were kept. You can delete it from the Plugins screen.', 'flx-setup' ) ), 120 );
 	},
 	1
 );

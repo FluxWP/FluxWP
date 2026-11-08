@@ -1,0 +1,1475 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Mobile app: daily active accounts"
+msgstr "モバイルアプリ: 毎日のアクティブなアカウント"
+
+msgid "UTC day / platform"
+msgstr "UTC 日 / プラットフォーム"
+
+msgid "Consenting accounts"
+msgstr "同意アカウント"
+
+msgid "No eligible totals yet. Both device and site consent are required; cohorts below five accounts per site/platform/day are withheld. Country is the configured site country, not a person’s location. The same person may count on multiple sites or platforms."
+msgstr "対象となる合計はまだありません。デバイスとサイトの両方の同意が必要です。サイト、プラットフォーム、1 日あたり 5 アカウント未満のコホートは保留されます。国は、個人の所在地ではなく、設定されたサイトの国です。同じ人物が複数のサイトまたはプラットフォームを利用している場合があります。"
+
+msgid "Statistics"
+msgstr "統計"
+
+msgid "Site Analytics"
+msgstr "サイト分析"
+
+msgid "Journeys"
+msgstr "旅"
+
+msgid "Site Analytics settings"
+msgstr "サイト分析設定"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "You are not allowed to view this page."
+msgstr "このページの閲覧は許可されていません。"
+
+msgid "This screen requires JavaScript."
+msgstr "この画面にはJavaScriptが必要です。"
+
+msgid "Settings saved."
+msgstr "設定が保存されました。"
+
+msgid "All statistics were deleted."
+msgstr "すべての統計が削除されました。"
+
+msgid "Koko Analytics data imported: %s rows."
+msgstr "Koko Analytics データがインポートされました:%s行。"
+
+msgid "%s visit rows processed."
+msgstr "%s訪問行が処理されました。"
+
+msgid "Counting"
+msgstr "数える"
+
+msgid "Count visits"
+msgstr "訪問数をカウントする"
+
+msgid "On"
+msgstr "オン"
+
+msgid "No IP address or browser data is stored. A visitor is recognised only within the same day by a random key that is deleted the next day. A cookie is set only for visitors who arrive via a referral link (?r=code); it holds only the code (30 days). Mention in your privacy policy that statistics are collected."
+msgstr "IP アドレスやブラウザのデータは保存されません。訪問者はランダムなキーによってその日のうちにのみ認識され、翌日には削除されます。 Cookie は、紹介リンク (?r=code) 経由で到着した訪問者に対してのみ設定されます。コード (30 日間) のみが保持されます。統計が収集されることをプライバシー ポリシーに明記してください。"
+
+msgid "Collection method"
+msgstr "収集方法"
+
+msgid "Automatic (recommended)"
+msgstr "自動 (推奨)"
+
+msgid "Fast endpoint (WordPress is not loaded)"
+msgstr "高速エンドポイント (WordPress はロードされていません)"
+
+msgid "WordPress REST"
+msgstr "WordPress REST"
+
+msgid "Now: fast endpoint"
+msgstr "現在: 高速エンドポイント"
+
+msgid "Now: REST"
+msgstr "今: 休息"
+
+msgid "Automatic: the fast endpoint is tested when this page opens; if it fails, REST is used."
+msgstr "自動: このページが開いたときに高速エンドポイントがテストされます。失敗した場合は、REST が使用されます。"
+
+msgid "\"Do Not Track\""
+msgstr "「追跡しないでください」"
+
+msgid "Do not count visitors whose browser sends \"Do Not Track\" or GPC"
+msgstr "ブラウザが「Do Not Track」または GPC を送信する訪問者をカウントしない"
+
+msgid "Exclusions"
+msgstr "除外事項"
+
+msgid "Roles"
+msgstr "役割"
+
+msgid "Logged-in people with these roles are not counted. The browser you open this screen in is not counted either (even after logging out)."
+msgstr "これらの役割を持つログイン人はカウントされません。この画面を開いたブラウザも(ログアウト後も)カウントされません。"
+
+msgid "IP addresses"
+msgstr "IPアドレス"
+
+msgid "One address per line, \"*\" or CIDR (e.g. office network)."
+msgstr "1 行に 1 つのアドレス、「*」または CIDR (オフィス ネットワークなど)。"
+
+msgid "Events"
+msgstr "イベント"
+
+msgid "Tracked automatically"
+msgstr "自動的に追跡される"
+
+msgid "Outbound link clicks"
+msgstr "アウトバウンドリンクのクリック数"
+
+msgid "File downloads (PDF, ZIP, DOCX…)"
+msgstr "ファイルのダウンロード (PDF、ZIP、DOCX...)"
+
+msgid "Phone, email and WhatsApp clicks"
+msgstr "電話、電子メール、WhatsApp のクリック数"
+
+msgid "Site searches (search term)"
+msgstr "サイト内検索(検索語)"
+
+msgid "Paid donations and orders (WooCommerce; type and amount)"
+msgstr "有料の寄付と注文 (WooCommerce、種類と金額)"
+
+msgid "Your own event: add data-flxan-event=\"name\" (and optional data-flxan-param) to a link, or call flxan.track(\"name\", \"detail\") in JavaScript. PHP: flxan_track_event( \"name\", \"detail\", amount )."
+msgstr "独自のイベント: data-flxan-event=\"name\" (およびオプションの data-flxan-param) をリンクに追加するか、JavaScript で flxan.track(\"name\", \"detail\") を呼び出します。 PHP: flxan_track_event( \"名前\", \"詳細\", 金額)。"
+
+msgid "Funnels"
+msgstr "漏斗"
+
+msgid "Shows how far visitors get. Each step can be a page (all pages starting with that path), an event (e.g. the \"Pay\" click) or the site entry. Up to 5 funnels with 10 steps each. Changes apply to new visits; funnel steps can also be picked as goals on the Journeys screen."
+msgstr "訪問者がどこまで到達できるかを示します。各ステップは、ページ (そのパスで始まるすべてのページ)、イベント (「支払い」クリックなど)、またはサイト エントリにすることができます。ファンネルは最大 5 つあり、それぞれ 10 ステップあります。変更は新規訪問に適用されます。ファネルのステップは、「ジャーニー」画面で目標として選択することもできます。"
+
+msgid "Display and retention"
+msgstr "表示と保持"
+
+msgid "Admin screens"
+msgstr "Admin screens"
+
+msgid "\"Views\" column in the post and page lists"
+msgstr "投稿リストとページリストの「閲覧数」列"
+
+msgid "Page views in the admin bar while browsing the site"
+msgstr "サイト閲覧中の管理バーのページビュー"
+
+msgid "Retention"
+msgstr "保持"
+
+msgid "months (0 = unlimited)"
+msgstr "月 (0 = 無制限)"
+
+msgid "Daily summaries take little space; keeping them forever is usually fine."
+msgstr "毎日の要約はほとんどスペースをとりません。通常は永久に保存しておいても問題ありません。"
+
+msgid "Telemetry hub"
+msgstr "テレメトリーハブ"
+
+msgid "Receive data from FluxWP installs"
+msgstr "FluxWP インストールからデータを受信する"
+
+msgid "Sites that tick \"Help us improve the product\" in FluxWP Panel send anonymous usage data once a day: which FluxWP plugins are used together, versions, FluxWP PHP errors and setup-wizard progress. IP and site address are not stored; records are kept for 90 days. When enabled, \"Product telemetry\" appears in the menu."
+msgstr "FluxWP パネルで「製品の改善にご協力ください」にチェックを入れたサイトは、どの FluxWP プラグインが一緒に使用されているか、バージョン、FluxWP PHP エラー、セットアップ ウィザードの進行状況など、匿名の使用状況データを 1 日に 1 回送信します。 IP とサイト アドレスは保存されません。記録は 90 日間保存されます。有効にすると、メニューに「製品テレメトリ」が表示されます。"
+
+msgid "Collection URL (FluxWP Panel › Settings › Telemetry URL):"
+msgstr "コレクション URL (FluxWP パネル › 設定 › テレメトリ URL):"
+
+msgid "Data"
+msgstr "データ"
+
+msgid "Last processed %1$s. Waiting in queue: %2$s."
+msgstr "最後に処理された%1$s。キューで待機中:%2$s。"
+
+msgid "No visits processed yet."
+msgstr "まだ処理された訪問はありません。"
+
+msgid "Process now"
+msgstr "今すぐ処理してください"
+
+msgid "Download daily totals (CSV)"
+msgstr "日次合計をダウンロード (CSV)"
+
+msgid "Download pages (CSV)"
+msgstr "ダウンロードページ(CSV)"
+
+msgid "Koko Analytics data found: %1$s days (%2$s – %3$s). Days before Flux Analytics was installed are imported; Koko tables are not modified."
+msgstr "Koko Analytics データが見つかりました:%1$s日 (%2$s–%3$s)。 Flux Analytics がインストールされる数日前がインポートされます。 Koko テーブルは変更されません。"
+
+msgid "Import Koko Analytics data"
+msgstr "Koko Analytics データをインポートする"
+
+msgid "All statistics will be permanently deleted. Are you sure?"
+msgstr "すべての統計は完全に削除されます。本気ですか?"
+
+msgid "Delete all statistics"
+msgstr "すべての統計を削除する"
+
+msgid "Shortcodes and AI"
+msgstr "ショートコードとAI"
+
+msgid "list of the most viewed posts."
+msgstr "最も閲覧された投稿のリスト。"
+
+msgid "total views of this page (gun=\"30\" for the last 30 days)."
+msgstr "このページの合計ビュー数 (過去 30 日間の Gun=\"30\")。"
+
+msgid "Flux AI chat and MCP clients (Claude and others) read stats with: flxan_summary, flxan_timeseries, flxan_pages, flxan_referrers, flxan_breakdown, flxan_events, flxan_realtime, flxan_page, flxan_compare, flxan_funnel, flxan_journeys, flxan_refs, flxan_ref_save. Access needs the \"View statistics\" capability (flxan_view), which Flux Roles can grant."
+msgstr "Flux AI チャットおよび MCP クライアント (Claude など) は、flxan_summary、flxan_timeseries、flxan_pages、flxan_referrers、flxan_breakdown、flxan_events、flxan_realtime、flxan_page、flxan_compare、flxan_funnel、flxan_journeys で統計を読み取ります。 flxan_refs、flxan_ref_save。アクセスには、Flux ロールが付与できる「統計の表示」機能 (flxan_view) が必要です。"
+
+msgid "You are not allowed to do this."
+msgstr "これを行うことは許可されていません。"
+
+msgid "Address"
+msgstr "住所"
+
+msgid "Title"
+msgstr "タイトル"
+
+msgid "Visitors"
+msgstr "訪問者"
+
+msgid "Views"
+msgstr "ビュー"
+
+msgid "Site"
+msgstr "サイト"
+
+msgid "Channel"
+msgstr "チャンネル"
+
+msgid "Event"
+msgstr "イベント"
+
+msgid "Detail"
+msgstr "詳細"
+
+msgid "Count"
+msgstr "カウント"
+
+msgid "Unique"
+msgstr "ユニークな"
+
+msgid "Amount"
+msgstr "金額"
+
+msgid "Date"
+msgstr "日付"
+
+msgid "Direct"
+msgstr "直接"
+
+msgid "Search engine"
+msgstr "検索エンジン"
+
+msgid "Social media"
+msgstr "ソーシャルメディア"
+
+msgid "AI"
+msgstr "AI"
+
+msgid "Email"
+msgstr "電子メール"
+
+msgid "Ads"
+msgstr "広告"
+
+msgid "Campaign"
+msgstr "キャンペーン"
+
+msgid "Other sites"
+msgstr "その他のサイト"
+
+msgid "Referral link"
+msgstr "紹介リンク"
+
+msgid "Mobile"
+msgstr "モバイル"
+
+msgid "Tablet"
+msgstr "タブレット"
+
+msgid "Desktop"
+msgstr "デスクトップ"
+
+msgid "Other"
+msgstr "その他"
+
+msgid "Live visitors"
+msgstr "ライブ訪問者"
+
+msgid "Traffic sources and referrals"
+msgstr "トラフィックソースと紹介"
+
+msgid "Donation funnel"
+msgstr "寄付ファネル"
+
+msgid "Last 14 days"
+msgstr "過去 14 日間"
+
+msgid "%1$s: %2$s visitors, %3$s views"
+msgstr "%1$s:%2$s訪問者、%3$sビュー"
+
+msgid "All statistics →"
+msgstr "すべての統計 →"
+
+msgid "on the site now (last 5 min)"
+msgstr "現在サイト上 (最後の 5 分間)"
+
+msgid "last 30 min · %s views"
+msgstr "過去 30 分間 ·%sビュー"
+
+msgid "Pages being viewed now"
+msgstr "現在閲覧中のページ"
+
+msgid "Referral links"
+msgstr "紹介リンク"
+
+msgid "Referring sites"
+msgstr "参照元サイト"
+
+msgid "Nobody right now"
+msgstr "今は誰もいない"
+
+msgid "today · %s views"
+msgstr "今日 ·%s回の再生数"
+
+msgid "yesterday"
+msgstr "昨日"
+
+msgid "last 7 days"
+msgstr "過去7日間"
+
+msgid "Most viewed today"
+msgstr "今日最も閲覧された"
+
+msgid "Last 7 days"
+msgstr "過去 7 日間"
+
+msgid "Outside visitors / logged-in users"
+msgstr "外部訪問者 / ログインユーザー"
+
+msgid "Outside: %1$s · Logged in: %2$s"
+msgstr "外部:%1$s· ログイン中:%2$s"
+
+msgid "Channels"
+msgstr "チャンネル"
+
+msgid "%s donations"
+msgstr "%sの寄付"
+
+msgid "No data in this range."
+msgstr "この範囲にはデータがありません。"
+
+msgid "No funnel defined."
+msgstr "ファネルが定義されていません。"
+
+msgid "%s · last 7 days"
+msgstr "%s· 過去 7 日間"
+
+msgid "No goal"
+msgstr "ノーゴール"
+
+msgid "Added to cart"
+msgstr "カートに追加されました"
+
+msgid "Removed from cart"
+msgstr "カートから削除されました"
+
+msgid "Used a coupon"
+msgstr "クーポンを利用しました"
+
+msgid "Started checkout form"
+msgstr "チェックアウトフォームを開始しました"
+
+msgid "Clicked \"Place order\""
+msgstr "「注文する」をクリックしました"
+
+msgid "Checkout step"
+msgstr "チェックアウトステップ"
+
+msgid "Chose payment method"
+msgstr "支払い方法を選択してください"
+
+msgid "Order created"
+msgstr "注文が作成されました"
+
+msgid "Clicked WhatsApp"
+msgstr "WhatsApp をクリックしました"
+
+msgid "Clicked phone"
+msgstr "クリックされた電話"
+
+msgid "Downloaded a file"
+msgstr "ファイルをダウンロードしました"
+
+msgid "Other pages"
+msgstr "他のページ"
+
+msgid "Site traffic summary"
+msgstr "サイトトラフィックの概要"
+
+msgid "Daily visitor chart data"
+msgstr "日次訪問者グラフデータ"
+
+msgid "Most viewed pages"
+msgstr "最も閲覧されているページ"
+
+msgid "Channel, device, browser breakdown"
+msgstr "チャネル、デバイス、ブラウザの内訳"
+
+msgid "Clicks and conversions"
+msgstr "クリック数とコンバージョン数"
+
+msgid "How many people are on the site now?"
+msgstr "現在そのサイトには何人がいますか?"
+
+msgid "Single page statistics"
+msgstr "単一ページの統計"
+
+msgid "Compare two periods"
+msgstr "2 つの期間を比較する"
+
+msgid "Donation / checkout funnel"
+msgstr "寄付/チェックアウトファネル"
+
+msgid "Visitor journeys"
+msgstr "訪問者の旅"
+
+msgid "Referral links report"
+msgstr "紹介リンクレポート"
+
+msgid "Traffic by role"
+msgstr "役割別のトラフィック"
+
+msgid "Create / name a referral link"
+msgstr "紹介リンクを作成/名前を付ける"
+
+msgid "You are not allowed to edit referral links."
+msgstr "紹介リンクを編集することはできません。"
+
+msgid "Invalid code. Use letters, digits, - and _."
+msgstr "無効なコードです。文字、数字、-、_ を使用してください。"
+
+msgid "%s views"
+msgstr "%sビュー"
+
+msgid "Last 30 days (Site Analytics)"
+msgstr "過去 30 日間 (サイト分析)"
+
+msgid "Views in the last 30 days"
+msgstr "過去 30 日間の閲覧数"
+
+msgid "Visitors today"
+msgstr "今日の訪問者"
+
+msgid "Compare this week's traffic with last week"
+msgstr "今週のトラフィックを先週と比較する"
+
+msgid "Where do most visitors come from?"
+msgstr "ほとんどの訪問者はどこから来ますか?"
+
+msgid "How many people reached the donation page, and how many donated?"
+msgstr "何人が寄付ページにアクセスし、何人が寄付をしましたか?"
+
+msgid "Every 5 minutes"
+msgstr "5分ごと"
+
+msgid "Site entry"
+msgstr "サイトエントリー"
+
+msgid "Donation page"
+msgstr "寄付ページ"
+
+msgid "Checkout page"
+msgstr "チェックアウトページ"
+
+msgid "Started filling the form"
+msgstr "フォームへの入力を開始しました"
+
+msgid "Donation completed"
+msgstr "寄付完了"
+
+msgid "Donation flow"
+msgstr "寄付の流れ"
+
+msgid "Funnel"
+msgstr "じょうご"
+
+msgid "First touch on checkout form"
+msgstr "まずはチェックアウトフォームにタッチ"
+
+msgid "\"Pay\" click"
+msgstr "「支払う」をクリック"
+
+msgid "Add to cart (any product)"
+msgstr "カートに追加(どの商品でも)"
+
+msgid "Payment method chosen"
+msgstr "選択された支払い方法"
+
+msgid "Order created (before payment)"
+msgstr "注文が作成されました(支払い前)"
+
+msgid "Paid donation / order"
+msgstr "有償寄付・注文"
+
+msgid "Remove from cart"
+msgstr "カートから削除"
+
+msgid "Coupon used"
+msgstr "使用したクーポン"
+
+msgid "Today"
+msgstr "今日"
+
+msgid "Yesterday"
+msgstr "昨日"
+
+msgid "Last 30 days"
+msgstr "過去 30 日間"
+
+msgid "Last 90 days"
+msgstr "過去90日間"
+
+msgid "This month"
+msgstr "今月"
+
+msgid "Last month"
+msgstr "先月"
+
+msgid "Last 12 months"
+msgstr "過去 12 か月"
+
+msgid "This year"
+msgstr "今年は"
+
+msgid "Last year"
+msgstr "昨年"
+
+msgid "All time"
+msgstr "ずっと"
+
+msgid "Custom range"
+msgstr "カスタム範囲"
+
+msgid "Device"
+msgstr "デバイス"
+
+msgid "Browser"
+msgstr "ブラウザ"
+
+msgid "Operating system"
+msgstr "オペレーティングシステム"
+
+msgid "Browser language"
+msgstr "ブラウザ言語"
+
+msgid "Country"
+msgstr "国"
+
+msgid "Campaign source"
+msgstr "キャンペーンソース"
+
+msgid "Campaign medium"
+msgstr "キャンペーン媒体"
+
+msgid "Outbound link click"
+msgstr "送信リンクのクリック"
+
+msgid "File download"
+msgstr "ファイルのダウンロード"
+
+msgid "Phone click"
+msgstr "電話のクリック"
+
+msgid "Email click"
+msgstr "電子メールのクリック"
+
+msgid "WhatsApp click"
+msgstr "WhatsAppのクリック"
+
+msgid "Site search"
+msgstr "サイト内検索"
+
+msgid "Donation / payment"
+msgstr "寄付・支払い"
+
+msgid "Add to cart"
+msgstr "カートに追加"
+
+msgid "Home page"
+msgstr "ホームページ"
+
+msgid "Outside visitors"
+msgstr "外部からの訪問者"
+
+msgid "Total"
+msgstr "合計"
+
+msgid "By channel"
+msgstr "チャンネル別"
+
+msgid "By referring site"
+msgstr "参考サイトにて"
+
+msgid "By referral code"
+msgstr "紹介コードによる"
+
+msgid "By role"
+msgstr "役割別"
+
+msgid "By country"
+msgstr "国別"
+
+msgid "(direct / unknown)"
+msgstr "(直接/不明)"
+
+msgid "(no referral)"
+msgstr "(紹介なし)"
+
+msgid "(unknown)"
+msgstr "(不明)"
+
+msgid "Statistics tables"
+msgstr "統計テーブル"
+
+msgid "Tables are not installed. Deactivate and reactivate the plugin."
+msgstr "テーブルは設置されていません。プラグインを非アクティブ化し、再度アクティブ化します。"
+
+msgid "Tables are from an older version; visits cannot be saved."
+msgstr "テーブルは古いバージョンのものです。訪問は保存できません。"
+
+msgid "Visit counting"
+msgstr "訪問カウント"
+
+msgid "On. No cookies, no personal data stored."
+msgstr "オン。 Cookie や個人データは保存されません。"
+
+msgid "Off: visits are not being counted."
+msgstr "オフ: 訪問はカウントされません。"
+
+msgid "Data directory"
+msgstr "データディレクトリ"
+
+msgid "wp-content/uploads/flx-analytics is writable and closed to web access."
+msgstr "wp-content/uploads/flx-analytics は書き込み可能で、Web アクセスに対して閉じられています。"
+
+msgid "wp-content/uploads/flx-analytics could not be created or is not writable; visits cannot be recorded. Check the directory permissions (755)."
+msgstr "wp-content/uploads/flx-analytics を作成できなかったか、書き込み可能ではありません。訪問を記録することはできません。ディレクトリのアクセス許可 (755) を確認してください。"
+
+msgid "Fast endpoint: visits are recorded without loading WordPress."
+msgstr "高速エンドポイント: WordPress をロードせずに訪問が記録されます。"
+
+msgid "The fast endpoint failed its test (a security plugin or the server may block PHP in the plugins folder); the REST endpoint is used. It works, but WordPress loads on every visit."
+msgstr "高速エンドポイントはテストに失敗しました (セキュリティ プラグインまたはサーバーがプラグイン フォルダー内の PHP をブロックしている可能性があります)。 REST エンドポイントが使用されます。機能しますが、アクセスするたびに WordPress が読み込まれます。"
+
+msgid "The REST endpoint is used. It works, but WordPress loads on every visit."
+msgstr "REST エンドポイントが使用されます。機能しますが、アクセスするたびに WordPress が読み込まれます。"
+
+msgid "Statistics processing"
+msgstr "統計処理"
+
+msgid "Last processed %1$s. Waiting: %2$s."
+msgstr "最後に処理された%1$s。待機中:%2$s。"
+
+msgid "Processing error"
+msgstr "処理エラー"
+
+msgid "Page cache compatibility"
+msgstr "ページキャッシュの互換性"
+
+msgid "A cache plugin is active; the counter runs in the browser, so cached pages are counted too. The counter script is excluded from combining/delaying."
+msgstr "キャッシュ プラグインがアクティブです。カウンタはブラウザ内で実行されるため、キャッシュされたページもカウントされます。カウンタスクリプトは合成・遅延の対象外となります。"
+
+msgid "The counter runs in the browser; counting continues if a cache plugin is installed."
+msgstr "カウンタはブラウザ内で実行されます。キャッシュプラグインがインストールされている場合、カウントは継続されます。"
+
+msgid "Process statistics now"
+msgstr "今すぐ統計を処理する"
+
+msgid "Processes the queued visits into the tables right away."
+msgstr "キューに入れられた訪問をすぐにテーブルに処理します。"
+
+msgid "Processing is already running; try again in a few seconds."
+msgstr "処理はすでに実行中です。数秒後にもう一度試してください。"
+
+msgid "%s rows processed."
+msgstr "%s行が処理されました。"
+
+msgid "Repair statistics tables"
+msgstr "統計テーブルを修復する"
+
+msgid "Adds missing columns and tables and updates keys. No data is deleted."
+msgstr "欠落している列とテーブルを追加し、キーを更新します。データは削除されません。"
+
+msgid "outdated"
+msgstr "時代遅れの"
+
+msgid "Tables could not be updated. The database user needs the ALTER privilege."
+msgstr "テーブルを更新できませんでした。データベース ユーザーには ALTER 権限が必要です。"
+
+msgid "Tables updated."
+msgstr "テーブルが更新されました。"
+
+msgid "Unknown"
+msgstr "不明"
+
+msgid "Product telemetry"
+msgstr "製品テレメトリ"
+
+msgid "Admin theme"
+msgstr "管理テーマ"
+
+msgid "Store"
+msgstr "ストア"
+
+msgid "Nonprofit and donations"
+msgstr "非営利と寄付"
+
+msgid "%s card"
+msgstr "%sカード"
+
+msgid "(theme)"
+msgstr "(テーマ)"
+
+msgid "Intro"
+msgstr "イントロ"
+
+msgid "Where to start?"
+msgstr "どこから始めればよいでしょうか?"
+
+msgid "Appearance"
+msgstr "外観"
+
+msgid "Install"
+msgstr "インストール"
+
+msgid "Done"
+msgstr "完了"
+
+msgid "Management"
+msgstr "管理"
+
+msgid "Communication"
+msgstr "コミュニケーション"
+
+msgid "Growth"
+msgstr "成長"
+
+msgid "System"
+msgstr "システム"
+
+msgid "Plugins: %s"
+msgstr "プラグイン:%s"
+
+msgid "No records in this range."
+msgstr "この範囲にはレコードがありません。"
+
+msgid "Overview"
+msgstr "概要"
+
+msgid "Errors"
+msgstr "エラー"
+
+msgid "Setup wizard"
+msgstr "セットアップウィザード"
+
+msgid "%d days"
+msgstr "%d日"
+
+msgid "All countries"
+msgstr "すべての国"
+
+msgid "Filter"
+msgstr "フィルター"
+
+msgid "Anonymous data sent once a day by sites that tick \"Help us improve the product\" in FluxWP Panel. IP and site address are not stored; records are kept for 90 days."
+msgstr "FluxWP パネルで「製品の改善にご協力ください」にチェックを入れたサイトから 1 日に 1 回送信される匿名データ。 IP とサイト アドレスは保存されません。記録は 90 日間保存されます。"
+
+msgid "Reporting sites"
+msgstr "報告サイト"
+
+msgid "Unique installs"
+msgstr "ユニークなインストール"
+
+msgid "Reports"
+msgstr "レポート"
+
+msgid "At most one per site per day"
+msgstr "サイトごとに 1 日あたり最大 1 つ"
+
+msgid "Distinct errors"
+msgstr "個別のエラー"
+
+msgid "%s fatal"
+msgstr "%s致命的"
+
+msgid "Error events"
+msgstr "エラーイベント"
+
+msgid "Total occurrences"
+msgstr "合計発生数"
+
+msgid "No reports yet."
+msgstr "まだ報告はありません。"
+
+msgid "FluxWP Panel on sites sends to this URL:"
+msgstr "サイト上の FluxWP パネルは次の URL に送信します。"
+
+msgid "Plugin usage"
+msgstr "プラグインの使用法"
+
+msgid "Package"
+msgstr "パッケージ"
+
+msgid "Share"
+msgstr "シェアする"
+
+msgid "Common version"
+msgstr "共通版"
+
+msgid "Used together"
+msgstr "併用"
+
+msgid "Pair"
+msgstr "ペア"
+
+msgid "FluxWP Panel only"
+msgstr "FluxWP パネルのみ"
+
+msgid "Most common package sets"
+msgstr "最も一般的なパッケージ セット"
+
+msgid "Set (excluding FluxWP Panel)"
+msgstr "セット(FluxWPパネルを除く)"
+
+msgid "Version"
+msgstr "バージョン"
+
+msgid "Site language"
+msgstr "サイトの言語"
+
+msgid "Language"
+msgstr "言語"
+
+msgid "Country comes from the sending site's settings (WooCommerce store country or the Settings › General time zone). IP addresses are never looked up or stored. Click a country to filter every tab by it."
+msgstr "国は、送信サイトの設定 (WooCommerce ストアの国または設定 › 一般タイムゾーン) から取得されます。 IP アドレスが検索または保存されることはありません。国をクリックして、その国ですべてのタブをフィルタリングします。"
+
+msgid "Error record removed. It will reappear if it happens again."
+msgstr "エラーレコードが削除されました。再発すればまた再発します。"
+
+msgid "All packages"
+msgstr "すべてのパッケージ"
+
+msgid "All types"
+msgstr "全種類"
+
+msgid "Fatal only"
+msgstr "致命的のみ"
+
+msgid "%s records"
+msgstr "%sレコード"
+
+msgid "No errors in this range."
+msgstr "この範囲内ではエラーはありません。"
+
+msgid "Error"
+msgstr "エラー"
+
+msgid "Last"
+msgstr "最後"
+
+msgid "Remove as resolved"
+msgstr "解決済みとして削除"
+
+msgid "Resolved"
+msgstr "解決済み"
+
+msgid "Delete all error records?"
+msgstr "すべてのエラー記録を削除しますか?"
+
+msgid "Clear all errors"
+msgstr "すべてのエラーをクリアする"
+
+msgid "Server paths, domain, URLs, emails and IPs are removed from messages. The same error in the same package, version, file and line is one record; \"Sites\" is how many different installs saw it."
+msgstr "サーバー パス、ドメイン、URL、電子メール、IP はメッセージから削除されます。同じパッケージ、バージョン、ファイル、行における同じエラーは 1 つのレコードです。 「サイト」は、さまざまなインストールがそれを見た数です。"
+
+msgid "Wizard runs"
+msgstr "ウィザードの実行"
+
+msgid "Latest run per install"
+msgstr "インストールごとの最新の実行"
+
+msgid "Finished"
+msgstr "完了しました"
+
+msgid "sites"
+msgstr "サイト"
+
+msgid "Skipped"
+msgstr "スキップされました"
+
+msgid "Abandoned"
+msgstr "放棄された"
+
+msgid "Median time for finishers: %s min"
+msgstr "完走者の平均タイム:%s分"
+
+msgid "No wizard data yet."
+msgstr "ウィザード データはまだありません。"
+
+msgid "FluxWP Panel 1.0.11 and later sends the last step and choices when the wizard is finished or closed."
+msgstr "FluxWP パネル 1.0.11 以降では、ウィザードが終了するか閉じられるときに、最後のステップと選択肢が送信されます。"
+
+msgid "Reached each step"
+msgstr "各ステップに到達しました"
+
+msgid "Steps"
+msgstr "ステップ"
+
+msgid "skipped"
+msgstr "スキップしました"
+
+msgid "closed"
+msgstr "閉まっている"
+
+msgid "Where they stopped"
+msgstr "彼らが立ち止まった場所"
+
+msgid "Last step"
+msgstr "最後のステップ"
+
+msgid "Everyone finished."
+msgstr "全員が終了しました。"
+
+msgid "Card choices"
+msgstr "カードの選択肢"
+
+msgid "Card"
+msgstr "カード"
+
+msgid "Picked"
+msgstr "選んだ"
+
+msgid "Picked then removed"
+msgstr "選択されて削除されました"
+
+msgid "Removed suggestion"
+msgstr "削除された提案"
+
+msgid "Preset (finishers)"
+msgstr "プリセット(フィニッシャー)"
+
+msgid "Colour style (finishers)"
+msgstr "カラースタイル(フィニッシャー)"
+
+msgid "Choice"
+msgstr "選択"
+
+msgid "Fast endpoint works"
+msgstr "高速なエンドポイントの動作"
+
+msgid "Fast endpoint unreachable, REST will be used"
+msgstr "高速エンドポイントに到達できないため、REST が使用されます"
+
+msgid "%s s"
+msgstr "%s"
+
+msgid "%1$s min %2$s s"
+msgstr "%1$s分%2$s秒"
+
+msgid "Copied"
+msgstr "コピーされました"
+
+msgid "Link"
+msgstr "リンク"
+
+msgid "Date range"
+msgstr "日付範囲"
+
+msgid "Start"
+msgstr "スタート"
+
+msgid "End"
+msgstr "終了"
+
+msgid "Apply"
+msgstr "申し込む"
+
+msgid "Download CSV"
+msgstr "CSVをダウンロード"
+
+msgid "Visitor type"
+msgstr "訪問者のタイプ"
+
+msgid "All visitors"
+msgstr "来場者全員"
+
+msgid "Logged-in users"
+msgstr "ログインしているユーザー"
+
+msgid "Role: %s"
+msgstr "役割:%s"
+
+msgid "Referral"
+msgstr "紹介"
+
+msgid "All sources"
+msgstr "すべてのソース"
+
+msgid "Referral links only"
+msgstr "紹介リンクのみ"
+
+msgid "Visitors: the sum of unique people per day. A person is recognised only within the same day; someone arriving via a referral link is credited to that code for 30 days. Country is derived from the browser time zone, not the IP."
+msgstr "訪問者: 1 日あたりのユニークな人数の合計。人はその日のうちにのみ認識されます。紹介リンク経由でアクセスした人には、そのコードが 30 日間クレジットされます。国は、IP ではなくブラウザのタイムゾーンから派生します。"
+
+msgid "Visitors and views chart"
+msgstr "訪問者数と閲覧数のグラフ"
+
+msgid "Week of %s"
+msgstr "%sの週"
+
+msgid "Compared with the previous period of equal length"
+msgstr "同じ長さの前期との比較"
+
+msgid "Previous period: %s"
+msgstr "前の期間:%s"
+
+msgid "Sessions"
+msgstr "セッション"
+
+msgid "Pages / visitor"
+msgstr "ページ/訪問者"
+
+msgid "Avg. session duration"
+msgstr "平均セッション期間"
+
+msgid "Bounce rate"
+msgstr "直帰率"
+
+msgid "Left after viewing one page"
+msgstr "1ページ見ただけで左へ"
+
+msgid "%1$s min ago: %2$s"
+msgstr "%1$s分前:%2$s"
+
+msgid "Live"
+msgstr "ライブ"
+
+msgid "Refreshes every 5 s"
+msgstr "5秒ごとに更新"
+
+msgid "visitors in last %s min"
+msgstr "過去%s分の訪問者"
+
+msgid "%s min ago"
+msgstr "%s分前"
+
+msgid "now"
+msgstr "今"
+
+msgid "Pages"
+msgstr "ページ"
+
+msgid "Countries"
+msgstr "国"
+
+msgid "See all (%s)"
+msgstr "すべて表示 (%s)"
+
+msgid "Traffic sources"
+msgstr "トラフィックソース"
+
+msgid "not logged in"
+msgstr "ログインしていません"
+
+msgid "Click a row to filter the whole screen by that visitor type. For outside traffic only, choose \"Outside visitors\" at the top."
+msgstr "行をクリックすると、その訪問者のタイプによって画面全体がフィルターされます。外部トラフィックのみの場合は、上部にある「外部訪問者」を選択します。"
+
+msgid "No visits from other sites yet."
+msgstr "他のサイトからのアクセスはまだありません。"
+
+msgid "Device and browser"
+msgstr "デバイスとブラウザ"
+
+msgid "Campaigns (UTM)"
+msgstr "キャンペーン (UTM)"
+
+msgid "Not found pages (404)"
+msgstr "ページが見つかりません (404)"
+
+msgid "Visitors by country"
+msgstr "国別の訪問者数"
+
+msgid "World map"
+msgstr "世界地図"
+
+msgid "Few"
+msgstr "少ない"
+
+msgid "Many"
+msgstr "たくさん"
+
+msgid "No country data in this range."
+msgstr "この範囲には国のデータがありません。"
+
+msgid "Funnel: %s"
+msgstr "ファネル:%s"
+
+msgid "Drop from previous step"
+msgstr "前のステップからドロップ"
+
+msgid "No visits entered the funnel in this range."
+msgstr "この範囲では訪問者はファネルに入りませんでした。"
+
+msgid "Completion"
+msgstr "完成"
+
+msgid "Counts the furthest step each visitor reached within a day. You can change the steps in Settings › Funnels."
+msgstr "各訪問者が 1 日以内に到達した最も遠い歩数をカウントします。設定 › ファネルでステップを変更できます。"
+
+msgid "Funnel settings"
+msgstr "ファネル設定"
+
+msgid "New link"
+msgstr "新しいリンク"
+
+msgid "Name (e.g. Ayşe's Instagram)"
+msgstr "名前 (例: Ayşe の Instagram)"
+
+msgid "Code (e.g. ayse-ig)"
+msgstr "コード (例: ayse-ig)"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "No referral links yet. Add ?r=code to the site address wherever you share it (e.g. %s); give it a name here and reports will show that name."
+msgstr "紹介リンクはまだありません。共有するサイト アドレスに ?r=code を追加します (例:%s)。ここで名前を付けると、レポートにその名前が表示されます。"
+
+msgid "Pages / session"
+msgstr "ページ/セッション"
+
+msgid "Avg. duration"
+msgstr "平均期間"
+
+msgid "Furthest step"
+msgstr "一番遠い一歩"
+
+msgid "Donations"
+msgstr "寄付"
+
+msgid "Show what visitors from this link did"
+msgstr "このリンクからの訪問者の行動を表示する"
+
+msgid "Copy link"
+msgstr "リンクをコピー"
+
+msgid "Rename"
+msgstr "名前の変更"
+
+msgid "Remove name"
+msgstr "名前を削除"
+
+msgid "A visitor arriving via the link gets a 30-day cookie; their later pages, later days and donation are credited to that code. Click a row to filter the whole screen to visitors from that link."
+msgstr "リンク経由で到着した訪問者は 30 日間の Cookie を受け取ります。その後のページ、後日、寄付はそのコードにクレジットされます。行をクリックすると、画面全体がそのリンクからの訪問者にフィルターされます。"
+
+msgid "Copy"
+msgstr "コピー"
+
+msgid "Name for \"%s\""
+msgstr "「%s」の名前"
+
+msgid "Remove the name? Statistics are kept and shown under the code."
+msgstr "名前を削除しますか?統計はコードの下に保存され、表示されます。"
+
+msgid "No events in this range. Outbound links, downloads, phone/WhatsApp clicks, searches and donations appear here."
+msgstr "この範囲内にイベントはありません。アウトバウンドリンク、ダウンロード、電話/WhatsApp のクリック、検索、寄付がここに表示されます。"
+
+msgid "All"
+msgstr "すべて"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Search"
+msgstr "検索"
+
+msgid "More"
+msgstr "もっと見る"
+
+msgid "Could not load. Try again in a moment."
+msgstr "ロードできませんでした。しばらくしてからもう一度試してください。"
+
+msgid "No data yet."
+msgstr "まだデータがありません。"
+
+msgid "Open the site in a browser where you are not logged in (or on your phone); the visit appears here within a few minutes."
+msgstr "ログインしていないブラウザ (または携帯電話) でサイトを開きます。訪問は数分以内にここに表示されます。"
+
+msgid "Filter:"
+msgstr "フィルター:"
+
+msgid "Clear filter"
+msgstr "クリアフィルター"
+
+msgid "Page"
+msgstr "ページ"
+
+msgid "The first page of every visit counts"
+msgstr "すべての訪問の最初のページが重要です"
+
+msgid "Choose an event…"
+msgstr "イベントを選択してください..."
+
+msgid "Type another event…"
+msgstr "別のイベントを入力してください..."
+
+msgid "all pages starting with this path"
+msgstr "このパスで始まるすべてのページ"
+
+msgid "Funnel name"
+msgstr "ファネル名"
+
+msgid "%s steps"
+msgstr "%sステップ"
+
+msgid "Delete funnel"
+msgstr "ファネルの削除"
+
+msgid "Drag to move"
+msgstr "ドラッグして移動します"
+
+msgid "Step name"
+msgstr "ステップ名"
+
+msgid "Step type"
+msgstr "ステップタイプ"
+
+msgid "Move up"
+msgstr "上に移動"
+
+msgid "Move down"
+msgstr "下に移動"
+
+msgid "Delete step"
+msgstr "ステップの削除"
+
+msgid "Add step"
+msgstr "ステップの追加"
+
+msgid "Add preset step"
+msgstr "プリセットステップを追加"
+
+msgid "Add preset step…"
+msgstr "プリセットステップを追加..."
+
+msgid "At most %s steps."
+msgstr "最大でも%sステップ。"
+
+msgid "New funnel"
+msgstr "新しいファネル"
+
+msgid "Reset to default donation funnel"
+msgstr "デフォルトの寄付ファネルにリセット"
+
+msgid "Edit as text"
+msgstr "テキストとして編集する"
+
+msgid "Event name (e.g. donation_form or checkout:submit):"
+msgstr "イベント名 (例: donation_form または checkout:submit):"
+
+msgid "Delete funnel \"%s\"?"
+msgstr "ファネル「%s」を削除しますか?"
+
+msgid "Funnel %s"
+msgstr "ファンネル%s"
+
+msgid "Replace all funnels with the default donation funnel? (Applied when you click Save.)"
+msgstr "すべてのファネルをデフォルトの寄付ファネルに置き換えますか? ([保存]をクリックすると適用されます。)"
+
+msgid "Back to visual editor"
+msgstr "ビジュアルエディターに戻る"
+
+msgid "Compare previous period"
+msgstr "前の期間と比較する"
+
+msgid "Goal page"
+msgstr "目標ページ"
+
+msgid "Combine sub-pages like /news/… into one box"
+msgstr "/news/... などのサブページを 1 つのボックスに結合する"
+
+msgid "Group pages"
+msgstr "グループページ"
+
+msgid "Paths from session start"
+msgstr "セッション開始からのパス"
+
+msgid "Starts at"
+msgstr "から始まります"
+
+msgid "All pages"
+msgstr "すべてのページ"
+
+msgid "Ends at"
+msgstr "で終了"
+
+msgid "Fewer steps"
+msgstr "少ない手順"
+
+msgid "More steps"
+msgstr "さらに手順を増やす"
+
+msgid "Paths shown"
+msgstr "表示されるパス"
+
+msgid "Top %s paths"
+msgstr "上位の%sパス"
+
+msgid "Top paths"
+msgstr "トップパス"
+
+msgid "Search pages…"
+msgstr "ページを検索..."
+
+msgid "Reach goal"
+msgstr "目標を達成する"
+
+msgid "Never reach"
+msgstr "決して到達しないでください"
+
+msgid "Journey: the order of pages in one visit (first 8 steps; refreshing the same page counts once). Events such as add to cart, checkout form, \"Place order\", payment method, order, and WhatsApp/phone clicks show as steps marked ⚡. Only visits with at least 2 pages are listed. The goal is chosen from Settings › Funnels. This screen shows visits after version 0.3.0."
+msgstr "ジャーニー: 1 回の訪問におけるページの順序 (最初の 8 ステップ、同じページの更新は 1 回とカウントされます)。カートに追加、チェックアウト フォーム、「注文」、支払い方法、注文、WhatsApp/電話のクリックなどのイベントは、⚡ のマークが付いたステップとして表示されます。少なくとも 2 ページの訪問のみがリストされます。目標は、設定 › ファネルから選択します。この画面はバージョン 0.3.0 以降の訪問を示しています。"
+
+msgid "Could not load data. Refresh the page."
+msgstr "データをロードできませんでした。ページを更新します。"
+
+msgid "%1$s visits · %2$s"
+msgstr "%1$sの訪問 ·%2$s"
+
+msgid "No data"
+msgstr "データなし"
+
+msgid "Multi-page sessions"
+msgstr "複数ページのセッション"
+
+msgid "%s of all visits"
+msgstr "すべての訪問の%s"
+
+msgid "Avg path length"
+msgstr "平均パス長"
+
+msgid "%s pages"
+msgstr "%sページ"
+
+msgid "In multi-page sessions"
+msgstr "複数ページのセッションの場合"
+
+msgid "Top entry page"
+msgstr "トップエントリーページ"
+
+msgid "Top exit after 2+ pages"
+msgstr "2 ページ以上経過したら上部から終了します"
+
+msgid "No goal selected"
+msgstr "目標が選択されていません"
+
+msgid "No journeys yet"
+msgstr "まだ旅行はありません"
+
+msgid "No visits with at least 2 pages in the selected period. Widen the filters or wait for new visits."
+msgstr "選択した期間に少なくとも 2 ページの訪問はありません。フィルタの範囲を広げるか、新しい訪問を待ちます。"
+
+msgid "Click a box to filter the paths below by that page. Thickness shows the number of visits."
+msgstr "ボックスをクリックして、そのページごとに下のパスをフィルタリングします。太さは訪問回数を表します。"
+
+msgid "%s visits"
+msgstr "%sの訪問数"
+
+msgid "Entries"
+msgstr "エントリー"
+
+msgid "Step %s"
+msgstr "ステップ%s"
+
+msgid "%s end here"
+msgstr "%sここで終了"
+
+msgid "all continue"
+msgstr "全部続けます"
+
+msgid "continues"
+msgstr "続く"
+
+msgid "No paths match the search."
+msgstr "検索に一致するパスはありません。"
+
+msgid "No paths to show."
+msgstr "表示するパスがありません。"
+
+msgid "Path"
+msgstr "パス"
+
+msgid "vs prev"
+msgstr "前との比較"
+
+msgid "new"
+msgstr "新しい"
+
+msgid "Showing %2$s of %1$s paths."
+msgstr "%1$sパスの%2$sを表示しています。"
+
+msgid "30 days"
+msgstr "30日"
+
+msgid "7 days"
+msgstr "7日間"
+
+msgid "90 days"
+msgstr "90日"
+
+msgid "Search the address"
+msgstr "住所を検索する"
+
+msgid "Range"
+msgstr "範囲"
+
+msgid "Pages being viewed"
+msgstr "閲覧中のページ"
+
+msgid "No external sites in this range."
+msgstr "この範囲には外部サイトはありません。"
+
+msgid "No pages were viewed in this range."
+msgstr "この範囲ではページは表示されませんでした。"
+
+msgid "No channel breakdown in this range."
+msgstr "この範囲ではチャネルの故障はありません。"
+
+msgid "No channels"
+msgstr "チャンネルがありません"
+
+msgid "Sources"
+msgstr "情報源"
+
+msgid "Open in panel"
+msgstr "パネルで開く"
+
+msgid "No pages"
+msgstr "ページがありません"
+
+msgid "Search sites"
+msgstr "サイトを検索する"
+
+msgid "Sites"
+msgstr "サイト"
+
+msgid "Last minutes"
+msgstr "最後の数分"
+
+msgid "No referrers"
+msgstr "参照元がありません"
+
+msgid "Referrers"
+msgstr "参照者"
+
+msgid "Visitors and pageviews"
+msgstr "訪問者とページビュー"
+
+msgid "Analytics"
+msgstr "分析"
+
+msgid "Right now"
+msgstr "今すぐ"
+
+msgid "[['Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools.', 'tr']]"
+msgstr "[['Cookie なし、個人データなしのサイト統計: 訪問者、ビュー、最も読まれたページ、参照サイト、チャネル、デバイス/ブラウザ、キャンペーン (UTM)、クリック イベント、寄付コンバージョン。データはサイト上に残ります。人工知能 Flux AI / Flux AI および MCP ツールで読み取ります。', 'tr']]"

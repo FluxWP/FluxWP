@@ -198,7 +198,7 @@ class FLXB_WC_Ledger {
 		$opt    = $t && '' !== (string) ( $l['option'] ?? '' ) ? FLXB_Types::option( $t, (string) $l['option'] ) : null;
 		$qty    = max( 1, (int) $item->get_quantity() );
 		$units  = max( 1, (int) ( $l['units'] ?? 1 ) ) * $qty;
-		$label  = $opt ? (string) $opt['label'] : ( '' === (string) ( $l['option'] ?? '' ) ? __( 'Free amount', 'flx-donate' ) : (string) $l['option'] );
+		$label  = $opt ? (string) $opt['label'] : ( '' === (string) ( $l['option'] ?? '' ) ? __( '\\nFree amount\', \'en\']]', 'flx-donate' ) : (string) $l['option'] );
 		$sub_id = (int) $item->get_meta( '_flxb_subscription_id' );
 		$sub_id = $sub_id ? $sub_id : (int) $order->get_meta( '_flxb_subscription_id' );
 		$form   = isset( $l['form'] ) && is_array( $l['form'] ) ? $l['form'] : array();

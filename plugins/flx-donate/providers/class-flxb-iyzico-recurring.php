@@ -202,7 +202,7 @@ final class FLXB_Iyzico_Recurring {
 		$k = FLXB_Iyzico_Api::open( $m['card']['k'] ?? '' );
 		$t = FLXB_Iyzico_Api::open( $m['card']['t'] ?? '' );
 		if ( '' === $k || '' === $t ) {
-			return self::failed( $s, $m, $period, self::max_attempts(), __( 'No stored card for this recurring donation.', 'flx-donate' ) );
+			return self::failed( $s, $m, $period, self::max_attempts(), __( '\\nNo stored card for this recurring donation.\\n', 'flx-donate' ) );
 		}
 		$conv  = 'flxbr-' . $id . '-' . gmdate( 'YmdHi', strtotime( $period . ' UTC' ) ) . '-' . $attempt;
 		$buyer = (array) ( $m['buyer'] ?? array() );
@@ -210,7 +210,7 @@ final class FLXB_Iyzico_Recurring {
 		if ( '' === $b['ip'] ) {
 			$b['ip'] = '127.0.0.1';
 		}
-		$name = '' !== (string) ( $m['form_name'] ?? '' ) ? (string) $m['form_name'] : __( 'Recurring donation', 'flx-donate' );
+		$name = '' !== (string) ( $m['form_name'] ?? '' ) ? (string) $m['form_name'] : __( '\\nRecurring donation\\n', 'flx-donate' );
 		$body = array(
 			'locale'         => FLXB_Iyzico_Api::locale(),
 			'conversationId' => $conv,
@@ -249,7 +249,7 @@ final class FLXB_Iyzico_Recurring {
 			return self::paid( $s, $m, $period, $r );
 		}
 		$err = FLXB_Iyzico_Api::error_text( $r );
-		return self::failed( $s, $m, $period, $attempt, '' !== $err ? $err : __( 'The card was not charged.', 'flx-donate' ) );
+		return self::failed( $s, $m, $period, $attempt, '' !== $err ? $err : __( '\\nThe card was not charged.\\n', 'flx-donate' ) );
 	}
 
 	private static function paid( array $s, array $m, $period, array $r ) {
@@ -372,20 +372,20 @@ final class FLXB_Iyzico_Recurring {
 			return new WP_REST_Response( array( '__flxb_html' => $html ), $code, array( 'Content-Type' => 'text/html; charset=utf-8', 'Cache-Control' => 'no-store', 'X-Robots-Tag' => 'noindex' ) );
 		};
 		if ( ! $s || 'iyzico' !== $s['provider'] || ! hash_equals( self::cancel_key( $s ), $key ) ) {
-			return $res( self::page_html( __( 'Link not valid', 'flx-donate' ), '<p class="m">' . esc_html__( 'This link is not valid. Please contact us to cancel your recurring donation.', 'flx-donate' ) . '</p>', false ), 404 );
+			return $res( self::page_html( __( '\\nLink not valid\\n', 'flx-donate' ), '<p class="m">' . esc_html__( '\\nThis link is not valid. Please contact us to cancel your recurring donation.\\n', 'flx-donate' ) . '</p>', false ), 404 );
 		}
-		$what = esc_html( sprintf( /* translators: 1: amount, 2: interval (Monthly…) */ __( '%1$s · %2$s', 'flx-donate' ), flxb_money( $s['amount'], $s['currency'] ), flxb_interval_label( $s['interval_unit'] ) ) );
+		$what = esc_html( sprintf( /* translators: 1: amount, 2: interval (Monthly…) */ __( '\\n%1$s·%2$s\\n', 'flx-donate' ), flxb_money( $s['amount'], $s['currency'] ), flxb_interval_label( $s['interval_unit'] ) ) );
 		if ( 'canceled' === $s['status'] ) {
-			return $res( self::page_html( __( 'Recurring donation canceled', 'flx-donate' ), '<p class="m">' . esc_html__( 'This recurring donation is canceled. No further payments will be taken.', 'flx-donate' ) . '</p><p class="c">' . $what . '</p>', true ) );
+			return $res( self::page_html( __( '\\nRecurring donation canceled\\n', 'flx-donate' ), '<p class="m">' . esc_html__( '\\nThis recurring donation is canceled. No further payments will be taken.\\n', 'flx-donate' ) . '</p><p class="c">' . $what . '</p>', true ) );
 		}
 		if ( 'POST' === $r->get_method() ) {
 			self::cancel( $id, 'donor' );
-			return $res( self::page_html( __( 'Recurring donation canceled', 'flx-donate' ), '<p class="m">' . esc_html__( 'Your recurring donation has been canceled. No further payments will be taken. Thank you for your support.', 'flx-donate' ) . '</p><p class="c">' . $what . '</p>', true ) );
+			return $res( self::page_html( __( '\\nRecurring donation canceled\\n', 'flx-donate' ), '<p class="m">' . esc_html__( '\\nYour recurring donation has been canceled. No further payments will be taken. Thank you for your support.\\n', 'flx-donate' ) . '</p><p class="c">' . $what . '</p>', true ) );
 		}
 		/* GET only asks (mail scanners open links). */
-		$form = '<p class="m">' . esc_html__( 'Do you want to cancel this recurring donation? No further payments will be taken.', 'flx-donate' ) . '</p><p class="c">' . $what . '</p>'
-			. '<form method="post" action="' . esc_url( self::cancel_url( $s ) ) . '"><button type="submit" class="b">' . esc_html__( 'Cancel my recurring donation', 'flx-donate' ) . '</button></form>';
-		return $res( self::page_html( __( 'Cancel recurring donation', 'flx-donate' ), $form, true ) );
+		$form = '<p class="m">' . esc_html__( '\\nDo you want to cancel this recurring donation? No further payments will be taken.\', \'en\']]', 'flx-donate' ) . '</p><p class="c">' . $what . '</p>'
+			. '<form method="post" action="' . esc_url( self::cancel_url( $s ) ) . '"><button type="submit" class="b">' . esc_html__( '\\nCancel my recurring donation\\n', 'flx-donate' ) . '</button></form>';
+		return $res( self::page_html( __( '\\nCancel recurring donation\\n', 'flx-donate' ), $form, true ) );
 	}
 
 	/** Prints the HTML pages of the flxb/v1/iyzico routes as they are. */
@@ -456,7 +456,7 @@ final class FLXB_Iyzico_Recurring {
 		$n   = count( $list );
 		$url = admin_url( 'admin.php?page=flxb-subscriptions&status=past_due' );
 		$dis = wp_nonce_url( admin_url( 'admin-post.php?action=flxb_iyzico_notice' ), 'flxb_iyzico_notice' );
-		echo '<div class="notice notice-error flxb-iyzico-notice"><p><strong>Flux Donate:</strong> ' . esc_html( sprintf( /* translators: %s: number of recurring donations */ _n( '%s recurring donation could not be charged through iyzico after all attempts and is now past due. The donor was e-mailed.', '%s recurring donations could not be charged through iyzico after all attempts and are now past due. The donors were e-mailed.', $n, 'flx-donate' ), number_format_i18n( $n ) ) ) . ' <a href="' . esc_url( $url ) . '">' . esc_html__( 'Show them', 'flx-donate' ) . '</a> · <a href="' . esc_url( $dis ) . '">' . esc_html__( 'Dismiss', 'flx-donate' ) . '</a></p></div>';
+		echo '<div class="notice notice-error flxb-iyzico-notice"><p><strong>Flux Donate:</strong> ' . esc_html( sprintf( /* translators: %s: number of recurring donations */ _n( '[[\'%srecurring donation could not be charged through iyzico after all attempts and is now past due. The donor was e-mailed.\', \'en\']]', '[[\'%srecurring donations could not be charged through iyzico after all attempts and are now past due. The donors were e-mailed.\', \'en\']]', $n, 'flx-donate' ), number_format_i18n( $n ) ) ) . ' <a href="' . esc_url( $url ) . '">' . esc_html__( '\\nShow them\\n', 'flx-donate' ) . '</a> · <a href="' . esc_url( $dis ) . '">' . esc_html__( 'Dismiss', 'flx-donate' ) . '</a></p></div>';
 	}
 
 	public static function dismiss() {

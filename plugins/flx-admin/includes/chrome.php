@@ -134,53 +134,53 @@ function flxa_boot() {
 			'check'    => flxa_icon( 'check', 18 ),
 		),
 		'i18n'     => array(
-			'search'      => __( 'Ara veya komut yaz…', 'flx-admin' ),
-			'noResults'   => __( 'Sonuç yok', 'flx-admin' ),
-			'pages'       => __( 'Sayfalar', 'flx-admin' ),
-			'apps'        => __( 'Uygulamalar', 'flx-admin' ),
-			'actions'     => __( 'İşlemler', 'flx-admin' ),
-			'content'     => __( 'İçerik', 'flx-admin' ),
-			'newPost'     => __( 'Yeni yazı', 'flx-admin' ),
-			'newPage'     => __( 'Yeni sayfa', 'flx-admin' ),
-			'modeAuto'    => __( 'Tema: otomatik (cihaza göre)', 'flx-admin' ),
-			'modeLight'   => __( 'Tema: açık', 'flx-admin' ),
-			'modeDark'    => __( 'Tema: koyu', 'flx-admin' ),
-			'foldMenu'    => __( 'Menüyü daralt', 'flx-admin' ),
-			'expandMenu'  => __( 'Menüyü genişlet', 'flx-admin' ),
-			'subToggle'   => __( 'Alt menüyü aç/kapat', 'flx-admin' ),
-			'close'       => __( 'Kapat', 'flx-admin' ),
-			'hint'        => __( '↑↓ seç · Enter aç · Esc kapat', 'flx-admin' ),
-			'installIOS'  => __( 'Paylaş düğmesine dokunup "Ana Ekrana Ekle"yi seçin.', 'flx-admin' ),
-			'installed'   => __( 'Uygulama yüklendi.', 'flx-admin' ),
-			'offline'     => __( 'Bağlantı yok. Değişiklikler kaydedilmeyebilir.', 'flx-admin' ),
-			'online'      => __( 'Bağlantı geri geldi.', 'flx-admin' ),
-			'pin'         => __( 'Üste sabitle', 'flx-admin' ),
-			'unpin'       => __( 'Sabitlemeyi kaldır', 'flx-admin' ),
-			'away'        => __( 'Diğer\'e taşı', 'flx-admin' ),
-			'back'        => __( 'Yerine geri al', 'flx-admin' ),
-			'moveUp'      => __( 'Yukarı taşı', 'flx-admin' ),
-			'moveDown'    => __( 'Aşağı taşı', 'flx-admin' ),
-			'newTab'      => __( 'Yeni sekmede aç', 'flx-admin' ),
-			'editMenu'    => __( 'Rol menülerini düzenle', 'flx-admin' ),
-			'pinned'      => __( 'Sabitlenenler', 'flx-admin' ),
-			'other'       => __( 'Diğer', 'flx-admin' ),
-			'groupToggle' => __( 'Grubu aç/kapat', 'flx-admin' ),
-			'resize'      => __( 'Genişliği sürükleyin (çift tık: varsayılan)', 'flx-admin' ),
-			'more'        => __( 'Daha fazla', 'flx-admin' ),
-			'saved'       => __( 'Kaydedildi.', 'flx-admin' ),
-			'error'       => __( 'Kaydedilemedi. Tekrar deneyin.', 'flx-admin' ),
-			'hintPin'     => __( 'İpucu: menüde sağ tıklayıp sabitleyebilirsiniz.', 'flx-admin' ),
-			'newTask'     => __( 'Yeni görev', 'flx-admin' ),
-			'taskTitle'   => __( 'Görev adı', 'flx-admin' ),
-			'taskList'    => __( 'Liste', 'flx-admin' ),
-			'taskDue'     => __( 'Son tarih', 'flx-admin' ),
-			'taskPrio'    => __( 'Öncelik', 'flx-admin' ),
-			'taskMine'    => __( 'Bana ata', 'flx-admin' ),
-			'create'      => __( 'Oluştur', 'flx-admin' ),
-			'cancel'      => __( 'Vazgeç', 'flx-admin' ),
-			'taskDone'    => __( 'Görev oluşturuldu.', 'flx-admin' ),
-			'open'        => __( 'Aç', 'flx-admin' ),
-			'noPrio'      => __( 'Yok', 'flx-admin' ),
+			'search'      => __( 'Search or type a command…', 'flx-admin' ),
+			'noResults'   => __( 'No results', 'flx-admin' ),
+			'pages'       => __( 'Pages', 'flx-admin' ),
+			'apps'        => __( 'Apps', 'flx-admin' ),
+			'actions'     => __( 'Actions', 'flx-admin' ),
+			'content'     => __( 'Content', 'flx-admin' ),
+			'newPost'     => __( 'New post', 'flx-admin' ),
+			'newPage'     => __( 'New page', 'flx-admin' ),
+			'modeAuto'    => __( 'Theme: auto (follows device)', 'flx-admin' ),
+			'modeLight'   => __( 'Theme: light', 'flx-admin' ),
+			'modeDark'    => __( 'Theme: dark', 'flx-admin' ),
+			'foldMenu'    => __( 'Collapse menu', 'flx-admin' ),
+			'expandMenu'  => __( 'Expand menu', 'flx-admin' ),
+			'subToggle'   => __( 'Toggle submenu', 'flx-admin' ),
+			'close'       => __( 'Close', 'flx-admin' ),
+			'hint'        => __( '↑↓ select · Enter open · Esc close', 'flx-admin' ),
+			'installIOS'  => __( 'Tap the Share button and choose "Add to Home Screen".', 'flx-admin' ),
+			'installed'   => __( 'App installed.', 'flx-admin' ),
+			'offline'     => __( 'No connection. Changes may not be saved.', 'flx-admin' ),
+			'online'      => __( 'Connection is back.', 'flx-admin' ),
+			'pin'         => __( 'Pin to top', 'flx-admin' ),
+			'unpin'       => __( 'Unpin', 'flx-admin' ),
+			'away'        => __( 'Move to Other', 'flx-admin' ),
+			'back'        => __( 'Put back', 'flx-admin' ),
+			'moveUp'      => __( 'Move up', 'flx-admin' ),
+			'moveDown'    => __( 'Move down', 'flx-admin' ),
+			'newTab'      => __( 'Open in new tab', 'flx-admin' ),
+			'editMenu'    => __( 'Edit role menus', 'flx-admin' ),
+			'pinned'      => __( 'Pinned', 'flx-admin' ),
+			'other'       => __( 'Other', 'flx-admin' ),
+			'groupToggle' => __( 'Expand/collapse group', 'flx-admin' ),
+			'resize'      => __( 'Drag to resize (double-click: default)', 'flx-admin' ),
+			'more'        => __( 'More', 'flx-admin' ),
+			'saved'       => __( 'Saved.', 'flx-admin' ),
+			'error'       => __( 'Couldn\'t save. Please try again.', 'flx-admin' ),
+			'hintPin'     => __( 'Tip: right-click a menu item to pin it.', 'flx-admin' ),
+			'newTask'     => __( 'New task', 'flx-admin' ),
+			'taskTitle'   => __( 'Task name', 'flx-admin' ),
+			'taskList'    => __( 'List', 'flx-admin' ),
+			'taskDue'     => __( 'Due date', 'flx-admin' ),
+			'taskPrio'    => __( 'Priority', 'flx-admin' ),
+			'taskMine'    => __( 'Assign to me', 'flx-admin' ),
+			'create'      => __( 'Create', 'flx-admin' ),
+			'cancel'      => __( 'Cancel', 'flx-admin' ),
+			'taskDone'    => __( 'Task created.', 'flx-admin' ),
+			'open'        => __( 'Open', 'flx-admin' ),
+			'noPrio'      => __( 'None', 'flx-admin' ),
 		),
 	);
 }
@@ -198,7 +198,7 @@ function flxa_switch_boot() {
 	}
 	return array(
 		'apps'  => $apps,
-		'label' => __( 'Uygulama değiştir', 'flx-admin' ),
+		'label' => __( 'Switch app', 'flx-admin' ),
 	);
 }
 
@@ -245,18 +245,18 @@ function flxa_sidebar_blocks() {
 			<img class="flxa-brand-logo" src="<?php echo esc_url( flxa_logo_url( 96 ) ); ?>" alt="" width="36" height="36" fetchpriority="high" decoding="sync">
 			<span class="flxa-brand-text"><strong><?php echo esc_html( flxa_brand() ); ?></strong><small><?php echo esc_html( flxa_subtitle() ); ?></small></span>
 		</a>
-		<button type="button" class="flxa-fold-btn" data-flxa-fold aria-controls="adminmenu" aria-expanded="true" title="<?php esc_attr_e( 'Menüyü daralt / genişlet ([)', 'flx-admin' ); ?>" aria-label="<?php esc_attr_e( 'Menüyü daralt / genişlet', 'flx-admin' ); ?>"><?php echo flxa_icon( 'sidebar', 18 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></button>
+		<button type="button" class="flxa-fold-btn" data-flxa-fold aria-controls="adminmenu" aria-expanded="true" title="<?php esc_attr_e( 'Collapse / expand menu ([)', 'flx-admin' ); ?>" aria-label="<?php esc_attr_e( 'Collapse / expand menu', 'flx-admin' ); ?>"><?php echo flxa_icon( 'sidebar', 18 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></button>
 		<?php if ( flxa_setting( 'palette' ) ) : ?>
 		<button type="button" class="flxa-search" data-flxa-palette>
 			<?php echo flxa_icon( 'search', 16 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-			<span><?php esc_html_e( 'Ara veya komut…', 'flx-admin' ); ?></span>
+			<span><?php esc_html_e( 'Search or command…', 'flx-admin' ); ?></span>
 			<kbd>Ctrl K</kbd>
 		</button>
 		<?php endif; ?>
 	</li>
 	<?php if ( current_user_can( 'manage_options' ) ) : ?>
 	<li class="flxa-side-edit">
-		<a class="flxa-side-link" href="<?php echo esc_url( flxa_settings_url( 'menu' ) ); ?>" title="<?php esc_attr_e( 'Menüyü düzenle', 'flx-admin' ); ?>"><?php echo flxa_icon( 'menu', 16 ); // phpcs:ignore ?><span><?php esc_html_e( 'Menüyü düzenle', 'flx-admin' ); ?></span></a>
+		<a class="flxa-side-link" href="<?php echo esc_url( flxa_settings_url( 'menu' ) ); ?>" title="<?php esc_attr_e( 'Edit menu', 'flx-admin' ); ?>"><?php echo flxa_icon( 'menu', 16 ); // phpcs:ignore ?><span><?php esc_html_e( 'Edit menu', 'flx-admin' ); ?></span></a>
 	</li>
 	<?php endif; ?>
 	<li class="flxa-side-foot">
@@ -265,7 +265,7 @@ function flxa_sidebar_blocks() {
 				<?php echo get_avatar( $user->ID, 64, '', '', array( 'class' => 'flxa-avatar' ) ); ?>
 				<span class="flxa-user-text"><strong><?php echo esc_html( $user->display_name ); ?></strong><small><?php echo esc_html( flxa_user_role_label( $user ) ); ?></small></span>
 			</a>
-			<a class="flxa-icon-btn flxa-logout-btn" href="<?php echo esc_url( wp_logout_url() ); ?>" title="<?php esc_attr_e( 'Çıkış yap', 'flx-admin' ); ?>" aria-label="<?php esc_attr_e( 'Çıkış yap', 'flx-admin' ); ?>"><?php echo flxa_icon( 'logout', 17 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a>
+			<a class="flxa-icon-btn flxa-logout-btn" href="<?php echo esc_url( wp_logout_url() ); ?>" title="<?php esc_attr_e( 'Log out', 'flx-admin' ); ?>" aria-label="<?php esc_attr_e( 'Log out', 'flx-admin' ); ?>"><?php echo flxa_icon( 'logout', 17 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a>
 		</div>
 	</li>
 	<?php
@@ -324,7 +324,7 @@ function flxa_footer() {
 	echo '<div id="flxa-scrim" aria-hidden="true"></div>';
 	if ( flxa_setting( 'bottom_bar' ) ) {
 		$items = flxa_bottom_items();
-		echo '<nav id="flxa-bottom" aria-label="' . esc_attr__( 'Alt menü', 'flx-admin' ) . '">';
+		echo '<nav id="flxa-bottom" aria-label="' . esc_attr__( 'Submenu', 'flx-admin' ) . '">';
 		foreach ( $items as $it ) {
 			$cur = flxa_is_current_slug( $it['slug'] );
 			$n   = $it['badge'] ? (int) ( $counts[ $it['badge'] ] ?? 0 ) : 0;
@@ -335,7 +335,7 @@ function flxa_footer() {
 			}
 			echo '</span><span class="flxa-tab-label">' . esc_html( $it['label'] ) . '</span></a>';
 		}
-		echo '<button type="button" class="flxa-tab" data-flxa-drawer><span class="flxa-tab-ico">' . flxa_icon( 'more', 22 ) . '</span><span class="flxa-tab-label">' . esc_html__( 'Daha', 'flx-admin' ) . '</span></button>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<button type="button" class="flxa-tab" data-flxa-drawer><span class="flxa-tab-ico">' . flxa_icon( 'more', 22 ) . '</span><span class="flxa-tab-label">' . esc_html__( 'More', 'flx-admin' ) . '</span></button>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '</nav>';
 	}
 	echo '<div id="flxa-toast" role="status" aria-live="polite" hidden></div>';
@@ -351,9 +351,9 @@ function flxa_admin_bar( $bar ) {
 			array(
 				'id'     => 'flxa-search',
 				'parent' => 'top-secondary',
-				'title'  => flxa_icon( 'search', 18 ) . '<span class="screen-reader-text">' . esc_html__( 'Ara', 'flx-admin' ) . '</span>',
+				'title'  => flxa_icon( 'search', 18 ) . '<span class="screen-reader-text">' . esc_html__( 'Search', 'flx-admin' ) . '</span>',
 				'href'   => '#',
-				'meta'   => array( 'class' => 'flxa-ab-btn', 'title' => __( 'Ara (Ctrl+K)', 'flx-admin' ) ),
+				'meta'   => array( 'class' => 'flxa-ab-btn', 'title' => __( 'Search (Ctrl+K)', 'flx-admin' ) ),
 			)
 		);
 	}
@@ -362,16 +362,16 @@ function flxa_admin_bar( $bar ) {
 		array(
 			'id'     => 'flxa-mode',
 			'parent' => 'top-secondary',
-			'title'  => flxa_icon( 'auto' === $mode ? 'auto' : ( 'dark' === $mode ? 'moon' : 'sun' ), 18 ) . '<span class="screen-reader-text">' . esc_html__( 'Tema', 'flx-admin' ) . '</span>',
+			'title'  => flxa_icon( 'auto' === $mode ? 'auto' : ( 'dark' === $mode ? 'moon' : 'sun' ), 18 ) . '<span class="screen-reader-text">' . esc_html__( 'Theme', 'flx-admin' ) . '</span>',
 			'href'   => '#',
-			'meta'   => array( 'class' => 'flxa-ab-btn flxa-mode-pop', 'title' => __( 'Tema: tıklayınca açık / koyu', 'flx-admin' ) ),
+			'meta'   => array( 'class' => 'flxa-ab-btn flxa-mode-pop', 'title' => __( 'Theme: click for light / dark', 'flx-admin' ) ),
 		)
 	);
 	// Açık seçim: tıklama yalnız açık ↔ koyu yapar, "Sistem" buradan seçilir.
 	$opts = array(
-		'light' => array( 'sun', __( 'Açık', 'flx-admin' ) ),
-		'dark'  => array( 'moon', __( 'Koyu', 'flx-admin' ) ),
-		'auto'  => array( 'auto', __( 'Sistem (cihaza göre)', 'flx-admin' ) ),
+		'light' => array( 'sun', __( 'Light', 'flx-admin' ) ),
+		'dark'  => array( 'moon', __( 'Dark', 'flx-admin' ) ),
+		'auto'  => array( 'auto', __( 'System (follow device)', 'flx-admin' ) ),
 	);
 	foreach ( $opts as $k => $o ) {
 		$bar->add_node(

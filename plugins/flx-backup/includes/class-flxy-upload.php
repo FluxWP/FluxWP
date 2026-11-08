@@ -36,10 +36,10 @@ final class FLXY_Upload {
 
 	private static function guard(): void {
 		if ( ! current_user_can( self::CAP ) ) {
-			wp_send_json_error( array( 'message' => __( 'Yetkiniz yok.', 'flx-backup' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'You are not allowed to do this.', 'flx-backup' ) ), 403 );
 		}
 		if ( ! check_ajax_referer( 'flxy', 'nonce', false ) ) {
-			wp_send_json_error( array( 'message' => __( 'Oturum doğrulanamadı. Sayfayı yenileyin.', 'flx-backup' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'Could not verify the session. Reload the page.', 'flx-backup' ) ), 403 );
 		}
 	}
 
@@ -67,10 +67,10 @@ final class FLXY_Upload {
 		$name = sanitize_file_name( wp_unslash( $_POST['name'] ?? '' ) ); // phpcs:ignore WordPress.Security.NonceVerification
 		$size = (int) ( $_POST['size'] ?? 0 ); // phpcs:ignore WordPress.Security.NonceVerification
 		if ( '' === $name || '.zip' !== strtolower( substr( $name, -4 ) ) ) {
-			wp_send_json_error( array( 'message' => __( 'Yalnızca Flux Backup ile alınmış .zip yedek dosyaları yüklenebilir.', 'flx-backup' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Only .zip backup files made with Flux Backup can be uploaded.', 'flx-backup' ) ) );
 		}
 		if ( $size < 100 ) {
-			wp_send_json_error( array( 'message' => __( 'Dosya boş ya da çok küçük.', 'flx-backup' ) ) );
+			wp_send_json_error( array( 'message' => __( 'The file is empty or too small.', 'flx-backup' ) ) );
 		}
 		$quota = FLXY_Settings::quota_bytes();
 		if ( $size > $quota ) {
@@ -78,7 +78,7 @@ final class FLXY_Upload {
 				array(
 					'message' => sprintf(
 						/* translators: 1: file size, 2: quota */
-						__( 'Dosya (%1$s) yedek kotasından (%2$s) büyük. Ayarlar\'dan kotayı artırın.', 'flx-backup' ),
+						__( 'The file (%1$s) is larger than the backup quota (%2$s). Raise the quota in Settings.', 'flx-backup' ),
 						size_format( $size, 1 ),
 						size_format( $quota, 1 )
 					),
@@ -87,21 +87,21 @@ final class FLXY_Upload {
 		}
 		if ( ! FLXY_Storage::ensure() ) {
 			/* translators: %s: directory */
-			wp_send_json_error( array( 'message' => sprintf( __( 'Yedek klasörü yazılabilir değil: %s', 'flx-backup' ), FLXY_Storage::dir() ) ) );
+			wp_send_json_error( array( 'message' => sprintf( __( 'The backup folder is not writable: %s', 'flx-backup' ), FLXY_Storage::dir() ) ) );
 		}
 		$free = function_exists( 'disk_free_space' ) ? @disk_free_space( FLXY_Storage::dir() ) : false; // phpcs:ignore WordPress.PHP.NoSilencedErrors
 		if ( false !== $free && $free < $size * 1.05 ) {
 			wp_send_json_error(
 				array(
 					/* translators: %s: free disk space */
-					'message' => sprintf( __( 'Sunucuda yeterli boş disk alanı yok (boş: %s).', 'flx-backup' ), size_format( (int) $free, 1 ) ),
+					'message' => sprintf( __( 'There is not enough free disk space on the server (free: %s).', 'flx-backup' ), size_format( (int) $free, 1 ) ),
 				)
 			);
 		}
 		$uid = strtolower( wp_generate_password( 16, false, false ) );
 		$dir = self::dir_for( $uid );
 		if ( ! wp_mkdir_p( $dir ) ) {
-			wp_send_json_error( array( 'message' => __( 'Geçici dosya yazılamadı.', 'flx-backup' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Could not write a temporary file.', 'flx-backup' ) ) );
 		}
 		file_put_contents( $dir . '/data.part', '' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 		file_put_contents( // phpcs:ignore WordPress.WP.AlternativeFunctions
@@ -129,14 +129,14 @@ final class FLXY_Upload {
 		$uid  = self::uid();
 		$meta = self::meta( $uid );
 		if ( ! $meta ) {
-			wp_send_json_error( array( 'message' => __( 'Yükleme bulunamadı; yeniden başlatın.', 'flx-backup' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Upload not found; start again.', 'flx-backup' ) ) );
 		}
 		$offset = (int) ( $_POST['offset'] ?? -1 ); // phpcs:ignore WordPress.Security.NonceVerification
 		$file   = $_FILES['chunk'] ?? null; // phpcs:ignore WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput
 		if ( ! $file || ! empty( $file['error'] ) || ! is_uploaded_file( $file['tmp_name'] ) ) {
 			$code = $file ? (int) $file['error'] : -1;
 			/* translators: %d: PHP upload error code */
-			wp_send_json_error( array( 'message' => sprintf( __( 'Parça sunucuya ulaşmadı (hata %d).', 'flx-backup' ), $code ) ) );
+			wp_send_json_error( array( 'message' => sprintf( __( 'A chunk did not reach the server (error %d).', 'flx-backup' ), $code ) ) );
 		}
 		$part = self::dir_for( $uid ) . '/data.part';
 		clearstatcache( true, $part );
@@ -144,19 +144,19 @@ final class FLXY_Upload {
 		if ( $offset < 0 || $offset > $have ) {
 			wp_send_json_error(
 				array(
-					'message'  => __( 'Parça sırası bozuldu.', 'flx-backup' ),
+					'message'  => __( 'Chunks arrived out of order.', 'flx-backup' ),
 					'received' => $have,
 				)
 			);
 		}
 		$len = (int) $file['size'];
 		if ( $offset + $len > (int) $meta['size'] ) {
-			wp_send_json_error( array( 'message' => __( 'Dosya bildirilen boyuttan büyük.', 'flx-backup' ) ) );
+			wp_send_json_error( array( 'message' => __( 'The file is larger than the declared size.', 'flx-backup' ) ) );
 		}
 		$out = fopen( $part, 'c+b' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 		$in  = fopen( $file['tmp_name'], 'rb' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 		if ( ! $out || ! $in ) {
-			wp_send_json_error( array( 'message' => __( 'Geçici dosya yazılamadı.', 'flx-backup' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Could not write a temporary file.', 'flx-backup' ) ) );
 		}
 		ftruncate( $out, $offset );
 		fseek( $out, $offset );
@@ -165,7 +165,7 @@ final class FLXY_Upload {
 		fclose( $out ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 		wp_delete_file( $file['tmp_name'] );
 		if ( $copied !== $len ) {
-			wp_send_json_error( array( 'message' => __( 'Geçici dosya yazılamadı (disk dolu olabilir).', 'flx-backup' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Could not write the temporary file (the disk may be full).', 'flx-backup' ) ) );
 		}
 		touch( self::dir_for( $uid ) ); // Eski geçici klasör temizliği yarım yüklemeyi silmesin.
 		wp_send_json_success( array( 'received' => $offset + $len ) );
@@ -177,7 +177,7 @@ final class FLXY_Upload {
 		$uid  = self::uid();
 		$meta = self::meta( $uid );
 		if ( ! $meta ) {
-			wp_send_json_error( array( 'message' => __( 'Yükleme bulunamadı; yeniden başlatın.', 'flx-backup' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Upload not found; start again.', 'flx-backup' ) ) );
 		}
 		FLXY_Backup::raise_limits();
 		$rec = self::register( self::dir_for( $uid ) . '/data.part', (string) $meta['name'], (int) $meta['size'] );
@@ -193,7 +193,7 @@ final class FLXY_Upload {
 				'url'     => admin_url( 'admin.php?page=flx-backup-list&view=' . rawurlencode( $rec['id'] ) ),
 				'message' => sprintf(
 					/* translators: 1: file name, 2: size */
-					__( '%1$s yüklendi (%2$s) ve yedek listesine eklendi.', 'flx-backup' ),
+					__( '%1$s was uploaded (%2$s) and added to the backup list.', 'flx-backup' ),
 					$meta['name'],
 					size_format( $rec['size'], 1 )
 				),
@@ -223,7 +223,7 @@ final class FLXY_Upload {
 				'flxy_upload_size',
 				sprintf(
 					/* translators: 1: received bytes, 2: expected bytes */
-					__( 'Dosya eksik yüklendi (%1$s / %2$s). Yeniden deneyin.', 'flx-backup' ),
+					__( 'The file was uploaded incompletely (%1$s / %2$s). Try again.', 'flx-backup' ),
 					size_format( $size, 1 ),
 					size_format( $expect_size, 1 )
 				)
@@ -243,7 +243,7 @@ final class FLXY_Upload {
 		$dest = FLXY_Storage::dir() . '/flxy-upload-' . gmdate( 'Ymd-His', $now ) . '-' . strtolower( wp_generate_password( 16, false, false ) ) . '.zip';
 		if ( ! @rename( $path, $dest ) ) { // phpcs:ignore WordPress.PHP.NoSilencedErrors,WordPress.WP.AlternativeFunctions
 			if ( ! @copy( $path, $dest ) ) { // phpcs:ignore WordPress.PHP.NoSilencedErrors
-				return new WP_Error( 'flxy_upload_move', __( 'Yedek klasörüne taşınamadı.', 'flx-backup' ) );
+				return new WP_Error( 'flxy_upload_move', __( 'Could not move the file to the backup folder.', 'flx-backup' ) );
 			}
 			wp_delete_file( $path );
 		}
@@ -272,7 +272,7 @@ final class FLXY_Upload {
 				'id'         => $id,
 				'type'       => $type,
 				/* translators: %s: original file name */
-				'label'      => sprintf( __( 'Yüklendi: %s', 'flx-backup' ), $orig_name ),
+				'label'      => sprintf( __( 'Uploaded: %s', 'flx-backup' ), $orig_name ),
 				'status'     => 'ok',
 				'created'    => $now,
 				'finished'   => $now,
@@ -296,7 +296,7 @@ final class FLXY_Upload {
 			'upload',
 			sprintf(
 				/* translators: 1: file name, 2: size, 3: site address */
-				__( 'Yedek yüklendi: %1$s (%2$s, %3$s)', 'flx-backup' ),
+				__( 'Backup uploaded: %1$s (%2$s, %3$s)', 'flx-backup' ),
 				$orig_name,
 				size_format( $rec['size'], 1 ),
 				'' !== $context['original_site_url'] ? $context['original_site_url'] : '?'
@@ -322,9 +322,9 @@ final class FLXY_Upload {
 	 * @return array|WP_Error manifest
 	 */
 	public static function validate( string $path ) {
-		$bad = new WP_Error( 'flxy_upload_invalid', __( 'Bu dosya bir Flux Backup yedeği değil (zip açılamadı ya da manifest.json yok).', 'flx-backup' ) );
+		$bad = new WP_Error( 'flxy_upload_invalid', __( 'This file is not a Flux Backup backup (the zip could not be opened or has no manifest.json).', 'flx-backup' ) );
 		if ( ! class_exists( 'ZipArchive' ) ) {
-			return new WP_Error( 'flxy_zip', __( 'Sunucuda ZipArchive (PHP zip eklentisi) yok.', 'flx-backup' ) );
+			return new WP_Error( 'flxy_zip', __( 'ZipArchive (PHP zip extension) is not available on the server.', 'flx-backup' ) );
 		}
 		$fh   = fopen( $path, 'rb' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 		$head = $fh ? (string) fread( $fh, 4 ) : ''; // phpcs:ignore WordPress.WP.AlternativeFunctions
@@ -365,22 +365,22 @@ final class FLXY_Upload {
 				return new WP_Error(
 					'flxy_upload_path',
 					/* translators: %s: entry name */
-					sprintf( __( 'Yedekte beklenmeyen veya güvenli olmayan bir yol var: %s', 'flx-backup' ), $name )
+					sprintf( __( 'The backup contains an unexpected or unsafe path: %s', 'flx-backup' ), $name )
 				);
 			}
 			$raw += (int) $st['size'];
 		}
 		$zip->close();
 		if ( ! empty( $m['db']['included'] ) && ! $has_db ) {
-			return new WP_Error( 'flxy_upload_nodb', __( 'Manifest veritabanı içerdiğini söylüyor ama database.sql.gz yok; dosya bozuk olabilir.', 'flx-backup' ) );
+			return new WP_Error( 'flxy_upload_nodb', __( 'The manifest says the backup includes the database but database.sql.gz is missing; the file may be corrupt.', 'flx-backup' ) );
 		}
 		if ( ! $has_db && $n <= 1 ) {
-			return new WP_Error( 'flxy_upload_empty', __( 'Yedek boş görünüyor.', 'flx-backup' ) );
+			return new WP_Error( 'flxy_upload_empty', __( 'The backup appears to be empty.', 'flx-backup' ) );
 		}
 		/** Açılmış boyutun zip boyutuna en fazla oranı (sıkıştırma bombasına karşı). */
 		$ratio = (float) apply_filters( 'flxy_upload_max_ratio', 200 );
 		if ( $raw > max( 50 * MB_IN_BYTES, $size * $ratio ) ) {
-			return new WP_Error( 'flxy_upload_ratio', __( 'Yedeğin açılmış boyutu makul değil; dosya yüklenmedi.', 'flx-backup' ) );
+			return new WP_Error( 'flxy_upload_ratio', __( 'The uncompressed size of the backup is not plausible; the file was not accepted.', 'flx-backup' ) );
 		}
 		return $m;
 	}

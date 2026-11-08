@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.12
+- Add native WordPress language packs for German, Spanish, French, Brazilian Portuguese, Japanese, Simplified Chinese, Arabic and Russian. English-keyed JSON catalogs preserve legacy gettext compatibility; no Flux Lang dependency.
+
 ## 1.7.11
 - Qurban Global Preset logosu eklendi (degrade + pastel).
 

@@ -74,11 +74,11 @@ function flxcb_hours_text() {
 		$days = array_keys( $on );
 		if ( array( 1, 2, 3, 4, 5 ) === $days ) {
 			/* translators: %s: time range */
-			return sprintf( __( 'Hafta içi %s', 'flx-chatbot' ), reset( $uniq ) );
+			return sprintf( __( 'Weekdays %s', 'flx-chatbot' ), reset( $uniq ) );
 		}
 		if ( 7 === count( $days ) ) {
 			/* translators: %s: time range */
-			return sprintf( __( 'Her gün %s', 'flx-chatbot' ), reset( $uniq ) );
+			return sprintf( __( 'Every day %s', 'flx-chatbot' ), reset( $uniq ) );
 		}
 	}
 	$names = flxcb_day_names( true );
@@ -91,8 +91,8 @@ function flxcb_hours_text() {
 
 function flxcb_day_names( $short = false ) {
 	return $short
-		? array( 1 => __( 'Pzt', 'flx-chatbot' ), 2 => __( 'Sal', 'flx-chatbot' ), 3 => __( 'Çar', 'flx-chatbot' ), 4 => __( 'Per', 'flx-chatbot' ), 5 => __( 'Cum', 'flx-chatbot' ), 6 => __( 'Cmt', 'flx-chatbot' ), 7 => __( 'Paz', 'flx-chatbot' ) )
-		: array( 1 => __( 'Pazartesi', 'flx-chatbot' ), 2 => __( 'Salı', 'flx-chatbot' ), 3 => __( 'Çarşamba', 'flx-chatbot' ), 4 => __( 'Perşembe', 'flx-chatbot' ), 5 => __( 'Cuma', 'flx-chatbot' ), 6 => __( 'Cumartesi', 'flx-chatbot' ), 7 => __( 'Pazar', 'flx-chatbot' ) );
+		? array( 1 => __( 'Mon', 'flx-chatbot' ), 2 => __( 'Tue', 'flx-chatbot' ), 3 => __( 'Wed', 'flx-chatbot' ), 4 => __( 'Thu', 'flx-chatbot' ), 5 => __( 'Fri', 'flx-chatbot' ), 6 => __( 'Sat', 'flx-chatbot' ), 7 => __( 'Sun', 'flx-chatbot' ) )
+		: array( 1 => __( 'Monday', 'flx-chatbot' ), 2 => __( 'Tuesday', 'flx-chatbot' ), 3 => __( 'Wednesday', 'flx-chatbot' ), 4 => __( 'Thursday', 'flx-chatbot' ), 5 => __( 'Friday', 'flx-chatbot' ), 6 => __( 'Saturday', 'flx-chatbot' ), 7 => __( 'Sunday', 'flx-chatbot' ) );
 }
 
 /** Ana ekrandaki ekip avatarları: son 30 günde cevap veren temsilciler, yoksa yöneticiler. */

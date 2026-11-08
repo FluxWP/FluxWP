@@ -91,10 +91,10 @@ function flxapp_dash_wp( $d, $u ) {
 		$pc            = wp_count_posts( 'post' );
 		$d['cards'][]  = array(
 			'id'    => 'wp-posts',
-			'title' => __( 'Yazılar', 'flx-app' ),
+			'title' => __( 'Posts', 'flx-app' ),
 			'value' => flxapp_dash_num( $pc->publish ?? 0 ),
 			/* translators: %s: taslak sayısı */
-			'sub'   => (int) ( $pc->draft ?? 0 ) ? sprintf( __( '%s taslak', 'flx-app' ), flxapp_dash_num( $pc->draft ) ) : '',
+			'sub'   => (int) ( $pc->draft ?? 0 ) ? sprintf( __( '%s drafts', 'flx-app' ), flxapp_dash_num( $pc->draft ) ) : '',
 			'icon'  => 'post',
 			'open'  => 'screen:core/posts',
 			'url'   => admin_url( 'edit.php' ),
@@ -113,14 +113,14 @@ function flxapp_dash_wp( $d, $u ) {
 		if ( $drafts ) {
 			$d['lists'][] = array(
 				'id'    => 'wp-drafts',
-				'title' => __( 'Taslaklarım', 'flx-app' ),
+				'title' => __( 'My drafts', 'flx-app' ),
 				'icon'  => 'post',
 				'open'  => 'screen:core/posts',
 				'url'   => admin_url( 'edit.php?post_status=draft&author=' . $u->ID ),
 				'order' => 60,
 				'items' => array_map(
 					fn( $p ) => array(
-						'title' => get_the_title( $p ) !== '' ? get_the_title( $p ) : __( '(başlıksız)', 'flx-app' ),
+						'title' => get_the_title( $p ) !== '' ? get_the_title( $p ) : __( '(no title)', 'flx-app' ),
 						'meta'  => flxapp_dash_when( $p->post_modified_gmt ),
 						'open'  => 'screen:core/' . ( 'page' === $p->post_type ? 'page' : 'post' ),
 						'params' => array( 'id' => $p->ID ),
@@ -135,7 +135,7 @@ function flxapp_dash_wp( $d, $u ) {
 		$pg           = wp_count_posts( 'page' );
 		$d['cards'][] = array(
 			'id'    => 'wp-pages',
-			'title' => __( 'Sayfalar', 'flx-app' ),
+			'title' => __( 'Pages', 'flx-app' ),
 			'value' => flxapp_dash_num( $pg->publish ?? 0 ),
 			'icon'  => 'page',
 			'open'  => 'screen:core/pages',
@@ -148,10 +148,10 @@ function flxapp_dash_wp( $d, $u ) {
 		$wait         = (int) $cc->moderated;
 		$d['cards'][] = array(
 			'id'    => 'wp-comments',
-			'title' => __( 'Onay bekleyen yorum', 'flx-app' ),
+			'title' => __( 'Pending comments', 'flx-app' ),
 			'value' => flxapp_dash_num( $wait ),
 			/* translators: %s: onaylı yorum sayısı */
-			'sub'   => sprintf( __( '%s onaylı', 'flx-app' ), flxapp_dash_num( $cc->approved ) ),
+			'sub'   => sprintf( __( '%s approved', 'flx-app' ), flxapp_dash_num( $cc->approved ) ),
 			'icon'  => 'comment',
 			'tone'  => $wait ? 'warn' : '',
 			'open'  => 'screen:core/comments',
@@ -168,7 +168,7 @@ function flxapp_dash_wp( $d, $u ) {
 		if ( $recent ) {
 			$d['lists'][] = array(
 				'id'    => 'wp-comments',
-				'title' => __( 'Son yorumlar', 'flx-app' ),
+				'title' => __( 'Recent comments', 'flx-app' ),
 				'icon'  => 'comment',
 				'url'   => admin_url( 'edit-comments.php' ),
 				'order' => 70,
@@ -176,7 +176,7 @@ function flxapp_dash_wp( $d, $u ) {
 					fn( $c ) => array(
 						'title' => wp_trim_words( wp_strip_all_tags( $c->comment_content ), 12 ),
 						'sub'   => $c->comment_author . ' · ' . get_the_title( $c->comment_post_ID ),
-						'meta'  => '0' === $c->comment_approved ? __( 'Bekliyor', 'flx-app' ) : flxapp_dash_when( $c->comment_date_gmt ),
+						'meta'  => '0' === $c->comment_approved ? __( 'Pending', 'flx-app' ) : flxapp_dash_when( $c->comment_date_gmt ),
 						'open'  => 'screen:core/comment',
 						'params' => array( 'id' => (int) $c->comment_ID ),
 						'url'   => admin_url( 'comment.php?action=editcomment&c=' . $c->comment_ID ),
@@ -194,7 +194,7 @@ function flxapp_dash_wp( $d, $u ) {
 		}
 		$d['cards'][] = array(
 			'id'    => 'wp-media',
-			'title' => __( 'Ortam', 'flx-app' ),
+			'title' => __( 'Media', 'flx-app' ),
 			'value' => flxapp_dash_num( $total ),
 			'icon'  => 'media',
 			'open'  => 'screen:core/media',
@@ -206,7 +206,7 @@ function flxapp_dash_wp( $d, $u ) {
 		$uc           = count_users();
 		$d['cards'][] = array(
 			'id'    => 'wp-users',
-			'title' => __( 'Kullanıcılar', 'flx-app' ),
+			'title' => __( 'Users', 'flx-app' ),
 			'value' => flxapp_dash_num( $uc['total_users'] ?? 0 ),
 			'icon'  => 'users',
 			'open'  => 'screen:core/users',
@@ -220,7 +220,7 @@ function flxapp_dash_wp( $d, $u ) {
 		if ( $n ) {
 			$d['cards'][] = array(
 				'id'    => 'wp-updates',
-				'title' => __( 'Güncelleme', 'flx-app' ),
+				'title' => __( 'Updates', 'flx-app' ),
 				'value' => flxapp_dash_num( $n ),
 				'icon'  => 'update',
 				'tone'  => 'warn',
@@ -263,10 +263,10 @@ function flxapp_dash_wc( $d, $u ) {
 	$cur          = get_woocommerce_currency();
 	$d['cards'][] = array(
 		'id'    => 'wc-today',
-		'title' => __( 'Bugünkü siparişler', 'flx-app' ),
+		'title' => __( 'Today\'s orders', 'flx-app' ),
 		'value' => html_entity_decode( wp_strip_all_tags( wc_price( $sum, array( 'currency' => $cur ) ) ), ENT_QUOTES, 'UTF-8' ),
 		/* translators: %s: sipariş sayısı */
-		'sub'   => sprintf( __( '%s sipariş', 'flx-app' ), flxapp_dash_num( count( $today ) ) ),
+		'sub'   => sprintf( __( '%s orders', 'flx-app' ), flxapp_dash_num( count( $today ) ) ),
 		'icon'  => 'cart',
 		'tone'  => 'accent',
 		'open'  => 'screen:woo/orders',
@@ -283,7 +283,7 @@ function flxapp_dash_wc( $d, $u ) {
 	$n       = count( $waiting );
 	$d['cards'][] = array(
 		'id'    => 'wc-waiting',
-		'title' => __( 'Ödeme bekleyen', 'flx-app' ),
+		'title' => __( 'Awaiting payment', 'flx-app' ),
 		'value' => flxapp_dash_num( $n ),
 		'icon'  => 'clock',
 		'tone'  => $n ? 'warn' : '',
@@ -303,7 +303,7 @@ function flxapp_dash_wc( $d, $u ) {
 	if ( $recent ) {
 		$d['lists'][] = array(
 			'id'    => 'wc-orders',
-			'title' => __( 'Son siparişler', 'flx-app' ),
+			'title' => __( 'Recent orders', 'flx-app' ),
 			'icon'  => 'cart',
 			'url'   => flxapp_dash_orders_url(),
 			'order' => 10,

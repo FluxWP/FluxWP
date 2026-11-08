@@ -1,0 +1,1199 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "AI chat window, live chat and customer support"
+msgstr "Окно чата с искусственным интеллектом, чат и поддержка клиентов"
+
+msgid "Site chats"
+msgstr "Чаты сайта"
+
+msgid "Open"
+msgstr "Открыть"
+
+msgid "All"
+msgstr "Все"
+
+msgid "With assistant"
+msgstr "С ассистентом"
+
+msgid "Closed"
+msgstr "Закрыто"
+
+msgid "Search name, email, phone or page"
+msgstr "Поиск по имени, электронной почте, телефону или странице"
+
+msgid "No chats in this view."
+msgstr "В этом представлении нет чатов."
+
+msgid "Pick a chat on the left."
+msgstr "Выберите чат слева."
+
+msgid "Loading…"
+msgstr "Загрузка..."
+
+msgid "Type your reply… (Enter sends, Shift+Enter for a new line)"
+msgstr "Введите ответ... (Enter отправляет, Shift+Enter для новой строки)"
+
+msgid "Send"
+msgstr "Отправить"
+
+msgid "Attach file"
+msgstr "Прикрепить файл"
+
+msgid "Close chat"
+msgstr "Закрыть чат"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Delete this chat and its files permanently?"
+msgstr "Удалить этот чат и его файлы навсегда?"
+
+msgid "Close the chat? It reopens if the visitor writes again."
+msgstr "Закрыть чат? Он откроется снова, если посетитель напишет снова."
+
+msgid "Open in Flux Chat"
+msgstr "Открыть в чате Flux"
+
+msgid "This chat is also in the Flux Chat inbox; replies from either place reach the visitor."
+msgstr "Этот чат также находится во входящих сообщениях Flux Chat; ответы из любого места доходят до посетителя."
+
+msgid "Visitor"
+msgstr "Посетитель"
+
+msgid "You"
+msgstr "ты"
+
+msgid "On the page"
+msgstr "На странице"
+
+msgid "Left"
+msgstr "Левый"
+
+msgid "typing…"
+msgstr "печатаю..."
+
+msgid "Page"
+msgstr "Страница"
+
+msgid "Email"
+msgstr "электронная почта"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "Member"
+msgstr "Член"
+
+msgid "Order"
+msgstr "Заказать"
+
+msgid "Rating"
+msgstr "Рейтинг"
+
+msgid "Assistant's note"
+msgstr "Примечание помощника"
+
+msgid "Lead"
+msgstr "Ведущий"
+
+msgid "Agent"
+msgstr "Агент"
+
+msgid "Something went wrong. Please try again."
+msgstr "Что-то пошло не так. Пожалуйста, попробуйте еще раз."
+
+msgid "Waiting for an agent"
+msgstr "В ожидании агента"
+
+msgid "In conversation"
+msgstr "В разговоре"
+
+msgid "Left a message"
+msgstr "Оставил сообщение"
+
+msgid "More"
+msgstr "Подробнее"
+
+msgid "Back to list"
+msgstr "Вернуться к списку"
+
+msgid "Details"
+msgstr "Подробности"
+
+msgid "Suggested products"
+msgstr "Предлагаемые продукты"
+
+msgid "You are not allowed to do this."
+msgstr "Вам не разрешено это делать."
+
+msgid "Conversations from the chat window on your site. Chats the assistant answered are here too; visitors asking for an agent are on top."
+msgstr "Разговоры из окна чата на вашем сайте. Чаты, на которые отвечал помощник, тоже здесь; посетители, просящие агента, находятся на вершине."
+
+msgid "Flux Chat"
+msgstr "Flux-чат"
+
+msgid "Flux AI Chatbot"
+msgstr "Чат-бот Flux с искусственным интеллектом"
+
+msgid "Chatbot"
+msgstr "Чат-бот"
+
+msgid "Chats"
+msgstr "Чаты"
+
+msgid "Chatbot settings"
+msgstr "Chatbot settings"
+
+msgid "Choose avatar"
+msgstr "Выбрать аватар"
+
+msgid "Use this image"
+msgstr "Используйте это изображение"
+
+msgid "You have unsaved changes"
+msgstr "У вас есть несохраненные изменения"
+
+msgid "Hi, how long does shipping take?"
+msgstr "Привет, сколько времени занимает доставка?"
+
+msgid "Orders ship within **1-3 business days**. Here is a product you might like:"
+msgstr "Заказы доставляются в течение **1–3 рабочих дней**. Вот продукт, который вам может понравиться:"
+
+msgid "Orders ship within **1-3 business days**; shipping is free over $50. Anything else I can help with?"
+msgstr "Заказы доставляются в течение **1–3 рабочих дней**; доставка бесплатна при сумме свыше 50 долларов. Чем-нибудь еще я могу помочь?"
+
+msgid "General"
+msgstr "Общий"
+
+msgid "Appearance"
+msgstr "Внешний вид"
+
+msgid "Texts"
+msgstr "Тексты"
+
+msgid "AI"
+msgstr "ИИ"
+
+msgid "Live chat"
+msgstr "Живой чат"
+
+msgid "Visibility"
+msgstr "Видимость"
+
+msgid "An AI chat window for your site: it answers from your content and products and hands the chat to a live agent when needed. Changes show up in the preview on the right right away."
+msgstr "Окно чата с искусственным интеллектом для вашего сайта: оно отвечает на ваш контент и продукты и при необходимости передает чат живому агенту. Изменения сразу же отображаются в предварительном просмотре справа."
+
+msgid "Try on site"
+msgstr "Попробуйте на сайте"
+
+msgid "Settings saved."
+msgstr "Настройки сохранены."
+
+msgid "last 30 days"
+msgstr "последние 30 дней"
+
+msgid "Solved by the assistant"
+msgstr "Решает помощник"
+
+msgid "without an agent"
+msgstr "без агента"
+
+msgid "left contact details"
+msgstr "оставил контактные данные"
+
+msgid "Orders after chat"
+msgstr "Заказы после чата"
+
+msgid "within 7 days"
+msgstr "в течение 7 дней"
+
+msgid "Satisfaction"
+msgstr "Удовлетворение"
+
+msgid "%s ratings"
+msgstr "%sрейтинги"
+
+msgid "no ratings yet"
+msgstr "пока нет оценок"
+
+msgid "Chat window"
+msgstr "Окно чата"
+
+msgid "Show on site"
+msgstr "Показать на сайте"
+
+msgid "While off, visitors don't see the window; admins can preview it with \"Try on site\"."
+msgstr "В выключенном состоянии посетители не видят окно; администраторы могут просмотреть его с помощью «Попробовать на сайте»."
+
+msgid "Mode"
+msgstr "Режим"
+
+msgid "AI + live chat"
+msgstr "ИИ + чат"
+
+msgid "The assistant answers and hands over to an agent when needed. Recommended."
+msgstr "Ассистент отвечает и передает сообщение агенту, когда это необходимо. Рекомендуется."
+
+msgid "AI only"
+msgstr "только ИИ"
+
+msgid "No handoff; the assistant shares your contact details."
+msgstr "Никакой передачи обслуживания; помощник делится вашими контактными данными."
+
+msgid "Live chat only"
+msgstr "Только живой чат"
+
+msgid "No assistant; messages go straight to agents."
+msgstr "Нет помощника; сообщения идут прямо агентам."
+
+msgid "Connections"
+msgstr "Соединения"
+
+msgid "Flux AI & MCP connected"
+msgstr "Flux AI и MCP подключены"
+
+msgid "Key, model, spending limit and logs come from Flux AI."
+msgstr "Ключ, модель, лимит расходов и журналы поступают из Flux AI."
+
+msgid "Choose model"
+msgstr "Выберите модель"
+
+msgid "Flux AI is not ready"
+msgstr "Flux AI не готов"
+
+msgid "Enter an API key in Flux AI & MCP or turn on Flux AI Chatbot under Connected systems."
+msgstr "Введите ключ API в Flux AI & MCP или включите чат-бота Flux AI в разделе «Подключенные системы»."
+
+msgid "Flux AI"
+msgstr "Поток ИИ"
+
+msgid "Flux AI & MCP is not installed"
+msgstr "Flux AI и MCP не установлены."
+
+msgid "Install the Flux AI & MCP plugin for the assistant. Until then the window works as live chat only."
+msgstr "Установите плагин Flux AI & MCP для помощника. До тех пор окно работает только как чат."
+
+msgid "Live chat off"
+msgstr "Живой чат отключен"
+
+msgid "Mode is \"AI only\"."
+msgstr "Режим «Только AI»."
+
+msgid "Flux Chat inbox"
+msgstr "Входящие сообщения Flux Chat"
+
+msgid "All site chats (including the ones the assistant answered) appear in the call center with the site chat icon; agents reply from the same screen as WhatsApp and other channels."
+msgstr "Все чаты сайта (в том числе те, на которые ответил ассистент) отображаются в колл-центре со значком чата сайта; агенты отвечают с того же экрана, что и WhatsApp и другие каналы."
+
+msgid "Plugin inbox"
+msgstr "Входящие плагины"
+
+msgid "Handed-over chats land on the Chatbot › Chats screen."
+msgstr "Переданные чаты отображаются на экране Чат-бот › Чаты."
+
+msgid "Handed-over chats land on the Chatbot › Chats screen. With Flux Chat (1.37+) installed they can also be answered from the call center."
+msgstr "Переданные чаты отображаются на экране Чат-бот › Чаты. Если установлен Flux Chat (1.37+), им также можно ответить из колл-центра."
+
+msgid "Online now"
+msgstr "Сейчас онлайн"
+
+msgid "Outside working hours now"
+msgstr "Сейчас вне рабочего времени"
+
+msgid "Working hours: %s"
+msgstr "Рабочее время:%s"
+
+msgid "Working hours come from the Flux Chat settings."
+msgstr "Рабочее время берется из настроек Flux Chat."
+
+msgid "Agents always count as online."
+msgstr "Агенты всегда считаются онлайн."
+
+msgid "Hours"
+msgstr "Часы"
+
+msgid "Open from a page"
+msgstr "Открыть со страницы"
+
+msgid "Any button or link can open the window."
+msgstr "Любая кнопка или ссылка может открыть окно."
+
+msgid "Message us"
+msgstr "Напишите нам"
+
+msgid "Shortcode: a button inside the page."
+msgstr "Шорткод: кнопка внутри страницы."
+
+msgid "A link to #flxcb-open opens the window."
+msgstr "Ссылка на #flxcb-open открывает окно."
+
+msgid "Added to a button, the window opens with this message."
+msgstr "Добавив на кнопку, открывается окно с этим сообщением."
+
+msgid "Open with JavaScript."
+msgstr "Открыть с помощью JavaScript."
+
+msgid "Color and theme"
+msgstr "Цвет и тема"
+
+msgid "Main color"
+msgstr "Основной цвет"
+
+msgid "Theme color"
+msgstr "Цвет темы"
+
+msgid "Follow theme"
+msgstr "Следовать теме"
+
+msgid "When empty, the site's theme color is used."
+msgstr "Если поле пусто, используется цвет темы сайта."
+
+msgid "Text color (header and buttons)"
+msgstr "Цвет текста (заголовок и кнопки)"
+
+msgid "Automatic"
+msgstr "Автоматический"
+
+msgid "When empty, a readable color is picked from the main color."
+msgstr "Если поле пусто, читаемый цвет выбирается из основного цвета."
+
+msgid "Light / dark"
+msgstr "Светлый/темный"
+
+msgid "Automatic (follows device and site)"
+msgstr "Автоматически (согласно устройству и месту)"
+
+msgid "Always light"
+msgstr "Всегда свет"
+
+msgid "Always dark"
+msgstr "Всегда темно"
+
+msgid "Header"
+msgstr "Заголовок"
+
+msgid "Gradient"
+msgstr "Градиент"
+
+msgid "Solid color"
+msgstr "Сплошной цвет"
+
+msgid "Font"
+msgstr "Шрифт"
+
+msgid "Same as site"
+msgstr "То же, что и сайт"
+
+msgid "System font"
+msgstr "Системный шрифт"
+
+msgid "Assistant"
+msgstr "Ассистент"
+
+msgid "Assistant name"
+msgstr "Имя помощника"
+
+msgid "Shown in the chat header."
+msgstr "Отображается в шапке чата."
+
+msgid "Avatar image"
+msgstr "Изображение аватара"
+
+msgid "Choose"
+msgstr "Выберите"
+
+msgid "Remove"
+msgstr "Удалить"
+
+msgid "A square image works best. Without one, the icon below is used."
+msgstr "Квадратное изображение работает лучше всего. Без него используется значок ниже."
+
+msgid "Avatar icon"
+msgstr "Значок аватара"
+
+msgid "Robot"
+msgstr "Робот"
+
+msgid "Sparkles"
+msgstr "блестки"
+
+msgid "Headset"
+msgstr "Гарнитура"
+
+msgid "Smiley"
+msgstr "Смайлик"
+
+msgid "Site icon"
+msgstr "Значок сайта"
+
+msgid "Launcher button and position"
+msgstr "Кнопка запуска и ее положение"
+
+msgid "Button icon"
+msgstr "Значок кнопки"
+
+msgid "Bubble"
+msgstr "Пузырь"
+
+msgid "Question"
+msgstr "Вопрос"
+
+msgid "Avatar"
+msgstr "Аватар"
+
+msgid "Label next to the button"
+msgstr "Метка рядом с кнопкой"
+
+msgid "When empty only the button shows. Example: Need help?"
+msgstr "Когда пусто, отображается только кнопка. Пример: Нужна помощь?"
+
+msgid "None"
+msgstr "Нет"
+
+msgid "Position"
+msgstr "Позиция"
+
+msgid "Bottom right"
+msgstr "Внизу справа"
+
+msgid "Bottom left"
+msgstr "Внизу слева"
+
+msgid "Button size"
+msgstr "Размер кнопки"
+
+msgid "Side spacing"
+msgstr "Боковое расстояние"
+
+msgid "Bottom spacing"
+msgstr "Нижнее расстояние"
+
+msgid "Window width"
+msgstr "Ширина окна"
+
+msgid "Corner radius"
+msgstr "Угловой радиус"
+
+msgid "Full screen on mobile"
+msgstr "Полный экран на мобильном телефоне"
+
+msgid "On small screens the window covers the whole screen."
+msgstr "На маленьких экранах окно занимает весь экран."
+
+msgid "Notification sound"
+msgstr "Звук уведомления"
+
+msgid "A short sound for a new reply while the window is closed."
+msgstr "Короткий звук нового ответа при закрытом окне."
+
+msgid "\"Powered by FluxWP\" note"
+msgstr "Примечание «При поддержке FluxWP»"
+
+msgid "A small signature at the bottom of the window."
+msgstr "Небольшая подпись внизу окна."
+
+msgid "Home screen"
+msgstr "Главный экран"
+
+msgid "The welcome screen shown when the window opens. Empty texts use the default for the visitor's language (TR/EN)."
+msgstr "Экран приветствия, отображаемый при открытии окна. Пустые тексты используют язык посетителя по умолчанию (TR/EN)."
+
+msgid "Show home screen"
+msgstr "Показать главный экран"
+
+msgid "When off, the window opens straight into the chat."
+msgstr "Когда выключено, окно открывается прямо в чат."
+
+msgid "Message field"
+msgstr "Поле сообщения"
+
+msgid "Subtitle"
+msgstr "Субтитры"
+
+msgid "Team avatars"
+msgstr "Аватары команд"
+
+msgid "Photos of agents who replied recently show in the header."
+msgstr "Фотографии агентов, которые недавно ответили, отображаются в шапке."
+
+msgid "Suggested questions"
+msgstr "Предлагаемые вопросы"
+
+msgid "One question per line (up to 6). Clickable on the home screen and at the start of a chat."
+msgstr "По одному вопросу в строке (до 6). Кликабельно на главном экране и в начале чата."
+
+msgid "How long does shipping take?\nHow do returns work?\nWhere is my order?"
+msgstr "Сколько времени занимает доставка?\nКак происходит возврат?\nГде мой заказ?"
+
+msgid "Contact links"
+msgstr "Контактные ссылки"
+
+msgid "One per line: Label | address. https, mailto:, tel: and wa.me are supported."
+msgstr "По одному в строке: Метка | адрес. Поддерживаются https, mailto:, tel: и wa.me."
+
+msgid "Chat texts"
+msgstr "Тексты чата"
+
+msgid "Welcome message"
+msgstr "Приветственное сообщение"
+
+msgid "The assistant's first message."
+msgstr "Первое сообщение ассистента."
+
+msgid "Teaser bubble"
+msgstr "Тизер-пузырь"
+
+msgid "After the visitor stays on the page a while, a short message pops up above the button (once per session)."
+msgstr "После того, как посетитель некоторое время остается на странице, над кнопкой всплывает короткое сообщение (один раз за сеанс)."
+
+msgid "Show teaser bubble"
+msgstr "Показать пузырь-тизер"
+
+msgid "Message"
+msgstr "Сообщение"
+
+msgid "After how many seconds"
+msgstr "Через сколько секунд"
+
+msgid "The assistant is not working right now."
+msgstr "Помощник сейчас не работает."
+
+msgid "AI calls go through Flux AI & MCP, where the key, model and spending limit live. Until Flux AI is ready, visitor messages go to an agent."
+msgstr "Вызовы ИИ проходят через Flux AI и MCP, где сохраняются ключ, модель и лимит расходов. Пока Flux AI не будет готов, сообщения посетителей передаются агенту."
+
+msgid "Key, model, spending limit and logs are in Flux AI & MCP. To pick a model just for this plugin:"
+msgstr "Ключ, модель, лимит расходов и журналы находятся в Flux AI и MCP. Чтобы выбрать модель именно для этого плагина:"
+
+msgid "Flux AI › Connected systems › Flux AI Chatbot"
+msgstr "Flux AI › Подключенные системы › Чат-бот Flux AI"
+
+msgid "Personality and instructions"
+msgstr "Личность и инструкции"
+
+msgid "Personality and tone"
+msgstr "Личность и тон"
+
+msgid "Example: Be friendly but polite, keep answers short."
+msgstr "Пример: будьте дружелюбны, но вежливы, отвечайте кратко."
+
+msgid "Rules"
+msgstr "Правила"
+
+msgid "What the assistant must follow. Example: Don't give discount codes. Hand business sales questions to an agent."
+msgstr "Чему должен следовать помощник. Пример: не давайте коды скидок. Передавайте вопросы по продажам агенту."
+
+msgid "Knowledge base"
+msgstr "База знаний"
+
+msgid "Information not on your site: shipping, returns, opening hours, FAQs. Plain text; the assistant answers only from here and your site."
+msgstr "Информация не на вашем сайте: доставка, возврат, часы работы, часто задаваемые вопросы. Обычный текст; помощник отвечает только отсюда и с вашего сайта."
+
+msgid "Shipping: 1-3 business days, free over $50.\nReturns: within 14 days with the invoice.\nQ: Do you have a store?\nA: We sell online only."
+msgstr "Доставка: 1-3 рабочих дня, бесплатно на сумму более 50 долларов США.\nВозврат: в течение 14 дней с выставлением счета.\nВ: Есть ли у вас магазин?\nО: Мы продаем только онлайн."
+
+msgid "Sources and tools"
+msgstr "Источники и инструменты"
+
+msgid "The assistant searches these before answering. Only published, non-password-protected content is read."
+msgstr "Ассистент просматривает их, прежде чем ответить. Читается только опубликованный, не защищенный паролем контент."
+
+msgid "Pages"
+msgstr "Страницы"
+
+msgid "Posts"
+msgstr "Сообщения"
+
+msgid "WooCommerce products"
+msgstr "Продукты WooCommerce"
+
+msgid "Price, stock and link; products appear as cards in the window."
+msgstr "Цена, наличие и ссылка; продукты отображаются в окне в виде карточек."
+
+msgid "Product cards"
+msgstr "Карточки товаров"
+
+msgid "Image, price, \"View\" and \"Add to cart\"."
+msgstr "Изображение, цена, «Просмотреть» и «В корзину»."
+
+msgid "Flux Wiki pages"
+msgstr "Wiki-страницы Flux"
+
+msgid "Order status"
+msgstr "Статус заказа"
+
+msgid "A logged-in customer can only ask about their own orders."
+msgstr "Зарегистрированный клиент может спрашивать только о своих заказах."
+
+msgid "Save contact details"
+msgstr "Сохранить контактные данные"
+
+msgid "If the visitor gives an email or phone, it is saved to the chat (and to Flux CRM when installed)."
+msgstr "Если посетитель оставляет адрес электронной почты или телефон, он сохраняется в чате (и в Flux CRM, если он установлен)."
+
+msgid "Limits"
+msgstr "Пределы"
+
+msgid "A public AI can burn through the budget fast. The overall spending limit is in Flux AI; these are extra protection."
+msgstr "Публичный ИИ может быстро сжечь бюджет. Общий лимит расходов указан в Flux AI; это дополнительная защита."
+
+msgid "Replies per chat"
+msgstr "Ответы в чате"
+
+msgid "When reached, the chat goes to an agent."
+msgstr "При достижении чат переходит к агенту."
+
+msgid "Per chat per hour"
+msgstr "За чат в час"
+
+msgid "0 = unlimited"
+msgstr "0 = неограниченно"
+
+msgid "Daily total on the site"
+msgstr "Всего за день на сайте"
+
+msgid "Handoff to a person"
+msgstr "Передача человеку"
+
+msgid "Flux Chat when available, otherwise the plugin inbox."
+msgstr "Flux Chat, если доступен, в противном случае — почтовый ящик плагина."
+
+msgid "Call center inbox, together with WhatsApp chats."
+msgstr "Входящие сообщения колл-центра и чаты WhatsApp."
+
+msgid "Flux Chat 1.37+ is not installed; the inbox is used."
+msgstr "Flux Chat 1.37+ не установлен; используется почтовый ящик."
+
+msgid "Chatbot › Chats screen, with email notification."
+msgstr "Чат-бот › Экран чатов с уведомлением по электронной почте."
+
+msgid "Ask for email"
+msgstr "Запросить электронную почту"
+
+msgid "Only outside working hours"
+msgstr "Только вне рабочего времени"
+
+msgid "Before handing over"
+msgstr "Прежде чем передать"
+
+msgid "Never"
+msgstr "Никогда"
+
+msgid "Notification email"
+msgstr "Уведомление по электронной почте"
+
+msgid "New handoffs and after-hours messages. When empty, the site admin."
+msgstr "Новые передачи и сообщения в нерабочее время. Когда пусто, администратор сайта."
+
+msgid "After-hours message"
+msgstr "Сообщение после закрытия"
+
+msgid "Also send replies by email"
+msgstr "Также отправляйте ответы по электронной почте"
+
+msgid "If the visitor has left the page, the agent's reply goes to their email."
+msgstr "Если посетитель покинул страницу, ответ агента приходит на его электронную почту."
+
+msgid "End-of-chat rating"
+msgstr "Рейтинг в конце чата"
+
+msgid "1-5 stars and an optional note."
+msgstr "1–5 звезд и дополнительное примечание."
+
+msgid "File sharing"
+msgstr "Обмен файлами"
+
+msgid "Images, PDFs and office documents; files are not put in a public folder."
+msgstr "Изображения, PDF-файлы и офисные документы; файлы не помещаются в общую папку."
+
+msgid "Voice dictation"
+msgstr "Голосовой диктант"
+
+msgid "A microphone button in the message field: the visitor speaks and the text lands in the field. Uses the browser's speech recognition; the button is hidden where it isn't supported."
+msgstr "Кнопка микрофона в поле сообщения: посетитель говорит, и текст попадает в поле. Использует распознавание речи браузера; кнопка скрыта там, где она не поддерживается."
+
+msgid "Largest file (MB)"
+msgstr "Самый большой файл (МБ)"
+
+msgid "Working hours"
+msgstr "Рабочее время"
+
+msgid "Outside working hours visitors see \"leave a message\" and the agent replies by email. Hours follow the site time zone."
+msgstr "В нерабочее время посетители видят «оставить сообщение», и агент отвечает по электронной почте. Часы соответствуют часовому поясу сайта."
+
+msgid "Always open"
+msgstr "Всегда открыт"
+
+msgid "Weekly hours"
+msgstr "Еженедельные часы"
+
+msgid "Flux Chat hours"
+msgstr "График работы Flux Chat"
+
+msgid "Flux Chat is not installed"
+msgstr "Flux Chat не установлен"
+
+msgid "Where to show"
+msgstr "Где показать"
+
+msgid "Who sees it"
+msgstr "Кто это видит"
+
+msgid "Everyone"
+msgstr "Все"
+
+msgid "Only visitors (not logged in)"
+msgstr "Только посетители (не авторизованные)"
+
+msgid "Only members (logged in)"
+msgstr "Только участники (вошедшие в систему)"
+
+msgid "Device"
+msgstr "Устройство"
+
+msgid "Desktop"
+msgstr "Рабочий стол"
+
+msgid "Mobile"
+msgstr "мобильный"
+
+msgid "Hidden on these addresses"
+msgstr "Скрыто по этим адресам"
+
+msgid "One path per line. * is a wildcard. Example: /checkout/* or /campaign"
+msgstr "Один путь в строке. * является подстановочным знаком. Пример: /checkout/* или /campaign."
+
+msgid "Privacy"
+msgstr "Конфиденциальность"
+
+msgid "The visitor's IP address is not stored; the chat is matched by a random key in the browser."
+msgstr "IP-адрес посетителя не сохраняется; чат соответствует случайному ключу в браузере."
+
+msgid "Note under the message field"
+msgstr "Примечание под полем сообщения"
+
+msgid "Example: Chats are kept under our <a href=\"/privacy\">Privacy Policy</a>. Links are allowed."
+msgstr "Пример: чаты хранятся в соответствии с нашей Политикой конфиденциальности<a href=\"/privacy\"></a>. Ссылки разрешены."
+
+msgid "Retention (days)"
+msgstr "Хранение (дни)"
+
+msgid "Expired chats and their files are deleted. 0 = keep."
+msgstr "Просроченные чаты и их файлы удаляются. 0 = оставить."
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Preview"
+msgstr "Предварительный просмотр"
+
+msgid "Messages you type in the preview go to the real assistant and show up in Chats."
+msgstr "Сообщения, которые вы вводите в предварительном просмотре, передаются реальному помощнику и отображаются в чатах."
+
+msgid "The assistant of the chat window on the site, and site chats."
+msgstr "Помощник окна чата на сайте и чаты сайта."
+
+msgid "Assistant model"
+msgstr "Модель помощника"
+
+msgid "The model that answers visitors. A fast, low-cost model is recommended; when empty, the Flux AI default."
+msgstr "Модель, которая отвечает посетителям. Рекомендуется быстрая и недорогая модель; если пусто, используется Flux AI по умолчанию."
+
+msgid "Site chat transcript"
+msgstr "Стенограмма чата на сайте"
+
+msgid "Chat not found."
+msgstr "Chat not found."
+
+msgid "Chat statistics"
+msgstr "Chat statistics"
+
+msgid "Site chat"
+msgstr "Чат на сайте"
+
+msgid "Site chat · %s"
+msgstr "Чат на сайте ·%s"
+
+msgid "A site chat is waiting for an agent."
+msgstr "Чат на сайте ждет агента."
+
+msgid "Page:"
+msgstr "Страница:"
+
+msgid "Contact:"
+msgstr "Контакт:"
+
+msgid "Assistant note:"
+msgstr "Примечание помощника:"
+
+msgid "Site chat not found."
+msgstr "Чат на сайте не найден."
+
+msgid "Could not read the file."
+msgstr "Не удалось прочитать файл."
+
+msgid "This action isn't available in site chats."
+msgstr "Это действие недоступно в чатах сайта."
+
+msgid "Could not save the message."
+msgstr "Не удалось сохранить сообщение."
+
+msgid "Open chat"
+msgstr "Открыть чат"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Minimize"
+msgstr "Свернуть"
+
+msgid "Back"
+msgstr "Назад"
+
+msgid "Home"
+msgstr "Главная"
+
+msgid "Messages"
+msgstr "Сообщения"
+
+msgid "Dictate"
+msgstr "Диктовать"
+
+msgid "Stop listening"
+msgstr "Хватит слушать"
+
+msgid "Continue the chat"
+msgstr "Продолжить чат"
+
+msgid "We usually reply within a few minutes"
+msgstr "Обычно мы отвечаем в течение нескольких минут"
+
+msgid "Our assistant replies instantly"
+msgstr "Наш помощник отвечает мгновенно"
+
+msgid "Online"
+msgstr "Онлайн"
+
+msgid "Offline right now"
+msgstr "Оффлайн прямо сейчас"
+
+msgid "Thinking…"
+msgstr "Думая..."
+
+msgid "Searching the site…"
+msgstr "Поиск по сайту..."
+
+msgid "Looking at products…"
+msgstr "Рассматриваю продукцию..."
+
+msgid "Looking at your orders…"
+msgstr "Смотрю ваши заказы..."
+
+msgid "Talk to a person"
+msgstr "Поговорите с человеком"
+
+msgid "Would you like to talk to a person?"
+msgstr "Хотели бы вы поговорить с человеком?"
+
+msgid "Your place in line: %d"
+msgstr "Ваше место в очереди:%d"
+
+msgid "Seen"
+msgstr "видел"
+
+msgid "Sent"
+msgstr "Отправлено"
+
+msgid "End chat"
+msgstr "Завершить чат"
+
+msgid "End the chat?"
+msgstr "Завершить чат?"
+
+msgid "Yes"
+msgstr "Да"
+
+msgid "No"
+msgstr "Нет"
+
+msgid "New chat"
+msgstr "Новый чат"
+
+msgid "How was the chat?"
+msgstr "Как прошел чат?"
+
+msgid "Anything you'd like to add? (optional)"
+msgstr "Есть что-нибудь, что вы хотели бы добавить? (необязательно)"
+
+msgid "Thanks, we got your feedback."
+msgstr "Спасибо, мы получили ваш отзыв."
+
+msgid "Your name"
+msgstr "Ваше имя"
+
+msgid "Your email"
+msgstr "Ваш адрес электронной почты"
+
+msgid "Phone (optional)"
+msgstr "Телефон (необязательно)"
+
+msgid "Your message"
+msgstr "Ваше сообщение"
+
+msgid "Leave a message"
+msgstr "Оставить сообщение"
+
+msgid "Leave your email so we can get back to you."
+msgstr "Оставьте свой адрес электронной почты, чтобы мы могли вернуться к вам."
+
+msgid "Enter a valid email address."
+msgstr "Введите действительный адрес электронной почты."
+
+msgid "Connection problem. Please try again."
+msgstr "Проблема с подключением. Пожалуйста, попробуйте еще раз."
+
+msgid "Try again"
+msgstr "Попробуйте еще раз"
+
+msgid "The file is too large."
+msgstr "Файл слишком большой."
+
+msgid "Add to cart"
+msgstr "В корзину"
+
+msgid "View"
+msgstr "Посмотреть"
+
+msgid "Out of stock"
+msgstr "Нет в наличии"
+
+msgid "Powered by FluxWP"
+msgstr "Работает на FluxWP"
+
+msgid "Today"
+msgstr "Сегодня"
+
+msgid "new message"
+msgstr "новое сообщение"
+
+msgid "Ask a question"
+msgstr "Задать вопрос"
+
+msgid "Contact us"
+msgstr "Свяжитесь с нами"
+
+msgid "Shop and products"
+msgstr "Магазин и товары"
+
+msgid "Cart"
+msgstr "Корзина"
+
+msgid "Checkout"
+msgstr "Оформить заказ"
+
+msgid "My account"
+msgstr "Мой аккаунт"
+
+msgid "Other (archives, search, 404…)"
+msgstr "Прочее (архивы, поиск, 404...)"
+
+msgid "Hi there 👋"
+msgstr "Привет 👋"
+
+msgid "How can we help? We answer your questions right away."
+msgstr "Как мы можем помочь? Мы сразу отвечаем на ваши вопросы."
+
+msgid "Hi! I'm this site's assistant. Ask me about products, orders or anything else."
+msgstr "Привет! Я ассистент этого сайта. Спрашивайте меня о продуктах, заказах или чем-то еще."
+
+msgid "Type your message…"
+msgstr "Введите сообщение..."
+
+msgid "Hi! Is there anything I can help with?"
+msgstr "Привет! Могу ли я чем-нибудь помочь?"
+
+msgid "No agents are online right now. Leave a message and we'll get back to you by email."
+msgstr "В данный момент агентов нет в сети. Оставьте сообщение, и мы свяжемся с вами по электронной почте."
+
+msgid "Weekdays %s"
+msgstr "Будние дни%s"
+
+msgid "Every day %s"
+msgstr "Каждый день%s"
+
+msgid "Mon"
+msgstr "Пн."
+
+msgid "Tue"
+msgstr "Вт"
+
+msgid "Wed"
+msgstr "ср."
+
+msgid "Thu"
+msgstr "Чт"
+
+msgid "Fri"
+msgstr "Пт"
+
+msgid "Sat"
+msgstr "Суббота"
+
+msgid "Sun"
+msgstr "Солнце"
+
+msgid "Monday"
+msgstr "понедельник"
+
+msgid "Tuesday"
+msgstr "вторник"
+
+msgid "Wednesday"
+msgstr "среда"
+
+msgid "Thursday"
+msgstr "Четверг"
+
+msgid "Friday"
+msgstr "Пятница"
+
+msgid "Saturday"
+msgstr "суббота"
+
+msgid "Sunday"
+msgstr "воскресенье"
+
+msgid "Connecting you to an agent…"
+msgstr "Соединение вас с агентом..."
+
+msgid "%s joined the chat"
+msgstr "%sприсоединился к чату"
+
+msgid "You ended the chat."
+msgstr "Вы завершили чат."
+
+msgid "The chat has ended."
+msgstr "Чат завершился."
+
+msgid "The visitor ended the site chat."
+msgstr "Посетитель завершил чат на сайте."
+
+msgid "Site chat #%d"
+msgstr "Чат сайта #%d"
+
+msgid "[%1$s] Message from site chat: %2$s"
+msgstr "[%1$s] Сообщение из чата сайта:%2$s"
+
+msgid "[%1$s] Site chat waiting for an agent: %2$s"
+msgstr "[%1$s] Чат сайта ожидает агента:%2$s"
+
+msgid "To reply:"
+msgstr "Чтобы ответить:"
+
+msgid "%s: you have a reply to your chat"
+msgstr "%s: у вас есть ответ в чате."
+
+msgid "To continue the chat, open the site in the same browser:"
+msgstr "Чтобы продолжить общение, откройте сайт в том же браузере:"
+
+msgid "The file could not be uploaded."
+msgstr "Не удалось загрузить файл."
+
+msgid "Files can be up to %d MB."
+msgstr "Размер файлов может достигать%dМБ."
+
+msgid "This file type can't be sent. Send an image, PDF or office document."
+msgstr "Этот тип файла не может быть отправлен. Отправьте изображение, PDF или офисный документ."
+
+msgid "Could not save the file."
+msgstr "Не удалось сохранить файл."
+
+msgid "Too many requests. Please wait a moment."
+msgstr "Слишком много запросов. Пожалуйста, подождите немного."
+
+msgid "Chat is closed right now."
+msgstr "Чат сейчас закрыт."
+
+msgid "The message is empty."
+msgstr "Сообщение пустое."
+
+msgid "You're typing too fast. Wait a moment and try again."
+msgstr "Ты печатаешь слишком быстро. Подождите немного и повторите попытку."
+
+msgid "Too many new chats were started. Please try again later."
+msgstr "Было открыто слишком много новых чатов. Пожалуйста, повторите попытку позже."
+
+msgid "Could not start the chat."
+msgstr "Не удалось начать чат."
+
+msgid "I can't answer right now. Please write again in a moment or reach us through our contact details."
+msgstr "Я не могу ответить прямо сейчас. Пожалуйста, напишите еще раз через минуту или свяжитесь с нами через наши контактные данные."
+
+msgid "Live chat is off."
+msgstr "Живой чат отключен."
+
+msgid "Too many requests. Please try again later."
+msgstr "Слишком много запросов. Пожалуйста, повторите попытку позже."
+
+msgid "Thanks! We got your message and will reply to your email."
+msgstr "Спасибо! Мы получили ваше сообщение и ответим на ваше письмо."
+
+msgid "Write a message first."
+msgstr "Сначала напишите сообщение."
+
+msgid "File sharing is off."
+msgstr "Общий доступ к файлам отключен."
+
+msgid "Too many files were sent. Please try again later."
+msgstr "Отправлено слишком много файлов. Пожалуйста, повторите попытку позже."
+
+msgid "No file selected."
+msgstr "Файл не выбран."
+
+msgid "File not found."
+msgstr "Файл не найден."
+
+msgid "Visitor rating: %1$s %2$s"
+msgstr "Рейтинг посетителей:%1$s%2$s"
+
+msgid "Visitor #%d"
+msgstr "Посетитель No%d"
+
+msgid "%d chat is waiting for a reply."
+msgid_plural "%d chats are waiting for a reply."
+msgstr[0] "Чат%dожидает ответа."
+msgstr[1] "Чаты%dждут ответа."
+msgstr[2] "Чаты%dждут ответа."
+
+msgid "Site chat window"
+msgstr "Окно чата на сайте"
+
+msgid "The window is off; visitors don't see it."
+msgstr "Окно выключено; посетители этого не видят."
+
+msgid "Chat assistant"
+msgstr "Чат-помощник"
+
+msgid "Flux AI connected; the assistant is answering."
+msgstr "Flux AI подключен; отвечает ассистент."
+
+msgid "Flux AI is not ready; messages go to an agent instead of the assistant."
+msgstr "Flux AI не готов; сообщения отправляются агенту, а не ассистенту."
+
+msgid "Handoffs go to the Flux Chat inbox."
+msgstr "Передачи отправляются во входящие сообщения Flux Chat."
+
+msgid "Handoffs go to the plugin inbox."
+msgstr "Передачи отправляются в папку «Входящие» плагина."
+
+msgid "Order placed: #%1$s (%2$s)"
+msgstr "Размещен заказ: #%1$s(%2$s)"
+
+msgid "Placed after site chat #%d"
+msgstr "Размещено после чата сайта #%d"
+
+msgid "[[\"Artificial intelligence-supported chat window to the site: With Flux AI, 24/7 responses from your site's content and products, potential customer collection, WooCommerce information, one-click transfer to a live representative (Flux Chat inbox or the plugin's own inbox), file sharing, read receipts, end-of-chat scoring and leaving messages after hours. Color, position, avatar, texts and visibility are customized from the panel.\", 'tr']]"
+msgstr "[[\"Окно чата на сайте с поддержкой искусственного интеллекта: с Flux AI, круглосуточные ответы от контента и продуктов вашего сайта, сбор потенциальных клиентов, информация WooCommerce, передача в один клик живому представителю (входящие сообщения чата Flux или собственный почтовый ящик плагина), обмен файлами, уведомления о прочтении, подсчет очков в конце чата и оставление сообщений в нерабочее время. Цвет, положение, аватар, тексты и видимость настраиваются с панели.\", 'tr']]"

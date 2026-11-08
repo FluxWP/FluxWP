@@ -706,8 +706,8 @@ class Upload_Guard {
         $message = sprintf(
             /* translators: 1: number of files allowed, 2: number of minutes in the window. */
             _n(
-                'You can attach up to %1$d file here. Please wait about %2$d minutes before trying again.',
-                'You can attach up to %1$d files here. Please wait about %2$d minutes before trying again.',
+                '[[\'You can attach up to%1$dfile here. Please wait about%2$dminutes before trying again.\', \'en\']]',
+                '[[\'You can attach up to%1$dfiles here. Please wait about%2$dminutes before trying again.\', \'en\']]',
                 $limit,
                 'flx-forms'
             ),
@@ -733,7 +733,7 @@ class Upload_Guard {
     public static function size_message($max_bytes) {
         return sprintf(
             /* translators: %s: human-readable maximum file size, e.g. "8 MB". */
-            esc_html__('This file is too large. The maximum size for this field is %s.', 'flx-forms'),
+            esc_html__('\\nThis file is too large. The maximum size for this field is%s.\\n', 'flx-forms'),
             function_exists('size_format') ? size_format((int) $max_bytes) : ((int) round($max_bytes / 1048576) . ' MB')
         );
     }
@@ -744,7 +744,7 @@ class Upload_Guard {
      * @return string
      */
     public static function type_message() {
-        return esc_html__('This file type is not accepted here. Please attach one of the file types listed on the field.', 'flx-forms');
+        return esc_html__('\\nThis file type is not accepted here. Please attach one of the file types listed on the field.\\n', 'flx-forms');
     }
 
     /**
@@ -776,11 +776,11 @@ class Upload_Guard {
 			return self::size_message($max_bytes);
 		}
 		if ($error !== UPLOAD_ERR_OK) {
-			return esc_html__('The file could not be read. Please try attaching it again.', 'flx-forms');
+			return esc_html__('\\nThe file could not be read. Please try attaching it again.\\n', 'flx-forms');
 		}
 
         if ($tmp === '' || !is_uploaded_file($tmp) || !is_readable($tmp)) {
-            return esc_html__('The file could not be read. Please try attaching it again.', 'flx-forms');
+            return esc_html__('\\nThe file could not be read. Please try attaching it again.\\n', 'flx-forms');
         }
 
         /* Trust the bytes on disk over the reported size, which is client data. */
@@ -790,7 +790,7 @@ class Upload_Guard {
         }
 
         if ($size < 1) {
-            return esc_html__('This file appears to be empty. Please choose a different file.', 'flx-forms');
+            return esc_html__('\\nThis file appears to be empty. Please choose a different file.\\n', 'flx-forms');
         }
 
         if ($size > $max_bytes) {
@@ -826,13 +826,13 @@ class Upload_Guard {
     public static function validate_stored_file($path, $filename = '', $context = array()) {
         $path = (string) $path;
         if ($path === '' || !is_file($path) || !is_readable($path)) {
-            return esc_html__('The uploaded file could not be verified. Please attach it again.', 'flx-forms');
+            return esc_html__('\\nThe uploaded file could not be verified. Please attach it again.\\n', 'flx-forms');
         }
 
         $filename = $filename !== '' ? (string) $filename : basename($path);
         $size     = @filesize($path);
         if (!is_int($size) || $size < 1) {
-            return esc_html__('This file appears to be empty. Please choose a different file.', 'flx-forms');
+            return esc_html__('\\nThis file appears to be empty. Please choose a different file.\\n', 'flx-forms');
         }
 
         $max_bytes = self::max_bytes(

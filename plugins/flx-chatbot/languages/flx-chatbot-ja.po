@@ -1,0 +1,1197 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "AI chat window, live chat and customer support"
+msgstr "AI チャット ウィンドウ、ライブ チャット、カスタマー サポート"
+
+msgid "Site chats"
+msgstr "サイトチャット"
+
+msgid "Open"
+msgstr "開く"
+
+msgid "All"
+msgstr "すべて"
+
+msgid "With assistant"
+msgstr "アシスタント付き"
+
+msgid "Closed"
+msgstr "閉店"
+
+msgid "Search name, email, phone or page"
+msgstr "名前、メールアドレス、電話番号、ページを検索"
+
+msgid "No chats in this view."
+msgstr "このビューではチャットはできません。"
+
+msgid "Pick a chat on the left."
+msgstr "左側にあるチャットを選択します。"
+
+msgid "Loading…"
+msgstr "読み込み中..."
+
+msgid "Type your reply… (Enter sends, Shift+Enter for a new line)"
+msgstr "返信を入力してください... (Enter で送信、Shift+Enter で改行)"
+
+msgid "Send"
+msgstr "送信"
+
+msgid "Attach file"
+msgstr "ファイルを添付する"
+
+msgid "Close chat"
+msgstr "チャットを閉じる"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Delete this chat and its files permanently?"
+msgstr "このチャットとそのファイルを完全に削除しますか?"
+
+msgid "Close the chat? It reopens if the visitor writes again."
+msgstr "チャットを閉じますか?訪問者が再度書き込みをすると再開します。"
+
+msgid "Open in Flux Chat"
+msgstr "Flux チャットで開く"
+
+msgid "This chat is also in the Flux Chat inbox; replies from either place reach the visitor."
+msgstr "このチャットは Flux Chat の受信箱にもあります。どちらの場所からの返信も訪問者に届きます。"
+
+msgid "Visitor"
+msgstr "訪問者"
+
+msgid "You"
+msgstr "あなた"
+
+msgid "On the page"
+msgstr "ページ上で"
+
+msgid "Left"
+msgstr "左"
+
+msgid "typing…"
+msgstr "入力中..."
+
+msgid "Page"
+msgstr "ページ"
+
+msgid "Email"
+msgstr "電子メール"
+
+msgid "Phone"
+msgstr "電話"
+
+msgid "Member"
+msgstr "メンバー"
+
+msgid "Order"
+msgstr "注文"
+
+msgid "Rating"
+msgstr "評価"
+
+msgid "Assistant's note"
+msgstr "アシスタントのメモ"
+
+msgid "Lead"
+msgstr "リード"
+
+msgid "Agent"
+msgstr "エージェント"
+
+msgid "Something went wrong. Please try again."
+msgstr "何か問題が発生しました。もう一度試してください。"
+
+msgid "Waiting for an agent"
+msgstr "エージェントを待っています"
+
+msgid "In conversation"
+msgstr "会話中"
+
+msgid "Left a message"
+msgstr "メッセージを残しました"
+
+msgid "More"
+msgstr "もっと見る"
+
+msgid "Back to list"
+msgstr "リストに戻る"
+
+msgid "Details"
+msgstr "詳細"
+
+msgid "Suggested products"
+msgstr "おすすめ商品"
+
+msgid "You are not allowed to do this."
+msgstr "これを行うことは許可されていません。"
+
+msgid "Conversations from the chat window on your site. Chats the assistant answered are here too; visitors asking for an agent are on top."
+msgstr "サイトのチャット ウィンドウからの会話。アシスタントが応答したチャットもここにあります。エージェントを求める訪問者がトップです。"
+
+msgid "Flux Chat"
+msgstr "フラックスチャット"
+
+msgid "Flux AI Chatbot"
+msgstr "Flux AI チャットボット"
+
+msgid "Chatbot"
+msgstr "チャットボット"
+
+msgid "Chats"
+msgstr "チャット"
+
+msgid "Chatbot settings"
+msgstr "チャットボットの設定"
+
+msgid "Choose avatar"
+msgstr "アバターを選択してください"
+
+msgid "Use this image"
+msgstr "この画像を使用してください"
+
+msgid "You have unsaved changes"
+msgstr "You have unsaved changes"
+
+msgid "Hi, how long does shipping take?"
+msgstr "こんにちは、発送にはどのくらい時間がかかりますか?"
+
+msgid "Orders ship within **1-3 business days**. Here is a product you might like:"
+msgstr "ご注文は **1 ~ 3 営業日**以内に発送されます。あなたが気に入るかもしれない製品は次のとおりです。"
+
+msgid "Orders ship within **1-3 business days**; shipping is free over $50. Anything else I can help with?"
+msgstr "ご注文は **1 ~ 3 営業日**以内に発送されます。 50ドル以上は送料無料です。他に何かお手伝いできることはありますか?"
+
+msgid "General"
+msgstr "一般"
+
+msgid "Appearance"
+msgstr "外観"
+
+msgid "Texts"
+msgstr "テキスト"
+
+msgid "AI"
+msgstr "AI"
+
+msgid "Live chat"
+msgstr "ライブチャット"
+
+msgid "Visibility"
+msgstr "可視性"
+
+msgid "An AI chat window for your site: it answers from your content and products and hands the chat to a live agent when needed. Changes show up in the preview on the right right away."
+msgstr "サイトの AI チャット ウィンドウ: コンテンツや製品から応答し、必要に応じてチャットをライブ エージェントに渡します。変更はすぐに右側のプレビューに表示されます。"
+
+msgid "Try on site"
+msgstr "現場で試してみる"
+
+msgid "Settings saved."
+msgstr "設定が保存されました。"
+
+msgid "last 30 days"
+msgstr "過去 30 日間"
+
+msgid "Solved by the assistant"
+msgstr "アシスタントが解決しました"
+
+msgid "without an agent"
+msgstr "エージェントなしで"
+
+msgid "left contact details"
+msgstr "左の連絡先詳細"
+
+msgid "Orders after chat"
+msgstr "チャット後の注文"
+
+msgid "within 7 days"
+msgstr "7日以内に"
+
+msgid "Satisfaction"
+msgstr "満足"
+
+msgid "%s ratings"
+msgstr "%sの評価"
+
+msgid "no ratings yet"
+msgstr "まだ評価がありません"
+
+msgid "Chat window"
+msgstr "チャットウィンドウ"
+
+msgid "Show on site"
+msgstr "現場で見せる"
+
+msgid "While off, visitors don't see the window; admins can preview it with \"Try on site\"."
+msgstr "オフの間、訪問者は窓を見ることはありません。管理者は「サイトで試す」でプレビューできます。"
+
+msgid "Mode"
+msgstr "モード"
+
+msgid "AI + live chat"
+msgstr "AI + ライブチャット"
+
+msgid "The assistant answers and hands over to an agent when needed. Recommended."
+msgstr "アシスタントは応答し、必要に応じてエージェントに引き継ぎます。推奨。"
+
+msgid "AI only"
+msgstr "AIのみ"
+
+msgid "No handoff; the assistant shares your contact details."
+msgstr "引き継ぎはありません。アシスタントがあなたの連絡先の詳細を共有します。"
+
+msgid "Live chat only"
+msgstr "ライブチャットのみ"
+
+msgid "No assistant; messages go straight to agents."
+msgstr "アシスタントはいません。メッセージはエージェントに直接送信されます。"
+
+msgid "Connections"
+msgstr "接続"
+
+msgid "Flux AI & MCP connected"
+msgstr "Flux AI と MCP の接続"
+
+msgid "Key, model, spending limit and logs come from Flux AI."
+msgstr "キー、モデル、使用制限、ログは Flux AI から取得されます。"
+
+msgid "Choose model"
+msgstr "モデルを選択してください"
+
+msgid "Flux AI is not ready"
+msgstr "Flux AI の準備ができていません"
+
+msgid "Enter an API key in Flux AI & MCP or turn on Flux AI Chatbot under Connected systems."
+msgstr "Flux AI と MCP に API キーを入力するか、[接続されたシステム] で Flux AI チャットボットをオンにします。"
+
+msgid "Flux AI"
+msgstr "フラックスAI"
+
+msgid "Flux AI & MCP is not installed"
+msgstr "Flux AIとMCPはインストールされていません"
+
+msgid "Install the Flux AI & MCP plugin for the assistant. Until then the window works as live chat only."
+msgstr "アシスタント用の Flux AI および MCP プラグインをインストールします。それまでは、このウィンドウはライブチャットとしてのみ機能します。"
+
+msgid "Live chat off"
+msgstr "ライブチャットはオフです"
+
+msgid "Mode is \"AI only\"."
+msgstr "モードは「AIのみ」です。"
+
+msgid "Flux Chat inbox"
+msgstr "Flux チャットの受信箱"
+
+msgid "All site chats (including the ones the assistant answered) appear in the call center with the site chat icon; agents reply from the same screen as WhatsApp and other channels."
+msgstr "すべてのサイト チャット (アシスタントが応答したチャットを含む) は、サイト チャット アイコンとともにコールセンターに表示されます。エージェントは WhatsApp や他のチャネルと同じ画面から返信します。"
+
+msgid "Plugin inbox"
+msgstr "プラグインの受信箱"
+
+msgid "Handed-over chats land on the Chatbot › Chats screen."
+msgstr "引き渡されたチャットは、チャットボット › チャット画面に表示されます。"
+
+msgid "Handed-over chats land on the Chatbot › Chats screen. With Flux Chat (1.37+) installed they can also be answered from the call center."
+msgstr "引き渡されたチャットは、チャットボット › チャット画面に表示されます。 Flux Chat (1.37+) がインストールされている場合は、コールセンターから応答することもできます。"
+
+msgid "Online now"
+msgstr "現在オンライン中"
+
+msgid "Outside working hours now"
+msgstr "ただいま勤務時間外です"
+
+msgid "Working hours: %s"
+msgstr "勤務時間:%s"
+
+msgid "Working hours come from the Flux Chat settings."
+msgstr "勤務時間は Flux Chat の設定から取得されます。"
+
+msgid "Agents always count as online."
+msgstr "エージェントは常にオンラインとしてカウントされます。"
+
+msgid "Hours"
+msgstr "営業時間"
+
+msgid "Open from a page"
+msgstr "ページから開く"
+
+msgid "Any button or link can open the window."
+msgstr "どのボタンまたはリンクでもウィンドウを開くことができます。"
+
+msgid "Message us"
+msgstr "私たちにメッセージを送ってください"
+
+msgid "Shortcode: a button inside the page."
+msgstr "ショートコード: ページ内のボタン。"
+
+msgid "A link to #flxcb-open opens the window."
+msgstr "#flxcb-open へのリンクによりウィンドウが開きます。"
+
+msgid "Added to a button, the window opens with this message."
+msgstr "ボタンに追加すると、ウィンドウが開き、このメッセージが表示されます。"
+
+msgid "Open with JavaScript."
+msgstr "JavaScriptで開きます。"
+
+msgid "Color and theme"
+msgstr "色とテーマ"
+
+msgid "Main color"
+msgstr "メインカラー"
+
+msgid "Theme color"
+msgstr "テーマカラー"
+
+msgid "Follow theme"
+msgstr "テーマに従う"
+
+msgid "When empty, the site's theme color is used."
+msgstr "空の場合、サイトのテーマカラーが使用されます。"
+
+msgid "Text color (header and buttons)"
+msgstr "文字色(ヘッダーとボタン)"
+
+msgid "Automatic"
+msgstr "自動"
+
+msgid "When empty, a readable color is picked from the main color."
+msgstr "空の場合、読み取り可能な色がメインカラーから選択されます。"
+
+msgid "Light / dark"
+msgstr "明るい/暗い"
+
+msgid "Automatic (follows device and site)"
+msgstr "自動 (デバイスとサイトに従う)"
+
+msgid "Always light"
+msgstr "常に軽い"
+
+msgid "Always dark"
+msgstr "いつも暗い"
+
+msgid "Header"
+msgstr "ヘッダー"
+
+msgid "Gradient"
+msgstr "グラデーション"
+
+msgid "Solid color"
+msgstr "ソリッドカラー"
+
+msgid "Font"
+msgstr "フォント"
+
+msgid "Same as site"
+msgstr "サイトと同じ"
+
+msgid "System font"
+msgstr "システムフォント"
+
+msgid "Assistant"
+msgstr "アシスタント"
+
+msgid "Assistant name"
+msgstr "アシスタント名"
+
+msgid "Shown in the chat header."
+msgstr "チャットヘッダーに表示されます。"
+
+msgid "Avatar image"
+msgstr "アバター画像"
+
+msgid "Choose"
+msgstr "選択してください"
+
+msgid "Remove"
+msgstr "削除"
+
+msgid "A square image works best. Without one, the icon below is used."
+msgstr "正方形の画像が最適です。アイコンがない場合は、下のアイコンが使用されます。"
+
+msgid "Avatar icon"
+msgstr "アバターアイコン"
+
+msgid "Robot"
+msgstr "ロボット"
+
+msgid "Sparkles"
+msgstr "輝き"
+
+msgid "Headset"
+msgstr "ヘッドセット"
+
+msgid "Smiley"
+msgstr "スマイリー"
+
+msgid "Site icon"
+msgstr "サイトアイコン"
+
+msgid "Launcher button and position"
+msgstr "ランチャーボタンと位置"
+
+msgid "Button icon"
+msgstr "ボタンアイコン"
+
+msgid "Bubble"
+msgstr "バブル"
+
+msgid "Question"
+msgstr "質問"
+
+msgid "Avatar"
+msgstr "アバター"
+
+msgid "Label next to the button"
+msgstr "ボタンの横にあるラベル"
+
+msgid "When empty only the button shows. Example: Need help?"
+msgstr "空の場合はボタンのみが表示されます。例: 助けが必要ですか?"
+
+msgid "None"
+msgstr "なし"
+
+msgid "Position"
+msgstr "ポジション"
+
+msgid "Bottom right"
+msgstr "右下"
+
+msgid "Bottom left"
+msgstr "左下"
+
+msgid "Button size"
+msgstr "ボタンのサイズ"
+
+msgid "Side spacing"
+msgstr "側面の間隔"
+
+msgid "Bottom spacing"
+msgstr "底部の間隔"
+
+msgid "Window width"
+msgstr "ウィンドウの幅"
+
+msgid "Corner radius"
+msgstr "コーナー半径"
+
+msgid "Full screen on mobile"
+msgstr "モバイルでは全画面表示"
+
+msgid "On small screens the window covers the whole screen."
+msgstr "小さな画面では、ウィンドウが画面全体を覆います。"
+
+msgid "Notification sound"
+msgstr "通知音"
+
+msgid "A short sound for a new reply while the window is closed."
+msgstr "ウィンドウが閉じているときに新しい応答を知らせる短い音。"
+
+msgid "\"Powered by FluxWP\" note"
+msgstr "「FluxWP を搭載」メモ"
+
+msgid "A small signature at the bottom of the window."
+msgstr "ウィンドウの下部に小さなサイン。"
+
+msgid "Home screen"
+msgstr "ホーム画面"
+
+msgid "The welcome screen shown when the window opens. Empty texts use the default for the visitor's language (TR/EN)."
+msgstr "ウィンドウが開いたときに表示されるようこそ画面。空のテキストでは、訪問者の言語 (TR/EN) のデフォルトが使用されます。"
+
+msgid "Show home screen"
+msgstr "ホーム画面を表示する"
+
+msgid "When off, the window opens straight into the chat."
+msgstr "オフにすると、ウィンドウが開きチャットに直接アクセスできます。"
+
+msgid "Message field"
+msgstr "メッセージフィールド"
+
+msgid "Subtitle"
+msgstr "サブタイトル"
+
+msgid "Team avatars"
+msgstr "チームのアバター"
+
+msgid "Photos of agents who replied recently show in the header."
+msgstr "最近返信したエージェントの写真がヘッダーに表示されます。"
+
+msgid "Suggested questions"
+msgstr "提案された質問"
+
+msgid "One question per line (up to 6). Clickable on the home screen and at the start of a chat."
+msgstr "1 行に 1 つの質問 (最大 6 つ)。ホーム画面およびチャットの開始時にクリックできます。"
+
+msgid "How long does shipping take?\nHow do returns work?\nWhere is my order?"
+msgstr "配送にはどのくらい時間がかかりますか?\n返品はどのように行われますか?\n私の注文はどこですか?"
+
+msgid "Contact links"
+msgstr "連絡先リンク"
+
+msgid "One per line: Label | address. https, mailto:, tel: and wa.me are supported."
+msgstr "1 行に 1 つ: ラベル |住所。 https、mailto:、tel:、および wa.me がサポートされています。"
+
+msgid "Chat texts"
+msgstr "チャットテキスト"
+
+msgid "Welcome message"
+msgstr "ウェルカムメッセージ"
+
+msgid "The assistant's first message."
+msgstr "アシスタントの最初のメッセージ。"
+
+msgid "Teaser bubble"
+msgstr "ティーザーバブル"
+
+msgid "After the visitor stays on the page a while, a short message pops up above the button (once per session)."
+msgstr "訪問者がページにしばらく滞在すると、ボタンの上に短いメッセージがポップアップ表示されます (セッションごとに 1 回)。"
+
+msgid "Show teaser bubble"
+msgstr "ティーザーバブルを表示"
+
+msgid "Message"
+msgstr "メッセージ"
+
+msgid "After how many seconds"
+msgstr "何秒後"
+
+msgid "The assistant is not working right now."
+msgstr "アシスタントは現在動作していません。"
+
+msgid "AI calls go through Flux AI & MCP, where the key, model and spending limit live. Until Flux AI is ready, visitor messages go to an agent."
+msgstr "AI 呼び出しは、キー、モデル、支出制限が存在する Flux AI および MCP を経由します。 Flux AI の準備が整うまで、訪問者のメッセージはエージェントに送られます。"
+
+msgid "Key, model, spending limit and logs are in Flux AI & MCP. To pick a model just for this plugin:"
+msgstr "キー、モデル、支出制限、ログは Flux AI と MCP にあります。このプラグイン専用のモデルを選択するには:"
+
+msgid "Flux AI › Connected systems › Flux AI Chatbot"
+msgstr "Flux AI › コネクテッド システム › Flux AI チャットボット"
+
+msgid "Personality and instructions"
+msgstr "性格と指示"
+
+msgid "Personality and tone"
+msgstr "性格と口調"
+
+msgid "Example: Be friendly but polite, keep answers short."
+msgstr "例: フレンドリーですが礼儀正しく、答えは短くしてください。"
+
+msgid "Rules"
+msgstr "ルール"
+
+msgid "What the assistant must follow. Example: Don't give discount codes. Hand business sales questions to an agent."
+msgstr "アシスタントが従わなければならないこと。例: 割引コードを与えないでください。ビジネスセールスに関する質問をエージェントに渡します。"
+
+msgid "Knowledge base"
+msgstr "知識ベース"
+
+msgid "Information not on your site: shipping, returns, opening hours, FAQs. Plain text; the assistant answers only from here and your site."
+msgstr "サイトに掲載されていない情報: 配送、返品、営業時間、よくある質問。プレーンテキスト。アシスタントはこことあなたのサイトからのみ応答します。"
+
+msgid "Shipping: 1-3 business days, free over $50.\nReturns: within 14 days with the invoice.\nQ: Do you have a store?\nA: We sell online only."
+msgstr "配送: 1 ~ 3 営業日、50 ドル以上は無料。\n返品: 請求書を添えて 14 日以内。\nQ:店舗はありますか?\nA:オンラインのみでの販売となります。"
+
+msgid "Sources and tools"
+msgstr "ソースとツール"
+
+msgid "The assistant searches these before answering. Only published, non-password-protected content is read."
+msgstr "アシスタントは答える前にこれらを検索します。公開された、パスワードで保護されていないコンテンツのみが読み取られます。"
+
+msgid "Pages"
+msgstr "ページ"
+
+msgid "Posts"
+msgstr "投稿"
+
+msgid "WooCommerce products"
+msgstr "WooCommerce 製品"
+
+msgid "Price, stock and link; products appear as cards in the window."
+msgstr "価格、在庫、リンク。製品がウィンドウ内にカードとして表示されます。"
+
+msgid "Product cards"
+msgstr "製品カード"
+
+msgid "Image, price, \"View\" and \"Add to cart\"."
+msgstr "画像、価格、「表示」、「カートに追加」。"
+
+msgid "Flux Wiki pages"
+msgstr "Flux Wiki ページ"
+
+msgid "Order status"
+msgstr "注文状況"
+
+msgid "A logged-in customer can only ask about their own orders."
+msgstr "ログインしている顧客は、自分の注文についてのみ質問できます。"
+
+msgid "Save contact details"
+msgstr "連絡先の詳細を保存する"
+
+msgid "If the visitor gives an email or phone, it is saved to the chat (and to Flux CRM when installed)."
+msgstr "訪問者が電子メールまたは電話を送信すると、チャット (およびインストールされている場合は Flux CRM) に保存されます。"
+
+msgid "Limits"
+msgstr "限界"
+
+msgid "A public AI can burn through the budget fast. The overall spending limit is in Flux AI; these are extra protection."
+msgstr "公共の AI は予算をすぐに使い果たしてしまう可能性があります。全体的な支出制限は Flux AI にあります。これらは追加の保護です。"
+
+msgid "Replies per chat"
+msgstr "チャットごとの返信"
+
+msgid "When reached, the chat goes to an agent."
+msgstr "到達すると、チャットはエージェントに転送されます。"
+
+msgid "Per chat per hour"
+msgstr "チャットごと、時間ごと"
+
+msgid "0 = unlimited"
+msgstr "0 = 無制限"
+
+msgid "Daily total on the site"
+msgstr "サイト上の毎日の合計"
+
+msgid "Handoff to a person"
+msgstr "人に引き渡す"
+
+msgid "Flux Chat when available, otherwise the plugin inbox."
+msgstr "利用可能な場合は Flux Chat、それ以外の場合はプラグインのインボックス。"
+
+msgid "Call center inbox, together with WhatsApp chats."
+msgstr "コールセンターの受信箱と WhatsApp チャット。"
+
+msgid "Flux Chat 1.37+ is not installed; the inbox is used."
+msgstr "Flux Chat 1.37 以降はインストールされていません。受信箱が使用されます。"
+
+msgid "Chatbot › Chats screen, with email notification."
+msgstr "チャットボット › 電子メール通知付きのチャット画面。"
+
+msgid "Ask for email"
+msgstr "メールで問い合わせる"
+
+msgid "Only outside working hours"
+msgstr "勤務時間外のみ"
+
+msgid "Before handing over"
+msgstr "お引き渡しの前に"
+
+msgid "Never"
+msgstr "決してしない"
+
+msgid "Notification email"
+msgstr "通知メール"
+
+msgid "New handoffs and after-hours messages. When empty, the site admin."
+msgstr "新しいハンドオフと時間外メッセージ。空の場合は、サイト管理者。"
+
+msgid "After-hours message"
+msgstr "営業時間外のメッセージ"
+
+msgid "Also send replies by email"
+msgstr "返信もメールで送る"
+
+msgid "If the visitor has left the page, the agent's reply goes to their email."
+msgstr "訪問者がページを離れた場合、エージェントの返信は電子メールに送信されます。"
+
+msgid "End-of-chat rating"
+msgstr "チャット終了時の評価"
+
+msgid "1-5 stars and an optional note."
+msgstr "1 ~ 5 つ星とオプションのメモ。"
+
+msgid "File sharing"
+msgstr "ファイル共有"
+
+msgid "Images, PDFs and office documents; files are not put in a public folder."
+msgstr "画像、PDF、オフィス文書。ファイルはパブリックフォルダーには置かれません。"
+
+msgid "Voice dictation"
+msgstr "音声ディクテーション"
+
+msgid "A microphone button in the message field: the visitor speaks and the text lands in the field. Uses the browser's speech recognition; the button is hidden where it isn't supported."
+msgstr "メッセージ フィールドのマイク ボタン: 訪問者が話すと、テキストがフィールドに表示されます。ブラウザの音声認識を使用します。ボタンはサポートされていない場所では非表示になります。"
+
+msgid "Largest file (MB)"
+msgstr "最大ファイル (MB)"
+
+msgid "Working hours"
+msgstr "労働時間"
+
+msgid "Outside working hours visitors see \"leave a message\" and the agent replies by email. Hours follow the site time zone."
+msgstr "営業時間外の訪問者には「メッセージを残す」が表示され、エージェントがメールで返信します。営業時間はサイトのタイムゾーンに従います。"
+
+msgid "Always open"
+msgstr "常時オープン"
+
+msgid "Weekly hours"
+msgstr "週の営業時間"
+
+msgid "Flux Chat hours"
+msgstr "Flux チャット時間"
+
+msgid "Flux Chat is not installed"
+msgstr "Flux Chatがインストールされていません"
+
+msgid "Where to show"
+msgstr "どこに見せるか"
+
+msgid "Who sees it"
+msgstr "誰が見ますか"
+
+msgid "Everyone"
+msgstr "みんな"
+
+msgid "Only visitors (not logged in)"
+msgstr "訪問者のみ(ログインしていない)"
+
+msgid "Only members (logged in)"
+msgstr "会員限定(ログイン済み)"
+
+msgid "Device"
+msgstr "デバイス"
+
+msgid "Desktop"
+msgstr "デスクトップ"
+
+msgid "Mobile"
+msgstr "モバイル"
+
+msgid "Hidden on these addresses"
+msgstr "これらのアドレスに隠されています"
+
+msgid "One path per line. * is a wildcard. Example: /checkout/* or /campaign"
+msgstr "1 行に 1 つのパス。 * はワイルドカードです。例: /checkout/* または /campaign"
+
+msgid "Privacy"
+msgstr "プライバシー"
+
+msgid "The visitor's IP address is not stored; the chat is matched by a random key in the browser."
+msgstr "訪問者の IP アドレスは保存されません。チャットはブラウザ内のランダムなキーと照合されます。"
+
+msgid "Note under the message field"
+msgstr "メッセージフィールドの下のメモ"
+
+msgid "Example: Chats are kept under our <a href=\"/privacy\">Privacy Policy</a>. Links are allowed."
+msgstr "例: チャットは<a href=\"/privacy\">プライバシー ポリシー</a>に基づいて保管されます。リンクは許可されています。"
+
+msgid "Retention (days)"
+msgstr "保存期間 (日)"
+
+msgid "Expired chats and their files are deleted. 0 = keep."
+msgstr "期限切れのチャットとそのファイルは削除されます。 0 = 保持します。"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Preview"
+msgstr "プレビュー"
+
+msgid "Messages you type in the preview go to the real assistant and show up in Chats."
+msgstr "プレビューに入力したメッセージは実際のアシスタントに送られ、チャットに表示されます。"
+
+msgid "The assistant of the chat window on the site, and site chats."
+msgstr "サイト上のチャット ウィンドウおよびサイト チャットのアシスタント。"
+
+msgid "Assistant model"
+msgstr "アシスタントモデル"
+
+msgid "The model that answers visitors. A fast, low-cost model is recommended; when empty, the Flux AI default."
+msgstr "来客に応えるモデル。高速で低コストのモデルをお勧めします。空の場合、Flux AI のデフォルト。"
+
+msgid "Site chat transcript"
+msgstr "サイトチャットの記録"
+
+msgid "Chat not found."
+msgstr "チャットが見つかりません。"
+
+msgid "Chat statistics"
+msgstr "チャット統計"
+
+msgid "Site chat"
+msgstr "サイトチャット"
+
+msgid "Site chat · %s"
+msgstr "サイトチャット ·%s"
+
+msgid "A site chat is waiting for an agent."
+msgstr "サイトチャットがエージェントを待っています。"
+
+msgid "Page:"
+msgstr "ページ:"
+
+msgid "Contact:"
+msgstr "連絡先:"
+
+msgid "Assistant note:"
+msgstr "アシスタントのメモ:"
+
+msgid "Site chat not found."
+msgstr "サイトチャットが見つかりません。"
+
+msgid "Could not read the file."
+msgstr "ファイルを読み取れませんでした。"
+
+msgid "This action isn't available in site chats."
+msgstr "このアクションはサイトチャットでは使用できません。"
+
+msgid "Could not save the message."
+msgstr "メッセージを保存できませんでした。"
+
+msgid "Open chat"
+msgstr "オープンチャット"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Minimize"
+msgstr "最小化する"
+
+msgid "Back"
+msgstr "戻る"
+
+msgid "Home"
+msgstr "ホーム"
+
+msgid "Messages"
+msgstr "メッセージ"
+
+msgid "Dictate"
+msgstr "口述する"
+
+msgid "Stop listening"
+msgstr "聞くのをやめる"
+
+msgid "Continue the chat"
+msgstr "チャットを続ける"
+
+msgid "We usually reply within a few minutes"
+msgstr "通常、数分以内に返信させていただきます"
+
+msgid "Our assistant replies instantly"
+msgstr "アシスタントがすぐに応答します"
+
+msgid "Online"
+msgstr "オンライン"
+
+msgid "Offline right now"
+msgstr "現在オフラインです"
+
+msgid "Thinking…"
+msgstr "考え中..."
+
+msgid "Searching the site…"
+msgstr "サイトを検索中..."
+
+msgid "Looking at products…"
+msgstr "商品を見てみると..."
+
+msgid "Looking at your orders…"
+msgstr "ご注文を見てみると..."
+
+msgid "Talk to a person"
+msgstr "人に話す"
+
+msgid "Would you like to talk to a person?"
+msgstr "人と話したいですか?"
+
+msgid "Your place in line: %d"
+msgstr "あなたの列の順位:%d"
+
+msgid "Seen"
+msgstr "見た"
+
+msgid "Sent"
+msgstr "送信済み"
+
+msgid "End chat"
+msgstr "チャットを終了する"
+
+msgid "End the chat?"
+msgstr "チャットを終了しますか?"
+
+msgid "Yes"
+msgstr "はい"
+
+msgid "No"
+msgstr "いいえ"
+
+msgid "New chat"
+msgstr "新しいチャット"
+
+msgid "How was the chat?"
+msgstr "チャットはどうでしたか?"
+
+msgid "Anything you'd like to add? (optional)"
+msgstr "何か追加したいことはありますか? (オプション)"
+
+msgid "Thanks, we got your feedback."
+msgstr "ありがとうございます。フィードバックをいただきました。"
+
+msgid "Your name"
+msgstr "あなたの名前"
+
+msgid "Your email"
+msgstr "あなたのメールアドレス"
+
+msgid "Phone (optional)"
+msgstr "電話(オプション)"
+
+msgid "Your message"
+msgstr "あなたのメッセージ"
+
+msgid "Leave a message"
+msgstr "メッセージを残す"
+
+msgid "Leave your email so we can get back to you."
+msgstr "折り返しご連絡させていただきますので、メールアドレスを残してください。"
+
+msgid "Enter a valid email address."
+msgstr "有効な電子メール アドレスを入力してください。"
+
+msgid "Connection problem. Please try again."
+msgstr "接続の問題。もう一度試してください。"
+
+msgid "Try again"
+msgstr "もう一度試してください"
+
+msgid "The file is too large."
+msgstr "ファイルが大きすぎます。"
+
+msgid "Add to cart"
+msgstr "カートに追加"
+
+msgid "View"
+msgstr "見る"
+
+msgid "Out of stock"
+msgstr "在庫切れ"
+
+msgid "Powered by FluxWP"
+msgstr "FluxWP を搭載"
+
+msgid "Today"
+msgstr "今日"
+
+msgid "new message"
+msgstr "新しいメッセージ"
+
+msgid "Ask a question"
+msgstr "質問する"
+
+msgid "Contact us"
+msgstr "お問い合わせ"
+
+msgid "Shop and products"
+msgstr "ショップと商品"
+
+msgid "Cart"
+msgstr "カート"
+
+msgid "Checkout"
+msgstr "チェックアウト"
+
+msgid "My account"
+msgstr "私のアカウント"
+
+msgid "Other (archives, search, 404…)"
+msgstr "その他 (アーカイブ、検索、404...)"
+
+msgid "Hi there 👋"
+msgstr "こんにちは👋"
+
+msgid "How can we help? We answer your questions right away."
+msgstr "どうすれば助けられるでしょうか?ご質問にすぐにお答えします。"
+
+msgid "Hi! I'm this site's assistant. Ask me about products, orders or anything else."
+msgstr "こんにちは!私はこのサイトのアシスタントです。商品のこと、ご注文のこと、その他何でもお問い合わせください。"
+
+msgid "Type your message…"
+msgstr "メッセージを入力してください..."
+
+msgid "Hi! Is there anything I can help with?"
+msgstr "こんにちは!何かお手伝いできることはありますか?"
+
+msgid "No agents are online right now. Leave a message and we'll get back to you by email."
+msgstr "現在オンラインのエージェントはいません。メッセージを残していただければ、メールでご連絡いたします。"
+
+msgid "Weekdays %s"
+msgstr "平日%s"
+
+msgid "Every day %s"
+msgstr "毎日%s"
+
+msgid "Mon"
+msgstr "月"
+
+msgid "Tue"
+msgstr "火"
+
+msgid "Wed"
+msgstr "水"
+
+msgid "Thu"
+msgstr "木"
+
+msgid "Fri"
+msgstr "金"
+
+msgid "Sat"
+msgstr "土"
+
+msgid "Sun"
+msgstr "太陽"
+
+msgid "Monday"
+msgstr "月曜日"
+
+msgid "Tuesday"
+msgstr "火曜日"
+
+msgid "Wednesday"
+msgstr "水曜日"
+
+msgid "Thursday"
+msgstr "木曜日"
+
+msgid "Friday"
+msgstr "金曜日"
+
+msgid "Saturday"
+msgstr "土曜日"
+
+msgid "Sunday"
+msgstr "日曜日"
+
+msgid "Connecting you to an agent…"
+msgstr "エージェントにおつなぎします..."
+
+msgid "%s joined the chat"
+msgstr "%sさんがチャットに参加しました"
+
+msgid "You ended the chat."
+msgstr "You ended the chat."
+
+msgid "The chat has ended."
+msgstr "チャットは終了しました。"
+
+msgid "The visitor ended the site chat."
+msgstr "訪問者はサイトのチャットを終了しました。"
+
+msgid "Site chat #%d"
+msgstr "サイトチャット #%d"
+
+msgid "[%1$s] Message from site chat: %2$s"
+msgstr "[%1$s] サイト チャットからのメッセージ:%2$s"
+
+msgid "[%1$s] Site chat waiting for an agent: %2$s"
+msgstr "[%1$s] エージェントを待機しているサイト チャット:%2$s"
+
+msgid "To reply:"
+msgstr "返信するには:"
+
+msgid "%s: you have a reply to your chat"
+msgstr "%s: チャットに返信があります"
+
+msgid "To continue the chat, open the site in the same browser:"
+msgstr "チャットを続けるには、同じブラウザでサイトを開きます。"
+
+msgid "The file could not be uploaded."
+msgstr "ファイルをアップロードできませんでした。"
+
+msgid "Files can be up to %d MB."
+msgstr "ファイルは最大%dMB まで可能です。"
+
+msgid "This file type can't be sent. Send an image, PDF or office document."
+msgstr "このファイル形式は送信できません。画像、PDF、またはオフィス文書を送信します。"
+
+msgid "Could not save the file."
+msgstr "ファイルを保存できませんでした。"
+
+msgid "Too many requests. Please wait a moment."
+msgstr "リクエストが多すぎます。しばらくお待ちください。"
+
+msgid "Chat is closed right now."
+msgstr "現在チャットは閉じられています。"
+
+msgid "The message is empty."
+msgstr "メッセージは空です。"
+
+msgid "You're typing too fast. Wait a moment and try again."
+msgstr "You're typing too fast. Wait a moment and try again."
+
+msgid "Too many new chats were started. Please try again later."
+msgstr "開始された新しいチャットが多すぎます。後でもう一度試してください。"
+
+msgid "Could not start the chat."
+msgstr "チャットを開始できませんでした。"
+
+msgid "I can't answer right now. Please write again in a moment or reach us through our contact details."
+msgstr "今は答えることができません。しばらくしてから再度ご連絡いただくか、当社の連絡先詳細を通じてご連絡ください。"
+
+msgid "Live chat is off."
+msgstr "ライブチャットはオフです。"
+
+msgid "Too many requests. Please try again later."
+msgstr "リクエストが多すぎます。後でもう一度試してください。"
+
+msgid "Thanks! We got your message and will reply to your email."
+msgstr "ありがとう!メッセージを受け取りましたので、メールに返信させていただきます。"
+
+msgid "Write a message first."
+msgstr "まずメッセージを書きます。"
+
+msgid "File sharing is off."
+msgstr "ファイル共有がオフになっています。"
+
+msgid "Too many files were sent. Please try again later."
+msgstr "送信されたファイルが多すぎます。後でもう一度試してください。"
+
+msgid "No file selected."
+msgstr "ファイルが選択されていません。"
+
+msgid "File not found."
+msgstr "ファイルが見つかりません。"
+
+msgid "Visitor rating: %1$s %2$s"
+msgstr "訪問者の評価:%1$s%2$s"
+
+msgid "Visitor #%d"
+msgstr "訪問者 #%d"
+
+msgid "%d chat is waiting for a reply."
+msgid_plural "%d chats are waiting for a reply."
+msgstr[0] "%dチャットは返信を待っています。"
+
+msgid "Site chat window"
+msgstr "サイトチャットウィンドウ"
+
+msgid "The window is off; visitors don't see it."
+msgstr "窓は消えています。訪問者はそれを見ません。"
+
+msgid "Chat assistant"
+msgstr "チャットアシスタント"
+
+msgid "Flux AI connected; the assistant is answering."
+msgstr "Flux AI が接続されました。アシスタントが答えています。"
+
+msgid "Flux AI is not ready; messages go to an agent instead of the assistant."
+msgstr "Flux AI は準備ができていません。メッセージはアシスタントではなくエージェントに送信されます。"
+
+msgid "Handoffs go to the Flux Chat inbox."
+msgstr "ハンドオフは Flux Chat の受信箱に送られます。"
+
+msgid "Handoffs go to the plugin inbox."
+msgstr "ハンドオフはプラグインの受信箱に送られます。"
+
+msgid "Order placed: #%1$s (%2$s)"
+msgstr "発注済み: #%1$s(%2$s)"
+
+msgid "Placed after site chat #%d"
+msgstr "サイトチャット #%dの後に配置"
+
+msgid "[[\"Artificial intelligence-supported chat window to the site: With Flux AI, 24/7 responses from your site's content and products, potential customer collection, WooCommerce information, one-click transfer to a live representative (Flux Chat inbox or the plugin's own inbox), file sharing, read receipts, end-of-chat scoring and leaving messages after hours. Color, position, avatar, texts and visibility are customized from the panel.\", 'tr']]"
+msgstr "[[\"人工知能がサポートするサイトへのチャット ウィンドウ: Flux AI を使用すると、サイトのコンテンツや製品、潜在顧客のコレクション、WooCommerce 情報からの 24 時間年中無休の応答、ライブ担当者 (Flux Chat 受信箱またはプラグイン独自の受信箱) へのワンクリック転送、ファイル共有、開封確認、チャット終了スコアリング、時間外メッセージの残すことができます。色、位置、アバター、テキスト、可視性はパネルからカスタマイズされます。\", 'tr']]"

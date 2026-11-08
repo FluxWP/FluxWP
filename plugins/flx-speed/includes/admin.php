@@ -25,15 +25,15 @@ class FLXP_Admin {
 	/** Sekme → [başlık, yalnız yönetici]. */
 	private static function tab_list() {
 		return array(
-			'summary'  => array( __( 'Özet', 'flx-speed' ), false ),
-			'records'  => array( __( 'Kayıtlar', 'flx-speed' ), false ),
-			'server'   => array( __( 'Sunucu', 'flx-speed' ), false ),
-			'database' => array( __( 'Veritabanı', 'flx-speed' ), false ),
+			'summary'  => array( __( 'Summary', 'flx-speed' ), false ),
+			'records'  => array( __( 'Records', 'flx-speed' ), false ),
+			'server'   => array( __( 'Server', 'flx-speed' ), false ),
+			'database' => array( __( 'Database', 'flx-speed' ), false ),
 			'autoload' => array( 'Autoload', false ),
 			'cron'     => array( 'Cron', false ),
-			'system'   => array( __( 'Sistem Kontrolü', 'flx-speed' ), true ),
+			'system'   => array( __( 'System check', 'flx-speed' ), true ),
 			'pagespeed' => array( 'PageSpeed', true ),
-			'settings' => array( __( 'Ayarlar', 'flx-speed' ), true ),
+			'settings' => array( __( 'Settings', 'flx-speed' ), true ),
 		);
 	}
 
@@ -57,7 +57,7 @@ class FLXP_Admin {
 
 	public static function menu() {
 		$cap = current_user_can( 'manage_options' ) ? 'manage_options' : 'flxp_view';
-		add_menu_page( __( 'Flux Speed', 'flx-speed' ), __( 'Performans', 'flx-speed' ), $cap, self::SLUG, array( __CLASS__, 'page' ), 'none', 81 );
+		add_menu_page( __( 'Flux Performance', 'flx-speed' ), __( 'Performance', 'flx-speed' ), $cap, self::SLUG, array( __CLASS__, 'page' ), 'none', 81 );
 		foreach ( self::tab_list() as $k => $t ) {
 			$slug = 'summary' === $k ? self::SLUG : self::SLUG . '&tab=' . $k;
 			add_submenu_page( self::SLUG, $t[0], $t[0], $t[1] ? 'manage_options' : $cap, $slug, 'summary' === $k ? array( __CLASS__, 'page' ) : '__return_null' );
@@ -101,9 +101,9 @@ class FLXP_Admin {
 		$n = isset( $_GET['flxp_msg'] ) ? sanitize_key( $_GET['flxp_msg'] ) : ''; // phpcs:ignore
 		$e = isset( $_GET['flxp_err'] ) ? sanitize_text_field( wp_unslash( $_GET['flxp_err'] ) ) : ''; // phpcs:ignore
 		$m = array(
-			'saved'   => __( 'Ayarlar kaydedildi.', 'flx-speed' ),
-			'cleared'   => __( 'Tüm kayıtlar silindi.', 'flx-speed' ),
-			'login_off' => __( 'Özel giriş adresi kapatıldı; giriş yeniden wp-login.php üzerinden.', 'flx-speed' ),
+			'saved'   => __( 'Settings saved.', 'flx-speed' ),
+			'cleared'   => __( 'All records deleted.', 'flx-speed' ),
+			'login_off' => __( 'Custom login URL turned off; login is back on wp-login.php.', 'flx-speed' ),
 		);
 		if ( 'login_on' === $n && FLXP_Login_URL::slug() ) {
 			self::login_moved_notice();
@@ -113,7 +113,7 @@ class FLXP_Admin {
 		}
 		if ( isset( $_GET['flxp_done'] ) ) { // phpcs:ignore
 			/* translators: %s: satır/tablo sayısı */
-			echo '<div class="notice notice-success is-dismissible"><p>' . esc_html( sprintf( __( 'Temizlik tamam: %s öğe.', 'flx-speed' ), number_format_i18n( absint( $_GET['flxp_done'] ) ) ) ) . '</p></div>'; // phpcs:ignore
+			echo '<div class="notice notice-success is-dismissible"><p>' . esc_html( sprintf( __( 'Cleanup done: %s items.', 'flx-speed' ), number_format_i18n( absint( $_GET['flxp_done'] ) ) ) ) . '</p></div>'; // phpcs:ignore
 		}
 		if ( $e ) {
 			echo '<div class="notice notice-error is-dismissible"><p>' . esc_html( $e ) . '</p></div>';
@@ -130,17 +130,17 @@ class FLXP_Admin {
 		$go   = wp_logout_url( add_query_arg( array( 'flxp_moved' => 1, 'redirect_to' => rawurlencode( $back ) ), $new ) );
 		?>
 		<div class="notice notice-warning flxp-moved" id="flxp-moved" data-go="<?php echo esc_url( $go ); ?>" data-sec="5">
-			<p><strong><?php esc_html_e( 'Giriş adresi değişti.', 'flx-speed' ); ?></strong> <?php esc_html_e( 'Yeni adres:', 'flx-speed' ); ?> <code><?php echo esc_html( $new ); ?></code></p>
+			<p><strong><?php esc_html_e( 'Login URL changed.', 'flx-speed' ); ?></strong> <?php esc_html_e( 'New address:', 'flx-speed' ); ?> <code><?php echo esc_html( $new ); ?></code></p>
 			<p class="flxp-moved-count">
 				<?php
 				/* translators: %s: kalan saniye */
-				printf( esc_html__( 'Yeni adresin çalıştığını görmeniz için oturumunuz kapatılıyor; %s saniye içinde yeni giriş sayfasına yönlendirileceksiniz. Giriş yapınca bu ekrana dönersiniz.', 'flx-speed' ), '<b data-flxp-sec>5</b>' );
+				printf( esc_html__( 'You are being logged out so you can see the new address work; you will be redirected to the new login page in %s seconds. After logging in you come back to this screen.', 'flx-speed' ), '<b data-flxp-sec>5</b>' );
 				?>
 			</p>
-			<p class="flxp-moved-stopped" hidden><?php esc_html_e( 'Yönlendirme durduruldu. Oturumunuz açık; yeni adres bir sonraki girişte kullanılır.', 'flx-speed' ); ?></p>
+			<p class="flxp-moved-stopped" hidden><?php esc_html_e( 'Redirect stopped. You are still logged in; the new address is used the next time you log in.', 'flx-speed' ); ?></p>
 			<p>
-				<a class="button button-primary" href="<?php echo esc_url( $go ); ?>"><?php esc_html_e( 'Şimdi git', 'flx-speed' ); ?></a>
-				<button type="button" class="button" data-flxp-stay><?php esc_html_e( 'Oturumda kal', 'flx-speed' ); ?></button>
+				<a class="button button-primary" href="<?php echo esc_url( $go ); ?>"><?php esc_html_e( 'Go now', 'flx-speed' ); ?></a>
+				<button type="button" class="button" data-flxp-stay><?php esc_html_e( 'Stay logged in', 'flx-speed' ); ?></button>
 			</p>
 		</div>
 		<script>
@@ -153,11 +153,11 @@ class FLXP_Admin {
 
 	public static function page() {
 		if ( ! flxp_can_view() ) {
-			wp_die( esc_html__( 'Bu sayfayı görme yetkiniz yok.', 'flx-speed' ) );
+			wp_die( esc_html__( 'You are not allowed to view this page.', 'flx-speed' ) );
 		}
 		$tab = self::current_tab();
 		$id  = isset( $_GET['id'] ) ? absint( $_GET['id'] ) : 0; // phpcs:ignore
-		echo '<div class="wrap flxp-wrap"><h1 class="wp-heading-inline">' . esc_html__( 'Flux Speed', 'flx-speed' ) . '</h1>';
+		echo '<div class="wrap flxp-wrap"><h1 class="wp-heading-inline">' . esc_html__( 'Flux Performance', 'flx-speed' ) . '</h1>';
 		self::notice();
 		if ( $id ) {
 			self::detail( $id );
@@ -231,7 +231,7 @@ class FLXP_Admin {
 		$s             = flxp_settings();
 
 		if ( ! $s['record'] ) {
-			echo '<div class="notice notice-warning inline"><p>' . esc_html__( 'Kayıt kapalı: yalnız anlık panel çalışıyor.', 'flx-speed' ) . '</p></div>';
+			echo '<div class="notice notice-warning inline"><p>' . esc_html__( 'Recording is off: only the live panel works.', 'flx-speed' ) . '</p></div>';
 		}
 		?>
 		<div class="flxp-toolbar">
@@ -239,53 +239,53 @@ class FLXP_Admin {
 				<input type="hidden" name="page" value="<?php echo esc_attr( self::SLUG ); ?>">
 				<input type="hidden" name="tab" value="records">
 				<select name="hours">
-					<option value="0"><?php esc_html_e( 'Tüm zamanlar', 'flx-speed' ); ?></option>
-					<?php foreach ( array( 1 => __( 'Son 1 saat', 'flx-speed' ), 24 => __( 'Son 24 saat', 'flx-speed' ), 168 => __( 'Son 7 gün', 'flx-speed' ) ) as $h => $l ) : ?>
+					<option value="0"><?php esc_html_e( 'All time', 'flx-speed' ); ?></option>
+					<?php foreach ( array( 1 => __( 'Last hour', 'flx-speed' ), 24 => __( 'Last 24 hours', 'flx-speed' ), 168 => __( 'Last 7 days', 'flx-speed' ) ) as $h => $l ) : ?>
 						<option value="<?php echo (int) $h; ?>" <?php selected( $f['hours'], $h ); ?>><?php echo esc_html( $l ); ?></option>
 					<?php endforeach; ?>
 				</select>
 				<select name="flag">
-					<option value=""><?php esc_html_e( 'Tüm durumlar', 'flx-speed' ); ?></option>
+					<option value=""><?php esc_html_e( 'All flags', 'flx-speed' ); ?></option>
 					<?php foreach ( FLXP_Store::flag_labels() as $k => $l ) : ?>
 						<option value="<?php echo esc_attr( $k ); ?>" <?php selected( $f['flag'], $k ); ?>><?php echo esc_html( $l ); ?></option>
 					<?php endforeach; ?>
 				</select>
 				<select name="type">
-					<option value=""><?php esc_html_e( 'Tüm türler', 'flx-speed' ); ?></option>
+					<option value=""><?php esc_html_e( 'All types', 'flx-speed' ); ?></option>
 					<?php foreach ( $types as $k => $l ) : ?>
 						<option value="<?php echo esc_attr( $k ); ?>" <?php selected( $f['type'], $k ); ?>><?php echo esc_html( $l ); ?></option>
 					<?php endforeach; ?>
 				</select>
 				<select name="order">
-					<option value="new" <?php selected( $f['order'], 'new' ); ?>><?php esc_html_e( 'En yeni', 'flx-speed' ); ?></option>
-					<option value="slow" <?php selected( $f['order'], 'slow' ); ?>><?php esc_html_e( 'En yavaş', 'flx-speed' ); ?></option>
+					<option value="new" <?php selected( $f['order'], 'new' ); ?>><?php esc_html_e( 'Newest', 'flx-speed' ); ?></option>
+					<option value="slow" <?php selected( $f['order'], 'slow' ); ?>><?php esc_html_e( 'Slowest', 'flx-speed' ); ?></option>
 				</select>
-				<input type="search" name="q" value="<?php echo esc_attr( $f['q'] ); ?>" placeholder="<?php esc_attr_e( 'Adreste ara', 'flx-speed' ); ?>">
-				<button class="button"><?php esc_html_e( 'Süz', 'flx-speed' ); ?></button>
+				<input type="search" name="q" value="<?php echo esc_attr( $f['q'] ); ?>" placeholder="<?php esc_attr_e( 'Search URL', 'flx-speed' ); ?>">
+				<button class="button"><?php esc_html_e( 'Filter', 'flx-speed' ); ?></button>
 			</form>
 			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="flxp-profile">
 				<?php wp_nonce_field( 'flxp_profile' ); ?>
 				<input type="hidden" name="action" value="flxp_profile">
-				<input type="text" name="url" placeholder="/bagis/" aria-label="<?php esc_attr_e( 'Ölçülecek adres', 'flx-speed' ); ?>">
-				<button class="button button-primary"><?php esc_html_e( 'Sayfayı ölç', 'flx-speed' ); ?></button>
+				<input type="text" name="url" placeholder="/bagis/" aria-label="<?php esc_attr_e( 'URL to profile', 'flx-speed' ); ?>">
+				<button class="button button-primary"><?php esc_html_e( 'Profile page', 'flx-speed' ); ?></button>
 			</form>
 		</div>
-		<p class="description"><?php esc_html_e( '"Sayfayı ölç" adresi ziyaretçi gibi açar (önbelleksiz) ve tüm ayrıntıyla kaydeder.', 'flx-speed' ); ?></p>
+		<p class="description"><?php esc_html_e( '"Profile page" opens the URL as a visitor (bypassing cache) and records it in full detail.', 'flx-speed' ); ?></p>
 		<table class="widefat striped flxp-list">
 			<thead><tr>
-				<th><?php esc_html_e( 'Zaman', 'flx-speed' ); ?></th>
-				<th><?php esc_html_e( 'Adres', 'flx-speed' ); ?></th>
-				<th class="n"><?php esc_html_e( 'Durum', 'flx-speed' ); ?></th>
-				<th class="n"><?php esc_html_e( 'Süre', 'flx-speed' ); ?></th>
-				<th class="n"><?php esc_html_e( 'Bellek', 'flx-speed' ); ?></th>
-				<th class="n"><?php esc_html_e( 'Sorgu', 'flx-speed' ); ?></th>
+				<th><?php esc_html_e( 'Time', 'flx-speed' ); ?></th>
+				<th><?php esc_html_e( 'URL', 'flx-speed' ); ?></th>
+				<th class="n"><?php esc_html_e( 'Status', 'flx-speed' ); ?></th>
+				<th class="n"><?php esc_html_e( 'Time', 'flx-speed' ); ?></th>
+				<th class="n"><?php esc_html_e( 'Memory', 'flx-speed' ); ?></th>
+				<th class="n"><?php esc_html_e( 'Queries', 'flx-speed' ); ?></th>
 				<th class="n">HTTP</th>
-				<th class="n"><?php esc_html_e( 'Hata', 'flx-speed' ); ?></th>
-				<th><?php esc_html_e( 'İşaretler', 'flx-speed' ); ?></th>
+				<th class="n"><?php esc_html_e( 'Errors', 'flx-speed' ); ?></th>
+				<th><?php esc_html_e( 'Flags', 'flx-speed' ); ?></th>
 			</tr></thead>
 			<tbody>
 			<?php if ( ! $res['items'] ) : ?>
-				<tr><td colspan="9" class="flxp-empty"><?php esc_html_e( 'Henüz kayıt yok. Yavaş ya da hatalı istekler ve örneklenen istekler burada görünür.', 'flx-speed' ); ?></td></tr>
+				<tr><td colspan="9" class="flxp-empty"><?php esc_html_e( 'No records yet. Slow or failing requests and sampled requests appear here.', 'flx-speed' ); ?></td></tr>
 			<?php endif; ?>
 			<?php
 			foreach ( $res['items'] as $r ) :
@@ -293,15 +293,15 @@ class FLXP_Admin {
 				$ts   = strtotime( $r['created'] );
 				?>
 				<tr class="<?php echo ( array_intersect( array( 'fatal', 'error', '5xx' ), $r['flags'] ) ) ? 'flxp-row-err' : ''; ?>">
-					<td data-l="<?php esc_attr_e( 'Zaman', 'flx-speed' ); ?>"><a href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( wp_date( 'd.m H:i:s', $ts ) ); ?></a></td>
-					<td data-l="<?php esc_attr_e( 'Adres', 'flx-speed' ); ?>" class="flxp-url"><a href="<?php echo esc_url( $link ); ?>"><span class="flxp-m"><?php echo esc_html( $r['method'] ); ?></span> <?php echo esc_html( $r['url'] ); ?></a> <span class="flxp-type"><?php echo esc_html( $types[ $r['type'] ] ?? $r['type'] ); ?></span></td>
-					<td data-l="<?php esc_attr_e( 'Durum', 'flx-speed' ); ?>" class="n"><?php echo (int) $r['status']; ?></td>
-					<td data-l="<?php esc_attr_e( 'Süre', 'flx-speed' ); ?>" class="n"><?php echo esc_html( self::fmt_ms( $r['ms'] ) ); ?></td>
-					<td data-l="<?php esc_attr_e( 'Bellek', 'flx-speed' ); ?>" class="n"><?php echo esc_html( self::fmt_kb( $r['mem_kb'] ) ); ?></td>
-					<td data-l="<?php esc_attr_e( 'Sorgu', 'flx-speed' ); ?>" class="n"><?php echo esc_html( number_format_i18n( $r['queries'] ) ); ?></td>
+					<td data-l="<?php esc_attr_e( 'Time', 'flx-speed' ); ?>"><a href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( wp_date( 'd.m H:i:s', $ts ) ); ?></a></td>
+					<td data-l="<?php esc_attr_e( 'URL', 'flx-speed' ); ?>" class="flxp-url"><a href="<?php echo esc_url( $link ); ?>"><span class="flxp-m"><?php echo esc_html( $r['method'] ); ?></span> <?php echo esc_html( $r['url'] ); ?></a> <span class="flxp-type"><?php echo esc_html( $types[ $r['type'] ] ?? $r['type'] ); ?></span></td>
+					<td data-l="<?php esc_attr_e( 'Status', 'flx-speed' ); ?>" class="n"><?php echo (int) $r['status']; ?></td>
+					<td data-l="<?php esc_attr_e( 'Time', 'flx-speed' ); ?>" class="n"><?php echo esc_html( self::fmt_ms( $r['ms'] ) ); ?></td>
+					<td data-l="<?php esc_attr_e( 'Memory', 'flx-speed' ); ?>" class="n"><?php echo esc_html( self::fmt_kb( $r['mem_kb'] ) ); ?></td>
+					<td data-l="<?php esc_attr_e( 'Queries', 'flx-speed' ); ?>" class="n"><?php echo esc_html( number_format_i18n( $r['queries'] ) ); ?></td>
 					<td data-l="HTTP" class="n"><?php echo esc_html( number_format_i18n( $r['http'] ) ); ?></td>
-					<td data-l="<?php esc_attr_e( 'Hata', 'flx-speed' ); ?>" class="n"><?php echo esc_html( number_format_i18n( $r['errors'] ) ); ?></td>
-					<td data-l="<?php esc_attr_e( 'İşaretler', 'flx-speed' ); ?>"><?php echo self::flag_html( $r['flags'] ); // phpcs:ignore ?></td>
+					<td data-l="<?php esc_attr_e( 'Errors', 'flx-speed' ); ?>" class="n"><?php echo esc_html( number_format_i18n( $r['errors'] ) ); ?></td>
+					<td data-l="<?php esc_attr_e( 'Flags', 'flx-speed' ); ?>"><?php echo self::flag_html( $r['flags'] ); // phpcs:ignore ?></td>
 				</tr>
 			<?php endforeach; ?>
 			</tbody>
@@ -310,7 +310,7 @@ class FLXP_Admin {
 		$pages = (int) ceil( $res['total'] / $f['per_page'] );
 		echo '<div class="flxp-pager">';
 		/* translators: %s: kayıt sayısı */
-		echo '<span>' . esc_html( sprintf( __( 'Kayıt sayısı: %s', 'flx-speed' ), number_format_i18n( $res['total'] ) ) ) . '</span> ';
+		echo '<span>' . esc_html( sprintf( __( 'Records: %s', 'flx-speed' ), number_format_i18n( $res['total'] ) ) ) . '</span> ';
 		if ( $pages > 1 ) {
 			echo wp_kses_post(
 				paginate_links(
@@ -326,10 +326,10 @@ class FLXP_Admin {
 		echo '</div>';
 		if ( current_user_can( 'manage_options' ) && $res['total'] ) {
 			?>
-			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" onsubmit="return confirm('<?php echo esc_js( __( 'Tüm kayıtlar silinsin mi?', 'flx-speed' ) ); ?>');" class="flxp-clear">
+			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" onsubmit="return confirm('<?php echo esc_js( __( 'Delete all records?', 'flx-speed' ) ); ?>');" class="flxp-clear">
 				<?php wp_nonce_field( 'flxp_clear' ); ?>
 				<input type="hidden" name="action" value="flxp_clear">
-				<button class="button button-link-delete"><?php esc_html_e( 'Tüm kayıtları sil', 'flx-speed' ); ?></button>
+				<button class="button button-link-delete"><?php esc_html_e( 'Delete all records', 'flx-speed' ); ?></button>
 			</form>
 			<?php
 		}
@@ -339,9 +339,9 @@ class FLXP_Admin {
 
 	private static function detail( $id ) {
 		$r = FLXP_Store::get( $id );
-		echo '<p><a href="' . esc_url( self::url( array( 'tab' => 'records' ) ) ) . '">&larr; ' . esc_html__( 'Kayıtlar', 'flx-speed' ) . '</a></p>';
+		echo '<p><a href="' . esc_url( self::url( array( 'tab' => 'records' ) ) ) . '">&larr; ' . esc_html__( 'Records', 'flx-speed' ) . '</a></p>';
 		if ( ! $r || empty( $r['data']['overview'] ) ) {
-			echo '<div class="notice notice-error inline"><p>' . esc_html__( 'Kayıt bulunamadı.', 'flx-speed' ) . '</p></div>';
+			echo '<div class="notice notice-error inline"><p>' . esc_html__( 'Record not found.', 'flx-speed' ) . '</p></div>';
 			return;
 		}
 		echo '<p class="flxp-detail-head"><strong>#' . (int) $r['id'] . '</strong> · ' . esc_html( flx_date( strtotime( $r['created'] ) ) . ' ' . wp_date( 'H:i:s', strtotime( $r['created'] ) ) ) . ' · ' . self::flag_html( $r['flags'] ) . '</p>'; // phpcs:ignore
@@ -371,17 +371,17 @@ class FLXP_Admin {
 		<form method="get" class="flxp-filters">
 			<input type="hidden" name="page" value="<?php echo esc_attr( self::SLUG ); ?>">
 			<select name="hours" onchange="this.form.submit()">
-				<?php foreach ( array( 1 => __( 'Son 1 saat', 'flx-speed' ), 24 => __( 'Son 24 saat', 'flx-speed' ), 168 => __( 'Son 7 gün', 'flx-speed' ) ) as $h => $l ) : ?>
+				<?php foreach ( array( 1 => __( 'Last hour', 'flx-speed' ), 24 => __( 'Last 24 hours', 'flx-speed' ), 168 => __( 'Last 7 days', 'flx-speed' ) ) as $h => $l ) : ?>
 					<option value="<?php echo (int) $h; ?>" <?php selected( $hours, $h ); ?>><?php echo esc_html( $l ); ?></option>
 				<?php endforeach; ?>
 			</select>
 		</form>
 		<div class="flxp-cards">
 			<?php
-			self::card( __( 'Kayıtlı istek', 'flx-speed' ), number_format_i18n( $s['recorded'] ) );
-			self::card( __( 'Ortalama süre', 'flx-speed' ), self::fmt_ms( $s['ms_avg'] ) );
+			self::card( __( 'Recorded requests', 'flx-speed' ), number_format_i18n( $s['recorded'] ) );
+			self::card( __( 'Average time', 'flx-speed' ), self::fmt_ms( $s['ms_avg'] ) );
 			self::card( 'p95', self::fmt_ms( $s['ms_p95'] ) );
-			self::card( __( 'En uzun', 'flx-speed' ), self::fmt_ms( $s['ms_max'] ) );
+			self::card( __( 'Longest', 'flx-speed' ), self::fmt_ms( $s['ms_max'] ) );
 			foreach ( array( 'fatal', 'error', '5xx', 'slow', 'slow_query', 'http_fail' ) as $k ) {
 				if ( ! empty( $s['flags'][ $k ] ) ) {
 					self::card( $fl[ $k ], number_format_i18n( $s['flags'][ $k ] ), in_array( $k, array( 'fatal', 'error', '5xx', 'http_fail' ), true ) ? 'err' : 'warn', self::url( array( 'tab' => 'records', 'flag' => $k, 'hours' => $hours ) ) );
@@ -389,14 +389,14 @@ class FLXP_Admin {
 			}
 			?>
 		</div>
-		<p class="description"><?php esc_html_e( 'Süreler kayıtlı isteklerden hesaplanır: örneklenen istekler + yavaş/hatalı istekler. Bu yüzden ortalama gerçek ortalamadan yüksek görünebilir.', 'flx-speed' ); ?></p>
+		<p class="description"><?php esc_html_e( 'Times are calculated from recorded requests: sampled requests plus slow/failing ones, so the average may look higher than the real average.', 'flx-speed' ); ?></p>
 
-		<h2><?php esc_html_e( 'İstek türüne göre', 'flx-speed' ); ?></h2>
-		<p class="description"><?php esc_html_e( 'Ziyaretçinin beklediği süre "Ön yüz" satırıdır. Cron, Ajax ve REST çoğunlukla arka plan işidir (yedek adımı, zamanlanmış görev, Heartbeat); uzun sürmeleri sayfaları doğrudan yavaşlatmaz ama sunucuyu meşgul eder.', 'flx-speed' ); ?></p>
+		<h2><?php esc_html_e( 'By request type', 'flx-speed' ); ?></h2>
+		<p class="description"><?php esc_html_e( 'The time visitors wait is the "Front end" row. Cron, Ajax and REST are mostly background work (backup step, scheduled task, Heartbeat); when they take long they do not slow pages directly, but they keep the server busy.', 'flx-speed' ); ?></p>
 		<?php
 		$tl = FLXP_Store::type_labels();
 		self::simple_table(
-			array( __( 'Tür', 'flx-speed' ), __( 'İstek', 'flx-speed' ), __( 'Ortalama', 'flx-speed' ), 'p50', 'p95', __( 'En uzun', 'flx-speed' ) ),
+			array( __( 'Type', 'flx-speed' ), __( 'Request', 'flx-speed' ), __( 'Average', 'flx-speed' ), 'p50', 'p95', __( 'Longest', 'flx-speed' ) ),
 			array_map(
 				function ( $ty, $r ) use ( $tl, $hours ) {
 					return array( '<a href="' . esc_url( self::url( array( 'tab' => 'records', 'type' => $ty, 'hours' => $hours, 'order' => 'slow' ) ) ) . '">' . esc_html( $tl[ $ty ] ?? $ty ) . '</a>', number_format_i18n( $r['count'] ), self::fmt_ms( $r['ms_avg'] ), self::fmt_ms( $r['ms_p50'] ), self::fmt_ms( $r['ms_p95'] ), self::fmt_ms( $r['ms_max'] ) );
@@ -407,10 +407,10 @@ class FLXP_Admin {
 		);
 		?>
 
-		<h2><?php esc_html_e( 'En yavaş adresler', 'flx-speed' ); ?></h2>
+		<h2><?php esc_html_e( 'Slowest URLs', 'flx-speed' ); ?></h2>
 		<?php
 		self::simple_table(
-			array( __( 'Adres', 'flx-speed' ), __( 'İstek', 'flx-speed' ), __( 'Ortalama', 'flx-speed' ), __( 'En uzun', 'flx-speed' ), __( 'Hata', 'flx-speed' ) ),
+			array( __( 'URL', 'flx-speed' ), __( 'Request', 'flx-speed' ), __( 'Average', 'flx-speed' ), __( 'Longest', 'flx-speed' ), __( 'Errors', 'flx-speed' ) ),
 			array_map(
 				function ( $u ) {
 					return array( '<a href="' . esc_url( self::url( array( 'tab' => 'records', 'q' => $u['url'], 'order' => 'slow' ) ) ) . '">' . esc_html( $u['url'] ) . '</a>', number_format_i18n( $u['count'] ), self::fmt_ms( $u['ms_avg'] ), self::fmt_ms( $u['ms_max'] ), number_format_i18n( $u['errors'] ) );
@@ -419,10 +419,10 @@ class FLXP_Admin {
 			)
 		);
 		?>
-		<h2><?php esc_html_e( 'Sorgu süresi: bileşenlere göre (istek başına)', 'flx-speed' ); ?></h2>
+		<h2><?php esc_html_e( 'Query time by component (per request)', 'flx-speed' ); ?></h2>
 		<?php
 		self::simple_table(
-			array( __( 'Bileşen', 'flx-speed' ), __( 'İstek', 'flx-speed' ), __( 'Sorgu', 'flx-speed' ), __( 'İstek başına', 'flx-speed' ) ),
+			array( __( 'Component', 'flx-speed' ), __( 'Request', 'flx-speed' ), __( 'Queries', 'flx-speed' ), __( 'Per request', 'flx-speed' ) ),
 			array_map(
 				function ( $c ) {
 					return array( esc_html( $c['component'] ), number_format_i18n( $c['requests'] ), number_format_i18n( $c['queries'] ), self::fmt_ms( $c['ms_per_request'] ) );
@@ -431,10 +431,10 @@ class FLXP_Admin {
 			)
 		);
 		?>
-		<h2><?php esc_html_e( 'Yavaş ve hatalı sorgular', 'flx-speed' ); ?></h2>
+		<h2><?php esc_html_e( 'Slow and failed queries', 'flx-speed' ); ?></h2>
 		<?php
 		self::simple_table(
-			array( 'SQL', __( 'Bileşen', 'flx-speed' ), __( 'Adet', 'flx-speed' ), __( 'Ortalama', 'flx-speed' ), __( 'En uzun', 'flx-speed' ) ),
+			array( 'SQL', __( 'Component', 'flx-speed' ), __( 'Count', 'flx-speed' ), __( 'Average', 'flx-speed' ), __( 'Longest', 'flx-speed' ) ),
 			array_map(
 				function ( $q ) {
 					return array( '<code>' . esc_html( $q['sql'] ) . '</code>' . ( $q['error'] ? '<div class="flxp-err">' . esc_html( $q['error'] ) . '</div>' : '' ) . ' <a href="' . esc_url( self::url( array( 'id' => $q['last_id'] ) ) ) . '">#' . (int) $q['last_id'] . '</a>', esc_html( $q['component'] ), number_format_i18n( $q['count'] ), self::fmt_ms( $q['ms_avg'] ), self::fmt_ms( $q['ms_max'] ) );
@@ -443,10 +443,10 @@ class FLXP_Admin {
 			)
 		);
 		?>
-		<h2><?php esc_html_e( 'PHP hataları', 'flx-speed' ); ?></h2>
+		<h2><?php esc_html_e( 'PHP errors', 'flx-speed' ); ?></h2>
 		<?php
 		self::simple_table(
-			array( __( 'Seviye', 'flx-speed' ), __( 'Mesaj', 'flx-speed' ), __( 'Bileşen', 'flx-speed' ), __( 'İstek', 'flx-speed' ) ),
+			array( __( 'Level', 'flx-speed' ), __( 'Message', 'flx-speed' ), __( 'Component', 'flx-speed' ), __( 'Request', 'flx-speed' ) ),
 			array_map(
 				function ( $e ) {
 					return array( esc_html( $e['level'] ), esc_html( $e['message'] ) . '<br><code>' . esc_html( $e['file'] ) . '</code> <a href="' . esc_url( self::url( array( 'id' => $e['last_id'] ) ) ) . '">#' . (int) $e['last_id'] . '</a>', esc_html( $e['component'] ), number_format_i18n( $e['requests'] ) );
@@ -455,10 +455,10 @@ class FLXP_Admin {
 			)
 		);
 		?>
-		<h2><?php esc_html_e( 'Dış istekler', 'flx-speed' ); ?></h2>
+		<h2><?php esc_html_e( 'HTTP API calls', 'flx-speed' ); ?></h2>
 		<?php
 		self::simple_table(
-			array( __( 'Uç', 'flx-speed' ), __( 'Bileşen', 'flx-speed' ), __( 'Adet', 'flx-speed' ), __( 'Başarısız', 'flx-speed' ), __( 'Ortalama', 'flx-speed' ), __( 'Son hata', 'flx-speed' ) ),
+			array( __( 'Endpoint', 'flx-speed' ), __( 'Component', 'flx-speed' ), __( 'Count', 'flx-speed' ), __( 'Failed', 'flx-speed' ), __( 'Average', 'flx-speed' ), __( 'Last error', 'flx-speed' ) ),
 			array_map(
 				function ( $h ) {
 					return array( '<code>' . esc_html( $h['endpoint'] ) . '</code>', esc_html( $h['component'] ), number_format_i18n( $h['count'] ), number_format_i18n( $h['failed'] ), self::fmt_ms( $h['ms_avg'] ), esc_html( $h['last_error'] ) );
@@ -485,7 +485,7 @@ class FLXP_Admin {
 		}
 		echo '</tr></thead><tbody>';
 		if ( ! $rows ) {
-			echo '<tr><td colspan="' . count( $head ) . '" class="flxp-empty">' . esc_html__( 'Kayıt yok.', 'flx-speed' ) . '</td></tr>';
+			echo '<tr><td colspan="' . count( $head ) . '" class="flxp-empty">' . esc_html__( 'No records.', 'flx-speed' ) . '</td></tr>';
 		}
 		foreach ( $rows as $r ) {
 			echo '<tr>';
@@ -510,7 +510,7 @@ class FLXP_Admin {
 		if ( ! $bad ) {
 			return;
 		}
-		echo '<div class="flxp-hints"><h2>' . esc_html__( 'Öneriler', 'flx-speed' ) . '</h2><ul>';
+		echo '<div class="flxp-hints"><h2>' . esc_html__( 'Suggestions', 'flx-speed' ) . '</h2><ul>';
 		foreach ( $bad as $c ) {
 			echo '<li class="flxp-hint-' . esc_attr( $c['status'] ) . '"><strong>' . esc_html( $c['label'] ) . ':</strong> ' . esc_html( $c['message'] );
 			if ( ! empty( $c['action_url'] ) ) {
@@ -526,12 +526,12 @@ class FLXP_Admin {
 	/** Kaynak değerlerinin kime ait olduğu. */
 	private static function scope_label( $scope ) {
 		if ( 'account' === $scope ) {
-			return __( 'Hesap sınırı (cgroup)', 'flx-speed' );
+			return __( 'Account limit (cgroup)', 'flx-speed' );
 		}
 		if ( 'shared' === $scope ) {
-			return __( 'Paylaşımlı hosting: hesap sınırı okunamıyor', 'flx-speed' );
+			return __( 'Shared hosting: account limit cannot be read', 'flx-speed' );
 		}
-		return __( 'Sunucu bu siteye ait (VPS/dedicated)', 'flx-speed' );
+		return __( 'Server belongs to this site (VPS/dedicated)', 'flx-speed' );
 	}
 
 	/** Hesap diski ve (paylaşımlıysa) makinenin ortak değerleri, açıkça etiketli. */
@@ -542,14 +542,14 @@ class FLXP_Admin {
 		$du  = $l['disk_usage'];
 		if ( $du ) {
 			$rows = array(
-				__( 'Taranan klasör', 'flx-speed' )        => $du['root'],
-				__( 'Dosyalar', 'flx-speed' )              => null === $du['bytes'] ? __( 'Hesaplanıyor…', 'flx-speed' ) : $fmt( $du['bytes'] ),
-				__( 'Dosya ve klasör sayısı (inode)', 'flx-speed' ) => null === $du['files'] ? '—' : number_format_i18n( $du['files'] ),
-				__( 'Veritabanı', 'flx-speed' )            => $fmt( $du['db'] ),
-				__( 'Disk kotası', 'flx-speed' )           => flxp_settings( 'disk_quota_gb' ) ? $fmt( flxp_settings( 'disk_quota_gb' ) * 1073741824 ) : __( 'Girilmedi (Ayarlar)', 'flx-speed' ),
-				__( 'Son ölçüm', 'flx-speed' )             => $du['time'] ? flx_time_ago( $du['time'] ) . ( $du['running'] ? ' · ' . __( 'yenileniyor', 'flx-speed' ) : '' ) : '—',
+				__( 'Scanned folder', 'flx-speed' )        => $du['root'],
+				__( 'Files', 'flx-speed' )              => null === $du['bytes'] ? __( 'Calculating…', 'flx-speed' ) : $fmt( $du['bytes'] ),
+				__( 'Files and folders (inodes)', 'flx-speed' ) => null === $du['files'] ? '—' : number_format_i18n( $du['files'] ),
+				__( 'Database', 'flx-speed' )            => $fmt( $du['db'] ),
+				__( 'Disk quota', 'flx-speed' )           => flxp_settings( 'disk_quota_gb' ) ? $fmt( flxp_settings( 'disk_quota_gb' ) * 1073741824 ) : __( 'Not set (Settings)', 'flx-speed' ),
+				__( 'Last measured', 'flx-speed' )             => $du['time'] ? flx_time_ago( $du['time'] ) . ( $du['running'] ? ' · ' . __( 'refreshing', 'flx-speed' ) : '' ) : '—',
 			);
-			self::kv( __( 'Hesap diski', 'flx-speed' ), $rows );
+			self::kv( __( 'Account disk', 'flx-speed' ), $rows );
 		}
 		if ( 'machine' === $l['scope'] && ! $l['disk_shared'] ) {
 			return;
@@ -557,13 +557,13 @@ class FLXP_Admin {
 		$m  = $l['machine'];
 		$ld = $m['load'] ? implode( ' / ', $m['load'] ) . ( null === $m['load_pct'] ? '' : ' (%' . $m['load_pct'] . ')' ) : '—';
 		self::kv(
-			__( 'Makine geneli (paylaşımlı, tüm hesaplar)', 'flx-speed' ),
+			__( 'Whole machine (shared, all accounts)', 'flx-speed' ),
 			array(
-				__( 'Çekirdek sayısı', 'flx-speed' )      => $m['cores'] ? $m['cores'] : '—',
-				__( 'Yük (1/5/15 dk)', 'flx-speed' )      => $ld,
-				__( 'Bellek', 'flx-speed' )               => $m['ram_total_kb'] ? $fmt( $m['ram_used_kb'] * 1024 ) . ' / ' . $fmt( $m['ram_total_kb'] * 1024 ) : '—',
-				__( 'Disk', 'flx-speed' )                 => $m['disk_total'] ? sprintf( __( '%s boş', 'flx-speed' ), $fmt( $m['disk_free'] ) ) . ' / ' . $fmt( $m['disk_total'] ) : '—',
-				__( 'Not', 'flx-speed' )                  => __( 'Bu değerler sunucudaki tüm hesaplarındır, sitenizin kullanımı veya sınırı değildir.', 'flx-speed' ),
+				__( 'CPU cores', 'flx-speed' )      => $m['cores'] ? $m['cores'] : '—',
+				__( 'Load (1/5/15 min)', 'flx-speed' )      => $ld,
+				__( 'Memory', 'flx-speed' )               => $m['ram_total_kb'] ? $fmt( $m['ram_used_kb'] * 1024 ) . ' / ' . $fmt( $m['ram_total_kb'] * 1024 ) : '—',
+				__( 'Disk', 'flx-speed' )                 => $m['disk_total'] ? sprintf( __( '%s free', 'flx-speed' ), $fmt( $m['disk_free'] ) ) . ' / ' . $fmt( $m['disk_total'] ) : '—',
+				__( 'Note', 'flx-speed' )                  => __( 'These values belong to every account on the machine; they are not your site\'s usage or limit.', 'flx-speed' ),
 			)
 		);
 	}
@@ -571,23 +571,23 @@ class FLXP_Admin {
 	private static function server() {
 		$st  = flxp_server_stats();
 		$e   = flxp_environment();
-		$yes = __( 'Evet', 'flx-speed' );
-		$no  = __( 'Hayır', 'flx-speed' );
+		$yes = __( 'Yes', 'flx-speed' );
+		$no  = __( 'No', 'flx-speed' );
 		$b   = function ( $v ) use ( $yes, $no ) {
 			return $v ? $yes : $no;
 		};
 		flxp_render_live();
 		echo '<div class="flxp-env">';
 		self::kv(
-			__( 'Sunucu', 'flx-speed' ),
+			__( 'Server', 'flx-speed' ),
 			array(
-				__( 'İşletim sistemi', 'flx-speed' ) => $st['server']['os'],
-				__( 'Yazılım', 'flx-speed' )         => $st['server']['software'],
-				__( 'Sunucu adı', 'flx-speed' )      => $st['server']['hostname'],
-				__( 'IP adresi', 'flx-speed' )       => $st['server']['ip'],
+				__( 'Operating system', 'flx-speed' ) => $st['server']['os'],
+				__( 'Software', 'flx-speed' )         => $st['server']['software'],
+				__( 'Hostname', 'flx-speed' )      => $st['server']['hostname'],
+				__( 'IP address', 'flx-speed' )       => $st['server']['ip'],
 				__( 'Port', 'flx-speed' )            => $st['server']['port'],
-				__( 'Belge kökü', 'flx-speed' )      => $st['server']['doc_root'],
-				__( 'Kaynak bilgisi', 'flx-speed' )  => self::scope_label( $st['live']['scope'] ),
+				__( 'Document root', 'flx-speed' )      => $st['server']['doc_root'],
+				__( 'Resource values', 'flx-speed' )  => self::scope_label( $st['live']['scope'] ),
 				'CloudLinux'                            => $b( $st['server']['cloudlinux'] ),
 				'HTTPS'                                 => $b( $e['server']['https'] ),
 				'LiteSpeed'                             => $b( $e['server']['litespeed'] ),
@@ -598,11 +598,11 @@ class FLXP_Admin {
 		self::kv(
 			'PHP',
 			array(
-				__( 'Sürüm', 'flx-speed' )          => $p['version'] . ' (' . $p['sapi'] . ')',
+				__( 'Version', 'flx-speed' )          => $p['version'] . ' (' . $p['sapi'] . ')',
 				'memory_limit'                        => $p['memory_limit'],
 				'WP_MEMORY_LIMIT'                     => $p['wp_memory_limit'],
 				'WP_MAX_MEMORY_LIMIT'                 => $p['wp_max_memory_limit'],
-				__( 'Bellek (bu istek)', 'flx-speed' ) => self::fmt_kb( $p['usage_kb'] ) . ' · ' . __( 'tepe', 'flx-speed' ) . ' ' . self::fmt_kb( $p['peak_kb'] ),
+				__( 'Memory (this request)', 'flx-speed' ) => self::fmt_kb( $p['usage_kb'] ) . ' · ' . __( 'peak', 'flx-speed' ) . ' ' . self::fmt_kb( $p['peak_kb'] ),
 				'max_execution_time'                  => $p['max_execution_time'],
 				'max_input_time'                      => $p['max_input_time'],
 				'max_input_vars'                      => $p['max_input_vars'],
@@ -610,8 +610,8 @@ class FLXP_Admin {
 				'post_max_size'                       => $p['post_max_size'],
 				'allow_url_fopen'                     => $b( $p['allow_url_fopen'] ),
 				'display_errors'                      => $e['php']['display_errors'],
-				__( 'Kapalı fonksiyonlar', 'flx-speed' ) => $p['disabled_functions'] ? $p['disabled_functions'] : '—',
-				__( 'Uzantılar', 'flx-speed' )      => implode(
+				__( 'Disabled functions', 'flx-speed' ) => $p['disabled_functions'] ? $p['disabled_functions'] : '—',
+				__( 'Extensions', 'flx-speed' )      => implode(
 					', ',
 					array_map(
 						function ( $k, $v ) {
@@ -627,20 +627,20 @@ class FLXP_Admin {
 		self::kv(
 			'OPcache',
 			$o ? array(
-				__( 'Durum', 'flx-speed' )            => $o['enabled'] ? __( 'Açık', 'flx-speed' ) : __( 'Kapalı', 'flx-speed' ),
-				__( 'Bellek', 'flx-speed' )           => null === $o['used_mb'] ? '—' : $o['used_mb'] . ' MB / ' . ( $o['used_mb'] + $o['free_mb'] ) . ' MB',
-				__( 'İsabet oranı', 'flx-speed' )     => null === $o['hit_rate'] ? '—' : $o['hit_rate'] . '%',
-				__( 'Önbellekteki dosya', 'flx-speed' ) => null === $o['cached_files'] ? '—' : number_format_i18n( $o['cached_files'] ) . ' / ' . number_format_i18n( (int) $o['max_files'] ),
-				__( 'Boşa giden', 'flx-speed' )       => null === $o['wasted_pct'] ? '—' : $o['wasted_pct'] . '%',
-				__( 'Yeniden başlama', 'flx-speed' )  => (int) $o['restarts'],
-			) : array( __( 'Durum', 'flx-speed' ) => __( 'Bilgi alınamadı (kapalı ya da sunucu izin vermiyor).', 'flx-speed' ) )
+				__( 'Status', 'flx-speed' )            => $o['enabled'] ? __( 'On', 'flx-speed' ) : __( 'Off', 'flx-speed' ),
+				__( 'Memory', 'flx-speed' )           => null === $o['used_mb'] ? '—' : $o['used_mb'] . ' MB / ' . ( $o['used_mb'] + $o['free_mb'] ) . ' MB',
+				__( 'Hit rate', 'flx-speed' )     => null === $o['hit_rate'] ? '—' : $o['hit_rate'] . '%',
+				__( 'Cached files', 'flx-speed' ) => null === $o['cached_files'] ? '—' : number_format_i18n( $o['cached_files'] ) . ' / ' . number_format_i18n( (int) $o['max_files'] ),
+				__( 'Wasted', 'flx-speed' )       => null === $o['wasted_pct'] ? '—' : $o['wasted_pct'] . '%',
+				__( 'Restarts', 'flx-speed' )  => (int) $o['restarts'],
+			) : array( __( 'Status', 'flx-speed' ) => __( 'No data (disabled or not allowed by the server).', 'flx-speed' ) )
 		);
 		$c = $st['caches'];
 		self::kv(
-			__( 'Önbellek', 'flx-speed' ),
+			__( 'Cache', 'flx-speed' ),
 			array(
-				__( 'Nesne önbelleği', 'flx-speed' ) => $c['object_cache'] ? __( 'Harici', 'flx-speed' ) : __( 'Yok', 'flx-speed' ),
-				__( 'Sayfa önbelleği (WP_CACHE)', 'flx-speed' ) => $b( $c['page_cache'] ),
+				__( 'Object cache', 'flx-speed' ) => $c['object_cache'] ? __( 'External', 'flx-speed' ) : __( 'None', 'flx-speed' ),
+				__( 'Page cache (WP_CACHE)', 'flx-speed' ) => $b( $c['page_cache'] ),
 				'LiteSpeed Cache'                       => $b( $c['litespeed'] ),
 				'APCu'                                  => $b( $c['apcu'] ),
 				'Memcached'                             => $b( $c['memcached'] ),
@@ -649,15 +649,15 @@ class FLXP_Admin {
 		);
 		$wp   = $e['wordpress'];
 		$rows = array(
-			__( 'Sürüm', 'flx-speed' )             => $wp['version'],
-			__( 'Dil', 'flx-speed' )               => $wp['locale'],
-			__( 'Saat dilimi', 'flx-speed' )       => $wp['timezone'],
-			__( 'Kalıcı bağlantılar', 'flx-speed' ) => $wp['permalinks'] ? $wp['permalinks'] : '—',
-			__( 'Ortam türü', 'flx-speed' )        => $wp['environment'],
-			__( 'Tema', 'flx-speed' )              => $wp['theme'] . ( $wp['parent_theme'] ? ' (' . $wp['parent_theme'] . ')' : '' ),
+			__( 'Version', 'flx-speed' )             => $wp['version'],
+			__( 'Locale', 'flx-speed' )               => $wp['locale'],
+			__( 'Timezone', 'flx-speed' )       => $wp['timezone'],
+			__( 'Permalinks', 'flx-speed' ) => $wp['permalinks'] ? $wp['permalinks'] : '—',
+			__( 'Environment type', 'flx-speed' )        => $wp['environment'],
+			__( 'Theme', 'flx-speed' )              => $wp['theme'] . ( $wp['parent_theme'] ? ' (' . $wp['parent_theme'] . ')' : '' ),
 		);
 		foreach ( $wp['constants'] as $k => $v ) {
-			$rows[ $k ] = null === $v ? __( 'tanımsız', 'flx-speed' ) : $v;
+			$rows[ $k ] = null === $v ? __( 'undefined', 'flx-speed' ) : $v;
 		}
 		self::kv( 'WordPress', $rows );
 		$pl = array();
@@ -670,7 +670,7 @@ class FLXP_Admin {
 		foreach ( $wp['dropins'] as $d ) {
 			$pl[ 'Drop-in: ' . $d ] = '';
 		}
-		self::kv( __( 'Etkin eklentiler', 'flx-speed' ), $pl );
+		self::kv( __( 'Active plugins', 'flx-speed' ), $pl );
 		echo '</div>';
 	}
 
@@ -686,19 +686,19 @@ class FLXP_Admin {
 			return '' === (string) $bytes ? '—' : size_format( (float) $bytes, 1 );
 		};
 		echo '<div class="flxp-cards">';
-		self::card( __( 'Veri', 'flx-speed' ), number_format_i18n( $t['data_mb'], 1 ) . ' MB' );
-		self::card( __( 'İndeks', 'flx-speed' ), number_format_i18n( $t['index_mb'], 1 ) . ' MB' );
-		self::card( __( 'Boş alan', 'flx-speed' ), number_format_i18n( $t['free_mb'], 1 ) . ' MB', $t['free_mb'] > 50 ? 'warn' : '' );
-		self::card( __( 'Tablo', 'flx-speed' ), number_format_i18n( $t['tables'] ) );
-		self::card( __( 'Satır (yaklaşık)', 'flx-speed' ), number_format_i18n( $t['rows'] ) );
+		self::card( __( 'Data', 'flx-speed' ), number_format_i18n( $t['data_mb'], 1 ) . ' MB' );
+		self::card( __( 'Index', 'flx-speed' ), number_format_i18n( $t['index_mb'], 1 ) . ' MB' );
+		self::card( __( 'Free space', 'flx-speed' ), number_format_i18n( $t['free_mb'], 1 ) . ' MB', $t['free_mb'] > 50 ? 'warn' : '' );
+		self::card( __( 'Table', 'flx-speed' ), number_format_i18n( $t['tables'] ) );
+		self::card( __( 'Rows (approx.)', 'flx-speed' ), number_format_i18n( $t['rows'] ) );
 		if ( isset( $s['Threads_connected'] ) ) {
-			self::card( __( 'Açık bağlantı', 'flx-speed' ), number_format_i18n( (int) $s['Threads_connected'] ) . ( isset( $v['max_connections'] ) ? ' / ' . number_format_i18n( (int) $v['max_connections'] ) : '' ) );
+			self::card( __( 'Open connections', 'flx-speed' ), number_format_i18n( (int) $s['Threads_connected'] ) . ( isset( $v['max_connections'] ) ? ' / ' . number_format_i18n( (int) $v['max_connections'] ) : '' ) );
 		}
 		echo '</div><div class="flxp-env">';
 		self::kv(
-			__( 'Sunucu', 'flx-speed' ),
+			__( 'Server', 'flx-speed' ),
 			array(
-				__( 'Yazılım', 'flx-speed' )            => trim( ( $v['version_comment'] ?? '' ) . ' ' . ( $v['version'] ?? $wpdb->db_server_info() ) ),
+				__( 'Software', 'flx-speed' )            => trim( ( $v['version_comment'] ?? '' ) . ' ' . ( $v['version'] ?? $wpdb->db_server_info() ) ),
 				'max_connections'                         => $v['max_connections'] ?? '—',
 				'max_user_connections'                    => $v['max_user_connections'] ?? '—',
 				'max_allowed_packet'                      => isset( $v['max_allowed_packet'] ) ? $mb( $v['max_allowed_packet'] ) : '—',
@@ -706,28 +706,28 @@ class FLXP_Admin {
 				'tmp_table_size'                          => isset( $v['tmp_table_size'] ) ? $mb( $v['tmp_table_size'] ) : '—',
 				'wait_timeout'                            => $v['wait_timeout'] ?? '—',
 				'slow_query_log'                          => ( $v['slow_query_log'] ?? '—' ) . ( isset( $v['long_query_time'] ) ? ' (' . $v['long_query_time'] . ' s)' : '' ),
-				__( 'Karakter seti', 'flx-speed' )      => ( $v['character_set_server'] ?? '' ) . ' / ' . ( $v['collation_server'] ?? '' ),
+				__( 'Charset', 'flx-speed' )      => ( $v['character_set_server'] ?? '' ) . ' / ' . ( $v['collation_server'] ?? '' ),
 				'sql_mode'                                => $v['sql_mode'] ?? '—',
 			)
 		);
 		$d = $db['derived'];
 		self::kv(
-			__( 'Durum', 'flx-speed' ),
+			__( 'Status', 'flx-speed' ),
 			array(
-				__( 'Çalışma süresi', 'flx-speed' )        => isset( $s['Uptime'] ) ? flxp_fmt_uptime( (int) $s['Uptime'] ) : '—',
-				__( 'Saniyede sorgu', 'flx-speed' )        => isset( $d['queries_per_sec'] ) ? number_format_i18n( $d['queries_per_sec'], 2 ) : '—',
-				__( 'Yavaş sorgu (sunucu)', 'flx-speed' )  => isset( $s['Slow_queries'] ) ? number_format_i18n( (int) $s['Slow_queries'] ) : '—',
-				__( 'En çok eş zamanlı bağlantı', 'flx-speed' ) => $s['Max_used_connections'] ?? '—',
-				__( 'Çalışan iş parçacığı', 'flx-speed' )  => $s['Threads_running'] ?? '—',
-				__( 'Buffer pool isabeti', 'flx-speed' )   => isset( $d['buffer_pool_hit_pct'] ) ? $d['buffer_pool_hit_pct'] . '%' : '—',
-				__( 'Diske düşen geçici tablo', 'flx-speed' ) => isset( $d['tmp_disk_pct'] ) ? $d['tmp_disk_pct'] . '%' : '—',
-				__( 'Reddedilen bağlantı', 'flx-speed' )   => $s['Aborted_connects'] ?? '—',
+				__( 'Uptime', 'flx-speed' )        => isset( $s['Uptime'] ) ? flxp_fmt_uptime( (int) $s['Uptime'] ) : '—',
+				__( 'Queries per second', 'flx-speed' )        => isset( $d['queries_per_sec'] ) ? number_format_i18n( $d['queries_per_sec'], 2 ) : '—',
+				__( 'Slow queries (server)', 'flx-speed' )  => isset( $s['Slow_queries'] ) ? number_format_i18n( (int) $s['Slow_queries'] ) : '—',
+				__( 'Max concurrent connections', 'flx-speed' ) => $s['Max_used_connections'] ?? '—',
+				__( 'Running threads', 'flx-speed' )  => $s['Threads_running'] ?? '—',
+				__( 'Buffer pool hit rate', 'flx-speed' )   => isset( $d['buffer_pool_hit_pct'] ) ? $d['buffer_pool_hit_pct'] . '%' : '—',
+				__( 'Temp tables on disk', 'flx-speed' ) => isset( $d['tmp_disk_pct'] ) ? $d['tmp_disk_pct'] . '%' : '—',
+				__( 'Aborted connects', 'flx-speed' )   => $s['Aborted_connects'] ?? '—',
 			)
 		);
 		echo '</div>';
 
-		echo '<h2>' . esc_html__( 'Temizlik', 'flx-speed' ) . '</h2>';
-		echo '<p class="description">' . esc_html__( 'Yalnız güvenli işler: yazı, sayfa ve revizyonlar silinmez. Revizyon sayısını wp-config\'te WP_POST_REVISIONS ile sınırlayın.', 'flx-speed' ) . '</p>';
+		echo '<h2>' . esc_html__( 'Cleanup', 'flx-speed' ) . '</h2>';
+		echo '<p class="description">' . esc_html__( 'Safe jobs only: posts, pages and revisions are never deleted. Limit revisions with WP_POST_REVISIONS in wp-config.', 'flx-speed' ) . '</p>';
 		$cl    = $db['cleanup'];
 		$count = array(
 			'expired_transients' => $cl['expired_transients'],
@@ -747,18 +747,18 @@ class FLXP_Admin {
 		foreach ( flxp_cleanup_jobs() as $k => $label ) {
 			$btn = '';
 			if ( current_user_can( 'manage_options' ) && $count[ $k ] ) {
-				$btn = '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" onsubmit="return confirm(\'' . esc_js( $label . ' — ' . __( 'devam edilsin mi?', 'flx-speed' ) ) . '\')">' . wp_nonce_field( 'flxp_cleanup', '_wpnonce', true, false ) . '<input type="hidden" name="action" value="flxp_cleanup"><input type="hidden" name="job" value="' . esc_attr( $k ) . '"><button class="button button-small">' . esc_html__( 'Temizle', 'flx-speed' ) . '</button></form>';
+				$btn = '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" onsubmit="return confirm(\'' . esc_js( $label . ' — ' . __( 'continue?', 'flx-speed' ) ) . '\')">' . wp_nonce_field( 'flxp_cleanup', '_wpnonce', true, false ) . '<input type="hidden" name="action" value="flxp_cleanup"><input type="hidden" name="job" value="' . esc_attr( $k ) . '"><button class="button button-small">' . esc_html__( 'Clean', 'flx-speed' ) . '</button></form>';
 			}
 			$rows[] = array( esc_html( $label ), number_format_i18n( $count[ $k ] ), $btn );
 		}
-		$rows[] = array( esc_html__( 'Revizyonlar', 'flx-speed' ), number_format_i18n( $cl['revisions'] ), '' );
-		$rows[] = array( esc_html__( 'Çöpteki yazılar', 'flx-speed' ), number_format_i18n( $cl['trashed_posts'] ), '' );
-		$rows[] = array( esc_html__( 'Tüm geçici veriler', 'flx-speed' ), number_format_i18n( $cl['transients'] ), '' );
-		self::simple_table( array( __( 'İş', 'flx-speed' ), __( 'Adet', 'flx-speed' ), '' ), $rows );
+		$rows[] = array( esc_html__( 'Revisions', 'flx-speed' ), number_format_i18n( $cl['revisions'] ), '' );
+		$rows[] = array( esc_html__( 'Trashed posts', 'flx-speed' ), number_format_i18n( $cl['trashed_posts'] ), '' );
+		$rows[] = array( esc_html__( 'All transients', 'flx-speed' ), number_format_i18n( $cl['transients'] ), '' );
+		self::simple_table( array( __( 'Job', 'flx-speed' ), __( 'Count', 'flx-speed' ), '' ), $rows );
 
-		echo '<h2>' . esc_html__( 'Tablolar', 'flx-speed' ) . '</h2>';
+		echo '<h2>' . esc_html__( 'Tables', 'flx-speed' ) . '</h2>';
 		self::simple_table(
-			array( __( 'Tablo', 'flx-speed' ), __( 'Motor', 'flx-speed' ), __( 'Satır', 'flx-speed' ), __( 'Veri', 'flx-speed' ), __( 'İndeks', 'flx-speed' ), __( 'Boş alan', 'flx-speed' ), __( 'Karşılaştırma', 'flx-speed' ) ),
+			array( __( 'Table', 'flx-speed' ), __( 'Engine', 'flx-speed' ), __( 'Rows', 'flx-speed' ), __( 'Data', 'flx-speed' ), __( 'Index', 'flx-speed' ), __( 'Free space', 'flx-speed' ), __( 'Collation', 'flx-speed' ) ),
 			array_map(
 				function ( $x ) use ( $mb ) {
 					return array( '<code>' . esc_html( $x['name'] ) . '</code>', esc_html( $x['engine'] ), number_format_i18n( $x['rows'] ), esc_html( $mb( $x['data'] ) ), esc_html( $mb( $x['index'] ) ), esc_html( $x['free'] ? $mb( $x['free'] ) : '—' ), esc_html( $x['collate'] ) );
@@ -773,12 +773,12 @@ class FLXP_Admin {
 	private static function autoload() {
 		$a = flxp_autoload( 40 );
 		echo '<div class="flxp-cards">';
-		self::card( __( 'Autoload seçenek', 'flx-speed' ), number_format_i18n( $a['count'] ) );
-		self::card( __( 'Toplam boyut', 'flx-speed' ), number_format_i18n( $a['total_kb'], 0 ) . ' KB', $a['total_kb'] > 1600 ? 'err' : ( $a['total_kb'] > 800 ? 'warn' : '' ) );
+		self::card( __( 'Autoloaded options', 'flx-speed' ), number_format_i18n( $a['count'] ) );
+		self::card( __( 'Total size', 'flx-speed' ), number_format_i18n( $a['total_kb'], 0 ) . ' KB', $a['total_kb'] > 1600 ? 'err' : ( $a['total_kb'] > 800 ? 'warn' : '' ) );
 		echo '</div>';
-		echo '<p class="description">' . esc_html__( 'Bu seçenekler her istekte veritabanından okunur. Toplam 800 KB üstü sayfaları yavaşlatır; büyük satırların sahibi eklentide ayarı ya da önbelleği küçültmek gerekir.', 'flx-speed' ) . '</p>';
+		echo '<p class="description">' . esc_html__( 'These options are loaded from the database on every request. Over 800 KB in total slows pages down; shrink the setting or cache in the plugin that owns the large rows.', 'flx-speed' ) . '</p>';
 		self::simple_table(
-			array( __( 'Seçenek', 'flx-speed' ), __( 'Sahibi', 'flx-speed' ), __( 'Boyut', 'flx-speed' ) ),
+			array( __( 'Option', 'flx-speed' ), __( 'Owner', 'flx-speed' ), __( 'Size', 'flx-speed' ) ),
 			array_map(
 				function ( $o ) {
 					return array( '<code>' . esc_html( $o['name'] ) . '</code>', esc_html( $o['owner'] ? $o['owner'] : '—' ), esc_html( number_format_i18n( $o['kb'], 1 ) . ' KB' ) );
@@ -793,24 +793,24 @@ class FLXP_Admin {
 	private static function cron() {
 		$c = flxp_cron();
 		echo '<div class="flxp-cards">';
-		self::card( __( 'Görev', 'flx-speed' ), number_format_i18n( $c['events'] ) );
-		self::card( __( 'Gecikmiş', 'flx-speed' ), number_format_i18n( $c['overdue'] ), $c['overdue'] ? 'warn' : '' );
+		self::card( __( 'Events', 'flx-speed' ), number_format_i18n( $c['events'] ) );
+		self::card( __( 'Overdue', 'flx-speed' ), number_format_i18n( $c['overdue'] ), $c['overdue'] ? 'warn' : '' );
 		$ago = $c['last_seen'] ? flx_time_ago( $c['last_seen'] ) : '';
-		self::card( __( 'Son çalışma', 'flx-speed' ), $ago ? $ago : __( 'Görülmedi', 'flx-speed' ), ( ! $c['last_seen'] || $c['last_seen'] < time() - HOUR_IN_SECONDS ) ? 'warn' : '' );
-		self::card( 'DISABLE_WP_CRON', $c['disabled'] ? __( 'Açık', 'flx-speed' ) : __( 'Kapalı', 'flx-speed' ) );
+		self::card( __( 'Last run', 'flx-speed' ), $ago ? $ago : __( 'Not seen', 'flx-speed' ), ( ! $c['last_seen'] || $c['last_seen'] < time() - HOUR_IN_SECONDS ) ? 'warn' : '' );
+		self::card( 'DISABLE_WP_CRON', $c['disabled'] ? __( 'On', 'flx-speed' ) : __( 'Off', 'flx-speed' ) );
 		echo '</div>';
 		if ( $c['disabled'] ) {
-			echo '<p class="description">' . esc_html__( 'WordPress cron kapalı: görevler yalnız sunucu cron\'u wp-cron.php\'yi çağırınca çalışır. Hostinger\'da 5 dakikada bir çağıran bir cron işi tanımlı olmalı.', 'flx-speed' ) . '</p>';
+			echo '<p class="description">' . esc_html__( 'WordPress cron is disabled: events run only when a server cron job calls wp-cron.php. On Hostinger, add a cron job that calls it every 5 minutes.', 'flx-speed' ) . '</p>';
 		}
-		echo '<h2>' . esc_html__( 'Görev süreleri', 'flx-speed' ) . '</h2>';
-		echo '<p class="description">' . esc_html__( 'wp-cron.php her çalıştığında görev başına ölçülür; toplam süreye göre sıralı. Bir günden eski özet, görev yeniden çalışınca sıfırlanır. "Kesildi": görev süre sınırına takılıp yarıda kaldı.', 'flx-speed' ) . '</p>';
+		echo '<h2>' . esc_html__( 'Task durations', 'flx-speed' ) . '</h2>';
+		echo '<p class="description">' . esc_html__( 'Measured per task each time wp-cron.php runs; sorted by total time. A summary older than a day resets when the task runs again. "Cut off": the task hit the time limit and stopped halfway.', 'flx-speed' ) . '</p>';
 		self::simple_table(
-			array( __( 'Kanca', 'flx-speed' ), __( 'Bileşen', 'flx-speed' ), __( 'Çalışma', 'flx-speed' ), __( 'Ortalama', 'flx-speed' ), __( 'En uzun', 'flx-speed' ), __( 'Son', 'flx-speed' ), __( 'Son çalışma', 'flx-speed' ) ),
+			array( __( 'Hook', 'flx-speed' ), __( 'Component', 'flx-speed' ), __( 'Runs', 'flx-speed' ), __( 'Average', 'flx-speed' ), __( 'Longest', 'flx-speed' ), __( 'Last', 'flx-speed' ), __( 'Last run', 'flx-speed' ) ),
 			array_map(
 				function ( $t ) {
 					$slow = $t['avg_ms'] >= 5000;
 					return array(
-						'<code>' . esc_html( $t['hook'] ) . '</code>' . ( $t['cut'] ? ' <span class="flxp-err">' . esc_html__( 'Kesildi', 'flx-speed' ) . '</span>' : '' ),
+						'<code>' . esc_html( $t['hook'] ) . '</code>' . ( $t['cut'] ? ' <span class="flxp-err">' . esc_html__( 'Cut off', 'flx-speed' ) . '</span>' : '' ),
 						esc_html( $t['component'] ),
 						number_format_i18n( $t['runs'] ),
 						$slow ? '<span class="flxp-err">' . esc_html( self::fmt_ms( $t['avg_ms'] ) ) . '</span>' : esc_html( self::fmt_ms( $t['avg_ms'] ) ),
@@ -822,17 +822,17 @@ class FLXP_Admin {
 				FLXP_Cron_Timing::stats()
 			)
 		);
-		echo '<h2>' . esc_html__( 'Zamanlanmış görevler', 'flx-speed' ) . '</h2>';
+		echo '<h2>' . esc_html__( 'Scheduled events', 'flx-speed' ) . '</h2>';
 		$now = time();
 		self::simple_table(
-			array( __( 'Kanca', 'flx-speed' ), __( 'Sonraki', 'flx-speed' ), __( 'Tekrar', 'flx-speed' ), __( 'Argüman', 'flx-speed' ) ),
+			array( __( 'Hook', 'flx-speed' ), __( 'Next', 'flx-speed' ), __( 'Recurrence', 'flx-speed' ), __( 'Args', 'flx-speed' ) ),
 			array_map(
 				function ( $e ) use ( $now ) {
 					$when = wp_date( 'd.m H:i', $e['next'] ) . ' · ' . ( $e['next'] >= $now
 						? flx_time_ago( $e['next'], $now )
 						/* translators: %s: relative time, e.g. "3 saat önce" */
-						: sprintf( __( 'Gecikti: %s çalışmalıydı', 'flx-speed' ), flx_time_ago( $e['next'], $now ) ) );
-					return array( '<code>' . esc_html( $e['hook'] ) . '</code>', $e['overdue'] ? '<span class="flxp-err">' . esc_html( $when ) . '</span>' : esc_html( $when ), esc_html( $e['schedule'] ? $e['schedule'] : __( 'bir kez', 'flx-speed' ) ), (int) $e['args'] );
+						: sprintf( __( 'Overdue: due %s', 'flx-speed' ), flx_time_ago( $e['next'], $now ) ) );
+					return array( '<code>' . esc_html( $e['hook'] ) . '</code>', $e['overdue'] ? '<span class="flxp-err">' . esc_html( $when ) . '</span>' : esc_html( $when ), esc_html( $e['schedule'] ? $e['schedule'] : __( 'once', 'flx-speed' ) ), (int) $e['args'] );
 				},
 				$c['items']
 			)
@@ -847,9 +847,9 @@ class FLXP_Admin {
 			return;
 		}
 		$log = flxseo_system_fix_log( 20 );
-		echo '<h2>' . esc_html__( 'Son düzeltmeler (yapay zekâ / MCP)', 'flx-speed' ) . '</h2>';
+		echo '<h2>' . esc_html__( 'Recent fixes (AI / MCP)', 'flx-speed' ) . '</h2>';
 		self::simple_table(
-			array( __( 'Zaman', 'flx-speed' ), __( 'Kullanıcı', 'flx-speed' ), __( 'Düzeltme', 'flx-speed' ), __( 'Önce → Sonra', 'flx-speed' ), __( 'Sonuç', 'flx-speed' ) ),
+			array( __( 'Time', 'flx-speed' ), __( 'User', 'flx-speed' ), __( 'Fix', 'flx-speed' ), __( 'Before → After', 'flx-speed' ), __( 'Result', 'flx-speed' ) ),
 			array_map(
 				function ( $r ) {
 					$u = get_userdata( (int) ( $r['u'] ?? 0 ) );
@@ -886,39 +886,39 @@ class FLXP_Admin {
 			<?php wp_nonce_field( 'flxp_save' ); ?>
 			<input type="hidden" name="action" value="flxp_save">
 			<table class="form-table" role="presentation">
-				<tr><th scope="row"><?php esc_html_e( 'Geliştirici paneli', 'flx-speed' ); ?></th><td>
-					<label><input type="checkbox" name="flxp[panel]" value="1" <?php $c( 'panel' ); ?>> <?php esc_html_e( 'Yetkili kullanıcıya yönetici çubuğunda özet ve alt panel göster', 'flx-speed' ); ?></label><br>
-					<label><input type="checkbox" name="flxp[panel_front]" value="1" <?php $c( 'panel_front' ); ?>> <?php esc_html_e( 'Ön yüzde de göster', 'flx-speed' ); ?></label><br>
-					<label><input type="checkbox" name="flxp[caps]" value="1" <?php $c( 'caps' ); ?>> <?php esc_html_e( 'Yetki kontrollerini topla', 'flx-speed' ); ?></label>
-					<p class="description"><?php esc_html_e( 'Panel; yöneticiye ve Flux Roles\'den "Performansı görüntüle" yetkisi verilen personele görünür.', 'flx-speed' ); ?></p>
+				<tr><th scope="row"><?php esc_html_e( 'Developer panel', 'flx-speed' ); ?></th><td>
+					<label><input type="checkbox" name="flxp[panel]" value="1" <?php $c( 'panel' ); ?>> <?php esc_html_e( 'Show a summary in the admin bar and a bottom panel to authorized users', 'flx-speed' ); ?></label><br>
+					<label><input type="checkbox" name="flxp[panel_front]" value="1" <?php $c( 'panel_front' ); ?>> <?php esc_html_e( 'Show on the front end too', 'flx-speed' ); ?></label><br>
+					<label><input type="checkbox" name="flxp[caps]" value="1" <?php $c( 'caps' ); ?>> <?php esc_html_e( 'Collect capability checks', 'flx-speed' ); ?></label>
+					<p class="description"><?php esc_html_e( 'The panel is visible to administrators and to staff granted "View performance" by Flux Roles.', 'flx-speed' ); ?></p>
 				</td></tr>
-				<tr><th scope="row"><?php esc_html_e( 'Kayıt', 'flx-speed' ); ?></th><td>
-					<label><input type="checkbox" name="flxp[record]" value="1" <?php $c( 'record' ); ?>> <?php esc_html_e( 'Yavaş ve hatalı istekleri kaydet', 'flx-speed' ); ?></label><br>
-					<label><input type="checkbox" name="flxp[record_admins]" value="1" <?php $c( 'record_admins' ); ?>> <?php esc_html_e( 'Panel açıkken kendi isteklerimi de kaydet (yalnız sorun varsa)', 'flx-speed' ); ?></label>
+				<tr><th scope="row"><?php esc_html_e( 'Recording', 'flx-speed' ); ?></th><td>
+					<label><input type="checkbox" name="flxp[record]" value="1" <?php $c( 'record' ); ?>> <?php esc_html_e( 'Record slow and failing requests', 'flx-speed' ); ?></label><br>
+					<label><input type="checkbox" name="flxp[record_admins]" value="1" <?php $c( 'record_admins' ); ?>> <?php esc_html_e( 'Also record my own requests while the panel is on (only when something is wrong)', 'flx-speed' ); ?></label>
 				</td></tr>
-				<tr><th scope="row"><label for="flxp-sample"><?php esc_html_e( 'Örnekleme', 'flx-speed' ); ?></label></th><td>
+				<tr><th scope="row"><label for="flxp-sample"><?php esc_html_e( 'Sampling', 'flx-speed' ); ?></label></th><td>
 					<input id="flxp-sample" type="number" min="0" max="100" name="flxp[sample]" value="<?php echo (int) $s['sample']; ?>" class="small-text"> %
-					<p class="description"><?php esc_html_e( 'İsteklerin bu kadarı sorgu listesiyle ayrıntılı toplanır ve kaydedilir. Hostinger için 1-5 önerilir; 0 kapatır.', 'flx-speed' ); ?></p>
+					<p class="description"><?php esc_html_e( 'This share of requests is collected in detail (with the query list) and recorded. 1-5 is recommended on Hostinger; 0 turns it off.', 'flx-speed' ); ?></p>
 				</td></tr>
-				<tr><th scope="row"><label for="flxp-slow"><?php esc_html_e( 'Yavaş istek eşiği', 'flx-speed' ); ?></label></th><td>
+				<tr><th scope="row"><label for="flxp-slow"><?php esc_html_e( 'Slow request threshold', 'flx-speed' ); ?></label></th><td>
 					<input id="flxp-slow" type="number" min="100" step="100" name="flxp[slow_ms]" value="<?php echo (int) $s['slow_ms']; ?>" class="small-text"> ms
 				</td></tr>
-				<tr><th scope="row"><label for="flxp-slowq"><?php esc_html_e( 'Yavaş sorgu eşiği', 'flx-speed' ); ?></label></th><td>
+				<tr><th scope="row"><label for="flxp-slowq"><?php esc_html_e( 'Slow query threshold', 'flx-speed' ); ?></label></th><td>
 					<input id="flxp-slowq" type="number" min="1" name="flxp[slow_query_ms]" value="<?php echo (int) $s['slow_query_ms']; ?>" class="small-text"> ms
 				</td></tr>
-				<tr><th scope="row"><label for="flxp-keep"><?php esc_html_e( 'Saklama', 'flx-speed' ); ?></label></th><td>
-					<input id="flxp-keep" type="number" min="1" max="90" name="flxp[keep_days]" value="<?php echo (int) $s['keep_days']; ?>" class="small-text"> <?php esc_html_e( 'gün', 'flx-speed' ); ?>,
-					<?php esc_html_e( 'en fazla', 'flx-speed' ); ?> <input type="number" min="100" max="50000" step="100" name="flxp[max_rows]" value="<?php echo (int) $s['max_rows']; ?>" class="small-text"> <?php esc_html_e( 'kayıt', 'flx-speed' ); ?>
+				<tr><th scope="row"><label for="flxp-keep"><?php esc_html_e( 'Retention', 'flx-speed' ); ?></label></th><td>
+					<input id="flxp-keep" type="number" min="1" max="90" name="flxp[keep_days]" value="<?php echo (int) $s['keep_days']; ?>" class="small-text"> <?php esc_html_e( 'days', 'flx-speed' ); ?>,
+					<?php esc_html_e( 'at most', 'flx-speed' ); ?> <input type="number" min="100" max="50000" step="100" name="flxp[max_rows]" value="<?php echo (int) $s['max_rows']; ?>" class="small-text"> <?php esc_html_e( 'records', 'flx-speed' ); ?>
 				</td></tr>
-				<tr><th scope="row"><label for="flxp-quota"><?php esc_html_e( 'Disk kotası', 'flx-speed' ); ?></label></th><td>
+				<tr><th scope="row"><label for="flxp-quota"><?php esc_html_e( 'Disk quota', 'flx-speed' ); ?></label></th><td>
 					<input id="flxp-quota" type="number" min="0" step="0.1" name="flxp[disk_quota_gb]" value="<?php echo esc_attr( $s['disk_quota_gb'] ? $s['disk_quota_gb'] : '' ); ?>" class="small-text"> GB
-					<p class="description"><?php esc_html_e( 'Paylaşımlı hosting planınızın disk sınırı (Hostinger: hPanel › Hesap kaynakları). PHP bu sınırı okuyamaz; girilirse Disk kutusu hesap kullanımını yüzde olarak gösterir. Boş bırakılırsa yalnız kullanılan alan görünür.', 'flx-speed' ); ?></p>
+					<p class="description"><?php esc_html_e( 'Your shared hosting plan\'s disk limit (Hostinger: hPanel › Account resources). PHP cannot read it; when set, the Disk card shows account usage as a percentage. Leave empty to show used space only.', 'flx-speed' ); ?></p>
 				</td></tr>
 			</table>
 			<?php self::login_settings( $s ); ?>
-			<h2><?php esc_html_e( 'Yapay zekâ (MCP)', 'flx-speed' ); ?></h2>
-			<p><?php esc_html_e( 'Kayıtlar Flux AI & MCP sunucusunda ve Flux AI sohbetinde salt okunur araçlarla okunur: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url.', 'flx-speed' ); ?></p>
-			<p><?php echo function_exists( 'flxseo_mcp_tools' ) ? esc_html__( 'Flux AI & MCP etkin: araçlar kayıtlı.', 'flx-speed' ) : esc_html__( 'Flux AI & MCP etkin değil: araçlar yalnız Flux AI sohbetinde.', 'flx-speed' ); ?></p>
+			<h2><?php esc_html_e( 'AI (MCP)', 'flx-speed' ); ?></h2>
+			<p><?php esc_html_e( 'The data is read by read-only tools on the Flux AI & MCP server and in Flux AI chat: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url.', 'flx-speed' ); ?></p>
+			<p><?php echo function_exists( 'flxseo_mcp_tools' ) ? esc_html__( 'Flux AI & MCP is active: tools are registered.', 'flx-speed' ) : esc_html__( 'Flux AI & MCP is not active: tools are available in Flux AI chat only.', 'flx-speed' ); ?></p>
 			<?php submit_button(); ?>
 		</form>
 		<?php
@@ -932,40 +932,40 @@ class FLXP_Admin {
 		$value      = $const_slug ? FLXP_Login_URL::clean( FLXP_LOGIN_SLUG ) : $s['login_slug'];
 		$prefix     = get_option( 'permalink_structure' ) ? trailingslashit( home_url() ) : trailingslashit( home_url() ) . '?';
 		?>
-		<h2 id="flxp-login"><?php esc_html_e( 'Yönetim giriş adresi', 'flx-speed' ); ?></h2>
-		<p><?php esc_html_e( 'Giriş ekranını wp-login.php yerine size özel bir adreste açar. wp-login.php ve giriş yapmamış ziyaretçinin wp-admin istekleri yanıt vermez; botların şifre denemesi ve sunucu yükü azalır.', 'flx-speed' ); ?></p>
+		<h2 id="flxp-login"><?php esc_html_e( 'Admin login URL', 'flx-speed' ); ?></h2>
+		<p><?php esc_html_e( 'Opens the login screen at an address of your own instead of wp-login.php. wp-login.php and wp-admin requests from logged-out visitors no longer respond, which cuts bot password guessing and server load.', 'flx-speed' ); ?></p>
 		<?php if ( $off ) : ?>
-			<div class="notice notice-warning inline"><p><?php esc_html_e( 'wp-config.php içinde FLXP_LOGIN_DISABLE tanımlı: özel adres kapalı, giriş yine wp-login.php üzerinden. Sorun çözüldüyse bu satırı silin.', 'flx-speed' ); ?></p></div>
+			<div class="notice notice-warning inline"><p><?php esc_html_e( 'FLXP_LOGIN_DISABLE is defined in wp-config.php: the custom URL is off and login uses wp-login.php. Remove that line once the problem is solved.', 'flx-speed' ); ?></p></div>
 		<?php elseif ( $active ) : ?>
 			<div class="flxp-login-now">
-				<span><?php esc_html_e( 'Giriş adresiniz', 'flx-speed' ); ?></span>
+				<span><?php esc_html_e( 'Your login URL', 'flx-speed' ); ?></span>
 				<code id="flxp-login-url"><?php echo esc_html( FLXP_Login_URL::url() ); ?></code>
-				<button type="button" class="button button-small" data-flxp-copy="flxp-login-url" data-done="<?php esc_attr_e( 'Kopyalandı', 'flx-speed' ); ?>"><?php esc_html_e( 'Kopyala', 'flx-speed' ); ?></button>
+				<button type="button" class="button button-small" data-flxp-copy="flxp-login-url" data-done="<?php esc_attr_e( 'Copied', 'flx-speed' ); ?>"><?php esc_html_e( 'Copy', 'flx-speed' ); ?></button>
 			</div>
-			<p class="description"><?php esc_html_e( 'Bu adresi yer imlerine ekleyin ve giriş yapan herkese iletin. Unutursanız aşağıdaki kurtarma adımını kullanın.', 'flx-speed' ); ?></p>
+			<p class="description"><?php esc_html_e( 'Bookmark this address and share it with everyone who logs in. If you forget it, use the recovery step below.', 'flx-speed' ); ?></p>
 		<?php endif; ?>
 		<table class="form-table" role="presentation">
-			<tr><th scope="row"><label for="flxp-login-slug"><?php esc_html_e( 'Giriş adresi', 'flx-speed' ); ?></label></th><td>
+			<tr><th scope="row"><label for="flxp-login-slug"><?php esc_html_e( 'Login URL', 'flx-speed' ); ?></label></th><td>
 				<div class="flxp-slug"><span class="flxp-slug-pre"><?php echo esc_html( $prefix ); ?></span><input id="flxp-login-slug" type="text" name="flxp[login_slug]" value="<?php echo esc_attr( $value ); ?>" placeholder="fluxadmin" maxlength="40" pattern="[a-z0-9][a-z0-9_\-]{2,39}" autocomplete="off" spellcheck="false" <?php disabled( $const_slug ); ?>></div>
 				<p class="description">
 					<?php
 					if ( $const_slug ) {
-						esc_html_e( 'Adres wp-config.php içindeki FLXP_LOGIN_SLUG sabitinden geliyor; değiştirmek için sabiti düzenleyin ya da silin.', 'flx-speed' );
+						esc_html_e( 'The address comes from the FLXP_LOGIN_SLUG constant in wp-config.php; edit or remove the constant to change it.', 'flx-speed' );
 					} else {
-						esc_html_e( 'Boş bırakılırsa WordPress\'in standart adresi (wp-login.php) kullanılır. 3-40 karakter: küçük harf, rakam, tire, alt çizgi. Tahmin edilmesi zor bir ad seçin (admin, login kullanılamaz).', 'flx-speed' );
+						esc_html_e( 'Leave empty to use the standard WordPress address (wp-login.php). 3-40 characters: lowercase letters, digits, hyphen, underscore. Pick something hard to guess (admin and login are not allowed).', 'flx-speed' );
 					}
 					?>
 				</p>
 			</td></tr>
-			<tr><th scope="row"><?php esc_html_e( 'Eski adreslere gelen ziyaretçi', 'flx-speed' ); ?></th><td>
+			<tr><th scope="row"><?php esc_html_e( 'Visitors to the old addresses', 'flx-speed' ); ?></th><td>
 				<fieldset>
-					<label><input type="radio" name="flxp[login_blocked]" value="404" <?php checked( '404', $s['login_blocked'] ); ?>> <?php esc_html_e( '404 sayfası göster (önerilen)', 'flx-speed' ); ?></label><br>
-					<label><input type="radio" name="flxp[login_blocked]" value="home" <?php checked( 'home', $s['login_blocked'] ); ?>> <?php esc_html_e( 'Ana sayfaya yönlendir', 'flx-speed' ); ?></label>
+					<label><input type="radio" name="flxp[login_blocked]" value="404" <?php checked( '404', $s['login_blocked'] ); ?>> <?php esc_html_e( 'Show the 404 page (recommended)', 'flx-speed' ); ?></label><br>
+					<label><input type="radio" name="flxp[login_blocked]" value="home" <?php checked( 'home', $s['login_blocked'] ); ?>> <?php esc_html_e( 'Redirect to the home page', 'flx-speed' ); ?></label>
 				</fieldset>
-				<p class="description"><?php esc_html_e( 'wp-login.php ve giriş yapmamış ziyaretçinin wp-admin istekleri için. admin-ajax.php, admin-post.php, REST API, wp-cron, WooCommerce hesabım girişi ve Flux App bağlantısı etkilenmez.', 'flx-speed' ); ?></p>
+				<p class="description"><?php esc_html_e( 'Applies to wp-login.php and to wp-admin requests from logged-out visitors. admin-ajax.php, admin-post.php, the REST API, wp-cron, WooCommerce My Account login and the Flux App connection are not affected.', 'flx-speed' ); ?></p>
 			</td></tr>
-			<tr><th scope="row"><?php esc_html_e( 'Kurtarma', 'flx-speed' ); ?></th><td>
-				<p class="description"><?php esc_html_e( 'Adresi unutursanız ya da giriş açılmazsa: dosya yöneticisinden (Hostinger hPanel › Dosya Yöneticisi) wp-config.php dosyasına aşağıdaki satırı ekleyin. Giriş yeniden wp-login.php olur; girdikten sonra adresi buradan düzeltip satırı silin.', 'flx-speed' ); ?></p>
+			<tr><th scope="row"><?php esc_html_e( 'Recovery', 'flx-speed' ); ?></th><td>
+				<p class="description"><?php esc_html_e( 'If you forget the address or login won\'t open: add the line below to wp-config.php using your file manager (Hostinger hPanel › File Manager). Login goes back to wp-login.php; once you\'re in, fix the address here and remove the line.', 'flx-speed' ); ?></p>
 				<code class="flxp-code">define( 'FLXP_LOGIN_DISABLE', true );</code>
 			</td></tr>
 		</table>

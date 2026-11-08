@@ -91,13 +91,13 @@ final class FLXB_Admin {
 			return $p;
 		}
 		if ( FLXB_Refs::can_dashboard() ) {
-			$p[] = array( self::SLUG, __( 'Donation dashboard', 'flx-donate' ), __( 'Dashboard', 'flx-donate' ), FLXB_Refs::CAP_DASH, array( 'FLXB_Page_Dashboard', 'render' ) );
+			$p[] = array( self::SLUG, __( '\\nDonation dashboard\\n', 'flx-donate' ), __( 'Dashboard', 'flx-donate' ), FLXB_Refs::CAP_DASH, array( 'FLXB_Page_Dashboard', 'render' ) );
 		}
 		if ( current_user_can( FLXB_Refs::CAP_OWN ) ) {
-			$p[] = array( 'flxb-donations', __( 'My referrals', 'flx-donate' ), __( 'My referrals', 'flx-donate' ), FLXB_Refs::CAP_OWN, array( 'FLXB_Page_Donations', 'render' ) );
+			$p[] = array( 'flxb-donations', __( '\\nMy referrals\\n', 'flx-donate' ), __( '\\nMy referrals\\n', 'flx-donate' ), FLXB_Refs::CAP_OWN, array( 'FLXB_Page_Donations', 'render' ) );
 		}
 		if ( FLXB_Refs::staff_create() ) {
-			$p[] = array( 'flxb-add', __( 'New donation request', 'flx-donate' ), __( 'New request', 'flx-donate' ), FLXB_Refs::CAP_CREATE, array( 'FLXB_Page_Add', 'render' ) );
+			$p[] = array( 'flxb-add', __( '\\nNew donation request\\n', 'flx-donate' ), __( '\\nNew request\\n', 'flx-donate' ), FLXB_Refs::CAP_CREATE, array( 'FLXB_Page_Add', 'render' ) );
 		}
 		if ( FLXB_Refs::donors_own() ) {
 			$p[] = array( 'flxb-donors', __( 'My donors', 'flx-donate' ), __( 'My donors', 'flx-donate' ), FLXB_Refs::CAP_DONORS, array( 'FLXB_Page_Donors', 'render' ) );
@@ -126,29 +126,29 @@ final class FLXB_Admin {
 			return;
 		}
 		self::$hooks[] = add_menu_page( __( 'Donations', 'flx-donate' ), __( 'Donations', 'flx-donate' ), $cap, self::SLUG, array( 'FLXB_Page_Dashboard', 'render' ), 'none', 27 );
-		self::$hooks[] = add_submenu_page( self::SLUG, __( 'Donation dashboard', 'flx-donate' ), __( 'Dashboard', 'flx-donate' ), $cap, self::SLUG, array( 'FLXB_Page_Dashboard', 'render' ) );
+		self::$hooks[] = add_submenu_page( self::SLUG, __( '\\nDonation dashboard\\n', 'flx-donate' ), __( 'Dashboard', 'flx-donate' ), $cap, self::SLUG, array( 'FLXB_Page_Dashboard', 'render' ) );
 		self::$hooks[] = add_submenu_page( self::SLUG, __( 'Donations', 'flx-donate' ), __( 'Donations', 'flx-donate' ), $cap, 'flxb-donations', array( 'FLXB_Page_Donations', 'render' ) );
 		if ( flxb_track_enabled() ) {
 			self::$hooks[] = add_submenu_page( self::SLUG, FLXB_Track::label( 'title' ), FLXB_Track::label( 'menu' ), $cap, FLXB_Page_Track::SLUG, array( 'FLXB_Page_Track', 'render' ) );
 		}
 		self::$hooks[] = add_submenu_page( self::SLUG, __( 'Add donation', 'flx-donate' ), __( 'Add donation', 'flx-donate' ), (string) apply_filters( 'flxb_manage_capability', 'manage_options' ), 'flxb-add', array( 'FLXB_Page_Add', 'render' ) );
 		self::$hooks[] = add_submenu_page( self::SLUG, __( 'Donors', 'flx-donate' ), __( 'Donors', 'flx-donate' ), $cap, 'flxb-donors', array( 'FLXB_Page_Donors', 'render' ) );
-		self::$hooks[] = add_submenu_page( self::SLUG, __( 'Recurring donations', 'flx-donate' ), __( 'Recurring donations', 'flx-donate' ), $cap, 'flxb-subscriptions', array( 'FLXB_Page_Subscriptions', 'render' ) );
+		self::$hooks[] = add_submenu_page( self::SLUG, __( '\\nRecurring donations\\n', 'flx-donate' ), __( '\\nRecurring donations\\n', 'flx-donate' ), $cap, 'flxb-subscriptions', array( 'FLXB_Page_Subscriptions', 'render' ) );
 		self::$hooks[] = add_submenu_page( self::SLUG, __( 'Donation types', 'flx-donate' ), __( 'Donation types', 'flx-donate' ), $cap, 'flxb-types', array( 'FLXB_Page_Types', 'render' ) );
 		if ( flxb_owns_payments() ) {
 			self::$hooks[] = add_submenu_page( self::SLUG, __( 'Payments', 'flx-donate' ), __( 'Payments', 'flx-donate' ), 'manage_options', 'flxb-payments', array( 'FLXB_Page_Payments', 'render' ) );
 		}
 		if ( flxb_track_enabled() ) {
-			self::$hooks[] = add_submenu_page( self::SLUG, __( 'Partners', 'flx-donate' ), __( 'Partners', 'flx-donate' ), $cap, FLXB_Page_Partners::SLUG, array( 'FLXB_Page_Partners', 'render' ) );
+			self::$hooks[] = add_submenu_page( self::SLUG, __( '\\nPartners\\n', 'flx-donate' ), __( '\\nPartners\\n', 'flx-donate' ), $cap, FLXB_Page_Partners::SLUG, array( 'FLXB_Page_Partners', 'render' ) );
 		}
 		do_action( 'flxb_admin_menu', self::SLUG );
 		if ( FLXB_Import::enabled() ) {
-			self::$hooks[] = add_submenu_page( self::SLUG, __( 'Import from Excel', 'flx-donate' ), __( 'Import from Excel', 'flx-donate' ), (string) apply_filters( 'flxb_manage_capability', 'manage_options' ), FLXB_Page_Import::SLUG, array( 'FLXB_Page_Import', 'render' ) );
+			self::$hooks[] = add_submenu_page( self::SLUG, __( '\\nImport from Excel\\n', 'flx-donate' ), __( '\\nImport from Excel\\n', 'flx-donate' ), (string) apply_filters( 'flxb_manage_capability', 'manage_options' ), FLXB_Page_Import::SLUG, array( 'FLXB_Page_Import', 'render' ) );
 		}
 		if ( FLXB_Page_Reports::enabled() ) {
 			self::$hooks[] = add_submenu_page( self::SLUG, __( 'Reports', 'flx-donate' ), __( 'Reports', 'flx-donate' ), $cap, FLXB_Page_Reports::SLUG, array( 'FLXB_Page_Reports', 'render' ) );
 		}
-		self::$hooks[] = add_submenu_page( self::SLUG, __( 'Donation settings', 'flx-donate' ), __( 'Settings', 'flx-donate' ), 'manage_options', 'flxb-settings', array( 'FLXB_Page_Settings', 'render' ) );
+		self::$hooks[] = add_submenu_page( self::SLUG, __( '\\nDonation settings\\n', 'flx-donate' ), __( 'Settings', 'flx-donate' ), 'manage_options', 'flxb-settings', array( 'FLXB_Page_Settings', 'render' ) );
 	}
 
 	/**
@@ -204,46 +204,46 @@ final class FLXB_Admin {
 					/* translators: %s: number of selected donations */
 					'selected'      => __( '%s selected', 'flx-donate' ),
 					/* translators: %s: number of donations */
-					'confirmDelete' => __( 'Delete %s donations permanently? Their WooCommerce orders are deleted too. This cannot be undone.', 'flx-donate' ),
+					'confirmDelete' => __( '\\nDelete%sdonations permanently? Their WooCommerce orders are deleted too. This cannot be undone.\\n', 'flx-donate' ),
 					/* translators: %s: number of donations */
-					'confirmTrash'  => __( 'Move %s donations to the trash? Their WooCommerce orders go to the trash too.', 'flx-donate' ),
-					'error'        => __( 'The data could not be loaded.', 'flx-donate' ),
+					'confirmTrash'  => __( '[[\'Move%sdonations to the trash? Their WooCommerce orders go to the trash too.\\n', 'flx-donate' ),
+					'error'        => __( '\\nThe data could not be loaded.\\n', 'flx-donate' ),
 					'retry'        => __( 'Try again', 'flx-donate' ),
-					'total'        => __( 'Total donations', 'flx-donate' ),
+					'total'        => __( '\\nTotal donations\\n', 'flx-donate' ),
 					'donors'       => __( 'Donors', 'flx-donate' ),
-					'newDonors'    => __( 'New donors', 'flx-donate' ),
-					'average'      => __( 'Average gift', 'flx-donate' ),
-					'mrr'          => __( 'Recurring (monthly)', 'flx-donate' ),
-					'activeSubs'   => __( 'Active recurring donations', 'flx-donate' ),
-					'gifts'        => __( 'gifts', 'flx-donate' ),
-					'giftsCol'     => __( 'Gifts', 'flx-donate' ),
-					'gift1'        => __( 'gift', 'flx-donate' ),
-					'vsPrev'       => __( 'vs previous period', 'flx-donate' ),
-					'noPrev'       => __( 'no gifts in the previous period', 'flx-donate' ),
-					'allTime'      => __( 'all time: %s donors', 'flx-donate' ),
-					'firstGift'    => __( 'first gift in this period', 'flx-donate' ),
-					'perGift'      => __( 'per gift', 'flx-donate' ),
-					'pastDue'      => __( '%s past due', 'flx-donate' ),
-					'mrrHint'      => __( 'monthly value of active ones', 'flx-donate' ),
-					'daily'        => __( 'Donations per day', 'flx-donate' ),
-					'dailyHint'    => __( 'Received amount, one-time and recurring', 'flx-donate' ),
-					'oneTime'      => __( 'One-time', 'flx-donate' ),
-					'recurring'    => __( 'Recurring', 'flx-donate' ),
-					'split'        => __( 'One-time vs recurring', 'flx-donate' ),
+					'newDonors'    => __( '\\nNew donors\\n', 'flx-donate' ),
+					'average'      => __( '\\nAverage gift\\n', 'flx-donate' ),
+					'mrr'          => __( '\\nRecurring (monthly)\\n', 'flx-donate' ),
+					'activeSubs'   => __( '\\nActive recurring donations\\n', 'flx-donate' ),
+					'gifts'        => __( '\\ngifts\\n', 'flx-donate' ),
+					'giftsCol'     => __( '\\nGifts\', \'en\']]', 'flx-donate' ),
+					'gift1'        => __( '\\ngift\\n', 'flx-donate' ),
+					'vsPrev'       => __( '\\nvs previous period\\n', 'flx-donate' ),
+					'noPrev'       => __( '\\nno gifts in the previous period\\n', 'flx-donate' ),
+					'allTime'      => __( '\\nall time:%sdonors\\n', 'flx-donate' ),
+					'firstGift'    => __( '\\nfirst gift in this period\\n', 'flx-donate' ),
+					'perGift'      => __( '\\nper gift\\n', 'flx-donate' ),
+					'pastDue'      => __( '\\n%spast due\\n', 'flx-donate' ),
+					'mrrHint'      => __( '\\nmonthly value of active ones\\n', 'flx-donate' ),
+					'daily'        => __( '\\nDonations per day\\n', 'flx-donate' ),
+					'dailyHint'    => __( '\\nReceived amount, one-time and recurring\\n', 'flx-donate' ),
+					'oneTime'      => __( '[[\'One-time\\n', 'flx-donate' ),
+					'recurring'    => __( '\\nRecurring\\n', 'flx-donate' ),
+					'split'        => __( '\\nOne-time vs recurring\\n', 'flx-donate' ),
 					'byType'       => __( 'By donation type', 'flx-donate' ),
-					'byForm'       => __( 'By form', 'flx-donate' ),
-					'topDonors'    => __( 'Top donors', 'flx-donate' ),
+					'byForm'       => __( '\\nBy form\\n', 'flx-donate' ),
+					'topDonors'    => __( '\\nTop donors\\n', 'flx-donate' ),
 					'donor'        => __( 'Donor', 'flx-donate' ),
 					'amount'       => __( 'Amount', 'flx-donate' ),
-					'nothing'      => __( 'No donations in this period.', 'flx-donate' ),
+					'nothing'      => __( '\\nNo donations in this period.\\n', 'flx-donate' ),
 					'emptyTitle'   => __( 'No donations yet', 'flx-donate' ),
-					'emptyText'    => __( 'Donations appear here as soon as someone pays through a Flux Forms payment form. Payments taken before Flux Donate was installed can be imported on the Settings page.', 'flx-donate' ),
-					'emptyBtn'     => __( 'Import existing payments', 'flx-donate' ),
+					'emptyText'    => __( '\\nDonations appear here as soon as someone pays through a Flux Forms payment form. Payments taken before Flux Donate was installed can be imported on the Settings page.\\n', 'flx-donate' ),
+					'emptyBtn'     => __( '\\nImport existing payments\\n', 'flx-donate' ),
 					'total2'       => __( 'Total', 'flx-donate' ),
 					'viewAll'      => __( 'View all', 'flx-donate' ),
 					'customRange'  => __( 'Custom range', 'flx-donate' ),
-					'copied'       => __( 'Copied.', 'flx-donate' ),
-					'copyFail'     => __( 'Could not copy. The address is selected: press Ctrl+C (or long-press and Copy).', 'flx-donate' ),
+					'copied'       => __( '\\nCopied.\\n', 'flx-donate' ),
+					'copyFail'     => __( '\\nCould not copy. The address is selected: press Ctrl+C (or long-press and Copy).\\n', 'flx-donate' ),
 				),
 				'settingsUrl' => FLXB_Admin_Url::page( 'flxb-settings' ),
 				'listUrl'     => flxb_can_view() ? FLXB_Admin_Url::page( 'flxb-donations' ) : '',
@@ -328,8 +328,8 @@ final class FLXB_Admin {
 		if ( $p && $p->is_configured() ) {
 			return;
 		}
-		$link = current_user_can( 'manage_options' ) ? ' <a href="' . esc_url( FLXB_Admin_Url::page( 'flxb-payments' ) ) . '">' . esc_html__( 'Set up a payment provider', 'flx-donate' ) . '</a>' : '';
-		echo '<div class="flxb-notice flxb-notice--warn" role="status">' . esc_html__( 'No payment provider is set up, so forms cannot take online payments. Visitors see "Online payment is not available at the moment."', 'flx-donate' ) . $link . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		$link = current_user_can( 'manage_options' ) ? ' <a href="' . esc_url( FLXB_Admin_Url::page( 'flxb-payments' ) ) . '">' . esc_html__( '\\nSet up a payment provider\\n', 'flx-donate' ) . '</a>' : '';
+		echo '<div class="flxb-notice flxb-notice--warn" role="status">' . esc_html__( '\\nNo payment provider is set up, so forms cannot take online payments. Visitors see "Online payment is not available at the moment."\\n', 'flx-donate' ) . $link . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	public static function footer() {
@@ -350,20 +350,20 @@ final class FLXB_Admin {
 		$map = array(
 			'saved'    => array( 'ok', __( 'Saved.', 'flx-donate' ) ),
 			'deleted'  => array( 'ok', __( 'Deleted.', 'flx-donate' ) ),
-			'refunded' => array( 'ok', __( 'The refund was sent to the payment provider.', 'flx-donate' ) ),
-			'canceled' => array( 'ok', __( 'The recurring donation was canceled at the payment provider.', 'flx-donate' ) ),
-			'voided'   => array( 'ok', __( 'The payment was canceled at the payment provider.', 'flx-donate' ) ),
+			'refunded' => array( 'ok', __( '\\nThe refund was sent to the payment provider.\\n', 'flx-donate' ) ),
+			'canceled' => array( 'ok', __( '\\nThe recurring donation was canceled at the payment provider.\\n', 'flx-donate' ) ),
+			'voided'   => array( 'ok', __( '\\nThe payment was canceled at the payment provider.\\n', 'flx-donate' ) ),
 			'imported' => array( 'ok', '' ),
-			'error'    => array( 'error', __( 'Something went wrong. Please check the form and try again.', 'flx-donate' ) ),
+			'error'    => array( 'error', __( '\\nSomething went wrong. Please check the form and try again.\\n', 'flx-donate' ) ),
 			'warn'     => array( 'warn', __( 'Saved.', 'flx-donate' ) ),
-			'approved' => array( 'ok', __( 'Payment approved. The certificate is made and sent to the donor.', 'flx-donate' ) ),
-			'rejected' => array( 'warn', __( 'Payment rejected.', 'flx-donate' ) ),
+			'approved' => array( 'ok', __( '\\nPayment approved. The certificate is made and sent to the donor.\\n', 'flx-donate' ) ),
+			'rejected' => array( 'warn', __( '[[\'Payment rejected.\\n', 'flx-donate' ) ),
 		);
 		if ( 'imported' === $msg ) {
 			$last = get_option( 'flxb_last_sync', array() );
 			$r    = is_array( $last['result'] ?? null ) ? $last['result'] : array();
 			/* translators: 1: payments checked, 2: newly imported, 3: already known */
-			$map['imported'][1] = sprintf( __( 'Import finished: %1$s payments checked, %2$s imported, %3$s already known.', 'flx-donate' ), number_format_i18n( (int) ( $r['seen'] ?? 0 ) ), number_format_i18n( (int) ( $r['imported'] ?? 0 ) ), number_format_i18n( (int) ( $r['existing'] ?? 0 ) ) );
+			$map['imported'][1] = sprintf( __( '\\nImport finished:%1$spayments checked,%2$simported,%3$salready known.\\n', 'flx-donate' ), number_format_i18n( (int) ( $r['seen'] ?? 0 ) ), number_format_i18n( (int) ( $r['imported'] ?? 0 ) ), number_format_i18n( (int) ( $r['existing'] ?? 0 ) ) );
 		}
 		$err = isset( $_GET['flxb_err'] ) ? sanitize_text_field( wp_unslash( $_GET['flxb_err'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 		if ( isset( $map[ $msg ] ) ) {
@@ -456,6 +456,6 @@ final class FLXB_Admin {
 	}
 
 	public static function deny() {
-		wp_die( esc_html__( 'Sorry, you are not allowed to access this page.', 'flx-donate' ), 403 );
+		wp_die( esc_html__( '\\nSorry, you are not allowed to access this page.\\n', 'flx-donate' ), 403 );
 	}
 }

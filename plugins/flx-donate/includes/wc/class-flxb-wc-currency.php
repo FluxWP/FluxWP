@@ -41,10 +41,10 @@ final class FLXB_WC_Currency {
 	/** Codes donors can choose from the settings form (labels with symbols). */
 	public static function known() {
 		return array(
-			'TRY' => __( 'Turkish lira (₺)', 'flx-donate' ),
-			'EUR' => __( 'Euro (€)', 'flx-donate' ),
-			'USD' => __( 'US dollar ($)', 'flx-donate' ),
-			'GBP' => __( 'Pound sterling (£)', 'flx-donate' ),
+			'TRY' => __( '\\nTurkish lira (₺)\\n', 'flx-donate' ),
+			'EUR' => __( '\\nEuro (€)\', \'en\']]', 'flx-donate' ),
+			'USD' => __( '\\nUS dollar ($)\\n', 'flx-donate' ),
+			'GBP' => __( '\\nPound sterling (£)\\n', 'flx-donate' ),
 		);
 	}
 

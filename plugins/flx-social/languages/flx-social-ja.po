@@ -1,0 +1,1661 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Draft"
+msgstr "草案"
+
+msgid "Awaiting approval"
+msgstr "承認待ち"
+
+msgid "Scheduled"
+msgstr "予定されている"
+
+msgid "Publishing"
+msgstr "出版"
+
+msgid "Published"
+msgstr "発行済み"
+
+msgid "Partially published"
+msgstr "部分的に公開"
+
+msgid "Failed"
+msgstr "失敗しました"
+
+msgid "Cancelled"
+msgstr "キャンセルされました"
+
+msgid "Sending"
+msgstr "送信中"
+
+msgid "Deleted from network"
+msgstr "ネットワークから削除されました"
+
+msgid "Theme: system"
+msgstr "テーマ:システム"
+
+msgid "Theme: light"
+msgstr "テーマ:光"
+
+msgid "Theme: dark"
+msgstr "テーマ: ダーク"
+
+msgid "Opening Social Media…"
+msgstr "ソーシャルメディアを開いて..."
+
+msgid "Try again"
+msgstr "もう一度試してください"
+
+msgid "Menu"
+msgstr "メニュー"
+
+msgid "Social Media"
+msgstr "ソーシャルメディア"
+
+msgid "New post"
+msgstr "新しい投稿"
+
+msgid "Dashboard"
+msgstr "ダッシュボード"
+
+msgid "Posts"
+msgstr "投稿"
+
+msgid "Calendar"
+msgstr "カレンダー"
+
+msgid "Accounts"
+msgstr "アカウント"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "{n} posts with errors"
+msgstr "{n}の投稿にエラーが発生しました"
+
+msgid "Theme"
+msgstr "テーマ"
+
+msgid "Back to dashboard"
+msgstr "ダッシュボードに戻る"
+
+msgid "(no text)"
+msgstr "(テキストなし)"
+
+msgid "Details"
+msgstr "詳細"
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "Duplicate"
+msgstr "重複"
+
+msgid "Copy created as a draft."
+msgstr "下書きとして作成されたコピー。"
+
+msgid "Approve"
+msgstr "承認する"
+
+msgid "Approved."
+msgstr "承認されました。"
+
+msgid "Reject"
+msgstr "拒否する"
+
+msgid "Share now"
+msgstr "今すぐシェア"
+
+msgid "Share now?"
+msgstr "今すぐシェアしますか?"
+
+msgid "The post is published on the selected accounts right away."
+msgstr "投稿は選択したアカウントにすぐに公開されます。"
+
+msgid "Share"
+msgstr "シェアする"
+
+msgid "Queued, it will be live shortly."
+msgstr "キューに入れられました。まもなくライブになります。"
+
+msgid "Submit for approval"
+msgstr "承認のために送信する"
+
+msgid "Submitted for approval."
+msgstr "承認のために提出されました。"
+
+msgid "Unschedule (back to draft)"
+msgstr "スケジュールを解除(下書きに戻る)"
+
+msgid "Moved to drafts."
+msgstr "ドラフトに移動しました。"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Why? (visible to the author)"
+msgstr "なぜですか? (作成者に表示されます)"
+
+msgid "Reject post"
+msgstr "投稿を拒否する"
+
+msgid "The post goes back to draft; the author sees the note."
+msgstr "投稿は下書きに戻ります。著者はメモを見ます。"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "Rejected."
+msgstr "拒否されました。"
+
+msgid "Delete post"
+msgstr "投稿を削除する"
+
+msgid "The post is removed from the list."
+msgstr "投稿がリストから削除されます。"
+
+msgid "Also delete from the networks it was published on ({n} accounts)"
+msgstr "公開されたネットワークからも削除します ({n}アカウント)"
+
+msgid "Instagram and TikTok posts cannot be deleted via the API; delete them there manually."
+msgstr "Instagram と TikTok の投稿は API 経由で削除できません。そこで手動で削除してください。"
+
+msgid "Deleted."
+msgstr "削除されました。"
+
+msgid "All"
+msgstr "すべて"
+
+msgid "Drafts"
+msgstr "下書き"
+
+msgid "With errors"
+msgstr "エラーあり"
+
+msgid "Load more"
+msgstr "さらにロードする"
+
+msgid "Search text, title or tag"
+msgstr "テキスト、タイトル、またはタグを検索します"
+
+msgid "Search"
+msgstr "検索"
+
+msgid "Account"
+msgstr "アカウント"
+
+msgid "All accounts"
+msgstr "すべてのアカウント"
+
+msgid "Only mine"
+msgstr "私だけ"
+
+msgid "Posts prepared by people without publishing permission. Once approved they are shared at their time (or right away)."
+msgstr "公開許可を得ずに他人が作成した投稿。承認されると、その時点で (またはすぐに) 共有されます。"
+
+msgid "{n} selected"
+msgstr "{n}が選択されました"
+
+msgid "Schedule"
+msgstr "スケジュール"
+
+msgid "Scheduled."
+msgstr "予定されています。"
+
+msgid "Move to drafts"
+msgstr "下書きに移動"
+
+msgid "Delete selected?"
+msgstr "選択したものを削除しますか?"
+
+msgid "Only removed from the list; posts on the networks are not touched."
+msgstr "リストから削除されただけです。ネットワーク上の投稿には触れられません。"
+
+msgid "Clear selection"
+msgstr "選択をクリア"
+
+msgid "Select"
+msgstr "選択"
+
+msgid "every {n} days"
+msgstr "{n}日ごと"
+
+msgid "Actions"
+msgstr "アクション"
+
+msgid "No posts awaiting approval"
+msgstr "承認待ちの投稿はありません"
+
+msgid "No posts"
+msgstr "投稿がありません"
+
+msgid "Create your first post; share to several accounts at once, with separate text for each."
+msgstr "最初の投稿を作成します。複数のアカウントに同時に共有し、それぞれに個別のテキストを送信します。"
+
+msgid "Month"
+msgstr "月"
+
+msgid "List"
+msgstr "リスト"
+
+msgid "Previous month"
+msgstr "前月"
+
+msgid "Next month"
+msgstr "来月"
+
+msgid "Today"
+msgstr "今日"
+
+msgid "Time zone: {tz}"
+msgstr "タイムゾーン:{tz}"
+
+msgid "Post on this day"
+msgstr "この日に投稿する"
+
+msgid "+{n} more"
+msgstr "+{n}詳細"
+
+msgid "New time: {t}"
+msgstr "新しい時間:{t}"
+
+msgid "No posts this month."
+msgstr "今月は投稿がありません。"
+
+msgid "Connect account"
+msgstr "アカウントを接続する"
+
+msgid "Account added."
+msgstr "アカウントが追加されました。"
+
+msgid "{n} account connections refreshed."
+msgstr "{n}アカウント接続が更新されました。"
+
+msgid "No accounts yet"
+msgstr "まだアカウントがありません"
+
+msgid "First enter the network keys under Settings › Apps, then connect the account here."
+msgstr "まず、[設定] › [アプリ] でネットワーク キーを入力し、ここでアカウントを接続します。"
+
+msgid "Accounts are connected by an administrator."
+msgstr "アカウントは管理者によって接続されます。"
+
+msgid "App keys"
+msgstr "アプリキー"
+
+msgid "{n} characters"
+msgstr "{n}文字"
+
+msgid "{n} images"
+msgstr "{n}の画像"
+
+msgid "video"
+msgstr "ビデオ"
+
+msgid "editing"
+msgstr "編集"
+
+msgid "deleting"
+msgstr "削除する"
+
+msgid "Active"
+msgstr "アクティブ"
+
+msgid "Needs reconnecting"
+msgstr "再接続が必要です"
+
+msgid "Off"
+msgstr "オフ"
+
+msgid "Reconnect"
+msgstr "再接続"
+
+msgid "Page"
+msgstr "ページ"
+
+msgid "Profile"
+msgstr "プロフィール"
+
+msgid "Company page"
+msgstr "会社ページ"
+
+msgid "Channel"
+msgstr "チャンネル"
+
+msgid "Location"
+msgstr "場所"
+
+msgid "Status"
+msgstr "ステータス"
+
+msgid "Group"
+msgstr "グループ"
+
+msgid "Business"
+msgstr "ビジネス"
+
+msgid "Creator"
+msgstr "クリエイター"
+
+msgid "Test and refresh connection"
+msgstr "接続のテストと更新"
+
+msgid "Trying…"
+msgstr "試しています..."
+
+msgid "Connection works."
+msgstr "接続は機能します。"
+
+msgid "Rename"
+msgstr "名前の変更"
+
+msgid "Account name"
+msgstr "アカウント名"
+
+msgid "Enable"
+msgstr "有効にする"
+
+msgid "Turn off (hidden in post account picker)"
+msgstr "オフにする (ポストアカウントピッカーで非表示)"
+
+msgid "Remove"
+msgstr "削除"
+
+msgid "Remove account?"
+msgstr "アカウントを削除しますか?"
+
+msgid "The token is deleted; posts scheduled for this account will not be shared. Published posts stay on the network."
+msgstr "トークンは削除されます。このアカウントにスケジュールされた投稿は共有されません。公開された投稿はネットワーク上に残ります。"
+
+msgid "Removed."
+msgstr "削除されました。"
+
+msgid "Enter keys first: {app}"
+msgstr "最初にキーを入力してください:{app}"
+
+msgid "The network's sign-in page opens; after you allow access you come back here. If there are several pages/channels you choose which to add."
+msgstr "ネットワークのサインイン ページが開きます。アクセスを許可したら、ここに戻ります。複数のページ/チャンネルがある場合は、どれを追加するかを選択します。"
+
+msgid "Choose accounts to add"
+msgstr "追加するアカウントを選択してください"
+
+msgid "{n} accounts added."
+msgstr "{n}アカウントが追加されました。"
+
+msgid "Add"
+msgstr "追加"
+
+msgid "WhatsApp: Status and groups"
+msgstr "WhatsApp: ステータスとグループ"
+
+msgid "The connection comes from the Evolution line in Flux Mail. Status: the line's WhatsApp Status (24 hours). Group: groups the line is a member of."
+msgstr "接続は Flux Mail の Evolution 行から行われます。ステータス: 回線の WhatsApp ステータス (24 時間)。グループ: ラインがメンバーとなっているグループ。"
+
+msgid "{n} members"
+msgstr "{n}メンバー"
+
+msgid "added"
+msgstr "追加されました"
+
+msgid "Video title"
+msgstr "動画のタイトル"
+
+msgid "Pin title"
+msgstr "ピンのタイトル"
+
+msgid "Link title"
+msgstr "リンクタイトル"
+
+msgid "Title (photo post)"
+msgstr "タイトル(写真投稿)"
+
+msgid "Title"
+msgstr "タイトル"
+
+msgid "Pin link"
+msgstr "ピンリンク"
+
+msgid "Link (preview card)"
+msgstr "リンク(プレビューカード)"
+
+msgid "Reply thread (first reply)"
+msgstr "返信スレッド(最初の返信)"
+
+msgid "First comment"
+msgstr "最初のコメント"
+
+msgid "Added as a comment right after publishing (e.g. a link or hashtags)."
+msgstr "公開直後にコメントとして追加されました(リンクやハッシュタグなど)。"
+
+msgid "Visibility"
+msgstr "可視性"
+
+msgid "Public"
+msgstr "公共"
+
+msgid "Unlisted"
+msgstr "非上場"
+
+msgid "Private"
+msgstr "プライベート"
+
+msgid "Video tags (comma separated)"
+msgstr "ビデオタグ (カンマ区切り)"
+
+msgid "Category"
+msgstr "カテゴリ"
+
+msgid "Default"
+msgstr "デフォルト"
+
+msgid "Nonprofits & Activism"
+msgstr "非営利団体と活動家"
+
+msgid "People & Blogs"
+msgstr "人物とブログ"
+
+msgid "Education"
+msgstr "教育"
+
+msgid "Travel & Events"
+msgstr "旅行とイベント"
+
+msgid "News & Politics"
+msgstr "ニュースと政治"
+
+msgid "Entertainment"
+msgstr "エンターテイメント"
+
+msgid "Playlist"
+msgstr "プレイリスト"
+
+msgid "None"
+msgstr "なし"
+
+msgid "Made for kids"
+msgstr "子供向けに作られた"
+
+msgid "Notify subscribers"
+msgstr "購読者に通知する"
+
+msgid "Shorts (vertical, under 60 s)"
+msgstr "ショーツ(縦型、60秒未満)"
+
+msgid "AI-generated content"
+msgstr "AIが生成したコンテンツ"
+
+msgid "Post type"
+msgstr "投稿タイプ"
+
+msgid "Post (feed)"
+msgstr "投稿(フィード)"
+
+msgid "Reels"
+msgstr "リール"
+
+msgid "Story"
+msgstr "ストーリー"
+
+msgid "Also show the Reel in the feed"
+msgstr "フィードにリールも表示します"
+
+msgid "Cover image URL (Reels)"
+msgstr "カバー画像のURL(リール)"
+
+msgid "Connections only"
+msgstr "接続のみ"
+
+msgid "Image description (alt text)"
+msgstr "画像の説明 (代替テキスト)"
+
+msgid "Who can reply"
+msgstr "誰が返信できるか"
+
+msgid "Everyone"
+msgstr "みんな"
+
+msgid "People I follow"
+msgstr "私がフォローしている人たち"
+
+msgid "People I mention"
+msgstr "私が言及する人々"
+
+msgid "Verified accounts"
+msgstr "認証済みアカウント"
+
+msgid "Choose a board"
+msgstr "ボードを選択してください"
+
+msgid "Who can view"
+msgstr "閲覧できる人"
+
+msgid "Friends"
+msgstr "友達"
+
+msgid "Followers"
+msgstr "フォロワー"
+
+msgid "Only me"
+msgstr "私だけ"
+
+msgid "Turn off comments"
+msgstr "コメントをオフにする"
+
+msgid "Duet off"
+msgstr "デュエットオフ"
+
+msgid "Stitch off"
+msgstr "ステッチオフ"
+
+msgid "Paid partnership (branded content)"
+msgstr "有料パートナーシップ (ブランドコンテンツ)"
+
+msgid "Promoting our own brand"
+msgstr "自社ブランドの宣伝"
+
+msgid "Automatic music for photos"
+msgstr "写真に自動音楽を付ける"
+
+msgid "Update"
+msgstr "アップデート"
+
+msgid "Event"
+msgstr "イベント"
+
+msgid "Offer"
+msgstr "オファー"
+
+msgid "Button"
+msgstr "ボタン"
+
+msgid "Learn more"
+msgstr "さらに詳しく"
+
+msgid "Book"
+msgstr "本"
+
+msgid "Order"
+msgstr "注文"
+
+msgid "Shop"
+msgstr "ショップ"
+
+msgid "Sign up"
+msgstr "サインアップ"
+
+msgid "Button link"
+msgstr "ボタンリンク"
+
+msgid "Event/offer title"
+msgstr "イベント/特典タイトル"
+
+msgid "Start"
+msgstr "スタート"
+
+msgid "End"
+msgstr "終了"
+
+msgid "Coupon code"
+msgstr "クーポンコード"
+
+msgid "Text or media is required."
+msgstr "テキストまたはメディアは必須です。"
+
+msgid "Text is {n} characters too long (limit {max})."
+msgstr "テキストが{n}文字長すぎます ({max}を制限してください)。"
+
+msgid "This network requires an image or video."
+msgstr "このネットワークには画像またはビデオが必要です。"
+
+msgid "This network does not accept images."
+msgstr "このネットワークは画像を受け入れません。"
+
+msgid "This network does not accept video."
+msgstr "このネットワークはビデオを受け入れません。"
+
+msgid "GIF is not supported."
+msgstr "GIF はサポートされていません。"
+
+msgid "At most {n} images."
+msgstr "最大でも{n}画像。"
+
+msgid "At most {n} videos."
+msgstr "多くても{n}ビデオ。"
+
+msgid "Images and video cannot be sent together."
+msgstr "画像と動画を一緒に送信することはできません。"
+
+msgid "YouTube requires a video."
+msgstr "YouTubeにはビデオが必要です。"
+
+msgid "Choose a Pinterest board."
+msgstr "Pinterest ボードを選択します。"
+
+msgid "Reels require a video."
+msgstr "リールにはビデオが必要です。"
+
+msgid "The account connection dropped; reconnect it under Accounts."
+msgstr "アカウント接続が切断されました。 「アカウント」の下で再接続します。"
+
+msgid "There are unsaved changes. Close anyway?"
+msgstr "未保存の変更があります。とにかく閉じますか?"
+
+msgid "No connected accounts"
+msgstr "接続されているアカウントがありません"
+
+msgid "Connect a social media account first."
+msgstr "まずソーシャル メディア アカウントに接続します。"
+
+msgid "Ask an administrator to connect an account."
+msgstr "管理者にアカウントの接続を依頼してください。"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Edit post"
+msgstr "投稿を編集する"
+
+msgid "The approver left a note: {n}"
+msgstr "承認者はメモを残しました:{n}"
+
+msgid "Published on {n} accounts; to change it there use Details › Edit on network."
+msgstr "{n}アカウントで公開されます。そこで変更するには、詳細 › ネットワーク上で編集を使用します。"
+
+msgid "Preview"
+msgstr "プレビュー"
+
+msgid "Shared to all selected accounts; you can write separate text for each."
+msgstr "選択したすべてのアカウントに共有されます。それぞれに別々のテキストを書くことができます。"
+
+msgid "Common text"
+msgstr "共通テキスト"
+
+msgid "Custom text"
+msgstr "カスタムテキスト"
+
+msgid "What would you like to share?"
+msgstr "何を共有したいですか?"
+
+msgid "Add signature"
+msgstr "署名を追加する"
+
+msgid "Custom text for this account"
+msgstr "このアカウントのカスタムテキスト"
+
+msgid "Separate image/video for this account"
+msgstr "このアカウント用の別の画像/動画"
+
+msgid "{net} options"
+msgstr "{net}オプション"
+
+msgid "Direct post: the video is published on TikTok with the chosen visibility."
+msgstr "直接投稿: ビデオは、選択した公開範囲で TikTok で公開されます。"
+
+msgid "Draft mode: the video lands in your TikTok app inbox and you publish it from there."
+msgstr "ドラフト モード: ビデオが TikTok アプリの受信トレイに届き、そこから公開します。"
+
+msgid "Board list is empty. Refresh it under Accounts › Test connection."
+msgstr "ボードリストが空です。 「アカウント」 > 「接続のテスト」の下で更新します。"
+
+msgid "Write some text first."
+msgstr "最初にテキストを書きます。"
+
+msgid "What should AI write?"
+msgstr "AIは何を書けばいいのでしょうか?"
+
+msgid "Write"
+msgstr "書く"
+
+msgid "Write with AI"
+msgstr "AI で書く"
+
+msgid "Fix and polish"
+msgstr "修正して磨く"
+
+msgid "Shorten"
+msgstr "短くする"
+
+msgid "Suggest hashtags"
+msgstr "ハッシュタグを提案する"
+
+msgid "Translate to English"
+msgstr "英語に翻訳する"
+
+msgid "Writes separate text for each account in its network's style"
+msgstr "ネットワークのスタイルでアカウントごとに個別のテキストを書き込みます"
+
+msgid "Separate text written for each account; check the tabs."
+msgstr "アカウントごとに個別のテキストが書かれます。タブを確認してください。"
+
+msgid "Adapt to networks"
+msgstr "ネットワークに適応する"
+
+msgid "Move left"
+msgstr "左に移動"
+
+msgid "Image / video"
+msgstr "画像・動画"
+
+msgid "Tip: Instagram, TikTok and YouTube require an image/video; X allows up to 4 images."
+msgstr "ヒント: Instagram、TikTok、YouTube には画像/ビデオが必要です。 X では最大 4 つの画像が許可されます。"
+
+msgid "More (internal title, tags, repeat)"
+msgstr "詳細 (内部タイトル、タグ、繰り返し)"
+
+msgid "Internal title (only shown in the list)"
+msgstr "内部タイトル (リストにのみ表示)"
+
+msgid "Tags (comma separated; for filtering)"
+msgstr "タグ (カンマ区切り、フィルタリング用)"
+
+msgid "Share again how many days after publishing (0 = no)"
+msgstr "公開から何日後に再度共有します (0 = いいえ)"
+
+msgid "Select an account to see the preview here."
+msgstr "ここでプレビューを表示するにはアカウントを選択してください。"
+
+msgid "+{n} more accounts; check the tabs."
+msgstr "+{n}個のアカウントを追加します。タブを確認してください。"
+
+msgid "No image/video"
+msgstr "画像/ビデオなし"
+
+msgid "No video"
+msgstr "ビデオなし"
+
+msgid "(untitled)"
+msgstr "(無題)"
+
+msgid "Limit exceeded: {n} characters over"
+msgstr "制限を超えました:{n}文字を超えています"
+
+msgid "{n} issues"
+msgstr "{n}の問題"
+
+msgid "Share time"
+msgstr "シェアタイム"
+
+msgid "Quick time"
+msgstr "クイックタイム"
+
+msgid "In 1 hour"
+msgstr "1時間以内"
+
+msgid "Today 19:00"
+msgstr "本日19:00"
+
+msgid "Tomorrow 10:00"
+msgstr "明日10:00"
+
+msgid "Tomorrow 19:00"
+msgstr "明日19:00"
+
+msgid "Weekend 11:00"
+msgstr "週末 11:00"
+
+msgid "Clear time"
+msgstr "クリアタイム"
+
+msgid "Select at least one account."
+msgstr "少なくとも 1 つのアカウントを選択してください。"
+
+msgid "Choose a time in the future."
+msgstr "将来の時間を選択してください。"
+
+msgid "Draft saved."
+msgstr "下書きが保存されました。"
+
+msgid "Scheduled: {t}"
+msgstr "予定:{t}"
+
+msgid "Saved."
+msgstr "保存されました。"
+
+msgid "Sent for approval because you do not have publishing permission."
+msgstr "公開許可がないため、承認のために送信されました。"
+
+msgid "Save draft"
+msgstr "下書きの保存"
+
+msgid "Media library"
+msgstr "メディアライブラリ"
+
+msgid "Flux Studio"
+msgstr "フラックススタジオ"
+
+msgid "Upload"
+msgstr "アップロード"
+
+msgid "Add from URL"
+msgstr "URLから追加"
+
+msgid "Image or video URL (https://…)"
+msgstr "画像またはビデオの URL (https://…)"
+
+msgid "Downloading…"
+msgstr "ダウンロード中..."
+
+msgid "Uploading {n} files…"
+msgstr "{n}ファイルをアップロードしています..."
+
+msgid "Choose image / video"
+msgstr "画像/ビデオを選択してください"
+
+msgid "Importing Studio files into the library…"
+msgstr "Studio ファイルをライブラリにインポートしています..."
+
+msgid "No files."
+msgstr "ファイルがありません。"
+
+msgid "Post"
+msgstr "ポスト"
+
+msgid "Open"
+msgstr "開く"
+
+msgid "Retry"
+msgstr "再試行"
+
+msgid "Queued again."
+msgstr "またまた列に並びました。"
+
+msgid "Edit on network"
+msgstr "ネットワーク上で編集する"
+
+msgid "Delete from network"
+msgstr "ネットワークから削除"
+
+msgid "Delete the post on {n}?"
+msgstr "{n}の投稿を削除しますか?"
+
+msgid "The post on the network is deleted permanently."
+msgstr "ネットワーク上の投稿は完全に削除されます。"
+
+msgid "Deleted from network."
+msgstr "ネットワークから削除されました。"
+
+msgid "Engagement numbers are updated twice a day (last 30 days)."
+msgstr "エンゲージメント数は 1 日に 2 回更新されます (過去 30 日間)。"
+
+msgid "Edit post on network"
+msgstr "ネットワーク上の投稿を編集する"
+
+msgid "The change is written directly to the post on the network."
+msgstr "変更はネットワーク上のポストに直接書き込まれます。"
+
+msgid "Updated on network."
+msgstr "ネットワーク上で更新されました。"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "just now"
+msgstr "たった今"
+
+msgid "{n} min ago"
+msgstr "{n}分前"
+
+msgid "{n} h ago"
+msgstr "{n}1 時間前"
+
+msgid "Server error ({n})."
+msgstr "サーバーエラー ({n})。"
+
+msgid "Unexpected response from the server."
+msgstr "サーバーからの予期しない応答。"
+
+msgid "Something went wrong."
+msgstr "何か問題が発生しました。"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Copied"
+msgstr "コピーされました"
+
+msgid "Daily posts"
+msgstr "毎日の投稿"
+
+msgid "Total: {n}"
+msgstr "合計:{n}"
+
+msgid "{n} days"
+msgstr "{n}日"
+
+msgid "Update metrics now"
+msgstr "今すぐメトリクスを更新する"
+
+msgid "{n} records updated."
+msgstr "{n}レコードが更新されました。"
+
+msgid "No accounts connected yet. Enter the app keys first, then connect accounts."
+msgstr "まだアカウントが接続されていません。最初にアプリ キーを入力してから、アカウントを接続します。"
+
+msgid "Success {n}%"
+msgstr "成功{n}%"
+
+msgid "last {n} days"
+msgstr "過去{n}日間"
+
+msgid "Engagement"
+msgstr "エンゲージメント"
+
+msgid "likes + comments + shares"
+msgstr "いいね + コメント + シェア"
+
+msgid "Views"
+msgstr "ビュー"
+
+msgid "reach / impressions"
+msgstr "リーチ/インプレッション数"
+
+msgid "this period"
+msgstr "この期間"
+
+msgid "no change"
+msgstr "変化なし"
+
+msgid "{n} awaiting approval"
+msgstr "{n}は承認待ちです"
+
+msgid "{n} drafts"
+msgstr "{n}ドラフト"
+
+msgid "details below"
+msgstr "詳細は以下"
+
+msgid "no issues"
+msgstr "問題ありません"
+
+msgid "Network"
+msgstr "ネットワーク"
+
+msgid "Errors"
+msgstr "エラー"
+
+msgid "By network"
+msgstr "ネットワーク経由"
+
+msgid "No posts in this period."
+msgstr "この期間に投稿はありません。"
+
+msgid "Follower counts are collected once a day; first data appears tomorrow."
+msgstr "フォロワー数は 1 日に 1 回収集されます。最初のデータは明日公開されます。"
+
+msgid "Top engaging posts"
+msgstr "魅力的なトップの投稿"
+
+msgid "Metrics are collected twice a day after a post is published."
+msgstr "メトリクスは、投稿の公開後に 1 日に 2 回収集されます。"
+
+msgid "Upcoming posts"
+msgstr "今後の投稿"
+
+msgid "No scheduled posts."
+msgstr "予約投稿はありません。"
+
+msgid "Recent errors"
+msgstr "最近のエラー"
+
+msgid "Metrics last updated: {t}"
+msgstr "メトリクスの最終更新日:{t}"
+
+msgid "Metrics not collected yet (once a day, at night)."
+msgstr "メトリックはまだ収集されていません (1 日 1 回、夜)。"
+
+msgid "General"
+msgstr "一般"
+
+msgid "Apps"
+msgstr "アプリ"
+
+msgid "Network settings"
+msgstr "ネットワーク設定"
+
+msgid "Auto sharing"
+msgstr "自動共有"
+
+msgid "Log"
+msgstr "ログ"
+
+msgid "never"
+msgstr "決して"
+
+msgid "Approval and signature"
+msgstr "承認と署名"
+
+msgid "Posts by people without publishing permission go to approval"
+msgstr "公開許可のない人の投稿は承認に進みます"
+
+msgid "Permissions come from Flux Roles: Social media: prepare / publish / manage."
+msgstr "権限は Flux の役割から取得されます: ソーシャル メディア: 準備 / 公開 / 管理。"
+
+msgid "Add UTM to site links (utm_source=network)"
+msgstr "サイトリンクに UTM を追加 (utm_source=network)"
+
+msgid "See how many visits each network brings in Analytics."
+msgstr "各ネットワークが Analytics にもたらした訪問数を確認します。"
+
+msgid "Saved signature (added with one click in the composer)"
+msgstr "保存された署名 (コンポーザーでワンクリックで追加)"
+
+msgid "Save signature"
+msgstr "署名の保存"
+
+msgid "Scheduled posts"
+msgstr "予約投稿"
+
+msgid "WP-Cron is unreliable on Hostinger, so scheduled posts should be triggered from outside every minute. Create a job on cron-job.org (free) that calls this URL every minute. It also runs on its own while the panel is open and when a post is saved."
+msgstr "WP-Cron は Hostinger では信頼できないため、スケジュールされた投稿は毎分外部からトリガーされる必要があります。 cron-job.org (無料) でこの URL を毎分呼び出すジョブを作成します。また、パネルが開いているときや投稿が保存されているときにも自動的に実行されます。"
+
+msgid "Trigger URL (keep it secret)"
+msgstr "トリガーURL (秘密にしておきます)"
+
+msgid "Copy"
+msgstr "コピー"
+
+msgid "New key"
+msgstr "新しいキー"
+
+msgid "Regenerate the key?"
+msgstr "キーを再生成しますか?"
+
+msgid "The old URL stops working; you must also change the URL on cron-job.org."
+msgstr "古い URL は機能しなくなります。 cron-job.org の URL も変更する必要があります。"
+
+msgid "Regenerate"
+msgstr "再生する"
+
+msgid "New key created."
+msgstr "新しいキーが作成されました。"
+
+msgid "External trigger"
+msgstr "外部トリガー"
+
+msgid "Background request"
+msgstr "バックグラウンドリクエスト"
+
+msgid "Panel"
+msgstr "パネル"
+
+msgid "Create your own developer app for each network and enter its keys here. Secret keys are stored encrypted and never shown again; type a new one to change it."
+msgstr "ネットワークごとに独自の開発者アプリを作成し、ここにそのキーを入力します。秘密キーは暗号化されて保存され、二度と表示されることはありません。新しいものを入力して変更します。"
+
+msgid "Saved (type to change)"
+msgstr "保存済み (変更するには入力してください)"
+
+msgid "Not entered"
+msgstr "未入力"
+
+msgid "optional"
+msgstr "オプション"
+
+msgid "Delete the key?"
+msgstr "キーを削除しますか?"
+
+msgid "Accounts on this network cannot post until reconnected."
+msgstr "このネットワーク上のアカウントは、再接続するまで投稿できません。"
+
+msgid "Delete saved key"
+msgstr "保存したキーを削除する"
+
+msgid "Ready"
+msgstr "準備完了"
+
+msgid "No key"
+msgstr "鍵なし"
+
+msgid "No connection"
+msgstr "接続がありません"
+
+msgid "Open developer console"
+msgstr "開発者コンソールを開く"
+
+msgid "Redirect (callback) URL"
+msgstr "リダイレクト(コールバック)URL"
+
+msgid "API tier"
+msgstr "API層"
+
+msgid "On the free tier only a few posts can be written per month and metrics are not read. Paid tiers (Basic/Pro or pay-as-you-go) also return metrics."
+msgstr "無料枠では、月に数件の投稿しか書き込めず、指標は読み取られません。有料レベル (Basic/Pro または従量課金制) もメトリクスを返します。"
+
+msgid "X Premium account (long posts, 25,000 characters)"
+msgstr "Xプレミアムアカウント(長文投稿、25,000文字)"
+
+msgid "Monthly post limit (0 = unlimited)"
+msgstr "月間投稿制限 (0 = 無制限)"
+
+msgid "Sent this month: {n}. When the limit is reached new X posts are refused (to stay within the tier quota)."
+msgstr "今月送信されました:{n}。制限に達すると、新しい X 投稿は拒否されます (階層割り当て内にとどまるため)。"
+
+msgid "Draft (lands in the TikTok app)"
+msgstr "ドラフト (TikTok アプリに表示されます)"
+
+msgid "Direct post"
+msgstr "直接投稿"
+
+msgid "Sharing mode"
+msgstr "共有モード"
+
+msgid "Direct posting requires your TikTok app to pass the audit; until then posted videos are visible only to you. Draft mode needs no audit."
+msgstr "直接投稿するには、TikTok アプリが監査に合格する必要があります。それまでは、投稿された動画はあなただけが見ることができます。ドラフト モードでは監査は必要ありません。"
+
+msgid "Sandbox (trial access)"
+msgstr "サンドボックス (試用版)"
+
+msgid "Turn on if your Pinterest app does not have Standard access yet; pins are created only in the sandbox."
+msgstr "Pinterest アプリにまだ標準アクセス権がない場合はオンにします。ピンはサンドボックス内でのみ作成されます。"
+
+msgid "Also fetch company pages I manage"
+msgstr "私が管理している会社のページも取得します"
+
+msgid "Requires Community Management API approval. Turn off if not approved; only the personal profile is connected."
+msgstr "コミュニティ管理 API の承認が必要です。承認されない場合はオフにします。個人プロファイルのみが接続されます。"
+
+msgid "Graph API version"
+msgstr "グラフAPIのバージョン"
+
+msgid "Meta retires old versions after two years; upgrade here if needed (e.g. v25.0)."
+msgstr "Meta は 2 年後に古いバージョンを廃止します。必要に応じてここでアップグレードします (例: v25.0)。"
+
+msgid "Default connection"
+msgstr "デフォルトの接続"
+
+msgid "default"
+msgstr "デフォルト"
+
+msgid "Evolution connection (Flux Mail)"
+msgstr "Evolution接続(Fluxメール)"
+
+msgid "No WhatsApp (Evolution) connection found in Flux Mail; Flux Chat settings are used."
+msgstr "Flux Mail に WhatsApp (Evolution) 接続が見つかりません。 Flux Chat 設定が使用されます。"
+
+msgid "Create a draft (I review and send it)"
+msgstr "下書きを作成します(確認して送信します)"
+
+msgid "Schedule automatically"
+msgstr "自動的にスケジュールを設定する"
+
+msgid "Share when a post is published on the site"
+msgstr "サイトに投稿が公開されたときに共有する"
+
+msgid "On"
+msgstr "オン"
+
+msgid "Which content types"
+msgstr "どのコンテンツタイプか"
+
+msgid "Which accounts"
+msgstr "どのアカウント"
+
+msgid "Connect an account first."
+msgstr "まずアカウントを接続します。"
+
+msgid "Text template"
+msgstr "テキストテンプレート"
+
+msgid "Available: {title} {excerpt} {link} {site} {author} {category} {tags}. The link creates the network's preview card."
+msgstr "利用可能:{title}{excerpt}{link}{site}{author}{category}{tags}。リンクにより、ネットワークのプレビュー カードが作成されます。"
+
+msgid "Add the featured image"
+msgstr "注目の画像を追加する"
+
+msgid "What to do"
+msgstr "何をすべきか"
+
+msgid "Share after how many minutes (if scheduling)"
+msgstr "何分後に共有 (スケジュール設定の場合)"
+
+msgid "Runs once per post. Accounts that break a network rule (e.g. Instagram without an image) stay as drafts."
+msgstr "投稿ごとに 1 回実行されます。ネットワーク ルールに違反したアカウント (画像のない Instagram など) は下書きのままになります。"
+
+msgid "Last 200 entries (kept for 45 days)."
+msgstr "最新の 200 エントリ (45 日間保持)。"
+
+msgid "No entries."
+msgstr "エントリーはありません。"
+
+msgid "Social Media requires JavaScript."
+msgstr "ソーシャルメディアにはJavaScriptが必要です。"
+
+msgid "Flux AI & MCP is not installed or no key has been entered."
+msgstr "Flux AI と MCP がインストールされていないか、キーが入力されていません。"
+
+msgid "Could not read the AI response, please try again."
+msgstr "AI 応答を読み取れませんでした。もう一度お試しください。"
+
+msgid "Social media"
+msgstr "ソーシャルメディア"
+
+msgid "Database tables"
+msgstr "データベーステーブル"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "テーブルがありません:%s。プラグインを非アクティブ化し、再度アクティブ化します。"
+
+msgid "Tables are ready."
+msgstr "テーブルの準備ができています。"
+
+msgid "Key encryption"
+msgstr "キーの暗号化"
+
+msgid "Keys and tokens are stored encrypted (sodium)."
+msgstr "キーとトークンは暗号化されて保存されます (ナトリウム)。"
+
+msgid "The PHP sodium extension is off; keys are stored with a weaker method. Turn on sodium under Hostinger › PHP extensions."
+msgstr "PHP ナトリウム拡張機能はオフになっています。キーはより弱い方法で保存されます。 Hostinger › PHP 拡張機能でナトリウムをオンにします。"
+
+msgid "Network apps"
+msgstr "ネットワークアプリ"
+
+msgid "Keys entered: %s."
+msgstr "入力されたキー:%s。"
+
+msgid "No network app keys entered. Social Media › Settings › Apps."
+msgstr "ネットワーク アプリ キーが入力されていません。ソーシャルメディア › 設定 › アプリ。"
+
+msgid "Connected accounts"
+msgstr "接続されたアカウント"
+
+msgid "No accounts connected yet."
+msgstr "まだアカウントが接続されていません。"
+
+msgid "Accounts that need reconnecting: %s."
+msgstr "再接続が必要なアカウント:%s。"
+
+msgid "%d accounts connected and active."
+msgstr "%dアカウントが接続されており、アクティブです。"
+
+msgid "External per-minute trigger is running."
+msgstr "外部の分ごとのトリガーが実行中です。"
+
+msgid "%d posts have been waiting for more than 5 minutes. Add the trigger URL from Settings › General to cron-job.org (every minute)."
+msgstr "%dの投稿が 5 分以上待機しています。 [設定] › [一般] からトリガー URL を cron-job.org に追加します (1 分ごと)。"
+
+msgid "Posts are processed via WP-Cron and background requests; to publish on time, adding the trigger URL from Settings › General to cron-job.org (every minute) is recommended."
+msgstr "投稿は WP-Cron およびバックグラウンド リクエストを介して処理されます。時間どおりに公開するには、[設定] › [一般] から cron-job.org にトリガー URL を追加することをお勧めします (1 分ごと)。"
+
+msgid "The trigger has never run. Add the trigger URL from Settings › General to cron-job.org (every minute)."
+msgstr "トリガーは一度も実行されていません。 [設定] › [一般] からトリガー URL を cron-job.org に追加します (1 分ごと)。"
+
+msgid "Background request error:"
+msgstr "バックグラウンドリクエストエラー:"
+
+msgid "Failed shares"
+msgstr "失敗した共有"
+
+msgid "%d shares failed in the last 7 days. Posts › Failed."
+msgstr "過去 7 日間に%d株が失敗しました。投稿 › 失敗しました。"
+
+msgid "No failed shares in the last 7 days."
+msgstr "過去 7 日間に失敗した株はありません。"
+
+msgid "Media URLs"
+msgstr "メディアの URL"
+
+msgid "Instagram, TikTok and Facebook fetch images from the site's HTTPS address."
+msgstr "Instagram、TikTok、Facebook は、サイトの HTTPS アドレスから画像を取得します。"
+
+msgid "The site is not HTTPS; Instagram/TikTok/Facebook cannot fetch images and videos."
+msgstr "サイトは HTTPS ではありません。 Instagram/TikTok/Facebook は画像やビデオを取得できません。"
+
+msgid "Files folder"
+msgstr "ファイルフォルダー"
+
+msgid "wp-content/uploads/flxsm is writable (JPEG copies for Instagram)."
+msgstr "wp-content/uploads/flxsm は書き込み可能です (Instagram 用の JPEG コピー)。"
+
+msgid "wp-content/uploads/flxsm is not writable; PNG/WebP images cannot be sent to Instagram."
+msgstr "wp-content/uploads/flxsm は書き込み可能ではありません。 PNG/WebP 画像は Instagram に送信できません。"
+
+msgid "AI writing help"
+msgstr "AIライティングサポート"
+
+msgid "Flux AI ready: writing, shortening, adapting to networks."
+msgstr "Flux AI 対応: 書き込み、短縮、ネットワークへの適応。"
+
+msgid "Flux AI & MCP is not installed or has no key; AI buttons are hidden, sharing still works."
+msgstr "Flux AI と MCP がインストールされていないか、キーがありません。 AI ボタン​​は非表示になっていますが、共有は引き続き機能します。"
+
+msgid "Account or post not found."
+msgstr "アカウントまたは投稿が見つかりません。"
+
+msgid "Account is off."
+msgstr "アカウントがオフになっています。"
+
+msgid "The connection expired; reconnect it under Accounts."
+msgstr "接続の有効期限が切れました。 「アカウント」の下で再接続します。"
+
+msgid "The post was published but the first comment could not be added: %s"
+msgstr "投稿は公開されましたが、最初のコメントを追加できませんでした:%s"
+
+msgid "Only a failed target can be retried."
+msgstr "失敗したターゲットのみを再試行できます。"
+
+msgid "This target is not published on the network."
+msgstr "このターゲットはネットワーク上に公開されません。"
+
+msgid "Account not found."
+msgstr "アカウントが見つかりません。"
+
+msgid "Social media: prepare posts"
+msgstr "ソーシャルメディア: 投稿を準備する"
+
+msgid "Social media: publish and approve"
+msgstr "ソーシャルメディア: 公開と承認"
+
+msgid "Social media: accounts and settings"
+msgstr "ソーシャルメディア: アカウントと設定"
+
+msgid "Unknown network."
+msgstr "不明なネットワーク。"
+
+msgid "Connection session not found or expired; please try again."
+msgstr "接続セッションが見つからないか、期限切れです。もう一度試してください。"
+
+msgid "The selection list expired; please reconnect."
+msgstr "選択リストの有効期限が切れました。再接続してください。"
+
+msgid "Login for Business configuration ID (optional)"
+msgstr "Business 用ログイン構成 ID (オプション)"
+
+msgid "developers.facebook.com › Create app (Business type) › Facebook Login product › add the address below to Valid OAuth redirect URIs. For your own pages being an admin/developer of the app is enough; no App Review needed. An Instagram professional account linked to a Facebook page comes with the same login."
+msgstr "developers.facebook.com › アプリの作成 (ビジネス タイプ) › Facebook ログイン製品 › 以下のアドレスを有効な OAuth リダイレクト URI に追加します。自分のページの場合は、アプリの管理者/開発者であれば十分です。アプリレビューは必要ありません。 Facebook ページにリンクされた Instagram プロフェッショナル アカウントには、同じログインが付属しています。"
+
+msgid "Facebook page (+ linked Instagram)"
+msgstr "Facebook ページ (+ リンクされた Instagram)"
+
+msgid "Instagram login (without a Facebook page)"
+msgstr "Instagram ログイン (Facebook ページなし)"
+
+msgid "Add the \"Instagram\" product to the Meta app (API setup with Instagram login). Put the Instagram App ID/Secret from the product page here; the redirect URL is below. The account must be Business or Creator."
+msgstr "「Instagram」製品をメタアプリに追加します(Instagram ログインによる API セットアップ)。製品ページの Instagram アプリ ID/シークレットをここに入力します。リダイレクト URL は以下です。アカウントはビジネスまたはクリエイターである必要があります。"
+
+msgid "Instagram (Instagram login)"
+msgstr "インスタグラム(インスタグラムログイン)"
+
+msgid "Google Cloud › APIs: enable YouTube Data API v3 (and for Business: My Business Account Management, Business Information, Google My Business API) › OAuth client (Web application) › authorized redirect URL below. In an unaudited project videos uploaded to YouTube stay \"Private\"; apply for the Google API audit to make them public. The Business Profile API requires access approval from Google."
+msgstr "Google Cloud › API: YouTube Data API v3 (およびビジネス向け: マイ ビジネス アカウント管理、ビジネス情報、Google マイ ビジネス API) を有効にします。 › OAuth クライアント (Web アプリケーション) › 以下の承認されたリダイレクト URL。監査されていないプロジェクトでは、YouTube にアップロードされたビデオは「非公開」のままになります。 Google API監査を申請して公開してください。ビジネス プロフィール API には、Google からのアクセス承認が必要です。"
+
+msgid "YouTube channel"
+msgstr "YouTube channel"
+
+msgid "Google Business location"
+msgstr "Google ビジネスの場所"
+
+msgid "developer.x.com › Project › App › User authentication settings: permission \"Read and write\", type \"Web App\", Callback URI the address below. Put the API Key and Secret from Keys and tokens here. Choose the tier below (the free tier has a low write limit and metrics are not read)."
+msgstr "developer.x.com › プロジェクト › アプリ › ユーザー認証設定: 権限「読み取りおよび書き込み」、タイプ「Web アプリ」、コールバック URI は以下のアドレスです。ここに「キーとトークン」の API キーとシークレットを入力します。以下の層を選択します (無料層には書き込み制限が低く、メトリクスは読み取られません)。"
+
+msgid "X account"
+msgstr "Xアカウント"
+
+msgid "API version (YYYYMM)"
+msgstr "API バージョン (YYYYMM)"
+
+msgid "linkedin.com/developers › App (linked to the organization page) › Products: \"Sign In with LinkedIn using OpenID Connect\" and \"Share on LinkedIn\" (personal); for company pages \"Community Management API\" (needs approval). Auth › Authorized redirect URL below."
+msgstr "linkedin.com/developers › アプリ (組織ページにリンク) › 製品: 「OpenID Connect を使用した LinkedIn でのサインイン」および「LinkedIn での共有」(個人)。企業ページ用「コミュニティ管理 API」(承認が必要)。認証 › 以下の承認されたリダイレクト URL。"
+
+msgid "LinkedIn profile / page"
+msgstr "LinkedIn プロフィール / ページ"
+
+msgid "developers.tiktok.com › App › add Login Kit + Content Posting API, Redirect URI below. Without the audit \"Draft\" mode is recommended: the video lands in the TikTok app and is published from there. For photo posts verify the site domain in TikTok (URL properties)."
+msgstr "developers.tiktok.com › アプリ › ログイン キット + コンテンツ投稿 API、以下のリダイレクト URI を追加します。監査なしの場合は「ドラフト」モードをお勧めします。ビデオは TikTok アプリに表示され、そこから公開されます。写真投稿の場合は、TikTok でサイトのドメインを確認します (URL プロパティ)。"
+
+msgid "TikTok account"
+msgstr "TikTokアカウント"
+
+msgid "developers.pinterest.com › App › Redirect URI below. Trial access works only in the sandbox; apply for Standard access."
+msgstr "developers.pinterest.com › アプリ › 以下のリダイレクト URI。試用版アクセスはサンドボックス内でのみ機能します。標準アクセスを申請します。"
+
+msgid "Pinterest account"
+msgstr "Pinterestアカウント"
+
+msgid "The Evolution connection comes from Flux Mail (or Flux Chat); no key is entered here. Shares go to Status and groups."
+msgstr "Evolution 接続は Flux Mail (または Flux Chat) から行われます。ここにはキーは入力されません。共有はステータスとグループに移動します。"
+
+msgid "WhatsApp Status / group"
+msgstr "WhatsApp ステータス / グループ"
+
+msgid "Unknown app."
+msgstr "不明なアプリ。"
+
+msgid "Login required."
+msgstr "ログインが必要です。"
+
+msgid "You do not have social media permission."
+msgstr "ソーシャルメディアの許可がありません。"
+
+msgid "You do not have permission for this action."
+msgstr "このアクションに対する権限がありません。"
+
+msgid "Record not found."
+msgstr "レコードが見つかりません。"
+
+msgid "You cannot change this post."
+msgstr "この投稿は変更できません。"
+
+msgid "You cannot delete this post."
+msgstr "この投稿は削除できません。"
+
+msgid "Could not delete on some networks; the post stays in the list."
+msgstr "一部のネットワークでは削除できませんでした。投稿はリストに残ります。"
+
+msgid "%s (copy)"
+msgstr "%s(コピー)"
+
+msgid "You do not have permission to upload files."
+msgstr "ファイルをアップロードする権限がありません。"
+
+msgid "No file received."
+msgstr "ファイルを受信しませんでした。"
+
+msgid "Account removed."
+msgstr "アカウントが削除されました。"
+
+msgid "(deleted account)"
+msgstr "(削除されたアカウント)"
+
+msgid "Post not found."
+msgstr "投稿が見つかりません。"
+
+msgid "Unknown action."
+msgstr "未知のアクション。"
+
+msgid "%s: the connection expired, reconnect it under Accounts."
+msgstr "%s: 接続の有効期限が切れました。アカウントで再接続します。"
+
+msgid "Text can be at most %1$d characters (currently %2$d)."
+msgstr "テキストには最大でも%1$d文字を使用できます (現在は%2$d)。"
+
+msgid "This network does not accept GIFs; use an image or video."
+msgstr "このネットワークは GIF を受け入れません。画像またはビデオを使用します。"
+
+msgid "At most %d images."
+msgstr "最大でも%d画像。"
+
+msgid "At most %d videos."
+msgstr "多くても%dビデオ。"
+
+msgid "Images and video cannot be used together in one post."
+msgstr "1つの投稿内で画像と動画を併用することはできません。"
+
+msgid "Media files must be reachable at a public https address."
+msgstr "メディア ファイルはパブリック https アドレスでアクセスできる必要があります。"
+
+msgid "This network does not connect via OAuth."
+msgstr "このネットワークは OAuth 経由で接続しません。"
+
+msgid "The connection expired, please reconnect."
+msgstr "接続の有効期限が切れました。再接続してください。"
+
+msgid "This network does not allow editing a published post."
+msgstr "このネットワークでは、公開された投稿を編集することはできません。"
+
+msgid "This network does not allow deleting posts via the API; delete it in the app."
+msgstr "このネットワークでは、API を介して投稿を削除することはできません。アプリ内で削除してください。"
+
+msgid "First comment is not supported on this network."
+msgstr "最初のコメントはこのネットワークではサポートされていません。"
+
+msgid "First enter this network's keys under Settings › Apps."
+msgstr "まず、[設定] › [アプリ] でこのネットワークのキーを入力します。"
+
+msgid "Choose a video for YouTube."
+msgstr "YouTube 用のビデオを選択します。"
+
+msgid "YouTube title can be at most 100 characters."
+msgstr "YouTube のタイトルは最大 100 文字です。"
+
+msgid "YouTube does not accept < and > in the title and description."
+msgstr "YouTube では、タイトルと説明に< and >を含めることはできません。"
+
+msgid "This Google account has no YouTube channel."
+msgstr "この Google アカウントには YouTube チャンネルがありません。"
+
+msgid "Video file not found on the server."
+msgstr "ビデオ ファイルがサーバー上に見つかりません。"
+
+msgid "Could not read the video file."
+msgstr "ビデオファイルを読み取れませんでした。"
+
+msgid "Video not found on YouTube."
+msgstr "YouTube にビデオが見つかりません。"
+
+msgid "An event/offer post needs a title and a start date."
+msgstr "イベント/オファーの投稿にはタイトルと開始日が必要です。"
+
+msgid "Could not get business accounts (requires Google's Business Profile API access approval)"
+msgstr "ビジネス アカウントを取得できませんでした (Google のビジネス プロフィール API へのアクセス承認が必要です)"
+
+msgid "No managed business location found on this Google account."
+msgstr "この Google アカウントには管理されているビジネス拠点が見つかりません。"
+
+msgid "LinkedIn could not process the video."
+msgstr "LinkedIn はビデオを処理できませんでした。"
+
+msgid "LinkedIn video processing took too long."
+msgstr "LinkedIn のビデオ処理に時間がかかりすぎました。"
+
+msgid "No Facebook page you manage was found. Make sure you selected the pages during login."
+msgstr "あなたが管理する Facebook ページは見つかりませんでした。ログイン時にページを選択したことを確認してください。"
+
+msgid "A story has a single image or video."
+msgstr "ストーリーには 1 つの画像またはビデオが含まれます。"
+
+msgid "Instagram accepts at most 30 hashtags."
+msgstr "Instagram では最大 30 個のハッシュタグを使用できます。"
+
+msgid "Instagram feed image aspect ratio must be between 4:5 and 1.91:1 (except stories)."
+msgstr "Instagram フィード画像のアスペクト比は 4:5 ~ 1.91:1 である必要があります (ストーリーを除く)。"
+
+msgid "First enter the keys under Settings › Apps › Instagram login."
+msgstr "まず、設定 › アプリ › Instagram ログイン でキーを入力します。"
+
+msgid "Instagram could not process a carousel item (format/size not suitable)."
+msgstr "Instagram はカルーセルアイテムを処理できませんでした (形式/サイズが適切ではありません)。"
+
+msgid "Instagram could not process the media. Video: MP4 (H.264/AAC), 3–90 s (Reels 15 min), up to 1 GB; image: JPEG, up to 8 MB."
+msgstr "Instagram はメディアを処理できませんでした。ビデオ: MP4 (H.264/AAC)、3 ~ 90 秒 (リール 15 分)、最大 1 GB。画像: JPEG、最大 8 MB。"
+
+msgid "Instagram video processing did not finish in 30 minutes."
+msgstr "Instagram のビデオ処理は 30 分以内に完了しませんでした。"
+
+msgid "Pinterest title can be at most 100 characters."
+msgstr "Pinterest のタイトルは最大 100 文字までです。"
+
+msgid "Pinterest could not process the video."
+msgstr "Pinterest はビデオを処理できませんでした。"
+
+msgid "Pinterest video processing took too long."
+msgstr "Pinterest のビデオ処理に時間がかかりすぎました。"
+
+msgid "Because the TikTok app has not been audited yet, only \"Only me\" visibility can be used."
+msgstr "TikTok アプリはまだ監査されていないため、「自分のみ」の表示設定のみを使用できます。"
+
+msgid "Draft sent to the TikTok app; publish it from the notification in the app."
+msgstr "ドラフトはTikTokアプリに送信されます。アプリ内の通知から公開してください。"
+
+msgid "TikTok processing took too long; check in the TikTok app."
+msgstr "TikTokの処理に時間がかかりすぎました。 TikTokアプリでチェックしてください。"
+
+msgid "No WhatsApp connection. Set up an Evolution connection in Flux Mail or Flux Chat."
+msgstr "WhatsApp 接続がありません。 Flux Mail または Flux Chat で Evolution 接続をセットアップします。"
+
+msgid "WhatsApp Status"
+msgstr "WhatsAppのステータス"
+
+msgid "Free (no cost, low write limit, no metrics)"
+msgstr "無料 (コストなし、書き込み制限が低い、メトリクスなし)"
+
+msgid "Basic (paid monthly)"
+msgstr "基本(月払い)"
+
+msgid "Pro (paid monthly)"
+msgstr "プロ(月払い)"
+
+msgid "Pay-as-you-go"
+msgstr "従量課金制"
+
+msgid "X: a video or GIF is shared on its own."
+msgstr "X: ビデオまたは GIF が単独で共有されます。"
+
+msgid "The monthly limit of %d posts set for X has been reached."
+msgstr "X に設定されている%d投稿の月間制限に達しました。"
+
+msgid "First enter the API Key and API Key Secret under Settings › Apps › X."
+msgstr "まず、設定 › アプリ › X で API キーと API キー シークレットを入力します。"
+
+msgid "Connection refused."
+msgstr "接続が拒否されました。"
+
+msgid "Could not read the media file."
+msgstr "メディア ファイルを読み取れませんでした。"
+
+msgid "video could not be processed"
+msgstr "ビデオを処理できませんでした"
+
+msgid "Nothing this month"
+msgstr "今月は何もない"
+
+msgid "Delete this post?"
+msgstr "この投稿を削除しますか?"
+
+msgid "Search posts"
+msgstr "投稿の検索"
+
+msgid "Account enabled"
+msgstr "アカウントが有効になりました"
+
+msgid "Open the panel to connect an account."
+msgstr "パネルを開いてアカウントを接続します。"
+
+msgid "Account disabled"
+msgstr "アカウントが無効になりました"
+
+msgid "No accounts"
+msgstr "アカウントがありません"
+
+msgid "Note"
+msgstr "注記"
+
+msgid "Review"
+msgstr "レビュー"
+
+msgid "Approved"
+msgstr "承認済み"
+
+msgid "Open in panel"
+msgstr "パネルで開く"
+
+msgid "Deleted"
+msgstr "削除されました"
+
+msgid "New posts are composed in the media composer."
+msgstr "新しい投稿はメディア コンポーザーで作成されます。"
+
+msgid "Scheduled and published posts show up here."
+msgstr "スケジュールされた投稿と公開された投稿がここに表示されます。"
+
+msgid "[['Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.', 'tr']]"
+msgstr "[['サイト内のソーシャル メディア管理: アカウント リンク (パネルからのキー)、アカウントごとのコンテンツ、スケジュール、ネットワーク編集/削除、カレンダー、ダッシュボード、Flux AI ライティング アシスタンス、MCP ツール。 Facebook、Instagram、YouTube、X、LinkedIn、TikTok、Pinterest、Google ビジネス、WhatsApp.', 'tr']]"

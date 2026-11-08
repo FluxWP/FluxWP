@@ -1,0 +1,1448 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: de_DE\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "\"Discourage search engines from indexing this site\" is checked. Uncheck it on the live site."
+msgstr "„Suchmaschinen von der Indexierung dieser Website abhalten“ ist aktiviert. Deaktivieren Sie es auf der Live-Site."
+
+msgid "%1$d critical issues: %2$s"
+msgstr "Kritische%1$d-Probleme:%2$s"
+
+msgid "%1$s is active, v%2$s. Flux Donate reads the keys from it."
+msgstr "%1$sist aktiv, v%2$s. Flux Donate liest die Schlüssel daraus."
+
+msgid "%1$s (%2$s)."
+msgstr "%1$s(%2$s)."
+
+msgid "%d issues"
+msgstr "%d-Probleme"
+
+msgid "%s is active."
+msgstr "%sist aktiv."
+
+msgid "%s is installed but not active. Flux Donate reads the keys from its own Payments settings."
+msgstr "%sist installiert, aber nicht aktiv. Flux Donate liest die Schlüssel aus seinen eigenen Zahlungseinstellungen."
+
+msgid "%s. Choose 8.1 or later under Hostinger › PHP Configuration."
+msgstr "%s. Wählen Sie 8.1 oder höher unter Hostinger › PHP-Konfiguration."
+
+msgid "%s. Choose Istanbul so certificate and donation dates are correct."
+msgstr "%s. Wählen Sie Istanbul, damit das Datum der Bescheinigung und der Spende korrekt ist."
+
+msgid "(optional)"
+msgstr "(optional)"
+
+msgid "The /projeler/ rewrite rule is missing and may return 404."
+msgstr "Die /projeler/-Rewrite-Regel fehlt und gibt möglicherweise 404 zurück."
+
+msgid "1. Send your donation"
+msgstr "1. Senden Sie Ihre Spende"
+
+msgid "1. Scope"
+msgstr "1. Geltungsbereich"
+
+msgid "2. Your sapling is planted"
+msgstr "2. Ihr Setzling ist gepflanzt"
+
+msgid "3. Get your certificate"
+msgstr "3. Holen Sie sich Ihr Zertifikat"
+
+msgid "Update your name, email and password."
+msgstr "Aktualisieren Sie Ihren Namen, Ihre E-Mail-Adresse und Ihr Passwort."
+
+msgid "A sapling"
+msgstr "Ein Setzling"
+
+msgid "Plant a Sapling for Your Family"
+msgstr "Pflanzen Sie einen Setzling für Ihre Familie"
+
+msgid "Plant a Sapling for Your Family: plant a sapling in the name of your loved ones and let’s give the future room to breathe."
+msgstr "Pflanzen Sie einen Setzling für Ihre Familie: Pflanzen Sie einen Setzling im Namen Ihrer Lieben und geben Sie der Zukunft Raum zum Atmen."
+
+msgid "Active Project"
+msgstr "Aktives Projekt"
+
+msgid "Active Projects"
+msgstr "Aktive Projekte"
+
+msgid "Active project"
+msgstr "Aktives Projekt"
+
+msgid "Alanya Ömer Özen Education and Research Station (Forest Camp)"
+msgstr "Alanya Ömer Özen Bildungs- und Forschungsstation (Waldcamp)"
+
+msgid "Recipient name"
+msgstr "Empfängername"
+
+msgid "Home"
+msgstr "Zuhause"
+
+msgid "Search"
+msgstr "Suchen"
+
+msgid "The page you are looking for may have been moved or removed. You can search or return to the home page."
+msgstr "Die gesuchte Seite wurde möglicherweise verschoben oder entfernt. Sie können suchen oder zur Startseite zurückkehren."
+
+msgid "Search engines"
+msgstr "Suchmaschinen"
+
+msgid "Open"
+msgstr "Offen"
+
+msgid "On, but no Cookie Policy page is linked."
+msgstr "Ein, aber es ist keine Cookie-Richtlinienseite verlinkt."
+
+msgid "On, linked to the Cookie Policy page."
+msgstr "Ein, verlinkt zur Cookie-Richtlinienseite."
+
+msgid "Reference"
+msgstr "Referenz"
+
+msgid "Trees Planted"
+msgstr "Bäume gepflanzt"
+
+msgid "From tree planting to workshops, from clean-up drives to environmental awareness, let’s take part in many events together."
+msgstr "Von Baumpflanzungen bis hin zu Workshops, von Aufräumaktionen bis hin zu Umweltbewusstsein – lasst uns gemeinsam an vielen Veranstaltungen teilnehmen."
+
+msgid "We work to spread the love of trees and forests"
+msgstr "Wir arbeiten daran, die Liebe zu Bäumen und Wäldern zu verbreiten"
+
+msgid "Copy the details below with one click and paste them into your banking app."
+msgstr "Kopieren Sie die untenstehenden Angaben mit einem Klick und fügen Sie sie in Ihre Banking-App ein."
+
+msgid "Press Releases"
+msgstr "Pressemitteilungen"
+
+msgid "In the Press"
+msgstr "In der Presse"
+
+msgid "Donation"
+msgstr "Spende"
+
+msgid "Donate"
+msgstr "Spenden"
+
+msgid "Donation page"
+msgstr "Spendenseite"
+
+msgid "Sapling packages and card donations on the donation page"
+msgstr "Setzlingspakete und Kartenspenden auf der Spendenseite"
+
+msgid "Donation types, sapling packages, card donations and donors"
+msgstr "Spendenarten, Setzlingspakete, Kartenspenden und Spender"
+
+msgid "Donation and contact forms"
+msgstr "Spenden- und Kontaktformulare"
+
+msgid "Your donation summary is below. The details have also been sent to your email address."
+msgstr "Ihre Spendenzusammenfassung finden Sie unten. Die Details wurden auch an Ihre E-Mail-Adresse gesendet."
+
+msgid "Donation, KVKK, Cookie Policy, My Account, Cart and Checkout are published."
+msgstr "Spende, KVKK, Cookie-Richtlinie, Mein Konto, Warenkorb und Kasse werden veröffentlicht."
+
+msgid "Where are my donated saplings planted?"
+msgstr "Wo werden meine gespendeten Setzlinge gepflanzt?"
+
+msgid "Donations"
+msgstr "Spenden"
+
+msgid "Back to Donations"
+msgstr "Zurück zu Spenden"
+
+msgid "Track your donations and manage your addresses and account details in one place."
+msgstr "Verfolgen Sie Ihre Spenden und verwalten Sie Ihre Adressen und Kontodaten an einem Ort."
+
+msgid "See your donations and their status."
+msgstr "Sehen Sie sich Ihre Spenden und deren Status an."
+
+msgid "Log in to manage your donations, addresses and account details, or create an account in seconds."
+msgstr "Melden Sie sich an, um Ihre Spenden, Adressen und Kontodaten zu verwalten, oder erstellen Sie in Sekundenschnelle ein Konto."
+
+msgid "Your donation becomes a sapling at the"
+msgstr "Ihre Spende wird zu einem Setzling bei der"
+
+msgid "With your donation we plant new saplings and protect green spaces."
+msgstr "Mit Ihrer Spende pflanzen wir neue Setzlinge und schützen Grünflächen."
+
+msgid "Can I donate a sapling on behalf of someone else?"
+msgstr "Kann ich einen Setzling im Namen einer anderen Person spenden?"
+
+msgid "Has not run for longer than expected (should run every 5 minutes)."
+msgstr "Läuft nicht länger als erwartet (sollte alle 5 Minuten laufen)."
+
+msgid "Info"
+msgstr "Infos"
+
+msgid "Enter your details and complete your order securely."
+msgstr "Geben Sie Ihre Daten ein und schließen Sie Ihre Bestellung sicher ab."
+
+msgid "One sapling is 150 TL. Just write “fidan bağışı” and your name in the description. 🌿"
+msgstr "Ein Setzling kostet 150 TL. Schreiben Sie einfach „fidan bağışı“ und Ihren Namen in die Beschreibung. 🌿"
+
+msgid "One sapling is 150 TL. Send a bank transfer to the IBAN above for as many saplings as you like. Write “fidan bağışı” and your name in the description."
+msgstr "Ein Setzling kostet 150 TL. Senden Sie eine Banküberweisung an die oben angegebene IBAN für so viele Setzlinge, wie Sie möchten. Schreiben Sie „fidan bağışı“ und Ihren Namen in die Beschreibung."
+
+msgid "One sapling donation is 150 TL. You can donate for as many saplings as you like; for example 5 saplings are 750 TL and 10 saplings are 1,500 TL."
+msgstr "Eine Setzlingsspende beträgt 150 TL. Sie können für so viele Setzlinge spenden, wie Sie möchten; Beispielsweise kosten 5 Setzlinge 750 TL und 10 Setzlinge 1.500 TL."
+
+msgid "How much is one sapling donation?"
+msgstr "Wie viel kostet eine Setzlingsspende?"
+
+msgid "Let one sapling be yours"
+msgstr "Lass einen Schössling dir gehören"
+
+msgid "Curious how a sapling is planted? See our"
+msgstr "Neugierig, wie ein Setzling gepflanzt wird? Sehen Sie sich unsere an"
+
+msgid "A page cache is active (WP_CACHE)."
+msgstr "Ein Seitencache ist aktiv (WP_CACHE)."
+
+msgid "Together"
+msgstr "Zusammen"
+
+msgid "Together We Make a Bigger Impact"
+msgstr "Gemeinsam erzielen wir eine größere Wirkung"
+
+msgid "Who We Are"
+msgstr "Wer wir sind"
+
+msgid "Who we are"
+msgstr "Wer wir sind"
+
+msgid "News From Us"
+msgstr "Neuigkeiten von uns"
+
+msgid "Contact Us"
+msgstr "Kontaktieren Sie uns"
+
+msgid "Get in touch"
+msgstr "Nehmen Sie Kontakt auf"
+
+msgid "Follow Us"
+msgstr "Folgen Sie uns"
+
+msgid "Water generously; if needed, tie it loosely to a support stake."
+msgstr "Großzügig gießen; Binden Sie es bei Bedarf locker an einen Stützpfahl."
+
+msgid "Page not found"
+msgstr "Seite nicht gefunden"
+
+msgid "Send a bank transfer to the IBAN on this page and write “fidan bağışı” and your name in the description."
+msgstr "Senden Sie eine Banküberweisung an die IBAN auf dieser Seite und schreiben Sie „fidan bağışı“ und Ihren Namen in die Beschreibung."
+
+msgid "The text of this page will be replaced with the association’s approved policy text."
+msgstr "Der Text dieser Seite wird durch den genehmigten Richtlinientext des Verbandes ersetzt."
+
+msgid "Join Our Newsletter"
+msgstr "Abonnieren Sie unseren Newsletter"
+
+msgid "Cron has not run for hours. Check the cron job and command path in Hostinger."
+msgstr "Cron ist seit Stunden nicht gelaufen. Überprüfen Sie den Cron-Job und den Befehlspfad in Hostinger."
+
+msgid "DISABLE_WP_CRON is on: tasks run from the server cron and do not slow down visitor requests."
+msgstr "DISABLE_WP_CRON ist aktiviert: Aufgaben werden vom Server-Cron ausgeführt und verlangsamen Besucheranfragen nicht."
+
+msgid "Show more"
+msgstr "Mehr anzeigen"
+
+msgid "With more green space, cleaner air and stronger communities, healthy and liveable cities in harmony with nature are possible. Starting today, we work together for tomorrow."
+msgstr "Mit mehr Grünflächen, saubererer Luft und stärkeren Gemeinden sind gesunde und lebenswerte Städte im Einklang mit der Natur möglich. Ab heute arbeiten wir gemeinsam für morgen."
+
+msgid "Stronger community"
+msgstr "Stärkere Gemeinschaft"
+
+msgid "Cleaner air"
+msgstr "Sauberere Luft"
+
+msgid "For cleaner air, more liveable cities and more resilient forests, we protect nature together and grow green spaces."
+msgstr "Für sauberere Luft, lebenswertere Städte und widerstandsfähigere Wälder schützen wir gemeinsam die Natur und bauen Grünflächen an."
+
+msgid "For more liveable cities"
+msgstr "Für lebenswertere Städte"
+
+msgid "A greener Türkiye is possible"
+msgstr "Eine grünere Türkiye ist möglich"
+
+msgid "More green space"
+msgstr "Mehr Grünfläche"
+
+msgid "Our Bylaws"
+msgstr "Unsere Satzung"
+
+msgid "Our Association"
+msgstr "Unser Verein"
+
+msgid "News, announcements and articles from our association."
+msgstr "Neuigkeiten, Ankündigungen und Artikel aus unserem Verein."
+
+msgid "With your support, help us plant more trees, create cleaner living spaces and build stronger projects."
+msgstr "Helfen Sie uns mit Ihrer Unterstützung, mehr Bäume zu pflanzen, sauberere Lebensräume zu schaffen und stärkere Projekte zu realisieren."
+
+msgid "Ongoing Events"
+msgstr "Laufende Veranstaltungen"
+
+msgid "Ongoing Projects"
+msgstr "Laufende Projekte"
+
+msgid "Read more"
+msgstr "Lesen Sie mehr"
+
+msgid "Language Switcher"
+msgstr "Sprachumschalter"
+
+msgid "Language selection"
+msgstr "Sprachauswahl"
+
+msgid "Other"
+msgstr "Andere"
+
+msgid "Other events"
+msgstr "Andere Veranstaltungen"
+
+msgid "You too can join our work to protect our natural heritage and build a more liveable future."
+msgstr "Auch Sie können sich unserer Arbeit zum Schutz unseres Naturerbes und zum Aufbau einer lebenswerteren Zukunft anschließen."
+
+msgid "There are many ways to give back to nature"
+msgstr "Es gibt viele Möglichkeiten, der Natur etwas zurückzugeben"
+
+msgid "A city in harmony with nature is possible"
+msgstr "Eine Stadt im Einklang mit der Natur ist möglich"
+
+msgid "A properly planted sapling lives for years. Watch the short video step by step."
+msgstr "Ein richtig gepflanzter Setzling lebt jahrelang. Sehen Sie sich das kurze Video Schritt für Schritt an."
+
+msgid "A properly planted sapling lives for years. Watch the video step by step; in short:"
+msgstr "Ein richtig gepflanzter Setzling lebt jahrelang. Sehen Sie sich das Video Schritt für Schritt an; kurz gesagt:"
+
+msgid "A birthday, a newborn, a graduation or the memory of a loved one… Donate a sapling in someone’s name and give a gift that lives for years. Just write the person’s name in the transfer description."
+msgstr "Ein Geburtstag, ein Neugeborenes, ein Schulabschluss oder die Erinnerung an einen geliebten Menschen … Spenden Sie einen Schössling im Namen einer anderen Person und verschenken Sie ein Geschenk, das jahrelang Bestand hat. Geben Sie einfach den Namen der Person in die Überweisungsbeschreibung ein."
+
+msgid "A birth, a wedding, a graduation or a remembrance. Every sapling planted in your loved ones’ name grows in our forests."
+msgstr "Eine Geburt, eine Hochzeit, eine Abschlussfeier oder eine Erinnerung. Jeder Bäumchen, der im Namen Ihrer Lieben gepflanzt wird, wächst in unseren Wäldern."
+
+msgid "Announcements"
+msgstr "Ankündigungen"
+
+msgid "Plain (?p=123) addresses are used. Choose \"Post name\"."
+msgstr "Es werden einfache (?p=123) Adressen verwendet. Wählen Sie „Beitragsname“."
+
+msgid "Fix"
+msgstr "Beheben"
+
+msgid "Email"
+msgstr "E-Mail"
+
+msgid "Email delivery"
+msgstr "E-Mail-Zustellung"
+
+msgid "Email and phone"
+msgstr "E-Mail und Telefon"
+
+msgid "Team task tracking"
+msgstr "Verfolgung von Teamaufgaben"
+
+msgid "Search plugins"
+msgstr "Such-Plugins"
+
+msgid "Upload plugin"
+msgstr "Plugin hochladen"
+
+msgid "Plugins"
+msgstr "Plugins"
+
+msgid "Plugins, scheduled tasks and key settings. Red rows mean part of the site is not working; yellow rows are recommended fixes. The page re-checks every time it opens."
+msgstr "Plugins, geplante Aufgaben und wichtige Einstellungen. Rote Zeilen bedeuten, dass ein Teil der Website nicht funktioniert; Gelbe Reihen sind empfohlene Korrekturen. Die Seite wird bei jedem Öffnen erneut überprüft."
+
+msgid "See the status of plugins, cron and settings on the %s screen."
+msgstr "Sehen Sie sich den Status von Plugins, Crons und Einstellungen auf dem%s-Bildschirm an."
+
+msgid "Ecosystem protection"
+msgstr "Schutz des Ökosystems"
+
+msgid "Missing or not published: %s."
+msgstr "Fehlt oder wurde nicht veröffentlicht:%s."
+
+msgid "Active, v%1$s. This theme was tested with v%2$s or later; please update."
+msgstr "Aktiv, v%1$s. Dieses Thema wurde mit v%2$soder höher getestet; Bitte aktualisieren."
+
+msgid "Active, v%s."
+msgstr "Aktiv, v%s."
+
+msgid "Event"
+msgstr "Veranstaltung"
+
+msgid "Events Held"
+msgstr "Abgehaltene Veranstaltungen"
+
+msgid "Stay up to date on our events, new projects and a greener future."
+msgstr "Bleiben Sie über unsere Veranstaltungen, neue Projekte und eine grünere Zukunft auf dem Laufenden."
+
+msgid "Join an Event"
+msgstr "Nehmen Sie an einer Veranstaltung teil"
+
+msgid "Yes. Your donated saplings are recorded with a certificate issued in your name or the name of the person you specify."
+msgstr "Ja. Ihre gespendeten Setzlinge werden mit einer Bescheinigung erfasst, die auf Ihren Namen oder den Namen der von Ihnen angegebenen Person ausgestellt ist."
+
+msgid "Yes. Write “fidan bağışı” together with the person’s name in the transfer description. A lovely option for birthdays, memorials or gifts."
+msgstr "Ja. Schreiben Sie „fidan bağışı“ zusammen mit dem Namen der Person in die Überweisungsbeschreibung. Eine schöne Option für Geburtstage, Gedenkfeiern oder Geschenke."
+
+msgid "Yes. We organise bulk sapling donations and joint tree planting events for institutions, schools and companies. Contact us through our contact page for details."
+msgstr "Ja. Wir organisieren Großspenden von Setzlingen und gemeinsame Baumpflanzaktionen für Institutionen, Schulen und Unternehmen. Kontaktieren Sie uns für weitere Informationen über unsere Kontaktseite."
+
+msgid "Education"
+msgstr "Bildung"
+
+msgid "Our Education Events"
+msgstr "Unsere Bildungsveranstaltungen"
+
+msgid "Edit your billing and shipping addresses."
+msgstr "Bearbeiten Sie Ihre Rechnungs- und Lieferadressen."
+
+msgid "Sapling"
+msgstr "Schössling"
+
+msgid "Sapling Donation"
+msgstr "Schösslingsspende"
+
+msgid "Donate a Sapling"
+msgstr "Spenden Sie einen Setzling"
+
+msgid "Our Tree Planting Events"
+msgstr "Unsere Baumpflanz-Events"
+
+msgid "Our Tree Planting Video"
+msgstr "Unser Baumpflanzvideo"
+
+msgid "How to Plant a Sapling"
+msgstr "So pflanzen Sie einen Setzling"
+
+msgid "Donated saplings are planted with our volunteers at the tree planting events we organise in cities across Türkiye. The date, location and number of saplings for each event are published on"
+msgstr "Gespendete Setzlinge werden gemeinsam mit unseren Freiwilligen bei Baumpflanzveranstaltungen gepflanzt, die wir in Städten in ganz Türkiye organisieren. Datum, Ort und Anzahl der Setzlinge für jede Veranstaltung werden auf veröffentlicht"
+
+msgid "With your sapling donations we plant new saplings, protect green spaces and grow our environmental education."
+msgstr "Mit Ihren Setzlingsspenden pflanzen wir neue Setzlinge, schützen Grünflächen und bauen unsere Umweltbildung aus."
+
+msgid "Sapling donation"
+msgstr "Schösslingsspende"
+
+msgid "Sapling donation FAQ"
+msgstr "Häufig gestellte Fragen zur Setzlingsspende"
+
+msgid "Can I get a certificate for my sapling donation?"
+msgstr "Kann ich eine Bescheinigung für meine Setzlingsspende erhalten?"
+
+msgid "How do I donate a sapling?"
+msgstr "Wie spende ich einen Setzling?"
+
+msgid "Donate a sapling"
+msgstr "Spenden Sie einen Setzling"
+
+msgid "Donate a sapling, let one be yours"
+msgstr "Schenken Sie einen Setzling, damit einer Ihnen gehört"
+
+msgid "You can plant a sapling, make a donation or join our events."
+msgstr "Sie können einen Setzling pflanzen, eine Spende machen oder an unseren Veranstaltungen teilnehmen."
+
+msgid "Children waving at a tree planting site"
+msgstr "Kinder winken an einer Baumpflanzstelle"
+
+msgid "Sapling certificates and events"
+msgstr "Setzlingszertifikate und Veranstaltungen"
+
+msgid "So we can also send your donation and order updates via WhatsApp."
+msgstr "So können wir Ihre Spende und Bestellaktualisierungen auch per WhatsApp versenden."
+
+msgid "Where are the saplings planted?"
+msgstr "Wo werden die Setzlinge gepflanzt?"
+
+msgid "Saplings are planted at the tree planting events we organise in cities across Türkiye. Event locations and dates are announced on our events page."
+msgstr "Bei den Baumpflanzveranstaltungen, die wir in Städten in ganz Türkiye organisieren, werden Setzlinge gepflanzt. Veranstaltungsorte und -termine werden auf unserer Veranstaltungsseite bekannt gegeben."
+
+msgid "A grandfather and his grandchildren posing with their saplings"
+msgstr "Ein Großvater und seine Enkel posieren mit ihren Setzlingen"
+
+msgid "Place the sapling upright, with the root collar level with the soil."
+msgstr "Stellen Sie den Setzling aufrecht hin, sodass der Wurzelkragen auf gleicher Höhe mit dem Boden liegt."
+
+msgid "Forms"
+msgstr "Formulare"
+
+msgid "No GA4 measurement ID entered."
+msgstr "Keine GA4-Messungs-ID eingegeben."
+
+msgid "Overdue tasks"
+msgstr "Überfällige Aufgaben"
+
+msgid "Head Office"
+msgstr "Hauptsitz"
+
+msgid "General settings"
+msgstr "Allgemeine Einstellungen"
+
+msgid "Required"
+msgstr "Erforderlich"
+
+msgid "Required pages"
+msgstr "Erforderliche Seiten"
+
+msgid "Server cron"
+msgstr "Server-Cron"
+
+msgid "Log In"
+msgstr "Anmelden"
+
+msgid "Log in"
+msgstr "Melden Sie sich an"
+
+msgid "Privacy Agreement"
+msgstr "Datenschutzvereinbarung"
+
+msgid "Volunteers"
+msgstr "Freiwillige"
+
+msgid "Volunteer"
+msgstr "Freiwilliger"
+
+msgid "Together with our volunteers we organise tree planting events across Türkiye. Check the calendar and save your spot."
+msgstr "Gemeinsam mit unseren Freiwilligen organisieren wir Baumpflanzaktionen in ganz Türkiye. Schauen Sie im Kalender nach und sichern Sie sich Ihren Platz."
+
+msgid "Volunteering"
+msgstr "Freiwilligenarbeit"
+
+msgid "We are here for volunteering, donations, corporate partnerships and all your questions."
+msgstr "Wir sind für Freiwilligenarbeit, Spenden, Unternehmenspartnerschaften und alle Ihre Fragen da."
+
+msgid "Tasks only run when visitors arrive (WP-Cron). With little traffic the certificate queue and recurring donation renewals are delayed. Add this command under Hostinger › Advanced › Cron Jobs, every 5 minutes: %s Then add define( 'DISABLE_WP_CRON', true ); to wp-config.php."
+msgstr "Aufgaben werden nur ausgeführt, wenn Besucher eintreffen (WP-Cron). Bei wenig Verkehr verzögern sich die Zertifikatswarteschlange und wiederkehrende Spendenverlängerungen. Fügen Sie diesen Befehl alle 5 Minuten unter Hostinger › Erweitert › Cron-Jobs hinzu:%sFügen Sie dann define( 'DISABLE_WP_CRON', true ); zu wp-config.php."
+
+msgid "Update"
+msgstr "Aktualisieren"
+
+msgid "Secure payment · iyzico"
+msgstr "Sichere Zahlung · iyzico"
+
+msgid "Security"
+msgstr "Sicherheit"
+
+msgid "News"
+msgstr "Nachrichten"
+
+msgid "About Us"
+msgstr "Über uns"
+
+msgid "Error"
+msgstr "Fehler"
+
+msgid "Donate by Bank Transfer"
+msgstr "Spenden Sie per Banküberweisung"
+
+msgid "Ready-made updates"
+msgstr "Fertige Updates"
+
+msgid "No fixes have been made through MCP yet."
+msgstr "Über MCP wurden noch keine Korrekturen vorgenommen."
+
+msgid "No content found yet."
+msgstr "Noch kein Inhalt gefunden."
+
+msgid "No content yet."
+msgstr "Noch kein Inhalt."
+
+msgid "No record yet. It appears after the first cron run following the theme update; reload this page in a few minutes."
+msgstr "Noch keine Aufzeichnung. Es erscheint nach dem ersten Cron-Lauf nach dem Theme-Update; Laden Sie diese Seite in ein paar Minuten neu."
+
+msgid "All have been applied at least once."
+msgstr "Alle wurden mindestens einmal angewendet."
+
+msgid "Every sapling is recorded with a certificate issued in your name or in the name of someone you love."
+msgstr "Jeder Setzling wird mit einer Urkunde dokumentiert, die auf Ihren Namen oder auf den Namen einer Person, die Sie lieben, ausgestellt ist."
+
+msgid "All good"
+msgstr "Alles gut"
+
+msgid "My account"
+msgstr "Mein Konto"
+
+msgid "Registration is enabled on My Account."
+msgstr "Die Registrierung ist unter „Mein Konto“ aktiviert."
+
+msgid "Registration is disabled on My Account; only the Login tab is shown."
+msgstr "Die Registrierung ist in „Mein Konto“ deaktiviert. Es wird nur die Registerkarte „Anmelden“ angezeigt."
+
+msgid "My Account, cart and checkout pages"
+msgstr "Mein Konto, Warenkorb und Checkout-Seiten"
+
+msgid "Have an account? Log in to track your donations from your account."
+msgstr "Haben Sie ein Konto? Melden Sie sich an, um Ihre Spenden von Ihrem Konto aus zu verfolgen."
+
+msgid "Account registration"
+msgstr "Kontoregistrierung"
+
+msgid "Account and Cart"
+msgstr "Konto und Warenkorb"
+
+msgid "%1$d updates have never been applied. A fresh install may not need them; apply one if the related page looks outdated. List: %2$s"
+msgstr "%1$d-Updates wurden nie angewendet. Bei einer Neuinstallation sind sie möglicherweise nicht erforderlich. Wenden Sie eine an, wenn die zugehörige Seite veraltet erscheint. Liste:%2$s"
+
+msgid "Welcome"
+msgstr "Willkommen"
+
+msgid "Quick Links"
+msgstr "Quicklinks"
+
+msgid "Privacy Notice"
+msgstr "Datenschutzhinweis"
+
+msgid "KVKK Privacy Notice"
+msgstr "KVKK-Datenschutzerklärung"
+
+msgid "Accept"
+msgstr "Akzeptiere"
+
+msgid "Permalinks"
+msgstr "Permalinks"
+
+msgid "Campaign"
+msgstr "Kampagne"
+
+msgid "Off. If analytics cookies are used, KVKK requires it to be on."
+msgstr "Aus. Wenn Analyse-Cookies verwendet werden, verlangt KVKK, dass diese aktiviert sind."
+
+msgid "Close"
+msgstr "Schließen"
+
+msgid "Online card donations for saplings are coming soon."
+msgstr "Online-Kartenspenden für Setzlinge sind bald verfügbar."
+
+msgid "Pay by Card"
+msgstr "Bezahlen Sie mit Karte"
+
+msgid "Card payments coming soon"
+msgstr "Kartenzahlungen folgen bald"
+
+msgid "To donate by card, choose a sapling package or an amount in the donation options on this page and complete the payment."
+msgstr "Um per Karte zu spenden, wählen Sie in den Spendenoptionen auf dieser Seite ein Setzlingspaket oder einen Betrag aus und schließen Sie die Zahlung ab."
+
+msgid "Ways to Contribute"
+msgstr "Möglichkeiten, einen Beitrag zu leisten"
+
+msgid "Enable registration"
+msgstr "Registrierung aktivieren"
+
+msgid "Sign Up"
+msgstr "Melden Sie sich an"
+
+msgid "Sign up"
+msgstr "Melden Sie sich an"
+
+msgid "Manage your saved payment methods."
+msgstr "Verwalten Sie Ihre gespeicherten Zahlungsmethoden."
+
+msgid "Our Library"
+msgstr "Unsere Bibliothek"
+
+msgid "People Trained"
+msgstr "Menschen geschult"
+
+msgid "Checked: %s"
+msgstr "Geprüft:%s"
+
+msgid "Copy"
+msgstr "Kopieren"
+
+msgid "Copied ✓"
+msgstr "Kopiert ✓"
+
+msgid "User"
+msgstr "Benutzer"
+
+msgid "Refresh rules"
+msgstr "Regeln aktualisieren"
+
+msgid "Installed (v%s) but not active."
+msgstr "Installiert (v%s), aber nicht aktiv."
+
+msgid "Not installed."
+msgstr "Nicht installiert."
+
+msgid "Can our company or school make a bulk sapling donation?"
+msgstr "Kann unser Unternehmen oder unsere Schule eine Großspende für Setzlinge leisten?"
+
+msgid "For bulk sapling donations and joint planting events for companies and schools,"
+msgstr "Für Großspenden von Setzlingen und gemeinsame Pflanzaktionen für Unternehmen und Schulen,"
+
+msgid "Dig a hole twice as wide and deep as the root ball."
+msgstr "Graben Sie ein Loch, das doppelt so breit und tief ist wie der Wurzelballen."
+
+msgid "Short video"
+msgstr "Kurzes Video"
+
+msgid "LiteSpeed Cache is active, but image lazy load is on. The theme already lazy-loads images; with both on, images appear blank on every reload. LiteSpeed Cache › Page Optimization › Media › Lazy Load: Off."
+msgstr "LiteSpeed ​​Cache ist aktiv, aber Image Lazy Load ist aktiviert. Das Thema lädt Bilder bereits langsam; Wenn beides aktiviert ist, erscheinen die Bilder bei jedem erneuten Laden leer. LiteSpeed ​​Cache › Seitenoptimierung › Medien › Lazy Load: Aus."
+
+msgid "LiteSpeed Cache is active."
+msgstr "LiteSpeed Cache ist aktiv."
+
+msgid "Articles"
+msgstr "Artikel"
+
+msgid "Financial Statements"
+msgstr "Finanzberichte"
+
+msgid "Brand Partnerships"
+msgstr "Markenpartnerschaften"
+
+msgid "Shop"
+msgstr "Einkaufen"
+
+msgid "Hi %s, your donations are saved to your account."
+msgstr "Hallo%s, Ihre Spenden werden auf Ihrem Konto gespeichert."
+
+msgid "Hello, %s"
+msgstr "Hallo,%s"
+
+msgid "Distance Sales Agreement"
+msgstr "Fernabsatzvertrag"
+
+msgid "How Can You Contribute?"
+msgstr "Wie können Sie einen Beitrag leisten?"
+
+msgid "What are you looking for?"
+msgstr "Was suchen Sie?"
+
+msgid "At events with schools and families, children learn how to plant a sapling and protect the forest."
+msgstr "Bei Veranstaltungen mit Schulen und Familien lernen Kinder, wie man einen Setzling pflanzt und den Wald schützt."
+
+msgid "We meet schools, organisations and volunteers in the field and turn every planting day into a festival."
+msgstr "Wir treffen Schulen, Organisationen und Freiwillige vor Ort und machen jeden Pflanztag zu einem Fest."
+
+msgid "Reading settings"
+msgstr "Leseeinstellungen"
+
+msgid "Confirmation"
+msgstr "Bestätigung"
+
+msgid "Online credit and debit card donations are coming very soon. For now you can donate by bank transfer."
+msgstr "Online-Kredit- und Debitkartenspenden sind bald verfügbar. Vorerst können Sie per Banküberweisung spenden."
+
+msgid "Our Organization"
+msgstr "Unsere Organisation"
+
+msgid "Forest"
+msgstr "Wald"
+
+msgid "Forest protection"
+msgstr "Waldschutz"
+
+msgid "A ranger hanging a birdhouse on a tree with children"
+msgstr "Ein Ranger hängt mit Kindern ein Vogelhaus an einen Baum"
+
+msgid "Currency"
+msgstr "Währung"
+
+msgid "Write the policy text here."
+msgstr "Schreiben Sie hier den Richtlinientext."
+
+msgid "Popular:"
+msgstr "Beliebt:"
+
+msgid "Project ·"
+msgstr "Projekt ·"
+
+msgid "Project Partnerships"
+msgstr "Projektpartnerschaften"
+
+msgid "Search projects, news, events…"
+msgstr "Suchen Sie nach Projekten, Neuigkeiten, Veranstaltungen ..."
+
+msgid "Add projects from the Projects menu; they are listed here automatically."
+msgstr "Fügen Sie Projekte über das Menü „Projekte“ hinzu. Sie werden hier automatisch aufgelistet."
+
+msgid "Our Projects"
+msgstr "Unsere Projekte"
+
+msgid "Explore Our Projects"
+msgstr "Entdecken Sie unsere Projekte"
+
+msgid "View project"
+msgstr "Projekt ansehen"
+
+msgid "SEO, sitemap, schema and browser cache"
+msgstr "SEO, Sitemap, Schema und Browser-Cache"
+
+msgid "No SMTP plugin. Certificate and donation emails may land in spam; connect the association mailbox with WP Mail SMTP or FluentSMTP."
+msgstr "Kein SMTP-Plugin. Zertifikats- und Spenden-E-Mails können im Spam landen; Verbinden Sie das Assoziationspostfach mit WP Mail SMTP oder FluentSMTP."
+
+msgid "Timezone"
+msgstr "Zeitzone"
+
+msgid "Download the files you purchased."
+msgstr "Laden Sie die von Ihnen gekauften Dateien herunter."
+
+msgid "Page cache"
+msgstr "Seitencache"
+
+msgid "No page cache. Install and enable LiteSpeed Cache on Hostinger; the site gets noticeably faster."
+msgstr "Kein Seitencache. Installieren und aktivieren Sie LiteSpeed ​​Cache auf Hostinger; die Seite wird spürbar schneller."
+
+msgid "Pages and theme"
+msgstr "Seiten und Thema"
+
+msgid "Cart"
+msgstr "Warenkorb"
+
+msgid "Review your cart; every purchase is a contribution to nature."
+msgstr "Überprüfen Sie Ihren Warenkorb; Jeder Einkauf ist ein Beitrag zur Natur."
+
+msgid "Plant a sapling in the name of your loved ones and let’s give the future room to breathe."
+msgstr "Pflanzen Sie im Namen Ihrer Lieben einen Setzling und geben Sie der Zukunft Raum zum Atmen."
+
+msgid "Plant a sapling in the name of your loved ones and let’s give the future room to breathe. Watch our project video."
+msgstr "Pflanzen Sie im Namen Ihrer Lieben einen Setzling und geben Sie der Zukunft Raum zum Atmen. Sehen Sie sich unser Projektvideo an."
+
+msgid "Donate a sapling for a loved one"
+msgstr "Spenden Sie einen Setzling für einen geliebten Menschen"
+
+msgid "Order steps"
+msgstr "Bestellschritte"
+
+msgid "System Check"
+msgstr "Systemprüfung"
+
+msgid "The site is visible to Google."
+msgstr "Die Seite ist für Google sichtbar."
+
+msgid "Site Setup"
+msgstr "Site-Setup"
+
+msgid "Site address uses http. Enable SSL and switch the address to https for payments and login."
+msgstr "Die Site-Adresse verwendet http. Aktivieren Sie SSL und stellen Sie die Adresse für Zahlungen und Anmeldung auf https um."
+
+msgid "Site address uses https."
+msgstr "Die Site-Adresse verwendet https."
+
+msgid "Site settings"
+msgstr "Site-Einstellungen"
+
+msgid "Site setup"
+msgstr "Site-Setup"
+
+msgid "Search the site"
+msgstr "Durchsuchen Sie die Website"
+
+msgid "We use essential cookies to make our site work, and analytics cookies to understand visits only if you consent."
+msgstr "Wir verwenden unbedingt erforderliche Cookies, damit unsere Website funktioniert, und Analyse-Cookies, um Besuche zu verstehen, nur wenn Sie zustimmen."
+
+msgid "Latest News"
+msgstr "Neueste Nachrichten"
+
+msgid "Recent donations"
+msgstr "Aktuelle Spenden"
+
+msgid "Recent fixes (AI / MCP)"
+msgstr "Aktuelle Korrekturen (AI / MCP)"
+
+msgid "Last run"
+msgstr "Letzter Lauf"
+
+msgid "Autumn"
+msgstr "Herbst"
+
+msgid "Next"
+msgstr "Als nächstes"
+
+msgid "Result"
+msgstr "Ergebnis"
+
+msgid "TRY IBAN"
+msgstr "VERSUCHEN SIE IBAN"
+
+msgid "TR00 0000 0000 0000 0000 0000 00"
+msgstr "TR00 0000 0000 0000 0000 0000 00"
+
+msgid "OK"
+msgstr "Okay"
+
+msgid "Completed Projects"
+msgstr "Abgeschlossene Projekte"
+
+msgid "One-time and Regular Donations"
+msgstr "Einmalige und regelmäßige Spenden"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Add phone"
+msgstr "Telefon hinzufügen"
+
+msgid "Add your phone number to also receive updates via WhatsApp."
+msgstr "Fügen Sie Ihre Telefonnummer hinzu, um Updates auch über WhatsApp zu erhalten."
+
+msgid "The phone number looks invalid. Example: +90 532 123 45 67"
+msgstr "Die Telefonnummer scheint ungültig zu sein. Beispiel: +90 532 123 45 67"
+
+msgid "Phone donations and call logs"
+msgstr "Telefonspenden und Anrufprotokolle"
+
+msgid "Theme"
+msgstr "Thema"
+
+msgid "Theme Settings"
+msgstr "Theme-Einstellungen"
+
+msgid "Our Core Goals"
+msgstr "Unsere Kernziele"
+
+msgid "Basic setup was never run; pages and menu may be missing."
+msgstr "Das Grundsetup wurde nie ausgeführt; Seiten und Menü fehlen möglicherweise."
+
+msgid "Basic setup has been run."
+msgstr "Das Grundsetup wurde durchgeführt."
+
+msgid "Clean-up Drives"
+msgstr "Laufwerke bereinigen"
+
+msgid "Delivery and Refund Policy"
+msgstr "Liefer- und Rückerstattungsrichtlinien"
+
+msgid "Thank you, your donation has been received"
+msgstr "Vielen Dank, Ihre Spende ist eingegangen"
+
+msgid "From Our Community"
+msgstr "Aus unserer Community"
+
+msgid "Shows the languages added with TranslatePress, Polylang or WPML. Hidden when there is only one language."
+msgstr "Zeigt die mit TranslatePress, Polylang oder WPML hinzugefügten Sprachen an. Ausgeblendet, wenn nur eine Sprache vorhanden ist."
+
+msgid "All News"
+msgstr "Alle Neuigkeiten"
+
+msgid "All Ways to Contribute"
+msgstr "Alle Möglichkeiten, einen Beitrag zu leisten"
+
+msgid "All Projects"
+msgstr "Alle Projekte"
+
+msgid "All Our Work"
+msgstr "Unsere ganze Arbeit"
+
+msgid "View all"
+msgstr "Alle anzeigen"
+
+msgid "For Türkiye,"
+msgstr "Für Türkiye,"
+
+msgid "Warning"
+msgstr "Warnung"
+
+msgid "%1$d tasks are more than 15 minutes overdue: %2$s"
+msgstr "%1$d-Aufgaben sind mehr als 15 Minuten überfällig:%2$s"
+
+msgid "No overdue tasks."
+msgstr "Keine überfälligen Aufgaben."
+
+msgid "Tax Exemption"
+msgstr "Steuerbefreiung"
+
+msgid "Video"
+msgstr "Video"
+
+msgid "Play video"
+msgstr "Video abspielen"
+
+msgid "WooCommerce account icon and mini cart. Hidden when WooCommerce is inactive."
+msgstr "WooCommerce-Kontosymbol und Mini-Warenkorb. Versteckt, wenn WooCommerce inaktiv ist."
+
+msgid "WooCommerce currency is %s. Choose Turkish lira."
+msgstr "Die WooCommerce-Währung ist%s. Wählen Sie türkische Lira."
+
+msgid "Coming soon"
+msgstr "Kommt bald"
+
+msgid "Show only these (click again for all)"
+msgstr "Nur diese anzeigen (für alle erneut klicken)"
+
+msgid "Essential only"
+msgstr "Nur unbedingt erforderlich"
+
+msgid "Publications"
+msgstr "Veröffentlichungen"
+
+msgid "Post name structure; /projeler/ and /etkinlikler/ addresses are registered."
+msgstr "Struktur des Beitragsnamens; /projeler/- und /etkinlikler/-Adressen werden registriert."
+
+msgid "Add news from the Posts menu; they are listed here automatically."
+msgstr "Fügen Sie Nachrichten über das Menü „Beiträge“ hinzu; Sie werden hier automatisch aufgelistet."
+
+msgid "Check again"
+msgstr "Überprüfen Sie es noch einmal"
+
+msgid "Green Library"
+msgstr "Grüne Bibliothek"
+
+msgid "Watch on YouTube"
+msgstr "Auf YouTube ansehen"
+
+msgid "Loading…"
+msgstr "Laden…"
+
+msgid "Time"
+msgstr "Zeit"
+
+msgid "Scheduled tasks (cron)"
+msgstr "Geplante Aufgaben (cron)"
+
+msgid "Has not run for a while because traffic is low."
+msgstr "Ist seit einiger Zeit nicht in Betrieb, da der Verkehr gering ist."
+
+msgid "has begun"
+msgstr "hat begonnen"
+
+msgid "for your family"
+msgstr "für Ihre Familie"
+
+msgid "future"
+msgstr "Zukunft"
+
+msgid "contact us"
+msgstr "Kontaktieren Sie uns"
+
+msgid "a greener"
+msgstr "ein grüner"
+
+msgid "planting season"
+msgstr "Pflanzsaison"
+
+msgid "we plant and grow"
+msgstr "wir pflanzen und wachsen"
+
+msgid "nature"
+msgstr "Natur"
+
+msgid "our events page"
+msgstr "unsere Veranstaltungsseite"
+
+msgid "tree planting events"
+msgstr "Baumpflanzveranstaltungen"
+
+msgid "tree planting video"
+msgstr "Baumpflanzvideo"
+
+msgid "how to plant a sapling"
+msgstr "wie man einen Setzling pflanzt"
+
+msgid "we hold with our volunteers."
+msgstr "Wir halten mit unseren Freiwilligen."
+
+msgid "."
+msgstr "."
+
+msgid "No iyzico plugin installed. That is fine: Flux Donate reads the iyzico keys from its own Payments settings."
+msgstr "Kein iyzico-Plugin installiert. Das ist in Ordnung: Flux Donate liest die iyzico-Schlüssel aus seinen eigenen Zahlungseinstellungen."
+
+msgid "Pay with iyzico, Mastercard, Visa, American Express, Troy"
+msgstr "Bezahlen Sie mit iyzico, Mastercard, Visa, American Express, Troy"
+
+msgid "with children"
+msgstr "mit Kindern"
+
+msgid "standing"
+msgstr "stehend"
+
+msgid "guide and our"
+msgstr "Führer und unser"
+
+msgid "v%s and later add their own checks to this screen."
+msgstr "v%sund höher fügen diesem Bildschirm eigene Prüfungen hinzu."
+
+msgid "or"
+msgstr "oder"
+
+msgid "by our forests"
+msgstr "durch unsere Wälder"
+
+msgid "Our Work"
+msgstr "Unsere Arbeit"
+
+msgid "Cookie Policy"
+msgstr "Cookie-Richtlinie"
+
+msgid "Cookie banner"
+msgstr "Cookie-Banner"
+
+msgid "Cookie banner title"
+msgstr "Titel des Cookie-Banners"
+
+msgid "Cookie banner text"
+msgstr "Cookie-Bannertext"
+
+msgid "Cookie banner: accept button"
+msgstr "Cookie-Banner: Schaltfläche „Akzeptieren“."
+
+msgid "Cookie banner: policy link"
+msgstr "Cookie-Banner: Link zur Richtlinie"
+
+msgid "Cookie banner: necessary only button"
+msgstr "Cookie-Banner: Nur erforderliche Schaltfläche"
+
+msgid "Change cookie preferences"
+msgstr "Cookie-Einstellungen ändern"
+
+msgid "We use cookies"
+msgstr "Wir verwenden Cookies"
+
+msgid "Environmental education"
+msgstr "Umwelterziehung"
+
+msgid "Child Protection Policy"
+msgstr "Kinderschutzrichtlinie"
+
+msgid "Exploring"
+msgstr "Erkunden"
+
+msgid "Planting a sapling together with children"
+msgstr "Gemeinsam mit Kindern einen Setzling pflanzen"
+
+msgid "Fill the hole with soil and press gently so no air pockets remain."
+msgstr "Füllen Sie das Loch mit Erde und drücken Sie leicht darauf, damit keine Lufteinschlüsse zurückbleiben."
+
+msgid "Log out"
+msgstr "Abmelden"
+
+msgid "Checkout"
+msgstr "Kasse"
+
+msgid "Payments"
+msgstr "Zahlungen"
+
+msgid "Before → After"
+msgstr "Vorher → Nachher"
+
+msgid "Previous"
+msgstr "Zurück"
+
+msgid "Featured"
+msgstr "Hervorgehoben"
+
+msgid "Featured Projects"
+msgstr "Ausgewählte Projekte"
+
+msgid "Membership Fee and Donation"
+msgstr "Mitgliedsbeitrag und Spende"
+
+msgid "Give nature a sapling in three steps. Your donations become saplings at our tree planting events."
+msgstr "Schenken Sie der Natur in drei Schritten einen Schössling. Bei unseren Baumpflanzaktionen werden aus Ihren Spenden Setzlinge."
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "I joined my first tree planting event with my friends. We learned a lot, and watching the saplings we planted grow is an incredible feeling."
+msgstr "Ich nahm mit meinen Freunden an meiner ersten Baumpflanzaktion teil. Wir haben viel gelernt und es ist ein unglaubliches Gefühl, den von uns gepflanzten Setzlingen beim Wachsen zuzusehen."
+
+msgid "Our Istanbul Branch and Provincial Office"
+msgstr "Unsere Niederlassung in Istanbul und unser Provinzbüro"
+
+msgid "Istanbul Branch"
+msgstr "Niederlassung in Istanbul"
+
+msgid "Optional"
+msgstr "Optional"
+
+msgid "General"
+msgstr "Allgemein"
+
+msgid "Presets"
+msgstr "Voreinstellungen"
+
+msgid "A preset sets up the site in one step with the organisation profile, plugin settings, colours, header/footer, templates, pages and menus. Changes you make in the panel are never overwritten; updates are applied one by one with your approval."
+msgstr "Eine Voreinstellung richtet die Site in einem Schritt mit dem Organisationsprofil, Plugin-Einstellungen, Farben, Kopf-/Fußzeile, Vorlagen, Seiten und Menüs ein. Änderungen, die Sie im Panel vornehmen, werden nie überschrieben; Aktualisierungen werden nach und nach mit Ihrer Zustimmung durchgeführt."
+
+msgid "Appearance"
+msgstr "Aussehen"
+
+msgid "Site type"
+msgstr "Site-Typ"
+
+msgid "Shop: Orders, Return to shop"
+msgstr "Shop: Bestellungen, Zurück zum Shop"
+
+msgid "Donation: Donations, Donate button, return to the donation page"
+msgstr "Spende: Spenden, Schaltfläche „Spenden“, zurück zur Spendenseite"
+
+msgid "Sets the wording in My account, the cart and the mobile menu."
+msgstr "Legt den Wortlaut in „Mein Konto“, im Warenkorb und im mobilen Menü fest."
+
+msgid "Save settings"
+msgstr "Einstellungen speichern"
+
+msgid "Log in to manage your orders, addresses and account details, or create an account in seconds."
+msgstr "Melden Sie sich an, um Ihre Bestellungen, Adressen und Kontodaten zu verwalten, oder erstellen Sie in Sekundenschnelle ein Konto."
+
+msgid "Track your orders and manage your addresses and account details in one place."
+msgstr "Verfolgen Sie Ihre Bestellungen und verwalten Sie Ihre Adressen und Kontodaten an einem Ort."
+
+msgid "Thank you, your order has been received"
+msgstr "Vielen Dank, Ihre Bestellung ist eingegangen"
+
+msgid "Your order summary is below. The details were also sent to your email address."
+msgstr "Ihre Bestellübersicht finden Sie unten. Die Details wurden auch an Ihre E-Mail-Adresse gesendet."
+
+msgid "Review your cart, then proceed to checkout."
+msgstr "Überprüfen Sie Ihren Warenkorb und gehen Sie dann zur Kasse."
+
+msgid "Continue donating"
+msgstr "Spenden Sie weiter"
+
+msgid "Continue shopping"
+msgstr "Weiter einkaufen"
+
+msgid "Go to the shop"
+msgstr "Geh in den Laden"
+
+msgid "See your orders and their status."
+msgstr "Sehen Sie sich Ihre Bestellungen und deren Status an."
+
+msgid "Recent orders"
+msgstr "Letzte Bestellungen"
+
+msgid "Search products, posts, pages…"
+msgstr "Produkte, Beiträge, Seiten durchsuchen …"
+
+msgid "Post name structure."
+msgstr "Struktur des Beitragsnamens."
+
+msgid "My account, Cart and Checkout are published."
+msgstr "Mein Konto, Warenkorb und Kasse werden veröffentlicht."
+
+msgid "Theme settings copied (%d fields)."
+msgstr "Theme-Einstellungen kopiert (%d-Felder)."
+
+msgid "Additional CSS copied."
+msgstr "Zusätzliches CSS kopiert."
+
+msgid "Site Editor records copied (%d templates, parts or styles)."
+msgstr "Site-Editor-Datensätze kopiert (%d-Vorlagen, Teile oder Stile)."
+
+msgid "There was nothing new to migrate."
+msgstr "Es gab nichts Neues zu migrieren."
+
+msgid "You are not allowed to do this."
+msgstr "Dies ist Ihnen nicht gestattet."
+
+msgid "Migrated from the previous theme."
+msgstr "Vom vorherigen Theme migriert."
+
+msgid "Migrate from the previous theme"
+msgstr "Vom vorherigen Theme migrieren"
+
+msgid "Copies the previous theme's settings (logo, menus, additional CSS) and the templates, parts and styles you saved in the Site Editor to this theme. The previous theme is left untouched; records with the same name in this theme are not overwritten."
+msgstr "Kopiert die Einstellungen des vorherigen Themes (Logo, Menüs, zusätzliches CSS) und die Vorlagen, Teile und Stile, die Sie im Site-Editor gespeichert haben, in dieses Theme. Das vorherige Thema bleibt unberührt; Datensätze mit demselben Namen in diesem Thema werden nicht überschrieben."
+
+msgid "Migrate from %s"
+msgstr "Von%smigrieren"
+
+msgid "Migrate from %1$s again (last: %2$s)"
+msgstr "Erneut von%1$smigrieren (letztes:%2$s)"
+
+msgid "FluxWP"
+msgstr "FluxWP"
+
+msgid "New season"
+msgstr "Neue Saison"
+
+msgid "Simple, quality products for everyday life"
+msgstr "Einfache, hochwertige Produkte für den Alltag"
+
+msgid "Carefully selected products, fast delivery and easy returns."
+msgstr "Sorgfältig ausgewählte Produkte, schnelle Lieferung und einfache Rückgabe."
+
+msgid "Start shopping"
+msgstr "Beginnen Sie mit dem Einkaufen"
+
+msgid "Fast delivery"
+msgstr "Schnelle Lieferung"
+
+msgid "Your orders are packed with care and shipped quickly."
+msgstr "Ihre Bestellungen werden sorgfältig verpackt und schnell versendet."
+
+msgid "Easy returns"
+msgstr "Einfache Rückgabe"
+
+msgid "Return any product you don't like free of charge within 14 days."
+msgstr "Geben Sie jedes Produkt, das Ihnen nicht gefällt, innerhalb von 14 Tagen kostenlos zurück."
+
+msgid "Secure payment"
+msgstr "Sichere Zahlung"
+
+msgid "Pay securely by card or bank transfer."
+msgstr "Bezahlen Sie sicher per Karte oder Banküberweisung."
+
+msgid "Featured products"
+msgstr "Ausgewählte Produkte"
+
+msgid "See all →"
+msgstr "Alle anzeigen →"
+
+msgid "From the blog"
+msgstr "Aus dem Blog"
+
+msgid "No posts yet."
+msgstr "Noch keine Beiträge."
+
+msgid "Recent posts"
+msgstr "Aktuelle Beiträge"
+
+msgid "All products"
+msgstr "Alle Produkte"
+
+msgid "Company"
+msgstr "Unternehmen"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgctxt "context_dd7eb423550c"
+msgid "Primary"
+msgstr "Primär"
+
+msgctxt "context_dd7eb423550c"
+msgid "Primary dark"
+msgstr "Primär dunkel"
+
+msgctxt "context_dd7eb423550c"
+msgid "Accent"
+msgstr "Akzent"
+
+msgctxt "context_dd7eb423550c"
+msgid "Heading"
+msgstr "Überschrift"
+
+msgctxt "context_dd7eb423550c"
+msgid "Text"
+msgstr "Text"
+
+msgctxt "context_dd7eb423550c"
+msgid "Light background"
+msgstr "Heller Hintergrund"
+
+msgctxt "context_dd7eb423550c"
+msgid "Lighter background"
+msgstr "Hellerer Hintergrund"
+
+msgctxt "context_dd7eb423550c"
+msgid "Border"
+msgstr "Grenze"
+
+msgctxt "context_dd7eb423550c"
+msgid "White"
+msgstr "Weiß"
+
+msgctxt "context_5a4407eb92ce"
+msgid "Indigo"
+msgstr "Indigo"
+
+msgctxt "context_5a4407eb92ce"
+msgid "Charcoal"
+msgstr "Kohle"
+
+msgctxt "context_5a4407eb92ce"
+msgid "Blue"
+msgstr "Blau"
+
+msgctxt "context_5a4407eb92ce"
+msgid "Forest"
+msgstr "Wald"
+
+msgctxt "context_5a4407eb92ce"
+msgid "Petrol"
+msgstr "Benzin"
+
+msgctxt "context_dd7eb423550c"
+msgid "Page background"
+msgstr "Seitenhintergrund"
+
+msgid "Store dashboard, customers, sales report and bank transfer with receipt"
+msgstr "Shop-Dashboard, Kunden, Verkaufsbericht und Banküberweisung mit Quittung"
+
+msgid "Contact forms"
+msgstr "Kontaktformulare"
+
+msgid "WhatsApp chats and call logs"
+msgstr "WhatsApp-Chats und Anrufprotokolle"
+
+msgid "Tasks run only when visitors arrive (WP-Cron). With low traffic, emails and scheduled jobs are delayed. Add this command every 5 minutes under Hostinger › Advanced › Cron Jobs: %s Then add define( 'DISABLE_WP_CRON', true ); to wp-config.php."
+msgstr "Aufgaben werden nur ausgeführt, wenn Besucher eintreffen (WP-Cron). Bei geringem Datenverkehr verzögern sich E-Mails und geplante Aufträge. Fügen Sie diesen Befehl alle 5 Minuten unter Hostinger › Erweitert › Cron-Jobs hinzu:%s. Fügen Sie dann define( 'DISABLE_WP_CRON', true ); zu wp-config.php."
+
+msgid "%s. Choose Istanbul so order, form and email times are correct."
+msgstr "%s. Wählen Sie Istanbul, damit die Bestell-, Formular- und E-Mail-Zeiten korrekt sind."
+
+msgid "No SMTP plugin. Site emails may land in spam; connect your organization's email with WP Mail SMTP or FluentSMTP."
+msgstr "Kein SMTP-Plugin. Website-E-Mails können im Spam landen; Verbinden Sie die E-Mails Ihrer Organisation mit WP Mail SMTP oder FluentSMTP."
+
+msgid "Pay with iyzico · Mastercard · Visa · American Express · Troy"
+msgstr "Bezahlen Sie mit iyzico · Mastercard · Visa · American Express · Troy"
+
+msgid "Payment methods"
+msgstr "Zahlungsmethoden"
+
+msgid "Remove"
+msgstr "Entfernen"
+
+msgid "Move left"
+msgstr "Bewegen Sie sich nach links"
+
+msgid "Payment logos"
+msgstr "Zahlungslogos"
+
+msgid "Add logos"
+msgstr "Logos hinzufügen"
+
+msgid "No logos: the footer shows no payment logos."
+msgstr "Keine Logos: In der Fußzeile werden keine Zahlungslogos angezeigt."
+
+msgid "Logos that virtual POS providers (iyzico, EsnekPOS, etc.) want on the site. Shown in the footer; add them anywhere else with the [flx_odeme_logolari] shortcode."
+msgstr "Logos, die virtuelle POS-Anbieter (iyzico, EsnekPOS usw.) auf der Website haben möchten. Wird in der Fußzeile angezeigt; Fügen Sie sie an einer anderen Stelle mit dem Shortcode [flx_odeme_logolari] hinzu."
+
+msgid "Logos"
+msgstr "Logos"
+
+msgid "Upload logo"
+msgstr "Logo hochladen"
+
+msgid "Built-in logo"
+msgstr "Integriertes Logo"
+
+msgid "Add a built-in logo…"
+msgstr "Fügen Sie ein integriertes Logo hinzu…"
+
+msgid "Back to automatic"
+msgstr "Zurück zur Automatik"
+
+msgid "Automatic now: the iyzico band and the logos of enabled virtual POS plugins. Once you add or remove a logo, the list is your own choice."
+msgstr "Jetzt automatisch: das iyzico-Band und die Logos der aktivierten virtuellen POS-Plugins. Sobald Sie ein Logo hinzufügen oder entfernen, können Sie die Liste selbst auswählen."
+
+msgid "Hand-picked list. \"Back to automatic\" returns to the iyzico band and the logos of enabled virtual POS plugins."
+msgstr "Handverlesene Liste. „Zurück zur Automatik“ kehrt zum iyzico-Band und den Logos der aktivierten virtuellen POS-Plugins zurück."
+
+msgid "SVG or transparent PNG is best; colored logos are shown in a white box on a dark footer."
+msgstr "SVG oder transparentes PNG ist am besten; Farbige Logos werden in einem weißen Feld auf einer dunklen Fußzeile angezeigt."
+
+msgid "\\n%s. Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin.\\n"
+msgstr "\\n%s. Hostinger › PHP-Version 8.2 ist in der letzten Sekunde verfügbar.\\n"
+
+msgid "Background pattern"
+msgstr "Hintergrundmuster"
+
+msgid "\\nDots\\n"
+msgstr "\\nPunkte\\n"
+
+msgid "Leaves"
+msgstr "Blätter"
+
+msgid "None"
+msgstr "Keine"
+
+msgid "News introduction"
+msgstr "Einführung in die Neuigkeiten"
+
+msgid "Latest news, updates and articles."
+msgstr "Aktuelle Nachrichten, Updates und Artikel."

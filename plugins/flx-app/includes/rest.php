@@ -12,7 +12,7 @@
 defined( 'ABSPATH' ) || exit;
 
 function flxapp_logged_in() {
-	return is_user_logged_in() ? true : new WP_Error( 'rest_forbidden', __( 'Giriş gerekli.', 'flx-app' ), array( 'status' => 401 ) );
+	return is_user_logged_in() ? true : new WP_Error( 'rest_forbidden', __( 'Sign-in required.', 'flx-app' ), array( 'status' => 401 ) );
 }
 
 function flxapp_counts() {
@@ -200,7 +200,7 @@ function flxapp_user_layout( $user, $menu ) {
 			}
 		}
 		if ( null === $oi ) {
-			$groups[] = array( 'id' => 'other', 'label' => __( 'Diğer', 'flx-app' ), 'collapsed' => true, 'items' => array() );
+			$groups[] = array( 'id' => 'other', 'label' => __( 'Other', 'flx-app' ), 'collapsed' => true, 'items' => array() );
 			$oi       = count( $groups ) - 1;
 		}
 		$groups[ $oi ]['items'] = array_values( array_unique( array_merge( $groups[ $oi ]['items'], $left ) ) );
@@ -225,10 +225,10 @@ function flxapp_user_bottom( $user ) {
 
 function flxapp_rest_session( WP_REST_Request $req ) {
 	if ( ! flxapp_opt( 'web_session' ) ) {
-		return new WP_Error( 'flxapp_web_session_off', __( 'Panel oturumu ayarlardan kapalı.', 'flx-app' ), array( 'status' => 403 ) );
+		return new WP_Error( 'flxapp_web_session_off', __( 'Admin sessions are turned off in settings.', 'flx-app' ), array( 'status' => 403 ) );
 	}
 	if ( ! flxapp_rate( 'session', 30, MINUTE_IN_SECONDS ) ) {
-		return new WP_Error( 'flxapp_rate', __( 'Çok fazla istek. Biraz bekleyin.', 'flx-app' ), array( 'status' => 429 ) );
+		return new WP_Error( 'flxapp_rate', __( 'Too many requests. Please wait a moment.', 'flx-app' ), array( 'status' => 429 ) );
 	}
 	$embed = $req->get_param( 'embed' );
 	$path  = (string) $req->get_param( 'path' );
@@ -238,7 +238,7 @@ function flxapp_rest_session( WP_REST_Request $req ) {
 		$path  = '';
 	}
 	if ( '' !== $front && '' === flxapp_clean_front_url( $front ) ) {
-		return new WP_Error( 'flxapp_bad_path', __( 'Geçersiz panel yolu.', 'flx-app' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxapp_bad_path', __( 'Invalid admin path.', 'flx-app' ), array( 'status' => 400 ) );
 	}
 	$tok = flxapp_current_token();
 	$url = flxapp_sso_url(
@@ -251,7 +251,7 @@ function flxapp_rest_session( WP_REST_Request $req ) {
 		)
 	);
 	if ( '' === $url ) {
-		return new WP_Error( 'flxapp_bad_path', __( 'Geçersiz panel yolu.', 'flx-app' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxapp_bad_path', __( 'Invalid admin path.', 'flx-app' ), array( 'status' => 400 ) );
 	}
 	return array( 'url' => $url, 'expires_in' => 60 );
 }

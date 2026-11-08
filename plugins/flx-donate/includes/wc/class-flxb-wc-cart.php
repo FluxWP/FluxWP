@@ -120,11 +120,11 @@ final class FLXB_WC_Cart {
 		$tid = absint( $in['flxb_type'] ?? ( $in['type_id'] ?? 0 ) );
 		$t = $tid ? FLXB_Types::get( $tid ) : null;
 		if ( ! $t ) {
-			return new WP_Error( 'flxb_type', __( 'Please choose what you would like to donate for.', 'flx-donate' ) );
+			return new WP_Error( 'flxb_type', __( '\\nPlease choose what you would like to donate for.\\n', 'flx-donate' ) );
 		}
 		if ( ! FLXB_Types::is_open( $t ) ) {
 			$msg = FLXB_Types::closed_message( $t );
-			return new WP_Error( 'flxb_closed', '' !== $msg ? $msg : __( 'Donations for this cause are closed at the moment.', 'flx-donate' ) );
+			return new WP_Error( 'flxb_closed', '' !== $msg ? $msg : __( '\\nDonations for this cause are closed at the moment.\\n', 'flx-donate' ) );
 		}
 		$cur  = self::currency();
 		$line = array( 'type_id' => (int) $t['id'], 'option' => '', 'units' => 1, 'currency' => $cur );
@@ -135,10 +135,10 @@ final class FLXB_WC_Cart {
 			$opt = FLXB_Types::option( $t, $key );
 			if ( $opt && FLXB_Types::option_on_sale( $opt ) && ! FLXB_Types::option_on_sale_in( $t, $opt, $cur ) ) {
 				/* translators: %s: currency code */
-				return new WP_Error( 'flxb_currency', sprintf( __( 'This option cannot be donated in %s. Please choose another currency.', 'flx-donate' ), $cur ) );
+				return new WP_Error( 'flxb_currency', sprintf( __( '\\nThis option cannot be donated in%s. Please choose another currency.\\n', 'flx-donate' ), $cur ) );
 			}
 			if ( ! $opt || ! FLXB_Types::option_on_sale_in( $t, $opt, $cur ) ) {
-				return new WP_Error( 'flxb_option', __( 'This option cannot be donated online at the moment.', 'flx-donate' ) );
+				return new WP_Error( 'flxb_option', __( '\\nThis option cannot be donated online at the moment.", \'en\']]', 'flx-donate' ) );
 			}
 			$line['option'] = $key;
 			if ( self::option_takes_units( $t, $key ) ) {
@@ -146,7 +146,7 @@ final class FLXB_WC_Cart {
 				$max = self::max_units( $t );
 				if ( $n < 1 || $n > $max ) {
 					/* translators: %s: highest number */
-					return new WP_Error( 'flxb_units', sprintf( __( 'The number must be between 1 and %s.', 'flx-donate' ), number_format_i18n( $max ) ) );
+					return new WP_Error( 'flxb_units', sprintf( __( '\\nThe number must be between 1 and%s.\', \'en\']]', 'flx-donate' ), number_format_i18n( $max ) ) );
 				}
 				$line['units'] = $n;
 			}
@@ -155,25 +155,25 @@ final class FLXB_WC_Cart {
 			$min    = FLXB_Types::min_amount_in( $t, $cur );
 			if ( $amount <= 0 || $amount < $min ) {
 				/* translators: %s: lowest amount */
-				return new WP_Error( 'flxb_amount', $min > 0 ? sprintf( __( 'The amount must be at least %s.', 'flx-donate' ), FLXB_WC::money_text( $min ) ) : __( 'Please enter an amount.', 'flx-donate' ) );
+				return new WP_Error( 'flxb_amount', $min > 0 ? sprintf( __( '\\nThe amount must be at least%s.\\n', 'flx-donate' ), FLXB_WC::money_text( $min ) ) : __( '\\nPlease enter an amount.\\n', 'flx-donate' ) );
 			}
 			if ( $amount > 1000000 ) {
-				return new WP_Error( 'flxb_amount', __( 'For this amount please get in touch with us.', 'flx-donate' ) );
+				return new WP_Error( 'flxb_amount', __( '\\nFor this amount please get in touch with us.\\n', 'flx-donate' ) );
 			}
 			$line['amount'] = round( $amount, 2 );
 		} else {
-			return new WP_Error( 'flxb_option', __( 'Please choose an option.', 'flx-donate' ) );
+			return new WP_Error( 'flxb_option', __( '\\nPlease choose an option.\\n', 'flx-donate' ) );
 		}
 
 		if ( self::type_has_certificate( $t ) ) {
 			if ( 'print' === ( $in['cert'] ?? '' ) && ! self::print_here() ) {
-				return new WP_Error( 'flxb_print', __( 'Printed certificates are not available yet. Please choose the online certificate.', 'flx-donate' ) );
+				return new WP_Error( 'flxb_print', __( '\\nPrinted certificates are not available yet. Please choose the online certificate.\\n', 'flx-donate' ) );
 			}
 			$line['cert'] = 'print' === ( $in['cert'] ?? '' ) ? 'print' : 'online';
 			if ( 'print' === $line['cert'] ) {
 				$addr = trim( sanitize_textarea_field( (string) ( $in['address'] ?? '' ) ) );
 				if ( strlen( $addr ) < 10 ) {
-					return new WP_Error( 'flxb_address', __( 'Please write the postal address for the printed certificate.', 'flx-donate' ) );
+					return new WP_Error( 'flxb_address', __( '\\nPlease write the postal address for the printed certificate.\\n', 'flx-donate' ) );
 				}
 				$line['address'] = mb_substr( $addr, 0, 400 );
 			}
@@ -185,7 +185,7 @@ final class FLXB_WC_Cart {
 		$line['name']      = mb_substr( $name, 0, 80 );
 		if ( $line['for_other'] && ! FLXB_Types::requires_proxy( $t ) ) {
 			if ( '' === $line['name'] ) {
-				return new WP_Error( 'flxb_ben', __( 'Please write the name of the person you are donating for.', 'flx-donate' ) );
+				return new WP_Error( 'flxb_ben', __( '\\nPlease write the name of the person you are donating for.\\n', 'flx-donate' ) );
 			}
 			$line['ben_name'] = $line['name'];
 		}
@@ -193,15 +193,15 @@ final class FLXB_WC_Cart {
 		if ( FLXB_Types::requires_proxy( $t ) ) {
 			$text = flxb_proxy_text();
 			if ( ! $text ) {
-				return new WP_Error( 'flxb_proxy', __( 'This donation needs a proxy (vekâlet) consent, but it is not set up yet. Please contact the site administrator.', 'flx-donate' ) );
+				return new WP_Error( 'flxb_proxy', __( '\\nThis donation needs a proxy (vekâlet) consent, but it is not set up yet. Please contact the site administrator.\\n', 'flx-donate' ) );
 			}
 			$given = $in['proxy_consent'] ?? '';
 			if ( empty( $given ) ) {
-				return new WP_Error( 'flxb_proxy', __( 'Please accept the proxy (vekâlet) text to continue.', 'flx-donate' ) );
+				return new WP_Error( 'flxb_proxy', __( '\\nPlease accept the proxy (vekâlet) text to continue.\\n', 'flx-donate' ) );
 			}
 			if ( is_numeric( $given ) && (int) $given > 1 && (int) $given !== (int) $text['version'] ) {
 				/* The text changed after the page was opened: the donor must accept the current version. */
-				return new WP_Error( 'flxb_proxy', __( 'The proxy (vekâlet) text has been updated. Please read it again and accept it.', 'flx-donate' ) );
+				return new WP_Error( 'flxb_proxy', __( '\\nThe proxy (vekâlet) text has been updated. Please read it again and accept it.\\n', 'flx-donate' ) );
 			}
 			$raw    = $in['beneficiaries'] ?? '';
 			$names  = array_slice( flxb_split_names( is_array( $raw ) ? implode( "\n", array_filter( $raw, 'is_scalar' ) ) : (string) $raw ), 0, 1000 );
@@ -209,7 +209,7 @@ final class FLXB_WC_Cart {
 			$shares = '' === $line['option'] ? 1 : (int) $line['units'];
 			if ( count( $names ) > $shares ) {
 				/* translators: %s: number of shares */
-				return new WP_Error( 'flxb_names', sprintf( _n( 'Please write at most %s name (one per share).', 'Please write at most %s names (one per share).', $shares, 'flx-donate' ), number_format_i18n( $shares ) ) );
+				return new WP_Error( 'flxb_names', sprintf( _n( '[[\'Please write at most%sname (one per share).\', \'en\']]', '[[\'Please write at most%snames (one per share).\', \'en\']]', $shares, 'flx-donate' ), number_format_i18n( $shares ) ) );
 			}
 			$line['beneficiaries'] = $names;
 			/* 2.16.0: a phone per share card, next to its name (empty = none). */
@@ -239,14 +239,14 @@ final class FLXB_WC_Cart {
 		if ( '' !== $phone ) {
 			$norm = flxb_normalize_phone( $phone );
 			if ( '' === $norm ) {
-				return new WP_Error( 'flxb_phone', __( 'The phone number does not look right. Example: 0532 123 45 67', 'flx-donate' ) );
+				return new WP_Error( 'flxb_phone', __( '\\nThe phone number does not look right. Example: 0532 123 45 67\\n', 'flx-donate' ) );
 			}
 			$line['ben_phone'] = $norm;
 		}
 		$email = trim( (string) ( $in['ben_email'] ?? '' ) );
 		if ( '' !== $email ) {
 			if ( ! is_email( $email ) ) {
-				return new WP_Error( 'flxb_email', __( 'The e-mail address does not look right.', 'flx-donate' ) );
+				return new WP_Error( 'flxb_email', __( '\\nThe e-mail address does not look right.\\n', 'flx-donate' ) );
 			}
 			$line['ben_email'] = strtolower( sanitize_email( $email ) );
 		}
@@ -254,10 +254,10 @@ final class FLXB_WC_Cart {
 
 		if ( ! empty( $in['monthly'] ) ) {
 			if ( empty( $t['allow_recurring'] ) ) {
-				return new WP_Error( 'flxb_monthly', __( 'This cause does not take monthly donations.', 'flx-donate' ) );
+				return new WP_Error( 'flxb_monthly', __( '\\nThis cause does not take monthly donations.\\n', 'flx-donate' ) );
 			}
 			if ( ! self::monthly_available() ) {
-				return new WP_Error( 'flxb_monthly', __( 'Monthly donations are not available at the moment.', 'flx-donate' ) );
+				return new WP_Error( 'flxb_monthly', __( '\\nMonthly donations are not available at the moment.\\n', 'flx-donate' ) );
 			}
 			$line['monthly'] = true;
 		}
@@ -335,18 +335,18 @@ final class FLXB_WC_Cart {
 			$line['currency'] = self::line_currency( $line );
 			if ( $line['currency'] !== FLXB_WC_Currency::current() && ! FLXB_WC_Currency::set( $line['currency'] ) ) {
 				/* translators: %s: currency code */
-				return new WP_Error( 'flxb_currency', sprintf( __( 'Donations in %s cannot be paid here at the moment.', 'flx-donate' ), $line['currency'] ) );
+				return new WP_Error( 'flxb_currency', sprintf( __( '\\nDonations in%scannot be paid here at the moment.\\n', 'flx-donate' ), $line['currency'] ) );
 			}
 		}
 		$pid = FLXB_WC_Products::product_id( (int) $line['type_id'] );
 		if ( ! $pid ) {
-			return new WP_Error( 'flxb_product', __( 'The donation product could not be found.', 'flx-donate' ) );
+			return new WP_Error( 'flxb_product', __( '\\nThe donation product could not be found.\\n', 'flx-donate' ) );
 		}
 		$key = WC()->cart->add_to_cart( $pid, 1, 0, array(), array( self::KEY => $line ) );
 		if ( ! $key ) {
 			$err = wc_get_notices( 'error' );
 			wc_clear_notices();
-			$msg = $err ? wp_strip_all_tags( is_array( $err[0] ) ? $err[0]['notice'] : $err[0] ) : __( 'It could not be added to the cart.', 'flx-donate' );
+			$msg = $err ? wp_strip_all_tags( is_array( $err[0] ) ? $err[0]['notice'] : $err[0] ) : __( '\\nIt could not be added to the cart.\\n', 'flx-donate' );
 			return new WP_Error( 'flxb_cart', $msg );
 		}
 		return $key;
@@ -424,20 +424,20 @@ final class FLXB_WC_Cart {
 				$here = self::line_price( $item[ self::KEY ], self::line_currency( $item[ self::KEY ] ) ) > 0;
 				WC()->cart->remove_cart_item( $key );
 				/* translators: %s: currency code */
-				wc_add_notice( $here ? sprintf( __( 'A donation in your cart cannot be paid in %s and was removed.', 'flx-donate' ), $cur ) : __( 'A donation in your cart is no longer available and was removed.', 'flx-donate' ), 'error' );
+				wc_add_notice( $here ? sprintf( __( '\\nA donation in your cart cannot be paid in%sand was removed.\\n', 'flx-donate' ), $cur ) : __( '\\nA donation in your cart is no longer available and was removed.\\n', 'flx-donate' ), 'error' );
 				continue;
 			}
 			if ( 'print' === ( $item[ self::KEY ]['cert'] ?? '' ) && ! self::print_here() ) {
 				/* 2.15: the printed certificate fee is in the store currency only. */
 				WC()->cart->cart_contents[ $key ][ self::KEY ]['cert'] = 'online';
 				WC()->cart->set_session();
-				wc_add_notice( __( 'Printed certificates can only be paid in the store currency; your certificate will be sent online.', 'flx-donate' ), 'notice' );
+				wc_add_notice( __( '\\nPrinted certificates can only be paid in the store currency; your certificate will be sent online.\\n', 'flx-donate' ), 'notice' );
 			}
 		}
 		if ( $other && class_exists( 'FLXB_WC_Currency' ) && FLXB_WC_Currency::base() !== $cur ) {
 			/* Shop products have one price, in the store currency. */
 			/* translators: 1: store currency, 2: switch link */
-			wc_add_notice( sprintf( __( 'Products in your cart can only be paid in %1$s. <a href="%2$s">Switch to %1$s</a>', 'flx-donate' ), esc_html( FLXB_WC_Currency::base() ), esc_url( FLXB_WC_Currency::url( FLXB_WC_Currency::base() ) ) ), 'error' );
+			wc_add_notice( sprintf( __( '\\nProducts in your cart can only be paid in%1$s.<a href="%2$s">Switch to%1$s</a>\\n', 'flx-donate' ), esc_html( FLXB_WC_Currency::base() ), esc_url( FLXB_WC_Currency::url( FLXB_WC_Currency::base() ) ) ), 'error' );
 		}
 	}
 
@@ -454,7 +454,7 @@ final class FLXB_WC_Cart {
 			}
 		}
 		if ( $n ) {
-			$cart->add_fee( __( 'Printed certificate delivery', 'flx-donate' ), $fee * $n, false );
+			$cart->add_fee( __( '\\nPrinted certificate delivery\\n', 'flx-donate' ), $fee * $n, false );
 		}
 	}
 
@@ -493,30 +493,30 @@ final class FLXB_WC_Cart {
 			}
 		}
 		if ( ! empty( $line['monthly'] ) ) {
-			$out[ __( 'Repeats', 'flx-donate' ) ] = __( 'Every month', 'flx-donate' );
+			$out[ __( '\\nRepeats\\n', 'flx-donate' ) ] = __( 'Every month', 'flx-donate' );
 		}
 		if ( ! empty( $line['beneficiaries'] ) && is_array( $line['beneficiaries'] ) ) {
-			$out[ __( 'Names (one per share)', 'flx-donate' ) ] = self::names_text( $line['beneficiaries'] );
+			$out[ __( '[[\'Names (one per share)\\n', 'flx-donate' ) ] = self::names_text( $line['beneficiaries'] );
 		} elseif ( ! empty( $line['for_other'] ) && '' !== (string) ( $line['ben_name'] ?? '' ) ) {
 			$out[ __( 'On behalf of', 'flx-donate' ) ] = $line['ben_name'];
 		}
 		if ( ! empty( $line['proxy_consent']['version'] ) ) {
-			$out[ __( 'Proxy consent', 'flx-donate' ) ] = self::consent_text( $line['proxy_consent'] );
+			$out[ __( '\\nProxy consent\\n', 'flx-donate' ) ] = self::consent_text( $line['proxy_consent'] );
 		}
 		if ( ! empty( $line['cert'] ) ) {
 			$out[ __( 'Certificate', 'flx-donate' ) ] = self::cert_label( $line['cert'] );
 			if ( ! empty( $line['tpl_name'] ) ) {
-				$out[ __( 'Design', 'flx-donate' ) ] = (string) $line['tpl_name'];
+				$out[ __( '\\nDesign\\n', 'flx-donate' ) ] = (string) $line['tpl_name'];
 			}
 			if ( '' !== (string) ( $line['name'] ?? '' ) && empty( $line['for_other'] ) ) {
-				$out[ __( 'Name on the certificate', 'flx-donate' ) ] = $line['name'];
+				$out[ __( '\\nName on the certificate\\n', 'flx-donate' ) ] = $line['name'];
 			}
 			$to = array_filter( array( $line['ben_phone'] ?? '', $line['ben_email'] ?? '' ) );
 			if ( $to ) {
-				$out[ __( 'Sent to', 'flx-donate' ) ] = implode( ', ', $to ) . ( ! empty( $line['send_me'] ) ? ' · ' . __( 'copy to me', 'flx-donate' ) : '' );
+				$out[ __( '\\nSent to\\n', 'flx-donate' ) ] = implode( ', ', $to ) . ( ! empty( $line['send_me'] ) ? ' · ' . __( '\\ncopy to me\\n', 'flx-donate' ) : '' );
 			}
 			if ( ! empty( $line['address'] ) ) {
-				$out[ __( 'Postal address', 'flx-donate' ) ] = $line['address'];
+				$out[ __( '\\nPostal address\\n', 'flx-donate' ) ] = $line['address'];
 			}
 		}
 		return $out;
@@ -533,11 +533,11 @@ final class FLXB_WC_Cart {
 
 	public static function consent_text( array $c ) {
 		/* translators: %s: proxy text version */
-		return sprintf( __( 'accepted (text version %s)', 'flx-donate' ), number_format_i18n( (int) ( $c['version'] ?? 0 ) ) );
+		return sprintf( __( '\\naccepted (text version%s)\\n', 'flx-donate' ), number_format_i18n( (int) ( $c['version'] ?? 0 ) ) );
 	}
 
 	public static function cert_label( $cert ) {
-		return 'print' === $cert ? __( 'Online + printed', 'flx-donate' ) : __( 'Online', 'flx-donate' );
+		return 'print' === $cert ? __( '\\nOnline + printed\\n', 'flx-donate' ) : __( 'Online', 'flx-donate' );
 	}
 
 	/** Line title: "7 Sapling Donation" / type title (option). */
@@ -550,7 +550,7 @@ final class FLXB_WC_Cart {
 		list( $n, $unit ) = self::units( $line, 1 );
 		if ( 'fidan' === $unit && $n ) {
 			/* translators: %s: number of saplings */
-			return sprintf( __( '%s Sapling Donation', 'flx-donate' ), number_format_i18n( $n ) );
+			return sprintf( __( '\\n%sSapling Donation\\n', 'flx-donate' ), number_format_i18n( $n ) );
 		}
 		$title = (string) $t['title'];
 		if ( '' !== (string) ( $line['option'] ?? '' ) && count( $t['options'] ) > 1 ) {
@@ -632,15 +632,15 @@ final class FLXB_WC_Cart {
 		$map = array(
 			'flxb_fidan'     => __( 'Saplings', 'flx-donate' ),
 			'flxb_units'      => __( 'Quantity', 'flx-donate' ),
-			'flxb_monthly'    => __( 'Repeats', 'flx-donate' ),
+			'flxb_monthly'    => __( '\\nRepeats\\n', 'flx-donate' ),
 			'flxb_on_behalf'  => __( 'On behalf of', 'flx-donate' ),
-			'flxb_names'      => __( 'Names (one per share)', 'flx-donate' ),
-			'flxb_proxy'      => __( 'Proxy consent', 'flx-donate' ),
+			'flxb_names'      => __( '[[\'Names (one per share)\\n', 'flx-donate' ),
+			'flxb_proxy'      => __( '\\nProxy consent\\n', 'flx-donate' ),
 			'flxb_cert'      => __( 'Certificate', 'flx-donate' ),
-			'flxb_cert_name' => __( 'Name on the certificate', 'flx-donate' ),
-			'flxb_cert_design' => __( 'Design', 'flx-donate' ),
-			'flxb_cert_address'   => __( 'Postal address', 'flx-donate' ),
-			'flxb_cert_no'   => __( 'Certificate no', 'flx-donate' ),
+			'flxb_cert_name' => __( '\\nName on the certificate\\n', 'flx-donate' ),
+			'flxb_cert_design' => __( '\\nDesign\\n', 'flx-donate' ),
+			'flxb_cert_address'   => __( '\\nPostal address\\n', 'flx-donate' ),
+			'flxb_cert_no'   => __( '\\nCertificate no\\n', 'flx-donate' ),
 		);
 		return $map[ $meta->key ] ?? $key;
 	}

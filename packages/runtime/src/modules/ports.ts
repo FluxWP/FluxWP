@@ -1,3 +1,4 @@
+import { appResources, normalizeLocale } from '../i18n';
 // Platform ports for shared module engines (WhatsApp, Tasks, …).
 // Desktop/web uses the document + localStorage adapter; React Native passes AppState + MMKV.
 // Engines must not touch `document` or `localStorage` themselves.
@@ -73,8 +74,10 @@ export function setTaskLabels(fn: LabelFn): void {
 }
 
 export function taskText(locale: string, text: string, vars?: Record<string, string | number>): string {
-  const en = locale.toLowerCase().startsWith('en');
-  return fill(en ? (taskEn[text] ?? taskLabel(text)) : text, vars);
+  const lang = normalizeLocale(locale);
+  const key = taskEn[text] ?? text;
+  const tree = appResources[lang].translation as { tasks?: { engineLabels?: Record<string,string> } };
+  return fill(tree.tasks?.engineLabels?.[key] ?? (lang === 'tr' ? text : taskLabel(key)), vars);
 }
 
 const memory = new Map<string, string>();

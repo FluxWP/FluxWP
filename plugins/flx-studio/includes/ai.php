@@ -34,7 +34,7 @@ function flxst_models() {
  */
 function flxst_generate( array $in, $user_id ) {
 	if ( ! flxst_ai_ready() ) {
-		return new WP_Error( 'flxst_ai', __( 'Flux AI (0.6.0+) kurulu değil ya da görsel üretimi kapalı.', 'flx-studio' ), array( 'status' => 503 ) );
+		return new WP_Error( 'flxst_ai', __( 'Flux AI (0.6.0+) is not installed or image generation is off.', 'flx-studio' ), array( 'status' => 503 ) );
 	}
 	$cat    = flxst_models();
 	$s      = flxst_settings();
@@ -43,12 +43,12 @@ function flxst_generate( array $in, $user_id ) {
 	$model  = '' !== $model ? $model : (string) ( 'video' === $kind ? ( $s['video_model'] ? $s['video_model'] : ( $cat['default_video'] ?? '' ) ) : ( $s['image_model'] ? $s['image_model'] : ( $cat['default_image'] ?? '' ) ) );
 	$m      = $cat['models'][ $model ] ?? null;
 	if ( ! $m ) {
-		return new WP_Error( 'flxst_model', __( 'Model bulunamadı. Flux AI & MCP › Ayarlar › Görsel ve video anahtarlarını kontrol edin.', 'flx-studio' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxst_model', __( 'Model not found. Check the keys in Flux AI & MCP › Settings › Images and video.', 'flx-studio' ), array( 'status' => 400 ) );
 	}
 	$kind   = ( $m['kind'] ?? 'image' ) === 'video' ? 'video' : 'image';
 	$prompt = trim( (string) ( $in['prompt'] ?? '' ) );
 	if ( '' === $prompt ) {
-		return new WP_Error( 'flxst_prompt', __( 'Ne üretileceğini yazın.', 'flx-studio' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxst_prompt', __( 'Describe what to generate.', 'flx-studio' ), array( 'status' => 400 ) );
 	}
 	$max_n = max( 1, min( (int) $s['max_n'], (int) ( $m['max_n'] ?? 1 ) ) );
 	$n     = 'video' === $kind ? 1 : max( 1, min( $max_n, (int) ( $in['n'] ?? 1 ) ) );
@@ -69,14 +69,14 @@ function flxst_generate( array $in, $user_id ) {
 	if ( ! empty( $in['mask'] ) ) {
 		$src = flxst_item( $parent );
 		if ( ! flxst_item_visible( $src, $user_id ) || 'done' !== $src['state'] || 'image' !== $src['kind'] ) {
-			return new WP_Error( 'flxst_edit', __( 'Düzenlenecek görsel bulunamadı.', 'flx-studio' ), array( 'status' => 400 ) );
+			return new WP_Error( 'flxst_edit', __( 'Image to edit not found.', 'flx-studio' ), array( 'status' => 400 ) );
 		}
 		if ( empty( $m['mask'] ) ) {
-			return new WP_Error( 'flxst_edit', __( 'Bu model alan düzenlemeyi desteklemiyor.', 'flx-studio' ), array( 'status' => 400 ) );
+			return new WP_Error( 'flxst_edit', __( 'This model does not support area editing.', 'flx-studio' ), array( 'status' => 400 ) );
 		}
 		$d = flxst_parse_data_url( (string) $in['mask'], 20 );
 		if ( ! $d || 'image/png' !== $d[1] ) {
-			return new WP_Error( 'flxst_edit', __( 'Maske PNG olmalı.', 'flx-studio' ), array( 'status' => 400 ) );
+			return new WP_Error( 'flxst_edit', __( 'Mask must be a PNG.', 'flx-studio' ), array( 'status' => 400 ) );
 		}
 		$mask = (string) $in['mask'];
 		array_unshift( $inputs, flxst_ai_input( $src['url'], $src['path'] ) );
@@ -229,7 +229,7 @@ function flxst_dispatch( $tmp ) {
 		$err = (array) $job->get_error_data();
 		$msg = $job->get_error_message();
 		if ( ! empty( $err['maybe_charged'] ) ) {
-			$msg .= ' ' . __( 'İstek sağlayıcıya ulaşmış olabilir; tekrar göndermeden önce sağlayıcı geçmişine bakın.', 'flx-studio' );
+			$msg .= ' ' . __( 'The request may have reached the provider; check the provider\'s history before sending again.', 'flx-studio' );
 		}
 		foreach ( $live as $r ) {
 			flxst_item_update( (int) $r['id'], array( 'state' => 'failed', 'error' => $msg ) );
@@ -282,7 +282,7 @@ function flxst_resolve_pending( $tmp ) {
 	if ( ! $lock || time() - $lock > 180 ) {
 		delete_option( 'flxst_lock_' . $tmp );
 		$t = flxst_table( 'items' );
-		$wpdb->query( $wpdb->prepare( "UPDATE {$t} SET state = 'failed', error = %s WHERE job = %s AND state IN ('queued','running')", __( 'Gönderim tamamlanamadı, yeniden deneyin.', 'flx-studio' ), $tmp ) ); // phpcs:ignore WordPress.DB
+		$wpdb->query( $wpdb->prepare( "UPDATE {$t} SET state = 'failed', error = %s WHERE job = %s AND state IN ('queued','running')", __( 'Sending did not complete, please try again.', 'flx-studio' ), $tmp ) ); // phpcs:ignore WordPress.DB
 	}
 	return $tmp;
 }
@@ -320,7 +320,7 @@ function flxst_apply_job( array $job ) {
 			}
 			$o = $outs[ $i ] ?? null;
 			if ( ! $o ) {
-				flxst_item_update( (int) $r['id'], array( 'state' => 'failed', 'error' => __( 'Sağlayıcı istenenden az sonuç döndürdü.', 'flx-studio' ) ) );
+				flxst_item_update( (int) $r['id'], array( 'state' => 'failed', 'error' => __( 'The provider returned fewer results than requested.', 'flx-studio' ) ) );
 				continue;
 			}
 			$path = (string) ( $o['path'] ?? '' );
@@ -342,7 +342,7 @@ function flxst_apply_job( array $job ) {
 					'height'   => (int) ( $o['height'] ?? 0 ),
 					'bytes'    => (int) ( $o['bytes'] ?? 0 ),
 					'cost'     => round( $cost, 4 ),
-					'error'    => empty( $o['stored'] ) && empty( $path ) ? __( 'Dosya sağlayıcıda duruyor ve geçici; Medya kitaplığına ekleyin ya da indirin.', 'flx-studio' ) : '',
+					'error'    => empty( $o['stored'] ) && empty( $path ) ? __( 'The file is hosted temporarily by the provider; add it to the Media Library or download it.', 'flx-studio' ) : '',
 					'params'   => flxst_json( $p ),
 				)
 			);
@@ -382,11 +382,11 @@ function flxst_apply_job( array $job ) {
 	// failed | cancelled
 	$err = (string) ( $job['error'] ?? '' );
 	if ( 'cancelled' === $state ) {
-		$err = $err ? $err : __( 'İptal edildi.', 'flx-studio' );
+		$err = $err ? $err : __( 'Cancelled.', 'flx-studio' );
 	}
 	foreach ( $rows as $r ) {
 		if ( 'done' !== $r['state'] ) {
-			flxst_item_update( (int) $r['id'], array( 'state' => 'cancelled' === $state ? 'cancelled' : 'failed', 'error' => $err ? $err : __( 'Üretim başarısız.', 'flx-studio' ) ) );
+			flxst_item_update( (int) $r['id'], array( 'state' => 'cancelled' === $state ? 'cancelled' : 'failed', 'error' => $err ? $err : __( 'Generation failed.', 'flx-studio' ) ) );
 		}
 	}
 }
@@ -493,7 +493,7 @@ function flxst_refs_note( array $refs ) {
 
 function flxst_chat( array $messages, $purpose, $max = 1500 ) {
 	if ( ! flxst_text_ready() ) {
-		return new WP_Error( 'flxst_ai', __( 'Flux AI metin modeli hazır değil (Flux AI & MCP › Ayarlar).', 'flx-studio' ), array( 'status' => 503 ) );
+		return new WP_Error( 'flxst_ai', __( 'Flux AI text model is not ready (Flux AI & MCP › Settings).', 'flx-studio' ), array( 'status' => 503 ) );
 	}
 	$opts = array(
 		'source'     => 'flx-studio',
@@ -519,7 +519,7 @@ function flxst_chat( array $messages, $purpose, $max = 1500 ) {
 function flxst_enhance( $draft, $mode, array $refs, $model_label = '' ) {
 	$draft = trim( (string) $draft );
 	if ( '' === $draft ) {
-		return new WP_Error( 'flxst_prompt', __( 'Önce kısa bir taslak yazın.', 'flx-studio' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxst_prompt', __( 'Write a short draft first.', 'flx-studio' ), array( 'status' => 400 ) );
 	}
 	$sys = flxst_rules_base() . "\n\n" . flxst_rules_for( $mode ) . "\n\nReturn ONLY the final prompt text, no preface, no markdown, no quotes around the whole prompt.";
 	$usr = ( $model_label ? 'Target model: ' . $model_label . "\n" : '' ) . flxst_refs_note( $refs ) . "\n\nDRAFT:\n" . $draft;
@@ -543,7 +543,7 @@ function flxst_enhance( $draft, $mode, array $refs, $model_label = '' ) {
 function flxst_brainstorm( $brief, $count, $style, array $refs, $mode = 'image' ) {
 	$brief = trim( (string) $brief );
 	if ( '' === $brief ) {
-		return new WP_Error( 'flxst_prompt', __( 'Önce fikri kısaca yazın.', 'flx-studio' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxst_prompt', __( 'Briefly describe the idea first.', 'flx-studio' ), array( 'status' => 400 ) );
 	}
 	$count = max( 1, min( 8, (int) $count ) );
 	$extra = 'youtube' === $style
@@ -577,7 +577,7 @@ function flxst_brainstorm( $brief, $count, $style, array $refs, $mode = 'image' 
 		}
 	}
 	if ( ! $ideas ) {
-		return new WP_Error( 'flxst_ai', __( 'Model geçerli fikir listesi döndürmedi. Tekrar deneyin.', 'flx-studio' ), array( 'status' => 502 ) );
+		return new WP_Error( 'flxst_ai', __( 'The model did not return a valid idea list. Try again.', 'flx-studio' ), array( 'status' => 502 ) );
 	}
 	return array_slice( $ideas, 0, $count );
 }

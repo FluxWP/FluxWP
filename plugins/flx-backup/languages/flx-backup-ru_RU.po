@@ -1,0 +1,1059 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "Backups"
+msgstr "Резервные копии"
+
+msgid "Backups › Dashboard"
+msgstr "Резервные копии › Панель управления"
+
+msgid "Dashboard"
+msgstr "Панель управления"
+
+msgid "Backups › Settings"
+msgstr "Резервные копии › Настройки"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "Permanently delete this backup?"
+msgstr "Удалить эту резервную копию навсегда?"
+
+msgid "Permanently delete the selected backups?"
+msgstr "Удалить выбранные резервные копии навсегда?"
+
+msgid "The selected parts will be returned to their state in the backup and their current state will be overwritten. Continue?"
+msgstr "Выбранные части будут возвращены в свое состояние в резервной копии, а их текущее состояние будет перезаписано. Продолжать?"
+
+msgid "Cancel the running job?"
+msgstr "Отменить текущее задание?"
+
+msgid "Starting…"
+msgstr "Начало..."
+
+msgid "Backing up"
+msgstr "Резервное копирование"
+
+msgid "Restoring"
+msgstr "Восстановление"
+
+msgid "Completed"
+msgstr "Завершено"
+
+msgid "Failed"
+msgstr "Не удалось"
+
+msgid "Reload page"
+msgstr "Обновить страницу"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "An error occurred."
+msgstr "Произошла ошибка."
+
+msgid "Connection lost, retrying…"
+msgstr "Соединение потеряно, повторная попытка..."
+
+msgid "Database (all tables)"
+msgstr "База данных (все таблицы)"
+
+msgid "Select at least one part."
+msgstr "Выберите хотя бы одну часть."
+
+msgid "You can keep this page open; if you close it, the job continues in the background."
+msgstr "Вы можете оставить эту страницу открытой; если вы закроете его, работа продолжится в фоновом режиме."
+
+msgid "Do not close this page until the restore finishes."
+msgstr "Не закрывайте эту страницу до завершения восстановления."
+
+msgid "The backup is running in the background. Follow its progress in the toolbar indicator at the top; you can leave this page."
+msgstr "Резервное копирование выполняется в фоновом режиме. Следите за его прогрессом по индикатору панели инструментов вверху; вы можете покинуть эту страницу."
+
+msgid "The restore has started in the background. Progress is shown in the toolbar indicator; do not change the site until it finishes."
+msgstr "Восстановление началось в фоновом режиме. Прогресс отображается в индикаторе на панели инструментов; не меняйте сайт, пока он не будет завершен."
+
+msgid "Backup ready."
+msgstr "Резервная копия готова."
+
+msgid "Refresh list"
+msgstr "Обновить список"
+
+msgid "Details"
+msgstr "Подробности"
+
+msgid "Dismiss this notice."
+msgstr "Отклоните это уведомление."
+
+msgid "Uploading %1$s…"
+msgstr "Загрузка%1$s..."
+
+msgid "%1$s / %2$s"
+msgstr "%1$s/%2$s"
+
+msgid "Verifying…"
+msgstr "Проверка..."
+
+msgid "Only .zip backup files made with Flux Backup can be uploaded."
+msgstr "Можно загружать только файлы резервных копий .zip, созданные с помощью Flux Backup."
+
+msgid "Upload cancelled."
+msgstr "Загрузка отменена."
+
+msgid "Upload failed: %s"
+msgstr "Не удалось загрузить:%s."
+
+msgid "This backup was taken on another site: %s. If you restore the database, the content comes from that site; this site's address (siteurl/home) is kept, but links to the old address inside the content are not changed automatically."
+msgstr "Эта резервная копия была сделана на другом сайте:%s. Если вы восстановите базу данных, контент будет взят с этого сайта; Адрес этого сайта (siteurl/home) сохраняется, но ссылки на старый адрес внутри контента не изменяются автоматически."
+
+msgid "The table prefix in the backup (%1$s) differs from this site's prefix (%2$s); the database cannot be restored to this site, only files can be selected."
+msgstr "Префикс таблицы в резервной копии (%1$s) отличается от префикса этого сайта (%2$s); базу данных невозможно восстановить на этот сайт, можно выбрать только файлы."
+
+msgid "Flux Backup"
+msgstr "Резервное копирование потока"
+
+msgid "Automatic pre-update backups, scheduled backups and restore"
+msgstr "Автоматическое резервное копирование перед обновлением, запланированное резервное копирование и восстановление"
+
+msgid "Upload backup"
+msgstr "Загрузить резервную копию"
+
+msgid "Back up now"
+msgstr "Резервное копирование сейчас"
+
+msgid "Settings saved."
+msgstr "Настройки сохранены."
+
+msgid "ZipArchive (PHP zip extension) is not available on the server."
+msgstr "ZipArchive (расширение PHP zip) недоступно на сервере."
+
+msgid "The backup folder is not writable: %s"
+msgstr "Папка резервной копии недоступна для записи:%s."
+
+msgid "Backup type"
+msgstr "Тип резервной копии"
+
+msgid "Full backup"
+msgstr "Полное резервное копирование"
+
+msgid "Database + wp-content (plugins, themes, uploads)"
+msgstr "База данных + wp-контент (плагины, темы, загрузки)"
+
+msgid "Database only"
+msgstr "Только база данных"
+
+msgid "Posts, pages, settings, users"
+msgstr "Сообщения, страницы, настройки, пользователи"
+
+msgid "Files only"
+msgstr "Только файлы"
+
+msgid "The wp-content folder"
+msgstr "Папка wp-content"
+
+msgid "Also include WordPress core files (wp-admin, wp-includes)"
+msgstr "Также включите основные файлы WordPress (wp-admin, wp-includes)."
+
+msgid "Description (optional)"
+msgstr "Описание (необязательно)"
+
+msgid "e.g. Before the theme change"
+msgstr "например До смены темы"
+
+msgid "Lock: never delete automatically, even when the quota is full"
+msgstr "Блокировка: никогда не удалять автоматически, даже если квота заполнена"
+
+msgid "Start backup"
+msgstr "Начать резервное копирование"
+
+msgid "Restore"
+msgstr "Восстановить"
+
+msgid "First take a safety backup of the current database (recommended)"
+msgstr "Сначала сделайте резервную копию текущей базы данных (рекомендуется)."
+
+msgid "The site address (siteurl/home), Flux Backup settings and the backup list are kept. Plugin and theme folders are replaced with their backed-up version; in other folders files are overwritten."
+msgstr "Адрес сайта (siteurl/home), настройки Flux Backup и список резервных копий сохраняются. Папки плагинов и тем заменяются их резервной версией; в других папках файлы перезаписываются."
+
+msgid "Start restore"
+msgstr "Начать восстановление"
+
+msgid "You are not allowed to do this."
+msgstr "Вам не разрешено это делать."
+
+msgid "Storage"
+msgstr "Хранение"
+
+msgid "%s%% of the quota is used"
+msgstr "%sИспользовано %% квоты"
+
+msgid "%1$s%% used · %2$s free"
+msgstr "%1$s%% использовано ·%2$sбесплатно"
+
+msgid "Last successful backup"
+msgstr "Последнее успешное резервное копирование"
+
+msgid "%s ago"
+msgstr "%sназад"
+
+msgid "No backups yet."
+msgstr "Резервных копий пока нет."
+
+msgid "Next scheduled"
+msgstr "Следующий запланированный"
+
+msgid "Weekly full backup"
+msgstr "Еженедельное полное резервное копирование"
+
+msgid "Daily full backup"
+msgstr "Ежедневное полное резервное копирование"
+
+msgid "Off"
+msgstr "Выкл."
+
+msgid "Turn on schedule"
+msgstr "Включить расписание"
+
+msgid "Pre-update backup: off"
+msgstr "Резервное копирование перед обновлением: выключено"
+
+msgid "Pre-update backup: FluxWP packages"
+msgstr "Резервное копирование перед обновлением: пакеты FluxWP"
+
+msgid "Pre-update backup: on"
+msgstr "Резервное копирование перед обновлением: включено"
+
+msgid "Storage history"
+msgstr "История хранения"
+
+msgid "Time range"
+msgstr "Временной диапазон"
+
+msgid "%s days"
+msgstr "%sдней"
+
+msgid "Quota"
+msgstr "Квота"
+
+msgid "By type"
+msgstr "По типу"
+
+msgid "Recent backups"
+msgstr "Последние резервные копии"
+
+msgid "View all"
+msgstr "Посмотреть все"
+
+msgid "No backups yet. Take the first one with \"Back up now\"; a backup is taken automatically before plugin and theme updates."
+msgstr "Резервных копий пока нет. Возьмите первый вариант с «Создать резервную копию сейчас»; резервная копия создается автоматически перед обновлением плагинов и тем."
+
+msgid "Running"
+msgstr "Бег"
+
+msgid "Recent events"
+msgstr "Недавние события"
+
+msgid "No events yet."
+msgstr "Пока нет событий."
+
+msgid "Total"
+msgstr "Итого"
+
+msgid "Not enough data yet: one measurement is recorded each day."
+msgstr "Данных пока недостаточно: каждый день регистрируется одно измерение."
+
+msgid "No measurement for this day"
+msgstr "На этот день измерений нет."
+
+msgid "Storage by type"
+msgstr "Хранение по типу"
+
+msgid "total"
+msgstr "всего"
+
+msgid "All"
+msgstr "Все"
+
+msgid "Delete selected"
+msgstr "Удалить выбранное"
+
+msgid "Total %s"
+msgstr "Всего%s"
+
+msgid "Select all"
+msgstr "Выбрать все"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Contents"
+msgstr "Содержание"
+
+msgid "Size"
+msgstr "Размер"
+
+msgid "Retention"
+msgstr "Удержание"
+
+msgid "Actions"
+msgstr "Действия"
+
+msgid "No backups."
+msgstr "Никаких резервных копий."
+
+msgid "Backups are stored in %s. Hostinger does not include this folder in its own backups: download important backups to your computer."
+msgstr "Резервные копии хранятся в%s. Hostinger не включает эту папку в свои резервные копии: загрузите важные резервные копии на свой компьютер."
+
+msgid "Database"
+msgstr "База данных"
+
+msgid "Plugin"
+msgstr "Плагин"
+
+msgid "Theme"
+msgstr "Тема"
+
+msgid "WordPress core"
+msgstr "Ядро WordPress"
+
+msgid "Select"
+msgstr "Выбрать"
+
+msgid "Running…"
+msgstr "Бег..."
+
+msgid "Locked: never deleted automatically. Click to unlock."
+msgstr "Заблокировано: никогда не удаляется автоматически. Нажмите, чтобы разблокировать."
+
+msgid "Lock: the quota and retention period will not delete this backup."
+msgstr "Блокировка: квота и период хранения не удалят эту резервную копию."
+
+msgid "Unlock"
+msgstr "Разблокировать"
+
+msgid "Lock"
+msgstr "Блокировка"
+
+msgid "Locked"
+msgstr "Заблокировано"
+
+msgid "Until %s"
+msgstr "До%s"
+
+msgid "Last %s scheduled"
+msgstr "Последний запланированный%s"
+
+msgid "Until the quota is full"
+msgstr "Пока квота не исчерпается"
+
+msgid "Download"
+msgstr "Скачать"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "All backups"
+msgstr "Все резервные копии"
+
+msgid "Backup not found."
+msgstr "Резервная копия не найдена."
+
+msgid "Backup file"
+msgstr "Резервный файл"
+
+msgid "Uncompressed size"
+msgstr "Несжатый размер"
+
+msgid "Files"
+msgstr "Файлы"
+
+msgid "%1$s tables, %2$s rows"
+msgstr "Таблицы%1$s, строки%2$s"
+
+msgid "Included"
+msgstr "Включено"
+
+msgid "Source"
+msgstr "Источник"
+
+msgid "Taken on site"
+msgstr "Снято на сайте"
+
+msgid "Originally taken"
+msgstr "Первоначально взято"
+
+msgid "WordPress"
+msgstr "WordPress"
+
+msgid "The backup is running; details will appear here when it finishes."
+msgstr "Резервное копирование выполняется; подробности появятся здесь, когда он закончится."
+
+msgid "The backup file could not be read; the size breakdown cannot be shown."
+msgstr "Файл резервной копии не удалось прочитать; разбивка по размерам не может быть показана."
+
+msgid "Size breakdown"
+msgstr "Разбивка по размерам"
+
+msgid "Measure"
+msgstr "Мера"
+
+msgid "Original size"
+msgstr "Исходный размер"
+
+msgid "Size in archive"
+msgstr "Размер в архиве"
+
+msgid "uncompressed"
+msgstr "несжатый"
+
+msgid "inside the zip"
+msgstr "внутри молнии"
+
+msgid "Size breakdown by category"
+msgstr "Разбивка размеров по категориям"
+
+msgid "Section"
+msgstr "Раздел"
+
+msgid "Files / rows"
+msgstr "Файлы/строки"
+
+msgid "In archive"
+msgstr "В архиве"
+
+msgid "Share"
+msgstr "Поделиться"
+
+msgid "Original size: the size of the files on the site (for the database, the size of the SQL dump). In archive: the compressed size inside the zip. Images and videos are already compressed, so they do not get smaller in the archive."
+msgstr "Исходный размер: размер файлов на сайте (для базы данных — размер SQL-дампа). В архиве: сжатый размер внутри zip. Изображения и видео уже сжаты, поэтому в архиве они не уменьшаются."
+
+msgid "Root files (wp-config.php, index.php …)"
+msgstr "Корневые файлы (wp-config.php, index.php...)"
+
+msgid "Files directly in this folder"
+msgstr "Файлы прямо в этой папке"
+
+msgid "Plugins"
+msgstr "Плагины"
+
+msgid "Themes"
+msgstr "Темы"
+
+msgid "Other folders"
+msgstr "Другие папки"
+
+msgid "wp-content (all)"
+msgstr "wp-контент (все)"
+
+msgid "Monday"
+msgstr "понедельник"
+
+msgid "Tuesday"
+msgstr "вторник"
+
+msgid "Wednesday"
+msgstr "среда"
+
+msgid "Thursday"
+msgstr "Четверг"
+
+msgid "Friday"
+msgstr "Пятница"
+
+msgid "Saturday"
+msgstr "суббота"
+
+msgid "Sunday"
+msgstr "воскресенье"
+
+msgid "The total size of backups never exceeds this: before a new backup, the oldest unlocked backups are deleted. Locked backups are never deleted automatically; if no room can be made, the backup is not taken."
+msgstr "Общий размер резервных копий никогда не превышает это значение: перед созданием новой резервной копии самые старые разблокированные резервные копии удаляются. Заблокированные резервные копии никогда не удаляются автоматически; если освободить место невозможно, резервная копия не создается."
+
+msgid "Currently using %1$s. Folder: %2$s"
+msgstr "В настоящее время используется%1$s. Папка:%2$s"
+
+msgid "Pre-update backup"
+msgstr "Резервная копия перед обновлением"
+
+msgid "Scope"
+msgstr "Область применения"
+
+msgid "All plugin and theme updates"
+msgstr "Все обновления плагинов и тем"
+
+msgid "FluxWP packages only (flx-… plugins and FluxWP themes)"
+msgstr "Только пакеты FluxWP (плагины flx-... и темы FluxWP)"
+
+msgid "In manual, bulk and automatic updates, the database and the updated package's folder are backed up right before the package is installed. A bulk update produces a single backup."
+msgstr "При ручном, массовом и автоматическом обновлении база данных и папка обновленного пакета резервируются непосредственно перед установкой пакета. Массовое обновление создает одну резервную копию."
+
+msgid "Retention period"
+msgstr "Срок хранения"
+
+msgid "days"
+msgstr "дни"
+
+msgid "If the update went fine, the backup is deleted after this period. Lock the ones you want to keep in the list."
+msgstr "Если обновление прошло нормально, резервная копия будет удалена по истечении этого периода. Заблокируйте те, которые хотите сохранить в списке."
+
+msgid "Scheduled full backup"
+msgstr "Запланированное полное резервное копирование"
+
+msgid "Frequency"
+msgstr "Частота"
+
+msgid "Daily"
+msgstr "Ежедневно"
+
+msgid "Weekly"
+msgstr "Еженедельно"
+
+msgid "Day"
+msgstr "День"
+
+msgid "Time"
+msgstr "Время"
+
+msgid "In the site's time zone. Choose night hours; WP-Cron is triggered by visits, so it may run a few minutes late."
+msgstr "В часовом поясе сайта. Выбирайте ночные часы; WP-Cron запускается при посещениях, поэтому может работать с опозданием на несколько минут."
+
+msgid "Number to keep"
+msgstr "Номер, который нужно сохранить"
+
+msgid "Only this many of the latest scheduled backups are kept (locked ones are not counted)."
+msgstr "Сохраняется только такое количество последних запланированных резервных копий (заблокированные не учитываются)."
+
+msgid "Add wp-admin, wp-includes and root files (including wp-config.php) to full backups"
+msgstr "Добавьте wp-admin, wp-includes и корневые файлы (включая wp-config.php) в полные резервные копии."
+
+msgid "WordPress core can always be downloaded again from wordpress.org; leaving it out saves space."
+msgstr "Ядро WordPress всегда можно загрузить снова с wordpress.org; если его оставить, экономится место."
+
+msgid "Exclusions"
+msgstr "Исключения"
+
+msgid "Extra paths"
+msgstr "Дополнительные пути"
+
+msgid "One path per line, relative to the WordPress root folder. The * wildcard can be used."
+msgstr "Один путь в строке относительно корневой папки WordPress. Можно использовать подстановочный знак *."
+
+msgid "Always excluded: the backup folder, wp-snapshots, other backup plugins' folders (ai1wm-backups, updraft, wpvividbackups, backups-dup-*), cache, litespeed, upgrade, upgrade-temp-backup."
+msgstr "Всегда исключаются: папка резервного копирования, wp-snapshots, папки других плагинов резервного копирования (ai1wm-backups, updraft, wpvividbackups, резервные копии-dup-*), кэш, litespeed, обновление, обновление-temp-backup."
+
+msgid "Restore and uninstall"
+msgstr "Восстановить и удалить"
+
+msgid "Safety backup"
+msgstr "Резервное копирование безопасности"
+
+msgid "Back up the current database before restoring the database (kept for 7 days)"
+msgstr "Создайте резервную копию текущей базы данных перед ее восстановлением (хранится в течение 7 дней)."
+
+msgid "When the plugin is deleted"
+msgstr "Когда плагин удаляется"
+
+msgid "Also delete backup files"
+msgstr "Также удалите файлы резервных копий"
+
+msgid "When off (default), deleting the plugin removes only its settings; the zip files stay in the folder."
+msgstr "Если отключено (по умолчанию), при удалении плагина удаляются только его настройки; zip-файлы остаются в папке."
+
+msgid "Save settings"
+msgstr "Сохранить настройки"
+
+msgid "Could not delete."
+msgstr "Не удалось удалить."
+
+msgid "No operation is running."
+msgstr "Ни одна операция не выполняется."
+
+msgid "Nothing was selected to back up."
+msgstr "Ничего не выбрано для резервного копирования."
+
+msgid "zlib (gzip) is not available on the server."
+msgstr "zlib (gzip) недоступен на сервере."
+
+msgid "Another backup or restore is running. Wait for it to finish."
+msgstr "Выполняется другое резервное копирование или восстановление. Подождите, пока он закончится."
+
+msgid "Backup record not found."
+msgstr "Резервная запись не найдена."
+
+msgid "Invalid path."
+msgstr "Неверный путь."
+
+msgid "Path not found: %s"
+msgstr "Путь не найден:%s"
+
+msgid "Could not write a temporary file."
+msgstr "Не удалось записать временный файл."
+
+msgid "Could not read the file list."
+msgstr "Не удалось прочитать список файлов."
+
+msgid "Could not open the zip file (code %s)."
+msgstr "Не удалось открыть zip-файл (код%s)."
+
+msgid "Could not write the zip: %s"
+msgstr "Не удалось записать почтовый индекс:%s."
+
+msgid "The backup record was deleted."
+msgstr "Резервная запись была удалена."
+
+msgid "Could not open the zip file."
+msgstr "Не удалось открыть zip-файл."
+
+msgid "Could not add the database dump to the archive."
+msgstr "Не удалось добавить дамп базы данных в архив."
+
+msgid "Could not write the zip (the disk may be full)."
+msgstr "Не удалось записать zip (возможно, диск переполнен)."
+
+msgid "The backup was cut off %s times at the same point (server time limit). Try with fewer folders or add large folders to the exclusions."
+msgstr "Резервное копирование было отключено%sраз в один и тот же момент (ограничение по времени сервера). Попробуйте использовать меньше папок или добавьте в исключения большие папки."
+
+msgid "Backup taken: %1$s (%2$s)"
+msgstr "Резервная копия сделана:%1$s(%2$s)"
+
+msgid "Backup failed (%1$s): %2$s"
+msgstr "Не удалось выполнить резервное копирование (%1$s):%2$s."
+
+msgid "Scanning files… %s files"
+msgstr "Сканирование файлов... Файлы%s"
+
+msgid "Checking quota…"
+msgstr "Проверка квоты..."
+
+msgid "Backing up database: %1$s (%2$s rows)"
+msgstr "Резервное копирование базы данных:%1$s(строки%2$s)"
+
+msgid "Archiving files: %1$s / %2$s files (%3$s / %4$s)"
+msgstr "Архивирование файлов: файлы%1$s/%2$s(%3$s/%4$s)"
+
+msgid "Finishing…"
+msgstr "Завершение..."
+
+msgid "Backup completed."
+msgstr "Резервное копирование завершено."
+
+msgid "Media (uploads)"
+msgstr "Медиа (загрузки)"
+
+msgid "Other wp-content"
+msgstr "Другой wp-контент"
+
+msgid "Backup folder writable"
+msgstr "Папка резервной копии доступна для записи"
+
+msgid "Backups are written to %s."
+msgstr "Резервные копии записываются в%s."
+
+msgid "The %s folder cannot be created or written. Check the file permissions (755)."
+msgstr "Папку%sневозможно создать или записать. Проверьте права доступа к файлу (755)."
+
+msgid "ZipArchive and zlib"
+msgstr "ZipArchive и zlib"
+
+msgid "The PHP zip and zlib extensions are installed."
+msgstr "Установлены расширения PHP zip и zlib."
+
+msgid "The PHP zip (ZipArchive) or zlib extension is missing; backups cannot be created. On Hostinger, turn on \"zip\" under PHP Configuration › PHP Extensions."
+msgstr "Отсутствует расширение PHP zip (ZipArchive) или zlib; резервные копии не могут быть созданы. В Hostinger включите «zip» в разделе «Конфигурация PHP» > «Расширения PHP»."
+
+msgid "Backup quota"
+msgstr "Квота резервного копирования"
+
+msgid "%1$s / %2$s used (%3$s%%)."
+msgstr "%1$s/%2$sиспользовано (%3$s%%)."
+
+msgid "The oldest unlocked backups will be deleted to make room for new ones; increase the quota or review the locked backups."
+msgstr "Самые старые разблокированные резервные копии будут удалены, чтобы освободить место для новых; увеличьте квоту или просмотрите заблокированные резервные копии."
+
+msgid "There are no backups yet. Take the first one from the dashboard with \"Back up now\"."
+msgstr "Резервных копий пока нет. Возьмите первый с панели управления с помощью «Резервное копирование сейчас»."
+
+msgid "%1$s (%2$s): %3$s"
+msgstr "%1$s(%2$s):%3$s"
+
+msgid "for all plugin and theme updates"
+msgstr "для всех обновлений плагинов и тем"
+
+msgid "for FluxWP package updates only"
+msgstr "только для обновлений пакета FluxWP"
+
+msgid "Off: no backup is taken before updates."
+msgstr "Выкл.: резервное копирование перед обновлением не создается."
+
+msgid "On, %1$s. Backups are kept for %2$s days."
+msgstr "Включено,%1$s. Резервные копии хранятся%2$sдн."
+
+msgid "The daily cleanup task ran %s."
+msgstr "Задача ежедневной очистки выполнялась%s."
+
+msgid "The daily task is scheduled but has not run yet."
+msgstr "Ежедневная задача запланирована, но еще не запущена."
+
+msgid "DISABLE_WP_CRON is on and the daily job has not run for 2 days. In the Hostinger panel, call wp-cron.php every 5–15 minutes under Advanced › Cron Jobs."
+msgstr "DISABLE_WP_CRON включен, и ежедневное задание не выполнялось в течение 2 дней. На панели Hostinger каждые 5–15 минут вызывайте wp-cron.php в разделе «Дополнительно» > «Задания Cron»."
+
+msgid "The daily task has not run for 2 days; WP-Cron is triggered by visits. Old backups may not be getting deleted."
+msgstr "Ежедневная задача не выполнялась в течение 2 дней; WP-Cron запускается при посещениях. Старые резервные копии могут не удаляться."
+
+msgid "Flux Backup scheduled tasks"
+msgstr "Запланированные задачи Flux Backup"
+
+msgid "Could not start the scheduled backup: %s"
+msgstr "Не удалось запустить запланированное резервное копирование:%s."
+
+msgid "Left unfinished (timed out)."
+msgstr "Осталось незавершенным (время истекло)."
+
+msgid "Could not write the SQL file."
+msgstr "Не удалось записать файл SQL."
+
+msgid "Could not read table %1$s: %2$s"
+msgstr "Не удалось прочитать таблицу%1$s:%2$s."
+
+msgid "Could not get the structure of table %1$s: %2$s"
+msgstr "Не удалось получить структуру таблицы%1$s:%2$s."
+
+msgid "Could not open the SQL file."
+msgstr "Не удалось открыть файл SQL."
+
+msgid "Flux Backup: click for details"
+msgstr "Резервное копирование Flux: нажмите, чтобы узнать подробности"
+
+msgid "Restoring %s"
+msgstr "Восстановление%s"
+
+msgid "Backing up %s"
+msgstr "Резервное копирование%s"
+
+msgid "Restore complete"
+msgstr "Восстановление завершено"
+
+msgid "Backup ready · %s"
+msgstr "Резервная копия готова ·%s"
+
+msgid "Backup ready"
+msgstr "Резервное копирование готово"
+
+msgid "Restore failed"
+msgstr "Восстановление не удалось"
+
+msgid "Backup failed"
+msgstr "Резервное копирование не выполнено"
+
+msgid "Cancelled"
+msgstr "Отменено"
+
+msgid "Cancelling…"
+msgstr "Отмена..."
+
+msgid "Elapsed: %s"
+msgstr "Прошло:%s"
+
+msgid "Remaining: about %s"
+msgstr "Осталось: около%s"
+
+msgid "Backup"
+msgstr "Резервное копирование"
+
+msgid "You can leave the page; it keeps running in the background."
+msgstr "Вы можете покинуть страницу; он продолжает работать в фоновом режиме."
+
+msgid "Do not change the site while the restore is running."
+msgstr "Не меняйте сайт во время восстановления."
+
+msgid "Could not back up before updating %1$s; the update continued without a backup: %2$s"
+msgstr "Не удалось выполнить резервное копирование перед обновлением%1$s; обновление продолжилось без резервной копии:%2$s"
+
+msgid "Could not add the %1$s folder to the pre-update backup: %2$s"
+msgstr "Не удалось добавить папку%1$sв резервную копию перед обновлением:%2$s."
+
+msgid "The backup file is missing from disk."
+msgstr "Файл резервной копии отсутствует на диске."
+
+msgid "This path is not in the backup: %s"
+msgstr "Этого пути нет в резервной копии:%s."
+
+msgid "This backup has no database."
+msgstr "Эта резервная копия не имеет базы данных."
+
+msgid "Nothing was selected to restore."
+msgstr "Ничего не выбрано для восстановления."
+
+msgid "Safety backup before restore (%s)"
+msgstr "Безопасное резервное копирование перед восстановлением (%s)"
+
+msgid "The safety backup failed, so nothing was restored: %s"
+msgstr "Не удалось выполнить безопасное резервное копирование, поэтому ничего не было восстановлено:%s."
+
+msgid "The backup has no database.sql.gz."
+msgstr "В резервной копии нет файла data.sql.gz."
+
+msgid "The database file's checksum does not match; the backup may be corrupt."
+msgstr "Контрольная сумма файла базы данных не совпадает; резервная копия может быть повреждена."
+
+msgid "The table prefix in the backup (%1$s) differs from this site's prefix (%2$s); the database was not restored."
+msgstr "Префикс таблицы в резервной копии (%1$s) отличается от префикса этого сайта (%2$s); база данных не была восстановлена."
+
+msgid "Not found in the backup: %s"
+msgstr "Не найден в резервной копии:%s."
+
+msgid "Could not move the folder (permission problem?): %s"
+msgstr "Не удалось переместить папку (проблема с разрешением?):%s."
+
+msgid "Could not create the folder: %s"
+msgstr "Не удалось создать папку:%s."
+
+msgid "Could not write the file: %s"
+msgstr "Не удалось записать файл:%s."
+
+msgid "database"
+msgstr "база данных"
+
+msgid "Restored: %1$s (%2$s)."
+msgstr "Восстановлено:%1$s(%2$s)."
+
+msgid "%s SQL statements failed; details are in the log."
+msgstr "%sSQL-запросы не выполнены; подробности в журнале."
+
+msgid "%s The database may be partially restored; restore the \"Safety backup before restore\"."
+msgstr "%sВозможно, база данных частично восстановлена; восстановите «Безопасную резервную копию перед восстановлением»."
+
+msgid "Restore failed (%1$s): %2$s"
+msgstr "Не удалось восстановить (%1$s):%2$s."
+
+msgid "Taking safety backup: %s"
+msgstr "Создание резервной копии:%s."
+
+msgid "Unpacking the database file…"
+msgstr "Распаковка файла базы данных..."
+
+msgid "Restoring database: %s"
+msgstr "Восстановление базы данных:%s."
+
+msgid "Preparing files…"
+msgstr "Подготовка файлов..."
+
+msgid "Restoring files: %1$s / %2$s"
+msgstr "Восстановление файлов:%1$s/%2$s"
+
+msgid "%s s"
+msgstr "%sс"
+
+msgid "%1$s min %2$s s"
+msgstr "%1$sмин%2$sс"
+
+msgid "%1$s h %2$s min"
+msgstr "%1$sч%2$sмин."
+
+msgid "Cancelled."
+msgstr "Отменено."
+
+msgid "Could not verify the session. Reload the page."
+msgstr "Не удалось проверить сеанс. Перезагрузите страницу."
+
+msgid "Backup deleted: %s"
+msgstr "Резервная копия удалена:%s."
+
+msgid "Before %1$s %2$s → %3$s"
+msgstr "До%1$s%2$s→%3$s"
+
+msgid "Before updating %s"
+msgstr "Перед обновлением%s"
+
+msgid "Pre-update"
+msgstr "Предварительное обновление"
+
+msgid "Manual"
+msgstr "Руководство"
+
+msgid "Scheduled"
+msgstr "Запланировано"
+
+msgid "Automatic update"
+msgstr "Автоматическое обновление"
+
+msgid "Update"
+msgstr "Обновить"
+
+msgid "WP-CLI"
+msgstr "WP-CLI"
+
+msgid "Before restore"
+msgstr "Перед восстановлением"
+
+msgid "Plugin (API)"
+msgstr "Плагин (API)"
+
+msgid "Uploaded"
+msgstr "Загружено"
+
+msgid "The estimated backup size (%1$s) is larger than the quota (%2$s). Raise the quota in Settings."
+msgstr "Предполагаемый размер резервной копии (%1$s) превышает квоту (%2$s). Поднимите квоту в настройках."
+
+msgid "Not enough quota: the new backup is about %1$s, used %2$s, quota %3$s. The remaining backups are locked; unlock or delete some, or increase the quota."
+msgstr "Недостаточно квоты: новая резервная копия имеет размер%1$s, используется%2$s, квота%3$s. Остальные резервные копии заблокированы; разблокируйте или удалите некоторые или увеличьте квоту."
+
+msgid "The file is empty or too small."
+msgstr "Файл пуст или слишком мал."
+
+msgid "The file (%1$s) is larger than the backup quota (%2$s). Raise the quota in Settings."
+msgstr "Размер файла (%1$s) превышает квоту резервного копирования (%2$s). Поднимите квоту в настройках."
+
+msgid "There is not enough free disk space on the server (free: %s)."
+msgstr "На сервере недостаточно свободного дискового пространства (свободно:%s)."
+
+msgid "Upload not found; start again."
+msgstr "Загрузка не найдена; начни заново."
+
+msgid "A chunk did not reach the server (error %d)."
+msgstr "Чанк не дошел до сервера (ошибка%d)."
+
+msgid "Chunks arrived out of order."
+msgstr "Кусочки пришли не в порядке."
+
+msgid "The file is larger than the declared size."
+msgstr "Размер файла превышает заявленный размер."
+
+msgid "Could not write the temporary file (the disk may be full)."
+msgstr "Не удалось записать временный файл (возможно, диск переполнен)."
+
+msgid "%1$s was uploaded (%2$s) and added to the backup list."
+msgstr "%1$sбыл загружен (%2$s) и добавлен в список резервных копий."
+
+msgid "The file was uploaded incompletely (%1$s / %2$s). Try again."
+msgstr "Файл загружен не полностью (%1$s/%2$s). Попробуйте еще раз."
+
+msgid "Could not move the file to the backup folder."
+msgstr "Не удалось переместить файл в папку резервного копирования."
+
+msgid "Uploaded: %s"
+msgstr "Загружено:%s"
+
+msgid "Backup uploaded: %1$s (%2$s, %3$s)"
+msgstr "Резервная копия загружена:%1$s(%2$s,%3$s)"
+
+msgid "This file is not a Flux Backup backup (the zip could not be opened or has no manifest.json)."
+msgstr "Этот файл не является резервной копией Flux Backup (zip-архив не удалось открыть или в нем нет файла манифеста.json)."
+
+msgid "The backup contains an unexpected or unsafe path: %s"
+msgstr "Резервная копия содержит неожиданный или небезопасный путь:%s."
+
+msgid "The manifest says the backup includes the database but database.sql.gz is missing; the file may be corrupt."
+msgstr "В манифесте указано, что резервная копия включает базу данных, но файл data.sql.gz отсутствует; файл может быть поврежден."
+
+msgid "The backup appears to be empty."
+msgstr "Резервная копия кажется пустой."
+
+msgid "The uncompressed size of the backup is not plausible; the file was not accepted."
+msgstr "Размер несжатой резервной копии неправдоподобен; файл не был принят."
+
+msgid "%s file"
+msgid_plural "%s files"
+msgstr[0] "Файл%s"
+msgstr[1] "Файлы%s"
+msgstr[2] "Файлы%s"
+
+msgid "%s locked"
+msgid_plural "%s locked"
+msgstr[0] "%sзаблокирован"
+msgstr[1] "%sзаблокирован"
+msgstr[2] "%sзаблокирован"
+
+msgid "Before updating %s package"
+msgid_plural "Before updating %s packages"
+msgstr[0] "Перед обновлением пакета%s"
+msgstr[1] "Перед обновлением пакетов%s"
+msgstr[2] "Перед обновлением пакетов%s"
+
+msgid "%s row"
+msgid_plural "%s rows"
+msgstr[0] "%sстрока"
+msgstr[1] "%sстроки"
+msgstr[2] "%sстроки"
+
+msgid "%s backup"
+msgid_plural "%s backups"
+msgstr[0] "%sрезервная копия"
+msgstr[1] "%sрезервные копии"
+msgstr[2] "%sрезервные копии"
+
+msgid "%s other item"
+msgid_plural "%s other items"
+msgstr[0] "%sдругой товар"
+msgstr[1] "%sдругие предметы"
+msgstr[2] "%sдругие предметы"
+
+msgid "%1$s old backup deleted for the quota: %2$s"
+msgid_plural "%1$s old backups deleted for the quota: %2$s"
+msgstr[0] "%1$sстарая резервная копия удалена для квоты:%2$s"
+msgstr[1] "%1$sстарые резервные копии удалены по квоте:%2$s"
+msgstr[2] "%1$sстарые резервные копии удалены по квоте:%2$s"
+
+msgid "%s backup past its retention period was deleted."
+msgid_plural "%s backups past their retention period were deleted."
+msgstr[0] "Резервная копия%s, срок хранения которой истек, удалена."
+msgstr[1] "Резервные копии%sс истекшим сроком хранения были удалены."
+msgstr[2] "Резервные копии%sс истекшим сроком хранения были удалены."
+
+msgid "Takes an automatic backup before every plugin/theme update, scheduled full backups, quota and retention management, a storage dashboard with charts and selective restore. Compatible with Hostinger shared hosting."
+msgstr "Выполняет автоматическое резервное копирование перед каждым обновлением плагина/темы, запланированное полное резервное копирование, управление квотами и сроками хранения, панель управления хранилищем с диаграммами и выборочным восстановлением. Совместим с общим хостингом Hostinger."
+
+msgctxt "context_fd86717aca41"
+msgid "%s%%"
+msgstr "%s%%"
+
+msgid "The archive file is deleted too."
+msgstr "Архивный файл тоже удаляется."
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Restore is only available in the panel."
+msgstr "Восстановление доступно только в панели."
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid "Deleted"
+msgstr "Удалено"
+
+msgid "Take a full backup?"
+msgstr "Сделать полную резервную копию?"
+
+msgid "Done"
+msgstr "Готово"
+
+msgid "The backup runs in the background and shows up in the list when it finishes."
+msgstr "Резервное копирование выполняется в фоновом режиме и отображается в списке после завершения."
+
+msgid "Backup started"
+msgstr "Резервное копирование началось"
+
+msgid "Delete this backup?"
+msgstr "Удалить эту резервную копию?"
+
+msgid "No backups"
+msgstr "Нет резервных копий"
+
+msgid "Back up"
+msgstr "Резервное копирование"
+
+msgid "Progress"
+msgstr "Прогресс"
+
+msgid "Take the first backup with Back up now. Restore is done in the panel."
+msgstr "Создайте первую резервную копию с помощью функции «Создать резервную копию сейчас». Восстановление осуществляется в панели."

@@ -60,7 +60,7 @@ function flxa_brand() {
 
 function flxa_subtitle() {
 	$s = trim( (string) flxa_setting( 'subtitle' ) );
-	return '' !== $s ? $s : __( 'Yönetim', 'flx-admin' );
+	return '' !== $s ? $s : __( 'Admin', 'flx-admin' );
 }
 
 /**
@@ -195,7 +195,7 @@ function flxa_app_screen() {
 function flxa_apps() {
 	$apps = array(
 		'panel' => array(
-			'label' => __( 'Panel', 'flx-admin' ),
+			'label' => __( 'Dashboard', 'flx-admin' ),
 			'url'   => admin_url(),
 			'cap'   => 'read',
 			'icon'  => 'grid',
@@ -203,7 +203,7 @@ function flxa_apps() {
 	);
 	if ( defined( 'FLXC_VERSION' ) ) {
 		$apps['whatsapp'] = array(
-			'label'     => __( 'Mesajlar', 'flx-admin' ),
+			'label'     => __( 'Messages', 'flx-admin' ),
 			'url'       => admin_url( 'admin.php?page=flx-chat' ),
 			'cap'       => 'flxc_use',
 			'icon'      => 'chat',
@@ -212,7 +212,7 @@ function flxa_apps() {
 	}
 	if ( defined( 'FLXG_VERSION' ) ) {
 		$apps['tasks'] = array(
-			'label'     => __( 'Görevler', 'flx-admin' ),
+			'label'     => __( 'Tasks', 'flx-admin' ),
 			'url'       => admin_url( 'admin.php?page=flx-tasks' ),
 			'cap'       => 'flxg_use',
 			'icon'      => 'check',

@@ -28,17 +28,17 @@ function flxc_admin_menu() {
 	$count = flxc_can_use() ? flxc_unread_total() : 0;
 	$badge = $count ? ' <span class="awaiting-mod count-' . (int) $count . '"><span class="pending-count">' . (int) number_format_i18n( $count ) . '</span></span>' : '';
 	add_menu_page(
-		__( 'Çağrı Merkezi', 'flx-chat' ),
-		__( 'Çağrı Merkezi', 'flx-chat' ) . $badge,
+		__( 'Call Center', 'flx-chat' ),
+		__( 'Call Center', 'flx-chat' ) . $badge,
 		'flxc_use',
 		'flx-chat',
 		'flxc_render_app',
 		'none', // renkli logo admin_head'deki CSS ile çizilir (WordPress menü ikonunu tek renge boyar)
 		3
 	);
-	add_submenu_page( 'flx-chat', __( 'Sohbetler', 'flx-chat' ), __( 'Sohbetler', 'flx-chat' ), 'flxc_use', 'flx-chat', 'flxc_render_app' );
-	add_submenu_page( 'flx-chat', __( 'AI asistan', 'flx-chat' ), __( 'AI asistan', 'flx-chat' ), 'flxc_manage', 'flx-chat-asistan', 'flxc_render_studio' );
-	add_submenu_page( 'flx-chat', __( 'Çağrı Merkezi Ayarları', 'flx-chat' ), __( 'Ayarlar', 'flx-chat' ), 'flxc_manage', 'flx-chat-ayarlar', 'flxc_render_settings' );
+	add_submenu_page( 'flx-chat', __( 'Chats', 'flx-chat' ), __( 'Chats', 'flx-chat' ), 'flxc_use', 'flx-chat', 'flxc_render_app' );
+	add_submenu_page( 'flx-chat', __( 'AI assistant', 'flx-chat' ), __( 'AI assistant', 'flx-chat' ), 'flxc_manage', 'flx-chat-asistan', 'flxc_render_studio' );
+	add_submenu_page( 'flx-chat', __( 'Call Center Settings', 'flx-chat' ), __( 'Settings', 'flx-chat' ), 'flxc_manage', 'flx-chat-ayarlar', 'flxc_render_settings' );
 }
 
 /* Yöneticide flxc_use yetkisi olmasa da menüyü görsün (eklenti etkinleştirilmeden önceki roller için). */
@@ -134,11 +134,11 @@ function flxc_render_app() {
 	if ( flxc_flux_ui() ) {
 		// WP menüsü ve üst çubuk kalır; ekran içerik alanının kalanını kaplar.
 		echo '<style>#wpcontent{padding-left:0}#wpbody-content{padding-bottom:0}#wpfooter{display:none}#flxc-flux{height:calc(100vh - var(--wp-admin--admin-bar--height,32px));min-height:480px}</style>';
-		echo '<div id="flxc-flux"><noscript>' . esc_html__( 'Çağrı Merkezi için JavaScript gerekli.', 'flx-chat' ) . '</noscript></div>';
+		echo '<div id="flxc-flux"><noscript>' . esc_html__( 'JavaScript is required for the Call Center.', 'flx-chat' ) . '</noscript></div>';
 		return;
 	}
 	echo '<script>document.documentElement.classList.add("flxc-lock");</script>';
-	echo '<div id="flxc-app" class="flxc" data-theme="auto"><noscript>' . esc_html__( 'Çağrı Merkezi için JavaScript gerekli.', 'flx-chat' ) . '</noscript></div>';
+	echo '<div id="flxc-app" class="flxc" data-theme="auto"><noscript>' . esc_html__( 'JavaScript is required for the Call Center.', 'flx-chat' ) . '</noscript></div>';
 	// Kayıtlı tema (açık / koyu / otomatik) ilk boyamadan önce; app.js yüklenene kadar yanlış tema görünmesin.
 	echo "<script>(function(d,w){var m;try{m=localStorage.getItem('flxc_theme')}catch(e){}m=m||'auto';d.getElementById('flxc-app').setAttribute('data-theme',m);d.documentElement.classList.toggle('flxc-dark-doc',m==='dark'||(m==='auto'&&!!w.matchMedia&&w.matchMedia('(prefers-color-scheme: dark)').matches))})(document,window)</script>";
 }
@@ -153,7 +153,7 @@ add_action(
 		echo '<meta name="theme-color" content="#f0f2f5" media="(prefers-color-scheme: light)">' . "\n";
 		echo '<meta name="theme-color" content="#202c33" media="(prefers-color-scheme: dark)">' . "\n";
 		echo '<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">' . "\n";
-		echo '<meta name="apple-mobile-web-app-title" content="' . esc_attr__( 'Çağrı Merkezi', 'flx-chat' ) . '">' . "\n";
+		echo '<meta name="apple-mobile-web-app-title" content="' . esc_attr__( 'Call Center', 'flx-chat' ) . '">' . "\n";
 		if ( ! flxc_flux_ui() ) {
 			echo '<style>html.wp-toolbar{padding-top:0!important}</style>' . "\n";
 		}
@@ -172,8 +172,8 @@ add_filter(
 add_filter(
 	'plugin_action_links_' . plugin_basename( FLXC_FILE ),
 	function ( $links ) {
-		array_unshift( $links, '<a href="' . esc_url( admin_url( 'admin.php?page=flx-chat-ayarlar' ) ) . '">' . esc_html__( 'Ayarlar', 'flx-chat' ) . '</a>' );
-		array_unshift( $links, '<a href="' . esc_url( admin_url( 'admin.php?page=flx-chat' ) ) . '">' . esc_html__( 'Sohbetler', 'flx-chat' ) . '</a>' );
+		array_unshift( $links, '<a href="' . esc_url( admin_url( 'admin.php?page=flx-chat-ayarlar' ) ) . '">' . esc_html__( 'Settings', 'flx-chat' ) . '</a>' );
+		array_unshift( $links, '<a href="' . esc_url( admin_url( 'admin.php?page=flx-chat' ) ) . '">' . esc_html__( 'Chats', 'flx-chat' ) . '</a>' );
 		return $links;
 	}
 );
@@ -190,18 +190,18 @@ add_action(
 /* AI asistan: asistanın sohbetleri, talimat sürümleri, belgeler, düzenleyici ve test sohbeti. */
 function flxc_render_studio() {
 	if ( ! flxc_can_manage() ) {
-		wp_die( esc_html__( 'Bu sayfaya erişim yetkiniz yok.', 'flx-chat' ) );
+		wp_die( esc_html__( 'You do not have permission to access this page.', 'flx-chat' ) );
 	}
 	?>
 	<div class="wrap flxbs">
 		<header class="flxbs-head">
 			<div>
-				<h1><?php esc_html_e( 'AI asistan', 'flx-chat' ); ?></h1>
-				<p><?php esc_html_e( 'Asistanın yazıştığı sohbetleri izleyin, talimatını ve belgelerini düzenleyin, değişiklikleri yayına almadan önce test edin.', 'flx-chat' ); ?></p>
+				<h1><?php esc_html_e( 'AI assistant', 'flx-chat' ); ?></h1>
+				<p><?php esc_html_e( 'Monitor the chats the assistant handles, edit its instructions and documents, and test changes before publishing them.', 'flx-chat' ); ?></p>
 			</div>
-			<a class="flxbs-btn" href="<?php echo esc_url( admin_url( 'admin.php?page=flx-chat-ayarlar&tab=ai' ) ); ?>"><?php esc_html_e( 'Asistan ayarları', 'flx-chat' ); ?> →</a>
+			<a class="flxbs-btn" href="<?php echo esc_url( admin_url( 'admin.php?page=flx-chat-ayarlar&tab=ai' ) ); ?>"><?php esc_html_e( 'Assistant settings', 'flx-chat' ); ?> →</a>
 		</header>
-		<div id="flxbs-app"><noscript><?php esc_html_e( 'Bu sayfa için JavaScript gerekli.', 'flx-chat' ); ?></noscript></div>
+		<div id="flxbs-app"><noscript><?php esc_html_e( 'This page requires JavaScript.', 'flx-chat' ); ?></noscript></div>
 	</div>
 	<?php
 }

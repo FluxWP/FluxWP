@@ -3,7 +3,7 @@
 	var __ = wp.i18n.__;
 	wp.blocks.registerBlockType( 'flx-lang/secici', {
 		apiVersion: 3,
-		title: __( 'Flux Lang Seçici', 'flx-lang' ),
+		title: __( "Flux Language Switcher", 'flx-lang' ),
 		icon: 'translation',
 		category: 'theme',
 		edit: function () {

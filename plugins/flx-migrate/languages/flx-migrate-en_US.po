@@ -1,0 +1,177 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "%d rows"
+msgstr "%d rows"
+
+msgid "%1$d files, %2$s"
+msgstr "%1$d files, %2$s"
+
+msgid "Content may still use image URLs from this theme; check your pages first."
+msgstr "Content may still use image URLs from this theme; check your pages first."
+
+msgid "%d old settings"
+msgstr "%d old settings"
+
+msgid "Old tables"
+msgstr "Old tables"
+
+msgid "Backup tables (sample data of the new plugins)"
+msgstr "Backup tables (sample data of the new plugins)"
+
+msgid "Old upload folders"
+msgstr "Old upload folders"
+
+msgid "Old plugins (inactive)"
+msgstr "Old plugins (inactive)"
+
+msgid "Old themes"
+msgstr "Old themes"
+
+msgid "Old settings"
+msgstr "Old settings"
+
+msgid "Leftovers"
+msgstr "Leftovers"
+
+msgid "%d items deleted."
+msgstr "%d items deleted."
+
+msgid "Could not delete:"
+msgstr "Could not delete:"
+
+msgid "No tables, folders, plugins or settings with old names are left."
+msgstr "No tables, folders, plugins or settings with old names are left."
+
+msgid "What is left under the old names after the migration. Delete it once you have checked that the site works with the new plugins; deleting cannot be undone, take a backup first."
+msgstr "What is left under the old names after the migration. Delete it once you have checked that the site works with the new plugins; deleting cannot be undone, take a backup first."
+
+msgid "The selected items will be deleted permanently. Did you take a backup?"
+msgstr "The selected items will be deleted permanently. Did you take a backup?"
+
+msgid "What"
+msgstr "What"
+
+msgid "Details"
+msgstr "Details"
+
+msgid "Delete selected"
+msgstr "Delete selected"
+
+msgid "Finish the migration first."
+msgstr "Finish the migration first."
+
+msgid "WooCommerce orders"
+msgstr "WooCommerce orders"
+
+msgid "Order items"
+msgstr "Order items"
+
+msgid "Encrypted settings (passwords, keys)"
+msgstr "Encrypted settings (passwords, keys)"
+
+msgid "Sodium is missing: encrypted settings could not be moved, enter them again in the panel."
+msgstr "Sodium is missing: encrypted settings could not be moved, enter them again in the panel."
+
+msgid "%d encrypted values could not be opened (the site keys may have changed); enter them again in the panel."
+msgstr "%d encrypted values could not be opened (the site keys may have changed); enter them again in the panel."
+
+msgid "Moves site data saved under the old package names (settings, tables, meta, content, theme, upload folders) to the FluxWP names. The name map is in map.json."
+msgstr "Moves site data saved under the old package names (settings, tables, meta, content, theme, upload folders) to the FluxWP names. The name map is in map.json."
+
+msgid "%1$s is empty, %2$s was left as it is."
+msgstr "%1$s is empty, %2$s was left as it is."
+
+msgid "%1$s was not empty: it was backed up as %2$s and replaced by %3$s."
+msgstr "%1$s was not empty: it was backed up as %2$s and replaced by %3$s."
+
+msgid "%3$d items from %1$s were moved into %2$s."
+msgstr "%3$d items from %1$s were moved into %2$s."
+
+msgid "%2$d files in %1$s already existed in the new folder; the old copies were left in place."
+msgstr "%2$d files in %1$s already existed in the new folder; the old copies were left in place."
+
+msgid "Step"
+msgstr "Step"
+
+msgid "The old update-server address and site key were removed. Enter the new server's key under FluxWP Panel › Settings."
+msgstr "The old update-server address and site key were removed. Enter the new server's key under FluxWP Panel › Settings."
+
+msgid "Migrate"
+msgstr "Migrate"
+
+msgid "Migration finished on %s. You can delete this plugin now."
+msgstr "Migration finished on %s. You can delete this plugin now."
+
+msgid "Migration finished. Check that the new plugins are active and clear the cache."
+msgstr "Migration finished. Check that the new plugins are active and clear the cache."
+
+msgid "Settings (options)"
+msgstr "Settings (options)"
+
+msgid "Finish"
+msgstr "Finish"
+
+msgid "To change"
+msgstr "To change"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Moves data saved under the old names to the new names. Take a backup first, upload the new plugins and theme (do not activate them), then click \"Scan\" and after that \"Migrate\"."
+msgstr "Moves data saved under the old names to the new names. Take a backup first, upload the new plugins and theme (do not activate them), then click \"Scan\" and after that \"Migrate\"."
+
+msgid "Error"
+msgstr "Error"
+
+msgid "User meta"
+msgstr "User meta"
+
+msgid "Table contents"
+msgstr "Table contents"
+
+msgid "Tables"
+msgstr "Tables"
+
+msgid "Taxonomies"
+msgstr "Taxonomies"
+
+msgid "Done"
+msgstr "Done"
+
+msgid "Scan"
+msgstr "Scan"
+
+msgid "Theme"
+msgstr "Theme"
+
+msgid "Term meta"
+msgstr "Term meta"
+
+msgid "Data will be moved to the new names. Did you take a backup?"
+msgstr "Data will be moved to the new names. Did you take a backup?"
+
+msgid "Post meta"
+msgstr "Post meta"
+
+msgid "Posts and pages"
+msgstr "Posts and pages"
+
+msgid "Upload folders"
+msgstr "Upload folders"
+
+msgid "Working…"
+msgstr "Working…"
+
+msgid "Upload these new packages first (do not activate them):"
+msgstr "Upload these new packages first (do not activate them):"
+
+msgid "[['%drow', 'tr']]"
+msgid_plural "[['%drow', 'tr']]"
+msgstr[0] "[['%drow', 'tr']]"
+msgstr[1] "[['%drow', 'tr']]"
+
+msgid "[['%dold setting', 'tr']]"
+msgid_plural "[['%dold setting', 'tr']]"
+msgstr[0] "[['%dold setting', 'tr']]"
+msgstr[1] "[['%dold setting', 'tr']]"

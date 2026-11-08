@@ -45,23 +45,23 @@ function flxc_notify_last_messages( $chat_id ) {
 function flxc_notify_text( $chat, $reason ) {
 	$state = function_exists( 'flxc_bot_state' ) ? flxc_bot_state( $chat ) : array();
 	$name  = '' !== (string) ( $state['full'] ?? '' ) ? $state['full'] : ( '' !== (string) ( $state['name'] ?? '' ) ? $state['name'] : ( '' !== (string) $chat['name'] ? $chat['name'] : (string) $chat['push_name'] ) );
-	$why   = 'human' === $reason ? __( 'Kişi temsilci istedi', 'flx-chat' ) : ( '' !== (string) $reason ? $reason : '-' );
-	$lines = array( '🔔 *' . __( 'Asistan bir sohbeti ekibe devretti', 'flx-chat' ) . '*' );
+	$why   = 'human' === $reason ? __( 'Contact asked for an agent', 'flx-chat' ) : ( '' !== (string) $reason ? $reason : '-' );
+	$lines = array( '🔔 *' . __( 'The assistant handed a chat over to the team', 'flx-chat' ) . '*' );
 	if ( '' !== trim( $name ) ) {
-		$lines[] = __( 'Kişi', 'flx-chat' ) . ': ' . $name;
+		$lines[] = __( 'Contact', 'flx-chat' ) . ': ' . $name;
 	}
-	$lines[] = __( 'Telefon', 'flx-chat' ) . ': ' . ( '' !== (string) $chat['phone'] ? '+' . $chat['phone'] : __( 'Gizli numara (WhatsApp)', 'flx-chat' ) );
-	$lines[] = __( 'Neden', 'flx-chat' ) . ': ' . $why;
+	$lines[] = __( 'Phone', 'flx-chat' ) . ': ' . ( '' !== (string) $chat['phone'] ? '+' . $chat['phone'] : __( 'Hidden number (WhatsApp)', 'flx-chat' ) );
+	$lines[] = __( 'Reason', 'flx-chat' ) . ': ' . $why;
 	$msgs    = flxc_notify_last_messages( $chat['id'] );
 	if ( $msgs ) {
 		$lines[] = '';
-		$lines[] = __( 'Son mesajlar', 'flx-chat' ) . ':';
+		$lines[] = __( 'Last messages', 'flx-chat' ) . ':';
 		foreach ( $msgs as $m ) {
 			$lines[] = '› ' . str_replace( "\n", ' ', $m );
 		}
 	}
 	$lines[] = '';
-	$lines[] = __( 'Lütfen sohbeti devralın', 'flx-chat' ) . ': ' . admin_url( 'admin.php?page=flx-chat&chat=' . (int) $chat['id'] );
+	$lines[] = __( 'Please take over the chat', 'flx-chat' ) . ': ' . admin_url( 'admin.php?page=flx-chat&chat=' . (int) $chat['id'] );
 	return (string) apply_filters( 'flxc_notify_text', implode( "\n", $lines ), $chat, $reason );
 }
 
@@ -118,9 +118,9 @@ function flxc_notify_handoff( $chat, $reason ) {
 		$r = flxc_mirror_send_mentions( $chat['conn'], $text, array_values( $nums ) );
 		if ( empty( $r['ok'] ) ) {
 			/* translators: %s: error */
-			flxc_system_message( $chat, sprintf( __( 'Ekip grubuna bildirim gönderilemedi: %s', 'flx-chat' ), '' !== (string) $r['error'] ? $r['error'] : 'HTTP ' . $r['code'] ) );
+			flxc_system_message( $chat, sprintf( __( 'Could not send the notification to the team group: %s', 'flx-chat' ), '' !== (string) $r['error'] ? $r['error'] : 'HTTP ' . $r['code'] ) );
 		} else {
-			flxc_system_message( $chat, __( 'Ekip grubuna devir bildirimi gönderildi.', 'flx-chat' ) );
+			flxc_system_message( $chat, __( 'Handoff notification sent to the team group.', 'flx-chat' ) );
 		}
 		return;
 	}
@@ -137,11 +137,11 @@ function flxc_notify_handoff( $chat, $reason ) {
 	}
 	if ( $ok ) {
 		/* translators: %s: phone numbers */
-		flxc_system_message( $chat, sprintf( __( 'Ekibe WhatsApp bildirimi gönderildi: %s', 'flx-chat' ), implode( ', ', $ok ) ) );
+		flxc_system_message( $chat, sprintf( __( 'WhatsApp notification sent to the team: %s', 'flx-chat' ), implode( ', ', $ok ) ) );
 	}
 	if ( $bad ) {
 		/* translators: %s: phone numbers and errors */
-		flxc_system_message( $chat, sprintf( __( 'Ekip bildirimi gönderilemedi: %s', 'flx-chat' ), implode( ', ', $bad ) ) );
+		flxc_system_message( $chat, sprintf( __( 'Team notification could not be sent: %s', 'flx-chat' ), implode( ', ', $bad ) ) );
 	}
 }
 add_action( 'flxc_bot_handoff', 'flxc_notify_handoff', 20, 2 );

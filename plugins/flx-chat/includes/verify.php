@@ -46,7 +46,7 @@ function flxc_verify_text( $code ) {
 }
 
 function flxc_verify_default_text() {
-	return __( '{marka} doğrulama kodunuz: {kod}', 'flx-chat' ) . "\n\n" . __( 'Kod {dk} dakika geçerlidir. Bu kodu WhatsApp\'ta bizimle olan sohbete yazın. Bu isteği siz yapmadıysanız dikkate almayın.', 'flx-chat' );
+	return __( 'Your {marka} verification code: {kod}', 'flx-chat' ) . "\n\n" . __( 'The code is valid for {dk} minutes. Type it in your WhatsApp chat with us. If you did not ask for it, ignore this message.', 'flx-chat' );
 }
 
 function flxc_verify_hash( $code, $chat_id, $type, $value ) {
@@ -92,7 +92,7 @@ function flxc_verify_max_fails() {
 
 function flxc_verify_fail_text() {
 	$t = trim( (string) flxc_setting( 'verify_fail_text' ) );
-	return '' !== $t ? $t : __( 'Bir sıkıntı oldu, ekibimiz en kısa sürede sizinle iletişime geçecek 🌱 Bu arada başka bir sorunuz olursa yazabilirsiniz.', 'flx-chat' );
+	return '' !== $t ? $t : __( 'Something went wrong; our team will contact you as soon as possible 🌱 Meanwhile, feel free to ask anything else.', 'flx-chat' );
 }
 
 /** Doğrulama bu sohbette kilitli mi (sınır aşıldı; 24 sa). */
@@ -109,7 +109,7 @@ function flxc_verify_fail( $chat, array &$state, $sandbox, $error, $why ) {
 	$state['vc_fails'] = (int) ( $state['vc_fails'] ?? 0 ) + 1;
 	if ( ! $sandbox ) {
 		/* translators: 1: attempt, 2: limit, 3: reason */
-		flxc_system_message( $chat, sprintf( __( 'Doğrulama denemesi başarısız (%1$d/%2$d): %3$s', 'flx-chat' ), $state['vc_fails'], flxc_verify_max_fails(), $why ) );
+		flxc_system_message( $chat, sprintf( __( 'Verification attempt failed (%1$d/%2$d): %3$s', 'flx-chat' ), $state['vc_fails'], flxc_verify_max_fails(), $why ) );
 	}
 	if ( $state['vc_fails'] < flxc_verify_max_fails() ) {
 		return array( 'ok' => false, 'error' => $error . ' (Başarısız deneme ' . $state['vc_fails'] . '/' . flxc_verify_max_fails() . '.)' );
@@ -118,7 +118,7 @@ function flxc_verify_fail( $chat, array &$state, $sandbox, $error, $why ) {
 	unset( $state['vc'] );
 	if ( ! $sandbox ) {
 		flxc_verify_stat( array( 'vc_locked' => 1 ) );
-		$why = __( 'Kişi kayıtlarını görmek istedi, doğrulama yapılamadı; ekipten biri iletişime geçmeli', 'flx-chat' );
+		$why = __( 'The person wanted to see their records but could not be verified; someone from the team should get in touch', 'flx-chat' );
 		flxc_system_message( $chat, $why );
 		$fresh = flxc_get_chat( $chat['id'] );
 		flxc_update_chat( $chat['id'], array( 'unread' => max( 1, (int) $fresh['unread'] ), 'status' => 'open' ) );
@@ -202,7 +202,7 @@ function flxc_verify_send( $chat, $type, $value, array &$state, $sandbox = false
 	} elseif ( 'email' === $type ) {
 		$channel = flxc_ev_send_mail( $value, $code, '' !== $state['name'] ? $state['name'] : $state['full'] ) ? 'email' : '';
 		if ( '' === $channel ) {
-			$errs[] = __( 'e-posta gönderilemedi (Flux Mail › SMTP ayarlarını kontrol edin)', 'flx-chat' );
+			$errs[] = __( 'e-mail could not be sent (check Flux Mail › SMTP settings)', 'flx-chat' );
 		}
 	} else {
 		$text = flxc_verify_text( $code );
@@ -220,20 +220,20 @@ function flxc_verify_send( $chat, $type, $value, array &$state, $sandbox = false
 				$channel = $ch;
 				break;
 			}
-			$errs[] = flxc_verify_channel_label( $ch ) . ': ' . ( '' !== $GLOBALS['flxc_verify_err'] ? $GLOBALS['flxc_verify_err'] : __( 'gönderilemedi', 'flx-chat' ) );
+			$errs[] = flxc_verify_channel_label( $ch ) . ': ' . ( '' !== $GLOBALS['flxc_verify_err'] ? $GLOBALS['flxc_verify_err'] : __( 'not sent', 'flx-chat' ) );
 		}
 	}
 	if ( '' === $channel ) {
 		if ( ! $sandbox ) {
 			flxc_verify_stat( array( 'vc_fail' => 1 ) );
 		}
-		$no_wa = false !== strpos( implode( ' ', $errs ), __( 'Bu numarada WhatsApp yok.', 'flx-chat' ) );
+		$no_wa = false !== strpos( implode( ' ', $errs ), __( 'This number is not on WhatsApp.', 'flx-chat' ) );
 		return flxc_verify_fail(
 			$chat,
 			$state,
 			$sandbox,
 			( 'email' === $type ? 'E-posta' : 'Kod mesajı' ) . ' gönderilemedi' . ( $no_wa ? ' (bu numarada WhatsApp yok; numarayı kontrol etmesini iste)' : '' ) . '. Kişiye kısaca özür dile ve diğer yolu (telefon/e-posta) öner; ekibe aktarma.',
-			( 'email' === $type ? $value : flxc_format_phone( $value ) ) . ' — ' . ( $errs ? implode( '; ', $errs ) : __( 'gönderilemedi', 'flx-chat' ) )
+			( 'email' === $type ? $value : flxc_format_phone( $value ) ) . ' — ' . ( $errs ? implode( '; ', $errs ) : __( 'not sent', 'flx-chat' ) )
 		);
 	}
 	$sent[]           = $now;
@@ -250,7 +250,7 @@ function flxc_verify_send( $chat, $type, $value, array &$state, $sandbox = false
 		flxc_verify_stat( array( 'vc_' . $channel => 1 ) );
 		$shown = 'email' === $type ? $value : flxc_format_phone( $value );
 		/* translators: 1: e-mail or phone, 2: channel */
-		flxc_system_message( $chat, sprintf( __( 'Asistan %1$s için doğrulama kodu gönderdi (%2$s).', 'flx-chat' ), $shown, flxc_verify_channel_label( $channel ) ) );
+		flxc_system_message( $chat, sprintf( __( 'The assistant sent a verification code for %1$s (%2$s).', 'flx-chat' ), $shown, flxc_verify_channel_label( $channel ) ) );
 	}
 	$where = array(
 		'email'    => 'e-postasına gelen (spam klasörüne de bakmasını söyle)',
@@ -268,7 +268,7 @@ function flxc_verify_send( $chat, $type, $value, array &$state, $sandbox = false
 
 function flxc_verify_channel_label( $ch ) {
 	$l = array(
-		'email'    => __( 'e-posta', 'flx-chat' ),
+		'email'    => __( 'e-mail', 'flx-chat' ),
 		'whatsapp' => 'WhatsApp',
 		'sms'      => 'SMS',
 	);
@@ -294,7 +294,7 @@ function flxc_verify_check( $chat, $code, array &$state, $sandbox = false ) {
 		if ( ! $sandbox ) {
 			flxc_verify_stat( array( 'vc_expired' => 1 ) );
 		}
-		return flxc_verify_fail( $chat, $state, $sandbox, 'Kodun süresi doldu (' . flxc_verify_ttl() . ' dk). Kişi isterse verify_send ile yeni kod gönder.', __( 'kodun süresi doldu', 'flx-chat' ) );
+		return flxc_verify_fail( $chat, $state, $sandbox, 'Kodun süresi doldu (' . flxc_verify_ttl() . ' dk). Kişi isterse verify_send ile yeni kod gönder.', __( 'code expired', 'flx-chat' ) );
 	}
 	if ( (int) $vc['tries'] >= 5 ) {
 		return array( 'ok' => false, 'error' => 'Çok fazla yanlış deneme. Yeni kod gönderilmesi gerekiyor.' );
@@ -306,7 +306,7 @@ function flxc_verify_check( $chat, $code, array &$state, $sandbox = false ) {
 		if ( ! $sandbox ) {
 			flxc_verify_stat( array( 'vc_wrong' => 1 ) );
 		}
-		return flxc_verify_fail( $chat, $state, $sandbox, 'Kod yanlış. Kişiye kodun yanlış olduğunu söyle ve gelen 6 haneli kodu kontrol edip yeniden yazmasını iste; yeni kod gönderme, kayıt bilgisi verme.', __( 'yanlış kod', 'flx-chat' ) );
+		return flxc_verify_fail( $chat, $state, $sandbox, 'Kod yanlış. Kişiye kodun yanlış olduğunu söyle ve gelen 6 haneli kodu kontrol edip yeniden yazmasını iste; yeni kod gönderme, kayıt bilgisi verme.', __( 'wrong code', 'flx-chat' ) );
 	}
 	unset( $state['vc'] );
 	$state['vc_fails'] = 0;
@@ -329,7 +329,7 @@ function flxc_verify_check( $chat, $code, array &$state, $sandbox = false ) {
 		flxc_verify_stat( array( 'verified' => 1, 'vc_ok_' . ( 'email' === $vc['type'] ? 'email' : 'phone' ) => 1 ) );
 		$shown = 'email' === $vc['type'] ? $vc['value'] : flxc_format_phone( $vc['value'] );
 		/* translators: %s: e-mail or phone */
-		flxc_system_message( $chat, sprintf( __( 'Kişi %s için kodu doğruladı; kayıt sorgusuna eklendi.', 'flx-chat' ), $shown ) );
+		flxc_system_message( $chat, sprintf( __( 'The person verified the code for %s; it is added to their record lookups.', 'flx-chat' ), $shown ) );
 		do_action( 'flxc_verified', $chat, $vc['type'], $vc['value'] );
 		if ( 'email' === $vc['type'] ) {
 			do_action( 'flxc_email_verified', $chat, $vc['value'] );

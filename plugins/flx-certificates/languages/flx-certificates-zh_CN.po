@@ -1,0 +1,929 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: zh_CN\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Sapling goal progress"
+msgstr "树苗目标进度"
+
+msgid "No record"
+msgstr "无记录"
+
+msgid "Certificate not found"
+msgstr "未找到证书"
+
+msgid "The link may have been copied incompletely. Check the code or request your certificate below."
+msgstr "该链接可能复制不完整。检查下面的代码或索取您的证书。"
+
+msgid "Revoked certificate"
+msgstr "吊销证书"
+
+msgid "Verified certificate"
+msgstr "已验证证书"
+
+msgid "REVOKED"
+msgstr "已撤销"
+
+msgid "Full name"
+msgstr "全名"
+
+msgid "Certificate no."
+msgstr "证书编号"
+
+msgid "Issue date"
+msgstr "发行日期"
+
+msgid "Issued by"
+msgstr "颁发者"
+
+msgid "Verification code"
+msgstr "验证码"
+
+msgid "Download PDF"
+msgstr "下载PDF"
+
+msgid "Share"
+msgstr "分享"
+
+msgid "Add to LinkedIn"
+msgstr "添加到领英"
+
+msgid "Copy link"
+msgstr "复制链接"
+
+msgid "This certificate has been revoked by the issuing organization and is no longer valid."
+msgstr "该证书已被颁发机构吊销,不再有效。"
+
+msgid "This page confirms that the certificate is on record at %s."
+msgstr "此页面确认证书已记录在%s处。"
+
+msgid "Lookup is disabled."
+msgstr "查找已禁用。"
+
+msgid "Too many attempts. Please try again later."
+msgstr "尝试次数太多。请稍后重试。"
+
+msgid "Enter a valid phone number or email address."
+msgstr "输入有效的电话号码或电子邮件地址。"
+
+msgid "Hello %1$s,\n\nYour %2$s certificates:\n%3$s"
+msgstr "您好,%1$s,\n\n您的%2$s证书:%3$s"
+
+msgid "Your certificates"
+msgstr "您的证书"
+
+msgid "If a certificate is registered with these details, its link will be sent to you within a few minutes."
+msgstr "如果使用这些详细信息注册了证书,其链接将在几分钟内发送给您。"
+
+msgid "OK"
+msgstr "好的"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "Error"
+msgstr "错误"
+
+msgid "Info"
+msgstr "信息"
+
+msgid "Test WhatsApp/SMS connections"
+msgstr "测试 WhatsApp/SMS 连接"
+
+msgid "System check"
+msgstr "系统检查"
+
+msgid "Whether setup, cron and sending are in place. Checked again each time this page opens. WhatsApp/SMS connections and tests live in Flux Mail."
+msgstr "setup、cron、sending是否到位。每次打开此页面时都会再次检查。 WhatsApp/SMS 连接和测试在 Flux Mail 中进行。"
+
+msgid "Not allowed"
+msgstr "不允许"
+
+msgid "Valid"
+msgstr "有效"
+
+msgid "Revoked"
+msgstr "已撤销"
+
+msgid "Date"
+msgstr "日期"
+
+msgid "Phone"
+msgstr "电话"
+
+msgid "Email"
+msgstr "电子邮件"
+
+msgid "Event"
+msgstr "活动"
+
+msgid "Template"
+msgstr "模板"
+
+msgid "Referrer"
+msgstr "推荐人"
+
+msgid "Created by"
+msgstr "创建者:"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Views"
+msgstr "意见"
+
+msgid "Messages sent"
+msgstr "已发送消息"
+
+msgid "Certificate link"
+msgstr "证书链接"
+
+msgctxt "context_e363ab036dc9"
+msgid "certificates"
+msgstr "证书"
+
+msgid "Certificates"
+msgstr "证书"
+
+msgid "The server has no ZipArchive (PHP zip extension); the Excel file could not be created."
+msgstr "服务器没有 ZipArchive(PHP zip 扩展名);无法创建 Excel 文件。"
+
+msgid "The Excel file could not be created."
+msgstr "无法创建 Excel 文件。"
+
+msgid "On donation page"
+msgstr "在捐款页面"
+
+msgid "Donation page"
+msgstr "捐款页面"
+
+msgid "Donors can choose this design on the donation page"
+msgstr "捐赠者可以在捐赠页面选择此设计"
+
+msgid "Heading (group)"
+msgstr "标题 (群展)"
+
+msgid "Order"
+msgstr "订单"
+
+msgid "The donor picks the design and fills in the template's text, date and choice fields (e.g. recipient name, message). The price comes from the donation type."
+msgstr "捐赠者选择设计并填写模板的文本、日期和选择字段(例如接收者姓名、消息)。价格来自捐赠类型。"
+
+msgid "No certificates selected."
+msgstr "未选择任何证书。"
+
+msgid "%d messages queued."
+msgstr "%d消息已排队。"
+
+msgid "%d certificates updated."
+msgstr "%d证书已更新。"
+
+msgid "Download Excel"
+msgstr "下载Excel"
+
+msgid "New certificate"
+msgstr "新证书"
+
+msgid "Name, phone, email, certificate no…"
+msgstr "姓名、电话、电子邮箱、证件号码..."
+
+msgid "All statuses"
+msgstr "所有状态"
+
+msgid "Cancelled"
+msgstr "取消"
+
+msgid "All events"
+msgstr "所有活动"
+
+msgid "No event (%d)"
+msgstr "无事件 (%d)"
+
+msgid "archived"
+msgstr "已归档"
+
+msgid "All templates"
+msgstr "所有模板"
+
+msgid "All referrers"
+msgstr "所有推荐人"
+
+msgid "No referrer (%d)"
+msgstr "无引荐来源网址 (%d)"
+
+msgid "Created by: anyone"
+msgstr "创建者:任何人"
+
+msgid "Filter"
+msgstr "过滤器"
+
+msgid "Bulk actions…"
+msgstr "批量操作..."
+
+msgid "Send via WhatsApp"
+msgstr "通过 WhatsApp 发送"
+
+msgid "Send via SMS"
+msgstr "通过短信发送"
+
+msgid "Send via email"
+msgstr "通过电子邮件发送"
+
+msgid "Revoke"
+msgstr "撤销"
+
+msgid "Make valid"
+msgstr "使有效"
+
+msgid "Assign to event…"
+msgstr "分配给事件..."
+
+msgid "Assign referrer…"
+msgstr "分配推荐人..."
+
+msgid "Delete permanently"
+msgstr "永久删除"
+
+msgid "— No event —"
+msgstr "— 无事件 —"
+
+msgid "— No referrer —"
+msgstr "— 无推荐人 —"
+
+msgid "Apply to the selected items?"
+msgstr "适用于所选项目?"
+
+msgid "Apply"
+msgstr "申请"
+
+msgid "Certificate"
+msgstr "证书"
+
+msgid "Person"
+msgstr "人"
+
+msgid "Event / Template"
+msgstr "活动/模板"
+
+msgid "Deliveries"
+msgstr "交货"
+
+msgid "Referrer / Created by"
+msgstr "推荐人/创建者"
+
+msgid "No certificates yet."
+msgstr "还没有证书。"
+
+msgid "Create the first certificate"
+msgstr "创建第一个证书"
+
+msgid "Actually created: %s"
+msgstr "实际创建:%s"
+
+msgid "backdated"
+msgstr "回溯"
+
+msgid "%d view"
+msgid_plural "%d views"
+msgstr[0] "%d浏览次数"
+
+msgid "Registered person: %s"
+msgstr "注册人:%s"
+
+msgid "created by: %s"
+msgstr "创建者:%s"
+
+msgid "Actions"
+msgstr "行动"
+
+msgid "Open page"
+msgstr "打开页面"
+
+msgid "PDF"
+msgstr "PDF"
+
+msgid "Send to someone else…"
+msgstr "发送给其他人..."
+
+msgid "Update referrer…"
+msgstr "更新引荐来源..."
+
+msgid "Edit"
+msgstr "编辑"
+
+msgid "Revoke this certificate? The link will show \"revoked\"."
+msgstr "吊销这个证书吗?该链接将显示“已撤销”。"
+
+msgid "Delivery history"
+msgstr "交货历史"
+
+msgid "No connection in Flux Mail"
+msgstr "Flux 邮件中没有连接"
+
+msgid "Flux Mail is not active"
+msgstr "Flux 邮件未激活"
+
+msgid "add"
+msgstr "添加"
+
+msgid "Plugins"
+msgstr "插件"
+
+msgid "%d record"
+msgid_plural "%d records"
+msgstr[0] "%d记录"
+
+msgid "Inactive"
+msgstr "不活跃"
+
+msgid "Father's Day Certificate"
+msgstr "父亲节证书"
+
+msgid "Just Because Certificate"
+msgstr "只因为证书"
+
+msgid "Birthday Gift"
+msgstr "生日礼物"
+
+msgid "Get Well Soon"
+msgstr "快点好起来"
+
+msgid "First Day at Work"
+msgstr "第一天上班"
+
+msgid "Condolence Certificate"
+msgstr "吊唁证书"
+
+msgid "Mother's Day Certificate"
+msgstr "母亲节证书"
+
+msgid "Wedding Sapling Donation"
+msgstr "婚礼树苗捐赠"
+
+msgid "Teachers' Day Certificate"
+msgstr "教师节证书"
+
+msgid "Thank You Certificate"
+msgstr "感谢证书"
+
+msgid "Welcome Baby Certificate"
+msgstr "欢迎婴儿证书"
+
+msgid "Wedding Congratulations Certificate"
+msgstr "结婚祝贺证书"
+
+msgid "Wedding Anniversary Certificate"
+msgstr "结婚周年纪念证书"
+
+msgid "Sapling Donation Certificate (one name)"
+msgstr "树苗捐赠证书(一人名)"
+
+msgid "Sapling Donation (two names, sapling count)"
+msgstr "树苗捐赠(两个名字,树苗数量)"
+
+msgid "Sapling Donation Certificate (two names)"
+msgstr "树苗捐赠证书(两人名)"
+
+msgid "Recipient name"
+msgstr "收件人姓名"
+
+msgid "Donor (your name)"
+msgstr "捐赠者(你的名字)"
+
+msgid "Person remembered"
+msgstr "记住的人"
+
+msgid "Number of saplings"
+msgstr "树苗数量"
+
+msgid "%d e-card designs were added as inactive templates. Designs you activate can be picked on the donation page."
+msgstr "%d电子贺卡设计已添加为非活动模板。您可以在捐赠页面上选择您激活的设计。"
+
+msgid "All e-card designs are already added."
+msgstr "所有电子贺卡设计均已添加。"
+
+msgid "The server has no ZipArchive (PHP zip extension)."
+msgstr "服务器没有 ZipArchive(PHP zip 扩展名)。"
+
+msgid "Ready-made e-cards"
+msgstr "现成的电子贺卡"
+
+msgid "(%1$d/%2$d added)"
+msgstr "(添加%1$d/%2$d)"
+
+msgid "Add the missing e-card designs as inactive templates?"
+msgstr "将缺少的电子贺卡设计添加为非活动模板?"
+
+msgid "Import"
+msgstr "进口"
+
+msgid "Download images as zip"
+msgstr "下载 zip 格式的图像"
+
+msgid "Flux Mail (organization template)"
+msgstr "Flux 邮件(组织模板)"
+
+msgid "%s ago"
+msgstr "%s前"
+
+msgid "Certificates · Setup"
+msgstr "证书·设置"
+
+msgid "Certificates · Sending and cron"
+msgstr "证书·发送和 cron"
+
+msgid "Certificates · Site"
+msgstr "证书·网站"
+
+msgid "Database tables"
+msgstr "数据库表"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "缺少表:%s。停用并重新激活插件。"
+
+msgid "A database update is pending; it completes when an admin page is opened."
+msgstr "数据库更新正在等待中;当管理页面打开时它完成。"
+
+msgid "All tables exist. Plugin %1$s, database version %2$s."
+msgstr "所有表都存在。插件%1$s,数据库版本%2$s。"
+
+msgid "Files folder"
+msgstr "文件夹"
+
+msgid "The folder for certificate PDFs and images is writable."
+msgstr "证书 PDF 和图像的文件夹是可写的。"
+
+msgid "%s is not writable; certificate files cannot be saved. Check folder permissions (755)."
+msgstr "%s不可写;无法保存证书文件。检查文件夹权限 (755)。"
+
+msgid "Certificate page address"
+msgstr "证书页地址"
+
+msgid "Permalinks are set to \"Plain\"; certificate links work as ?flxs_kod=. \"Post name\" is recommended."
+msgstr "固定链接设置为“普通”;证书链接的工作方式为 ?flxs_kod=。推荐“帖子名称”。"
+
+msgid "Permalinks"
+msgstr "固定链接"
+
+msgid "The certificate URL rule is not registered; links may return 404. Press \"Save Changes\" on the Permalinks page."
+msgstr "证书URL规则未注册;链接可能会返回 404。按“永久链接”页面上的“保存更改”。"
+
+msgid "Certificates open at %s{code}."
+msgstr "证书在%s{code}处打开。"
+
+msgid "Certificate templates"
+msgstr "证书模板"
+
+msgid "%d active template."
+msgid_plural "%d active templates."
+msgstr[0] "%d活动模板。"
+
+msgid "No active template; certificates cannot be created."
+msgstr "没有活动模板;无法创建证书。"
+
+msgid "Templates"
+msgstr "模板"
+
+msgid "Plugin files"
+msgstr "插件文件"
+
+msgid "Missing file: %s. Upload the plugin zip again."
+msgstr "缺少文件:%s。再次上传插件 zip。"
+
+msgid "PDF renderer, QR and fonts are in place."
+msgstr "PDF 渲染器、QR 和字体均已就位。"
+
+msgid "Staff role"
+msgstr "员工角色"
+
+msgid "The \"Certificate Staff\" role exists."
+msgstr "存在“证书人员”角色。"
+
+msgid "The \"Certificate Staff\" role is missing. Deactivate and reactivate the plugin."
+msgstr "缺少“证书人员”角色。停用并重新激活插件。"
+
+msgid "Sending queue (cron)"
+msgstr "发送队列(cron)"
+
+msgid "The per-minute queue task is not scheduled. Reload any admin page; if it persists, reactivate the plugin."
+msgstr "The per-minute queue task is not scheduled.重新加载任何管理页面; if it persists, reactivate the plugin."
+
+msgid "Queue"
+msgstr "队列"
+
+msgid "%1$d message has been waiting for more than 10 minutes; the queue may not be running. Runner: %2$s, last run: %3$s."
+msgid_plural "%1$d messages have been waiting for more than 10 minutes; the queue may not be running. Runner: %2$s, last run: %3$s."
+msgstr[0] "%1$d消息已等待超过10分钟;队列可能没有运行。运行者:%2$s,上次运行:%3$s。"
+
+msgid "never"
+msgstr "从不"
+
+msgid "WP-Cron is disabled (DISABLE_WP_CRON); a per-minute cron for wp-cron.php must be set in the hosting panel."
+msgstr "WP-Cron 已禁用 (DISABLE_WP_CRON);必须在托管面板中设置 wp-cron.php 的每分钟 cron。"
+
+msgid "Runner: %1$s. Last run %2$s; cron fires rarely. No messages waiting. Without regular traffic, a per-minute cron for wp-cron.php in the hosting panel is recommended."
+msgstr "运行者:%1$s。最后运行%2$s; cron 很少发生。没有消息等待。如果没有常规流量,建议在托管面板中为 wp-cron.php 设置每分钟 cron。"
+
+msgid "Runner: %1$s. Last run: %2$s. No old messages waiting."
+msgstr "运行者:%1$s。最后运行:%2$s。没有旧消息等待。"
+
+msgid "not recorded yet"
+msgstr "尚未记录"
+
+msgid "Sending in the last 24 hours"
+msgstr "过去 24 小时内发送"
+
+msgid "%d message failed."
+msgid_plural "%d messages failed."
+msgstr[0] "%d消息失败。"
+
+msgid "View failed"
+msgstr "查看失败"
+
+msgid "%d message sent, none failed."
+msgid_plural "%d messages sent, none failed."
+msgstr[0] "%d消息已发送,没有失败。"
+
+msgid "Daily cleanup task"
+msgstr "日常清洁任务"
+
+msgid "The daily task (old log cleanup) is not scheduled; reload an admin page."
+msgstr "日常任务(旧日志清理)没有安排;重新加载管理页面。"
+
+msgid "Flux Mail"
+msgstr "通量邮件"
+
+msgid "Flux Mail is not active. Certificates cannot be sent by WhatsApp or SMS; email goes through WordPress (wp_mail). Install and activate Flux Mail."
+msgstr "Flux 邮件未激活。证书不能通过WhatsApp或SMS发送;电子邮件通过 WordPress (wp_mail)。安装并激活 Flux Mail。"
+
+msgid "%s sending"
+msgstr "%s发送"
+
+msgid "Sent through the Flux Mail connection: %s."
+msgstr "通过 Flux 邮件连接发送:%s。"
+
+msgid "Last successful send %s."
+msgstr "最后一次成功发送%s。"
+
+msgid "Connections"
+msgstr "连接"
+
+msgid "No %1$s connection is set up; certificates are not sent by %1$s."
+msgstr "没有建立%1$s连接;证书不是由%1$s发送的。"
+
+msgid "Flux Mail has no active %s connection; certificates cannot be sent on that channel."
+msgstr "Flux Mail 没有活动的%s连接;无法在该通道上发送证书。"
+
+msgid "Certificate emails go through Flux Mail with the organization template (Communication › Emails)."
+msgstr "证书电子邮件通过带有组织模板的 Flux Mail(通信 › 电子邮件)。"
+
+msgid "Emails"
+msgstr "电子邮件"
+
+msgid "Theme compatibility"
+msgstr "主题兼容性"
+
+msgid "The FluxWP theme (%s) is active; the events section and certificate page match the theme."
+msgstr "FluxWP 主题 (%s) 已激活;活动部分和证书页面与主题相匹配。"
+
+msgid "Active theme: %s. The events section appears automatically only in the Örnek Vakfı theme; in other themes add it with a shortcode."
+msgstr "活动主题:%s。事件部分仅在 Örnek Vakfı 主题中自动出现;在其他主题中添加短代码。"
+
+msgid "Ongoing events"
+msgstr "正在进行的活动"
+
+msgid "No open events; the events section is hidden on the site."
+msgstr "没有开放活动;活动部分隐藏在网站上。"
+
+msgid "Events"
+msgstr "活动"
+
+msgid "Open event without a published page: %s. Fix it with \"Publish on site\" in the event edit screen."
+msgstr "打开没有发布页面的事件:%s。通过事件编辑屏幕中的“现场发布”修复此问题。"
+
+msgid "%d open event, its page is published."
+msgid_plural "%d open events, their pages are published."
+msgstr[0] "%d开放事件,其页面已发布。"
+
+msgid "Certificate lookup"
+msgstr "证书查询"
+
+msgid "The lookup form is on %s."
+msgstr "查找表格位于%s上。"
+
+msgid "Lookup is on, but no published page has the [flx_sertifika_sorgula] shortcode."
+msgstr "查找已开启,但没有发布的页面具有 [flx_sertifika_sorgula] 短代码。"
+
+msgid "Flux Forms integration"
+msgstr "通量形式集成"
+
+msgid "Flux Forms is installed; form automations can create and send certificates."
+msgstr "Flux Forms 已安装;表单自动化可以创建和发送证书。"
+
+msgid "PDF generation on the server"
+msgstr "在服务器上生成 PDF"
+
+msgid "PHP GD (FreeType) extension is missing: PDFs and images are only made in the browser, when the certificate page is first opened."
+msgstr "缺少 PHP GD (FreeType) 扩展:PDF 和图像仅在首次打开证书页面时在浏览器中生成。"
+
+msgid "%d certificate is missing its PDF or image."
+msgstr "%d证书缺少 PDF 或图像。"
+
+msgid "Create missing files"
+msgstr "创建丢失的文件"
+
+msgid "On. PDFs and images for new certificates are generated in the background on the server."
+msgstr "上。新证书的 PDF 和图像在服务器后台生成。"
+
+msgid "Create missing certificate files"
+msgstr "创建缺失的证书文件"
+
+msgid "Generates files on the server for up to 25 certificates that are missing a PDF or image."
+msgstr "在服务器上生成最多 25 个缺少 PDF 或图像的证书的文件。"
+
+msgid "Files created for %1$d certificates, %2$d errors."
+msgstr "为%1$d证书创建的文件,%2$d错误。"
+
+msgid "%d certificates left, press again."
+msgstr "%d证书已离开,请再次按。"
+
+msgid "Ongoing Events"
+msgstr "正在进行的活动"
+
+msgid "Your saplings are planted at these events. You too can contribute by donating saplings."
+msgstr "您的树苗是在这些活动中种植的。您也可以通过捐赠树苗来做出贡献。"
+
+msgid "Event location"
+msgstr "活动地点"
+
+msgctxt "context_39c93914dff5"
+msgid "l, F j, Y"
+msgstr "l、F j、Y"
+
+msgid "sapling planted"
+msgid_plural "saplings planted"
+msgstr[0] "种植的树苗"
+
+msgid "sapling collected"
+msgid_plural "saplings collected"
+msgstr[0] "收集的树苗"
+
+msgctxt "context_a43dbd63afaf"
+msgid "F j"
+msgstr "Fj"
+
+msgid "The planting site is announced by the authorities 10 days before the event. We will share it here around %s."
+msgstr "种植地点由当局在活动前10天公布。我们将在这里围绕%s进行分享。"
+
+msgid "The planting site is announced by the authorities 10 days before the event. We will share it here."
+msgstr "种植地点由当局在活动前10天公布。我们将在这里分享。"
+
+msgid "Location coming soon"
+msgstr "位置即将推出"
+
+msgid "Event site"
+msgstr "活动现场"
+
+msgid "Get directions"
+msgstr "获取路线"
+
+msgid "Show map"
+msgstr "显示地图"
+
+msgid "Loads Google Maps"
+msgstr "加载谷歌地图"
+
+msgid "Goal: %s saplings"
+msgstr "目标:%s树苗"
+
+msgid "%s%%"
+msgstr "%s%%"
+
+msgid "Completed event"
+msgstr "已完成活动"
+
+msgid "Sapling counter"
+msgstr "树苗计数器"
+
+msgid "saplings planted"
+msgstr "种植的树苗"
+
+msgid "%s person contributed"
+msgid_plural "%s people contributed"
+msgstr[0] "%s人做出了贡献"
+
+msgctxt "context_a104e4060425"
+msgid "F j, Y"
+msgstr "F j, Y"
+
+msgid "Time: %s"
+msgstr "时间:%s"
+
+msgid "This event is complete. Thank you to everyone who contributed."
+msgstr "本次活动圆满结束。感谢所有做出贡献的人。"
+
+msgid "Donate saplings for this event"
+msgstr "为本次活动捐赠树苗"
+
+msgid "Your donation is added to the counter instantly."
+msgstr "您的捐款会立即添加到柜台。"
+
+msgid "Tree planting events"
+msgstr "植树活动"
+
+msgid "Location to be announced"
+msgstr "地点待公布"
+
+msgid "Details"
+msgstr "详情"
+
+msgid "Donate saplings"
+msgstr "捐赠树苗"
+
+msgid "System"
+msgstr "系统"
+
+msgid "SMS"
+msgstr "短信"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "Queued"
+msgstr "排队"
+
+msgid "Sending"
+msgstr "发送"
+
+msgid "Sent"
+msgstr "已发送"
+
+msgid "Failed"
+msgstr "失败"
+
+msgid "The server has no GD (FreeType) extension."
+msgstr "服务器没有 GD (FreeType) 扩展。"
+
+msgid "This certificate's files are being prepared right now."
+msgstr "该证书的文件正在准备中。"
+
+msgid "Template not found."
+msgstr "找不到模板。"
+
+msgid "The background PDF could not be read on the server."
+msgstr "无法在服务器上读取背景 PDF。"
+
+msgid "Link copied"
+msgstr "链接已复制"
+
+msgid "Copy the link:"
+msgstr "复制链接:"
+
+msgid "Sending…"
+msgstr "正在发送..."
+
+msgid "Done."
+msgstr "完成。"
+
+msgid "Something went wrong."
+msgstr "出了点问题。"
+
+msgid "Connection error. Please try again."
+msgstr "连接错误。请再试一次。"
+
+msgid "The PDF library could not be loaded (%s). Reload the page and try again."
+msgstr "无法加载 PDF 库 (%s)。重新加载页面并重试。"
+
+msgid "Find your certificate"
+msgstr "找到您的证书"
+
+msgid "Enter the phone number or email address you registered with. We will send your certificate link only to that address."
+msgstr "输入您注册时使用的电话号码或电子邮件地址。我们只会将您的证书链接发送到该地址。"
+
+msgid "0532 123 45 67 or name@example.com"
+msgstr "0532 123 45 67 或 name@example.com"
+
+msgid "Send"
+msgstr "发送"
+
+msgid "Name, e-mail or phone"
+msgstr "姓名、电子邮件或电话"
+
+msgid "Name, number or code"
+msgstr "名称、号码或代码"
+
+msgid "Recipient or subject"
+msgstr "收件人或主题"
+
+msgid "Saplings"
+msgstr "树苗"
+
+msgid "Queued to send"
+msgstr "排队等待发送"
+
+msgid "Send queue"
+msgstr "发送队列"
+
+msgid "Sends appear here."
+msgstr "发送出现在此处。"
+
+msgid "Channel"
+msgstr "频道"
+
+msgid "No people"
+msgstr "没有人"
+
+msgid "People"
+msgstr "人"
+
+msgid "Code"
+msgstr "代码"
+
+msgid "Queue is empty"
+msgstr "队列为空"
+
+msgid "Number"
+msgstr "数量"
+
+msgid "Cancel this certificate?"
+msgstr "取消这个证书吗?"
+
+msgid "People who received a certificate appear here."
+msgstr "获得证书的人会出现在这里。"
+
+msgid "No certificates"
+msgstr "无证书"
+
+msgid "Send the certificate"
+msgstr "发送证书"
+
+msgid "New certificates appear here."
+msgstr "新证书出现在此处。"
+
+msgid "Restore"
+msgstr "恢复"
+
+msgid "Restored"
+msgstr "已恢复"
+
+msgid "Retry"
+msgstr "重试"
+
+msgid "Will be retried"
+msgstr "将重试"
+
+msgid "Summary"
+msgstr "总结"
+
+msgid "A cancelled certificate is hidden on the public page."
+msgstr "已取消的证书隐藏在公共页面上。"
+
+msgid "%d open event, its page is published."
+msgstr "%d开放事件,其页面已发布。"
+
+msgid "[['%dviews', 'tr']]"
+msgid_plural "[['%dviews', 'tr']]"
+msgstr[0] "[['%d浏览次数', 'tr']]"
+
+msgid "[['%dregistration', 'tr']]"
+msgid_plural "[['%dregistration', 'tr']]"
+msgstr[0] "[['%d注册','tr']]"
+
+msgid "\\n There is active template%d. There is active template%d.\\n"
+msgstr "\\n 有活动模板%d。有活动模板%d。\\n"
+
+msgid "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"
+msgstr "\\n%1$d消息已等待超过 10 分钟;队列可能无法正常工作。处理程序:%2$s,上次运行:%3$s。%1$d消息挂起时间超过 10 分钟;队列可能无法正常工作。处理程序:%2$s,上次运行:%3$s。\\n"
+
+msgid "[['%dmessage could not be sent.', 'tr']]"
+msgid_plural "[['%dmessage could not be sent.', 'tr']]"
+msgstr[0] "[['%d消息无法发送。', 'tr']]"
+
+msgid "[['%dmessage sent, no failure.', 'tr']]"
+msgid_plural "[['%dmessage sent, no failure.', 'tr']]"
+msgstr[0] "[['%d消息已发送,没有失败。', 'tr']]"
+
+msgid "[['%dhas an open event, its page is live on the site.', 'tr']]"
+msgid_plural "[['%dhas open events, its pages are live on the site.', 'tr']]"
+msgstr[0] "[['%d有开放活动,其页面在网站上实时显示。', 'tr']]"
+
+msgid "[['saplings were planted', 'tr']]"
+msgid_plural "[['saplings were planted', 'tr']]"
+msgstr[0] "[['树苗已种植','tr']]"
+
+msgid "[['saplings were collected', 'tr']]"
+msgid_plural "[['saplings were collected', 'tr']]"
+msgstr[0] "[['树苗被收集','tr']]"
+
+msgid "[['%scontributed by', 'tr']]"
+msgid_plural "[['%scontributed by', 'tr']]"
+msgstr[0] "[['%s贡献者', 'tr']]"
+
+msgid "[['Certificate templates, certificate creation with live PDF preview, /certificate/{kod}verification page, email / SMS (Netgsm) / WhatsApp (Evolution API) sending, asynchronous queue, contact registration and detailed logs.', 'tr']]"
+msgstr "[['证书模板、使用实时 PDF 预览创建证书、/certificate/{kod}验证页面、电子邮件/短信 (Netgsm) / WhatsApp (Evolution API) 发送、异步队列、联系人注册和详细日志。', 'tr']]"
+
+msgid "\\n There is active template%d. There is active template%d.\\n"
+msgid_plural "\\n There is active template%d. There is active template%d.\\n"
+msgstr[0] "\\n 有活动模板%d。有活动模板%d。\\n"
+
+msgid "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"
+msgid_plural "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"
+msgstr[0] "\\n%1$d消息已等待超过 10 分钟;队列可能无法正常工作。处理程序:%2$s,上次运行:%3$s。%1$d消息挂起时间超过 10 分钟;队列可能无法正常工作。处理程序:%2$s,上次运行:%3$s。\\n"

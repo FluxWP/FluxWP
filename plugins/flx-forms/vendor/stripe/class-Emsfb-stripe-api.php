@@ -77,7 +77,7 @@ if ( ! class_exists( '\Emsfb\StripeApiEfb' ) ) {
 		 */
 		public function request( $method, $path, $params = array(), $opts = array() ) {
 			if ( '' === $this->secret ) {
-				$e = new StripeApiErrorEfb( __( 'The Stripe secret key is not configured.', 'flx-forms' ) );
+				$e = new StripeApiErrorEfb( __( '\\nThe Stripe secret key is not configured.\\n', 'flx-forms' ) );
 				$e->error_type = 'authentication_error';
 				throw $e;
 			}
@@ -125,7 +125,7 @@ if ( ! class_exists( '\Emsfb\StripeApiEfb' ) ) {
 			if ( is_wp_error( $response ) ) {
 				$e = new StripeApiErrorEfb(
 					/* translators: %s: transport error message */
-					sprintf( __( 'Could not connect to Stripe: %s', 'flx-forms' ), $response->get_error_message() )
+					sprintf( __( '\\nCould not connect to Stripe:%s\', \'en\']]', 'flx-forms' ), $response->get_error_message() )
 				);
 				$e->error_type = 'api_connection_error';
 				throw $e;
@@ -143,7 +143,7 @@ if ( ! class_exists( '\Emsfb\StripeApiEfb' ) ) {
 			$message = isset( $err['message'] ) && '' !== $err['message']
 				? (string) $err['message']
 				/* translators: %d: HTTP status code */
-				: sprintf( __( 'Stripe API error (HTTP %d).', 'flx-forms' ), $code );
+				: sprintf( __( '\\nStripe API error (HTTP%d).\', \'en\']]', 'flx-forms' ), $code );
 			$e               = new StripeApiErrorEfb( $message, $code );
 			$e->http_status  = $code;
 			$e->error_type   = isset( $err['type'] ) ? (string) $err['type'] : '';

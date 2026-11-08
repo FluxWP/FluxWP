@@ -101,11 +101,11 @@ function flxb_units() {
 	return (array) apply_filters(
 		'flxb_units',
 		array(
-			'adet'  => array( __( 'piece', 'flx-donate' ), __( 'pieces', 'flx-donate' ) ),
-			'hisse' => array( __( 'share', 'flx-donate' ), __( 'shares', 'flx-donate' ) ),
-			'kisi'  => array( __( 'person', 'flx-donate' ), __( 'people', 'flx-donate' ) ),
-			'fidan' => array( __( 'sapling', 'flx-donate' ), __( 'saplings', 'flx-donate' ) ),
-			'paket' => array( __( 'package', 'flx-donate' ), __( 'packages', 'flx-donate' ) ),
+			'adet'  => array( __( '\\npiece\\n', 'flx-donate' ), __( '\\npieces\\n', 'flx-donate' ) ),
+			'hisse' => array( __( 'share', 'flx-donate' ), __( '\\nshares\\n', 'flx-donate' ) ),
+			'kisi'  => array( __( 'person', 'flx-donate' ), __( '\\npeople\\n', 'flx-donate' ) ),
+			'fidan' => array( __( '\\nsapling\\n', 'flx-donate' ), __( '\\nsaplings\\n', 'flx-donate' ) ),
+			'paket' => array( __( '\\npackage\\n', 'flx-donate' ), __( '\\npackages\\n', 'flx-donate' ) ),
 		)
 	);
 }
@@ -249,19 +249,19 @@ function flxb_status_label( $status ) {
 		'completed'          => array( 'ok', __( 'Completed', 'flx-donate' ) ),
 		'pending'            => array( 'pending', __( 'Pending', 'flx-donate' ) ),
 		'failed'             => array( 'failed', __( 'Failed', 'flx-donate' ) ),
-		'canceled'           => array( 'failed', __( 'Canceled', 'flx-donate' ) ),
+		'canceled'           => array( 'failed', __( '\\nCanceled\\n', 'flx-donate' ) ),
 		'refunded'           => array( 'muted', __( 'Refunded', 'flx-donate' ) ),
 		'partially_refunded' => array( 'muted', __( 'Partly refunded', 'flx-donate' ) ),
 		'active'             => array( 'ok', __( 'Active', 'flx-donate' ) ),
 		'past_due'           => array( 'pending', __( 'Past due', 'flx-donate' ) ),
-		'trash'              => array( 'muted', __( 'In the trash', 'flx-donate' ) ),
+		'trash'              => array( 'muted', __( '\\nIn the trash\\n', 'flx-donate' ) ),
 	);
 	$s = (string) $status;
 	return $map[ $s ] ?? array( 'muted', $s );
 }
 
 function flxb_type_label( $type ) {
-	return 'recurring' === $type ? __( 'Recurring', 'flx-donate' ) : __( 'One-time', 'flx-donate' );
+	return 'recurring' === $type ? __( '\\nRecurring\\n', 'flx-donate' ) : __( '[[\'One-time\\n', 'flx-donate' );
 }
 
 function flxb_interval_label( $interval ) {
@@ -269,7 +269,7 @@ function flxb_interval_label( $interval ) {
 		'day'   => __( 'Daily', 'flx-donate' ),
 		'week'  => __( 'Weekly', 'flx-donate' ),
 		'month' => __( 'Monthly', 'flx-donate' ),
-		'year'  => __( 'Yearly', 'flx-donate' ),
+		'year'  => __( '\\nYearly\\n', 'flx-donate' ),
 	);
 	return $map[ (string) $interval ] ?? (string) $interval;
 }
@@ -281,7 +281,7 @@ function flxb_provider_label( $id ) {
 			return $p->label();
 		}
 	}
-	$map = array( 'woocommerce' => 'WooCommerce', 'stripe' => 'Stripe', 'iyzico' => 'iyzico', 'paypal' => 'PayPal', 'manual' => __( 'Manual', 'flx-donate' ), 'flxf_test' => __( 'Test provider', 'flx-donate' ), 'bank_transfer' => __( 'Bank transfer', 'flx-donate' ), 'cash' => __( 'Cash', 'flx-donate' ), 'other' => __( 'Other', 'flx-donate' ) );
+	$map = array( 'woocommerce' => 'WooCommerce', 'stripe' => 'Stripe', 'iyzico' => 'iyzico', 'paypal' => 'PayPal', 'manual' => __( 'Manual', 'flx-donate' ), 'flxf_test' => __( '\\nTest provider\\n', 'flx-donate' ), 'bank_transfer' => __( 'Bank transfer', 'flx-donate' ), 'cash' => __( 'Cash', 'flx-donate' ), 'other' => __( 'Other', 'flx-donate' ) );
 	return $map[ (string) $id ] ?? (string) $id;
 }
 

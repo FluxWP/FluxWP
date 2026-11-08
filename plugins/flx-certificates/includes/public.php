@@ -133,7 +133,7 @@ function flxs_page_data( $cert ) {
 function flxs_document_title() {
 	$cert = flxs_current_certificate();
 	if ( ! $cert ) {
-		return __( 'Sertifika bulunamadı', 'flx-certificates' ) . ' · ' . get_bloginfo( 'name' );
+		return __( 'Certificate not found', 'flx-certificates' ) . ' · ' . get_bloginfo( 'name' );
 	}
 	$d = flxs_page_data( $cert );
 	return $d['og_title'] . ' · ' . get_bloginfo( 'name' );
@@ -155,7 +155,7 @@ function flxs_og_tags() {
 	}
 	$d     = flxs_page_data( $cert );
 	$url   = flxs_certificate_url( $cert );
-	$title = 'revoked' === $cert['status'] ? __( 'İptal edilmiş sertifika', 'flx-certificates' ) . ' · ' . $cert['number'] : $d['og_title'];
+	$title = 'revoked' === $cert['status'] ? __( 'Revoked certificate', 'flx-certificates' ) . ' · ' . $cert['number'] : $d['og_title'];
 	$img   = $d['image'];
 	$w     = (int) $cert['image_w'];
 	$h     = (int) $cert['image_h'];
@@ -269,12 +269,12 @@ function flxs_public_script( $deps = array() ) {
 			'flxs-public',
 			'FLXS_PUB',
 			array(
-				'copied'   => __( 'Link kopyalandı', 'flx-certificates' ),
-				'copyHint' => __( 'Linki kopyalayın:', 'flx-certificates' ),
-				'sending'  => __( 'Gönderiliyor…', 'flx-certificates' ),
-				'ok'       => __( 'Tamam.', 'flx-certificates' ),
-				'error'    => __( 'Bir hata oluştu.', 'flx-certificates' ),
-				'network'  => __( 'Bağlantı hatası. Lütfen tekrar deneyin.', 'flx-certificates' ),
+				'copied'   => __( 'Link copied', 'flx-certificates' ),
+				'copyHint' => __( 'Copy the link:', 'flx-certificates' ),
+				'sending'  => __( 'Sending…', 'flx-certificates' ),
+				'ok'       => __( 'Done.', 'flx-certificates' ),
+				'error'    => __( 'Something went wrong.', 'flx-certificates' ),
+				'network'  => __( 'Connection error. Please try again.', 'flx-certificates' ),
 				'lang'     => determine_locale(),
 			)
 		);
@@ -322,7 +322,7 @@ function flxs_renderer_config() {
 			'pdfjs'   => add_query_arg( 'ver', '3.11.174', FLXS_URL . 'assets/vendor/pdf.min.js' ),
 		),
 		/* translators: %s: missing library names */
-		'i18n'     => array( 'libs' => __( 'PDF kütüphanesi yüklenemedi (%s). Sayfayı yenileyip tekrar deneyin.', 'flx-certificates' ) ),
+		'i18n'     => array( 'libs' => __( 'The PDF library could not be loaded (%s). Reload the page and try again.', 'flx-certificates' ) ),
 		'site'     => get_bloginfo( 'name' ),
 		'org'      => flxs_setting( 'org_name' ),
 	);
@@ -353,12 +353,12 @@ function flxs_lookup_shortcode() {
 	ob_start();
 	?>
 	<form class="flxs-lookup" data-endpoint="<?php echo esc_url( rest_url( 'flx-certificates/v1/lookup' ) ); ?>">
-		<label for="flxs-contact"><?php esc_html_e( 'Sertifikanızı bulun', 'flx-certificates' ); ?></label>
-		<p class="flxs-lookup__hint"><?php esc_html_e( 'Kayıt olurken verdiğiniz telefon numarasını ya da e-posta adresini yazın. Sertifika bağlantınızı yalnızca o adrese göndeririz.', 'flx-certificates' ); ?></p>
+		<label for="flxs-contact"><?php esc_html_e( 'Find your certificate', 'flx-certificates' ); ?></label>
+		<p class="flxs-lookup__hint"><?php esc_html_e( 'Enter the phone number or email address you registered with. We will send your certificate link only to that address.', 'flx-certificates' ); ?></p>
 		<div class="flxs-lookup__row">
-			<input id="flxs-contact" name="contact" type="text" inputmode="email" autocomplete="tel" placeholder="<?php esc_attr_e( '0532 123 45 67 ya da ornek@eposta.com', 'flx-certificates' ); ?>" required>
+			<input id="flxs-contact" name="contact" type="text" inputmode="email" autocomplete="tel" placeholder="<?php esc_attr_e( '0532 123 45 67 or name@example.com', 'flx-certificates' ); ?>" required>
 			<input type="text" name="website" tabindex="-1" autocomplete="off" class="flxs-hp" aria-hidden="true">
-			<button type="submit"><?php esc_html_e( 'Gönder', 'flx-certificates' ); ?></button>
+			<button type="submit"><?php esc_html_e( 'Send', 'flx-certificates' ); ?></button>
 		</div>
 		<p class="flxs-lookup__result" role="status" aria-live="polite"></p>
 	</form>

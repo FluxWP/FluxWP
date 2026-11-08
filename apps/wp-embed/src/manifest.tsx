@@ -64,9 +64,9 @@ function EmbedHost({ o }: { o: ManifestMountOptions }) {
 
   return (
     <I18nextProvider i18n={i18n}>
-      <AccountScope account={account} api={api} renderer={renderer} app={{ version: '0.3.0' }}>
+      <AccountScope account={account} api={api} renderer={renderer} app={{ version: '0.3.1' }}>
         <RenderOverlays t={(key) => i18n.t(key)} />
-        <ManifestScreen module={top.module} screen={top.screen} params={top.params} />
+        <div dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}><ManifestScreen module={top.module} screen={top.screen} params={top.params} /></div>
       </AccountScope>
     </I18nextProvider>
   );

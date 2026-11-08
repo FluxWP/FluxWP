@@ -26,12 +26,12 @@ function flxc_vcard_phone( $vcard ) {
 function flxc_contact_card_text( $body, array $meta ) {
 	$cards = (array) ( $meta['vcards'] ?? array() );
 	if ( ! $cards ) {
-		return '' !== trim( (string) $body ) ? (string) $body : __( '(ad yok)', 'flx-chat' );
+		return '' !== trim( (string) $body ) ? (string) $body : __( '(no name)', 'flx-chat' );
 	}
 	$out = array();
 	foreach ( $cards as $c ) {
 		$n     = trim( (string) ( $c['name'] ?? '' ) );
-		$out[] = ( '' !== $n ? $n : __( '(ad yok)', 'flx-chat' ) ) . ( ! empty( $c['phone'] ) ? ' · Tel: ' . flxc_format_phone( $c['phone'] ) : '' );
+		$out[] = ( '' !== $n ? $n : __( '(no name)', 'flx-chat' ) ) . ( ! empty( $c['phone'] ) ? ' · Tel: ' . flxc_format_phone( $c['phone'] ) : '' );
 	}
 	return implode( ', ', $out );
 }
@@ -41,7 +41,7 @@ function flxc_benef_cert_on() {
 }
 
 function flxc_benef_cert_default_text() {
-	return __( 'Merhaba {ad} 🌱 {bagisci} sizin adınıza bağış yaptı: {bagis}. Sertifikanız aşağıda.', 'flx-chat' );
+	return __( 'Hello {ad} 🌱 {bagisci} made a donation in your name: {bagis}. Your certificate is below.', 'flx-chat' );
 }
 
 add_action(
@@ -153,7 +153,7 @@ function flxc_benef_cert_send( $cert_ids, $donation_id, $order_id = 0 ) {
 			$tpl,
 			array(
 				'{ad}'      => $first,
-				'{bagisci}' => $donor && '' !== (string) $donor['name'] ? $donor['name'] : __( 'Bir bağışçımız', 'flx-chat' ),
+				'{bagisci}' => $donor && '' !== (string) $donor['name'] ? $donor['name'] : __( 'One of our donors', 'flx-chat' ),
 				'{bagis}'   => $what,
 				'{brand}'   => flxc_brand_name(),
 			)
@@ -164,7 +164,7 @@ function flxc_benef_cert_send( $cert_ids, $donation_id, $order_id = 0 ) {
 				$o = wc_get_order( (int) $order_id );
 				if ( $o ) {
 					/* translators: 1: certificate number, 2: name, 3: phone */
-					$o->add_order_note( sprintf( $ok ? __( 'Flux Chat: %1$s sertifikası adına bağış yapılan kişiye WhatsApp\'tan gönderildi (%2$s, %3$s).', 'flx-chat' ) : __( 'Flux Chat: %1$s sertifikası adına bağış yapılan kişiye gönderilemedi (%2$s, %3$s).', 'flx-chat' ), (string) $cert['number'], $name, flxc_format_phone( $phone ) ) );
+					$o->add_order_note( sprintf( $ok ? __( 'Flux Chat: certificate %1$s was sent on WhatsApp to the person the donation was made for (%2$s, %3$s).', 'flx-chat' ) : __( 'Flux Chat: certificate %1$s could not be sent to the person the donation was made for (%2$s, %3$s).', 'flx-chat' ), (string) $cert['number'], $name, flxc_format_phone( $phone ) ) );
 				}
 			}
 			do_action( 'flxc_benef_cert_sent', $cert, $d, $phone, $ok );
@@ -210,7 +210,7 @@ function flxc_ref_cert_on() {
 }
 
 function flxc_ref_cert_default_text() {
-	return __( '✅ {bagisci} bağışının sertifikaları hazır: {bagis}. Bağışçıya da gönderildi.', 'flx-chat' );
+	return __( '✅ Certificates for {bagisci}\'s donation are ready: {bagis}. They were also sent to the donor.', 'flx-chat' );
 }
 
 /** Bağışın referans personelinin numarası ('' yoksa). */
@@ -252,7 +252,7 @@ function flxc_ref_cert_send( $cert_ids, $donation_id, $order_id = 0 ) {
 		$tpl,
 		array(
 			'{ad}'      => $u ? flxc_staff_first_name( $u->display_name ) : '',
-			'{bagisci}' => $donor && '' !== (string) $donor['name'] ? $donor['name'] : __( 'Bağışçınız', 'flx-chat' ),
+			'{bagisci}' => $donor && '' !== (string) $donor['name'] ? $donor['name'] : __( 'Your donor', 'flx-chat' ),
 			'{bagis}'   => function_exists( 'flxc_staff_donation_title' ) ? flxc_staff_donation_title( $d ) : (string) $d['option_label'],
 			'{no}'      => (string) (int) $donation_id,
 			'{brand}'   => flxc_brand_name(),
@@ -263,7 +263,7 @@ function flxc_ref_cert_send( $cert_ids, $donation_id, $order_id = 0 ) {
 		$o = wc_get_order( (int) $order_id );
 		if ( $o ) {
 			/* translators: 1: certificate numbers, 2: phone */
-			$o->add_order_note( sprintf( $ok ? __( 'Flux Chat: %1$s sertifikaları referans personele WhatsApp\'tan gönderildi (%2$s).', 'flx-chat' ) : __( 'Flux Chat: %1$s sertifikaları referans personele gönderilemedi (%2$s).', 'flx-chat' ), implode( ', ', wp_list_pluck( $certs, 'number' ) ), flxc_format_phone( $phone ) ) );
+			$o->add_order_note( sprintf( $ok ? __( 'Flux Call Center: certificates %1$s were sent to the referring staff member on WhatsApp (%2$s).', 'flx-chat' ) : __( 'Flux Call Center: certificates %1$s could not be sent to the referring staff member (%2$s).', 'flx-chat' ), implode( ', ', wp_list_pluck( $certs, 'number' ) ), flxc_format_phone( $phone ) ) );
 		}
 	}
 }

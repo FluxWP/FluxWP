@@ -90,19 +90,19 @@ function flx_sk_required_plugins() {
 	$donate = in_array( 'donate', $kinds, true );
 	$store  = in_array( 'store', $kinds, true );
 	$list   = array(
-		'woocommerce' => array( 'name' => 'WooCommerce', 'min' => '8.0', 'required' => $donate || $store, 'why' => __( 'Hesabım, sepet ve ödeme sayfaları', 'fluxwp' ) ),
+		'woocommerce' => array( 'name' => 'WooCommerce', 'min' => '8.0', 'required' => $donate || $store, 'why' => __( 'My Account, cart and checkout pages', 'fluxwp' ) ),
 	);
 	if ( $store ) {
-		$list['flx-commerce'] = array( 'name' => 'Flux Commerce', 'min' => '0.1.0', 'required' => true, 'why' => __( 'Mağaza paneli, müşteriler, satış raporu ve dekontlu Havale/EFT', 'fluxwp' ) );
+		$list['flx-commerce'] = array( 'name' => 'Flux Commerce', 'min' => '0.1.0', 'required' => true, 'why' => __( 'Store dashboard, customers, sales report and bank transfer with receipt', 'fluxwp' ) );
 	}
 	if ( $donate ) {
-		$list['flx-donate']       = array( 'name' => 'Flux Donate', 'min' => '2.0.0', 'required' => true, 'checks' => '2.0.0', 'why' => __( 'Bağış türleri, fidan paketleri, kartla bağış ve bağışçılar', 'fluxwp' ) );
-		$list['flx-certificates'] = array( 'name' => 'Flux Certificates', 'min' => '1.2.4', 'required' => true, 'checks' => '1.2.4', 'why' => __( 'Fidan sertifikaları ve etkinlikler', 'fluxwp' ) );
+		$list['flx-donate']       = array( 'name' => 'Flux Donate', 'min' => '2.0.0', 'required' => true, 'checks' => '2.0.0', 'why' => __( 'Donation types, sapling packages, card donations and donors', 'fluxwp' ) );
+		$list['flx-certificates'] = array( 'name' => 'Flux Certificates', 'min' => '1.2.4', 'required' => true, 'checks' => '1.2.4', 'why' => __( 'Sapling certificates and events', 'fluxwp' ) );
 	}
-	$list['flx-forms'] = array( 'name' => 'Flux Forms', 'min' => '2.0.8', 'required' => true, 'checks' => '2.0.8', 'why' => $donate ? __( 'Bağış ve iletişim formları', 'fluxwp' ) : __( 'İletişim formları', 'fluxwp' ) );
-	$list['flx-seo']   = array( 'name' => 'Flux SEO', 'min' => '1.0.9', 'required' => false, 'checks' => '1.0.8', 'why' => __( 'SEO, sitemap, schema ve tarayıcı önbelleği', 'fluxwp' ) );
-	$list['flx-chat']  = array( 'name' => 'Flux Chat', 'min' => '1.3.0', 'required' => false, 'checks' => '1.3.0', 'why' => $donate ? __( 'Telefonla bağış ve arama kayıtları', 'fluxwp' ) : __( 'WhatsApp sohbetleri ve arama kayıtları', 'fluxwp' ) );
-	$list['flx-tasks'] = array( 'name' => 'Flux Tasks', 'min' => '0.1.4', 'required' => false, 'checks' => '0.1.4', 'why' => __( 'Ekip görev takibi', 'fluxwp' ) );
+	$list['flx-forms'] = array( 'name' => 'Flux Forms', 'min' => '2.0.8', 'required' => true, 'checks' => '2.0.8', 'why' => $donate ? __( 'Donation and contact forms', 'fluxwp' ) : __( 'Contact forms', 'fluxwp' ) );
+	$list['flx-seo']   = array( 'name' => 'Flux SEO', 'min' => '1.0.9', 'required' => false, 'checks' => '1.0.8', 'why' => __( 'SEO, sitemap, schema and browser cache', 'fluxwp' ) );
+	$list['flx-chat']  = array( 'name' => 'Flux Chat', 'min' => '1.3.0', 'required' => false, 'checks' => '1.3.0', 'why' => $donate ? __( 'Phone donations and call logs', 'fluxwp' ) : __( 'WhatsApp chats and call logs', 'fluxwp' ) );
+	$list['flx-tasks'] = array( 'name' => 'Flux Tasks', 'min' => '0.1.4', 'required' => false, 'checks' => '0.1.4', 'why' => __( 'Team task tracking', 'fluxwp' ) );
 	/** Başka bir site kurgusu listeyi değiştirebilir. */
 	return apply_filters( 'flx_sk_required_plugins', $list );
 }
@@ -119,7 +119,7 @@ function flx_sk_item( $id, $group, $label, $status, $message, $action_url = '', 
 	);
 	if ( $action_url ) {
 		$item['action_url']   = $action_url;
-		$item['action_label'] = $action_label ? $action_label : __( 'Aç', 'fluxwp' );
+		$item['action_label'] = $action_label ? $action_label : __( 'Open', 'fluxwp' );
 	}
 	return $item;
 }
@@ -128,34 +128,34 @@ function flx_sk_item( $id, $group, $label, $status, $message, $action_url = '', 
 
 /** Eklentiler: kurulu mu, etkin mi, sürüm yeterli mi. */
 function flx_sk_checks_plugins() {
-	$g       = __( 'Eklentiler', 'fluxwp' );
+	$g       = __( 'Plugins', 'fluxwp' );
 	$have    = flx_sk_plugins();
 	$plugins = admin_url( 'plugins.php' );
 	$out     = array();
 	foreach ( flx_sk_required_plugins() as $dir => $p ) {
 		$bad = $p['required'] ? 'error' : 'warning';
-		$tag = $p['required'] ? __( 'Gerekli', 'fluxwp' ) : __( 'İsteğe bağlı', 'fluxwp' );
+		$tag = $p['required'] ? __( 'Required', 'fluxwp' ) : __( 'Optional', 'fluxwp' );
 		$why = $tag . ': ' . $p['why'] . '.';
 		if ( empty( $have[ $dir ] ) ) {
-			$out[] = flx_sk_item( 'theme.plugin.' . $dir, $g, $p['name'], $bad, __( 'Kurulu değil.', 'fluxwp' ) . ' ' . $why, admin_url( 'plugin-install.php?tab=upload' ), __( 'Eklenti yükle', 'fluxwp' ) );
+			$out[] = flx_sk_item( 'theme.plugin.' . $dir, $g, $p['name'], $bad, __( 'Not installed.', 'fluxwp' ) . ' ' . $why, admin_url( 'plugin-install.php?tab=upload' ), __( 'Upload plugin', 'fluxwp' ) );
 			continue;
 		}
 		$v = $have[ $dir ]['version'];
 		if ( ! $have[ $dir ]['active'] ) {
 			/* translators: %s: plugin version */
-			$out[] = flx_sk_item( 'theme.plugin.' . $dir, $g, $p['name'], $bad, sprintf( __( 'Kurulu (v%s) ama etkin değil.', 'fluxwp' ), $v ) . ' ' . $why, $plugins, __( 'Eklentiler', 'fluxwp' ) );
+			$out[] = flx_sk_item( 'theme.plugin.' . $dir, $g, $p['name'], $bad, sprintf( __( 'Installed (v%s) but not active.', 'fluxwp' ), $v ) . ' ' . $why, $plugins, __( 'Plugins', 'fluxwp' ) );
 			continue;
 		}
 		if ( version_compare( $v, $p['min'], '<' ) ) {
 			/* translators: 1: installed version, 2: minimum version */
-			$out[] = flx_sk_item( 'theme.plugin.' . $dir, $g, $p['name'], 'warning', sprintf( __( 'Etkin, v%1$s. Bu tema en az v%2$s ile test edildi; güncelleyin.', 'fluxwp' ), $v, $p['min'] ), admin_url( 'plugin-install.php?tab=upload' ), __( 'Güncelle', 'fluxwp' ) );
+			$out[] = flx_sk_item( 'theme.plugin.' . $dir, $g, $p['name'], 'warning', sprintf( __( 'Active, v%1$s. This theme was tested with v%2$s or later; please update.', 'fluxwp' ), $v, $p['min'] ), admin_url( 'plugin-install.php?tab=upload' ), __( 'Update', 'fluxwp' ) );
 			continue;
 		}
 		/* translators: %s: plugin version */
-		$msg = sprintf( __( 'Etkin, v%s.', 'fluxwp' ), $v );
+		$msg = sprintf( __( 'Active, v%s.', 'fluxwp' ), $v );
 		if ( ! empty( $p['checks'] ) && version_compare( $v, $p['checks'], '<' ) ) {
 			/* translators: %s: plugin version */
-			$msg .= ' ' . sprintf( __( 'v%s ve sonrası kendi kontrollerini bu ekrana ekler.', 'fluxwp' ), $p['checks'] );
+			$msg .= ' ' . sprintf( __( 'v%s and later add their own checks to this screen.', 'fluxwp' ), $p['checks'] );
 		}
 		$out[] = flx_sk_item( 'theme.plugin.' . $dir, $g, $p['name'], 'ok', $msg );
 	}
@@ -176,20 +176,20 @@ function flx_sk_checks_plugins() {
 		}
 	}
 	if ( ! $iyzico ) {
-		$out[] = flx_sk_item( 'theme.plugin.iyzico', $g, 'iyzico', 'info', __( 'iyzico eklentisi kurulu değil. Sorun değil: Flux Donate iyzico anahtarlarını kendi Ödemeler ayarından okur.', 'fluxwp' ) );
+		$out[] = flx_sk_item( 'theme.plugin.iyzico', $g, 'iyzico', 'info', __( 'No iyzico plugin installed. That is fine: Flux Donate reads the iyzico keys from its own Payments settings.', 'fluxwp' ) );
 	} elseif ( ! $iyzico['active'] ) {
 		/* translators: %s: plugin name */
-		$out[] = flx_sk_item( 'theme.plugin.iyzico', $g, 'iyzico', 'info', sprintf( __( '%s kurulu ama etkin değil. Flux Donate anahtarları kendi Ödemeler ayarından okur.', 'fluxwp' ), $iyzico['name'] ), $plugins, __( 'Eklentiler', 'fluxwp' ) );
+		$out[] = flx_sk_item( 'theme.plugin.iyzico', $g, 'iyzico', 'info', sprintf( __( '%s is installed but not active. Flux Donate reads the keys from its own Payments settings.', 'fluxwp' ), $iyzico['name'] ), $plugins, __( 'Plugins', 'fluxwp' ) );
 	} else {
 		/* translators: 1: plugin name, 2: version */
-		$out[] = flx_sk_item( 'theme.plugin.iyzico', $g, 'iyzico', 'ok', sprintf( __( '%1$s etkin, v%2$s. Flux Donate anahtarları buradan okur.', 'fluxwp' ), $iyzico['name'], $iyzico['version'] ) );
+		$out[] = flx_sk_item( 'theme.plugin.iyzico', $g, 'iyzico', 'ok', sprintf( __( '%1$s is active, v%2$s. Flux Donate reads the keys from it.', 'fluxwp' ), $iyzico['name'], $iyzico['version'] ) );
 	}
 	return $out;
 }
 
 /** Zamanlanmış görevler (cron). */
 function flx_sk_checks_cron() {
-	$g        = __( 'Zamanlanmış görevler (cron)', 'fluxwp' );
+	$g        = __( 'Scheduled tasks (cron)', 'fluxwp' );
 	$out      = array();
 	$disabled = defined( 'DISABLE_WP_CRON' ) && DISABLE_WP_CRON;
 	$last     = (int) get_option( 'flx_cron_last', 0 );
@@ -197,26 +197,26 @@ function flx_sk_checks_cron() {
 	$cmd      = '/usr/bin/php ' . ABSPATH . 'wp-cron.php >/dev/null 2>&1';
 
 	if ( $disabled ) {
-		$out[] = flx_sk_item( 'theme.cron.mode', $g, __( 'Gerçek cron', 'fluxwp' ), 'ok', __( 'DISABLE_WP_CRON açık: görevleri sunucu cron\'u çalıştırıyor, ziyaretçi isteklerini yavaşlatmıyor.', 'fluxwp' ) );
+		$out[] = flx_sk_item( 'theme.cron.mode', $g, __( 'Server cron', 'fluxwp' ), 'ok', __( 'DISABLE_WP_CRON is on: tasks run from the server cron and do not slow down visitor requests.', 'fluxwp' ) );
 	} else {
 		/* translators: %s: cron command */
-		$out[] = flx_sk_item( 'theme.cron.mode', $g, __( 'Gerçek cron', 'fluxwp' ), 'warning', sprintf( flx_sk_is_donate() ? __( 'Görevler ziyaretçi geldikçe çalışıyor (WP-Cron). Ziyaret azken sertifika kuyruğu ve düzenli bağış yenilemeleri gecikir. Hostinger › Gelişmiş › Cron Jobs\'a 5 dakikada bir şu komutu ekleyin: %s Sonra wp-config.php\'ye define( \'DISABLE_WP_CRON\', true ); yazın.', 'fluxwp' ) : __( 'Görevler ziyaretçi geldikçe çalışıyor (WP-Cron). Ziyaret azken e-postalar ve zamanlanmış işler gecikir. Hostinger › Gelişmiş › Cron Jobs\'a 5 dakikada bir şu komutu ekleyin: %s Sonra wp-config.php\'ye define( \'DISABLE_WP_CRON\', true ); yazın.', 'fluxwp' ), $cmd ) );
+		$out[] = flx_sk_item( 'theme.cron.mode', $g, __( 'Server cron', 'fluxwp' ), 'warning', sprintf( flx_sk_is_donate() ? __( 'Tasks only run when visitors arrive (WP-Cron). With little traffic the certificate queue and recurring donation renewals are delayed. Add this command under Hostinger › Advanced › Cron Jobs, every 5 minutes: %s Then add define( \'DISABLE_WP_CRON\', true ); to wp-config.php.', 'fluxwp' ) : __( 'Tasks run only when visitors arrive (WP-Cron). With low traffic, emails and scheduled jobs are delayed. Add this command every 5 minutes under Hostinger › Advanced › Cron Jobs: %s Then add define( \'DISABLE_WP_CRON\', true ); to wp-config.php.', 'fluxwp' ), $cmd ) );
 	}
 
 	if ( ! $last ) {
-		$out[] = flx_sk_item( 'theme.cron.last', $g, __( 'Son çalışma', 'fluxwp' ), $disabled ? 'warning' : 'info', __( 'Henüz kayıt yok. Tema güncellemesinden sonraki ilk cron çalışmasında görünür; birkaç dakika sonra bu sayfayı yenileyin.', 'fluxwp' ) );
+		$out[] = flx_sk_item( 'theme.cron.last', $g, __( 'Last run', 'fluxwp' ), $disabled ? 'warning' : 'info', __( 'No record yet. It appears after the first cron run following the theme update; reload this page in a few minutes.', 'fluxwp' ) );
 	} else {
 		/* translators: 1: time ago, 2: date */
 		$msg    = sprintf( __( '%1$s (%2$s).', 'fluxwp' ), flx_time_ago( $last ), wp_date( 'd.m.Y H:i', $last ) );
 		$status = 'ok';
 		if ( $ago > 3 * HOUR_IN_SECONDS ) {
 			$status = 'error';
-			$msg   .= ' ' . __( 'Cron saatlerdir çalışmıyor. Hostinger\'daki cron işini ve komut yolunu kontrol edin.', 'fluxwp' );
+			$msg   .= ' ' . __( 'Cron has not run for hours. Check the cron job and command path in Hostinger.', 'fluxwp' );
 		} elseif ( $ago > 20 * MINUTE_IN_SECONDS ) {
 			$status = $disabled ? 'warning' : 'info';
-			$msg   .= ' ' . ( $disabled ? __( 'Beklenenden uzun süredir çalışmadı (5 dakikada bir olmalı).', 'fluxwp' ) : __( 'Ziyaret az olduğu için uzun süredir çalışmadı.', 'fluxwp' ) );
+			$msg   .= ' ' . ( $disabled ? __( 'Has not run for longer than expected (should run every 5 minutes).', 'fluxwp' ) : __( 'Has not run for a while because traffic is low.', 'fluxwp' ) );
 		}
-		$out[] = flx_sk_item( 'theme.cron.last', $g, __( 'Son çalışma', 'fluxwp' ), $status, $msg );
+		$out[] = flx_sk_item( 'theme.cron.last', $g, __( 'Last run', 'fluxwp' ), $status, $msg );
 	}
 
 	// Vakti 15 dakikadan fazla geçmiş görevler.
@@ -231,44 +231,44 @@ function flx_sk_checks_cron() {
 		}
 	}
 	if ( ! $late ) {
-		$out[] = flx_sk_item( 'theme.cron.late', $g, __( 'Geciken görev', 'fluxwp' ), 'ok', __( 'Vakti geçmiş görev yok.', 'fluxwp' ) );
+		$out[] = flx_sk_item( 'theme.cron.late', $g, __( 'Overdue tasks', 'fluxwp' ), 'ok', __( 'No overdue tasks.', 'fluxwp' ) );
 	} else {
 		$names = array_slice( array_keys( $late ), 0, 5 );
 		/* translators: 1: count, 2: hook names */
-		$out[] = flx_sk_item( 'theme.cron.late', $g, __( 'Geciken görev', 'fluxwp' ), ( ! $last || $ago > HOUR_IN_SECONDS ) ? 'error' : 'warning', sprintf( __( 'Vakti 15 dakikadan fazla geçmiş %1$d görev var: %2$s', 'fluxwp' ), array_sum( $late ), implode( ', ', $names ) ) );
+		$out[] = flx_sk_item( 'theme.cron.late', $g, __( 'Overdue tasks', 'fluxwp' ), ( ! $last || $ago > HOUR_IN_SECONDS ) ? 'error' : 'warning', sprintf( __( '%1$d tasks are more than 15 minutes overdue: %2$s', 'fluxwp' ), array_sum( $late ), implode( ', ', $names ) ) );
 	}
 	return $out;
 }
 
 /** Site ve tema ayarları. */
 function flx_sk_checks_site() {
-	$g   = __( 'Site ayarları', 'fluxwp' );
+	$g   = __( 'Site settings', 'fluxwp' );
 	$out = array();
 
 	$out[] = get_option( 'blog_public' )
-		? flx_sk_item( 'theme.site.index', $g, __( 'Arama motorları', 'fluxwp' ), 'ok', __( 'Site Google\'a açık.', 'fluxwp' ) )
-		: flx_sk_item( 'theme.site.index', $g, __( 'Arama motorları', 'fluxwp' ), 'error', __( '"Arama motorlarının bu siteyi dizine eklemesini engelle" işaretli. Yayındaki sitede kaldırın.', 'fluxwp' ), admin_url( 'options-reading.php' ), __( 'Okuma ayarları', 'fluxwp' ) );
+		? flx_sk_item( 'theme.site.index', $g, __( 'Search engines', 'fluxwp' ), 'ok', __( 'The site is visible to Google.', 'fluxwp' ) )
+		: flx_sk_item( 'theme.site.index', $g, __( 'Search engines', 'fluxwp' ), 'error', __( '"Discourage search engines from indexing this site" is checked. Uncheck it on the live site.', 'fluxwp' ), admin_url( 'options-reading.php' ), __( 'Reading settings', 'fluxwp' ) );
 
 	$out[] = 0 === strpos( home_url(), 'https://' )
-		? flx_sk_item( 'theme.site.https', $g, 'HTTPS', 'ok', __( 'Site adresi https.', 'fluxwp' ) )
-		: flx_sk_item( 'theme.site.https', $g, 'HTTPS', 'warning', __( 'Site adresi http. Ödeme ve giriş için SSL açıp adresi https yapın.', 'fluxwp' ), admin_url( 'options-general.php' ), __( 'Genel ayarlar', 'fluxwp' ) );
+		? flx_sk_item( 'theme.site.https', $g, 'HTTPS', 'ok', __( 'Site address uses https.', 'fluxwp' ) )
+		: flx_sk_item( 'theme.site.https', $g, 'HTTPS', 'warning', __( 'Site address uses http. Enable SSL and switch the address to https for payments and login.', 'fluxwp' ), admin_url( 'options-general.php' ), __( 'General settings', 'fluxwp' ) );
 
 	if ( ! get_option( 'permalink_structure' ) ) {
-		$out[] = flx_sk_item( 'theme.site.permalink', $g, __( 'Kalıcı bağlantılar', 'fluxwp' ), 'error', __( 'Düz (?p=123) adres kullanılıyor. "Yazı adı" seçin.', 'fluxwp' ), admin_url( 'options-permalink.php' ), __( 'Kalıcı bağlantılar', 'fluxwp' ) );
+		$out[] = flx_sk_item( 'theme.site.permalink', $g, __( 'Permalinks', 'fluxwp' ), 'error', __( 'Plain (?p=123) addresses are used. Choose "Post name".', 'fluxwp' ), admin_url( 'options-permalink.php' ), __( 'Permalinks', 'fluxwp' ) );
 	} else {
 		$rules = get_option( 'rewrite_rules' );
 		$out[] = ! post_type_exists( 'proje' ) || ! function_exists( 'flx_kurulum_migrate_url' )
-			? flx_sk_item( 'theme.site.permalink', $g, __( 'Kalıcı bağlantılar', 'fluxwp' ), 'ok', __( 'Yazı adı yapısı.', 'fluxwp' ) )
+			? flx_sk_item( 'theme.site.permalink', $g, __( 'Permalinks', 'fluxwp' ), 'ok', __( 'Post name structure.', 'fluxwp' ) )
 			: ( is_array( $rules ) && isset( $rules['projeler/?$'] )
-			? flx_sk_item( 'theme.site.permalink', $g, __( 'Kalıcı bağlantılar', 'fluxwp' ), 'ok', __( 'Yazı adı yapısı; /projeler/ ve /etkinlikler/ adresleri tanımlı.', 'fluxwp' ) )
-			: flx_sk_item( 'theme.site.permalink', $g, __( 'Kalıcı bağlantılar', 'fluxwp' ), 'warning', __( '/projeler/ adres kuralı yok, 404 verebilir.', 'fluxwp' ), flx_kurulum_migrate_url( 'permalink' ), __( 'Kuralları yenile', 'fluxwp' ) ) );
+			? flx_sk_item( 'theme.site.permalink', $g, __( 'Permalinks', 'fluxwp' ), 'ok', __( 'Post name structure; /projeler/ and /etkinlikler/ addresses are registered.', 'fluxwp' ) )
+			: flx_sk_item( 'theme.site.permalink', $g, __( 'Permalinks', 'fluxwp' ), 'warning', __( 'The /projeler/ rewrite rule is missing and may return 404.', 'fluxwp' ), flx_kurulum_migrate_url( 'permalink' ), __( 'Refresh rules', 'fluxwp' ) ) );
 	}
 
 	$tz    = wp_timezone();
 	$off   = $tz->getOffset( new DateTime( 'now', $tz ) );
 	$out[] = 3 * HOUR_IN_SECONDS === $off
-		? flx_sk_item( 'theme.site.tz', $g, __( 'Saat dilimi', 'fluxwp' ), 'ok', wp_timezone_string() )
-		: flx_sk_item( 'theme.site.tz', $g, __( 'Saat dilimi', 'fluxwp' ), 'warning', sprintf( /* translators: %s: timezone */ flx_sk_is_donate() ? __( '%s. Sertifika ve bağış tarihleri için İstanbul seçin.', 'fluxwp' ) : __( '%s. Sipariş, form ve e-posta saatleri için İstanbul seçin.', 'fluxwp' ), wp_timezone_string() ), admin_url( 'options-general.php' ), __( 'Genel ayarlar', 'fluxwp' ) );
+		? flx_sk_item( 'theme.site.tz', $g, __( 'Timezone', 'fluxwp' ), 'ok', wp_timezone_string() )
+		: flx_sk_item( 'theme.site.tz', $g, __( 'Timezone', 'fluxwp' ), 'warning', sprintf( /* translators: %s: timezone */ flx_sk_is_donate() ? __( '%s. Choose Istanbul so certificate and donation dates are correct.', 'fluxwp' ) : __( '%s. Choose Istanbul so order, form and email times are correct.', 'fluxwp' ), wp_timezone_string() ), admin_url( 'options-general.php' ), __( 'General settings', 'fluxwp' ) );
 
 	// E-posta: sertifika ve bağış e-postaları için SMTP önerilir.
 	// Flux Mail kendi SMTP durumunu 'flxi.mailer' satırında raporlar; çift uyarı olmasın.
@@ -281,8 +281,8 @@ function flx_sk_checks_site() {
 			}
 		}
 		$out[] = $smtp
-			? flx_sk_item( 'theme.site.smtp', $g, __( 'E-posta gönderimi', 'fluxwp' ), 'ok', sprintf( /* translators: %s: plugin name */ __( '%s etkin.', 'fluxwp' ), $smtp ) )
-			: flx_sk_item( 'theme.site.smtp', $g, __( 'E-posta gönderimi', 'fluxwp' ), 'warning', ( flx_sk_is_donate() ? __( 'SMTP eklentisi yok. Sertifika ve bağış e-postaları spam\'e düşebilir; WP Mail SMTP veya FluentSMTP ile dernek e-postasını bağlayın.', 'fluxwp' ) : __( 'SMTP eklentisi yok. Site e-postaları spam\'e düşebilir; WP Mail SMTP veya FluentSMTP ile kurum e-postanızı bağlayın.', 'fluxwp' ) ), admin_url( 'plugin-install.php?s=smtp&tab=search&type=term' ), __( 'Eklenti ara', 'fluxwp' ) );
+			? flx_sk_item( 'theme.site.smtp', $g, __( 'Email delivery', 'fluxwp' ), 'ok', sprintf( /* translators: %s: plugin name */ __( '%s is active.', 'fluxwp' ), $smtp ) )
+			: flx_sk_item( 'theme.site.smtp', $g, __( 'Email delivery', 'fluxwp' ), 'warning', ( flx_sk_is_donate() ? __( 'No SMTP plugin. Certificate and donation emails may land in spam; connect the association mailbox with WP Mail SMTP or FluentSMTP.', 'fluxwp' ) : __( 'No SMTP plugin. Site emails may land in spam; connect your organization\'s email with WP Mail SMTP or FluentSMTP.', 'fluxwp' ) ), admin_url( 'plugin-install.php?s=smtp&tab=search&type=term' ), __( 'Search plugins', 'fluxwp' ) );
 	}
 
 	// Sayfa önbelleği.
@@ -291,38 +291,38 @@ function flx_sk_checks_site() {
 	if ( $lsc ) {
 		$lazy  = get_option( 'litespeed.conf.media-lazy' );
 		$out[] = $lazy
-			? flx_sk_item( 'theme.site.cache', $g, __( 'Sayfa önbelleği', 'fluxwp' ), 'warning', __( 'LiteSpeed Cache etkin, ama görsel lazy load açık. Tema görselleri zaten geciktiriyor; açık kalırsa görseller her yenilemede boş görünüp sonradan gelir. LiteSpeed Cache › Sayfa Optimizasyonu › Medya › Lazy Load: Kapalı.', 'fluxwp' ), admin_url( 'admin.php?page=litespeed-page_optm#settings_media' ), 'LiteSpeed' )
-			: flx_sk_item( 'theme.site.cache', $g, __( 'Sayfa önbelleği', 'fluxwp' ), 'ok', __( 'LiteSpeed Cache etkin.', 'fluxwp' ) );
+			? flx_sk_item( 'theme.site.cache', $g, __( 'Page cache', 'fluxwp' ), 'warning', __( 'LiteSpeed Cache is active, but image lazy load is on. The theme already lazy-loads images; with both on, images appear blank on every reload. LiteSpeed Cache › Page Optimization › Media › Lazy Load: Off.', 'fluxwp' ), admin_url( 'admin.php?page=litespeed-page_optm#settings_media' ), 'LiteSpeed' )
+			: flx_sk_item( 'theme.site.cache', $g, __( 'Page cache', 'fluxwp' ), 'ok', __( 'LiteSpeed Cache is active.', 'fluxwp' ) );
 	} elseif ( defined( 'WP_CACHE' ) && WP_CACHE ) {
-		$out[] = flx_sk_item( 'theme.site.cache', $g, __( 'Sayfa önbelleği', 'fluxwp' ), 'ok', __( 'Bir sayfa önbelleği etkin (WP_CACHE).', 'fluxwp' ) );
+		$out[] = flx_sk_item( 'theme.site.cache', $g, __( 'Page cache', 'fluxwp' ), 'ok', __( 'A page cache is active (WP_CACHE).', 'fluxwp' ) );
 	} else {
-		$out[] = flx_sk_item( 'theme.site.cache', $g, __( 'Sayfa önbelleği', 'fluxwp' ), 'warning', __( 'Sayfa önbelleği yok. Hostinger\'da LiteSpeed Cache eklentisini kurup açın; site belirgin hızlanır.', 'fluxwp' ), admin_url( 'plugin-install.php?s=litespeed+cache&tab=search&type=term' ), __( 'Eklenti ara', 'fluxwp' ) );
+		$out[] = flx_sk_item( 'theme.site.cache', $g, __( 'Page cache', 'fluxwp' ), 'warning', __( 'No page cache. Install and enable LiteSpeed Cache on Hostinger; the site gets noticeably faster.', 'fluxwp' ), admin_url( 'plugin-install.php?s=litespeed+cache&tab=search&type=term' ), __( 'Search plugins', 'fluxwp' ) );
 	}
 
 	$out[] = version_compare( PHP_VERSION, '8.1', '>=' )
 		? flx_sk_item( 'theme.site.php', $g, 'PHP', 'ok', PHP_VERSION )
-		: flx_sk_item( 'theme.site.php', $g, 'PHP', 'warning', sprintf( /* translators: %s: PHP version */ __( '%s. Hostinger › PHP Yapılandırması\'ndan 8.2 veya üstünü seçin.', 'fluxwp' ), PHP_VERSION ) );
+		: flx_sk_item( 'theme.site.php', $g, 'PHP', 'warning', sprintf( /* translators: %s: PHP version */ __( '\\n%s. Hostinger › PHP Yapılandırması\\\'ndan 8.2 veya üstünü seçin.\\n', 'fluxwp' ), PHP_VERSION ) );
 	return $out;
 }
 
 /** Sayfalar, WooCommerce ayarları ve tema ayarları. */
 function flx_sk_checks_content() {
-	$g   = __( 'Sayfalar ve tema', 'fluxwp' );
+	$g   = __( 'Pages and theme', 'fluxwp' );
 	$out = array();
 	$kur = admin_url( 'themes.php?page=flx-setup' );
 
 	$kurulum = function_exists( 'flx_kurulum_migrations' );
 	if ( $kurulum ) {
 	$out[] = get_option( 'flx_kurulum_done' )
-		? flx_sk_item( 'theme.content.setup', $g, __( 'Site kurulumu', 'fluxwp' ), 'ok', __( 'Temel kurulum çalıştırıldı.', 'fluxwp' ) )
-		: flx_sk_item( 'theme.content.setup', $g, __( 'Site kurulumu', 'fluxwp' ), 'error', __( 'Temel kurulum hiç çalıştırılmadı; sayfalar ve menü eksik olabilir.', 'fluxwp' ), $kur, __( 'Site Kurulumu', 'fluxwp' ) );
+		? flx_sk_item( 'theme.content.setup', $g, __( 'Site setup', 'fluxwp' ), 'ok', __( 'Basic setup has been run.', 'fluxwp' ) )
+		: flx_sk_item( 'theme.content.setup', $g, __( 'Site setup', 'fluxwp' ), 'error', __( 'Basic setup was never run; pages and menu may be missing.', 'fluxwp' ), $kur, __( 'Site Setup', 'fluxwp' ) );
 
 	}
 
 	$pages = $kurulum ? array(
-		'bagis'            => __( 'Bağış sayfası', 'fluxwp' ),
-		'kvkk'             => __( 'KVKK Aydınlatma Metni', 'fluxwp' ),
-		'cerez-politikasi' => __( 'Çerez Politikası', 'fluxwp' ),
+		'bagis'            => __( 'Donation page', 'fluxwp' ),
+		'kvkk'             => __( 'KVKK Privacy Notice', 'fluxwp' ),
+		'cerez-politikasi' => __( 'Cookie Policy', 'fluxwp' ),
 	) : array();
 	$missing = array();
 	foreach ( $pages as $slug => $title ) {
@@ -332,7 +332,7 @@ function flx_sk_checks_content() {
 		}
 	}
 	if ( function_exists( 'wc_get_page_id' ) ) {
-		foreach ( array( 'myaccount' => __( 'Hesabım', 'fluxwp' ), 'cart' => __( 'Sepet', 'fluxwp' ), 'checkout' => __( 'Ödeme', 'fluxwp' ) ) as $key => $title ) {
+		foreach ( array( 'myaccount' => __( 'My account', 'fluxwp' ), 'cart' => __( 'Cart', 'fluxwp' ), 'checkout' => __( 'Checkout', 'fluxwp' ) ) as $key => $title ) {
 			$id = wc_get_page_id( $key );
 			if ( $id <= 0 || 'publish' !== get_post_status( $id ) ) {
 				$missing[] = $title;
@@ -340,30 +340,30 @@ function flx_sk_checks_content() {
 		}
 	}
 	$out[] = $missing
-		? flx_sk_item( 'theme.content.pages', $g, __( 'Gerekli sayfalar', 'fluxwp' ), 'error', sprintf( /* translators: %s: page list */ __( 'Eksik ya da yayında değil: %s.', 'fluxwp' ), implode( ', ', $missing ) ), $kurulum ? $kur : admin_url( 'admin.php?page=wc-settings&tab=advanced' ), $kurulum ? __( 'Site Kurulumu', 'fluxwp' ) : 'WooCommerce' )
-		: flx_sk_item( 'theme.content.pages', $g, __( 'Gerekli sayfalar', 'fluxwp' ), 'ok', $kurulum ? __( 'Bağış, KVKK, Çerez Politikası, Hesabım, Sepet ve Ödeme yayında.', 'fluxwp' ) : __( 'Hesabım, Sepet ve Ödeme yayında.', 'fluxwp' ) );
+		? flx_sk_item( 'theme.content.pages', $g, __( 'Required pages', 'fluxwp' ), 'error', sprintf( /* translators: %s: page list */ __( 'Missing or not published: %s.', 'fluxwp' ), implode( ', ', $missing ) ), $kurulum ? $kur : admin_url( 'admin.php?page=wc-settings&tab=advanced' ), $kurulum ? __( 'Site Setup', 'fluxwp' ) : 'WooCommerce' )
+		: flx_sk_item( 'theme.content.pages', $g, __( 'Required pages', 'fluxwp' ), 'ok', $kurulum ? __( 'Donation, KVKK, Cookie Policy, My Account, Cart and Checkout are published.', 'fluxwp' ) : __( 'My account, Cart and Checkout are published.', 'fluxwp' ) );
 
 	if ( function_exists( 'get_woocommerce_currency' ) ) {
 		$cur   = get_woocommerce_currency();
 		$out[] = 'TRY' === $cur
-			? flx_sk_item( 'theme.content.currency', $g, __( 'Para birimi', 'fluxwp' ), 'ok', 'TRY (₺)' )
-			: flx_sk_item( 'theme.content.currency', $g, __( 'Para birimi', 'fluxwp' ), 'warning', sprintf( /* translators: %s: currency code */ __( 'WooCommerce para birimi %s. Türk lirası seçin.', 'fluxwp' ), $cur ), admin_url( 'admin.php?page=wc-settings' ), 'WooCommerce' );
+			? flx_sk_item( 'theme.content.currency', $g, __( 'Currency', 'fluxwp' ), 'ok', 'TRY (₺)' )
+			: flx_sk_item( 'theme.content.currency', $g, __( 'Currency', 'fluxwp' ), 'warning', sprintf( /* translators: %s: currency code */ __( 'WooCommerce currency is %s. Choose Turkish lira.', 'fluxwp' ), $cur ), admin_url( 'admin.php?page=wc-settings' ), 'WooCommerce' );
 
 		$out[] = 'yes' === get_option( 'woocommerce_enable_myaccount_registration' )
-			? flx_sk_item( 'theme.content.register', $g, __( 'Hesap oluşturma', 'fluxwp' ), 'ok', __( 'Hesabım sayfasında Kayıt ol açık.', 'fluxwp' ) )
-			: flx_sk_item( 'theme.content.register', $g, __( 'Hesap oluşturma', 'fluxwp' ), 'warning', __( 'Hesabım sayfasında kayıt kapalı; yalnızca Giriş sekmesi görünür.', 'fluxwp' ), $kurulum ? flx_kurulum_migrate_url( 'hesap-kayit' ) : admin_url( 'admin.php?page=wc-settings&tab=account' ), $kurulum ? __( 'Kaydı aç', 'fluxwp' ) : 'WooCommerce' );
+			? flx_sk_item( 'theme.content.register', $g, __( 'Account registration', 'fluxwp' ), 'ok', __( 'Registration is enabled on My Account.', 'fluxwp' ) )
+			: flx_sk_item( 'theme.content.register', $g, __( 'Account registration', 'fluxwp' ), 'warning', __( 'Registration is disabled on My Account; only the Login tab is shown.', 'fluxwp' ), $kurulum ? flx_kurulum_migrate_url( 'hesap-kayit' ) : admin_url( 'admin.php?page=wc-settings&tab=account' ), $kurulum ? __( 'Enable registration', 'fluxwp' ) : 'WooCommerce' );
 	}
 
 	$out[] = flx_ayar( 'ga4_id' )
 		? flx_sk_item( 'theme.content.ga4', $g, 'Google Analytics', 'ok', (string) flx_ayar( 'ga4_id' ) )
-		: flx_sk_item( 'theme.content.ga4', $g, 'Google Analytics', 'info', __( 'GA4 ölçüm kimliği girilmemiş.', 'fluxwp' ), admin_url( 'themes.php?page=flx-ayarlar' ), __( 'Tema Ayarları', 'fluxwp' ) );
+		: flx_sk_item( 'theme.content.ga4', $g, 'Google Analytics', 'info', __( 'No GA4 measurement ID entered.', 'fluxwp' ), admin_url( 'themes.php?page=flx-ayarlar' ), __( 'Theme Settings', 'fluxwp' ) );
 
 	if ( flx_ayar( 'cookie_enabled' ) ) {
 		$out[] = flx_ayar_policy_url()
-			? flx_sk_item( 'theme.content.cookie', $g, __( 'Çerez banner\'ı', 'fluxwp' ), 'ok', __( 'Açık, Çerez Politikası sayfasına bağlı.', 'fluxwp' ) )
-			: flx_sk_item( 'theme.content.cookie', $g, __( 'Çerez banner\'ı', 'fluxwp' ), 'warning', __( 'Açık ama bağlı bir Çerez Politikası sayfası yok.', 'fluxwp' ), admin_url( 'themes.php?page=flx-ayarlar' ), __( 'Tema Ayarları', 'fluxwp' ) );
+			? flx_sk_item( 'theme.content.cookie', $g, __( 'Cookie banner', 'fluxwp' ), 'ok', __( 'On, linked to the Cookie Policy page.', 'fluxwp' ) )
+			: flx_sk_item( 'theme.content.cookie', $g, __( 'Cookie banner', 'fluxwp' ), 'warning', __( 'On, but no Cookie Policy page is linked.', 'fluxwp' ), admin_url( 'themes.php?page=flx-ayarlar' ), __( 'Theme Settings', 'fluxwp' ) );
 	} else {
-		$out[] = flx_sk_item( 'theme.content.cookie', $g, __( 'Çerez banner\'ı', 'fluxwp' ), flx_ayar( 'ga4_id' ) ? 'warning' : 'info', __( 'Kapalı. Analiz çerezi kullanılıyorsa KVKK gereği açık olmalı.', 'fluxwp' ), admin_url( 'themes.php?page=flx-ayarlar' ), __( 'Tema Ayarları', 'fluxwp' ) );
+		$out[] = flx_sk_item( 'theme.content.cookie', $g, __( 'Cookie banner', 'fluxwp' ), flx_ayar( 'ga4_id' ) ? 'warning' : 'info', __( 'Off. If analytics cookies are used, KVKK requires it to be on.', 'fluxwp' ), admin_url( 'themes.php?page=flx-ayarlar' ), __( 'Theme Settings', 'fluxwp' ) );
 	}
 
 	if ( ! $kurulum ) {
@@ -378,8 +378,8 @@ function flx_sk_checks_content() {
 		}
 	}
 	$out[] = $pending
-		? flx_sk_item( 'theme.content.migrations', $g, __( 'Hazır güncellemeler', 'fluxwp' ), 'info', sprintf( /* translators: 1: count, 2: list */ __( 'Hiç uygulanmamış %1$d güncelleme var. Yeni kurulumda gerekmeyebilir; sitede ilgili sayfa eski görünüyorsa uygulayın. Liste: %2$s', 'fluxwp' ), count( $pending ), implode( ', ', array_slice( $pending, 0, 6 ) ) . ( count( $pending ) > 6 ? ' …' : '' ) ), $kur . '#guncellemeler', __( 'Hazır güncellemeler', 'fluxwp' ) )
-		: flx_sk_item( 'theme.content.migrations', $g, __( 'Hazır güncellemeler', 'fluxwp' ), 'ok', __( 'Hepsi en az bir kez uygulandı.', 'fluxwp' ) );
+		? flx_sk_item( 'theme.content.migrations', $g, __( 'Ready-made updates', 'fluxwp' ), 'info', sprintf( /* translators: 1: count, 2: list */ __( '%1$d updates have never been applied. A fresh install may not need them; apply one if the related page looks outdated. List: %2$s', 'fluxwp' ), count( $pending ), implode( ', ', array_slice( $pending, 0, 6 ) ) . ( count( $pending ) > 6 ? ' …' : '' ) ), $kur . '#guncellemeler', __( 'Ready-made updates', 'fluxwp' ) )
+		: flx_sk_item( 'theme.content.migrations', $g, __( 'Ready-made updates', 'fluxwp' ), 'ok', __( 'All have been applied at least once.', 'fluxwp' ) );
 	return $out;
 }
 
@@ -432,15 +432,15 @@ function flx_sk_collect() {
  */
 function flx_sk_group_label( $group ) {
 	$map = array(
-		'Cron'     => __( 'Zamanlanmış görevler (cron)', 'fluxwp' ),
-		'Payments' => __( 'Ödemeler', 'fluxwp' ),
-		'Plugins'  => __( 'Eklentiler', 'fluxwp' ),
-		'Config'   => __( 'Site ayarları', 'fluxwp' ),
-		'Email'    => __( 'E-posta', 'fluxwp' ),
-		'Security' => __( 'Güvenlik', 'fluxwp' ),
-		'Forms'    => __( 'Formlar', 'fluxwp' ),
-		'Other'    => __( 'Diğer', 'fluxwp' ),
-		''         => __( 'Diğer', 'fluxwp' ),
+		'Cron'     => __( 'Scheduled tasks (cron)', 'fluxwp' ),
+		'Payments' => __( 'Payments', 'fluxwp' ),
+		'Plugins'  => __( 'Plugins', 'fluxwp' ),
+		'Config'   => __( 'Site settings', 'fluxwp' ),
+		'Email'    => __( 'Email', 'fluxwp' ),
+		'Security' => __( 'Security', 'fluxwp' ),
+		'Forms'    => __( 'Forms', 'fluxwp' ),
+		'Other'    => __( 'Other', 'fluxwp' ),
+		''         => __( 'Other', 'fluxwp' ),
 	);
 	return $map[ $group ] ?? $group;
 }
@@ -448,7 +448,7 @@ function flx_sk_group_label( $group ) {
 /** Kaynak kodu → okunur ad. */
 function flx_sk_source_label( $source ) {
 	$map = array(
-		'theme'        => __( 'Tema', 'fluxwp' ),
+		'theme'        => __( 'Theme', 'fluxwp' ),
 		'flx-donate'     => 'Flux Donate',
 		'flxb'          => 'Flux Donate',
 		'flx-forms'      => 'Flux Forms',
@@ -478,7 +478,7 @@ add_filter(
 );
 
 function flx_sk_menu() {
-	add_theme_page( __( 'Sistem Kontrolü', 'fluxwp' ), __( 'Sistem Kontrolü', 'fluxwp' ), 'manage_options', 'flx-sistem', 'flx_sk_page' );
+	add_theme_page( __( 'System Check', 'fluxwp' ), __( 'System Check', 'fluxwp' ), 'manage_options', 'flx-sistem', 'flx_sk_page' );
 	// Flux Speed ekranı devraldı: Görünüm altındaki kopya menüden kalkar, eski adres oraya yönlenir.
 	if ( function_exists( 'flxp_system_checks_url' ) ) {
 		remove_submenu_page( 'themes.php', 'flx-sistem' );
@@ -518,10 +518,10 @@ function flx_sk_page() {
 	}
 	unset( $list );
 	$names = array(
-		'error'   => __( 'Hata', 'fluxwp' ),
-		'warning' => __( 'Uyarı', 'fluxwp' ),
-		'ok'      => __( 'Tamam', 'fluxwp' ),
-		'info'    => __( 'Bilgi', 'fluxwp' ),
+		'error'   => __( 'Error', 'fluxwp' ),
+		'warning' => __( 'Warning', 'fluxwp' ),
+		'ok'      => __( 'OK', 'fluxwp' ),
+		'info'    => __( 'Info', 'fluxwp' ),
 	);
 	?>
 	<div class="wrap flx-sk">
@@ -552,19 +552,19 @@ function flx_sk_page() {
 			.flx-sk-warning{background:#FEF8EE}
 			@media (max-width:782px){.flx-sk-row{grid-template-columns:1.1em 1fr}.flx-sk-row .flx-sk-msg,.flx-sk-row .flx-sk-act{grid-column:2}}
 		</style>
-		<h1><?php esc_html_e( 'Sistem Kontrolü', 'fluxwp' ); ?></h1>
-		<p><?php esc_html_e( 'Eklentiler, zamanlanmış görevler ve temel ayarlar. Kırmızı satırlar sitenin bir bölümünün çalışmadığını, sarılar önerilen düzeltmeleri gösterir. Sayfa her açılışta yeniden kontrol eder.', 'fluxwp' ); ?></p>
+		<h1><?php esc_html_e( 'System Check', 'fluxwp' ); ?></h1>
+		<p><?php esc_html_e( 'Plugins, scheduled tasks and key settings. Red rows mean part of the site is not working; yellow rows are recommended fixes. The page re-checks every time it opens.', 'fluxwp' ); ?></p>
 		<div class="flx-sk-sum">
 			<?php foreach ( $count as $st => $n ) : ?>
-				<button type="button" class="flx-sk-pill" data-filter="<?php echo esc_attr( $st ); ?>" aria-pressed="false" <?php disabled( 0, $n ); ?> title="<?php esc_attr_e( 'Yalnızca bunları göster (tekrar tıklayınca hepsi)', 'fluxwp' ); ?>"><span class="flx-sk-dot <?php echo esc_attr( $st ); ?>"></span><?php echo esc_html( $n . ' ' . $names[ $st ] ); ?></button>
+				<button type="button" class="flx-sk-pill" data-filter="<?php echo esc_attr( $st ); ?>" aria-pressed="false" <?php disabled( 0, $n ); ?> title="<?php esc_attr_e( 'Show only these (click again for all)', 'fluxwp' ); ?>"><span class="flx-sk-dot <?php echo esc_attr( $st ); ?>"></span><?php echo esc_html( $n . ' ' . $names[ $st ] ); ?></button>
 			<?php endforeach; ?>
-			<a class="button" href="<?php echo esc_url( flx_sk_url() ); ?>"><?php esc_html_e( 'Yeniden kontrol et', 'fluxwp' ); ?></a>
+			<a class="button" href="<?php echo esc_url( flx_sk_url() ); ?>"><?php esc_html_e( 'Check again', 'fluxwp' ); ?></a>
 			<span class="flx-sk-time">
 				<?php
 				// Türkçe sitede 24 saat (11:16); WordPress'in saat biçimi kurulum dilinden "g:i a" kalmış olabilir.
 				$tf = 0 === strpos( determine_locale(), 'tr' ) ? 'H:i' : get_option( 'time_format', 'H:i' );
 				/* translators: %s: time */
-				echo esc_html( sprintf( __( 'Kontrol: %s', 'fluxwp' ), wp_date( $tf ) ) );
+				echo esc_html( sprintf( __( 'Checked: %s', 'fluxwp' ), wp_date( $tf ) ) );
 				?>
 			</span>
 		</div>
@@ -576,13 +576,13 @@ function flx_sk_page() {
 			}
 			?>
 			<div class="flx-sk-card" data-group>
-				<h2><?php echo esc_html( $group ); ?> <small><?php echo $bad ? esc_html( sprintf( /* translators: %d: count */ __( '%d sorun', 'fluxwp' ), $bad ) ) : esc_html__( 'Her şey yerinde', 'fluxwp' ); ?></small></h2>
+				<h2><?php echo esc_html( $group ); ?> <small><?php echo $bad ? esc_html( sprintf( /* translators: %d: count */ __( '%d issues', 'fluxwp' ), $bad ) ) : esc_html__( 'All good', 'fluxwp' ); ?></small></h2>
 				<?php foreach ( $list as $c ) : ?>
 					<div class="flx-sk-row flx-sk-<?php echo esc_attr( $c['status'] ); ?>">
 						<span class="flx-sk-dot" title="<?php echo esc_attr( $names[ $c['status'] ] ); ?>"></span>
 						<div><strong><?php echo esc_html( $c['label'] ); ?></strong><?php if ( $c['source'] && 'theme' !== $c['source'] ) : ?><span class="flx-sk-src"><?php echo esc_html( flx_sk_source_label( $c['source'] ) ); ?></span><?php endif; ?></div>
 						<div class="flx-sk-msg"><?php echo esc_html( $c['message'] ); ?></div>
-						<div class="flx-sk-act"><?php if ( $c['action_url'] ) : ?><a class="button button-small" href="<?php echo esc_url( $c['action_url'] ); ?>"><?php echo esc_html( $c['action_label'] ? $c['action_label'] : __( 'Aç', 'fluxwp' ) ); ?></a><?php endif; ?></div>
+						<div class="flx-sk-act"><?php if ( $c['action_url'] ) : ?><a class="button button-small" href="<?php echo esc_url( $c['action_url'] ); ?>"><?php echo esc_html( $c['action_label'] ? $c['action_label'] : __( 'Open', 'fluxwp' ) ); ?></a><?php endif; ?></div>
 					</div>
 				<?php endforeach; ?>
 			</div>
@@ -625,13 +625,13 @@ function flx_sk_notice() {
 	foreach ( flx_sk_collect() as $c ) {
 		$err += 'error' === $c['status'] ? 1 : 0;
 	}
-	$link = '<a href="' . esc_url( flx_sk_url() ) . '">' . esc_html__( 'Sistem Kontrolü', 'fluxwp' ) . '</a>';
+	$link = '<a href="' . esc_url( flx_sk_url() ) . '">' . esc_html__( 'System Check', 'fluxwp' ) . '</a>';
 	if ( $err ) {
 		/* translators: 1: count, 2: link */
-		echo '<div class="notice notice-error"><p>' . wp_kses_post( sprintf( __( '%1$d kritik sorun var: %2$s', 'fluxwp' ), $err, $link ) ) . '</p></div>';
+		echo '<div class="notice notice-error"><p>' . wp_kses_post( sprintf( __( '%1$d critical issues: %2$s', 'fluxwp' ), $err, $link ) ) . '</p></div>';
 	} else {
 		/* translators: %s: link */
-		echo '<div class="notice notice-info"><p>' . wp_kses_post( sprintf( __( 'Eklentilerin, cron\'un ve ayarların durumunu %s ekranından görebilirsiniz.', 'fluxwp' ), $link ) ) . '</p></div>';
+		echo '<div class="notice notice-info"><p>' . wp_kses_post( sprintf( __( 'See the status of plugins, cron and settings on the %s screen.', 'fluxwp' ), $link ) ) . '</p></div>';
 	}
 }
 add_action( 'admin_notices', 'flx_sk_notice' );
@@ -643,7 +643,7 @@ add_action( 'admin_notices', 'flx_sk_notice' );
  * önceki/sonraki değeriyle kaydedilir. Kimlikler kontrol satırlarına `checks` ile bağlanır.
  */
 function flx_sk_fixes( $fixes ) {
-	$src = __( 'Tema', 'fluxwp' );
+	$src = __( 'Theme', 'fluxwp' );
 
 	$fixes['site.timezone'] = array(
 		'label'   => 'Saat dilimini İstanbul yap',
@@ -808,12 +808,12 @@ function flx_sk_fix_log_html() {
 		return;
 	}
 	$log = flxseo_system_fix_log( 20 );
-	echo '<div class="flx-sk-card"><h2>' . esc_html__( 'Son düzeltmeler (yapay zekâ / MCP)', 'fluxwp' ) . '</h2>';
+	echo '<div class="flx-sk-card"><h2>' . esc_html__( 'Recent fixes (AI / MCP)', 'fluxwp' ) . '</h2>';
 	if ( ! $log ) {
-		echo '<p style="padding:0 1.2em 1em;color:#646970">' . esc_html__( 'Henüz MCP ile yapılmış bir düzeltme yok.', 'fluxwp' ) . '</p></div>';
+		echo '<p style="padding:0 1.2em 1em;color:#646970">' . esc_html__( 'No fixes have been made through MCP yet.', 'fluxwp' ) . '</p></div>';
 		return;
 	}
-	echo '<table class="widefat striped" style="border:0"><thead><tr><th>' . esc_html__( 'Zaman', 'fluxwp' ) . '</th><th>' . esc_html__( 'Kullanıcı', 'fluxwp' ) . '</th><th>' . esc_html__( 'Düzeltme', 'fluxwp' ) . '</th><th>' . esc_html__( 'Önce → Sonra', 'fluxwp' ) . '</th><th>' . esc_html__( 'Sonuç', 'fluxwp' ) . '</th></tr></thead><tbody>';
+	echo '<table class="widefat striped" style="border:0"><thead><tr><th>' . esc_html__( 'Time', 'fluxwp' ) . '</th><th>' . esc_html__( 'User', 'fluxwp' ) . '</th><th>' . esc_html__( 'Fix', 'fluxwp' ) . '</th><th>' . esc_html__( 'Before → After', 'fluxwp' ) . '</th><th>' . esc_html__( 'Result', 'fluxwp' ) . '</th></tr></thead><tbody>';
 	foreach ( $log as $r ) {
 		$u = get_userdata( (int) $r['u'] );
 		echo '<tr><td>' . esc_html( wp_date( 'd.m H:i', (int) $r['t'] ) ) . '</td><td>' . esc_html( $u ? $u->user_login : '?' ) . '</td><td>' . esc_html( $r['label'] ) . ( '' !== $r['value'] ? ' <code>' . esc_html( $r['value'] ) . '</code>' : '' ) . '</td><td>' . esc_html( $r['before'] . ' → ' . $r['after'] ) . '</td><td>' . ( $r['ok'] ? '✓ ' : '✗ ' ) . esc_html( $r['msg'] ) . '</td></tr>';

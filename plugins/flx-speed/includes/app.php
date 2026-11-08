@@ -100,7 +100,7 @@ function flxp_app_request_row( array $it ) {
 function flxp_app_request( WP_REST_Request $req ) {
 	$row = FLXP_Store::get( (int) $req['id'] );
 	if ( ! $row ) {
-		return new WP_Error( 'flxp_not_found', __( 'Kayıt bulunamadı.', 'flx-speed' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxp_not_found', __( 'Record not found.', 'flx-speed' ), array( 'status' => 404 ) );
 	}
 	$data = isset( $row['data'] ) && is_array( $row['data'] ) ? $row['data'] : array();
 	unset( $row['data'] );

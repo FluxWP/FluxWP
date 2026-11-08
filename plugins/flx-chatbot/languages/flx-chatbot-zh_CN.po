@@ -1,0 +1,1197 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: zh_CN\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "AI chat window, live chat and customer support"
+msgstr "AI 聊天窗口、实时聊天和客户支持"
+
+msgid "Site chats"
+msgstr "现场聊天"
+
+msgid "Open"
+msgstr "打开"
+
+msgid "All"
+msgstr "全部"
+
+msgid "With assistant"
+msgstr "带助理"
+
+msgid "Closed"
+msgstr "已关闭"
+
+msgid "Search name, email, phone or page"
+msgstr "搜索姓名、电子邮件、电话或页面"
+
+msgid "No chats in this view."
+msgstr "此视图中没有聊天。"
+
+msgid "Pick a chat on the left."
+msgstr "选择左侧的聊天。"
+
+msgid "Loading…"
+msgstr "加载中..."
+
+msgid "Type your reply… (Enter sends, Shift+Enter for a new line)"
+msgstr "输入您的回复...(输入发送,Shift+Enter 换行)"
+
+msgid "Send"
+msgstr "发送"
+
+msgid "Attach file"
+msgstr "附加文件"
+
+msgid "Close chat"
+msgstr "关闭聊天"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Delete this chat and its files permanently?"
+msgstr "永久删除此聊天记录及其文件吗?"
+
+msgid "Close the chat? It reopens if the visitor writes again."
+msgstr "关闭聊天?如果访问者再次写入,它会重新打开。"
+
+msgid "Open in Flux Chat"
+msgstr "在 Flux 聊天中打开"
+
+msgid "This chat is also in the Flux Chat inbox; replies from either place reach the visitor."
+msgstr "此聊天也在 Flux Chat 收件箱中;来自任一地方的回复都会到达访问者。"
+
+msgid "Visitor"
+msgstr "访客"
+
+msgid "You"
+msgstr "你"
+
+msgid "On the page"
+msgstr "在页面上"
+
+msgid "Left"
+msgstr "左"
+
+msgid "typing…"
+msgstr "打字..."
+
+msgid "Page"
+msgstr "页面"
+
+msgid "Email"
+msgstr "电子邮件"
+
+msgid "Phone"
+msgstr "电话"
+
+msgid "Member"
+msgstr "会员"
+
+msgid "Order"
+msgstr "订单"
+
+msgid "Rating"
+msgstr "评级"
+
+msgid "Assistant's note"
+msgstr "助理备注"
+
+msgid "Lead"
+msgstr "铅"
+
+msgid "Agent"
+msgstr "代理"
+
+msgid "Something went wrong. Please try again."
+msgstr "出了点问题。请再试一次。"
+
+msgid "Waiting for an agent"
+msgstr "等待代理"
+
+msgid "In conversation"
+msgstr "谈话中"
+
+msgid "Left a message"
+msgstr "Left a message"
+
+msgid "More"
+msgstr "更多"
+
+msgid "Back to list"
+msgstr "返回列表"
+
+msgid "Details"
+msgstr "详情"
+
+msgid "Suggested products"
+msgstr "推荐产品"
+
+msgid "You are not allowed to do this."
+msgstr "你不可以这样做。"
+
+msgid "Conversations from the chat window on your site. Chats the assistant answered are here too; visitors asking for an agent are on top."
+msgstr "来自您网站上的聊天窗口的对话。助理回复的聊天也在这里;寻求代理的访客排在首位。"
+
+msgid "Flux Chat"
+msgstr "通量聊天"
+
+msgid "Flux AI Chatbot"
+msgstr "Flux 人工智能聊天机器人"
+
+msgid "Chatbot"
+msgstr "聊天机器人"
+
+msgid "Chats"
+msgstr "聊天记录"
+
+msgid "Chatbot settings"
+msgstr "聊天机器人设置"
+
+msgid "Choose avatar"
+msgstr "选择头像"
+
+msgid "Use this image"
+msgstr "使用此图像"
+
+msgid "You have unsaved changes"
+msgstr "您有未保存的更改"
+
+msgid "Hi, how long does shipping take?"
+msgstr "你好,请问运送需要多长时间?"
+
+msgid "Orders ship within **1-3 business days**. Here is a product you might like:"
+msgstr "订单将在 **1-3 个工作日**内发货。这是您可能喜欢的产品:"
+
+msgid "Orders ship within **1-3 business days**; shipping is free over $50. Anything else I can help with?"
+msgstr "订单在**1-3 个工作日**内发货;超过 50 美元免运费。还有什么我可以帮忙的吗?"
+
+msgid "General"
+msgstr "一般"
+
+msgid "Appearance"
+msgstr "外观"
+
+msgid "Texts"
+msgstr "文本"
+
+msgid "AI"
+msgstr "人工智能"
+
+msgid "Live chat"
+msgstr "实时聊天"
+
+msgid "Visibility"
+msgstr "能见度"
+
+msgid "An AI chat window for your site: it answers from your content and products and hands the chat to a live agent when needed. Changes show up in the preview on the right right away."
+msgstr "适用于您网站的人工智能聊天窗口:它根据您的内容和产品进行回答,并在需要时将聊天交给现场客服。更改会立即显示在右侧的预览中。"
+
+msgid "Try on site"
+msgstr "现场试用"
+
+msgid "Settings saved."
+msgstr "设置已保存。"
+
+msgid "last 30 days"
+msgstr "过去 30 天"
+
+msgid "Solved by the assistant"
+msgstr "已由小助手解决"
+
+msgid "without an agent"
+msgstr "没有代理人"
+
+msgid "left contact details"
+msgstr "留下联系方式"
+
+msgid "Orders after chat"
+msgstr "聊天后下单"
+
+msgid "within 7 days"
+msgstr "7天内"
+
+msgid "Satisfaction"
+msgstr "满意"
+
+msgid "%s ratings"
+msgstr "%s评分"
+
+msgid "no ratings yet"
+msgstr "还没有评分"
+
+msgid "Chat window"
+msgstr "聊天窗口"
+
+msgid "Show on site"
+msgstr "现场展示"
+
+msgid "While off, visitors don't see the window; admins can preview it with \"Try on site\"."
+msgstr "关闭时,游客看不到窗户;管理员可以通过“现场试用”进行预览。"
+
+msgid "Mode"
+msgstr "模式"
+
+msgid "AI + live chat"
+msgstr "人工智能+实时聊天"
+
+msgid "The assistant answers and hands over to an agent when needed. Recommended."
+msgstr "助理会在需要时接听并移交给座席。受到推崇的。"
+
+msgid "AI only"
+msgstr "仅人工智能"
+
+msgid "No handoff; the assistant shares your contact details."
+msgstr "无需切换;助理会分享您的联系方式。"
+
+msgid "Live chat only"
+msgstr "仅实时聊天"
+
+msgid "No assistant; messages go straight to agents."
+msgstr "没有助理;消息直接发送给代理。"
+
+msgid "Connections"
+msgstr "连接"
+
+msgid "Flux AI & MCP connected"
+msgstr "Flux AI 和 MCP 连接"
+
+msgid "Key, model, spending limit and logs come from Flux AI."
+msgstr "密钥、模型、支出限额和日志来自 Flux AI。"
+
+msgid "Choose model"
+msgstr "选择型号"
+
+msgid "Flux AI is not ready"
+msgstr "Flux AI 尚未准备好"
+
+msgid "Enter an API key in Flux AI & MCP or turn on Flux AI Chatbot under Connected systems."
+msgstr "在 Flux AI 和 MCP 中输入 API 密钥,或在“连接的系统”下打开 Flux AI 聊天机器人。"
+
+msgid "Flux AI"
+msgstr "通量人工智能"
+
+msgid "Flux AI & MCP is not installed"
+msgstr "Flux AI 和 MCP 未安装"
+
+msgid "Install the Flux AI & MCP plugin for the assistant. Until then the window works as live chat only."
+msgstr "为助手安装 Flux AI & MCP 插件。在此之前,该窗口仅用作实时聊天。"
+
+msgid "Live chat off"
+msgstr "实时聊天关闭"
+
+msgid "Mode is \"AI only\"."
+msgstr "模式为“仅限人工智能”。"
+
+msgid "Flux Chat inbox"
+msgstr "Flux 聊天收件箱"
+
+msgid "All site chats (including the ones the assistant answered) appear in the call center with the site chat icon; agents reply from the same screen as WhatsApp and other channels."
+msgstr "所有站点聊天(包括助理应答的聊天)都会显示在呼叫中心并带有站点聊天图标;客服人员在 WhatsApp 和其他渠道的同一屏幕上回复。"
+
+msgid "Plugin inbox"
+msgstr "插件收件箱"
+
+msgid "Handed-over chats land on the Chatbot › Chats screen."
+msgstr "移交的聊天会出现在聊天机器人 › 聊天屏幕上。"
+
+msgid "Handed-over chats land on the Chatbot › Chats screen. With Flux Chat (1.37+) installed they can also be answered from the call center."
+msgstr "移交的聊天会出现在聊天机器人 › 聊天屏幕上。安装 Flux Chat (1.37+) 后,还可以从呼叫中心接听他们的电话。"
+
+msgid "Online now"
+msgstr "现已上线"
+
+msgid "Outside working hours now"
+msgstr "现在非工作时间"
+
+msgid "Working hours: %s"
+msgstr "工作时间:%s"
+
+msgid "Working hours come from the Flux Chat settings."
+msgstr "工作时间来自 Flux Chat 设置。"
+
+msgid "Agents always count as online."
+msgstr "代理始终算作在线。"
+
+msgid "Hours"
+msgstr "时间"
+
+msgid "Open from a page"
+msgstr "从页面打开"
+
+msgid "Any button or link can open the window."
+msgstr "任何按钮或链接都可以打开该窗口。"
+
+msgid "Message us"
+msgstr "给我们留言"
+
+msgid "Shortcode: a button inside the page."
+msgstr "简码:页面内的按钮。"
+
+msgid "A link to #flxcb-open opens the window."
+msgstr "#flxcb-open 的链接将打开该窗口。"
+
+msgid "Added to a button, the window opens with this message."
+msgstr "添加到按钮后,窗口将打开并显示此消息。"
+
+msgid "Open with JavaScript."
+msgstr "使用 JavaScript 打开。"
+
+msgid "Color and theme"
+msgstr "颜色和主题"
+
+msgid "Main color"
+msgstr "主色"
+
+msgid "Theme color"
+msgstr "主题色"
+
+msgid "Follow theme"
+msgstr "跟随主题"
+
+msgid "When empty, the site's theme color is used."
+msgstr "当为空时,将使用站点的主题颜色。"
+
+msgid "Text color (header and buttons)"
+msgstr "文本颜色(标题和按钮)"
+
+msgid "Automatic"
+msgstr "自动"
+
+msgid "When empty, a readable color is picked from the main color."
+msgstr "当为空时,从主颜色中选取一种可读颜色。"
+
+msgid "Light / dark"
+msgstr "浅色/深色"
+
+msgid "Automatic (follows device and site)"
+msgstr "自动(遵循设备和站点)"
+
+msgid "Always light"
+msgstr "始终明亮"
+
+msgid "Always dark"
+msgstr "永远黑暗"
+
+msgid "Header"
+msgstr "标头"
+
+msgid "Gradient"
+msgstr "渐变"
+
+msgid "Solid color"
+msgstr "纯色"
+
+msgid "Font"
+msgstr "字体"
+
+msgid "Same as site"
+msgstr "与网站相同"
+
+msgid "System font"
+msgstr "系统字体"
+
+msgid "Assistant"
+msgstr "助理"
+
+msgid "Assistant name"
+msgstr "助理姓名"
+
+msgid "Shown in the chat header."
+msgstr "显示在聊天标题中。"
+
+msgid "Avatar image"
+msgstr "头像图片"
+
+msgid "Choose"
+msgstr "选择"
+
+msgid "Remove"
+msgstr "删除"
+
+msgid "A square image works best. Without one, the icon below is used."
+msgstr "方形图像效果最好。如果没有,则使用下面的图标。"
+
+msgid "Avatar icon"
+msgstr "阿凡达图标"
+
+msgid "Robot"
+msgstr "机器人"
+
+msgid "Sparkles"
+msgstr "闪闪发光"
+
+msgid "Headset"
+msgstr "耳机"
+
+msgid "Smiley"
+msgstr "笑脸"
+
+msgid "Site icon"
+msgstr "网站图标"
+
+msgid "Launcher button and position"
+msgstr "启动器按钮和位置"
+
+msgid "Button icon"
+msgstr "按钮图标"
+
+msgid "Bubble"
+msgstr "气泡"
+
+msgid "Question"
+msgstr "问题"
+
+msgid "Avatar"
+msgstr "阿凡达"
+
+msgid "Label next to the button"
+msgstr "按钮旁边的标签"
+
+msgid "When empty only the button shows. Example: Need help?"
+msgstr "当为空时,仅显示按钮。示例:需要帮助吗?"
+
+msgid "None"
+msgstr "无"
+
+msgid "Position"
+msgstr "职位"
+
+msgid "Bottom right"
+msgstr "右下角"
+
+msgid "Bottom left"
+msgstr "左下角"
+
+msgid "Button size"
+msgstr "纽扣尺寸"
+
+msgid "Side spacing"
+msgstr "边距"
+
+msgid "Bottom spacing"
+msgstr "底部间距"
+
+msgid "Window width"
+msgstr "窗宽"
+
+msgid "Corner radius"
+msgstr "圆角半径"
+
+msgid "Full screen on mobile"
+msgstr "手机上全屏"
+
+msgid "On small screens the window covers the whole screen."
+msgstr "在小屏幕上,窗口覆盖整个屏幕。"
+
+msgid "Notification sound"
+msgstr "通知声音"
+
+msgid "A short sound for a new reply while the window is closed."
+msgstr "窗口关闭时发出新回复的短声。"
+
+msgid "\"Powered by FluxWP\" note"
+msgstr "“由 FluxWP 提供支持”注释"
+
+msgid "A small signature at the bottom of the window."
+msgstr "窗口底部有一个小签名。"
+
+msgid "Home screen"
+msgstr "主屏幕"
+
+msgid "The welcome screen shown when the window opens. Empty texts use the default for the visitor's language (TR/EN)."
+msgstr "窗口打开时显示的欢迎屏幕。空文本使用访问者语言的默认值 (TR/EN)。"
+
+msgid "Show home screen"
+msgstr "显示主屏幕"
+
+msgid "When off, the window opens straight into the chat."
+msgstr "关闭后,窗口会直接打开进入聊天窗口。"
+
+msgid "Message field"
+msgstr "留言栏"
+
+msgid "Subtitle"
+msgstr "副标题"
+
+msgid "Team avatars"
+msgstr "团队头像"
+
+msgid "Photos of agents who replied recently show in the header."
+msgstr "最近回复的代理的照片显示在标题中。"
+
+msgid "Suggested questions"
+msgstr "建议问题"
+
+msgid "One question per line (up to 6). Clickable on the home screen and at the start of a chat."
+msgstr "每行一个问题(最多 6 个)。可在主屏幕和聊天开始时单击。"
+
+msgid "How long does shipping take?\nHow do returns work?\nWhere is my order?"
+msgstr "运送需要多长时间?\n退货如何运作?\n我的订单在哪里?"
+
+msgid "Contact links"
+msgstr "联系方式链接"
+
+msgid "One per line: Label | address. https, mailto:, tel: and wa.me are supported."
+msgstr "每行一个:标签|地址。支持 https、mailto:、tel: 和 wa.me。"
+
+msgid "Chat texts"
+msgstr "聊天文字"
+
+msgid "Welcome message"
+msgstr "欢迎留言"
+
+msgid "The assistant's first message."
+msgstr "助理的第一条消息。"
+
+msgid "Teaser bubble"
+msgstr "预告片泡沫"
+
+msgid "After the visitor stays on the page a while, a short message pops up above the button (once per session)."
+msgstr "访问者在页面上停留一段时间后,按钮上方会弹出一条短消息(每个会话一次)。"
+
+msgid "Show teaser bubble"
+msgstr "显示预告片气泡"
+
+msgid "Message"
+msgstr "留言"
+
+msgid "After how many seconds"
+msgstr "多少秒后"
+
+msgid "The assistant is not working right now."
+msgstr "助理现在不在工作。"
+
+msgid "AI calls go through Flux AI & MCP, where the key, model and spending limit live. Until Flux AI is ready, visitor messages go to an agent."
+msgstr "AI 调用通过 Flux AI 和 MCP,其中包含密钥、模型和支出限制。在 Flux AI 准备就绪之前,访客消息会发送给代理。"
+
+msgid "Key, model, spending limit and logs are in Flux AI & MCP. To pick a model just for this plugin:"
+msgstr "密钥、模型、支出限额和日志位于 Flux AI 和 MCP 中。要为该插件选择一个型号:"
+
+msgid "Flux AI › Connected systems › Flux AI Chatbot"
+msgstr "Flux AI › 连接系统 › Flux AI 聊天机器人"
+
+msgid "Personality and instructions"
+msgstr "个性与指示"
+
+msgid "Personality and tone"
+msgstr "个性和语气"
+
+msgid "Example: Be friendly but polite, keep answers short."
+msgstr "示例:友好但有礼貌,回答简短。"
+
+msgid "Rules"
+msgstr "规则"
+
+msgid "What the assistant must follow. Example: Don't give discount codes. Hand business sales questions to an agent."
+msgstr "助理必须遵守的事项。示例:不要提供折扣代码。将业务销售问题交给代理商。"
+
+msgid "Knowledge base"
+msgstr "知识库"
+
+msgid "Information not on your site: shipping, returns, opening hours, FAQs. Plain text; the assistant answers only from here and your site."
+msgstr "您网站上没有的信息:运输、退货、营业时间、常见问题解答。纯文本;助理仅从此处和您的网站进行回答。"
+
+msgid "Shipping: 1-3 business days, free over $50.\nReturns: within 14 days with the invoice.\nQ: Do you have a store?\nA: We sell online only."
+msgstr "送货:1-3 个工作日,满 50 美元免运费。\n退货:14 天内带发票。\n问: 你们有商店吗?\n答:我们只在网上销售。"
+
+msgid "Sources and tools"
+msgstr "来源和工具"
+
+msgid "The assistant searches these before answering. Only published, non-password-protected content is read."
+msgstr "助理在回答之前会先搜索这些内容。仅读取已发布的、不受密码保护的内容。"
+
+msgid "Pages"
+msgstr "页数"
+
+msgid "Posts"
+msgstr "帖子"
+
+msgid "WooCommerce products"
+msgstr "WooCommerce 产品"
+
+msgid "Price, stock and link; products appear as cards in the window."
+msgstr "价格、库存和链接;产品在窗口中显示为卡片。"
+
+msgid "Product cards"
+msgstr "产品卡"
+
+msgid "Image, price, \"View\" and \"Add to cart\"."
+msgstr "图片、价格、“查看”和“添加到购物车”。"
+
+msgid "Flux Wiki pages"
+msgstr "Flux 维基页面"
+
+msgid "Order status"
+msgstr "订单状态"
+
+msgid "A logged-in customer can only ask about their own orders."
+msgstr "登录的客户只能查询自己的订单。"
+
+msgid "Save contact details"
+msgstr "保存联系方式"
+
+msgid "If the visitor gives an email or phone, it is saved to the chat (and to Flux CRM when installed)."
+msgstr "如果访问者提供电子邮件或电话,则会将其保存到聊天中(以及安装后的 Flux CRM)。"
+
+msgid "Limits"
+msgstr "限制"
+
+msgid "A public AI can burn through the budget fast. The overall spending limit is in Flux AI; these are extra protection."
+msgstr "公共人工智能可以快速消耗预算。总体支出限额在Flux AI;这些都是额外的保护。"
+
+msgid "Replies per chat"
+msgstr "每个聊天的回复数"
+
+msgid "When reached, the chat goes to an agent."
+msgstr "到达后,聊天将转至客服人员。"
+
+msgid "Per chat per hour"
+msgstr "每小时每次聊天"
+
+msgid "0 = unlimited"
+msgstr "0 = 无限制"
+
+msgid "Daily total on the site"
+msgstr "网站每日总计"
+
+msgid "Handoff to a person"
+msgstr "交接给一个人"
+
+msgid "Flux Chat when available, otherwise the plugin inbox."
+msgstr "Flux Chat(如果可用),否则插件收件箱。"
+
+msgid "Call center inbox, together with WhatsApp chats."
+msgstr "呼叫中心收件箱,以及 WhatsApp 聊天。"
+
+msgid "Flux Chat 1.37+ is not installed; the inbox is used."
+msgstr "Flux Chat 1.37+ 未安装;使用收件箱。"
+
+msgid "Chatbot › Chats screen, with email notification."
+msgstr "聊天机器人 › 聊天屏幕,带有电子邮件通知。"
+
+msgid "Ask for email"
+msgstr "索取电子邮件"
+
+msgid "Only outside working hours"
+msgstr "仅限工作时间以外"
+
+msgid "Before handing over"
+msgstr "移交前"
+
+msgid "Never"
+msgstr "从来没有"
+
+msgid "Notification email"
+msgstr "通知邮件"
+
+msgid "New handoffs and after-hours messages. When empty, the site admin."
+msgstr "新的交接和下班后消息。当为空时,站点管理员。"
+
+msgid "After-hours message"
+msgstr "下班后消息"
+
+msgid "Also send replies by email"
+msgstr "也可以通过电子邮件发送回复"
+
+msgid "If the visitor has left the page, the agent's reply goes to their email."
+msgstr "如果访问者离开了页面,代理的回复将发送到他们的电子邮件中。"
+
+msgid "End-of-chat rating"
+msgstr "聊天结束评分"
+
+msgid "1-5 stars and an optional note."
+msgstr "1-5 星和可选注释。"
+
+msgid "File sharing"
+msgstr "文件共享"
+
+msgid "Images, PDFs and office documents; files are not put in a public folder."
+msgstr "图片、PDF 和办公文档;文件不放在公共文件夹中。"
+
+msgid "Voice dictation"
+msgstr "语音听写"
+
+msgid "A microphone button in the message field: the visitor speaks and the text lands in the field. Uses the browser's speech recognition; the button is hidden where it isn't supported."
+msgstr "消息字段中的麦克风按钮:访客讲话,文本落在该字段中。使用浏览器的语音识别功能;该按钮在不支持的地方被隐藏。"
+
+msgid "Largest file (MB)"
+msgstr "最大文件 (MB)"
+
+msgid "Working hours"
+msgstr "工作时间"
+
+msgid "Outside working hours visitors see \"leave a message\" and the agent replies by email. Hours follow the site time zone."
+msgstr "工作时间之外,访客会看到“留言”,客服人员会通过电子邮件回复。营业时间以站点时区为准。"
+
+msgid "Always open"
+msgstr "始终开放"
+
+msgid "Weekly hours"
+msgstr "每周工作时间"
+
+msgid "Flux Chat hours"
+msgstr "Flux 聊天时间"
+
+msgid "Flux Chat is not installed"
+msgstr "Flux 聊天未安装"
+
+msgid "Where to show"
+msgstr "在哪里显示"
+
+msgid "Who sees it"
+msgstr "谁看到它"
+
+msgid "Everyone"
+msgstr "大家"
+
+msgid "Only visitors (not logged in)"
+msgstr "仅限访客(未登录)"
+
+msgid "Only members (logged in)"
+msgstr "仅限会员(已登录)"
+
+msgid "Device"
+msgstr "设备"
+
+msgid "Desktop"
+msgstr "桌面"
+
+msgid "Mobile"
+msgstr "手机"
+
+msgid "Hidden on these addresses"
+msgstr "隐藏在这些地址上"
+
+msgid "One path per line. * is a wildcard. Example: /checkout/* or /campaign"
+msgstr "每行一条路径。 * 是通配符。示例:/checkout/* 或 /campaign"
+
+msgid "Privacy"
+msgstr "隐私"
+
+msgid "The visitor's IP address is not stored; the chat is matched by a random key in the browser."
+msgstr "不存储访问者的IP地址;聊天与浏览器中的随机密钥相匹配。"
+
+msgid "Note under the message field"
+msgstr "留言栏下方备注"
+
+msgid "Example: Chats are kept under our <a href=\"/privacy\">Privacy Policy</a>. Links are allowed."
+msgstr "示例:聊天记录根据我们的<a href=\"/privacy\">隐私政策</a>保存。允许链接。"
+
+msgid "Retention (days)"
+msgstr "保留(天)"
+
+msgid "Expired chats and their files are deleted. 0 = keep."
+msgstr "过期的聊天记录及其文件将被删除。 0 = 保留。"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Preview"
+msgstr "预览"
+
+msgid "Messages you type in the preview go to the real assistant and show up in Chats."
+msgstr "您在预览中输入的消息将发送至真正的助手并显示在聊天中。"
+
+msgid "The assistant of the chat window on the site, and site chats."
+msgstr "网站聊天窗口的助手,可以和网站聊天。"
+
+msgid "Assistant model"
+msgstr "助理模特"
+
+msgid "The model that answers visitors. A fast, low-cost model is recommended; when empty, the Flux AI default."
+msgstr "回答访客的模型。推荐快速、低成本的模型;当为空时,Flux AI 默认值。"
+
+msgid "Site chat transcript"
+msgstr "现场聊天记录"
+
+msgid "Chat not found."
+msgstr "找不到聊天。"
+
+msgid "Chat statistics"
+msgstr "聊天统计"
+
+msgid "Site chat"
+msgstr "现场聊天"
+
+msgid "Site chat · %s"
+msgstr "现场聊天·%s"
+
+msgid "A site chat is waiting for an agent."
+msgstr "现场聊天正在等待代理。"
+
+msgid "Page:"
+msgstr "页码:"
+
+msgid "Contact:"
+msgstr "联系方式:"
+
+msgid "Assistant note:"
+msgstr "助理备注:"
+
+msgid "Site chat not found."
+msgstr "找不到站点聊天。"
+
+msgid "Could not read the file."
+msgstr "无法读取文件。"
+
+msgid "This action isn't available in site chats."
+msgstr "此操作在站点聊天中不可用。"
+
+msgid "Could not save the message."
+msgstr "无法保存消息。"
+
+msgid "Open chat"
+msgstr "打开聊天"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Minimize"
+msgstr "最小化"
+
+msgid "Back"
+msgstr "返回"
+
+msgid "Home"
+msgstr "首页"
+
+msgid "Messages"
+msgstr "留言"
+
+msgid "Dictate"
+msgstr "口授"
+
+msgid "Stop listening"
+msgstr "停止聆听"
+
+msgid "Continue the chat"
+msgstr "继续聊天"
+
+msgid "We usually reply within a few minutes"
+msgstr "我们通常会在几分钟内回复"
+
+msgid "Our assistant replies instantly"
+msgstr "我们的助理立即回复"
+
+msgid "Online"
+msgstr "在线"
+
+msgid "Offline right now"
+msgstr "现在离线"
+
+msgid "Thinking…"
+msgstr "思考......"
+
+msgid "Searching the site…"
+msgstr "正在搜索该网站..."
+
+msgid "Looking at products…"
+msgstr "正在查看产品..."
+
+msgid "Looking at your orders…"
+msgstr "正在查看您的订单..."
+
+msgid "Talk to a person"
+msgstr "与一个人交谈"
+
+msgid "Would you like to talk to a person?"
+msgstr "你想和一个人说话吗?"
+
+msgid "Your place in line: %d"
+msgstr "您在队列中的位置:%d"
+
+msgid "Seen"
+msgstr "见过"
+
+msgid "Sent"
+msgstr "已发送"
+
+msgid "End chat"
+msgstr "结束聊天"
+
+msgid "End the chat?"
+msgstr "结束聊天吗?"
+
+msgid "Yes"
+msgstr "是的"
+
+msgid "No"
+msgstr "否"
+
+msgid "New chat"
+msgstr "新聊天"
+
+msgid "How was the chat?"
+msgstr "聊天怎么样?"
+
+msgid "Anything you'd like to add? (optional)"
+msgstr "您还有什么要补充的吗? (可选)"
+
+msgid "Thanks, we got your feedback."
+msgstr "谢谢,我们收到了您的反馈。"
+
+msgid "Your name"
+msgstr "你的名字"
+
+msgid "Your email"
+msgstr "您的电子邮件"
+
+msgid "Phone (optional)"
+msgstr "电话(可选)"
+
+msgid "Your message"
+msgstr "您的留言"
+
+msgid "Leave a message"
+msgstr "留言"
+
+msgid "Leave your email so we can get back to you."
+msgstr "留下您的电子邮件,以便我们回复您。"
+
+msgid "Enter a valid email address."
+msgstr "输入有效的电子邮件地址。"
+
+msgid "Connection problem. Please try again."
+msgstr "连接问题。请再试一次。"
+
+msgid "Try again"
+msgstr "再试一次"
+
+msgid "The file is too large."
+msgstr "文件太大。"
+
+msgid "Add to cart"
+msgstr "添加到购物车"
+
+msgid "View"
+msgstr "查看"
+
+msgid "Out of stock"
+msgstr "缺货"
+
+msgid "Powered by FluxWP"
+msgstr "由 FluxWP 提供支持"
+
+msgid "Today"
+msgstr "今天"
+
+msgid "new message"
+msgstr "新消息"
+
+msgid "Ask a question"
+msgstr "问一个问题"
+
+msgid "Contact us"
+msgstr "联系我们"
+
+msgid "Shop and products"
+msgstr "商店和产品"
+
+msgid "Cart"
+msgstr "购物车"
+
+msgid "Checkout"
+msgstr "结帐"
+
+msgid "My account"
+msgstr "我的帐户"
+
+msgid "Other (archives, search, 404…)"
+msgstr "其他(档案、搜索、404......)"
+
+msgid "Hi there 👋"
+msgstr "你好👋"
+
+msgid "How can we help? We answer your questions right away."
+msgstr "我们能提供什么帮助?我们立即回答您的问题。"
+
+msgid "Hi! I'm this site's assistant. Ask me about products, orders or anything else."
+msgstr "嗨!我是这个网站的助理。向我询问产品、订单或其他任何问题。"
+
+msgid "Type your message…"
+msgstr "输入您的消息..."
+
+msgid "Hi! Is there anything I can help with?"
+msgstr "嗨!有什么我可以帮忙的吗?"
+
+msgid "No agents are online right now. Leave a message and we'll get back to you by email."
+msgstr "目前没有代理在线。请留言,我们将通过电子邮件回复您。"
+
+msgid "Weekdays %s"
+msgstr "工作日%s"
+
+msgid "Every day %s"
+msgstr "每天%s"
+
+msgid "Mon"
+msgstr "周一"
+
+msgid "Tue"
+msgstr "星期二"
+
+msgid "Wed"
+msgstr "周三"
+
+msgid "Thu"
+msgstr "星期四"
+
+msgid "Fri"
+msgstr "周五"
+
+msgid "Sat"
+msgstr "星期六"
+
+msgid "Sun"
+msgstr "太阳"
+
+msgid "Monday"
+msgstr "星期一"
+
+msgid "Tuesday"
+msgstr "星期二"
+
+msgid "Wednesday"
+msgstr "星期三"
+
+msgid "Thursday"
+msgstr "星期四"
+
+msgid "Friday"
+msgstr "周五"
+
+msgid "Saturday"
+msgstr "星期六"
+
+msgid "Sunday"
+msgstr "周日"
+
+msgid "Connecting you to an agent…"
+msgstr "正在为您联系代理..."
+
+msgid "%s joined the chat"
+msgstr "%s加入聊天"
+
+msgid "You ended the chat."
+msgstr "你结束了聊天。"
+
+msgid "The chat has ended."
+msgstr "聊天结束了。"
+
+msgid "The visitor ended the site chat."
+msgstr "访客结束了站点聊天。"
+
+msgid "Site chat #%d"
+msgstr "站点聊天 #%d"
+
+msgid "[%1$s] Message from site chat: %2$s"
+msgstr "[%1$s] 来自站点聊天的消息:%2$s"
+
+msgid "[%1$s] Site chat waiting for an agent: %2$s"
+msgstr "[%1$s] 站点聊天等待客服人员:%2$s"
+
+msgid "To reply:"
+msgstr "回复:"
+
+msgid "%s: you have a reply to your chat"
+msgstr "%s:您对聊天有回复"
+
+msgid "To continue the chat, open the site in the same browser:"
+msgstr "要继续聊天,请在同一浏览器中打开该网站:"
+
+msgid "The file could not be uploaded."
+msgstr "文件无法上传。"
+
+msgid "Files can be up to %d MB."
+msgstr "文件最大可达%dMB。"
+
+msgid "This file type can't be sent. Send an image, PDF or office document."
+msgstr "无法发送此文件类型。发送图像、PDF 或 Office 文档。"
+
+msgid "Could not save the file."
+msgstr "无法保存文件。"
+
+msgid "Too many requests. Please wait a moment."
+msgstr "请求太多。请稍等。"
+
+msgid "Chat is closed right now."
+msgstr "聊天现已关闭。"
+
+msgid "The message is empty."
+msgstr "该消息为空。"
+
+msgid "You're typing too fast. Wait a moment and try again."
+msgstr "你打字太快了。稍等片刻,然后重试。"
+
+msgid "Too many new chats were started. Please try again later."
+msgstr "开始了太多新聊天。请稍后重试。"
+
+msgid "Could not start the chat."
+msgstr "无法开始聊天。"
+
+msgid "I can't answer right now. Please write again in a moment or reach us through our contact details."
+msgstr "我现在无法回答。请稍后再写信或通过我们的联系方式与我们联系。"
+
+msgid "Live chat is off."
+msgstr "实时聊天已关闭。"
+
+msgid "Too many requests. Please try again later."
+msgstr "请求太多。请稍后重试。"
+
+msgid "Thanks! We got your message and will reply to your email."
+msgstr "谢谢!我们收到您的消息并将回复您的电子邮件。"
+
+msgid "Write a message first."
+msgstr "先写留言吧。"
+
+msgid "File sharing is off."
+msgstr "文件共享已关闭。"
+
+msgid "Too many files were sent. Please try again later."
+msgstr "发送的文件太多。请稍后重试。"
+
+msgid "No file selected."
+msgstr "未选择文件。"
+
+msgid "File not found."
+msgstr "未找到文件。"
+
+msgid "Visitor rating: %1$s %2$s"
+msgstr "访客评分:%1$s%2$s"
+
+msgid "Visitor #%d"
+msgstr "访客#%d"
+
+msgid "%d chat is waiting for a reply."
+msgid_plural "%d chats are waiting for a reply."
+msgstr[0] "%d聊天正在等待回复。"
+
+msgid "Site chat window"
+msgstr "站点聊天窗口"
+
+msgid "The window is off; visitors don't see it."
+msgstr "窗户关着;访客看不到它。"
+
+msgid "Chat assistant"
+msgstr "聊天助手"
+
+msgid "Flux AI connected; the assistant is answering."
+msgstr "Flux AI 连接;助理正在接听。"
+
+msgid "Flux AI is not ready; messages go to an agent instead of the assistant."
+msgstr "Flux AI 尚未准备好;消息会发送给代理而不是助理。"
+
+msgid "Handoffs go to the Flux Chat inbox."
+msgstr "交接会转到 Flux Chat 收件箱。"
+
+msgid "Handoffs go to the plugin inbox."
+msgstr "交接会转到插件收件箱。"
+
+msgid "Order placed: #%1$s (%2$s)"
+msgstr "已下订单:#%1$s(%2$s)"
+
+msgid "Placed after site chat #%d"
+msgstr "放置在站点聊天 #%d之后"
+
+msgid "[[\"Artificial intelligence-supported chat window to the site: With Flux AI, 24/7 responses from your site's content and products, potential customer collection, WooCommerce information, one-click transfer to a live representative (Flux Chat inbox or the plugin's own inbox), file sharing, read receipts, end-of-chat scoring and leaving messages after hours. Color, position, avatar, texts and visibility are customized from the panel.\", 'tr']]"
+msgstr "[[“网站的人工智能支持聊天窗口:使用 Flux AI,对网站内容和产品进行 24/7 响应、潜在客户收集、WooCommerce 信息、一键传输给现场代表(Flux Chat 收件箱或插件自己的收件箱)、文件共享、阅读回执、聊天结束评分和下班后留下消息。颜色、位置、头像、文本和可见性可从面板自定义。”, 'tr']]"

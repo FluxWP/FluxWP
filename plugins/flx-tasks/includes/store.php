@@ -241,9 +241,9 @@ function flxg_clean_task_kind( $v ) {
 
 function flxg_meeting_statuses() {
 	return array(
-		array( 'key' => 'planned', 'label' => __( 'Planlandı', 'flx-tasks' ), 'color' => '#3b82f6', 'type' => 'open' ),
-		array( 'key' => 'held', 'label' => __( 'Yapıldı', 'flx-tasks' ), 'color' => '#22c55e', 'type' => 'done' ),
-		array( 'key' => 'cancelled', 'label' => __( 'İptal', 'flx-tasks' ), 'color' => '#94a3b8', 'type' => 'done' ),
+		array( 'key' => 'planned', 'label' => __( 'Planned', 'flx-tasks' ), 'color' => '#3b82f6', 'type' => 'open' ),
+		array( 'key' => 'held', 'label' => __( 'Held', 'flx-tasks' ), 'color' => '#22c55e', 'type' => 'done' ),
+		array( 'key' => 'cancelled', 'label' => __( 'Cancelled', 'flx-tasks' ), 'color' => '#94a3b8', 'type' => 'done' ),
 	);
 }
 
@@ -443,9 +443,9 @@ function flxg_default_view_config( $type ) {
 
 function flxg_create_default_views( $scope, $scope_id, $config = array() ) {
 	$names = array(
-		'list'     => __( 'Liste', 'flx-tasks' ),
-		'board'    => __( 'Pano', 'flx-tasks' ),
-		'calendar' => __( 'Takvim', 'flx-tasks' ),
+		'list'     => __( 'List', 'flx-tasks' ),
+		'board'    => __( 'Board', 'flx-tasks' ),
+		'calendar' => __( 'Calendar', 'flx-tasks' ),
 	);
 	$i = 1;
 	foreach ( $names as $type => $name ) {
@@ -1184,13 +1184,13 @@ function flxg_check_parent( $parent, $list_id, $height = 0, $self = 0 ) {
 	}
 	$row = flxg_get_task_row( $parent );
 	if ( ! $row ) {
-		return flxg_error( 'flxg_parent', __( 'Üst görev bulunamadı.', 'flx-tasks' ), 404 );
+		return flxg_error( 'flxg_parent', __( 'Parent task not found.', 'flx-tasks' ), 404 );
 	}
 	if ( $self ) {
 		// Görev kendi altına taşınamaz.
 		for ( $p = $parent, $i = 0; $p && $i < 25; $i++ ) {
 			if ( (int) $p === (int) $self ) {
-				return flxg_error( 'flxg_parent', __( 'Görev kendi alt görevinin altına taşınamaz.', 'flx-tasks' ) );
+				return flxg_error( 'flxg_parent', __( 'A task cannot be moved under its own subtask.', 'flx-tasks' ) );
 			}
 			$r = flxg_get_task_row( $p );
 			$p = $r ? (int) $r['parent_id'] : 0;
@@ -1199,7 +1199,7 @@ function flxg_check_parent( $parent, $list_id, $height = 0, $self = 0 ) {
 	$limit = flxg_list_depth_limit( $list_id ?: $row['list_id'] );
 	if ( flxg_task_depth( $parent ) + 1 + (int) $height > $limit ) {
 		/* translators: %d: kademe sayısı */
-		return flxg_error( 'flxg_depth', sprintf( __( 'Bu projede alt görevler en fazla %d kademe olabilir. Sınırı proje ayarlarından değiştirebilirsiniz.', 'flx-tasks' ), $limit ) );
+		return flxg_error( 'flxg_depth', sprintf( __( 'Subtasks can be nested at most %d levels in this project. You can change the limit in project settings.', 'flx-tasks' ), $limit ) );
 	}
 	return true;
 }
@@ -1207,7 +1207,7 @@ function flxg_check_parent( $parent, $list_id, $height = 0, $self = 0 ) {
 function flxg_create_task( array $d, $uid ) {
 	$title = trim( (string) ( $d['title'] ?? '' ) );
 	if ( '' === $title ) {
-		return flxg_error( 'flxg_title', __( 'Görev adı boş olamaz.', 'flx-tasks' ) );
+		return flxg_error( 'flxg_title', __( 'Task name cannot be empty.', 'flx-tasks' ) );
 	}
 	if ( ! empty( $d['parent_id'] ) ) {
 		$ok = flxg_check_parent( $d['parent_id'], (int) ( $d['list_id'] ?? 0 ) );
@@ -1218,7 +1218,7 @@ function flxg_create_task( array $d, $uid ) {
 	$d['creator_id'] = (int) $uid;
 	$id              = flxg_create_task_row( $d );
 	if ( ! $id ) {
-		return flxg_error( 'flxg_list', __( 'Liste bulunamadı.', 'flx-tasks' ), 404 );
+		return flxg_error( 'flxg_list', __( 'List not found.', 'flx-tasks' ), 404 );
 	}
 	flxg_log( $id, 'created', array(), $uid );
 	flxg_add_watcher( $id, $uid );
@@ -1245,7 +1245,7 @@ function flxg_update_task( $id, array $d, $uid, $quiet_create = false ) {
 	global $wpdb;
 	$row = flxg_get_task_row( $id );
 	if ( ! $row ) {
-		return flxg_error( 'flxg_task', __( 'Görev bulunamadı.', 'flx-tasks' ), 404 );
+		return flxg_error( 'flxg_task', __( 'Task not found.', 'flx-tasks' ), 404 );
 	}
 	$list = flxg_get_list( (int) $row['list_id'] );
 	$set  = array();
@@ -1254,7 +1254,7 @@ function flxg_update_task( $id, array $d, $uid, $quiet_create = false ) {
 	if ( isset( $d['list'] ) && (int) $d['list'] !== (int) $row['list_id'] ) {
 		$new = flxg_get_list( (int) $d['list'] );
 		if ( ! $new ) {
-			return flxg_error( 'flxg_list', __( 'Liste bulunamadı.', 'flx-tasks' ), 404 );
+			return flxg_error( 'flxg_list', __( 'List not found.', 'flx-tasks' ), 404 );
 		}
 		$set['list_id'] = (int) $new['id'];
 		if ( ! isset( $d['position'] ) ) {
@@ -1311,7 +1311,7 @@ function flxg_update_task( $id, array $d, $uid, $quiet_create = false ) {
 		if ( $fid ) {
 			$f = flxg_get_file( $fid );
 			if ( ! $f || ! flxg_is_image( $f['mime'] ) ) {
-				return flxg_error( 'flxg_cover', __( 'Kapak için bir görsel seçin.', 'flx-tasks' ) );
+				return flxg_error( 'flxg_cover', __( 'Choose an image for the cover.', 'flx-tasks' ) );
 			}
 			if ( (int) $f['task_id'] !== (int) $id ) {
 				$wpdb->update( flxg_table( 'files' ), array( 'task_id' => (int) $id, 'context' => 'task' ), array( 'id' => $fid ) );
@@ -1549,12 +1549,12 @@ function flxg_add_comment( $task_id, $body, $file_ids, $uid ) {
 	global $wpdb;
 	$row = flxg_get_task_row( $task_id );
 	if ( ! $row ) {
-		return flxg_error( 'flxg_task', __( 'Görev bulunamadı.', 'flx-tasks' ), 404 );
+		return flxg_error( 'flxg_task', __( 'Task not found.', 'flx-tasks' ), 404 );
 	}
 	$body     = flxg_clean_comment( $body );
 	$file_ids = array_values( array_filter( array_map( 'intval', (array) $file_ids ) ) );
 	if ( '' === $body && ! $file_ids ) {
-		return flxg_error( 'flxg_empty', __( 'Yorum boş olamaz.', 'flx-tasks' ) );
+		return flxg_error( 'flxg_empty', __( 'Comment cannot be empty.', 'flx-tasks' ) );
 	}
 	$wpdb->insert(
 		flxg_table( 'comments' ),

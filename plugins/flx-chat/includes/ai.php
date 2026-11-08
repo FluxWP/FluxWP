@@ -30,9 +30,9 @@ function flxc_ai_cache_mode( $override = '' ) {
 /** Önbellek modunun adı. */
 function flxc_ai_cache_label( $mode ) {
 	$l = array(
-		'off' => __( 'Kapalı', 'flx-chat' ),
-		'5m'  => __( 'Açık, 5 dakika', 'flx-chat' ),
-		'1h'  => __( 'Açık, 1 saat', 'flx-chat' ),
+		'off' => __( 'Closed', 'flx-chat' ),
+		'5m'  => __( 'On, 5 minutes', 'flx-chat' ),
+		'1h'  => __( 'On, 1 hour', 'flx-chat' ),
 	);
 	return $l[ $mode ] ?? (string) $mode;
 }
@@ -185,14 +185,14 @@ add_filter(
  */
 function flxc_ai_chat( array $messages, array $opts = array() ) {
 	if ( ! flxc_ai_hub() ) {
-		return new WP_Error( 'flxc_ai_key', __( 'Yapay zekâ için Flux AI & MCP eklentisi gerekli; kurup etkinleştirin ve Flux AI & MCP › Ayarlar\'a anahtarı girin.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_ai_key', __( 'AI needs the Flux AI & MCP plugin; install and activate it, then enter the key in Flux AI & MCP › Settings.', 'flx-chat' ) );
 	}
 	$model = (string) ( $opts['model'] ?? flxc_ai_model( $opts['purpose'] ?? 'suggest' ) );
 	if ( '' === $model ) {
-		return new WP_Error( 'flxc_ai_model', __( 'Yapay zekâ modeli seçilmemiş.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_ai_model', __( 'No AI model selected.', 'flx-chat' ) );
 	}
 	if ( '' === flxc_ai_provider_key( flxc_ai_model_provider( $model ) ) ) {
-		return new WP_Error( 'flxc_ai_key', 'anthropic' === flxc_ai_model_provider( $model ) ? __( 'Flux AI\'de Anthropic (Claude) anahtarı girilmemiş.', 'flx-chat' ) : __( 'Flux AI\'de OpenRouter anahtarı girilmemiş.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_ai_key', 'anthropic' === flxc_ai_model_provider( $model ) ? __( 'No Anthropic (Claude) key has been entered in Flux AI.', 'flx-chat' ) : __( 'No OpenRouter key has been entered in Flux AI.', 'flx-chat' ) );
 	}
 	return flxc_ai_hub_chat( $messages, $opts, $model );
 }
@@ -246,7 +246,7 @@ function flxc_ai_month_usage() {
  */
 function flxc_ai_models( $fresh = false ) {
 	if ( ! flxc_ai_hub() ) {
-		return new WP_Error( 'flxc_ai_models', __( 'Model listesi için Flux AI & MCP eklentisi gerekli.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_ai_models', __( 'The model list needs the Flux AI & MCP plugin.', 'flx-chat' ) );
 	}
 	$l = flxai_models( $fresh );
 	if ( is_array( $l ) && $l ) {
@@ -376,7 +376,7 @@ add_action(
 		$ours   = $screen && false !== strpos( (string) $screen->id, 'flx-chat' );
 		if ( ! flxc_ai_hub() ) {
 			if ( $ours ) {
-				echo '<div class="notice notice-warning"><p>' . esc_html__( 'Flux Chat: yapay zekâ özellikleri (öneri, asistan, dekont okuma, sesli mesaj, özet) için Flux AI & MCP eklentisi gerekli. Kurup etkinleştirin; Çağrı Merkezi\'nde kayıtlı anahtarlar oraya kendiliğinden aktarılır.', 'flx-chat' ) . '</p></div>';
+				echo '<div class="notice notice-warning"><p>' . esc_html__( 'Flux Call Center: AI features (suggestions, assistant, receipt reading, voice messages, summaries) need the Flux AI & MCP plugin. Install and activate it; keys saved in the Call Center are moved there automatically.', 'flx-chat' ) . '</p></div>';
 			}
 			return;
 		}
@@ -389,11 +389,11 @@ add_action(
 				(array) $m['conflict']
 			);
 			/* translators: %s: provider names */
-			echo '<div class="notice notice-warning"><p>' . esc_html( sprintf( __( 'Flux Chat: %s anahtarı Flux AI\'de farklı bir anahtar olarak zaten kayıtlı; Flux AI\'deki kullanılıyor. Çağrı Merkezi\'ndeki eski anahtar aktarılmadı ve artık kullanılmıyor.', 'flx-chat' ), implode( ', ', $names ) ) ) . '</p></div>';
+			echo '<div class="notice notice-warning"><p>' . esc_html( sprintf( __( 'Flux Call Center: a different %s key is already saved in Flux AI and is the one in use. The old Call Center key was not moved and is no longer used.', 'flx-chat' ), implode( ', ', $names ) ) ) . '</p></div>';
 		} elseif ( ! empty( $m['moved'] ) && empty( $m['seen'] ) && $ours ) {
 			$m['seen'] = 1;
 			update_option( 'flxc_ai_migrated', $m, false );
-			echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Flux Chat: yapay zekâ anahtarları Flux AI\'ye aktarıldı. Bundan sonra anahtar, harcama sınırı ve kayıtlar Flux AI\'den yönetilir; model seçimleri Çağrı Merkezi\'nde kalır.', 'flx-chat' ) . '</p></div>';
+			echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Flux Call Center: AI keys were moved to Flux AI. From now on keys, spending limits and logs are managed in Flux AI; model choices stay in the Call Center.', 'flx-chat' ) . '</p></div>';
 		}
 	}
 );
@@ -476,19 +476,19 @@ function flxc_ai_types() {
 /** Asistanın sunabileceği bağış türü yoksa nedeni (ayarlarda gösterilir); varsa ''. */
 function flxc_ai_types_problem() {
 	if ( ! function_exists( 'flxb_get_types' ) ) {
-		return __( 'Flux Donate eklentisi etkin değil; asistan bağış türlerini ve fiyatları oradan alır.', 'flx-chat' );
+		return __( 'The Flux Donate plugin is not active; the assistant takes donation types and prices from it.', 'flx-chat' );
 	}
 	if ( flxc_ai_types() ) {
 		return '';
 	}
 	$open = (array) flxb_get_types( array( 'status' => 'open', 'progress' => false ) );
 	if ( ! $open ) {
-		return __( 'Flux Donate\'ta açık bağış türü yok (Bağış türleri sayfasından bir türü açın).', 'flx-chat' );
+		return __( 'There is no open donation type in Flux Donate (open one on the Donation types page).', 'flx-chat' );
 	}
 	if ( array_filter( (array) flxc_setting( 'bot_types' ) ) ) {
-		return __( 'Asistan için seçilen bağış türleri kapalı ya da fiyatsız; açık bir tür seçin ya da seçimi boş bırakın.', 'flx-chat' );
+		return __( 'The donation types selected for the assistant are closed or have no price; select an open type or leave the selection empty.', 'flx-chat' );
 	}
-	return __( 'Açık bağış türlerinin hiçbirinde fiyat yok (Flux Donate › Bağış türleri › seçenek fiyatı).', 'flx-chat' );
+	return __( 'None of the open donation types has a price (Flux Donate › Donation types › option price).', 'flx-chat' );
 }
 
 function flxc_ai_types_text() {
@@ -502,7 +502,7 @@ function flxc_ai_types_text() {
 			$l .= "\n  - " . $o['label'] . ' (seçenek "' . $o['key'] . '"): ' . flxc_money( $o['price'], $t['currency'] ) . ( '' !== $o['unit'] ? ' / ' . $o['unit'] : '' );
 		}
 		if ( $t['free'] ) {
-			$l .= "\n  - " . __( 'Serbest tutar', 'flx-chat' ) . ( $t['min'] > 0 ? ' (en az ' . flxc_money( $t['min'], $t['currency'] ) . ')' : '' );
+			$l .= "\n  - " . __( 'Custom amount', 'flx-chat' ) . ( $t['min'] > 0 ? ' (en az ' . flxc_money( $t['min'], $t['currency'] ) . ')' : '' );
 		}
 		if ( $t['proxy'] ) {
 			$l .= "\n  - Vekâlet onayı gerekir: bu tür sohbetten kaydedilemez, temsilciye devret.";
@@ -550,7 +550,7 @@ function flxc_ai_transcript( $chat, $limit = 30 ) {
 		if ( 'text' !== $m['type'] && '' !== trim( (string) $m['body'] ) && $text !== $m['body'] ) {
 			$text .= ': ' . $m['body'];
 		}
-		$lines[] = ( 'in' === $m['direction'] ? $who : __( 'Biz', 'flx-chat' ) ) . ' [' . flx_date( (int) ( $m['ts'] / 1000 ), 'j M H:i' ) . ']: ' . $text;
+		$lines[] = ( 'in' === $m['direction'] ? $who : __( 'Us', 'flx-chat' ) ) . ' [' . flx_date( (int) ( $m['ts'] / 1000 ), 'j M H:i' ) . ']: ' . $text;
 	}
 	return implode( "\n", $lines );
 }

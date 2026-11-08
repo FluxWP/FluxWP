@@ -32,3 +32,5 @@ Tema değişince Site Editor'de kaydedilmiş şablonlar, şablon parçaları, gl
 ## Gereksinimler
 
 WordPress 6.6+, PHP 7.4+, WooCommerce, FluxWP Panel (kurulum sihirbazı temayla birlikte kurar).
+
+Desen ve haber açıklaması Tema Ayarları veya preset `flx_ayarlar.decoration_pattern` (`dots`, `leaves`, `none`) ve `news_intro` alanlarından yönetilir. Varsayılan desen sade noktalardır.

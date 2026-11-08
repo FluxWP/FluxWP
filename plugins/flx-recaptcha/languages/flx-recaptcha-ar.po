@@ -1,0 +1,425 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "Protects forms against spam and bot attacks"
+msgstr "يحمي النماذج من البريد العشوائي وهجمات الروبوت"
+
+msgid "reCAPTCHA"
+msgstr "reCAPTCHA"
+
+msgid "Enter the site key first."
+msgstr "أدخل مفتاح الموقع أولاً."
+
+msgid "Enter the secret key."
+msgstr "أدخل المفتاح السري."
+
+msgid "Loading Google reCAPTCHA…"
+msgstr "جارٍ تحميل اختبار reCAPTCHA في Google..."
+
+msgid "Tick the box; the test continues on its own once it is ticked."
+msgstr "ضع علامة في المربع؛ يستمر الاختبار من تلقاء نفسه بمجرد تحديده."
+
+msgid "Verifying with Google…"
+msgstr "جارٍ التحقق باستخدام Google..."
+
+msgid "Google reCAPTCHA could not be loaded. Check the site key and the domain; if Google is unreachable, try the \"recaptcha.net\" option."
+msgstr "تعذر تحميل Google reCAPTCHA. التحقق من مفتاح الموقع والمجال؛ إذا تعذر الوصول إلى Google، فجرّب خيار \"recaptcha.net\"."
+
+msgid "The site key changed; reloading the page to test with the new key…"
+msgstr "تم تغيير مفتاح الموقع؛ جارٍ إعادة تحميل الصفحة للاختبار باستخدام المفتاح الجديد..."
+
+msgid "Something went wrong. Please try again."
+msgstr "حدث خطأ ما. يرجى المحاولة مرة أخرى."
+
+msgid "Keys saved; protection is on."
+msgstr "تم حفظ المفاتيح؛ الحماية قيد التشغيل."
+
+msgid "Forms are not protected yet. Enter your Google reCAPTCHA keys and test them."
+msgstr "النماذج ليست محمية بعد. أدخل مفاتيح Google reCAPTCHA واختبرها."
+
+msgid "Go to settings"
+msgstr "انتقل إلى الإعدادات"
+
+msgid "You are not allowed to do this."
+msgstr "لا يسمح لك أن تفعل هذا."
+
+msgid "Protects login, registration, comments, checkout, donations and form submissions from bots with Google reCAPTCHA. Choose below which forms to protect."
+msgstr "يحمي تسجيل الدخول والتسجيل والتعليقات والخروج والتبرعات وعمليات إرسال النماذج من الروبوتات باستخدام Google reCAPTCHA. اختر أدناه النماذج التي تريد حمايتها."
+
+msgid "Protection is turned off by the recovery constant."
+msgstr "يتم إيقاف الحماية بواسطة ثابت الاسترداد."
+
+msgid "Remove the FLXRC_DISABLE line from wp-config.php to turn protection back on."
+msgstr "قم بإزالة سطر FLXRC_DISABLE من wp-config.php لتشغيل الحماية مرة أخرى."
+
+msgid "Protection is not running yet."
+msgstr "الحماية لم يتم تشغيلها بعد."
+
+msgid "Enter your keys and press \"Test\". No form is checked until the test passes, so a wrong key can never lock you out of the login screen."
+msgstr "أدخل المفاتيح الخاصة بك واضغط على \"اختبار\". لا يتم التحقق من أي نموذج حتى يتم اجتياز الاختبار، لذلك لا يمكن للمفتاح الخاطئ أن يمنعك من الدخول إلى شاشة تسجيل الدخول."
+
+msgid "Google rejected the secret key"
+msgstr "رفضت جوجل المفتاح السري"
+
+msgid "Google could not be reached"
+msgstr "لا يمكن الوصول إلى جوجل"
+
+msgid "Submissions were let through without a check at that time."
+msgstr "تم السماح بتقديم الطلبات دون فحص في ذلك الوقت."
+
+msgid "Submissions were blocked at that time."
+msgstr "تم حظر التقديمات في ذلك الوقت."
+
+msgid "Off"
+msgstr "إيقاف"
+
+msgid "On"
+msgstr "على"
+
+msgid "v3 · invisible"
+msgstr "v3 · غير مرئية"
+
+msgid "v2 · checkbox"
+msgstr "الإصدار 2 · خانة الاختيار"
+
+msgid "Awaiting test"
+msgstr "في انتظار الاختبار"
+
+msgid "Test your keys"
+msgstr "اختبر مفاتيحك"
+
+msgid "Protection"
+msgstr "الحماية"
+
+msgid "Protected forms"
+msgstr "النماذج المحمية"
+
+msgid "%1$s / %2$s"
+msgstr "%1$s/%2$s"
+
+msgid "forms of installed plugins"
+msgstr "أشكال الإضافات المثبتة"
+
+msgid "Passed"
+msgstr "مرت"
+
+msgid "last 30 days"
+msgstr "آخر 30 يومًا"
+
+msgid "Blocked"
+msgstr "محظور"
+
+msgid "Keys"
+msgstr "مفاتيح"
+
+msgid "Tested"
+msgstr "تم اختباره"
+
+msgid "Not tested"
+msgstr "لم يتم اختباره"
+
+msgid "Get your keys %s: choose the reCAPTCHA type and add your domain. The site key and the secret key must belong to the same entry."
+msgstr "احصل على مفاتيحك%s: اختر نوع reCAPTCHA وأضف المجال الخاص بك. يجب أن ينتمي مفتاح الموقع والمفتاح السري إلى نفس الإدخال."
+
+msgid "from the Google reCAPTCHA console"
+msgstr "من وحدة تحكم Google reCAPTCHA"
+
+msgid "reCAPTCHA type"
+msgstr "نوع reCAPTCHA"
+
+msgid "v3 · Invisible"
+msgstr "v3 · غير مرئية"
+
+msgid "Visitors are never asked anything; Google returns a score from 0 to 1. Recommended."
+msgstr "لا يُسأل الزائرون أبدًا عن أي شيء؛ تقوم Google بإرجاع النتيجة من 0 إلى 1. مستحسن."
+
+msgid "v2 · \"I'm not a robot\""
+msgstr "الإصدار الثاني · \"أنا لست روبوتًا\""
+
+msgid "A checkbox appears on the form; suspicious visitors get an image challenge."
+msgstr "تظهر خانة اختيار في النموذج؛ الزوار المشبوهون يحصلون على تحدي الصورة."
+
+msgid "Site key"
+msgstr "مفتاح الموقع"
+
+msgid "Secret key"
+msgstr "المفتاح السري"
+
+msgid "Saved (%s). Type to replace it."
+msgstr "تم الحفظ (%s). اكتب ليحل محله."
+
+msgid "Paste the secret key"
+msgstr "الصق المفتاح السري"
+
+msgid "Entered once, stored encrypted and never shown again."
+msgstr "تم إدخاله مرة واحدة، وتم تخزينه بشكل مشفر ولم يتم عرضه مرة أخرى."
+
+msgid "One of the keys comes from a wp-config.php constant (FLXRC_SITE_KEY / FLXRC_SECRET_KEY); the value in this panel is not used."
+msgstr "يأتي أحد المفاتيح من ثابت wp-config.php (FLXRC_SITE_KEY / FLXRC_SECRET_KEY)؛ لم يتم استخدام القيمة الموجودة في هذه اللوحة."
+
+msgid "Test and save"
+msgstr "اختبار وحفظ"
+
+msgid "Runs a real check with Google; if it passes, the keys are saved and protection turns on."
+msgstr "يجري فحصًا حقيقيًا مع Google؛ إذا تم تمريره، فسيتم حفظ المفاتيح وتشغيل الحماية."
+
+msgid "Last test: %1$s · %2$s"
+msgstr "الاختبار الأخير:%1$s·%2$s"
+
+msgid "Last 30 days: passed / blocked"
+msgstr "آخر 30 يومًا: تم تمريرها/تم حظرها"
+
+msgid "not installed"
+msgstr "غير مثبت"
+
+msgid "If a form has its own reCAPTCHA option turned on in Flux Forms, turn it off; two checks on one page conflict."
+msgstr "إذا كان النموذج يحتوي على خيار reCAPTCHA الخاص به قيد التشغيل في Flux Forms، فقم بإيقاف تشغيله؛ اثنين من الشيكات على الصراع صفحة واحدة."
+
+msgid "Bot threshold (v3)"
+msgstr "عتبة الروبوت (الإصدار 3)"
+
+msgid "Submissions scoring below this are blocked. 0.5 suits most sites; lower it if real people get stuck."
+msgstr "يتم حظر المشاركات التي تسجل أقل من هذا. 0.5 يناسب معظم المواقع؛ خفضه إذا تعثر الناس الحقيقيون."
+
+msgid "Checkbox theme (v2)"
+msgstr "موضوع مربع الاختيار (الإصدار الثاني)"
+
+msgid "Automatic (follows the site's dark mode)"
+msgstr "تلقائي (يتبع الوضع المظلم للموقع)"
+
+msgid "Light"
+msgstr "ضوء"
+
+msgid "Dark"
+msgstr "الظلام"
+
+msgid "Checkbox size (v2)"
+msgstr "حجم مربع الاختيار (الإصدار الثاني)"
+
+msgid "Normal"
+msgstr "عادي"
+
+msgid "Compact"
+msgstr "مدمج"
+
+msgid "Google host"
+msgstr "مضيف جوجل"
+
+msgid "Use recaptcha.net on networks where google.com is blocked."
+msgstr "استخدم recaptcha.net على الشبكات التي تم حظر google.com فيها."
+
+msgid "Skip signed-in users"
+msgstr "تخطي المستخدمين الذين قاموا بتسجيل الدخول"
+
+msgid "Members are not checked on comments, checkout, donations and forms. Login and registration forms are always protected."
+msgstr "لا يتم التحقق من الأعضاء على التعليقات، والخروج، والتبرعات والنماذج. نماذج تسجيل الدخول والتسجيل محمية دائمًا."
+
+msgid "Let submissions through if Google is unreachable"
+msgstr "اسمح للإرسالات بالمرور إذا تعذر الوصول إلى Google"
+
+msgid "Recommended. When off, no protected form can be sent during a Google outage (admin login included)."
+msgstr "موصى به. عند إيقاف التشغيل، لا يمكن إرسال أي نموذج محمي أثناء انقطاع خدمة Google (يتضمن تسجيل دخول المسؤول)."
+
+msgid "Hide the v3 badge"
+msgstr "إخفاء شارة v3"
+
+msgid "The reCAPTCHA badge in the bottom corner is hidden; the notice Google requires is added under protected forms."
+msgstr "تم إخفاء شارة reCAPTCHA في الزاوية السفلية؛ تتم إضافة الإشعار الذي تطلبه Google ضمن النماذج المحمية."
+
+msgid "IP addresses that skip the check"
+msgstr "عناوين IP التي تتخطى عملية التحقق"
+
+msgid "One IP or range (CIDR) per line. For your office, tests and monitoring services. Your current IP address: %s"
+msgstr "IP واحد أو نطاق (CIDR) لكل سطر. لمكتبك والاختبارات وخدمات المراقبة. عنوان IP الحالي الخاص بك:%s"
+
+msgid "If you get locked out of the login screen, add define( 'FLXRC_DISABLE', true ); to wp-config.php; protection turns off completely."
+msgstr "إذا تم منعك من الدخول إلى شاشة تسجيل الدخول، أضف تعريف( 'FLXRC_DISABLE', true ); إلى wp-config.php؛ يتم إيقاف الحماية تمامًا."
+
+msgid "Save settings"
+msgstr "حفظ الإعدادات"
+
+msgid "Saved."
+msgstr "تم الحفظ."
+
+msgid "Saved. The keys changed, so protection stays off until they are tested."
+msgstr "تم الحفظ. تم تغيير المفاتيح، لذا تظل الحماية معطلة حتى يتم اختبارها."
+
+msgid "The site key and the secret key are required."
+msgstr "مطلوب مفتاح الموقع والمفتاح السري."
+
+msgid "These are v2 (checkbox) keys. Choose v2, or create v3 keys in the Google console."
+msgstr "هذه هي مفاتيح v2 (خانة الاختيار). اختر v2، أو قم بإنشاء مفاتيح v3 في وحدة تحكم Google."
+
+msgid "These are v3 keys. Choose v3, or create v2 keys in the Google console."
+msgstr "هذه هي مفاتيح v3. اختر v3، أو قم بإنشاء مفاتيح v2 في وحدة تحكم Google."
+
+msgid "JavaScript must be enabled in your browser to send this form."
+msgstr "يجب تفعيل JavaScript في متصفحك لإرسال هذا النموذج."
+
+msgid "This form is protected by reCAPTCHA and the Google %1$s and %2$s apply."
+msgstr "هذا النموذج محمي بواسطة reCAPTCHA وينطبق Google%1$sو%2$s."
+
+msgid "Privacy Policy"
+msgstr "سياسة الخصوصية"
+
+msgid "Terms of Service"
+msgstr "شروط الخدمة"
+
+msgid "Please tick the \"I'm not a robot\" box."
+msgstr "يرجى وضع علامة في المربع \"أنا لست روبوتًا\"."
+
+msgid "The security check could not load. Refresh the page and try again."
+msgstr "تعذر تحميل فحص الأمان. قم بتحديث الصفحة وحاول مرة أخرى."
+
+msgid "The security check failed. Refresh the page and try again."
+msgstr "فشل فحص الأمان. قم بتحديث الصفحة وحاول مرة أخرى."
+
+msgid "Could not reach Google: %s"
+msgstr "لا يمكن الوصول إلى Google:%s"
+
+msgid "Google returned an unexpected response."
+msgstr "أعادت Google استجابة غير متوقعة."
+
+msgid "The secret key is invalid. Copy the \"Secret key\" from the Google reCAPTCHA console."
+msgstr "المفتاح السري غير صالح. انسخ \"المفتاح السري\" من وحدة تحكم Google reCAPTCHA."
+
+msgid "The site key and the secret key do not belong to the same entry, or the wrong reCAPTCHA type (v2/v3) is selected."
+msgstr "مفتاح الموقع والمفتاح السري لا ينتميان إلى نفس الإدخال، أو تم تحديد نوع reCAPTCHA غير صحيح (v2/v3)."
+
+msgid "Could not verify (%s)."
+msgstr "تعذر التحقق (%s)."
+
+msgid "The keys work. Score: %1$s, domain: %2$s"
+msgstr "المفاتيح تعمل. النتيجة:%1$s، المجال:%2$s"
+
+msgid "The keys work. Domain: %s"
+msgstr "المفاتيح تعمل. النطاق:%s"
+
+msgid "Login"
+msgstr "تسجيل الدخول"
+
+msgid "wp-login.php and the Flux Speed custom login address (e.g. /fluxadmin)"
+msgstr "wp-login.php وعنوان تسجيل الدخول المخصص لـ Flux Speed (على سبيل المثال /fluxadmin)"
+
+msgid "Registration"
+msgstr "التسجيل"
+
+msgid "WordPress registration form"
+msgstr "نموذج التسجيل في ووردبريس"
+
+msgid "WordPress registration form (registration is currently closed on this site)"
+msgstr "نموذج التسجيل في ووردبريس (التسجيل مغلق حاليًا في هذا الموقع)"
+
+msgid "Password reset"
+msgstr "إعادة تعيين كلمة المرور"
+
+msgid "Lost password form: WordPress and WooCommerce My Account"
+msgstr "نموذج كلمة المرور المفقودة: حسابي في WordPress وWooCommerce"
+
+msgid "Comments"
+msgstr "التعليقات"
+
+msgid "Post and page comment form"
+msgstr "نموذج التعليق على المنشور والصفحة"
+
+msgid "Account login"
+msgstr "تسجيل الدخول إلى الحساب"
+
+msgid "WooCommerce My Account login form"
+msgstr "نموذج تسجيل الدخول إلى حسابي في WooCommerce"
+
+msgid "Account registration"
+msgstr "تسجيل الحساب"
+
+msgid "WooCommerce My Account registration form"
+msgstr "نموذج تسجيل حسابي في WooCommerce"
+
+msgid "Checkout"
+msgstr "الخروج"
+
+msgid "Checkout page (classic and block): store orders, Flux Donate and Flux Commerce payments"
+msgstr "صفحة الخروج (الكلاسيكية والكتلة): طلبات المتجر ومدفوعات Flux Donate وFlux Commerce"
+
+msgid "Donation form"
+msgstr "استمارة التبرع"
+
+msgid "Flux Donate \"Donation options\" form (add to cart)"
+msgstr "نموذج \"خيارات التبرع\" للتبرع بتدفق (أضف إلى سلة التسوق)"
+
+msgid "Forms"
+msgstr "النماذج"
+
+msgid "Flux Forms submissions (contact, applications, login/registration forms)"
+msgstr "عمليات إرسال نماذج التدفق (جهة الاتصال والتطبيقات ونماذج تسجيل الدخول/التسجيل)"
+
+msgid "Other plugins"
+msgstr "الإضافات الأخرى"
+
+msgid "Error"
+msgstr "خطأ"
+
+msgid "Comment not sent"
+msgstr "لم يتم إرسال التعليق"
+
+msgid "Protection is turned off by the FLXRC_DISABLE constant in wp-config.php. Remove the line once the issue is fixed."
+msgstr "يتم إيقاف الحماية بواسطة الثابت FLXRC_DISABLE في wp-config.php. قم بإزالة الخط بمجرد إصلاح المشكلة."
+
+msgid "Google reCAPTCHA keys are not set; forms are not protected."
+msgstr "لم يتم تعيين مفاتيح Google reCAPTCHA؛ النماذج ليست محمية."
+
+msgid "The keys have not been tested; protection stays off until the test passes."
+msgstr "لم يتم اختبار المفاتيح؛ تظل الحماية متوقفة حتى اجتياز الاختبار."
+
+msgid "Protection is on (%s)."
+msgstr "الحماية قيد التشغيل (%s)."
+
+msgid "v3 invisible"
+msgstr "v3 غير مرئية"
+
+msgid "v2 checkbox"
+msgstr "مربع الاختيار v2"
+
+msgid "reCAPTCHA keys"
+msgstr "مفاتيح reCAPTCHA"
+
+msgid "No form is selected."
+msgstr "لم يتم تحديد أي نموذج."
+
+msgid "Not protected: %s"
+msgstr "غير محمي:%s"
+
+msgid "Google verification"
+msgstr "التحقق من جوجل"
+
+msgid "%1$s: %2$s. Test the keys again; if Google is unreachable, set Settings > Google host to recaptcha.net."
+msgstr "%1$s:%2$s. اختبر المفاتيح مرة أخرى؛ إذا تعذر الوصول إلى Google، فاضبط الإعدادات > Google host على recaptcha.net."
+
+msgid "Test"
+msgstr "اختبار"
+
+msgid "Between 0.1 and 0.9. Submissions scoring below this are blocked."
+msgstr "بين 0.1 و 0.9. يتم حظر المشاركات التي تسجل أقل من هذا."
+
+msgid "Leave blank to keep the saved key. The value is never read back."
+msgstr "اتركه فارغًا للاحتفاظ بالمفتاح المحفوظ. لا تتم قراءة القيمة مرة أخرى أبدًا."
+
+msgid "Checkbox size"
+msgstr "حجم خانة الاختيار"
+
+msgid "Checkbox theme"
+msgstr "موضوع خانة الاختيار"
+
+msgid "Automatic"
+msgstr "تلقائي"
+
+msgid "google.com"
+msgstr "google.com"
+
+msgid "recaptcha.net"
+msgstr "recaptcha.net"
+
+msgid "[['It protects login, registration, password reset, comment, WooCommerce account and payment, Flux Donate donation form and Flux Forms submissions against spam and bot attacks with Google reCAPTCHA (v3 invisible or v2 tile). Which form will be maintained is switched on and off from the panel; Flux Speed \\u200b\\u200bis compatible with custom login address.', 'tr']]"
+msgstr "[['إنه يحمي تسجيل الدخول، والتسجيل، وإعادة تعيين كلمة المرور، والتعليق، وحساب WooCommerce والدفع، ونموذج التبرع Flux Donate وعمليات إرسال Flux Forms ضد البريد العشوائي وهجمات الروبوتات باستخدام Google reCAPTCHA (v3 غير مرئي أو v2). يتم تشغيل وإيقاف النموذج الذي سيتم الاحتفاظ به من اللوحة؛ سرعة التدفق متوافقة مع عنوان تسجيل الدخول المخصص.', 'tr']]"

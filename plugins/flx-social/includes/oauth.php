@@ -61,7 +61,7 @@ function flxsm_oauth_start( WP_REST_Request $req ) {
 	$for = sanitize_key( (string) $req->get_param( 'for' ) );
 	$map = flxsm_connect_target( $for );
 	if ( ! $map ) {
-		return flxsm_redirect_response( flxsm_app_url( '/accounts?error=' . rawurlencode( __( 'Bilinmeyen ağ.', 'flx-social' ) ) ) );
+		return flxsm_redirect_response( flxsm_app_url( '/accounts?error=' . rawurlencode( __( 'Unknown network.', 'flx-social' ) ) ) );
 	}
 	list( $pid, $app ) = $map;
 	$prov              = flxsm_provider( $pid );
@@ -91,7 +91,7 @@ function flxsm_oauth_callback( WP_REST_Request $req ) {
 	}
 	$ctx = $state ? get_transient( 'flxsm_oa_' . $state ) : false;
 	if ( ! is_array( $ctx ) || $ctx['app'] !== $app ) {
-		return flxsm_redirect_response( flxsm_app_url( '/accounts?error=' . rawurlencode( __( 'Bağlantı oturumu bulunamadı ya da süresi doldu; yeniden deneyin.', 'flx-social' ) ) ) );
+		return flxsm_redirect_response( flxsm_app_url( '/accounts?error=' . rawurlencode( __( 'Connection session not found or expired; please try again.', 'flx-social' ) ) ) );
 	}
 	delete_transient( 'flxsm_oa_' . $state );
 	if ( ! empty( $params['error'] ) && empty( $params['code'] ) ) {
@@ -148,7 +148,7 @@ function flxsm_pick_data( $key ) {
 function flxsm_oauth_pick_get( WP_REST_Request $req ) {
 	$d = flxsm_pick_data( $req['key'] );
 	if ( ! $d ) {
-		return new WP_Error( 'flxsm_pick', __( 'Seçim listesinin süresi doldu; yeniden bağlayın.', 'flx-social' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxsm_pick', __( 'The selection list expired; please reconnect.', 'flx-social' ), array( 'status' => 404 ) );
 	}
 	$out = array();
 	foreach ( $d['list'] as $c ) {
@@ -169,7 +169,7 @@ function flxsm_oauth_pick_get( WP_REST_Request $req ) {
 function flxsm_oauth_pick_save( WP_REST_Request $req ) {
 	$d = flxsm_pick_data( $req['key'] );
 	if ( ! $d ) {
-		return new WP_Error( 'flxsm_pick', __( 'Seçim listesinin süresi doldu; yeniden bağlayın.', 'flx-social' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxsm_pick', __( 'The selection list expired; please reconnect.', 'flx-social' ), array( 'status' => 404 ) );
 	}
 	$want = array_map( 'strval', (array) $req->get_param( 'ids' ) );
 	$n    = 0;

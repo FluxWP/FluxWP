@@ -1,122 +1,118 @@
 msgid ""
-msgstr ""
-"Content-Type: text/plain; charset=UTF-8\n"
-"Project-Id-Version: Flux CRM\n"
-"Language: en_US\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Ayarlar"
+msgid "Settings"
 msgstr "Settings"
 
-msgid "Kişiler, roller, segmentler ve pazarlama"
+msgid "Contacts, roles, segments and marketing"
 msgstr "Contacts, roles, segments and marketing"
 
-msgid "Okur"
+msgid "Reads"
 msgstr "Reads"
 
-msgid "Düzenler"
+msgid "Edits"
 msgstr "Edits"
 
-msgid "Onaylı"
+msgid "Needs approval"
 msgstr "Needs approval"
 
-msgid "Otomasyon"
+msgid "Automation"
 msgstr "Automation"
 
-msgid "CRM özeti"
+msgid "CRM overview"
 msgstr "CRM overview"
 
-msgid "CRM yapısı ve ayarları"
+msgid "CRM structure and settings"
 msgstr "CRM structure and settings"
 
-msgid "CRM kişisi ara"
+msgid "Search CRM contacts"
 msgstr "Search CRM contacts"
 
-msgid "CRM kişi kartı"
+msgid "CRM contact card"
 msgstr "CRM contact card"
 
-msgid "Zaman tüneli"
+msgid "Timeline"
 msgstr "Timeline"
 
-msgid "Son hareketler"
+msgid "Recent activity"
 msgstr "Recent activity"
 
-msgid "Mükerrer kişileri bul"
+msgid "Find duplicate contacts"
 msgstr "Find duplicate contacts"
 
-msgid "Kayıtlı segmentler"
+msgid "Saved segments"
 msgstr "Saved segments"
 
-msgid "Segment önizle"
+msgid "Preview segment"
 msgstr "Preview segment"
 
-msgid "Toplu işlem önizle"
+msgid "Preview bulk action"
 msgstr "Preview bulk action"
 
-msgid "CRM kişisi ekle"
+msgid "Add CRM contact"
 msgstr "Add CRM contact"
 
-msgid "CRM kişisini düzenle"
+msgid "Edit CRM contact"
 msgstr "Edit CRM contact"
 
-msgid "Kişiye etiket ekle/çıkar"
+msgid "Add/remove contact tags"
 msgstr "Add/remove contact tags"
 
-msgid "Zaman tüneline kayıt ekle"
+msgid "Add timeline entry"
 msgstr "Add timeline entry"
 
-msgid "Etiket ekle/düzenle"
+msgid "Add/edit tag"
 msgstr "Add/edit tag"
 
-msgid "Segment kaydet"
+msgid "Save segment"
 msgstr "Save segment"
 
-msgid "CRM ayarlarını değiştir"
+msgid "Change CRM settings"
 msgstr "Change CRM settings"
 
-msgid "Skorları yeniden hesapla"
+msgid "Recalculate scores"
 msgstr "Recalculate scores"
 
-msgid "Zaman tüneli kaydını sil"
+msgid "Delete timeline entry"
 msgstr "Delete timeline entry"
 
-msgid "Etiketi sil"
+msgid "Delete tag"
 msgstr "Delete tag"
 
-msgid "Segmenti sil"
+msgid "Delete segment"
 msgstr "Delete segment"
 
-msgid "Kişileri birleştir"
+msgid "Merge contacts"
 msgstr "Merge contacts"
 
-msgid "CRM kişisini sil"
+msgid "Delete CRM contact"
 msgstr "Delete CRM contact"
 
-msgid "Toplu işlem"
+msgid "Bulk action"
 msgstr "Bulk action"
 
-msgid "Kişiye mesaj gönder"
+msgid "Send message to contact"
 msgstr "Send message to contact"
 
-msgid "Kaynak: %s"
+msgid "Source: %s"
 msgstr "Source: %s"
 
-msgid "Kişi bulunamadı."
+msgid "Contact not found."
 msgstr "Contact not found."
 
-msgid "E-posta adresi geçersiz."
+msgid "The e-mail address is not valid."
 msgstr "The e-mail address is not valid."
 
-msgid "Telefon numarası geçersiz."
+msgid "The phone number is not valid."
 msgstr "The phone number is not valid."
 
-msgid "açık"
+msgid "on"
 msgstr "on"
 
-msgid "kapalı"
+msgid "off"
 msgstr "off"
 
-msgid "E-posta"
+msgid "E-mail"
 msgstr "E-mail"
 
 msgid "SMS"
@@ -125,990 +121,1047 @@ msgstr "SMS"
 msgid "WhatsApp"
 msgstr "WhatsApp"
 
-msgid "Reklam kitleleri"
+msgid "Ad audiences"
 msgstr "Ad audiences"
 
-msgid "Birleştirilecek başka kişi seçin."
+msgid "Choose other contacts to merge."
 msgstr "Choose other contacts to merge."
 
-msgid "Bir seferde en çok 20 kişi birleştirilir."
+msgid "Up to 20 contacts can be merged at once."
 msgstr "Up to 20 contacts can be merged at once."
 
-msgid "E-posta ya da telefon gerekli."
+msgid "An e-mail or phone number is required."
 msgstr "An e-mail or phone number is required."
 
-msgid "Kişi kaydedilemedi."
+msgid "The contact could not be saved."
 msgstr "The contact could not be saved."
 
-msgid "Metin boş olamaz."
+msgid "Text cannot be empty."
 msgstr "Text cannot be empty."
 
-msgid "Etiket eklenemedi."
+msgid "The tag could not be added."
 msgstr "The tag could not be added."
 
-msgid "Segment bulunamadı."
+msgid "Segment not found."
 msgstr "Segment not found."
 
-msgid "Rol"
+msgid "Role"
 msgstr "Role"
 
-msgid "Etiket"
+msgid "Tag"
 msgstr "Tag"
 
-msgid "RFM segmenti"
+msgid "RFM segment"
 msgstr "RFM segment"
 
-msgid "Toplam değer"
+msgid "Total value"
 msgstr "Total value"
 
-msgid "Ödeme yaptığı gün sayısı"
+msgid "Days with a payment"
 msgstr "Days with a payment"
 
-msgid "Son ödeme"
+msgid "Last payment"
 msgstr "Last payment"
 
-msgid "Son hareket"
+msgid "Last activity"
 msgstr "Last activity"
 
-msgid "Eklenme"
+msgid "Added"
 msgstr "Added"
 
-msgid "Kayıp riski (%)"
+msgid "Churn risk (%)"
 msgstr "Churn risk (%)"
 
-msgid "İzin"
+msgid "Consent"
 msgstr "Consent"
 
-msgid "İlk kaynak"
+msgid "First source"
 msgstr "First source"
 
-msgid "Şehir"
+msgid "City"
 msgstr "City"
 
-msgid "E-postası var"
+msgid "Has an e-mail"
 msgstr "Has an e-mail"
 
-msgid "Telefonu var"
+msgid "Has a phone"
 msgstr "Has a phone"
 
-msgid "var"
+msgid "has"
 msgstr "has"
 
-msgid "değil / yok"
+msgid "is not / has not"
 msgstr "is not / has not"
 
-msgid "eşittir"
+msgid "is"
 msgstr "is"
 
-msgid "en az"
+msgid "at least"
 msgstr "at least"
 
-msgid "en çok"
+msgid "at most"
 msgstr "at most"
 
-msgid "son … gün içinde"
+msgid "in the last … days"
 msgstr "in the last … days"
 
-msgid "… günden eski"
+msgid "more than … days ago"
 msgstr "more than … days ago"
 
-msgid "evet"
+msgid "yes"
 msgstr "yes"
 
-msgid "hayır"
+msgid "no"
 msgstr "no"
 
-msgid "içerir"
+msgid "contains"
 msgstr "contains"
 
-msgid "%1$s: %2$s günden eski"
+msgid "%1$s: more than %2$s days ago"
 msgstr "%1$s: more than %2$s days ago"
 
-msgid "%1$s: son %2$s gün içinde"
+msgid "%1$s: in the last %2$s days"
 msgstr "%1$s: in the last %2$s days"
 
-msgid "%s izni yok"
+msgid "no %s consent"
 msgstr "no %s consent"
 
-msgid "%s izni var"
+msgid "has %s consent"
 msgstr "has %s consent"
 
-msgid "ya da"
+msgid "or"
 msgstr "or"
 
-msgid "Segment adı gerekli."
+msgid "A segment name is required."
 msgstr "A segment name is required."
 
-msgid "En az bir kural ekleyin."
+msgid "Add at least one rule."
 msgstr "Add at least one rule."
 
-msgid "Geri kazanılacak bağışçılar"
+msgid "Donors to win back"
 msgstr "Donors to win back"
 
-msgid "Bağışçı ve kayıp riski yüksek. Hatır sorma ya da yeni proje duyurusu için."
+msgid "Donors with a high churn risk. For a check-in or a new project announcement."
 msgstr "Donors with a high churn risk. For a check-in or a new project announcement."
 
-msgid "Yeni gelenler (30 gün)"
+msgid "New contacts (30 days)"
 msgstr "New contacts (30 days)"
 
-msgid "Son 30 günde eklenen kişiler. Hoş geldin mesajı için."
+msgid "Contacts added in the last 30 days. For a welcome message."
 msgstr "Contacts added in the last 30 days. For a welcome message."
 
-msgid "Şampiyon ve sadıklar"
+msgid "Champions and loyal supporters"
 msgstr "Champions and loyal supporters"
 
-msgid "En sık ve en yakın zamanda destek verenler."
+msgid "The people who support most often and most recently."
 msgstr "The people who support most often and most recently."
 
-msgid "WhatsApp mesajları"
+msgid "WhatsApp messages"
 msgstr "WhatsApp messages"
 
-msgid "Toplamlar"
+msgid "Totals"
 msgstr "Totals"
 
-msgid "RFM skoru"
+msgid "RFM score"
 msgstr "RFM score"
 
-msgid "Etiket bulunamadı."
+msgid "Tag not found."
 msgstr "Tag not found."
 
-msgid "Etiket adı boş olamaz."
+msgid "Tag name cannot be empty."
 msgstr "Tag name cannot be empty."
 
-msgid "Bu adla başka bir etiket var."
+msgid "Another tag already has this name."
 msgstr "Another tag already has this name."
 
-msgid "Renk geçersiz (#16a34a gibi)."
+msgid "Invalid color (use e.g. #16a34a)."
 msgstr "Invalid color (use e.g. #16a34a)."
 
-msgid "Bağışçı"
+msgid "Donor"
 msgstr "Donor"
 
-msgid "Müşteri"
+msgid "Customer"
 msgstr "Customer"
 
-msgid "Aday"
+msgid "Lead"
 msgstr "Lead"
 
-msgid "Gönüllü"
+msgid "Volunteer"
 msgstr "Volunteer"
 
-msgid "Üye"
+msgid "Member"
 msgstr "Member"
 
-msgid "Kurumsal"
+msgid "Partner"
 msgstr "Partner"
 
-msgid "Yararlanıcı"
+msgid "Beneficiary"
 msgstr "Beneficiary"
 
-msgid "Bağış"
+msgid "Donation"
 msgstr "Donation"
 
-msgid "Sipariş"
+msgid "Order"
 msgstr "Order"
 
 msgid "Form"
 msgstr "Form"
 
-msgid "Gelen mesaj"
+msgid "Incoming message"
 msgstr "Incoming message"
 
-msgid "Giden mesaj"
+msgid "Outgoing message"
 msgstr "Outgoing message"
 
-msgid "Sohbet başladı"
+msgid "Chat started"
 msgstr "Chat started"
 
-msgid "Gelen e-posta"
+msgid "Incoming e-mail"
 msgstr "Incoming e-mail"
 
-msgid "Not"
+msgid "Note"
 msgstr "Note"
 
-msgid "Arama"
+msgid "Call"
 msgstr "Call"
 
-msgid "Görüşme"
+msgid "Meeting"
 msgstr "Meeting"
 
-msgid "Üyelik"
+msgid "Sign-up"
 msgstr "Sign-up"
 
-msgid "Kişi eklendi"
+msgid "Contact added"
 msgstr "Contact added"
 
-msgid "Rol eklendi"
+msgid "Role added"
 msgstr "Role added"
 
-msgid "Segment değişti"
+msgid "Segment changed"
 msgstr "Segment changed"
 
-msgid "İzin değişti"
+msgid "Consent changed"
 msgstr "Consent changed"
 
-msgid "Kişiler birleştirildi"
+msgid "Contacts merged"
 msgstr "Contacts merged"
 
-msgid "Yeni"
+msgid "New"
 msgstr "New"
 
-msgid "İlk kez yakın zamanda ödeme yaptı. Hoş geldin akışı için uygun."
+msgid "Paid for the first time recently. A good fit for a welcome flow."
 msgstr "Paid for the first time recently. A good fit for a welcome flow."
 
-msgid "Şampiyon"
+msgid "Champion"
 msgstr "Champion"
 
-msgid "Sık ve yakın zamanda ödeme yapıyor. Özel teşekkür ve ilgi."
+msgid "Pays often and recently. Worth a personal thank-you and attention."
 msgstr "Pays often and recently. Worth a personal thank-you and attention."
 
-msgid "Sadık"
+msgid "Loyal"
 msgstr "Loyal"
 
-msgid "Düzenli destek veriyor. Yeni proje ve ürünler önce bunlara."
+msgid "Gives regular support. Tell them first about new projects and products."
 msgstr "Gives regular support. Tell them first about new projects and products."
 
-msgid "Umut vadeden"
+msgid "Promising"
 msgstr "Promising"
 
-msgid "Yakın zamanda geldi, sıklığı henüz düşük."
+msgid "Arrived recently; frequency is still low."
 msgstr "Arrived recently; frequency is still low."
 
-msgid "Risk altında"
+msgid "At risk"
 msgstr "At risk"
 
-msgid "Eskiden sıktı, son zamanlarda uzaklaştı. Geri kazanım hedefi."
+msgid "Used to be frequent, has drifted away lately. A win-back target."
 msgstr "Used to be frequent, has drifted away lately. A win-back target."
 
-msgid "Uykuda"
+msgid "Hibernating"
 msgstr "Hibernating"
 
-msgid "Uzun süredir yok ve sıklığı düşük."
+msgid "Away for a long time with low frequency."
 msgstr "Away for a long time with low frequency."
 
-msgid "Kaybedilen"
+msgid "Lost"
 msgstr "Lost"
 
-msgid "En uzun süredir ödeme yapmayan dilim."
+msgid "The slice that has gone longest without paying."
 msgstr "The slice that has gone longest without paying."
 
-msgid "Ödemesi yok"
+msgid "No payments"
 msgstr "No payments"
 
-msgid "Elle"
+msgid "Manual"
 msgstr "Manual"
 
-msgid "İçe aktarma"
+msgid "Import"
 msgstr "Import"
 
-msgid "Site üyeliği"
+msgid "Site account"
 msgstr "Site account"
 
-msgid "%s Mn"
+msgid "%s M"
 msgstr "%s M"
 
-msgid "%s B"
+msgid "%s K"
 msgstr "%s K"
 
-msgid "(adsız kişi)"
+msgid "(unnamed contact)"
 msgstr "(unnamed contact)"
 
-msgid "CRM segmenti: %1$s (%2$s)"
+msgid "CRM segment: %1$s (%2$s)"
 msgstr "CRM segment: %1$s (%2$s)"
 
-msgid "CRM rolü: %1$s (%2$s)"
+msgid "CRM role: %1$s (%2$s)"
 msgstr "CRM role: %1$s (%2$s)"
 
 msgid "CRM"
 msgstr "CRM"
 
-msgid "Kişileri, segmentleri ve zaman tünelini görür"
+msgid "Sees contacts, segments and the timeline"
 msgstr "Sees contacts, segments and the timeline"
 
-msgid "Kişi ekler, düzenler, siler; segment ve CRM ayarlarını yönetir"
+msgid "Adds, edits and deletes contacts; manages segments and CRM settings"
 msgstr "Adds, edits and deletes contacts; manages segments and CRM settings"
 
 msgid "Flux CRM"
 msgstr "Flux CRM"
 
-msgid "Kişi kaynakları"
+msgid "Contact sources"
 msgstr "Contact sources"
 
-msgid "Kişi getiren kaynak yok (Flux Donate, WooCommerce, Flux Chat, Flux Forms kapalı ya da kurulu değil). Kişiler yalnız elle eklenir."
+msgid "No source brings in contacts (Flux Donate, WooCommerce, Flux Chat and Flux Forms are off or not installed). Contacts can only be added by hand."
 msgstr "No source brings in contacts (Flux Donate, WooCommerce, Flux Chat and Flux Forms are off or not installed). Contacts can only be added by hand."
 
-msgid "İlk eşitleme"
+msgid "First sync"
 msgstr "First sync"
 
-msgid "Son tam eşitleme: %s"
+msgid "Last full sync: %s"
 msgstr "Last full sync: %s"
 
-msgid "Geçmiş bağış, sipariş ve sohbetler henüz alınmadı. CRM › Ayarlar › \"Tümünü eşitle\"."
+msgid "Past donations, orders and chats have not been imported yet. CRM › Settings › \"Sync everything\"."
 msgstr "Past donations, orders and chats have not been imported yet. CRM › Settings › \"Sync everything\"."
 
-msgid "Eşitle"
+msgid "Sync"
 msgstr "Sync"
 
-msgid "RFM skorlama"
+msgid "RFM scoring"
 msgstr "RFM scoring"
 
-msgid "Henüz hesaplanmadı."
+msgid "Not calculated yet."
 msgstr "Not calculated yet."
 
-msgid "Son hesaplama %s. Günlük iş (WP-Cron) çalışmıyor olabilir; sunucu cron'u ekleyin ya da elle hesaplayın."
+msgid "Last calculated %s. The daily job (WP-Cron) may not be running; add a server cron or recalculate by hand."
 msgstr "Last calculated %s. The daily job (WP-Cron) may not be running; add a server cron or recalculate by hand."
 
-msgid "Son hesaplama: %s"
+msgid "Last calculated: %s"
 msgstr "Last calculated: %s"
 
-msgid "Döviz ödemeleri"
+msgid "Foreign currency payments"
 msgstr "Foreign currency payments"
 
-msgid "%1$s ödeme %2$s dışında bir para biriminde ve kur bulunamadı; sıklığa sayılıyor, toplam değere sayılmıyor. Kur için `flxcrm_fx_rate` filtresini kullanın."
+msgid "%1$s payments are in a currency other than %2$s and have no exchange rate; they count towards frequency but not towards total value. Use the `flxcrm_fx_rate` filter to supply a rate."
 msgstr "%1$s payments are in a currency other than %2$s and have no exchange rate; they count towards frequency but not towards total value. Use the `flxcrm_fx_rate` filter to supply a rate."
 
-msgid "Genel bakış"
+msgid "Overview"
 msgstr "Overview"
 
-msgid "Kişiler"
+msgid "Contacts"
 msgstr "Contacts"
 
-msgid "Segmentler"
+msgid "Segments"
 msgstr "Segments"
 
-msgid "CRM ayarları"
+msgid "CRM settings"
 msgstr "CRM settings"
 
 msgid "%1$s: %2$s / %3$s"
 msgstr "%1$s: %2$s / %3$s"
 
-msgid "Bitti. Sayfa yenileniyor…"
+msgid "Done. Reloading the page…"
 msgstr "Done. Reloading the page…"
 
-msgid "Bir şey ters gitti. Tekrar deneyin."
+msgid "Something went wrong. Please try again."
 msgstr "Something went wrong. Please try again."
 
-msgid "Emin misiniz? Bu işlem geri alınamaz."
+msgid "Are you sure? This cannot be undone."
 msgstr "Are you sure? This cannot be undone."
 
-msgid "%s kişi uyuyor"
+msgid "%s contacts match"
 msgstr "%s contacts match"
 
-msgid "Sayılıyor…"
+msgid "Counting…"
 msgstr "Counting…"
 
-msgid "Hesaplanıyor…"
+msgid "Calculating…"
 msgstr "Calculating…"
 
-msgid "%s kişi skorlandı. Sayfa yenileniyor…"
+msgid "%s contacts scored. Reloading the page…"
 msgstr "%s contacts scored. Reloading the page…"
 
-msgid "%s kişi seçildi"
+msgid "%s contacts selected"
 msgstr "%s contacts selected"
 
-msgid "Kuralı kaldır"
+msgid "Remove rule"
 msgstr "Remove rule"
 
-msgid "ve"
+msgid "and"
 msgstr "and"
 
-msgid "veya"
-msgstr "or"
-
-msgid "gün"
+msgid "days"
 msgstr "days"
 
-msgid "Kural yok: tüm kişiler"
+msgid "No rules: every contact"
 msgstr "No rules: every contact"
 
-msgid "Uyan kişi yok."
+msgid "No contacts match."
 msgstr "No contacts match."
 
-msgid "Bu işlem için yetkiniz yok."
+msgid "You are not allowed to do this."
 msgstr "You are not allowed to do this."
 
-msgid "Ad"
+msgid "Name"
 msgstr "Name"
 
-msgid "Telefon"
+msgid "Phone"
 msgstr "Phone"
 
-msgid "Roller"
+msgid "Roles"
 msgstr "Roles"
 
 msgid "Segment"
 msgstr "Segment"
 
-msgid "Kayıp riski"
+msgid "Churn risk"
 msgstr "Churn risk"
 
-msgid "E-posta izni"
+msgid "E-mail consent"
 msgstr "E-mail consent"
 
-msgid "SMS izni"
+msgid "SMS consent"
 msgstr "SMS consent"
 
-msgid "WhatsApp izni"
+msgid "WhatsApp consent"
 msgstr "WhatsApp consent"
 
-msgid "Etiketler"
+msgid "Tags"
 msgstr "Tags"
 
-msgid "Kaydedildi."
+msgid "Saved."
 msgstr "Saved."
 
-msgid "Kişi eklendi."
+msgid "Contact added."
 msgstr "Contact added."
 
-msgid "Silindi."
+msgid "Deleted."
 msgstr "Deleted."
 
-msgid "Zaman tüneline eklendi."
+msgid "Added to the timeline."
 msgstr "Added to the timeline."
 
-msgid "Bu e-posta ya da telefonla kayıtlı kişi zaten var; kartı açıldı."
+msgid "A contact with this e-mail or phone already exists; their card is open."
 msgstr "A contact with this e-mail or phone already exists; their card is open."
 
-msgid "%s kişi güncellendi."
+msgid "%s contacts updated."
 msgstr "%s contacts updated."
 
-msgid "Kayıp riski %%%s"
+msgid "Churn risk %s%%"
 msgstr "Churn risk %s%%"
 
-msgid "Tümü"
+msgid "All"
 msgstr "All"
 
-msgid "Ödemeler"
+msgid "Payments"
 msgstr "Payments"
 
-msgid "Mesajlar"
+msgid "Messages"
 msgstr "Messages"
 
-msgid "Formlar"
+msgid "Forms"
 msgstr "Forms"
 
-msgid "Notlar"
+msgid "Notes"
 msgstr "Notes"
 
-msgid "Kişi bulunamadı"
+msgid "Contact not found"
 msgstr "Contact not found"
 
-msgid "Kişilere dön"
+msgid "Back to contacts"
 msgstr "Back to contacts"
 
-msgid "Arşivde"
+msgid "Archived"
 msgstr "Archived"
 
-msgid "%1$s tarihinden beri · %2$s"
+msgid "Since %1$s · %2$s"
 msgstr "Since %1$s · %2$s"
 
-msgid "WhatsApp sohbeti"
+msgid "WhatsApp chat"
 msgstr "WhatsApp chat"
 
-msgid "E-posta yaz"
+msgid "Write an e-mail"
 msgstr "Write an e-mail"
 
-msgid "CRM kartı"
+msgid "CRM card"
 msgstr "CRM card"
 
-msgid "İlk ödeme"
+msgid "First payment"
 msgstr "First payment"
 
-msgid "ortalama %s günde bir"
+msgid "once every %s days on average"
 msgstr "once every %s days on average"
 
 msgid "RFM"
 msgstr "RFM"
 
-msgid "yenilik · sıklık · değer (1–5)"
+msgid "recency · frequency · value (1–5)"
 msgstr "recency · frequency · value (1–5)"
 
-msgid "Kişiyi sil"
+msgid "Delete contact"
 msgstr "Delete contact"
 
-msgid "Bağış ve siparişler kendi eklentisinde kalır; yalnız CRM kartı silinir."
+msgid "Donations and orders stay in their own plugins; only the CRM card is deleted."
 msgstr "Donations and orders stay in their own plugins; only the CRM card is deleted."
 
-msgid "Not ekleyin: telefonda konuşuldu, kurban için tekrar aranacak…"
+msgid "Add a note: talked on the phone, call again about the qurban…"
 msgstr "Add a note: talked on the phone, call again about the qurban…"
 
-msgid "Tür"
+msgid "Type"
 msgstr "Type"
 
-msgid "Ekle"
+msgid "Add"
 msgstr "Add"
 
-msgid "Bu filtrede olay yok."
+msgid "No events for this filter."
 msgstr "No events for this filter."
 
-msgid "Yükleniyor…"
+msgid "Loading…"
 msgstr "Loading…"
 
-msgid "Yanıtlar"
+msgid "Answers"
 msgstr "Answers"
 
-msgid "Sil"
+msgid "Delete"
 msgstr "Delete"
 
-msgid "Bekliyor"
+msgid "Pending"
 msgstr "Pending"
 
-msgid "Beklemede"
+msgid "On hold"
 msgstr "On hold"
 
-msgid "Başarısız"
+msgid "Failed"
 msgstr "Failed"
 
-msgid "İptal"
+msgid "Cancelled"
 msgstr "Cancelled"
 
-msgid "İade"
+msgid "Refunded"
 msgstr "Refunded"
 
-msgid "Kısmi iade"
+msgid "Partly refunded"
 msgstr "Partly refunded"
 
-msgid "Ad soyad"
+msgid "Full name"
 msgstr "Full name"
 
-msgid "Kurum"
+msgid "Organisation"
 msgstr "Organisation"
 
-msgid "İletişim izinleri"
+msgid "Contact consents"
 msgstr "Contact consents"
 
-msgid "Son değişiklik: %s"
+msgid "Last changed: %s"
 msgstr "Last changed: %s"
 
-msgid "Sorumlu"
+msgid "Owner"
 msgstr "Owner"
 
-msgid "— yok —"
+msgid "— none —"
 msgstr "— none —"
 
-msgid "Kısa not"
+msgid "Short note"
 msgstr "Short note"
 
-msgid "Bilgiler"
+msgid "Details"
 msgstr "Details"
 
-msgid "Kaydet"
+msgid "Save"
 msgstr "Save"
 
-msgid "Etiket yok."
+msgid "No tags."
 msgstr "No tags."
 
-msgid "%s etiketini kaldır"
+msgid "Remove the %s tag"
 msgstr "Remove the %s tag"
 
-msgid "Etiket ekle (virgülle birden çok)"
+msgid "Add tags (comma for several)"
 msgstr "Add tags (comma for several)"
 
-msgid "Etiket ekle"
+msgid "Add tag"
 msgstr "Add tag"
 
-msgid "Kaynaklar"
+msgid "Sources"
 msgstr "Sources"
 
-msgid "Elle eklendi."
+msgid "Added by hand."
 msgstr "Added by hand."
 
-msgid "İlk kampanya"
+msgid "First campaign"
 msgstr "First campaign"
 
-msgid "Yeni kişi"
+msgid "New contact"
 msgstr "New contact"
 
-msgid "E-posta ya da telefondan biri yeter. Aynı e-posta/telefonla kişi varsa onun kartı açılır."
+msgid "An e-mail or a phone number is enough. If a contact with the same e-mail or phone exists, their card opens."
 msgstr "An e-mail or a phone number is enough. If a contact with the same e-mail or phone exists, their card opens."
 
-msgid "virgülle ayırın"
+msgid "separate with commas"
 msgstr "separate with commas"
 
-msgid "Kişiyi ekle"
+msgid "Add contact"
 msgstr "Add contact"
 
-msgid "Vazgeç"
+msgid "Cancel"
 msgstr "Cancel"
 
-msgid "%s bağış"
-msgid_plural "%s bağış"
+msgid "%s donation"
+msgid_plural "%s donations"
 msgstr[0] "%s donation"
 msgstr[1] "%s donations"
 
-msgid "%s sipariş"
-msgid_plural "%s sipariş"
+msgid "%s order"
+msgid_plural "%s orders"
 msgstr[0] "%s order"
 msgstr[1] "%s orders"
 
 msgid "CSV"
 msgstr "CSV"
 
-msgid "Kişi ekle"
-msgstr "Add contact"
-
-msgid "Bağışçılar, müşteriler, adaylar: her kişi tek kart. Kaynaklardan kendiliğinden gelir, elle de eklenir."
+msgid "Donors, customers, leads: one card per person. They arrive from your sources on their own, or you add them by hand."
 msgstr "Donors, customers, leads: one card per person. They arrive from your sources on their own, or you add them by hand."
 
-msgid "Ad, e-posta, telefon, kurum, şehir"
+msgid "Name, e-mail, phone, organisation, city"
 msgstr "Name, e-mail, phone, organisation, city"
 
-msgid "Kişi ara"
+msgid "Search contacts"
 msgstr "Search contacts"
 
-msgid "Tüm RFM segmentleri"
+msgid "All RFM segments"
 msgstr "All RFM segments"
 
-msgid "Kayıtlı segment"
+msgid "Saved segment"
 msgstr "Saved segment"
 
-msgid "Tüm etiketler"
+msgid "All tags"
 msgstr "All tags"
 
-msgid "İzin fark etmez"
+msgid "Any consent"
 msgstr "Any consent"
 
-msgid "Yalnız kayıp riski yüksek"
+msgid "Only high churn risk"
 msgstr "Only high churn risk"
 
-msgid "Arşiv"
+msgid "Archive"
 msgstr "Archive"
 
-msgid "Filtrele"
+msgid "Filter"
 msgstr "Filter"
 
-msgid "Filtreye uyan kişi yok."
+msgid "No contacts match the filter."
 msgstr "No contacts match the filter."
 
-msgid "Henüz kişi yok."
+msgid "No contacts yet."
 msgstr "No contacts yet."
 
-msgid "Bağış, sipariş, form ya da WhatsApp sohbeti geldikçe kişiler kendiliğinden oluşur. Geçmiş kayıtlar için Ayarlar › Tümünü eşitle."
+msgid "Contacts appear on their own as donations, orders, forms and WhatsApp chats come in. For older records: Settings › Sync everything."
 msgstr "Contacts appear on their own as donations, orders, forms and WhatsApp chats come in. For older records: Settings › Sync everything."
 
-msgid "Rol ekle"
+msgid "Add role"
 msgstr "Add role"
 
-msgid "Arşivden çıkar"
+msgid "Unarchive"
 msgstr "Unarchive"
 
-msgid "Arşivle"
-msgstr "Archive"
-
-msgid "Etiket adı"
+msgid "Tag name"
 msgstr "Tag name"
 
-msgid "Uygula"
+msgid "Apply"
 msgstr "Apply"
 
-msgid "Tümünü seç"
+msgid "Select all"
 msgstr "Select all"
 
-msgid "Kişi"
+msgid "Contact"
 msgstr "Contact"
 
-msgid "Rol ve segment"
+msgid "Role and segment"
 msgstr "Role and segment"
 
-msgid "Değer"
+msgid "Value"
 msgstr "Value"
 
-msgid "Bağışçı, müşteri, gönüllü ve adaylar tek yerde: kim ne yaptı, kim uzaklaşıyor, kime ne gönderilmeli."
+msgid "Donors, customers, volunteers and leads in one place: who did what, who is drifting away, who should hear what."
 msgstr "Donors, customers, volunteers and leads in one place: who did what, who is drifting away, who should hear what."
 
-msgid "Geçmiş veriyi içe alın."
+msgid "Import your past data."
 msgstr "Import your past data."
 
-msgid "Yeni kayıtlar kendiliğinden geliyor. Önceki kayıtları da kişilere bağlamak için eşitleyin: %s."
+msgid "New records arrive on their own. To link older ones to contacts too, sync: %s."
 msgstr "New records arrive on their own. To link older ones to contacts too, sync: %s."
 
-msgid "Kişi getiren kaynak yok; kişileri elle ekleyebilirsiniz."
+msgid "No source brings in contacts; you can add them by hand."
 msgstr "No source brings in contacts; you can add them by hand."
 
-msgid "Tümünü eşitle"
+msgid "Sync everything"
 msgstr "Sync everything"
 
-msgid "%s ödeme yapmış"
+msgid "%s have paid"
 msgstr "%s have paid"
 
-msgid "Son 30 gün yeni"
+msgid "New in the last 30 days"
 msgstr "New in the last 30 days"
 
-msgid "önceki 30 güne göre %s"
+msgid "%s against the previous 30 days"
 msgstr "%s against the previous 30 days"
 
-msgid "Aktif"
+msgid "Active"
 msgstr "Active"
 
-msgid "son %s günde hareketi olan"
+msgid "with activity in the last %s days"
 msgstr "with activity in the last %s days"
 
-msgid "Kayıp riski yüksek"
+msgid "High churn risk"
 msgstr "High churn risk"
 
-msgid "risk %%%s ve üstü"
+msgid "risk %s%% and above"
 msgstr "risk %s%% and above"
 
-msgid "kişi başı %s"
+msgid "%s per contact"
 msgstr "%s per contact"
 
-msgid "RFM segmentleri"
+msgid "RFM segments"
 msgstr "RFM segments"
 
-msgid "Hesaplandı: %s"
+msgid "Calculated: %s"
 msgstr "Calculated: %s"
 
-msgid "Yeniden hesapla"
+msgid "Recalculate"
 msgstr "Recalculate"
 
-msgid "Ödeme yapan kişi olunca bağışçı ve müşteriler burada sıklık, yenilik ve değerlerine göre gruplanır."
+msgid "Once contacts have paid, donors and customers are grouped here by frequency, recency and value."
 msgstr "Once contacts have paid, donors and customers are grouped here by frequency, recency and value."
 
-msgid "Temas kurulmalı"
+msgid "Reach out"
 msgstr "Reach out"
 
-msgid "Kayıp riski yüksek, değerli kişi yok."
+msgid "No valuable contacts with a high churn risk."
 msgstr "No valuable contacts with a high churn risk."
 
-msgid "son ödeme %s"
+msgid "last payment %s"
 msgstr "last payment %s"
 
-msgid "Bağış, sipariş, form ve WhatsApp hareketleri burada görünür."
+msgid "Donations, orders, forms and WhatsApp activity appear here."
 msgstr "Donations, orders, forms and WhatsApp activity appear here."
 
-msgid "Nereden geldiler"
+msgid "Where they came from"
 msgstr "Where they came from"
 
-msgid "Yeni segment"
+msgid "New segment"
 msgstr "New segment"
 
-msgid "Kurallarla tanımlanan canlı listeler: kişi kurala uyunca girer, uymayınca çıkar. Flux Mail'de toplu gönderimin alıcısı olur."
+msgid "Live lists defined by rules: a contact joins when they match and leaves when they no longer do. Use them as recipients for bulk sends in Flux Mail."
 msgstr "Live lists defined by rules: a contact joins when they match and leaves when they no longer do. Use them as recipients for bulk sends in Flux Mail."
 
-msgid "Henüz segment yok."
+msgid "No segments yet."
 msgstr "No segments yet."
 
-msgid "Örnek: \"Geçen yıl kurban bağışı yapıp bu yıl yapmayanlar\", \"İstanbul'daki gönüllüler\", \"3 aydır alışveriş yapmayan müşteriler\"."
-msgstr "For example: \"Gave a qurban donation last year but not this year\", \"Volunteers in Istanbul\", \"Customers who haven't bought in 3 months\"."
+msgid "Examples: \"Gave a qurban donation last year but not this year\", \"Volunteers in Istanbul\", \"Customers with no purchase for 3 months\"."
+msgstr "Examples: \"Gave a qurban donation last year but not this year\", \"Volunteers in Istanbul\", \"Customers with no purchase for 3 months\"."
 
-msgid "kişi"
+msgid "contacts"
 msgstr "contacts"
 
-msgid "Kişileri gör"
+msgid "View contacts"
 msgstr "View contacts"
 
-msgid "Düzenle"
+msgid "Edit"
 msgstr "Edit"
 
-msgid "Flux Mail › Gönder: Alıcılar altında bu segmenti seçin. Yalnız ilgili kanala izin verenler alıcı olur."
+msgid "Flux Mail › Send: pick this segment under Recipients. Only people who allowed that channel receive it."
 msgstr "Flux Mail › Send: pick this segment under Recipients. Only people who allowed that channel receive it."
 
-msgid "Gönderim yap"
+msgid "Send a campaign"
 msgstr "Send a campaign"
 
-msgid "Segmenti düzenle"
+msgid "Edit segment"
 msgstr "Edit segment"
 
-msgid "Kuralları ekleyin; sağda kaç kişinin uyduğunu anında görürsünüz."
+msgid "Add rules; the number of matching contacts updates on the right as you go."
 msgstr "Add rules; the number of matching contacts updates on the right as you go."
 
-msgid "Örn. Uzaklaşan bağışçılar"
+msgid "E.g. Donors drifting away"
 msgstr "E.g. Donors drifting away"
 
-msgid "Açıklama"
+msgid "Description"
 msgstr "Description"
 
-msgid "Kurallar"
+msgid "Rules"
 msgstr "Rules"
 
-msgid "tüm kurallara"
+msgid "all rules"
 msgstr "all rules"
 
-msgid "en az birine"
+msgid "at least one"
 msgstr "at least one"
 
-msgid "uysun"
+msgid "Contact matches"
 msgstr "Contact matches"
 
-msgid "Kural ekle"
+msgid "Add rule"
 msgstr "Add rule"
 
-msgid "Segmenti kaydet"
-msgstr "Save segment"
-
-msgid "Uyan kişi"
+msgid "Matching contacts"
 msgstr "Matching contacts"
 
-msgid "Kişilerin nereden geleceği, hangi rolü alacağı ve skorlamanın nasıl çalışacağı."
+msgid "Where contacts come from, which role they get and how scoring works."
 msgstr "Where contacts come from, which role they get and how scoring works."
 
-msgid "Eşitleme"
-msgstr "Sync"
-
-msgid "Henüz eşitlenmedi"
+msgid "Not synced yet"
 msgstr "Not synced yet"
 
-msgid "Yeni bağış, sipariş, form ve sohbetler kişilere anında bağlanır. Geçmiş kayıtları almak ya da kaynak açıp kapattıktan sonra baştan bağlamak için tümünü eşitleyin. Var olan kişiler ve notlar korunur, aynı kayıt iki kez eklenmez."
+msgid "New donations, orders, forms and chats are linked to contacts straight away. Sync everything to import past records, or to relink after switching a source on or off. Existing contacts and notes are kept, and nothing is added twice."
 msgstr "New donations, orders, forms and chats are linked to contacts straight away. Sync everything to import past records, or to relink after switching a source on or off. Existing contacts and notes are kept, and nothing is added twice."
 
-msgid "Bağışçılar ve bağışlar"
+msgid "Donors and donations"
 msgstr "Donors and donations"
 
-msgid "Müşteriler ve siparişler (bağış siparişleri hariç)"
+msgid "Customers and orders (donation orders excluded)"
 msgstr "Customers and orders (donation orders excluded)"
 
-msgid "WhatsApp sohbetleri ve her mesaj"
+msgid "WhatsApp chats and every message"
 msgstr "WhatsApp chats and every message"
 
-msgid "Form gönderimleri (e-posta ya da telefon alanı olan)"
+msgid "Form submissions (with an e-mail or phone field)"
 msgstr "Form submissions (with an e-mail or phone field)"
 
-msgid "Site üyeleri"
+msgid "Site members"
 msgstr "Site members"
 
-msgid "Müşteri ve abone rolündeki WordPress kullanıcıları"
+msgid "WordPress users with the customer or subscriber role"
 msgstr "WordPress users with the customer or subscriber role"
 
-msgid "Kişiye giden e-posta, SMS ve WhatsApp bildirimleri, gelen e-postalar (yalnız zaman tüneli, kişi oluşturmaz)"
+msgid "E-mails, SMS and WhatsApp notifications sent to the contact, and incoming e-mails (timeline only, no new contacts)"
 msgstr "E-mails, SMS and WhatsApp notifications sent to the contact, and incoming e-mails (timeline only, no new contacts)"
 
-msgid "Kaynak"
+msgid "Source"
 msgstr "Source"
 
-msgid "Açık"
+msgid "On"
 msgstr "On"
 
-msgid "Yeni kişiye verilen rol"
+msgid "Role for new contacts"
 msgstr "Role for new contacts"
 
-msgid "kurulu değil"
+msgid "not installed"
 msgstr "not installed"
 
-msgid "— rol verme —"
+msgid "— no role —"
 msgstr "— no role —"
 
-msgid "WhatsApp mesajlarını zaman tüneline yaz (her mesaj ayrı satır)"
+msgid "Write WhatsApp messages to the timeline (one line per message)"
 msgstr "Write WhatsApp messages to the timeline (one line per message)"
 
-msgid "Rol ödeme tamamlanınca verilir (bağışçı, müşteri). \"Aday\" rolü kişi başka bir rol alınca kendiliğinden düşer."
+msgid "The role is given once a payment completes (donor, customer). The \"Lead\" role drops off by itself when the contact gets another role."
 msgstr "The role is given once a payment completes (donor, customer). The \"Lead\" role drops off by itself when the contact gets another role."
 
-msgid "Kişinin kurumla ilişkisi. Bir kişinin birden çok rolü olabilir: hem bağışçı hem gönüllü gibi."
+msgid "The contact's relationship with you. A contact can have several roles, e.g. donor and volunteer."
 msgstr "The contact's relationship with you. A contact can have several roles, e.g. donor and volunteer."
 
-msgid "Renk"
+msgid "Colour"
 msgstr "Colour"
 
-msgid "Yeni rol: Sponsor, Hayırsever, Bayi…"
+msgid "New role: Sponsor, Philanthropist, Dealer…"
 msgstr "New role: Sponsor, Philanthropist, Dealer…"
 
-msgid "Yeni rol"
+msgid "New role"
 msgstr "New role"
 
-msgid "Skorlama"
+msgid "Scoring"
 msgstr "Scoring"
 
-msgid "Kayıp riski eşiği (%)"
+msgid "Churn risk threshold (%)"
 msgstr "Churn risk threshold (%)"
 
-msgid "Bu değerin üstü \"temas kurulmalı\" listesine girer. Risk kişinin kendi ritmine göre: ayda bir bağış yapan 45 gün gelmeyince riskli sayılır, yılda bir yapan sayılmaz."
+msgid "Contacts above this value go to the \"Reach out\" list. Risk follows each person's own rhythm: a monthly donor is at risk after 45 days, a yearly one is not."
 msgstr "Contacts above this value go to the \"Reach out\" list. Risk follows each person's own rhythm: a monthly donor is at risk after 45 days, a yearly one is not."
 
-msgid "Aktif sayılma (gün)"
+msgid "Active window (days)"
 msgstr "Active window (days)"
 
-msgid "Bu kadar gün içinde herhangi bir hareketi olan kişi aktif sayılır."
+msgid "A contact with any activity within this many days counts as active."
 msgstr "A contact with any activity within this many days counts as active."
 
-msgid "Raporlama para birimi"
+msgid "Reporting currency"
 msgstr "Reporting currency"
 
-msgid "Boşsa mağaza para birimi. Başka para birimindeki ödemeler kur verilmedikçe değere sayılmaz."
+msgid "Empty means the store currency. Payments in other currencies don't count towards value unless a rate is given."
 msgstr "Empty means the store currency. Payments in other currencies don't count towards value unless a rate is given."
 
-msgid "Ayarları kaydet"
+msgid "Save settings"
 msgstr "Save settings"
 
-msgid "Yapay zekâ ve MCP"
+msgid "AI & MCP"
 msgstr "AI & MCP"
 
-msgid "CRM'deki her şey (kişiler, alanlar, roller, etiketler, izinler, zaman tüneli, segmentler, ayarlar) Flux AI sohbetinden ve MCP bağlantısıyla (Claude, ChatGPT, Cursor…) okunup düzenlenebilir. Araçlar kullanıcının kendi CRM yetkisiyle çalışır."
+msgid "Everything in the CRM (contacts, fields, roles, tags, consents, timeline, segments, settings) can be read and edited from the Flux AI chat and over MCP (Claude, ChatGPT, Cursor…). Tools run with the user's own CRM permissions."
 msgstr "Everything in the CRM (contacts, fields, roles, tags, consents, timeline, segments, settings) can be read and edited from the Flux AI chat and over MCP (Claude, ChatGPT, Cursor…). Tools run with the user's own CRM permissions."
 
-msgid "bağlı"
+msgid "connected"
 msgstr "connected"
 
-msgid "Panel sohbetinde CRM araçları. Değişiklik yapan her araç onay kartında bekler."
+msgid "CRM tools in the admin chat. Every tool that changes something waits on an approval card."
 msgstr "CRM tools in the admin chat. Every tool that changes something waits on an approval card."
 
-msgid "Flux AI & MCP kurulu değil"
+msgid "Flux AI & MCP is not installed"
 msgstr "Flux AI & MCP is not installed"
 
-msgid "Silme, birleştirme, toplu işlem ve gönderim ilk çağrıda yalnız önizleme döner; onay anahtarıyla tekrar çağrılınca uygulanır."
+msgid "Delete, merge, bulk actions and sending return only a preview on the first call; they run when called again with the approval token."
 msgstr "Delete, merge, bulk actions and sending return only a preview on the first call; they run when called again with the approval token."
 
-msgid "MCP anahtarları"
+msgid "MCP keys"
 msgstr "MCP keys"
 
-msgid "Yapay zekâ ve MCP araçları açık"
+msgid "AI and MCP tools on"
 msgstr "AI and MCP tools on"
 
-msgid "Düzenleme: kişi, etiket, segment, not, ayar"
+msgid "Editing: contacts, tags, segments, notes, settings"
 msgstr "Editing: contacts, tags, segments, notes, settings"
 
-msgid "Onaylı işlemler: silme, birleştirme, toplu işlem, mesaj gönderme"
+msgid "Approval actions: delete, merge, bulk actions, sending messages"
 msgstr "Approval actions: delete, merge, bulk actions, sending messages"
 
-msgid "Araçlar: %1$d / %2$d açık"
+msgid "Tools: %1$d / %2$d on"
 msgstr "Tools: %1$d / %2$d on"
 
-msgid "Araç"
+msgid "Tool"
 msgstr "Tool"
 
-msgid "Yapay zekâ ile yapılan son değişiklikler"
+msgid "Recent changes made with AI"
 msgstr "Recent changes made with AI"
 
-msgid "Henüz değişiklik yok. Flux AI ya da MCP ile yapılan her değişiklik burada görünür."
+msgid "No changes yet. Every change made with Flux AI or MCP shows up here."
 msgstr "No changes yet. Every change made with Flux AI or MCP shows up here."
 
-msgid "Ne zaman"
+msgid "When"
 msgstr "When"
 
-msgid "Kim"
+msgid "Who"
 msgstr "Who"
 
-msgid "İşlem"
+msgid "Action"
 msgstr "Action"
 
-msgid "Sonuç"
+msgid "Result"
 msgstr "Result"
 
-msgid "tamam"
+msgid "done"
 msgstr "done"
 
-msgid "hata"
+msgid "error"
 msgstr "error"
 
-msgid "WhatsApp sohbeti açıldı"
+msgid "WhatsApp chat opened"
 msgstr "WhatsApp chat opened"
 
-msgid "WhatsApp yanıtı"
+msgid "WhatsApp reply"
 msgstr "WhatsApp reply"
 
-msgid "WhatsApp mesajı"
+msgid "WhatsApp message"
 msgstr "WhatsApp message"
 
-msgid "Sipariş #%s"
+msgid "Order #%s"
 msgstr "Order #%s"
 
 msgid "Form #%d"
 msgstr "Form #%d"
 
-msgid "SMS gönderildi"
+msgid "SMS sent"
 msgstr "SMS sent"
 
-msgid "WhatsApp bildirimi"
+msgid "WhatsApp notification"
 msgstr "WhatsApp notification"
 
-msgid "Sitede hesap açtı"
+msgid "Created an account on the site"
 msgstr "Created an account on the site"
+
+msgid "Name, e-mail or phone"
+msgstr "Name, e-mail or phone"
+
+msgid "Contacts arrive on their own from gifts, orders and forms."
+msgstr "Contacts arrive on their own from gifts, orders and forms."
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Remove tag"
+msgstr "Remove tag"
+
+msgid "Add an interaction"
+msgstr "Add an interaction"
+
+msgid "Saved"
+msgstr "Saved"
+
+msgid "Delete this contact?"
+msgstr "Delete this contact?"
+
+msgid "No people"
+msgstr "No people"
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Add a note"
+msgstr "Add a note"
+
+msgid "Open in the panel"
+msgstr "Open in the panel"
+
+msgid "Ads"
+msgstr "Ads"
+
+msgid "Ad consent"
+msgstr "Ad consent"
+
+msgid "Risk"
+msgstr "Risk"
+
+msgid "Segment rules"
+msgstr "Segment rules"
+
+msgid "No segments"
+msgstr "No segments"
+
+msgid "Create segments by adding rules in the panel."
+msgstr "Create segments by adding rules in the panel."
+
+msgid "Deleted"
+msgstr "Deleted"
+
+msgid "Last 30 days"
+msgstr "Last 30 days"
+
+msgid "The timeline and tags are deleted too."
+msgstr "The timeline and tags are deleted too."
+
+msgid "repeat"
+msgstr "repeat"
+
+msgid "Paying"
+msgstr "Paying"
+
+msgid "Consents"
+msgstr "Consents"
+
+msgid "[['People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI.', 'tr']]"
+msgstr "[['People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI.', 'tr']]"

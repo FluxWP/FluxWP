@@ -27,6 +27,7 @@ function flxl_catalog() {
 		'ka' => array( 'name' => 'ქართული', 'locale' => 'ka_GE', 'flag' => '🇬🇪' ),
 		'fa' => array( 'name' => 'فارسی', 'locale' => 'fa_IR', 'flag' => '🇮🇷' ),
 		'uk' => array( 'name' => 'Українська', 'locale' => 'uk', 'flag' => '🇺🇦' ),
+		'pt-br' => array( 'name' => 'Português do Brasil', 'locale' => 'pt_BR', 'flag' => '🇧🇷' ),
 		'ja' => array( 'name' => '日本語', 'locale' => 'ja', 'flag' => '🇯🇵' ),
 		'zh' => array( 'name' => '中文', 'locale' => 'zh_CN', 'flag' => '🇨🇳' ),
 	);
@@ -115,13 +116,9 @@ function flxl_is_language( $code ) {
 }
 
 /**
- * Dilin WordPress yerel ayarı. Varsayılan dil için sitenin kendi ayarı kullanılır.
+ * The configured site-content locale, independent of the WordPress admin language.
  */
 function flxl_language_locale( $code ) {
-	if ( $code === flxl_default_language() ) {
-		$site = (string) get_option( 'WPLANG' );
-		return '' !== $site ? $site : ( flxl_languages()[ $code ]['locale'] ?? 'en_US' );
-	}
 	return flxl_languages()[ $code ]['locale'] ?? 'en_US';
 }
 

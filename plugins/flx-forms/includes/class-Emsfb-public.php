@@ -158,7 +158,7 @@ public function check_nonce_permission_efb($request) {
 	}
 
 	if (!isset($_SERVER['HTTP_X_WP_NONCE'])) {
-		return new \WP_Error('rest_forbidden', __('X-WP-Nonce header is missing', 'flx-forms'), array('status' => 403));
+		return new \WP_Error('rest_forbidden', __('\\nX-WP-Nonce header is missing\\n', 'flx-forms'), array('status' => 403));
 	}
 
 	$verify = wp_verify_nonce( sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_WP_NONCE'] ) ), 'wp_rest');
@@ -186,7 +186,7 @@ public function check_nonce_permission_efb($request) {
 			}
 		}
 
-		return new \WP_Error('rest_forbidden', __('Invalid or expired nonce', 'flx-forms'), array('status' => 403));
+		return new \WP_Error('rest_forbidden', __('\\nInvalid or expired nonce\\n', 'flx-forms'), array('status' => 403));
 	}
 
 	return true;
@@ -247,7 +247,7 @@ public function check_nonce_permission_efb($request) {
 		if ( ! $this->efb_nonce_refresh_allowed_efb() ) {
 			return new \WP_Error(
 				'rest_too_many_requests',
-				__( 'Too many requests. Please try again shortly.', 'flx-forms' ),
+				__( '\\nToo many requests. Please try again shortly.\\n', 'flx-forms' ),
 				array( 'status' => 429 )
 			);
 		}
@@ -276,7 +276,7 @@ public function check_nonce_permission_efb($request) {
 		if ( ! $session_ok ) {
 			return new \WP_Error(
 				'rest_forbidden',
-				__( 'Your form session has expired. Please reload the page.', 'flx-forms' ),
+				__( '\\nYour form session has expired. Please reload the page.\\n', 'flx-forms' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -891,7 +891,7 @@ public function check_nonce_permission_efb($request) {
 				$form_info = '';
 				if (!empty($form_id)) {
 					$form_info = '<div style="margin-top: 15px; padding: 10px 20px; background: rgba(255,255,255,0.2); border-radius: 6px; display: inline-block; font-size: 13px;">
-						<span style="opacity: 0.8;">'.esc_html__('Form ID:', 'flx-forms').'</span>
+						<span style="opacity: 0.8;">'.esc_html__('\\nForm ID:\\n', 'flx-forms').'</span>
 						<strong>' . esc_html($form_id) . '</strong>
 					</div>';
 				}
@@ -910,7 +910,7 @@ public function check_nonce_permission_efb($request) {
 						<img src="'. esc_url(EMSFB_PLUGIN_URL . 'includes/admin/assets/image/logo-easy-form-builder.svg') .'" alt="Flux Forms" style="width: 60px; height: 60px; border-radius: 10px;" onerror="this.style.display=\'none\'">
 					</div>
 					<div style="font-size: 20px; font-weight: 700; margin-bottom: 10px;">Flux Forms</div>
-					<div style="font-size: 14px; opacity: 0.9;">'.esc_html__('The form will be displayed on the frontend.', 'flx-forms').'</div>
+					<div style="font-size: 14px; opacity: 0.9;">'.esc_html__('\\nThe form will be displayed on the frontend.\\n', 'flx-forms').'</div>
 					'.$form_info.'
 					<div style="margin-top: 15px; font-size: 12px; opacity: 0.7;">
 						<span style="background: rgba(255,255,255,0.15); padding: 4px 10px; border-radius: 4px;">ðŸ“ ' . esc_html($page_builder) . '</span>
@@ -1021,7 +1021,7 @@ public function check_nonce_permission_efb($request) {
 								</svg>
 								<span style='color:" . esc_attr($warn_muted) . "; font-family:" . esc_attr($warn_font_family) . ";
 								             font-size: calc(" . esc_attr($warn_font_size) . " * 0.93);'>"
-								. esc_html__('This link uses an older format. For improved security, new email notifications include updated links.', 'flx-forms') .
+								. esc_html__('\\nThis link uses an older format. For improved security, new email notifications include updated links.\\n', 'flx-forms') .
 								"</span>
 							</div>";
 						}
@@ -1041,7 +1041,7 @@ public function check_nonce_permission_efb($request) {
 							<h3 style='color:" . esc_attr($warn_text_color) . "; font-family:" . esc_attr($warn_font_family) . ";
 							           font-size: calc(" . esc_attr($warn_font_size) . " * 1.35); font-weight:600;
 							           margin:0 0 10px 0; text-align:center;'>"
-							    . esc_html__('It seems that you are the admin of this form. Please log in and try again.', 'flx-forms') .
+							    . esc_html__('\\nIt seems that you are the admin of this form. Please log in and try again.\\n', 'flx-forms') .
 							"</h3>" . $legacy_notice . "
 						</div>";
 					} else {
@@ -1082,8 +1082,8 @@ public function check_nonce_permission_efb($request) {
 					<path d='M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2'/>
 					</svg>
 				</div>
-				<h3 style='color:#202a8d;text-align: center;'>".esc_html__('Form does not exist !!','flx-forms')."</h3>
-				<h4 style='color:#ff4b93;text-align: center;'>".esc_html__('Flux Forms', 'flx-forms')."</h4></div></div>";
+				<h3 style='color:#202a8d;text-align: center;'>".esc_html__('\\nForm does not exist !!\', \'en\']]','flx-forms')."</h3>
+				<h4 style='color:#ff4b93;text-align: center;'>".esc_html__('\\nFlux Forms\\n', 'flx-forms')."</h4></div></div>";
 			}
 			$this->text_ = ["somethingWentWrongPleaseRefresh","atcfle","cpnnc","tfnapca","thisFeatureAvailableFreePlusPro", "icc","cpnts","cpntl","mcplen","mmxplen","mxcplen","clcdetls","vmgs","required","mmplen","offlineSend","amount","allformat","videoDownloadLink","downloadViedo","removeTheFile","pWRedirect","eJQ500","error400","errorCode","remove","minSelect","search","MMessageNSendEr","formNExist",
 			"settingsNfound","formPrivateM","pleaseWaiting","submit","youRecivedNewMessage","WeRecivedUrM","thankFillForm","trackNo","thankRegistering","welcome","thankSubscribing","thankDonePoll","error403","errorSiteKeyM","errorCaptcha","pleaseEnterVaildValue","createAcountDoneM","incorrectUP","sentBy","newPassM","done","surveyComplatedM","error405","errorSettingNFound","errorMRobot",
@@ -1201,11 +1201,11 @@ public function check_nonce_permission_efb($request) {
 				wp_enqueue_style('Emsfb-bootstrap-select-css');
 			}
 			$rp= get_setting_Emsfb('pub');
-			$efb_m = "<p class='efb fs-7 text-center my-1'>".esc_html__('Flux Forms', 'flx-forms')."</p> ";
+			$efb_m = "<p class='efb fs-7 text-center my-1'>".esc_html__('\\nFlux Forms\\n', 'flx-forms')."</p> ";
 			if(gettype($rp)=="integer" && $rp==0){
 				$stng=$lanText['settingsNfound'];
 				$state="form";
-				return "<div id='body_efb' class='efb card-public row pb-3 efb px-2'> <div class='efb text-center my-5'><h2 style='text-align: center;'></h2><h3 class='efb warning text-center text-darkb fs-4'>".esc_html__('Flux Forms couldn\'t locate the form settings. Please check your settings or contact support for assistance.','flx-forms')."</h3>".$efb_m;
+				return "<div id='body_efb' class='efb card-public row pb-3 efb px-2'> <div class='efb text-center my-5'><h2 style='text-align: center;'></h2><h3 class='efb warning text-center text-darkb fs-4'>".esc_html__('\\nFlux Forms couldn\\\'t locate the form settings. Please check your settings or contact support for assistance.\\n','flx-forms')."</h3>".$efb_m;
 			}
 
 			$stng= $rp[0];
@@ -1617,7 +1617,7 @@ public function check_nonce_permission_efb($request) {
 				}
 			}
 			if($valj_efb[0]->captcha==true && isset($valj_efb[0]->logic)==false ){
-				$error_msg = "<div id='body_efb' class='efb card-public row pb-3 efb px-2'  style='color: #9F6000; background-color: #FEEFB3;  padding: 5px 10px;'> <div class='efb text-center my-5'><h2 style='text-align: center;'></h2><h3 class='efb warning text-center text-darkb fs-4'>".esc_html__('The form is not shown because Google reCAPTCHA has not been added to the Flux Forms plugin settings.','flx-forms')."</h3><p class='efb fs-5  text-center my-1 text-pinkEfb' style='text-align: center;'><p></div></div>";
+				$error_msg = "<div id='body_efb' class='efb card-public row pb-3 efb px-2'  style='color: #9F6000; background-color: #FEEFB3;  padding: 5px 10px;'> <div class='efb text-center my-5'><h2 style='text-align: center;'></h2><h3 class='efb warning text-center text-darkb fs-4'>".esc_html__('\\nThe form is not shown because Google reCAPTCHA has not been added to the Flux Forms plugin settings.\\n','flx-forms')."</h3><p class='efb fs-5  text-center my-1 text-pinkEfb' style='text-align: center;'><p></div></div>";
 
 				$siteKey = '';
 				if (is_array($this->pub_stting) && isset($this->pub_stting['siteKey'])) {
@@ -2773,7 +2773,7 @@ public function check_nonce_permission_efb($request) {
 									$item['value'] = sanitize_text_field($item['value']);
 									$item = $this->filter_attributes_by_type_efb($item,$f['type']);
 									if ($item['value'] < 1 || $item['value'] > 5) {
-										$m =  $this->lanText['somethingWentWrongPleaseRefresh'] . '<br>' . esc_html__('Error Code', 'flx-forms') . ': 600';
+										$m =  $this->lanText['somethingWentWrongPleaseRefresh'] . '<br>' . esc_html__('\\nError Code\\n', 'flx-forms') . ': 600';
 										$response = array('success' => false, 'm' => $m);
 										wp_send_json_success($response, 200);
 									}
@@ -3178,7 +3178,7 @@ public function check_nonce_permission_efb($request) {
 							$recovery_data = $this->fun_get_content_email_register_recovery_efb($userid, $username, $email, $this->id, 'recovery', $page_id);
 							$recovery_url = $recovery_data['url'];
 
-							$subject = esc_html__("Password recovery", 'flx-forms') . " [" . get_bloginfo('name') . "]";
+							$subject = esc_html__('\\nPassword recovery\\n', 'flx-forms') . " [" . get_bloginfo('name') . "]";
 
 							// Use the plugin's centralized email sender with the full recovery URL
 							$pro = $this->efbFunction->is_efb_pro(1);
@@ -3499,7 +3499,7 @@ public function check_nonce_permission_efb($request) {
 										'total' => $amount,
 										'type' => "payment",
 										"paymentGateway" => $payment_gateway,
-										"paymentCreated" => wp_date(__('Y/m/d \a\t g:ia', 'flx-forms')),
+										"paymentCreated" => wp_date(__('\\nY/m/d \\\\a\\\\t g:ia\\n', 'flx-forms')),
 										"paymentmethod" => 'کارت',
 										"paymentIntent" => sanitize_text_field($request_data['auth']),
 										"paymentCard" => $result['data']['card_pan'],
@@ -3563,7 +3563,7 @@ public function check_nonce_permission_efb($request) {
 									// error_log('[EFB][PayPal][SUBMIT] update_message_db result=' . var_export($db_update_result, true) . ', track=' . $this->id . ', final_count=' . count($filtered));
 								}
 							} else {
-								$response = array('success' => false, 'm' => esc_html__('Error Code', 'flx-forms') . '</br>' . esc_html__('Payment Form', 'flx-forms'));
+								$response = array('success' => false, 'm' => esc_html__('\\nError Code\\n', 'flx-forms') . '</br>' . esc_html__('\\nPayment Form\\n', 'flx-forms'));
 								wp_send_json_success($response, 200);
 							}
 							$m = "Error 500";
@@ -4034,7 +4034,7 @@ public function check_nonce_permission_efb($request) {
 		if ( ! $this->efb_track_lookup_allowed() ) {
 			$response = array(
 				'success' => false,
-				'm'       => esc_html__( 'Too many attempts. Please wait a few minutes and try again.', 'flx-forms' ),
+				'm'       => esc_html__( '\\nToo many attempts. Please wait a few minutes and try again.\\n', 'flx-forms' ),
 			);
 			wp_send_json_success( $response, 200 );
 			return;
@@ -4069,7 +4069,7 @@ public function check_nonce_permission_efb($request) {
 			if ( $is_legacy_code && ! $this->efb_track_legacy_lookup_allowed() ) {
 				$response = array(
 					'success' => false,
-					'm'       => esc_html__( 'Too many attempts. Please wait a few minutes and try again.', 'flx-forms' ),
+					'm'       => esc_html__( '\\nToo many attempts. Please wait a few minutes and try again.\\n', 'flx-forms' ),
 				);
 				wp_send_json_success( $response, 200 );
 				return;
@@ -4310,7 +4310,7 @@ public function check_nonce_permission_efb($request) {
 		/* Legacy endpoint kept for older cached bundles; shares the REST
 		 * handler's policy so the two cannot drift apart. */
 		if (!isset($_FILES['file'])) {
-			$response = array( 'success' => false, 'error' => esc_html__('No file was received. Please choose a file and try again.','flx-forms'));
+			$response = array( 'success' => false, 'error' => esc_html__('\\nNo file was received. Please choose a file and try again.\\n','flx-forms'));
 			wp_send_json_success($response, 200);
 		}
 
@@ -4598,7 +4598,7 @@ public function check_nonce_permission_efb($request) {
 	 * existing pipeline; recordings use the persisted field definition, actual
 	 * MIME sniffing, a real uploaded-file check and media metadata duration. */
 	private function process_recorder_upload_efb($field, $uploaded_file, $declared_duration) {
-		$verification_error = esc_html__('The recording upload could not be verified. Please record it again and retry.','flx-forms');
+		$verification_error = esc_html__('[[\'The recording upload could not be verified. Please record it again and retry.\\n','flx-forms');
 		if (!is_array($uploaded_file) || !isset($uploaded_file['error']) || intval($uploaded_file['error']) !== UPLOAD_ERR_OK) {
 			return $this->recorder_upload_error_response_efb($verification_error);
 		}
@@ -4626,7 +4626,7 @@ public function check_nonce_permission_efb($request) {
 		$original_name = isset($uploaded_file['name']) ? sanitize_file_name(wp_unslash($uploaded_file['name'])) : '';
 		$extension = strtolower(pathinfo($original_name, PATHINFO_EXTENSION));
 		if ($extension === '' || !isset($mime_rules[$extension])) {
-			return $this->recorder_upload_error_response_efb(esc_html__('This recording format is not supported. Please record it again.','flx-forms'));
+			return $this->recorder_upload_error_response_efb(esc_html__('\\nThis recording format is not supported. Please record it again.\\n','flx-forms'));
 		}
 
 		$size = isset($uploaded_file['size']) ? intval($uploaded_file['size']) : 0;
@@ -4635,23 +4635,23 @@ public function check_nonce_permission_efb($request) {
 		$host_limit = function_exists('wp_max_upload_size') ? intval(wp_max_upload_size()) : 0;
 		if ($host_limit > 0) $max_bytes = min($max_bytes, $host_limit);
 		if ($size < 1 || $size > $max_bytes) {
-			return $this->recorder_upload_error_response_efb(esc_html__('The recording is larger than the allowed file size.','flx-forms'));
+			return $this->recorder_upload_error_response_efb(esc_html__('\\nThe recording is larger than the allowed file size.\\n','flx-forms'));
 		}
 
 		if (!function_exists('finfo_open')) {
-			return $this->recorder_upload_error_response_efb(esc_html__('The server could not verify the recording format. Please contact the site administrator.','flx-forms'));
+			return $this->recorder_upload_error_response_efb(esc_html__('\\nThe server could not verify the recording format. Please contact the site administrator.\\n','flx-forms'));
 		}
 		$finfo = finfo_open(FILEINFO_MIME_TYPE);
 		$detected_mime = $finfo ? finfo_file($finfo, $tmp_name) : false;
 		if ($finfo) finfo_close($finfo);
 		if (!$detected_mime || !in_array($detected_mime, $mime_rules[$extension], true)) {
-			return $this->recorder_upload_error_response_efb(esc_html__('The recording format could not be verified. Please record it again.','flx-forms'));
+			return $this->recorder_upload_error_response_efb(esc_html__('\\nThe recording format could not be verified. Please record it again.\\n','flx-forms'));
 		}
 
 		$max_duration = isset($field['max_duration']) && is_numeric($field['max_duration']) ? intval($field['max_duration']) : 90;
 		$max_duration = max(5, min(1800, $max_duration));
 		if (!is_numeric($declared_duration) || floatval($declared_duration) < 0 || floatval($declared_duration) > ($max_duration + 2)) {
-			return $this->recorder_upload_error_response_efb(esc_html__('The recording is longer than the allowed duration.','flx-forms'));
+			return $this->recorder_upload_error_response_efb(esc_html__('\\nThe recording is longer than the allowed duration.\\n','flx-forms'));
 		}
 
 		$actual_duration = $extension === 'webm' ? $this->get_webm_duration_efb($tmp_name) : 0;
@@ -4672,10 +4672,10 @@ public function check_nonce_permission_efb($request) {
 			}
 		}
 		if ($actual_duration <= 0) {
-			return $this->recorder_upload_error_response_efb(esc_html__('The server could not verify the recording duration. Please record it again and try uploading.','flx-forms'));
+			return $this->recorder_upload_error_response_efb(esc_html__('\\nThe server could not verify the recording duration. Please record it again and try uploading.\\n','flx-forms'));
 		}
 		if ($actual_duration > ($max_duration + 2)) {
-			return $this->recorder_upload_error_response_efb(esc_html__('The recording is longer than the allowed duration.','flx-forms'));
+			return $this->recorder_upload_error_response_efb(esc_html__('\\nThe recording is longer than the allowed duration.\\n','flx-forms'));
 		}
 
 		require_once ABSPATH . 'wp-admin/includes/file.php';
@@ -4692,7 +4692,7 @@ public function check_nonce_permission_efb($request) {
 		$upload = wp_handle_upload($stored_file, array('test_form' => false, 'mimes' => $mimes));
 		\Emsfb\Upload_Guard::end_private_upload();
 		if (!is_array($upload) || !empty($upload['error']) || empty($upload['url'])) {
-			return $this->recorder_upload_error_response_efb(esc_html__('The server could not store the recording. Please try again or contact the site administrator.','flx-forms'));
+			return $this->recorder_upload_error_response_efb(esc_html__('\\nThe server could not store the recording. Please try again or contact the site administrator.\\n','flx-forms'));
 		}
 		if (is_ssl()) $upload['url'] = str_replace('http://', 'https://', $upload['url']);
 		return array('success' => true, 'ID' => 'id', 'file' => $upload, 'name' => $stored_file['name'], 'type' => $detected_mime, 'duration' => $actual_duration);
@@ -4822,10 +4822,10 @@ public function check_nonce_permission_efb($request) {
 		$this->text_ = empty($this->text_) == false ? $this->text_ : array('error403', 'errorMRobot', 'errorFilePer');
 		$this->lanText = $this->efbFunction->text_efb($this->text_);
 		if (!preg_match('/^[A-Za-z0-9_-]{1,80}$/', $_POST['id'])) {
-			wp_send_json_success($this->recorder_upload_error_response_efb(esc_html__('The recording request could not be verified. Please retry.','flx-forms')), 200);
+			wp_send_json_success($this->recorder_upload_error_response_efb(esc_html__('\\nThe recording request could not be verified. Please retry.\', \'en\']]','flx-forms')), 200);
 		}
 		if (!in_array($_POST['pl'], array('msg', 'resp'), true)) {
-			wp_send_json_success($this->upload_rejected_response_efb(esc_html__('The upload request could not be verified. Please try again.','flx-forms')), 200);
+			wp_send_json_success($this->upload_rejected_response_efb(esc_html__('\\nThe upload request could not be verified. Please try again.\\n','flx-forms')), 200);
 		}
 
 		$is_form_upload = $_POST['pl'] === 'msg';
@@ -4836,12 +4836,12 @@ public function check_nonce_permission_efb($request) {
 			 * upload. That fallback is valid only for the response box, which has
 			 * no form-field definition of its own. */
 			if ($fid < 1) {
-				wp_send_json_success($this->upload_rejected_response_efb(esc_html__('The upload field could not be verified. Please refresh the form and try again.','flx-forms')), 200);
+				wp_send_json_success($this->upload_rejected_response_efb(esc_html__('\\nThe upload field could not be verified. Please refresh the form and try again.\\n','flx-forms')), 200);
 			}
 
 			$field_definition = $this->get_upload_field_definition_efb($fid, $_POST['id']);
 			if ($field_definition === null) {
-				wp_send_json_success($this->upload_rejected_response_efb(esc_html__('The upload field could not be verified. Please refresh the form and try again.','flx-forms')), 200);
+				wp_send_json_success($this->upload_rejected_response_efb(esc_html__('\\nThe upload field could not be verified. Please refresh the form and try again.\\n','flx-forms')), 200);
 			}
 		} else {
 			/* `pl=resp` only selects the policy.  It is not an authority on its
@@ -4852,7 +4852,7 @@ public function check_nonce_permission_efb($request) {
 			$response_token = isset($_POST['response_token']) ? sanitize_text_field(wp_unslash($_POST['response_token'])) : '';
 			$response_scope = $this->resolve_response_upload_scope_efb($response_id, $response_track, $response_token);
 			if ($response_scope === false) {
-				wp_send_json_success($this->upload_rejected_response_efb(esc_html__('The response box could not be verified. Reopen the conversation and try again.','flx-forms')), 200);
+				wp_send_json_success($this->upload_rejected_response_efb(esc_html__('\\nThe response box could not be verified. Reopen the conversation and try again.\\n','flx-forms')), 200);
 			}
 			/* Response attachments are never part of a form quota/budget. */
 			$fid = 0;
@@ -4870,7 +4870,7 @@ public function check_nonce_permission_efb($request) {
 			$content_length = isset($_SERVER['CONTENT_LENGTH']) ? (int) $_SERVER['CONTENT_LENGTH'] : 0;
 			$message = $content_length > $max_bytes
 				? \Emsfb\Upload_Guard::size_message($max_bytes)
-				: esc_html__('No file was received. Please choose a file and try again.','flx-forms');
+				: esc_html__('\\nNo file was received. Please choose a file and try again.\\n','flx-forms');
 			wp_send_json_success($this->upload_rejected_response_efb($message), 200);
 		}
 
@@ -4900,7 +4900,7 @@ public function check_nonce_permission_efb($request) {
 		if ($recorder_field !== null) {
 		$header_form_id = isset($_SERVER['HTTP_X_EFB_FORM_ID']) ? intval(wp_unslash($_SERVER['HTTP_X_EFB_FORM_ID'])) : (isset($_SERVER['HTTP_FORM_ID']) ? intval(wp_unslash($_SERVER['HTTP_FORM_ID'])) : 0);
 			if ($_POST['pl'] !== 'msg' || $header_form_id !== $fid || !isset($_FILES['async-upload'])) {
-				wp_send_json_success($this->recorder_upload_error_response_efb(esc_html__('The recording request could not be verified. Please retry.','flx-forms')), 200);
+				wp_send_json_success($this->recorder_upload_error_response_efb(esc_html__('\\nThe recording request could not be verified. Please retry.\', \'en\']]','flx-forms')), 200);
 			}
 			$duration = isset($_POST['recording_duration']) ? sanitize_text_field(wp_unslash($_POST['recording_duration'])) : '';
 			$response = $this->process_recorder_upload_efb($recorder_field, $_FILES['async-upload'], $duration);
@@ -4979,7 +4979,7 @@ public function check_nonce_permission_efb($request) {
 				 * returned to the browser: otherwise it could be attached to a
 				 * different conversation during the reservation outage. */
 				if (function_exists('wp_delete_file')) wp_delete_file($upload['file']);
-				wp_send_json_success($this->upload_rejected_response_efb(esc_html__('The response attachment could not be secured. Please try again.','flx-forms')), 200);
+				wp_send_json_success($this->upload_rejected_response_efb(esc_html__('\\nThe response attachment could not be secured. Please try again.\\n','flx-forms')), 200);
 			}
 			\Emsfb\Upload_Guard::track_pending_upload($upload['file']);
 		}
@@ -5119,7 +5119,7 @@ public function check_nonce_permission_efb($request) {
 				$value = $this->db->get_results($sql);
 
 				if (empty($value) || !isset($value[0]) || !isset($value[0]->content)) {
-					$response = array('success' => false, 'm' => esc_html__('Not allowed to respond to this message.', 'flx-forms') . ' E400');
+					$response = array('success' => false, 'm' => esc_html__('\\nNot allowed to respond to this message.\\n', 'flx-forms') . ' E400');
 					wp_send_json_success($response, 200);
 				}
 
@@ -5176,7 +5176,7 @@ public function check_nonce_permission_efb($request) {
 				if ($response_attachment_urls === false) {
 					wp_send_json_success(array(
 						'success' => false,
-						'm' => esc_html__('The response attachment could not be verified. Please attach the file again.', 'flx-forms'),
+						'm' => esc_html__('\\nThe response attachment could not be verified. Please attach the file again.\\n', 'flx-forms'),
 					), 200);
 				}
 				if($read_s==1){
@@ -6013,7 +6013,7 @@ public function check_nonce_permission_efb($request) {
     $welcome = $this->lanText['welcome'];
     $thankSubscribing = $this->lanText['thankSubscribing'];
     $thankDonePoll = $this->lanText['thankDonePoll'];
-    $newUserRegistration = esc_html__('New user registration', 'flx-forms');
+    $newUserRegistration = esc_html__('\\nNew user registration\', \'en\']]', 'flx-forms');
 	$newMassageReciver = $this->lanText['newMessageReceived'];
 
     for ($i = 0; $i < 2; $i++) {
@@ -6132,7 +6132,7 @@ public function check_nonce_permission_efb($request) {
 		}
 		$Sk = $this->resolve_payment_key_efb( $setting, 'stripeSKey' );
 		if ($Sk=="null"){
-				$m = esc_html__('Stripe', 'flx-forms').'->'.	esc_html__('error', 'flx-forms') . ' 402';
+				$m = esc_html__('\\nStripe\\n', 'flx-forms').'->'.	esc_html__('error', 'flx-forms') . ' 402';
 				$response = ['success' => false, 'm' => $m];
 				wp_send_json_success($response, 200);
 				die("secure!");
@@ -6148,7 +6148,7 @@ public function check_nonce_permission_efb($request) {
 			));
 			wp_send_json_success(array(
 				'success' => false,
-				'm'       => esc_html__('We have made some updates. Please wait a few minutes before trying again.', 'flx-forms'),
+				'm'       => esc_html__('\\nWe have made some updates. Please wait a few minutes before trying again.\\n', 'flx-forms'),
 			), 200);
 			return;
 		}
@@ -6328,7 +6328,7 @@ public function check_nonce_permission_efb($request) {
 			$response=array_merge($response , ['id'=>$check]);
 			wp_send_json_success($response, 200);
 		}else{
-			$msg = esc_html__('No payment amount detected. Please review your selected items and try again. If the problem persists, contact support.', 'flx-forms');
+			$msg = esc_html__('\\nNo payment amount detected. Please review your selected items and try again. If the problem persists, contact support.\\n', 'flx-forms');
 			$response = array( 'success' => false  , 'm'=>$msg);
 			wp_send_json_success($response, 200);
 		}
@@ -6353,7 +6353,7 @@ public function check_nonce_permission_efb($request) {
 		$trackid         = sanitize_text_field( $data_POST['trackid'] ?? '' );
 
 		if ( empty( $payment_intent ) ) {
-			wp_send_json_success( [ 'success' => false, 'm' => esc_html__( 'Payment Intent ID is missing', 'flx-forms' ) ], 400 );
+			wp_send_json_success( [ 'success' => false, 'm' => esc_html__( '[[\'Payment Intent ID is missing\\n', 'flx-forms' ) ], 400 );
 			return;
 		}
 
@@ -6429,7 +6429,7 @@ public function check_nonce_permission_efb($request) {
 			) );
 			wp_send_json_success( array(
 				'success' => false,
-				'm'       => esc_html__( 'We have made some updates. Please wait a few minutes before trying again.', 'flx-forms' ),
+				'm'       => esc_html__( '\\nWe have made some updates. Please wait a few minutes before trying again.\\n', 'flx-forms' ),
 			), 200 );
 			return;
 		}
@@ -6440,7 +6440,7 @@ public function check_nonce_permission_efb($request) {
 			$r= $this->setting!=NULL  && empty($this->setting)!=true ? $this->setting:  get_setting_Emsfb('raw');
 			$persiapay->pay_persia_sub_Emsfb_api($data_POST_ ,$this);
 		}else{
-			$m = esc_html__('persiaPayment', 'flx-forms').'->'.	esc_html__('error', 'flx-forms') . ' 406';
+			$m = esc_html__('\\npersiaPayment\\n', 'flx-forms').'->'.	esc_html__('error', 'flx-forms') . ' 406';
 			$response = ['success' => false, 'm' => $m];
 			wp_send_json_success($response, 200);
 		}
@@ -6455,24 +6455,24 @@ public function check_nonce_permission_efb($request) {
 	}
 	public function new_user_validate_efb($username,$email,$password){
 		if(!is_email($email)){
-			return esc_html__("The Email Address Is Not Valid" , 'flx-forms');
+			return esc_html__('\\nThe Email Address Is Not Valid\\n' , 'flx-forms');
 		}
 		 if(preg_match('/^[a-z0-9._]*$/',$username)!=true ){
-			return esc_html__("The Username Must Contain Only Letters, Numbers And Lowercase letters" , 'flx-forms');
+			return esc_html__('\\nThe Username Must Contain Only Letters, Numbers And Lowercase letters\', \'en\']]' , 'flx-forms');
 		}else if(strlen($username)<3){
-			return esc_html__("The Username Must Contain At Least 3 Characters." , 'flx-forms');
+			return esc_html__('\\nThe Username Must Contain At Least 3 Characters.\\n' , 'flx-forms');
 		}
 		if (strlen($password) <  8) {
-			return esc_html__("The Password Must Contain At Least 8 Characters!" , 'flx-forms');
+			return esc_html__('\\nThe Password Must Contain At Least 8 Characters!\\n' , 'flx-forms');
 		}
 		elseif(!preg_match("#[0-9]+#",$password)) {
-			return esc_html__("The Password Must Contain At Least 1 Number!" , 'flx-forms');
+			return esc_html__('\\nThe Password Must Contain At Least 1 Number!\\n' , 'flx-forms');
 		}
 		elseif(!preg_match("#[A-Z]+#",$password)) {
-			return esc_html__("The Password Must Contain At Least 1 Capital Letter!" , 'flx-forms');
+			return esc_html__('\\nThe Password Must Contain At Least 1 Capital Letter!\\n' , 'flx-forms');
 		}
 		elseif(!preg_match("#[a-z]+#",$password)) {
-			return  esc_html__("The Password Must Contain At Least 1 Lowercase Letter!" , 'flx-forms');
+			return  esc_html__('\\nThe Password Must Contain At Least 1 Lowercase Letter!\\n' , 'flx-forms');
 		}
 		return 0;
 	}
@@ -6599,7 +6599,7 @@ public function check_nonce_permission_efb($request) {
 					$list[] = $url;
 
 					if (in_array($t, array('audio_recorder', 'video_recorder', 'screen_recorder'), true)) {
-						$kind_label = $t === 'audio_recorder' ? esc_html__('Audio recording','flx-forms') : ($t === 'video_recorder' ? esc_html__('Video recording','flx-forms') : esc_html__('Screen recording','flx-forms'));
+						$kind_label = $t === 'audio_recorder' ? esc_html__('\\nAudio recording\\n','flx-forms') : ($t === 'video_recorder' ? esc_html__('\\nVideo recording\\n','flx-forms') : esc_html__('\\nScreen recording\\n','flx-forms'));
 						$duration = isset($c['recording_duration']) && is_numeric($c['recording_duration']) ? max(0, intval($c['recording_duration'])) : 0;
 						$duration_label = $duration > 0 ? ' (' . esc_html($duration . 's') . ')' : '';
 						$q = '<a href="'.esc_url($url).'" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">'.esc_html($kind_label . $duration_label . ' — ' . __('Download','flx-forms')).'</a>';
@@ -7220,7 +7220,7 @@ public function check_nonce_permission_efb($request) {
 		}else{
 
 			$new_page_id = wp_insert_post(array(
-				'post_title'     => esc_html__('Form Preview', 'flx-forms'),
+				'post_title'     => esc_html__('\\nForm Preview\\n', 'flx-forms'),
 				'post_type'      => 'page',
 				'post_name'      => 'easy-form-builder-preview',
 				'post_content'   => ' '.$id.' ',
@@ -7596,17 +7596,17 @@ public function check_nonce_permission_efb($request) {
 						let password = document.getElementById('passwordefb').value;
 						let alert = document.getElementById('alert-efb');
 						if (password.length < 8) {
-							alert.innerHTML = '".esc_html__("The Password Must Contain At Least 8 Characters!" , 'flx-forms')."';
+							alert.innerHTML = '".esc_html__('\\nThe Password Must Contain At Least 8 Characters!\\n' , 'flx-forms')."';
 							return;
 						}else if (!password.match(/[a-z]/g)) {
-							alert.innerHTML = '".esc_html__("The Password Must Contain At Least 1 Lowercase Letter!" , 'flx-forms')."';
+							alert.innerHTML = '".esc_html__('\\nThe Password Must Contain At Least 1 Lowercase Letter!\\n' , 'flx-forms')."';
 							return;
 						}else if (!password.match(/[A-Z]/g)) {
-							alert.innerHTML = '".esc_html__("The Password Must Contain At Least 1 Capital Letter!" , 'flx-forms').
+							alert.innerHTML = '".esc_html__('\\nThe Password Must Contain At Least 1 Capital Letter!\\n' , 'flx-forms').
 							"';
 							return;
 						}else if (!password.match(/[0-9]/g)) {
-							alert.innerHTML = '".esc_html__("The Password Must Contain At Least 1 Number!" , 'flx-forms')."';
+							alert.innerHTML = '".esc_html__('\\nThe Password Must Contain At Least 1 Number!\\n' , 'flx-forms')."';
 							return;
 						}else{
 							alert.innerHTML = '';
@@ -7622,7 +7622,7 @@ public function check_nonce_permission_efb($request) {
 							fid: fid
 						};
 
-						body_efb_rpass.innerHTML = '<div class=\"efb text-center p-4\"><i class=\"efb bi-hourglass-split fs-1 text-primary\"></i><p class=\"efb mt-2\">".esc_html__("Please Wait" , 'flx-forms')."</p></div>';
+						body_efb_rpass.innerHTML = '<div class=\"efb text-center p-4\"><i class=\"efb bi-hourglass-split fs-1 text-primary\"></i><p class=\"efb mt-2\">".esc_html__('\\nPlease Wait\\n' , 'flx-forms')."</p></div>';
 						fetch(efb_url, {
 							method: 'POST',
 							headers: {
@@ -7653,17 +7653,17 @@ public function check_nonce_permission_efb($request) {
 						<div class="efb mb-3">
 							<i class="efb bi-key-fill fs-1 text-primary"></i>
 						</div>
-						<h5 class="efb card-title efb text-center mb-1">'.esc_html__("Create New Password", 'flx-forms').'</h5>
-						<p class="efb text-muted fs-7">'.esc_html__("Create a secure password for your account", 'flx-forms').'</p>
+						<h5 class="efb card-title efb text-center mb-1">'.esc_html__('\\nCreate New Password\\n', 'flx-forms').'</h5>
+						<p class="efb text-muted fs-7">'.esc_html__('\\nCreate a secure password for your account\\n', 'flx-forms').'</p>
 					</div>
 
 					<!-- Password field with eye toggle -->
 					<div class="efb mb-3 efb">
 						<label for="passwordefb" class="efb form-label fs-7 m-0">
-							<i class="efb bi-lock me-1"></i>'.esc_html__("New Password", 'flx-forms').'
+							<i class="efb bi-lock me-1"></i>'.esc_html__('\\nNew Password\\n', 'flx-forms').'
 						</label>
 						<div class="efb input-group">
-							<input type="password" class="efb form-control border border-dark rounded-start-2 border-end-0" id="passwordefb" name="password" placeholder="'.esc_html__("Enter your new password", 'flx-forms').'">
+							<input type="password" class="efb form-control border border-dark rounded-start-2 border-end-0" id="passwordefb" name="password" placeholder="'.esc_html__('\\nEnter your new password\\n', 'flx-forms').'">
 							<button class="efb btn btn-outline-dark border-start-0 rounded-end-2" type="button" id="togglePasswordEfb">
 								<svg id="togglePasswordIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
 									<path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
@@ -7679,7 +7679,7 @@ public function check_nonce_permission_efb($request) {
 					<p class="efb text-danger efb fs-7" id="alert-efb"></p>
 
 					<button type="button" class="efb btn efb w-100 rounded-2 btn-dark h-d-efb" id="submitnewpass">
-						<i class="efb bi-check-lg me-2"></i>'.esc_html__("Set Password", 'flx-forms').'
+						<i class="efb bi-check-lg me-2"></i>'.esc_html__('\\nSet Password\\n', 'flx-forms').'
 					</button>
 				</div>
 					' .Js_() . Js_setpassword() ;
@@ -7811,7 +7811,7 @@ public function check_nonce_permission_efb($request) {
 		$raw_input = emsfb_read_file_efb('php://input');
 		$data = is_string($raw_input) ? json_decode($raw_input, true) : null;
 		if (!is_array($data)) {
-			return new WP_REST_Response(array('success' => false, 'data' => esc_html__('Error! Please try again later.', 'flx-forms')), 400);
+			return new WP_REST_Response(array('success' => false, 'data' => esc_html__('\\nError! Please try again later.\\n', 'flx-forms')), 400);
 		}
 
 		$st = sanitize_text_field($data['st'] ?? '');
@@ -7820,7 +7820,7 @@ public function check_nonce_permission_efb($request) {
 
 		$password = sanitize_text_field($data['password'] ?? '');
 		if ($st === '' || strlen($st) < 32 || $fid === '' || $password === '') {
-			return new WP_REST_Response(array('success' => false, 'data' => esc_html__('Error! Please try again later.', 'flx-forms')), 400);
+			return new WP_REST_Response(array('success' => false, 'data' => esc_html__('\\nError! Please try again later.\\n', 'flx-forms')), 400);
 		}
 		if(empty($this->db)){
             global $wpdb;
@@ -7839,11 +7839,11 @@ public function check_nonce_permission_efb($request) {
 					wp_set_password($password, $user->ID);
 					$this->efbFunction->efb_code_validate_update($st, 'recovery', 1);
 					$this->db->delete($table_name, ['id' => (int) $row->id], ['%d']);
-					return new WP_REST_Response(array('success' => true, 'data' => esc_html__('Password has been changed successfully!', 'flx-forms')));
+					return new WP_REST_Response(array('success' => true, 'data' => esc_html__('\\nPassword has been changed successfully!\\n', 'flx-forms')));
 				}
 			}
 		}
-		return new WP_REST_Response(array('success' => false, 'data' => esc_html__('Error! Please try again later.', 'flx-forms')));
+		return new WP_REST_Response(array('success' => false, 'data' => esc_html__('\\nError! Please try again later.\\n', 'flx-forms')));
 	}
 
 	public function ColorNameToHexEfbOfElEfb($v, $n) {
@@ -8062,7 +8062,7 @@ public function check_nonce_permission_efb($request) {
 						}
 					});
 					if($filtered==false){
-						$msg = esc_html__('Invalid payment selection. Please review your choices and try again. If the problem persists, contact the site administrator.', 'flx-forms');
+						$msg = esc_html__('\\nInvalid payment selection. Please review your choices and try again. If the problem persists, contact the site administrator.\\n', 'flx-forms');
 						$response = ['success' => false, 'm' => $msg];
 						wp_send_json_success($response, 200);
 					}

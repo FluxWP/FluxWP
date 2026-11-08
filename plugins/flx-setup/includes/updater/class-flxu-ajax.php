@@ -26,12 +26,12 @@ final class FLXU_Ajax {
 		$status  = FLXU_Updater::status();
 		$pending = FLXU_Admin::pending_count();
 		if ( empty( $status['ok'] ) ) {
-			$summary = __( 'Sunucuya bağlanılamadı.', 'flx-setup' );
+			$summary = __( 'Could not connect to the server.', 'flx-setup' );
 		} elseif ( $pending ) {
 			/* translators: %d: number of updates */
-			$summary = sprintf( _n( '%d güncelleme var', '%d güncelleme var', $pending, 'flx-setup' ), $pending );
+			$summary = sprintf( _n( '[[\'%dthere is an update\', \'tr\']]', '[[\'%dthere is an update\', \'tr\']]', $pending, 'flx-setup' ), $pending );
 		} else {
-			$summary = __( 'Hepsi güncel ✓', 'flx-setup' );
+			$summary = __( 'All up to date ✓', 'flx-setup' );
 		}
 		wp_send_json_success(
 			array(
@@ -46,7 +46,7 @@ final class FLXU_Ajax {
 	private static function guard(): void {
 		check_ajax_referer( self::NONCE, 'nonce' );
 		if ( ! current_user_can( 'update_plugins' ) && ! current_user_can( 'install_plugins' ) ) {
-			wp_send_json_error( array( 'message' => __( 'Yetkiniz yok.', 'flx-setup' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'You are not allowed to do this.', 'flx-setup' ) ), 403 );
 		}
 	}
 
@@ -111,16 +111,16 @@ final class FLXU_Ajax {
 		if ( in_array( $kind, array( 'install', 'wporg', 'activate' ), true ) ) {
 			$cap = 'activate' === $kind ? 'activate_plugins' : ( $p && 'theme' === $p['type'] ? 'install_themes' : 'install_plugins' );
 			if ( ! current_user_can( $cap ) ) {
-				return self::fail( __( 'Yetkiniz yok.', 'flx-setup' ) );
+				return self::fail( __( 'You are not allowed to do this.', 'flx-setup' ) );
 			}
 			return ( new FLXU_Installer() )->step( $kind, $slug, $catalog, FLXU_Installer::wporg_allowed( $catalog ) );
 		}
 
 		if ( ! $p ) {
-			return self::fail( __( 'Paket bulunamadı.', 'flx-setup' ) );
+			return self::fail( __( 'Package not found.', 'flx-setup' ) );
 		}
 		if ( ! current_user_can( 'theme' === $p['type'] ? 'update_themes' : 'update_plugins' ) ) {
-			return self::fail( __( 'Yetkiniz yok.', 'flx-setup' ) );
+			return self::fail( __( 'You are not allowed to do this.', 'flx-setup' ) );
 		}
 
 		require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
@@ -144,7 +144,7 @@ final class FLXU_Ajax {
 			} else {
 				$files = FLXU_Updater::plugin_files();
 				if ( ! isset( $files[ $slug ] ) ) {
-					return self::fail( __( 'Paket kurulu değil.', 'flx-setup' ) );
+					return self::fail( __( 'The package is not installed.', 'flx-setup' ) );
 				}
 				self::ensure_update_data( 'update_plugins' );
 				$upgrader = new Plugin_Upgrader( $skin );
@@ -152,10 +152,10 @@ final class FLXU_Ajax {
 			}
 			if ( is_array( $res ) && ! array_filter( $res ) && $guard->logged === $before ) {
 				/* translators: %s: package */
-				$lines[] = array( 'ok' => false, 'text' => sprintf( __( '%s güncellenmedi: WordPress bu paket için güncelleme görmüyor. "Güncellemeleri kontrol et" deyip yeniden deneyin.', 'flx-setup' ), $p['name'] ) );
+				$lines[] = array( 'ok' => false, 'text' => sprintf( __( '%s was not updated: WordPress sees no update for it. Click "Check for updates" and try again.', 'flx-setup' ), $p['name'] ) );
 			}
 		} else {
-			return self::fail( __( 'Bilinmeyen işlem.', 'flx-setup' ) );
+			return self::fail( __( 'Unknown action.', 'flx-setup' ) );
 		}
 
 		foreach ( $skin->get_errors()->get_error_messages() as $m ) {

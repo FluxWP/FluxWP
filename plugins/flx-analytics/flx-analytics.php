@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Analytics
  * Description:       Çerezsiz, kişisel veri tutmayan site istatistikleri: ziyaretçi, görüntülenme, en çok okunan sayfalar, yönlendiren siteler, kanal, cihaz/tarayıcı, kampanya (UTM), tıklama olayları ve bağış dönüşümleri. Veriler sitede kalır; yapay zekâ Flux AI / Flux AI & MCP araçlarıyla okur.
- * Version:           0.4.2
+ * Version:           0.4.3
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -14,13 +14,14 @@
 
 defined( 'ABSPATH' ) || exit;
 
+require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
 if ( defined( 'FLXAN_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXAN_VERSION', '0.4.2' );
+define( 'FLXAN_VERSION', '0.4.3' );
 define( 'FLXAN_DB_VERSION', 3 );
 define( 'FLXAN_FILE', __FILE__ );
 define( 'FLXAN_DIR', plugin_dir_path( __FILE__ ) );
@@ -77,7 +78,7 @@ add_action( 'plugins_loaded', 'flxan_maybe_upgrade' );
 add_filter(
 	'plugin_action_links_' . plugin_basename( FLXAN_FILE ),
 	function ( $links ) {
-		array_unshift( $links, '<a href="' . esc_url( admin_url( 'admin.php?page=flx-analytics' ) ) . '">' . esc_html__( 'İstatistikler', 'flx-analytics' ) . '</a>' );
+		array_unshift( $links, '<a href="' . esc_url( admin_url( 'admin.php?page=flx-analytics' ) ) . '">' . esc_html__( 'Statistics', 'flx-analytics' ) . '</a>' );
 		return $links;
 	}
 );

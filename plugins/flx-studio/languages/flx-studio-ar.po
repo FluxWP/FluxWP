@@ -1,0 +1,950 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "General"
+msgstr "عام"
+
+msgid "Person (face/identity)"
+msgstr "الشخص (الوجه/الهوية)"
+
+msgid "Style"
+msgstr "النمط"
+
+msgid "Product"
+msgstr "المنتج"
+
+msgid "Background"
+msgstr "الخلفية"
+
+msgid "Composition"
+msgstr "تكوين"
+
+msgid "First frame"
+msgstr "الإطار الأول"
+
+msgid "Last frame"
+msgstr "الإطار الأخير"
+
+msgid "Auto"
+msgstr "تلقائي"
+
+msgid "Low"
+msgstr "منخفض"
+
+msgid "Medium"
+msgstr "متوسط"
+
+msgid "High"
+msgstr "عالية"
+
+msgid "Theme: system"
+msgstr "الموضوع: النظام"
+
+msgid "Theme: light"
+msgstr "الموضوع: نور"
+
+msgid "Theme: dark"
+msgstr "الموضوع: الظلام"
+
+msgid "Opening Studio…"
+msgstr "افتتاح الاستوديو..."
+
+msgid "Try again"
+msgstr "حاول مرة أخرى"
+
+msgid "Search prompt, title or model"
+msgstr "موجه البحث أو العنوان أو النموذج"
+
+msgid "Search"
+msgstr "بحث"
+
+msgid "Menu"
+msgstr "القائمة"
+
+msgid "Select"
+msgstr "اختر"
+
+msgid "To generate images and videos, enter at least one key (fal.ai, EvoLink…) in Flux AI & MCP › Settings › Images and video."
+msgstr "لإنشاء صور ومقاطع فيديو، أدخل مفتاحًا واحدًا على الأقل (fal.ai، EvoLink...) في Flux AI & MCP ›الإعدادات› الصور والفيديو."
+
+msgid "Flux AI (0.6.0+) is not installed. Generation runs through Flux AI."
+msgstr "لم يتم تثبيت Flux AI (0.6.0+). يتم تشغيل الجيل من خلال Flux AI."
+
+msgid "Flux AI settings"
+msgstr "إعدادات التدفق AI"
+
+msgid "Mine"
+msgstr "الألغام"
+
+msgid "Everyone"
+msgstr "الجميع"
+
+msgid "Studio"
+msgstr "استوديو"
+
+msgid "All"
+msgstr "الكل"
+
+msgid "Favorites"
+msgstr "المفضلة"
+
+msgid "Images"
+msgstr "الصور"
+
+msgid "Videos"
+msgstr "فيديوهات"
+
+msgid "Dashboard"
+msgstr "لوحة القيادة"
+
+msgid "Folders"
+msgstr "المجلدات"
+
+msgid "New folder"
+msgstr "مجلد جديد"
+
+msgid "Unfiled"
+msgstr "غير مصنف"
+
+msgid "Shared with the team"
+msgstr "المشتركة مع الفريق"
+
+msgid "Folder actions"
+msgstr "إجراءات المجلد"
+
+msgid "People"
+msgstr "الناس"
+
+msgid "Add person"
+msgstr "إضافة شخص"
+
+msgid "{name} — add to generation"
+msgstr "{name}— إضافة إلى الجيل"
+
+msgid "Add people for face references; use them by typing @name in the prompt."
+msgstr "إضافة أشخاص لمراجع الوجه؛ استخدمها عن طريق كتابة @name في الموجه."
+
+msgid "Manage people"
+msgstr "إدارة الناس"
+
+msgid "Back to dashboard"
+msgstr "العودة إلى لوحة القيادة"
+
+msgid "Theme"
+msgstr "الموضوع"
+
+msgid "Studio settings"
+msgstr "إعدادات الاستوديو"
+
+msgid "Flux AI spending limit"
+msgstr "حد إنفاق Flux AI"
+
+msgid "Folder"
+msgstr "مجلد"
+
+msgid "Subfolder"
+msgstr "مجلد فرعي"
+
+msgid "Create"
+msgstr "إنشاء"
+
+msgid "Folder created"
+msgstr "تم إنشاء المجلد"
+
+msgid "Rename"
+msgstr "إعادة تسمية"
+
+msgid "Folder name"
+msgstr "اسم المجلد"
+
+msgid "Stop sharing"
+msgstr "توقف عن المشاركة"
+
+msgid "Share with team"
+msgstr "شارك مع الفريق"
+
+msgid "Folder is shared with the team"
+msgstr "تتم مشاركة المجلد مع الفريق"
+
+msgid "Folder is private"
+msgstr "المجلد خاص"
+
+msgid "Delete folder"
+msgstr "حذف المجلد"
+
+msgid "Delete folder?"
+msgstr "هل تريد حذف المجلد؟"
+
+msgid "Its items and subfolders move up one level; no files are deleted."
+msgstr "تنتقل عناصره ومجلداته الفرعية إلى مستوى واحد لأعلى؛ لا يتم حذف أي ملفات."
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "{n} items moved"
+msgstr "تم نقل عناصر{n}"
+
+msgid "Nothing here"
+msgstr "لا شيء هنا"
+
+msgid "Create your first image"
+msgstr "قم بإنشاء صورتك الأولى"
+
+msgid "Change the filter or start a new generation below."
+msgstr "قم بتغيير الفلتر أو ابدأ جيلًا جديدًا أدناه."
+
+msgid "Describe what you want below. Drag in reference images or add people with @."
+msgstr "قم بوصف ما تريد أدناه. اسحب الصور المرجعية أو أضف أشخاصًا باستخدام @."
+
+msgid "Remove from favorites"
+msgstr "إزالة من المفضلة"
+
+msgid "Add to favorites"
+msgstr "أضف إلى المفضلة"
+
+msgid "Queued"
+msgstr "في قائمة الانتظار"
+
+msgid "Generating"
+msgstr "توليد"
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "Cancelled"
+msgstr "تم الإلغاء"
+
+msgid "Failed"
+msgstr "فشل"
+
+msgid "Reuse settings"
+msgstr "إعادة استخدام الإعدادات"
+
+msgid "{n} selected"
+msgstr "تم تحديد{n}"
+
+msgid "Tap items to select"
+msgstr "اضغط على العناصر لتحديدها"
+
+msgid "Use as reference"
+msgstr "استخدم كمرجع"
+
+msgid "Move"
+msgstr "تحرك"
+
+msgid "Exit selection"
+msgstr "الخروج من التحديد"
+
+msgid "New folder…"
+msgstr "مجلد جديد..."
+
+msgid "Delete {n} items?"
+msgstr "هل تريد حذف عناصر{n}؟"
+
+msgid "Delete item?"
+msgstr "هل تريد حذف العنصر؟"
+
+msgid "Files are deleted from the server. Copies added to the Media Library stay."
+msgstr "يتم حذف الملفات من الخادم. تمت إضافة النسخ إلى مكتبة الوسائط."
+
+msgid "{n} items ready"
+msgstr "عناصر{n}جاهزة"
+
+msgid "Generation ready"
+msgstr "جيل جاهز"
+
+msgid "A generation failed"
+msgstr "جيل فاشل"
+
+msgid "Remove"
+msgstr "إزالة"
+
+msgid "Add reference"
+msgstr "إضافة مرجع"
+
+msgid "What happens in the video? Subject, motion, camera… (add people with @)"
+msgstr "ماذا يحدث في الفيديو؟ الموضوع، الحركة، الكاميرا... (أضف أشخاصًا بـ @)"
+
+msgid "What do you want to create? (add people with @, drop images here)"
+msgstr "ماذا تريد أن تخلق؟ (أضف أشخاصًا باستخدام @، وأفلت الصور هنا)"
+
+msgid "Image"
+msgstr "صورة"
+
+msgid "Video"
+msgstr "فيديو"
+
+msgid "Aspect ratio"
+msgstr "نسبة الارتفاع"
+
+msgid "Adaptive"
+msgstr "التكيف"
+
+msgid "Resolution"
+msgstr "القرار"
+
+msgid "Quality"
+msgstr "الجودة"
+
+msgid "Count"
+msgstr "عد"
+
+msgid "Duration"
+msgstr "المدة"
+
+msgid "Audio"
+msgstr "الصوت"
+
+msgid "Provider and model"
+msgstr "المزود والنموذج"
+
+msgid "Choose model"
+msgstr "اختر النموذج"
+
+msgid "No models"
+msgstr "لا نماذج"
+
+msgid "Generate (Ctrl/⌘+Enter)"
+msgstr "إنشاء (Ctrl/⌘+أدخل)"
+
+msgid "Generate"
+msgstr "إنشاء"
+
+msgid "Templates"
+msgstr "قوالب"
+
+msgid "Several different prompts from one idea"
+msgstr "عدة مطالبات مختلفة من فكرة واحدة"
+
+msgid "Flux AI text model is not ready"
+msgstr "نموذج نص Flux AI غير جاهز"
+
+msgid "Brainstorm"
+msgstr "العصف الذهني"
+
+msgid "Turn the draft into a detailed prompt for the model"
+msgstr "قم بتحويل المسودة إلى مطالبة تفصيلية للنموذج"
+
+msgid "Enhance"
+msgstr "تعزيز"
+
+msgid "Provider"
+msgstr "مزود"
+
+msgid "{n} models"
+msgstr "نماذج{n}"
+
+msgid "no key"
+msgstr "لا يوجد مفتاح"
+
+msgid "No {p} key (Flux AI & MCP › Settings › Images and video)."
+msgstr "لا يوجد مفتاح{p}(Flux AI & MCP ›الإعدادات› الصور والفيديو)."
+
+msgid "This reference is already added"
+msgstr "تمت إضافة هذا المرجع بالفعل"
+
+msgid "This model accepts at most {n} references"
+msgstr "يقبل هذا النموذج معظم مراجع{n}"
+
+msgid "Save to references"
+msgstr "حفظ إلى المراجع"
+
+msgid "Saved"
+msgstr "تم الحفظ"
+
+msgid "Upload file"
+msgstr "تحميل الملف"
+
+msgid "Pick from gallery"
+msgstr "اختر من المعرض"
+
+msgid "{n} photos"
+msgstr "صور{n}"
+
+msgid "no photos"
+msgstr "لا توجد صور"
+
+msgid "Saved references"
+msgstr "المراجع المحفوظة"
+
+msgid "Reference"
+msgstr "مرجع"
+
+msgid "Only PNG, JPEG, WebP or GIF can be added."
+msgstr "يمكن إضافة ملفات PNG أو JPEG أو WebP أو GIF فقط."
+
+msgid "Pick references from gallery"
+msgstr "اختيار المراجع من المعرض"
+
+msgid "Add"
+msgstr "أضف"
+
+msgid "No images yet."
+msgstr "لا توجد صور بعد."
+
+msgid "{name} has no photos; add some in Manage people"
+msgstr "{name}ليس لديه صور. أضف بعضًا منها في إدارة الأشخاص"
+
+msgid "Write a short draft first."
+msgstr "اكتب مسودة قصيرة أولاً."
+
+msgid "Prompt enhanced"
+msgstr "تعزيز موجه"
+
+msgid "Back to draft"
+msgstr "العودة إلى المسودة"
+
+msgid "Describe what to generate."
+msgstr "وصف ما يجب توليده."
+
+msgid "References are uploading, one moment…"
+msgstr "يتم الآن تحميل المراجع، لحظة واحدة..."
+
+msgid "team"
+msgstr "فريق"
+
+msgid "No templates yet"
+msgstr "لا توجد قوالب حتى الآن"
+
+msgid "Save current settings"
+msgstr "حفظ الإعدادات الحالية"
+
+msgid "Delete template…"
+msgstr "حذف القالب..."
+
+msgid "E.g. Event poster 4:5"
+msgstr "على سبيل المثال ملصق الحدث 4:5"
+
+msgid "Save as template"
+msgstr "حفظ كقالب"
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "Prompt, model, ratio, resolution and references are saved."
+msgstr "يتم حفظ المطالبة والنموذج والنسبة والدقة والمراجع."
+
+msgid "Template saved"
+msgstr "تم حفظ القالب"
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "Previous"
+msgstr "السابق"
+
+msgid "Next"
+msgstr "التالي"
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Model"
+msgstr "نموذج"
+
+msgid "Size"
+msgstr "الحجم"
+
+msgid "Cost"
+msgstr "التكلفة"
+
+msgid "Date"
+msgstr "التاريخ"
+
+msgid "Created by"
+msgstr "تم إنشاؤها بواسطة"
+
+msgid "Favorited"
+msgstr "المفضلة"
+
+msgid "Favorite"
+msgstr "المفضلة"
+
+msgid "Download"
+msgstr "تحميل"
+
+msgid "Added to references"
+msgstr "تمت إضافتها إلى المراجع"
+
+msgid "Edit area"
+msgstr "تحرير المنطقة"
+
+msgid "This model does not support area editing"
+msgstr "هذا النموذج لا يدعم تحرير المنطقة"
+
+msgid "Close comparison"
+msgstr "مقارنة قريبة"
+
+msgid "Compare with original"
+msgstr "قارن مع الأصلي"
+
+msgid "In library"
+msgstr "في المكتبة"
+
+msgid "Add to Media Library"
+msgstr "أضف إلى مكتبة الوسائط"
+
+msgid "Add title"
+msgstr "أضف عنوانًا"
+
+msgid "Title"
+msgstr "العنوان"
+
+msgid "Copy prompt"
+msgstr "نسخ المطالبة"
+
+msgid "Original draft"
+msgstr "المسودة الأصلية"
+
+msgid "Already in the Media Library"
+msgstr "بالفعل في مكتبة الوسائط"
+
+msgid "Added to the Media Library"
+msgstr "تمت إضافته إلى مكتبة الوسائط"
+
+msgid "No model with area editing and a configured key."
+msgstr "لا يوجد نموذج مع تحرير المنطقة ومفتاح مكون."
+
+msgid "Edit started; the result will appear in the gallery"
+msgstr "بدأ التحرير؛ ستظهر النتيجة في المعرض"
+
+msgid "Describe the idea: e.g. Instagram post for the 11 November tree planting event"
+msgstr "وصف الفكرة: على سبيل المثال. منشور على Instagram لحدث زراعة الأشجار في 11 نوفمبر"
+
+msgid "Number of ideas"
+msgstr "عدد الأفكار"
+
+msgid "{n} ideas"
+msgstr "أفكار{n}"
+
+msgid "YouTube thumbnail"
+msgstr "يوتيوب الصورة المصغرة"
+
+msgid "Generate ideas"
+msgstr "توليد الأفكار"
+
+msgid "Preparing ideas…"
+msgstr "تحضير الأفكار..."
+
+msgid "Generate selected ({n})"
+msgstr "إنشاء المحدد ({n})"
+
+msgid "{n} generations started"
+msgstr "بدأت أجيال{n}"
+
+msgid "Sending {i}/{n}"
+msgstr "إرسال{i}/{n}"
+
+msgid "Creates distinct prompts from one idea. Pick the ones you like and generate them in one go. Model and ratio come from the generation bar."
+msgstr "يخلق مطالبات متميزة من فكرة واحدة. اختر ما يعجبك وقم بإنشائه دفعة واحدة. النموذج والنسبة يأتيان من شريط التوليد."
+
+msgid "Idea"
+msgstr "فكرة"
+
+msgid "No people yet. Add a person and upload 1-4 clear face photos; typing @name in the prompt sends them as identity references."
+msgstr "لا يوجد أشخاص بعد. أضف شخصًا وقم بتحميل 1-4 صور واضحة للوجه؛ تؤدي كتابة @name في الموجه إلى إرسالها كمراجع للهوية."
+
+msgid "Delete photo"
+msgstr "حذف الصورة"
+
+msgid "Add photo"
+msgstr "أضف صورة"
+
+msgid "Person name"
+msgstr "اسم الشخص"
+
+msgid "Delete person"
+msgstr "حذف الشخص"
+
+msgid "Delete {name}?"
+msgstr "حذف{name}؟"
+
+msgid "The person and their photos are deleted. Earlier generations stay."
+msgstr "يتم حذف الشخص وصورته. تبقى الأجيال السابقة."
+
+msgid "New person"
+msgstr "شخص جديد"
+
+msgid "Default image model"
+msgstr "نموذج الصورة الافتراضي"
+
+msgid "Default video model"
+msgstr "نموذج الفيديو الافتراضي"
+
+msgid "Empty: Flux AI default"
+msgstr "فارغ: Flux AI الافتراضي"
+
+msgid "Enhance / Brainstorm text model"
+msgstr "تعزيز / نموذج النص العصف الذهني"
+
+msgid "Max images per request"
+msgstr "الحد الأقصى للصور لكل طلب"
+
+msgid "Max brainstorm ideas"
+msgstr "أفكار ماكس العصف الذهني"
+
+msgid "Share people with all Studio users"
+msgstr "مشاركة الأشخاص مع جميع مستخدمي الاستوديو"
+
+msgid "Keys, providers and the spending limit are in Flux AI & MCP › Settings."
+msgstr "المفاتيح والموفرين وحد الإنفاق موجودة في إعدادات Flux AI & MCP."
+
+msgid "Settings saved"
+msgstr "تم حفظ الإعدادات"
+
+msgid "just now"
+msgstr "الآن فقط"
+
+msgid "{n} min ago"
+msgstr "{n}منذ دقيقة"
+
+msgid "{n} h ago"
+msgstr "{n}منذ ح"
+
+msgid "Server error ({n})."
+msgstr "خطأ في الخادم ({n})."
+
+msgid "Unexpected response from the server."
+msgstr "استجابة غير متوقعة من الخادم."
+
+msgid "Something went wrong."
+msgstr "حدث خطأ ما."
+
+msgid "OK"
+msgstr "حسنًا"
+
+msgid "Copied"
+msgstr "منقول"
+
+msgid "7 days"
+msgstr "7 أيام"
+
+msgid "30 days"
+msgstr "30 يوما"
+
+msgid "90 days"
+msgstr "90 يوما"
+
+msgid "Spend from Flux AI logs"
+msgstr "الإنفاق من سجلات Flux AI"
+
+msgid "Flux AI logs unavailable; Studio amounts"
+msgstr "سجلات Flux AI غير متاحة؛ مبالغ الاستوديو"
+
+msgid "Refresh"
+msgstr "تحديث"
+
+msgid "(estimated)"
+msgstr "(تقديري)"
+
+msgid "Generations"
+msgstr "أجيال"
+
+msgid "{i} images · {v} videos"
+msgstr "صور{i}· مقاطع فيديو{v}"
+
+msgid "Spend"
+msgstr "انفق"
+
+msgid "Image/video {m} · text {x}"
+msgstr "صورة/فيديو{m}· نص{x}"
+
+msgid "Average"
+msgstr "متوسط"
+
+msgid "per generation"
+msgstr "لكل جيل"
+
+msgid "{p}% error rate"
+msgstr "{p}معدل الخطأ %"
+
+msgid "no attempts yet"
+msgstr "لا توجد محاولات حتى الآن"
+
+msgid "Storage {b}"
+msgstr "تخزين{b}"
+
+msgid "Daily generations"
+msgstr "الأجيال اليومية"
+
+msgid "No generations in this period."
+msgstr "لا أجيال في هذه الفترة."
+
+msgid "Daily spend"
+msgstr "الإنفاق اليومي"
+
+msgid "No spend in this period."
+msgstr "لا يوجد إنفاق في هذه الفترة."
+
+msgid "Flux AI logs"
+msgstr "سجلات التدفق AI"
+
+msgid "Models"
+msgstr "نماذج"
+
+msgid "Errors"
+msgstr "أخطاء"
+
+msgid "Amount"
+msgstr "المبلغ"
+
+msgid "No records."
+msgstr "لا توجد سجلات."
+
+msgid "Providers"
+msgstr "مقدمي الخدمات"
+
+msgid "Person"
+msgstr "شخص"
+
+msgid "Recent errors"
+msgstr "الأخطاء الأخيرة"
+
+msgid "Brush"
+msgstr "فرشاة"
+
+msgid "Rectangle"
+msgstr "مستطيل"
+
+msgid "Eraser"
+msgstr "ممحاة"
+
+msgid "Brush size"
+msgstr "حجم الفرشاة"
+
+msgid "Undo"
+msgstr "تراجع"
+
+msgid "Clear"
+msgstr "واضح"
+
+msgid "What should change in the selected area? E.g. make the T-shirt green, change the text to \"Plant a Tree\""
+msgstr "ما الذي يجب أن يتغير في المنطقة المحددة؟ على سبيل المثال جعل القميص باللون الأخضر، وتغيير النص إلى \"ازرع شجرة\""
+
+msgid "Edit"
+msgstr "تحرير"
+
+msgid "Describe the change."
+msgstr "وصف التغيير."
+
+msgid "Tool"
+msgstr "أداة"
+
+msgid "Paint the area to change. Unpainted areas are kept."
+msgstr "طلاء المنطقة للتغيير. يتم الاحتفاظ بالمناطق غير المطلية."
+
+msgid "Change"
+msgstr "التغيير"
+
+msgid "Before"
+msgstr "قبل"
+
+msgid "After"
+msgstr "بعد"
+
+msgid "Studio requires JavaScript."
+msgstr "يتطلب الاستوديو جافا سكريبت."
+
+msgid "Flux AI (0.6.0+) is not installed or image generation is off."
+msgstr "لم يتم تثبيت Flux AI (0.6.0+) أو تم إيقاف إنشاء الصور."
+
+msgid "Model not found. Check the keys in Flux AI & MCP › Settings › Images and video."
+msgstr "لم يتم العثور على النموذج. تحقق من المفاتيح في Flux AI & MCP ›الإعدادات› الصور والفيديو."
+
+msgid "Image to edit not found."
+msgstr "لم يتم العثور على الصورة المراد تعديلها."
+
+msgid "This model does not support area editing."
+msgstr "هذا النموذج لا يدعم تحرير المنطقة."
+
+msgid "Mask must be a PNG."
+msgstr "يجب أن يكون القناع بصيغة PNG."
+
+msgid "The request may have reached the provider; check the provider's history before sending again."
+msgstr "ربما وصل الطلب إلى المزود؛ تحقق من سجل الموفر قبل الإرسال مرة أخرى."
+
+msgid "Sending did not complete, please try again."
+msgstr "لم يكتمل الإرسال، يرجى المحاولة مرة أخرى."
+
+msgid "The provider returned fewer results than requested."
+msgstr "قام الموفر بإرجاع نتائج أقل من المطلوبة."
+
+msgid "The file is hosted temporarily by the provider; add it to the Media Library or download it."
+msgstr "تتم استضافة الملف مؤقتًا بواسطة الموفر؛ أضفه إلى مكتبة الوسائط أو قم بتنزيله."
+
+msgid "Cancelled."
+msgstr "تم الإلغاء."
+
+msgid "Generation failed."
+msgstr "فشل الجيل."
+
+msgid "Flux AI text model is not ready (Flux AI & MCP › Settings)."
+msgstr "نموذج نص Flux AI غير جاهز (Flux AI & MCP ›الإعدادات)."
+
+msgid "Briefly describe the idea first."
+msgstr "قم بوصف الفكرة بإيجاز أولاً."
+
+msgid "The model did not return a valid idea list. Try again."
+msgstr "لم يُرجع النموذج قائمة أفكار صالحة. حاول ثانية."
+
+msgid "Open"
+msgstr "مفتوح"
+
+msgid "Database tables"
+msgstr "جداول قاعدة البيانات"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "الجدول المفقود:%s. قم بإلغاء تنشيط البرنامج المساعد وإعادة تنشيطه."
+
+msgid "Tables are ready."
+msgstr "الجداول جاهزة."
+
+msgid "File folder"
+msgstr "مجلد الملف"
+
+msgid "wp-content/uploads/flx-studio is writable."
+msgstr "wp-content/uploads/flx-studio قابل للكتابة."
+
+msgid "wp-content/uploads/flx-studio could not be created or is not writable; references and thumbnails cannot be saved."
+msgstr "تعذر إنشاء wp-content/uploads/flx-studio أو أنه غير قابل للكتابة؛ لا يمكن حفظ المراجع والصور المصغرة."
+
+msgid "Image and video backend"
+msgstr "الصورة والفيديو الخلفية"
+
+msgid "Flux AI 0.6.0 or newer is required (image/video generation runs through Flux AI)."
+msgstr "مطلوب Flux AI 0.6.0 أو أحدث (يتم تشغيل إنشاء الصور/الفيديو من خلال Flux AI)."
+
+msgid "Plugins"
+msgstr "الإضافات"
+
+msgid "No model has a key. Enter a fal.ai, EvoLink or other key in Flux AI & MCP › Settings › Images and video."
+msgstr "لا يوجد نموذج لديه مفتاح. أدخل fal.ai أو EvoLink أو أي مفتاح آخر في Flux AI & MCP ›الإعدادات› الصور والفيديو."
+
+msgid "Flux AI"
+msgstr "تدفق منظمة العفو الدولية"
+
+msgid "%1$d models available (%2$s)."
+msgstr "موديلات%1$dمتاحة (%2$s)."
+
+msgid "Enhance and Brainstorm"
+msgstr "تعزيز والعصف الذهني"
+
+msgid "Flux AI text model is ready."
+msgstr "نموذج نص Flux AI جاهز."
+
+msgid "Flux AI text model is not ready; prompt enhancement and ideas are unavailable, generation still works."
+msgstr "نموذج نص Flux AI غير جاهز؛ التعزيز الفوري والأفكار غير متوفرة، والجيل لا يزال يعمل."
+
+msgid "Reference images"
+msgstr "الصور المرجعية"
+
+msgid "References are sent to the provider by site URL."
+msgstr "يتم إرسال المراجع إلى الموفر عن طريق عنوان URL للموقع."
+
+msgid "The site is not HTTPS; references are sent inline (base64), making requests larger."
+msgstr "الموقع ليس HTTPS؛ يتم إرسال المراجع مضمنة (base64)، مما يجعل الطلبات أكبر."
+
+msgid "Studio: generate images/videos"
+msgstr "الاستوديو: إنشاء صور/مقاطع فيديو"
+
+msgid "Studio: all galleries and settings"
+msgstr "الاستوديو: جميع المعارض والإعدادات"
+
+msgid "The file is empty."
+msgstr "الملف فارغ."
+
+msgid "The file exceeds the %d MB limit."
+msgstr "يتجاوز الملف حد%dميغابايت."
+
+msgid "This file type is not supported."
+msgstr "نوع الملف هذا غير مدعوم."
+
+msgid "The file could not be saved."
+msgstr "لا يمكن حفظ الملف."
+
+msgid "Reference image not found."
+msgstr "لم يتم العثور على الصورة المرجعية."
+
+msgid "Person not found."
+msgstr "لم يتم العثور على الشخص."
+
+msgid "At most %d reference images can be used."
+msgstr "يمكن استخدام الصور المرجعية لـ%dعلى الأكثر."
+
+msgid "The file is not on the server."
+msgstr "الملف ليس على الخادم."
+
+msgid "Login required."
+msgstr "تسجيل الدخول مطلوب."
+
+msgid "You do not have access to Studio."
+msgstr "ليس لديك حق الوصول إلى الاستوديو."
+
+msgid "You are not allowed to do this."
+msgstr "لا يسمح لك أن تفعل هذا."
+
+msgid "Record not found."
+msgstr "لم يتم العثور على السجل."
+
+msgid "The file could not be uploaded."
+msgstr "لا يمكن تحميل الملف."
+
+msgid "No file received."
+msgstr "لم يتم استلام أي ملف."
+
+msgid "You cannot move items to this folder."
+msgstr "لا يمكنك نقل العناصر إلى هذا المجلد."
+
+msgid "You are not allowed to add to the Media Library."
+msgstr "غير مسموح لك بالإضافة إلى مكتبة الوسائط."
+
+msgid "Folder name is required."
+msgstr "اسم المجلد مطلوب."
+
+msgid "Person name is required."
+msgstr "اسم الشخص مطلوب."
+
+msgid "Template name is required."
+msgstr "اسم القالب مطلوب."
+
+msgid "Deleted user"
+msgstr "المستخدم المحذوف"
+
+msgid "Status"
+msgstr "الحالة"
+
+msgid "Gallery"
+msgstr "معرض"
+
+msgid "Gallery is empty"
+msgstr "المعرض فارغ"
+
+msgid "Search the gallery"
+msgstr "ابحث في المعرض"
+
+msgid "Working"
+msgstr "العمل"
+
+msgid "Open in panel"
+msgstr "فتح في اللوحة"
+
+msgid "Owner"
+msgstr "المالك"
+
+msgid "Type"
+msgstr "اكتب"
+
+msgid "Star"
+msgstr "نجمة"
+
+msgid "Starred"
+msgstr "المميزة بنجمة"
+
+msgid "Generated images are listed here. The production screen opens in the app later."
+msgstr "يتم سرد الصور التي تم إنشاؤها هنا. تفتح شاشة الإنتاج في التطبيق لاحقًا."
+
+msgid "Prompt"
+msgstr "موجه"
+
+msgid "[['Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).', 'tr']]"
+msgstr "[['استوديو المرئيات والفيديو باستخدام الذكاء الاصطناعي: الإنتاج والمراجع وجهات الاتصال والتحرير الميداني والتطوير والعصف الذهني والمعرض الذي يحتوي على المجلدات. الإنتاج عبر Flux AI (fal.ai، EvoLink، OpenAI، Gemini، OpenRouter).', 'tr']]"

@@ -1,0 +1,5395 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: zh_CN\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "No subscriptions"
+msgstr "没有订阅"
+
+msgid "Subscriptions"
+msgstr "订阅"
+
+msgid "Name, e-mail or phone"
+msgstr "姓名、电子邮件或电话"
+
+msgid "Active"
+msgstr "活跃"
+
+msgid "Active subscriptions"
+msgstr "活跃订阅量"
+
+msgid "Call"
+msgstr "致电"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Monthly recurring"
+msgstr "每月定期"
+
+msgid "Donation"
+msgstr "捐赠"
+
+msgid "Donation not found."
+msgstr "未找到捐款。"
+
+msgid "Donors appear here as gifts come in."
+msgstr "当礼物进来时,捐赠者出现在这里。"
+
+msgid "Donation types"
+msgstr "捐赠类型"
+
+msgid "Give"
+msgstr "给予"
+
+msgid "No donations"
+msgstr "没有捐款"
+
+msgid "Donations"
+msgstr "捐款"
+
+msgid "My donations"
+msgstr "我的捐款"
+
+msgid "Donor"
+msgstr "捐赠者"
+
+msgid "Donor not found."
+msgstr "未找到捐赠者。"
+
+msgid "No donors"
+msgstr "没有捐赠者"
+
+msgid "Donors"
+msgstr "捐助者"
+
+msgid "Failed"
+msgstr "失败"
+
+msgid "Pending"
+msgstr "待定"
+
+msgid "Waiting"
+msgstr "等待"
+
+msgid "No donations match this filter."
+msgstr "没有符合此过滤条件的捐款。"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Recurring gifts appear here."
+msgstr "经常性的礼物出现在这里。"
+
+msgid "E-mail"
+msgstr "电子邮件"
+
+msgid "Certificates for your sapling gifts appear here."
+msgstr "您的树苗礼物证书将显示在此处。"
+
+msgid "Past due"
+msgstr "逾期"
+
+msgid "No gifts yet"
+msgstr "还没有礼物"
+
+msgid "Lines"
+msgstr "线路"
+
+msgid "Awaiting approval"
+msgstr "等待批准"
+
+msgid "PDF"
+msgstr "PDF"
+
+msgid "Share"
+msgstr "分享"
+
+msgid "Certificate"
+msgstr "证书"
+
+msgid "No certificates"
+msgstr "无证书"
+
+msgid "My certificates"
+msgstr "我的证书"
+
+msgid "View order"
+msgstr "查看订单"
+
+msgid "Last gift"
+msgstr "最后的礼物"
+
+msgid "Completed"
+msgstr "已完成"
+
+msgid "Date"
+msgstr "日期"
+
+msgid "Phone"
+msgstr "电话"
+
+msgid "Total"
+msgstr "合计"
+
+msgid "Total given"
+msgstr "总给予"
+
+msgid "Amount"
+msgstr "金额"
+
+msgid "Type"
+msgstr "类型"
+
+msgid "Gifts you have made appear here."
+msgstr "你制作的礼物会出现在这里。"
+
+msgid "Summary"
+msgstr "总结"
+
+msgid "Refunded"
+msgstr "已退款"
+
+msgid "Contact"
+msgstr "联系方式"
+
+msgid "First gift"
+msgstr "第一份礼物"
+
+msgid "Cancelled"
+msgstr "取消"
+
+msgid "[['Publishable key\\n"
+msgstr "[['可发布密钥\\n"
+
+msgid "[['Starts with pk_live_ or pk_test_.\\n"
+msgstr "[['以 pk_live_ 或 pk_test_ 开头。\\n"
+
+msgid "Secret key"
+msgstr "秘钥"
+
+msgid "\\nStarts with sk_live_, sk_test_ or rk_ (restricted key).\\n"
+msgstr "\\n以 sk_live_、sk_test_ 或 rk_(受限密钥)开头。\\n"
+
+msgid "\\nWebhook signing secret\\n"
+msgstr "\\nWebhook 签名秘密\\n"
+
+msgid "\\nStarts with whsec_. Needed for refunds and renewals of recurring gifts to show up here.\\n"
+msgstr "\\n以 whsec_ 开头。经常性礼物的退款和续订需要在此处显示。\\n"
+
+msgid "\\nStripe is not configured on this site. Please contact the site administrator.\\n"
+msgstr "\\n此站点上未配置 Stripe。请联系站点管理员。\\n"
+
+msgid "\\nThe payment could not be started. Please try again.\\n"
+msgstr "\\n付款无法开始。请重试。\\n"
+
+msgid "\\nInvalid payment data. Please refresh the page and try again.\\n"
+msgstr "\\n付款数据无效。请刷新页面并重试。\\n"
+
+msgid "\\nYour card could not be charged for the recurring donation. Please try another card.\\n"
+msgstr "\\n无法从您的卡中收取经常性捐款的费用。请尝试另一张卡。\\n"
+
+msgid "\\nThe payment could not be verified yet.\\n"
+msgstr "\\n尚无法验证付款。\\n"
+
+msgid "\\nThis payment cannot be refunded from the site.\\n"
+msgstr "\\n该付款无法从网站退还。\\n"
+
+msgid "\\nStripe did not accept the refund.\\n"
+msgstr "\\nStripe 不接受退款。\\n"
+
+msgid "\\nStripe is not configured on this site.\\n"
+msgstr "\\n此站点上未配置条带。\\n"
+
+msgid "\\nStripe did not cancel the subscription.\\n"
+msgstr "\\nStripe 没有取消订阅。\\n"
+
+msgid "\\nNo stored card for this recurring donation.\\n"
+msgstr "\\n没有存储用于此定期捐赠的卡。\\n"
+
+msgid "\\nRecurring donation\\n"
+msgstr "\\n定期捐赠\\n"
+
+msgid "\\nThe card was not charged.\\n"
+msgstr "\\n该卡未收费。\\n"
+
+msgid "\\nLink not valid\\n"
+msgstr "\\n链接无效\\n"
+
+msgid "\\nThis link is not valid. Please contact us to cancel your recurring donation.\\n"
+msgstr "\\n此链接无效。请联系我们取消您的定期捐赠。\\n"
+
+msgid "\\n%1$s·%2$s\\n"
+msgstr "\\n%1$s·%2$s\\n"
+
+msgid "\\nRecurring donation canceled\\n"
+msgstr "\\n定期捐赠已取消\\n"
+
+msgid "\\nThis recurring donation is canceled. No further payments will be taken.\\n"
+msgstr "\\n此定期捐赠已取消。将不再收取任何费用。\\n"
+
+msgid "\\nYour recurring donation has been canceled. No further payments will be taken. Thank you for your support.\\n"
+msgstr "\\n您的定期捐款已被取消。将不会再收取任何费用。感谢您的支持。\\n"
+
+msgid "\\nDo you want to cancel this recurring donation? No further payments will be taken.', 'en']]"
+msgstr "\\n您想取消此定期捐赠吗?将不再收取任何费用。', 'en']]"
+
+msgid "\\nCancel my recurring donation\\n"
+msgstr "\\n取消我的定期捐赠\\n"
+
+msgid "\\nCancel recurring donation\\n"
+msgstr "\\n取消定期捐赠\\n"
+
+msgid "[['%srecurring donation could not be charged through iyzico after all attempts and is now past due. The donor was e-mailed.', 'en']]"
+msgid_plural "[['%srecurring donations could not be charged through iyzico after all attempts and are now past due. The donors were e-mailed.', 'en']]"
+msgstr[0] "[['%s经常性捐款在经过所有尝试后仍无法通过 iyzico 收取,现已过期。捐赠者已通过电子邮件发送。', 'en']]"
+
+msgid "\\nShow them\\n"
+msgstr "\\n展示给他们\\n"
+
+msgid "Dismiss"
+msgstr "解雇"
+
+msgid "You are not allowed to do this."
+msgstr "你不可以这样做。"
+
+msgid "Other"
+msgstr "其他"
+
+msgid "Istanbul"
+msgstr "伊斯坦布尔"
+
+msgid "\\nTurkey\\n"
+msgstr "\\n土耳其\\n"
+
+msgid "\\niyzico could not be reached. Please try again.\\n"
+msgstr "无法联系 \\niyzico。请重试。\\n"
+
+msgid "\\niyzico gave an unexpected answer (HTTP%d).\\n"
+msgstr "\\niyzico 给出了意外的答案 (HTTP%d)。\\n"
+
+msgid "\\niyzico panel addresses\\n"
+msgstr "\\niyzico 面板地址\\n"
+
+msgid "[['In the iyzico merchant panel, open the notification settings, switch payment notifications on and paste this address. iyzico allows one address per merchant; Flux Donate passes WooCommerce notifications on to the iyzico WooCommerce plugin, so the same address serves both.\\n"
+msgstr "[['在 iyzico 商家面板中,打开通知设置,打开付款通知并粘贴此地址。 iyzico 允许每个商家一个地址; Flux Donate 将 WooCommerce 通知传递到 iyzico WooCommerce 插件,因此同一地址可以同时服务这两者。\\n"
+
+msgid "\\nMerchant notifications URL (İşyeri Bildirimleri Url)\\n"
+msgstr "\\n商家通知 URL (???yeri Bildirimleri Url)\\n"
+
+msgid "\\nSubscription notification URLs (Başarılı / Başarısız Abonelik Bildirimleri Url): not needed, leave them off.\\n"
+msgstr "\\n订阅通知 URL (Başarılı / Başarısız Abonelik Bildirimleri Url):不需要,请将其保留。\\n"
+
+msgid "\\nThey belong to iyzico's own subscription product; Flux Donate renews recurring donations with the saved card and its own scheduled task.\\n"
+msgstr "\\n它们属于iyzico自己的订阅产品; Flux Donate 使用保存的卡片及其自己的计划任务续订定期捐赠。\\n"
+
+msgid "\\nCallback URL (sent automatically with every payment, nothing to paste):\\n"
+msgstr "\\n回调 URL(每次付款时自动发送,无需粘贴):\\n"
+
+msgid "[['The iyzico WooCommerce plugin has a webhook key on this site: notifications that are not for Flux Donate are forwarded to it.\\n"
+msgstr "[['iyzico WooCommerce 插件在此站点上有一个 webhook 密钥:不适用于 Flux Donate 的通知将转发给它。\\n"
+
+msgid "\\nThe Stripe secret key is not configured.\\n"
+msgstr "\\n未配置 Stripe 密钥。\\n"
+
+msgid "\\nCould not connect to Stripe:%s', 'en']]"
+msgstr "\\n无法连接到 Stripe:%s', 'en']]"
+
+msgid "\\nStripe API error (HTTP%d).', 'en']]"
+msgstr "\\nStripe API 错误 (HTTP%d)。', 'en']]"
+
+msgid "\\nInvalid or expired nonce\\n"
+msgstr "\\n随机数无效或过期\\n"
+
+msgid "\\nNo payment provider is available on this site. Please contact the site administrator.\\n"
+msgstr "\\n此网站上没有可用的付款提供商。请联系站点管理员。\\n"
+
+msgid "\\nToo many payment attempts. Please wait a few minutes and try again.\\n"
+msgstr "\\n付款尝试次数过多。请等待几分钟,然后重试。\\n"
+
+msgid "\\nThe payment provider is not configured on this site. Please contact the site administrator.\\n"
+msgstr "\\n此站点上未配置支付提供商。请联系站点管理员。\\n"
+
+msgid "\\nNo payment amount detected. Please review your selected items and try again. If the problem persists, contact support.\\n"
+msgstr "\\n未检测到付款金额。请检查您选择的项目并重试。如果问题仍然存在,请联系支持人员。\\n"
+
+msgid "Guest"
+msgstr "嘉宾"
+
+msgid "Payment"
+msgstr "付款方式"
+
+msgid "\\nToo many requests. Please wait a moment and try again.\\n"
+msgstr "\\n请求太多。请稍等片刻,然后重试。\\n"
+
+msgid "\\nPayment not found.\\n"
+msgstr "\\n未找到付款。\\n"
+
+msgid "[['Payment Intent ID is missing\\n"
+msgstr "[['付款意向 ID 丢失\\n"
+
+msgid "\\nYour payment has not been confirmed yet. Please wait a moment and try again. If the problem persists, contact the site administrator.\\n"
+msgstr "\\n您的付款尚未确认。请稍等片刻,然后重试。如果问题仍然存在,请联系站点管理员。\\n"
+
+msgid "\\nOnline payment is not available at the moment. Please try again later or contact us.\\n"
+msgstr "\\n目前不支持在线支付。请稍后重试或联系我们。\\n"
+
+msgid "\\nTest provider (development only)\\n"
+msgstr "\\n测试提供程序(仅限开发)\\n"
+
+msgid "[['Test outcome\\n"
+msgstr "[['测试结果\\n"
+
+msgid "\\nApprove every payment\\n"
+msgstr "\\n批准每笔付款\\n"
+
+msgid "\\nDecline every payment\\n"
+msgstr "\\n拒绝每笔付款\\n"
+
+msgid "\\nNo money is taken. Development only.\\n"
+msgstr "\\n没有拿钱。仅限开发。\\n"
+
+msgid "\\nTEST MODE: no card is charged.\\n"
+msgstr "\\n测试模式:不向卡收费。\\n"
+
+msgid "\\nTest provider: the payment was declined.\\n"
+msgstr "\\n测试提供商:付款被拒绝。\\n"
+
+msgid "API key"
+msgstr "API密钥"
+
+msgid "\\niyzico merchant panel › Settings › Merchant settings. Sandbox keys start with \"sandbox-\".\\n"
+msgstr "\\niyzico 商家面板 › 设置 › 商家设置。沙箱密钥以“sandbox-”开头。\\n"
+
+msgid "\\nSandbox (test) mode\\n"
+msgstr "\\n沙盒(测试)模式\\n"
+
+msgid "\\nUses sandbox-api.iyzipay.com; no real money is taken. Turn off with live keys.\\n"
+msgstr "\\n使用 sandbox-api.iyzipay.com;没有真正的钱被拿走。使用实时按键关闭。\\n"
+
+msgid "\\nPayment page\\n"
+msgstr "\\n付款页面\\n"
+
+msgid "\\nPopup window (recommended: the form stays open)\\n"
+msgstr "\\n弹出窗口(推荐:表单保持打开状态)\\n"
+
+msgid "\\nSame tab (redirect to iyzico and back)\\n"
+msgstr "\\n同一选项卡(重定向到 iyzico 并返回)\\n"
+
+msgid "\\nWith \"popup\" the donor returns to the open form and the form is sent as usual. When the browser blocks the popup, the same tab is used.\\n"
+msgstr "\\n通过“弹出”,捐赠者返回到打开的表格,并且表格照常发送。当浏览器阻止弹出窗口时,将使用相同的选项卡。\\n"
+
+msgid "\\nOther currencies\\n"
+msgstr "\\n其他货币\\n"
+
+msgid "\\nTRY is always accepted. Add others your iyzico account accepts, comma separated (e.g. USD,EUR).\\n"
+msgstr "\\nTRY 始终被接受。添加您的 iyzico 帐户接受的其他内容,以逗号分隔(例如美元、欧元)。\\n"
+
+msgid "\\nRecurring gift without a saved card', 'en']]"
+msgstr "\\n没有保存卡的重复礼物', 'en']]"
+
+msgid "\\nKeep the payment as a one-time donation\\n"
+msgstr "\\n将付款保留为一次性捐赠\\n"
+
+msgid "\\nCancel the payment (like the iyzico Subscription plugin)\\n"
+msgstr "\\n取消付款(如 iyzico 订阅插件)\\n"
+
+msgid "\\nIf iyzico does not return a stored card for the first payment of a recurring gift, it cannot be charged again.\\n"
+msgstr "\\n如果 iyzico 没有退回用于首次支付定期礼物的存储卡,则无法再次扣费。\\n"
+
+msgid "\\nRead from the iyzico WooCommerce plugin (WooCommerce › Settings › Payments › iyzico). Values here are used only when that plugin has no keys.\\n"
+msgstr "\\n从 iyzico WooCommerce 插件读取(WooCommerce › 设置 › 付款 › iyzico)。仅当该插件没有键时才使用此处的值。\\n"
+
+msgid "\\nRead from the iyzico WooCommerce Subscription plugin. Values here are used only when it has no keys.\\n"
+msgstr "\\n从 iyzico WooCommerce 订阅插件读取。仅当没有键时才使用此处的值。\\n"
+
+msgid "\\nYou will enter your card on iyzico's secure payment page. It opens in a new window when you press Pay.\\n"
+msgstr "\\n您将在 iyzico 的安全支付页面上输入您的卡。当您按“付款”时,它将在新窗口中打开。\\n"
+
+msgid "\\nYou will enter your card on iyzico's secure payment page and then come back here.\\n"
+msgstr "\\n您将在 iyzico 的安全支付页面上输入您的卡,然后返回此处。\\n"
+
+msgid "\\nFor a recurring donation, keep \"Save my card\" ticked on the iyzico page so the next payments can be taken automatically.\\n"
+msgstr "\\n对于定期捐款,请在 iyzico 页面上勾选“保存我的卡”,以便下次付款可以自动进行。\\n"
+
+msgid "\\nTEST MODE (iyzico sandbox): no real money is taken.\\n"
+msgstr "\\n测试模式(iyzico 沙盒):不收取真钱。\\n"
+
+msgid "\\nComplete the payment in the iyzico window...\\n"
+msgstr "\\n在 iyzico 窗口中完成支付...\\n"
+
+msgid "\\nShow the payment window\\n"
+msgstr "\\n显示付款窗口\\n"
+
+msgid "\\nOpening the secure payment page...\\n"
+msgstr "\\n打开安全支付页面...\\n"
+
+msgid "\\nThe payment was not completed. You can try again.\\n"
+msgstr "\\n付款未完成。您可以重试。\\n"
+
+msgid "\\nThank you! Your donation has been received.\\n"
+msgstr "\\n谢谢!您的捐款已收到。\\n"
+
+msgid "\\nConfirmation code\\n"
+msgstr "\\n确认码\\n"
+
+msgid "\\nMake another donation\\n"
+msgstr "\\n再次捐款\\n"
+
+msgid "\\nThe payment could not be completed. Please try again or use another card.\\n"
+msgstr "\\n付款无法完成。请重试或使用另一张卡。\\n"
+
+msgid "[['iyzico is not configured on this site. Please contact the site administrator.\\n"
+msgstr "[['iyzico 未在此站点上配置。请联系站点管理员。\\n"
+
+msgid "[['The currency of this form is not supported.\\n"
+msgstr "[['不支持这种形式的货币。\\n"
+
+msgid "\\nThe payment could not be verified. Please contact the site administrator.\\n"
+msgstr "\\n无法验证付款。请联系站点管理员。\\n"
+
+msgid "\\nYour card could not be saved for the recurring donation, so the payment was canceled and no money was taken. Please try again and keep \"Save my card\" ticked.\\n"
+msgstr "\\n您的卡无法保存用于定期捐款,因此付款被取消,并且没有收到任何款项。请重试并勾选“保存我的卡”。\\n"
+
+msgid "\\nYour card could not be saved for the recurring donation. Please contact us; the payment will be refunded.\\n"
+msgstr "\\n您的卡无法保存用于定期捐款。请联系我们;付款将被退还。\\n"
+
+msgid "\\nYour donation was received, but your card was not saved, so it will not repeat automatically.\\n"
+msgstr "\\n您的捐款已收到,但您的卡尚未保存,因此不会自动重复。\\n"
+
+msgid "\\nBack to the form\\n"
+msgstr "\\n返回表单\\n"
+
+msgid "Payment received"
+msgstr "已收到付款"
+
+msgid "\\nPayment not completed\\n"
+msgstr "\\n付款未完成\\n"
+
+msgid "\\niyzico is not configured on this site.', 'en']]"
+msgstr "\\niyzico 未在此站点上配置。', 'en']]"
+
+msgid "\\nThis payment has already been refunded.\\n"
+msgstr "\\n这笔付款已被退还。\\n"
+
+msgid "\\nEnter an amount up to%s.\\n"
+msgstr "\\n输入最多为%s的金额。\\n"
+
+msgid "\\n%1$swas refunded, then iyzico stopped:%2$s\\n"
+msgstr "\\n%1$s已退款,然后 iyzico 停止:%2$s\\n"
+
+msgid "\\nRecurring donation not found.\\n"
+msgstr "\\n未找到定期捐赠。\\n"
+
+msgid "\\nThis payment provider does not support refunds from the site.\\n"
+msgstr "\\n该支付提供商不支持从网站退款。\\n"
+
+msgid "\\nThe server has no zip extension; save the file as CSV and upload that.\\n"
+msgstr "\\n服务器没有邮政编码扩展名;将文件另存为 CSV 并上传。\\n"
+
+msgid "[['The file could not be opened. Upload Excel (.xlsx) or CSV.\\n"
+msgstr "[['文件无法打开。上传 Excel (.xlsx) 或 CSV。\\n"
+
+msgid "\\nNo sheet to read was found in the file.\\n"
+msgstr "\\n文件中没有找到要读取的表。\\n"
+
+msgid "\\nDonor phone\\n"
+msgstr "\\n捐赠者电话\\n"
+
+msgid "On behalf of"
+msgstr "代表"
+
+msgid "\\nPhone (on behalf of)\\n"
+msgstr "\\n电话(代表)\\n"
+
+msgid "Donation type"
+msgstr "捐赠类型"
+
+msgid "Option"
+msgstr "选项"
+
+msgid "Quantity"
+msgstr "数量"
+
+msgid "Currency"
+msgstr "货币"
+
+msgid "\\nBrought in by\\n"
+msgstr "\\n引入者\\n"
+
+msgid "\\nTarget date\\n"
+msgstr "\\n目标日期\\n"
+
+msgid "Referral"
+msgstr "推荐"
+
+msgid "Note"
+msgstr "注意事项"
+
+msgid "\\nThe header row was not recognised. The first row should name the columns, e.g. \"Donor\", \"Phone\", \"Donation type\", \"Amount\".\\n"
+msgstr "\\n标题行无法识别。第一行应命名列,例如“捐赠者”、“电话”、“捐赠类型”、“金额”。\\n"
+
+msgid "\\nNo donor or name\\n"
+msgstr "\\n没有捐赠者或姓名\\n"
+
+msgid "\\nNo donation type\\n"
+msgstr "\\n无捐赠类型\\n"
+
+msgid "\\nAmount is not a number\\n"
+msgstr "\\n金额不是数字\\n"
+
+msgid "\\nNo%s: opened as approved\\n"
+msgstr "\\n否%s: 已批准打开\\n"
+
+msgid "\\nNot paid: opened as approved\\n"
+msgstr "\\n未付款:已批准打开\\n"
+
+msgid "\\nTarget date could not be read\\n"
+msgstr "\\n无法读取目标日期\\n"
+
+msgid "\\nDate could not be read\\n"
+msgstr "\\n无法读取日期\\n"
+
+msgid "\\nFrom an Excel import\\n"
+msgstr "\\n从 Excel 导入\\n"
+
+msgid "Import"
+msgstr "进口"
+
+msgid "\\nExcel import\\n"
+msgstr "\\nExcel 导入\\n"
+
+msgid "\\nOpened, but the status \"%s\" could not be set\\n"
+msgstr "\\n已打开,但无法设置状态“%s”\\n"
+
+msgid "\\nThe import was not found or has finished.\\n"
+msgstr "\\n导入未找到或已完成。\\n"
+
+msgid "\\nThis form and its donation type use different currencies, so the payment was stopped. Please contact the site administrator.\\n"
+msgstr "\\n此表格与其捐赠类型使用不同的货币,因此付款已停止。请联系站点管理员。\\n"
+
+msgid "\\nYour choice\\n"
+msgstr "\\n你的选择\\n"
+
+msgid "Change"
+msgstr "改变"
+
+msgid "\\nDonations for this cause open on%s.\\n"
+msgstr "\\n为此目的的捐款已于%s开放。\\n"
+
+msgid "\\nDonations for this cause have ended.\\n"
+msgstr "\\n为此目的的捐款已结束。\\n"
+
+msgid "\\nDonations for this cause are closed at the moment.\\n"
+msgstr "\\n为此目的的捐款目前已结束。\\n"
+
+msgid "\\nThe form “%1$s” is already linked to the open donation type “%2$s” for the same dates, so it was not linked here. Close that type, change the dates, or use another form.\\n"
+msgstr "\\n表格“%1$s”已链接到同一日期的开放捐赠类型“%2$s”,因此此处未链接。关闭该类型、更改日期或使用其他表单。\\n"
+
+msgid "\\nPlease enter a title.\\n"
+msgstr "\\n请输入标题。\\n"
+
+msgid "\\nThe end date must be after the start date.\\n"
+msgstr "\\n结束日期必须晚于开始日期。\\n"
+
+msgid "\\nAdd at least one option with a price, or allow a free amount.\\n"
+msgstr "\\n添加至少一个带有价格的选项,或允许免费金额。\\n"
+
+msgid "\\nVacip\\n"
+msgstr "\\nVacip\\n"
+
+msgid "\\nAdak\\n"
+msgstr "\\n阿达克\\n"
+
+msgid "\\nAkika\\n"
+msgstr "\\n阿基卡\\n"
+
+msgid "\\nhealing\\n"
+msgstr "\\n治愈\\n"
+
+msgid "Nafile"
+msgstr "纳菲勒"
+
+msgid "\\nYou can choose at most%s.\\n"
+msgstr "\\n您最多可以选择%s。\\n"
+
+msgid "\\nThis option is not open for donations at the moment.\\n"
+msgstr "\\n此选项目前不开放捐赠。\\n"
+
+msgid "\\nFree amount', 'en']]"
+msgstr "\\n免费金额', 'en']]"
+
+msgid "The minimum donation is %s."
+msgstr "最低捐款额为%s。"
+
+msgid "\\nThis donation needs a proxy (vekâlet) consent, but the form is not set up for it yet. Please contact the site administrator.\\n"
+msgstr "\\n此捐赠需要代理 (vekâlet) 同意,但尚未为此设置表格。请联系站点管理员。\\n"
+
+msgid "\\nPlease accept the proxy (vekâlet) text to continue.\\n"
+msgstr "\\n请接受代理 (vekâlet) 文本以继续。\\n"
+
+msgid "\\nTree planting (sapling donations)\\n"
+msgstr "\\n植树(树苗捐赠)\\n"
+
+msgid "Saplings"
+msgstr "树苗"
+
+msgid "Sapling donation"
+msgstr "树苗捐赠"
+
+msgid "Sapling"
+msgstr "树苗"
+
+msgid "\\nCharity (kurban, ramazan, general)\\n"
+msgstr "\\n慈善事业(古尔班、斋月、一般)\\n"
+
+msgid "Kurban"
+msgstr "库尔班"
+
+msgid "\\nRamazan\\n"
+msgstr "\\n斋月\\n"
+
+msgid "General"
+msgstr "一般"
+
+msgid "\\nKurban share (cattle)\\n"
+msgstr "\\n库尔班份额(牛)\\n"
+
+msgid "\\nOne share (1/7)\\n"
+msgstr "\\n一份 (1/7)\\n"
+
+msgid "\\nWhole animal (7 shares)\\n"
+msgstr "\\n整只动物(7份)\\n"
+
+msgid "\\nSacrifice (sheep or goat)\\n"
+msgstr "\\n牺牲(绵羊或山羊)\\n"
+
+msgid "Sheep or goat"
+msgstr "绵羊或山羊"
+
+msgid "Iftar"
+msgstr "开斋饭"
+
+msgid "\\nSahur\\n"
+msgstr "\\n萨胡尔\\n"
+
+msgid "\\nFitre\\n"
+msgstr "\\nFitre\\n"
+
+msgid "General donation"
+msgstr "一般捐赠"
+
+msgid "Partner"
+msgstr "合伙人"
+
+msgid "Report"
+msgstr "报告"
+
+msgid "\\nExtra tab\\n"
+msgstr "\\n额外选项卡\\n"
+
+msgid "WooCommerce is not active."
+msgstr "WooCommerce 未激活。"
+
+msgid "\\nThis person may not open donation requests.\\n"
+msgstr "\\n此人不得提出捐赠请求。\\n"
+
+msgid "\\nPlease choose an open donation type.\\n"
+msgstr "\\n请选择开放式捐赠类型。\\n"
+
+msgid "\\nPlease choose an option of the selected donation type.\\n"
+msgstr "\\n请选择所选捐赠类型的选项。\\n"
+
+msgid "\\nPlease enter an amount.\\n"
+msgstr "\\n请输入金额。\\n"
+
+msgid "\\nPlease write the donor's name.\\n"
+msgstr "\\n请写下捐赠者的姓名。\\n"
+
+msgid "\\nPlease give the donor\\'s phone number or e-mail address.\\n"
+msgstr "\\n请提供捐赠者的电话号码或电子邮件地址。\\n"
+
+msgid "\\nDonation request opened by%s.\\n"
+msgstr "\\n由%s打开捐赠请求。\\n"
+
+msgid "My donors"
+msgstr "我的捐助者"
+
+msgid "\\nPeople who gave through you. Totals count only the gifts you referred.\\n"
+msgstr "\\n通过你给予的人。总计仅计算您推荐的礼物。\\n"
+
+msgid "\\nOne card per person, matched on phone number or e-mail address.\\n"
+msgstr "\\n每人一张卡,与电话号码或电子邮件地址相匹配。\\n"
+
+msgid "All"
+msgstr "全部"
+
+msgid "\\nRecurring\\n"
+msgstr "\\n重复\\n"
+
+msgid "\\nContact allowed\\n"
+msgstr "\\n允许联系\\n"
+
+msgid "\\nLatest gift\\n"
+msgstr "\\n最新礼物\\n"
+
+msgid "\\nNumber of gifts\\n"
+msgstr "\\n礼物数量\\n"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "\\nName, e-mail or phone...\\n"
+msgstr "\\n姓名、电子邮件或电话...\\n"
+
+msgid "Search"
+msgstr "搜索"
+
+msgid "Show"
+msgstr "显示"
+
+msgid "\\nSort by\\n"
+msgstr "\\n排序依据\\n"
+
+msgid "\\nNo donors found\\n"
+msgstr "\\n未找到捐助者\\n"
+
+msgid "\\nGifts', 'en']]"
+msgstr "\\n礼物', 'en']]"
+
+msgid "Actions"
+msgstr "行动"
+
+msgid "\\nOpen card\\n"
+msgstr "\\n开卡\\n"
+
+msgid "[['%sdonor', 'en']]"
+msgid_plural "[['%sdonors', 'en']]"
+msgstr[0] "[['%s捐助者', 'en']]"
+
+msgid "\\nDonor not found\\n"
+msgstr "\\n未找到捐助者\\n"
+
+msgid "\\nDonor card\\n"
+msgstr "\\n捐赠卡\\n"
+
+msgid "\\nDonor since%s\\n"
+msgstr "\\n自%s以来的捐助者\\n"
+
+msgid "\\nAverage gift\\n"
+msgstr "\\n平均礼物\\n"
+
+msgid "\\nAll gifts\\n"
+msgstr "\\n所有礼物\\n"
+
+msgid "\\nSee all%sgifts\\n"
+msgstr "\\n查看所有%s礼物\\n"
+
+msgid "\\nNo gifts yet.', 'en']]"
+msgstr "\\n还没有礼物。', 'en']]"
+
+msgid "\\nRecurring donations\\n"
+msgstr "\\n经常性捐款\\n"
+
+msgid "\\nNo recurring donation.\\n"
+msgstr "\\n没有经常性捐赠。\\n"
+
+msgid "Certificates"
+msgstr "证书"
+
+msgid "View"
+msgstr "查看"
+
+msgid "[['and%smore', 'en']]"
+msgid_plural "[['and%smore', 'en']]"
+msgstr[0] "[['还有%s更多', 'en']]"
+
+msgid "\\nNo certificate yet.\\n"
+msgstr "\\n还没有证书。\\n"
+
+msgid "\\nConsent and notes\\n"
+msgstr "\\n同意和注释\\n"
+
+msgid "\\nPrivacy notice (KVKK) accepted\\n"
+msgstr "\\n接受隐私声明 (KVKK)\\n"
+
+msgid "\\nMay be contacted by e-mail\\n"
+msgstr "\\n可以通过电子邮件联系\\n"
+
+msgid "\\nMay be contacted by SMS\\n"
+msgstr "\\n可以通过短信联系\\n"
+
+msgid "Notes"
+msgstr "注释"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Add donation"
+msgstr "添加捐款"
+
+msgid "\\nPrivacy and donation note\\n"
+msgstr "\\n隐私和捐赠说明\\n"
+
+msgid "\\nDonation note\\n"
+msgstr "\\n捐款备注\\n"
+
+msgid "\\nDonation dashboard\\n"
+msgstr "\\n捐赠仪表板\\n"
+
+msgid "Dashboard"
+msgstr "仪表板"
+
+msgid "\\nMy referrals\\n"
+msgstr "\\n我的推荐\\n"
+
+msgid "\\nNew donation request\\n"
+msgstr "\\n新的捐赠请求\\n"
+
+msgid "\\nNew request\\n"
+msgstr "\\n新请求\\n"
+
+msgid "Payments"
+msgstr "付款方式"
+
+msgid "\\nPartners\\n"
+msgstr "\\n合作伙伴\\n"
+
+msgid "\\nImport from Excel\\n"
+msgstr "\\n从 Excel 导入\\n"
+
+msgid "Reports"
+msgstr "报告"
+
+msgid "\\nDonation settings\\n"
+msgstr "\\n捐赠设置\\n"
+
+msgid "Loading…"
+msgstr "加载中..."
+
+msgid "%s selected"
+msgstr "已选择%s"
+
+msgid "\\nDelete%sdonations permanently? Their WooCommerce orders are deleted too. This cannot be undone.\\n"
+msgstr "\\n永久删除%s捐款吗?他们的 WooCommerce 订单也被删除。此操作无法撤消。\\n"
+
+msgid "[['Move%sdonations to the trash? Their WooCommerce orders go to the trash too.\\n"
+msgstr "[['将%s捐款移至垃圾箱?他们的 WooCommerce 订单也会被扔进垃圾桶。\\n"
+
+msgid "\\nThe data could not be loaded.\\n"
+msgstr "\\n无法加载数据。\\n"
+
+msgid "Try again"
+msgstr "再试一次"
+
+msgid "\\nTotal donations\\n"
+msgstr "\\n捐款总额\\n"
+
+msgid "\\nNew donors\\n"
+msgstr "\\n新捐助者\\n"
+
+msgid "\\nRecurring (monthly)\\n"
+msgstr "\\n定期(每月)\\n"
+
+msgid "\\nActive recurring donations\\n"
+msgstr "\\n活跃的经常性捐款\\n"
+
+msgid "\\ngifts\\n"
+msgstr "\\n礼物\\n"
+
+msgid "\\ngift\\n"
+msgstr "\\n礼物\\n"
+
+msgid "\\nvs previous period\\n"
+msgstr "\\n与上一时期相比\\n"
+
+msgid "\\nno gifts in the previous period\\n"
+msgstr "\\n前期没有礼物\\n"
+
+msgid "\\nall time:%sdonors\\n"
+msgstr "\\n所有时间:%s捐助者\\n"
+
+msgid "\\nfirst gift in this period\\n"
+msgstr "\\n这段时间的第一份礼物\\n"
+
+msgid "\\nper gift\\n"
+msgstr "\\n每件礼物\\n"
+
+msgid "\\n%spast due\\n"
+msgstr "\\n%s逾期\\n"
+
+msgid "\\nmonthly value of active ones\\n"
+msgstr "\\n活跃值的每月价值\\n"
+
+msgid "\\nDonations per day\\n"
+msgstr "\\n每天捐款\\n"
+
+msgid "\\nReceived amount, one-time and recurring\\n"
+msgstr "\\n收到的金额、一次性和定期\\n"
+
+msgid "[['One-time\\n"
+msgstr "[['一次\\n"
+
+msgid "\\nOne-time vs recurring\\n"
+msgstr "\\n一次性与重复性\\n"
+
+msgid "By donation type"
+msgstr "按捐赠类型"
+
+msgid "\\nBy form\\n"
+msgstr "\\n按形式\\n"
+
+msgid "\\nTop donors\\n"
+msgstr "\\n主要捐助者\\n"
+
+msgid "\\nNo donations in this period.\\n"
+msgstr "\\n在此期间没有捐款。\\n"
+
+msgid "No donations yet"
+msgstr "还没有捐款"
+
+msgid "\\nDonations appear here as soon as someone pays through a Flux Forms payment form. Payments taken before Flux Donate was installed can be imported on the Settings page.\\n"
+msgstr "\\n一旦有人通过 Flux Forms 付款表付款,捐款就会显示在此处。在安装 Flux Donate 之前进行的付款可以在“设置”页面上导入。\\n"
+
+msgid "\\nImport existing payments\\n"
+msgstr "\\n导入现有付款\\n"
+
+msgid "View all"
+msgstr "查看全部"
+
+msgid "Custom range"
+msgstr "定制范围"
+
+msgid "\\nCopied.\\n"
+msgstr "\\n已复制。\\n"
+
+msgid "\\nCould not copy. The address is selected: press Ctrl+C (or long-press and Copy).\\n"
+msgstr "\\n无法复制。地址已选择:按 Ctrl+C(或长按并复制)。\\n"
+
+msgid "Copy"
+msgstr "复制"
+
+msgid "\\nSet up a payment provider\\n"
+msgstr "\\n设置支付提供商\\n"
+
+msgid "\\nNo payment provider is set up, so forms cannot take online payments. Visitors see \"Online payment is not available at the moment.\"\\n"
+msgstr "\\n未设置支付服务提供商,因此表单无法进行在线支付。访问者会看到“目前无法在线支付。”\\n"
+
+msgid "Saved."
+msgstr "已保存。"
+
+msgid "Deleted."
+msgstr "已删除。"
+
+msgid "\\nThe refund was sent to the payment provider.\\n"
+msgstr "\\n退款已发送至支付提供商。\\n"
+
+msgid "\\nThe recurring donation was canceled at the payment provider.\\n"
+msgstr "\\n支付提供商取消了定期捐赠。\\n"
+
+msgid "\\nThe payment was canceled at the payment provider.\\n"
+msgstr "\\n付款已在付款提供商处取消。\\n"
+
+msgid "\\nSomething went wrong. Please check the form and try again.\\n"
+msgstr "\\n出了点问题。请检查表单并重试。\\n"
+
+msgid "\\nPayment approved. The certificate is made and sent to the donor.\\n"
+msgstr "\\n付款已批准。证书已制作并发送给捐赠者。\\n"
+
+msgid "[['Payment rejected.\\n"
+msgstr "[['付款被拒绝。\\n"
+
+msgid "\\nImport finished:%1$spayments checked,%2$simported,%3$salready known.\\n"
+msgstr "\\n导入完成:%1$s付款已检查,%2$s已导入,%3$s已知。\\n"
+
+msgid "Anonymous"
+msgstr "匿名"
+
+msgid "Pages"
+msgstr "页数"
+
+msgid "\\nSorry, you are not allowed to access this page.\\n"
+msgstr "\\n抱歉,您无权访问此页面。\\n"
+
+msgid "\\nBring in older donations and records from an Excel (.xlsx) or CSV file. You see everything before anything is written; a row is never imported twice.\\n"
+msgstr "\\n从 Excel (.xlsx) 或 CSV 文件引入较早的捐款和记录。在任何东西被写之前你就看到了一切;一行永远不会导入两次。\\n"
+
+msgid "\\nUpload a file\\n"
+msgstr "\\n上传文件\\n"
+
+msgid "File"
+msgstr "文件"
+
+msgid "\\nThe first row names the columns. Recognised: date, donor, phone, e-mail, on behalf of, donation type, option, quantity, amount, currency, payment, status, partner, brought in by, target date, referral, note.\\n"
+msgstr "\\n第一行命名列。已识别:日期、捐赠者、电话、电子邮件、代表、捐赠类型、选项、数量、金额、货币、付款、状态、合作伙伴、引入者、目标日期、推荐、备注。\\n"
+
+msgid "\\nReading...\\n"
+msgstr "\\n正在读取...\\n"
+
+msgid "\\nRead the file\\n"
+msgstr "\\n读取文件\\n"
+
+msgid "\\nEarlier imports\\n"
+msgstr "\\n之前的导入\\n"
+
+msgid "\\nNone yet.\\n"
+msgstr "\\n还没有。\\n"
+
+msgid "Running"
+msgstr "跑步"
+
+msgid "Finished"
+msgstr "完成"
+
+msgid "\\n%1$srows,%2$swritten\\n"
+msgstr "\\n%1$s行,已写入%2$s\\n"
+
+msgid "\\nCheck the columns and the matches, then start.\\n"
+msgstr "\\n检查列和匹配项,然后开始。\\n"
+
+msgid "Rows"
+msgstr "行数"
+
+msgid "Ready"
+msgstr "准备好"
+
+msgid "\\nWith a warning\\n"
+msgstr "\\n有警告\\n"
+
+msgid "\\nAlready imported\\n"
+msgstr "\\n已经导入\\n"
+
+msgid "Errors"
+msgstr "错误"
+
+msgid "\\nskip\\n"
+msgstr "\\n跳过\\n"
+
+msgid "Columns"
+msgstr "专栏"
+
+msgid "Options"
+msgstr "选项"
+
+msgid "\\nDonation type when the row has none\\n"
+msgstr "\\n当该行没有捐赠类型时\\n"
+
+msgid "\\nPayment when the row does not say\\n"
+msgstr "\\n付款时行不说\\n"
+
+msgid "Paid"
+msgstr "付费"
+
+msgid "\\nWaiting for payment\\n"
+msgstr "\\n等待付款\\n"
+
+msgid "\\nKeep the date in the file (otherwise today)\\n"
+msgstr "\\n将日期保留在文件中(否则是今天)\\n"
+
+msgid "\\n+ Add as new\\n"
+msgstr "\\n+ 添加为新\\n"
+
+msgid "\\nchoose\\n"
+msgstr "\\n选择\\n"
+
+msgid "(empty)"
+msgstr "(空)"
+
+msgid "\\nMatches\\n"
+msgstr "\\n匹配\\n"
+
+msgid "\\nEach different value in the file is matched once.\\n"
+msgstr "\\n文件中的每个不同值都会匹配一次。\\n"
+
+msgid "\\nApply and check again\\n"
+msgstr "\\n申请并再次检查\\n"
+
+msgid "[['Import%srow', 'en']]"
+msgid_plural "[['Import%srows', 'en']]"
+msgstr[0] "[['导入%s行', 'en']]"
+
+msgid "Check"
+msgstr "检查"
+
+msgid "\\nShowing rows with a problem first;%srows in all.\\n"
+msgstr "\\n首先显示有问题的行;总共%s行。\\n"
+
+msgid "\\nDiscard this file\\n"
+msgstr "\\n放弃此文件\\n"
+
+msgid "\\nFinished.\\n"
+msgstr "\\n完成。\\n"
+
+msgid "\\nImporting... Keep this page open; if it closes, opening it again continues where it stopped.\\n"
+msgstr "\\n正在导入...保持此页面打开;如果它关闭,则再次打开它会从停止处继续。\\n"
+
+msgid "\\n%1$s/%2$srows\\n"
+msgstr "\\n%1$s/%2$s行\\n"
+
+msgid "\\nWritten\\n"
+msgstr "\\n已写\\n"
+
+msgid "\\nSkipped (already imported)\\n"
+msgstr "\\n已跳过(已导入)\\n"
+
+msgid "\\nAnother file\\n"
+msgstr "\\n另一个文件\\n"
+
+msgid "Reason"
+msgstr "原因"
+
+msgid "\\nChoose a file.\\n"
+msgstr "\\n选择一个文件。\\n"
+
+msgid "\\nOnly .xlsx or .csv files.\\n"
+msgstr "\\n仅限 .xlsx 或 .csv 文件。\\n"
+
+msgid "\\nDonations made through your referral link or recorded with you as the referral.\\n"
+msgstr "\\n通过您的推荐链接进行的捐赠或与您一起记录为推荐人的捐赠。\\n"
+
+msgid "\\nEvery gift received through your forms, one-time and recurring.\\n"
+msgstr "\\n通过您的表格收到的每一份礼物,无论是一次性的还是经常性的。\\n"
+
+msgid "\\nExport CSV\\n"
+msgstr "\\n导出 CSV\\n"
+
+msgid "\\nNo donations found\\n"
+msgstr "\\n未找到捐款\\n"
+
+msgid "\\nTry a wider date range or clear the filters.\\n"
+msgstr "\\n尝试更大的日期范围或清除筛选器。\\n"
+
+msgid "Bulk action"
+msgstr "批量操作"
+
+msgid "Apply"
+msgstr "申请"
+
+msgid "Clear selection"
+msgstr "清除选择"
+
+msgid "\\n%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived\\n"
+msgstr "\\n%1$s捐赠 ·%2$s收到%1$s捐赠 ·%2$s收到\\n"
+
+msgid "Trash (%s)"
+msgstr "垃圾箱(%s)"
+
+msgid "\\nName, e-mail, phone, code...\\n"
+msgstr "\\n姓名、电子邮件、电话、代码...\\n"
+
+msgid "All statuses"
+msgstr "所有状态"
+
+msgid "All donation types"
+msgstr "所有捐赠类型"
+
+msgid "All types"
+msgstr "所有类型"
+
+msgid "From"
+msgstr "来自"
+
+msgid "To"
+msgstr "至"
+
+msgid "Form"
+msgstr "形式"
+
+msgid "\\nAll forms\\n"
+msgstr "\\n所有表格\\n"
+
+msgid "\\nAll referrals\\n"
+msgstr "\\n所有推荐\\n"
+
+msgid "\\nNo referral\\n"
+msgstr "\\n没有推荐\\n"
+
+msgid "Filter"
+msgstr "过滤器"
+
+msgid "\\nDetailed filter\\n"
+msgstr "\\n详细过滤器\\n"
+
+msgid "Clear"
+msgstr "清除"
+
+msgid "Select all"
+msgstr "选择全部"
+
+msgid "\\nDonation type / form\\n"
+msgstr "\\n捐赠类型/形式\\n"
+
+msgid "\\nSelect the donation of%s\\n"
+msgstr "\\n选择%s的捐赠\\n"
+
+msgid "%s item"
+msgid_plural "%s items"
+msgstr[0] "%s项目"
+
+msgid "Details"
+msgstr "详情"
+
+msgid "Restore"
+msgstr "恢复"
+
+msgid "Move to trash"
+msgstr "移至垃圾箱"
+
+msgid "Delete permanently"
+msgstr "永久删除"
+
+msgid "[['%sdonation moved to the trash.', 'en']]"
+msgid_plural "[['%sdonations moved to the trash.', 'en']]"
+msgstr[0] "[['%s捐款已移至垃圾桶。', 'en']]"
+
+msgid "[['%sdonation restored.', 'en']]"
+msgid_plural "[['%sdonations restored.', 'en']]"
+msgstr[0] "[['%s捐款已恢复。', 'en']]"
+
+msgid "[['%sdonation deleted permanently.', 'en']]"
+msgid_plural "[['%sdonations deleted permanently.', 'en']]"
+msgstr[0] "[['%s捐款已永久删除。', 'en']]"
+
+msgid "\\nReceipt no.\\n"
+msgstr "\\n收据号。\\n"
+
+msgid "\\nKind\\n"
+msgstr "\\n种类\\n"
+
+msgid "\\nDonation receipt ·%s\\n"
+msgstr "\\nDonation receipt ·%s\\n"
+
+msgid "\\nDonation receipt\\n"
+msgstr "\\n捐款收据\\n"
+
+msgid "\\nPrint\\n"
+msgstr "\\n打印\\n"
+
+msgid "System"
+msgstr "系统"
+
+msgid "\\nContacts of the people on whose behalf\\n"
+msgstr "\\n代表人的联系方式\\n"
+
+msgid "\\nGiven to the call center so they can be told when the donation is carried out.\\n"
+msgstr "\\n提供给呼叫中心,以便他们可以在捐赠完成时得到通知。\\n"
+
+msgid "\\nReceipts\\n"
+msgstr "\\n收据\\n"
+
+msgid "Receipt"
+msgstr "收据"
+
+msgid "History"
+msgstr "历史"
+
+msgid "\\ncall center\\n"
+msgstr "\\n呼叫中心\\n"
+
+msgid "\\nReceipt linked\\n"
+msgstr "\\n已链接收据\\n"
+
+msgid "\\nPayment rejected:%s\\n"
+msgstr "\\n付款被拒绝:%s\\n"
+
+msgid "\\nStatus changed:%1$s→%2$s\\n"
+msgstr "\\n状态已更改:%1$s→%2$s\\n"
+
+msgid "\\nRefunded%s\\n"
+msgstr "\\n已退款%s\\n"
+
+msgid "\\nPayment canceled at the provider\\n"
+msgstr "\\n提供商处取消付款\\n"
+
+msgid "\\nNames on whose behalf changed\\n"
+msgstr "\\n代表其更改的名称\\n"
+
+msgid "\\nReferral changed:%1$s→%2$s\\n"
+msgstr "\\n参考已更改:%1$s→%2$s\\n"
+
+msgid "\\nDonation not found\\n"
+msgstr "\\n未找到捐赠\\n"
+
+msgid "\\nDonation of%s\\n"
+msgstr "\\nDonation of%s\\n"
+
+msgid "\\nPrint receipt\\n"
+msgstr "\\n打印收据\\n"
+
+msgid "\\nThis item\\n"
+msgstr "\\n这个项目\\n"
+
+msgid "\\nPayment provider\\n"
+msgstr "\\n支付提供商\\n"
+
+msgid "\\nProvider reference\\n"
+msgstr "\\n提供者参考\\n"
+
+msgid "\\nRecorded from\\n"
+msgstr "\\n记录自\\n"
+
+msgid "\\nrevoked\\n"
+msgstr "\\n已撤销\\n"
+
+msgid "Account"
+msgstr "账户"
+
+msgid "\\nDifferent price\\n"
+msgstr "\\n价格不同\\n"
+
+msgid "\\ntype price%1$s·%2$s\\n"
+msgstr "\\n输入价格%1$s·%2$s\\n"
+
+msgid "\\nProxy consent\\n"
+msgstr "\\n代理同意\\n"
+
+msgid "\\nversion%1$s·%2$s\\n"
+msgstr "\\n版本%1$s·%2$s\\n"
+
+msgid "\\nEntered by\\n"
+msgstr "\\n输入者\\n"
+
+msgid "[['Call center · WhatsApp assistant\\n"
+msgstr "[['呼叫中心·WhatsApp助手\\n"
+
+msgid "\\nCall center · agent\\n"
+msgstr "\\n呼叫中心·座席\\n"
+
+msgid "\\nPayment reference\\n"
+msgstr "\\n付款参考\\n"
+
+msgid "\\nCard payment\\n"
+msgstr "\\n刷卡支付\\n"
+
+msgid "\\nCanceled\\n"
+msgstr "\\n已取消\\n"
+
+msgid "\\n%1$spaid gift ·%2$s%1$spaid gifts ·%2$s\\n"
+msgstr "\\n%1$s付费礼物 ·%2$s%1$s付费礼物 ·%2$s\\n"
+
+msgid "[['%swaiting', 'en']]"
+msgid_plural "[['%swaiting', 'en']]"
+msgstr[0] "[['%s等待','en']]"
+
+msgid "\\nNo contact details were given with this gift.\\n"
+msgstr "\\n没有提供这份礼物的联系方式。\\n"
+
+msgid "Manage"
+msgstr "管理"
+
+msgid "\\nThis gift is one basket: every item in it changes together.\\n"
+msgstr "\\n这份礼物是一个篮子:里面的每件物品都会一起变化。\\n"
+
+msgid "\\nChange the status of this gift? Its WooCommerce order follows; when you mark it paid, the certificate is made and sent to the donor.\\n"
+msgstr "\\n更改此礼物的状态?其 WooCommerce 订单如下:当您将其标记为已付款时,就会制作证书并发送给捐赠者。\\n"
+
+msgid "\\nChange the status of this gift?\\n"
+msgstr "\\n更改此礼物的状态?\\n"
+
+msgid "Change status"
+msgstr "更改状态"
+
+msgid "[['Restore this gift from the trash?\\n"
+msgstr "[['从垃圾箱中恢复这份礼物?\\n"
+
+msgid "\\nMove this gift and its WooCommerce order to the trash? You can restore it later.\\n"
+msgstr "\\n将此礼物及其 WooCommerce 订单移至垃圾桶吗?您可以稍后恢复。\\n"
+
+msgid "\\nMove this gift to the trash? You can restore it later.\\n"
+msgstr "\\n将此礼物移至垃圾桶吗?您可以稍后恢复。\\n"
+
+msgid "\\nDelete this gift permanently? This cannot be undone.\\n"
+msgstr "\\n永久删除此礼物?此操作无法撤消。\\n"
+
+msgid "\\nPending (on hold)\\n"
+msgstr "\\n待处理(暂停)\\n"
+
+msgid "\\nCompleted (paid)\\n"
+msgstr "\\n已完成(已付费)\\n"
+
+msgid "\\nStatus changed to \"%s\".\\n"
+msgstr "\\n状态更改为“%s”。\\n"
+
+msgid "\\nThe status was not changed.\\n"
+msgstr "\\n状态未更改。\\n"
+
+msgid "\\nbasketball\\n"
+msgstr "\\n篮球\\n"
+
+msgid "\\nWooCommerce order #%s\\n"
+msgstr "\\nWooCommerce 订单 #%s\\n"
+
+msgid "\\nHas the payment reached the bank? When you confirm, the certificate is made and sent to the donor.\\n"
+msgstr "\\n付款已到达银行吗?当您确认后,就会制作证书并发送给捐赠者。\\n"
+
+msgid "Confirm payment"
+msgstr "确认付款"
+
+msgid "No receipt uploaded yet."
+msgstr "尚未上传收据。"
+
+msgid "Item"
+msgstr "项目"
+
+msgid "\\nMake the certificates again\\n"
+msgstr "\\n重新制作证书\\n"
+
+msgid "\\nThe current certificates are revoked and new ones are made, one for each name. They are not sent until you press \"Send the certificates\".\\n"
+msgstr "\\n当前的证书被撤销,并制作新的证书,每个名字一个。在您按“发送证书”之前,它们不会发送。\\n"
+
+msgid "\\nSend the certificates\\n"
+msgstr "\\n发送证书\\n"
+
+msgid "\\nSend the certificates to the donor now?\\n"
+msgstr "\\n现在将证书发送给捐赠者吗?\\n"
+
+msgid "\\nCertificates sent:%s\\n"
+msgstr "\\n已发送证书:%s\\n"
+
+msgid "\\nThere is no certificate to send.\\n"
+msgstr "\\n没有要发送的证书。\\n"
+
+msgid "[['%dcertificate made. Check it, then press \"Send the certificates\".', 'en']]"
+msgid_plural "[['%dcertificates made. Check them, then press \"Send the certificates\".', 'en']]"
+msgstr[0] "[['%d证书已制作。检查它们,然后按“发送证书”。', 'en']]"
+
+msgid "\\nNo certificate could be made; see the order notes.\\n"
+msgstr "\\n无法制作证书;请参阅订单备注。\\n"
+
+msgid "Items"
+msgstr "项目"
+
+msgid "\\nUnit price\\n"
+msgstr "\\n单价\\n"
+
+msgid "\\nSacrifice share\\n"
+msgstr "\\n牺牲份额\\n"
+
+msgid "\\nSave names\\n"
+msgstr "\\n保存名称\\n"
+
+msgid "None"
+msgstr "无"
+
+msgid "\\nThis person cannot be a referral.\\n"
+msgstr "\\n此人不能成为推荐人。\\n"
+
+msgid "\\nForm submission\\n"
+msgstr "\\n表单提交\\n"
+
+msgid "\\nPayment provider notification\\n"
+msgstr "\\n支付提供商通知\\n"
+
+msgid "\\nAutomatic sync\\n"
+msgstr "\\n自动同步\\n"
+
+msgid "\\nImport of earlier payments\\n"
+msgstr "\\n导入之前的付款\\n"
+
+msgid "\\nManual entry\\n"
+msgstr "\\n手动输入\\n"
+
+msgid "\\nReturn from the payment page\\n"
+msgstr "\\n从支付页面返回\\n"
+
+msgid "\\nAutomatic renewal\\n"
+msgstr "\\n自动续订\\n"
+
+msgid "\\nCall center', 'en']]"
+msgstr "\\n呼叫中心', 'en']]"
+
+msgid "\\nStaff request\\n"
+msgstr "\\n工作人员请求\\n"
+
+msgid "\\nDonation ID\\n"
+msgstr "\\n捐赠 ID\\n"
+
+msgid "\\nProxy consent version\\n"
+msgstr "\\n代理同意版本\\n"
+
+msgid "Approve"
+msgstr "批准"
+
+msgid "\\nMark delivered to owner\\n"
+msgstr "\\n标记已交付给所有者\\n"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "\\nBack to waiting\\n"
+msgstr "\\n返回等待\\n"
+
+msgid "[['%ditem updated.', 'en']]"
+msgid_plural "[['%ditems updated.', 'en']]"
+msgstr[0] "[['%d项目已更新。', 'en']]"
+
+msgid "\\nSkipped:%s\\n"
+msgstr "\\n已跳过:%s\\n"
+
+msgid "\\ndue\\n"
+msgstr "\\n到期\\n"
+
+msgid "\\nlate\\n"
+msgstr "\\n迟到\\n"
+
+msgid "\\nNew record\\n"
+msgstr "\\n新记录\\n"
+
+msgid "\\nEvery item with its code, payment, partner, target date and files. Open one to see its whole flow.\\n"
+msgstr "\\n每个项目及其代码、付款、合作伙伴、目标日期和文件。打开一个即可查看其整个流程。\\n"
+
+msgid "\\nCode, name, phone, donation no...\\n"
+msgstr "\\n代码、姓名、电话、捐款号...\\n"
+
+msgid "\\nAny payment\\n"
+msgstr "\\n任意付款\\n"
+
+msgid "\\nNot paid\\n"
+msgstr "\\n未付款\\n"
+
+msgid "\\nDue now\\n"
+msgstr "\\n现在到期\\n"
+
+msgid "\\nNothing to track yet\\n"
+msgstr "\\n尚无任何可跟踪的内容\\n"
+
+msgid "\\nAn item is created for every unit of a donation type that is tracked one by one (Donation types › Tracking).\\n"
+msgstr "\\n为逐一跟踪的捐赠类型的每个单位创建一个项目(捐赠类型 › 跟踪)。\\n"
+
+msgid "\\nSelected\\n"
+msgstr "\\n已选择\\n"
+
+msgid "Code"
+msgstr "代码"
+
+msgid "\\n%1$d·%2$dcents\\n"
+msgstr "\\n%1$d·%2$d分\\n"
+
+msgid "Item not found."
+msgstr "未找到项目。"
+
+msgid "\\nThis item is canceled.\\n"
+msgstr "\\n此项目已取消。\\n"
+
+msgid "\\nThe target date has passed and it is not completed yet.', 'en']]"
+msgstr "\\nThe target date has passed and it is not completed yet.', 'en']]"
+
+msgid "\\nIntention\\n"
+msgstr "\\n意图\\n"
+
+msgid "\\nCame through\\n"
+msgstr "\\n已通过\\n"
+
+msgid "\\nOwner phone\\n"
+msgstr "\\n机主电话\\n"
+
+msgid "\\nEmpty = donor phone\\n"
+msgstr "\\n空 = 捐赠者电话\\n"
+
+msgid "\\nDonation and payment\\n"
+msgstr "\\n捐赠与付款\\n"
+
+msgid "Payment method"
+msgstr "付款方式"
+
+msgid "\\nOthers in this donation\\n"
+msgstr "\\n本次捐赠中的其他人\\n"
+
+msgid "\\nPayment not received: it cannot be sent to a partner until the payment is approved.\\n"
+msgstr "\\n未收到付款:在付款获得批准之前,无法将其发送给合作伙伴。\\n"
+
+msgid "\\n%s? It goes back to approved and can be sent to another partner.\\n"
+msgstr "\\n%s?它会返回到已批准状态,并且可以发送给其他合作伙伴。\\n"
+
+msgid "\\nCancel this item?\\n"
+msgstr "\\n取消此项?\\n"
+
+msgid "\\nAdd a note to the history\\n"
+msgstr "\\n向历史记录添加注释\\n"
+
+msgid "Add note"
+msgstr "添加备注"
+
+msgid "\\nFiles stay on the item. The first file marks an item that is with a partner as completed.\\n"
+msgstr "\\n文件保留在该项目上。第一个文件将合作伙伴的项目标记为已完成。\\n"
+
+msgid "\\nFiles stay on the item.\\n"
+msgstr "\\n文件保留在该项目上。\\n"
+
+msgid "\\nNo file yet.\\n"
+msgstr "\\n还没有文件。\\n"
+
+msgid "\\nSent to%1$s·%2$s\\n"
+msgstr "\\n发送到%1$s·%2$s\\n"
+
+msgid "\\nSend this file to%sover WhatsApp?\\n"
+msgstr "\\n通过 WhatsApp 将此文件发送到%s?\\n"
+
+msgid "\\nSend to owner\\n"
+msgstr "\\n发送给所有者\\n"
+
+msgid "\\nRemove this file from the item? It stays in the media library.\\n"
+msgstr "\\n从项目中删除此文件吗?它保留在媒体库中。\\n"
+
+msgid "Remove"
+msgstr "删除"
+
+msgid "\\nInstall Flux Chat to send files over WhatsApp.\\n"
+msgstr "\\n安装 Flux Chat 以通过 WhatsApp 发送文件。\\n"
+
+msgid "\\nThere is no phone number for the owner. Add one above to send the file.\\n"
+msgstr "\\n没有车主的电话号码。在上面添加一项以发送文件。\\n"
+
+msgid "Upload"
+msgstr "上传"
+
+msgid "\\n%1$s(moved from%2$s)\\n"
+msgstr "\\n%1$s(从%2$s移出)\\n"
+
+msgid "\\nSelect at least one item.\\n"
+msgstr "\\n至少选择一项。\\n"
+
+msgid "\\nFile added.\\n"
+msgstr "\\n文件已添加。\\n"
+
+msgid "\\nThe file was sent to the owner over WhatsApp.\\n"
+msgstr "\\n该文件已通过 WhatsApp 发送给所有者。\\n"
+
+msgid "\\nTrial\\n"
+msgstr "\\n试用\\n"
+
+msgid "Processing"
+msgstr "加工"
+
+msgid "\\nAmount mismatch\\n"
+msgstr "\\n金额不匹配\\n"
+
+msgid "\\nIncomplete\\n"
+msgstr "\\n不完整\\n"
+
+msgid "Partly refunded"
+msgstr "部分退款"
+
+msgid "\\nPayment providers that take the money on your forms, and every payment they recorded.\\n"
+msgstr "\\n在您的表单上收取款项的支付提供商以及他们记录的每笔付款。\\n"
+
+msgid "\\nConfigured\\n"
+msgstr "\\n已配置\\n"
+
+msgid "\\nNot configured', 'en']]"
+msgstr "\\n未配置', 'en']]"
+
+msgid "\\nSaved, leave empty to keep it\\n"
+msgstr "\\n已保存,留空以保留\\n"
+
+msgid "\\nRemove the saved value\\n"
+msgstr "\\n删除保存的值\\n"
+
+msgid "\\nUsing the value saved in Flux Forms\\'s settings. Enter a value here to replace it.\\n"
+msgstr "\\n使用 Flux Forms 设置中保存的值。在此处输入一个值来替换它。\\n"
+
+msgid "\\nTake payments with this provider\\n"
+msgstr "\\n通过该提供商付款\\n"
+
+msgid "Environment"
+msgstr "环境"
+
+msgid "\\nNo keys\\n"
+msgstr "\\n没有钥匙\\n"
+
+msgid "\\nSandbox (test)\\n"
+msgstr "\\n沙盒(测试)\\n"
+
+msgid "Live"
+msgstr "直播"
+
+msgid "\\nRecurring charges\\n"
+msgstr "\\n经常性费用\\n"
+
+msgid "\\nCharged by Flux Donate\\'s hourly WP-Cron job. Next run:%1$s. Last charge run:%2$s.\\n"
+msgstr "\\n由 Flux Donate 的每小时 WP-Cron 作业收费。下次运行:%1$s。最后一次充电运行:%2$s。\\n"
+
+msgid "Webhook URL"
+msgstr "网络钩子 URL"
+
+msgid "[['In the Stripe Dashboard add a webhook endpoint with this URL and the events payment_intent.succeeded, payment_intent.payment_failed, payment_intent.canceled, charge.refunded, customer.subscription.created, customer.subscription.updated, customer.subscription.deleted, invoice.paid and invoice.payment_failed, then save its signing secret above. An endpoint set up earlier for Flux Forms keeps working.', 'en']]"
+msgstr "[['在 Stripe 仪表板中添加一个带有此 URL 的 Webhook 端点和事件 payment_intent.succeeded、 payment_intent. payment_failed、 payment_intent.canceled、 charge.refunded、 customer.subscription.created、 customer.subscription.updated、 customer.subscription.deleted、invoice.paid 和 invoice. payment_failed,然后保存上面的签名密钥。之前为 Flux Forms 设置的端点仍然有效。', 'en']]"
+
+msgid "\\nPayment records\\n"
+msgstr "\\n付款记录\\n"
+
+msgid "\\nEvery payment started on a form, including unfinished ones. Completed ones are also listed under Donations.\\n"
+msgstr "\\n每笔付款都从表格开始,包括未完成的付款。已完成的也列在捐赠下。\\n"
+
+msgid "\\nNo payments yet.\\n"
+msgstr "\\n尚未付款。\\n"
+
+msgid "Provider"
+msgstr "提供者"
+
+msgid "[['%srecord', 'en']]"
+msgid_plural "[['%srecords', 'en']]"
+msgstr[0] "[['%s记录', 'zh']]"
+
+msgid "\\nA Stripe publishable key starts with pk_live_ or pk_test_.\\n"
+msgstr "\\nStripe 可发布密钥以 pk_live_ 或 pk_test_ 开头。\\n"
+
+msgid "\\nA Stripe secret key starts with sk_live_, sk_test_ or rk_.\\n"
+msgstr "\\nStripe 密钥以 sk_live_、sk_test_ 或 rk_ 开头。\\n"
+
+msgid "\\nA Stripe webhook signing secret starts with whsec_.\\n"
+msgstr "\\nStripe Webhook 签名密钥以 whsec_ 开头。\\n"
+
+msgid "\\nRefund / cancel\\n"
+msgstr "\\n退款/取消\\n"
+
+msgid "\\nRefund this amount to the donor through the payment provider?\\n"
+msgstr "\\n通过支付提供商将此金额退还给捐赠者?\\n"
+
+msgid "\\nAmount (up to%s)\\n"
+msgstr "\\n金额(最多%s)\\n"
+
+msgid "\\nRefund\\n"
+msgstr "\\n退款\\n"
+
+msgid "\\nCancel this payment at iyzico? This works only on the day of the payment, before it is settled; the whole amount is released to the donor.\\n"
+msgstr "\\n在 iyzico 取消此付款吗?这只适用于付款当天结算之前;全部金额将发放给捐赠者。\\n"
+
+msgid "\\nSame day only: cancel the payment instead of refunding it.\\n"
+msgstr "\\n仅限当天:取消付款而不是退款。\\n"
+
+msgid "\\nCancel payment\\n"
+msgstr "\\n取消付款\\n"
+
+msgid "Site"
+msgstr "网站"
+
+msgid "\\norder #%s\\n"
+msgstr "\\n顺序 #%s\\n"
+
+msgid "\\nPayment awaiting approval\\n"
+msgstr "\\n付款等待批准\\n"
+
+msgid "Reject"
+msgstr "拒绝"
+
+msgid "Preview"
+msgstr "预览"
+
+msgid "\\nNo receipt uploaded yet. Check the bank account before approving.\\n"
+msgstr "\\n尚未上传收据。批准之前检查银行帐户。\\n"
+
+msgid "Open in new tab"
+msgstr "在新选项卡中打开"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "e-mail"
+msgstr "电子邮件"
+
+msgid "\\nReject the payment\", 'en']]"
+msgstr "\\n拒绝付款\", 'en']]"
+
+msgid "\\nReason (sent to the donor)\\n"
+msgstr "\\n原因(发送给捐赠者)\\n"
+
+msgid "\\ne.g. The recipient name on the receipt does not match our account.\\n"
+msgstr "\\ne.g.收据上的收件人姓名与我们的帐户不符。\\n"
+
+msgid "\\nTell the donor (%s)\\n"
+msgstr "\\n告诉捐赠者 (%s)\\n"
+
+msgid "\\nThe donor has no phone or e-mail; the reason is only kept on the order.\\n"
+msgstr "\\n捐赠者没有电话或电子邮件;原因仅保留在订单上。\\n"
+
+msgid "\\nThe donation is canceled. The donor can make a new one.\\n"
+msgstr "\\n捐赠已取消。捐赠者可以制作一个新的。\\n"
+
+msgid "\\nThis donation is no longer awaiting approval.\\n"
+msgstr "\\n此捐赠不再等待批准。\\n"
+
+msgid "[['Bank transfer confirmed (%s).\\n"
+msgstr "[['银行转账已确认 (%s)。\\n"
+
+msgid "\\nPlease write a reason.\\n"
+msgstr "\\n请写出原因。\\n"
+
+msgid "\\nPayment rejected; the donor was told by%s.\\n"
+msgstr "\\n付款被拒绝;%s告知捐赠者。\\n"
+
+msgid "\\nPayment rejected by%1$s. Reason:%2$s', 'en']]"
+msgstr "\\n付款被%1$s拒绝。原因:%2$s', 'en']]"
+
+msgid "[['Rejection sent to the donor:%s\\n"
+msgstr "[['拒绝发送给捐赠者:%s\\n"
+
+msgid "Hello %s,"
+msgstr "您好,%s,"
+
+msgid "\\nHello,\\n"
+msgstr "\\n你好,\\n"
+
+msgid "\\nWe could not confirm the payment of your%sdonation.\\n"
+msgstr "\\n我们无法确认您的%s捐款的付款。\\n"
+
+msgid "Reason: %s"
+msgstr "原因:%s"
+
+msgid "\\nIf you think this is a mistake, please reply to this message. Thank you.\\n"
+msgstr "\\n如果您认为这是一个错误,请回复此消息。谢谢。\\n"
+
+msgid "New report"
+msgstr "新报告"
+
+msgid "\\nEdit JSON\\n"
+msgstr "\\n编辑 JSON\\n"
+
+msgid "\\nCounts and totals grouped the way each report says. Reports are JSON and can be edited.\\n"
+msgstr "\\n计数和总计按照每个报告所述的方式进行分组。报告为 JSON 格式,可以编辑。\\n"
+
+msgid "\\nNo reports\\n"
+msgstr "\\n没有报告\\n"
+
+msgid "\\nCustom dates\\n"
+msgstr "\\n自定义日期\\n"
+
+msgid "CSV"
+msgstr "CSV"
+
+msgid "\\nNothing in this period\\n"
+msgstr "\\n这段时间没有什么\\n"
+
+msgid "\\nOnly the first%srows are shown. The CSV has the same rows.\\n"
+msgstr "\\n仅显示前%s行。 CSV 具有相同的行。\\n"
+
+msgid "\\nReport (JSON)', 'en']]"
+msgstr "\\n报告(JSON)', 'en']]"
+
+msgid "\\nAre you sure?\\n"
+msgstr "\\n你确定吗?\\n"
+
+msgid "\\nPut back the original\\n"
+msgstr "\\n放回原来的\\n"
+
+msgid "\\nDelete report\\n"
+msgstr "\\n删除报告\\n"
+
+msgid "\\nWhat you can use\\n"
+msgstr "\\n你可以使用什么\\n"
+
+msgid "[['Titles can be one text or {\"tr\": \"...\", \"en\": \"...\"}.\\n"
+msgstr "[['标题可以是一个文本或 {\"tr\": \"...\", \"en\": \"...\"}。\\n"
+
+msgid "\\nReport not found.\\n"
+msgstr "\\n未找到报告。\\n"
+
+msgid "Bank transfer"
+msgstr "银行转账"
+
+msgid "Cash"
+msgstr "现金"
+
+msgid "\\nRecord a gift paid or promised by bank transfer, in cash or another way.\\n"
+msgstr "\\n记录通过银行转账、现金或其他方式支付或承诺的礼物。\\n"
+
+msgid "\\nDecrease\\n"
+msgstr "\\n减少\\n"
+
+msgid "\\nIncrease\\n"
+msgstr "\\n增加\\n"
+
+msgid "\\nfrom the donation type\\n"
+msgstr "\\n来自捐赠类型\\n"
+
+msgid "\\nLeave empty to use the price of the type. A different price needs a reason.\\n"
+msgstr "\\n留空以使用该类型的价格。不同的价格需要有理由。\\n"
+
+msgid "\\nReason for a different price\\n"
+msgstr "\\n价格不同的原因\\n"
+
+msgid "\\nFor a free amount. With an option the amount is quantity × unit price.\\n"
+msgstr "\\n免费。使用选项时,金额为数量 × 单价。\\n"
+
+msgid "\\nOne name per line, one per unit. Units without a name are given on behalf of the donor.\\n"
+msgstr "\\n每行一个名称,每个单元一个名称。没有名字的单位是代表捐赠者提供的。\\n"
+
+msgid "\\nThe donor accepted the proxy (vekâlet) text, version%s\\n"
+msgstr "\\n捐赠者接受了代理 (vekâlet) 文本,版本%s\\n"
+
+msgid "\\nMatched to an existing donor card on phone number or e-mail address.\\n"
+msgstr "\\n与现有捐赠卡的电话号码或电子邮件地址相匹配。\\n"
+
+msgid "\\nPending (payment not received yet)\\n"
+msgstr "\\n待处理(尚未收到付款)\\n"
+
+msgid "\\nCompleted (payment received)\\n"
+msgstr "\\n已完成(已收到付款)\\n"
+
+msgid "\\nYou can change it later on the donation page.\\n"
+msgstr "\\n您可以稍后在捐赠页面上更改它。\\n"
+
+msgid "\\nReceipt or transaction no.\\n"
+msgstr "\\n收据或交易编号。\\n"
+
+msgid "\\nThe staff member who brought this donation. They see it under their referrals.\\n"
+msgstr "\\n带来这笔捐款的工作人员。他们在推荐下看到它。\\n"
+
+msgid "\\nSave donation\\n"
+msgstr "\\n保存捐款\\n"
+
+msgid "\\nPlease give a reason for the different unit price.\\n"
+msgstr "\\n请说明单价不同的原因。\\n"
+
+msgid "[['This option has no price yet. Enter the unit price and a reason.\\n"
+msgstr "[['该选项尚未定价。输入单价和原因。\\n"
+
+msgid "\\nThis donation type needs the donor's proxy (vekâlet) consent.\\n"
+msgstr "\\n此捐赠类型需要捐赠者代理人 (vekâlet) 的同意。\\n"
+
+msgid "\\nOpen a donation on behalf of a donor. The donor gets a payment link and you are the referral.\\n"
+msgstr "\\n代表捐赠者发起捐赠。捐赠者会收到付款链接,而您就是被推荐人。\\n"
+
+msgid "\\nThere is no open donation type yet.\\n"
+msgstr "\\n尚无开放的捐赠类型。\\n"
+
+msgid "\\nOnly for a free amount.\\n"
+msgstr "\\n仅限免费。\\n"
+
+msgid "\\nOne name per line, one per unit; this name goes on the certificate. Empty = the donor\\'s name.\\n"
+msgstr "\\n每行一个名称,每个单元一个;这个名字出现在证书上。空 = 捐赠者姓名。\\n"
+
+msgid "\\nPhone or e-mail is required: the payment link goes there.', 'en']]"
+msgstr "\\n需要电话或电子邮件:那里有付款链接。', 'en']]"
+
+msgid "\\nE-mail the payment link to the donor\\n"
+msgstr "\\n通过电子邮件将付款链接发送给捐赠者\\n"
+
+msgid "\\nThe donor pays by card or bank transfer on the payment page. You are told when the donation is paid or cancelled.\\n"
+msgstr "\\n捐赠者在付款页面通过银行卡或银行转账方式付款。捐款何时支付或取消,您会收到通知。\\n"
+
+msgid "\\nCreate request\\n"
+msgstr "\\n创建请求\\n"
+
+msgid "\\nHello%1$s, we have received your donation request (%2$s). You can pay here:%3$s\\n"
+msgstr "\\n您好%1$s,我们已收到您的捐赠请求 (%2$s)。您可以在这里付款:%3$s\\n"
+
+msgid "\\nRequest created\\n"
+msgstr "\\n已创建请求\\n"
+
+msgid "\\nPayment link\\n"
+msgstr "\\n付款链接\\n"
+
+msgid "Copied"
+msgstr "已复制"
+
+msgid "Copy link"
+msgstr "复制链接"
+
+msgid "\\nSend on WhatsApp\\n"
+msgstr "\\n通过 WhatsApp 发送\\n"
+
+msgid "\\nThe payment link was also e-mailed to the donor.\\n"
+msgstr "\\n付款链接也通过电子邮件发送给捐赠者。\\n"
+
+msgid "\\nWho brings gifts in and who carries the work out (%s), their agreed prices and payments.\\n"
+msgstr "\\n谁带来礼物,谁进行工作 (%s),他们商定的价格和付款。\\n"
+
+msgid "\\nNew partner\\n"
+msgstr "\\n新伙伴\\n"
+
+msgid "\\nSettlement\\n"
+msgstr "\\n结算\\n"
+
+msgid "\\nNo partners yet\\n"
+msgstr "\\n还没有合作伙伴\\n"
+
+msgid "\\nAdd the places or organisations that carry the work out, and the offices that bring gifts in.\\n"
+msgstr "\\n添加开展工作的地点或组织,以及带来礼物的办公室。\\n"
+
+msgid "Role"
+msgstr "角色"
+
+msgid "\\nAgreement\\n"
+msgstr "\\n协议\\n"
+
+msgid "\\nBring gifts in\\n"
+msgstr "\\n带礼物进来\\n"
+
+msgid "\\nAll off\\n"
+msgstr "\\n全部关闭\\n"
+
+msgid "\\nPassive\\n"
+msgstr "\\n被动\\n"
+
+msgid "Group"
+msgstr "集团"
+
+msgid "\\nOptional, for reports (e.g. country or region).\\n"
+msgstr "\\n可选,用于报告(例如国家或地区)。\\n"
+
+msgid "\\nCarries the work out (%s)\\n"
+msgstr "\\n进行计算 (%s)\\n"
+
+msgid "\\nBrings gifts in (office, organization)\\n"
+msgstr "\\n将礼物带入(办公室、组织)\\n"
+
+msgid "\\nNone ticked = all types.\\n"
+msgstr "\\n无勾选 = 所有类型。\\n"
+
+msgid "\\nContact person', 'en']]"
+msgstr "\\n联系人', 'en']]"
+
+msgid "Phone (WhatsApp)"
+msgstr "电话(WhatsApp)"
+
+msgid "Key"
+msgstr "钥匙"
+
+msgid "\\nOptional. Presets and imports find the partner by it.\\n"
+msgstr "\\n可选。预设和导入通过它找到合作伙伴。\\n"
+
+msgid "\\nMoney paid to the partner, or received from it. The settlement subtracts it.\\n"
+msgstr "\\n支付给合作伙伴或从合作伙伴处收到的资金。结算时减去它。\\n"
+
+msgid "\\nDirection\\n"
+msgstr "\\n方向\\n"
+
+msgid "\\nReceived\\n"
+msgstr "\\n已收到\\n"
+
+msgid "\\nDelete this payment?\\n"
+msgstr "\\n删除此付款?\\n"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "\\nWe paid\\n"
+msgstr "\\n我们付了钱\\n"
+
+msgid "\\nWe received\\n"
+msgstr "\\n我们收到\\n"
+
+msgid "\\nAdd payment\\n"
+msgstr "\\n添加付款\\n"
+
+msgid "\\nAgreements\\n"
+msgstr "\\n协议\\n"
+
+msgid "\\nAgreed cost per type and option. The price valid on the day an item is sent is kept on the item. A partner whose agreements for a type are all switched off gets no new work for it.\\n"
+msgstr "\\n每种类型和选项的商定成本。商品上保留商品发送当天的有效价格。某个类型的协议全部关闭的合作伙伴无法获得新的工作。\\n"
+
+msgid "Price"
+msgstr "价格"
+
+msgid "\\nValid from\\n"
+msgstr "\\n有效期自\\n"
+
+msgid "\\nDelete this agreement? Items already sent keep their price.\\n"
+msgstr "\\n删除此协议?已发送的商品保持原价。\\n"
+
+msgid "\\nDonation type and option\\n"
+msgstr "\\n捐赠类型和选项\\n"
+
+msgid "\\nall options\\n"
+msgstr "\\n所有选项\\n"
+
+msgid "\\nAdd agreement\\n"
+msgstr "\\n添加协议\\n"
+
+msgid "\\n%s(cost)\\n"
+msgstr "\\n%s(成本)\\n"
+
+msgid "\\nBrought in (gift price)\\n"
+msgstr "\\n带进来(礼金价)\\n"
+
+msgid "\\nAll partners\\n"
+msgstr "\\n所有合作伙伴\\n"
+
+msgid "Records"
+msgstr "记录"
+
+msgid "Cost"
+msgstr "成本"
+
+msgid "\\nGift price\\n"
+msgstr "\\n礼品价格\\n"
+
+msgid "Open"
+msgstr "打开"
+
+msgid "[['%dwithout a price', 'en']]"
+msgid_plural "[['%dwithout a price', 'en']]"
+msgstr[0] "[['%d无价格', 'en']]"
+
+msgid "\\nRe-read prices from the agreements\\n"
+msgstr "\\n重新读取协议中的价格\\n"
+
+msgid "\\nDonations, donors and recurring gifts at a glance.\\n"
+msgstr "\\n捐款、捐助者和经常性礼物一目了然。\\n"
+
+msgid "All donations"
+msgstr "所有捐款"
+
+msgid "Period"
+msgstr "时期"
+
+msgid "7 days"
+msgstr "7天"
+
+msgid "30 days"
+msgstr "30天"
+
+msgid "90 days"
+msgstr "90天"
+
+msgid "\\nCustom\\n"
+msgstr "\\n自定义\\n"
+
+msgid "\\nThe dashboard needs JavaScript.\\n"
+msgstr "\\n仪表板需要 JavaScript。\\n"
+
+msgid "\\nSorry, you are not allowed to do that.\\n"
+msgstr "\\n抱歉,您不能这样做。\\n"
+
+msgid "Organisation"
+msgstr "组织机构"
+
+msgid "Categories"
+msgstr "类别"
+
+msgid "\\nTracking\\n"
+msgstr "\\n跟踪\\n"
+
+msgid "\\nExtra tabs\\n"
+msgstr "\\n额外选项卡\\n"
+
+msgid "System check"
+msgstr "系统检查"
+
+msgid "[['Settings sections\\n"
+msgstr "[['设置部分\\n"
+
+msgid "\\nDefault currency\\n"
+msgstr "\\n默认货币\\n"
+
+msgid "\\nTurkish lira (₺)\\n"
+msgstr "\\n土耳其里拉 (₺)\\n"
+
+msgid "\\nEuro (€)', 'en']]"
+msgstr "\\n欧元 (€)', 'en']]"
+
+msgid "\\nUS dollar ($)\\n"
+msgstr "\\n美元 ($)\\n"
+
+msgid "\\nPound sterling (£)\\n"
+msgstr "\\n英镑 (£)\\n"
+
+msgid "\\nDashboard totals are in this currency; gifts in other currencies are listed but not added to the totals.\\n"
+msgstr "\\n仪表板总计以该货币表示;其他货币的礼物会列出,但不会添加到总数中。\\n"
+
+msgid "\\nTracking module\\n"
+msgstr "\\n跟踪模块\\n"
+
+msgid "\\nChosen donation types get one item per unit with a code, sent to partners (with agreed prices and settlement), files and history. Leave it off if you do not need it.\\n"
+msgstr "\\n选定的捐赠类型每单位获得一件带有代码的物品,发送给合作伙伴(具有商定的价格和结算)、文件和历史记录。如果不需要,请将其关闭。\\n"
+
+msgid "[['A Reports screen with editable JSON reports (always on with the tracking module).\\n"
+msgstr "[['带有可编辑 JSON 报告的报告屏幕(始终与跟踪模块一起打开)。\\n"
+
+msgid "[['Gifts on behalf of a person\\n"
+msgstr "[['代表某人的礼物\\n"
+
+msgid "[['Adds a proxy (vekâlet) text the donor accepts, intentions and one item per unit with the name of the person it is given for. Turns tracking on too.\\n"
+msgstr "[['添加捐赠者接受的代理 (vekâlet) 文本、意图以及每个单位的一个项目,其中包含捐赠者的姓名。也打开跟踪。\\n"
+
+msgid "\\nWhich payments are donations?\\n"
+msgstr "\\n哪些付款属于捐赠?\\n"
+
+msgid "\\nEvery payment taken through a Flux Forms form\\n"
+msgstr "\\n通过 Flux Forms 表格进行的每笔付款\\n"
+
+msgid "\\nOnly payments through the forms selected below (and forms linked to a donation type)\\n"
+msgstr "\\n仅通过下面选择的表格(以及链接到捐赠类型的表格)进行付款\\n"
+
+msgid "Save settings"
+msgstr "保存设置"
+
+msgid "\\nHow donations are recorded\", 'tr']]"
+msgstr "\\n如何记录捐款\", 'tr']]"
+
+msgid "\\nA donation is stored when a Flux Forms payment is completed: at the final form submission (with name, phone and e-mail from the form), from the payment provider\\'s notifications (refunds, renewals of recurring gifts) and by an hourly check that catches payments whose form was not submitted.\\n"
+msgstr "\\n当 Flux Forms 付款完成时,捐款将被存储:最终表单提交时(包含表单中的姓名、电话和电子邮件)、支付提供商的通知(退款、经常性礼物的续订)以及每小时检查未提交表单的付款。\\n"
+
+msgid "\\nDonors are matched on phone number or e-mail address, never on name alone.\\n"
+msgstr "\\n捐赠者通过电话号码或电子邮件地址进行匹配,而不仅仅是姓名。\\n"
+
+msgid "\\nShown on receipts, donation pages and in exports. Empty fields fall back to the site name, the theme logo and the theme colours.\\n"
+msgstr "\\n显示在收据、捐赠页面和导出中。空字段会回退到站点名称、主题徽标和主题颜色。\\n"
+
+msgid "\\nOrganisation name\\n"
+msgstr "\\n组织名称\\n"
+
+msgid "Logo"
+msgstr "标志"
+
+msgid "\\nChoose a logo\\n"
+msgstr "\\n选择徽标\\n"
+
+msgid "Choose logo"
+msgstr "选择标志"
+
+msgid "[['brand color\\n"
+msgstr "[['品牌颜色\\n"
+
+msgid "\\nHex color such as #1F2937. Empty = the theme's primary colour.\\n"
+msgstr "\\n十六进制颜色,例如#1F2937。空 = 主题的原色。\\n"
+
+msgid "\\nReceipt text\\n"
+msgstr "\\n收据文本\\n"
+
+msgid "\\nA thank-you note printed on the donation receipt.\\n"
+msgstr "\\n捐款收据上印有感谢信。\\n"
+
+msgid "\\nFooter text\\n"
+msgstr "\\n页脚文本\\n"
+
+msgid "\\nAddress, registration number, bank details and similar; printed at the bottom of receipts.', 'en']]"
+msgstr "\\n地址、注册号、银行详细信息及类似信息;打印在收据底部。', 'en']]"
+
+msgid "\\nDonation type categories\\n"
+msgstr "\\n捐赠类型类别\\n"
+
+msgid "\\nGroup donation types, e.g. Sacrifice, Ramadan, General. The key is stored on the types; a category that is in use cannot be removed.\\n"
+msgstr "\\n团体捐赠类型,例如牺牲,斋月,将军。密钥存储在类型上;无法删除正在使用的类别。\\n"
+
+msgid "Add category"
+msgstr "添加类别"
+
+msgid "[['Save categories\\n"
+msgstr "[['保存类别\\n"
+
+msgid "[['Used by%stype', 'en']]"
+msgid_plural "[['Used by%stypes', 'en']]"
+msgstr[0] "[['由%s类型使用', 'en']]"
+
+msgid "\\nRemove category\\n"
+msgstr "\\n删除类别\\n"
+
+msgid "\\nThe words on the tracking screens. A donation type can use its own words (Donation types › Tracking); empty fields use these, and empty ones here the built-in words.\\n"
+msgstr "\\n跟踪屏幕上的文字。捐赠类型可以使用自己的词语(捐赠类型 › 跟踪);空字段使用这些,空字段使用内置单词。\\n"
+
+msgid "\\nEarly days\\n"
+msgstr "\\n早期\\n"
+
+msgid "\\nHow many days before the target date an item may already be done. After the target day it is still allowed, but shown as late.\\n"
+msgstr "\\n在目标日期之前多少天某个项目可能已经完成。在目标日期之后,仍然允许,但显示为迟到。\\n"
+
+msgid "\\nProxy (vekâlet) text\\n"
+msgstr "\\n代理 (vekâlet) 文本\\n"
+
+msgid "\\nThe text a donor accepts to authorise the organisation to give on their behalf. Every change is saved as a new version; each donation keeps the version that was accepted.\\n"
+msgstr "\\nThe text a donor accepts to authorise the organisation to give on their behalf.每次更改都会保存为新版本;每次捐赠都会保留已接受的版本。\\n"
+
+msgid "\\nWho items are sent to, their agreed prices and payments are kept under Donations › Partners.\\n"
+msgstr "\\n物品发送给谁,其商定的价格和付款保存在捐赠 › 合作伙伴下。\\n"
+
+msgid "\\nProxy text versions\\n"
+msgstr "\\n代理文本版本\\n"
+
+msgid "\\nNo text yet. Donations of types that require a proxy cannot be paid until a text is saved.\\n"
+msgstr "\\n还没有文字。在保存文本之前,无法支付需要代理的类型的捐赠。\\n"
+
+msgid "\\nVersion%1$s·%2$s\\n"
+msgstr "\\n版本%1$s·%2$s\\n"
+
+msgid "\\nAdd your own tabs with fields to tracked records (\"on\": \"item\") or donations (\"on\": \"donation\"), for all or some donation types. Leave it empty if you do not need any.\\n"
+msgstr "\\n为所有或某些捐赠类型添加您自己的带有字段的选项卡,以跟踪记录(“on”:“item”)或捐赠(“on”:“donation”)。如果不需要,请将其留空。\\n"
+
+msgid "\\nTabs (JSON list)\\n"
+msgstr "\\n选项卡(JSON 列表)\\n"
+
+msgid "\\nTabs in use\\n"
+msgstr "\\n正在使用的选项卡\\n"
+
+msgid "Donation page"
+msgstr "捐款页面"
+
+msgid "\\nRecord page\\n"
+msgstr "\\n记录页面\\n"
+
+msgid "[['%dfield', 'en']]"
+msgid_plural "[['%dfields', 'en']]"
+msgstr[0] "[['%d字段', 'en']]"
+
+msgid "\\nfrom a plugin\\n"
+msgstr "\\n来自插件\\n"
+
+msgid "\\nNo extra tabs yet.\\n"
+msgstr "\\n还没有额外的选项卡。\\n"
+
+msgid "Example"
+msgstr "示例"
+
+msgid "\\nReads completed payments stored by Flux Forms and adds the missing ones as donations. Safe to run more than once: a payment is never imported twice.\\n"
+msgstr "\\n读取 Flux Forms 存储的已完成付款,并将缺失的付款添加为捐款。可以安全运行多次:付款绝不会导入两次。\\n"
+
+msgid "\\nFlux Forms\\'s payment table was not found. Is Flux Forms installed?\\n"
+msgstr "\\n未找到 Flux Forms 的付款表。是否安装了 Flux Forms?\\n"
+
+msgid "\\nImporting...\\n"
+msgstr "\\n正在导入...\\n"
+
+msgid "\\nImport now\\n"
+msgstr "\\n立即导入\\n"
+
+msgid "\\nLast run%1$s:%2$spayments checked,%3$simported.\\n"
+msgstr "\\n上次运行%1$s:检查%2$s付款,导入%3$s。\\n"
+
+msgid "Closed"
+msgstr "已关闭"
+
+msgid "Archived"
+msgstr "已存档"
+
+msgid "\\nUpcoming (%s)\\n"
+msgstr "\\n即将推出 (%s)\\n"
+
+msgid "Ended"
+msgstr "结束"
+
+msgid "\\nNew donation type\\n"
+msgstr "\\n新的捐赠类型\\n"
+
+msgid "\\nDonation types and campaigns\\n"
+msgstr "\\n捐赠类型和活动\\n"
+
+msgid "\\nWhat people can give for: each type has its own prices and options, dates, goal and linked forms.\\n"
+msgstr "\\n人们可以付出什么:每种类型都有自己的价格和选项、日期、目标和链接表格。\\n"
+
+msgid "\\nOpen and closed\\n"
+msgstr "\\n打开和关闭\\n"
+
+msgid "Archive"
+msgstr "存档"
+
+msgid "\\nThe archive is empty\\n"
+msgstr "\\n存档为空\\n"
+
+msgid "\\nNo donation types yet\\n"
+msgstr "\\n尚无捐赠类型\\n"
+
+msgid "\\nCreate a type such as a general donation, a sapling or a kurban share, set its prices, and link the forms that collect for it.\\n"
+msgstr "\\n创建一个类型,例如一般捐赠、树苗或库尔班份额,设置其价格,并链接为其收集的表格。\\n"
+
+msgid "Order"
+msgstr "订单"
+
+msgid "Prices"
+msgstr "价格"
+
+msgid "Progress"
+msgstr "进展"
+
+msgid "Dates"
+msgstr "枣子"
+
+msgid "Forms"
+msgstr "表格"
+
+msgid "Move up"
+msgstr "向上移动"
+
+msgid "Move down"
+msgstr "下移"
+
+msgid "\\nNo category\\n"
+msgstr "\\n没有类别\\n"
+
+msgid "\\n(inactive)\\n"
+msgstr "\\n(无效)\\n"
+
+msgid "\\n(price not set)\\n"
+msgstr "\\n(价格未定)\\n"
+
+msgid "\\nfree amount (min.%s)\\n"
+msgstr "\\n免费金额(最少%s)\\n"
+
+msgid "\\nfree amount\\n"
+msgstr "\\n免费金额\\n"
+
+msgid "[['quantity\\n"
+msgstr "[['数量\\n"
+
+msgid "\\nrecurring\\n"
+msgstr "\\n重复\\n"
+
+msgid "\\n%1$sof%2$s(%3$s%%)\\n"
+msgstr "\\n%1$s或%2$s(%3$s%%)\\n"
+
+msgid "\\nOpen-ended\\n"
+msgstr "\\n开放式\\n"
+
+msgid "Edit"
+msgstr "编辑"
+
+msgid "\\nLoad sample types\\n"
+msgstr "\\n加载样本类型\\n"
+
+msgid "\\nAdds ready-made types and categories that you can edit. Types whose sample price is 0 start closed until you set their prices.\\n"
+msgstr "\\n添加您可以编辑的现成类型和类别。样本价格为 0 的类型开始关闭,直到您设置其价格。\\n"
+
+msgid "\\nSample set\\n"
+msgstr "\\n样本集\\n"
+
+msgid "Load"
+msgstr "负载"
+
+msgid "\\nDonation type not found', 'en']]"
+msgstr "\\n未找到捐赠类型', 'en']]"
+
+msgid "\\nEdit donation type\\n"
+msgstr "\\n编辑捐赠类型\\n"
+
+msgid "Basics"
+msgstr "基础知识"
+
+msgid "Title"
+msgstr "标题"
+
+msgid "Category"
+msgstr "类别"
+
+msgid "\\nEdit categories\\n"
+msgstr "\\n编辑类别\\n"
+
+msgid "\\nSlug\\n"
+msgstr "\\n子弹\\n"
+
+msgid "\\nOptional; created from the title.\\n"
+msgstr "\\n可选;根据标题创建。\\n"
+
+msgid "\\nPrices and the goal are in this currency. A linked form must charge in the same currency, otherwise its payments are stopped.\\n"
+msgstr "\\n价格和目标均以该货币表示。链接的表单必须以相同的货币收费,否则其付款将停止。\\n"
+
+msgid "Short description"
+msgstr "简短描述"
+
+msgid "Automatic"
+msgstr "自动"
+
+msgid "Heart"
+msgstr "心"
+
+msgid "Gift"
+msgstr "礼物"
+
+msgid "\\nSheep\\n"
+msgstr "\\n羊\\n"
+
+msgid "Cattle"
+msgstr "牛"
+
+msgid "\\nCamel\\n"
+msgstr "\\n骆驼\\n"
+
+msgid "\\nCard subtitle\", 'en']]"
+msgstr "\\n卡片副标题\", 'en']]"
+
+msgid "\\nOne short line under the title on the type cards, e.g. \"Sheep or goat\".', 'en']]"
+msgstr "\\n类型卡标题下有一条短线,例如“绵羊或山羊”。', 'en']]"
+
+msgid "Icon"
+msgstr "图标"
+
+msgid "\\nShown when the type has no image.\\n"
+msgstr "\\n当类型没有图像时显示。\\n"
+
+msgid "Image"
+msgstr "图片"
+
+msgid "\\nChoose an image\\n"
+msgstr "\\n选择图像\\n"
+
+msgid "Choose image"
+msgstr "选择图片"
+
+msgid "\\nPrices and options\\n"
+msgstr "\\n价格和选项\\n"
+
+msgid "\\nOne option is a fixed price per unit (e.g. one sapling). Several options give the donor a choice (e.g. adak, akika, şifa). The amount charged is always computed on the server from these prices.\\n"
+msgstr "\\n一个选项是每单位的固定价格(例如一棵树苗)。捐赠者有多种选择(例如adak、akika、şifa)。收费金额始终根据这些价格在服务器上计算。\\n"
+
+msgid "\\nA price of 0 means the price is not announced yet: the option is shown but cannot be paid. An inactive option is hidden and cannot be paid.\\n"
+msgstr "\\n价格为 0 表示价格尚未公布:选项已显示但无法支付。不活动的选项被隐藏并且无法支付。\\n"
+
+msgid "Add option"
+msgstr "添加选项"
+
+msgid "[['Free amount allowed\\n"
+msgstr "[['允许免费金额\\n"
+
+msgid "\\nMinimum amount\\n"
+msgstr "\\n最低金额\\n"
+
+msgid "\\nQuantity allowed\\n"
+msgstr "\\n允许数量\\n"
+
+msgid "\\nMaximum quantity\\n"
+msgstr "\\n最大数量\\n"
+
+msgid "\\nEmpty = no limit.\\n"
+msgstr "\\n空 = 无限制。\\n"
+
+msgid "[[\"Recurring giving allowed\\n"
+msgstr "[[“允许重复捐赠\\n"
+
+msgid "\\nLinked forms\\n"
+msgstr "\\n链接表单\\n"
+
+msgid "\\nGifts through these Flux Forms forms count for this type. Map each priced choice of the form to an option: the form then charges the price set here.\\n"
+msgstr "\\n通过这些 Flux Forms 形式提供的礼物属于此类型。将表单的每个定价选择映射到一个选项:然后表单按此处设置的价格收费。\\n"
+
+msgid "\\nNo payment form found in Flux Forms yet.\\n"
+msgstr "\\n尚未在 Flux Forms 中找到付款表单。\\n"
+
+msgid "\\nalso linked to:%s\\n"
+msgstr "\\n还链接到:%s\\n"
+
+msgid "\\nSave after choosing a form to map its choices.\\n"
+msgstr "\\n选择表单后保存以映射其选择。\\n"
+
+msgid "\\nHide the choice in the form when it was preselected\\n"
+msgstr "\\n预选时隐藏表单中的选项\\n"
+
+msgid "\\nWhen the page passes a choice (flxb_opt in the address or FLXB.preselect()), the form shows a short summary with a \"Change\" link instead of the choice list.\\n"
+msgstr "\\n当页面传递选择(地址中的 flxb_opt 或 FLXB.preselect())时,表单会显示带有“更改”链接的简短摘要,而不是选择列表。\\n"
+
+msgid "Publishing"
+msgstr "出版"
+
+msgid "\\nA closed type keeps its history but its forms no longer take payments.\\n"
+msgstr "\\n封闭类型保留其历史记录,但其表单不再接受付款。\\n"
+
+msgid "Start date"
+msgstr "开始日期"
+
+msgid "\\nEnd date\\n"
+msgstr "\\n结束日期\\n"
+
+msgid "\\nGoal amount\\n"
+msgstr "\\n目标金额\\n"
+
+msgid "\\nOptional. Shown as a progress bar.\\n"
+msgstr "\\n可选。显示为进度条。\\n"
+
+msgid "\\nShow it on the site\\n"
+msgstr "\\n在网站上显示\\n"
+
+msgid "\\nAdd baslik=\"hayir\" to hide the title and description.\\n"
+msgstr "\\n添加 baslik=\"hayir\" 以隐藏标题和说明。\\n"
+
+msgid "\\nDelete this donation type\\n"
+msgstr "\\n删除此捐赠类型\\n"
+
+msgid "\\nDelete this donation type?\\n"
+msgstr "\\n删除此捐赠类型吗?\\n"
+
+msgid "\\nThis type has gifts, so it can be archived but not deleted.\\n"
+msgstr "\\n此类型有礼物,因此可以存档但不能删除。\\n"
+
+msgid "\\nOption name\\n"
+msgstr "\\n选项名称\\n"
+
+msgid "\\ne.g. Sapling, Adak, Iftar\\n"
+msgstr "\\ne.g.树苗、埃达克、开斋\\n"
+
+msgid "\\nfrom the name\\n"
+msgstr "\\n从名字来看\\n"
+
+msgid "\\nRemove option\\n"
+msgstr "\\n删除选项\\n"
+
+msgid "Unit"
+msgstr "单位"
+
+msgid "\\n— note set\\n"
+msgstr "\\n— 注释集\\n"
+
+msgid "\\nUnits per choice\\n"
+msgstr "\\n每个选择的单位\\n"
+
+msgid "\\ne.g. a whole animal = 7 shares\\n"
+msgstr "\\ne.g.一整只动物 = 7 份\\n"
+
+msgid "Badge"
+msgstr "徽章"
+
+msgid "\\nnot offered', 'en']]"
+msgstr "\\n未提供', 'en']]"
+
+msgid "\\nTranslations\\n"
+msgstr "\\n翻译\\n"
+
+msgid "\\nShown on the donation page, the cart and the checkout in that language (Flux Lang). Empty fields use the texts above. Records keep the texts above. Save once after adding options to translate their names.\\n"
+msgstr "\\n以该语言 (Flux Lang) 显示在捐赠页面、购物车和结帐处。空字段使用上面的文本。记录保留上述文字。添加翻译名称的选项后保存一次。\\n"
+
+msgid "\\nOption:%s\\n"
+msgstr "\\n选项:%s\\n"
+
+msgid "\\nEach unit of a gift becomes its own item with a 7-digit code: approved, sent to a partner, completed, delivered to the owner, with files and history.\\n"
+msgstr "\\n礼物的每个单元都成为带有 7 位数代码的自己的物品:批准、发送给合作伙伴、完成、交付给所有者,并带有文件和历史记录。\\n"
+
+msgid "\\nTrack every unit one by one\\n"
+msgstr "\\n一一跟踪每个单元\\n"
+
+msgid "\\nAlways on for gifts given on behalf of a person.\\n"
+msgstr "\\n代表某人赠送礼物时始终打开。\\n"
+
+msgid "\\nThe first file marks it completed\\n"
+msgstr "\\n第一个文件将其标记为已完成\\n"
+
+msgid "\\nWords for this type', 'en']]"
+msgstr "\\n此类型的单词', 'en']]"
+
+msgid "\\nOn behalf of a person\\n"
+msgstr "\\n代表某人\\n"
+
+msgid "\\nFor types given on behalf of a named person: each unit becomes its own item with that person\\'s name, and the donor must accept the proxy (vekâlet) text.\\n"
+msgstr "\\n对于代表指定人物给出的类型:每个单位都成为带有该人姓名的自己的项目,并且捐赠者必须接受代理 (vekâlet) 文本。\\n"
+
+msgid "\\nProxy (vekâlet) required\\n"
+msgstr "\\n需要代理 (vekâlet)\\n"
+
+msgid "\\nAnimal\\n"
+msgstr "\\n动物\\n"
+
+msgid "\\nCattle (7 shares)\\n"
+msgstr "\\n牛(7股)\\n"
+
+msgid "\\nAll of the meat goes to people in need\\n"
+msgstr "\\n所有的肉都送给有需要的人\\n"
+
+msgid "\\nMapping for “%s”\\n"
+msgstr "\\n映射“%s”\\n"
+
+msgid "\\nThis form charges in%1$sbut the donation type is in%2$s: its payments are stopped until both use the same currency.\\n"
+msgstr "\\n此表单以%1$s收费,但捐赠类型为%2$s:其付款将停止,直到两者使用相同的货币。\\n"
+
+msgid "\\nThis form has no priced choices to map.\\n"
+msgstr "\\n此表单没有可供映射的价格选择。\\n"
+
+msgid "\\nForm choice\\n"
+msgstr "\\n表单选择\\n"
+
+msgid "\\nUnits\\n"
+msgstr "\\n单位\\n"
+
+msgid "\\nform price:%s\\n"
+msgstr "\\n表格价格:%s\\n"
+
+msgid "\\nNot mapped (form price)\\n"
+msgstr "\\n未映射(形成价格)\\n"
+
+msgid "\\nQuantity field\\n"
+msgstr "\\n数量字段\\n"
+
+msgid "\\nFree amount field\\n"
+msgstr "\\n免费金额字段\\n"
+
+msgid "\\nOn behalf of (names field)\\n"
+msgstr "\\n代表(名称字段)\\n"
+
+msgid "\\nOne name per line. Units without a name are given on behalf of the donor.\\n"
+msgstr "\\n每行一个名称。没有名字的单位是代表捐赠者提供的。\\n"
+
+msgid "\\nProxy consent field\\n"
+msgstr "\\n代理同意字段\\n"
+
+msgid "\\nMonthly, weekly or yearly gifts charged automatically by the payment provider.\\n"
+msgstr "\\n支付提供商自动收取每月、每周或每年的礼物费用。\\n"
+
+msgid "\\nName, e-mail, phone, reference...\\n"
+msgstr "\\n姓名、电子邮件、电话、参考...\\n"
+
+msgid "\\nNo recurring donations yet\\n"
+msgstr "\\n尚无经常性捐款\\n"
+
+msgid "\\nA recurring donation is created when a payment form is set to charge every day, week, month or year.\\n"
+msgstr "\\n当付款表单设置为每天、每周、每月或每年收费时,就会创建定期捐款。\\n"
+
+msgid "[['%srecurring donation', 'en']]"
+msgid_plural "[['%srecurring donations', 'en']]"
+msgstr[0] "[['%s经常性捐款', 'en']]"
+
+msgid "\\nInterval\\n"
+msgstr "\\n间隔\\n"
+
+msgid "Started"
+msgstr "开始"
+
+msgid "\\nNext charge\\n"
+msgstr "\\n下次充电\\n"
+
+msgid "\\nAttempt%1$sof%2$sfailed:%3$s\\n"
+msgstr "\\n尝试%1$s或%2$s失败:%3$s\\n"
+
+msgid "\\ncanceled%s\\n"
+msgstr "\\n已取消%s\\n"
+
+msgid "\\nCancel this recurring donation at the payment provider? No further charges will be made.\\n"
+msgstr "\\n在支付提供商处取消此定期捐赠吗?不会再收取任何费用。\\n"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "\\nCard payments: the official iyzico plugin is enabled.\\n"
+msgstr "\\n刷卡支付:已启用官方 iyzico 插件。\\n"
+
+msgid "\\nCard payments: Flux Donate iyzico (the official iyzico plugin is not enabled).\\n"
+msgstr "\\n卡支付:Flux Donate iyzico(未启用官方 iyzico 插件)。\\n"
+
+msgid "\\nCard payments:%s.\\n"
+msgstr "\\n卡付款:%s。\\n"
+
+msgid "\\nNo card method is enabled (WooCommerce › Settings › Payments).\\n"
+msgstr "\\n未启用银行卡方式(WooCommerce › 设置 › 付款)。\\n"
+
+msgid "\\nMonthly donations: Flux Donate iyzico is ready.\\n"
+msgstr "\\n每月捐赠:Flux Donate iyzico 已准备就绪。\\n"
+
+msgid "\\nMonthly donations are off: enable \"Card (iyzico) - Flux Donate\" and enter iyzico keys.\\n"
+msgstr "\\n每月捐赠已关闭:启用“卡 (iyzico) - Flux 捐赠”并输入 iyzico 密钥。\\n"
+
+msgid "\\nBank transfer (donations) is enabled.', 'en']]"
+msgstr "\\n银行转账(捐赠)已启用。', 'en']]"
+
+msgid "\\nBank transfer (donations) is disabled.\\n"
+msgstr "\\n银行转账(捐赠)已禁用。\\n"
+
+msgid "\\nFlux Certificates is connected.\\n"
+msgstr "\\nFlux 证书已连接。\\n"
+
+msgid "\\nFlux Certificates is active but has no active template.\\n"
+msgstr "\\nFlux 证书处于活动状态,但没有活动模板。\\n"
+
+msgid "\\nFlux Certificates is not active: no certificate is made after payment.\\n"
+msgstr "\\nFlux 证书未激活:付款后未颁发证书。\\n"
+
+msgid "\\nDonation page:\\n"
+msgstr "\\n捐赠页面:\\n"
+
+msgid "\\nThe donation options are not on a page yet.\\n"
+msgstr "\\n页面上还没有捐赠选项。\\n"
+
+msgid "\\nWooCommerce is not active. Donations are paid through WooCommerce from version 2.0: install and activate WooCommerce.\\n"
+msgstr "\\nWooCommerce 未激活。从 2.0 版开始,捐款通过 WooCommerce 支付:安装并激活 WooCommerce。\\n"
+
+msgid "\\nSapling packages, prices and badges are edited on the donation type (Donations › Donation types). Which types give a certificate is set there too.\\n"
+msgstr "\\n树苗包、价格和徽章是根据捐赠类型(捐赠 › 捐赠类型)编辑的。哪些类型提供证书也在那里设置。\\n"
+
+msgid "Template"
+msgstr "模板"
+
+msgid "[['Automatic (\"Fidan Bağış Sertifikası\")\\n"
+msgstr "[['自动(“Fidan Bağış Sertifikası”)\\n"
+
+msgid "Event"
+msgstr "活动"
+
+msgid "\\nWhen chosen, online donation certificates count for this open event.\\n"
+msgstr "\\n选择后,在线捐赠证书将计入此公开活动。\\n"
+
+msgid "\\nSend by\\n"
+msgstr "\\n发送者\\n"
+
+msgid "\\nWhen the payment is confirmed the certificate link goes out on these channels. With a WhatsApp route no SMS is sent.\\n"
+msgstr "\\n付款确认后,证书链接将在这些渠道上消失。通过 WhatsApp 路由,不会发送短信。\\n"
+
+msgid "\\n\"Online + printed certificate\"\\n"
+msgstr "\\n“在线+打印证书”\\n"
+
+msgid "\\nShown as \"Coming soon\" (cannot be chosen)\\n"
+msgstr "\\n显示为“即将推出”(无法选择)\\n"
+
+msgid "\\nCan be chosen\\n"
+msgstr "\\n可以选择\\n"
+
+msgid "Hidden"
+msgstr "隐藏"
+
+msgid "\\nPrinted certificate fee (per line)\\n"
+msgstr "\\n打印证书费用(每行)\\n"
+
+msgid "\\n0 = free. Orders with a printed certificate stay \"Processing\"; set them to \"Completed\" when sent.\\n"
+msgstr "\\n0 = 免费。带有打印证书的订单仍处于“处理中”状态;发送时将其设置为“已完成”。\\n"
+
+msgid "\\nComplete paid orders with an online certificate automatically\\n"
+msgstr "\\n自动使用在线证书完成支付订单\\n"
+
+msgid "\\nIBAN, recipient and reference code: WooCommerce › Settings › Payments › Bank transfer (donations). The transfer details and the receipt link are added to WooCommerce\\'s \"on hold\" e-mail.\\n"
+msgstr "\\nIBAN、收件人和参考代码:WooCommerce › 设置 › 付款 › 银行转账(捐赠)。转账详细信息和收据链接将添加到 WooCommerce 的“暂停”电子邮件中。\\n"
+
+msgid "\\nShort notification\\n"
+msgstr "\\n简短通知\\n"
+
+msgid "\\nA short message to the donor\\'s phone when a transfer is registered (through Flux Mail, or Flux Certificates\\'s providers). With both ticked, SMS only goes out when there is no WhatsApp route.\\n"
+msgstr "\\n注册转账时(通过 Flux Mail 或 Flux 证书提供商)向捐赠者的手机发送一条短信。勾选两者后,只有在没有 WhatsApp 路由时才会发出短信。\\n"
+
+msgid "\\nWhatsApp text\\n"
+msgstr "\\nWhatsApp 文本\\n"
+
+msgid "\\nPlaceholders:{ad}{tutar}{siparis}{alici}{iban}{aciklama}{link}{site}\\n"
+msgstr "\\n占位符:{ad}{tutar}{siparis}{alici}{iban}{aciklama}{link}{site}\\n"
+
+msgid "\\nSMS text\\n"
+msgstr "\\n短信\\n"
+
+msgid "\\nLargest receipt file (MB)\\n"
+msgstr "\\n最大收据文件 (MB)\\n"
+
+msgid "\\nTell this address when a receipt is uploaded\\n"
+msgstr "\\n上传收据时告知此地址\\n"
+
+msgid "Cart and checkout"
+msgstr "购物车和结帐"
+
+msgid "\\nAfter \"Donate\"\\n"
+msgstr "\\n“捐赠”之后\\n"
+
+msgid "\\nGo straight to the checkout\\n"
+msgstr "\\n直接去结账\\n"
+
+msgid "\\nGo to the cart\\n"
+msgstr "\\n转到购物车\\n"
+
+msgid "\\nStay on the page\\n"
+msgstr "\\n留在页面上\\n"
+
+msgid "\\nCurrencies donors can choose\\n"
+msgstr "\\n货币捐赠者可以选择\\n"
+
+msgid "\\n(store currency)\\n"
+msgstr "\\n(存储货币)\\n"
+
+msgid "\\nWith more than one, donors pick the currency (shortcode [flx_bagis_para_birimi] or the theme). There are no exchange rates: set each option\\'s price per currency on the donation type; options without a price in a currency are not offered in it. Check that your payment methods take these currencies.', 'en']]"
+msgstr "\\n如果有不止一种货币,捐赠者可以选择货币(简码 [flx_bagis_para_birimi] 或主题)。没有汇率:在捐赠类型上设置每个选项的每种货币的价格;其中不提供没有货币价格的期权。检查您的付款方式是否支持这些货币。', 'en']]"
+
+msgid "\\nDo not ask for an address at the checkout when the cart holds only donations\\n"
+msgstr "\\n当购物车仅装有捐款时,请勿在结帐时询问地址\\n"
+
+msgid "\\nSupport WhatsApp number\\n"
+msgstr "\\n支持 WhatsApp 号码\\n"
+
+msgid "\\nShown at the checkout and with the bank transfer details as \"Any trouble? Write to us on WhatsApp\". Leave empty to hide.\\n"
+msgstr "\\n结账时显示,银行转账详细信息显示为“有任何问题吗?通过 WhatsApp 给我们写信”。留空以隐藏。\\n"
+
+msgid "\\n— Choose —\\n"
+msgstr "\\n— 选择—\\n"
+
+msgid "\\n\"Donate\" links and the hidden product pages go here.\\n"
+msgstr "\\n“捐赠”链接和隐藏的产品页面位于此处。\\n"
+
+msgid "\\nCard payment method\\n"
+msgstr "\\n银行卡付款方式\\n"
+
+msgid "\\nAutomatic: another virtual POS if one is enabled (e.g. EsnekPOS), otherwise iyzico\\n"
+msgstr "\\n自动:另一个虚拟 POS(如果已启用)(例如 EsnekPOS),否则为 iyzico\\n"
+
+msgid "\\niyzico\\n"
+msgstr "\\niyzico\\n"
+
+msgid "\\nShow every enabled card method', 'en']]"
+msgstr "\\n显示每个启用的卡方法', 'en']]"
+
+msgid "\\nDonors see one card method; now:%s. Monthly donations always use Flux Donate iyzico (it stores the card). Bank transfer is always shown.\\n"
+msgstr "\\n捐助者见一卡法;现在:%s。每月捐款始终使用 Flux Donate iyzico(它存储卡)。始终显示银行转帐。\\n"
+
+msgid "\\nall\\n"
+msgstr "\\n全部\\n"
+
+msgid "\\nShow other payment plugins on the checkout block\\n"
+msgstr "\\n在结账栏显示其他支付插件\\n"
+
+msgid "\\nVirtual POS plugins that take the card on their own page but have no checkout block support (for example EsnekPOS) are added to the Checkout block. Plugins with their own card fields need the classic checkout.\\n"
+msgstr "\\n在自己的页面上使用卡但不支持结帐块的虚拟 POS 插件(例如 EsnekPOS)将添加到结帐块中。具有自己的卡字段的插件需要经典的结帐。\\n"
+
+msgid "\\nFlux Forms payment forms continue on the WooCommerce checkout\\n"
+msgstr "\\nFlux Forms 付款表格在 WooCommerce 结帐时继续\\n"
+
+msgid "\\nThe donor picks card or bank transfer there; the form entry, the certificate automation and the donation record are completed when the order is paid.\\n"
+msgstr "\\n捐赠者在那里领取卡或银行转账;订单支付时,表单录入、证书自动化和捐赠记录完成。\\n"
+
+msgid "\\nCard payment screen\\n"
+msgstr "\\n卡支付屏幕\\n"
+
+msgid "\\nOur own card fields on the checkout (3D Secure, installments, saved cards)\\n"
+msgstr "\\n结帐时我们自己的卡字段(3D Secure、分期付款、保存的卡)\\n"
+
+msgid "\\niyzico payment page (as before)\\n"
+msgstr "\\niyzico 付款页面(和以前一样)\\n"
+
+msgid "\\nOfficial iyzico plugin for one-time donations\\n"
+msgstr "\\n用于一次性捐赠的官方 iyzico 插件\\n"
+
+msgid "\\nCard numbers go straight to iyzico and are never stored on this site. Monthly donations always use Flux Donate iyzico (it stores the card).\\n"
+msgstr "\\n卡号直接进入 iyzico,并且绝不会存储在该网站上。每月捐款始终使用 Flux Donate iyzico(它存储卡)。\\n"
+
+msgid "\\nMost installments\\n"
+msgstr "\\n大部分分期付款\\n"
+
+msgid "[[\"Single payment only\\n"
+msgstr "[[“仅限单次付款\\n"
+
+msgid "[['With our own card fields. The options and any interest come from iyzico for each card.\\n"
+msgstr "[['用我们自己的卡字段。每张卡的选项和任何利息均来自 iyzico。\\n"
+
+msgid "\\nAdd the \"Donation options\" block to any page, or create a ready page:\\n"
+msgstr "\\n将“捐赠选项”块添加到任何页面,或创建一个就绪页面:\\n"
+
+msgid "\\nCreate the online donation page\\n"
+msgstr "\\n创建在线捐赠页面\\n"
+
+msgid "\\nProduct list (XML)\\n"
+msgstr "\\n产品列表 (XML)\\n"
+
+msgid "\\nFor iyzico \"upload your products with XML\" and Google Merchant Center. Every fixed-price option on sale is one product; free amounts are left out. Updating daily is enough.\\n"
+msgstr "\\n对于 iyzico“使用 XML 上传您的产品”和 Google Merchant Center。销售的每个固定价格选项都是一种产品;免费金额被忽略。每天更新就足够了。\\n"
+
+msgid "Address"
+msgstr "地址"
+
+msgid "\\nShortcode and block\\n"
+msgstr "\\n短代码和块\\n"
+
+msgid "\\nWithout attributes it shows the donation types marked \"Show in the Donation options block\". tur=\"slug1,slug2\" shows only those types; sekme=\"slug\" opens that type\\'s tab first. In the editor: \"Donation options\" block.\\n"
+msgstr "\\n如果没有属性,它会显示标记为“在捐赠选项块中显示”的捐赠类型。 tur=\"slug1,slug2\" 仅显示这些类型; sekme=\"slug\" 首先打开该类型的选项卡。在编辑器中:“捐赠选项”块。\\n"
+
+msgid "Online donation"
+msgstr "网上捐款"
+
+msgid "\\nChoose a sapling package or give any amount you like. You can pay by card or bank transfer; a certificate is made in your name.\\n"
+msgstr "\\n选择一个树苗包或提供任何您喜欢的数量。您可以通过银行卡或银行转账方式支付;证书将以您的名义制作。\\n"
+
+msgid "\\nOnline donation page\\n"
+msgstr "\\n在线捐款页面\\n"
+
+msgid "\\nHow this type appears in the \"Donation options\" block and the WooCommerce cart. Its hidden WooCommerce product is kept in step automatically.\\n"
+msgstr "\\n此类型如何显示在“捐赠选项”块和 WooCommerce 购物车中。其隐藏的 WooCommerce 产品会自动保持同步。\\n"
+
+msgid "[['Show in the \"Donation options\" block (donation page) and the product XML\\n"
+msgstr "[['在“捐赠选项”块(捐赠页面)和产品 XML 中显示\\n"
+
+msgid "\\nGive a certificate (Flux Certificates)\\n"
+msgstr "\\n提供证书(Flux 证书)\\n"
+
+msgid "Certificate template"
+msgstr "证书模板"
+
+msgid "\\nSame as the WooCommerce settings\\n"
+msgstr "\\n与 WooCommerce 设置相同\\n"
+
+msgid "\\nOption with a − / + quantity\\n"
+msgstr "\\n带有 - / + 数量的选项\\n"
+
+msgid "\\nThis option\\'s card gets − / + buttons (e.g. \"1 sapling\"); price = number × this option\\'s price, checked again on the server. The other options stay fixed packages. Use \"Maximum quantity\" above for the limit.\\n"
+msgstr "\\n此选项的卡片有 - / + 按钮(例如“1 棵树苗”);价格=数量×该选项的价格,在服务器上再次检查。其他选项保持固定套餐。使用上面的“最大数量”作为限制。\\n"
+
+msgid "\\nPreset amounts (free amount)\\n"
+msgstr "\\n预设金额(免费金额)\\n"
+
+msgid "\\nSeparated by spaces, e.g. 250 500 1000.\\n"
+msgstr "\\n用空格分隔,例如250 500 1000。\\n"
+
+msgid "\\nPreset amounts in%s\\n"
+msgstr "\\n%s中的预设金额\\n"
+
+msgid "\\nPage address\\n"
+msgstr "\\n页面地址\\n"
+
+msgid "\\nOptional: where its product page and the product XML link go. Empty = the donation page in the WooCommerce settings.\\n"
+msgstr "\\n可选:产品页面和产品 XML 链接所在的位置。空 = WooCommerce 设置中的捐赠页面。\\n"
+
+msgid "\\nWooCommerce product #%d(hidden from the shop).\\n"
+msgstr "\\nWooCommerce 产品 #%d(在商店中隐藏)。\\n"
+
+msgid "\\nThis order has no donation line.\\n"
+msgstr "\\n此订单没有捐赠热线。\\n"
+
+msgid "\\nDonation records:\\n"
+msgstr "\\n捐赠记录:\\n"
+
+msgid "\\nReference code:\\n"
+msgstr "\\n参考代码:\\n"
+
+msgid "\\nMake the certificate\\n"
+msgstr "\\n制作证书\\n"
+
+msgid "\\nRefund this amount to the donor's card?\\n"
+msgstr "\\n将此金额退还到捐赠者的卡上吗?\\n"
+
+msgid "\\nRecord this refund? The money is not sent back automatically for this payment method.\\n"
+msgstr "\\n记录这笔退款吗?对于此付款方式,资金不会自动退回。\\n"
+
+msgid "\\nRecord refund\\n"
+msgstr "\\n记录退款\\n"
+
+msgid "\\nRefunded through WooCommerce and the payment method; the record follows.\\n"
+msgstr "\\n通过 WooCommerce 和付款方式退款;记录如下。\\n"
+
+msgid "\\nRecorded in WooCommerce only: send the money back yourself (e.g. by bank transfer).\\n"
+msgstr "\\n仅在 WooCommerce 中记录:自行将钱汇回(例如通过银行转帐)。\\n"
+
+msgid "Order not found."
+msgstr "未找到订单。"
+
+msgid "\\nOrder line not found.\\n"
+msgstr "\\n未找到订单行。\\n"
+
+msgid "\\nEnter an amount up to what is left to refund.\\n"
+msgstr "\\n输入剩余退款金额。\\n"
+
+msgid "\\nRefunded from Flux Donate by%s\\n"
+msgstr "\\n从%s的 Flux 捐赠中退还\\n"
+
+msgid "\\nNo donation lines.\\n"
+msgstr "\\n没有捐赠热线。\\n"
+
+msgid "\\nUnknown donation type.\\n"
+msgstr "\\n未知的捐赠类型。\\n"
+
+msgid "\\nThe donation product could not be created.\\n"
+msgstr "\\n无法创建捐赠产品。\\n"
+
+msgid "Enter an amount."
+msgstr "输入金额。"
+
+msgid "\\nRecorded in Flux Chat (donation #%d).\\n"
+msgstr "\\n记录在 Flux 聊天中(捐赠 #%d)。\\n"
+
+msgid "\\nCanceled in Flux Donate.\\n"
+msgstr "\\n在通量捐赠中取消。\\n"
+
+msgid "\\nPut on hold in Flux Donate.\\n"
+msgstr "\\n暂停通量捐赠。\\n"
+
+msgid "\\nMarked as failed in Flux Donate.\\n"
+msgstr "\\n在 Flux Donate 中标记为失败。\\n"
+
+msgid "\\nThis payment link has expired. Please fill in the form again.\\n"
+msgstr "\\n此付款链接已过期。请重新填写表格。\\n"
+
+msgid "\\nFlux Forms entry%scompleted by this payment.\\n"
+msgstr "\\n本次付款已完成通量表格条目%s。\\n"
+
+msgid "\\nAfter you place the order you will see the IBAN and your own reference code. Once you have paid you can upload the receipt on the site; your certificate is sent when the payment is confirmed.\\n"
+msgstr "\\n下订单后,您将看到 IBAN 和您自己的参考代码。付款后,您可以在网站上上传收据;确认付款后将发送您的证书。\\n"
+
+msgid "Recipient"
+msgstr "收件人"
+
+msgid "Bank"
+msgstr "银行"
+
+msgid "Reference"
+msgstr "参考"
+
+msgid "\\nYour pre-registration is in\\n"
+msgstr "\\n您的预注册时间为\\n"
+
+msgid "\\nTo complete your donation, make a bank transfer to the account below. Please write your own reference code in the description.\\n"
+msgstr "\\n要完成捐赠,请通过银行转帐至以下帐户。请在描述中写下您自己的参考代码。\\n"
+
+msgid "Make the bank transfer"
+msgstr "进行银行转帐"
+
+msgid "\\nThe reference code lets us match your payment to your donation.\\n"
+msgstr "\\n参考代码让我们能够将您的付款与您的捐款进行匹配。\\n"
+
+msgid "Upload your receipt"
+msgstr "上传您的收据"
+
+msgid "[['Receive your certificate\\n"
+msgstr "[['收到您的证书\\n"
+
+msgid "\\nOnce the payment is confirmed your certificate is sent by WhatsApp and e-mail; it also appears under My account › Orders.\\n"
+msgstr "\\n付款确认后,您的证书将通过 WhatsApp 和电子邮件发送;它还显示在我的帐户 › 订单下。\\n"
+
+msgid "\\nWe confirm your donation\\n"
+msgstr "\\n我们确认您的捐赠\\n"
+
+msgid "\\nOnce the payment is confirmed the order is completed and you get an e-mail; it also appears under My account › Orders.\\n"
+msgstr "\\n付款确认后,订单完成,您会收到一封电子邮件;它还显示在我的帐户 › 订单下。\\n"
+
+msgid "\\nMy pending donations\\n"
+msgstr "\\n我的待处理捐款\\n"
+
+msgid "Bank transfer details"
+msgstr "银行转账详情"
+
+msgid "After paying, upload your receipt:"
+msgstr "付款后,上传收据:"
+
+msgid "Please write the reference above in the transfer description. After paying, upload your receipt:"
+msgstr "请在转账说明中填写上述参考信息。付款后,上传收据:"
+
+msgid "Upload receipt"
+msgstr "上传收据"
+
+msgid "\\nCard number\\n"
+msgstr "\\n卡号\\n"
+
+msgid "\\nName on the card\\n"
+msgstr "\\n卡上的姓名\\n"
+
+msgid "\\nExpiry (MM/YY)\\n"
+msgstr "\\n到期 (MM/YY)\\n"
+
+msgctxt "context_def6e4575e04"
+msgid "\\nMM/YY\\n"
+msgstr "\\n月/年\\n"
+
+msgid "\\nCVC\\n"
+msgstr "\\nCVC\\n"
+
+msgid "\\nSave my card for next time\\n"
+msgstr "\\n保存我的卡以供下次使用\\n"
+
+msgid "\\niyzico keeps the card; this site never stores card numbers.\\n"
+msgstr "\\niyzico 保留该卡;此站点从不存储卡号。\\n"
+
+msgid "\\nFor the monthly donation iyzico keeps your card and charges it once a month. You can cancel at any time.\\n"
+msgstr "\\n对于每月捐款,iyzico 会保留您的卡并每月收取一次费用。您可以随时取消。\\n"
+
+msgid "\\nUse another card\\n"
+msgstr "\\n使用另一张卡\\n"
+
+msgid "\\nYour saved cards\\n"
+msgstr "\\n您保存的卡片\\n"
+
+msgid "\\nInstallments\\n"
+msgstr "\\n分期付款\\n"
+
+msgid "\\nSingle payment', 'en']]"
+msgstr "\\n单笔支付', 'zh']]"
+
+msgid "\\n%1$sinstallments ×%2$s(total%3$s)\\n"
+msgstr "\\n%1$s分期付款 ×%2$s(总计%3$s)\\n"
+
+msgid "\\nInstallment options appear after the card number.\\n"
+msgstr "\\n分期付款选项出现在卡号后面。\\n"
+
+msgid "\\nPlease check the card number.\\n"
+msgstr "\\n请检查卡号。\\n"
+
+msgid "\\nPlease write the name on the card.\\n"
+msgstr "\\n请把名字写在卡上。\\n"
+
+msgid "\\nPlease check the expiry date.\\n"
+msgstr "\\n请检查到期日期。\\n"
+
+msgid "\\nPlease check the security code (CVC).\\n"
+msgstr "\\n请检查安全代码 (CVC)。\\n"
+
+msgid "[['Paid with 3D Secure through iyzico. Your bank may send you a code.\\n"
+msgstr "[['通过 iyzico 使用 3D Secure 付款。您的银行可能会向您发送一个代码。\\n"
+
+msgid "\\nTest mode: use an iyzico test card, e.g. 5528 7900 0000 0008, 12/30, 123.', 'en']]"
+msgstr "\\n测试模式:使用 iyzico 测试卡,例如5528 7900 0000 0008, 12/30, 123.', 'en']]"
+
+msgid "\\nFill in the test card', 'en']]"
+msgstr "\\n填写测试卡','en']]"
+
+msgid "\\nTest mode accepts only iyzico test cards. Use \"Fill in the test card\".\\n"
+msgstr "\\n测试模式仅接受 iyzico 测试卡。使用“填写测试卡”。\\n"
+
+msgid "\\nCard payments are not configured on this site. Please choose another payment method.\\n"
+msgstr "\\n此网站未配置卡付款。请选择其他付款方式。\\n"
+
+msgid "\\nThe amount must be greater than zero.\\n"
+msgstr "\\n金额必须大于零。\\n"
+
+msgid "\\nThis saved card cannot be used any more. Please enter the card.\\n"
+msgstr "\\n这张保存的卡不能再使用。请输入卡。\\n"
+
+msgid "\\nThis installment option is not available for the card. Please choose another.\\n"
+msgstr "\\n此分期付款选项不适用于该卡。请选择另一个。\\n"
+
+msgid "\\nCard payment could not start:%1$s(card%2$s,%3$s).\\n"
+msgstr "\\n卡付款无法开始:%1$s(卡%2$s、%3$s)。\\n"
+
+msgid "\\ntest mode\\n"
+msgstr "\\n测试模式\\n"
+
+msgid "\\nlive\\n"
+msgstr "\\n直播\\n"
+
+msgid "\\nCard payment started:%1$sinstallments,%2$scharged by the bank.\\n"
+msgstr "\\n卡付款开始:%1$s分期付款,%2$s由银行收取。\\n"
+
+msgid "\\niyzico 3D Secure:%s\\n"
+msgstr "\\niyzico 3D 安全:%s\\n"
+
+msgid "\\nThe bank did not confirm the 3D Secure code. Please try again.\\n"
+msgstr "\\n银行未确认 3D 安全代码。请重试。\\n"
+
+msgid "\\nThis card is not enrolled for 3D Secure. Please call your bank or use another card.\\n"
+msgstr "\\n此卡未注册 3D Secure。请致电您的银行或使用其他卡。\\n"
+
+msgid "\\nThe bank could not check the card. Please try again or use another card.\\n"
+msgstr "\\n银行无法检查该卡。请重试或使用另一张卡。\\n"
+
+msgid "\\niyzico: the payment was not completed (%s).\\n"
+msgstr "\\niyzico: 付款未完成 (%s)。\\n"
+
+msgid "[['Default address\\n"
+msgstr "[['默认地址\\n"
+
+msgid "\\nThe page has expired. Please try again.\\n"
+msgstr "\\n该页面已过期。请重试。\\n"
+
+msgid "\\nPlease fill in the name, address and city.\\n"
+msgstr "\\n请填写姓名、地址和城市。\\n"
+
+msgid "Address saved."
+msgstr "地址已保存。"
+
+msgid "\\nAddress deleted.\\n"
+msgstr "\\n地址已删除。\\n"
+
+msgid "\\nDefault address changed.\\n"
+msgstr "\\n默认地址已更改。\\n"
+
+msgid "\\nAddress book\\n"
+msgstr "\\n通讯录\\n"
+
+msgid "\\nSaved addresses are offered in a list at the checkout. The default one is filled in automatically.\\n"
+msgstr "\\n结帐时会在列表中提供已保存的地址。默认值会自动填写。\\n"
+
+msgid "Default"
+msgstr "默认"
+
+msgid "Make default"
+msgstr "设为默认"
+
+msgid "\\nDelete this address?\\n"
+msgstr "\\n删除该地址?\\n"
+
+msgid "\\n+ Add a new address\\n"
+msgstr "\\n+ 添加新地址\\n"
+
+msgid "\\nAddress name\\n"
+msgstr "\\n地址名称\\n"
+
+msgid "\\ne.g. Home, Office\\n"
+msgstr "\\ne.g.家庭、办公室\\n"
+
+msgid "Save address"
+msgstr "保存地址"
+
+msgid "\\nSaved address\\n"
+msgstr "\\n已保存的地址\\n"
+
+msgid "\\nWrite the new address below; it is saved to your address book with the order.\\n"
+msgstr "\\n在下面写下新地址;它会与订单一起保存到您的地址簿中。\\n"
+
+msgid "\\nManage addresses\\n"
+msgstr "\\n管理地址\\n"
+
+msgid "\\nKeys are read from the iyzico WooCommerce plugin settings.\\n"
+msgstr "\\n密钥是从 iyzico WooCommerce 插件设置中读取的。\\n"
+
+msgid "\\nKeys are read from Donations › Settings › Payments › iyzico.\\n"
+msgstr "\\n密钥从捐赠 › 设置 › 付款 › iyzico 中读取。\\n"
+
+msgid "\\nNo iyzico keys found. Enter them in the iyzico WooCommerce plugin or in Donations › Settings › Payments › iyzico.\\n"
+msgstr "\\n未找到 iyzico 密钥。在 iyzico WooCommerce 插件或捐赠 › 设置 › 付款 › iyzico 中输入它们。\\n"
+
+msgid "\\nEnvironment: sandbox (test).\\n"
+msgstr "\\n环境:沙箱(测试)。\\n"
+
+msgid "\\nEnvironment: live.\\n"
+msgstr "\\n环境:现场。\\n"
+
+msgid "\\niyzico reported a payment (%s) that does not match this order (amount, currency or basket). Check it in the iyzico panel before doing anything.\\n"
+msgstr "\\niyzico 报告了一笔付款 (%s) 与此订单(金额、货币或篮子)不匹配。在执行任何操作之前,请在 iyzico 面板中检查它。\\n"
+
+msgid "\\niyzico payment received:%1$s, payment id%2$s(%3$s).\\n"
+msgstr "\\niyzico 收到付款:%1$s,付款 ID%2$s(%3$s)。\\n"
+
+msgid "\\nEnter an amount to refund.\\n"
+msgstr "\\n输入退款金额。\\n"
+
+msgid "\\nThis order has no iyzico transaction to refund.\\n"
+msgstr "\\n此订单没有可退款的 iyzico 交易。\\n"
+
+msgid "\\nThe amount is more than what is left to refund at iyzico.\\n"
+msgstr "\\n金额超过了 iyzico 剩余的退款金额。\\n"
+
+msgid "\\niyzico refused the refund:%s\\n"
+msgstr "\\niyzico 拒绝退款:%s\\n"
+
+msgid "\\nRefunded at iyzico:%1$s.%2$s\\n"
+msgstr "\\n在 iyzico 退款:%1$s。%2$s\\n"
+
+msgid "\\nClassic\\n"
+msgstr "\\n经典\\n"
+
+msgid "\\nOne card: type tabs on top, the choices under them, the total at the bottom.\\n"
+msgstr "\\n一张卡:在顶部键入选项卡,在其下方键入选项,在底部键入总计。\\n"
+
+msgid "\\nA · Steps + summary\\n"
+msgstr "\\nA · 步骤 + 摘要\\n"
+
+msgid "\\nNumbered steps on the left, a summary with the total and the button on the right.\\n"
+msgstr "\\n左侧有编号的步骤,右侧有包含总计的摘要和按钮。\\n"
+
+msgid "\\nB · Two panels\\n"
+msgstr "\\nB · 两个面板\\n"
+
+msgid "\\nTypes as a list on the left, the details on the right; a dark total bar.\\n"
+msgstr "\\n在左侧输入列表,在右侧输入详细信息;黑色总栏。\\n"
+
+msgid "\\nC · Picture cards\\n"
+msgstr "\\nC · 图卡\\n"
+
+msgid "[['Large cards with the type picture or icon; the details open below.\\n"
+msgstr "[['带有类型图片或图标的大卡片;详细信息如下。\\n"
+
+msgid "List"
+msgstr "列表"
+
+msgid "\\nAll options one under the other.\\n"
+msgstr "\\n所有选项一个接一个。\\n"
+
+msgid "\\nDrop-down\\n"
+msgstr "\\n下拉菜单\\n"
+
+msgid "\\nOne row: the option in a drop-down menu and the quantity beside it.\\n"
+msgstr "\\n一行:下拉菜单中的选项及其旁边的数量。\\n"
+
+msgid "\\nList, then one row\\n"
+msgstr "\\n列表,然后一行\\n"
+
+msgid "\\nThe list first; after a pick it folds into one row (drop-down + quantity) and the rest of the form opens.\\n"
+msgstr "\\n列表优先;选择后,它会折叠成一行(下拉菜单+数量),然后打开表单的其余部分。\\n"
+
+msgid "Theme"
+msgstr "主题"
+
+msgid "\\nThe look of WooCommerce and the theme.\\n"
+msgstr "\\nWooCommerce 的外观和主题。\\n"
+
+msgid "A · Side-by-side cards"
+msgstr "A·并排卡"
+
+msgid "\\nMethods as cards with icons; the details of the picked one below.\\n"
+msgstr "\\n方法如带有图标的卡片;下面是所选择的详细信息。\\n"
+
+msgid "B · Plain list"
+msgstr "B · 普通列表"
+
+msgid "\\nRows one under the other; the picked row opens.\\n"
+msgstr "\\n一排排在另一排下面;选定的行将打开。\\n"
+
+msgid "C · Segmented tabs"
+msgstr "C·分段选项卡"
+
+msgid "\\nOne row of tab buttons; the details of the picked one below.\\n"
+msgstr "\\n一排选项卡按钮;下面是所选择的详细信息。\\n"
+
+msgid "\\nOptions and amount\\n"
+msgstr "\\n选项和金额\\n"
+
+msgid "\\nOn whose behalf\\n"
+msgstr "\\n代表谁\\n"
+
+msgid "\\nCertificate design\\n"
+msgstr "\\n证书设计\\n"
+
+msgid "\\nRepeat every month\\n"
+msgstr "\\n每月重复一次\\n"
+
+msgid "Appearance"
+msgstr "外观"
+
+msgid "Donation form"
+msgstr "捐款表格"
+
+msgid "\\nHow the \"Donation options\" block looks on the site. Prices, options and names are set under Donation types.\\n"
+msgstr "\\n“捐赠选项”块在网站上的外观。价格、选项和名称在捐赠类型下设置。\\n"
+
+msgid "\\nView the page\\n"
+msgstr "\\n查看页面\\n"
+
+msgid "\\nHeading over the types\\n"
+msgstr "\\n类型标题\\n"
+
+msgid "\\nShown in the A and C layouts.\\n"
+msgstr "\\n显示在 A 和 C 布局中。\\n"
+
+msgid "\\nHeading over the options\\n"
+msgstr "\\n查看选项\\n"
+
+msgid "\\nChoose an option\\n"
+msgstr "\\n选择一个选项\\n"
+
+msgid "\\nHow the options are shown\\n"
+msgstr "\\n选项如何显示\\n"
+
+msgid "\\nOrder of the sections\\n"
+msgstr "\\n各部分的顺序\\n"
+
+msgid "\\nThe type choice is always first and the total always last. Sections a type does not use are skipped.\\n"
+msgstr "\\nThe type choice is always first and the total always last.类型不使用的部分将被跳过。\\n"
+
+msgid "\\nAsk a phone number for every share (types with a proxy). The video or certificate of that share can be sent there too.\\n"
+msgstr "\\n询问每个共享的电话号码(使用代理的类型)。该共享的视频或证书也可以发送到那里。\\n"
+
+msgid "\\nPayment options at the checkout\\n"
+msgstr "\\n结帐时的付款选项\\n"
+
+msgid "\\nHow card, PayPal, bank transfer and the other methods are shown. The methods themselves are turned on under WooCommerce › Settings › Payments.\\n"
+msgstr "\\n如何显示卡、PayPal、银行转账和其他方式。这些方法本身在 WooCommerce › 设置 › 付款下打开。\\n"
+
+msgid "\\nColours and corners\\n"
+msgstr "\\n颜色和角\\n"
+
+msgid "\\nUsed by the form and the payment options. Empty fields follow the theme.\\n"
+msgstr "\\n由表单和付款选项使用。空字段遵循主题。\\n"
+
+msgid "Main colour"
+msgstr "主色"
+
+msgid "Accent colour"
+msgstr "强调色"
+
+msgid "\\nCorner radius (px)\\n"
+msgstr "\\n圆角半径 (px)\\n"
+
+msgid "\\n0 = square, 4 = plain corporate, 16 = round.\\n"
+msgstr "\\n0 = 方形,4 = 普通公司,16 = 圆形。\\n"
+
+msgid "\\nTransaction fee\\n"
+msgstr "\\n交易费用\\n"
+
+msgid "\\nDonors can choose to also pay the fee of the payment method, so the whole donation reaches you. The fee is added at the checkout for the method they pick.\\n"
+msgstr "\\n捐赠者可以选择同时支付付款方式的费用,以便全部捐赠到达您的手中。费用会在结帐时根据他们选择的方法添加。\\n"
+
+msgid "\\nShow \"I will cover the transaction fee\" on the donation form\\n"
+msgstr "\\n在捐款表格上注明“我将支付交易费”\\n"
+
+msgid "\\nTicked by default\\n"
+msgstr "\\n默认勾选\\n"
+
+msgid "\\nFixed\\n"
+msgstr "\\n已修复\\n"
+
+msgid "\\nEmpty or 0 = no fee for that method (for example bank transfer). Fee = donation × % + fixed.\\n"
+msgstr "\\n空或 0 = 该方法不收取任何费用(例如银行转账)。费用=捐款×%+固定金额。\\n"
+
+msgid "\\nPlease choose what you would like to donate for.\\n"
+msgstr "\\n请选择您想要捐赠的项目。\\n"
+
+msgid "\\nThis option cannot be donated in%s. Please choose another currency.\\n"
+msgstr "\\n此选项无法在%s中捐赠。请选择其他货币。\\n"
+
+msgid "\\nThis option cannot be donated online at the moment.\", 'en']]"
+msgstr "\\n此选项目前无法在线捐赠。\", 'en']]"
+
+msgid "\\nThe number must be between 1 and%s.', 'en']]"
+msgstr "\\n数字必须介于 1 和%s之间。', 'en']]"
+
+msgid "\\nThe amount must be at least%s.\\n"
+msgstr "\\n金额必须至少为%s。\\n"
+
+msgid "\\nFor this amount please get in touch with us.\\n"
+msgstr "\\n对于此金额,请与我们联系。\\n"
+
+msgid "\\nPlease choose an option.\\n"
+msgstr "\\n请选择一个选项。\\n"
+
+msgid "\\nPrinted certificates are not available yet. Please choose the online certificate.\\n"
+msgstr "\\n打印证书尚不可用。请选择在线证书。\\n"
+
+msgid "\\nPlease write the postal address for the printed certificate.\\n"
+msgstr "\\n请填写打印证书的邮寄地址。\\n"
+
+msgid "\\nPlease write the name of the person you are donating for.\\n"
+msgstr "\\n请写下您要为其捐款的人的姓名。\\n"
+
+msgid "\\nThis donation needs a proxy (vekâlet) consent, but it is not set up yet. Please contact the site administrator.\\n"
+msgstr "\\n此捐赠需要代理 (vekâlet) 同意,但尚未设置。请联系站点管理员。\\n"
+
+msgid "\\nThe proxy (vekâlet) text has been updated. Please read it again and accept it.\\n"
+msgstr "\\n代理 (vekâlet) 文本已更新。请再次阅读并接受。\\n"
+
+msgid "[['Please write at most%sname (one per share).', 'en']]"
+msgid_plural "[['Please write at most%snames (one per share).', 'en']]"
+msgstr[0] "[['请最多写入%s名称(每个共享一个)。', 'en']]"
+
+msgid "\\nThe phone number does not look right. Example: 0532 123 45 67\\n"
+msgstr "\\n电话号码看起来不正确。示例: 0532 123 45 67\\n"
+
+msgid "\\nThe e-mail address does not look right.\\n"
+msgstr "\\n电子邮件地址看起来不正确。\\n"
+
+msgid "\\nThis cause does not take monthly donations.\\n"
+msgstr "\\n该事业不需要每月捐款。\\n"
+
+msgid "\\nMonthly donations are not available at the moment.\\n"
+msgstr "\\n目前无法提供每月捐款。\\n"
+
+msgid "\\nDonations in%scannot be paid here at the moment.\\n"
+msgstr "\\n目前无法在%s中支付捐款。\\n"
+
+msgid "\\nThe donation product could not be found.\\n"
+msgstr "\\n找不到捐赠产品。\\n"
+
+msgid "\\nIt could not be added to the cart.\\n"
+msgstr "\\n无法将其添加到购物车。\\n"
+
+msgid "\\nA donation in your cart cannot be paid in%sand was removed.\\n"
+msgstr "\\n您购物车中的捐款无法在%s中支付,已被删除。\\n"
+
+msgid "\\nA donation in your cart is no longer available and was removed.\\n"
+msgstr "\\n您购物车中的捐赠不再可用,已被删除。\\n"
+
+msgid "\\nPrinted certificates can only be paid in the store currency; your certificate will be sent online.\\n"
+msgstr "\\n打印的凭证只能以商店货币支付;您的证书将在线发送。\\n"
+
+msgid "\\nProducts in your cart can only be paid in%1$s.<a href=\"%2$s\">Switch to%1$s</a>\\n"
+msgstr "\\n您购物车中的产品只能通过%1$s付款。<a href=\"%2$s\">切换到%1$s</a>\\n"
+
+msgid "\\nPrinted certificate delivery\\n"
+msgstr "\\n打印证书交付\\n"
+
+msgid "\\nRepeats\\n"
+msgstr "\\n重复\\n"
+
+msgid "Every month"
+msgstr "每个月"
+
+msgid "[['Names (one per share)\\n"
+msgstr "[['名称(每股一个)\\n"
+
+msgid "\\nDesign\\n"
+msgstr "\\n设计\\n"
+
+msgid "\\nName on the certificate\\n"
+msgstr "\\n证书上的名称\\n"
+
+msgid "\\nSent to\\n"
+msgstr "\\n发送至\\n"
+
+msgid "\\ncopy to me\\n"
+msgstr "\\n复制给我\\n"
+
+msgid "\\nPostal address\\n"
+msgstr "\\n邮寄地址\\n"
+
+msgid "\\naccepted (text version%s)\\n"
+msgstr "\\n已接受(文本版本%s)\\n"
+
+msgid "\\nOnline + printed\\n"
+msgstr "\\n在线 + 打印\\n"
+
+msgid "Online"
+msgstr "在线"
+
+msgid "\\n%sSapling Donation\\n"
+msgstr "\\n%s树苗捐赠\\n"
+
+msgid "\\nCertificate no\\n"
+msgstr "\\n证书编号\\n"
+
+msgid "\\nThe certificate could not be made: no Flux Certificates template was found (Donations › Settings › WooCommerce).\\n"
+msgstr "\\n无法制作证书:找不到 Flux 证书模板(捐赠 > 设置 > WooCommerce)。\\n"
+
+msgid "\\nThe certificate could not be made:%s\\n"
+msgstr "\\n无法制作证书:%s\\n"
+
+msgid "\\nNot sent yet.\\n"
+msgstr "\\n尚未发送。\\n"
+
+msgid "\\nCertificate made:%1$s(%2$s).%3$s\\n"
+msgstr "\\n制作的证书:%1$s(%2$s)。%3$s\\n"
+
+msgid "\\nCertificates made again (%d); the old ones were revoked.\\n"
+msgstr "\\n再次制作证书(%d);旧的已被撤销。\\n"
+
+msgid "\\nNo delivery channel is chosen.\\n"
+msgstr "\\n未选择传送渠道。\\n"
+
+msgid "\\nQueued:%s.\\n"
+msgstr "\\n排队:%s。\\n"
+
+msgid "\\nCopy to the donor:%s.\\n"
+msgstr "\\n复制到捐赠者:%s。\\n"
+
+msgid "Link copied"
+msgstr "链接已复制"
+
+msgid "\\nThe preview could not be drawn. You can open it with \"View certificate\".\\n"
+msgstr "\\n无法绘制预览。您可以使用“查看证书”打开它。\\n"
+
+msgid "[['Your certificate is ready', 'en']]"
+msgid_plural "[['Your certificates are ready', 'en']]"
+msgstr[0] "[['您的证书已准备好', 'en']]"
+
+msgid "\\nNo:%s\\n"
+msgstr "\\n否:%s\\n"
+
+msgid "Download PDF"
+msgstr "下载PDF"
+
+msgid "\\nView certificate\\n"
+msgstr "\\n查看证书\\n"
+
+msgid "\\nYour certificate is being prepared. It will be sent by WhatsApp and e-mail in a few minutes; you can also refresh this page to see it.\\n"
+msgstr "\\n正在准备您的证书。几分钟后将通过 WhatsApp 和电子邮件发送;您还可以刷新此页面来查看它。\\n"
+
+msgid "\\nThis certificate design cannot be chosen any more. Please pick another one.\\n"
+msgstr "\\n此证书设计无法再选择。请选择另一个。\\n"
+
+msgid "\\nPlease fill in \"%s\" for the certificate.\\n"
+msgstr "\\n请填写“%s”作为证书。\\n"
+
+msgid "\\nPick the design of your certificate. The donation amount does not change.\\n"
+msgstr "\\n选择您的证书的设计。捐赠金额不变。\\n"
+
+msgid "Standard"
+msgstr "标准型"
+
+msgid "\\n\"%s\" was paid once: the card was not stored, so it will not repeat monthly.\\n"
+msgstr "\\n“%s”已支付一次:该卡未存储,因此每月不会重复。\\n"
+
+msgid "\\n\"%1$s\" repeats monthly (recurring donation #%2$d); the card is stored at iyzico.\\n"
+msgstr "\\n“%1$s”每月重复一次(定期捐赠#%2$d);该卡存储在 iyzico。\\n"
+
+msgid "\\nCard (iyzico), monthly\\n"
+msgstr "\\n卡 (iyzico),每月\\n"
+
+msgid "\\nMonthly renewal of recurring donation #%1$d(first order #%2$s).\\n"
+msgstr "\\n每月续订定期捐款 #%1$d(第一笔订单 #%2$s)。\\n"
+
+msgid "\\nMonthly charge accepted by iyzico:%1$s, payment id%2$s.\\n"
+msgstr "\\niyzico 接受的每月费用:%1$s,付款 ID%2$s。\\n"
+
+msgid "\\nMonthly charge failed after the last attempt:%s\\n"
+msgstr "\\n最后一次尝试后每月充电失败:%s\\n"
+
+msgid "\\nMonthly charge failed, it will be retried:%s\\n"
+msgstr "\\n月费失败,将重试:%s\\n"
+
+msgid "\\nFlux Donate always uses EsnekPOS's secure payment page; the bank asks for 3D Secure there when needed.\\n"
+msgstr "\\nFlux Donate 始终使用 EsnekPOS 的安全支付页面;需要时银行会要求提供 3D Secure。\\n"
+
+msgid "\\nFlux Donate\\n"
+msgstr "\\n通量捐赠\\n"
+
+msgid "\\nFlux Donate runs this payment method: classic and block checkout, payment links without a cart, and every payment is confirmed with EsnekPOS from the server before the order is marked paid. For a test, enter merchant TEST1234 and the test merchant key from EsnekPOS\\'s developer page.\\n"
+msgstr "\\nFlux Donate 运行此付款方式:经典和块结帐、无购物车的付款链接,并且在订单标记为已付款之前,每笔付款均通过服务器的 EsnekPOS 进行确认。要进行测试,请输入商家 TEST1234 以及来自 EsnekPOS 开发者页面的测试商家密钥。\\n"
+
+msgid "\\nDonation #%d\\n"
+msgstr "\\n捐赠 #%d\\n"
+
+msgid "\\nEsnekPOS did not answer (HTTP%d).\\n"
+msgstr "\\nEsnekPOS 未应答 (HTTP%d)。\\n"
+
+msgid "\\nEsnekPOS payment could not start:%s\\n"
+msgstr "\\nEsnekPOS 付款无法开始:%s\\n"
+
+msgid "\\nEsnekPOS payment could not start:%1$s(%2$s).\\n"
+msgstr "\\nEsnekPOS 付款无法开始:%1$s(%2$s)。\\n"
+
+msgid "\\nThe payment is being checked. Please wait a moment and refresh the page.\\n"
+msgstr "\\n正在检查付款。请稍等片刻并刷新页面。\\n"
+
+msgid "\\nEsnekPOS payment could not be checked:%s\\n"
+msgstr "\\n无法检查 EsnekPOS 付款:%s\\n"
+
+msgid "\\nThe payment could not be verified yet. If money was taken from your card, please contact us before trying again.\\n"
+msgstr "\\n尚未验证付款。如果您的卡上的钱被提取,请在重试之前联系我们。\\n"
+
+msgid "\\nEsnekPOS payment received: reference%1$s,%2$sinstallment(s),%3$scharged.\\n"
+msgstr "\\n已收到 EsnekPOS 付款:参考%1$s、%2$s分期付款、已收取%3$s。\\n"
+
+msgid "\\nEsnekPOS reported a payment (%s) that does not match this order (amount or reference). Check it in the EsnekPOS panel before doing anything.\\n"
+msgstr "\\nEsnekPOS 报告的付款 (%s) 与此订单(金额或参考)不匹配。在执行任何操作之前,请在 EsnekPOS 面板中检查它。\\n"
+
+msgid "\\nEsnekPOS return said success but EsnekPOS did not confirm the payment:%s\\n"
+msgstr "\\nEsnekPOS 返回表示成功,但 EsnekPOS 未确认付款:%s\\n"
+
+msgid "\\nEsnekPOS: the payment was not completed (%s).\\n"
+msgstr "\\nEsnekPOS: 付款未完成 (%s)。\\n"
+
+msgid "\\nTest mode (merchant TEST1234).\\n"
+msgstr "\\n测试模式(商家 TEST1234)。\\n"
+
+msgid "\\nFlux Donate sends the order lines, no cart needed.\\n"
+msgstr "\\nFlux Donate 发送订单行,无需购物车。\\n"
+
+msgid "\\nFlux Donate asks EsnekPOS (ProcessQuery) before the order is marked paid.\\n"
+msgstr "\\nFlux Donate 在订单标记为已付款之前询问 EsnekPOS (ProcessQuery)。\\n"
+
+msgid "\\nOn EsnekPOS\\'s payment page, as set in the EsnekPOS panel.\\n"
+msgstr "\\n在 EsnekPOS 的支付页面上,按照 EsnekPOS 面板中的设置。\\n"
+
+msgid "\\nRefund in the EsnekPOS panel, then mark the order refunded.\\n"
+msgstr "\\n在 EsnekPOS 面板中退款,然后将订单标记为已退款。\\n"
+
+msgid "[['Donation of%1$ssapling.%2$splants it for you and sends an online certificate in your name. Pay by card or bank transfer.', 'en']]"
+msgid_plural "[['Donation of%1$ssaplings.%2$splants them for you and sends an online certificate in your name. Pay by card or bank transfer.', 'en']]"
+msgstr[0] "[['%1$s树苗捐赠。%2$s会为您种植它们,并以您的名义发送在线证书。通过卡或银行转帐付款。', 'en']]"
+
+msgid "\\nDonation packages\\n"
+msgstr "\\n捐赠包\\n"
+
+msgid "\\nDonation >%s\\n"
+msgstr "\\n捐赠 >%s\\n"
+
+msgid "\\nI will also cover the transaction fee\\n"
+msgstr "\\n我还将支付交易费\\n"
+
+msgid "\\nSo your whole donation reaches its purpose. The exact fee depends on the payment method and is shown at the checkout.\\n"
+msgstr "\\n这样您的全部捐款就达到了目的。确切的费用取决于付款方式并在结账时显示。\\n"
+
+msgid "\\nTransaction fee (covered by you)\\n"
+msgstr "\\n交易费用(由您承担)\\n"
+
+msgid "\\nAny trouble? Write to us on WhatsApp:\\n"
+msgstr "\\n有什么麻烦吗?通过 WhatsApp 给我们写信:\\n"
+
+msgid "\\nNo badge\\n"
+msgstr "\\n没有徽章\\n"
+
+msgid "\\nBest value\\n"
+msgstr "\\n最佳价值\\n"
+
+msgid "\\nMost popular', 'en']]"
+msgstr "\\n最受欢迎', 'en']]"
+
+msgid "\\nFamily pack\\n"
+msgstr "\\n家庭包\\n"
+
+msgid "\\nHello{ad}, your donation of{tutar}is registered. IBAN:{iban}Reference:{aciklama}Upload your receipt:{link}\\n"
+msgstr "\\n您好{ad},您的{tutar}捐赠已登记。 IBAN:{iban}参考号:{aciklama}上传收据:{link}\\n"
+
+msgid "\\nHello{ad}🌱\\n\\nYour donation of *{tutar}* is registered (No:{siparis}).\\n\\nBank transfer details:\\nRecipient:{alici}\\nIBAN:{iban}\\nReference: *{aciklama}*\\n\\nAfter the transfer you can upload your receipt here:\\n{link}\\n\\nThank you,\\n{site}\\n"
+msgstr "\\n您好{ad}🌱\\n\\n您的 *{tutar}* 捐赠已登记(编号:{siparis})。\\n\\n银行转帐详细信息:\\n收款人:{alici}\\nIBAN:{iban}\\n参考:*{aciklama}*\\n\\n转帐后,您可以在此处上传您的收据:\\n{link}\\n\\n谢谢你,\\n{site}\\n"
+
+msgid "\\nPending transfer notification sent:%s.\\n"
+msgstr "\\n已发送待处理传输通知:%s。\\n"
+
+msgid "\\nWooCommerce checks\\n"
+msgstr "\\nWooCommerce 检查\\n"
+
+msgid "This check could not run: %s"
+msgstr "此检查无法运行:%s"
+
+msgid "\\nVersion%1$sis active. Flux Donate was checked up to%2$s; it uses only stable public WooCommerce functions, but test a donation after big WooCommerce updates.\\n"
+msgstr "\\n版本%1$s处于活动状态。 Flux Donate 已检查至%2$s;它仅使用稳定的公共 WooCommerce 功能,但会在大型 WooCommerce 更新后测试捐赠。\\n"
+
+msgid "\\nActive, version%s. Donations are paid through the WooCommerce cart and checkout.\\n"
+msgstr "\\n活动,版本%s。捐款通过 WooCommerce 购物车和结帐支付。\\n"
+
+msgid "\\nOne-time card payments are taken by%s; iyzico is not shown at the checkout.\\n"
+msgstr "\\n一次性卡付款由%s进行;结帐时不会显示 iyzico。\\n"
+
+msgid "\\nOne-time card payments are taken by the official iyzico WooCommerce plugin.\\n"
+msgstr "\\n一次性卡付款由官方 iyzico WooCommerce 插件进行。\\n"
+
+msgid "\\nCard payments use our own card fields on the checkout (iyzico 3D Secure, installments, saved cards).\\n"
+msgstr "\\n卡付款在结帐时使用我们自己的卡字段(iyzico 3D Secure、分期付款、保存的卡)。\\n"
+
+msgid "\\nOne-time card payments are taken by Flux Donate iyzico (the official iyzico plugin is not enabled).\\n"
+msgstr "\\n一次性卡付款由 Flux Donate iyzico 进行(未启用官方 iyzico 插件)。\\n"
+
+msgid "\\nCard payments are taken by:%s.\\n"
+msgstr "\\n银行卡付款方式为:%s。\\n"
+
+msgid "\\nNo card method is enabled; donations can only be paid by bank transfer.\\n"
+msgstr "\\n未启用任何卡方法;捐款只能通过银行转账的方式支付。\\n"
+
+msgid "\\nCard payments (WooCommerce)\\n"
+msgstr "\\n卡付款 (WooCommerce)\\n"
+
+msgid "\\nMonthly donations\\n"
+msgstr "\\n每月捐款\\n"
+
+msgid "\\nFlux Donate iyzico stores the card at the first payment; a renewal order is opened and charged every month.\\n"
+msgstr "\\nFlux Donate iyzico 在首次付款时存储该卡;每月都会开立续订订单并收取费用。\\n"
+
+msgid "\\nMonthly donations are off: enable \"Card (iyzico) - Flux Donate\" in WooCommerce › Settings › Payments and enter iyzico keys.\\n"
+msgstr "\\n每月捐赠已关闭:在 WooCommerce › 设置 › 付款中启用“卡 (iyzico) - Flux Donate”并输入 iyzico 密钥。\\n"
+
+msgid "\\nBank transfer (donations)\\n"
+msgstr "\\n银行转账(捐款)\\n"
+
+msgid "\\nNo IBAN entered.\\n"
+msgstr "\\n未输入 IBAN。\\n"
+
+msgid "\\nThe payment method is disabled.\\n"
+msgstr "\\n付款方式已禁用。\\n"
+
+msgid "\\nBank transfer settings\\n"
+msgstr "\\n银行转帐设置\\n"
+
+msgid "\\nTwo bank transfer methods\\n"
+msgstr "\\n两种银行转帐方式\\n"
+
+msgid "\\nWooCommerce\\'s own \"Direct bank transfer\" is enabled next to the donation bank transfer. Donors see two similar choices and the receipt upload works only with the donation one; disable \"Direct bank transfer\".\\n"
+msgstr "\\nWooCommerce 自己的“直接银行转账”在捐赠银行转账旁边启用。捐赠者会看到两个类似的选择,并且收据上传仅适用于捐赠的一项;禁用“直接银行转帐”。\\n"
+
+msgid "\\nThe shop currency is%1$s; these types use another currency and are charged in%1$sat the same number:%2$s\\n"
+msgstr "\\n商店货币为%1$s; these types use another currency and are charged in%1$sat the same number:%2$s\\n"
+
+msgid "\\nWooCommerce settings\\n"
+msgstr "\\nWooCommerce 设置\\n"
+
+msgid "\\nDonation types and the shop use%s.\\n"
+msgstr "\\n捐赠类型和商店使用%s。\\n"
+
+msgid "\\nDonation products\\n"
+msgstr "\\n捐赠产品\\n"
+
+msgid "\\nThese types get their hidden WooCommerce product the first time they are donated to or saved:%s\\n"
+msgstr "\\n这些类型在第一次捐赠或保存时获得隐藏的 WooCommerce 产品:%s\\n"
+
+msgid "\\n%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products.\\n"
+msgstr "\\n%d活动类型具有其隐藏的 WooCommerce 产品。%d活动类型具有隐藏的 WooCommerce 产品。\\n"
+
+msgid "\\nNo page with the donation options block is selected.\\n"
+msgstr "\\n未选择带有捐赠选项块的页面。\\n"
+
+msgid "\\nOther payment plugins\\n"
+msgstr "\\n其他支付插件\\n"
+
+msgid "\\nCheck these on the donation checkout:%s. Details: Donations › Settings › WooCommerce › Payment methods.\\n"
+msgstr "\\n在捐赠结帐处检查这些:%s。详细信息:捐赠 › 设置 › WooCommerce › 付款方式。\\n"
+
+msgid "Payment methods"
+msgstr "付款方式"
+
+msgid "\\nEnabled and shown on the donation checkout:%s.\\n"
+msgstr "\\n已启用并显示在捐赠结帐上:%s。\\n"
+
+msgid "\\nCertificates after payment\\n"
+msgstr "\\n付款后证书\\n"
+
+msgid "\\nFlux Certificates makes the certificates of paid donation lines.\\n"
+msgstr "\\nFlux Certificates 制作付费捐款线的证书。\\n"
+
+msgid "\\nFlux Certificates has no active template.\\n"
+msgstr "\\nFlux 证书没有活动模板。\\n"
+
+msgid "\\nProduct XML\\n"
+msgstr "\\n产品 XML\\n"
+
+msgid "\\n%1$slists%2$ddonation packages (Google Merchant format, e.g. for iyzico).\\n"
+msgstr "\\n%1$s列出%2$d捐赠包(Google Merchant 格式,例如 iyzico)。\\n"
+
+msgid "\\nPayment forms on the checkout\\n"
+msgstr "\\n结帐时的付款表格\\n"
+
+msgid "\\nDonation forms send their choice to the WooCommerce cart; \"Payment completed\" automations run when the order is paid.\\n"
+msgstr "\\n捐赠表格将他们的选择发送到 WooCommerce 购物车;订单支付后,“付款已完成”自动化运行。\\n"
+
+msgid "\\nFlux Forms%sis active. Forms are paid on the checkout, but their \"Payment completed\" automations need Flux Forms 2.1.0 or later.\\n"
+msgstr "\\n通量形式%s处于活动状态。表单在结账时付款,但其“付款已完成”自动化功能需要 Flux Forms 2.1.0 或更高版本。\\n"
+
+msgid "Plugins"
+msgstr "插件"
+
+msgid "\\nDonation e-mails\\n"
+msgstr "\\n捐赠电子邮件\\n"
+
+msgid "\\nSent by Flux Mail; the templates (group \"Flux Donate\") can be edited there. WooCommerce order e-mails stay in WooCommerce › Settings › Emails.\\n"
+msgstr "\\n通过 Flux 邮件发送;可以在那里编辑模板(“Flux Donate”组)。 WooCommerce 订单电子邮件保留在 WooCommerce › 设置 › 电子邮件中。\\n"
+
+msgid "\\nE-mail templates\\n"
+msgstr "\\n电子邮件模板\\n"
+
+msgid "\\nFlux Mail is not active: the donation e-mails are sent as plain text with their default wording.\\n"
+msgstr "\\nFlux 邮件未激活:捐赠电子邮件以纯文本形式使用默认措辞发送。\\n"
+
+msgid "\\nBank transfer (donation)\\n"
+msgstr "\\n银行转账(捐赠)\\n"
+
+msgid "\\nThe donor transfers the money with an order-specific reference and uploads the receipt on the site. The certificate is issued when you confirm the payment.\\n"
+msgstr "\\n捐赠者使用特定于订单的参考号转账,并将收据上传到网站上。确认付款后将颁发证书。\\n"
+
+msgid "Enabled"
+msgstr "启用"
+
+msgid "\\nTake donations by bank transfer\\n"
+msgstr "\\n通过银行转账接受捐款\\n"
+
+msgid "Empty = \"Bank transfer\" in the site language."
+msgstr "空 = 网站语言中的“银行转账”。"
+
+msgid "Text on the checkout page"
+msgstr "结帐页面上的文字"
+
+msgid "Empty = the default text in the site language."
+msgstr "空 = 站点语言的默认文本。"
+
+msgid "Recipient (account holder)"
+msgstr "收款人(账户持有人)"
+
+msgid "\\nEmpty = the holder of the bank account below or, without an IBAN here, of WooCommerce\\'s \"Direct bank transfer\" account (else the theme settings).\\n"
+msgstr "\\n空 = 以下银行帐户的持有人,或者此处没有 IBAN 的 WooCommerce“直接银行转帐”帐户(否则主题设置)的持有人。\\n"
+
+msgid "\\nThe account shown everywhere (donation page, checkout, call center). Empty = the first account of WooCommerce\\'s \"Direct bank transfer\", else the theme settings; recipient and bank then come from that account too.\\n"
+msgstr "\\n帐户随处可见(捐赠页面、结帐、呼叫中心)。空 = WooCommerce 的“直接银行转账”的第一个帐户,其他为主题设置;收件人和银行也来自该帐户。\\n"
+
+msgid "Bank (optional)"
+msgstr "银行(可选)"
+
+msgid "\\nWhat the donor writes in the transfer description. Placeholders:{tur}(sapling donation / donation),{kod}(prefix + order no),{siparis},{ad}. Empty:{tur}{kod}{ad}\\n"
+msgstr "\\n捐赠者在转账说明中所写的内容。占位符:{tur}(树苗捐赠/捐赠)、{kod}(前缀+订单号)、{siparis}、{ad}。空:{tur}{kod}{ad}\\n"
+
+msgid "Code prefix"
+msgstr "代码前缀"
+
+msgid "\\nBank transfer pre-registration: waiting for the payment.\\n"
+msgstr "\\n银行转账预登记:等待付款。\\n"
+
+msgid "\\nCard (iyzico) - Flux Donate\\n"
+msgstr "\\n卡片 (iyzico) - 通量捐赠\\n"
+
+msgid "\\nCard payments on iyzico's secure page. Required for monthly donations (the card is stored by iyzico and charged each month); also used for one-time donations when the official iyzico plugin is not active.\\n"
+msgstr "\\niyzico 安全页面上的卡付款。每月捐款所需(该卡由 iyzico 存储,每月收费);当官方 iyzico 插件未激活时,也可用于一次性捐赠。\\n"
+
+msgid "Enable"
+msgstr "启用"
+
+msgid "\\nCard payments through Flux Donate (iyzico)\\n"
+msgstr "\\n通过 Flux Donate (iyzico) 进行卡支付\\n"
+
+msgid "\\nCredit / debit card (iyzico)\\n"
+msgstr "\\n信用卡/借记卡 (iyzico)\\n"
+
+msgid "Description"
+msgstr "描述"
+
+msgid "API keys"
+msgstr "API 密钥"
+
+msgid "\\nYou will pay on iyzico's secure page. For monthly donations your card is stored by iyzico and charged once a month; you can cancel at any time.\\n"
+msgstr "\\n您将在 iyzico 的安全页面上付款。对于每月捐款,您的卡由 iyzico 存储并每月收取一次费用;您可以随时取消。\\n"
+
+msgid "\\nDonation options\\n"
+msgstr "\\n捐赠选项\\n"
+
+msgid "\\nSapling packages, causes and free-amount donations; added to the cart and paid with WooCommerce.\\n"
+msgstr "\\n树苗包裹、原因和无偿捐赠;添加到购物车并通过 WooCommerce 付款。\\n"
+
+msgid "\\nTab shown first\\n"
+msgstr "\\n首先显示选项卡\\n"
+
+msgid "\\nThe first one\\n"
+msgstr "\\n第一个\\n"
+
+msgid "\\nNone chosen = the types marked \"Show in the Donation options block\".\\n"
+msgstr "\\n未选择 = 标记为“在捐赠选项块中显示”的类型。\\n"
+
+msgid "\\nPrices and options: Donations › Donation types. Certificates and cart: Donations › Settings › WooCommerce.\\n"
+msgstr "\\n价格和选项:捐赠 › 捐赠类型。证书和购物车:捐赠 › 设置 › WooCommerce。\\n"
+
+msgid "[['Could not copy, please select it by hand.\\n"
+msgstr "[['无法复制,请手动选择。\\n"
+
+msgid "Uploading…"
+msgstr "正在上传..."
+
+msgid "\\nWe have your receipt. Thank you! We will let you know once the payment is confirmed.\\n"
+msgstr "\\n我们有您的收据。谢谢你!付款确认后我们会通知您。\\n"
+
+msgid "The file is too large."
+msgstr "文件太大。"
+
+msgid "Something went wrong. Please try again."
+msgstr "出了点问题。请再试一次。"
+
+msgid "Add another receipt"
+msgstr "添加另一张收据"
+
+msgid "\\nReceipt under review\\n"
+msgstr "\\n收据正在审核中\\n"
+
+msgid "\\nPlease write a WhatsApp number or an e-mail address (at least one).\\n"
+msgstr "\\n请写下 WhatsApp 号码或电子邮件地址(至少一个)。\\n"
+
+msgid "\\nPlease enter a valid e-mail address.\\n"
+msgstr "\\n请输入有效的电子邮件地址。\\n"
+
+msgid "\\nPlease enter a valid phone number.\\n"
+msgstr "\\n请输入有效的电话号码。\\n"
+
+msgid "\\nPlease write at most one name per share.\\n"
+msgstr "\\n每个共享最多只能写一个名称。\\n"
+
+msgid "\\n/ month\\n"
+msgstr "\\n/月\\n"
+
+msgid "\\n(up to%s)\\n"
+msgstr "\\n(直到%s)\\n"
+
+msgid "[['%sSapling', 'en']]"
+msgid_plural "[['%sSaplings', 'en']]"
+msgstr[0] "[['%s树苗', 'en']]"
+
+msgid "\\nWho is this donation for?\\n"
+msgstr "\\n这笔捐款是给谁的?\\n"
+
+msgid "\\nFor myself\\n"
+msgstr "\\n为了我自己\\n"
+
+msgid "\\nOn behalf of someone else\\n"
+msgstr "\\n代表其他人\\n"
+
+msgid "\\nTheir name\\n"
+msgstr "\\n他们的名字\\n"
+
+msgid "\\ne.g. Ayşe Yılmaz or the Yılmaz family\\n"
+msgstr "\\ne.g. Ayşe Yılmaz 或 Yılmaz 家族\\n"
+
+msgid "\\nOptional. If you leave it empty, the name from the checkout is used.\\n"
+msgstr "\\n可选。如果将其留空,则使用结账时的名称。\\n"
+
+msgid "\\nWritten on the certificate and the donation record.\\n"
+msgstr "\\n写在证书和捐赠记录上。\\n"
+
+msgid "\\nWritten on the donation record.\\n"
+msgstr "\\n写在捐款记录上。\\n"
+
+msgid "\\nWhere should the certificate go?\\n"
+msgstr "\\n证书应该去哪里?\\n"
+
+msgid "\\nEmpty fields use the phone and e-mail of your account or the checkout.\\n"
+msgstr "\\n空白字段使用您帐户或结帐时的电话和电子邮件。\\n"
+
+msgid "\\nTheir phone and e-mail. Empty fields use yours.', 'en']]"
+msgstr "\\n他们的电话和电子邮件。空字段使用您的。', 'en']]"
+
+msgid "\\nSend me a copy too\\n"
+msgstr "\\n也给我发一份\\n"
+
+msgid "\\nOnline certificate\\n"
+msgstr "\\n在线证书\\n"
+
+msgid "\\nSent by WhatsApp and e-mail once the payment is confirmed, ready to download.\\n"
+msgstr "\\n付款确认后通过 WhatsApp 和电子邮件发送,可供下载。\\n"
+
+msgid "\\nOnline + printed certificate\\n"
+msgstr "\\n在线+打印证书\\n"
+
+msgid "\\nA printed certificate is also posted to your address.\\n"
+msgstr "\\n打印的证书也会邮寄到您的地址。\\n"
+
+msgid "Free"
+msgstr "免费"
+
+msgid "Coming soon"
+msgstr "即将推出"
+
+msgid "\\nPostal address for the printed certificate\\n"
+msgstr "\\n打印证书的邮寄地址\\n"
+
+msgid "\\nName, full address, district / city, phone', 'en']]"
+msgstr "\\n姓名、详细地址、区/市、电话', 'en']]"
+
+msgid "\\nBy card, stop any time.\\n"
+msgstr "\\n刷卡,随时停车。\\n"
+
+msgid "\\nYour donation was added to the cart.\\n"
+msgstr "\\n您的捐款已添加到购物车。\\n"
+
+msgid "\\nGo to cart\\n"
+msgstr "\\n转到购物车\\n"
+
+msgid "\\nYour donation\\n"
+msgstr "\\n您的捐款\\n"
+
+msgid "Continue"
+msgstr "继续"
+
+msgid "Add to cart"
+msgstr "添加到购物车"
+
+msgid "\\nfrom%s\\n"
+msgstr "\\n来自%s\\n"
+
+msgid "\\nPayments are taken securely by iyzico.\\n"
+msgstr "\\niyzico 安全地进行付款。\\n"
+
+msgid "\\nPay safely by card or bank transfer.\\n"
+msgstr "\\n通过卡或银行转帐安全付款。\\n"
+
+msgid "\\nYour card details are never stored on our site.\\n"
+msgstr "\\n您的银行卡详细信息绝不会存储在我们的网站上。\\n"
+
+msgid "\\nHow many saplings would you like to donate?\\n"
+msgstr "\\n您想捐赠多少棵树苗?\\n"
+
+msgid "\\nAnother amount\\n"
+msgstr "\\n另一笔金额\\n"
+
+msgid "Fewer"
+msgstr "更少"
+
+msgid "Number of saplings"
+msgstr "树苗数量"
+
+msgid "More"
+msgstr "更多"
+
+msgid "Donation amount"
+msgstr "捐款金额"
+
+msgid "\\nOr write another amount\\n"
+msgstr "\\n或者写另一个金额\\n"
+
+msgid "\\nAt least%s\\n"
+msgstr "\\n至少%s\\n"
+
+msgid "\\nOn whose behalf?\\n"
+msgstr "\\n代表谁?\\n"
+
+msgid "\\nGiven in your name, as you write it at the checkout.\\n"
+msgstr "\\n以您在结账时所写的姓名提供。\\n"
+
+msgid "\\nShares without a name are given in the name from the checkout. With a phone number we can also send that person the news on WhatsApp.\\n"
+msgstr "\\n没有名称的股票以结帐时的名称给出。通过电话号码,我们还可以通过 WhatsApp 向该人发送新闻。\\n"
+
+msgid "\\nShares without a name are given in the name from the checkout.\\n"
+msgstr "\\n没有名称的共享以结账时的名称给出。\\n"
+
+msgid "\\nRead the proxy (vekâlet) text (version%s)\\n"
+msgstr "\\n读取代理 (vekâlet) 文本(版本%s)\\n"
+
+msgid "\\nI give my proxy (vekâlet) for the sacrifice according to this text.\\n"
+msgstr "\\n我根据本文给出我的代理人(vekâlet)作为牺牲。\\n"
+
+msgid "\\nShare%s\\n"
+msgstr "\\n共享%s\\n"
+
+msgid "\\nApply to all\\n"
+msgstr "\\n应用于所有\\n"
+
+msgid "\\ne.g. Ali Yılmaz\\n"
+msgstr "\\ne.g.阿里·耶尔马兹\\n"
+
+msgid "Phone (optional)"
+msgstr "电话(可选)"
+
+msgid "\\nNo receipt is expected for this donation.\\n"
+msgstr "\\n预计此次捐赠不会有收据。\\n"
+
+msgid "\\nAt most 5 receipts can be uploaded for a donation.\\n"
+msgstr "\\n一次捐赠最多可上传 5 张收据。\\n"
+
+msgid "The file could not be uploaded. Please try again."
+msgstr "文件无法上传。请再试一次。"
+
+msgid "The file can be at most %s MB."
+msgstr "文件最多可为%sMB。"
+
+msgid "Only PDF, JPG, PNG, WEBP or HEIC files can be uploaded."
+msgstr "只能上传 PDF、JPG、PNG、WEBP 或 HEIC 文件。"
+
+msgid "The file could not be saved."
+msgstr "无法保存文件。"
+
+msgid "\\nThe donor uploaded a receipt:%1$s(%2$s). Check the payment and confirm it.\\n"
+msgstr "\\n捐赠者上传了收据:%1$s(%2$s)。检查付款并确认。\\n"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "\\nthe site\\n"
+msgstr "\\n网站\\n"
+
+msgid "[['Warning: this receipt was uploaded before (%1$dtime, via%2$s). Check it before confirming the payment.', 'en']]"
+msgid_plural "[['Warning: this receipt was uploaded before (%1$dtimes, via%2$s). Check it before confirming the payment.', 'en']]"
+msgstr[0] "[['警告:此收据之前已上传(%1$d次,通过%2$s)。请先检查后再确认付款。', 'en']]"
+
+msgid "\\nEarlier donation: #%d.\\n"
+msgstr "\\n之前的捐赠:#%d。\\n"
+
+msgid "We have your receipt. We will let you know once the payment is confirmed."
+msgstr "我们有您的收据。付款确认后我们会通知您。"
+
+msgid "Choose a receipt or drop it here"
+msgstr "选择收据或将其放在此处"
+
+msgid "PDF, JPG or PNG · up to %s MB"
+msgstr "PDF、JPG 或 PNG · 最大%sMB"
+
+msgid "Send receipt"
+msgstr "发送收据"
+
+msgid "Please choose a file."
+msgstr "请选择一个文件。"
+
+msgid "We have your receipt. Thank you!"
+msgstr "我们有您的收据。谢谢你!"
+
+msgid "\\nWooCommerce checkout\\n"
+msgstr "\\nWooCommerce 结帐\\n"
+
+msgid "\\nYou will choose how to pay (card or bank transfer) on the next page.\\n"
+msgstr "\\n您将在下一页选择付款方式(卡或银行转帐)。\\n"
+
+msgid "\\nMonthly donations are paid by card; the card is stored by iyzico and charged once a month.\\n"
+msgstr "\\n每月捐款通过卡支付;该卡由 iyzico 存储,每月收费一次。\\n"
+
+msgid "\\nThis form is not linked to a donation type. Please contact the site administrator.\\n"
+msgstr "\\n此表格未链接到捐赠类型。请联系站点管理员。\\n"
+
+msgid "\\nThe donation type of this form was not found.\\n"
+msgstr "\\n找不到此表单的捐赠类型。\\n"
+
+msgid "\\nThe amount could not be calculated. Please review your choices and try again.\\n"
+msgstr "\\n金额无法计算。请检查您的选择并重试。\\n"
+
+msgid "Pending donations"
+msgstr "待定捐款"
+
+msgid "\\nYou have no pending donations.\\n"
+msgstr "\\n您没有待处理的捐款。\\n"
+
+msgid "\\nDonations made by bank transfer appear here until the payment is confirmed.\\n"
+msgstr "\\n通过银行转帐进行的捐款将显示在此处,直至付款得到确认。\\n"
+
+msgid "Donate"
+msgstr "捐赠"
+
+msgid "\\nYour bank transfer donations. If you have made the payment, upload your receipt; your certificate is sent once it is confirmed.\\n"
+msgstr "\\n您的银行转帐捐款。如果您已付款,请上传收据;您的证书一经确认就会发送。\\n"
+
+msgid "\\nDonation #%s\\n"
+msgstr "\\n捐赠 #%s\\n"
+
+msgid "Awaiting payment"
+msgstr "等待付款"
+
+msgid "[['%sdonation is awaiting payment', 'en']]"
+msgid_plural "[['%sdonations are awaiting payment', 'en']]"
+msgstr[0] "[['%s捐款正在等待付款', 'en']]"
+
+msgid "\\nIf you have made the transfer, upload your receipt.\\n"
+msgstr "\\n如果您已进行转账,请上传收据。\\n"
+
+msgid "\\nPlease write your e-mail or phone number (at least one).\\n"
+msgstr "\\n请写下您的电子邮件或电话号码(至少一个)。\\n"
+
+msgid "Donation summary"
+msgstr "捐款概要"
+
+msgid "\\nWrite at least one. We send your receipt and certificate there.\\n"
+msgstr "\\n至少写一个。我们会将您的收据和证书发送到那里。\\n"
+
+msgid "\\nContinue to payment\\n"
+msgstr "\\n继续付款\\n"
+
+msgid "\\nI have read and accept the%1$sprivacy policy%2$sand the%3$sdonation agreement%4$s.\\n"
+msgstr "\\n我已阅读并接受%1$s隐私政策%2$s和%3$s捐赠协议%4$s。\\n"
+
+msgid "\\nMake payment\\n"
+msgstr "\\n付款\\n"
+
+msgid "\\nPlease read and accept the terms to continue.\\n"
+msgstr "\\n请阅读并接受条款以继续。\\n"
+
+msgid "\\nDonation terms\\n"
+msgstr "\\n捐赠条款\\n"
+
+msgid "\\nPrivacy policy\\n"
+msgstr "\\n隐私政策\\n"
+
+msgid "\\nThese terms apply to donations made on this site to%s.\\n"
+msgstr "\\n这些条款适用于在本网站上向%s进行的捐赠。\\n"
+
+msgid "\\nA donation is a gift without anything in return. It is used for the purpose chosen on the donation form (for example sapling planting). When a purpose is fully funded, the association may use the donation for a similar purpose.\\n"
+msgstr "\\n捐赠是一种礼物,没有任何回报。它用于捐赠表格上选择的目的(例如树苗种植)。当某个目的得到全额资助时,协会可以将捐款用于类似目的。\\n"
+
+msgid "\\nCard payments are processed by the licensed payment institution iyzico with 3D Secure. Card details are not stored on this site. For bank transfers, the donation is confirmed when the money reaches the association account.\\n"
+msgstr "\\n卡支付由持牌支付机构 iyzico 和 3D Secure 处理。该网站不存储银行卡详细信息。对于银行转账,当资金到达协会帐户时,捐款即被确认。\\n"
+
+msgid "\\nA monthly donation is charged to the same card every month until you cancel it. You can cancel it at any time from your account page or by writing to us.\\n"
+msgstr "\\n每月捐款会每月从同一张卡中扣除,直到您取消为止。您可以随时从您的帐户页面或写信给我们取消它。\\n"
+
+msgid "\\nThe online certificate is sent to the e-mail address or phone number you give after the payment is confirmed. Please check the names you write on the certificate.\\n"
+msgstr "\\n付款确认后,在线证书将发送至您提供的电子邮件地址或电话号码。请检查您写在证书上的姓名。\\n"
+
+msgid "\\nCancellation and refunds\\n"
+msgstr "\\n取消和退款\\n"
+
+msgid "\\nIf a donation was made by mistake (wrong amount or a double payment), write to us within 14 days and it is refunded to the same card or account.\\n"
+msgstr "\\nIf a donation was made by mistake (wrong amount or a double payment), write to us within 14 days and it is refunded to the same card or account.\\n"
+
+msgid "Personal data"
+msgstr "个人资料"
+
+msgid "\\nYour name and contact details are used to record the donation, send the receipt and certificate, and contact you about your donation. See the privacy policy for details.\\n"
+msgstr "\\n您的姓名和联系方式将用于记录捐赠、发送收据和证书,并就捐赠事宜与您联系。有关详细信息,请参阅隐私政策。\\n"
+
+msgid "\\nFor any question about your donation, write to us on WhatsApp:%s\\n"
+msgstr "\\n如果对您的捐赠有任何疑问,请通过 WhatsApp 给我们写信:%s\\n"
+
+msgid "\\nFor any question about your donation, write to us through the contact page.\\n"
+msgstr "\\n如果对您的捐赠有任何疑问,请通过联系页面写信给我们。\\n"
+
+msgid "\\n%sprocesses your personal data under the Turkish Personal Data Protection Law (KVKK).\\n"
+msgstr "\\n%s根据土耳其个人数据保护法 (KVKK) 处理您的个人数据。\\n"
+
+msgid "\\nWhat we collect\\n"
+msgstr "\\n我们收集什么\\n"
+
+msgid "\\nName, e-mail address, phone number and the details of your donation. Card details are entered on the payment institution and are not stored by us.\\n"
+msgstr "\\n姓名、电子邮件地址、电话号码和您的捐款详细信息。卡详细信息由支付机构输入,我们不会存储。\\n"
+
+msgid "Why"
+msgstr "为什么"
+
+msgid "\\nTo record donations, send receipts and certificates, meet legal obligations and answer your questions.\\n"
+msgstr "\\n记录捐款、发送收据和证书、履行法律义务并回答您的问题。\\n"
+
+msgid "\\nYour rights\\n"
+msgstr "\\n您的权利\\n"
+
+msgid "\\nYou can ask what data we hold about you, have it corrected or deleted, by writing to us.\\n"
+msgstr "\\n您可以写信给我们,询问我们持有您的哪些数据、更正或删除这些数据。\\n"
+
+msgid "\\nBlock checkout\\n"
+msgstr "\\n阻止结帐\\n"
+
+msgid "\\nNo address\\n"
+msgstr "\\n没有地址\\n"
+
+msgid "\\nServer check\\n"
+msgstr "\\n服务器检查\\n"
+
+msgid "\\nSaved cards\\n"
+msgstr "\\n已保存的卡片\\n"
+
+msgid "\\nRefund from site\\n"
+msgstr "\\n从网站退款\\n"
+
+msgid "Monthly"
+msgstr "每月"
+
+msgid "\\nShown on a checkout page built with the Checkout block. The classic checkout ([woocommerce_checkout]) shows every method.\\n"
+msgstr "\\n显示在使用结帐块构建的结帐页面上。经典结帐 ([woocommerce_checkout]) 显示每种方法。\\n"
+
+msgid "\\nPays an existing order from its payment link (call center, \"pay again\"), without a cart.\\n"
+msgstr "\\n通过付款链接(呼叫中心,“再次付款”)支付现有订单,无需购物车。\\n"
+
+msgid "[[\"Works on our checkout that asks no address: Flux Donate fills the organisation's city and address in.\\n"
+msgstr "[[“适用于我们的结帐,无需询问地址:Flux Donate 填写组织的城市和地址。\\n"
+
+msgid "\\nThe payment is confirmed with the provider from the server before the order is marked paid.\\n"
+msgstr "\\n在订单标记为已付款之前,先从服务器向提供商确认付款。\\n"
+
+msgid "\\nThe donor can pay in installments.\\n"
+msgstr "\\n捐赠者可以分期付款。\\n"
+
+msgid "\\nThe donor can save a card for the next donation.\\n"
+msgstr "\\n捐赠者可以保存一张卡片以供下次捐赠使用。\\n"
+
+msgid "\\nThe Refund button on the order sends the refund to the provider.\\n"
+msgstr "\\n订单上的退款按钮将退款发送给提供商。\\n"
+
+msgid "\\nMonthly donations charge a stored card every month. Only Flux Donate iyzico does this.\\n"
+msgstr "\\n每月捐款每月从存储的卡中收取费用。只有 Flux Donate iyzico 可以执行此操作。\\n"
+
+msgid "\\nAdded by Flux Donate (the plugin has no block support).\\n"
+msgstr "\\n由 Flux Donate 添加(该插件没有块支持)。\\n"
+
+msgid "\\nAdded by Flux Donate once the method is enabled.\\n"
+msgstr "\\n启用该方法后,由 Flux Donate 添加。\\n"
+
+msgid "\\nTurn on \"Show other payment plugins on the checkout block\".', 'en']]"
+msgstr "\\n开启“在结账栏显示其他支付插件”。', 'en']]"
+
+msgid "\\nThe plugin shows its own card fields only on the classic checkout. Use the classic checkout page or ask the provider for block support.\\n"
+msgstr "\\n该插件仅在经典结帐时显示其自己的卡字段。使用经典结账页面或向提供商请求阻止支持。\\n"
+
+msgid "\\nMost plugins work; try a payment link once.\\n"
+msgstr "\\n大多数插件都可以工作;尝试一次付款链接。\\n"
+
+msgid "\\nDepends on the plugin; ask the provider.\\n"
+msgstr "\\n取决于插件;询问提供商。\\n"
+
+msgid "\\nIf the provider offers it, on its payment page.\\n"
+msgstr "\\n如果提供商提供,则在其付款页面上。\\n"
+
+msgid "\\nRefund in the provider's panel, then mark the order refunded.\\n"
+msgstr "\\n在提供商面板中退款,然后将订单标记为已退款。\\n"
+
+msgid "[['Confirmed by hand after the receipt.\\n"
+msgstr "[['收货后由专人确认。\\n"
+
+msgid "\\nnot shown on the block checkout page\\n"
+msgstr "\\n未显示在块结账页面上\\n"
+
+msgid "Yes"
+msgstr "是的"
+
+msgid "\\nYes, by Flux Donate\\n"
+msgstr "\\n是的,通过 Flux Donate\\n"
+
+msgid "\\nOn the provider\\'s page\\n"
+msgstr "\\n在提供商的页面上\\n"
+
+msgid "No"
+msgstr "否"
+
+msgid "Unknown"
+msgstr "未知"
+
+msgid "\\nEvery WooCommerce payment plugin (virtual POS) works on the donation checkout: install it, enter its settings in WooCommerce › Settings › Payments and enable it. This table shows what each one can do here.\\n"
+msgstr "\\n每个 WooCommerce 支付插件(虚拟 POS)都适用于捐赠结帐:安装它,在 WooCommerce › 设置 › 付款中输入其设置并启用它。下表显示了每个人可以执行的操作。\\n"
+
+msgid "\\nWooCommerce payments\\n"
+msgstr "\\nWooCommerce 付款\\n"
+
+msgid "\\nPayment logos on the site\\n"
+msgstr "\\n网站上的付款徽标\\n"
+
+msgid "\\nCheckout page:%s.\\n"
+msgstr "\\n结账页面:%s。\\n"
+
+msgid "\\nCheckout block\\n"
+msgstr "\\n结帐块\\n"
+
+msgid "\\nclassic\\n"
+msgstr "\\n经典\\n"
+
+msgid "Method"
+msgstr "方法"
+
+msgid "On"
+msgstr "开"
+
+msgid "Off"
+msgstr "关闭"
+
+msgid "\\nOnly one card method is shown to donors. Change it under Cart and checkout › Card payment method.\\n"
+msgstr "\\n仅向捐赠者展示一种卡方法。在购物车和结帐下更改它 › 卡付款方式。\\n"
+
+msgid "\\nHidden at checkout\\n"
+msgstr "\\n结帐时隐藏\\n"
+
+msgid "yes"
+msgstr "是的"
+
+msgid "\\non the provider's page\\n"
+msgstr "\\n 提供商的页面\\n"
+
+msgid "no"
+msgstr "不"
+
+msgid "\\nunknown, test it\\n"
+msgstr "\\n未知,测试一下\\n"
+
+msgid "\\nPoint at a mark for details.\\n"
+msgstr "\\n指向一个标记以了解详细信息。\\n"
+
+msgid "[['Donation type not found.\\n"
+msgstr "[['未找到捐赠类型。\\n"
+
+msgid "Manual"
+msgstr "手册"
+
+msgid "\\nof%sgoal\\n"
+msgstr "\\n%s目标\\n"
+
+msgid "\\nGoal progress\\n"
+msgstr "\\n目标进度\\n"
+
+msgid "\\nreached\\n"
+msgstr "\\n已达到\\n"
+
+msgid "[['donor', 'en']]"
+msgid_plural "[['donors', 'en']]"
+msgstr[0] "[['捐助者', 'en']]"
+
+msgid "[['day left', 'en']]"
+msgid_plural "[['days left', 'en']]"
+msgstr[0] "[['剩余天数', 'en']]"
+
+msgid "\\nEnter a name.\\n"
+msgstr "\\n输入名称。\\n"
+
+msgid "\\nPartner not found.\\n"
+msgstr "\\n未找到合作伙伴。\\n"
+
+msgid "\\nEach tab must be a JSON object.\\n"
+msgstr "\\n每个选项卡必须是 JSON 对象。\\n"
+
+msgid "\\nA tab needs an \"id\".\\n"
+msgstr "\\n选项卡需要一个“id”。\\n"
+
+msgid "[['Tab%1$s: \"on\" must be item or donation, not%2$s.\\n"
+msgstr "[['Tab%1$s: \"on\" 必须是物品或捐赠,而不是%2$s。\\n"
+
+msgid "\\nTab%s: every field needs a \"key\".\\n"
+msgstr "\\nTab%s:每个字段都需要一个“键”。\\n"
+
+msgid "\\nTab%1$s, field%2$s: unknown type%3$s.', 'tr']]"
+msgstr "\\n选项卡%1$s,字段%2$s:未知类型%3$s.', 'tr']]"
+
+msgid "\\nThe JSON could not be read:%s\\n"
+msgstr "\\n无法读取 JSON:%s\\n"
+
+msgid "\\nTracked items\\n"
+msgstr "\\n跟踪的项目\\n"
+
+msgid "Record"
+msgstr "记录"
+
+msgid "Files"
+msgstr "文件"
+
+msgid "Approved"
+msgstr "已批准"
+
+msgid "\\nSent to partner\\n"
+msgstr "\\n发送给合作伙伴\\n"
+
+msgid "\\nDelivered to owner\\n"
+msgstr "\\n已交付给所有者\\n"
+
+msgid "\\nSend to a partner\\n"
+msgstr "\\n发送给合作伙伴\\n"
+
+msgid "\\nTake back from the partner\\n"
+msgstr "\\n从合作伙伴那里收回\\n"
+
+msgid "\\nMark completed\\n"
+msgstr "\\n标记已完成\\n"
+
+msgid "\\nYour gift on behalf of%1$sis completed. Thank you. Code:%2$s\\n"
+msgstr "\\n您代表%1$s的礼物已完成。谢谢。代码:%2$s\\n"
+
+msgid "Menu name"
+msgstr "菜单名称"
+
+msgid "\\nPage title\\n"
+msgstr "\\n页面标题\\n"
+
+msgid "\\nOne item\\n"
+msgstr "\\n一项\\n"
+
+msgid "\\nStatus: sent to partner\\n"
+msgstr "\\n状态:已发送给合作伙伴\\n"
+
+msgid "\\nStatus: completed\\n"
+msgstr "\\n状态:已完成\\n"
+
+msgid "\\nButton: send to partner\\n"
+msgstr "\\n按钮:发送给合作伙伴\\n"
+
+msgid "\\nButton: take back\\n"
+msgstr "\\n按钮:收回\\n"
+
+msgid "\\nButton: mark completed\\n"
+msgstr "\\n按钮:标记已完成\\n"
+
+msgid "\\nWhatsApp text with the file (%1$sname,%2$scode)\\n"
+msgstr "\\n包含文件的 WhatsApp 文本(%1$s名称、%2$s代码)\\n"
+
+msgid "Recorded"
+msgstr "已录制"
+
+msgid "\\nFile added\\n"
+msgstr "\\n文件已添加\\n"
+
+msgid "\\nFile removed\\n"
+msgstr "\\n文件已删除\\n"
+
+msgid "\\nFile sent to owner\\n"
+msgstr "\\n文件已发送给所有者\\n"
+
+msgid "\\nDetails changed\\n"
+msgstr "\\n详细信息已更改\\n"
+
+msgid "Imported"
+msgstr "进口"
+
+msgid "\\nChoose:%s.\\n"
+msgstr "\\n选择:%s。\\n"
+
+msgid "\\nnot waiting\\n"
+msgstr "\\n不等待\\n"
+
+msgid "\\napprove it first\\n"
+msgstr "\\n先批准\\n"
+
+msgid "\\nalready completed or canceled\\n"
+msgstr "\\n已完成或已取消\\n"
+
+msgid "\\npayment not received\\n"
+msgstr "\\n未收到付款\\n"
+
+msgid "\\nalready with this partner\\n"
+msgstr "\\n已与该合作伙伴合作\\n"
+
+msgid "\\nnot with a partner, or already completed\\n"
+msgstr "\\n没有与合作伙伴合作,或已经完成\\n"
+
+msgid "\\nsend it to a partner first\\n"
+msgstr "\\n先将其发送给合作伙伴\\n"
+
+msgid "\\nnot completed yet\\n"
+msgstr "\\n尚未完成\\n"
+
+msgid "[['take it back from the partner first\\n"
+msgstr "[['先从伙伴那里拿回来\\n"
+
+msgid "\\ncannot be canceled\\n"
+msgstr "\\n无法取消\\n"
+
+msgid "\\nonly approved or canceled items\\n"
+msgstr "\\未批准或取消的项目\\n"
+
+msgid "\\nunknown step\\n"
+msgstr "\\n未知步骤\\n"
+
+msgid "\\nFlux Chat is needed to send over WhatsApp.\\n"
+msgstr "\\n需要 Flux Chat 才能通过 WhatsApp 发送。\\n"
+
+msgid "\\nThere is no phone number for the owner.\\n"
+msgstr "\\n没有所有者的电话号码。\\n"
+
+msgid "\\nThe file was not found.\\n"
+msgstr "\\n找不到该文件。\\n"
+
+msgid "\\nThere is no WhatsApp connection.\\n"
+msgstr "\\n没有 WhatsApp 连接。\\n"
+
+msgid "[['The WhatsApp chat could not be opened.\\n"
+msgstr "[['无法打开 WhatsApp 聊天。\\n"
+
+msgid "\\nPlease sign in.\\n"
+msgstr "\\n请登录。\\n"
+
+msgid "\\nreceived%s\\n"
+msgstr "\\n收到%s\\n"
+
+msgid "\\nRecurring donation started\\n"
+msgstr "\\n定期捐赠已开始\\n"
+
+msgid "\\nSent to the donor when a monthly (card) donation is set up.\\n"
+msgstr "\\n设置每月(卡)捐赠后发送给捐赠者。\\n"
+
+msgid "\\nDonor name\\n"
+msgstr "\\n捐助者姓名\\n"
+
+msgid "\\nInterval (monthly...)\\n"
+msgstr "\\n间隔(每月...)\\n"
+
+msgid "\\nDate of the next payment\\n"
+msgstr "\\n下次付款的日期\\n"
+
+msgid "\\nCancel link\\n"
+msgstr "\\n取消链接\\n"
+
+msgid "\\nmonthly\\n"
+msgstr "\\n每月\\n"
+
+msgid "\\nYour recurring donation to{kurum}\\n"
+msgstr "\\n您对{kurum}的定期捐款\\n"
+
+msgid "\\nThank you,{ad}\\n"
+msgstr "\\n谢谢你,{ad}\\n"
+
+msgid "\\nYour{aralik}donation of{tutar}is set up. The next payment will be taken on{sonraki}.\\n"
+msgstr "\\n您对{tutar}的{aralik}捐赠已设置。下一次付款将在{sonraki}进行。\\n"
+
+msgid "\\nYou can cancel your recurring donation at any time with the button below.\\n"
+msgstr "\\n您可以随时使用下面的按钮取消定期捐赠。\\n"
+
+msgid "\\nRecurring donation could not be charged\\n"
+msgstr "\\n无法收取定期捐赠\\n"
+
+msgid "\\nSent to the donor when the card was declined on every attempt and the recurring donation is paused.\\n"
+msgstr "\\n当卡每次尝试都被拒绝并且经常性捐赠被暂停时发送给捐赠者。\\n"
+
+msgid "\\nNumber of attempts\\n"
+msgstr "\\n尝试次数\\n"
+
+msgid "\\nWe could not take your donation to{kurum}', 'en']]"
+msgstr "\\n我们无法将您的捐款转至{kurum}', 'en']]"
+
+msgid "\\nYour recurring donation is paused\\n"
+msgstr "\\n您的定期捐赠已暂停\\n"
+
+msgid "\\nDear{ad},\\n"
+msgstr "\\n亲爱的{ad},\\n"
+
+msgid "\\nWe tried{deneme}times but could not charge your card for your{aralik}donation of{tutar}, so it is paused. If you would like to continue, please make a new donation on our website or contact us.\\n"
+msgstr "\\n我们尝试了{deneme}次,但无法从您的卡中收取{aralik}的{tutar}捐赠费用,因此已暂停。如果您想继续,请在我们的网站上进行新的捐赠或联系我们。\\n"
+
+msgid "\\nDonate again\\n"
+msgstr "\\n再次捐赠\\n"
+
+msgid "\\nBank transfer receipt uploaded\\n"
+msgstr "\\n银行转帐收据已上传\\n"
+
+msgid "\\nSent to the donations manager when a donor uploads a transfer receipt (dekont).\\n"
+msgstr "\\n当捐赠者上传转账收据 (dekont) 时发送给捐赠经理。\\n"
+
+msgid "\\nOrder number\\n"
+msgstr "\\n订单号\\n"
+
+msgid "\\nTransfer reference\\n"
+msgstr "\\n传输参考\\n"
+
+msgid "\\nFile name\\n"
+msgstr "\\n文件名\\n"
+
+msgid "\\nOrder link (admin)\\n"
+msgstr "\\n订购链接(管理员)\\n"
+
+msgid "\\nReceipt uploaded: donation #{siparis}({ad})\\n"
+msgstr "\\n收据已上传:捐款 #{siparis}({ad})\\n"
+
+msgid "\\nA transfer receipt was uploaded', 'en']]"
+msgstr "\\n转账收据已上传', 'en']]"
+
+msgid "\\nAmount:{tutar}\\n"
+msgstr "\\n金额:{tutar}\\n"
+
+msgid "\\nReference:{aciklama}\\n"
+msgstr "\\n参考:{aciklama}\\n"
+
+msgid "\\nFile:{dosya}\\n"
+msgstr "\\n文件:{dosya}\\n"
+
+msgid "\\nCheck the payment at the bank and press \"Confirm payment\" on the order; the certificate is then issued and sent automatically.\\n"
+msgstr "\\n到银行查看付款情况,并按订单上的“确认付款”;然后会自动颁发并发送证书。\\n"
+
+msgid "\\nOpen the order\\n"
+msgstr "\\n打开订单\\n"
+
+msgid "Payment rejected"
+msgstr "付款被拒绝"
+
+msgid "\\nSent to the donor when a manager rejects a bank transfer, with the reason.\\n"
+msgstr "\\n当经理拒绝银行转账时发送给捐赠者并说明原因。\\n"
+
+msgid "\\nWe could not confirm your donation payment\\n"
+msgstr "\\n我们无法确认您的捐款付款\\n"
+
+msgid "\\nWe could not confirm your payment\\n"
+msgstr "\\n我们无法确认您的付款\\n"
+
+msgid "\\nHello{ad},\\n"
+msgstr "\\n你好{ad},\\n"
+
+msgid "\\nWe could not confirm the payment of your{tutar}donation.\\n"
+msgstr "\\n我们无法确认您的{tutar}捐款的付款。\\n"
+
+msgid "\\nReason:{aciklama}\\n"
+msgstr "\\n原因:{aciklama}\\n"
+
+msgid "\\nIf you think this is a mistake, please reply to this e-mail. Thank you.\\n"
+msgstr "\\n如果您认为这是一个错误,请回复此电子邮件。谢谢。\\n"
+
+msgid "\\nSet the organisation name\\n"
+msgstr "\\n设置组织名称\\n"
+
+msgid "\\nThe name shown on receipts and donor e-mails (max. 190 characters).\\n"
+msgstr "\\n收据和捐赠者电子邮件上显示的姓名(最多 190 个字符)。\\n"
+
+msgid "\\nThe organisation name cannot be empty.\\n"
+msgstr "\\n组织名称不能为空。\\n"
+
+msgid "\\nOrganisation name saved:%s\\n"
+msgstr "\\n已保存组织名称:%s\\n"
+
+msgid "\\nSet the default currency\\n"
+msgstr "\\n设置默认货币\\n"
+
+msgid "\\nUsed for new donation types and manual entries.\\n"
+msgstr "\\n用于新的捐赠类型和手动输入。\\n"
+
+msgid "\\nUnsupported currency.\\n"
+msgstr "\\n不支持的货币。\\n"
+
+msgid "\\nDefault currency:%s\\n"
+msgstr "\\n默认货币:%s\\n"
+
+msgid "\\nOpen a donation type\\n"
+msgstr "\\n打开捐赠类型\\n"
+
+msgid "\\nSets a closed donation type that already has a price (or a free amount) to active. Value: the type slug.\\n"
+msgstr "\\n将已具有价格(或免费金额)的封闭式捐赠类型设置为活动状态。值: 类型段。\\n"
+
+msgid "\\nThis type has no option with a price and no free amount; set a price first.\\n"
+msgstr "\\n此类型没有价格选项,也没有免费金额;先定个价格。\\n"
+
+msgid "\\nDonation type opened:%s\\n"
+msgstr "\\n打开的捐赠类型:%s\\n"
+
+msgid "\\nSet a donation type's unit price\\n"
+msgstr "\\n设置捐赠类型的单价\\n"
+
+msgid "\\nValue \"slug=price\", e.g. \"fidan=150\". Every active option gets price × its units (1 sapling 150, 5 saplings 750). Linked forms update automatically.\\n"
+msgstr "\\n值“slug=价格”,例如“菲丹=150”。每个活跃选项的价格×其单位(1棵树苗150,5棵树苗750)。链接的表单自动更新。\\n"
+
+msgid "\\nThe price must be greater than 0.\\n"
+msgstr "\\n价格必须大于 0。\\n"
+
+msgid "\\nThis type has no active option; add one on the Donation types page.\\n"
+msgstr "\\n此类型没有活动选项;在“捐赠类型”页面上添加一项。\\n"
+
+msgid "\\nUnit price of%1$sset to%2$s%3$s.\\n"
+msgstr "\\n%1$s的单价设置为%2$s%3$s。\\n"
+
+msgid "\\nLink a form to a donation type\\n"
+msgstr "\\n将表单链接到捐赠类型\\n"
+
+msgid "\\nValue \"slug=form id\", e.g. \"fidan=3\". Forms:%s\\n"
+msgstr "\\n值“slug=form id”,例如“菲丹=3”。形式:%s\\n"
+
+msgid "\\nNo form with this id.\\n"
+msgstr "\\n没有具有此 ID 的表单。\\n"
+
+msgid "\\nThe form is already linked.\\n"
+msgstr "\\n表单已链接。\\n"
+
+msgid "\\nThe form could not be linked.\\n"
+msgstr "\\n无法链接该表单。\\n"
+
+msgid "\\nForm \"%1$s\" linked to%2$s.\\n"
+msgstr "\\n表单“%1$s”链接到%2$s。\\n"
+
+msgid "\\nUse the form \"slug=value\".\\n"
+msgstr "\\n使用“slug=value”形式。\\n"
+
+msgid "\\nNo donation type with this slug.\\n"
+msgstr "\\n此 slug 没有捐赠类型。\\n"
+
+msgid "\\nTracked records\\n"
+msgstr "\\n跟踪记录\\n"
+
+msgid "This month"
+msgstr "这个月"
+
+msgid "Last month"
+msgstr "上个月"
+
+msgid "Last 30 days"
+msgstr "过去 30 天"
+
+msgid "This year"
+msgstr "今年"
+
+msgid "Last year"
+msgstr "去年"
+
+msgid "Last 12 months"
+msgstr "过去 12 个月"
+
+msgid "All time"
+msgstr "所有时间"
+
+msgid "\\nPartner group\\n"
+msgstr "\\n合作伙伴组\\n"
+
+msgid "\\nRegion\\n"
+msgstr "\\n区域\\n"
+
+msgid "Day"
+msgstr "日"
+
+msgid "Month"
+msgstr "月份"
+
+msgid "Year"
+msgstr "年份"
+
+msgid "\\nOne-time / regular\\n"
+msgstr "\\n一次性/定期\\n"
+
+msgid "Channel"
+msgstr "频道"
+
+msgid "[['Margin\\n"
+msgstr "[['边距\\n"
+
+msgid "Average"
+msgstr "平均"
+
+msgid "Created"
+msgstr "已创建"
+
+msgid "\\nThe report must be a JSON object.\\n"
+msgstr "\\n报告必须是 JSON 对象。\\n"
+
+msgid "\\nThe report needs an \"id\" (letters, digits, dash).\\n"
+msgstr "\\n报告需要一个“id”(字母、数字、破折号)。\\n"
+
+msgid "\\nUnknown \"source\":%s. Use donations or items.\\n"
+msgstr "\\n未知“来源”:%s。使用捐赠或物品。\\n"
+
+msgid "\\nUnknown \"group\" value:%s\\n"
+msgstr "\\n未知的“组”值:%s\\n"
+
+msgid "\\nGroup by at most two dimensions.\\n"
+msgstr "\\n最多按两个维度分组。\\n"
+
+msgid "\\nUnknown \"metrics\" value:%s\\n"
+msgstr "\\n未知的“指标”值:%s\\n"
+
+msgid "\\n\"sort\" must be one of the group or metrics values:%s\\n"
+msgstr "\\n“排序”必须是组或指标值之一:%s\\n"
+
+msgid "\\npiece\\n"
+msgstr "\\n一块\\n"
+
+msgid "\\npieces\\n"
+msgstr "\\n件\\n"
+
+msgid "share"
+msgstr "分享"
+
+msgid "\\nshares\\n"
+msgstr "\\n分享\\n"
+
+msgid "person"
+msgstr "人"
+
+msgid "\\npeople\\n"
+msgstr "\\n人\\n"
+
+msgid "\\nsapling\\n"
+msgstr "\\n小树\\n"
+
+msgid "\\nsaplings\\n"
+msgstr "\\n树苗\\n"
+
+msgid "\\npackage\\n"
+msgstr "\\n包\\n"
+
+msgid "\\npackages\\n"
+msgstr "\\n包\\n"
+
+msgid "\\nIn the trash\\n"
+msgstr "\\n垃圾桶里\\n"
+
+msgid "Daily"
+msgstr "每日"
+
+msgid "Weekly"
+msgstr "每周"
+
+msgid "\\nYearly\\n"
+msgstr "\\n每年\\n"
+
+msgid "\\nTest provider\\n"
+msgstr "\\n测试提供者\\n"
+
+msgid "Each line shows something the site needs and whether it is in place. Fix the errors first; warnings are worth a look."
+msgstr "每一行都显示站点需要的内容以及它是否到位。首先修复错误;警告值得一看。"
+
+msgid "OK"
+msgstr "好的"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "Error"
+msgstr "错误"
+
+msgid "Info"
+msgstr "信息"
+
+msgid "%1$d OK · %2$d warnings · %3$d errors"
+msgstr "%1$d正常 ·%2$d警告 ·%3$d错误"
+
+msgid "Check again"
+msgstr "再次检查"
+
+msgid "Show only these (click again to show all)"
+msgstr "仅显示这些(再次单击可显示全部)"
+
+msgid "Checked: %s"
+msgstr "已检查:%s"
+
+msgid "Source"
+msgstr "来源"
+
+msgid "Action"
+msgstr "行动"
+
+msgid "No checks are registered."
+msgstr "没有登记任何支票。"
+
+msgid "System check found %d problem(s) that can stop donations or automations."
+msgstr "系统检查发现%d问题,可能会停止捐赠或自动化。"
+
+msgid "Open system check"
+msgstr "打开系统检查"
+
+msgid "Hide until the next update"
+msgstr "隐藏直到下次更新"
+
+msgid "System: %d error(s)"
+msgstr "系统:%d错误"
+
+msgid "Scheduled tasks (cron)"
+msgstr "计划任务(cron)"
+
+msgid "Security"
+msgstr "安全性"
+
+msgid "\\n%1$s(%2$s)\\n"
+msgstr "\\n%1$s(%2$s)\\n"
+
+msgid "\\nLast test%1$s:%2$s\\n"
+msgstr "\\n上次测试%1$s:%2$s\\n"
+
+msgid "WP-Cron mode"
+msgstr "WP-Cron 模式"
+
+msgid "[['WP-Cron is turned off in wp-config.php (DISABLE_WP_CRON). That is fine only if a server cron job calls%severy 5–15 minutes; without it recurring charges, retries and other scheduled tasks never run.\\n"
+msgstr "[['WP-Cron 在 wp-config.php (DISABLE_WP_CRON) 中关闭。仅当服务器 cron 作业每 5-15 分钟调用%s时才可以;如果没有它,重复收费、重试和其他计划任务将永远不会运行。\\n"
+
+msgid "\\nScheduled tasks are running, so a server cron is in place.\\n"
+msgstr "\\n计划任务正在运行,因此服务器 cron 已就位。\\n"
+
+msgid "\\nScheduled tasks have not run recently: check the server cron job (Hostinger: hPanel › Advanced › Cron Jobs).', 'en']]"
+msgstr "\\n计划任务最近没有运行:检查服务器 cron 作业(Hostinger:hPanel › 高级 › Cron 作业)。', 'en']]"
+
+msgid "\\nWP-Cron runs when someone visits the site. On a quiet site tasks can run late; for reliable recurring charges add a server cron job that calls wp-cron.php every 15 minutes and set DISABLE_WP_CRON to true (see KURULUM.md).\\n"
+msgstr "\\nWP-Cron 在有人访问该网站时运行。在安静的站点上,任务可能会延迟;为了获得可靠的定期费用,添加一个服务器 cron 作业,每 15 分钟调用一次 wp-cron.php 并将 DISABLE_WP_CRON 设置为 true(请参阅 KURULUM.md)。\\n"
+
+msgid "\\nALTERNATE_WP_CRON is on.\\n"
+msgstr "\\nALTERNATE_WP_CRON 已打开。\\n"
+
+msgid "\\nFlux Donate hourly task\", 'en']]"
+msgstr "\\nFlux 捐赠每小时任务\", 'en']]"
+
+msgid "\\nLast run:%s. Recurring iyzico charges are checked every hour.\\n"
+msgstr "\\n上次运行:%s。每小时检查一次 iyzico 重复费用。\\n"
+
+msgid "\\nNot run yet; the first run is scheduled for%s.\\n"
+msgstr "\\n尚未运行;第一次运行计划在%s进行。\\n"
+
+msgid "\\nLast run:%s, more than 2 hours ago.\\n"
+msgstr "\\n上次运行:%s,超过 2 小时前。\\n"
+
+msgid "\\nIt has never run.\\n"
+msgstr "\\n它从未运行过。\\n"
+
+msgid "\\nWP-Cron is off, so a server cron job must call wp-cron.php. It seems to be missing or failing.', 'en']]"
+msgstr "\\nWP-Cron 已关闭,因此服务器 cron 作业必须调用 wp-cron.php。它似乎丢失或失败。', 'en']]"
+
+msgid "\\nWP-Cron only runs on visits and may be blocked by the host or a security plugin. Use \"Test cron\" or add a server cron job.\\n"
+msgstr "\\nWP-Cron 仅在访问时运行,可能会被主机或安全插件阻止。使用“测试 cron”或添加服务器 cron 作业。\\n"
+
+msgid "\\nNext scheduled:%s.\\n"
+msgstr "\\n下一个计划:%s。\\n"
+
+msgid "[['The task is not scheduled; it is added again on the next page load.\\n"
+msgstr "[['任务未安排;它会在下一个页面加载时再次添加。\\n"
+
+msgid "\\nTest cron\\n"
+msgstr "\\n测试 cron\\n"
+
+msgid "\\nOverdue scheduled tasks\\n"
+msgstr "\\n过期的计划任务\\n"
+
+msgid "\\n%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.\\n"
+msgstr "\\n%1$d任务迟到超过 15 分钟:%2$s。%1$d任务延迟超过 15 分钟:%2$s。\\n"
+
+msgid "\\nA few late tasks right after a quiet period are normal; many mean cron is not running.\\n"
+msgstr "\\n安静期后出现一些迟到的任务是正常的;许多意味着 cron 没有运行。\\n"
+
+msgid "\\nNo task is late.\\n"
+msgstr "\\n没有任务迟到。\\n"
+
+msgid "\\nCron test\\n"
+msgstr "\\nCron 测试\\n"
+
+msgid "\\nNot tested. The test asks this server to call wp-cron.php once, as WordPress does after a visit.\\n"
+msgstr "\\n未测试。该测试要求该服务器调用 wp-cron.php 一次,就像 WordPress 在访问后所做的那样。\\n"
+
+msgid "\\nCard payment provider\\n"
+msgstr "\\n卡支付提供商\\n"
+
+msgid "\\nNo payment provider is available.\\n"
+msgstr "\\n没有可用的付款提供商。\\n"
+
+msgid "\\nPayment settings\\n"
+msgstr "\\n付款设置\\n"
+
+msgid "\\nCard payments are taken with%s.\\n"
+msgstr "\\n通过%s进行卡付款。\\n"
+
+msgid "\\n%sis the active provider but its keys are missing, so donation forms show \"Online payment is unavailable\".\\n"
+msgstr "\\n%s是活动提供者,但其密钥丢失,因此捐赠表单显示“在线支付不可用”。\\n"
+
+msgid "\\nEnter keys\\n"
+msgstr "\\n输入密钥\\n"
+
+msgid "\\nKeys are read from the iyzico Subscription plugin settings.\\n"
+msgstr "\\n密钥是从 iyzico 订阅插件设置中读取的。\\n"
+
+msgid "\\nKeys are entered in Donations › Payments › iyzico.\\n"
+msgstr "\\n密钥在捐赠 › 付款 › iyzico 中输入。\\n"
+
+msgid "[['No iyzico API key and secret key found (neither in the iyzico WooCommerce plugin nor in Flux Donate).\\n"
+msgstr "[['未找到 iyzico API 密钥和秘密密钥(在 iyzico WooCommerce 插件和 Flux Donate 中均未找到)。\\n"
+
+msgid "\\nMode: sandbox (test). No real money is collected; switch to live keys before launch.\\n"
+msgstr "\\n模式:沙箱(测试)。不收取真钱;在启动前切换到实时密钥。\\n"
+
+msgid "\\nMode: live. Real payments are taken.\\n"
+msgstr "\\n模式:直播。进行真实付款。\\n"
+
+msgid "\\nUse \"Test connection\" to check the keys with iyzico.\\n"
+msgstr "\\n使用“测试连接”来检查 iyzico 的密钥。\\n"
+
+msgid "\\niyzico keys\\n"
+msgstr "\\niyzico 键\\n"
+
+msgid "Test connection"
+msgstr "测试连接"
+
+msgid "\\nPaste into iyzico panel › Merchant notifications URL (İşyeri Bildirimleri Url):%s. Subscription notification URLs are not needed.\\n"
+msgstr "\\n粘贴到 iyzico 面板中 › 商户通知 URL (şyeri Bildirimleri Url):%s。不需要订阅通知 URL。\\n"
+
+msgid "\\nLast notification received:%s.\\n"
+msgstr "\\n最后收到的通知:%s。\\n"
+
+msgid "\\nNo notification received in the last 30 days (normal until the address is saved in the iyzico panel and a payment is made).\\n"
+msgstr "\\n过去 30 天内没有收到任何通知(在地址保存在 iyzico 面板中并付款之前是正常的)。\\n"
+
+msgid "\\nNotifications for WooCommerce orders are forwarded to the iyzico WooCommerce plugin.\\n"
+msgstr "\\nWooCommerce 订单的通知将转发到 iyzico WooCommerce 插件。\\n"
+
+msgid "\\niyzico notification URL\\n"
+msgstr "\\niyzico 通知 URL\\n"
+
+msgid "\\nShow addresses\\n"
+msgstr "\\n显示地址\\n"
+
+msgid "\\nFailed recurring charges\\n"
+msgstr "\\n定期收费失败\\n"
+
+msgid "[['%drecurring donation stopped after its card was declined 3 times.', 'en']]"
+msgid_plural "[['%drecurring donations stopped after their cards were declined 3 times.', 'en']]"
+msgstr[0] "[['%d经常性捐款在其卡被拒绝 3 次后停止。', 'en']]"
+
+msgid "\\nStripe keys\\n"
+msgstr "\\n条带键\\n"
+
+msgid "\\nThe Stripe publishable key and secret key are missing.\\n"
+msgstr "\\nStripe 可发布密钥和秘密密钥丢失。\\n"
+
+msgid "\\nMode: live.\\n"
+msgstr "\\n模式:实时。\\n"
+
+msgid "\\nMode: test (pk_test_). No real money is collected.\\n"
+msgstr "\\n模式:测试(pk_test_)。没有收集到真正的钱。\\n"
+
+msgid "\\nWebhook signing secret is set.\\n"
+msgstr "\\nWebhook 签名密钥已设置。\\n"
+
+msgid "\\nWebhook signing secret is missing: refunds and renewals made in Stripe will not show up in Flux Donate.\\n"
+msgstr "\\nWebhook 签名密钥丢失:在 Stripe 中进行的退款和续订不会显示在 Flux Donate 中。\\n"
+
+msgid "\\nFlux Forms is not active. Donation forms and card payments need it.\\n"
+msgstr "\\nFlux Forms 未激活。捐赠表格和银行卡付款需要它。\\n"
+
+msgid "\\nActive, version%s.\\n"
+msgstr "\\n活动,版本%s。\\n"
+
+msgid "\\nVersion%1$sis active; Flux Donate needs%2$sor later for payments and prices to work together.\\n"
+msgstr "\\n版本%1$s已激活; Flux Donate 需要%2$s或更高版本才能使付款和价格协同工作。\\n"
+
+msgid "\\nActive, version%s. Certificates can be sent after donations.\\n"
+msgstr "\\n活动,版本%s。捐赠后可发送证书。\\n"
+
+msgid "\\nVersion%1$sis active;%2$sor later is recommended.\\n"
+msgstr "\\n版本%1$s已激活;建议使用%2$s或更高版本。\\n"
+
+msgid "\\nNot active. Donations are recorded, but no certificate is created or sent.\\n"
+msgstr "\\n未激活。捐赠会被记录,但不会创建或发送任何证书。\\n"
+
+msgid "\\nWooCommerce is older than%s. Flux Donate 2.0 takes donations through WooCommerce; update it.\\n"
+msgstr "\\nWooCommerce 早于%s。 Flux Donate 2.0 通过 WooCommerce 接受捐款;更新它。\\n"
+
+msgid "\\nWooCommerce is not active. Flux Donate 2.0 takes donations through the WooCommerce cart and checkout; until it is active, only the older Flux Forms payment layer works.\\n"
+msgstr "\\nWooCommerce 未激活。 Flux Donate 2.0 通过 WooCommerce 购物车和结帐接受捐款;在其激活之前,只有较旧的 Flux Forms 支付层可以工作。\\n"
+
+msgid "[['The old Flux WooCommerce Bağış plugin is still active. Flux Donate 2.0 replaces it: deactivate and delete it, otherwise orders get two certificates and two messages.\\n"
+msgstr "[['旧的 Flux WooCommerce Bağış 插件仍然有效。 Flux Donate 2.0 取代了它:停用并删除它,否则订单将获得两个证书和两条消息。\\n"
+
+msgid "\\nWooCommerce is active.\\n"
+msgstr "\\nWooCommerce 处于活动状态。\\n"
+
+msgid "\\nThe iyzico WooCommerce plugin is active: it takes one-time card payments, and Flux Donate reads its iyzico keys for monthly donations.\\n"
+msgstr "\\niyzico WooCommerce 插件处于活动状态:它需要一次性卡付款,Flux Donate 会读取其 iyzico 密钥以进行每月捐款。\\n"
+
+msgid "\\nThe iyzico WooCommerce plugin is not active, but its saved keys are still used.\\n"
+msgstr "\\niyzico WooCommerce 插件未激活,但仍使用其保存的密钥。\\n"
+
+msgid "\\nThe iyzico WooCommerce plugin is not active; Flux Donate uses its own iyzico keys.\\n"
+msgstr "\\niyzico WooCommerce 插件未激活; Flux Donate 使用自己的 iyzico 密钥。\\n"
+
+msgid "\\nThe iyzico Subscription plugin is active; it renews WooCommerce subscriptions only. Flux Donate recurring donations use their own hourly task.', 'en']]"
+msgstr "\\niyzico 订阅插件已激活;它仅续订 WooCommerce 订阅。 Flux Donate 经常性捐赠使用自己的每小时任务。', 'en']]"
+
+msgid "\\nWooCommerce and iyzico plugins\\n"
+msgstr "\\nWooCommerce 和 iyzico 插件\\n"
+
+msgid "[['Open donation types\\n"
+msgstr "[['开放捐赠类型\\n"
+
+msgid "[['%ddonation type is open and priced.', 'en']]"
+msgid_plural "[['%ddonation types are open and priced.', 'en']]"
+msgstr[0] "[['%d捐赠类型开放并定价。', 'en']]"
+
+msgid "\\nNo donation type is open with a price (or free amount), so forms cannot take donations.\\n"
+msgstr "\\n没有开放有价格(或免费金额)的捐赠类型,因此表格无法接受捐赠。\\n"
+
+msgid "\\nForms of open donation types\\n"
+msgstr "\\n公开捐赠类型的形式\\n"
+
+msgid "\\nNo (existing) form is linked to:%s. Visitors cannot give to these types online.\\n"
+msgstr "\\n没有(现有)表单链接到:%s。访问者无法在线向这些类型捐款。\\n"
+
+msgid "\\nEvery open donation type has a form.\\n"
+msgstr "\\n每种公开捐赠类型都有一个表格。\\n"
+
+msgid "\\nDefault currency:%s.\\n"
+msgstr "\\n默认货币:%s。\\n"
+
+msgid "\\niyzico is not set up for this currency (Donations › Payments › iyzico › currencies).\\n"
+msgstr "\\niyzico 未设置此货币(捐赠 › 付款 › iyzico › 货币)。\\n"
+
+msgid "\\nBank accounts (transfer)\\n"
+msgstr "\\n银行账户(转账)\\n"
+
+msgid "[['%dbank account is listed for bank transfer gifts.', 'en']]"
+msgid_plural "[['%dbank accounts are listed for bank transfer gifts.', 'en']]"
+msgstr[0] "[['%d银行账户已列出用于银行转账礼物。', 'en']]"
+
+msgid "\\nNo bank account is listed. They come from the theme (filter flxb_bank_accounts) and are used when recording bank transfer gifts.\\n"
+msgstr "\\n未列出银行帐户。它们来自主题(过滤器 flxb_bank_accounts),并在记录银行转账礼物时使用。\\n"
+
+msgid "\\nReceipts and e-mails show \"%s\".', 'en']]"
+msgstr "\\n收据和电子邮件显示“%s”。', 'en']]"
+
+msgid "\\nNot set; receipts and e-mails use the site title \"%s\".\\n"
+msgstr "\\n未设置;收据和电子邮件使用网站标题“%s”。\\n"
+
+msgid "[['E-mail sending\\n"
+msgstr "[['电子邮件发送\\n"
+
+msgid "\\nNot tested. Donor e-mails (recurring donation started, card declined) go out with wp_mail. The test sends one message to%s.\\n"
+msgstr "\\n未测试。捐赠者电子邮件(定期捐赠开始,卡被拒绝)通过 wp_mail 发送。该测试向%s发送一条消息。\\n"
+
+msgid "\\nSend test e-mail\\n"
+msgstr "\\n发送测试电子邮件\\n"
+
+msgid "Permalinks"
+msgstr "固定链接"
+
+msgid "\\nPlain permalinks are in use. Payment callbacks still work through ?rest_route=, but some hosts and security plugins block that; choose \"Post name\".\\n"
+msgstr "\\n普通固定链接正在使用中。付款回调仍然可以通过 ?rest_route= 工作,但某些主机和安全插件会阻止它;选择“帖子名称”。\\n"
+
+msgid "\\nPretty permalinks are on; REST callbacks use /wp-json/.\\n"
+msgstr "\\n漂亮的永久链接已打开; REST 回调使用 /wp-json/。\\n"
+
+msgid "\\nThe site runs on HTTPS.\\n"
+msgstr "\\n该网站在 HTTPS 上运行。\\n"
+
+msgid "\\nLocal test site without HTTPS. The live site must use HTTPS; payment providers refuse plain HTTP.\\n"
+msgstr "\\n没有 HTTPS 的本地测试站点。直播站点必须使用HTTPS;支付提供商拒绝纯 HTTP。\\n"
+
+msgid "\\nThe site address is not HTTPS. Card payments and payment callbacks need HTTPS (Settings › General, and an SSL certificate from the host).\\n"
+msgstr "\\n站点地址不是 HTTPS。卡付款和付款回调需要 HTTPS(设置 › 常规,以及来自主机的 SSL 证书)。\\n"
+
+msgid "General settings"
+msgstr "常规设置"
+
+msgid "\\nWordPress security keys (salts)\\n"
+msgstr "\\nWordPress 安全密钥(盐)\\n"
+
+msgid "\\nMissing or weak in wp-config.php:%s. Saved iyzico cards are encrypted with these keys; set unique values once (https://api.wordpress.org/secret-key/1.1/salt/) and do not change them afterwards, or saved cards stop working.\\n"
+msgstr "\\nwp-config.php 中缺少或较弱:%s。保存的 iyzico 卡使用这些密钥进行加密;设置唯一值一次(https://api.wordpress.org/secret-key/1.1/salt/),之后不要更改它们,否则保存的卡将停止工作。\\n"
+
+msgid "\\nSet in wp-config.php. Saved iyzico cards are encrypted with them: do not change them, or saved cards stop working.\\n"
+msgstr "\\n在 wp-config.php 中设置。已保存的 iyzico 卡已使用它们加密:请勿更改它们,否则已保存的卡将停止工作。\\n"
+
+msgid "Database tables"
+msgstr "数据库表"
+
+msgid "\\nUp to date (%s).\\n"
+msgstr "\\n最新 (%s)。\\n"
+
+msgid "\\nTables are at version%1$s, expected%2$s. Deactivate and activate Flux Donate to update them.\\n"
+msgstr "\\n表的版本为%1$s,预计为%2$s。停用并激活 Flux Donate 来更新它们。\\n"
+
+msgid "\\nNo iyzico keys to test.\\n"
+msgstr "\\n没有要测试的 iyzico 键。\\n"
+
+msgid "\\nsandbox\\n"
+msgstr "\\n沙箱\\n"
+
+msgid "\\nConnected; iyzico accepted the keys (%s).\\n"
+msgstr "\\n已连接; iyzico 接受了密钥 (%s)。\\n"
+
+msgid "\\niyzico refused the keys (%1$s):%2$s. Check that the keys belong to this environment.\\n"
+msgstr "\\niyzico 拒绝了密钥 (%1$s):%2$s。检查密钥是否属于此环境。\\n"
+
+msgid "\\nThis server could not reach its own wp-cron.php (%s). WP-Cron cannot start from visits; add a server cron job.\\n"
+msgstr "\\n此服务器无法访问其自己的 wp-cron.php (%s)。 WP-Cron无法从访问开始;添加服务器 cron 作业。\\n"
+
+msgid "\\nwp-cron.php answered; WP-Cron can start.\\n"
+msgstr "\\nwp-cron.php 回答; WP-Cron 可以启动。\\n"
+
+msgid "\\nwp-cron.php answered with HTTP%d(blocked by the host or a security plugin?). Add a server cron job.\\n"
+msgstr "\\nwp-cron.php 用 HTTP%d应答(被主机或安全插件阻止?)。添加服务器 cron 作业。\\n"
+
+msgid "\\n[%s] Test e-mail from Flux Donate\\n"
+msgstr "\\n[%s] 来自 Flux Donate 的测试电子邮件\\n"
+
+msgid "\\nThis is a test from Donations › Settings › System check. If you can read it, donor e-mails can be sent.\\n"
+msgstr "\\n这是来自捐赠 › 设置 › 系统检查的测试。如果您能阅读,则可以发送捐赠者电子邮件。\\n"
+
+msgid "\\nSent to%s. Check that it arrived (and not in spam).\\n"
+msgstr "\\n发送到%s。检查它是否已到达(并且不在垃圾邮件中)。\\n"
+
+msgid "\\nSending failed:%s. Set up SMTP (e.g. an SMTP plugin with your mail account).\\n"
+msgstr "\\n发送失败:%s。设置 SMTP (例如使用您的邮件帐户的 SMTP 插件)。\\n"
+
+msgid "unknown error"
+msgstr "未知错误"
+
+msgid "[['Donations on WooCommerce: donation types and sapling packages sold as hidden products, cart and checkout (iyzico, bank transfer with receipt upload), monthly donations, online and printed certificates, donors, campaigns and a donation dashboard. Includes Flux WooCommerce Bağış.', 'en']]"
+msgstr "[['WooCommerce 上的捐赠:捐赠类型和作为隐藏产品出售的树苗包、购物车和结帐(iyzico、带有收据上传的银行转账)、每月捐赠、在线和打印证书、捐赠者、活动和捐赠仪表板。包括 Flux WooCommerce Bağış。', 'en']]"
+
+msgid "\\n%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived\\n"
+msgid_plural "\\n%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived\\n"
+msgstr[0] "\\n%1$s捐赠 ·%2$s收到%1$s捐赠 ·%2$s收到\\n"
+
+msgid "\\n%1$spaid gift ·%2$s%1$spaid gifts ·%2$s\\n"
+msgid_plural "\\n%1$spaid gift ·%2$s%1$spaid gifts ·%2$s\\n"
+msgstr[0] "\\n%1$s付费礼物 ·%2$s%1$s付费礼物 ·%2$s\\n"
+
+msgid "\\n%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products.\\n"
+msgid_plural "\\n%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products.\\n"
+msgstr[0] "\\n%d活动类型具有其隐藏的 WooCommerce 产品。%d活动类型具有隐藏的 WooCommerce 产品。\\n"
+
+msgid "\\n%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.\\n"
+msgid_plural "\\n%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.\\n"
+msgstr[0] "\\n%1$d任务迟到超过 15 分钟:%2$s。%1$d任务延迟超过 15 分钟:%2$s。\\n"

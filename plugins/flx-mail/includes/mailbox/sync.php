@@ -40,7 +40,7 @@ function flxi_imap_creds() {
 function flxi_imap_open() {
 	$c = flxi_imap_creds();
 	if ( '' === $c['host'] || '' === $c['user'] || '' === $c['pass'] ) {
-		return new WP_Error( 'flxi_imap_conf', __( 'IMAP sunucusu, kullanıcı ya da şifre eksik (Ayarlar › Posta kutusu).', 'flx-mail' ) );
+		return new WP_Error( 'flxi_imap_conf', __( 'IMAP server, user or password is missing (Settings › Mailbox).', 'flx-mail' ) );
 	}
 	$imap = new FLXI_Imap( $c['host'], $c['port'], $c['secure'], 15 );
 	if ( ! $imap->connect() || ! $imap->login( $c['user'], $c['pass'] ) ) {
@@ -92,7 +92,7 @@ function flxi_mailbox_detect_folders( FLXI_Imap $imap ) {
  */
 function flxi_mailbox_sync( $budget = 0 ) {
 	if ( ! flxi_mailbox_enabled() ) {
-		return array( 'new' => 0, 'more' => false, 'error' => __( 'Posta kutusu kapalı.', 'flx-mail' ) );
+		return array( 'new' => 0, 'more' => false, 'error' => __( 'Mailbox is off.', 'flx-mail' ) );
 	}
 	if ( get_transient( 'flxi_mailbox_lock' ) ) {
 		return array( 'new' => 0, 'more' => true, 'error' => '', 'busy' => true );
@@ -353,7 +353,7 @@ function flxi_mailbox_run_pending( FLXI_Imap $imap, array $state ) {
 function flxi_mailbox_attachment( $mail_id, $section ) {
 	$m = flxi_mailbox_get( $mail_id );
 	if ( ! $m || 'imap' !== $m['source'] ) {
-		return new WP_Error( 'flxi_att', __( 'Ek bulunamadı.', 'flx-mail' ) );
+		return new WP_Error( 'flxi_att', __( 'Attachment not found.', 'flx-mail' ) );
 	}
 	$att = null;
 	foreach ( $m['attachments'] as $a ) {
@@ -362,7 +362,7 @@ function flxi_mailbox_attachment( $mail_id, $section ) {
 		}
 	}
 	if ( ! $att ) {
-		return new WP_Error( 'flxi_att', __( 'Ek bulunamadı.', 'flx-mail' ) );
+		return new WP_Error( 'flxi_att', __( 'Attachment not found.', 'flx-mail' ) );
 	}
 	$key    = 'flxi_att_' . md5( $mail_id . '|' . $section );
 	$cached = get_transient( $key );
@@ -378,7 +378,7 @@ function flxi_mailbox_attachment( $mail_id, $section ) {
 	$sel  = $name ? $imap->select( $name, true ) : false;
 	if ( ! $sel || (int) $sel['uidvalidity'] !== (int) $m['uidvalidity'] ) {
 		$imap->logout();
-		return new WP_Error( 'flxi_att', __( 'İleti sunucuda bulunamadı (silinmiş ya da taşınmış olabilir).', 'flx-mail' ) );
+		return new WP_Error( 'flxi_att', __( 'Message not found on the server (it may have been deleted or moved).', 'flx-mail' ) );
 	}
 	$structure = $imap->uid_fetch( array( (int) $m['uid'] ), 'UID BODYSTRUCTURE' );
 	$enc       = '7bit';

@@ -24,11 +24,11 @@ function flxapp_system_checks( $checks ) {
 		'id'           => 'flxapp.table',
 		'source'       => $src,
 		'group'        => 'Security',
-		'label'        => __( 'Belirteç tablosu', 'flx-app' ),
+		'label'        => __( 'Token table', 'flx-app' ),
 		'status'       => $ok ? 'ok' : 'error',
-		'message'      => $ok ? __( 'Hazır.', 'flx-app' ) : __( 'Tablo yok. Eklentiyi kapatıp açın.', 'flx-app' ),
+		'message'      => $ok ? __( 'Ready.', 'flx-app' ) : __( 'Table missing. Deactivate and reactivate the plugin.', 'flx-app' ),
 		'action_url'   => $url,
-		'action_label' => __( 'Uygulama erişimi', 'flx-app' ),
+		'action_label' => __( 'App access', 'flx-app' ),
 	);
 	$https    = 0 === strpos( home_url(), 'https://' );
 	$checks[] = array(
@@ -37,7 +37,7 @@ function flxapp_system_checks( $checks ) {
 		'group'   => 'Security',
 		'label'   => __( 'HTTPS', 'flx-app' ),
 		'status'  => $https ? 'ok' : 'warning',
-		'message' => $https ? __( 'Site adresi https; uygulama girişi güvenli.', 'flx-app' ) : __( 'Site adresi https değil; OAuth belirteçleri şifresiz gider. Canlıda https kullanın.', 'flx-app' ),
+		'message' => $https ? __( 'The site address is https; app sign-in is secure.', 'flx-app' ) : __( 'The site address is not https; OAuth tokens travel unencrypted. Use https in production.', 'flx-app' ),
 	);
 	if ( $ok ) {
 		$now      = time();
@@ -47,16 +47,16 @@ function flxapp_system_checks( $checks ) {
 			'id'           => 'flxapp.active',
 			'source'       => $src,
 			'group'        => 'Security',
-			'label'        => __( 'Etkin erişimler', 'flx-app' ),
+			'label'        => __( 'Active access', 'flx-app' ),
 			'status'       => 'info',
 			'message'      => sprintf(
 				/* translators: 1: app sessions, 2: API keys */
-				__( 'Uygulama oturumu: %1$s · API anahtarı: %2$s', 'flx-app' ),
+				__( 'App sessions: %1$s · API keys: %2$s', 'flx-app' ),
 				number_format_i18n( $sessions ),
 				number_format_i18n( $keys )
 			),
 			'action_url'   => add_query_arg( 'tab', 'all', $url ),
-			'action_label' => __( 'Tüm erişimler', 'flx-app' ),
+			'action_label' => __( 'All access', 'flx-app' ),
 		);
 		$devices  = (int) $wpdb->get_var( "SELECT COUNT(*) FROM " . flxapp_devices_table() ); // phpcs:ignore WordPress.DB
 		$last     = (array) get_option( 'flxapp_push_last', array() );
@@ -65,15 +65,15 @@ function flxapp_system_checks( $checks ) {
 			'id'           => 'flxapp.push',
 			'source'       => $src,
 			'group'        => 'Config',
-			'label'        => __( 'Push bildirimleri', 'flx-app' ),
+			'label'        => __( 'Push notifications', 'flx-app' ),
 			'status'       => ! flxapp_opt( 'push_enabled' ) ? 'info' : ( $push_ok ? 'ok' : 'warning' ),
-			'message'      => ! flxapp_opt( 'push_enabled' ) ? __( 'Kapalı.', 'flx-app' ) : ( empty( $last['at'] )
+			'message'      => ! flxapp_opt( 'push_enabled' ) ? __( 'Off.', 'flx-app' ) : ( empty( $last['at'] )
 				/* translators: %s: device count */
-				? sprintf( __( 'Henüz gönderim yok. Kayıtlı cihaz: %s', 'flx-app' ), number_format_i18n( $devices ) )
+				? sprintf( __( 'Nothing sent yet. Registered devices: %s', 'flx-app' ), number_format_i18n( $devices ) )
 				/* translators: 1: time ago, 2: sent, 3: failed, 4: error */
-				: sprintf( __( 'Son gönderim %1$s: %2$s gönderildi, %3$s hata. %4$s', 'flx-app' ), flx_time_ago( (int) $last['at'] ), number_format_i18n( (int) ( $last['sent'] ?? 0 ) ), number_format_i18n( (int) ( $last['failed'] ?? 0 ) ), (string) ( $last['error'] ?? '' ) ) ),
+				: sprintf( __( 'Last send %1$s: %2$s sent, %3$s failed. %4$s', 'flx-app' ), flx_time_ago( (int) $last['at'] ), number_format_i18n( (int) ( $last['sent'] ?? 0 ) ), number_format_i18n( (int) ( $last['failed'] ?? 0 ) ), (string) ( $last['error'] ?? '' ) ) ),
 			'action_url'   => admin_url( 'admin.php?page=flxapp-settings&tab=mobile' ),
-			'action_label' => __( 'Uygulamalar', 'flx-app' ),
+			'action_label' => __( 'Applications', 'flx-app' ),
 		);
 	}
 	$errors = function_exists( 'flxapp_manifest_errors' ) ? flxapp_manifest_errors() : array();
@@ -81,31 +81,31 @@ function flxapp_system_checks( $checks ) {
 		'id'           => 'flxapp.manifest',
 		'source'       => $src,
 		'group'        => 'Config',
-		'label'        => __( 'Uygulama ekranları (manifest)', 'flx-app' ),
+		'label'        => __( 'App screens (manifest)', 'flx-app' ),
 		'status'       => $errors ? 'warning' : 'ok',
 		'message'      => $errors
 			/* translators: %s: module ids with errors */
-			? sprintf( __( 'Şema hatası olan modüller: %s. Bu modüller uygulamada web görünümünde açılabilir.', 'flx-app' ), implode( ', ', array_keys( $errors ) ) )
+			? sprintf( __( 'Modules with schema errors: %s. They may open in the web view in the app.', 'flx-app' ), implode( ', ', array_keys( $errors ) ) )
 			/* translators: %s: module count */
-			: sprintf( __( '%s modül geçerli.', 'flx-app' ), number_format_i18n( count( flxapp_manifests_raw() ) ) ),
+			: sprintf( __( '%s modules valid.', 'flx-app' ), number_format_i18n( count( flxapp_manifests_raw() ) ) ),
 		'action_url'   => admin_url( 'admin.php?page=flxapp-settings&tab=modules' ),
-		'action_label' => __( 'Modüller', 'flx-app' ),
+		'action_label' => __( 'Modules', 'flx-app' ),
 	);
 	$brands   = count( flxapp_brand_clients() );
 	$checks[] = array(
 		'id'           => 'flxapp.clients',
 		'source'       => $src,
 		'group'        => 'Security',
-		'label'        => __( 'Uygulama istemcileri', 'flx-app' ),
+		'label'        => __( 'App clients', 'flx-app' ),
 		'status'       => flxapp_opt( 'generic_app' ) || $brands ? 'ok' : 'warning',
 		'message'      => sprintf(
 			/* translators: 1: on/off, 2: brand client count */
-			__( 'Ana FluxWP uygulaması: %1$s · markalı uygulama: %2$s', 'flx-app' ),
-			flxapp_opt( 'generic_app' ) ? __( 'açık', 'flx-app' ) : __( 'kapalı', 'flx-app' ),
+			__( 'Main FluxWP app: %1$s · branded apps: %2$s', 'flx-app' ),
+			flxapp_opt( 'generic_app' ) ? __( 'on', 'flx-app' ) : __( 'off', 'flx-app' ),
 			number_format_i18n( $brands )
-		) . ( flxapp_opt( 'dev_redirects' ) ? ' · ' . __( 'Geliştirici modu açık (exp:// dönüşleri); canlıda kapatın.', 'flx-app' ) : '' ),
+		) . ( flxapp_opt( 'dev_redirects' ) ? ' · ' . __( 'Developer mode is on (exp:// redirects); turn it off on the live site.', 'flx-app' ) : '' ),
 		'action_url'   => admin_url( 'admin.php?page=flxapp-settings&tab=mobile' ),
-		'action_label' => __( 'Uygulamalar', 'flx-app' ),
+		'action_label' => __( 'Applications', 'flx-app' ),
 	);
 	return $checks;
 }

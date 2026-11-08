@@ -43,7 +43,7 @@ function flxs_admin_menu() {
 	);
 	add_submenu_page( 'flxs', 'Kayıtlar (Log)', 'Kayıtlar (Log)', 'flxs_manage', 'flxs-kayitlar', 'flxs_page_logs' );
 	add_submenu_page( 'flxs', 'Sertifika Ayarları', 'Ayarlar', 'flxs_manage', 'flxs-ayarlar', 'flxs_page_settings' );
-	add_submenu_page( 'flxs', __( 'Sistem kontrolü', 'flx-certificates' ), __( 'Sistem kontrolü', 'flx-certificates' ), 'flxs_manage', 'flxs-sistem', 'flxs_page_system' );
+	add_submenu_page( 'flxs', __( 'System check', 'flx-certificates' ), __( 'System check', 'flx-certificates' ), 'flxs_manage', 'flxs-sistem', 'flxs_page_system' );
 }
 
 /* Menü ikonu: renkli FluxWP logosu (WordPress menü ikonlarını tek renge boyadığı için CSS ile) */
@@ -102,8 +102,8 @@ function flxs_admin_assets( $hook ) {
 			'admin'     => admin_url( 'admin.php' ),
 			'providers' => flxs_provider_options_for_js(),
 			'connUrl'   => flxs_iletisim_active() ? admin_url( 'admin.php?page=flxi-baglantilar' ) : admin_url( 'plugins.php' ),
-			'connNone'  => flxs_iletisim_active() ? __( 'Flux Mail\'de bağlantı yok', 'flx-certificates' ) : __( 'Flux Mail etkin değil', 'flx-certificates' ),
-			'connAdd'   => flxs_iletisim_active() ? __( 'ekle', 'flx-certificates' ) : __( 'Eklentiler', 'flx-certificates' ),
+			'connNone'  => flxs_iletisim_active() ? __( 'No connection in Flux Mail', 'flx-certificates' ) : __( 'Flux Mail is not active', 'flx-certificates' ),
+			'connAdd'   => flxs_iletisim_active() ? __( 'add', 'flx-certificates' ) : __( 'Plugins', 'flx-certificates' ),
 			'channels'  => flxs_channels(),
 			'statuses'  => flxs_status_labels(),
 			'manage'    => flxs_can_manage(),
@@ -200,11 +200,11 @@ function flxs_pagination( $total, $per_page, $current ) {
 			'next_text' => '›',
 		)
 	);
-	echo '<span class="flxs-pages__total">' . esc_html( sprintf( _n( '%d kayıt', '%d kayıt', (int) $total, 'flx-certificates' ), (int) $total ) ) . '</span></div>';
+	echo '<span class="flxs-pages__total">' . esc_html( sprintf( _n( '[[\'%dregistration\', \'tr\']]', '[[\'%dregistration\', \'tr\']]', (int) $total, 'flx-certificates' ), (int) $total ) ) . '</span></div>';
 }
 
 function flxs_status_badge( $status ) {
-	$labels = flxs_status_labels() + array( 'active' => __( 'Geçerli', 'flx-certificates' ), 'revoked' => __( 'İptal', 'flx-certificates' ), 'inactive' => __( 'Pasif', 'flx-certificates' ) );
+	$labels = flxs_status_labels() + array( 'active' => __( 'Valid', 'flx-certificates' ), 'revoked' => __( 'Cancelled', 'flx-certificates' ), 'inactive' => __( 'Inactive', 'flx-certificates' ) );
 	return '<span class="flxs-pill flxs-pill--' . esc_attr( $status ) . '">' . esc_html( $labels[ $status ] ?? $status ) . '</span>';
 }
 

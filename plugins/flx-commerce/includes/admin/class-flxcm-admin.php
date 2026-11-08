@@ -38,11 +38,11 @@ final class FLXCM_Admin {
 	public static function menu() {
 		$count = FLXCM_Stats::awaiting_count();
 		$badge = $count ? ' <span class="awaiting-mod count-' . (int) $count . '"><span class="pending-count">' . number_format_i18n( $count ) . '</span></span>' : '';
-		self::$hooks[] = add_menu_page( __( 'Mağaza', 'flx-commerce' ), __( 'Mağaza', 'flx-commerce' ) . $badge, self::CAP_VIEW, 'flx-commerce', array( 'FLXCM_Page_Dashboard', 'render' ), self::menu_icon(), 56 );
-		self::$hooks[] = add_submenu_page( 'flx-commerce', __( 'Genel bakış', 'flx-commerce' ), __( 'Genel bakış', 'flx-commerce' ), self::CAP_VIEW, 'flx-commerce', array( 'FLXCM_Page_Dashboard', 'render' ) );
-		self::$hooks[] = add_submenu_page( 'flx-commerce', __( 'Müşteriler', 'flx-commerce' ), __( 'Müşteriler', 'flx-commerce' ), self::CAP_VIEW, 'flx-commerce-customers', array( 'FLXCM_Page_Customers', 'render' ) );
-		self::$hooks[] = add_submenu_page( 'flx-commerce', __( 'Satış raporu', 'flx-commerce' ), __( 'Satış raporu', 'flx-commerce' ), self::CAP_VIEW, 'flx-commerce-reports', array( 'FLXCM_Page_Reports', 'render' ) );
-		self::$hooks[] = add_submenu_page( 'flx-commerce', __( 'Ayarlar', 'flx-commerce' ), __( 'Ayarlar', 'flx-commerce' ), self::CAP_MANAGE, 'flx-commerce-settings', array( 'FLXCM_Page_Settings', 'render' ) );
+		self::$hooks[] = add_menu_page( __( 'Store', 'flx-commerce' ), __( 'Store', 'flx-commerce' ) . $badge, self::CAP_VIEW, 'flx-commerce', array( 'FLXCM_Page_Dashboard', 'render' ), self::menu_icon(), 56 );
+		self::$hooks[] = add_submenu_page( 'flx-commerce', __( 'Overview', 'flx-commerce' ), __( 'Overview', 'flx-commerce' ), self::CAP_VIEW, 'flx-commerce', array( 'FLXCM_Page_Dashboard', 'render' ) );
+		self::$hooks[] = add_submenu_page( 'flx-commerce', __( 'Customers', 'flx-commerce' ), __( 'Customers', 'flx-commerce' ), self::CAP_VIEW, 'flx-commerce-customers', array( 'FLXCM_Page_Customers', 'render' ) );
+		self::$hooks[] = add_submenu_page( 'flx-commerce', __( 'Sales report', 'flx-commerce' ), __( 'Sales report', 'flx-commerce' ), self::CAP_VIEW, 'flx-commerce-reports', array( 'FLXCM_Page_Reports', 'render' ) );
+		self::$hooks[] = add_submenu_page( 'flx-commerce', __( 'Settings', 'flx-commerce' ), __( 'Settings', 'flx-commerce' ), self::CAP_MANAGE, 'flx-commerce-settings', array( 'FLXCM_Page_Settings', 'render' ) );
 	}
 
 	public static function is_screen() {
@@ -72,11 +72,11 @@ final class FLXCM_Admin {
 			array(
 				'ajax'    => admin_url( 'admin-ajax.php' ),
 				'nonce'   => wp_create_nonce( 'flxcm_admin' ),
-				'working' => __( 'Taranıyor: %1$s / %2$s sipariş', 'flx-commerce' ),
-				'done'    => __( 'Bitti. Sayfa yenileniyor…', 'flx-commerce' ),
-				'fail'    => __( 'Bir şey ters gitti. Tekrar deneyin.', 'flx-commerce' ),
-				'saved'   => __( 'Kaydedildi', 'flx-commerce' ),
-				'copied'  => __( 'Kopyalandı', 'flx-commerce' ),
+				'working' => __( 'Scanning: %1$s / %2$s orders', 'flx-commerce' ),
+				'done'    => __( 'Done. Reloading…', 'flx-commerce' ),
+				'fail'    => __( 'Something went wrong. Please try again.', 'flx-commerce' ),
+				'saved'   => __( 'Saved', 'flx-commerce' ),
+				'copied'  => __( 'Copied', 'flx-commerce' ),
 			)
 		);
 	}
@@ -84,16 +84,16 @@ final class FLXCM_Admin {
 	/** Pano (Başlangıç) küçük kartı: bugün ve bekleyen ödemeler. */
 	public static function widget() {
 		if ( current_user_can( self::CAP_VIEW ) ) {
-			wp_add_dashboard_widget( 'flxcm_today', __( 'Mağaza · bugün', 'flx-commerce' ), array( __CLASS__, 'widget_render' ) );
+			wp_add_dashboard_widget( 'flxcm_today', __( 'Store · today', 'flx-commerce' ), array( __CLASS__, 'widget_render' ) );
 		}
 	}
 
 	public static function widget_render() {
 		$t = FLXCM_Stats::summary( FLXCM_Stats::today(), FLXCM_Stats::today() );
-		echo '<p style="display:flex;gap:24px;margin:0 0 8px"><span><strong style="font-size:20px">' . esc_html( flxcm_money_short( $t['revenue'] ) ) . '</strong><br><span class="description">' . esc_html__( 'Ciro', 'flx-commerce' ) . '</span></span>';
-		echo '<span><strong style="font-size:20px">' . esc_html( number_format_i18n( $t['orders'] ) ) . '</strong><br><span class="description">' . esc_html__( 'Sipariş', 'flx-commerce' ) . '</span></span>';
-		echo '<span><strong style="font-size:20px">' . esc_html( number_format_i18n( FLXCM_Stats::awaiting_count() ) ) . '</strong><br><span class="description">' . esc_html__( 'Ödeme bekleyen', 'flx-commerce' ) . '</span></span></p>';
-		echo '<p style="margin:0"><a href="' . esc_url( flxcm_admin_url() ) . '">' . esc_html__( 'Genel bakışı aç', 'flx-commerce' ) . ' →</a></p>';
+		echo '<p style="display:flex;gap:24px;margin:0 0 8px"><span><strong style="font-size:20px">' . esc_html( flxcm_money_short( $t['revenue'] ) ) . '</strong><br><span class="description">' . esc_html__( 'Revenue', 'flx-commerce' ) . '</span></span>';
+		echo '<span><strong style="font-size:20px">' . esc_html( number_format_i18n( $t['orders'] ) ) . '</strong><br><span class="description">' . esc_html__( 'Orders', 'flx-commerce' ) . '</span></span>';
+		echo '<span><strong style="font-size:20px">' . esc_html( number_format_i18n( FLXCM_Stats::awaiting_count() ) ) . '</strong><br><span class="description">' . esc_html__( 'Awaiting payment', 'flx-commerce' ) . '</span></span></p>';
+		echo '<p style="margin:0"><a href="' . esc_url( flxcm_admin_url() ) . '">' . esc_html__( 'Open the overview', 'flx-commerce' ) . ' →</a></p>';
 	}
 
 	/* ---------- Ortak parçalar ---------- */
@@ -119,14 +119,14 @@ final class FLXCM_Admin {
 	public static function tabs() {
 		$page = isset( $_GET['page'] ) ? sanitize_key( $_GET['page'] ) : 'flx-commerce'; // phpcs:ignore WordPress.Security.NonceVerification
 		$tabs = array(
-			'flx-commerce'           => __( 'Genel bakış', 'flx-commerce' ),
-			'flx-commerce-customers' => __( 'Müşteriler', 'flx-commerce' ),
-			'flx-commerce-reports'   => __( 'Satış raporu', 'flx-commerce' ),
+			'flx-commerce'           => __( 'Overview', 'flx-commerce' ),
+			'flx-commerce-customers' => __( 'Customers', 'flx-commerce' ),
+			'flx-commerce-reports'   => __( 'Sales report', 'flx-commerce' ),
 		);
 		if ( current_user_can( self::CAP_MANAGE ) ) {
-			$tabs['flx-commerce-settings'] = __( 'Ayarlar', 'flx-commerce' );
+			$tabs['flx-commerce-settings'] = __( 'Settings', 'flx-commerce' );
 		}
-		echo '<nav class="flxcm-tabs" aria-label="' . esc_attr__( 'Mağaza', 'flx-commerce' ) . '">';
+		echo '<nav class="flxcm-tabs" aria-label="' . esc_attr__( 'Store', 'flx-commerce' ) . '">';
 		foreach ( $tabs as $slug => $label ) {
 			echo '<a class="flxcm-tab' . ( $slug === $page ? ' is-on' : '' ) . '" href="' . esc_url( admin_url( 'admin.php?page=' . $slug ) ) . '"' . ( $slug === $page ? ' aria-current="page"' : '' ) . '>' . esc_html( $label ) . '</a>';
 		}
@@ -165,7 +165,7 @@ final class FLXCM_Admin {
 		$gap  = $n > 60 ? 1 : ( $n > 20 ? 2 : 6 );
 		$bw   = max( 1, ( $w - $pl - $gap * ( $n - 1 ) ) / $n );
 		$keys = array_keys( $series );
-		echo '<figure class="flxcm-chart"><svg viewBox="0 0 ' . (int) $w . ' ' . (int) $h . '" preserveAspectRatio="none" role="img" aria-label="' . esc_attr__( 'Günlük ciro', 'flx-commerce' ) . '">';
+		echo '<figure class="flxcm-chart"><svg viewBox="0 0 ' . (int) $w . ' ' . (int) $h . '" preserveAspectRatio="none" role="img" aria-label="' . esc_attr__( 'Daily revenue', 'flx-commerce' ) . '">';
 		foreach ( array( 0.25, 0.5, 0.75, 1 ) as $g ) {
 			$y = $h - $h * $g;
 			echo '<line class="flxcm-chart__grid" x1="0" x2="' . (int) $w . '" y1="' . esc_attr( $y ) . '" y2="' . esc_attr( $y ) . '"/>';
@@ -175,7 +175,7 @@ final class FLXCM_Admin {
 			$bh = $v[0] > 0 ? max( 2, $h * (float) $v[0] / $nice ) : 0;
 			$x  = $pl + $i * ( $bw + $gap );
 			/* translators: 1: date, 2: revenue, 3: order count */
-			$tip = sprintf( __( '%1$s · %2$s · %3$s sipariş', 'flx-commerce' ), flxcm_date( FLXCM_Stats::ts( $day ) + 2 * HOUR_IN_SECONDS, 'short' ), flxcm_money( $v[0] ), number_format_i18n( $v[1] ) );
+			$tip = sprintf( __( '%1$s · %2$s · %3$s orders', 'flx-commerce' ), flxcm_date( FLXCM_Stats::ts( $day ) + 2 * HOUR_IN_SECONDS, 'short' ), flxcm_money( $v[0] ), number_format_i18n( $v[1] ) );
 			echo '<rect class="flxcm-chart__bar" x="' . esc_attr( round( $x, 2 ) ) . '" y="' . esc_attr( round( $h - $bh, 2 ) ) . '" width="' . esc_attr( round( $bw, 2 ) ) . '" height="' . esc_attr( round( $bh, 2 ) ) . '" rx="' . ( $bw > 8 ? 3 : 1 ) . '"><title>' . esc_html( $tip ) . '</title></rect>';
 			++$i;
 		}

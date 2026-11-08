@@ -1,0 +1,185 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "%d rows"
+msgstr "صفوف%d"
+
+msgid "%1$d files, %2$s"
+msgstr "ملفات%1$d،%2$s"
+
+msgid "Content may still use image URLs from this theme; check your pages first."
+msgstr "قد يستمر المحتوى في استخدام عناوين URL للصور من هذا الموضوع؛ تحقق من صفحاتك أولاً."
+
+msgid "%d old settings"
+msgstr "%dالإعدادات القديمة"
+
+msgid "Old tables"
+msgstr "الجداول القديمة"
+
+msgid "Backup tables (sample data of the new plugins)"
+msgstr "جداول النسخ الاحتياطي (عينة بيانات للمكونات الإضافية الجديدة)"
+
+msgid "Old upload folders"
+msgstr "مجلدات التحميل القديمة"
+
+msgid "Old plugins (inactive)"
+msgstr "المكونات الإضافية القديمة (غير نشطة)"
+
+msgid "Old themes"
+msgstr "المواضيع القديمة"
+
+msgid "Old settings"
+msgstr "الإعدادات القديمة"
+
+msgid "Leftovers"
+msgstr "بقايا الطعام"
+
+msgid "%d items deleted."
+msgstr "تم حذف عناصر%d."
+
+msgid "Could not delete:"
+msgstr "لا يمكن حذف:"
+
+msgid "No tables, folders, plugins or settings with old names are left."
+msgstr "لم يتم ترك أي جداول أو مجلدات أو مكونات إضافية أو إعدادات بأسماء قديمة."
+
+msgid "What is left under the old names after the migration. Delete it once you have checked that the site works with the new plugins; deleting cannot be undone, take a backup first."
+msgstr "ما بقي تحت الأسماء القديمة بعد الهجرة. احذفه بمجرد التأكد من أن الموقع يعمل مع المكونات الإضافية الجديدة؛ لا يمكن التراجع عن الحذف، قم بعمل نسخة احتياطية أولاً."
+
+msgid "The selected items will be deleted permanently. Did you take a backup?"
+msgstr "سيتم حذف العناصر المحددة نهائيًا. هل اخذت نسخة احتياطية؟"
+
+msgid "What"
+msgstr "ماذا"
+
+msgid "Details"
+msgstr "التفاصيل"
+
+msgid "Delete selected"
+msgstr "حذف المحدد"
+
+msgid "Finish the migration first."
+msgstr "قم بإنهاء الترحيل أولاً."
+
+msgid "WooCommerce orders"
+msgstr "أوامر ووكومرس"
+
+msgid "Order items"
+msgstr "ترتيب العناصر"
+
+msgid "Encrypted settings (passwords, keys)"
+msgstr "الإعدادات المشفرة (كلمات المرور والمفاتيح)"
+
+msgid "Sodium is missing: encrypted settings could not be moved, enter them again in the panel."
+msgstr "الصوديوم مفقود: لا يمكن نقل الإعدادات المشفرة، أدخلها مرة أخرى في اللوحة."
+
+msgid "%d encrypted values could not be opened (the site keys may have changed); enter them again in the panel."
+msgstr "تعذر فتح قيم%dالمشفرة (ربما تغيرت مفاتيح الموقع)؛ أدخلهم مرة أخرى في اللوحة."
+
+msgid "Moves site data saved under the old package names (settings, tables, meta, content, theme, upload folders) to the FluxWP names. The name map is in map.json."
+msgstr "ينقل بيانات الموقع المحفوظة ضمن أسماء الحزم القديمة (الإعدادات، الجداول، التعريف، المحتوى، السمة، مجلدات التحميل) إلى أسماء FluxWP. خريطة الاسم موجودة في Map.json."
+
+msgid "%1$s is empty, %2$s was left as it is."
+msgstr "%1$sفارغ، وتم ترك%2$sكما هو."
+
+msgid "%1$s was not empty: it was backed up as %2$s and replaced by %3$s."
+msgstr "لم يكن%1$sفارغًا: فقد تم نسخه احتياطيًا كـ%2$sواستبداله بـ%3$s."
+
+msgid "%3$d items from %1$s were moved into %2$s."
+msgstr "تم نقل عناصر%3$dمن%1$sإلى%2$s."
+
+msgid "%2$d files in %1$s already existed in the new folder; the old copies were left in place."
+msgstr "ملفات%2$dالموجودة في%1$sموجودة بالفعل في المجلد الجديد؛ تم ترك النسخ القديمة في مكانها."
+
+msgid "Step"
+msgstr "خطوة"
+
+msgid "The old update-server address and site key were removed. Enter the new server's key under FluxWP Panel › Settings."
+msgstr "تمت إزالة عنوان خادم التحديث القديم ومفتاح الموقع. أدخل مفتاح الخادم الجديد ضمن لوحة FluxWP ›الإعدادات."
+
+msgid "Migrate"
+msgstr "يهاجر"
+
+msgid "Migration finished on %s. You can delete this plugin now."
+msgstr "انتهت عملية الترحيل في%s. يمكنك حذف هذا البرنامج المساعد الآن."
+
+msgid "Migration finished. Check that the new plugins are active and clear the cache."
+msgstr "انتهت الهجرة. تأكد من أن المكونات الإضافية الجديدة نشطة وامسح ذاكرة التخزين المؤقت."
+
+msgid "Settings (options)"
+msgstr "الإعدادات (الخيارات)"
+
+msgid "Finish"
+msgstr "إنهاء"
+
+msgid "To change"
+msgstr "للتغيير"
+
+msgid "Status"
+msgstr "الحالة"
+
+msgid "Moves data saved under the old names to the new names. Take a backup first, upload the new plugins and theme (do not activate them), then click \"Scan\" and after that \"Migrate\"."
+msgstr "ينقل البيانات المحفوظة تحت الأسماء القديمة إلى الأسماء الجديدة. قم بعمل نسخة احتياطية أولاً، وقم بتحميل المكونات الإضافية والموضوع الجديد (لا تقم بتنشيطها)، ثم انقر فوق \"مسح\" وبعد ذلك \"ترحيل\"."
+
+msgid "Error"
+msgstr "خطأ"
+
+msgid "User meta"
+msgstr "تعريف المستخدم"
+
+msgid "Table contents"
+msgstr "محتويات الجدول"
+
+msgid "Tables"
+msgstr "الجداول"
+
+msgid "Taxonomies"
+msgstr "التصنيفات"
+
+msgid "Done"
+msgstr "تم"
+
+msgid "Scan"
+msgstr "مسح"
+
+msgid "Theme"
+msgstr "الموضوع"
+
+msgid "Term meta"
+msgstr "مصطلح ميتا"
+
+msgid "Data will be moved to the new names. Did you take a backup?"
+msgstr "سيتم نقل البيانات إلى الأسماء الجديدة. هل اخذت نسخة احتياطية؟"
+
+msgid "Post meta"
+msgstr "نشر التعريف"
+
+msgid "Posts and pages"
+msgstr "المشاركات والصفحات"
+
+msgid "Upload folders"
+msgstr "تحميل المجلدات"
+
+msgid "Working…"
+msgstr "العمل..."
+
+msgid "Upload these new packages first (do not activate them):"
+msgstr "قم بتحميل هذه الحزم الجديدة أولاً (لا تقم بتنشيطها):"
+
+msgid "[['%drow', 'tr']]"
+msgid_plural "[['%drow', 'tr']]"
+msgstr[0] "[['صف%d', 'tr']]"
+msgstr[1] "[['صف%d', 'tr']]"
+msgstr[2] "[['صف%d', 'tr']]"
+msgstr[3] "[['صف%d', 'tr']]"
+msgstr[4] "[['صف%d', 'tr']]"
+msgstr[5] "[['صف%d', 'tr']]"
+
+msgid "[['%dold setting', 'tr']]"
+msgid_plural "[['%dold setting', 'tr']]"
+msgstr[0] "[['الإعداد القديم لـ%d', 'tr']]"
+msgstr[1] "[['الإعداد القديم لـ%d', 'tr']]"
+msgstr[2] "[['الإعداد القديم لـ%d', 'tr']]"
+msgstr[3] "[['الإعداد القديم لـ%d', 'tr']]"
+msgstr[4] "[['الإعداد القديم لـ%d', 'tr']]"
+msgstr[5] "[['الإعداد القديم لـ%d', 'tr']]"

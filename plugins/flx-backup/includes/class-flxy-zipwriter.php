@@ -45,7 +45,7 @@ final class FLXY_Zip_Writer {
 			if ( $zh ) {
 				fclose( $zh ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 			}
-			return new WP_Error( 'flxy_zip', __( 'Zip dosyası açılamadı.', 'flx-backup' ) );
+			return new WP_Error( 'flxy_zip', __( 'Could not open the zip file.', 'flx-backup' ) );
 		}
 		// Drop anything a killed step wrote after the last committed point.
 		ftruncate( $zh, (int) $st['size'] );

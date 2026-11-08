@@ -20,14 +20,14 @@ function flxi_custom_layouts() {
 function flxi_layouts() {
 	$out = array(
 		'kurumsal' => array(
-			'name'    => __( 'Kurumsal', 'flx-mail' ),
-			'desc'    => __( 'Logolu kart, düğme, kurumsal alt bilgi. Duyuru ve yeni e-postalar için.', 'flx-mail' ),
+			'name'    => __( 'Corporate', 'flx-mail' ),
+			'desc'    => __( 'Logo card, button, corporate footer. For announcements and new emails.', 'flx-mail' ),
 			'base'    => 'kurumsal',
 			'builtin' => true,
 		),
 		'sade'     => array(
-			'name'    => __( 'Sade', 'flx-mail' ),
-			'desc'    => __( 'Kişisel mektup görünümü, altta küçük logolu imza. Cevaplar için.', 'flx-mail' ),
+			'name'    => __( 'Plain', 'flx-mail' ),
+			'desc'    => __( 'Personal letter look with a small logo signature below. For replies.', 'flx-mail' ),
 			'base'    => 'sade',
 			'builtin' => true,
 		),
@@ -62,7 +62,7 @@ function flxi_layout_save( array $d, $id = '' ) {
 	$all = flxi_custom_layouts();
 	$id  = $id && isset( $all[ $id ] ) ? $id : 'l' . substr( md5( uniqid( '', true ) ), 0, 8 );
 	$all[ $id ] = array(
-		'name'         => sanitize_text_field( (string) ( $d['name'] ?? '' ) ) ?: __( 'Adsız şablon', 'flx-mail' ),
+		'name'         => sanitize_text_field( (string) ( $d['name'] ?? '' ) ) ?: __( 'Untitled layout', 'flx-mail' ),
 		'desc'         => sanitize_text_field( (string) ( $d['desc'] ?? '' ) ),
 		'base'         => 'sade' === ( $d['base'] ?? '' ) ? 'sade' : 'kurumsal',
 		'partner_name' => sanitize_text_field( (string) ( $d['partner_name'] ?? '' ) ),

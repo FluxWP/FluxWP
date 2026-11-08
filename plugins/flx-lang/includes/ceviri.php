@@ -29,13 +29,13 @@ function flxl_copy_meta_skip() {
 function flxl_save_translation( $source_id, $code, array $fields = array() ) {
 	$src = get_post( (int) $source_id );
 	if ( ! $src || ! flxl_is_translatable_type( $src->post_type ) ) {
-		return new WP_Error( 'flxl_source', __( 'Kaynak içerik bulunamadı ya da bu tür çevrilmiyor.', 'flx-lang' ) );
+		return new WP_Error( 'flxl_source', __( 'Source content not found or this type is not translated.', 'flx-lang' ) );
 	}
 	if ( ! flxl_is_language( $code ) ) {
-		return new WP_Error( 'flxl_lang', __( 'Dil etkin değil.', 'flx-lang' ) );
+		return new WP_Error( 'flxl_lang', __( 'Language is not active.', 'flx-lang' ) );
 	}
 	if ( flxl_post_language( $src ) === $code ) {
-		return new WP_Error( 'flxl_same', __( 'İçerik zaten bu dilde.', 'flx-lang' ) );
+		return new WP_Error( 'flxl_same', __( 'The content is already in this language.', 'flx-lang' ) );
 	}
 	$existing = flxl_get_translation( $src->ID, $code );
 	$data     = array();
@@ -59,7 +59,7 @@ function flxl_save_translation( $source_id, $code, array $fields = array() ) {
 
 	if ( $existing ) {
 		if ( ! current_user_can( 'edit_post', $existing ) ) {
-			return new WP_Error( 'flxl_cap', __( 'Bu işlem için yetkiniz yok.', 'flx-lang' ) );
+			return new WP_Error( 'flxl_cap', __( 'You are not allowed to do this.', 'flx-lang' ) );
 		}
 		if ( $data ) {
 			$data['ID'] = $existing;
@@ -72,7 +72,7 @@ function flxl_save_translation( $source_id, $code, array $fields = array() ) {
 	} else {
 		$pto = get_post_type_object( $src->post_type );
 		if ( ! $pto || ! current_user_can( $pto->cap->create_posts ) ) {
-			return new WP_Error( 'flxl_cap', __( 'Bu işlem için yetkiniz yok.', 'flx-lang' ) );
+			return new WP_Error( 'flxl_cap', __( 'You are not allowed to do this.', 'flx-lang' ) );
 		}
 		$parent = 0;
 		if ( $src->post_parent ) {
@@ -192,7 +192,7 @@ add_filter(
 	'flxai_systems',
 	function ( $s ) {
 		$s['flx-lang'] = array(
-			'label'  => __( 'Flux Lang (çeviri)', 'flx-lang' ),
+			'label'  => __( 'Flux Language (translation)', 'flx-lang' ),
 			'plugin' => plugin_basename( FLXL_FILE ),
 			'page'   => 'options-general.php?page=flx-lang',
 		);
@@ -202,7 +202,7 @@ add_filter(
 add_filter(
 	'flxai_sources',
 	function ( $s ) {
-		$s['flx-lang'] = __( 'Flux Lang', 'flx-lang' );
+		$s['flx-lang'] = __( 'Flux Language', 'flx-lang' );
 		return $s;
 	}
 );
@@ -266,7 +266,7 @@ function flxl_ai_translate_text( $text, $from, $to, $purpose = 'translate' ) {
 		return (string) $text;
 	}
 	if ( ! flxl_ai_available() ) {
-		return new WP_Error( 'flxl_ai', __( 'Flux AI kurulu ya da hazır değil.', 'flx-lang' ) );
+		return new WP_Error( 'flxl_ai', __( 'Flux AI & MCP is not installed or not ready.', 'flx-lang' ) );
 	}
 	$r = flxai_chat(
 		array(
@@ -286,10 +286,10 @@ function flxl_ai_translate_text( $text, $from, $to, $purpose = 'translate' ) {
 	$out = trim( (string) ( $r['content'] ?? '' ) );
 	$out = preg_replace( '/^```[a-z]*\s*|\s*```$/i', '', $out );
 	if ( '' === $out ) {
-		return new WP_Error( 'flxl_ai_empty', __( 'AI boş cevap döndü.', 'flx-lang' ) );
+		return new WP_Error( 'flxl_ai_empty', __( 'AI returned an empty answer.', 'flx-lang' ) );
 	}
 	if ( 'length' === ( $r['_finish'] ?? '' ) ) {
-		return new WP_Error( 'flxl_ai_length', __( 'AI cevabı yarıda kesildi.', 'flx-lang' ) );
+		return new WP_Error( 'flxl_ai_length', __( 'The AI answer was cut off.', 'flx-lang' ) );
 	}
 	return $out;
 }
@@ -302,7 +302,7 @@ function flxl_ai_translate_text( $text, $from, $to, $purpose = 'translate' ) {
 function flxl_ai_job_start( $source_id, $code ) {
 	$src = get_post( (int) $source_id );
 	if ( ! $src ) {
-		return new WP_Error( 'flxl_source', __( 'Kaynak içerik bulunamadı ya da bu tür çevrilmiyor.', 'flx-lang' ) );
+		return new WP_Error( 'flxl_source', __( 'Source content not found or this type is not translated.', 'flx-lang' ) );
 	}
 	$id = flxl_get_translation( $src->ID, $code );
 	if ( ! $id ) {
@@ -311,7 +311,7 @@ function flxl_ai_job_start( $source_id, $code ) {
 			return $id;
 		}
 	} elseif ( ! current_user_can( 'edit_post', $id ) ) {
-		return new WP_Error( 'flxl_cap', __( 'Bu işlem için yetkiniz yok.', 'flx-lang' ) );
+		return new WP_Error( 'flxl_cap', __( 'You are not allowed to do this.', 'flx-lang' ) );
 	}
 	$job = array(
 		'src'   => $src->ID,
@@ -345,7 +345,7 @@ function flxl_ai_job_start( $source_id, $code ) {
 function flxl_ai_job_step( $key, $step ) {
 	$job = get_transient( 'flxl_job_' . $key );
 	if ( ! is_array( $job ) || (int) $job['user'] !== get_current_user_id() ) {
-		return new WP_Error( 'flxl_job', __( 'Çeviri işi bulunamadı ya da süresi doldu.', 'flx-lang' ) );
+		return new WP_Error( 'flxl_job', __( 'Translation job not found or expired.', 'flx-lang' ) );
 	}
 	$steps = count( $job['parts'] ) + 1;
 	$step  = (int) $step;

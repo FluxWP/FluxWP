@@ -1,1647 +1,1661 @@
 msgid ""
-msgstr ""
-"Content-Type: text/plain; charset=UTF-8\n"
-"Project-Id-Version: Flux Social\n"
-"Language: en_US\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Taslak"
+msgid "Draft"
 msgstr "Draft"
 
-msgid "Onay bekliyor"
+msgid "Awaiting approval"
 msgstr "Awaiting approval"
 
-msgid "Zamanlandı"
+msgid "Scheduled"
 msgstr "Scheduled"
 
-msgid "Yayınlanıyor"
+msgid "Publishing"
 msgstr "Publishing"
 
-msgid "Yayınlandı"
+msgid "Published"
 msgstr "Published"
 
-msgid "Kısmen yayınlandı"
+msgid "Partially published"
 msgstr "Partially published"
 
-msgid "Başarısız"
+msgid "Failed"
 msgstr "Failed"
 
-msgid "İptal"
+msgid "Cancelled"
 msgstr "Cancelled"
 
-msgid "Gönderiliyor"
+msgid "Sending"
 msgstr "Sending"
 
-msgid "Ağdan silindi"
+msgid "Deleted from network"
 msgstr "Deleted from network"
 
-msgid "Tema: sistem"
+msgid "Theme: system"
 msgstr "Theme: system"
 
-msgid "Tema: açık"
+msgid "Theme: light"
 msgstr "Theme: light"
 
-msgid "Tema: koyu"
+msgid "Theme: dark"
 msgstr "Theme: dark"
 
-msgid "Sosyal Medya açılıyor…"
+msgid "Opening Social Media…"
 msgstr "Opening Social Media…"
 
-msgid "Yeniden dene"
+msgid "Try again"
 msgstr "Try again"
 
-msgid "Menü"
+msgid "Menu"
 msgstr "Menu"
 
-msgid "Sosyal Medya"
+msgid "Social Media"
 msgstr "Social Media"
 
-msgid "Yeni gönderi"
+msgid "New post"
 msgstr "New post"
 
-msgid "Pano"
+msgid "Dashboard"
 msgstr "Dashboard"
 
-msgid "Gönderiler"
+msgid "Posts"
 msgstr "Posts"
 
-msgid "Onay bekleyenler"
-msgstr "Awaiting approval"
-
-msgid "Takvim"
+msgid "Calendar"
 msgstr "Calendar"
 
-msgid "Hesaplar"
+msgid "Accounts"
 msgstr "Accounts"
 
-msgid "Ayarlar"
+msgid "Settings"
 msgstr "Settings"
 
-msgid "{n} gönderide hata"
+msgid "{n} posts with errors"
 msgstr "{n} posts with errors"
 
-msgid "Tema"
+msgid "Theme"
 msgstr "Theme"
 
-msgid "Panele dön"
+msgid "Back to dashboard"
 msgstr "Back to dashboard"
 
-msgid "(metinsiz)"
+msgid "(no text)"
 msgstr "(no text)"
 
-msgid "Ayrıntılar"
+msgid "Details"
 msgstr "Details"
 
-msgid "Düzenle"
+msgid "Edit"
 msgstr "Edit"
 
-msgid "Kopyasını oluştur"
+msgid "Duplicate"
 msgstr "Duplicate"
 
-msgid "Kopya taslak olarak oluşturuldu."
+msgid "Copy created as a draft."
 msgstr "Copy created as a draft."
 
-msgid "Onayla"
+msgid "Approve"
 msgstr "Approve"
 
-msgid "Onaylandı."
+msgid "Approved."
 msgstr "Approved."
 
-msgid "Reddet"
+msgid "Reject"
 msgstr "Reject"
 
-msgid "Şimdi paylaş"
+msgid "Share now"
 msgstr "Share now"
 
-msgid "Şimdi paylaşılsın mı?"
+msgid "Share now?"
 msgstr "Share now?"
 
-msgid "Gönderi seçili hesaplarda hemen yayınlanır."
+msgid "The post is published on the selected accounts right away."
 msgstr "The post is published on the selected accounts right away."
 
-msgid "Paylaş"
+msgid "Share"
 msgstr "Share"
 
-msgid "Sıraya alındı, birazdan yayında."
+msgid "Queued, it will be live shortly."
 msgstr "Queued, it will be live shortly."
 
-msgid "Onaya gönder"
+msgid "Submit for approval"
 msgstr "Submit for approval"
 
-msgid "Onaya gönderildi."
+msgid "Submitted for approval."
 msgstr "Submitted for approval."
 
-msgid "Zamanlamayı kaldır (taslağa al)"
+msgid "Unschedule (back to draft)"
 msgstr "Unschedule (back to draft)"
 
-msgid "Taslağa alındı."
+msgid "Moved to drafts."
 msgstr "Moved to drafts."
 
-msgid "Sil"
+msgid "Delete"
 msgstr "Delete"
 
-msgid "Neden? (yazana görünür)"
+msgid "Why? (visible to the author)"
 msgstr "Why? (visible to the author)"
 
-msgid "Gönderiyi reddet"
+msgid "Reject post"
 msgstr "Reject post"
 
-msgid "Gönderi taslağa döner; yazan kişi notu görür."
+msgid "The post goes back to draft; the author sees the note."
 msgstr "The post goes back to draft; the author sees the note."
 
-msgid "Vazgeç"
+msgid "Cancel"
 msgstr "Cancel"
 
-msgid "Reddedildi."
+msgid "Rejected."
 msgstr "Rejected."
 
-msgid "Gönderiyi sil"
+msgid "Delete post"
 msgstr "Delete post"
 
-msgid "Gönderi listeden silinir."
+msgid "The post is removed from the list."
 msgstr "The post is removed from the list."
 
-msgid "Yayınlandığı ağlardan da sil ({n} hesap)"
+msgid "Also delete from the networks it was published on ({n} accounts)"
 msgstr "Also delete from the networks it was published on ({n} accounts)"
 
-msgid "Instagram ve TikTok gönderileri API ile silinemez; oradan elle silin."
+msgid "Instagram and TikTok posts cannot be deleted via the API; delete them there manually."
 msgstr "Instagram and TikTok posts cannot be deleted via the API; delete them there manually."
 
-msgid "Silindi."
+msgid "Deleted."
 msgstr "Deleted."
 
-msgid "Tümü"
+msgid "All"
 msgstr "All"
 
-msgid "Taslaklar"
+msgid "Drafts"
 msgstr "Drafts"
 
-msgid "Zamanlanmış"
-msgstr "Scheduled"
-
-msgid "Yayınlanan"
-msgstr "Published"
-
-msgid "Hatalı"
+msgid "With errors"
 msgstr "With errors"
 
-msgid "Daha fazla"
+msgid "Load more"
 msgstr "Load more"
 
-msgid "Metin, başlık ya da etiket ara"
+msgid "Search text, title or tag"
 msgstr "Search text, title or tag"
 
-msgid "Ara"
+msgid "Search"
 msgstr "Search"
 
-msgid "Hesap"
+msgid "Account"
 msgstr "Account"
 
-msgid "Tüm hesaplar"
+msgid "All accounts"
 msgstr "All accounts"
 
-msgid "Yalnız benimkiler"
+msgid "Only mine"
 msgstr "Only mine"
 
-msgid "Yayın yetkisi olmayan kişilerin hazırladığı gönderiler. Onaylayınca zamanı geldiğinde (ya da hemen) paylaşılır."
+msgid "Posts prepared by people without publishing permission. Once approved they are shared at their time (or right away)."
 msgstr "Posts prepared by people without publishing permission. Once approved they are shared at their time (or right away)."
 
-msgid "{n} seçili"
+msgid "{n} selected"
 msgstr "{n} selected"
 
-msgid "Zamanla"
+msgid "Schedule"
 msgstr "Schedule"
 
-msgid "Zamanlandı."
+msgid "Scheduled."
 msgstr "Scheduled."
 
-msgid "Taslağa al"
+msgid "Move to drafts"
 msgstr "Move to drafts"
 
-msgid "Seçilenler silinsin mi?"
+msgid "Delete selected?"
 msgstr "Delete selected?"
 
-msgid "Yalnız listeden silinir; ağlardaki gönderilere dokunulmaz."
+msgid "Only removed from the list; posts on the networks are not touched."
 msgstr "Only removed from the list; posts on the networks are not touched."
 
-msgid "Seçimi kaldır"
+msgid "Clear selection"
 msgstr "Clear selection"
 
-msgid "Seç"
+msgid "Select"
 msgstr "Select"
 
-msgid "{n} günde bir"
+msgid "every {n} days"
 msgstr "every {n} days"
 
-msgid "İşlemler"
+msgid "Actions"
 msgstr "Actions"
 
-msgid "Onay bekleyen gönderi yok"
+msgid "No posts awaiting approval"
 msgstr "No posts awaiting approval"
 
-msgid "Gönderi yok"
+msgid "No posts"
 msgstr "No posts"
 
-msgid "İlk gönderiyi oluşturun; birden çok hesaba aynı anda, her birine ayrı metinle paylaşabilirsiniz."
+msgid "Create your first post; share to several accounts at once, with separate text for each."
 msgstr "Create your first post; share to several accounts at once, with separate text for each."
 
-msgid "Ay"
+msgid "Month"
 msgstr "Month"
 
-msgid "Liste"
+msgid "List"
 msgstr "List"
 
-msgid "Önceki ay"
+msgid "Previous month"
 msgstr "Previous month"
 
-msgid "Sonraki ay"
+msgid "Next month"
 msgstr "Next month"
 
-msgid "Bugün"
+msgid "Today"
 msgstr "Today"
 
-msgid "Saat dilimi: {tz}"
+msgid "Time zone: {tz}"
 msgstr "Time zone: {tz}"
 
-msgid "Bu güne gönderi"
+msgid "Post on this day"
 msgstr "Post on this day"
 
-msgid "+{n} daha"
+msgid "+{n} more"
 msgstr "+{n} more"
 
-msgid "Yeni zaman: {t}"
+msgid "New time: {t}"
 msgstr "New time: {t}"
 
-msgid "Bu ay gönderi yok."
+msgid "No posts this month."
 msgstr "No posts this month."
 
-msgid "Hesap bağla"
+msgid "Connect account"
 msgstr "Connect account"
 
-msgid "Hesap eklendi."
+msgid "Account added."
 msgstr "Account added."
 
-msgid "{n} hesabın bağlantısı yenilendi."
+msgid "{n} account connections refreshed."
 msgstr "{n} account connections refreshed."
 
-msgid "Henüz hesap yok"
+msgid "No accounts yet"
 msgstr "No accounts yet"
 
-msgid "Önce Ayarlar › Uygulamalar’dan ağın anahtarlarını girin, sonra buradan hesabı bağlayın."
+msgid "First enter the network keys under Settings › Apps, then connect the account here."
 msgstr "First enter the network keys under Settings › Apps, then connect the account here."
 
-msgid "Hesapları yönetici bağlar."
+msgid "Accounts are connected by an administrator."
 msgstr "Accounts are connected by an administrator."
 
-msgid "Uygulama anahtarları"
+msgid "App keys"
 msgstr "App keys"
 
-msgid "{n} karakter"
+msgid "{n} characters"
 msgstr "{n} characters"
 
-msgid "{n} görsel"
+msgid "{n} images"
 msgstr "{n} images"
 
 msgid "video"
 msgstr "video"
 
-msgid "düzenleme"
+msgid "editing"
 msgstr "editing"
 
-msgid "silme"
+msgid "deleting"
 msgstr "deleting"
 
-msgid "Etkin"
+msgid "Active"
 msgstr "Active"
 
-msgid "Yeniden bağlanmalı"
+msgid "Needs reconnecting"
 msgstr "Needs reconnecting"
 
-msgid "Kapalı"
+msgid "Off"
 msgstr "Off"
 
-msgid "Yeniden bağla"
+msgid "Reconnect"
 msgstr "Reconnect"
 
-msgid "Sayfa"
+msgid "Page"
 msgstr "Page"
 
-msgid "Profil"
+msgid "Profile"
 msgstr "Profile"
 
-msgid "Şirket sayfası"
+msgid "Company page"
 msgstr "Company page"
 
-msgid "Kanal"
+msgid "Channel"
 msgstr "Channel"
 
-msgid "Konum"
+msgid "Location"
 msgstr "Location"
 
-msgid "Durum"
+msgid "Status"
 msgstr "Status"
 
-msgid "Grup"
+msgid "Group"
 msgstr "Group"
 
-msgid "İşletme"
+msgid "Business"
 msgstr "Business"
 
-msgid "İçerik üretici"
+msgid "Creator"
 msgstr "Creator"
 
-msgid "Bağlantıyı sına ve yenile"
+msgid "Test and refresh connection"
 msgstr "Test and refresh connection"
 
-msgid "Deneniyor…"
+msgid "Trying…"
 msgstr "Trying…"
 
-msgid "Bağlantı çalışıyor."
+msgid "Connection works."
 msgstr "Connection works."
 
-msgid "Adını değiştir"
+msgid "Rename"
 msgstr "Rename"
 
-msgid "Hesap adı"
+msgid "Account name"
 msgstr "Account name"
 
-msgid "Etkinleştir"
+msgid "Enable"
 msgstr "Enable"
 
-msgid "Kapat (gönderi seçiminde görünmez)"
+msgid "Turn off (hidden in post account picker)"
 msgstr "Turn off (hidden in post account picker)"
 
-msgid "Kaldır"
+msgid "Remove"
 msgstr "Remove"
 
-msgid "Hesap kaldırılsın mı?"
+msgid "Remove account?"
 msgstr "Remove account?"
 
-msgid "Belirteç silinir; bu hesaba zamanlanmış gönderiler paylaşılmaz. Yayınlanmış gönderiler ağda kalır."
+msgid "The token is deleted; posts scheduled for this account will not be shared. Published posts stay on the network."
 msgstr "The token is deleted; posts scheduled for this account will not be shared. Published posts stay on the network."
 
-msgid "Kaldırıldı."
+msgid "Removed."
 msgstr "Removed."
 
-msgid "Önce anahtar girin: {app}"
+msgid "Enter keys first: {app}"
 msgstr "Enter keys first: {app}"
 
-msgid "Ağın giriş sayfası açılır; izin verince buraya dönersiniz. Birden çok sayfa/kanal varsa hangilerinin ekleneceğini seçersiniz."
+msgid "The network's sign-in page opens; after you allow access you come back here. If there are several pages/channels you choose which to add."
 msgstr "The network's sign-in page opens; after you allow access you come back here. If there are several pages/channels you choose which to add."
 
-msgid "Eklenecek hesapları seçin"
+msgid "Choose accounts to add"
 msgstr "Choose accounts to add"
 
-msgid "{n} hesap eklendi."
+msgid "{n} accounts added."
 msgstr "{n} accounts added."
 
-msgid "Ekle"
+msgid "Add"
 msgstr "Add"
 
-msgid "WhatsApp: Durum ve gruplar"
+msgid "WhatsApp: Status and groups"
 msgstr "WhatsApp: Status and groups"
 
-msgid "Bağlantı Flux Mail’deki Evolution hattından gelir. Durum: hattın WhatsApp Durum’u (24 saat). Grup: hattın üye olduğu gruplar."
+msgid "The connection comes from the Evolution line in Flux Mail. Status: the line's WhatsApp Status (24 hours). Group: groups the line is a member of."
 msgstr "The connection comes from the Evolution line in Flux Mail. Status: the line's WhatsApp Status (24 hours). Group: groups the line is a member of."
 
-msgid "{n} üye"
+msgid "{n} members"
 msgstr "{n} members"
 
-msgid "ekli"
+msgid "added"
 msgstr "added"
 
-msgid "Video başlığı"
+msgid "Video title"
 msgstr "Video title"
 
-msgid "Pin başlığı"
+msgid "Pin title"
 msgstr "Pin title"
 
-msgid "Bağlantı başlığı"
+msgid "Link title"
 msgstr "Link title"
 
-msgid "Başlık (fotoğraf gönderisi)"
+msgid "Title (photo post)"
 msgstr "Title (photo post)"
 
-msgid "Başlık"
+msgid "Title"
 msgstr "Title"
 
-msgid "Pin bağlantısı"
+msgid "Pin link"
 msgstr "Pin link"
 
-msgid "Bağlantı (önizleme kartı)"
+msgid "Link (preview card)"
 msgstr "Link (preview card)"
 
-msgid "Yanıt dizisi (ilk yanıt)"
+msgid "Reply thread (first reply)"
 msgstr "Reply thread (first reply)"
 
-msgid "İlk yorum"
+msgid "First comment"
 msgstr "First comment"
 
-msgid "Yayından hemen sonra yorum olarak eklenir (ör. bağlantı ya da etiketler)."
+msgid "Added as a comment right after publishing (e.g. a link or hashtags)."
 msgstr "Added as a comment right after publishing (e.g. a link or hashtags)."
 
-msgid "Görünürlük"
+msgid "Visibility"
 msgstr "Visibility"
 
-msgid "Herkese açık"
+msgid "Public"
 msgstr "Public"
 
-msgid "Liste dışı"
+msgid "Unlisted"
 msgstr "Unlisted"
 
-msgid "Özel"
+msgid "Private"
 msgstr "Private"
 
-msgid "Video etiketleri (virgülle)"
+msgid "Video tags (comma separated)"
 msgstr "Video tags (comma separated)"
 
-msgid "Kategori"
+msgid "Category"
 msgstr "Category"
 
-msgid "Varsayılan"
+msgid "Default"
 msgstr "Default"
 
-msgid "Kâr amacı gütmeyen ve aktivizm"
+msgid "Nonprofits & Activism"
 msgstr "Nonprofits & Activism"
 
-msgid "Kişiler ve bloglar"
+msgid "People & Blogs"
 msgstr "People & Blogs"
 
-msgid "Eğitim"
+msgid "Education"
 msgstr "Education"
 
-msgid "Seyahat ve etkinlikler"
+msgid "Travel & Events"
 msgstr "Travel & Events"
 
-msgid "Haberler ve politika"
+msgid "News & Politics"
 msgstr "News & Politics"
 
-msgid "Eğlence"
+msgid "Entertainment"
 msgstr "Entertainment"
 
-msgid "Oynatma listesi"
+msgid "Playlist"
 msgstr "Playlist"
 
-msgid "Yok"
+msgid "None"
 msgstr "None"
 
-msgid "Çocuklara özel"
+msgid "Made for kids"
 msgstr "Made for kids"
 
-msgid "Abonelere bildir"
+msgid "Notify subscribers"
 msgstr "Notify subscribers"
 
-msgid "Shorts (dikey, 60 sn altı)"
+msgid "Shorts (vertical, under 60 s)"
 msgstr "Shorts (vertical, under 60 s)"
 
-msgid "AI ile üretilmiş içerik"
+msgid "AI-generated content"
 msgstr "AI-generated content"
 
-msgid "Paylaşım türü"
+msgid "Post type"
 msgstr "Post type"
 
-msgid "Gönderi (akış)"
+msgid "Post (feed)"
 msgstr "Post (feed)"
 
 msgid "Reels"
 msgstr "Reels"
 
-msgid "Hikâye"
+msgid "Story"
 msgstr "Story"
 
-msgid "Reels akışta da görünsün"
+msgid "Also show the Reel in the feed"
 msgstr "Also show the Reel in the feed"
 
-msgid "Kapak görseli adresi (Reels)"
+msgid "Cover image URL (Reels)"
 msgstr "Cover image URL (Reels)"
 
-msgid "Yalnız bağlantılar"
+msgid "Connections only"
 msgstr "Connections only"
 
-msgid "Görsel açıklaması (alt metin)"
+msgid "Image description (alt text)"
 msgstr "Image description (alt text)"
 
-msgid "Kimler yanıtlayabilir"
+msgid "Who can reply"
 msgstr "Who can reply"
 
-msgid "Herkes"
+msgid "Everyone"
 msgstr "Everyone"
 
-msgid "Takip ettiklerim"
+msgid "People I follow"
 msgstr "People I follow"
 
-msgid "Andıklarım"
+msgid "People I mention"
 msgstr "People I mention"
 
-msgid "Onaylı hesaplar"
+msgid "Verified accounts"
 msgstr "Verified accounts"
 
-msgid "Pano seçin"
+msgid "Choose a board"
 msgstr "Choose a board"
 
-msgid "Kimler görebilir"
+msgid "Who can view"
 msgstr "Who can view"
 
-msgid "Arkadaşlar"
+msgid "Friends"
 msgstr "Friends"
 
-msgid "Takipçiler"
+msgid "Followers"
 msgstr "Followers"
 
-msgid "Yalnız ben"
+msgid "Only me"
 msgstr "Only me"
 
-msgid "Yorumları kapat"
+msgid "Turn off comments"
 msgstr "Turn off comments"
 
-msgid "Düet kapalı"
+msgid "Duet off"
 msgstr "Duet off"
 
-msgid "Birleştirme (stitch) kapalı"
+msgid "Stitch off"
 msgstr "Stitch off"
 
-msgid "Ücretli iş birliği (marka içeriği)"
+msgid "Paid partnership (branded content)"
 msgstr "Paid partnership (branded content)"
 
-msgid "Kendi markamızın tanıtımı"
+msgid "Promoting our own brand"
 msgstr "Promoting our own brand"
 
-msgid "Fotoğraflara otomatik müzik"
+msgid "Automatic music for photos"
 msgstr "Automatic music for photos"
 
-msgid "Gönderi türü"
-msgstr "Post type"
-
-msgid "Güncelleme"
+msgid "Update"
 msgstr "Update"
 
-msgid "Etkinlik"
+msgid "Event"
 msgstr "Event"
 
-msgid "Teklif"
+msgid "Offer"
 msgstr "Offer"
 
-msgid "Düğme"
+msgid "Button"
 msgstr "Button"
 
-msgid "Daha fazla bilgi"
+msgid "Learn more"
 msgstr "Learn more"
 
-msgid "Rezervasyon"
+msgid "Book"
 msgstr "Book"
 
-msgid "Sipariş"
+msgid "Order"
 msgstr "Order"
 
-msgid "Alışveriş"
+msgid "Shop"
 msgstr "Shop"
 
-msgid "Kaydol"
+msgid "Sign up"
 msgstr "Sign up"
 
-msgid "Düğme bağlantısı"
+msgid "Button link"
 msgstr "Button link"
 
-msgid "Etkinlik/teklif başlığı"
+msgid "Event/offer title"
 msgstr "Event/offer title"
 
-msgid "Başlangıç"
+msgid "Start"
 msgstr "Start"
 
-msgid "Bitiş"
+msgid "End"
 msgstr "End"
 
-msgid "Kupon kodu"
+msgid "Coupon code"
 msgstr "Coupon code"
 
-msgid "Metin ya da medya gerekli."
+msgid "Text or media is required."
 msgstr "Text or media is required."
 
-msgid "Metin {n} karakter uzun (sınır {max})."
+msgid "Text is {n} characters too long (limit {max})."
 msgstr "Text is {n} characters too long (limit {max})."
 
-msgid "Bu ağ görsel ya da video ister."
+msgid "This network requires an image or video."
 msgstr "This network requires an image or video."
 
-msgid "Bu ağ görsel kabul etmiyor."
+msgid "This network does not accept images."
 msgstr "This network does not accept images."
 
-msgid "Bu ağ video kabul etmiyor."
+msgid "This network does not accept video."
 msgstr "This network does not accept video."
 
-msgid "GIF desteklenmiyor."
+msgid "GIF is not supported."
 msgstr "GIF is not supported."
 
-msgid "En çok {n} görsel."
+msgid "At most {n} images."
 msgstr "At most {n} images."
 
-msgid "En çok {n} video."
+msgid "At most {n} videos."
 msgstr "At most {n} videos."
 
-msgid "Görsel ve video birlikte gönderilemez."
+msgid "Images and video cannot be sent together."
 msgstr "Images and video cannot be sent together."
 
-msgid "YouTube için video gerekli."
+msgid "YouTube requires a video."
 msgstr "YouTube requires a video."
 
-msgid "Pinterest panosu seçin."
+msgid "Choose a Pinterest board."
 msgstr "Choose a Pinterest board."
 
-msgid "Reels için video gerekli."
+msgid "Reels require a video."
 msgstr "Reels require a video."
 
-msgid "Hesabın bağlantısı düşmüş; Hesaplar’dan yeniden bağlayın."
+msgid "The account connection dropped; reconnect it under Accounts."
 msgstr "The account connection dropped; reconnect it under Accounts."
 
-msgid "Kaydedilmemiş değişiklikler var. Kapatılsın mı?"
+msgid "There are unsaved changes. Close anyway?"
 msgstr "There are unsaved changes. Close anyway?"
 
-msgid "Bağlı hesap yok"
+msgid "No connected accounts"
 msgstr "No connected accounts"
 
-msgid "Önce bir sosyal medya hesabı bağlayın."
+msgid "Connect a social media account first."
 msgstr "Connect a social media account first."
 
-msgid "Yöneticiden hesap bağlamasını isteyin."
+msgid "Ask an administrator to connect an account."
 msgstr "Ask an administrator to connect an account."
 
-msgid "Kapat"
+msgid "Close"
 msgstr "Close"
 
-msgid "Gönderiyi düzenle"
+msgid "Edit post"
 msgstr "Edit post"
 
-msgid "Onaylayan not bıraktı: {n}"
+msgid "The approver left a note: {n}"
 msgstr "The approver left a note: {n}"
 
-msgid "{n} hesapta yayınlandı; oradaki hali Ayrıntılar › Ağda düzenle ile değişir."
+msgid "Published on {n} accounts; to change it there use Details › Edit on network."
 msgstr "Published on {n} accounts; to change it there use Details › Edit on network."
 
-msgid "Önizleme"
+msgid "Preview"
 msgstr "Preview"
 
-msgid "Seçili hesapların hepsine paylaşılır; her birine ayrı metin yazabilirsiniz."
+msgid "Shared to all selected accounts; you can write separate text for each."
 msgstr "Shared to all selected accounts; you can write separate text for each."
 
-msgid "Ortak metin"
+msgid "Common text"
 msgstr "Common text"
 
-msgid "Özel metin"
+msgid "Custom text"
 msgstr "Custom text"
 
-msgid "Ne paylaşmak istersiniz?"
+msgid "What would you like to share?"
 msgstr "What would you like to share?"
 
-msgid "İmza ekle"
+msgid "Add signature"
 msgstr "Add signature"
 
-msgid "Bu hesaba özel metin"
+msgid "Custom text for this account"
 msgstr "Custom text for this account"
 
-msgid "Bu hesaba ayrı görsel/video"
+msgid "Separate image/video for this account"
 msgstr "Separate image/video for this account"
 
-msgid "{net} seçenekleri"
+msgid "{net} options"
 msgstr "{net} options"
 
-msgid "Doğrudan yayın: video TikTok’ta seçilen görünürlükle yayınlanır."
+msgid "Direct post: the video is published on TikTok with the chosen visibility."
 msgstr "Direct post: the video is published on TikTok with the chosen visibility."
 
-msgid "Taslak modu: video TikTok uygulamanızın gelen kutusuna düşer, oradan yayınlarsınız."
+msgid "Draft mode: the video lands in your TikTok app inbox and you publish it from there."
 msgstr "Draft mode: the video lands in your TikTok app inbox and you publish it from there."
 
-msgid "Pano listesi boş. Hesaplar › Bağlantıyı sına ile yenileyin."
+msgid "Board list is empty. Refresh it under Accounts › Test connection."
 msgstr "Board list is empty. Refresh it under Accounts › Test connection."
 
-msgid "Önce bir metin yazın."
+msgid "Write some text first."
 msgstr "Write some text first."
 
-msgid "AI ne yazsın?"
+msgid "What should AI write?"
 msgstr "What should AI write?"
 
-msgid "Yaz"
+msgid "Write"
 msgstr "Write"
 
-msgid "AI ile yaz"
+msgid "Write with AI"
 msgstr "Write with AI"
 
-msgid "Düzelt ve güzelleştir"
+msgid "Fix and polish"
 msgstr "Fix and polish"
 
-msgid "Kısalt"
+msgid "Shorten"
 msgstr "Shorten"
 
-msgid "Etiket öner"
+msgid "Suggest hashtags"
 msgstr "Suggest hashtags"
 
-msgid "İngilizceye çevir"
+msgid "Translate to English"
 msgstr "Translate to English"
 
-msgid "Her hesaba kendi ağının üslubunda ayrı metin yazar"
+msgid "Writes separate text for each account in its network's style"
 msgstr "Writes separate text for each account in its network's style"
 
-msgid "Her hesaba ayrı metin yazıldı; sekmelerden bakın."
+msgid "Separate text written for each account; check the tabs."
 msgstr "Separate text written for each account; check the tabs."
 
-msgid "Ağlara uyarla"
+msgid "Adapt to networks"
 msgstr "Adapt to networks"
 
-msgid "Sola al"
+msgid "Move left"
 msgstr "Move left"
 
-msgid "Görsel / video"
+msgid "Image / video"
 msgstr "Image / video"
 
-msgid "İpucu: Instagram, TikTok ve YouTube görsel/video ister; X’te 4 görsele kadar."
+msgid "Tip: Instagram, TikTok and YouTube require an image/video; X allows up to 4 images."
 msgstr "Tip: Instagram, TikTok and YouTube require an image/video; X allows up to 4 images."
 
-msgid "Ek bilgiler (iç başlık, etiket, tekrar)"
+msgid "More (internal title, tags, repeat)"
 msgstr "More (internal title, tags, repeat)"
 
-msgid "İç başlık (yalnız listede görünür)"
+msgid "Internal title (only shown in the list)"
 msgstr "Internal title (only shown in the list)"
 
-msgid "Etiketler (virgülle; filtrelemek için)"
+msgid "Tags (comma separated; for filtering)"
 msgstr "Tags (comma separated; for filtering)"
 
-msgid "Yayından kaç gün sonra tekrar paylaşılsın (0 = hayır)"
+msgid "Share again how many days after publishing (0 = no)"
 msgstr "Share again how many days after publishing (0 = no)"
 
-msgid "Hesap seçince önizleme burada görünür."
+msgid "Select an account to see the preview here."
 msgstr "Select an account to see the preview here."
 
-msgid "+{n} hesap daha; sekmelerden bakın."
+msgid "+{n} more accounts; check the tabs."
 msgstr "+{n} more accounts; check the tabs."
 
-msgid "Görsel/video yok"
+msgid "No image/video"
 msgstr "No image/video"
 
-msgid "Video yok"
+msgid "No video"
 msgstr "No video"
 
-msgid "(başlıksız)"
+msgid "(untitled)"
 msgstr "(untitled)"
 
-msgid "Sınır aşıldı: {n} karakter fazla"
+msgid "Limit exceeded: {n} characters over"
 msgstr "Limit exceeded: {n} characters over"
 
-msgid "{n} sorun"
+msgid "{n} issues"
 msgstr "{n} issues"
 
-msgid "Paylaşım zamanı"
+msgid "Share time"
 msgstr "Share time"
 
-msgid "Hızlı zaman"
+msgid "Quick time"
 msgstr "Quick time"
 
-msgid "1 saat sonra"
+msgid "In 1 hour"
 msgstr "In 1 hour"
 
-msgid "Bugün 19:00"
+msgid "Today 19:00"
 msgstr "Today 19:00"
 
-msgid "Yarın 10:00"
+msgid "Tomorrow 10:00"
 msgstr "Tomorrow 10:00"
 
-msgid "Yarın 19:00"
+msgid "Tomorrow 19:00"
 msgstr "Tomorrow 19:00"
 
-msgid "Hafta sonu 11:00"
+msgid "Weekend 11:00"
 msgstr "Weekend 11:00"
 
-msgid "Zamanı kaldır"
+msgid "Clear time"
 msgstr "Clear time"
 
-msgid "En az bir hesap seçin."
+msgid "Select at least one account."
 msgstr "Select at least one account."
 
-msgid "Gelecekte bir zaman seçin."
+msgid "Choose a time in the future."
 msgstr "Choose a time in the future."
 
-msgid "Taslak kaydedildi."
+msgid "Draft saved."
 msgstr "Draft saved."
 
-msgid "Zamanlandı: {t}"
+msgid "Scheduled: {t}"
 msgstr "Scheduled: {t}"
 
-msgid "Kaydedildi."
+msgid "Saved."
 msgstr "Saved."
 
-msgid "Yayın yetkiniz olmadığı için onaya gönderildi."
+msgid "Sent for approval because you do not have publishing permission."
 msgstr "Sent for approval because you do not have publishing permission."
 
-msgid "Taslak kaydet"
+msgid "Save draft"
 msgstr "Save draft"
 
-msgid "Ortam kütüphanesi"
+msgid "Media library"
 msgstr "Media library"
 
 msgid "Flux Studio"
 msgstr "Flux Studio"
 
-msgid "Yükle"
+msgid "Upload"
 msgstr "Upload"
 
-msgid "Adresten ekle"
+msgid "Add from URL"
 msgstr "Add from URL"
 
-msgid "Görsel ya da video adresi (https://…)"
+msgid "Image or video URL (https://…)"
 msgstr "Image or video URL (https://…)"
 
-msgid "İndiriliyor…"
+msgid "Downloading…"
 msgstr "Downloading…"
 
-msgid "{n} dosya yükleniyor…"
+msgid "Uploading {n} files…"
 msgstr "Uploading {n} files…"
 
-msgid "Görsel / video seç"
+msgid "Choose image / video"
 msgstr "Choose image / video"
 
-msgid "Stüdyo dosyaları kütüphaneye alınıyor…"
+msgid "Importing Studio files into the library…"
 msgstr "Importing Studio files into the library…"
 
-msgid "Dosya yok."
+msgid "No files."
 msgstr "No files."
 
-msgid "Gönderi"
+msgid "Post"
 msgstr "Post"
 
-msgid "Aç"
+msgid "Open"
 msgstr "Open"
 
-msgid "Tekrar dene"
+msgid "Retry"
 msgstr "Retry"
 
-msgid "Yeniden sıraya alındı."
+msgid "Queued again."
 msgstr "Queued again."
 
-msgid "Ağda düzenle"
+msgid "Edit on network"
 msgstr "Edit on network"
 
-msgid "Ağdan sil"
+msgid "Delete from network"
 msgstr "Delete from network"
 
-msgid "{n} üzerindeki gönderi silinsin mi?"
+msgid "Delete the post on {n}?"
 msgstr "Delete the post on {n}?"
 
-msgid "Ağdaki gönderi kalıcı olarak silinir."
+msgid "The post on the network is deleted permanently."
 msgstr "The post on the network is deleted permanently."
 
-msgid "Ağdan silindi."
+msgid "Deleted from network."
 msgstr "Deleted from network."
 
-msgid "Etkileşim sayıları günde iki kez güncellenir (son 30 gün)."
+msgid "Engagement numbers are updated twice a day (last 30 days)."
 msgstr "Engagement numbers are updated twice a day (last 30 days)."
 
-msgid "Ağdaki gönderiyi düzenle"
+msgid "Edit post on network"
 msgstr "Edit post on network"
 
-msgid "Değişiklik doğrudan ağdaki gönderiye yazılır."
+msgid "The change is written directly to the post on the network."
 msgstr "The change is written directly to the post on the network."
 
-msgid "Ağda güncellendi."
+msgid "Updated on network."
 msgstr "Updated on network."
 
-msgid "Kaydet"
+msgid "Save"
 msgstr "Save"
 
-msgid "az önce"
+msgid "just now"
 msgstr "just now"
 
-msgid "{n} dk önce"
+msgid "{n} min ago"
 msgstr "{n} min ago"
 
-msgid "{n} sa önce"
+msgid "{n} h ago"
 msgstr "{n} h ago"
 
-msgid "Sunucu hatası ({n})."
+msgid "Server error ({n})."
 msgstr "Server error ({n})."
 
-msgid "Sunucudan beklenmeyen cevap geldi."
+msgid "Unexpected response from the server."
 msgstr "Unexpected response from the server."
 
-msgid "Bir hata oluştu."
+msgid "Something went wrong."
 msgstr "Something went wrong."
 
-msgid "Tamam"
+msgid "OK"
 msgstr "OK"
 
-msgid "Kopyalandı"
+msgid "Copied"
 msgstr "Copied"
 
-msgid "Günlük paylaşım"
+msgid "Daily posts"
 msgstr "Daily posts"
 
-msgid "Paylaşım yok"
-msgstr "No posts"
-
-msgid "Toplam: {n}"
+msgid "Total: {n}"
 msgstr "Total: {n}"
 
-msgid "{n} gün"
+msgid "{n} days"
 msgstr "{n} days"
 
-msgid "Metrikleri şimdi güncelle"
+msgid "Update metrics now"
 msgstr "Update metrics now"
 
-msgid "{n} kayıt güncellendi."
+msgid "{n} records updated."
 msgstr "{n} records updated."
 
-msgid "Henüz hesap bağlı değil. Önce uygulama anahtarlarını girip hesap bağlayın."
+msgid "No accounts connected yet. Enter the app keys first, then connect accounts."
 msgstr "No accounts connected yet. Enter the app keys first, then connect accounts."
 
-msgid "Başarı %{n}"
+msgid "Success {n}%"
 msgstr "Success {n}%"
 
-msgid "son {n} gün"
+msgid "last {n} days"
 msgstr "last {n} days"
 
-msgid "Etkileşim"
+msgid "Engagement"
 msgstr "Engagement"
 
-msgid "beğeni + yorum + paylaşım"
+msgid "likes + comments + shares"
 msgstr "likes + comments + shares"
 
-msgid "Görüntülenme"
+msgid "Views"
 msgstr "Views"
 
-msgid "erişim / gösterim"
+msgid "reach / impressions"
 msgstr "reach / impressions"
 
-msgid "Takipçi"
-msgstr "Followers"
-
-msgid "bu dönemde"
+msgid "this period"
 msgstr "this period"
 
-msgid "değişim yok"
+msgid "no change"
 msgstr "no change"
 
-msgid "{n} onay bekliyor"
+msgid "{n} awaiting approval"
 msgstr "{n} awaiting approval"
 
-msgid "{n} taslak"
+msgid "{n} drafts"
 msgstr "{n} drafts"
 
-msgid "aşağıda ayrıntı"
+msgid "details below"
 msgstr "details below"
 
-msgid "sorun yok"
+msgid "no issues"
 msgstr "no issues"
 
-msgid "Ağ"
+msgid "Network"
 msgstr "Network"
 
-msgid "Paylaşım"
-msgstr "Posts"
-
-msgid "Hata"
+msgid "Errors"
 msgstr "Errors"
 
-msgid "Ağlara göre"
+msgid "By network"
 msgstr "By network"
 
-msgid "Bu dönemde paylaşım yok."
+msgid "No posts in this period."
 msgstr "No posts in this period."
 
-msgid "Takipçi sayıları günde bir toplanır; ilk veri yarın görünür."
+msgid "Follower counts are collected once a day; first data appears tomorrow."
 msgstr "Follower counts are collected once a day; first data appears tomorrow."
 
-msgid "En çok etkileşim alanlar"
+msgid "Top engaging posts"
 msgstr "Top engaging posts"
 
-msgid "Metrikler gönderi yayınlandıktan sonra günde iki kez toplanır."
+msgid "Metrics are collected twice a day after a post is published."
 msgstr "Metrics are collected twice a day after a post is published."
 
-msgid "Yaklaşan paylaşımlar"
+msgid "Upcoming posts"
 msgstr "Upcoming posts"
 
-msgid "Zamanlanmış gönderi yok."
+msgid "No scheduled posts."
 msgstr "No scheduled posts."
 
-msgid "Son hatalar"
+msgid "Recent errors"
 msgstr "Recent errors"
 
-msgid "Hepsi"
-msgstr "All"
-
-msgid "Metrikler son güncelleme: {t}"
+msgid "Metrics last updated: {t}"
 msgstr "Metrics last updated: {t}"
 
-msgid "Metrikler henüz toplanmadı (günde bir, gece)."
+msgid "Metrics not collected yet (once a day, at night)."
 msgstr "Metrics not collected yet (once a day, at night)."
 
-msgid "Genel"
+msgid "General"
 msgstr "General"
 
-msgid "Uygulamalar"
+msgid "Apps"
 msgstr "Apps"
 
-msgid "Ağ ayarları"
+msgid "Network settings"
 msgstr "Network settings"
 
-msgid "Otomatik paylaşım"
+msgid "Auto sharing"
 msgstr "Auto sharing"
 
-msgid "Kayıt"
+msgid "Log"
 msgstr "Log"
 
-msgid "hiç"
+msgid "never"
 msgstr "never"
 
-msgid "Onay ve imza"
+msgid "Approval and signature"
 msgstr "Approval and signature"
 
-msgid "Yayın yetkisi olmayanların gönderisi onaya düşsün"
+msgid "Posts by people without publishing permission go to approval"
 msgstr "Posts by people without publishing permission go to approval"
 
-msgid "Yetkiler Flux Roles’den: Sosyal medya: gönderi hazırla / yayınla / yönet."
+msgid "Permissions come from Flux Roles: Social media: prepare / publish / manage."
 msgstr "Permissions come from Flux Roles: Social media: prepare / publish / manage."
 
-msgid "Site bağlantılarına UTM ekle (utm_source=ağ)"
+msgid "Add UTM to site links (utm_source=network)"
 msgstr "Add UTM to site links (utm_source=network)"
 
-msgid "Hangi ağdan ne kadar ziyaret geldiğini Analytics’te görürsünüz."
+msgid "See how many visits each network brings in Analytics."
 msgstr "See how many visits each network brings in Analytics."
 
-msgid "Hazır imza (oluşturucuda tek tıkla eklenir)"
+msgid "Saved signature (added with one click in the composer)"
 msgstr "Saved signature (added with one click in the composer)"
 
-msgid "İmzayı kaydet"
+msgid "Save signature"
 msgstr "Save signature"
 
-msgid "Zamanlanmış gönderiler"
+msgid "Scheduled posts"
 msgstr "Scheduled posts"
 
-msgid "Hostinger’da WP-Cron güvenilir çalışmadığı için zamanlanmış gönderiler dışarıdan dakikada bir tetiklenmeli. cron-job.org’da (ücretsiz) bu adresi her dakika çağıran bir görev açın. Panel açıkken ve gönderi kaydedince ayrıca kendiliğinden tetiklenir."
+msgid "WP-Cron is unreliable on Hostinger, so scheduled posts should be triggered from outside every minute. Create a job on cron-job.org (free) that calls this URL every minute. It also runs on its own while the panel is open and when a post is saved."
 msgstr "WP-Cron is unreliable on Hostinger, so scheduled posts should be triggered from outside every minute. Create a job on cron-job.org (free) that calls this URL every minute. It also runs on its own while the panel is open and when a post is saved."
 
-msgid "Tetik adresi (gizli tutun)"
+msgid "Trigger URL (keep it secret)"
 msgstr "Trigger URL (keep it secret)"
 
-msgid "Kopyala"
+msgid "Copy"
 msgstr "Copy"
 
-msgid "Yeni anahtar"
+msgid "New key"
 msgstr "New key"
 
-msgid "Anahtar yenilensin mi?"
+msgid "Regenerate the key?"
 msgstr "Regenerate the key?"
 
-msgid "Eski adres çalışmaz; cron-job.org’daki adresi de değiştirmeniz gerekir."
+msgid "The old URL stops working; you must also change the URL on cron-job.org."
 msgstr "The old URL stops working; you must also change the URL on cron-job.org."
 
-msgid "Yenile"
+msgid "Regenerate"
 msgstr "Regenerate"
 
-msgid "Yeni anahtar oluşturuldu."
+msgid "New key created."
 msgstr "New key created."
 
-msgid "Dış tetik"
+msgid "External trigger"
 msgstr "External trigger"
 
-msgid "Arka plan isteği"
+msgid "Background request"
 msgstr "Background request"
 
 msgid "Panel"
 msgstr "Panel"
 
-msgid "Her ağ için kendi geliştirici uygulamanızı açıp anahtarlarını buraya girin. Gizli anahtarlar şifreli saklanır ve bir daha gösterilmez; değiştirmek için yenisini yazın."
+msgid "Create your own developer app for each network and enter its keys here. Secret keys are stored encrypted and never shown again; type a new one to change it."
 msgstr "Create your own developer app for each network and enter its keys here. Secret keys are stored encrypted and never shown again; type a new one to change it."
 
-msgid "Kayıtlı (değiştirmek için yazın)"
+msgid "Saved (type to change)"
 msgstr "Saved (type to change)"
 
-msgid "Girilmedi"
+msgid "Not entered"
 msgstr "Not entered"
 
-msgid "isteğe bağlı"
+msgid "optional"
 msgstr "optional"
 
-msgid "Anahtar silinsin mi?"
+msgid "Delete the key?"
 msgstr "Delete the key?"
 
-msgid "Bu ağdaki hesaplar yeniden bağlanana kadar paylaşım yapamaz."
+msgid "Accounts on this network cannot post until reconnected."
 msgstr "Accounts on this network cannot post until reconnected."
 
-msgid "Kayıtlı anahtarı sil"
+msgid "Delete saved key"
 msgstr "Delete saved key"
 
-msgid "Hazır"
+msgid "Ready"
 msgstr "Ready"
 
-msgid "Anahtar yok"
+msgid "No key"
 msgstr "No key"
 
-msgid "Bağlantı yok"
+msgid "No connection"
 msgstr "No connection"
 
-msgid "Geliştirici konsolunu aç"
+msgid "Open developer console"
 msgstr "Open developer console"
 
-msgid "Yönlendirme (redirect/callback) adresi"
+msgid "Redirect (callback) URL"
 msgstr "Redirect (callback) URL"
 
-msgid "API katmanı"
+msgid "API tier"
 msgstr "API tier"
 
-msgid "Ücretsiz katmanda ayda az sayıda gönderi yazılabilir ve metrikler okunmaz. Ücretli katmanlarda (Basic/Pro ya da kullandıkça öde) metrikler de gelir."
+msgid "On the free tier only a few posts can be written per month and metrics are not read. Paid tiers (Basic/Pro or pay-as-you-go) also return metrics."
 msgstr "On the free tier only a few posts can be written per month and metrics are not read. Paid tiers (Basic/Pro or pay-as-you-go) also return metrics."
 
-msgid "X Premium hesap (uzun gönderi, 25.000 karakter)"
+msgid "X Premium account (long posts, 25,000 characters)"
 msgstr "X Premium account (long posts, 25,000 characters)"
 
-msgid "Aylık gönderi sınırı (0 = sınırsız)"
+msgid "Monthly post limit (0 = unlimited)"
 msgstr "Monthly post limit (0 = unlimited)"
 
-msgid "Bu ay gönderilen: {n}. Sınıra gelince yeni X gönderisi reddedilir (katmanın kotasını aşmamak için)."
+msgid "Sent this month: {n}. When the limit is reached new X posts are refused (to stay within the tier quota)."
 msgstr "Sent this month: {n}. When the limit is reached new X posts are refused (to stay within the tier quota)."
 
-msgid "Taslak (TikTok uygulamasına düşer)"
+msgid "Draft (lands in the TikTok app)"
 msgstr "Draft (lands in the TikTok app)"
 
-msgid "Doğrudan yayın"
+msgid "Direct post"
 msgstr "Direct post"
 
-msgid "Paylaşım kipi"
+msgid "Sharing mode"
 msgstr "Sharing mode"
 
-msgid "Doğrudan yayın için TikTok uygulamanızın denetimden (audit) geçmesi gerekir; geçmeden yayınlanan videolar yalnız size görünür. Taslak kipi denetim gerektirmez."
+msgid "Direct posting requires your TikTok app to pass the audit; until then posted videos are visible only to you. Draft mode needs no audit."
 msgstr "Direct posting requires your TikTok app to pass the audit; until then posted videos are visible only to you. Draft mode needs no audit."
 
-msgid "Sandbox (deneme erişimi)"
+msgid "Sandbox (trial access)"
 msgstr "Sandbox (trial access)"
 
-msgid "Pinterest uygulamanız henüz Standard erişim almadıysa açın; pinler yalnız sandbox’ta oluşur."
+msgid "Turn on if your Pinterest app does not have Standard access yet; pins are created only in the sandbox."
 msgstr "Turn on if your Pinterest app does not have Standard access yet; pins are created only in the sandbox."
 
-msgid "Yönettiğim şirket sayfalarını da getir"
+msgid "Also fetch company pages I manage"
 msgstr "Also fetch company pages I manage"
 
-msgid "Community Management API onayı gerekir. Onay yoksa kapatın; yalnız kişisel profil bağlanır."
+msgid "Requires Community Management API approval. Turn off if not approved; only the personal profile is connected."
 msgstr "Requires Community Management API approval. Turn off if not approved; only the personal profile is connected."
 
-msgid "Graph API sürümü"
+msgid "Graph API version"
 msgstr "Graph API version"
 
-msgid "Meta eski sürümleri iki yılda kapatır; gerekirse buradan yükseltin (ör. v25.0)."
+msgid "Meta retires old versions after two years; upgrade here if needed (e.g. v25.0)."
 msgstr "Meta retires old versions after two years; upgrade here if needed (e.g. v25.0)."
 
-msgid "Varsayılan bağlantı"
+msgid "Default connection"
 msgstr "Default connection"
 
-msgid "varsayılan"
+msgid "default"
 msgstr "default"
 
-msgid "Evolution bağlantısı (Flux Mail)"
+msgid "Evolution connection (Flux Mail)"
 msgstr "Evolution connection (Flux Mail)"
 
-msgid "Flux Mail’de WhatsApp (Evolution) bağlantısı bulunamadı; Flux Chat ayarları kullanılır."
+msgid "No WhatsApp (Evolution) connection found in Flux Mail; Flux Chat settings are used."
 msgstr "No WhatsApp (Evolution) connection found in Flux Mail; Flux Chat settings are used."
 
-msgid "Taslak oluştur (gözden geçirip gönderirim)"
+msgid "Create a draft (I review and send it)"
 msgstr "Create a draft (I review and send it)"
 
-msgid "Kendiliğinden zamanla"
+msgid "Schedule automatically"
 msgstr "Schedule automatically"
 
-msgid "Sitede yazı yayınlanınca paylaş"
+msgid "Share when a post is published on the site"
 msgstr "Share when a post is published on the site"
 
-msgid "Açık"
+msgid "On"
 msgstr "On"
 
-msgid "Hangi içerik türleri"
+msgid "Which content types"
 msgstr "Which content types"
 
-msgid "Hangi hesaplar"
+msgid "Which accounts"
 msgstr "Which accounts"
 
-msgid "Önce hesap bağlayın."
+msgid "Connect an account first."
 msgstr "Connect an account first."
 
-msgid "Metin şablonu"
+msgid "Text template"
 msgstr "Text template"
 
-msgid "Kullanılabilir: {title} {excerpt} {link} {site} {author} {category} {tags}. Bağlantı ağın önizleme kartını oluşturur."
+msgid "Available: {title} {excerpt} {link} {site} {author} {category} {tags}. The link creates the network's preview card."
 msgstr "Available: {title} {excerpt} {link} {site} {author} {category} {tags}. The link creates the network's preview card."
 
-msgid "Öne çıkan görseli ekle"
+msgid "Add the featured image"
 msgstr "Add the featured image"
 
-msgid "Ne yapılsın"
+msgid "What to do"
 msgstr "What to do"
 
-msgid "Kaç dakika sonra paylaşılsın (zamanla seçiliyse)"
+msgid "Share after how many minutes (if scheduling)"
 msgstr "Share after how many minutes (if scheduling)"
 
-msgid "Her yazı için bir kez çalışır. Ağ kuralına uymayan hesaplar (ör. görselsiz Instagram) taslakta kalır."
+msgid "Runs once per post. Accounts that break a network rule (e.g. Instagram without an image) stay as drafts."
 msgstr "Runs once per post. Accounts that break a network rule (e.g. Instagram without an image) stay as drafts."
 
-msgid "Son 200 kayıt (45 gün saklanır)."
+msgid "Last 200 entries (kept for 45 days)."
 msgstr "Last 200 entries (kept for 45 days)."
 
-msgid "Kayıt yok."
+msgid "No entries."
 msgstr "No entries."
 
-msgid "Sosyal Medya için JavaScript gerekli."
+msgid "Social Media requires JavaScript."
 msgstr "Social Media requires JavaScript."
 
-msgid "Flux AI & MCP kurulu değil ya da anahtar girilmemiş."
+msgid "Flux AI & MCP is not installed or no key has been entered."
 msgstr "Flux AI & MCP is not installed or no key has been entered."
 
-msgid "AI cevabı okunamadı, tekrar deneyin."
+msgid "Could not read the AI response, please try again."
 msgstr "Could not read the AI response, please try again."
 
-msgid "Sosyal medya"
+msgid "Social media"
 msgstr "Social media"
 
-msgid "Veritabanı tabloları"
+msgid "Database tables"
 msgstr "Database tables"
 
-msgid "Eksik tablo: %s. Eklentiyi devre dışı bırakıp yeniden etkinleştirin."
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
 msgstr "Missing table: %s. Deactivate and reactivate the plugin."
 
-msgid "Tablolar hazır."
+msgid "Tables are ready."
 msgstr "Tables are ready."
 
-msgid "Anahtar şifreleme"
+msgid "Key encryption"
 msgstr "Key encryption"
 
-msgid "Anahtarlar ve belirteçler şifreli saklanıyor (sodium)."
+msgid "Keys and tokens are stored encrypted (sodium)."
 msgstr "Keys and tokens are stored encrypted (sodium)."
 
-msgid "PHP sodium uzantısı kapalı; anahtarlar daha zayıf yöntemle saklanıyor. Hostinger › PHP uzantılarından sodium’u açın."
+msgid "The PHP sodium extension is off; keys are stored with a weaker method. Turn on sodium under Hostinger › PHP extensions."
 msgstr "The PHP sodium extension is off; keys are stored with a weaker method. Turn on sodium under Hostinger › PHP extensions."
 
-msgid "Ağ uygulamaları"
+msgid "Network apps"
 msgstr "Network apps"
 
-msgid "Anahtarı girilmiş: %s."
+msgid "Keys entered: %s."
 msgstr "Keys entered: %s."
 
-msgid "Hiçbir ağın uygulama anahtarı girilmemiş. Sosyal Medya › Ayarlar › Uygulamalar."
+msgid "No network app keys entered. Social Media › Settings › Apps."
 msgstr "No network app keys entered. Social Media › Settings › Apps."
 
-msgid "Bağlı hesaplar"
+msgid "Connected accounts"
 msgstr "Connected accounts"
 
-msgid "Henüz hesap bağlanmadı."
+msgid "No accounts connected yet."
 msgstr "No accounts connected yet."
 
-msgid "Yeniden bağlanması gereken hesap: %s."
+msgid "Accounts that need reconnecting: %s."
 msgstr "Accounts that need reconnecting: %s."
 
-msgid "%d hesap bağlı ve etkin."
+msgid "%d accounts connected and active."
 msgstr "%d accounts connected and active."
 
-msgid "Dışarıdan dakikalık tetik çalışıyor."
+msgid "External per-minute trigger is running."
 msgstr "External per-minute trigger is running."
 
-msgid "%d gönderi 5 dakikadan uzun süredir sırasını bekliyor. Ayarlar › Genel’deki tetik adresini cron-job.org’a (her dakika) ekleyin."
+msgid "%d posts have been waiting for more than 5 minutes. Add the trigger URL from Settings › General to cron-job.org (every minute)."
 msgstr "%d posts have been waiting for more than 5 minutes. Add the trigger URL from Settings › General to cron-job.org (every minute)."
 
-msgid "Gönderiler WP-Cron ve arka plan isteğiyle işleniyor; zamanında çıkması için Ayarlar › Genel’deki tetik adresini cron-job.org’a (her dakika) eklemeniz önerilir."
+msgid "Posts are processed via WP-Cron and background requests; to publish on time, adding the trigger URL from Settings › General to cron-job.org (every minute) is recommended."
 msgstr "Posts are processed via WP-Cron and background requests; to publish on time, adding the trigger URL from Settings › General to cron-job.org (every minute) is recommended."
 
-msgid "Tetik henüz hiç çalışmadı. Ayarlar › Genel’deki tetik adresini cron-job.org’a (her dakika) ekleyin."
+msgid "The trigger has never run. Add the trigger URL from Settings › General to cron-job.org (every minute)."
 msgstr "The trigger has never run. Add the trigger URL from Settings › General to cron-job.org (every minute)."
 
-msgid "Arka plan isteği hatası:"
+msgid "Background request error:"
 msgstr "Background request error:"
 
-msgid "Başarısız paylaşımlar"
+msgid "Failed shares"
 msgstr "Failed shares"
 
-msgid "Son 7 günde %d paylaşım başarısız. Gönderiler › Başarısız."
+msgid "%d shares failed in the last 7 days. Posts › Failed."
 msgstr "%d shares failed in the last 7 days. Posts › Failed."
 
-msgid "Son 7 günde başarısız paylaşım yok."
+msgid "No failed shares in the last 7 days."
 msgstr "No failed shares in the last 7 days."
 
-msgid "Medya adresleri"
+msgid "Media URLs"
 msgstr "Media URLs"
 
-msgid "Instagram, TikTok ve Facebook görselleri sitenin HTTPS adresinden çeker."
+msgid "Instagram, TikTok and Facebook fetch images from the site's HTTPS address."
 msgstr "Instagram, TikTok and Facebook fetch images from the site's HTTPS address."
 
-msgid "Site HTTPS değil; Instagram/TikTok/Facebook görsel ve videoları çekemez."
+msgid "The site is not HTTPS; Instagram/TikTok/Facebook cannot fetch images and videos."
 msgstr "The site is not HTTPS; Instagram/TikTok/Facebook cannot fetch images and videos."
 
-msgid "Dosya klasörü"
+msgid "Files folder"
 msgstr "Files folder"
 
-msgid "wp-content/uploads/flxsm yazılabilir (Instagram için JPEG kopyalar)."
+msgid "wp-content/uploads/flxsm is writable (JPEG copies for Instagram)."
 msgstr "wp-content/uploads/flxsm is writable (JPEG copies for Instagram)."
 
-msgid "wp-content/uploads/flxsm yazılamıyor; PNG/WebP görseller Instagram’a gönderilemez."
+msgid "wp-content/uploads/flxsm is not writable; PNG/WebP images cannot be sent to Instagram."
 msgstr "wp-content/uploads/flxsm is not writable; PNG/WebP images cannot be sent to Instagram."
 
-msgid "AI yazım yardımı"
+msgid "AI writing help"
 msgstr "AI writing help"
 
-msgid "Flux AI hazır: metin yazma, kısaltma, ağlara uyarlama."
+msgid "Flux AI ready: writing, shortening, adapting to networks."
 msgstr "Flux AI ready: writing, shortening, adapting to networks."
 
-msgid "Flux AI & MCP kurulu değil ya da anahtar yok; AI düğmeleri gizlenir, paylaşım çalışır."
+msgid "Flux AI & MCP is not installed or has no key; AI buttons are hidden, sharing still works."
 msgstr "Flux AI & MCP is not installed or has no key; AI buttons are hidden, sharing still works."
 
-msgid "Hesap ya da gönderi bulunamadı."
+msgid "Account or post not found."
 msgstr "Account or post not found."
 
-msgid "Hesap kapalı."
+msgid "Account is off."
 msgstr "Account is off."
 
-msgid "Bağlantının süresi dolmuş; Hesaplar’dan yeniden bağlayın."
+msgid "The connection expired; reconnect it under Accounts."
 msgstr "The connection expired; reconnect it under Accounts."
 
-msgid "Gönderi yayınlandı ama ilk yorum eklenemedi: %s"
+msgid "The post was published but the first comment could not be added: %s"
 msgstr "The post was published but the first comment could not be added: %s"
 
-msgid "Yalnız başarısız hedef yeniden denenir."
+msgid "Only a failed target can be retried."
 msgstr "Only a failed target can be retried."
 
-msgid "Bu hedef ağda yayınlanmış değil."
+msgid "This target is not published on the network."
 msgstr "This target is not published on the network."
 
-msgid "Hesap bulunamadı."
+msgid "Account not found."
 msgstr "Account not found."
 
-msgid "Sosyal medya: gönderi hazırla"
+msgid "Social media: prepare posts"
 msgstr "Social media: prepare posts"
 
-msgid "Sosyal medya: yayınla ve onayla"
+msgid "Social media: publish and approve"
 msgstr "Social media: publish and approve"
 
-msgid "Sosyal medya: hesaplar ve ayarlar"
+msgid "Social media: accounts and settings"
 msgstr "Social media: accounts and settings"
 
-msgid "Bilinmeyen ağ."
+msgid "Unknown network."
 msgstr "Unknown network."
 
-msgid "Bağlantı oturumu bulunamadı ya da süresi doldu; yeniden deneyin."
+msgid "Connection session not found or expired; please try again."
 msgstr "Connection session not found or expired; please try again."
 
-msgid "Seçim listesinin süresi doldu; yeniden bağlayın."
+msgid "The selection list expired; please reconnect."
 msgstr "The selection list expired; please reconnect."
 
-msgid "Login for Business yapılandırma kimliği (isteğe bağlı)"
+msgid "Login for Business configuration ID (optional)"
 msgstr "Login for Business configuration ID (optional)"
 
-msgid "developers.facebook.com › Uygulama oluştur (İşletme türü) › Facebook Girişi ürünü › Geçerli OAuth yönlendirme adresine aşağıdaki adresi ekleyin. Kendi sayfalarınız için uygulamada yönetici/geliştirici olmanız yeterli; App Review gerekmez. Instagram profesyonel hesabı bir Facebook sayfasına bağlıysa aynı girişle gelir."
+msgid "developers.facebook.com › Create app (Business type) › Facebook Login product › add the address below to Valid OAuth redirect URIs. For your own pages being an admin/developer of the app is enough; no App Review needed. An Instagram professional account linked to a Facebook page comes with the same login."
 msgstr "developers.facebook.com › Create app (Business type) › Facebook Login product › add the address below to Valid OAuth redirect URIs. For your own pages being an admin/developer of the app is enough; no App Review needed. An Instagram professional account linked to a Facebook page comes with the same login."
 
-msgid "Facebook sayfası (+ bağlı Instagram)"
+msgid "Facebook page (+ linked Instagram)"
 msgstr "Facebook page (+ linked Instagram)"
 
-msgid "Instagram girişi (Facebook sayfası olmadan)"
+msgid "Instagram login (without a Facebook page)"
 msgstr "Instagram login (without a Facebook page)"
 
-msgid "Meta uygulamasına \"Instagram\" ürününü ekleyin (API setup with Instagram login). Ürün sayfasındaki Instagram App ID/Secret buraya; yönlendirme adresi aşağıda. Hesap İşletme ya da İçerik üretici olmalı."
+msgid "Add the \"Instagram\" product to the Meta app (API setup with Instagram login). Put the Instagram App ID/Secret from the product page here; the redirect URL is below. The account must be Business or Creator."
 msgstr "Add the \"Instagram\" product to the Meta app (API setup with Instagram login). Put the Instagram App ID/Secret from the product page here; the redirect URL is below. The account must be Business or Creator."
 
-msgid "Instagram (Instagram girişi)"
+msgid "Instagram (Instagram login)"
 msgstr "Instagram (Instagram login)"
 
-msgid "Google Cloud › API’ler: YouTube Data API v3 (ve İşletme için My Business Account Management, Business Information, Google My Business API) etkinleştirin › OAuth istemcisi (Web uygulaması) › Yetkili yönlendirme adresi aşağıda. Denetlenmemiş projede YouTube’a yüklenen videolar \"Özel\" kalır; herkese açık için Google API denetimine başvurun. İşletme Profili API’si için Google’dan erişim onayı gerekir."
+msgid "Google Cloud › APIs: enable YouTube Data API v3 (and for Business: My Business Account Management, Business Information, Google My Business API) › OAuth client (Web application) › authorized redirect URL below. In an unaudited project videos uploaded to YouTube stay \"Private\"; apply for the Google API audit to make them public. The Business Profile API requires access approval from Google."
 msgstr "Google Cloud › APIs: enable YouTube Data API v3 (and for Business: My Business Account Management, Business Information, Google My Business API) › OAuth client (Web application) › authorized redirect URL below. In an unaudited project videos uploaded to YouTube stay \"Private\"; apply for the Google API audit to make them public. The Business Profile API requires access approval from Google."
 
-msgid "YouTube kanalı"
+msgid "YouTube channel"
 msgstr "YouTube channel"
 
-msgid "Google İşletme konumu"
+msgid "Google Business location"
 msgstr "Google Business location"
 
-msgid "developer.x.com › Proje › Uygulama › User authentication settings: izin \"Read and write\", tür \"Web App\", Callback URI aşağıdaki adres. Keys and tokens bölümündeki API Key ve Secret buraya. Katmanı aşağıdan seçin (ücretsiz katmanda yazma sınırı düşüktür, metrikler okunmaz)."
+msgid "developer.x.com › Project › App › User authentication settings: permission \"Read and write\", type \"Web App\", Callback URI the address below. Put the API Key and Secret from Keys and tokens here. Choose the tier below (the free tier has a low write limit and metrics are not read)."
 msgstr "developer.x.com › Project › App › User authentication settings: permission \"Read and write\", type \"Web App\", Callback URI the address below. Put the API Key and Secret from Keys and tokens here. Choose the tier below (the free tier has a low write limit and metrics are not read)."
 
-msgid "X hesabı"
+msgid "X account"
 msgstr "X account"
 
-msgid "API sürümü (YYYYAA)"
+msgid "API version (YYYYMM)"
 msgstr "API version (YYYYMM)"
 
-msgid "linkedin.com/developers › Uygulama (dernek sayfasına bağlı) › Products: \"Sign In with LinkedIn using OpenID Connect\" ve \"Share on LinkedIn\" (kişisel); şirket sayfası için \"Community Management API\" (onay gerekir). Auth › Authorized redirect URL aşağıda."
+msgid "linkedin.com/developers › App (linked to the organization page) › Products: \"Sign In with LinkedIn using OpenID Connect\" and \"Share on LinkedIn\" (personal); for company pages \"Community Management API\" (needs approval). Auth › Authorized redirect URL below."
 msgstr "linkedin.com/developers › App (linked to the organization page) › Products: \"Sign In with LinkedIn using OpenID Connect\" and \"Share on LinkedIn\" (personal); for company pages \"Community Management API\" (needs approval). Auth › Authorized redirect URL below."
 
-msgid "LinkedIn profil / sayfa"
+msgid "LinkedIn profile / page"
 msgstr "LinkedIn profile / page"
 
-msgid "developers.tiktok.com › Uygulama › Login Kit + Content Posting API ekleyin, Redirect URI aşağıda. Denetim (audit) yoksa \"Taslak\" modu önerilir: video TikTok uygulamasına düşer, oradan yayınlanır. Fotoğraf paylaşımı için site alan adını TikTok’ta doğrulayın (URL properties)."
+msgid "developers.tiktok.com › App › add Login Kit + Content Posting API, Redirect URI below. Without the audit \"Draft\" mode is recommended: the video lands in the TikTok app and is published from there. For photo posts verify the site domain in TikTok (URL properties)."
 msgstr "developers.tiktok.com › App › add Login Kit + Content Posting API, Redirect URI below. Without the audit \"Draft\" mode is recommended: the video lands in the TikTok app and is published from there. For photo posts verify the site domain in TikTok (URL properties)."
 
-msgid "TikTok hesabı"
+msgid "TikTok account"
 msgstr "TikTok account"
 
-msgid "developers.pinterest.com › Uygulama › Redirect URI aşağıda. Deneme (trial) erişiminde yalnız sandbox çalışır; Standard erişim için başvurun."
+msgid "developers.pinterest.com › App › Redirect URI below. Trial access works only in the sandbox; apply for Standard access."
 msgstr "developers.pinterest.com › App › Redirect URI below. Trial access works only in the sandbox; apply for Standard access."
 
-msgid "Pinterest hesabı"
+msgid "Pinterest account"
 msgstr "Pinterest account"
 
-msgid "Evolution bağlantısı Flux Mail’den (ya da Flux Chat’nden) gelir; burada anahtar girilmez. Durum ve gruplara paylaşım yapılır."
+msgid "The Evolution connection comes from Flux Mail (or Flux Chat); no key is entered here. Shares go to Status and groups."
 msgstr "The Evolution connection comes from Flux Mail (or Flux Chat); no key is entered here. Shares go to Status and groups."
 
-msgid "WhatsApp Durum / grup"
+msgid "WhatsApp Status / group"
 msgstr "WhatsApp Status / group"
 
-msgid "Bilinmeyen uygulama."
+msgid "Unknown app."
 msgstr "Unknown app."
 
-msgid "Giriş gerekli."
+msgid "Login required."
 msgstr "Login required."
 
-msgid "Sosyal medya için yetkiniz yok."
+msgid "You do not have social media permission."
 msgstr "You do not have social media permission."
 
-msgid "Bu işlem için yetkiniz yok."
+msgid "You do not have permission for this action."
 msgstr "You do not have permission for this action."
 
-msgid "Kayıt bulunamadı."
+msgid "Record not found."
 msgstr "Record not found."
 
-msgid "Bu gönderiyi değiştiremezsiniz."
+msgid "You cannot change this post."
 msgstr "You cannot change this post."
 
-msgid "Bu gönderiyi silemezsiniz."
+msgid "You cannot delete this post."
 msgstr "You cannot delete this post."
 
-msgid "Bazı ağlarda silinemedi; gönderi listede kaldı."
+msgid "Could not delete on some networks; the post stays in the list."
 msgstr "Could not delete on some networks; the post stays in the list."
 
-msgid "%s (kopya)"
+msgid "%s (copy)"
 msgstr "%s (copy)"
 
-msgid "Dosya yükleme yetkiniz yok."
+msgid "You do not have permission to upload files."
 msgstr "You do not have permission to upload files."
 
-msgid "Dosya gelmedi."
+msgid "No file received."
 msgstr "No file received."
 
-msgid "Hesap kaldırıldı."
+msgid "Account removed."
 msgstr "Account removed."
 
-msgid "(silinmiş hesap)"
+msgid "(deleted account)"
 msgstr "(deleted account)"
 
-msgid "Gönderi bulunamadı."
+msgid "Post not found."
 msgstr "Post not found."
 
-msgid "Bilinmeyen işlem."
+msgid "Unknown action."
 msgstr "Unknown action."
 
-msgid "%s: bağlantının süresi dolmuş, Hesaplar’dan yeniden bağlayın."
+msgid "%s: the connection expired, reconnect it under Accounts."
 msgstr "%s: the connection expired, reconnect it under Accounts."
 
-msgid "Metin en çok %1$d karakter olabilir (şu an %2$d)."
+msgid "Text can be at most %1$d characters (currently %2$d)."
 msgstr "Text can be at most %1$d characters (currently %2$d)."
 
-msgid "Bu ağ için görsel ya da video gerekli."
-msgstr "This network requires an image or video."
-
-msgid "Bu ağ GIF kabul etmiyor; görsel ya da video kullanın."
+msgid "This network does not accept GIFs; use an image or video."
 msgstr "This network does not accept GIFs; use an image or video."
 
-msgid "En çok %d görsel."
+msgid "At most %d images."
 msgstr "At most %d images."
 
-msgid "En çok %d video."
+msgid "At most %d videos."
 msgstr "At most %d videos."
 
-msgid "Görsel ve video aynı gönderide birlikte kullanılamaz."
+msgid "Images and video cannot be used together in one post."
 msgstr "Images and video cannot be used together in one post."
 
-msgid "Medya dosyaları herkese açık https adresinden erişilebilir olmalı."
+msgid "Media files must be reachable at a public https address."
 msgstr "Media files must be reachable at a public https address."
 
-msgid "Bu ağ OAuth ile bağlanmıyor."
+msgid "This network does not connect via OAuth."
 msgstr "This network does not connect via OAuth."
 
-msgid "Bağlantının süresi doldu, yeniden bağlayın."
+msgid "The connection expired, please reconnect."
 msgstr "The connection expired, please reconnect."
 
-msgid "Bu ağ yayınlanmış gönderiyi düzenlemeye izin vermiyor."
+msgid "This network does not allow editing a published post."
 msgstr "This network does not allow editing a published post."
 
-msgid "Bu ağ gönderiyi API ile silmeye izin vermiyor; uygulamadan silin."
+msgid "This network does not allow deleting posts via the API; delete it in the app."
 msgstr "This network does not allow deleting posts via the API; delete it in the app."
 
-msgid "Bu ağda ilk yorum desteklenmiyor."
+msgid "First comment is not supported on this network."
 msgstr "First comment is not supported on this network."
 
-msgid "Önce Ayarlar › Uygulamalar bölümünde bu ağın anahtarlarını girin."
+msgid "First enter this network's keys under Settings › Apps."
 msgstr "First enter this network's keys under Settings › Apps."
 
-msgid "YouTube için bir video seçin."
+msgid "Choose a video for YouTube."
 msgstr "Choose a video for YouTube."
 
-msgid "YouTube başlığı en çok 100 karakter."
+msgid "YouTube title can be at most 100 characters."
 msgstr "YouTube title can be at most 100 characters."
 
-msgid "YouTube başlık ve açıklamada < ve > karakterlerini kabul etmiyor."
+msgid "YouTube does not accept < and > in the title and description."
 msgstr "YouTube does not accept < and > in the title and description."
 
-msgid "Bu Google hesabında YouTube kanalı yok."
+msgid "This Google account has no YouTube channel."
 msgstr "This Google account has no YouTube channel."
 
-msgid "Video dosyası sunucuda bulunamadı."
+msgid "Video file not found on the server."
 msgstr "Video file not found on the server."
 
-msgid "Video dosyası okunamadı."
+msgid "Could not read the video file."
 msgstr "Could not read the video file."
 
-msgid "Video YouTube’da bulunamadı."
+msgid "Video not found on YouTube."
 msgstr "Video not found on YouTube."
 
-msgid "Etkinlik/teklif gönderisi için başlık ve başlangıç tarihi gerekli."
+msgid "An event/offer post needs a title and a start date."
 msgstr "An event/offer post needs a title and a start date."
 
-msgid "İşletme hesapları alınamadı (Google’ın Business Profile API erişim onayı gerekir)"
+msgid "Could not get business accounts (requires Google's Business Profile API access approval)"
 msgstr "Could not get business accounts (requires Google's Business Profile API access approval)"
 
-msgid "Bu Google hesabında yönetilen işletme konumu bulunamadı."
+msgid "No managed business location found on this Google account."
 msgstr "No managed business location found on this Google account."
 
-msgid "LinkedIn videoyu işleyemedi."
+msgid "LinkedIn could not process the video."
 msgstr "LinkedIn could not process the video."
 
-msgid "LinkedIn video işlemesi uzun sürdü."
+msgid "LinkedIn video processing took too long."
 msgstr "LinkedIn video processing took too long."
 
-msgid "Yönettiğiniz Facebook sayfası bulunamadı. Girişte sayfaları seçtiğinizden emin olun."
+msgid "No Facebook page you manage was found. Make sure you selected the pages during login."
 msgstr "No Facebook page you manage was found. Make sure you selected the pages during login."
 
-msgid "Hikâyede tek görsel ya da video olur."
+msgid "A story has a single image or video."
 msgstr "A story has a single image or video."
 
-msgid "Instagram en çok 30 hashtag kabul ediyor."
+msgid "Instagram accepts at most 30 hashtags."
 msgstr "Instagram accepts at most 30 hashtags."
 
-msgid "Instagram akış görseli en-boy oranı 4:5 ile 1.91:1 arasında olmalı (hikâye hariç)."
+msgid "Instagram feed image aspect ratio must be between 4:5 and 1.91:1 (except stories)."
 msgstr "Instagram feed image aspect ratio must be between 4:5 and 1.91:1 (except stories)."
 
-msgid "Önce Ayarlar › Uygulamalar › Instagram girişi anahtarlarını girin."
+msgid "First enter the keys under Settings › Apps › Instagram login."
 msgstr "First enter the keys under Settings › Apps › Instagram login."
 
-msgid "Instagram carousel öğesini işleyemedi (biçim/boyut uygun değil)."
+msgid "Instagram could not process a carousel item (format/size not suitable)."
 msgstr "Instagram could not process a carousel item (format/size not suitable)."
 
-msgid "Instagram medyayı işleyemedi. Video: MP4 (H.264/AAC), 3–90 sn (Reels 15 dk), en çok 1 GB; görsel: JPEG, en çok 8 MB."
+msgid "Instagram could not process the media. Video: MP4 (H.264/AAC), 3–90 s (Reels 15 min), up to 1 GB; image: JPEG, up to 8 MB."
 msgstr "Instagram could not process the media. Video: MP4 (H.264/AAC), 3–90 s (Reels 15 min), up to 1 GB; image: JPEG, up to 8 MB."
 
-msgid "Instagram video işlemesi 30 dakikada bitmedi."
+msgid "Instagram video processing did not finish in 30 minutes."
 msgstr "Instagram video processing did not finish in 30 minutes."
 
-msgid "Pinterest başlığı en çok 100 karakter."
+msgid "Pinterest title can be at most 100 characters."
 msgstr "Pinterest title can be at most 100 characters."
 
-msgid "Pinterest videoyu işleyemedi."
+msgid "Pinterest could not process the video."
 msgstr "Pinterest could not process the video."
 
-msgid "Pinterest video işlemesi uzun sürdü."
+msgid "Pinterest video processing took too long."
 msgstr "Pinterest video processing took too long."
 
-msgid "TikTok uygulaması henüz denetlenmediği için yalnız \"Sadece ben\" görünürlüğü kullanılabilir."
+msgid "Because the TikTok app has not been audited yet, only \"Only me\" visibility can be used."
 msgstr "Because the TikTok app has not been audited yet, only \"Only me\" visibility can be used."
 
-msgid "Taslak TikTok uygulamasına gönderildi; uygulamadaki bildirimden yayınlayın."
+msgid "Draft sent to the TikTok app; publish it from the notification in the app."
 msgstr "Draft sent to the TikTok app; publish it from the notification in the app."
 
-msgid "TikTok işlemesi uzun sürdü; TikTok uygulamasından kontrol edin."
+msgid "TikTok processing took too long; check in the TikTok app."
 msgstr "TikTok processing took too long; check in the TikTok app."
 
-msgid "WhatsApp bağlantısı yok. Flux Mail ya da Flux Chat’nde Evolution bağlantısı kurun."
+msgid "No WhatsApp connection. Set up an Evolution connection in Flux Mail or Flux Chat."
 msgstr "No WhatsApp connection. Set up an Evolution connection in Flux Mail or Flux Chat."
 
-msgid "WhatsApp Durum"
+msgid "WhatsApp Status"
 msgstr "WhatsApp Status"
 
-msgid "Free (ücretsiz, düşük yazma sınırı, metrik yok)"
+msgid "Free (no cost, low write limit, no metrics)"
 msgstr "Free (no cost, low write limit, no metrics)"
 
-msgid "Basic (aylık ücretli)"
+msgid "Basic (paid monthly)"
 msgstr "Basic (paid monthly)"
 
-msgid "Pro (aylık ücretli)"
+msgid "Pro (paid monthly)"
 msgstr "Pro (paid monthly)"
 
-msgid "Pay-as-you-go (kullandıkça öde)"
+msgid "Pay-as-you-go"
 msgstr "Pay-as-you-go"
 
-msgid "X: video ya da GIF tek başına paylaşılır."
+msgid "X: a video or GIF is shared on its own."
 msgstr "X: a video or GIF is shared on its own."
 
-msgid "X için ayarlanan aylık %d gönderi sınırı doldu."
+msgid "The monthly limit of %d posts set for X has been reached."
 msgstr "The monthly limit of %d posts set for X has been reached."
 
-msgid "Önce Ayarlar › Uygulamalar › X bölümüne API Key ve API Key Secret girin."
+msgid "First enter the API Key and API Key Secret under Settings › Apps › X."
 msgstr "First enter the API Key and API Key Secret under Settings › Apps › X."
 
-msgid "Bağlantı reddedildi."
+msgid "Connection refused."
 msgstr "Connection refused."
 
-msgid "Medya dosyası okunamadı."
+msgid "Could not read the media file."
 msgstr "Could not read the media file."
 
-msgid "video işlenemedi"
+msgid "video could not be processed"
 msgstr "video could not be processed"
+
+msgid "Nothing this month"
+msgstr "Nothing this month"
+
+msgid "Delete this post?"
+msgstr "Delete this post?"
+
+msgid "Search posts"
+msgstr "Search posts"
+
+msgid "Account enabled"
+msgstr "Account enabled"
+
+msgid "Open the panel to connect an account."
+msgstr "Open the panel to connect an account."
+
+msgid "Account disabled"
+msgstr "Account disabled"
+
+msgid "No accounts"
+msgstr "No accounts"
+
+msgid "Note"
+msgstr "Note"
+
+msgid "Review"
+msgstr "Review"
+
+msgid "Approved"
+msgstr "Approved"
+
+msgid "Open in panel"
+msgstr "Open in panel"
+
+msgid "Deleted"
+msgstr "Deleted"
+
+msgid "New posts are composed in the media composer."
+msgstr "New posts are composed in the media composer."
+
+msgid "Scheduled and published posts show up here."
+msgstr "Scheduled and published posts show up here."
+
+msgid "[['Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.', 'tr']]"
+msgstr "[['Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.', 'tr']]"

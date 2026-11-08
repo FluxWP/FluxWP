@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Migrate
  * Description:       Eski paket adlarıyla kaydedilmiş site verilerini (ayarlar, tablolar, meta, içerik, tema, yükleme klasörleri) FluxWP adlarına taşır. Ad eşlemesi map.json'dadır.
- * Version:           0.1.6
+ * Version:           0.1.7
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -15,9 +15,10 @@
 
 defined( 'ABSPATH' ) || exit;
 
+require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLX_MIGRATE_VERSION', '0.1.6' );
+define( 'FLX_MIGRATE_VERSION', '0.1.7' );
 define( 'FLX_MIGRATE_DIR', __DIR__ );
 
 require_once __DIR__ . '/includes/class-mapper.php';
@@ -66,39 +67,39 @@ function flx_migrate_cleanup_section() {
 	$items = flx_migrate_cleanup()->scan();
 	$res   = get_transient( 'flx_migrate_cleanup_' . get_current_user_id() );
 	$names = array(
-		'table'   => __( 'Eski tablolar', 'flx-migrate' ),
-		'backup'  => __( 'Yedek tablolar (yeni eklentilerin örnek verisi)', 'flx-migrate' ),
-		'upload'  => __( 'Eski yükleme klasörleri', 'flx-migrate' ),
-		'plugin'  => __( 'Eski eklentiler (etkin olmayan)', 'flx-migrate' ),
-		'theme'   => __( 'Eski temalar', 'flx-migrate' ),
-		'options' => __( 'Eski ayarlar', 'flx-migrate' ),
+		'table'   => __( 'Old tables', 'flx-migrate' ),
+		'backup'  => __( 'Backup tables (sample data of the new plugins)', 'flx-migrate' ),
+		'upload'  => __( 'Old upload folders', 'flx-migrate' ),
+		'plugin'  => __( 'Old plugins (inactive)', 'flx-migrate' ),
+		'theme'   => __( 'Old themes', 'flx-migrate' ),
+		'options' => __( 'Old settings', 'flx-migrate' ),
 	);
 	?>
-	<h2 style="margin-top:32px"><?php esc_html_e( 'Eski kalıntılar', 'flx-migrate' ); ?></h2>
+	<h2 style="margin-top:32px"><?php esc_html_e( 'Leftovers', 'flx-migrate' ); ?></h2>
 	<?php if ( is_array( $res ) ) : ?>
 		<?php delete_transient( 'flx_migrate_cleanup_' . get_current_user_id() ); ?>
 		<div class="notice <?php echo $res[1] ? 'notice-warning' : 'notice-success'; ?> inline"><p>
 			<?php
 			/* translators: %d: sayı */
-			echo esc_html( sprintf( __( '%d öğe silindi.', 'flx-migrate' ), (int) $res[0] ) );
+			echo esc_html( sprintf( __( '%d items deleted.', 'flx-migrate' ), (int) $res[0] ) );
 			if ( $res[1] ) {
-				echo ' ' . esc_html__( 'Silinemeyenler:', 'flx-migrate' ) . ' ' . esc_html( implode( ', ', (array) $res[1] ) );
+				echo ' ' . esc_html__( 'Could not delete:', 'flx-migrate' ) . ' ' . esc_html( implode( ', ', (array) $res[1] ) );
 			}
 			?>
 		</p></div>
 	<?php endif; ?>
 	<?php if ( ! $items ) : ?>
-		<p><?php esc_html_e( 'Eski adlı tablo, klasör, eklenti veya ayar kalmadı.', 'flx-migrate' ); ?></p>
+		<p><?php esc_html_e( 'No tables, folders, plugins or settings with old names are left.', 'flx-migrate' ); ?></p>
 		<?php
 		return;
 	endif;
 	?>
-	<p><?php esc_html_e( 'Aktarımdan sonra eski adlarla kalanlar. Sitenin yeni eklentilerle düzgün çalıştığını kontrol ettikten sonra silin; silme geri alınamaz, önce yedek alın.', 'flx-migrate' ); ?></p>
-	<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" onsubmit="return confirm(<?php echo esc_attr( wp_json_encode( __( 'Seçilenler kalıcı olarak silinecek. Yedek aldınız mı?', 'flx-migrate' ) ) ); ?>);">
+	<p><?php esc_html_e( 'What is left under the old names after the migration. Delete it once you have checked that the site works with the new plugins; deleting cannot be undone, take a backup first.', 'flx-migrate' ); ?></p>
+	<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" onsubmit="return confirm(<?php echo esc_attr( wp_json_encode( __( 'The selected items will be deleted permanently. Did you take a backup?', 'flx-migrate' ) ) ); ?>);">
 		<input type="hidden" name="action" value="flx_migrate_cleanup">
 		<?php wp_nonce_field( 'flx_migrate_cleanup' ); ?>
 		<table class="widefat striped" style="max-width:720px">
-			<thead><tr><td class="check-column"><input type="checkbox" onclick="document.querySelectorAll('.flx-migrate-c').forEach(function(c){c.checked=this.checked}.bind(this))"></td><th><?php esc_html_e( 'Ne', 'flx-migrate' ); ?></th><th><?php esc_html_e( 'Ayrıntı', 'flx-migrate' ); ?></th></tr></thead>
+			<thead><tr><td class="check-column"><input type="checkbox" onclick="document.querySelectorAll('.flx-migrate-c').forEach(function(c){c.checked=this.checked}.bind(this))"></td><th><?php esc_html_e( 'What', 'flx-migrate' ); ?></th><th><?php esc_html_e( 'Details', 'flx-migrate' ); ?></th></tr></thead>
 			<tbody>
 			<?php
 			$last = '';
@@ -116,7 +117,7 @@ function flx_migrate_cleanup_section() {
 			<?php endforeach; ?>
 			</tbody>
 		</table>
-		<p><button class="button button-link-delete"><?php esc_html_e( 'Seçilenleri sil', 'flx-migrate' ); ?></button></p>
+		<p><button class="button button-link-delete"><?php esc_html_e( 'Delete selected', 'flx-migrate' ); ?></button></p>
 	</form>
 	<?php
 }
@@ -129,7 +130,7 @@ add_action(
 		}
 		check_admin_referer( 'flx_migrate_cleanup' );
 		if ( ! get_option( 'flx_migrate_done' ) ) {
-			wp_die( esc_html__( 'Önce aktarımı tamamlayın.', 'flx-migrate' ) );
+			wp_die( esc_html__( 'Finish the migration first.', 'flx-migrate' ) );
 		}
 		$ids = array_map( 'sanitize_text_field', (array) wp_unslash( $_POST['ids'] ?? array() ) );
 		set_transient( 'flx_migrate_cleanup_' . get_current_user_id(), flx_migrate_cleanup()->delete( $ids ), 300 );
@@ -160,18 +161,18 @@ function flx_migrate_page() {
 	?>
 	<div class="wrap">
 		<h1>Flux Migrate</h1>
-		<p><?php esc_html_e( 'Eski adlarla kaydedilmiş verileri yeni adlara taşır. Önce yedek alın, sonra yeni eklentileri ve temayı yükleyin (etkinleştirmeden), ardından burada önce "Tara", sonra "Aktar" deyin.', 'flx-migrate' ); ?></p>
+		<p><?php esc_html_e( 'Moves data saved under the old names to the new names. Take a backup first, upload the new plugins and theme (do not activate them), then click "Scan" and after that "Migrate".', 'flx-migrate' ); ?></p>
 		<?php if ( $done ) : ?>
 			<div class="notice notice-success inline"><p>
 				<?php
 				/* translators: %s: tarih */
-				echo esc_html( sprintf( __( 'Aktarım %s tarihinde tamamlandı. Bu eklentiyi artık silebilirsiniz.', 'flx-migrate' ), wp_date( 'Y-m-d H:i', $done ) ) );
+				echo esc_html( sprintf( __( 'Migration finished on %s. You can delete this plugin now.', 'flx-migrate' ), wp_date( 'Y-m-d H:i', $done ) ) );
 				?>
 			</p></div>
 		<?php endif; ?>
 		<?php if ( $missing ) : ?>
 			<div class="notice notice-warning inline">
-				<p><strong><?php esc_html_e( 'Önce şu yeni paketleri yükleyin (etkinleştirmeyin):', 'flx-migrate' ); ?></strong></p>
+				<p><strong><?php esc_html_e( 'Upload these new packages first (do not activate them):', 'flx-migrate' ); ?></strong></p>
 				<ul style="list-style:disc;margin-left:20px">
 					<?php foreach ( $missing as $old => $new ) : ?>
 						<li><code><?php echo esc_html( $old ); ?></code> → <code><?php echo esc_html( $new ); ?></code></li>
@@ -180,7 +181,7 @@ function flx_migrate_page() {
 			</div>
 		<?php endif; ?>
 		<table class="widefat striped" style="max-width:720px;margin-top:16px" id="flx-migrate-table">
-			<thead><tr><th><?php esc_html_e( 'Adım', 'flx-migrate' ); ?></th><th><?php esc_html_e( 'Değişecek', 'flx-migrate' ); ?></th><th><?php esc_html_e( 'Durum', 'flx-migrate' ); ?></th></tr></thead>
+			<thead><tr><th><?php esc_html_e( 'Step', 'flx-migrate' ); ?></th><th><?php esc_html_e( 'To change', 'flx-migrate' ); ?></th><th><?php esc_html_e( 'Status', 'flx-migrate' ); ?></th></tr></thead>
 			<tbody>
 				<?php foreach ( $steps as $k => $label ) : ?>
 					<tr data-step="<?php echo esc_attr( $k ); ?>"><td><?php echo esc_html( $label ); ?></td><td class="n">–</td><td class="s">–</td></tr>
@@ -188,8 +189,8 @@ function flx_migrate_page() {
 			</tbody>
 		</table>
 		<p style="margin-top:16px">
-			<button class="button" id="flx-migrate-scan"><?php esc_html_e( 'Tara', 'flx-migrate' ); ?></button>
-			<button class="button button-primary" id="flx-migrate-run" <?php disabled( (bool) $missing ); ?>><?php esc_html_e( 'Aktar', 'flx-migrate' ); ?></button>
+			<button class="button" id="flx-migrate-scan"><?php esc_html_e( 'Scan', 'flx-migrate' ); ?></button>
+			<button class="button button-primary" id="flx-migrate-run" <?php disabled( (bool) $missing ); ?>><?php esc_html_e( 'Migrate', 'flx-migrate' ); ?></button>
 		</p>
 		<div id="flx-migrate-notes"></div>
 		<?php
@@ -202,7 +203,7 @@ function flx_migrate_page() {
 	(function () {
 		var nonce = <?php echo wp_json_encode( wp_create_nonce( 'flx_migrate' ) ); ?>;
 		var steps = <?php echo wp_json_encode( array_keys( $steps ) ); ?>;
-		var L = <?php echo wp_json_encode( array( 'confirm' => __( 'Veriler yeni adlara taşınacak. Yedek aldınız mı?', 'flx-migrate' ), 'working' => __( 'Çalışıyor…', 'flx-migrate' ), 'ok' => __( 'Tamam', 'flx-migrate' ), 'err' => __( 'Hata', 'flx-migrate' ), 'done' => __( 'Aktarım bitti. Yeni eklentileri etkin listesinde kontrol edin, önbelleği temizleyin.', 'flx-migrate' ) ) ); ?>;
+		var L = <?php echo wp_json_encode( array( 'confirm' => __( 'Data will be moved to the new names. Did you take a backup?', 'flx-migrate' ), 'working' => __( 'Working…', 'flx-migrate' ), 'ok' => __( 'Done', 'flx-migrate' ), 'err' => __( 'Error', 'flx-migrate' ), 'done' => __( 'Migration finished. Check that the new plugins are active and clear the cache.', 'flx-migrate' ) ) ); ?>;
 		function row(s) { return document.querySelector('#flx-migrate-table tr[data-step="' + s + '"]'); }
 		function note(t) { var p = document.createElement('p'); p.textContent = t; document.getElementById('flx-migrate-notes').appendChild(p); }
 		function call(step, cursor, dry) {

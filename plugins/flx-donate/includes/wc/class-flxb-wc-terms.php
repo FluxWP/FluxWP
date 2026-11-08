@@ -60,12 +60,12 @@ class FLXB_WC_Terms {
 		$p = $link( (int) get_option( 'wp_page_for_privacy_policy' ) );
 		$t = $link( function_exists( 'wc_terms_and_conditions_page_id' ) ? wc_terms_and_conditions_page_id() : (int) get_option( 'woocommerce_terms_page_id' ) );
 		/* translators: 1, 2: privacy policy link; 3, 4: donation agreement link */
-		$txt = sprintf( __( 'I have read and accept the %1$sprivacy policy%2$s and the %3$sdonation agreement%4$s.', 'flx-donate' ), $p[0], $p[1], $t[0], $t[1] );
+		$txt = sprintf( __( '\\nI have read and accept the%1$sprivacy policy%2$sand the%3$sdonation agreement%4$s.\\n', 'flx-donate' ), $p[0], $p[1], $t[0], $t[1] );
 		return (string) apply_filters( 'flxb_terms_text', $txt );
 	}
 
 	public static function pay_button() {
-		return __( 'Make payment', 'flx-donate' );
+		return __( '\\nMake payment\\n', 'flx-donate' );
 	}
 
 	/** WooCommerce checks the box only when its hidden "terms-field" arrives; never let a payment skip it. */
@@ -77,7 +77,7 @@ class FLXB_WC_Terms {
 
 	/** The box is required in the browser too, with the message beside it. */
 	public static function pay_script() {
-		$msg = wp_json_encode( __( 'Please read and accept the terms to continue.', 'flx-donate' ) );
+		$msg = wp_json_encode( __( '\\nPlease read and accept the terms to continue.\\n', 'flx-donate' ) );
 		echo '<script>(function(){var f=document.getElementById("order_review"),t=document.getElementById("terms");if(!f||!t)return;t.required=true;var w=t.closest(".form-row")||t.parentNode,m=document.createElement("p");m.className="flxb-terms-err";m.setAttribute("role","alert");m.hidden=true;m.textContent=' . $msg . ';w.appendChild(m);t.addEventListener("change",function(){if(t.checked)m.hidden=true;});f.addEventListener("submit",function(e){if(!t.checked){e.preventDefault();e.stopImmediatePropagation();m.hidden=false;w.scrollIntoView({behavior:"smooth",block:"center"});}},true);})();</script>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
@@ -94,14 +94,14 @@ class FLXB_WC_Terms {
 			return;
 		}
 		if ( ! self::published( $terms ) ) {
-			$terms = self::page( __( 'Donation terms', 'flx-donate' ), self::terms_content() );
+			$terms = self::page( __( '\\nDonation terms\\n', 'flx-donate' ), self::terms_content() );
 			if ( $terms ) {
 				update_option( 'woocommerce_terms_page_id', $terms );
 			}
 		}
 		if ( ! self::published( $privacy ) ) {
 			$kvkk    = get_page_by_path( 'kvkk' );
-			$privacy = $kvkk && 'publish' === $kvkk->post_status ? (int) $kvkk->ID : self::page( __( 'Privacy policy', 'flx-donate' ), self::privacy_content() );
+			$privacy = $kvkk && 'publish' === $kvkk->post_status ? (int) $kvkk->ID : self::page( __( '\\nPrivacy policy\\n', 'flx-donate' ), self::privacy_content() );
 			if ( $privacy ) {
 				update_option( 'wp_page_for_privacy_policy', $privacy );
 			}
@@ -153,21 +153,21 @@ class FLXB_WC_Terms {
 		return self::blocks(
 			array(
 				/* translators: %s: association name */
-				array( 'p', sprintf( __( 'These terms apply to donations made on this site to %s.', 'flx-donate' ), $org ) ),
-				array( 'h', __( 'Your donation', 'flx-donate' ) ),
-				array( 'p', __( 'A donation is a gift without anything in return. It is used for the purpose chosen on the donation form (for example sapling planting). When a purpose is fully funded, the association may use the donation for a similar purpose.', 'flx-donate' ) ),
+				array( 'p', sprintf( __( '\\nThese terms apply to donations made on this site to%s.\\n', 'flx-donate' ), $org ) ),
+				array( 'h', __( '\\nYour donation\\n', 'flx-donate' ) ),
+				array( 'p', __( '\\nA donation is a gift without anything in return. It is used for the purpose chosen on the donation form (for example sapling planting). When a purpose is fully funded, the association may use the donation for a similar purpose.\\n', 'flx-donate' ) ),
 				array( 'h', __( 'Payment', 'flx-donate' ) ),
-				array( 'p', __( 'Card payments are processed by the licensed payment institution iyzico with 3D Secure. Card details are not stored on this site. For bank transfers, the donation is confirmed when the money reaches the association account.', 'flx-donate' ) ),
-				array( 'h', __( 'Monthly donations', 'flx-donate' ) ),
-				array( 'p', __( 'A monthly donation is charged to the same card every month until you cancel it. You can cancel it at any time from your account page or by writing to us.', 'flx-donate' ) ),
+				array( 'p', __( '\\nCard payments are processed by the licensed payment institution iyzico with 3D Secure. Card details are not stored on this site. For bank transfers, the donation is confirmed when the money reaches the association account.\\n', 'flx-donate' ) ),
+				array( 'h', __( '\\nMonthly donations\\n', 'flx-donate' ) ),
+				array( 'p', __( '\\nA monthly donation is charged to the same card every month until you cancel it. You can cancel it at any time from your account page or by writing to us.\\n', 'flx-donate' ) ),
 				array( 'h', __( 'Certificates', 'flx-donate' ) ),
-				array( 'p', __( 'The online certificate is sent to the e-mail address or phone number you give after the payment is confirmed. Please check the names you write on the certificate.', 'flx-donate' ) ),
-				array( 'h', __( 'Cancellation and refunds', 'flx-donate' ) ),
-				array( 'p', __( 'If a donation was made by mistake (wrong amount or a double payment), write to us within 14 days and it is refunded to the same card or account.', 'flx-donate' ) ),
+				array( 'p', __( '\\nThe online certificate is sent to the e-mail address or phone number you give after the payment is confirmed. Please check the names you write on the certificate.\\n', 'flx-donate' ) ),
+				array( 'h', __( '\\nCancellation and refunds\\n', 'flx-donate' ) ),
+				array( 'p', __( '\\nIf a donation was made by mistake (wrong amount or a double payment), write to us within 14 days and it is refunded to the same card or account.\\n', 'flx-donate' ) ),
 				array( 'h', __( 'Personal data', 'flx-donate' ) ),
-				array( 'p', __( 'Your name and contact details are used to record the donation, send the receipt and certificate, and contact you about your donation. See the privacy policy for details.', 'flx-donate' ) ),
+				array( 'p', __( '\\nYour name and contact details are used to record the donation, send the receipt and certificate, and contact you about your donation. See the privacy policy for details.\\n', 'flx-donate' ) ),
 				array( 'h', __( 'Contact', 'flx-donate' ) ),
-						array( 'p', '' !== FLXB_WC::support_wa()[0] ? sprintf( /* translators: %s: WhatsApp number */ __( 'For any question about your donation, write to us on WhatsApp: %s', 'flx-donate' ), FLXB_WC::support_wa()[0] ) : __( 'For any question about your donation, write to us through the contact page.', 'flx-donate' ) ),
+						array( 'p', '' !== FLXB_WC::support_wa()[0] ? sprintf( /* translators: %s: WhatsApp number */ __( '\\nFor any question about your donation, write to us on WhatsApp:%s\\n', 'flx-donate' ), FLXB_WC::support_wa()[0] ) : __( '\\nFor any question about your donation, write to us through the contact page.\\n', 'flx-donate' ) ),
 			)
 		);
 	}
@@ -177,13 +177,13 @@ class FLXB_WC_Terms {
 		return self::blocks(
 			array(
 				/* translators: %s: association name */
-				array( 'p', sprintf( __( '%s processes your personal data under the Turkish Personal Data Protection Law (KVKK).', 'flx-donate' ), $org ) ),
-				array( 'h', __( 'What we collect', 'flx-donate' ) ),
-				array( 'p', __( 'Name, e-mail address, phone number and the details of your donation. Card details are entered on the payment institution and are not stored by us.', 'flx-donate' ) ),
+				array( 'p', sprintf( __( '\\n%sprocesses your personal data under the Turkish Personal Data Protection Law (KVKK).\\n', 'flx-donate' ), $org ) ),
+				array( 'h', __( '\\nWhat we collect\\n', 'flx-donate' ) ),
+				array( 'p', __( '\\nName, e-mail address, phone number and the details of your donation. Card details are entered on the payment institution and are not stored by us.\\n', 'flx-donate' ) ),
 				array( 'h', __( 'Why', 'flx-donate' ) ),
-				array( 'p', __( 'To record donations, send receipts and certificates, meet legal obligations and answer your questions.', 'flx-donate' ) ),
-				array( 'h', __( 'Your rights', 'flx-donate' ) ),
-				array( 'p', __( 'You can ask what data we hold about you, have it corrected or deleted, by writing to us.', 'flx-donate' ) ),
+				array( 'p', __( '\\nTo record donations, send receipts and certificates, meet legal obligations and answer your questions.\\n', 'flx-donate' ) ),
+				array( 'h', __( '\\nYour rights\\n', 'flx-donate' ) ),
+				array( 'p', __( '\\nYou can ask what data we hold about you, have it corrected or deleted, by writing to us.\\n', 'flx-donate' ) ),
 			)
 		);
 	}
@@ -243,7 +243,7 @@ class FLXB_WC_Terms {
 		}
 		$ext = $request['extensions'] ?? array();
 		if ( empty( $ext[ self::NS ]['terms'] ) ) {
-			throw new \Automattic\WooCommerce\StoreApi\Exceptions\RouteException( 'flxb_terms_required', esc_html__( 'Please read and accept the terms to continue.', 'flx-donate' ), 400 ); // phpcs:ignore
+			throw new \Automattic\WooCommerce\StoreApi\Exceptions\RouteException( 'flxb_terms_required', esc_html__( '\\nPlease read and accept the terms to continue.\\n', 'flx-donate' ), 400 ); // phpcs:ignore
 		}
 		$order->update_meta_data( '_flxb_terms_accepted', gmdate( 'c' ) );
 	}

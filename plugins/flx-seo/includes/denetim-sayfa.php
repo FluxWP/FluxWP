@@ -24,12 +24,12 @@ function flxseo_audit_menu_badge() {
 function flxseo_audit_agentic( array $report ) {
 	$ids    = wp_list_pluck( $report['findings'], 'id' );
 	$checks = array(
-		'llms'   => array( __( 'llms.txt önerilere uygun', 'flx-seo' ), ! array_intersect( $ids, array( 'llms-txt', 'llms-txt-format' ) ) ),
-		'tree'   => array( __( 'Erişilebilirlik ağacı düzgün', 'flx-seo' ), ! array_intersect( $ids, array( 'aria-required-children', 'aria-required-parent' ) ) ),
-		'webmcp' => array( __( 'Formlar WebMCP aracı', 'flx-seo' ), ! in_array( 'webmcp-forms', $ids, true ) ),
+		'llms'   => array( __( 'llms.txt follows recommendations', 'flx-seo' ), ! array_intersect( $ids, array( 'llms-txt', 'llms-txt-format' ) ) ),
+		'tree'   => array( __( 'Accessibility tree is well-formed', 'flx-seo' ), ! array_intersect( $ids, array( 'aria-required-children', 'aria-required-parent' ) ) ),
+		'webmcp' => array( __( 'Forms are WebMCP tools', 'flx-seo' ), ! in_array( 'webmcp-forms', $ids, true ) ),
 	);
 	if ( ! empty( $report['psi'] ) ) {
-		$checks['cls'] = array( __( 'Yerleşim kayması düşük (CLS)', 'flx-seo' ), ! in_array( 'cumulative-layout-shift', $ids, true ) );
+		$checks['cls'] = array( __( 'Low layout shift (CLS)', 'flx-seo' ), ! in_array( 'cumulative-layout-shift', $ids, true ) );
 	}
 	return $checks;
 }
@@ -43,9 +43,9 @@ function flxseo_audit_admin_page() {
 	$o      = wp_parse_args( (array) get_option( 'flxseo', array() ), flxseo_defaults() );
 	flxseo_audit_flash();
 	$sources = array(
-		'local'       => __( 'Site içi', 'flx-seo' ),
-		'psi-mobile'  => __( 'PageSpeed mobil', 'flx-seo' ),
-		'psi-desktop' => __( 'PageSpeed masaüstü', 'flx-seo' ),
+		'local'       => __( 'On-site', 'flx-seo' ),
+		'psi-mobile'  => __( 'PageSpeed mobile', 'flx-seo' ),
+		'psi-desktop' => __( 'PageSpeed desktop', 'flx-seo' ),
 	);
 	$agentic = flxseo_audit_agentic( $r );
 	$ag_pass = count( array_filter( $agentic, fn( $c ) => $c[1] ) );
@@ -54,31 +54,31 @@ function flxseo_audit_admin_page() {
 	<div class="flxseo-au" id="flxseo-au">
 		<section class="au-card au-head">
 			<div class="au-head__text">
-				<h2><?php esc_html_e( 'Site denetimi', 'flx-seo' ); ?></h2>
-				<p><?php esc_html_e( 'PageSpeed Insights\'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre. Site içi denetim anahtarsızdır; PageSpeed ölçümü Google\'ın gerçek Lighthouse sonucunu ekler. Otomatik denetim, API anahtarı ve güvenlik başlıkları Ayarlar sekmesinde.', 'flx-seo' ); ?></p>
+				<h2><?php esc_html_e( 'Site audit', 'flx-seo' ); ?></h2>
+				<p><?php esc_html_e( 'The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key; a PageSpeed run adds Google\'s real Lighthouse result. Automatic audit, API key and security headers are in the Settings tab.', 'flx-seo' ); ?></p>
 				<p class="au-meta">
 					<?php if ( ! empty( $r['local']['time'] ) ) : ?>
 						<?php
 						/* translators: 1: zaman ("5 dakika önce"), 2: adres */
-						printf( esc_html__( 'Site içi denetim: %1$s · %2$s', 'flx-seo' ), esc_html( flx_time_ago( $r['local']['time'] ) ), '<a href="' . esc_url( $r['local']['url'] ) . '" target="_blank" rel="noopener">' . esc_html( $r['local']['url'] ) . '</a>' );
+						printf( esc_html__( 'On-site audit: %1$s · %2$s', 'flx-seo' ), esc_html( flx_time_ago( $r['local']['time'] ) ), '<a href="' . esc_url( $r['local']['url'] ) . '" target="_blank" rel="noopener">' . esc_html( $r['local']['url'] ) . '</a>' );
 						?>
 					<?php else : ?>
-						<?php esc_html_e( 'Henüz denetim yapılmadı.', 'flx-seo' ); ?>
+						<?php esc_html_e( 'No audit has run yet.', 'flx-seo' ); ?>
 					<?php endif; ?>
 				</p>
 			</div>
 			<form class="au-run" id="au-run" onsubmit="return false">
-				<label class="screen-reader-text" for="au-url"><?php esc_html_e( 'Denetlenecek adres', 'flx-seo' ); ?></label>
+				<label class="screen-reader-text" for="au-url"><?php esc_html_e( 'Address to audit', 'flx-seo' ); ?></label>
 				<input type="url" id="au-url" class="regular-text" value="<?php echo esc_attr( $url ); ?>" placeholder="<?php echo esc_attr( home_url( '/' ) ); ?>">
-				<button type="button" class="button button-primary" data-run="local"><?php esc_html_e( 'Site içi denetim', 'flx-seo' ); ?></button>
-				<button type="button" class="button" data-run="psi"><?php esc_html_e( 'PageSpeed ile ölç', 'flx-seo' ); ?></button>
+				<button type="button" class="button button-primary" data-run="local"><?php esc_html_e( 'On-site audit', 'flx-seo' ); ?></button>
+				<button type="button" class="button" data-run="psi"><?php esc_html_e( 'Measure with PageSpeed', 'flx-seo' ); ?></button>
 			</form>
 			<p class="au-status" id="au-status" role="status" aria-live="polite"></p>
 		</section>
 
 		<section class="au-scores">
 			<?php
-			foreach ( array( 'mobile' => __( 'Mobil', 'flx-seo' ), 'desktop' => __( 'Masaüstü', 'flx-seo' ) ) as $sk => $sl ) :
+			foreach ( array( 'mobile' => __( 'Mobile', 'flx-seo' ), 'desktop' => __( 'Desktop', 'flx-seo' ) ) as $sk => $sl ) :
 				$p = $r['psi'][ $sk ] ?? null;
 				?>
 				<div class="au-card au-strat">
@@ -88,7 +88,7 @@ function flxseo_audit_admin_page() {
 						<?php endif; ?>
 					</h3>
 					<?php if ( ! $p ) : ?>
-						<p class="au-empty"><?php esc_html_e( 'PageSpeed ölçümü yok. "PageSpeed ile ölç" düğmesine basın (mobil + masaüstü yaklaşık 1 dakika).', 'flx-seo' ); ?></p>
+						<p class="au-empty"><?php esc_html_e( 'No PageSpeed run yet. Press "Measure with PageSpeed" (mobile + desktop takes about 1 minute).', 'flx-seo' ); ?></p>
 					<?php else : ?>
 						<div class="au-rings">
 							<?php foreach ( $p['scores'] as $cid => $sc ) : ?>
@@ -109,35 +109,35 @@ function flxseo_audit_admin_page() {
 				</div>
 			<?php endforeach; ?>
 			<div class="au-card au-strat au-agentic">
-				<h3><?php esc_html_e( 'Ajan uyumu', 'flx-seo' ); ?> <span class="au-pill au-tone-<?php echo esc_attr( $ag_pass === count( $agentic ) ? 'good' : 'mid' ); ?>"><?php echo esc_html( $ag_pass . '/' . count( $agentic ) ); ?></span></h3>
+				<h3><?php esc_html_e( 'Agentic browsing', 'flx-seo' ); ?> <span class="au-pill au-tone-<?php echo esc_attr( $ag_pass === count( $agentic ) ? 'good' : 'mid' ); ?>"><?php echo esc_html( $ag_pass . '/' . count( $agentic ) ); ?></span></h3>
 				<ul class="au-checks">
 					<?php foreach ( $agentic as $c ) : ?>
 						<li class="<?php echo $c[1] ? 'is-ok' : 'is-bad'; ?>"><span aria-hidden="true"><?php echo $c[1] ? '✓' : '✕'; ?></span> <?php echo esc_html( $c[0] ); ?></li>
 					<?php endforeach; ?>
 				</ul>
-				<p class="au-meta"><a href="<?php echo esc_url( home_url( '/llms.txt' ) ); ?>" target="_blank" rel="noopener">/llms.txt</a> · <?php echo esc_html( flxseo_mcp_server_on() ? __( 'MCP sunucusu açık', 'flx-seo' ) : __( 'MCP sunucusu kapalı', 'flx-seo' ) ); ?></p>
+				<p class="au-meta"><a href="<?php echo esc_url( home_url( '/llms.txt' ) ); ?>" target="_blank" rel="noopener">/llms.txt</a> · <?php echo esc_html( flxseo_mcp_server_on() ? __( 'MCP server on', 'flx-seo' ) : __( 'MCP server off', 'flx-seo' ) ); ?></p>
 			</div>
 		</section>
 
 		<section class="au-card au-findings">
 			<div class="au-bar">
-				<h2><?php esc_html_e( 'Öneriler', 'flx-seo' ); ?> <span class="au-meta"><?php echo esc_html( number_format_i18n( count( $r['findings'] ) ) ); ?></span></h2>
-				<div class="au-filters" role="group" aria-label="<?php esc_attr_e( 'Önceliğe göre süz', 'flx-seo' ); ?>">
-					<button type="button" class="au-chip is-on" data-prio="" aria-pressed="true"><?php esc_html_e( 'Tümü', 'flx-seo' ); ?></button>
+				<h2><?php esc_html_e( 'Recommendations', 'flx-seo' ); ?> <span class="au-meta"><?php echo esc_html( number_format_i18n( count( $r['findings'] ) ) ); ?></span></h2>
+				<div class="au-filters" role="group" aria-label="<?php esc_attr_e( 'Filter by priority', 'flx-seo' ); ?>">
+					<button type="button" class="au-chip is-on" data-prio="" aria-pressed="true"><?php esc_html_e( 'All', 'flx-seo' ); ?></button>
 					<?php foreach ( $prios as $pk => $pv ) : ?>
 						<button type="button" class="au-chip au-p-<?php echo esc_attr( $pk ); ?>" data-prio="<?php echo esc_attr( $pk ); ?>" aria-pressed="false"><?php echo esc_html( $pv[1] ); ?> <b><?php echo (int) $r['counts'][ $pk ]; ?></b></button>
 					<?php endforeach; ?>
 				</div>
-				<label class="screen-reader-text" for="au-cat"><?php esc_html_e( 'Başlık', 'flx-seo' ); ?></label>
+				<label class="screen-reader-text" for="au-cat"><?php esc_html_e( 'Section', 'flx-seo' ); ?></label>
 				<select id="au-cat">
-					<option value=""><?php esc_html_e( 'Tüm başlıklar', 'flx-seo' ); ?></option>
+					<option value=""><?php esc_html_e( 'All sections', 'flx-seo' ); ?></option>
 					<?php foreach ( $cats as $ck => $cl ) : ?>
 						<option value="<?php echo esc_attr( $ck ); ?>"><?php echo esc_html( $cl ); ?></option>
 					<?php endforeach; ?>
 				</select>
 			</div>
 			<?php if ( ! $r['findings'] ) : ?>
-				<p class="au-empty"><?php echo esc_html( empty( $r['local']['time'] ) ? __( 'Denetimi başlatın; öneriler burada önceliğe göre sıralanır.', 'flx-seo' ) : __( 'Öneri yok. Her şey yolunda.', 'flx-seo' ) ); ?></p>
+				<p class="au-empty"><?php echo esc_html( empty( $r['local']['time'] ) ? __( 'Start the audit; recommendations are listed here by priority.', 'flx-seo' ) : __( 'No recommendations. All good.', 'flx-seo' ) ); ?></p>
 			<?php endif; ?>
 			<div class="au-list">
 				<?php foreach ( $r['findings'] as $fd ) : ?>
@@ -154,7 +154,7 @@ function flxseo_audit_admin_page() {
 						</summary>
 						<div class="au-f__body">
 							<?php if ( $fd['fix'] ) : ?>
-								<p class="au-fix"><strong><?php esc_html_e( 'Nasıl düzeltilir:', 'flx-seo' ); ?></strong> <?php echo esc_html( $fd['fix'] ); ?></p>
+								<p class="au-fix"><strong><?php esc_html_e( 'How to fix:', 'flx-seo' ); ?></strong> <?php echo esc_html( $fd['fix'] ); ?></p>
 							<?php endif; ?>
 							<?php if ( $fd['items'] ) : ?>
 								<ul class="au-items">
@@ -167,7 +167,7 @@ function flxseo_audit_admin_page() {
 								<?php if ( $fd['owner'] ) : ?>
 									<?php
 									/* translators: %s: kim düzeltir (Tema, İçerik, Sunucu…) */
-									printf( esc_html__( 'Düzeltme yeri: %s', 'flx-seo' ), esc_html( $owners[ $fd['owner'] ] ?? $fd['owner'] ) );
+									printf( esc_html__( 'Where to fix: %s', 'flx-seo' ), esc_html( $owners[ $fd['owner'] ] ?? $fd['owner'] ) );
 									?>
 									·
 								<?php endif; ?>
@@ -179,7 +179,7 @@ function flxseo_audit_admin_page() {
 									<input type="hidden" name="action" value="flxseo_audit_fix">
 									<input type="hidden" name="fix" value="<?php echo esc_attr( $fd['fix_id'] ); ?>">
 									<?php wp_nonce_field( 'flxseo_audit_fix' ); ?>
-									<button class="button button-primary"><?php echo esc_html( flxseo_system_fixes()[ $fd['fix_id'] ]['label'] ?? __( 'Düzelt', 'flx-seo' ) ); ?></button>
+									<button class="button button-primary"><?php echo esc_html( flxseo_system_fixes()[ $fd['fix_id'] ]['label'] ?? __( 'Fix', 'flx-seo' ) ); ?></button>
 								</form>
 							<?php endif; ?>
 						</div>
@@ -216,50 +216,50 @@ function flxseo_audit_settings_page() {
 	<div class="flxseo-au" id="flxseo-au">
 		<section class="au-grid2">
 			<form class="au-card au-settings" data-freq="<?php echo esc_attr( $o['audit_freq'] ); ?>" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-				<h2><?php esc_html_e( 'Site denetimi ve ajan uyumu', 'flx-seo' ); ?></h2>
+				<h2><?php esc_html_e( 'Site audit and agent readiness', 'flx-seo' ); ?></h2>
 				<input type="hidden" name="action" value="flxseo_audit_settings">
 				<?php wp_nonce_field( 'flxseo_audit_settings' ); ?>
 				<p>
-					<label for="au-key"><strong><?php esc_html_e( 'PageSpeed Insights API anahtarı', 'flx-seo' ); ?></strong></label><br>
-					<input type="password" id="au-key" name="psi_key" class="regular-text code" autocomplete="off" value="" placeholder="<?php echo esc_attr( flxseo_psi_key() ? __( 'Kayıtlı (değiştirmek için yazın)', 'flx-seo' ) : 'AIza…' ); ?>">
+					<label for="au-key"><strong><?php esc_html_e( 'PageSpeed Insights API key', 'flx-seo' ); ?></strong></label><br>
+					<input type="password" id="au-key" name="psi_key" class="regular-text code" autocomplete="off" value="" placeholder="<?php echo esc_attr( flxseo_psi_key() ? __( 'Saved (type to replace)', 'flx-seo' ) : 'AIza…' ); ?>">
 					<?php if ( flxseo_psi_key() ) : ?>
-						<label><input type="checkbox" name="psi_key_clear" value="1"> <?php esc_html_e( 'Anahtarı sil', 'flx-seo' ); ?></label>
+						<label><input type="checkbox" name="psi_key_clear" value="1"> <?php esc_html_e( 'Delete key', 'flx-seo' ); ?></label>
 					<?php endif; ?>
-					<span class="description"><?php esc_html_e( 'İsteğe bağlı ama önerilir: anahtarsız kota paylaşımlı ve çabuk dolar. Google Cloud Console › API\'ler › "PageSpeed Insights API"yi etkinleştirip ücretsiz anahtar oluşturun.', 'flx-seo' ); ?></span>
+					<span class="description"><?php esc_html_e( 'Optional but recommended: the keyless quota is shared and runs out quickly. In Google Cloud Console › APIs, enable "PageSpeed Insights API" and create a free key.', 'flx-seo' ); ?></span>
 				</p>
 				<fieldset>
-					<legend><strong><?php esc_html_e( 'Ajan uyumu', 'flx-seo' ); ?></strong></legend>
-					<label><input type="checkbox" name="o[llms]" value="1" <?php checked( $o['llms'] ); ?>> <?php esc_html_e( '/llms.txt üret (site adı, açıklama, menü sayfaları, son içerikler)', 'flx-seo' ); ?></label><br>
-					<label for="au-intro" class="au-sub"><?php esc_html_e( 'llms.txt giriş metni (isteğe bağlı)', 'flx-seo' ); ?></label>
-					<textarea id="au-intro" name="o[llms_intro]" rows="3" class="large-text" placeholder="<?php esc_attr_e( 'Ör. Kurumumuz kimdir, ne yapar, ajanlar hangi sayfaları öncelikle okumalı.', 'flx-seo' ); ?>"><?php echo esc_textarea( $o['llms_intro'] ); ?></textarea>
-					<label><input type="checkbox" name="o[webmcp]" value="1" <?php checked( $o['webmcp'] ); ?>> <?php esc_html_e( 'WebMCP: arama formunu tarayıcı ajanlarına araç olarak tanıt', 'flx-seo' ); ?></label>
+					<legend><strong><?php esc_html_e( 'Agentic browsing', 'flx-seo' ); ?></strong></legend>
+					<label><input type="checkbox" name="o[llms]" value="1" <?php checked( $o['llms'] ); ?>> <?php esc_html_e( 'Generate /llms.txt (site name, description, menu pages, recent content)', 'flx-seo' ); ?></label><br>
+					<label for="au-intro" class="au-sub"><?php esc_html_e( 'llms.txt intro text (optional)', 'flx-seo' ); ?></label>
+					<textarea id="au-intro" name="o[llms_intro]" rows="3" class="large-text" placeholder="<?php esc_attr_e( 'E.g. who your organization is, what it does, which pages agents should read first.', 'flx-seo' ); ?>"><?php echo esc_textarea( $o['llms_intro'] ); ?></textarea>
+					<label><input type="checkbox" name="o[webmcp]" value="1" <?php checked( $o['webmcp'] ); ?>> <?php esc_html_e( 'WebMCP: expose the search form to browser agents as a tool', 'flx-seo' ); ?></label>
 				</fieldset>
 				<fieldset>
-					<legend><strong><?php esc_html_e( 'Güvenlik başlıkları', 'flx-seo' ); ?></strong></legend>
-					<label><input type="checkbox" name="o[hdr_frame]" value="1" <?php checked( $o['hdr_frame'] ); ?>> <?php esc_html_e( 'Clickjacking koruması (X-Frame-Options: SAMEORIGIN, frame-ancestors \'self\')', 'flx-seo' ); ?></label><br>
-					<label><input type="checkbox" name="o[hdr_coop]" value="1" <?php checked( $o['hdr_coop'] ); ?>> <?php esc_html_e( 'Pencere yalıtımı (Cross-Origin-Opener-Policy: same-origin-allow-popups)', 'flx-seo' ); ?></label><br>
-					<label><input type="checkbox" name="o[hdr_csp]" value="1" <?php checked( $o['hdr_csp'] ); ?>> <?php esc_html_e( 'Temel CSP (object-src \'none\'; base-uri \'self\'; upgrade-insecure-requests)', 'flx-seo' ); ?></label><br>
-					<label><input type="checkbox" name="o[hsts_sub]" value="1" <?php checked( $o['hsts_sub'] ); ?>> <?php esc_html_e( 'HSTS alt alan adlarını kapsasın (includeSubDomains)', 'flx-seo' ); ?></label><br>
-					<label><input type="checkbox" name="o[hsts_preload]" value="1" <?php checked( $o['hsts_preload'] ); ?>> <?php esc_html_e( 'HSTS preload (geri alması aylar sürer; tüm alt alan adları HTTPS olmalı)', 'flx-seo' ); ?></label>
+					<legend><strong><?php esc_html_e( 'Security headers', 'flx-seo' ); ?></strong></legend>
+					<label><input type="checkbox" name="o[hdr_frame]" value="1" <?php checked( $o['hdr_frame'] ); ?>> <?php esc_html_e( 'Clickjacking protection (X-Frame-Options: SAMEORIGIN, frame-ancestors \'self\')', 'flx-seo' ); ?></label><br>
+					<label><input type="checkbox" name="o[hdr_coop]" value="1" <?php checked( $o['hdr_coop'] ); ?>> <?php esc_html_e( 'Origin isolation (Cross-Origin-Opener-Policy: same-origin-allow-popups)', 'flx-seo' ); ?></label><br>
+					<label><input type="checkbox" name="o[hdr_csp]" value="1" <?php checked( $o['hdr_csp'] ); ?>> <?php esc_html_e( 'Basic CSP (object-src \'none\'; base-uri \'self\'; upgrade-insecure-requests)', 'flx-seo' ); ?></label><br>
+					<label><input type="checkbox" name="o[hsts_sub]" value="1" <?php checked( $o['hsts_sub'] ); ?>> <?php esc_html_e( 'HSTS covers subdomains (includeSubDomains)', 'flx-seo' ); ?></label><br>
+					<label><input type="checkbox" name="o[hsts_preload]" value="1" <?php checked( $o['hsts_preload'] ); ?>> <?php esc_html_e( 'HSTS preload (takes months to undo; every subdomain must be HTTPS)', 'flx-seo' ); ?></label>
 				</fieldset>
 				<fieldset>
-					<legend><strong><?php esc_html_e( 'Otomatik denetim', 'flx-seo' ); ?></strong></legend>
+					<legend><strong><?php esc_html_e( 'Automatic audit', 'flx-seo' ); ?></strong></legend>
 					<span class="au-sched">
-						<label><?php esc_html_e( 'Sıklık', 'flx-seo' ); ?>
+						<label><?php esc_html_e( 'Frequency', 'flx-seo' ); ?>
 							<select name="o[audit_freq]" id="au-freq">
 								<?php foreach ( flxseo_audit_freqs() as $k => $l ) : ?>
 									<option value="<?php echo esc_attr( $k ); ?>" <?php selected( $o['audit_freq'], $k ); ?>><?php echo esc_html( $l ); ?></option>
 								<?php endforeach; ?>
 							</select>
 						</label>
-						<label class="au-day"><?php esc_html_e( 'Gün', 'flx-seo' ); ?>
+						<label class="au-day"><?php esc_html_e( 'Day', 'flx-seo' ); ?>
 							<select name="o[audit_day]">
 								<?php foreach ( flxseo_audit_days() as $k => $l ) : ?>
 									<option value="<?php echo esc_attr( $k ); ?>" <?php selected( (string) $o['audit_day'], (string) $k ); ?>><?php echo esc_html( $l ); ?></option>
 								<?php endforeach; ?>
 							</select>
 						</label>
-						<label><?php esc_html_e( 'Saat', 'flx-seo' ); ?>
+						<label><?php esc_html_e( 'Time', 'flx-seo' ); ?>
 							<select name="o[audit_hour]">
 								<?php for ( $hh = 0; $hh < 24; $hh++ ) : ?>
 									<option value="<?php echo (int) $hh; ?>" <?php selected( (int) $o['audit_hour'], $hh ); ?>><?php echo esc_html( sprintf( '%02d:00', $hh ) ); ?></option>
@@ -267,21 +267,21 @@ function flxseo_audit_settings_page() {
 							</select>
 						</label>
 					</span>
-					<span class="description"><?php esc_html_e( 'Arka planda çalışır, sonuç Rapor geçmişine yazılır. Saat sitenin saat dilimine göredir; site o saatte ziyaret almazsa ilk istekte başlar.', 'flx-seo' ); ?></span>
-					<label><input type="checkbox" name="o[audit_psi]" value="1" <?php checked( $o['audit_psi'] ); ?>> <?php esc_html_e( 'PageSpeed Insights (mobil + masaüstü) da çalışsın (API anahtarı gerekir)', 'flx-seo' ); ?></label><br>
-					<label><input type="checkbox" name="o[audit_mail]" value="1" <?php checked( $o['audit_mail'] ); ?>> <?php esc_html_e( 'Yeni kritik ya da yüksek öncelikli öneri çıkınca e-posta gönder', 'flx-seo' ); ?></label>
-					<label for="au-mail" class="au-sub"><?php esc_html_e( 'E-posta adresi (boşsa site yöneticisi)', 'flx-seo' ); ?></label>
+					<span class="description"><?php esc_html_e( 'Runs in the background and saves the result to Report history. The time uses the site time zone; if the site gets no visit at that time, it starts on the next request.', 'flx-seo' ); ?></span>
+					<label><input type="checkbox" name="o[audit_psi]" value="1" <?php checked( $o['audit_psi'] ); ?>> <?php esc_html_e( 'Also run PageSpeed Insights (mobile + desktop; needs the API key)', 'flx-seo' ); ?></label><br>
+					<label><input type="checkbox" name="o[audit_mail]" value="1" <?php checked( $o['audit_mail'] ); ?>> <?php esc_html_e( 'Send an email when a new critical or high priority recommendation appears', 'flx-seo' ); ?></label>
+					<label for="au-mail" class="au-sub"><?php esc_html_e( 'Email address (empty: site admin)', 'flx-seo' ); ?></label>
 					<input type="email" id="au-mail" name="o[audit_mail_to]" class="regular-text" value="<?php echo esc_attr( $o['audit_mail_to'] ); ?>" placeholder="<?php echo esc_attr( get_option( 'admin_email' ) ); ?>">
 				</fieldset>
-				<?php submit_button( __( 'Kaydet', 'flx-seo' ), 'primary', 'submit', false ); ?>
+				<?php submit_button( __( 'Save', 'flx-seo' ), 'primary', 'submit', false ); ?>
 			</form>
 
 			<div class="au-card au-guide">
-				<h2><?php esc_html_e( 'Yeni site yapım rehberi', 'flx-seo' ); ?></h2>
-				<p><?php esc_html_e( 'Yeni sayfa, tema ya da ön ayar yaparken SEO, performans, erişilebilirlik, güvenlik ve ajan uyumu için kurallar ve kontrol listesi. Yapay zekâ ajanları aynı rehberi MCP aracı flxseo_site_build_guide ile, Flux AI sohbeti de araç olarak alır.', 'flx-seo' ); ?></p>
+				<h2><?php esc_html_e( 'New site build guide', 'flx-seo' ); ?></h2>
+				<p><?php esc_html_e( 'Rules and a checklist for SEO, performance, accessibility, security and agent readiness when you build a new page, theme or preset. AI agents get the same guide with the MCP tool flxseo_site_build_guide, and Flux AI chat gets it as a tool.', 'flx-seo' ); ?></p>
 				<p>
-					<a class="button" href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=flxseo_guide&lang=tr' ), 'flxseo_guide' ) ); ?>"><?php esc_html_e( 'Türkçe (.md) indir', 'flx-seo' ); ?></a>
-					<a class="button" href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=flxseo_guide&lang=en' ), 'flxseo_guide' ) ); ?>"><?php esc_html_e( 'İngilizce (.md) indir', 'flx-seo' ); ?></a>
+					<a class="button" href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=flxseo_guide&lang=tr' ), 'flxseo_guide' ) ); ?>"><?php esc_html_e( 'Download Turkish (.md)', 'flx-seo' ); ?></a>
+					<a class="button" href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=flxseo_guide&lang=en' ), 'flxseo_guide' ) ); ?>"><?php esc_html_e( 'Download English (.md)', 'flx-seo' ); ?></a>
 				</p>
 				<ul class="au-toc">
 					<?php foreach ( flxseo_guide_sections() as $sec ) : ?>
@@ -383,11 +383,11 @@ function flxseo_audit_js() {
 	$data = array(
 		'ajax'    => admin_url( 'admin-ajax.php' ),
 		'nonce'   => wp_create_nonce( 'flxseo_audit' ),
-		'local'   => __( 'Site içi denetim çalışıyor…', 'flx-seo' ),
-		'mobile'  => __( 'PageSpeed mobil ölçülüyor (30–40 sn)…', 'flx-seo' ),
-		'desktop' => __( 'PageSpeed masaüstü ölçülüyor…', 'flx-seo' ),
-		'done'    => __( 'Bitti, sayfa yenileniyor…', 'flx-seo' ),
-		'fail'    => __( 'Olmadı:', 'flx-seo' ),
+		'local'   => __( 'On-site audit running…', 'flx-seo' ),
+		'mobile'  => __( 'Measuring PageSpeed mobile (30–40 s)…', 'flx-seo' ),
+		'desktop' => __( 'Measuring PageSpeed desktop…', 'flx-seo' ),
+		'done'    => __( 'Done, reloading…', 'flx-seo' ),
+		'fail'    => __( 'Failed:', 'flx-seo' ),
 	);
 	?>
 	<script>
@@ -422,7 +422,7 @@ add_action(
 	function () {
 		check_ajax_referer( 'flxseo_audit' );
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( __( 'Yetkiniz yok.', 'flx-seo' ), 403 );
+			wp_send_json_error( __( 'You do not have permission.', 'flx-seo' ), 403 );
 		}
 		$r = flxseo_audit_run_local( isset( $_POST['url'] ) ? flxseo_audit_url( wp_unslash( $_POST['url'] ) ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 		if ( ! is_wp_error( $r ) ) {
@@ -437,7 +437,7 @@ add_action(
 	function () {
 		check_ajax_referer( 'flxseo_audit' );
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( __( 'Yetkiniz yok.', 'flx-seo' ), 403 );
+			wp_send_json_error( __( 'You do not have permission.', 'flx-seo' ), 403 );
 		}
 		$strategy = isset( $_POST['strategy'] ) && 'desktop' === $_POST['strategy'] ? 'desktop' : 'mobile';
 		$r        = flxseo_psi_run( $strategy, isset( $_POST['url'] ) ? flxseo_audit_url( wp_unslash( $_POST['url'] ) ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
@@ -457,7 +457,7 @@ add_action(
 	function () {
 		check_admin_referer( 'flxseo_audit_settings' );
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Yetkiniz yok.', 'flx-seo' ) );
+			wp_die( esc_html__( 'You do not have permission.', 'flx-seo' ) );
 		}
 		$in  = isset( $_POST['o'] ) ? (array) wp_unslash( $_POST['o'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 		$o   = (array) get_option( 'flxseo', array() );
@@ -476,7 +476,7 @@ add_action(
 			update_option( 'flxseo_psi_key', sanitize_text_field( wp_unslash( $_POST['psi_key'] ) ), false ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 		}
 		flxseo_llms_flush();
-		set_transient( 'flxseo_audit_msg_' . get_current_user_id(), array( 'success', __( 'Kaydedildi.', 'flx-seo' ) ), 60 );
+		set_transient( 'flxseo_audit_msg_' . get_current_user_id(), array( 'success', __( 'Saved.', 'flx-seo' ) ), 60 );
 		wp_safe_redirect( flxseo_admin_url( 'ayarlar' ) );
 		exit;
 	}
@@ -487,7 +487,7 @@ add_action(
 	function () {
 		check_admin_referer( 'flxseo_audit_fix' );
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Yetkiniz yok.', 'flx-seo' ) );
+			wp_die( esc_html__( 'You do not have permission.', 'flx-seo' ) );
 		}
 		$id = sanitize_key( wp_unslash( $_POST['fix'] ?? '' ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 		try {
@@ -506,7 +506,7 @@ add_action(
 			}
 			flxseo_audit_run_local();
 			do_action( 'flxseo_audit_done', 'fix' );
-			$msg = array( 'success', __( 'Açıldı ve denetim yenilendi. Sayfa önbelleği (LiteSpeed) varsa Purge All yapın.', 'flx-seo' ) );
+			$msg = array( 'success', __( 'Turned on and the audit was refreshed. If a page cache (LiteSpeed) is on, run Purge All.', 'flx-seo' ) );
 		} catch ( Exception $e ) {
 			$msg = array( 'error', $e->getMessage() );
 		}
@@ -521,7 +521,7 @@ add_action(
 	function () {
 		check_admin_referer( 'flxseo_guide' );
 		if ( ! current_user_can( 'edit_posts' ) ) {
-			wp_die( esc_html__( 'Yetkiniz yok.', 'flx-seo' ) );
+			wp_die( esc_html__( 'You do not have permission.', 'flx-seo' ) );
 		}
 		$lang = isset( $_GET['lang'] ) && 'en' === $_GET['lang'] ? 'en' : 'tr';
 		nocache_headers();

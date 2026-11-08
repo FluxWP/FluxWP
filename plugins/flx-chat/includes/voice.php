@@ -74,7 +74,7 @@ function flxc_voice_transcribe( $path, $mime, $chat_id = 0 ) {
 	);
 	$model = flxc_voice_model();
 	if ( 'anthropic' === flxc_ai_model_provider( $model ) ) {
-		return new WP_Error( 'flxc_voice', __( 'Claude modelleri ses okuyamaz; Ayarlar › Yapay zekâ › Sesli mesaj modelinden ses okuyan bir OpenRouter modeli seçin.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_voice', __( 'Claude models cannot read audio; choose an audio-capable OpenRouter model in Settings › AI › Voice message model.', 'flx-chat' ) );
 	}
 	$msgs = array(
 		array( 'role' => 'system', 'content' => 'Sana bir WhatsApp sesli mesajı veriliyor. Konuşulanı olduğu gibi, konuşulan dilde yazıya dök. Yorum, özet ya da açıklama ekleme. Konuşma yoksa ya da anlaşılmıyorsa yalnız [anlaşılmadı] yaz.' ),
@@ -107,7 +107,7 @@ function flxc_voice_transcribe( $path, $mime, $chat_id = 0 ) {
 		return $r;
 	}
 	$text = trim( flxc_ai_clean_text( (string) ( $r['content'] ?? '' ) ) );
-	return '' === $text ? new WP_Error( 'flxc_voice', __( 'Ses metne çevrilemedi.', 'flx-chat' ) ) : $text;
+	return '' === $text ? new WP_Error( 'flxc_voice', __( 'The audio could not be transcribed.', 'flx-chat' ) ) : $text;
 }
 
 /** Asistan cevaplamadan önce: son 30 dk'daki dinlenmemiş sesli mesajlar (en fazla 3). */
@@ -134,7 +134,7 @@ function flxc_bot_voice_turn( $chat ) {
 			$n++;
 			$path = flxc_message_media_path( $m );
 			if ( is_wp_error( $path ) || ! is_readable( $path ) || filesize( $path ) > 8 * MB_IN_BYTES ) {
-				$meta['stt'] = array( 'error' => __( 'Ses dosyası okunamadı.', 'flx-chat' ) );
+				$meta['stt'] = array( 'error' => __( 'The audio file could not be read.', 'flx-chat' ) );
 			} else {
 				$m2  = flxc_get_message( $m['id'] );
 				$t0  = microtime( true );
@@ -148,10 +148,10 @@ function flxc_bot_voice_turn( $chat ) {
 		$dur = flxc_voice_dur( $sec );
 		if ( isset( $meta['stt']['text'] ) ) {
 			/* translators: 1: duration, 2: transcript */
-			flxc_system_message( $chat, sprintf( __( 'Sesli mesaj (%1$s) metne çevrildi: %2$s', 'flx-chat' ), $dur, $meta['stt']['text'] ) );
+			flxc_system_message( $chat, sprintf( __( 'Voice message (%1$s) transcribed: %2$s', 'flx-chat' ), $dur, $meta['stt']['text'] ) );
 		} elseif ( isset( $meta['stt']['error'] ) ) {
 			/* translators: 1: duration, 2: error */
-			flxc_system_message( $chat, sprintf( __( 'Sesli mesaj (%1$s) dinlenemedi: %2$s', 'flx-chat' ), $dur, $meta['stt']['error'] ) );
+			flxc_system_message( $chat, sprintf( __( 'Voice message (%1$s) could not be processed: %2$s', 'flx-chat' ), $dur, $meta['stt']['error'] ) );
 		}
 	}
 }

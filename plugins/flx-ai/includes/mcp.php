@@ -199,7 +199,7 @@ add_action(
 
 function flxai_mcp_permission( WP_REST_Request $req ) {
 	if ( ! flxai_mcp_enabled() ) {
-		return new WP_Error( 'mcp_disabled', __( 'MCP kapalı. Flux AI & MCP › MCP ekranından açın.', 'flx-ai' ), array( 'status' => 403 ) );
+		return new WP_Error( 'mcp_disabled', __( 'MCP is off. Turn it on in Flux AI & MCP › MCP.', 'flx-ai' ), array( 'status' => 403 ) );
 	}
 	$k = flxai_mcp_find_key( flxai_mcp_request_key( $req ) );
 	flxai_mcp_scope( true, $k && ! empty( $k['tools'] ) ? array_values( (array) $k['tools'] ) : null );
@@ -213,10 +213,10 @@ function flxai_mcp_permission( WP_REST_Request $req ) {
 		}
 	}
 	if ( ! is_user_logged_in() ) {
-		return new WP_Error( 'mcp_auth', __( 'Geçersiz veya eksik MCP anahtarı.', 'flx-ai' ), array( 'status' => 401 ) );
+		return new WP_Error( 'mcp_auth', __( 'Invalid or missing MCP key.', 'flx-ai' ), array( 'status' => 401 ) );
 	}
 	if ( ! current_user_can( 'edit_posts' ) ) {
-		return new WP_Error( 'mcp_cap', __( 'Bu kullanıcının içerik düzenleme yetkisi yok.', 'flx-ai' ), array( 'status' => 403 ) );
+		return new WP_Error( 'mcp_cap', __( 'This user can\'t edit content.', 'flx-ai' ), array( 'status' => 403 ) );
 	}
 	return true;
 }
@@ -372,19 +372,19 @@ function flxai_mcp_call( $name, $args ) {
 	try {
 		if ( ! isset( $tools[ $name ] ) ) {
 			/* translators: %s: tool name */
-			throw new Exception( sprintf( __( 'Bilinmeyen araç: %s', 'flx-ai' ), $name ) );
+			throw new Exception( sprintf( __( 'Unknown tool: %s', 'flx-ai' ), $name ) );
 		}
 		if ( flxai_tool_is_off( $name ) ) {
 			/* translators: %s: tool name */
-			throw new Exception( sprintf( __( 'Bu araç kapalı (Flux AI & MCP › Araçlar): %s', 'flx-ai' ), $name ) );
+			throw new Exception( sprintf( __( 'This tool is turned off (Flux AI & MCP › Tools): %s', 'flx-ai' ), $name ) );
 		}
 		if ( ! flxai_mcp_allowed( $name ) ) {
 			/* translators: %s: tool name */
-			throw new Exception( sprintf( __( 'Bu anahtar bu aracı kullanamaz: %s', 'flx-ai' ), $name ) );
+			throw new Exception( sprintf( __( 'This key can\'t use this tool: %s', 'flx-ai' ), $name ) );
 		}
 		$t = $tools[ $name ];
 		if ( ! empty( $t['cap'] ) && ! current_user_can( $t['cap'] ) ) {
-			throw new Exception( __( 'Bu işlem için yetkiniz yok.', 'flx-ai' ) );
+			throw new Exception( __( 'You don\'t have permission for this.', 'flx-ai' ) );
 		}
 		$data = call_user_func( $t['run'], $args );
 		$ok   = true;
@@ -443,7 +443,7 @@ add_action(
 	'admin_post_flxai_mcp',
 	function () {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Yetkisiz.', 'flx-ai' ) );
+			wp_die( esc_html__( 'Unauthorized.', 'flx-ai' ) );
 		}
 		check_admin_referer( 'flxai_mcp' );
 		$do   = sanitize_key( $_POST['do'] ?? '' );
@@ -455,7 +455,7 @@ add_action(
 			$id          = wp_generate_uuid4();
 			$name        = sanitize_text_field( wp_unslash( $_POST['name'] ?? '' ) );
 			$keys[ $id ] = array(
-				'name'      => '' !== $name ? $name : __( 'Yapay zekâ', 'flx-ai' ),
+				'name'      => '' !== $name ? $name : __( 'AI', 'flx-ai' ),
 				'hash'      => hash( 'sha256', $key ),
 				'user'      => get_current_user_id(),
 				'created'   => time(),

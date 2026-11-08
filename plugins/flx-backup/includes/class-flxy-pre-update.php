@@ -276,7 +276,7 @@ final class FLXY_Pre_Update {
 					'pre_update',
 					sprintf(
 						/* translators: 1: package name, 2: error */
-						__( '%1$s güncellemesinden önce yedek alınamadı, güncelleme yedeksiz devam etti: %2$s', 'flx-backup' ),
+						__( 'Could not back up before updating %1$s; the update continued without a backup: %2$s', 'flx-backup' ),
 						$pkg['name'] ? $pkg['name'] : $pkg['slug'],
 						$res->get_error_message()
 					),
@@ -294,7 +294,7 @@ final class FLXY_Pre_Update {
 				'pre_update',
 				sprintf(
 					/* translators: 1: package name, 2: error */
-					__( '%1$s klasörü güncelleme öncesi yedeğe eklenemedi: %2$s', 'flx-backup' ),
+					__( 'Could not add the %1$s folder to the pre-update backup: %2$s', 'flx-backup' ),
 					$pkg['name'] ? $pkg['name'] : $pkg['slug'],
 					$res->get_error_message()
 				),

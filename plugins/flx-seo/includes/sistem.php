@@ -29,13 +29,13 @@ add_filter(
 		};
 
 		// SEO isteğe bağlı: kapalıysa hata değil uyarı. Başka bir SEO eklentisi işi üstlendiyse bilgi.
-		$label = __( 'SEO çıktısı', 'flx-seo' );
+		$label = __( 'SEO output', 'flx-seo' );
 		if ( flxseo_other_seo_plugin() ) {
-			$checks[] = $item( 'output', $label, 'info', __( 'Başka bir SEO eklentisi etkin; meta, Open Graph ve schema onun üzerinden. Flux SEO çakışmasın diye kendi çıktısını kapattı.', 'flx-seo' ) );
+			$checks[] = $item( 'output', $label, 'info', __( 'Another SEO plugin is active; meta, Open Graph and schema come from it. Flux SEO turned its own output off to avoid conflicts.', 'flx-seo' ) );
 		} elseif ( flxseo_opt( 'enabled' ) ) {
-			$checks[] = $item( 'output', $label, 'ok', __( 'Meta açıklama, Open Graph ve schema her sayfada ekleniyor.', 'flx-seo' ) );
+			$checks[] = $item( 'output', $label, 'ok', __( 'Meta description, Open Graph and schema are added to every page.', 'flx-seo' ) );
 		} else {
-			$checks[] = $item( 'output', $label, 'warning', __( 'Kapalı. Google ve sosyal paylaşımlarda sayfa açıklaması, görsel ve kurum bilgisi görünmez. Google\'da bulunmak istiyorsanız açın.', 'flx-seo' ), flxseo_admin_url(), __( 'SEO ayarları', 'flx-seo' ) );
+			$checks[] = $item( 'output', $label, 'warning', __( 'Off. Page descriptions, images and organization details will not show on Google and social shares. Turn it on if you want to be found on Google.', 'flx-seo' ), flxseo_admin_url(), __( 'SEO settings', 'flx-seo' ) );
 		}
 
 		$sitemaps = function_exists( 'wp_sitemaps_get_server' ) && wp_sitemaps_get_server()->sitemaps_enabled();
@@ -69,17 +69,17 @@ add_filter(
 			: $item( 'org', 'Kurum bilgileri', 'ok', 'Adres, telefon ve e-posta schema\'da.' );
 
 		$checks[] = ( flxseo_opt( 'verify_google' ) || flxseo_sitekit_connected() )
-			? $item( 'gsc', 'Search Console', 'ok', flxseo_opt( 'verify_google' ) ? 'Google doğrulama kodu girili.' : __( 'Google Site Kit ile bağlı.', 'flx-seo' ) )
+			? $item( 'gsc', 'Search Console', 'ok', flxseo_opt( 'verify_google' ) ? 'Google doğrulama kodu girili.' : __( 'Connected with Google Site Kit.', 'flx-seo' ) )
 			: $item( 'gsc', 'Search Console', 'info', 'Doğrulama kodu girilmemiş. DNS ile doğruladıysanız sorun yok.', flxseo_admin_url(), 'SEO ayarları' );
 
 		$se_miss = array_values( array_filter( array( flxseo_opt( 'verify_bing' ) ? '' : 'Bing', flxseo_opt( 'verify_yandex' ) ? '' : 'Yandex' ) ) );
 		$checks[] = $se_miss
 			/* translators: %s: arama motoru adları */
-			? $item( 'search-engines', __( 'Bing ve Yandex', 'flx-seo' ), 'info', sprintf( __( 'Doğrulama kodu girilmemiş: %s. Siteyi bu arama motorlarının panellerine ekleyin (Bing\'de Google Search Console\'dan içe aktarma kod istemez).', 'flx-seo' ), implode( ', ', $se_miss ) ), flxseo_admin_url() . '#search-engines', __( 'Arama motorları', 'flx-seo' ) )
-			: $item( 'search-engines', __( 'Bing ve Yandex', 'flx-seo' ), 'ok', __( 'Bing ve Yandex doğrulama kodları girili.', 'flx-seo' ) );
+			? $item( 'search-engines', __( 'Bing and Yandex', 'flx-seo' ), 'info', sprintf( __( 'No verification code: %s. Add the site in these search engines\' webmaster panels (Bing\'s import from Google Search Console needs no code).', 'flx-seo' ), implode( ', ', $se_miss ) ), flxseo_admin_url() . '#search-engines', __( 'Search engines', 'flx-seo' ) )
+			: $item( 'search-engines', __( 'Bing and Yandex', 'flx-seo' ), 'ok', __( 'Bing and Yandex verification codes are set.', 'flx-seo' ) );
 		$checks[] = flxseo_opt( 'indexnow' )
-			? $item( 'indexnow', 'IndexNow', 'ok', get_option( 'flxseo_indexnow_init' ) ? __( 'Açık; site Bing ve Yandex\'e bildirildi.', 'flx-seo' ) : __( 'Açık; ilk toplu bildirim yönetim panelinde bir sonraki istekte gönderilir.', 'flx-seo' ) )
-			: $item( 'indexnow', 'IndexNow', 'warning', __( 'Kapalı; yeni sayfalar Bing ve Yandex\'e bildirilmiyor.', 'flx-seo' ), flxseo_admin_url() . '#indexnow', 'IndexNow' );
+			? $item( 'indexnow', 'IndexNow', 'ok', get_option( 'flxseo_indexnow_init' ) ? __( 'On; the site has been submitted to Bing and Yandex.', 'flx-seo' ) : __( 'On; the first bulk submission is sent on the next admin page load.', 'flx-seo' ) )
+			: $item( 'indexnow', 'IndexNow', 'warning', __( 'Off; new pages are not sent to Bing and Yandex.', 'flx-seo' ), flxseo_admin_url() . '#indexnow', 'IndexNow' );
 
 		$checks[] = $item( 'mcp', 'Yapay zekâ (MCP)', function_exists( 'flxai_mcp_tools' ) ? 'info' : 'warning', function_exists( 'flxai_mcp_tools' ) ? ( flxseo_mcp_server_on() ? 'MCP sunucusu (Flux AI) açık; Flux SEO araçları kayıtlı.' : 'MCP sunucusu (Flux AI) kapalı; Flux SEO araçları yalnız Flux AI sohbetinde.' ) : 'Flux AI 0.7.0+ kurulu değil; Flux SEO yapay zekâ araçları çalışmıyor.', flxseo_mcp_admin_url(), 'Flux AI & MCP › MCP' );
 

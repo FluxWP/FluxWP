@@ -1,0 +1,949 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: fr_FR\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Sapling goal progress"
+msgstr "Progression de l'objectif de Sapling"
+
+msgid "No record"
+msgstr "Aucun enregistrement"
+
+msgid "Certificate not found"
+msgstr "Certificat introuvable"
+
+msgid "The link may have been copied incompletely. Check the code or request your certificate below."
+msgstr "Le lien a peut-être été copié de manière incomplète. Vérifiez le code ou demandez votre certificat ci-dessous."
+
+msgid "Revoked certificate"
+msgstr "Certificat révoqué"
+
+msgid "Verified certificate"
+msgstr "Certificat vérifié"
+
+msgid "REVOKED"
+msgstr "RÉVOQUÉ"
+
+msgid "Full name"
+msgstr "Nom complet"
+
+msgid "Certificate no."
+msgstr "Numéro de certificat"
+
+msgid "Issue date"
+msgstr "Date d'émission"
+
+msgid "Issued by"
+msgstr "Publié par"
+
+msgid "Verification code"
+msgstr "Code de vérification"
+
+msgid "Download PDF"
+msgstr "Télécharger le PDF"
+
+msgid "Share"
+msgstr "Partager"
+
+msgid "Add to LinkedIn"
+msgstr "Ajouter à LinkedIn"
+
+msgid "Copy link"
+msgstr "Copier le lien"
+
+msgid "This certificate has been revoked by the issuing organization and is no longer valid."
+msgstr "Ce certificat a été révoqué par l'organisme émetteur et n'est plus valable."
+
+msgid "This page confirms that the certificate is on record at %s."
+msgstr "Cette page confirme que le certificat est enregistré à%s."
+
+msgid "Lookup is disabled."
+msgstr "La recherche est désactivée."
+
+msgid "Too many attempts. Please try again later."
+msgstr "Trop de tentatives. Veuillez réessayer plus tard."
+
+msgid "Enter a valid phone number or email address."
+msgstr "Entrez un numéro de téléphone ou une adresse e-mail valide."
+
+msgid "Hello %1$s,\n\nYour %2$s certificates:\n%3$s"
+msgstr "Bonjour %1$s ,\n\nVos certificats %2$s :\n %3$s"
+
+msgid "Your certificates"
+msgstr "Vos certificats"
+
+msgid "If a certificate is registered with these details, its link will be sent to you within a few minutes."
+msgstr "Si un certificat est enregistré avec ces informations, son lien vous sera envoyé dans quelques minutes."
+
+msgid "OK"
+msgstr "D'accord"
+
+msgid "Warning"
+msgstr "Avertissement"
+
+msgid "Error"
+msgstr "Erreur"
+
+msgid "Info"
+msgstr "Informations"
+
+msgid "Test WhatsApp/SMS connections"
+msgstr "Testez les connexions WhatsApp/SMS"
+
+msgid "System check"
+msgstr "Vérification du système"
+
+msgid "Whether setup, cron and sending are in place. Checked again each time this page opens. WhatsApp/SMS connections and tests live in Flux Mail."
+msgstr "Que la configuration, le cron et l'envoi soient en place. Vérifié à nouveau à chaque ouverture de cette page. Connexions et tests WhatsApp/SMS en direct dans Flux Mail."
+
+msgid "Not allowed"
+msgstr "Non autorisé"
+
+msgid "Valid"
+msgstr "Valide"
+
+msgid "Revoked"
+msgstr "Révoqué"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Phone"
+msgstr "Téléphone"
+
+msgid "Email"
+msgstr "Courriel"
+
+msgid "Event"
+msgstr "Événement"
+
+msgid "Template"
+msgstr "Modèle"
+
+msgid "Referrer"
+msgstr "Référent"
+
+msgid "Created by"
+msgstr "Créé par"
+
+msgid "Status"
+msgstr "Statut"
+
+msgid "Views"
+msgstr "Vues"
+
+msgid "Messages sent"
+msgstr "Messages envoyés"
+
+msgid "Certificate link"
+msgstr "Lien du certificat"
+
+msgctxt "context_e363ab036dc9"
+msgid "certificates"
+msgstr "certificats"
+
+msgid "Certificates"
+msgstr "Certificats"
+
+msgid "The server has no ZipArchive (PHP zip extension); the Excel file could not be created."
+msgstr "Le serveur n'a pas de ZipArchive (extension zip PHP) ; le fichier Excel n'a pas pu être créé."
+
+msgid "The Excel file could not be created."
+msgstr "Le fichier Excel n'a pas pu être créé."
+
+msgid "On donation page"
+msgstr "Sur la page des dons"
+
+msgid "Donation page"
+msgstr "Page de don"
+
+msgid "Donors can choose this design on the donation page"
+msgstr "Les donateurs peuvent choisir ce design sur la page de don"
+
+msgid "Heading (group)"
+msgstr "Titre (groupe)"
+
+msgid "Order"
+msgstr "Commande"
+
+msgid "The donor picks the design and fills in the template's text, date and choice fields (e.g. recipient name, message). The price comes from the donation type."
+msgstr "Le donateur choisit le design et remplit les champs de texte, de date et de choix du modèle (par exemple nom du destinataire, message). Le prix vient du type de don."
+
+msgid "No certificates selected."
+msgstr "Aucun certificat sélectionné."
+
+msgid "%d messages queued."
+msgstr "Messages%dmis en file d'attente."
+
+msgid "%d certificates updated."
+msgstr "Certificats%dmis à jour."
+
+msgid "Download Excel"
+msgstr "Télécharger Excel"
+
+msgid "New certificate"
+msgstr "Nouveau certificat"
+
+msgid "Name, phone, email, certificate no…"
+msgstr "Nom, téléphone, email, numéro d'attestation..."
+
+msgid "All statuses"
+msgstr "Tous les statuts"
+
+msgid "Cancelled"
+msgstr "Annulé"
+
+msgid "All events"
+msgstr "Tous les événements"
+
+msgid "No event (%d)"
+msgstr "Aucun événement (%d)"
+
+msgid "archived"
+msgstr "archivé"
+
+msgid "All templates"
+msgstr "Tous les modèles"
+
+msgid "All referrers"
+msgstr "Tous les référents"
+
+msgid "No referrer (%d)"
+msgstr "Aucun référent (%d)"
+
+msgid "Created by: anyone"
+msgstr "Créé par : n'importe qui"
+
+msgid "Filter"
+msgstr "Filtrer"
+
+msgid "Bulk actions…"
+msgstr "Actions groupées..."
+
+msgid "Send via WhatsApp"
+msgstr "Envoyer via WhatsApp"
+
+msgid "Send via SMS"
+msgstr "Envoyer par SMS"
+
+msgid "Send via email"
+msgstr "Envoyer par email"
+
+msgid "Revoke"
+msgstr "Révoquer"
+
+msgid "Make valid"
+msgstr "Rendre valide"
+
+msgid "Assign to event…"
+msgstr "Attribuer à l'événement..."
+
+msgid "Assign referrer…"
+msgstr "Attribuer un référent..."
+
+msgid "Delete permanently"
+msgstr "Supprimer définitivement"
+
+msgid "— No event —"
+msgstr "— Aucun événement —"
+
+msgid "— No referrer —"
+msgstr "— Pas de référent —"
+
+msgid "Apply to the selected items?"
+msgstr "Appliquer aux articles sélectionnés ?"
+
+msgid "Apply"
+msgstr "Postuler"
+
+msgid "Certificate"
+msgstr "Certificat"
+
+msgid "Person"
+msgstr "Personne"
+
+msgid "Event / Template"
+msgstr "Événement/Modèle"
+
+msgid "Deliveries"
+msgstr "Livraisons"
+
+msgid "Referrer / Created by"
+msgstr "Référent / Créé par"
+
+msgid "No certificates yet."
+msgstr "Pas encore de certificats."
+
+msgid "Create the first certificate"
+msgstr "Créer le premier certificat"
+
+msgid "Actually created: %s"
+msgstr "Créé actuellement :%s"
+
+msgid "backdated"
+msgstr "antidaté"
+
+msgid "%d view"
+msgid_plural "%d views"
+msgstr[0] "Vue%d"
+msgstr[1] "Vues%d"
+
+msgid "Registered person: %s"
+msgstr "Personne enregistrée :%s"
+
+msgid "created by: %s"
+msgstr "créé par :%s"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "Open page"
+msgstr "Ouvrir la page"
+
+msgid "PDF"
+msgstr "PDF"
+
+msgid "Send to someone else…"
+msgstr "Envoyer à quelqu'un d'autre..."
+
+msgid "Update referrer…"
+msgstr "Mettre à jour le référent..."
+
+msgid "Edit"
+msgstr "Modifier"
+
+msgid "Revoke this certificate? The link will show \"revoked\"."
+msgstr "Révoquer ce certificat ? Le lien affichera « révoqué »."
+
+msgid "Delivery history"
+msgstr "Historique de livraison"
+
+msgid "No connection in Flux Mail"
+msgstr "Pas de connexion dans Flux Mail"
+
+msgid "Flux Mail is not active"
+msgstr "Flux Mail n'est pas actif"
+
+msgid "add"
+msgstr "ajouter"
+
+msgid "Plugins"
+msgstr "Plugins"
+
+msgid "%d record"
+msgid_plural "%d records"
+msgstr[0] "%denregistrement"
+msgstr[1] "%denregistrements"
+
+msgid "Inactive"
+msgstr "Inactif"
+
+msgid "Father's Day Certificate"
+msgstr "Certificat de fête des pères"
+
+msgid "Just Because Certificate"
+msgstr "Juste parce que le certificat"
+
+msgid "Birthday Gift"
+msgstr "Cadeau d'anniversaire"
+
+msgid "Get Well Soon"
+msgstr "Guérissez bientôt"
+
+msgid "First Day at Work"
+msgstr "Premier jour de travail"
+
+msgid "Condolence Certificate"
+msgstr "Certificat de condoléances"
+
+msgid "Mother's Day Certificate"
+msgstr "Certificat de fête des mères"
+
+msgid "Wedding Sapling Donation"
+msgstr "Don de jeunes arbres de mariage"
+
+msgid "Teachers' Day Certificate"
+msgstr "Certificat de la Journée des enseignants"
+
+msgid "Thank You Certificate"
+msgstr "Certificat de remerciement"
+
+msgid "Welcome Baby Certificate"
+msgstr "Certificat de bienvenue pour bébé"
+
+msgid "Wedding Congratulations Certificate"
+msgstr "Certificat de félicitations de mariage"
+
+msgid "Wedding Anniversary Certificate"
+msgstr "Certificat d'anniversaire de mariage"
+
+msgid "Sapling Donation Certificate (one name)"
+msgstr "Certificat de don de jeunes arbres (un nom)"
+
+msgid "Sapling Donation (two names, sapling count)"
+msgstr "Don de jeunes arbres (deux noms, nombre de jeunes arbres)"
+
+msgid "Sapling Donation Certificate (two names)"
+msgstr "Certificat de don de jeunes arbres (deux noms)"
+
+msgid "Recipient name"
+msgstr "Nom du destinataire"
+
+msgid "Donor (your name)"
+msgstr "Donateur (votre nom)"
+
+msgid "Person remembered"
+msgstr "Personne rappelée"
+
+msgid "Number of saplings"
+msgstr "Nombre de jeunes arbres"
+
+msgid "%d e-card designs were added as inactive templates. Designs you activate can be picked on the donation page."
+msgstr "Les modèles de cartes électroniques%dont été ajoutés en tant que modèles inactifs. Les designs que vous activez peuvent être sélectionnés sur la page de don."
+
+msgid "All e-card designs are already added."
+msgstr "Tous les modèles de cartes électroniques sont déjà ajoutés."
+
+msgid "The server has no ZipArchive (PHP zip extension)."
+msgstr "Le serveur n'a pas de ZipArchive (extension zip PHP)."
+
+msgid "Ready-made e-cards"
+msgstr "Cartes électroniques prêtes à l'emploi"
+
+msgid "(%1$d/%2$d added)"
+msgstr "(%1$d/%2$dajouté)"
+
+msgid "Add the missing e-card designs as inactive templates?"
+msgstr "Ajouter les modèles de cartes électroniques manquants en tant que modèles inactifs ?"
+
+msgid "Import"
+msgstr "Importer"
+
+msgid "Download images as zip"
+msgstr "Télécharger des images au format zip"
+
+msgid "Flux Mail (organization template)"
+msgstr "Flux Mail (modèle d'organisation)"
+
+msgid "%s ago"
+msgstr "il y a %s"
+
+msgid "Certificates · Setup"
+msgstr "Certificats · Configuration"
+
+msgid "Certificates · Sending and cron"
+msgstr "Certificats · Envoi et cron"
+
+msgid "Certificates · Site"
+msgstr "Certificats · Site"
+
+msgid "Database tables"
+msgstr "Tableaux de base de données"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "Table manquante :%s. Désactivez et réactivez le plugin."
+
+msgid "A database update is pending; it completes when an admin page is opened."
+msgstr "Une mise à jour de la base de données est en attente ; il se termine lorsqu'une page d'administration est ouverte."
+
+msgid "All tables exist. Plugin %1$s, database version %2$s."
+msgstr "Tous les tableaux existent. Plugin%1$s, version base de données%2$s."
+
+msgid "Files folder"
+msgstr "Dossier de fichiers"
+
+msgid "The folder for certificate PDFs and images is writable."
+msgstr "Le dossier des fichiers PDF et des images des certificats est accessible en écriture."
+
+msgid "%s is not writable; certificate files cannot be saved. Check folder permissions (755)."
+msgstr "%sn'est pas accessible en écriture ; les fichiers de certificat ne peuvent pas être enregistrés. Vérifiez les autorisations du dossier (755)."
+
+msgid "Certificate page address"
+msgstr "Adresse de la page du certificat"
+
+msgid "Permalinks are set to \"Plain\"; certificate links work as ?flxs_kod=. \"Post name\" is recommended."
+msgstr "Les permaliens sont définis sur « Plain » ; les liens de certificat fonctionnent comme ?flxs_kod=. \"Nom du message\" est recommandé."
+
+msgid "Permalinks"
+msgstr "Liens permanents"
+
+msgid "The certificate URL rule is not registered; links may return 404. Press \"Save Changes\" on the Permalinks page."
+msgstr "La règle d'URL de certificat n'est pas enregistrée ; les liens peuvent renvoyer 404. Appuyez sur « Enregistrer les modifications » sur la page Liens permanents."
+
+msgid "Certificates open at %s{code}."
+msgstr "Certificats ouverts à%s{code}."
+
+msgid "Certificate templates"
+msgstr "Modèles de certificat"
+
+msgid "%d active template."
+msgid_plural "%d active templates."
+msgstr[0] "%dmodèle actif."
+msgstr[1] "%dmodèles actifs."
+
+msgid "No active template; certificates cannot be created."
+msgstr "Aucun modèle actif ; les certificats ne peuvent pas être créés."
+
+msgid "Templates"
+msgstr "Modèles"
+
+msgid "Plugin files"
+msgstr "Fichiers de plugins"
+
+msgid "Missing file: %s. Upload the plugin zip again."
+msgstr "Fichier manquant :%s. Téléchargez à nouveau le zip du plugin."
+
+msgid "PDF renderer, QR and fonts are in place."
+msgstr "Le moteur de rendu PDF, le QR et les polices sont en place."
+
+msgid "Staff role"
+msgstr "Rôle du personnel"
+
+msgid "The \"Certificate Staff\" role exists."
+msgstr "Le rôle « Personnel certifié » existe."
+
+msgid "The \"Certificate Staff\" role is missing. Deactivate and reactivate the plugin."
+msgstr "Le rôle « Personnel de certification » est manquant. Désactivez et réactivez le plugin."
+
+msgid "Sending queue (cron)"
+msgstr "File d'attente d'envoi (cron)"
+
+msgid "The per-minute queue task is not scheduled. Reload any admin page; if it persists, reactivate the plugin."
+msgstr "La tâche de file d'attente par minute n'est pas planifiée. Rechargez n’importe quelle page d’administration ; si cela persiste, réactivez le plugin."
+
+msgid "Queue"
+msgstr "File d'attente"
+
+msgid "%1$d message has been waiting for more than 10 minutes; the queue may not be running. Runner: %2$s, last run: %3$s."
+msgid_plural "%1$d messages have been waiting for more than 10 minutes; the queue may not be running. Runner: %2$s, last run: %3$s."
+msgstr[0] "Le message%1$dattend depuis plus de 10 minutes ; la file d'attente n'est peut-être pas en cours d'exécution. Runner :%2$s, dernière exécution :%3$s."
+msgstr[1] "Les messages%1$dattendent depuis plus de 10 minutes ; la file d'attente n'est peut-être pas en cours d'exécution. Runner :%2$s, dernière exécution :%3$s."
+
+msgid "never"
+msgstr "jamais"
+
+msgid "WP-Cron is disabled (DISABLE_WP_CRON); a per-minute cron for wp-cron.php must be set in the hosting panel."
+msgstr "WP-Cron est désactivé (DISABLE_WP_CRON) ; un cron par minute pour wp-cron.php doit être défini dans le panneau d'hébergement."
+
+msgid "Runner: %1$s. Last run %2$s; cron fires rarely. No messages waiting. Without regular traffic, a per-minute cron for wp-cron.php in the hosting panel is recommended."
+msgstr "Coureur :%1$s. Dernière exécution%2$s; cron se déclenche rarement. Aucun message en attente. Sans trafic régulier, un cron par minute pour wp-cron.php dans le panneau d'hébergement est recommandé."
+
+msgid "Runner: %1$s. Last run: %2$s. No old messages waiting."
+msgstr "Coureur :%1$s. Dernière exécution :%2$s. Aucun vieux message en attente."
+
+msgid "not recorded yet"
+msgstr "pas encore enregistré"
+
+msgid "Sending in the last 24 hours"
+msgstr "Envoi dans les dernières 24 heures"
+
+msgid "%d message failed."
+msgid_plural "%d messages failed."
+msgstr[0] "Le message%da échoué."
+msgstr[1] "Les messages%dont échoué."
+
+msgid "View failed"
+msgstr "Échec de la vue"
+
+msgid "%d message sent, none failed."
+msgid_plural "%d messages sent, none failed."
+msgstr[0] "Message%denvoyé, aucun n'a échoué."
+msgstr[1] "%dmessages envoyés, aucun n'a échoué."
+
+msgid "Daily cleanup task"
+msgstr "Tâche de nettoyage quotidienne"
+
+msgid "The daily task (old log cleanup) is not scheduled; reload an admin page."
+msgstr "La tâche quotidienne (ancien nettoyage des journaux) n'est pas planifiée ; recharger une page d'administration."
+
+msgid "Flux Mail"
+msgstr "Flux de courrier"
+
+msgid "Flux Mail is not active. Certificates cannot be sent by WhatsApp or SMS; email goes through WordPress (wp_mail). Install and activate Flux Mail."
+msgstr "Flux Mail n'est pas actif. Les certificats ne peuvent pas être envoyés par WhatsApp ou SMS ; l'e-mail passe par WordPress (wp_mail). Installez et activez Flux Mail."
+
+msgid "%s sending"
+msgstr "%senvoi"
+
+msgid "Sent through the Flux Mail connection: %s."
+msgstr "Envoyé via la connexion Flux Mail :%s."
+
+msgid "Last successful send %s."
+msgstr "Dernier envoi réussi%s."
+
+msgid "Connections"
+msgstr "Connexions"
+
+msgid "No %1$s connection is set up; certificates are not sent by %1$s."
+msgstr "Aucune connexion%1$sn'est établie ; les certificats ne sont pas envoyés par%1$s."
+
+msgid "Flux Mail has no active %s connection; certificates cannot be sent on that channel."
+msgstr "Flux Mail n'a pas de connexion%sactive ; les certificats ne peuvent pas être envoyés sur ce canal."
+
+msgid "Certificate emails go through Flux Mail with the organization template (Communication › Emails)."
+msgstr "Les emails de certificat transitent par Flux Mail avec le modèle d'organisation (Communication › Emails)."
+
+msgid "Emails"
+msgstr "E-mails"
+
+msgid "Theme compatibility"
+msgstr "Compatibilité des thèmes"
+
+msgid "The FluxWP theme (%s) is active; the events section and certificate page match the theme."
+msgstr "Le thème FluxWP (%s) est actif ; la section événements et la page certificat correspondent au thème."
+
+msgid "Active theme: %s. The events section appears automatically only in the Örnek Vakfı theme; in other themes add it with a shortcode."
+msgstr "Thème actif :%s. La section événements apparaît automatiquement uniquement dans le thème Örnek Vakfı ; dans d'autres thèmes, ajoutez-le avec un shortcode."
+
+msgid "Ongoing events"
+msgstr "Événements en cours"
+
+msgid "No open events; the events section is hidden on the site."
+msgstr "Aucun événement ouvert ; la section événements est masquée sur le site."
+
+msgid "Events"
+msgstr "Événements"
+
+msgid "Open event without a published page: %s. Fix it with \"Publish on site\" in the event edit screen."
+msgstr "Événement ouvert sans page publiée :%s. Corrigez-le avec \"Publier sur site\" dans l'écran d'édition de l'événement."
+
+msgid "%d open event, its page is published."
+msgid_plural "%d open events, their pages are published."
+msgstr[0] "%dévénement ouvert, sa page est publiée."
+msgstr[1] "%douvrent les événements, leurs pages sont publiées."
+
+msgid "Certificate lookup"
+msgstr "Recherche de certificat"
+
+msgid "The lookup form is on %s."
+msgstr "Le formulaire de recherche se trouve sur%s."
+
+msgid "Lookup is on, but no published page has the [flx_sertifika_sorgula] shortcode."
+msgstr "La recherche est activée, mais aucune page publiée ne contient le shortcode [flx_sertifika_sorgula]."
+
+msgid "Flux Forms integration"
+msgstr "Intégration de Flux Forms"
+
+msgid "Flux Forms is installed; form automations can create and send certificates."
+msgstr "Flux Forms est installé ; les automatisations de formulaires peuvent créer et envoyer des certificats."
+
+msgid "PDF generation on the server"
+msgstr "Génération PDF sur le serveur"
+
+msgid "PHP GD (FreeType) extension is missing: PDFs and images are only made in the browser, when the certificate page is first opened."
+msgstr "L'extension PHP GD (FreeType) est manquante : les PDF et les images ne sont créés dans le navigateur que lors de la première ouverture de la page du certificat."
+
+msgid "%d certificate is missing its PDF or image."
+msgstr "Le certificat%dne contient pas son PDF ou son image."
+
+msgid "Create missing files"
+msgstr "Créer des fichiers manquants"
+
+msgid "On. PDFs and images for new certificates are generated in the background on the server."
+msgstr "Allumé. Les PDF et les images des nouveaux certificats sont générés en arrière-plan sur le serveur."
+
+msgid "Create missing certificate files"
+msgstr "Créer des fichiers de certificat manquants"
+
+msgid "Generates files on the server for up to 25 certificates that are missing a PDF or image."
+msgstr "Génère des fichiers sur le serveur pour jusqu'à 25 certificats pour lesquels il manque un PDF ou une image."
+
+msgid "Files created for %1$d certificates, %2$d errors."
+msgstr "Fichiers créés pour les certificats%1$d, erreurs%2$d."
+
+msgid "%d certificates left, press again."
+msgstr "Il reste des certificats%d, appuyez à nouveau."
+
+msgid "Ongoing Events"
+msgstr "Événements en cours"
+
+msgid "Your saplings are planted at these events. You too can contribute by donating saplings."
+msgstr "Vos jeunes arbres sont plantés lors de ces événements. Vous aussi, vous pouvez contribuer en faisant don de jeunes arbres."
+
+msgid "Event location"
+msgstr "Lieu de l'événement"
+
+msgctxt "context_39c93914dff5"
+msgid "l, F j, Y"
+msgstr "l, F j, Y"
+
+msgid "sapling planted"
+msgid_plural "saplings planted"
+msgstr[0] "jeune arbre planté"
+msgstr[1] "jeunes arbres plantés"
+
+msgid "sapling collected"
+msgid_plural "saplings collected"
+msgstr[0] "jeune arbre récolté"
+msgstr[1] "jeunes arbres récoltés"
+
+msgctxt "context_a43dbd63afaf"
+msgid "F j"
+msgstr "Fj"
+
+msgid "The planting site is announced by the authorities 10 days before the event. We will share it here around %s."
+msgstr "Le site de plantation est annoncé par les autorités 10 jours avant l'événement. Nous le partagerons ici autour de%s."
+
+msgid "The planting site is announced by the authorities 10 days before the event. We will share it here."
+msgstr "Le site de plantation est annoncé par les autorités 10 jours avant l'événement. Nous le partagerons ici."
+
+msgid "Location coming soon"
+msgstr "Localisation à venir"
+
+msgid "Event site"
+msgstr "Site de l'événement"
+
+msgid "Get directions"
+msgstr "Obtenir un itinéraire"
+
+msgid "Show map"
+msgstr "Afficher la carte"
+
+msgid "Loads Google Maps"
+msgstr "Charge Google Maps"
+
+msgid "Goal: %s saplings"
+msgstr "Objectif : jeunes plants%s"
+
+msgid "%s%%"
+msgstr "%s %%"
+
+msgid "Completed event"
+msgstr "Événement terminé"
+
+msgid "Sapling counter"
+msgstr "Compteur de jeunes arbres"
+
+msgid "saplings planted"
+msgstr "jeunes arbres plantés"
+
+msgid "%s person contributed"
+msgid_plural "%s people contributed"
+msgstr[0] "%spersonne a contribué"
+msgstr[1] "%spersonnes ont contribué"
+
+msgctxt "context_a104e4060425"
+msgid "F j, Y"
+msgstr "F j, Y"
+
+msgid "Time: %s"
+msgstr "Heure :%s"
+
+msgid "This event is complete. Thank you to everyone who contributed."
+msgstr "Cet événement est terminé. Merci à tous ceux qui ont contribué."
+
+msgid "Donate saplings for this event"
+msgstr "Faites don de jeunes arbres pour cet événement"
+
+msgid "Your donation is added to the counter instantly."
+msgstr "Votre don est ajouté instantanément au compteur."
+
+msgid "Tree planting events"
+msgstr "Événements de plantation d’arbres"
+
+msgid "Location to be announced"
+msgstr "Lieu à annoncer"
+
+msgid "Details"
+msgstr "Détails"
+
+msgid "Donate saplings"
+msgstr "Faire un don de jeunes arbres"
+
+msgid "System"
+msgstr "Système"
+
+msgid "SMS"
+msgstr "SMS"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "Queued"
+msgstr "En file d'attente"
+
+msgid "Sending"
+msgstr "Envoi"
+
+msgid "Sent"
+msgstr "Envoyé"
+
+msgid "Failed"
+msgstr "Échec"
+
+msgid "The server has no GD (FreeType) extension."
+msgstr "Le serveur n'a pas d'extension GD (FreeType)."
+
+msgid "This certificate's files are being prepared right now."
+msgstr "Les dossiers de ce certificat sont en cours de préparation."
+
+msgid "Template not found."
+msgstr "Modèle introuvable."
+
+msgid "The background PDF could not be read on the server."
+msgstr "Le PDF d'arrière-plan n'a pas pu être lu sur le serveur."
+
+msgid "Link copied"
+msgstr "Lien copié"
+
+msgid "Copy the link:"
+msgstr "Copiez le lien :"
+
+msgid "Sending…"
+msgstr "Envoi..."
+
+msgid "Done."
+msgstr "Terminé."
+
+msgid "Something went wrong."
+msgstr "Quelque chose s'est mal passé."
+
+msgid "Connection error. Please try again."
+msgstr "Erreur de connexion. Veuillez réessayer."
+
+msgid "The PDF library could not be loaded (%s). Reload the page and try again."
+msgstr "La bibliothèque PDF n'a pas pu être chargée (%s). Actualisez la page et réessayez."
+
+msgid "Find your certificate"
+msgstr "Trouvez votre certificat"
+
+msgid "Enter the phone number or email address you registered with. We will send your certificate link only to that address."
+msgstr "Entrez le numéro de téléphone ou l'adresse e-mail avec laquelle vous vous êtes inscrit. Nous enverrons le lien de votre certificat uniquement à cette adresse."
+
+msgid "0532 123 45 67 or name@example.com"
+msgstr "0532 123 45 67 ou nom@example.com"
+
+msgid "Send"
+msgstr "Envoyer"
+
+msgid "Name, e-mail or phone"
+msgstr "Nom, e-mail ou téléphone"
+
+msgid "Name, number or code"
+msgstr "Nom, numéro ou code"
+
+msgid "Recipient or subject"
+msgstr "Destinataire ou sujet"
+
+msgid "Saplings"
+msgstr "Jeunes plants"
+
+msgid "Queued to send"
+msgstr "En file d'attente pour envoyer"
+
+msgid "Send queue"
+msgstr "Envoyer la file d'attente"
+
+msgid "Sends appear here."
+msgstr "Les envois apparaissent ici."
+
+msgid "Channel"
+msgstr "Chaîne"
+
+msgid "No people"
+msgstr "Personne"
+
+msgid "People"
+msgstr "Les gens"
+
+msgid "Code"
+msgstr "Coder"
+
+msgid "Queue is empty"
+msgstr "La file d'attente est vide"
+
+msgid "Number"
+msgstr "Numéro"
+
+msgid "Cancel this certificate?"
+msgstr "Annuler ce certificat ?"
+
+msgid "People who received a certificate appear here."
+msgstr "Les personnes ayant reçu un certificat apparaissent ici."
+
+msgid "No certificates"
+msgstr "Aucun certificat"
+
+msgid "Send the certificate"
+msgstr "Envoyer le certificat"
+
+msgid "New certificates appear here."
+msgstr "De nouveaux certificats apparaissent ici."
+
+msgid "Restore"
+msgstr "Restaurer"
+
+msgid "Restored"
+msgstr "Restauré"
+
+msgid "Retry"
+msgstr "Réessayer"
+
+msgid "Will be retried"
+msgstr "Sera réessayé"
+
+msgid "Summary"
+msgstr "Résumé"
+
+msgid "A cancelled certificate is hidden on the public page."
+msgstr "Un certificat annulé est masqué sur la page publique."
+
+msgid "%d open event, its page is published."
+msgstr "%dévénement ouvert, sa page est publiée."
+
+msgid "[['%dviews', 'tr']]"
+msgid_plural "[['%dviews', 'tr']]"
+msgstr[0] "[['%dvues', 'tr']]"
+msgstr[1] "[['%dvues', 'tr']]"
+
+msgid "[['%dregistration', 'tr']]"
+msgid_plural "[['%dregistration', 'tr']]"
+msgstr[0] "[['Inscription%d', 'tr']]"
+msgstr[1] "[['Inscription%d', 'tr']]"
+
+msgid "\\n There is active template%d. There is active template%d.\\n"
+msgstr "\\n Il existe un modèle actif%d. Il existe un modèle actif%d.\\n"
+
+msgid "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"
+msgstr "\\n Le message%1$dattend depuis plus de 10 minutes ; La file d'attente ne fonctionne peut-être pas. Gestionnaire :%2$s, dernière exécution :%3$s. Message%1$den attente depuis plus de 10 minutes ; La file d'attente ne fonctionne peut-être pas. Gestionnaire :%2$s, dernière exécution :%3$s.\\n"
+
+msgid "[['%dmessage could not be sent.', 'tr']]"
+msgid_plural "[['%dmessage could not be sent.', 'tr']]"
+msgstr[0] "[['Le message%dn'a pas pu être envoyé.', 'tr']]"
+msgstr[1] "[['Le message%dn'a pas pu être envoyé.', 'tr']]"
+
+msgid "[['%dmessage sent, no failure.', 'tr']]"
+msgid_plural "[['%dmessage sent, no failure.', 'tr']]"
+msgstr[0] "[['Message%denvoyé, aucun échec.', 'tr']]"
+msgstr[1] "[['Message%denvoyé, aucun échec.', 'tr']]"
+
+msgid "[['%dhas an open event, its page is live on the site.', 'tr']]"
+msgid_plural "[['%dhas open events, its pages are live on the site.', 'tr']]"
+msgstr[0] "[['%da un événement ouvert, sa page est en direct sur le site.', 'tr']]"
+msgstr[1] "[['%da des événements ouverts, ses pages sont en direct sur le site.', 'tr']]"
+
+msgid "[['saplings were planted', 'tr']]"
+msgid_plural "[['saplings were planted', 'tr']]"
+msgstr[0] "[['des jeunes arbres ont été plantés', 'tr']]"
+msgstr[1] "[['des jeunes arbres ont été plantés', 'tr']]"
+
+msgid "[['saplings were collected', 'tr']]"
+msgid_plural "[['saplings were collected', 'tr']]"
+msgstr[0] "[['des jeunes arbres ont été collectés', 'tr']]"
+msgstr[1] "[['des jeunes arbres ont été collectés', 'tr']]"
+
+msgid "[['%scontributed by', 'tr']]"
+msgid_plural "[['%scontributed by', 'tr']]"
+msgstr[0] "[['%scontribué par', 'tr']]"
+msgstr[1] "[['%scontribué par', 'tr']]"
+
+msgid "[['Certificate templates, certificate creation with live PDF preview, /certificate/{kod}verification page, email / SMS (Netgsm) / WhatsApp (Evolution API) sending, asynchronous queue, contact registration and detailed logs.', 'tr']]"
+msgstr "[['Modèles de certificats, création de certificats avec aperçu PDF en direct, page de vérification /certificate/{kod}, envoi d'e-mails / SMS (Netgsm) / WhatsApp (API Evolution), file d'attente asynchrone, enregistrement des contacts et journaux détaillés.', 'tr']]"
+
+msgid "\\n There is active template%d. There is active template%d.\\n"
+msgid_plural "\\n There is active template%d. There is active template%d.\\n"
+msgstr[0] "\\n Il existe un modèle actif%d. Il existe un modèle actif%d.\\n"
+msgstr[1] "\\n Il existe un modèle actif%d. Il existe un modèle actif%d.\\n"
+
+msgid "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"
+msgid_plural "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"
+msgstr[0] "\\n Le message%1$dattend depuis plus de 10 minutes ; La file d'attente ne fonctionne peut-être pas. Gestionnaire :%2$s, dernière exécution :%3$s. Message%1$den attente depuis plus de 10 minutes ; La file d'attente ne fonctionne peut-être pas. Gestionnaire :%2$s, dernière exécution :%3$s.\\n"
+msgstr[1] "\\n Le message%1$dattend depuis plus de 10 minutes ; La file d'attente ne fonctionne peut-être pas. Gestionnaire :%2$s, dernière exécution :%3$s. Message%1$den attente depuis plus de 10 minutes ; La file d'attente ne fonctionne peut-être pas. Gestionnaire :%2$s, dernière exécution :%3$s.\\n"

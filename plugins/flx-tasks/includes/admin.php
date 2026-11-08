@@ -7,10 +7,10 @@ add_action( 'admin_menu', 'flxg_admin_menu' );
 function flxg_admin_menu() {
 	$count = current_user_can( 'flxg_use' ) ? flxg_unread_count( get_current_user_id() ) : 0;
 	$badge = $count ? ' <span class="awaiting-mod count-' . (int) $count . '"><span class="pending-count">' . esc_html( number_format_i18n( $count ) ) . '</span></span>' : '';
-	add_menu_page( __( 'Görevler', 'flx-tasks' ), __( 'Görevler', 'flx-tasks' ) . $badge, 'flxg_use', 'flx-tasks', 'flxg_render_app', 'none', 4 );
-	add_submenu_page( 'flx-tasks', __( 'Görevler', 'flx-tasks' ), __( 'Görevler', 'flx-tasks' ), 'flxg_use', 'flx-tasks', 'flxg_render_app' );
-	add_submenu_page( 'flx-tasks', __( 'Kullanım panosu', 'flx-tasks' ), __( 'Kullanım panosu', 'flx-tasks' ), 'flxg_manage', 'flx-tasks-pano', 'flxg_render_app' );
-	add_submenu_page( 'flx-tasks', __( 'Görev Ayarları', 'flx-tasks' ), __( 'Ayarlar', 'flx-tasks' ), 'flxg_manage', 'flx-tasks-ayarlar', 'flxg_render_app' );
+	add_menu_page( __( 'Tasks', 'flx-tasks' ), __( 'Tasks', 'flx-tasks' ) . $badge, 'flxg_use', 'flx-tasks', 'flxg_render_app', 'none', 4 );
+	add_submenu_page( 'flx-tasks', __( 'Tasks', 'flx-tasks' ), __( 'Tasks', 'flx-tasks' ), 'flxg_use', 'flx-tasks', 'flxg_render_app' );
+	add_submenu_page( 'flx-tasks', __( 'Usage dashboard', 'flx-tasks' ), __( 'Usage dashboard', 'flx-tasks' ), 'flxg_manage', 'flx-tasks-pano', 'flxg_render_app' );
+	add_submenu_page( 'flx-tasks', __( 'Task Settings', 'flx-tasks' ), __( 'Settings', 'flx-tasks' ), 'flxg_manage', 'flx-tasks-ayarlar', 'flxg_render_app' );
 }
 
 function flxg_is_app_screen() {
@@ -73,7 +73,7 @@ function flxg_admin_assets() {
 /* Uygulama tam ekran: WP menüsü ve çubuğu üstünde kendi arayüzü. */
 function flxg_render_app() {
 	echo '<script>document.documentElement.classList.add("flxg-lock");</script>';
-	echo '<div id="flxg-app" class="flxg"><noscript>' . esc_html__( 'Görevler için JavaScript gerekli.', 'flx-tasks' ) . '</noscript></div>';
+	echo '<div id="flxg-app" class="flxg"><noscript>' . esc_html__( 'JavaScript is required for Tasks.', 'flx-tasks' ) . '</noscript></div>';
 	// Tema div'in hemen ardından, ilk boyamadan önce uygulanır (pages.js yüklenene kadar açık tema görünmesin).
 	echo "<script>(function(d,w){var m;try{m=localStorage.getItem('flxg-theme')}catch(e){}m=m||'auto';var k=m==='dark'||(m==='auto'&&!!w.matchMedia&&w.matchMedia('(prefers-color-scheme: dark)').matches);d.getElementById('flxg-app').dataset.theme=k?'dark':'light';d.documentElement.classList.toggle('flxg-dark',k)})(document,window)</script>";
 }
@@ -95,7 +95,7 @@ add_action(
 		echo '<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">' . "\n";
 		echo '<meta name="theme-color" content="#16191d" media="(prefers-color-scheme: dark)">' . "\n";
 		echo '<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">' . "\n";
-		echo '<meta name="apple-mobile-web-app-title" content="' . esc_attr__( 'Görevler', 'flx-tasks' ) . '">' . "\n";
+		echo '<meta name="apple-mobile-web-app-title" content="' . esc_attr__( 'Tasks', 'flx-tasks' ) . '">' . "\n";
 		echo '<style>html.wp-toolbar{padding-top:0!important}</style>' . "\n";
 	}
 );
@@ -110,8 +110,8 @@ add_filter(
 add_filter(
 	'plugin_action_links_' . plugin_basename( FLXG_FILE ),
 	function ( $links ) {
-		array_unshift( $links, '<a href="' . esc_url( admin_url( 'admin.php?page=flx-tasks-ayarlar' ) ) . '">' . esc_html__( 'Ayarlar', 'flx-tasks' ) . '</a>' );
-		array_unshift( $links, '<a href="' . esc_url( admin_url( 'admin.php?page=flx-tasks' ) ) . '">' . esc_html__( 'Görevler', 'flx-tasks' ) . '</a>' );
+		array_unshift( $links, '<a href="' . esc_url( admin_url( 'admin.php?page=flx-tasks-ayarlar' ) ) . '">' . esc_html__( 'Settings', 'flx-tasks' ) . '</a>' );
+		array_unshift( $links, '<a href="' . esc_url( admin_url( 'admin.php?page=flx-tasks' ) ) . '">' . esc_html__( 'Tasks', 'flx-tasks' ) . '</a>' );
 		return $links;
 	}
 );
@@ -129,7 +129,7 @@ add_action(
 				'id'    => 'flxg-notifs',
 				'title' => '<span class="ab-icon dashicons dashicons-yes-alt" style="top:2px"></span>' . ( $n ? '<span class="ab-label">' . esc_html( number_format_i18n( $n ) ) . '</span>' : '' ),
 				'href'  => admin_url( 'admin.php?page=flx-tasks#/inbox' ),
-				'meta'  => array( 'title' => __( 'Görev bildirimleri', 'flx-tasks' ) ),
+				'meta'  => array( 'title' => __( 'Task notifications', 'flx-tasks' ) ),
 			)
 		);
 	},

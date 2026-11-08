@@ -17,7 +17,7 @@ final class FLXCRM_Adapter_Users {
 	}
 
 	public static function label() {
-		return __( 'Site üyeleri', 'flx-crm' );
+		return __( 'Site members', 'flx-crm' );
 	}
 
 	public static function wp_roles() {
@@ -64,7 +64,7 @@ final class FLXCRM_Adapter_Users {
 				array(
 					'source' => self::KEY,
 					'uniq'   => 'users:signup:' . (int) $user->ID,
-					'title'  => __( 'Sitede hesap açtı', 'flx-crm' ),
+					'title'  => __( 'Created an account on the site', 'flx-crm' ),
 					'url'    => 'user-edit.php?user_id=' . (int) $user->ID,
 					'at'     => $user->user_registered,
 				)

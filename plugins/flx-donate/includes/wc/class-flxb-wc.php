@@ -244,7 +244,7 @@ final class FLXB_WC {
 		if ( '' === $url ) {
 			return '';
 		}
-		return '<p class="flxwb-support">' . self::icon( 'whatsapp' ) . '<span>' . esc_html__( 'Any trouble? Write to us on WhatsApp:', 'flx-donate' ) . ' <a href="' . esc_url( $url ) . '" target="_blank" rel="noopener">' . esc_html( $num ) . '</a></span></p>';
+		return '<p class="flxwb-support">' . self::icon( 'whatsapp' ) . '<span>' . esc_html__( '\\nAny trouble? Write to us on WhatsApp:\\n', 'flx-donate' ) . ' <a href="' . esc_url( $url ) . '" target="_blank" rel="noopener">' . esc_html( $num ) . '</a></span></p>';
 	}
 
 	public static function settings() {
@@ -314,10 +314,10 @@ final class FLXB_WC {
 		return (array) apply_filters(
 			'flxb_option_badges',
 			array(
-				''          => __( 'No badge', 'flx-donate' ),
-				'avantajli' => __( 'Best value', 'flx-donate' ),
-				'populer'   => __( 'Most popular', 'flx-donate' ),
-				'aile'      => __( 'Family pack', 'flx-donate' ),
+				''          => __( '\\nNo badge\\n', 'flx-donate' ),
+				'avantajli' => __( '\\nBest value\\n', 'flx-donate' ),
+				'populer'   => __( '\\nMost popular\', \'en\']]', 'flx-donate' ),
+				'aile'      => __( '\\nFamily pack\\n', 'flx-donate' ),
 			)
 		);
 	}
@@ -372,10 +372,10 @@ final class FLXB_WC {
 	public static function default_notify_text( $channel ) {
 		if ( 'sms' === $channel ) {
 			/* translators: SMS template. Placeholders: {ad} {tutar} {siparis} {iban} {aciklama} {link} */
-			return __( 'Hello {ad}, your donation of {tutar} is registered. IBAN: {iban} Reference: {aciklama} Upload your receipt: {link}', 'flx-donate' );
+			return __( '\\nHello{ad}, your donation of{tutar}is registered. IBAN:{iban}Reference:{aciklama}Upload your receipt:{link}\\n', 'flx-donate' );
 		}
 		/* translators: WhatsApp template. Placeholders: {ad} {tutar} {siparis} {alici} {iban} {aciklama} {link} {site} */
-		return __( "Hello {ad} 🌱\n\nYour donation of *{tutar}* is registered (No: {siparis}).\n\nBank transfer details:\nRecipient: {alici}\nIBAN: {iban}\nReference: *{aciklama}*\n\nAfter the transfer you can upload your receipt here:\n{link}\n\nThank you,\n{site}", 'flx-donate' );
+		return __( '\\nHello{ad}🌱\\n\\nYour donation of *{tutar}* is registered (No:{siparis}).\\n\\nBank transfer details:\\nRecipient:{alici}\\nIBAN:{iban}\\nReference: *{aciklama}*\\n\\nAfter the transfer you can upload your receipt here:\\n{link}\\n\\nThank you,\\n{site}\\n', 'flx-donate' );
 	}
 
 	public static function notify_text( $channel ) {

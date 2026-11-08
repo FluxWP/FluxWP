@@ -30,7 +30,7 @@ final class FLXCM_Bank_Blocks extends AbstractPaymentMethodType {
 		$title = trim( (string) ( $this->settings['title'] ?? '' ) );
 		$desc  = trim( (string) ( $this->settings['description'] ?? '' ) );
 		return array(
-			'title'       => '' !== $title ? $title : __( 'Havale/EFT', 'flx-commerce' ),
+			'title'       => '' !== $title ? $title : __( 'Bank transfer', 'flx-commerce' ),
 			'description' => '' !== $desc ? $desc : FLXCM_Bank::default_description(),
 			'holder'      => FLXCM_Bank::option( 'holder' ),
 			'iban'        => FLXCM_Bank::format_iban( FLXCM_Bank::option( 'iban' ) ),

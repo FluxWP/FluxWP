@@ -71,7 +71,7 @@ function flxc_pay_link( $order, $method ) {
 	if ( 'havale' === $method ) {
 		if ( FLXB_WC_Havale::ID !== $order->get_payment_method() ) {
 			$order->set_payment_method( FLXB_WC_Havale::ID );
-			$order->set_payment_method_title( __( 'Havale / EFT', 'flx-chat' ) );
+			$order->set_payment_method_title( __( 'Bank transfer', 'flx-chat' ) );
 			$order->update_meta_data( '_flxb_state', 'awaiting' );
 			$order->save();
 		}
@@ -81,7 +81,7 @@ function flxc_pay_link( $order, $method ) {
 		// Kart: ödeme sayfası kart seçili açılır (Flux Donate siparişin yöntemini öne alır). Seçimli linkte de kart önde, havale altında.
 		if ( $card !== $order->get_payment_method() ) {
 			$order->set_payment_method( $card );
-			$order->set_payment_method_title( __( 'Kart', 'flx-chat' ) );
+			$order->set_payment_method_title( __( 'Card', 'flx-chat' ) );
 			$order->save();
 		}
 		$url = $order->get_checkout_payment_url();
@@ -173,20 +173,20 @@ add_filter(
 	'flxi_email_types',
 	function ( $types ) {
 		$types['flx-chat/verify-code'] = array(
-			'label'       => __( 'WhatsApp asistanı: e-posta doğrulama kodu', 'flx-chat' ),
+			'label'       => __( 'WhatsApp assistant: e-mail verification code', 'flx-chat' ),
 			'group'       => 'Flux Chat',
-			'description' => __( 'Kişi WhatsApp\'ta bu e-postayla yaptığı bağışları sorunca gider.', 'flx-chat' ),
+			'description' => __( 'Sent when a person asks on WhatsApp about donations made with this e-mail.', 'flx-chat' ),
 			'recipient'   => 'user',
 			'vars'        => array(
-				'kod' => __( 'Doğrulama kodu', 'flx-chat' ),
-				'ad'  => __( 'Ad', 'flx-chat' ),
-				'dk'  => __( 'Geçerlilik süresi (dakika)', 'flx-chat' ),
+				'kod' => __( 'Verification code', 'flx-chat' ),
+				'ad'  => __( 'First name', 'flx-chat' ),
+				'dk'  => __( 'Validity (minutes)', 'flx-chat' ),
 			),
 			'sample'      => array( 'kod' => '482913', 'ad' => 'Ayşe', 'dk' => '5' ),
 			'defaults'    => array(
-				'subject' => __( 'Doğrulama kodunuz: {kod}', 'flx-chat' ),
-				'heading' => __( 'Doğrulama kodunuz', 'flx-chat' ),
-				'body'    => __( '<p>WhatsApp\'tan bu e-posta adresiyle yaptığınız bağışları sordunuz. Kodu WhatsApp sohbetine yazın:</p><p style="font-size:28px;font-weight:700;letter-spacing:6px">{kod}</p><p>Kod {dk} dakika geçerlidir. Bu isteği siz yapmadıysanız e-postayı yok sayın.</p>', 'flx-chat' ),
+				'subject' => __( 'Your verification code: {kod}', 'flx-chat' ),
+				'heading' => __( 'Your verification code', 'flx-chat' ),
+				'body'    => __( '<p>You asked from WhatsApp about donations made with this email address. Enter the code in the WhatsApp chat:</p><p style="font-size:28px;font-weight:700;letter-spacing:6px">{kod}</p><p>The code is valid for {dk} minutes. If you did not request this, ignore the email.</p>', 'flx-chat' ),
 				'sender'  => 'noreply',
 				'enabled' => 1,
 			),
@@ -207,7 +207,7 @@ function flxc_ev_send_mail( $email, $code, $name ) {
 		);
 	}
 	/* translators: %s: code */
-	return wp_mail( $email, sprintf( __( 'Doğrulama kodunuz: %s', 'flx-chat' ), $code ), /* translators: %s: code */ sprintf( __( 'WhatsApp sohbetine bu kodu yazın: %s', 'flx-chat' ), $code ) . "\n\n" . /* translators: %d: minutes */ sprintf( __( 'Kod %d dakika geçerlidir.', 'flx-chat' ), flxc_verify_ttl() ) );
+	return wp_mail( $email, sprintf( __( 'Your verification code: %s', 'flx-chat' ), $code ), /* translators: %s: code */ sprintf( __( 'Type this code in the WhatsApp chat: %s', 'flx-chat' ), $code ) . "\n\n" . /* translators: %d: minutes */ sprintf( __( 'The code is valid for %d minutes.', 'flx-chat' ), flxc_verify_ttl() ) );
 }
 
 /** Bu sohbette doğrulanmış e-postalar. */

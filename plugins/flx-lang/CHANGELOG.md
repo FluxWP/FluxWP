@@ -1,5 +1,11 @@
 # Flux Lang
 
+## 0.2.2
+- Add native WordPress language packs for German, Spanish, French, Brazilian Portuguese, Japanese, Simplified Chinese, Arabic and Russian. English-keyed JSON catalogs preserve legacy gettext compatibility; no Flux Lang dependency.
+
+## 0.2.1
+- Resolve front-end RTL/LTR from the selected language even without a WordPress language pack; synchronize HTML direction, core is_rtl and body classes while preserving the admin language. Isolate language-switch labels.
+
 ## 0.2.0
 - Uygulama menüsü dil ayarlarını web görünümünde açar.
 

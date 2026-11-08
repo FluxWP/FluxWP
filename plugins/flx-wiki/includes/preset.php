@@ -31,7 +31,7 @@ function flxwk_preset_importers( $t ) {
 	$t = (array) $t;
 
 	$t['wiki_section'] = array(
-		'label'   => __( 'Wiki bölümü', 'flx-wiki' ),
+		'label'   => __( 'Wiki section', 'flx-wiki' ),
 		'find'    => function ( $item ) {
 			$term = get_term_by( 'slug', sanitize_title( (string) ( $item['slug'] ?? $item['key'] ) ), FLXWK_TAX );
 			return $term ? (int) $term->term_id : 0;
@@ -84,7 +84,7 @@ function flxwk_preset_importers( $t ) {
 	);
 
 	$t['wiki'] = array(
-		'label'   => __( 'Wiki sayfası', 'flx-wiki' ),
+		'label'   => __( 'Wiki page', 'flx-wiki' ),
 		'find'    => function ( $item ) {
 			if ( function_exists( 'flxk_find_by_key' ) ) {
 				$id = flxwk_preset_key( (string) $item['key'] );

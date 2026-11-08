@@ -11,7 +11,7 @@ add_filter(
 	'flx_system_checks',
 	function ( $checks ) {
 		$checks   = is_array( $checks ) ? $checks : array();
-		$src      = __( 'Site Analitik', 'flx-analytics' );
+		$src      = __( 'Site Analytics', 'flx-analytics' );
 		$settings = admin_url( 'admin.php?page=flx-analytics-settings' );
 		$s        = flxan_settings();
 
@@ -20,9 +20,9 @@ add_filter(
 				'id'      => 'flxan.tables',
 				'source'  => $src,
 				'group'   => 'Plugins',
-				'label'   => __( 'İstatistik tabloları', 'flx-analytics' ),
+				'label'   => __( 'Statistics tables', 'flx-analytics' ),
 				'status'  => 'error',
-				'message' => __( 'Tablolar kurulmamış. Eklentiyi devre dışı bırakıp yeniden etkinleştirin.', 'flx-analytics' ),
+				'message' => __( 'Tables are not installed. Deactivate and reactivate the plugin.', 'flx-analytics' ),
 			);
 			return $checks;
 		}
@@ -32,9 +32,9 @@ add_filter(
 				'id'      => 'flxan.schema',
 				'source'  => $src,
 				'group'   => 'Plugins',
-				'label'   => __( 'İstatistik tabloları', 'flx-analytics' ),
+				'label'   => __( 'Statistics tables', 'flx-analytics' ),
 				'status'  => 'error',
-				'message' => __( 'Tablolar eski sürümde kalmış; ziyaretler kaydedilemiyor.', 'flx-analytics' ),
+				'message' => __( 'Tables are from an older version; visits cannot be saved.', 'flx-analytics' ),
 			);
 		}
 
@@ -42,11 +42,11 @@ add_filter(
 			'id'           => 'flxan.on',
 			'source'       => $src,
 			'group'        => 'Plugins',
-			'label'        => __( 'Ziyaret sayımı', 'flx-analytics' ),
+			'label'        => __( 'Visit counting', 'flx-analytics' ),
 			'status'       => $s['on'] ? 'ok' : 'warning',
-			'message'      => $s['on'] ? __( 'Açık. Çerez kullanılmaz, kişisel veri saklanmaz.', 'flx-analytics' ) : __( 'Kapalı: ziyaretler sayılmıyor.', 'flx-analytics' ),
+			'message'      => $s['on'] ? __( 'On. No cookies, no personal data stored.', 'flx-analytics' ) : __( 'Off: visits are not being counted.', 'flx-analytics' ),
 			'action_url'   => $settings,
-			'action_label' => __( 'Ayarlar', 'flx-analytics' ),
+			'action_label' => __( 'Settings', 'flx-analytics' ),
 		);
 
 		$dir_ok   = is_dir( flxan_data_dir() ) && is_writable( flxan_data_dir() ) && is_file( flxan_data_dir() . '/config.php' );
@@ -54,11 +54,11 @@ add_filter(
 			'id'      => 'flxan.dir',
 			'source'  => $src,
 			'group'   => 'Plugins',
-			'label'   => __( 'Veri dizini', 'flx-analytics' ),
+			'label'   => __( 'Data directory', 'flx-analytics' ),
 			'status'  => $dir_ok ? 'ok' : 'error',
 			'message' => $dir_ok
-				? __( 'wp-content/uploads/flx-analytics yazılabilir ve web erişimine kapalı.', 'flx-analytics' )
-				: __( 'wp-content/uploads/flx-analytics oluşturulamadı ya da yazılamıyor; ziyaretler kaydedilemez. Dizin izinlerini (755) kontrol edin.', 'flx-analytics' ),
+				? __( 'wp-content/uploads/flx-analytics is writable and closed to web access.', 'flx-analytics' )
+				: __( 'wp-content/uploads/flx-analytics could not be created or is not writable; visits cannot be recorded. Check the directory permissions (755).', 'flx-analytics' ),
 		);
 
 		$method   = flxan_method();
@@ -67,15 +67,15 @@ add_filter(
 			'id'           => 'flxan.method',
 			'source'       => $src,
 			'group'        => 'Plugins',
-			'label'        => __( 'Toplama yöntemi', 'flx-analytics' ),
+			'label'        => __( 'Collection method', 'flx-analytics' ),
 			'status'       => 'fast' === $method ? 'ok' : ( 'rest' === $s['method'] ? 'info' : 'warning' ),
 			'message'      => 'fast' === $method
-				? __( 'Hızlı uç: ziyaret WordPress yüklenmeden kaydedilir.', 'flx-analytics' )
+				? __( 'Fast endpoint: visits are recorded without loading WordPress.', 'flx-analytics' )
 				: ( 'fail' === $test
-					? __( 'Hızlı uç testten geçmedi (güvenlik eklentisi ya da sunucu eklenti klasöründeki PHP\'yi engelliyor olabilir); REST ucu kullanılıyor. Çalışır ama her ziyarette WordPress yüklenir.', 'flx-analytics' )
-					: __( 'REST ucu kullanılıyor. Çalışır ama her ziyarette WordPress yüklenir.', 'flx-analytics' ) ),
+					? __( 'The fast endpoint failed its test (a security plugin or the server may block PHP in the plugins folder); the REST endpoint is used. It works, but WordPress loads on every visit.', 'flx-analytics' )
+					: __( 'The REST endpoint is used. It works, but WordPress loads on every visit.', 'flx-analytics' ) ),
 			'action_url'   => $settings,
-			'action_label' => __( 'Ayarlar', 'flx-analytics' ),
+			'action_label' => __( 'Settings', 'flx-analytics' ),
 		);
 
 		$last     = (int) get_option( 'flxan_last_agg', 0 );
@@ -85,12 +85,12 @@ add_filter(
 			'id'      => 'flxan.aggregate',
 			'source'  => $src,
 			'group'   => 'Cron',
-			'label'   => __( 'İstatistik işleme', 'flx-analytics' ),
+			'label'   => __( 'Statistics processing', 'flx-analytics' ),
 			'status'  => $stale ? 'warning' : ( $last ? 'ok' : 'info' ),
 			'message' => $last
 				/* translators: 1: geçen süre, 2: bekleyen veri boyutu */
-				? sprintf( __( 'Son işleme %1$s. Bekleyen: %2$s.', 'flx-analytics' ), flx_time_ago( $last ), size_format( $pending ) )
-				: __( 'Henüz işlenen ziyaret yok.', 'flx-analytics' ),
+				? sprintf( __( 'Last processed %1$s. Waiting: %2$s.', 'flx-analytics' ), flx_time_ago( $last ), size_format( $pending ) )
+				: __( 'No visits processed yet.', 'flx-analytics' ),
 		);
 
 		$err = get_option( 'flxan_last_error' );
@@ -99,7 +99,7 @@ add_filter(
 				'id'      => 'flxan.error',
 				'source'  => $src,
 				'group'   => 'Plugins',
-				'label'   => __( 'İşleme hatası', 'flx-analytics' ),
+				'label'   => __( 'Processing error', 'flx-analytics' ),
 				'status'  => 'warning',
 				'message' => (string) $err['msg'],
 			);
@@ -110,11 +110,11 @@ add_filter(
 			'id'      => 'flxan.cache',
 			'source'  => $src,
 			'group'   => 'Plugins',
-			'label'   => __( 'Sayfa önbelleği uyumu', 'flx-analytics' ),
+			'label'   => __( 'Page cache compatibility', 'flx-analytics' ),
 			'status'  => 'ok',
 			'message' => $cached
-				? __( 'Önbellek eklentisi var; sayaç tarayıcıda çalıştığı için önbellekteki sayfalar da sayılır. Sayaç script\'i birleştirme/geciktirme dışında tutulur.', 'flx-analytics' )
-				: __( 'Sayaç tarayıcıda çalışır; önbellek eklentisi kurulursa da sayım sürer.', 'flx-analytics' ),
+				? __( 'A cache plugin is active; the counter runs in the browser, so cached pages are counted too. The counter script is excluded from combining/delaying.', 'flx-analytics' )
+				: __( 'The counter runs in the browser; counting continues if a cache plugin is installed.', 'flx-analytics' ),
 		);
 
 		return $checks;
@@ -126,9 +126,9 @@ add_filter(
 	function ( $fixes ) {
 		$fixes                       = is_array( $fixes ) ? $fixes : array();
 		$fixes['flxan_aggregate_now'] = array(
-			'label'       => __( 'İstatistikleri şimdi işle', 'flx-analytics' ),
-			'description' => __( 'Kuyrukta bekleyen ziyaretleri hemen tablolara işler.', 'flx-analytics' ),
-			'source'      => __( 'Site Analitik', 'flx-analytics' ),
+			'label'       => __( 'Process statistics now', 'flx-analytics' ),
+			'description' => __( 'Processes the queued visits into the tables right away.', 'flx-analytics' ),
+			'source'      => __( 'Site Analytics', 'flx-analytics' ),
 			'checks'      => array( 'flxan.aggregate' ),
 			'value'       => null,
 			'current'     => function () {
@@ -137,27 +137,27 @@ add_filter(
 			'run'         => function () {
 				$n = FLXAN_Aggregator::run( 25 );
 				if ( $n < 0 ) {
-					throw new Exception( __( 'İşleme zaten çalışıyor; birkaç saniye sonra yeniden deneyin.', 'flx-analytics' ) );
+					throw new Exception( __( 'Processing is already running; try again in a few seconds.', 'flx-analytics' ) );
 				}
 				/* translators: %s: satır sayısı */
-				return sprintf( __( '%s satır işlendi.', 'flx-analytics' ), number_format_i18n( $n ) );
+				return sprintf( __( '%s rows processed.', 'flx-analytics' ), number_format_i18n( $n ) );
 			},
 		);
 		$fixes['flxan_repair_tables'] = array(
-			'label'       => __( 'İstatistik tablolarını onar', 'flx-analytics' ),
-			'description' => __( 'Eksik sütun ve tabloları ekler, anahtarları günceller. Veri silinmez.', 'flx-analytics' ),
-			'source'      => __( 'Site Analitik', 'flx-analytics' ),
+			'label'       => __( 'Repair statistics tables', 'flx-analytics' ),
+			'description' => __( 'Adds missing columns and tables and updates keys. No data is deleted.', 'flx-analytics' ),
+			'source'      => __( 'Site Analytics', 'flx-analytics' ),
 			'checks'      => array( 'flxan.schema' ),
 			'value'       => null,
 			'current'     => function () {
-				return flxan_schema_ok() ? 'ok' : __( 'eski', 'flx-analytics' );
+				return flxan_schema_ok() ? 'ok' : __( 'outdated', 'flx-analytics' );
 			},
 			'run'         => function () {
 				flxan_install();
 				if ( ! flxan_schema_ok() ) {
-					throw new Exception( __( 'Tablolar güncellenemedi. Veritabanı kullanıcısının ALTER yetkisi olmalı.', 'flx-analytics' ) );
+					throw new Exception( __( 'Tables could not be updated. The database user needs the ALTER privilege.', 'flx-analytics' ) );
 				}
-				return __( 'Tablolar güncellendi.', 'flx-analytics' );
+				return __( 'Tables updated.', 'flx-analytics' );
 			},
 		);
 		return $fixes;

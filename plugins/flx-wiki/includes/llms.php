@@ -62,11 +62,11 @@ function flxwk_page_markdown( $post ) {
 		$head .= '> ' . $ex . "\n\n";
 	}
 	$meta   = array();
-	$meta[] = __( 'Kaynak', 'flx-wiki' ) . ': ' . get_permalink( $post );
+	$meta[] = __( 'Source', 'flx-wiki' ) . ': ' . get_permalink( $post );
 	if ( $sec ) {
-		$meta[] = __( 'Bölüm', 'flx-wiki' ) . ': ' . $sec->name;
+		$meta[] = __( 'Section', 'flx-wiki' ) . ': ' . $sec->name;
 	}
-	$meta[] = __( 'Son güncelleme', 'flx-wiki' ) . ': ' . get_post_modified_time( 'Y-m-d', true, $post );
+	$meta[] = __( 'Last updated', 'flx-wiki' ) . ': ' . get_post_modified_time( 'Y-m-d', true, $post );
 	$body   = flxwk_md_export( flxwk_md( $post ) );
 	/* İçerik kendi H1'iyle başlıyorsa tekrar etmesin. */
 	$body = preg_replace( '/^\s*#\s+[^\n]+\n+/', '', $body, 1 );
@@ -83,12 +83,12 @@ function flxwk_index_markdown() {
 	$out[] = '';
 	$out[] = sprintf(
 		/* translators: 1: llms-full.txt adresi */
-		__( 'Her sayfanın Markdown hâli adresin sonuna .md eklenerek alınır. Tüm wiki tek dosyada: %1$s', 'flx-wiki' ),
+		__( 'Add .md to any page address to get its Markdown. The whole wiki in one file: %1$s', 'flx-wiki' ),
 		home_url( '/' . flxwk_base() . '/llms-full.txt' )
 	);
 	if ( function_exists( 'flxai_mcp_enabled' ) && flxai_mcp_enabled() && function_exists( 'flxai_mcp_url' ) ) {
 		/* translators: %s: MCP sunucu adresi */
-		$out[] = sprintf( __( 'MCP sunucusu (anahtar gerekir): %s, araçlar flxwk_search, flxwk_get_page, flxwk_list_pages.', 'flx-wiki' ), flxai_mcp_url() );
+		$out[] = sprintf( __( 'MCP server (key required): %s, tools flxwk_search, flxwk_get_page, flxwk_list_pages.', 'flx-wiki' ), flxai_mcp_url() );
 	}
 	$out[] = '';
 	$line = function ( $p, $depth ) {
@@ -102,7 +102,7 @@ function flxwk_index_markdown() {
 		}
 	};
 	foreach ( flxwk_tree() as $g ) {
-		$out[] = '## ' . ( $g['term'] ? $g['term']->name : __( 'Diğer sayfalar', 'flx-wiki' ) );
+		$out[] = '## ' . ( $g['term'] ? $g['term']->name : __( 'Other pages', 'flx-wiki' ) );
 		$out[] = '';
 		$walk( $g['items'], 0 );
 		$out[] = '';
@@ -130,7 +130,7 @@ add_filter(
 		$rows[] = '## ' . flxwk_title();
 		$rows[] = '';
 		$rows[] = '- [' . flxwk_title() . ' – llms.txt](' . home_url( '/' . flxwk_base() . '/llms.txt' ) . '): ' . flxwk_intro();
-		$rows[] = '- [' . __( 'Tüm wiki (tek dosya)', 'flx-wiki' ) . '](' . home_url( '/' . flxwk_base() . '/llms-full.txt' ) . ')';
+		$rows[] = '- [' . __( 'Whole wiki (one file)', 'flx-wiki' ) . '](' . home_url( '/' . flxwk_base() . '/llms-full.txt' ) . ')';
 		$block = implode( "\n", $rows ) . "\n\n";
 		$at    = strrpos( $text, "\n## " );
 		return false === $at ? $text . "\n" . $block : substr( $text, 0, $at + 1 ) . $block . substr( $text, $at + 1 );

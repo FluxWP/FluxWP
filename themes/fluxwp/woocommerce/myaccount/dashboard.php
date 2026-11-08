@@ -47,8 +47,8 @@ if ( $flx_orders ) :
 	?>
 <section class="flx-dash__recent">
 	<header class="flx-dash__recent-head">
-		<h2><?php echo esc_html( flx_donation_mode() ? __( 'Son bağışlar', 'fluxwp' ) : __( 'Son siparişler', 'fluxwp' ) ); ?></h2>
-		<a href="<?php echo esc_url( wc_get_account_endpoint_url( 'orders' ) ); ?>"><?php esc_html_e( 'Tümünü gör', 'fluxwp' ); ?></a>
+		<h2><?php echo esc_html( flx_donation_mode() ? __( 'Recent donations', 'fluxwp' ) : __( 'Recent orders', 'fluxwp' ) ); ?></h2>
+		<a href="<?php echo esc_url( wc_get_account_endpoint_url( 'orders' ) ); ?>"><?php esc_html_e( 'View all', 'fluxwp' ); ?></a>
 	</header>
 	<ul class="flx-dash__orders">
 		<?php foreach ( $flx_orders as $flx_order ) : ?>

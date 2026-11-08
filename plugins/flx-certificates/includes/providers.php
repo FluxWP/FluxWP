@@ -166,7 +166,7 @@ function flxs_provider_options_for_js() {
 	foreach ( array_keys( flxs_channels() ) as $ch ) {
 		$out[ $ch ] = array();
 		if ( 'email' === $ch ) {
-			$out[ $ch ][] = array( 'id' => 0, 'name' => flxs_iletisim_active() ? __( 'Flux Mail (kurumsal şablon)', 'flx-certificates' ) : 'WordPress (wp_mail)' );
+			$out[ $ch ][] = array( 'id' => 0, 'name' => flxs_iletisim_active() ? __( 'Flux Mail (organization template)', 'flx-certificates' ) : 'WordPress (wp_mail)' );
 		}
 		if ( 'email' !== $ch ) {
 			if ( ! flxs_iletisim_active() ) {

@@ -1,0 +1,1505 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Performance"
+msgstr "パフォーマンス"
+
+msgid "Safe"
+msgstr "安全"
+
+msgid "Test first"
+msgstr "まずテストしてください"
+
+msgid "The theme or a preset overrides this feature in code (flxp_pagespeed_enabled); this setting may not take effect."
+msgstr "テーマまたはプリセットは、コード内でこの機能をオーバーライドします (flxp_pagespeed_enabled)。この設定は有効にならない場合があります。"
+
+msgid "Saved. The cache and the LiteSpeed page cache were cleared; browse a few pages to check."
+msgstr "保存されました。キャッシュと LiteSpeed ページのキャッシュがクリアされました。いくつかのページを閲覧して確認してください。"
+
+msgid "PageSpeed cache cleared."
+msgstr "PageSpeed キャッシュがクリアされました。"
+
+msgid "Google PageSpeed / Lighthouse suggestions that can be applied without changing the theme. Each one is switched on separately; after enabling a \"Test first\" item, check a few pages of the site (home, a post, donation/checkout)."
+msgstr "テーマを変更せずに適用できる Google PageSpeed / Lighthouse の提案。それぞれが個別にオンになります。 「最初にテスト」項目を有効にした後、サイトのいくつかのページ (ホーム、投稿、寄付/チェックアウト) を確認してください。"
+
+msgid "Basics"
+msgstr "基本"
+
+msgid "Remove the zoom lock"
+msgstr "ズームロックを解除する"
+
+msgid "user-scalable=no and maximum-scale are removed from the viewport tag so visitors with low vision can zoom in. Directly affects the Accessibility score."
+msgstr "user-scalable=no と Maximum-scale がビューポート タグから削除されるため、視力の低い訪問者でもズームインできます。 アクセシビリティ スコアに直接影響します。"
+
+msgid "Remove the emoji script"
+msgstr "絵文字スクリプトを削除する"
+
+msgid "WordPress's emoji detection script and style are not loaded. Modern browsers render emoji themselves."
+msgstr "WordPress の絵文字検出スクリプトとスタイルが読み込まれていません。最近のブラウザは絵文字自体をレンダリングします。"
+
+msgid "Scope"
+msgstr "範囲"
+
+msgid "Theme CSS only (recommended)"
+msgstr "テーマ CSS のみ (推奨)"
+
+msgid "Theme + plugins (all CSS under wp-content)"
+msgstr "テーマ + プラグイン (wp-content の下のすべての CSS)"
+
+msgid "Inline limit"
+msgstr "インライン制限"
+
+msgid "Trimmed CSS is written into <head> up to this size; anything beyond is loaded as a separate cached file. 0 = always a file."
+msgstr "トリミングされた CSS は、このサイズまで<head>に書き込まれます。それ以降のものは、別のキャッシュされたファイルとしてロードされます。 0 = 常にフ​​ァイル。"
+
+msgid "Always keep these classes"
+msgstr "これらのクラスを常に維持してください"
+
+msgid "One class or id per line, * as wildcard. If a style added later by JavaScript breaks, add its class here. is-*, has-*, wp-*, swiper-* are always kept."
+msgstr "1 行に 1 つのクラスまたは ID、* をワイルドカードとして使用します。後から JavaScript によって追加されたスタイルが壊れた場合は、そのクラスをここに追加します。 is-*、has-*、wp-*、swiper-* は常に保持されます。"
+
+msgid "Remove unused CSS and inline it"
+msgstr "使用されていない CSS を削除してインライン化します"
+
+msgid "Each page's class/id inventory is collected (HTML + the page's scripts); rules with no match on that page are dropped from the CSS file and the rest is written into <head>. The render-blocking CSS request goes away and LCP/FCP improve. Pages with the same inventory share one copy; copies are rebuilt when the file changes, and the full file is used if there are too many different pages."
+msgstr "各ページのクラス/ID インベントリが収集されます (HTML + ページのスクリプト)。そのページに一致しないルールは CSS ファイルから削除され、残りは<head>に書き込まれます。レンダリングをブロックする CSS リクエストがなくなり、LCP/FCP が改善されます。同じ在庫を持つページは 1 つのコピーを共有します。ファイルが変更されるとコピーが再構築され、異なるページが多すぎる場合はファイル全体が使用されます。"
+
+msgid "Minify CSS files"
+msgstr "CSS ファイルを縮小する"
+
+msgid "For unminified (non-.min) local CSS files, an up-to-date .min sibling or a copy without comments and whitespace is used."
+msgstr "縮小されていない (.min 以外の) ローカル CSS ファイルの場合は、最新の .min 兄弟またはコメントと空白のないコピーが使用されます。"
+
+msgid "Minify JS files"
+msgstr "JSファイルを縮小する"
+
+msgid "For theme and plugin scripts, the .min sibling is used if it is newer than the source; otherwise a copy without comments and indentation is generated (line breaks are kept). Bundles that load chunks relative to their own location and scripts with translations are left alone."
+msgstr "テーマとプラグインのスクリプトでは、ソースよりも新しい場合は .min 兄弟が使用されます。それ以外の場合は、コメントとインデントのないコピーが生成されます (改行は維持されます)。独自の場所を基準にしてチャンクをロードするバンドルと、翻訳付きのスクリプトはそのまま残されます。"
+
+msgid "jQuery always stays blocking (older inline scripts on the page may call it directly). WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on."
+msgstr "jQuery は常にブロックしたままになります (ページ上の古いインライン スクリプトが jQuery を直接呼び出す可能性があります)。 WordPress 自体は、その後にインライン スクリプトがあるスクリプト、またはブロック スクリプトが依存するスクリプトの遅延を削除します。"
+
+msgid "Defer head scripts"
+msgstr "ヘッドスクリプトを延期する"
+
+msgid "Scripts loaded in the page <head> that hold up rendering get defer (e.g. language suggestion, analytics scripts)."
+msgstr "ページ<head>にロードされた、レンダリングを保留するスクリプトは延期されます (言語の提案、分析スクリプトなど)。"
+
+msgid "Fonts"
+msgstr "フォント"
+
+msgid "Remove unused fonts"
+msgstr "使用していないフォントを削除する"
+
+msgid "Font families defined in theme.json but not referenced in the page's CSS (@font-face) are not printed. If usage cannot be determined, nothing is removed."
+msgstr "theme.json で定義されているが、ページの CSS (@font-face) で参照されていないフォント ファミリは印刷されません。使用法が判断できない場合は、何も削除されません。"
+
+msgid "Preload the above-the-fold font"
+msgstr "スクロールせずに見えるフォントをプリロードする"
+
+msgid "The regular (400) woff2 of up to two families in use is requested with <link rel=\"preload\"> so text paints sooner. Preloading the wrong weight wastes a download; turn this off if PageSpeed reports an unused preload."
+msgstr "使用中の最大 2 つのファミリーの通常 (400) woff2 は<link rel=\"preload\">で要求されるため、テキストがより早くペイントされます。間違った重みをプリロードすると、ダウンロードが無駄になります。 PageSpeed が未使用のプリロードを報告する場合は、これをオフにします。"
+
+msgid "Exclusions"
+msgstr "除外事項"
+
+msgid "Files to leave alone"
+msgstr "放っておくファイル"
+
+msgid "One handle or part of a URL per line. Trimming, minifying and defer are not applied to these files."
+msgstr "1 行に 1 つのハンドルまたは URL の一部。これらのファイルには、トリミング、縮小、および遅延は適用されません。"
+
+msgid "Pages to leave alone"
+msgstr "放っておくページ"
+
+msgid "One URL part per line. No PageSpeed optimization runs on these pages."
+msgstr "1 行に 1 つの URL 部分。これらのページでは PageSpeed の最適化は実行されません。"
+
+msgid "Save and clear cache"
+msgstr "キャッシュの保存とクリア"
+
+msgid "Status"
+msgstr "ステータス"
+
+msgid "Cache"
+msgstr "キャッシュ"
+
+msgid "%1$d CSS, %2$d JS copies · %3$s"
+msgstr "%1$dCSS、%2$dJS コピー ·%3$s"
+
+msgid "Compare"
+msgstr "比較する"
+
+msgid "Optimized"
+msgstr "最適化された"
+
+msgid "Off (?flxp_off=1)"
+msgstr "オフ (?flxp_off=1)"
+
+msgid "Adding ?flxp_off=1 to a URL opens the page without optimizations; if the page looks different, the cause is here."
+msgstr "?flxp_off=1 を URL に追加すると、最適化されずにページが開きます。ページが異なって見える場合、原因はここにあります。"
+
+msgid "Measure"
+msgstr "測定する"
+
+msgid "Flux SEO › Site audit"
+msgstr "Flux SEO › サイト監査"
+
+msgid "The site audit suggests these settings itself and turns them on with one click."
+msgstr "サイト監査はこれらの設定自体を提案し、ワンクリックで有効にします。"
+
+msgid "Clear cache"
+msgstr "キャッシュをクリアする"
+
+msgid "Animations not running on the GPU"
+msgstr "GPU でアニメーションが実行されない"
+
+msgid "Lighthouse \"non-composited animations\": properties other than transform and opacity (stroke-dashoffset, background, width…) repaint every frame. A setting cannot fix this; the theme or preset must rewrite them with transform/opacity."
+msgstr "Lighthouse の「非合成アニメーション」: 変換と不透明度 (ストローク ダッシュ オフセット、背景、幅など) 以外のプロパティは、フレームごとに再描画されます。これを設定で修正することはできません。テーマまたはプリセットは、変換/不透明度を使用してそれらを書き換える必要があります。"
+
+msgid "Animation"
+msgstr "アニメーション"
+
+msgid "Properties"
+msgstr "プロパティ"
+
+msgid "File"
+msgstr "ファイル"
+
+msgid "no prefers-reduced-motion"
+msgstr "縮小モーションを優先しない"
+
+msgid "All good: animations in the CSS files seen use transform/opacity."
+msgstr "問題はありません。CSS ファイル内のアニメーションでは、変換/不透明度が使用されています。"
+
+msgid "Scanned %1$d CSS files seen on the front end (%2$s)."
+msgstr "スキャンされた%1$dCSS ファイルがフロントエンド (%2$s) に表示されます。"
+
+msgid "The front end has not been seen yet, so the theme folder was scanned. Once the site is opened, the files the page loads are scanned."
+msgstr "フロントエンドはまだ見えていないので、テーマフォルダーをスキャンしました。サイトが開かれると、ページがロードするファイルがスキャンされます。"
+
+msgid "Summary"
+msgstr "概要"
+
+msgid "Records"
+msgstr "記録"
+
+msgid "Server"
+msgstr "サーバー"
+
+msgid "Database"
+msgstr "データベース"
+
+msgid "System check"
+msgstr "システムチェック"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "Flux Performance"
+msgstr "磁束性能"
+
+msgid "Settings saved."
+msgstr "設定が保存されました。"
+
+msgid "All records deleted."
+msgstr "すべての記録が削除されました。"
+
+msgid "Custom login URL turned off; login is back on wp-login.php."
+msgstr "カスタム ログイン URL がオフになりました。ログインが wp-login.php に戻りました。"
+
+msgid "Cleanup done: %s items."
+msgstr "クリーンアップが完了しました:%sアイテム。"
+
+msgid "Login URL changed."
+msgstr "ログインURLが変更になりました。"
+
+msgid "New address:"
+msgstr "新しい住所:"
+
+msgid "You are being logged out so you can see the new address work; you will be redirected to the new login page in %s seconds. After logging in you come back to this screen."
+msgstr "新しいアドレスが機能することを確認できるように、ログアウトされています。%s秒後に新しいログイン ページにリダイレクトされます。ログイン後、この画面に戻ります。"
+
+msgid "Redirect stopped. You are still logged in; the new address is used the next time you log in."
+msgstr "リダイレクトが停止されました。まだログインしています。新しいアドレスは次回ログイン時に使用されます。"
+
+msgid "Go now"
+msgstr "今すぐ行きましょう"
+
+msgid "Stay logged in"
+msgstr "ログインしたままにする"
+
+msgid "You are not allowed to view this page."
+msgstr "このページの閲覧は許可されていません。"
+
+msgid "Recording is off: only the live panel works."
+msgstr "録画はオフです。ライブ パネルのみが動作します。"
+
+msgid "All time"
+msgstr "ずっと"
+
+msgid "Last hour"
+msgstr "過去 1 時間"
+
+msgid "Last 24 hours"
+msgstr "過去 24 時間"
+
+msgid "Last 7 days"
+msgstr "過去 7 日間"
+
+msgid "All flags"
+msgstr "すべてのフラグ"
+
+msgid "All types"
+msgstr "全種類"
+
+msgid "Newest"
+msgstr "最新の"
+
+msgid "Slowest"
+msgstr "最も遅い"
+
+msgid "Search URL"
+msgstr "検索URL"
+
+msgid "Filter"
+msgstr "フィルター"
+
+msgid "URL to profile"
+msgstr "プロフィールへのURL"
+
+msgid "Profile page"
+msgstr "プロフィールページ"
+
+msgid "\"Profile page\" opens the URL as a visitor (bypassing cache) and records it in full detail."
+msgstr "「プロフィールページ」は、訪問者として URL を開き (キャッシュをバイパスし)、それを詳細に記録します。"
+
+msgid "Time"
+msgstr "時間"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Memory"
+msgstr "記憶"
+
+msgid "Queries"
+msgstr "クエリ"
+
+msgid "Errors"
+msgstr "エラー"
+
+msgid "Flags"
+msgstr "フラグ"
+
+msgid "No records yet. Slow or failing requests and sampled requests appear here."
+msgstr "まだ記録がありません。遅いリクエストまたは失敗したリクエスト、およびサンプルされたリクエストがここに表示されます。"
+
+msgid "Records: %s"
+msgstr "記録:%s"
+
+msgid "Delete all records?"
+msgstr "すべての記録を削除しますか?"
+
+msgid "Delete all records"
+msgstr "すべてのレコードを削除する"
+
+msgid "Record not found."
+msgstr "レコードが見つかりません。"
+
+msgid "Recorded requests"
+msgstr "記録されたリクエスト"
+
+msgid "Average time"
+msgstr "平均時間"
+
+msgid "Longest"
+msgstr "最長"
+
+msgid "Times are calculated from recorded requests: sampled requests plus slow/failing ones, so the average may look higher than the real average."
+msgstr "時間は記録されたリクエスト (サンプリングされたリクエストに遅い/失敗したリクエストを加えたもの) から計算されるため、平均は実際の平均よりも高く見える場合があります。"
+
+msgid "By request type"
+msgstr "リクエストタイプ別"
+
+msgid "The time visitors wait is the \"Front end\" row. Cron, Ajax and REST are mostly background work (backup step, scheduled task, Heartbeat); when they take long they do not slow pages directly, but they keep the server busy."
+msgstr "来場者が待つ時間は「フロントエンド」列です。 Cron、Ajax、REST はほとんどがバックグラウンド作業 (バックアップ ステップ、スケジュールされたタスク、ハートビート) です。時間がかかる場合、ページが直接遅くなるわけではありませんが、サーバーはビジー状態になります。"
+
+msgid "Type"
+msgstr "タイプ"
+
+msgid "Request"
+msgstr "リクエスト"
+
+msgid "Average"
+msgstr "平均"
+
+msgid "Slowest URLs"
+msgstr "最も遅い URL"
+
+msgid "Query time by component (per request)"
+msgstr "コンポーネント別のクエリ時間 (リクエストごと)"
+
+msgid "Component"
+msgstr "コンポーネント"
+
+msgid "Per request"
+msgstr "リクエストに応じて"
+
+msgid "Slow and failed queries"
+msgstr "遅いクエリと失敗したクエリ"
+
+msgid "Count"
+msgstr "カウント"
+
+msgid "PHP errors"
+msgstr "PHP エラー"
+
+msgid "Level"
+msgstr "レベル"
+
+msgid "Message"
+msgstr "メッセージ"
+
+msgid "HTTP API calls"
+msgstr "HTTP API 呼び出し"
+
+msgid "Endpoint"
+msgstr "エンドポイント"
+
+msgid "Failed"
+msgstr "失敗しました"
+
+msgid "Last error"
+msgstr "最後のエラー"
+
+msgid "No records."
+msgstr "記録はありません。"
+
+msgid "Suggestions"
+msgstr "提案"
+
+msgid "Account limit (cgroup)"
+msgstr "アカウント制限 (cgroup)"
+
+msgid "Shared hosting: account limit cannot be read"
+msgstr "共有ホスティング: アカウント制限を読み取れません"
+
+msgid "Server belongs to this site (VPS/dedicated)"
+msgstr "サーバーは当サイト所属(VPS/専用)"
+
+msgid "Scanned folder"
+msgstr "スキャンしたフォルダー"
+
+msgid "Files"
+msgstr "ファイル"
+
+msgid "Calculating…"
+msgstr "計算中..."
+
+msgid "Files and folders (inodes)"
+msgstr "ファイルとフォルダー (inode)"
+
+msgid "Disk quota"
+msgstr "ディスククォータ"
+
+msgid "Not set (Settings)"
+msgstr "未設定(設定)"
+
+msgid "Last measured"
+msgstr "最後に測定した"
+
+msgid "refreshing"
+msgstr "爽やかな"
+
+msgid "Account disk"
+msgstr "アカウントディスク"
+
+msgid "Whole machine (shared, all accounts)"
+msgstr "マシン全体 (共有、すべてのアカウント)"
+
+msgid "CPU cores"
+msgstr "CPUコア"
+
+msgid "Load (1/5/15 min)"
+msgstr "負荷(1/5/15分)"
+
+msgid "Disk"
+msgstr "ディスク"
+
+msgid "%s free"
+msgstr "%s無料"
+
+msgid "Note"
+msgstr "注記"
+
+msgid "These values belong to every account on the machine; they are not your site's usage or limit."
+msgstr "これらの値は、マシン上のすべてのアカウントに属します。これらはサイトの使用量や制限ではありません。"
+
+msgid "Yes"
+msgstr "はい"
+
+msgid "No"
+msgstr "いいえ"
+
+msgid "Operating system"
+msgstr "オペレーティングシステム"
+
+msgid "Software"
+msgstr "ソフトウェア"
+
+msgid "Hostname"
+msgstr "ホスト名"
+
+msgid "IP address"
+msgstr "IPアドレス"
+
+msgid "Port"
+msgstr "港"
+
+msgid "Document root"
+msgstr "ドキュメントルート"
+
+msgid "Resource values"
+msgstr "リソースの値"
+
+msgid "Version"
+msgstr "バージョン"
+
+msgid "Memory (this request)"
+msgstr "メモリ(今回のリクエスト)"
+
+msgid "peak"
+msgstr "ピーク"
+
+msgid "Disabled functions"
+msgstr "無効化された機能"
+
+msgid "Extensions"
+msgstr "拡張機能"
+
+msgid "On"
+msgstr "オン"
+
+msgid "Off"
+msgstr "オフ"
+
+msgid "Hit rate"
+msgstr "命中率"
+
+msgid "Cached files"
+msgstr "キャッシュされたファイル"
+
+msgid "Wasted"
+msgstr "無駄だった"
+
+msgid "Restarts"
+msgstr "再起動"
+
+msgid "No data (disabled or not allowed by the server)."
+msgstr "データがありません (無効になっているか、サーバーによって許可されていません)。"
+
+msgid "Object cache"
+msgstr "オブジェクトキャッシュ"
+
+msgid "External"
+msgstr "外部"
+
+msgid "None"
+msgstr "なし"
+
+msgid "Page cache (WP_CACHE)"
+msgstr "ページキャッシュ (WP_CACHE)"
+
+msgid "Locale"
+msgstr "ロケール"
+
+msgid "Timezone"
+msgstr "タイムゾーン"
+
+msgid "Permalinks"
+msgstr "パーマリンク"
+
+msgid "Environment type"
+msgstr "環境タイプ"
+
+msgid "Theme"
+msgstr "テーマ"
+
+msgid "undefined"
+msgstr "未定義"
+
+msgid "Active plugins"
+msgstr "アクティブなプラグイン"
+
+msgid "Data"
+msgstr "データ"
+
+msgid "Index"
+msgstr "インデックス"
+
+msgid "Free space"
+msgstr "フリースペース"
+
+msgid "Table"
+msgstr "テーブル"
+
+msgid "Rows (approx.)"
+msgstr "行数(約)"
+
+msgid "Open connections"
+msgstr "オープン接続"
+
+msgid "Charset"
+msgstr "文字セット"
+
+msgid "Uptime"
+msgstr "稼働時間"
+
+msgid "Queries per second"
+msgstr "1 秒あたりのクエリ数"
+
+msgid "Slow queries (server)"
+msgstr "遅いクエリ (サーバー)"
+
+msgid "Max concurrent connections"
+msgstr "最大同時接続数"
+
+msgid "Running threads"
+msgstr "スレッドの実行"
+
+msgid "Buffer pool hit rate"
+msgstr "バッファプールのヒット率"
+
+msgid "Temp tables on disk"
+msgstr "ディスク上の一時テーブル"
+
+msgid "Aborted connects"
+msgstr "中止された接続"
+
+msgid "Cleanup"
+msgstr "クリーンアップ"
+
+msgid "Safe jobs only: posts, pages and revisions are never deleted. Limit revisions with WP_POST_REVISIONS in wp-config."
+msgstr "安全なジョブのみ: 投稿、ページ、リビジョンは削除されません。 wp-config の WP_POST_REVISIONS でリビジョンを制限します。"
+
+msgid "continue?"
+msgstr "続けますか?"
+
+msgid "Clean"
+msgstr "クリーン"
+
+msgid "Revisions"
+msgstr "改訂"
+
+msgid "Trashed posts"
+msgstr "ゴミ箱に捨てられた投稿"
+
+msgid "All transients"
+msgstr "すべてのトランジェント"
+
+msgid "Job"
+msgstr "仕事"
+
+msgid "Tables"
+msgstr "テーブル"
+
+msgid "Engine"
+msgstr "エンジン"
+
+msgid "Rows"
+msgstr "行"
+
+msgid "Collation"
+msgstr "照合"
+
+msgid "Autoloaded options"
+msgstr "自動ロードされたオプション"
+
+msgid "Total size"
+msgstr "合計サイズ"
+
+msgid "These options are loaded from the database on every request. Over 800 KB in total slows pages down; shrink the setting or cache in the plugin that owns the large rows."
+msgstr "これらのオプションは、リクエストごとにデータベースからロードされます。合計 800 KB を超えるとページの速度が低下します。大きな行を所有するプラグインの設定またはキャッシュを縮小します。"
+
+msgid "Option"
+msgstr "オプション"
+
+msgid "Owner"
+msgstr "オーナー"
+
+msgid "Size"
+msgstr "サイズ"
+
+msgid "Events"
+msgstr "イベント"
+
+msgid "Overdue"
+msgstr "期限を過ぎました"
+
+msgid "Last run"
+msgstr "最後の実行"
+
+msgid "Not seen"
+msgstr "見られない"
+
+msgid "WordPress cron is disabled: events run only when a server cron job calls wp-cron.php. On Hostinger, add a cron job that calls it every 5 minutes."
+msgstr "WordPress cron が無効になっています。イベントはサーバー cron ジョブが wp-cron.php を呼び出した場合にのみ実行されます。 Hostinger で、5 分ごとに呼び出す cron ジョブを追加します。"
+
+msgid "Task durations"
+msgstr "タスクの期間"
+
+msgid "Measured per task each time wp-cron.php runs; sorted by total time. A summary older than a day resets when the task runs again. \"Cut off\": the task hit the time limit and stopped halfway."
+msgstr "wp-cron.php が実行されるたびにタスクごとに測定されます。合計時間で並べ替えます。 1 日より古い概要は、タスクが再度実行されるとリセットされます。 「中断」: タスクが制限時間に達し、途中で停止しました。"
+
+msgid "Hook"
+msgstr "フック"
+
+msgid "Runs"
+msgstr "走る"
+
+msgid "Last"
+msgstr "最後"
+
+msgid "Cut off"
+msgstr "切り落とす"
+
+msgid "Scheduled events"
+msgstr "予定されているイベント"
+
+msgid "Next"
+msgstr "次へ"
+
+msgid "Recurrence"
+msgstr "再発"
+
+msgid "Args"
+msgstr "引数"
+
+msgid "Overdue: due %s"
+msgstr "期限切れ: 期限%s"
+
+msgid "once"
+msgstr "一度"
+
+msgid "Recent fixes (AI / MCP)"
+msgstr "最近の修正 (AI / MCP)"
+
+msgid "User"
+msgstr "ユーザー"
+
+msgid "Fix"
+msgstr "修正"
+
+msgid "Before → After"
+msgstr "前 → 後"
+
+msgid "Result"
+msgstr "結果"
+
+msgid "Developer panel"
+msgstr "開発者パネル"
+
+msgid "Show a summary in the admin bar and a bottom panel to authorized users"
+msgstr "承認されたユーザーに対して管理バーと下部パネルに概要を表示します"
+
+msgid "Show on the front end too"
+msgstr "フロントエンドにも表示"
+
+msgid "Collect capability checks"
+msgstr "能力チェックを収集する"
+
+msgid "The panel is visible to administrators and to staff granted \"View performance\" by Flux Roles."
+msgstr "このパネルは、管理者と、Flux ロールによって「パフォーマンスの表示」を許可されたスタッフに表示されます。"
+
+msgid "Recording"
+msgstr "録音"
+
+msgid "Record slow and failing requests"
+msgstr "遅いリクエストや失敗したリクエストを記録する"
+
+msgid "Also record my own requests while the panel is on (only when something is wrong)"
+msgstr "パネルがオンになっている間、自分のリクエストも記録します(何か問題がある場合のみ)"
+
+msgid "Sampling"
+msgstr "サンプリング"
+
+msgid "This share of requests is collected in detail (with the query list) and recorded. 1-5 is recommended on Hostinger; 0 turns it off."
+msgstr "このリクエストの割合は (クエリ リストを使用して) 詳細に収集され、記録されます。 Hostinger では 1 ~ 5 が推奨されます。 0 はオフになります。"
+
+msgid "Slow request threshold"
+msgstr "低速リクエストのしきい値"
+
+msgid "Slow query threshold"
+msgstr "遅いクエリのしきい値"
+
+msgid "Retention"
+msgstr "保持"
+
+msgid "days"
+msgstr "日"
+
+msgid "at most"
+msgstr "せいぜい"
+
+msgid "records"
+msgstr "記録"
+
+msgid "Your shared hosting plan's disk limit (Hostinger: hPanel › Account resources). PHP cannot read it; when set, the Disk card shows account usage as a percentage. Leave empty to show used space only."
+msgstr "共有ホスティング プランのディスク制限 (Hostinger: hPanel › アカウント リソース)。 PHP では読み取れません。設定すると、ディスク カードにアカウントの使用率がパーセンテージで表示されます。使用済みスペースのみを表示するには、空のままにします。"
+
+msgid "AI (MCP)"
+msgstr "AI(MCP)"
+
+msgid "The data is read by read-only tools on the Flux AI & MCP server and in Flux AI chat: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url."
+msgstr "データは、Flux AI および MCP サーバーと Flux AI チャットの読み取り専用ツールによって読み取られます: flxp_summary、flxp_requests、flxp_request、flxp_slow_queries、flxp_php_errors、flxp_http_calls、flxp_environment、flxp_server、flxp_database、flxp_autoload、 flxp_cron、flxp_profile_url。"
+
+msgid "Flux AI & MCP is active: tools are registered."
+msgstr "Flux AI と MCP がアクティブです: ツールが登録されています。"
+
+msgid "Flux AI & MCP is not active: tools are available in Flux AI chat only."
+msgstr "Flux AI と MCP はアクティブではありません。ツールは Flux AI チャットでのみ使用できます。"
+
+msgid "Admin login URL"
+msgstr "管理者ログインURL"
+
+msgid "Opens the login screen at an address of your own instead of wp-login.php. wp-login.php and wp-admin requests from logged-out visitors no longer respond, which cuts bot password guessing and server load."
+msgstr "wp-login.phpの代わりに自分のアドレスでログイン画面を開きます。ログアウトした訪問者からの wp-login.php および wp-admin リクエストは応答しなくなり、ボットのパスワード推測とサーバーの負荷が軽減されます。"
+
+msgid "FLXP_LOGIN_DISABLE is defined in wp-config.php: the custom URL is off and login uses wp-login.php. Remove that line once the problem is solved."
+msgstr "FLXP_LOGIN_DISABLE は wp-config.php で定義されています。カスタム URL はオフで、ログインは wp-login.php を使用します。問題が解決したら、その行を削除してください。"
+
+msgid "Your login URL"
+msgstr "ログインURL"
+
+msgid "Copied"
+msgstr "コピーされました"
+
+msgid "Copy"
+msgstr "コピー"
+
+msgid "Bookmark this address and share it with everyone who logs in. If you forget it, use the recovery step below."
+msgstr "このアドレスをブックマークして、ログインしている全員と共有します。忘れた場合は、以下の回復手順を使用してください。"
+
+msgid "Login URL"
+msgstr "ログインURL"
+
+msgid "The address comes from the FLXP_LOGIN_SLUG constant in wp-config.php; edit or remove the constant to change it."
+msgstr "アドレスは、wp-config.php の FLXP_LOGIN_SLUG 定数から取得されます。定数を編集または削除して変更します。"
+
+msgid "Leave empty to use the standard WordPress address (wp-login.php). 3-40 characters: lowercase letters, digits, hyphen, underscore. Pick something hard to guess (admin and login are not allowed)."
+msgstr "標準の WordPress アドレス (wp-login.php) を使用するには、空のままにしておきます。 3 ~ 40 文字: 小文字、数字、ハイフン、アンダースコア。推測しにくいものを選択してください (管理者とログインは許可されていません)。"
+
+msgid "Visitors to the old addresses"
+msgstr "旧住所への訪問者"
+
+msgid "Show the 404 page (recommended)"
+msgstr "404 ページを表示する (推奨)"
+
+msgid "Redirect to the home page"
+msgstr "ホームページにリダイレクトします"
+
+msgid "Applies to wp-login.php and to wp-admin requests from logged-out visitors. admin-ajax.php, admin-post.php, the REST API, wp-cron, WooCommerce My Account login and the Flux App connection are not affected."
+msgstr "wp-login.php と、ログアウトした訪問者からの wp-admin リクエストに適用されます。 admin-ajax.php、admin-post.php、REST API、wp-cron、WooCommerce My Account ログインおよび Flux アプリ接続は影響を受けません。"
+
+msgid "Recovery"
+msgstr "回復"
+
+msgid "If you forget the address or login won't open: add the line below to wp-config.php using your file manager (Hostinger hPanel › File Manager). Login goes back to wp-login.php; once you're in, fix the address here and remove the line."
+msgstr "アドレスを忘れた場合、またはログインが開かない場合: ファイル マネージャー (Hostinger hPanel › ファイル マネージャー) を使用して、以下の行を wp-config.php に追加します。ログインは wp-login.php に戻ります。アクセスしたら、ここでアドレスを修正し、行を削除します。"
+
+msgid "Deprecated since %1$s. Use instead: %2$s"
+msgstr "%1$s以降非推奨になりました。代わりに次を使用してください:%2$s"
+
+msgid "%d min"
+msgstr "%d分"
+
+msgid "%1$d d %2$d h"
+msgstr "%1$dd%2$dh"
+
+msgid "%d h"
+msgstr "%dh"
+
+msgid "Account limit cannot be read"
+msgstr "アカウント制限を読み取れません"
+
+msgid "%s cores, no account limit"
+msgstr "%sコア、アカウント制限なし"
+
+msgid "Account limit %s cores"
+msgstr "アカウント制限%sコア"
+
+msgid "%1$d cores · load %2$s"
+msgstr "%1$dコア ·%2$sをロードする"
+
+msgid "Disk (account)"
+msgstr "ディスク(アカウント)"
+
+msgid "Scanning the account folder"
+msgstr "アカウントフォルダーをスキャンしています"
+
+msgid "files %1$s · database %2$s"
+msgstr "ファイル%1$s· データベース%2$s"
+
+msgid "CPU load"
+msgstr "CPU負荷"
+
+msgid "CPU (account)"
+msgstr "CPU(アカウント)"
+
+msgid "Memory (RAM)"
+msgstr "メモリ(RAM)"
+
+msgid "Memory (account)"
+msgstr "メモリ(アカウント)"
+
+msgid "PHP memory (this request)"
+msgstr "PHP メモリ (このリクエスト)"
+
+msgid "Server uptime"
+msgstr "サーバー稼働時間"
+
+msgid "Machine uptime"
+msgstr "マシンの稼働時間"
+
+msgid "CPU and memory are measured against this account's (container/cgroup) limit."
+msgstr "CPU とメモリは、このアカウント (コンテナー/cgroup) の制限に対して測定されます。"
+
+msgid "Shared hosting: PHP sees the CPU, memory and disk shared by every account on the machine; these are not your values and are not shown. Your account's CPU and memory usage is in the hosting panel (Hostinger: hPanel › Account resources)."
+msgstr "共有ホスティング: PHP は、マシン上のすべてのアカウントによって共有されている CPU、メモリ、ディスクを認識します。これらはあなたの値ではないため、表示されません。アカウントの CPU とメモリの使用量は、ホスティング パネルに表示されます (Hostinger: hPanel › アカウント リソース)。"
+
+msgid "Enter your hosting plan's disk quota in Settings to see a disk percentage."
+msgstr "ディスクの割合を確認するには、[設定] にホスティング プランのディスク クォータを入力します。"
+
+msgid "Cards refresh every 15 seconds."
+msgstr "カードは 15 秒ごとに更新されます。"
+
+msgid "p95 time (24 h)"
+msgstr "p95 時間 (24 時間)"
+
+msgid "Failed requests (24 h)"
+msgstr "失敗したリクエスト (24 時間)"
+
+msgid "Slow requests (24 h)"
+msgstr "遅いリクエスト (24 時間)"
+
+msgid "Details"
+msgstr "詳細"
+
+msgid "The login URL must be 3-40 characters; use only lowercase letters (a-z), digits, hyphens and underscores."
+msgstr "ログイン URL は 3 ~ 40 文字である必要があります。小文字 (a ~ z)、数字、ハイフン、アンダースコアのみを使用してください。"
+
+msgid "WordPress already uses this address; pick another name."
+msgstr "WordPress はすでにこのアドレスを使用しています。別の名前を選んでください。"
+
+msgid "A page or post already uses this address; pick another name."
+msgstr "ページまたは投稿はすでにこのアドレスを使用しています。別の名前を選んでください。"
+
+msgid "The login URL has changed. Bookmark this page and log in again."
+msgstr "ログインURLが変更になりました。このページをブックマークして、再度ログインしてください。"
+
+msgid "Performance summary"
+msgstr "パフォーマンスの概要"
+
+msgid "List recorded requests"
+msgstr "記録されたリクエストをリストする"
+
+msgid "Record details"
+msgstr "レコードの詳細"
+
+msgid "Outgoing HTTP requests"
+msgstr "送信HTTPリクエスト"
+
+msgid "Server and WordPress environment"
+msgstr "サーバーとWordPress環境"
+
+msgid "Server status"
+msgstr "サーバーのステータス"
+
+msgid "Database status"
+msgstr "データベースのステータス"
+
+msgid "Flux Speed: remove unused CSS and inline it"
+msgstr "Flux Speed: 未使用の CSS を削除してインライン化します。"
+
+msgid "Drops theme CSS rules the page does not use and writes the rest into <head>, removing the render-blocking CSS request. Check a few pages first; if something breaks, turn it off or add the class to the keep list."
+msgstr "ページが使用していないテーマ CSS ルールを削除し、残りを<head>に書き込み、レンダリングをブロックする CSS リクエストを削除します。最初に数ページを確認してください。何かが壊れた場合は、それをオフにするか、そのクラスをキープリストに追加してください。"
+
+msgid "Flux Speed: minify CSS and JS files"
+msgstr "Flux Speed: CSS ファイルと JS ファイルを縮小します。"
+
+msgid "Unminified theme and plugin CSS/JS files are served from an up-to-date .min version or a generated copy."
+msgstr "縮小されていないテーマとプラグインの CSS/JS ファイルは、最新の .min バージョンまたは生成されたコピーから提供されます。"
+
+msgid "Flux Speed: defer head scripts"
+msgstr "Flux Speed: ヘッド スクリプトを延期する"
+
+msgid "Blocking scripts at the top of the page are loaded with defer. jQuery and excluded scripts are left alone."
+msgstr "ページ上部のブロック スクリプトは遅延して読み込まれます。 jQuery と除外されたスクリプトはそのまま残されます。"
+
+msgid "Flux Speed: remove the zoom lock"
+msgstr "Flux Speed: ズームロックを解除します。"
+
+msgid "user-scalable=no and maximum-scale are removed from the viewport tag."
+msgstr "user-scalable=no と Maximum-scale がビューポート タグから削除されます。"
+
+msgid "Flux Speed: optimize fonts"
+msgstr "Flux Speed: フォントの最適化"
+
+msgid "theme.json fonts not used on the page are removed and the above-the-fold font is preloaded."
+msgstr "ページで使用されていないtheme.jsonフォントは削除され、スクロールせずに見える範囲に表示されるフォントがプリロードされます。"
+
+msgid "Flux Speed: remove the emoji script"
+msgstr "Flux Speed: 絵文字スクリプトを削除します"
+
+msgid "WordPress's emoji detection script and style are not loaded; modern browsers render emoji themselves."
+msgstr "WordPress の絵文字検出スクリプトとスタイルが読み込まれていません。最近のブラウザは絵文字自体をレンダリングします。"
+
+msgid "Unknown fix."
+msgstr "不明な修正。"
+
+msgid "Flux Speed › PageSpeed lists which animation in which file is the problem."
+msgstr "Flux Speed › PageSpeed には、どのファイルのどのアニメーションに問題があるかがリストされます。"
+
+msgid "The matching Flux Speed setting is on; clear the cache (LiteSpeed Purge All) and measure again. Whatever remains is up to the theme/preset."
+msgstr "一致する磁束速度設定がオンになっています。キャッシュをクリアし (LiteSpeed Purge All)、再度測定します。何が残るかはテーマ/プリセット次第です。"
+
+msgid "Turned on. The page cache was cleared; run the site audit or PageSpeed test again."
+msgstr "オンになりました。ページのキャッシュがクリアされました。サイト監査または PageSpeed テストを再度実行します。"
+
+msgid "Animations (GPU)"
+msgstr "アニメーション (GPU)"
+
+msgid "Animation not running on the GPU: %s. Should be rewritten with transform/opacity (theme/preset)."
+msgstr "アニメーションが GPU で実行されていません:%s。変換/不透明度 (テーマ/プリセット) で書き換える必要があります。"
+
+msgid "Animations in the CSS files seen use transform/opacity."
+msgstr "CSS ファイル内のアニメーションでは、変換/不透明度が使用されています。"
+
+msgid "PageSpeed"
+msgstr "ページ速度"
+
+msgid "PageSpeed cache"
+msgstr "ページスピードキャッシュ"
+
+msgid "uploads/flx-speed is writable."
+msgstr "Uploads/flx-speed は書き込み可能です。"
+
+msgid "The uploads/flx-speed folder is not writable: CSS trimming and minifying will not work, pages load the original files."
+msgstr "Uploads/flx-speed フォルダーは書き込み可能ではありません。CSS のトリミングと縮小は機能せず、ページは元のファイルを読み込みます。"
+
+msgid "Expired transients"
+msgstr "期限切れのトランジェント"
+
+msgid "Auto-drafts older than 7 days"
+msgstr "7日以上経過した自動ドラフト"
+
+msgid "Spam comments"
+msgstr "スパムコメント"
+
+msgid "Trashed comments"
+msgstr "ゴミ箱に入れられたコメント"
+
+msgid "Reclaim free space (OPTIMIZE)"
+msgstr "空き領域を再利用する (最適化)"
+
+msgid "Unknown cleanup job."
+msgstr "不明なクリーンアップ ジョブ。"
+
+msgid "Slow"
+msgstr "遅い"
+
+msgid "PHP error"
+msgstr "PHPエラー"
+
+msgid "Fatal error"
+msgstr "致命的なエラー"
+
+msgid "Server error (5xx)"
+msgstr "サーバーエラー(5xx)"
+
+msgid "Failed HTTP call"
+msgstr "失敗したHTTP呼び出し"
+
+msgid "Slow query"
+msgstr "遅いクエリ"
+
+msgid "Query error"
+msgstr "クエリエラー"
+
+msgid "Error log"
+msgstr "エラーログ"
+
+msgid "Sample"
+msgstr "サンプル"
+
+msgid "Profile"
+msgstr "プロフィール"
+
+msgid "Front end"
+msgstr "フロントエンド"
+
+msgid "Admin"
+msgstr "管理者"
+
+msgid "Only URLs on this site can be profiled."
+msgstr "このサイトの URL のみをプロファイリングできます。"
+
+msgid "The records table is not installed."
+msgstr "レコードテーブルはインストールされていません。"
+
+msgid "The page loaded but no record was created. It may have been served from cache, or Flux Performance did not load on that request."
+msgstr "ページは読み込まれましたが、レコードは作成されませんでした。キャッシュから提供されたか、Flux Performance がそのリクエストでロードされなかった可能性があります。"
+
+msgid "Records table"
+msgstr "レコードテーブル"
+
+msgid "The table is not installed. Deactivate and reactivate the plugin."
+msgstr "テーブルは設置されていません。プラグインを非アクティブ化し、再度アクティブ化します。"
+
+msgid "Request recording"
+msgstr "録音をリクエストする"
+
+msgid "On: %1$d%% of requests are sampled; requests over %2$d ms and failing requests are recorded."
+msgstr "オン:%1$d%% のリクエストがサンプリングされます。%2$dms を超えるリクエストと失敗したリクエストが記録されます。"
+
+msgid "Off: only the live panel works; AI cannot read history."
+msgstr "オフ: ライブ パネルのみが機能します。 AIは歴史を読むことができません。"
+
+msgid "Failing requests in the last 24 hours"
+msgstr "過去 24 時間以内に失敗したリクエスト"
+
+msgid "%1$d requests with PHP/server errors, %2$d fatal. See Records."
+msgstr "%1$dリクエストには PHP/サーバー エラーが発生し、%2$dは致命的です。 「記録」を参照してください。"
+
+msgid "No recorded errors."
+msgstr "記録されたエラーはありません。"
+
+msgid "Slow requests in the last 24 hours"
+msgstr "過去 24 時間の遅いリクエスト"
+
+msgid "%1$d requests exceeded %2$d ms."
+msgstr "%1$dリクエストが%2$dミリ秒を超えました。"
+
+msgid "%d recorded requests had external service errors in the last 24 hours."
+msgstr "%d記録されたリクエストには、過去 24 時間以内に外部サービス エラーがありました。"
+
+msgid "No recorded external service errors."
+msgstr "記録された外部サービス エラーはありません。"
+
+msgid "SAVEQUERIES is on in wp-config.php: every request keeps all queries in memory. Flux Performance turns it on itself when needed; remove it from wp-config."
+msgstr "SAVEQUERIES は wp-config.php でオンになっています。すべてのリクエストはすべてのクエリをメモリに保持します。 Flux Performance は必要に応じて自動的にオンになります。 wp-config から削除します。"
+
+msgid "AI tools (flxp_*)"
+msgstr "AI ツール (flxp_*)"
+
+msgid "MCP and Flux AI chat can read the records."
+msgstr "MCP と Flux AI チャットはレコードを読み取ることができます。"
+
+msgid "Flux AI & MCP is not active or MCP is off; tools are not visible."
+msgstr "Flux AI と MCP がアクティブでないか、MCP がオフです。ツールは表示されません。"
+
+msgid "%1$d KB (%2$d options) is loaded on every request."
+msgstr "%1$dKB (%2$dオプション) はリクエストごとにロードされます。"
+
+msgid "Under 800 KB is recommended; check the largest rows."
+msgstr "800 KB 未満が推奨されます。最大の行を確認してください。"
+
+msgid "Last run %s."
+msgstr "最終実行%s。"
+
+msgid "Cron has not been seen running yet."
+msgstr "Cron はまだ実行されていません。"
+
+msgid "%d events overdue."
+msgstr "%dイベントが期限切れです。"
+
+msgid "Scheduled events are running"
+msgstr "スケジュールされたイベントが実行中です"
+
+msgid "Disk space"
+msgstr "ディスク容量"
+
+msgid "%1$d%% used, %2$s free."
+msgstr "%1$d%% が使用され、%2$sは空きです。"
+
+msgid "(account usage / quota from Settings)"
+msgstr "(アカウントの使用量/割り当ては設定から)"
+
+msgid "%1$d%% of the account CPU limit in use (%2$s cores)."
+msgstr "%1$d%% が使用されているアカウントの CPU 制限 (%2$sコア)。"
+
+msgid "%1$d%% over the last minute (%2$d cores)."
+msgstr "過去 1 分間の%1$d%% (%2$dコア)。"
+
+msgid "On: compiled PHP files are kept in memory."
+msgstr "オン: コンパイルされた PHP ファイルはメモリに保持されます。"
+
+msgid "Looks enabled but its status cannot be read (restricted by the server)."
+msgstr "有効になっているように見えますが、ステータスを読み取ることができません (サーバーによって制限されています)。"
+
+msgid "Off: PHP files are compiled again on every request. Turn it on in Hostinger › PHP configuration."
+msgstr "オフ: PHP ファイルはリクエストごとに再度コンパイルされます。 Hostinger › PHP 設定でオンにします。"
+
+msgid "%d expired transients are still in the table."
+msgstr "%dの期限切れのトランジェントはまだテーブルにあります。"
+
+msgid "None."
+msgstr "なし。"
+
+msgid "Delete expired transients"
+msgstr "期限切れのトランジェントを削除する"
+
+msgid "%d transients deleted."
+msgstr "%dトランジェントが削除されました。"
+
+msgid "Each line shows something the site needs and whether it is in place. Fix the errors first; warnings are worth a look."
+msgstr "各行は、サイトに必要なものと、それが適切に配置されているかどうかを示します。まずエラーを修正してください。警告は一見の価値があります。"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "Info"
+msgstr "情報"
+
+msgid "%1$d OK · %2$d warnings · %3$d errors"
+msgstr "%1$dOK ·%2$d警告 ·%3$dエラー"
+
+msgid "Check again"
+msgstr "もう一度確認してください"
+
+msgid "Show only these (click again to show all)"
+msgstr "これらのみを表示します (すべてを表示するにはもう一度クリックします)"
+
+msgid "Checked: %s"
+msgstr "チェック済み:%s"
+
+msgid "Check"
+msgstr "チェックする"
+
+msgid "Source"
+msgstr "ソース"
+
+msgid "Action"
+msgstr "アクション"
+
+msgid "No checks are registered."
+msgstr "小切手は登録されていません。"
+
+msgid "System check found %d problem(s) that can stop donations or automations."
+msgstr "システム チェックで、寄付や自動化を停止する可能性がある%dの問題が見つかりました。"
+
+msgid "Open system check"
+msgstr "オープンシステムチェック"
+
+msgid "Hide until the next update"
+msgstr "次の更新まで非表示にします"
+
+msgid "System: %d error(s)"
+msgstr "システム:%dエラー"
+
+msgid "This check could not run: %s"
+msgstr "このチェックは実行できませんでした:%s"
+
+msgid "Scheduled tasks (cron)"
+msgstr "スケジュールされたタスク (cron)"
+
+msgid "Payments"
+msgstr "支払い"
+
+msgid "Plugins"
+msgstr "プラグイン"
+
+msgid "E-mail"
+msgstr "電子メール"
+
+msgid "Security"
+msgstr "セキュリティ"
+
+msgid "Forms"
+msgstr "フォーム"
+
+msgid "Other"
+msgstr "その他"
+
+msgid "Plugin: %s"
+msgstr "プラグイン:%s"
+
+msgid "MU plugin: %s"
+msgstr "MU プラグイン:%s"
+
+msgid "Theme: %s"
+msgstr "テーマ:%s"
+
+msgid "Drop-in: %s"
+msgstr "ドロップイン:%s"
+
+msgid "WordPress core"
+msgstr "WordPress コア"
+
+msgid "Search…"
+msgstr "検索..."
+
+msgid "All"
+msgstr "すべて"
+
+msgid "Showing the first 1500 rows; narrow down with search."
+msgstr "最初の 1500 行を表示します。検索で絞り込みます。"
+
+msgid "Call stack"
+msgstr "コールスタック"
+
+msgid "Fatal"
+msgstr "致命的"
+
+msgid "Notice"
+msgstr "お知らせ"
+
+msgid "Deprecated"
+msgstr "廃止されました"
+
+msgid "Overview"
+msgstr "概要"
+
+msgid "Duplicate queries"
+msgstr "重複したクエリ"
+
+msgid "By component"
+msgstr "コンポーネント別"
+
+msgid "Doing it wrong"
+msgstr "やり方が間違っている"
+
+msgid "Cron tasks"
+msgstr "Cron タスク"
+
+msgid "Logs"
+msgstr "ログ"
+
+msgid "Template"
+msgstr "テンプレート"
+
+msgid "Capability checks"
+msgstr "能力チェック"
+
+msgid "Scripts and styles"
+msgstr "スクリプトとスタイル"
+
+msgid "Languages"
+msgstr "言語"
+
+msgid "Transient updates"
+msgstr "一時的な更新"
+
+msgid "Hooks"
+msgstr "フック"
+
+msgid "Peak memory"
+msgstr "ピークメモリ"
+
+msgid "Limit"
+msgstr "限界"
+
+msgid "Time not measured"
+msgstr "時間は計測されていない"
+
+msgid "Total"
+msgstr "合計"
+
+msgid "Response"
+msgstr "応答"
+
+msgid "Query details were not collected for this request (not sampled). Open the page while logged in as an administrator or raise the sampling rate."
+msgstr "このリクエストではクエリの詳細が収集されませんでした (サンプリングされませんでした)。管理者としてログインした状態でページを開くか、サンプリングレートを上げてください。"
+
+msgid "Timeline"
+msgstr "タイムライン"
+
+msgid "Visitor"
+msgstr "訪問者"
+
+msgid "Collection mode"
+msgstr "収集モード"
+
+msgid "Detailed"
+msgstr "詳細"
+
+msgid "Light"
+msgstr "ライト"
+
+msgid "Duplicates"
+msgstr "重複"
+
+msgid "Only the slowest queries were stored in this record."
+msgstr "このレコードには最も遅いクエリのみが保存されました。"
+
+msgid "Caller"
+msgstr "発信者"
+
+msgid "Callers"
+msgstr "発信者"
+
+msgid "Query types"
+msgstr "クエリの種類"
+
+msgid "Subject"
+msgstr "件名"
+
+msgid "Method"
+msgstr "方法"
+
+msgid "No logs in this request."
+msgstr "このリクエストにはログがありません。"
+
+msgid "Packages can write here with do_action( 'flx_log', 'warning', 'message' )."
+msgstr "パッケージは do_action( 'flx_log', 'warning', 'message' ) を使用してここに書き込むことができます。"
+
+msgid "Timers"
+msgstr "タイマー"
+
+msgid "Not stopped"
+msgstr "止まらない"
+
+msgid "Template file"
+msgstr "テンプレートファイル"
+
+msgid "Parent theme"
+msgstr "親テーマ"
+
+msgid "Block theme"
+msgstr "ブロックテーマ"
+
+msgid "Block template"
+msgstr "ブロックテンプレート"
+
+msgid "Body classes"
+msgstr "ボディクラス"
+
+msgid "Template parts"
+msgstr "テンプレートパーツ"
+
+msgid "Not found"
+msgstr "見つかりません"
+
+msgid "Request path"
+msgstr "リクエストパス"
+
+msgid "Matched rule"
+msgstr "一致したルール"
+
+msgid "Matched query"
+msgstr "一致したクエリ"
+
+msgid "Queried object"
+msgstr "クエリされたオブジェクト"
+
+msgid "Query vars"
+msgstr "クエリ変数"
+
+msgid "Conditionals"
+msgstr "条件文"
+
+msgid "Capability"
+msgstr "能力"
+
+msgid "Granted"
+msgstr "確かに"
+
+msgid "Denied"
+msgstr "拒否されました"
+
+msgid "Scripts"
+msgstr "スクリプト"
+
+msgid "Styles"
+msgstr "スタイル"
+
+msgid "Dependencies"
+msgstr "依存関係"
+
+msgid "Missing"
+msgstr "行方不明"
+
+msgid "Position"
+msgstr "ポジション"
+
+msgid "Footer"
+msgstr "フッター"
+
+msgid "Header"
+msgstr "ヘッダー"
+
+msgid "Loaded"
+msgstr "ロード済み"
+
+msgid "No file"
+msgstr "ファイルがありません"
+
+msgid "Name"
+msgstr "名前"
+
+msgid "No expiry"
+msgstr "有効期限なし"
+
+msgid "Distinct actions fired in this request"
+msgstr "このリクエストで起動される個別のアクション"
+
+msgid "Most fired:"
+msgstr "最も解雇された人:"
+
+msgid "queries"
+msgstr "クエリ"
+
+msgid "Resize"
+msgstr "サイズ変更"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "24 hours"
+msgstr "24時間"
+
+msgid "7 days"
+msgstr "7日間"
+
+msgid "No matching requests in this range."
+msgstr "この範囲内に一致するリクエストはありません。"
+
+msgid "HTTP"
+msgstr "HTTP"
+
+msgid "No records"
+msgstr "記録がありません"
+
+msgid "Critical"
+msgstr "クリティカル"
+
+msgid "PHP notices"
+msgstr "PHP に関する注意事項"
+
+msgid "Open in panel"
+msgstr "パネルで開く"
+
+msgid "Query time"
+msgstr "クエリ時間"
+
+msgid "Only slow, failed and sampled PHP requests are recorded. Pages served from cache are not in these numbers."
+msgstr "遅い、失敗した、サンプリングされた PHP リクエストのみが記録されます。キャッシュから提供されたページはこれらの数には含まれません。"
+
+msgid "Slow requests"
+msgstr "遅いリクエスト"
+
+msgid "Load"
+msgstr "ロード"
+
+msgid "p95"
+msgstr "p95"
+
+msgid "Flag"
+msgstr "旗"
+
+msgid "[['Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools.', 'tr']]"
+msgstr "[['サイトのパフォーマンスを 1 か所で: リクエストごとのクエリ、PHP エラー、外部 HTTP リクエスト (開発者パネル)、遅い/エラーのあるリクエスト ログ、サーバー (CPU、RAM、ディスク、OPcache)、データベース、自動ロード、cron、およびシステム チェック。 AI は、Flux AI および MCP / Flux AI ツールを使用してそれらをすべて読み取ります。', 'tr']]"

@@ -1,0 +1,1304 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "Aggregate mobile app usage"
+msgstr "Совокупное использование мобильных приложений"
+
+msgid "Optional and off by default. Only accounts that also opt in inside the app are counted. Completed UTC-day iOS/Android totals go to your telemetry hub only for cohorts of at least five accounts. No names, account IDs, content, site URLs or GPS location are included. Country comes from site settings. General usage sharing must also be on. Sign-in and app features do not depend on this choice."
+msgstr "Необязательно и отключено по умолчанию. Учитываются только учетные записи, которые также дали согласие на использование приложения. Завершенные итоговые данные iOS/Android за UTC-день передаются в ваш центр телеметрии только для групп, состоящих как минимум из пяти учетных записей. Никакие имена, идентификаторы учетных записей, контент, URL-адреса сайтов или местоположение GPS не включены. Страна задается из настроек сайта. Общий доступ к использованию также должен быть включен. Функции входа и приложения не зависят от этого выбора."
+
+msgid "Share aggregate mobile app usage"
+msgstr "Поделитесь совокупным использованием мобильных приложений"
+
+msgid "Application"
+msgstr "Приложение"
+
+msgid "Menu (all items)"
+msgstr "Меню (все позиции)"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "Notifications"
+msgstr "Уведомления"
+
+msgid "Accounts"
+msgstr "Счета"
+
+msgid "App settings"
+msgstr "Настройки приложения"
+
+msgid "Screens"
+msgstr "Экраны"
+
+msgid "Native modules"
+msgstr "Родные модули"
+
+msgid "Admin menu"
+msgstr "Меню администратора"
+
+msgid "Primary"
+msgstr "Первичный"
+
+msgid "Accent"
+msgstr "Акцент"
+
+msgid "Background"
+msgstr "Фон"
+
+msgid "Surface"
+msgstr "Поверхность"
+
+msgid "Text"
+msgstr "Текст"
+
+msgid "Appearance of the desktop and mobile app. Empty colours come from the theme (theme.json) and the Flux Admin colour. Menus are filtered by the user's role: an item they cannot see in the admin does not show in the app either."
+msgstr "Внешний вид десктопного и мобильного приложения. Пустые цвета берутся из темы (theme.json) и цвета администратора Flux. Меню фильтруются по роли пользователя: элемент, который он не видит в администраторе, также не отображается в приложении."
+
+msgid "Theme"
+msgstr "Тема"
+
+msgid "Mode"
+msgstr "Режим"
+
+msgid "Follow device"
+msgstr "Следовать за устройством"
+
+msgid "On"
+msgstr "Вкл."
+
+msgid "Dark"
+msgstr "Темный"
+
+msgid "Corners"
+msgstr "Углы"
+
+msgid "From theme"
+msgstr "Из темы"
+
+msgid "Sharp"
+msgstr "Острый"
+
+msgid "Slight"
+msgstr "Легкий"
+
+msgid "Medium"
+msgstr "Средний"
+
+msgid "Round"
+msgstr "Круглый"
+
+msgid "Density"
+msgstr "Плотность"
+
+msgid "Comfortable"
+msgstr "Удобный"
+
+msgid "Compact"
+msgstr "Компактный"
+
+msgid "Font"
+msgstr "Шрифт"
+
+msgid "Heading font"
+msgstr "Шрифт заголовка"
+
+msgid "From theme (%s)"
+msgstr "Из темы (%s)"
+
+msgid "Mobile"
+msgstr "мобильный"
+
+msgid "Navigation"
+msgstr "Навигация"
+
+msgid "Tab bar + drawer"
+msgstr "Панель вкладок + ящик"
+
+msgid "Tab bar only"
+msgstr "Только панель вкладок"
+
+msgid "Drawer only"
+msgstr "Только ящик"
+
+msgid "Home screen"
+msgstr "Главный экран"
+
+msgid "Home"
+msgstr "Главная"
+
+msgid "Tab bar (up to 5)"
+msgstr "Панель вкладок (до 5)"
+
+msgid "If empty, the Flux Admin mobile bottom bar setting is used. Tabs the user cannot open are hidden; \"Menu\" always stays reachable."
+msgstr "Если пусто, используется настройка нижней панели мобильного администратора Flux Admin. Вкладки, которые пользователь не может открыть, скрыты; «Меню» всегда остается доступным."
+
+msgid "Label"
+msgstr "Этикетка"
+
+msgid "Icon (home, chat…)"
+msgstr "Значок (домой, чат...)"
+
+msgid "Badge"
+msgstr "Значок"
+
+msgid "Drawer (role menu groups)"
+msgstr "Ящик (группы ролевых меню)"
+
+msgid "Logo in the top bar"
+msgstr "Логотип в верхней панели"
+
+msgid "Site switcher"
+msgstr "Переключатель сайтов"
+
+msgid "Top bar"
+msgstr "Верхняя панель"
+
+msgid "Large title"
+msgstr "Большой заголовок"
+
+msgid "Desktop"
+msgstr "Рабочий стол"
+
+msgid "The sidebar follows the role's Flux Admin menu layout (pins and groups). Shortcuts always shown in the command palette (⌘K):"
+msgstr "Боковая панель соответствует макету меню администратора Flux для роли (контакты и группы). Ярлыки всегда отображаются в палитре команд (⌘K):"
+
+msgid "A disabled screen does not open natively in the app; that page opens in the web view."
+msgstr "Отключенный экран не открывается в приложении; эта страница откроется в веб-просмотре."
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Preview"
+msgstr "Предварительный просмотр"
+
+msgid "Preview uses your role; other roles see their own menus."
+msgstr "Предварительный просмотр использует вашу роль; другие роли видят свои собственные меню."
+
+msgid "Which apps may connect to this site, store links and notifications."
+msgstr "Какие приложения могут подключаться к этому сайту, хранить ссылки и уведомления."
+
+msgid "Main FluxWP app"
+msgstr "Главное приложение FluxWP"
+
+msgid "Allow the FluxWP desktop and mobile app (flx-masaustu, flx-mobil)"
+msgstr "Разрешить настольное и мобильное приложение FluxWP (flx-masaustu, flx-mobil)"
+
+msgid "When off, only the branded apps below can connect; open sessions of the main app end at their next refresh."
+msgstr "Если этот параметр отключен, подключаться могут только фирменные приложения, указанные ниже; открытые сеансы основного приложения завершаются при следующем обновлении."
+
+msgid "Store links"
+msgstr "Ссылки на магазины"
+
+msgid "Send push notifications to mobile devices (Expo)"
+msgstr "Отправка push-уведомлений на мобильные устройства (Экспо)"
+
+msgid "Hide content on the lock screen (only the notification type shows)"
+msgstr "Скрыть контент на экране блокировки (отображается только тип уведомления)"
+
+msgid "Saved (type to replace)"
+msgstr "Сохранено (введите текст для замены)"
+
+msgid "Expo access token (optional)"
+msgstr "Токен доступа к выставке (необязательно)"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Only needed when enhanced push security is on in the Expo account. The desktop app does not receive push; it shows notifications through sync while open."
+msgstr "Требуется только в том случае, если в учетной записи Expo включена повышенная безопасность push-уведомлений. Настольное приложение не получает push-уведомлений; он показывает уведомления через синхронизацию, когда он открыт."
+
+msgid "Devices: %1$d · notifications on: %2$d"
+msgstr "Устройства:%1$d· уведомления:%2$d"
+
+msgid "Last send %1$s: %2$d sent, %3$d failed"
+msgstr "Последняя отправка%1$s:%2$dотправлен,%3$dне выполнен."
+
+msgid "Web view"
+msgstr "Веб-просмотр"
+
+msgid "Hide the admin bar on site pages opened in the app"
+msgstr "Скрыть админ-бар на страницах сайта, открытых в приложении"
+
+msgid "Developer mode"
+msgstr "Режим разработчика"
+
+msgid "Allow Expo development redirects (exp://…/--/oauth/callback)"
+msgstr "Разрешить перенаправление разработки Expo (exp://.../--/oauth/callback)"
+
+msgid "Turn on only on test sites."
+msgstr "Включайте только на тестовых площадках."
+
+msgid "Branded apps"
+msgstr "Фирменные приложения"
+
+msgid "An app published under the organisation's own name connects to this site only if it is listed here. Usually filled in by the preset."
+msgstr "Приложение, опубликованное под собственным названием организации, подключается к этому сайту, только если оно указано здесь. Обычно заполняется пресетом."
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Platform"
+msgstr "Платформа"
+
+msgid "Redirect URIs (one per line)"
+msgstr "URI перенаправления (по одному в строке)"
+
+msgid "Redirect URIs"
+msgstr "URI перенаправления"
+
+msgid "Connection details"
+msgstr "Детали подключения"
+
+msgid "Active preset"
+msgstr "Активный пресет"
+
+msgid "Send me a test notification"
+msgstr "Отправьте мне тестовое уведомление"
+
+msgid "Test notification: this device receives notifications."
+msgstr "Тестовое уведомление: это устройство получает уведомления."
+
+msgid "No device is signed in to the app."
+msgstr "Ни одно устройство не выполнило вход в приложение."
+
+msgid "User"
+msgstr "Пользователь"
+
+msgid "Device"
+msgstr "Устройство"
+
+msgid "Last seen"
+msgstr "Последний раз видели"
+
+msgid "Unnamed device"
+msgstr "Безымянное устройство"
+
+msgid "Off"
+msgstr "Выкл."
+
+msgid "Sign this device out?"
+msgstr "Выйти из этого устройства?"
+
+msgid "Sign out"
+msgstr "Выйти"
+
+msgid "%d screen"
+msgid_plural "%d screens"
+msgstr[0] "Экран%d"
+msgstr[1] "Экраны%d"
+msgstr[2] "Экраны%d"
+
+msgid "General"
+msgstr "Общий"
+
+msgid "Appearance"
+msgstr "Внешний вид"
+
+msgid "Applications"
+msgstr "Приложения"
+
+msgid "Modules"
+msgstr "Модули"
+
+msgid "Menu"
+msgstr "Меню"
+
+msgid "OAuth clients"
+msgstr "OAuth-клиенты"
+
+msgid "All access"
+msgstr "Весь доступ"
+
+msgid "App access"
+msgstr "Доступ к приложению"
+
+msgid "You are not allowed to do this."
+msgstr "Вам не разрешено это делать."
+
+msgid "All users"
+msgstr "Все пользователи"
+
+msgid "Users who can edit content"
+msgstr "Пользователи, которые могут редактировать контент"
+
+msgid "Administrators only"
+msgstr "Только администраторы"
+
+msgid "Nothing here yet."
+msgstr "Здесь пока ничего."
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Created"
+msgstr "Создано"
+
+msgid "Last used"
+msgstr "Последнее использование"
+
+msgid "Expires"
+msgstr "Срок действия истекает"
+
+msgid "API key"
+msgstr "API-ключ"
+
+msgid "App session"
+msgstr "Сеанс приложения"
+
+msgid "Never"
+msgstr "Никогда"
+
+msgid "Remove this access?"
+msgstr "Удалить этот доступ?"
+
+msgid "Remove"
+msgstr "Удалить"
+
+msgid "Copy it now; it will not be shown again."
+msgstr "Скопируйте его сейчас; оно больше не будет показано."
+
+msgid "Saved."
+msgstr "Сохранено."
+
+msgid "Test notification: %1$d sent, %2$d failed, %3$d skipped."
+msgstr "Уведомление о тестировании:%1$dотправлено,%2$dне выполнено,%3$dпропущено."
+
+msgid "Give the key a name."
+msgstr "Дайте ключу имя."
+
+msgid "Could not save."
+msgstr "Не удалось сохранить."
+
+msgid "Desktop app"
+msgstr "Настольное приложение"
+
+msgid "Use the panel as a separate app on your Mac or Windows computer. New versions install themselves."
+msgstr "Используйте панель как отдельное приложение на компьютере Mac или Windows. Новые версии устанавливаются сами."
+
+msgid "Download for macOS"
+msgstr "Скачать для MacOS"
+
+msgid "Download for Windows"
+msgstr "Скачать для Windows"
+
+msgid "macOS 11 or later (Apple Silicon and Intel). Windows 10 and 11 (64-bit)."
+msgstr "macOS 11 или новее (Apple Silicon и Intel). Windows 10 и 11 (64-разрядная версия)."
+
+msgid "Windows MSI package (managed deployment)"
+msgstr "Пакет Windows MSI (управляемое развертывание)"
+
+msgid "In the Flux Desktop app, press \"Sign in\": you sign in to this site in the browser and approve; the app then works with your permissions. For other tools (MCP clients, scripts) you can create a personal API key."
+msgstr "В приложении Flux Desktop нажмите «Войти»: вы входите на этот сайт в браузере и подтверждаете; тогда приложение будет работать с вашими разрешениями. Для других инструментов (клиентов MCP, скриптов) вы можете создать персональный ключ API."
+
+msgid "My devices"
+msgstr "Мои устройства"
+
+msgid "Connected apps"
+msgstr "Подключенные приложения"
+
+msgid "API keys"
+msgstr "Ключи API"
+
+msgid "e.g. Claude MCP"
+msgstr "например Клод МКП"
+
+msgid "Valid for"
+msgstr "Действительно для"
+
+msgid "%d days"
+msgstr "%dдней"
+
+msgid "Create key"
+msgstr "Создать ключ"
+
+msgid "Usage: send Authorization: Bearer flxak_… to any REST endpoint and MCP (/wp-json/flx-mcp/v1/mcp). The key acts with your permissions."
+msgstr "Использование: отправить авторизацию: Bearer flxak_... в любую конечную точку REST и MCP (/wp-json/flx-mcp/v1/mcp). Ключ действует с вашими разрешениями."
+
+msgid "Sign-in, session and panel settings for the desktop (macOS, Windows) and mobile (iOS, Android) app."
+msgstr "Настройки входа, сеанса и панели для настольного (macOS, Windows) и мобильного (iOS, Android) приложения."
+
+msgid "Access token lifetime"
+msgstr "Срок действия токена доступа"
+
+msgid "minutes"
+msgstr "минуты"
+
+msgid "Session lifetime (when unused)"
+msgstr "Время жизни сеанса (когда не используется)"
+
+msgid "days"
+msgstr "дни"
+
+msgid "The period renews while the app is used; after this many days without use, sign-in is required again."
+msgstr "Период продлевается, пока приложение используется; после стольких дней без использования необходимо снова войти в систему."
+
+msgid "MCP clients"
+msgstr "клиенты MCP"
+
+msgid "Allow self-registration (MCP clients such as Claude connect via OAuth; every connection still needs your approval)"
+msgstr "Разрешить саморегистрацию (клиенты MCP, такие как Claude, подключаются через OAuth; каждое соединение по-прежнему требует вашего одобрения)"
+
+msgid "Admin session"
+msgstr "Сеанс администратора"
+
+msgid "Let the app open menus without a native screen as admin pages (one-time sign-in link)"
+msgstr "Разрешить приложению открывать меню без собственного экрана в качестве страниц администратора (ссылка для одноразового входа)."
+
+msgid "Sign in with code"
+msgstr "Войти с помощью кода"
+
+msgid "Let donors sign in to the app with a code sent to their email or phone"
+msgstr "Разрешите донорам войти в приложение с помощью кода, отправленного на их электронную почту или телефон."
+
+msgid "Create a customer account if none exists but there is a donation with these details"
+msgstr "Создайте учетную запись клиента, если ее не существует, но есть пожертвование с этими данными."
+
+msgid "Let staff sign in with a code too (not recommended; staff use OAuth in the browser)"
+msgstr "Разрешить сотрудникам также входить в систему с помощью кода (не рекомендуется; сотрудники используют OAuth в браузере)."
+
+msgid "Phone codes are sent via Flux Call Center (WhatsApp); without it, email only."
+msgstr "Телефонные коды отправляются через колл-центр Flux (WhatsApp); без него только электронная почта."
+
+msgid "Can create API keys"
+msgstr "Можно создавать ключи API"
+
+msgid "Devices"
+msgstr "Устройства"
+
+msgid "Sessions and keys"
+msgstr "Сессии и ключи"
+
+msgid "Built-in"
+msgstr "Встроенный"
+
+msgid "Self-registered (MCP)"
+msgstr "Самостоятельная регистрация (MCP)"
+
+msgid "Added manually"
+msgstr "Добавлено вручную"
+
+msgid "with secret"
+msgstr "с секретом"
+
+msgid "Delete the application and all of its sessions?"
+msgstr "Удалить приложение и все его сеансы?"
+
+msgid "Add application"
+msgstr "Добавить приложение"
+
+msgid "Generate a client secret (for server-side apps; not needed for desktop/mobile)"
+msgstr "Создайте секрет клиента (для серверных приложений; не требуется для настольных/мобильных устройств)."
+
+msgid "Add"
+msgstr "Добавить"
+
+msgid "Manifest"
+msgstr "Манифест"
+
+msgid "Native screen"
+msgstr "Родной экран"
+
+msgid "Plugin screens in the app. Manifest modules are drawn from the same definition on desktop and mobile; native modules open with the app's own screen. A disabled module's menu opens as an admin page in the app. Who sees what follows capabilities and the role menu."
+msgstr "Плагин экранов в приложении. Модули манифеста взяты из одного и того же определения для настольных компьютеров и мобильных устройств; собственные модули открываются на собственном экране приложения. Меню отключенного модуля открывается как страница администратора в приложении. Кто видит, что следует за возможностями и ролевым меню."
+
+msgid "No modules registered."
+msgstr "Модули не зарегистрированы."
+
+msgid "Module"
+msgstr "Модуль"
+
+msgid "In the app"
+msgstr "В приложении"
+
+msgid "Capability"
+msgstr "Возможность"
+
+msgid "Version"
+msgstr "Версия"
+
+msgid "Manifest error: %s"
+msgstr "Ошибка манифеста:%s."
+
+msgid "Separate item"
+msgstr "Отдельный пункт"
+
+msgid "The app's side menu is the same as the panel menu for the user's role (order, groups, names, hidden items). Whether each item shows on web, mobile or desktop is chosen in the menu editor. An item with Web off shows only in the app."
+msgstr "Боковое меню приложения аналогично меню панели роли пользователя (порядок, группы, имена, скрытые элементы). В редакторе меню выбирается, будет ли каждый элемент отображаться в Интернете, на мобильном устройстве или на компьютере. Элемент с отключенным Интернетом отображается только в приложении."
+
+msgid "Platform selection needs Flux Admin 1.3.0 or later."
+msgstr "Для выбора платформы требуется Flux Admin 1.3.0 или новее."
+
+msgid "Open menu editor"
+msgstr "Открыть редактор меню"
+
+msgid "Default"
+msgstr "По умолчанию"
+
+msgid "Items hidden by platform"
+msgstr "Предметы, скрытые платформой"
+
+msgid "None: every item shows everywhere."
+msgstr "Нет: каждый элемент отображается повсюду."
+
+msgid "Role"
+msgstr "Роль"
+
+msgid "Visible"
+msgstr "Видимый"
+
+msgid "Hidden"
+msgstr "Скрытый"
+
+msgid "FluxWP Mobile"
+msgstr "FluxWP мобильный"
+
+msgid "No mobile brand client (app_clients) is defined; a branded mobile app cannot connect to this site."
+msgstr "Клиент мобильного бренда (app_clients) не определен; фирменное мобильное приложение не может подключиться к этому сайту."
+
+msgid "No site icon; the store icon needs a 1024 px image."
+msgstr "Нет значка сайта; для значка магазина требуется изображение размером 1024 пикселя."
+
+msgid "Flux Desktop"
+msgstr "Рабочий стол Flux"
+
+msgid "A name and at least one redirect URI are required (at most 10)."
+msgstr "Требуется имя и хотя бы один URI перенаправления (не более 10)."
+
+msgid "Redirect URI rejected: %s (must be https, 127.0.0.1 or an app scheme)."
+msgstr "URI перенаправления отклонен:%s(должен быть https, 127.0.0.1 или схема приложения)."
+
+msgid "Dynamic client limit reached; delete old ones."
+msgstr "Достигнут динамический лимит клиентов; удалить старые."
+
+msgid "Comments"
+msgstr "Комментарии"
+
+msgid "Posts"
+msgstr "Сообщения"
+
+msgid "%s drafts"
+msgstr "%sчерновики"
+
+msgid "My drafts"
+msgstr "Мои черновики"
+
+msgid "(no title)"
+msgstr "(без названия)"
+
+msgid "Pages"
+msgstr "Страницы"
+
+msgid "Pending comments"
+msgstr "Ожидаемые комментарии"
+
+msgid "%s approved"
+msgstr "%sодобрен"
+
+msgid "Recent comments"
+msgstr "Последние комментарии"
+
+msgid "Pending"
+msgstr "Ожидается"
+
+msgid "Media"
+msgstr "СМИ"
+
+msgid "Users"
+msgstr "Пользователи"
+
+msgid "Updates"
+msgstr "Обновления"
+
+msgid "Today's orders"
+msgstr "Сегодняшние заказы"
+
+msgid "%s orders"
+msgstr "%sзаказы"
+
+msgid "Awaiting payment"
+msgstr "Ожидание оплаты"
+
+msgid "Recent orders"
+msgstr "Недавние заказы"
+
+msgid "Web"
+msgstr "Интернет"
+
+msgid "Sign-in required."
+msgstr "Требуется вход."
+
+msgid "This works only with an app session (OAuth)."
+msgstr "Это работает только с сеансом приложения (OAuth)."
+
+msgid "Push token not recognised."
+msgstr "Токен Push не распознан."
+
+msgid "Device not found."
+msgstr "Устройство не найдено."
+
+msgid "Manifest not found."
+msgstr "Манифест не найден."
+
+msgid "App connection"
+msgstr "Подключение к приложению"
+
+msgid "← Back to site"
+msgstr "← Вернуться на сайт"
+
+msgid "Unknown application (client_id)."
+msgstr "Неизвестное приложение (client_id)."
+
+msgid "This redirect URI is not registered for the application."
+msgstr "Этот URI перенаправления не зарегистрирован для приложения."
+
+msgid "Your session expired. Try again from the app."
+msgstr "Срок действия вашей сессии истек. Попробуйте еще раз из приложения."
+
+msgid "%s wants to access your account"
+msgstr "%sхочет получить доступ к вашей учетной записи"
+
+msgid "Change"
+msgstr "Изменить"
+
+msgid "The app works with your permissions: the menus and actions your role can see."
+msgstr "Приложение работает с вашими разрешениями: меню и действия, которые может видеть ваша роль."
+
+msgid "You can revoke access at any time under Users › App access."
+msgstr "Вы можете отозвать доступ в любое время в разделе «Пользователи» > «Доступ к приложению»."
+
+msgid "After approval you will return to %s."
+msgstr "После одобрения вы вернетесь на%s."
+
+msgid "Deny"
+msgstr "Запретить"
+
+msgid "Allow"
+msgstr "Разрешить"
+
+msgid "Back to site"
+msgstr "Вернуться на сайт"
+
+msgid "This link has expired. Open it again from the app."
+msgstr "Срок действия этой ссылки истек. Откройте его снова из приложения."
+
+msgid "%1$s is your sign-in code for the %2$s app. Valid for 10 minutes. Do not share this code with anyone."
+msgstr "%1$s— это ваш код входа в приложение%2$s. Действует в течение 10 минут. Не передавайте этот код никому."
+
+msgid "%s sign-in code"
+msgstr "%sкод входа"
+
+msgid "Your app sign-in code:"
+msgstr "Ваш код входа в приложение:"
+
+msgid "The code is valid for 10 minutes. If you did not request it, ignore this email."
+msgstr "Код действителен в течение 10 минут. Если вы этого не запрашивали, проигнорируйте это письмо."
+
+msgid "Email"
+msgstr "электронная почта"
+
+msgid "Sign in with code is turned off."
+msgstr "Вход по коду отключен."
+
+msgid "Enter a valid email or phone number."
+msgstr "Введите действительный адрес электронной почты или номер телефона."
+
+msgid "Too many attempts. Try again in a little while."
+msgstr "Слишком много попыток. Повторите попытку через некоторое время."
+
+msgid "The code is wrong or has expired."
+msgstr "Код неправильный или срок его действия истек."
+
+msgid "Other"
+msgstr "Другое"
+
+msgid "Admin sessions are turned off in settings."
+msgstr "Сеансы администратора отключены в настройках."
+
+msgid "Too many requests. Please wait a moment."
+msgstr "Слишком много запросов. Пожалуйста, подождите немного."
+
+msgid "Invalid admin path."
+msgstr "Неверный путь администратора."
+
+msgid "This setting cannot be opened from the app."
+msgstr "Эту настройку невозможно открыть из приложения."
+
+msgid "Invalid value."
+msgstr "Недопустимое значение."
+
+msgid "Some fields are invalid."
+msgstr "Некоторые поля недействительны."
+
+msgid "Flux App"
+msgstr "Приложение Flux"
+
+msgid "Token table"
+msgstr "Таблица токенов"
+
+msgid "Ready."
+msgstr "Готов."
+
+msgid "Table missing. Deactivate and reactivate the plugin."
+msgstr "Стол отсутствует. Деактивируйте и повторно активируйте плагин."
+
+msgid "HTTPS"
+msgstr "HTTPS"
+
+msgid "The site address is https; app sign-in is secure."
+msgstr "Адрес сайта https; вход в приложение безопасен."
+
+msgid "The site address is not https; OAuth tokens travel unencrypted. Use https in production."
+msgstr "Адрес сайта не https; Токены OAuth передаются в незашифрованном виде. Используйте https в производстве."
+
+msgid "Active access"
+msgstr "Активный доступ"
+
+msgid "App sessions: %1$s · API keys: %2$s"
+msgstr "Сеансы приложения:%1$s· Ключи API:%2$s"
+
+msgid "Push notifications"
+msgstr "Push-уведомления"
+
+msgid "Off."
+msgstr "Выкл."
+
+msgid "Nothing sent yet. Registered devices: %s"
+msgstr "Еще ничего не отправлено. Зарегистрированные устройства:%s."
+
+msgid "Last send %1$s: %2$s sent, %3$s failed. %4$s"
+msgstr "Последняя отправка%1$s:%2$sотправлен,%3$sне удалось.%4$s"
+
+msgid "App screens (manifest)"
+msgstr "Экраны приложений (манифест)"
+
+msgid "Modules with schema errors: %s. They may open in the web view in the app."
+msgstr "Модули с ошибками схемы:%s. Они могут открываться в веб-версии приложения."
+
+msgid "%s modules valid."
+msgstr "Модули%sдействительны."
+
+msgid "App clients"
+msgstr "Клиенты приложений"
+
+msgid "Main FluxWP app: %1$s · branded apps: %2$s"
+msgstr "Основное приложение FluxWP:%1$s· фирменные приложения:%2$s"
+
+msgid "on"
+msgstr "на"
+
+msgid "off"
+msgstr "выкл."
+
+msgid "Developer mode is on (exp:// redirects); turn it off on the live site."
+msgstr "Режим разработчика включен (перенаправление exp://); отключите его на живом сайте."
+
+msgid "The token is invalid or expired."
+msgstr "Токен недействителен или срок его действия истек."
+
+msgid "Draft"
+msgstr "Черновик"
+
+msgid "Pending review"
+msgstr "Ожидает рассмотрения"
+
+msgid "Scheduled"
+msgstr "Запланировано"
+
+msgid "Private"
+msgstr "Частный"
+
+msgid "Published"
+msgstr "Опубликовано"
+
+msgid "All"
+msgstr "Все"
+
+msgid "Trash"
+msgstr "мусор"
+
+msgid "Title"
+msgstr "Название"
+
+msgid "Summary"
+msgstr "Резюме"
+
+msgid "Content"
+msgstr "Содержание"
+
+msgid "Edit formatted content and blocks in the admin."
+msgstr "Редактируйте форматированный контент и блоки в админке."
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Publish date"
+msgstr "Дата публикации"
+
+msgid "Categories"
+msgstr "Категории"
+
+msgid "Tags"
+msgstr "Теги"
+
+msgid "Featured image"
+msgstr "Рекомендованное изображение"
+
+msgid "Author"
+msgstr "Автор"
+
+msgid "Modified"
+msgstr "Модифицированный"
+
+msgid "Last modified"
+msgstr "Последнее изменение"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "URL"
+msgstr "URL-адрес"
+
+msgid "Saved"
+msgstr "Сохранено"
+
+msgid "Quick edit"
+msgstr "Быстрое редактирование"
+
+msgid "Open in editor"
+msgstr "Открыть в редакторе"
+
+msgid "View on site"
+msgstr "Посмотреть на сайте"
+
+msgid "Publish"
+msgstr "Опубликовать"
+
+msgid "Move to trash"
+msgstr "Переместить в корзину"
+
+msgid "Moved to trash"
+msgstr "Перемещено в корзину"
+
+msgid "New post"
+msgstr "Новый пост"
+
+msgid "Search posts"
+msgstr "Поиск сообщений"
+
+msgid "No posts"
+msgstr "Нет сообщений"
+
+msgid "Add your first post here."
+msgstr "Добавьте сюда свой первый пост."
+
+msgid "Move this post to the trash?"
+msgstr "Переместить это сообщение в корзину?"
+
+msgid "Page"
+msgstr "Страница"
+
+msgid "New page"
+msgstr "Новая страница"
+
+msgid "Search pages"
+msgstr "Страницы поиска"
+
+msgid "No pages"
+msgstr "Нет страниц"
+
+msgid "Add your first page here."
+msgstr "Добавьте сюда свою первую страницу."
+
+msgid "Move this page to the trash?"
+msgstr "Переместить эту страницу в корзину?"
+
+msgid "Approved"
+msgstr "Утверждено"
+
+msgid "Spam"
+msgstr "Спам"
+
+msgid "Site"
+msgstr "Сайт"
+
+msgid "Search media"
+msgstr "Поиск медиа"
+
+msgid "Image"
+msgstr "Изображение"
+
+msgid "Video"
+msgstr "Видео"
+
+msgid "Audio"
+msgstr "Аудио"
+
+msgid "Document"
+msgstr "Документ"
+
+msgid "No media"
+msgstr "Нет медиа"
+
+msgid "Upload from the camera or gallery."
+msgstr "Загрузите с камеры или галереи."
+
+msgid "Alt text"
+msgstr "Альтернативный текст"
+
+msgid "Size"
+msgstr "Размер"
+
+msgid "Uploaded"
+msgstr "Загружено"
+
+msgid "A short description for screen readers and search engines."
+msgstr "Краткое описание для программ чтения с экрана и поисковых систем."
+
+msgid "Caption"
+msgstr "Подпись"
+
+msgid "Search comments"
+msgstr "Поиск комментариев"
+
+msgid "No comments"
+msgstr "Нет комментариев"
+
+msgid "No comments with this status."
+msgstr "Нет комментариев с этим статусом."
+
+msgid "Comment"
+msgstr "Комментарий"
+
+msgid "IP"
+msgstr "ИП"
+
+msgid "Name or email"
+msgstr "Имя или адрес электронной почты"
+
+msgid "Username"
+msgstr "Имя пользователя"
+
+msgid "Website"
+msgstr "Веб-сайт"
+
+msgid "Registered"
+msgstr "Зарегистрирован"
+
+msgid "Last name"
+msgstr "Фамилия"
+
+msgid "Display name"
+msgstr "Отображаемое имя"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Leave empty to keep it."
+msgstr "Оставьте пустым, чтобы сохранить его."
+
+msgid "General settings"
+msgstr "Общие настройки"
+
+msgid "Site title"
+msgstr "Название сайта"
+
+msgid "Tagline"
+msgstr "Слоган"
+
+msgid "Administration email"
+msgstr "Электронная почта администрации"
+
+msgid "Timezone"
+msgstr "Часовой пояс"
+
+msgid "Example: Europe/Istanbul"
+msgstr "Пример: Европа/Стамбул"
+
+msgid "Date format"
+msgstr "Формат даты"
+
+msgid "Time format"
+msgstr "Формат времени"
+
+msgid "Week starts on"
+msgstr "Неделя начинается"
+
+msgid "Monday"
+msgstr "понедельник"
+
+msgid "Sunday"
+msgstr "воскресенье"
+
+msgid "Saturday"
+msgstr "суббота"
+
+msgid "Reading settings"
+msgstr "Чтение настроек"
+
+msgid "Your homepage displays"
+msgstr "Ваша домашняя страница отображается"
+
+msgid "Latest posts"
+msgstr "Последние сообщения"
+
+msgid "A static page"
+msgstr "Статическая страница"
+
+msgid "Homepage"
+msgstr "Домашняя страница"
+
+msgid "Posts page"
+msgstr "Страница сообщений"
+
+msgid "Posts per page"
+msgstr "Сообщений на странице"
+
+msgid "Discussion settings"
+msgstr "Настройки обсуждения"
+
+msgid "Comments on new posts"
+msgstr "Комментарии к новым сообщениям"
+
+msgid "Pingbacks"
+msgstr "Пингбэки"
+
+msgid "Plugins"
+msgstr "Плагины"
+
+msgid "Search plugins"
+msgstr "Поиск плагинов"
+
+msgid "Active"
+msgstr "Активный"
+
+msgid "Inactive"
+msgstr "Неактивный"
+
+msgid "Upload"
+msgstr "Загрузить"
+
+msgid "Edit"
+msgstr "Редактировать"
+
+msgid "Share"
+msgstr "Поделиться"
+
+msgid "Delete permanently"
+msgstr "Удалить навсегда"
+
+msgid "Delete this file permanently?"
+msgstr "Удалить этот файл навсегда?"
+
+msgid "It disappears from the pages that use it."
+msgstr "Он исчезает со страниц, на которых он используется."
+
+msgid "Deleted"
+msgstr "Удалено"
+
+msgid "Reply"
+msgstr "Ответить"
+
+msgid "Reply sent"
+msgstr "Ответ отправлен"
+
+msgid "Open in admin"
+msgstr "Открыть в админке"
+
+msgid "New user"
+msgstr "Новый пользователь"
+
+msgid "Activate"
+msgstr "Активировать"
+
+msgid "Activated"
+msgstr "Активировано"
+
+msgid "Deactivate"
+msgstr "Деактивировать"
+
+msgid "Deactivate this plugin?"
+msgstr "Деактивировать этот плагин?"
+
+msgid "Deactivated"
+msgstr "Деактивирован"
+
+msgid "Approve"
+msgstr "Утвердить"
+
+msgid "Unapprove"
+msgstr "Отменить одобрение"
+
+msgid "Moved to pending"
+msgstr "Перенесено в ожидание"
+
+msgid "Marked as spam"
+msgstr "Помечено как спам"
+
+msgid "My donations"
+msgstr "Мои пожертвования"
+
+msgid "Total donated"
+msgstr "Всего пожертвовано"
+
+msgid "Donations"
+msgstr "Пожертвования"
+
+msgid "Certificates"
+msgstr "Сертификаты"
+
+msgid "No donations yet"
+msgstr "Пожертвований пока нет"
+
+msgid "Your donations show up here."
+msgstr "Ваши пожертвования отображаются здесь."
+
+msgid "Amount"
+msgstr "Сумма"
+
+msgid "Items"
+msgstr "Предметы"
+
+msgid "My certificates"
+msgstr "Мои сертификаты"
+
+msgid "No certificates"
+msgstr "Нет сертификатов"
+
+msgid "Certificates for your sapling donations show up here."
+msgstr "Сертификаты на пожертвование ваших саженцев отображаются здесь."
+
+msgid "Donate"
+msgstr "Пожертвовать"
+
+msgid "View order"
+msgstr "Посмотреть заказ"
+
+msgid "PDF"
+msgstr "PDF"
+
+msgid "Store"
+msgstr "Магазин"
+
+msgid "Orders"
+msgstr "Заказы"
+
+msgid "Order"
+msgstr "Заказать"
+
+msgid "Customer"
+msgstr "Клиент"
+
+msgid "Order number, name or email"
+msgstr "Номер заказа, имя или адрес электронной почты"
+
+msgid "Processing"
+msgstr "Обработка"
+
+msgid "Cancelled"
+msgstr "Отменено"
+
+msgid "No orders"
+msgstr "Нет заказов"
+
+msgid "No orders with this status."
+msgstr "Нет заказов с таким статусом."
+
+msgid "Payment"
+msgstr "Оплата"
+
+msgid "Products"
+msgstr "Продукты"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "Customer note"
+msgstr "Примечание клиента"
+
+msgid "Order notes"
+msgstr "Примечания к заказу"
+
+msgid "Sent to customer"
+msgstr "Отправлено клиенту"
+
+msgid "No notes"
+msgstr "Нет примечаний"
+
+msgid "Product name or SKU"
+msgstr "Название продукта или артикул"
+
+msgid "Stock"
+msgstr "Акции"
+
+msgid "In stock"
+msgstr "В наличии"
+
+msgid "Out of stock"
+msgstr "Нет в наличии"
+
+msgid "On backorder"
+msgstr "В предзаказе"
+
+msgid "Product"
+msgstr "Продукт"
+
+msgid "Price"
+msgstr "Цена"
+
+msgid "Sale price"
+msgstr "Цена продажи"
+
+msgid "Manage stock"
+msgstr "Управление запасами"
+
+msgid "Stock status"
+msgstr "Статус на складе"
+
+msgid "Customers"
+msgstr "Клиенты"
+
+msgid "City"
+msgstr "Город"
+
+msgid "Completed"
+msgstr "Завершено"
+
+msgid "Order completed"
+msgstr "Заказ выполнен"
+
+msgid "Change status"
+msgstr "Изменить статус"
+
+msgid "Order status"
+msgstr "Статус заказа"
+
+msgid "Updated"
+msgstr "Обновлено"
+
+msgid "Add note"
+msgstr "Добавить примечание"
+
+msgid "Order note"
+msgstr "Примечание к заказу"
+
+msgid "Note"
+msgstr "Примечание"
+
+msgid "Send to customer"
+msgstr "Отправить клиенту"
+
+msgid "Note added"
+msgstr "Примечание добавлено"
+
+msgid "Notes"
+msgstr "Примечания"
+
+msgid "Call"
+msgstr "Позвонить"
+
+msgid "\\nYetkiniz yok.\\n"
+msgstr "\\nЕткиниз йок.\\n"
+
+msgid "[['Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.', 'tr']]"
+msgstr "[['Серверная часть настольного и мобильного приложения FluxWP: вход в систему OAuth 2.0 (PKCE), устройства и push-уведомления, просмотр приложения (конфигурация), отображение плагинов (манифест), сеанс панели. Клиенты MCP также подключаются через OAuth.', 'tr']]"

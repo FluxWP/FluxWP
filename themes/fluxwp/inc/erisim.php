@@ -40,7 +40,7 @@ add_filter(
 		}
 		$tag = preg_replace( '/\sdata-wp-bind--aria-label="[^"]*"/', '', $m[0] );
 		if ( ! preg_match( '/\saria-label\s*=/', $tag ) ) {
-			$tag = preg_replace( '/^<button\b/', '<button aria-label="' . esc_attr__( 'Ara', 'fluxwp' ) . '"', $tag );
+			$tag = preg_replace( '/^<button\b/', '<button aria-label="' . esc_attr__( 'Search', 'fluxwp' ) . '"', $tag );
 		}
 		return str_replace( $m[0], $tag, $html );
 	}

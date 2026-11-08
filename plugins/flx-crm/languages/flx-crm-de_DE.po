@@ -1,0 +1,1167 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: de_DE\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Contacts, roles, segments and marketing"
+msgstr "Kontakte, Rollen, Segmente und Marketing"
+
+msgid "Reads"
+msgstr "Liest"
+
+msgid "Edits"
+msgstr "Änderungen"
+
+msgid "Needs approval"
+msgstr "Braucht Genehmigung"
+
+msgid "Automation"
+msgstr "Automatisierung"
+
+msgid "CRM overview"
+msgstr "CRM-Übersicht"
+
+msgid "CRM structure and settings"
+msgstr "CRM-Struktur und -Einstellungen"
+
+msgid "Search CRM contacts"
+msgstr "Suchen Sie nach CRM-Kontakten"
+
+msgid "CRM contact card"
+msgstr "CRM-Kontaktkarte"
+
+msgid "Timeline"
+msgstr "Zeitleiste"
+
+msgid "Recent activity"
+msgstr "Aktuelle Aktivität"
+
+msgid "Find duplicate contacts"
+msgstr "Finden Sie doppelte Kontakte"
+
+msgid "Saved segments"
+msgstr "Gespeicherte Segmente"
+
+msgid "Preview segment"
+msgstr "Vorschausegment"
+
+msgid "Preview bulk action"
+msgstr "Vorschau der Massenaktion"
+
+msgid "Add CRM contact"
+msgstr "CRM-Kontakt hinzufügen"
+
+msgid "Edit CRM contact"
+msgstr "CRM-Kontakt bearbeiten"
+
+msgid "Add/remove contact tags"
+msgstr "Kontakt-Tags hinzufügen/entfernen"
+
+msgid "Add timeline entry"
+msgstr "Timeline-Eintrag hinzufügen"
+
+msgid "Add/edit tag"
+msgstr "Tag hinzufügen/bearbeiten"
+
+msgid "Save segment"
+msgstr "Segment speichern"
+
+msgid "Change CRM settings"
+msgstr "Ändern Sie die CRM-Einstellungen"
+
+msgid "Recalculate scores"
+msgstr "Punkte neu berechnen"
+
+msgid "Delete timeline entry"
+msgstr "Timeline-Eintrag löschen"
+
+msgid "Delete tag"
+msgstr "Tag löschen"
+
+msgid "Delete segment"
+msgstr "Segment löschen"
+
+msgid "Merge contacts"
+msgstr "Kontakte zusammenführen"
+
+msgid "Delete CRM contact"
+msgstr "CRM-Kontakt löschen"
+
+msgid "Bulk action"
+msgstr "Massenaktion"
+
+msgid "Send message to contact"
+msgstr "Senden Sie eine Nachricht an den Kontakt"
+
+msgid "Source: %s"
+msgstr "Quelle:%s"
+
+msgid "Contact not found."
+msgstr "Kontakt nicht gefunden."
+
+msgid "The e-mail address is not valid."
+msgstr "Die E-Mail-Adresse ist ungültig."
+
+msgid "The phone number is not valid."
+msgstr "Die Telefonnummer ist ungültig."
+
+msgid "on"
+msgstr "auf"
+
+msgid "off"
+msgstr "aus"
+
+msgid "E-mail"
+msgstr "E-Mail"
+
+msgid "SMS"
+msgstr "SMS"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "Ad audiences"
+msgstr "Anzeigenzielgruppen"
+
+msgid "Choose other contacts to merge."
+msgstr "Wählen Sie andere Kontakte zum Zusammenführen aus."
+
+msgid "Up to 20 contacts can be merged at once."
+msgstr "Bis zu 20 Kontakte können gleichzeitig zusammengeführt werden."
+
+msgid "An e-mail or phone number is required."
+msgstr "Eine E-Mail- oder Telefonnummer ist erforderlich."
+
+msgid "The contact could not be saved."
+msgstr "Der Kontakt konnte nicht gespeichert werden."
+
+msgid "Text cannot be empty."
+msgstr "Der Text darf nicht leer sein."
+
+msgid "The tag could not be added."
+msgstr "Das Tag konnte nicht hinzugefügt werden."
+
+msgid "Segment not found."
+msgstr "Segment nicht gefunden."
+
+msgid "Role"
+msgstr "Rolle"
+
+msgid "Tag"
+msgstr "Etikett"
+
+msgid "RFM segment"
+msgstr "RFM-Segment"
+
+msgid "Total value"
+msgstr "Gesamtwert"
+
+msgid "Days with a payment"
+msgstr "Tage mit einer Zahlung"
+
+msgid "Last payment"
+msgstr "Letzte Zahlung"
+
+msgid "Last activity"
+msgstr "Letzte Aktivität"
+
+msgid "Added"
+msgstr "Hinzugefügt"
+
+msgid "Churn risk (%)"
+msgstr "Abwanderungsrisiko (%)"
+
+msgid "Consent"
+msgstr "Zustimmung"
+
+msgid "First source"
+msgstr "Erste Quelle"
+
+msgid "City"
+msgstr "Stadt"
+
+msgid "Has an e-mail"
+msgstr "Hat eine E-Mail"
+
+msgid "Has a phone"
+msgstr "Hat ein Telefon"
+
+msgid "has"
+msgstr "hat"
+
+msgid "is not / has not"
+msgstr "ist/hat nicht"
+
+msgid "is"
+msgstr "ist"
+
+msgid "at least"
+msgstr "zumindest"
+
+msgid "at most"
+msgstr "höchstens"
+
+msgid "in the last … days"
+msgstr "in den letzten ... Tagen"
+
+msgid "more than … days ago"
+msgstr "vor mehr als ... Tagen"
+
+msgid "yes"
+msgstr "ja"
+
+msgid "no"
+msgstr "Nein"
+
+msgid "contains"
+msgstr "enthält"
+
+msgid "%1$s: more than %2$s days ago"
+msgstr "%1$s: vor mehr als%2$sTagen"
+
+msgid "%1$s: in the last %2$s days"
+msgstr "%1$s: in den letzten%2$sTagen"
+
+msgid "no %s consent"
+msgstr "keine%s-Zustimmung"
+
+msgid "has %s consent"
+msgstr "hat die%s-Zustimmung"
+
+msgid "or"
+msgstr "oder"
+
+msgid "A segment name is required."
+msgstr "Ein Segmentname ist erforderlich."
+
+msgid "Add at least one rule."
+msgstr "Fügen Sie mindestens eine Regel hinzu."
+
+msgid "Donors to win back"
+msgstr "Spender zurückgewinnen"
+
+msgid "Donors with a high churn risk. For a check-in or a new project announcement."
+msgstr "Spender mit einem hohen Abwanderungsrisiko. Für einen Check-in oder eine neue Projektankündigung."
+
+msgid "New contacts (30 days)"
+msgstr "Neue Kontakte (30 Tage)"
+
+msgid "Contacts added in the last 30 days. For a welcome message."
+msgstr "In den letzten 30 Tagen hinzugefügte Kontakte. Für eine Willkommensnachricht."
+
+msgid "Champions and loyal supporters"
+msgstr "Champions und treue Unterstützer"
+
+msgid "The people who support most often and most recently."
+msgstr "Die Menschen, die am häufigsten und zuletzt unterstützt haben."
+
+msgid "WhatsApp messages"
+msgstr "WhatsApp-Nachrichten"
+
+msgid "Totals"
+msgstr "Summen"
+
+msgid "RFM score"
+msgstr "RFM-Score"
+
+msgid "Tag not found."
+msgstr "Tag nicht gefunden."
+
+msgid "Tag name cannot be empty."
+msgstr "Der Tag-Name darf nicht leer sein."
+
+msgid "Another tag already has this name."
+msgstr "Ein anderer Tag hat bereits diesen Namen."
+
+msgid "Invalid color (use e.g. #16a34a)."
+msgstr "Ungültige Farbe (verwenden Sie z. B. #16a34a)."
+
+msgid "Donor"
+msgstr "Spender"
+
+msgid "Customer"
+msgstr "Kunde"
+
+msgid "Lead"
+msgstr "Führen"
+
+msgid "Volunteer"
+msgstr "Freiwilliger"
+
+msgid "Member"
+msgstr "Mitglied"
+
+msgid "Partner"
+msgstr "Partner"
+
+msgid "Beneficiary"
+msgstr "Begünstigter"
+
+msgid "Donation"
+msgstr "Spende"
+
+msgid "Order"
+msgstr "Bestellen"
+
+msgid "Form"
+msgstr "Formular"
+
+msgid "Incoming message"
+msgstr "Eingehende Nachricht"
+
+msgid "Outgoing message"
+msgstr "Ausgehende Nachricht"
+
+msgid "Chat started"
+msgstr "Chat gestartet"
+
+msgid "Incoming e-mail"
+msgstr "Eingehende E-Mail"
+
+msgid "Note"
+msgstr "Hinweis"
+
+msgid "Call"
+msgstr "Rufen Sie an"
+
+msgid "Meeting"
+msgstr "Treffen"
+
+msgid "Sign-up"
+msgstr "Anmelden"
+
+msgid "Contact added"
+msgstr "Kontakt hinzugefügt"
+
+msgid "Role added"
+msgstr "Rolle hinzugefügt"
+
+msgid "Segment changed"
+msgstr "Segment geändert"
+
+msgid "Consent changed"
+msgstr "Einwilligung geändert"
+
+msgid "Contacts merged"
+msgstr "Kontakte zusammengeführt"
+
+msgid "New"
+msgstr "Neu"
+
+msgid "Paid for the first time recently. A good fit for a welcome flow."
+msgstr "Kürzlich zum ersten Mal bezahlt. Passt gut zu einem willkommenen Flow."
+
+msgid "Champion"
+msgstr "Champion"
+
+msgid "Pays often and recently. Worth a personal thank-you and attention."
+msgstr "Zahlt oft und in letzter Zeit. Ein persönliches Dankeschön und Aufmerksamkeit wert."
+
+msgid "Loyal"
+msgstr "Treu"
+
+msgid "Gives regular support. Tell them first about new projects and products."
+msgstr "Gibt regelmäßige Unterstützung. Erzählen Sie ihnen zunächst von neuen Projekten und Produkten."
+
+msgid "Promising"
+msgstr "Vielversprechend"
+
+msgid "Arrived recently; frequency is still low."
+msgstr "Vor kurzem angekommen; Die Frequenz ist immer noch niedrig."
+
+msgid "At risk"
+msgstr "In Gefahr"
+
+msgid "Used to be frequent, has drifted away lately. A win-back target."
+msgstr "War früher häufig, ist in letzter Zeit verschwunden. Ein Rückgewinnungsziel."
+
+msgid "Hibernating"
+msgstr "Winterschlaf"
+
+msgid "Away for a long time with low frequency."
+msgstr "Längere Abwesenheit mit geringer Frequenz."
+
+msgid "Lost"
+msgstr "Verloren"
+
+msgid "The slice that has gone longest without paying."
+msgstr "Der Anteil, der am längsten ohne Bezahlung ausgekommen ist."
+
+msgid "No payments"
+msgstr "Keine Zahlungen"
+
+msgid "Manual"
+msgstr "Handbuch"
+
+msgid "Import"
+msgstr "Importieren"
+
+msgid "Site account"
+msgstr "Site-Konto"
+
+msgid "%s M"
+msgstr "%sM"
+
+msgid "%s K"
+msgstr "%sK"
+
+msgid "(unnamed contact)"
+msgstr "(unbenannter Kontakt)"
+
+msgid "CRM segment: %1$s (%2$s)"
+msgstr "CRM-Segment:%1$s(%2$s)"
+
+msgid "CRM role: %1$s (%2$s)"
+msgstr "CRM-Rolle:%1$s(%2$s)"
+
+msgid "CRM"
+msgstr "CRM"
+
+msgid "Sees contacts, segments and the timeline"
+msgstr "Sieht Kontakte, Segmente und die Zeitleiste"
+
+msgid "Adds, edits and deletes contacts; manages segments and CRM settings"
+msgstr "Fügt Kontakte hinzu, bearbeitet und löscht sie; verwaltet Segmente und CRM-Einstellungen"
+
+msgid "Flux CRM"
+msgstr "Flux CRM"
+
+msgid "Contact sources"
+msgstr "Kontaktquellen"
+
+msgid "No source brings in contacts (Flux Donate, WooCommerce, Flux Chat and Flux Forms are off or not installed). Contacts can only be added by hand."
+msgstr "Keine Quelle bringt Kontakte ein (Flux Donate, WooCommerce, Flux Chat und Flux Forms sind deaktiviert oder nicht installiert). Kontakte können nur manuell hinzugefügt werden."
+
+msgid "First sync"
+msgstr "Erste Synchronisierung"
+
+msgid "Last full sync: %s"
+msgstr "Letzte vollständige Synchronisierung:%s"
+
+msgid "Past donations, orders and chats have not been imported yet. CRM › Settings › \"Sync everything\"."
+msgstr "Frühere Spenden, Bestellungen und Chats wurden noch nicht importiert. CRM › Einstellungen › „Alles synchronisieren“."
+
+msgid "Sync"
+msgstr "Synchronisieren"
+
+msgid "RFM scoring"
+msgstr "RFM-Bewertung"
+
+msgid "Not calculated yet."
+msgstr "Noch nicht berechnet."
+
+msgid "Last calculated %s. The daily job (WP-Cron) may not be running; add a server cron or recalculate by hand."
+msgstr "Zuletzt berechnetes%s. Der tägliche Job (WP-Cron) wird möglicherweise nicht ausgeführt; Fügen Sie einen Server-Cron hinzu oder berechnen Sie ihn manuell neu."
+
+msgid "Last calculated: %s"
+msgstr "Zuletzt berechnet:%s"
+
+msgid "Foreign currency payments"
+msgstr "Zahlungen in Fremdwährung"
+
+msgid "%1$s payments are in a currency other than %2$s and have no exchange rate; they count towards frequency but not towards total value. Use the `flxcrm_fx_rate` filter to supply a rate."
+msgstr "%1$s-Zahlungen erfolgen in einer anderen Währung als%2$sund haben keinen Wechselkurs; sie zählen zur Häufigkeit, aber nicht zum Gesamtwert. Verwenden Sie den Filter `flxcrm_fx_rate` , um einen Tarif anzugeben."
+
+msgid "Overview"
+msgstr "Übersicht"
+
+msgid "Contacts"
+msgstr "Kontakte"
+
+msgid "Segments"
+msgstr "Segmente"
+
+msgid "CRM settings"
+msgstr "CRM-Einstellungen"
+
+msgid "%1$s: %2$s / %3$s"
+msgstr "%1$s:%2$s/%3$s"
+
+msgid "Done. Reloading the page…"
+msgstr "Fertig. Seite wird neu geladen..."
+
+msgid "Something went wrong. Please try again."
+msgstr "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
+
+msgid "Are you sure? This cannot be undone."
+msgstr "Bist du sicher? Dies kann nicht rückgängig gemacht werden."
+
+msgid "%s contacts match"
+msgstr "%s-Kontakte stimmen überein"
+
+msgid "Counting…"
+msgstr "Zählen..."
+
+msgid "Calculating…"
+msgstr "Berechnen..."
+
+msgid "%s contacts scored. Reloading the page…"
+msgstr "%sKontakte bewertet. Seite wird neu geladen..."
+
+msgid "%s contacts selected"
+msgstr "%sKontakte ausgewählt"
+
+msgid "Remove rule"
+msgstr "Regel entfernen"
+
+msgid "and"
+msgstr "und"
+
+msgid "days"
+msgstr "Tage"
+
+msgid "No rules: every contact"
+msgstr "Keine Regeln: jeder Kontakt"
+
+msgid "No contacts match."
+msgstr "Es stimmen keine Kontakte überein."
+
+msgid "You are not allowed to do this."
+msgstr "Dies ist Ihnen nicht gestattet."
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Roles"
+msgstr "Rollen"
+
+msgid "Segment"
+msgstr "Segment"
+
+msgid "Churn risk"
+msgstr "Abwanderungsrisiko"
+
+msgid "E-mail consent"
+msgstr "Einwilligung per E-Mail"
+
+msgid "SMS consent"
+msgstr "SMS-Zustimmung"
+
+msgid "WhatsApp consent"
+msgstr "WhatsApp-Zustimmung"
+
+msgid "Tags"
+msgstr "Schlagworte"
+
+msgid "Saved."
+msgstr "Gespeichert."
+
+msgid "Contact added."
+msgstr "Kontakt hinzugefügt."
+
+msgid "Deleted."
+msgstr "Gelöscht."
+
+msgid "Added to the timeline."
+msgstr "Zur Zeitleiste hinzugefügt."
+
+msgid "A contact with this e-mail or phone already exists; their card is open."
+msgstr "Ein Kontakt mit dieser E-Mail-Adresse oder diesem Telefon besteht bereits; Ihre Karte ist offen."
+
+msgid "%s contacts updated."
+msgstr "%s-Kontakte aktualisiert."
+
+msgid "Churn risk %s%%"
+msgstr "Abwanderungsrisiko%s%%"
+
+msgid "All"
+msgstr "Alle"
+
+msgid "Payments"
+msgstr "Zahlungen"
+
+msgid "Messages"
+msgstr "Nachrichten"
+
+msgid "Forms"
+msgstr "Formulare"
+
+msgid "Notes"
+msgstr "Notizen"
+
+msgid "Contact not found"
+msgstr "Kontakt nicht gefunden"
+
+msgid "Back to contacts"
+msgstr "Zurück zu den Kontakten"
+
+msgid "Archived"
+msgstr "Archiviert"
+
+msgid "Since %1$s · %2$s"
+msgstr "Seit%1$s·%2$s"
+
+msgid "WhatsApp chat"
+msgstr "WhatsApp-Chat"
+
+msgid "Write an e-mail"
+msgstr "Schreiben Sie eine E-Mail"
+
+msgid "CRM card"
+msgstr "CRM-Karte"
+
+msgid "First payment"
+msgstr "Erste Zahlung"
+
+msgid "once every %s days on average"
+msgstr "Durchschnittlich einmal alle%sTage"
+
+msgid "RFM"
+msgstr "RFM"
+
+msgid "recency · frequency · value (1–5)"
+msgstr "Aktualität · Häufigkeit · Wert (1–5)"
+
+msgid "Delete contact"
+msgstr "Kontakt löschen"
+
+msgid "Donations and orders stay in their own plugins; only the CRM card is deleted."
+msgstr "Spenden und Bestellungen bleiben in ihren eigenen Plugins; Es wird nur die CRM-Karte gelöscht."
+
+msgid "Add a note: talked on the phone, call again about the qurban…"
+msgstr "Fügen Sie eine Notiz hinzu: Ich habe am Telefon gesprochen, rufe wegen des Qurban erneut an ..."
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Add"
+msgstr "Hinzufügen"
+
+msgid "No events for this filter."
+msgstr "Keine Ereignisse für diesen Filter."
+
+msgid "Loading…"
+msgstr "Laden…"
+
+msgid "Answers"
+msgstr "Antworten"
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid "Pending"
+msgstr "Ausstehend"
+
+msgid "On hold"
+msgstr "In der Warteschleife"
+
+msgid "Failed"
+msgstr "Fehlgeschlagen"
+
+msgid "Cancelled"
+msgstr "Abgesagt"
+
+msgid "Refunded"
+msgstr "Erstattet"
+
+msgid "Partly refunded"
+msgstr "Teilweise erstattet"
+
+msgid "Full name"
+msgstr "Vollständiger Name"
+
+msgid "Organisation"
+msgstr "Organisation"
+
+msgid "Contact consents"
+msgstr "Kontakteinwilligungen"
+
+msgid "Last changed: %s"
+msgstr "Letzte Änderung:%s"
+
+msgid "Owner"
+msgstr "Besitzer"
+
+msgid "— none —"
+msgstr "– keine –"
+
+msgid "Short note"
+msgstr "Kurze Anmerkung"
+
+msgid "Details"
+msgstr "Details"
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "No tags."
+msgstr "Keine Tags."
+
+msgid "Remove the %s tag"
+msgstr "Entfernen Sie das%s-Tag"
+
+msgid "Add tags (comma for several)"
+msgstr "Tags hinzufügen (Komma für mehrere)"
+
+msgid "Add tag"
+msgstr "Tag hinzufügen"
+
+msgid "Sources"
+msgstr "Quellen"
+
+msgid "Added by hand."
+msgstr "Von Hand hinzugefügt."
+
+msgid "First campaign"
+msgstr "Erste Kampagne"
+
+msgid "New contact"
+msgstr "Neuer Kontakt"
+
+msgid "An e-mail or a phone number is enough. If a contact with the same e-mail or phone exists, their card opens."
+msgstr "Eine E-Mail oder eine Telefonnummer genügt. Wenn ein Kontakt mit derselben E-Mail-Adresse oder demselben Telefon vorhanden ist, wird dessen Karte geöffnet."
+
+msgid "separate with commas"
+msgstr "mit Kommas trennen"
+
+msgid "Add contact"
+msgstr "Kontakt hinzufügen"
+
+msgid "Cancel"
+msgstr "Abbrechen"
+
+msgid "%s donation"
+msgid_plural "%s donations"
+msgstr[0] "%s-Spende"
+msgstr[1] "%sSpenden"
+
+msgid "%s order"
+msgid_plural "%s orders"
+msgstr[0] "%s-Bestellung"
+msgstr[1] "%s-Bestellungen"
+
+msgid "CSV"
+msgstr "CSV"
+
+msgid "Donors, customers, leads: one card per person. They arrive from your sources on their own, or you add them by hand."
+msgstr "Spender, Kunden, Leads: eine Karte pro Person. Sie stammen entweder von selbst aus Ihren Quellen oder Sie fügen sie manuell hinzu."
+
+msgid "Name, e-mail, phone, organisation, city"
+msgstr "Name, E-Mail, Telefon, Organisation, Stadt"
+
+msgid "Search contacts"
+msgstr "Kontakte suchen"
+
+msgid "All RFM segments"
+msgstr "Alle RFM-Segmente"
+
+msgid "Saved segment"
+msgstr "Gespeichertes Segment"
+
+msgid "All tags"
+msgstr "Alle Tags"
+
+msgid "Any consent"
+msgstr "Irgendeine Zustimmung"
+
+msgid "Only high churn risk"
+msgstr "Nur hohes Abwanderungsrisiko"
+
+msgid "Archive"
+msgstr "Archiv"
+
+msgid "Filter"
+msgstr "Filtern"
+
+msgid "No contacts match the filter."
+msgstr "Keine Kontakte entsprechen dem Filter."
+
+msgid "No contacts yet."
+msgstr "Noch keine Kontakte."
+
+msgid "Contacts appear on their own as donations, orders, forms and WhatsApp chats come in. For older records: Settings › Sync everything."
+msgstr "Kontakte erscheinen von selbst, wenn Spenden, Bestellungen, Formulare und WhatsApp-Chats eingehen. Für ältere Datensätze: Einstellungen › Alles synchronisieren."
+
+msgid "Add role"
+msgstr "Rolle hinzufügen"
+
+msgid "Unarchive"
+msgstr "Dearchivieren"
+
+msgid "Tag name"
+msgstr "Tag-Name"
+
+msgid "Apply"
+msgstr "Bewerben"
+
+msgid "Select all"
+msgstr "Alles auswählen"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "Role and segment"
+msgstr "Rolle und Segment"
+
+msgid "Value"
+msgstr "Wert"
+
+msgid "Donors, customers, volunteers and leads in one place: who did what, who is drifting away, who should hear what."
+msgstr "Spender, Kunden, Freiwillige und Leads an einem Ort: Wer hat was getan, wer entfernt sich, wer sollte was hören."
+
+msgid "Import your past data."
+msgstr "Importieren Sie Ihre vergangenen Daten."
+
+msgid "New records arrive on their own. To link older ones to contacts too, sync: %s."
+msgstr "Neue Platten kommen von alleine. Um auch ältere mit Kontakten zu verknüpfen, synchronisieren Sie:%s."
+
+msgid "No source brings in contacts; you can add them by hand."
+msgstr "Keine Quelle bringt Kontakte; Sie können sie manuell hinzufügen."
+
+msgid "Sync everything"
+msgstr "Synchronisieren Sie alles"
+
+msgid "%s have paid"
+msgstr "%shaben bezahlt"
+
+msgid "New in the last 30 days"
+msgstr "Neu in den letzten 30 Tagen"
+
+msgid "%s against the previous 30 days"
+msgstr "%sgegenüber den letzten 30 Tagen"
+
+msgid "Active"
+msgstr "Aktiv"
+
+msgid "with activity in the last %s days"
+msgstr "mit Aktivität in den letzten%s-Tagen"
+
+msgid "High churn risk"
+msgstr "Hohes Abwanderungsrisiko"
+
+msgid "risk %s%% and above"
+msgstr "Risiko%s%% und höher"
+
+msgid "%s per contact"
+msgstr "%spro Kontakt"
+
+msgid "RFM segments"
+msgstr "RFM-Segmente"
+
+msgid "Calculated: %s"
+msgstr "Berechnet:%s"
+
+msgid "Recalculate"
+msgstr "Neu berechnen"
+
+msgid "Once contacts have paid, donors and customers are grouped here by frequency, recency and value."
+msgstr "Sobald Kontakte bezahlt haben, werden Spender und Kunden hier nach Häufigkeit, Aktualität und Wert gruppiert."
+
+msgid "Reach out"
+msgstr "Greifen Sie zu"
+
+msgid "No valuable contacts with a high churn risk."
+msgstr "Keine wertvollen Kontakte mit hohem Abwanderungsrisiko."
+
+msgid "last payment %s"
+msgstr "letzte Zahlung%s"
+
+msgid "Donations, orders, forms and WhatsApp activity appear here."
+msgstr "Hier erscheinen Spenden, Bestellungen, Formulare und WhatsApp-Aktivitäten."
+
+msgid "Where they came from"
+msgstr "Woher sie kamen"
+
+msgid "New segment"
+msgstr "Neues Segment"
+
+msgid "Live lists defined by rules: a contact joins when they match and leaves when they no longer do. Use them as recipients for bulk sends in Flux Mail."
+msgstr "Durch Regeln definierte Live-Listen: Ein Kontakt tritt bei, wenn er übereinstimmt, und verlässt ihn, wenn er nicht mehr übereinstimmt. Verwenden Sie sie als Empfänger für Massensendungen in Flux Mail."
+
+msgid "No segments yet."
+msgstr "Noch keine Segmente."
+
+msgid "Examples: \"Gave a qurban donation last year but not this year\", \"Volunteers in Istanbul\", \"Customers with no purchase for 3 months\"."
+msgstr "Beispiele: „Habe letztes Jahr eine Qurban-Spende gegeben, dieses Jahr jedoch nicht“, „Freiwillige in Istanbul“, „Kunden ohne Kauf seit 3 Monaten“."
+
+msgid "contacts"
+msgstr "Kontakte"
+
+msgid "View contacts"
+msgstr "Kontakte anzeigen"
+
+msgid "Edit"
+msgstr "Bearbeiten"
+
+msgid "Flux Mail › Send: pick this segment under Recipients. Only people who allowed that channel receive it."
+msgstr "Flux Mail › Senden: Wählen Sie dieses Segment unter „Empfänger“ aus. Nur Personen, die diesen Kanal zugelassen haben, erhalten ihn."
+
+msgid "Send a campaign"
+msgstr "Senden Sie eine Kampagne"
+
+msgid "Edit segment"
+msgstr "Segment bearbeiten"
+
+msgid "Add rules; the number of matching contacts updates on the right as you go."
+msgstr "Regeln hinzufügen; Die Anzahl der passenden Kontakte wird auf der rechten Seite aktualisiert, während Sie fortfahren."
+
+msgid "E.g. Donors drifting away"
+msgstr "Z.B. Spender weichen ab"
+
+msgid "Description"
+msgstr "Beschreibung"
+
+msgid "Rules"
+msgstr "Regeln"
+
+msgid "all rules"
+msgstr "alle Regeln"
+
+msgid "at least one"
+msgstr "mindestens einer"
+
+msgid "Contact matches"
+msgstr "Kontaktübereinstimmungen"
+
+msgid "Add rule"
+msgstr "Regel hinzufügen"
+
+msgid "Matching contacts"
+msgstr "Passende Kontakte"
+
+msgid "Where contacts come from, which role they get and how scoring works."
+msgstr "Woher Kontakte kommen, welche Rolle sie bekommen und wie das Scoring funktioniert."
+
+msgid "Not synced yet"
+msgstr "Noch nicht synchronisiert"
+
+msgid "New donations, orders, forms and chats are linked to contacts straight away. Sync everything to import past records, or to relink after switching a source on or off. Existing contacts and notes are kept, and nothing is added twice."
+msgstr "Neue Spenden, Bestellungen, Formulare und Chats werden sofort mit Kontakten verknüpft. Synchronisieren Sie alles, um frühere Datensätze zu importieren oder nach dem Ein- oder Ausschalten einer Quelle erneut zu verknüpfen. Bestehende Kontakte und Notizen bleiben erhalten und es wird nichts doppelt hinzugefügt."
+
+msgid "Donors and donations"
+msgstr "Spender und Spenden"
+
+msgid "Customers and orders (donation orders excluded)"
+msgstr "Kunden und Bestellungen (Spendenbestellungen ausgenommen)"
+
+msgid "WhatsApp chats and every message"
+msgstr "WhatsApp-Chats und jede Nachricht"
+
+msgid "Form submissions (with an e-mail or phone field)"
+msgstr "Formulareinreichungen (mit E-Mail- oder Telefonfeld)"
+
+msgid "Site members"
+msgstr "Site-Mitglieder"
+
+msgid "WordPress users with the customer or subscriber role"
+msgstr "WordPress-Benutzer mit der Kunden- oder Abonnentenrolle"
+
+msgid "E-mails, SMS and WhatsApp notifications sent to the contact, and incoming e-mails (timeline only, no new contacts)"
+msgstr "An den Kontakt gesendete E-Mails, SMS- und WhatsApp-Benachrichtigungen sowie eingehende E-Mails (nur Timeline, keine neuen Kontakte)"
+
+msgid "Source"
+msgstr "Quelle"
+
+msgid "On"
+msgstr "Auf"
+
+msgid "Role for new contacts"
+msgstr "Rolle für neue Kontakte"
+
+msgid "not installed"
+msgstr "nicht installiert"
+
+msgid "— no role —"
+msgstr "– keine Rolle –"
+
+msgid "Write WhatsApp messages to the timeline (one line per message)"
+msgstr "WhatsApp-Nachrichten in die Timeline schreiben (eine Zeile pro Nachricht)"
+
+msgid "The role is given once a payment completes (donor, customer). The \"Lead\" role drops off by itself when the contact gets another role."
+msgstr "Die Rolle wird vergeben, sobald eine Zahlung abgeschlossen ist (Spender, Kunde). Die Rolle „Lead“ fällt von selbst weg, wenn der Kontakt eine andere Rolle bekommt."
+
+msgid "The contact's relationship with you. A contact can have several roles, e.g. donor and volunteer."
+msgstr "Die Beziehung des Kontakts zu Ihnen. Ein Kontakt kann mehrere Rollen haben, z.B. Spender und Freiwilliger."
+
+msgid "Colour"
+msgstr "Farbe"
+
+msgid "New role: Sponsor, Philanthropist, Dealer…"
+msgstr "Neue Rolle: Sponsor, Philanthrop, Händler ..."
+
+msgid "New role"
+msgstr "Neue Rolle"
+
+msgid "Scoring"
+msgstr "Wertung"
+
+msgid "Churn risk threshold (%)"
+msgstr "Abwanderungsrisikoschwelle (%)"
+
+msgid "Contacts above this value go to the \"Reach out\" list. Risk follows each person's own rhythm: a monthly donor is at risk after 45 days, a yearly one is not."
+msgstr "Kontakte über diesem Wert gelangen in die Liste „Reach out“. Das Risiko folgt dem eigenen Rhythmus jeder Person: Ein monatlicher Spender ist nach 45 Tagen gefährdet, ein jährlicher nicht."
+
+msgid "Active window (days)"
+msgstr "Aktives Fenster (Tage)"
+
+msgid "A contact with any activity within this many days counts as active."
+msgstr "Ein Kontakt mit jeglicher Aktivität innerhalb dieser vielen Tage gilt als aktiv."
+
+msgid "Reporting currency"
+msgstr "Berichtswährung"
+
+msgid "Empty means the store currency. Payments in other currencies don't count towards value unless a rate is given."
+msgstr "„Leer“ bedeutet die Ladenwährung. Zahlungen in anderen Währungen werden nicht auf den Wert angerechnet, sofern kein Wechselkurs angegeben ist."
+
+msgid "Save settings"
+msgstr "Einstellungen speichern"
+
+msgid "AI & MCP"
+msgstr "KI und MCP"
+
+msgid "Everything in the CRM (contacts, fields, roles, tags, consents, timeline, segments, settings) can be read and edited from the Flux AI chat and over MCP (Claude, ChatGPT, Cursor…). Tools run with the user's own CRM permissions."
+msgstr "Alles im CRM (Kontakte, Felder, Rollen, Tags, Einwilligungen, Zeitleiste, Segmente, Einstellungen) kann vom Flux AI-Chat und über MCP (Claude, ChatGPT, Cursor...) gelesen und bearbeitet werden. Die Tools werden mit den eigenen CRM-Berechtigungen des Benutzers ausgeführt."
+
+msgid "connected"
+msgstr "verbunden"
+
+msgid "CRM tools in the admin chat. Every tool that changes something waits on an approval card."
+msgstr "CRM-Tools im Admin-Chat. Jedes Werkzeug, das etwas verändert, wartet auf einer Genehmigungskarte."
+
+msgid "Flux AI & MCP is not installed"
+msgstr "Flux AI & MCP ist nicht installiert"
+
+msgid "Delete, merge, bulk actions and sending return only a preview on the first call; they run when called again with the approval token."
+msgstr "Löschen, Zusammenführen, Massenaktionen und Senden geben beim ersten Aufruf nur eine Vorschau zurück; Sie werden ausgeführt, wenn sie erneut mit dem Genehmigungstoken aufgerufen werden."
+
+msgid "MCP keys"
+msgstr "MCP-Schlüssel"
+
+msgid "AI and MCP tools on"
+msgstr "KI- und MCP-Tools aktiviert"
+
+msgid "Editing: contacts, tags, segments, notes, settings"
+msgstr "Bearbeiten: Kontakte, Tags, Segmente, Notizen, Einstellungen"
+
+msgid "Approval actions: delete, merge, bulk actions, sending messages"
+msgstr "Genehmigungsaktionen: Löschen, Zusammenführen, Massenaktionen, Senden von Nachrichten"
+
+msgid "Tools: %1$d / %2$d on"
+msgstr "Tools:%1$d/%2$dein"
+
+msgid "Tool"
+msgstr "Werkzeug"
+
+msgid "Recent changes made with AI"
+msgstr "Kürzlich mit KI vorgenommene Änderungen"
+
+msgid "No changes yet. Every change made with Flux AI or MCP shows up here."
+msgstr "Noch keine Änderungen. Jede mit Flux AI oder MCP vorgenommene Änderung wird hier angezeigt."
+
+msgid "When"
+msgstr "Wann"
+
+msgid "Who"
+msgstr "Wer"
+
+msgid "Action"
+msgstr "Aktion"
+
+msgid "Result"
+msgstr "Ergebnis"
+
+msgid "done"
+msgstr "erledigt"
+
+msgid "error"
+msgstr "Fehler"
+
+msgid "WhatsApp chat opened"
+msgstr "WhatsApp-Chat geöffnet"
+
+msgid "WhatsApp reply"
+msgstr "WhatsApp-Antwort"
+
+msgid "WhatsApp message"
+msgstr "WhatsApp-Nachricht"
+
+msgid "Order #%s"
+msgstr "Bestellnr.%s"
+
+msgid "Form #%d"
+msgstr "Formular #%d"
+
+msgid "SMS sent"
+msgstr "SMS gesendet"
+
+msgid "WhatsApp notification"
+msgstr "WhatsApp-Benachrichtigung"
+
+msgid "Created an account on the site"
+msgstr "Habe auf der Website ein Konto erstellt"
+
+msgid "Name, e-mail or phone"
+msgstr "Name, E-Mail oder Telefon"
+
+msgid "Contacts arrive on their own from gifts, orders and forms."
+msgstr "Kontakte kommen von selbst durch Geschenke, Bestellungen und Formulare zustande."
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Remove tag"
+msgstr "Tag entfernen"
+
+msgid "Add an interaction"
+msgstr "Fügen Sie eine Interaktion hinzu"
+
+msgid "Saved"
+msgstr "Gespeichert"
+
+msgid "Delete this contact?"
+msgstr "Diesen Kontakt löschen?"
+
+msgid "No people"
+msgstr "Keine Leute"
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Add a note"
+msgstr "Fügen Sie eine Notiz hinzu"
+
+msgid "Open in the panel"
+msgstr "Im Panel öffnen"
+
+msgid "Ads"
+msgstr "Anzeigen"
+
+msgid "Ad consent"
+msgstr "Einwilligung zur Werbung"
+
+msgid "Risk"
+msgstr "Risiko"
+
+msgid "Segment rules"
+msgstr "Segmentregeln"
+
+msgid "No segments"
+msgstr "Keine Segmente"
+
+msgid "Create segments by adding rules in the panel."
+msgstr "Erstellen Sie Segmente, indem Sie im Panel Regeln hinzufügen."
+
+msgid "Deleted"
+msgstr "Gelöscht"
+
+msgid "Last 30 days"
+msgstr "Letzte 30 Tage"
+
+msgid "The timeline and tags are deleted too."
+msgstr "Die Timeline und Tags werden ebenfalls gelöscht."
+
+msgid "repeat"
+msgstr "wiederholen"
+
+msgid "Paying"
+msgstr "Bezahlen"
+
+msgid "Consents"
+msgstr "Einwilligungen"
+
+msgid "[['People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI.', 'tr']]"
+msgstr "[['Menschen und Marketing: Spender, Kunde, Freiwilliger und Kandidat in einer Personenkarte; Zeitleiste, Tags, KVKK-Berechtigungen, RFM-Score und Verlustrisiko, dynamische Segmente. Sammelt Daten von Flux Donate-, Flux Commerce-, Flux Chat-, Flux Forms- und WordPress-Benutzern; Versand per Flux Mail, AI Flux AI.', 'tr']]"

@@ -24,14 +24,14 @@ add_filter(
 			'id'           => 'flxwk.permalinks',
 			'source'       => 'Flux Wiki',
 			'group'        => 'Config',
-			'label'        => __( 'Wiki adresleri', 'flx-wiki' ),
+			'label'        => __( 'Wiki addresses', 'flx-wiki' ),
 			'status'       => $pretty ? 'ok' : 'error',
 			'message'      => $pretty
 				/* translators: %s: wiki adresi */
-				? sprintf( __( 'Wiki %s adresinde; .md ve llms.txt adresleri çalışıyor.', 'flx-wiki' ), wp_make_link_relative( flxwk_home_url() ) )
-				: __( 'Kalıcı bağlantılar "Düz" ayarında; /wiki, .md ve llms.txt adresleri çalışmaz. Ayarlar › Kalıcı bağlantılar\'dan "Yazı adı"nı seçin.', 'flx-wiki' ),
+				? sprintf( __( 'The wiki is at %s; .md and llms.txt addresses work.', 'flx-wiki' ), wp_make_link_relative( flxwk_home_url() ) )
+				: __( 'Permalinks are set to "Plain"; /wiki, .md and llms.txt addresses do not work. Choose "Post name" in Settings › Permalinks.', 'flx-wiki' ),
 			'action_url'   => $pretty ? flxwk_home_url() : admin_url( 'options-permalink.php' ),
-			'action_label' => $pretty ? __( 'Wiki\'yi aç', 'flx-wiki' ) : __( 'Kalıcı bağlantılar', 'flx-wiki' ),
+			'action_label' => $pretty ? __( 'Open wiki', 'flx-wiki' ) : __( 'Permalinks', 'flx-wiki' ),
 		);
 		if ( 'off' !== flxwk_opt( 'ask' ) ) {
 			$ready    = flxwk_ai_ready();
@@ -39,11 +39,11 @@ add_filter(
 				'id'           => 'flxwk.ask',
 				'source'       => 'Flux Wiki',
 				'group'        => 'Config',
-				'label'        => __( 'Wiki\'ye sor', 'flx-wiki' ),
+				'label'        => __( 'Ask the wiki', 'flx-wiki' ),
 				'status'       => $ready ? 'ok' : 'info',
-				'message'      => $ready ? __( 'Flux AI hazır; ziyaretçiler wiki içeriğinden cevap alabilir.', 'flx-wiki' ) : __( 'Flux AI kurulu değil, anahtar yok ya da Flux Wiki sistemi kapalı; "Wiki\'ye sor" gizli.', 'flx-wiki' ),
+				'message'      => $ready ? __( 'Flux AI is ready; visitors can get answers from the wiki content.', 'flx-wiki' ) : __( 'Flux AI is not installed, has no key or the Flux Wiki system is off; "Ask the wiki" is hidden.', 'flx-wiki' ),
 				'action_url'   => flxwk_admin_url(),
-				'action_label' => __( 'Ayarlar', 'flx-wiki' ),
+				'action_label' => __( 'Settings', 'flx-wiki' ),
 			);
 		}
 		return $checks;

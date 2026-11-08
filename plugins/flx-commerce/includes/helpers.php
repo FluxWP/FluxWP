@@ -137,10 +137,10 @@ function flxcm_money_short( $amount ) {
 	};
 	if ( abs( $amount ) >= 1000000 ) {
 		/* translators: %s: amount in millions */
-		$txt = sprintf( __( '%s Mn', 'flx-commerce' ), $num( $amount / 1000000, 1 ) );
+		$txt = sprintf( __( '%s M', 'flx-commerce' ), $num( $amount / 1000000, 1 ) );
 	} elseif ( abs( $amount ) >= 10000 ) {
 		/* translators: %s: amount in thousands */
-		$txt = sprintf( __( '%s B', 'flx-commerce' ), $num( $amount / 1000, 1 ) );
+		$txt = sprintf( __( '%s K', 'flx-commerce' ), $num( $amount / 1000, 1 ) );
 	} else {
 		$txt = $num( $amount, floor( $amount ) == $amount ? 0 : 2 ); // phpcs:ignore Universal.Operators.StrictComparisons
 	}
@@ -235,20 +235,20 @@ function flxcm_ago( $time ) {
 	}
 	$ts = is_numeric( $time ) ? (int) $time : (int) strtotime( $time . ' UTC' );
 	/* translators: %s: human time difference */
-	return $ts ? sprintf( __( '%s önce', 'flx-commerce' ), human_time_diff( $ts ) ) : '—';
+	return $ts ? sprintf( __( '%s ago', 'flx-commerce' ), human_time_diff( $ts ) ) : '—';
 }
 
 /** Sipariş durumu adı; WooCommerce'in temel durumları eklentinin kendi çevirisinden (WC dil paketi yoksa da doğru). */
 function flxcm_status_label( $status ) {
 	$status = 0 === strpos( (string) $status, 'wc-' ) ? substr( $status, 3 ) : (string) $status;
 	$labels = array(
-		'pending'    => __( 'Ödeme bekleniyor', 'flx-commerce' ),
-		'processing' => __( 'Hazırlanıyor', 'flx-commerce' ),
-		'on-hold'    => __( 'Beklemede', 'flx-commerce' ),
-		'completed'  => __( 'Tamamlandı', 'flx-commerce' ),
-		'cancelled'  => __( 'İptal edildi', 'flx-commerce' ),
-		'refunded'   => __( 'İade edildi', 'flx-commerce' ),
-		'failed'     => __( 'Başarısız', 'flx-commerce' ),
+		'pending'    => __( 'Awaiting payment', 'flx-commerce' ),
+		'processing' => __( 'Processing', 'flx-commerce' ),
+		'on-hold'    => __( 'On hold', 'flx-commerce' ),
+		'completed'  => __( 'Completed', 'flx-commerce' ),
+		'cancelled'  => __( 'Cancelled', 'flx-commerce' ),
+		'refunded'   => __( 'Refunded', 'flx-commerce' ),
+		'failed'     => __( 'Failed', 'flx-commerce' ),
 	);
 	if ( isset( $labels[ $status ] ) ) {
 		return $labels[ $status ];

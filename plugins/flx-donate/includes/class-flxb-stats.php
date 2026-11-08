@@ -103,7 +103,7 @@ final class FLXB_Stats {
 		foreach ( (array) $wpdb->get_results( $wpdb->prepare( "SELECT x.type_id, c.title, SUM(x.amount) AS amount, COUNT(*) AS gifts FROM {$t} x LEFT JOIN {$cmp} c ON c.id = x.type_id WHERE x.status IN ('completed','partially_refunded') AND x.currency = %s AND x.created_at BETWEEN %s AND %s GROUP BY x.type_id, c.title ORDER BY amount DESC LIMIT 12", $cur, $u0, $u1 ), ARRAY_A ) as $r ) { // phpcs:ignore WordPress.DB.PreparedSQL
 			$types[] = array(
 				'id'     => (int) $r['type_id'],
-				'label'  => (int) $r['type_id'] ? (string) $r['title'] : __( 'No donation type', 'flx-donate' ),
+				'label'  => (int) $r['type_id'] ? (string) $r['title'] : __( '\\nNo donation type\\n', 'flx-donate' ),
 				'amount' => round( (float) $r['amount'], 2 ),
 				'gifts'  => (int) $r['gifts'],
 			);

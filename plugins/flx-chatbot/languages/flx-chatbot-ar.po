@@ -1,0 +1,1202 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "AI chat window, live chat and customer support"
+msgstr "نافذة الدردشة بالذكاء الاصطناعي والدردشة المباشرة ودعم العملاء"
+
+msgid "Site chats"
+msgstr "محادثات الموقع"
+
+msgid "Open"
+msgstr "مفتوح"
+
+msgid "All"
+msgstr "الكل"
+
+msgid "With assistant"
+msgstr "مع مساعد"
+
+msgid "Closed"
+msgstr "مغلق"
+
+msgid "Search name, email, phone or page"
+msgstr "البحث بالاسم أو البريد الإلكتروني أو الهاتف أو الصفحة"
+
+msgid "No chats in this view."
+msgstr "لا توجد محادثات في هذا العرض."
+
+msgid "Pick a chat on the left."
+msgstr "اختر الدردشة على اليسار."
+
+msgid "Loading…"
+msgstr "جارٍ التحميل..."
+
+msgid "Type your reply… (Enter sends, Shift+Enter for a new line)"
+msgstr "اكتب ردك... (أدخل الإرسال، Shift+Enter لسطر جديد)"
+
+msgid "Send"
+msgstr "أرسل"
+
+msgid "Attach file"
+msgstr "إرفاق الملف"
+
+msgid "Close chat"
+msgstr "إغلاق الدردشة"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Delete this chat and its files permanently?"
+msgstr "هل تريد حذف هذه الدردشة وملفاتها نهائيا؟"
+
+msgid "Close the chat? It reopens if the visitor writes again."
+msgstr "إغلاق الدردشة؟ ويعاد فتحه إذا كتب الزائر مرة أخرى."
+
+msgid "Open in Flux Chat"
+msgstr "افتح في Flux Chat"
+
+msgid "This chat is also in the Flux Chat inbox; replies from either place reach the visitor."
+msgstr "هذه الدردشة موجودة أيضًا في صندوق الوارد الخاص بـ Flux Chat؛ الردود من أي مكان تصل إلى الزائر."
+
+msgid "Visitor"
+msgstr "زائر"
+
+msgid "You"
+msgstr "أنت"
+
+msgid "On the page"
+msgstr "على الصفحة"
+
+msgid "Left"
+msgstr "اليسار"
+
+msgid "typing…"
+msgstr "الكتابة..."
+
+msgid "Page"
+msgstr "الصفحة"
+
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+msgid "Phone"
+msgstr "الهاتف"
+
+msgid "Member"
+msgstr "عضو"
+
+msgid "Order"
+msgstr "النظام"
+
+msgid "Rating"
+msgstr "التقييم"
+
+msgid "Assistant's note"
+msgstr "ملاحظة المساعد"
+
+msgid "Lead"
+msgstr "الرصاص"
+
+msgid "Agent"
+msgstr "وكيل"
+
+msgid "Something went wrong. Please try again."
+msgstr "حدث خطأ ما. يرجى المحاولة مرة أخرى."
+
+msgid "Waiting for an agent"
+msgstr "في انتظار وكيل"
+
+msgid "In conversation"
+msgstr "في المحادثة"
+
+msgid "Left a message"
+msgstr "ترك رسالة"
+
+msgid "More"
+msgstr "المزيد"
+
+msgid "Back to list"
+msgstr "العودة إلى القائمة"
+
+msgid "Details"
+msgstr "التفاصيل"
+
+msgid "Suggested products"
+msgstr "المنتجات المقترحة"
+
+msgid "You are not allowed to do this."
+msgstr "لا يسمح لك أن تفعل هذا."
+
+msgid "Conversations from the chat window on your site. Chats the assistant answered are here too; visitors asking for an agent are on top."
+msgstr "المحادثات من نافذة الدردشة على موقعك. الدردشات التي أجاب عليها المساعد موجودة هنا أيضًا؛ الزوار الذين يطلبون وكيلًا في المقدمة."
+
+msgid "Flux Chat"
+msgstr "دردشة التدفق"
+
+msgid "Flux AI Chatbot"
+msgstr "فلوكس AI Chatbot"
+
+msgid "Chatbot"
+msgstr "روبوت الدردشة"
+
+msgid "Chats"
+msgstr "الدردشات"
+
+msgid "Chatbot settings"
+msgstr "إعدادات الشات بوت"
+
+msgid "Choose avatar"
+msgstr "اختر الصورة الرمزية"
+
+msgid "Use this image"
+msgstr "استخدم هذه الصورة"
+
+msgid "You have unsaved changes"
+msgstr "لديك تغييرات غير محفوظة"
+
+msgid "Hi, how long does shipping take?"
+msgstr "مرحبا، كم يستغرق الشحن؟"
+
+msgid "Orders ship within **1-3 business days**. Here is a product you might like:"
+msgstr "يتم شحن الطلبات خلال **1-3 أيام عمل**. إليك منتج قد يعجبك:"
+
+msgid "Orders ship within **1-3 business days**; shipping is free over $50. Anything else I can help with?"
+msgstr "يتم شحن الطلبات خلال **1-3 أيام عمل**؛ الشحن مجاني أكثر من 50 دولارًا. هل هناك أي شيء آخر يمكنني المساعدة فيه؟"
+
+msgid "General"
+msgstr "عام"
+
+msgid "Appearance"
+msgstr "المظهر"
+
+msgid "Texts"
+msgstr "النصوص"
+
+msgid "AI"
+msgstr "منظمة العفو الدولية"
+
+msgid "Live chat"
+msgstr "الدردشة الحية"
+
+msgid "Visibility"
+msgstr "الرؤية"
+
+msgid "An AI chat window for your site: it answers from your content and products and hands the chat to a live agent when needed. Changes show up in the preview on the right right away."
+msgstr "نافذة دردشة مدعمة بالذكاء الاصطناعي لموقعك: فهي تجيب من المحتوى والمنتجات الخاصة بك وتسليم الدردشة إلى وكيل مباشر عند الحاجة. تظهر التغييرات في المعاينة على اليمين على الفور."
+
+msgid "Try on site"
+msgstr "جرب في الموقع"
+
+msgid "Settings saved."
+msgstr "تم حفظ الإعدادات."
+
+msgid "last 30 days"
+msgstr "آخر 30 يومًا"
+
+msgid "Solved by the assistant"
+msgstr "تم الحل بواسطة المساعد"
+
+msgid "without an agent"
+msgstr "بدون وكيل"
+
+msgid "left contact details"
+msgstr "تفاصيل الاتصال اليسرى"
+
+msgid "Orders after chat"
+msgstr "الطلبات بعد الدردشة"
+
+msgid "within 7 days"
+msgstr "في غضون 7 أيام"
+
+msgid "Satisfaction"
+msgstr "الرضا"
+
+msgid "%s ratings"
+msgstr "تقييمات%s"
+
+msgid "no ratings yet"
+msgstr "لا يوجد تقييمات حتى الآن"
+
+msgid "Chat window"
+msgstr "نافذة الدردشة"
+
+msgid "Show on site"
+msgstr "عرض على الموقع"
+
+msgid "While off, visitors don't see the window; admins can preview it with \"Try on site\"."
+msgstr "أثناء التواجد خارج المنزل، لا يرى الزوار النافذة؛ يمكن للمسؤولين معاينته من خلال \"التجربة في الموقع\"."
+
+msgid "Mode"
+msgstr "الوضع"
+
+msgid "AI + live chat"
+msgstr "الذكاء الاصطناعي + الدردشة الحية"
+
+msgid "The assistant answers and hands over to an agent when needed. Recommended."
+msgstr "يجيب المساعد ويسلمه إلى الوكيل عند الحاجة. مُستَحسَن."
+
+msgid "AI only"
+msgstr "الذكاء الاصطناعي فقط"
+
+msgid "No handoff; the assistant shares your contact details."
+msgstr "لا تسليم. يقوم المساعد بمشاركة تفاصيل الاتصال الخاصة بك."
+
+msgid "Live chat only"
+msgstr "الدردشة الحية فقط"
+
+msgid "No assistant; messages go straight to agents."
+msgstr "لا يوجد مساعد؛ تذهب الرسائل مباشرة إلى الوكلاء."
+
+msgid "Connections"
+msgstr "اتصالات"
+
+msgid "Flux AI & MCP connected"
+msgstr "تم توصيل Flux AI وMCP"
+
+msgid "Key, model, spending limit and logs come from Flux AI."
+msgstr "المفتاح والنموذج وحد الإنفاق والسجلات تأتي من Flux AI."
+
+msgid "Choose model"
+msgstr "اختر النموذج"
+
+msgid "Flux AI is not ready"
+msgstr "Flux AI ليس جاهزًا"
+
+msgid "Enter an API key in Flux AI & MCP or turn on Flux AI Chatbot under Connected systems."
+msgstr "أدخل مفتاح API في Flux AI & MCP أو قم بتشغيل Flux AI Chatbot ضمن الأنظمة المتصلة."
+
+msgid "Flux AI"
+msgstr "تدفق منظمة العفو الدولية"
+
+msgid "Flux AI & MCP is not installed"
+msgstr "لم يتم تثبيت Flux AI & MCP"
+
+msgid "Install the Flux AI & MCP plugin for the assistant. Until then the window works as live chat only."
+msgstr "قم بتثبيت البرنامج المساعد Flux AI & MCP للمساعد. وحتى ذلك الحين تعمل النافذة كدردشة حية فقط."
+
+msgid "Live chat off"
+msgstr "الدردشة الحية معطلة"
+
+msgid "Mode is \"AI only\"."
+msgstr "الوضع هو \"الذكاء الاصطناعي فقط\"."
+
+msgid "Flux Chat inbox"
+msgstr "البريد الوارد للدردشة التدفق"
+
+msgid "All site chats (including the ones the assistant answered) appear in the call center with the site chat icon; agents reply from the same screen as WhatsApp and other channels."
+msgstr "تظهر جميع محادثات الموقع (بما في ذلك تلك التي أجاب عليها المساعد) في مركز الاتصال مع أيقونة دردشة الموقع؛ يقوم الوكلاء بالرد من نفس شاشة الواتساب والقنوات الأخرى."
+
+msgid "Plugin inbox"
+msgstr "البريد الوارد البرنامج المساعد"
+
+msgid "Handed-over chats land on the Chatbot › Chats screen."
+msgstr "تصل الدردشات التي تم تسليمها إلى شاشة Chatbot › الدردشات."
+
+msgid "Handed-over chats land on the Chatbot › Chats screen. With Flux Chat (1.37+) installed they can also be answered from the call center."
+msgstr "تصل الدردشات التي تم تسليمها إلى شاشة Chatbot › الدردشات. مع تثبيت Flux Chat (1.37+) يمكن أيضًا الرد عليهم من مركز الاتصال."
+
+msgid "Online now"
+msgstr "متواجد الآن"
+
+msgid "Outside working hours now"
+msgstr "خارج أوقات العمل الآن"
+
+msgid "Working hours: %s"
+msgstr "ساعات العمل:%s"
+
+msgid "Working hours come from the Flux Chat settings."
+msgstr "ساعات العمل تأتي من إعدادات Flux Chat."
+
+msgid "Agents always count as online."
+msgstr "يتم احتساب الوكلاء دائمًا على أنهم متصلين بالإنترنت."
+
+msgid "Hours"
+msgstr "ساعات"
+
+msgid "Open from a page"
+msgstr "فتح من الصفحة"
+
+msgid "Any button or link can open the window."
+msgstr "يمكن لأي زر أو رابط فتح النافذة."
+
+msgid "Message us"
+msgstr "راسلنا"
+
+msgid "Shortcode: a button inside the page."
+msgstr "الرمز القصير: زر داخل الصفحة."
+
+msgid "A link to #flxcb-open opens the window."
+msgstr "رابط إلى #flxcb-open يفتح النافذة."
+
+msgid "Added to a button, the window opens with this message."
+msgstr "إضافة إلى زر، تفتح النافذة بهذه الرسالة."
+
+msgid "Open with JavaScript."
+msgstr "افتح باستخدام جافا سكريبت."
+
+msgid "Color and theme"
+msgstr "اللون والموضوع"
+
+msgid "Main color"
+msgstr "اللون الرئيسي"
+
+msgid "Theme color"
+msgstr "لون الموضوع"
+
+msgid "Follow theme"
+msgstr "اتبع الموضوع"
+
+msgid "When empty, the site's theme color is used."
+msgstr "عندما يكون فارغًا، يتم استخدام لون سمة الموقع."
+
+msgid "Text color (header and buttons)"
+msgstr "لون النص (الرأس والأزرار)"
+
+msgid "Automatic"
+msgstr "تلقائي"
+
+msgid "When empty, a readable color is picked from the main color."
+msgstr "عندما يكون فارغًا، يتم اختيار لون قابل للقراءة من اللون الرئيسي."
+
+msgid "Light / dark"
+msgstr "فاتح / غامق"
+
+msgid "Automatic (follows device and site)"
+msgstr "تلقائي (يتبع الجهاز والموقع)"
+
+msgid "Always light"
+msgstr "دائما خفيفة"
+
+msgid "Always dark"
+msgstr "الظلام دائما"
+
+msgid "Header"
+msgstr "رأس"
+
+msgid "Gradient"
+msgstr "التدرج"
+
+msgid "Solid color"
+msgstr "لون خالص"
+
+msgid "Font"
+msgstr "الخط"
+
+msgid "Same as site"
+msgstr "نفس الموقع"
+
+msgid "System font"
+msgstr "خط النظام"
+
+msgid "Assistant"
+msgstr "مساعد"
+
+msgid "Assistant name"
+msgstr "اسم المساعد"
+
+msgid "Shown in the chat header."
+msgstr "يظهر في رأس الدردشة."
+
+msgid "Avatar image"
+msgstr "الصورة الرمزية"
+
+msgid "Choose"
+msgstr "اختر"
+
+msgid "Remove"
+msgstr "إزالة"
+
+msgid "A square image works best. Without one, the icon below is used."
+msgstr "الصورة المربعة تعمل بشكل أفضل. بدون واحد، يتم استخدام الرمز أدناه."
+
+msgid "Avatar icon"
+msgstr "رمز الصورة الرمزية"
+
+msgid "Robot"
+msgstr "روبوت"
+
+msgid "Sparkles"
+msgstr "البريق"
+
+msgid "Headset"
+msgstr "سماعة الرأس"
+
+msgid "Smiley"
+msgstr "مبتسم"
+
+msgid "Site icon"
+msgstr "رمز الموقع"
+
+msgid "Launcher button and position"
+msgstr "زر المشغل والموضع"
+
+msgid "Button icon"
+msgstr "رمز الزر"
+
+msgid "Bubble"
+msgstr "فقاعة"
+
+msgid "Question"
+msgstr "سؤال"
+
+msgid "Avatar"
+msgstr "الصورة الرمزية"
+
+msgid "Label next to the button"
+msgstr "التسمية بجانب الزر"
+
+msgid "When empty only the button shows. Example: Need help?"
+msgstr "عندما يكون فارغا يظهر الزر فقط. مثال: هل تحتاج إلى مساعدة؟"
+
+msgid "None"
+msgstr "لا شيء"
+
+msgid "Position"
+msgstr "الموقف"
+
+msgid "Bottom right"
+msgstr "أسفل اليمين"
+
+msgid "Bottom left"
+msgstr "أسفل اليسار"
+
+msgid "Button size"
+msgstr "حجم الزر"
+
+msgid "Side spacing"
+msgstr "تباعد جانبي"
+
+msgid "Bottom spacing"
+msgstr "تباعد القاع"
+
+msgid "Window width"
+msgstr "عرض النافذة"
+
+msgid "Corner radius"
+msgstr "شعاع الزاوية"
+
+msgid "Full screen on mobile"
+msgstr "شاشة كاملة على الجوال"
+
+msgid "On small screens the window covers the whole screen."
+msgstr "على الشاشات الصغيرة، تغطي النافذة الشاشة بأكملها."
+
+msgid "Notification sound"
+msgstr "صوت الإخطار"
+
+msgid "A short sound for a new reply while the window is closed."
+msgstr "صوت قصير للرد الجديد أثناء إغلاق النافذة."
+
+msgid "\"Powered by FluxWP\" note"
+msgstr "ملاحظة \"مدعوم من FluxWP\"."
+
+msgid "A small signature at the bottom of the window."
+msgstr "توقيع صغير في أسفل النافذة."
+
+msgid "Home screen"
+msgstr "الشاشة الرئيسية"
+
+msgid "The welcome screen shown when the window opens. Empty texts use the default for the visitor's language (TR/EN)."
+msgstr "تظهر شاشة الترحيب عند فتح النافذة. تستخدم النصوص الفارغة اللغة الافتراضية للزائر (TR/EN)."
+
+msgid "Show home screen"
+msgstr "إظهار الشاشة الرئيسية"
+
+msgid "When off, the window opens straight into the chat."
+msgstr "عند إيقاف التشغيل، تفتح النافذة مباشرة في الدردشة."
+
+msgid "Message field"
+msgstr "حقل الرسالة"
+
+msgid "Subtitle"
+msgstr "الترجمة"
+
+msgid "Team avatars"
+msgstr "الصور الرمزية للفريق"
+
+msgid "Photos of agents who replied recently show in the header."
+msgstr "تظهر صور الوكلاء الذين ردوا مؤخرًا في رأس الصفحة."
+
+msgid "Suggested questions"
+msgstr "الأسئلة المقترحة"
+
+msgid "One question per line (up to 6). Clickable on the home screen and at the start of a chat."
+msgstr "سؤال واحد في كل سطر (حتى 6). قابلة للنقر على الشاشة الرئيسية وفي بداية الدردشة."
+
+msgid "How long does shipping take?\nHow do returns work?\nWhere is my order?"
+msgstr "كم من الوقت يستغرق الشحن؟\nكيف تعمل المرتجعات؟\nأين طلبي؟"
+
+msgid "Contact links"
+msgstr "روابط الاتصال"
+
+msgid "One per line: Label | address. https, mailto:, tel: and wa.me are supported."
+msgstr "واحد في كل سطر: التصنيف | عنوان. يتم دعم https وmailto: وtel: وwa.me."
+
+msgid "Chat texts"
+msgstr "نصوص الدردشة"
+
+msgid "Welcome message"
+msgstr "رسالة ترحيب"
+
+msgid "The assistant's first message."
+msgstr "الرسالة الأولى للمساعد."
+
+msgid "Teaser bubble"
+msgstr "فقاعة دعابة"
+
+msgid "After the visitor stays on the page a while, a short message pops up above the button (once per session)."
+msgstr "بعد بقاء الزائر في الصفحة لفترة، تظهر رسالة قصيرة فوق الزر (مرة واحدة في كل جلسة)."
+
+msgid "Show teaser bubble"
+msgstr "عرض الفقاعة التشويقية"
+
+msgid "Message"
+msgstr "رسالة"
+
+msgid "After how many seconds"
+msgstr "بعد كم ثانية"
+
+msgid "The assistant is not working right now."
+msgstr "المساعد لا يعمل الآن."
+
+msgid "AI calls go through Flux AI & MCP, where the key, model and spending limit live. Until Flux AI is ready, visitor messages go to an agent."
+msgstr "تمر مكالمات الذكاء الاصطناعي عبر Flux AI & MCP، حيث يوجد المفتاح والنموذج وحد الإنفاق. حتى يصبح Flux AI جاهزًا، تذهب رسائل الزائر إلى الوكيل."
+
+msgid "Key, model, spending limit and logs are in Flux AI & MCP. To pick a model just for this plugin:"
+msgstr "المفتاح والنموذج وحد الإنفاق والسجلات موجودة في Flux AI & MCP. لاختيار نموذج لهذا البرنامج المساعد فقط:"
+
+msgid "Flux AI › Connected systems › Flux AI Chatbot"
+msgstr "Flux AI › الأنظمة المتصلة › Flux AI Chatbot"
+
+msgid "Personality and instructions"
+msgstr "الشخصية والتعليمات"
+
+msgid "Personality and tone"
+msgstr "الشخصية والنبرة"
+
+msgid "Example: Be friendly but polite, keep answers short."
+msgstr "على سبيل المثال: كن ودودًا ولكن مهذبًا، واجعل الإجابات قصيرة."
+
+msgid "Rules"
+msgstr "القواعد"
+
+msgid "What the assistant must follow. Example: Don't give discount codes. Hand business sales questions to an agent."
+msgstr "ما يجب أن يتبعه المساعد. مثال: لا تعطي رموز الخصم. تسليم أسئلة المبيعات التجارية إلى الوكيل."
+
+msgid "Knowledge base"
+msgstr "قاعدة المعرفة"
+
+msgid "Information not on your site: shipping, returns, opening hours, FAQs. Plain text; the assistant answers only from here and your site."
+msgstr "المعلومات غير الموجودة على موقعك: الشحن، والمرتجعات، وساعات العمل، والأسئلة الشائعة. نص عادي؛ المساعد يجيب فقط من هنا ومن موقعك."
+
+msgid "Shipping: 1-3 business days, free over $50.\nReturns: within 14 days with the invoice.\nQ: Do you have a store?\nA: We sell online only."
+msgstr "الشحن: 1-3 أيام عمل، مجانًا لأكثر من 50 دولارًا.\nالإرجاع: خلال 14 يومًا مع الفاتورة.\nس: هل لديك متجر؟\nج: نبيع عبر الإنترنت فقط."
+
+msgid "Sources and tools"
+msgstr "المصادر والأدوات"
+
+msgid "The assistant searches these before answering. Only published, non-password-protected content is read."
+msgstr "يقوم المساعد بالبحث عن هذه قبل الإجابة. تتم قراءة المحتوى المنشور وغير المحمي بكلمة مرور فقط."
+
+msgid "Pages"
+msgstr "الصفحات"
+
+msgid "Posts"
+msgstr "المشاركات"
+
+msgid "WooCommerce products"
+msgstr "منتجات ووكومرس"
+
+msgid "Price, stock and link; products appear as cards in the window."
+msgstr "السعر والمخزون والرابط؛ تظهر المنتجات كبطاقات في النافذة."
+
+msgid "Product cards"
+msgstr "بطاقات المنتج"
+
+msgid "Image, price, \"View\" and \"Add to cart\"."
+msgstr "الصورة والسعر و\"عرض\" و\"أضف إلى سلة التسوق\"."
+
+msgid "Flux Wiki pages"
+msgstr "صفحات فلوكس ويكي"
+
+msgid "Order status"
+msgstr "حالة الطلب"
+
+msgid "A logged-in customer can only ask about their own orders."
+msgstr "يمكن للعميل الذي قام بتسجيل الدخول أن يسأل فقط عن طلباته الخاصة."
+
+msgid "Save contact details"
+msgstr "حفظ تفاصيل الاتصال"
+
+msgid "If the visitor gives an email or phone, it is saved to the chat (and to Flux CRM when installed)."
+msgstr "إذا قدم الزائر بريدًا إلكترونيًا أو هاتفًا، فسيتم حفظه في الدردشة (وفي Flux CRM عند تثبيته)."
+
+msgid "Limits"
+msgstr "حدود"
+
+msgid "A public AI can burn through the budget fast. The overall spending limit is in Flux AI; these are extra protection."
+msgstr "يمكن للذكاء الاصطناعي العام أن يستهلك الميزانية بسرعة. الحد الإجمالي للإنفاق موجود في Flux AI؛ هذه حماية إضافية."
+
+msgid "Replies per chat"
+msgstr "الردود لكل دردشة"
+
+msgid "When reached, the chat goes to an agent."
+msgstr "عند الوصول، تنتقل الدردشة إلى الوكيل."
+
+msgid "Per chat per hour"
+msgstr "لكل دردشة في الساعة"
+
+msgid "0 = unlimited"
+msgstr "0 = غير محدود"
+
+msgid "Daily total on the site"
+msgstr "المجموع اليومي على الموقع"
+
+msgid "Handoff to a person"
+msgstr "تسليم إلى شخص"
+
+msgid "Flux Chat when available, otherwise the plugin inbox."
+msgstr "Flux Chat عندما يكون ذلك متاحًا، وإلا فإن البريد الوارد للمكونات الإضافية."
+
+msgid "Call center inbox, together with WhatsApp chats."
+msgstr "صندوق الوارد لمركز الاتصال، بالإضافة إلى محادثات WhatsApp."
+
+msgid "Flux Chat 1.37+ is not installed; the inbox is used."
+msgstr "لم يتم تثبيت Flux Chat 1.37+؛ يتم استخدام البريد الوارد."
+
+msgid "Chatbot › Chats screen, with email notification."
+msgstr "Chatbot › شاشة الدردشات، مع إشعار البريد الإلكتروني."
+
+msgid "Ask for email"
+msgstr "اطلب البريد الإلكتروني"
+
+msgid "Only outside working hours"
+msgstr "فقط خارج أوقات العمل"
+
+msgid "Before handing over"
+msgstr "قبل التسليم"
+
+msgid "Never"
+msgstr "أبدا"
+
+msgid "Notification email"
+msgstr "البريد الإلكتروني الإخطار"
+
+msgid "New handoffs and after-hours messages. When empty, the site admin."
+msgstr "عمليات تسليم جديدة ورسائل بعد ساعات العمل. عندما تكون فارغة، مدير الموقع."
+
+msgid "After-hours message"
+msgstr "رسالة بعد ساعات العمل"
+
+msgid "Also send replies by email"
+msgstr "أرسل أيضًا الردود عبر البريد الإلكتروني"
+
+msgid "If the visitor has left the page, the agent's reply goes to their email."
+msgstr "إذا غادر الزائر الصفحة، يذهب رد الوكيل إلى بريده الإلكتروني."
+
+msgid "End-of-chat rating"
+msgstr "تصنيف نهاية الدردشة"
+
+msgid "1-5 stars and an optional note."
+msgstr "1-5 نجوم وملاحظة اختيارية."
+
+msgid "File sharing"
+msgstr "مشاركة الملفات"
+
+msgid "Images, PDFs and office documents; files are not put in a public folder."
+msgstr "الصور وملفات PDF والمستندات المكتبية؛ لا يتم وضع الملفات في مجلد عمومي."
+
+msgid "Voice dictation"
+msgstr "الإملاء الصوتي"
+
+msgid "A microphone button in the message field: the visitor speaks and the text lands in the field. Uses the browser's speech recognition; the button is hidden where it isn't supported."
+msgstr "زر الميكروفون في حقل الرسالة: يتحدث الزائر ويهبط النص في الحقل. يستخدم التعرف على الكلام في المتصفح. يكون الزر مخفيًا في الأماكن غير المدعومة."
+
+msgid "Largest file (MB)"
+msgstr "أكبر ملف (ميجابايت)"
+
+msgid "Working hours"
+msgstr "ساعات العمل"
+
+msgid "Outside working hours visitors see \"leave a message\" and the agent replies by email. Hours follow the site time zone."
+msgstr "خارج ساعات العمل، يرى الزوار عبارة \"اترك رسالة\" ويقوم الوكيل بالرد عبر البريد الإلكتروني. ساعات تتبع المنطقة الزمنية للموقع."
+
+msgid "Always open"
+msgstr "مفتوح دائما"
+
+msgid "Weekly hours"
+msgstr "ساعات أسبوعية"
+
+msgid "Flux Chat hours"
+msgstr "ساعات الدردشة التدفق"
+
+msgid "Flux Chat is not installed"
+msgstr "لم يتم تثبيت Flux Chat"
+
+msgid "Where to show"
+msgstr "أين تظهر"
+
+msgid "Who sees it"
+msgstr "من يرى ذلك"
+
+msgid "Everyone"
+msgstr "الجميع"
+
+msgid "Only visitors (not logged in)"
+msgstr "الزوار فقط (لم يقوموا بتسجيل الدخول)"
+
+msgid "Only members (logged in)"
+msgstr "الأعضاء فقط (تسجيل الدخول)"
+
+msgid "Device"
+msgstr "الجهاز"
+
+msgid "Desktop"
+msgstr "سطح المكتب"
+
+msgid "Mobile"
+msgstr "الجوال"
+
+msgid "Hidden on these addresses"
+msgstr "مخفية على هذه العناوين"
+
+msgid "One path per line. * is a wildcard. Example: /checkout/* or /campaign"
+msgstr "مسار واحد لكل سطر. * هو حرف البدل. مثال: /checkout/* أو /campaign"
+
+msgid "Privacy"
+msgstr "الخصوصية"
+
+msgid "The visitor's IP address is not stored; the chat is matched by a random key in the browser."
+msgstr "لا يتم تخزين عنوان IP الخاص بالزائر؛ تتم مطابقة الدردشة بواسطة مفتاح عشوائي في المتصفح."
+
+msgid "Note under the message field"
+msgstr "ملاحظة تحت حقل الرسالة"
+
+msgid "Example: Chats are kept under our <a href=\"/privacy\">Privacy Policy</a>. Links are allowed."
+msgstr "مثال: يتم الاحتفاظ بالدردشات بموجب سياسة الخصوصية<a href=\"/privacy\">الخاصة بنا</a>. الروابط مسموحة."
+
+msgid "Retention (days)"
+msgstr "الاحتفاظ (بالأيام)"
+
+msgid "Expired chats and their files are deleted. 0 = keep."
+msgstr "يتم حذف الدردشات منتهية الصلاحية وملفاتها. 0 = الاحتفاظ."
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "Preview"
+msgstr "معاينة"
+
+msgid "Messages you type in the preview go to the real assistant and show up in Chats."
+msgstr "تنتقل الرسائل التي تكتبها في المعاينة إلى المساعد الحقيقي وتظهر في الدردشات."
+
+msgid "The assistant of the chat window on the site, and site chats."
+msgstr "مساعد نافذة الدردشة في الموقع، ودردشات الموقع."
+
+msgid "Assistant model"
+msgstr "نموذج مساعد"
+
+msgid "The model that answers visitors. A fast, low-cost model is recommended; when empty, the Flux AI default."
+msgstr "النموذج الذي يجيب الزوار. يوصى باستخدام نموذج سريع ومنخفض التكلفة؛ عندما يكون فارغًا، يكون Flux AI الافتراضي."
+
+msgid "Site chat transcript"
+msgstr "نص دردشة الموقع"
+
+msgid "Chat not found."
+msgstr "لم يتم العثور على الدردشة."
+
+msgid "Chat statistics"
+msgstr "إحصائيات الدردشة"
+
+msgid "Site chat"
+msgstr "دردشة الموقع"
+
+msgid "Site chat · %s"
+msgstr "دردشة الموقع ·%s"
+
+msgid "A site chat is waiting for an agent."
+msgstr "دردشة الموقع في انتظار الوكيل."
+
+msgid "Page:"
+msgstr "الصفحة:"
+
+msgid "Contact:"
+msgstr "الاتصال:"
+
+msgid "Assistant note:"
+msgstr "ملاحظة المساعد:"
+
+msgid "Site chat not found."
+msgstr "لم يتم العثور على دردشة الموقع."
+
+msgid "Could not read the file."
+msgstr "لا يمكن قراءة الملف."
+
+msgid "This action isn't available in site chats."
+msgstr "هذا الإجراء غير متاح في محادثات الموقع."
+
+msgid "Could not save the message."
+msgstr "لا يمكن حفظ الرسالة."
+
+msgid "Open chat"
+msgstr "افتح الدردشة"
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Minimize"
+msgstr "تصغير"
+
+msgid "Back"
+msgstr "العودة"
+
+msgid "Home"
+msgstr "الصفحة الرئيسية"
+
+msgid "Messages"
+msgstr "الرسائل"
+
+msgid "Dictate"
+msgstr "إملاء"
+
+msgid "Stop listening"
+msgstr "توقف عن الاستماع"
+
+msgid "Continue the chat"
+msgstr "مواصلة الدردشة"
+
+msgid "We usually reply within a few minutes"
+msgstr "نحن عادة الرد في غضون بضع دقائق"
+
+msgid "Our assistant replies instantly"
+msgstr "يجيب مساعدنا على الفور"
+
+msgid "Online"
+msgstr "على الانترنت"
+
+msgid "Offline right now"
+msgstr "غير متصل الآن"
+
+msgid "Thinking…"
+msgstr "التفكير..."
+
+msgid "Searching the site…"
+msgstr "جاري البحث في الموقع..."
+
+msgid "Looking at products…"
+msgstr "النظر في المنتجات..."
+
+msgid "Looking at your orders…"
+msgstr "يطلع على أوامرك..."
+
+msgid "Talk to a person"
+msgstr "تحدث إلى شخص ما"
+
+msgid "Would you like to talk to a person?"
+msgstr "هل ترغب في التحدث مع شخص؟"
+
+msgid "Your place in line: %d"
+msgstr "مكانك في الطابور:%d"
+
+msgid "Seen"
+msgstr "شوهد"
+
+msgid "Sent"
+msgstr "تم الإرسال"
+
+msgid "End chat"
+msgstr "إنهاء الدردشة"
+
+msgid "End the chat?"
+msgstr "إنهاء الدردشة؟"
+
+msgid "Yes"
+msgstr "نعم"
+
+msgid "No"
+msgstr "لا"
+
+msgid "New chat"
+msgstr "دردشة جديدة"
+
+msgid "How was the chat?"
+msgstr "كيف كانت الدردشة؟"
+
+msgid "Anything you'd like to add? (optional)"
+msgstr "هل هناك أي شيء تود إضافته؟ (اختياري)"
+
+msgid "Thanks, we got your feedback."
+msgstr "شكرا، لقد حصلنا على ملاحظاتك."
+
+msgid "Your name"
+msgstr "اسمك"
+
+msgid "Your email"
+msgstr "البريد الإلكتروني الخاص بك"
+
+msgid "Phone (optional)"
+msgstr "الهاتف (اختياري)"
+
+msgid "Your message"
+msgstr "رسالتك"
+
+msgid "Leave a message"
+msgstr "ترك رسالة"
+
+msgid "Leave your email so we can get back to you."
+msgstr "اترك بريدك الإلكتروني حتى نتمكن من الرد عليك."
+
+msgid "Enter a valid email address."
+msgstr "أدخل عنوان بريد إلكتروني صالحًا."
+
+msgid "Connection problem. Please try again."
+msgstr "مشكلة في الاتصال. يرجى المحاولة مرة أخرى."
+
+msgid "Try again"
+msgstr "حاول مرة أخرى"
+
+msgid "The file is too large."
+msgstr "الملف كبير جدًا."
+
+msgid "Add to cart"
+msgstr "أضف إلى السلة"
+
+msgid "View"
+msgstr "عرض"
+
+msgid "Out of stock"
+msgstr "نفاد المخزون"
+
+msgid "Powered by FluxWP"
+msgstr "مدعوم من FluxWP"
+
+msgid "Today"
+msgstr "اليوم"
+
+msgid "new message"
+msgstr "رسالة جديدة"
+
+msgid "Ask a question"
+msgstr "اطرح سؤالاً"
+
+msgid "Contact us"
+msgstr "اتصل بنا"
+
+msgid "Shop and products"
+msgstr "متجر ومنتجات"
+
+msgid "Cart"
+msgstr "عربة"
+
+msgid "Checkout"
+msgstr "الخروج"
+
+msgid "My account"
+msgstr "حسابي"
+
+msgid "Other (archives, search, 404…)"
+msgstr "أخرى (أرشيف، بحث، 404...)"
+
+msgid "Hi there 👋"
+msgstr "مرحبًا 👋"
+
+msgid "How can we help? We answer your questions right away."
+msgstr "كيف يمكننا المساعدة؟ نحن نجيب على أسئلتك على الفور."
+
+msgid "Hi! I'm this site's assistant. Ask me about products, orders or anything else."
+msgstr "مرحبًا! أنا مساعد هذا الموقع. اسألني عن المنتجات أو الطلبات أو أي شيء آخر."
+
+msgid "Type your message…"
+msgstr "اكتب رسالتك..."
+
+msgid "Hi! Is there anything I can help with?"
+msgstr "مرحبًا! هل هناك أي شيء يمكنني المساعدة به؟"
+
+msgid "No agents are online right now. Leave a message and we'll get back to you by email."
+msgstr "لا يوجد وكلاء على الانترنت في الوقت الحالي. اترك رسالة وسنقوم بالرد عليك عبر البريد الإلكتروني."
+
+msgid "Weekdays %s"
+msgstr "أيام الأسبوع%s"
+
+msgid "Every day %s"
+msgstr "كل يوم%s"
+
+msgid "Mon"
+msgstr "الاثنين"
+
+msgid "Tue"
+msgstr "الثلاثاء"
+
+msgid "Wed"
+msgstr "الأربعاء"
+
+msgid "Thu"
+msgstr "الخميس"
+
+msgid "Fri"
+msgstr "الجمعة"
+
+msgid "Sat"
+msgstr "جلس"
+
+msgid "Sun"
+msgstr "الشمس"
+
+msgid "Monday"
+msgstr "الاثنين"
+
+msgid "Tuesday"
+msgstr "الثلاثاء"
+
+msgid "Wednesday"
+msgstr "الأربعاء"
+
+msgid "Thursday"
+msgstr "الخميس"
+
+msgid "Friday"
+msgstr "الجمعة"
+
+msgid "Saturday"
+msgstr "السبت"
+
+msgid "Sunday"
+msgstr "الأحد"
+
+msgid "Connecting you to an agent…"
+msgstr "جارٍ توصيلك بوكيل..."
+
+msgid "%s joined the chat"
+msgstr "انضم%sإلى الدردشة"
+
+msgid "You ended the chat."
+msgstr "لقد أنهيت الدردشة."
+
+msgid "The chat has ended."
+msgstr "انتهت الدردشة."
+
+msgid "The visitor ended the site chat."
+msgstr "أنهى الزائر دردشة الموقع."
+
+msgid "Site chat #%d"
+msgstr "دردشة الموقع #%d"
+
+msgid "[%1$s] Message from site chat: %2$s"
+msgstr "[%1$s] رسالة من دردشة الموقع:%2$s"
+
+msgid "[%1$s] Site chat waiting for an agent: %2$s"
+msgstr "[%1$s] دردشة الموقع في انتظار الوكيل:%2$s"
+
+msgid "To reply:"
+msgstr "للرد:"
+
+msgid "%s: you have a reply to your chat"
+msgstr "%s: لديك رد على الدردشة الخاصة بك"
+
+msgid "To continue the chat, open the site in the same browser:"
+msgstr "لمواصلة الدردشة افتح الموقع في نفس المتصفح:"
+
+msgid "The file could not be uploaded."
+msgstr "لا يمكن تحميل الملف."
+
+msgid "Files can be up to %d MB."
+msgstr "يمكن أن يصل حجم الملفات إلى%dميغابايت."
+
+msgid "This file type can't be sent. Send an image, PDF or office document."
+msgstr "لا يمكن إرسال هذا النوع من الملفات. أرسل صورة أو PDF أو مستند مكتبي."
+
+msgid "Could not save the file."
+msgstr "لا يمكن حفظ الملف."
+
+msgid "Too many requests. Please wait a moment."
+msgstr "طلبات كثيرة جدًا. من فضلك انتظر لحظة."
+
+msgid "Chat is closed right now."
+msgstr "الدردشة مغلقة الآن."
+
+msgid "The message is empty."
+msgstr "الرسالة فارغة."
+
+msgid "You're typing too fast. Wait a moment and try again."
+msgstr "أنت تكتب بسرعة كبيرة. انتظر لحظة وحاول مرة أخرى."
+
+msgid "Too many new chats were started. Please try again later."
+msgstr "تم بدء عدد كبير جدًا من الدردشات الجديدة. يرجى المحاولة مرة أخرى في وقت لاحق."
+
+msgid "Could not start the chat."
+msgstr "لا يمكن بدء الدردشة."
+
+msgid "I can't answer right now. Please write again in a moment or reach us through our contact details."
+msgstr "لا أستطيع الإجابة الآن. يرجى الكتابة مرة أخرى خلال دقيقة أو التواصل معنا من خلال تفاصيل الاتصال الخاصة بنا."
+
+msgid "Live chat is off."
+msgstr "الدردشة المباشرة معطلة."
+
+msgid "Too many requests. Please try again later."
+msgstr "طلبات كثيرة جدًا. يرجى المحاولة مرة أخرى في وقت لاحق."
+
+msgid "Thanks! We got your message and will reply to your email."
+msgstr "شكرا! لقد تلقينا رسالتك وسنقوم بالرد على بريدك الإلكتروني."
+
+msgid "Write a message first."
+msgstr "اكتب رسالة أولاً."
+
+msgid "File sharing is off."
+msgstr "تم إيقاف مشاركة الملفات."
+
+msgid "Too many files were sent. Please try again later."
+msgstr "تم إرسال عدد كبير جدًا من الملفات. يرجى المحاولة مرة أخرى في وقت لاحق."
+
+msgid "No file selected."
+msgstr "لم يتم تحديد أي ملف."
+
+msgid "File not found."
+msgstr "لم يتم العثور على الملف."
+
+msgid "Visitor rating: %1$s %2$s"
+msgstr "تقييم الزوار:%1$s%2$s"
+
+msgid "Visitor #%d"
+msgstr "الزائر #%d"
+
+msgid "%d chat is waiting for a reply."
+msgid_plural "%d chats are waiting for a reply."
+msgstr[0] "محادثات%dتنتظر الرد."
+msgstr[1] "دردشة%dتنتظر الرد."
+msgstr[2] "محادثات%dتنتظر الرد."
+msgstr[3] "محادثات%dتنتظر الرد."
+msgstr[4] "محادثات%dتنتظر الرد."
+msgstr[5] "محادثات%dتنتظر الرد."
+
+msgid "Site chat window"
+msgstr "نافذة دردشة الموقع"
+
+msgid "The window is off; visitors don't see it."
+msgstr "النافذة مغلقة. الزوار لا يرون ذلك."
+
+msgid "Chat assistant"
+msgstr "مساعد الدردشة"
+
+msgid "Flux AI connected; the assistant is answering."
+msgstr "تدفق AI متصل؛ المساعد يجيب."
+
+msgid "Flux AI is not ready; messages go to an agent instead of the assistant."
+msgstr "Flux AI ليس جاهزًا؛ تذهب الرسائل إلى الوكيل بدلاً من المساعد."
+
+msgid "Handoffs go to the Flux Chat inbox."
+msgstr "تنتقل عمليات التسليم إلى صندوق الوارد الخاص بـ Flux Chat."
+
+msgid "Handoffs go to the plugin inbox."
+msgstr "تذهب عمليات التسليم إلى صندوق الوارد الخاص بالمكونات الإضافية."
+
+msgid "Order placed: #%1$s (%2$s)"
+msgstr "تم تقديم الطلب: #%1$s(%2$s)"
+
+msgid "Placed after site chat #%d"
+msgstr "تم وضعها بعد دردشة الموقع #%d"
+
+msgid "[[\"Artificial intelligence-supported chat window to the site: With Flux AI, 24/7 responses from your site's content and products, potential customer collection, WooCommerce information, one-click transfer to a live representative (Flux Chat inbox or the plugin's own inbox), file sharing, read receipts, end-of-chat scoring and leaving messages after hours. Color, position, avatar, texts and visibility are customized from the panel.\", 'tr']]"
+msgstr "[[\"نافذة دردشة مدعومة بالذكاء الاصطناعي إلى الموقع: باستخدام Flux AI، استجابات على مدار الساعة طوال أيام الأسبوع من محتوى موقعك ومنتجاته، وجمع العملاء المحتملين، ومعلومات WooCommerce، والتحويل بنقرة واحدة إلى ممثل مباشر (صندوق الوارد الخاص بـ Flux Chat أو صندوق الوارد الخاص بالمكون الإضافي)، ومشاركة الملفات، وإيصالات القراءة، وسجل نهاية الدردشة، وترك الرسائل بعد ساعات. يتم تخصيص اللون والموضع والصورة الرمزية والنصوص والرؤية من اللوحة.\", 'tr']]"

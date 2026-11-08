@@ -1,0 +1,322 @@
+{
+  "common": {
+    "back": "返回",
+    "done": "完成",
+    "empty": "这里还什么都没有。",
+    "refresh": "刷新",
+    "retry": "再试一次",
+    "cancel": "取消",
+    "close": "关闭",
+    "send": "发送"
+  },
+  "languages": {
+    "en": "English",
+    "tr": "Türkçe",
+    "de": "Deutsch",
+    "es": "Español",
+    "fr": "Français",
+    "pt-br": "Português do Brasil",
+    "ja": "日本語",
+    "zh": "简体中文",
+    "ar": "العربية",
+    "ru": "Русский"
+  },
+  "auth": {
+    "welcome": "{{name}}",
+    "connecting": "正在连接到您的帐户...",
+    "addSiteTitle": "连接您的网站",
+    "addSiteHint": "输入您的 WordPress 站点地址。您可以添加多个站点。",
+    "siteUrl": "站点地址",
+    "siteUrlPlaceholder": "示例.org",
+    "continue": "继续",
+    "change": "改变",
+    "loginBrowser": "使用浏览器登录",
+    "waitingBrowser": "正在等待浏览器批准...",
+    "useApiKey": "使用 API 密钥连接",
+    "apiKey": "API密钥",
+    "apiKeyHint": "在仪表板中:用户 › 应用程序访问 › 创建密钥。",
+    "login": "登录",
+    "noYtApp": "此站点上未安装 Flux 应用程序插件。安装它以从应用程序登录。",
+    "tryDemo": "尝试演示",
+    "footer": "{{name}} · 安全连接,您的密码永远不会存储在应用程序中"
+  },
+  "errors": {
+    "invalid_url": "该地址无效。",
+    "unreachable": "无法到达该站点。检查地址和您的连接。",
+    "not_wordpress": "在此地址找不到 WordPress REST API。",
+    "access_denied": "登录未获批准。",
+    "oauth_failed": "无法完成登录。请再试一次。",
+    "oauth_unsupported": "该登录方式在浏览器中尚不可用;使用桌面应用程序。",
+    "bad_credentials": "密钥或会话无效。",
+    "server": "服务器没有响应。",
+    "unknown": "出了点问题。"
+  },
+  "accounts": {
+    "title": "账户",
+    "add": "添加站点或帐户",
+    "active": "活跃",
+    "logout": "退出",
+    "relogin": "重新登录",
+    "needsLogin": "您的会话已过期,请重新登录。",
+    "kind": {
+      "oauth": "浏览器登录",
+      "apikey": "API密钥",
+      "demo": "演示"
+    }
+  },
+  "nav": {
+    "menu": "主菜单",
+    "search": "搜索或跳转到",
+    "edit": "编辑菜单",
+    "reset": "重置",
+    "show": "显示",
+    "hide": "隐藏",
+    "webView": "在仪表板视图中打开",
+    "collapse": "隐藏侧边栏",
+    "expand": "显示侧边栏",
+    "back": "返回",
+    "forward": "前进",
+    "resize": "侧边栏宽度",
+    "submenu": "切换子菜单",
+    "groups": {
+      "general": "一般",
+      "comms": "通讯",
+      "donate": "捐款",
+      "content": "内容",
+      "growth": "成长",
+      "screens": "屏幕",
+      "system": "系统",
+      "other": "其他",
+      "apps": "应用程序"
+    }
+  },
+  "palette": {
+    "placeholder": "搜索屏幕或命令...",
+    "empty": "没有结果。"
+  },
+  "dashboard": {
+    "morning": "早上好{{name}}",
+    "afternoon": "下午好{{name}}",
+    "evening": "晚上好{{name}}",
+    "customize": "定制"
+  },
+  "web": {
+    "title": "此屏幕在仪表板视图中打开",
+    "body": "它的原生版本还没有准备好。您可以在单独的窗口中打开已登录的仪表板页面。",
+    "open": "在仪表板中打开",
+    "openBrowser": "在浏览器中打开"
+  },
+  "settings": {
+    "title": "设置",
+    "appearance": "外观",
+    "theme": "主题",
+    "themes": {
+      "system": "系统",
+      "light": "光",
+      "dark": "黑暗"
+    },
+    "language": "语言",
+    "about": "关于",
+    "app": "应用程序",
+    "support": "支持",
+    "contact": "联系我们",
+    "logoutConfirm": "退出 {{site}}?",
+    "logoutFailed": "无法退出。请再试一次。"
+  },
+  "oauth": {
+    "doneTitle": "已登录",
+    "doneBody": "您可以关闭此选项卡并返回到应用程序。"
+  },
+  "review": {
+    "title": "等待批准",
+    "count_one": "{{count}} 捐款",
+    "count_other": "{{count}} 捐款",
+    "noReceipt": "无收据",
+    "noReceiptBody": "这笔捐款尚未收到收据。",
+    "emptyTitle": "没有待处理的捐款",
+    "emptyBody": "新的收据将显示在这里。",
+    "allDone": "全部完成",
+    "ref": "推荐",
+    "receipt": "收据",
+    "approve": "批准",
+    "reject": "取消捐赠",
+    "approveConfirm": "批准来自 {{name}} 的 {{amount}} 捐款吗?将发送证书。",
+    "approved": "捐赠获得批准。",
+    "approvedCert_one": "捐赠已获批准,{{count}} 证书已发送。",
+    "approvedCert_other": "捐赠已获批准,{{count}} 证书已发送。",
+    "rejected": "捐赠取消。",
+    "rejectTitle": "取消 {{name}} 的捐赠",
+    "reason": "原因",
+    "reasonPlaceholder": "例如收据金额不符",
+    "notify": "通知捐赠者"
+  },
+  "tasks": {
+    "title": "任务",
+    "views": {
+      "mine": "分配给我",
+      "today": "今天",
+      "overdue": "逾期"
+    },
+    "projects": "项目",
+    "search": "搜索任务",
+    "quickAdd": "添加任务,按 Enter",
+    "empty": "没有任务",
+    "complete": "完成",
+    "reopen": "重新开放",
+    "unassigned": "未分配",
+    "checklist": "清单",
+    "comments": "评论",
+    "noComments": "还没有评论。",
+    "addComment": "写评论"
+  },
+  "inbox": {
+    "title": "WhatsApp",
+    "search": "搜索姓名或号码",
+    "filters": {
+      "open": "打开",
+      "unread": "未读",
+      "mine": "我的",
+      "all": "全部"
+    },
+    "empty": "没有聊天记录",
+    "pick": "选择聊天",
+    "assigned": "由 {{name}} 处理",
+    "donations_one": "{{count}} 捐款",
+    "donations_other": "{{count}} 捐款",
+    "botOn": "助理开启",
+    "botOff": "助理关闭",
+    "botHint": "为此次聊天打开/关闭 AI 助手",
+    "assistant": "助理",
+    "write": "输入消息,回车发送",
+    "blocked": "该联系人已被阻止,无法发送消息。"
+  },
+  "wa": {
+    "search": "搜索姓名、号码、注释或消息",
+    "filters": {
+      "all": "打开",
+      "unread": "未读",
+      "mine": "分配给我",
+      "unassigned": "未分配",
+      "closed": "已关闭"
+    },
+    "today": "今天",
+    "yesterday": "昨天",
+    "reply": "回复",
+    "copy": "复制",
+    "retry": "重试",
+    "deleteNote": "删除注释",
+    "menu": "留言菜单",
+    "react": "反应",
+    "src": {
+      "bot": "助理",
+      "ai": "人工智能建议",
+      "phone": "从电话",
+      "auto": "自动",
+      "api": "应用程序编程接口",
+      "cert": "证书"
+    },
+    "message": "发送消息",
+    "deletedMsg": "此消息已被删除",
+    "deletedBadge": "已被发件人删除",
+    "poll": "投票(在 WhatsApp 中查看)",
+    "unsupported": "不支持的消息",
+    "note": "内部注释",
+    "customer": "客户",
+    "you": "你",
+    "edited": "已编辑",
+    "failed": "未发送",
+    "types": {
+      "text": "留言",
+      "note": "注意事项",
+      "image": "照片",
+      "video": "视频",
+      "audio": "语音留言",
+      "document": "文件",
+      "sticker": "贴纸",
+      "location": "地点",
+      "contact": "联系卡",
+      "poll": "民意调查",
+      "deleted": "已删除的消息",
+      "unknown": "留言"
+    },
+    "noteHint": "内部说明:只有您的团队可以看到它,而客户看不到。",
+    "attach": "附加文件",
+    "noteMode": "内部注释",
+    "quickReplies": "快速回复",
+    "aiSuggest": "人工智能建议",
+    "notePlaceholder": "为团队写一封信",
+    "caption": "添加标题(可选)",
+    "write": "输入消息,回车发送",
+    "sessionExpired": "会话已过期。请重新登录。",
+    "offline": "无法连接到服务器,正在重试...",
+    "connDown": "{{name}} 连接已关闭",
+    "typing": "打字...",
+    "recording": "录制音频...",
+    "botTyping": "助理正在输入...",
+    "bootError": "无法加载 WhatsApp",
+    "quoteNotLoaded": "引用的消息尚未加载,请向上滚动。",
+    "closed": "已关闭",
+    "bot": {
+      "on": "助理开启",
+      "off": "助理关闭",
+      "paused": "助理已暂停"
+    },
+    "assign": "分配聊天",
+    "unassigned": "未分配",
+    "pin": "销",
+    "unpin": "取消固定",
+    "close": "关闭聊天",
+    "reopen": "重新打开聊天",
+    "emoji": "表情符号",
+    "voice": {
+      "start": "录制语音留言",
+      "recording": "录音",
+      "denied": "麦克风权限被拒绝。"
+    },
+    "info": {
+      "title": "联系方式",
+      "labels": "标签",
+      "notes": "注释",
+      "notesHint": "只有您的团队才能看到此内容",
+      "saved": "已保存",
+      "insert": "插入",
+      "copied": "复制数量",
+      "firstSeen": "第一条消息:{{date}}"
+    },
+    "new": {
+      "title": "新聊天",
+      "phone": "电话号码",
+      "name": "姓名(可选)",
+      "line": "线",
+      "invalid": "号码无效",
+      "exists": "存在与此号码的聊天:{{name}}",
+      "hasWa": "使用 WhatsApp",
+      "noWa": "此号码没有 WhatsApp",
+      "go": "去聊天",
+      "start": "开始聊天"
+    }
+  },
+  "account": {
+    "menu": "账户",
+    "profile": "我的个人资料",
+    "switch": "切换账户",
+    "web": "打开网站"
+  },
+  "update": {
+    "title": "更新",
+    "check": "检查",
+    "checking": "正在检查...",
+    "upToDate": "最新",
+    "newVersion": "新版本 {{version}}",
+    "downloading": "正在下载 {{version}} {{pct}}",
+    "restart": "重启即可更新",
+    "download": "下载",
+    "installing": "正在安装...",
+    "failed": "无法检查"
+  },
+  "legal": {
+    "title": "法律信息",
+    "privacy": "隐私政策",
+    "terms": "使用条款"
+  }
+}

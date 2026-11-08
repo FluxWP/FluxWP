@@ -1,0 +1,2509 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Sample email"
+msgstr "サンプルメール"
+
+msgid "Branded email layout"
+msgstr "ブランドメールのレイアウト"
+
+msgid "<p>Hello Ayşe,</p><p>Every email sent from our site uses this layout: our logo on top, the content in the middle, and our organization details and social media accounts at the bottom.</p>"
+msgstr "<p>こんにちは、Ayşe さん、</p><p>当社のサイトから送信されるすべての電子メールは、このレイアウトを使用しています。当社のロゴが上部、コンテンツが中央、組織の詳細とソーシャル メディア アカウントが下部にあります。</p>"
+
+msgid "Visit the site"
+msgstr "サイトにアクセスしてください"
+
+msgid "Test"
+msgstr "テスト"
+
+msgid "Test email"
+msgstr "テストメール"
+
+msgid "Your email settings are working 🎉"
+msgstr "メール設定は機能しています 🎉"
+
+msgid "<p>If you can see this email, your site's email sending is working.</p><table class=\"flxi-kv\"><tr><td>Sender</td><td><strong>%1$s</strong></td></tr><tr><td>Method</td><td>%2$s</td></tr></table>"
+msgstr "<p>この電子メールが表示される場合、サイトの電子メール送信は機能しています。</p><table class=\"flxi-kv\"><tr><td>送信者</td><td><strong>%1$s</strong></td></tr><tr><td>メソッド</td><td>%2$s</td></tr></table>"
+
+msgid "Server PHP mail()"
+msgstr "サーバー PHP mail()"
+
+msgid "Go to the site"
+msgstr "サイトに行く"
+
+msgid "Send"
+msgstr "送信"
+
+msgid "Send an email, WhatsApp or SMS message to one person or a list using the branded template. Bulk sends are processed in the background, one after another."
+msgstr "ブランドのテンプレートを使用して、電子メール、WhatsApp、または SMS メッセージを 1 人またはリストに送信します。一括送信はバックグラウンドで次々に処理されます。"
+
+msgid "%1$s / %2$s sent · %3$s failed"
+msgstr "%1$s/%2$s送信 ·%3$s失敗"
+
+msgid "Sending is faster while this page is open; if you close it, it continues in the background."
+msgstr "このページが開いている間は送信が速くなります。閉じてもバックグラウンドで続行されます。"
+
+msgid "Stop"
+msgstr "停止"
+
+msgid "View log"
+msgstr "ログを表示する"
+
+msgid "Channel"
+msgstr "チャンネル"
+
+msgid "no connection"
+msgstr "接続がありません"
+
+msgid "Recipients"
+msgstr "受信者"
+
+msgid "ayse@ornek.com\nMehmet Demir <mehmet@ornek.com>\nZeynep Kaya, 0532 123 45 67"
+msgstr "ayse@ornek.com\nメフメット・デミール<mehmet@ornek.com>ゼイネプ・カヤ、0532 123 45 67"
+
+msgid "One person per line: email, phone, or \"Full Name <email>\" / \"Full Name, email, phone\"."
+msgstr "1 行に 1 人: 電子メール、電話、または \"フルネーム<email>\" / \"フルネーム、電子メール、電話\"。"
+
+msgid "Subject"
+msgstr "件名"
+
+msgid "Heading"
+msgstr "見出し"
+
+msgid "Hello {ad}"
+msgstr "こんにちは{ad}"
+
+msgid "Content"
+msgstr "内容"
+
+msgid "Button text"
+msgstr "ボタンのテキスト"
+
+msgid "Donate"
+msgstr "寄付する"
+
+msgid "Button link"
+msgstr "ボタンリンク"
+
+msgid "From"
+msgstr "から"
+
+msgid "Add an \"unsubscribe\" link (recommended for bulk sends)"
+msgstr "「購読解除」リンクを追加します (一括送信に推奨)"
+
+msgid "Variables"
+msgstr "変数"
+
+msgid "First name"
+msgstr "名"
+
+msgid "Full name"
+msgstr "フルネーム"
+
+msgid "Email"
+msgstr "電子メール"
+
+msgid "Site name"
+msgstr "サイト名"
+
+msgid "Message"
+msgstr "メッセージ"
+
+msgid "Hello {ad} 🌱 …"
+msgstr "こんにちは、{ad}🌱 ..."
+
+msgid "Variables: {ad}, {ad_soyad}, {telefon}. *Bold* and _italic_ work in WhatsApp."
+msgstr "変数:{ad}、{ad_soyad}、{telefon}。 *太字* と _italic_ は WhatsApp で機能します。"
+
+msgid "Link"
+msgstr "リンク"
+
+msgid "Campaign name (only visible to you)"
+msgstr "キャンペーン名 (あなたのみに表示されます)"
+
+msgid "E.g. November sapling planting invitation"
+msgstr "例: 11月苗木植樹招待状"
+
+msgid "Start sending?"
+msgstr "送信を開始しますか?"
+
+msgid "Send me a test"
+msgstr "テストを送ってください"
+
+msgid "Subject:"
+msgstr "件名:"
+
+msgid "Preview size"
+msgstr "プレビューサイズ"
+
+msgid "Desktop"
+msgstr "デスクトップ"
+
+msgid "Phone"
+msgstr "電話"
+
+msgid "Dark mode"
+msgstr "ダークモード"
+
+msgid "Email preview"
+msgstr "電子メールのプレビュー"
+
+msgid "Queued"
+msgstr "キューに入れられました"
+
+msgid "Sending"
+msgstr "送信中"
+
+msgid "Done"
+msgstr "完了"
+
+msgid "Stopped"
+msgstr "停止しました"
+
+msgid "Recent sends"
+msgstr "最近の送信"
+
+msgid "Status"
+msgstr "ステータス"
+
+msgid "Sent"
+msgstr "送信済み"
+
+msgid "Failed"
+msgstr "失敗しました"
+
+msgid "Date"
+msgstr "日付"
+
+msgid "Sending started for %s recipients."
+msgstr "%s受信者に対して送信が開始されました。"
+
+msgid "Sending stopped."
+msgstr "送信が停止されました。"
+
+msgid "Disabled, not sent"
+msgstr "無効、送信されません"
+
+msgid "Log"
+msgstr "ログ"
+
+msgid "Every email, WhatsApp and SMS message sent from the site. Click a row to see its content."
+msgstr "サイトから送信されるすべての電子メール、WhatsApp、SMS メッセージ。行をクリックすると、その内容が表示されます。"
+
+msgid "All statuses"
+msgstr "すべてのステータス"
+
+msgid "All channels"
+msgstr "すべてのチャンネル"
+
+msgid "Recipient or subject"
+msgstr "受信者または件名"
+
+msgid "Filter"
+msgstr "フィルター"
+
+msgid "Clear"
+msgstr "クリア"
+
+msgid "%s entries"
+msgstr "%sエントリ"
+
+msgid "Time"
+msgstr "時間"
+
+msgid "Recipient"
+msgstr "受信者"
+
+msgid "Subject / email"
+msgstr "件名/メールアドレス"
+
+msgid "No entries."
+msgstr "エントリーはありません。"
+
+msgid "Bulk send"
+msgstr "一括送信"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Emails"
+msgstr "メール"
+
+msgid "All emails sent by the site. You can turn them on or off, edit their content, and choose who they are sent from."
+msgstr "サイトから送信されるすべての電子メール。オンまたはオフにしたり、コンテンツを編集したり、送信者を選択したりできます。"
+
+msgid "PHP mail() (not recommended)"
+msgstr "PHP mail() (推奨されません)"
+
+msgid "sent (7 days)"
+msgstr "送信済み(7日)"
+
+msgid "failed"
+msgstr "失敗しました"
+
+msgid "not sent because disabled"
+msgstr "無効になっているため送信されません"
+
+msgid "Sender"
+msgstr "送信者"
+
+msgid "To admin"
+msgstr "管理者へ"
+
+msgid "To user"
+msgstr "ユーザーへ"
+
+msgid "Sent %1$s times, last: %2$s. The content is generated by the plugin that sends it; here you can turn it on or off and choose the sender address and the branded layout."
+msgstr "%1$s回送信されました、最後:%2$s。コンテンツは、それを送信するプラグインによって生成されます。ここでオンまたはオフを切り替え、送信者のアドレスとブランドのレイアウトを選択できます。"
+
+msgid "Search emails…"
+msgstr "メールを検索..."
+
+msgid "Search emails"
+msgstr "メールの検索"
+
+msgid "Cannot be disabled"
+msgstr "無効にすることはできません"
+
+msgid "%s enabled"
+msgstr "%s有効"
+
+msgid "Disabled"
+msgstr "障害者"
+
+msgid "Edit in WooCommerce"
+msgstr "WooCommerce で編集する"
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "Could not load WooCommerce emails."
+msgstr "WooCommerce メールを読み込めませんでした。"
+
+msgid "When a plugin not in the list sends an email for the first time, it is added here automatically."
+msgstr "リストにないプラグインが初めてメールを送信すると、ここに自動的に追加されます。"
+
+msgid "No emails found"
+msgstr "メールが見つかりません"
+
+msgid "All emails"
+msgstr "すべてのメール"
+
+msgid "Sender: %1$s (%2$s). The content is generated by that plugin."
+msgstr "送信者:%1$s(%2$s)。コンテンツはそのプラグインによって生成されます。"
+
+msgid "Last subject: %s"
+msgstr "最後の件名:%s"
+
+msgid "Send this email"
+msgstr "このメールを送信してください"
+
+msgid "Always sent"
+msgstr "常に送信されます"
+
+msgid "Send from"
+msgstr "送信元"
+
+msgid "no reply expected"
+msgstr "返事は期待できません"
+
+msgid "The large heading inside the email."
+msgstr "メール内の大きな見出し。"
+
+msgid "If empty, the button is not shown."
+msgstr "空の場合、ボタンは表示されません。"
+
+msgid "Variables (click to insert at the cursor)"
+msgstr "変数 (クリックしてカーソル位置に挿入)"
+
+msgid "Organization name"
+msgstr "組織名"
+
+msgid "Organization email"
+msgstr "組織の電子メール"
+
+msgid "Organization phone"
+msgstr "組織の電話番号"
+
+msgid "Wrap in branded template (logo, organization details). HTML emails with their own design are left untouched."
+msgstr "ブランドのテンプレート (ロゴ、組織の詳細) で包みます。独自のデザインの HTML メールはそのまま残されます。"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Reset content to default?"
+msgstr "コンテンツをデフォルトにリセットしますか?"
+
+msgid "Reset to default"
+msgstr "デフォルトにリセットする"
+
+msgid "Sample values are used in the preview."
+msgstr "プレビューではサンプル値が使用されます。"
+
+msgid "Email enabled."
+msgstr "電子メールが有効になりました。"
+
+msgid "Email disabled; it will not be sent."
+msgstr "電子メールが無効になっています。送信されません。"
+
+msgid "Default content restored."
+msgstr "デフォルトのコンテンツが復元されました。"
+
+msgid "Saved."
+msgstr "保存されました。"
+
+msgid "Sender name and addresses, sending method, and email appearance."
+msgstr "送信者の名前とアドレス、送信方法、電子メールの外観。"
+
+msgid "Sections"
+msgstr "セクション"
+
+msgid "Sending method"
+msgstr "送信方法"
+
+msgid "Appearance"
+msgstr "外観"
+
+msgid "Google sign-in"
+msgstr "Google サインイン"
+
+msgid "Log and bulk send"
+msgstr "ログと一括送信"
+
+msgid "In the inbox, your organization's name and address appear instead of \"WordPress <wordpress@…>\". Emails that expect a reply are sent from the bilgi@ address; emails that don't, such as passwords and notifications, are sent from the no-reply@ address. You can choose which one to use for each email separately."
+msgstr "受信トレイには、「WordPress<wordpress@…>」の代わりに組織の名前とアドレスが表示されます。返信を期待する電子メールは、bilgi@ アドレスから送信されます。パスワードや通知など、そうでない電子メールは、no-reply@ アドレスから送信されます。各メールにどちらを使用するかを個別に選択できます。"
+
+msgid "Sender name"
+msgstr "送信者名"
+
+msgid "Sender address"
+msgstr "送信者のアドレス"
+
+msgid "No-reply name"
+msgstr "返信不可の名前"
+
+msgid "No-reply address"
+msgstr "返信不可アドレス"
+
+msgid "Reply-to address (optional)"
+msgstr "返信先アドレス (オプション)"
+
+msgid "If empty, replies go to the sender address."
+msgstr "空の場合、返信は送信者のアドレスに送信されます。"
+
+msgid "Also change the sender address of other plugins to this (recommended; for SPF/DKIM, all emails should be sent from the same domain)"
+msgstr "他のプラグインの送信者アドレスもこれに変更します (推奨。SPF/DKIM の場合は、すべてのメールを同じドメインから送信する必要があります)。"
+
+msgid "%s is active; it sends the emails and the SMTP settings here are not used. Do not use both at the same time: turn one off."
+msgstr "%sはアクティブです。電子メールが送信され、ここでの SMTP 設定は使用されません。両方を同時に使用しないでください。一方をオフにしてください。"
+
+msgid "SMTP (recommended)"
+msgstr "SMTP (推奨)"
+
+msgid "With emails sent via PHP mail(), Gmail shows \"via srv….main-hosting.eu\" and the risk of landing in spam is high."
+msgstr "PHP mail() 経由で送信されたメールの場合、Gmail では「via srv....main-hosting.eu」と表示され、スパムに分類されるリスクが高くなります。"
+
+msgid "In hPanel › Emails › Email accounts, create the bilgi@ account (a separate account or an alias for no-reply@). Server smtp.hostinger.com, port 465, SSL; the username is the full email address."
+msgstr "hPanel › 電子メール › 電子メール アカウントで、bilgi@ アカウント (別のアカウントまたは no-reply@ のエイリアス) を作成します。サーバー smtp.hostinger.com、ポート 465、SSL。ユーザー名は完全な電子メール アドレスです。"
+
+msgid "Fill in Hostinger settings"
+msgstr "Hostinger の設定を入力します"
+
+msgid "SMTP server"
+msgstr "SMTPサーバー"
+
+msgid "Port"
+msgstr "港"
+
+msgid "Encryption"
+msgstr "暗号化"
+
+msgid "None"
+msgstr "なし"
+
+msgid "Authentication"
+msgstr "認証"
+
+msgid "Username (bilgi@)"
+msgstr "ユーザー名 (bilgi@)"
+
+msgid "Password"
+msgstr "パスワード"
+
+msgid "defined in wp-config.php"
+msgstr "wp-config.phpで定義されています"
+
+msgid "type to change"
+msgstr "変更するタイプ"
+
+msgid "Stored encrypted, not shown in the panel."
+msgstr "暗号化して保存され、パネルには表示されません。"
+
+msgid "Separate user for no-reply (optional)"
+msgstr "返信しない場合に別のユーザーを指定する (オプション)"
+
+msgid "If no-reply@ is a separate account. If empty, no-reply emails are also sent with the account above (no-reply@ must be an alias of the bilgi@ account)."
+msgstr "no-reply@の場合は別アカウントです。空の場合、応答なしメールも上記のアカウントで送信されます (no-reply@ は、bilgi@ アカウントのエイリアスである必要があります)。"
+
+msgid "No-reply password"
+msgstr "返信不要パスワード"
+
+msgid "Set Return-Path to the sender address (recommended for SPF alignment)"
+msgstr "Return-Path を送信者アドレスに設定します (SPF アラインメントに推奨)"
+
+msgid "Save settings"
+msgstr "設定を保存する"
+
+msgid "Save the settings first, then test."
+msgstr "まず設定を保存してからテストします。"
+
+msgid "Test address"
+msgstr "テストアドレス"
+
+msgid "Send test email"
+msgstr "テストメールを送信する"
+
+msgid "Last test: %1$s · %2$s"
+msgstr "最後のテスト:%1$s·%2$s"
+
+msgid "sent"
+msgstr "送信されました"
+
+msgid "Domain records (SPF / DMARC)"
+msgstr "ドメインレコード(SPF/DMARC)"
+
+msgid "To keep emails out of spam, the domain's DNS must have SPF, DKIM and DMARC records. When you create an email account on Hostinger, SPF and DKIM are usually added automatically."
+msgstr "電子メールをスパムから守るには、ドメインの DNS に SPF、DKIM、および DMARC レコードが必要です。 Hostinger でメール アカウントを作成すると、通常、SPF と DKIM が自動的に追加されます。"
+
+msgid "Check DNS"
+msgstr "DNSをチェックする"
+
+msgid "none"
+msgstr "なし"
+
+msgid "Logo"
+msgstr "ロゴ"
+
+msgid "Change"
+msgstr "変更"
+
+msgid "Default"
+msgstr "デフォルト"
+
+msgid "PNG or JPG (email clients do not display SVG). Default: the theme's logo."
+msgstr "PNG または JPG (電子メール クライアントでは SVG は表示されません)。デフォルト: テーマのロゴ。"
+
+msgid "Dark background logo"
+msgstr "暗い背景のロゴ"
+
+msgid "Shown in dark mode (Apple Mail, iOS)."
+msgstr "ダークモードで表示されます(Apple Mail、iOS)。"
+
+msgid "Logo width (px)"
+msgstr "ロゴの幅 (px)"
+
+msgid "Primary color"
+msgstr "原色"
+
+msgid "Dark color"
+msgstr "濃い色"
+
+msgid "Background"
+msgstr "背景"
+
+msgid "Heading color"
+msgstr "見出しの色"
+
+msgid "Footer (organization)"
+msgstr "フッター(組織)"
+
+msgid "Empty fields are taken from SEO › Organization and social settings."
+msgstr "空のフィールドは SEO › 組織とソーシャル設定から取得されます。"
+
+msgid "Tagline"
+msgstr "キャッチフレーズ"
+
+msgid "Address"
+msgstr "住所"
+
+msgid "Contact email"
+msgstr "連絡先メールアドレス"
+
+msgid "Website"
+msgstr "ウェブサイト"
+
+msgid "Footnote (optional)"
+msgstr "脚注 (オプション)"
+
+msgid "E.g. the association registration number or a data protection (KVKK) note. Shown in small print at the very bottom of all emails."
+msgstr "例:協会登録番号またはデータ保護 (KVKK) メモ。すべてのメールの一番下に小さい文字で表示されます。"
+
+msgid "Emails from other plugins"
+msgstr "他のプラグインからのメール"
+
+msgid "Wrap plain-text emails in the branded template"
+msgstr "プレーンテキストメールをブランドテンプレートでラップする"
+
+msgid "Also wrap simple HTML emails (those with their own full design are left untouched)"
+msgstr "単純な HTML メールもラップします (独自の完全なデザインを持つメールはそのまま残ります)。"
+
+msgid "Preview"
+msgstr "プレビュー"
+
+msgid "Appearance changes are applied to all emails when you save."
+msgstr "外観の変更は、保存時にすべてのメールに適用されます。"
+
+msgid "Because Google has already verified the email address, people who sign up with Google do not receive the \"set your password / login details\" email, and their account is treated as verified."
+msgstr "Google はすでに電子メール アドレスを検証しているため、Google にサインアップした人には「パスワード/ログインの詳細を設定してください」電子メールは届きません。そのアカウントは認証済みとして扱われます。"
+
+msgid "Detected plugin: %s"
+msgstr "検出されたプラグイン:%s"
+
+msgid "No known Google sign-in plugin was detected; a Google return is also recognized from the request."
+msgstr "既知の Google サインイン プラグインは検出されませんでした。 Google のリターンもリクエストから認識されます。"
+
+msgid "Do not send the WordPress \"login details / set password\" email"
+msgstr "WordPress の「ログイン詳細/パスワード設定」メールを送信しないでください"
+
+msgid "Do not send the WooCommerce \"your account has been created\" email"
+msgstr "WooCommerce に「アカウントが作成されました」というメールを送信しないでください"
+
+msgid "Mark the email as verified (for verification plugins)"
+msgstr "メールを検証済みとしてマークします (検証プラグインの場合)"
+
+msgid "WooCommerce emails use their own template. You can apply our logo, colors, sender name and organization footer to WooCommerce › Settings › Emails with one click."
+msgstr "WooCommerce メールは独自のテンプレートを使用します。ワンクリックでロゴ、色、送信者名、組織フッターを WooCommerce › 設定 › 電子メールに適用できます。"
+
+msgid "Last applied: %s"
+msgstr "最後に適用された:%s"
+
+msgid "Apply appearance to WooCommerce"
+msgstr "WooCommerce に外観を適用する"
+
+msgid "WooCommerce is not active."
+msgstr "WooCommerce はアクティブではありません。"
+
+msgid "Log outgoing emails and messages"
+msgstr "送信メールとメッセージをログに記録する"
+
+msgid "Also store the content (to view the email in the log)"
+msgstr "コンテンツも保存します (ログ内の電子メールを表示するため)"
+
+msgid "Keep log for how many days"
+msgstr "ログを何日間保存するか"
+
+msgid "Number to send per round in bulk email"
+msgstr "一括メールでラウンドごとに送信する数"
+
+msgid "Hostinger shared hosting has an hourly sending limit; the default is 20 (one round per minute)."
+msgstr "Hostinger の共有ホスティングには 1 時間ごとの送信制限があります。デフォルトは 20 (1 分あたり 1 ラウンド) です。"
+
+msgid "Add an \"unsubscribe\" link to bulk emails"
+msgstr "一括メールに「購読解除」リンクを追加する"
+
+msgid "Unsubscribed: %s people"
+msgstr "購読解除:%sの人"
+
+msgid "Settings saved."
+msgstr "設定が保存されました。"
+
+msgid "Logo, colors, sender and footer applied to WooCommerce emails."
+msgstr "WooCommerce メールに適用されるロゴ、色、送信者、フッター。"
+
+msgid "Connections"
+msgstr "接続"
+
+msgid "WhatsApp and SMS accounts in one place. Flux Certificates, Flux Chat and other plugins use these connections. Email settings are on the Settings tab."
+msgstr "WhatsApp と SMS アカウントを 1 か所にまとめました。 Flux 証明書、Flux Chat、およびその他のプラグインはこれらの接続を使用します。電子メール設定は [設定] タブにあります。"
+
+msgid "Active"
+msgstr "アクティブ"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "No connections yet."
+msgstr "まだ接続がありません。"
+
+msgid "Test successful"
+msgstr "テストは成功しました"
+
+msgid "Migrated from Flux Certificates"
+msgstr "Flux 証明書から移行"
+
+msgid "Test number (if empty, connection only)"
+msgstr "テスト番号 (空の場合は接続のみ)"
+
+msgid "Test number"
+msgstr "試験番号"
+
+msgid "More actions"
+msgstr "さらなるアクション"
+
+msgid "Make default"
+msgstr "デフォルトにする"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Delete this connection?"
+msgstr "この接続を削除しますか?"
+
+msgid "Providers were migrated on %s. Flux Certificates now sends WhatsApp and SMS through the connections here; emails are sent with the branded template."
+msgstr "プロバイダーは%sに移行されました。 Flux Certificates は、ここの接続を通じて WhatsApp と SMS を送信するようになりました。メールはブランドのテンプレートを使用して送信されます。"
+
+msgid "The old provider records were not deleted, only disabled (Flux Chat continues to read from that record)."
+msgstr "古いプロバイダー レコードは削除されず、無効化されただけです (Flux Chat はそのレコードから読み取りを続けます)。"
+
+msgid "Undo migration"
+msgstr "移行を元に戻す"
+
+msgid "Switch Flux Certificates back to its old providers?"
+msgstr "Flux 証明書を古いプロバイダーに戻しますか?"
+
+msgid "Copies the WhatsApp (Evolution) and SMS (Netgsm) settings from Flux Certificates here and connects Flux Certificates to these connections. Nothing is deleted; you can undo it at any time."
+msgstr "ここの Flux 証明書から WhatsApp (Evolution) および SMS (Netgsm) 設定をコピーし、Flux 証明書をこれらの接続に接続します。何も削除されません。いつでも元に戻すことができます。"
+
+msgid "disabled"
+msgstr "無効化された"
+
+msgid "Migrate from Flux Certificates"
+msgstr "Flux 証明書からの移行"
+
+msgid "Connection saved. Try it with \"Test\"."
+msgstr "接続が保存されました。 「テスト」で試してみてください。"
+
+msgid "Connection deleted."
+msgstr "接続が削除されました。"
+
+msgid "Default connection changed."
+msgstr "デフォルトの接続が変更されました。"
+
+msgid "Migrated: %s connections. Flux Certificates now uses these connections."
+msgstr "移行済み:%s接続。 Flux 証明書はこれらの接続を使用するようになりました。"
+
+msgid "Undone: Flux Certificates is using its old providers."
+msgstr "元に戻す: Flux Certificates は古いプロバイダーを使用しています。"
+
+msgid "Communication"
+msgstr "コミュニケーション"
+
+msgid "Email templates"
+msgstr "電子メールテンプレート"
+
+msgid "WhatsApp and SMS connections"
+msgstr "WhatsApp と SMS 接続"
+
+msgid "Communication settings"
+msgstr "通信設定"
+
+msgid "System check"
+msgstr "システムチェック"
+
+msgid "Sending…"
+msgstr "送信中..."
+
+msgid "Sent to %s. Check your inbox (and spam folder)."
+msgstr "%sに送信されます。受信箱 (およびスパム フォルダー) を確認してください。"
+
+msgid "Could not send"
+msgstr "送信できませんでした"
+
+msgid "Trying…"
+msgstr "試しています..."
+
+msgid "Success"
+msgstr "成功"
+
+msgid "Error"
+msgstr "エラー"
+
+msgid "%s recipients"
+msgstr "%s受信者"
+
+msgid "No recipients"
+msgstr "受信者がいません"
+
+msgid "Choose logo"
+msgstr "ロゴを選択してください"
+
+msgid "Use"
+msgstr "使用する"
+
+msgid "Checking…"
+msgstr "確認中..."
+
+msgid "Copied"
+msgstr "コピーされました"
+
+msgid "You do not have permission."
+msgstr "許可がありません。"
+
+msgid "Rows related to email, WhatsApp and SMS. Checks for all plugins are on the Appearance › System Check screen."
+msgstr "電子メール、WhatsApp、SMS に関連する行。すべてのプラグインのチェックは、[外観] › [システム チェック] 画面で行われます。"
+
+msgid "WhatsApp · Evolution API"
+msgstr "WhatsApp · エボリューション API"
+
+msgid "The Evolution API on your own server. The address is e.g. https://wa.yourdomain.com; instance is the connection name in the Evolution panel; API key is the global AUTHENTICATION_API_KEY or the instance token."
+msgstr "独自のサーバー上のEvolution API。アドレスは例えば https://wa.yourdomain.com; インスタンスは、[Evolution] パネルの接続名です。 API キーは、グローバル AUTHENTICATION_API_KEY またはインスタンス トークンです。"
+
+msgid "API address"
+msgstr "APIアドレス"
+
+msgid "API key (apikey)"
+msgstr "APIキー(アピキー)"
+
+msgid "Instance name"
+msgstr "インスタンス名"
+
+msgid "API version"
+msgstr "APIバージョン"
+
+msgid "Show link preview"
+msgstr "リンクのプレビューを表示"
+
+msgid "Delay between messages in bulk send (sec)"
+msgstr "一括送信時のメッセージ間の遅延 (秒)"
+
+msgid "To avoid the number being blocked, messages are sent at intervals in bulk sends."
+msgstr "番号がブロックされるのを避けるために、メッセージは一括送信で一定間隔で送信されます。"
+
+msgid "\"Typing…\" duration (ms)"
+msgstr "「入力中...」の継続時間 (ミリ秒)"
+
+msgid "Invalid phone: %s"
+msgstr "無効な電話番号:%s"
+
+msgid "Connection error:"
+msgstr "接続エラー:"
+
+msgid "This number does not have WhatsApp."
+msgstr "この番号には WhatsApp がありません。"
+
+msgid "Instance is not connected (status: %s). Scan the QR code in the Evolution panel."
+msgstr "インスタンスは接続されていません (ステータス:%s)。 Evolution パネルで QR コードをスキャンします。"
+
+msgid "Test message · %s 🌱"
+msgstr "テストメッセージ ·%s🌱"
+
+msgid "SMS · Netgsm"
+msgstr "SMS・Netgsm"
+
+msgid "Netgsm REST v2. The username is usually the subscriber number starting with 850/312…. The message header must be approved in the Netgsm panel."
+msgstr "Netgsm REST v2。ユーザー名は通常、850/312...で始まる加入者番号です。メッセージ ヘッダーは Netgsm パネルで承認される必要があります。"
+
+msgid "Username (usercode)"
+msgstr "ユーザー名 (ユーザーコード)"
+
+msgid "Password (API sub-user password)"
+msgstr "パスワード(APIサブユーザーパスワード)"
+
+msgid "Message header (msgheader)"
+msgstr "メッセージヘッダー (msgheader)"
+
+msgid "İYS filter"
+msgstr "İYSフィルター"
+
+msgid "0 · Informational (non-commercial)"
+msgstr "0 · 情報提供 (非営利)"
+
+msgid "11 · Commercial, individual recipient (İYS-checked)"
+msgstr "11 · 商用、個人受信者 (İYS チェック済み)"
+
+msgid "12 · Commercial, merchant recipient (İYS-checked)"
+msgstr "12 · 商用、販売者受信者 (İYS チェック済み)"
+
+msgid "Turkish characters"
+msgstr "トルコの文字"
+
+msgid "On (ş, ğ, ı…) · SMS length 155"
+msgstr "オン (ş、ğ、ı...) · SMS 長さ 155"
+
+msgid "Off (ASCII) · SMS length 160"
+msgstr "オフ (ASCII) · SMS 長さ 160"
+
+msgid "Partner code (optional)"
+msgstr "パートナーコード (オプション)"
+
+msgid "Message text is invalid or too long"
+msgstr "メッセージテキストが無効か長すぎます"
+
+msgid "Invalid username/password, no API permission, or IP restriction"
+msgstr "無効なユーザー名/パスワード、API 権限なし、または IP 制限"
+
+msgid "Message header (msgheader) is not defined in the system"
+msgstr "メッセージヘッダー(msgheader)がシステムに定義されていません"
+
+msgid "İYS-checked sending is not possible with a subscriber account"
+msgstr "İYS チェック済みの送信は、加入者アカウントでは実行できません"
+
+msgid "No İYS brand information for the subscription"
+msgstr "サブスクリプションに İYS ブランド情報がありません"
+
+msgid "Invalid query / missing parameter"
+msgstr "無効なクエリ/パラメータがありません"
+
+msgid "Sending rate limit exceeded"
+msgstr "送信レート制限を超えました"
+
+msgid "More than 20 tasks to the same number in 1 minute"
+msgstr "1 分間に同じ番号に対する 20 を超えるタスク"
+
+msgid "Netgsm system error"
+msgstr "Netgsm システムエラー"
+
+msgid "Unknown error"
+msgstr "不明なエラー"
+
+msgid "Test SMS · %s"
+msgstr "テストSMS ·%s"
+
+msgid "Balance query failed:"
+msgstr "残高クエリが失敗しました:"
+
+msgid "Our sapling planting event is complete"
+msgstr "苗木植え付けイベントが終了しました"
+
+msgid "Post title"
+msgstr "投稿タイトル"
+
+msgid "Post URL"
+msgstr "投稿URL"
+
+msgid "Commenter"
+msgstr "コメント者"
+
+msgid "Commenter's email"
+msgstr "コメント者のメールアドレス"
+
+msgid "Comment text"
+msgstr "コメントテキスト"
+
+msgid "Comment URL"
+msgstr "コメントURL"
+
+msgid "Approval link"
+msgstr "承認リンク"
+
+msgid "Trash link"
+msgstr "ゴミ箱リンク"
+
+msgid "Mark-as-spam link"
+msgstr "スパムとしてマークするリンク"
+
+msgid "Number of comments awaiting approval"
+msgstr "承認待ちのコメントの数"
+
+msgid "Thanks to everyone who helped; we will join the next planting as a family!"
+msgstr "助けてくれた皆さんに感謝します。次回の植樹には家族で参加します!"
+
+msgid "Person's name"
+msgstr "人の名前"
+
+msgid "Username"
+msgstr "ユーザー名"
+
+msgid "Email address"
+msgstr "メールアドレス"
+
+msgid "New registration: set password"
+msgstr "新規登録:パスワードを設定"
+
+msgid "Sent to the person when someone registers or an admin adds a user. Not sent to people who sign up with Google (Settings › Google sign-in)."
+msgstr "誰かが登録するか、管理者がユーザーを追加するときに、その人に送信されます。 Google にサインアップした人には送信されません (設定 › Google サインイン)。"
+
+msgid "Set password link"
+msgstr "パスワードリンクを設定する"
+
+msgid "Login page"
+msgstr "ログインページ"
+
+msgid "Your account is ready, set your password"
+msgstr "アカウントの準備ができました。パスワードを設定してください"
+
+msgid "Welcome aboard, {ad}"
+msgstr "ようこそ、{ad}"
+
+msgid "<p>Your {site} account has been created. Your username: <strong>{kullanici_adi}</strong></p><p>Use the button below to set your password and sign in to your account. For your security, this link expires after a short time.</p>"
+msgstr "<p>{site}アカウントが作成されました。ユーザー名:<strong>{kullanici_adi}</strong></p><p>下のボタンを使用してパスワードを設定し、アカウントにサインインします。セキュリティのため、このリンクはしばらくすると期限切れになります。</p>"
+
+msgid "Set my password"
+msgstr "パスワードを設定してください"
+
+msgid "New registration (to admin)"
+msgstr "新規登録(管理者へ)"
+
+msgid "User profile (dashboard)"
+msgstr "ユーザープロファイル (ダッシュボード)"
+
+msgid "New member: {kullanici_adi}"
+msgstr "新メンバー:{kullanici_adi}"
+
+msgid "There is a new member on the site"
+msgstr "サイトに新しいメンバーが加わりました"
+
+msgid "<table class=\"flxi-kv\"><tr><td>Username</td><td><strong>{kullanici_adi}</strong></td></tr><tr><td>Email</td><td>{eposta}</td></tr></table>"
+msgstr "<table class=\"flxi-kv\"><tr><td>ユーザー名</td><td><strong>{kullanici_adi}</strong></td></tr><tr><td>電子メール</td><td>{eposta}</td></tr></table>"
+
+msgid "Open profile"
+msgstr "プロフィールを開く"
+
+msgid "Password reset"
+msgstr "パスワードのリセット"
+
+msgid "New password link"
+msgstr "新しいパスワードのリンク"
+
+msgid "IP address of the request"
+msgstr "リクエストのIPアドレス"
+
+msgid "Password reset request"
+msgstr "パスワードリセットリクエスト"
+
+msgid "Reset your password"
+msgstr "パスワードをリセットする"
+
+msgid "<p>Hello {ad},</p><p>A password reset was requested for your account <strong>{kullanici_adi}</strong>. You can set a new password with the button below.</p><p>If you did not make this request, you can ignore this email; nothing will change in your account.</p>"
+msgstr "<p>こんにちは{ad}さん、</p><p>あなたのアカウント<strong>{kullanici_adi}</strong>のパスワードのリセットが要求されました。下のボタンから新しいパスワードを設定できます。</p><p>このリクエストを行っていない場合は、このメールを無視してください。あなたのアカウントでは何も変わりません。</p>"
+
+msgid "Set new password"
+msgstr "新しいパスワードを設定する"
+
+msgid "Password changed"
+msgstr "パスワードが変更されました"
+
+msgid "Your password has been changed"
+msgstr "パスワードが変更されました"
+
+msgid "<p>Hello {ad},</p><p>The password of your {site} account was just changed.</p><p>If you did not make this change, write to {kurum_eposta} right away.</p>"
+msgstr "<p>こんにちは、{ad}さん、</p><p>{site}アカウントのパスワードが変更されました。</p><p>この変更を行っていない場合は、すぐに{kurum_eposta}に書き込みます。</p>"
+
+msgid "Sign in"
+msgstr "サインイン"
+
+msgid "Email address changed"
+msgstr "メールアドレスが変更されました"
+
+msgid "New email address"
+msgstr "新しいメールアドレス"
+
+msgid "Your email address has been changed"
+msgstr "メールアドレスが変更されました"
+
+msgid "Your email address has changed"
+msgstr "メールアドレスが変更されました"
+
+msgid "<p>Hello {ad},</p><p>The email address of your {site} account has been changed to <strong>{yeni_eposta}</strong>. Notifications will be sent to this address from now on.</p><p>If you did not make this change, write to {kurum_eposta} right away.</p>"
+msgstr "<p>こんにちは{ad}さん、</p><p>{site}アカウントの電子メール アドレスが<strong>{yeni_eposta}</strong>に変更されました。今後、通知はこのアドレスに送信されます。</p><p>この変更を行っていない場合は、すぐに{kurum_eposta}に書き込みます。</p>"
+
+msgid "A member changed their password (to admin)"
+msgstr "メンバーがパスワードを (管理者に) 変更しました"
+
+msgid "{kullanici_adi} changed their password"
+msgstr "{kullanici_adi}さんがパスワードを変更しました"
+
+msgid "Password change"
+msgstr "パスワードの変更"
+
+msgid "<p><strong>{kullanici_adi}</strong> ({eposta}) changed their password.</p>"
+msgstr "<p><strong>{kullanici_adi}</strong>({eposta}) はパスワードを変更しました。</p>"
+
+msgid "New comment on a post (to author)"
+msgstr "投稿に対する新しいコメント (作成者へ)"
+
+msgid "Notification of a new comment sent to the post's author."
+msgstr "投稿の作成者に送信された新しいコメントの通知。"
+
+msgid "New comment: {yazi}"
+msgstr "新しいコメント:{yazi}"
+
+msgid "New comment on “{yazi}”"
+msgstr "「{yazi}」への新しいコメント"
+
+msgid "<p><strong>{yorum_yazari}</strong> wrote:</p><blockquote>{yorum}</blockquote>"
+msgstr "<p><strong>{yorum_yazari}</strong>が書きました:</p><blockquote>{yorum}</blockquote>"
+
+msgid "View comment"
+msgstr "コメントを見る"
+
+msgid "Comment awaiting approval"
+msgstr "承認待ちのコメント"
+
+msgid "Sent to the site admin while a comment awaits approval."
+msgstr "コメントが承認を待っている間にサイト管理者に送信されます。"
+
+msgid "Comment awaiting approval: {yazi}"
+msgstr "承認待ちのコメント:{yazi}"
+
+msgid "A comment is waiting for your approval"
+msgstr "コメントはあなたの承認を待っています"
+
+msgid "<p><strong>{yorum_yazari}</strong> ({yorum_eposta}) commented on <a href=\"{yazi_linki}\">{yazi}</a>:</p><blockquote>{yorum}</blockquote><p><a href=\"{cop_linki}\">Trash</a> &nbsp;·&nbsp; <a href=\"{spam_linki}\">Mark as spam</a></p><p>Total comments awaiting approval: {bekleyen_sayisi}</p>"
+msgstr "<p><strong>{yorum_yazari}</strong>({yorum_eposta}) が<a href=\"{yazi_linki}\">{yazi}にコメントしました</a>:</p><blockquote>{yorum}</blockquote><p><a href=\"{cop_linki}\">ゴミ箱</a>·<a href=\"{spam_linki}\">スパムとしてマーク</a></p><p>承認待ちのコメントの合計:{bekleyen_sayisi}</p>"
+
+msgid "Approve comment"
+msgstr "コメントを承認する"
+
+msgid "Automatic update report"
+msgstr "自動更新レポート"
+
+msgid "Admin email change confirmation"
+msgstr "管理者メールアドレス変更の確認"
+
+msgid "Admin email changed"
+msgstr "管理者のメールアドレスが変更されました"
+
+msgid "Confirm new email address"
+msgstr "新しいメールアドレスを確認する"
+
+msgid "Personal data request confirmation"
+msgstr "個人データ要求の確認"
+
+msgid "Personal data export ready"
+msgstr "個人データのエクスポートの準備ができました"
+
+msgid "Personal data erased"
+msgstr "個人データの消去"
+
+msgid "Site error: recovery mode"
+msgstr "サイトエラー: リカバリモード"
+
+msgid "The content is generated by WordPress; here you can turn it on or off and choose the branded layout."
+msgstr "コンテンツは WordPress によって生成されます。ここでオンまたはオフを切り替え、ブランドのレイアウトを選択できます。"
+
+msgid "Cannot be disabled for security. The content is generated by WordPress and sent with the branded layout."
+msgstr "セキュリティのために無効にすることはできません。コンテンツは WordPress によって生成され、ブランドのレイアウトとともに送信されます。"
+
+msgid "Anonymous"
+msgstr "匿名"
+
+msgid "The sender email address is invalid. Enter your bilgi@ address in Communication › Settings."
+msgstr "送信者のメールアドレスが無効です。 [通信] › [設定] に bilgi@ アドレスを入力します。"
+
+msgid "%1$s is not on the site's domain (%2$s). Services like Gmail may mark emails from another domain as spam."
+msgstr "%1$sはサイトのドメイン (%2$s) にありません。 Gmail などのサービスでは、別のドメインからのメールがスパムとしてマークされる場合があります。"
+
+msgid "%1$s <%2$s>; emails that don't expect a reply are sent from %3$s."
+msgstr "%1$s<%2$s>;返信を期待しないメールは%3$sから送信されます。"
+
+msgid "Emails are sent by the %s plugin; the SMTP settings here are not used. The template, sender name and log still come from Flux Mail."
+msgstr "電子メールは%sプラグインによって送信されます。ここでの SMTP 設定は使用されません。テンプレート、送信者名、ログは引き続き Flux Mail から取得されます。"
+
+msgid "SMTP is selected but the server, username or password is missing. Emails may not be sent."
+msgstr "SMTP が選択されていますが、サーバー、ユーザー名、またはパスワードがありません。メールが送信できない場合があります。"
+
+msgid "SMTP settings"
+msgstr "SMTP設定"
+
+msgid "SMTP: %1$s:%2$s"
+msgstr "SMTP:%1$s:%2$s"
+
+msgid "Mail is sent with the server's PHP mail(). Gmail shows \"via srv….main-hosting.eu\" next to the sender and it is more likely to land in spam. Open a info@ mailbox on Hostinger and choose SMTP."
+msgstr "メールはサーバーの PHP mail() を使用して送信されます。 Gmail では、送信者の横に「via srv....main-hosting.eu」と表示され、スパムに分類される可能性が高くなります。 Hostinger で info@ メールボックスを開き、SMTP を選択します。"
+
+msgid "Sent to %1$s (%2$s). Check that it reached the inbox."
+msgstr "%1$s(%2$s) に送信されます。受信箱に届いていることを確認してください。"
+
+msgid "Test again"
+msgstr "もう一度テストしてください"
+
+msgid "Could not send (%1$s): %2$s"
+msgstr "送信できませんでした (%1$s):%2$s"
+
+msgid "Not tested yet."
+msgstr "まだテストされていません。"
+
+msgid "Last 24 hours"
+msgstr "過去 24 時間"
+
+msgid "%1$s sends failed, %2$s sent. Last error: %3$s"
+msgstr "%1$sの送信が失敗しました。%2$sが送信されました。最後のエラー:%3$s"
+
+msgid "%s sent, no errors."
+msgstr "%sが送信されました。エラーはありませんでした。"
+
+msgid "Bulk send queue"
+msgstr "一括送信キュー"
+
+msgid "%s messages have been waiting for more than 30 minutes. WP-Cron may not be running; keeping the Send page open advances the queue. A real cron is recommended on Hostinger."
+msgstr "%sメッセージが 30 分以上待機しています。 WP-Cron が実行されていない可能性があります。送信ページを開いたままにすると、キューが進みます。 Hostinger では本物の cron が推奨されています。"
+
+msgid "Sends"
+msgstr "送信します"
+
+msgid "Database tables"
+msgstr "データベーステーブル"
+
+msgid "Log tables are missing. Deactivate and reactivate the plugin."
+msgstr "ログテーブルがありません。プラグインを非アクティブ化し、再度アクティブ化します。"
+
+msgid "No SPF record was found for %s. Hostinger adds it to DNS when you open a mailbox; if the domain is elsewhere, add \"v=spf1 include:_spf.mail.hostinger.com ~all\"."
+msgstr "%sの SPF レコードが見つかりませんでした。 Hostinger は、メールボックスを開いたときにそれを DNS に追加します。ドメインが別の場所にある場合は、「v=spf1 include:_spf.mail.hostinger.com ~all」を追加します。"
+
+msgid "Check again"
+msgstr "もう一度確認してください"
+
+msgid "The SPF record does not include Hostinger: "
+msgstr "SPF レコードには Hostinger は含まれません。"
+
+msgid "There is no DMARC record. Gmail and Yahoo require DMARC for bulk mail; add a \"_dmarc\" TXT record: \"v=DMARC1; p=none; rua=mailto:info@…\"."
+msgstr "DMARC レコードはありません。 Gmail と Yahoo では一括メールに DMARC が必要です。 「_dmarc」TXT レコードを追加します:「v=DMARC1; p=none; rua=mailto:info@...」。"
+
+msgid "SPF / DMARC (DNS)"
+msgstr "SPF / DMARC (DNS)"
+
+msgid "Not checked."
+msgstr "チェックされていません。"
+
+msgid "Google sign-in plugin: %s."
+msgstr "Google サインイン プラグイン:%s。"
+
+msgid "People who sign up with Google do not receive the set-password email, and their emails are treated as verified."
+msgstr "Google にサインアップした人にはパスワード設定メールが届かず、メールは認証済みとして扱われます。"
+
+msgid "People who sign up with Google receive the set-password email (setting is off)."
+msgstr "Google に登録した人には、パスワード設定メールが届きます (設定はオフです)。"
+
+msgid "Setting"
+msgstr "設定"
+
+msgid "No known Google sign-in plugin is active. If you use another plugin, a Google return is still detected and the password email is stopped."
+msgstr "有効な既知の Google サインイン プラグインはありません。別のプラグインを使用している場合でも、Google リターンが検出され、パスワード メールの送信が停止されます。"
+
+msgid "No %s connection."
+msgstr "%s接続がありません。"
+
+msgid "Settings entered, not tested yet."
+msgstr "設定は入力されましたが、まだテストされていません。"
+
+msgid "Test successful (%s)."
+msgstr "テストは成功しました (%s)。"
+
+msgid "Test failed (%1$s): %2$s"
+msgstr "テスト失敗 (%1$s):%2$s"
+
+msgid "Flux Certificates providers"
+msgstr "Flux 証明書プロバイダー"
+
+msgid "The WhatsApp/SMS settings are still in Flux Certificates. To manage them in one place, use the \"Migrate from Flux Certificates\" button in Communication › Connections (it can be undone)."
+msgstr "WhatsApp/SMS 設定はまだ Flux 証明書にあります。これらを 1 か所で管理するには、通信 › 接続 の [Flux 証明書から移行] ボタンを使用します (元に戻すこともできます)。"
+
+msgid "Migrate"
+msgstr "移行する"
+
+msgid "Flux Certificates"
+msgstr "フラックス証明書"
+
+msgid "Certificate emails use the corporate template; WhatsApp/SMS go through the connections here."
+msgstr "証明書の電子メールは企業テンプレートを使用します。 WhatsApp/SMS はここで接続を経由します。"
+
+msgid "%1$s: \"%2$s\" → \"%3$s\""
+msgstr "%1$s: \"%2$s\" → \"%3$s\""
+
+msgid "Enter a valid email address."
+msgstr "有効な電子メール アドレスを入力してください。"
+
+msgid "Cannot be empty."
+msgstr "空にすることはできません。"
+
+msgid "Sender email address"
+msgstr "送信者のメールアドレス"
+
+msgid "Address for emails that expect a reply (e.g. bilgi@yourdomain)."
+msgstr "返信を期待する電子メールのアドレス (例: bilgi@yourdomain)。"
+
+msgid "Name shown in the inbox."
+msgstr "受信箱に表示される名前。"
+
+msgid "Address for emails that don't expect a reply (passwords, notifications)."
+msgstr "返信を期待しない電子メールのアドレス (パスワード、通知)。"
+
+msgid "Reply-to address (Reply-To)"
+msgstr "返信先アドレス (Reply-To)"
+
+msgid "Empty: replies go to the sender address."
+msgstr "空: 返信は送信者のアドレスに送信されます。"
+
+msgid "SMTP server (excluding password)"
+msgstr "SMTPサーバー(パスワードを除く)"
+
+msgid "The value is in the format \"server:port:ssl|tls|none:user\", e.g. \"smtp.hostinger.com:465:ssl:bilgi@yourdomain\". The password is entered by the admin in the dashboard."
+msgstr "値は「server:port:ssl|tls|none:user」の形式です。 「smtp.hostinger.com:465:ssl:bilgi@ドメイン」。パスワードは管理者がダッシュボードに入力します。"
+
+msgid "Format: server:port:ssl|tls|none:user"
+msgstr "形式: サーバー:ポート:ssl|tls|なし:ユーザー"
+
+msgid "SMTP server details saved. The method did not change; the admin must select \"SMTP\" after entering the password."
+msgstr "SMTP サーバーの詳細が保存されました。方法は変わりませんでした。管理者はパスワードを入力した後、「SMTP」を選択する必要があります。"
+
+msgid "php: the server's mail() function; smtp: an SMTP account (the server and password must be entered)."
+msgstr "php: サーバーの mail() 関数。 smtp: SMTP アカウント (サーバーとパスワードを入力する必要があります)。"
+
+msgid "The SMTP server or password is missing; the admin must enter it in the dashboard first."
+msgstr "SMTP サーバーまたはパスワードがありません。管理者は最初にダッシュボードに入力する必要があります。"
+
+msgid "SMTP selected."
+msgstr "SMTPが選択されました。"
+
+msgid "PHP mail() selected."
+msgstr "PHP mail() が選択されました。"
+
+msgid "Stop the password email on Google sign-up"
+msgstr "Google サインアップ時のパスワード メールを停止する"
+
+msgid "Enabled."
+msgstr "有効。"
+
+msgid "Disabled."
+msgstr "障害者。"
+
+msgid "The value is the recipient address; if empty, the site admin's address."
+msgstr "値は受信者のアドレスです。空の場合は、サイト管理者のアドレス。"
+
+msgid "Could not send: "
+msgstr "送信できませんでした:"
+
+msgid "Sent to %s."
+msgstr "%sに送信されます。"
+
+msgid "Recheck SPF / DMARC records"
+msgstr "SPF / DMARC レコードを再確認する"
+
+msgid "Each row shows something the site needs and whether it is in place. Fix errors first; also review the warnings."
+msgstr "各行には、サイトに必要なものと、それが設置されているかどうかが表示されます。まずエラーを修正してください。警告も確認してください。"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "Info"
+msgstr "情報"
+
+msgid "%1$d OK · %2$d warnings · %3$d errors"
+msgstr "%1$dOK ·%2$d警告 ·%3$dエラー"
+
+msgid "Show only these (click again to show all)"
+msgstr "これらのみを表示します (すべてを表示するにはもう一度クリックします)"
+
+msgid "Check: %s"
+msgstr "チェック:%s"
+
+msgid "Members: %1$s (%2$s)"
+msgstr "メンバー:%1$s(%2$s)"
+
+msgid "Flux Certificates contacts (%s)"
+msgstr "フラックス証明書の連絡先 (%s)"
+
+msgid "There are no recipients to send to."
+msgstr "送信先の受信者がいません。"
+
+msgid "Subject is required."
+msgstr "件名は必須です。"
+
+msgid "Message text is required."
+msgstr "メッセージテキストは必須です。"
+
+msgid "There is no active connection for this channel. Add one in Communication › Connections."
+msgstr "このチャネルにはアクティブな接続がありません。 [通信] › [接続] に 1 つ追加します。"
+
+msgid "Sending was canceled."
+msgstr "送信がキャンセルされました。"
+
+msgid "Unsubscribed."
+msgstr "購読を解除しました。"
+
+msgid "The link is invalid."
+msgstr "リンクが無効です。"
+
+msgid "You have been unsubscribed"
+msgstr "購読を解除されました"
+
+msgid "We will no longer send bulk emails to %s. Transactional emails such as donation and certificate emails will continue to be sent."
+msgstr "%sに一括メールを送信することはなくなります。寄付や証明書の電子メールなどのトランザクション電子メールは引き続き送信されます。"
+
+msgid "Do you want to unsubscribe from bulk emails?"
+msgstr "一括メールの配信を停止しますか?"
+
+msgid "Yes, unsubscribe me"
+msgstr "はい、購読を解除します"
+
+msgid "Unsubscribe"
+msgstr "購読を解除する"
+
+msgid "Verified by Google. No set-password email is sent to this account."
+msgstr "Googleによって検証されました。このアカウントにはパスワード設定メールは送信されません。"
+
+msgid "This email was sent automatically; please do not reply. For questions, you can write to %s."
+msgstr "このメールは自動的に送信されました。返信しないでください。質問がある場合は、%sまでお問い合わせください。"
+
+msgid "I do not want to receive these kinds of emails"
+msgstr "このようなメールを受け取りたくない"
+
+msgid "Other"
+msgstr "その他"
+
+msgid "Theme"
+msgstr "テーマ"
+
+msgid "Certificate email"
+msgstr "証明書メール"
+
+msgid "Receipt uploaded (to admin)"
+msgstr "領収書をアップロードしました (管理者に)"
+
+msgid "New comment on a post"
+msgstr "投稿に対する新しいコメント"
+
+msgid "Certificate ready"
+msgstr "証明書の準備ができました"
+
+msgid "Sent to the person when the certificate is emailed. The certificate image appears in the email, and clicking it opens the certificate page (where it can be downloaded and shared). {mesaj_html} is the email text from Flux Certificates › Settings or the template."
+msgstr "証明書が電子メールで送信されるときにその人に送信されます。証明書の画像が電子メールに表示され、それをクリックすると証明書のページが開きます (ダウンロードして共有できます)。{mesaj_html}は、Flux 証明書 › 設定またはテンプレートからの電子メール テキストです。"
+
+msgid "Certificate name"
+msgstr "証明書名"
+
+msgid "Certificate number"
+msgstr "証明書番号"
+
+msgid "Number of saplings (for sapling certificates)"
+msgstr "苗木の本数(苗木証明書用)"
+
+msgid "Certificate date"
+msgstr "証明書の日付"
+
+msgid "Certificate page"
+msgstr "証明書ページ"
+
+msgid "Email subject from Flux Certificates"
+msgstr "Flux 証明書からの電子メールの件名"
+
+msgid "Email text from Flux Certificates"
+msgstr "Flux 証明書からの電子メール テキスト"
+
+msgid "Sapling Donation Certificate"
+msgstr "苗木寄付証明書"
+
+msgid "Your Sapling Donation Certificate is ready 🌱"
+msgstr "苗木寄付証明書が完成しました 🌱"
+
+msgid "Hello Ahmet,\n\nYour Sapling Donation Certificate is ready. Thank you very much for your support."
+msgstr "こんにちは、アーメットさん\n\n苗木寄付証明書が完成しました。ご支援誠にありがとうございました。"
+
+msgid "Your certificate is ready 🌱"
+msgstr "証明書の準備が完了しました 🌱"
+
+msgid "View my certificate"
+msgstr "私の証明書を表示する"
+
+msgid "Tap the image to open your certificate"
+msgstr "画像をタップして証明書を開きます"
+
+msgid "Sapling"
+msgstr "苗木"
+
+msgid "%s saplings"
+msgstr "%s苗木"
+
+msgid "Certificate no."
+msgstr "証明書番号"
+
+msgid "You can download it as a PDF from the certificate page and share it on WhatsApp and social media."
+msgstr "You can download it as a PDF from the certificate page and share it on WhatsApp and social media."
+
+msgid "Flux Mail is active: the email is sent with the branded template and the sender address from Communication › Settings."
+msgstr "Flux Mail がアクティブです。電子メールは、ブランドのテンプレートと送信者アドレスを使用して送信されます (通信 › 設定)。"
+
+msgid "Default connection"
+msgstr "デフォルトの接続"
+
+msgid "Flux Mail connection"
+msgstr "Flux メール接続"
+
+msgid "Also send the PDF as a document"
+msgstr "PDFも文書として送信"
+
+msgid "WhatsApp · Flux Mail"
+msgstr "WhatsApp · Flux メール"
+
+msgid "SMS · Flux Mail"
+msgstr "SMS・フラックスメール"
+
+msgid "Connection settings (Evolution / Netgsm) are kept in Communication › Connections; here you only choose which one to use."
+msgstr "接続設定 (Evolution / Netgsm) は、通信 › 接続に保存されます。ここでは、どれを使用するかを選択するだけです。"
+
+msgid "There is no active connection for this channel in Flux Mail."
+msgstr "Flux Mail には、このチャネルのアクティブな接続がありません。"
+
+msgid "Invalid email: %s"
+msgstr "無効な電子メール:%s"
+
+msgid "wp_mail returned false (the server may be unable to send email)."
+msgstr "wp_mail は false を返しました (サーバーが電子メールを送信できない可能性があります)。"
+
+msgid "Flux Certificates is not active."
+msgstr "Flux 証明書はアクティブではありません。"
+
+msgid "There is no migration to undo."
+msgstr "移行を元に戻すことはできません。"
+
+msgid "Unknown connection type."
+msgstr "不明な接続タイプです。"
+
+msgid "%s is required."
+msgstr "%sは必須です。"
+
+msgid "There is no active connection for %s. Add one in Communication › Connections."
+msgstr "%sのアクティブな接続はありません。 [通信] › [接続] に 1 つ追加します。"
+
+msgid "Connection not found."
+msgstr "接続が見つかりません。"
+
+msgid "This type cannot be tested."
+msgstr "このタイプはテストできません。"
+
+msgid "Google sign-up: not sent"
+msgstr "Google サインアップ: 送信されませんでした"
+
+msgid "Template disabled: not sent"
+msgstr "テンプレートが無効です: 送信されません"
+
+msgid "Another email plugin could not send it."
+msgstr "別の電子メール プラグインでは送信できませんでした。"
+
+msgid "Flux Certificates sends WhatsApp and SMS through the active connections here; certificate emails use the corporate template."
+msgstr "Flux 証明書は、ここのアクティブな接続を通じて WhatsApp と SMS を送信します。証明書の電子メールは企業テンプレートを使用します。"
+
+msgid "The mailbox's daily sending limit has been reached. Sending will resume automatically around %s."
+msgstr "メールボックスの 1 日あたりの送信制限に達しました。%s付近で送信が自動的に再開されます。"
+
+msgid "Daily email allowance"
+msgstr "1 日あたりの電子メール許容量"
+
+msgid "Mailbox limits"
+msgstr "メールボックスの制限"
+
+msgid "The limits of your Hostinger email plan. The send counter uses them; bulk sends never exceed the daily limit, and the rest go out as allowance frees up. If you hit the limits often, upgrade to a higher email plan at Hostinger and update the values here."
+msgstr "Hostinger のメール プランの制限。送信カウンタはそれらを使用します。一括送信が 1 日の制限を超えることはなく、残りは許容量が空くにつれて送信されます。頻繁に制限に達する場合は、Hostinger でより高いメール プランにアップグレードし、ここで値を更新してください。"
+
+msgid "Daily sending (per 24 hours, per mailbox)"
+msgstr "毎日の送信 (24 時間ごと、メールボックスごと)"
+
+msgid "Each To, Cc and Bcc recipient counts as one. 0 = no limit."
+msgstr "To、Cc、Bcc の各受信者は 1 人としてカウントされます。 0 = 制限なし。"
+
+msgid "Reserve for individual emails"
+msgstr "個別メール予約"
+
+msgid "Bulk sending leaves this many sends for password reset, donation and certificate emails."
+msgstr "一括送信すると、パスワードのリセット、寄付、証明書の電子メールの送信がこれだけ多くなります。"
+
+msgid "Recipients per message (To, Cc, Bcc)"
+msgstr "メッセージごとの受信者 (To、Cc、Bcc)"
+
+msgid "Outgoing email size (MB)"
+msgstr "送信メールのサイズ (MB)"
+
+msgid "Attachment size (MB)"
+msgstr "添付ファイルのサイズ (MB)"
+
+msgid "Storage per mailbox (GB)"
+msgstr "メールボックスあたりのストレージ (GB)"
+
+msgid "Emails per mailbox"
+msgstr "メールボックスあたりのメール数"
+
+msgid "Aliases per mailbox"
+msgstr "メールボックスごとのエイリアス"
+
+msgid "Mailbox forwarders"
+msgstr "メールボックスフォワーダー"
+
+msgid "Last 24 hours: %1$s / %2$s"
+msgstr "過去 24 時間:%1$s/%2$s"
+
+msgid "Next free slot: %s"
+msgstr "次の空きスロット:%s"
+
+msgid "%1$s: %2$s / %3$s recipients in the last 24 hours."
+msgstr "%1$s: 過去 24 時間の%2$s/%3$s受信者。"
+
+msgid "Daily sending limit"
+msgstr "1日あたりの送信制限"
+
+msgid "Limit reached; emails from this address may not go out until around %s. If this happens often, upgrade to a higher email plan at Hostinger."
+msgstr "限界に達しました;このアドレスからのメールは%s頃まで送信されない可能性があります。これが頻繁に発生する場合は、Hostinger でより上位のメール プランにアップグレードしてください。"
+
+msgid "Limits"
+msgstr "限界"
+
+msgid "Close to the limit; bulk sending pauses and leaves room for individual emails."
+msgstr "限界に近い。一括送信は一時停止され、個別のメールを送信できる余地が残ります。"
+
+msgid "The limit was hit on %s days in the last 30 days; consider upgrading to a higher email plan at Hostinger."
+msgstr "過去 30 日間の%s日に制限に達しました。 Hostinger でより上位のメール プランにアップグレードすることを検討してください。"
+
+msgid "Because of the daily limit of %1$s, sending all will take about %2$s day."
+msgid_plural "Because of the daily limit of %1$s, sending all will take about %2$s days."
+msgstr[0] "%1$sの 1 日あたりの制限のため、すべてを送信するには約%2$s日かかります。"
+
+msgid "The daily limit was hit on %s day in the last 30 days."
+msgid_plural "The daily limit was hit on %s days in the last 30 days."
+msgstr[0] "過去 30 日間の%s日に 1 日の制限に達しました。"
+
+msgid "On the blocklist: not sent"
+msgstr "ブロックリストに登録: 未送信"
+
+msgid "Blocklist"
+msgstr "ブロックリスト"
+
+msgid "Active: people on the blocklist get no email, WhatsApp or SMS (except account security emails such as password reset)."
+msgstr "アクティブ: ブロックリストに登録されている人は、電子メール、WhatsApp、または SMS を受け取りません (パスワード リセットなどのアカウント セキュリティ メールを除く)。"
+
+msgid "No-reply account"
+msgstr "返信不要アカウント"
+
+msgid "SMTP account"
+msgstr "SMTPアカウント"
+
+msgid "Resent from bilgi@."
+msgstr "bilgi@ から再送信されました。"
+
+msgid "Could not sign in to %1$s (%2$s): %3$s Check the username and password; if the password changed in hPanel, enter it here too."
+msgstr "%1$s(%2$s) にサインインできませんでした:%3$sユーザー名とパスワードを確認してください。 hPanel でパスワードを変更した場合は、ここにもパスワードを入力します。"
+
+msgid "%1$s: sign-in OK (last send %2$s)."
+msgstr "%1$s: サインイン OK (最後に%2$sを送信)。"
+
+msgid "No password entered for %1$s; no-reply emails are sent from %2$s for now. Enter the password, or clear the username field if no-reply@ is an alias of the bilgi@ account."
+msgstr "%1$sのパスワードが入力されていません。現時点では、無返信メールは%2$sから送信されます。パスワードを入力するか、no-reply@ が bilgi@ アカウントのエイリアスの場合はユーザー名フィールドをクリアします。"
+
+msgid "Could not sign in to %1$s (%2$s): %3$s no-reply emails are sent from %4$s for now. Fix and save the password (if the account does not exist, create it in hPanel or clear the username field), then send a test email from no-reply@."
+msgstr "%1$s(%2$s) にサインインできませんでした:%3$sの応答なし電子メールは、現時点では%4$sから送信されます。パスワードを修正して保存し (アカウントが存在しない場合は、hPanel で作成するか、ユーザー名フィールドをクリアします)、no-reply@ からテスト電子メールを送信します。"
+
+msgid "Sent from %2$s because signing in to %1$s failed."
+msgstr "%1$sへのサインインに失敗したため、%2$sから送信されました。"
+
+msgid "Images"
+msgstr "画像"
+
+msgid "Make images work in every email app (WebP/AVIF → JPG/PNG, full URLs)"
+msgstr "すべての電子メール アプリで画像を機能させる (WebP/AVIF → JPG/PNG、完全な URL)"
+
+msgid "Embed the site's images in the email (recipients see them without clicking \"show images\")"
+msgstr "メールにサイトの画像を埋め込みます(受信者は「画像を表示」をクリックしなくても画像が表示されます)"
+
+msgid "Forest"
+msgstr "森"
+
+msgid "Hills"
+msgstr "ヒルズ"
+
+msgid "Line art"
+msgstr "線画"
+
+msgid "Footer illustration"
+msgstr "フッターの図"
+
+msgid "A tree silhouette at the very bottom of every email. A darker drawing is shown in dark mode."
+msgstr "すべてのメールの一番下にある木のシルエット。ダークモードでは暗い描画が表示されます。"
+
+msgid "Inbox"
+msgstr "受信箱"
+
+msgid "Awaiting approval"
+msgstr "承認待ち"
+
+msgid "Drafts"
+msgstr "下書き"
+
+msgid "Layouts"
+msgstr "レイアウト"
+
+msgid "New email"
+msgstr "新しいメール"
+
+msgid "Search: person, subject…"
+msgstr "検索: 人物、件名..."
+
+msgid "System emails"
+msgstr "システムメール"
+
+msgid "Unread"
+msgstr "未読"
+
+msgid "Load more"
+msgstr "さらにロードする"
+
+msgid "No emails here."
+msgstr "ここにはメールはありません。"
+
+msgid "No drafts."
+msgstr "下書きはありません。"
+
+msgid "Select an email on the left to read it."
+msgstr "左側でメールを選択して読んでください。"
+
+msgid "Sync"
+msgstr "同期"
+
+msgid "Syncing…"
+msgstr "同期中..."
+
+msgid "Last sync: %s"
+msgstr "最終同期:%s"
+
+msgid "Fetching older emails…"
+msgstr "古いメールを取得しています..."
+
+msgid "Mailbox is off or IMAP details are missing. Fill in Settings › Mailbox to see incoming email. Writing and sending drafts still works."
+msgstr "メールボックスがオフになっているか、IMAP の詳細が欠落しています。 [設定] › [メールボックス] に入力して、受信メールを確認します。下書きの作成と送信は引き続き機能します。"
+
+msgid "Open settings"
+msgstr "設定を開く"
+
+msgid "Reply"
+msgstr "返信"
+
+msgid "Reply all"
+msgstr "全員に返信"
+
+msgid "Forward"
+msgstr "進む"
+
+msgid "Write reply with AI"
+msgstr "AIで返信を書く"
+
+msgid "Write with AI"
+msgstr "AI で書く"
+
+msgid "Fix with AI"
+msgstr "AIで修正する"
+
+msgid "Optional instruction: \"thank them, invite them to the 11 November event\""
+msgstr "オプションの指示: 「感謝の気持ちを伝え、11 月 11 日のイベントに招待してください」"
+
+msgid "What should it say? e.g. \"A short, warm tree-planting partnership offer to company X\""
+msgstr "何と言うべきでしょうか?例えば「X社への短くて温かい植樹パートナーシップの申し出」"
+
+msgid "AI is writing…"
+msgstr "AI が書いています..."
+
+msgid "AI needs the Flux AI & MCP plugin and its key."
+msgstr "AI には Flux AI & MCP プラグインとそのキーが必要です。"
+
+msgid "AI draft: check and edit it, then send. Nothing goes out until you send it."
+msgstr "AI ドラフト: チェックして編集し、送信します。送信するまで何も出ません。"
+
+msgid "Mark unread"
+msgstr "未読としてマークする"
+
+msgid "Star"
+msgstr "スター"
+
+msgid "To"
+msgstr "に"
+
+msgid "Cc"
+msgstr "Cc"
+
+msgid "Layout"
+msgstr "レイアウト"
+
+msgid "Saved"
+msgstr "保存されました"
+
+msgid "Delete?"
+msgstr "削除しますか?"
+
+msgid "Send this email now? To: %s"
+msgstr "今すぐこのメールを送信しますか?宛先:%s"
+
+msgid "Replying to"
+msgstr "返信する"
+
+msgid "The earlier conversation is added below the email automatically."
+msgstr "以前の会話がメールの下に自動的に追加されます。"
+
+msgid "Show external images"
+msgstr "外部画像を表示する"
+
+msgid "External images were not shown for privacy."
+msgstr "プライバシー保護のため、外部画像は表示されませんでした。"
+
+msgid "This conversation"
+msgstr "この会話"
+
+msgid "Attachments"
+msgstr "添付ファイル"
+
+msgid "Back"
+msgstr "戻る"
+
+msgid "(no subject)"
+msgstr "(主語なし)"
+
+msgid "me"
+msgstr "私"
+
+msgid "System"
+msgstr "システム"
+
+msgid "Replied"
+msgstr "返信しました"
+
+msgid "Bold"
+msgstr "太字"
+
+msgid "Italic"
+msgstr "イタリック体"
+
+msgid "Link address:"
+msgstr "リンクアドレス:"
+
+msgid "List"
+msgstr "リスト"
+
+msgid "Clear formatting"
+msgstr "書式をクリアする"
+
+msgid "Open in logs"
+msgstr "ログで開く"
+
+msgid "Layouts chosen when sending from the mailbox. In sub-layouts like \"Örnek Vakfı × Company\" the company logo appears at the top; the preset subject and content fill a new email."
+msgstr "メールボックスから送信するときに選択されるレイアウト。 「Örnek Vakfı × Company」のようなサブレイアウトでは、会社のロゴが上部に表示されます。事前に設定された件名と内容が新しいメールに入力されます。"
+
+msgid "New sub-layout"
+msgstr "新しいサブレイアウト"
+
+msgid "Built-in layout (cannot be changed)"
+msgstr "内蔵レイアウト(変更不可)"
+
+msgid "Layout name"
+msgstr "レイアウト名"
+
+msgid "Short description"
+msgstr "簡単な説明"
+
+msgid "Corporate (card)"
+msgstr "法人(カード)"
+
+msgid "Plain (letter)"
+msgstr "無地(文字)"
+
+msgid "Company name"
+msgstr "会社名"
+
+msgid "Company logo"
+msgstr "会社ロゴ"
+
+msgid "Company website"
+msgstr "会社ウェブサイト"
+
+msgid "Accent color"
+msgstr "アクセントカラー"
+
+msgid "Heading (large heading in corporate)"
+msgstr "見出し(企業では大きな見出し)"
+
+msgid "Preset subject"
+msgstr "プリセットの件名"
+
+msgid "Preset content"
+msgstr "プリセット内容"
+
+msgid "New email with this layout"
+msgstr "このレイアウトの新しいメール"
+
+msgid "Mailbox"
+msgstr "メールボックス"
+
+msgid "Incoming and outgoing email for bilgi@, drafts and AI replies."
+msgstr "bilgi@ の送受信メール、下書き、AI 返信。"
+
+msgid "Loading…"
+msgstr "読み込み中..."
+
+msgid "Dark"
+msgstr "暗い"
+
+msgid "Email arriving at bilgi@ and email sent from webmail appear on the Mailbox screen in the left menu, where you can reply. The site connects over IMAP and fetches a few emails every few minutes (light on shared hosting). Attachments are not stored on the site; they are read from the server when opened."
+msgstr "bilgi@に届いたメールやWebメールから送信されたメールは、左メニューのメールボックス画面に表示され、返信することができます。サイトは IMAP 経由で接続し、数分ごとに数通の電子メールを取得します (共有ホスティングは軽視)。添付ファイルはサイトに保存されません。これらは、開かれたときにサーバーから読み取られます。"
+
+msgid "Enable mailbox"
+msgstr "メールボックスを有効にする"
+
+msgid "IMAP server"
+msgstr "IMAPサーバー"
+
+msgid "If empty, the SMTP user (bilgi@) is used."
+msgstr "空の場合、SMTP ユーザー (bilgi@) が使用されます。"
+
+msgid "If empty, the SMTP password is used"
+msgstr "空の場合、SMTP パスワードが使用されます"
+
+msgid "How many days of email to fetch on first setup"
+msgstr "最初のセットアップ時に何日分の電子メールを取得するか"
+
+msgid "How many days to keep on the site"
+msgstr "サイトに何日間滞在し続けるか"
+
+msgid "Emails on the server are not deleted; only the copy on the site."
+msgstr "サーバー上の電子メールは削除されません。サイト上のコピーのみ。"
+
+msgid "Signature (optional)"
+msgstr "署名 (オプション)"
+
+msgid "Kind regards,\n{ad_soyad}"
+msgstr "よろしくお願いします。{ad_soyad}"
+
+msgid "Added to the end of emails written from the mailbox, followed by the organization details with logo. {ad_soyad} becomes the writer's name. If empty, \"Kind regards,\"."
+msgstr "メールボックスから書き込まれた電子メールの最後に追加され、その後にロゴ付きの組織の詳細が続きます。{ad_soyad}は作成者の名前になります。空の場合は「よろしくお願いします」。"
+
+msgid "Test connection"
+msgstr "テスト接続"
+
+msgid "Save first, then test."
+msgstr "まず保存してからテストします。"
+
+msgid "On, but the IMAP server, user or password is missing (Communication › Settings › Mailbox)."
+msgstr "オンですが、IMAP サーバー、ユーザー、またはパスワードがありません (通信 › 設定 › メールボックス)。"
+
+msgid "Last sync %s. Scheduled tasks (WP-Cron) may not be running; syncing still happens while the Mailbox screen is open."
+msgstr "最終同期%s。スケジュールされたタスク (WP-Cron) が実行されていない可能性があります。メールボックス画面が開いている間も同期は行われます。"
+
+msgid "Syncing; last sync %s."
+msgstr "同期中。最終同期%s。"
+
+msgid "Sent folder not found: email sent from webmail will not appear."
+msgstr "送信済みフォルダーが見つかりません: Web メールから送信されたメールは表示されません。"
+
+msgid "Email not found."
+msgstr "電子メールが見つかりません。"
+
+msgid "Content was not stored (Settings › Log › content logging is off)."
+msgstr "コンテンツは保存されませんでした (設定 › ログ › コンテンツのログ記録がオフになっています)。"
+
+msgid "The action could not be completed."
+msgstr "アクションを完了できませんでした。"
+
+msgid "Connection successful. The inbox has %1$s emails. Sent folder: %2$s"
+msgstr "接続に成功しました。受信箱には%1$sのメールがあります。送信フォルダー:%2$s"
+
+msgid "not found"
+msgstr "見つからない"
+
+msgid "Draft not found."
+msgstr "ドラフトが見つかりません。"
+
+msgid "Draft not found or already sent."
+msgstr "下書きが見つからないか、すでに送信されました。"
+
+msgid "Forwarded email"
+msgstr "転送されたメール"
+
+msgid "On %1$s, %2$s wrote:"
+msgstr "%1$sで、%2$sは次のように書きました。"
+
+msgid "This draft was already sent."
+msgstr "このドラフトはすでに送信されました。"
+
+msgid "No recipient (To) or the address is invalid."
+msgstr "受信者 (To) がないか、アドレスが無効です。"
+
+msgid "Subject is empty."
+msgstr "件名が空です。"
+
+msgid "An email can have at most %s recipients."
+msgstr "電子メールには最大でも%s受信者を含めることができます。"
+
+msgid "Recipient is blocklisted: email not sent."
+msgstr "受信者がブロックリストに登録されているため、電子メールは送信されません。"
+
+msgid "Email not sent (template is off)."
+msgstr "メールは送信されませんでした (テンプレートがオフになっています)。"
+
+msgid "Could not send. Details in Logs."
+msgstr "送信できませんでした。詳細はログに記載されています。"
+
+msgid "Draft"
+msgstr "草案"
+
+msgid "IMAP server, user or password is missing (Settings › Mailbox)."
+msgstr "IMAP サーバー、ユーザー、またはパスワードがありません (設定 › メールボックス)。"
+
+msgid "Mailbox is off."
+msgstr "メールボックスがオフになっています。"
+
+msgid "Attachment not found."
+msgstr "添付ファイルが見つかりません。"
+
+msgid "Message not found on the server (it may have been deleted or moved)."
+msgstr "メッセージがサーバー上に見つかりません (削除または移動された可能性があります)。"
+
+msgid "Corporate"
+msgstr "企業向け"
+
+msgid "Logo card, button, corporate footer. For announcements and new emails."
+msgstr "ロゴカード、ボタン、企業フッター。お知らせと新しいメール用。"
+
+msgid "Plain"
+msgstr "プレーン"
+
+msgid "Personal letter look with a small logo signature below. For replies."
+msgstr "下に小さなロゴの署名が入った個人的な手紙のような外観。返信用。"
+
+msgid "Untitled layout"
+msgstr "無題のレイアウト"
+
+msgid "Kind regards,"
+msgstr "よろしくお願いします。"
+
+msgid "Could not connect to %1$s: %2$s"
+msgstr "%1$sに接続できませんでした:%2$s"
+
+msgid "The server sent no IMAP greeting."
+msgstr "サーバーは IMAP グリーティングを送信しませんでした。"
+
+msgid "STARTTLS failed."
+msgstr "STARTTLS が失敗しました。"
+
+msgid "IMAP login failed: wrong user name or password."
+msgstr "IMAP ログインに失敗しました。ユーザー名またはパスワードが間違っています。"
+
+msgid "Could not open folder %s."
+msgstr "フォルダー%sを開けませんでした。"
+
+msgid "IMAP connection lost."
+msgstr "IMAP 接続が失われました。"
+
+msgid "IMAP server did not respond (timeout)."
+msgstr "IMAP サーバーが応答しませんでした (タイムアウト)。"
+
+msgid "Flux AI & MCP is not installed or has no key (Flux AI & MCP › Settings)."
+msgstr "Flux AI と MCP がインストールされていないか、キーがありません (Flux AI と MCP › 設定)。"
+
+msgid "List emails"
+msgstr "メールの一覧表示"
+
+msgid "Read email"
+msgstr "メールを読む"
+
+msgid "List email layouts"
+msgstr "電子メールのレイアウトをリストする"
+
+msgid "Write email draft"
+msgstr "メールの下書きを書く"
+
+msgid "Send draft"
+msgstr "下書きを送信する"
+
+msgid "Communication (mailbox)"
+msgstr "通信(メールボックス)"
+
+msgid "Flux Mail"
+msgstr "フラックスメール"
+
+msgid "Email reply"
+msgstr "メール返信"
+
+msgid "Email draft"
+msgstr "ドラフトをメールで送信"
+
+msgid "No PDF converter on the server (Flux AI & MCP › Settings › Images › Gotenberg)."
+msgstr "サーバー上に PDF コンバーターがありません (Flux AI および MCP › 設定 › 画像 › Gotenberg)。"
+
+msgid "Could not reach the PDF converter: %s"
+msgstr "PDF コンバーターに到達できませんでした:%s"
+
+msgid "Could not create the PDF (HTTP %d)."
+msgstr "PDF を作成できませんでした (HTTP%d)。"
+
+msgid "Download PDF"
+msgstr "PDFをダウンロード"
+
+msgid "Preparing PDF…"
+msgstr "PDFを準備中..."
+
+msgid "Email parser"
+msgstr "電子メールパーサー"
+
+msgid "PHP mailparse extension is on: headers and addresses of incoming email are read with it."
+msgstr "PHP mailparse 拡張機能がオンになっているため、受信メールのヘッダーとアドレスが読み取られます。"
+
+msgid "The PHP mailparse extension is missing; the plugin's own parser is used (it works). You can turn on \"mailparse\" in hPanel › PHP Configuration › PHP Extensions."
+msgstr "PHP mailparse 拡張機能がありません。プラグイン独自のパーサーが使用されます (機能します)。 hPanel › PHP 設定 › PHP 拡張機能で「mailparse」をオンにできます。"
+
+msgid "Built-in"
+msgstr "内蔵"
+
+msgid "AI"
+msgstr "AI"
+
+msgid "There are unsaved changes. Close anyway?"
+msgstr "未保存の変更があります。とにかく閉じますか?"
+
+msgid "The draft is empty."
+msgstr "ドラフトは空です。"
+
+msgid "Added to the end of emails written from the mailbox; the organization info with logo comes below it. {ad_soyad} becomes the writer's name. If empty, nothing is added."
+msgstr "メールボックスから書き込まれた電子メールの末尾に追加されます。その下にロゴ付きの組織情報が表示されます。{ad_soyad}は作成者の名前になります。空の場合は何も追加されません。"
+
+msgid "Server"
+msgstr "サーバー"
+
+msgid "I'll enter new server details"
+msgstr "新しいサーバーの詳細を入力します"
+
+msgid "Same server: %1$s (%2$s)"
+msgstr "同じサーバー:%1$s(%2$s)"
+
+msgid "When adding a second number to the same server, the address and API key aren't entered again; just type the new instance name."
+msgstr "同じサーバーに 2 番目の番号を追加する場合、アドレスと API キーは再度入力されません。新しいインスタンス名を入力するだけです。"
+
+msgid "Each row is one number. Press \"Connect\" to link a number, see its status or reconnect it; no separate panel needed."
+msgstr "各行は 1 つの数字です。 「接続」を押して番号をリンクし、そのステータスを確認するか、再接続します。別個のパネルは必要ありません。"
+
+msgid "Connect"
+msgstr "接続する"
+
+msgid "Restart"
+msgstr "再起動"
+
+msgid "Log the number out"
+msgstr "番号をログアウトします"
+
+msgid "Server settings"
+msgstr "サーバー設定"
+
+msgid "Delete (number stays on the server)"
+msgstr "削除(番号はサーバー上に残ります)"
+
+msgid "Also delete from the server"
+msgstr "サーバーからも削除"
+
+msgid "Also delete the number from the server? The session, message history and contacts are deleted on the server; adding it again needs a QR scan."
+msgstr "番号もサーバーから削除しますか?セッション、メッセージ履歴、連絡先はサーバー上で削除されます。再度追加するには QR スキャンが必要です。"
+
+msgid "Connection saved. On the phone, scan the QR in WhatsApp › Linked devices › Link a device."
+msgstr "接続が保存されました。電話で、WhatsApp › リンクされたデバイス › デバイスのリンク で QR をスキャンします。"
+
+msgid "Connected"
+msgstr "接続済み"
+
+msgid "Waiting for QR"
+msgstr "QR待ち"
+
+msgid "Not connected"
+msgstr "接続されていません"
+
+msgid "Not on the server"
+msgstr "サーバー上にありません"
+
+msgid "Server unreachable"
+msgstr "サーバーに到達できません"
+
+msgid "Status unknown"
+msgstr "ステータス不明"
+
+msgid "WhatsApp QR code"
+msgstr "WhatsApp QRコード"
+
+msgid "Open WhatsApp on the phone."
+msgstr "電話で WhatsApp を開きます。"
+
+msgid "Settings › Linked devices › Link a device."
+msgstr "設定 › リンクされたデバイス › デバイスをリンクします。"
+
+msgid "Scan this QR. The code refreshes by itself."
+msgstr "この QR をスキャンしてください。コードは自動的に更新されます。"
+
+msgid "Can't scan the QR: get a code with the phone number"
+msgstr "QR をスキャンできません: 電話番号を含むコードを取得してください"
+
+msgid "Phone number"
+msgstr "電話番号"
+
+msgid "Get code"
+msgstr "コードを取得"
+
+msgid "Type this code in WhatsApp › Linked devices › Link a device › \"Link with phone number instead\"."
+msgstr "このコードを WhatsApp › リンクされたデバイス › デバイスのリンク › 「代わりに電話番号でリンク」に入力します。"
+
+msgid "Flux WPAPI server"
+msgstr "Flux WPAPI サーバー"
+
+msgid "Please wait…"
+msgstr "お待ちください..."
+
+msgid "Scan the QR with the phone."
+msgstr "携帯電話で QR をスキャンします。"
+
+msgid "Type this code in WhatsApp on the phone."
+msgstr "電話の WhatsApp にこのコードを入力します。"
+
+msgid "Connected."
+msgstr "接続されました。"
+
+msgid "Log the number out? Messages won't arrive; reconnecting needs a QR scan."
+msgstr "番号をログアウトしますか?メッセージは届きません。再接続するには QR スキャンが必要です。"
+
+msgid "Version"
+msgstr "バージョン"
+
+msgid "Data store"
+msgstr "データストア"
+
+msgid "File"
+msgstr "ファイル"
+
+msgid "Last keep-alive"
+msgstr "最後のキープアライブ"
+
+msgid "none yet"
+msgstr "まだ何もありません"
+
+msgid "Voice message converter"
+msgstr "ボイスメッセージコンバータ"
+
+msgid "Yes"
+msgstr "はい"
+
+msgid "Bridge public address"
+msgstr "橋のパブリックアドレス"
+
+msgid "Keep-alive sends requests to this address. E.g. https://example.org"
+msgstr "キープアライブはこのアドレスにリクエストを送信します。例えば。 https://example.org"
+
+msgid "Keep awake (so Hostinger doesn't put the app to sleep)"
+msgstr "起きたままにする (Hostinger がアプリをスリープ状態にしないようにする)"
+
+msgid "Database"
+msgstr "データベース"
+
+msgid "The database comes from the bridge's environment variables; it can't be changed here."
+msgstr "データベースはブリッジの環境変数から取得されます。ここでは変更できません。"
+
+msgid "Store"
+msgstr "ストア"
+
+msgid "Database name"
+msgstr "データベース名"
+
+msgid "User"
+msgstr "ユーザー"
+
+msgid "Saved · type to change"
+msgstr "保存済み · 変更するタイプ"
+
+msgid "Table prefix"
+msgstr "テーブルの接頭辞"
+
+msgid "The password is only sent to the bridge; it isn't stored in WordPress."
+msgstr "パスワードはブリッジにのみ送信されます。 WordPress には保存されません。"
+
+msgid "Changing the store closes the numbers' connections and they need a new QR scan. Continue?"
+msgstr "ストアを変更すると番号の接続が切断されるため、新しい QR スキャンが必要になります。続く?"
+
+msgid "Test database"
+msgstr "テストデータベース"
+
+msgid "WhatsApp connection not found."
+msgstr "WhatsApp 接続が見つかりません。"
+
+msgid "Couldn't reach the server:"
+msgstr "サーバーにアクセスできませんでした:"
+
+msgid "API key was not accepted."
+msgstr "API キーが受け入れられませんでした。"
+
+msgid "Server settings exist only for Flux WPAPI connections."
+msgstr "サーバー設定は Flux WPAPI 接続に対してのみ存在します。"
+
+msgid "This Flux WPAPI version doesn't support changing server settings from WordPress. Update the bridge."
+msgstr "この Flux WPAPI バージョンは、WordPress からのサーバー設定の変更をサポートしていません。ブリッジを更新します。"
+
+msgid "WhatsApp · Flux WPAPI"
+msgstr "WhatsApp · Flux WPAPI"
+
+msgid "The Flux WPAPI bridge installed as a Node.js app on Hostinger. The address is e.g. https://wa.example.com; the API key is the bridge panel's general API key; the instance is the name you give this number (created on \"Connect\" if it does not exist)."
+msgstr "Flux WPAPI ブリッジは、Hostinger に Node.js アプリとしてインストールされます。アドレスは例えば https://wa.example.com; API キーはブリッジ パネルの一般 API キーです。インスタンスは、この番号に付けた名前です (存在しない場合は「Connect」で作成されます)。"
+
+msgid "Number not connected (status: %s). Scan the QR with \"Connect\"."
+msgstr "番号が接続されていません (ステータス:%s)。 「接続」でQRをスキャンします。"
+
+msgid "Setup"
+msgstr "セットアップ"
+
+msgid "Connection saved. Now enter the webhook address in your Meta app."
+msgstr "接続が保存されました。次に、Meta アプリに Webhook アドレスを入力します。"
+
+msgid "What's different in Cloud API"
+msgstr "クラウド API の違い"
+
+msgid "24-hour rule: if the person hasn't written in the last 24 hours, only a Meta-approved template can be sent."
+msgstr "24 時間ルール: 過去 24 時間以内に投稿がなかった場合、メタ承認されたテンプレートのみを送信できます。"
+
+msgid "No group messages: Call Center's team group mirror doesn't work on this line."
+msgstr "グループ メッセージなし: コールセンターのチーム グループ ミラーは、この回線では機能しません。"
+
+msgid "Sent messages can't be edited; past chats can't be imported."
+msgstr "送信されたメッセージは編集できません。過去のチャットはインポートできません。"
+
+msgid "\"Typing…\" only shows while replying to an incoming message."
+msgstr "「入力中...」は、受信メッセージに返信しているときにのみ表示されます。"
+
+msgid "Cost: template messages and replies beyond 1000 a month are charged by Meta."
+msgstr "コスト: 月に 1000 件を超えるテンプレート メッセージと返信にはメタによって課金されます。"
+
+msgid "No ban risk; the number can stay in the WhatsApp Business app on the phone too (coexistence)."
+msgstr "禁止のリスクはありません。電話機の WhatsApp Business アプリにも番号を残すことができます (共存)。"
+
+msgid "Copy"
+msgstr "コピー"
+
+msgid "Number quality"
+msgstr "数値の質"
+
+msgid "High"
+msgstr "高"
+
+msgid "Medium"
+msgstr "中"
+
+msgid "Low"
+msgstr "低い"
+
+msgid "Webhook (incoming messages)"
+msgstr "Webhook (受信メッセージ)"
+
+msgid "Meta for Developers › your app › WhatsApp › Configuration › Webhook: enter the address and verify token below, press \"Verify and save\", then subscribe to the \"messages\" field."
+msgstr "開発者向けメタ › アプリ › WhatsApp › 設定 › Webhook: 以下にアドレスとトークンを検証し、[検証して保存] を押して、[メッセージ] フィールドを購読します。"
+
+msgid "Callback URL"
+msgstr "コールバック URL"
+
+msgid "Verify token"
+msgstr "トークンの検証"
+
+msgid "Meta verification"
+msgstr "メタ検証"
+
+msgid "Last incoming event"
+msgstr "最後に受信したイベント"
+
+msgid "Request with a bad signature"
+msgstr "不正な署名を含むリクエスト"
+
+msgid "Open 24-hour windows"
+msgstr "24時間営業の窓口"
+
+msgid "App Secret not entered: incoming requests aren't verified as coming from Meta. Add it under Edit."
+msgstr "アプリ シークレットが入力されていません: 受信リクエストはメタからのものとして検証されていません。 「編集」の下に追加します。"
+
+msgid "Approved templates"
+msgstr "承認されたテンプレート"
+
+msgid "WABA ID is required for templates."
+msgstr "テンプレートにはWABA IDが必要です。"
+
+msgid "No templates. Add them in WhatsApp Manager › Message templates."
+msgstr "テンプレートはありません。 WhatsApp マネージャー › メッセージ テンプレートに追加します。"
+
+msgid "WhatsApp · Cloud API (Meta)"
+msgstr "WhatsApp · クラウド API (メタ)"
+
+msgid "Meta's official WhatsApp Cloud API; no extra server. From Meta Business › WhatsApp Manager copy the Phone Number ID and WhatsApp Business account (WABA) ID, and from Business settings › System users copy a permanent access token. After saving, paste the webhook URL from \"Setup\" into the Meta app."
+msgstr "Meta の公式 WhatsApp クラウド API。追加のサーバーはありません。 Meta Business › WhatsApp Manager から電話番号 ID と WhatsApp Business アカウント (WABA) ID をコピーし、ビジネス設定 › システム ユーザーから永続アクセス トークンをコピーします。保存後、「設定」からWebhook URLをメタアプリに貼り付けます。"
+
+msgid "Phone Number ID"
+msgstr "電話番号ID"
+
+msgid "WhatsApp Business account ID (WABA)"
+msgstr "WhatsApp ビジネスアカウント ID (WABA)"
+
+msgid "Needed for the template list."
+msgstr "テンプレートリストに必要です。"
+
+msgid "Permanent access token (System User token)"
+msgstr "永続的なアクセス トークン (システム ユーザー トークン)"
+
+msgid "App Secret"
+msgstr "アプリの秘密"
+
+msgid "Verifies that incoming webhooks come from Meta. If empty, the signature isn't checked (not recommended)."
+msgstr "受信 Webhook が Meta からのものであることを検証します。空の場合、署名はチェックされません (推奨されません)。"
+
+msgid "Graph API version"
+msgstr "グラフAPIのバージョン"
+
+msgid "Couldn't reach Meta:"
+msgstr "メタに到達できませんでした:"
+
+msgid "24-hour window closed: the person hasn't written in the last 24 hours. Only an approved template can be sent."
+msgstr "24 時間の窓口は閉まっています: その人は過去 24 時間に書き込みをしていません。承認されたテンプレートのみを送信できます。"
+
+msgid "Message not delivered: the number has no WhatsApp or has blocked you."
+msgstr "メッセージが配信されませんでした: この番号には WhatsApp がないか、ブロックされています。"
+
+msgid "Access token is invalid or expired."
+msgstr "アクセストークンが無効か期限切れです。"
+
+msgid "This number isn't on the test list (Meta test account)."
+msgstr "この番号はテスト リスト (メタ テスト アカウント) には含まれていません。"
+
+msgid "Messages sent to the same person too fast; wait a little."
+msgstr "同じ人に送信されるメッセージが速すぎます。少し待ってください。"
+
+msgid "Template not found or not approved in this language."
+msgstr "テンプレートが見つからないか、この言語では承認されていません。"
+
+msgid "Cloud API connection is incomplete."
+msgstr "クラウド API 接続が不完全です。"
+
+msgid "To test, first send a message from that number to this line."
+msgstr "テストするには、まずその番号からこの回線にメッセージを送信します。"
+
+msgid "Cloud API connection not found."
+msgstr "クラウド API 接続が見つかりません。"
+
+msgid "Status / reconnect (QR)"
+msgstr "ステータス/再接続(QR)"
+
+msgid "Check connection"
+msgstr "接続を確認してください"
+
+msgid "Sends no message; only checks the connection."
+msgstr "メッセージは送信しません。接続のみをチェックします。"
+
+msgid "Recipient number"
+msgstr "受信者番号"
+
+msgid "With country code, e.g. 905301234567. Messages go to this number."
+msgstr "国コード付き、例: 905301234567。メッセージはこの番号に送信されます。"
+
+msgid "What to send?"
+msgstr "何を送ろうか?"
+
+msgid "Text"
+msgstr "テキスト"
+
+msgid "Image"
+msgstr "画像"
+
+msgid "Voice message"
+msgstr "音声メッセージ"
+
+msgid "Document (PDF)"
+msgstr "資料(PDF)"
+
+msgid "Message text"
+msgstr "メッセージテキスト"
+
+msgid "Image / document caption"
+msgstr "画像/文書のキャプション"
+
+msgid "Hello, this is a %s test message. 🌱"
+msgstr "こんにちは、これは%sテスト メッセージです。 🌱"
+
+msgid "Test image · %s"
+msgstr "テスト画像・%s"
+
+msgid "Send %d messages"
+msgstr "%dメッセージを送信する"
+
+msgid "Enter the recipient number first."
+msgstr "最初に受信者番号を入力します。"
+
+msgid "Pick at least one scenario."
+msgstr "少なくとも 1 つのシナリオを選択します。"
+
+msgid "The number is not connected; messages will not go out. Scan the QR with \"Connect\" first."
+msgstr "この番号は接続されていません。メッセージは出ません。まず「接続」でQRをスキャンします。"
+
+msgid "24-hour rule: if the person has not written to this line in the last 24 hours, text, image, audio and documents will not go out; only approved templates. Send a message to this line from that number first."
+msgstr "24 時間ルール: 過去 24 時間以内にこの行に書き込みがなかった場合、テキスト、画像、音声、ドキュメントは送信されません。承認されたテンプレートのみ。まずはその番号からこの回線にメッセージを送信してください。"
+
+msgid "Choose a template"
+msgstr "テンプレートを選択してください"
+
+msgid "Loading templates…"
+msgstr "テンプレートを読み込み中..."
+
+msgid "No approved templates."
+msgstr "承認されたテンプレートはありません。"
+
+msgid "Variable {{%d}}"
+msgstr "変数 {{%d}}"
+
+msgid "SMS is paid; each message is deducted from the balance."
+msgstr "SMS は有料です。各メッセージは残高から差し引かれます。"
+
+msgid "1 page · PDF"
+msgstr "1ページ・PDF"
+
+msgid "%1$d / %2$d sent."
+msgstr "%1$d/%2$dが送信されました。"
+
+msgid "Check the phone."
+msgstr "電話を確認してください。"
+
+msgid "SMS"
+msgstr "SMS"
+
+msgid "This connection does not support this scenario."
+msgstr "この接続はこのシナリオをサポートしていません。"
+
+msgid "Enter a valid recipient number."
+msgstr "有効な受信者番号を入力してください。"
+
+msgid "Choose a template."
+msgstr "テンプレートを選択します。"
+
+msgid "To try, first send a message to this line from that number, or send a template."
+msgstr "試してみるには、まずその番号からこの回線にメッセージを送信するか、テンプレートを送信します。"
+
+msgid "The file could not be read."
+msgstr "ファイルを読み取れませんでした。"
+
+msgid "The file could not be uploaded to Meta:"
+msgstr "ファイルをメタにアップロードできませんでした:"
+
+msgid "Incoming e-mail appears here."
+msgstr "受信メールがここに表示されます。"
+
+msgid "Inbox is empty"
+msgstr "受信箱が空です"
+
+msgid "Could not send."
+msgstr "送信できませんでした。"
+
+msgid "Sent e-mail, WhatsApp and SMS appear here."
+msgstr "送信された電子メール、WhatsApp、SMS がここに表示されます。"
+
+msgid "Send log"
+msgstr "ログを送信する"
+
+msgid "Log entry"
+msgstr "ログエントリ"
+
+msgid "No log entries"
+msgstr "ログエントリがありません"
+
+msgid "From or subject"
+msgstr "発信者または件名"
+
+msgid "WhatsApp"
+msgstr "ワッツアップ"
+
+msgid "The reply cannot be empty."
+msgstr "返信を空にすることはできません。"
+
+msgid "[['All emails of the site in one place: sender name/address (info@ / no-reply@), SMTP, corporate templates with logo and mobile-friendly, viewing, editing, opening/closing emails of WordPress + WooCommerce + FluxWP plugins, sending records, individual and bulk sending. WhatsApp (Evolution API) and SMS (Netgsm) connections are also here; Other plugins use it with public API.', 'tr']]"
+msgstr "[['サイトのすべてのメールを 1 か所に: 送信者名/アドレス (info@ / no-reply@)、SMTP、ロゴ付きおよびモバイル対応の企業テンプレート、WordPress + WooCommerce + FluxWP プラグインのメールの表示、編集、開閉、送信記録、個別および一括送信。 WhatsApp (Evolution API) および SMS (Netgsm) 接続もここにあります。他のプラグインはパブリック API でそれを使用します。', 'tr']]"

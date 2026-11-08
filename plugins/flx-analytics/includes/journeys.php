@@ -15,7 +15,7 @@ class FLXAN_Journeys {
 
 	/** Hedef seçenekleri: huni adımları ("fid:adım"). */
 	public static function goals() {
-		$out = array( '' => __( 'Hedef yok', 'flx-analytics' ) );
+		$out = array( '' => __( 'No goal', 'flx-analytics' ) );
 		foreach ( flxan_funnels() as $f ) {
 			foreach ( $f['steps'] as $i => $st ) {
 				if ( 'any' === $st['type'] ) {
@@ -133,17 +133,17 @@ class FLXAN_Journeys {
 	/** Yolculuktaki olay adımının adı (ör. "Sepete ekledi"). */
 	public static function event_label( $ev ) {
 		$map = array(
-			'add_to_cart'      => __( 'Sepete ekledi', 'flx-analytics' ),
-			'remove_from_cart' => __( 'Sepetten çıkardı', 'flx-analytics' ),
-			'coupon'           => __( 'Kupon kullandı', 'flx-analytics' ),
-			'checkout:form'    => __( 'Ödeme formuna başladı', 'flx-analytics' ),
-			'checkout:submit'  => __( '"Ödeme yap"a bastı', 'flx-analytics' ),
-			'checkout'         => __( 'Ödeme adımı', 'flx-analytics' ),
-			'payment'          => __( 'Ödeme yöntemi seçti', 'flx-analytics' ),
-			'order'            => __( 'Sipariş oluştu', 'flx-analytics' ),
-			'whatsapp'         => __( 'WhatsApp\'a tıkladı', 'flx-analytics' ),
-			'tel'              => __( 'Telefona tıkladı', 'flx-analytics' ),
-			'download'         => __( 'Dosya indirdi', 'flx-analytics' ),
+			'add_to_cart'      => __( 'Added to cart', 'flx-analytics' ),
+			'remove_from_cart' => __( 'Removed from cart', 'flx-analytics' ),
+			'coupon'           => __( 'Used a coupon', 'flx-analytics' ),
+			'checkout:form'    => __( 'Started checkout form', 'flx-analytics' ),
+			'checkout:submit'  => __( 'Clicked "Place order"', 'flx-analytics' ),
+			'checkout'         => __( 'Checkout step', 'flx-analytics' ),
+			'payment'          => __( 'Chose payment method', 'flx-analytics' ),
+			'order'            => __( 'Order created', 'flx-analytics' ),
+			'whatsapp'         => __( 'Clicked WhatsApp', 'flx-analytics' ),
+			'tel'              => __( 'Clicked phone', 'flx-analytics' ),
+			'download'         => __( 'Downloaded a file', 'flx-analytics' ),
 		);
 		if ( isset( $map[ $ev ] ) ) {
 			return $map[ $ev ];
@@ -335,7 +335,7 @@ class FLXAN_Journeys {
 			foreach ( $ns as $k => $v ) {
 				$col[] = array(
 					'key'   => (string) $k,
-					'label' => '~' === $k ? __( 'Diğer sayfalar', 'flx-analytics' ) : self::label( $k ),
+					'label' => '~' === $k ? __( 'Other pages', 'flx-analytics' ) : self::label( $k ),
 					'path'  => '~' === $k || '@' === substr( (string) $k, 0, 1 ) ? '' : rawurldecode( $k ),
 					'ev'    => '@' === substr( (string) $k, 0, 1 ),
 					'count' => $v['count'],

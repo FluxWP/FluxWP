@@ -30,7 +30,7 @@ function flxi_render_pdf( $html ) {
 		return $pre;
 	}
 	if ( ! flxi_pdf_available() ) {
-		return new WP_Error( 'flxi_pdf_unavailable', __( 'Sunucuda PDF çevirici yok (Flux AI & MCP › Ayarlar › Görseller › Gotenberg).', 'flx-mail' ) );
+		return new WP_Error( 'flxi_pdf_unavailable', __( 'No PDF converter on the server (Flux AI & MCP › Settings › Images › Gotenberg).', 'flx-mail' ) );
 	}
 	$url      = untrailingslashit( trim( (string) flxai_setting( 'render_url', '' ) ) ) . '/forms/chromium/convert/html';
 	$boundary = 'flxi' . wp_generate_password( 16, false );
@@ -66,13 +66,13 @@ function flxi_render_pdf( $html ) {
 	);
 	if ( is_wp_error( $r ) ) {
 		/* translators: %s: hata */
-		return new WP_Error( 'flxi_pdf_http', sprintf( __( 'PDF çeviriciye ulaşılamadı: %s', 'flx-mail' ), $r->get_error_message() ) );
+		return new WP_Error( 'flxi_pdf_http', sprintf( __( 'Could not reach the PDF converter: %s', 'flx-mail' ), $r->get_error_message() ) );
 	}
 	$code = (int) wp_remote_retrieve_response_code( $r );
 	$data = (string) wp_remote_retrieve_body( $r );
 	if ( 200 !== $code || '%PDF' !== substr( $data, 0, 4 ) ) {
 		/* translators: %d: HTTP kodu */
-		return new WP_Error( 'flxi_pdf_failed', sprintf( __( 'PDF oluşturulamadı (HTTP %d).', 'flx-mail' ), $code ) );
+		return new WP_Error( 'flxi_pdf_failed', sprintf( __( 'Could not create the PDF (HTTP %d).', 'flx-mail' ), $code ) );
 	}
 	return $data;
 }

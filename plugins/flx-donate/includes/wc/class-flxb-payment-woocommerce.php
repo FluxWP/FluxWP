@@ -19,7 +19,7 @@ class FLXB_Payment_WooCommerce extends FLXB_Payment_Provider_Base {
 	}
 
 	public function label() {
-		return __( 'WooCommerce checkout', 'flx-donate' );
+		return __( '\\nWooCommerce checkout\\n', 'flx-donate' );
 	}
 
 	public function supports( $currency, $method ) {
@@ -38,8 +38,8 @@ class FLXB_Payment_WooCommerce extends FLXB_Payment_Provider_Base {
 					'ver'  => FLXB_VERSION,
 					'data' => array(
 						'flxfPayWc' => array(
-							'note'    => __( 'You will choose how to pay (card or bank transfer) on the next page.', 'flx-donate' ),
-							'monthly' => __( 'Monthly donations are paid by card; the card is stored by iyzico and charged once a month.', 'flx-donate' ),
+							'note'    => __( '\\nYou will choose how to pay (card or bank transfer) on the next page.\\n', 'flx-donate' ),
+							'monthly' => __( '\\nMonthly donations are paid by card; the card is stored by iyzico and charged once a month.\\n', 'flx-donate' ),
 						),
 					),
 				),
@@ -63,13 +63,13 @@ class FLXB_Payment_WooCommerce extends FLXB_Payment_Provider_Base {
 			/* A payment form not linked to a donation type: one general donation line for the server amount. */
 			$tid = FLXB_WC_Cart::fallback_type();
 			if ( ! $tid ) {
-				return new WP_Error( 'flxb_type', __( 'This form is not linked to a donation type. Please contact the site administrator.', 'flx-donate' ) );
+				return new WP_Error( 'flxb_type', __( '\\nThis form is not linked to a donation type. Please contact the site administrator.\\n', 'flx-donate' ) );
 			}
 			$snap['lines'] = array( array( 'key' => '', 'units' => 1, 'amount' => $amount ) );
 		}
 		$t = FLXB_Types::get( $tid );
 		if ( ! $t ) {
-			return new WP_Error( 'flxb_type', __( 'The donation type of this form was not found.', 'flx-donate' ) );
+			return new WP_Error( 'flxb_type', __( '\\nThe donation type of this form was not found.\\n', 'flx-donate' ) );
 		}
 		$cert  = FLXB_WC_Cart::type_has_certificate( $t ) && ! FLXB_WC_Certificates::form_handles( array( 'form' => $form ) ) ? 'online' : '';
 		$lines   = array();
@@ -114,20 +114,20 @@ class FLXB_Payment_WooCommerce extends FLXB_Payment_Provider_Base {
 			$lines[] = array( 'type_id' => (int) $t['id'], 'option' => '', 'units' => 1, 'amount' => $rest, 'fixed' => true, 'monthly' => $monthly, 'form' => $form );
 		}
 		if ( ! $lines || abs( $amount - array_sum( array_column( $lines, 'amount' ) ) ) > 0.004 ) {
-			return new WP_Error( 'flxb_amount', __( 'The amount could not be calculated. Please review your choices and try again.', 'flx-donate' ) );
+			return new WP_Error( 'flxb_amount', __( '\\nThe amount could not be calculated. Please review your choices and try again.\\n', 'flx-donate' ) );
 		}
 		if ( $monthly && ! FLXB_WC_Cart::monthly_available() ) {
-			return new WP_Error( 'flxb_monthly', __( 'Monthly donations are not available at the moment.', 'flx-donate' ) );
+			return new WP_Error( 'flxb_monthly', __( '\\nMonthly donations are not available at the moment.\\n', 'flx-donate' ) );
 		}
 		return $lines;
 	}
 
 	public function create_payment( $amount, $currency, array $meta ) {
 		if ( ! FLXB_WC::ready() ) {
-			return FLXB_Payment_Result::failed( __( 'Online payment is not available at the moment. Please try again later or contact us.', 'flx-donate' ) );
+			return FLXB_Payment_Result::failed( __( '\\nOnline payment is not available at the moment. Please try again later or contact us.\\n', 'flx-donate' ) );
 		}
 		if ( strtoupper( $currency ) !== strtoupper( get_woocommerce_currency() ) ) {
-			return FLXB_Payment_Result::failed( __( 'The currency of this form is not supported.', 'flx-donate' ) );
+			return FLXB_Payment_Result::failed( __( '[[\'The currency of this form is not supported.\\n', 'flx-donate' ) );
 		}
 		$lines = self::lines( (float) $amount, $meta );
 		if ( is_wp_error( $lines ) ) {

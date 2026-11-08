@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function flx_pay_logos_builtin() {
 	$list = array(
 		'iyzico' => array(
-			'label'   => __( 'iyzico ile Öde · Mastercard · Visa · American Express · Troy', 'fluxwp' ),
+			'label'   => __( 'Pay with iyzico · Mastercard · Visa · American Express · Troy', 'fluxwp' ),
 			'url'     => get_theme_file_uri( 'assets/images/odeme/iyzico-logo-band-white.svg' ),
 			'default' => true,
 			'chip'    => false,
@@ -114,7 +114,7 @@ function flx_pay_logos_html( $class = '' ) {
 	if ( ! $logos ) {
 		return '';
 	}
-	$h = '<div class="flx-pay-logos flx-pay-logos--list' . ( '' !== $class ? ' ' . esc_attr( $class ) : '' ) . '" role="list" aria-label="' . esc_attr__( 'Ödeme yöntemleri', 'fluxwp' ) . '">';
+	$h = '<div class="flx-pay-logos flx-pay-logos--list' . ( '' !== $class ? ' ' . esc_attr( $class ) : '' ) . '" role="list" aria-label="' . esc_attr__( 'Payment methods', 'fluxwp' ) . '">';
 	foreach ( $logos as $l ) {
 		$h .= '<span role="listitem" class="flx-pay-logo' . ( $l['chip'] ? ' flx-pay-logo--chip' : '' ) . ( $l['band'] ? ' flx-pay-logo--band' : '' ) . '"><img src="' . esc_url( $l['url'] ) . '" alt="' . esc_attr( $l['label'] ) . '"' . flx_pay_logo_size_attr( $l['url'] ) . ' loading="lazy" decoding="async"></span>';
 	}
@@ -201,31 +201,31 @@ function flx_pay_logos_admin() {
 			$built
 		),
 		'i18n'    => array(
-			'remove' => __( 'Kaldır', 'fluxwp' ),
-			'left'   => __( 'Sola al', 'fluxwp' ),
-			'pick'   => __( 'Ödeme logoları', 'fluxwp' ),
-			'use'    => __( 'Logoları ekle', 'fluxwp' ),
-			'empty'  => __( 'Logo yok: footer\'da ödeme logosu gösterilmez.', 'fluxwp' ),
+			'remove' => __( 'Remove', 'fluxwp' ),
+			'left'   => __( 'Move left', 'fluxwp' ),
+			'pick'   => __( 'Payment logos', 'fluxwp' ),
+			'use'    => __( 'Add logos', 'fluxwp' ),
+			'empty'  => __( 'No logos: the footer shows no payment logos.', 'fluxwp' ),
 		),
 	);
 	?>
-	<h2 class="title" id="flx-odeme-logolari"><?php esc_html_e( 'Ödeme logoları', 'fluxwp' ); ?></h2>
-	<p><?php esc_html_e( 'Sanal POS sağlayıcılarının (iyzico, EsnekPOS vb.) sitede görünmesini istediği logolar. Footer\'da gösterilir; başka bir yere [flx_odeme_logolari] kısa koduyla eklenir.', 'fluxwp' ); ?></p>
+	<h2 class="title" id="flx-odeme-logolari"><?php esc_html_e( 'Payment logos', 'fluxwp' ); ?></h2>
+	<p><?php esc_html_e( 'Logos that virtual POS providers (iyzico, EsnekPOS, etc.) want on the site. Shown in the footer; add them anywhere else with the [flx_odeme_logolari] shortcode.', 'fluxwp' ); ?></p>
 	<table class="form-table" role="presentation">
-		<tr><th scope="row"><?php esc_html_e( 'Logolar', 'fluxwp' ); ?></th><td>
+		<tr><th scope="row"><?php esc_html_e( 'Logos', 'fluxwp' ); ?></th><td>
 			<input type="hidden" id="flx-pl-list" name="flx_pay_logos[list]" value="<?php echo esc_attr( implode( ',', wp_list_pluck( $cur, 'key' ) ) ); ?>">
 			<input type="hidden" id="flx-pl-mode" name="flx_pay_logos[mode]" value="<?php echo $auto ? 'auto' : 'custom'; ?>">
 			<div id="flx-pl" class="flx-pl" aria-live="polite"></div>
 			<p class="flx-pl-actions">
-				<button type="button" class="button" id="flx-pl-upload"><?php esc_html_e( 'Logo yükle', 'fluxwp' ); ?></button>
-				<select id="flx-pl-builtin" aria-label="<?php esc_attr_e( 'Hazır logo', 'fluxwp' ); ?>"><option value=""><?php esc_html_e( 'Hazır logo ekle…', 'fluxwp' ); ?></option>
+				<button type="button" class="button" id="flx-pl-upload"><?php esc_html_e( 'Upload logo', 'fluxwp' ); ?></button>
+				<select id="flx-pl-builtin" aria-label="<?php esc_attr_e( 'Built-in logo', 'fluxwp' ); ?>"><option value=""><?php esc_html_e( 'Add a built-in logo…', 'fluxwp' ); ?></option>
 					<?php foreach ( $built as $k => $b ) : ?>
 					<option value="<?php echo esc_attr( $k ); ?>"><?php echo esc_html( $b['label'] ); ?></option>
 					<?php endforeach; ?>
 				</select>
-				<label><input type="checkbox" name="flx_pay_logos[reset]" value="1" id="flx-pl-reset"> <?php esc_html_e( 'Otomatiğe dön', 'fluxwp' ); ?></label>
+				<label><input type="checkbox" name="flx_pay_logos[reset]" value="1" id="flx-pl-reset"> <?php esc_html_e( 'Back to automatic', 'fluxwp' ); ?></label>
 			</p>
-			<p class="description"><?php echo $auto ? esc_html__( 'Şu an otomatik: iyzico bandı ve etkin sanal POS eklentilerinin logoları. Bir logo ekleyip kaldırdığınızda liste sizin seçiminiz olur.', 'fluxwp' ) : esc_html__( 'Elle seçilmiş liste. "Otomatiğe dön" ile iyzico bandı ve etkin sanal POS logolarına döner.', 'fluxwp' ); ?> <?php esc_html_e( 'SVG ya da şeffaf PNG önerilir; renkli logolar koyu footer\'da beyaz kutu içinde gösterilir.', 'fluxwp' ); ?></p>
+			<p class="description"><?php echo $auto ? esc_html__( 'Automatic now: the iyzico band and the logos of enabled virtual POS plugins. Once you add or remove a logo, the list is your own choice.', 'fluxwp' ) : esc_html__( 'Hand-picked list. "Back to automatic" returns to the iyzico band and the logos of enabled virtual POS plugins.', 'fluxwp' ); ?> <?php esc_html_e( 'SVG or transparent PNG is best; colored logos are shown in a white box on a dark footer.', 'fluxwp' ); ?></p>
 		</td></tr>
 	</table>
 	<style>

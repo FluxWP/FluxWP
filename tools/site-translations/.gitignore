@@ -1,0 +1,4 @@
+__pycache__/
+.translation_cache/
+fluxwp-site-translations/
+*.zip

@@ -1,0 +1,1505 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: zh_CN\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Performance"
+msgstr "性能"
+
+msgid "Safe"
+msgstr "安全"
+
+msgid "Test first"
+msgstr "先测试一下"
+
+msgid "The theme or a preset overrides this feature in code (flxp_pagespeed_enabled); this setting may not take effect."
+msgstr "主题或预设会在代码中覆盖此功能(flxp_pagespeed_enabled);该设置可能不会生效。"
+
+msgid "Saved. The cache and the LiteSpeed page cache were cleared; browse a few pages to check."
+msgstr "已保存。缓存和LiteSpeed页面缓存被清除;浏览几页进行检查。"
+
+msgid "PageSpeed cache cleared."
+msgstr "PageSpeed 缓存已清除。"
+
+msgid "Google PageSpeed / Lighthouse suggestions that can be applied without changing the theme. Each one is switched on separately; after enabling a \"Test first\" item, check a few pages of the site (home, a post, donation/checkout)."
+msgstr "Google PageSpeed / Lighthouse 建议无需更改主题即可应用。每一个单独开启;启用“先测试”项目后,检查网站的几个页面(主页、帖子、捐赠/结帐)。"
+
+msgid "Basics"
+msgstr "基础知识"
+
+msgid "Remove the zoom lock"
+msgstr "取下变焦锁"
+
+msgid "user-scalable=no and maximum-scale are removed from the viewport tag so visitors with low vision can zoom in. Directly affects the Accessibility score."
+msgstr "user-scalable=no 和 Maximum-scale 已从视口标签中删除,以便视力不佳的访问者可以放大。直接影响可访问性分数。"
+
+msgid "Remove the emoji script"
+msgstr "删除表情符号脚本"
+
+msgid "WordPress's emoji detection script and style are not loaded. Modern browsers render emoji themselves."
+msgstr "WordPress 的表情符号检测脚本和样式未加载。现代浏览器会自行渲染表情符号。"
+
+msgid "Scope"
+msgstr "适用范围"
+
+msgid "Theme CSS only (recommended)"
+msgstr "仅主题 CSS(推荐)"
+
+msgid "Theme + plugins (all CSS under wp-content)"
+msgstr "主题+插件(wp-content下的所有CSS)"
+
+msgid "Inline limit"
+msgstr "内联限制"
+
+msgid "Trimmed CSS is written into <head> up to this size; anything beyond is loaded as a separate cached file. 0 = always a file."
+msgstr "修剪后的 CSS 写入<head>直至达到此大小;超出的任何内容都会作为单独的缓存文件加载。 0 = 始终是一个文件。"
+
+msgid "Always keep these classes"
+msgstr "始终保留这些课程"
+
+msgid "One class or id per line, * as wildcard. If a style added later by JavaScript breaks, add its class here. is-*, has-*, wp-*, swiper-* are always kept."
+msgstr "每行一个类或 id,* 作为通配符。如果 JavaScript 稍后添加的样式中断,请在此处添加其类。 is-*、has-*、wp-*、swiper-* 始终保留。"
+
+msgid "Remove unused CSS and inline it"
+msgstr "删除未使用的 CSS 并将其内联"
+
+msgid "Each page's class/id inventory is collected (HTML + the page's scripts); rules with no match on that page are dropped from the CSS file and the rest is written into <head>. The render-blocking CSS request goes away and LCP/FCP improve. Pages with the same inventory share one copy; copies are rebuilt when the file changes, and the full file is used if there are too many different pages."
+msgstr "收集每个页面的类/ID 库存(HTML + 页面的脚本);该页面上不匹配的规则将从 CSS 文件中删除,其余内容将写入<head>中。渲染阻塞 CSS 请求消失,LCP/FCP 得到改善。相同库存的页面共享一份;当文件更改时会重建副本,如果有太多不同的页面,则会使用完整文件。"
+
+msgid "Minify CSS files"
+msgstr "缩小 CSS 文件"
+
+msgid "For unminified (non-.min) local CSS files, an up-to-date .min sibling or a copy without comments and whitespace is used."
+msgstr "对于未缩小的(非 .min)本地 CSS 文件,将使用最新的 .min 同级文件或不带注释和空格的副本。"
+
+msgid "Minify JS files"
+msgstr "缩小 JS 文件"
+
+msgid "For theme and plugin scripts, the .min sibling is used if it is newer than the source; otherwise a copy without comments and indentation is generated (line breaks are kept). Bundles that load chunks relative to their own location and scripts with translations are left alone."
+msgstr "对于主题和插件脚本,如果比源新,则使用 .min 同级脚本;否则会生成没有注释和缩进的副本(保留换行符)。加载相对于其自身位置的块的包和带有翻译的脚本将被保留。"
+
+msgid "jQuery always stays blocking (older inline scripts on the page may call it directly). WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on."
+msgstr "jQuery 始终保持阻塞状态(页面上较旧的内联脚本可能会直接调用它)。 WordPress 本身会删除后面有内联脚本或阻塞脚本所依赖的脚本的延迟。"
+
+msgid "Defer head scripts"
+msgstr "推迟头脚本"
+
+msgid "Scripts loaded in the page <head> that hold up rendering get defer (e.g. language suggestion, analytics scripts)."
+msgstr "页面<head>中加载的导致渲染延迟的脚本(例如语言建议、分析脚本)。"
+
+msgid "Fonts"
+msgstr "字体"
+
+msgid "Remove unused fonts"
+msgstr "删除未使用的字体"
+
+msgid "Font families defined in theme.json but not referenced in the page's CSS (@font-face) are not printed. If usage cannot be determined, nothing is removed."
+msgstr "不会打印在 theme.json 中定义但未在页面 CSS (@font-face) 中引用的字体系列。如果无法确定用途,则不会删除任何内容。"
+
+msgid "Preload the above-the-fold font"
+msgstr "预加载首屏字体"
+
+msgid "The regular (400) woff2 of up to two families in use is requested with <link rel=\"preload\"> so text paints sooner. Preloading the wrong weight wastes a download; turn this off if PageSpeed reports an unused preload."
+msgstr "使用<link rel=\"preload\">请求最多使用两个系列的常规 (400) woff2,以便更快地绘制文本。预加载错误的权重会浪费下载;如果 PageSpeed 报告未使用的预加载,请关闭此功能。"
+
+msgid "Exclusions"
+msgstr "排除情况"
+
+msgid "Files to leave alone"
+msgstr "单独留下的文件"
+
+msgid "One handle or part of a URL per line. Trimming, minifying and defer are not applied to these files."
+msgstr "每行一个句柄或 URL 的一部分。修剪、缩小和延迟不适用于这些文件。"
+
+msgid "Pages to leave alone"
+msgstr "单独留下的页面"
+
+msgid "One URL part per line. No PageSpeed optimization runs on these pages."
+msgstr "每行一个 URL 部分。这些页面上不会运行 PageSpeed 优化。"
+
+msgid "Save and clear cache"
+msgstr "保存并清除缓存"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Cache"
+msgstr "缓存"
+
+msgid "%1$d CSS, %2$d JS copies · %3$s"
+msgstr "%1$dCSS、%2$dJS 副本 ·%3$s"
+
+msgid "Compare"
+msgstr "比较"
+
+msgid "Optimized"
+msgstr "优化"
+
+msgid "Off (?flxp_off=1)"
+msgstr "关闭 (?flxp_off=1)"
+
+msgid "Adding ?flxp_off=1 to a URL opens the page without optimizations; if the page looks different, the cause is here."
+msgstr "将 ?flxp_off=1 添加到 URL 将打开未经优化的页面;如果页面看起来不同,原因就在这里。"
+
+msgid "Measure"
+msgstr "测量"
+
+msgid "Flux SEO › Site audit"
+msgstr "Flux SEO › 网站审核"
+
+msgid "The site audit suggests these settings itself and turns them on with one click."
+msgstr "站点审核本身会建议这些设置,并一键将其打开。"
+
+msgid "Clear cache"
+msgstr "清除缓存"
+
+msgid "Animations not running on the GPU"
+msgstr "动画不在 GPU 上运行"
+
+msgid "Lighthouse \"non-composited animations\": properties other than transform and opacity (stroke-dashoffset, background, width…) repaint every frame. A setting cannot fix this; the theme or preset must rewrite them with transform/opacity."
+msgstr "Lighthouse“非合成动画”:除了变换和不透明度之外的属性(描边短划线、背景、宽度......)重新绘制每一帧。设置无法解决此问题;主题或预设必须使用变换/不透明度重写它们。"
+
+msgid "Animation"
+msgstr "动画"
+
+msgid "Properties"
+msgstr "属性"
+
+msgid "File"
+msgstr "文件"
+
+msgid "no prefers-reduced-motion"
+msgstr "不喜欢减少运动"
+
+msgid "All good: animations in the CSS files seen use transform/opacity."
+msgstr "一切都很好:CSS 文件中的动画使用了变换/不透明度。"
+
+msgid "Scanned %1$d CSS files seen on the front end (%2$s)."
+msgstr "扫描的%1$dCSS 文件在前端看到 (%2$s)。"
+
+msgid "The front end has not been seen yet, so the theme folder was scanned. Once the site is opened, the files the page loads are scanned."
+msgstr "前端还没见过,所以扫了主题文件夹。打开站点后,将扫描页面加载的文件。"
+
+msgid "Summary"
+msgstr "总结"
+
+msgid "Records"
+msgstr "记录"
+
+msgid "Server"
+msgstr "服务器"
+
+msgid "Database"
+msgstr "数据库"
+
+msgid "System check"
+msgstr "系统检查"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Flux Performance"
+msgstr "助焊剂性能"
+
+msgid "Settings saved."
+msgstr "设置已保存。"
+
+msgid "All records deleted."
+msgstr "所有记录均已删除。"
+
+msgid "Custom login URL turned off; login is back on wp-login.php."
+msgstr "自定义登录 URL 已关闭;登录已返回 wp-login.php。"
+
+msgid "Cleanup done: %s items."
+msgstr "清理完成:%s项。"
+
+msgid "Login URL changed."
+msgstr "登录网址已更改。"
+
+msgid "New address:"
+msgstr "新地址:"
+
+msgid "You are being logged out so you can see the new address work; you will be redirected to the new login page in %s seconds. After logging in you come back to this screen."
+msgstr "您正在注销,以便您可以看到新地址的工作情况;您将在%s秒后重定向到新的登录页面。登录后,您将返回到此屏幕。"
+
+msgid "Redirect stopped. You are still logged in; the new address is used the next time you log in."
+msgstr "重定向已停止。您仍处于登录状态;下次登录时将使用新地址。"
+
+msgid "Go now"
+msgstr "现在就去"
+
+msgid "Stay logged in"
+msgstr "保持登录状态"
+
+msgid "You are not allowed to view this page."
+msgstr "您无权查看此页面。"
+
+msgid "Recording is off: only the live panel works."
+msgstr "录音已关闭:仅实时面板工作。"
+
+msgid "All time"
+msgstr "所有时间"
+
+msgid "Last hour"
+msgstr "最后一小时"
+
+msgid "Last 24 hours"
+msgstr "过去 24 小时"
+
+msgid "Last 7 days"
+msgstr "过去 7 天"
+
+msgid "All flags"
+msgstr "所有标志"
+
+msgid "All types"
+msgstr "所有类型"
+
+msgid "Newest"
+msgstr "最新"
+
+msgid "Slowest"
+msgstr "最慢"
+
+msgid "Search URL"
+msgstr "搜索网址"
+
+msgid "Filter"
+msgstr "过滤器"
+
+msgid "URL to profile"
+msgstr "个人资料的 URL"
+
+msgid "Profile page"
+msgstr "个人资料页面"
+
+msgid "\"Profile page\" opens the URL as a visitor (bypassing cache) and records it in full detail."
+msgstr "“个人资料页面”以访问者身份打开 URL(绕过缓存)并详细记录它。"
+
+msgid "Time"
+msgstr "时间"
+
+msgid "URL"
+msgstr "网址"
+
+msgid "Memory"
+msgstr "内存"
+
+msgid "Queries"
+msgstr "查询"
+
+msgid "Errors"
+msgstr "错误"
+
+msgid "Flags"
+msgstr "旗帜"
+
+msgid "No records yet. Slow or failing requests and sampled requests appear here."
+msgstr "还没有记录。此处显示缓慢或失败的请求和采样请求。"
+
+msgid "Records: %s"
+msgstr "记录:%s"
+
+msgid "Delete all records?"
+msgstr "删除所有记录?"
+
+msgid "Delete all records"
+msgstr "删除所有记录"
+
+msgid "Record not found."
+msgstr "未找到记录。"
+
+msgid "Recorded requests"
+msgstr "已记录的请求"
+
+msgid "Average time"
+msgstr "平均时间"
+
+msgid "Longest"
+msgstr "最长"
+
+msgid "Times are calculated from recorded requests: sampled requests plus slow/failing ones, so the average may look higher than the real average."
+msgstr "时间是根据记录的请求计算的:采样的请求加上缓慢/失败的请求,因此平均值可能看起来高于实际平均值。"
+
+msgid "By request type"
+msgstr "按请求类型"
+
+msgid "The time visitors wait is the \"Front end\" row. Cron, Ajax and REST are mostly background work (backup step, scheduled task, Heartbeat); when they take long they do not slow pages directly, but they keep the server busy."
+msgstr "访客等待的时间是“前端”排。 Cron、Ajax和REST大多是后台工作(备份步骤、计划任务、Heartbeat);当它们花费很长时间时,它们不会直接减慢页面速度,但会使服务器繁忙。"
+
+msgid "Type"
+msgstr "类型"
+
+msgid "Request"
+msgstr "请求"
+
+msgid "Average"
+msgstr "平均"
+
+msgid "Slowest URLs"
+msgstr "最慢的 URL"
+
+msgid "Query time by component (per request)"
+msgstr "按组件的查询时间(每个请求)"
+
+msgid "Component"
+msgstr "组件"
+
+msgid "Per request"
+msgstr "根据要求"
+
+msgid "Slow and failed queries"
+msgstr "查询缓慢且失败"
+
+msgid "Count"
+msgstr "计数"
+
+msgid "PHP errors"
+msgstr "PHP 错误"
+
+msgid "Level"
+msgstr "级别"
+
+msgid "Message"
+msgstr "留言"
+
+msgid "HTTP API calls"
+msgstr "HTTP API 调用"
+
+msgid "Endpoint"
+msgstr "端点"
+
+msgid "Failed"
+msgstr "失败"
+
+msgid "Last error"
+msgstr "最后一个错误"
+
+msgid "No records."
+msgstr "没有记录。"
+
+msgid "Suggestions"
+msgstr "建议"
+
+msgid "Account limit (cgroup)"
+msgstr "账户限制(cgroup)"
+
+msgid "Shared hosting: account limit cannot be read"
+msgstr "共享主机:无法读取帐户限制"
+
+msgid "Server belongs to this site (VPS/dedicated)"
+msgstr "服务器属于该站点(VPS/专用)"
+
+msgid "Scanned folder"
+msgstr "扫描文件夹"
+
+msgid "Files"
+msgstr "文件"
+
+msgid "Calculating…"
+msgstr "正在计算..."
+
+msgid "Files and folders (inodes)"
+msgstr "文件和文件夹(索引节点)"
+
+msgid "Disk quota"
+msgstr "磁盘配额"
+
+msgid "Not set (Settings)"
+msgstr "未设置(设置)"
+
+msgid "Last measured"
+msgstr "最后测量"
+
+msgid "refreshing"
+msgstr "清爽"
+
+msgid "Account disk"
+msgstr "账盘"
+
+msgid "Whole machine (shared, all accounts)"
+msgstr "整机(共享、所有账户)"
+
+msgid "CPU cores"
+msgstr "CPU核心数"
+
+msgid "Load (1/5/15 min)"
+msgstr "负载(1/5/15 分钟)"
+
+msgid "Disk"
+msgstr "磁盘"
+
+msgid "%s free"
+msgstr "%s免费"
+
+msgid "Note"
+msgstr "注意事项"
+
+msgid "These values belong to every account on the machine; they are not your site's usage or limit."
+msgstr "这些值属于机器上的每个帐户;它们不是您网站的使用或限制。"
+
+msgid "Yes"
+msgstr "是的"
+
+msgid "No"
+msgstr "否"
+
+msgid "Operating system"
+msgstr "操作系统"
+
+msgid "Software"
+msgstr "软件"
+
+msgid "Hostname"
+msgstr "主机名"
+
+msgid "IP address"
+msgstr "IP地址"
+
+msgid "Port"
+msgstr "港口"
+
+msgid "Document root"
+msgstr "文档根目录"
+
+msgid "Resource values"
+msgstr "资源价值"
+
+msgid "Version"
+msgstr "版本"
+
+msgid "Memory (this request)"
+msgstr "内存(此请求)"
+
+msgid "peak"
+msgstr "峰值"
+
+msgid "Disabled functions"
+msgstr "禁用功能"
+
+msgid "Extensions"
+msgstr "扩展"
+
+msgid "On"
+msgstr "开"
+
+msgid "Off"
+msgstr "关闭"
+
+msgid "Hit rate"
+msgstr "命中率"
+
+msgid "Cached files"
+msgstr "缓存文件"
+
+msgid "Wasted"
+msgstr "浪费了"
+
+msgid "Restarts"
+msgstr "重新启动"
+
+msgid "No data (disabled or not allowed by the server)."
+msgstr "无数据(服务器禁用或不允许)。"
+
+msgid "Object cache"
+msgstr "对象缓存"
+
+msgid "External"
+msgstr "外部"
+
+msgid "None"
+msgstr "无"
+
+msgid "Page cache (WP_CACHE)"
+msgstr "页面缓存(WP_CACHE)"
+
+msgid "Locale"
+msgstr "语言环境"
+
+msgid "Timezone"
+msgstr "时区"
+
+msgid "Permalinks"
+msgstr "固定链接"
+
+msgid "Environment type"
+msgstr "环境类型"
+
+msgid "Theme"
+msgstr "主题"
+
+msgid "undefined"
+msgstr "未定义"
+
+msgid "Active plugins"
+msgstr "活跃插件"
+
+msgid "Data"
+msgstr "数据"
+
+msgid "Index"
+msgstr "索引"
+
+msgid "Free space"
+msgstr "可用空间"
+
+msgid "Table"
+msgstr "表"
+
+msgid "Rows (approx.)"
+msgstr "行数(大约)"
+
+msgid "Open connections"
+msgstr "打开连接"
+
+msgid "Charset"
+msgstr "字符集"
+
+msgid "Uptime"
+msgstr "正常运行时间"
+
+msgid "Queries per second"
+msgstr "每秒查询数"
+
+msgid "Slow queries (server)"
+msgstr "慢速查询(服务器)"
+
+msgid "Max concurrent connections"
+msgstr "最大并发连接数"
+
+msgid "Running threads"
+msgstr "运行线程"
+
+msgid "Buffer pool hit rate"
+msgstr "缓冲池命中率"
+
+msgid "Temp tables on disk"
+msgstr "磁盘上的临时表"
+
+msgid "Aborted connects"
+msgstr "连接中止"
+
+msgid "Cleanup"
+msgstr "清理"
+
+msgid "Safe jobs only: posts, pages and revisions are never deleted. Limit revisions with WP_POST_REVISIONS in wp-config."
+msgstr "仅限安全作业:帖子、页面和修订永远不会被删除。使用 wp-config 中的 WP_POST_REVISIONS 限制修订。"
+
+msgid "continue?"
+msgstr "继续?"
+
+msgid "Clean"
+msgstr "干净"
+
+msgid "Revisions"
+msgstr "修订"
+
+msgid "Trashed posts"
+msgstr "已删除的帖子"
+
+msgid "All transients"
+msgstr "所有瞬变"
+
+msgid "Job"
+msgstr "职位"
+
+msgid "Tables"
+msgstr "表格"
+
+msgid "Engine"
+msgstr "发动机"
+
+msgid "Rows"
+msgstr "行数"
+
+msgid "Collation"
+msgstr "整理"
+
+msgid "Autoloaded options"
+msgstr "自动加载选项"
+
+msgid "Total size"
+msgstr "总尺寸"
+
+msgid "These options are loaded from the database on every request. Over 800 KB in total slows pages down; shrink the setting or cache in the plugin that owns the large rows."
+msgstr "这些选项是在每次请求时从数据库加载的。总共超过 800 KB 会减慢页面速度;缩小拥有大行的插件中的设置或缓存。"
+
+msgid "Option"
+msgstr "选项"
+
+msgid "Owner"
+msgstr "业主"
+
+msgid "Size"
+msgstr "尺寸"
+
+msgid "Events"
+msgstr "活动"
+
+msgid "Overdue"
+msgstr "逾期"
+
+msgid "Last run"
+msgstr "最后一次运行"
+
+msgid "Not seen"
+msgstr "没见过"
+
+msgid "WordPress cron is disabled: events run only when a server cron job calls wp-cron.php. On Hostinger, add a cron job that calls it every 5 minutes."
+msgstr "WordPress cron 已禁用:事件仅在服务器 cron 作业调用 wp-cron.php 时运行。在 Hostinger 上,添加一个每 5 分钟调用一次的 cron 作业。"
+
+msgid "Task durations"
+msgstr "任务持续时间"
+
+msgid "Measured per task each time wp-cron.php runs; sorted by total time. A summary older than a day resets when the task runs again. \"Cut off\": the task hit the time limit and stopped halfway."
+msgstr "每次 wp-cron.php 运行时对每个任务进行测量;按总时间排序。当任务再次运行时,超过一天的摘要将重置。 “中断”:任务达到期限,中途停止。"
+
+msgid "Hook"
+msgstr "钩子"
+
+msgid "Runs"
+msgstr "跑步"
+
+msgid "Last"
+msgstr "最后"
+
+msgid "Cut off"
+msgstr "切断"
+
+msgid "Scheduled events"
+msgstr "预定活动"
+
+msgid "Next"
+msgstr "下一步"
+
+msgid "Recurrence"
+msgstr "复发"
+
+msgid "Args"
+msgstr "参数"
+
+msgid "Overdue: due %s"
+msgstr "逾期:到期%s"
+
+msgid "once"
+msgstr "一次"
+
+msgid "Recent fixes (AI / MCP)"
+msgstr "最近修复(AI / MCP)"
+
+msgid "User"
+msgstr "用户"
+
+msgid "Fix"
+msgstr "修复"
+
+msgid "Before → After"
+msgstr "之前→之后"
+
+msgid "Result"
+msgstr "结果"
+
+msgid "Developer panel"
+msgstr "开发者面板"
+
+msgid "Show a summary in the admin bar and a bottom panel to authorized users"
+msgstr "在管理栏和底部面板中向授权用户显示摘要"
+
+msgid "Show on the front end too"
+msgstr "也显示在前端"
+
+msgid "Collect capability checks"
+msgstr "收集能力检查"
+
+msgid "The panel is visible to administrators and to staff granted \"View performance\" by Flux Roles."
+msgstr "该面板对管理员和 Flux 角色授予“查看性能”的员工可见。"
+
+msgid "Recording"
+msgstr "录音"
+
+msgid "Record slow and failing requests"
+msgstr "记录缓慢和失败的请求"
+
+msgid "Also record my own requests while the panel is on (only when something is wrong)"
+msgstr "还可以在面板打开时记录我自己的请求(仅当出现问题时)"
+
+msgid "Sampling"
+msgstr "取样"
+
+msgid "This share of requests is collected in detail (with the query list) and recorded. 1-5 is recommended on Hostinger; 0 turns it off."
+msgstr "详细收集该请求份额(通过查询列表)并记录。 Hostinger上推荐1-5; 0 将其关闭。"
+
+msgid "Slow request threshold"
+msgstr "慢请求阈值"
+
+msgid "Slow query threshold"
+msgstr "慢查询阈值"
+
+msgid "Retention"
+msgstr "保留率"
+
+msgid "days"
+msgstr "天"
+
+msgid "at most"
+msgstr "至多"
+
+msgid "records"
+msgstr "记录"
+
+msgid "Your shared hosting plan's disk limit (Hostinger: hPanel › Account resources). PHP cannot read it; when set, the Disk card shows account usage as a percentage. Leave empty to show used space only."
+msgstr "您的共享托管计划的磁盘限制(Hostinger:hPanel › 帐户资源)。 PHP无法读取;设置后,磁盘卡会以百分比形式显示帐户使用情况。留空以仅显示已用空间。"
+
+msgid "AI (MCP)"
+msgstr "人工智能(MCP)"
+
+msgid "The data is read by read-only tools on the Flux AI & MCP server and in Flux AI chat: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url."
+msgstr "数据由 Flux AI 和 MCP 服务器上以及 Flux AI 聊天中的只读工具读取:flxp_summary、flxp_requests、flxp_request、flxp_slow_queries、flxp_php_errors、flxp_http_calls、flxp_environment、flxp_server、flxp_database、flxp_autoload、flxp_cron、flxp_profile_url。"
+
+msgid "Flux AI & MCP is active: tools are registered."
+msgstr "Flux AI 和 MCP 已激活:工具已注册。"
+
+msgid "Flux AI & MCP is not active: tools are available in Flux AI chat only."
+msgstr "Flux AI 和 MCP 未激活:工具仅在 Flux AI 聊天中可用。"
+
+msgid "Admin login URL"
+msgstr "管理员登录网址"
+
+msgid "Opens the login screen at an address of your own instead of wp-login.php. wp-login.php and wp-admin requests from logged-out visitors no longer respond, which cuts bot password guessing and server load."
+msgstr "在您自己的地址而不是 wp-login.php 打开登录屏幕。来自注销访问者的 wp-login.php 和 wp-admin 请求不再响应,这减少了机器人密码猜测和服务器负载。"
+
+msgid "FLXP_LOGIN_DISABLE is defined in wp-config.php: the custom URL is off and login uses wp-login.php. Remove that line once the problem is solved."
+msgstr "FLXP_LOGIN_DISABLE 在 wp-config.php 中定义:自定义 URL 关闭,登录使用 wp-login.php。问题解决后删除该行。"
+
+msgid "Your login URL"
+msgstr "您的登录网址"
+
+msgid "Copied"
+msgstr "已复制"
+
+msgid "Copy"
+msgstr "复制"
+
+msgid "Bookmark this address and share it with everyone who logs in. If you forget it, use the recovery step below."
+msgstr "将此地址添加为书签并与所有登录的人共享。如果您忘记了该地址,请使用下面的恢复步骤。"
+
+msgid "Login URL"
+msgstr "登录网址"
+
+msgid "The address comes from the FLXP_LOGIN_SLUG constant in wp-config.php; edit or remove the constant to change it."
+msgstr "地址来自wp-config.php中的FLXP_LOGIN_SLUG常量;编辑或删除常量以更改它。"
+
+msgid "Leave empty to use the standard WordPress address (wp-login.php). 3-40 characters: lowercase letters, digits, hyphen, underscore. Pick something hard to guess (admin and login are not allowed)."
+msgstr "留空以使用标准 WordPress 地址 (wp-login.php)。 3-40 个字符:小写字母、数字、连字符、下划线。选择一些难以猜测的内容(不允许管理和登录)。"
+
+msgid "Visitors to the old addresses"
+msgstr "旧地址的访客"
+
+msgid "Show the 404 page (recommended)"
+msgstr "显示404页面(推荐)"
+
+msgid "Redirect to the home page"
+msgstr "重定向至主页"
+
+msgid "Applies to wp-login.php and to wp-admin requests from logged-out visitors. admin-ajax.php, admin-post.php, the REST API, wp-cron, WooCommerce My Account login and the Flux App connection are not affected."
+msgstr "适用于 wp-login.php 和来自注销访问者的 wp-admin 请求。 admin-ajax.php、admin-post.php、REST API、wp-cron、WooCommerce 我的帐户登录和 Flux 应用程序连接不受影响。"
+
+msgid "Recovery"
+msgstr "恢复"
+
+msgid "If you forget the address or login won't open: add the line below to wp-config.php using your file manager (Hostinger hPanel › File Manager). Login goes back to wp-login.php; once you're in, fix the address here and remove the line."
+msgstr "如果您忘记地址或无法打开登录:使用文件管理器(Hostinger hPanel › 文件管理器)将以下行添加到 wp-config.php。登录返回wp-login.php;进入后,请修改此处的地址并删除该行。"
+
+msgid "Deprecated since %1$s. Use instead: %2$s"
+msgstr "自%1$s起已弃用。使用:%2$s"
+
+msgid "%d min"
+msgstr "%d分钟"
+
+msgid "%1$d d %2$d h"
+msgstr "%1$dd%2$dh"
+
+msgid "%d h"
+msgstr "%d小时"
+
+msgid "Account limit cannot be read"
+msgstr "无法读取账户限额"
+
+msgid "%s cores, no account limit"
+msgstr "%s核心,无帐户限制"
+
+msgid "Account limit %s cores"
+msgstr "账户限制%s核心数"
+
+msgid "%1$d cores · load %2$s"
+msgstr "%1$d内核·加载%2$s"
+
+msgid "Disk (account)"
+msgstr "磁盘(账户)"
+
+msgid "Scanning the account folder"
+msgstr "扫描帐户文件夹"
+
+msgid "files %1$s · database %2$s"
+msgstr "文件%1$s· 数据库%2$s"
+
+msgid "CPU load"
+msgstr "CPU负载"
+
+msgid "CPU (account)"
+msgstr "CPU(帐户)"
+
+msgid "Memory (RAM)"
+msgstr "内存(RAM)"
+
+msgid "Memory (account)"
+msgstr "内存(账户)"
+
+msgid "PHP memory (this request)"
+msgstr "PHP内存(本次请求)"
+
+msgid "Server uptime"
+msgstr "服务器正常运行时间"
+
+msgid "Machine uptime"
+msgstr "机器正常运行时间"
+
+msgid "CPU and memory are measured against this account's (container/cgroup) limit."
+msgstr "CPU 和内存是根据该帐户的(容器/cgroup)限制来衡量的。"
+
+msgid "Shared hosting: PHP sees the CPU, memory and disk shared by every account on the machine; these are not your values and are not shown. Your account's CPU and memory usage is in the hosting panel (Hostinger: hPanel › Account resources)."
+msgstr "共享托管:PHP 看到机器上每个帐户共享的 CPU、内存和磁盘;这些不是您的价值观,也不会显示。您帐户的 CPU 和内存使用情况位于托管面板中(Hostinger:hPanel › 帐户资源)。"
+
+msgid "Enter your hosting plan's disk quota in Settings to see a disk percentage."
+msgstr "在“设置”中输入托管计划的磁盘配额以查看磁盘百分比。"
+
+msgid "Cards refresh every 15 seconds."
+msgstr "卡片每 15 秒刷新一次。"
+
+msgid "p95 time (24 h)"
+msgstr "p95时间(24小时)"
+
+msgid "Failed requests (24 h)"
+msgstr "失败的请求(24 小时)"
+
+msgid "Slow requests (24 h)"
+msgstr "缓慢请求(24 小时)"
+
+msgid "Details"
+msgstr "详情"
+
+msgid "The login URL must be 3-40 characters; use only lowercase letters (a-z), digits, hyphens and underscores."
+msgstr "登录URL必须为3-40个字符;仅使用小写字母 (a-z)、数字、连字符和下划线。"
+
+msgid "WordPress already uses this address; pick another name."
+msgstr "WordPress 已使用此地址;选择另一个名字。"
+
+msgid "A page or post already uses this address; pick another name."
+msgstr "页面或帖子已使用此地址;选择另一个名字。"
+
+msgid "The login URL has changed. Bookmark this page and log in again."
+msgstr "登录 URL 已更改。将此页面添加为书签并重新登录。"
+
+msgid "Performance summary"
+msgstr "业绩总结"
+
+msgid "List recorded requests"
+msgstr "列出记录的请求"
+
+msgid "Record details"
+msgstr "记录详情"
+
+msgid "Outgoing HTTP requests"
+msgstr "传出 HTTP 请求"
+
+msgid "Server and WordPress environment"
+msgstr "服务器和WordPress环境"
+
+msgid "Server status"
+msgstr "服务器状态"
+
+msgid "Database status"
+msgstr "数据库状态"
+
+msgid "Flux Speed: remove unused CSS and inline it"
+msgstr "Flux Speed:删除未使用的 CSS 并将其内联"
+
+msgid "Drops theme CSS rules the page does not use and writes the rest into <head>, removing the render-blocking CSS request. Check a few pages first; if something breaks, turn it off or add the class to the keep list."
+msgstr "删除页面不使用的主题 CSS 规则,并将其余内容写入<head>,删除渲染阻塞 CSS 请求。先检查几页;如果出现问题,请将其关闭或将该类添加到保留列表中。"
+
+msgid "Flux Speed: minify CSS and JS files"
+msgstr "Flux Speed:缩小 CSS 和 JS 文件"
+
+msgid "Unminified theme and plugin CSS/JS files are served from an up-to-date .min version or a generated copy."
+msgstr "未缩小的主题和插件 CSS/JS 文件由最新的 .min 版本或生成的副本提供。"
+
+msgid "Flux Speed: defer head scripts"
+msgstr "Flux Speed:延迟头部脚本"
+
+msgid "Blocking scripts at the top of the page are loaded with defer. jQuery and excluded scripts are left alone."
+msgstr "页面顶部的阻塞脚本通过 defer 加载。 jQuery 和排除的脚本将被保留。"
+
+msgid "Flux Speed: remove the zoom lock"
+msgstr "通量速度:解除变焦锁定"
+
+msgid "user-scalable=no and maximum-scale are removed from the viewport tag."
+msgstr "user-scalable=no 和 Maximum-scale 已从视口标签中删除。"
+
+msgid "Flux Speed: optimize fonts"
+msgstr "Flux Speed:优化字体"
+
+msgid "theme.json fonts not used on the page are removed and the above-the-fold font is preloaded."
+msgstr "页面上未使用的 theme.json 字体将被删除,并预加载首屏字体。"
+
+msgid "Flux Speed: remove the emoji script"
+msgstr "Flux Speed:删除表情符号脚本"
+
+msgid "WordPress's emoji detection script and style are not loaded; modern browsers render emoji themselves."
+msgstr "WordPress的表情符号检测脚本和样式未加载;现代浏览器会自行渲染表情符号。"
+
+msgid "Unknown fix."
+msgstr "未知修复。"
+
+msgid "Flux Speed › PageSpeed lists which animation in which file is the problem."
+msgstr "Flux Speed › PageSpeed 列出了哪个文件中的哪个动画有问题。"
+
+msgid "The matching Flux Speed setting is on; clear the cache (LiteSpeed Purge All) and measure again. Whatever remains is up to the theme/preset."
+msgstr "匹配的磁通速度设置已打开;清除缓存 (LiteSpeed Purge All) 并再次测量。剩下的取决于主题/预设。"
+
+msgid "Turned on. The page cache was cleared; run the site audit or PageSpeed test again."
+msgstr "已开启。页面缓存被清除;再次运行站点审核或 PageSpeed 测试。"
+
+msgid "Animations (GPU)"
+msgstr "Animations (GPU)"
+
+msgid "Animation not running on the GPU: %s. Should be rewritten with transform/opacity (theme/preset)."
+msgstr "动画未在 GPU 上运行:%s。应该用变换/不透明度(主题/预设)重写。"
+
+msgid "Animations in the CSS files seen use transform/opacity."
+msgstr "CSS 文件中的动画使用了变换/不透明度。"
+
+msgid "PageSpeed"
+msgstr "页面速度"
+
+msgid "PageSpeed cache"
+msgstr "PageSpeed缓存"
+
+msgid "uploads/flx-speed is writable."
+msgstr "uploads/flx-speed 是可写的。"
+
+msgid "The uploads/flx-speed folder is not writable: CSS trimming and minifying will not work, pages load the original files."
+msgstr "uploads/flx-speed 文件夹不可写:CSS 修剪和缩小不起作用,页面加载原始文件。"
+
+msgid "Expired transients"
+msgstr "过期瞬变"
+
+msgid "Auto-drafts older than 7 days"
+msgstr "超过 7 天的自动草稿"
+
+msgid "Spam comments"
+msgstr "垃圾评论"
+
+msgid "Trashed comments"
+msgstr "已删除的评论"
+
+msgid "Reclaim free space (OPTIMIZE)"
+msgstr "回收可用空间(优化)"
+
+msgid "Unknown cleanup job."
+msgstr "未知的清理工作。"
+
+msgid "Slow"
+msgstr "慢"
+
+msgid "PHP error"
+msgstr "PHP 错误"
+
+msgid "Fatal error"
+msgstr "致命错误"
+
+msgid "Server error (5xx)"
+msgstr "服务器错误 (5xx)"
+
+msgid "Failed HTTP call"
+msgstr "HTTP 调用失败"
+
+msgid "Slow query"
+msgstr "慢查询"
+
+msgid "Query error"
+msgstr "查询错误"
+
+msgid "Error log"
+msgstr "错误日志"
+
+msgid "Sample"
+msgstr "样品"
+
+msgid "Profile"
+msgstr "公司简介"
+
+msgid "Front end"
+msgstr "前端"
+
+msgid "Admin"
+msgstr "管理员"
+
+msgid "Only URLs on this site can be profiled."
+msgstr "只能分析此站点上的 URL。"
+
+msgid "The records table is not installed."
+msgstr "未安装记录表。"
+
+msgid "The page loaded but no record was created. It may have been served from cache, or Flux Performance did not load on that request."
+msgstr "页面已加载,但未创建记录。它可能是从缓存提供的,或者 Flux Performance 未加载该请求。"
+
+msgid "Records table"
+msgstr "记录表"
+
+msgid "The table is not installed. Deactivate and reactivate the plugin."
+msgstr "该表未安装。停用并重新激活插件。"
+
+msgid "Request recording"
+msgstr "请求录音"
+
+msgid "On: %1$d%% of requests are sampled; requests over %2$d ms and failing requests are recorded."
+msgstr "On:%1$d%% 的请求已采样;记录超过%2$d毫秒的请求和失败的请求。"
+
+msgid "Off: only the live panel works; AI cannot read history."
+msgstr "关闭:仅现场面板工作;人工智能无法读取历史。"
+
+msgid "Failing requests in the last 24 hours"
+msgstr "过去 24 小时内失败的请求"
+
+msgid "%1$d requests with PHP/server errors, %2$d fatal. See Records."
+msgstr "%1$d请求存在 PHP/服务器错误,%2$d致命。参见记录。"
+
+msgid "No recorded errors."
+msgstr "没有记录错误。"
+
+msgid "Slow requests in the last 24 hours"
+msgstr "过去 24 小时内请求缓慢"
+
+msgid "%1$d requests exceeded %2$d ms."
+msgstr "%1$d请求超过%2$d毫秒。"
+
+msgid "%d recorded requests had external service errors in the last 24 hours."
+msgstr "%d记录的请求在过去 24 小时内存在外部服务错误。"
+
+msgid "No recorded external service errors."
+msgstr "没有记录的外部服务错误。"
+
+msgid "SAVEQUERIES is on in wp-config.php: every request keeps all queries in memory. Flux Performance turns it on itself when needed; remove it from wp-config."
+msgstr "SAVEQUERIES 在 wp-config.php 中启用:每个请求都将所有查询保留在内存中。 Flux Performance 在需要时会自动打开;从 wp-config 中删除它。"
+
+msgid "AI tools (flxp_*)"
+msgstr "人工智能工具 (flxp_*)"
+
+msgid "MCP and Flux AI chat can read the records."
+msgstr "MCP和Flux AI聊天记录可以读取。"
+
+msgid "Flux AI & MCP is not active or MCP is off; tools are not visible."
+msgstr "Flux AI & MCP 未激活或 MCP 关闭;工具不可见。"
+
+msgid "%1$d KB (%2$d options) is loaded on every request."
+msgstr "%1$dKB(%2$d选项)在每个请求时加载。"
+
+msgid "Under 800 KB is recommended; check the largest rows."
+msgstr "建议小于 800 KB;检查最大的行。"
+
+msgid "Last run %s."
+msgstr "最后运行%s。"
+
+msgid "Cron has not been seen running yet."
+msgstr "还没有看到 Cron 运行。"
+
+msgid "%d events overdue."
+msgstr "%d事件已过期。"
+
+msgid "Scheduled events are running"
+msgstr "预定的活动正在进行中"
+
+msgid "Disk space"
+msgstr "磁盘空间"
+
+msgid "%1$d%% used, %2$s free."
+msgstr "%1$d%% 已使用,%2$s空闲。"
+
+msgid "(account usage / quota from Settings)"
+msgstr "(设置中的帐户使用/配额)"
+
+msgid "%1$d%% of the account CPU limit in use (%2$s cores)."
+msgstr "%1$d%% 正在使用的帐户 CPU 限制(%2$s核心)。"
+
+msgid "%1$d%% over the last minute (%2$d cores)."
+msgstr "过去一分钟内的%1$d%%(%2$d核心)。"
+
+msgid "On: compiled PHP files are kept in memory."
+msgstr "开:编译后的 PHP 文件保存在内存中。"
+
+msgid "Looks enabled but its status cannot be read (restricted by the server)."
+msgstr "看起来已启用,但无法读取其状态(受服务器限制)。"
+
+msgid "Off: PHP files are compiled again on every request. Turn it on in Hostinger › PHP configuration."
+msgstr "关闭:每次请求时都会重新编译 PHP 文件。在 Hostinger › PHP 配置中将其打开。"
+
+msgid "%d expired transients are still in the table."
+msgstr "%d过期瞬态仍在表中。"
+
+msgid "None."
+msgstr "没有。"
+
+msgid "Delete expired transients"
+msgstr "删除过期的瞬态"
+
+msgid "%d transients deleted."
+msgstr "%d瞬态已删除。"
+
+msgid "Each line shows something the site needs and whether it is in place. Fix the errors first; warnings are worth a look."
+msgstr "每一行都显示站点需要的内容以及它是否到位。首先修复错误;警告值得一看。"
+
+msgid "OK"
+msgstr "好的"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "Info"
+msgstr "信息"
+
+msgid "%1$d OK · %2$d warnings · %3$d errors"
+msgstr "%1$d正常 ·%2$d警告 ·%3$d错误"
+
+msgid "Check again"
+msgstr "再次检查"
+
+msgid "Show only these (click again to show all)"
+msgstr "仅显示这些(再次单击可显示全部)"
+
+msgid "Checked: %s"
+msgstr "已检查:%s"
+
+msgid "Check"
+msgstr "检查"
+
+msgid "Source"
+msgstr "来源"
+
+msgid "Action"
+msgstr "行动"
+
+msgid "No checks are registered."
+msgstr "没有登记任何支票。"
+
+msgid "System check found %d problem(s) that can stop donations or automations."
+msgstr "系统检查发现%d问题,可能会停止捐赠或自动化。"
+
+msgid "Open system check"
+msgstr "打开系统检查"
+
+msgid "Hide until the next update"
+msgstr "隐藏直到下次更新"
+
+msgid "System: %d error(s)"
+msgstr "系统:%d错误"
+
+msgid "This check could not run: %s"
+msgstr "此检查无法运行:%s"
+
+msgid "Scheduled tasks (cron)"
+msgstr "计划任务(cron)"
+
+msgid "Payments"
+msgstr "付款方式"
+
+msgid "Plugins"
+msgstr "插件"
+
+msgid "E-mail"
+msgstr "电子邮件"
+
+msgid "Security"
+msgstr "安全性"
+
+msgid "Forms"
+msgstr "表格"
+
+msgid "Other"
+msgstr "其他"
+
+msgid "Plugin: %s"
+msgstr "插件:%s"
+
+msgid "MU plugin: %s"
+msgstr "MU插件:%s"
+
+msgid "Theme: %s"
+msgstr "主题:%s"
+
+msgid "Drop-in: %s"
+msgstr "插入:%s"
+
+msgid "WordPress core"
+msgstr "WordPress 核心"
+
+msgid "Search…"
+msgstr "搜索..."
+
+msgid "All"
+msgstr "全部"
+
+msgid "Showing the first 1500 rows; narrow down with search."
+msgstr "显示前 1500 行;通过搜索缩小范围。"
+
+msgid "Call stack"
+msgstr "调用堆栈"
+
+msgid "Fatal"
+msgstr "致命的"
+
+msgid "Notice"
+msgstr "通知"
+
+msgid "Deprecated"
+msgstr "已弃用"
+
+msgid "Overview"
+msgstr "概述"
+
+msgid "Duplicate queries"
+msgstr "重复查询"
+
+msgid "By component"
+msgstr "按成分"
+
+msgid "Doing it wrong"
+msgstr "做错事"
+
+msgid "Cron tasks"
+msgstr "计划任务"
+
+msgid "Logs"
+msgstr "日志"
+
+msgid "Template"
+msgstr "模板"
+
+msgid "Capability checks"
+msgstr "能力检查"
+
+msgid "Scripts and styles"
+msgstr "脚本和样式"
+
+msgid "Languages"
+msgstr "语言"
+
+msgid "Transient updates"
+msgstr "瞬时更新"
+
+msgid "Hooks"
+msgstr "挂钩"
+
+msgid "Peak memory"
+msgstr "峰值内存"
+
+msgid "Limit"
+msgstr "限制"
+
+msgid "Time not measured"
+msgstr "时间未测量"
+
+msgid "Total"
+msgstr "合计"
+
+msgid "Response"
+msgstr "回应"
+
+msgid "Query details were not collected for this request (not sampled). Open the page while logged in as an administrator or raise the sampling rate."
+msgstr "未收集此请求的查询详细信息(未采样)。以管理员身份登录时打开页面或提高采样率。"
+
+msgid "Timeline"
+msgstr "时间轴"
+
+msgid "Visitor"
+msgstr "访客"
+
+msgid "Collection mode"
+msgstr "采集方式"
+
+msgid "Detailed"
+msgstr "详细"
+
+msgid "Light"
+msgstr "光"
+
+msgid "Duplicates"
+msgstr "重复项"
+
+msgid "Only the slowest queries were stored in this record."
+msgstr "仅最慢的查询存储在此记录中。"
+
+msgid "Caller"
+msgstr "来电者"
+
+msgid "Callers"
+msgstr "来电者"
+
+msgid "Query types"
+msgstr "查询类型"
+
+msgid "Subject"
+msgstr "主题"
+
+msgid "Method"
+msgstr "方法"
+
+msgid "No logs in this request."
+msgstr "没有记录此请求。"
+
+msgid "Packages can write here with do_action( 'flx_log', 'warning', 'message' )."
+msgstr "包可以用 do_action( 'flx_log', 'warning', 'message' ) 在这里写入。"
+
+msgid "Timers"
+msgstr "定时器"
+
+msgid "Not stopped"
+msgstr "没有停止"
+
+msgid "Template file"
+msgstr "模板文件"
+
+msgid "Parent theme"
+msgstr "家长主题"
+
+msgid "Block theme"
+msgstr "区块主题"
+
+msgid "Block template"
+msgstr "块模板"
+
+msgid "Body classes"
+msgstr "身体课程"
+
+msgid "Template parts"
+msgstr "模板零件"
+
+msgid "Not found"
+msgstr "未找到"
+
+msgid "Request path"
+msgstr "请求路径"
+
+msgid "Matched rule"
+msgstr "匹配规则"
+
+msgid "Matched query"
+msgstr "匹配查询"
+
+msgid "Queried object"
+msgstr "查询对象"
+
+msgid "Query vars"
+msgstr "查询变量"
+
+msgid "Conditionals"
+msgstr "条件句"
+
+msgid "Capability"
+msgstr "能力"
+
+msgid "Granted"
+msgstr "授予"
+
+msgid "Denied"
+msgstr "被拒绝"
+
+msgid "Scripts"
+msgstr "脚本"
+
+msgid "Styles"
+msgstr "风格"
+
+msgid "Dependencies"
+msgstr "依赖关系"
+
+msgid "Missing"
+msgstr "失踪"
+
+msgid "Position"
+msgstr "职位"
+
+msgid "Footer"
+msgstr "页脚"
+
+msgid "Header"
+msgstr "标头"
+
+msgid "Loaded"
+msgstr "已加载"
+
+msgid "No file"
+msgstr "没有文件"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "No expiry"
+msgstr "无有效期"
+
+msgid "Distinct actions fired in this request"
+msgstr "此请求中触发的不同操作"
+
+msgid "Most fired:"
+msgstr "被解雇最多的:"
+
+msgid "queries"
+msgstr "查询"
+
+msgid "Resize"
+msgstr "调整大小"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "24 hours"
+msgstr "24小时"
+
+msgid "7 days"
+msgstr "7天"
+
+msgid "No matching requests in this range."
+msgstr "此范围内没有匹配的请求。"
+
+msgid "HTTP"
+msgstr "HTTP协议"
+
+msgid "No records"
+msgstr "没有记录"
+
+msgid "Critical"
+msgstr "关键"
+
+msgid "PHP notices"
+msgstr "PHP通知"
+
+msgid "Open in panel"
+msgstr "在面板中打开"
+
+msgid "Query time"
+msgstr "查询时间"
+
+msgid "Only slow, failed and sampled PHP requests are recorded. Pages served from cache are not in these numbers."
+msgstr "仅记录缓慢、失败和采样的 PHP 请求。从缓存提供的页面不在这些数字中。"
+
+msgid "Slow requests"
+msgstr "请求缓慢"
+
+msgid "Load"
+msgstr "负载"
+
+msgid "p95"
+msgstr "p95"
+
+msgid "Flag"
+msgstr "旗帜"
+
+msgid "[['Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools.', 'tr']]"
+msgstr "[['站点性能集中于一处:每个请求查询、PHP 错误、外部 HTTP 请求(开发人员面板)、缓慢/错误请求日志、服务器(CPU、RAM、磁盘、OPcache)、数据库、自动加载、cron 和系统检查。 AI 使用 Flux AI 和 MCP / Flux AI 工具读取所有内容。', 'tr']]"

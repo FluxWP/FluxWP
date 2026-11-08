@@ -1,0 +1,536 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "Open wiki"
+msgstr "Открыть вики"
+
+msgid "Developer wiki: Markdown pages, search, LLM and MCP support"
+msgstr "Вики для разработчиков: страницы Markdown, поиск, поддержка LLM и MCP"
+
+msgid "Wiki settings"
+msgstr "Настройки вики"
+
+msgid "Preparing preview…"
+msgstr "Подготовка предварительного просмотра..."
+
+msgid "Could not load the preview."
+msgstr "Could not load the preview."
+
+msgid "Nothing to preview."
+msgstr "Ничего для предварительного просмотра."
+
+msgid "Link URL"
+msgstr "URL-адрес ссылки"
+
+msgid "Heading"
+msgstr "Заголовок"
+
+msgid "text"
+msgstr "текст"
+
+msgid "code"
+msgstr "код"
+
+msgid "link"
+msgstr "ссылка"
+
+msgid "page-slug"
+msgstr "слаг страницы"
+
+msgid "item"
+msgstr "предмет"
+
+msgid "Note"
+msgstr "Примечание"
+
+msgid "Subheading"
+msgstr "Подзаголовок"
+
+msgid "Bold"
+msgstr "Жирный"
+
+msgid "Italic"
+msgstr "Курсив"
+
+msgid "Inline code"
+msgstr "Встроенный код"
+
+msgid "Code block"
+msgstr "Кодовый блок"
+
+msgid "Link"
+msgstr "Ссылка"
+
+msgid "Wiki link"
+msgstr "Вики-ссылка"
+
+msgid "List"
+msgstr "Список"
+
+msgid "Callout"
+msgstr "Выноска"
+
+msgid "Table"
+msgstr "Таблица"
+
+msgid "Write"
+msgstr "Написать"
+
+msgid "Preview"
+msgstr "Предварительный просмотр"
+
+msgid "Side by side"
+msgstr "Бок о бок"
+
+msgid "Write Markdown. ## Heading, ```php code```, [[page-slug]] wiki link, > [!NOTE] callout."
+msgstr "Напишите Маркдаун. ## Заголовок, ```php code``` , ссылка на вики [[page-slug]], > выноска [!NOTE]."
+
+msgid "Markdown: GitHub flavour (tables, code blocks). Wiki links [[slug]] or [[slug|label]]. Callouts: > [!NOTE], [!TIP], [!IMPORTANT], [!WARNING], [!CAUTION]. Do not repeat the title in the content."
+msgstr "Markdown: вариант GitHub (таблицы, блоки кода). Wiki-ссылки [[slug]] или [[slug|label]]. Выноски: > [!ПРИМЕЧАНИЕ], [!СОВЕТ], [!ВАЖНО], [!ВНИМАНИЕ], [!ВНИМАНИЕ]. Не повторяйте заголовок в содержании."
+
+msgid "Open as .md"
+msgstr "Открыть как .md"
+
+msgid "Order"
+msgstr "Заказать"
+
+msgid "Lower numbers come first on the wiki home and in the menu."
+msgstr "Меньшие числа идут первыми на главной странице вики и в меню."
+
+msgid "General"
+msgstr "Общий"
+
+msgid "Appearance"
+msgstr "Внешний вид"
+
+msgid "AI"
+msgstr "ИИ"
+
+msgid "Add page"
+msgstr "Добавить страницу"
+
+msgid "The wiki is closed to visitors; only people who can write pages see it."
+msgstr "Вики закрыта для посетителей; его видят только люди, умеющие писать страницы."
+
+msgid "Settings saved."
+msgstr "Настройки сохранены."
+
+msgid "Guides imported: %1$d new, %2$d updated, %3$d skipped (edited by hand or up to date)."
+msgstr "Импортированы руководства:%1$d— новое,%2$d— обновленное,%3$d— пропущенное (отредактировано вручную или обновлено)."
+
+msgid "Wiki"
+msgstr "Вики"
+
+msgid "Wiki open to visitors"
+msgstr "Вики открыта для посетителей"
+
+msgid "When closed, wiki addresses, .md and llms.txt return 404 to visitors and leave the sitemap. People who can write pages still see it."
+msgstr "При закрытии вики-адреса, .md и llms.txt возвращают посетителям 404 и покидают карту сайта. Люди, которые умеют писать страницы, все равно это видят."
+
+msgid "Wiki name"
+msgstr "Вики-имя"
+
+msgid "Developer Wiki"
+msgstr "Вики для разработчиков"
+
+msgid "Intro"
+msgstr "Введение"
+
+msgid "Used on the wiki home, in the search engine description and in llms.txt."
+msgstr "Используется на главной странице вики, в описании поисковой системы и в llms.txt."
+
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Lowercase letters, digits and hyphens. Old addresses stop working when you change it."
+msgstr "Строчные буквы, цифры и дефисы. Старые адреса перестают работать при их изменении."
+
+msgid "Page buttons"
+msgstr "Кнопки страницы"
+
+msgid "ChatGPT, Claude, Google AI and Perplexity links in the \"Ask AI\" menu"
+msgstr "Ссылки ChatGPT, Claude, Google AI и Perplexity в меню «Спросить AI»."
+
+msgid "\"Edit\" button for editors"
+msgstr "Кнопка «Редактировать» для редакторов"
+
+msgid "Accent colour"
+msgstr "Акцентный цвет"
+
+msgid "Use the theme colour"
+msgstr "Используйте цвет темы"
+
+msgid "Links, the selected menu item and accent buttons."
+msgstr "Ссылки, выбранный пункт меню и акцентные кнопки."
+
+msgid "Width"
+msgstr "Ширина"
+
+msgid "Normal"
+msgstr "Нормальный"
+
+msgid "Wide (for long code and tables)"
+msgstr "Широкий (для длинного кода и таблиц)"
+
+msgid "Page layout"
+msgstr "Макет страницы"
+
+msgid "Page menu and search on the left"
+msgstr "Меню страниц и поиск слева"
+
+msgid "\"On this page\" (contents) on the right"
+msgstr "«На этой странице» (содержание) справа"
+
+msgid "Flux AI is not installed. Once installed, visitors can use \"Ask the wiki\", which answers from the wiki content."
+msgstr "Flux AI не установлен. После установки посетители могут использовать функцию «Спросить вики», которая дает ответы на основе содержимого вики."
+
+msgid "Flux AI has no key or the Flux Wiki system is off (Flux AI › Connected systems)."
+msgstr "У Flux AI нет ключа или система Flux Wiki отключена (Flux AI › Подключенные системы)."
+
+msgid "Who can ask"
+msgstr "Кто может спросить"
+
+msgid "Off"
+msgstr "Выкл."
+
+msgid "Logged-in users"
+msgstr "Вошедшие пользователи"
+
+msgid "Everyone (including visitors)"
+msgstr "Все (включая посетителей)"
+
+msgid "Every question counts towards the Flux AI spending limit; keep the hourly limit low with \"Everyone\"."
+msgstr "Каждый вопрос учитывается при расчете лимита расходов Flux AI; оставьте часовой лимит на низком уровне с помощью параметра «Все»."
+
+msgid "Hourly question limit"
+msgstr "Лимит вопросов в час"
+
+msgid "per person (unlimited for administrators)"
+msgstr "на человека (без ограничений для администраторов)"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Addresses"
+msgstr "Адреса"
+
+msgid "Search API"
+msgstr "API поиска"
+
+msgid "Flux AI › MCP is off"
+msgstr "Flux AI › MCP выключен"
+
+msgid "Add .md to any page address to get it as Markdown. With Flux SEO installed, a \"Wiki\" section is added to the site's /llms.txt."
+msgstr "Добавьте .md к любому адресу страницы, чтобы получить ее в формате Markdown. При установке Flux SEO в файл /llms.txt сайта добавляется раздел «Wiki»."
+
+msgid "Bundled guides"
+msgstr "Комплектные руководства"
+
+msgid "The plugin ships %d guides: writing plugins and themes, AI-enabled plugins, MCP tools, settings schema, translation, versions and releases. Missing pages are added; pages you have not edited are updated to the new version."
+msgstr "Плагин включает руководства%d: написание плагинов и тем, плагины с поддержкой AI, инструменты MCP, схему настроек, перевод, версии и выпуски. Добавлены недостающие страницы; страницы, которые вы не редактировали, обновляются до новой версии."
+
+msgid "Import / update guides"
+msgstr "Импорт/обновление руководств"
+
+msgid "%d published pages."
+msgstr "%dопубликованные страницы."
+
+msgid "You are not allowed to do this."
+msgstr "Вам не разрешено это делать."
+
+msgid "Ask the wiki"
+msgstr "Спроси вики"
+
+msgid "Wiki draft"
+msgstr "Вики-проект"
+
+msgid "Flux AI is not ready."
+msgstr "Flux AI не готов."
+
+msgid "I could not find a guide answering this question. Try again with the plugin name or the task you want to complete."
+msgstr "Я не нашел руководства, отвечающего на этот вопрос. Попробуйте еще раз, указав имя плагина или задачу, которую хотите выполнить."
+
+msgid "Could not get an answer. Try again in a moment."
+msgstr "Не удалось получить ответ. Повторите попытку через минуту."
+
+msgid "%1$s result for \"%2$s\""
+msgid_plural "%1$s results for \"%2$s\""
+msgstr[0] "Результат%1$sдля \"%2$s\""
+msgstr[1] "Результаты%1$sдля \"%2$s\""
+msgstr[2] "Результаты%1$sдля \"%2$s\""
+
+msgid "Copied"
+msgstr "Скопировано"
+
+msgid "Copy"
+msgstr "Копировать"
+
+msgid "Could not copy"
+msgstr "Не удалось скопировать"
+
+msgid "Searching…"
+msgstr "Поиск..."
+
+msgid "No results. Try another word."
+msgstr "Никаких результатов. Попробуйте другое слово."
+
+msgid "Type to search"
+msgstr "Введите для поиска"
+
+msgid "%d results"
+msgstr "Результаты%d"
+
+msgid "Ask AI"
+msgstr "Спросите ИИ"
+
+msgid "Type your question; the answer comes only from the wiki pages."
+msgstr "Введите свой вопрос; ответ приходит только со страниц вики."
+
+msgid "Reading the wiki, preparing an answer…"
+msgstr "Читаем вики, готовим ответ..."
+
+msgid "Sources"
+msgstr "Источники"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "Log in to ask a question."
+msgstr "Войдите, чтобы задать вопрос."
+
+msgid "No results for \"%1$s\"; showing results for \"%2$s\"."
+msgstr "По запросу «%1$s» нет результатов; показаны результаты для \"%2$s\"."
+
+msgid "See all %d results"
+msgstr "Посмотреть все результаты%d"
+
+msgid "Wiki search for \"%s\""
+msgstr "Вики-поиск \"%s\""
+
+msgid "Guides for writing FluxWP plugins and themes, AI-enabled features and the shared platform."
+msgstr "Руководства по написанию плагинов и тем FluxWP, функциям с поддержкой искусственного интеллекта и общей платформе."
+
+msgid "Source"
+msgstr "Источник"
+
+msgid "Section"
+msgstr "Раздел"
+
+msgid "Last updated"
+msgstr "Последнее обновление"
+
+msgid "Add .md to any page address to get its Markdown. The whole wiki in one file: %1$s"
+msgstr "Добавьте .md к любому адресу страницы, чтобы получить ее уценку. Вся вики в одном файле:%1$s"
+
+msgid "MCP server (key required): %s, tools flxwk_search, flxwk_get_page, flxwk_list_pages."
+msgstr "Сервер MCP (требуется ключ):%s, инструменты flxwk_search, flxwk_get_page, flxwk_list_pages."
+
+msgid "Other pages"
+msgstr "Другие страницы"
+
+msgid "Whole wiki (one file)"
+msgstr "Вся вики (один файл)"
+
+msgid "This page does not exist yet"
+msgstr "Эта страница еще не существует"
+
+msgid "Tip"
+msgstr "Совет"
+
+msgid "Important"
+msgstr "Важно"
+
+msgid "Warning"
+msgstr "Предупреждение"
+
+msgid "Caution"
+msgstr "Внимание"
+
+msgid "Search the wiki"
+msgstr "Поиск в вики"
+
+msgid "Read wiki page"
+msgstr "Читать вики-страницу"
+
+msgid "List wiki pages"
+msgstr "Список вики-страниц"
+
+msgid "Write wiki page"
+msgstr "Написать вики-страницу"
+
+msgid "Write a FluxWP plugin (with the wiki guides)"
+msgstr "Напишите плагин FluxWP (с помощью вики-руководств)"
+
+msgid "Sections"
+msgstr "Разделы"
+
+msgid "New section"
+msgstr "Новый раздел"
+
+msgid "Edit section"
+msgstr "Редактировать раздел"
+
+msgid "Search sections"
+msgstr "Разделы поиска"
+
+msgid "All sections"
+msgstr "Все разделы"
+
+msgid "Wiki page"
+msgstr "Вики-страница"
+
+msgid "All pages"
+msgstr "Все страницы"
+
+msgid "New wiki page"
+msgstr "Новая вики-страница"
+
+msgid "Edit wiki page"
+msgstr "Редактировать вики-страницу"
+
+msgid "View page"
+msgstr "Посмотреть страницу"
+
+msgid "No pages found"
+msgstr "Страницы не найдены"
+
+msgid "No pages in trash"
+msgstr "Нет страниц в корзине"
+
+msgid "Parent page:"
+msgstr "Родительская страница:"
+
+msgid "Wiki page not found."
+msgstr "Страница Wiki не найдена."
+
+msgid "A title is required."
+msgstr "Требуется название."
+
+msgid "Wiki section"
+msgstr "Вики-раздел"
+
+msgid "The question is too short."
+msgstr "Вопрос слишком короткий."
+
+msgid "You have reached the question limit for this hour. Try again later."
+msgstr "Вы достигли лимита вопросов на этот час. Повторите попытку позже."
+
+msgid "Your previous question is still being answered. Please try again shortly."
+msgstr "На ваш предыдущий вопрос все еще нет ответа. Пожалуйста, повторите попытку в ближайшее время."
+
+msgid "Wiki addresses"
+msgstr "Вики-адреса"
+
+msgid "The wiki is at %s; .md and llms.txt addresses work."
+msgstr "Вики находится по адресу%s; Адреса .md и llms.txt работают."
+
+msgid "Permalinks are set to \"Plain\"; /wiki, .md and llms.txt addresses do not work. Choose \"Post name\" in Settings › Permalinks."
+msgstr "Для постоянных ссылок установлено значение «Обычный»; Адреса /wiki, .md и llms.txt не работают. Выберите «Название публикации» в «Настройки» > «Постоянные ссылки»."
+
+msgid "Permalinks"
+msgstr "Постоянные ссылки"
+
+msgid "Flux AI is ready; visitors can get answers from the wiki content."
+msgstr "Flux AI готов; посетители могут получить ответы из содержимого вики."
+
+msgid "Flux AI is not installed, has no key or the Flux Wiki system is off; \"Ask the wiki\" is hidden."
+msgstr "Flux AI не установлен, не имеет ключа или система Flux Wiki выключена; «Спросите вики» скрыто."
+
+msgid "%s page"
+msgid_plural "%s pages"
+msgstr[0] "Страница%s"
+msgstr[1] "Страницы%s"
+msgstr[2] "Страницы%s"
+
+msgid "%s min read"
+msgid_plural "%s min read"
+msgstr[0] "%sминута чтения"
+msgstr[1] "%sминута чтения"
+msgstr[2] "%sминута чтения"
+
+msgid "What are you looking for? E.g. MCP tool, flx_settings_schema, theme…"
+msgstr "Что вы ищете? Например. Инструмент MCP, flx_settings_schema, тема..."
+
+msgid "Search the wiki…"
+msgstr "Поищите в вики..."
+
+msgid "Documentation"
+msgstr "Документация"
+
+msgid "Start here"
+msgstr "Начните здесь"
+
+msgid "Explore the guides"
+msgstr "Изучите руководства"
+
+msgid "No published pages yet."
+msgstr "Опубликованных страниц пока нет."
+
+msgid "See all"
+msgstr "Посмотреть все"
+
+msgid "Recently updated"
+msgstr "Недавно обновлено"
+
+msgid "For LLMs and AI agents"
+msgstr "Для LLM и AI-агентов"
+
+msgid "Add .md to any page address to open it as plain Markdown. Agents read the index from llms.txt and the whole content in one file from llms-full.txt."
+msgstr "Добавьте .md к любому адресу страницы, чтобы открыть ее как обычную Markdown. Агенты считывают индекс из llms.txt и все содержимое одного файла из llms-full.txt."
+
+msgid "On this page"
+msgstr "На этой странице"
+
+msgid "Subpages"
+msgstr "Подстраницы"
+
+msgid "Updated %s"
+msgstr "Обновлен%s."
+
+msgid "Previous and next page"
+msgstr "Предыдущая и следующая страница"
+
+msgid "Previous"
+msgstr "Предыдущий"
+
+msgid "Next"
+msgstr "Далее"
+
+msgid "Markdown"
+msgstr "Уценка"
+
+msgid "Read the document at %s, then answer my questions about it."
+msgstr "Прочтите документ по адресу%s, а затем ответьте на мои вопросы по нему."
+
+msgid "Copy Markdown"
+msgstr "Копировать уценку"
+
+msgid "Edit"
+msgstr "Редактировать"
+
+msgid "Breadcrumb"
+msgstr "хлебные крошки"
+
+msgid "Pages"
+msgstr "Страницы"
+
+msgid "Wiki pages"
+msgstr "Вики-страницы"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "select"
+msgstr "выбрать"
+
+msgid "open"
+msgstr "открыть"
+
+msgid "close"
+msgstr "закрыть"
+
+msgid "[['Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.', 'tr']]"
+msgstr "[['Вики для разработчиков на сайте в разделе /wiki: страницы Markdown, разделы, дерево страниц и оглавление, подробный мгновенный поиск, оптимизированный для SEO вывод. Совместимость с LLM: каждая страница открывается и копируется как .md, /wiki/llms.txt и llms-full.txt, открываемые в ChatGPT/Claude. «Спросите Wiki» и инструменты MCP (поиск, чтение, список, запись) с Flux AI. Он поставляется с руководствами по написанию плагинов и тем, а также по созданию плагинов на базе искусственного интеллекта.', 'tr']]"

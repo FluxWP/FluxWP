@@ -1,0 +1,1538 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "YOUR_KEY"
+msgstr "مفتاحك"
+
+msgid "AI assistants such as Claude connect to this site over MCP (Model Context Protocol). Tools come from the installed FluxWP plugins (SEO, CRM, Mail, Speed…); Flux AI chat uses the same tools."
+msgstr "يتصل مساعدو الذكاء الاصطناعي مثل Claude بهذا الموقع عبر MCP (بروتوكول السياق النموذجي). تأتي الأدوات من ملحقات FluxWP المثبتة (SEO، CRM، Mail، Speed...)؛ تستخدم دردشة Flux AI نفس الأدوات."
+
+msgid "An old Flux SEO version is running its own MCP server. Update Flux SEO; keys and the setting move here automatically."
+msgstr "يقوم إصدار Flux SEO القديم بتشغيل خادم MCP الخاص به. تحديث تدفق كبار المسئولين الاقتصاديين. تنتقل المفاتيح والإعدادات هنا تلقائيًا."
+
+msgid "1. Server"
+msgstr "1. الخادم"
+
+msgid "MCP server enabled"
+msgstr "تم تمكين خادم MCP"
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "Server URL"
+msgstr "عنوان URL للخادم"
+
+msgid "on"
+msgstr "على"
+
+msgid "off"
+msgstr "خارج"
+
+msgid "Tools"
+msgstr "أدوات"
+
+msgid "2. Keys"
+msgstr "2. المفاتيح"
+
+msgid "The assistant works with the permissions of the user who created the key. New content is created as a draft; deleting only moves to trash."
+msgstr "يعمل المساعد مع أذونات المستخدم الذي أنشأ المفتاح. يتم إنشاء محتوى جديد كمسودة؛ حذف ينتقل فقط إلى سلة المهملات."
+
+msgid "New key (shown only now, copy it):"
+msgstr "المفتاح الجديد (يظهر الآن فقط، قم بنسخه):"
+
+msgid "reads"
+msgstr "يقرأ"
+
+msgid "Limit tools (optional)"
+msgstr "أدوات الحد (اختياري)"
+
+msgid "If none is selected the key works with all of the user's permissions. If some are selected it only sees and runs those tools (e.g. only order_summary for a TV order board)."
+msgstr "إذا لم يتم تحديد أي مفتاح، فسيعمل المفتاح مع جميع أذونات المستخدم. إذا تم تحديد بعضها، فإنه يرى هذه الأدوات فقط ويقوم بتشغيلها (على سبيل المثال، فقط order_summary للوحة طلب التلفزيون)."
+
+msgid "e.g. Claude – Alex"
+msgstr "على سبيل المثال كلود - اليكس"
+
+msgid "Create new key"
+msgstr "إنشاء مفتاح جديد"
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "User"
+msgstr "المستخدم"
+
+msgid "Created"
+msgstr "تم إنشاؤها"
+
+msgid "Last used"
+msgstr "آخر استخدام"
+
+msgid "All"
+msgstr "الكل"
+
+msgid "Revoke"
+msgstr "إبطال"
+
+msgid "3. Connect an assistant"
+msgstr "3. قم بتوصيل المساعد"
+
+msgid "Connectors › Add custom connector"
+msgstr "الموصلات › إضافة موصل مخصص"
+
+msgid "URL with the key, for places where headers can't be added; don't share it:"
+msgstr "عنوان URL مع المفتاح، للأماكن التي لا يمكن إضافة الرؤوس إليها؛ لا تشاركه:"
+
+msgid "On Apache, if you see \"Invalid key\", add SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 to .htaccess, or use the keyed URL."
+msgstr "في Apache، إذا رأيت \"مفتاح غير صالح\"، أضف تخويل SetEnvIf \"(.*)\" HTTP_AUTHORIZATION=$1 إلى .htaccess، أو استخدم عنوان URL ذي المفاتيح."
+
+msgid "Recent activity"
+msgstr "النشاط الأخير"
+
+msgid "Time"
+msgstr "الوقت"
+
+msgid "Tool"
+msgstr "أداة"
+
+msgid "Target"
+msgstr "الهدف"
+
+msgid "Result"
+msgstr "النتيجة"
+
+msgid "%d tools registered."
+msgstr "تم تسجيل أدوات%d."
+
+msgid "AI settings of this plugin. Values are stored in Flux AI and read by the plugin."
+msgstr "إعدادات الذكاء الاصطناعي لهذا البرنامج المساعد. يتم تخزين القيم في Flux AI وقراءتها بواسطة البرنامج المساعد."
+
+msgid "Connected systems"
+msgstr "الأنظمة المتصلة"
+
+msgid "Saved."
+msgstr "تم الحفظ."
+
+msgid "AI"
+msgstr "منظمة العفو الدولية"
+
+msgid "This plugin may use AI"
+msgstr "قد يستخدم هذا البرنامج المساعد الذكاء الاصطناعي"
+
+msgid "When off, the plugin's model requests are rejected; its tools are turned off separately on the Tools screen."
+msgstr "عند إيقافه، يتم رفض طلبات نماذج المكون الإضافي؛ ويتم إيقاف تشغيل أدواته بشكل منفصل على شاشة الأدوات."
+
+msgid "Model"
+msgstr "نموذج"
+
+msgid "Empty uses the default model."
+msgstr "يستخدم فارغ النموذج الافتراضي."
+
+msgid "On"
+msgstr "على"
+
+msgid "%1$s / %2$s tools on"
+msgstr "أدوات%1$s/%2$sقيد التشغيل"
+
+msgid "Manage tools"
+msgstr "إدارة الأدوات"
+
+msgid "This plugin has no tools."
+msgstr "هذا البرنامج المساعد ليس لديه أدوات."
+
+msgid "This plugin declares no settings with the Flux AI SDK; only on/off and the model can be set."
+msgstr "لا يعلن هذا البرنامج المساعد عن أي إعدادات مع Flux AI SDK؛ تشغيل/إيقاف فقط ويمكن ضبط النموذج."
+
+msgid "Flux AI SDK %s loaded."
+msgstr "تم تحميل Flux AI SDK%s."
+
+msgid "Tools that plugins offer to AI: the shared chat and the MCP server. A tool turned off is unavailable in both; tools that change data ask for approval every time."
+msgstr "الأدوات التي تقدمها المكونات الإضافية للذكاء الاصطناعي: الدردشة المشتركة وخادم MCP. الأداة التي تم إيقاف تشغيلها غير متوفرة في كليهما؛ الأدوات التي تغير البيانات تطلب الموافقة في كل مرة."
+
+msgid "The plugin used for %s was changed."
+msgstr "تم تغيير البرنامج المساعد المستخدم لـ%s."
+
+msgid "%s off"
+msgstr "%sمعطلة"
+
+msgid "Name conflicts"
+msgstr "تعارضات الأسماء"
+
+msgid "Only one is on per name"
+msgstr "واحد فقط لكل اسم"
+
+msgid "None"
+msgstr "لا شيء"
+
+msgid "Unprefixed names"
+msgstr "أسماء غير مسبوقة"
+
+msgid "Tools without a plugin prefix"
+msgstr "أدوات بدون بادئة البرنامج المساعد"
+
+msgid "By plugin"
+msgstr "بواسطة البرنامج المساعد"
+
+msgid "Search tools"
+msgstr "أدوات البحث"
+
+msgid "Search name, description, plugin…"
+msgstr "البحث عن الاسم والوصف والمكون الإضافي..."
+
+msgid "Source"
+msgstr "المصدر"
+
+msgid "All plugins"
+msgstr "جميع الإضافات"
+
+msgid "Reads"
+msgstr "يقرأ"
+
+msgid "Changes"
+msgstr "التغييرات"
+
+msgid "Off"
+msgstr "إيقاف"
+
+msgid "Conflict"
+msgstr "الصراع"
+
+msgid "Unprefixed"
+msgstr "غير مسبوقة"
+
+msgid "Turn on"
+msgstr "تشغيل"
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Clear selection"
+msgstr "مسح التحديد"
+
+msgid "Select all visible"
+msgstr "حدد كل ما هو مرئي"
+
+msgid "Type"
+msgstr "اكتب"
+
+msgid "Where"
+msgstr "أين"
+
+msgid "Capability"
+msgstr "القدرة"
+
+msgid "30 days"
+msgstr "30 يوما"
+
+msgid "Avg. time"
+msgstr "متوسط الوقت"
+
+msgid "Conflict: off, %s is used"
+msgstr "الصراع: إيقاف، يتم استخدام%s"
+
+msgid "Conflict: this one is on, %s is off"
+msgstr "الصراع: هذا قيد التشغيل، و%sمتوقف عن التشغيل"
+
+msgid "The name does not start with a plugin prefix; it may clash with another plugin's tool."
+msgstr "لا يبدأ الاسم ببادئة البرنامج المساعد؛ قد يتعارض مع أداة مكون إضافي آخر."
+
+msgid "unprefixed"
+msgstr "غير مسبوقة"
+
+msgid "Old name: %s"
+msgstr "الاسم القديم:%s"
+
+msgid "Use this one"
+msgstr "استخدم هذا"
+
+msgid "%s on"
+msgstr "%sقيد التشغيل"
+
+msgid "Select %s"
+msgstr "اختر %s"
+
+msgid "Chat"
+msgstr "الدردشة"
+
+msgid "writes · needs approval"
+msgstr "يكتب · يحتاج إلى موافقة"
+
+msgid "No tools registered."
+msgstr "لم يتم تسجيل أي أدوات."
+
+msgid "No tools match the filters."
+msgstr "لا توجد أدوات تتطابق مع المرشحات."
+
+msgid "There are unsaved changes."
+msgstr "هناك تغييرات غير محفوظة."
+
+msgid "Plugins add tools with the Flux AI SDK (<code>flx_ai_tool</code>) or the <code>flx_mcp_tools</code> / <code>flxai_tools</code> filters. If two plugins register the same name, the first stays on and the other waits turned off; switch with \"Use this one\". Plugin settings: %s."
+msgstr "تضيف المكونات الإضافية أدوات باستخدام Flux AI SDK (<code>flx_ai_tool</code>) أو مرشحات<code>flx_mcp_tools</code>/<code>flxai_tools</code>. إذا سجل مكونان إضافيان نفس الاسم، فسيظل الأول قيد التشغيل وينتظر الآخر متوقفاً عن التشغيل؛ قم بالتبديل باستخدام \"استخدم هذا\". إعدادات البرنامج المساعد:%s."
+
+msgid "%s tools updated."
+msgstr "تم تحديث أدوات%s."
+
+msgid "%s plugins"
+msgstr "الإضافات%s"
+
+msgid "Overview"
+msgstr "نظرة عامة"
+
+msgid "Logs"
+msgstr "سجلات"
+
+msgid "Billing"
+msgstr "الفواتير"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "Limit %1$s · resets %2$s"
+msgstr "الحد من%1$s· إعادة تعيين%2$s"
+
+msgid "No limit"
+msgstr "لا يوجد حد"
+
+msgid "AI usage across all plugins: cost, time, cache and tools."
+msgstr "استخدام الذكاء الاصطناعي عبر جميع المكونات الإضافية: التكلفة والوقت وذاكرة التخزين المؤقت والأدوات."
+
+msgid "No API key entered yet."
+msgstr "لم يتم إدخال مفتاح API حتى الآن."
+
+msgid "%d days"
+msgstr "%dأيام"
+
+msgid "Cost"
+msgstr "التكلفة"
+
+msgid "Cache savings %s"
+msgstr "توفير ذاكرة التخزين المؤقت%s"
+
+msgid "Model requests"
+msgstr "طلبات النماذج"
+
+msgid "%s tool calls"
+msgstr "مكالمات أداة%s"
+
+msgid "Tokens"
+msgstr "الرموز"
+
+msgid "Input %1$s · output %2$s · from cache %3$s"
+msgstr "إدخال%1$s· إخراج%2$s· من ذاكرة التخزين المؤقت%3$s"
+
+msgid "Total time"
+msgstr "الوقت الإجمالي"
+
+msgid "Model/thinking %1$s%% · tools %2$s%%"
+msgstr "النموذج/التفكير%1$s%% · الأدوات%2$s%%"
+
+msgid "Errors"
+msgstr "أخطاء"
+
+msgid "%s%% of requests"
+msgstr "%s%% من الطلبات"
+
+msgid "Daily cost (USD)"
+msgstr "التكلفة اليومية (بالدولار الأمريكي)"
+
+msgid "Where time goes: model/thinking vs tools"
+msgstr "أين يذهب الوقت: النموذج/التفكير مقابل الأدوات"
+
+msgid "Daily tokens"
+msgstr "الرموز اليومية"
+
+msgid "Average time per tool"
+msgstr "متوسط الوقت لكل أداة"
+
+msgid "By model"
+msgstr "حسب النموذج"
+
+msgid "By purpose"
+msgstr "حسب الغرض"
+
+msgid "No records in this range."
+msgstr "لا توجد سجلات في هذا النطاق."
+
+msgid "Requests"
+msgstr "الطلبات"
+
+msgid "Model time"
+msgstr "وقت النموذج"
+
+msgid "Tool time"
+msgstr "وقت الأداة"
+
+msgid "%s errors"
+msgstr "أخطاء%s"
+
+msgid "Every model request and tool call: which system, for whom, which model, tokens, time and cost. Content is stored with personal data masked."
+msgstr "كل طلب نموذج واستدعاء أداة: أي نظام، ولمن، وأي نموذج، والرموز المميزة، والوقت والتكلفة. يتم تخزين المحتوى مع إخفاء البيانات الشخصية."
+
+msgid "Tool calls"
+msgstr "مكالمات الأداة"
+
+msgid "All systems"
+msgstr "جميع الأنظمة"
+
+msgid "Errors only"
+msgstr "الأخطاء فقط"
+
+msgid "24 hours"
+msgstr "24 ساعة"
+
+msgid "Filter"
+msgstr "تصفية"
+
+msgid "%s records"
+msgstr "سجلات%s"
+
+msgid "No records."
+msgstr "لا توجد سجلات."
+
+msgid "Who"
+msgstr "من"
+
+msgid "Model / tool"
+msgstr "النموذج / الأداة"
+
+msgid "Input"
+msgstr "الإدخال"
+
+msgid "Output"
+msgstr "الإخراج"
+
+msgid "Cache"
+msgstr "ذاكرة التخزين المؤقت"
+
+msgid "Duration"
+msgstr "المدة"
+
+msgid "tool"
+msgstr "أداة"
+
+msgid "Spending limit reached"
+msgstr "تم الوصول إلى حد الإنفاق"
+
+msgid "Off (Connected systems)"
+msgstr "إيقاف (الأنظمة المتصلة)"
+
+msgid "System"
+msgstr "النظام"
+
+msgid "Content"
+msgstr "المحتوى"
+
+msgid "Page %1$s / %2$s"
+msgstr "صفحة%1$s/%2$s"
+
+msgid "Cache column: tokens read / written. \"~\" is estimated from the price list. Content: last outgoing messages and the incoming reply, shortened; e-mail, phone, IBAN and keys are masked."
+msgstr "عمود ذاكرة التخزين المؤقت: الرموز المقروءة/المكتوبة. يتم تقدير \"~\" من قائمة الأسعار. المحتوى: آخر الرسائل الصادرة والرد الوارد، مختصرًا؛ البريد الإلكتروني والهاتف ورقم الحساب الدولي (IBAN) والمفاتيح مخفية."
+
+msgid "Plugins that use Flux AI. A system switched off here cannot send AI requests; its own settings stay as they are."
+msgstr "المكونات الإضافية التي تستخدم Flux AI. لا يمكن للنظام المتوقف هنا إرسال طلبات الذكاء الاصطناعي؛ تظل إعداداته الخاصة كما هي."
+
+msgid "Status"
+msgstr "الحالة"
+
+msgid "Requests (30 days)"
+msgstr "الطلبات (30 يومًا)"
+
+msgid "not installed"
+msgstr "غير مثبت"
+
+msgid "plugin inactive"
+msgstr "البرنامج المساعد غير نشط"
+
+msgid "AI off"
+msgstr "إيقاف تشغيل الذكاء الاصطناعي"
+
+msgid "working"
+msgstr "العمل"
+
+msgid "AI settings"
+msgstr "إعدادات الذكاء الاصطناعي"
+
+msgid "Its settings"
+msgstr "إعداداته"
+
+msgid "The Model column is the model that system uses. Change it under Settings › Per-plugin model. Requests to a disabled system are rejected and show as \"Disabled\" in the log."
+msgstr "عمود النموذج هو النموذج الذي يستخدمه النظام. قم بتغييره ضمن الإعدادات ›نموذج لكل مكون إضافي. يتم رفض الطلبات المقدمة إلى نظام معطل وتظهر على أنها \"معطل\" في السجل."
+
+msgid "Monthly breakdown, spending limits and provider credit. Amounts in USD; OpenRouter reports actual cost, Anthropic is computed from the price list."
+msgstr "التوزيع الشهري وحدود الإنفاق وائتمان المزود. المبالغ بالدولار الأمريكي؛ يُبلغ OpenRouter عن التكلفة الفعلية، ويتم حساب Anthropic من قائمة الأسعار."
+
+msgid "Months"
+msgstr "أشهر"
+
+msgid "Download CSV"
+msgstr "قم بتنزيل ملف CSV"
+
+msgid "Total"
+msgstr "المجموع"
+
+msgid "%s without cache"
+msgstr "%sبدون ذاكرة تخزين مؤقت"
+
+msgid "Cache savings"
+msgstr "وفورات ذاكرة التخزين المؤقت"
+
+msgid "%s%% less"
+msgstr "%s%% أقل"
+
+msgid "By provider"
+msgstr "بواسطة المزود"
+
+msgid "Provider"
+msgstr "مزود"
+
+msgid "Without cache"
+msgstr "بدون ذاكرة التخزين المؤقت"
+
+msgid "Amount"
+msgstr "المبلغ"
+
+msgid "partly estimated"
+msgstr "يقدر جزئيا"
+
+msgid "No records this month."
+msgstr "لا توجد سجلات هذا الشهر."
+
+msgid "OpenRouter account"
+msgstr "حساب OpenRouter"
+
+msgid "Refresh"
+msgstr "تحديث"
+
+msgid "Remaining credit"
+msgstr "الرصيد المتبقي"
+
+msgid "Total usage of this key"
+msgstr "الاستخدام الإجمالي لهذا المفتاح"
+
+msgid "Key limit / remaining"
+msgstr "الحد الرئيسي / المتبقي"
+
+msgid "Checked"
+msgstr "تم الفحص"
+
+msgid "Press Refresh to see remaining credit. (Anthropic has no balance API; see console.anthropic.com › Billing.)"
+msgstr "اضغط على تحديث لرؤية الرصيد المتبقي. (لا تحتوي Anthropic على واجهة برمجة تطبيقات متوازنة؛ راجع console.anthropic.com ›الفوترة.)"
+
+msgid "Flux AI settings"
+msgstr "إعدادات التدفق AI"
+
+msgid "Enter keys here once; all FluxWP plugins use this connection."
+msgstr "أدخل المفاتيح هنا مرة واحدة؛ تستخدم جميع مكونات FluxWP الإضافية هذا الاتصال."
+
+msgid "Settings saved."
+msgstr "تم حفظ الإعدادات."
+
+msgid "Providers"
+msgstr "مقدمي الخدمات"
+
+msgid "OpenRouter API key"
+msgstr "مفتاح واجهة برمجة تطبيقات OpenRouter"
+
+msgid "Remove"
+msgstr "إزالة"
+
+msgid "openrouter.ai › Keys. Hundreds of models with one key; actual cost is reported with every request."
+msgstr "openrouter.ai ›المفاتيح. مئات النماذج بمفتاح واحد؛ يتم الإبلاغ عن التكلفة الفعلية مع كل طلب."
+
+msgid "Anthropic (Claude) API key"
+msgstr "الأنثروبي (كلود) مفتاح API"
+
+msgid "console.anthropic.com › API Keys. Claude models are listed with the \"claude:\" prefix."
+msgstr "console.anthropic.com ›مفاتيح API. يتم إدراج نماذج كلود بالبادئة \"كلود:\"."
+
+msgid "Anthropic workspace ID"
+msgstr "معرف مساحة العمل الإنسانية"
+
+msgid "Only needed when the key is not tied to a workspace (if the error asks for \"anthropic-workspace-id\")."
+msgstr "مطلوب فقط عندما لا يكون المفتاح مرتبطًا بمساحة عمل (إذا كان الخطأ يطلب \"معرف مساحة العمل البشرية\")."
+
+msgid "Models"
+msgstr "نماذج"
+
+msgid "Default model"
+msgstr "النموذج الافتراضي"
+
+msgid "Test"
+msgstr "اختبار"
+
+msgid "Used when a plugin does not specify its own model."
+msgstr "يستخدم عندما لا يحدد البرنامج المساعد النموذج الخاص به."
+
+msgid "Shared chat model"
+msgstr "نموذج الدردشة المشتركة"
+
+msgid "Default"
+msgstr "الافتراضي"
+
+msgid "Choose a model that supports tools."
+msgstr "اختر نموذجًا يدعم الأدوات."
+
+msgid "Chat title model"
+msgstr "نموذج عنوان الدردشة"
+
+msgid "Chat model"
+msgstr "نموذج الدردشة"
+
+msgid "A cheap model is enough for automatic chat titles."
+msgstr "النموذج الرخيص يكفي لعناوين الدردشة التلقائية."
+
+msgid "Per-plugin model"
+msgstr "نموذج لكل مكون إضافي"
+
+msgid "Used when the plugin's request names no model; empty means the default."
+msgstr "يُستخدم عندما لا يذكر طلب المكون الإضافي أي نموذج؛ فارغ يعني الافتراضي."
+
+msgid "Cache and thinking"
+msgstr "ذاكرة التخزين المؤقت والتفكير"
+
+msgid "Claude prompt cache"
+msgstr "كلود ذاكرة التخزين المؤقت الفوري"
+
+msgid "On, 5 minutes"
+msgstr "على، 5 دقائق"
+
+msgid "On, 1 hour"
+msgstr "على، 1 ساعة"
+
+msgid "When the same instructions and tools are sent again most of the input cost drops (read 0.1x; write 5 min 1.25x, 1 hour 2x). Plugins can override per request. OpenRouter caching is automatic at the provider."
+msgstr "عندما يتم إرسال نفس التعليمات والأدوات مرة أخرى، تنخفض معظم تكلفة المدخلات (اقرأ 0.1x؛ اكتب 5 دقائق 1.25x، 1 ساعة 2x). يمكن للمكونات الإضافية تجاوز كل طلب. يتم التخزين المؤقت لـ OpenRouter تلقائيًا لدى الموفر."
+
+msgid "Claude effort"
+msgstr "جهد كلود"
+
+msgid "Low: fast and cheap"
+msgstr "منخفض: سريع ورخيص"
+
+msgid "Medium"
+msgstr "متوسط"
+
+msgid "High: thinks deeper"
+msgstr "عالي: يفكر بشكل أعمق"
+
+msgid "Thinking steps"
+msgstr "خطوات التفكير"
+
+msgid "Show the model's thinking summary in chat"
+msgstr "اعرض ملخص تفكير النموذج في الدردشة"
+
+msgid "Spending limit"
+msgstr "حد الإنفاق"
+
+msgid "Daily (resets every day at 00:00)"
+msgstr "يوميًا (يتم إعادة الضبط كل يوم عند الساعة 00:00)"
+
+msgid "Weekly (resets on Monday)"
+msgstr "أسبوعيًا (يتم إعادة التعيين يوم الاثنين)"
+
+msgid "Monthly (resets on the 1st)"
+msgstr "شهريًا (يتم إعادة الضبط في اليوم الأول)"
+
+msgid "0 = unlimited"
+msgstr "0 = غير محدود"
+
+msgid "When the limit is reached"
+msgstr "عندما يتم الوصول إلى الحد"
+
+msgid "Stop requests (plugins switch to their fallback behaviour)"
+msgstr "إيقاف الطلبات (تتحول المكونات الإضافية إلى سلوكها الاحتياطي)"
+
+msgid "Warn only"
+msgstr "تحذير فقط"
+
+msgid "Warning threshold"
+msgstr "عتبة التحذير"
+
+msgid "Email the admin at the threshold and when reached"
+msgstr "أرسل بريدًا إلكترونيًا إلى المشرف عند العتبة وعند الوصول إليها"
+
+msgid "Shared chat"
+msgstr "دردشة مشتركة"
+
+msgid "Who can use it"
+msgstr "من يستطيع استخدامه"
+
+msgid "Everyone only uses tools their own capabilities allow. Individual users can also be given the \"flxai_chat\" capability."
+msgstr "الجميع يستخدم فقط الأدوات التي تسمح بها قدراته. يمكن أيضًا منح المستخدمين الفرديين إمكانية \"flxai_chat\"."
+
+msgid "Where to show"
+msgstr "أين تظهر"
+
+msgid "Admin panel"
+msgstr "لوحة الإدارة"
+
+msgid "Site (for logged-in permitted users)"
+msgstr "الموقع (للمستخدمين المسموح لهم بتسجيل الدخول)"
+
+msgid "Default layout"
+msgstr "التخطيط الافتراضي"
+
+msgid "Floating window"
+msgstr "نافذة عائمة"
+
+msgid "Docked right (pushes the page)"
+msgstr "تم الإرساء لليمين (يدفع الصفحة)"
+
+msgid "Users can switch from the panel; the choice stays in their browser."
+msgstr "يمكن للمستخدمين التبديل من اللوحة؛ يبقى الخيار في متصفحهم."
+
+msgid "Max steps per turn"
+msgstr "الحد الأقصى للخطوات لكل دورة"
+
+msgid "Max messages sent to the model"
+msgstr "الحد الأقصى للرسائل المرسلة إلى النموذج"
+
+msgid "Extra instructions"
+msgstr "تعليمات اضافية"
+
+msgid "E.g. Use a formal tone; always create new pages as drafts."
+msgstr "على سبيل المثال استخدم لهجة رسمية؛ قم دائمًا بإنشاء صفحات جديدة كمسودات."
+
+msgid "Image and video generation"
+msgstr "توليد الصور والفيديو"
+
+msgid "Plugins that generate images and video (Flux Studio etc.) use these keys. In automatic mode the first provider with a key for the model is used; a request that may have been charged is never resent to another provider. The spending limit and Logs apply here too."
+msgstr "تستخدم المكونات الإضافية التي تولد الصور ومقاطع الفيديو (Flux Studio وما إلى ذلك) هذه المفاتيح. في الوضع التلقائي، يتم استخدام الموفر الأول الذي لديه مفتاح للنموذج؛ لن يتم إعادة إرسال الطلب الذي ربما تم تحصيل رسوم منه إلى مزود آخر. ينطبق حد الإنفاق والسجلات هنا أيضًا."
+
+msgid "%s API key"
+msgstr "مفتاح%sAPI"
+
+msgid "OpenRouter"
+msgstr "OpenRouter"
+
+msgid "The OpenRouter key in Providers is also used for images and video."
+msgstr "يتم أيضًا استخدام مفتاح OpenRouter في الموفرين للصور والفيديو."
+
+msgid "Default image model"
+msgstr "نموذج الصورة الافتراضي"
+
+msgid "Default video model"
+msgstr "نموذج الفيديو الافتراضي"
+
+msgid "Model › provider"
+msgstr "النموذج › المزود"
+
+msgid "Order"
+msgstr "النظام"
+
+msgid "Automatic"
+msgstr "تلقائي"
+
+msgid "video"
+msgstr "فيديو"
+
+msgid "No key"
+msgstr "لا يوجد مفتاح"
+
+msgid "Job records"
+msgstr "السجلات الوظيفية"
+
+msgid "days kept (generated files are not deleted)"
+msgstr "الأيام المحفوظة (لا يتم حذف الملفات التي تم إنشاؤها)"
+
+msgid "Visuals"
+msgstr "مرئيات"
+
+msgid "Visuals in chat"
+msgstr "المرئيات في الدردشة"
+
+msgid "Let the model draw tables, cards, diagrams and charts as visuals (```widget and ```mermaid)"
+msgstr "دع النموذج يرسم الجداول والبطاقات والرسوم البيانية والرسوم البيانية كمرئيات (حورية البحر ```widget and ``` )"
+
+msgid "Works with any model. Visuals are drawn in a separate, isolated frame with no external links, forms or access to the site."
+msgstr "يعمل مع أي نموذج. يتم رسم الصور المرئية في إطار منفصل ومعزول بدون روابط أو نماذج خارجية أو إمكانية الوصول إلى الموقع."
+
+msgid "Server-side visual renderer"
+msgstr "العارض المرئي من جانب الخادم"
+
+msgid "Gotenberg: HTML and SVG visuals can be sent as PNG."
+msgstr "Gotenberg: يمكن إرسال صور HTML وSVG بتنسيق PNG."
+
+msgid "Imagick: only SVG visuals can be sent as PNG."
+msgstr "Imagick: يمكن إرسال صور SVG فقط بتنسيق PNG."
+
+msgid "None: channels like WhatsApp get text instead of visuals."
+msgstr "لا شيء: تحصل القنوات مثل WhatsApp على نص بدلاً من العناصر المرئية."
+
+msgid "Optional. Channels like WhatsApp and email cannot show HTML; visuals are converted to PNG. Shared hosting has no browser, so HTML visuals are converted by Gotenberg on a Docker server (gotenberg/gotenberg:8)."
+msgstr "اختياري. لا يمكن لقنوات مثل WhatsApp والبريد الإلكتروني عرض HTML؛ يتم تحويل الصور إلى PNG. لا تحتوي الاستضافة المشتركة على متصفح، لذلك يتم تحويل مرئيات HTML بواسطة Gotenberg على خادم Docker (gotenberg/gotenberg:8)."
+
+msgid "Gotenberg user / password"
+msgstr "مستخدم / كلمة مرور جوتنبرج"
+
+msgid "If Gotenberg is protected with basic authentication."
+msgstr "إذا كان Gotenberg محميًا بالمصادقة الأساسية."
+
+msgid "Keep usage logs for"
+msgstr "احتفظ بسجلات الاستخدام لـ"
+
+msgid "Unlimited"
+msgstr "غير محدود"
+
+msgid "Leave empty to keep logs forever. If you enter days, older logs are deleted once a day."
+msgstr "اتركه فارغًا للاحتفاظ بالسجلات إلى الأبد. إذا قمت بإدخال أيام، فسيتم حذف السجلات الأقدم مرة واحدة يوميًا."
+
+msgid "days"
+msgstr "أيام"
+
+msgid "Content log"
+msgstr "سجل المحتوى"
+
+msgid "Also store outgoing/incoming content (shortened; e-mail, phone, IBAN and keys masked)"
+msgstr "قم أيضًا بتخزين المحتوى الصادر/الوارد (المختصر؛ البريد الإلكتروني والهاتف ورقم الحساب المصرفي الدولي (IBAN) والمفاتيح المقنعة)"
+
+msgid "days to keep"
+msgstr "أيام للحفاظ عليها"
+
+msgid "Leave empty to keep content forever too."
+msgstr "اتركه فارغًا للاحتفاظ بالمحتوى إلى الأبد أيضًا."
+
+msgid "On uninstall"
+msgstr "على إلغاء التثبيت"
+
+msgid "Delete logs and chats when the plugin is deleted"
+msgstr "حذف السجلات والمحادثات عند حذف البرنامج المساعد"
+
+msgid "Message is empty."
+msgstr "الرسالة فارغة."
+
+msgid "The user wrote a new message; this action was not run."
+msgstr "قام المستخدم بكتابة رسالة جديدة؛ لم يتم تشغيل هذا الإجراء."
+
+msgid "I reached the step limit for this turn. Type \"continue\" if you want me to go on."
+msgstr "لقد وصلت إلى حد الخطوة لهذا المنعطف. اكتب \"متابعة\" إذا كنت تريد مني أن أستمر."
+
+msgid "The answer hit the length limit. Try a shorter question."
+msgstr "وصلت الإجابة إلى الحد الأقصى للطول. حاول طرح سؤال أقصر."
+
+msgid "I couldn't produce an answer, could you try again?"
+msgstr "لم أتمكن من تقديم إجابة، هل يمكنك المحاولة مرة أخرى؟"
+
+msgid "Tool not found or not permitted: %s"
+msgstr "لم يتم العثور على الأداة أو غير مسموح بها:%s"
+
+msgid "Stopped by the user; not run."
+msgstr "توقف من قبل المستخدم. لا تعمل."
+
+msgid "The assistant is running; stop it first."
+msgstr "المساعد قيد التشغيل؛ أوقفه أولاً."
+
+msgid "Message not found."
+msgstr "لم يتم العثور على الرسالة."
+
+msgid "AI is off for %s (Flux AI & MCP › Connected systems)."
+msgstr "تم إيقاف تشغيل الذكاء الاصطناعي لـ%s(Flux AI & MCP ›الأنظمة المتصلة)."
+
+msgid "No AI model selected (Flux AI & MCP › Settings)."
+msgstr "لم يتم تحديد نموذج AI (Flux AI & MCP ›الإعدادات)."
+
+msgid "Daily"
+msgstr "يوميا"
+
+msgid "Weekly"
+msgstr "أسبوعيا"
+
+msgid "Monthly"
+msgstr "شهريا"
+
+msgid "%1$s AI spending limit (%2$s) reached. It resets %3$s; you can change it in Flux AI & MCP › Settings."
+msgstr "تم الوصول إلى الحد الأقصى لإنفاق الذكاء الاصطناعي (%1$s) (%2$s). يقوم بإعادة تعيين%3$s؛ يمكنك تغييره في Flux AI & MCP ›الإعدادات."
+
+msgid "Flux AI: %2$s%% of the %1$s spending limit used"
+msgstr "Flux AI: تم استخدام%2$s%% من حد إنفاق%1$s"
+
+msgid "%1$s spending: %2$s / %3$s (%4$s%%)."
+msgstr "إنفاق%1$s:%2$s/%3$s(%4$s%%)."
+
+msgid "AI requests are stopped."
+msgstr "تم إيقاف طلبات الذكاء الاصطناعي."
+
+msgid "AI keys"
+msgstr "مفاتيح الذكاء الاصطناعي"
+
+msgid "Connected providers: %s."
+msgstr "مقدمو الخدمة المتصلون:%s."
+
+msgid "No OpenRouter or Anthropic key entered; AI features will not work."
+msgstr "لم يتم إدخال مفتاح OpenRouter أو Anthropic؛ لن تعمل ميزات الذكاء الاصطناعي."
+
+msgid "Using %s."
+msgstr "باستخدام%s."
+
+msgid "The selected model's provider has no key, or no model is selected."
+msgstr "لا يحتوي موفر النموذج المحدد على مفتاح، أو لم يتم تحديد أي نموذج."
+
+msgid "No daily/weekly/monthly spending limit set."
+msgstr "لم يتم تحديد حد للإنفاق اليومي/الأسبوعي/الشهري."
+
+msgid "Set a limit"
+msgstr "تعيين الحد"
+
+msgid "%1$s: %2$s / %3$s."
+msgstr "%1$s:%2$s/%3$s."
+
+msgid "Limit reached, AI requests stopped."
+msgstr "تم الوصول إلى الحد الأقصى، وتوقفت طلبات الذكاء الاصطناعي."
+
+msgid "Error rate, last 24 hours"
+msgstr "معدل الخطأ، آخر 24 ساعة"
+
+msgid "%1$s / %2$s requests failed."
+msgstr "فشلت طلبات%1$s/%2$s."
+
+msgid "No requests in the last 24 hours."
+msgstr "لم يتم تقديم أي طلبات خلال الـ 24 ساعة الماضية."
+
+msgid "MCP server"
+msgstr "خادم MCP"
+
+msgid "%1$s %2$d tools registered; Flux AI chat uses them too, and tools that change data ask for approval."
+msgstr "تم تسجيل أدوات%1$s%2$d؛ تستخدمها أيضًا دردشة Flux AI، وتطلب الأدوات التي تغير البيانات الموافقة."
+
+msgid "MCP server is on."
+msgstr "خادم MCP قيد التشغيل."
+
+msgid "MCP server is off."
+msgstr "خادم MCP متوقف."
+
+msgid "Visual renderer (WhatsApp/email)"
+msgstr "العارض المرئي (واتساب/بريد إلكتروني)"
+
+msgid "%s AI spending limit (USD)"
+msgstr "حد إنفاق الذكاء الاصطناعي%s(بالدولار الأمريكي)"
+
+msgid "0 = unlimited. When reached, AI requests stop (or only warn, per setting)."
+msgstr "0 = غير محدود. عند الوصول، تتوقف طلبات الذكاء الاصطناعي (أو تحذر فقط، لكل إعداد)."
+
+msgid "Enter a valid amount (0 or a positive number)."
+msgstr "أدخل مبلغًا صالحًا (0 أو رقمًا موجبًا)."
+
+msgid "Limit saved as %s."
+msgstr "تم حفظ الحد كـ%s."
+
+msgid "What can I do on this page?"
+msgstr "ماذا يمكنني أن أفعل في هذه الصفحة؟"
+
+msgid "Summarize the site's system check warnings"
+msgstr "تلخيص تحذيرات فحص نظام الموقع"
+
+msgid "List recently added drafts"
+msgstr "قائمة المسودات المضافة مؤخرا"
+
+msgid "How much have we spent on AI this month?"
+msgstr "كم أنفقنا على الذكاء الاصطناعي هذا الشهر؟"
+
+msgid "Summarize this page"
+msgstr "تلخيص هذه الصفحة"
+
+msgid "Show this page's SEO issues"
+msgstr "اعرض مشكلات تحسين محركات البحث لهذه الصفحة"
+
+msgid "Find typos on this page"
+msgstr "البحث عن الأخطاء المطبعية في هذه الصفحة"
+
+msgid "saved (…%s)"
+msgstr "تم الحفظ (...%s)"
+
+msgid "%s ms"
+msgstr "%sمللي ثانية"
+
+msgid "%s s"
+msgstr "%sس"
+
+msgid "chat"
+msgstr "دردشة"
+
+msgid "title"
+msgstr "عنوان"
+
+msgid "test"
+msgstr "اختبار"
+
+msgid "Flux AI chat"
+msgstr "دردشة تدفق الذكاء الاصطناعي"
+
+msgid "Unspecified"
+msgstr "غير محدد"
+
+msgid "MCP is off. Turn it on in Flux AI & MCP › MCP."
+msgstr "تم إيقاف تشغيل MCP. قم بتشغيله في Flux AI & MCP › MCP."
+
+msgid "Invalid or missing MCP key."
+msgstr "مفتاح MCP غير صالح أو مفقود."
+
+msgid "This user can't edit content."
+msgstr "لا يمكن لهذا المستخدم تحرير المحتوى."
+
+msgid "Unknown tool: %s"
+msgstr "أداة غير معروفة:%s"
+
+msgid "This tool is turned off (Flux AI & MCP › Tools): %s"
+msgstr "تم إيقاف تشغيل هذه الأداة (Flux AI & MCP ›الأدوات):%s"
+
+msgid "This key can't use this tool: %s"
+msgstr "لا يمكن لهذا المفتاح استخدام هذه الأداة:%s"
+
+msgid "You don't have permission for this."
+msgstr "ليس لديك إذن بذلك."
+
+msgid "Unauthorized."
+msgstr "غير مصرح به."
+
+msgid "Unsupported model."
+msgstr "نموذج غير معتمد."
+
+msgid "This provider does not offer the selected model."
+msgstr "هذا المزود لا يقدم النموذج المحدد."
+
+msgid "%s key is not set (Flux AI & MCP › Settings › Image and video)."
+msgstr "لم يتم ضبط مفتاح%s(Flux AI & MCP ›الإعدادات› الصورة والفيديو)."
+
+msgid "This model needs one of these keys: %s (Flux AI & MCP › Settings › Image and video)."
+msgstr "يحتاج هذا النموذج إلى أحد هذه المفاتيح:%s(Flux AI & MCP ›الإعدادات› الصورة والفيديو)."
+
+msgid "A prompt is required (up to 20,000 characters)."
+msgstr "مطلوب مطالبة (ما يصل إلى 20000 حرف)."
+
+msgid "This model accepts at most %d reference images."
+msgstr "يقبل هذا الطراز معظم الصور المرجعية لـ%d."
+
+msgid "This model does not support this aspect ratio."
+msgstr "هذا النموذج لا يدعم نسبة العرض إلى الارتفاع هذه."
+
+msgid "Duration must be %1$d–%2$d seconds."
+msgstr "يجب أن تكون المدة%1$d–%2$dثانية."
+
+msgid "Pick 1 or 2 images for the first/last frame."
+msgstr "اختر صورة واحدة أو صورتين للإطار الأول/الأخير."
+
+msgid "Reference mode needs an image or a video."
+msgstr "يحتاج الوضع المرجعي إلى صورة أو مقطع فيديو."
+
+msgid "This model does not support area editing."
+msgstr "هذا النموذج لا يدعم تحرير المنطقة."
+
+msgid "Area editing needs the image to edit (refs[0])."
+msgstr "يحتاج تحرير المنطقة إلى تحرير الصورة (المرجع [0])."
+
+msgid "Could not read the reference."
+msgstr "لا يمكن قراءة المرجع."
+
+msgid "Could not download the reference."
+msgstr "تعذر تنزيل المرجع."
+
+msgid "No response from %1$s (%2$s). The request may have been charged; check the provider's history before sending again."
+msgstr "لا توجد استجابة من%1$s(%2$s). ربما تم فرض رسوم على الطلب؛ تحقق من سجل الموفر قبل الإرسال مرة أخرى."
+
+msgid "Unsupported provider."
+msgstr "مزود غير معتمد."
+
+msgid "no request id"
+msgstr "لا معرف الطلب"
+
+msgid "EvoLink only accepts public http(s) URLs; upload the reference to the site."
+msgstr "يقبل EvoLink عناوين URL العامة http(s) فقط؛ تحميل المرجع إلى الموقع."
+
+msgid "no task id"
+msgstr "لا معرف المهمة"
+
+msgid "OpenRouter does not accept video/audio references; choose fal.ai or EvoLink."
+msgstr "لا يقبل OpenRouter مراجع الفيديو/الصوت؛ اختر fal.ai أو EvoLink."
+
+msgid "Choose an aspect ratio for OpenRouter."
+msgstr "اختر نسبة العرض إلى الارتفاع لـ OpenRouter."
+
+msgid "Seedance 2.5 on OpenRouter is limited to 720p; choose fal.ai or EvoLink for 1080p."
+msgstr "يقتصر Seedance 2.5 على OpenRouter على 720 بكسل؛ اختر fal.ai أو EvoLink لدقة 1080 بكسل."
+
+msgid "OpenAI returned no image. Check usage history before sending again."
+msgstr "لم يُرجع OpenAI أي صورة. تحقق من سجل الاستخدام قبل الإرسال مرة أخرى."
+
+msgid "OpenRouter returned no image. Check usage history before sending again."
+msgstr "لم يُرجع OpenRouter أي صورة. تحقق من سجل الاستخدام قبل الإرسال مرة أخرى."
+
+msgid "Gemini returned no image (possibly the content filter)."
+msgstr "لم يُرجع الجوزاء أي صورة (ربما يكون مرشح المحتوى)."
+
+msgid "Job not found."
+msgstr "لم يتم العثور على الوظيفة."
+
+msgid "The provider key was removed; the job is kept and continues once the key is entered again."
+msgstr "تمت إزالة مفتاح الموفر؛ يتم الاحتفاظ بالمهمة وتستمر بمجرد إدخال المفتاح مرة أخرى."
+
+msgid "The job was interrupted."
+msgstr "تمت مقاطعة المهمة."
+
+msgid "fal.ai returned no output (possibly the content filter)."
+msgstr "لم يُرجع fal.ai أي مخرجات (ربما عامل تصفية المحتوى)."
+
+msgid "The EvoLink task finished but has no result URL yet."
+msgstr "انتهت مهمة EvoLink ولكن ليس لها عنوان URL للنتيجة حتى الآن."
+
+msgid "The provider did not confirm the cancellation; the job may be charged if it completes."
+msgstr "لم يؤكد المزود الإلغاء؛ قد يتم فرض رسوم على المهمة إذا اكتملت."
+
+msgid "Cancelled locally; a job already started at the provider may be charged."
+msgstr "تم الإلغاء محليًا؛ قد يتم فرض رسوم على مهمة بدأت بالفعل لدى المزود."
+
+msgid "Unsupported output type."
+msgstr "نوع الإخراج غير معتمد."
+
+msgid "Could not save the output."
+msgstr "لا يمكن حفظ الإخراج."
+
+msgid "Could not download the output; the provider URL is used for now."
+msgstr "تعذر تنزيل الإخراج؛ يتم استخدام عنوان URL للموفر في الوقت الحالي."
+
+msgid "Could not load the model list."
+msgstr "تعذر تحميل قائمة النماذج."
+
+msgid "→ Flux AI & MCP › Settings › \"Anthropic workspace ID\": paste the id (wrkspc_…) from console.anthropic.com › Settings › Workspaces."
+msgstr "→ Flux AI & MCP ›الإعدادات› \"معرف مساحة العمل الأنثروبي\": الصق المعرف (wrkspc_...) من console.anthropic.com ›الإعدادات ›مساحات العمل."
+
+msgid "AI error (%1$d): %2$s"
+msgstr "خطأ في الذكاء الاصطناعي (%1$d):%2$s"
+
+msgid "unknown error"
+msgstr "خطأ غير معروف"
+
+msgid "Stopped by the user."
+msgstr "توقف من قبل المستخدم."
+
+msgid "No OpenRouter API key entered (Flux AI & MCP › Settings)."
+msgstr "لم يتم إدخال مفتاح OpenRouter API (Flux AI & MCP ›الإعدادات)."
+
+msgid "Could not reach the AI service: %s"
+msgstr "تعذر الوصول إلى خدمة الذكاء الاصطناعي:%s"
+
+msgid "The AI returned an empty answer."
+msgstr "أعاد الذكاء الاصطناعي إجابة فارغة."
+
+msgid "No Anthropic (Claude) API key entered (Flux AI & MCP › Settings)."
+msgstr "لم يتم إدخال مفتاح Anthropic (Claude) API (Flux AI & MCP ›الإعدادات)."
+
+msgid "Unknown"
+msgstr "غير معروف"
+
+msgid "No OpenRouter key entered."
+msgstr "لم يتم إدخال مفتاح OpenRouter."
+
+msgid "You are not allowed to do this."
+msgstr "لا يسمح لك أن تفعل هذا."
+
+msgid "Chat not found."
+msgstr "لم يتم العثور على الدردشة."
+
+msgid "Flux AI is not set up yet: enter an API key and model in Flux AI & MCP › Settings."
+msgstr "لم يتم إعداد Flux AI بعد: أدخل مفتاح API ونموذجه في Flux AI & MCP ›الإعدادات."
+
+msgid "Image renderer works"
+msgstr "يعمل عارض الصور"
+
+msgid "Enter the Gotenberg address first."
+msgstr "أدخل عنوان جوتنبرج أولاً."
+
+msgid "Content was not stored for this record."
+msgstr "لم يتم تخزين المحتوى لهذا السجل."
+
+msgid "%s-character system prompt"
+msgstr "%s- موجه نظام الأحرف"
+
+msgid "AI usage"
+msgstr "استخدام الذكاء الاصطناعي"
+
+msgid "Date and time"
+msgstr "التاريخ والوقت"
+
+msgid "Visual code is empty."
+msgstr "الكود المرئي فارغ."
+
+msgid "This visual contains HTML; the server can only convert SVG. For HTML, enter a Gotenberg address in Flux AI & MCP › Settings › Visuals."
+msgstr "تحتوي هذه الصورة المرئية على HTML؛ يمكن للخادم تحويل SVG فقط. بالنسبة لـ HTML، أدخل عنوان Gotenberg في Flux AI & MCP ›الإعدادات› العناصر المرئية."
+
+msgid "No visual renderer on the server (Imagick with SVG support or a Gotenberg address is required)."
+msgstr "لا يوجد عارض مرئي على الخادم (مطلوب Imagick مع دعم SVG أو عنوان Gotenberg)."
+
+msgid "Could not reach the visual renderer: %s"
+msgstr "تعذر الوصول إلى العارض المرئي:%s"
+
+msgid "The image renderer rejected the username or password."
+msgstr "رفض عارض الصور اسم المستخدم أو كلمة المرور."
+
+msgid "Could not convert the visual (HTTP %d)."
+msgstr "تعذر تحويل الصورة المرئية (HTTP%d)."
+
+msgid "Could not convert SVG: %s"
+msgstr "تعذر تحويل SVG:%s"
+
+msgid "%1$s min %2$s s"
+msgstr "%1$sدقيقة%2$sث"
+
+msgid "No data in this range."
+msgstr "لا توجد بيانات في هذا النطاق."
+
+msgid "Show as table"
+msgstr "إظهار كجدول"
+
+msgid "%1$s requests · %2$s tools"
+msgstr "طلبات%1$s· أدوات%2$s"
+
+msgid "Model / thinking"
+msgstr "النموذج / التفكير"
+
+msgid "Average time"
+msgstr "متوسط الوقت"
+
+msgid "%1$s calls · longest %2$s"
+msgstr "مكالمات%1$s· أطول مكالمات%2$s"
+
+msgid "Testing…"
+msgstr "اختبار..."
+
+msgid "%s KB"
+msgstr "%sكيلو بايت"
+
+msgid "Outgoing · user"
+msgstr "المنتهية ولايته · المستخدم"
+
+msgid "Outgoing · assistant"
+msgstr "المنتهية ولايته · مساعد"
+
+msgid "Outgoing · tool result"
+msgstr "الصادرة · نتيجة الأداة"
+
+msgid "Incoming · error"
+msgstr "وارد · خطأ"
+
+msgid "Incoming · reply"
+msgstr "وارد · الرد"
+
+msgid "Showing %s tools"
+msgstr "يتم عرض أدوات%s"
+
+msgid "%s selected"
+msgstr "تم تحديد%s"
+
+msgid "Preparing visual…"
+msgstr "تحضير مرئي..."
+
+msgid "Could not draw the visual; its code:"
+msgstr "لا يمكن رسم الصورة المرئية؛ رمزها:"
+
+msgid "Visual"
+msgstr "مرئية"
+
+msgid "Could not connect. Check your internet connection and try again."
+msgstr "لا يمكن الاتصال. تحقق من اتصالك بالإنترنت وحاول مرة أخرى."
+
+msgid "New chat"
+msgstr "دردشة جديدة"
+
+msgid "Ask AI"
+msgstr "اسأل الذكاء الاصطناعي"
+
+msgid "AI assistant"
+msgstr "مساعد الذكاء الاصطناعي"
+
+msgid "Stop"
+msgstr "توقف"
+
+msgid "Resize width"
+msgstr "تغيير حجم العرض"
+
+msgid "Resize"
+msgstr "تغيير الحجم"
+
+msgid "Search chats"
+msgstr "بحث في الدردشات"
+
+msgid "Ask something or give a task…"
+msgstr "اسأل شيئًا أو أعطِ مهمة..."
+
+msgid "Send"
+msgstr "أرسل"
+
+msgid "Dock right"
+msgstr "قفص الاتهام الحق"
+
+msgid "Your approval is needed: %s"
+msgstr "موافقتك مطلوبة:%s"
+
+msgid "%s running…"
+msgstr "جارٍ تشغيل%s..."
+
+msgid "Thinking…"
+msgstr "التفكير..."
+
+msgid "How can I help you?"
+msgstr "كيف يمكنني مساعدتك؟"
+
+msgid "Content, settings, reports: anything your permissions allow. I ask for your approval before making changes."
+msgstr "المحتوى والإعدادات والتقارير: أي شيء تسمح به أذوناتك. أطلب موافقتك قبل إجراء التغييرات."
+
+msgid "You can ask about this page and the site, or give me a task."
+msgstr "يمكنك أن تسأل عن هذه الصفحة والموقع، أو تعطيني مهمة."
+
+msgid "Thinking"
+msgstr "التفكير"
+
+msgid "Retry"
+msgstr "أعد المحاولة"
+
+msgid "Edit message"
+msgstr "تحرير الرسالة"
+
+msgid "This message and everything after it will be rewritten."
+msgstr "ستتم إعادة كتابة هذه الرسالة وكل ما بعدها."
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "Edit"
+msgstr "تحرير"
+
+msgid "Rewind to here"
+msgstr "الترجيع إلى هنا"
+
+msgid "Working"
+msgstr "العمل"
+
+msgid "Thought for %s"
+msgstr "فكر في%s"
+
+msgid "The model is preparing an answer…"
+msgstr "النموذج يقوم بإعداد الإجابة..."
+
+msgid "rejected"
+msgstr "مرفوض"
+
+msgid "awaiting approval"
+msgstr "في انتظار الموافقة"
+
+msgid "No result"
+msgstr "لا توجد نتيجة"
+
+msgid "Your approval is needed"
+msgstr "هناك حاجة إلى موافقتك"
+
+msgid "The assistant wants to make the changes below. None of them run until you approve."
+msgstr "يريد المساعد إجراء التغييرات أدناه. لا أحد منهم يعمل حتى توافق."
+
+msgid "Reject"
+msgstr "رفض"
+
+msgid "Approve"
+msgstr "موافقة"
+
+msgid "Data to be sent"
+msgstr "البيانات المراد إرسالها"
+
+msgid "%1$s / %2$s decided"
+msgstr "قررت%1$s/%2$s"
+
+msgid "Reject all"
+msgstr "رفض الكل"
+
+msgid "Approve all"
+msgstr "الموافقة على الكل"
+
+msgid "Continue"
+msgstr "متابعة"
+
+msgid "The conversation after this message will be deleted. Continue?"
+msgstr "سيتم حذف المحادثة بعد هذه الرسالة. يكمل؟"
+
+msgid "Choose model"
+msgstr "اختر النموذج"
+
+msgid "Enter sends, Shift+Enter for a new line"
+msgstr "أدخل الإرسال، Shift+Enter لسطر جديد"
+
+msgid "Flux AI is not set up yet: an API key and model are needed."
+msgstr "لم يتم إعداد Flux AI بعد: هناك حاجة إلى مفتاح API ونموذج."
+
+msgid "Search titles or content…"
+msgstr "البحث في العناوين أو المحتوى..."
+
+msgid "Include archived"
+msgstr "تضمين المؤرشفة"
+
+msgid "Enter opens the first result, Esc closes."
+msgstr "أدخل يفتح النتيجة الأولى، ويغلق Esc."
+
+msgid "No results."
+msgstr "لا توجد نتائج."
+
+msgid "No chats yet."
+msgstr "لا توجد محادثات بعد."
+
+msgid "Untitled chat"
+msgstr "دردشة بلا عنوان"
+
+msgid "Archive"
+msgstr "أرشيف"
+
+msgid "Awaiting approval"
+msgstr "في انتظار الموافقة"
+
+msgid "Options"
+msgstr "خيارات"
+
+msgid "Rename"
+msgstr "إعادة تسمية"
+
+msgid "Unarchive"
+msgstr "إلغاء الأرشفة"
+
+msgid "Delete this chat permanently?"
+msgstr "هل تريد حذف هذه الدردشة نهائيًا؟"
+
+msgid "Search models…"
+msgstr "نماذج البحث..."
+
+msgid "No matching model; you can type the ID manually."
+msgstr "لا يوجد نموذج مطابق؛ يمكنك كتابة المعرف يدويا."
+
+msgid "no tools"
+msgstr "لا أدوات"
+
+msgid "Loading models…"
+msgstr "جارٍ تحميل النماذج..."
+
+msgid "0 means unlimited."
+msgstr "0 يعني غير محدود."
+
+msgid "1 hour"
+msgstr "1 ساعة"
+
+msgid "5 minutes"
+msgstr "5 دقائق"
+
+msgid "Anthropic key"
+msgstr "مفتاح أنثروبي"
+
+msgid "Monthly limit (USD)"
+msgstr "الحد الشهري (دولار أمريكي)"
+
+msgid "Low"
+msgstr "منخفض"
+
+msgid "Thinking summary"
+msgstr "ملخص التفكير"
+
+msgid "Evolink key"
+msgstr "مفتاح إيفولينك"
+
+msgid "Fal key"
+msgstr "مفتاح فال"
+
+msgid "Flux AI"
+msgstr "تدفق منظمة العفو الدولية"
+
+msgid "Gemini key"
+msgstr "مفتاح الجوزاء"
+
+msgid "Gotenberg key"
+msgstr "مفتاح جوتنبرج"
+
+msgid "Daily limit (USD)"
+msgstr "الحد اليومي (بالدولار الأمريكي)"
+
+msgid "Record"
+msgstr "سجل"
+
+msgid "Keep records (days)"
+msgstr "الاحتفاظ بالسجلات (أيام)"
+
+msgid "Keep content (days)"
+msgstr "الاحتفاظ بالمحتوى (أيام)"
+
+msgid "No records"
+msgstr "لا توجد سجلات"
+
+msgid "MCP"
+msgstr "العملية التشاورية المتعددة الأطراف"
+
+msgid "Model and tool calls are listed here. Request bodies are not sent to the app."
+msgstr "تم إدراج استدعاءات النماذج والأدوات هنا. لا يتم إرسال هيئات الطلب إلى التطبيق."
+
+msgid "Model, tool or error"
+msgstr "نموذج أو أداة أو خطأ"
+
+msgid "OpenAI key"
+msgstr "مفتاح OpenAI"
+
+msgid "OpenRouter key"
+msgstr "مفتاح OpenRouter"
+
+msgid "Window"
+msgstr "نافذة"
+
+msgid "Chat on the site"
+msgstr "الدردشة على الموقع"
+
+msgid "Chat layout"
+msgstr "تخطيط الدردشة"
+
+msgid "Chat instructions"
+msgstr "تعليمات الدردشة"
+
+msgid "When the limit is hit"
+msgstr "عندما يتم ضرب الحد"
+
+msgid "Warn"
+msgstr "تحذير"
+
+msgid "Docked"
+msgstr "رست"
+
+msgid "Chat in admin"
+msgstr "الدردشة في المشرف"
+
+msgid "High"
+msgstr "عالية"
+
+msgid "Effort"
+msgstr "جهد"
+
+msgid "Store request bodies"
+msgstr "هيئات طلب المتجر"
+
+msgid "[['%stool updated.', 'tr']]"
+msgid_plural "[['%stool updated.', 'tr']]"
+msgstr[0] "[['تم تحديث أداة%s.', 'tr']]"
+msgstr[1] "[['تم تحديث أداة%s.', 'tr']]"
+msgstr[2] "[['تم تحديث أداة%s.', 'tr']]"
+msgstr[3] "[['تم تحديث أداة%s.', 'tr']]"
+msgstr[4] "[['تم تحديث أداة%s.', 'tr']]"
+msgstr[5] "[['تم تحديث أداة%s.', 'tr']]"
+
+msgid "[['%splugin', 'tr']]"
+msgid_plural "[['%splugin', 'tr']]"
+msgstr[0] "[['الملحق%s'، 'tr']]"
+msgstr[1] "[['الملحق%s'، 'tr']]"
+msgstr[2] "[['الملحق%s'، 'tr']]"
+msgstr[3] "[['الملحق%s'، 'tr']]"
+msgstr[4] "[['الملحق%s'، 'tr']]"
+msgstr[5] "[['الملحق%s'، 'tr']]"
+
+msgid "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]"
+msgstr "\\n تم تسجيل مركبة%d. تم تسجيل مركبة%d.', 'tr']]"
+
+msgid "\\nSpent:%1$s/ Limit:%2$s\\nRegeneration:%3$s\\n\\nDetail:%4$s\\n"
+msgstr "\\nالإنفاق:%1$s/ الحد:%2$s\\nالتجديد:%3$s\\n\\nالتفاصيل:%4$s\\n"
+
+msgid "[['Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users.', 'tr']]"
+msgstr "[['مركز الذكاء الاصطناعي المشترك لجميع مكونات FluxWP الإضافية: مفاتيح OpenRouter وAnthropic، وكتالوج النماذج والأسعار، وذاكرة التخزين المؤقت السريعة، وتسجيل المركبات، وخادم MCP المشترك، وتقارير الاستخدام، والحد الأقصى للفوترة والإنفاق؛ الدردشة الإدارية والذكاء الاصطناعي العامة في الموقع للمستخدمين المصرح لهم.', 'tr']]"
+
+msgid "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]"
+msgid_plural "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]"
+msgstr[0] "\\n تم تسجيل مركبة%d. تم تسجيل مركبة%d.', 'tr']]"
+msgstr[1] "\\n تم تسجيل مركبة%d. تم تسجيل مركبة%d.', 'tr']]"
+msgstr[2] "\\n تم تسجيل مركبة%d. تم تسجيل مركبة%d.', 'tr']]"
+msgstr[3] "\\n تم تسجيل مركبة%d. تم تسجيل مركبة%d.', 'tr']]"
+msgstr[4] "\\n تم تسجيل مركبة%d. تم تسجيل مركبة%d.', 'tr']]"
+msgstr[5] "\\n تم تسجيل مركبة%d. تم تسجيل مركبة%d.', 'tr']]"

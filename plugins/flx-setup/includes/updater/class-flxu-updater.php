@@ -307,7 +307,7 @@ final class FLXU_Updater {
 
 		if ( is_wp_error( $res ) ) {
 			/* translators: %s: error message */
-			$status( false, sprintf( __( 'Sunucuya ulaşılamadı: %s', 'flx-setup' ), $res->get_error_message() ) );
+			$status( false, sprintf( __( 'Could not reach the server: %s', 'flx-setup' ), $res->get_error_message() ) );
 			return null;
 		}
 
@@ -326,12 +326,12 @@ final class FLXU_Updater {
 			$msg    = self::block_message( $reason, $code, '' !== $key, $retry, $host );
 			if ( '' === $msg ) {
 				if ( 401 === $code && '' === $key ) {
-					$msg = __( 'Bu sunucu anahtarsız güncelleme vermiyor; site anahtarı girin.', 'flx-setup' );
+					$msg = __( 'This server does not serve updates without a key; enter a site key.', 'flx-setup' );
 				} elseif ( 401 === $code || 403 === $code ) {
-					$msg = __( 'Site anahtarı geçersiz. Güncelleme sunucusunun panelinde (/admin) "Var olan bir anahtarı test et" ile deneyin.', 'flx-setup' );
+					$msg = __( 'Invalid site key. Try it with "Test an existing key" in the update server panel (/admin).', 'flx-setup' );
 				} else {
 					/* translators: %d: HTTP status code */
-					$msg = sprintf( __( 'Sunucu beklenmeyen yanıt verdi (HTTP %d).', 'flx-setup' ), $code );
+					$msg = sprintf( __( 'The server returned an unexpected response (HTTP %d).', 'flx-setup' ), $code );
 				}
 			}
 			$status( false, $msg, '', 0, $reason, $retry );
@@ -375,7 +375,7 @@ final class FLXU_Updater {
 		}
 
 		if ( ! empty( $body['key_disabled'] ) ) {
-			$status( true, __( 'Site anahtarı sunucuda pasif; yalnız public paketler geliyor.', 'flx-setup' ), '', count( $out ) );
+			$status( true, __( 'The site key is disabled on the server; only public packages are available.', 'flx-setup' ), '', count( $out ) );
 			return $out;
 		}
 		$status( true, '', ! empty( $body['public'] ) ? '' : (string) ( $body['site'] ?? '' ), count( $out ) );
@@ -504,28 +504,28 @@ final class FLXU_Updater {
 	public static function block_message( string $reason, int $code, bool $has_key, int $retry = 0, string $host = '' ): string {
 		$when = $retry > time()
 			/* translators: %s: date and time */
-			? ' ' . sprintf( __( 'Sonraki deneme: %s.', 'flx-setup' ), wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $retry ) )
+			? ' ' . sprintf( __( 'Next attempt: %s.', 'flx-setup' ), wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $retry ) )
 			: '';
 		$mail = self::support_email( $host );
 		if ( '' !== $mail && '' !== $reason ) {
 			/* translators: %s: e-mail address */
-			$when .= ' ' . sprintf( __( 'Destek ve öneri: %s', 'flx-setup' ), $mail );
+			$when .= ' ' . sprintf( __( 'Support and feedback: %s', 'flx-setup' ), $mail );
 		}
 		switch ( $reason ) {
 			case 'paused':
-				return __( 'Güncelleme dağıtımı sunucuda geçici olarak durduruldu. Siteniz bir sorun yaşamıyor; dağıtım açılınca güncellemeler yeniden gelir.', 'flx-setup' ) . $when;
+				return __( 'Update distribution is temporarily paused on the server. Nothing is wrong with your site; updates will resume when distribution is turned back on.', 'flx-setup' ) . $when;
 			case 'region_blocked':
 				return ( $has_key
-					? __( 'Güncelleme sunucusu bu sitenin bulunduğu ülkeden gelen isteklere kapalı. Erişim için sunucu yöneticisiyle görüşün.', 'flx-setup' )
-					: __( 'Güncelleme sunucusu bu sitenin bulunduğu ülkeden gelen anahtarsız isteklere kapalı. Site anahtarı girin ya da sunucu yöneticisiyle görüşün.', 'flx-setup' ) ) . $when;
+					? __( 'The update server does not accept requests from this site\'s country. Contact the server administrator for access.', 'flx-setup' )
+					: __( 'The update server does not accept keyless requests from this site\'s country. Enter a site key or contact the server administrator.', 'flx-setup' ) ) . $when;
 			case 'public_disabled':
-				return __( 'Bu sunucu anahtarsız güncellemeyi kapattı. Paketleri almaya devam etmek için site anahtarı girin.', 'flx-setup' ) . $when;
+				return __( 'This server has turned off keyless updates. Enter a site key to keep receiving packages.', 'flx-setup' ) . $when;
 			case 'key_disabled':
-				return __( 'Site anahtarı sunucuda pasif ve anahtarsız güncelleme kapalı; hiçbir paket gelmiyor. Sunucu yöneticisinden anahtarı yeniden etkinleştirmesini isteyin.', 'flx-setup' ) . $when;
+				return __( 'The site key is disabled on the server and keyless updates are off, so no packages are available. Ask the server administrator to re-enable the key.', 'flx-setup' ) . $when;
 		}
 		if ( 503 === $code || 429 === $code ) {
 			/* translators: %d: HTTP status code */
-			return sprintf( __( 'Sunucu şu an yanıt veremiyor (HTTP %d).', 'flx-setup' ), $code ) . $when;
+			return sprintf( __( 'The server cannot respond right now (HTTP %d).', 'flx-setup' ), $code ) . $when;
 		}
 		return '';
 	}
@@ -556,13 +556,13 @@ final class FLXU_Updater {
 	public static function block_title( array $status ): string {
 		switch ( (string) ( $status['code'] ?? '' ) ) {
 			case 'paused':
-				return __( 'Dağıtım durduruldu', 'flx-setup' );
+				return __( 'Distribution paused', 'flx-setup' );
 			case 'region_blocked':
-				return __( 'Bölge engeli', 'flx-setup' );
+				return __( 'Blocked in this region', 'flx-setup' );
 			case 'public_disabled':
-				return __( 'Site anahtarı gerekli', 'flx-setup' );
+				return __( 'Site key required', 'flx-setup' );
 			case 'key_disabled':
-				return __( 'Site anahtarı pasif', 'flx-setup' );
+				return __( 'Site key disabled', 'flx-setup' );
 		}
 		return '';
 	}
@@ -827,7 +827,7 @@ final class FLXU_Updater {
 		if ( ! $p || 'plugin' !== $p['type'] ) {
 			return $result;
 		}
-		$changelog = $p['changelog'] ? $p['changelog'] : '<p>' . esc_html__( 'Bu sürüm için not yok.', 'flx-setup' ) . '</p>';
+		$changelog = $p['changelog'] ? $p['changelog'] : '<p>' . esc_html__( 'No notes for this version.', 'flx-setup' ) . '</p>';
 		return (object) array(
 			'name'          => $p['name'],
 			'slug'          => $p['slug'],
@@ -923,7 +923,7 @@ final class FLXU_Updater {
 		if ( $wp_filesystem->move( $source, $target, true ) ) {
 			return trailingslashit( $target );
 		}
-		return new WP_Error( 'flxu_rename', __( 'Paket klasörü yeniden adlandırılamadı.', 'flx-setup' ) );
+		return new WP_Error( 'flxu_rename', __( 'Could not rename the package folder.', 'flx-setup' ) );
 	}
 
 	public function auto_update( $update, $item ) {
@@ -969,27 +969,27 @@ final class FLXU_Updater {
 
 		if ( empty( $status['checked'] ) ) {
 			$st  = 'info';
-			$msg = __( 'Henüz kontrol yapılmadı.', 'flx-setup' );
+			$msg = __( 'Not checked yet.', 'flx-setup' );
 		} elseif ( empty( $status['ok'] ) ) {
 			$st  = 'paused' === ( $status['code'] ?? '' ) ? 'warning' : 'error';
 			$msg = self::status_message( $status, '' !== self::key(), (string) wp_parse_url( self::server(), PHP_URL_HOST ) );
 		} else {
 			$st = 'ok';
 			/* translators: %s: human time diff */
-			$msg = sprintf( __( 'Sunucu bağlantısı çalışıyor. Son kontrol: %s.', 'flx-setup' ), flx_time_ago( (int) $status['checked'] ) );
+			$msg = sprintf( __( 'Server connection works. Last check: %s.', 'flx-setup' ), flx_time_ago( (int) $status['checked'] ) );
 			if ( '' === self::key() ) {
-				$msg .= ' ' . __( 'Anahtar yok: yalnız public paketler gelir.', 'flx-setup' );
+				$msg .= ' ' . __( 'No key: only public packages are available.', 'flx-setup' );
 			}
 		}
 		$checks[] = array(
 			'id'           => 'flxu.server',
 			'source'       => $source,
 			'group'        => 'Config',
-			'label'        => __( 'Güncelleme sunucusu', 'flx-setup' ),
+			'label'        => __( 'Update server', 'flx-setup' ),
 			'status'       => $st,
 			'message'      => $msg,
 			'action_url'   => $page,
-			'action_label' => __( 'Şimdi kontrol et', 'flx-setup' ),
+			'action_label' => __( 'Check now', 'flx-setup' ),
 		);
 
 		foreach ( FLXU_Sources::failing() as $i => $f ) {
@@ -998,11 +998,11 @@ final class FLXU_Updater {
 				'source'       => $source,
 				'group'        => 'Config',
 				/* translators: %s: source name */
-				'label'        => sprintf( __( 'Güncelleme kaynağı: %s', 'flx-setup' ), $f['name'] ),
+				'label'        => sprintf( __( 'Update source: %s', 'flx-setup' ), $f['name'] ),
 				'status'       => 'warning',
 				'message'      => $f['error'],
 				'action_url'   => $page . '#flxu-sources',
-				'action_label' => __( 'Kaynaklar', 'flx-setup' ),
+				'action_label' => __( 'Sources', 'flx-setup' ),
 			);
 		}
 
@@ -1018,12 +1018,12 @@ final class FLXU_Updater {
 				'id'           => 'flxu.updates',
 				'source'       => $source,
 				'group'        => 'Plugins',
-				'label'        => __( 'FluxWP paket güncellemeleri', 'flx-setup' ),
+				'label'        => __( 'FluxWP package updates', 'flx-setup' ),
 				'status'       => 'warning',
 				/* translators: %s: comma separated package list */
-				'message'      => sprintf( __( 'Güncelleme bekleyenler: %s', 'flx-setup' ), implode( ', ', $names ) ),
+				'message'      => sprintf( __( 'Waiting for update: %s', 'flx-setup' ), implode( ', ', $names ) ),
 				'action_url'   => admin_url( 'admin.php?page=flx-setup' ),
-				'action_label' => __( 'Güncellemeler', 'flx-setup' ),
+				'action_label' => __( 'Updates', 'flx-setup' ),
 			);
 		}
 		return $checks;

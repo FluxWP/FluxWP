@@ -83,7 +83,7 @@ final class FLXY_Indicator {
 				'href'   => admin_url( 'admin.php?page=flx-backup-list' ),
 				'meta'   => array(
 					'class' => $class,
-					'title' => __( 'Flux Backup: ayrıntılar için tıklayın', 'flx-backup' ),
+					'title' => __( 'Flux Backup: click for details', 'flx-backup' ),
 				),
 			)
 		);
@@ -108,22 +108,22 @@ final class FLXY_Indicator {
 		$restore = 'restore' === $r['kind'];
 		if ( 'running' === $r['status'] ) {
 			/* translators: %s: percent */
-			return sprintf( $restore ? __( 'Geri yükleniyor %s', 'flx-backup' ) : __( 'Yedek alınıyor %s', 'flx-backup' ), self::pct( (int) $r['percent'] ) );
+			return sprintf( $restore ? __( 'Restoring %s', 'flx-backup' ) : __( 'Backing up %s', 'flx-backup' ), self::pct( (int) $r['percent'] ) );
 		}
 		if ( 'done' === $r['status'] ) {
 			if ( $restore ) {
-				return __( 'Geri yükleme tamamlandı', 'flx-backup' );
+				return __( 'Restore complete', 'flx-backup' );
 			}
 			/* translators: %s: size */
-			return '' !== $r['size_h'] ? sprintf( __( 'Yedek hazır · %s', 'flx-backup' ), $r['size_h'] ) : __( 'Yedek hazır', 'flx-backup' );
+			return '' !== $r['size_h'] ? sprintf( __( 'Backup ready · %s', 'flx-backup' ), $r['size_h'] ) : __( 'Backup ready', 'flx-backup' );
 		}
-		return $restore ? __( 'Geri yükleme başarısız', 'flx-backup' ) : __( 'Yedek alınamadı', 'flx-backup' );
+		return $restore ? __( 'Restore failed', 'flx-backup' ) : __( 'Backup failed', 'flx-backup' );
 	}
 
 	/** Türkçede yüzde işareti sayının önünde: %87; İngilizcede 87%. */
 	public static function pct( int $n ): string {
 		/* translators: %s: number. Turkish puts the percent sign first (%87); English: 87% */
-		return sprintf( _x( '%%%s', 'percent', 'flx-backup' ), number_format_i18n( $n ) );
+		return sprintf( _x( '%s%%', 'context_fd86717aca41', 'flx-backup' ), number_format_i18n( $n ) );
 	}
 
 	public static function assets(): void {
@@ -145,29 +145,29 @@ final class FLXY_Indicator {
 				'locale'  => determine_locale(),
 				'own'     => self::on_own_page(),
 				'i18n'    => array(
-					'backup'        => __( 'Yedek alınıyor %s', 'flx-backup' ),
-					'restore'       => __( 'Geri yükleniyor %s', 'flx-backup' ),
-					'pct'           => _x( '%%%s', 'percent', 'flx-backup' ),
-					'ready'         => __( 'Yedek hazır · %s', 'flx-backup' ),
-					'readyNoSize'   => __( 'Yedek hazır', 'flx-backup' ),
-					'restored'      => __( 'Geri yükleme tamamlandı', 'flx-backup' ),
-					'backupFailed'  => __( 'Yedek alınamadı', 'flx-backup' ),
-					'restoreFailed' => __( 'Geri yükleme başarısız', 'flx-backup' ),
-					'cancelled'     => __( 'İptal edildi', 'flx-backup' ),
-					'cancelling'    => __( 'İptal ediliyor…', 'flx-backup' ),
-					'starting'      => __( 'Başlatılıyor…', 'flx-backup' ),
-					'elapsed'       => __( 'Geçen süre: %s', 'flx-backup' ),
-					'eta'           => __( 'Kalan: yaklaşık %s', 'flx-backup' ),
-					'cancel'        => __( 'İptal et', 'flx-backup' ),
-					'details'       => __( 'Ayrıntılar', 'flx-backup' ),
-					'close'         => __( 'Kapat', 'flx-backup' ),
-					'reload'        => __( 'Sayfayı yenile', 'flx-backup' ),
-					'confirmCancel' => __( 'Çalışan işlem iptal edilsin mi?', 'flx-backup' ),
-					'retry'         => __( 'Bağlantı kesildi, yeniden deneniyor…', 'flx-backup' ),
-					'backupTitle'   => __( 'Yedek alma', 'flx-backup' ),
-					'restoreTitle'  => __( 'Geri yükleme', 'flx-backup' ),
-					'bgNote'        => __( 'Sayfadan ayrılabilirsiniz; işlem arka planda sürer.', 'flx-backup' ),
-					'restoreNote'   => __( 'Geri yükleme sürerken siteyi değiştirmeyin.', 'flx-backup' ),
+					'backup'        => __( 'Backing up %s', 'flx-backup' ),
+					'restore'       => __( 'Restoring %s', 'flx-backup' ),
+					'pct'           => _x( '%s%%', 'context_fd86717aca41', 'flx-backup' ),
+					'ready'         => __( 'Backup ready · %s', 'flx-backup' ),
+					'readyNoSize'   => __( 'Backup ready', 'flx-backup' ),
+					'restored'      => __( 'Restore complete', 'flx-backup' ),
+					'backupFailed'  => __( 'Backup failed', 'flx-backup' ),
+					'restoreFailed' => __( 'Restore failed', 'flx-backup' ),
+					'cancelled'     => __( 'Cancelled', 'flx-backup' ),
+					'cancelling'    => __( 'Cancelling…', 'flx-backup' ),
+					'starting'      => __( 'Starting…', 'flx-backup' ),
+					'elapsed'       => __( 'Elapsed: %s', 'flx-backup' ),
+					'eta'           => __( 'Remaining: about %s', 'flx-backup' ),
+					'cancel'        => __( 'Cancel', 'flx-backup' ),
+					'details'       => __( 'Details', 'flx-backup' ),
+					'close'         => __( 'Close', 'flx-backup' ),
+					'reload'        => __( 'Reload page', 'flx-backup' ),
+					'confirmCancel' => __( 'Cancel the running job?', 'flx-backup' ),
+					'retry'         => __( 'Connection lost, retrying…', 'flx-backup' ),
+					'backupTitle'   => __( 'Backup', 'flx-backup' ),
+					'restoreTitle'  => __( 'Restore', 'flx-backup' ),
+					'bgNote'        => __( 'You can leave the page; it keeps running in the background.', 'flx-backup' ),
+					'restoreNote'   => __( 'Do not change the site while the restore is running.', 'flx-backup' ),
 				),
 			)
 		);

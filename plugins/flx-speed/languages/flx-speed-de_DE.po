@@ -1,0 +1,1505 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: de_DE\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Performance"
+msgstr "Leistung"
+
+msgid "Safe"
+msgstr "Sicher"
+
+msgid "Test first"
+msgstr "Testen Sie zuerst"
+
+msgid "The theme or a preset overrides this feature in code (flxp_pagespeed_enabled); this setting may not take effect."
+msgstr "Das Design oder eine Voreinstellung überschreibt diese Funktion im Code (flxp_pagespeed_enabled); Diese Einstellung wird möglicherweise nicht wirksam."
+
+msgid "Saved. The cache and the LiteSpeed page cache were cleared; browse a few pages to check."
+msgstr "Gespeichert. Der Cache und der LiteSpeed-Seitencache wurden geleert; Durchsuchen Sie ein paar Seiten, um dies zu überprüfen."
+
+msgid "PageSpeed cache cleared."
+msgstr "PageSpeed-Cache geleert."
+
+msgid "Google PageSpeed / Lighthouse suggestions that can be applied without changing the theme. Each one is switched on separately; after enabling a \"Test first\" item, check a few pages of the site (home, a post, donation/checkout)."
+msgstr "Google PageSpeed/Lighthouse-Vorschläge, die ohne Änderung des Themes angewendet werden können. Jeder wird separat eingeschaltet; Überprüfen Sie nach der Aktivierung eines „Zuerst testen“-Elements einige Seiten der Website (Startseite, einen Beitrag, Spende/Kaufabwicklung)."
+
+msgid "Basics"
+msgstr "Grundlagen"
+
+msgid "Remove the zoom lock"
+msgstr "Entfernen Sie die Zoomsperre"
+
+msgid "user-scalable=no and maximum-scale are removed from the viewport tag so visitors with low vision can zoom in. Directly affects the Accessibility score."
+msgstr "„user-scalable=no“ und „maximum-scale“ werden aus dem Viewport-Tag entfernt, damit Besucher mit Sehbehinderung hineinzoomen können. Wirkt sich direkt auf die Barrierefreiheitsbewertung aus."
+
+msgid "Remove the emoji script"
+msgstr "Entfernen Sie das Emoji-Skript"
+
+msgid "WordPress's emoji detection script and style are not loaded. Modern browsers render emoji themselves."
+msgstr "Das Emoji-Erkennungsskript und der Stil von WordPress werden nicht geladen. Moderne Browser rendern Emojis selbst."
+
+msgid "Scope"
+msgstr "Umfang"
+
+msgid "Theme CSS only (recommended)"
+msgstr "Nur Theme-CSS (empfohlen)"
+
+msgid "Theme + plugins (all CSS under wp-content)"
+msgstr "Theme + Plugins (alles CSS unter wp-content)"
+
+msgid "Inline limit"
+msgstr "Inline-Limit"
+
+msgid "Trimmed CSS is written into <head> up to this size; anything beyond is loaded as a separate cached file. 0 = always a file."
+msgstr "Bis zu dieser Größe wird getrimmtes CSS in<head>geschrieben; Alles darüber hinaus wird als separate zwischengespeicherte Datei geladen. 0 = immer eine Datei."
+
+msgid "Always keep these classes"
+msgstr "Behalten Sie diese Klassen immer bei"
+
+msgid "One class or id per line, * as wildcard. If a style added later by JavaScript breaks, add its class here. is-*, has-*, wp-*, swiper-* are always kept."
+msgstr "Eine Klasse oder ID pro Zeile, * als Platzhalter. Wenn ein später von JavaScript hinzugefügter Stil kaputt geht, fügen Sie seine Klasse hier hinzu. is-*, has-*, wp-*, swiper-* werden immer beibehalten."
+
+msgid "Remove unused CSS and inline it"
+msgstr "Entfernen Sie nicht verwendetes CSS und integrieren Sie es"
+
+msgid "Each page's class/id inventory is collected (HTML + the page's scripts); rules with no match on that page are dropped from the CSS file and the rest is written into <head>. The render-blocking CSS request goes away and LCP/FCP improve. Pages with the same inventory share one copy; copies are rebuilt when the file changes, and the full file is used if there are too many different pages."
+msgstr "Das Klassen-/ID-Inventar jeder Seite wird erfasst (HTML + die Skripte der Seite); Regeln, die auf dieser Seite nicht übereinstimmen, werden aus der CSS-Datei entfernt und der Rest wird in<head>geschrieben. Die renderblockierende CSS-Anfrage verschwindet und LCP/FCP verbessert sich. Seiten mit demselben Inventar teilen sich ein Exemplar; Kopien werden neu erstellt, wenn sich die Datei ändert, und die vollständige Datei wird verwendet, wenn zu viele verschiedene Seiten vorhanden sind."
+
+msgid "Minify CSS files"
+msgstr "CSS-Dateien minimieren"
+
+msgid "For unminified (non-.min) local CSS files, an up-to-date .min sibling or a copy without comments and whitespace is used."
+msgstr "Für nicht minimierte (nicht .min) lokale CSS-Dateien wird ein aktuelles .min-Geschwister oder eine Kopie ohne Kommentare und Leerzeichen verwendet."
+
+msgid "Minify JS files"
+msgstr "JS-Dateien minimieren"
+
+msgid "For theme and plugin scripts, the .min sibling is used if it is newer than the source; otherwise a copy without comments and indentation is generated (line breaks are kept). Bundles that load chunks relative to their own location and scripts with translations are left alone."
+msgstr "Für Theme- und Plugin-Skripte wird die .min-Geschwisterdatei verwendet, wenn sie neuer als die Quelle ist; andernfalls wird eine Kopie ohne Kommentare und Einrückungen erzeugt (Zeilenumbrüche bleiben erhalten). Bundles, die Blöcke relativ zu ihrem eigenen Speicherort laden, und Skripte mit Übersetzungen bleiben unberücksichtigt."
+
+msgid "jQuery always stays blocking (older inline scripts on the page may call it directly). WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on."
+msgstr "jQuery bleibt immer blockierend (ältere Inline-Skripte auf der Seite rufen es möglicherweise direkt auf). WordPress selbst löscht die Verzögerung für Skripte, denen ein Inline-Skript folgt oder von denen ein blockierendes Skript abhängt."
+
+msgid "Defer head scripts"
+msgstr "Hauptskripte zurückstellen"
+
+msgid "Scripts loaded in the page <head> that hold up rendering get defer (e.g. language suggestion, analytics scripts)."
+msgstr "Auf der Seite<head>geladene Skripte, die das Rendern verzögern, werden zurückgestellt (z. B. Sprachvorschläge, Analyseskripte)."
+
+msgid "Fonts"
+msgstr "Schriftarten"
+
+msgid "Remove unused fonts"
+msgstr "Entfernen Sie nicht verwendete Schriftarten"
+
+msgid "Font families defined in theme.json but not referenced in the page's CSS (@font-face) are not printed. If usage cannot be determined, nothing is removed."
+msgstr "In theme.json definierte, aber im CSS der Seite nicht referenzierte Schriftfamilien (@font-face) werden nicht gedruckt. Wenn die Nutzung nicht ermittelt werden kann, wird nichts entfernt."
+
+msgid "Preload the above-the-fold font"
+msgstr "Laden Sie die Schriftart „Above the Fold“ vor"
+
+msgid "The regular (400) woff2 of up to two families in use is requested with <link rel=\"preload\"> so text paints sooner. Preloading the wrong weight wastes a download; turn this off if PageSpeed reports an unused preload."
+msgstr "Der reguläre (400) Woff2 von bis zu zwei verwendeten Familien wird mit<link rel=\"preload\">angefordert, damit Text früher gezeichnet wird. Das Vorladen des falschen Gewichts verschwendet einen Download; Schalten Sie dies aus, wenn PageSpeed ​​einen ungenutzten Vorladevorgang meldet."
+
+msgid "Exclusions"
+msgstr "Ausschlüsse"
+
+msgid "Files to leave alone"
+msgstr "Dateien, die man in Ruhe lassen kann"
+
+msgid "One handle or part of a URL per line. Trimming, minifying and defer are not applied to these files."
+msgstr "Ein Handle oder Teil einer URL pro Zeile. Trimmen, Minimieren und Zurückstellen werden auf diese Dateien nicht angewendet."
+
+msgid "Pages to leave alone"
+msgstr "Seiten, die man in Ruhe lassen kann"
+
+msgid "One URL part per line. No PageSpeed optimization runs on these pages."
+msgstr "Ein URL-Teil pro Zeile. Auf diesen Seiten läuft keine PageSpeed-Optimierung."
+
+msgid "Save and clear cache"
+msgstr "Cache speichern und leeren"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Cache"
+msgstr "Cache"
+
+msgid "%1$d CSS, %2$d JS copies · %3$s"
+msgstr "%1$dCSS,%2$dJS kopiert ·%3$s"
+
+msgid "Compare"
+msgstr "Vergleichen"
+
+msgid "Optimized"
+msgstr "Optimiert"
+
+msgid "Off (?flxp_off=1)"
+msgstr "Aus (?flxp_off=1)"
+
+msgid "Adding ?flxp_off=1 to a URL opens the page without optimizations; if the page looks different, the cause is here."
+msgstr "Durch das Hinzufügen von ?flxp_off=1 zu einer URL wird die Seite ohne Optimierungen geöffnet. Wenn die Seite anders aussieht, liegt die Ursache hier."
+
+msgid "Measure"
+msgstr "Messen"
+
+msgid "Flux SEO › Site audit"
+msgstr "Flux SEO › Site-Audit"
+
+msgid "The site audit suggests these settings itself and turns them on with one click."
+msgstr "Der Site Audit schlägt diese Einstellungen selbst vor und aktiviert sie mit einem Klick."
+
+msgid "Clear cache"
+msgstr "Cache leeren"
+
+msgid "Animations not running on the GPU"
+msgstr "Animationen werden nicht auf der GPU ausgeführt"
+
+msgid "Lighthouse \"non-composited animations\": properties other than transform and opacity (stroke-dashoffset, background, width…) repaint every frame. A setting cannot fix this; the theme or preset must rewrite them with transform/opacity."
+msgstr "Lighthouse „nicht zusammengesetzte Animationen“: Andere Eigenschaften als Transformation und Deckkraft (Strich-Dashoffset, Hintergrund, Breite ...) zeichnen jedes Bild neu. Eine Einstellung kann dies nicht beheben; Das Thema oder die Voreinstellung muss sie mit Transformation/Opazität umschreiben."
+
+msgid "Animation"
+msgstr "Animation"
+
+msgid "Properties"
+msgstr "Eigenschaften"
+
+msgid "File"
+msgstr "Datei"
+
+msgid "no prefers-reduced-motion"
+msgstr "Nein, bevorzugt reduzierte Bewegung"
+
+msgid "All good: animations in the CSS files seen use transform/opacity."
+msgstr "Alles gut: Animationen in den angezeigten CSS-Dateien verwenden Transformation/Opazität."
+
+msgid "Scanned %1$d CSS files seen on the front end (%2$s)."
+msgstr "Gescannte%1$d-CSS-Dateien im Frontend (%2$s)."
+
+msgid "The front end has not been seen yet, so the theme folder was scanned. Once the site is opened, the files the page loads are scanned."
+msgstr "Das Frontend wurde noch nicht gesehen, daher wurde der Theme-Ordner gescannt. Sobald die Site geöffnet ist, werden die von der Seite geladenen Dateien gescannt."
+
+msgid "Summary"
+msgstr "Zusammenfassung"
+
+msgid "Records"
+msgstr "Aufzeichnungen"
+
+msgid "Server"
+msgstr "Server"
+
+msgid "Database"
+msgstr "Datenbank"
+
+msgid "System check"
+msgstr "Systemprüfung"
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Flux Performance"
+msgstr "Flussleistung"
+
+msgid "Settings saved."
+msgstr "Einstellungen gespeichert."
+
+msgid "All records deleted."
+msgstr "Alle Datensätze gelöscht."
+
+msgid "Custom login URL turned off; login is back on wp-login.php."
+msgstr "Benutzerdefinierte Anmelde-URL deaktiviert; Login ist wieder auf wp-login.php."
+
+msgid "Cleanup done: %s items."
+msgstr "Bereinigung durchgeführt:%s-Elemente."
+
+msgid "Login URL changed."
+msgstr "Anmelde-URL geändert."
+
+msgid "New address:"
+msgstr "Neue Adresse:"
+
+msgid "You are being logged out so you can see the new address work; you will be redirected to the new login page in %s seconds. After logging in you come back to this screen."
+msgstr "Sie werden abgemeldet, damit Sie sehen können, wie die neue Adresse funktioniert. Sie werden in%sSekunden zur neuen Anmeldeseite weitergeleitet. Nach der Anmeldung kehren Sie zu diesem Bildschirm zurück."
+
+msgid "Redirect stopped. You are still logged in; the new address is used the next time you log in."
+msgstr "Die Weiterleitung wurde gestoppt. Sie sind noch angemeldet; Bei der nächsten Anmeldung wird die neue Adresse verwendet."
+
+msgid "Go now"
+msgstr "Geh jetzt"
+
+msgid "Stay logged in"
+msgstr "Bleiben Sie eingeloggt"
+
+msgid "You are not allowed to view this page."
+msgstr "Es ist Ihnen nicht gestattet, diese Seite anzuzeigen."
+
+msgid "Recording is off: only the live panel works."
+msgstr "Die Aufnahme ist ausgeschaltet: Nur das Live-Panel funktioniert."
+
+msgid "All time"
+msgstr "Alle Zeiten"
+
+msgid "Last hour"
+msgstr "Letzte Stunde"
+
+msgid "Last 24 hours"
+msgstr "Letzte 24 Stunden"
+
+msgid "Last 7 days"
+msgstr "Letzte 7 Tage"
+
+msgid "All flags"
+msgstr "Alle Flaggen"
+
+msgid "All types"
+msgstr "Alle Arten"
+
+msgid "Newest"
+msgstr "Neueste"
+
+msgid "Slowest"
+msgstr "Am langsamsten"
+
+msgid "Search URL"
+msgstr "Such-URL"
+
+msgid "Filter"
+msgstr "Filtern"
+
+msgid "URL to profile"
+msgstr "URL zum Profil"
+
+msgid "Profile page"
+msgstr "Profilseite"
+
+msgid "\"Profile page\" opens the URL as a visitor (bypassing cache) and records it in full detail."
+msgstr "„Profilseite“ öffnet die URL als Besucher (unter Umgehung des Caches) und erfasst sie in allen Details."
+
+msgid "Time"
+msgstr "Zeit"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Memory"
+msgstr "Erinnerung"
+
+msgid "Queries"
+msgstr "Abfragen"
+
+msgid "Errors"
+msgstr "Fehler"
+
+msgid "Flags"
+msgstr "Flaggen"
+
+msgid "No records yet. Slow or failing requests and sampled requests appear here."
+msgstr "Noch keine Aufzeichnungen. Hier werden langsame oder fehlerhafte Anfragen und Stichprobenanfragen angezeigt."
+
+msgid "Records: %s"
+msgstr "Datensätze:%s"
+
+msgid "Delete all records?"
+msgstr "Alle Datensätze löschen?"
+
+msgid "Delete all records"
+msgstr "Alle Datensätze löschen"
+
+msgid "Record not found."
+msgstr "Datensatz nicht gefunden."
+
+msgid "Recorded requests"
+msgstr "Aufgezeichnete Anfragen"
+
+msgid "Average time"
+msgstr "Durchschnittliche Zeit"
+
+msgid "Longest"
+msgstr "Am längsten"
+
+msgid "Times are calculated from recorded requests: sampled requests plus slow/failing ones, so the average may look higher than the real average."
+msgstr "Die Zeiten werden aus aufgezeichneten Anfragen berechnet: Stichprobenanfragen plus langsame/fehlgeschlagene Anfragen, sodass der Durchschnitt höher erscheinen kann als der tatsächliche Durchschnitt."
+
+msgid "By request type"
+msgstr "Nach Anfragetyp"
+
+msgid "The time visitors wait is the \"Front end\" row. Cron, Ajax and REST are mostly background work (backup step, scheduled task, Heartbeat); when they take long they do not slow pages directly, but they keep the server busy."
+msgstr "Die Zeit, die Besucher warten, ist die Zeile „Frontend“. Cron, Ajax und REST sind größtenteils Hintergrundarbeit (Backup-Schritt, geplante Aufgabe, Heartbeat); Wenn sie lange dauern, verlangsamen sie die Seiten nicht direkt, sondern halten den Server beschäftigt."
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Request"
+msgstr "Anfrage"
+
+msgid "Average"
+msgstr "Durchschnittlich"
+
+msgid "Slowest URLs"
+msgstr "Langsamste URLs"
+
+msgid "Query time by component (per request)"
+msgstr "Abfragezeit nach Komponente (pro Anfrage)"
+
+msgid "Component"
+msgstr "Komponente"
+
+msgid "Per request"
+msgstr "Auf Anfrage"
+
+msgid "Slow and failed queries"
+msgstr "Langsame und fehlgeschlagene Abfragen"
+
+msgid "Count"
+msgstr "Zählen"
+
+msgid "PHP errors"
+msgstr "PHP-Fehler"
+
+msgid "Level"
+msgstr "Ebene"
+
+msgid "Message"
+msgstr "Nachricht"
+
+msgid "HTTP API calls"
+msgstr "HTTP-API-Aufrufe"
+
+msgid "Endpoint"
+msgstr "Endpunkt"
+
+msgid "Failed"
+msgstr "Fehlgeschlagen"
+
+msgid "Last error"
+msgstr "Letzter Fehler"
+
+msgid "No records."
+msgstr "Keine Aufzeichnungen."
+
+msgid "Suggestions"
+msgstr "Vorschläge"
+
+msgid "Account limit (cgroup)"
+msgstr "Kontolimit (cgroup)"
+
+msgid "Shared hosting: account limit cannot be read"
+msgstr "Shared Hosting: Kontolimit kann nicht gelesen werden"
+
+msgid "Server belongs to this site (VPS/dedicated)"
+msgstr "Der Server gehört zu dieser Site (VPS/dediziert)"
+
+msgid "Scanned folder"
+msgstr "Gescannter Ordner"
+
+msgid "Files"
+msgstr "Dateien"
+
+msgid "Calculating…"
+msgstr "Berechnen..."
+
+msgid "Files and folders (inodes)"
+msgstr "Dateien und Ordner (Inodes)"
+
+msgid "Disk quota"
+msgstr "Festplattenkontingent"
+
+msgid "Not set (Settings)"
+msgstr "Nicht festgelegt (Einstellungen)"
+
+msgid "Last measured"
+msgstr "Zuletzt gemessen"
+
+msgid "refreshing"
+msgstr "erfrischend"
+
+msgid "Account disk"
+msgstr "Kontodatenträger"
+
+msgid "Whole machine (shared, all accounts)"
+msgstr "Ganze Maschine (gemeinsam genutzt, alle Konten)"
+
+msgid "CPU cores"
+msgstr "CPU-Kerne"
+
+msgid "Load (1/5/15 min)"
+msgstr "Laden (1/5/15 Min.)"
+
+msgid "Disk"
+msgstr "Diskette"
+
+msgid "%s free"
+msgstr "%skostenlos"
+
+msgid "Note"
+msgstr "Hinweis"
+
+msgid "These values belong to every account on the machine; they are not your site's usage or limit."
+msgstr "Diese Werte gehören zu jedem Konto auf der Maschine; Sie stellen weder die Nutzung noch das Limit Ihrer Website dar."
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "No"
+msgstr "Nein"
+
+msgid "Operating system"
+msgstr "Betriebssystem"
+
+msgid "Software"
+msgstr "Software"
+
+msgid "Hostname"
+msgstr "Hostname"
+
+msgid "IP address"
+msgstr "IP-Adresse"
+
+msgid "Port"
+msgstr "Hafen"
+
+msgid "Document root"
+msgstr "Dokumentstamm"
+
+msgid "Resource values"
+msgstr "Ressourcenwerte"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Memory (this request)"
+msgstr "Speicher (diese Anfrage)"
+
+msgid "peak"
+msgstr "Höhepunkt"
+
+msgid "Disabled functions"
+msgstr "Deaktivierte Funktionen"
+
+msgid "Extensions"
+msgstr "Erweiterungen"
+
+msgid "On"
+msgstr "Auf"
+
+msgid "Off"
+msgstr "Aus"
+
+msgid "Hit rate"
+msgstr "Trefferquote"
+
+msgid "Cached files"
+msgstr "Zwischengespeicherte Dateien"
+
+msgid "Wasted"
+msgstr "Verschwendet"
+
+msgid "Restarts"
+msgstr "Neustarts"
+
+msgid "No data (disabled or not allowed by the server)."
+msgstr "Keine Daten (vom Server deaktiviert oder nicht zugelassen)."
+
+msgid "Object cache"
+msgstr "Objektcache"
+
+msgid "External"
+msgstr "Extern"
+
+msgid "None"
+msgstr "Keine"
+
+msgid "Page cache (WP_CACHE)"
+msgstr "Seitencache (WP_CACHE)"
+
+msgid "Locale"
+msgstr "Gebietsschema"
+
+msgid "Timezone"
+msgstr "Zeitzone"
+
+msgid "Permalinks"
+msgstr "Permalinks"
+
+msgid "Environment type"
+msgstr "Umgebungstyp"
+
+msgid "Theme"
+msgstr "Thema"
+
+msgid "undefined"
+msgstr "undefiniert"
+
+msgid "Active plugins"
+msgstr "Aktive Plugins"
+
+msgid "Data"
+msgstr "Daten"
+
+msgid "Index"
+msgstr "Index"
+
+msgid "Free space"
+msgstr "Freiraum"
+
+msgid "Table"
+msgstr "Tisch"
+
+msgid "Rows (approx.)"
+msgstr "Reihen (ca.)"
+
+msgid "Open connections"
+msgstr "Offene Verbindungen"
+
+msgid "Charset"
+msgstr "Zeichensatz"
+
+msgid "Uptime"
+msgstr "Betriebszeit"
+
+msgid "Queries per second"
+msgstr "Abfragen pro Sekunde"
+
+msgid "Slow queries (server)"
+msgstr "Langsame Abfragen (Server)"
+
+msgid "Max concurrent connections"
+msgstr "Max. gleichzeitige Verbindungen"
+
+msgid "Running threads"
+msgstr "Laufende Threads"
+
+msgid "Buffer pool hit rate"
+msgstr "Trefferquote des Pufferpools"
+
+msgid "Temp tables on disk"
+msgstr "Temporäre Tabellen auf der Festplatte"
+
+msgid "Aborted connects"
+msgstr "Abgebrochene Verbindung"
+
+msgid "Cleanup"
+msgstr "Aufräumen"
+
+msgid "Safe jobs only: posts, pages and revisions are never deleted. Limit revisions with WP_POST_REVISIONS in wp-config."
+msgstr "Nur sichere Jobs: Beiträge, Seiten und Überarbeitungen werden niemals gelöscht. Begrenzen Sie Revisionen mit WP_POST_REVISIONS in der wp-config."
+
+msgid "continue?"
+msgstr "weitermachen?"
+
+msgid "Clean"
+msgstr "Sauber"
+
+msgid "Revisions"
+msgstr "Überarbeitungen"
+
+msgid "Trashed posts"
+msgstr "Vernichtete Beiträge"
+
+msgid "All transients"
+msgstr "Alle Transienten"
+
+msgid "Job"
+msgstr "Arbeit"
+
+msgid "Tables"
+msgstr "Tische"
+
+msgid "Engine"
+msgstr "Motor"
+
+msgid "Rows"
+msgstr "Reihen"
+
+msgid "Collation"
+msgstr "Zusammenstellung"
+
+msgid "Autoloaded options"
+msgstr "Automatisch geladene Optionen"
+
+msgid "Total size"
+msgstr "Gesamtgröße"
+
+msgid "These options are loaded from the database on every request. Over 800 KB in total slows pages down; shrink the setting or cache in the plugin that owns the large rows."
+msgstr "Diese Optionen werden bei jeder Anfrage aus der Datenbank geladen. Über 800 KB insgesamt verlangsamen die Seiten; Verkleinern Sie die Einstellung oder den Cache im Plugin, das die großen Zeilen besitzt."
+
+msgid "Option"
+msgstr "Option"
+
+msgid "Owner"
+msgstr "Besitzer"
+
+msgid "Size"
+msgstr "Größe"
+
+msgid "Events"
+msgstr "Veranstaltungen"
+
+msgid "Overdue"
+msgstr "Überfällig"
+
+msgid "Last run"
+msgstr "Letzter Lauf"
+
+msgid "Not seen"
+msgstr "Nicht gesehen"
+
+msgid "WordPress cron is disabled: events run only when a server cron job calls wp-cron.php. On Hostinger, add a cron job that calls it every 5 minutes."
+msgstr "WordPress-Cron ist deaktiviert: Ereignisse werden nur ausgeführt, wenn ein Server-Cron-Job wp-cron.php aufruft. Fügen Sie auf Hostinger einen Cron-Job hinzu, der ihn alle 5 Minuten aufruft."
+
+msgid "Task durations"
+msgstr "Aufgabendauer"
+
+msgid "Measured per task each time wp-cron.php runs; sorted by total time. A summary older than a day resets when the task runs again. \"Cut off\": the task hit the time limit and stopped halfway."
+msgstr "Wird pro Aufgabe bei jeder Ausführung von wp-cron.php gemessen; sortiert nach Gesamtzeit. Eine Zusammenfassung, die älter als einen Tag ist, wird zurückgesetzt, wenn die Aufgabe erneut ausgeführt wird. „Abgeschnitten“: Die Aufgabe hat das Zeitlimit erreicht und auf halbem Weg angehalten."
+
+msgid "Hook"
+msgstr "Haken"
+
+msgid "Runs"
+msgstr "Läuft"
+
+msgid "Last"
+msgstr "Zuletzt"
+
+msgid "Cut off"
+msgstr "Abgeschnitten"
+
+msgid "Scheduled events"
+msgstr "Geplante Veranstaltungen"
+
+msgid "Next"
+msgstr "Als nächstes"
+
+msgid "Recurrence"
+msgstr "Wiederholung"
+
+msgid "Args"
+msgstr "Argumente"
+
+msgid "Overdue: due %s"
+msgstr "Überfällig: fällig%s"
+
+msgid "once"
+msgstr "einmal"
+
+msgid "Recent fixes (AI / MCP)"
+msgstr "Aktuelle Korrekturen (AI / MCP)"
+
+msgid "User"
+msgstr "Benutzer"
+
+msgid "Fix"
+msgstr "Beheben"
+
+msgid "Before → After"
+msgstr "Vorher → Nachher"
+
+msgid "Result"
+msgstr "Ergebnis"
+
+msgid "Developer panel"
+msgstr "Entwicklerpanel"
+
+msgid "Show a summary in the admin bar and a bottom panel to authorized users"
+msgstr "Zeigen Sie autorisierten Benutzern eine Zusammenfassung in der Admin-Leiste und im unteren Bereich an"
+
+msgid "Show on the front end too"
+msgstr "Auch auf der Vorderseite anzeigen"
+
+msgid "Collect capability checks"
+msgstr "Sammeln Sie Fähigkeitsprüfungen"
+
+msgid "The panel is visible to administrators and to staff granted \"View performance\" by Flux Roles."
+msgstr "Das Panel ist für Administratoren und Mitarbeiter sichtbar, denen von Flux Roles die Option „Leistung anzeigen“ zugewiesen wurde."
+
+msgid "Recording"
+msgstr "Aufnahme"
+
+msgid "Record slow and failing requests"
+msgstr "Erfassen Sie langsame und fehlgeschlagene Anfragen"
+
+msgid "Also record my own requests while the panel is on (only when something is wrong)"
+msgstr "Zeichnen Sie auch meine eigenen Anfragen auf, während das Panel eingeschaltet ist (nur wenn etwas nicht stimmt)."
+
+msgid "Sampling"
+msgstr "Probenahme"
+
+msgid "This share of requests is collected in detail (with the query list) and recorded. 1-5 is recommended on Hostinger; 0 turns it off."
+msgstr "Dieser Anteil der Anfragen wird detailliert (mit der Abfrageliste) erfasst und protokolliert. 1-5 wird auf Hostinger empfohlen; 0 schaltet es aus."
+
+msgid "Slow request threshold"
+msgstr "Schwellenwert für langsame Anforderungen"
+
+msgid "Slow query threshold"
+msgstr "Schwellenwert für langsame Abfrage"
+
+msgid "Retention"
+msgstr "Aufbewahrung"
+
+msgid "days"
+msgstr "Tage"
+
+msgid "at most"
+msgstr "höchstens"
+
+msgid "records"
+msgstr "Aufzeichnungen"
+
+msgid "Your shared hosting plan's disk limit (Hostinger: hPanel › Account resources). PHP cannot read it; when set, the Disk card shows account usage as a percentage. Leave empty to show used space only."
+msgstr "Das Festplattenlimit Ihres Shared-Hosting-Plans (Hostinger: hPanel › Kontoressourcen). PHP kann es nicht lesen; Wenn diese Option festgelegt ist, zeigt die Festplattenkarte die Kontonutzung als Prozentsatz an. Lassen Sie das Feld leer, um nur den belegten Platz anzuzeigen."
+
+msgid "AI (MCP)"
+msgstr "KI (MCP)"
+
+msgid "The data is read by read-only tools on the Flux AI & MCP server and in Flux AI chat: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url."
+msgstr "Die Daten werden von schreibgeschützten Tools auf dem Flux AI- und MCP-Server und im Flux AI-Chat gelesen: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url."
+
+msgid "Flux AI & MCP is active: tools are registered."
+msgstr "Flux AI & MCP ist aktiv: Werkzeuge sind registriert."
+
+msgid "Flux AI & MCP is not active: tools are available in Flux AI chat only."
+msgstr "Flux AI & MCP ist nicht aktiv: Tools sind nur im Flux AI-Chat verfügbar."
+
+msgid "Admin login URL"
+msgstr "Admin-Anmelde-URL"
+
+msgid "Opens the login screen at an address of your own instead of wp-login.php. wp-login.php and wp-admin requests from logged-out visitors no longer respond, which cuts bot password guessing and server load."
+msgstr "Öffnet den Anmeldebildschirm unter einer eigenen Adresse anstelle von wp-login.php. wp-login.php- und wp-admin-Anfragen von abgemeldeten Besuchern reagieren nicht mehr, was das Erraten von Bot-Passwörtern und die Serverlast verringert."
+
+msgid "FLXP_LOGIN_DISABLE is defined in wp-config.php: the custom URL is off and login uses wp-login.php. Remove that line once the problem is solved."
+msgstr "FLXP_LOGIN_DISABLE ist in wp-config.php definiert: Die benutzerdefinierte URL ist deaktiviert und die Anmeldung erfolgt über wp-login.php. Entfernen Sie diese Zeile, sobald das Problem gelöst ist."
+
+msgid "Your login URL"
+msgstr "Ihre Login-URL"
+
+msgid "Copied"
+msgstr "Kopiert"
+
+msgid "Copy"
+msgstr "Kopieren"
+
+msgid "Bookmark this address and share it with everyone who logs in. If you forget it, use the recovery step below."
+msgstr "Setzen Sie ein Lesezeichen für diese Adresse und teilen Sie sie mit allen, die sich anmelden. Wenn Sie sie vergessen, verwenden Sie den folgenden Wiederherstellungsschritt."
+
+msgid "Login URL"
+msgstr "Anmelde-URL"
+
+msgid "The address comes from the FLXP_LOGIN_SLUG constant in wp-config.php; edit or remove the constant to change it."
+msgstr "Die Adresse stammt aus der FLXP_LOGIN_SLUG-Konstante in wp-config.php; Bearbeiten oder entfernen Sie die Konstante, um sie zu ändern."
+
+msgid "Leave empty to use the standard WordPress address (wp-login.php). 3-40 characters: lowercase letters, digits, hyphen, underscore. Pick something hard to guess (admin and login are not allowed)."
+msgstr "Lassen Sie das Feld leer, um die Standard-WordPress-Adresse (wp-login.php) zu verwenden. 3–40 Zeichen: Kleinbuchstaben, Ziffern, Bindestrich, Unterstrich. Wählen Sie etwas aus, das schwer zu erraten ist (Administrator und Login sind nicht erlaubt)."
+
+msgid "Visitors to the old addresses"
+msgstr "Besucher der alten Adressen"
+
+msgid "Show the 404 page (recommended)"
+msgstr "404-Seite anzeigen (empfohlen)"
+
+msgid "Redirect to the home page"
+msgstr "Weiterleitung zur Startseite"
+
+msgid "Applies to wp-login.php and to wp-admin requests from logged-out visitors. admin-ajax.php, admin-post.php, the REST API, wp-cron, WooCommerce My Account login and the Flux App connection are not affected."
+msgstr "Gilt für wp-login.php und für wp-admin-Anfragen von abgemeldeten Besuchern. admin-ajax.php, admin-post.php, die REST-API, wp-cron, WooCommerce My Account Login und die Flux App-Verbindung sind nicht betroffen."
+
+msgid "Recovery"
+msgstr "Erholung"
+
+msgid "If you forget the address or login won't open: add the line below to wp-config.php using your file manager (Hostinger hPanel › File Manager). Login goes back to wp-login.php; once you're in, fix the address here and remove the line."
+msgstr "Wenn Sie die Adresse vergessen oder sich die Anmeldung nicht öffnet: Fügen Sie die folgende Zeile mit Ihrem Dateimanager (Hostinger hPanel › Dateimanager) zu wp-config.php hinzu. Die Anmeldung erfolgt zurück zu wp-login.php; Sobald Sie drin sind, korrigieren Sie die Adresse hier und entfernen Sie die Zeile."
+
+msgid "Deprecated since %1$s. Use instead: %2$s"
+msgstr "Veraltet seit%1$s. Verwenden Sie stattdessen:%2$s"
+
+msgid "%d min"
+msgstr "%dmin"
+
+msgid "%1$d d %2$d h"
+msgstr "%1$dd%2$dh"
+
+msgid "%d h"
+msgstr "%dh"
+
+msgid "Account limit cannot be read"
+msgstr "Kontolimit kann nicht gelesen werden"
+
+msgid "%s cores, no account limit"
+msgstr "%s-Kerne, kein Kontolimit"
+
+msgid "Account limit %s cores"
+msgstr "Kontolimit%sKerne"
+
+msgid "%1$d cores · load %2$s"
+msgstr "%1$d-Kerne ·%2$sladen"
+
+msgid "Disk (account)"
+msgstr "Datenträger (Konto)"
+
+msgid "Scanning the account folder"
+msgstr "Scannen des Kontoordners"
+
+msgid "files %1$s · database %2$s"
+msgstr "Dateien%1$s· Datenbank%2$s"
+
+msgid "CPU load"
+msgstr "CPU-Last"
+
+msgid "CPU (account)"
+msgstr "CPU (Konto)"
+
+msgid "Memory (RAM)"
+msgstr "Speicher (RAM)"
+
+msgid "Memory (account)"
+msgstr "Speicher (Konto)"
+
+msgid "PHP memory (this request)"
+msgstr "PHP-Speicher (diese Anfrage)"
+
+msgid "Server uptime"
+msgstr "Serververfügbarkeit"
+
+msgid "Machine uptime"
+msgstr "Maschinenverfügbarkeit"
+
+msgid "CPU and memory are measured against this account's (container/cgroup) limit."
+msgstr "CPU und Arbeitsspeicher werden anhand des (Container-/Cgroup-)Limits dieses Kontos gemessen."
+
+msgid "Shared hosting: PHP sees the CPU, memory and disk shared by every account on the machine; these are not your values and are not shown. Your account's CPU and memory usage is in the hosting panel (Hostinger: hPanel › Account resources)."
+msgstr "Shared Hosting: PHP erkennt die CPU, den Speicher und die Festplatte, die von jedem Konto auf dem Computer gemeinsam genutzt werden. Dies sind nicht Ihre Werte und werden nicht angezeigt. Die CPU- und Speichernutzung Ihres Kontos finden Sie im Hosting-Panel (Hostinger: hPanel › Kontoressourcen)."
+
+msgid "Enter your hosting plan's disk quota in Settings to see a disk percentage."
+msgstr "Geben Sie das Festplattenkontingent Ihres Hosting-Plans in den Einstellungen ein, um einen Festplattenprozentsatz anzuzeigen."
+
+msgid "Cards refresh every 15 seconds."
+msgstr "Die Karten werden alle 15 Sekunden aktualisiert."
+
+msgid "p95 time (24 h)"
+msgstr "p95 Zeit (24 h)"
+
+msgid "Failed requests (24 h)"
+msgstr "Fehlgeschlagene Anfragen (24 Stunden)"
+
+msgid "Slow requests (24 h)"
+msgstr "Langsame Anfragen (24 Stunden)"
+
+msgid "Details"
+msgstr "Details"
+
+msgid "The login URL must be 3-40 characters; use only lowercase letters (a-z), digits, hyphens and underscores."
+msgstr "Die Anmelde-URL muss 3–40 Zeichen lang sein; Verwenden Sie nur Kleinbuchstaben (a-z), Ziffern, Bindestriche und Unterstriche."
+
+msgid "WordPress already uses this address; pick another name."
+msgstr "WordPress verwendet diese Adresse bereits; Wählen Sie einen anderen Namen."
+
+msgid "A page or post already uses this address; pick another name."
+msgstr "Eine Seite oder ein Beitrag verwendet diese Adresse bereits; Wählen Sie einen anderen Namen."
+
+msgid "The login URL has changed. Bookmark this page and log in again."
+msgstr "Die Anmelde-URL hat sich geändert. Setzen Sie ein Lesezeichen für diese Seite und melden Sie sich erneut an."
+
+msgid "Performance summary"
+msgstr "Leistungsübersicht"
+
+msgid "List recorded requests"
+msgstr "Aufgezeichnete Anfragen auflisten"
+
+msgid "Record details"
+msgstr "Details aufzeichnen"
+
+msgid "Outgoing HTTP requests"
+msgstr "Ausgehende HTTP-Anfragen"
+
+msgid "Server and WordPress environment"
+msgstr "Server- und WordPress-Umgebung"
+
+msgid "Server status"
+msgstr "Serverstatus"
+
+msgid "Database status"
+msgstr "Datenbankstatus"
+
+msgid "Flux Speed: remove unused CSS and inline it"
+msgstr "Flux Speed: Entfernen Sie nicht verwendetes CSS und integrieren Sie es"
+
+msgid "Drops theme CSS rules the page does not use and writes the rest into <head>, removing the render-blocking CSS request. Check a few pages first; if something breaks, turn it off or add the class to the keep list."
+msgstr "Löscht Design-CSS-Regeln, die die Seite nicht verwendet, und schreibt den Rest in<head>, wodurch die renderblockierende CSS-Anfrage entfernt wird. Schauen Sie sich zunächst einige Seiten an. Wenn etwas kaputt geht, schalten Sie es aus oder fügen Sie die Klasse zur Keep-Liste hinzu."
+
+msgid "Flux Speed: minify CSS and JS files"
+msgstr "Flux-Geschwindigkeit: CSS- und JS-Dateien minimieren"
+
+msgid "Unminified theme and plugin CSS/JS files are served from an up-to-date .min version or a generated copy."
+msgstr "Nicht minimierte Theme- und Plugin-CSS/JS-Dateien werden von einer aktuellen .min-Version oder einer generierten Kopie bereitgestellt."
+
+msgid "Flux Speed: defer head scripts"
+msgstr "Flussgeschwindigkeit: Kopfskripte aufschieben"
+
+msgid "Blocking scripts at the top of the page are loaded with defer. jQuery and excluded scripts are left alone."
+msgstr "Blockierungsskripte oben auf der Seite werden mit Verzögerung geladen. jQuery und ausgeschlossene Skripte bleiben in Ruhe."
+
+msgid "Flux Speed: remove the zoom lock"
+msgstr "Flussgeschwindigkeit: Entfernen Sie die Zoomsperre"
+
+msgid "user-scalable=no and maximum-scale are removed from the viewport tag."
+msgstr "user-scalable=no und maximum-scale werden aus dem Viewport-Tag entfernt."
+
+msgid "Flux Speed: optimize fonts"
+msgstr "Flux Speed: Schriftarten optimieren"
+
+msgid "theme.json fonts not used on the page are removed and the above-the-fold font is preloaded."
+msgstr "theme.json-Schriftarten, die nicht auf der Seite verwendet werden, werden entfernt und die „above-the-fold“-Schriftart wird vorab geladen."
+
+msgid "Flux Speed: remove the emoji script"
+msgstr "Flux Speed: Entfernen Sie das Emoji-Skript"
+
+msgid "WordPress's emoji detection script and style are not loaded; modern browsers render emoji themselves."
+msgstr "Das Emoji-Erkennungsskript und der Stil von WordPress werden nicht geladen. Moderne Browser rendern Emojis selbst."
+
+msgid "Unknown fix."
+msgstr "Unbekannter Fix."
+
+msgid "Flux Speed › PageSpeed lists which animation in which file is the problem."
+msgstr "Flux Speed › PageSpeed listet auf, welche Animation in welcher Datei das Problem darstellt."
+
+msgid "The matching Flux Speed setting is on; clear the cache (LiteSpeed Purge All) and measure again. Whatever remains is up to the theme/preset."
+msgstr "Die entsprechende Einstellung für die Flussgeschwindigkeit ist aktiviert. Leeren Sie den Cache (LiteSpeed ​​Purge All) und messen Sie erneut. Was übrig bleibt, hängt vom Thema/der Voreinstellung ab."
+
+msgid "Turned on. The page cache was cleared; run the site audit or PageSpeed test again."
+msgstr "Eingeschaltet. Der Seitencache wurde geleert; Führen Sie das Site-Audit oder den PageSpeed-Test erneut durch."
+
+msgid "Animations (GPU)"
+msgstr "Animationen (GPU)"
+
+msgid "Animation not running on the GPU: %s. Should be rewritten with transform/opacity (theme/preset)."
+msgstr "Animation läuft nicht auf der GPU:%s. Sollte mit Transformation/Opazität (Thema/Voreinstellung) neu geschrieben werden."
+
+msgid "Animations in the CSS files seen use transform/opacity."
+msgstr "Animationen in den angezeigten CSS-Dateien verwenden Transformation/Opazität."
+
+msgid "PageSpeed"
+msgstr "PageSpeed"
+
+msgid "PageSpeed cache"
+msgstr "PageSpeed-Cache"
+
+msgid "uploads/flx-speed is writable."
+msgstr "uploads/flx-speed ist beschreibbar."
+
+msgid "The uploads/flx-speed folder is not writable: CSS trimming and minifying will not work, pages load the original files."
+msgstr "Der Ordner „uploads/flx-speed“ ist nicht beschreibbar: Das Trimmen und Minimieren von CSS funktioniert nicht, die Seiten laden die Originaldateien."
+
+msgid "Expired transients"
+msgstr "Abgelaufene Transienten"
+
+msgid "Auto-drafts older than 7 days"
+msgstr "Automatische Entwürfe, die älter als 7 Tage sind"
+
+msgid "Spam comments"
+msgstr "Spam-Kommentare"
+
+msgid "Trashed comments"
+msgstr "Vernichtete Kommentare"
+
+msgid "Reclaim free space (OPTIMIZE)"
+msgstr "Freier Speicherplatz zurückgewinnen (OPTIMIEREN)"
+
+msgid "Unknown cleanup job."
+msgstr "Unbekannter Bereinigungsauftrag."
+
+msgid "Slow"
+msgstr "Langsam"
+
+msgid "PHP error"
+msgstr "PHP-Fehler"
+
+msgid "Fatal error"
+msgstr "Fataler Fehler"
+
+msgid "Server error (5xx)"
+msgstr "Serverfehler (5xx)"
+
+msgid "Failed HTTP call"
+msgstr "Fehlgeschlagener HTTP-Aufruf"
+
+msgid "Slow query"
+msgstr "Langsame Abfrage"
+
+msgid "Query error"
+msgstr "Abfragefehler"
+
+msgid "Error log"
+msgstr "Fehlerprotokoll"
+
+msgid "Sample"
+msgstr "Probe"
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Front end"
+msgstr "Frontend"
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Only URLs on this site can be profiled."
+msgstr "Nur URLs auf dieser Website können profiliert werden."
+
+msgid "The records table is not installed."
+msgstr "Die Datensatztabelle ist nicht installiert."
+
+msgid "The page loaded but no record was created. It may have been served from cache, or Flux Performance did not load on that request."
+msgstr "Die Seite wurde geladen, aber es wurde kein Datensatz erstellt. Möglicherweise wurde es aus dem Cache bereitgestellt oder Flux Performance wurde bei dieser Anfrage nicht geladen."
+
+msgid "Records table"
+msgstr "Datensatztabelle"
+
+msgid "The table is not installed. Deactivate and reactivate the plugin."
+msgstr "Die Tabelle ist nicht installiert. Deaktivieren Sie das Plugin und aktivieren Sie es erneut."
+
+msgid "Request recording"
+msgstr "Aufnahme anfordern"
+
+msgid "On: %1$d%% of requests are sampled; requests over %2$d ms and failing requests are recorded."
+msgstr "Am:%1$d%% der Anfragen werden abgetastet; Anfragen über%2$dms und fehlgeschlagene Anfragen werden aufgezeichnet."
+
+msgid "Off: only the live panel works; AI cannot read history."
+msgstr "Aus: Nur das Live-Panel funktioniert; KI kann keine Geschichte lesen."
+
+msgid "Failing requests in the last 24 hours"
+msgstr "Fehlgeschlagene Anfragen in den letzten 24 Stunden"
+
+msgid "%1$d requests with PHP/server errors, %2$d fatal. See Records."
+msgstr "%1$d-Anfragen mit PHP-/Serverfehlern,%2$dfatal. Siehe Aufzeichnungen."
+
+msgid "No recorded errors."
+msgstr "Keine aufgezeichneten Fehler."
+
+msgid "Slow requests in the last 24 hours"
+msgstr "Langsame Anfragen in den letzten 24 Stunden"
+
+msgid "%1$d requests exceeded %2$d ms."
+msgstr "%1$d-Anfragen haben%2$dms überschritten."
+
+msgid "%d recorded requests had external service errors in the last 24 hours."
+msgstr "%daufgezeichnete Anfragen hatten in den letzten 24 Stunden externe Dienstfehler."
+
+msgid "No recorded external service errors."
+msgstr "Keine erfassten externen Servicefehler."
+
+msgid "SAVEQUERIES is on in wp-config.php: every request keeps all queries in memory. Flux Performance turns it on itself when needed; remove it from wp-config."
+msgstr "SAVEQUERIES ist in wp-config.php aktiviert: Bei jeder Anfrage bleiben alle Abfragen im Speicher. Flux Performance schaltet es bei Bedarf selbst ein; entferne es aus der wp-config."
+
+msgid "AI tools (flxp_*)"
+msgstr "KI-Tools (flxp_*)"
+
+msgid "MCP and Flux AI chat can read the records."
+msgstr "MCP- und Flux AI-Chat können die Datensätze lesen."
+
+msgid "Flux AI & MCP is not active or MCP is off; tools are not visible."
+msgstr "Flux AI & MCP ist nicht aktiv oder MCP ist ausgeschaltet; Werkzeuge sind nicht sichtbar."
+
+msgid "%1$d KB (%2$d options) is loaded on every request."
+msgstr "%1$dKB (%2$d-Optionen) wird bei jeder Anfrage geladen."
+
+msgid "Under 800 KB is recommended; check the largest rows."
+msgstr "Unter 800 KB wird empfohlen; Überprüfen Sie die größten Zeilen."
+
+msgid "Last run %s."
+msgstr "Letzter Lauf%s."
+
+msgid "Cron has not been seen running yet."
+msgstr "Cron wurde noch nicht laufen gesehen."
+
+msgid "%d events overdue."
+msgstr "%d-Ereignisse überfällig."
+
+msgid "Scheduled events are running"
+msgstr "Geplante Ereignisse laufen"
+
+msgid "Disk space"
+msgstr "Speicherplatz"
+
+msgid "%1$d%% used, %2$s free."
+msgstr "%1$d%% verwendet,%2$sfrei."
+
+msgid "(account usage / quota from Settings)"
+msgstr "(Kontonutzung/Kontingent aus den Einstellungen)"
+
+msgid "%1$d%% of the account CPU limit in use (%2$s cores)."
+msgstr "%1$d%% des verwendeten Konto-CPU-Limits (%2$sKerne)."
+
+msgid "%1$d%% over the last minute (%2$d cores)."
+msgstr "%1$d%% in der letzten Minute (%2$d-Kerne)."
+
+msgid "On: compiled PHP files are kept in memory."
+msgstr "Ein: Kompilierte PHP-Dateien bleiben im Speicher."
+
+msgid "Looks enabled but its status cannot be read (restricted by the server)."
+msgstr "Sieht aktiviert aus, aber sein Status kann nicht gelesen werden (eingeschränkt durch den Server)."
+
+msgid "Off: PHP files are compiled again on every request. Turn it on in Hostinger › PHP configuration."
+msgstr "Aus: PHP-Dateien werden bei jeder Anfrage neu kompiliert. Aktivieren Sie es in der Hostinger-PHP-Konfiguration."
+
+msgid "%d expired transients are still in the table."
+msgstr "%dabgelaufene Transienten sind immer noch in der Tabelle."
+
+msgid "None."
+msgstr "Keine."
+
+msgid "Delete expired transients"
+msgstr "Abgelaufene Transienten löschen"
+
+msgid "%d transients deleted."
+msgstr "%d-Transienten gelöscht."
+
+msgid "Each line shows something the site needs and whether it is in place. Fix the errors first; warnings are worth a look."
+msgstr "Jede Zeile zeigt etwas, das die Site benötigt, und ob es vorhanden ist. Beheben Sie zuerst die Fehler. Warnungen sind einen Blick wert."
+
+msgid "OK"
+msgstr "Okay"
+
+msgid "Warning"
+msgstr "Warnung"
+
+msgid "Info"
+msgstr "Infos"
+
+msgid "%1$d OK · %2$d warnings · %3$d errors"
+msgstr "%1$dOK ·%2$d-Warnungen ·%3$d-Fehler"
+
+msgid "Check again"
+msgstr "Überprüfen Sie es noch einmal"
+
+msgid "Show only these (click again to show all)"
+msgstr "Nur diese anzeigen (klicken Sie erneut, um alle anzuzeigen)"
+
+msgid "Checked: %s"
+msgstr "Geprüft:%s"
+
+msgid "Check"
+msgstr "Überprüfen"
+
+msgid "Source"
+msgstr "Quelle"
+
+msgid "Action"
+msgstr "Aktion"
+
+msgid "No checks are registered."
+msgstr "Es werden keine Schecks registriert."
+
+msgid "System check found %d problem(s) that can stop donations or automations."
+msgstr "Bei der Systemprüfung wurden%d-Probleme gefunden, die Spenden oder Automatisierungen stoppen können."
+
+msgid "Open system check"
+msgstr "Öffnen Sie die Systemprüfung"
+
+msgid "Hide until the next update"
+msgstr "Bis zum nächsten Update ausblenden"
+
+msgid "System: %d error(s)"
+msgstr "System:%d-Fehler"
+
+msgid "This check could not run: %s"
+msgstr "Diese Prüfung konnte nicht ausgeführt werden:%s"
+
+msgid "Scheduled tasks (cron)"
+msgstr "Geplante Aufgaben (cron)"
+
+msgid "Payments"
+msgstr "Zahlungen"
+
+msgid "Plugins"
+msgstr "Plugins"
+
+msgid "E-mail"
+msgstr "E-Mail"
+
+msgid "Security"
+msgstr "Sicherheit"
+
+msgid "Forms"
+msgstr "Formulare"
+
+msgid "Other"
+msgstr "Andere"
+
+msgid "Plugin: %s"
+msgstr "Plugin:%s"
+
+msgid "MU plugin: %s"
+msgstr "MU-Plugin:%s"
+
+msgid "Theme: %s"
+msgstr "Thema:%s"
+
+msgid "Drop-in: %s"
+msgstr "Drop-in:%s"
+
+msgid "WordPress core"
+msgstr "WordPress-Kern"
+
+msgid "Search…"
+msgstr "Suchen..."
+
+msgid "All"
+msgstr "Alle"
+
+msgid "Showing the first 1500 rows; narrow down with search."
+msgstr "Zeigt die ersten 1500 Zeilen; Mit der Suche eingrenzen."
+
+msgid "Call stack"
+msgstr "Aufrufstapel"
+
+msgid "Fatal"
+msgstr "Tödlich"
+
+msgid "Notice"
+msgstr "Hinweis"
+
+msgid "Deprecated"
+msgstr "Veraltet"
+
+msgid "Overview"
+msgstr "Übersicht"
+
+msgid "Duplicate queries"
+msgstr "Doppelte Abfragen"
+
+msgid "By component"
+msgstr "Nach Komponente"
+
+msgid "Doing it wrong"
+msgstr "Es falsch machen"
+
+msgid "Cron tasks"
+msgstr "Cron-Aufgaben"
+
+msgid "Logs"
+msgstr "Protokolle"
+
+msgid "Template"
+msgstr "Vorlage"
+
+msgid "Capability checks"
+msgstr "Fähigkeitsprüfungen"
+
+msgid "Scripts and styles"
+msgstr "Skripte und Stile"
+
+msgid "Languages"
+msgstr "Sprachen"
+
+msgid "Transient updates"
+msgstr "Vorübergehende Aktualisierungen"
+
+msgid "Hooks"
+msgstr "Haken"
+
+msgid "Peak memory"
+msgstr "Spitzengedächtnis"
+
+msgid "Limit"
+msgstr "Begrenzen"
+
+msgid "Time not measured"
+msgstr "Zeit nicht gemessen"
+
+msgid "Total"
+msgstr "Insgesamt"
+
+msgid "Response"
+msgstr "Antwort"
+
+msgid "Query details were not collected for this request (not sampled). Open the page while logged in as an administrator or raise the sampling rate."
+msgstr "Für diese Anfrage wurden keine Abfragedetails erfasst (keine Stichprobe). Öffnen Sie die Seite, während Sie als Administrator angemeldet sind, oder erhöhen Sie die Sampling-Rate."
+
+msgid "Timeline"
+msgstr "Zeitleiste"
+
+msgid "Visitor"
+msgstr "Besucher"
+
+msgid "Collection mode"
+msgstr "Sammelmodus"
+
+msgid "Detailed"
+msgstr "Ausführlich"
+
+msgid "Light"
+msgstr "Licht"
+
+msgid "Duplicates"
+msgstr "Duplikate"
+
+msgid "Only the slowest queries were stored in this record."
+msgstr "In diesem Datensatz wurden nur die langsamsten Abfragen gespeichert."
+
+msgid "Caller"
+msgstr "Anrufer"
+
+msgid "Callers"
+msgstr "Anrufer"
+
+msgid "Query types"
+msgstr "Abfragetypen"
+
+msgid "Subject"
+msgstr "Betreff"
+
+msgid "Method"
+msgstr "Methode"
+
+msgid "No logs in this request."
+msgstr "Keine Protokolle in dieser Anfrage."
+
+msgid "Packages can write here with do_action( 'flx_log', 'warning', 'message' )."
+msgstr "Pakete können hier mit do_action( 'flx_log', 'warning', 'message' ) schreiben."
+
+msgid "Timers"
+msgstr "Timer"
+
+msgid "Not stopped"
+msgstr "Nicht gestoppt"
+
+msgid "Template file"
+msgstr "Vorlagendatei"
+
+msgid "Parent theme"
+msgstr "Übergeordnetes Thema"
+
+msgid "Block theme"
+msgstr "Blockthema"
+
+msgid "Block template"
+msgstr "Blockvorlage"
+
+msgid "Body classes"
+msgstr "Körperklassen"
+
+msgid "Template parts"
+msgstr "Vorlagenteile"
+
+msgid "Not found"
+msgstr "Nicht gefunden"
+
+msgid "Request path"
+msgstr "Anforderungspfad"
+
+msgid "Matched rule"
+msgstr "Übereinstimmende Regel"
+
+msgid "Matched query"
+msgstr "Übereinstimmende Abfrage"
+
+msgid "Queried object"
+msgstr "Abgefragtes Objekt"
+
+msgid "Query vars"
+msgstr "Variablen abfragen"
+
+msgid "Conditionals"
+msgstr "Bedingungen"
+
+msgid "Capability"
+msgstr "Fähigkeit"
+
+msgid "Granted"
+msgstr "Zugegeben"
+
+msgid "Denied"
+msgstr "Abgelehnt"
+
+msgid "Scripts"
+msgstr "Skripte"
+
+msgid "Styles"
+msgstr "Stile"
+
+msgid "Dependencies"
+msgstr "Abhängigkeiten"
+
+msgid "Missing"
+msgstr "Fehlt"
+
+msgid "Position"
+msgstr "Position"
+
+msgid "Footer"
+msgstr "Fußzeile"
+
+msgid "Header"
+msgstr "Kopfzeile"
+
+msgid "Loaded"
+msgstr "Geladen"
+
+msgid "No file"
+msgstr "Keine Datei"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "No expiry"
+msgstr "Kein Ablauf"
+
+msgid "Distinct actions fired in this request"
+msgstr "In dieser Anfrage wurden verschiedene Aktionen ausgelöst"
+
+msgid "Most fired:"
+msgstr "Am meisten gefeuert:"
+
+msgid "queries"
+msgstr "Abfragen"
+
+msgid "Resize"
+msgstr "Größe ändern"
+
+msgid "Close"
+msgstr "Schließen"
+
+msgid "24 hours"
+msgstr "24 Stunden"
+
+msgid "7 days"
+msgstr "7 Tage"
+
+msgid "No matching requests in this range."
+msgstr "Keine passenden Anfragen in diesem Bereich."
+
+msgid "HTTP"
+msgstr "HTTP"
+
+msgid "No records"
+msgstr "Keine Aufzeichnungen"
+
+msgid "Critical"
+msgstr "Kritisch"
+
+msgid "PHP notices"
+msgstr "PHP-Hinweise"
+
+msgid "Open in panel"
+msgstr "Im Panel öffnen"
+
+msgid "Query time"
+msgstr "Abfragezeit"
+
+msgid "Only slow, failed and sampled PHP requests are recorded. Pages served from cache are not in these numbers."
+msgstr "Es werden nur langsame, fehlgeschlagene und abgetastete PHP-Anfragen aufgezeichnet. Die aus dem Cache bereitgestellten Seiten liegen nicht in dieser Anzahl."
+
+msgid "Slow requests"
+msgstr "Langsame Anfragen"
+
+msgid "Load"
+msgstr "Laden"
+
+msgid "p95"
+msgstr "S. 95"
+
+msgid "Flag"
+msgstr "Flagge"
+
+msgid "[['Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools.', 'tr']]"
+msgstr "[['Site-Leistung an einem Ort: Anfragen pro Anfrage, PHP-Fehler, externe HTTP-Anfragen (Entwicklerpanel), langsame/fehlerhafte Anfrageprotokolle, Server (CPU, RAM, Festplatte, OPcache), Datenbank, Autoload, Cron und Systemprüfung. AI liest sie alle mit Flux AI & MCP / Flux AI-Tools.', 'tr']]"

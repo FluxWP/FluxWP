@@ -1,0 +1,329 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Languages"
+msgstr "اللغات"
+
+msgid "Shared page: the same in every language, interface in the visitor's language."
+msgstr "الصفحة المشتركة: هي نفسها بكل لغة، والواجهة بلغة الزائر."
+
+msgid "Shared"
+msgstr "مشترك"
+
+msgid "%1$s translation (%2$s)"
+msgstr "ترجمة%1$s(%2$s)"
+
+msgid "Create %s translation"
+msgstr "إنشاء ترجمة%s"
+
+msgid "You are not allowed to do this."
+msgstr "لا يسمح لك أن تفعل هذا."
+
+msgid "Filter by language"
+msgstr "التصفية حسب اللغة"
+
+msgid "All languages"
+msgstr "جميع اللغات"
+
+msgid "Language"
+msgstr "اللغة"
+
+msgid "Language of this content"
+msgstr "لغة هذا المحتوى"
+
+msgid "After saving you can create translations in other languages."
+msgstr "بعد الحفظ، يمكنك إنشاء ترجمات بلغات أخرى."
+
+msgid "Re-translate with AI"
+msgstr "إعادة الترجمة باستخدام الذكاء الاصطناعي"
+
+msgid "Copy and translate"
+msgstr "نسخ وترجمة"
+
+msgid "Translate with AI"
+msgstr "ترجمة مع الذكاء الاصطناعي"
+
+msgid "With Flux AI installed, translation is one click; AI agents connected over MCP can also translate with the flxl_save_translation tool."
+msgstr "مع تثبيت Flux AI، تتم الترجمة بنقرة واحدة؛ يمكن لوكلاء الذكاء الاصطناعي المتصلين عبر MCP أيضًا الترجمة باستخدام أداة flxl_save_translation."
+
+msgid "Preparing translation…"
+msgstr "جارٍ تحضير الترجمة..."
+
+msgid "AI is translating: %1$d / %2$d"
+msgstr "يقوم الذكاء الاصطناعي بالترجمة:%1$d/%2$d"
+
+msgid "Translation ready, opening the editor…"
+msgstr "الترجمة جاهزة، جارٍ فتح المحرر..."
+
+msgid "Some sections could not be translated and stayed in Turkish. Check them in the editor."
+msgstr "لم يكن من الممكن ترجمة بعض الأقسام وبقيت باللغة التركية. التحقق منها في المحرر."
+
+msgid "Translation stopped:"
+msgstr "توقفت الترجمة:"
+
+msgid "Replace the title, excerpt and body of the existing translation with an AI translation?"
+msgstr "هل تريد استبدال عنوان ومقتطف ونص الترجمة الحالية بترجمة الذكاء الاصطناعي؟"
+
+msgid "Translate with AI? If you choose No, a draft copy is created for you to translate yourself."
+msgstr "ترجمة مع الذكاء الاصطناعي؟ إذا اخترت لا، فسيتم إنشاء نسخة مسودة لتتمكن من ترجمتها بنفسك."
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "Saved."
+msgstr "تم الحفظ."
+
+msgid "The default language has no prefix in the address (example.org/hakkimizda/); other languages open with a prefix such as /en/. Each language version of a content is a separate page/post: create it from the language badge in the list or from the Language box in the editor. Theme and plugin interface texts use their own translations."
+msgstr "اللغة الافتراضية لا تحتوي على بادئة في العنوان (example.org/hakkimizda/)؛ اللغات الأخرى تفتح ببادئة مثل /en/. كل إصدار لغة من المحتوى عبارة عن صفحة/منشور منفصل: قم بإنشائه من شارة اللغة الموجودة في القائمة أو من مربع اللغة في المحرر. تستخدم نصوص واجهة السمات والمكونات الإضافية ترجماتها الخاصة."
+
+msgid "Active"
+msgstr "نشط"
+
+msgid "Code / address"
+msgstr "الرمز / العنوان"
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "Flag"
+msgstr "العلم"
+
+msgid "WordPress locale"
+msgstr "لغة ووردبريس"
+
+msgid "Default"
+msgstr "الافتراضي"
+
+msgid "Remove"
+msgstr "إزالة"
+
+msgid "Add language"
+msgstr "أضف لغة"
+
+msgid "— choose —"
+msgstr "— اختر —"
+
+msgid "A new language is added inactive: prepare its content, then activate it. Languages other than English also need the WordPress language pack (System check warns)."
+msgstr "يتم إضافة لغة جديدة غير نشطة: قم بإعداد محتواها ثم تفعيلها. تحتاج اللغات الأخرى غير الإنجليزية أيضًا إلى حزمة لغة WordPress (تحذير فحص النظام)."
+
+msgid "Content"
+msgstr "المحتوى"
+
+msgid "Translated content types"
+msgstr "أنواع المحتوى المترجم"
+
+msgid "Cart, checkout and my account pages are shared by all languages. Categories are shared; their names are translated per language on the category edit screen. Language-specific alt text and replacement images are on the media edit screen."
+msgstr "تتم مشاركة صفحات سلة التسوق والخروج وحسابي بجميع اللغات. تتم مشاركة الفئات؛ تتم ترجمة أسمائهم لكل لغة على شاشة تحرير الفئة. يوجد نص بديل وصور بديلة خاصة باللغة على شاشة تحرير الوسائط."
+
+msgid "Content without a translation"
+msgstr "المحتوى بدون ترجمة"
+
+msgid "Show the Turkish version in other languages (menu and interface stay in that language; search engines get the Turkish canonical address)"
+msgstr "عرض النسخة التركية بلغات أخرى (تبقى القائمة والواجهة بتلك اللغة؛ وتحصل محركات البحث على العنوان الأساسي التركي)"
+
+msgid "When off, the English site lists only content that has an English version."
+msgstr "عند إيقاف التشغيل، يدرج الموقع الإنجليزي المحتوى الذي يحتوي على نسخة باللغة الإنجليزية فقط."
+
+msgid "Language switcher"
+msgstr "محوّل اللغة"
+
+msgid "Elsewhere: the \"Flux Language Switcher\" block or the [flx_dil_secici] shortcode."
+msgstr "في مكان آخر: كتلة \"Flux Language Switcher\" أو الرمز القصير [flx_dil_secici]."
+
+msgid "Switcher position"
+msgstr "موقف الجلاد"
+
+msgid "Footer"
+msgstr "تذييل"
+
+msgid "Header and mobile menu"
+msgstr "رأس وقائمة المحمول"
+
+msgid "Both"
+msgstr "كلاهما"
+
+msgid "Language suggestion for visitors"
+msgstr "اقتراح اللغة للزوار"
+
+msgid "Visitors from outside Türkiye"
+msgstr "الزوار من خارج تركيا"
+
+msgid "Open directly in their language (recommended)"
+msgstr "فتح مباشرة بلغتهم (موصى به)"
+
+msgid "Show a suggestion bar at the top of the page"
+msgstr "إظهار شريط الاقتراحات في أعلى الصفحة"
+
+msgid "Off"
+msgstr "إيقاف"
+
+msgid "Visitors from outside Türkiye open the version in their language (English if none) before the page renders, and stay in it on later visits. A visitor who picks another language in the switcher stays in it. Search engine bots are never redirected. If the country or time zone is Türkiye, the visitor stays in Turkish. Not applied to logged-in users; use a private window to test."
+msgstr "يفتح الزائرون من خارج تركيا الإصدار بلغتهم (الإنجليزية في حالة عدم وجوده) قبل عرض الصفحة، ويبقون فيها في زيارات لاحقة. الزائر الذي يختار لغة أخرى في جهاز التحويل يبقى فيها. لا يتم إعادة توجيه روبوتات محرك البحث مطلقًا. إذا كانت الدولة أو المنطقة الزمنية هي تركيا، يبقى الزائر باللغة التركية. لا ينطبق على المستخدمين الذين قاموا بتسجيل الدخول؛ استخدم نافذة خاصة للاختبار."
+
+msgid "Suggested language"
+msgstr "اللغة المقترحة"
+
+msgid "If the browser language is one of the active languages (e.g. German once added), that one is suggested; otherwise this one."
+msgstr "إذا كانت لغة المتصفح إحدى اللغات النشطة (على سبيل المثال، تمت إضافة اللغة الألمانية مرة واحدة)، فيُقترح تلك اللغة؛ وإلا هذا."
+
+msgid "Countries that see Turkish"
+msgstr "الدول التي ترى التركية"
+
+msgid "Two-letter country codes (TR, CY…)."
+msgstr "رموز الدولة المكونة من حرفين (TR، CY...)."
+
+msgid "Country information"
+msgstr "معلومات البلد"
+
+msgid "Country in your request: %1$s (%2$s header). Country-based suggestion works."
+msgstr "البلد في طلبك:%1$s(رأس%2$s). تعمل الاقتراحات على أساس البلد."
+
+msgid "The server sends no country information; the browser's time zone is used (Türkiye time = Turkish). For more accurate results, put the domain behind Cloudflare (free plan, the CF-IPCountry header is used automatically) or enable your host's GeoIP header."
+msgstr "لا يرسل الخادم أي معلومات عن البلد؛ يتم استخدام المنطقة الزمنية للمتصفح (توقيت تركيا = اللغة التركية). للحصول على نتائج أكثر دقة، ضع النطاق خلف Cloudflare (خطة مجانية، يتم استخدام رأس CF-IPCountry تلقائيًا) أو قم بتمكين رأس GeoIP الخاص بمضيفك."
+
+msgid "Site texts per language"
+msgstr "نصوص الموقع لكل لغة"
+
+msgid "Empty fields are shown in Turkish."
+msgstr "تظهر الحقول الفارغة باللغة التركية."
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "Translation with AI"
+msgstr "الترجمة مع الذكاء الاصطناعي"
+
+msgid "With Flux AI installed, a \"Translate with AI\" button appears in the list and the editor. AI agents connected over MCP (Claude etc.) and the Flux AI chat use these tools: flxl_languages, flxl_untranslated, flxl_translations, flxl_save_translation, flxl_set_language, flxl_image_language, flxl_term_translation, flxl_site_texts. Flux SEO tools (list_content, create_content, update_content) have a lang parameter."
+msgstr "مع تثبيت Flux AI، يظهر زر \"الترجمة باستخدام AI\" في القائمة والمحرر. يستخدم وكلاء الذكاء الاصطناعي المتصلون عبر MCP (كلود وما إلى ذلك) ودردشة Flux AI هذه الأدوات: flxl_languages، flxl_untranslated، flxl_translations، flxl_save_translation، flxl_set_language، flxl_image_language، flxl_term_translation، flxl_site_texts. تحتوي أدوات Flux SEO (list_content و create_content وupdate_content) على معلمة lang."
+
+msgid "Source content not found or this type is not translated."
+msgstr "لم يتم العثور على محتوى المصدر أو لم تتم ترجمة هذا النوع."
+
+msgid "Language is not active."
+msgstr "اللغة غير نشطة."
+
+msgid "The content is already in this language."
+msgstr "المحتوى موجود بالفعل بهذه اللغة."
+
+msgid "Flux Language (translation)"
+msgstr "لغة التدفق (الترجمة)"
+
+msgid "Flux Language"
+msgstr "لغة التدفق"
+
+msgid "Flux AI & MCP is not installed or not ready."
+msgstr "لم يتم تثبيت Flux AI & MCP أو أنه غير جاهز."
+
+msgid "AI returned an empty answer."
+msgstr "أعادت منظمة العفو الدولية إجابة فارغة."
+
+msgid "The AI answer was cut off."
+msgstr "تم قطع إجابة الذكاء الاصطناعي."
+
+msgid "Translation job not found or expired."
+msgstr "لم يتم العثور على مهمة الترجمة أو انتهت صلاحيتها."
+
+msgid "Alternative text (%s)"
+msgstr "النص البديل (%s)"
+
+msgid "Image (%s)"
+msgstr "الصورة (%s)"
+
+msgid "ID of the image shown instead of this one in this language (e.g. the translated version of a poster with text). Empty: same image."
+msgstr "معرف الصورة المعروضة بدلاً من هذه الصورة بهذه اللغة (على سبيل المثال، النسخة المترجمة من الملصق الذي يحتوي على نص). فارغة: نفس الصورة."
+
+msgid "This page is available in %s."
+msgstr "هذه الصفحة متاحة في%s."
+
+msgid "Switch to %s"
+msgstr "قم بالتبديل إلى%s"
+
+msgid "Stay on this version"
+msgstr "البقاء على هذا الإصدار"
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Language selection"
+msgstr "اختيار اللغة"
+
+msgid "Flux Language Switcher"
+msgstr "تدفق لغة الجلاد"
+
+msgid "Site title"
+msgstr "عنوان الموقع"
+
+msgid "Tagline"
+msgstr "سطر الوصف"
+
+msgid "Flux SEO: site name"
+msgstr "تدفق كبار المسئولين الاقتصاديين: اسم الموقع"
+
+msgid "Flux SEO: alternate name"
+msgstr "تدفق كبار المسئولين الاقتصاديين: اسم بديل"
+
+msgid "Flux SEO: home page title"
+msgstr "Flux SEO: عنوان الصفحة الرئيسية"
+
+msgid "Flux SEO: home page description"
+msgstr "تدفق SEO: وصف الصفحة الرئيسية"
+
+msgid "Only the default language is active; the site is single-language."
+msgstr "اللغة الافتراضية فقط هي النشطة؛ الموقع أحادي اللغة."
+
+msgid "WordPress language packs"
+msgstr "حزم لغات ووردبريس"
+
+msgid "Not installed: %s. Pick it once in Settings › General › Site Language and save (the pack downloads), then switch back."
+msgstr "غير مثبت:%s. اخترها مرة واحدة في الإعدادات > عام > لغة الموقع واحفظها (يتم تنزيل الحزمة)، ثم قم بالتبديل مرة أخرى."
+
+msgid "All active languages have WordPress translations."
+msgstr "تحتوي جميع اللغات النشطة على ترجمات WordPress."
+
+msgid "General settings"
+msgstr "الإعدادات العامة"
+
+msgid "Page translations: %s"
+msgstr "ترجمات الصفحة:%s"
+
+msgid "%1$d / %2$d pages translated. %3$s"
+msgstr "صفحات%1$d/%2$dمترجمة.%3$s"
+
+msgid "Untranslated ones are shown in Turkish (canonical address is Turkish)."
+msgstr "يتم عرض الرسائل غير المترجمة باللغة التركية (العنوان الأساسي هو التركي)."
+
+msgid "Untranslated ones are hidden in this language."
+msgstr "يتم إخفاء تلك غير المترجمة في هذه اللغة."
+
+msgid "Pages"
+msgstr "الصفحات"
+
+msgid "Visitor country"
+msgstr "بلد الزائر"
+
+msgid "No visitor has been checked for a language suggestion yet."
+msgstr "لم يتم التحقق من أي زائر للحصول على اقتراح لغة حتى الآن."
+
+msgid "The server sends no country information; the browser time zone is used (Türkiye time = Turkish). If Cloudflare is enabled, the country code is used automatically."
+msgstr "لا يرسل الخادم أي معلومات عن البلد؛ يتم استخدام المنطقة الزمنية للمتصفح (توقيت تركيا = اللغة التركية). إذا تم تمكين Cloudflare، فسيتم استخدام رمز البلد تلقائيًا."
+
+msgid "Country information comes from the %s header."
+msgstr "تأتي معلومات البلد من رأس%s."
+
+msgid "Permalinks"
+msgstr "الروابط الدائمة"
+
+msgid "Plain (?p=) links are in use; choose the \"Post name\" structure for language addresses."
+msgstr "الروابط العادية (?p=) قيد الاستخدام؛ اختر بنية \"اسم المشاركة\" لعناوين اللغة."
+
+msgid "Name (%s)"
+msgstr "الاسم (%s)"
+
+msgid "Description (%s)"
+msgstr "الوصف (%s)"
+
+msgid "If left empty, the Turkish name and description are shown."
+msgstr "إذا تركت فارغة، يظهر الاسم والوصف التركي."
+
+msgid "[['Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.', 'tr']]"
+msgstr "[['يجعل الموقع متعدد اللغات: عناوين لغة مثل /en/، ترجمة لكل صفحة، منشور، مشروع وحدث، مرئيات خاصة باللغة، hreflang وcanonical، توصية باللغة الإنجليزية لأولئك القادمين من خارج تركيا، محدد اللغة؛ دعم اللغة لأدوات Flux AI وMCP وFlux AI.', 'tr']]"

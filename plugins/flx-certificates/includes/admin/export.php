@@ -37,7 +37,7 @@ function flxs_cert_export_url() {
 function flxs_handle_cert_export() {
 	check_admin_referer( 'flxs_cert_export' );
 	if ( ! flxs_can_use() ) {
-		wp_die( esc_html__( 'Yetki yok', 'flx-certificates' ) );
+		wp_die( esc_html__( 'Not allowed', 'flx-certificates' ) );
 	}
 	if ( function_exists( 'set_time_limit' ) ) {
 		@set_time_limit( 120 ); // phpcs:ignore
@@ -49,8 +49,8 @@ function flxs_handle_cert_export() {
 		$events[ (int) $e['id'] ] = $e['name'];
 	}
 	$status = array(
-		'active'  => __( 'Geçerli', 'flx-certificates' ),
-		'revoked' => __( 'İptal edildi', 'flx-certificates' ),
+		'active'  => __( 'Valid', 'flx-certificates' ),
+		'revoked' => __( 'Revoked', 'flx-certificates' ),
 	);
 	$msgs = array();
 	foreach ( array_chunk( wp_list_pluck( $q['items'], 'id' ), 500 ) as $ids ) {
@@ -66,19 +66,19 @@ function flxs_handle_cert_export() {
 	};
 
 	$head = array(
-		array( __( 'Sertifika No', 'flx-certificates' ), 16 ),
-		array( __( 'Tarih', 'flx-certificates' ), 17, 'date' ),
-		array( __( 'Ad Soyad', 'flx-certificates' ), 28 ),
-		array( __( 'Telefon', 'flx-certificates' ), 17 ),
-		array( __( 'E-posta', 'flx-certificates' ), 28 ),
-		array( __( 'Etkinlik', 'flx-certificates' ), 26 ),
-		array( __( 'Şablon', 'flx-certificates' ), 22 ),
-		array( __( 'Referans', 'flx-certificates' ), 20 ),
-		array( __( 'Oluşturan', 'flx-certificates' ), 20 ),
-		array( __( 'Durum', 'flx-certificates' ), 10 ),
-		array( __( 'Görüntülenme', 'flx-certificates' ), 13, 'int' ),
-		array( __( 'Gönderilen mesaj', 'flx-certificates' ), 26 ),
-		array( __( 'Sertifika linki', 'flx-certificates' ), 48 ),
+		array( __( 'Certificate no.', 'flx-certificates' ), 16 ),
+		array( __( 'Date', 'flx-certificates' ), 17, 'date' ),
+		array( __( 'Full name', 'flx-certificates' ), 28 ),
+		array( __( 'Phone', 'flx-certificates' ), 17 ),
+		array( __( 'Email', 'flx-certificates' ), 28 ),
+		array( __( 'Event', 'flx-certificates' ), 26 ),
+		array( __( 'Template', 'flx-certificates' ), 22 ),
+		array( __( 'Referrer', 'flx-certificates' ), 20 ),
+		array( __( 'Created by', 'flx-certificates' ), 20 ),
+		array( __( 'Status', 'flx-certificates' ), 10 ),
+		array( __( 'Views', 'flx-certificates' ), 13, 'int' ),
+		array( __( 'Messages sent', 'flx-certificates' ), 26 ),
+		array( __( 'Certificate link', 'flx-certificates' ), 48 ),
 	);
 	$rows = array();
 	foreach ( $q['items'] as $c ) {
@@ -106,9 +106,9 @@ function flxs_handle_cert_export() {
 	}
 
 	/* translators: file name prefix of the certificate Excel export */
-	$name = sanitize_file_name( _x( 'sertifikalar', 'excel file name', 'flx-certificates' ) . '-' . wp_date( 'Y-m-d-Hi' ) . '.xlsx' );
+	$name = sanitize_file_name( _x( 'certificates', 'context_e363ab036dc9', 'flx-certificates' ) . '-' . wp_date( 'Y-m-d-Hi' ) . '.xlsx' );
 	$file = wp_tempnam( $name );
-	$ok   = flxs_xlsx_write( $file, __( 'Sertifikalar', 'flx-certificates' ), $head, $rows );
+	$ok   = flxs_xlsx_write( $file, __( 'Certificates', 'flx-certificates' ), $head, $rows );
 	if ( is_wp_error( $ok ) ) {
 		wp_delete_file( $file );
 		wp_die( esc_html( $ok->get_error_message() ) );
@@ -131,7 +131,7 @@ function flxs_handle_cert_export() {
  */
 function flxs_xlsx_write( $file, $sheet, $head, $rows ) {
 	if ( ! class_exists( 'ZipArchive' ) ) {
-		return new WP_Error( 'flxs_zip', __( 'Sunucuda ZipArchive (PHP zip eklentisi) yok; Excel dosyası oluşturulamadı.', 'flx-certificates' ) );
+		return new WP_Error( 'flxs_zip', __( 'The server has no ZipArchive (PHP zip extension); the Excel file could not be created.', 'flx-certificates' ) );
 	}
 	$x   = function ( $s ) {
 		// XML'de geçersiz kontrol karakterlerini at.
@@ -186,7 +186,7 @@ function flxs_xlsx_write( $file, $sheet, $head, $rows ) {
 	);
 	$zip = new ZipArchive();
 	if ( true !== $zip->open( $file, ZipArchive::CREATE | ZipArchive::OVERWRITE ) ) {
-		return new WP_Error( 'flxs_zip', __( 'Excel dosyası oluşturulamadı.', 'flx-certificates' ) );
+		return new WP_Error( 'flxs_zip', __( 'The Excel file could not be created.', 'flx-certificates' ) );
 	}
 	foreach ( $parts as $path => $xml ) {
 		$zip->addFromString( $path, $xml );

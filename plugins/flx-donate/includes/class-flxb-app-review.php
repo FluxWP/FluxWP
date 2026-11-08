@@ -50,9 +50,9 @@ final class FLXB_App_Review {
 	public static function routes() {
 		$auth = function () {
 			if ( ! is_user_logged_in() ) {
-				return new WP_Error( 'rest_not_logged_in', __( 'Please sign in.', 'flx-donate' ), array( 'status' => 401 ) );
+				return new WP_Error( 'rest_not_logged_in', __( '\\nPlease sign in.\\n', 'flx-donate' ), array( 'status' => 401 ) );
 			}
-			return current_user_can( 'edit_shop_orders' ) || flxb_can_manage() ? true : new WP_Error( 'rest_forbidden', __( 'Sorry, you are not allowed to access this page.', 'flx-donate' ), array( 'status' => 403 ) );
+			return current_user_can( 'edit_shop_orders' ) || flxb_can_manage() ? true : new WP_Error( 'rest_forbidden', __( '\\nSorry, you are not allowed to access this page.\\n', 'flx-donate' ), array( 'status' => 403 ) );
 		};
 		register_rest_route(
 			self::NS,
@@ -119,7 +119,7 @@ final class FLXB_App_Review {
 	private static function waiting( $utc ) {
 		$ts = strtotime( $utc . ' UTC' );
 		/* translators: %s: relative time, e.g. "2 days ago" */
-		return $ts ? sprintf( __( 'received %s', 'flx-donate' ), flx_time_ago( $ts ) ) : '';
+		return $ts ? sprintf( __( '\\nreceived%s\\n', 'flx-donate' ), flx_time_ago( $ts ) ) : '';
 	}
 
 	/** One gift in the app's shape. */
@@ -189,10 +189,10 @@ final class FLXB_App_Review {
 			return new WP_Error( 'flxb_not_found', __( 'Donation not found.', 'flx-donate' ), array( 'status' => 404 ) );
 		}
 		if ( ! FLXB_Approval::can( $d ) ) {
-			return new WP_Error( 'rest_forbidden', __( 'Sorry, you are not allowed to access this page.', 'flx-donate' ), array( 'status' => 403 ) );
+			return new WP_Error( 'rest_forbidden', __( '\\nSorry, you are not allowed to access this page.\\n', 'flx-donate' ), array( 'status' => 403 ) );
 		}
 		if ( ! FLXB_Approval::pending( $d ) ) {
-			return new WP_Error( 'flxb_state', __( 'This donation is no longer awaiting approval.', 'flx-donate' ), array( 'status' => 409 ) );
+			return new WP_Error( 'flxb_state', __( '\\nThis donation is no longer awaiting approval.\\n', 'flx-donate' ), array( 'status' => 409 ) );
 		}
 		return $d;
 	}
@@ -215,7 +215,7 @@ final class FLXB_App_Review {
 	public static function rest_reject( WP_REST_Request $r ) {
 		$reason = trim( sanitize_textarea_field( (string) $r['reason'] ) );
 		if ( '' === $reason ) {
-			return new WP_Error( 'flxb_reason', __( 'Please write a reason.', 'flx-donate' ), array( 'status' => 400 ) );
+			return new WP_Error( 'flxb_reason', __( '\\nPlease write a reason.\\n', 'flx-donate' ), array( 'status' => 400 ) );
 		}
 		$d = self::gift( $r['id'] );
 		if ( is_wp_error( $d ) ) {

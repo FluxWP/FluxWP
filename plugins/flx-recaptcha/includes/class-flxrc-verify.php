@@ -63,10 +63,10 @@ final class FLXRC_Verify {
 	public static function message( $code = '' ) {
 		if ( 'empty' === $code ) {
 			return 'v2' === flxrc_version()
-				? __( 'Lütfen "Ben robot değilim" kutusunu işaretleyin.', 'flx-recaptcha' )
-				: __( 'Güvenlik doğrulaması yüklenemedi. Sayfayı yenileyip tekrar deneyin.', 'flx-recaptcha' );
+				? __( 'Please tick the "I\'m not a robot" box.', 'flx-recaptcha' )
+				: __( 'The security check could not load. Refresh the page and try again.', 'flx-recaptcha' );
 		}
-		return __( 'Güvenlik doğrulaması geçilemedi. Sayfayı yenileyip tekrar deneyin.', 'flx-recaptcha' );
+		return __( 'The security check failed. Refresh the page and try again.', 'flx-recaptcha' );
 	}
 
 	private static function fail( $code, $detail = '' ) {
@@ -146,26 +146,26 @@ final class FLXRC_Verify {
 			)
 		);
 		if ( is_wp_error( $resp ) ) {
-			return array( 'ok' => false, 'msg' => sprintf( /* translators: %s: error */ __( 'Google\'a ulaşılamadı: %s', 'flx-recaptcha' ), $resp->get_error_message() ) );
+			return array( 'ok' => false, 'msg' => sprintf( /* translators: %s: error */ __( 'Could not reach Google: %s', 'flx-recaptcha' ), $resp->get_error_message() ) );
 		}
 		$body = json_decode( (string) wp_remote_retrieve_body( $resp ), true );
 		if ( ! is_array( $body ) ) {
-			return array( 'ok' => false, 'msg' => __( 'Google beklenmeyen bir yanıt döndü.', 'flx-recaptcha' ) );
+			return array( 'ok' => false, 'msg' => __( 'Google returned an unexpected response.', 'flx-recaptcha' ) );
 		}
 		$codes = isset( $body['error-codes'] ) ? array_map( 'strval', (array) $body['error-codes'] ) : array();
 		if ( in_array( 'invalid-input-secret', $codes, true ) || in_array( 'missing-input-secret', $codes, true ) ) {
-			return array( 'ok' => false, 'msg' => __( 'Gizli anahtar geçersiz. Google reCAPTCHA konsolundaki "Gizli anahtar"ı kopyalayın.', 'flx-recaptcha' ) );
+			return array( 'ok' => false, 'msg' => __( 'The secret key is invalid. Copy the "Secret key" from the Google reCAPTCHA console.', 'flx-recaptcha' ) );
 		}
 		if ( empty( $body['success'] ) ) {
 			$msg = in_array( 'invalid-input-response', $codes, true )
-				? __( 'Site anahtarı ile gizli anahtar aynı kayda ait değil ya da reCAPTCHA türü (v2/v3) yanlış seçildi.', 'flx-recaptcha' )
-				: sprintf( /* translators: %s: Google error codes */ __( 'Doğrulanamadı (%s).', 'flx-recaptcha' ), $codes ? implode( ', ', $codes ) : '?' );
+				? __( 'The site key and the secret key do not belong to the same entry, or the wrong reCAPTCHA type (v2/v3) is selected.', 'flx-recaptcha' )
+				: sprintf( /* translators: %s: Google error codes */ __( 'Could not verify (%s).', 'flx-recaptcha' ), $codes ? implode( ', ', $codes ) : '?' );
 			return array( 'ok' => false, 'msg' => $msg );
 		}
 		$host = isset( $body['hostname'] ) ? (string) $body['hostname'] : '';
 		$msg  = isset( $body['score'] )
-			? sprintf( /* translators: 1: score, 2: hostname */ __( 'Anahtarlar çalışıyor. Puan: %1$s, alan adı: %2$s', 'flx-recaptcha' ), number_format_i18n( (float) $body['score'], 1 ), $host )
-			: sprintf( /* translators: %s: hostname */ __( 'Anahtarlar çalışıyor. Alan adı: %s', 'flx-recaptcha' ), $host );
+			? sprintf( /* translators: 1: score, 2: hostname */ __( 'The keys work. Score: %1$s, domain: %2$s', 'flx-recaptcha' ), number_format_i18n( (float) $body['score'], 1 ), $host )
+			: sprintf( /* translators: %s: hostname */ __( 'The keys work. Domain: %s', 'flx-recaptcha' ), $host );
 		return array(
 			'ok'    => true,
 			'msg'   => $msg,

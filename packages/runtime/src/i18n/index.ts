@@ -2,8 +2,16 @@
 import { normalizeLocale, resources as coreResources, type Locale } from '@fluxwp/core';
 import tr from './tr.json';
 import en from './en.json';
+import de from './de.json';
+import es from './es.json';
+import fr from './fr.json';
+import pt_br from './pt-br.json';
+import ja from './ja.json';
+import zh from './zh.json';
+import ar from './ar.json';
+import ru from './ru.json';
 
-export const shellStrings = { tr, en } as const;
+export const shellStrings = {en:en,tr:tr,de:de,es:es,fr:fr,"pt-br":pt_br,ja:ja,zh:zh,ar:ar,ru:ru} as const;
 
 type Tree = { [k: string]: string | Tree };
 

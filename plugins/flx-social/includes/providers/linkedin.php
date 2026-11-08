@@ -339,12 +339,12 @@ class FLXSM_LinkedIn extends FLXSM_Provider {
 			}
 			$st = (string) ( $r['json']['status'] ?? '' );
 			if ( 'PROCESSING_FAILED' === $st ) {
-				return new WP_Error( 'flxsm_api', __( 'LinkedIn videoyu işleyemedi.', 'flx-social' ), array( 'retry' => false ) );
+				return new WP_Error( 'flxsm_api', __( 'LinkedIn could not process the video.', 'flx-social' ), array( 'retry' => false ) );
 			}
 			if ( 'AVAILABLE' !== $st ) {
 				$state['n'] = (int) $state['n'] + 1;
 				if ( $state['n'] > 90 ) {
-					return new WP_Error( 'flxsm_api', __( 'LinkedIn video işlemesi uzun sürdü.', 'flx-social' ), array( 'retry' => false ) );
+					return new WP_Error( 'flxsm_api', __( 'LinkedIn video processing took too long.', 'flx-social' ), array( 'retry' => false ) );
 				}
 				return array(
 					'wait'  => 15,

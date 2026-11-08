@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.8.3
+- Add native WordPress language packs for German, Spanish, French, Brazilian Portuguese, Japanese, Simplified Chinese, Arabic and Russian. English-keyed JSON catalogs preserve legacy gettext compatibility; no Flux Lang dependency.
+
 ## 1.8.2
 - **PHP güvenlik uyarısı** (Sistem Kontrolü › Güvenlik ve Site denetimi): çalışan PHP, PHP2Shell (CVE-2026-109618, CVE-2026-109619) açığına karşı yamasızsa (8.2.35, 8.3.36, 8.4.27, 8.5.12 altı) ya da desteklenmeyen bir daldaysa (8.1 ve öncesi) hata/kritik bulgu.
 - `session.upload_progress.enabled` açıksa uyarı (PHP yamasızsa hata).

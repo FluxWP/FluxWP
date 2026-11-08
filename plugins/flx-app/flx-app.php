@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux App
  * Description:       FluxWP masaüstü ve mobil uygulamasının sunucu tarafı: OAuth 2.0 (PKCE) giriş, cihazlar ve push, uygulama görünümü (config), eklenti ekranları (manifest), panel oturumu. MCP istemcileri de OAuth ile bağlanır.
- * Version:           0.4.2
+ * Version:           0.4.3
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -14,13 +14,14 @@
 
 defined( 'ABSPATH' ) || exit;
 
+require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
 if ( defined( 'FLXAPP_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXAPP_VERSION', '0.4.2' );
+define( 'FLXAPP_VERSION', '0.4.3' );
 define( 'FLXAPP_DB_VERSION', 2 );
 define( 'FLXAPP_FILE', __FILE__ );
 define( 'FLXAPP_DIR', plugin_dir_path( __FILE__ ) );

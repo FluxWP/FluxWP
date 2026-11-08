@@ -3,7 +3,7 @@
  * Plugin Name:         Flux Forms
  * Plugin URI:          https://example.org
  * Description:         Sürükle-bırak form oluşturucu: çok adımlı formlar, Stripe ödemeleri, koşullu mantık, dashboard, otomasyonlar ve Flux Certificates entegrasyonu. Easy Form Builder (WhiteStudio, GPL) tabanlı fork.
- * Version:             2.1.15
+ * Version:             2.1.16
  * Requires at least:   6.4
  * Requires PHP:        7.4
  * Author:              FluxWP
@@ -22,6 +22,7 @@ if (!defined('ABSPATH')) {
 
 // Another copy of the EFB code (YT Form, Easy Form Builder) declares the same
 // classes and functions; loading both is a fatal error. See the file for details.
+require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx/efb-conflict.php';
 $flxf_efb_conflicts = flxf_efb_conflicting_plugins(__FILE__);
 if ($flxf_efb_conflicts) {

@@ -14,7 +14,7 @@ final class FLXY_Checks {
 	public static function checks( $checks ) {
 		$checks   = is_array( $checks ) ? $checks : array();
 		$source   = __( 'Flux Backup', 'flx-backup' );
-		$group    = __( 'Yedekleme', 'flx-backup' );
+		$group    = __( 'Backups', 'flx-backup' );
 		$settings = admin_url( 'admin.php?page=flx-backup-settings' );
 		$panel    = admin_url( 'admin.php?page=flx-backup' );
 
@@ -25,13 +25,13 @@ final class FLXY_Checks {
 			'id'      => 'flxy.storage',
 			'source'  => $source,
 			'group'   => $group,
-			'label'   => __( 'Yedek klasörü yazılabilir', 'flx-backup' ),
+			'label'   => __( 'Backup folder writable', 'flx-backup' ),
 			'status'  => $writable ? 'ok' : 'error',
 			'message' => $writable
 				/* translators: %s: directory */
-				? sprintf( __( 'Yedekler %s klasörüne yazılıyor.', 'flx-backup' ), FLXY_Backup::rel( $dir ) )
+				? sprintf( __( 'Backups are written to %s.', 'flx-backup' ), FLXY_Backup::rel( $dir ) )
 				/* translators: %s: directory */
-				: sprintf( __( '%s klasörü oluşturulamıyor veya yazılamıyor. Dosya izinlerini (755) kontrol edin.', 'flx-backup' ), FLXY_Backup::rel( $dir ) ),
+				: sprintf( __( 'The %s folder cannot be created or written. Check the file permissions (755).', 'flx-backup' ), FLXY_Backup::rel( $dir ) ),
 		);
 
 		// ZipArchive.
@@ -40,9 +40,9 @@ final class FLXY_Checks {
 			'id'      => 'flxy.zip',
 			'source'  => $source,
 			'group'   => $group,
-			'label'   => __( 'ZipArchive ve zlib', 'flx-backup' ),
+			'label'   => __( 'ZipArchive and zlib', 'flx-backup' ),
 			'status'  => $zip ? 'ok' : 'error',
-			'message' => $zip ? __( 'PHP zip ve zlib eklentileri yüklü.', 'flx-backup' ) : __( 'PHP zip (ZipArchive) veya zlib eklentisi yok; yedek alınamaz. Hostinger panelinde PHP Yapılandırması › PHP Uzantıları\'ndan "zip" açın.', 'flx-backup' ),
+			'message' => $zip ? __( 'The PHP zip and zlib extensions are installed.', 'flx-backup' ) : __( 'The PHP zip (ZipArchive) or zlib extension is missing; backups cannot be created. On Hostinger, turn on "zip" under PHP Configuration › PHP Extensions.', 'flx-backup' ),
 		);
 
 		// Kota.
@@ -54,17 +54,17 @@ final class FLXY_Checks {
 			'id'           => 'flxy.quota',
 			'source'       => $source,
 			'group'        => $group,
-			'label'        => __( 'Yedek kotası', 'flx-backup' ),
+			'label'        => __( 'Backup quota', 'flx-backup' ),
 			'status'       => $status,
 			'message'      => sprintf(
 				/* translators: 1: used, 2: quota, 3: percent */
-				__( '%1$s / %2$s kullanılıyor (%%%3$s).', 'flx-backup' ),
+				__( '%1$s / %2$s used (%3$s%%).', 'flx-backup' ),
 				size_format( $used, 1 ),
 				size_format( $quota, 1 ),
 				number_format_i18n( $pct, 0 )
-			) . ( 'ok' === $status ? '' : ' ' . __( 'Yeni yedek için en eski kilitsiz yedekler silinecek; kotayı artırın veya kilitli yedekleri gözden geçirin.', 'flx-backup' ) ),
+			) . ( 'ok' === $status ? '' : ' ' . __( 'The oldest unlocked backups will be deleted to make room for new ones; increase the quota or review the locked backups.', 'flx-backup' ) ),
 			'action_url'   => $settings,
-			'action_label' => __( 'Ayarlar', 'flx-backup' ),
+			'action_label' => __( 'Settings', 'flx-backup' ),
 		);
 
 		// Son başarılı yedek.
@@ -80,11 +80,11 @@ final class FLXY_Checks {
 				'id'           => 'flxy.last',
 				'source'       => $source,
 				'group'        => $group,
-				'label'        => __( 'Son başarılı yedek', 'flx-backup' ),
+				'label'        => __( 'Last successful backup', 'flx-backup' ),
 				'status'       => 'warning',
-				'message'      => __( 'Henüz hiç yedek yok. Panelden "Şimdi yedek al" ile ilk yedeği alın.', 'flx-backup' ),
+				'message'      => __( 'There are no backups yet. Take the first one from the dashboard with "Back up now".', 'flx-backup' ),
 				'action_url'   => $panel,
-				'action_label' => __( 'Yedekler', 'flx-backup' ),
+				'action_label' => __( 'Backups', 'flx-backup' ),
 			);
 		} else {
 			$age      = time() - $last['created'];
@@ -94,7 +94,7 @@ final class FLXY_Checks {
 				'id'           => 'flxy.last',
 				'source'       => $source,
 				'group'        => $group,
-				'label'        => __( 'Son başarılı yedek', 'flx-backup' ),
+				'label'        => __( 'Last successful backup', 'flx-backup' ),
 				'status'       => $schedule && $age > $limit ? 'warning' : ( $age > 30 * DAY_IN_SECONDS ? 'warning' : 'ok' ),
 				'message'      => sprintf(
 					/* translators: 1: date, 2: human time diff, 3: backup title */
@@ -104,28 +104,28 @@ final class FLXY_Checks {
 					FLXY_Storage::title( $last )
 				),
 				'action_url'   => $panel,
-				'action_label' => __( 'Yedekler', 'flx-backup' ),
+				'action_label' => __( 'Backups', 'flx-backup' ),
 			);
 		}
 
 		// Güncelleme öncesi yedek.
 		$scope    = (string) FLXY_Settings::get( 'pre_scope' );
 		$labels   = array(
-			'all' => __( 'tüm eklenti ve tema güncellemelerinde', 'flx-backup' ),
-			'flx'  => __( 'yalnız FluxWP paketlerinin güncellemelerinde', 'flx-backup' ),
+			'all' => __( 'for all plugin and theme updates', 'flx-backup' ),
+			'flx'  => __( 'for FluxWP package updates only', 'flx-backup' ),
 		);
 		$checks[] = array(
 			'id'           => 'flxy.pre_update',
 			'source'       => $source,
 			'group'        => $group,
-			'label'        => __( 'Güncelleme öncesi yedek', 'flx-backup' ),
+			'label'        => __( 'Pre-update backup', 'flx-backup' ),
 			'status'       => 'off' === $scope ? 'warning' : 'ok',
 			'message'      => 'off' === $scope
-				? __( 'Kapalı: güncellemelerden önce yedek alınmıyor.', 'flx-backup' )
+				? __( 'Off: no backup is taken before updates.', 'flx-backup' )
 				/* translators: 1: scope, 2: days */
-				: sprintf( __( 'Açık, %1$s. Yedekler %2$s gün saklanır.', 'flx-backup' ), $labels[ $scope ] ?? $scope, number_format_i18n( (int) FLXY_Settings::get( 'pre_keep_days' ) ) ),
+				: sprintf( __( 'On, %1$s. Backups are kept for %2$s days.', 'flx-backup' ), $labels[ $scope ] ?? $scope, number_format_i18n( (int) FLXY_Settings::get( 'pre_keep_days' ) ) ),
 			'action_url'   => $settings,
-			'action_label' => __( 'Ayarlar', 'flx-backup' ),
+			'action_label' => __( 'Settings', 'flx-backup' ),
 		);
 
 		// Cron.
@@ -135,21 +135,21 @@ final class FLXY_Checks {
 		if ( $beat && $beat > time() - 2 * DAY_IN_SECONDS ) {
 			$status = 'ok';
 			/* translators: %s: human time diff */
-			$msg = sprintf( __( 'Günlük temizlik görevi %s çalıştı.', 'flx-backup' ), flx_time_ago( $beat ) );
+			$msg = sprintf( __( 'The daily cleanup task ran %s.', 'flx-backup' ), flx_time_ago( $beat ) );
 		} elseif ( ! $beat && $next && $next > time() - HOUR_IN_SECONDS ) {
 			$status = 'info';
-			$msg    = __( 'Günlük görev zamanlandı, henüz çalışmadı.', 'flx-backup' );
+			$msg    = __( 'The daily task is scheduled but has not run yet.', 'flx-backup' );
 		} else {
 			$status = 'warning';
 			$msg    = $disabled
-				? __( 'DISABLE_WP_CRON açık ve günlük görev 2 gündür çalışmadı. Hostinger panelinde Gelişmiş › Cron Jobs ile wp-cron.php\'yi 5–15 dakikada bir çağırın.', 'flx-backup' )
-				: __( 'Günlük görev 2 gündür çalışmadı; WP-Cron ziyaretle tetiklenir. Eski yedekler silinmiyor olabilir.', 'flx-backup' );
+				? __( 'DISABLE_WP_CRON is on and the daily job has not run for 2 days. In the Hostinger panel, call wp-cron.php every 5–15 minutes under Advanced › Cron Jobs.', 'flx-backup' )
+				: __( 'The daily task has not run for 2 days; WP-Cron is triggered by visits. Old backups may not be getting deleted.', 'flx-backup' );
 		}
 		$checks[] = array(
 			'id'      => 'flxy.cron',
 			'source'  => $source,
 			'group'   => 'Cron',
-			'label'   => __( 'Flux Backup zamanlanmış görevleri', 'flx-backup' ),
+			'label'   => __( 'Flux Backup scheduled tasks', 'flx-backup' ),
 			'status'  => $status,
 			'message' => $msg,
 		);

@@ -1,0 +1,904 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: de_DE\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Flux Commerce needs WooCommerce. Install and activate WooCommerce."
+msgstr "Flux Commerce braucht WooCommerce. Installieren und aktivieren Sie WooCommerce."
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Sales dashboard, customers, reports and checkout improvements"
+msgstr "Verkaufs-Dashboard, Kunden, Berichte und Verbesserungen an der Kasse"
+
+msgid "After you place the order you will see the IBAN and your own reference code. Once you have paid you can upload the receipt on the site; your order is prepared when the payment is confirmed."
+msgstr "Nachdem Sie die Bestellung aufgegeben haben, sehen Sie die IBAN und Ihren eigenen Referenzcode. Sobald Sie bezahlt haben, können Sie die Quittung auf der Website hochladen; Ihre Bestellung wird vorbereitet, sobald die Zahlung bestätigt ist."
+
+msgid "Recipient"
+msgstr "Empfänger"
+
+msgid "Bank"
+msgstr "Bank"
+
+msgid "Amount"
+msgstr "Betrag"
+
+msgid "Reference"
+msgstr "Referenz"
+
+msgid "Copied"
+msgstr "Kopiert"
+
+msgid "Uploading…"
+msgstr "Hochladen..."
+
+msgid "The receipt could not be uploaded. Please try again."
+msgstr "Die Quittung konnte nicht hochgeladen werden. Bitte versuchen Sie es erneut."
+
+msgid "We have your receipt. We will let you know once the payment is confirmed."
+msgstr "Wir haben Ihre Quittung. Wir informieren Sie, sobald die Zahlung bestätigt ist."
+
+msgid "Your order is in, we are waiting for your payment"
+msgstr "Ihre Bestellung ist eingegangen, wir warten auf Ihre Zahlung"
+
+msgid "Make a bank transfer to the account below and write your own reference code in the description."
+msgstr "Machen Sie eine Banküberweisung auf das unten stehende Konto und schreiben Sie Ihren eigenen Referenzcode in die Beschreibung."
+
+msgid "Make the bank transfer"
+msgstr "Machen Sie die Banküberweisung"
+
+msgid "Copy %s"
+msgstr "Kopieren Sie%s"
+
+msgid "Copy"
+msgstr "Kopieren"
+
+msgid "The reference code lets us match your payment to your order."
+msgstr "Mithilfe des Referenzcodes können wir Ihre Zahlung Ihrer Bestellung zuordnen."
+
+msgid "Upload your receipt"
+msgstr "Laden Sie Ihre Quittung hoch"
+
+msgid "We prepare your order"
+msgstr "Wir bereiten Ihre Bestellung vor"
+
+msgid "You get an e-mail once the payment is confirmed; you can also follow your order under My account › Orders."
+msgstr "Sie erhalten eine E-Mail, sobald die Zahlung bestätigt ist; Sie können Ihre Bestellung auch unter „Mein Konto“ > „Bestellungen“ verfolgen."
+
+msgid "Bank transfer details"
+msgstr "Angaben zur Banküberweisung"
+
+msgid "After paying, upload your receipt:"
+msgstr "Laden Sie nach der Zahlung Ihre Quittung hoch:"
+
+msgid "Please write the reference above in the transfer description. After paying, upload your receipt:"
+msgstr "Bitte geben Sie die oben stehende Referenz in die Überweisungsbeschreibung ein. Laden Sie nach der Zahlung Ihre Quittung hoch:"
+
+msgid "Upload receipt"
+msgstr "Quittung hochladen"
+
+msgid "Bank transfer"
+msgstr "Banküberweisung"
+
+msgid "This order was not placed by bank transfer."
+msgstr "Diese Bestellung wurde nicht per Banküberweisung aufgegeben."
+
+msgid "No receipt uploaded yet."
+msgstr "Noch keine Quittung hochgeladen."
+
+msgid "Confirm payment"
+msgstr "Bestätigen Sie die Zahlung"
+
+msgid "Payment confirmed: %1$s · %2$s"
+msgstr "Zahlung bestätigt:%1$s·%2$s"
+
+msgid "Bank transfer payment confirmed."
+msgstr "Zahlung per Banküberweisung bestätigt."
+
+msgid "You are not allowed to do this."
+msgstr "Dies ist Ihnen nicht gestattet."
+
+msgid "Confirm bank transfer payment"
+msgstr "Bestätigen Sie die Zahlung per Banküberweisung"
+
+msgid "Transfer"
+msgstr "Übertragen"
+
+msgid "Receipt in"
+msgstr "Empfang in"
+
+msgid "Awaiting payment"
+msgstr "Warten auf Zahlung"
+
+msgid "Confirmed"
+msgstr "Bestätigt"
+
+msgid "Cancelled because no payment arrived within %d days."
+msgstr "Storniert, da innerhalb von%dTagen keine Zahlung eingegangen ist."
+
+msgid "Add %s more for free shipping."
+msgstr "Fügen Sie%smehr hinzu, um kostenlosen Versand zu erhalten."
+
+msgid "Free shipping!"
+msgstr "Kostenloser Versand!"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "E-mail"
+msgstr "E-Mail"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "City"
+msgstr "Stadt"
+
+msgid "Orders"
+msgstr "Bestellungen"
+
+msgid "Total spent"
+msgstr "Gesamtausgaben"
+
+msgid "First order"
+msgstr "Erste Bestellung"
+
+msgid "Last order"
+msgstr "Letzte Bestellung"
+
+msgid "Note"
+msgstr "Hinweis"
+
+msgid "Hello %1$s, your %2$s order (#%3$s) is in.\n\nAmount: %4$s\nRecipient: %5$s\nIBAN: %6$s\nReference: %7$s\n\nAfter paying you can upload the receipt here: %8$s"
+msgstr "Hallo%1$s, Ihre%2$s-Bestellung (#%3$s) ist eingegangen.\n\nBetrag:%4$sEmpfänger:%5$sIBAN:%6$sReferenz:%7$sNach der Zahlung können Sie die Quittung hier hochladen:%8$s"
+
+msgid "Bank transfer details sent to the customer by WhatsApp."
+msgstr "Per WhatsApp an den Kunden übermittelte Banküberweisungsdaten."
+
+msgid "Receipt in: order #%1$s · %2$s"
+msgstr "Eingang in: Bestellnummer%1$s·%2$s"
+
+msgid "%1$s uploaded a receipt for order #%2$s.\n\nAmount: %3$s\nReference: %4$s\nFile: %5$s\n\nCheck and confirm: %6$s"
+msgstr "%1$shat eine Quittung für die Bestellung Nr.%2$shochgeladen.\n\nBetrag:%3$sReferenz:%4$sDatei:%5$sÜberprüfen und bestätigen Sie:%6$s"
+
+msgid "Hello %1$s, the payment for your order #%2$s is confirmed. We are preparing your order. %3$s"
+msgstr "Hallo%1$s, die Zahlung für Ihre Bestellung #%2$swurde bestätigt. Wir bereiten Ihre Bestellung vor.%3$s"
+
+msgid "New order #%1$s · %2$s\n%3$s\n%4$s\n%5$s"
+msgstr "Neue Bestellung #%1$s·%2$s%3$s%4$s%5$s"
+
+msgid "No receipt is expected for this order."
+msgstr "Für diese Bestellung wird kein Eingang erwartet."
+
+msgid "At most 5 receipts can be uploaded for an order."
+msgstr "Für eine Bestellung können maximal 5 Belege hochgeladen werden."
+
+msgid "The file is too large."
+msgstr "Die Datei ist zu groß."
+
+msgid "The file could not be uploaded. Please try again."
+msgstr "Die Datei konnte nicht hochgeladen werden. Bitte versuchen Sie es erneut."
+
+msgid "The file can be at most %s MB."
+msgstr "Die Datei darf höchstens%sMB groß sein."
+
+msgid "Only PDF, JPG, PNG, WEBP or HEIC files can be uploaded."
+msgstr "Es können nur PDF-, JPG-, PNG-, WEBP- oder HEIC-Dateien hochgeladen werden."
+
+msgid "The file could not be saved."
+msgstr "Die Datei konnte nicht gespeichert werden."
+
+msgid "The customer uploaded a receipt: %1$s (%2$s). Check the payment and confirm it."
+msgstr "Der Kunde hat eine Quittung hochgeladen:%1$s(%2$s). Überprüfen Sie die Zahlung und bestätigen Sie diese."
+
+msgid "Add another receipt"
+msgstr "Fügen Sie eine weitere Quittung hinzu"
+
+msgid "Choose a receipt or drop it here"
+msgstr "Wählen Sie eine Quittung oder geben Sie sie hier ab"
+
+msgid "PDF, JPG or PNG · up to %s MB"
+msgstr "PDF, JPG oder PNG · bis zu%sMB"
+
+msgid "Send receipt"
+msgstr "Quittung senden"
+
+msgid "Order not found."
+msgstr "Bestellung nicht gefunden."
+
+msgid "Please choose a file."
+msgstr "Bitte wählen Sie eine Datei aus."
+
+msgid "We have your receipt. Thank you!"
+msgstr "Wir haben Ihre Quittung. Danke schön!"
+
+msgid "No payment"
+msgstr "Keine Zahlung"
+
+msgid "Uncategorized"
+msgstr "Nicht kategorisiert"
+
+msgid "%s M"
+msgstr "%sM"
+
+msgid "%s K"
+msgstr "%sK"
+
+msgid "%s ago"
+msgstr "Vor%s"
+
+msgid "Processing"
+msgstr "Verarbeitung"
+
+msgid "On hold"
+msgstr "In der Warteschleife"
+
+msgid "Completed"
+msgstr "Abgeschlossen"
+
+msgid "Cancelled"
+msgstr "Abgesagt"
+
+msgid "Refunded"
+msgstr "Erstattet"
+
+msgid "Failed"
+msgstr "Fehlgeschlagen"
+
+msgid "Flux Commerce"
+msgstr "Flux-Commerce"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Active, version %s"
+msgstr "Aktiv, Version%s"
+
+msgid "WooCommerce is not installed or not active; Flux Commerce does not work."
+msgstr "WooCommerce ist nicht installiert oder nicht aktiv; Flux Commerce funktioniert nicht."
+
+msgid "Plugins"
+msgstr "Plugins"
+
+msgid "Off; Flux Donate's bank transfer method is used."
+msgstr "Aus; Es wird die Banküberweisungsmethode von Flux Donate verwendet."
+
+msgid "Off."
+msgstr "Aus."
+
+msgid "On but no IBAN; it does not show at checkout."
+msgstr "An, aber keine IBAN; es wird an der Kasse nicht angezeigt."
+
+msgid "Payment method"
+msgstr "Zahlungsart"
+
+msgid "Customer list"
+msgstr "Kundenliste"
+
+msgid "Last full scan: %s"
+msgstr "Letzter vollständiger Scan:%s"
+
+msgid "Older orders are not scanned yet; press \"Rebuild\" on the Customers page."
+msgstr "Ältere Bestellungen werden noch nicht gescannt; Klicken Sie auf der Kundenseite auf „Neu erstellen“."
+
+msgid "Customers"
+msgstr "Kunden"
+
+msgid "Store"
+msgstr "Speichern"
+
+msgid "Overview"
+msgstr "Übersicht"
+
+msgid "Sales report"
+msgstr "Verkaufsbericht"
+
+msgid "Scanning: %1$s / %2$s orders"
+msgstr "Scannen:%1$s/%2$sBestellungen"
+
+msgid "Done. Reloading…"
+msgstr "Fertig. Neu laden..."
+
+msgid "Something went wrong. Please try again."
+msgstr "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
+
+msgid "Saved"
+msgstr "Gespeichert"
+
+msgid "Store · today"
+msgstr "Shop · noch heute"
+
+msgid "Revenue"
+msgstr "Einnahmen"
+
+msgid "Open the overview"
+msgstr "Öffnen Sie die Übersicht"
+
+msgid "Daily revenue"
+msgstr "Tagesumsatz"
+
+msgid "%1$s · %2$s · %3$s orders"
+msgstr "%1$s·%2$s·%3$sBestellungen"
+
+msgid "%s pc"
+msgid_plural "%s pcs"
+msgstr[0] "%sStk"
+msgstr[1] "%sStk"
+
+msgid "Customer not found"
+msgstr "Kunde nicht gefunden"
+
+msgid "Back to customers"
+msgstr "Zurück zu den Kunden"
+
+msgid "Open in WooCommerce"
+msgstr "In WooCommerce öffnen"
+
+msgid "No orders."
+msgstr "Keine Befehle."
+
+msgid "All orders (%s)"
+msgstr "Alle Bestellungen (%s)"
+
+msgid "Customer page"
+msgstr "Kundenseite"
+
+msgid "All"
+msgstr "Alle"
+
+msgid "Payments"
+msgstr "Zahlungen"
+
+msgid "Notes"
+msgstr "Notizen"
+
+msgid "Customer since %s"
+msgstr "Kunde seit%s"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "%s open orders"
+msgstr "%soffene Bestellungen"
+
+msgid "Average order"
+msgstr "Durchschnittliche Bestellung"
+
+msgid "Order frequency"
+msgstr "Bestellhäufigkeit"
+
+msgid "Every %s days"
+msgstr "Alle%sTage"
+
+msgid "Details"
+msgstr "Details"
+
+msgid "User profile"
+msgstr "Benutzerprofil"
+
+msgid "Account"
+msgstr "Konto"
+
+msgid "Registered member"
+msgstr "Registriertes Mitglied"
+
+msgid "Guest"
+msgstr "Gast"
+
+msgid "Timeline"
+msgstr "Zeitleiste"
+
+msgid "Timeline filter"
+msgstr "Timeline-Filter"
+
+msgid "Nothing in this filter."
+msgstr "Nichts in diesem Filter."
+
+msgid "Show older"
+msgstr "Älter anzeigen"
+
+msgid "%1$s of %2$s entries"
+msgstr "%1$svon%2$s-Einträgen"
+
+msgid "Order #%s"
+msgstr "Bestellnr.%s"
+
+msgid "New order"
+msgstr "Neue Ordnung"
+
+msgid "Payment received"
+msgstr "Zahlung erhalten"
+
+msgid "Order #%1$s · %2$s"
+msgstr "Bestellnr.%1$s·%2$s"
+
+msgid "Refund issued"
+msgstr "Rückerstattung ausgestellt"
+
+msgid "Note to customer"
+msgstr "Hinweis für den Kunden"
+
+msgid "Order note"
+msgstr "Bestellhinweis"
+
+msgid "Addresses"
+msgstr "Adressen"
+
+msgid "Billing and shipping"
+msgstr "Abrechnung und Versand"
+
+msgid "Billing"
+msgstr "Abrechnung"
+
+msgid "Shipping"
+msgstr "Versand"
+
+msgid "From the latest order"
+msgstr "Aus der letzten Bestellung"
+
+msgid "Frequently bought"
+msgstr "Häufig gekauft"
+
+msgid "Store note"
+msgstr "Hinweis speichern"
+
+msgid "E.g. wants gift wrapping, leave at the door…"
+msgstr "Z.B. möchte ein Geschenk verpacken, an der Tür lassen ..."
+
+msgid "Saved when you leave the field."
+msgstr "Wird gespeichert, wenn Sie das Feld verlassen."
+
+msgid "Member"
+msgstr "Mitglied"
+
+msgid "Repeat buyers"
+msgstr "Wiederholte Käufer"
+
+msgid "Top 10% spenders"
+msgstr "Top 10 % der Geldgeber"
+
+msgid "Lapsed"
+msgstr "Verfallen"
+
+msgid "Download CSV"
+msgstr "CSV herunterladen"
+
+msgid "Rebuild"
+msgstr "Wiederaufbau"
+
+msgid "Members and guests, one row per e-mail, with order count and total spent."
+msgstr "Mitglieder und Gäste, eine Zeile pro E-Mail, mit Anzahl der Bestellungen und Gesamtausgaben."
+
+msgid "Older orders are not scanned yet."
+msgstr "Ältere Bestellungen werden noch nicht gescannt."
+
+msgid "The list fills itself with new orders. To add older orders, press \"Rebuild\"; the scan runs in batches of 100."
+msgstr "Die Liste füllt sich mit neuen Bestellungen. Um ältere Bestellungen hinzuzufügen, klicken Sie auf „Neu erstellen“; Der Scan wird in 100er-Batches ausgeführt."
+
+msgid "%s%%"
+msgstr "%s%%"
+
+msgid "Spend per customer"
+msgstr "Ausgaben pro Kunde"
+
+msgid "No order in 90 days"
+msgstr "Keine Bestellung in 90 Tagen"
+
+msgid "New (30 days)"
+msgstr "Neu (30 Tage)"
+
+msgid "Lapsed (90 days)"
+msgstr "Verfallen (90 Tage)"
+
+msgid "Search customers"
+msgstr "Kunden suchen"
+
+msgid "Name, e-mail, phone, city"
+msgstr "Name, E-Mail, Telefon, Stadt"
+
+msgid "No customer matches the search."
+msgstr "Kein Kunde entspricht der Suche."
+
+msgid "No customers yet."
+msgstr "Noch keine Kunden."
+
+msgid "Total"
+msgstr "Insgesamt"
+
+msgid "Repeat"
+msgstr "Wiederholen"
+
+msgid "Add a note…"
+msgstr "Eine Notiz hinzufügen..."
+
+msgid "Note for %s"
+msgstr "Hinweis für%s"
+
+msgid "Today"
+msgstr "Heute"
+
+msgid "7 days"
+msgstr "7 Tage"
+
+msgid "30 days"
+msgstr "30 Tage"
+
+msgid "90 days"
+msgstr "90 Tage"
+
+msgid "Period"
+msgstr "Zeitraum"
+
+msgid "Sales, orders awaiting payment and stock at a glance."
+msgstr "Verkäufe, Bestellungen zur Zahlung und Lagerbestand auf einen Blick."
+
+msgid "Net revenue"
+msgstr "Nettoumsatz"
+
+msgid "%s new"
+msgstr "%sneu"
+
+msgid "%1$s – %2$s · compared with %3$s – %4$s"
+msgstr "%1$s–%2$s· verglichen mit%3$s–%4$s"
+
+msgid "Full report"
+msgstr "Vollständiger Bericht"
+
+msgid "Pick 7 days or longer for the daily chart."
+msgstr "Wählen Sie 7 Tage oder länger für das Tagesdiagramm."
+
+msgid "No paid orders in this period."
+msgstr "Keine bezahlten Bestellungen in diesem Zeitraum."
+
+msgid "Best sellers"
+msgstr "Bestseller"
+
+msgid "pcs"
+msgstr "Stk"
+
+msgid "No sales in this period."
+msgstr "Keine Verkäufe in diesem Zeitraum."
+
+msgid "Payment methods"
+msgstr "Zahlungsmethoden"
+
+msgid "orders"
+msgstr "Bestellungen"
+
+msgid "Products"
+msgstr "Produkte"
+
+msgid "New product"
+msgstr "Neues Produkt"
+
+msgid "Coupons"
+msgstr "Gutscheine"
+
+msgid "No orders awaiting payment."
+msgstr "Keine Bestellungen warten auf Zahlung."
+
+msgid "Low stock"
+msgstr "Geringer Lagerbestand"
+
+msgid "threshold %s"
+msgstr "Schwellenwert%s"
+
+msgid "No products running low."
+msgstr "Keine Produkte gehen zur Neige."
+
+msgid "Out of stock"
+msgstr "Ausverkauft"
+
+msgid "%s left"
+msgstr "%sübrig"
+
+msgid "Paid orders in the period you pick; net amounts after refunds."
+msgstr "Bezahlte Bestellungen in dem von Ihnen gewählten Zeitraum; Nettobeträge nach Rückerstattung."
+
+msgid "This month"
+msgstr "Diesen Monat"
+
+msgid "Last month"
+msgstr "Letzten Monat"
+
+msgid "This year"
+msgstr "Dieses Jahr"
+
+msgid "From"
+msgstr "Von"
+
+msgid "To"
+msgstr "Zu"
+
+msgid "Show"
+msgstr "Zeigen"
+
+msgid "Items sold"
+msgstr "Artikel verkauft"
+
+msgid "Refunds"
+msgstr "Rückerstattungen"
+
+msgid "Shipping income"
+msgstr "Einnahmen aus der Schifffahrt"
+
+msgid "Product"
+msgstr "Produkt"
+
+msgid "Qty"
+msgstr "Menge"
+
+msgid "Net sales"
+msgstr "Nettoumsatz"
+
+msgid "Share"
+msgstr "Teilen"
+
+msgid "Categories"
+msgstr "Kategorien"
+
+msgid "Counted statuses: %s. Change them in Settings."
+msgstr "Gezählte Status:%s. Ändern Sie sie in den Einstellungen."
+
+msgid "Summary"
+msgstr "Zusammenfassung"
+
+msgid "Gross revenue"
+msgstr "Bruttoumsatz"
+
+msgid "Tax"
+msgstr "Steuer"
+
+msgid "Discount"
+msgstr "Rabatt"
+
+msgid "Day"
+msgstr "Tag"
+
+msgid "Category"
+msgstr "Kategorie"
+
+msgid "Dashboard, checkout, bank transfer, product feed and notifications."
+msgstr "Dashboard, Checkout, Banküberweisung, Produktfeed und Benachrichtigungen."
+
+msgid "Settings saved."
+msgstr "Einstellungen gespeichert."
+
+msgid "Dashboard and reports"
+msgstr "Dashboard und Berichte"
+
+msgid "Order statuses counted as revenue"
+msgstr "Bestellstatus werden als Umsatz gezählt"
+
+msgid "On-hold (bank transfer) orders count once the payment is confirmed."
+msgstr "Zurückgestellte Bestellungen (Banküberweisung) zählen, sobald die Zahlung bestätigt wurde."
+
+msgid "Leave donation orders out of the store statistics"
+msgstr "Lassen Sie Spendenbestellungen aus der Filialstatistik aus"
+
+msgid "Flux Donate is installed: orders with only donations stay in the Donations dashboard."
+msgstr "Flux Donate ist installiert: Bestellungen, die nur Spenden enthalten, bleiben im Spenden-Dashboard."
+
+msgid "Low stock threshold"
+msgstr "Niedriger Lagerbestandsschwellenwert"
+
+msgid "Products whose stock falls to this number or below are listed on the Overview."
+msgstr "Produkte, deren Lagerbestand auf diese Zahl oder darunter fällt, werden in der Übersicht aufgeführt."
+
+msgid "Cart and checkout"
+msgstr "Warenkorb und Kasse"
+
+msgid "Hide the company name field"
+msgstr "Blenden Sie das Feld für den Firmennamen aus"
+
+msgid "Hide the second address line"
+msgstr "Blenden Sie die zweite Adresszeile aus"
+
+msgid "Do not ask for an address when the cart only has virtual/downloadable products"
+msgstr "Fragen Sie nicht nach einer Adresse, wenn der Warenkorb nur virtuelle/herunterladbare Produkte enthält"
+
+msgid "On the classic checkout. Country, name, e-mail and phone stay."
+msgstr "An der klassischen Kasse. Land, Name, E-Mail und Telefonnummer bleiben."
+
+msgid "Order notes field"
+msgstr "Feld „Bestellnotizen“."
+
+msgid "On mobile, keep the \"Place order\" button fixed at the bottom"
+msgstr "Lassen Sie auf Mobilgeräten die Schaltfläche „Bestellung aufgeben“ unten fixiert"
+
+msgid "Free shipping bar"
+msgstr "Kostenloser Versand"
+
+msgid "\"Add X more for free shipping\" in the cart and at checkout."
+msgstr "„Fügen Sie X weitere für kostenlosen Versand hinzu“ im Warenkorb und an der Kasse."
+
+msgid "Free shipping amount"
+msgstr "Kostenloser Versandbetrag"
+
+msgid "Empty or 0 = the minimum amount of WooCommerce's \"Free shipping\" method."
+msgstr "Leer oder 0 = der Mindestbetrag der WooCommerce-Methode „Kostenloser Versand“."
+
+msgid "Empty = from WooCommerce's \"Free shipping\" method: %s"
+msgstr "Leer = aus der Methode „Kostenloser Versand“ von WooCommerce:%s"
+
+msgid "Turning the method on, the IBAN and the reference format are in WooCommerce › Settings › Payments › Bank transfer."
+msgstr "Wenn Sie die Methode aktivieren, finden Sie die IBAN und das Referenzformat in WooCommerce › Einstellungen › Zahlungen › Banküberweisung."
+
+msgid "Open the payment method"
+msgstr "Öffnen Sie die Zahlungsart"
+
+msgid "Hide this method when Flux Donate's bank transfer is on"
+msgstr "Blenden Sie diese Methode aus, wenn die Banküberweisung von Flux Donate aktiviert ist"
+
+msgid "So the checkout does not show two separate \"Bank transfer\" options."
+msgstr "Daher werden im Checkout nicht zwei separate „Banküberweisung“-Optionen angezeigt."
+
+msgid "Largest receipt (MB)"
+msgstr "Größter Beleg (MB)"
+
+msgid "Receipt notification e-mail"
+msgstr "E-Mail mit Empfangsbenachrichtigung"
+
+msgid "Empty = the site admin e-mail."
+msgstr "Leer = die E-Mail des Site-Administrators."
+
+msgid "Cancel unpaid bank transfers after (days)"
+msgstr "Unbezahlte Banküberweisungen nach (Tagen) stornieren"
+
+msgid "0 = never cancel. Orders with a receipt are not cancelled; stock is restored."
+msgstr "0 = niemals abbrechen. Bestellungen mit Quittung werden nicht storniert; Der Bestand wird wiederhergestellt."
+
+msgid "Product feed (Google Merchant)"
+msgstr "Produkt-Feed (Google Merchant)"
+
+msgid "Feed on"
+msgstr "Füttere weiter"
+
+msgid "Google Merchant Center, Meta catalog and similar services read this address."
+msgstr "Google Merchant Center, Metakatalog und ähnliche Dienste lesen diese Adresse."
+
+msgid "Feed address"
+msgstr "Feed-Adresse"
+
+msgid "Brand"
+msgstr "Marke"
+
+msgid "Empty = site name."
+msgstr "Leer = Site-Name."
+
+msgid "Notifications"
+msgstr "Benachrichtigungen"
+
+msgid "WhatsApp messages go through Flux Mail's WhatsApp connection."
+msgstr "WhatsApp-Nachrichten laufen über die WhatsApp-Verbindung von Flux Mail."
+
+msgid "WhatsApp needs Flux Mail and a WhatsApp connection; only e-mail is sent for now."
+msgstr "WhatsApp benötigt Flux Mail und eine WhatsApp-Verbindung; Es werden vorerst nur E-Mails verschickt."
+
+msgid "Send the bank details and the payment confirmation to the customer by WhatsApp"
+msgstr "Senden Sie die Bankdaten und die Zahlungsbestätigung per WhatsApp an den Kunden"
+
+msgid "Admin WhatsApp number"
+msgstr "Admin-WhatsApp-Nummer"
+
+msgid "Gets a message when a receipt arrives (and, if on, for every new order)."
+msgstr "Ruft eine Nachricht ab, wenn eine Quittung eintrifft (und, falls aktiviert, bei jeder neuen Bestellung)."
+
+msgid "WhatsApp the admin for every new paid order"
+msgstr "WhatsApp dem Administrator für jede neue bezahlte Bestellung"
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Bank transfer (with receipt upload)"
+msgstr "Banküberweisung (mit Beleg-Upload)"
+
+msgid "The customer pays with an order-specific reference and uploads the receipt on the site. When you confirm the payment the order moves on to processing. Flux Commerce."
+msgstr "Der Kunde bezahlt mit einer auftragsspezifischen Referenz und lädt den Beleg auf der Website hoch. Wenn Sie die Zahlung bestätigen, wird die Bestellung bearbeitet. Flux-Commerce."
+
+msgid "Enabled"
+msgstr "Aktiviert"
+
+msgid "Accept payments by bank transfer"
+msgstr "Akzeptieren Sie Zahlungen per Banküberweisung"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Empty = \"Bank transfer\" in the site language."
+msgstr "Leer = „Banküberweisung“ in der Sprache der Website."
+
+msgid "Text on the checkout page"
+msgstr "Text auf der Checkout-Seite"
+
+msgid "Empty = the default text in the site language."
+msgstr "Leer = der Standardtext in der Site-Sprache."
+
+msgid "Recipient (account holder)"
+msgstr "Empfänger (Kontoinhaber)"
+
+msgid "Empty = the first account of WooCommerce's \"Direct bank transfer\"."
+msgstr "Leer = das erste Konto von WooCommerces „Direktüberweisung“."
+
+msgid "Empty = the first account of WooCommerce's \"Direct bank transfer\" (recipient and bank come from it too)."
+msgstr "Leer = das erste Konto der „Direktüberweisung“ von WooCommerce (Empfänger und Bank kommen auch daraus)."
+
+msgid "Bank (optional)"
+msgstr "Bank (optional)"
+
+msgid "What the customer writes in the transfer description. Placeholders: {kod} (prefix + order no), {siparis}, {ad}, {site}. Empty: {kod} {ad}"
+msgstr "Was der Kunde in der Überweisungsbeschreibung schreibt. Platzhalter:{kod}(Präfix + Bestellnummer),{siparis},{ad},{site}. Leer:{kod}{ad}"
+
+msgid "Code prefix"
+msgstr "Code-Präfix"
+
+msgid "Bank transfer: awaiting payment."
+msgstr "Banküberweisung: Warten auf Zahlung."
+
+msgid "Name, e-mail or phone"
+msgstr "Name, E-Mail oder Telefon"
+
+msgid "Call"
+msgstr "Rufen Sie an"
+
+msgid "No receipts waiting"
+msgstr "Es warten keine Quittungen"
+
+msgid "This order is not waiting for approval."
+msgstr "Diese Bestellung wartet nicht auf Genehmigung."
+
+msgid "Receipt"
+msgstr "Quittung"
+
+msgid "Awaiting a receipt"
+msgstr "Ich warte auf eine Quittung"
+
+msgid "Receipt approval"
+msgstr "Empfangsgenehmigung"
+
+msgid "Files"
+msgstr "Dateien"
+
+msgid "Bank-transfer orders appear here while payment is pending."
+msgstr "Hier erscheinen Banküberweisungsaufträge, solange die Zahlung noch aussteht."
+
+msgid "Customer not found."
+msgstr "Kunde nicht gefunden."
+
+msgid "No customers"
+msgstr "Keine Kunden"
+
+msgid "Approve"
+msgstr "Genehmigen"
+
+msgid "Sales summary"
+msgstr "Verkaufsübersicht"
+
+msgid "Segment"
+msgstr "Segment"
+
+msgid "Customers appear here as orders come in."
+msgstr "Kunden erscheinen hier, wenn Bestellungen eingehen."
+
+msgid "The order is marked as paid."
+msgstr "Die Bestellung wird als bezahlt markiert."
+
+msgid "New"
+msgstr "Neu"
+
+msgid "New customers"
+msgstr "Neue Kunden"
+
+msgid "High spenders"
+msgstr "Hohe Geldgeber"
+
+msgid "Payment approved"
+msgstr "Zahlung genehmigt"
+
+msgid "Approve this payment?"
+msgstr "Diese Zahlung genehmigen?"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "[['Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications.', 'tr']]"
+msgstr "[['Verkaufspanel für WooCommerce-Shop, Kunden, Verkaufsberichte, Zahlungsanweisung/EFT mit Quittungs-Upload, einfache Zahlungsseite, Leiste für kostenlosen Versand, Google Merchant-Produkt-Feed und WhatsApp-/E-Mail-Benachrichtigungen.', 'tr']]"

@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.17.1
+- Add native WordPress language packs for German, Spanish, French, Brazilian Portuguese, Japanese, Simplified Chinese, Arabic and Russian. English-keyed JSON catalogs preserve legacy gettext compatibility; no Flux Lang dependency.
+
 ## 2.17.0
 - Seçeneklerin görünümü (Ayarlar › Görünüm, `flxb_look.opt_view`): Liste (eski), Açılır menü (tek satır: seçenek açılır menüde + adet), Önce liste sonra tek satır (ilk seçimde liste animasyonla tek satıra toplanır, formun geri kalanı seçimden sonra açılır).
 - "İşlem ücretini de ben karşılamak istiyorum" kutusu (`fee_on`, `fee_checked`, `fee_rates` yöntem başına % + sabit). Formda en yüksek ücret "en fazla" olarak gösterilir; ödeme sayfasında seçilen yönteme göre "İşlem ücreti" satırı eklenir (blok ödeme sayfasında yöntem değişince yeniden hesaplanır). Ücret bağış tutarına girmez; siparişte `_flxb_fee_cover`.

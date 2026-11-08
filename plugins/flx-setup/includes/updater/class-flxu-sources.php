@@ -202,7 +202,7 @@ final class FLXU_Sources {
 	public static function fetch_github( array $s ): ?array {
 		$repo = self::github_repo( $s['url'] );
 		if ( '' === $repo ) {
-			self::set_status( $s['id'], false, __( 'GitHub adresi owner/repo biçiminde değil.', 'flx-setup' ) );
+			self::set_status( $s['id'], false, __( 'The GitHub address is not in owner/repo form.', 'flx-setup' ) );
 			return null;
 		}
 		$res = wp_remote_get(
@@ -217,16 +217,16 @@ final class FLXU_Sources {
 		);
 		if ( is_wp_error( $res ) ) {
 			/* translators: %s: error message */
-			self::set_status( $s['id'], false, sprintf( __( 'Kaynağa ulaşılamadı: %s', 'flx-setup' ), $res->get_error_message() ) );
+			self::set_status( $s['id'], false, sprintf( __( 'Could not reach the source: %s', 'flx-setup' ), $res->get_error_message() ) );
 			return null;
 		}
 		$code = (int) wp_remote_retrieve_response_code( $res );
 		$body = json_decode( (string) wp_remote_retrieve_body( $res ), true );
 		if ( 200 !== $code || ! is_array( $body ) ) {
 			$msg = 404 === $code
-				? __( 'Depo bulunamadı ya da public değil.', 'flx-setup' )
+				? __( 'Repository not found or not public.', 'flx-setup' )
 				/* translators: %d: HTTP status code */
-				: sprintf( __( 'GitHub beklenmeyen yanıt verdi (HTTP %d).', 'flx-setup' ), $code );
+				: sprintf( __( 'GitHub returned an unexpected response (HTTP %d).', 'flx-setup' ), $code );
 			self::set_status( $s['id'], false, $msg );
 			return null;
 		}
@@ -333,12 +333,12 @@ final class FLXU_Sources {
 	public static function add( string $name, string $url, string $key ) {
 		$url = untrailingslashit( esc_url_raw( trim( $url ) ) );
 		if ( '' === $url || 'https' !== wp_parse_url( $url, PHP_URL_SCHEME ) ) {
-			return new WP_Error( 'flxu_url', __( 'Adres https:// ile başlamalı.', 'flx-setup' ) );
+			return new WP_Error( 'flxu_url', __( 'The address must start with https://.', 'flx-setup' ) );
 		}
 		$type = '' !== self::github_repo( $url ) ? 'github' : 'server';
 		foreach ( self::all() as $s ) {
 			if ( strtolower( $s['url'] ) === strtolower( $url ) ) {
-				return new WP_Error( 'flxu_dup', __( 'Bu kaynak zaten listede.', 'flx-setup' ) );
+				return new WP_Error( 'flxu_dup', __( 'This source is already in the list.', 'flx-setup' ) );
 			}
 		}
 		$id = sanitize_key( substr( $type . '-' . md5( $url ), 0, 20 ) );
@@ -353,7 +353,7 @@ final class FLXU_Sources {
 		$catalog = 'github' === $type ? self::fetch_github( $s ) : FLXU_Updater::instance()->fetch_server( $s );
 		if ( null === $catalog ) {
 			$st = self::status( $id );
-			return new WP_Error( 'flxu_test', (string) ( $st['error'] ?? __( 'Kaynak test edilemedi.', 'flx-setup' ) ) );
+			return new WP_Error( 'flxu_test', (string) ( $st['error'] ?? __( 'The source could not be tested.', 'flx-setup' ) ) );
 		}
 		$list   = self::extra();
 		$list[] = $s;

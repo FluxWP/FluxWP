@@ -1,0 +1,2741 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Tasks"
+msgstr "タスク"
+
+msgid "Usage dashboard"
+msgstr "使用状況ダッシュボード"
+
+msgid "Task Settings"
+msgstr "タスクの設定"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "JavaScript is required for Tasks."
+msgstr "タスクにはJavaScriptが必要です。"
+
+msgid "Task notifications"
+msgstr "タスクの通知"
+
+msgid "AI needs the Flux AI & MCP plugin. An administrator must install Flux AI and enter a key."
+msgstr "AI には Flux AI および MCP プラグインが必要です。管理者は Flux AI をインストールし、キーを入力する必要があります。"
+
+msgid "AI is not set up. An administrator must enter a key and choose a model in Flux AI & MCP › Settings."
+msgstr "AIは設定されていません。管理者は、Flux AI と MCP › 設定 でキーを入力し、モデルを選択する必要があります。"
+
+msgid "The operation took too long; split the request into smaller steps."
+msgstr "操作に時間がかかりすぎました。リクエストを小さなステップに分割します。"
+
+msgid "Deleted user"
+msgstr "削除されたユーザー"
+
+msgid "List not found or you don't have access."
+msgstr "リストが見つからないか、アクセス権がありません。"
+
+msgid "Task not found or you don't have access."
+msgstr "タスクが見つからないか、アクセス権がありません。"
+
+msgid "You don't have permission to add tasks to this list."
+msgstr "このリストにタスクを追加する権限がありません。"
+
+msgid "You don't have permission to edit this task."
+msgstr "このタスクを編集する権限がありません。"
+
+msgid "You don't have permission to add tasks to the target list."
+msgstr "タスクをターゲット リストに追加する権限がありません。"
+
+msgid "This list has no such status."
+msgstr "このリストにはそのようなステータスはありません。"
+
+msgid "You don't have permission to comment on this task."
+msgstr "このタスクにコメントする権限がありません。"
+
+msgid "Item not found."
+msgstr "項目が見つかりません。"
+
+msgid "Open"
+msgstr "開く"
+
+msgid "Setup"
+msgstr "セットアップ"
+
+msgid "WordPress and PHP version"
+msgstr "WordPressとPHPのバージョン"
+
+msgid "WordPress %1$s, PHP %2$s. Required: WordPress 6.5+, PHP 7.4+."
+msgstr "WordPress%1$s、PHP%2$s。必須: WordPress 6.5 以降、PHP 7.4 以降。"
+
+msgid "Database tables"
+msgstr "データベーステーブル"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "テーブルがありません:%s。プラグインを非アクティブ化し、再度アクティブ化します。"
+
+msgid "Plugins"
+msgstr "プラグイン"
+
+msgid "Tables are ready (schema %s)."
+msgstr "テーブルの準備ができました (スキーマ%s)。"
+
+msgid "File folder"
+msgstr "ファイルフォルダ"
+
+msgid "wp-content/uploads/flx-tasks is missing or not writable. Files and images cannot be uploaded; check folder permissions (755)."
+msgstr "wp-content/uploads/flx-tasks が見つからないか、書き込み可能ではありません。ファイルや画像はアップロードできません。フォルダーのアクセス許可 (755) を確認してください。"
+
+msgid "The folder is writable but the protection file (.htaccess) is missing; files can be opened by direct URL. Reactivate the plugin."
+msgstr "フォルダーは書き込み可能ですが、保護ファイル (.htaccess) がありません。ファイルは直接 URL で開くことができます。プラグインを再有効化します。"
+
+msgid "Writable and closed to direct access."
+msgstr "書き込み可能であり、直接アクセスに対して閉じられています。"
+
+msgid "Upload limit"
+msgstr "アップロード制限"
+
+msgid "Effective limit %1$s (server limit %2$s)."
+msgstr "有効な制限%1$s(サーバー制限%2$s)。"
+
+msgid "The setting is larger than the server limit; upload_max_filesize and post_max_size can be raised in the hosting panel."
+msgstr "設定がサーバーの制限を超えています。 Upload_max_filesize と post_max_size はホスティング パネルで上げることができます。"
+
+msgid "Scheduled jobs"
+msgstr "スケジュールされたジョブ"
+
+msgid "Daily task reminders"
+msgstr "毎日のタスクのリマインダー"
+
+msgid "Not scheduled: overdue/upcoming task notifications and old temporary file cleanup will not run. Opening the Tasks page once reschedules it."
+msgstr "スケジュールされていません: 期限切れ/今後のタスクの通知と古い一時ファイルのクリーンアップは実行されません。 [タスク] ページを開くと、スケジュールが変更されます。"
+
+msgid "The scheduled job is late (due %s). WP-Cron may not be triggering (if the site gets few visits, a real cron in the hosting panel is recommended)."
+msgstr "スケジュールされたジョブが遅れています (%sのため)。 WP-Cron がトリガーされていない可能性があります (サイトへのアクセスが少ない場合は、ホスティング パネルで実際の cron を使用することをお勧めします)。"
+
+msgid "Next run: %s."
+msgstr "次の実行:%s。"
+
+msgid "WP-Cron mode"
+msgstr "WP-Cronモード"
+
+msgid "DISABLE_WP_CRON is on: scheduled jobs only run if a server cron calls wp-cron.php. This cron must be set up in the hosting panel."
+msgstr "DISABLE_WP_CRON がオンになっている場合: スケジュールされたジョブは、サーバー cron が wp-cron.php を呼び出した場合にのみ実行されます。この cron はホスティング パネルで設定する必要があります。"
+
+msgid "Live updates"
+msgstr "ライブアップデート"
+
+msgid "Update interval"
+msgstr "更新間隔"
+
+msgid "10 s while on screen, %d s after 2 min idle; background tabs send no requests."
+msgstr "画面表示中は 10 秒、アイドル状態の 2 分後に%d秒。バックグラウンドタブはリクエストを送信しません。"
+
+msgid "API cache"
+msgstr "APIキャッシュ"
+
+msgid "LiteSpeed Cache is active; task API responses are marked so they are not cached."
+msgstr "LiteSpeed キャッシュはアクティブです。タスク API 応答はキャッシュされないようにマークされます。"
+
+msgid "Task API responses are not cached."
+msgstr "タスク API の応答はキャッシュされません。"
+
+msgid "Notifications"
+msgstr "通知"
+
+msgid "Email notifications"
+msgstr "電子メール通知"
+
+msgid "On. Emails are sent with WordPress's mail setup (an SMTP plugin is recommended)."
+msgstr "オン。メールはWordPressのメール設定で送信されます(SMTPプラグインを推奨)。"
+
+msgid "Off; notifications are in-app only."
+msgstr "オフ;通知はアプリ内のみです。"
+
+msgid "AI and MCP"
+msgstr "AIとMCP"
+
+msgid "AI"
+msgstr "AI"
+
+msgid "Via Flux AI, model: %s."
+msgstr "Flux AI 経由、モデル:%s。"
+
+msgid "Flux AI"
+msgstr "フラックスAI"
+
+msgid "MCP server"
+msgstr "MCPサーバー"
+
+msgid "On, %d personal key(s)."
+msgstr "オン、%d個人キー。"
+
+msgid "Off."
+msgstr "オフ。"
+
+msgid "Untitled document"
+msgstr "無題のドキュメント"
+
+msgid "List task projects"
+msgstr "タスクプロジェクトをリストする"
+
+msgid "List task people"
+msgstr "タスク担当者のリストを作成する"
+
+msgid "Search tasks"
+msgstr "タスクの検索"
+
+msgid "Read task"
+msgstr "タスクの読み取り"
+
+msgid "Create task"
+msgstr "タスクの作成"
+
+msgid "Update task"
+msgstr "更新タスク"
+
+msgid "Comment on task"
+msgstr "タスクにコメントする"
+
+msgid "List task fields"
+msgstr "リストタスクフィールド"
+
+msgid "Create task list"
+msgstr "タスクリストを作成する"
+
+msgid "Delete task"
+msgstr "タスクの削除"
+
+msgid "List task notifications"
+msgstr "タスク通知のリストを表示する"
+
+msgid "List documents"
+msgstr "文書をリストする"
+
+msgid "Read document page"
+msgstr "ドキュメントページを読む"
+
+msgid "Edit document page"
+msgstr "ドキュメントページの編集"
+
+msgid "Create document"
+msgstr "文書の作成"
+
+msgid "Add page to document"
+msgstr "ドキュメントにページを追加する"
+
+msgid "Document: %s"
+msgstr "ドキュメント:%s"
+
+msgid "Improve"
+msgstr "改善する"
+
+msgid "Fix spelling & grammar"
+msgstr "スペルと文法を修正する"
+
+msgid "Shorten"
+msgstr "短くする"
+
+msgid "Make longer"
+msgstr "長くする"
+
+msgid "Simplify"
+msgstr "簡素化する"
+
+msgid "More formal"
+msgstr "よりフォーマルな"
+
+msgid "More friendly"
+msgstr "よりフレンドリーに"
+
+msgid "Turn into bullets"
+msgstr "弾丸に変わる"
+
+msgid "Turn into table"
+msgstr "テーブルに変身"
+
+msgid "Translate"
+msgstr "翻訳する"
+
+msgid "Explain"
+msgstr "説明する"
+
+msgid "Custom request"
+msgstr "カスタムリクエスト"
+
+msgid "Write"
+msgstr "書く"
+
+msgid "Continue writing"
+msgstr "書き続ける"
+
+msgid "Summarize"
+msgstr "要約する"
+
+msgid "Extract action items"
+msgstr "アクションアイテムの抽出"
+
+msgid "Draft an outline"
+msgstr "概要の草案を作成する"
+
+msgid "Suggest a title"
+msgstr "タイトルを提案する"
+
+msgid "Ask the page"
+msgstr "ページに問い合わせる"
+
+msgid "Page not found or you have no access."
+msgstr "ページが見つからないか、アクセス権がありません。"
+
+msgid "Unknown action."
+msgstr "未知のアクション。"
+
+msgid "Write what should be done."
+msgstr "何をすべきかを書きます。"
+
+msgid "The AI could not extract items. Try again or describe what you need."
+msgstr "AIはアイテムを抽出できませんでした。もう一度試すか、必要なものを説明してください。"
+
+msgid "The AI returned an empty answer. Try again."
+msgstr "AIは空の答えを返しました。もう一度やり直してください。"
+
+msgid "You are not allowed to create documents in this project."
+msgstr "このプロジェクトではドキュメントを作成することはできません。"
+
+msgid "Document not found or you have no access."
+msgstr "ドキュメントが見つからないか、アクセス権がありません。"
+
+msgid "You are not allowed to edit this document."
+msgstr "この文書を編集することは許可されていません。"
+
+msgid "Only the owner or a project admin can delete the document."
+msgstr "ドキュメントを削除できるのは、所有者またはプロジェクト管理者だけです。"
+
+msgid "A page cannot be moved under its own subpage."
+msgstr "ページをそのサブページの下に移動することはできません。"
+
+msgid "The last page of a document cannot be deleted. You can delete the document instead."
+msgstr "文書の最後のページは削除できません。代わりにドキュメントを削除することもできます。"
+
+msgid "An email draft needs Flux Communication and mailbox permission."
+msgstr "電子メールの下書きには、Flux Communication とメールボックスの許可が必要です。"
+
+msgid "File is too large. The maximum upload size is %s."
+msgstr "ファイルが大きすぎます。最大アップロード サイズは%sです。"
+
+msgid "Could not upload the file."
+msgstr "ファイルをアップロードできませんでした。"
+
+msgid "This file type is not allowed."
+msgstr "このファイルの種類は許可されていません。"
+
+msgid "Could not save the file."
+msgstr "ファイルを保存できませんでした。"
+
+msgid "Urgent"
+msgstr "緊急"
+
+msgid "High"
+msgstr "高"
+
+msgid "Normal"
+msgstr "ノーマル"
+
+msgid "Low"
+msgstr "低い"
+
+msgid "To do"
+msgstr "やること"
+
+msgid "In progress"
+msgstr "進行中"
+
+msgid "In review"
+msgstr "レビュー中"
+
+msgid "Done"
+msgstr "完了"
+
+msgid "Short text"
+msgstr "短いテキスト"
+
+msgid "Long text"
+msgstr "長文"
+
+msgid "Number"
+msgstr "番号"
+
+msgid "Amount"
+msgstr "金額"
+
+msgid "Date"
+msgstr "日付"
+
+msgid "Checkbox"
+msgstr "チェックボックス"
+
+msgid "Dropdown"
+msgstr "ドロップダウン"
+
+msgid "Tags (multi-select)"
+msgstr "タグ (複数選択)"
+
+msgid "Star rating"
+msgstr "星評価"
+
+msgid "Person"
+msgstr "人"
+
+msgid "File"
+msgstr "ファイル"
+
+msgid "Web address"
+msgstr "ウェブアドレス"
+
+msgid "Email"
+msgstr "電子メール"
+
+msgid "Phone"
+msgstr "電話"
+
+msgid "Welcome to Flux Tasks: open this task and write a comment"
+msgstr "Flux タスクへようこそ: このタスクを開いてコメントを書いてください"
+
+msgid "Track tasks in list, board and calendar views. Add new lists or folders from the left menu, and set up custom fields and permissions in list settings."
+msgstr "リスト、ボード、カレンダービューでタスクを追跡します。左側のメニューから新しいリストまたはフォルダーを追加し、リスト設定でカスタム フィールドと権限を設定します。"
+
+msgid "MCP is off. Turn it on under Flux Tasks › Settings."
+msgstr "MCPはオフです。 Flux タスク › 設定 でオンにします。"
+
+msgid "Invalid or missing MCP key."
+msgstr "MCP キーが無効または欠落しています。"
+
+msgid "This user is not allowed to use Flux Tasks."
+msgstr "このユーザーは Flux タスクを使用することを許可されていません。"
+
+msgid "%s assigned you to a task"
+msgstr "%sがあなたにタスクを割り当てました"
+
+msgid "%s mentioned you in a comment"
+msgstr "%sさんがコメントであなたについて言及しました"
+
+msgid "%s wrote a comment"
+msgstr "%sさんがコメントを書きました"
+
+msgid "%1$s changed the status to \"%2$s\""
+msgstr "%1$sはステータスを「%2$s」に変更しました"
+
+msgid "Due tomorrow"
+msgstr "明日締め切り"
+
+msgid "Overdue"
+msgstr "期限を過ぎました"
+
+msgid "[%1$s] %2$s"
+msgstr "[%1$s]%2$s"
+
+msgid "You can turn off email notifications under Flux Tasks › Profile."
+msgstr "Flux Tasks › Profile で電子メール通知をオフにすることができます。"
+
+msgid "Recipient name"
+msgstr "受信者名"
+
+msgid "Person who acted"
+msgstr "演じた人"
+
+msgid "Task name"
+msgstr "タスク名"
+
+msgid "List"
+msgstr "リスト"
+
+msgid "Notification sentence"
+msgstr "通知文"
+
+msgid "Comment excerpt"
+msgstr "コメント抜粋"
+
+msgid "Due date"
+msgstr "期限"
+
+msgid "Task link"
+msgstr "タスクリンク"
+
+msgid "Booth supplies list"
+msgstr "ブース備品リスト"
+
+msgid "Mehmet assigned you to a task"
+msgstr "メフメットがあなたにタスクを割り当てました"
+
+msgid "Can you look at it by Friday?"
+msgstr "金曜日までに見てもらえますか?"
+
+msgid "You were assigned to a task"
+msgstr "あなたにはタスクが割り当てられました"
+
+msgid "Sent when someone assigns you to a task."
+msgstr "誰かがあなたにタスクを割り当てたときに送信されます。"
+
+msgid "{kisi} assigned you to a task: {gorev}"
+msgstr "{kisi}があなたにタスクを割り当てました:{gorev}"
+
+msgid "New task: {gorev}"
+msgstr "新しいタスク:{gorev}"
+
+msgid "Hi {ad},"
+msgstr "{ad}さん、こんにちは。"
+
+msgid "{kisi} assigned you to <strong>{gorev}</strong> in the <strong>{liste}</strong> list."
+msgstr "{kisi}により、<strong>{liste}</strong>リストの<strong>{gorev}</strong>が割り当てられました。"
+
+msgid "Open task"
+msgstr "タスクを開く"
+
+msgid "You were mentioned in a comment"
+msgstr "You were mentioned in a comment"
+
+msgid "Sent when someone @mentions you in a comment."
+msgstr "誰かがコメントであなたを @メンションしたときに送信されます。"
+
+msgid "{kisi} mentioned you in a comment: {gorev}"
+msgstr "{kisi}さんがコメントであなたのことを言及しました:{gorev}"
+
+msgid "{kisi} mentioned you"
+msgstr "{kisi}さんがあなたのことを言及しました"
+
+msgid "Comment on <strong>{gorev}</strong>:"
+msgstr "<strong>{gorev}</strong>へのコメント:"
+
+msgid "Go to comment"
+msgstr "コメントに移動"
+
+msgid "Task due date is coming up"
+msgstr "タスクの期限が近づいています"
+
+msgid "Sent one day before the due date of a task assigned to you."
+msgstr "あなたに割り当てられたタスクの期日の 1 日前に送信されます。"
+
+msgid "Due tomorrow: {gorev}"
+msgstr "明日締切:{gorev}"
+
+msgid "<strong>{gorev}</strong> is due on {tarih}."
+msgstr "<strong>{gorev}</strong>は{tarih}に予定されています。"
+
+msgid "Can view"
+msgstr "閲覧可能"
+
+msgid "Can comment"
+msgstr "コメントできる"
+
+msgid "Can edit"
+msgstr "編集可能"
+
+msgid "Can manage"
+msgstr "管理できる"
+
+msgid "Display preferences are too large."
+msgstr "表示設定が大きすぎます。"
+
+msgid "You don't have permission to create projects."
+msgstr "プロジェクトを作成する権限がありません。"
+
+msgid "Name cannot be empty."
+msgstr "名前を空にすることはできません。"
+
+msgid "Project not found."
+msgstr "プロジェクトが見つかりません。"
+
+msgid "You don't have permission to manage this project."
+msgstr "このプロジェクトを管理する権限がありません。"
+
+msgid "You don't have permission to create folders in this project."
+msgstr "このプロジェクトにフォルダーを作成する権限がありません。"
+
+msgid "You don't have permission to edit this folder."
+msgstr "You don't have permission to edit this folder."
+
+msgid "You don't have permission to delete this folder."
+msgstr "このフォルダーを削除する権限がありません。"
+
+msgid "You don't have permission to create lists in this project."
+msgstr "このプロジェクトにリストを作成する権限がありません。"
+
+msgid "You don't have permission to manage this list."
+msgstr "このリストを管理する権限がありません。"
+
+msgid "You don't have access to the target project."
+msgstr "ターゲット プロジェクトへのアクセス権がありません。"
+
+msgid "You must be a list manager to add fields."
+msgstr "フィールドを追加するには、リスト管理者である必要があります。"
+
+msgid "You must be a list manager to edit fields."
+msgstr "フィールドを編集するには、リスト管理者である必要があります。"
+
+msgid "You must be a list manager to delete fields."
+msgstr "You must be a list manager to delete fields."
+
+msgid "You don't have access."
+msgstr "アクセス権がありません。"
+
+msgid "New view"
+msgstr "新しいビュー"
+
+msgid "You don't have permission to change this view."
+msgstr "このビューを変更する権限がありません。"
+
+msgid "You don't have permission to delete this view."
+msgstr "You don't have permission to delete this view."
+
+msgid "Project managers edit tags."
+msgstr "プロジェクトマネージャーはタグを編集します。"
+
+msgid "You don't have permission to delete this task."
+msgstr "このタスクを削除する権限がありません。"
+
+msgid "You can only edit your own comments."
+msgstr "自分のコメントのみ編集できます。"
+
+msgid "Comment cannot be empty."
+msgstr "コメントを空にすることはできません。"
+
+msgid "You don't have permission to delete this comment."
+msgstr "このコメントを削除する権限がありません。"
+
+msgid "You are not allowed to add files to this document."
+msgstr "このドキュメントにファイルを追加することはできません。"
+
+msgid "You don't have permission to attach files to this task."
+msgstr "このタスクにファイルを添付する権限がありません。"
+
+msgid "File not found."
+msgstr "ファイルが見つかりません。"
+
+msgid "You don't have permission to delete this file."
+msgstr "このファイルを削除する権限がありません。"
+
+msgid "You don't have permission to delete this key."
+msgstr "このキーを削除する権限がありません。"
+
+msgid "Planned"
+msgstr "計画済み"
+
+msgid "Held"
+msgstr "開催"
+
+msgid "Cancelled"
+msgstr "キャンセルされました"
+
+msgid "Board"
+msgstr "理事会"
+
+msgid "Calendar"
+msgstr "カレンダー"
+
+msgid "Parent task not found."
+msgstr "親タスクが見つかりません。"
+
+msgid "A task cannot be moved under its own subtask."
+msgstr "タスクをそれ自身のサブタスクの下に移動することはできません。"
+
+msgid "Subtasks can be nested at most %d levels in this project. You can change the limit in project settings."
+msgstr "サブタスクは、このプロジェクトのほとんどの%dレベルでネストできます。プロジェクト設定で制限を変更できます。"
+
+msgid "Task name cannot be empty."
+msgstr "タスク名を空にすることはできません。"
+
+msgid "List not found."
+msgstr "リストが見つかりません。"
+
+msgid "Task not found."
+msgstr "タスクが見つかりません。"
+
+msgid "Choose an image for the cover."
+msgstr "表紙の画像を選択します。"
+
+msgid "Today"
+msgstr "今日"
+
+msgid "Tomorrow"
+msgstr "明日"
+
+msgid "Yesterday"
+msgstr "昨日"
+
+msgid "just now"
+msgstr "たった今"
+
+msgid "The server sent an unexpected response. Refresh the page and try again."
+msgstr "サーバーが予期しない応答を送信しました。ページを更新して、もう一度お試しください。"
+
+msgid "The server is busy right now, try again shortly."
+msgstr "現在サーバーがビジー状態です。しばらくしてからもう一度お試しください。"
+
+msgid "Connection error"
+msgstr "接続エラー"
+
+msgid "Deleting comment"
+msgstr "コメントの削除"
+
+msgid "Sending comment"
+msgstr "コメントの送信"
+
+msgid "Deleting file"
+msgstr "ファイルの削除"
+
+msgid "Saving file"
+msgstr "ファイルの保存"
+
+msgid "Deleting task"
+msgstr "タスクの削除"
+
+msgid "Saving task"
+msgstr "タスクの保存"
+
+msgid "AI is working"
+msgstr "AIが働いている"
+
+msgid "Saving"
+msgstr "保存"
+
+msgid "Loading"
+msgstr "読み込み中"
+
+msgid "{n} failed"
+msgstr "{n}が失敗しました"
+
+msgid "{n} in progress"
+msgstr "{n}が進行中です"
+
+msgid "server busy, waiting"
+msgstr "サーバーがビジー状態で待機中"
+
+msgid "Saved"
+msgstr "保存されました"
+
+msgid "Background tasks"
+msgstr "バックグラウンドタスク"
+
+msgid "Server busy, waiting"
+msgstr "サーバーがビジー状態で待機中"
+
+msgid "Retry"
+msgstr "再試行"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Uploading: {n}"
+msgstr "アップロード中:{n}"
+
+msgid "Upload timed out."
+msgstr "アップロードがタイムアウトしました。"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Copied"
+msgstr "コピーされました"
+
+msgid "Download"
+msgstr "ダウンロード"
+
+msgid "Someone"
+msgstr "誰か"
+
+msgid "Document name"
+msgstr "文書名"
+
+msgid "Create"
+msgstr "作成"
+
+msgid "Delete document"
+msgstr "文書の削除"
+
+msgid "\"{n}\" will be permanently deleted with all its pages and images."
+msgstr "「{n}」は、すべてのページと画像とともに完全に削除されます。"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Rename"
+msgstr "名前の変更"
+
+msgid "Copy link"
+msgstr "リンクをコピー"
+
+msgid "Pop-up blocked. Allow pop-ups for this site in your browser."
+msgstr "ポップアップがブロックされました。ブラウザでこのサイトのポップアップを許可します。"
+
+msgid "My tasks"
+msgstr "私のタスク"
+
+msgid "Email draft created."
+msgstr "電子メールの下書きが作成されました。"
+
+msgid "Open in mailbox"
+msgstr "メールボックスで開く"
+
+msgid "Pages"
+msgstr "ページ"
+
+msgid "Other"
+msgstr "その他"
+
+msgid "Rename document"
+msgstr "ドキュメントの名前を変更する"
+
+msgid "Add subpage"
+msgstr "サブページの追加"
+
+msgid "Print / PDF"
+msgstr "印刷/PDF"
+
+msgid "Create email draft"
+msgstr "メールの下書きを作成する"
+
+msgid "Create an email draft from this page"
+msgstr "このページからメールの下書きを作成する"
+
+msgid "Email draft"
+msgstr "ドラフトをメールで送信"
+
+msgid "AI (Ctrl+J)"
+msgstr "AI (Ctrl+J)"
+
+msgid "Untitled"
+msgstr "無題"
+
+msgid "Start writing… type \"/\" for blocks, \"#\" to link a task"
+msgstr "書き込みを開始します...ブロックには「/」を入力し、タスクをリンクするには「#」を入力します"
+
+msgid "Open as full page"
+msgstr "全ページとして開く"
+
+msgid "Full page"
+msgstr "全ページ"
+
+msgid "Saving…"
+msgstr "保存中..."
+
+msgid "Not saved, will retry"
+msgstr "保存されていません。再試行します"
+
+msgid "Offline"
+msgstr "オフライン"
+
+msgid "Add page"
+msgstr "ページを追加"
+
+msgid "Collapse"
+msgstr "崩壊する"
+
+msgid "Page menu"
+msgstr "ページメニュー"
+
+msgid "Page name"
+msgstr "ページ名"
+
+msgid "Move under the page above"
+msgstr "上のページの下に移動します"
+
+msgid "Move up a level"
+msgstr "レベルを上げる"
+
+msgid "Delete page"
+msgstr "ページの削除"
+
+msgid "\"{p}\" and its {n} subpages will be deleted."
+msgstr "「{p}」とその{n}サブページは削除されます。"
+
+msgid "\"{p}\" will be deleted."
+msgstr "「{p}」は削除されます。"
+
+msgid "Last edited by {n}, {t}"
+msgstr "最終編集者:{n}、{t}"
+
+msgid "typing"
+msgstr "タイピング"
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "Remove link"
+msgstr "リンクを削除する"
+
+msgid "Small"
+msgstr "小"
+
+msgid "Medium"
+msgstr "中"
+
+msgid "Full width"
+msgstr "全幅"
+
+msgid "Enlarge"
+msgstr "拡大する"
+
+msgid "Remove image"
+msgstr "画像を削除"
+
+msgid "Link address"
+msgstr "リンクアドレス"
+
+msgid "Add"
+msgstr "追加"
+
+msgid "Search tasks…"
+msgstr "タスクを検索..."
+
+msgid "No results"
+msgstr "結果はありません"
+
+msgid "Type to search"
+msgstr "入力して検索します"
+
+msgid "Basic blocks"
+msgstr "基本ブロック"
+
+msgid "Media & links"
+msgstr "メディアとリンク"
+
+msgid "Item"
+msgstr "アイテム"
+
+msgid "Text"
+msgstr "テキスト"
+
+msgid "Plain paragraph"
+msgstr "単純な段落"
+
+msgid "Page"
+msgstr "ページ"
+
+msgid "A sub-page inside this page"
+msgstr "このページ内のサブページ"
+
+msgid "Sub-page"
+msgstr "サブページ"
+
+msgid "Heading 1"
+msgstr "見出し1"
+
+msgid "Large section heading"
+msgstr "大きなセクション見出し"
+
+msgid "Heading"
+msgstr "見出し"
+
+msgid "Heading 2"
+msgstr "見出し2"
+
+msgid "Medium section heading"
+msgstr "中セクションの見出し"
+
+msgid "Heading 3"
+msgstr "見出し 3"
+
+msgid "Small section heading"
+msgstr "小さなセクションの見出し"
+
+msgid "Bulleted list"
+msgstr "箇条書きリスト"
+
+msgid "Simple bulleted list"
+msgstr "単純な箇条書きリスト"
+
+msgid "Numbered list"
+msgstr "番号付きリスト"
+
+msgid "Checklist"
+msgstr "チェックリスト"
+
+msgid "Checkable to-dos"
+msgstr "チェック可能なToDo"
+
+msgid "Quote"
+msgstr "引用"
+
+msgid "Quote or note"
+msgstr "引用またはメモ"
+
+msgid "Code"
+msgstr "コード"
+
+msgid "Code block"
+msgstr "コードブロック"
+
+msgid "Table"
+msgstr "テーブル"
+
+msgid "3×3 table"
+msgstr "3×3テーブル"
+
+msgid "Divider"
+msgstr "ディバイダー"
+
+msgid "Separates sections"
+msgstr "セクションを区切る"
+
+msgid "Images"
+msgstr "画像"
+
+msgid "Upload an image"
+msgstr "画像をアップロードする"
+
+msgid "Add file"
+msgstr "ファイルを追加"
+
+msgid "Link a task (#)"
+msgstr "タスクをリンクする (#)"
+
+msgid "Link"
+msgstr "リンク"
+
+msgid "Add a web link"
+msgstr "Web リンクを追加する"
+
+msgid "Write with AI"
+msgstr "AI で書く"
+
+msgid "Have it write anything"
+msgstr "何でも書いてもらう"
+
+msgid "Continues the page"
+msgstr "ページを続けます"
+
+msgid "Summary of the page"
+msgstr "ページの概要"
+
+msgid "Turn items into tasks"
+msgstr "アイテムをタスクに変える"
+
+msgid "Close menu"
+msgstr "メニューを閉じる"
+
+msgid "Gray"
+msgstr "グレー"
+
+msgid "Brown"
+msgstr "ブラウン"
+
+msgid "Orange"
+msgstr "オレンジ"
+
+msgid "Yellow"
+msgstr "黄色"
+
+msgid "Green"
+msgstr "緑"
+
+msgid "Blue"
+msgstr "ブルー"
+
+msgid "Purple"
+msgstr "紫"
+
+msgid "Pink"
+msgstr "ピンク"
+
+msgid "Red"
+msgstr "赤"
+
+msgid "Default"
+msgstr "デフォルト"
+
+msgid "Column: click for menu, drag to move"
+msgstr "列: クリックしてメニューを表示し、ドラッグして移動します"
+
+msgid "Row: click for menu, drag to move"
+msgstr "行: クリックしてメニューを表示し、ドラッグして移動します"
+
+msgid "Insert row above"
+msgstr "上に行を挿入"
+
+msgid "Add column left"
+msgstr "Add column left"
+
+msgid "Insert row below"
+msgstr "下に行を挿入"
+
+msgid "Add column right"
+msgstr "列を右に追加"
+
+msgid "Move up"
+msgstr "上に移動"
+
+msgid "Move left"
+msgstr "左に移動"
+
+msgid "Move down"
+msgstr "下に移動"
+
+msgid "Move right"
+msgstr "右に移動"
+
+msgid "Background"
+msgstr "背景"
+
+msgid "Text color"
+msgstr "文字の色"
+
+msgid "Delete row"
+msgstr "行の削除"
+
+msgid "Delete column"
+msgstr "列の削除"
+
+msgid "Delete table"
+msgstr "テーブルの削除"
+
+msgid "Click to add a block below. Alt-click to add above"
+msgstr "クリックして下にブロックを追加します。 Alt キーを押しながらクリックして上に追加します"
+
+msgid "Drag to move. Click for menu"
+msgstr "ドラッグして移動します。クリックしてメニューを表示"
+
+msgid "Turn into"
+msgstr "に変わる"
+
+msgid "Edit with AI"
+msgstr "AIで編集する"
+
+msgid "Duplicate"
+msgstr "重複"
+
+msgid "Add row below"
+msgstr "下に行を追加"
+
+msgid "Add row above"
+msgstr "上に行を追加"
+
+msgid "Undo"
+msgstr "元に戻す"
+
+msgid "Redo"
+msgstr "やり直し"
+
+msgid "Bold"
+msgstr "太字"
+
+msgid "Italic"
+msgstr "イタリック体"
+
+msgid "Underline"
+msgstr "下線"
+
+msgid "Strikethrough"
+msgstr "取り消し線"
+
+msgid "Link (Ctrl+K)"
+msgstr "リンク (Ctrl+K)"
+
+msgid "Alignment"
+msgstr "位置合わせ"
+
+msgid "Left"
+msgstr "左"
+
+msgid "Center"
+msgstr "センター"
+
+msgid "Right"
+msgstr "右"
+
+msgid "Add image"
+msgstr "画像を追加"
+
+msgid "Add table"
+msgstr "テーブルの追加"
+
+msgid "Task link (#)"
+msgstr "タスクリンク(#)"
+
+msgid "Translate to English"
+msgstr "英語に翻訳する"
+
+msgid "Translate to Turkish"
+msgstr "トルコ語に翻訳する"
+
+msgid "Turn into heading"
+msgstr "見出しに変える"
+
+msgid "Selected text"
+msgstr "選択したテキスト"
+
+msgid "This page"
+msgstr "このページ"
+
+msgid "Describe the change… (e.g. make it shorter)"
+msgstr "変更点を説明してください... (例: 短くする)"
+
+msgid "What should be done with the selection?"
+msgstr "選択はどうすればいいのでしょうか?"
+
+msgid "What should be written? E.g. a meeting agenda draft"
+msgstr "何を書けばいいのでしょうか?例えば。会議の議題草案"
+
+msgid "Ask a question about this page"
+msgstr "このページについて質問する"
+
+msgid "Ask the page (the answer is not written into it)"
+msgstr "ページに質問してください(答えは書かれていません)"
+
+msgid "Ask"
+msgstr "尋ねる"
+
+msgid "Send"
+msgstr "送信"
+
+msgid "Chat with the assistant"
+msgstr "アシスタントとチャットする"
+
+msgid "AI is writing…"
+msgstr "AI が書いています..."
+
+msgid "Replace"
+msgstr "交換する"
+
+msgid "Insert below"
+msgstr "以下に挿入"
+
+msgid "Use as title"
+msgstr "タイトルとして使用"
+
+msgid "Page title changed."
+msgstr "ページタイトルを変更しました。"
+
+msgid "Insert below cursor"
+msgstr "カーソルの下に挿入"
+
+msgid "Append"
+msgstr "追加"
+
+msgid "Insert at top"
+msgstr "上部に挿入"
+
+msgid "Add as new page"
+msgstr "Add as new page"
+
+msgid "Add to page"
+msgstr "ページに追加"
+
+msgid "Copy"
+msgstr "コピー"
+
+msgid "Regenerate"
+msgstr "再生する"
+
+msgid "Back"
+msgstr "戻る"
+
+msgid "Select"
+msgstr "選択"
+
+msgid "Due"
+msgstr "期限"
+
+msgid "Add item"
+msgstr "アイテムの追加"
+
+msgid "Add as tasks ({n})"
+msgstr "Add as tasks ({n})"
+
+msgid "{n} tasks added to \"{l}\"."
+msgstr "{n}タスクが「{l}」に追加されました。"
+
+msgid "Open list"
+msgstr "オープンリスト"
+
+msgid "There is no list you can add tasks to."
+msgstr "タスクを追加できるリストはありません。"
+
+msgid "To-dos"
+msgstr "やるべきこと"
+
+msgid "New page created."
+msgstr "新しいページが作成されました。"
+
+msgid "The selection changed meanwhile; the result was inserted below."
+msgstr "その間、選択は変更されました。結果は以下に挿入されました。"
+
+msgid "Replaced."
+msgstr "交換されました。"
+
+msgid "Added to the page."
+msgstr "ページに追加されました。"
+
+msgid "Drag to resize, double-click to reset"
+msgstr "ドラッグしてサイズを変更し、ダブルクリックしてリセットします"
+
+msgid "Hide sidebar"
+msgstr "サイドバーを隠す"
+
+msgid "AI assistant"
+msgstr "AIアシスタント"
+
+msgid "Projects"
+msgstr "プロジェクト"
+
+msgid "New project"
+msgstr "新しいプロジェクト"
+
+msgid "Project menu"
+msgstr "プロジェクトメニュー"
+
+msgid "Empty folder"
+msgstr "空のフォルダー"
+
+msgid "You have no visible projects."
+msgstr "You have no visible projects."
+
+msgid "Theme"
+msgstr "テーマ"
+
+msgid "System"
+msgstr "システム"
+
+msgid "Light"
+msgstr "ライト"
+
+msgid "Dark"
+msgstr "暗い"
+
+msgid "Back to WordPress admin"
+msgstr "WordPress 管理者に戻る"
+
+msgid "List menu"
+msgstr "リストメニュー"
+
+msgid "Moves within the same project; statuses, fields and tags stay the same."
+msgstr "同じプロジェクト内での移動。ステータス、フィールド、タグは変わりません。"
+
+msgid "Keep the list's own statuses"
+msgstr "リスト自体のステータスを保持する"
+
+msgid "Use the statuses of \"{n}\""
+msgstr "「{n}」のステータスを使用します。"
+
+msgid "Statuses"
+msgstr "ステータス"
+
+msgid "Pick a match for each status; tasks move to that status."
+msgstr "各ステータスに一致するものを選択します。タスクはそのステータスに移行します。"
+
+msgid "Statuses and custom fields move with the list; tasks keep their status."
+msgstr "ステータスとカスタム フィールドはリストとともに移動します。タスクはステータスを維持します。"
+
+msgid "Tags"
+msgstr "タグ"
+
+msgid "{n} tags are linked by name in the target project: {e} already exist, {c} will be created."
+msgstr "{n}タグは、ターゲット プロジェクト内で名前によってリンクされます。{e}はすでに存在しており、{c}が作成されます。"
+
+msgid "People who will lose access"
+msgstr "アクセスできなくなる人"
+
+msgid "These people are not members of the target project; checked ones are added as members."
+msgstr "これらの人々は対象プロジェクトのメンバーではありません。チェックを入れたものがメンバーとして追加されます。"
+
+msgid "Target project or folder"
+msgstr "対象のプロジェクトまたはフォルダー"
+
+msgid "Move \"{n}\""
+msgstr "「{n}」を移動します"
+
+msgid "Move"
+msgstr "移動"
+
+msgid "Moving list"
+msgstr "移動リスト"
+
+msgid "\"{n}\" moved."
+msgstr "「{n}」が移動しました。"
+
+msgid "Document menu"
+msgstr "ドキュメントメニュー"
+
+msgid "Task list"
+msgstr "タスクリスト"
+
+msgid "Meeting list"
+msgstr "会議リスト"
+
+msgid "Document"
+msgstr "文書"
+
+msgid "New list"
+msgstr "新しいリスト"
+
+msgid "New meeting list"
+msgstr "新しい会議リスト"
+
+msgid "New document"
+msgstr "新しいドキュメント"
+
+msgid "New folder"
+msgstr "新しいフォルダー"
+
+msgid "Folder name"
+msgstr "フォルダ名"
+
+msgid "Project settings and members"
+msgstr "プロジェクトの設定とメンバー"
+
+msgid "Delete project"
+msgstr "プロジェクトの削除"
+
+msgid "All lists, tasks, comments and files in the project \"{n}\" will be permanently deleted."
+msgstr "プロジェクト「{n}」内のすべてのリスト、タスク、コメント、およびファイルは完全に削除されます。"
+
+msgid "Add a list to this folder"
+msgstr "このフォルダーにリストを追加します"
+
+msgid "Add a meeting list to this folder"
+msgstr "このフォルダーに会議リストを追加します"
+
+msgid "Add a document to this folder"
+msgstr "このフォルダーにドキュメントを追加します"
+
+msgid "Delete folder"
+msgstr "フォルダの削除"
+
+msgid "The folder will be deleted; its lists will move to the project root."
+msgstr "フォルダーは削除されます。そのリストはプロジェクトのルートに移動します。"
+
+msgid "List settings"
+msgstr "リスト設定"
+
+msgid "Custom fields"
+msgstr "カスタムフィールド"
+
+msgid "Permissions"
+msgstr "権限"
+
+msgid "Move…"
+msgstr "移動..."
+
+msgid "Delete list"
+msgstr "リストの削除"
+
+msgid "All tasks, comments and files in the list \"{n}\" will be permanently deleted."
+msgstr "リスト「{n}」内のすべてのタスク、コメント、およびファイルは完全に削除されます。"
+
+msgid "Show sidebar"
+msgstr "サイドバーを表示"
+
+msgid "Menu"
+msgstr "メニュー"
+
+msgid "All lists"
+msgstr "すべてのリスト"
+
+msgid "Visible to members only"
+msgstr "会員のみに表示されます"
+
+msgid "Private"
+msgstr "プライベート"
+
+msgid "Share"
+msgstr "シェアする"
+
+msgid "View menu"
+msgstr "メニューを見る"
+
+msgid "View"
+msgstr "見る"
+
+msgid "View name"
+msgstr "ビュー名"
+
+msgid "Create a copy"
+msgstr "コピーを作成する"
+
+msgid "Share with everyone"
+msgstr "みんなでシェア"
+
+msgid "Make private to me"
+msgstr "私にプライベートにしてください"
+
+msgid "Delete view"
+msgstr "ビューの削除"
+
+msgid "The view \"{n}\" will be deleted. Tasks are not affected."
+msgstr "ビュー「{n}」が削除されます。タスクには影響しません。"
+
+msgid "{n} assigned you to a task"
+msgstr "{n}があなたにタスクを割り当てました"
+
+msgid "{n} mentioned you in a comment"
+msgstr "{n}さんがコメントであなたについて言及しました"
+
+msgid "{n} wrote a comment"
+msgstr "{n}さんがコメントを書きました"
+
+msgid "{n} changed the status to \"{s}\""
+msgstr "{n}はステータスを「{s}」に変更しました"
+
+msgid "All"
+msgstr "すべて"
+
+msgid "Unread"
+msgstr "未読"
+
+msgid "Mark all as read"
+msgstr "すべて既読としてマークする"
+
+msgid "No unread notifications. 🎉"
+msgstr "未読の通知はありません。 🎉"
+
+msgid "No notifications yet."
+msgstr "まだ通知はありません。"
+
+msgid "(deleted task)"
+msgstr "(削除されたタスク)"
+
+msgid "More"
+msgstr "もっと見る"
+
+msgid "Refresh"
+msgstr "リフレッシュ"
+
+msgid "File storage"
+msgstr "ファイルストレージ"
+
+msgid "{n} files"
+msgstr "{n}ファイル"
+
+msgid "previews {s}"
+msgstr "プレビュー{s}"
+
+msgid "Open tasks"
+msgstr "開いているタスク"
+
+msgid "{n} completed"
+msgstr "{n}完了"
+
+msgid "open tasks past their due date"
+msgstr "期日を過ぎたタスクをオープンする"
+
+msgid "Last 30 days"
+msgstr "過去 30 日間"
+
+msgid "{n} tasks completed"
+msgstr "{n}タスクが完了しました"
+
+msgid "Comments"
+msgstr "コメント"
+
+msgid "{n} active users (30 days)"
+msgstr "{n}アクティブ ユーザー (30 日間)"
+
+msgid "Structure"
+msgstr "構造"
+
+msgid "projects / lists · {n} users"
+msgstr "プロジェクト / リスト ·{n}ユーザー"
+
+msgid "PDF"
+msgstr "PDF"
+
+msgid "Documents"
+msgstr "書類"
+
+msgid "Video"
+msgstr "ビデオ"
+
+msgid "Audio"
+msgstr "オーディオ"
+
+msgid "Archives"
+msgstr "アーカイブ"
+
+msgid "Storage"
+msgstr "ストレージ"
+
+msgid "No files uploaded yet."
+msgstr "ファイルはまだアップロードされていません。"
+
+msgid "Task files (uploads/flx-tasks)"
+msgstr "タスク ファイル (アップロード/flx-tasks)"
+
+msgid "Unsent comment attachments (deleted after 24 hours)"
+msgstr "未送信のコメント添付ファイル (24 時間後に削除)"
+
+msgid "Single file limit"
+msgstr "単一ファイルの制限"
+
+msgid "Free space on server"
+msgstr "サーバー上の空き容量"
+
+msgid "Entire media folder (wp-content/uploads)"
+msgstr "メディア フォルダー全体 (wp-content/uploads)"
+
+msgid "Calculating…"
+msgstr "計算中..."
+
+msgid "Recalculate"
+msgstr "再計算"
+
+msgid "Calculate"
+msgstr "計算する"
+
+msgid "By list"
+msgstr "リスト別"
+
+msgid "Project"
+msgstr "プロジェクト"
+
+msgid "Task"
+msgstr "タスク"
+
+msgid "Size"
+msgstr "サイズ"
+
+msgid "Uploaded by person"
+msgstr "本人がアップロードしたもの"
+
+msgid "No data."
+msgstr "データがありません。"
+
+msgid "Monthly uploads"
+msgstr "毎月のアップロード"
+
+msgid "Largest files"
+msgstr "最大のファイル"
+
+msgid "Uploader"
+msgstr "アップローダー"
+
+msgid "unlinked"
+msgstr "リンクされていない"
+
+msgid "Delete file"
+msgstr "ファイルの削除"
+
+msgid "Database"
+msgstr "データベース"
+
+msgid "Rows"
+msgstr "行"
+
+msgid "Total"
+msgstr "合計"
+
+msgid "AI usage"
+msgstr "AIの活用"
+
+msgid "Month"
+msgstr "月"
+
+msgid "Requests"
+msgstr "リクエスト"
+
+msgid "Tokens"
+msgstr "トークン"
+
+msgid "Cost (OpenRouter)"
+msgstr "コスト (OpenRouter)"
+
+msgid "No usage this month."
+msgstr "今月は利用なし。"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "Error"
+msgstr "エラー"
+
+msgid "Info"
+msgstr "情報"
+
+msgid "{n} problem(s)"
+msgstr "{n}の問題"
+
+msgid "{n} warning(s)"
+msgstr "{n}警告"
+
+msgid "Everything is in place"
+msgstr "すべてが整っています"
+
+msgid "System check"
+msgstr "システムチェック"
+
+msgid "Check again"
+msgstr "もう一度確認してください"
+
+msgid "{n} item(s)"
+msgstr "{n}アイテム"
+
+msgid "Flux AI default: {m}"
+msgstr "Flux AI のデフォルト:{m}"
+
+msgid "Flux AI default"
+msgstr "Flux AI のデフォルト"
+
+msgid "Access"
+msgstr "アクセス"
+
+msgid "Choose which WordPress roles can use Tasks. Administrators always see all projects."
+msgstr "どの WordPress ロールがタスクを使用できるかを選択します。管理者は常にすべてのプロジェクトを参照できます。"
+
+msgid "Can use Tasks"
+msgstr "タスクを使用できる"
+
+msgid "Can create projects, folders and lists"
+msgstr "プロジェクト、フォルダー、リストを作成できる"
+
+msgid "Can use AI"
+msgstr "AIが使える"
+
+msgid "Notifications and updates"
+msgstr "通知と更新"
+
+msgid "Live update interval (seconds)"
+msgstr "ライブアップデート間隔(秒)"
+
+msgid "An open tab sends a single lightweight request at this interval; a background tab sends none. Increase it if the server is busy (default 45)."
+msgstr "開いているタブは、この間隔で単一の軽量リクエストを送信します。バックグラウンドタブでは何も送信されません。サーバーがビジーな場合は値を増やします (デフォルトは 45)。"
+
+msgid "Emails are sent for assignments, mentions and upcoming due dates. People can turn them off in their profile."
+msgstr "課題、メンション、今後の期日については電子メールが送信されます。ユーザーはプロフィールでそれらをオフにすることができます。"
+
+msgid "Files"
+msgstr "ファイル"
+
+msgid "Single file limit (MB)"
+msgstr "単一ファイルの制限 (MB)"
+
+msgid "If the server's PHP limit is lower, that limit applies."
+msgstr "サーバーの PHP 制限が低い場合は、その制限が適用されます。"
+
+msgid "Keys, spending limit and reports come from the Flux AI & MCP plugin. Leave the model empty to use the Flux AI default."
+msgstr "キー、支出制限、レポートは Flux AI および MCP プラグインから取得されます。 Flux AI のデフォルトを使用するには、モデルを空のままにしておきます。"
+
+msgid "Flux AI settings"
+msgstr "Flux AI 設定"
+
+msgid "AI is off: a key or model is missing in Flux AI."
+msgstr "AI がオフです: Flux AI にキーまたはモデルがありません。"
+
+msgid "AI is off: the Flux AI & MCP plugin is not installed. The assistant and quick actions work through Flux AI."
+msgstr "AI がオフです: Flux AI および MCP プラグインはインストールされていません。アシスタントとクイック アクションは Flux AI を通じて機能します。"
+
+msgid "Model (optional)"
+msgstr "モデル(オプション)"
+
+msgid "Creativity (temperature)"
+msgstr "創造力(温度)"
+
+msgid "Organization notes (the assistant knows this on every request)"
+msgstr "組織のメモ (アシスタントはリクエストごとにこれを認識します)"
+
+msgid "E.g. Association Istanbul branch. Add the \"Event\" tag to event tasks. Write dates as day.month.year."
+msgstr "例:協会イスタンブール支部。イベントタスクに「イベント」タグを追加します。日付を日.月.年として書きます。"
+
+msgid "This month: {c} requests, {t} tokens, ${m}"
+msgstr "今月:{c}リクエスト、{t}トークン、${m}"
+
+msgid "Enable MCP server"
+msgstr "MCPサーバーを有効にする"
+
+msgid "AI clients such as Claude and Cursor can read and write tasks. Each person generates their own key on their Profile page."
+msgstr "Claude や Cursor などの AI クライアントはタスクの読み取りと書き込みができます。各人は自分のプロフィール ページで独自のキーを生成します。"
+
+msgid "Manage keys"
+msgstr "キーを管理する"
+
+msgid "Data"
+msgstr "データ"
+
+msgid "Also delete all task data when the plugin is deleted"
+msgstr "プラグインを削除するとタスクデータもすべて削除されます"
+
+msgid "When off, deleting the plugin leaves your data untouched."
+msgstr "オフの場合、プラグインを削除してもデータはそのまま残ります。"
+
+msgid "Settings saved"
+msgstr "設定が保存されました"
+
+msgid "Profile"
+msgstr "プロフィール"
+
+msgid "Your profile photo and name come from your WordPress profile."
+msgstr "プロフィール写真と名前は WordPress プロフィールから取得されます。"
+
+msgid "Get emails when you are assigned, mentioned, or a due date approaches."
+msgstr "割り当てられたとき、言及されたとき、または期日が近づいたときにメールを受け取ります。"
+
+msgid "The browser did not allow it."
+msgstr "ブラウザがそれを許可しませんでした。"
+
+msgid "Desktop notifications"
+msgstr "デスクトップ通知"
+
+msgid "While the Tasks tab is open, new notifications also arrive as browser notifications."
+msgstr "[タスク] タブが開いている間、新しい通知もブラウザ通知として届きます。"
+
+msgid "MCP connection"
+msgstr "MCP接続"
+
+msgid "The MCP server is off. An admin can turn it on from the Settings page."
+msgstr "MCP サーバーがオフになっています。管理者は、[設定] ページからこれをオンにできます。"
+
+msgid "Add this address and your personal key to an MCP-capable client such as Claude, ChatGPT or Cursor. The assistant works only in lists you can see, with your permissions."
+msgstr "このアドレスと個人キーを Claude、ChatGPT、Cursor などの MCP 対応クライアントに追加します。アシスタントは、ユーザーの許可があれば表示できるリスト内でのみ機能します。"
+
+msgid "Your new key (shown only now):"
+msgstr "新しいキー (現在のみ表示):"
+
+msgid "In the client, use \"Authorization: Bearer <key>\" as the header. If you can't add a header, append ?key=<key> to the end of the address."
+msgstr "クライアントでは、ヘッダーとして「Authorization: Bearer<key>」を使用します。ヘッダーを追加できない場合は、アドレスの末尾に ?key=<key>を追加します。"
+
+msgid "Unnamed"
+msgstr "無名"
+
+msgid "Last used: {d}"
+msgstr "最後に使用したもの:{d}"
+
+msgid "never"
+msgstr "決して"
+
+msgid "Delete key"
+msgstr "削除キー"
+
+msgid "Clients using this key will lose their connection."
+msgstr "このキーを使用するクライアントは接続を失います。"
+
+msgid "Key name (e.g. Claude desktop)"
+msgstr "キー名 (例: Claude デスクトップ)"
+
+msgid "Create new key"
+msgstr "新しいキーを作成する"
+
+msgid "Custom color"
+msgstr "カスタムカラー"
+
+msgid "No access"
+msgstr "アクセス不可"
+
+msgid "Remove"
+msgstr "削除"
+
+msgid "No members added yet."
+msgstr "まだメンバーは追加されていません。"
+
+msgid "Add person"
+msgstr "人を追加"
+
+msgid "Project name"
+msgstr "プロジェクト名"
+
+msgid "Everyone"
+msgstr "みんな"
+
+msgid "Everyone who can use Tasks can enter this project."
+msgstr "タスクを使用できる人は誰でもこのプロジェクトに参加できます。"
+
+msgid "Members only"
+msgstr "会員限定"
+
+msgid "Only the people added below can see it."
+msgstr "以下に追加された人だけが見ることができます。"
+
+msgid "Default role for everyone"
+msgstr "全員のデフォルトの役割"
+
+msgid "Name"
+msgstr "名前"
+
+msgid "Color"
+msgstr "色"
+
+msgid "Members and their roles"
+msgstr "メンバーとその役割"
+
+msgid "Subtask nesting limit"
+msgstr "サブタスクのネスト制限"
+
+msgid "How many levels of subtasks can be nested under a task (1–10). Default is 3."
+msgstr "タスクの下にネストできるサブタスクのレベルの数 (1 ~ 10)。デフォルトは 3 です。"
+
+msgid "First list"
+msgstr "最初のリスト"
+
+msgid "You will be added as a manager."
+msgstr "You will be added as a manager."
+
+msgid "Project settings"
+msgstr "プロジェクト設定"
+
+msgid "Project saved"
+msgstr "プロジェクトが保存されました"
+
+msgid "List name"
+msgstr "リスト名"
+
+msgid "Tasks, subtasks, statuses"
+msgstr "タスク、サブタスク、ステータス"
+
+msgid "Meetings, agenda, decisions, PDF report"
+msgstr "会議、議題、決定事項、PDF レポート"
+
+msgid "e.g. Board meetings"
+msgstr "例:取締役会会議"
+
+msgid "Template"
+msgstr "テンプレート"
+
+msgid "Folder"
+msgstr "フォルダー"
+
+msgid "No folder (under the project)"
+msgstr "フォルダなし(プロジェクト直下)"
+
+msgid "Private list"
+msgstr "プライベートリスト"
+
+msgid "Only the people you add can see it. When off, project members can see it."
+msgstr "追加した人だけが見ることができます。オフにすると、プロジェクト メンバーが表示できます。"
+
+msgid "General"
+msgstr "一般"
+
+msgid "List type"
+msgstr "リストタイプ"
+
+msgid "New status"
+msgstr "新しいステータス"
+
+msgid "Add status"
+msgstr "ステータスの追加"
+
+msgid "Tasks in a deleted status move to the first status. Statuses of the \"Done\" type count the task as finished."
+msgstr "削除ステータスのタスクは最初のステータスに移行します。 「完了」タイプのステータスは、タスクが完了したものとしてカウントされます。"
+
+msgid "Statuses saved"
+msgstr "保存されたステータス"
+
+msgid "Delete field"
+msgstr "フィールドの削除"
+
+msgid "The field \"{n}\" and its values on all tasks will be deleted."
+msgstr "すべてのタスクのフィールド「{n}」とその値が削除されます。"
+
+msgid "This list has no custom fields. You can add fields such as text, number, date, dropdown, star rating or file."
+msgstr "このリストにはカスタム フィールドがありません。テキスト、数値、日付、ドロップダウン、星評価、ファイルなどのフィールドを追加できます。"
+
+msgid "Add field"
+msgstr "フィールドの追加"
+
+msgid "Field name"
+msgstr "フィールド名"
+
+msgid "Option"
+msgstr "オプション"
+
+msgid "Add option"
+msgstr "オプションを追加"
+
+msgid "Options"
+msgstr "オプション"
+
+msgid "Max stars"
+msgstr "最大スター数"
+
+msgid "Currency"
+msgstr "通貨"
+
+msgid "Decimal places"
+msgstr "小数点以下の桁数"
+
+msgid "Description (optional)"
+msgstr "説明 (オプション)"
+
+msgid "Type"
+msgstr "タイプ"
+
+msgid "The type cannot be changed later."
+msgstr "タイプは後から変更することはできません。"
+
+msgid "Add the field"
+msgstr "フィールドを追加する"
+
+msgid "Project members"
+msgstr "プロジェクトメンバー"
+
+msgid "Everyone who can use Tasks ({r})."
+msgstr "タスク ({r}) を使用できる全員。"
+
+msgid "The project's members, with their project roles."
+msgstr "プロジェクトのメンバーとプロジェクトの役割。"
+
+msgid "Selected people only"
+msgstr "選ばれた人だけ"
+
+msgid "Private list: only the people below and project managers can see it."
+msgstr "プライベートリスト: 以下の人々とプロジェクトマネージャーのみがそれを見ることができます。"
+
+msgid "Who can see it"
+msgstr "誰が見ることができますか"
+
+msgid "Per-person roles"
+msgstr "個人ごとの役割"
+
+msgid "Can view: read only. Can comment: read and comment. Can edit: add and change tasks. Can manage: list settings, fields and permissions."
+msgstr "表示可能: 読み取り専用。コメント可能: 読んでコメントします。編集可能: タスクの追加と変更。リスト設定、フィールド、権限を管理できます。"
+
+msgid "Permissions saved"
+msgstr "権限が保存されました"
+
+msgid "List settings: {n}"
+msgstr "リスト設定:{n}"
+
+msgid "What do you want to do? e.g. \"Show tasks in this list due tomorrow\" or \"Open a poster task for Ayşe due Friday\""
+msgstr "何がしたいのですか?例えば「明日期限のこのリストのタスクを表示する」または「金曜日が期限のアイシェのポスター タスクを開く」"
+
+msgid "Hi! What shall we do with your tasks?"
+msgstr "こんにちは!あなたの仕事はどうしましょうか?"
+
+msgid "List my overdue tasks assigned to me"
+msgstr "私に割り当てられた期限を過ぎたタスクをリストする"
+
+msgid "Add 3 tasks to this list: …"
+msgstr "このリストに 3 つのタスクを追加します: ..."
+
+msgid "Summarize this week"
+msgstr "今週をまとめます"
+
+msgid "Task created"
+msgstr "タスクが作成されました"
+
+msgid "Task updated"
+msgstr "タスクが更新されました"
+
+msgid "Comment added"
+msgstr "コメント追加"
+
+msgid "Task deleted"
+msgstr "タスクが削除されました"
+
+msgid "List created"
+msgstr "リストが作成されました"
+
+msgid "Document page edited"
+msgstr "ドキュメントページが編集されました"
+
+msgid "Document created"
+msgstr "ドキュメントが作成されました"
+
+msgid "Page added to document"
+msgstr "ドキュメントにページが追加されました"
+
+msgid "Clear chat"
+msgstr "クリアチャット"
+
+msgid "The assistant adds and changes tasks with your permissions."
+msgstr "アシスタントは、ユーザーの権限に従ってタスクを追加および変更します。"
+
+msgid "Status"
+msgstr "ステータス"
+
+msgid "Priority"
+msgstr "優先順位"
+
+msgid "Assignee"
+msgstr "譲受人"
+
+msgid "Tag"
+msgstr "タグ"
+
+msgid "No grouping"
+msgstr "グループ化なし"
+
+msgid "No priority"
+msgstr "優先順位なし"
+
+msgid "Unassigned"
+msgstr "未割り当て"
+
+msgid "This week"
+msgstr "今週"
+
+msgid "Later"
+msgstr "後で"
+
+msgid "No date"
+msgstr "日付なし"
+
+msgid "No tag"
+msgstr "タグなし"
+
+msgid "Empty"
+msgstr "空の"
+
+msgid "All tasks"
+msgstr "すべてのタスク"
+
+msgid "Details"
+msgstr "詳細"
+
+msgid "Back to meeting"
+msgstr "会議に戻る"
+
+msgid "Back to parent task"
+msgstr "親タスクに戻る"
+
+msgid "Unfollow"
+msgstr "フォローを解除する"
+
+msgid "Follow (get notifications)"
+msgstr "フォローする(通知を受け取る)"
+
+msgid "You will get notifications for this task"
+msgstr "You will get notifications for this task"
+
+msgid "Notifications for this task are turned off"
+msgstr "このタスクの通知はオフになっています"
+
+msgid "Move to another list"
+msgstr "別のリストに移動する"
+
+msgid "Task moved"
+msgstr "タスクが移動されました"
+
+msgid "Add subtask"
+msgstr "サブタスクの追加"
+
+msgid "Unarchive"
+msgstr "アーカイブを解除する"
+
+msgid "Archive"
+msgstr "アーカイブ"
+
+msgid "The task \"{n}\" will be permanently deleted along with its comments and files."
+msgstr "タスク「{n}」は、コメントおよびファイルとともに完全に削除されます。"
+
+msgid "(copy)"
+msgstr "(コピー)"
+
+msgid "Copy created"
+msgstr "コピーが作成されました"
+
+msgid "Change cover"
+msgstr "カバーを変更する"
+
+msgid "Complete"
+msgstr "完了"
+
+msgid "Completed: {d}"
+msgstr "完了:{d}"
+
+msgid "You can only comment"
+msgstr "コメントのみ可能です"
+
+msgid "View only"
+msgstr "閲覧のみ"
+
+msgid "Print the meeting report or save it as PDF"
+msgstr "会議レポートを印刷するか、PDF として保存します"
+
+msgid "PDF report"
+msgstr "PDFレポート"
+
+msgid "Hide customization"
+msgstr "カスタマイズを非表示にする"
+
+msgid "Customize this screen"
+msgstr "この画面をカスタマイズします"
+
+msgid "Assignees"
+msgstr "譲受人"
+
+msgid "Dates"
+msgstr "日付"
+
+msgid "Start"
+msgstr "スタート"
+
+msgid "Add / edit custom field"
+msgstr "カスタムフィールドの追加/編集"
+
+msgid "Description"
+msgstr "説明"
+
+msgid "Expand"
+msgstr "拡大する"
+
+msgid "Attachments"
+msgstr "添付ファイル"
+
+msgid "Show less"
+msgstr "表示を少なくする"
+
+msgid "{n} more fields"
+msgstr "{n}その他のフィールド"
+
+msgid "Participants"
+msgstr "参加者"
+
+msgid "Agenda"
+msgstr "議題"
+
+msgid "Decisions"
+msgstr "決定"
+
+msgid "Subtasks"
+msgstr "サブタスク"
+
+msgid "Shown on screen"
+msgstr "画面に表示される"
+
+msgid "Saved in this browser."
+msgstr "このブラウザに保存されました。"
+
+msgid "Edit statuses"
+msgstr "ステータスの編集"
+
+msgid "Pick a date"
+msgstr "日付を選択してください"
+
+msgid "Add people"
+msgstr "人を追加する"
+
+msgid "Decision"
+msgstr "決定"
+
+msgid "Add decision… (assignable like a task, with date and tags)"
+msgstr "決定を追加... (タスクのように割り当て可能、日付とタグ付き)"
+
+msgid "Mark as not discussed"
+msgstr "未議論としてマークする"
+
+msgid "Mark as discussed"
+msgstr "議論済みとしてマークする"
+
+msgid "No agenda items."
+msgstr "議題はありません。"
+
+msgid "Add agenda item…"
+msgstr "議題項目を追加..."
+
+msgid "Add a note…"
+msgstr "メモを追加..."
+
+msgid "Add image / file"
+msgstr "画像/ファイルを追加"
+
+msgid "Details and comments"
+msgstr "詳細とコメント"
+
+msgid "Delete agenda item"
+msgstr "議題項目の削除"
+
+msgid "\"{n}\" will be deleted."
+msgstr "「{n}」は削除されます。"
+
+msgid "Meeting report"
+msgstr "会議報告書"
+
+msgid "agenda items discussed"
+msgstr "議論された議題"
+
+msgid "decisions made"
+msgstr "行われた決定"
+
+msgid "subtasks completed"
+msgstr "完了したサブタスク"
+
+msgid "Discussed"
+msgstr "議論しました"
+
+msgid "Owner"
+msgstr "オーナー"
+
+msgid "Report: {d} · {n}"
+msgstr "レポート:{d}・{n}"
+
+msgid "Add subtask…"
+msgstr "サブタスクを追加..."
+
+msgid "Show / hide columns"
+msgstr "列の表示/非表示"
+
+msgid "Subtask"
+msgstr "サブタスク"
+
+msgid "Decision columns"
+msgstr "決定欄"
+
+msgid "Subtask columns"
+msgstr "サブタスク列"
+
+msgid "Add a description… (list, checklist, link)"
+msgstr "説明を追加します... (リスト、チェックリスト、リンク)"
+
+msgid "Make cover image"
+msgstr "カバー画像を作成する"
+
+msgid "Remove from cover"
+msgstr "カバーから取り外します"
+
+msgid "Drag files here or choose"
+msgstr "ここにファイルをドラッグするか、選択してください"
+
+msgid "Up to {s}"
+msgstr "{s}まで"
+
+msgid "{n} is too large (up to {s})."
+msgstr "{n}が大きすぎます (最大{s})。"
+
+msgid "Upload new image"
+msgstr "新しい画像をアップロードする"
+
+msgid "Cover image"
+msgstr "表紙画像"
+
+msgid "No images on this task yet."
+msgstr "このタスクにはまだ画像がありません。"
+
+msgid "created the task"
+msgstr "タスクを作成しました"
+
+msgid "changed the status:"
+msgstr "ステータスを変更しました:"
+
+msgid "renamed it:"
+msgstr "名前を変更しました:"
+
+msgid "updated the description"
+msgstr "説明を更新しました"
+
+msgid "set the priority to \"{p}\""
+msgstr "優先度を「{p}」に設定します"
+
+msgid "removed the priority"
+msgstr "優先順位を削除しました"
+
+msgid "set the due date to {d}"
+msgstr "期日を{d}に設定します"
+
+msgid "removed the due date"
+msgstr "期限を削除しました"
+
+msgid "set the start date to {d}"
+msgstr "開始日を{d}に設定します"
+
+msgid "removed the start date"
+msgstr "開始日を削除しました"
+
+msgid "took the task"
+msgstr "任務を引き受けた"
+
+msgid "assigned {n}"
+msgstr "割り当てられた{n}"
+
+msgid "unassigned {n}"
+msgstr "未割り当て{n}"
+
+msgid "added a tag:"
+msgstr "タグを追加しました:"
+
+msgid "removed the tag:"
+msgstr "タグを削除しました:"
+
+msgid "updated the field \"{f}\""
+msgstr "フィールド「{f}」を更新しました"
+
+msgid "moved the task:"
+msgstr "タスクを移動しました:"
+
+msgid "changed the cover image"
+msgstr "表紙画像を変更しました"
+
+msgid "removed the cover image"
+msgstr "カバー画像を削除しました"
+
+msgid "attached a file:"
+msgstr "ファイルを添付しました:"
+
+msgid "deleted a file:"
+msgstr "ファイルを削除しました:"
+
+msgid "archived the task"
+msgstr "タスクをアーカイブしました"
+
+msgid "unarchived the task"
+msgstr "タスクをアーカイブ解除しました"
+
+msgid "Sending…"
+msgstr "送信中..."
+
+msgid "edited"
+msgstr "編集済み"
+
+msgid "Delete comment"
+msgstr "コメントの削除"
+
+msgid "The comment and its attachments will be deleted."
+msgstr "コメントとその添付ファイルは削除されます。"
+
+msgid "Show comments and activity"
+msgstr "コメントとアクティビティを表示"
+
+msgid "Comments and activity"
+msgstr "コメントとアクティビティ"
+
+msgid "Show activity"
+msgstr "アクティビティを表示する"
+
+msgid "Hide comments and activity"
+msgstr "コメントとアクティビティを非表示にする"
+
+msgid "No comments yet. Be the first to comment."
+msgstr "コメントはまだありません。最初にコメントしてください。"
+
+msgid "You don't have permission to comment in this list."
+msgstr "このリストにコメントする権限がありません。"
+
+msgid "Write a comment… mention someone with @, drag in files"
+msgstr "コメントを書いて...誰かを @ でメンションし、ファイルをドラッグしてください"
+
+msgid "Mention someone"
+msgstr "誰かに言及してください"
+
+msgid "Send with Ctrl+Enter"
+msgstr "Ctrl+Enter で送信"
+
+msgid "Drop to add to the comment"
+msgstr "ドロップしてコメントに追加します"
+
+msgid "Comment could not be saved."
+msgstr "コメントを保存できませんでした。"
+
+msgid "Write / improve description"
+msgstr "説明を書く/改善する"
+
+msgid "Turn into checklist"
+msgstr "チェックリストに変える"
+
+msgid "Fix spelling"
+msgstr "スペルを修正"
+
+msgid "Add more detail"
+msgstr "さらに詳細を追加"
+
+msgid "Improve task name"
+msgstr "タスク名を改善する"
+
+msgid "Split into subtasks"
+msgstr "サブタスクに分割する"
+
+msgid "Summarize comments"
+msgstr "コメントを要約する"
+
+msgid "Say what to change… (e.g. make it more formal)"
+msgstr "何を変更するかを述べてください... (例: よりフォーマルにする)"
+
+msgid "What should it do? E.g. add the target audience, write as bullet points"
+msgstr "それは何をすべきでしょうか?例えば。対象読者を追加し、箇条書きで書く"
+
+msgid "Chat"
+msgstr "チャット"
+
+msgid "AI is thinking…"
+msgstr "AIは考えています..."
+
+msgid "Other options"
+msgstr "その他のオプション"
+
+msgid "Task name updated."
+msgstr "タスク名が更新されました。"
+
+msgid "Apply"
+msgstr "申し込む"
+
+msgid "Description updated."
+msgstr "説明が更新されました。"
+
+msgid "Added to the end of the description."
+msgstr "説明の最後に追加しました。"
+
+msgid "{n} subtasks created"
+msgstr "{n}サブタスクが作成されました"
+
+msgid "Create subtasks"
+msgstr "サブタスクの作成"
+
+msgid "Summary"
+msgstr "概要"
+
+msgid "Added as a comment."
+msgstr "コメントとして追加されました。"
+
+msgid "Add as comment"
+msgstr "コメントとして追加"
+
+msgid "Remove priority"
+msgstr "優先順位の削除"
+
+msgid "Search people…"
+msgstr "人を検索..."
+
+msgid "me"
+msgstr "私"
+
+msgid "Next week"
+msgstr "来週"
+
+msgid "In 2 weeks"
+msgstr "2週間後"
+
+msgid "Time (optional)"
+msgstr "時間 (オプション)"
+
+msgid "Clear"
+msgstr "クリア"
+
+msgid "Search or create a tag…"
+msgstr "タグを検索または作成します..."
+
+msgid "Create: {n}"
+msgstr "作成:{n}"
+
+msgid "No tags yet. Type to create one."
+msgstr "まだタグがありません。作成するには入力します。"
+
+msgid "There are no lists you can add tasks to."
+msgstr "タスクを追加できるリストはありません。"
+
+msgid "Created"
+msgstr "作成されました"
+
+msgid "Updated"
+msgstr "更新されました"
+
+msgid "Filter"
+msgstr "フィルター"
+
+msgid "Group"
+msgstr "グループ"
+
+msgid "Group: {n}"
+msgstr "グループ:{n}"
+
+msgid "Manual order"
+msgstr "手動注文"
+
+msgid "Start date"
+msgstr "開始日"
+
+msgid "Sort"
+msgstr "並べ替え"
+
+msgid "Ascending"
+msgstr "昇順"
+
+msgid "Descending"
+msgstr "降順"
+
+msgid "Fields"
+msgstr "フィールド"
+
+msgid "Save view"
+msgstr "ビューの保存"
+
+msgid "Meeting"
+msgstr "会議"
+
+msgid "Under the task, expanded"
+msgstr "タスクの下で展開された"
+
+msgid "Under the task, collapsed"
+msgstr "タスクの下で折りたたまれた状態"
+
+msgid "Don't show"
+msgstr "表示しない"
+
+msgid "Apply filters to subtasks too"
+msgstr "サブタスクにもフィルターを適用する"
+
+msgid "Save to this view"
+msgstr "このビューに保存"
+
+msgid "View saved"
+msgstr "保存されたビュー"
+
+msgid "Save as new view"
+msgstr "新しいビューとして保存"
+
+msgid "filtered"
+msgstr "フィルタリングされた"
+
+msgid "Revert changes"
+msgstr "変更を元に戻す"
+
+msgid "Assigned to me"
+msgstr "私に割り当てられました"
+
+msgid "None"
+msgstr "なし"
+
+msgid "Within 7 days"
+msgstr "7日以内"
+
+msgid "Has date"
+msgstr "日付あり"
+
+msgid "Checked"
+msgstr "チェック済み"
+
+msgid "Unchecked"
+msgstr "チェックなし"
+
+msgid "Filled"
+msgstr "満たされた"
+
+msgid "Show completed tasks"
+msgstr "完了したタスクを表示する"
+
+msgid "When off, all subtasks of matching tasks are shown. When on, only matching subtasks are shown; their parent appears dimmed even if it doesn't match."
+msgstr "オフの場合、一致するタスクのすべてのサブタスクが表示されます。オンの場合、一致するサブタスクのみが表示されます。一致しない場合でも、親は薄暗く表示されます。"
+
+msgid "Clear filters"
+msgstr "フィルターをクリアする"
+
+msgid "Show cover image"
+msgstr "カバー画像を表示"
+
+msgid "Wrap text"
+msgstr "テキストを折り返す"
+
+msgid "Long text shows up to 3 lines, the rest is cut with …"
+msgstr "長いテキストは 3 行まで表示され、残りは...でカットされます。"
+
+msgid "Date to use in the calendar"
+msgstr "カレンダーで使用する日付"
+
+msgid "Columns"
+msgstr "コラム"
+
+msgid "Fields shown on the card"
+msgstr "カードに表示されるフィールド"
+
+msgid "Add custom field"
+msgstr "カスタムフィールドを追加する"
+
+msgid "Can't be moved to this group."
+msgstr "このグループに移動することはできません。"
+
+msgid "No suitable status in this list."
+msgstr "このリストには適切なステータスがありません。"
+
+msgid "Drag to reorder"
+msgstr "ドラッグして並べ替えます"
+
+msgid "Type a subtask name and press Enter"
+msgstr "サブタスク名を入力して Enter キーを押します"
+
+msgid "This task no longer matches this view's filter. It will be hidden when you change page."
+msgstr "このタスクはこのビューのフィルターと一致しなくなりました。ページを切り替えると非表示になります。"
+
+msgid "Assigned: {n}"
+msgstr "割り当て済み:{n}"
+
+msgid "Outside filter"
+msgstr "外側フィルター"
+
+msgid "Hide subtasks"
+msgstr "サブタスクを非表示にする"
+
+msgid "Show subtasks"
+msgstr "サブタスクの表示"
+
+msgid "Agenda item"
+msgstr "議題"
+
+msgid "Has description"
+msgstr "説明あり"
+
+msgid "Shown because it has a subtask that matches the filter"
+msgstr "フィルターに一致するサブタスクがあるため表示されます"
+
+msgid "Add meeting"
+msgstr "会議を追加"
+
+msgid "Add task"
+msgstr "タスクの追加"
+
+msgid "Type a task name and press Enter"
+msgstr "タスク名を入力して Enter キーを押します"
+
+msgid "No tasks match the filter."
+msgstr "フィルターに一致するタスクはありません。"
+
+msgid "You have no open tasks assigned. 🎉"
+msgstr "割り当てられている未解決のタスクはありません。 🎉"
+
+msgid "No tasks in this list yet."
+msgstr "このリストにはまだタスクがありません。"
+
+msgid "{n} selected"
+msgstr "{n}が選択されました"
+
+msgid "Assign"
+msgstr "割り当てる"
+
+msgid "Delete tasks"
+msgstr "タスクの削除"
+
+msgid "{n} tasks will be permanently deleted along with their comments and files."
+msgstr "{n}タスクは、コメントやファイルとともに完全に削除されます。"
+
+msgid "Clear selection"
+msgstr "選択をクリア"
+
+msgid "{n} tasks updated"
+msgstr "{n}タスクが更新されました"
+
+msgid "Previous"
+msgstr "前へ"
+
+msgid "Next"
+msgstr "次へ"
+
+msgid "Week"
+msgstr "週"
+
+msgid "No date: {n}"
+msgstr "日付なし:{n}"
+
+msgid "Tasks without a date"
+msgstr "日付のないタスク"
+
+msgid "No dated tasks this month."
+msgstr "今月は日付が指定されたタスクはありません。"
+
+msgid "+{n} more"
+msgstr "+{n}詳細"
+
+msgid "Meeting name"
+msgstr "会議名"
+
+msgid "Meeting created"
+msgstr "会議が作成されました"
+
+msgid "New meeting"
+msgstr "新しい会議"
+
+msgid "New task"
+msgstr "新しいタスク"
+
+msgid "Create and open"
+msgstr "作成して開く"
+
+msgid "[['ClickUp-like task tracking: projects, folders, lists; list, board (kanban) and calendar views, saved filtered views, custom fields, comment and file attachments, notifications, list authorizations, admin dashboard, MCP server and artificial intelligence with OpenRouter.', 'tr']]"
+msgstr "[['ClickUp のようなタスク追跡: プロジェクト、フォルダー、リスト。リスト、ボード (カンバン) およびカレンダー ビュー、保存されたフィルターされたビュー、カスタム フィールド、コメントと添付ファイル、通知、リストの承認、管理ダッシュボード、MCP サーバー、および OpenRouter による人工知能。', 'tr']]"

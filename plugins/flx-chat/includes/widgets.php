@@ -61,7 +61,7 @@ function flxc_widgets_split( $reply ) {
  */
 function flxc_widget_png( $code ) {
 	if ( ! function_exists( 'flxai_render_widget' ) ) {
-		return new WP_Error( 'flxc_widget', __( 'Flux AI görsel desteği yok.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_widget', __( 'Flux AI has no image support.', 'flx-chat' ) );
 	}
 	$r = flxai_render_widget( $code, array( 'source' => 'flx-chat' ) );
 	// SVG bile çevrilemediyse sunucuda çevirici yok (HTML widget'ın çevrilememesi yalnız o görseli düşürür).
@@ -72,7 +72,7 @@ function flxc_widget_png( $code ) {
 		return $r;
 	}
 	if ( 'image/png' !== ( $r['mime'] ?? '' ) || '' === (string) ( $r['data'] ?? '' ) ) {
-		return new WP_Error( 'flxc_widget', __( 'Görsel çevrilemedi.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_widget', __( 'The image could not be rendered.', 'flx-chat' ) );
 	}
 	return $r;
 }
@@ -81,7 +81,7 @@ function flxc_widget_png( $code ) {
 function flxc_widget_send( $chat, $code, $delay = 0 ) {
 	$png = flxc_widget_png( $code );
 	if ( is_wp_error( $png ) ) {
-		flxc_system_message( $chat, __( 'Asistanın görseli gönderilemedi: ', 'flx-chat' ) . $png->get_error_message() );
+		flxc_system_message( $chat, __( 'The assistant\'s image could not be sent: ', 'flx-chat' ) . $png->get_error_message() );
 		return false;
 	}
 	$tmp = wp_tempnam( 'flxc-widget.png' );

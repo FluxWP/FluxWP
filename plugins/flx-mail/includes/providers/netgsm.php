@@ -13,34 +13,34 @@ add_filter(
 		$types['netgsm'] = array(
 			'label'   => __( 'SMS · Netgsm', 'flx-mail' ),
 			'channel' => 'sms',
-			'help'    => __( 'Netgsm REST v2. Kullanıcı adı genelde 850/312… ile başlayan abone numarasıdır. Mesaj başlığı Netgsm panelinde onaylı olmalı.', 'flx-mail' ),
+			'help'    => __( 'Netgsm REST v2. The username is usually the subscriber number starting with 850/312…. The message header must be approved in the Netgsm panel.', 'flx-mail' ),
 			'fields'  => array(
-				array( 'key' => 'username', 'label' => __( 'Kullanıcı adı (usercode)', 'flx-mail' ), 'type' => 'text', 'required' => true ),
-				array( 'key' => 'password', 'label' => __( 'Şifre (API alt kullanıcı şifresi)', 'flx-mail' ), 'type' => 'password', 'required' => true ),
-				array( 'key' => 'header', 'label' => __( 'Mesaj başlığı (msgheader)', 'flx-mail' ), 'type' => 'text', 'required' => true, 'placeholder' => 'ORNEKVAKFI' ),
+				array( 'key' => 'username', 'label' => __( 'Username (usercode)', 'flx-mail' ), 'type' => 'text', 'required' => true ),
+				array( 'key' => 'password', 'label' => __( 'Password (API sub-user password)', 'flx-mail' ), 'type' => 'password', 'required' => true ),
+				array( 'key' => 'header', 'label' => __( 'Message header (msgheader)', 'flx-mail' ), 'type' => 'text', 'required' => true, 'placeholder' => 'ORNEKVAKFI' ),
 				array(
 					'key'     => 'iysfilter',
-					'label'   => __( 'İYS filtresi', 'flx-mail' ),
+					'label'   => __( 'İYS filter', 'flx-mail' ),
 					'type'    => 'select',
 					'default' => '0',
 					'options' => array(
-						'0'  => __( '0 · Bilgilendirme (ticari değil)', 'flx-mail' ),
-						'11' => __( '11 · Ticari, bireysel alıcı (İYS kontrollü)', 'flx-mail' ),
-						'12' => __( '12 · Ticari, tacir alıcı (İYS kontrollü)', 'flx-mail' ),
+						'0'  => __( '0 · Informational (non-commercial)', 'flx-mail' ),
+						'11' => __( '11 · Commercial, individual recipient (İYS-checked)', 'flx-mail' ),
+						'12' => __( '12 · Commercial, merchant recipient (İYS-checked)', 'flx-mail' ),
 					),
 				),
 				array(
 					'key'     => 'encoding',
-					'label'   => __( 'Türkçe karakter', 'flx-mail' ),
+					'label'   => __( 'Turkish characters', 'flx-mail' ),
 					'type'    => 'select',
 					'default' => 'TR',
 					'options' => array(
-						'TR' => __( 'Açık (ş, ğ, ı…) · SMS boyu 155', 'flx-mail' ),
-						''   => __( 'Kapalı (ASCII) · SMS boyu 160', 'flx-mail' ),
+						'TR' => __( 'On (ş, ğ, ı…) · SMS length 155', 'flx-mail' ),
+						''   => __( 'Off (ASCII) · SMS length 160', 'flx-mail' ),
 					),
 				),
-				array( 'key' => 'partnercode', 'label' => __( 'Partner kodu (isteğe bağlı)', 'flx-mail' ), 'type' => 'text' ),
-				array( 'key' => 'delay', 'label' => __( 'Toplu gönderimde mesajlar arası bekleme (sn)', 'flx-mail' ), 'type' => 'number', 'default' => 0 ),
+				array( 'key' => 'partnercode', 'label' => __( 'Partner code (optional)', 'flx-mail' ), 'type' => 'text' ),
+				array( 'key' => 'delay', 'label' => __( 'Delay between messages in bulk send (sec)', 'flx-mail' ), 'type' => 'number', 'default' => 0 ),
 			),
 			'send'    => 'flxi_netgsm_send',
 			'test'    => 'flxi_netgsm_test',
@@ -51,18 +51,18 @@ add_filter(
 
 function flxi_netgsm_codes() {
 	return array(
-		'00'   => __( 'Başarılı', 'flx-mail' ),
-		'20'   => __( 'Mesaj metni hatalı ya da çok uzun', 'flx-mail' ),
-		'30'   => __( 'Geçersiz kullanıcı adı/şifre, API yetkisi yok ya da IP kısıtı', 'flx-mail' ),
-		'40'   => __( 'Mesaj başlığı (msgheader) sistemde tanımlı değil', 'flx-mail' ),
-		'50'   => __( 'Abone hesabıyla İYS kontrollü gönderim yapılamaz', 'flx-mail' ),
-		'51'   => __( 'Aboneliğe ait İYS marka bilgisi yok', 'flx-mail' ),
-		'70'   => __( 'Hatalı sorgu / eksik parametre', 'flx-mail' ),
-		'80'   => __( 'Gönderim hız limiti aşıldı', 'flx-mail' ),
-		'85'   => __( 'Aynı numaraya 1 dakikada 20\'den fazla görev', 'flx-mail' ),
-		'100'  => __( 'Netgsm sistem hatası', 'flx-mail' ),
-		'101'  => __( 'Netgsm sistem hatası', 'flx-mail' ),
-		'5000' => __( 'Tanımsız hata', 'flx-mail' ),
+		'00'   => __( 'Success', 'flx-mail' ),
+		'20'   => __( 'Message text is invalid or too long', 'flx-mail' ),
+		'30'   => __( 'Invalid username/password, no API permission, or IP restriction', 'flx-mail' ),
+		'40'   => __( 'Message header (msgheader) is not defined in the system', 'flx-mail' ),
+		'50'   => __( 'İYS-checked sending is not possible with a subscriber account', 'flx-mail' ),
+		'51'   => __( 'No İYS brand information for the subscription', 'flx-mail' ),
+		'70'   => __( 'Invalid query / missing parameter', 'flx-mail' ),
+		'80'   => __( 'Sending rate limit exceeded', 'flx-mail' ),
+		'85'   => __( 'More than 20 tasks to the same number in 1 minute', 'flx-mail' ),
+		'100'  => __( 'Netgsm system error', 'flx-mail' ),
+		'101'  => __( 'Netgsm system error', 'flx-mail' ),
+		'5000' => __( 'Unknown error', 'flx-mail' ),
 	);
 }
 
@@ -78,7 +78,7 @@ function flxi_netgsm_send( $config, $msg, $conn = array() ) {
 	$phone = flxi_normalize_phone( $msg['recipient'] );
 	if ( ! $phone ) {
 		/* translators: %s: telefon */
-		return array( 'ok' => false, 'error' => sprintf( __( 'Geçersiz telefon: %s', 'flx-mail' ), $msg['recipient'] ), 'retry' => false );
+		return array( 'ok' => false, 'error' => sprintf( __( 'Invalid phone: %s', 'flx-mail' ), $msg['recipient'] ), 'retry' => false );
 	}
 	$payload = array(
 		'msgheader' => (string) $config['header'],
@@ -113,7 +113,7 @@ function flxi_netgsm_send( $config, $msg, $conn = array() ) {
 		return array( 'ok' => true, 'external_id' => (string) ( $json['jobid'] ?? '' ), 'response' => $resp );
 	}
 	if ( $r['error'] ) {
-		return array( 'ok' => false, 'error' => __( 'Bağlantı hatası:', 'flx-mail' ) . ' ' . $r['error'], 'retry' => true, 'response' => $resp );
+		return array( 'ok' => false, 'error' => __( 'Connection error:', 'flx-mail' ) . ' ' . $r['error'], 'retry' => true, 'response' => $resp );
 	}
 	$text  = $code ? ( 'Netgsm ' . $code . ': ' . ( $codes[ $code ] ?? ( $json['description'] ?? '?' ) ) ) : ( 'HTTP ' . $r['code'] . ': ' . mb_substr( $r['body'], 0, 200 ) );
 	$retry = in_array( $code, array( '80', '85', '100', '101', '5000', '' ), true );
@@ -138,5 +138,5 @@ function flxi_netgsm_test( $config, $to, $conn ) {
 	if ( $r['ok'] && ( isset( $j['balance'] ) || ( isset( $j['code'] ) && '00' === (string) $j['code'] ) ) ) {
 		return array( 'ok' => true, 'response' => $j );
 	}
-	return array( 'ok' => false, 'error' => __( 'Bakiye sorgusu başarısız:', 'flx-mail' ) . ' ' . ( $r['error'] ? $r['error'] : mb_substr( $r['body'], 0, 200 ) ), 'response' => $j );
+	return array( 'ok' => false, 'error' => __( 'Balance query failed:', 'flx-mail' ) . ' ' . ( $r['error'] ? $r['error'] : mb_substr( $r['body'], 0, 200 ) ), 'response' => $j );
 }

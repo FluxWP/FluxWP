@@ -8,7 +8,7 @@ add_filter(
 	'flxapp_modules',
 	function ( $m ) {
 		$m['social'] = array(
-			'title'   => __( 'Sosyal Medya', 'flx-social' ),
+			'title'   => __( 'Social Media', 'flx-social' ),
 			'cap'     => FLXSM_CAP_POST,
 			'menu'    => 'flx-social',
 			'api'     => rest_url( FLXSM_NS ),
@@ -31,7 +31,7 @@ add_filter(
 	'flxa_apps',
 	function ( $apps ) {
 		$apps['social'] = array(
-			'label' => __( 'Sosyal Medya', 'flx-social' ),
+			'label' => __( 'Social Media', 'flx-social' ),
 			'url'   => admin_url( 'admin.php?page=flx-social' ),
 			'cap'   => FLXSM_CAP_POST,
 			'icon'  => 'share',

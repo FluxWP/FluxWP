@@ -21,7 +21,7 @@ defined( 'ABSPATH' ) || exit;
 function flxapp_push_events() {
 	$ev = array(
 		'core.comment' => array(
-			'title'   => __( 'Onay bekleyen yorum', 'flx-app' ),
+			'title'   => __( 'Pending comments', 'flx-app' ),
 			'default' => true,
 			'source'  => 'core',
 			'cap'     => 'moderate_comments',
@@ -252,7 +252,7 @@ add_action(
 			$users,
 			array(
 				'event'  => 'core.comment',
-				'title'  => __( 'Onay bekleyen yorum', 'flx-app' ),
+				'title'  => __( 'Pending comments', 'flx-app' ),
 				'body'   => $c->comment_author . ': ' . wp_trim_words( wp_strip_all_tags( $c->comment_content ), 16 ),
 				'target' => 'screen:core/comments',
 				'params' => array( 'status' => 'hold' ),

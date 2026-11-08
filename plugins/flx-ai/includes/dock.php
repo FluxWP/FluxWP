@@ -80,15 +80,15 @@ add_action( 'wp_body_open', 'flxai_dock_early', 0 );
 function flxai_chat_suggestions() {
 	$s = is_admin()
 		? array(
-			__( 'Bu sayfada neler yapabilirim?', 'flx-ai' ),
-			__( 'Sitedeki sistem kontrolü uyarılarını özetle', 'flx-ai' ),
-			__( 'Son eklenen taslak içerikleri listele', 'flx-ai' ),
-			__( 'Bu ay yapay zekâya ne kadar harcadık?', 'flx-ai' ),
+			__( 'What can I do on this page?', 'flx-ai' ),
+			__( 'Summarize the site\'s system check warnings', 'flx-ai' ),
+			__( 'List recently added drafts', 'flx-ai' ),
+			__( 'How much have we spent on AI this month?', 'flx-ai' ),
 		)
 		: array(
-			__( 'Bu sayfayı özetle', 'flx-ai' ),
-			__( 'Bu sayfanın SEO eksiklerini göster', 'flx-ai' ),
-			__( 'Bu sayfadaki yazım hatalarını bul', 'flx-ai' ),
+			__( 'Summarize this page', 'flx-ai' ),
+			__( 'Show this page\'s SEO issues', 'flx-ai' ),
+			__( 'Find typos on this page', 'flx-ai' ),
 		);
 	return array_values( (array) apply_filters( 'flxai_chat_suggestions', $s, is_admin() ) );
 }

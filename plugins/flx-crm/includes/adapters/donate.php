@@ -90,7 +90,7 @@ final class FLXCRM_Adapter_Donate {
 			array(
 				'source'   => self::KEY,
 				'uniq'     => 'donate:donation:' . (int) $row['id'],
-				'title'    => '' !== trim( $title ) ? $title : __( 'Bağış', 'flx-crm' ),
+				'title'    => '' !== trim( $title ) ? $title : __( 'Donation', 'flx-crm' ),
 				'amount'   => (float) $row['amount'],
 				'currency' => (string) $row['currency'],
 				'paid'     => 'completed' === $row['status'],

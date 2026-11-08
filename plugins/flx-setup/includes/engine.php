@@ -196,7 +196,7 @@ function flxk_media_import( $key, $def, $dir, $preset_id = '' ) {
 		$path = flxk_safe_path( $dir, (string) $def['file'] );
 		if ( ! $path ) {
 			/* translators: %s: dosya */
-			return new WP_Error( 'media', sprintf( __( 'Medya dosyası yok: %s', 'flx-setup' ), $def['file'] ) );
+			return new WP_Error( 'media', sprintf( __( 'Media file missing: %s', 'flx-setup' ), $def['file'] ) );
 		}
 		$tmp   = wp_tempnam( basename( $path ) );
 		copy( $path, $tmp );
@@ -209,7 +209,7 @@ function flxk_media_import( $key, $def, $dir, $preset_id = '' ) {
 		}
 		$name = basename( (string) wp_parse_url( (string) $def['url'], PHP_URL_PATH ) );
 	} else {
-		return new WP_Error( 'media', __( 'Medya için "file" ya da "url" gerekli.', 'flx-setup' ) );
+		return new WP_Error( 'media', __( 'Media needs "file" or "url".', 'flx-setup' ) );
 	}
 	// SVG yalnız şablonun kendi klasöründen (güvenilir dosya) kabul edilir.
 	$svg = function ( $m ) {
@@ -325,7 +325,7 @@ function flxk_plan( $preset_id, array $p, array $opts = array() ) {
 		$key  = (string) ( $item['key'] ?? '' );
 		if ( ! isset( $imp[ $type ] ) ) {
 			/* translators: %s: tür */
-			$warn[] = sprintf( __( '"%s" içerik türü bu sitede yok, atlandı.', 'flx-setup' ), $type );
+			$warn[] = sprintf( __( 'Content type "%s" does not exist on this site, skipped.', 'flx-setup' ), $type );
 			continue;
 		}
 		$T        = $imp[ $type ];
@@ -356,7 +356,7 @@ function flxk_plan( $preset_id, array $p, array $opts = array() ) {
 	foreach ( (array) ( $p['wp'] ?? array() ) as $name => $v ) {
 		if ( ! flxk_option_allowed( $name ) ) {
 			/* translators: %s: option */
-			$warn[] = sprintf( __( '"%s" yazılamaz, atlandı.', 'flx-setup' ), $name );
+			$warn[] = sprintf( __( '"%s" cannot be written, skipped.', 'flx-setup' ), $name );
 			continue;
 		}
 		$exists = false !== get_option( $name, false );
@@ -364,7 +364,7 @@ function flxk_plan( $preset_id, array $p, array $opts = array() ) {
 		$new    = flxk_resolve( $v, $ctx );
 		if ( 'WPLANG' === $name && '' !== $new && 'en_US' !== $new && ! in_array( $new, get_available_languages(), true ) ) {
 			/* translators: %s: dil kodu */
-			$warn[] = sprintf( __( '%s dil paketi kurulu değil; site dili ayarlanmadı (Ayarlar › Genel).', 'flx-setup' ), $new );
+			$warn[] = sprintf( __( 'The %s language pack is not installed; the site language was not set (Settings › General).', 'flx-setup' ), $new );
 			continue;
 		}
 		$ops[]  = flxk_decide( $preset_id, 'wp:' . $name, $exists, $cur, $new, $st, $opts, $exists && (string) wp_json_encode( $cur ) === (string) wp_json_encode( $new ) || ( $exists && is_scalar( $cur ) && is_scalar( $new ) && (string) $cur === (string) $new ) ) + array( 'section' => 'wp' );
@@ -603,7 +603,7 @@ function flxk_execute_ops( array $ops, array $p, array &$ctx, array &$run, array
 function flxk_apply_preset( $id, $mode = 'apply', $force = array() ) {
 	$p = flxk_get_preset( $id );
 	if ( ! $p ) {
-		return new WP_Error( 'preset', __( 'Ön ayar bulunamadı.', 'flx-setup' ) );
+		return new WP_Error( 'preset', __( 'Preset not found.', 'flx-setup' ) );
 	}
 	$st  = flxk_state( $id );
 	$res = flxk_execute(
@@ -671,7 +671,7 @@ function flxk_pending_migrations( $id ) {
 function flxk_apply_migration( $id, $mig_id, array $opts = array() ) {
 	$m = flxk_migration( $id, $mig_id );
 	if ( ! $m ) {
-		return new WP_Error( 'migration', __( 'Migration bulunamadı.', 'flx-setup' ) );
+		return new WP_Error( 'migration', __( 'Migration not found.', 'flx-setup' ) );
 	}
 	return flxk_execute(
 		$id,
@@ -750,7 +750,7 @@ function flxk_install_plugins( array $slugs ) {
 			$lines[] = array(
 				'ok'   => ! is_wp_error( $r ),
 				/* translators: %s: eklenti */
-				'text' => is_wp_error( $r ) ? $r->get_error_message() : sprintf( __( '%s etkinleştirildi.', 'flx-setup' ), $installed[ $slug ]['name'] ),
+				'text' => is_wp_error( $r ) ? $r->get_error_message() : sprintf( __( '%s activated.', 'flx-setup' ), $installed[ $slug ]['name'] ),
 			);
 		}
 	}
@@ -893,7 +893,7 @@ function flxk_sync_preset( $id, $force = false ) {
 		array(
 			'kind'  => 'sync',
 			/* translators: %s: ön ayar sürümü */
-			'title' => sprintf( __( 'Ayarlar eşitlendi (%s)', 'flx-setup' ), $ver ),
+			'title' => sprintf( __( 'Settings synced (%s)', 'flx-setup' ), $ver ),
 		)
 	);
 }
@@ -924,7 +924,7 @@ function flxk_run( $run_id ) {
 function flxk_revert_run( $run_id ) {
 	$run = flxk_run( $run_id );
 	if ( ! $run ) {
-		return new WP_Error( 'run', __( 'Kayıt bulunamadı.', 'flx-setup' ) );
+		return new WP_Error( 'run', __( 'Record not found.', 'flx-setup' ) );
 	}
 	$pid      = $run['preset'];
 	$st       = flxk_state( $pid );

@@ -187,10 +187,10 @@ add_action(
 		}
 		add_meta_box(
 			'flxc-bot-hide',
-			__( 'WhatsApp asistanı', 'flx-chat' ),
+			__( 'WhatsApp assistant', 'flx-chat' ),
 			function ( $post ) {
 				wp_nonce_field( 'flxc_bot_hide', 'flxc_bot_hide_nonce' );
-				echo '<label><input type="checkbox" name="flxc_bot_hide" value="1" ' . checked( (bool) get_post_meta( $post->ID, '_flxc_bot_hide', true ), true, false ) . '> ' . esc_html__( 'Asistan bu içeriği kişilerle paylaşmasın', 'flx-chat' ) . '</label>';
+				echo '<label><input type="checkbox" name="flxc_bot_hide" value="1" ' . checked( (bool) get_post_meta( $post->ID, '_flxc_bot_hide', true ), true, false ) . '> ' . esc_html__( 'Do not let the assistant share this content', 'flx-chat' ) . '</label>';
 			},
 			$post_type,
 			'side',

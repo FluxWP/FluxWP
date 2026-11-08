@@ -514,14 +514,14 @@ function flxapp_shell( $user, $platform ) {
 	if ( ! empty( $m['tabs'] ) ) {
 		$tabs = array_values( array_filter( (array) $m['tabs'], fn( $t ) => flxapp_target_ok( $t['target'], $ctx ) ) );
 	} else {
-		$tabs[] = array( 'id' => 'home', 'target' => $home, 'icon' => 'home', 'label' => __( 'Başlangıç', 'flx-app' ) );
+		$tabs[] = array( 'id' => 'home', 'target' => $home, 'icon' => 'home', 'label' => __( 'Home', 'flx-app' ) );
 		foreach ( flxapp_user_bottom( $user ) as $slug ) {
 			$t = flxapp_tab_from_slug( $slug, $ctx );
 			if ( $t && count( $tabs ) < 4 && ! in_array( $t['target'], array_column( $tabs, 'target' ), true ) ) {
 				$tabs[] = array_filter( $t, 'strlen' );
 			}
 		}
-		foreach ( array( 'screen:core/comments' => array( 'comment', __( 'Yorumlar', 'flx-app' ), 'comments' ), 'screen:core/posts' => array( 'post', __( 'Yazılar', 'flx-app' ), '' ) ) as $target => $d ) {
+		foreach ( array( 'screen:core/comments' => array( 'comment', __( 'Comments', 'flx-app' ), 'comments' ), 'screen:core/posts' => array( 'post', __( 'Posts', 'flx-app' ), '' ) ) as $target => $d ) {
 			if ( count( $tabs ) < 3 && flxapp_target_ok( $target, $ctx ) && ! in_array( $target, array_column( $tabs, 'target' ), true ) ) {
 				$tabs[] = array_filter( array( 'id' => $d[0], 'target' => $target, 'icon' => $d[0], 'label' => $d[1], 'badge' => $d[2] ), 'strlen' );
 			}
@@ -531,7 +531,7 @@ function flxapp_shell( $user, $platform ) {
 	$drawer = ! isset( $m['drawer']['enabled'] ) || ! empty( $m['drawer']['enabled'] );
 	if ( ! in_array( 'more', array_column( $tabs, 'target' ), true ) && ( ! $drawer || 'tabs' === $nav ) ) {
 		$tabs = array_slice( $tabs, 0, 4 );
-		$tabs[] = array( 'id' => 'more', 'target' => 'more', 'icon' => 'menu', 'label' => __( 'Menü', 'flx-app' ) );
+		$tabs[] = array( 'id' => 'more', 'target' => 'more', 'icon' => 'menu', 'label' => __( 'Menu', 'flx-app' ) );
 	}
 	return array(
 		'nav'    => $nav,

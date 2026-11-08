@@ -362,7 +362,7 @@ add_filter(
 	function ( $s ) {
 		$s['flxan_5min'] = array(
 			'interval' => 5 * MINUTE_IN_SECONDS,
-			'display'  => __( 'Her 5 dakikada', 'flx-analytics' ),
+			'display'  => __( 'Every 5 minutes', 'flx-analytics' ),
 		);
 		return $s;
 	}
@@ -423,20 +423,20 @@ function flxan_clean_ref( $code ) {
 
 /** Varsayılan huni: siteye giriş → bağış sayfası → sepete ekledi → ödeme sayfası → forma başladı → "Ödeme yap" → sipariş oluştu → tamamlandı. */
 function flxan_default_funnels() {
-	$steps   = array( array( 'label' => __( 'Siteye giriş', 'flx-analytics' ), 'type' => 'any', 'value' => '' ) );
+	$steps   = array( array( 'label' => __( 'Site entry', 'flx-analytics' ), 'type' => 'any', 'value' => '' ) );
 	$bagis   = get_page_by_path( 'bagis' );
-	$steps[] = array( 'label' => __( 'Bağış sayfası', 'flx-analytics' ), 'type' => 'path', 'value' => $bagis ? (string) wp_parse_url( get_permalink( $bagis ), PHP_URL_PATH ) : '/bagis/' );
-	$steps[] = array( 'label' => __( 'Sepete ekledi', 'flx-analytics' ), 'type' => 'event', 'value' => 'add_to_cart' );
+	$steps[] = array( 'label' => __( 'Donation page', 'flx-analytics' ), 'type' => 'path', 'value' => $bagis ? (string) wp_parse_url( get_permalink( $bagis ), PHP_URL_PATH ) : '/bagis/' );
+	$steps[] = array( 'label' => __( 'Added to cart', 'flx-analytics' ), 'type' => 'event', 'value' => 'add_to_cart' );
 	$co      = function_exists( 'wc_get_checkout_url' ) ? (string) wp_parse_url( wc_get_checkout_url(), PHP_URL_PATH ) : '/odeme/';
-	$steps[] = array( 'label' => __( 'Ödeme sayfası', 'flx-analytics' ), 'type' => 'path', 'value' => $co );
-	$steps[] = array( 'label' => __( 'Formu doldurmaya başladı', 'flx-analytics' ), 'type' => 'event', 'value' => 'checkout:form' );
-	$steps[] = array( 'label' => __( '"Ödeme yap"a bastı', 'flx-analytics' ), 'type' => 'event', 'value' => 'checkout:submit' );
-	$steps[] = array( 'label' => __( 'Sipariş oluştu', 'flx-analytics' ), 'type' => 'event', 'value' => 'order' );
-	$steps[] = array( 'label' => __( 'Bağış tamamlandı', 'flx-analytics' ), 'type' => 'path', 'value' => trailingslashit( $co ) . 'order-received/' );
+	$steps[] = array( 'label' => __( 'Checkout page', 'flx-analytics' ), 'type' => 'path', 'value' => $co );
+	$steps[] = array( 'label' => __( 'Started filling the form', 'flx-analytics' ), 'type' => 'event', 'value' => 'checkout:form' );
+	$steps[] = array( 'label' => __( 'Clicked "Place order"', 'flx-analytics' ), 'type' => 'event', 'value' => 'checkout:submit' );
+	$steps[] = array( 'label' => __( 'Order created', 'flx-analytics' ), 'type' => 'event', 'value' => 'order' );
+	$steps[] = array( 'label' => __( 'Donation completed', 'flx-analytics' ), 'type' => 'path', 'value' => trailingslashit( $co ) . 'order-received/' );
 	return array(
 		array(
 			'id'    => 1,
-			'name'  => __( 'Bağış akışı', 'flx-analytics' ),
+			'name'  => __( 'Donation flow', 'flx-analytics' ),
 			'steps' => $steps,
 		),
 	);
@@ -478,7 +478,7 @@ function flxan_funnels_from_text( $text ) {
 			continue;
 		}
 		if ( ! $cur ) {
-			$cur = array( 'id' => 0, 'name' => __( 'Huni', 'flx-analytics' ), 'steps' => array() );
+			$cur = array( 'id' => 0, 'name' => __( 'Funnel', 'flx-analytics' ), 'steps' => array() );
 		}
 		$parts = array_map( 'trim', explode( '|', $line, 2 ) );
 		$label = sanitize_text_field( $parts[0] );
@@ -535,7 +535,7 @@ function flxan_funnels_sanitize( $in ) {
 				}
 			}
 			$steps[] = array(
-				'label' => '' !== $label ? $label : ( 'any' === $type ? __( 'Siteye giriş', 'flx-analytics' ) : $val ),
+				'label' => '' !== $label ? $label : ( 'any' === $type ? __( 'Site entry', 'flx-analytics' ) : $val ),
 				'type'  => $type,
 				'value' => $val,
 			);
@@ -543,7 +543,7 @@ function flxan_funnels_sanitize( $in ) {
 		if ( $steps ) {
 			$out[] = array(
 				'id'    => count( $out ) + 1,
-				'name'  => sanitize_text_field( (string) ( $f['name'] ?? '' ) ) ?: __( 'Huni', 'flx-analytics' ),
+				'name'  => sanitize_text_field( (string) ( $f['name'] ?? '' ) ) ?: __( 'Funnel', 'flx-analytics' ),
 				'steps' => $steps,
 			);
 		}
@@ -556,14 +556,14 @@ function flxan_funnel_event_options() {
 	global $wpdb;
 	$labels = FLXAN_Stats::event_labels();
 	$out    = array(
-		'checkout:form'   => __( 'Ödeme formuna ilk dokunuş', 'flx-analytics' ),
-		'checkout:submit' => __( '"Ödeme yap" tıklaması', 'flx-analytics' ),
-		'add_to_cart'     => __( 'Sepete ekleme (her ürün)', 'flx-analytics' ),
-		'payment'         => __( 'Ödeme yöntemi seçme', 'flx-analytics' ),
-		'order'           => __( 'Sipariş oluşturuldu (ödeme öncesi)', 'flx-analytics' ),
-		'donation'        => __( 'Ödenen bağış / sipariş', 'flx-analytics' ),
-		'remove_from_cart' => __( 'Sepetten çıkarma', 'flx-analytics' ),
-		'coupon'          => __( 'Kupon kullanma', 'flx-analytics' ),
+		'checkout:form'   => __( 'First touch on checkout form', 'flx-analytics' ),
+		'checkout:submit' => __( '"Pay" click', 'flx-analytics' ),
+		'add_to_cart'     => __( 'Add to cart (any product)', 'flx-analytics' ),
+		'payment'         => __( 'Payment method chosen', 'flx-analytics' ),
+		'order'           => __( 'Order created (before payment)', 'flx-analytics' ),
+		'donation'        => __( 'Paid donation / order', 'flx-analytics' ),
+		'remove_from_cart' => __( 'Remove from cart', 'flx-analytics' ),
+		'coupon'          => __( 'Coupon used', 'flx-analytics' ),
 	);
 	$rows   = (array) $wpdb->get_results( 'SELECT name, SUM(hits) h FROM ' . flxan_table( 'events' ) . ' GROUP BY name ORDER BY h DESC LIMIT 30', ARRAY_A ); // phpcs:ignore
 	foreach ( $rows as $r ) {

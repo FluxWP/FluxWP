@@ -145,7 +145,7 @@ function Shell({ rootRef, theme }: { rootRef: React.RefObject<HTMLDivElement | n
         </div>
         <p>{S.error}</p>
         <button type="button" className="flxg-btn" onClick={() => ((S.error = ''), void e.boot())}>
-          {tt('Tekrar dene')}
+          {tt("Try again")}
         </button>
       </div>
     );
@@ -224,7 +224,7 @@ function Side({ closeNav, hide, setW, setResizing, collapse }: { closeNav: () =>
   };
   const site = host.siteUrl ? trimEnd(host.siteUrl) + '/wp-admin/admin.php?page=flx-tasks' : '';
   const webMenu = (anchor: HTMLElement, hash: string) =>
-    c.ui.menu(anchor, [{ label: tt('Web panelinde aç (ayarlar, üyeler)'), icon: 'settings', onClick: () => host.openUrl(site + hash) }]);
+    c.ui.menu(anchor, [{ label: tt("Open in web panel (settings, members)"), icon: 'settings', onClick: () => host.openUrl(site + hash) }]);
   const listRow = (l: FlxgList) => (
     <div key={l.id} className={cls('flxg-tree-row', 'is-list', r.page === 'list' && r.id === l.id && 'is-active')}>
       <a className="flxg-tree-link" href={'#/list/' + l.id} onClick={(ev) => (ev.preventDefault(), go({ page: 'list', id: l.id }))}>
@@ -233,7 +233,7 @@ function Side({ closeNav, hide, setW, setResizing, collapse }: { closeNav: () =>
         {l.access === 'members' && <Ic n="lock" s={12} cls="flxg-lock" />}
       </a>
       {rank(l.role) >= 4 && site && (
-        <button type="button" className="flxg-icon-btn is-sm flxg-tree-more" aria-label={tt('Liste menüsü')} onClick={(ev) => webMenu(ev.currentTarget, '#/list/' + l.id)}>
+        <button type="button" className="flxg-icon-btn is-sm flxg-tree-more" aria-label={tt("List menu")} onClick={(ev) => webMenu(ev.currentTarget, '#/list/' + l.id)}>
           <Ic n="dots" s={15} />
         </button>
       )}
@@ -247,30 +247,30 @@ function Side({ closeNav, hide, setW, setResizing, collapse }: { closeNav: () =>
           <Ic n="check" s={16} />
         </span>
         <div className="flxg-brand-text">
-          <b>{tt('Görevler')}</b>
+          <b>{tt("Tasks")}</b>
           <span>{host.siteName ?? ''}</span>
         </div>
-        <button type="button" className="flxg-icon-btn flxg-only-mobile" aria-label={tt('Kapat')} onClick={closeNav}>
+        <button type="button" className="flxg-icon-btn flxg-only-mobile" aria-label={tt("Close")} onClick={closeNav}>
           <Ic n="x" s={18} />
         </button>
-        <button type="button" className="flxg-icon-btn is-sm flxg-side-hide" title={tt('Kenar menüyü gizle')} aria-label={tt('Kenar menüyü gizle')} onClick={hide}>
+        <button type="button" className="flxg-icon-btn is-sm flxg-side-hide" title={tt("Hide sidebar")} aria-label={tt("Hide sidebar")} onClick={hide}>
           <Ic n="sidebar" s={17} />
         </button>
       </div>
       <nav className="flxg-nav">
         <a className={cls('flxg-nav-item', r.page === 'home' && 'is-active')} href="#/home" onClick={(ev) => (ev.preventDefault(), go({ page: 'home' }))}>
           <Ic n="home" s={17} />
-          <span className="flxg-nav-label">{tt('Benim görevlerim')}</span>
+          <span className="flxg-nav-label">{tt("My tasks")}</span>
         </a>
         <a className={cls('flxg-nav-item', r.page === 'inbox' && 'is-active')} href="#/inbox" onClick={(ev) => (ev.preventDefault(), go({ page: 'inbox' }))}>
           <Ic n="inbox" s={17} />
-          <span className="flxg-nav-label">{tt('Bildirimler')}</span>
+          <span className="flxg-nav-label">{tt("Notifications")}</span>
           {unread > 0 && <span className="flxg-count">{unread > 99 ? '99+' : unread}</span>}
         </a>
       </nav>
       <div className="flxg-tree">
         <div className="flxg-tree-head">
-          <span>{tt('Projeler')}</span>
+          <span>{tt("Projects")}</span>
         </div>
         {S.spaces.map((sp) => {
           const isCol = !spOpen[sp.id];
@@ -278,7 +278,7 @@ function Side({ closeNav, hide, setW, setResizing, collapse }: { closeNav: () =>
           return (
             <div key={sp.id} className={cls('flxg-space', isCol && 'is-collapsed')} data-space={sp.id}>
               <div className={cls('flxg-tree-row', 'is-space', r.page === 'space' && r.id === sp.id && 'is-active')}>
-                <button type="button" className="flxg-caret" aria-label={tt('Daralt')} onClick={() => setSpOpen(sp.id, isCol)}>
+                <button type="button" className="flxg-caret" aria-label={tt("Collapse")} onClick={() => setSpOpen(sp.id, isCol)}>
                   <Ic n={isCol ? 'chevR' : 'chevD'} s={14} />
                 </button>
                 <a className="flxg-tree-link" href={'#/space/' + sp.id} onClick={(ev) => (ev.preventDefault(), go({ page: 'space', id: sp.id }))}>
@@ -289,7 +289,7 @@ function Side({ closeNav, hide, setW, setResizing, collapse }: { closeNav: () =>
                   {sp.access === 'members' && <Ic n="lock" s={12} cls="flxg-lock" />}
                 </a>
                 {rank(sp.role) >= 4 && site && (
-                  <button type="button" className="flxg-icon-btn is-sm flxg-tree-more" aria-label={tt('Proje menüsü')} onClick={(ev) => webMenu(ev.currentTarget, '#/space/' + sp.id)}>
+                  <button type="button" className="flxg-icon-btn is-sm flxg-tree-more" aria-label={tt("Project menu")} onClick={(ev) => webMenu(ev.currentTarget, '#/space/' + sp.id)}>
                     <Ic n="dots" s={15} />
                   </button>
                 )}
@@ -311,7 +311,7 @@ function Side({ closeNav, hide, setW, setResizing, collapse }: { closeNav: () =>
                             <span className="flxg-tree-name">{f.name}</span>
                           </span>
                         </div>
-                        {!fCol && <div className="flxg-tree-kids">{lists.length ? lists.map(listRow) : <div className="flxg-tree-empty">{tt('Boş klasör')}</div>}</div>}
+                        {!fCol && <div className="flxg-tree-kids">{lists.length ? lists.map(listRow) : <div className="flxg-tree-empty">{tt("Empty folder")}</div>}</div>}
                       </div>
                     );
                   })}
@@ -321,7 +321,7 @@ function Side({ closeNav, hide, setW, setResizing, collapse }: { closeNav: () =>
             </div>
           );
         })}
-        {!S.spaces.length && <div className="flxg-tree-empty">{tt('Görebildiğiniz proje yok.')}</div>}
+        {!S.spaces.length && <div className="flxg-tree-empty">{tt("You have no visible projects.")}</div>}
       </div>
       <div className="flxg-side-foot">
         <span className="flxg-me">
@@ -331,7 +331,7 @@ function Side({ closeNav, hide, setW, setResizing, collapse }: { closeNav: () =>
       </div>
       <div
         className="flxg-side-resize"
-        title={tt('Genişliği değiştirmek için sürükleyin, sıfırlamak için çift tıklayın')}
+        title={tt("Drag to resize, double-click to reset")}
         onPointerDown={(ev) => {
           if (ev.button !== 0) return;
           ev.preventDefault();
@@ -374,13 +374,13 @@ function TopBar({ title, extra, toggleSide, mobile }: { title: ReactNode; extra?
   const unread = e.S.unread;
   return (
     <header className="flxg-top">
-      <button type="button" className="flxg-icon-btn flxg-menu-btn" title={tt('Kenar menüyü göster')} aria-label={tt('Menü')} onClick={toggleSide}>
+      <button type="button" className="flxg-icon-btn flxg-menu-btn" title={tt("Show sidebar")} aria-label={tt("Menu")} onClick={toggleSide}>
         <Ic n={mobile ? 'menu' : 'sidebar'} s={20} />
       </button>
       <div className="flxg-top-title">{title}</div>
       <div className="flxg-top-actions">
         {extra}
-        <a className="flxg-icon-btn flxg-only-mobile flxg-bell" href="#/inbox" aria-label={tt('Bildirimler')} onClick={(ev) => (ev.preventDefault(), void e.go({ page: 'inbox' }))}>
+        <a className="flxg-icon-btn flxg-only-mobile flxg-bell" href="#/inbox" aria-label={tt("Notifications")} onClick={(ev) => (ev.preventDefault(), void e.go({ page: 'inbox' }))}>
           <Ic n="bell" s={19} />
           {unread > 0 && <span className="flxg-dotbadge">{unread > 9 ? '9+' : unread}</span>}
         </a>
@@ -395,7 +395,7 @@ function ScopeTitle() {
   if (!sc || sc.type === 'home')
     return (
       <div className="flxg-crumbs">
-        <h1>{tt('Benim görevlerim')}</h1>
+        <h1>{tt("My tasks")}</h1>
       </div>
     );
   if (sc.type === 'space') {
@@ -406,7 +406,7 @@ function ScopeTitle() {
           {sp?.name.slice(0, 1).toLocaleUpperCase('tr')}
         </span>
         <h1>{sp?.name}</h1>
-        <span className="flxg-muted flxg-hide-sm">{tt('Tüm listeler')}</span>
+        <span className="flxg-muted flxg-hide-sm">{tt("All lists")}</span>
       </div>
     );
   }
@@ -426,9 +426,9 @@ function ScopeTitle() {
       <span className="flxg-dot is-lg" style={{ background: l?.color }} />
       <h1>{l?.name}</h1>
       {l?.access === 'members' && (
-        <span className="flxg-pill-sm" title={tt('Yalnız üyeler görür')}>
+        <span className="flxg-pill-sm" title={tt("Visible to members only")}>
           <Ic n="lock" s={12} />
-          {tt('Özel')}
+          {tt("Private")}
         </span>
       )}
     </div>
@@ -450,10 +450,10 @@ function ScopePage({ toggleSide, mobile }: { toggleSide: () => void; mobile: boo
     const editable = editableView(x);
     ui.menu(anchor, [
       editable && {
-        label: tt('Yeniden adlandır'),
+        label: tt("Rename"),
         icon: 'edit',
         onClick: () =>
-          void ui.prompt(tt('Görünüm adı'), x.name).then((n) => {
+          void ui.prompt(tt("View name"), x.name).then((n) => {
             if (n)
               e.api.updateView(x.id, { name: n }).then((r) => {
                 x.name = r.view.name;
@@ -462,7 +462,7 @@ function ScopePage({ toggleSide, mobile }: { toggleSide: () => void; mobile: boo
           }),
       },
       {
-        label: tt('Kopyasını oluştur'),
+        label: tt("Create a copy"),
         icon: 'copy',
         onClick: () =>
           e.api.createView({ scope: sc!.type, scope_id: scopeId(), name: x.name + ' 2', type: x.type, config: S.draft ?? x.config, shared: rank(sc!.role) >= 3 && sc!.type !== 'home' }).then((r) => {
@@ -473,7 +473,7 @@ function ScopePage({ toggleSide, mobile }: { toggleSide: () => void; mobile: boo
       editable &&
         sc!.type !== 'home' &&
         rank(sc!.role) >= 3 && {
-          label: x.user_id ? tt('Herkesle paylaş') : tt('Yalnız bana özel yap'),
+          label: x.user_id ? tt("Share with everyone") : tt("Make private to me"),
           icon: x.user_id ? 'users' : 'lock',
           onClick: () =>
             e.api.updateView(x.id, { shared: !!x.user_id }).then((r) => {
@@ -484,11 +484,11 @@ function ScopePage({ toggleSide, mobile }: { toggleSide: () => void; mobile: boo
       editable && S.views.length > 1 && { sep: true },
       editable &&
         S.views.length > 1 && {
-          label: tt('Görünümü sil'),
+          label: tt("Delete view"),
           icon: 'trash',
           danger: true,
           onClick: () =>
-            void ui.confirm(tt('Görünümü sil'), tt('"{n}" görünümü silinecek. Görevler etkilenmez.', { n: x.name }), tt('Sil'), true).then((ok) => {
+            void ui.confirm(tt("Delete view"), tt("The view \"{n}\" will be deleted. Tasks are not affected.", { n: x.name }), tt("Delete"), true).then((ok) => {
               if (ok)
                 e.api.deleteView(x.id).then((r) => {
                   S.views = r.views;
@@ -507,16 +507,16 @@ function ScopePage({ toggleSide, mobile }: { toggleSide: () => void; mobile: boo
           void e.go({ ...S.route, view: r.view.id });
         }, ui.fail);
     ui.menu(anchor, [
-      { head: tt('Yeni görünüm') },
-      { label: tt('Liste'), icon: 'list', onClick: () => void mk('list', tt('Liste')) },
-      { label: tt('Pano'), icon: 'board', onClick: () => void mk('board', tt('Pano')) },
-      { label: tt('Takvim'), icon: 'calendar', onClick: () => void mk('calendar', tt('Takvim')) },
+      { head: tt("New view") },
+      { label: tt("List"), icon: 'list', onClick: () => void mk('list', tt("List")) },
+      { label: tt("Board"), icon: 'board', onClick: () => void mk('board', tt("Board")) },
+      { label: tt("Calendar"), icon: 'calendar', onClick: () => void mk('calendar', tt("Calendar")) },
     ]);
   };
   const site = host.siteUrl ? trimEnd(host.siteUrl) + '/wp-admin/admin.php?page=flx-tasks' : '';
   const extra =
     sc?.type === 'list' && rank(sc.role) >= 4 && site ? (
-      <button type="button" className="flxg-icon-btn" title={tt('Liste ayarları')} onClick={() => host.openUrl(site + '#/list/' + sc.id)}>
+      <button type="button" className="flxg-icon-btn" title={tt("List settings")} onClick={() => host.openUrl(site + '#/list/' + sc.id)}>
         <Ic n="settings" s={18} />
       </button>
     ) : null;
@@ -541,7 +541,7 @@ function ScopePage({ toggleSide, mobile }: { toggleSide: () => void; mobile: boo
                 <span>{x.name}</span>
                 {x.user_id > 0 && <Ic n="lock" s={11} cls="flxg-lock" />}
                 {on && (
-                  <button type="button" className="flxg-tab-more" aria-label={tt('Görünüm menüsü')} onClick={(ev) => (ev.preventDefault(), ev.stopPropagation(), viewMenu(ev.currentTarget, x))}>
+                  <button type="button" className="flxg-tab-more" aria-label={tt("View menu")} onClick={(ev) => (ev.preventDefault(), ev.stopPropagation(), viewMenu(ev.currentTarget, x))}>
                     <Ic n="chevD" s={13} />
                   </button>
                 )}
@@ -551,7 +551,7 @@ function ScopePage({ toggleSide, mobile }: { toggleSide: () => void; mobile: boo
           {sc && (
             <button type="button" className="flxg-tab is-add" onClick={(ev) => addView(ev.currentTarget)}>
               <Ic n="plus" s={15} />
-              <span>{tt('Görünüm')}</span>
+              <span>{tt("View")}</span>
             </button>
           )}
         </div>
@@ -565,14 +565,14 @@ function ScopePage({ toggleSide, mobile }: { toggleSide: () => void; mobile: boo
 
 /* ---------------- Bildirimler ---------------- */
 function notifText(e: FlxgEngine, n: FlxgNotif) {
-  const who = n.actor ? (e.S.users[n.actor]?.name ?? tt('Biri')) : '';
+  const who = n.actor ? (e.S.users[n.actor]?.name ?? tt("Someone")) : '';
   switch (n.type) {
-    case 'assigned': return tt('{n} sizi bir göreve atadı', { n: who });
-    case 'mention': return tt('{n} bir yorumda sizden bahsetti', { n: who });
-    case 'comment': return tt('{n} yorum yazdı', { n: who });
-    case 'status': return tt('{n} durumu "{s}" yaptı', { n: who, s: n.data?.label ?? '' });
-    case 'due': return tt('Bitiş tarihi yarın');
-    case 'overdue': return tt('Bitiş tarihi geçti');
+    case 'assigned': return tt("{n} assigned you to a task", { n: who });
+    case 'mention': return tt("{n} mentioned you in a comment", { n: who });
+    case 'comment': return tt("{n} wrote a comment", { n: who });
+    case 'status': return tt("{n} changed the status to \"{s}\"", { n: who, s: n.data?.label ?? '' });
+    case 'due': return tt("Due tomorrow");
+    case 'overdue': return tt("Overdue");
   }
   return n.type;
 }
@@ -612,7 +612,7 @@ function Inbox({ toggleSide, mobile }: { toggleSide: () => void; mobile: boolean
       lastDay = dk;
       rows.push(
         <div key={'d' + dk} className="flxg-inbox-day">
-          {dk === td ? tt('Bugün') : dk === addDays(td, -1) ? tt('Dün') : d.toLocaleDateString(flxgLocale(), { dateStyle: 'medium' })}
+          {dk === td ? tt("Today") : dk === addDays(td, -1) ? tt("Yesterday") : d.toLocaleDateString(flxgLocale(), { dateStyle: 'medium' })}
         </div>,
       );
     }
@@ -649,7 +649,7 @@ function Inbox({ toggleSide, mobile }: { toggleSide: () => void; mobile: boolean
             </span>
             <span>{notifText(e, n)}</span>
           </div>
-          <div className="flxg-notif-title">{n.title || tt('(silinmiş görev)')}</div>
+          <div className="flxg-notif-title">{n.title || tt("(deleted task)")}</div>
           {n.data?.excerpt && <div className="flxg-notif-ex">{n.data.excerpt}</div>}
           <div className="flxg-notif-meta">
             {l && (
@@ -670,7 +670,7 @@ function Inbox({ toggleSide, mobile }: { toggleSide: () => void; mobile: boolean
       <TopBar
         title={
           <div className="flxg-crumbs">
-            <h1>{tt('Bildirimler')}</h1>
+            <h1>{tt("Notifications")}</h1>
           </div>
         }
         toggleSide={toggleSide}
@@ -680,8 +680,8 @@ function Inbox({ toggleSide, mobile }: { toggleSide: () => void; mobile: boolean
             <div className="flxg-seg">
               {(
                 [
-                  ['all', tt('Tümü')],
-                  ['unread', tt('Okunmamış')],
+                  ['all', tt("All")],
+                  ['unread', tt("Unread")],
                 ] as const
               ).map(([k, label]) => (
                 <button key={k} type="button" className={filter === k ? 'is-on' : ''} onClick={() => (store.set('inbox-filter', k), setFilter(k))}>
@@ -702,7 +702,7 @@ function Inbox({ toggleSide, mobile }: { toggleSide: () => void; mobile: boolean
               }
             >
               <Ic n="check" s={14} />
-              <span className="flxg-hide-sm">{tt('Tümünü okundu say')}</span>
+              <span className="flxg-hide-sm">{tt("Mark all as read")}</span>
             </button>
           </>
         }
@@ -715,14 +715,14 @@ function Inbox({ toggleSide, mobile }: { toggleSide: () => void; mobile: boolean
                 <div className="flxg-empty-ic">
                   <Ic n="bell" s={34} />
                 </div>
-                <p>{filter === 'unread' ? tt('Okunmamış bildirim yok. 🎉') : tt('Henüz bildirim yok.')}</p>
+                <p>{filter === 'unread' ? tt("No unread notifications. 🎉") : tt("No notifications yet.")}</p>
               </div>
             ) : (
               rows
             )}
             {more && (
               <button type="button" className="flxg-btn flxg-more" onClick={() => void fetchMore(false, items)}>
-                {tt('Daha fazla')}
+                {tt("More")}
               </button>
             )}
           </div>

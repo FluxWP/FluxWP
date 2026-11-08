@@ -103,12 +103,12 @@ function flxa_quick_bar() {
 	if ( ! $links ) {
 		return;
 	}
-	echo '<nav class="flxa-qa" aria-label="' . esc_attr__( 'Hızlı işlemler', 'flx-admin' ) . '">';
+	echo '<nav class="flxa-qa" aria-label="' . esc_attr__( 'Quick actions', 'flx-admin' ) . '">';
 	foreach ( $links as $l ) {
 		echo '<a class="flxa-qa-item" href="' . esc_url( $l[1] ) . '"' . ( 'task' === ( $l[3] ?? '' ) ? ' data-flxa-task' : '' ) . '><span class="flxa-qa-ico">' . flxa_icon( $l[2] ?? 'dot', 18 ) . '</span><span>' . esc_html( $l[0] ) . '</span></a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 	if ( current_user_can( 'manage_options' ) ) {
-		echo '<a class="flxa-qa-item is-add" href="' . esc_url( flxa_settings_url( 'dashboard' ) ) . '" title="' . esc_attr__( 'Kısayol ekle', 'flx-admin' ) . '"><span class="flxa-qa-ico">' . flxa_icon( 'plus', 18 ) . '</span><span class="screen-reader-text">' . esc_html__( 'Kısayol ekle', 'flx-admin' ) . '</span></a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<a class="flxa-qa-item is-add" href="' . esc_url( flxa_settings_url( 'dashboard' ) ) . '" title="' . esc_attr__( 'Add shortcut', 'flx-admin' ) . '"><span class="flxa-qa-ico">' . flxa_icon( 'plus', 18 ) . '</span><span class="screen-reader-text">' . esc_html__( 'Add shortcut', 'flx-admin' ) . '</span></a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 	echo '</nav>';
 }
@@ -144,40 +144,40 @@ function flxa_task_lists( $need = 'view' ) {
 
 function flxa_render_tasks( array $p ) {
 	$lists = flxa_task_lists();
-	$opts  = array( 0 => __( 'Tüm listeler', 'flx-admin' ) );
+	$opts  = array( 0 => __( 'All lists', 'flx-admin' ) );
 	foreach ( $lists as $id => $l ) {
 		$opts[ $id ] = ( '' !== $l['space'] ? $l['space'] . ' / ' : '' ) . $l['name'];
 	}
 	$h = flxa_widget_filters(
 		array(
 			'scope' => array(
-				'label'   => __( 'Kapsam', 'flx-admin' ),
+				'label'   => __( 'Scope', 'flx-admin' ),
 				'value'   => $p['scope'],
 				'options' => array(
-					'mine'    => __( 'Bana atanan', 'flx-admin' ),
-					'created' => __( 'Oluşturduğum', 'flx-admin' ),
-					'all'     => __( 'Tüm görevler', 'flx-admin' ),
+					'mine'    => __( 'Assigned to me', 'flx-admin' ),
+					'created' => __( 'Created by me', 'flx-admin' ),
+					'all'     => __( 'All tasks', 'flx-admin' ),
 				),
 			),
 			'list'  => array(
-				'label'   => __( 'Liste', 'flx-admin' ),
+				'label'   => __( 'List', 'flx-admin' ),
 				'value'   => isset( $lists[ $p['list'] ] ) ? $p['list'] : 0,
 				'options' => $opts,
 			),
 			'chart' => array(
-				'label'   => __( 'Grafik', 'flx-admin' ),
+				'label'   => __( 'Chart', 'flx-admin' ),
 				'value'   => $p['chart'],
 				'options' => array(
-					'status'   => __( 'Duruma göre', 'flx-admin' ),
-					'priority' => __( 'Önceliğe göre', 'flx-admin' ),
-					'list'     => __( 'Listeye göre', 'flx-admin' ),
-					'person'   => __( 'Kişiye göre', 'flx-admin' ),
+					'status'   => __( 'By status', 'flx-admin' ),
+					'priority' => __( 'By priority', 'flx-admin' ),
+					'list'     => __( 'By list', 'flx-admin' ),
+					'person'   => __( 'By person', 'flx-admin' ),
 				),
 			),
 		)
 	);
 	if ( ! $lists ) {
-		return $h . '<p class="flxa-empty">' . esc_html__( 'Görebildiğiniz görev listesi yok.', 'flx-admin' ) . '</p>';
+		return $h . '<p class="flxa-empty">' . esc_html__( 'No task lists you can see.', 'flx-admin' ) . '</p>';
 	}
 
 	global $wpdb;
@@ -221,7 +221,7 @@ function flxa_render_tasks( array $p ) {
 		$rows = $wpdb->get_results( "SELECT t.priority, COUNT(*) AS n FROM {$t} t WHERE {$where} AND t.completed_at IS NULL GROUP BY t.priority ORDER BY (t.priority = 0), t.priority", ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		foreach ( (array) $rows as $r ) {
 			$i     = (int) $r['priority'];
-			$seg[] = array( $pr[ $i ]['label'] ?? __( 'Önceliksiz', 'flx-admin' ), (int) $r['n'], $pr[ $i ]['color'] ?? '#CBD5E1' );
+			$seg[] = array( $pr[ $i ]['label'] ?? __( 'No priority', 'flx-admin' ), (int) $r['n'], $pr[ $i ]['color'] ?? '#CBD5E1' );
 		}
 	} elseif ( 'list' === $p['chart'] ) {
 		$rows = $wpdb->get_results( "SELECT t.list_id, COUNT(*) AS n FROM {$t} t WHERE {$where} AND t.completed_at IS NULL GROUP BY t.list_id ORDER BY n DESC", ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
@@ -233,14 +233,14 @@ function flxa_render_tasks( array $p ) {
 		$rows = $wpdb->get_results( "SELECT COALESCE(x.user_id, 0) AS uid, COUNT(*) AS n FROM {$t} t LEFT JOIN {$a} x ON x.task_id = t.id WHERE {$where} AND t.completed_at IS NULL GROUP BY COALESCE(x.user_id, 0) ORDER BY n DESC", ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		foreach ( (array) $rows as $i => $r ) {
 			$u     = (int) $r['uid'] ? get_userdata( (int) $r['uid'] ) : null;
-			$seg[] = array( $u ? $u->display_name : __( 'Atanmamış', 'flx-admin' ), (int) $r['n'], $u ? $pal[ $i % count( $pal ) ] : '#CBD5E1' );
+			$seg[] = array( $u ? $u->display_name : __( 'Unassigned', 'flx-admin' ), (int) $r['n'], $u ? $pal[ $i % count( $pal ) ] : '#CBD5E1' );
 		}
 	}
 	$seg = array_values( $seg );
 	if ( count( $seg ) > 7 ) {
 		$rest = array_slice( $seg, 6 );
 		$seg  = array_slice( $seg, 0, 6 );
-		$seg[] = array( __( 'Diğer', 'flx-admin' ), array_sum( wp_list_pluck( $rest, 1 ) ), '#94A3B8' );
+		$seg[] = array( __( 'Other', 'flx-admin' ), array_sum( wp_list_pluck( $rest, 1 ) ), '#94A3B8' );
 	}
 
 	$rows = $wpdb->get_results( "SELECT t.id, t.title, t.due_date, t.priority, t.list_id FROM {$t} t WHERE {$where} AND t.completed_at IS NULL ORDER BY (t.due_date = ''), t.due_date ASC, t.id DESC LIMIT 6", ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
@@ -248,17 +248,17 @@ function flxa_render_tasks( array $p ) {
 
 	$base = admin_url( 'admin.php?page=flx-tasks' );
 	$kpi  = array(
-		array( __( 'Açık', 'flx-admin' ), (int) ( $k['open_n'] ?? 0 ), '' ),
-		array( __( 'Geciken', 'flx-admin' ), (int) ( $k['late_n'] ?? 0 ), 'is-error' ),
-		array( __( 'Bugün', 'flx-admin' ), (int) ( $k['today_n'] ?? 0 ), 'is-warn' ),
-		array( __( 'Son 7 günde biten', 'flx-admin' ), (int) ( $k['done_n'] ?? 0 ), 'is-ok' ),
+		array( __( 'Light', 'flx-admin' ), (int) ( $k['open_n'] ?? 0 ), '' ),
+		array( __( 'Overdue', 'flx-admin' ), (int) ( $k['late_n'] ?? 0 ), 'is-error' ),
+		array( __( 'Today', 'flx-admin' ), (int) ( $k['today_n'] ?? 0 ), 'is-warn' ),
+		array( __( 'Done in the last 7 days', 'flx-admin' ), (int) ( $k['done_n'] ?? 0 ), 'is-ok' ),
 	);
 	$h .= '<div class="flxa-kpis">';
 	foreach ( $kpi as $x ) {
 		$h .= '<span class="flxa-kpi ' . esc_attr( $x[1] ? $x[2] : '' ) . '"><strong>' . esc_html( number_format_i18n( $x[1] ) ) . '</strong><small>' . esc_html( $x[0] ) . '</small></span>';
 	}
 	$h .= '</div>';
-	$h .= $seg ? flxa_donut( $seg, number_format_i18n( (int) ( $k['open_n'] ?? 0 ) ), __( 'açık görev', 'flx-admin' ) ) : '';
+	$h .= $seg ? flxa_donut( $seg, number_format_i18n( (int) ( $k['open_n'] ?? 0 ) ), __( 'open tasks', 'flx-admin' ) ) : '';
 
 	if ( $rows ) {
 		$pr = function_exists( 'flxg_priorities' ) ? flxg_priorities() : array();
@@ -266,16 +266,16 @@ function flxa_render_tasks( array $p ) {
 		foreach ( $rows as $r ) {
 			$due  = substr( (string) $r['due_date'], 0, 10 );
 			$late = $due && $due < $today;
-			$lbl  = $due ? ( $due === $today ? __( 'Bugün', 'flx-admin' ) : flx_date( strtotime( $due . ' 12:00:00' ), 'short' ) ) : '';
+			$lbl  = $due ? ( $due === $today ? __( 'Today', 'flx-admin' ) : flx_date( strtotime( $due . ' 12:00:00' ), 'short' ) ) : '';
 			$url  = function_exists( 'flxg_app_url' ) ? flxg_app_url( (int) $r['id'] ) : $base . '#/task/' . (int) $r['id'];
 			$col  = $pr[ (int) $r['priority'] ]['color'] ?? '';
 			$h   .= '<li><a href="' . esc_url( $url ) . '"><span class="flxa-check"' . ( $col ? ' style="border-color:' . esc_attr( $col ) . '"' : '' ) . ' aria-hidden="true"></span><span class="flxa-li-main"><strong>' . esc_html( $r['title'] ) . '</strong><small>' . esc_html( $lists[ (int) $r['list_id'] ]['name'] ?? '' ) . '</small></span>' . ( $lbl ? '<span class="flxa-pill ' . ( $late ? 'is-error' : ( $due === $today ? 'is-warn' : 'is-neutral' ) ) . '">' . esc_html( $lbl ) . '</span>' : '' ) . '</a></li>';
 		}
 		$h .= '</ul>';
 	} else {
-		$h .= '<p class="flxa-empty">' . esc_html__( 'Açık görev yok.', 'flx-admin' ) . '</p>';
+		$h .= '<p class="flxa-empty">' . esc_html__( 'No open tasks.', 'flx-admin' ) . '</p>';
 	}
-	$h .= '<p class="flxa-widget-foot"><a href="#" data-flxa-task>' . esc_html__( '+ Görev oluştur', 'flx-admin' ) . '</a><a href="' . esc_url( $base . '#/home' ) . '">' . esc_html__( 'Flux Tasks\'i aç', 'flx-admin' ) . ' →</a></p>';
+	$h .= '<p class="flxa-widget-foot"><a href="#" data-flxa-task>' . esc_html__( '+ Create task', 'flx-admin' ) . '</a><a href="' . esc_url( $base . '#/home' ) . '">' . esc_html__( 'Open Flux Tasks', 'flx-admin' ) . ' →</a></p>';
 	return $h;
 }
 
@@ -293,21 +293,21 @@ function flxa_render_donations( array $p ) {
 	$h    = flxa_widget_filters(
 		array(
 			'days'  => array(
-				'label'   => __( 'Dönem', 'flx-admin' ),
+				'label'   => __( 'Period', 'flx-admin' ),
 				'value'   => $days,
 				'options' => array(
-					7  => __( 'Son 7 gün', 'flx-admin' ),
-					14 => __( 'Son 14 gün', 'flx-admin' ),
-					30 => __( 'Son 30 gün', 'flx-admin' ),
+					7  => __( 'Last 7 days', 'flx-admin' ),
+					14 => __( 'Last 14 days', 'flx-admin' ),
+					30 => __( 'Last 30 days', 'flx-admin' ),
 				),
 			),
 			'split' => array(
-				'label'   => __( 'Dağılım', 'flx-admin' ),
+				'label'   => __( 'Breakdown', 'flx-admin' ),
 				'value'   => $p['split'],
 				'options' => array(
-					'type'     => __( 'Bağış türüne göre', 'flx-admin' ),
-					'provider' => __( 'Ödeme yöntemine göre', 'flx-admin' ),
-					'none'     => __( 'Dağılım yok', 'flx-admin' ),
+					'type'     => __( 'By donation type', 'flx-admin' ),
+					'provider' => __( 'By payment method', 'flx-admin' ),
+					'none'     => __( 'No breakdown', 'flx-admin' ),
 				),
 			),
 		)
@@ -347,8 +347,8 @@ function flxa_render_donations( array $p ) {
 		$total += $v;
 		$list[] = array( $k, $v, flx_date( $ts, 'short' ) );
 	}
-	$h .= '<div class="flxa-dsum"><strong>' . esc_html( flxa_money( $total, $cur ) ) . '</strong><small>' . esc_html( sprintf( /* translators: %d: days */ __( 'son %d gün', 'flx-admin' ), $days ) ) . '</small></div>';
-	$h .= '<div class="flxa-chart" style="--n:' . (int) $days . '" role="img" aria-label="' . esc_attr__( 'Günlük bağış toplamları', 'flx-admin' ) . '">';
+	$h .= '<div class="flxa-dsum"><strong>' . esc_html( flxa_money( $total, $cur ) ) . '</strong><small>' . esc_html( sprintf( /* translators: %d: days */ __( 'last %d days', 'flx-admin' ), $days ) ) . '</small></div>';
+	$h .= '<div class="flxa-chart" style="--n:' . (int) $days . '" role="img" aria-label="' . esc_attr__( 'Daily donation totals', 'flx-admin' ) . '">';
 	foreach ( $list as $i => $d ) {
 		$bh = $max > 0 ? max( 3, round( $d[1] / $max * 100 ) ) : 3;
 		$h .= '<span class="flxa-bar' . ( $days - 1 === $i ? ' is-today' : '' ) . '" style="--h:' . (int) $bh . '%" title="' . esc_attr( $d[2] . ' · ' . flxa_money( $d[1], $cur ) ) . '"></span>';
@@ -359,18 +359,18 @@ function flxa_render_donations( array $p ) {
 		$pal = flxa_palette_colors();
 		$seg = array();
 		foreach ( $split as $i => $r ) {
-			$label = 'provider' === $p['split'] ? ( function_exists( 'flxb_provider_label' ) ? flxb_provider_label( $r['k'] ) : $r['k'] ) : ( '' !== $r['k'] ? $r['k'] : __( 'Türsüz', 'flx-admin' ) );
+			$label = 'provider' === $p['split'] ? ( function_exists( 'flxb_provider_label' ) ? flxb_provider_label( $r['k'] ) : $r['k'] ) : ( '' !== $r['k'] ? $r['k'] : __( 'No type', 'flx-admin' ) );
 			$seg[] = array( '' !== $label ? $label : '—', (float) $r['s'], $pal[ $i % count( $pal ) ] );
 		}
 		if ( count( $seg ) > 7 ) {
 			$rest  = array_slice( $seg, 6 );
 			$seg   = array_slice( $seg, 0, 6 );
-			$seg[] = array( __( 'Diğer', 'flx-admin' ), array_sum( wp_list_pluck( $rest, 1 ) ), '#94A3B8' );
+			$seg[] = array( __( 'Other', 'flx-admin' ), array_sum( wp_list_pluck( $rest, 1 ) ), '#94A3B8' );
 		}
 		$h .= flxa_donut(
 			$seg,
 			flxa_money( $total, $cur ),
-			'type' === $p['split'] ? __( 'türlere göre', 'flx-admin' ) : __( 'yöntemlere göre', 'flx-admin' ),
+			'type' === $p['split'] ? __( 'by type', 'flx-admin' ) : __( 'by method', 'flx-admin' ),
 			function ( $v ) use ( $cur ) {
 				return flxa_money( $v, $cur );
 			}
@@ -380,22 +380,22 @@ function flxa_render_donations( array $p ) {
 	if ( $recent ) {
 		$h .= '<ul class="flxa-list">';
 		foreach ( $recent as $r ) {
-			$name = '' !== (string) $r['name'] ? $r['name'] : __( 'Anonim', 'flx-admin' );
+			$name = '' !== (string) $r['name'] ? $r['name'] : __( 'Anonymous', 'flx-admin' );
 			$st   = function_exists( 'flxb_status_label' ) ? flxb_status_label( $r['status'] ) : array( '', $r['status'] );
 			$tone = 'completed' === $r['status'] ? 'ok' : ( 'pending' === $r['status'] ? 'warn' : 'neutral' );
 			$url  = admin_url( 'admin.php?page=flxb-donations&donation=' . (int) $r['id'] );
 			$ago  = flx_time_ago( $r['created_at'] );
 			if ( (int) $r['line_n'] > 1 ) {
 				/* translators: %d: number of lines in one order */
-				$ago .= ' · ' . sprintf( __( '%d kalem', 'flx-admin' ), (int) $r['line_n'] );
+				$ago .= ' · ' . sprintf( __( '%d items', 'flx-admin' ), (int) $r['line_n'] );
 			}
 			$h   .= '<li><a href="' . esc_url( $url ) . '"><span class="flxa-ava">' . esc_html( flxa_initials( $name ) ) . '</span><span class="flxa-li-main"><strong>' . esc_html( $name ) . '</strong><small>' . esc_html( $ago ) . '</small></span><span class="flxa-pill is-' . esc_attr( $tone ) . '">' . esc_html( (string) ( $st[1] ?? $r['status'] ) ) . '</span><b>' . esc_html( flxa_money( $r['amount'], $r['currency'] ) ) . '</b></a></li>';
 		}
 		$h .= '</ul>';
 	} else {
-		$h .= '<p class="flxa-empty">' . esc_html__( 'Henüz bağış yok.', 'flx-admin' ) . '</p>';
+		$h .= '<p class="flxa-empty">' . esc_html__( 'No donations yet.', 'flx-admin' ) . '</p>';
 	}
-	$h .= '<p class="flxa-widget-foot"><a href="' . esc_url( admin_url( 'admin.php?page=flxb-donations' ) ) . '">' . esc_html__( 'Tüm bağışlar', 'flx-admin' ) . ' →</a></p>';
+	$h .= '<p class="flxa-widget-foot"><a href="' . esc_url( admin_url( 'admin.php?page=flxb-donations' ) ) . '">' . esc_html__( 'All donations', 'flx-admin' ) . ' →</a></p>';
 	return $h;
 }
 
@@ -449,12 +449,12 @@ function flxa_ajax_task_form() {
 function flxa_ajax_task_create() {
 	check_ajax_referer( 'flxa', 'nonce' );
 	if ( ! flxa_task_available() || ! function_exists( 'flxg_create_task' ) ) {
-		wp_send_json_error( array( 'message' => __( 'Flux Tasks kullanılamıyor.', 'flx-admin' ) ), 403 );
+		wp_send_json_error( array( 'message' => __( 'Flux Tasks isn\'t available.', 'flx-admin' ) ), 403 );
 	}
 	$uid  = get_current_user_id();
 	$list = flxg_get_list( absint( $_POST['list'] ?? 0 ) );
 	if ( ! $list || ! flxg_can_list( $list, 'edit' ) ) {
-		wp_send_json_error( array( 'message' => __( 'Bu listeye görev ekleme yetkiniz yok.', 'flx-admin' ) ), 403 );
+		wp_send_json_error( array( 'message' => __( 'You can\'t add tasks to this list.', 'flx-admin' ) ), 403 );
 	}
 	$d = array(
 		'list_id'  => (int) $list['id'],

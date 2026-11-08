@@ -220,7 +220,7 @@ add_action(
 				'callback'            => function ( WP_REST_Request $r ) {
 					$code = flxan_ref_save( (string) $r['code'], $r['delete'] ? null : (string) $r['name'] );
 					if ( '' === $code ) {
-						return new WP_Error( 'flxan_bad_code', __( 'Geçersiz kod. Harf, rakam, - ve _ kullanın.', 'flx-analytics' ), array( 'status' => 400 ) );
+						return new WP_Error( 'flxan_bad_code', __( 'Invalid code. Use letters, digits, - and _.', 'flx-analytics' ), array( 'status' => 400 ) );
 					}
 					return array(
 						'code' => $code,

@@ -124,13 +124,13 @@ class FLXSM_YouTube extends FLXSM_Google_Base {
 	public function validate( array $pl, $acc ) {
 		$errs = parent::validate( $pl, $acc );
 		if ( ! $this->first_video( $pl ) ) {
-			$errs[] = __( 'YouTube için bir video seçin.', 'flx-social' );
+			$errs[] = __( 'Choose a video for YouTube.', 'flx-social' );
 		}
 		if ( flxsm_len( $this->title( $pl ) ) > 100 ) {
-			$errs[] = __( 'YouTube başlığı en çok 100 karakter.', 'flx-social' );
+			$errs[] = __( 'YouTube title can be at most 100 characters.', 'flx-social' );
 		}
 		if ( preg_match( '/[<>]/', $this->title( $pl ) . $pl['text'] ) ) {
-			$errs[] = __( 'YouTube başlık ve açıklamada < ve > karakterlerini kabul etmiyor.', 'flx-social' );
+			$errs[] = __( 'YouTube does not accept < and > in the title and description.', 'flx-social' );
 		}
 		return $errs;
 	}
@@ -209,7 +209,7 @@ class FLXSM_YouTube extends FLXSM_Google_Base {
 			);
 		}
 		if ( ! $out ) {
-			return new WP_Error( 'flxsm_none', __( 'Bu Google hesabında YouTube kanalı yok.', 'flx-social' ) );
+			return new WP_Error( 'flxsm_none', __( 'This Google account has no YouTube channel.', 'flx-social' ) );
 		}
 		return $out;
 	}
@@ -217,7 +217,7 @@ class FLXSM_YouTube extends FLXSM_Google_Base {
 	public function publish_step( array $acc, array $pl, array $state ) {
 		$v = $this->first_video( $pl );
 		if ( ! $v || ! $v['path'] || ! file_exists( $v['path'] ) ) {
-			return new WP_Error( 'flxsm_media', __( 'Video dosyası sunucuda bulunamadı.', 'flx-social' ), array( 'retry' => false ) );
+			return new WP_Error( 'flxsm_media', __( 'Video file not found on the server.', 'flx-social' ), array( 'retry' => false ) );
 		}
 		$o = $pl['options'];
 		if ( empty( $state['upload'] ) ) {
@@ -271,7 +271,7 @@ class FLXSM_YouTube extends FLXSM_Google_Base {
 				$len  = min( self::CHUNK, $total - $off );
 				$data = flxsm_read_chunk( $v['path'], $off, $len );
 				if ( false === $data ) {
-					return new WP_Error( 'flxsm_media', __( 'Video dosyası okunamadı.', 'flx-social' ), array( 'retry' => false ) );
+					return new WP_Error( 'flxsm_media', __( 'Could not read the video file.', 'flx-social' ), array( 'retry' => false ) );
 				}
 				$r = flxsm_http(
 					'PUT',
@@ -352,7 +352,7 @@ class FLXSM_YouTube extends FLXSM_Google_Base {
 			)
 		);
 		if ( ! $r['ok'] || empty( $r['json']['items'][0] ) ) {
-			return $r['ok'] ? new WP_Error( 'flxsm_api', __( 'Video YouTube’da bulunamadı.', 'flx-social' ) ) : $this->err( $r );
+			return $r['ok'] ? new WP_Error( 'flxsm_api', __( 'Video not found on YouTube.', 'flx-social' ) ) : $this->err( $r );
 		}
 		$sn                = $r['json']['items'][0]['snippet'];
 		$sn['title']       = $this->title( $pl );
@@ -491,7 +491,7 @@ class FLXSM_GBP extends FLXSM_Google_Base {
 		$errs = parent::validate( $pl, $acc );
 		$t    = (string) ( $pl['options']['gbp_topic'] ?? 'STANDARD' );
 		if ( in_array( $t, array( 'EVENT', 'OFFER' ), true ) && ( empty( $pl['options']['event_title'] ) || empty( $pl['options']['event_start'] ) ) ) {
-			$errs[] = __( 'Etkinlik/teklif gönderisi için başlık ve başlangıç tarihi gerekli.', 'flx-social' );
+			$errs[] = __( 'An event/offer post needs a title and a start date.', 'flx-social' );
 		}
 		return $errs;
 	}
@@ -507,7 +507,7 @@ class FLXSM_GBP extends FLXSM_Google_Base {
 		);
 		$r     = flxsm_http( 'GET', 'https://mybusinessaccountmanagement.googleapis.com/v1/accounts', array( 'bearer' => $token['access_token'] ) );
 		if ( ! $r['ok'] ) {
-			return $this->err( $r, __( 'İşletme hesapları alınamadı (Google’ın Business Profile API erişim onayı gerekir)', 'flx-social' ) );
+			return $this->err( $r, __( 'Could not get business accounts (requires Google\'s Business Profile API access approval)', 'flx-social' ) );
 		}
 		$out = array();
 		foreach ( (array) ( $r['json']['accounts'] ?? array() ) as $a ) {
@@ -541,7 +541,7 @@ class FLXSM_GBP extends FLXSM_Google_Base {
 			}
 		}
 		if ( ! $out ) {
-			return new WP_Error( 'flxsm_none', __( 'Bu Google hesabında yönetilen işletme konumu bulunamadı.', 'flx-social' ) );
+			return new WP_Error( 'flxsm_none', __( 'No managed business location found on this Google account.', 'flx-social' ) );
 		}
 		return $out;
 	}

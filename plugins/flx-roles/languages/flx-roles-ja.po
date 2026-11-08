@@ -1,0 +1,321 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Roles and access"
+msgstr "役割とアクセス"
+
+msgid "Automatic (first available: Tasks, Certificates, Donations)"
+msgstr "自動 (最初に利用可能: タスク、証明書、寄付)"
+
+msgid "Tasks"
+msgstr "タスク"
+
+msgid "Certificates"
+msgstr "証明書"
+
+msgid "Donations"
+msgstr "寄付"
+
+msgid "Dashboard (admin home)"
+msgstr "ダッシュボード (管理者ホーム)"
+
+msgid "Profile"
+msgstr "プロフィール"
+
+msgid "%s person"
+msgid_plural "%s people"
+msgstr[0] "%sの人"
+
+msgid "You are not allowed to do this."
+msgstr "これを行うことは許可されていません。"
+
+msgid "Saved. Permission changes apply immediately."
+msgstr "保存されました。権限の変更はすぐに適用されます。"
+
+msgid "The role is back to its default permissions."
+msgstr "ロールはデフォルトの権限に戻ります。"
+
+msgid "Person added to the role."
+msgstr "人物が役割に追加されました。"
+
+msgid "Person removed from the role."
+msgstr "役割から削除された人。"
+
+msgid "No user with this username or email. Create the user first."
+msgstr "このユーザー名またはメールアドレスを持つユーザーはいません。まずユーザーを作成します。"
+
+msgid "Administrators can't get this role; they already see everything."
+msgstr "管理者はこの役割を取得できません。彼らはすでにすべてを見ています。"
+
+msgid "The action could not be completed."
+msgstr "アクションを完了できませんでした。"
+
+msgid "Role added; it starts with admin panel access only. Turn on its permissions in the table."
+msgstr "役割が追加されました。管理パネルへのアクセスのみで開始されます。テーブル内の権限をオンにします。"
+
+msgid "Role deleted; its people moved to the default role."
+msgstr "役割が削除されました。その従業員はデフォルトの役割に移動しました。"
+
+msgid "Role name must be 1-40 characters."
+msgstr "ロール名は 1 ~ 40 文字にする必要があります。"
+
+msgid "Turn on and off what each role can access. A disabled action disappears from the menu and can't be done even by URL. The WordPress Administrator sees everything."
+msgstr "各役割がアクセスできるものをオンまたはオフにします。無効化されたアクションはメニューから消え、URL からも実行できなくなります。 WordPress 管理者はすべてを把握しています。"
+
+msgid "Delete this role? Its people move to the default role."
+msgstr "この役割を削除しますか?その従業員はデフォルトのロールに移動します。"
+
+msgid "Delete role"
+msgstr "役割の削除"
+
+msgid "New role"
+msgstr "新しい役割"
+
+msgid "For example Volunteer or Accounting. Starts with admin panel access only."
+msgstr "たとえば、ボランティアや会計などです。管理パネルへのアクセスのみで開始します。"
+
+msgid "Role name"
+msgstr "役割名"
+
+msgid "Add role"
+msgstr "役割の追加"
+
+msgid "Access"
+msgstr "アクセス"
+
+msgid "%s is not installed"
+msgstr "%sがインストールされていません"
+
+msgid "The setting is saved; it takes effect once the plugin is updated to a version that enforces this permission."
+msgstr "設定は保存されます。この権限は、プラグインがこの権限を強制するバージョンに更新されると有効になります。"
+
+msgid "Waiting for %s update"
+msgstr "%sアップデートを待っています"
+
+msgid "broad access"
+msgstr "幅広いアクセス"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "%s: screen after login"
+msgstr "%s: ログイン後の画面"
+
+msgid "Referral link lifetime"
+msgstr "紹介リンクの有効期間"
+
+msgid "days"
+msgstr "日"
+
+msgid "If a visitor who came through a referral link donates within this period, the donation is credited to that person. If they come through another referral link, the latest one wins."
+msgstr "紹介リンクを介して訪問した訪問者がこの期間内に寄付をした場合、その寄付はその人に入金されます。別の紹介リンクを経由した場合は、最新の紹介リンクが優先されます。"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Reset this role's permissions to the defaults?"
+msgstr "このロールの権限をデフォルトにリセットしますか?"
+
+msgid "%s: reset to defaults"
+msgstr "%s: デフォルトにリセット"
+
+msgid "People"
+msgstr "人々"
+
+msgid "Add WhatsApp number"
+msgstr "WhatsApp番号を追加"
+
+msgid "Referral link"
+msgstr "紹介リンク"
+
+msgid "Copy"
+msgstr "コピー"
+
+msgid "Remove this person from the role?"
+msgstr "この人を役割から削除しますか?"
+
+msgid "Remove from role"
+msgstr "役割から削除"
+
+msgid "Nobody yet."
+msgstr "まだ誰もいません。"
+
+msgid "Username or email"
+msgstr "ユーザー名またはメールアドレス"
+
+msgid "Add"
+msgstr "追加"
+
+msgid "For a new person, first <a href=\"%s\">create a user</a> and choose one of these roles."
+msgstr "新しいユーザーの場合は、まず<a href=\"%s\">ユーザー</a>を作成し、これらのロールのいずれかを選択します。"
+
+msgid "For every permission of every role, see <a href=\"%s\">Admin theme › Permissions</a>."
+msgstr "すべてのロールのすべての権限については、<a href=\"%s\">管理テーマ › 権限</a>を参照してください。"
+
+msgid "Copied"
+msgstr "コピーされました"
+
+msgid "Director"
+msgstr "ディレクター"
+
+msgid "Has every permission on this page: all donations, certificate and task management, reports. Unlike the WordPress administrator, can't install plugins or change site settings."
+msgstr "このページに対するすべての権限 (すべての寄付、証明書とタスクの管理、レポート) を持ちます。 WordPress 管理者とは異なり、プラグインをインストールしたり、サイト設定を変更したりすることはできません。"
+
+msgid "Manager"
+msgstr "マネージャー"
+
+msgid "Everything Staff can do, plus the donation and certificate dashboards (overall totals) and reports, and sets report schedules."
+msgstr "スタッフが実行できるすべての機能に加え、寄付金と証明書のダッシュボード (全体の合計) とレポート、およびレポート スケジュールの設定を行うことができます。"
+
+msgid "Staff"
+msgstr "スタッフ"
+
+msgid "Regular user in Tasks, creates certificates, opens donations on behalf of others, sees the donations, donors and certificates they referred."
+msgstr "タスクの通常のユーザーは、証明書を作成し、他の人に代わって寄付を開始し、寄付、寄付者、および彼らが参照した証明書を確認します。"
+
+msgid "Role added from the panel."
+msgstr "役割はパネルから追加されました。"
+
+msgid "General"
+msgstr "一般"
+
+msgid "Can enter the admin panel"
+msgstr "管理パネルに入ることができます"
+
+msgid "Can be a referrer (gets a personal referral link, can be chosen as referrer on certificates and donations)"
+msgstr "紹介者になることができます (個人紹介リンクを取得し、証明書や寄付の紹介者として選択できます)"
+
+msgid "Uses Tasks; sees the projects and lists they have access to"
+msgstr "タスクを使用します。アクセス権のあるプロジェクトとリストを表示します"
+
+msgid "Creates projects, folders and lists"
+msgstr "プロジェクト、フォルダー、リストを作成します"
+
+msgid "Uses AI features in Tasks"
+msgstr "タスクで AI 機能を使用する"
+
+msgid "Manages Tasks (sees every project, usage board, settings)"
+msgstr "タスクを管理します (すべてのプロジェクト、使用状況ボード、設定を表示します)"
+
+msgid "Creates certificates"
+msgstr "証明書を作成します"
+
+msgid "Sees only certificates they created or referred"
+msgstr "自分が作成または参照した証明書のみが表示されます"
+
+msgid "Sends in bulk"
+msgstr "一括送信"
+
+msgid "Sees the certificate dashboard"
+msgstr "証明書ダッシュボードが表示されます"
+
+msgid "Manages certificates (all, templates, events, settings)"
+msgstr "証明書を管理します (すべて、テンプレート、イベント、設定)"
+
+msgid "Sees donations they referred"
+msgstr "紹介した寄付を確認します"
+
+msgid "Lists their own donors (donors of donations they referred)"
+msgstr "自分自身の寄付者(紹介した寄付の寄付者)をリストします。"
+
+msgid "Creates donations on behalf of others, with themselves as referrer (from the panel or the WhatsApp assistant)"
+msgstr "(パネルまたは WhatsApp アシスタントから) 自分自身を紹介者として、他人に代わって寄付を作成します。"
+
+msgid "Gets notified when a donation they referred is paid or cancelled"
+msgstr "紹介した寄付が支払われたとき、またはキャンセルされたときに通知を受け取ります"
+
+msgid "Sees the donation dashboard (overall totals)"
+msgstr "寄付ダッシュボードが表示されます (全体の合計)"
+
+msgid "Sees all donations and donors"
+msgstr "すべての寄付と寄付者を表示します"
+
+msgid "Call Center"
+msgstr "コールセンター"
+
+msgid "Uses WhatsApp chats"
+msgstr "WhatsApp チャットを使用する"
+
+msgid "Uses staff tools in the WhatsApp assistant according to their role (if their number is on their profile)"
+msgstr "WhatsApp アシスタントのスタッフ ツールを役割に応じて使用します (プロフィールに番号が記載されている場合)"
+
+msgid "Manages the Call Center (AI assistant, settings)"
+msgstr "コールセンターの管理(AIアシスタント、設定)"
+
+msgid "Studio"
+msgstr "スタジオ"
+
+msgid "Uses Studio (own gallery and shared folders)"
+msgstr "Studio を使用します (独自のギャラリーと共有フォルダー)"
+
+msgid "Manages Studio (everyone's gallery, settings)"
+msgstr "Studio (全員のギャラリー、設定) を管理します"
+
+msgid "Reports"
+msgstr "レポート"
+
+msgid "Can receive daily/periodic reports"
+msgstr "日報・定期レポートの受信が可能"
+
+msgid "Sees overall reports (all staff, totals)"
+msgstr "全体的なレポート (全スタッフ、合計) を表示します。"
+
+msgid "Sets staff and manager report schedules and motivation messages"
+msgstr "スタッフとマネージャーのレポートスケジュールとモチベーションメッセージを設定します"
+
+msgid "Invalid phone number. Write it with the country code or as 05xx."
+msgstr "電話番号が無効です。国番号または 05xx として記述します。"
+
+msgid "This number belongs to another user: %s."
+msgstr "この番号は別のユーザー%sに属します。"
+
+msgid "WhatsApp number"
+msgstr "WhatsApp番号"
+
+msgid "Phone"
+msgstr "電話"
+
+msgid "The WhatsApp assistant recognizes whoever writes from this number as this user and enables what their role allows (e.g. donations on behalf of others, their own donors). Only an administrator can change the number."
+msgstr "WhatsApp アシスタントは、この番号から書き込んだ人をこのユーザーとして認識し、その役割で許可されているもの (他人や自分の寄付者に代わって寄付するなど) を有効にします。管理者のみが番号を変更できます。"
+
+msgid "Personal link"
+msgstr "個人リンク"
+
+msgid "Donations from visitors who come through this link show you as the referrer."
+msgstr "このリンクを介してアクセスした訪問者からの寄付により、あなたが紹介者として表示されます。"
+
+msgid "To share another page, add %s to the end of its address."
+msgstr "別のページを共有するには、そのアドレスの末尾に%sを追加します。"
+
+msgid "Flux Roles"
+msgstr "フラックスの役割"
+
+msgid "FluxWP roles"
+msgstr "FluxWP の役割"
+
+msgid "Missing role: %s. Deactivate and reactivate the plugin."
+msgstr "役割がありません:%s。プラグインを非アクティブ化し、再度アクティブ化します。"
+
+msgid "Staff WhatsApp numbers"
+msgstr "スタッフの WhatsApp 番号"
+
+msgid "%s people have no WhatsApp number on their profile; the assistant won't recognize them."
+msgstr "%sの人のプロフィールには WhatsApp 番号がありません。アシスタントはそれらを認識しません。"
+
+msgid "Everyone in the roles has a number."
+msgstr "役割の全員に番号が付いています。"
+
+msgid "Plugins enforcing role permissions"
+msgstr "役割権限を強制するプラグイン"
+
+msgid "Some enabled permissions aren't enforced yet; waiting for updates of: %s. Until then these people can't see the related screen."
+msgstr "一部の有効なアクセス許可はまだ適用されていません。%sの更新を待っています。それまでは、これらの人々は関連画面を見ることができません。"
+
+msgid "All enabled permissions are enforced."
+msgstr "有効になっているすべての権限が強制されます。"
+
+msgid "Roles"
+msgstr "役割"
+
+msgid "[['Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.', 'tr']]"
+msgstr "[['スタッフ、管理者、およびマネージャーの役割を追加します (新しい役割もパネルから追加されます);タスク、証明書、寄付、コールセンター、スタジオ、およびロールのレポートへのアクセスを 1 つのページからオンまたはオフにできます。個人の参照リンクとユーザーの電話番号 (WhatsApp アシスタント用) はここにあります。', 'tr']]"

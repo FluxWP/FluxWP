@@ -19,36 +19,36 @@ final class FLXCRM_Segments {
 		return (array) apply_filters(
 			'flxcrm_segment_fields',
 			array(
-				'role'          => array( __( 'Rol', 'flx-crm' ), 'role', array( 'has', 'not' ) ),
-				'tag'           => array( __( 'Etiket', 'flx-crm' ), 'tag', array( 'has', 'not' ) ),
-				'rfm'           => array( __( 'RFM segmenti', 'flx-crm' ), 'rfm', array( 'is', 'not' ) ),
-				'ltv'           => array( __( 'Toplam değer', 'flx-crm' ), 'number', array( 'gte', 'lte' ) ),
-				'paid_days'     => array( __( 'Ödeme yaptığı gün sayısı', 'flx-crm' ), 'number', array( 'gte', 'lte' ) ),
-				'last_paid'     => array( __( 'Son ödeme', 'flx-crm' ), 'days', array( 'within', 'before' ) ),
-				'last_activity' => array( __( 'Son hareket', 'flx-crm' ), 'days', array( 'within', 'before' ) ),
-				'created'       => array( __( 'Eklenme', 'flx-crm' ), 'days', array( 'within', 'before' ) ),
-				'churn'         => array( __( 'Kayıp riski (%)', 'flx-crm' ), 'number', array( 'gte', 'lte' ) ),
-				'consent'       => array( __( 'İzin', 'flx-crm' ), 'consent', array( 'yes', 'no' ) ),
-				'source'        => array( __( 'İlk kaynak', 'flx-crm' ), 'source', array( 'is', 'not' ) ),
-				'city'          => array( __( 'Şehir', 'flx-crm' ), 'text', array( 'contains', 'is' ) ),
-				'has_email'     => array( __( 'E-postası var', 'flx-crm' ), 'bool', array( 'yes', 'no' ) ),
-				'has_phone'     => array( __( 'Telefonu var', 'flx-crm' ), 'bool', array( 'yes', 'no' ) ),
+				'role'          => array( __( 'Role', 'flx-crm' ), 'role', array( 'has', 'not' ) ),
+				'tag'           => array( __( 'Tag', 'flx-crm' ), 'tag', array( 'has', 'not' ) ),
+				'rfm'           => array( __( 'RFM segment', 'flx-crm' ), 'rfm', array( 'is', 'not' ) ),
+				'ltv'           => array( __( 'Total value', 'flx-crm' ), 'number', array( 'gte', 'lte' ) ),
+				'paid_days'     => array( __( 'Days with a payment', 'flx-crm' ), 'number', array( 'gte', 'lte' ) ),
+				'last_paid'     => array( __( 'Last payment', 'flx-crm' ), 'days', array( 'within', 'before' ) ),
+				'last_activity' => array( __( 'Last activity', 'flx-crm' ), 'days', array( 'within', 'before' ) ),
+				'created'       => array( __( 'Added', 'flx-crm' ), 'days', array( 'within', 'before' ) ),
+				'churn'         => array( __( 'Churn risk (%)', 'flx-crm' ), 'number', array( 'gte', 'lte' ) ),
+				'consent'       => array( __( 'Consent', 'flx-crm' ), 'consent', array( 'yes', 'no' ) ),
+				'source'        => array( __( 'First source', 'flx-crm' ), 'source', array( 'is', 'not' ) ),
+				'city'          => array( __( 'City', 'flx-crm' ), 'text', array( 'contains', 'is' ) ),
+				'has_email'     => array( __( 'Has an e-mail', 'flx-crm' ), 'bool', array( 'yes', 'no' ) ),
+				'has_phone'     => array( __( 'Has a phone', 'flx-crm' ), 'bool', array( 'yes', 'no' ) ),
 			)
 		);
 	}
 
 	public static function op_labels() {
 		return array(
-			'has'      => __( 'var', 'flx-crm' ),
-			'not'      => __( 'değil / yok', 'flx-crm' ),
-			'is'       => __( 'eşittir', 'flx-crm' ),
-			'gte'      => __( 'en az', 'flx-crm' ),
-			'lte'      => __( 'en çok', 'flx-crm' ),
-			'within'   => __( 'son … gün içinde', 'flx-crm' ),
-			'before'   => __( '… günden eski', 'flx-crm' ),
-			'yes'      => __( 'evet', 'flx-crm' ),
-			'no'       => __( 'hayır', 'flx-crm' ),
-			'contains' => __( 'içerir', 'flx-crm' ),
+			'has'      => __( 'has', 'flx-crm' ),
+			'not'      => __( 'is not / has not', 'flx-crm' ),
+			'is'       => __( 'is', 'flx-crm' ),
+			'gte'      => __( 'at least', 'flx-crm' ),
+			'lte'      => __( 'at most', 'flx-crm' ),
+			'within'   => __( 'in the last … days', 'flx-crm' ),
+			'before'   => __( 'more than … days ago', 'flx-crm' ),
+			'yes'      => __( 'yes', 'flx-crm' ),
+			'no'       => __( 'no', 'flx-crm' ),
+			'contains' => __( 'contains', 'flx-crm' ),
 		);
 	}
 
@@ -203,7 +203,7 @@ final class FLXCRM_Segments {
 				case 'days':
 					$n     = number_format_i18n( (int) $v );
 					/* translators: 1: field, 2: number of days */
-					$out[] = sprintf( 'before' === $r['op'] ? __( '%1$s: %2$s günden eski', 'flx-crm' ) : __( '%1$s: son %2$s gün içinde', 'flx-crm' ), $fields[ $r['field'] ][0], $n );
+					$out[] = sprintf( 'before' === $r['op'] ? __( '%1$s: more than %2$s days ago', 'flx-crm' ) : __( '%1$s: in the last %2$s days', 'flx-crm' ), $fields[ $r['field'] ][0], $n );
 					continue 2;
 				case 'bool':
 					$out[] = $fields[ $r['field'] ][0] . ': ' . $ops[ $r['op'] ];
@@ -211,12 +211,12 @@ final class FLXCRM_Segments {
 			}
 			if ( 'consent' === $fields[ $r['field'] ][1] ) {
 				/* translators: %s: channel */
-				$out[] = sprintf( 'no' === $r['op'] ? __( '%s izni yok', 'flx-crm' ) : __( '%s izni var', 'flx-crm' ), $v );
+				$out[] = sprintf( 'no' === $r['op'] ? __( 'no %s consent', 'flx-crm' ) : __( 'has %s consent', 'flx-crm' ), $v );
 				continue;
 			}
 			$out[] = $fields[ $r['field'] ][0] . ' ' . $ops[ $r['op'] ] . ( '' !== (string) $v ? ': ' . $v : '' );
 		}
-		return implode( 'any' === $rules['match'] ? ' · ' . __( 'ya da', 'flx-crm' ) . ' · ' : ' · ', $out );
+		return implode( 'any' === $rules['match'] ? ' · ' . __( 'or', 'flx-crm' ) . ' · ' : ' · ', $out );
 	}
 
 	public static function all() {
@@ -245,11 +245,11 @@ final class FLXCRM_Segments {
 		global $wpdb;
 		$name = mb_substr( sanitize_text_field( (string) ( $d['name'] ?? '' ) ), 0, 190 );
 		if ( '' === $name ) {
-			return new WP_Error( 'flxcrm_name', __( 'Segment adı gerekli.', 'flx-crm' ) );
+			return new WP_Error( 'flxcrm_name', __( 'A segment name is required.', 'flx-crm' ) );
 		}
 		$rules = self::sanitize_rules( $d['rules'] ?? array() );
 		if ( ! $rules['rules'] ) {
-			return new WP_Error( 'flxcrm_rules', __( 'En az bir kural ekleyin.', 'flx-crm' ) );
+			return new WP_Error( 'flxcrm_rules', __( 'Add at least one rule.', 'flx-crm' ) );
 		}
 		$row = array(
 			'name'        => $name,
@@ -291,18 +291,18 @@ final class FLXCRM_Segments {
 		$risk = (int) flxcrm_setting( 'risk_threshold' );
 		$list = array(
 			array(
-				'name'        => __( 'Geri kazanılacak bağışçılar', 'flx-crm' ),
-				'description' => __( 'Bağışçı ve kayıp riski yüksek. Hatır sorma ya da yeni proje duyurusu için.', 'flx-crm' ),
+				'name'        => __( 'Donors to win back', 'flx-crm' ),
+				'description' => __( 'Donors with a high churn risk. For a check-in or a new project announcement.', 'flx-crm' ),
 				'rules'       => array( 'match' => 'all', 'rules' => array( array( 'field' => 'role', 'op' => 'has', 'value' => 'donor' ), array( 'field' => 'churn', 'op' => 'gte', 'value' => $risk ) ) ),
 			),
 			array(
-				'name'        => __( 'Yeni gelenler (30 gün)', 'flx-crm' ),
-				'description' => __( 'Son 30 günde eklenen kişiler. Hoş geldin mesajı için.', 'flx-crm' ),
+				'name'        => __( 'New contacts (30 days)', 'flx-crm' ),
+				'description' => __( 'Contacts added in the last 30 days. For a welcome message.', 'flx-crm' ),
 				'rules'       => array( 'match' => 'all', 'rules' => array( array( 'field' => 'created', 'op' => 'within', 'value' => 30 ) ) ),
 			),
 			array(
-				'name'        => __( 'Şampiyon ve sadıklar', 'flx-crm' ),
-				'description' => __( 'En sık ve en yakın zamanda destek verenler.', 'flx-crm' ),
+				'name'        => __( 'Champions and loyal supporters', 'flx-crm' ),
+				'description' => __( 'The people who support most often and most recently.', 'flx-crm' ),
 				'rules'       => array( 'match' => 'any', 'rules' => array( array( 'field' => 'rfm', 'op' => 'is', 'value' => 'champion' ), array( 'field' => 'rfm', 'op' => 'is', 'value' => 'loyal' ) ) ),
 			),
 		);

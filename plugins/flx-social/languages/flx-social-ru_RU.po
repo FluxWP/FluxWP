@@ -1,0 +1,1661 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "Draft"
+msgstr "Черновик"
+
+msgid "Awaiting approval"
+msgstr "Ожидает одобрения"
+
+msgid "Scheduled"
+msgstr "Запланировано"
+
+msgid "Publishing"
+msgstr "Публикация"
+
+msgid "Published"
+msgstr "Опубликовано"
+
+msgid "Partially published"
+msgstr "Частично опубликовано"
+
+msgid "Failed"
+msgstr "Не удалось"
+
+msgid "Cancelled"
+msgstr "Отменено"
+
+msgid "Sending"
+msgstr "Отправка"
+
+msgid "Deleted from network"
+msgstr "Удалено из сети"
+
+msgid "Theme: system"
+msgstr "Тема: система"
+
+msgid "Theme: light"
+msgstr "Тема: свет"
+
+msgid "Theme: dark"
+msgstr "Тема: темная"
+
+msgid "Opening Social Media…"
+msgstr "Открытие социальных сетей..."
+
+msgid "Try again"
+msgstr "Попробуйте еще раз"
+
+msgid "Menu"
+msgstr "Меню"
+
+msgid "Social Media"
+msgstr "Социальные сети"
+
+msgid "New post"
+msgstr "Новый пост"
+
+msgid "Dashboard"
+msgstr "Панель управления"
+
+msgid "Posts"
+msgstr "Сообщения"
+
+msgid "Calendar"
+msgstr "Календарь"
+
+msgid "Accounts"
+msgstr "Счета"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "{n} posts with errors"
+msgstr "{n}сообщения с ошибками"
+
+msgid "Theme"
+msgstr "Тема"
+
+msgid "Back to dashboard"
+msgstr "Вернуться к панели управления"
+
+msgid "(no text)"
+msgstr "(без текста)"
+
+msgid "Details"
+msgstr "Подробности"
+
+msgid "Edit"
+msgstr "Редактировать"
+
+msgid "Duplicate"
+msgstr "Дублировать"
+
+msgid "Copy created as a draft."
+msgstr "Копия создана как черновик."
+
+msgid "Approve"
+msgstr "Утвердить"
+
+msgid "Approved."
+msgstr "Одобрено."
+
+msgid "Reject"
+msgstr "Отклонить"
+
+msgid "Share now"
+msgstr "Поделиться сейчас"
+
+msgid "Share now?"
+msgstr "Поделиться сейчас?"
+
+msgid "The post is published on the selected accounts right away."
+msgstr "Пост сразу публикуется на выбранных аккаунтах."
+
+msgid "Share"
+msgstr "Поделиться"
+
+msgid "Queued, it will be live shortly."
+msgstr "В очереди, скоро появится в эфире."
+
+msgid "Submit for approval"
+msgstr "Отправить на утверждение"
+
+msgid "Submitted for approval."
+msgstr "Отправлено на утверждение."
+
+msgid "Unschedule (back to draft)"
+msgstr "Вне расписания (возврат к черновику)"
+
+msgid "Moved to drafts."
+msgstr "Перенесено в черновики."
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Why? (visible to the author)"
+msgstr "Почему? (видно автору)"
+
+msgid "Reject post"
+msgstr "Отклонить публикацию"
+
+msgid "The post goes back to draft; the author sees the note."
+msgstr "Пост возвращается в черновик; автор видит заметку."
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Rejected."
+msgstr "Отклонено."
+
+msgid "Delete post"
+msgstr "Удалить сообщение"
+
+msgid "The post is removed from the list."
+msgstr "Пост будет удален из списка."
+
+msgid "Also delete from the networks it was published on ({n} accounts)"
+msgstr "Также удалить из сетей, в которых он был опубликован (аккаунты{n})."
+
+msgid "Instagram and TikTok posts cannot be deleted via the API; delete them there manually."
+msgstr "Посты в Instagram и TikTok нельзя удалить через API; удалите их там вручную."
+
+msgid "Deleted."
+msgstr "Удален."
+
+msgid "All"
+msgstr "Все"
+
+msgid "Drafts"
+msgstr "Черновики"
+
+msgid "With errors"
+msgstr "С ошибками"
+
+msgid "Load more"
+msgstr "Загрузить больше"
+
+msgid "Search text, title or tag"
+msgstr "Поиск по тексту, заголовку или тегу"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "Account"
+msgstr "Аккаунт"
+
+msgid "All accounts"
+msgstr "Все аккаунты"
+
+msgid "Only mine"
+msgstr "Только мой"
+
+msgid "Posts prepared by people without publishing permission. Once approved they are shared at their time (or right away)."
+msgstr "Посты подготовлены людьми без разрешения на публикацию. После одобрения они публикуются в нужное время (или сразу)."
+
+msgid "{n} selected"
+msgstr "{n}выбрано"
+
+msgid "Schedule"
+msgstr "Расписание"
+
+msgid "Scheduled."
+msgstr "Запланировано."
+
+msgid "Move to drafts"
+msgstr "Перейти в черновики"
+
+msgid "Delete selected?"
+msgstr "Удалить выбранное?"
+
+msgid "Only removed from the list; posts on the networks are not touched."
+msgstr "Только удален из списка; посты в сетях не трогаются."
+
+msgid "Clear selection"
+msgstr "Очистить выбор"
+
+msgid "Select"
+msgstr "Выбрать"
+
+msgid "every {n} days"
+msgstr "каждые{n}дней"
+
+msgid "Actions"
+msgstr "Действия"
+
+msgid "No posts awaiting approval"
+msgstr "Нет сообщений, ожидающих одобрения"
+
+msgid "No posts"
+msgstr "Нет сообщений"
+
+msgid "Create your first post; share to several accounts at once, with separate text for each."
+msgstr "Создайте свой первый пост; поделиться на несколько аккаунтов одновременно, с отдельным текстом для каждого."
+
+msgid "Month"
+msgstr "Месяц"
+
+msgid "List"
+msgstr "Список"
+
+msgid "Previous month"
+msgstr "Предыдущий месяц"
+
+msgid "Next month"
+msgstr "В следующем месяце"
+
+msgid "Today"
+msgstr "Сегодня"
+
+msgid "Time zone: {tz}"
+msgstr "Часовой пояс:{tz}"
+
+msgid "Post on this day"
+msgstr "Публикация в этот день"
+
+msgid "+{n} more"
+msgstr "+{n}еще"
+
+msgid "New time: {t}"
+msgstr "Новое время:{t}"
+
+msgid "No posts this month."
+msgstr "В этом месяце нет публикаций."
+
+msgid "Connect account"
+msgstr "Подключить аккаунт"
+
+msgid "Account added."
+msgstr "Аккаунт добавлен."
+
+msgid "{n} account connections refreshed."
+msgstr "{n}подключения к учетной записи обновлены."
+
+msgid "No accounts yet"
+msgstr "Аккаунтов пока нет"
+
+msgid "First enter the network keys under Settings › Apps, then connect the account here."
+msgstr "Сначала введите сетевые ключи в разделе «Настройки» > «Приложения», затем подключите учетную запись здесь."
+
+msgid "Accounts are connected by an administrator."
+msgstr "Аккаунты подключаются администратором."
+
+msgid "App keys"
+msgstr "Ключи приложения"
+
+msgid "{n} characters"
+msgstr "Символы{n}"
+
+msgid "{n} images"
+msgstr "{n}изображения"
+
+msgid "video"
+msgstr "видео"
+
+msgid "editing"
+msgstr "редактирование"
+
+msgid "deleting"
+msgstr "удаление"
+
+msgid "Active"
+msgstr "Активный"
+
+msgid "Needs reconnecting"
+msgstr "Требуется повторное подключение"
+
+msgid "Off"
+msgstr "Выкл."
+
+msgid "Reconnect"
+msgstr "Восстановить соединение"
+
+msgid "Page"
+msgstr "Страница"
+
+msgid "Profile"
+msgstr "Профиль"
+
+msgid "Company page"
+msgstr "Страница компании"
+
+msgid "Channel"
+msgstr "Канал"
+
+msgid "Location"
+msgstr "Расположение"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Group"
+msgstr "Группа"
+
+msgid "Business"
+msgstr "Бизнес"
+
+msgid "Creator"
+msgstr "Создатель"
+
+msgid "Test and refresh connection"
+msgstr "Проверьте и обновите соединение"
+
+msgid "Trying…"
+msgstr "Пытаюсь..."
+
+msgid "Connection works."
+msgstr "Соединение работает."
+
+msgid "Rename"
+msgstr "Переименовать"
+
+msgid "Account name"
+msgstr "Имя учетной записи"
+
+msgid "Enable"
+msgstr "Включить"
+
+msgid "Turn off (hidden in post account picker)"
+msgstr "Выключить (скрыто в выборе почтового аккаунта)"
+
+msgid "Remove"
+msgstr "Удалить"
+
+msgid "Remove account?"
+msgstr "Удалить аккаунт?"
+
+msgid "The token is deleted; posts scheduled for this account will not be shared. Published posts stay on the network."
+msgstr "Токен удаляется; публикации, запланированные для этого аккаунта, не будут опубликованы. Опубликованные посты остаются в сети."
+
+msgid "Removed."
+msgstr "Удален."
+
+msgid "Enter keys first: {app}"
+msgstr "Сначала введите ключи:{app}"
+
+msgid "The network's sign-in page opens; after you allow access you come back here. If there are several pages/channels you choose which to add."
+msgstr "Откроется страница входа в сеть; после того, как вы разрешите доступ, вы вернетесь сюда. Если страниц/каналов несколько, вы сами выбираете, какие добавить."
+
+msgid "Choose accounts to add"
+msgstr "Выберите аккаунты для добавления"
+
+msgid "{n} accounts added."
+msgstr "Добавлены аккаунты{n}."
+
+msgid "Add"
+msgstr "Добавить"
+
+msgid "WhatsApp: Status and groups"
+msgstr "WhatsApp: Статус и группы"
+
+msgid "The connection comes from the Evolution line in Flux Mail. Status: the line's WhatsApp Status (24 hours). Group: groups the line is a member of."
+msgstr "Соединение происходит по линии Evolution в Flux Mail. Статус: статус линии в WhatsApp (24 часа). Группа: группы, членом которых является линия."
+
+msgid "{n} members"
+msgstr "Участники{n}"
+
+msgid "added"
+msgstr "добавлено"
+
+msgid "Video title"
+msgstr "Название видео"
+
+msgid "Pin title"
+msgstr "Название закрепления"
+
+msgid "Link title"
+msgstr "Название ссылки"
+
+msgid "Title (photo post)"
+msgstr "Название (фото поста)"
+
+msgid "Title"
+msgstr "Название"
+
+msgid "Pin link"
+msgstr "Закрепить ссылку"
+
+msgid "Link (preview card)"
+msgstr "Ссылка (предварительная карточка)"
+
+msgid "Reply thread (first reply)"
+msgstr "Ветка ответов (первый ответ)"
+
+msgid "First comment"
+msgstr "Первый комментарий"
+
+msgid "Added as a comment right after publishing (e.g. a link or hashtags)."
+msgstr "Добавляется в виде комментария сразу после публикации (например, ссылка или хэштеги)."
+
+msgid "Visibility"
+msgstr "Видимость"
+
+msgid "Public"
+msgstr "Общественный"
+
+msgid "Unlisted"
+msgstr "Частный"
+
+msgid "Private"
+msgstr "Частный"
+
+msgid "Video tags (comma separated)"
+msgstr "Теги видео (разделенные запятой)"
+
+msgid "Category"
+msgstr "Категория"
+
+msgid "Default"
+msgstr "По умолчанию"
+
+msgid "Nonprofits & Activism"
+msgstr "Некоммерческие организации и активизм"
+
+msgid "People & Blogs"
+msgstr "Люди и блоги"
+
+msgid "Education"
+msgstr "Образование"
+
+msgid "Travel & Events"
+msgstr "Путешествия и события"
+
+msgid "News & Politics"
+msgstr "Новости и политика"
+
+msgid "Entertainment"
+msgstr "Развлечения"
+
+msgid "Playlist"
+msgstr "Плейлист"
+
+msgid "None"
+msgstr "Нет"
+
+msgid "Made for kids"
+msgstr "Сделано для детей"
+
+msgid "Notify subscribers"
+msgstr "Уведомить подписчиков"
+
+msgid "Shorts (vertical, under 60 s)"
+msgstr "Шорты (вертикальные, до 60 с)"
+
+msgid "AI-generated content"
+msgstr "Контент, созданный искусственным интеллектом"
+
+msgid "Post type"
+msgstr "Тип сообщения"
+
+msgid "Post (feed)"
+msgstr "Публикация (лента)"
+
+msgid "Reels"
+msgstr "Катушки"
+
+msgid "Story"
+msgstr "История"
+
+msgid "Also show the Reel in the feed"
+msgstr "Также покажите ролик в ленте"
+
+msgid "Cover image URL (Reels)"
+msgstr "URL-адрес обложки (ролики)"
+
+msgid "Connections only"
+msgstr "Только соединения"
+
+msgid "Image description (alt text)"
+msgstr "Описание изображения (замещающий текст)"
+
+msgid "Who can reply"
+msgstr "Кто может ответить"
+
+msgid "Everyone"
+msgstr "Все"
+
+msgid "People I follow"
+msgstr "Люди, за которыми я следую"
+
+msgid "People I mention"
+msgstr "Люди, которых я упоминаю"
+
+msgid "Verified accounts"
+msgstr "Проверенные аккаунты"
+
+msgid "Choose a board"
+msgstr "Выберите доску"
+
+msgid "Who can view"
+msgstr "Кто может просматривать"
+
+msgid "Friends"
+msgstr "Друзья"
+
+msgid "Followers"
+msgstr "Последователи"
+
+msgid "Only me"
+msgstr "Только я"
+
+msgid "Turn off comments"
+msgstr "Отключить комментарии"
+
+msgid "Duet off"
+msgstr "Дуэт выключен"
+
+msgid "Stitch off"
+msgstr "Отшить"
+
+msgid "Paid partnership (branded content)"
+msgstr "Платное партнерство (брендированный контент)"
+
+msgid "Promoting our own brand"
+msgstr "Продвижение собственного бренда"
+
+msgid "Automatic music for photos"
+msgstr "Автоматическая музыка для фотографий"
+
+msgid "Update"
+msgstr "Обновить"
+
+msgid "Event"
+msgstr "Событие"
+
+msgid "Offer"
+msgstr "Предложение"
+
+msgid "Button"
+msgstr "Кнопка"
+
+msgid "Learn more"
+msgstr "Узнать больше"
+
+msgid "Book"
+msgstr "Забронировать"
+
+msgid "Order"
+msgstr "Заказать"
+
+msgid "Shop"
+msgstr "Магазин"
+
+msgid "Sign up"
+msgstr "Зарегистрироваться"
+
+msgid "Button link"
+msgstr "Ссылка на кнопку"
+
+msgid "Event/offer title"
+msgstr "Название события/предложения"
+
+msgid "Start"
+msgstr "Старт"
+
+msgid "End"
+msgstr "Конец"
+
+msgid "Coupon code"
+msgstr "Код купона"
+
+msgid "Text or media is required."
+msgstr "Требуется текст или медиа."
+
+msgid "Text is {n} characters too long (limit {max})."
+msgstr "Текст содержит слишком длинные символы{n}(ограничение{max})."
+
+msgid "This network requires an image or video."
+msgstr "Для этой сети требуется изображение или видео."
+
+msgid "This network does not accept images."
+msgstr "Эта сеть не принимает изображения."
+
+msgid "This network does not accept video."
+msgstr "Эта сеть не принимает видео."
+
+msgid "GIF is not supported."
+msgstr "GIF не поддерживается."
+
+msgid "At most {n} images."
+msgstr "Максимум изображений{n}."
+
+msgid "At most {n} videos."
+msgstr "Максимум{n}видео."
+
+msgid "Images and video cannot be sent together."
+msgstr "Изображения и видео нельзя отправлять вместе."
+
+msgid "YouTube requires a video."
+msgstr "YouTube требует видео."
+
+msgid "Choose a Pinterest board."
+msgstr "Выберите доску Pinterest."
+
+msgid "Reels require a video."
+msgstr "Ролики требуют видео."
+
+msgid "The account connection dropped; reconnect it under Accounts."
+msgstr "Соединение с учетной записью разорвано; переподключите его в разделе «Аккаунты»."
+
+msgid "There are unsaved changes. Close anyway?"
+msgstr "Есть несохраненные изменения. Все равно закрыть?"
+
+msgid "No connected accounts"
+msgstr "Нет подключенных аккаунтов"
+
+msgid "Connect a social media account first."
+msgstr "Сначала подключите аккаунт в социальной сети."
+
+msgid "Ask an administrator to connect an account."
+msgstr "Попросите администратора подключить аккаунт."
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Edit post"
+msgstr "Редактировать сообщение"
+
+msgid "The approver left a note: {n}"
+msgstr "Утверждающий оставил примечание:{n}."
+
+msgid "Published on {n} accounts; to change it there use Details › Edit on network."
+msgstr "Опубликовано на аккаунтах{n}; чтобы изменить его там, используйте Подробности › Редактировать в сети."
+
+msgid "Preview"
+msgstr "Предварительный просмотр"
+
+msgid "Shared to all selected accounts; you can write separate text for each."
+msgstr "Доступно для всех выбранных учетных записей; для каждого можно написать отдельный текст."
+
+msgid "Common text"
+msgstr "Общий текст"
+
+msgid "Custom text"
+msgstr "Пользовательский текст"
+
+msgid "What would you like to share?"
+msgstr "Чем бы вы хотели поделиться?"
+
+msgid "Add signature"
+msgstr "Добавить подпись"
+
+msgid "Custom text for this account"
+msgstr "Пользовательский текст для этого аккаунта"
+
+msgid "Separate image/video for this account"
+msgstr "Отдельное изображение/видео для этого аккаунта"
+
+msgid "{net} options"
+msgstr "Варианты{net}"
+
+msgid "Direct post: the video is published on TikTok with the chosen visibility."
+msgstr "Прямая публикация: видео публикуется в TikTok с выбранной видимостью."
+
+msgid "Draft mode: the video lands in your TikTok app inbox and you publish it from there."
+msgstr "Режим черновика: видео попадает в папку «Входящие» вашего приложения TikTok, и вы публикуете его оттуда."
+
+msgid "Board list is empty. Refresh it under Accounts › Test connection."
+msgstr "Список досок пуст. Обновите его в разделе «Учетные записи» > «Проверить соединение»."
+
+msgid "Write some text first."
+msgstr "Сначала напишите текст."
+
+msgid "What should AI write?"
+msgstr "Что должен написать ИИ?"
+
+msgid "Write"
+msgstr "Написать"
+
+msgid "Write with AI"
+msgstr "Пишите с помощью ИИ"
+
+msgid "Fix and polish"
+msgstr "Исправить и отполировать"
+
+msgid "Shorten"
+msgstr "Сократить"
+
+msgid "Suggest hashtags"
+msgstr "Предложите хэштеги"
+
+msgid "Translate to English"
+msgstr "Перевести на английский"
+
+msgid "Writes separate text for each account in its network's style"
+msgstr "Пишет отдельный текст для каждого аккаунта в стиле его сети."
+
+msgid "Separate text written for each account; check the tabs."
+msgstr "Для каждого аккаунта пишется отдельный текст; проверьте вкладки."
+
+msgid "Adapt to networks"
+msgstr "Адаптироваться к сетям"
+
+msgid "Move left"
+msgstr "Двигаться влево"
+
+msgid "Image / video"
+msgstr "Изображение/видео"
+
+msgid "Tip: Instagram, TikTok and YouTube require an image/video; X allows up to 4 images."
+msgstr "Совет: Instagram, TikTok и YouTube требуют изображения/видео; X позволяет использовать до 4 изображений."
+
+msgid "More (internal title, tags, repeat)"
+msgstr "Дополнительно (внутренний заголовок, теги, повтор)"
+
+msgid "Internal title (only shown in the list)"
+msgstr "Внутренний заголовок (отображается только в списке)"
+
+msgid "Tags (comma separated; for filtering)"
+msgstr "Теги (через запятую; для фильтрации)"
+
+msgid "Share again how many days after publishing (0 = no)"
+msgstr "Поделитесь еще раз, сколько дней прошло после публикации (0 = нет)"
+
+msgid "Select an account to see the preview here."
+msgstr "Выберите учетную запись, чтобы просмотреть предварительный просмотр здесь."
+
+msgid "+{n} more accounts; check the tabs."
+msgstr "+{n}дополнительные аккаунты; проверьте вкладки."
+
+msgid "No image/video"
+msgstr "Нет изображения/видео"
+
+msgid "No video"
+msgstr "Нет видео"
+
+msgid "(untitled)"
+msgstr "(без названия)"
+
+msgid "Limit exceeded: {n} characters over"
+msgstr "Превышен лимит: символов{n}больше"
+
+msgid "{n} issues"
+msgstr "Проблемы с{n}"
+
+msgid "Share time"
+msgstr "Делитесь временем"
+
+msgid "Quick time"
+msgstr "Быстрое время"
+
+msgid "In 1 hour"
+msgstr "Через 1 час"
+
+msgid "Today 19:00"
+msgstr "Сегодня 19:00"
+
+msgid "Tomorrow 10:00"
+msgstr "Завтра 10:00"
+
+msgid "Tomorrow 19:00"
+msgstr "Завтра 19:00"
+
+msgid "Weekend 11:00"
+msgstr "Выходные 11:00"
+
+msgid "Clear time"
+msgstr "Очистить время"
+
+msgid "Select at least one account."
+msgstr "Выберите хотя бы одну учетную запись."
+
+msgid "Choose a time in the future."
+msgstr "Выберите время в будущем."
+
+msgid "Draft saved."
+msgstr "Черновик сохранен."
+
+msgid "Scheduled: {t}"
+msgstr "Запланировано:{t}"
+
+msgid "Saved."
+msgstr "Сохранено."
+
+msgid "Sent for approval because you do not have publishing permission."
+msgstr "Отправлено на утверждение, поскольку у вас нет разрешения на публикацию."
+
+msgid "Save draft"
+msgstr "Сохранить черновик"
+
+msgid "Media library"
+msgstr "Медиатека"
+
+msgid "Flux Studio"
+msgstr "Флюс Студия"
+
+msgid "Upload"
+msgstr "Загрузить"
+
+msgid "Add from URL"
+msgstr "Добавить из URL"
+
+msgid "Image or video URL (https://…)"
+msgstr "URL-адрес изображения или видео (https://…)"
+
+msgid "Downloading…"
+msgstr "Загрузка..."
+
+msgid "Uploading {n} files…"
+msgstr "Загрузка файлов{n}..."
+
+msgid "Choose image / video"
+msgstr "Выберите изображение/видео"
+
+msgid "Importing Studio files into the library…"
+msgstr "Импорт файлов Studio в библиотеку..."
+
+msgid "No files."
+msgstr "Нет файлов."
+
+msgid "Post"
+msgstr "Сообщение"
+
+msgid "Open"
+msgstr "Открыть"
+
+msgid "Retry"
+msgstr "Повторить попытку"
+
+msgid "Queued again."
+msgstr "Снова встал в очередь."
+
+msgid "Edit on network"
+msgstr "Редактировать в сети"
+
+msgid "Delete from network"
+msgstr "Удалить из сети"
+
+msgid "Delete the post on {n}?"
+msgstr "Удалить сообщение на{n}?"
+
+msgid "The post on the network is deleted permanently."
+msgstr "Пост в сети удаляется безвозвратно."
+
+msgid "Deleted from network."
+msgstr "Удален из сети."
+
+msgid "Engagement numbers are updated twice a day (last 30 days)."
+msgstr "Показатели вовлеченности обновляются два раза в день (за последние 30 дней)."
+
+msgid "Edit post on network"
+msgstr "Редактировать сообщение в сети"
+
+msgid "The change is written directly to the post on the network."
+msgstr "Изменение записывается прямо в пост в сети."
+
+msgid "Updated on network."
+msgstr "Обновлено в сети."
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "just now"
+msgstr "только что"
+
+msgid "{n} min ago"
+msgstr "{n}мин назад"
+
+msgid "{n} h ago"
+msgstr "{n}ч. назад"
+
+msgid "Server error ({n})."
+msgstr "Ошибка сервера ({n})."
+
+msgid "Unexpected response from the server."
+msgstr "Неожиданный ответ от сервера."
+
+msgid "Something went wrong."
+msgstr "Что-то пошло не так."
+
+msgid "OK"
+msgstr "ОК"
+
+msgid "Copied"
+msgstr "Скопировано"
+
+msgid "Daily posts"
+msgstr "Ежедневные публикации"
+
+msgid "Total: {n}"
+msgstr "Итого:{n}"
+
+msgid "{n} days"
+msgstr "{n}дней"
+
+msgid "Update metrics now"
+msgstr "Обновить показатели сейчас"
+
+msgid "{n} records updated."
+msgstr "Записи{n}обновлены."
+
+msgid "No accounts connected yet. Enter the app keys first, then connect accounts."
+msgstr "Аккаунты пока не подключены. Сначала введите ключи приложения, затем подключите учетные записи."
+
+msgid "Success {n}%"
+msgstr "Успех{n}%"
+
+msgid "last {n} days"
+msgstr "последние{n}дней"
+
+msgid "Engagement"
+msgstr "Помолвка"
+
+msgid "likes + comments + shares"
+msgstr "лайки + комментарии + репосты"
+
+msgid "Views"
+msgstr "Просмотры"
+
+msgid "reach / impressions"
+msgstr "охват/показы"
+
+msgid "this period"
+msgstr "этот период"
+
+msgid "no change"
+msgstr "без изменений"
+
+msgid "{n} awaiting approval"
+msgstr "{n}ожидает одобрения"
+
+msgid "{n} drafts"
+msgstr "{n}черновики"
+
+msgid "details below"
+msgstr "подробности ниже"
+
+msgid "no issues"
+msgstr "нет проблем"
+
+msgid "Network"
+msgstr "Сеть"
+
+msgid "Errors"
+msgstr "Ошибки"
+
+msgid "By network"
+msgstr "По сети"
+
+msgid "No posts in this period."
+msgstr "Нет сообщений за этот период."
+
+msgid "Follower counts are collected once a day; first data appears tomorrow."
+msgstr "Подсчет подписчиков собирается один раз в день; первые данные появятся завтра."
+
+msgid "Top engaging posts"
+msgstr "Самые привлекательные публикации"
+
+msgid "Metrics are collected twice a day after a post is published."
+msgstr "Метрики собираются два раза в день после публикации поста."
+
+msgid "Upcoming posts"
+msgstr "Предстоящие публикации"
+
+msgid "No scheduled posts."
+msgstr "Нет запланированных публикаций."
+
+msgid "Recent errors"
+msgstr "Недавние ошибки"
+
+msgid "Metrics last updated: {t}"
+msgstr "Последнее обновление показателей:{t}."
+
+msgid "Metrics not collected yet (once a day, at night)."
+msgstr "Метрики пока не собираются (раз в день, ночью)."
+
+msgid "General"
+msgstr "Общий"
+
+msgid "Apps"
+msgstr "Приложения"
+
+msgid "Network settings"
+msgstr "Настройки сети"
+
+msgid "Auto sharing"
+msgstr "Автоматический обмен"
+
+msgid "Log"
+msgstr "Журнал"
+
+msgid "never"
+msgstr "никогда"
+
+msgid "Approval and signature"
+msgstr "Утверждение и подпись"
+
+msgid "Posts by people without publishing permission go to approval"
+msgstr "Сообщения людей без разрешения на публикацию проходят проверку."
+
+msgid "Permissions come from Flux Roles: Social media: prepare / publish / manage."
+msgstr "Разрешения исходят от ролей Flux: Социальные сети: подготовка/публикация/управление."
+
+msgid "Add UTM to site links (utm_source=network)"
+msgstr "Добавить UTM в ссылки сайта (utm_source=network)"
+
+msgid "See how many visits each network brings in Analytics."
+msgstr "Посмотрите, сколько посещений приносит каждая сеть, в Analytics."
+
+msgid "Saved signature (added with one click in the composer)"
+msgstr "Сохраненная подпись (добавляется одним кликом в композиторе)"
+
+msgid "Save signature"
+msgstr "Сохранить подпись"
+
+msgid "Scheduled posts"
+msgstr "Запланированные публикации"
+
+msgid "WP-Cron is unreliable on Hostinger, so scheduled posts should be triggered from outside every minute. Create a job on cron-job.org (free) that calls this URL every minute. It also runs on its own while the panel is open and when a post is saved."
+msgstr "WP-Cron ненадежен на Hostinger, поэтому запланированные публикации должны запускаться извне каждую минуту. Создайте задание на cron-job.org (бесплатно), которое будет вызывать этот URL-адрес каждую минуту. Он также запускается сам по себе, когда панель открыта и когда сообщение сохраняется."
+
+msgid "Trigger URL (keep it secret)"
+msgstr "URL-адрес триггера (держите в секрете)"
+
+msgid "Copy"
+msgstr "Копировать"
+
+msgid "New key"
+msgstr "Новый ключ"
+
+msgid "Regenerate the key?"
+msgstr "Восстановить ключ?"
+
+msgid "The old URL stops working; you must also change the URL on cron-job.org."
+msgstr "Старый URL-адрес перестает работать; вам также необходимо изменить URL-адрес cron-job.org."
+
+msgid "Regenerate"
+msgstr "Регенерировать"
+
+msgid "New key created."
+msgstr "Новый ключ создан."
+
+msgid "External trigger"
+msgstr "Внешний триггер"
+
+msgid "Background request"
+msgstr "Фоновый запрос"
+
+msgid "Panel"
+msgstr "Панель"
+
+msgid "Create your own developer app for each network and enter its keys here. Secret keys are stored encrypted and never shown again; type a new one to change it."
+msgstr "Создайте собственное приложение разработчика для каждой сети и введите здесь его ключи. Секретные ключи хранятся в зашифрованном виде и никогда больше не отображаются; введите новый, чтобы изменить его."
+
+msgid "Saved (type to change)"
+msgstr "Сохранено (введите текст для изменения)"
+
+msgid "Not entered"
+msgstr "Не введено"
+
+msgid "optional"
+msgstr "необязательно"
+
+msgid "Delete the key?"
+msgstr "Удалить ключ?"
+
+msgid "Accounts on this network cannot post until reconnected."
+msgstr "Аккаунты в этой сети не смогут публиковать сообщения до тех пор, пока не будут повторно подключены."
+
+msgid "Delete saved key"
+msgstr "Удалить сохраненный ключ"
+
+msgid "Ready"
+msgstr "Готово"
+
+msgid "No key"
+msgstr "Нет ключа"
+
+msgid "No connection"
+msgstr "Нет связи"
+
+msgid "Open developer console"
+msgstr "Открыть консоль разработчика"
+
+msgid "Redirect (callback) URL"
+msgstr "URL-адрес перенаправления (обратного вызова)"
+
+msgid "API tier"
+msgstr "уровень API"
+
+msgid "On the free tier only a few posts can be written per month and metrics are not read. Paid tiers (Basic/Pro or pay-as-you-go) also return metrics."
+msgstr "На бесплатном уровне можно писать только несколько постов в месяц и метрики не считываются. Платные уровни (Basic/Pro или с оплатой по мере использования) также возвращают метрики."
+
+msgid "X Premium account (long posts, 25,000 characters)"
+msgstr "X Премиум-аккаунт (длинные посты, 25 000 символов)"
+
+msgid "Monthly post limit (0 = unlimited)"
+msgstr "Ежемесячный лимит публикаций (0 = неограниченно)"
+
+msgid "Sent this month: {n}. When the limit is reached new X posts are refused (to stay within the tier quota)."
+msgstr "Отправлено в этом месяце:{n}. При достижении лимита новые X сообщений отклоняются (чтобы оставаться в пределах квоты уровня)."
+
+msgid "Draft (lands in the TikTok app)"
+msgstr "Черновик (появляется в приложении TikTok)"
+
+msgid "Direct post"
+msgstr "Прямая публикация"
+
+msgid "Sharing mode"
+msgstr "Режим общего доступа"
+
+msgid "Direct posting requires your TikTok app to pass the audit; until then posted videos are visible only to you. Draft mode needs no audit."
+msgstr "Для прямой публикации ваше приложение TikTok должно пройти проверку; до этого момента опубликованные видео будут видны только вам. Режим черновика не нуждается в проверке."
+
+msgid "Sandbox (trial access)"
+msgstr "Песочница (пробный доступ)"
+
+msgid "Turn on if your Pinterest app does not have Standard access yet; pins are created only in the sandbox."
+msgstr "Включите, если ваше приложение Pinterest еще не имеет стандартного доступа; пины создаются только в песочнице."
+
+msgid "Also fetch company pages I manage"
+msgstr "Также получите страницы компаний, которыми я управляю."
+
+msgid "Requires Community Management API approval. Turn off if not approved; only the personal profile is connected."
+msgstr "Требуется одобрение API управления сообществом. Выключите, если не одобрено; подключен только личный профиль."
+
+msgid "Graph API version"
+msgstr "Версия графического API"
+
+msgid "Meta retires old versions after two years; upgrade here if needed (e.g. v25.0)."
+msgstr "Meta прекращает использование старых версий через два года; обновите здесь, если необходимо (например, v25.0)."
+
+msgid "Default connection"
+msgstr "Соединение по умолчанию"
+
+msgid "default"
+msgstr "по умолчанию"
+
+msgid "Evolution connection (Flux Mail)"
+msgstr "Эволюционное соединение (Flux Mail)"
+
+msgid "No WhatsApp (Evolution) connection found in Flux Mail; Flux Chat settings are used."
+msgstr "В Flux Mail не обнаружено соединение WhatsApp (Evolution); Используются настройки Flux Chat."
+
+msgid "Create a draft (I review and send it)"
+msgstr "Создать черновик (я проверяю и отправляю)"
+
+msgid "Schedule automatically"
+msgstr "Расписание автоматически"
+
+msgid "Share when a post is published on the site"
+msgstr "Поделиться, когда запись будет опубликована на сайте"
+
+msgid "On"
+msgstr "Вкл."
+
+msgid "Which content types"
+msgstr "Какие типы контента"
+
+msgid "Which accounts"
+msgstr "Какие аккаунты"
+
+msgid "Connect an account first."
+msgstr "Сначала подключите учетную запись."
+
+msgid "Text template"
+msgstr "Текстовый шаблон"
+
+msgid "Available: {title} {excerpt} {link} {site} {author} {category} {tags}. The link creates the network's preview card."
+msgstr "Доступно:{title}{excerpt}{link}{site}{author}{category}{tags}. Ссылка создает карточку предварительного просмотра сети."
+
+msgid "Add the featured image"
+msgstr "Добавьте избранное изображение"
+
+msgid "What to do"
+msgstr "Что делать?"
+
+msgid "Share after how many minutes (if scheduling)"
+msgstr "Поделитесь через сколько минут (если запланировано)"
+
+msgid "Runs once per post. Accounts that break a network rule (e.g. Instagram without an image) stay as drafts."
+msgstr "Запускается один раз для каждого сообщения. Аккаунты, нарушающие правила сети (например, Instagram без изображения), остаются черновиками."
+
+msgid "Last 200 entries (kept for 45 days)."
+msgstr "Последние 200 записей (хранятся 45 дней)."
+
+msgid "No entries."
+msgstr "Нет записей."
+
+msgid "Social Media requires JavaScript."
+msgstr "Социальные сети требуют JavaScript."
+
+msgid "Flux AI & MCP is not installed or no key has been entered."
+msgstr "Flux AI & MCP не установлен или ключ не введен."
+
+msgid "Could not read the AI response, please try again."
+msgstr "Не удалось прочитать ответ ИИ. Повторите попытку."
+
+msgid "Social media"
+msgstr "Социальные сети"
+
+msgid "Database tables"
+msgstr "Таблицы базы данных"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "Отсутствует таблица:%s. Деактивируйте и повторно активируйте плагин."
+
+msgid "Tables are ready."
+msgstr "Столы готовы."
+
+msgid "Key encryption"
+msgstr "Ключевое шифрование"
+
+msgid "Keys and tokens are stored encrypted (sodium)."
+msgstr "Ключи и токены хранятся в зашифрованном виде (натрий)."
+
+msgid "The PHP sodium extension is off; keys are stored with a weaker method. Turn on sodium under Hostinger › PHP extensions."
+msgstr "Расширение PHP натрия отключено; ключи хранятся более слабым методом. Включите натрий в разделе Hostinger › Расширения PHP."
+
+msgid "Network apps"
+msgstr "Сетевые приложения"
+
+msgid "Keys entered: %s."
+msgstr "Введены ключи:%s."
+
+msgid "No network app keys entered. Social Media › Settings › Apps."
+msgstr "Ключи сетевых приложений не введены. Социальные сети › Настройки › Приложения."
+
+msgid "Connected accounts"
+msgstr "Подключенные аккаунты"
+
+msgid "No accounts connected yet."
+msgstr "Аккаунты пока не подключены."
+
+msgid "Accounts that need reconnecting: %s."
+msgstr "Учетные записи, которые необходимо переподключить:%s."
+
+msgid "%d accounts connected and active."
+msgstr "Аккаунты%dподключены и активны."
+
+msgid "External per-minute trigger is running."
+msgstr "Внешний поминутный триггер работает."
+
+msgid "%d posts have been waiting for more than 5 minutes. Add the trigger URL from Settings › General to cron-job.org (every minute)."
+msgstr "Сообщения%dожидаются более 5 минут. Добавьте URL-адрес триггера из «Настройки» > «Основные» на cron-job.org (каждую минуту)."
+
+msgid "Posts are processed via WP-Cron and background requests; to publish on time, adding the trigger URL from Settings › General to cron-job.org (every minute) is recommended."
+msgstr "Сообщения обрабатываются через WP-Cron и фоновые запросы; Чтобы публиковать вовремя, рекомендуется добавлять URL-адрес триггера из «Настройки» › «Основные» на cron-job.org (каждую минуту)."
+
+msgid "The trigger has never run. Add the trigger URL from Settings › General to cron-job.org (every minute)."
+msgstr "Триггер ни разу не сработал. Добавьте URL-адрес триггера из «Настройки» > «Основные» на cron-job.org (каждую минуту)."
+
+msgid "Background request error:"
+msgstr "Ошибка фонового запроса:"
+
+msgid "Failed shares"
+msgstr "Неудачные акции"
+
+msgid "%d shares failed in the last 7 days. Posts › Failed."
+msgstr "Акции%dпровалились за последние 7 дней. Сообщения › Не удалось."
+
+msgid "No failed shares in the last 7 days."
+msgstr "Ни одной неудачной акции за последние 7 дней."
+
+msgid "Media URLs"
+msgstr "URL-адреса мультимедиа"
+
+msgid "Instagram, TikTok and Facebook fetch images from the site's HTTPS address."
+msgstr "Instagram, TikTok и Facebook получают изображения с HTTPS-адреса сайта."
+
+msgid "The site is not HTTPS; Instagram/TikTok/Facebook cannot fetch images and videos."
+msgstr "Сайт не использует HTTPS; Instagram/TikTok/Facebook не может получать изображения и видео."
+
+msgid "Files folder"
+msgstr "Папка с файлами"
+
+msgid "wp-content/uploads/flxsm is writable (JPEG copies for Instagram)."
+msgstr "wp-content/uploads/flxsm доступен для записи (копии JPEG для Instagram)."
+
+msgid "wp-content/uploads/flxsm is not writable; PNG/WebP images cannot be sent to Instagram."
+msgstr "wp-content/uploads/flxsm недоступен для записи; Изображения PNG/WebP нельзя отправлять в Instagram."
+
+msgid "AI writing help"
+msgstr "Помощь в написании ИИ"
+
+msgid "Flux AI ready: writing, shortening, adapting to networks."
+msgstr "Flux AI готов: написание, сокращение, адаптация к сетям."
+
+msgid "Flux AI & MCP is not installed or has no key; AI buttons are hidden, sharing still works."
+msgstr "Flux AI & MCP не установлен или не имеет ключа; Кнопки AI скрыты, обмен по-прежнему работает."
+
+msgid "Account or post not found."
+msgstr "Аккаунт или сообщение не найдены."
+
+msgid "Account is off."
+msgstr "Аккаунт отключен."
+
+msgid "The connection expired; reconnect it under Accounts."
+msgstr "Срок соединения истек; переподключите его в разделе «Аккаунты»."
+
+msgid "The post was published but the first comment could not be added: %s"
+msgstr "Сообщение было опубликовано, но не удалось добавить первый комментарий:%s."
+
+msgid "Only a failed target can be retried."
+msgstr "Только неудачная цель может быть повторена."
+
+msgid "This target is not published on the network."
+msgstr "Эта цель не публикуется в сети."
+
+msgid "Account not found."
+msgstr "Аккаунт не найден."
+
+msgid "Social media: prepare posts"
+msgstr "Социальные сети: готовьте посты"
+
+msgid "Social media: publish and approve"
+msgstr "Социальные сети: опубликовать и одобрить"
+
+msgid "Social media: accounts and settings"
+msgstr "Социальные сети: аккаунты и настройки"
+
+msgid "Unknown network."
+msgstr "Неизвестная сеть."
+
+msgid "Connection session not found or expired; please try again."
+msgstr "Сеанс подключения не найден или срок его действия истек; пожалуйста, попробуйте еще раз."
+
+msgid "The selection list expired; please reconnect."
+msgstr "Список выбора истек; пожалуйста, переподключитесь."
+
+msgid "Login for Business configuration ID (optional)"
+msgstr "Вход для идентификатора бизнес-конфигурации (необязательно)"
+
+msgid "developers.facebook.com › Create app (Business type) › Facebook Login product › add the address below to Valid OAuth redirect URIs. For your own pages being an admin/developer of the app is enough; no App Review needed. An Instagram professional account linked to a Facebook page comes with the same login."
+msgstr "Developers.facebook.com › Создать приложение (тип бизнеса) › Продукт для входа в Facebook › добавьте указанный ниже адрес в действительные URI перенаправления OAuth. Для ваших собственных страниц достаточно быть администратором/разработчиком приложения; обзор приложения не требуется. Профессиональная учетная запись Instagram, связанная со страницей Facebook, имеет тот же логин."
+
+msgid "Facebook page (+ linked Instagram)"
+msgstr "Страница Facebook (+ связанный Instagram)"
+
+msgid "Instagram login (without a Facebook page)"
+msgstr "Вход в Instagram (без страницы Facebook)"
+
+msgid "Add the \"Instagram\" product to the Meta app (API setup with Instagram login). Put the Instagram App ID/Secret from the product page here; the redirect URL is below. The account must be Business or Creator."
+msgstr "Добавьте продукт «Instagram» в мета-приложение (настройка API с входом в Instagram). Поместите сюда идентификатор/секрет приложения Instagram со страницы продукта; URL-адрес перенаправления приведен ниже. Аккаунт должен быть «Бизнес» или «Создатель»."
+
+msgid "Instagram (Instagram login)"
+msgstr "Инстаграм (вход в Инстаграм)"
+
+msgid "Google Cloud › APIs: enable YouTube Data API v3 (and for Business: My Business Account Management, Business Information, Google My Business API) › OAuth client (Web application) › authorized redirect URL below. In an unaudited project videos uploaded to YouTube stay \"Private\"; apply for the Google API audit to make them public. The Business Profile API requires access approval from Google."
+msgstr "Google Cloud › API: включите YouTube Data API v3 (и для бизнеса: Управление учетными записями My Business, Бизнес-информация, Google My Business API) › Клиент OAuth (веб-приложение) › Авторизованный URL-адрес перенаправления ниже. В непроверенном проекте видео, загруженные на YouTube, остаются «частными»; подать заявку на аудит Google API, чтобы сделать их общедоступными. API профиля компании требует одобрения доступа от Google."
+
+msgid "YouTube channel"
+msgstr "YouTube-канал"
+
+msgid "Google Business location"
+msgstr "Местоположение Google Business"
+
+msgid "developer.x.com › Project › App › User authentication settings: permission \"Read and write\", type \"Web App\", Callback URI the address below. Put the API Key and Secret from Keys and tokens here. Choose the tier below (the free tier has a low write limit and metrics are not read)."
+msgstr "Developer.x.com › Проект › Приложение › Настройки аутентификации пользователя: разрешение «Чтение и запись», тип «Веб-приложение», URI обратного вызова по адресу ниже. Поместите сюда ключ API и секрет от ключей и токенов. Выберите уровень ниже (уровень бесплатного пользования имеет низкий лимит записи и метрики не считываются)."
+
+msgid "X account"
+msgstr "X аккаунт"
+
+msgid "API version (YYYYMM)"
+msgstr "Версия API (ГГГГММ)"
+
+msgid "linkedin.com/developers › App (linked to the organization page) › Products: \"Sign In with LinkedIn using OpenID Connect\" and \"Share on LinkedIn\" (personal); for company pages \"Community Management API\" (needs approval). Auth › Authorized redirect URL below."
+msgstr "linkedin.com/developers › Приложение (ссылка на страницу организации) › Продукты: «Вход в LinkedIn с помощью OpenID Connect» и «Поделиться в LinkedIn» (личный); для страниц компании «Community Management API» (требуется одобрение). Аутентификация › Авторизованный URL-адрес перенаправления ниже."
+
+msgid "LinkedIn profile / page"
+msgstr "Профиль/страница LinkedIn"
+
+msgid "developers.tiktok.com › App › add Login Kit + Content Posting API, Redirect URI below. Without the audit \"Draft\" mode is recommended: the video lands in the TikTok app and is published from there. For photo posts verify the site domain in TikTok (URL properties)."
+msgstr "Developers.tiktok.com › Приложение › добавьте набор для входа в систему + API публикации контента, URI перенаправления ниже. Без проверки рекомендуется режим «Черновик»: видео попадает в приложение TikTok и публикуется оттуда. Для публикаций с фотографиями проверьте домен сайта в TikTok (свойства URL)."
+
+msgid "TikTok account"
+msgstr "ТикТок-аккаунт"
+
+msgid "developers.pinterest.com › App › Redirect URI below. Trial access works only in the sandbox; apply for Standard access."
+msgstr "Developers.pinterest.com › Приложение › URI перенаправления ниже. Пробный доступ работает только в песочнице; подать заявку на стандартный доступ."
+
+msgid "Pinterest account"
+msgstr "Аккаунт Pinterest"
+
+msgid "The Evolution connection comes from Flux Mail (or Flux Chat); no key is entered here. Shares go to Status and groups."
+msgstr "Соединение Evolution осуществляется через Flux Mail (или Flux Chat); ключ сюда не вводится. Общие ресурсы попадают в Статус и группы."
+
+msgid "WhatsApp Status / group"
+msgstr "Статус/группа WhatsApp"
+
+msgid "Unknown app."
+msgstr "Неизвестное приложение."
+
+msgid "Login required."
+msgstr "Требуется вход."
+
+msgid "You do not have social media permission."
+msgstr "У вас нет разрешения на использование социальных сетей."
+
+msgid "You do not have permission for this action."
+msgstr "У вас нет разрешения на это действие."
+
+msgid "Record not found."
+msgstr "Запись не найдена."
+
+msgid "You cannot change this post."
+msgstr "Вы не можете изменить этот пост."
+
+msgid "You cannot delete this post."
+msgstr "Вы не можете удалить этот пост."
+
+msgid "Could not delete on some networks; the post stays in the list."
+msgstr "Не удалось удалить в некоторых сетях; пост останется в списке."
+
+msgid "%s (copy)"
+msgstr "%s(копия)"
+
+msgid "You do not have permission to upload files."
+msgstr "У вас нет разрешения на загрузку файлов."
+
+msgid "No file received."
+msgstr "Ни один файл не получен."
+
+msgid "Account removed."
+msgstr "Аккаунт удален."
+
+msgid "(deleted account)"
+msgstr "(удален аккаунт)"
+
+msgid "Post not found."
+msgstr "Сообщение не найдено."
+
+msgid "Unknown action."
+msgstr "Неизвестное действие."
+
+msgid "%s: the connection expired, reconnect it under Accounts."
+msgstr "%s: срок действия соединения истек, повторно подключите его в разделе «Учетные записи»."
+
+msgid "Text can be at most %1$d characters (currently %2$d)."
+msgstr "Текст может содержать не более символов%1$d(в настоящее время%2$d)."
+
+msgid "This network does not accept GIFs; use an image or video."
+msgstr "Эта сеть не принимает GIF-файлы; используйте изображение или видео."
+
+msgid "At most %d images."
+msgstr "Максимум изображений%d."
+
+msgid "At most %d videos."
+msgstr "Максимум%dвидео."
+
+msgid "Images and video cannot be used together in one post."
+msgstr "Изображения и видео не могут использоваться вместе в одном сообщении."
+
+msgid "Media files must be reachable at a public https address."
+msgstr "Медиа-файлы должны быть доступны по общедоступному https-адресу."
+
+msgid "This network does not connect via OAuth."
+msgstr "Эта сеть не подключается через OAuth."
+
+msgid "The connection expired, please reconnect."
+msgstr "Срок соединения истек, пожалуйста, переподключитесь."
+
+msgid "This network does not allow editing a published post."
+msgstr "Эта сеть не позволяет редактировать опубликованное сообщение."
+
+msgid "This network does not allow deleting posts via the API; delete it in the app."
+msgstr "Эта сеть не позволяет удалять посты через API; удалите его в приложении."
+
+msgid "First comment is not supported on this network."
+msgstr "Первый комментарий не поддерживается в этой сети."
+
+msgid "First enter this network's keys under Settings › Apps."
+msgstr "Сначала введите ключи этой сети в разделе «Настройки» > «Приложения»."
+
+msgid "Choose a video for YouTube."
+msgstr "Выберите видео для YouTube."
+
+msgid "YouTube title can be at most 100 characters."
+msgstr "Название YouTube может содержать не более 100 символов."
+
+msgid "YouTube does not accept < and > in the title and description."
+msgstr "YouTube не принимает< and >в названии и описании."
+
+msgid "This Google account has no YouTube channel."
+msgstr "В этом аккаунте Google нет канала YouTube."
+
+msgid "Video file not found on the server."
+msgstr "Видеофайл не найден на сервере."
+
+msgid "Could not read the video file."
+msgstr "Не удалось прочитать видеофайл."
+
+msgid "Video not found on YouTube."
+msgstr "Видео не найдено на YouTube."
+
+msgid "An event/offer post needs a title and a start date."
+msgstr "Публикация о событии/предложении должна иметь заголовок и дату начала."
+
+msgid "Could not get business accounts (requires Google's Business Profile API access approval)"
+msgstr "Не удалось получить бизнес-аккаунты (требуется одобрение доступа к Google Business Profile API)."
+
+msgid "No managed business location found on this Google account."
+msgstr "В этом аккаунте Google не найден управляемый адрес компании."
+
+msgid "LinkedIn could not process the video."
+msgstr "LinkedIn не удалось обработать видео."
+
+msgid "LinkedIn video processing took too long."
+msgstr "Обработка видео в LinkedIn заняла слишком много времени."
+
+msgid "No Facebook page you manage was found. Make sure you selected the pages during login."
+msgstr "Ни одна страница Facebook, которой вы управляете, не найдена. Убедитесь, что вы выбрали страницы при входе в систему."
+
+msgid "A story has a single image or video."
+msgstr "История состоит из одного изображения или видео."
+
+msgid "Instagram accepts at most 30 hashtags."
+msgstr "Instagram принимает не более 30 хэштегов."
+
+msgid "Instagram feed image aspect ratio must be between 4:5 and 1.91:1 (except stories)."
+msgstr "Соотношение сторон изображения в ленте Instagram должно быть от 4:5 до 1,91:1 (кроме историй)."
+
+msgid "First enter the keys under Settings › Apps › Instagram login."
+msgstr "Сначала введите ключи в разделе «Настройки» > «Приложения» > «Вход в Instagram»."
+
+msgid "Instagram could not process a carousel item (format/size not suitable)."
+msgstr "Instagram не смог обработать элемент карусели (неподходящий формат/размер)."
+
+msgid "Instagram could not process the media. Video: MP4 (H.264/AAC), 3–90 s (Reels 15 min), up to 1 GB; image: JPEG, up to 8 MB."
+msgstr "Instagram не смог обработать медиа. Видео: MP4 (H.264/AAC), 3–90 с (Барабан 15 мин), до 1 ГБ; изображение: JPEG, до 8 МБ."
+
+msgid "Instagram video processing did not finish in 30 minutes."
+msgstr "Обработка видео в Instagram не завершилась за 30 минут."
+
+msgid "Pinterest title can be at most 100 characters."
+msgstr "Название Pinterest может содержать не более 100 символов."
+
+msgid "Pinterest could not process the video."
+msgstr "Pinterest не удалось обработать видео."
+
+msgid "Pinterest video processing took too long."
+msgstr "Обработка видео Pinterest заняла слишком много времени."
+
+msgid "Because the TikTok app has not been audited yet, only \"Only me\" visibility can be used."
+msgstr "Поскольку приложение TikTok еще не прошло аудит, можно использовать только видимость «Только я»."
+
+msgid "Draft sent to the TikTok app; publish it from the notification in the app."
+msgstr "Черновик отправлен в приложение TikTok; опубликуйте его из уведомления в приложении."
+
+msgid "TikTok processing took too long; check in the TikTok app."
+msgstr "Обработка TikTok заняла слишком много времени; проверьте приложение TikTok."
+
+msgid "No WhatsApp connection. Set up an Evolution connection in Flux Mail or Flux Chat."
+msgstr "Нет подключения к WhatsApp. Настройте соединение Evolution в Flux Mail или Flux Chat."
+
+msgid "WhatsApp Status"
+msgstr "Статус WhatsApp"
+
+msgid "Free (no cost, low write limit, no metrics)"
+msgstr "Бесплатно (бесплатно, низкий лимит записи, без метрик)"
+
+msgid "Basic (paid monthly)"
+msgstr "Базовый (оплачивается ежемесячно)"
+
+msgid "Pro (paid monthly)"
+msgstr "Про (оплачивается ежемесячно)"
+
+msgid "Pay-as-you-go"
+msgstr "Оплата по мере использования"
+
+msgid "X: a video or GIF is shared on its own."
+msgstr "X: видео или GIF публикуются отдельно."
+
+msgid "The monthly limit of %d posts set for X has been reached."
+msgstr "Достигнут месячный лимит публикаций%d, установленный для X."
+
+msgid "First enter the API Key and API Key Secret under Settings › Apps › X."
+msgstr "Сначала введите ключ API и секретный ключ API в разделе «Настройки» > «Приложения» > «X»."
+
+msgid "Connection refused."
+msgstr "В соединении отказано."
+
+msgid "Could not read the media file."
+msgstr "Не удалось прочитать медиафайл."
+
+msgid "video could not be processed"
+msgstr "видео не удалось обработать"
+
+msgid "Nothing this month"
+msgstr "В этом месяце ничего"
+
+msgid "Delete this post?"
+msgstr "Удалить этот пост?"
+
+msgid "Search posts"
+msgstr "Поиск сообщений"
+
+msgid "Account enabled"
+msgstr "Аккаунт включен"
+
+msgid "Open the panel to connect an account."
+msgstr "Откройте панель для подключения аккаунта."
+
+msgid "Account disabled"
+msgstr "Аккаунт отключен"
+
+msgid "No accounts"
+msgstr "Нет аккаунтов"
+
+msgid "Note"
+msgstr "Примечание"
+
+msgid "Review"
+msgstr "Обзор"
+
+msgid "Approved"
+msgstr "Утверждено"
+
+msgid "Open in panel"
+msgstr "Открыть на панели"
+
+msgid "Deleted"
+msgstr "Удалено"
+
+msgid "New posts are composed in the media composer."
+msgstr "Новые посты пишутся в медиакомпозиторе."
+
+msgid "Scheduled and published posts show up here."
+msgstr "Здесь отображаются запланированные и опубликованные публикации."
+
+msgid "[['Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.', 'tr']]"
+msgstr "[['Управление социальными сетями на сайте: привязка учетных записей (ключи с панели), контент для каждой учетной записи, планирование, редактирование/удаление сети, календарь, панель мониторинга, помощь в написании Flux AI и инструменты MCP. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.', 'tr']]"

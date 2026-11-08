@@ -29,17 +29,17 @@ function flxr_system_checks( $checks ) {
 		'id'           => 'flxr.roles',
 		'source'       => $src,
 		'group'        => 'Security',
-		'label'        => __( 'FluxWP rolleri', 'flx-roles' ),
+		'label'        => __( 'FluxWP roles', 'flx-roles' ),
 		'status'       => $miss ? 'error' : 'ok',
 		'message'      => $miss
 			? sprintf(
 				/* translators: %s: role names */
-				__( 'Rol eksik: %s. Eklentiyi kapatıp açın.', 'flx-roles' ),
+				__( 'Missing role: %s. Deactivate and reactivate the plugin.', 'flx-roles' ),
 				implode( ', ', $miss )
 			)
 			: implode( ' · ', $parts ),
 		'action_url'   => $url,
-		'action_label' => __( 'Roller ve erişim', 'flx-roles' ),
+		'action_label' => __( 'Roles and access', 'flx-roles' ),
 	);
 
 	// WhatsApp asistanı için numarası olmayan kişiler.
@@ -53,17 +53,17 @@ function flxr_system_checks( $checks ) {
 		'id'           => 'flxr.phone',
 		'source'       => $src,
 		'group'        => 'Config',
-		'label'        => __( 'Personel WhatsApp numaraları', 'flx-roles' ),
+		'label'        => __( 'Staff WhatsApp numbers', 'flx-roles' ),
 		'status'       => $nophone ? 'info' : 'ok',
 		'message'      => $nophone
 			? sprintf(
 				/* translators: %s: number of people */
-				__( '%s kişinin profilinde WhatsApp numarası yok; asistan bu kişileri tanımaz.', 'flx-roles' ),
+				__( '%s people have no WhatsApp number on their profile; the assistant won\'t recognize them.', 'flx-roles' ),
 				number_format_i18n( $nophone )
 			)
-			: __( 'Rollerdeki herkesin numarası kayıtlı.', 'flx-roles' ),
+			: __( 'Everyone in the roles has a number.', 'flx-roles' ),
 		'action_url'   => $url . '#flxr-people',
-		'action_label' => __( 'Kişiler', 'flx-roles' ),
+		'action_label' => __( 'People', 'flx-roles' ),
 	);
 
 	// Açık olup henüz uygulanmayan yetkiler.
@@ -87,17 +87,17 @@ function flxr_system_checks( $checks ) {
 		'id'           => 'flxr.support',
 		'source'       => $src,
 		'group'        => 'Security',
-		'label'        => __( 'Rol yetkilerini uygulayan eklentiler', 'flx-roles' ),
+		'label'        => __( 'Plugins enforcing role permissions', 'flx-roles' ),
 		'status'       => $wait ? 'info' : 'ok',
 		'message'      => $wait
 			? sprintf(
 				/* translators: %s: plugin names */
-				__( 'Açık ama henüz uygulanmayan yetkiler var; şu eklentilerin güncellemesi bekleniyor: %s. O zamana kadar bu kişiler ilgili ekranı göremez.', 'flx-roles' ),
+				__( 'Some enabled permissions aren\'t enforced yet; waiting for updates of: %s. Until then these people can\'t see the related screen.', 'flx-roles' ),
 				implode( ', ', array_keys( $wait ) )
 			)
-			: __( 'Açık yetkilerin hepsi uygulanıyor.', 'flx-roles' ),
+			: __( 'All enabled permissions are enforced.', 'flx-roles' ),
 		'action_url'   => $url,
-		'action_label' => __( 'Roller ve erişim', 'flx-roles' ),
+		'action_label' => __( 'Roles and access', 'flx-roles' ),
 	);
 	return $checks;
 }

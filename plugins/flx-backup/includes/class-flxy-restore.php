@@ -38,7 +38,7 @@ final class FLXY_Restore {
 	 */
 	public static function run_sync( string $id, array $parts ) {
 		if ( ! empty( $parts['db'] ) && FLXY_Runner::busy() ) {
-			return new WP_Error( 'flxy_busy', __( 'Şu anda başka bir yedekleme veya geri yükleme çalışıyor. Bitmesini bekleyin.', 'flx-backup' ) );
+			return new WP_Error( 'flxy_busy', __( 'Another backup or restore is running. Wait for it to finish.', 'flx-backup' ) );
 		}
 		$state = self::new_state( $id, $parts );
 		if ( is_wp_error( $state ) ) {
@@ -58,13 +58,13 @@ final class FLXY_Restore {
 	private static function new_state( string $id, array $parts ) {
 		$rec = FLXY_Storage::get( $id );
 		if ( ! $rec || 'ok' !== $rec['status'] ) {
-			return new WP_Error( 'flxy_missing', __( 'Yedek bulunamadı.', 'flx-backup' ) );
+			return new WP_Error( 'flxy_missing', __( 'Backup not found.', 'flx-backup' ) );
 		}
 		if ( ! file_exists( $rec['file'] ) ) {
-			return new WP_Error( 'flxy_missing', __( 'Yedek dosyası diskte yok.', 'flx-backup' ) );
+			return new WP_Error( 'flxy_missing', __( 'The backup file is missing from disk.', 'flx-backup' ) );
 		}
 		if ( ! class_exists( 'ZipArchive' ) ) {
-			return new WP_Error( 'flxy_zip', __( 'Sunucuda ZipArchive (PHP zip eklentisi) yok.', 'flx-backup' ) );
+			return new WP_Error( 'flxy_zip', __( 'ZipArchive (PHP zip extension) is not available on the server.', 'flx-backup' ) );
 		}
 		$db    = ! empty( $parts['db'] );
 		$paths = array();
@@ -84,17 +84,17 @@ final class FLXY_Restore {
 				return new WP_Error(
 					'flxy_path',
 					/* translators: %s: path */
-					sprintf( __( 'Bu yol yedekte yok: %s', 'flx-backup' ), $p )
+					sprintf( __( 'This path is not in the backup: %s', 'flx-backup' ), $p )
 				);
 			}
 			$paths[] = $p;
 		}
 		$paths = array_values( array_unique( $paths ) );
 		if ( $db && ! $rec['db'] ) {
-			return new WP_Error( 'flxy_nodb', __( 'Bu yedekte veritabanı yok.', 'flx-backup' ) );
+			return new WP_Error( 'flxy_nodb', __( 'This backup has no database.', 'flx-backup' ) );
 		}
 		if ( ! $db && ! $paths ) {
-			return new WP_Error( 'flxy_empty', __( 'Geri yüklenecek bir şey seçilmedi.', 'flx-backup' ) );
+			return new WP_Error( 'flxy_empty', __( 'Nothing was selected to restore.', 'flx-backup' ) );
 		}
 		$safety = array_key_exists( 'safety', $parts ) ? (bool) $parts['safety'] : (bool) FLXY_Settings::get( 'safety_restore' );
 		$tmp    = FLXY_Storage::tmp_dir() . '/restore-' . strtolower( wp_generate_password( 8, false, false ) );
@@ -178,7 +178,7 @@ final class FLXY_Restore {
 				array(
 					'type'      => 'db',
 					/* translators: %s: backup title */
-					'label'     => sprintf( __( 'Geri yükleme öncesi güvenlik yedeği (%s)', 'flx-backup' ), $state['title'] ),
+					'label'     => sprintf( __( 'Safety backup before restore (%s)', 'flx-backup' ), $state['title'] ),
 					'context'   => array(
 						'source'     => 'safety',
 						'restore_of' => $state['id'],
@@ -189,7 +189,7 @@ final class FLXY_Restore {
 			);
 			if ( is_wp_error( $res ) ) {
 				/* translators: %s: error */
-				return self::fail( $state, sprintf( __( 'Güvenlik yedeği alınamadı, geri yükleme yapılmadı: %s', 'flx-backup' ), $res->get_error_message() ) );
+				return self::fail( $state, sprintf( __( 'The safety backup failed, so nothing was restored: %s', 'flx-backup' ), $res->get_error_message() ) );
 			}
 			$state['safety_id'] = $res['record']['id'];
 			$state['safety']    = $res['state'];
@@ -199,7 +199,7 @@ final class FLXY_Restore {
 			$err                = $state['safety']['error'];
 			$state['safety_id'] = '';
 			/* translators: %s: error */
-			return self::fail( $state, sprintf( __( 'Güvenlik yedeği alınamadı, geri yükleme yapılmadı: %s', 'flx-backup' ), $err ) );
+			return self::fail( $state, sprintf( __( 'The safety backup failed, so nothing was restored: %s', 'flx-backup' ), $err ) );
 		}
 		if ( 'done' === $state['safety']['phase'] ) {
 			$state['safety'] = true;
@@ -211,12 +211,12 @@ final class FLXY_Restore {
 	private static function step_db_extract( array $state ): array {
 		$zip = new ZipArchive();
 		if ( true !== $zip->open( $state['zip'] ) ) {
-			return self::fail( $state, __( 'Zip dosyası açılamadı.', 'flx-backup' ) );
+			return self::fail( $state, __( 'Could not open the zip file.', 'flx-backup' ) );
 		}
 		$in = $zip->getStream( 'database.sql.gz' );
 		if ( ! $in ) {
 			$zip->close();
-			return self::fail( $state, __( 'Yedekte database.sql.gz yok.', 'flx-backup' ) );
+			return self::fail( $state, __( 'The backup has no database.sql.gz.', 'flx-backup' ) );
 		}
 		$gz  = $state['tmp'] . '/database.sql.gz';
 		$out = fopen( $gz, 'wb' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
@@ -230,7 +230,7 @@ final class FLXY_Restore {
 		if ( ! empty( $m['checksums']['database.sql.gz'] ) ) {
 			$expect = (string) $m['checksums']['database.sql.gz'];
 			if ( 'sha256:' . hash_file( 'sha256', $gz ) !== $expect ) {
-				return self::fail( $state, __( 'Veritabanı dosyasının sağlama toplamı tutmuyor; yedek bozuk olabilir.', 'flx-backup' ) );
+				return self::fail( $state, __( 'The database file\'s checksum does not match; the backup may be corrupt.', 'flx-backup' ) );
 			}
 		}
 		file_put_contents( $state['tmp'] . '/database.sql', '' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
@@ -241,7 +241,7 @@ final class FLXY_Restore {
 	private static function step_gunzip( array $state, float $deadline ): array {
 		$gz = gzopen( $state['tmp'] . '/database.sql.gz', 'rb' );
 		if ( ! $gz ) {
-			return self::fail( $state, __( 'SQL dosyası açılamadı.', 'flx-backup' ) );
+			return self::fail( $state, __( 'Could not open the SQL file.', 'flx-backup' ) );
 		}
 		if ( $state['gz_pos'] > 0 ) {
 			gzseek( $gz, (int) $state['gz_pos'] );
@@ -267,7 +267,7 @@ final class FLXY_Restore {
 				return self::fail(
 					$state,
 					/* translators: 1: prefix in backup, 2: current prefix */
-					sprintf( __( 'Yedekteki tablo öneki (%1$s) bu sitenin önekinden (%2$s) farklı; veritabanı geri yüklenmedi.', 'flx-backup' ), $prefix, $wpdb->base_prefix )
+					sprintf( __( 'The table prefix in the backup (%1$s) differs from this site\'s prefix (%2$s); the database was not restored.', 'flx-backup' ), $prefix, $wpdb->base_prefix )
 				);
 			}
 			$state['keep']  = self::snapshot_keep();
@@ -403,7 +403,7 @@ final class FLXY_Restore {
 	private static function step_files_prepare( array $state ): array {
 		$zip = new ZipArchive();
 		if ( true !== $zip->open( $state['zip'] ) ) {
-			return self::fail( $state, __( 'Zip dosyası açılamadı.', 'flx-backup' ) );
+			return self::fail( $state, __( 'Could not open the zip file.', 'flx-backup' ) );
 		}
 		$protected = self::protected_rel();
 		$entries   = array();
@@ -440,7 +440,7 @@ final class FLXY_Restore {
 		} ) );
 		if ( $missing ) {
 			/* translators: %s: paths */
-			return self::fail( $state, sprintf( __( 'Yedekte bulunamadı: %s', 'flx-backup' ), implode( ', ', $missing ) ) );
+			return self::fail( $state, sprintf( __( 'Not found in the backup: %s', 'flx-backup' ), implode( ', ', $missing ) ) );
 		}
 		// Paket klasörlerini kenara al (yedekte olmayan yeni dosyalar kalmasın).
 		foreach ( $state['paths'] as $p ) {
@@ -452,7 +452,7 @@ final class FLXY_Restore {
 			if ( ! @rename( $abs, $aside ) ) { // phpcs:ignore WordPress.PHP.NoSilencedErrors,WordPress.WP.AlternativeFunctions
 				$state = self::undo_moves( $state );
 				/* translators: %s: path */
-				return self::fail( $state, sprintf( __( 'Klasör taşınamadı (izin sorunu?): %s', 'flx-backup' ), $p ) );
+				return self::fail( $state, sprintf( __( 'Could not move the folder (permission problem?): %s', 'flx-backup' ), $p ) );
 			}
 			$state['moved'][ $abs ] = $aside;
 		}
@@ -465,7 +465,7 @@ final class FLXY_Restore {
 	private static function step_files( array $state, float $deadline ): array {
 		$zip = new ZipArchive();
 		if ( true !== $zip->open( $state['zip'] ) ) {
-			return self::fail( $state, __( 'Zip dosyası açılamadı.', 'flx-backup' ) );
+			return self::fail( $state, __( 'Could not open the zip file.', 'flx-backup' ) );
 		}
 		$base  = trailingslashit( wp_normalize_path( ABSPATH ) );
 		$total = count( $state['entries'] );
@@ -480,7 +480,7 @@ final class FLXY_Restore {
 				if ( ! is_dir( dirname( $dest ) ) && ! wp_mkdir_p( dirname( $dest ) ) ) {
 					$zip->close();
 					/* translators: %s: path */
-					return self::fail( $state, sprintf( __( 'Klasör oluşturulamadı: %s', 'flx-backup' ), dirname( $rel ) ) );
+					return self::fail( $state, sprintf( __( 'Could not create the folder: %s', 'flx-backup' ), dirname( $rel ) ) );
 				}
 				$in  = $zip->getStream( $name );
 				$out = $in ? @fopen( $dest, 'wb' ) : false; // phpcs:ignore WordPress.PHP.NoSilencedErrors,WordPress.WP.AlternativeFunctions
@@ -490,7 +490,7 @@ final class FLXY_Restore {
 					}
 					$zip->close();
 					/* translators: %s: path */
-					return self::fail( $state, sprintf( __( 'Dosya yazılamadı: %s', 'flx-backup' ), $rel ) );
+					return self::fail( $state, sprintf( __( 'Could not write the file: %s', 'flx-backup' ), $rel ) );
 				}
 				stream_copy_to_stream( $in, $out );
 				fclose( $out ); // phpcs:ignore WordPress.WP.AlternativeFunctions
@@ -525,17 +525,17 @@ final class FLXY_Restore {
 
 		$parts = array();
 		if ( $state['db'] ) {
-			$parts[] = __( 'veritabanı', 'flx-backup' );
+			$parts[] = __( 'database', 'flx-backup' );
 		}
 		if ( $state['paths'] ) {
 			/* translators: %s: number of files */
-			$parts[] = sprintf( _n( '%s dosya', '%s dosya', $state['restored'], 'flx-backup' ), number_format_i18n( $state['restored'] ) );
+			$parts[] = sprintf( _n( '%s file', '%s files', $state['restored'], 'flx-backup' ), number_format_i18n( $state['restored'] ) );
 		}
 		/* translators: 1: backup title, 2: restored parts */
-		$msg = sprintf( __( 'Geri yüklendi: %1$s (%2$s).', 'flx-backup' ), $state['title'], implode( ', ', $parts ) );
+		$msg = sprintf( __( 'Restored: %1$s (%2$s).', 'flx-backup' ), $state['title'], implode( ', ', $parts ) );
 		if ( $state['db'] && $state['sql']['errors'] ) {
 			/* translators: %s: number of failed SQL statements */
-			$msg .= ' ' . sprintf( __( '%s SQL ifadesi hata verdi; ayrıntı günlükte.', 'flx-backup' ), number_format_i18n( $state['sql']['errors'] ) );
+			$msg .= ' ' . sprintf( __( '%s SQL statements failed; details are in the log.', 'flx-backup' ), number_format_i18n( $state['sql']['errors'] ) );
 			FLXY_Storage::log( 'restore', implode( ' | ', $state['sql']['error_list'] ), 'error' );
 		}
 		$state['result'] = $msg;
@@ -590,12 +590,12 @@ final class FLXY_Restore {
 		$state['error'] = $message;
 		if ( ! empty( $state['safety_id'] ) && $state['db'] && $state['sql']['inserts'] > 0 ) {
 			/* translators: %s: error */
-			$state['error'] = sprintf( __( '%s Veritabanı yarım kalmış olabilir; "Geri yükleme öncesi güvenlik yedeği"ni geri yükleyin.', 'flx-backup' ), $message );
+			$state['error'] = sprintf( __( '%s The database may be partially restored; restore the "Safety backup before restore".', 'flx-backup' ), $message );
 		}
 		FLXY_Storage::log(
 			'restore',
 			/* translators: 1: backup title, 2: error */
-			sprintf( __( 'Geri yükleme başarısız (%1$s): %2$s', 'flx-backup' ), $state['title'] ?? '', $state['error'] ),
+			sprintf( __( 'Restore failed (%1$s): %2$s', 'flx-backup' ), $state['title'] ?? '', $state['error'] ),
 			'error'
 		);
 		return $state;
@@ -609,33 +609,33 @@ final class FLXY_Restore {
 				$sub  = is_array( $state['safety'] ) ? FLXY_Backup::progress( $state['safety'] ) : array( 'percent' => 0, 'text' => '' );
 				$pct  = (int) ( $sub['percent'] / 10 );
 				/* translators: %s: progress of the safety backup */
-				$text = sprintf( __( 'Güvenlik yedeği alınıyor: %s', 'flx-backup' ), $sub['text'] );
+				$text = sprintf( __( 'Taking safety backup: %s', 'flx-backup' ), $sub['text'] );
 				break;
 			case 'db_extract':
 			case 'db_gunzip':
 				$pct  = 10;
-				$text = __( 'Veritabanı dosyası açılıyor…', 'flx-backup' );
+				$text = __( 'Unpacking the database file…', 'flx-backup' );
 				break;
 			case 'db_import':
 				$frac = $state['sql_size'] ? min( 1, $state['sql']['offset'] / $state['sql_size'] ) : 0;
 				$pct  = 12 + (int) ( ( $state['paths'] ? 50 : 83 ) * $frac );
 				/* translators: %s: table name */
-				$text = sprintf( __( 'Veritabanı geri yükleniyor: %s', 'flx-backup' ), $state['sql']['table'] );
+				$text = sprintf( __( 'Restoring database: %s', 'flx-backup' ), $state['sql']['table'] );
 				break;
 			case 'files_prepare':
 				$pct  = $state['db'] ? 62 : 3;
-				$text = __( 'Dosyalar hazırlanıyor…', 'flx-backup' );
+				$text = __( 'Preparing files…', 'flx-backup' );
 				break;
 			case 'files':
 				$total = max( 1, count( $state['entries'] ) );
 				$start = $state['db'] ? 62 : 5;
 				$pct   = $start + (int) ( ( 97 - $start ) * $state['epos'] / $total );
 				/* translators: 1: done, 2: total */
-				$text = sprintf( __( 'Dosyalar geri yükleniyor: %1$s / %2$s', 'flx-backup' ), number_format_i18n( $state['epos'] ), number_format_i18n( count( $state['entries'] ) ) );
+				$text = sprintf( __( 'Restoring files: %1$s / %2$s', 'flx-backup' ), number_format_i18n( $state['epos'] ), number_format_i18n( count( $state['entries'] ) ) );
 				break;
 			case 'finalize':
 				$pct  = 98;
-				$text = __( 'Tamamlanıyor…', 'flx-backup' );
+				$text = __( 'Finishing…', 'flx-backup' );
 				break;
 			case 'done':
 				$pct  = 100;

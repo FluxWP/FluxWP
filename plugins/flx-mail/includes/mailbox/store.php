@@ -351,10 +351,10 @@ add_action(
 
 function flxi_draft_statuses() {
 	return array(
-		'draft'  => __( 'Taslak', 'flx-mail' ),
-		'review' => __( 'Onay bekliyor', 'flx-mail' ),
-		'sent'   => __( 'Gönderildi', 'flx-mail' ),
-		'failed' => __( 'Gönderilemedi', 'flx-mail' ),
+		'draft'  => __( 'Draft', 'flx-mail' ),
+		'review' => __( 'Awaiting approval', 'flx-mail' ),
+		'sent'   => __( 'Sent', 'flx-mail' ),
+		'failed' => __( 'Could not send', 'flx-mail' ),
 	);
 }
 

@@ -1,0 +1,1523 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: zh_CN\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "YOUR_KEY"
+msgstr "YOUR_KEY"
+
+msgid "AI assistants such as Claude connect to this site over MCP (Model Context Protocol). Tools come from the installed FluxWP plugins (SEO, CRM, Mail, Speed…); Flux AI chat uses the same tools."
+msgstr "Claude 等人工智能助手通过 MCP(模型上下文协议)连接到该站点。工具来自已安装的 FluxWP 插件(SEO、CRM、Mail、Speed...); Flux AI 聊天使用相同的工具。"
+
+msgid "An old Flux SEO version is running its own MCP server. Update Flux SEO; keys and the setting move here automatically."
+msgstr "旧的 Flux SEO 版本正在运行自己的 MCP 服务器。更新 Flux SEO;键和设置自动移至此处。"
+
+msgid "1. Server"
+msgstr "1. 服务器"
+
+msgid "MCP server enabled"
+msgstr "MCP 服务器已启用"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Server URL"
+msgstr "服务器地址"
+
+msgid "on"
+msgstr "上"
+
+msgid "off"
+msgstr "关闭"
+
+msgid "Tools"
+msgstr "工具"
+
+msgid "2. Keys"
+msgstr "2. 按键"
+
+msgid "The assistant works with the permissions of the user who created the key. New content is created as a draft; deleting only moves to trash."
+msgstr "助手使用创建密钥的用户的权限进行工作。新内容以草稿形式创建;删除只会移至垃圾箱。"
+
+msgid "New key (shown only now, copy it):"
+msgstr "新密钥(现在才显示,复制它):"
+
+msgid "reads"
+msgstr "读"
+
+msgid "Limit tools (optional)"
+msgstr "限制工具(可选)"
+
+msgid "If none is selected the key works with all of the user's permissions. If some are selected it only sees and runs those tools (e.g. only order_summary for a TV order board)."
+msgstr "如果未选择任何一项,则该密钥适用于所有用户的权限。如果选择了某些工具,它只会看到并运行这些工具(例如,仅电视订购板的 order_summary)。"
+
+msgid "e.g. Claude – Alex"
+msgstr "例如克劳德-亚历克斯"
+
+msgid "Create new key"
+msgstr "创建新密钥"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "User"
+msgstr "用户"
+
+msgid "Created"
+msgstr "已创建"
+
+msgid "Last used"
+msgstr "上次使用"
+
+msgid "All"
+msgstr "全部"
+
+msgid "Revoke"
+msgstr "撤销"
+
+msgid "3. Connect an assistant"
+msgstr "3. 连接助手"
+
+msgid "Connectors › Add custom connector"
+msgstr "连接器 › 添加自定义连接器"
+
+msgid "URL with the key, for places where headers can't be added; don't share it:"
+msgstr "带key的URL,用于无法添加header的地方;不要分享它:"
+
+msgid "On Apache, if you see \"Invalid key\", add SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 to .htaccess, or use the keyed URL."
+msgstr "在 Apache 上,如果您看到“无效密钥”,请将 SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 添加到 .htaccess,或使用密钥 URL。"
+
+msgid "Recent activity"
+msgstr "最近的活动"
+
+msgid "Time"
+msgstr "时间"
+
+msgid "Tool"
+msgstr "工具"
+
+msgid "Target"
+msgstr "目标"
+
+msgid "Result"
+msgstr "结果"
+
+msgid "%d tools registered."
+msgstr "%d工具已注册。"
+
+msgid "AI settings of this plugin. Values are stored in Flux AI and read by the plugin."
+msgstr "这个插件的AI设置。值存储在 Flux AI 中并由插件读取。"
+
+msgid "Connected systems"
+msgstr "互联系统"
+
+msgid "Saved."
+msgstr "已保存。"
+
+msgid "AI"
+msgstr "人工智能"
+
+msgid "This plugin may use AI"
+msgstr "这个插件可能会使用AI"
+
+msgid "When off, the plugin's model requests are rejected; its tools are turned off separately on the Tools screen."
+msgstr "关闭时,插件的模型请求将被拒绝;其工具在“工具”屏幕上单独关闭。"
+
+msgid "Model"
+msgstr "型号"
+
+msgid "Empty uses the default model."
+msgstr "空使用默认模型。"
+
+msgid "On"
+msgstr "开"
+
+msgid "%1$s / %2$s tools on"
+msgstr "%1$s/%2$s工具"
+
+msgid "Manage tools"
+msgstr "管理工具"
+
+msgid "This plugin has no tools."
+msgstr "这个插件没有工具。"
+
+msgid "This plugin declares no settings with the Flux AI SDK; only on/off and the model can be set."
+msgstr "该插件未声明 Flux AI SDK 的任何设置;只能开/关并且可以设置型号。"
+
+msgid "Flux AI SDK %s loaded."
+msgstr "Flux AI SDK%s已加载。"
+
+msgid "Tools that plugins offer to AI: the shared chat and the MCP server. A tool turned off is unavailable in both; tools that change data ask for approval every time."
+msgstr "插件为 AI 提供的工具:共享聊天和 MCP 服务器。关闭的工具在两者中均不可用;更改数据的工具每次都需要获得批准。"
+
+msgid "The plugin used for %s was changed."
+msgstr "用于%s的插件已更改。"
+
+msgid "%s off"
+msgstr "%s关闭"
+
+msgid "Name conflicts"
+msgstr "名称冲突"
+
+msgid "Only one is on per name"
+msgstr "每个名字只有一个"
+
+msgid "None"
+msgstr "无"
+
+msgid "Unprefixed names"
+msgstr "无前缀名称"
+
+msgid "Tools without a plugin prefix"
+msgstr "没有插件前缀的工具"
+
+msgid "By plugin"
+msgstr "通过插件"
+
+msgid "Search tools"
+msgstr "搜索工具"
+
+msgid "Search name, description, plugin…"
+msgstr "搜索名称、描述、插件..."
+
+msgid "Source"
+msgstr "来源"
+
+msgid "All plugins"
+msgstr "所有插件"
+
+msgid "Reads"
+msgstr "读"
+
+msgid "Changes"
+msgstr "变化"
+
+msgid "Off"
+msgstr "关闭"
+
+msgid "Conflict"
+msgstr "冲突"
+
+msgid "Unprefixed"
+msgstr "无前缀"
+
+msgid "Turn on"
+msgstr "打开"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Clear selection"
+msgstr "清除选择"
+
+msgid "Select all visible"
+msgstr "选择所有可见的"
+
+msgid "Type"
+msgstr "类型"
+
+msgid "Where"
+msgstr "哪里"
+
+msgid "Capability"
+msgstr "能力"
+
+msgid "30 days"
+msgstr "30天"
+
+msgid "Avg. time"
+msgstr "平均。时间"
+
+msgid "Conflict: off, %s is used"
+msgstr "冲突:关闭,使用%s"
+
+msgid "Conflict: this one is on, %s is off"
+msgstr "冲突:此一项打开,%s关闭"
+
+msgid "The name does not start with a plugin prefix; it may clash with another plugin's tool."
+msgstr "名称不以插件前缀开头;它可能会与另一个插件的工具发生冲突。"
+
+msgid "unprefixed"
+msgstr "无前缀"
+
+msgid "Old name: %s"
+msgstr "旧名称:%s"
+
+msgid "Use this one"
+msgstr "用这个"
+
+msgid "%s on"
+msgstr "%s开启"
+
+msgid "Select %s"
+msgstr "选择%s"
+
+msgid "Chat"
+msgstr "聊天"
+
+msgid "writes · needs approval"
+msgstr "写道·需要批准"
+
+msgid "No tools registered."
+msgstr "没有注册工具。"
+
+msgid "No tools match the filters."
+msgstr "没有与过滤器匹配的工具。"
+
+msgid "There are unsaved changes."
+msgstr "有未保存的更改。"
+
+msgid "Plugins add tools with the Flux AI SDK (<code>flx_ai_tool</code>) or the <code>flx_mcp_tools</code> / <code>flxai_tools</code> filters. If two plugins register the same name, the first stays on and the other waits turned off; switch with \"Use this one\". Plugin settings: %s."
+msgstr "插件使用 Flux AI SDK (<code>flx_ai_tool</code>) 或<code>flx_mcp_tools</code>/<code>flxai_tools</code>过滤器添加工具。如果两个插件注册相同的名称,则第一个插件保持打开状态,另一个插件等待关闭;切换为“使用这个”。插件设置:%s。"
+
+msgid "%s tools updated."
+msgstr "%s工具已更新。"
+
+msgid "%s plugins"
+msgstr "%s插件"
+
+msgid "Overview"
+msgstr "概述"
+
+msgid "Logs"
+msgstr "日志"
+
+msgid "Billing"
+msgstr "计费"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Limit %1$s · resets %2$s"
+msgstr "限制%1$s· 重置%2$s"
+
+msgid "No limit"
+msgstr "无限制"
+
+msgid "AI usage across all plugins: cost, time, cache and tools."
+msgstr "所有插件的人工智能使用情况:成本、时间、缓存和工具。"
+
+msgid "No API key entered yet."
+msgstr "尚未输入 API 密钥。"
+
+msgid "%d days"
+msgstr "%d天"
+
+msgid "Cost"
+msgstr "成本"
+
+msgid "Cache savings %s"
+msgstr "缓存节省%s"
+
+msgid "Model requests"
+msgstr "模型要求"
+
+msgid "%s tool calls"
+msgstr "%s工具调用"
+
+msgid "Tokens"
+msgstr "代币"
+
+msgid "Input %1$s · output %2$s · from cache %3$s"
+msgstr "输入%1$s· 输出%2$s· 来自缓存%3$s"
+
+msgid "Total time"
+msgstr "总时间"
+
+msgid "Model/thinking %1$s%% · tools %2$s%%"
+msgstr "模型/思维%1$s%% · 工具%2$s%%"
+
+msgid "Errors"
+msgstr "错误"
+
+msgid "%s%% of requests"
+msgstr "%s%% 请求"
+
+msgid "Daily cost (USD)"
+msgstr "每日费用(美元)"
+
+msgid "Where time goes: model/thinking vs tools"
+msgstr "时间都去哪儿了:模型/思维 vs 工具"
+
+msgid "Daily tokens"
+msgstr "每日代币"
+
+msgid "Average time per tool"
+msgstr "每个工具的平均时间"
+
+msgid "By model"
+msgstr "按型号"
+
+msgid "By purpose"
+msgstr "按目的"
+
+msgid "No records in this range."
+msgstr "此范围内无记录。"
+
+msgid "Requests"
+msgstr "要求"
+
+msgid "Model time"
+msgstr "模特时间"
+
+msgid "Tool time"
+msgstr "工具时间"
+
+msgid "%s errors"
+msgstr "%s错误"
+
+msgid "Every model request and tool call: which system, for whom, which model, tokens, time and cost. Content is stored with personal data masked."
+msgstr "每个模型请求和工具调用:哪个系统、为谁、哪个模型、令牌、时间和成本。内容存储时会屏蔽个人数据。"
+
+msgid "Tool calls"
+msgstr "工具调用"
+
+msgid "All systems"
+msgstr "所有系统"
+
+msgid "Errors only"
+msgstr "仅错误"
+
+msgid "24 hours"
+msgstr "24小时"
+
+msgid "Filter"
+msgstr "过滤器"
+
+msgid "%s records"
+msgstr "%s记录"
+
+msgid "No records."
+msgstr "没有记录。"
+
+msgid "Who"
+msgstr "谁"
+
+msgid "Model / tool"
+msgstr "模型/工具"
+
+msgid "Input"
+msgstr "输入"
+
+msgid "Output"
+msgstr "输出"
+
+msgid "Cache"
+msgstr "缓存"
+
+msgid "Duration"
+msgstr "持续时间"
+
+msgid "tool"
+msgstr "工具"
+
+msgid "Spending limit reached"
+msgstr "已达到消费限额"
+
+msgid "Off (Connected systems)"
+msgstr "关闭(已连接系统)"
+
+msgid "System"
+msgstr "系统"
+
+msgid "Content"
+msgstr "内容"
+
+msgid "Page %1$s / %2$s"
+msgstr "页%1$s/%2$s"
+
+msgid "Cache column: tokens read / written. \"~\" is estimated from the price list. Content: last outgoing messages and the incoming reply, shortened; e-mail, phone, IBAN and keys are masked."
+msgstr "缓存列:读取/写入的令牌。 “~”是根据价目表估算的。内容:最后发出的消息和收到的回复,已缩短;电子邮件、电话、IBAN 和密钥均被屏蔽。"
+
+msgid "Plugins that use Flux AI. A system switched off here cannot send AI requests; its own settings stay as they are."
+msgstr "使用 Flux AI 的插件。此处关闭的系统无法发送 AI 请求;它自己的设置保持原样。"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Requests (30 days)"
+msgstr "请求(30 天)"
+
+msgid "not installed"
+msgstr "未安装"
+
+msgid "plugin inactive"
+msgstr "插件不活动"
+
+msgid "AI off"
+msgstr "人工智能关闭"
+
+msgid "working"
+msgstr "工作"
+
+msgid "AI settings"
+msgstr "人工智能设置"
+
+msgid "Its settings"
+msgstr "它的设置"
+
+msgid "The Model column is the model that system uses. Change it under Settings › Per-plugin model. Requests to a disabled system are rejected and show as \"Disabled\" in the log."
+msgstr "型号列是系统使用的型号。在“设置”>“每个插件模型”下更改它。对已禁用系统的请求将被拒绝并在日志中显示为“已禁用”。"
+
+msgid "Monthly breakdown, spending limits and provider credit. Amounts in USD; OpenRouter reports actual cost, Anthropic is computed from the price list."
+msgstr "每月细目、支出限额和提供商信用。金额以美元为单位; OpenRouter 报告实际成本,Anthropic 根据价目表计算。"
+
+msgid "Months"
+msgstr "几个月"
+
+msgid "Download CSV"
+msgstr "下载 CSV 文件"
+
+msgid "Total"
+msgstr "合计"
+
+msgid "%s without cache"
+msgstr "%s无缓存"
+
+msgid "Cache savings"
+msgstr "缓存节省"
+
+msgid "%s%% less"
+msgstr "%s%% 减少"
+
+msgid "By provider"
+msgstr "按提供商"
+
+msgid "Provider"
+msgstr "提供者"
+
+msgid "Without cache"
+msgstr "无缓存"
+
+msgid "Amount"
+msgstr "金额"
+
+msgid "partly estimated"
+msgstr "部分估计"
+
+msgid "No records this month."
+msgstr "这个月没有记录。"
+
+msgid "OpenRouter account"
+msgstr "开放路由器帐户"
+
+msgid "Refresh"
+msgstr "刷新"
+
+msgid "Remaining credit"
+msgstr "剩余信用额度"
+
+msgid "Total usage of this key"
+msgstr "该键的总使用量"
+
+msgid "Key limit / remaining"
+msgstr "钥匙限额/剩余"
+
+msgid "Checked"
+msgstr "已检查"
+
+msgid "Press Refresh to see remaining credit. (Anthropic has no balance API; see console.anthropic.com › Billing.)"
+msgstr "按“刷新”即可查看剩余积分。 (Anthropic 没有余额 API;请参阅 console.anthropic.com › 计费。)"
+
+msgid "Flux AI settings"
+msgstr "通量AI设置"
+
+msgid "Enter keys here once; all FluxWP plugins use this connection."
+msgstr "在此输入一次密钥;所有 FluxWP 插件都使用此连接。"
+
+msgid "Settings saved."
+msgstr "设置已保存。"
+
+msgid "Providers"
+msgstr "供应商"
+
+msgid "OpenRouter API key"
+msgstr "OpenRouter API 密钥"
+
+msgid "Remove"
+msgstr "删除"
+
+msgid "openrouter.ai › Keys. Hundreds of models with one key; actual cost is reported with every request."
+msgstr "openrouter.ai › 按键。一键上百种型号;每次请求都会报告实际成本。"
+
+msgid "Anthropic (Claude) API key"
+msgstr "人类(克劳德)API 密钥"
+
+msgid "console.anthropic.com › API Keys. Claude models are listed with the \"claude:\" prefix."
+msgstr "console.anthropic.com › API 密钥。克劳德模型以“claude:”前缀列出。"
+
+msgid "Anthropic workspace ID"
+msgstr "Anthropic workspace ID"
+
+msgid "Only needed when the key is not tied to a workspace (if the error asks for \"anthropic-workspace-id\")."
+msgstr "仅当密钥未绑定到工作区时才需要(如果错误要求“anthropic-workspace-id”)。"
+
+msgid "Models"
+msgstr "型号"
+
+msgid "Default model"
+msgstr "默认型号"
+
+msgid "Test"
+msgstr "测试"
+
+msgid "Used when a plugin does not specify its own model."
+msgstr "当插件未指定其自己的模型时使用。"
+
+msgid "Shared chat model"
+msgstr "共享聊天模型"
+
+msgid "Default"
+msgstr "默认"
+
+msgid "Choose a model that supports tools."
+msgstr "选择支持工具的型号。"
+
+msgid "Chat title model"
+msgstr "聊天标题模型"
+
+msgid "Chat model"
+msgstr "聊天模型"
+
+msgid "A cheap model is enough for automatic chat titles."
+msgstr "对于自动聊天标题来说,便宜的型号就足够了。"
+
+msgid "Per-plugin model"
+msgstr "每个插件模型"
+
+msgid "Used when the plugin's request names no model; empty means the default."
+msgstr "当插件的请求没有命名模型时使用;空表示默认。"
+
+msgid "Cache and thinking"
+msgstr "缓存与思考"
+
+msgid "Claude prompt cache"
+msgstr "克劳德提示缓存"
+
+msgid "On, 5 minutes"
+msgstr "开启,5 分钟"
+
+msgid "On, 1 hour"
+msgstr "开,1小时"
+
+msgid "When the same instructions and tools are sent again most of the input cost drops (read 0.1x; write 5 min 1.25x, 1 hour 2x). Plugins can override per request. OpenRouter caching is automatic at the provider."
+msgstr "当再次发送相同的指令和工具时,大部分输入成本都会下降(读取 0.1 倍;写入 5 分钟 1.25 倍,1 小时 2 倍)。插件可以覆盖每个请求。 OpenRouter 缓存在提供商处是自动的。"
+
+msgid "Claude effort"
+msgstr "克劳德的努力"
+
+msgid "Low: fast and cheap"
+msgstr "低:快速且便宜"
+
+msgid "Medium"
+msgstr "中等"
+
+msgid "High: thinks deeper"
+msgstr "高:思考更深入"
+
+msgid "Thinking steps"
+msgstr "思考步骤"
+
+msgid "Show the model's thinking summary in chat"
+msgstr "在聊天中展示模型的思维总结"
+
+msgid "Spending limit"
+msgstr "消费限额"
+
+msgid "Daily (resets every day at 00:00)"
+msgstr "每日(每天 00:00 重置)"
+
+msgid "Weekly (resets on Monday)"
+msgstr "每周(周一重置)"
+
+msgid "Monthly (resets on the 1st)"
+msgstr "每月(1 日重置)"
+
+msgid "0 = unlimited"
+msgstr "0 = 无限制"
+
+msgid "When the limit is reached"
+msgstr "当达到限制时"
+
+msgid "Stop requests (plugins switch to their fallback behaviour)"
+msgstr "停止请求(插件切换到其后备行为)"
+
+msgid "Warn only"
+msgstr "仅警告"
+
+msgid "Warning threshold"
+msgstr "警告阈值"
+
+msgid "Email the admin at the threshold and when reached"
+msgstr "在阈值和达到时向管理员发送电子邮件"
+
+msgid "Shared chat"
+msgstr "共享聊天"
+
+msgid "Who can use it"
+msgstr "谁可以使用它"
+
+msgid "Everyone only uses tools their own capabilities allow. Individual users can also be given the \"flxai_chat\" capability."
+msgstr "每个人只使用自己能力允许的工具。还可以为个人用户提供“flxai_chat”功能。"
+
+msgid "Where to show"
+msgstr "在哪里显示"
+
+msgid "Admin panel"
+msgstr "管理面板"
+
+msgid "Site (for logged-in permitted users)"
+msgstr "站点(适用于已登录的许可用户)"
+
+msgid "Default layout"
+msgstr "默认布局"
+
+msgid "Floating window"
+msgstr "悬浮窗"
+
+msgid "Docked right (pushes the page)"
+msgstr "停靠在右侧(推送页面)"
+
+msgid "Users can switch from the panel; the choice stays in their browser."
+msgstr "用户可以从面板进行切换;选择权保留在他们的浏览器中。"
+
+msgid "Max steps per turn"
+msgstr "每回合最大步数"
+
+msgid "Max messages sent to the model"
+msgstr "发送到模型的最大消息数"
+
+msgid "Extra instructions"
+msgstr "额外说明"
+
+msgid "E.g. Use a formal tone; always create new pages as drafts."
+msgstr "例如使用正式的语气;始终将新页面创建为草稿。"
+
+msgid "Image and video generation"
+msgstr "图像和视频生成"
+
+msgid "Plugins that generate images and video (Flux Studio etc.) use these keys. In automatic mode the first provider with a key for the model is used; a request that may have been charged is never resent to another provider. The spending limit and Logs apply here too."
+msgstr "生成图像和视频的插件(Flux Studio 等)使用这些键。在自动模式下,使用第一个具有模型密钥的提供者;可能已收费的请求绝不会重新发送给其他提供商。支出限制和日志也适用于此。"
+
+msgid "%s API key"
+msgstr "%sAPI 密钥"
+
+msgid "OpenRouter"
+msgstr "开放路由器"
+
+msgid "The OpenRouter key in Providers is also used for images and video."
+msgstr "Providers 中的 OpenRouter 密钥也用于图像和视频。"
+
+msgid "Default image model"
+msgstr "默认图像模型"
+
+msgid "Default video model"
+msgstr "默认视频模型"
+
+msgid "Model › provider"
+msgstr "型号 › 提供商"
+
+msgid "Order"
+msgstr "订单"
+
+msgid "Automatic"
+msgstr "自动"
+
+msgid "video"
+msgstr "视频"
+
+msgid "No key"
+msgstr "没有钥匙"
+
+msgid "Job records"
+msgstr "工作记录"
+
+msgid "days kept (generated files are not deleted)"
+msgstr "保留天数(生成的文件不会被删除)"
+
+msgid "Visuals"
+msgstr "视觉效果"
+
+msgid "Visuals in chat"
+msgstr "聊天中的视觉效果"
+
+msgid "Let the model draw tables, cards, diagrams and charts as visuals (```widget and ```mermaid)"
+msgstr "让模型绘制表格、卡片、图表和图表作为视觉效果( ```widget and ``` 美人鱼)"
+
+msgid "Works with any model. Visuals are drawn in a separate, isolated frame with no external links, forms or access to the site."
+msgstr "适用于任何型号。视觉效果是在一个单独的、孤立的框架中绘制的,没有外部链接、表格或网站访问权限。"
+
+msgid "Server-side visual renderer"
+msgstr "服务器端视觉渲染器"
+
+msgid "Gotenberg: HTML and SVG visuals can be sent as PNG."
+msgstr "Gotenberg:HTML 和 SVG 视觉效果可以以 PNG 格式发送。"
+
+msgid "Imagick: only SVG visuals can be sent as PNG."
+msgstr "Imagick:只有 SVG 视觉效果可以作为 PNG 发送。"
+
+msgid "None: channels like WhatsApp get text instead of visuals."
+msgstr "无:WhatsApp 等渠道获取的是文本而不是视觉效果。"
+
+msgid "Optional. Channels like WhatsApp and email cannot show HTML; visuals are converted to PNG. Shared hosting has no browser, so HTML visuals are converted by Gotenberg on a Docker server (gotenberg/gotenberg:8)."
+msgstr "可选。 WhatsApp 和电子邮件等渠道无法显示 HTML;视觉效果转换为 PNG。共享主机没有浏览器,因此 HTML 视觉效果由 Docker 服务器上的 Gotenberg 进行转换 (gotenberg/gotenberg:8)。"
+
+msgid "Gotenberg user / password"
+msgstr "哥登堡用户名/密码"
+
+msgid "If Gotenberg is protected with basic authentication."
+msgstr "如果 Gotenberg 受到基本身份验证的保护。"
+
+msgid "Keep usage logs for"
+msgstr "保留使用日志"
+
+msgid "Unlimited"
+msgstr "无限"
+
+msgid "Leave empty to keep logs forever. If you enter days, older logs are deleted once a day."
+msgstr "留空以永久保留日志。如果您输入天数,则较旧的日志将每天删除一次。"
+
+msgid "days"
+msgstr "天"
+
+msgid "Content log"
+msgstr "内容日志"
+
+msgid "Also store outgoing/incoming content (shortened; e-mail, phone, IBAN and keys masked)"
+msgstr "还存储传出/传入内容(缩短;电子邮件、电话、IBAN 和按键屏蔽)"
+
+msgid "days to keep"
+msgstr "保留天数"
+
+msgid "Leave empty to keep content forever too."
+msgstr "留空也可以永久保留内容。"
+
+msgid "On uninstall"
+msgstr "卸载时"
+
+msgid "Delete logs and chats when the plugin is deleted"
+msgstr "删除插件时删除日志和聊天记录"
+
+msgid "Message is empty."
+msgstr "消息为空。"
+
+msgid "The user wrote a new message; this action was not run."
+msgstr "用户写了一条新消息;该操作未运行。"
+
+msgid "I reached the step limit for this turn. Type \"continue\" if you want me to go on."
+msgstr "我已达到本回合的步数限制。如果您想让我继续,请输入“继续”。"
+
+msgid "The answer hit the length limit. Try a shorter question."
+msgstr "答案达到了长度限制。尝试一个较短的问题。"
+
+msgid "I couldn't produce an answer, could you try again?"
+msgstr "我无法给出答案,你能再试一次吗?"
+
+msgid "Tool not found or not permitted: %s"
+msgstr "找不到工具或不允许使用工具:%s"
+
+msgid "Stopped by the user; not run."
+msgstr "被用户停止;不运行。"
+
+msgid "The assistant is running; stop it first."
+msgstr "助手正在运行;先停下来吧。"
+
+msgid "Message not found."
+msgstr "未找到消息。"
+
+msgid "AI is off for %s (Flux AI & MCP › Connected systems)."
+msgstr "%s的 AI 已关闭(Flux AI 和 MCP › 连接系统)。"
+
+msgid "No AI model selected (Flux AI & MCP › Settings)."
+msgstr "未选择 AI 模型(Flux AI 和 MCP › 设置)。"
+
+msgid "Daily"
+msgstr "每日"
+
+msgid "Weekly"
+msgstr "每周"
+
+msgid "Monthly"
+msgstr "每月"
+
+msgid "%1$s AI spending limit (%2$s) reached. It resets %3$s; you can change it in Flux AI & MCP › Settings."
+msgstr "%1$sAI 支出限额 (%2$s) 已达到。它重置%3$s;您可以在 Flux AI 和 MCP › 设置中更改它。"
+
+msgid "Flux AI: %2$s%% of the %1$s spending limit used"
+msgstr "Flux AI:%2$s已使用的%1$s支出限额的 %%"
+
+msgid "%1$s spending: %2$s / %3$s (%4$s%%)."
+msgstr "%1$s支出:%2$s/%3$s(%4$s%%)。"
+
+msgid "AI requests are stopped."
+msgstr "AI 请求已停止。"
+
+msgid "AI keys"
+msgstr "人工智能按键"
+
+msgid "Connected providers: %s."
+msgstr "连接的提供商:%s。"
+
+msgid "No OpenRouter or Anthropic key entered; AI features will not work."
+msgstr "未输入 OpenRouter 或 Anthropic 密钥; AI功能将不起作用。"
+
+msgid "Using %s."
+msgstr "使用%s。"
+
+msgid "The selected model's provider has no key, or no model is selected."
+msgstr "所选模型的提供者没有密钥,或者未选择模型。"
+
+msgid "No daily/weekly/monthly spending limit set."
+msgstr "没有设置每日/每周/每月的支出限额。"
+
+msgid "Set a limit"
+msgstr "设定限制"
+
+msgid "%1$s: %2$s / %3$s."
+msgstr "%1$s:%2$s/%3$s。"
+
+msgid "Limit reached, AI requests stopped."
+msgstr "达到限制,AI 请求停止。"
+
+msgid "Error rate, last 24 hours"
+msgstr "过去 24 小时错误率"
+
+msgid "%1$s / %2$s requests failed."
+msgstr "%1$s/%2$s请求失败。"
+
+msgid "No requests in the last 24 hours."
+msgstr "过去 24 小时内没有请求。"
+
+msgid "MCP server"
+msgstr "MCP服务器"
+
+msgid "%1$s %2$d tools registered; Flux AI chat uses them too, and tools that change data ask for approval."
+msgstr "%1$s%2$d工具已注册; Flux AI 聊天也使用它们,并且更改数据的工具需要获得批准。"
+
+msgid "MCP server is on."
+msgstr "MCP 服务器已开启。"
+
+msgid "MCP server is off."
+msgstr "MCP 服务器已关闭。"
+
+msgid "Visual renderer (WhatsApp/email)"
+msgstr "视觉渲染器(WhatsApp/电子邮件)"
+
+msgid "%s AI spending limit (USD)"
+msgstr "%sAI 支出限额(美元)"
+
+msgid "0 = unlimited. When reached, AI requests stop (or only warn, per setting)."
+msgstr "0 = 无限制。当达到时,AI 请求停止(或根据设置仅发出警告)。"
+
+msgid "Enter a valid amount (0 or a positive number)."
+msgstr "输入有效金额(0 或正数)。"
+
+msgid "Limit saved as %s."
+msgstr "限制保存为%s。"
+
+msgid "What can I do on this page?"
+msgstr "我可以在这个页面上做什么?"
+
+msgid "Summarize the site's system check warnings"
+msgstr "总结网站的系统检查警告"
+
+msgid "List recently added drafts"
+msgstr "列出最近添加的草稿"
+
+msgid "How much have we spent on AI this month?"
+msgstr "这个月我们在人工智能上花了多少钱?"
+
+msgid "Summarize this page"
+msgstr "总结一下这个页面"
+
+msgid "Show this page's SEO issues"
+msgstr "显示此页面的 SEO 问题"
+
+msgid "Find typos on this page"
+msgstr "查找此页面上的拼写错误"
+
+msgid "saved (…%s)"
+msgstr "已保存(...%s)"
+
+msgid "%s ms"
+msgstr "%s毫秒"
+
+msgid "%s s"
+msgstr "%ss"
+
+msgid "chat"
+msgstr "聊天"
+
+msgid "title"
+msgstr "标题"
+
+msgid "test"
+msgstr "测试"
+
+msgid "Flux AI chat"
+msgstr "Flux 人工智能聊天"
+
+msgid "Unspecified"
+msgstr "未指定"
+
+msgid "MCP is off. Turn it on in Flux AI & MCP › MCP."
+msgstr "MCP 已关闭。在 Flux AI 和 MCP › MCP 中将其打开。"
+
+msgid "Invalid or missing MCP key."
+msgstr "MCP 密钥无效或丢失。"
+
+msgid "This user can't edit content."
+msgstr "该用户无法编辑内容。"
+
+msgid "Unknown tool: %s"
+msgstr "未知工具:%s"
+
+msgid "This tool is turned off (Flux AI & MCP › Tools): %s"
+msgstr "该工具已关闭(Flux AI 和 MCP › 工具):%s"
+
+msgid "This key can't use this tool: %s"
+msgstr "该键不能使用该工具:%s"
+
+msgid "You don't have permission for this."
+msgstr "您无权执行此操作。"
+
+msgid "Unauthorized."
+msgstr "未经授权。"
+
+msgid "Unsupported model."
+msgstr "不支持的型号。"
+
+msgid "This provider does not offer the selected model."
+msgstr "该提供商不提供所选型号。"
+
+msgid "%s key is not set (Flux AI & MCP › Settings › Image and video)."
+msgstr "未设置%s键(Flux AI 和 MCP › 设置 › 图像和视频)。"
+
+msgid "This model needs one of these keys: %s (Flux AI & MCP › Settings › Image and video)."
+msgstr "该模型需要以下键之一:%s(Flux AI 和 MCP › 设置 › 图像和视频)。"
+
+msgid "A prompt is required (up to 20,000 characters)."
+msgstr "需要提示(最多 20,000 个字符)。"
+
+msgid "This model accepts at most %d reference images."
+msgstr "该模型最多接受%d参考图像。"
+
+msgid "This model does not support this aspect ratio."
+msgstr "此型号不支持此宽高比。"
+
+msgid "Duration must be %1$d–%2$d seconds."
+msgstr "持续时间必须为%1$d–%2$d秒。"
+
+msgid "Pick 1 or 2 images for the first/last frame."
+msgstr "为第一帧/最后一帧选择 1 或 2 个图像。"
+
+msgid "Reference mode needs an image or a video."
+msgstr "参考模式需要图像或视频。"
+
+msgid "This model does not support area editing."
+msgstr "该型号不支持区域编辑。"
+
+msgid "Area editing needs the image to edit (refs[0])."
+msgstr "区域编辑需要编辑图像(参考[0])。"
+
+msgid "Could not read the reference."
+msgstr "无法读取参考文献。"
+
+msgid "Could not download the reference."
+msgstr "无法下载参考。"
+
+msgid "No response from %1$s (%2$s). The request may have been charged; check the provider's history before sending again."
+msgstr "%1$s(%2$s) 没有响应。该请求可能已收费;再次发送之前请检查提供商的历史记录。"
+
+msgid "Unsupported provider."
+msgstr "不受支持的提供商。"
+
+msgid "no request id"
+msgstr "没有请求 ID"
+
+msgid "EvoLink only accepts public http(s) URLs; upload the reference to the site."
+msgstr "EvoLink 仅接受公共 http(s) URL;将参考资料上传到网站。"
+
+msgid "no task id"
+msgstr "没有任务 ID"
+
+msgid "OpenRouter does not accept video/audio references; choose fal.ai or EvoLink."
+msgstr "OpenRouter 不接受视频/音频引用;选择 fal.ai 或 EvoLink。"
+
+msgid "Choose an aspect ratio for OpenRouter."
+msgstr "选择 OpenRouter 的宽高比。"
+
+msgid "Seedance 2.5 on OpenRouter is limited to 720p; choose fal.ai or EvoLink for 1080p."
+msgstr "OpenRouter 上的 Seedance 2.5 仅限于 720p;选择 1080p 的 fal.ai 或 EvoLink。"
+
+msgid "OpenAI returned no image. Check usage history before sending again."
+msgstr "OpenAI 没有返回图像。再次发送前请检查使用历史记录。"
+
+msgid "OpenRouter returned no image. Check usage history before sending again."
+msgstr "OpenRouter 没有返回图像。再次发送前请检查使用历史记录。"
+
+msgid "Gemini returned no image (possibly the content filter)."
+msgstr "Gemini 没有返回图像(可能是内容过滤器)。"
+
+msgid "Job not found."
+msgstr "找不到工作。"
+
+msgid "The provider key was removed; the job is kept and continues once the key is entered again."
+msgstr "提供商密钥已被删除;再次输入密钥后,作业将被保留并继续。"
+
+msgid "The job was interrupted."
+msgstr "工作被中断了。"
+
+msgid "fal.ai returned no output (possibly the content filter)."
+msgstr "fal.ai 没有返回任何输出(可能是内容过滤器)。"
+
+msgid "The EvoLink task finished but has no result URL yet."
+msgstr "EvoLink 任务已完成,但还没有结果 URL。"
+
+msgid "The provider did not confirm the cancellation; the job may be charged if it completes."
+msgstr "提供商未确认取消;如果作业完成,可能会收取费用。"
+
+msgid "Cancelled locally; a job already started at the provider may be charged."
+msgstr "本地取消;已经在提供商处开始的工作可能会收费。"
+
+msgid "Unsupported output type."
+msgstr "不支持的输出类型。"
+
+msgid "Could not save the output."
+msgstr "无法保存输出。"
+
+msgid "Could not download the output; the provider URL is used for now."
+msgstr "无法下载输出;目前使用提供者 URL。"
+
+msgid "Could not load the model list."
+msgstr "无法加载型号列表。"
+
+msgid "→ Flux AI & MCP › Settings › \"Anthropic workspace ID\": paste the id (wrkspc_…) from console.anthropic.com › Settings › Workspaces."
+msgstr "→ Flux AI 和 MCP › 设置 › “Anthropic 工作区 ID”:粘贴来自 console.anthropic.com 的 ID (wrkspc_...) › 设置 › 工作区。"
+
+msgid "AI error (%1$d): %2$s"
+msgstr "AI 错误(%1$d):%2$s"
+
+msgid "unknown error"
+msgstr "未知错误"
+
+msgid "Stopped by the user."
+msgstr "被用户停止。"
+
+msgid "No OpenRouter API key entered (Flux AI & MCP › Settings)."
+msgstr "未输入 OpenRouter API 密钥(Flux AI 和 MCP › 设置)。"
+
+msgid "Could not reach the AI service: %s"
+msgstr "无法访问 AI 服务:%s"
+
+msgid "The AI returned an empty answer."
+msgstr "人工智能返回了一个空答案。"
+
+msgid "No Anthropic (Claude) API key entered (Flux AI & MCP › Settings)."
+msgstr "未输入 Anthropic (Claude) API 密钥(Flux AI 和 MCP › 设置)。"
+
+msgid "Unknown"
+msgstr "未知"
+
+msgid "No OpenRouter key entered."
+msgstr "未输入 OpenRouter 密钥。"
+
+msgid "You are not allowed to do this."
+msgstr "你不可以这样做。"
+
+msgid "Chat not found."
+msgstr "找不到聊天。"
+
+msgid "Flux AI is not set up yet: enter an API key and model in Flux AI & MCP › Settings."
+msgstr "Flux AI 尚未设置:在 Flux AI & MCP › 设置中输入 API 密钥和模型。"
+
+msgid "Image renderer works"
+msgstr "图像渲染器的工作原理"
+
+msgid "Enter the Gotenberg address first."
+msgstr "首先输入哥滕贝格地址。"
+
+msgid "Content was not stored for this record."
+msgstr "未存储此记录的内容。"
+
+msgid "%s-character system prompt"
+msgstr "%s——字符系统提示符"
+
+msgid "AI usage"
+msgstr "人工智能的使用"
+
+msgid "Date and time"
+msgstr "日期和时间"
+
+msgid "Visual code is empty."
+msgstr "视觉代码为空。"
+
+msgid "This visual contains HTML; the server can only convert SVG. For HTML, enter a Gotenberg address in Flux AI & MCP › Settings › Visuals."
+msgstr "该视觉效果包含 HTML;服务器只能转换SVG。对于 HTML,请在 Flux AI & MCP › 设置 › 视觉效果中输入 Gotenberg 地址。"
+
+msgid "No visual renderer on the server (Imagick with SVG support or a Gotenberg address is required)."
+msgstr "服务器上没有视觉渲染器(需要支持 SVG 的 Imagick 或 Gotenberg 地址)。"
+
+msgid "Could not reach the visual renderer: %s"
+msgstr "无法到达视觉渲染器:%s"
+
+msgid "The image renderer rejected the username or password."
+msgstr "图像渲染器拒绝了用户名或密码。"
+
+msgid "Could not convert the visual (HTTP %d)."
+msgstr "无法转换视觉对象 (HTTP%d)。"
+
+msgid "Could not convert SVG: %s"
+msgstr "无法转换 SVG:%s"
+
+msgid "%1$s min %2$s s"
+msgstr "%1$s分钟%2$s秒"
+
+msgid "No data in this range."
+msgstr "没有该范围内的数据。"
+
+msgid "Show as table"
+msgstr "显示为表格"
+
+msgid "%1$s requests · %2$s tools"
+msgstr "%1$s请求 ·%2$s工具"
+
+msgid "Model / thinking"
+msgstr "模型/思考"
+
+msgid "Average time"
+msgstr "平均时间"
+
+msgid "%1$s calls · longest %2$s"
+msgstr "%1$s调用 · 最长的%2$s"
+
+msgid "Testing…"
+msgstr "测试..."
+
+msgid "%s KB"
+msgstr "%sKB"
+
+msgid "Outgoing · user"
+msgstr "传出·用户"
+
+msgid "Outgoing · assistant"
+msgstr "即将离任·助理"
+
+msgid "Outgoing · tool result"
+msgstr "传出·工具结果"
+
+msgid "Incoming · error"
+msgstr "传入·错误"
+
+msgid "Incoming · reply"
+msgstr "来信·回复"
+
+msgid "Showing %s tools"
+msgstr "显示%s工具"
+
+msgid "%s selected"
+msgstr "已选择%s"
+
+msgid "Preparing visual…"
+msgstr "准备视觉..."
+
+msgid "Could not draw the visual; its code:"
+msgstr "无法绘制视觉效果;它的代码:"
+
+msgid "Visual"
+msgstr "视觉"
+
+msgid "Could not connect. Check your internet connection and try again."
+msgstr "无法连接。检查您的互联网连接,然后重试。"
+
+msgid "New chat"
+msgstr "新聊天"
+
+msgid "Ask AI"
+msgstr "询问人工智能"
+
+msgid "AI assistant"
+msgstr "人工智能助手"
+
+msgid "Stop"
+msgstr "停止"
+
+msgid "Resize width"
+msgstr "调整宽度"
+
+msgid "Resize"
+msgstr "调整大小"
+
+msgid "Search chats"
+msgstr "搜索聊天记录"
+
+msgid "Ask something or give a task…"
+msgstr "询问某事或分配任务..."
+
+msgid "Send"
+msgstr "发送"
+
+msgid "Dock right"
+msgstr "停靠右侧"
+
+msgid "Your approval is needed: %s"
+msgstr "需要您的批准:%s"
+
+msgid "%s running…"
+msgstr "%s正在运行..."
+
+msgid "Thinking…"
+msgstr "思考......"
+
+msgid "How can I help you?"
+msgstr "我能帮你什么忙?"
+
+msgid "Content, settings, reports: anything your permissions allow. I ask for your approval before making changes."
+msgstr "内容、设置、报告:您的权限允许的任何内容。在进行更改之前我请求您的批准。"
+
+msgid "You can ask about this page and the site, or give me a task."
+msgstr "您可以询问有关此页面和网站的信息,或者给我一个任务。"
+
+msgid "Thinking"
+msgstr "思考"
+
+msgid "Retry"
+msgstr "重试"
+
+msgid "Edit message"
+msgstr "编辑留言"
+
+msgid "This message and everything after it will be rewritten."
+msgstr "该消息以及其后的所有内容都将被重写。"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Edit"
+msgstr "编辑"
+
+msgid "Rewind to here"
+msgstr "倒回至此处"
+
+msgid "Working"
+msgstr "工作"
+
+msgid "Thought for %s"
+msgstr "%s的思考"
+
+msgid "The model is preparing an answer…"
+msgstr "模型正在准备答案......"
+
+msgid "rejected"
+msgstr "被拒绝"
+
+msgid "awaiting approval"
+msgstr "等待批准"
+
+msgid "No result"
+msgstr "没有结果"
+
+msgid "Your approval is needed"
+msgstr "需要您的批准"
+
+msgid "The assistant wants to make the changes below. None of them run until you approve."
+msgstr "助理想要进行以下更改。在您批准之前,它们都不会运行。"
+
+msgid "Reject"
+msgstr "拒绝"
+
+msgid "Approve"
+msgstr "批准"
+
+msgid "Data to be sent"
+msgstr "待发送数据"
+
+msgid "%1$s / %2$s decided"
+msgstr "%1$s/%2$s已决定"
+
+msgid "Reject all"
+msgstr "全部拒绝"
+
+msgid "Approve all"
+msgstr "批准全部"
+
+msgid "Continue"
+msgstr "继续"
+
+msgid "The conversation after this message will be deleted. Continue?"
+msgstr "此消息之后的对话将被删除。继续?"
+
+msgid "Choose model"
+msgstr "选择型号"
+
+msgid "Enter sends, Shift+Enter for a new line"
+msgstr "输入发送,Shift+Enter 换行"
+
+msgid "Flux AI is not set up yet: an API key and model are needed."
+msgstr "Flux AI 尚未设置:需要 API 密钥和模型。"
+
+msgid "Search titles or content…"
+msgstr "搜索标题或内容..."
+
+msgid "Include archived"
+msgstr "包括存档的"
+
+msgid "Enter opens the first result, Esc closes."
+msgstr "Enter 打开第一个结果,Esc 关闭。"
+
+msgid "No results."
+msgstr "没有结果。"
+
+msgid "No chats yet."
+msgstr "还没有聊天记录。"
+
+msgid "Untitled chat"
+msgstr "无标题聊天"
+
+msgid "Archive"
+msgstr "存档"
+
+msgid "Awaiting approval"
+msgstr "等待批准"
+
+msgid "Options"
+msgstr "选项"
+
+msgid "Rename"
+msgstr "重命名"
+
+msgid "Unarchive"
+msgstr "取消归档"
+
+msgid "Delete this chat permanently?"
+msgstr "永久删除此聊天记录吗?"
+
+msgid "Search models…"
+msgstr "搜索型号..."
+
+msgid "No matching model; you can type the ID manually."
+msgstr "无匹配型号;您可以手动输入 ID。"
+
+msgid "no tools"
+msgstr "没有工具"
+
+msgid "Loading models…"
+msgstr "正在加载模型..."
+
+msgid "0 means unlimited."
+msgstr "0 表示无限制。"
+
+msgid "1 hour"
+msgstr "1小时"
+
+msgid "5 minutes"
+msgstr "5分钟"
+
+msgid "Anthropic key"
+msgstr "Anthropic key"
+
+msgid "Monthly limit (USD)"
+msgstr "每月限额(美元)"
+
+msgid "Low"
+msgstr "低"
+
+msgid "Thinking summary"
+msgstr "思考总结"
+
+msgid "Evolink key"
+msgstr "Evolink钥匙"
+
+msgid "Fal key"
+msgstr "福尔键"
+
+msgid "Flux AI"
+msgstr "通量人工智能"
+
+msgid "Gemini key"
+msgstr "双子座钥匙"
+
+msgid "Gotenberg key"
+msgstr "哥滕贝格钥匙"
+
+msgid "Daily limit (USD)"
+msgstr "每日限额(美元)"
+
+msgid "Record"
+msgstr "记录"
+
+msgid "Keep records (days)"
+msgstr "保存记录(天)"
+
+msgid "Keep content (days)"
+msgstr "保留内容(天)"
+
+msgid "No records"
+msgstr "没有记录"
+
+msgid "MCP"
+msgstr "MCP"
+
+msgid "Model and tool calls are listed here. Request bodies are not sent to the app."
+msgstr "此处列出了模型和工具调用。请求正文不会发送到应用程序。"
+
+msgid "Model, tool or error"
+msgstr "型号、工具或错误"
+
+msgid "OpenAI key"
+msgstr "OpenAI 密钥"
+
+msgid "OpenRouter key"
+msgstr "打开路由器密钥"
+
+msgid "Window"
+msgstr "窗户"
+
+msgid "Chat on the site"
+msgstr "在网站上聊天"
+
+msgid "Chat layout"
+msgstr "聊天布局"
+
+msgid "Chat instructions"
+msgstr "聊天说明"
+
+msgid "When the limit is hit"
+msgstr "当达到极限时"
+
+msgid "Warn"
+msgstr "警告"
+
+msgid "Docked"
+msgstr "停靠"
+
+msgid "Chat in admin"
+msgstr "在管理员中聊天"
+
+msgid "High"
+msgstr "高"
+
+msgid "Effort"
+msgstr "努力"
+
+msgid "Store request bodies"
+msgstr "存储请求体"
+
+msgid "[['%stool updated.', 'tr']]"
+msgid_plural "[['%stool updated.', 'tr']]"
+msgstr[0] "[['%s工具已更新。', 'tr']]"
+
+msgid "[['%splugin', 'tr']]"
+msgid_plural "[['%splugin', 'tr']]"
+msgstr[0] "[['%s插件','tr']]"
+
+msgid "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]"
+msgstr "\\n%d车辆已注册。%d车辆已注册。', 'tr']]"
+
+msgid "\\nSpent:%1$s/ Limit:%2$s\\nRegeneration:%3$s\\n\\nDetail:%4$s\\n"
+msgstr "\\n已用:%1$s/ 限制:%2$s\\n重新生成:%3$s\\n\\n详细信息:%4$s\\n"
+
+msgid "[['Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users.', 'tr']]"
+msgstr "[['所有 FluxWP 插件的通用 AI 中心:OpenRouter 和 Anthropic 密钥、模型目录和价格、提示缓存、车辆注册、通用 MCP 服务器、使用报告、计费和支出限制;管理员和公共人工智能在现场为授权用户聊天。', 'tr']]"
+
+msgid "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]"
+msgid_plural "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]"
+msgstr[0] "\\n%d车辆已注册。%d车辆已注册。', 'tr']]"

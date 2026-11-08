@@ -1,318 +1,322 @@
 msgid ""
-msgstr ""
-"Content-Type: text/plain; charset=UTF-8\n"
-"Project-Id-Version: Flux Roles\n"
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Roller ve erişim"
+msgid "Roles and access"
 msgstr ""
 
-msgid "Otomatik (ilk erişebildiği: Görevler, Sertifikalar, Bağışlar)"
+msgid "Automatic (first available: Tasks, Certificates, Donations)"
 msgstr ""
 
-msgid "Görevler"
+msgid "Tasks"
 msgstr ""
 
-msgid "Sertifikalar"
+msgid "Certificates"
 msgstr ""
 
-msgid "Bağışlar"
+msgid "Donations"
 msgstr ""
 
-msgid "Başlangıç (panel ana sayfası)"
+msgid "Dashboard (admin home)"
 msgstr ""
 
-msgid "Profil"
+msgid "Profile"
 msgstr ""
 
-msgid "%s kişi"
-msgid_plural "%s kişi"
+msgid "%s person"
+msgid_plural "%s people"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Bu işlem için yetkiniz yok."
+msgid "You are not allowed to do this."
 msgstr ""
 
-msgid "Kaydedildi. Yetki değişikliği hemen geçerli."
+msgid "Saved. Permission changes apply immediately."
 msgstr ""
 
-msgid "Rol varsayılan yetkilerine döndü."
+msgid "The role is back to its default permissions."
 msgstr ""
 
-msgid "Kişi role eklendi."
+msgid "Person added to the role."
 msgstr ""
 
-msgid "Kişi rolden çıkarıldı."
+msgid "Person removed from the role."
 msgstr ""
 
-msgid "Bu kullanıcı adı ya da e-posta ile kayıtlı kullanıcı yok. Önce kullanıcıyı oluşturun."
+msgid "No user with this username or email. Create the user first."
 msgstr ""
 
-msgid "Yöneticiye bu rol verilmez; yönetici zaten her şeyi görür."
+msgid "Administrators can't get this role; they already see everything."
 msgstr ""
 
-msgid "İşlem yapılamadı."
+msgid "The action could not be completed."
 msgstr ""
 
-msgid "Rol eklendi; yalnız panele girme yetkisiyle başlar. Tablodan yetkilerini açın."
+msgid "Role added; it starts with admin panel access only. Turn on its permissions in the table."
 msgstr ""
 
-msgid "Rol silindi; kişileri varsayılan role geçti."
+msgid "Role deleted; its people moved to the default role."
 msgstr ""
 
-msgid "Rol adı 1-40 karakter olmalı."
+msgid "Role name must be 1-40 characters."
 msgstr ""
 
-msgid "Rollerin neye erişeceğini buradan açıp kapatın. Kapatılan işlem menüden kalkar, adresle girilse de yapılamaz. WordPress yöneticisi (Administrator) her şeyi görür."
+msgid "Turn on and off what each role can access. A disabled action disappears from the menu and can't be done even by URL. The WordPress Administrator sees everything."
 msgstr ""
 
-msgid "Bu rol silinsin mi? Kişileri varsayılan role geçer."
+msgid "Delete this role? Its people move to the default role."
 msgstr ""
 
-msgid "Rolü sil"
+msgid "Delete role"
 msgstr ""
 
-msgid "Yeni rol"
+msgid "New role"
 msgstr ""
 
-msgid "Örneğin Gönüllü ya da Muhasebe. Yalnız panele girme yetkisiyle başlar."
+msgid "For example Volunteer or Accounting. Starts with admin panel access only."
 msgstr ""
 
-msgid "Rol adı"
+msgid "Role name"
 msgstr ""
 
-msgid "Rol ekle"
+msgid "Add role"
 msgstr ""
 
-msgid "Erişim"
+msgid "Access"
 msgstr ""
 
-msgid "%s kurulu değil"
+msgid "%s is not installed"
 msgstr ""
 
-msgid "Ayar kaydedilir; eklenti bu yetkiyi uygulayan sürüme güncellenince geçerli olur."
+msgid "The setting is saved; it takes effect once the plugin is updated to a version that enforces this permission."
 msgstr ""
 
-msgid "%s güncellemesi bekleniyor"
+msgid "Waiting for %s update"
 msgstr ""
 
-msgid "geniş yetki"
+msgid "broad access"
 msgstr ""
 
-msgid "Ayarlar"
+msgid "Settings"
 msgstr ""
 
-msgid "%s girişte açılan ekran"
+msgid "%s: screen after login"
 msgstr ""
 
-msgid "Referans linki geçerlilik süresi"
+msgid "Referral link lifetime"
 msgstr ""
 
-msgid "gün"
+msgid "days"
 msgstr ""
 
-msgid "Referans linkiyle gelen ziyaretçi bu süre içinde bağış yaparsa bağış o kişiye bağlanır. Başka bir referans linkiyle gelirse son link geçerli olur."
+msgid "If a visitor who came through a referral link donates within this period, the donation is credited to that person. If they come through another referral link, the latest one wins."
 msgstr ""
 
-msgid "Kaydet"
+msgid "Save"
 msgstr ""
 
-msgid "Bu rolün yetkileri varsayılana dönsün mü?"
+msgid "Reset this role's permissions to the defaults?"
 msgstr ""
 
-msgid "%s: varsayılana döndür"
+msgid "%s: reset to defaults"
 msgstr ""
 
-msgid "Kişiler"
+msgid "People"
 msgstr ""
 
-msgid "WhatsApp numarası ekle"
+msgid "Add WhatsApp number"
 msgstr ""
 
-msgid "Referans linki"
+msgid "Referral link"
 msgstr ""
 
-msgid "Kopyala"
+msgid "Copy"
 msgstr ""
 
-msgid "Bu kişi rolden çıkarılsın mı?"
+msgid "Remove this person from the role?"
 msgstr ""
 
-msgid "Rolden çıkar"
+msgid "Remove from role"
 msgstr ""
 
-msgid "Henüz kimse yok."
+msgid "Nobody yet."
 msgstr ""
 
-msgid "Kullanıcı adı ya da e-posta"
+msgid "Username or email"
 msgstr ""
 
-msgid "Ekle"
+msgid "Add"
 msgstr ""
 
-msgid "Yeni kişi için önce <a href=\"%s\">kullanıcı oluşturun</a>, Rol alanından bu rollerden birini seçin."
+msgid "For a new person, first <a href=\"%s\">create a user</a> and choose one of these roles."
 msgstr ""
 
-msgid "Tüm rollerin tüm yetkileri için <a href=\"%s\">Yönetim teması › Yetkiler</a>."
+msgid "For every permission of every role, see <a href=\"%s\">Admin theme › Permissions</a>."
 msgstr ""
 
-msgid "Kopyalandı"
+msgid "Copied"
 msgstr ""
 
-msgid "Yönetici"
+msgid "Director"
 msgstr ""
 
-msgid "Bu sayfadaki her yetkiye sahip: tüm bağışlar, sertifika ve görev yönetimi, raporlar. WordPress yöneticisi gibi eklenti kurup site ayarlarını değiştiremez."
+msgid "Has every permission on this page: all donations, certificate and task management, reports. Unlike the WordPress administrator, can't install plugins or change site settings."
 msgstr ""
 
-msgid "İdareci"
+msgid "Manager"
 msgstr ""
 
-msgid "Personelin yapabildiği her şey, ek olarak bağış ve sertifika dashboard'larını (genel toplamlar) ve raporları görür, rapor zamanlamalarını ayarlar."
+msgid "Everything Staff can do, plus the donation and certificate dashboards (overall totals) and reports, and sets report schedules."
 msgstr ""
 
-msgid "Personel"
+msgid "Staff"
 msgstr ""
 
-msgid "Görevlerde normal kullanıcı, sertifika oluşturur, başkası adına bağış açar, kendi referans olduğu bağışları, bağışçıları ve sertifikaları görür."
+msgid "Regular user in Tasks, creates certificates, opens donations on behalf of others, sees the donations, donors and certificates they referred."
 msgstr ""
 
-msgid "Panelden eklenen rol."
+msgid "Role added from the panel."
 msgstr ""
 
-msgid "Genel"
+msgid "General"
 msgstr ""
 
-msgid "Yönetim paneline girer"
+msgid "Can enter the admin panel"
 msgstr ""
 
-msgid "Referans olabilir (kişisel referans linki alır, sertifika ve bağışlarda referans seçilebilir)"
+msgid "Can be a referrer (gets a personal referral link, can be chosen as referrer on certificates and donations)"
 msgstr ""
 
-msgid "Görevleri kullanır; erişimi olduğu proje ve listeleri görür"
+msgid "Uses Tasks; sees the projects and lists they have access to"
 msgstr ""
 
-msgid "Proje, klasör ve liste oluşturur"
+msgid "Creates projects, folders and lists"
 msgstr ""
 
-msgid "Görevlerde AI özelliklerini kullanır"
+msgid "Uses AI features in Tasks"
 msgstr ""
 
-msgid "Görevleri yönetir (her projeyi görür, kullanım panosu, ayarlar)"
+msgid "Manages Tasks (sees every project, usage board, settings)"
 msgstr ""
 
-msgid "Sertifika oluşturur"
+msgid "Creates certificates"
 msgstr ""
 
-msgid "Yalnız kendi oluşturduğu ve referansı olduğu sertifikaları görür"
+msgid "Sees only certificates they created or referred"
 msgstr ""
 
-msgid "Toplu gönderim yapar"
+msgid "Sends in bulk"
 msgstr ""
 
-msgid "Sertifika dashboard'unu görür"
+msgid "Sees the certificate dashboard"
 msgstr ""
 
-msgid "Sertifikaları yönetir (tümü, şablonlar, etkinlikler, ayarlar)"
+msgid "Manages certificates (all, templates, events, settings)"
 msgstr ""
 
-msgid "Referansı olduğu bağışları görür"
+msgid "Sees donations they referred"
 msgstr ""
 
-msgid "Kendi bağışçılarını listeler (referansı olduğu bağışların bağışçıları)"
+msgid "Lists their own donors (donors of donations they referred)"
 msgstr ""
 
-msgid "Başkası adına bağış oluşturur, referans kendisi olur (panelden ya da WhatsApp asistanından)"
+msgid "Creates donations on behalf of others, with themselves as referrer (from the panel or the WhatsApp assistant)"
 msgstr ""
 
-msgid "Referansı olduğu bağış ödenince ya da iptal olunca haber alır"
+msgid "Gets notified when a donation they referred is paid or cancelled"
 msgstr ""
 
-msgid "Bağış dashboard'unu görür (genel toplamlar)"
+msgid "Sees the donation dashboard (overall totals)"
 msgstr ""
 
-msgid "Tüm bağışları ve bağışçıları görür"
+msgid "Sees all donations and donors"
 msgstr ""
 
-msgid "Çağrı Merkezi"
+msgid "Call Center"
 msgstr ""
 
-msgid "WhatsApp sohbetlerini kullanır"
+msgid "Uses WhatsApp chats"
 msgstr ""
 
-msgid "WhatsApp asistanında rolüne göre personel araçlarını kullanır (numarası profilde kayıtlıysa)"
+msgid "Uses staff tools in the WhatsApp assistant according to their role (if their number is on their profile)"
 msgstr ""
 
-msgid "Çağrı Merkezini yönetir (AI asistan, ayarlar)"
+msgid "Manages the Call Center (AI assistant, settings)"
 msgstr ""
 
-msgid "Stüdyo"
+msgid "Studio"
 msgstr ""
 
-msgid "Stüdyo'yu kullanır (kendi galerisi ve paylaşılan klasörler)"
+msgid "Uses Studio (own gallery and shared folders)"
 msgstr ""
 
-msgid "Stüdyo'yu yönetir (herkesin galerisi, ayarlar)"
+msgid "Manages Studio (everyone's gallery, settings)"
 msgstr ""
 
-msgid "Raporlar"
+msgid "Reports"
 msgstr ""
 
-msgid "Kendisine günlük/dönemsel rapor gönderilebilir"
+msgid "Can receive daily/periodic reports"
 msgstr ""
 
-msgid "Genel raporları görür (tüm personel, toplamlar)"
+msgid "Sees overall reports (all staff, totals)"
 msgstr ""
 
-msgid "Personel ve idareci rapor zamanlamalarını ve motivasyon metinlerini ayarlar"
+msgid "Sets staff and manager report schedules and motivation messages"
 msgstr ""
 
-msgid "Telefon numarası geçersiz. Ülke koduyla ya da 05xx ile yazın."
+msgid "Invalid phone number. Write it with the country code or as 05xx."
 msgstr ""
 
-msgid "Bu numara başka bir kullanıcıda kayıtlı: %s."
+msgid "This number belongs to another user: %s."
 msgstr ""
 
-msgid "WhatsApp numarası"
+msgid "WhatsApp number"
 msgstr ""
 
-msgid "Telefon"
+msgid "Phone"
 msgstr ""
 
-msgid "WhatsApp asistanı bu numaradan yazan kişiyi bu kullanıcı olarak tanır ve rolünün izin verdiği işlemleri (ör. başkası adına bağış, kendi bağışçıları) açar. Numarayı yalnız yönetici değiştirebilir."
+msgid "The WhatsApp assistant recognizes whoever writes from this number as this user and enables what their role allows (e.g. donations on behalf of others, their own donors). Only an administrator can change the number."
 msgstr ""
 
-msgid "Kişisel link"
+msgid "Personal link"
 msgstr ""
 
-msgid "Bu linkle siteye gelenlerin bağışlarında referans olarak siz görünürsünüz."
+msgid "Donations from visitors who come through this link show you as the referrer."
 msgstr ""
 
-msgid "Başka bir sayfayı paylaşacaksanız adresin sonuna %s ekleyin."
+msgid "To share another page, add %s to the end of its address."
 msgstr ""
 
 msgid "Flux Roles"
 msgstr ""
 
-msgid "FluxWP rolleri"
+msgid "FluxWP roles"
 msgstr ""
 
-msgid "Rol eksik: %s. Eklentiyi kapatıp açın."
+msgid "Missing role: %s. Deactivate and reactivate the plugin."
 msgstr ""
 
-msgid "Personel WhatsApp numaraları"
+msgid "Staff WhatsApp numbers"
 msgstr ""
 
-msgid "%s kişinin profilinde WhatsApp numarası yok; asistan bu kişileri tanımaz."
+msgid "%s people have no WhatsApp number on their profile; the assistant won't recognize them."
 msgstr ""
 
-msgid "Rollerdeki herkesin numarası kayıtlı."
+msgid "Everyone in the roles has a number."
 msgstr ""
 
-msgid "Rol yetkilerini uygulayan eklentiler"
+msgid "Plugins enforcing role permissions"
 msgstr ""
 
-msgid "Açık ama henüz uygulanmayan yetkiler var; şu eklentilerin güncellemesi bekleniyor: %s. O zamana kadar bu kişiler ilgili ekranı göremez."
+msgid "Some enabled permissions aren't enforced yet; waiting for updates of: %s. Until then these people can't see the related screen."
 msgstr ""
 
-msgid "Açık yetkilerin hepsi uygulanıyor."
+msgid "All enabled permissions are enforced."
+msgstr ""
+
+msgid "Roles"
+msgstr ""
+
+msgid "[['Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.', 'tr']]"
 msgstr ""

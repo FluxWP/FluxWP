@@ -162,7 +162,7 @@ final class FLXCRM_Contacts {
 					'created',
 					array(
 						'source' => $row['source'],
-						'title'  => sprintf( /* translators: %s: source name */ __( 'Kaynak: %s', 'flx-crm' ), flxcrm_source_label( $row['source'] ) ),
+						'title'  => sprintf( /* translators: %s: source name */ __( 'Source: %s', 'flx-crm' ), flxcrm_source_label( $row['source'] ) ),
 						'at'     => $row['created_at'],
 						'uniq'   => 'created:' . $id,
 					)
@@ -284,7 +284,7 @@ final class FLXCRM_Contacts {
 		global $wpdb;
 		$c = self::get( $id );
 		if ( ! $c ) {
-			return new WP_Error( 'flxcrm_missing', __( 'Kişi bulunamadı.', 'flx-crm' ) );
+			return new WP_Error( 'flxcrm_missing', __( 'Contact not found.', 'flx-crm' ) );
 		}
 		$upd = array();
 		if ( array_key_exists( 'name', $d ) ) {
@@ -294,7 +294,7 @@ final class FLXCRM_Contacts {
 			$raw = trim( (string) $d['email'] );
 			$e   = flxcrm_email( $raw );
 			if ( '' !== $raw && '' === $e ) {
-				return new WP_Error( 'flxcrm_email', __( 'E-posta adresi geçersiz.', 'flx-crm' ) );
+				return new WP_Error( 'flxcrm_email', __( 'The e-mail address is not valid.', 'flx-crm' ) );
 			}
 			$upd['email'] = $e;
 		}
@@ -302,7 +302,7 @@ final class FLXCRM_Contacts {
 			$raw = trim( (string) $d['phone'] );
 			$p   = flxcrm_phone( $raw );
 			if ( '' !== $raw && '' === $p ) {
-				return new WP_Error( 'flxcrm_phone', __( 'Telefon numarası geçersiz.', 'flx-crm' ) );
+				return new WP_Error( 'flxcrm_phone', __( 'The phone number is not valid.', 'flx-crm' ) );
 			}
 			$upd['phone'] = $p;
 		}
@@ -345,7 +345,7 @@ final class FLXCRM_Contacts {
 			$labels = self::consent_labels();
 			$parts  = array();
 			foreach ( $consent_changed as $k => $v ) {
-				$parts[] = $labels[ $k ] . ': ' . ( $v ? __( 'açık', 'flx-crm' ) : __( 'kapalı', 'flx-crm' ) );
+				$parts[] = $labels[ $k ] . ': ' . ( $v ? __( 'on', 'flx-crm' ) : __( 'off', 'flx-crm' ) );
 			}
 			FLXCRM_Events::add( $id, 'consent', array( 'title' => implode( ', ', $parts ), 'data' => $consent_changed, 'user_id' => get_current_user_id() ) );
 			do_action( 'flxcrm_consent_changed', (int) $id, $consent_changed );
@@ -359,10 +359,10 @@ final class FLXCRM_Contacts {
 
 	public static function consent_labels() {
 		return array(
-			'email'    => __( 'E-posta', 'flx-crm' ),
+			'email'    => __( 'E-mail', 'flx-crm' ),
 			'sms'      => __( 'SMS', 'flx-crm' ),
 			'whatsapp' => __( 'WhatsApp', 'flx-crm' ),
-			'ads'      => __( 'Reklam kitleleri', 'flx-crm' ),
+			'ads'      => __( 'Ad audiences', 'flx-crm' ),
 		);
 	}
 
@@ -393,14 +393,14 @@ final class FLXCRM_Contacts {
 		$primary_id = (int) $primary_id;
 		$p          = self::get( $primary_id );
 		if ( ! $p ) {
-			return new WP_Error( 'flxcrm_missing', __( 'Kişi bulunamadı.', 'flx-crm' ) );
+			return new WP_Error( 'flxcrm_missing', __( 'Contact not found.', 'flx-crm' ) );
 		}
 		$dup_ids = array_values( array_unique( array_diff( array_filter( array_map( 'intval', $dup_ids ) ), array( $primary_id ) ) ) );
 		if ( ! $dup_ids ) {
-			return new WP_Error( 'flxcrm_merge', __( 'Birleştirilecek başka kişi seçin.', 'flx-crm' ) );
+			return new WP_Error( 'flxcrm_merge', __( 'Choose other contacts to merge.', 'flx-crm' ) );
 		}
 		if ( count( $dup_ids ) > 20 ) {
-			return new WP_Error( 'flxcrm_merge', __( 'Bir seferde en çok 20 kişi birleştirilir.', 'flx-crm' ) );
+			return new WP_Error( 'flxcrm_merge', __( 'Up to 20 contacts can be merged at once.', 'flx-crm' ) );
 		}
 		$t     = flxcrm_table( 'contacts' );
 		$roles = flxcrm_unpack_roles( $p['roles'] );
@@ -409,7 +409,7 @@ final class FLXCRM_Contacts {
 		foreach ( $dup_ids as $did ) {
 			$d = self::get( $did );
 			if ( ! $d ) {
-				return new WP_Error( 'flxcrm_missing', __( 'Kişi bulunamadı.', 'flx-crm' ) . ' #' . $did );
+				return new WP_Error( 'flxcrm_missing', __( 'Contact not found.', 'flx-crm' ) . ' #' . $did );
 			}
 			$names[] = flxcrm_display_name( $d );
 			foreach ( array( 'name', 'email', 'phone', 'company', 'city', 'country', 'utm_source', 'utm_campaign' ) as $k ) {

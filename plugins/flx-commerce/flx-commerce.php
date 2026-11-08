@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Commerce
  * Description:       WooCommerce mağazası için satış paneli, müşteriler, satış raporları, dekont yüklemeli Havale/EFT, sade ödeme sayfası, ücretsiz kargo çubuğu, Google Merchant ürün feed'i ve WhatsApp/e-posta bildirimleri.
- * Version:           0.2.4
+ * Version:           0.2.5
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Requires Plugins:  woocommerce
@@ -20,13 +20,14 @@
 
 defined( 'ABSPATH' ) || exit;
 
+require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
 if ( defined( 'FLXCM_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXCM_VERSION', '0.2.4' );
+define( 'FLXCM_VERSION', '0.2.5' );
 define( 'FLXCM_DB_VERSION', 1 );
 define( 'FLXCM_FILE', __FILE__ );
 define( 'FLXCM_DIR', plugin_dir_path( __FILE__ ) );
@@ -110,7 +111,7 @@ add_action(
 
 function flxcm_wc_missing_notice() {
 	if ( current_user_can( 'activate_plugins' ) ) {
-		echo '<div class="notice notice-warning"><p>' . esc_html__( 'Flux Commerce çalışmak için WooCommerce ister. WooCommerce\'i kurup etkinleştirin.', 'flx-commerce' ) . '</p></div>';
+		echo '<div class="notice notice-warning"><p>' . esc_html__( 'Flux Commerce needs WooCommerce. Install and activate WooCommerce.', 'flx-commerce' ) . '</p></div>';
 	}
 }
 
@@ -118,7 +119,7 @@ add_filter(
 	'plugin_action_links_' . plugin_basename( FLXCM_FILE ),
 	function ( $links ) {
 		if ( flxcm_wc_ready() ) {
-			array_unshift( $links, '<a href="' . esc_url( flxcm_admin_url( 'settings' ) ) . '">' . esc_html__( 'Ayarlar', 'flx-commerce' ) . '</a>' );
+			array_unshift( $links, '<a href="' . esc_url( flxcm_admin_url( 'settings' ) ) . '">' . esc_html__( 'Settings', 'flx-commerce' ) . '</a>' );
 		}
 		return $links;
 	}
@@ -149,7 +150,7 @@ add_filter(
 add_filter(
 	'flxa_package_heads',
 	function ( $heads ) {
-		$heads['flx-commerce'] = array( 'Flux Commerce', __( 'Satış paneli, müşteriler, raporlar ve ödeme iyileştirmeleri', 'flx-commerce' ) );
+		$heads['flx-commerce'] = array( 'Flux Commerce', __( 'Sales dashboard, customers, reports and checkout improvements', 'flx-commerce' ) );
 		return $heads;
 	}
 );

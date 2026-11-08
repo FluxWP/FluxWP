@@ -1,0 +1,949 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Sapling goal progress"
+msgstr "Fidan hedefi ilerlemesi"
+
+msgid "No record"
+msgstr "Kayıt yok"
+
+msgid "Certificate not found"
+msgstr "Sertifika bulunamadı"
+
+msgid "The link may have been copied incompletely. Check the code or request your certificate below."
+msgstr "Bağlantıyı eksik kopyalamış olabilirsiniz. Kodu kontrol edin ya da aşağıdan sertifikanızı isteyin."
+
+msgid "Revoked certificate"
+msgstr "İptal edilmiş sertifika"
+
+msgid "Verified certificate"
+msgstr "Doğrulanmış sertifika"
+
+msgid "REVOKED"
+msgstr "İPTAL"
+
+msgid "Full name"
+msgstr "Ad Soyad"
+
+msgid "Certificate no."
+msgstr "Sertifika No"
+
+msgid "Issue date"
+msgstr "Düzenlenme tarihi"
+
+msgid "Issued by"
+msgstr "Düzenleyen"
+
+msgid "Verification code"
+msgstr "Doğrulama kodu"
+
+msgid "Download PDF"
+msgstr "PDF indir"
+
+msgid "Share"
+msgstr "Paylaş"
+
+msgid "Add to LinkedIn"
+msgstr "LinkedIn'e ekle"
+
+msgid "Copy link"
+msgstr "Linki kopyala"
+
+msgid "This certificate has been revoked by the issuing organization and is no longer valid."
+msgstr "Bu sertifika düzenleyen kurum tarafından iptal edilmiştir ve geçerli değildir."
+
+msgid "This page confirms that the certificate is on record at %s."
+msgstr "Bu sayfa sertifikanın %s kayıtlarında bulunduğunu doğrular."
+
+msgid "Lookup is disabled."
+msgstr "Sorgulama kapalı."
+
+msgid "Too many attempts. Please try again later."
+msgstr "Çok fazla deneme. Lütfen daha sonra tekrar deneyin."
+
+msgid "Enter a valid phone number or email address."
+msgstr "Geçerli bir telefon numarası ya da e-posta girin."
+
+msgid "Hello %1$s,\n\nYour %2$s certificates:\n%3$s"
+msgstr "Merhaba %1$s,\n\n%2$s sertifikalarınız:\n%3$s"
+
+msgid "Your certificates"
+msgstr "Sertifikalarınız"
+
+msgid "If a certificate is registered with these details, its link will be sent to you within a few minutes."
+msgstr "Bu bilgiyle kayıtlı bir sertifika varsa bağlantısı birkaç dakika içinde size gönderilecek."
+
+msgid "OK"
+msgstr "Tamam"
+
+msgid "Warning"
+msgstr "Uyarı"
+
+msgid "Error"
+msgstr "Hata"
+
+msgid "Info"
+msgstr "Bilgi"
+
+msgid "Test WhatsApp/SMS connections"
+msgstr "WhatsApp/SMS bağlantılarını test et"
+
+msgid "System check"
+msgstr "Sistem kontrolü"
+
+msgid "Whether setup, cron and sending are in place. Checked again each time this page opens. WhatsApp/SMS connections and tests live in Flux Mail."
+msgstr "Kurulumun, cron'un ve gönderimin yerli yerinde olup olmadığı. Sayfa her açıldığında yeniden kontrol edilir. WhatsApp/SMS bağlantıları ve testleri Flux Mail'dedir."
+
+msgid "Not allowed"
+msgstr "Yetki yok"
+
+msgid "Valid"
+msgstr "Geçerli"
+
+msgid "Revoked"
+msgstr "İptal edildi"
+
+msgid "Date"
+msgstr "Tarih"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Email"
+msgstr "E-posta"
+
+msgid "Event"
+msgstr "Etkinlik"
+
+msgid "Template"
+msgstr "Şablon"
+
+msgid "Referrer"
+msgstr "Referans"
+
+msgid "Created by"
+msgstr "Oluşturan"
+
+msgid "Status"
+msgstr "Durum"
+
+msgid "Views"
+msgstr "Görüntülenme"
+
+msgid "Messages sent"
+msgstr "Gönderilen mesaj"
+
+msgid "Certificate link"
+msgstr "Sertifika linki"
+
+msgctxt "context_e363ab036dc9"
+msgid "certificates"
+msgstr "sertifikalar"
+
+msgid "Certificates"
+msgstr "Sertifikalar"
+
+msgid "The server has no ZipArchive (PHP zip extension); the Excel file could not be created."
+msgstr "Sunucuda ZipArchive (PHP zip eklentisi) yok; Excel dosyası oluşturulamadı."
+
+msgid "The Excel file could not be created."
+msgstr "Excel dosyası oluşturulamadı."
+
+msgid "On donation page"
+msgstr "Bağış sayfasında"
+
+msgid "Donation page"
+msgstr "Bağış sayfası"
+
+msgid "Donors can choose this design on the donation page"
+msgstr "Bağışçı bu tasarımı bağış sayfasında seçebilir"
+
+msgid "Heading (group)"
+msgstr "Başlık (grup)"
+
+msgid "Order"
+msgstr "Sıra"
+
+msgid "The donor picks the design and fills in the template's text, date and choice fields (e.g. recipient name, message). The price comes from the donation type."
+msgstr "Bağışçı tasarımı seçer, şablondaki metin, tarih ve seçim alanlarını (ör. alıcı adı, mesaj) doldurur. Fiyat bağış türünden gelir."
+
+msgid "No certificates selected."
+msgstr "Sertifika seçmediniz."
+
+msgid "%d messages queued."
+msgstr "%d mesaj kuyruğa alındı."
+
+msgid "%d certificates updated."
+msgstr "%d sertifika güncellendi."
+
+msgid "Download Excel"
+msgstr "Excel indir"
+
+msgid "New certificate"
+msgstr "Yeni sertifika"
+
+msgid "Name, phone, email, certificate no…"
+msgstr "Ad, telefon, e-posta, sertifika no…"
+
+msgid "All statuses"
+msgstr "Tüm durumlar"
+
+msgid "Cancelled"
+msgstr "İptal"
+
+msgid "All events"
+msgstr "Tüm etkinlikler"
+
+msgid "No event (%d)"
+msgstr "Etkinliksiz (%d)"
+
+msgid "archived"
+msgstr "arşiv"
+
+msgid "All templates"
+msgstr "Tüm şablonlar"
+
+msgid "All referrers"
+msgstr "Tüm referanslar"
+
+msgid "No referrer (%d)"
+msgstr "Referanssız (%d)"
+
+msgid "Created by: anyone"
+msgstr "Oluşturan: herkes"
+
+msgid "Filter"
+msgstr "Filtrele"
+
+msgid "Bulk actions…"
+msgstr "Seçilenlere…"
+
+msgid "Send via WhatsApp"
+msgstr "WhatsApp ile gönder"
+
+msgid "Send via SMS"
+msgstr "SMS ile gönder"
+
+msgid "Send via email"
+msgstr "E-posta ile gönder"
+
+msgid "Revoke"
+msgstr "İptal et"
+
+msgid "Make valid"
+msgstr "Geçerli yap"
+
+msgid "Assign to event…"
+msgstr "Etkinliğe ata…"
+
+msgid "Assign referrer…"
+msgstr "Referans ata…"
+
+msgid "Delete permanently"
+msgstr "Kalıcı sil"
+
+msgid "— No event —"
+msgstr "— Etkinliksiz —"
+
+msgid "— No referrer —"
+msgstr "— Referans yok —"
+
+msgid "Apply to the selected items?"
+msgstr "Seçilenlere uygulansın mı?"
+
+msgid "Apply"
+msgstr "Uygula"
+
+msgid "Certificate"
+msgstr "Sertifika"
+
+msgid "Person"
+msgstr "Kişi"
+
+msgid "Event / Template"
+msgstr "Etkinlik / Şablon"
+
+msgid "Deliveries"
+msgstr "Gönderimler"
+
+msgid "Referrer / Created by"
+msgstr "Referans / Oluşturan"
+
+msgid "No certificates yet."
+msgstr "Henüz sertifika yok."
+
+msgid "Create the first certificate"
+msgstr "İlk sertifikayı oluşturun"
+
+msgid "Actually created: %s"
+msgstr "Gerçek oluşturma: %s"
+
+msgid "backdated"
+msgstr "geçmiş tarihli"
+
+msgid "%d view"
+msgid_plural "%d views"
+msgstr[0] "%d görüntülenme"
+msgstr[1] "%d görüntülenme"
+
+msgid "Registered person: %s"
+msgstr "Kayıtlı kişi: %s"
+
+msgid "created by: %s"
+msgstr "oluşturan: %s"
+
+msgid "Actions"
+msgstr "İşlemler"
+
+msgid "Open page"
+msgstr "Sayfayı aç"
+
+msgid "PDF"
+msgstr "PDF"
+
+msgid "Send to someone else…"
+msgstr "Başka birine gönder…"
+
+msgid "Update referrer…"
+msgstr "Referansı güncelle…"
+
+msgid "Edit"
+msgstr "Düzenle"
+
+msgid "Revoke this certificate? The link will show \"revoked\"."
+msgstr "Sertifika iptal edilsin mi? Link açılınca \"iptal edildi\" yazar."
+
+msgid "Delivery history"
+msgstr "Gönderim geçmişi"
+
+msgid "No connection in Flux Mail"
+msgstr "Flux Mail'de bağlantı yok"
+
+msgid "Flux Mail is not active"
+msgstr "Flux Mail etkin değil"
+
+msgid "add"
+msgstr "ekle"
+
+msgid "Plugins"
+msgstr "Eklentiler"
+
+msgid "%d record"
+msgid_plural "%d records"
+msgstr[0] "%d kayıt"
+msgstr[1] "%d kayıt"
+
+msgid "Inactive"
+msgstr "Pasif"
+
+msgid "Father's Day Certificate"
+msgstr "Babalar Günü Sertifikası"
+
+msgid "Just Because Certificate"
+msgstr "İçimden Geldi Sertifikası"
+
+msgid "Birthday Gift"
+msgstr "Doğum Günü Hediyesi"
+
+msgid "Get Well Soon"
+msgstr "Geçmiş Olsun"
+
+msgid "First Day at Work"
+msgstr "İlk İş Günü"
+
+msgid "Condolence Certificate"
+msgstr "Taziye Sertifikası"
+
+msgid "Mother's Day Certificate"
+msgstr "Anneler Günü Sertifikası"
+
+msgid "Wedding Sapling Donation"
+msgstr "Düğün Fidan Bağışı"
+
+msgid "Teachers' Day Certificate"
+msgstr "Öğretmenler Günü Sertifikası"
+
+msgid "Thank You Certificate"
+msgstr "Teşekkür Ederim Sertifikası"
+
+msgid "Welcome Baby Certificate"
+msgstr "Hoş Geldin Bebek Sertifikası"
+
+msgid "Wedding Congratulations Certificate"
+msgstr "Düğün Tebrik Sertifikası"
+
+msgid "Wedding Anniversary Certificate"
+msgstr "Evlilik Yıldönümü Sertifikası"
+
+msgid "Sapling Donation Certificate (one name)"
+msgstr "Fidan Bağış Sertifikası (tek isimli)"
+
+msgid "Sapling Donation (two names, sapling count)"
+msgstr "Fidan Bağışı (çift isimli, fidan sayılı)"
+
+msgid "Sapling Donation Certificate (two names)"
+msgstr "Fidan Bağış Sertifikası (çift isimli)"
+
+msgid "Recipient name"
+msgstr "Alıcı adı"
+
+msgid "Donor (your name)"
+msgstr "Bağışlayan (sizin adınız)"
+
+msgid "Person remembered"
+msgstr "Anılan kişi"
+
+msgid "Number of saplings"
+msgstr "Fidan sayısı"
+
+msgid "%d e-card designs were added as inactive templates. Designs you activate can be picked on the donation page."
+msgstr "%d e-kart tasarımı pasif şablon olarak eklendi. Aktif yaptığınız tasarımlar bağış sayfasında seçilebilir."
+
+msgid "All e-card designs are already added."
+msgstr "Tüm e-kart tasarımları zaten ekli."
+
+msgid "The server has no ZipArchive (PHP zip extension)."
+msgstr "Sunucuda ZipArchive (PHP zip eklentisi) yok."
+
+msgid "Ready-made e-cards"
+msgstr "Hazır e-kartlar"
+
+msgid "(%1$d/%2$d added)"
+msgstr "(%1$d/%2$d eklendi)"
+
+msgid "Add the missing e-card designs as inactive templates?"
+msgstr "Eksik e-kart tasarımları pasif şablon olarak eklensin mi?"
+
+msgid "Import"
+msgstr "İçe aktar"
+
+msgid "Download images as zip"
+msgstr "Görselleri zip indir"
+
+msgid "Flux Mail (organization template)"
+msgstr "Flux Mail (kurumsal şablon)"
+
+msgid "%s ago"
+msgstr "%s önce"
+
+msgid "Certificates · Setup"
+msgstr "Sertifika · Kurulum"
+
+msgid "Certificates · Sending and cron"
+msgstr "Sertifika · Gönderim ve cron"
+
+msgid "Certificates · Site"
+msgstr "Sertifika · Site"
+
+msgid "Database tables"
+msgstr "Veritabanı tabloları"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "Eksik tablo: %s. Eklentiyi devre dışı bırakıp yeniden etkinleştirin."
+
+msgid "A database update is pending; it completes when an admin page is opened."
+msgstr "Veritabanı güncellemesi bekliyor; bir yönetici sayfası açıldığında tamamlanır."
+
+msgid "All tables exist. Plugin %1$s, database version %2$s."
+msgstr "Tüm tablolar var. Eklenti %1$s, veritabanı sürümü %2$s."
+
+msgid "Files folder"
+msgstr "Dosya klasörü"
+
+msgid "The folder for certificate PDFs and images is writable."
+msgstr "Sertifika PDF ve görselleri için klasör yazılabilir."
+
+msgid "%s is not writable; certificate files cannot be saved. Check folder permissions (755)."
+msgstr "%s yazılamıyor; sertifika dosyaları kaydedilemez. Klasör izinlerini (755) kontrol edin."
+
+msgid "Certificate page address"
+msgstr "Sertifika sayfası adresi"
+
+msgid "Permalinks are set to \"Plain\"; certificate links work as ?flxs_kod=. \"Post name\" is recommended."
+msgstr "Kalıcı bağlantılar \"Düz\" ayarında; sertifika linkleri ?flxs_kod= biçiminde çalışır. \"Yazı adı\" önerilir."
+
+msgid "Permalinks"
+msgstr "Kalıcı bağlantılar"
+
+msgid "The certificate URL rule is not registered; links may return 404. Press \"Save Changes\" on the Permalinks page."
+msgstr "Sertifika adres kuralı kayıtlı değil; linkler 404 verebilir. Kalıcı bağlantılar sayfasında \"Değişiklikleri kaydet\"e basın."
+
+msgid "Certificates open at %s{code}."
+msgstr "Sertifikalar %s {code} adresinde açılır."
+
+msgid "Certificate templates"
+msgstr "Sertifika şablonları"
+
+msgid "%d active template."
+msgid_plural "%d active templates."
+msgstr[0] "%d aktif şablon var."
+msgstr[1] "%d aktif şablon var."
+
+msgid "No active template; certificates cannot be created."
+msgstr "Aktif şablon yok; sertifika oluşturulamaz."
+
+msgid "Templates"
+msgstr "Şablonlar"
+
+msgid "Plugin files"
+msgstr "Eklenti dosyaları"
+
+msgid "Missing file: %s. Upload the plugin zip again."
+msgstr "Eksik dosya: %s. Eklenti zip'ini yeniden yükleyin."
+
+msgid "PDF renderer, QR and fonts are in place."
+msgstr "PDF çizici, QR ve yazı tipleri yerinde."
+
+msgid "Staff role"
+msgstr "Personel rolü"
+
+msgid "The \"Certificate Staff\" role exists."
+msgstr "\"Sertifika Personeli\" rolü tanımlı."
+
+msgid "The \"Certificate Staff\" role is missing. Deactivate and reactivate the plugin."
+msgstr "\"Sertifika Personeli\" rolü yok. Eklentiyi devre dışı bırakıp yeniden etkinleştirin."
+
+msgid "Sending queue (cron)"
+msgstr "Gönderim kuyruğu (cron)"
+
+msgid "The per-minute queue task is not scheduled. Reload any admin page; if it persists, reactivate the plugin."
+msgstr "Dakikalık kuyruk görevi zamanlanmamış. Herhangi bir yönetici sayfasını yenileyin; düzelmezse eklentiyi yeniden etkinleştirin."
+
+msgid "Queue"
+msgstr "Kuyruk"
+
+msgid "%1$d message has been waiting for more than 10 minutes; the queue may not be running. Runner: %2$s, last run: %3$s."
+msgid_plural "%1$d messages have been waiting for more than 10 minutes; the queue may not be running. Runner: %2$s, last run: %3$s."
+msgstr[0] "%1$d mesaj 10 dakikadan uzun süredir bekliyor; kuyruk çalışmıyor olabilir. İşleyici: %2$s, son çalışma: %3$s."
+msgstr[1] "%1$d mesaj 10 dakikadan uzun süredir bekliyor; kuyruk çalışmıyor olabilir. İşleyici: %2$s, son çalışma: %3$s."
+
+msgid "never"
+msgstr "hiç"
+
+msgid "WP-Cron is disabled (DISABLE_WP_CRON); a per-minute cron for wp-cron.php must be set in the hosting panel."
+msgstr "WP-Cron kapalı (DISABLE_WP_CRON); hosting panelinde wp-cron.php için dakikalık cron tanımlı olmalı."
+
+msgid "Runner: %1$s. Last run %2$s; cron fires rarely. No messages waiting. Without regular traffic, a per-minute cron for wp-cron.php in the hosting panel is recommended."
+msgstr "İşleyici: %1$s. Son çalışma %2$s; cron seyrek tetikleniyor. Bekleyen mesaj yok. Düzenli trafik yoksa hosting panelinden wp-cron.php için dakikalık cron önerilir."
+
+msgid "Runner: %1$s. Last run: %2$s. No old messages waiting."
+msgstr "İşleyici: %1$s. Son çalışma: %2$s. Bekleyen eski mesaj yok."
+
+msgid "not recorded yet"
+msgstr "henüz kaydedilmedi"
+
+msgid "Sending in the last 24 hours"
+msgstr "Son 24 saatte gönderim"
+
+msgid "%d message failed."
+msgid_plural "%d messages failed."
+msgstr[0] "%d mesaj gönderilemedi."
+msgstr[1] "%d mesaj gönderilemedi."
+
+msgid "View failed"
+msgstr "Başarısızları gör"
+
+msgid "%d message sent, none failed."
+msgid_plural "%d messages sent, none failed."
+msgstr[0] "%d mesaj gönderildi, başarısız yok."
+msgstr[1] "%d mesaj gönderildi, başarısız yok."
+
+msgid "Daily cleanup task"
+msgstr "Günlük temizlik görevi"
+
+msgid "The daily task (old log cleanup) is not scheduled; reload an admin page."
+msgstr "Günlük görev (eski kayıtların temizliği) zamanlanmamış; bir yönetici sayfasını yenileyin."
+
+msgid "Flux Mail"
+msgstr "Flux Mail"
+
+msgid "Flux Mail is not active. Certificates cannot be sent by WhatsApp or SMS; email goes through WordPress (wp_mail). Install and activate Flux Mail."
+msgstr "Flux Mail etkin değil. Sertifikalar WhatsApp ve SMS ile gönderilemez; e-posta WordPress'in kendi gönderimiyle (wp_mail) gider. Flux Mail eklentisini kurup etkinleştirin."
+
+msgid "%s sending"
+msgstr "%s gönderimi"
+
+msgid "Sent through the Flux Mail connection: %s."
+msgstr "Flux Mail bağlantısıyla gönderiliyor: %s."
+
+msgid "Last successful send %s."
+msgstr "Son başarılı gönderim %s."
+
+msgid "Connections"
+msgstr "Bağlantılar"
+
+msgid "No %1$s connection is set up; certificates are not sent by %1$s."
+msgstr "%1$s bağlantısı kurulmamış; %1$s ile sertifika gönderilmez."
+
+msgid "Flux Mail has no active %s connection; certificates cannot be sent on that channel."
+msgstr "Flux Mail'de etkin %s bağlantısı yok; bu kanaldan sertifika gönderilemez."
+
+msgid "Certificate emails go through Flux Mail with the organization template (Communication › Emails)."
+msgstr "Sertifika e-postaları Flux Mail üzerinden kurumsal şablonla gider (İletişim › E-postalar)."
+
+msgid "Emails"
+msgstr "E-postalar"
+
+msgid "Theme compatibility"
+msgstr "Tema uyumu"
+
+msgid "The FluxWP theme (%s) is active; the events section and certificate page match the theme."
+msgstr "FluxWP teması (%s) aktif; etkinlik bölümü ve sertifika sayfası tema ile uyumlu."
+
+msgid "Active theme: %s. The events section appears automatically only in the Örnek Vakfı theme; in other themes add it with a shortcode."
+msgstr "Aktif tema: %s. Etkinlik bölümü yalnızca FluxWP temasında kendiliğinden görünür; diğer temalarda kısa kodla eklenir."
+
+msgid "Ongoing events"
+msgstr "Devam eden etkinlikler"
+
+msgid "No open events; the events section is hidden on the site."
+msgstr "Açık etkinlik yok; sitede etkinlik bölümü gizlenir."
+
+msgid "Events"
+msgstr "Etkinlikler"
+
+msgid "Open event without a published page: %s. Fix it with \"Publish on site\" in the event edit screen."
+msgstr "Sitede sayfası yayında olmayan açık etkinlik: %s. Etkinlik düzenleme ekranındaki \"Sitede yayınla\" ile düzeltin."
+
+msgid "%d open event, its page is published."
+msgid_plural "%d open events, their pages are published."
+msgstr[0] "%d açık etkinlik var, sayfası sitede yayında."
+msgstr[1] "%d açık etkinlik var, sayfası sitede yayında."
+
+msgid "Certificate lookup"
+msgstr "Sertifika sorgulama"
+
+msgid "The lookup form is on %s."
+msgstr "Sorgulama formu %s sayfasında."
+
+msgid "Lookup is on, but no published page has the [flx_sertifika_sorgula] shortcode."
+msgstr "Sorgulama açık ama [flx_sertifika_sorgula] kısa kodu yayında bir sayfada yok."
+
+msgid "Flux Forms integration"
+msgstr "Flux Forms entegrasyonu"
+
+msgid "Flux Forms is installed; form automations can create and send certificates."
+msgstr "Flux Forms yüklü; form otomasyonları sertifika oluşturup gönderebilir."
+
+msgid "PDF generation on the server"
+msgstr "Sunucuda PDF üretimi"
+
+msgid "PHP GD (FreeType) extension is missing: PDFs and images are only made in the browser, when the certificate page is first opened."
+msgstr "PHP GD (FreeType) eklentisi yok: PDF ve görseller yalnız tarayıcıda, sertifika sayfası ilk açıldığında oluşur."
+
+msgid "%d certificate is missing its PDF or image."
+msgstr "%d sertifikanın PDF'i ya da görseli eksik."
+
+msgid "Create missing files"
+msgstr "Eksikleri oluştur"
+
+msgid "On. PDFs and images for new certificates are generated in the background on the server."
+msgstr "Açık. Yeni sertifikaların PDF'i ve görselleri sunucuda arka planda oluşur."
+
+msgid "Create missing certificate files"
+msgstr "Eksik sertifika dosyalarını oluştur"
+
+msgid "Generates files on the server for up to 25 certificates that are missing a PDF or image."
+msgstr "PDF'i ya da görseli eksik en çok 25 sertifikanın dosyalarını sunucuda üretir."
+
+msgid "Files created for %1$d certificates, %2$d errors."
+msgstr "%1$d sertifikanın dosyaları oluşturuldu, %2$d hata."
+
+msgid "%d certificates left, press again."
+msgstr "%d sertifika kaldı, tekrar basın."
+
+msgid "Ongoing Events"
+msgstr "Devam Eden Etkinlikler"
+
+msgid "Your saplings are planted at these events. You too can contribute by donating saplings."
+msgstr "Fidanlarınız bu etkinliklerde toprakla buluşuyor. Siz de bu süreçte fidan bağışıyla bir katkıda bulunabilirsiniz."
+
+msgid "Event location"
+msgstr "Etkinlik konumu"
+
+msgctxt "context_39c93914dff5"
+msgid "l, F j, Y"
+msgstr "j F Y, l"
+
+msgid "sapling planted"
+msgid_plural "saplings planted"
+msgstr[0] "fidan dikildi"
+msgstr[1] "fidan dikildi"
+
+msgid "sapling collected"
+msgid_plural "saplings collected"
+msgstr[0] "fidan toplandı"
+msgstr[1] "fidan toplandı"
+
+msgctxt "context_a43dbd63afaf"
+msgid "F j"
+msgstr "j F"
+
+msgid "The planting site is announced by the authorities 10 days before the event. We will share it here around %s."
+msgstr "Dikim alanı yetkili kurumlarca etkinlikten 10 gün önce bildirilir, %s civarında burada paylaşacağız."
+
+msgid "The planting site is announced by the authorities 10 days before the event. We will share it here."
+msgstr "Dikim alanı yetkili kurumlarca etkinlikten 10 gün önce bildirilir, burada paylaşacağız."
+
+msgid "Location coming soon"
+msgstr "Konum yakında"
+
+msgid "Event site"
+msgstr "Etkinlik alanı"
+
+msgid "Get directions"
+msgstr "Yol tarifi al"
+
+msgid "Show map"
+msgstr "Haritayı göster"
+
+msgid "Loads Google Maps"
+msgstr "Google Haritalar yüklenir"
+
+msgid "Goal: %s saplings"
+msgstr "Hedef %s fidan"
+
+msgid "%s%%"
+msgstr "%%%s"
+
+msgid "Completed event"
+msgstr "Tamamlanan etkinlik"
+
+msgid "Sapling counter"
+msgstr "Fidan sayacı"
+
+msgid "saplings planted"
+msgstr "fidan toprakla buluştu"
+
+msgid "%s person contributed"
+msgid_plural "%s people contributed"
+msgstr[0] "%s kişi katkıda bulundu"
+msgstr[1] "%s kişi katkıda bulundu"
+
+msgctxt "context_a104e4060425"
+msgid "F j, Y"
+msgstr "j F Y"
+
+msgid "Time: %s"
+msgstr "Saat %s"
+
+msgid "This event is complete. Thank you to everyone who contributed."
+msgstr "Bu etkinlik tamamlandı. Katkı veren herkese teşekkür ederiz."
+
+msgid "Donate saplings for this event"
+msgstr "Bu etkinlik için fidan bağışla"
+
+msgid "Your donation is added to the counter instantly."
+msgstr "Bağışınız sayaca anında eklenir."
+
+msgid "Tree planting events"
+msgstr "Fidan dikim etkinlikleri"
+
+msgid "Location to be announced"
+msgstr "Konum yakında açıklanacak"
+
+msgid "Details"
+msgstr "Detaylar"
+
+msgid "Donate saplings"
+msgstr "Fidan bağışla"
+
+msgid "System"
+msgstr "Sistem"
+
+msgid "SMS"
+msgstr "SMS"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "Queued"
+msgstr "Bekliyor"
+
+msgid "Sending"
+msgstr "Gönderiliyor"
+
+msgid "Sent"
+msgstr "Gönderildi"
+
+msgid "Failed"
+msgstr "Başarısız"
+
+msgid "The server has no GD (FreeType) extension."
+msgstr "Sunucuda GD (FreeType) eklentisi yok."
+
+msgid "This certificate's files are being prepared right now."
+msgstr "Bu sertifikanın dosyaları şu an hazırlanıyor."
+
+msgid "Template not found."
+msgstr "Şablon bulunamadı."
+
+msgid "The background PDF could not be read on the server."
+msgstr "Arka plan PDF'i sunucuda okunamadı."
+
+msgid "Link copied"
+msgstr "Link kopyalandı"
+
+msgid "Copy the link:"
+msgstr "Linki kopyalayın:"
+
+msgid "Sending…"
+msgstr "Gönderiliyor…"
+
+msgid "Done."
+msgstr "Tamam."
+
+msgid "Something went wrong."
+msgstr "Bir hata oluştu."
+
+msgid "Connection error. Please try again."
+msgstr "Bağlantı hatası. Lütfen tekrar deneyin."
+
+msgid "The PDF library could not be loaded (%s). Reload the page and try again."
+msgstr "PDF kütüphanesi yüklenemedi (%s). Sayfayı yenileyip tekrar deneyin."
+
+msgid "Find your certificate"
+msgstr "Sertifikanızı bulun"
+
+msgid "Enter the phone number or email address you registered with. We will send your certificate link only to that address."
+msgstr "Kayıt olurken verdiğiniz telefon numarasını ya da e-posta adresini yazın. Sertifika bağlantınızı yalnızca o adrese göndeririz."
+
+msgid "0532 123 45 67 or name@example.com"
+msgstr "0532 123 45 67 ya da ornek@eposta.com"
+
+msgid "Send"
+msgstr "Gönder"
+
+msgid "Name, e-mail or phone"
+msgstr "Ad, e-posta ya da telefon"
+
+msgid "Name, number or code"
+msgstr "Ad, numara ya da kod"
+
+msgid "Recipient or subject"
+msgstr "Alıcı ya da konu"
+
+msgid "Saplings"
+msgstr "Fidan"
+
+msgid "Queued to send"
+msgstr "Gönderim kuyruğa alındı"
+
+msgid "Send queue"
+msgstr "Gönderim kuyruğu"
+
+msgid "Sends appear here."
+msgstr "Gönderimler burada görünür."
+
+msgid "Channel"
+msgstr "Kanal"
+
+msgid "No people"
+msgstr "Kişi yok"
+
+msgid "People"
+msgstr "Kişiler"
+
+msgid "Code"
+msgstr "Kod"
+
+msgid "Queue is empty"
+msgstr "Kuyruk boş"
+
+msgid "Number"
+msgstr "Numara"
+
+msgid "Cancel this certificate?"
+msgstr "Sertifika iptal edilsin mi?"
+
+msgid "People who received a certificate appear here."
+msgstr "Sertifika kesilen kişiler burada görünür."
+
+msgid "No certificates"
+msgstr "Sertifika yok"
+
+msgid "Send the certificate"
+msgstr "Sertifikayı gönder"
+
+msgid "New certificates appear here."
+msgstr "Yeni sertifikalar burada görünür."
+
+msgid "Restore"
+msgstr "Yeniden aç"
+
+msgid "Restored"
+msgstr "Yeniden açıldı"
+
+msgid "Retry"
+msgstr "Yeniden dene"
+
+msgid "Will be retried"
+msgstr "Yeniden denenecek"
+
+msgid "Summary"
+msgstr "Özet"
+
+msgid "A cancelled certificate is hidden on the public page."
+msgstr "İptal edilen sertifika herkese açık sayfada görünmez."
+
+msgid "%d open event, its page is published."
+msgstr "%d açık etkinlik var, sayfaları sitede yayında."
+
+msgid "[['%dviews', 'tr']]"
+msgid_plural "[['%dviews', 'tr']]"
+msgstr[0] "%d görüntülenme"
+msgstr[1] "%d görüntülenme"
+
+msgid "[['%dregistration', 'tr']]"
+msgid_plural "[['%dregistration', 'tr']]"
+msgstr[0] "%d kayıt"
+msgstr[1] "%d kayıt"
+
+msgid "\\n There is active template%d. There is active template%d.\\n"
+msgstr "\\n Etkin şablon var %d . Etkin şablon var %d .\\n"
+
+msgid "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"
+msgstr "\\n %1$d mesajı 10 dakikadan fazla süredir bekleniyor; Sıra çalışmıyor olabilir. İşleyici: %2$s , son çalıştırma: %3$s . %1$d ileti 10 dakikadan uzun süredir beklemede; Sıra çalışmıyor olabilir. İşleyici: %2$s , son çalıştırma: %3$s .\\n"
+
+msgid "[['%dmessage could not be sent.', 'tr']]"
+msgid_plural "[['%dmessage could not be sent.', 'tr']]"
+msgstr[0] "%d mesaj gönderilemedi."
+msgstr[1] "%d mesaj gönderilemedi."
+
+msgid "[['%dmessage sent, no failure.', 'tr']]"
+msgid_plural "[['%dmessage sent, no failure.', 'tr']]"
+msgstr[0] "%d mesaj gönderildi, başarısız yok."
+msgstr[1] "%d mesaj gönderildi, başarısız yok."
+
+msgid "[['%dhas an open event, its page is live on the site.', 'tr']]"
+msgid_plural "[['%dhas open events, its pages are live on the site.', 'tr']]"
+msgstr[0] "%d açık etkinlik var, sayfası sitede yayında."
+msgstr[1] "%d açık etkinlik var, sayfaları sitede yayında."
+
+msgid "[['saplings were planted', 'tr']]"
+msgid_plural "[['saplings were planted', 'tr']]"
+msgstr[0] "fidan dikildi"
+msgstr[1] "fidan dikildi"
+
+msgid "[['saplings were collected', 'tr']]"
+msgid_plural "[['saplings were collected', 'tr']]"
+msgstr[0] "fidan toplandı"
+msgstr[1] "fidan toplandı"
+
+msgid "[['%scontributed by', 'tr']]"
+msgid_plural "[['%scontributed by', 'tr']]"
+msgstr[0] "%s kişi katkıda bulundu"
+msgstr[1] "%s kişi katkıda bulundu"
+
+msgid "[['Certificate templates, certificate creation with live PDF preview, /certificate/{kod}verification page, email / SMS (Netgsm) / WhatsApp (Evolution API) sending, asynchronous queue, contact registration and detailed logs.', 'tr']]"
+msgstr "Sertifika şablonları, canlı PDF önizlemeli sertifika oluşturma, /sertifika/{kod} doğrulama sayfası, e-posta / SMS (Netgsm) / WhatsApp (Evolution API) gönderimi, asenkron kuyruk, kişi kaydı ve detaylı loglar."
+
+msgid "\\n There is active template%d. There is active template%d.\\n"
+msgid_plural "\\n There is active template%d. There is active template%d.\\n"
+msgstr[0] "\\n There is active template%d. There is active template%d.\\n"
+msgstr[1] "\\n There is active template%d. There is active template%d.\\n"
+
+msgid "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"
+msgid_plural "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"
+msgstr[0] "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"
+msgstr[1] "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"

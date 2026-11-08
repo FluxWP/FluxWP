@@ -406,7 +406,7 @@ final class FLXB_FLXForm_Bridge {
 		$form_cur = isset( $fs[0]['currency'] ) && strlen( (string) $fs[0]['currency'] ) > 2 ? strtoupper( (string) $fs[0]['currency'] ) : 'USD';
 		if ( $form_cur !== strtoupper( (string) $t['currency'] ) ) {
 			$obj['price_total'] = 0;
-			$obj['flxb_error']   = __( 'This form and its donation type use different currencies, so the payment was stopped. Please contact the site administrator.', 'flx-donate' );
+			$obj['flxb_error']   = __( '\\nThis form and its donation type use different currencies, so the payment was stopped. Please contact the site administrator.\\n', 'flx-donate' );
 			$obj['error']       = $obj['flxb_error']; // Flux Forms shows it in the quote
 			return $obj;
 		}

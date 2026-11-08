@@ -173,7 +173,7 @@ function flxai_mask( $secret ) {
 		return '';
 	}
 	/* translators: %s: last 4 characters */
-	return sprintf( __( 'kayıtlı (…%s)', 'flx-ai' ), substr( $secret, -4 ) );
+	return sprintf( __( 'saved (…%s)', 'flx-ai' ), substr( $secret, -4 ) );
 }
 
 /** Yönetim yetkisi (ayarlar, raporlar, faturalandırma). */
@@ -217,7 +217,7 @@ function flxai_ms( $ms ) {
 		return sprintf( __( '%s ms', 'flx-ai' ), number_format_i18n( $ms ) );
 	}
 	/* translators: %s: seconds */
-	return sprintf( __( '%s sn', 'flx-ai' ), number_format_i18n( $ms / 1000, 1 ) );
+	return sprintf( __( '%s s', 'flx-ai' ), number_format_i18n( $ms / 1000, 1 ) );
 }
 
 /** Amaç etiketi (bilinenler çevrilir). */
@@ -225,8 +225,8 @@ function flxai_purpose_label( $p ) {
 	$l = (array) apply_filters(
 		'flxai_purpose_labels',
 		array(
-			'chat'  => __( 'sohbet', 'flx-ai' ),
-			'title' => __( 'başlık', 'flx-ai' ),
+			'chat'  => __( 'chat', 'flx-ai' ),
+			'title' => __( 'title', 'flx-ai' ),
 			'test'  => __( 'test', 'flx-ai' ),
 		)
 	);
@@ -236,7 +236,7 @@ function flxai_purpose_label( $p ) {
 /** Bilinen kaynaklar (eklentiler). Diğer paketler flxai_sources ile kendini tanıtır. */
 function flxai_sources() {
 	$list = array(
-		'flx-ai'            => __( 'Flux AI sohbet', 'flx-ai' ),
+		'flx-ai'            => __( 'Flux AI chat', 'flx-ai' ),
 		'flx-chat' => 'Flux Chat',
 		'flx-tasks'         => 'Flux Tasks',
 		'flx-certificates'     => 'Flux Certificates',
@@ -254,7 +254,7 @@ function flxai_source_label( $id ) {
 		return '';
 	}
 	if ( 'unknown' === $id ) {
-		return __( 'Belirtilmemiş', 'flx-ai' );
+		return __( 'Unspecified', 'flx-ai' );
 	}
 	return $l[ $id ] ?? (string) $id;
 }

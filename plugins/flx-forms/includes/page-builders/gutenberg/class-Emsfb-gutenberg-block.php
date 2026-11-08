@@ -56,6 +56,8 @@ class Emsfb_Gutenberg_Block {
             true
         );
 
+        wp_set_script_translations('efb-gutenberg-editor', 'flx-forms', EMSFB_PLUGIN_DIRECTORY . 'languages');
+
         // 'strings' is nested, so core leaves its entities untouched, and the
         // editor renders these as React text nodes rather than as HTML.
         wp_localize_script('efb-gutenberg-editor', 'efbBlockData', emsfb_decode_typographic_entities_efb([
@@ -63,13 +65,13 @@ class Emsfb_Gutenberg_Block {
             'pluginUrl' => EMSFB_PLUGIN_URL,
             'logoUrl' => Emsfb_Widgets_Helper::get_logo_url(),
             'strings' => [
-                'selectForm' => __('— Select a Form —', 'flx-forms'),
-                'blockTitle' => __('Flux Forms', 'flx-forms'),
-                'selectFormHelp' => __('Select a form to display from the dropdown below.', 'flx-forms'),
-                'selectedForm' => __('Selected Form:', 'flx-forms'),
-                'formPreviewText' => __('Form will be displayed here on the frontend.', 'flx-forms'),
-                'loadingForms' => __('Loading forms&hellip;', 'flx-forms'),
-                'trackingForm' => __('📍 Confirmation Code Finder (Tracking Form)', 'flx-forms')
+                'selectForm' => __('\\n— Select a Form —\\n', 'flx-forms'),
+                'blockTitle' => __('\\nFlux Forms\\n', 'flx-forms'),
+                'selectFormHelp' => __('\\nSelect a form to display from the dropdown below.\\n', 'flx-forms'),
+                'selectedForm' => __('\\nSelected Form:\\n', 'flx-forms'),
+                'formPreviewText' => __('\\nForm will be displayed here on the frontend.\\n', 'flx-forms'),
+                'loadingForms' => __('\\nLoading forms...\\n', 'flx-forms'),
+                'trackingForm' => __('[[\'📍 Confirmation Code Finder (Tracking Form)\\n', 'flx-forms')
             ]
         ]));
 

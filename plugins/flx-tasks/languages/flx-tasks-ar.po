@@ -1,0 +1,2741 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Tasks"
+msgstr "المهام"
+
+msgid "Usage dashboard"
+msgstr "لوحة الاستخدام"
+
+msgid "Task Settings"
+msgstr "إعدادات المهمة"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "JavaScript is required for Tasks."
+msgstr "مطلوب جافا سكريبت للمهام."
+
+msgid "Task notifications"
+msgstr "إشعارات المهام"
+
+msgid "AI needs the Flux AI & MCP plugin. An administrator must install Flux AI and enter a key."
+msgstr "يحتاج الذكاء الاصطناعي إلى البرنامج المساعد Flux AI & MCP. يجب على المسؤول تثبيت Flux AI وإدخال المفتاح."
+
+msgid "AI is not set up. An administrator must enter a key and choose a model in Flux AI & MCP › Settings."
+msgstr "لم يتم إعداد الذكاء الاصطناعي. يجب على المسؤول إدخال مفتاح واختيار نموذج في إعدادات Flux AI & MCP."
+
+msgid "The operation took too long; split the request into smaller steps."
+msgstr "استغرقت العملية وقتاً طويلاً؛ تقسيم الطلب إلى خطوات أصغر."
+
+msgid "Deleted user"
+msgstr "المستخدم المحذوف"
+
+msgid "List not found or you don't have access."
+msgstr "لم يتم العثور على القائمة أو ليس لديك حق الوصول إليها."
+
+msgid "Task not found or you don't have access."
+msgstr "لم يتم العثور على المهمة أو ليس لديك حق الوصول إليها."
+
+msgid "You don't have permission to add tasks to this list."
+msgstr "ليس لديك الإذن بإضافة مهام إلى هذه القائمة."
+
+msgid "You don't have permission to edit this task."
+msgstr "ليس لديك الإذن بتعديل هذه المهمة."
+
+msgid "You don't have permission to add tasks to the target list."
+msgstr "ليس لديك إذن لإضافة المهام إلى القائمة المستهدفة."
+
+msgid "This list has no such status."
+msgstr "هذه القائمة ليس لديها مثل هذه الحالة."
+
+msgid "You don't have permission to comment on this task."
+msgstr "ليس لديك إذن للتعليق على هذه المهمة."
+
+msgid "Item not found."
+msgstr "لم يتم العثور على العنصر."
+
+msgid "Open"
+msgstr "مفتوح"
+
+msgid "Setup"
+msgstr "الإعداد"
+
+msgid "WordPress and PHP version"
+msgstr "نسخة ووردبريس و PHP"
+
+msgid "WordPress %1$s, PHP %2$s. Required: WordPress 6.5+, PHP 7.4+."
+msgstr "وورد%1$s، PHP%2$s. المطلوب: ووردبريس 6.5+، PHP 7.4+."
+
+msgid "Database tables"
+msgstr "جداول قاعدة البيانات"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "الجدول المفقود:%s. قم بإلغاء تنشيط البرنامج المساعد وإعادة تنشيطه."
+
+msgid "Plugins"
+msgstr "الإضافات"
+
+msgid "Tables are ready (schema %s)."
+msgstr "الجداول جاهزة (المخطط%s)."
+
+msgid "File folder"
+msgstr "مجلد الملف"
+
+msgid "wp-content/uploads/flx-tasks is missing or not writable. Files and images cannot be uploaded; check folder permissions (755)."
+msgstr "wp-content/uploads/flx-tasks مفقود أو غير قابل للكتابة. لا يمكن تحميل الملفات والصور. تحقق من أذونات المجلد (755)."
+
+msgid "The folder is writable but the protection file (.htaccess) is missing; files can be opened by direct URL. Reactivate the plugin."
+msgstr "المجلد قابل للكتابة ولكن ملف الحماية (.htaccess) مفقود؛ يمكن فتح الملفات عن طريق URL المباشر. إعادة تنشيط البرنامج المساعد."
+
+msgid "Writable and closed to direct access."
+msgstr "قابلة للكتابة ومغلقة للوصول المباشر."
+
+msgid "Upload limit"
+msgstr "حد التحميل"
+
+msgid "Effective limit %1$s (server limit %2$s)."
+msgstr "الحد الفعال%1$s(حد الخادم%2$s)."
+
+msgid "The setting is larger than the server limit; upload_max_filesize and post_max_size can be raised in the hosting panel."
+msgstr "الإعداد أكبر من حد الخادم؛ يمكن رفع upload_max_filesize وpost_max_size في لوحة الاستضافة."
+
+msgid "Scheduled jobs"
+msgstr "الوظائف المجدولة"
+
+msgid "Daily task reminders"
+msgstr "تذكيرات المهام اليومية"
+
+msgid "Not scheduled: overdue/upcoming task notifications and old temporary file cleanup will not run. Opening the Tasks page once reschedules it."
+msgstr "غير مجدولة: لن يتم تشغيل إعلامات المهام المتأخرة/القادمة وتنظيف الملفات المؤقتة القديمة. يؤدي فتح صفحة المهام بمجرد إعادة جدولتها."
+
+msgid "The scheduled job is late (due %s). WP-Cron may not be triggering (if the site gets few visits, a real cron in the hosting panel is recommended)."
+msgstr "المهمة المجدولة متأخرة (بسبب%s). قد لا يتم تشغيل WP-Cron (إذا حصل الموقع على عدد قليل من الزيارات، فمن المستحسن إجراء عملية cron حقيقية في لوحة الاستضافة)."
+
+msgid "Next run: %s."
+msgstr "التشغيل التالي:%s."
+
+msgid "WP-Cron mode"
+msgstr "وضع WP-كرون"
+
+msgid "DISABLE_WP_CRON is on: scheduled jobs only run if a server cron calls wp-cron.php. This cron must be set up in the hosting panel."
+msgstr "DISABLE_WP_CRON قيد التشغيل: يتم تشغيل المهام المجدولة فقط إذا قام خادم cron باستدعاء wp-cron.php. يجب إعداد هذا cron في لوحة الاستضافة."
+
+msgid "Live updates"
+msgstr "تحديثات حية"
+
+msgid "Update interval"
+msgstr "الفاصل الزمني للتحديث"
+
+msgid "10 s while on screen, %d s after 2 min idle; background tabs send no requests."
+msgstr "10 ثوانٍ أثناء وجوده على الشاشة، و%dبعد دقيقتين من الخمول؛ علامات التبويب الخلفية لا ترسل أي طلبات."
+
+msgid "API cache"
+msgstr "ذاكرة التخزين المؤقت لواجهة برمجة التطبيقات"
+
+msgid "LiteSpeed Cache is active; task API responses are marked so they are not cached."
+msgstr "ذاكرة التخزين المؤقت LiteSpeed نشطة؛ يتم وضع علامة على استجابات واجهة برمجة تطبيقات المهام بحيث لا يتم تخزينها مؤقتًا."
+
+msgid "Task API responses are not cached."
+msgstr "لا يتم تخزين استجابات API المهمة مؤقتًا."
+
+msgid "Notifications"
+msgstr "الإخطارات"
+
+msgid "Email notifications"
+msgstr "إشعارات البريد الإلكتروني"
+
+msgid "On. Emails are sent with WordPress's mail setup (an SMTP plugin is recommended)."
+msgstr "على. يتم إرسال رسائل البريد الإلكتروني باستخدام إعداد بريد WordPress (يوصى باستخدام مكون SMTP الإضافي)."
+
+msgid "Off; notifications are in-app only."
+msgstr "إيقاف؛ الإخطارات داخل التطبيق فقط."
+
+msgid "AI and MCP"
+msgstr "منظمة العفو الدولية وMCP"
+
+msgid "AI"
+msgstr "منظمة العفو الدولية"
+
+msgid "Via Flux AI, model: %s."
+msgstr "عبر Flux AI، الموديل:%s."
+
+msgid "Flux AI"
+msgstr "تدفق منظمة العفو الدولية"
+
+msgid "MCP server"
+msgstr "خادم MCP"
+
+msgid "On, %d personal key(s)."
+msgstr "تشغيل، المفتاح (المفاتيح) الشخصية%d."
+
+msgid "Off."
+msgstr "إيقاف."
+
+msgid "Untitled document"
+msgstr "وثيقة بلا عنوان"
+
+msgid "List task projects"
+msgstr "قائمة المشاريع المهمة"
+
+msgid "List task people"
+msgstr "قائمة الناس المهمة"
+
+msgid "Search tasks"
+msgstr "مهام البحث"
+
+msgid "Read task"
+msgstr "قراءة المهمة"
+
+msgid "Create task"
+msgstr "إنشاء مهمة"
+
+msgid "Update task"
+msgstr "مهمة التحديث"
+
+msgid "Comment on task"
+msgstr "التعليق على المهمة"
+
+msgid "List task fields"
+msgstr "قائمة حقول المهام"
+
+msgid "Create task list"
+msgstr "إنشاء قائمة المهام"
+
+msgid "Delete task"
+msgstr "حذف المهمة"
+
+msgid "List task notifications"
+msgstr "قائمة إخطارات المهام"
+
+msgid "List documents"
+msgstr "قائمة الوثائق"
+
+msgid "Read document page"
+msgstr "قراءة صفحة الوثيقة"
+
+msgid "Edit document page"
+msgstr "تحرير صفحة المستند"
+
+msgid "Create document"
+msgstr "إنشاء مستند"
+
+msgid "Add page to document"
+msgstr "إضافة صفحة إلى الوثيقة"
+
+msgid "Document: %s"
+msgstr "المستند:%s"
+
+msgid "Improve"
+msgstr "تحسين"
+
+msgid "Fix spelling & grammar"
+msgstr "إصلاح الإملاء والنحو"
+
+msgid "Shorten"
+msgstr "تقصير"
+
+msgid "Make longer"
+msgstr "جعل أطول"
+
+msgid "Simplify"
+msgstr "بسّط"
+
+msgid "More formal"
+msgstr "أكثر رسمية"
+
+msgid "More friendly"
+msgstr "أكثر ودية"
+
+msgid "Turn into bullets"
+msgstr "تتحول إلى رصاصات"
+
+msgid "Turn into table"
+msgstr "تتحول إلى طاولة"
+
+msgid "Translate"
+msgstr "ترجمة"
+
+msgid "Explain"
+msgstr "اشرح"
+
+msgid "Custom request"
+msgstr "طلب مخصص"
+
+msgid "Write"
+msgstr "اكتب"
+
+msgid "Continue writing"
+msgstr "مواصلة الكتابة"
+
+msgid "Summarize"
+msgstr "تلخيص"
+
+msgid "Extract action items"
+msgstr "استخراج عناصر العمل"
+
+msgid "Draft an outline"
+msgstr "قم بصياغة مخطط تفصيلي"
+
+msgid "Suggest a title"
+msgstr "اقترح عنوانا"
+
+msgid "Ask the page"
+msgstr "اسأل الصفحة"
+
+msgid "Page not found or you have no access."
+msgstr "لم يتم العثور على الصفحة أو لا يمكنك الوصول إليها."
+
+msgid "Unknown action."
+msgstr "عمل غير معروف."
+
+msgid "Write what should be done."
+msgstr "اكتب ما يجب القيام به."
+
+msgid "The AI could not extract items. Try again or describe what you need."
+msgstr "لم يتمكن الذكاء الاصطناعي من استخراج العناصر. حاول مرة أخرى أو قم بوصف ما تحتاجه."
+
+msgid "The AI returned an empty answer. Try again."
+msgstr "أعاد الذكاء الاصطناعي إجابة فارغة. حاول ثانية."
+
+msgid "You are not allowed to create documents in this project."
+msgstr "غير مسموح لك بإنشاء مستندات في هذا المشروع."
+
+msgid "Document not found or you have no access."
+msgstr "لم يتم العثور على المستند أو لا يمكنك الوصول إليه."
+
+msgid "You are not allowed to edit this document."
+msgstr "غير مسموح لك بتحرير هذا المستند."
+
+msgid "Only the owner or a project admin can delete the document."
+msgstr "يمكن للمالك أو مسؤول المشروع فقط حذف المستند."
+
+msgid "A page cannot be moved under its own subpage."
+msgstr "لا يمكن نقل الصفحة ضمن صفحتها الفرعية الخاصة."
+
+msgid "The last page of a document cannot be deleted. You can delete the document instead."
+msgstr "لا يمكن حذف الصفحة الأخيرة من المستند. يمكنك حذف المستند بدلاً من ذلك."
+
+msgid "An email draft needs Flux Communication and mailbox permission."
+msgstr "تحتاج مسودة البريد الإلكتروني إلى إذن Flux Communication وصندوق البريد."
+
+msgid "File is too large. The maximum upload size is %s."
+msgstr "الملف كبير جدًا. الحد الأقصى لحجم التحميل هو%s."
+
+msgid "Could not upload the file."
+msgstr "تعذر تحميل الملف."
+
+msgid "This file type is not allowed."
+msgstr "هذا النوع من الملفات غير مسموح به."
+
+msgid "Could not save the file."
+msgstr "لا يمكن حفظ الملف."
+
+msgid "Urgent"
+msgstr "عاجل"
+
+msgid "High"
+msgstr "عالية"
+
+msgid "Normal"
+msgstr "عادي"
+
+msgid "Low"
+msgstr "منخفض"
+
+msgid "To do"
+msgstr "للقيام به"
+
+msgid "In progress"
+msgstr "قيد التقدم"
+
+msgid "In review"
+msgstr "قيد المراجعة"
+
+msgid "Done"
+msgstr "تم"
+
+msgid "Short text"
+msgstr "نص قصير"
+
+msgid "Long text"
+msgstr "نص طويل"
+
+msgid "Number"
+msgstr "رقم"
+
+msgid "Amount"
+msgstr "المبلغ"
+
+msgid "Date"
+msgstr "التاريخ"
+
+msgid "Checkbox"
+msgstr "خانة الاختيار"
+
+msgid "Dropdown"
+msgstr "القائمة المنسدلة"
+
+msgid "Tags (multi-select)"
+msgstr "العلامات (تحديد متعدد)"
+
+msgid "Star rating"
+msgstr "تصنيف النجوم"
+
+msgid "Person"
+msgstr "شخص"
+
+msgid "File"
+msgstr "ملف"
+
+msgid "Web address"
+msgstr "عنوان الويب"
+
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+msgid "Phone"
+msgstr "الهاتف"
+
+msgid "Welcome to Flux Tasks: open this task and write a comment"
+msgstr "مرحبًا بك في Flux Tasks: افتح هذه المهمة واكتب تعليقًا"
+
+msgid "Track tasks in list, board and calendar views. Add new lists or folders from the left menu, and set up custom fields and permissions in list settings."
+msgstr "تتبع المهام في طرق عرض القائمة واللوحة والتقويم. أضف قوائم أو مجلدات جديدة من القائمة اليسرى، وقم بإعداد الحقول والأذونات المخصصة في إعدادات القائمة."
+
+msgid "MCP is off. Turn it on under Flux Tasks › Settings."
+msgstr "تم إيقاف تشغيل MCP. قم بتشغيله ضمن مهام التدفق ›الإعدادات."
+
+msgid "Invalid or missing MCP key."
+msgstr "مفتاح MCP غير صالح أو مفقود."
+
+msgid "This user is not allowed to use Flux Tasks."
+msgstr "غير مسموح لهذا المستخدم باستخدام مهام Flux."
+
+msgid "%s assigned you to a task"
+msgstr "قام%sبتعيين مهمة لك"
+
+msgid "%s mentioned you in a comment"
+msgstr "ذكرك%sفي تعليق"
+
+msgid "%s wrote a comment"
+msgstr "كتب%sتعليقًا"
+
+msgid "%1$s changed the status to \"%2$s\""
+msgstr "قام%1$sبتغيير الحالة إلى \"%2$s\""
+
+msgid "Due tomorrow"
+msgstr "المقرر غدا"
+
+msgid "Overdue"
+msgstr "تأخرت"
+
+msgid "[%1$s] %2$s"
+msgstr "[%1$s]%2$s"
+
+msgid "You can turn off email notifications under Flux Tasks › Profile."
+msgstr "يمكنك إيقاف تشغيل إشعارات البريد الإلكتروني ضمن مهام Flux ›الملف الشخصي."
+
+msgid "Recipient name"
+msgstr "اسم المستلم"
+
+msgid "Person who acted"
+msgstr "الشخص الذي تصرف"
+
+msgid "Task name"
+msgstr "اسم المهمة"
+
+msgid "List"
+msgstr "قائمة"
+
+msgid "Notification sentence"
+msgstr "جملة الإخطار"
+
+msgid "Comment excerpt"
+msgstr "مقتطف التعليق"
+
+msgid "Due date"
+msgstr "تاريخ الاستحقاق"
+
+msgid "Task link"
+msgstr "رابط المهمة"
+
+msgid "Booth supplies list"
+msgstr "قائمة لوازم الجناح"
+
+msgid "Mehmet assigned you to a task"
+msgstr "محمد كلفك بمهمة"
+
+msgid "Can you look at it by Friday?"
+msgstr "هل يمكنك أن تنظر إليه بحلول يوم الجمعة؟"
+
+msgid "You were assigned to a task"
+msgstr "لقد تم تكليفك بمهمة"
+
+msgid "Sent when someone assigns you to a task."
+msgstr "يتم إرساله عندما يقوم شخص ما بتعيينك لمهمة."
+
+msgid "{kisi} assigned you to a task: {gorev}"
+msgstr "قام{kisi}بتعيين مهمة لك:{gorev}"
+
+msgid "New task: {gorev}"
+msgstr "مهمة جديدة:{gorev}"
+
+msgid "Hi {ad},"
+msgstr "مرحبًا{ad}،"
+
+msgid "{kisi} assigned you to <strong>{gorev}</strong> in the <strong>{liste}</strong> list."
+msgstr "قام{kisi}بتعيينك إلى<strong>{gorev}</strong>في قائمة<strong>{liste}</strong>."
+
+msgid "Open task"
+msgstr "مهمة مفتوحة"
+
+msgid "You were mentioned in a comment"
+msgstr "لقد تم ذكرك في تعليق"
+
+msgid "Sent when someone @mentions you in a comment."
+msgstr "يتم إرساله عندما يقوم شخص ما بالإشارة إليك في تعليق."
+
+msgid "{kisi} mentioned you in a comment: {gorev}"
+msgstr "ذكرك{kisi}في تعليق:{gorev}"
+
+msgid "{kisi} mentioned you"
+msgstr "لقد ذكرك{kisi}"
+
+msgid "Comment on <strong>{gorev}</strong>:"
+msgstr "تعليق على<strong>{gorev}</strong>:"
+
+msgid "Go to comment"
+msgstr "اذهب إلى التعليق"
+
+msgid "Task due date is coming up"
+msgstr "موعد استحقاق المهمة يقترب"
+
+msgid "Sent one day before the due date of a task assigned to you."
+msgstr "يتم إرساله قبل يوم واحد من الموعد المحدد للمهمة الموكلة إليك."
+
+msgid "Due tomorrow: {gorev}"
+msgstr "المقرر غدًا:{gorev}"
+
+msgid "<strong>{gorev}</strong> is due on {tarih}."
+msgstr "<strong>{gorev}</strong>مقرر في{tarih}."
+
+msgid "Can view"
+msgstr "يمكن عرض"
+
+msgid "Can comment"
+msgstr "يمكن التعليق"
+
+msgid "Can edit"
+msgstr "يمكن تحرير"
+
+msgid "Can manage"
+msgstr "يمكن إدارة"
+
+msgid "Display preferences are too large."
+msgstr "تفضيلات العرض كبيرة جدًا."
+
+msgid "You don't have permission to create projects."
+msgstr "ليس لديك إذن لإنشاء المشاريع."
+
+msgid "Name cannot be empty."
+msgstr "لا يمكن أن يكون الاسم فارغًا."
+
+msgid "Project not found."
+msgstr "لم يتم العثور على المشروع."
+
+msgid "You don't have permission to manage this project."
+msgstr "ليس لديك الإذن لإدارة هذا المشروع."
+
+msgid "You don't have permission to create folders in this project."
+msgstr "ليس لديك الإذن بإنشاء مجلدات في هذا المشروع."
+
+msgid "You don't have permission to edit this folder."
+msgstr "ليس لديك الإذن لتحرير هذا المجلد."
+
+msgid "You don't have permission to delete this folder."
+msgstr "ليس لديك الإذن بحذف هذا المجلد."
+
+msgid "You don't have permission to create lists in this project."
+msgstr "ليس لديك الإذن بإنشاء قوائم في هذا المشروع."
+
+msgid "You don't have permission to manage this list."
+msgstr "ليس لديك الإذن لإدارة هذه القائمة."
+
+msgid "You don't have access to the target project."
+msgstr "ليس لديك حق الوصول إلى المشروع المستهدف."
+
+msgid "You must be a list manager to add fields."
+msgstr "يجب أن تكون مدير قائمة لإضافة الحقول."
+
+msgid "You must be a list manager to edit fields."
+msgstr "يجب أن تكون مدير قائمة لتحرير الحقول."
+
+msgid "You must be a list manager to delete fields."
+msgstr "يجب أن تكون مدير قائمة لحذف الحقول."
+
+msgid "You don't have access."
+msgstr "ليس لديك حق الوصول."
+
+msgid "New view"
+msgstr "عرض جديد"
+
+msgid "You don't have permission to change this view."
+msgstr "ليس لديك الإذن بتغيير طريقة العرض هذه."
+
+msgid "You don't have permission to delete this view."
+msgstr "ليس لديك إذن بحذف طريقة العرض هذه."
+
+msgid "Project managers edit tags."
+msgstr "يقوم مديرو المشاريع بتحرير العلامات."
+
+msgid "You don't have permission to delete this task."
+msgstr "ليس لديك الإذن بحذف هذه المهمة."
+
+msgid "You can only edit your own comments."
+msgstr "يمكنك فقط تعديل تعليقاتك الخاصة."
+
+msgid "Comment cannot be empty."
+msgstr "لا يمكن أن يكون التعليق فارغًا."
+
+msgid "You don't have permission to delete this comment."
+msgstr "ليس لديك الإذن بحذف هذا التعليق."
+
+msgid "You are not allowed to add files to this document."
+msgstr "غير مسموح لك بإضافة ملفات إلى هذا المستند."
+
+msgid "You don't have permission to attach files to this task."
+msgstr "ليس لديك الإذن بإرفاق ملفات بهذه المهمة."
+
+msgid "File not found."
+msgstr "لم يتم العثور على الملف."
+
+msgid "You don't have permission to delete this file."
+msgstr "ليس لديك الإذن بحذف هذا الملف."
+
+msgid "You don't have permission to delete this key."
+msgstr "ليس لديك الإذن بحذف هذا المفتاح."
+
+msgid "Planned"
+msgstr "المخطط لها"
+
+msgid "Held"
+msgstr "عقد"
+
+msgid "Cancelled"
+msgstr "تم الإلغاء"
+
+msgid "Board"
+msgstr "مجلس"
+
+msgid "Calendar"
+msgstr "التقويم"
+
+msgid "Parent task not found."
+msgstr "لم يتم العثور على المهمة الأصلية."
+
+msgid "A task cannot be moved under its own subtask."
+msgstr "لا يمكن نقل المهمة ضمن المهمة الفرعية الخاصة بها."
+
+msgid "Subtasks can be nested at most %d levels in this project. You can change the limit in project settings."
+msgstr "يمكن دمج المهام الفرعية في معظم مستويات%dفي هذا المشروع. يمكنك تغيير الحد في إعدادات المشروع."
+
+msgid "Task name cannot be empty."
+msgstr "لا يمكن أن يكون اسم المهمة فارغًا."
+
+msgid "List not found."
+msgstr "لم يتم العثور على القائمة."
+
+msgid "Task not found."
+msgstr "لم يتم العثور على المهمة."
+
+msgid "Choose an image for the cover."
+msgstr "اختر صورة للغلاف."
+
+msgid "Today"
+msgstr "اليوم"
+
+msgid "Tomorrow"
+msgstr "غدا"
+
+msgid "Yesterday"
+msgstr "أمس"
+
+msgid "just now"
+msgstr "الآن فقط"
+
+msgid "The server sent an unexpected response. Refresh the page and try again."
+msgstr "أرسل الخادم استجابة غير متوقعة. قم بتحديث الصفحة وحاول مرة أخرى."
+
+msgid "The server is busy right now, try again shortly."
+msgstr "الخادم مشغول الآن، حاول مرة أخرى قريبا."
+
+msgid "Connection error"
+msgstr "خطأ في الاتصال"
+
+msgid "Deleting comment"
+msgstr "حذف التعليق"
+
+msgid "Sending comment"
+msgstr "جارٍ إرسال التعليق"
+
+msgid "Deleting file"
+msgstr "حذف الملف"
+
+msgid "Saving file"
+msgstr "حفظ الملف"
+
+msgid "Deleting task"
+msgstr "حذف المهمة"
+
+msgid "Saving task"
+msgstr "مهمة الحفظ"
+
+msgid "AI is working"
+msgstr "الذكاء الاصطناعي يعمل"
+
+msgid "Saving"
+msgstr "الادخار"
+
+msgid "Loading"
+msgstr "جاري التحميل"
+
+msgid "{n} failed"
+msgstr "فشل{n}"
+
+msgid "{n} in progress"
+msgstr "{n}قيد التقدم"
+
+msgid "server busy, waiting"
+msgstr "الخادم مشغول، في الانتظار"
+
+msgid "Saved"
+msgstr "تم الحفظ"
+
+msgid "Background tasks"
+msgstr "مهام الخلفية"
+
+msgid "Server busy, waiting"
+msgstr "الخادم مشغول، في الانتظار"
+
+msgid "Retry"
+msgstr "أعد المحاولة"
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Uploading: {n}"
+msgstr "التحميل:{n}"
+
+msgid "Upload timed out."
+msgstr "انتهت مهلة التحميل."
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "OK"
+msgstr "حسنًا"
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "Copied"
+msgstr "منقول"
+
+msgid "Download"
+msgstr "تحميل"
+
+msgid "Someone"
+msgstr "شخص ما"
+
+msgid "Document name"
+msgstr "اسم المستند"
+
+msgid "Create"
+msgstr "إنشاء"
+
+msgid "Delete document"
+msgstr "حذف المستند"
+
+msgid "\"{n}\" will be permanently deleted with all its pages and images."
+msgstr "سيتم حذف \"{n}\" نهائيًا بجميع صفحاته وصوره."
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Rename"
+msgstr "إعادة تسمية"
+
+msgid "Copy link"
+msgstr "انسخ الرابط"
+
+msgid "Pop-up blocked. Allow pop-ups for this site in your browser."
+msgstr "تم حظر النوافذ المنبثقة. السماح بالنوافذ المنبثقة لهذا الموقع في متصفحك."
+
+msgid "My tasks"
+msgstr "مهامي"
+
+msgid "Email draft created."
+msgstr "تم إنشاء مسودة البريد الإلكتروني."
+
+msgid "Open in mailbox"
+msgstr "فتح في صندوق البريد"
+
+msgid "Pages"
+msgstr "الصفحات"
+
+msgid "Other"
+msgstr "أخرى"
+
+msgid "Rename document"
+msgstr "إعادة تسمية الوثيقة"
+
+msgid "Add subpage"
+msgstr "إضافة صفحة فرعية"
+
+msgid "Print / PDF"
+msgstr "طباعة / قوات الدفاع الشعبي"
+
+msgid "Create email draft"
+msgstr "إنشاء مسودة البريد الإلكتروني"
+
+msgid "Create an email draft from this page"
+msgstr "قم بإنشاء مسودة بريد إلكتروني من هذه الصفحة"
+
+msgid "Email draft"
+msgstr "مسودة البريد الإلكتروني"
+
+msgid "AI (Ctrl+J)"
+msgstr "الذكاء الاصطناعي (Ctrl+J)"
+
+msgid "Untitled"
+msgstr "بدون عنوان"
+
+msgid "Start writing… type \"/\" for blocks, \"#\" to link a task"
+msgstr "ابدأ الكتابة... اكتب \"/\" للكتل، و\"#\" لربط مهمة"
+
+msgid "Open as full page"
+msgstr "فتح كصفحة كاملة"
+
+msgid "Full page"
+msgstr "صفحة كاملة"
+
+msgid "Saving…"
+msgstr "جارٍ الحفظ..."
+
+msgid "Not saved, will retry"
+msgstr "لم يتم الحفظ، ستتم إعادة المحاولة"
+
+msgid "Offline"
+msgstr "غير متصل"
+
+msgid "Add page"
+msgstr "إضافة صفحة"
+
+msgid "Collapse"
+msgstr "طي"
+
+msgid "Page menu"
+msgstr "قائمة الصفحة"
+
+msgid "Page name"
+msgstr "اسم الصفحة"
+
+msgid "Move under the page above"
+msgstr "التحرك تحت الصفحة أعلاه"
+
+msgid "Move up a level"
+msgstr "انتقل إلى مستوى أعلى"
+
+msgid "Delete page"
+msgstr "حذف الصفحة"
+
+msgid "\"{p}\" and its {n} subpages will be deleted."
+msgstr "سيتم حذف \"{p}\" وصفحاته الفرعية{n}."
+
+msgid "\"{p}\" will be deleted."
+msgstr "سيتم حذف \"{p}\"."
+
+msgid "Last edited by {n}, {t}"
+msgstr "التعديل الأخير تم بواسطة{n},{t}"
+
+msgid "typing"
+msgstr "الكتابة"
+
+msgid "Edit"
+msgstr "تحرير"
+
+msgid "Remove link"
+msgstr "إزالة الرابط"
+
+msgid "Small"
+msgstr "صغير"
+
+msgid "Medium"
+msgstr "متوسط"
+
+msgid "Full width"
+msgstr "العرض الكامل"
+
+msgid "Enlarge"
+msgstr "تكبير"
+
+msgid "Remove image"
+msgstr "إزالة الصورة"
+
+msgid "Link address"
+msgstr "عنوان الرابط"
+
+msgid "Add"
+msgstr "أضف"
+
+msgid "Search tasks…"
+msgstr "مهام البحث..."
+
+msgid "No results"
+msgstr "لا توجد نتائج"
+
+msgid "Type to search"
+msgstr "اكتب للبحث"
+
+msgid "Basic blocks"
+msgstr "الكتل الأساسية"
+
+msgid "Media & links"
+msgstr "الوسائط والروابط"
+
+msgid "Item"
+msgstr "البند"
+
+msgid "Text"
+msgstr "نص"
+
+msgid "Plain paragraph"
+msgstr "فقرة عادية"
+
+msgid "Page"
+msgstr "الصفحة"
+
+msgid "A sub-page inside this page"
+msgstr "صفحة فرعية داخل هذه الصفحة"
+
+msgid "Sub-page"
+msgstr "صفحة فرعية"
+
+msgid "Heading 1"
+msgstr "العنوان 1"
+
+msgid "Large section heading"
+msgstr "عنوان قسم كبير"
+
+msgid "Heading"
+msgstr "العنوان"
+
+msgid "Heading 2"
+msgstr "العنوان 2"
+
+msgid "Medium section heading"
+msgstr "عنوان القسم المتوسط"
+
+msgid "Heading 3"
+msgstr "العنوان 3"
+
+msgid "Small section heading"
+msgstr "عنوان قسم صغير"
+
+msgid "Bulleted list"
+msgstr "قائمة نقطية"
+
+msgid "Simple bulleted list"
+msgstr "قائمة نقطية بسيطة"
+
+msgid "Numbered list"
+msgstr "قائمة مرقمة"
+
+msgid "Checklist"
+msgstr "قائمة التحقق"
+
+msgid "Checkable to-dos"
+msgstr "يمكن التحقق منها إلى دوس"
+
+msgid "Quote"
+msgstr "اقتباس"
+
+msgid "Quote or note"
+msgstr "اقتباس أو ملاحظة"
+
+msgid "Code"
+msgstr "الكود"
+
+msgid "Code block"
+msgstr "كتلة التعليمات البرمجية"
+
+msgid "Table"
+msgstr "الجدول"
+
+msgid "3×3 table"
+msgstr "طاولة 3×3"
+
+msgid "Divider"
+msgstr "مقسم"
+
+msgid "Separates sections"
+msgstr "يفصل الأقسام"
+
+msgid "Images"
+msgstr "الصور"
+
+msgid "Upload an image"
+msgstr "قم بتحميل صورة"
+
+msgid "Add file"
+msgstr "إضافة ملف"
+
+msgid "Link a task (#)"
+msgstr "ربط مهمة (#)"
+
+msgid "Link"
+msgstr "رابط"
+
+msgid "Add a web link"
+msgstr "أضف رابط الويب"
+
+msgid "Write with AI"
+msgstr "اكتب باستخدام الذكاء الاصطناعي"
+
+msgid "Have it write anything"
+msgstr "اجعله يكتب أي شيء"
+
+msgid "Continues the page"
+msgstr "تواصل الصفحة"
+
+msgid "Summary of the page"
+msgstr "ملخص الصفحة"
+
+msgid "Turn items into tasks"
+msgstr "تحويل العناصر إلى مهام"
+
+msgid "Close menu"
+msgstr "إغلاق القائمة"
+
+msgid "Gray"
+msgstr "رمادي"
+
+msgid "Brown"
+msgstr "براون"
+
+msgid "Orange"
+msgstr "برتقالي"
+
+msgid "Yellow"
+msgstr "أصفر"
+
+msgid "Green"
+msgstr "أخضر"
+
+msgid "Blue"
+msgstr "أزرق"
+
+msgid "Purple"
+msgstr "أرجواني"
+
+msgid "Pink"
+msgstr "وردي"
+
+msgid "Red"
+msgstr "أحمر"
+
+msgid "Default"
+msgstr "الافتراضي"
+
+msgid "Column: click for menu, drag to move"
+msgstr "العمود: انقر للقائمة، اسحب للتحرك"
+
+msgid "Row: click for menu, drag to move"
+msgstr "الصف: انقر للقائمة، اسحب للتحرك"
+
+msgid "Insert row above"
+msgstr "أدخل الصف أعلاه"
+
+msgid "Add column left"
+msgstr "إضافة العمود الأيسر"
+
+msgid "Insert row below"
+msgstr "أدخل الصف أدناه"
+
+msgid "Add column right"
+msgstr "أضف العمود الأيمن"
+
+msgid "Move up"
+msgstr "تحرك للأعلى"
+
+msgid "Move left"
+msgstr "تحرك لليسار"
+
+msgid "Move down"
+msgstr "تحرك للأسفل"
+
+msgid "Move right"
+msgstr "تحرك لليمين"
+
+msgid "Background"
+msgstr "الخلفية"
+
+msgid "Text color"
+msgstr "لون النص"
+
+msgid "Delete row"
+msgstr "حذف الصف"
+
+msgid "Delete column"
+msgstr "حذف العمود"
+
+msgid "Delete table"
+msgstr "حذف الجدول"
+
+msgid "Click to add a block below. Alt-click to add above"
+msgstr "انقر لإضافة كتلة أدناه. Alt - انقر للإضافة أعلاه"
+
+msgid "Drag to move. Click for menu"
+msgstr "اسحب للتحرك. انقر للحصول على القائمة"
+
+msgid "Turn into"
+msgstr "تتحول إلى"
+
+msgid "Edit with AI"
+msgstr "تحرير مع الذكاء الاصطناعي"
+
+msgid "Duplicate"
+msgstr "مكررة"
+
+msgid "Add row below"
+msgstr "أضف صفًا أدناه"
+
+msgid "Add row above"
+msgstr "أضف صفًا أعلاه"
+
+msgid "Undo"
+msgstr "تراجع"
+
+msgid "Redo"
+msgstr "إعادة"
+
+msgid "Bold"
+msgstr "جريئة"
+
+msgid "Italic"
+msgstr "مائل"
+
+msgid "Underline"
+msgstr "تسطير"
+
+msgid "Strikethrough"
+msgstr "يتوسطه خط"
+
+msgid "Link (Ctrl+K)"
+msgstr "الرابط (Ctrl+K)"
+
+msgid "Alignment"
+msgstr "محاذاة"
+
+msgid "Left"
+msgstr "اليسار"
+
+msgid "Center"
+msgstr "مركز"
+
+msgid "Right"
+msgstr "صحيح"
+
+msgid "Add image"
+msgstr "أضف صورة"
+
+msgid "Add table"
+msgstr "إضافة جدول"
+
+msgid "Task link (#)"
+msgstr "رابط المهمة (#)"
+
+msgid "Translate to English"
+msgstr "ترجمة إلى اللغة الإنجليزية"
+
+msgid "Translate to Turkish"
+msgstr "ترجم إلى التركية"
+
+msgid "Turn into heading"
+msgstr "تحول إلى عنوان"
+
+msgid "Selected text"
+msgstr "النص المحدد"
+
+msgid "This page"
+msgstr "هذه الصفحة"
+
+msgid "Describe the change… (e.g. make it shorter)"
+msgstr "صِف التغيير... (على سبيل المثال، اجعله أقصر)"
+
+msgid "What should be done with the selection?"
+msgstr "ما الذي يجب فعله مع الاختيار؟"
+
+msgid "What should be written? E.g. a meeting agenda draft"
+msgstr "ماذا يجب أن يكتب؟ على سبيل المثال مسودة جدول أعمال الاجتماع"
+
+msgid "Ask a question about this page"
+msgstr "طرح سؤال حول هذه الصفحة"
+
+msgid "Ask the page (the answer is not written into it)"
+msgstr "اسأل الصفحة (الإجابة غير مكتوبة فيها)"
+
+msgid "Ask"
+msgstr "اسأل"
+
+msgid "Send"
+msgstr "أرسل"
+
+msgid "Chat with the assistant"
+msgstr "الدردشة مع المساعد"
+
+msgid "AI is writing…"
+msgstr "الذكاء الاصطناعي يكتب..."
+
+msgid "Replace"
+msgstr "استبدال"
+
+msgid "Insert below"
+msgstr "أدخل أدناه"
+
+msgid "Use as title"
+msgstr "استخدم كعنوان"
+
+msgid "Page title changed."
+msgstr "تم تغيير عنوان الصفحة."
+
+msgid "Insert below cursor"
+msgstr "أدخل أسفل المؤشر"
+
+msgid "Append"
+msgstr "إلحاق"
+
+msgid "Insert at top"
+msgstr "أدخل في الأعلى"
+
+msgid "Add as new page"
+msgstr "أضف كصفحة جديدة"
+
+msgid "Add to page"
+msgstr "أضف إلى الصفحة"
+
+msgid "Copy"
+msgstr "نسخ"
+
+msgid "Regenerate"
+msgstr "تجديد"
+
+msgid "Back"
+msgstr "العودة"
+
+msgid "Select"
+msgstr "اختر"
+
+msgid "Due"
+msgstr "مستحق"
+
+msgid "Add item"
+msgstr "إضافة عنصر"
+
+msgid "Add as tasks ({n})"
+msgstr "إضافة كمهام ({n})"
+
+msgid "{n} tasks added to \"{l}\"."
+msgstr "تمت إضافة مهام{n}إلى \"{l}\"."
+
+msgid "Open list"
+msgstr "فتح القائمة"
+
+msgid "There is no list you can add tasks to."
+msgstr "لا توجد قائمة يمكنك إضافة المهام إليها."
+
+msgid "To-dos"
+msgstr "المهام"
+
+msgid "New page created."
+msgstr "تم إنشاء صفحة جديدة."
+
+msgid "The selection changed meanwhile; the result was inserted below."
+msgstr "تغير الاختيار في هذه الأثناء. تم إدراج النتيجة أدناه."
+
+msgid "Replaced."
+msgstr "تم استبداله."
+
+msgid "Added to the page."
+msgstr "تمت إضافتها إلى الصفحة."
+
+msgid "Drag to resize, double-click to reset"
+msgstr "اسحب لتغيير الحجم، وانقر نقرًا مزدوجًا لإعادة التعيين"
+
+msgid "Hide sidebar"
+msgstr "إخفاء الشريط الجانبي"
+
+msgid "AI assistant"
+msgstr "مساعد الذكاء الاصطناعي"
+
+msgid "Projects"
+msgstr "المشاريع"
+
+msgid "New project"
+msgstr "مشروع جديد"
+
+msgid "Project menu"
+msgstr "قائمة المشروع"
+
+msgid "Empty folder"
+msgstr "مجلد فارغ"
+
+msgid "You have no visible projects."
+msgstr "ليس لديك أي مشاريع مرئية."
+
+msgid "Theme"
+msgstr "الموضوع"
+
+msgid "System"
+msgstr "النظام"
+
+msgid "Light"
+msgstr "ضوء"
+
+msgid "Dark"
+msgstr "الظلام"
+
+msgid "Back to WordPress admin"
+msgstr "العودة إلى مدير ووردبريس"
+
+msgid "List menu"
+msgstr "قائمة القائمة"
+
+msgid "Moves within the same project; statuses, fields and tags stay the same."
+msgstr "التحركات داخل نفس المشروع. تظل الحالات والحقول والعلامات كما هي."
+
+msgid "Keep the list's own statuses"
+msgstr "احتفظ بحالات القائمة الخاصة"
+
+msgid "Use the statuses of \"{n}\""
+msgstr "استخدم حالات \"{n}\""
+
+msgid "Statuses"
+msgstr "الحالات"
+
+msgid "Pick a match for each status; tasks move to that status."
+msgstr "اختر تطابقًا لكل حالة؛ تنتقل المهام إلى تلك الحالة."
+
+msgid "Statuses and custom fields move with the list; tasks keep their status."
+msgstr "تنتقل الحالات والحقول المخصصة مع القائمة؛ المهام تحافظ على حالتها."
+
+msgid "Tags"
+msgstr "العلامات"
+
+msgid "{n} tags are linked by name in the target project: {e} already exist, {c} will be created."
+msgstr "يتم ربط علامات{n}بالاسم في المشروع المستهدف:{e}موجود بالفعل، وسيتم إنشاء{c}."
+
+msgid "People who will lose access"
+msgstr "الأشخاص الذين سيفقدون إمكانية الوصول"
+
+msgid "These people are not members of the target project; checked ones are added as members."
+msgstr "هؤلاء الأشخاص ليسوا أعضاء في المشروع المستهدف؛ تتم إضافة تلك المحددة كأعضاء."
+
+msgid "Target project or folder"
+msgstr "المشروع أو المجلد المستهدف"
+
+msgid "Move \"{n}\""
+msgstr "نقل \"{n}\""
+
+msgid "Move"
+msgstr "تحرك"
+
+msgid "Moving list"
+msgstr "قائمة متحركة"
+
+msgid "\"{n}\" moved."
+msgstr "تم نقل \"{n}\"."
+
+msgid "Document menu"
+msgstr "قائمة الوثيقة"
+
+msgid "Task list"
+msgstr "قائمة المهام"
+
+msgid "Meeting list"
+msgstr "قائمة الاجتماعات"
+
+msgid "Document"
+msgstr "وثيقة"
+
+msgid "New list"
+msgstr "قائمة جديدة"
+
+msgid "New meeting list"
+msgstr "قائمة الاجتماعات الجديدة"
+
+msgid "New document"
+msgstr "وثيقة جديدة"
+
+msgid "New folder"
+msgstr "مجلد جديد"
+
+msgid "Folder name"
+msgstr "اسم المجلد"
+
+msgid "Project settings and members"
+msgstr "إعدادات المشروع والأعضاء"
+
+msgid "Delete project"
+msgstr "حذف المشروع"
+
+msgid "All lists, tasks, comments and files in the project \"{n}\" will be permanently deleted."
+msgstr "سيتم حذف جميع القوائم والمهام والتعليقات والملفات الموجودة في المشروع \"{n}\" نهائيًا."
+
+msgid "Add a list to this folder"
+msgstr "أضف قائمة إلى هذا المجلد"
+
+msgid "Add a meeting list to this folder"
+msgstr "إضافة قائمة اجتماعات إلى هذا المجلد"
+
+msgid "Add a document to this folder"
+msgstr "أضف مستندًا إلى هذا المجلد"
+
+msgid "Delete folder"
+msgstr "حذف المجلد"
+
+msgid "The folder will be deleted; its lists will move to the project root."
+msgstr "سيتم حذف المجلد. ستنتقل قوائمها إلى جذر المشروع."
+
+msgid "List settings"
+msgstr "إعدادات القائمة"
+
+msgid "Custom fields"
+msgstr "الحقول المخصصة"
+
+msgid "Permissions"
+msgstr "الأذونات"
+
+msgid "Move…"
+msgstr "نقل..."
+
+msgid "Delete list"
+msgstr "حذف القائمة"
+
+msgid "All tasks, comments and files in the list \"{n}\" will be permanently deleted."
+msgstr "سيتم حذف جميع المهام والتعليقات والملفات الموجودة في القائمة \"{n}\" نهائيًا."
+
+msgid "Show sidebar"
+msgstr "إظهار الشريط الجانبي"
+
+msgid "Menu"
+msgstr "القائمة"
+
+msgid "All lists"
+msgstr "جميع القوائم"
+
+msgid "Visible to members only"
+msgstr "مرئية للأعضاء فقط"
+
+msgid "Private"
+msgstr "خاص"
+
+msgid "Share"
+msgstr "شارك"
+
+msgid "View menu"
+msgstr "عرض القائمة"
+
+msgid "View"
+msgstr "عرض"
+
+msgid "View name"
+msgstr "عرض الاسم"
+
+msgid "Create a copy"
+msgstr "إنشاء نسخة"
+
+msgid "Share with everyone"
+msgstr "شارك مع الجميع"
+
+msgid "Make private to me"
+msgstr "اجعلها خاصة بي"
+
+msgid "Delete view"
+msgstr "حذف العرض"
+
+msgid "The view \"{n}\" will be deleted. Tasks are not affected."
+msgstr "سيتم حذف العرض \"{n}\". لا تتأثر المهام."
+
+msgid "{n} assigned you to a task"
+msgstr "قام{n}بتعيين مهمة لك"
+
+msgid "{n} mentioned you in a comment"
+msgstr "ذكرك{n}في تعليق"
+
+msgid "{n} wrote a comment"
+msgstr "كتب{n}تعليقًا"
+
+msgid "{n} changed the status to \"{s}\""
+msgstr "قام{n}بتغيير الحالة إلى \"{s}\""
+
+msgid "All"
+msgstr "الكل"
+
+msgid "Unread"
+msgstr "غير مقروءة"
+
+msgid "Mark all as read"
+msgstr "وضع علامة على الكل كمقروءة"
+
+msgid "No unread notifications. 🎉"
+msgstr "لا توجد إخطارات غير مقروءة. 🎉"
+
+msgid "No notifications yet."
+msgstr "لا توجد إخطارات حتى الآن."
+
+msgid "(deleted task)"
+msgstr "(مهمة محذوفة)"
+
+msgid "More"
+msgstr "المزيد"
+
+msgid "Refresh"
+msgstr "تحديث"
+
+msgid "File storage"
+msgstr "تخزين الملفات"
+
+msgid "{n} files"
+msgstr "ملفات{n}"
+
+msgid "previews {s}"
+msgstr "معاينات{s}"
+
+msgid "Open tasks"
+msgstr "المهام المفتوحة"
+
+msgid "{n} completed"
+msgstr "اكتمل{n}"
+
+msgid "open tasks past their due date"
+msgstr "المهام المفتوحة بعد تاريخ استحقاقها"
+
+msgid "Last 30 days"
+msgstr "آخر 30 يومًا"
+
+msgid "{n} tasks completed"
+msgstr "اكتملت مهام{n}"
+
+msgid "Comments"
+msgstr "التعليقات"
+
+msgid "{n} active users (30 days)"
+msgstr "{n}من المستخدمين النشطين (30 يومًا)"
+
+msgid "Structure"
+msgstr "الهيكل"
+
+msgid "projects / lists · {n} users"
+msgstr "المشاريع / القوائم · مستخدمو{n}"
+
+msgid "PDF"
+msgstr "قوات الدفاع الشعبي"
+
+msgid "Documents"
+msgstr "المستندات"
+
+msgid "Video"
+msgstr "فيديو"
+
+msgid "Audio"
+msgstr "الصوت"
+
+msgid "Archives"
+msgstr "المحفوظات"
+
+msgid "Storage"
+msgstr "التخزين"
+
+msgid "No files uploaded yet."
+msgstr "لم يتم تحميل أي ملفات حتى الآن."
+
+msgid "Task files (uploads/flx-tasks)"
+msgstr "ملفات المهام (التحميلات/مهام flx)"
+
+msgid "Unsent comment attachments (deleted after 24 hours)"
+msgstr "مرفقات التعليقات غير المرسلة (تم حذفها بعد 24 ساعة)"
+
+msgid "Single file limit"
+msgstr "حد ملف واحد"
+
+msgid "Free space on server"
+msgstr "مساحة حرة على الخادم"
+
+msgid "Entire media folder (wp-content/uploads)"
+msgstr "مجلد الوسائط بالكامل (wp-content/uploads)"
+
+msgid "Calculating…"
+msgstr "جارٍ الحساب..."
+
+msgid "Recalculate"
+msgstr "إعادة الحساب"
+
+msgid "Calculate"
+msgstr "احسب"
+
+msgid "By list"
+msgstr "حسب القائمة"
+
+msgid "Project"
+msgstr "مشروع"
+
+msgid "Task"
+msgstr "المهمة"
+
+msgid "Size"
+msgstr "الحجم"
+
+msgid "Uploaded by person"
+msgstr "تم الرفع بواسطة شخص"
+
+msgid "No data."
+msgstr "لا توجد بيانات."
+
+msgid "Monthly uploads"
+msgstr "التحميلات الشهرية"
+
+msgid "Largest files"
+msgstr "أكبر الملفات"
+
+msgid "Uploader"
+msgstr "الرافع"
+
+msgid "unlinked"
+msgstr "غير مرتبط"
+
+msgid "Delete file"
+msgstr "حذف الملف"
+
+msgid "Database"
+msgstr "قاعدة البيانات"
+
+msgid "Rows"
+msgstr "الصفوف"
+
+msgid "Total"
+msgstr "المجموع"
+
+msgid "AI usage"
+msgstr "استخدام الذكاء الاصطناعي"
+
+msgid "Month"
+msgstr "شهر"
+
+msgid "Requests"
+msgstr "الطلبات"
+
+msgid "Tokens"
+msgstr "الرموز"
+
+msgid "Cost (OpenRouter)"
+msgstr "التكلفة (OpenRouter)"
+
+msgid "No usage this month."
+msgstr "لا يوجد استخدام هذا الشهر."
+
+msgid "Warning"
+msgstr "تحذير"
+
+msgid "Error"
+msgstr "خطأ"
+
+msgid "Info"
+msgstr "معلومات"
+
+msgid "{n} problem(s)"
+msgstr "مشكلة (مشاكل){n}"
+
+msgid "{n} warning(s)"
+msgstr "تحذيرات{n}"
+
+msgid "Everything is in place"
+msgstr "كل شيء في مكانه"
+
+msgid "System check"
+msgstr "فحص النظام"
+
+msgid "Check again"
+msgstr "تحقق مرة أخرى"
+
+msgid "{n} item(s)"
+msgstr "{n}العناصر"
+
+msgid "Flux AI default: {m}"
+msgstr "تدفق الذكاء الاصطناعي الافتراضي:{m}"
+
+msgid "Flux AI default"
+msgstr "تدفق الذكاء الاصطناعي الافتراضي"
+
+msgid "Access"
+msgstr "الوصول"
+
+msgid "Choose which WordPress roles can use Tasks. Administrators always see all projects."
+msgstr "اختر أدوار WordPress التي يمكنها استخدام المهام. يرى المسؤولون دائمًا جميع المشاريع."
+
+msgid "Can use Tasks"
+msgstr "يمكن استخدام المهام"
+
+msgid "Can create projects, folders and lists"
+msgstr "يمكن إنشاء المشاريع والمجلدات والقوائم"
+
+msgid "Can use AI"
+msgstr "يمكن استخدام الذكاء الاصطناعي"
+
+msgid "Notifications and updates"
+msgstr "الإخطارات والتحديثات"
+
+msgid "Live update interval (seconds)"
+msgstr "الفاصل الزمني للتحديث المباشر (ثواني)"
+
+msgid "An open tab sends a single lightweight request at this interval; a background tab sends none. Increase it if the server is busy (default 45)."
+msgstr "ترسل علامة التبويب المفتوحة طلبًا واحدًا خفيفًا في هذه الفترة الزمنية؛ علامة تبويب الخلفية لا ترسل أي شيء. قم بزيادتها إذا كان الخادم مشغولاً (الافتراضي 45)."
+
+msgid "Emails are sent for assignments, mentions and upcoming due dates. People can turn them off in their profile."
+msgstr "يتم إرسال رسائل البريد الإلكتروني للمهام والإشارات وتواريخ الاستحقاق القادمة. يمكن للأشخاص إيقاف تشغيلها في ملفهم الشخصي."
+
+msgid "Files"
+msgstr "ملفات"
+
+msgid "Single file limit (MB)"
+msgstr "حد الملف الواحد (ميجابايت)"
+
+msgid "If the server's PHP limit is lower, that limit applies."
+msgstr "إذا كان حد PHP الخاص بالخادم أقل، فسيتم تطبيق هذا الحد."
+
+msgid "Keys, spending limit and reports come from the Flux AI & MCP plugin. Leave the model empty to use the Flux AI default."
+msgstr "تأتي المفاتيح وحدود الإنفاق والتقارير من البرنامج المساعد Flux AI & MCP. اترك النموذج فارغًا لاستخدام الإعداد الافتراضي Flux AI."
+
+msgid "Flux AI settings"
+msgstr "إعدادات التدفق AI"
+
+msgid "AI is off: a key or model is missing in Flux AI."
+msgstr "الذكاء الاصطناعي معطل: هناك مفتاح أو نموذج مفقود في Flux AI."
+
+msgid "AI is off: the Flux AI & MCP plugin is not installed. The assistant and quick actions work through Flux AI."
+msgstr "الذكاء الاصطناعي متوقف: لم يتم تثبيت المكون الإضافي Flux AI & MCP. يعمل المساعد والإجراءات السريعة من خلال Flux AI."
+
+msgid "Model (optional)"
+msgstr "النموذج (اختياري)"
+
+msgid "Creativity (temperature)"
+msgstr "الإبداع (درجة الحرارة)"
+
+msgid "Organization notes (the assistant knows this on every request)"
+msgstr "ملاحظات المنظمة (المساعد يعرف ذلك عند كل طلب)"
+
+msgid "E.g. Association Istanbul branch. Add the \"Event\" tag to event tasks. Write dates as day.month.year."
+msgstr "على سبيل المثال فرع الجمعية اسطنبول. أضف علامة \"الحدث\" إلى مهام الحدث. اكتب التواريخ بالشكل day.month.year."
+
+msgid "This month: {c} requests, {t} tokens, ${m}"
+msgstr "هذا الشهر: طلبات{c}، رموز{t}، ${m}"
+
+msgid "Enable MCP server"
+msgstr "تمكين خادم MCP"
+
+msgid "AI clients such as Claude and Cursor can read and write tasks. Each person generates their own key on their Profile page."
+msgstr "يمكن لعملاء الذكاء الاصطناعي مثل Claude وCursor قراءة المهام وكتابتها. يقوم كل شخص بإنشاء مفتاحه الخاص في صفحة ملفه الشخصي."
+
+msgid "Manage keys"
+msgstr "إدارة المفاتيح"
+
+msgid "Data"
+msgstr "البيانات"
+
+msgid "Also delete all task data when the plugin is deleted"
+msgstr "احذف أيضًا جميع بيانات المهمة عند حذف المكون الإضافي"
+
+msgid "When off, deleting the plugin leaves your data untouched."
+msgstr "عند إيقافه، يؤدي حذف المكون الإضافي إلى ترك بياناتك دون تغيير."
+
+msgid "Settings saved"
+msgstr "تم حفظ الإعدادات"
+
+msgid "Profile"
+msgstr "الملف الشخصي"
+
+msgid "Your profile photo and name come from your WordPress profile."
+msgstr "تأتي صورة ملفك الشخصي واسمك من ملفك الشخصي في WordPress."
+
+msgid "Get emails when you are assigned, mentioned, or a due date approaches."
+msgstr "احصل على رسائل البريد الإلكتروني عندما يتم تعيينك أو ذكرك أو عند اقتراب موعد الاستحقاق."
+
+msgid "The browser did not allow it."
+msgstr "المتصفح لم يسمح بذلك."
+
+msgid "Desktop notifications"
+msgstr "إشعارات سطح المكتب"
+
+msgid "While the Tasks tab is open, new notifications also arrive as browser notifications."
+msgstr "عندما تكون علامة التبويب \"المهام\" مفتوحة، تصل الإشعارات الجديدة أيضًا كإشعارات للمتصفح."
+
+msgid "MCP connection"
+msgstr "اتصال MCP"
+
+msgid "The MCP server is off. An admin can turn it on from the Settings page."
+msgstr "خادم MCP معطل. يمكن للمسؤول تشغيله من صفحة الإعدادات."
+
+msgid "Add this address and your personal key to an MCP-capable client such as Claude, ChatGPT or Cursor. The assistant works only in lists you can see, with your permissions."
+msgstr "أضف هذا العنوان ومفتاحك الشخصي إلى عميل يدعم MCP مثل Claude أو ChatGPT أو Cursor. يعمل المساعد فقط في القوائم التي يمكنك رؤيتها، مع أذوناتك."
+
+msgid "Your new key (shown only now):"
+msgstr "مفتاحك الجديد (يظهر الآن فقط):"
+
+msgid "In the client, use \"Authorization: Bearer <key>\" as the header. If you can't add a header, append ?key=<key> to the end of the address."
+msgstr "في العميل، استخدم \"التفويض: Bearer<key>\" كرأس. إذا لم تتمكن من إضافة رأس، قم بإلحاق ?key=<key>بنهاية العنوان."
+
+msgid "Unnamed"
+msgstr "لم يذكر اسمه"
+
+msgid "Last used: {d}"
+msgstr "آخر استخدام:{d}"
+
+msgid "never"
+msgstr "أبدا"
+
+msgid "Delete key"
+msgstr "حذف المفتاح"
+
+msgid "Clients using this key will lose their connection."
+msgstr "سيفقد العملاء الذين يستخدمون هذا المفتاح اتصالهم."
+
+msgid "Key name (e.g. Claude desktop)"
+msgstr "اسم المفتاح (على سبيل المثال، Claude Desktop)"
+
+msgid "Create new key"
+msgstr "إنشاء مفتاح جديد"
+
+msgid "Custom color"
+msgstr "لون مخصص"
+
+msgid "No access"
+msgstr "لا يمكن الوصول"
+
+msgid "Remove"
+msgstr "إزالة"
+
+msgid "No members added yet."
+msgstr "لم تتم إضافة أي أعضاء حتى الآن."
+
+msgid "Add person"
+msgstr "إضافة شخص"
+
+msgid "Project name"
+msgstr "اسم المشروع"
+
+msgid "Everyone"
+msgstr "الجميع"
+
+msgid "Everyone who can use Tasks can enter this project."
+msgstr "يمكن لأي شخص يمكنه استخدام المهام الدخول إلى هذا المشروع."
+
+msgid "Members only"
+msgstr "الأعضاء فقط"
+
+msgid "Only the people added below can see it."
+msgstr "فقط الأشخاص المضافين أدناه يمكنهم رؤيته."
+
+msgid "Default role for everyone"
+msgstr "الدور الافتراضي للجميع"
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "Color"
+msgstr "اللون"
+
+msgid "Members and their roles"
+msgstr "الأعضاء وأدوارهم"
+
+msgid "Subtask nesting limit"
+msgstr "حد تداخل المهام الفرعية"
+
+msgid "How many levels of subtasks can be nested under a task (1–10). Default is 3."
+msgstr "كم عدد مستويات المهام الفرعية التي يمكن دمجها ضمن مهمة (1-10). الافتراضي هو 3."
+
+msgid "First list"
+msgstr "القائمة الأولى"
+
+msgid "You will be added as a manager."
+msgstr "سيتم إضافتك كمدير."
+
+msgid "Project settings"
+msgstr "إعدادات المشروع"
+
+msgid "Project saved"
+msgstr "تم حفظ المشروع"
+
+msgid "List name"
+msgstr "اسم القائمة"
+
+msgid "Tasks, subtasks, statuses"
+msgstr "المهام والمهام الفرعية والحالات"
+
+msgid "Meetings, agenda, decisions, PDF report"
+msgstr "الاجتماعات وجدول الأعمال والقرارات وتقرير PDF"
+
+msgid "e.g. Board meetings"
+msgstr "على سبيل المثال اجتماعات مجلس الإدارة"
+
+msgid "Template"
+msgstr "القالب"
+
+msgid "Folder"
+msgstr "مجلد"
+
+msgid "No folder (under the project)"
+msgstr "لا يوجد مجلد (ضمن المشروع)"
+
+msgid "Private list"
+msgstr "قائمة خاصة"
+
+msgid "Only the people you add can see it. When off, project members can see it."
+msgstr "يمكن فقط للأشخاص الذين تضيفهم رؤيته. عند إيقاف التشغيل، يمكن لأعضاء المشروع رؤيته."
+
+msgid "General"
+msgstr "عام"
+
+msgid "List type"
+msgstr "نوع القائمة"
+
+msgid "New status"
+msgstr "الوضع الجديد"
+
+msgid "Add status"
+msgstr "إضافة الحالة"
+
+msgid "Tasks in a deleted status move to the first status. Statuses of the \"Done\" type count the task as finished."
+msgstr "تنتقل المهام الموجودة في الحالة المحذوفة إلى الحالة الأولى. حالات النوع \"تم\" تحسب المهمة على أنها منتهية."
+
+msgid "Statuses saved"
+msgstr "تم حفظ الحالات"
+
+msgid "Delete field"
+msgstr "حذف الحقل"
+
+msgid "The field \"{n}\" and its values on all tasks will be deleted."
+msgstr "سيتم حذف الحقل \"{n}\" وقيمه في جميع المهام."
+
+msgid "This list has no custom fields. You can add fields such as text, number, date, dropdown, star rating or file."
+msgstr "لا تحتوي هذه القائمة على حقول مخصصة. يمكنك إضافة حقول مثل النص أو الرقم أو التاريخ أو القائمة المنسدلة أو التصنيف بالنجوم أو الملف."
+
+msgid "Add field"
+msgstr "إضافة حقل"
+
+msgid "Field name"
+msgstr "اسم الحقل"
+
+msgid "Option"
+msgstr "الخيار"
+
+msgid "Add option"
+msgstr "إضافة خيار"
+
+msgid "Options"
+msgstr "خيارات"
+
+msgid "Max stars"
+msgstr "نجوم ماكس"
+
+msgid "Currency"
+msgstr "العملة"
+
+msgid "Decimal places"
+msgstr "المنازل العشرية"
+
+msgid "Description (optional)"
+msgstr "الوصف (اختياري)"
+
+msgid "Type"
+msgstr "اكتب"
+
+msgid "The type cannot be changed later."
+msgstr "ولا يمكن تغيير النوع لاحقًا."
+
+msgid "Add the field"
+msgstr "أضف الحقل"
+
+msgid "Project members"
+msgstr "أعضاء المشروع"
+
+msgid "Everyone who can use Tasks ({r})."
+msgstr "كل من يمكنه استخدام المهام ({r})."
+
+msgid "The project's members, with their project roles."
+msgstr "أعضاء المشروع مع أدوارهم في المشروع."
+
+msgid "Selected people only"
+msgstr "الأشخاص المختارين فقط"
+
+msgid "Private list: only the people below and project managers can see it."
+msgstr "القائمة الخاصة: يمكن فقط للأشخاص أدناه ومديري المشاريع رؤيتها."
+
+msgid "Who can see it"
+msgstr "من يستطيع رؤيته"
+
+msgid "Per-person roles"
+msgstr "الأدوار الفردية"
+
+msgid "Can view: read only. Can comment: read and comment. Can edit: add and change tasks. Can manage: list settings, fields and permissions."
+msgstr "يمكن عرض: للقراءة فقط. يمكن التعليق: القراءة والتعليق. يمكن التعديل: إضافة المهام وتغييرها. يمكن إدارة: إعدادات القائمة والحقول والأذونات."
+
+msgid "Permissions saved"
+msgstr "تم حفظ الأذونات"
+
+msgid "List settings: {n}"
+msgstr "إعدادات القائمة:{n}"
+
+msgid "What do you want to do? e.g. \"Show tasks in this list due tomorrow\" or \"Open a poster task for Ayşe due Friday\""
+msgstr "ماذا تريد أن تفعل؟ على سبيل المثال \"إظهار المهام في هذه القائمة المستحقة غدًا\" أو \"افتح ملصق مهمة لـ Ayşe المقرر يوم الجمعة\""
+
+msgid "Hi! What shall we do with your tasks?"
+msgstr "مرحبًا! ماذا سنفعل بمهامك؟"
+
+msgid "List my overdue tasks assigned to me"
+msgstr "قم بإدراج المهام المتأخرة الموكلة إليّ"
+
+msgid "Add 3 tasks to this list: …"
+msgstr "أضف 3 مهام إلى هذه القائمة:..."
+
+msgid "Summarize this week"
+msgstr "تلخيص هذا الأسبوع"
+
+msgid "Task created"
+msgstr "تم إنشاء المهمة"
+
+msgid "Task updated"
+msgstr "تم تحديث المهمة"
+
+msgid "Comment added"
+msgstr "تمت إضافة التعليق"
+
+msgid "Task deleted"
+msgstr "تم حذف المهمة"
+
+msgid "List created"
+msgstr "تم إنشاء القائمة"
+
+msgid "Document page edited"
+msgstr "تم تحرير صفحة المستند"
+
+msgid "Document created"
+msgstr "تم إنشاء المستند"
+
+msgid "Page added to document"
+msgstr "تمت إضافة الصفحة إلى المستند"
+
+msgid "Clear chat"
+msgstr "مسح الدردشة"
+
+msgid "The assistant adds and changes tasks with your permissions."
+msgstr "يقوم المساعد بإضافة المهام وتغييرها باستخدام أذوناتك."
+
+msgid "Status"
+msgstr "الحالة"
+
+msgid "Priority"
+msgstr "الأولوية"
+
+msgid "Assignee"
+msgstr "المكلف"
+
+msgid "Tag"
+msgstr "علامة"
+
+msgid "No grouping"
+msgstr "لا يوجد تجميع"
+
+msgid "No priority"
+msgstr "لا أولوية"
+
+msgid "Unassigned"
+msgstr "غير معين"
+
+msgid "This week"
+msgstr "هذا الاسبوع"
+
+msgid "Later"
+msgstr "في وقت لاحق"
+
+msgid "No date"
+msgstr "لا يوجد تاريخ"
+
+msgid "No tag"
+msgstr "لا توجد علامة"
+
+msgid "Empty"
+msgstr "فارغ"
+
+msgid "All tasks"
+msgstr "جميع المهام"
+
+msgid "Details"
+msgstr "التفاصيل"
+
+msgid "Back to meeting"
+msgstr "العودة إلى الاجتماع"
+
+msgid "Back to parent task"
+msgstr "العودة إلى مهمة الوالدين"
+
+msgid "Unfollow"
+msgstr "إلغاء المتابعة"
+
+msgid "Follow (get notifications)"
+msgstr "متابعة (الحصول على الإخطارات)"
+
+msgid "You will get notifications for this task"
+msgstr "سوف تحصل على إشعارات لهذه المهمة"
+
+msgid "Notifications for this task are turned off"
+msgstr "تم إيقاف تشغيل الإشعارات الخاصة بهذه المهمة"
+
+msgid "Move to another list"
+msgstr "الانتقال إلى قائمة أخرى"
+
+msgid "Task moved"
+msgstr "تم نقل المهمة"
+
+msgid "Add subtask"
+msgstr "إضافة مهمة فرعية"
+
+msgid "Unarchive"
+msgstr "إلغاء الأرشفة"
+
+msgid "Archive"
+msgstr "أرشيف"
+
+msgid "The task \"{n}\" will be permanently deleted along with its comments and files."
+msgstr "سيتم حذف المهمة \"{n}\" نهائيًا مع تعليقاتها وملفاتها."
+
+msgid "(copy)"
+msgstr "(نسخة)"
+
+msgid "Copy created"
+msgstr "تم إنشاء النسخة"
+
+msgid "Change cover"
+msgstr "تغيير الغطاء"
+
+msgid "Complete"
+msgstr "كامل"
+
+msgid "Completed: {d}"
+msgstr "اكتمل:{d}"
+
+msgid "You can only comment"
+msgstr "يمكنك التعليق فقط"
+
+msgid "View only"
+msgstr "عرض فقط"
+
+msgid "Print the meeting report or save it as PDF"
+msgstr "اطبع تقرير الاجتماع أو احفظه بصيغة PDF"
+
+msgid "PDF report"
+msgstr "تقرير بصيغة PDF"
+
+msgid "Hide customization"
+msgstr "إخفاء التخصيص"
+
+msgid "Customize this screen"
+msgstr "تخصيص هذه الشاشة"
+
+msgid "Assignees"
+msgstr "المكلفون"
+
+msgid "Dates"
+msgstr "التواريخ"
+
+msgid "Start"
+msgstr "ابدأ"
+
+msgid "Add / edit custom field"
+msgstr "إضافة/تحرير حقل مخصص"
+
+msgid "Description"
+msgstr "الوصف"
+
+msgid "Expand"
+msgstr "توسيع"
+
+msgid "Attachments"
+msgstr "المرفقات"
+
+msgid "Show less"
+msgstr "عرض أقل"
+
+msgid "{n} more fields"
+msgstr "{n}المزيد من الحقول"
+
+msgid "Participants"
+msgstr "المشاركون"
+
+msgid "Agenda"
+msgstr "جدول الأعمال"
+
+msgid "Decisions"
+msgstr "القرارات"
+
+msgid "Subtasks"
+msgstr "المهام الفرعية"
+
+msgid "Shown on screen"
+msgstr "تظهر على الشاشة"
+
+msgid "Saved in this browser."
+msgstr "تم الحفظ في هذا المتصفح."
+
+msgid "Edit statuses"
+msgstr "تحرير الحالات"
+
+msgid "Pick a date"
+msgstr "اختر موعدًا"
+
+msgid "Add people"
+msgstr "أضف أشخاصًا"
+
+msgid "Decision"
+msgstr "القرار"
+
+msgid "Add decision… (assignable like a task, with date and tags)"
+msgstr "إضافة قرار... (قابل للتعيين مثل مهمة، مع التاريخ والعلامات)"
+
+msgid "Mark as not discussed"
+msgstr "وضع علامة على أنها لم تتم مناقشتها"
+
+msgid "Mark as discussed"
+msgstr "وضع علامة كما تمت مناقشته"
+
+msgid "No agenda items."
+msgstr "لا توجد بنود في جدول الأعمال."
+
+msgid "Add agenda item…"
+msgstr "إضافة بند جدول الأعمال..."
+
+msgid "Add a note…"
+msgstr "إضافة ملاحظة..."
+
+msgid "Add image / file"
+msgstr "إضافة صورة / ملف"
+
+msgid "Details and comments"
+msgstr "التفاصيل والتعليقات"
+
+msgid "Delete agenda item"
+msgstr "حذف بند جدول الأعمال"
+
+msgid "\"{n}\" will be deleted."
+msgstr "سيتم حذف \"{n}\"."
+
+msgid "Meeting report"
+msgstr "تقرير الاجتماع"
+
+msgid "agenda items discussed"
+msgstr "تمت مناقشة بنود جدول الأعمال"
+
+msgid "decisions made"
+msgstr "القرارات المتخذة"
+
+msgid "subtasks completed"
+msgstr "تم الانتهاء من المهام الفرعية"
+
+msgid "Discussed"
+msgstr "ناقش"
+
+msgid "Owner"
+msgstr "المالك"
+
+msgid "Report: {d} · {n}"
+msgstr "التقرير:{d}·{n}"
+
+msgid "Add subtask…"
+msgstr "إضافة مهمة فرعية..."
+
+msgid "Show / hide columns"
+msgstr "إظهار/إخفاء الأعمدة"
+
+msgid "Subtask"
+msgstr "مهمة فرعية"
+
+msgid "Decision columns"
+msgstr "أعمدة القرار"
+
+msgid "Subtask columns"
+msgstr "أعمدة المهام الفرعية"
+
+msgid "Add a description… (list, checklist, link)"
+msgstr "أضف وصفًا... (قائمة، قائمة مرجعية، رابط)"
+
+msgid "Make cover image"
+msgstr "جعل صورة الغلاف"
+
+msgid "Remove from cover"
+msgstr "إزالة من الغطاء"
+
+msgid "Drag files here or choose"
+msgstr "اسحب الملفات هنا أو اختر"
+
+msgid "Up to {s}"
+msgstr "ما يصل إلى{s}"
+
+msgid "{n} is too large (up to {s})."
+msgstr "{n}كبير جدًا (يصل إلى{s})."
+
+msgid "Upload new image"
+msgstr "تحميل صورة جديدة"
+
+msgid "Cover image"
+msgstr "صورة الغلاف"
+
+msgid "No images on this task yet."
+msgstr "لا توجد صور في هذه المهمة حتى الآن."
+
+msgid "created the task"
+msgstr "أنشأت المهمة"
+
+msgid "changed the status:"
+msgstr "تغير الوضع:"
+
+msgid "renamed it:"
+msgstr "أعيدت تسميته:"
+
+msgid "updated the description"
+msgstr "تحديث الوصف"
+
+msgid "set the priority to \"{p}\""
+msgstr "اضبط الأولوية على \"{p}\""
+
+msgid "removed the priority"
+msgstr "تمت إزالة الأولوية"
+
+msgid "set the due date to {d}"
+msgstr "اضبط تاريخ الاستحقاق على{d}"
+
+msgid "removed the due date"
+msgstr "إزالة تاريخ الاستحقاق"
+
+msgid "set the start date to {d}"
+msgstr "اضبط تاريخ البدء على{d}"
+
+msgid "removed the start date"
+msgstr "تمت إزالة تاريخ البدء"
+
+msgid "took the task"
+msgstr "تولى المهمة"
+
+msgid "assigned {n}"
+msgstr "المعينة{n}"
+
+msgid "unassigned {n}"
+msgstr "{n}غير المعين"
+
+msgid "added a tag:"
+msgstr "تمت إضافة علامة:"
+
+msgid "removed the tag:"
+msgstr "إزالة العلامة:"
+
+msgid "updated the field \"{f}\""
+msgstr "تم تحديث الحقل \"{f}\""
+
+msgid "moved the task:"
+msgstr "نقلت المهمة:"
+
+msgid "changed the cover image"
+msgstr "غيرت صورة الغلاف"
+
+msgid "removed the cover image"
+msgstr "تمت إزالة صورة الغلاف"
+
+msgid "attached a file:"
+msgstr "مرفق ملف:"
+
+msgid "deleted a file:"
+msgstr "حذف ملف:"
+
+msgid "archived the task"
+msgstr "أرشفة المهمة"
+
+msgid "unarchived the task"
+msgstr "تم إلغاء أرشفة المهمة"
+
+msgid "Sending…"
+msgstr "جارٍ الإرسال..."
+
+msgid "edited"
+msgstr "تم تحريره"
+
+msgid "Delete comment"
+msgstr "حذف التعليق"
+
+msgid "The comment and its attachments will be deleted."
+msgstr "سيتم حذف التعليق ومرفقاته."
+
+msgid "Show comments and activity"
+msgstr "عرض التعليقات والنشاط"
+
+msgid "Comments and activity"
+msgstr "التعليقات والنشاط"
+
+msgid "Show activity"
+msgstr "عرض النشاط"
+
+msgid "Hide comments and activity"
+msgstr "إخفاء التعليقات والنشاط"
+
+msgid "No comments yet. Be the first to comment."
+msgstr "لا توجد تعليقات حتى الآن. كن أول من يعلق."
+
+msgid "You don't have permission to comment in this list."
+msgstr "ليس لديك إذن بالتعليق في هذه القائمة."
+
+msgid "Write a comment… mention someone with @, drag in files"
+msgstr "اكتب تعليقًا... قم بذكر شخص ما باستخدام @، واسحب الملفات"
+
+msgid "Mention someone"
+msgstr "اذكر شخص ما"
+
+msgid "Send with Ctrl+Enter"
+msgstr "أرسل باستخدام Ctrl+Enter"
+
+msgid "Drop to add to the comment"
+msgstr "أسقط للإضافة إلى التعليق"
+
+msgid "Comment could not be saved."
+msgstr "لا يمكن حفظ التعليق."
+
+msgid "Write / improve description"
+msgstr "كتابة / تحسين الوصف"
+
+msgid "Turn into checklist"
+msgstr "تحول إلى قائمة مرجعية"
+
+msgid "Fix spelling"
+msgstr "إصلاح الإملاء"
+
+msgid "Add more detail"
+msgstr "أضف المزيد من التفاصيل"
+
+msgid "Improve task name"
+msgstr "تحسين اسم المهمة"
+
+msgid "Split into subtasks"
+msgstr "تقسيمها إلى مهام فرعية"
+
+msgid "Summarize comments"
+msgstr "تلخيص التعليقات"
+
+msgid "Say what to change… (e.g. make it more formal)"
+msgstr "قل ما تريد تغييره... (على سبيل المثال، اجعل الأمر أكثر رسمية)"
+
+msgid "What should it do? E.g. add the target audience, write as bullet points"
+msgstr "ماذا يجب أن تفعل؟ على سبيل المثال أضف الجمهور المستهدف، واكتب كنقاط"
+
+msgid "Chat"
+msgstr "الدردشة"
+
+msgid "AI is thinking…"
+msgstr "الذكاء الاصطناعي يفكر..."
+
+msgid "Other options"
+msgstr "خيارات أخرى"
+
+msgid "Task name updated."
+msgstr "تم تحديث اسم المهمة."
+
+msgid "Apply"
+msgstr "تطبيق"
+
+msgid "Description updated."
+msgstr "تم تحديث الوصف."
+
+msgid "Added to the end of the description."
+msgstr "يضاف إلى نهاية الوصف."
+
+msgid "{n} subtasks created"
+msgstr "تم إنشاء المهام الفرعية{n}"
+
+msgid "Create subtasks"
+msgstr "إنشاء مهام فرعية"
+
+msgid "Summary"
+msgstr "ملخص"
+
+msgid "Added as a comment."
+msgstr "تمت إضافته كتعليق."
+
+msgid "Add as comment"
+msgstr "أضف كتعليق"
+
+msgid "Remove priority"
+msgstr "إزالة الأولوية"
+
+msgid "Search people…"
+msgstr "بحث الناس..."
+
+msgid "me"
+msgstr "أنا"
+
+msgid "Next week"
+msgstr "الاسبوع القادم"
+
+msgid "In 2 weeks"
+msgstr "في 2 أسابيع"
+
+msgid "Time (optional)"
+msgstr "الوقت (اختياري)"
+
+msgid "Clear"
+msgstr "واضح"
+
+msgid "Search or create a tag…"
+msgstr "بحث أو إنشاء علامة..."
+
+msgid "Create: {n}"
+msgstr "إنشاء:{n}"
+
+msgid "No tags yet. Type to create one."
+msgstr "لا توجد علامات حتى الآن. اكتب لإنشاء واحد."
+
+msgid "There are no lists you can add tasks to."
+msgstr "لا توجد قوائم يمكنك إضافة المهام إليها."
+
+msgid "Created"
+msgstr "تم إنشاؤها"
+
+msgid "Updated"
+msgstr "تم التحديث"
+
+msgid "Filter"
+msgstr "تصفية"
+
+msgid "Group"
+msgstr "المجموعة"
+
+msgid "Group: {n}"
+msgstr "المجموعة:{n}"
+
+msgid "Manual order"
+msgstr "الطلب اليدوي"
+
+msgid "Start date"
+msgstr "تاريخ البدء"
+
+msgid "Sort"
+msgstr "فرز"
+
+msgid "Ascending"
+msgstr "تصاعدي"
+
+msgid "Descending"
+msgstr "تنازلي"
+
+msgid "Fields"
+msgstr "الحقول"
+
+msgid "Save view"
+msgstr "حفظ العرض"
+
+msgid "Meeting"
+msgstr "اجتماع"
+
+msgid "Under the task, expanded"
+msgstr "تحت المهمة، الموسعة"
+
+msgid "Under the task, collapsed"
+msgstr "انهارت تحت المهمة"
+
+msgid "Don't show"
+msgstr "لا تظهر"
+
+msgid "Apply filters to subtasks too"
+msgstr "قم بتطبيق عوامل التصفية على المهام الفرعية أيضًا"
+
+msgid "Save to this view"
+msgstr "حفظ في هذا العرض"
+
+msgid "View saved"
+msgstr "تم حفظ العرض"
+
+msgid "Save as new view"
+msgstr "حفظ كعرض جديد"
+
+msgid "filtered"
+msgstr "تمت تصفيته"
+
+msgid "Revert changes"
+msgstr "التراجع عن التغييرات"
+
+msgid "Assigned to me"
+msgstr "المخصصة لي"
+
+msgid "None"
+msgstr "لا شيء"
+
+msgid "Within 7 days"
+msgstr "في غضون 7 أيام"
+
+msgid "Has date"
+msgstr "لديه تاريخ"
+
+msgid "Checked"
+msgstr "تم الفحص"
+
+msgid "Unchecked"
+msgstr "غير محدد"
+
+msgid "Filled"
+msgstr "معبأ"
+
+msgid "Show completed tasks"
+msgstr "إظهار المهام المكتملة"
+
+msgid "When off, all subtasks of matching tasks are shown. When on, only matching subtasks are shown; their parent appears dimmed even if it doesn't match."
+msgstr "عند إيقاف التشغيل، يتم عرض جميع المهام الفرعية للمهام المطابقة. عند التشغيل، يتم عرض المهام الفرعية المطابقة فقط؛ يبدو أن والديهم خافتًا حتى لو لم يكن متطابقًا."
+
+msgid "Clear filters"
+msgstr "مسح المرشحات"
+
+msgid "Show cover image"
+msgstr "إظهار صورة الغلاف"
+
+msgid "Wrap text"
+msgstr "التفاف النص"
+
+msgid "Long text shows up to 3 lines, the rest is cut with …"
+msgstr "نص طويل يصل إلى 3 أسطر، والباقي مقطوع بـ ..."
+
+msgid "Date to use in the calendar"
+msgstr "تاريخ للاستخدام في التقويم"
+
+msgid "Columns"
+msgstr "أعمدة"
+
+msgid "Fields shown on the card"
+msgstr "الحقول الموضحة على البطاقة"
+
+msgid "Add custom field"
+msgstr "إضافة حقل مخصص"
+
+msgid "Can't be moved to this group."
+msgstr "لا يمكن نقلها إلى هذه المجموعة."
+
+msgid "No suitable status in this list."
+msgstr "لا توجد حالة مناسبة في هذه القائمة."
+
+msgid "Drag to reorder"
+msgstr "اسحب لإعادة الترتيب"
+
+msgid "Type a subtask name and press Enter"
+msgstr "اكتب اسم مهمة فرعية واضغط على Enter"
+
+msgid "This task no longer matches this view's filter. It will be hidden when you change page."
+msgstr "لم تعد هذه المهمة تتطابق مع عامل تصفية طريقة العرض هذه. سيتم إخفاؤه عند تغيير الصفحة."
+
+msgid "Assigned: {n}"
+msgstr "المعينة:{n}"
+
+msgid "Outside filter"
+msgstr "مرشح خارجي"
+
+msgid "Hide subtasks"
+msgstr "إخفاء المهام الفرعية"
+
+msgid "Show subtasks"
+msgstr "إظهار المهام الفرعية"
+
+msgid "Agenda item"
+msgstr "بند جدول الأعمال"
+
+msgid "Has description"
+msgstr "لديه وصف"
+
+msgid "Shown because it has a subtask that matches the filter"
+msgstr "يظهر لأنه يحتوي على مهمة فرعية تتطابق مع عامل التصفية"
+
+msgid "Add meeting"
+msgstr "إضافة اجتماع"
+
+msgid "Add task"
+msgstr "أضف مهمة"
+
+msgid "Type a task name and press Enter"
+msgstr "اكتب اسم المهمة واضغط على Enter"
+
+msgid "No tasks match the filter."
+msgstr "لا توجد مهام تتطابق مع عامل التصفية."
+
+msgid "You have no open tasks assigned. 🎉"
+msgstr "ليس لديك أية مهام مفتوحة معينة. 🎉"
+
+msgid "No tasks in this list yet."
+msgstr "لا توجد مهام في هذه القائمة حتى الآن."
+
+msgid "{n} selected"
+msgstr "تم تحديد{n}"
+
+msgid "Assign"
+msgstr "تعيين"
+
+msgid "Delete tasks"
+msgstr "حذف المهام"
+
+msgid "{n} tasks will be permanently deleted along with their comments and files."
+msgstr "سيتم حذف مهام{n}نهائيًا مع تعليقاتها وملفاتها."
+
+msgid "Clear selection"
+msgstr "مسح التحديد"
+
+msgid "{n} tasks updated"
+msgstr "تم تحديث مهام{n}"
+
+msgid "Previous"
+msgstr "السابق"
+
+msgid "Next"
+msgstr "التالي"
+
+msgid "Week"
+msgstr "الأسبوع"
+
+msgid "No date: {n}"
+msgstr "لا يوجد تاريخ:{n}"
+
+msgid "Tasks without a date"
+msgstr "المهام بدون تاريخ"
+
+msgid "No dated tasks this month."
+msgstr "لا توجد مهام مؤرخة هذا الشهر."
+
+msgid "+{n} more"
+msgstr "+{n}المزيد"
+
+msgid "Meeting name"
+msgstr "اسم الاجتماع"
+
+msgid "Meeting created"
+msgstr "تم إنشاء الاجتماع"
+
+msgid "New meeting"
+msgstr "اجتماع جديد"
+
+msgid "New task"
+msgstr "مهمة جديدة"
+
+msgid "Create and open"
+msgstr "إنشاء وفتح"
+
+msgid "[['ClickUp-like task tracking: projects, folders, lists; list, board (kanban) and calendar views, saved filtered views, custom fields, comment and file attachments, notifications, list authorizations, admin dashboard, MCP server and artificial intelligence with OpenRouter.', 'tr']]"
+msgstr "[['تتبع المهام الشبيهة بـ ClickUp: المشاريع والمجلدات والقوائم؛ طرق عرض القائمة واللوحة (كانبان) والتقويم وطرق العرض المصفاة المحفوظة والحقول المخصصة والتعليقات ومرفقات الملفات والإشعارات وتفويضات القائمة ولوحة تحكم المسؤول وخادم MCP والذكاء الاصطناعي باستخدام OpenRouter.', 'tr']]"

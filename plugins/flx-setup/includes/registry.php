@@ -89,12 +89,12 @@ function flxk_get_preset( $id ) {
 function flxk_load_file( $file ) {
 	$raw = file_get_contents( $file ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 	if ( false === $raw ) {
-		return new WP_Error( 'read', __( 'Şablon dosyası okunamadı.', 'flx-setup' ) );
+		return new WP_Error( 'read', __( 'Could not read the preset file.', 'flx-setup' ) );
 	}
 	$data = json_decode( $raw, true );
 	if ( ! is_array( $data ) ) {
 		/* translators: %s: JSON hata mesajı */
-		return new WP_Error( 'json', sprintf( __( 'Şablon geçerli JSON değil: %s', 'flx-setup' ), json_last_error_msg() ) );
+		return new WP_Error( 'json', sprintf( __( 'The preset is not valid JSON: %s', 'flx-setup' ), json_last_error_msg() ) );
 	}
 	$data['dir'] = trailingslashit( dirname( $file ) );
 	$data        = flxk_resolve_files( $data, $data['dir'] );
@@ -110,7 +110,7 @@ function flxk_load_json( $json, $dir = '' ) {
 	$data = is_array( $json ) ? $json : json_decode( (string) $json, true );
 	if ( ! is_array( $data ) ) {
 		/* translators: %s: JSON hata mesajı */
-		return new WP_Error( 'json', sprintf( __( 'Geçerli JSON değil: %s', 'flx-setup' ), json_last_error_msg() ) );
+		return new WP_Error( 'json', sprintf( __( 'Not valid JSON: %s', 'flx-setup' ), json_last_error_msg() ) );
 	}
 	if ( $dir ) {
 		$data['dir'] = trailingslashit( $dir );
@@ -132,7 +132,7 @@ function flxk_resolve_files( $node, $dir ) {
 		$path = flxk_safe_path( $dir, (string) $node['$file'] );
 		if ( ! $path ) {
 			/* translators: %s: dosya yolu */
-			return new WP_Error( 'file', sprintf( __( 'Dosya bulunamadı: %s', 'flx-setup' ), $node['$file'] ) );
+			return new WP_Error( 'file', sprintf( __( 'File not found: %s', 'flx-setup' ), $node['$file'] ) );
 		}
 		$txt = (string) file_get_contents( $path ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 		if ( '.json' === substr( $path, -5 ) ) {
@@ -169,48 +169,48 @@ function flxk_validate( array $p, $is_patch = false ) {
 	$warnings = array();
 	if ( ( $p['format'] ?? '' ) !== FLXK_FORMAT ) {
 		/* translators: %s: beklenen format */
-		$errors[] = sprintf( __( '"format" alanı "%s" olmalı.', 'flx-setup' ), FLXK_FORMAT );
+		$errors[] = sprintf( __( '"format" must be "%s".', 'flx-setup' ), FLXK_FORMAT );
 	}
 	if ( ! $is_patch ) {
 		if ( empty( $p['id'] ) || ! preg_match( '/^[a-z0-9][a-z0-9_-]{1,40}$/', (string) $p['id'] ) ) {
-			$errors[] = __( '"id" küçük harf, rakam, - ve _ olmalı.', 'flx-setup' );
+			$errors[] = __( '"id" must use lowercase letters, digits, - and _.', 'flx-setup' );
 		}
 		if ( empty( $p['name'] ) ) {
-			$errors[] = __( '"name" boş olamaz.', 'flx-setup' );
+			$errors[] = __( '"name" cannot be empty.', 'flx-setup' );
 		}
 	}
 	foreach ( array( 'profile', 'wp', 'settings', 'theme', 'media' ) as $k ) {
 		if ( isset( $p[ $k ] ) && ( ! is_array( $p[ $k ] ) || ( $p[ $k ] && flxk_is_list( $p[ $k ] ) ) ) ) {
 			/* translators: %s: alan adı */
-			$errors[] = sprintf( __( '"%s" bir nesne olmalı.', 'flx-setup' ), $k );
+			$errors[] = sprintf( __( '"%s" must be an object.', 'flx-setup' ), $k );
 		}
 	}
 	foreach ( array( 'content', 'migrations' ) as $k ) {
 		if ( isset( $p[ $k ] ) && ! flxk_is_list( $p[ $k ] ) ) {
 			/* translators: %s: alan adı */
-			$errors[] = sprintf( __( '"%s" bir liste olmalı.', 'flx-setup' ), $k );
+			$errors[] = sprintf( __( '"%s" must be a list.', 'flx-setup' ), $k );
 		}
 	}
 	$types = array_keys( flxk_importers() );
 	foreach ( (array) ( $p['content'] ?? array() ) as $i => $c ) {
 		if ( empty( $c['type'] ) || empty( $c['key'] ) ) {
 			/* translators: %d: sıra */
-			$errors[] = sprintf( __( 'content[%d]: "type" ve "key" gerekli.', 'flx-setup' ), $i );
+			$errors[] = sprintf( __( 'content[%d]: "type" and "key" are required.', 'flx-setup' ), $i );
 		} elseif ( ! in_array( $c['type'], $types, true ) ) {
 			/* translators: 1: sıra, 2: tür */
-			$warnings[] = sprintf( __( 'content[%1$d]: "%2$s" türünü kaydeden eklenti etkin değil, atlanacak.', 'flx-setup' ), $i, $c['type'] );
+			$warnings[] = sprintf( __( 'content[%1$d]: no active plugin registers the "%2$s" type; it will be skipped.', 'flx-setup' ), $i, $c['type'] );
 		}
 	}
 	foreach ( (array) ( $p['settings'] ?? array() ) as $opt => $vals ) {
 		foreach ( flxk_flatten( is_array( $vals ) ? $vals : array() ) as $path => $v ) {
 			if ( flxk_path_is_secret( $path ) ) {
 				/* translators: %s: ayar yolu */
-				$errors[] = sprintf( __( '%s: gizli alanlar (şifre, anahtar, token) şablonda olamaz.', 'flx-setup' ), $opt . '.' . $path );
+				$errors[] = sprintf( __( '%s: secret fields (password, key, token) cannot be in a preset.', 'flx-setup' ), $opt . '.' . $path );
 			}
 		}
 		if ( ! flxk_option_allowed( $opt ) ) {
 			/* translators: %s: option adı */
-			$errors[] = sprintf( __( '"%s" ayarı ön ayarla yazılamaz.', 'flx-setup' ), $opt );
+			$errors[] = sprintf( __( 'The "%s" option cannot be written by a preset.', 'flx-setup' ), $opt );
 		}
 	}
 	$GLOBALS['flxk_last_warnings'] = $warnings;

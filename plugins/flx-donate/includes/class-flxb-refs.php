@@ -286,31 +286,31 @@ final class FLXB_Refs {
 		}
 		$ref = absint( $a['ref_user_id'] ?? get_current_user_id() );
 		if ( ! $ref || ! ( user_can( $ref, self::CAP_CREATE ) || user_can( $ref, (string) apply_filters( 'flxb_manage_capability', 'manage_options' ) ) ) ) {
-			return new WP_Error( 'flxb_ref_cap', __( 'This person may not open donation requests.', 'flx-donate' ) );
+			return new WP_Error( 'flxb_ref_cap', __( '\\nThis person may not open donation requests.\\n', 'flx-donate' ) );
 		}
 		$type = FLXB_Types::get( absint( $a['type_id'] ?? 0 ) );
 		if ( ! $type || 'open' !== flxb_type_state( $type ) ) {
-			return new WP_Error( 'flxb_type', __( 'Please choose an open donation type.', 'flx-donate' ) );
+			return new WP_Error( 'flxb_type', __( '\\nPlease choose an open donation type.\\n', 'flx-donate' ) );
 		}
 		$key   = sanitize_key( (string) ( $a['option'] ?? '' ) );
 		$opt   = '' !== $key ? FLXB_Types::option( $type, $key ) : null;
 		$units = max( 1, min( 1000, absint( $a['units'] ?? 1 ) ) );
 		if ( '' !== $key && ( ! $opt || empty( $opt['active'] ) || (float) $opt['price'] <= 0 ) ) {
-			return new WP_Error( 'flxb_option', __( 'Please choose an option of the selected donation type.', 'flx-donate' ) );
+			return new WP_Error( 'flxb_option', __( '\\nPlease choose an option of the selected donation type.\\n', 'flx-donate' ) );
 		}
 		$amount = $opt ? round( (float) $opt['price'] * $units, 2 ) : round( (float) ( $a['amount'] ?? 0 ), 2 );
 		if ( $amount <= 0 ) {
-			return new WP_Error( 'flxb_amount', __( 'Please enter an amount.', 'flx-donate' ) );
+			return new WP_Error( 'flxb_amount', __( '\\nPlease enter an amount.\\n', 'flx-donate' ) );
 		}
 		$donor = wp_parse_args( (array) ( $a['donor'] ?? array() ), array( 'name' => '', 'phone' => '', 'email' => '' ) );
 		$name  = sanitize_text_field( (string) $donor['name'] );
 		$phone = sanitize_text_field( (string) $donor['phone'] );
 		$email = sanitize_email( (string) $donor['email'] );
 		if ( '' === $name ) {
-			return new WP_Error( 'flxb_donor', __( 'Please write the donor\'s name.', 'flx-donate' ) );
+			return new WP_Error( 'flxb_donor', __( '\\nPlease write the donor\'s name.\\n', 'flx-donate' ) );
 		}
 		if ( '' === preg_replace( '/\D/', '', $phone ) && ! is_email( $email ) ) {
-			return new WP_Error( 'flxb_contact', __( 'Please give the donor\'s phone number or e-mail address.', 'flx-donate' ) );
+			return new WP_Error( 'flxb_contact', __( '\\nPlease give the donor\\\'s phone number or e-mail address.\\n', 'flx-donate' ) );
 		}
 		$names = flxb_split_names( is_array( $a['names'] ?? null ) ? implode( "\n", array_filter( $a['names'], 'is_scalar' ) ) : (string) ( $a['names'] ?? '' ) );
 		$names = array_slice( $names, 0, $units );
@@ -338,7 +338,7 @@ final class FLXB_Refs {
 				'created_via' => 'flxb-ref',
 				'ref_user_id' => $ref,
 				/* translators: %s: staff member */
-				'note'        => trim( sprintf( __( 'Donation request opened by %s.', 'flx-donate' ), $staff ? $staff->display_name : '#' . $ref ) . "\n" . sanitize_textarea_field( (string) ( $a['note'] ?? '' ) ) ),
+				'note'        => trim( sprintf( __( '\\nDonation request opened by%s.\\n', 'flx-donate' ), $staff ? $staff->display_name : '#' . $ref ) . "\n" . sanitize_textarea_field( (string) ( $a['note'] ?? '' ) ) ),
 			)
 		);
 		if ( is_wp_error( $order ) ) {

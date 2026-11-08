@@ -920,12 +920,12 @@ class FLXP_PageSpeed {
 	/** Tek tık düzeltmeler: kimlik => [ayarlar, etiket, açıklama]. */
 	public static function fix_map() {
 		return array(
-			'flxp_ps_css'      => array( array( 'ps_css' ), __( 'Flux Speed: kullanılmayan CSS\'i kırp ve satır içine al', 'flx-speed' ), __( 'Tema CSS\'inden sayfada kullanılmayan kuralları atar, kalanı <head> içine yazar; engelleyen CSS isteği kalkar. Önce birkaç sayfayı kontrol edin; sorun olursa kapatın ya da sınıfı güvenli listeye ekleyin.', 'flx-speed' ) ),
-			'flxp_ps_minify'   => array( array( 'ps_min_css', 'ps_min_js' ), __( 'Flux Speed: CSS ve JS dosyalarını sıkıştır', 'flx-speed' ), __( 'Tema ve eklentilerin sıkıştırılmamış CSS/JS dosyaları için güncel .min sürümü ya da üretilmiş kopya kullanılır.', 'flx-speed' ) ),
-			'flxp_ps_defer'    => array( array( 'ps_defer' ), __( 'Flux Speed: head betiklerini ertele (defer)', 'flx-speed' ), __( 'Sayfanın başındaki engelleyen betikler defer ile yüklenir. jQuery ve hariç tutulanlar dokunulmaz.', 'flx-speed' ) ),
-			'flxp_ps_viewport' => array( array( 'ps_viewport' ), __( 'Flux Speed: yakınlaştırma kilidini kaldır', 'flx-speed' ), __( 'Viewport etiketinden user-scalable=no ve maximum-scale kaldırılır.', 'flx-speed' ) ),
-			'flxp_ps_fonts'    => array( array( 'ps_fonts', 'ps_preload' ), __( 'Flux Speed: yazı tiplerini düzenle', 'flx-speed' ), __( 'Sayfada kullanılmayan theme.json yazı tipleri çıkarılır, ilk ekran yazı tipi önden yüklenir (preload).', 'flx-speed' ) ),
-			'flxp_ps_emoji'    => array( array( 'ps_emoji' ), __( 'Flux Speed: emoji betiğini kaldır', 'flx-speed' ), __( 'WordPress\'in emoji algılama betiği ve stili yüklenmez; modern tarayıcılar emojiyi kendisi çizer.', 'flx-speed' ) ),
+			'flxp_ps_css'      => array( array( 'ps_css' ), __( 'Flux Speed: remove unused CSS and inline it', 'flx-speed' ), __( 'Drops theme CSS rules the page does not use and writes the rest into <head>, removing the render-blocking CSS request. Check a few pages first; if something breaks, turn it off or add the class to the keep list.', 'flx-speed' ) ),
+			'flxp_ps_minify'   => array( array( 'ps_min_css', 'ps_min_js' ), __( 'Flux Speed: minify CSS and JS files', 'flx-speed' ), __( 'Unminified theme and plugin CSS/JS files are served from an up-to-date .min version or a generated copy.', 'flx-speed' ) ),
+			'flxp_ps_defer'    => array( array( 'ps_defer' ), __( 'Flux Speed: defer head scripts', 'flx-speed' ), __( 'Blocking scripts at the top of the page are loaded with defer. jQuery and excluded scripts are left alone.', 'flx-speed' ) ),
+			'flxp_ps_viewport' => array( array( 'ps_viewport' ), __( 'Flux Speed: remove the zoom lock', 'flx-speed' ), __( 'user-scalable=no and maximum-scale are removed from the viewport tag.', 'flx-speed' ) ),
+			'flxp_ps_fonts'    => array( array( 'ps_fonts', 'ps_preload' ), __( 'Flux Speed: optimize fonts', 'flx-speed' ), __( 'theme.json fonts not used on the page are removed and the above-the-fold font is preloaded.', 'flx-speed' ) ),
+			'flxp_ps_emoji'    => array( array( 'ps_emoji' ), __( 'Flux Speed: remove the emoji script', 'flx-speed' ), __( 'WordPress\'s emoji detection script and style are not loaded; modern browsers render emoji themselves.', 'flx-speed' ) ),
 		);
 	}
 
@@ -943,7 +943,7 @@ class FLXP_PageSpeed {
 	public static function fix_apply( $id ) {
 		$keys = self::fix_map()[ $id ][0] ?? null;
 		if ( ! $keys ) {
-			throw new Exception( __( 'Bilinmeyen düzeltme.', 'flx-speed' ) );
+			throw new Exception( __( 'Unknown fix.', 'flx-speed' ) );
 		}
 		$s = get_option( 'flxp_settings', array() );
 		$s = is_array( $s ) ? $s : array();
@@ -979,7 +979,7 @@ class FLXP_PageSpeed {
 				$map[ $id ] = 'flxp_ps_defer';
 			}
 			if ( 'non-composited-animations' === $id ) {
-				$findings[ $i ]['detail'] = trim( ( $fd['detail'] ?? '' ) . ' ' . __( 'Flux Speed › PageSpeed sekmesi hangi dosyada hangi animasyonun sorunlu olduğunu listeler.', 'flx-speed' ) );
+				$findings[ $i ]['detail'] = trim( ( $fd['detail'] ?? '' ) . ' ' . __( 'Flux Speed › PageSpeed lists which animation in which file is the problem.', 'flx-speed' ) );
 				continue;
 			}
 			if ( ! isset( $map[ $id ] ) ) {
@@ -987,7 +987,7 @@ class FLXP_PageSpeed {
 			}
 			$fix = $map[ $id ];
 			if ( self::fix_is_on( $fix ) ) {
-				$findings[ $i ]['detail'] = trim( ( $fd['detail'] ?? '' ) . ' ' . __( 'Flux Speed\'de ilgili ayar açık; önbelleği (LiteSpeed Purge All) temizleyip yeniden ölçün. Kalan kısım tema/ön ayarın işi.', 'flx-speed' ) );
+				$findings[ $i ]['detail'] = trim( ( $fd['detail'] ?? '' ) . ' ' . __( 'The matching Flux Speed setting is on; clear the cache (LiteSpeed Purge All) and measure again. Whatever remains is up to the theme/preset.', 'flx-speed' ) );
 				continue;
 			}
 			if ( empty( $fd['fix_id'] ) ) {
@@ -1010,7 +1010,7 @@ class FLXP_PageSpeed {
 				'current'     => fn() => self::fix_is_on( $id ),
 				'run'         => function () use ( $id ) {
 					self::fix_apply( $id );
-					return __( 'Açıldı. Sayfa önbelleği temizlendi; Site denetimini ya da PageSpeed ölçümünü yeniden çalıştırın.', 'flx-speed' );
+					return __( 'Turned on. The page cache was cleared; run the site audit or PageSpeed test again.', 'flx-speed' );
 				},
 			);
 		}
@@ -1026,12 +1026,12 @@ class FLXP_PageSpeed {
 			'id'           => 'flxp.animations',
 			'source'       => 'flx-speed',
 			'group'        => 'Performance',
-			'label'        => __( 'Animasyonlar (GPU)', 'flx-speed' ),
+			'label'        => __( 'Animations (GPU)', 'flx-speed' ),
 			'status'       => $anim ? 'warning' : 'ok',
 			'message'      => $anim
 				/* translators: %s: animasyon adları */
-				? sprintf( __( 'GPU\'da çalışmayan animasyon: %s. transform/opacity ile yeniden yazılmalı (tema/ön ayar).', 'flx-speed' ), implode( ', ', array_slice( array_unique( wp_list_pluck( $anim, 'name' ) ), 0, 6 ) ) )
-				: __( 'Görülen CSS dosyalarındaki animasyonlar transform/opacity kullanıyor.', 'flx-speed' ),
+				? sprintf( __( 'Animation not running on the GPU: %s. Should be rewritten with transform/opacity (theme/preset).', 'flx-speed' ), implode( ', ', array_slice( array_unique( wp_list_pluck( $anim, 'name' ) ), 0, 6 ) ) )
+				: __( 'Animations in the CSS files seen use transform/opacity.', 'flx-speed' ),
 			'action_url'   => $url,
 			'action_label' => __( 'PageSpeed', 'flx-speed' ),
 		);
@@ -1041,9 +1041,9 @@ class FLXP_PageSpeed {
 				'id'           => 'flxp.pagespeed',
 				'source'       => 'flx-speed',
 				'group'        => 'Performance',
-				'label'        => __( 'PageSpeed önbelleği', 'flx-speed' ),
+				'label'        => __( 'PageSpeed cache', 'flx-speed' ),
 				'status'       => $ok ? 'ok' : 'error',
-				'message'      => $ok ? __( 'uploads/flx-speed yazılabilir.', 'flx-speed' ) : __( 'uploads/flx-speed klasörü yazılamıyor: CSS kırpma ve sıkıştırma çalışmaz, sayfalar asıl dosyalarla açılır.', 'flx-speed' ),
+				'message'      => $ok ? __( 'uploads/flx-speed is writable.', 'flx-speed' ) : __( 'The uploads/flx-speed folder is not writable: CSS trimming and minifying will not work, pages load the original files.', 'flx-speed' ),
 				'action_url'   => $url,
 				'action_label' => __( 'PageSpeed', 'flx-speed' ),
 			);

@@ -1,0 +1,4745 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Call Center"
+msgstr "مركز الاتصال"
+
+msgid "Chats"
+msgstr "الدردشات"
+
+msgid "AI assistant"
+msgstr "مساعد الذكاء الاصطناعي"
+
+msgid "Call Center Settings"
+msgstr "إعدادات مركز الاتصال"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "JavaScript is required for the Call Center."
+msgstr "مطلوب جافا سكريبت لمركز الاتصال."
+
+msgid "You do not have permission to access this page."
+msgstr "ليس لديك إذن للوصول إلى هذه الصفحة."
+
+msgid "Monitor the chats the assistant handles, edit its instructions and documents, and test changes before publishing them."
+msgstr "مراقبة الدردشات التي يتعامل معها المساعد، وتحرير تعليماتها ومستنداتها، واختبار التغييرات قبل نشرها."
+
+msgid "Assistant settings"
+msgstr "إعدادات المساعد"
+
+msgid "This page requires JavaScript."
+msgstr "هذه الصفحة تتطلب جافا سكريبت."
+
+msgid "Closed"
+msgstr "مغلق"
+
+msgid "On, 5 minutes"
+msgstr "على، 5 دقائق"
+
+msgid "On, 1 hour"
+msgstr "على، 1 ساعة"
+
+msgid "AI needs the Flux AI & MCP plugin; install and activate it, then enter the key in Flux AI & MCP › Settings."
+msgstr "يحتاج الذكاء الاصطناعي إلى البرنامج المساعد Flux AI & MCP؛ قم بتثبيته وتنشيطه، ثم أدخل المفتاح في Flux AI & MCP ›الإعدادات."
+
+msgid "No AI model selected."
+msgstr "لم يتم تحديد نموذج الذكاء الاصطناعي."
+
+msgid "No Anthropic (Claude) key has been entered in Flux AI."
+msgstr "لم يتم إدخال أي مفتاح Anthropic (Claude) في Flux AI."
+
+msgid "No OpenRouter key has been entered in Flux AI."
+msgstr "لم يتم إدخال أي مفتاح OpenRouter في Flux AI."
+
+msgid "The model list needs the Flux AI & MCP plugin."
+msgstr "تحتاج قائمة النماذج إلى البرنامج المساعد Flux AI & MCP."
+
+msgid "Flux Call Center: AI features (suggestions, assistant, receipt reading, voice messages, summaries) need the Flux AI & MCP plugin. Install and activate it; keys saved in the Call Center are moved there automatically."
+msgstr "مركز اتصال Flux: تحتاج ميزات الذكاء الاصطناعي (الاقتراحات والمساعد وقراءة الإيصالات والرسائل الصوتية والملخصات) إلى البرنامج الإضافي Flux AI & MCP. تثبيته وتفعيله؛ يتم نقل المفاتيح المحفوظة في مركز الاتصال هناك تلقائيًا."
+
+msgid "Flux Call Center: a different %s key is already saved in Flux AI and is the one in use. The old Call Center key was not moved and is no longer used."
+msgstr "مركز اتصال Flux: تم بالفعل حفظ مفتاح%sمختلف في Flux AI وهو المفتاح المستخدم. لم يتم نقل مفتاح مركز الاتصال القديم ولم يعد مستخدمًا."
+
+msgid "Flux Call Center: AI keys were moved to Flux AI. From now on keys, spending limits and logs are managed in Flux AI; model choices stay in the Call Center."
+msgstr "مركز اتصال Flux: تم نقل مفاتيح الذكاء الاصطناعي إلى Flux AI. من الآن فصاعدًا، تتم إدارة المفاتيح وحدود الإنفاق والسجلات في Flux AI؛ تبقى خيارات النماذج في مركز الاتصال."
+
+msgid "The Flux Donate plugin is not active; the assistant takes donation types and prices from it."
+msgstr "البرنامج المساعد Flux Donate غير نشط؛ يقوم المساعد بأخذ أنواع التبرعات وأسعارها منها."
+
+msgid "There is no open donation type in Flux Donate (open one on the Donation types page)."
+msgstr "لا يوجد نوع تبرع مفتوح في Flux Donate (افتح نوعًا في صفحة أنواع التبرعات)."
+
+msgid "The donation types selected for the assistant are closed or have no price; select an open type or leave the selection empty."
+msgstr "أنواع التبرعات المختارة للمساعد مغلقة أو ليس لها ثمن؛ حدد نوعًا مفتوحًا أو اترك التحديد فارغًا."
+
+msgid "None of the open donation types has a price (Flux Donate › Donation types › option price)."
+msgstr "لا يوجد سعر لأي من أنواع التبرعات المفتوحة (Flux Donate › أنواع التبرع › سعر الخيار)."
+
+msgid "Custom amount"
+msgstr "مبلغ مخصص"
+
+msgid "Us"
+msgstr "نحن"
+
+msgid "WhatsApp"
+msgstr "واتساب"
+
+msgid "Assistant"
+msgstr "مساعد"
+
+msgid "This link has expired."
+msgstr "انتهت صلاحية هذا الرابط."
+
+msgid "You do not have permission for this action."
+msgstr "ليس لديك إذن بهذا الإجراء."
+
+msgid "Message is empty."
+msgstr "الرسالة فارغة."
+
+msgid "The assistant is off."
+msgstr "المساعد معطل."
+
+msgid "No AI provider is configured."
+msgstr "لم يتم تكوين أي مزود AI."
+
+msgid "Greeting only"
+msgstr "تحية فقط"
+
+msgid "Direct price question"
+msgstr "سؤال السعر المباشر"
+
+msgid "Direct donation request"
+msgstr "طلب التبرع المباشر"
+
+msgid "Introduces themselves by name"
+msgstr "يقدمون أنفسهم بالاسم"
+
+msgid "Writes in a foreign language"
+msgstr "يكتب بلغة أجنبية"
+
+msgid "Full flow, 1 donation"
+msgstr "التدفق الكامل، 1 التبرع"
+
+msgid "Several units, one on behalf of someone else"
+msgstr "عدة وحدات، واحدة نيابة عن شخص آخر"
+
+msgid "No record before confirmation"
+msgstr "لا يوجد سجل قبل التأكيد"
+
+msgid "On behalf of someone via contact card"
+msgstr "نيابة عن شخص ما عبر بطاقة الاتصال"
+
+msgid "All units to one name (company)"
+msgstr "جميع الوحدات باسم واحد (الشركة)"
+
+msgid "Changes the quantity later"
+msgstr "تغير الكمية لاحقا"
+
+msgid "Gives up at the last moment"
+msgstr "يستسلم في اللحظة الأخيرة"
+
+msgid "Asks for the IBAN again after the record"
+msgstr "يطلب رقم IBAN مرة أخرى بعد التسجيل"
+
+msgid "Asks for a representative"
+msgstr "يسأل عن ممثل"
+
+msgid "Certificate complaint"
+msgstr "شكوى الشهادة"
+
+msgid "Refund request"
+msgstr "طلب استرداد"
+
+msgid "Insults continue"
+msgstr "الإهانات مستمرة"
+
+msgid "Corporate partnership"
+msgstr "الشراكة المؤسسية"
+
+msgid "Simple price question and thanks"
+msgstr "سؤال بسيط عن السعر و شكرا"
+
+msgid "Short greeting"
+msgstr "تحية قصيرة"
+
+msgid "Undecided person"
+msgstr "شخص لم يقرر بعد"
+
+msgid "Meaningless message"
+msgstr "رسالة لا معنى لها"
+
+msgid "Donation type not on the list"
+msgstr "نوع التبرع غير موجود في القائمة"
+
+msgid "Praise containing the word \"representative\""
+msgstr "مديح يحتوي على كلمة \"ممثل\""
+
+msgid "Tax deduction question"
+msgstr "سؤال خصم الضريبة"
+
+msgid "Planting date and place"
+msgstr "تاريخ ومكان الزراعة"
+
+msgid "Discount campaign"
+msgstr "حملة الخصم"
+
+msgid "Past donation inquiry"
+msgstr "استفسار عن التبرعات السابقة"
+
+msgid "Price haggling"
+msgstr "المساومات في الأسعار"
+
+msgid "Short, one question"
+msgstr "باختصار، سؤال واحد"
+
+msgid "Not mentioning internals"
+msgstr "دون ذكر الداخلية"
+
+msgid "Message with typos"
+msgstr "رسالة بها أخطاء إملائية"
+
+msgid "Not asking again what is known"
+msgstr "عدم السؤال مرة أخرى عما هو معروف"
+
+msgid "Not closing the door"
+msgstr "عدم إغلاق الباب"
+
+msgid "Single word \"IBAN\""
+msgstr "كلمة واحدة \"IBAN\""
+
+msgid "IBAN question via tool"
+msgstr "سؤال IBAN عبر الأداة"
+
+msgid "Office hours and date question"
+msgstr "ساعات العمل والتاريخ السؤال"
+
+msgid "Which projects are there?"
+msgstr "ما هي المشاريع الموجودة؟"
+
+msgid "Reminder request"
+msgstr "طلب تذكير"
+
+msgid "Don't message me again"
+msgstr "لا ترسل لي رسالة مرة أخرى"
+
+msgid "Introduces themselves with a nickname"
+msgstr "يقدمون أنفسهم بلقب"
+
+msgid "Cancel the opened donation"
+msgstr "إلغاء التبرع المفتوح"
+
+msgid "Switches payment to card"
+msgstr "تحويل الدفع إلى البطاقة"
+
+msgid "Resend my certificate"
+msgstr "إعادة إرسال شهادتي"
+
+msgid "Writes the receipt number"
+msgstr "يكتب رقم الإيصال"
+
+msgid "Non-staff talks like staff"
+msgstr "محادثات غير الموظفين مثل الموظفين"
+
+msgid "My donors"
+msgstr "الجهات المانحة لي"
+
+msgid "Overall report"
+msgstr "التقرير الشامل"
+
+msgid "Opens a donation (record check)"
+msgstr "فتح التبرع (فحص السجل)"
+
+msgid "Lists their donations"
+msgstr "يسرد تبرعاتهم"
+
+msgid "Sends the certificate"
+msgstr "يرسل الشهادة"
+
+msgid "Cancels a pending donation after confirmation"
+msgstr "يلغي التبرع المعلق بعد التأكيد"
+
+msgid "Does not cancel without confirmation"
+msgstr "لا يتم الإلغاء دون تأكيد"
+
+msgid "Does not cancel a paid donation"
+msgstr "لا يلغي التبرع المدفوع"
+
+msgid "Number verification with a WhatsApp code"
+msgstr "التحقق من الرقم برمز الواتساب"
+
+msgid "Number verification with an SMS code"
+msgstr "التحقق من الرقم باستخدام رمز الرسائل القصيرة"
+
+msgid "E-mail verification"
+msgstr "التحقق من البريد الإلكتروني"
+
+msgid "Lists past donations (sample records)"
+msgstr "يسرد التبرعات السابقة (سجلات العينة)"
+
+msgid "Gives an e-mail, asked to confirm it"
+msgstr "يعطي البريد الإلكتروني، وطلب تأكيد ذلك"
+
+msgid "E-mail saved after confirmation"
+msgstr "تم حفظ البريد الإلكتروني بعد التأكيد"
+
+msgid "Wrong code"
+msgstr "رمز خاطئ"
+
+msgid "Unrecognized number says \"I am staff\""
+msgstr "رقم غير معروف يقول \"أنا موظف\""
+
+msgid "Donation on behalf of someone else (record check)"
+msgstr "التبرع نيابة عن شخص آخر (فحص السجل)"
+
+msgid "Details of a donation they opened"
+msgstr "تفاصيل التبرع الذي فتحوه"
+
+msgid "Continuation: two questions after the greeting"
+msgstr "متابعة: سؤالان بعد التحية"
+
+msgid "Continuation: summary confirmed, record should be created"
+msgstr "متابعة: تم تأكيد الملخص، ويجب إنشاء سجل"
+
+msgid "Continuation: complaint running out of patience"
+msgstr "الاستمرار: الشكوى من نفاذ الصبر"
+
+msgid "Continuation: wants to think about it"
+msgstr "استمرار: يريد أن يفكر في الأمر"
+
+msgid "Continuation: insists on a type not on the list"
+msgstr "استمرار: يصر على نوع غير موجود في القائمة"
+
+msgid "Continuation: certificate timing question"
+msgstr "متابعة: سؤال توقيت الشهادة"
+
+msgid "Continuation: donation on behalf of someone else"
+msgstr "واصلة: التبرع بالنيابة عن شخص آخر"
+
+msgid "Greeting and guidance"
+msgstr "تحية وتوجيه"
+
+msgid "Donation flow and record"
+msgstr "تدفق التبرعات وتسجيلها"
+
+msgid "Handoff to the team"
+msgstr "التسليم للفريق"
+
+msgid "Avoiding needless handoff"
+msgstr "تجنب التسليم الذي لا داعي له"
+
+msgid "Not making up information"
+msgstr "لا يختلق المعلومات"
+
+msgid "Reply quality and tone"
+msgstr "جودة الرد ونبرة الصوت"
+
+msgid "Live info and tools"
+msgstr "المعلومات والأدوات الحية"
+
+msgid "Records, cancellation and receipts"
+msgstr "السجلات والإلغاء والإيصالات"
+
+msgid "Staff assistant"
+msgstr "مساعد الموظفين"
+
+msgid "Action results (isolated)"
+msgstr "نتائج العمل (معزولة)"
+
+msgid "Has a donation awaiting payment"
+msgstr "لديه تبرع في انتظار الدفع"
+
+msgid "Has a paid donation and certificate"
+msgstr "لديه تبرع مدفوع الأجر وشهادة"
+
+msgid "Number verified"
+msgstr "تم التحقق من الرقم"
+
+msgid "E-mail verified"
+msgstr "تم التحقق من البريد الإلكتروني"
+
+msgid "Phone code is sent via WhatsApp"
+msgstr "يتم إرسال رمز الهاتف عبر الواتساب"
+
+msgid "Phone code is sent via SMS"
+msgstr "يتم إرسال رمز الهاتف عبر الرسائل القصيرة"
+
+msgid "New donation opened"
+msgstr "تم فتح تبرع جديد"
+
+msgid "Donation canceled"
+msgstr "تم إلغاء التبرع"
+
+msgid "Certificate sent"
+msgstr "تم إرسال الشهادة"
+
+msgid "Verification code sent"
+msgstr "تم إرسال رمز التحقق"
+
+msgid "Code sent via WhatsApp"
+msgstr "تم إرسال الكود عبر الواتساب"
+
+msgid "Code sent via SMS"
+msgstr "تم إرسال الرمز عبر الرسائل القصيرة"
+
+msgid "Code sent by e-mail"
+msgstr "تم إرسال الرمز عبر البريد الإلكتروني"
+
+msgid "Number or e-mail verified"
+msgstr "تم التحقق من الرقم أو البريد الإلكتروني"
+
+msgid "Reminder set"
+msgstr "مجموعة تذكير"
+
+msgid "Saved to memory"
+msgstr "محفوظة في الذاكرة"
+
+msgid "A title and at least one message are required."
+msgstr "مطلوب عنوان ورسالة واحدة على الأقل."
+
+msgid "The last message must be from the customer; the assistant replies to it."
+msgstr "يجب أن تكون الرسالة الأخيرة من العميل؛ يرد عليه المساعد."
+
+msgid "donation"
+msgstr "تبرع"
+
+msgid "Built-in text"
+msgstr "نص مدمج"
+
+msgid "Version %s"
+msgstr "الإصدار%s"
+
+msgid "Live instructions (%s)"
+msgstr "التعليمات المباشرة (%s)"
+
+msgid "built-in"
+msgstr "مدمج"
+
+msgid "No scenarios to run."
+msgstr "لا توجد سيناريوهات للتشغيل."
+
+msgid "The run could not be saved (database: %s). Refresh the page and try again."
+msgstr "تعذر حفظ التشغيل (قاعدة البيانات:%s). قم بتحديث الصفحة وحاول مرة أخرى."
+
+msgid "Run not found."
+msgstr "لم يتم العثور على تشغيل."
+
+msgid "This step was cut off three times (the server stopped the request or the AI did not respond); the scenario was counted as an error."
+msgstr "تم قطع هذه الخطوة ثلاث مرات (أوقف الخادم الطلب أو لم يستجب الذكاء الاصطناعي)؛ تم اعتبار السيناريو خطأ."
+
+msgid "keyword"
+msgstr "الكلمة الرئيسية"
+
+msgid "The chat was handed to the team; the remaining messages were not sent."
+msgstr "تم تسليم الدردشة للفريق. ولم يتم إرسال الرسائل المتبقية."
+
+msgid "Start (test): %s"
+msgstr "البداية (الاختبار):%s"
+
+msgid "Writing as staff: %s"
+msgstr "الكتابة كموظفين:%s"
+
+msgid "No user with staff tools (Flux Roles, Profile › WhatsApp number); played as a donor."
+msgstr "لا يوجد مستخدم لديه أدوات الموظفين (أدوار التدفق، الملف الشخصي ›رقم WhatsApp)؛ لعبت كمتبرع."
+
+msgid "yes"
+msgstr "نعم"
+
+msgid "no"
+msgstr "لا"
+
+msgid "Expected: %1$s, actual: %2$s"
+msgstr "المتوقع:%1$s، الفعلي:%2$s"
+
+msgid "disabled on this site, not checked"
+msgstr "تعطيل على هذا الموقع، لم يتم تحديدها"
+
+msgid "Must not"
+msgstr "لا يجب"
+
+msgid "The AI did not respond in time."
+msgstr "لم يستجب الذكاء الاصطناعي في الوقت المناسب."
+
+msgid "The judge did not give a clear answer."
+msgstr "ولم يقدم القاضي إجابة واضحة."
+
+msgid "The AI could not write a scenario; describe the request more clearly and try again."
+msgstr "لم يتمكن الذكاء الاصطناعي من كتابة السيناريو؛ قم بوصف الطلب بشكل أكثر وضوحًا وحاول مرة أخرى."
+
+msgid "Benchmark report #%d"
+msgstr "التقرير المعياري #%d"
+
+msgid "Date"
+msgstr "التاريخ"
+
+msgid "Plugin"
+msgstr "البرنامج المساعد"
+
+msgid "Status"
+msgstr "الحالة"
+
+msgid "Stop reason"
+msgstr "توقف عن السبب"
+
+msgid "Assistant model"
+msgstr "نموذج مساعد"
+
+msgid "Judge model"
+msgstr "نموذج القاضي"
+
+msgid "Instructions"
+msgstr "تعليمات"
+
+msgid "Success"
+msgstr "النجاح"
+
+msgid "scenarios"
+msgstr "سيناريوهات"
+
+msgid "Cost"
+msgstr "التكلفة"
+
+msgid "limit"
+msgstr "الحد"
+
+msgid "Input / output tokens"
+msgstr "رموز الإدخال/الإخراج"
+
+msgid "Claude cache"
+msgstr "كلود كاش"
+
+msgid "%1$d tokens read, %2$d written"
+msgstr "قراءة رموز%1$d، كتابة%2$d"
+
+msgid "savings"
+msgstr "المدخرات"
+
+msgid "Model breakdown"
+msgstr "انهيار النموذج"
+
+msgid "Model"
+msgstr "نموذج"
+
+msgid "Role"
+msgstr "الدور"
+
+msgid "Requests"
+msgstr "الطلبات"
+
+msgid "Input"
+msgstr "الإدخال"
+
+msgid "Output"
+msgstr "الإخراج"
+
+msgid "Judge"
+msgstr "القاضي"
+
+msgid "Groups"
+msgstr "المجموعات"
+
+msgid "Handoff accuracy"
+msgstr "دقة التسليم"
+
+msgid "correct handoff %1$d, correct no-handoff %2$d, unnecessary handoff %3$d, missed handoff %4$d"
+msgstr "عملية تسليم صحيحة%1$d، عملية تسليم صحيحة%2$d، عملية تسليم غير ضرورية%3$d، عملية تسليم غير ضرورية%4$d"
+
+msgid "Instructions (full text)"
+msgstr "التعليمات (النص الكامل)"
+
+msgid "Scenarios"
+msgstr "السيناريوهات"
+
+msgid "Result"
+msgstr "النتيجة"
+
+msgid "handoff"
+msgstr "Handoff"
+
+msgid "Expectations"
+msgstr "التوقعات"
+
+msgid "Conversation"
+msgstr "محادثة"
+
+msgid "Customer"
+msgstr "العميل"
+
+msgid "Error"
+msgstr "خطأ"
+
+msgid "Note"
+msgstr "ملاحظة"
+
+msgid "scripted history"
+msgstr "التاريخ المكتوب"
+
+msgid "system message"
+msgstr "رسالة النظام"
+
+msgid "empty"
+msgstr "فارغ"
+
+msgid "arguments"
+msgstr "الحجج"
+
+msgid "result"
+msgstr "نتيجة"
+
+msgid "Usage"
+msgstr "الاستخدام"
+
+msgid "requests"
+msgstr "طلبات"
+
+msgid "Checks"
+msgstr "الشيكات"
+
+msgid "Final state"
+msgstr "الحالة النهائية"
+
+msgid "Judge log"
+msgstr "سجل القاضي"
+
+msgid "System message"
+msgstr "رسالة النظام"
+
+msgid "Sent"
+msgstr "تم الإرسال"
+
+msgid "Raw response"
+msgstr "استجابة الخام"
+
+msgid "First enter an API key and model under Settings › AI."
+msgstr "أدخل أولاً مفتاح واجهة برمجة التطبيقات (API) ونموذجها ضمن الإعدادات > AI."
+
+msgid "(no name)"
+msgstr "(بدون اسم)"
+
+msgid "Hello {ad} 🌱 {bagisci} made a donation in your name: {bagis}. Your certificate is below."
+msgstr "مرحبًا{ad}🌱{bagisci}قدمت تبرعًا باسمك:{bagis}. شهادتك أدناه."
+
+msgid "One of our donors"
+msgstr "أحد المانحين لدينا"
+
+msgid "Flux Chat: certificate %1$s was sent on WhatsApp to the person the donation was made for (%2$s, %3$s)."
+msgstr "Flux Chat: تم إرسال شهادة%1$sعبر الواتساب إلى الشخص الذي تم التبرع من أجله (%2$s,%3$s)."
+
+msgid "Flux Chat: certificate %1$s could not be sent to the person the donation was made for (%2$s, %3$s)."
+msgstr "Flux Chat: تعذر إرسال شهادة%1$sإلى الشخص الذي تم التبرع من أجله (%2$s,%3$s)."
+
+msgid "✅ Certificates for {bagisci}'s donation are ready: {bagis}. They were also sent to the donor."
+msgstr "✅ شهادات التبرع بـ{bagisci}جاهزة:{bagis}. كما تم إرسالها إلى الجهة المانحة."
+
+msgid "Your donor"
+msgstr "المتبرع الخاص بك"
+
+msgid "Flux Call Center: certificates %1$s were sent to the referring staff member on WhatsApp (%2$s)."
+msgstr "مركز اتصال Flux: تم إرسال شهادات%1$sإلى الموظف المُحيل على WhatsApp (%2$s)."
+
+msgid "Flux Call Center: certificates %1$s could not be sent to the referring staff member (%2$s)."
+msgstr "مركز اتصال Flux: لا يمكن إرسال شهادات%1$sإلى الموظف المُحيل (%2$s)."
+
+msgid "Phone or email is required."
+msgstr "مطلوب الهاتف أو البريد الإلكتروني."
+
+msgid "Contact added to the blocklist: %s"
+msgstr "تمت إضافة جهة الاتصال إلى قائمة الحظر:%s"
+
+msgid "Chat not found."
+msgstr "لم يتم العثور على الدردشة."
+
+msgid "No records found."
+msgstr "لم يتم العثور على سجلات."
+
+msgid "Contact removed from the blocklist."
+msgstr "تمت إزالة جهة الاتصال من القائمة المحظورة."
+
+msgid "Bank transfer"
+msgstr "تحويل مصرفي"
+
+msgid "Card"
+msgstr "بطاقة"
+
+msgid "WhatsApp assistant: e-mail verification code"
+msgstr "مساعد الواتساب: رمز التحقق من البريد الإلكتروني"
+
+msgid "Sent when a person asks on WhatsApp about donations made with this e-mail."
+msgstr "يتم إرساله عندما يسأل أحد الأشخاص عبر الواتساب عن التبرعات المقدمة باستخدام هذا البريد الإلكتروني."
+
+msgid "Verification code"
+msgstr "رمز التحقق"
+
+msgid "First name"
+msgstr "الاسم الأول"
+
+msgid "Validity (minutes)"
+msgstr "الصلاحية (بالدقائق)"
+
+msgid "Your verification code: {kod}"
+msgstr "رمز التحقق الخاص بك:{kod}"
+
+msgid "Your verification code"
+msgstr "رمز التحقق الخاص بك"
+
+msgid "<p>You asked from WhatsApp about donations made with this email address. Enter the code in the WhatsApp chat:</p><p style=\"font-size:28px;font-weight:700;letter-spacing:6px\">{kod}</p><p>The code is valid for {dk} minutes. If you did not request this, ignore the email.</p>"
+msgstr "<p>لقد سألت من WhatsApp عن التبرعات المقدمة باستخدام عنوان البريد الإلكتروني هذا. أدخل الرمز في دردشة الواتساب:</p><p style=\"font-size:28px;font-weight:700;letter-spacing:6px\">{kod}</p><p>الرمز صالح لمدة{dk}دقيقة. إذا لم تطلب ذلك، فتجاهل البريد الإلكتروني.</p>"
+
+msgid "Your verification code: %s"
+msgstr "رمز التحقق الخاص بك:%s"
+
+msgid "Type this code in the WhatsApp chat: %s"
+msgstr "اكتب هذا الرمز في دردشة الواتساب:%s"
+
+msgid "The code is valid for %d minutes."
+msgstr "الرمز صالح لمدة%dدقيقة."
+
+msgid "Chats searched: \"%1$s\" (%2$d results)"
+msgstr "الدردشات التي تم البحث عنها: \"%1$s\" ( نتائج%2$d)"
+
+msgid "Read the last %2$d messages of %1$s"
+msgstr "اقرأ آخر رسائل%2$dالخاصة بـ%1$s"
+
+msgid "Tested: \"%s\""
+msgstr "تم الاختبار: \"%s\""
+
+msgid "Wants to read the last %2$d messages of %1$s."
+msgstr "يريد قراءة رسائل%2$dالأخيرة من%1$s."
+
+msgid "Step limit reached; write a message to continue."
+msgstr "تم الوصول إلى حد الخطوة؛ اكتب رسالة للمتابعة."
+
+msgid "Session not found."
+msgstr "لم يتم العثور على الجلسة."
+
+msgid "Draft published."
+msgstr "تم نشر المسودة."
+
+msgid "Draft saved as a version."
+msgstr "تم حفظ المسودة كنسخة."
+
+msgid "Draft discarded."
+msgstr "تم تجاهل المسودة."
+
+msgid "Write what you want to change."
+msgstr "اكتب ما تريد تغييره."
+
+msgid "Reading not allowed"
+msgstr "القراءة غير مسموح بها"
+
+msgid "Either"
+msgstr "إما"
+
+msgid "Daily assistant limit reset (%s)"
+msgstr "إعادة ضبط حد المساعد اليومي (%s)"
+
+msgid "Instructions cannot be empty."
+msgstr "لا يمكن أن تكون التعليمات فارغة."
+
+msgid "Title and content are required."
+msgstr "العنوان والمحتوى مطلوبان."
+
+msgid "Jane Smith"
+msgstr "جين سميث"
+
+msgid "Price list"
+msgstr "قائمة الأسعار"
+
+msgid "Donation summary"
+msgstr "ملخص التبرع"
+
+msgid "Payment messages sent after confirmation"
+msgstr "يتم إرسال رسائل الدفع بعد التأكيد"
+
+msgid "Hand-off message"
+msgstr "رسالة تسليم اليد"
+
+msgid "Agent request phrases"
+msgstr "عبارات طلب الوكيل"
+
+msgid "Test"
+msgstr "اختبار"
+
+msgid "Write a message first."
+msgstr "اكتب رسالة أولاً."
+
+msgid "Image could not be sent"
+msgstr "لا يمكن إرسال الصورة"
+
+msgid "Image"
+msgstr "صورة"
+
+msgid "Photo"
+msgstr "الصورة"
+
+msgid "Document"
+msgstr "وثيقة"
+
+msgid "automatic receipt check"
+msgstr "فحص الاستلام التلقائي"
+
+msgid "Version not found."
+msgstr "لم يتم العثور على الإصدار."
+
+msgid "The job was interrupted."
+msgstr "تمت مقاطعة المهمة."
+
+msgid "Daily assistant reply limit reached."
+msgstr "تم الوصول إلى حد الرد اليومي للمساعد."
+
+msgid "We are sorry to keep you waiting. We will get back to you as soon as possible. Thank you for your understanding."
+msgstr "نحن نأسف لإبقائك تنتظر. سوف نقوم بالرد عليك في أقرب وقت ممكن. شكرا لتفهمك."
+
+msgid "The assistant could not answer; a waiting message was sent to the person (%s)."
+msgstr "لم يستطع المساعد الإجابة؛ تم إرسال رسالة انتظار إلى الشخص (%s)."
+
+msgid "agent, representative, live support, customer service, real person, a human, talk to a person, speak to a person, operator, turn off the ai, turn off the bot, stop the bot, call me, temsilci, yetkili, canlı destek, gerçek kişi, operatör"
+msgstr "وكيل، ممثل، دعم مباشر، خدمة عملاء، شخص حقيقي، إنسان، تحدث إلى شخص، تحدث إلى شخص، عامل، إيقاف تشغيل الذكاء الاصطناعي، إيقاف تشغيل الروبوت، إيقاف الروبوت، اتصل بي، temsilci، Yetkili، canlı destek، gerçek kişi، عامل التشغيل"
+
+msgid "The contact asked for an agent; the assistant was turned off in this chat."
+msgstr "طلبت جهة الاتصال وكيلاً؛ تم إيقاف تشغيل المساعد في هذه الدردشة."
+
+msgid "The assistant could not reply: "
+msgstr "لم يتمكن المساعد من الرد:"
+
+msgid "The assistant's prepared reply was not sent: an agent wrote in the chat."
+msgstr "لم يتم إرسال الرد المجهز للمساعد: كتب الوكيل في الدردشة."
+
+msgid "the AI returned an empty answer"
+msgstr "أعاد الذكاء الاصطناعي إجابة فارغة"
+
+msgid "Our bank transfer details 👇 Press and hold each one to copy it."
+msgstr "تفاصيل التحويل البنكي لدينا 👇 اضغط مع الاستمرار على كل واحدة لنسخها."
+
+msgid "Contact card"
+msgstr "بطاقة الاتصال"
+
+msgid "agent"
+msgstr "وكيل"
+
+msgid "Created with the WhatsApp assistant."
+msgstr "تم إنشاؤها باستخدام مساعد WhatsApp."
+
+msgid "Understood, you will not receive any more messages from us. Have a nice day."
+msgstr "من المفهوم أنك لن تتلقى أي رسائل أخرى منا. طاب يومك."
+
+msgid "If you'd like to share why you want to cancel, we're here and happy to listen 🌱"
+msgstr "إذا كنت ترغب في مشاركة سبب رغبتك في الإلغاء، فنحن هنا ويسعدنا الاستماع 🌱"
+
+msgid "Shall I cancel *{bagis}* ({tutar})? Please confirm."
+msgstr "هل يجب علي إلغاء *{bagis}* ({tutar})؟ يرجى التأكيد."
+
+msgid "%1$s · %2$d pcs"
+msgstr "%1$s· أجهزة الكمبيوتر%2$d"
+
+msgid "The person asked on WhatsApp to cancel; the assistant cancelled it after confirmation."
+msgstr "طلب الشخص عبر الواتساب الإلغاء؛ قام المساعد بإلغائه بعد التأكيد."
+
+msgid "Reason: %s"
+msgstr "السبب:%s"
+
+msgid "The assistant cancelled the donation: %1$s (#%2$s)"
+msgstr "قام المساعد بإلغاء التبرع:%1$s(#%2$s)"
+
+msgid "Your certificate 🌱 %1$s (%2$s)"
+msgstr "شهادتك 🌱%1$s(%2$s)"
+
+msgid "The assistant resent certificate %1$s (%2$s)."
+msgstr "استاء المساعد من شهادة%1$s(%2$s)."
+
+msgid "e-mail"
+msgstr "البريد الإلكتروني"
+
+msgid "Donation"
+msgstr "التبرع"
+
+msgid "We've received your message and will get back to you as soon as possible 🌱"
+msgstr "لقد تلقينا رسالتك وسنقوم بالرد عليك في أقرب وقت ممكن 🌱"
+
+msgid "I'm passing you to a colleague from our team, they will get back to you here shortly 🌱"
+msgstr "سأنقلك إلى زميل من فريقنا، وسيعودون إليك هنا قريبًا 🌱"
+
+msgid "The assistant handed the chat to the team: %s"
+msgstr "قام المساعد بتسليم الدردشة للفريق:%s"
+
+msgid "unit"
+msgstr "وحدة"
+
+msgid "donor's name"
+msgstr "اسم المتبرع"
+
+msgid "Certificates (one per name):"
+msgstr "الشهادات (واحدة لكل اسم):"
+
+msgid "Certificate: "
+msgstr "الشهادة:"
+
+msgid "Once the payment is approved, the certificate is also sent to this number on WhatsApp."
+msgstr "بمجرد الموافقة على الدفع، يتم إرسال الشهادة أيضًا إلى هذا الرقم على WhatsApp."
+
+msgid "Any amount you like"
+msgstr "أي مبلغ تريد"
+
+msgid "Just write which one and how many you would like."
+msgstr "فقط اكتب أي واحد وكم تريد."
+
+msgid "After paying, you can send the receipt here. Thank you so much for your support 🤲"
+msgstr "بعد الدفع، يمكنك إرسال الإيصال هنا. شكرا جزيلا لدعمكم 🤲"
+
+msgid "Your card payment page is ready 💳 %s"
+msgstr "صفحة الدفع ببطاقتك جاهزة 💳%s"
+
+msgid "Enter your card details on the page to complete the payment; it is protected by 3D Secure."
+msgstr "أدخل تفاصيل بطاقتك في الصفحة لإتمام عملية الدفع؛ إنه محمي بواسطة 3D Secure."
+
+msgid "Your donation is confirmed automatically once the payment goes through. Thank you so much for your support 🤲"
+msgstr "يتم تأكيد تبرعك تلقائيًا بمجرد إتمام عملية الدفع. شكرا جزيلا لدعمكم 🤲"
+
+msgid "Your payment page is ready: %s"
+msgstr "صفحة الدفع الخاصة بك جاهزة:%s"
+
+msgid "On this page you can pay by card or choose bank transfer. If you prefer a bank transfer, the details are below; press and hold each one to copy 👇"
+msgstr "في هذه الصفحة يمكنك الدفع عن طريق البطاقة أو اختيار التحويل المصرفي. إذا كنت تفضل التحويل البنكي، فالتفاصيل أدناه؛ اضغط مع الاستمرار على كل واحدة للنسخ 👇"
+
+msgid "The bank transfer details of your donation are on this page: %s"
+msgstr "تفاصيل التحويل البنكي لتبرعك موجودة على هذه الصفحة:%s"
+
+msgid "They are also below; press and hold each one to copy 👇"
+msgstr "هم أيضا أدناه؛ اضغط مع الاستمرار على كل واحدة للنسخ 👇"
+
+msgid "You can pay by bank transfer."
+msgstr "يمكنك الدفع عن طريق التحويل المصرفي."
+
+msgid "Our donation page: %s"
+msgstr "صفحة التبرع الخاصة بنا:%s"
+
+msgid "Bank details are below; long-press each one to copy 👇"
+msgstr "تفاصيل البنك أدناه؛ اضغط لفترة طويلة على كل واحد للنسخ 👇"
+
+msgid "Assistant turned on (%s)"
+msgstr "تم تشغيل المساعد (%s)"
+
+msgid "Assistant turned off (%s)"
+msgstr "تم إيقاف المساعد (%s)"
+
+msgid "WhatsApp connection not found. Add one under Settings › Connections."
+msgstr "لم يتم العثور على اتصال واتساب. أضف واحدة ضمن الإعدادات › الاتصالات."
+
+msgid "This connection uses the Flux Mail plugin's settings but the plugin is not active."
+msgstr "يستخدم هذا الاتصال إعدادات المكون الإضافي Flux Mail ولكن المكون الإضافي غير نشط."
+
+msgid "The WhatsApp connection in Flux Mail was not found or is disabled (Communication › Connections)."
+msgstr "لم يتم العثور على اتصال WhatsApp في Flux Mail أو تم تعطيله (الاتصال › الاتصالات)."
+
+msgid "This connection uses the Flux Certificates plugin's settings, but that plugin is not active."
+msgstr "يستخدم هذا الاتصال إعدادات المكون الإضافي Flux Certifieds، لكن هذا المكون الإضافي غير نشط."
+
+msgid "The Evolution provider in Flux Certificates was not found."
+msgstr "لم يتم العثور على موفر التطور في شهادات التدفق."
+
+msgid "The connection's API URL, API key or instance name is missing."
+msgstr "عنوان URL لواجهة برمجة التطبيقات (API) أو مفتاح واجهة برمجة التطبيقات (API) أو اسم المثيل الخاص بالاتصال مفقود."
+
+msgid "via WhatsApp"
+msgstr "عبر الواتساب"
+
+msgid "via the website"
+msgstr "عبر الموقع الإلكتروني"
+
+msgid "uploaded %2$s on %1$s"
+msgstr "تم تحميل%2$sعلى%1$s"
+
+msgid "This number is not on WhatsApp."
+msgstr "هذا الرقم غير موجود على الواتساب."
+
+msgid "Evolution API key is invalid."
+msgstr "مفتاح Evolution API غير صالح."
+
+msgid "Evolution instance not found or offline."
+msgstr "لم يتم العثور على مثيل التطور أو أنه غير متصل بالإنترنت."
+
+msgid "Contact"
+msgstr "الاتصال"
+
+msgid "System"
+msgstr "النظام"
+
+msgid "Agent (%s)"
+msgstr "الوكيل (%s)"
+
+msgid "Agent"
+msgstr "وكيل"
+
+msgid "Internal note (%s)"
+msgstr "ملاحظة داخلية (%s)"
+
+msgid "Internal note"
+msgstr "ملاحظة داخلية"
+
+msgid "Auto reply"
+msgstr "الرد التلقائي"
+
+msgid "From phone"
+msgstr "من الهاتف"
+
+msgid "Automatic"
+msgstr "تلقائي"
+
+msgid "Phone"
+msgstr "الهاتف"
+
+msgid "Assistant wrote"
+msgstr "كتب المساعد"
+
+msgid "Yes"
+msgstr "نعم"
+
+msgid "No"
+msgstr "لا"
+
+msgid "Message"
+msgstr "رسالة"
+
+msgid "contact deleted"
+msgstr "تم حذف جهة الاتصال"
+
+msgid "edited"
+msgstr "تم تحريره"
+
+msgid "not sent"
+msgstr "لم ترسل"
+
+msgid "Receipt check"
+msgstr "فحص الاستلام"
+
+msgid "WhatsApp chats"
+msgstr "محادثات واتس اب"
+
+msgid "Export: %1$s · %2$d chats"
+msgstr "تصدير:%1$s· دردشات%2$d"
+
+msgid "phones and emails masked"
+msgstr "الهواتف ورسائل البريد الإلكتروني ملثمين"
+
+msgid "Chat history cleared (%1$d messages, %2$s)."
+msgstr "تم مسح سجل الدردشة (رسائل%1$d،%2$s)."
+
+msgid "Confirmation text is wrong."
+msgstr "نص التأكيد خاطئ."
+
+msgid "Contact asked for an agent"
+msgstr "طلب الاتصال وكيل"
+
+msgid "The assistant handed a chat over to the team"
+msgstr "قام المساعد بتسليم الدردشة للفريق"
+
+msgid "Hidden number (WhatsApp)"
+msgstr "الرقم المخفي (واتساب)"
+
+msgid "Reason"
+msgstr "السبب"
+
+msgid "Last messages"
+msgstr "آخر الرسائل"
+
+msgid "Please take over the chat"
+msgstr "يرجى تولي الدردشة"
+
+msgid "Could not send the notification to the team group: %s"
+msgstr "تعذر إرسال الإشعار إلى مجموعة الفريق:%s"
+
+msgid "Handoff notification sent to the team group."
+msgstr "تم إرسال إشعار التسليم إلى مجموعة الفريق."
+
+msgid "WhatsApp notification sent to the team: %s"
+msgstr "تم إرسال إشعار WhatsApp إلى الفريق:%s"
+
+msgid "Team notification could not be sent: %s"
+msgstr "تعذر إرسال إشعار الفريق:%s"
+
+msgid "New"
+msgstr "جديد"
+
+msgid "Important"
+msgstr "مهم"
+
+msgid "Follow-up"
+msgstr "المتابعة"
+
+msgid "Call Center Agent"
+msgstr "وكيل مركز الاتصال"
+
+msgid "Hello! Your message has reached the %s team. An agent will get back to you shortly."
+msgstr "مرحبا! لقد وصلت رسالتك إلى فريق%s. سيعود إليك الوكيل قريبًا."
+
+msgid "Hello, we are currently outside business hours. We received your message and will reply on the next business day."
+msgstr "مرحبا، نحن حاليا خارج ساعات العمل. لقد تلقينا رسالتك وسوف نقوم بالرد في يوم العمل التالي."
+
+msgid "Greeting"
+msgstr "تحية"
+
+msgid "Hello {first_name}, this is {agent}. How can I help you?"
+msgstr "مرحبًا{first_name}، أنا{agent}. كيف يمكنني مساعدك؟"
+
+msgid "General"
+msgstr "عام"
+
+msgid "Checking"
+msgstr "التحقق"
+
+msgid "I'll check and get right back to you, please wait a few minutes."
+msgstr "سوف أتحقق وأعود إليك مباشرة، من فضلك انتظر بضع دقائق."
+
+msgid "Request received"
+msgstr "تم استلام الطلب"
+
+msgid "We received your request and will get back to you shortly. 🙏"
+msgstr "لقد تلقينا طلبك وسنعود إليك قريبًا. 🙏"
+
+msgid "Business hours"
+msgstr "ساعات العمل"
+
+msgid "Our business hours are weekdays 09:00 – 18:00."
+msgstr "ساعات العمل لدينا هي أيام الأسبوع 09:00 – 18:00."
+
+msgid "Info"
+msgstr "معلومات"
+
+msgid "Website"
+msgstr "موقع الكتروني"
+
+msgid "You can find all the details on our website: {site}"
+msgstr "يمكنك العثور على كافة التفاصيل على موقعنا:{site}"
+
+msgid "Thanks"
+msgstr "شكرا"
+
+msgid "Thank you for reaching out {first_name}, have a nice day! 🌱"
+msgstr "شكرًا لك على التواصل مع{first_name}، أتمنى لك يومًا سعيدًا! 🌱"
+
+msgid "Closing"
+msgstr "إغلاق"
+
+msgid "Cash"
+msgstr "نقدا"
+
+msgid "Other"
+msgstr "أخرى"
+
+msgid "Your receipt has reached us and your donation is confirmed ({donation}, {amount}). Thank you."
+msgstr "لقد وصل إلينا إيصالك وتم تأكيد تبرعك ({donation},{amount}). شكرًا لك."
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "You are not allowed to create donation records."
+msgstr "غير مسموح لك بإنشاء سجلات التبرع."
+
+msgid "Choose an option of the selected donation type."
+msgstr "اختر خيارًا لنوع التبرع المحدد."
+
+msgid "This option has no price. Enter a price under Donations › Donation types, or choose a custom amount."
+msgstr "هذا الخيار ليس له ثمن. أدخل السعر ضمن التبرعات › أنواع التبرعات، أو اختر مبلغًا مخصصًا."
+
+msgid "Enter an amount."
+msgstr "أدخل المبلغ."
+
+msgid "This donation type requires the donor's proxy consent."
+msgstr "يتطلب هذا النوع من التبرع موافقة وكيل المتبرع."
+
+msgid "The donation could not be saved."
+msgstr "لا يمكن حفظ التبرع."
+
+msgid "Donation record created: %1$s · %2$s"
+msgstr "تم إنشاء سجل التبرع:%1$s·%2$s"
+
+msgid "You are not allowed to do this."
+msgstr "لا يسمح لك أن تفعل هذا."
+
+msgid "Donation not found."
+msgstr "لم يتم العثور على التبرع."
+
+msgid "Certificate template not found."
+msgstr "لم يتم العثور على قالب الشهادة."
+
+msgid "A full name is required for the certificate."
+msgstr "الاسم الكامل مطلوب للشهادة."
+
+msgid "You are not allowed to create certificates."
+msgstr "غير مسموح لك بإنشاء شهادات."
+
+msgid "Certificate created: %s"
+msgstr "تم إنشاء الشهادة:%s"
+
+msgid "Certificate not found."
+msgstr "لم يتم العثور على الشهادة."
+
+msgid "Only a photo or a document can be matched as a receipt."
+msgstr "يمكن مطابقة صورة أو مستند فقط كإيصال."
+
+msgid "This receipt was"
+msgstr "وكان هذا الإيصال"
+
+msgid "Receipt matched: %s"
+msgstr "الإيصال المطابق:%s"
+
+msgid "You are not allowed to view this file."
+msgstr "غير مسموح لك بمشاهدة هذا الملف."
+
+msgid "Donations"
+msgstr "التبرعات"
+
+msgid "Waited too long in the queue."
+msgstr "انتظرت طويلاً في الطابور."
+
+msgid "waited too long in the queue"
+msgstr "انتظرت طويلا في قائمة الانتظار"
+
+msgid "the answer was cut off"
+msgstr "تم قطع الجواب"
+
+msgid "taken from the queue"
+msgstr "مأخوذة من قائمة الانتظار"
+
+msgid "Sending"
+msgstr "إرسال"
+
+msgid "Delivered"
+msgstr "تم التسليم"
+
+msgid "Read"
+msgstr "اقرأ"
+
+msgid "Played"
+msgstr "لعبت"
+
+msgid "Not sent"
+msgstr "لم يتم إرسالها"
+
+msgid "Yesterday"
+msgstr "أمس"
+
+msgid "Today"
+msgstr "اليوم"
+
+msgid "Connection error"
+msgstr "خطأ في الاتصال"
+
+msgid "Records"
+msgstr "السجلات"
+
+msgid "New chat"
+msgstr "دردشة جديدة"
+
+msgid "Quick replies"
+msgstr "ردود سريعة"
+
+msgid "Menu"
+msgstr "القائمة"
+
+msgid "Search or start a new chat"
+msgstr "ابحث أو ابدأ محادثة جديدة"
+
+msgid "Search"
+msgstr "بحث"
+
+msgid "No connection"
+msgstr "لا يوجد اتصال"
+
+msgid "{n} lines connected"
+msgstr "خطوط{n}متصلة"
+
+msgid "WhatsApp connected"
+msgstr "متصل واتساب"
+
+msgid "{n}/{m} lines connected"
+msgstr "خطوط{n}/{m}متصلة"
+
+msgid "WhatsApp not connected"
+msgstr "واتساب غير متصل"
+
+msgid "Status unknown"
+msgstr "الحالة غير معروفة"
+
+msgid "No communication channel set up yet"
+msgstr "لم يتم إنشاء قناة اتصال بعد"
+
+msgid "WhatsApp connection lost"
+msgstr "انقطع الاتصال بالواتس اب"
+
+msgid "Set up a channel in the communication settings to receive messages."
+msgstr "قم بإعداد قناة في إعدادات الاتصال لتلقي الرسائل."
+
+msgid "Go to communication settings"
+msgstr "انتقل إلى إعدادات الاتصال"
+
+msgid "The phone may be offline or the QR code needs to be scanned again."
+msgstr "قد يكون الهاتف غير متصل بالإنترنت أو يحتاج رمز الاستجابة السريعة إلى المسح مرة أخرى."
+
+msgid "Go to settings"
+msgstr "انتقل إلى الإعدادات"
+
+msgid "Incoming WhatsApp messages appear here live. Pick a chat on the left or start a new one."
+msgstr "تظهر رسائل WhatsApp الواردة هنا مباشرة. اختر محادثة على اليسار أو ابدأ محادثة جديدة."
+
+msgid "Messages are visible only to authorized agents."
+msgstr "الرسائل مرئية فقط للوكلاء المعتمدين."
+
+msgid "No results."
+msgstr "لا توجد نتائج."
+
+msgid "No unread messages. 🎉"
+msgstr "لا توجد رسائل غير مقروءة. 🎉"
+
+msgid "No chats yet."
+msgstr "لا توجد محادثات بعد."
+
+msgid "Start a chat with {p}"
+msgstr "ابدأ محادثة مع{p}"
+
+msgid "recording audio…"
+msgstr "تسجيل الصوت..."
+
+msgid "typing…"
+msgstr "الكتابة..."
+
+msgid "Assistant is typing…"
+msgstr "المساعد يكتب..."
+
+msgid "Assigned: {n}"
+msgstr "المعينة:{n}"
+
+msgid "Chat menu"
+msgstr "قائمة الدردشة"
+
+msgid "Show quick reply bubbles"
+msgstr "إظهار فقاعات الرد السريع"
+
+msgid "Hide quick reply bubbles"
+msgstr "إخفاء فقاعات الرد السريع"
+
+msgid "Theme: Auto"
+msgstr "الموضوع: السيارات"
+
+msgid "Theme: Light"
+msgstr "الموضوع: نور"
+
+msgid "Theme: Dark"
+msgstr "الموضوع: الظلام"
+
+msgid "Enable desktop notifications"
+msgstr "تمكين إشعارات سطح المكتب"
+
+msgid "Mute notification sound"
+msgstr "كتم صوت الإخطار"
+
+msgid "Unmute notification sound"
+msgstr "إلغاء كتم صوت الإخطار"
+
+msgid "Notification sound on"
+msgstr "تشغيل صوت الإشعارات"
+
+msgid "Notification sound off"
+msgstr "صوت الإخطار معطل"
+
+msgid "Export chats"
+msgstr "تصدير الدردشات"
+
+msgid "Reminders"
+msgstr "تذكيرات"
+
+msgid "Blocklist"
+msgstr "قائمة الحظر"
+
+msgid "Back to WordPress dashboard"
+msgstr "العودة إلى لوحة تحكم ووردبريس"
+
+msgid "Contact info"
+msgstr "معلومات الاتصال"
+
+msgid "Unpin"
+msgstr "إزالة التثبيت"
+
+msgid "Pin"
+msgstr "دبوس"
+
+msgid "Mark as unread"
+msgstr "وضع علامة كغير مقروءة"
+
+msgid "Unassign me"
+msgstr "إلغاء تعييني"
+
+msgid "Assign to me"
+msgstr "خصص لي"
+
+msgid "Create donation record"
+msgstr "إنشاء سجل التبرع"
+
+msgid "Donations and certificates"
+msgstr "التبرعات والشهادات"
+
+msgid "Export chat"
+msgstr "تصدير الدردشة"
+
+msgid "Reopen chat"
+msgstr "أعد فتح الدردشة"
+
+msgid "Close chat"
+msgstr "إغلاق الدردشة"
+
+msgid "Assistant usage"
+msgstr "استخدام المساعد"
+
+msgid "Contact memory"
+msgstr "ذاكرة الاتصال"
+
+msgid "Remove from blocklist"
+msgstr "إزالة من قائمة الحظر"
+
+msgid "Add to blocklist (do not message)"
+msgstr "أضف إلى قائمة الحظر (لا ترسل رسالة)"
+
+msgid "Clear chat history"
+msgstr "مسح سجل الدردشة"
+
+msgid "Text (.md)"
+msgstr "النص (.MD)"
+
+msgid "Last 7 days"
+msgstr "آخر 7 أيام"
+
+msgid "Last 30 days"
+msgstr "آخر 30 يومًا"
+
+msgid "Last 90 days"
+msgstr "آخر 90 يومًا"
+
+msgid "All"
+msgstr "الكل"
+
+msgid "All chats"
+msgstr "جميع الدردشات"
+
+msgid "Chats the assistant wrote in"
+msgstr "المحادثات التي كتبها المساعد"
+
+msgid "Chats an agent wrote in"
+msgstr "الدردشات التي كتبها الوكيل"
+
+msgid "Mask phones and emails"
+msgstr "إخفاء الهواتف ورسائل البريد الإلكتروني"
+
+msgid "Include internal notes"
+msgstr "تضمين الملاحظات الداخلية"
+
+msgid "Download"
+msgstr "تحميل"
+
+msgid "Download started"
+msgstr "بدأ التنزيل"
+
+msgid "Last message within"
+msgstr "آخر رسالة داخل"
+
+msgid "Which chats?"
+msgstr "أي الدردشات؟"
+
+msgid "Format"
+msgstr "التنسيق"
+
+msgid "Messages are downloaded with time and author (contact, assistant, agent, automatic); the receipt check result is included."
+msgstr "يتم تنزيل الرسائل مع الوقت والمؤلف (جهة الاتصال، المساعد، الوكيل، تلقائي)؛ يتم تضمين نتيجة فحص الاستلام."
+
+msgid "The newest 1000 chats are downloaded, groups excluded. Messages include time and author (contact, assistant, agent, automatic)."
+msgstr "يتم تنزيل أحدث 1000 محادثة، باستثناء المجموعات. تتضمن الرسائل الوقت والمؤلف (جهة الاتصال، المساعد، الوكيل، التلقائي)."
+
+msgid "CLEAR"
+msgstr "واضح"
+
+msgid "Keep receipts attached to donation records"
+msgstr "احتفظ بالإيصالات مرفقة بسجلات التبرعات"
+
+msgid "Also delete the contact memory"
+msgstr "قم أيضًا بحذف ذاكرة جهة الاتصال"
+
+msgid "Delete history permanently"
+msgstr "حذف التاريخ نهائيا"
+
+msgid "{n} messages deleted"
+msgstr "تم حذف رسائل{n}"
+
+msgid "All messages and files in the {c} chat are permanently deleted from this panel. Messages on the contact's phone and on the connected WhatsApp phone are not deleted. This cannot be undone."
+msgstr "يتم حذف جميع الرسائل والملفات الموجودة في دردشة{c}نهائيًا من هذه اللوحة. لا يتم حذف الرسائل الموجودة على هاتف جهة الاتصال وعلى هاتف WhatsApp المتصل. لا يمكن التراجع عن هذا."
+
+msgid "The copy on the Evolution server will not be imported again; the assistant starts fresh in this chat. You may want to export the chat first."
+msgstr "لن يتم استيراد النسخة الموجودة على خادم Evolution مرة أخرى؛ يبدأ المساعد من جديد في هذه الدردشة. قد ترغب في تصدير الدردشة أولاً."
+
+msgid "Type {w} to confirm"
+msgstr "اكتب{w}للتأكيد"
+
+msgid "assistant"
+msgstr "مساعد"
+
+msgid "summary"
+msgstr "ملخص"
+
+msgid "team"
+msgstr "فريق"
+
+msgid "Key (e.g. spouse's name)"
+msgstr "المفتاح (مثل اسم الزوج)"
+
+msgid "Value"
+msgstr "القيمة"
+
+msgid "Attach"
+msgstr "نعلق"
+
+msgid "{n} items · about {t} tokens · the assistant reads them on every reply"
+msgstr "عناصر{n}· حول رموز{t}· يقرأها المساعد في كل رد"
+
+msgid "Contact memory is turned off in settings; items are not sent to the assistant."
+msgstr "تم إيقاف تشغيل ذاكرة الاتصال في الإعدادات؛ لا يتم إرسال العناصر إلى المساعد."
+
+msgid "Last summary: {s}"
+msgstr "الملخص الأخير:{s}"
+
+msgid "queued"
+msgstr "في قائمة الانتظار"
+
+msgid "No items for this contact."
+msgstr "لا توجد عناصر لجهة الاتصال هذه."
+
+msgid "Conversation summary"
+msgstr "ملخص المحادثة"
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "Edit"
+msgstr "تحرير"
+
+msgid "Deleted"
+msgstr "تم الحذف"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Summarize now"
+msgstr "تلخيص الآن"
+
+msgid "Summary queued"
+msgstr "الملخص في قائمة الانتظار"
+
+msgid "Delete all"
+msgstr "احذف الكل"
+
+msgid "Delete all memory items for {c}?"
+msgstr "هل تريد حذف كافة عناصر الذاكرة لـ{c}؟"
+
+msgid "If the contact asks, the assistant deletes the items itself. When the chat has been quiet for {h} hours, the conversation is summarized and important details are written here with date and time."
+msgstr "إذا طلبت جهة الاتصال ذلك، يقوم المساعد بحذف العناصر بنفسه. عندما تكون الدردشة هادئة لمدة{h}ساعات، يتم تلخيص المحادثة وتكتب التفاصيل المهمة هنا مع التاريخ والوقت."
+
+msgid "Loading…"
+msgstr "جارٍ التحميل..."
+
+msgid "Reason (e.g. the contact asked not to be messaged)"
+msgstr "السبب (على سبيل المثال، طلبت جهة الاتصال عدم مراسلتها)"
+
+msgid "Add to blocklist"
+msgstr "أضف إلى قائمة الحظر"
+
+msgid "Added to blocklist"
+msgstr "تمت الإضافة إلى قائمة الحظر"
+
+msgid "From now on no WhatsApp, email or SMS will be sent to {c}, and the assistant will not talk to them. Their messages still arrive in the panel."
+msgstr "من الآن فصاعدًا، لن يتم إرسال WhatsApp أو بريد إلكتروني أو رسائل نصية قصيرة إلى{c}، ولن يتحدث المساعد معهم. لا تزال رسائلهم تصل إلى اللوحة."
+
+msgid "Removed from blocklist"
+msgstr "تمت الإزالة من قائمة الحظر"
+
+msgid "Search phone, email or reason"
+msgstr "بحث الهاتف أو البريد الإلكتروني أو السبب"
+
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+msgid "The blocklist is empty."
+msgstr "قائمة الحظر فارغة."
+
+msgid "Remove"
+msgstr "إزالة"
+
+msgid "{n} contacts in total"
+msgstr "{n}جهات الاتصال في المجموع"
+
+msgid "Added manually"
+msgstr "تمت إضافتها يدويًا"
+
+msgid "No WhatsApp, email or SMS is sent to these contacts and the assistant does not talk to them. The assistant adds anyone who says \"don't message me\". Removing someone from the list turns everything back on."
+msgstr "لا يتم إرسال WhatsApp أو البريد الإلكتروني أو الرسائل القصيرة إلى جهات الاتصال هذه ولا يتحدث المساعد معهم. يقوم المساعد بإضافة أي شخص يقول \"لا تراسلني\". تؤدي إزالة شخص ما من القائمة إلى إعادة تشغيل كل شيء."
+
+msgid "Active"
+msgstr "نشط"
+
+msgid "Stopped"
+msgstr "توقف"
+
+msgid "Finished"
+msgstr "انتهى"
+
+msgid "{n} reminders"
+msgstr "تذكيرات{n}"
+
+msgid "Reminders are turned off in the settings; due ones are not sent."
+msgstr "تم إيقاف تشغيل التذكيرات في الإعدادات؛ لا يتم إرسال المستحقة."
+
+msgid "No reminders. They show up here when a person asks the assistant something like \"remind me every month\"."
+msgstr "لا توجد تذكيرات. تظهر هنا عندما يسأل أحد الأشخاص المساعد شيئًا مثل \"ذكّرني كل شهر\"."
+
+msgid "Next: {d}"
+msgstr "التالي:{d}"
+
+msgid "sent {n} times"
+msgstr "تم إرسال{n}مرات"
+
+msgid "Go to chat"
+msgstr "اذهب إلى الدردشة"
+
+msgid "Stop"
+msgstr "توقف"
+
+msgid "Resume"
+msgstr "استئناف"
+
+msgid "When a person asks, the assistant shows a summary and sets it up after approval; when it is due, the assistant writes and sends the message. The person can stop it by writing \"stop the reminder\"."
+msgstr "عندما يسأل شخص ما، يعرض المساعد ملخصًا ويقوم بإعداده بعد الموافقة؛ عندما يحين موعدها، يقوم المساعد بكتابة الرسالة وإرسالها. ويمكن للشخص إيقافه عن طريق كتابة \"أوقف التذكير\"."
+
+msgid "Today's reply limit is reached; the chat is with the team."
+msgstr "تم الوصول إلى الحد الأقصى للرد اليوم؛ الدردشة مع الفريق."
+
+msgid "Assistant replies today"
+msgstr "يجيب المساعد اليوم"
+
+msgid "Daily limit reset"
+msgstr "إعادة تعيين الحد اليومي"
+
+msgid "Reset daily limit"
+msgstr "إعادة تعيين الحد اليومي"
+
+msgid "Total"
+msgstr "المجموع"
+
+msgid "Input tokens"
+msgstr "رموز الإدخال"
+
+msgid "Output tokens"
+msgstr "رموز الإخراج"
+
+msgid "{n} requests"
+msgstr "طلبات{n}"
+
+msgid "Daily reply limit per chat"
+msgstr "حد الرد اليومي لكل دردشة"
+
+msgid "Applies to all chats (5-500). When reached, the person gets a \"we received your message\" reply and the chat is handed to the team."
+msgstr "ينطبق على جميع الدردشات (5-500). عند الوصول إلى الشخص، يتلقى الرد \"لقد تلقينا رسالتك\" ويتم تسليم الدردشة إلى الفريق."
+
+msgid "Saved"
+msgstr "تم الحفظ"
+
+msgid "Day"
+msgstr "يوم"
+
+msgid "Counts assistant replies, conversation summaries, reminders and receipt checks; test chat and benchmark are not counted. Cost at the provider's price (USD)."
+msgstr "يقوم بإحصاء ردود المساعد، وملخصات المحادثات، والتذكيرات، وشيكات الاستلام؛ لا يتم احتساب الدردشة الاختبارية والمعيارية. التكلفة بسعر الموفر (بالدولار الأمريكي)."
+
+msgid "Scroll to bottom"
+msgstr "قم بالتمرير إلى الأسفل"
+
+msgid "Blocklisted: no messages are sent"
+msgstr "القائمة المحظورة: لا يتم إرسال أي رسائل"
+
+msgid "tap for contact info"
+msgstr "اضغط للحصول على معلومات الاتصال"
+
+msgid "Back"
+msgstr "العودة"
+
+msgid "Donation record"
+msgstr "سجل التبرع"
+
+msgid "Pending donation"
+msgstr "في انتظار التبرع"
+
+msgid "Assign"
+msgstr "تعيين"
+
+msgid "Chat closed"
+msgstr "الدردشة مغلقة"
+
+msgid "{n} (me)"
+msgstr "{n}(أنا)"
+
+msgid "Remove assignment"
+msgstr "إزالة المهمة"
+
+msgid "Older messages could not be fetched from the WhatsApp line: {e}"
+msgstr "لا يمكن جلب الرسائل القديمة من خط WhatsApp:{e}"
+
+msgid "Messages in this chat are visible only to authorized agents. Customers never see internal notes."
+msgstr "الرسائل في هذه الدردشة مرئية فقط للوكلاء المعتمدين. لا يرى العملاء الملاحظات الداخلية مطلقًا."
+
+msgid "Certificate"
+msgstr "شهادة"
+
+msgid "Record"
+msgstr "سجل"
+
+msgid "AI suggestion"
+msgstr "اقتراح الذكاء الاصطناعي"
+
+msgid "AI does not read this message."
+msgstr "الذكاء الاصطناعي لا يقرأ هذه الرسالة."
+
+msgid "The contact deleted this message"
+msgstr "قامت جهة الاتصال بحذف هذه الرسالة"
+
+msgid "Deleted from the phone"
+msgstr "محذوفة من الهاتف"
+
+msgid "Internal note · {n}"
+msgstr "ملاحظة داخلية ·{n}"
+
+msgid "You"
+msgstr "أنت"
+
+msgid "Message menu"
+msgstr "قائمة الرسائل"
+
+msgid "Retry"
+msgstr "أعد المحاولة"
+
+msgid "This message was deleted"
+msgstr "تم حذف هذه الرسالة"
+
+msgid "Image could not be loaded"
+msgstr "لا يمكن تحميل الصورة"
+
+msgid "Location"
+msgstr "الموقع"
+
+msgid "Send message"
+msgstr "أرسل رسالة"
+
+msgid "This message type can't be shown here. Check the phone."
+msgstr "لا يمكن عرض نوع الرسالة هذا هنا. تحقق من الهاتف."
+
+msgid "Play"
+msgstr "العب"
+
+msgid "Audio could not be played"
+msgstr "لا يمكن تشغيل الصوت"
+
+msgid "The quoted message is further up; load older messages."
+msgstr "الرسالة المقتبسة أعلى. تحميل الرسائل القديمة."
+
+msgid "Other emoji"
+msgstr "رموز تعبيرية أخرى"
+
+msgid "Reply"
+msgstr "رد"
+
+msgid "Copy"
+msgstr "نسخ"
+
+msgid "Resend"
+msgstr "إعادة الإرسال"
+
+msgid "Match as receipt"
+msgstr "تطابق كإيصال"
+
+msgid "Delete note"
+msgstr "حذف الملاحظة"
+
+msgid "Copied"
+msgstr "منقول"
+
+msgid "Loading preview…"
+msgstr "جارٍ تحميل المعاينة..."
+
+msgid "Remove preview"
+msgstr "إزالة المعاينة"
+
+msgid "Send"
+msgstr "أرسل"
+
+msgid "Emoji"
+msgstr "الرموز التعبيرية"
+
+msgid "Record voice message"
+msgstr "تسجيل رسالة صوتية"
+
+msgid "Cancel note"
+msgstr "إلغاء الملاحظة"
+
+msgid "Type a message — / for quick replies"
+msgstr "اكتب رسالة — / للردود السريعة"
+
+msgid "Write a note only agents will see"
+msgstr "اكتب ملاحظة لن يراها سوى الوكلاء"
+
+msgid "Video"
+msgstr "فيديو"
+
+msgid "Voice message"
+msgstr "رسالة صوتية"
+
+msgid "Cancel reply"
+msgstr "إلغاء الرد"
+
+msgid "Photos & videos"
+msgstr "الصور ومقاطع الفيديو"
+
+msgid "Quick reply"
+msgstr "الرد السريع"
+
+msgid "This contact is blocklisted; no messages are sent."
+msgstr "تم إدراج جهة الاتصال هذه في القائمة المحظورة؛ يتم إرسال أية رسائل."
+
+msgid "Preparing a suggestion…"
+msgstr "جاري تحضير الاقتراح..."
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Add a request: shorter, mention the price…"
+msgstr "إضافة طلب: أقصر، اذكر السعر..."
+
+msgid "Request for the suggestion"
+msgstr "طلب الاقتراح"
+
+msgid "Suggested reply"
+msgstr "الرد المقترح"
+
+msgid "Another suggestion"
+msgstr "اقتراح آخر"
+
+msgid "Reload"
+msgstr "إعادة تحميل"
+
+msgid "Assistant on"
+msgstr "مساعد على"
+
+msgid "Assistant waiting"
+msgstr "مساعد ينتظر"
+
+msgid "Assistant off"
+msgstr "مساعد قبالة"
+
+msgid "The assistant replies to this chat automatically. Click to turn it off."
+msgstr "يقوم المساعد بالرد على هذه الدردشة تلقائيًا. انقر لإيقاف تشغيله."
+
+msgid "An agent wrote here, so the assistant is quiet for a while. Click to turn it on now."
+msgstr "وكيل كتب هنا، لذلك المساعد هادئ لفترة من الوقت. انقر لتشغيله الآن."
+
+msgid "The assistant is off in this chat. Click to turn it on."
+msgstr "المساعد متوقف في هذه الدردشة. انقر لتشغيله."
+
+msgid "Assistant turned on"
+msgstr "تم تفعيل المساعد"
+
+msgid "Assistant turned off"
+msgstr "تم إيقاف تشغيل المساعد"
+
+msgid "Drop the file to send"
+msgstr "قم بإسقاط الملف لإرساله"
+
+msgid "Add a caption…"
+msgstr "إضافة تسمية توضيحية..."
+
+msgid "Caption"
+msgstr "تسمية توضيحية"
+
+msgid "Send {n} files"
+msgstr "إرسال ملفات{n}"
+
+msgid "This browser does not support audio recording."
+msgstr "هذا المتصفح لا يدعم التسجيل الصوتي."
+
+msgid "Could not access the microphone."
+msgstr "تعذر الوصول إلى الميكروفون."
+
+msgid "Delete recording"
+msgstr "حذف التسجيل"
+
+msgid "Recording…"
+msgstr "تسجيل..."
+
+msgid "No recently used emoji."
+msgstr "لم يتم استخدام أي رموز تعبيرية مؤخرًا."
+
+msgid "Recently used"
+msgstr "استخدمت مؤخرا"
+
+msgid "Add certificate message"
+msgstr "إضافة رسالة الشهادة"
+
+msgid "Add link only"
+msgstr "إضافة رابط فقط"
+
+msgid "No matching quick reply."
+msgstr "لا يوجد رد سريع مطابق."
+
+msgid "No quick replies yet. Add one with \"Edit\"."
+msgstr "لا توجد ردود سريعة حتى الآن. أضف واحدة مع \"تحرير\"."
+
+msgid "Search quick replies"
+msgstr "البحث عن ردود سريعة"
+
+msgid "Used {n} times"
+msgstr "تستخدم مرات{n}"
+
+msgid "No quick replies found."
+msgstr "لم يتم العثور على ردود سريعة."
+
+msgid "e.g. Donation info"
+msgstr "على سبيل المثال معلومات التبرع"
+
+msgid "example"
+msgstr "مثال"
+
+msgid "Message text"
+msgstr "نص الرسالة"
+
+msgid "Insert variable:"
+msgstr "إدراج متغير:"
+
+msgid "Back to list"
+msgstr "العودة إلى القائمة"
+
+msgid "Edit quick reply"
+msgstr "تحرير الرد السريع"
+
+msgid "New quick reply"
+msgstr "الرد السريع الجديد"
+
+msgid "Title"
+msgstr "العنوان"
+
+msgid "Shortcut"
+msgstr "الاختصار"
+
+msgid "Category"
+msgstr "الفئة"
+
+msgid "Type / and the shortcut in the message box to bring up this reply. Variables are filled with the contact's details when sending."
+msgstr "اكتب / والاختصار في مربع الرسالة لإظهار هذا الرد. يتم تعبئة المتغيرات بتفاصيل جهة الاتصال عند الإرسال."
+
+msgid "Delete this quick reply?"
+msgstr "هل تريد حذف هذا الرد السريع؟"
+
+msgid "+1 555 000 0000"
+msgstr "+1 555 000 0000"
+
+msgid "Optional"
+msgstr "اختياري"
+
+msgid "Start chat"
+msgstr "ابدأ الدردشة"
+
+msgid "Checking…"
+msgstr "جارٍ التحقق..."
+
+msgid "Invalid number"
+msgstr "رقم غير صالح"
+
+msgid "{p} uses WhatsApp"
+msgstr "يستخدم{p}الواتساب"
+
+msgid "{p} is not on WhatsApp"
+msgstr "{p}ليس موجودًا على WhatsApp"
+
+msgid "{p} — WhatsApp could not be checked, you can still try."
+msgstr "{p}— تعذر التحقق من WhatsApp، لا يزال بإمكانك المحاولة."
+
+msgid "A chat with this contact already exists: {n}"
+msgstr "توجد محادثة مع جهة الاتصال هذه بالفعل:{n}"
+
+msgid "Phone number"
+msgstr "رقم الهاتف"
+
+msgid "Contact name"
+msgstr "اسم جهة الاتصال"
+
+msgid "From which line?"
+msgstr "من أي خط؟"
+
+msgid "You can type the number with a leading 0, with +90 or with any country code."
+msgstr "يمكنك كتابة الرقم بـ 0 أو +90 أو بأي رمز بلد."
+
+msgid "Note saved"
+msgstr "تم حفظ الملاحظة"
+
+msgid "Notes about this contact, visible only to agents"
+msgstr "ملاحظات حول جهة الاتصال هذه، مرئية للوكلاء فقط"
+
+msgid "Labels are defined on the Settings page."
+msgstr "يتم تحديد التسميات في صفحة الإعدادات."
+
+msgid "— Unassigned —"
+msgstr "— غير مخصص —"
+
+msgid "Open"
+msgstr "مفتوح"
+
+msgid "Insert into message"
+msgstr "إدراج في الرسالة"
+
+msgid "WhatsApp name: {n}"
+msgstr "اسم الواتساب:{n}"
+
+msgid "Copy number"
+msgstr "نسخ الرقم"
+
+msgid "Labels"
+msgstr "التسميات"
+
+msgid "Assigned agent"
+msgstr "الوكيل المعين"
+
+msgid "Contact notes"
+msgstr "ملاحظات الاتصال"
+
+msgid "Create certificate"
+msgstr "إنشاء شهادة"
+
+msgid "Pin chat"
+msgstr "دبوس الدردشة"
+
+msgid "First contact: {d}"
+msgstr "جهة الاتصال الأولى:{d}"
+
+msgid "AI pre-check. The team makes the final check."
+msgstr "فحص مسبق بالذكاء الاصطناعي. يقوم الفريق بإجراء الفحص النهائي."
+
+msgid "Receipt · {r}"
+msgstr "الاستلام ·{r}"
+
+msgid "No open donation type. Open one under Donations › Donation types."
+msgstr "لا يوجد نوع تبرع مفتوح. افتح واحدًا ضمن التبرعات ›أنواع التبرع."
+
+msgid "Amount"
+msgstr "المبلغ"
+
+msgid "Visible in the panel only"
+msgstr "مرئية في اللوحة فقط"
+
+msgid "One name per line"
+msgstr "اسم واحد في كل سطر"
+
+msgid "The donor approved the proxy text"
+msgstr "وافقت الجهة المانحة على نص الوكيل"
+
+msgid "On behalf of"
+msgstr "نيابة عن"
+
+msgid "One name per unit. Empty ones count as the donor."
+msgstr "اسم واحد لكل وحدة. الفارغة تعتبر الجهة المانحة."
+
+msgid "Send the person a WhatsApp message"
+msgstr "أرسل للشخص رسالة واتساب"
+
+msgid "Awaiting payment"
+msgstr "في انتظار الدفع"
+
+msgid "Paid"
+msgstr "مدفوعة"
+
+msgid "Also create and send a certificate"
+msgstr "قم أيضًا بإنشاء شهادة وإرسالها"
+
+msgid "Certificate template"
+msgstr "قالب الشهادة"
+
+msgid "Full name and quantity are taken from the donation."
+msgstr "الاسم الكامل والكمية مأخوذة من التبرع."
+
+msgid "Option"
+msgstr "الخيار"
+
+msgid "Quantity"
+msgstr "الكمية"
+
+msgid "Total: {a}"
+msgstr "الإجمالي:{a}"
+
+msgid "This option has no price."
+msgstr "هذا الخيار ليس له ثمن."
+
+msgid "Donation saved: {d}"
+msgstr "تم حفظ التبرع:{d}"
+
+msgid "Donation record from receipt"
+msgstr "سجل التبرع من الاستلام"
+
+msgid "Donation type"
+msgstr "نوع التبرع"
+
+msgid "Payment"
+msgstr "الدفع"
+
+msgid "Payment method"
+msgstr "طريقة الدفع"
+
+msgid "Receipt / transaction no"
+msgstr "رقم الاستلام/المعاملة"
+
+msgid "Donor"
+msgstr "الجهة المانحة"
+
+msgid "Full name"
+msgstr "الاسم الكامل"
+
+msgid "Variables such as {donation}, {amount} and {bank} are filled in when sending."
+msgstr "تتم تعبئة المتغيرات مثل{donation}و{amount}و{bank}عند الإرسال."
+
+msgid "No active certificate template."
+msgstr "لا يوجد قالب شهادة نشط."
+
+msgid "No event"
+msgstr "لا يوجد حدث"
+
+msgid "Send to the person on WhatsApp"
+msgstr "أرسل إلى الشخص على الواتساب"
+
+msgid "Create"
+msgstr "إنشاء"
+
+msgid "Full name is required."
+msgstr "الاسم الكامل مطلوب."
+
+msgid "Certificate created: {n}"
+msgstr "تم إنشاء الشهادة:{n}"
+
+msgid "Template"
+msgstr "القالب"
+
+msgid "Event"
+msgstr "حدث"
+
+msgid "The message text comes from the WhatsApp template in Flux Certificates."
+msgstr "يأتي نص الرسالة من قالب WhatsApp في شهادات Flux."
+
+msgid "Preparing certificate…"
+msgstr "جارٍ تحضير الشهادة..."
+
+msgid "Mark the pending donation as \"Paid\""
+msgstr "وضع علامة على التبرع المعلق على أنه \"مدفوع\""
+
+msgid "Send the person a confirmation message"
+msgstr "أرسل للشخص رسالة تأكيد"
+
+msgid "Search other records: name, phone, certificate no"
+msgstr "ابحث في السجلات الأخرى: الاسم والهاتف ورقم الشهادة"
+
+msgid "Match"
+msgstr "مباراة"
+
+msgid "{n} receipts"
+msgstr "إيصالات{n}"
+
+msgid "Pending donations"
+msgstr "التبرعات في انتظار"
+
+msgid "This person's donations"
+msgstr "تبرعات هذا الشخص"
+
+msgid "This person's certificates"
+msgstr "شهادات هذا الشخص"
+
+msgid "No records for this person. Search below or create a new donation record."
+msgstr "لا توجد سجلات لهذا الشخص. ابحث أدناه أو قم بإنشاء سجل تبرع جديد."
+
+msgid "Certificates"
+msgstr "الشهادات"
+
+msgid "Receipt added to the record"
+msgstr "تمت إضافة الإيصال إلى السجل"
+
+msgid "New donation record"
+msgstr "سجل تبرع جديد"
+
+msgid "Match receipt with a record"
+msgstr "مطابقة الإيصال مع السجل"
+
+msgid "Search by name, phone, certificate no"
+msgstr "البحث بالاسم والهاتف ورقم الشهادة"
+
+msgid "Pending"
+msgstr "في انتظار"
+
+msgid "Completed"
+msgstr "مكتمل"
+
+msgid "No records yet."
+msgstr "لا توجد سجلات حتى الآن."
+
+msgid "{n} pcs"
+msgstr "جهاز كمبيوتر شخصى{n}"
+
+msgid "Receipt"
+msgstr "استلام"
+
+msgid "This person has no donations."
+msgstr "هذا الشخص ليس لديه تبرعات."
+
+msgid "This person has no certificates."
+msgstr "هذا الشخص ليس لديه شهادات."
+
+msgid "{n}: donations and certificates"
+msgstr "{n}: التبرعات والشهادات"
+
+msgid "Open chat"
+msgstr "افتح الدردشة"
+
+msgid "Open certificate"
+msgstr "فتح الشهادة"
+
+msgid "Mark as paid"
+msgstr "وضع علامة على أنه مدفوع"
+
+msgid "Donation confirmed"
+msgstr "تم تأكيد التبرع"
+
+msgid "Open donation record"
+msgstr "فتح سجل التبرعات"
+
+msgid "Open in certificate list"
+msgstr "فتح في قائمة الشهادات"
+
+msgid "Edit quick replies"
+msgstr "تحرير الردود السريعة"
+
+msgid "Notifications enabled"
+msgstr "تم تمكين الإخطارات"
+
+msgid "Notification permission denied"
+msgstr "تم رفض إذن الإخطار"
+
+msgid "Session expired. Please reload the page."
+msgstr "انتهت صلاحية الجلسة. يرجى إعادة تحميل الصفحة."
+
+msgid "Can't reach the server, retrying…"
+msgstr "لا يمكن الوصول إلى الخادم، جارٍ إعادة المحاولة..."
+
+msgid "Unread"
+msgstr "غير مقروءة"
+
+msgid "Assigned to me"
+msgstr "المخصصة لي"
+
+msgid "Unassigned"
+msgstr "غير معين"
+
+msgid "Organization"
+msgstr "التنظيم"
+
+msgid "Invalid address."
+msgstr "عنوان غير صالح."
+
+msgid "donated for"
+msgstr "تبرعت ل"
+
+msgid "No new messages to summarize."
+msgstr "لا توجد رسائل جديدة لتلخيصها."
+
+msgid "The AI summary could not be read."
+msgstr "تعذرت قراءة ملخص الذكاء الاصطناعي."
+
+msgid "%1$d incoming messages summarized, %2$d items written."
+msgstr "تلخيص الرسائل الواردة%1$d، وكتابة عناصر%2$d."
+
+msgid "Key and value are required."
+msgstr "المفتاح والقيمة مطلوبة."
+
+msgid "AI Chat"
+msgstr "دردشة الذكاء الاصطناعي"
+
+msgid "Team (%s)"
+msgstr "فريق (%s)"
+
+msgid "Team (phone)"
+msgstr "الفريق (الهاتف)"
+
+msgid "Free"
+msgstr "مجاني"
+
+msgid "Provider"
+msgstr "مزود"
+
+msgid "min"
+msgstr "دقيقة"
+
+msgid "max"
+msgstr "ماكس"
+
+msgid "Input price $"
+msgstr "سعر الإدخال $"
+
+msgid "Clear"
+msgstr "واضح"
+
+msgid "Price: 1M tokens input / output"
+msgstr "السعر: 1 مليون رمز الإدخال/الإخراج"
+
+msgid "Choose a model"
+msgstr "اختر نموذجًا"
+
+msgid "Search {n} models…"
+msgstr "ابحث عن موديلات{n}..."
+
+msgid "Default"
+msgstr "الافتراضي"
+
+msgid "{n} context"
+msgstr "سياق{n}"
+
+msgid "tools"
+msgstr "أدوات"
+
+msgid "vision"
+msgstr "الرؤية"
+
+msgid "{n} more models; narrow your search."
+msgstr "{n}المزيد من النماذج؛ تضييق نطاق البحث."
+
+msgid "Use: {id}"
+msgstr "الاستخدام:{id}"
+
+msgid "Not in the list, ID entered manually"
+msgstr "ليس في القائمة، أدخلت الهوية يدويا"
+
+msgid "Could not load the model list:"
+msgstr "لا يمكن تحميل قائمة النماذج:"
+
+msgid "No matching model."
+msgstr "لا يوجد نموذج مطابق."
+
+msgid "Loading models…"
+msgstr "جارٍ تحميل النماذج..."
+
+msgid "AI pre-check"
+msgstr "فحص مسبق بالذكاء الاصطناعي"
+
+msgid "AI approval"
+msgstr "موافقة منظمة العفو الدولية"
+
+msgid "Receipt pre-check (AI): "
+msgstr "فحص الاستلام المسبق (AI):"
+
+msgid "Awaiting staff approval"
+msgstr "في انتظار موافقة الموظفين"
+
+msgid "Receipt received, final check by the team"
+msgstr "تم استلام الإيصال والفحص النهائي من قبل الفريق"
+
+msgid "File could not be read."
+msgstr "لا يمكن قراءة الملف."
+
+msgid "Not a photo or PDF."
+msgstr "ليست صورة أو PDF."
+
+msgid "The model could not read the file."
+msgstr "لم يتمكن النموذج من قراءة الملف."
+
+msgid "Amount %1$s (expected %2$s)"
+msgstr "المبلغ%1$s(المتوقع%2$s)"
+
+msgid "Recipient"
+msgstr "المستلم"
+
+msgid "Sender"
+msgstr "المرسل"
+
+msgid "Receipt no"
+msgstr "رقم الاستلام"
+
+msgid "Matches the donation"
+msgstr "يتوافق مع التبرع"
+
+msgid "Does not match the donation"
+msgstr "لا يتناسب مع التبرع"
+
+msgid "Previously uploaded receipt"
+msgstr "الإيصال الذي تم تحميله مسبقًا"
+
+msgid "Receipt, no donation to match"
+msgstr "استلام، لا يوجد تبرع للمطابقة"
+
+msgid "Not a receipt"
+msgstr "ليس إيصالا"
+
+msgid "Could not read"
+msgstr "لا يمكن القراءة"
+
+msgid "Not checked"
+msgstr "لم يتم التحقق منها"
+
+msgid "We received your receipt, thank you 🌱 We'll get back to you about your payment as soon as possible."
+msgstr "لقد استلمنا إيصالك، شكرًا لك 🌱 سنرد عليك بخصوص دفعتك في أقرب وقت ممكن."
+
+msgid "We received your receipt, thank you 🌱 Your donation is confirmed."
+msgstr "لقد استلمنا إيصالك، شكرًا لك 🌱 تم تأكيد تبرعك."
+
+msgid "We had already received this receipt, thank you 🌱 We'll get back to you about your payment as soon as possible."
+msgstr "لقد تلقينا هذا الإيصال بالفعل، شكرًا لك 🌱 سنرد عليك بشأن دفعتك في أقرب وقت ممكن."
+
+msgid "This receipt seems to have been uploaded to our system before. The same receipt cannot be used for a second donation. If you made a different payment, please send that receipt; our team will also check."
+msgstr "يبدو أن هذا الإيصال قد تم تحميله إلى نظامنا من قبل. لا يمكن استخدام نفس الإيصال للتبرع الثاني. إذا قمت بإجراء دفعة مختلفة، يرجى إرسال هذا الإيصال؛ سيقوم فريقنا أيضًا بالتحقق."
+
+msgid "We received your receipt. The amount on it (%1$s) does not seem to match your donation amount (%2$s). Could you check it? If you made a different payment, you can write here; our team will also take a look."
+msgstr "لقد تلقينا إيصالك. يبدو أن المبلغ الموجود عليه (%1$s) لا يتطابق مع مبلغ تبرعك (%2$s). هل يمكنك التحقق من ذلك؟ إذا قمت بإجراء دفعة مختلفة، يمكنك الكتابة هنا؛ سوف يقوم فريقنا أيضًا بإلقاء نظرة."
+
+msgid "We received your receipt, but the recipient on it does not seem to be our association. Donations are only made to our account in the name of \"%s\". Could you check? Our team will also take a look."
+msgstr "لقد استلمنا إيصالك، ولكن لا يبدو أن المستلم هو مؤسستنا. التبرعات تتم فقط لحسابنا بإسم \"%s\". هل يمكنك التحقق؟ سوف يقوم فريقنا أيضًا بإلقاء نظرة."
+
+msgid "We received your receipt, but the recipient on it does not seem to match our account. Could you check? Our team will also take a look."
+msgstr "لقد تلقينا إيصالك، ولكن يبدو أن المستلم الموجود عليه لا يتطابق مع حسابنا. هل يمكنك التحقق؟ سوف يقوم فريقنا أيضًا بإلقاء نظرة."
+
+msgid "The file you sent does not look like a payment receipt. If you have paid, you can send the receipt or a screenshot of the payment screen here."
+msgstr "الملف الذي أرسلته لا يبدو كإيصال الدفع. إذا قمت بالدفع، يمكنك إرسال الإيصال أو لقطة شاشة لشاشة الدفع هنا."
+
+msgid "Every day"
+msgstr "كل يوم"
+
+msgid "Every week"
+msgstr "كل أسبوع"
+
+msgid "Every month"
+msgstr "كل شهر"
+
+msgid "Every year"
+msgstr "كل عام"
+
+msgid "Once"
+msgstr "مرة واحدة"
+
+msgid "Every day at %s"
+msgstr "كل يوم في%s"
+
+msgid "Every week on %1$s at %2$s"
+msgstr "كل أسبوع على%1$sفي%2$s"
+
+msgid "Every month on day %1$d at %2$s"
+msgstr "كل شهر في يوم%1$dفي%2$s"
+
+msgid "Every year on %1$s at %2$s"
+msgstr "كل عام على%1$sفي%2$s"
+
+msgid "%1$s: %2$s"
+msgstr "%1$s:%2$s"
+
+msgid "First: %s"
+msgstr "أولاً:%s"
+
+msgid "The person stopped the reminder: %s"
+msgstr "أوقف الشخص التذكير:%s"
+
+msgid "The assistant set a reminder: %1$s (%2$s)"
+msgstr "قام المساعد بتعيين تذكير:%1$s(%2$s)"
+
+msgid "Did not run on time, skipped."
+msgstr "لم تعمل في الوقت المحدد، تخطي."
+
+msgid "No reminder or chat."
+msgstr "لا يوجد تذكير أو دردشة."
+
+msgid "The person is on the blocklist."
+msgstr "الشخص موجود في القائمة المحظورة."
+
+msgid "reminder time"
+msgstr "وقت التذكير"
+
+msgid "The message could not be sent."
+msgstr "لا يمكن إرسال الرسالة."
+
+msgid "Reminder sent: %s"
+msgstr "تم إرسال التذكير:%s"
+
+msgid "The reminder could not be updated."
+msgstr "لا يمكن تحديث التذكير."
+
+msgid "Staff daily report"
+msgstr "التقرير اليومي للموظفين"
+
+msgid "Thanks for your work today, every sapling is a hope 🌱"
+msgstr "شكرًا لعملكم اليوم، كل غرسة هي أمل 🌱"
+
+msgid "Let's plant even more saplings together tomorrow 💪"
+msgstr "دعونا نزرع المزيد من الشتلات معًا غدًا 💪"
+
+msgid "Small steps grow great forests 🌳"
+msgstr "خطوات صغيرة تنمو غابات عظيمة 🌳"
+
+msgid "Manager weekly overall report"
+msgstr "التقرير الشامل للمدير الأسبوعي"
+
+msgid "This month"
+msgstr "هذا الشهر"
+
+msgid "Donation report"
+msgstr "تقرير التبرع"
+
+msgid "Hello %s,"
+msgstr "مرحبًا%s،"
+
+msgid "✅ Paid: %1$d donations · %2$s (%3$d units)"
+msgstr "✅ المدفوعة: تبرعات%1$d·%2$s(وحدات%3$d)"
+
+msgid "⏳ Awaiting payment: %1$d · %2$s"
+msgstr "⏳ في انتظار الدفع:%1$d·%2$s"
+
+msgid "❌ Cancelled: %d"
+msgstr "❌ تم الإلغاء:%d"
+
+msgid "• %1$s: %2$d paid (%3$s), %4$d pending"
+msgstr "•%1$s:%2$dمدفوع (%3$s)،%4$dمعلق"
+
+msgid "Staff"
+msgstr "الموظفين"
+
+msgid "No donations linked to you in this period."
+msgstr "لا توجد تبرعات مرتبطة بك في هذه الفترة."
+
+msgid "📅 This month: %1$d donations · %2$s"
+msgstr "📅 هذا الشهر: تبرعات%1$d·%2$s"
+
+msgid "WhatsApp reports"
+msgstr "تقارير واتس اب"
+
+msgid "Reports"
+msgstr "التقارير"
+
+msgid "New report"
+msgstr "تقرير جديد"
+
+msgid "Your profile has no WhatsApp number (Users › Profile)."
+msgstr "لا يحتوي ملفك الشخصي على رقم WhatsApp (المستخدمون › الملف الشخصي)."
+
+msgid "Scheduled donation reports for staff and managers; a short motivational line can be added at the end."
+msgstr "تقارير التبرعات المجدولة للموظفين والمديرين؛ ويمكن إضافة سطر تحفيزي قصير في النهاية."
+
+msgid "Saved."
+msgstr "تم الحفظ."
+
+msgid "%d messages sent."
+msgstr "تم إرسال رسائل%d."
+
+msgid "Reports need Flux Roles 1.1.0 and Flux Donations."
+msgstr "تحتاج التقارير إلى Flux أدوار 1.1.0 وتبرعات Flux."
+
+msgid "Report name"
+msgstr "اسم التقرير"
+
+msgid "To"
+msgstr "ل"
+
+msgid "Everyone who can receive reports"
+msgstr "كل من يستطيع تلقي التقارير"
+
+msgid "Those who can see the overall report (managers)"
+msgstr "أولئك الذين يمكنهم رؤية التقرير الشامل (المديرين)"
+
+msgid "Selected people"
+msgstr "الأشخاص المختارون"
+
+msgid "Content"
+msgstr "المحتوى"
+
+msgid "The person's own donations"
+msgstr "تبرعات الشخص الخاصة"
+
+msgid "Overall totals + per staff"
+msgstr "الإجمالي الإجمالي + لكل موظف"
+
+msgid "Period"
+msgstr "الفترة"
+
+msgid "Frequency"
+msgstr "التردد"
+
+msgid "Day of week"
+msgstr "يوم من الأسبوع"
+
+msgid "Day of month"
+msgstr "يوم من الشهر"
+
+msgid "Time"
+msgstr "الوقت"
+
+msgid "no number"
+msgstr "لا يوجد رقم"
+
+msgid "Motivational lines (one per line; one is added at random to each report)"
+msgstr "خطوط تحفيزية (واحد في كل سطر، ويتم إضافة واحد عشوائيًا إلى كل تقرير)"
+
+msgid "%d recipients (with a registered number and permission)."
+msgstr "مستلمو%d(برقم مسجل وإذن)."
+
+msgid "Last sent: %s."
+msgstr "آخر إرسال:%s."
+
+msgid "Preview (for you)"
+msgstr "المعاينة (لك)"
+
+msgid "Send me a test"
+msgstr "أرسل لي اختبارا"
+
+msgid "Send the report to all recipients now?"
+msgstr "هل تريد إرسال التقرير إلى كافة المستلمين الآن؟"
+
+msgid "Send to everyone now"
+msgstr "أرسل للجميع الآن"
+
+msgid "Delete this report?"
+msgstr "هل تريد حذف هذا التقرير؟"
+
+msgid "+ New report"
+msgstr "+ تقرير جديد"
+
+msgid "The recipient's number comes from Users › Profile › WhatsApp number; permissions from Users › Roles and access (receive reports, view overall report, manage reports). Reports go out at the chosen time; without a server scheduler they are sent on the next site visit or chat panel use."
+msgstr "يأتي رقم المستلم من المستخدمين › الملف الشخصي › رقم WhatsApp؛ الأذونات من المستخدمين › الأدوار والوصول (تلقي التقارير وعرض التقرير الشامل وإدارة التقارير). التقارير تخرج في الوقت المختار؛ بدون جدولة الخادم، يتم إرسالها عند زيارة الموقع التالية أو استخدام لوحة الدردشة."
+
+msgid "Invalid phone number."
+msgstr "رقم الهاتف غير صالح."
+
+msgid "First add a WhatsApp connection under Settings › Connections."
+msgstr "قم أولاً بإضافة اتصال WhatsApp ضمن الإعدادات › الاتصالات."
+
+msgid "%1$s assigned the chat to %2$s"
+msgstr "قام%1$sبتعيين الدردشة إلى%2$s"
+
+msgid "%s removed the chat assignment"
+msgstr "قام%sبإزالة مهمة الدردشة"
+
+msgid "%s closed the chat"
+msgstr "أغلق%sالدردشة"
+
+msgid "%s reopened the chat"
+msgstr "أعاد%sفتح الدردشة"
+
+msgid "File is too large (max %s)."
+msgstr "الملف كبير جدًا (الحد الأقصى لـ%s)."
+
+msgid "This file type cannot be sent."
+msgstr "لا يمكن إرسال هذا النوع من الملفات."
+
+msgid "File could not be uploaded."
+msgstr "لا يمكن تحميل الملف."
+
+msgid "This message cannot be resent."
+msgstr "لا يمكن إعادة إرسال هذه الرسالة."
+
+msgid "Can't react to this message."
+msgstr "لا يمكن الرد على هذه الرسالة."
+
+msgid "You can only delete your own notes."
+msgstr "يمكنك فقط حذف الملاحظات الخاصة بك."
+
+msgid "Reply text cannot be empty."
+msgstr "لا يمكن أن يكون نص الرد فارغًا."
+
+msgid "Connection not found. Save the settings first."
+msgstr "لم يتم العثور على الاتصال. احفظ الإعدادات أولاً."
+
+msgid "The message was only image code; it was not sent."
+msgstr "وكانت الرسالة عبارة عن رمز صورة فقط؛ لم يتم إرساله."
+
+msgid "This contact is blocklisted; no messages are sent. Remove them from the blocklist to write again."
+msgstr "تم إدراج جهة الاتصال هذه في القائمة المحظورة؛ يتم إرسال أية رسائل. قم بإزالتهم من قائمة الحظر للكتابة مرة أخرى."
+
+msgid "Message could not be saved."
+msgstr "لا يمكن حفظ الرسالة."
+
+msgid "This contact writes from a hidden WhatsApp number (@lid) and Evolution API (version %s) could not send to this address. Update the Evolution API server to 2.3 or later; if the contact's real number arrives, the plugin sends there."
+msgstr "تكتب جهة الاتصال هذه من رقم WhatsApp مخفي (@lid) ولا يمكن إرسال Evolution API (الإصدار%s) إلى هذا العنوان. قم بتحديث خادم Evolution API إلى الإصدار 2.3 أو الأحدث؛ إذا وصل الرقم الحقيقي لجهة الاتصال، يرسل البرنامج المساعد هناك."
+
+msgid "This contact writes from a hidden WhatsApp number (@lid) and Evolution API could not send to this address. Update the Evolution API server to 2.3 or later; if the contact's real number arrives, the plugin sends there."
+msgstr "تكتب جهة الاتصال هذه من رقم WhatsApp مخفي (@lid) ولا يمكن لـ Evolution API الإرسال إلى هذا العنوان. قم بتحديث خادم Evolution API إلى الإصدار 2.3 أو الأحدث؛ إذا وصل الرقم الحقيقي لجهة الاتصال، يرسل البرنامج المساعد هناك."
+
+msgid "No WhatsApp connection."
+msgstr "لا يوجد اتصال واتس اب."
+
+msgid "Connected ✓"
+msgstr "متصل ✓"
+
+msgid "Not connected (state: %s). Connect with QR."
+msgstr "غير متصل (الحالة:%s). تواصل مع QR."
+
+msgid "Webhook points to this site ✓"
+msgstr "يشير Webhook إلى هذا الموقع ✓"
+
+msgid "Evolution API version: %s"
+msgstr "إصدار واجهة برمجة تطبيقات التطور:%s"
+
+msgid "(old: replies to hidden-number (@lid) contacts may fail, update to 2.3 or later)"
+msgstr "(قديم: قد تفشل الردود على جهات الاتصال ذات الرقم المخفي (@lid)، قم بالتحديث إلى الإصدار 2.3 أو الأحدث)"
+
+msgid "The webhook is not pointed at this site. Press \"Set up webhook\"."
+msgstr "لم يتم توجيه خطاف الويب إلى هذا الموقع. اضغط على \"إعداد خطاف الويب\"."
+
+msgid "Webhook set up ✓ Incoming messages will now arrive here."
+msgstr "تم إعداد Webhook ✓ ستصل الرسائل الواردة هنا الآن."
+
+msgid "Importing recent chats, this may take a while…"
+msgstr "جارٍ استيراد الدردشات الأخيرة، قد يستغرق ذلك بعض الوقت..."
+
+msgid "Messages stored in Evolution: %s"
+msgstr "الرسائل المخزنة في Evolution:%s"
+
+msgid "Evolution does not store messages, so older messages cannot be loaded. On the Evolution server set DATABASE_SAVE_DATA_NEW_MESSAGE and DATABASE_SAVE_DATA_HISTORIC to true; for older conversations, keep \"Sync full history\" on in the instance settings when you reconnect the line with QR."
+msgstr "لا يقوم Evolution بتخزين الرسائل، لذا لا يمكن تحميل الرسائل الأقدم. على خادم Evolution، قم بتعيين DATABASE_SAVE_DATA_NEW_MESSAGE وDATABASE_SAVE_DATA_HISTORIC على true؛ بالنسبة للمحادثات القديمة، احتفظ بميزة \"مزامنة السجل الكامل\" في إعدادات المثيل عند إعادة توصيل الخط باستخدام QR."
+
+msgid "%1$s chats, %2$s messages imported ✓"
+msgstr "دردشات%1$s، استيراد رسائل%2$s✓"
+
+msgid "Scan this code via WhatsApp › Linked devices › Link a device."
+msgstr "امسح هذا الرمز ضوئيًا عبر WhatsApp › الأجهزة المرتبطة › ربط جهاز."
+
+msgid "Pairing code:"
+msgstr "رمز الاقتران:"
+
+msgid "This line is already connected ✓"
+msgstr "هذا الخط متصل بالفعل ✓"
+
+msgid "Save the settings first."
+msgstr "احفظ الإعدادات أولاً."
+
+msgid "Error:"
+msgstr "خطأ:"
+
+msgid "Delete this connection? Chat history is kept."
+msgstr "هل تريد حذف هذا الاتصال؟ يتم الاحتفاظ بسجل الدردشة."
+
+msgid "Asking the AI…"
+msgstr "سؤال للذكاء الاصطناعي..."
+
+msgid "Working ✓ (%2$s ms): %1$s"
+msgstr "العمل ✓ (%2$sمللي ثانية):%1$s"
+
+msgid "Save the key and model first."
+msgstr "احفظ المفتاح والطراز أولاً."
+
+msgid "Connections"
+msgstr "اتصالات"
+
+msgid "Auto replies"
+msgstr "الردود التلقائية"
+
+msgid "AI and assistant"
+msgstr "منظمة العفو الدولية ومساعده"
+
+msgid "System check"
+msgstr "فحص النظام"
+
+msgid "Connect your WhatsApp line, manage auto replies and labels."
+msgstr "قم بتوصيل خط WhatsApp الخاص بك، وإدارة الردود التلقائية والتسميات."
+
+msgid "Open chats"
+msgstr "فتح الدردشات"
+
+msgid "Settings saved."
+msgstr "تم حفظ الإعدادات."
+
+msgid "Connections and settings the call center needs. Saved status is shown; use the \"test\" buttons on each tab for a live check. The same checks also appear with the other plugins on the theme's system-check screen."
+msgstr "الاتصالات والإعدادات التي يحتاجها مركز الاتصال. تظهر الحالة المحفوظة. استخدم أزرار \"الاختبار\" في كل علامة تبويب لإجراء فحص مباشر. تظهر نفس عمليات التحقق أيضًا مع المكونات الإضافية الأخرى على شاشة فحص النظام الخاصة بالقالب."
+
+msgid "WhatsApp lines"
+msgstr "خطوط واتس اب"
+
+msgid "Messages are sent and received through Evolution API. WhatsApp connections are managed in Flux Mail; choose which one to use here. The URL and API key stay there, so you do not need to update them here when they change."
+msgstr "يتم إرسال الرسائل واستلامها من خلال Evolution API. تتم إدارة اتصالات WhatsApp في Flux Mail؛ اختر أي واحد لاستخدامه هنا. يظل عنوان URL ومفتاح واجهة برمجة التطبيقات هناك، لذا لا تحتاج إلى تحديثهما هنا عند تغييرهما."
+
+msgid "Communication › Connections"
+msgstr "الاتصالات › اتصالات"
+
+msgid "Messages are sent and received via Evolution API. If an Evolution provider is set up in Flux Certificates, you can pick the same connection; the URL and API key stay there."
+msgstr "يتم إرسال الرسائل واستلامها عبر Evolution API. إذا تم إعداد موفر التطور في شهادات Flux، فيمكنك اختيار نفس الاتصال؛ يبقى عنوان URL ومفتاح واجهة برمجة التطبيقات هناك."
+
+msgid "Add line"
+msgstr "إضافة خط"
+
+msgid "Setup steps"
+msgstr "خطوات الإعداد"
+
+msgid "Add the line and save."
+msgstr "أضف السطر واحفظه."
+
+msgid "Use \"Test connection\" to see that Evolution is reachable. If the line is not linked, choose \"Connect with QR\" and scan it from the phone."
+msgstr "استخدم \"اختبار الاتصال\" لمعرفة إمكانية الوصول إلى Evolution. إذا لم يكن الخط مرتبطًا، فاختر \"الاتصال باستخدام QR\" وقم بمسحه ضوئيًا من الهاتف."
+
+msgid "Press \"Set up webhook\". Incoming messages, and messages sent from the phone and from Flux Certificates, then appear here live."
+msgstr "اضغط على \"إعداد خطاف الويب\". تظهر الرسائل الواردة والرسائل المرسلة من الهاتف ومن شهادات Flux هنا مباشرة."
+
+msgid "Optionally bring in past messages with \"Import recent chats\"."
+msgstr "قم بإحضار الرسائل السابقة بشكل اختياري من خلال \"استيراد الدردشات الأخيرة\"."
+
+msgid "connected"
+msgstr "متصل"
+
+msgid "connecting"
+msgstr "ربط"
+
+msgid "not connected"
+msgstr "غير متصل"
+
+msgid "not on server"
+msgstr "ليس على الخادم"
+
+msgid "unreachable"
+msgstr "لا يمكن الوصول إليه"
+
+msgid "Flux Mail connection: %s"
+msgstr "اتصال البريد الجريان:%s"
+
+msgid "Flux Mail connection #%d (not found or disabled)"
+msgstr "اتصال Flux Mail #%d(غير موجود أو معطل)"
+
+msgid "Use Flux Certificates provider: %s"
+msgstr "استخدم موفر شهادات التدفق:%s"
+
+msgid "Enter separate Evolution API details"
+msgstr "أدخل تفاصيل Evolution API المنفصلة"
+
+msgid "Line name (e.g. Main line)"
+msgstr "اسم الخط (على سبيل المثال الخط الرئيسي)"
+
+msgid "Connection details"
+msgstr "تفاصيل الاتصال"
+
+msgid "API URL"
+msgstr "عنوان URL لواجهة برمجة التطبيقات"
+
+msgid "Instance name"
+msgstr "اسم المثيل"
+
+msgid "API key (apikey)"
+msgstr "مفتاح واجهة برمجة التطبيقات (apikey)"
+
+msgid "•••••••• (saved; type to change)"
+msgstr "•••••••• (تم الحفظ؛ اكتب للتغيير)"
+
+msgid "Webhook URL"
+msgstr "عنوان URL للويب هوك"
+
+msgid "Regenerate secret key"
+msgstr "إعادة إنشاء المفتاح السري"
+
+msgid "Last webhook: %s"
+msgstr "آخر خطاف ويب:%s"
+
+msgid "No webhook received yet."
+msgstr "لم يتم استلام الرد التلقائي على الويب حتى الآن."
+
+msgid "Test connection"
+msgstr "اتصال الاختبار"
+
+msgid "Connect with QR"
+msgstr "تواصل مع QR"
+
+msgid "QR, status and accounts: Communication › Connections"
+msgstr "QR والحالة والحسابات: الاتصالات › الاتصالات"
+
+msgid "Set up webhook"
+msgstr "قم بإعداد خطاف الويب"
+
+msgid "Import recent chats"
+msgstr "استيراد الدردشات الأخيرة"
+
+msgid "The webhook URL and test buttons appear after saving."
+msgstr "يظهر عنوان URL للخطاف على الويب وأزرار الاختبار بعد الحفظ."
+
+msgid "Appearance"
+msgstr "المظهر"
+
+msgid "Panel title"
+msgstr "عنوان اللوحة"
+
+msgid "Site name if empty. The {brand} variable uses this too."
+msgstr "اسم الموقع إذا كان فارغا. يستخدم المتغير{brand}هذا أيضًا."
+
+msgid "Accent color"
+msgstr "لون مميز"
+
+msgid "Behavior"
+msgstr "السلوك"
+
+msgid "Send read receipts (blue ticks) when a chat is opened"
+msgstr "إرسال إيصالات القراءة (علامات التجزئة الزرقاء) عند فتح الدردشة"
+
+msgid "Prefix messages with the agent's name (*Name:*)"
+msgstr "الرسائل البادئة باسم الوكيل (*الاسم:*)"
+
+msgid "Agents see only chats assigned to them and unassigned chats (admins see all)"
+msgstr "يرى الوكلاء فقط الدردشات المخصصة لهم والمحادثات غير المخصصة (يرى المسؤولون الكل)"
+
+msgid "Also show WhatsApp group messages"
+msgstr "إظهار أيضًا رسائل مجموعة WhatsApp"
+
+msgid "New interface (experimental): the Chats page opens with the same screen as the desktop and mobile app"
+msgstr "الواجهة الجديدة (تجريبية): تفتح صفحة الدردشات بنفس شاشة تطبيق سطح المكتب والهاتف المحمول"
+
+msgid "Live update interval (sec)"
+msgstr "الفاصل الزمني للتحديث المباشر (ثانية)"
+
+msgid "The open tab checks for new messages at this interval (10 recommended). In a background tab it checks once a minute, and less often after errors."
+msgstr "تقوم علامة التبويب المفتوحة بالتحقق من الرسائل الجديدة في هذه الفترة (يوصى بـ 10 رسائل). في علامة تبويب الخلفية، يتم التحقق مرة واحدة في الدقيقة، وبشكل أقل بعد الأخطاء."
+
+msgid "Agents"
+msgstr "الوكلاء"
+
+msgid "Give a user the %s role; they see only the chat screen and cannot open settings. Administrators always have access."
+msgstr "منح المستخدم دور%s؛ لا يرون سوى شاشة الدردشة ولا يمكنهم فتح الإعدادات. يتمتع المسؤولون دائمًا بإمكانية الوصول."
+
+msgid "Add new user"
+msgstr "إضافة مستخدم جديد"
+
+msgid "Data"
+msgstr "البيانات"
+
+msgid "Also delete all chats, messages and media files when the plugin is deleted"
+msgstr "احذف أيضًا جميع الدردشات والرسائل وملفات الوسائط عند حذف المكون الإضافي"
+
+msgid "Media files are kept in wp-content/uploads/flx-chat, closed to outside access. They move with uploads when the site is migrated."
+msgstr "يتم حفظ ملفات الوسائط في wp-content/uploads/flx-chat، ومغلقة أمام الوصول الخارجي. وهي تتحرك مع التحميلات عند ترحيل الموقع."
+
+msgid "Mon"
+msgstr "الاثنين"
+
+msgid "Tue"
+msgstr "الثلاثاء"
+
+msgid "Wed"
+msgstr "الأربعاء"
+
+msgid "Thu"
+msgstr "الخميس"
+
+msgid "Fri"
+msgstr "الجمعة"
+
+msgid "Sat"
+msgstr "جلس"
+
+msgid "Sun"
+msgstr "الشمس"
+
+msgid "Welcome message"
+msgstr "رسالة ترحيب"
+
+msgid "Send automatically to people who write to us for the first time"
+msgstr "أرسل تلقائيًا إلى الأشخاص الذين يكتبون إلينا لأول مرة"
+
+msgid "Away message"
+msgstr "رسالة بعيدا"
+
+msgid "Auto reply to messages received outside business hours"
+msgstr "الرد التلقائي على الرسائل المستلمة خارج ساعات العمل"
+
+msgid "Business days"
+msgstr "أيام العمل"
+
+msgid "Start"
+msgstr "ابدأ"
+
+msgid "End"
+msgstr "نهاية"
+
+msgid "At most once per contact every (hours)"
+msgstr "مرة واحدة على الأكثر لكل جهة اتصال كل (ساعات)"
+
+msgid "Timezone: %1$s. Now: %2$s."
+msgstr "المنطقة الزمنية:%1$s. الآن:%2$s."
+
+msgid "within business hours"
+msgstr "خلال ساعات العمل"
+
+msgid "outside business hours"
+msgstr "خارج ساعات العمل"
+
+msgid "The {first_name}, {name}, {brand}, {site}, {date} variables can be used in the texts."
+msgstr "يمكن استخدام متغيرات{first_name}و{name}و{brand}و{site}و{date}في النصوص."
+
+msgid "Chat labels"
+msgstr "تسميات الدردشة"
+
+msgid "Label chats and filter the list (e.g. Donation, Complaint, Follow-up)."
+msgstr "قم بتسمية الدردشات وتصفية القائمة (مثل التبرع والشكوى والمتابعة)."
+
+msgid "Add label"
+msgstr "إضافة تسمية"
+
+msgid "Label name"
+msgstr "اسم التسمية"
+
+msgid "Creating records from chats"
+msgstr "إنشاء سجلات من الدردشات"
+
+msgid "Buttons in the chat header create a donation record (Flux Donate) and a certificate (Flux Certificates), and an incoming receipt is matched with a record. If a plugin is not installed, its button is hidden."
+msgstr "تقوم الأزرار الموجودة في رأس الدردشة بإنشاء سجل تبرع (Flux Donate) وشهادة (Flux Certifieds)، وتتم مطابقة الإيصال الوارد مع السجل. إذا لم يتم تثبيت البرنامج الإضافي، فسيتم إخفاء الزر الخاص به."
+
+msgid "Agents can create donation records and match receipts"
+msgstr "يمكن للوكلاء إنشاء سجلات التبرعات ومطابقة الإيصالات"
+
+msgid "Agents can create and send certificates"
+msgstr "يمكن للوكلاء إنشاء وإرسال الشهادات"
+
+msgid "Show quick reply bubbles above the message box"
+msgstr "إظهار فقاعات الرد السريع أعلى مربع الرسالة"
+
+msgid "Donation messages"
+msgstr "رسائل التبرع"
+
+msgid "Ready texts sent to the person when a record is created (editable before sending). If left empty, the default text is used."
+msgstr "النصوص الجاهزة تُرسل إلى الشخص عند إنشاء سجل (قابلة للتحرير قبل الإرسال). إذا تركت فارغة، يتم استخدام النص الافتراضي."
+
+msgid "Awaiting payment (promised transfer)"
+msgstr "في انتظار الدفع (التحويل الموعود)"
+
+msgid "Donation received"
+msgstr "تم استلام التبرع"
+
+msgid "Receipt confirmed"
+msgstr "تم تأكيد الاستلام"
+
+msgid "Bank details ({bank})"
+msgstr "تفاصيل البنك ({bank})"
+
+msgid "Recipient name, bank, IBAN"
+msgstr "اسم المستلم، البنك، رقم IBAN"
+
+msgid "If empty, the account in WooCommerce › Payments › Bank transfer is used."
+msgstr "إذا كان فارغًا، فسيتم استخدام الحساب في WooCommerce › المدفوعات › التحويل البنكي."
+
+msgid "Variables: {first_name}, {name}, {donation}, {amount}, {quantity}, {bank}, {certificate_link}, {agent}, {brand}, {date}."
+msgstr "المتغيرات:{first_name},{name},{donation},{amount},{quantity},{bank},{certificate_link},{agent},{brand},{date}."
+
+msgid "AI connection"
+msgstr "اتصال الذكاء الاصطناعي"
+
+msgid "Keys, prompt caching, spending limits and usage logs come from the Flux AI & MCP plugin; all of the Call Center's AI requests go through it. Model choices stay here; if a field is empty, the model chosen for this plugin in Flux AI (or the default) is used."
+msgstr "تأتي المفاتيح والتخزين المؤقت السريع وحدود الإنفاق وسجلات الاستخدام من البرنامج الإضافي Flux AI & MCP؛ تمر جميع طلبات الذكاء الاصطناعي الخاصة بمركز الاتصال من خلاله. تبقى خيارات النماذج هنا؛ إذا كان الحقل فارغًا، فسيتم استخدام النموذج المختار لهذا البرنامج المساعد في Flux AI (أو الافتراضي)."
+
+msgid "Open Flux AI settings"
+msgstr "افتح إعدادات Flux AI"
+
+msgid "AI needs the Flux AI & MCP plugin. Install and activate it, then enter the OpenRouter and/or Anthropic key in Flux AI & MCP › Settings. Until then suggestions, the assistant, receipt reading, voice messages and summaries are off."
+msgstr "يحتاج الذكاء الاصطناعي إلى البرنامج المساعد Flux AI & MCP. قم بتثبيته وتنشيطه، ثم أدخل مفتاح OpenRouter و/أو Anthropic في إعدادات Flux AI & MCP. حتى ذلك الحين، يتم إيقاف الاقتراحات والمساعد وقراءة الإيصالات والرسائل الصوتية والملخصات."
+
+msgid "Creativity (0–1)"
+msgstr "الإبداع (0-1)"
+
+msgid "Lower values give more consistent replies, higher values freer ones. 0.4 recommended."
+msgstr "تعطي القيم المنخفضة ردودًا أكثر اتساقًا، بينما توفر القيم الأعلى إجابات أكثر حرية. 0.4 الموصى بها."
+
+msgid "Model (for suggestions)"
+msgstr "النموذج (للإقتراحات)"
+
+msgid "Assistant model (optional)"
+msgstr "نموذج مساعد (اختياري)"
+
+msgid "Model above"
+msgstr "النموذج أعلاه"
+
+msgid "Only models that support tools are listed."
+msgstr "يتم سرد النماذج التي تدعم الأدوات فقط."
+
+msgid "Receipt reading model (optional)"
+msgstr "نموذج قراءة الإيصال (اختياري)"
+
+msgid "If the selected model cannot read images, a cheap vision model is used automatically."
+msgstr "إذا لم يتمكن النموذج المحدد من قراءة الصور، فسيتم استخدام نموذج رؤية رخيص تلقائيًا."
+
+msgid "This month (%1$s): %2$s requests, %3$s tokens, about $%4$s."
+msgstr "هذا الشهر (%1$s): طلبات%2$s، رموز%3$s، حوالي%4$sدولار."
+
+msgid "Reply suggestions"
+msgstr "الرد على الاقتراحات"
+
+msgid "Above the message box, the next message is suggested from the conversation. The agent clicks \"Send\" or takes it into the box with \"Edit\". A suggestion is never sent on its own."
+msgstr "أعلى مربع الرسالة، يتم اقتراح الرسالة التالية من المحادثة. ينقر الوكيل على \"إرسال\" أو يأخذه إلى المربع باستخدام \"تحرير\". لا يتم إرسال الاقتراح من تلقاء نفسه أبدًا."
+
+msgid "Prepare a suggestion automatically when the last message came from the person (if off, ask with the ✨ button)"
+msgstr "قم بإعداد اقتراح تلقائيًا عند وصول آخر رسالة من الشخص (إذا كان متوقفًا، اسأل باستخدام الزر ✨)"
+
+msgid "Organization info and tone"
+msgstr "معلومات المنظمة والنبرة"
+
+msgid "E.g. Our association plants saplings in Istanbul. Planting is done every year between November and March. The certificate is sent on WhatsApp after the donation. Use a warm but formal tone."
+msgstr "على سبيل المثال جمعيتنا تزرع شتلات في اسطنبول. تتم الزراعة كل عام بين نوفمبر ومارس. يتم إرسال الشهادة على الواتساب بعد التبرع. استخدم لهجة دافئة ولكن رسمية."
+
+msgid "Suggestions and the assistant use this. Donation types, prices, bank details and quick replies are added automatically."
+msgstr "الاقتراحات والمساعد يستخدم هذا. تتم إضافة أنواع التبرعات والأسعار والتفاصيل المصرفية والردود السريعة تلقائيًا."
+
+msgid "Suggestion provider"
+msgstr "مزود الاقتراح"
+
+msgid "Donation assistant (automatic replies)"
+msgstr "مساعد التبرعات (الردود التلقائية)"
+
+msgid "When on, the assistant replies itself: it greets, asks the name to address them, sends donation options and prices, optionally collects email and \"in whose name\", and asks for confirmation after each change. After confirmation it opens an \"awaiting payment\" record in Flux Donate and sends the donation link, recipient, IBAN and reference as separate messages. If the topic leaves donations, it hands the chat to the team."
+msgstr "عند التشغيل، يقوم المساعد بالرد على نفسه: يرحب، ويطلب الاسم لمخاطبتهم، ويرسل خيارات التبرع والأسعار، ويجمع بشكل اختياري البريد الإلكتروني و\"باسم من\"، ويطلب التأكيد بعد كل تغيير. بعد التأكيد، يفتح سجل \"في انتظار الدفع\" في Flux Donate ويرسل رابط التبرع والمستلم ورقم IBAN والمرجع كرسائل منفصلة. إذا ترك الموضوع تبرعات، فسيتم تسليم الدردشة إلى الفريق."
+
+msgid "The Flux Donate plugin is not active; the assistant cannot create donation records."
+msgstr "البرنامج المساعد Flux Donate غير نشط؛ لا يمكن للمساعد إنشاء سجلات التبرع."
+
+msgid "Instructions, documents, AI chats and test chat"
+msgstr "التعليمات والمستندات ومحادثات الذكاء الاصطناعي والدردشة التجريبية"
+
+msgid "Turn on the donation assistant (untick to turn it off everywhere)"
+msgstr "قم بتشغيل مساعد التبرعات (قم بإزالة التحديد لإيقاف تشغيله في كل مكان)"
+
+msgid "Which chats should it reply to"
+msgstr "ما هي الدردشات التي يجب الرد عليها؟"
+
+msgid "In all chats (recommended)"
+msgstr "في جميع الدردشات (مستحسن)"
+
+msgid "In chats not assigned to an agent"
+msgstr "في الدردشات التي لم يتم تعيينها لوكيل"
+
+msgid "Only outside working hours"
+msgstr "فقط خارج أوقات العمل"
+
+msgid "When an agent writes in a chat (from the panel or the phone), the assistant stays quiet there for the time below. Use the assistant button in the chat header to turn it on or off per chat."
+msgstr "عندما يكتب أحد الوكلاء في محادثة (من اللوحة أو الهاتف)، يظل المساعد هادئًا هناك طوال الوقت أدناه. استخدم زر المساعد الموجود في رأس الدردشة لتشغيله أو إيقاف تشغيله لكل دردشة."
+
+msgid "Test mode: reply only to the numbers below"
+msgstr "وضع الاختبار: الرد فقط على الأرقام أدناه"
+
+msgid "Test numbers"
+msgstr "أرقام الاختبار"
+
+msgid "Separate with commas or new lines. Not used when test mode is off."
+msgstr "افصل بفواصل أو أسطر جديدة. لا يُستخدم عند إيقاف تشغيل وضع الاختبار."
+
+msgid "Quiet after an agent writes (hours)"
+msgstr "هادئ بعد أن يكتب الوكيل (ساعات)"
+
+msgid "Quantities in the price list"
+msgstr "الكميات في قائمة الأسعار"
+
+msgid "Conversation history (hours)"
+msgstr "سجل المحادثات (ساعات)"
+
+msgid "Before replying, the assistant reads all messages from this period."
+msgstr "قبل الرد، يقرأ المساعد جميع الرسائل من هذه الفترة."
+
+msgid "Donation types the assistant offers"
+msgstr "أنواع التبرعات التي يقدمها المساعد"
+
+msgid "If none is selected, all open types are offered. When a new type is opened in Flux Donate, the assistant knows it too."
+msgstr "إذا لم يتم تحديد أي شيء، فسيتم عرض كافة الأنواع المفتوحة. عند فتح نوع جديد في Flux Donate، يعرف المساعد ذلك أيضًا."
+
+msgid "Receipt pre-check: when the contact sends a receipt, AI compares the amount, recipient and IBAN with the donation, tells the contact the result, attaches the file to the donation record and hands the chat to the team for final approval (does not mark it paid)"
+msgstr "التحقق المسبق من الاستلام: عندما ترسل جهة الاتصال إيصالاً، يقارن الذكاء الاصطناعي المبلغ والمستلم ورقم الحساب المصرفي الدولي مع التبرع، ويخبر جهة الاتصال بالنتيجة، ويرفق الملف بسجل التبرع ويسلم الدردشة إلى الفريق للحصول على الموافقة النهائية (لا يتم وضع علامة على أنها مدفوعة)"
+
+msgid "Last line of the price list"
+msgstr "السطر الأخير من قائمة الأسعار"
+
+msgid "Payment details"
+msgstr "تفاصيل الدفع"
+
+msgid "If the recipient and IBAN are empty, those in WooCommerce › Payments › Bank transfer are used (the account shown on orders). Fill them in only if the assistant should use a different account."
+msgstr "إذا كان المستلم ورقم IBAN فارغين، فسيتم استخدام تلك الموجودة في WooCommerce › المدفوعات › التحويل البنكي (الحساب الموضح في الطلبات). املأها فقط إذا كان على المساعد استخدام حساب مختلف."
+
+msgid "Recipient name"
+msgstr "اسم المستلم"
+
+msgid "Transfer description"
+msgstr "وصف النقل"
+
+msgid "Variables: {type}, {name}, {amount}, {quantity}"
+msgstr "المتغيرات:{type}،{name}،{amount}،{quantity}"
+
+msgid "Donation page URL"
+msgstr "عنوان URL لصفحة التبرع"
+
+msgid "The selected type and quantity are added to the link (?flxb_opt=…&flxb_qty=…)."
+msgstr "يتم إضافة النوع والكمية المحددة إلى الرابط (?flxb_opt=...&flxb_qty=...)."
+
+msgid "Message after the payment details"
+msgstr "رسالة بعد تفاصيل الدفع"
+
+msgid "Donation cancellation question"
+msgstr "سؤال إلغاء التبرع"
+
+msgid "The assistant cancels only unpaid donations, with the person's confirmation. Empty = default text. Variables: {bagis}, {tutar}."
+msgstr "يقوم المساعد بإلغاء التبرعات غير المدفوعة فقط، مع تأكيد الشخص. فارغ = النص الافتراضي. المتغيرات:{bagis}،{tutar}."
+
+msgid "Message sent when the daily limit is reached"
+msgstr "يتم إرسال الرسالة عند الوصول إلى الحد اليومي"
+
+msgid "Sent once when a chat reaches the day's reply limit; the chat is handed to the team. Reset it from the chat's ⋮ menu › Assistant usage."
+msgstr "يتم إرساله مرة واحدة عندما تصل الدردشة إلى حد الرد اليومي؛ يتم تسليم الدردشة إلى الفريق. أعد ضبطه من قائمة الدردشة ⋮ › استخدام المساعد."
+
+msgid "Message sent when handing over to the team"
+msgstr "تم إرسال الرسالة عند التسليم للفريق"
+
+msgid "Message sent when the assistant cannot answer"
+msgstr "يتم إرسال الرسالة عندما لا يتمكن المساعد من الرد"
+
+msgid "If the AI fails, the time limit is hit or the queue gets too long, this message is sent and the chat is handed to the team; the person is never left without an answer."
+msgstr "إذا فشل الذكاء الاصطناعي، أو تم الوصول إلى الحد الزمني أو أصبحت قائمة الانتظار طويلة جدًا، فسيتم إرسال هذه الرسالة وتسليم الدردشة إلى الفريق؛ لا يترك الشخص أبدًا بدون إجابة."
+
+msgid "Minimum wait before the holding message (s)"
+msgstr "الحد الأدنى للانتظار قبل الرسالة (الرسائل) المعلقة"
+
+msgid "The holding message is not sent until this many seconds after the person's message; meanwhile the assistant retries."
+msgstr "لا يتم إرسال الرسالة المعلقة إلا بعد عدة ثوانٍ من رسالة الشخص؛ وفي الوقت نفسه يقوم المساعد بإعادة المحاولة."
+
+msgid "Longest time for one answer (s)"
+msgstr "أطول وقت لإجابة واحدة (إجابات)"
+
+msgid "Hostinger can cut requests at ~60 s; 50 is recommended."
+msgstr "يمكن لـ Hostinger قطع الطلبات في حوالي 60 ثانية؛ يوصى بـ 50."
+
+msgid "Numbers notified on handoff"
+msgstr "تم إخطار الأرقام عند التسليم"
+
+msgid "When the assistant hands a chat over to the team, a WhatsApp message is sent to these numbers from the same line: the contact's name, phone, reason, last messages and panel link. Separate with commas or new lines. The assistant does not talk to these numbers."
+msgstr "عندما يقوم المساعد بتسليم الدردشة إلى الفريق، يتم إرسال رسالة WhatsApp إلى هذه الأرقام من نفس السطر: اسم جهة الاتصال والهاتف والسبب والرسائل الأخيرة ورابط اللوحة. افصل بفواصل أو أسطر جديدة. المساعد لا يتحدث مع هذه الأرقام."
+
+msgid "When the contact writes one of these, the assistant immediately sends the hand-off message above and turns off in that chat. If left empty, the example list is used."
+msgstr "عندما تكتب جهة الاتصال إحدى هذه الرسائل، يرسل المساعد على الفور رسالة التسليم أعلاه ويتم إيقاف تشغيله في تلك الدردشة. إذا تركت فارغة، يتم استخدام قائمة الأمثلة."
+
+msgid "Extra instructions for the assistant"
+msgstr "تعليمات اضافية للمساعد"
+
+msgid "E.g. Saplings are planted in Kocaeli. Certificates are sent once the donation is confirmed."
+msgstr "على سبيل المثال يتم زرع الشتلات في قوجه ايلي. يتم إرسال الشهادات بمجرد تأكيد التبرع."
+
+msgid "Last message when a contact opts out"
+msgstr "الرسالة الأخيرة عندما تقوم جهة اتصال بإلغاء الاشتراك"
+
+msgid "If someone writes something like \"don't message me\", the assistant sends this message and blocklists them. A blocklisted person gets no WhatsApp, email or SMS; manage the list under Chats › ☰ › Blocklist."
+msgstr "إذا كتب شخص ما شيئًا مثل \"لا تراسلني\"، فسيرسل المساعد هذه الرسالة ويضعه في قائمة الحظر. لا يحصل الشخص المدرج في القائمة المحظورة على تطبيق WhatsApp أو البريد الإلكتروني أو الرسائل النصية القصيرة؛ قم بإدارة القائمة ضمن الدردشات › ☰ › قائمة الحظر."
+
+msgid "Contact memory and background jobs"
+msgstr "ذاكرة الاتصال ووظائف الخلفية"
+
+msgid "Contact memory: the assistant remembers lasting details (form of address, relatives' names, numbers, preferences); expired chats are summarized"
+msgstr "ذاكرة الاتصال: يتذكر المساعد التفاصيل الدائمة (شكل العنوان وأسماء الأقارب والأرقام والتفضيلات)؛ يتم تلخيص الدردشات منتهية الصلاحية"
+
+msgid "Summarize a chat after it has been quiet for (hours)"
+msgstr "تلخيص محادثة بعد أن كانت هادئة لمدة (ساعات)"
+
+msgid "Maximum jobs at the same time"
+msgstr "الحد الأقصى من الوظائف في نفس الوقت"
+
+msgid "How many people can be answered at the same time. Assistant replies always come first; summaries do not start while someone is being answered or waiting. Each job uses one PHP worker: on shared hosting, stay under half of the total worker limit of your sites (e.g. 20-30 of 60 workers)."
+msgstr "كم شخص يمكن الرد عليه في نفس الوقت. تأتي ردود المساعد دائمًا في المقام الأول؛ لا تبدأ الملخصات أثناء الرد على شخص ما أو انتظاره. تستخدم كل وظيفة عامل PHP واحدًا: في الاستضافة المشتركة، ابق أقل من نصف الحد الإجمالي للعمال في مواقعك (على سبيل المثال، 20-30 من 60 عاملاً)."
+
+msgid "Workers reserved for replies"
+msgstr "العمال محفوظة للردود"
+
+msgid "This many workers never take summaries or reminders."
+msgstr "هذا العدد من العمال لا يأخذون ملخصات أو تذكيرات أبدًا."
+
+msgid "Summary hours"
+msgstr "ساعات الملخص"
+
+msgid "Summaries run only between these hours (except a manual \"Summarize now\"). If both are the same, any time."
+msgstr "يتم تشغيل الملخصات فقط بين هذه الساعات (باستثناء دليل \"التلخيص الآن\"). إذا كان كلاهما هو نفسه، في أي وقت."
+
+msgid "When someone sends a voice message, the assistant turns it into text and replies (the text also appears in the panel as a system line)"
+msgstr "عندما يرسل شخص ما رسالة صوتية، يقوم المساعد بتحويلها إلى نص والردود (يظهر النص أيضًا في اللوحة كخط نظام)"
+
+msgid "Longest voice message (sec)"
+msgstr "أطول رسالة صوتية (ثانية)"
+
+msgid "For longer messages the assistant says \"the voice message was too long for us to listen to\"."
+msgstr "بالنسبة للرسائل الأطول، يقول المساعد \"كانت الرسالة الصوتية طويلة جدًا بالنسبة لنا للاستماع إليها\"."
+
+msgid "Voice message model (optional)"
+msgstr "نموذج الرسالة الصوتية (اختياري)"
+
+msgid "Cheap audio model (Gemini Flash Lite)"
+msgstr "نموذج صوتي رخيص (Gemini Flash Lite)"
+
+msgid "Must be an OpenRouter model that accepts audio (Claude does not). An OpenRouter key is required."
+msgstr "يجب أن يكون نموذج OpenRouter يقبل الصوت (كلود لا يقبل ذلك). مطلوب مفتاح OpenRouter."
+
+msgid "Images"
+msgstr "الصور"
+
+msgid "Let the assistant draw an image when useful (table, report, diagram); it goes to WhatsApp as a picture, the text is sent separately"
+msgstr "اسمح للمساعد برسم صورة عندما يكون ذلك مفيدًا (جدول، تقرير، رسم تخطيطي)؛ فإنه يذهب إلى WhatsApp كصورة، ويتم إرسال النص بشكل منفصل"
+
+msgid "The Flux AI image renderer is used (Flux AI & MCP › Settings › Images)."
+msgstr "يتم استخدام عارض الصور Flux AI (Flux AI & MCP ›الإعدادات› الصور)."
+
+msgid "No image renderer on the server: enter a Gotenberg address in Flux AI & MCP › Settings › Images or install Imagick (SVG). Until then the assistant does not draw images."
+msgstr "لا يوجد عارض صور على الخادم: أدخل عنوان Gotenberg في Flux AI & MCP ›الإعدادات› الصور أو قم بتثبيت Imagick (SVG). وحتى ذلك الحين لا يرسم المساعد الصور."
+
+msgid "Works once Flux AI 0.2.0 or later is installed."
+msgstr "يعمل بمجرد تثبيت Flux AI 0.2.0 أو الأحدث."
+
+msgid "Donation on behalf of someone"
+msgstr "التبرع نيابة عن شخص ما"
+
+msgid "If the donation is in someone else's name and their number was given (contact card or typed number), also send the certificate to that number on WhatsApp once the payment is approved"
+msgstr "إذا كان التبرع باسم شخص آخر وتم إعطاء رقمه (بطاقة الاتصال أو الرقم المكتوب)، قم أيضًا بإرسال الشهادة إلى هذا الرقم على الواتساب بمجرد الموافقة على الدفع"
+
+msgid "Message sent before the certificate"
+msgstr "الرسالة المرسلة قبل الشهادة"
+
+msgid "Then the WhatsApp certificate message from Flux Certificates is sent. Variables: {ad}, {bagisci}, {bagis}, {brand}."
+msgstr "ثم يتم إرسال رسالة شهادة WhatsApp من شهادات Flux. المتغيرات:{ad},{bagisci},{bagis},{brand}."
+
+msgid "If a person asks, the assistant sets up a reminder (e.g. \"remind me of sapling planting every month\", \"send me your latest projects every month\", \"ask me for a sapling every month\"); when it is due, the assistant writes and sends the message"
+msgstr "إذا سأل شخص ما، يقوم المساعد بإعداد تذكير (على سبيل المثال، \"ذكرني بزراعة شتلات كل شهر\"، \"أرسل لي أحدث مشاريعك كل شهر\"، \"اسألني عن شتلة كل شهر\")؛ عندما يحين موعدها، يقوم المساعد بكتابة الرسالة وإرسالها"
+
+msgid "When no time is given"
+msgstr "عندما لا يعطى الوقت"
+
+msgid "At most per person"
+msgstr "على الأكثر للشخص الواحد"
+
+msgid "Staff (Flux Roles)"
+msgstr "طاقم العمل (أدوار التدفق)"
+
+msgid "Works once Flux Roles 1.1.0 is installed: users whose number is set in Profile › WhatsApp number get extra assistant tools based on their permissions."
+msgstr "يعمل بمجرد تثبيت Flux roles 1.1.0: يحصل المستخدمون الذين تم تعيين أرقامهم في ملف التعريف › رقم WhatsApp على أدوات مساعدة إضافية بناءً على أذوناتهم."
+
+msgid "Give staff numbers extra assistant tools by permission (donation on behalf of someone with payment link, my donors, general report)"
+msgstr "منح أرقام الموظفين أدوات مساعدة إضافية عن طريق الإذن (التبرع نيابة عن شخص لديه رابط الدفع، الجهات المانحة، التقرير العام)"
+
+msgid "Notify staff on WhatsApp when a donation they referred is paid or cancelled"
+msgstr "قم بإخطار الموظفين عبر تطبيق WhatsApp عندما يتم دفع أو إلغاء التبرع الذي أحالوه"
+
+msgid "First message to the donor for a donation opened by staff"
+msgstr "الرسالة الأولى إلى المتبرع بالتبرع يفتحها الموظفون"
+
+msgid "Hello {ad} 🌱 Your {bagis} donation request via {personel} has been received. You can pay with the details below."
+msgstr "مرحبًا{ad}🌱 لقد تم استلام طلب التبرع بـ{bagis}عبر{personel}. يمكنك الدفع بالتفاصيل أدناه."
+
+msgid "The payment link and bank details follow. Variables: {ad}, {adsoyad}, {personel}, {bagis}."
+msgstr "اتبع رابط الدفع والتفاصيل المصرفية. المتغيرات:{ad},{adsoyad},{personel},{bagis}."
+
+msgid "When a donation referred by a staff member is paid and its certificates are made, send them to the staff member on WhatsApp too (just like the donor)"
+msgstr "عند دفع التبرع المحول من أحد الموظفين وإصدار شهاداته، أرسلها إلى الموظف على الواتساب أيضًا (تمامًا مثل المتبرع)"
+
+msgid "Message sent to the staff member before the certificate"
+msgstr "الرسالة المرسلة للموظف قبل الشهادة"
+
+msgid "Variables: {ad}, {bagisci}, {bagis}, {no}, {brand}."
+msgstr "المتغيرات:{ad},{bagisci},{bagis},{no},{brand}."
+
+msgid "How many times staff can resend a donation's certificate"
+msgstr "كم مرة يمكن للموظفين إعادة إرسال شهادة التبرع"
+
+msgid "The assistant lists the recipients and asks for confirmation before sending. 0: off."
+msgstr "يقوم المساعد بإدراج المستلمين ويطلب التأكيد قبل الإرسال. 0: إيقاف."
+
+msgid "Code verification for record lookups"
+msgstr "التحقق من الكود لعمليات البحث عن السجلات"
+
+msgid "When a person asks for their records and their number is hidden (or they donated with another number/e-mail), send a code to the number or e-mail they give; once verified, its records are shown too"
+msgstr "عندما يطلب شخص ما سجلاته ويكون رقمه مخفيًا (أو تبرع برقم/بريد إلكتروني آخر)، أرسل رمزًا إلى الرقم أو البريد الإلكتروني الذي يقدمه؛ وبمجرد التحقق منها، تظهر سجلاتها أيضًا"
+
+msgid "Code validity (min)"
+msgstr "صلاحية الكود (دقيقة)"
+
+msgid "Maximum failed attempts"
+msgstr "الحد الأقصى للمحاولات الفاشلة"
+
+msgid "Codes that could not be sent, wrong codes and expired codes count. At the limit the person gets the message below and the team is notified; the assistant keeps answering other questions but shares no record details for 24 hours."
+msgstr "الرموز التي لا يمكن إرسالها، يتم احتساب الرموز الخاطئة والرموز منتهية الصلاحية. عند الحد يحصل الشخص على الرسالة أدناه ويتم إخطار الفريق؛ يستمر المساعد في الإجابة على الأسئلة الأخرى ولكنه لا يشارك تفاصيل السجل لمدة 24 ساعة."
+
+msgid "Code to phone"
+msgstr "الرمز إلى الهاتف"
+
+msgid "WhatsApp, SMS if it fails"
+msgstr "WhatsApp، SMS إذا فشل"
+
+msgid "WhatsApp only"
+msgstr "واتساب فقط"
+
+msgid "SMS only"
+msgstr "الرسائل القصيرة فقط"
+
+msgid "SMS is used if Flux Mail has an SMS connection (e.g. Netgsm)."
+msgstr "يتم استخدام الرسائل القصيرة إذا كان لدى Flux Mail اتصال عبر الرسائل القصيرة (مثل Netgsm)."
+
+msgid "Message when verification fails"
+msgstr "رسالة عند فشل التحقق"
+
+msgid "WhatsApp/SMS code message"
+msgstr "رسالة رمز WhatsApp/SMS"
+
+msgid "Default text if empty. Variables: {kod}, {dk}, {marka}. The e-mail text is edited in Flux Mail › E-mail templates."
+msgstr "النص الافتراضي إذا كان فارغا. المتغيرات:{kod}،{dk}،{marka}. يتم تحرير نص البريد الإلكتروني في Flux Mail › قوالب البريد الإلكتروني."
+
+msgid "Site content"
+msgstr "محتوى الموقع"
+
+msgid "Let the assistant search published site content (e.g. \"do you have a post about tree planting\")"
+msgstr "اسمح للمساعد بالبحث في محتوى الموقع المنشور (على سبيل المثال، \"هل لديك مشاركة حول زراعة الأشجار\")"
+
+msgid "Content types to search"
+msgstr "أنواع المحتوى للبحث"
+
+msgid "Only published content without a password is returned. Drafts, private and password-protected content are never shown."
+msgstr "يتم إرجاع المحتوى المنشور فقط بدون كلمة مرور. لا يتم عرض المسودات والمحتوى الخاص والمحمي بكلمة مرور أبدًا."
+
+msgid "Categories and tags never to share"
+msgstr "الفئات والعلامات التي لا ينبغي مشاركتها مطلقًا"
+
+msgid "e.g. corporate-offers, internal-notice"
+msgstr "على سبيل المثال عروض الشركات، والإشعار الداخلي"
+
+msgid "Name or slug, comma separated. To hide a single item, tick \"Do not let the assistant share this content\" on its edit screen."
+msgstr "الاسم أو سبيكة مفصولة بفواصل. لإخفاء عنصر واحد، حدد \"عدم السماح للمساعد بمشاركة هذا المحتوى\" في شاشة التحرير الخاصة به."
+
+msgid "Team group"
+msgstr "مجموعة الفريق"
+
+msgid "WhatsApp group"
+msgstr "مجموعة الواتساب"
+
+msgid "— Not selected —"
+msgstr "— غير محدد —"
+
+msgid "Groups the line is a member of. If a group you just created is missing,"
+msgstr "المجموعات التي ينتمي إليها الخط. إذا كانت المجموعة التي أنشأتها للتو مفقودة،"
+
+msgid "refresh the list"
+msgstr "تحديث القائمة"
+
+msgid "Post incoming messages and replies (assistant, team, automatic) to this group"
+msgstr "نشر الرسائل والردود الواردة (مساعد، فريق، تلقائي) لهذه المجموعة"
+
+msgid "Send handoff notifications to this group instead of each number; the numbers above are mentioned in the message"
+msgstr "إرسال إشعارات التسليم إلى هذه المجموعة بدلاً من كل رقم؛ الأرقام المذكورة أعلاه مذكورة في الرسالة"
+
+msgid "Last post to the group failed: "
+msgstr "فشل آخر مشاركة في المجموعة:"
+
+msgid "Price list preview"
+msgstr "معاينة قائمة الأسعار"
+
+msgid "Enter an AI key and model first so the assistant can work."
+msgstr "أدخل مفتاح الذكاء الاصطناعي والنموذج أولاً حتى يتمكن المساعد من العمل."
+
+msgid "The assistant will not reply right now: "
+msgstr "لن يقوم المساعد بالرد الآن:"
+
+msgid "WhatsApp assistant"
+msgstr "مساعد واتس اب"
+
+msgid "Do not let the assistant share this content"
+msgstr "لا تسمح للمساعد بمشاركة هذا المحتوى"
+
+msgid "Corrected by staff member %1$s; #%2$d was opened instead."
+msgstr "تم التصحيح بواسطة الموظف%1$s؛ # تم فتح%2$dبدلاً من ذلك."
+
+msgid "Donation #%1$d was cancelled and #%2$d opened instead."
+msgstr "تم إلغاء التبرع #%1$dوتم فتح #%2$dبدلاً منه."
+
+msgid "Created by staff member %s via the WhatsApp assistant."
+msgstr "تم إنشاؤه بواسطة الموظف%sعبر مساعد WhatsApp."
+
+msgid "Donation opened via staff member %1$s: %2$s (#%3$d)"
+msgstr "تم فتح التبرع عن طريق الموظف%1$s:%2$s(#%3$d)"
+
+msgid "Your certificate 🌱"
+msgstr "شهادتك 🌱"
+
+msgid "Staff member %1$s resent the certificate on WhatsApp: %2$s"
+msgstr "استاء عضو فريق العمل%1$sمن الشهادة على WhatsApp:%2$s"
+
+msgid "✅ Your donor paid: *%1$s* · %2$s #%3$d"
+msgstr "✅ دفع المتبرع الخاص بك: *%1$s* ·%2$s#%3$d"
+
+msgid "❌ Donation cancelled: *%1$s* · %2$s #%3$d"
+msgstr "❌ تم إلغاء التبرع: *%1$s* ·%2$s#%3$d"
+
+msgid "Sticker"
+msgstr "ملصق"
+
+msgid "Poll"
+msgstr "استطلاع"
+
+msgid "Unsupported message"
+msgstr "رسالة غير مدعومة"
+
+msgid "{a} lines added, {d} lines removed"
+msgstr "تمت إضافة خطوط{a}، وإزالة خطوط{d}"
+
+msgid "No AI key or model has been entered."
+msgstr "لم يتم إدخال أي مفتاح أو نموذج AI."
+
+msgid "The assistant is off and does not reply to incoming messages."
+msgstr "المساعد متوقف ولا يرد على الرسائل الواردة."
+
+msgid "Test mode is on: the assistant only replies to test numbers."
+msgstr "وضع الاختبار قيد التشغيل: يقوم المساعد بالرد فقط على أرقام الاختبار."
+
+msgid "Assistant activity summary"
+msgstr "ملخص نشاط المساعد"
+
+msgid "Hide details"
+msgstr "إخفاء التفاصيل"
+
+msgid "Details"
+msgstr "التفاصيل"
+
+msgid "Spend (USD)"
+msgstr "الإنفاق (بالدولار الأمريكي)"
+
+msgid "Questions answered"
+msgstr "تمت الإجابة على الأسئلة"
+
+msgid "People answered"
+msgstr "أجاب الناس"
+
+msgid "People directed to donate"
+msgstr "توجه الناس للتبرع"
+
+msgid "Donation records created"
+msgstr "تم إنشاء سجلات التبرع"
+
+msgid "Confirmed donations · {a}"
+msgstr "التبرعات المؤكدة ·{a}"
+
+msgid "Receipts read · ✓{a} ✕{b}"
+msgstr "قراءة الإيصالات · ✓{a}✕{b}"
+
+msgid "Memory tokens · {p} contacts"
+msgstr "رموز الذاكرة · جهات اتصال{p}"
+
+msgid "Opted out (blocklist)"
+msgstr "تم التعطيل (القائمة المحظورة)"
+
+msgid "Reminders sent"
+msgstr "تم إرسال التذكيرات"
+
+msgid "Codes sent · e-mail {e} · WhatsApp {w} · SMS {s}"
+msgstr "تم إرسال الرموز · البريد الإلكتروني{e}· WhatsApp{w}· الرسائل القصيرة{s}"
+
+msgid "Verified · phone {p} · e-mail {e}"
+msgstr "تم التحقق منه · الهاتف{p}· البريد الإلكتروني{e}"
+
+msgid "Code issues · wrong {w} · expired {x} · not delivered {f}"
+msgstr "مشاكل في الكود · خطأ{w}· انتهت صلاحية{x}· لم يتم التسليم{f}"
+
+msgid "Not verified, team notified"
+msgstr "لم يتم التحقق، تم إخطار الفريق"
+
+msgid "Certificates resent"
+msgstr "الشهادات مستاءة"
+
+msgid "Donations cancelled by the assistant"
+msgstr "تم إلغاء التبرعات من قبل المساعد"
+
+msgid "Payment links resent"
+msgstr "روابط الدفع مستاءة"
+
+msgid "Tokens: {i} input / {o} output · {c} requests · {m} messages sent"
+msgstr "الرموز: إدخال{i}/ إخراج{o}· طلبات{c}· إرسال رسائل{m}"
+
+msgid "{n} donations awaiting payment"
+msgstr "تبرعات{n}في انتظار الدفع"
+
+msgid "{n} errors"
+msgstr "أخطاء{n}"
+
+msgid "{n} chats summarized"
+msgstr "تلخيص محادثات{n}"
+
+msgid "Counters since {d}"
+msgstr "عدادات منذ{d}"
+
+msgid "Refreshes every 30 s"
+msgstr "يتم تحديثه كل 30 ثانية"
+
+msgid "Models"
+msgstr "نماذج"
+
+msgid "Contacts with the most memory"
+msgstr "جهات الاتصال ذات الذاكرة الأكبر"
+
+msgid "Tokens"
+msgstr "الرموز"
+
+msgid "Daily"
+msgstr "يوميا"
+
+msgid "No records in this range."
+msgstr "لا توجد سجلات في هذا النطاق."
+
+msgid "Replies"
+msgstr "الردود"
+
+msgid "Handoff"
+msgstr "تسليم"
+
+msgid "Only real chats are counted; test chat and benchmark are excluded. \"Confirmed\" means donations created by the assistant and marked paid."
+msgstr "يتم احتساب الدردشات الحقيقية فقط؛ يتم استبعاد الدردشة الاختبارية والمعيارية. \"مؤكد\" يعني التبرعات التي أنشأها المساعد وتم وضع علامة \"مدفوعة\"."
+
+msgid "With the team / paused"
+msgstr "مع الفريق / متوقف"
+
+msgid "Donation record created"
+msgstr "تم إنشاء سجل التبرع"
+
+msgid "The assistant has not replied to any chat yet."
+msgstr "لم يرد المساعد على أي محادثة حتى الآن."
+
+msgid "Load more"
+msgstr "تحميل المزيد"
+
+msgid "Address: {h}"
+msgstr "العنوان:{h}"
+
+msgid "{n} assistant messages"
+msgstr "رسائل مساعد{n}"
+
+msgid "Donation #{id}"
+msgstr "التبرع #{id}"
+
+msgid "Version {id}"
+msgstr "الإصدار{id}"
+
+msgid "Change note (e.g. Added sacrifice question)"
+msgstr "تغيير الملاحظة (على سبيل المثال، سؤال التضحية المضافة)"
+
+msgid "Assistant instructions"
+msgstr "تعليمات مساعد"
+
+msgid "The main text describing how the assistant talks and the flow. Prices, donation types, bank details and what is known about the contact are added automatically on every reply. {brand} becomes the organisation name and {{belge:kisa-ad}} becomes that document's content."
+msgstr "النص الرئيسي يصف كيفية تحدث المساعد وتدفقه. تتم إضافة الأسعار وأنواع التبرعات والتفاصيل المصرفية وما هو معروف عن جهة الاتصال تلقائيًا عند كل رد.  يصبح{brand}اسم المؤسسة ويصبح {{belge:kisa-ad}} محتوى ذلك المستند."
+
+msgid "Publish now"
+msgstr "انشر الآن"
+
+msgid "New version saved"
+msgstr "تم حفظ النسخة الجديدة"
+
+msgid "Save as new version"
+msgstr "حفظ كإصدار جديد"
+
+msgid "Show the full text sent to the model"
+msgstr "إظهار النص الكامل المرسل إلى النموذج"
+
+msgid "Unsaved text"
+msgstr "نص غير محفوظ"
+
+msgid "Test with this text"
+msgstr "اختبار مع هذا النص"
+
+msgid "Versions"
+msgstr "الإصدارات"
+
+msgid "Live"
+msgstr "مباشر"
+
+msgid "Text that ships with the plugin"
+msgstr "النص الذي يأتي مع البرنامج المساعد"
+
+msgid "Diff: live → {v}"
+msgstr "الفرق: مباشر →{v}"
+
+msgid "Show diff"
+msgstr "إظهار الفرق"
+
+msgid "Published"
+msgstr "تم النشر"
+
+msgid "Publish"
+msgstr "نشر"
+
+msgid "Ready-made messages sent by the server"
+msgstr "الرسائل الجاهزة المرسلة من قبل الخادم"
+
+msgid "The model does not write these; they are generated from your settings."
+msgstr "النموذج لا يكتب هذه؛ يتم إنشاؤها من الإعدادات الخاصة بك."
+
+msgid "Change in settings"
+msgstr "التغيير في الإعدادات"
+
+msgid "(empty)"
+msgstr "(فارغ)"
+
+msgid "Full text sent to the model (sample chat)"
+msgstr "تم إرسال النص الكامل إلى النموذج (نموذج للدردشة)"
+
+msgid "Extra documents"
+msgstr "وثائق إضافية"
+
+msgid "Add FAQs, campaigns, planting locations and similar information as separate documents. If you write {{belge:kisa-ad}} in the instructions, the document is placed there. A document set to \"read when needed\" is only read when the topic comes up, which costs less for long documents."
+msgstr "أضف الأسئلة الشائعة والحملات ومواقع الزراعة والمعلومات المشابهة كمستندات منفصلة. إذا كتبت {{belge:kisa-ad}} في التعليمات، فسيتم وضع المستند هناك. يتم قراءة المستند الذي تم تعيينه على \"القراءة عند الحاجة\" فقط عند ظهور الموضوع، وهو ما يكلف أقل بالنسبة للمستندات الطويلة."
+
+msgid "New document"
+msgstr "وثيقة جديدة"
+
+msgid "No documents yet."
+msgstr "لا توجد وثائق حتى الآن."
+
+msgid "Copy to use in the instructions"
+msgstr "نسخ للاستخدام في التعليمات"
+
+msgid "Delete the document “{t}”?"
+msgstr "هل تريد حذف المستند \"{t}\"؟"
+
+msgid "automatic"
+msgstr "تلقائي"
+
+msgid "Edit document"
+msgstr "تحرير المستند"
+
+msgid "Short name"
+msgstr "اسم قصير"
+
+msgid "Content (Markdown)"
+msgstr "المحتوى (تخفيض السعر)"
+
+msgid "Document saved"
+msgstr "تم حفظ المستند"
+
+msgid "in"
+msgstr "في"
+
+msgid "out"
+msgstr "خارج"
+
+msgid "cache {r} read, {w} written"
+msgstr "قراءة ذاكرة التخزين المؤقت{r}، كتابة{w}"
+
+msgid "saved {c}"
+msgstr "تم حفظ{c}"
+
+msgid "first write +{c}"
+msgstr "اكتب أولاً +{c}"
+
+msgid "Claude prompt caching (only for Claude models with the Anthropic key)"
+msgstr "التخزين المؤقت الفوري لـ Claude (فقط لنماذج Claude المزودة بمفتاح Anthropic)"
+
+msgid "Cache: from settings ({m})"
+msgstr "ذاكرة التخزين المؤقت: من الإعدادات ({m})"
+
+msgid "Cache: {m}"
+msgstr "ذاكرة التخزين المؤقت:{m}"
+
+msgid "Cache savings"
+msgstr "وفورات ذاكرة التخزين المؤقت"
+
+msgid "This month total (all AI)"
+msgstr "إجمالي هذا الشهر (جميع الذكاء الاصطناعي)"
+
+msgid "Main model"
+msgstr "النموذج الرئيسي"
+
+msgid "Reset"
+msgstr "إعادة تعيين"
+
+msgid "Prices are input / output per 1M tokens (USD). The selected model is used only here."
+msgstr "الأسعار هي المدخلات / المخرجات لكل مليون رمز (USD). يتم استخدام النموذج المحدد هنا فقط."
+
+msgid "E.g. Look at Ahmet's chat and make the price answer shorter. / Hand over to the team when asked about Qurban donations."
+msgstr "على سبيل المثال انظر إلى دردشة أحمد واجعل إجابة السعر أقصر. / سلم للفريق عند سؤاله عن تبرعات الأضاحي."
+
+msgid "Search sessions…"
+msgstr "جلسات البحث..."
+
+msgid "+ New session"
+msgstr "+ جلسة جديدة"
+
+msgid "No matching session."
+msgstr "لا توجد جلسة مطابقة."
+
+msgid "No saved sessions yet. A session is saved automatically with your first message."
+msgstr "لا توجد جلسات محفوظة حتى الآن. يتم حفظ الجلسة تلقائيًا مع رسالتك الأولى."
+
+msgid "Untitled session"
+msgstr "جلسة بلا عنوان"
+
+msgid "Draft"
+msgstr "مسودة"
+
+msgid "Archive"
+msgstr "أرشيف"
+
+msgid "New session"
+msgstr "جلسة جديدة"
+
+msgid "Session name"
+msgstr "اسم الجلسة"
+
+msgid "Rename"
+msgstr "إعادة تسمية"
+
+msgid "Unarchived"
+msgstr "غير مؤرشف"
+
+msgid "Archived"
+msgstr "مؤرشف"
+
+msgid "Unarchive"
+msgstr "إلغاء الأرشفة"
+
+msgid "Delete this session? This cannot be undone."
+msgstr "هل تريد حذف هذه الجلسة؟ لا يمكن التراجع عن هذا."
+
+msgid "The live instructions changed after this session; starting a new session is recommended."
+msgstr "تغيرت التعليمات المباشرة بعد هذه الجلسة. يوصى ببدء جلسة جديدة."
+
+msgid "Write what you want to change. If you mention a person's or a number's chat, the AI finds it, asks your permission to read it, updates the instructions and tries them itself in the test chat on the right. Publishing needs your approval."
+msgstr "اكتب ما تريد تغييره. إذا ذكرت محادثة لشخص أو رقم، فإن الذكاء الاصطناعي يعثر عليها، ويطلب منك الإذن لقراءتها، ويقوم بتحديث التعليمات ويجربها بنفسه في الدردشة التجريبية على اليمين. النشر يحتاج إلى موافقتك."
+
+msgid "Draft updated"
+msgstr "تم تحديث المسودة"
+
+msgid "Permission to read a chat"
+msgstr "إذن لقراءة الدردشة"
+
+msgid "Allow"
+msgstr "السماح"
+
+msgid "Always allow in this session"
+msgstr "السماح دائمًا في هذه الجلسة"
+
+msgid "Don't allow"
+msgstr "لا تسمح"
+
+msgid "Draft awaiting your approval"
+msgstr "مشروع في انتظار موافقتك"
+
+msgid "Approve and publish"
+msgstr "الموافقة والنشر"
+
+msgid "Save as draft version"
+msgstr "حفظ كنسخة مسودة"
+
+msgid "Proposed change"
+msgstr "التغيير المقترح"
+
+msgid "Open in test chat"
+msgstr "فتح في الدردشة التجريبية"
+
+msgid "Running…"
+msgstr "جاري..."
+
+msgid "The AI tries the draft here itself: it writes like a person and sees the assistant's answer. Nothing is sent to WhatsApp."
+msgstr "يقوم الذكاء الاصطناعي بتجربة المسودة هنا بنفسه: فهو يكتب كشخص ويرى إجابة المساعد. لا يتم إرسال أي شيء إلى WhatsApp."
+
+msgid "New version published ✓"
+msgstr "تم نشر نسخة جديدة ✓"
+
+msgid "Draft version saved ✓ (you can publish it from the Instructions tab)"
+msgstr "تم حفظ نسخة المسودة ✓ (يمكنك نشرها من علامة تبويب التعليمات)"
+
+msgid "AI's test"
+msgstr "اختبار الذكاء الاصطناعي"
+
+msgid "A trial with the draft; read only."
+msgstr "محاكمة مع المسودة؛ قراءة فقط."
+
+msgid "Address"
+msgstr "العنوان"
+
+msgid "Selected donation"
+msgstr "التبرع المختار"
+
+msgid "test"
+msgstr "اختبار"
+
+msgid "Verification code (not sent, shown only here)"
+msgstr "رمز التحقق (لم يتم الإرسال، يظهر هنا فقط)"
+
+msgid "until {h}"
+msgstr "حتى{h}"
+
+msgid "Test donations"
+msgstr "التبرعات الاختبارية"
+
+msgid "Sample past donation"
+msgstr "عينة من التبرعات السابقة"
+
+msgid "Set to pending"
+msgstr "تعيين إلى معلق"
+
+msgid "No donation in this test."
+msgstr "لا يوجد تبرع في هذا الاختبار."
+
+msgid "Memory"
+msgstr "الذاكرة"
+
+msgid "Nothing remembered yet."
+msgstr "لا شيء يتذكر بعد."
+
+msgid "Reminder awaiting approval"
+msgstr "تذكير في انتظار الموافقة"
+
+msgid "Scheduled"
+msgstr "المقرر"
+
+msgid "No reminders set."
+msgstr "لم يتم ضبط أي تذكيرات."
+
+msgid "Code verification locked for 24 hours"
+msgstr "تم قفل التحقق من الرمز لمدة 24 ساعة"
+
+msgid "Verified"
+msgstr "تم التحقق منه"
+
+msgid "No verified number or e-mail."
+msgstr "لا يوجد رقم مؤكد أو البريد الإلكتروني."
+
+msgid "Live instructions"
+msgstr "تعليمات حية"
+
+msgid "Write like a donor…"
+msgstr "اكتب مثل المتبرع..."
+
+msgid "Donor (customer)"
+msgstr "الجهة المانحة (العميل)"
+
+msgid "Write as the staff member…"
+msgstr "اكتب كموظف..."
+
+msgid "Nothing you write here goes to WhatsApp and no records are created. The assistant replies with the real model and the selected instructions."
+msgstr "لا يذهب أي شيء تكتبه هنا إلى WhatsApp ولا يتم إنشاء أي سجلات. يقوم المساعد بالرد بالنموذج الحقيقي والتعليمات المحددة."
+
+msgid "Preparing files, one moment…"
+msgstr "تحضير الملفات، لحظة واحدة..."
+
+msgid "(no reply)"
+msgstr "(لا يوجد رد)"
+
+msgid "— Chat handed over to the team; in a real chat the assistant stops here. —"
+msgstr "— الدردشة سلمت إلى الفريق. في الدردشة الحقيقية يتوقف المساعد هنا. —"
+
+msgid "Attach file (photo, PDF, document)"
+msgstr "إرفاق ملف (صورة، PDF، مستند)"
+
+msgid "Attach file"
+msgstr "إرفاق الملف"
+
+msgid "Up to 5 files can be attached."
+msgstr "يمكن إرفاق ما يصل إلى 5 ملفات."
+
+msgid "{f} is too large (max {n} MB)."
+msgstr "{f}كبير جدًا (بحد أقصى{n}ميجابايت)."
+
+msgid "receipt pre-check"
+msgstr "فحص مسبق للاستلام"
+
+msgid "Turn {n} · {t}"
+msgstr "أدر{n}·{t}"
+
+msgid "File read"
+msgstr "قراءة الملف"
+
+msgid "Sent by the AI (arguments)"
+msgstr "مرسلة بواسطة منظمة العفو الدولية (الحجج)"
+
+msgid "Pre-check result"
+msgstr "نتيجة الفحص المسبق"
+
+msgid "Returned by the system (result)"
+msgstr "عاد من قبل النظام (النتيجة)"
+
+msgid "Tool calls"
+msgstr "مكالمات الأداة"
+
+msgid "No tools called yet. Calls are listed here; click one to see what was sent and what came back."
+msgstr "لم يتم استدعاء أي أدوات حتى الآن. المكالمات مدرجة هنا؛ انقر فوق واحدة لمعرفة ما تم إرساله وما عاد."
+
+msgid "Test chat"
+msgstr "دردشة تجريبية"
+
+msgid "Who are you writing as?"
+msgstr "من تكتبين؟"
+
+msgid "Show full text"
+msgstr "إظهار النص الكامل"
+
+msgid "What the assistant knows"
+msgstr "ما يعرفه المساعد"
+
+msgid "Background"
+msgstr "الخلفية"
+
+msgid "Drop files here"
+msgstr "قم بإسقاط الملفات هنا"
+
+msgid "Contacts with memory"
+msgstr "اتصالات مع الذاكرة"
+
+msgid "Lasting details"
+msgstr "تفاصيل دائمة"
+
+msgid "Total tokens (approx.)"
+msgstr "إجمالي الرموز (تقريبًا)"
+
+msgid "Tokens are the memory size the assistant reads for this contact on every reply (approx.; 3.5 characters = 1 token)."
+msgstr "الرموز المميزة هي حجم الذاكرة الذي يقرأه المساعد لجهة الاتصال هذه في كل رد (تقريبًا؛ 3.5 حرف = رمز مميز واحد)."
+
+msgid "No memory items yet."
+msgstr "لا توجد عناصر الذاكرة حتى الآن."
+
+msgid "View"
+msgstr "عرض"
+
+msgid "Summary"
+msgstr "ملخص"
+
+msgid "Last update"
+msgstr "التحديث الأخير"
+
+msgid "Contact memory: {c}"
+msgstr "ذاكرة الاتصال:{c}"
+
+msgid "{n} items · about {t} tokens"
+msgstr "عناصر{n}· حول رموز{t}"
+
+msgid "To edit or delete, open the chat and use ⋮ › Contact memory."
+msgstr "للتعديل أو الحذف، افتح الدردشة واستخدم ⋮ › ذاكرة جهات الاتصال."
+
+msgid "{n} chats queued"
+msgstr "تم وضع محادثات{n}في قائمة الانتظار"
+
+msgid "Contact memory is off; summary jobs do not run."
+msgstr "ذاكرة الاتصال معطلة؛ لا يتم تشغيل المهام الموجزة."
+
+msgid "Summaries paused for 30 minutes: {r}"
+msgstr "تم إيقاف الملخصات مؤقتًا لمدة 30 دقيقة:{r}"
+
+msgid "Running workers"
+msgstr "تشغيل العمال"
+
+msgid "Chats being answered"
+msgstr "يتم الرد على الدردشات"
+
+msgid "Chats being summarized"
+msgstr "يتم تلخيص الدردشات"
+
+msgid "Queued"
+msgstr "في قائمة الانتظار"
+
+msgid "Chats not yet expired"
+msgstr "الدردشات لم تنته بعد"
+
+msgid "Summaries today · USD"
+msgstr "ملخصات اليوم · الدولار الأمريكي"
+
+msgid "Recent jobs"
+msgstr "الوظائف الأخيرة"
+
+msgid "Scan now"
+msgstr "مسح الآن"
+
+msgid "People who are writing are answered first; no summary starts while someone is being answered or waiting. Chats quiet for {h} hours are summarized only between {w}. At most {m} jobs run at once, {r} workers are reserved for replies (a benchmark counts as one). Refreshes every 5 s."
+msgstr "يتم الرد على الأشخاص الذين يكتبون أولاً؛ لا يبدأ أي ملخص أثناء الرد على شخص ما أو انتظاره. يتم تلخيص الدردشات الهادئة لمدة{h}ساعات فقط بين{w}. في معظم مهام{m}التي يتم تشغيلها مرة واحدة، يتم حجز عمال{r}للردود (يتم احتساب المعيار كواحد). يتم التحديث كل 5 ثواني"
+
+msgid "No jobs yet."
+msgstr "لا توجد وظائف حتى الآن."
+
+msgid "Reminder"
+msgstr "تذكير"
+
+msgid "manual"
+msgstr "دليل"
+
+msgid "attempt {n}"
+msgstr "محاولة{n}"
+
+msgid "Job"
+msgstr "وظيفة"
+
+msgid "Started"
+msgstr "بدأت"
+
+msgid "Duration"
+msgstr "المدة"
+
+msgid "Running"
+msgstr "الجري"
+
+msgid "Cost limit reached"
+msgstr "تم الوصول إلى حد التكلفة"
+
+msgid "Stopped: AI account"
+msgstr "متوقف: حساب الذكاء الاصطناعي"
+
+msgid "No group"
+msgstr "لا توجد مجموعة"
+
+msgid "Runs"
+msgstr "أشواط"
+
+msgid "All benchmarks"
+msgstr "جميع المعايير"
+
+msgid "Live · {n} running"
+msgstr "مباشر · تشغيل{n}"
+
+msgid "Total spend"
+msgstr "إجمالي الإنفاق"
+
+msgid "{n} scenario results"
+msgstr "نتائج السيناريو{n}"
+
+msgid "No runs yet."
+msgstr "لا يوجد أشواط حتى الآن."
+
+msgid "Assistant + judge"
+msgstr "مساعد +قاضي"
+
+msgid "Per scenario"
+msgstr "لكل سيناريو"
+
+msgid "Success is attributed to the assistant model. Runs before 1.6.3 did not separate assistant and judge, so they show as \"Assistant + judge\"."
+msgstr "ويعزى النجاح إلى النموذج المساعد. لم يفصل التشغيل قبل الإصدار 1.6.3 بين المساعد والحكم، لذا يظهران كـ \"مساعد + حكم\"."
+
+msgid "Run {n} scenarios"
+msgstr "قم بتشغيل سيناريوهات{n}"
+
+msgid "Loading model prices for the cost estimate…"
+msgstr "جارٍ تحميل الأسعار النموذجية لتقدير التكلفة..."
+
+msgid "The selected model's price is unknown; no estimate."
+msgstr "سعر النموذج المختار غير معروف. لا تقدير."
+
+msgid "Estimated cost: ~{c}"
+msgstr "التكلفة المقدرة: ~{c}"
+
+msgid "assistant {a} + judge {j}"
+msgstr "مساعد{a}+ القاضي{j}"
+
+msgid "Based on average token usage of {n} past scenario results; actual cost per scenario may vary."
+msgstr "استنادًا إلى متوسط ​​استخدام الرمز المميز لنتائج السيناريو السابق لـ{n}؛ قد تختلف التكلفة الفعلية لكل سيناريو."
+
+msgid "No runs yet; default estimate: ~{i} input / {o} output tokens per donor message."
+msgstr "لا يوجد تشغيل بعد؛ التقدير الافتراضي: ~ رموز الإدخال{i}/ رموز الإخراج{o}لكل رسالة مانحة."
+
+msgid "The estimate exceeds the cost limit; the run stops when the limit is reached."
+msgstr "يتجاوز التقدير حد التكلفة؛ يتوقف التشغيل عند الوصول إلى الحد الأقصى."
+
+msgid "New run"
+msgstr "تشغيل جديد"
+
+msgid "Scenarios are played like in the test chat: no WhatsApp message is sent and no record is created. The model is really called; the cost is charged to your AI account (OpenRouter or Anthropic) and the run stops when the limit is reached."
+msgstr "يتم تشغيل السيناريوهات كما هو الحال في الدردشة التجريبية: لا يتم إرسال أي رسالة عبر WhatsApp ولا يتم إنشاء أي سجل. النموذج يسمى حقا؛ يتم تحميل التكلفة على حساب AI الخاص بك (OpenRouter أو Anthropic) ويتوقف التشغيل عند الوصول إلى الحد الأقصى."
+
+msgid "Cost limit (USD)"
+msgstr "حد التكلفة (بالدولار الأمريكي)"
+
+msgid "Past runs"
+msgstr "أشواط الماضي"
+
+msgid "All chats, tool calls and judge log"
+msgstr "جميع الدردشات ومكالمات الأدوات وسجل القاضي"
+
+msgid "Report"
+msgstr "تقرير"
+
+msgid "Delete this run and its results?"
+msgstr "هل تريد حذف هذا التشغيل ونتائجه؟"
+
+msgid "Running in the background on the server; it continues even if you close the page."
+msgstr "يعمل في الخلفية على الخادم. ويستمر حتى لو قمت بإغلاق الصفحة."
+
+msgid "Watch results live"
+msgstr "مشاهدة النتائج مباشرة"
+
+msgid "Download report (.md)"
+msgstr "تنزيل التقرير (.md)"
+
+msgid "of {n} scenarios"
+msgstr "من سيناريوهات{n}"
+
+msgid "{r} read, {w} written"
+msgstr "قراءة{r}، كتابة{w}"
+
+msgid "The AI service rejected requests; the benchmark stopped."
+msgstr "رفضت خدمة الذكاء الاصطناعي الطلبات؛ توقف المؤشر."
+
+msgid "The remaining scenarios were not counted as failed. Check the provider budget, credit or key, then use Continue to resume where it stopped."
+msgstr "لم يتم احتساب السيناريوهات المتبقية على أنها فاشلة. تحقق من ميزانية المزود أو الائتمان أو المفتاح، ثم استخدم \"متابعة\" للاستئناف من حيث توقفت."
+
+msgid "Handed off when it should"
+msgstr "سلمت عندما ينبغي"
+
+msgid "Correct handoff"
+msgstr "التسليم الصحيح"
+
+msgid "Did not hand off when it should not"
+msgstr "لم يسلم عندما لا ينبغي"
+
+msgid "Correct no-handoff"
+msgstr "عدم التسليم الصحيح"
+
+msgid "Handed off when it should not"
+msgstr "سلمت عندما لا ينبغي"
+
+msgid "Needless handoff"
+msgstr "تسليم لا داعي له"
+
+msgid "Did not hand off when it should"
+msgstr "لم يسلم عندما ينبغي"
+
+msgid "Missed handoff"
+msgstr "غاب عن التسليم"
+
+msgid "Failed only"
+msgstr "فشل فقط"
+
+msgid "Pick a scenario on the left."
+msgstr "اختر السيناريو على اليسار."
+
+msgid "Scripted history in the scenario"
+msgstr "التاريخ المكتوب في السيناريو"
+
+msgid "Scripted history"
+msgstr "التاريخ المكتوب"
+
+msgid "Passed"
+msgstr "مرت"
+
+msgid "Failed"
+msgstr "فشل"
+
+msgid "Criterion"
+msgstr "المعيار"
+
+msgid "New scenario"
+msgstr "سيناريو جديد"
+
+msgid "Write a scenario with AI"
+msgstr "اكتب سيناريو باستخدام الذكاء الاصطناعي"
+
+msgid "Reset the built-in scenarios? Scenarios you added are kept."
+msgstr "إعادة تعيين السيناريوهات المضمنة؟ يتم الاحتفاظ بالسيناريوهات التي أضفتها."
+
+msgid "Restore built-in scenarios"
+msgstr "استعادة السيناريوهات المضمنة"
+
+msgid "In messages {tur} = \"{a}\", {birim} = \"{b}\", {brand} = \"{c}\"."
+msgstr "في الرسائل{tur}= \"{a}\"،{birim}= \"{b}\"،{brand}= \"{c}\"."
+
+msgid "Must contain"
+msgstr "يجب أن تحتوي"
+
+msgid "Must not contain"
+msgstr "يجب ألا تحتوي"
+
+msgid "Tool must be called"
+msgstr "يجب استدعاء الأداة"
+
+msgid "Tool must not be called"
+msgstr "لا يجب استدعاء الأداة"
+
+msgid "Must"
+msgstr "يجب"
+
+msgid "Built-in"
+msgstr "مدمج"
+
+msgid "The assistant's reply after the scripted history is measured."
+msgstr "يتم قياس رد المساعد بعد التاريخ المكتوب."
+
+msgid "Continuation"
+msgstr "استمرار"
+
+msgid "Writes as the first Flux Roles user with staff tools."
+msgstr "يكتب كأول مستخدم لأدوار Flux مع أدوات الموظفين."
+
+msgid "Staff writes"
+msgstr "يكتب الموظفون"
+
+msgid "Start: {n}"
+msgstr "البداية:{n}"
+
+msgid "{n} messages"
+msgstr "رسائل{n}"
+
+msgid "Edit with AI"
+msgstr "تحرير مع الذكاء الاصطناعي"
+
+msgid "Run only this"
+msgstr "تشغيل هذا فقط"
+
+msgid "Delete this scenario?"
+msgstr "هل تريد حذف هذا السيناريو؟"
+
+msgid "One phrase per line; alternatives as a|b"
+msgstr "عبارة واحدة في كل سطر؛ البدائل كـ a|b"
+
+msgid "One phrase per line"
+msgstr "عبارة واحدة في كل سطر"
+
+msgid "E.g. Should not ask for a name; short and warm greeting."
+msgstr "على سبيل المثال لا ينبغي أن نسأل عن اسم؛ تحية قصيرة ودافئة."
+
+msgid "One tool name per line; a|b for alternatives"
+msgstr "اسم أداة واحد لكل سطر؛ a|b للبدائل"
+
+msgid "One tool name per line"
+msgstr "اسم أداة واحد لكل سطر"
+
+msgid "Group"
+msgstr "المجموعة"
+
+msgid "Messages (in order)"
+msgstr "الرسائل (بالترتيب)"
+
+msgid "{tur}, {birim} and {brand} can be used. If there are only customer messages, the assistant replies to each in turn. If you add assistant messages it becomes a continuation scenario: the written history is given as-is and the assistant replies only to the last customer message."
+msgstr "يمكن استخدام{tur}و{birim}و{brand}. إذا كانت هناك رسائل العملاء فقط، يقوم المساعد بالرد على كل منها بدوره. إذا قمت بإضافة رسائل مساعد، فسيصبح ذلك سيناريو استمرارًا: يتم تقديم السجل المكتوب كما هو ولا يرد المساعد إلا على آخر رسالة للعميل."
+
+msgid "E.g. payment_info, cancel_donation, receipt_check. Tools disabled on this site are not checked."
+msgstr "على سبيل المثال معلومات الدفع، إلغاء_التبرع، استلام_التحقق. لم يتم التحقق من الأدوات المعطلة على هذا الموقع."
+
+msgid "Who is writing?"
+msgstr "من يكتب؟"
+
+msgid "Starting state (test)"
+msgstr "حالة البداية (الاختبار)"
+
+msgid "The scenario runs isolated like the test chat; what you select here exists only in this test. In a customer message, {kod} becomes the verification code from the test panel."
+msgstr "يتم تنفيذ السيناريو بشكل معزول مثل الدردشة التجريبية؛ ما تحدده هنا موجود فقط في هذا الاختبار. في رسالة العميل، يصبح{kod}هو رمز التحقق من لوحة الاختبار."
+
+msgid "End state"
+msgstr "نهاية الحالة"
+
+msgid "When the conversation ends, the test state is checked (was a donation opened, canceled, a code sent…). Tools disabled on this site are not checked."
+msgstr "عند انتهاء المحادثة، يتم التحقق من حالة الاختبار (هل تم فتح التبرع، أو إلغاؤه، أو إرسال الرمز...). لم يتم التحقق من الأدوات المعطلة على هذا الموقع."
+
+msgid "Judge criterion"
+msgstr "معيار القاضي"
+
+msgid "If empty, the judge is not called. Put quality expectations that cannot be written as rules here."
+msgstr "إذا كان فارغا، لا يتم استدعاء القاضي. ضع توقعات الجودة التي لا يمكن كتابتها كقواعد هنا."
+
+msgid "Message written by the assistant"
+msgstr "رسالة كتبها المساعد"
+
+msgid "Message written by the customer"
+msgstr "الرسالة المكتوبة من قبل العميل"
+
+msgid "Drag to reorder"
+msgstr "اسحب لإعادة الترتيب"
+
+msgid "Change author"
+msgstr "تغيير المؤلف"
+
+msgid "Delete message"
+msgstr "حذف الرسالة"
+
+msgid "Customer message"
+msgstr "رسالة العميل"
+
+msgid "Assistant message"
+msgstr "رسالة مساعد"
+
+msgid "Scenario saved ✓"
+msgstr "تم حفظ السيناريو ✓"
+
+msgid "Edit scenario"
+msgstr "تحرير السيناريو"
+
+msgid "E.g. Add one more message: the person does not want to give an email."
+msgstr "على سبيل المثال أضف رسالة أخرى: الشخص لا يريد إرسال بريد إلكتروني."
+
+msgid "E.g. The person asks about a sacrifice donation; the assistant hands off to the team without making anything up."
+msgstr "على سبيل المثال يسأل الشخص عن التبرع بالأضحية؛ يسلم المساعد الفريق دون اختلاق أي شيء."
+
+msgid "Write"
+msgstr "اكتب"
+
+msgid "Edit scenario with AI"
+msgstr "تحرير السيناريو باستخدام الذكاء الاصطناعي"
+
+msgid "What should be tested?"
+msgstr "ما الذي يجب اختباره؟"
+
+msgid "Have the scenario written first."
+msgstr "قم بكتابة السيناريو أولاً."
+
+msgid "Writing…"
+msgstr "الكتابة..."
+
+msgid "Rewrite"
+msgstr "أعد الكتابة"
+
+msgid "Documents"
+msgstr "المستندات"
+
+msgid "Benchmark"
+msgstr "المعيار"
+
+msgid "7 days"
+msgstr "7 أيام"
+
+msgid "30 days"
+msgstr "30 يوما"
+
+msgid "Added to the instructions on every reply"
+msgstr "تضاف إلى التعليمات في كل رد"
+
+msgid "Assistant reads it when needed"
+msgstr "يقرأها المساعد عند الحاجة"
+
+msgid "1h"
+msgstr "ساعة واحدة"
+
+msgid "On"
+msgstr "على"
+
+msgid "Paused"
+msgstr "متوقف مؤقتًا"
+
+msgid "Out of scope"
+msgstr "خارج النطاق"
+
+msgid "Approved"
+msgstr "تمت الموافقة عليه"
+
+msgid "Skipped"
+msgstr "تم تخطيه"
+
+msgid "Interrupted"
+msgstr "تمت مقاطعته"
+
+msgid "%s ago"
+msgstr "منذ%s"
+
+msgid "Open settings"
+msgstr "افتح الإعدادات"
+
+msgid "Call Center · Setup"
+msgstr "مركز الاتصال · الإعداد"
+
+msgid "Call Center · WhatsApp"
+msgstr "مركز الاتصال · واتساب"
+
+msgid "Call Center · AI"
+msgstr "مركز الاتصال · الذكاء الاصطناعي"
+
+msgid "Database tables"
+msgstr "جداول قاعدة البيانات"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "الجدول المفقود:%s. قم بإلغاء تنشيط البرنامج المساعد وإعادة تنشيطه."
+
+msgid "Tables ready (schema %s)."
+msgstr "الجداول جاهزة (مخطط%s)."
+
+msgid "Schema update pending; it completes when you open a page in the admin panel."
+msgstr "تحديث المخطط معلق؛ يكتمل عند فتح صفحة في لوحة الإدارة."
+
+msgid "Media folder"
+msgstr "مجلد الوسائط"
+
+msgid "Cannot write to uploads/flx-chat; incoming photos, voice notes and documents cannot be saved. Check folder permissions."
+msgstr "لا يمكن الكتابة إلى التحميلات/flx-chat؛ لا يمكن حفظ الصور والملاحظات الصوتية والمستندات الواردة. تحقق من أذونات المجلد."
+
+msgid "Folder protection (.htaccess) missing; it is created with the first saved media."
+msgstr "حماية المجلد (.htaccess) مفقودة؛ يتم إنشاؤه باستخدام الوسائط المحفوظة الأولى."
+
+msgid "Writable and closed to the public."
+msgstr "للكتابة ومغلقة أمام الجمهور."
+
+msgid "PHP cURL"
+msgstr "PHP الضفيرة"
+
+msgid "Available."
+msgstr "متاح."
+
+msgid "Missing; while the assistant prepares a reply the \"typing…\" indicator shows only briefly."
+msgstr "مفقود؛ بينما يقوم المساعد بإعداد الرد، يظهر مؤشر \"الكتابة...\" لفترة وجيزة فقط."
+
+msgid "Users with the agent role: %d."
+msgstr "المستخدمون الذين لديهم دور الوكيل:%d."
+
+msgid "No user has the agent role; only administrators can use it for now."
+msgstr "لا يوجد مستخدم لديه دور الوكيل؛ يمكن للمسؤولين فقط استخدامه في الوقت الحالي."
+
+msgid "Live panel updates"
+msgstr "تحديثات اللوحة الحية"
+
+msgid "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (60 s in a background tab)."
+msgstr "طلب التحديث الأخير%1$s. عندما تكون اللوحة مفتوحة، فإنها تتحقق من وجود رسائل جديدة كل%2$dثانية (60 ثانية في علامة تبويب الخلفية)."
+
+msgid "The chat screen has not been opened yet."
+msgstr "شاشة الدردشة لم تفتح بعد."
+
+msgid "WhatsApp line"
+msgstr "خط واتس اب"
+
+msgid "No line added."
+msgstr "لم تتم إضافة أي سطر."
+
+msgid "%s: connection details"
+msgstr "%s: تفاصيل الاتصال"
+
+msgid "Using Flux Mail connection: %s."
+msgstr "استخدام اتصال Flux Mail:%s."
+
+msgid "Still using the old provider in Flux Certificates; move the connection to Flux Mail and select it here."
+msgstr "لا تزال تستخدم الموفر القديم في شهادات التدفق؛ انقل الاتصال إلى Flux Mail وحدده هنا."
+
+msgid "Using the Evolution provider from Flux Certificates."
+msgstr "استخدام موفر التطور من شهادات التدفق."
+
+msgid "API URL, key and instance are entered in this plugin."
+msgstr "يتم إدخال عنوان URL لواجهة برمجة التطبيقات والمفتاح والمثيل في هذا البرنامج المساعد."
+
+msgid "%s: line status"
+msgstr "%s: حالة الخط"
+
+msgid "Phone connected (last seen %s)."
+msgstr "الهاتف متصل (شوهد آخر مرة%s)."
+
+msgid "Not tested yet. Press \"Test connection\"."
+msgstr "لم يتم اختباره بعد. اضغط على \"اختبار الاتصال\"."
+
+msgid "Phone not connected (state: %1$s, %2$s). Reconnect with \"Connect with QR\"."
+msgstr "الهاتف غير متصل (الحالة:%1$s،%2$s). أعد الاتصال بـ \"الاتصال بـ QR\"."
+
+msgid "%s: Evolution API version"
+msgstr "%s: إصدار Evolution API"
+
+msgid "Evolution API %s is in use. Replies to hidden-number (@lid) contacts may fail; update the server to 2.3 or later."
+msgstr "Evolution API%sقيد الاستخدام. قد تفشل الردود على جهات الاتصال ذات الرقم المخفي (@lid)؛ تحديث الخادم إلى 2.3 أو الأحدث."
+
+msgid "%s: webhook (incoming messages)"
+msgstr "%s: خطاف الويب (الرسائل الواردة)"
+
+msgid "No events have arrived from Evolution; incoming messages will not show in the panel. Press \"Set up webhook\"."
+msgstr "لم تصل أي أحداث من التطور؛ لن تظهر الرسائل الواردة في اللوحة. اضغط على \"إعداد خطاف الويب\"."
+
+msgid "Last event arrived %s. The line may just be quiet; send yourself a message or set up the webhook again to be sure."
+msgstr "الحدث الأخير وصل%s. قد يكون الخط هادئًا فحسب؛ أرسل لنفسك رسالة أو قم بإعداد خطاف الويب مرة أخرى للتأكد."
+
+msgid "Last event arrived %s."
+msgstr "الحدث الأخير وصل%s."
+
+msgid "Flux Mail integration"
+msgstr "تكامل البريد الجريان"
+
+msgid "Active: WhatsApp connections are taken from Communication › Connections."
+msgstr "نشط: اتصالات WhatsApp مأخوذة من الاتصالات › الاتصالات."
+
+msgid "Flux Mail is not active; connections are taken from Flux Certificates or from this plugin."
+msgstr "Flux Mail غير نشط؛ يتم أخذ الاتصالات من شهادات Flux أو من هذا البرنامج المساعد."
+
+msgid "Flux Certificates integration"
+msgstr "تكامل شهادات التدفق"
+
+msgid "Active: certificates can be created and sent from chats."
+msgstr "نشط: يمكن إنشاء الشهادات وإرسالها من الدردشات."
+
+msgid "Flux Certificates is not active; certificate actions in chats are off."
+msgstr "شهادات التدفق غير نشطة؛ إجراءات الشهادة في الدردشات متوقفة."
+
+msgid "Flux Donate integration"
+msgstr "تدفق التبرع التكامل"
+
+msgid "Active: donation records, receipt matching and the assistant are available from chats."
+msgstr "نشط: تتوفر سجلات التبرعات ومطابقة الإيصالات والمساعد من الدردشات."
+
+msgid "Flux Donate is not active; donation records, receipt matching and the donation assistant are off."
+msgstr "Flux Donate غير نشط؛ سجلات التبرعات ومطابقة الإيصالات ومساعد التبرعات متوقفة."
+
+msgid "The Flux AI & MCP plugin is not installed; AI features (suggestions, assistant, receipt reading, voice messages, summaries) are off. Install Flux AI and enter the key there."
+msgstr "لم يتم تثبيت البرنامج المساعد Flux AI & MCP؛ ميزات الذكاء الاصطناعي (الاقتراحات، المساعد، قراءة الإيصالات، الرسائل الصوتية، الملخصات) متوقفة. قم بتثبيت Flux AI وأدخل المفتاح هناك."
+
+msgid "No key has been entered in Flux AI; message suggestions and the assistant are off."
+msgstr "لم يتم إدخال أي مفتاح في Flux AI؛ اقتراحات الرسائل والمساعد متوقفان."
+
+msgid "Key saved but no model selected."
+msgstr "تم حفظ المفتاح ولكن لم يتم تحديد نموذج."
+
+msgid "No provider key has been entered in Flux AI for the selected model (%s)."
+msgstr "لم يتم إدخال أي مفتاح موفر في Flux AI للنموذج المحدد (%s)."
+
+msgid "Key saved, model: %s. Use \"Test connection\" for a live check."
+msgstr "تم حفظ المفتاح، الموديل:%s. استخدم \"اختبار الاتصال\" لإجراء فحص مباشر."
+
+msgid "Donation assistant"
+msgstr "مساعد التبرع"
+
+msgid "Off."
+msgstr "إيقاف."
+
+msgid "AI key or model is missing."
+msgstr "مفتاح الذكاء الاصطناعي أو النموذج مفقود."
+
+msgid "On but not replying: "
+msgstr "قيد التشغيل ولكن لا يرد:"
+
+msgid "On. Donation types offered: %s."
+msgstr "على. أنواع التبرعات المقدمة:%s."
+
+msgid "%s does not support tools; choose a tool-capable model for the assistant."
+msgstr "%sلا يدعم الأدوات؛ اختر نموذجًا قادرًا على استخدام الأدوات للمساعد."
+
+msgid "Receipt reading model"
+msgstr "نموذج قراءة الإيصال"
+
+msgid "%s cannot read images; the receipt pre-check will not work. Choose an image-capable receipt reading model."
+msgstr "لا يستطيع%sقراءة الصور؛ لن يعمل الفحص المسبق للاستلام. اختر نموذجًا لقراءة الإيصالات مزودًا بالصور."
+
+msgid "Assistant payment details"
+msgstr "تفاصيل الدفع للمساعد"
+
+msgid "Recipient name and IBAN set."
+msgstr "اسم المستلم ومجموعة IBAN."
+
+msgid "Recipient name or IBAN missing; bank details cannot be sent after confirmation."
+msgstr "اسم المستلم أو رقم IBAN مفقود؛ لا يمكن إرسال التفاصيل المصرفية بعد التأكيد."
+
+msgid "Donation page link"
+msgstr "رابط صفحة التبرع"
+
+msgid "Donation page not found; the assistant will not send a link."
+msgstr "لم يتم العثور على صفحة التبرع؛ لن يرسل المساعد رابطًا."
+
+msgid "Background requests"
+msgstr "طلبات الخلفية"
+
+msgid "The site could not send a background request to itself (%1$s: %2$s). Queued replies and the benchmark may move slowly; a security plugin or the server firewall may be blocking /wp-json/flx-chat/ requests."
+msgstr "تعذر على الموقع إرسال طلب خلفية إلى نفسه (%1$s:%2$s). الردود الموجودة في قائمة الانتظار وقد يتحرك المؤشر ببطء؛ قد يقوم مكون إضافي للأمان أو جدار حماية الخادم بحظر طلبات /wp-json/flx-chat/."
+
+msgid "error"
+msgstr "خطأ"
+
+msgid "warning"
+msgstr "تحذير"
+
+msgid "ok"
+msgstr "حسنا"
+
+msgid "Your {marka} verification code: {kod}"
+msgstr "رمز التحقق{marka}الخاص بك:{kod}"
+
+msgid "The code is valid for {dk} minutes. Type it in your WhatsApp chat with us. If you did not ask for it, ignore this message."
+msgstr "الرمز صالح لمدة{dk}دقيقة. اكتبه في دردشة الواتساب الخاصة بك معنا. إذا لم تطلب ذلك، تجاهل هذه الرسالة."
+
+msgid "Something went wrong; our team will contact you as soon as possible 🌱 Meanwhile, feel free to ask anything else."
+msgstr "حدث خطأ ما؛ سيقوم فريقنا بالتواصل معك في أقرب وقت ممكن 🌱 وفي الوقت نفسه، لا تتردد في سؤال أي شيء آخر."
+
+msgid "Verification attempt failed (%1$d/%2$d): %3$s"
+msgstr "فشلت محاولة التحقق (%1$d/%2$d):%3$s"
+
+msgid "The person wanted to see their records but could not be verified; someone from the team should get in touch"
+msgstr "أراد الشخص رؤية سجلاته ولكن لم يتمكن من التحقق منها؛ يجب أن يتصل بك أحد أعضاء الفريق"
+
+msgid "e-mail could not be sent (check Flux Mail › SMTP settings)"
+msgstr "تعذر إرسال البريد الإلكتروني (تحقق من Flux Mail › إعدادات SMTP)"
+
+msgid "The assistant sent a verification code for %1$s (%2$s)."
+msgstr "أرسل المساعد رمز التحقق لـ%1$s(%2$s)."
+
+msgid "code expired"
+msgstr "انتهت صلاحية الرمز"
+
+msgid "wrong code"
+msgstr "رمز خاطئ"
+
+msgid "The person verified the code for %s; it is added to their record lookups."
+msgstr "قام الشخص بالتحقق من رمز%s؛ تتم إضافته إلى عمليات البحث عن السجلات الخاصة بهم."
+
+msgid "Claude models cannot read audio; choose an audio-capable OpenRouter model in Settings › AI › Voice message model."
+msgstr "لا تستطيع نماذج كلود قراءة الصوت؛ اختر طراز OpenRouter مزودًا بإمكانيات الصوت في الإعدادات › AI › نموذج الرسالة الصوتية."
+
+msgid "The audio could not be transcribed."
+msgstr "لا يمكن نسخ الصوت."
+
+msgid "The audio file could not be read."
+msgstr "لا يمكن قراءة الملف الصوتي."
+
+msgid "Voice message (%1$s) transcribed: %2$s"
+msgstr "الرسالة الصوتية (%1$s) مكتوبة:%2$s"
+
+msgid "Voice message (%1$s) could not be processed: %2$s"
+msgstr "لا يمكن معالجة الرسالة الصوتية (%1$s):%2$s"
+
+msgid "This action is not available on an official WhatsApp Cloud API line."
+msgstr "هذا الإجراء غير متاح على خط WhatsApp Cloud API الرسمي."
+
+msgid "WhatsApp 24-hour rule: the contact has not written in the last 24 hours, so the Cloud API will not send a free-form message; only an approved template can be sent. Try again once they write."
+msgstr "قاعدة WhatsApp على مدار 24 ساعة: لم تكتب جهة الاتصال خلال الـ 24 ساعة الماضية، لذا لن ترسل Cloud API رسالة ذات شكل حر؛ يمكن إرسال القالب المعتمد فقط. حاول مرة أخرى بمجرد الكتابة."
+
+msgid "A Cloud API line needs Flux Mail 1.10.0 or later."
+msgstr "يحتاج خط Cloud API إلى Flux Mail 1.10.0 أو إصدار أحدث."
+
+msgid "The Cloud API cannot send to this address (hidden number or group)."
+msgstr "لا يمكن لـ Cloud API الإرسال إلى هذا العنوان (رقم أو مجموعة مخفية)."
+
+msgid "Could not reach the Cloud API account (İletişim › Connections)."
+msgstr "تعذر الوصول إلى حساب Cloud API (الاتصالات ›)."
+
+msgid "A Cloud API line has no QR code; the account is set up in İletişim › Connections."
+msgstr "لا يحتوي خط Cloud API على رمز QR؛ تم إعداد الحساب في Életişim › Connections."
+
+msgid "The file could not be prepared."
+msgstr "لا يمكن تحضير الملف."
+
+msgid "Flux AI has no image support."
+msgstr "لا يوجد لدى Flux AI دعم للصور."
+
+msgid "The image could not be rendered."
+msgstr "لا يمكن تقديم الصورة."
+
+msgid "The assistant's image could not be sent: "
+msgstr "لا يمكن إرسال صورة المساعد:"
+
+msgid "Hello {first_name}, we have created your donation record: {donation}, total {amount}.\n\n{bank}\n\nAfter paying, you can send the receipt here. Thank you."
+msgstr "مرحبًا{first_name}، لقد أنشأنا سجل التبرع الخاص بك:{donation}، إجمالي{amount}.{bank}بعد الدفع، يمكنك إرسال الإيصال هنا. شكرًا لك."
+
+msgid "Hello {first_name}, your donation has been recorded: {donation}, total {amount}.\n\nThank you for your support."
+msgstr "مرحبًا{first_name}، تم تسجيل تبرعك:{donation}، إجمالي{amount}.\n\nشكرا لدعمكم."
+
+msgid "The plugin that would run this scenario is inactive."
+msgstr "البرنامج المساعد الذي سيقوم بتشغيل هذا السيناريو غير نشط."
+
+msgid "This user is not allowed to use the staff tools."
+msgstr "لا يسمح لهذا المستخدم باستخدام أدوات الموظفين."
+
+msgid "%1$s linked this chat to staff member %2$s"
+msgstr "ربطت%1$sهذه الدردشة بالموظف%2$s"
+
+msgid "%s removed the staff link of this chat"
+msgstr "قام%sبإزالة رابط الموظفين الخاص بهذه الدردشة"
+
+msgid "Chat linked to staff member"
+msgstr "الدردشة مرتبطة بالموظف"
+
+msgid "Staff link removed"
+msgstr "تمت إزالة رابط الموظفين"
+
+msgid "— Not staff —"
+msgstr "- ليس موظفين -"
+
+msgid "WhatsApp hides this person's number, so the assistant cannot recognise staff by number. If this person is on your team, link them here and the assistant opens the staff tools."
+msgstr "يقوم WhatsApp بإخفاء رقم هذا الشخص، لذلك لا يستطيع المساعد التعرف على الموظفين من خلال الرقم. إذا كان هذا الشخص ضمن فريقك، قم بربطه هنا وسيقوم المساعد بفتح أدوات الموظفين."
+
+msgid "The assistant recognises staff by the number in their Flux Roles profile. If the number does not match, you can link them here; in a chat with a known number the number comes first."
+msgstr "يتعرف المساعد على الموظفين من خلال الرقم الموجود في ملف تعريف Flux الأدوار الخاص بهم. إذا كان الرقم غير متطابق، يمكنك ربطهم هنا؛ في الدردشة مع رقم معروف يأتي الرقم أولا."
+
+msgid "This channel is not available right now."
+msgstr "هذه القناة غير متوفرة حاليا."
+
+msgid "Site chat"
+msgstr "دردشة الموقع"
+
+msgid "All messages from WhatsApp, site chat and other channels appear here live. Pick a chat on the left."
+msgstr "جميع الرسائل من الواتساب ودردشة الموقع والقنوات الأخرى تظهر هنا مباشرة. اختر الدردشة على اليسار."
+
+msgid "[['WhatsApp (Evolution API) call center: see live incoming and outgoing messages, start new chat, canned replies, tags, assignment, internal notes, auto-replies; Donation (Flux Donate) and certificate (Flux Certificates) registration from chat, receipt matching. Artificial intelligence response suggestion and automatic donation assistant with OpenRouter.', 'tr']]"
+msgstr "[['مركز اتصال WhatsApp (Evolution API): شاهد الرسائل الواردة والصادرة المباشرة، وابدأ محادثة جديدة، والردود الجاهزة، والعلامات، والمهمة، والملاحظات الداخلية، والردود التلقائية؛ التبرع (Flux Donate) وتسجيل الشهادة (Flux الشهادات) من الدردشة، ومطابقة الاستلام. اقتراح استجابة الذكاء الاصطناعي ومساعد التبرع التلقائي مع OpenRouter.', 'tr']]"

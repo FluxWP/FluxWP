@@ -16,11 +16,11 @@ function flxc_rem_on() {
 
 function flxc_rem_freqs() {
 	return array(
-		'daily'   => __( 'Her gün', 'flx-chat' ),
-		'weekly'  => __( 'Her hafta', 'flx-chat' ),
-		'monthly' => __( 'Her ay', 'flx-chat' ),
-		'yearly'  => __( 'Her yıl', 'flx-chat' ),
-		'once'    => __( 'Bir kez', 'flx-chat' ),
+		'daily'   => __( 'Every day', 'flx-chat' ),
+		'weekly'  => __( 'Every week', 'flx-chat' ),
+		'monthly' => __( 'Every month', 'flx-chat' ),
+		'yearly'  => __( 'Every year', 'flx-chat' ),
+		'once'    => __( 'Once', 'flx-chat' ),
 	);
 }
 
@@ -103,18 +103,18 @@ function flxc_rem_when( array $r ) {
 	switch ( $r['freq'] ) {
 		case 'daily':
 			/* translators: %s: time */
-			return sprintf( __( 'Her gün %s', 'flx-chat' ), $time );
+			return sprintf( __( 'Every day at %s', 'flx-chat' ), $time );
 		case 'weekly':
 			global $wp_locale;
 			$day = $wp_locale ? $wp_locale->get_weekday( (int) $r['dow'] % 7 ) : (string) $r['dow'];
 			/* translators: 1: weekday, 2: time */
-			return sprintf( __( 'Her hafta %1$s %2$s', 'flx-chat' ), $day, $time );
+			return sprintf( __( 'Every week on %1$s at %2$s', 'flx-chat' ), $day, $time );
 		case 'monthly':
 			/* translators: 1: day of month, 2: time */
-			return sprintf( __( 'Her ay %1$d. gün %2$s', 'flx-chat' ), (int) $r['dom'], $time );
+			return sprintf( __( 'Every month on day %1$d at %2$s', 'flx-chat' ), (int) $r['dom'], $time );
 		case 'yearly':
 			/* translators: 1: date, 2: time */
-			return sprintf( __( 'Her yıl %1$s %2$s', 'flx-chat' ), flx_date( gmmktime( 12, 0, 0, (int) $r['mon'], (int) $r['dom'], 2026 ), 'j F' ), $time );
+			return sprintf( __( 'Every year on %1$s at %2$s', 'flx-chat' ), flx_date( gmmktime( 12, 0, 0, (int) $r['mon'], (int) $r['dom'], 2026 ), 'j F' ), $time );
 		case 'once':
 			$t = flxc_rem_next( $r, 0 );
 			return $t ? flx_date( $t, 'datetime' ) : (string) $r['once_date'];
@@ -239,7 +239,7 @@ function flxc_rem_summary( array $r ) {
 		'*' . $r['title'] . '*',
 		flxc_rem_when( $r ),
 		/* translators: %s: date */
-		sprintf( __( 'İlk: %s', 'flx-chat' ), flx_date( (int) $r['next_at'], 'datetime' ) ),
+		sprintf( __( 'First: %s', 'flx-chat' ), flx_date( (int) $r['next_at'], 'datetime' ) ),
 	);
 	if ( $r['task'] !== $r['title'] ) {
 		$lines[] = $r['task'];
@@ -376,7 +376,7 @@ function flxc_rem_tool( $name, array $a, $chat, array &$state, $sandbox ) {
 			} else {
 				flxc_rem_set_status( (int) $r['id'], 'deleted' );
 				/* translators: %s: title */
-				flxc_system_message( $chat, sprintf( __( 'Kişi hatırlatıcıyı durdurdu: %s', 'flx-chat' ), $r['title'] ) );
+				flxc_system_message( $chat, sprintf( __( 'The person stopped the reminder: %s', 'flx-chat' ), $r['title'] ) );
 			}
 			return array( 'ok' => true, 'note' => 'Durduruldu. Kişiye kısaca bildir.' );
 
@@ -412,7 +412,7 @@ function flxc_rem_tool( $name, array $a, $chat, array &$state, $sandbox ) {
 			} else {
 				$id = flxc_rem_save( $chat, $r, $id );
 				/* translators: 1: title, 2: when */
-				flxc_system_message( $chat, sprintf( __( 'Asistan hatırlatıcı kurdu: %1$s (%2$s)', 'flx-chat' ), $r['title'], flxc_rem_when( $r ) ) );
+				flxc_system_message( $chat, sprintf( __( 'The assistant set a reminder: %1$s (%2$s)', 'flx-chat' ), $r['title'], flxc_rem_when( $r ) ) );
 			}
 			return array( 'ok' => true, 'id' => $id, 'summary' => flxc_rem_summary( $r ), 'note' => 'Kaydedildi. Kişiye kısaca bildir; istediği zaman "hatırlatıcıyı durdur" yazabileceğini söyle.' );
 	}
@@ -464,7 +464,7 @@ function flxc_rem_enqueue_due() {
 		$wpdb->update( $rt, array( 'next_at' => $next, 'status' => $next ? 'active' : 'done', 'updated_at' => $now ), array( 'id' => $r['id'] ) );
 		// Site günlerce ziyaret almadıysa çok eski hatırlatma gönderilmez.
 		if ( $now - $r['next_at'] > 2 * DAY_IN_SECONDS ) {
-			$wpdb->update( $rt, array( 'last_note' => __( 'Zamanında çalışmadı, atlandı.', 'flx-chat' ) ), array( 'id' => $r['id'] ) );
+			$wpdb->update( $rt, array( 'last_note' => __( 'Did not run on time, skipped.', 'flx-chat' ) ), array( 'id' => $r['id'] ) );
 			continue;
 		}
 		$wpdb->insert(
@@ -506,13 +506,13 @@ function flxc_rem_run( $rid, $deadline ) {
 		return array( 'status' => $status, 'note' => $note, 'usage' => $usage ) + ( $err ? array( 'error' => $err ) : array() );
 	};
 	if ( ! $r || ! $chat || 'deleted' === $r['status'] ) {
-		return $res( 'skipped', __( 'Hatırlatıcı ya da sohbet yok.', 'flx-chat' ) );
+		return $res( 'skipped', __( 'No reminder or chat.', 'flx-chat' ) );
 	}
 	if ( flxc_chat_blocked( $chat ) ) {
-		return $res( 'skipped', __( 'Kişi kara listede.', 'flx-chat' ) );
+		return $res( 'skipped', __( 'The person is on the blocklist.', 'flx-chat' ) );
 	}
 	if ( ! flxc_bot_enabled() || ! flxc_ai_ready() ) {
-		return $res( 'skipped', __( 'Asistan kapalı.', 'flx-chat' ) );
+		return $res( 'skipped', __( 'The assistant is off.', 'flx-chat' ) );
 	}
 	$state = flxc_bot_state( $chat );
 	$task  = "## Şimdiki görev: hatırlatıcı\nKişinin kurduğu hatırlatıcının zamanı geldi; konuşmayı sen başlatıyorsun, kişi şu an yazmadı.\n"
@@ -531,7 +531,7 @@ function flxc_rem_run( $rid, $deadline ) {
 	$task .= '- Mesajın sonunda istemezse "hatırlatıcıyı durdur" yazabileceğini kısaca belirt.';
 	$messages = array(
 		array( 'role' => 'system', 'content' => flxc_bot_system_prompt( $chat, $state ) . "\n\n" . $task ),
-		array( 'role' => 'user', 'content' => '(' . __( 'hatırlatıcı zamanı', 'flx-chat' ) . ')' ),
+		array( 'role' => 'user', 'content' => '(' . __( 'reminder time', 'flx-chat' ) . ')' ),
 	);
 	$ctx   = array(
 		'after'      => array(),
@@ -576,13 +576,13 @@ function flxc_rem_run( $rid, $deadline ) {
 		}
 	}
 	if ( ! $sent ) {
-		return $res( 'error', __( 'Mesaj gönderilemedi.', 'flx-chat' ), $usage );
+		return $res( 'error', __( 'The message could not be sent.', 'flx-chat' ), $usage );
 	}
 	$st       = flxc_bot_state( flxc_get_chat( $chat['id'] ) );
 	$st['ai'] = 1;
 	flxc_bot_save_state( $chat['id'], $st );
 	/* translators: %s: title */
-	flxc_system_message( $chat, sprintf( __( 'Hatırlatıcı gönderildi: %s', 'flx-chat' ), $r['title'] ) );
+	flxc_system_message( $chat, sprintf( __( 'Reminder sent: %s', 'flx-chat' ), $r['title'] ) );
 	return $res( 'done', $r['title'], $usage );
 }
 
@@ -622,7 +622,7 @@ add_action(
 					'callback'            => function ( WP_REST_Request $req ) {
 						$st = (string) $req->get_param( 'status' );
 						if ( ! in_array( $st, array( 'active', 'paused' ), true ) || ! flxc_rem_set_status( (int) $req['id'], $st ) ) {
-							return new WP_Error( 'flxc_rem', __( 'Hatırlatıcı güncellenemedi.', 'flx-chat' ), array( 'status' => 400 ) );
+							return new WP_Error( 'flxc_rem', __( 'The reminder could not be updated.', 'flx-chat' ), array( 'status' => 400 ) );
 						}
 						return flxc_rem_for_js( flxc_rem_get( (int) $req['id'] ) );
 					},

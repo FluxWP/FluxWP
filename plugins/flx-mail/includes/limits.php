@@ -218,11 +218,11 @@ function flxi_quota_meter_html() {
 		$h  .= '<div class="flxi-quota__row ' . esc_attr( $cls ) . '">';
 		$h  .= '<div class="flxi-quota__head"><strong>' . esc_html( $q['mailbox'] ) . '</strong><span>';
 		/* translators: 1: used, 2: daily limit */
-		$h .= esc_html( sprintf( __( 'Son 24 saat: %1$s / %2$s', 'flx-mail' ), number_format_i18n( $q['used'] ), number_format_i18n( $q['limit'] ) ) );
+		$h .= esc_html( sprintf( __( 'Last 24 hours: %1$s / %2$s', 'flx-mail' ), number_format_i18n( $q['used'] ), number_format_i18n( $q['limit'] ) ) );
 		$h .= '</span></div><div class="flxi-bar"><span style="width:' . (int) $q['percent'] . '%"></span></div>';
 		if ( $q['left'] < $q['limit'] && $q['next'] ) {
 			/* translators: %s: time */
-			$h .= '<small>' . esc_html( sprintf( __( 'Sonraki hak açılışı: %s', 'flx-mail' ), flx_date( $q['next'], 'time' ) . ', ' . flx_date( $q['next'], 'short' ) ) ) . '</small>';
+			$h .= '<small>' . esc_html( sprintf( __( 'Next free slot: %s', 'flx-mail' ), flx_date( $q['next'], 'time' ) . ', ' . flx_date( $q['next'], 'short' ) ) ) . '</small>';
 		}
 		$h .= '</div>';
 	}

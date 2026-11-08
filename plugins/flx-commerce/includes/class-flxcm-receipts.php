@@ -69,24 +69,24 @@ final class FLXCM_Receipts {
 	 */
 	public static function store( WC_Order $order, array $file ) {
 		if ( ! FLXCM_Bank::awaiting( $order ) ) {
-			return new WP_Error( 'flxcm_state', __( 'Bu sipariş için dekont beklenmiyor.', 'flx-commerce' ), array( 'status' => 409 ) );
+			return new WP_Error( 'flxcm_state', __( 'No receipt is expected for this order.', 'flx-commerce' ), array( 'status' => 409 ) );
 		}
 		$list = self::of( $order );
 		if ( count( $list ) >= self::MAX ) {
-			return new WP_Error( 'flxcm_limit', __( 'Bir sipariş için en fazla 5 dekont yüklenebilir.', 'flx-commerce' ), array( 'status' => 429 ) );
+			return new WP_Error( 'flxcm_limit', __( 'At most 5 receipts can be uploaded for an order.', 'flx-commerce' ), array( 'status' => 429 ) );
 		}
 		if ( empty( $file['tmp_name'] ) || ! empty( $file['error'] ) || ! is_uploaded_file( $file['tmp_name'] ) ) {
 			$big = isset( $file['error'] ) && in_array( (int) $file['error'], array( UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE ), true );
-			return new WP_Error( 'flxcm_file', $big ? __( 'Dosya çok büyük.', 'flx-commerce' ) : __( 'Dosya yüklenemedi. Lütfen tekrar deneyin.', 'flx-commerce' ), array( 'status' => 400 ) );
+			return new WP_Error( 'flxcm_file', $big ? __( 'The file is too large.', 'flx-commerce' ) : __( 'The file could not be uploaded. Please try again.', 'flx-commerce' ), array( 'status' => 400 ) );
 		}
 		$max = max( 1, (int) flxcm_setting( 'receipt_max_mb' ) ) * MB_IN_BYTES;
 		if ( (int) $file['size'] > $max ) {
 			/* translators: %s: largest size in MB */
-			return new WP_Error( 'flxcm_size', sprintf( __( 'Dosya en fazla %s MB olabilir.', 'flx-commerce' ), number_format_i18n( $max / MB_IN_BYTES ) ), array( 'status' => 413 ) );
+			return new WP_Error( 'flxcm_size', sprintf( __( 'The file can be at most %s MB.', 'flx-commerce' ), number_format_i18n( $max / MB_IN_BYTES ) ), array( 'status' => 413 ) );
 		}
 		$check = wp_check_filetype_and_ext( $file['tmp_name'], $file['name'], self::mimes() );
 		if ( empty( $check['ext'] ) || empty( $check['type'] ) ) {
-			return new WP_Error( 'flxcm_type', __( 'Yalnız PDF, JPG, PNG, WEBP ya da HEIC yüklenebilir.', 'flx-commerce' ), array( 'status' => 415 ) );
+			return new WP_Error( 'flxcm_type', __( 'Only PDF, JPG, PNG, WEBP or HEIC files can be uploaded.', 'flx-commerce' ), array( 'status' => 415 ) );
 		}
 		$dir = self::dir();
 		$sub = gmdate( 'Y/m' );
@@ -94,7 +94,7 @@ final class FLXCM_Receipts {
 		$name = $order->get_id() . '-' . wp_generate_password( 16, false, false ) . '.' . $check['ext'];
 		$dest = $dir . '/' . $sub . '/' . $name;
 		if ( ! @move_uploaded_file( $file['tmp_name'], $dest ) ) { // phpcs:ignore
-			return new WP_Error( 'flxcm_move', __( 'Dosya kaydedilemedi.', 'flx-commerce' ), array( 'status' => 500 ) );
+			return new WP_Error( 'flxcm_move', __( 'The file could not be saved.', 'flx-commerce' ), array( 'status' => 500 ) );
 		}
 		@chmod( $dest, 0640 ); // phpcs:ignore
 		$orig   = sanitize_file_name( wp_basename( (string) $file['name'] ) );
@@ -110,7 +110,7 @@ final class FLXCM_Receipts {
 		$order->update_meta_data( '_flxcm_receipts', $list );
 		$order->save();
 		/* translators: 1: file name, 2: size */
-		$order->add_order_note( sprintf( __( 'Müşteri dekont yükledi: %1$s (%2$s). Ödemeyi kontrol edip onaylayın.', 'flx-commerce' ), $rec['name'], size_format( $rec['size'] ) ) );
+		$order->add_order_note( sprintf( __( 'The customer uploaded a receipt: %1$s (%2$s). Check the payment and confirm it.', 'flx-commerce' ), $rec['name'], size_format( $rec['size'] ) ) );
 		do_action( 'flxcm_receipt_uploaded', $order, $rec );
 		return $rec;
 	}
@@ -129,7 +129,7 @@ final class FLXCM_Receipts {
 			<small><?php echo esc_html( flxcm_date( (int) $r['at'], 'datetime' ) ); ?></small></li>
 		<?php endforeach; ?>
 	</ul>
-	<p class="flxcm-note flxcm-note--ok" data-flxcm-ok<?php echo $list ? '' : ' hidden'; ?>><?php echo flxcm_icon( 'check', 16 ); // phpcs:ignore WordPress.Security.EscapeOutput ?><span><?php esc_html_e( 'Dekontunuz bize ulaştı. Ödeme onaylanınca size haber vereceğiz.', 'flx-commerce' ); ?></span></p>
+	<p class="flxcm-note flxcm-note--ok" data-flxcm-ok<?php echo $list ? '' : ' hidden'; ?>><?php echo flxcm_icon( 'check', 16 ); // phpcs:ignore WordPress.Security.EscapeOutput ?><span><?php esc_html_e( 'We have your receipt. We will let you know once the payment is confirmed.', 'flx-commerce' ); ?></span></p>
 	<?php if ( ! $full ) : ?>
 	<form class="flxcm-drop" method="post" enctype="multipart/form-data" action="">
 		<input type="hidden" name="flxcm_action" value="receipt">
@@ -138,10 +138,10 @@ final class FLXCM_Receipts {
 		<label class="flxcm-drop__zone">
 			<input type="file" name="dekont" accept=".pdf,.jpg,.jpeg,.png,.webp,.heic,application/pdf,image/*" required data-flxcm-file>
 			<span class="flxcm-drop__icon"><?php echo flxcm_icon( 'upload', 20 ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
-			<span class="flxcm-drop__text"><strong data-flxcm-pick><?php echo $list ? esc_html__( 'Bir dekont daha ekle', 'flx-commerce' ) : esc_html__( 'Dekontu seçin ya da buraya bırakın', 'flx-commerce' ); ?></strong>
-			<small><?php /* translators: %s: MB */ echo esc_html( sprintf( __( 'PDF, JPG ya da PNG · en fazla %s MB', 'flx-commerce' ), number_format_i18n( $max ) ) ); ?></small></span>
+			<span class="flxcm-drop__text"><strong data-flxcm-pick><?php echo $list ? esc_html__( 'Add another receipt', 'flx-commerce' ) : esc_html__( 'Choose a receipt or drop it here', 'flx-commerce' ); ?></strong>
+			<small><?php /* translators: %s: MB */ echo esc_html( sprintf( __( 'PDF, JPG or PNG · up to %s MB', 'flx-commerce' ), number_format_i18n( $max ) ) ); ?></small></span>
 		</label>
-		<button type="submit" class="flxcm-btn" data-flxcm-send><?php echo flxcm_icon( 'upload', 16 ); // phpcs:ignore WordPress.Security.EscapeOutput ?><span><?php esc_html_e( 'Dekontu gönder', 'flx-commerce' ); ?></span></button>
+		<button type="submit" class="flxcm-btn" data-flxcm-send><?php echo flxcm_icon( 'upload', 16 ); // phpcs:ignore WordPress.Security.EscapeOutput ?><span><?php esc_html_e( 'Send receipt', 'flx-commerce' ); ?></span></button>
 		<p class="flxcm-note flxcm-note--err" data-flxcm-err hidden role="alert"></p>
 	</form>
 	<?php endif; ?>
@@ -173,11 +173,11 @@ final class FLXCM_Receipts {
 	public static function rest_upload( WP_REST_Request $r ) {
 		$order = self::order_by_key( $r->get_param( 'order' ), (string) $r->get_param( 'key' ) );
 		if ( ! $order ) {
-			return new WP_Error( 'flxcm_order', __( 'Sipariş bulunamadı.', 'flx-commerce' ), array( 'status' => 404 ) );
+			return new WP_Error( 'flxcm_order', __( 'Order not found.', 'flx-commerce' ), array( 'status' => 404 ) );
 		}
 		$files = $r->get_file_params();
 		if ( empty( $files['dekont'] ) ) {
-			return new WP_Error( 'flxcm_file', __( 'Lütfen bir dosya seçin.', 'flx-commerce' ), array( 'status' => 400 ) );
+			return new WP_Error( 'flxcm_file', __( 'Please choose a file.', 'flx-commerce' ), array( 'status' => 400 ) );
 		}
 		$rec = self::store( $order, $files['dekont'] );
 		if ( is_wp_error( $rec ) ) {
@@ -207,7 +207,7 @@ final class FLXCM_Receipts {
 			wc_add_notice( $rec->get_error_message(), 'error' );
 			return;
 		}
-		wc_add_notice( __( 'Dekontunuz bize ulaştı. Teşekkürler!', 'flx-commerce' ) );
+		wc_add_notice( __( 'We have your receipt. Thank you!', 'flx-commerce' ) );
 		wp_safe_redirect( wp_get_referer() ? wp_get_referer() : $order->get_checkout_order_received_url() );
 		exit;
 	}

@@ -271,7 +271,7 @@ function flxai_openrouter_models( $fresh = false ) {
 	}
 	$r = wp_remote_get( flxai_openrouter_base() . '/models', array( 'timeout' => 20 ) );
 	if ( is_wp_error( $r ) || 200 !== (int) wp_remote_retrieve_response_code( $r ) ) {
-		return is_wp_error( $r ) ? $r : new WP_Error( 'flxai_models', __( 'Model listesi alınamadı.', 'flx-ai' ) );
+		return is_wp_error( $r ) ? $r : new WP_Error( 'flxai_models', __( 'Could not load the model list.', 'flx-ai' ) );
 	}
 	$json = json_decode( (string) wp_remote_retrieve_body( $r ), true );
 	$out  = array();

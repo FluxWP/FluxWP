@@ -16,7 +16,7 @@ function flxai_known_systems() {
 		'flxai_systems',
 		array(
 			'flx-ai'            => array(
-				'label'  => __( 'Flux AI sohbet', 'flx-ai' ),
+				'label'  => __( 'Flux AI chat', 'flx-ai' ),
 				'plugin' => '',
 				'page'   => 'admin.php?page=flx-ai-settings#chat',
 			),
@@ -171,7 +171,7 @@ function flxai_log_body( $log_id, array $messages, $res ) {
 	$req = array_slice( $req, -8 );
 	if ( '' !== $system ) {
 		/* translators: %s: character count */
-		array_unshift( $req, array( 'system', sprintf( __( '%s karakter sistem talimatı', 'flx-ai' ), number_format_i18n( mb_strlen( $system ) ) ) . ":\n" . flxai_mask_text( flxai_clip( $system, 400 ) ) ) );
+		array_unshift( $req, array( 'system', sprintf( __( '%s-character system prompt', 'flx-ai' ), number_format_i18n( mb_strlen( $system ) ) ) . ":\n" . flxai_mask_text( flxai_clip( $system, 400 ) ) ) );
 	}
 	if ( is_wp_error( $res ) ) {
 		$out = array( 'error' => flxai_mask_text( $res->get_error_message() ) );

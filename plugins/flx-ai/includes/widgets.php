@@ -150,7 +150,7 @@ function flxai_render_widget( $code, array $args = array() ) {
 	$dark  = ! empty( $args['dark'] );
 	$width = max( 240, min( 1200, (int) ( $args['width'] ?? 720 ) ) );
 	if ( '' === trim( $code ) ) {
-		return new WP_Error( 'flxai_render_empty', __( 'Görsel kodu boş.', 'flx-ai' ) );
+		return new WP_Error( 'flxai_render_empty', __( 'Visual code is empty.', 'flx-ai' ) );
 	}
 	$pre = apply_filters( 'flxai_render_widget', null, $code, $args );
 	if ( null !== $pre ) {
@@ -166,8 +166,8 @@ function flxai_render_widget( $code, array $args = array() ) {
 		return new WP_Error(
 			'flxai_render_unavailable',
 			'imagick' === $via
-				? __( 'Bu görsel HTML içeriyor; sunucuda yalnız SVG çevrilebiliyor. HTML için Flux AI & MCP › Ayarlar › Görseller\'e Gotenberg adresi girin.', 'flx-ai' )
-				: __( 'Sunucuda görsel çevirici yok (Imagick SVG desteği ya da Gotenberg adresi gerekli).', 'flx-ai' )
+				? __( 'This visual contains HTML; the server can only convert SVG. For HTML, enter a Gotenberg address in Flux AI & MCP › Settings › Visuals.', 'flx-ai' )
+				: __( 'No visual renderer on the server (Imagick with SVG support or a Gotenberg address is required).', 'flx-ai' )
 		);
 	}
 	flxai_log(
@@ -220,16 +220,16 @@ function flxai_render_gotenberg( $html, $width, $conf = array() ) {
 	);
 	if ( is_wp_error( $r ) ) {
 		/* translators: %s: error */
-		return new WP_Error( 'flxai_render_http', sprintf( __( 'Görsel çeviriciye ulaşılamadı: %s', 'flx-ai' ), $r->get_error_message() ) );
+		return new WP_Error( 'flxai_render_http', sprintf( __( 'Could not reach the visual renderer: %s', 'flx-ai' ), $r->get_error_message() ) );
 	}
 	$code = (int) wp_remote_retrieve_response_code( $r );
 	$data = (string) wp_remote_retrieve_body( $r );
 	if ( 401 === $code || 403 === $code ) {
-		return new WP_Error( 'flxai_render_auth', __( 'Görsel çevirici kullanıcı adı veya şifreyi kabul etmedi.', 'flx-ai' ) );
+		return new WP_Error( 'flxai_render_auth', __( 'The image renderer rejected the username or password.', 'flx-ai' ) );
 	}
 	if ( 200 !== $code || "\x89PNG" !== substr( $data, 0, 4 ) ) {
 		/* translators: %d: HTTP code */
-		return new WP_Error( 'flxai_render_failed', sprintf( __( 'Görsel çevrilemedi (HTTP %d).', 'flx-ai' ), $code ) );
+		return new WP_Error( 'flxai_render_failed', sprintf( __( 'Could not convert the visual (HTTP %d).', 'flx-ai' ), $code ) );
 	}
 	return array(
 		'mime' => 'image/png',
@@ -263,6 +263,6 @@ function flxai_render_imagick( $svg, $width, $dark ) {
 		);
 	} catch ( Exception $e ) {
 		/* translators: %s: error */
-		return new WP_Error( 'flxai_render_failed', sprintf( __( 'SVG çevrilemedi: %s', 'flx-ai' ), $e->getMessage() ) );
+		return new WP_Error( 'flxai_render_failed', sprintf( __( 'Could not convert SVG: %s', 'flx-ai' ), $e->getMessage() ) );
 	}
 }

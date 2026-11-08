@@ -138,7 +138,7 @@ function flxc_chat_number_hidden( $chat ) {
 function flxc_staff_link_chat( $chat, $user_id ) {
 	$user_id = (int) $user_id;
 	if ( $user_id && ! in_array( $user_id, wp_list_pluck( flxc_staff_link_users(), 'id' ), true ) ) {
-		return new WP_Error( 'flxc_staff', __( 'Bu kullanıcının personel araçları yetkisi yok.', 'flx-chat' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxc_staff', __( 'This user is not allowed to use the staff tools.', 'flx-chat' ), array( 'status' => 400 ) );
 	}
 	$fresh = flxc_get_chat( (int) $chat['id'] );
 	$meta  = flxc_decode( $fresh['meta'] ?? '' );
@@ -155,7 +155,7 @@ function flxc_staff_link_chat( $chat, $user_id ) {
 	$me = flxc_user_name( get_current_user_id() );
 	/* translators: 1: manager, 2: staff user */
 	// 1.36.1: the line carries staff_link so the assistant sees in the history when it was linked (flxc_bot_messages).
-	flxc_system_message( $fresh, $user_id ? sprintf( __( '%1$s bu sohbeti personel olarak bağladı: %2$s', 'flx-chat' ), $me, flxc_user_name( $user_id ) ) : sprintf( __( '%s sohbetin personel bağlantısını kaldırdı', 'flx-chat' ), $me ), array( 'staff_link' => $user_id ) );
+	flxc_system_message( $fresh, $user_id ? sprintf( __( '%1$s linked this chat to staff member %2$s', 'flx-chat' ), $me, flxc_user_name( $user_id ) ) : sprintf( __( '%s removed the staff link of this chat', 'flx-chat' ), $me ), array( 'staff_link' => $user_id ) );
 	return true;
 }
 
@@ -396,7 +396,7 @@ function flxc_staff_donation_title( array $d ) {
 		}
 	}
 	$q = (int) ( $d['quantity'] ?? 1 );
-	return ( '' !== $t ? $t : __( 'Bağış', 'flx-chat' ) ) . ( $q > 1 ? ' · ' . $q . ' adet' : '' );
+	return ( '' !== $t ? $t : __( 'Donation', 'flx-chat' ) ) . ( $q > 1 ? ' · ' . $q . ' adet' : '' );
 }
 
 /**
@@ -440,7 +440,7 @@ function flxc_staff_tool( $name, array $a, $chat, array &$state, array &$ctx, $s
 /** Bağışçıya giden ilk mesaj. */
 function flxc_staff_donor_text( $donor, $staff, $what ) {
 	$t = trim( (string) flxc_setting( 'staff_donor_text' ) );
-	$t = '' !== $t ? $t : __( 'Merhaba {ad} 🌱 {personel} aracılığıyla {bagis} bağış talebiniz alındı. Ödemeyi aşağıdaki bilgilerle yapabilirsiniz.', 'flx-chat' );
+	$t = '' !== $t ? $t : __( 'Hello {ad} 🌱 Your {bagis} donation request via {personel} has been received. You can pay with the details below.', 'flx-chat' );
 	$first = trim( strtok( (string) $donor, ' ' ) );
 	return strtr( $t, array( '{ad}' => '' !== $first ? $first : $donor, '{adsoyad}' => $donor, '{personel}' => $staff, '{bagis}' => $what ) );
 }
@@ -523,7 +523,7 @@ function flxc_staff_cancel_replaced( array $id, $old, $new, $chat, array &$state
 		return false;
 	}
 	/* translators: 1: staff, 2: new donation id */
-	$note  = sprintf( __( 'Personel %1$s düzeltti; yerine #%2$d açıldı.', 'flx-chat' ), $id['name'], (int) $new );
+	$note  = sprintf( __( 'Corrected by staff member %1$s; #%2$d was opened instead.', 'flx-chat' ), $id['name'], (int) $new );
 	$order = function_exists( 'flxc_pay_order' ) ? flxc_pay_order( (int) $old ) : null;
 	if ( $order ) {
 		if ( ! $order->has_status( array( 'pending', 'on-hold' ) ) ) {
@@ -538,7 +538,7 @@ function flxc_staff_cancel_replaced( array $id, $old, $new, $chat, array &$state
 	}
 	if ( ! empty( $chat['id'] ) ) {
 		/* translators: 1: old donation id, 2: new donation id */
-		flxc_system_message( $chat, sprintf( __( 'Bağış #%1$d iptal edildi, yerine #%2$d açıldı.', 'flx-chat' ), (int) $old, (int) $new ) );
+		flxc_system_message( $chat, sprintf( __( 'Donation #%1$d was cancelled and #%2$d opened instead.', 'flx-chat' ), (int) $old, (int) $new ) );
 	}
 	return true;
 }
@@ -614,7 +614,7 @@ function flxc_staff_create_donation( array $id, array $a, $chat, array &$state, 
 			'beneficiaries'        => implode( "\n", $names ),
 			'beneficiary_contacts' => $contacts,
 			/* translators: %s: staff name */
-			'note'                 => sprintf( __( 'Personel %s WhatsApp asistanıyla oluşturdu.', 'flx-chat' ), $id['name'] ),
+			'note'                 => sprintf( __( 'Created by staff member %s via the WhatsApp assistant.', 'flx-chat' ), $id['name'] ),
 			'user_id'              => (int) $id['user_id'],
 			'ref_user_id'          => (int) $id['user_id'],
 			'source_detail'        => 'flx-chat-staff',
@@ -631,7 +631,7 @@ function flxc_staff_create_donation( array $id, array $a, $chat, array &$state, 
 	$pay  = flxc_bot_pay( $did, $method );
 	$msgs = array_merge( array( flxc_staff_donor_text( $donor, $id['name'], $what ) ), flxc_bot_payment_messages( $o, $donor, $pay ) );
 	/* translators: 1: staff, 2: what, 3: donation id */
-	$sys  = sprintf( __( 'Personel %1$s aracılığıyla bağış kaydı açıldı: %2$s (#%3$d)', 'flx-chat' ), $id['name'], $what, $did );
+	$sys  = sprintf( __( 'Donation opened via staff member %1$s: %2$s (#%3$d)', 'flx-chat' ), $id['name'], $what, $did );
 	$sent = false;
 	$dc   = '' !== $phone ? flxc_staff_donor_chat( $chat, $phone, $donor ) : null;
 	if ( $dc ) {
@@ -812,13 +812,13 @@ function flxc_staff_send_certificate( array $id, array $a, array &$state, array 
 		if ( ! $c || flxc_chat_blocked( $c ) ) {
 			continue;
 		}
-		$intro = 'donor' === $t[0] ? __( 'Sertifikanız 🌱', 'flx-chat' ) : '';
+		$intro = 'donor' === $t[0] ? __( 'Your certificate 🌱', 'flx-chat' ) : '';
 		if ( flxc_cert_deliver( $c, $t[1], $intro, $certs ) ) {
 			$sent[] = $who[ $i ];
 		}
 	}
 	/* translators: 1: staff, 2: certificate numbers */
-	FLXB_Donations::add_audit( $did, 'certificate', array( 'note' => sprintf( __( 'Personel %1$s sertifikayı WhatsApp\'tan yeniden gönderdi: %2$s', 'flx-chat' ), $id['name'], implode( ', ', wp_list_pluck( $certs, 'number' ) ) ) ) );
+	FLXB_Donations::add_audit( $did, 'certificate', array( 'note' => sprintf( __( 'Staff member %1$s resent the certificate on WhatsApp: %2$s', 'flx-chat' ), $id['name'], implode( ', ', wp_list_pluck( $certs, 'number' ) ) ) ) );
 	return $sent
 		? array( 'ok' => true, 'sent' => $sent, 'left' => $max - $used - 1, 'note' => 'Gönderildi. Personele kısaca kime gittiğini yaz.' )
 		: array( 'ok' => false, 'error' => 'Gönderilemedi (numara engelli ya da bağlantı yok). Ekibin kontrol edeceğini söyle.' );
@@ -1064,13 +1064,13 @@ function flxc_staff_ref_notify( $id, $status ) {
 		$amount = $o ? (float) $o->get_total() : $amount;
 	}
 	$donor = class_exists( 'FLXB_Donors' ) && ! empty( $d['donor_id'] ) ? FLXB_Donors::get( (int) $d['donor_id'] ) : null;
-	$name  = $donor && '' !== (string) $donor['name'] ? $donor['name'] : __( 'Bağışçı', 'flx-chat' );
+	$name  = $donor && '' !== (string) $donor['name'] ? $donor['name'] : __( 'Donor', 'flx-chat' );
 	$what  = flxc_staff_donation_title( $d ) . ' (' . flxc_money( $amount, (string) $d['currency'] ) . ')';
 	$text  = 'completed' === $status
 		/* translators: 1: donor, 2: what, 3: id */
-		? sprintf( __( '✅ Bağışçınız ödedi: *%1$s* · %2$s #%3$d', 'flx-chat' ), $name, $what, (int) $d['id'] )
+		? sprintf( __( '✅ Your donor paid: *%1$s* · %2$s #%3$d', 'flx-chat' ), $name, $what, (int) $d['id'] )
 		/* translators: 1: donor, 2: what, 3: id */
-		: sprintf( __( '❌ Bağış iptal edildi: *%1$s* · %2$s #%3$d', 'flx-chat' ), $name, $what, (int) $d['id'] );
+		: sprintf( __( '❌ Donation cancelled: *%1$s* · %2$s #%3$d', 'flx-chat' ), $name, $what, (int) $d['id'] );
 	$c    = flxc_default_connection();
 	$chat = $c ? flxc_ensure_chat( (string) $c['id'], $phone . '@s.whatsapp.net', array( 'name' => $u->display_name ) ) : null;
 	if ( ! $chat || ( flxc_chat_blocked( $chat ) ) ) {

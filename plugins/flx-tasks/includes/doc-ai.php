@@ -478,7 +478,7 @@ function flxg_tool_create_doc( $a ) {
 	$id  = flxg_create_doc(
 		array(
 			'space_id' => $space,
-			'title'    => '' !== trim( (string) ( $a['title'] ?? '' ) ) ? (string) $a['title'] : __( 'Adsız doküman', 'flx-tasks' ),
+			'title'    => '' !== trim( (string) ( $a['title'] ?? '' ) ) ? (string) $a['title'] : __( 'Untitled document', 'flx-tasks' ),
 			'page'     => (string) ( $a['page_title'] ?? '' ),
 		),
 		$uid
@@ -514,22 +514,22 @@ function flxg_tool_create_doc_page( $a ) {
 /** Ortak sohbetin onay kartında görünen Türkçe adlar. */
 function flxg_flxai_tool_titles() {
 	return array(
-		'list_projects'      => __( 'Görev projelerini listele', 'flx-tasks' ),
-		'list_users'         => __( 'Görev kişilerini listele', 'flx-tasks' ),
-		'search_tasks'       => __( 'Görev ara', 'flx-tasks' ),
-		'get_task'           => __( 'Görevi oku', 'flx-tasks' ),
-		'create_task'        => __( 'Görev oluştur', 'flx-tasks' ),
-		'update_task'        => __( 'Görevi güncelle', 'flx-tasks' ),
-		'add_comment'        => __( 'Göreve yorum ekle', 'flx-tasks' ),
-		'list_fields'        => __( 'Görev alanlarını listele', 'flx-tasks' ),
-		'create_list'        => __( 'Görev listesi oluştur', 'flx-tasks' ),
-		'delete_task'        => __( 'Görevi sil', 'flx-tasks' ),
-		'list_notifications' => __( 'Görev bildirimlerini listele', 'flx-tasks' ),
-		'list_docs'          => __( 'Dokümanları listele', 'flx-tasks' ),
-		'get_doc_page'       => __( 'Doküman sayfasını oku', 'flx-tasks' ),
-		'edit_doc_page'      => __( 'Doküman sayfasını düzenle', 'flx-tasks' ),
-		'create_doc'         => __( 'Doküman oluştur', 'flx-tasks' ),
-		'create_doc_page'    => __( 'Dokümana sayfa ekle', 'flx-tasks' ),
+		'list_projects'      => __( 'List task projects', 'flx-tasks' ),
+		'list_users'         => __( 'List task people', 'flx-tasks' ),
+		'search_tasks'       => __( 'Search tasks', 'flx-tasks' ),
+		'get_task'           => __( 'Read task', 'flx-tasks' ),
+		'create_task'        => __( 'Create task', 'flx-tasks' ),
+		'update_task'        => __( 'Update task', 'flx-tasks' ),
+		'add_comment'        => __( 'Comment on task', 'flx-tasks' ),
+		'list_fields'        => __( 'List task fields', 'flx-tasks' ),
+		'create_list'        => __( 'Create task list', 'flx-tasks' ),
+		'delete_task'        => __( 'Delete task', 'flx-tasks' ),
+		'list_notifications' => __( 'List task notifications', 'flx-tasks' ),
+		'list_docs'          => __( 'List documents', 'flx-tasks' ),
+		'get_doc_page'       => __( 'Read document page', 'flx-tasks' ),
+		'edit_doc_page'      => __( 'Edit document page', 'flx-tasks' ),
+		'create_doc'         => __( 'Create document', 'flx-tasks' ),
+		'create_doc_page'    => __( 'Add page to document', 'flx-tasks' ),
 	);
 }
 
@@ -581,7 +581,7 @@ add_filter(
 		$labels = is_array( $labels ) ? $labels : array();
 		foreach ( flxg_doc_ai_actions() as $k => $a ) {
 			/* translators: %s: action name, e.g. "Improve" */
-			$labels[ 'doc_' . $k ] = sprintf( __( 'Doküman: %s', 'flx-tasks' ), $a['label'] );
+			$labels[ 'doc_' . $k ] = sprintf( __( 'Document: %s', 'flx-tasks' ), $a['label'] );
 		}
 		return $labels;
 	}
@@ -594,25 +594,25 @@ add_filter(
 /** sel: seçili metin üzerinde; page: sayfanın tamamı üzerinde. out: html (blok/satır içi) ya da text. */
 function flxg_doc_ai_actions() {
 	return array(
-		'improve'   => array( 'on' => 'sel', 'label' => __( 'İyileştir', 'flx-tasks' ), 'p' => 'Improve the writing: clearer, more fluent and well structured. Keep the meaning, facts and language.' ),
-		'fix'       => array( 'on' => 'sel', 'label' => __( 'Yazım ve dil bilgisini düzelt', 'flx-tasks' ), 'p' => 'Fix spelling, grammar and punctuation only. Do not change wording otherwise.' ),
-		'shorter'   => array( 'on' => 'sel', 'label' => __( 'Kısalt', 'flx-tasks' ), 'p' => 'Make it noticeably shorter and more concise while keeping the key points.' ),
-		'longer'    => array( 'on' => 'sel', 'label' => __( 'Uzat', 'flx-tasks' ), 'p' => 'Expand it with useful detail and explanation. Do not invent specific facts like names, prices or dates.' ),
-		'simplify'  => array( 'on' => 'sel', 'label' => __( 'Sadeleştir', 'flx-tasks' ), 'p' => 'Rewrite in simple, plain language anyone can understand.' ),
-		'formal'    => array( 'on' => 'sel', 'label' => __( 'Daha resmi', 'flx-tasks' ), 'p' => 'Rewrite in a formal, professional tone suitable for an official association.' ),
-		'friendly'  => array( 'on' => 'sel', 'label' => __( 'Daha samimi', 'flx-tasks' ), 'p' => 'Rewrite in a warm, friendly tone.' ),
-		'bullets'   => array( 'on' => 'sel', 'label' => __( 'Maddelere çevir', 'flx-tasks' ), 'p' => 'Turn it into a clear bullet list (<ul><li>).', 'block' => true ),
-		'table'     => array( 'on' => 'sel', 'label' => __( 'Tabloya çevir', 'flx-tasks' ), 'p' => 'Turn it into a well-structured HTML table (<table> with a header row in <thead><tr><th>).', 'block' => true ),
-		'translate' => array( 'on' => 'sel', 'label' => __( 'Çevir', 'flx-tasks' ), 'p' => 'Translate it into {lang}. Keep formatting.' ),
-		'explain'   => array( 'on' => 'sel', 'label' => __( 'Açıkla', 'flx-tasks' ), 'p' => 'Explain what this text means in a few short sentences for the reader. Do not rewrite it.', 'block' => true, 'answer' => true ),
-		'custom'    => array( 'on' => 'sel', 'label' => __( 'Özel istek', 'flx-tasks' ), 'p' => 'Apply the user instruction to the selected text.' ),
-		'write'     => array( 'on' => 'page', 'label' => __( 'Yaz', 'flx-tasks' ), 'p' => 'Write new content for this page following the user instruction. It will be inserted into the page, so do not repeat existing content.' ),
-		'continue'  => array( 'on' => 'page', 'label' => __( 'Devam et', 'flx-tasks' ), 'p' => 'Continue writing the page naturally from where it ends: 1-3 paragraphs (or list items if the page ends with a list). Do not repeat existing content.' ),
-		'summary'   => array( 'on' => 'page', 'label' => __( 'Özetle', 'flx-tasks' ), 'p' => 'Write a short summary of the page: a heading <h3> plus 3-6 bullet points with the key points and decisions.' ),
-		'actions'   => array( 'on' => 'page', 'label' => __( 'Yapılacakları çıkar', 'flx-tasks' ), 'json' => true, 'p' => 'Extract everything that needs to be done from the page as task items. Always return items, even when the page names no person or date: turn open questions and decisions still to be made into tasks that start with a verb (e.g. "Sitenin adı ne olacak?" -> "Sitenin adını belirle"). Skip only things that are clearly already done. Use the person and date only if the page states them.' ),
-		'outline'   => array( 'on' => 'page', 'label' => __( 'Taslak çıkar', 'flx-tasks' ), 'p' => 'Propose a structured outline for this page: headings (<h2>/<h3>) with one short line or bullets under each. Use the page title and existing content as the topic.' ),
-		'title'     => array( 'on' => 'page', 'label' => __( 'Başlık öner', 'flx-tasks' ), 'p' => 'Suggest one short, clear page title (max ~70 characters). Return ONLY the title text, no quotes or HTML.', 'text' => true ),
-		'ask'       => array( 'on' => 'page', 'label' => __( 'Sayfaya sor', 'flx-tasks' ), 'p' => 'Answer the user question using the page content. If the page does not contain the answer, say so briefly.', 'answer' => true ),
+		'improve'   => array( 'on' => 'sel', 'label' => __( 'Improve', 'flx-tasks' ), 'p' => 'Improve the writing: clearer, more fluent and well structured. Keep the meaning, facts and language.' ),
+		'fix'       => array( 'on' => 'sel', 'label' => __( 'Fix spelling & grammar', 'flx-tasks' ), 'p' => 'Fix spelling, grammar and punctuation only. Do not change wording otherwise.' ),
+		'shorter'   => array( 'on' => 'sel', 'label' => __( 'Shorten', 'flx-tasks' ), 'p' => 'Make it noticeably shorter and more concise while keeping the key points.' ),
+		'longer'    => array( 'on' => 'sel', 'label' => __( 'Make longer', 'flx-tasks' ), 'p' => 'Expand it with useful detail and explanation. Do not invent specific facts like names, prices or dates.' ),
+		'simplify'  => array( 'on' => 'sel', 'label' => __( 'Simplify', 'flx-tasks' ), 'p' => 'Rewrite in simple, plain language anyone can understand.' ),
+		'formal'    => array( 'on' => 'sel', 'label' => __( 'More formal', 'flx-tasks' ), 'p' => 'Rewrite in a formal, professional tone suitable for an official association.' ),
+		'friendly'  => array( 'on' => 'sel', 'label' => __( 'More friendly', 'flx-tasks' ), 'p' => 'Rewrite in a warm, friendly tone.' ),
+		'bullets'   => array( 'on' => 'sel', 'label' => __( 'Turn into bullets', 'flx-tasks' ), 'p' => 'Turn it into a clear bullet list (<ul><li>).', 'block' => true ),
+		'table'     => array( 'on' => 'sel', 'label' => __( 'Turn into table', 'flx-tasks' ), 'p' => 'Turn it into a well-structured HTML table (<table> with a header row in <thead><tr><th>).', 'block' => true ),
+		'translate' => array( 'on' => 'sel', 'label' => __( 'Translate', 'flx-tasks' ), 'p' => 'Translate it into {lang}. Keep formatting.' ),
+		'explain'   => array( 'on' => 'sel', 'label' => __( 'Explain', 'flx-tasks' ), 'p' => 'Explain what this text means in a few short sentences for the reader. Do not rewrite it.', 'block' => true, 'answer' => true ),
+		'custom'    => array( 'on' => 'sel', 'label' => __( 'Custom request', 'flx-tasks' ), 'p' => 'Apply the user instruction to the selected text.' ),
+		'write'     => array( 'on' => 'page', 'label' => __( 'Write', 'flx-tasks' ), 'p' => 'Write new content for this page following the user instruction. It will be inserted into the page, so do not repeat existing content.' ),
+		'continue'  => array( 'on' => 'page', 'label' => __( 'Continue writing', 'flx-tasks' ), 'p' => 'Continue writing the page naturally from where it ends: 1-3 paragraphs (or list items if the page ends with a list). Do not repeat existing content.' ),
+		'summary'   => array( 'on' => 'page', 'label' => __( 'Summarize', 'flx-tasks' ), 'p' => 'Write a short summary of the page: a heading <h3> plus 3-6 bullet points with the key points and decisions.' ),
+		'actions'   => array( 'on' => 'page', 'label' => __( 'Extract action items', 'flx-tasks' ), 'json' => true, 'p' => 'Extract everything that needs to be done from the page as task items. Always return items, even when the page names no person or date: turn open questions and decisions still to be made into tasks that start with a verb (e.g. "Sitenin adı ne olacak?" -> "Sitenin adını belirle"). Skip only things that are clearly already done. Use the person and date only if the page states them.' ),
+		'outline'   => array( 'on' => 'page', 'label' => __( 'Draft an outline', 'flx-tasks' ), 'p' => 'Propose a structured outline for this page: headings (<h2>/<h3>) with one short line or bullets under each. Use the page title and existing content as the topic.' ),
+		'title'     => array( 'on' => 'page', 'label' => __( 'Suggest a title', 'flx-tasks' ), 'p' => 'Suggest one short, clear page title (max ~70 characters). Return ONLY the title text, no quotes or HTML.', 'text' => true ),
+		'ask'       => array( 'on' => 'page', 'label' => __( 'Ask the page', 'flx-tasks' ), 'p' => 'Answer the user question using the page content. If the page does not contain the answer, say so briefly.', 'answer' => true ),
 	);
 }
 
@@ -620,17 +620,17 @@ function flxg_doc_ai_run( $page_id, array $b ) {
 	$p   = flxg_get_page( (int) $page_id );
 	$doc = flxg_page_doc( $p );
 	if ( ! $doc || ! flxg_can_doc( $doc ) ) {
-		return flxg_error( 'flxg_404', __( 'Sayfa bulunamadı ya da erişiminiz yok.', 'flx-tasks' ), 404 );
+		return flxg_error( 'flxg_404', __( 'Page not found or you have no access.', 'flx-tasks' ), 404 );
 	}
 	$acts   = flxg_doc_ai_actions();
 	$action = (string) ( $b['action'] ?? '' );
 	if ( ! isset( $acts[ $action ] ) ) {
-		return flxg_error( 'flxg_ai_action', __( 'Bilinmeyen işlem.', 'flx-tasks' ) );
+		return flxg_error( 'flxg_ai_action', __( 'Unknown action.', 'flx-tasks' ) );
 	}
 	$a      = $acts[ $action ];
 	$prompt = trim( mb_substr( (string) ( $b['prompt'] ?? '' ), 0, 2000 ) );
 	if ( in_array( $action, array( 'custom', 'write', 'ask' ), true ) && '' === $prompt ) {
-		return flxg_error( 'flxg_ai_prompt', __( 'Ne yapılacağını yazın.', 'flx-tasks' ) );
+		return flxg_error( 'flxg_ai_prompt', __( 'Write what should be done.', 'flx-tasks' ) );
 	}
 	$lang      = 'en' === ( $b['lang'] ?? '' ) ? 'English' : ( 'tr' === ( $b['lang'] ?? '' ) ? 'Turkish' : ( preg_match( '/^[a-z]{2}$/', (string) ( $b['lang'] ?? '' ) ) ? strtoupper( $b['lang'] ) : 'English' ) );
 	$inline    = 'sel' === $a['on'] && ! empty( $b['inline'] ) && empty( $a['block'] );
@@ -674,7 +674,7 @@ function flxg_doc_ai_run( $page_id, array $b ) {
 	if ( ! empty( $a['json'] ) ) {
 		$items = flxg_doc_ai_items( $out );
 		if ( ! $items ) {
-			return flxg_error( 'flxg_ai_empty', __( 'Yapay zekâ madde çıkaramadı. Yeniden deneyin ya da ne istediğinizi yazın.', 'flx-tasks' ), 502 );
+			return flxg_error( 'flxg_ai_empty', __( 'The AI could not extract items. Try again or describe what you need.', 'flx-tasks' ), 502 );
 		}
 		return array( 'items' => $items, 'answer' => false );
 	}
@@ -691,7 +691,7 @@ function flxg_doc_ai_run( $page_id, array $b ) {
 	}
 	$blocks = flxg_html_to_blocks( $out );
 	if ( ! $blocks ) {
-		return flxg_error( 'flxg_ai_empty', __( 'Yapay zekâ boş cevap verdi. Yeniden deneyin.', 'flx-tasks' ), 502 );
+		return flxg_error( 'flxg_ai_empty', __( 'The AI returned an empty answer. Try again.', 'flx-tasks' ), 502 );
 	}
 	return array( 'html' => implode( '', $blocks ), 'inline' => false, 'answer' => ! empty( $a['answer'] ) );
 }

@@ -131,7 +131,7 @@ final class FLXCM_REST {
 	public static function customer( WP_REST_Request $r ) {
 		$row = FLXCM_Customers::get( (int) $r['id'] );
 		if ( ! $row ) {
-			return new WP_Error( 'flxcm_missing', __( 'Müşteri bulunamadı.', 'flx-commerce' ), array( 'status' => 404 ) );
+			return new WP_Error( 'flxcm_missing', __( 'Customer not found.', 'flx-commerce' ), array( 'status' => 404 ) );
 		}
 		return self::customer_out( $row );
 	}
@@ -201,7 +201,7 @@ final class FLXCM_REST {
 	public static function receipt( WP_REST_Request $r ) {
 		$order = function_exists( 'wc_get_order' ) ? wc_get_order( (int) $r['id'] ) : null;
 		if ( ! $order || FLXCM_Bank::ID !== $order->get_payment_method() ) {
-			return new WP_Error( 'flxcm_missing', __( 'Sipariş bulunamadı.', 'flx-commerce' ), array( 'status' => 404 ) );
+			return new WP_Error( 'flxcm_missing', __( 'Order not found.', 'flx-commerce' ), array( 'status' => 404 ) );
 		}
 		return self::receipt_out( $order );
 	}
@@ -209,10 +209,10 @@ final class FLXCM_REST {
 	public static function approve( WP_REST_Request $r ) {
 		$order = wc_get_order( (int) $r['id'] );
 		if ( ! $order ) {
-			return new WP_Error( 'flxcm_missing', __( 'Sipariş bulunamadı.', 'flx-commerce' ), array( 'status' => 404 ) );
+			return new WP_Error( 'flxcm_missing', __( 'Order not found.', 'flx-commerce' ), array( 'status' => 404 ) );
 		}
 		if ( ! FLXCM_Bank::mark_paid( $order ) ) {
-			return new WP_Error( 'flxcm_state', __( 'Bu sipariş onay beklemiyor.', 'flx-commerce' ), array( 'status' => 409 ) );
+			return new WP_Error( 'flxcm_state', __( 'This order is not waiting for approval.', 'flx-commerce' ), array( 'status' => 409 ) );
 		}
 		$order = wc_get_order( $order->get_id() );
 		return array( 'ok' => true, 'order' => self::receipt_out( $order ) );

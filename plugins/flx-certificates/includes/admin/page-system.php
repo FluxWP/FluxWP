@@ -6,16 +6,16 @@ function flxs_page_system() {
 	$checks = flxs_system_checks();
 	$count  = array_count_values( wp_list_pluck( $checks, 'status' ) );
 	$names  = array(
-		'ok'      => __( 'Tamam', 'flx-certificates' ),
-		'warning' => __( 'Uyarı', 'flx-certificates' ),
-		'error'   => __( 'Hata', 'flx-certificates' ),
-		'info'    => __( 'Bilgi', 'flx-certificates' ),
+		'ok'      => __( 'OK', 'flx-certificates' ),
+		'warning' => __( 'Warning', 'flx-certificates' ),
+		'error'   => __( 'Error', 'flx-certificates' ),
+		'info'    => __( 'Info', 'flx-certificates' ),
 	);
-	$test = flxs_iletisim_active() ? '<a class="button" href="' . esc_url( admin_url( 'admin.php?page=flxi-baglantilar' ) ) . '">' . esc_html__( 'WhatsApp/SMS bağlantılarını test et', 'flx-certificates' ) . '</a>' : '';
+	$test = flxs_iletisim_active() ? '<a class="button" href="' . esc_url( admin_url( 'admin.php?page=flxi-baglantilar' ) ) . '">' . esc_html__( 'Test WhatsApp/SMS connections', 'flx-certificates' ) . '</a>' : '';
 	flxs_admin_header(
-		__( 'Sistem kontrolü', 'flx-certificates' ),
+		__( 'System check', 'flx-certificates' ),
 		array(),
-		esc_html__( 'Kurulumun, cron\'un ve gönderimin yerli yerinde olup olmadığı. Sayfa her açıldığında yeniden kontrol edilir. WhatsApp/SMS bağlantıları ve testleri Flux Mail\'dedir.', 'flx-certificates' )
+		esc_html__( 'Whether setup, cron and sending are in place. Checked again each time this page opens. WhatsApp/SMS connections and tests live in Flux Mail.', 'flx-certificates' )
 	);
 	echo '<div class="flxs-sys__bar">';
 	foreach ( array( 'error', 'warning', 'ok', 'info' ) as $s ) {
