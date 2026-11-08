@@ -618,6 +618,13 @@
     "[[\"FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back.\", 'tr']]": "[[\"Complemento de instalación y actualización de FluxWP. Asistente de instalación en el primer inicio (introducción, selección de complementos, apariencia, instalación); Trae temas y complementos de FluxWP desde el servidor de actualización (actualizador predeterminado.fluxwp.com) a la pantalla de actualización de WordPress; El motor preestablecido (preset.json) configura el sitio en un solo paso, lo reemplaza con parches aprobados y lo revierte.\", 'tr']]",
     "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n\u0000\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n": "\\nSe eliminó la copia de seguridad caducada de%d. Se eliminó la copia de seguridad caducada de%d.\\n\u0000\\nSe eliminó la copia de seguridad caducada de%d. Se eliminó la copia de seguridad caducada de%d.\\n",
     "\\nConnected ·%dpackage Connected ·%dpackage\\n\u0000\\nConnected ·%dpackage Connected ·%dpackage\\n": "\\nConectado · Paquete%dConectado · Paquete%d\\n\u0000\\nConectado · Paquete%dConectado · Paquete%d\\n",
-    "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n\u0000\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n": "\\nActualmente la copia de seguridad de actualización%1$des%2$s. Actualmente, la copia de seguridad de actualización de%1$des%2$s.\\n\u0000\\nActualmente la copia de seguridad de actualización%1$des%2$s. Actualmente, la copia de seguridad de actualización de%1$des%2$s.\\n"
+    "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n\u0000\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n": "\\nActualmente la copia de seguridad de actualización%1$des%2$s. Actualmente, la copia de seguridad de actualización de%1$des%2$s.\\n\u0000\\nActualmente la copia de seguridad de actualización%1$des%2$s. Actualmente, la copia de seguridad de actualización de%1$des%2$s.\\n",
+    "Close preview": "Cerrar vista previa",
+    "Open on website": "Abrir en el sitio web",
+    "For full details and more examples, visit the website.": "Para obtener detalles completos y más ejemplos, visite el sitio web.",
+    "Example screenshots": "Capturas de pantalla de ejemplo",
+    "No preview images are available yet.": "Aún no hay imágenes de vista previa disponibles.",
+    "A short overview is not available yet.": "Una breve descripción aún no está disponible.",
+    "Preview image %d": "Imagen previa%d"
   }
 }

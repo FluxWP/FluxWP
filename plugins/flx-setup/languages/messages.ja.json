@@ -618,6 +618,13 @@
     "[[\"FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back.\", 'tr']]": "[[\"FluxWP のインストールとプラグインの更新。初回起動時のインストール ウィザード (導入、プラグインの選択、外観、インストール)。FluxWP のテーマとプラグインを更新サーバー (デフォルトの updater.fluxwp.com) から WordPress の更新画面に表示します。プリセット エンジン (preset.json) は 1 ステップでサイトをセットアップし、承認されたパッチに置き換えてロールバックします。\", 'tr']]",
     "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n\u0000\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n": "\\n期限切れの%dバックアップが削除されました。期限切れの%dバックアップが削除されました。\\n",
     "\\nConnected ·%dpackage Connected ·%dpackage\\n\u0000\\nConnected ·%dpackage Connected ·%dpackage\\n": "\\n接続済み ·%dパッケージ接続済み ·%dパッケージ\\n",
-    "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n\u0000\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n": "\\n現在%1$d更新バックアップは%2$sです。現在、%1$d更新バックアップは%2$sです。\\n"
+    "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n\u0000\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n": "\\n現在%1$d更新バックアップは%2$sです。現在、%1$d更新バックアップは%2$sです。\\n",
+    "Close preview": "プレビューを閉じる",
+    "Open on website": "ウェブサイトで開く",
+    "For full details and more examples, visit the website.": "詳細とその他の例については、Web サイトをご覧ください。",
+    "Example screenshots": "スクリーンショットの例",
+    "No preview images are available yet.": "プレビュー画像はまだありません。",
+    "A short overview is not available yet.": "短い概要はまだ公開されていません。",
+    "Preview image %d": "プレビュー画像%d"
   }
 }

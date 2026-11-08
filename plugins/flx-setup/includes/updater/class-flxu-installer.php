@@ -71,6 +71,7 @@ final class FLXU_Installer {
 		foreach ( $rows as $row ) {
 			$req                 = FLXU_Updater::requires_plugins( $row['slug'], $catalog[ $row['slug'] ] ?? array() );
 			$pk[ $row['slug'] ] = array(
+				'preview' => FLXU_Previews::data( $row['slug'], $row, $catalog[ $row['slug'] ] ?? array() ),
 				'name'  => $row['name'],
 				'state' => $row['state'],
 				'req'   => $req,

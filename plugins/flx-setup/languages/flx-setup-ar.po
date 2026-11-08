@@ -1960,3 +1960,24 @@ msgstr[2] "\\nالنسخة الاحتياطية لتحديث%1$dحاليًا ه�
 msgstr[3] "\\nالنسخة الاحتياطية لتحديث%1$dحاليًا هي%2$s. النسخ الاحتياطي لتحديث%1$dحاليًا هو%2$s.\\n"
 msgstr[4] "\\nالنسخة الاحتياطية لتحديث%1$dحاليًا هي%2$s. النسخ الاحتياطي لتحديث%1$dحاليًا هو%2$s.\\n"
 msgstr[5] "\\nالنسخة الاحتياطية لتحديث%1$dحاليًا هي%2$s. النسخ الاحتياطي لتحديث%1$dحاليًا هو%2$s.\\n"
+
+msgid "Close preview"
+msgstr "إغلاق المعاينة"
+
+msgid "Open on website"
+msgstr "فتح على الموقع"
+
+msgid "For full details and more examples, visit the website."
+msgstr "للحصول على التفاصيل الكاملة والمزيد من الأمثلة، قم بزيارة الموقع."
+
+msgid "Example screenshots"
+msgstr "لقطات سبيل المثال"
+
+msgid "No preview images are available yet."
+msgstr "لا توجد صور معاينة متاحة حتى الآن."
+
+msgid "A short overview is not available yet."
+msgstr "نظرة عامة قصيرة ليست متاحة بعد."
+
+msgid "Preview image %d"
+msgstr "معاينة الصورة%d"

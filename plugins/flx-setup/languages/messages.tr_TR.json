@@ -617,6 +617,13 @@
     "[[\"FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back.\", 'tr']]": "FluxWP'nin kurulum ve güncelleme eklentisi. İlk açılışta kurulum sihirbazı (tanıtım, eklenti seçimi, görünüm, kurulum); FluxWP tema ve eklentilerini güncelleme sunucusundan (varsayılan updater.fluxwp.com) WordPress'in güncelleme ekranına getirir; ön ayar motoru (preset.json) siteyi tek adımda kurar, onaylı yamalarla değiştirir, geri alır.",
     "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n\u0000\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n": "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n\u0000\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n",
     "\\nConnected ·%dpackage Connected ·%dpackage\\n\u0000\\nConnected ·%dpackage Connected ·%dpackage\\n": "\\nConnected ·%dpackage Connected ·%dpackage\\n\u0000\\nConnected ·%dpackage Connected ·%dpackage\\n",
-    "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n\u0000\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n": "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n\u0000\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
+    "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n\u0000\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n": "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n\u0000\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n",
+    "Close preview": "Önizlemeyi kapat",
+    "Open on website": "Sitede aç",
+    "For full details and more examples, visit the website.": "Ayrıntılı bilgi ve daha fazla örnek için web sitesini ziyaret edin.",
+    "Example screenshots": "Örnek ekran görüntüleri",
+    "No preview images are available yet.": "Henüz önizleme görseli bulunmuyor.",
+    "A short overview is not available yet.": "Henüz kısa bir tanıtım bulunmuyor.",
+    "Preview image %d": "Önizleme görseli %d"
   }
 }

@@ -618,6 +618,13 @@
     "[[\"FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back.\", 'tr']]": "[[\"FluxWPs Installations- und Update-Plugin. Installationsassistent beim ersten Start (Einführung, Plugin-Auswahl, Erscheinungsbild, Installation); Bringt FluxWP-Themen und Plugins vom Update-Server (Standard updater.fluxwp.com) zum WordPress-Update-Bildschirm; Die voreingestellte Engine (preset.json) richtet die Site in einem Schritt ein, ersetzt sie durch genehmigte Patches und führt einen Rollback durch.\", 'tr']]",
     "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n\u0000\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n": "\\nAbgelaufenes%d-Backup gelöscht. Abgelaufenes%d-Backup gelöscht.\\n\u0000\\nAbgelaufenes%d-Backup gelöscht. Abgelaufenes%d-Backup gelöscht.\\n",
     "\\nConnected ·%dpackage Connected ·%dpackage\\n\u0000\\nConnected ·%dpackage Connected ·%dpackage\\n": "\\nVerbunden ·%d-Paket Verbunden ·%d-Paket\\n\u0000\\nVerbunden ·%d-Paket Verbunden ·%d-Paket\\n",
-    "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n\u0000\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n": "\\nDerzeit ist die%1$d-Updatesicherung%2$s. Derzeit ist die%1$d-Update-Sicherung%2$s.\\n\u0000\\nDerzeit ist die%1$d-Updatesicherung%2$s. Derzeit ist die%1$d-Update-Sicherung%2$s.\\n"
+    "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n\u0000\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n": "\\nDerzeit ist die%1$d-Updatesicherung%2$s. Derzeit ist die%1$d-Update-Sicherung%2$s.\\n\u0000\\nDerzeit ist die%1$d-Updatesicherung%2$s. Derzeit ist die%1$d-Update-Sicherung%2$s.\\n",
+    "Close preview": "Vorschau schließen",
+    "Open on website": "Auf der Website öffnen",
+    "For full details and more examples, visit the website.": "Ausführliche Informationen und weitere Beispiele finden Sie auf der Website.",
+    "Example screenshots": "Beispiel-Screenshots",
+    "No preview images are available yet.": "Es sind noch keine Vorschaubilder verfügbar.",
+    "A short overview is not available yet.": "Eine Kurzübersicht liegt noch nicht vor.",
+    "Preview image %d": "Vorschaubild%d"
   }
 }

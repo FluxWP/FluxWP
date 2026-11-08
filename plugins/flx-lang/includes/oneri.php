@@ -98,6 +98,21 @@ function flxl_suggest_texts() {
 	return $data;
 }
 
+
+/** Country is a fallback hint when no supported browser language is available. No IP lookup or storage. */
+function flxl_country_languages() {
+    $groups = array(
+        'tr' => 'TR', 'de' => 'DE AT LI',
+        'es' => 'ES MX AR BO CL CO CR CU DO EC GT HN NI PA PE PR PY SV UY VE GQ',
+        'fr' => 'FR BE LU MC CI SN BF BJ CD CG GA GN ML NE TD TG',
+        'pt-br' => 'BR PT AO MZ CV GW ST TL', 'ja' => 'JP', 'zh' => 'CN TW HK MO SG',
+        'ar' => 'SA AE EG JO LB SY IQ QA KW BH OM YE PS MA DZ TN LY SD MR', 'ru' => 'RU BY KZ KG',
+    );
+    $map = array();
+    foreach ( $groups as $language => $countries ) { foreach ( explode( ' ', $countries ) as $country ) { $map[ $country ] = $language; } }
+    return (array) apply_filters( 'flxl_country_languages', $map );
+}
+
 add_action(
 	'wp_enqueue_scripts',
 	function () {
@@ -113,6 +128,8 @@ add_action(
 		$cfg = array(
 			'mode'    => in_array( $mode, array( 'banner', 'redirect' ), true ) && ! is_user_logged_in() ? $mode : 'off',
 			'cur'     => flxl_current_language(),
+			'explicit' => flxl_is_explicit(),
+			'countries' => flxl_country_languages(),
 			'def'     => flxl_default_language(),
 			'to'      => flxl_settings()['suggest_to'],
 			'home'    => array_values( array_map( 'strtoupper', (array) flxl_settings()['home_countries'] ) ),

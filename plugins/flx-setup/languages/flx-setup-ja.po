@@ -1860,3 +1860,24 @@ msgstr[0] "\\n接続済み ·%dパッケージ接続済み ·%dパッケージ\\
 msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
 msgid_plural "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
 msgstr[0] "\\n現在%1$d更新バックアップは%2$sです。現在、%1$d更新バックアップは%2$sです。\\n"
+
+msgid "Close preview"
+msgstr "プレビューを閉じる"
+
+msgid "Open on website"
+msgstr "ウェブサイトで開く"
+
+msgid "For full details and more examples, visit the website."
+msgstr "詳細とその他の例については、Web サイトをご覧ください。"
+
+msgid "Example screenshots"
+msgstr "スクリーンショットの例"
+
+msgid "No preview images are available yet."
+msgstr "プレビュー画像はまだありません。"
+
+msgid "A short overview is not available yet."
+msgstr "短い概要はまだ公開されていません。"
+
+msgid "Preview image %d"
+msgstr "プレビュー画像%d"

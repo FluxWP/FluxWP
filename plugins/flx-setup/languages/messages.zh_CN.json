@@ -618,6 +618,13 @@
     "[[\"FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back.\", 'tr']]": "[[\"FluxWP 的安装和更新插件。第一次启动时的安装向导(介绍、插件选择、外观、安装);将 FluxWP 主题和插件从更新服务器(默认 updater.fluxwp.com)带到 WordPress 的更新屏幕;预设引擎(preset.json)一步设置站点,用批准的补丁替换它,然后回滚。\", 'tr']]",
     "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n\u0000\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n": "\\n已删除过期的%d备份。已删除过期的%d备份。\\n",
     "\\nConnected ·%dpackage Connected ·%dpackage\\n\u0000\\nConnected ·%dpackage Connected ·%dpackage\\n": "\\n已连接·%d包已连接·%d包\\n",
-    "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n\u0000\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n": "\\n当前%1$d更新备份是%2$s。当前%1$d更新备份是%2$s。\\n"
+    "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n\u0000\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n": "\\n当前%1$d更新备份是%2$s。当前%1$d更新备份是%2$s。\\n",
+    "Close preview": "关闭预览",
+    "Open on website": "在网站上打开",
+    "For full details and more examples, visit the website.": "有关完整详细信息和更多示例,请访问该网站。",
+    "Example screenshots": "截图示例",
+    "No preview images are available yet.": "目前还没有可用的预览图像。",
+    "A short overview is not available yet.": "目前还没有简短的概述。",
+    "Preview image %d": "预览图像%d"
   }
 }

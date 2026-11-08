@@ -1860,3 +1860,24 @@ msgstr[0] "\\n已连接·%d包已连接·%d包\\n"
 msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
 msgid_plural "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
 msgstr[0] "\\n当前%1$d更新备份是%2$s。当前%1$d更新备份是%2$s。\\n"
+
+msgid "Close preview"
+msgstr "关闭预览"
+
+msgid "Open on website"
+msgstr "在网站上打开"
+
+msgid "For full details and more examples, visit the website."
+msgstr "有关完整详细信息和更多示例,请访问该网站。"
+
+msgid "Example screenshots"
+msgstr "截图示例"
+
+msgid "No preview images are available yet."
+msgstr "目前还没有可用的预览图像。"
+
+msgid "A short overview is not available yet."
+msgstr "目前还没有简短的概述。"
+
+msgid "Preview image %d"
+msgstr "预览图像%d"

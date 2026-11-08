@@ -390,6 +390,83 @@
 		});
 	}
 
+	/* ---------------- Read-only package previews ---------------- */
+	function previewURL(value) {
+		try {
+			if (typeof value !== 'string') { return ''; }
+			var url = new URL(value);
+			if (url.protocol !== 'https:' || url.username || url.password) { return ''; }
+			return url.href;
+		} catch (error) { return ''; }
+	}
+	var previewDialog, previewTrigger;
+	function makePreview() {
+		if (previewDialog) { return previewDialog; }
+		var dialog = document.createElement('dialog');
+		dialog.id = 'flxu-preview'; dialog.className = 'flxu-preview';
+		dialog.setAttribute('aria-labelledby', 'flxu-preview-title');
+		dialog.setAttribute('aria-describedby', 'flxu-preview-description');
+		dialog.innerHTML = '<div class="flxu-preview__head"><h2 id="flxu-preview-title"></h2><button type="button" class="flxu-preview__close" aria-label="' + esc(L.previewClose) + '">×</button></div>' +
+			'<p id="flxu-preview-description" class="flxu-preview__description"></p><section class="flxu-preview__gallery" aria-label="' + esc(L.previewImages) + '"><p class="flxu-preview__label">' + esc(L.previewImages) + '</p><div class="flxu-preview__stage"><img alt=""><p class="flxu-preview__empty" hidden>' + esc(L.previewEmpty) + '</p></div><div class="flxu-preview__thumbs"></div></section>' +
+			'<div class="flxu-preview__foot"><p>' + esc(L.previewMore) + '</p><a class="flxu-preview__website" target="_blank" rel="noopener noreferrer">' + esc(L.previewWebsite) + '<span aria-hidden="true">↗</span></a></div>';
+		document.body.appendChild(dialog);
+		dialog.querySelector('.flxu-preview__close').addEventListener('click', function () { dialog.close(); });
+		dialog.addEventListener('click', function (e) {
+			var rect = dialog.getBoundingClientRect();
+			if (e.target === dialog && (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom)) { dialog.close(); }
+		});
+		dialog.addEventListener('close', function () {
+			if (previewTrigger && previewTrigger.isConnected) { previewTrigger.focus(); }
+		});
+		previewDialog = dialog; return dialog;
+	}
+	function openPreview(slug, trigger) {
+		var info = data.pk[slug] && data.pk[slug].preview;
+		if (!info) { return; }
+		var dialog = makePreview();
+		if (typeof dialog.showModal !== 'function') { return; }
+		previewTrigger = trigger;
+		dialog.querySelector('h2').textContent = info.name || name(slug);
+		dialog.querySelector('.flxu-preview__description').textContent = info.description || L.previewDescription;
+		var website = dialog.querySelector('.flxu-preview__website');
+		website.removeAttribute('href');
+		var websiteURL = previewURL(info.website);
+		if (websiteURL) { website.href = websiteURL; }
+		dialog.querySelector('.flxu-preview__foot').hidden = !websiteURL;
+		var stage = dialog.querySelector('.flxu-preview__stage');
+		var image = dialog.querySelector('.flxu-preview__stage img'), empty = dialog.querySelector('.flxu-preview__empty');
+		var thumbs = dialog.querySelector('.flxu-preview__thumbs');
+		thumbs.replaceChildren();
+		var images = (info.images || []).map(previewURL).filter(Boolean), failed = {};
+		function show(index) {
+			stage.classList.remove('is-empty');
+			image.hidden = false; empty.hidden = true;
+			image.alt = (info.name || name(slug)) + ' — ' + fmt(L.previewImage, index + 1);
+			image.referrerPolicy = 'no-referrer'; image.decoding = 'async';
+			image.onerror = function () {
+				failed[index] = true;
+				if (thumbs.children[index]) { thumbs.children[index].hidden = true; }
+				var next = images.findIndex(function (_, i) { return !failed[i]; });
+				if (next >= 0) { show(next); } else { image.hidden = true; empty.hidden = false; stage.classList.add('is-empty'); }
+			};
+			image.src = images[index];
+			Array.prototype.forEach.call(thumbs.children, function (button, i) { button.setAttribute('aria-pressed', i === index ? 'true' : 'false'); });
+		}
+		images.forEach(function (url, index) {
+			var button = document.createElement('button'); button.type = 'button'; button.className = 'flxu-preview__thumb';
+			button.setAttribute('aria-label', fmt(L.previewImage, index + 1));
+			var thumb = document.createElement('img'); thumb.alt = ''; thumb.loading = 'lazy'; thumb.decoding = 'async'; thumb.referrerPolicy = 'no-referrer'; thumb.src = url;
+			thumb.onerror = function () { button.hidden = true; };
+			button.appendChild(thumb); button.addEventListener('click', function () { show(index); }); thumbs.appendChild(button);
+		});
+		stage.classList.toggle('is-empty', !images.length);
+		thumbs.hidden = images.length < 2;
+		image.onerror = null; image.removeAttribute('src'); image.hidden = !images.length; empty.hidden = !!images.length;
+		if (images.length) { show(0); }
+		if (!dialog.open) { dialog.showModal(); }
+		dialog.querySelector('.flxu-preview__close').focus();
+	}
+
 	/* ---------------- Olaylar ---------------- */
 
 	document.addEventListener('change', function (e) {
@@ -406,6 +483,13 @@
 	document.addEventListener('click', function (e) {
 		var f = form(); if (!f) { return; }
 		var t = e.target;
+		var preview = t.closest('.flxu-pkg');
+		if (preview && f.contains(preview) && !t.closest('a,input,select,textarea')) {
+			e.preventDefault();
+			var row = preview.closest('.flxu-row');
+			openPreview(row.getAttribute('data-slug'), preview.querySelector('.flxu-preview-open'));
+			return;
+		}
 		if (t.closest('.flxu-add-dep')) { addDep(t.closest('.flxu-add-dep').getAttribute('data-dep')); return; }
 		if (t.closest('.flxu-drop-dep')) {
 			var d = t.closest('.flxu-drop-dep').getAttribute('data-dep');

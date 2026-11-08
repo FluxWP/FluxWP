@@ -47,3 +47,5 @@
 .flxl-picker__list a:hover,.flxl-picker__list a:focus-visible,.flxl-picker__list a.is-current{background:var(--cream-2,var(--wp--preset--color--mint-soft,#f3f4f6))!important;color:var(--ink,var(--wp--preset--color--ink,#111827))!important}
 .flxl-picker__list small{font-size:.7em;opacity:.65;direction:ltr;unicode-bidi:isolate}
 .flxl-footer-lang .flxl-picker__list,.ftr .flxl-picker__list{top:auto;bottom:calc(100% + 8px)}
+
+.flxl-picker__chevron{display:block;flex:none;width:12px;height:12px;align-self:center}

@@ -132,3 +132,5 @@ WordPress siteleri (FluxWP Panel)
 FluxWP Panel, [GNU Genel Kamu Lisansı v2 veya üzeri](https://www.gnu.org/licenses/gpl-2.0.html) ile yayınlanır.
 
 FluxWP tarafından geliştirilmiştir.
+
+Paketler ekranında eklenti adına veya ikonuna tıklayın: kısa tanıtım, örnek ekran görüntüleri ve ayrıntılar için “Sitede aç” bağlantısı gösterilir. Kurulum/güncelleme düğmeleri ayrı çalışır.
