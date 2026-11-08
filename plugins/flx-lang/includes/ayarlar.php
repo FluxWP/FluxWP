@@ -200,7 +200,7 @@ function flxl_settings_page() {
 				<tr><th scope="row"><label for="flxl-to"><?php esc_html_e( 'Suggested language', 'flx-lang' ); ?></label></th><td>
 					<select id="flxl-to" name="suggest_to">
 						<?php foreach ( $langs as $code => $l ) : ?>
-							<?php if ( $code !== $def ) : ?><option value="<?php echo esc_attr( $code ); ?>" <?php selected( $s['suggest_to'], $code ); ?>><?php echo esc_html( $l['name'] ); ?></option><?php endif; ?>
+							<option value="<?php echo esc_attr( $code ); ?>" <?php selected( $s['suggest_to'], $code ); ?>><?php echo esc_html( $l['name'] ); ?></option>
 						<?php endforeach; ?>
 					</select>
 					<p class="description"><?php esc_html_e( 'If the browser language is one of the active languages (e.g. German once added), that one is suggested; otherwise this one.', 'flx-lang' ); ?></p>

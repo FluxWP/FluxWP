@@ -1900,3 +1900,24 @@ msgid_plural "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup i
 msgstr[0] "\\nВ настоящее время резервная копия обновления%1$d—%2$s. В настоящее время резервная копия обновления%1$d—%2$s.\\n"
 msgstr[1] "\\nВ настоящее время резервная копия обновления%1$d—%2$s. В настоящее время резервная копия обновления%1$d—%2$s.\\n"
 msgstr[2] "\\nВ настоящее время резервная копия обновления%1$d—%2$s. В настоящее время резервная копия обновления%1$d—%2$s.\\n"
+
+msgid "Close preview"
+msgstr "Закрыть предварительный просмотр"
+
+msgid "Open on website"
+msgstr "Открыть на сайте"
+
+msgid "For full details and more examples, visit the website."
+msgstr "Более подробную информацию и дополнительные примеры можно найти на веб-сайте."
+
+msgid "Example screenshots"
+msgstr "Примеры скриншотов"
+
+msgid "No preview images are available yet."
+msgstr "Изображения для предварительного просмотра пока недоступны."
+
+msgid "A short overview is not available yet."
+msgstr "Краткий обзор пока недоступен."
+
+msgid "Preview image %d"
+msgstr "Изображение для предварительного просмотра%d"

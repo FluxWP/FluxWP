@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.1.9
+- Open a simple accessible package preview from the package name or icon, with a short localized description, example screenshots and a publisher website link. Preserve installation/update controls.
+- Reuse catalog metadata, with bundled public-package introductions and existing documentation images as fallback; private packages do not inherit public marketing links.
+
 ## 1.1.8
 - Add native WordPress language packs for German, Spanish, French, Brazilian Portuguese, Japanese, Simplified Chinese, Arabic and Russian. English-keyed JSON catalogs preserve legacy gettext compatibility; no Flux Lang dependency.
 

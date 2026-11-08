@@ -700,7 +700,7 @@ final class FLXU_Admin {
 								<?php else : ?>
 									<span class="flxu-pkg__ph dashicons <?php echo 'theme' === $row['type'] ? 'dashicons-admin-appearance' : 'dashicons-admin-plugins'; ?>"></span>
 								<?php endif; ?>
-								<span><strong><?php echo esc_html( $row['name'] ); ?></strong><br><code><?php echo esc_html( $row['slug'] ); ?></code>
+								<span><strong><button type="button" class="flxu-preview-open" data-slug="<?php echo esc_attr( $row['slug'] ); ?>" aria-haspopup="dialog" aria-controls="flxu-preview"><?php echo esc_html( $row['name'] ); ?></button></strong><br><code><?php echo esc_html( $row['slug'] ); ?></code>
 									<?php
 									$src_n = count( (array) ( $catalog[ $row['slug'] ]['sources'] ?? array() ) );
 									if ( 'main' !== ( $catalog[ $row['slug'] ]['source'] ?? 'main' ) || $src_n > 1 ) :
@@ -1468,6 +1468,7 @@ final class FLXU_Admin {
 			});
 		})();
 		</script>
+		<link rel="stylesheet" href="<?php echo esc_url( plugins_url( 'assets/package-previews.css', FLXU_FILE ) . '?ver=' . FLXU_VERSION ); ?>">
 		<script>window.flxuL10n=<?php echo wp_json_encode( self::js_strings() ); ?>;</script>
 		<script src="<?php echo esc_url( plugins_url( 'assets/packages.js', FLXU_FILE ) . '?ver=' . FLXU_VERSION ); ?>"></script>
 		<?php
@@ -1476,6 +1477,14 @@ final class FLXU_Admin {
 	/** Panel betiğinin metinleri (çevrilebilir). */
 	private static function js_strings(): array {
 		return array(
+			'previewClose' => __( 'Close preview', 'flx-setup' ),
+			'previewWebsite' => __( 'Open on website', 'flx-setup' ),
+			'previewMore' => __( 'For full details and more examples, visit the website.', 'flx-setup' ),
+			'previewImages' => __( 'Example screenshots', 'flx-setup' ),
+			'previewEmpty' => __( 'No preview images are available yet.', 'flx-setup' ),
+			'previewDescription' => __( 'A short overview is not available yet.', 'flx-setup' ),
+			/* translators: %d: image number */
+			'previewImage' => __( 'Preview image %d', 'flx-setup' ),
 			'needs'        => __( '%1$s requires %2$s (%3$s).', 'flx-setup' ),
 			'checking'     => __( 'Checking…', 'flx-setup' ),
 			'notInstalled' => __( 'not installed', 'flx-setup' ),

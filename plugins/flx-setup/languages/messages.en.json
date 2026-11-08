@@ -616,6 +616,13 @@
     "[[\"FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back.\", 'tr']]": "[[\"FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back.\", 'tr']]",
     "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n\u0000\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n": "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n\u0000\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n",
     "\\nConnected ·%dpackage Connected ·%dpackage\\n\u0000\\nConnected ·%dpackage Connected ·%dpackage\\n": "\\nConnected ·%dpackage Connected ·%dpackage\\n\u0000\\nConnected ·%dpackage Connected ·%dpackage\\n",
-    "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n\u0000\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n": "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n\u0000\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
+    "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n\u0000\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n": "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n\u0000\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n",
+    "Close preview": "Close preview",
+    "Open on website": "Open on website",
+    "For full details and more examples, visit the website.": "For full details and more examples, visit the website.",
+    "Example screenshots": "Example screenshots",
+    "No preview images are available yet.": "No preview images are available yet.",
+    "A short overview is not available yet.": "A short overview is not available yet.",
+    "Preview image %d": "Preview image %d"
   }
 }

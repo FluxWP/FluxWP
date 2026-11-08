@@ -618,6 +618,13 @@
     "[[\"FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back.\", 'tr']]": "[[\"Plugin d'installation et de mise à jour de FluxWP. Assistant d'installation au premier démarrage (introduction, sélection du plugin, apparence, installation) ; Apporte les thèmes et plugins FluxWP du serveur de mise à jour (updater.fluxwp.com par défaut) à l'écran de mise à jour de WordPress ; Le moteur prédéfini (preset.json) configure le site en une seule étape, le remplace par des correctifs approuvés et le restaure. \", 'tr']]",
     "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n\u0000\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n": "\\nSauvegarde%dexpirée supprimée. Sauvegarde%dexpirée supprimée.\\n\u0000\\nSauvegarde%dexpirée supprimée. Sauvegarde%dexpirée supprimée.\\n",
     "\\nConnected ·%dpackage Connected ·%dpackage\\n\u0000\\nConnected ·%dpackage Connected ·%dpackage\\n": "\\nConnecté · Package%dConnecté · Package%d\\n\u0000\\nConnecté · Package%dConnecté · Package%d\\n",
-    "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n\u0000\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n": "\\nActuellement, la sauvegarde de mise à jour%1$dest%2$s. Actuellement, la sauvegarde de la mise à jour%1$dest%2$s.\\n\u0000\\nActuellement, la sauvegarde de mise à jour%1$dest%2$s. Actuellement, la sauvegarde de la mise à jour%1$dest%2$s.\\n"
+    "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n\u0000\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n": "\\nActuellement, la sauvegarde de mise à jour%1$dest%2$s. Actuellement, la sauvegarde de la mise à jour%1$dest%2$s.\\n\u0000\\nActuellement, la sauvegarde de mise à jour%1$dest%2$s. Actuellement, la sauvegarde de la mise à jour%1$dest%2$s.\\n",
+    "Close preview": "Fermer l'aperçu",
+    "Open on website": "Ouvert sur le site Internet",
+    "For full details and more examples, visit the website.": "Pour plus de détails et plus d’exemples, visitez le site Web.",
+    "Example screenshots": "Exemples de captures d'écran",
+    "No preview images are available yet.": "Aucune image d'aperçu n'est encore disponible.",
+    "A short overview is not available yet.": "Un bref aperçu n’est pas encore disponible.",
+    "Preview image %d": "Image d'aperçu%d"
   }
 }

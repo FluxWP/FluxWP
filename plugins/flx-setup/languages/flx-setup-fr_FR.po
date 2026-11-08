@@ -1880,3 +1880,24 @@ msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\
 msgid_plural "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
 msgstr[0] "\\nActuellement, la sauvegarde de mise à jour%1$dest%2$s. Actuellement, la sauvegarde de la mise à jour%1$dest%2$s.\\n"
 msgstr[1] "\\nActuellement, la sauvegarde de mise à jour%1$dest%2$s. Actuellement, la sauvegarde de la mise à jour%1$dest%2$s.\\n"
+
+msgid "Close preview"
+msgstr "Fermer l'aperçu"
+
+msgid "Open on website"
+msgstr "Ouvert sur le site Internet"
+
+msgid "For full details and more examples, visit the website."
+msgstr "Pour plus de détails et plus d’exemples, visitez le site Web."
+
+msgid "Example screenshots"
+msgstr "Exemples de captures d'écran"
+
+msgid "No preview images are available yet."
+msgstr "Aucune image d'aperçu n'est encore disponible."
+
+msgid "A short overview is not available yet."
+msgstr "Un bref aperçu n’est pas encore disponible."
+
+msgid "Preview image %d"
+msgstr "Image d'aperçu%d"

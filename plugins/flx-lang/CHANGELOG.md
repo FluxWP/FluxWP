@@ -1,5 +1,9 @@
 # Flux Lang
 
+## 0.2.3
+- Match regional browser languages, use country hints only when no supported browser language exists, preserve explicit language URLs and keep the configured fallback available in the panel.
+- Center the dropdown chevron with a fixed SVG box so alignment stays consistent across fonts, languages and text directions.
+
 ## 0.2.2
 - Add native WordPress language packs for German, Spanish, French, Brazilian Portuguese, Japanese, Simplified Chinese, Arabic and Russian. English-keyed JSON catalogs preserve legacy gettext compatibility; no Flux Lang dependency.
 

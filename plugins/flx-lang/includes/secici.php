@@ -45,7 +45,7 @@ function flxl_switcher( $args = array() ) {
 	if ( $compact ) {
 		$current = $items[0];
 		foreach ( $items as $item ) { if ( $item['current'] ) { $current = $item; break; } }
-		$out .= '<details class="flxl-picker"><summary aria-label="' . esc_attr__( 'Language selection', 'flx-lang' ) . '"><span dir="auto">' . esc_html( strtoupper( $current['code'] ) ) . '</span><span aria-hidden="true">⌄</span></summary><ul class="flxl-picker__list">';
+		$out .= '<details class="flxl-picker"><summary aria-label="' . esc_attr__( 'Language selection', 'flx-lang' ) . '"><span dir="auto">' . esc_html( strtoupper( $current['code'] ) ) . '</span><svg class="flxl-picker__chevron" width="12" height="12" viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="none"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><ul class="flxl-picker__list">';
 	}
 	foreach ( $items as $i ) {
 		if ( $compact ) { $out .= '<li>'; }

@@ -132,3 +132,5 @@ WordPress sites (FluxWP Panel)
 FluxWP Panel Released under the [GNU General Public License v2 or later](https://www.gnu.org/licenses/gpl-2.0.html).
 
 Made by FluxWP.
+
+Click a package name or icon in Packages for a brief introduction, example screenshots and an “Open on website” link for full details. Install/update controls remain separate.

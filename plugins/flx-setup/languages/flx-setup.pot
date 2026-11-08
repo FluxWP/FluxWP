@@ -1880,3 +1880,24 @@ msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\
 msgid_plural "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
 msgstr[0] ""
 msgstr[1] ""
+
+msgid "Close preview"
+msgstr ""
+
+msgid "Open on website"
+msgstr ""
+
+msgid "For full details and more examples, visit the website."
+msgstr ""
+
+msgid "Example screenshots"
+msgstr ""
+
+msgid "No preview images are available yet."
+msgstr ""
+
+msgid "A short overview is not available yet."
+msgstr ""
+
+msgid "Preview image %d"
+msgstr ""

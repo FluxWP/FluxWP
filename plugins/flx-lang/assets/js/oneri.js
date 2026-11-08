@@ -27,6 +27,8 @@
 	if ( ! force && ( d.mode === 'off' || BOT.test( navigator.userAgent || '' ) || navigator.webdriver ) ) {
 		return;
 	}
+	// A direct language URL is an explicit request; do not replace it with a stored or inferred preference.
+	if (d.explicit && !force) { return; }
 	if ( pref && ! force ) {
 		// Ziyaretçi dilini seçmiş (ya da bir kez yönlendirildi): yönlendirme kipinde başka dildeki adrese gelirse kendi diline.
 		if ( d.mode === 'redirect' && pref !== d.cur && d.alts[ pref ] ) {
@@ -38,10 +40,9 @@
 	function browserLang() {
 		var list = navigator.languages && navigator.languages.length ? navigator.languages : [ navigator.language || '' ];
 		for ( var i = 0; i < list.length; i++ ) {
-			var c = String( list[ i ] ).slice( 0, 2 ).toLowerCase();
-			if ( d.alts[ c ] ) {
-				return c;
-			}
+			var full = String(list[i]).toLowerCase().replace(/_/g, '-'), base = full.split('-')[0];
+			var candidates = [full, base, base === 'pt' ? 'pt-br' : base];
+			for (var j = 0; j < candidates.length; j++) { if (d.alts[candidates[j]]) { return candidates[j]; } }
 		}
 		return '';
 	}
@@ -55,15 +56,17 @@
 			try {
 				tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
 			} catch ( e ) {}
-			home = tz === 'Europe/Istanbul' || tz === 'Asia/Istanbul' || tz === 'Asia/Famagusta' || tz === 'Asia/Nicosia';
+			home = (d.home.indexOf('TR') !== -1 && (tz === 'Europe/Istanbul' || tz === 'Asia/Istanbul')) || (d.home.indexOf('CY') !== -1 && (tz === 'Asia/Famagusta' || tz === 'Asia/Nicosia'));
 		}
 		if ( home ) {
 			return d.def;
 		}
 		var b = browserLang();
-		if ( b && b !== d.def ) {
+		if ( b ) {
 			return b;
 		}
+		var local = (d.countries || {})[country];
+		if (local && d.alts[local]) { return local; }
 		return d.alts[ d.to ] ? d.to : '';
 	}
 
@@ -142,11 +145,12 @@
 		return;
 	}
 	var done = false;
-	if ( d.mode === 'redirect' && ! force ) {
+	if ( d.mode === 'redirect' && ! force && browserLang() ) {
 		// Sayfa çizilmeden karar: ülke çerezi yoksa saat dilimi. Ülke bilgisi sonraki ziyaretler için arka planda alınır.
 		act( '' );
 		done = true;
 	}
+	if (done) { return; }
 	var timer = done ? 0 : setTimeout( function () {
 		if ( ! done ) {
 			done = true;
