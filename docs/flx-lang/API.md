@@ -81,3 +81,11 @@ metni çevir (blok yapısını koru) → `flxl_save_translation source_id lang=e
 ## Uygulama
 
 Modül `lang` ayar sayfasını `options-general.php?page=flx-lang` web görünümünde açar.
+
+## Front-end text direction
+
+`flxl_language_direction($code = '')` returns `rtl` or `ltr` from the configured language locale. An empty code uses the current URL language. Arabic and other supported RTL locales do not require an installed WordPress language pack for direction. The `flxl_language_direction` filter receives direction, language code and locale; only `rtl` or `ltr` are accepted.
+
+Flux Lang synchronizes front-end `html[dir]`, the `rtl` body class and WordPress `is_rtl()`, including `flxl_switch_language()` / `flxl_restore_language()`. The WordPress admin keeps its user's direction. Theme/plugin layouts should use logical CSS properties; code blocks, email addresses, URLs and other technical syntax should isolate their own LTR direction. This supplies layout direction, not automatic content translation.
+
+Türkçe: `flxl_language_direction()` seçili dilin yazım yönünü verir; Arapça dil paketi kurulu olmasa da ön yüzde HTML, core ve body yönü tutarlı olur. Yönetim panelinin kullanıcı dili korunur. Çeviriler ayrıca sağlanır.

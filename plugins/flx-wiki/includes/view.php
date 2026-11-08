@@ -25,7 +25,7 @@ function flxwk_icon( $name ) {
 		'down'   => '<path d="m6 9 6 6 6-6"/>',
 		'clock'  => '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
 	);
-	return '<svg class="flxwk-i" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . ( $p[ $name ] ?? '' ) . '</svg>';
+	return '<svg class="flxwk-i' . ( in_array( $name, array( 'right', 'left' ), true ) ? ' flxwk-i--directional' : '' ) . '" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . ( $p[ $name ] ?? '' ) . '</svg>';
 }
 
 /** Blok / klasik şablonun içeriği. */
