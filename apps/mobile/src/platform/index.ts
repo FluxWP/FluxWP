@@ -2,6 +2,7 @@
 // in-app auth session (ASWebAuthenticationSession / Custom Tabs) for OAuth and Application Passwords.
 import { AppState, Platform as RN } from 'react-native';
 import * as Linking from 'expo-linking';
+import { fetch as expoFetch } from 'expo/fetch';
 import * as WebBrowser from 'expo-web-browser';
 import Constants from 'expo-constants';
 import { OAuthError, setPlatform, type OAuthRedirect, type Platform, type Visibility } from '@fluxwp/core';
@@ -66,7 +67,7 @@ const visibility: Visibility = {
 
 export const mobilePlatform: Platform = {
   kind: 'mobile',
-  fetch: (...a) => fetch(...a),
+  fetch: (...a) => RN.OS === 'web' ? fetch(...a) : expoFetch(...a),
   secure,
   storage,
   openExternal,

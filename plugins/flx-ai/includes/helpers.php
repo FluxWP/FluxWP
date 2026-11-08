@@ -76,18 +76,37 @@ function flxai_setting( $key, $default = null ) {
 	return array_key_exists( $key, $s ) ? $s[ $key ] : $default;
 }
 
-/** Ayarları kaydeder (yalnız verilen alanlar). */
+function flxai_settings_lock_name() {
+	global $wpdb;
+	return 'flx-ai-tools-' . md5( DB_NAME . '|' . $wpdb->prefix );
+}
+
+/** Serialize all helper-based settings writers, including migration and source-model updates. */
+function flxai_with_settings_lock( $callback ) {
+	global $wpdb; $lock = flxai_settings_lock_name();
+	if ( 1 !== (int) $wpdb->get_var( $wpdb->prepare( 'SELECT GET_LOCK(%s,0)', $lock ) ) ) { return new WP_Error( 'flxai_busy', __( 'Başka bir işlem kaydediliyor. Yeniden deneyin.', 'flx-ai' ), array( 'status' => 409 ) ); }
+	try {
+		wp_cache_delete( 'alloptions', 'options' ); wp_cache_delete( 'flxai_settings', 'options' ); wp_cache_delete( 'notoptions', 'options' ); $GLOBALS['flxai_settings_cache'] = null;
+		return $callback();
+	} finally { $wpdb->get_var( $wpdb->prepare( 'SELECT RELEASE_LOCK(%s)', $lock ) ); }
+}
+
+/** Ayarları kaydeder (yalnız verilen alanlar). true|WP_Error. */
 function flxai_update_settings( array $changes ) {
-	$s = get_option( 'flxai_settings', array() );
-	$s = is_array( $s ) ? $s : array();
-	foreach ( $changes as $k => $v ) {
-		if ( 0 === strpos( $k, 'key_' ) ) {
-			$v = '' === (string) $v ? '' : flxai_encrypt( (string) $v );
+	return flxai_with_settings_lock( static function () use ( $changes ) {
+		$s = get_option( 'flxai_settings', array() );
+		$s = is_array( $s ) ? $s : array();
+		$before = $s;
+		foreach ( $changes as $k => $v ) {
+			if ( 0 === strpos( $k, 'key_' ) ) {
+				$v = '' === (string) $v ? '' : flxai_encrypt( (string) $v );
+			}
+			$s[ $k ] = $v;
 		}
-		$s[ $k ] = $v;
-	}
-	update_option( 'flxai_settings', $s, true );
-	$GLOBALS['flxai_settings_cache'] = null;
+		if ( $before !== $s && ! update_option( 'flxai_settings', $s, true ) ) { return new WP_Error( 'flxai_save', __( 'Ayarlar kaydedilemedi.', 'flx-ai' ), array( 'status' => 500 ) ); }
+		$GLOBALS['flxai_settings_cache'] = null;
+		return true;
+	} );
 }
 
 /**
@@ -97,41 +116,45 @@ function flxai_update_settings( array $changes ) {
  * @param string $source Eklenti kaynağı (flx-chat …).
  * @param array  $conf   key_anthropic, key_openrouter, anthropic_workspace, model (varsayılan), source_model (bu kaynağa özel).
  *                       Model: OpenRouter kimliği (google/gemini-2.5-flash) ya da Claude için claude:<id> / claude-… kimliği.
- * @return string[] Aktarılan alanlar.
+ * @return string[]|WP_Error Aktarılan alanlar veya kayıt hatası.
  */
 function flxai_import_config( $source, array $conf ) {
-	$source  = sanitize_key( (string) $source );
-	$changes = array();
-	foreach ( array( 'key_anthropic', 'key_openrouter', 'anthropic_workspace', 'model' ) as $k ) {
-		$v = trim( (string) ( $conf[ $k ] ?? '' ) );
-		if ( '' !== $v && '' === (string) flxai_setting( $k, '' ) ) {
-			$v             = sanitize_text_field( $v );
-			$changes[ $k ] = 'model' === $k ? flxai_parse_model( $v )['full'] : $v;
+	return flxai_with_settings_lock( static function () use ( $source, $conf ) {
+		$source  = sanitize_key( (string) $source );
+		$changes = array();
+		foreach ( array( 'key_anthropic', 'key_openrouter', 'anthropic_workspace', 'model' ) as $k ) {
+			$v = trim( (string) ( $conf[ $k ] ?? '' ) );
+			if ( '' !== $v && '' === (string) flxai_setting( $k, '' ) ) {
+				$v             = sanitize_text_field( $v );
+				$changes[ $k ] = 'model' === $k ? flxai_parse_model( $v )['full'] : $v;
+			}
 		}
-	}
-	$sm = trim( (string) ( $conf['source_model'] ?? '' ) );
-	$all = (array) flxai_setting( 'source_models', array() );
-	if ( '' !== $source && '' !== $sm && '' === (string) ( $all[ $source ] ?? '' ) ) {
-		$all[ $source ]           = flxai_parse_model( sanitize_text_field( $sm ) )['full'];
-		$changes['source_models'] = $all;
-	}
-	if ( $changes ) {
-		flxai_update_settings( $changes );
-	}
-	return array_keys( $changes );
+		$sm = trim( (string) ( $conf['source_model'] ?? '' ) );
+		$all = (array) flxai_setting( 'source_models', array() );
+		if ( '' !== $source && '' !== $sm && '' === (string) ( $all[ $source ] ?? '' ) ) {
+			$all[ $source ]           = flxai_parse_model( sanitize_text_field( $sm ) )['full'];
+			$changes['source_models'] = $all;
+		}
+		if ( $changes ) {
+			$result = flxai_update_settings( $changes ); if ( is_wp_error( $result ) ) { return $result; }
+		}
+		return array_keys( $changes );
+	} );
 }
 
 /** Kaynağa özel modeli yazar (boş = varsayılana döner). Eklentinin kendi ayar ekranındaki model seçimi için. */
 function flxai_set_source_model( $source, $model ) {
-	$source = sanitize_key( (string) $source );
-	$all    = (array) flxai_setting( 'source_models', array() );
-	$model  = sanitize_text_field( (string) $model );
-	if ( '' === $model ) {
-		unset( $all[ $source ] );
-	} else {
-		$all[ $source ] = flxai_parse_model( $model )['full'];
-	}
-	flxai_update_settings( array( 'source_models' => $all ) );
+	return flxai_with_settings_lock( static function () use ( $source, $model ) {
+		$source = sanitize_key( (string) $source );
+		$all    = (array) flxai_setting( 'source_models', array() );
+		$model  = sanitize_text_field( (string) $model );
+		if ( '' === $model ) {
+			unset( $all[ $source ] );
+		} else {
+			$all[ $source ] = flxai_parse_model( $model )['full'];
+		}
+		return flxai_update_settings( array( 'source_models' => $all ) );
+	} );
 }
 
 /** Gizli değeri şifreler (sodium varsa). */

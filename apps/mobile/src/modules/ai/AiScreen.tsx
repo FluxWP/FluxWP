@@ -1,166 +1,34 @@
-// Flux AI chat. Tokens arrive as NDJSON (`stream=1` on /step) and paint as they land.
 import { useState } from 'react';
-import { KeyboardAvoidingView, Platform, Pressable, TextInput, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, Pressable, ScrollView, Switch, TextInput, View, useWindowDimensions } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { loadTokens } from '@fluxwp/core';
-import { messageText, streamAiStep, useAccount, useApi, useRenderer, type AiChat, type AiEvent, type AiMessage } from '@fluxwp/runtime';
-import { Button, EmptyState, IconButton, Spinner, Text } from '@/ui/primitives';
+import { type AiMessage, type AiChat } from '@fluxwp/runtime';
+import { useAiConversation } from '@fluxwp/runtime/src/modules/ai-conversation';
+import { Button, Field, IconButton, Spinner, Text } from '@/ui/primitives';
+import { Select } from '@/ui/Select';
 import { useScreenTitle } from '../kit';
-
-interface ChatList { chats: { id: number; title: string; status: string }[] }
-interface SendResult { state: string; chat: AiChat }
-
-export default function AiScreen(_props: { params: Record<string, string> }) {
-  const { t } = useTranslation();
-  const { theme } = useUnistyles();
-  useScreenTitle(t('mobile.screens.ai.title'));
-  const api = useApi();
-  const account = useAccount();
-  const renderer = useRenderer();
-  const qc = useQueryClient();
-  const list = useQuery({ queryKey: ['flxai', account.id, 'chats'], queryFn: () => api<ChatList>('flx-ai/v1/chats') });
-  const [openId, setOpenId] = useState<number | null>(null);
-  const [chat, setChat] = useState<AiChat | null>(null);
-  const [draft, setDraft] = useState('');
-  const [text, setText] = useState('');
-  const [streaming, setStreaming] = useState(false);
-
-  const load = async (id: number) => {
-    setOpenId(id);
-    setChat(await api<AiChat>(`flx-ai/v1/chats/${id}`));
-    setDraft('');
-  };
-
-  const consume = (ev: AiEvent) => {
-    if (ev.t === 'text') setDraft((d) => d + (ev.d ?? ''));
-    if ((ev.t === 'result' || ev.t === 'chat') && ev.chat) {
-      setChat(ev.chat);
-      setDraft('');
-      setOpenId(ev.chat.id);
-    }
-  };
-
-  const step = async (id: number) => {
-    setStreaming(true);
-    try {
-      const tokens = account.authKind === 'demo' ? null : await loadTokens(account.id);
-      await streamAiStep({
-        siteUrl: account.siteUrl,
-        demo: account.authKind === 'demo',
-        token: tokens?.access,
-        scheme: account.authKind === 'apppass' ? 'basic' : 'bearer',
-        chatId: id,
-      }, consume);
-    } finally {
-      setStreaming(false);
-    }
-  };
-
-  const send = useMutation({
-    mutationFn: async (body: string) => {
-      const id = openId ?? 0;
-      return api<SendResult>(`flx-ai/v1/chats/${id}/send`, { method: 'POST', body: { text: body } });
-    },
-    onSuccess: async (r) => {
-      setChat(r.chat);
-      setOpenId(r.chat.id);
-      setText('');
-      void qc.invalidateQueries({ queryKey: ['flxai', account.id, 'chats'] });
-      if (r.state === 'continue' || r.chat.status === 'running') await step(r.chat.id);
-    },
-    onError: (e) => renderer.ui.toast(e instanceof Error ? e.message : String(e), 'error'),
-  });
-
-  const decide = async (ok: boolean) => {
-    if (!chat) return;
-    const decisions = Object.fromEntries(chat.pending.map((p) => [p.id, ok ? 'approve' : 'deny']));
-    const r = await api<SendResult>(`flx-ai/v1/chats/${chat.id}/decide`, { method: 'POST', body: { decisions } });
-    setChat(r.chat);
-    if (r.state === 'continue' || r.chat.status === 'running') await step(chat.id);
-  };
-
-  const messages: (AiMessage & { id: string })[] = [
-    ...(chat?.messages ?? []).filter((m) => messageText(m)).map((m, i) => ({ ...m, id: 'm' + i })),
-    ...(draft ? [{ id: 'draft', role: 'assistant', content: draft }] : []),
-  ];
-
-  if (openId === null) {
-    return (
-      <View testID="screen-ai" style={styles.fill}>
-        <View style={styles.tools}>
-          <Button icon="plus" label={t('mobile.screens.ai.new')} onPress={() => (setOpenId(0), setChat(null))} />
-        </View>
-        {list.isPending ? <Spinner /> : (
-          <FlashList
-            data={list.data?.chats ?? []}
-            keyExtractor={(c) => String(c.id)}
-            renderItem={({ item }) => (
-              <Pressable accessibilityRole="button" onPress={() => void load(item.id)} style={styles.row}>
-                <Text numberOfLines={1}>{item.title || t('mobile.screens.ai.new')}</Text>
-                <Text variant="caption">{item.status}</Text>
-              </Pressable>
-            )}
-            ListEmptyComponent={<EmptyState icon="ai" title={t('mobile.screens.ai.empty')} body={t('mobile.screens.ai.emptyBody')} action={{ label: t('mobile.screens.ai.new'), onPress: () => (setOpenId(0), setChat(null)) }} />}
-          />
-        )}
-      </View>
-    );
-  }
-
-  return (
-    <KeyboardAvoidingView testID="screen-ai" style={styles.fill} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-      <View style={styles.head}>
-        <IconButton icon="back" label={t('mobile.shell.back')} onPress={() => (setOpenId(null), setChat(null), void list.refetch())} />
-        <Text variant="label" numberOfLines={1} style={styles.flex}>{chat?.title || t('mobile.screens.ai.new')}</Text>
-      </View>
-      <FlashList
-        data={messages}
-        keyExtractor={(m) => m.id}
-        renderItem={({ item }) => {
-          const mine = item.role === 'user';
-          return (
-            <View style={[styles.bubble, mine ? styles.mine : styles.theirs]}>
-              <Text variant="caption" tone="muted">{mine ? t('mobile.screens.ai.you') : t('mobile.screens.ai.assistant')}</Text>
-              <Text>{messageText(item)}</Text>
-            </View>
-          );
-        }}
-        ListEmptyComponent={streaming ? <Spinner label={t('mobile.screens.ai.thinking')} /> : null}
-        contentContainerStyle={styles.thread}
-      />
-      {chat?.pending?.length ? (
-        <View style={styles.pending}>
-          <Text variant="label">{t('mobile.screens.ai.tool')}</Text>
-          {chat.pending.map((p) => <Text key={p.id} variant="small">{p.title || p.name}</Text>)}
-          <View style={styles.actions}>
-            <Button kind="secondary" label={t('mobile.screens.ai.deny')} onPress={() => void decide(false)} />
-            <Button label={t('mobile.screens.ai.approve')} onPress={() => void decide(true)} />
-          </View>
-        </View>
-      ) : null}
-      <View style={styles.composer}>
-        <TextInput value={text} onChangeText={setText} placeholder={t('mobile.screens.ai.placeholder')} placeholderTextColor={theme.colors.textMuted} style={styles.input} accessibilityLabel={t('mobile.screens.ai.placeholder')} />
-        <IconButton icon="airplane" label={t('mobile.screens.ai.send')} color={theme.colors.primary} onPress={() => text.trim() && send.mutate(text.trim())} />
-      </View>
-    </KeyboardAvoidingView>
-  );
+import { useMobileAi } from './AiProvider';
+import { AiRichText } from './RichText';
+export default function AiScreen(){
+ const engine=useMobileAi();const c=useAiConversation(engine);const {t}=useTranslation();const {theme}=useUnistyles();const {height}=useWindowDimensions();useScreenTitle(t('ai.title'));
+ const [history,setHistory]=useState(!c.chat);const disabled=c.busy||c.loading;
+ const current=c.chat;const rows=current?.messages.filter(m=>m.role!=='system'&&(m.role!=='tool'||!current.messages.some(a=>a.tool_calls?.some(call=>call.id===m.tool_call_id))))??[];
+ const error=<>{!!c.errorText&&<View style={styles.notice}><Text tone="danger" accessibilityRole="alert">{c.errorText}</Text><Button kind="ghost" label={t('common.retry')} disabled={disabled} onPress={()=>c.chat?void engine.resume():void engine.initialize()}/></View>}{!!c.recoveryText&&<Button kind="secondary" label={t('aiChat.recover')} disabled={disabled} onPress={()=>void c.recover()}/>}</>;
+ if(history)return <View style={styles.fill} testID="screen-ai-history"><FlashList data={c.chats} keyExtractor={r=>String(r.id)} contentContainerStyle={styles.historyList} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} ListHeaderComponent={<View style={styles.stack}><Text variant="heading">{t('ai.history')}</Text><Button icon="plus" label={t('ai.new')} disabled={disabled} onPress={()=>{engine.newChat();setHistory(false);}}/>{c.chat&&<Button kind="secondary" label={t('aiChat.backToChat')} onPress={()=>setHistory(false)}/>}<Field label={t('ai.search')} value={c.search} onChangeText={c.setSearch}/><View style={styles.row}><Text style={styles.flex}>{t('aiChat.archived')}</Text><Switch accessibilityLabel={t('aiChat.archived')} value={c.archived} onValueChange={c.setArchived}/></View>{error}</View>} renderItem={({item:r})=><View style={styles.historyCard}><Pressable accessibilityRole="button" accessibilityLabel={r.title||t('ai.new')} disabled={disabled} onPress={()=>{void engine.open(r.id);setHistory(false);}}><Text variant="heading">{r.title||t('ai.new')}</Text>{!!r.snippet&&<Text variant="small" tone="muted">{r.snippet}</Text>}</Pressable><View style={styles.actions}><Button kind="ghost" label={t('aiChat.rename')} disabled={disabled} onPress={()=>void c.rename(r)}/><Button kind="ghost" label={t(r.archived?'aiChat.restore':'aiChat.archive')} disabled={disabled} onPress={()=>void c.archive(r)}/><Button kind="ghost" label={t('aiChat.delete')} disabled={disabled} onPress={()=>void c.remove(r)}/></View></View>} ListEmptyComponent={c.historyLoading?<Spinner/>:<Text tone="muted">{t('aiChat.emptyHistory')}</Text>} ListFooterComponent={c.historyMore?<Button kind="secondary" label={t('aiChat.more')} disabled={c.historyLoading} onPress={()=>void engine.loadHistory(c.search,c.archived,true)}/>:null}/></View>;
+ return <KeyboardAvoidingView testID="screen-ai" style={styles.fill} behavior={Platform.OS==='ios'?'padding':undefined}>
+  <View style={styles.head}><IconButton icon="back" label={t('ai.history')} onPress={()=>setHistory(true)}/><Text variant="label" numberOfLines={1} style={styles.flex}>{current?.title||t('ai.new')}</Text><Button kind="ghost" label={t('ai.new')} disabled={disabled} onPress={()=>engine.newChat()}/></View>
+  <View style={styles.actions}>{current&&<><Button kind="ghost" label={t('aiChat.rename')} disabled={disabled} onPress={()=>void c.rename(current)}/><Button kind="ghost" label={t(current.archived?'aiChat.restore':'aiChat.archive')} disabled={disabled} onPress={()=>void c.archive(current)}/><Button kind="ghost" label={t('aiChat.delete')} disabled={disabled} onPress={()=>void c.remove(current)}/></>}{c.boot?.canManage&&<Button kind="ghost" label={t('aiChat.model')} disabled={disabled} onPress={()=>c.setModelsOpen(!c.modelsOpen)}/>}</View>
+  {c.modelsOpen&&<ScrollView style={{maxHeight:240}} contentContainerStyle={styles.modelPicker} keyboardShouldPersistTaps="handled"><Select label={t('aiChat.model')} value={c.model} disabled={disabled} onChange={model=>void engine.model(model)} options={[{value:'',label:`${t('aiChat.defaultModel')} · ${c.boot?.modelLabel??''}`},...(c.model&&!c.models.data?.models.some(m=>m.id===c.model)?[{value:c.model,label:c.model}]:[]),...(c.models.data?.models.filter(m=>m.tools!==false).map(m=>({value:m.id,label:`${m.name} · ${m.id}`}))??[])]}/>{c.models.isError&&<Text tone="danger">{t('aiChat.modelsUnavailable')}</Text>}<Field label={t('aiChat.manualModel')} value={c.modelText} onChangeText={c.setModelText} editable={!disabled}/><Button kind="secondary" label={t('aiChat.applyModel')} disabled={disabled} onPress={()=>void c.applyModel()}/><Button kind="ghost" label={t('common.close')} onPress={()=>c.setModelsOpen(false)}/></ScrollView>}
+  {error}{c.loading&&<Spinner/>}{c.boot&&!c.boot.ready&&<Text style={styles.notice} tone="muted">{t('ai.notReady')}</Text>}
+  <FlashList data={rows} keyExtractor={(m,i)=>m._id||`${current?.id}:${i}`} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} contentContainerStyle={styles.thread} renderItem={({item:m})=>current?<Message message={m} chat={current} tools={c.boot?.tools??{}} disabled={disabled} onEdit={()=>c.startEdit(m)} onRewind={()=>void c.rewind(m)}/>:null} ListEmptyComponent={<View style={styles.welcome}><Text variant="heading">{t('ai.welcome')}</Text><Text tone="muted">{t('ai.disclosure')}</Text></View>} ListFooterComponent={<>{(c.liveText||c.liveThinking||c.liveTools.length>0)&&<View style={styles.bubble}>{!!c.liveThinking&&<Text variant="small" tone="muted">{c.liveThinking}</Text>}{!!c.liveText&&<AiRichText text={c.liveText} live/>}{c.liveTools.map(tool=><Text key={tool.id} variant="small">{c.boot?.tools?.[tool.name]?.title||tool.name} · {t('ai.working')}</Text>)}</View>}{c.busy&&<Spinner label={t('ai.working')}/>}</>}/>
+  {c.editing&&<View style={styles.edit}><Field label={t('aiChat.edit')} value={c.editText} onChangeText={c.setEditText} multiline/><Text variant="caption" tone="muted">{t('aiChat.editConfirm')}</Text><View style={styles.actions}><Button kind="secondary" label={t('common.cancel')} disabled={disabled} onPress={c.cancelEdit}/><Button label={t('aiChat.applyEdit')} disabled={disabled||!c.editText.trim()} onPress={()=>void c.edit()}/></View></View>}
+  {!!current?.pending.length&&<ScrollView style={{maxHeight:Math.min(height*.35,320)}} contentContainerStyle={styles.pending} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}><Text variant="heading">{t('ai.approval')}</Text><Text variant="small">{t('ai.disclosure')}</Text>{current.pending.map(call=><View style={styles.approvalCard} key={call.id}><Text variant="label">{call.title||call.name}</Text><Text variant="caption" tone="muted">{call.source} · {call.name}</Text><Text selectable style={styles.code}>{JSON.stringify(call.args??{},null,2)}</Text><View style={styles.actions}>{(['reject','approve'] as const).map(decision=><Button key={decision} kind={c.decisions[call.id]===decision?'primary':'secondary'} label={t(`ai.${decision}`)} disabled={disabled} onPress={()=>c.setDecisions(v=>({...v,[call.id]:decision}))}/>)}</View></View>)}<Button label={t('ai.continue')} disabled={disabled||current.pending.some(p=>!c.decisions[p.id])} onPress={()=>void engine.decide(c.decisions)}/></ScrollView>}
+  {current?.archived&&<Text style={styles.notice}>{t('aiChat.archivedNotice')}</Text>}<>{current?.status==='running'&&!c.busy&&<Button kind="secondary" label={t('ai.resume')} onPress={()=>void engine.resume()}/>}<View style={styles.composer}><TextInput value={c.composer} onChangeText={c.setText} multiline placeholder={t('ai.message')} placeholderTextColor={theme.colors.textMuted} style={styles.input} accessibilityLabel={t('ai.message')} editable={!!c.boot?.ready&&!c.editing}/>{(c.busy||current?.status==='running')&&current?.id?<Button kind="secondary" label={t('ai.stop')} onPress={()=>void engine.stop()}/>:<Button label={t('ai.send')} disabled={disabled||!c.boot?.ready||!c.composer.trim()||!!current?.pending.length||!!c.editing} onPress={()=>void c.send()}/>}</View></>
+  <Text variant="caption" tone="muted" style={styles.modelLabel}>{c.model||c.boot?.modelLabel||c.boot?.model}</Text>
+ </KeyboardAvoidingView>;
 }
-
-const styles = StyleSheet.create((theme) => ({
-  fill: { flex: 1, backgroundColor: theme.colors.bg },
-  flex: { flex: 1 },
-  tools: { padding: theme.space[3] },
-  row: { minHeight: 64, marginHorizontal: 12, marginBottom: 8, paddingHorizontal: theme.space[4], justifyContent: 'center', backgroundColor: theme.colors.surface, borderWidth: 1, borderColor: theme.colors.border, borderRadius: theme.radius.lg },
-  head: { flexDirection: 'row', alignItems: 'center', borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.colors.border },
-  thread: { padding: theme.space[3] },
-  bubble: { maxWidth: '86%', borderRadius: theme.radius.lg, padding: 12, marginBottom: 8, gap: 4 },
-  mine: { alignSelf: 'flex-end', backgroundColor: theme.colors.primarySoft },
-  theirs: { alignSelf: 'flex-start', backgroundColor: theme.colors.surface, borderWidth: StyleSheet.hairlineWidth, borderColor: theme.colors.border },
-  pending: { margin: theme.space[3], padding: theme.space[3], gap: 6, borderRadius: theme.radius.md, backgroundColor: theme.colors.surface, borderWidth: StyleSheet.hairlineWidth, borderColor: theme.colors.border },
-  actions: { flexDirection: 'row', gap: 8 },
-  composer: { flexDirection: 'row', alignItems: 'flex-end', gap: 4, padding: 8, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: theme.colors.border, backgroundColor: theme.colors.surface },
-  input: { flex: 1, minHeight: 44, maxHeight: 120, color: theme.colors.text, fontSize: 16, fontFamily: theme.font.family, paddingHorizontal: 12, borderWidth: 1, borderColor: theme.colors.border, borderRadius: theme.radius.md, backgroundColor: theme.colors.bg },
-}));
+function Message({message:m,chat,tools,disabled,onEdit,onRewind}:{message:AiMessage;chat:AiChat;tools:Record<string,{title:string;write:boolean}>;disabled:boolean;onEdit:()=>void;onRewind:()=>void}){
+ const {t}=useTranslation();const [thinking,setThinking]=useState(false);const [expanded,setExpanded]=useState<Record<string,boolean>>({});return <View style={[styles.bubble,m.role==='user'?styles.mine:styles.theirs]}><View style={styles.row}><Text variant="caption" tone="muted" style={styles.flex}>{t(m.role==='user'?'ai.you':m.role==='tool'?'ai.tool':'ai.assistant')}</Text>{m.role==='user'&&m._id&&<><Button kind="ghost" label={t('aiChat.edit')} disabled={disabled} onPress={onEdit}/><Button kind="ghost" label={t('aiChat.rewind')} disabled={disabled} onPress={onRewind}/></>}</View>{!!m._thinking&&<><Button kind="ghost" label={t('ai.thinking')} onPress={()=>setThinking(!thinking)}/>{thinking&&<Text variant="small" selectable>{m._thinking}</Text>}</>}{!!m.content&&(m.role==='assistant'?<AiRichText text={m.content}/>:<Text selectable>{m.content}</Text>)}{m.tool_calls?.map(call=>{const r=chat.messages.find(item=>item.role==='tool'&&item.tool_call_id===call.id);return <View key={call.id} style={styles.toolCard}><Pressable accessibilityRole="button" accessibilityState={{expanded:!!expanded[call.id]}} onPress={()=>setExpanded(v=>({...v,[call.id]:!v[call.id]}))}><Text variant="label">{tools[call.function.name]?.title||call.function.name}</Text><Text variant="caption" tone={r?._ok===false?'danger':'muted'}>{t(r?r._rejected?'aiChat.rejected':r._ok===false?'aiChat.toolFailed':'aiChat.toolDone':chat.pending.some(p=>p.id===call.id)?'ai.approval':'ai.working')}{r?` · ${r._ms??0} ms`:''}</Text></Pressable>{expanded[call.id]&&<><Text variant="caption">{t('ai.arguments')}</Text><Text selectable style={styles.code}>{call.function.arguments}</Text><Text variant="caption">{t('aiChat.result')}</Text><Text selectable style={styles.code}>{r?.content||t('aiChat.noResult')}</Text></>}</View>;})}{m._ms!==undefined&&<Text variant="caption" tone="muted">{m._ms} ms{m._usage?.cost!==undefined?` · $${m._usage.cost.toFixed(5)}`:''}</Text>}</View>;
+}
+const styles=StyleSheet.create(theme=>({fill:{flex:1,backgroundColor:theme.colors.bg},flex:{flex:1,minWidth:0},row:{flexDirection:'row',alignItems:'center',gap:6,flexWrap:'wrap'},stack:{gap:12,paddingBottom:16},historyList:{padding:16,paddingBottom:32},historyCard:{padding:14,gap:10,marginBottom:12,backgroundColor:theme.colors.surface,borderWidth:1,borderColor:theme.colors.border,borderRadius:theme.radius.lg},head:{flexDirection:'row',alignItems:'center',gap:8,borderBottomWidth:StyleSheet.hairlineWidth,borderBottomColor:theme.colors.border},thread:{padding:12,paddingBottom:24},bubble:{maxWidth:'100%',borderRadius:theme.radius.lg,padding:12,marginBottom:12,gap:8,backgroundColor:theme.colors.surface},mine:{alignSelf:'flex-end',backgroundColor:theme.colors.primarySoft},theirs:{alignSelf:'stretch',borderWidth:StyleSheet.hairlineWidth,borderColor:theme.colors.border},pending:{margin:12,padding:12,gap:12,borderRadius:theme.radius.md,backgroundColor:theme.colors.surface,borderWidth:1,borderColor:theme.colors.border},approvalCard:{gap:8,paddingTop:12,borderTopWidth:1,borderTopColor:theme.colors.border},actions:{flexDirection:'row',gap:4,flexWrap:'wrap',alignItems:'center'},composer:{flexDirection:'row',alignItems:'flex-end',gap:6,padding:8,borderTopWidth:StyleSheet.hairlineWidth,borderTopColor:theme.colors.border,backgroundColor:theme.colors.surface},input:{flex:1,minHeight:44,maxHeight:120,color:theme.colors.text,fontSize:16,fontFamily:theme.font.family,padding:10,borderWidth:1,borderColor:theme.colors.border,borderRadius:theme.radius.md,backgroundColor:theme.colors.bg},notice:{padding:10,gap:8},modelPicker:{padding:12,gap:10},modelLabel:{textAlign:'center',paddingVertical:4},welcome:{padding:20,gap:12},edit:{margin:10,padding:12,gap:8,borderWidth:1,borderColor:theme.colors.border,borderRadius:12},code:{fontFamily:'monospace',fontSize:12,lineHeight:18,padding:8,backgroundColor:theme.colors.bg},toolCard:{padding:10,gap:8,borderWidth:1,borderColor:theme.colors.border,borderRadius:8}}));
